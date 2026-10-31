@@ -11,13 +11,13 @@
 void func_ov003_021cfaa8(void) {
     s32 a = data_ov003_021da2a8->mUnk_40;
     if (a == 1) {
-        if (*(UnkFunc **) &data_ov003_021da2a4 != 0) {
-            (*(UnkFunc **) &data_ov003_021da2a4)(0x08000000, data_ov003_021d79d0);
+        if (data_ov003_021da2a4 != 0) {
+            data_ov003_021da2a4(0x08000000, data_ov003_021d79d0);
         }
         return;
     }
-    if (*(UnkFunc **) &data_ov003_021da2a4 != 0) {
-        (*(UnkFunc **) &data_ov003_021da2a4)(0x08000000, data_ov003_021d79f4, a);
+    if (data_ov003_021da2a4 != 0) {
+        data_ov003_021da2a4(0x08000000, data_ov003_021d79f4, a);
     }
     if (data_ov003_021da2a8->mUnk_40 != 6 && data_ov003_021da2a8->mUnk_40 != 5 && data_ov003_021da2a8->mUnk_40 != 4) {
         func_ov003_021d07b0(3);

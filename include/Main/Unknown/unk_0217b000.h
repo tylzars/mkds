@@ -204,7 +204,6 @@ extern struct Unk020184e4 *data_0217b03c;
 
 extern struct Unk020184e4 *data_0217b044;
 extern struct Unk020184e4 *data_0217b04c;
-extern u8 data_0217b050[];
 extern UnkFunc *data_0217b054;
 
 // Function pointers set by func_0208c284 (the targets take different parameters).
@@ -282,28 +281,28 @@ extern Unk0217b034 *data_0217b034;
 extern u32 data_0217b0d8;
 extern void *data_0217b118;
 extern void *data_0217b11c;
-extern u8 data_0217b120[];
+extern void *data_0217b120;
 extern void *data_0217b124;
-extern u8 data_0217b128[];
-extern u8 data_0217b12c[];
-extern u8 data_0217b130[];
-extern u8 data_0217b134[];
-extern u8 data_0217b138[];
-extern u8 data_0217b13c[];
+extern void *data_0217b128;
+extern void *data_0217b12c;
+extern void *data_0217b130;
+extern void *data_0217b134;
+extern void *data_0217b138;
+extern void *data_0217b13c;
 extern void *data_0217b140;
 extern void *data_0217b144;
-extern u8 data_0217b148[];
+extern void *data_0217b148;
 extern void *data_0217b14c;
 extern void *data_0217b150;
-extern u8 data_0217b154[];
-extern u8 data_0217b158[];
+extern void *data_0217b154;
+extern void *data_0217b158;
 extern void *data_0217b15c;
-extern u8 data_0217b160[];
-extern u8 data_0217b164[];
-extern u8 data_0217b168[];
+extern void *data_0217b160;
+extern void *data_0217b164;
+extern void *data_0217b168;
 extern void *data_0217b16c;
 extern void *data_0217b170;
-extern u8 data_0217b1a4[];
+extern void *data_0217b1a4;
 // 0x70-byte entries of Unk0217b1fc, one per index 0 to 7.
 typedef struct Unk0217b1fc_000 {
     /* 00 */ s32 mUnk_00;
@@ -870,7 +869,7 @@ struct Unk020f41c4_A;
 
 extern struct Unk020f41c4_A **data_0217bd30;
 
-extern u8 data_0217b040[];
+extern void *data_0217b040;
 extern s32 data_0217b234;
 extern s32 data_0217b238;
 extern u16 *data_0217b23c[2];

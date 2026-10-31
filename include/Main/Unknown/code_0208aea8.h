@@ -24,6 +24,7 @@ typedef struct Unk02166108 {
 
 // Function stored at data_0217b050: writes a word to the first argument and returns the object.
 typedef Unk020184e4 *Unk0217b050Func(s32 *a, s32 b);
+extern Unk0217b050Func *data_0217b050;
 
 extern Unk0217b048 *data_0217b048;
 extern char data_usa_021660c8[];

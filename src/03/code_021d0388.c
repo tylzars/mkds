@@ -33,8 +33,8 @@ void func_ov003_021d03c0(Unk021425e8 *v1) {
                     if (func_ov003_021d0388() != 0) {
                         return;
                     }
-                    if (*(UnkFunc **) &data_ov003_021da2a4 != 0) {
-                        (*(UnkFunc **) &data_ov003_021da2a4)(0x08000000, data_ov003_021d7b40);
+                    if (data_ov003_021da2a4 != 0) {
+                        data_ov003_021da2a4(0x08000000, data_ov003_021d7b40);
                     }
                     func_ov003_021d07b0(9);
                     return;
@@ -59,8 +59,8 @@ void func_ov003_021d03c0(Unk021425e8 *v1) {
         case 0xc:
         case 0xd:
         default:
-            if (*(UnkFunc **) &data_ov003_021da2a4 != 0) {
-                (*(UnkFunc **) &data_ov003_021da2a4)(0x08000000, data_ov003_021d7af8, v1->mUnk_04);
+            if (data_ov003_021da2a4 != 0) {
+                data_ov003_021da2a4(0x08000000, data_ov003_021d7af8, v1->mUnk_04);
             }
             break;
     }
@@ -94,8 +94,8 @@ void func_ov003_021d0530(Unk021425e8 *v1) {
     }
     switch (v1->mUnk_08_0) {
         case 7:
-            if (*(UnkFunc **) &data_ov003_021da2a4 != 0) {
-                (*(UnkFunc **) &data_ov003_021da2a4)(0x08000000, data_ov003_021d7b70, v1->mUnk_10);
+            if (data_ov003_021da2a4 != 0) {
+                data_ov003_021da2a4(0x08000000, data_ov003_021d7b70, v1->mUnk_10);
             }
             if (data_ov003_021da2a8->mUnk_4c != 0 && data_ov003_021da2a8->mUnk_4c(v1) == 0) {
                 r = func_021436d0(0, v1->mUnk_10);
@@ -109,8 +109,8 @@ void func_ov003_021d0530(Unk021425e8 *v1) {
             data_ov003_021da2a8->mUnk_52 = data_ov003_021da2a8->mUnk_52 | v2;
             return;
         case 9:
-            if (*(UnkFunc **) &data_ov003_021da2a4 != 0) {
-                (*(UnkFunc **) &data_ov003_021da2a4)(0x08000000, data_ov003_021d7b9c, v1->mUnk_10);
+            if (data_ov003_021da2a4 != 0) {
+                data_ov003_021da2a4(0x08000000, data_ov003_021d7b9c, v1->mUnk_10);
             }
             data_ov003_021da2a8->mUnk_52 = data_ov003_021da2a8->mUnk_52 & ~v2;
             return;
@@ -122,8 +122,8 @@ void func_ov003_021d0530(Unk021425e8 *v1) {
         case 2:
             return;
         default:
-            if (*(UnkFunc **) &data_ov003_021da2a4 != 0) {
-                (*(UnkFunc **) &data_ov003_021da2a4)(0x08000000, data_ov003_021d7af8, v1->mUnk_08_0);
+            if (data_ov003_021da2a4 != 0) {
+                data_ov003_021da2a4(0x08000000, data_ov003_021d7af8, v1->mUnk_08_0);
             }
             return;
     }

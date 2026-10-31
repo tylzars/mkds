@@ -6,12 +6,12 @@
 #include "Main/Unknown/code_020995f0.h"
 
 void func_0209950c(void *a) {
-    func_0209bbd0(a, *(void **) &data_0217b138);
+    func_0209bbd0(a, data_0217b138);
 }
 
 void func_02099524(void *a) {
-    *(void **) &data_0217b138 = func_0209bd08(a, data_usa_0216707c);
-    func_0209b940(*(void **) &data_0217b138, 0x3f);
+    data_0217b138 = func_0209bd08(a, data_usa_0216707c);
+    func_0209b940(data_0217b138, 0x3f);
 }
 
 void func_02099558(void) {

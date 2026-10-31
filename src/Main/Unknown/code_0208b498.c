@@ -32,7 +32,7 @@ void *func_0208b498(u32 a, Vec3 *b, u32 c, s32 d) {
     Vec3 w;
     Vec3 v;
     Unk0201ca6c *q;
-    Unk020184e4 *p = (*(Unk0217b050Func **) &data_0217b050)(&e, a);
+    Unk020184e4 *p = data_0217b050(&e, a);
     v.x = b->x >> 4;
     v.y = b->y >> 4;
     v.z = b->z >> 4;

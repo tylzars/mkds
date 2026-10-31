@@ -4,7 +4,7 @@ void *func_0208b7bc(u32 a, const Vec3 *b) {
     s32 e;
     Vec3 v;
     Unk0201ca6c *q;
-    Unk020184e4 *p = (*(Unk0217b050Func **) &data_0217b050)(&e, a);
+    Unk020184e4 *p = data_0217b050(&e, a);
     v.x = b->x >> 4;
     v.y = b->y >> 4;
     v.z = b->z >> 4;
@@ -22,7 +22,7 @@ void *func_0208b7bc(u32 a, const Vec3 *b) {
 void func_0208b748(u32 a, const Vec3 *b, void *c, void (*d)()) {
     s32 e;
     Vec3 v;
-    Unk020184e4 *p = (*(Unk0217b050Func **) &data_0217b050)(&e, a);
+    Unk020184e4 *p = data_0217b050(&e, a);
     v.x = b->x >> 4;
     v.y = b->y >> 4;
     v.z = b->z >> 4;

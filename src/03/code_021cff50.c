@@ -17,8 +17,8 @@ void func_ov003_021cff50(Unk021425e8 *param_1) {
         func_ov003_021d07b0(9);
         return;
     }
-    if (*(UnkFunc **) &data_ov003_021da2a4 != 0) {
-        (*(UnkFunc **) &data_ov003_021da2a4)(0x08000000, data_ov003_021d7ae0, param_1->mUnk_08_0, param_1->mUnk_08_2);
+    if (data_ov003_021da2a4 != 0) {
+        data_ov003_021da2a4(0x08000000, data_ov003_021d7ae0, param_1->mUnk_08_0, param_1->mUnk_08_2);
     }
     a = param_1->mUnk_08_0;
     b = param_1->mUnk_08_2;

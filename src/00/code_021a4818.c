@@ -4,7 +4,7 @@
 void func_ov000_021a4818(void *param_1) {
     int iVar1;
     if (param_1 == 0) {
-        param_1 = *(void **) &data_ov000_021b426c;
+        param_1 = data_ov000_021b426c;
     }
     if (*(int *) ((u8 *) param_1 + 0xbc) != 0) {
         iVar1 = func_ov000_0218e8c4();

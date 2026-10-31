@@ -39,7 +39,7 @@ void func_020a2328(void (*p0)(u16 a)) {
 }
 
 void func_020a2314(void (*param_1)(void)) {
-    *(void (**)(void)) (*(u8 **) &data_0217b1fc + 0x390) = param_1;
+    data_0217b1fc->mUnk_390 = param_1;
 }
 
 void func_020a2300(u32 p0) {

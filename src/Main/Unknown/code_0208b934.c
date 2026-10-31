@@ -38,7 +38,7 @@ void func_0208b934(void *a) {
             f = 0x32;
         }
     }
-    *(void **) &data_0217b040 = c;
+    data_0217b040 = c;
     data_0217b044 = func_02018d94((void *(*) (u32)) func_0208bd04, f, e, 3, 0xe, func_02061768());
     g = func_02047b08(data_usa_02166138);
     func_02018a1c(data_0217b044, g);

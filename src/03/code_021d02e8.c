@@ -10,8 +10,8 @@ void func_ov003_021d02e8(Unk021425e8 *v1) {
         func_ov003_021d079c(v1->mUnk_02);
         func_ov003_021cfb80();
     } else if (func_ov003_021d02c0() == 0) {
-        if (*(UnkFunc **) &data_ov003_021da2a4 != 0) {
-            (*(UnkFunc **) &data_ov003_021da2a4)(0x08000000, data_ov003_021d7b18);
+        if (data_ov003_021da2a4 != 0) {
+            data_ov003_021da2a4(0x08000000, data_ov003_021d7b18);
         }
         func_ov003_021cfb80();
     }

@@ -142,7 +142,7 @@ struct Unk021cd5e0;
 extern struct Unk021cd5e0 *data_ov003_021da270;
 struct Unk021cdc4c;
 extern struct Unk021cdc4c *data_ov003_021da274;
-extern u8 data_ov003_021da278[];
+extern void *data_ov003_021da278;
 struct Unk021ce0f0;
 extern struct Unk021ce0f0 *data_ov003_021da27c;
 extern Unk021da280 *data_ov003_021da280;
@@ -165,7 +165,7 @@ typedef struct Unk021da284 {
 extern Unk021da284 *data_ov003_021da284;
 extern Unk021cf260 *data_ov003_021da288;
 extern u16 *data_ov003_021da28c[];
-extern u8 data_ov003_021da2a4[];
+extern UnkFunc *data_ov003_021da2a4;
 typedef struct Unk021da2ac_100 {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
@@ -245,7 +245,7 @@ extern Unk021d1da8 *data_ov003_021da2c0;
 extern u8 data_ov003_021da2c4[];
 extern u8 data_ov003_021da2cc;
 extern u8 data_ov003_021da2d0;
-extern u8 data_ov003_021da2d4[];
+extern Unk021da2d4Input *data_ov003_021da2d4;
 extern u8 data_ov003_021da2d8[];
 extern UnkFunc *data_ov003_021da2e8;
 extern u32 data_ov003_021da2ec;

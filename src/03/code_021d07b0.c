@@ -3,12 +3,12 @@
 #include "03/unk_021da000.h"
 
 void func_ov003_021d07b0(u32 v1) {
-    if (*(UnkFunc **) &data_ov003_021da2a4 != 0) {
-        (*(UnkFunc **) &data_ov003_021da2a4)(0x08000000, data_ov003_021d7bc8, data_ov003_021d79a8[data_ov003_021da2a8->mUnk_40]);
+    if (data_ov003_021da2a4 != 0) {
+        data_ov003_021da2a4(0x08000000, data_ov003_021d7bc8, data_ov003_021d79a8[data_ov003_021da2a8->mUnk_40]);
     }
     data_ov003_021da2a8->mUnk_40 = v1;
-    if (*(UnkFunc **) &data_ov003_021da2a4 != 0) {
-        (*(UnkFunc **) &data_ov003_021da2a4)(0x08000000, data_ov003_021d7bd0, data_ov003_021d79a8[data_ov003_021da2a8->mUnk_40]);
+    if (data_ov003_021da2a4 != 0) {
+        data_ov003_021da2a4(0x08000000, data_ov003_021d7bd0, data_ov003_021d79a8[data_ov003_021da2a8->mUnk_40]);
     }
 }
 

@@ -2,7 +2,7 @@
 #include "03/unk_021da000.h"
 
 u32 func_ov003_021d299c(const Unk021d299c *rect) {
-    Unk021da2d4Input *input = *(Unk021da2d4Input **) data_ov003_021da2d4;
+    Unk021da2d4Input *input = data_ov003_021da2d4;
     if ((((u32) input->mUnk_38 << 28) >> 31) == 0) {
         return 0;
     }

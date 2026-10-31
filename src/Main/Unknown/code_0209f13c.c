@@ -130,7 +130,7 @@ void func_0209f338(void *a, Unk0209f1c8 *b) {
         }
     }
     n = b->mUnk_a0 + 1;
-    if (n >= func_0209b758(*(void **) &data_0217b1a4)) {
+    if (n >= func_0209b758(data_0217b1a4)) {
         n = 0;
     }
     b->mUnk_a0 = n;
