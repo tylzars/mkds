@@ -520,6 +520,9 @@ Expression shapes:
 - Two induction variables stepping by 2 in the ROM (`add r8, #2; add r7, #2` feeding arguments) mean the argument
   depended on the counter: `m < 6 ? 93 + j * 2 : 94 + j * 2`, not `m < 6 ? 93 : 94` (func_020c8dbc).
 
+- A loop counter set to 0 before earlier calls and kept in a callee-saved register across them was initialised at
+  its declaration: `u16 i = 0;` with `for (; i < n; i++)` (func_0206c354).
+
 ### 1.6 Switches, Branches and Selects
 
 - A switch right at the density where the compiler changes between a jump table and a compare tree depends on the
@@ -565,6 +568,14 @@ Expression shapes:
 - A conditional branch to a shared `pop` exit where ours has predicated epilogue copies (`popne {r4, lr}`), 4 to 8
   bytes longer: the unit is compiled for size. `#pragma optimize_for_size on` after the includes matched every
   function of code_02030708.c and code_0203606c.c. Apply it only when all functions of the unit match with it.
+
+- A jump-table bound one higher than ours: the switch has an empty trailing `case N:`. An unused `cmp rN, #K` just
+  before the epilogue is an empty `case K: break;` (func_0200a1bc, func_0200a7b0).
+- Jump-table entries that go straight to the function's end are `break`s out of the switch (and a `break` in the
+  outer case); `return;` gives a nearer shared exit instead (func_0200a7b0).
+- `A && f()` whose false path jumps to the compare of f's result is a value: `A ? f() : 0` (func_0206c5e4).
+- Only the order inside one arm of an if/else differs: try the arms the other way round with the test negated
+  (func_0209cf34; seen once).
 
 ### 1.7 Constants and Literal Pools
 
@@ -680,6 +691,8 @@ Expression shapes:
 - `v = K; f(cmd, &v, 1);` eight times with a 4-byte frame slot each, and `Vec3` argument buffers with a slot each:
   static inline helpers `func_X_inline(cmd, val) { f(cmd, &val, 1); }` (func_02063cc4, frame 0xa4 -> 0xbc at once).
 
+- A local array zeroed through `add rX, sp, #N` and two stores had `= {0}` at its declaration (func_0206e874).
+
 ### 1.10 Inlines and Macros
 
 - Use a macro where an inline won't do: a bit-test macro lets the compiler reuse the loaded byte for a following
@@ -703,6 +716,10 @@ Expression shapes:
   before the first random call and spills (func_020919e8).
 - A pointer passed through a helper with `Vec3 *dst, const Vec3 *src` loads `a->mUnk_508` once across the three
   stores (func_02063cc4).
+
+- Thumb: a byte copy that forms the destination address before the source, with the value always in r0, is
+  `__memcpy(dst, src, n)` with a constant n (func_ov000_021923b4). A struct store whose nearby address is loaded early
+  can be `__memcpy(dst, src, sizeof(T))`; use it only at the store that needs it (func_020a29cc).
 
 ### 1.11 Data Layout, Sections and Link Order
 
