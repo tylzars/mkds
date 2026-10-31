@@ -78,9 +78,6 @@ void func_02150610(u8 *out, Unk02150610 *ctx) {
     func_0214d168(ctx, 0, 0x58);
 }
 
-// non-matching: same size; the first two loops match, but in the last two the loaded index word and the
-// running sum take each other's registers (r1 and r8 in the third loop), which moves the schedule; 99 words
-// differ from +0x1fc on.
 void func_02150228(Unk02150610 *q) {
     const u32 *w;
     const u32 *p;
@@ -101,58 +98,58 @@ void func_02150228(Unk02150610 *q) {
     k = data_0216f16c;
     for (i = 0, w = x; i < 4; i++) {
         t = *k++;
-        t += a + ((b & c) | (~b & d)) + *w++;
+        t += *w++ + (a + ((b & c) | (~b & d)));
         a = b + ((t << 7) | (t >> 25));
         t = *k++;
-        t += d + ((a & b) | (~a & c)) + *w++;
+        t += *w++ + (d + ((a & b) | (~a & c)));
         d = a + ((t << 12) | (t >> 20));
         t = *k++;
-        t += c + ((d & a) | (~d & b)) + *w++;
+        t += *w++ + (c + ((d & a) | (~d & b)));
         c = d + ((t << 17) | (t >> 15));
         t = *k++;
-        t += b + ((c & d) | (~c & a)) + *w++;
+        t += *w++ + (b + ((c & d) | (~c & a)));
         b = c + ((t << 22) | (t >> 10));
     }
     for (i = 0, p = data_0216f0ac; i < 4; i++) {
         t = *k++;
-        t += a + ((b & d) | (c & ~d)) + x[*p++];
+        t += x[*p++] + (a + ((b & d) | (c & ~d)));
         a = b + ((t << 5) | (t >> 27));
         t = *k++;
-        t += d + ((a & c) | (b & ~c)) + x[*p++];
+        t += x[*p++] + (d + ((a & c) | (b & ~c)));
         d = a + ((t << 9) | (t >> 23));
         t = *k++;
-        t += c + ((d & b) | (a & ~b)) + x[*p++];
+        t += x[*p++] + (c + ((d & b) | (a & ~b)));
         c = d + ((t << 14) | (t >> 18));
         t = *k++;
-        t += b + ((c & a) | (d & ~a)) + x[*p++];
+        t += x[*p++] + (b + ((c & a) | (d & ~a)));
         b = c + ((t << 20) | (t >> 12));
     }
     for (i = 0; i < 4; i++) {
         t = *k++;
-        t += a + (b ^ c ^ d) + x[*p++];
+        t += x[*p++] + (a + (b ^ c ^ d));
         a = b + ((t << 4) | (t >> 28));
         t = *k++;
-        t += d + (a ^ b ^ c) + x[*p++];
+        t += x[*p++] + (d + (a ^ b ^ c));
         d = a + ((t << 11) | (t >> 21));
         t = *k++;
-        t += c + (d ^ a ^ b) + x[*p++];
+        t += x[*p++] + (c + (d ^ a ^ b));
         c = d + ((t << 16) | (t >> 16));
         t = *k++;
-        t += b + (c ^ d ^ a) + x[*p++];
+        t += x[*p++] + (b + (c ^ d ^ a));
         b = c + ((t << 23) | (t >> 9));
     }
     for (i = 0; i < 4; i++) {
         t = *k++;
-        t += a + (c ^ (b | ~d)) + x[*p++];
+        t += x[*p++] + (a + (c ^ (b | ~d)));
         a = b + ((t << 6) | (t >> 26));
         t = *k++;
-        t += d + (b ^ (a | ~c)) + x[*p++];
+        t += x[*p++] + (d + (b ^ (a | ~c)));
         d = a + ((t << 10) | (t >> 22));
         t = *k++;
-        t += c + (a ^ (d | ~b)) + x[*p++];
+        t += x[*p++] + (c + (a ^ (d | ~b)));
         c = d + ((t << 15) | (t >> 17));
         t = *k++;
-        t += b + (d ^ (c | ~a)) + x[*p++];
+        t += x[*p++] + (b + (d ^ (c | ~a)));
         b = c + ((t << 21) | (t >> 11));
     }
     q->mUnk_00[0] += a;

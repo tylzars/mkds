@@ -36,9 +36,6 @@ void func_0212d03c(void) {
     p->mUnk_50 = v;
 }
 
-// non-matching: same instructions and size as the original; only register numbers differ (62 words). The original keeps
-// d, h, j, the handle, the 0x20-based product and the data pointer in sl, r9, r8, r6, r5 and r4; this compiles them to
-// r6, r5, r4, sl, r9 and r8.
 s32 func_0212ccd4(u32 a, u8 *b, u8 *c, u32 d, u32 e, u32 f, u32 g, u32 h, s32 i, u32 j, u32 k, u32 l, u32 m, UnkFunc *n,
                   void *o) {
     s32 u;
@@ -62,12 +59,12 @@ s32 func_0212ccd4(u32 a, u8 *b, u8 *c, u32 d, u32 e, u32 f, u32 g, u32 h, s32 i,
     q = e == 1;
     u = 0xffb0ff / i;
     if (n != 0) {
-        u = (u + 0x10) & ~0x1f;
-        s = u >> 5;
         z = d;
         if (q == 0) {
             z = d >> 1;
         }
+        u = (u + 0x10) & ~0x1f;
+        s = u >> 5;
         w = s * (z / m);
         t = 0x20;
         if (q == 0) {
@@ -75,10 +72,13 @@ s32 func_0212ccd4(u32 a, u8 *b, u8 *c, u32 d, u32 e, u32 f, u32 g, u32 h, s32 i,
         }
         t = t * s;
     }
-    if (q != 0) {
-        x28 = 0;
-    } else {
-        x28 = 1;
+    switch (q) {
+        default:
+            x28 = 0;
+            break;
+        case 0:
+            x28 = 1;
+            break;
     }
     if (q != 0) {
         x24 = 1;
@@ -107,11 +107,10 @@ s32 func_0212ccd4(u32 a, u8 *b, u8 *c, u32 d, u32 e, u32 f, u32 g, u32 h, s32 i,
         func_0212bbe0(3);
         return 0;
     }
-    q = d >> 2;
-    func_02020a14(1, x28, (u32) b, h != 0 ? 1 : 2, 0, q, j, 0, u, k);
-    func_02020b70(0, x24, (u32) b, q, h, f, g);
-    func_02020a14(3, x28, (u32) c, h != 0 ? 1 : 2, 0, q, j, 0, u, l);
-    func_02020b70(1, x24, (u32) c, q, h, f, g);
+    func_02020a14(1, x28, (u32) b, h != 0 ? 1 : 2, 0, d >> 2, j, 0, u, k);
+    func_02020b70(0, x24, (u32) b, d >> 2, h, f, g);
+    func_02020a14(3, x28, (u32) c, h != 0 ? 1 : 2, 0, d >> 2, j, 0, u, l);
+    func_02020b70(1, x24, (u32) c, d >> 2, h, f, g);
     if (r >= 0) {
         func_02020b2c(r, w + t, w, func_0212c9d4, p);
     }

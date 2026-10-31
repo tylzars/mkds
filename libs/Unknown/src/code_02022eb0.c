@@ -6,9 +6,6 @@ static inline u32 clz_inline(u32 x) {
     return r;
 }
 
-// non-matching: 78.9; frame and loop shape match; left: the original keeps i and nx in callee-saved registers and
-// reloads the 0x3fff3fff and 0x1ff masks each pass (here one is held in a register), the two clz tests are
-// scheduled differently, and the original keeps b - mx across the first recursive call (here it is recomputed)
 s32 func_02022eb0(void *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, s32 h) {
     Unk02022eb0 *p;
     u8 *q;
@@ -20,25 +17,26 @@ s32 func_02022eb0(void *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, s32 h) {
     u32 my;
     s32 m;
     s32 nx;
-    s32 ny;
-    s32 i;
     s32 t;
-    s32 n;
+    s32 i;
     s32 r;
+    s32 n;
+    s32 ny;
     s32 k;
     s32 j;
     u32 w;
+    s32 s;
 
     p = (Unk02022eb0 *) a;
-    if (b < 8) {
-        lb = 31 - clz_inline(b);
-    } else {
+    if (b >= 8) {
         lb = 3;
-    }
-    if (c < 8) {
-        lc = 31 - clz_inline(c);
     } else {
+        lb = 31 - clz_inline(b);
+    }
+    if (c >= 8) {
         lc = 3;
+    } else {
+        lc = 31 - clz_inline(c);
     }
     q = data_usa_021530f8[lc][lb];
     sx = q[0];
@@ -58,9 +56,8 @@ s32 func_02022eb0(void *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, s32 h) {
     for (j = 0; j < ny; j++) {
         r = e + (j << sy) * 8;
         for (i = 0; i < nx; i++) {
-            w = p->mUnk_00;
-            w = (w & 0xfe00ff00) | (r & 0xff) | (((d + (i << sx) * 8) & 0x1ff) << 16);
-            p->mUnk_00 = w;
+            w = (d + (i << sx) * 8) & 0x1ff;
+            p->mUnk_00 = (p->mUnk_00 & 0xfe00ff00) | (r & 0xff) | (w << 16);
             p->mUnk_00 = (p->mUnk_00 & 0x3fff3fff) | k;
             p->mUnk_04 = (p->mUnk_04 & -0x400) | g;
             g += t;
@@ -70,15 +67,18 @@ s32 func_02022eb0(void *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, s32 h) {
     }
     n += nx * ny;
     if (mx < b) {
-        r = func_02022eb0(p, b - mx, my, d + mx * 8, e, f, g, h);
+        w = b - mx;
+        s = d + mx * 8;
+        r = func_02022eb0(p, w, my, s, e, f, g, h);
         p += r;
-        g += (m * (b - mx) * my) >> h;
+        g += (m * w * my) >> h;
         n += r;
     }
     if (my < c) {
-        r = func_02022eb0(p, mx, c - my, d, e + my * 8, f, g, h);
+        w = c - my;
+        r = func_02022eb0(p, mx, w, d, e + my * 8, f, g, h);
         p += r;
-        g += (m * mx * (c - my)) >> h;
+        g += (m * mx * w) >> h;
         n += r;
     }
     if (mx < b && my < c) {

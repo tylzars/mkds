@@ -80,39 +80,35 @@ void func_02022890(Unk02022030 *a, s32 b) {
     a->mUnk_10 = b;
 }
 
-static inline void func_020224e0_inline(const s32 *m, s32 *in, s32 *out) {
+static inline u32 func_020224e0_inline2(u32 w) {
+    u32 m = w & 0x300;
+    return (m == 0x100 || m == 0x300) ? m : (m | (w & 0x30000000));
+}
+
+static inline void func_020224e0_inline(const s32 *m, const s32 *in, s32 *out) {
     s32 tmp[2];
     s32 *o;
 
     o = out;
-    if (in == o) {
+    if (in == out) {
         o = tmp;
     }
     o[0] = (s32) (((s64) m[2] * in[1] + 0x1000 + (s64) m[0] * in[0]) >> 12);
     o[1] = (s32) (((s64) m[3] * in[1] + 0x1000 + (s64) m[1] * in[0]) >> 12);
     if (o == tmp) {
-        in[0] = tmp[0];
-        in[1] = tmp[1];
+        out[0] = tmp[0];
+        out[1] = tmp[1];
     }
 }
 
-// non-matching: 77.7: same size now; the original frame is 8 bytes larger (g is loaded at entry and spilled to its
-// own slot, d[1] and d[3] are spilled, the inline reads v directly), the m6 test is two branches there instead
-// of predicated, and the w3/h3 products use rsb of the shared w3 << 12 before the mla; registers differ
 u16 func_020224e0(Unk020224e0_o *a, u16 b, Unk020224e0_c *c, s32 *d, s32 *e, u16 f, s32 g) {
     u16 i;
     u16 n;
     s32 v[2];
-    s32 *pv;
-    s32 k100;
-    s32 k300;
-    s32 one;
-    s32 zero;
     s32 mode;
     s32 sq;
     u32 w;
     s32 w2;
-    u32 m6;
     s32 sh;
     s32 sz;
     Unk020224e0_o *o;
@@ -126,10 +122,6 @@ u16 func_020224e0(Unk020224e0_o *a, u16 b, Unk020224e0_c *c, s32 *d, s32 *e, u16
     if (b >= n) {
         b = n;
     }
-    k100 = 0x100;
-    k300 = 0x300;
-    one = 1;
-    zero = 0;
     for (i = 0; i < b; i++) {
         o = &a[i];
         s = &c->mUnk_04[i];
@@ -150,25 +142,20 @@ u16 func_020224e0(Unk020224e0_o *a, u16 b, Unk020224e0_c *c, s32 *d, s32 *e, u16
             v[1] = y << 12;
             if (d != 0) {
                 w = *(u32 *) o;
-                m6 = w & 0x300;
-                if (m6 != 0x100 && m6 != 0x300) {
-                    m6 = m6 | (w & 0x30000000);
-                }
-                if (m6 == 0x300) {
+                if (func_020224e0_inline2(w) == 0x300) {
                     w2 = w & 0xc000c000;
                     sh = (w2 & 0xc000) >> 14;
                     sz = (w2 & 0xc0000000) >> 30;
                     v[0] += data_021530d0[sh][sz] << 11;
                     v[1] += data_021530b8[sh][sz] << 11;
                 }
-                mode = g != 0 ? k300 : k100;
-                sq = mode == 0x300 ? one : zero;
-                pv = v;
-                func_020224e0_inline(d, pv, pv);
-                if (mode == 0x100 || mode == 0x300) {
-                    *(u32 *) o = ((*(u32 *) o & 0xc1fffcff) | mode) | (f << 25);
-                } else {
+                mode = g != 0 ? 0x300 : 0x100;
+                sq = mode == 0x300 ? 1 : 0;
+                func_020224e0_inline(d, v, v);
+                if (mode != 0x100 && mode != 0x300) {
                     *(u32 *) o = (*(u32 *) o & 0xc1fffcff) | mode;
+                } else {
+                    *(u32 *) o = ((*(u32 *) o & 0xc1fffcff) | mode) | (f << 25);
                 }
                 w = *(u32 *) o;
                 w2 = w & 0xc000c000;
@@ -176,11 +163,11 @@ u16 func_020224e0(Unk020224e0_o *a, u16 b, Unk020224e0_c *c, s32 *d, s32 *e, u16
                 sz = (w2 & 0xc0000000) >> 30;
                 w3 = data_021530d0[sh][sz] >> 1;
                 h3 = data_021530b8[sh][sz] >> 1;
-                v[0] += d[0] * w3 + -w3 * 0x1000 + d[2] * h3;
-                v[1] += d[1] * w3 + -h3 * 0x1000 + d[3] * h3;
+                v[0] += d[0] * w3 + (s32) -(w3 << 12) + d[2] * h3;
+                v[1] += d[1] * w3 + (s32) -(h3 << 12) + d[3] * h3;
                 if (sq != 0) {
-                    v[0] += -w3 * 0x1000;
-                    v[1] += -h3 * 0x1000;
+                    v[0] -= w3 << 12;
+                    v[1] -= h3 << 12;
                 }
             }
             if (e != 0) {

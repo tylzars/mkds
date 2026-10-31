@@ -18,7 +18,10 @@ void func_021478f0(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
 }
 
 // non-matching: 6 words differ, all between +0x18 and +0x50 (the words at 0x18 and 0x10 of the first argument are
-// loaded into r0 and r3 instead of r3 and r0, and two smull and a mov are one slot apart); the rest matches
+// loaded into r0 and r3 instead of r3 and r0, and two smull and a mov are one slot apart); the rest matches.
+// No change from: other operand orders, cast placements or statement orders of the c products, declaration
+// order, the p select as init + if, ?: or switch, s64 rounding constants. The original's second c1 product has the
+// 0x18 word as the second smull operand while the 0x14 word is still loaded first.
 s32 func_0214755c(const Unk02012f58 *a, Unk02012f58 *b) {
     Unk02012f58 buf;
     Unk02012f58 *p;
