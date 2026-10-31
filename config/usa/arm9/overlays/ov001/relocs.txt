@@ -5773,8 +5773,8 @@ from:0x0219cf3c kind:load to:0x021a6ba8 module:overlay(1)
 from:0x0219cff0 kind:thumb_call_arm to:0x02016468 module:main
 from:0x0219cffc kind:load to:0x021a9bd8 module:overlay(1)
 from:0x0219d000 kind:load to:0x021a6bc0 module:overlay(1)
-from:0x0219d004 kind:load to:0x021a6be7 module:overlay(1)
-from:0x0219d008 kind:load to:0x021a6be6 module:overlay(1)
+from:0x0219d004 kind:load to:0x021a6be4 add:0x3 module:overlay(1)
+from:0x0219d008 kind:load to:0x021a6be4 add:0x2 module:overlay(1)
 from:0x0219d00c kind:load to:0x021a6bac module:overlay(1)
 from:0x0219d010 kind:load to:0x021a6be4 module:overlay(1)
 from:0x0219d022 kind:thumb_call to:0x0204799c module:main

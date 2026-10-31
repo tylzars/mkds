@@ -14,11 +14,13 @@ src/ITCM/code_01ffad14.c:
     .text       start:0x01ffad14 end:0x01ffb130
 
 src/ITCM/code_01ffb130.c:
+    complete
     .text       start:0x01ffb130 end:0x01ffb930
 
 src/ITCM/code_01ffba68.c:
     .text       start:0x01ffba68 end:0x01ffcf7c
 src/ITCM/code_01ffa4b4.c:
+    complete
     .text       start:0x01ffa4b4 end:0x01ffad14
 src/ITCM/code_01ffb930.c:
     .text       start:0x01ffb930 end:0x01ffba68
@@ -26,6 +28,7 @@ src/ITCM/code_01ffcf7c.c:
     .text       start:0x01ffcf7c end:0x01ffdee4
 
 src/ITCM/code_01ffdee4.c:
+    complete
     .text       start:0x01ffdee4 end:0x01fff434
 
 src/ITCM/code_01fff95c.c:
