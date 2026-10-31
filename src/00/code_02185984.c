@@ -20,8 +20,6 @@
 #include "Main/Unknown/code_0200edc0.h"
 #include "Main/Unknown/code_02151f88.h"
 
-// non-matching: the loop that writes the hex digits uses the registers r4, r6 and r7 for the counter, the array pointer and the
-// output offset in a different order (original: r7, r4, r6); 9 words differ only by that, the stack offsets and size are equal
 u32 func_ov000_02185984(Unk021868d0 *a, const u8 *b, const u8 *c, Unk021868a4Entry *d, s32 e, s32 f) {
     Unk02185984Data g;
     u32 o[4];
@@ -67,7 +65,7 @@ u32 func_ov000_02185984(Unk021868d0 *a, const u8 *b, const u8 *c, Unk021868a4Ent
     func_0214d1fc((const void *) 0x27ffe10, g.mUnk_13, 2);
     g.mUnk_13[2] = 0;
     l = g.mUnk_02;
-    for (k = 0; k < 6; k++, l++) {
+    for (k = 0; k < 6; l++, k++) {
         func_0200da28(&r[k * 2], data_ov000_021b1060, *l);
     }
     r[12] = 0;

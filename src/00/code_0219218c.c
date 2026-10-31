@@ -36,7 +36,6 @@ u32 func_ov000_0219218c(Unk021919ac *p, Unk021919ac_node *n, Unk021919ac_f0 *a) 
     return 0;
 }
 
-// non-matching: p and d swapped (original: p in r4, d in r5; ours p in r5, d in r4); same size and instruction order
 u32 func_ov000_0219222c(Unk021919ac *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
     Unk02194934 *x;
     Unk021919ac_node *n;
@@ -44,6 +43,7 @@ u32 func_ov000_0219222c(Unk021919ac *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
     Unk02190ed4Cb w;
     u32 r;
     s32 f;
+    u32 t;
     Unk021919ac_00 *o;
 
     o = p->mUnk_00;
@@ -70,7 +70,7 @@ u32 func_ov000_0219222c(Unk021919ac *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
         if (r != 0) {
             return r;
         }
-        d = n->mUnk_18;
+        t = n->mUnk_18;
         r = func_ov000_02190ed4((Unk0218f960 *) p, w, m, (Unk021937c0Node *) n, 0);
         if (r != 0) {
             return r;
@@ -81,14 +81,14 @@ u32 func_ov000_0219222c(Unk021919ac *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
         if (r != 0) {
             return r;
         }
-        d = n->mUnk_18;
-        r = func_ov000_02192330(p, a, d);
+        t = n->mUnk_18;
+        r = func_ov000_02192330(p, a, t);
         if (r != 0) {
             return r;
         }
     }
     if (c != 0) {
-        r = func_ov000_0218f2e8(p, d);
+        r = func_ov000_0218f2e8(p, t);
         if (r != 0) {
             return r;
         }
@@ -110,7 +110,6 @@ u32 func_ov000_02192330(Unk021919ac *p, u32 a, u32 b) {
     return 0;
 }
 
-// non-matching: in case 0x70b the two-byte copies into c compute the destination first (add r2, sp, #0; ldrb r0; strb r0) where ours adds sp per store (ldrb r2; add r0, sp, #0; strb r2); same size
 u32 func_ov000_021923b4(Unk021919ac *p, s32 a, const s8 *b) {
     Unk021919ac_00 *o;
     u8 c[0x100];
@@ -218,14 +217,11 @@ u32 func_ov000_021923b4(Unk021919ac *p, s32 a, const s8 *b) {
             d = data_0215d204[d];
         }
         if ((s8) d == 0x4d) {
-            c[0] = data_ov000_021b3050[0];
-            c[1] = data_ov000_021b3050[1];
+            __memcpy(c, data_ov000_021b3050, 2);
         } else if ((s8) d == 0x46) {
-            c[0] = data_ov000_021b3054[0];
-            c[1] = data_ov000_021b3054[1];
+            __memcpy(c, data_ov000_021b3054, 2);
         } else {
-            c[0] = data_ov000_021b3058[0];
-            c[1] = data_ov000_021b3058[1];
+            __memcpy(c, data_ov000_021b3058, 2);
         }
         r = func_ov000_02192d30(p, data_ov000_021b305c, c);
         if (r != 0) {
