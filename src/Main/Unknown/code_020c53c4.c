@@ -18,17 +18,14 @@
 #include "code_0212df7c.h"
 #include "code_020222ec.h"
 
-// non-matching: the value loaded from mUnk_04 of data_0217b3f0 is kept in r5 and the case-0 table value and the loop
-// counter in r4 (original: r4 and r5, with the return value of func_0205dc7c in r6); in case 0 the original multiplies
-// by 0x50 and adds (mla) before the multiply by 10, the compile multiplies by 10 first (19 words)
 void func_020c5940(void) {
-    s32 n;
-    u32 c;
     u32 b;
     s32 a;
     u16 i;
+    s32 n;
     u16 x;
     s32 *q;
+    Unk0217aa1c_00 *p;
 
     n = data_0217b3f0->mUnk_04;
     x = func_020b4d9c();
@@ -53,8 +50,8 @@ void func_020c5940(void) {
             data_0217b3f0->mUnk_08 = func_0203c8dc(func_020b4d9c()) - 1;
             b = func_0205dc7c(func_020b4d9c());
             a = func_0205db28();
-            c = func_0205dc7c(b);
-            a = data_0217aa1c->mUnk_000[a][c].mUnk_00;
+            p = &data_0217aa1c->mUnk_000[a][func_0205dc7c(b)];
+            a = p->mUnk_00;
             data_0217b3f0->mUnk_0c = a - func_0205d3f0(func_020b4d9c());
             if (n > 0x14) {
                 data_0217b3f0->mUnk_00 = 1;

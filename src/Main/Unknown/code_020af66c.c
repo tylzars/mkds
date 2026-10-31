@@ -170,9 +170,6 @@ void func_020af86c(void) {
     *(vu32 *) 0x04001000 &= ~0xe000;
 }
 
-// non-matching: the same instructions and order, but the registers of the window register stores differ: the
-// address 0x04000048 is kept in r4 here (r0 in the original, which uses r4 for the second value written there), and
-// the 0x04000000 read-modify-write uses r1/r0 here (r2/r1 in the original).
 void func_020af99c(void) {
     u32 v;
     u16 w;
@@ -194,7 +191,8 @@ void func_020af99c(void) {
     func_0214c090(func_020b85f0(0)->mUnk_00->mUnk_0c, 0, func_020b85f0(0)->mUnk_00->mUnk_08);
     func_0214bf04(func_020b85f0(0)->mUnk_04->mUnk_14, 0, 0x4000);
     *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & ~0xe000) | 0xe000;
-    *(vu16 *) 0x04000048 = (u32) ((*(vu16 *) 0x04000048 & ~0x3f) | 0x1f) | 0x20;
+    w = *(vu16 *) 0x04000048;
+    *(vu16 *) 0x04000048 = (u32) ((w & ~0x3f) | 0x1f) | 0x20;
     *(vu16 *) 0x04000040 = 0xff;
     *(vu16 *) 0x04000044 = 0x60c0;
     *(vu16 *) 0x04000048 = (u32) ((*(vu16 *) 0x04000048 & ~0x3f00) | 0x1f00) | 0x2000;

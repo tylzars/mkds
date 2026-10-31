@@ -528,8 +528,6 @@ static inline s32 func_0209cf34_inline_b(Unk0209cf34 *p) {
     return 0;
 }
 
-// non-matching: 5 words differ in the random step of case 3: the original loads the low word of mUnk_10 after the two
-// mla and the mov r1, #0 (ours loads it right after the umull); same size
 void func_0209cf34(Unk02100094 *a, Unk0209cf34 *p) {
     Vec3 v;
     Vec3 w;
@@ -585,10 +583,10 @@ void func_0209cf34(Unk02100094 *a, Unk0209cf34 *p) {
         if (p->mUnk_0a8-- > 0) {
             break;
         }
-        if (p->mUnk_0a0 != 0) {
-            p->mUnk_0a4 += 0x8000;
-        } else {
+        if (p->mUnk_0a0 == 0) {
             p->mUnk_0a4 = (u16) (((u64) func_0209c9fc_inline(func_020d22d0()) * 0x10000) >> 32);
+        } else {
+            p->mUnk_0a4 += 0x8000;
         }
         v.x = p->mUnk_000.mUnk_04.x;
         v.y = p->mUnk_000.mUnk_04.y - 0x1e000;

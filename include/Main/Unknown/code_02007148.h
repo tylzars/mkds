@@ -13,6 +13,13 @@ typedef struct Unk02009ff4 {
     /* 02 */ u16 mUnk_02[10];
 } Unk02009ff4;
 
+// One of the 15 entries of 0x16 bytes in mUnk_1340 of Unk0216fdac.
+typedef struct Unk0216fdac_1340 {
+    /* 00 */ u8 mUnk_00_0 : 4;
+    /* 00 */ u8 mUnk_00_4 : 4;
+    /* 01 */ u8 mUnk_01[0x15];
+} Unk0216fdac_1340;
+
 // Object behind data_0216fdac. The members from 0x1788 on are reached from a pointer advanced in steps of 0x5d4
 // bytes, so their offsets here include the 0x1788.
 typedef struct Unk0216fdac {

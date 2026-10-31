@@ -189,8 +189,6 @@ void func_020a269c(s32 a, u32 b) {
     func_020a29cc();
 }
 
-// non-matching: same size; 7 words differ: the address of data_021676c4 is loaded before the first copy into the stack
-// vector (original: `ldr r4`) instead of after it, the rest is as in the original
 void func_020a29cc(void) {
     s32 x;
     s32 y;
@@ -219,7 +217,7 @@ void func_020a29cc(void) {
 
         v2 = data_021676d0;
         v3 = data_021676c4;
-        data_021704dc = v3;
+        __memcpy(&data_021704dc, &v3, sizeof(Vec3));
         data_021704e8 = v2;
         data_021704f4 = v1;
         func_0214abb4(&v3, &v2, &v1, 0, &data_0217029c.mUnk_4c);

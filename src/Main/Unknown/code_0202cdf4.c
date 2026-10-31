@@ -198,16 +198,18 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
     return -1;
 }
 
-// non-matching: 93.4: size 0x340, original 0x344; in the second table loop the original walks the call argument with its own pointer (stack offset 0x34, advanced by 8) and keeps n in r7 with m and w spilled; here the argument is base + i * 8 and n, m and the counter are spilled instead
 void func_0202d210(void *a, void *b, void *c) {
     s16 r[4];
+    s32 j;
+    s32 k;
+    Unk02124b1c *u;
     Unk02174e14_00 *p;
     Unk02174e14_00 *q;
     void *h;
     s32 i;
-    s32 m;
     s32 n;
     s32 w;
+    s32 m;
     h = func_02036948(a);
     data_02174e40 = func_02036bec(h, 0xe0);
     func_0214d05c_inline(data_02174e40, 0xe0);
@@ -237,10 +239,9 @@ void func_0202d210(void *a, void *b, void *c) {
     w = q->mUnk_0c->mUnk_06;
     for (i = 0; i < q->mUnk_14->mUnk_06; i++) {
         if (data_usa_02162c74[i][3] < 0) {
-            data_usa_02162c74[i][3] = w + m;
-            m++;
+            data_usa_02162c74[i][3] = w + m++;
         }
-        n -= func_02025a00(1, data_02174e40->mUnk_0dc, q, &data_usa_02162c74[(u32) i], n);
+        n -= func_02025a00(1, data_02174e40->mUnk_0dc, q, (s16 (*)[4]) data_usa_02162c74 + i, n);
     }
     func_0202d720();
     for (i = 0; i < 0xf; i++) {
@@ -250,10 +251,11 @@ void func_0202d210(void *a, void *b, void *c) {
         func_02124094(i, 2, q->mUnk_14, q->mUnk_18, q->mUnk_0c);
     }
     for (i = 0; i < 0xe; i++) {
-        func_02025c1c(data_usa_02162c74[i][3], (int) ((u8 *) q->mUnk_18 + (data_usa_02162c74[i][3] << 6)),
-                      (u32) q->mUnk_0c);
-        func_02025bf0(data_usa_02162c74[i][0], (int) ((u8 *) q->mUnk_18 + (w << 6) + (data_usa_02162c74[i][0] << 6)),
-                      (u32) q->mUnk_14);
+        j = data_usa_02162c74[i][3];
+        k = data_usa_02162c74[i][0];
+        u = q->mUnk_18;
+        func_02025c1c(j, (int) &u[j], (u32) q->mUnk_0c);
+        func_02025bf0(k, (int) (u + w + k), (u32) q->mUnk_14);
     }
     func_02025c1c(0xe, (int) ((u8 *) q->mUnk_18 + 0x380), (u32) q->mUnk_0c);
     if (func_0202ddc4() != 0) {

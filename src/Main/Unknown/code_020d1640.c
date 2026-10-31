@@ -80,11 +80,10 @@ void func_020d1de8(Unk020d029c *param_1, s32 param_2) {
     data_0217b4b4->mUnk_20 = 0;
 }
 
-// non-matching: in the four blocks after the first, the original keeps the value read from member 0x20 in r5 and the pointer from member 0x18 in r6 (the division temporary shares r6 with the pointer); the compiled code has them swapped (r6 and r5), so r5/r6 differ in every later instruction of those blocks
 void func_020d1a98(Unk020d029c *param_1) {
     s32 t[5] = {175, 190, 203, 216, 231};
     Unk020224e0_c *c;
-    s32 *p;
+    s32 *p = 0;
     u16 a;
     s32 q0[2];
     s32 q1[2];

@@ -508,8 +508,6 @@ s32 func_0206b4d0(Unk0206bcb0 *p) {
     return 1;
 }
 
-// non-matching: same size (0x360); in the final block of the (mUnk_348 > 2) path the original keeps the 0x300 base in r0 and loads
-// mUnk_35c into r1 then r2 (mov r1,#0x46 for mUnk_4d0), ours uses r1 as base and r0/r1 for the values
 void func_0206b5b4(Unk0206bcb0 *p) {
     Vec3 a;
     s32 c;
@@ -564,8 +562,9 @@ void func_0206b5b4(Unk0206bcb0 *p) {
                 return;
             }
             p->mUnk_4d0 = 0x46;
+            c = p->mUnk_35c;
             p->mUnk_48 |= 0x44000;
-            p->mUnk_23a = p->mUnk_35c;
+            p->mUnk_23a = c;
             p->mUnk_4c |= 0x80000000;
             return;
         }

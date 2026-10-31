@@ -24,9 +24,9 @@ static inline s32 func_0206e874_inline(Vec3 *v, Vec3 *n) {
     return func_02039860(v, n);
 }
 
-// non-matching: same size; register allocation differs (loop counter in r7 against r9, e in r9 against r8, locals share different registers), 73 words differ
 void func_0206e874(Unk0206bcb0 *p) {
-    Unk020e71a0 *v1[2];
+    Unk020e71a0 *v1[2] = {0};
+    s32 i;
     Unk020e71a0 *e;
     Vec3 t;
     Vec3 v;
@@ -36,10 +36,10 @@ void func_0206e874(Unk0206bcb0 *p) {
     Vec3 *u;
     s32 v2;
     s32 v3;
+    u16 n;
     s32 v4;
     s32 g;
     s32 h;
-    s32 i;
     s32 k;
     s32 r;
     s32 s;
@@ -48,16 +48,12 @@ void func_0206e874(Unk0206bcb0 *p) {
     s32 v5;
     s32 v6;
     s32 v7;
-    u16 n;
     u16 j;
 
-    v1[0] = 0;
-    v1[1] = 0;
     v3 = 0;
-    n = 0;
-    p->mUnk_39c = 0;
-    p->mUnk_3a0 = 0;
     e = 0;
+    n = 0;
+    p->mUnk_3a0 = p->mUnk_39c = 0;
     k = func_020d41e0(p, &p->mUnk_1b8, &t);
     if (k != 0) {
         if (!(p->mUnk_48 & 0x40)) {
@@ -65,7 +61,7 @@ void func_0206e874(Unk0206bcb0 *p) {
             p->mUnk_44 |= 0x40000;
             if (i >= 0) {
                 z = data_02154f94;
-                for (; i >= 0; i--) {
+                do {
                     s = 0;
                     v4 = 0;
                     e = func_020d411c(i);
@@ -158,7 +154,7 @@ void func_0206e874(Unk0206bcb0 *p) {
                     if (h == 0xb) {
                         p->mUnk_44c = e;
                     }
-                }
+                } while (--i >= 0);
             }
         }
         if (p->mUnk_48 & 0x4000000) {

@@ -12,7 +12,6 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_020222ec.h"
 
-// non-matching: same size; 28 lines differ; first: original `ldrhgt r6, [r1, #228]`, ours `ldrhgt r7, [r1, #228]`
 void func_020bd178(Unk020d029c *a) {
     s32 s;
     u16 i;
@@ -81,17 +80,18 @@ void func_020bd178(Unk020d029c *a) {
             q5[1] = p.mUnk_04 << 12;
             a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q5, 0, 1);
         } else {
-            s32 t = data_0217b3d8->mUnk_0c0[k];
+            s32 t = data_0217b3d8->mUnk_0c0[k] / 10;
+            s32 u = data_0217b3d8->mUnk_0c0[k] % 10;
 
             c = func_020b83dc(0xc4);
             q6[0] = (p.mUnk_00 + 0x57) << 12;
             q6[1] = (p.mUnk_04 - 2) << 12;
             a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q6, 0, 1);
-            c = func_020b83dc(t / 10 + 0xb9);
+            c = func_020b83dc(t + 0xb9);
             q7[0] = (p.mUnk_00 + 0x54) << 12;
             q7[1] = p.mUnk_04 << 12;
             a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q7, 0, 1);
-            c = func_020b83dc(t % 10 + 0xb9);
+            c = func_020b83dc(u + 0xb9);
             q8[0] = (p.mUnk_00 + 0x5c) << 12;
             q8[1] = p.mUnk_04 << 12;
             a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q8, 0, 1);
@@ -118,7 +118,6 @@ void func_020bd178(Unk020d029c *a) {
     }
 }
 
-// non-matching: same size; 22 lines differ; first: original `ldrhgt r6, [r1, #228]`, ours `ldrhgt r7, [r1, #228]`
 void func_020bcbe8(Unk020d029c *a) {
     u16 i;
     u16 f;
@@ -174,16 +173,18 @@ void func_020bcbe8(Unk020d029c *a) {
             q4[1] = p.mUnk_04 << 12;
             a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q4, 0, 1);
         } else {
-            s32 t = data_0217b3d8->mUnk_0c0[k];
+            s32 t = data_0217b3d8->mUnk_0c0[k] / 10;
+            s32 u = data_0217b3d8->mUnk_0c0[k] % 10;
+
             c = func_020b83dc(0xc4);
             q5[0] = (p.mUnk_00 + 0x25) << 12;
             q5[1] = (p.mUnk_04 - 2) << 12;
             a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q5, 0, 1);
-            c = func_020b83dc(t / 10 + 0xb9);
+            c = func_020b83dc(t + 0xb9);
             q6[0] = (p.mUnk_00 + 0x22) << 12;
             q6[1] = p.mUnk_04 << 12;
             a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q6, 0, 1);
-            c = func_020b83dc(t % 10 + 0xb9);
+            c = func_020b83dc(u + 0xb9);
             q7[0] = (p.mUnk_00 + 0x2a) << 12;
             q7[1] = p.mUnk_04 << 12;
             a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q7, 0, 1);

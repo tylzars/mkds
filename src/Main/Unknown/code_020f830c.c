@@ -20,36 +20,34 @@ static inline u32 func_020f8a04_inline(Unk020f41c4_B *b, u32 c) {
     }
 }
 
-// non-matching: 96.8: same size; left: registers (acc and t swap r6/r8, the row index is r2 there), the first
-// loop counter and the q select are scheduled differently, and the last loop keeps its first `j < param_6` test
-// as a compare of the zero register (cmp r7, r5) where this source folds it.
 s32 func_020f8a04(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s32 param_6) {
     Unk0217bc6c *q;
     Unk020f41c4_B *b;
     u16 *row;
     s32 m;
     s32 i;
-    s32 t;
+    u16 acc;
     s32 j;
     s32 x;
     s32 sel;
-    u16 acc;
+    s32 t;
     u16 k;
     s32 n;
+    enum { K0 } u;
 
     sel = 0x13;
     if (param_2 != 0) {
-        i = (u16) (param_2 - 1);
+        param_3 = (u16) (param_2 - 1);
         m = 0;
         q = &data_0217bc74;
     } else {
-        i = (u16) (param_3 - 1);
-        m = param_1;
         q = param_4 != 0 ? &data_0217bc6c : &data_0217bc64;
+        param_3 = (u16) (param_3 - 1);
+        m = param_1;
     }
-    row = q->mUnk_04[i];
-    t = 0;
+    row = q->mUnk_04[param_3];
     acc = 0;
+    t = 0;
     if (data_021759c0->mUnk_08 != 4) {
         for (i = 0; i < 0xe; i++) {
             t += (u16) (data_0217bc34[(s32) i].mUnk_90 * (data_027e00cc[(s32) i].mUnk_1c - data_027e00cc[(s32) i].mUnk_18));
@@ -61,7 +59,7 @@ s32 func_020f8a04(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_
             if (data_027e00cc[n].mUnk_20 - data_027e00cc[n].mUnk_1c > 0 &&
                 data_0217bc48[(s32) j].mUnk_00 != 0) {
                 x = data_0217bc34[n].mUnk_90 * data_0217bc48[(s32) j].mUnk_0c;
-                if (x == 0 || t + x <= 0x28) {
+                if (x == 0 || x + t <= 0x28) {
                     if (j >= 9 && m != 0) {
                         if (m == 1) {
                             acc = acc + (row[j] >> 2);
@@ -95,10 +93,9 @@ s32 func_020f8a04(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_
     if (param_5 != 0) {
         if (param_2 != 0) {
             data_0217bc50 = 0;
-            for (j = 0; j < param_6; j++) {
-                if (j == sel || row[j] != 0) {
-                    data_0217bca0[data_0217bc50] = j;
-                    data_0217bc50++;
+            for (u = 0; u < param_6; u++) {
+                if (u == sel || row[u] != 0) {
+                    data_0217bca0[data_0217bc50++] = u;
                 }
             }
         } else {

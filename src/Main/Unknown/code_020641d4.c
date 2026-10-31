@@ -18,8 +18,6 @@ void func_020641d4(Unk0206bcb0 *a) {
     func_020641f0(a);
 }
 
-// non-matching: 3 words at +0x378: for data_0217562a[a->mUnk_78] the original loads the index into r2 and
-// multiplies into r1; ours has the two the other way round.
 void func_020641f0(Unk0206bcb0 *a) {
     Unk0206bcb0_590 *b;
     Unk0206bcb0_590_08 *c;
@@ -37,6 +35,7 @@ void func_020641f0(Unk0206bcb0 *a) {
     Unk02012f58 *p;
     Vec3 *q;
     Vec4 *r;
+    enum { K0 } o;
 
     func_01ffcd84(&a->mUnk_120, a->mUnk_50c);
     n = a->mUnk_4c;
@@ -102,7 +101,7 @@ void func_020641f0(Unk0206bcb0 *a) {
             k = (s64) k * 0xfa0 >> 12;
             if (func_020738f8(func_0207a7ec()) < 0x29) {
                 k = 0;
-                if ((u16) (data_0217562a[a->mUnk_78].mUnk_00 & 3) != 0 && func_02061fec() == 1) {
+                if ((u16) (data_0217562a[o = a->mUnk_78].mUnk_00 & 3) != 0 && func_02061fec() == 1) {
                     k = k + 0x190;
                 }
             } else if ((a->mUnk_44 & 0x100) != 0) {

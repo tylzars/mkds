@@ -159,7 +159,6 @@ void func_020c3654(void) {
     }
 }
 
-// non-matching: in the loop that stores the loop value and negates the value the original uses r7 for the loop variable and r5 for the product (ours r8 and r7)
 void func_020c3200(void) {
     s32 s[8];
     u16 i;
@@ -204,7 +203,7 @@ void func_020c3200(void) {
     }
     for (g = 0; g < data_021759c0->mUnk_3d0; g = (u16)(g + 1)) {
         data_0217b3e0->mUnk_0040[g] = g;
-        s[g] = s[g] * 0xffffffff;
+        s[g] *= -1;
     }
     func_020ae770(data_0217b3e0->mUnk_0040, s, data_021759c0->mUnk_3d0);
     for (j = 0; j < data_021759c0->mUnk_3d0; j = (u16)(j + 1)) {

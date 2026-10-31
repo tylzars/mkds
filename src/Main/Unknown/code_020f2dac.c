@@ -44,14 +44,12 @@ void func_020f357c(void) {
 
 #pragma thumb off
 
-// non-matching: 9 of 267 lines differ. 0x130/0x1a4: the high word of the 64-bit store to the
-// accumulator is addressed as [sl, #0x480] off the pointer local where the original uses
-// [r9, #4] off the derived pointer; 0x194: the low sum stays in r3 (original r1) and the v.x
-// load is hoisted above the store; 0x25c-0x26c: the multiply's variable takes r3 and its pool
-// constant r1, the original has the two the other way round.
+static inline u32 func_020f3150_inline(Unk020f41c4_B *x, u32 n) {
+    x->mUnk_00 = x->mUnk_08 * x->mUnk_00 + x->mUnk_10;
+    return (u32) (((u64) (u32) (x->mUnk_00 >> 32) * n) >> 32);
+}
+
 void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
-    Unk020f41c4_B *q;
-    Unk0217561c *o;
     Vec3 v;
     s32 n;
     s32 m;
@@ -77,12 +75,8 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
         }
     }
     if (a->mUnk_068 < 0x3000) {
-        o = data_0217561c;
-        q = &o->mUnk_47c;
-        o->mUnk_47c.mUnk_00 = q->mUnk_08 * q->mUnk_00 + q->mUnk_10;
-        v.z += (u32) (((u64) (u32) (q->mUnk_00 >> 32) * 0xf6) >> 32) - 0x7b;
-        o->mUnk_47c.mUnk_00 = q->mUnk_08 * q->mUnk_00 + q->mUnk_10;
-        v.x += (u32) (((u64) (u32) (q->mUnk_00 >> 32) * 0xf6) >> 32) - 0x7b;
+        v.z += func_020f3150_inline(&data_0217561c->mUnk_47c, 0xf6) - 0x7b;
+        v.x += func_020f3150_inline(&data_0217561c->mUnk_47c, 0xf6) - 0x7b;
     }
     v.x = (s32) (((s64) v.x * n) >> 12);
     v.y = (s32) (((s64) v.y * n) >> 12);
@@ -92,7 +86,8 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
             n = e + (s32) (((s64) a->mUnk_068 * 0x200) >> 12) + (s32) (((s64) a->mUnk_06c.y * 0x2000) >> 12);
         } else {
             n = f;
-            n += (s32) (((s64) (a->mUnk_06c.y > 0 ? 0x666 : 0x1333) * a->mUnk_06c.y) >> 12);
+            dx = a->mUnk_06c.y > 0 ? 0x666 : 0x1333;
+            n += (s32) (((s64) dx * a->mUnk_06c.y) >> 12);
         }
         func_02147fd8(n, (const Vec3 *) &a->mUnk_02c.mUnk_0c, &v, &p->mUnk_000.mUnk_5c);
     }

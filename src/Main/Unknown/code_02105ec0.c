@@ -964,17 +964,14 @@ void func_0210689c(u32 a) {
     data_0217c814.mUnk_18 = a;
 }
 
-// non-matching: every instruction and every pool word has the same shape; only the choice
-// of callee-saved registers for the block reached from case 1 differs (the same values sit
-// in different registers here and in the ROM, and the later offsets follow them).
 void func_02106580(void) {
     Unk0217c7f0 *q;
-    struct Unk0212d5f8 *p;
     Unk0212c400 **v;
-    s32 a;
+    u32 a;
     s32 i;
     s32 b;
     s32 n;
+    struct Unk0212d5f8 *p;
 
     switch (data_0217c814.mUnk_0c) {
         case 1:
@@ -1009,9 +1006,7 @@ void func_02106580(void) {
             func_02111024();
             break;
     }
-    if (data_021759c0->mUnk_08 == 2) {
-        func_0210add4();
-    } else {
+    if (data_021759c0->mUnk_08 != 2) {
         v = &data_0217d07c;
         if (func_0210f858() != 0) {
             func_0210f780(v);
@@ -1051,6 +1046,8 @@ void func_02106580(void) {
                 func_0210faac();
             }
         }
+    } else {
+        func_0210add4();
     }
     data_0217d1f8 = data_0217d20c;
 }

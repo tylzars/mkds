@@ -210,9 +210,6 @@ void func_020ece1c(Unk020ec8bc *p, s32 a, s32 b, s32 c) {
     func_020f1d70(p, &v);
 }
 
-// non-matching: the original hoists `add r4, sl, #0x21c` before the loop and
-// spills n to sp+0x2c; the compiled loop recomputes the address and keeps n in
-// a register (0x45c bytes against 0x458).
 void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
     Unk020f3fa8 *t;
     Vec3 *q;
@@ -221,7 +218,6 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
     Vec3 v34;
     Vec3 v40;
     Vec3 v4c;
-    s32 n;
     s32 s;
     s32 f;
     s32 w;
@@ -230,13 +226,12 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
     q = &p->mUnk_000.mUnk_000.mUnk_50;
     r = &p->mUnk_000.mUnk_000.mUnk_5c;
     f = (p->mUnk_000.mUnk_000.mUnk_74 & 0x40000000) != 0;
-    n = a - p->mUnk_000.mUnk_12c;
-    p->mUnk_000.mUnk_12c = p->mUnk_000.mUnk_12c + (s32) (((u64) ((s64) n * b)) >> 12);
+    a -= p->mUnk_000.mUnk_12c;
+    p->mUnk_000.mUnk_12c = p->mUnk_000.mUnk_12c + (s32) (((u64) ((s64) a * b)) >> 12);
     func_020d84c0(&t->mUnk_00, p->mUnk_000.mUnk_12c);
     if (func_020d849c(&t->mUnk_00) != 0) {
         do {
-            p->mUnk_21c.mUnk_00 = p->mUnk_168.mUnk_00;
-            p->mUnk_21c.mUnk_04 = p->mUnk_168.mUnk_04;
+            p->mUnk_21c = p->mUnk_168;
             func_020f371c(&p->mUnk_21c, &p->mUnk_168, c, e);
         } while (func_020f3fa8(t, p->mUnk_168.mUnk_00->mUnk_18) != 0);
     }
@@ -253,10 +248,10 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
         }
     } else {
         if (p->mUnk_000.mUnk_158 != 0 && (p->mUnk_000.mUnk_000.mUnk_74 & 0x20000) != 0) {
-            n = q->y;
+            v28.y = q->y;
             func_020d8460(t, q);
-            if (q->y < n) {
-                q->y = n;
+            if (q->y < v28.y) {
+                q->y = v28.y;
             }
         } else {
             func_020d8474(&t->mUnk_00, q);
@@ -267,8 +262,8 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
                       p->mUnk_000.mUnk_000.mUnk_da, (int *) &v28, (int *) &v34, (int *) &v40,
                       &p->mUnk_000.mUnk_000.mUnk_fc, 0, 0, 0, 0) != 0) {
         if (p->mUnk_000.mUnk_158 != 0) {
-            if (n > 0) {
-                q->y = q->y + n;
+            if (v28.y > 0) {
+                q->y = q->y + v28.y;
             }
         } else {
             func_02148504(&v28, q, q);

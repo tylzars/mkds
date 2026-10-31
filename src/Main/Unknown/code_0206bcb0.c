@@ -129,11 +129,9 @@ void func_0206cc60(Unk0206bcb0 *p, int arg) {
     func_02109078(&p->mUnk_00, 0xd1, 0x7f, 0);
 }
 
-// non-matching: same size; 40 lines differ; first: original `movne r6, #1`, ours `movne r5, #1`
 void func_0206c5e4(Unk0206bcb0 *p) {
     u32 f = p->mUnk_44;
     int hasB = (f & 2) != 0;
-    int dirv;
     u32 g;
     Unk0208c5b8 *t;
     int id;
@@ -175,10 +173,10 @@ recheck:
         }
     }
     f = p->mUnk_44;
-    dirv = p->mUnk_2c4;
+    g = p->mUnk_2c4;
     if (!(f & 8) && (f & 0x10)) {
-        if ((f & 3) && p->mUnk_2a4 > (s32) (((s64) p->mUnk_2cc->mUnk_10 * 0x8cd) >> 12) && dirv != 0 &&
-            (u16) (data_02175628[p->mUnk_78].mUnk_02 & 0x100)) {
+        if ((f & 3) && p->mUnk_2a4 > (s32) (((s64) p->mUnk_2cc->mUnk_10 * 0x8cd) >> 12) && g != 0 &&
+            (u16) (data_02175628[k = p->mUnk_78].mUnk_02 & 0x100)) {
             p->mUnk_44 |= 8;
             p->mUnk_2fc = 1;
             if (p->mUnk_2c4 > 0) {
@@ -200,8 +198,9 @@ recheck:
     }
     f = p->mUnk_44;
     if (f & 8) {
-        if (!((u16) (data_02175628[p->mUnk_78].mUnk_02 & 0x100) && (p->mUnk_48 & 2) &&
-              p->mUnk_2a4 >= p->mUnk_2cc->mUnk_10 / 2 && !(f & 0x2000c0))) {
+        k = p->mUnk_78;
+        if (!((u16) (data_02175628[k].mUnk_02 & 0x100) && (p->mUnk_48 & 2) && p->mUnk_2a4 >= p->mUnk_2cc->mUnk_10 / 2 &&
+              !(f & 0x2000c0))) {
             if (!(f & 0x10)) {
                 p->mUnk_44 |= 0x8000;
             }
@@ -241,16 +240,16 @@ recheck:
         v.x = p->mUnk_138.x - (s32) (((s64) p->mUnk_284.x * dot) >> 12);
         v.y = q->y - (s32) (((s64) p->mUnk_284.y * dot) >> 12);
         v.z = q->z - (s32) (((s64) p->mUnk_284.z * dot) >> 12);
-        if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 16 && func_02039860(&v, &v)) {
+        if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 16 ? func_02039860(&v, &v) : 0) {
             func_020397a8(&p->mUnk_290, &v, &w);
             len = func_021482cc(&w);
             ang = func_02148538(len, func_02039828(&p->mUnk_290, &v));
             turn = (s16) (((s64) ang * 0x28be60db9391LL + 0x80000000LL) >> 44);
         }
         if (p->mUnk_2a8 < 0) {
-            dirv = -dirv;
+            g = -g;
         }
-        p->mUnk_388 += (s16) (turn * dirv);
+        p->mUnk_388 += (s16) (turn * g);
         if (p->mUnk_388 > 0x2af8) {
             p->mUnk_388 = 0x2af8;
         } else if (p->mUnk_388 < -0x2af8) {
@@ -262,7 +261,8 @@ recheck:
         p->mUnk_38a = (s32) (((s64) p->mUnk_2a4 * 0x1a) >> 12);
         return;
     }
-    if (!(u16) (data_02175628[p->mUnk_78].mUnk_00 & 0x100)) {
+    k = p->mUnk_78;
+    if (!(u16) (data_02175628[k].mUnk_00 & 0x100)) {
         if (!(p->mUnk_44 & 0x20000000)) {
             return;
         }
@@ -352,13 +352,12 @@ void func_0206c450(Unk0206c1ac *obj, Unk0206bcb0 *p) {
     func_02080e88(obj, p);
 }
 
-// non-matching: register allocation only (p/a/flag are r6/ip/r4, original r9/r4/r6)
 int func_0206c354(Unk0206bcb0 *p, const Vec3 *a, int flag) {
     if (p->mUnk_7c & 0x10) {
         int arr[4] = {0x77, 0x76, 0x78, 0x79};
-        int *list = data_02154f10;
+        u16 i = 0;
         u32 n = 1;
-        u16 i;
+        int *list = data_02154f10;
         Vec3 tmp;
 
         if (flag) {
@@ -367,7 +366,7 @@ int func_0206c354(Unk0206bcb0 *p, const Vec3 *a, int flag) {
         }
         func_02147fd8(-p->mUnk_1d0, a, &p->mUnk_80, &tmp);
         func_02147fd8((s32) (((s64) p->mUnk_bc.y * 0x8000 + 0x800) >> 12), &p->mUnk_12c, &tmp, &tmp);
-        for (i = 0; i < n; i++) {
+        for (; i < n; i++) {
             func_0208b748(list[i], &tmp, p, func_0206c450);
         }
         return 1;

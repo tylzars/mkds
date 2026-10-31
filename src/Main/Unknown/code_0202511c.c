@@ -1,32 +1,18 @@
 #include "Main/Unknown/code_0202511c.h"
 
-static inline void copy_entry(u8 *dst, s32 i) {
-    u8 *t = data_0215316c[i].mUnk_00;
-    dst[0] = t[0];
-    dst[1] = t[1];
-    dst[2] = t[2];
-    dst[3] = t[3];
-}
-
-// non-matching: 75.2%; same case bodies, the table-entry byte copies and the register use around them differ
 u32 func_0202511c(s32 a, void *c) {
-    u8 *b = (u8 *) c;
-    s32 r;
+    Unk0215316c *b = (Unk0215316c *) c;
+    enum { K0 } r;
     s32 f;
     s32 q;
     s32 s;
     s32 t;
-    u8 v1[4];
+    Unk0215316c v1;
+    Unk021759c0_28 *p;
 
     r = 0x36;
     f = 0;
     switch (a) {
-    case 0:
-        r = 0x33;
-        break;
-    case 1:
-        r = 0x32;
-        break;
     case 2:
         switch (data_021759c0->mUnk_00c) {
         case 0:
@@ -35,37 +21,40 @@ u32 func_0202511c(s32 a, void *c) {
             r = func_0202553c(data_021759c0->mUnk_00, b);
             f = 1;
             if (q == 4) {
+                p = &data_021759c0->mUnk_28_view;
                 s = 0;
-                if (data_021759c0->mUnk_2e == 4) {
-                    b[1] = 0x2a;
+                if (p->mUnk_06 == 4) {
+                    b->mUnk_00[1] = 0x2a;
                     s = 1;
                 }
                 if (s == 0) {
-                    switch (data_021759c0->mUnk_2f) {
+                    switch (p->mUnk_07) {
                     case 1:
-                        b[1] = 0x2c;
+                        b->mUnk_00[1] = 0x2c;
                         break;
+                    case 2:
+                    case 3:
                     case 10:
                         break;
                     }
                 }
                 t = 1;
-                switch (data_021759c0->mUnk_2e) {
+                switch (p->mUnk_06) {
                 case 9:
                 case 10:
-                    b[2] = 0x25;
+                    b->mUnk_00[2] = 0x25;
                     break;
                 case 0x32:
-                    b[2] = 0x26;
+                    b->mUnk_00[2] = 0x26;
                     break;
                 case 0x15:
-                    b[2] = 0x27;
+                    b->mUnk_00[2] = 0x27;
                     break;
                 case 0x33:
-                    b[2] = 0x28;
+                    b->mUnk_00[2] = 0x28;
                     break;
                 case 0x11:
-                    b[2] = 0x29;
+                    b->mUnk_00[2] = 0x29;
                     break;
                 case 0x31:
                     break;
@@ -74,9 +63,12 @@ u32 func_0202511c(s32 a, void *c) {
                     break;
                 }
                 if (t != 0) {
-                    b[3] = 0x22;
+                    b->mUnk_00[3] = 0x22;
                 }
             }
+            break;
+        case 5:
+            r = 0x2a;
             break;
         case 1:
             r = 0x33;
@@ -101,24 +93,26 @@ u32 func_0202511c(s32 a, void *c) {
             if (func_021054d0() != 0) {
                 r = 6;
             } else {
-                copy_entry(b, r);
+                *b = data_0215316c[r];
                 f = 1;
-                func_0202553c(data_021759c0->mUnk_00, v1);
-                b[2] = v1[2];
+                func_0202553c(data_021759c0->mUnk_00, &v1);
+                b->mUnk_00[2] = v1.mUnk_00[2];
             }
             break;
         case 4:
             r = 5;
-            break;
-        case 5:
-            r = 0x2a;
             break;
         case 6:
             r = 0x33;
             break;
         }
         break;
+    case 12:
+        r = 0x2d;
+        break;
     case 4:
+        r = 0x33;
+        break;
     case 5:
         r = 0x33;
         break;
@@ -129,35 +123,38 @@ u32 func_0202511c(s32 a, void *c) {
             r = 0x2e;
         }
         break;
+    case 1:
+        r = 0x32;
+        break;
+    case 10:
+        r = 0x29;
+        *b = data_0215316c[r];
+        f = 1;
+        b->mUnk_00[1] = func_0211127c();
+        break;
     case 8:
         r = 0x2f;
+        break;
+    case 13:
+        r = 0x2e;
         break;
     case 9:
         r = 0x31;
         break;
-    case 10:
-        r = 0x29;
-        copy_entry(b, r);
-        f = 1;
-        b[1] = func_0211127c();
-        break;
-    case 12:
-        r = 0x2d;
-        break;
-    case 13:
-        r = 0x2e;
+    case 0:
+        r = 0x33;
         break;
     case 3:
     case 7:
     case 11:
     case 14:
         r = 0x30;
-        copy_entry(b, r);
+        *b = data_0215316c[r];
         f = 1;
         if (data_0217d060 != 0) {
-            b[1] = 0xff;
-            b[2] = 0xff;
-            b[3] = 0xff;
+            b->mUnk_00[1] = 0xff;
+            b->mUnk_00[2] = 0xff;
+            b->mUnk_00[3] = 0xff;
         }
         break;
     case 15:
@@ -165,7 +162,7 @@ u32 func_0202511c(s32 a, void *c) {
         break;
     }
     if (f == 0 && b != 0) {
-        copy_entry(b, r);
+        *b = data_0215316c[r];
     }
     return r;
 }

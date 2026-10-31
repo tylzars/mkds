@@ -32,10 +32,8 @@ void func_0204360c(s32 a, u32 b) {
     }
 }
 
-// non-matching: 98.4: the original keeps z1 in its own stack slot (q is loaded from [sp, #0x24]; here z1 is merged with z0, one store and one slot short), so the loop registers differ (entry pointer, m and n in r5, r7, r6 there); the seven zero locals only reproduce the stack words.
 void func_02043648(void) {
     u8 i;
-    Unk02175628 *p;
     u16 y;
     u16 a;
     u16 b;
@@ -44,19 +42,13 @@ void func_02043648(void) {
     u16 m;
     u16 t;
     s32 n;
+    Unk02175628 *p;
     s32 o;
     s32 q;
     s32 c;
     s32 f;
     s32 s;
     u16 w;
-    s32 z0 = 0;
-    s32 z1 = 0;
-    s32 z2 = 0;
-    s32 z3 = 0;
-    s32 z4 = 0;
-    s32 z5 = 0;
-    s32 z6 = 0;
 
     x = data_02175624->mUnk_02;
     y = func_02046c10();
@@ -69,12 +61,12 @@ void func_02043648(void) {
         func_02050064(data_02175624->mUnk_08);
     }
     for (i = 0; i < 10; i++) {
-        m = z0;
+        m = 0;
         n = 0xffff;
         o = m;
-        q = z1;
         f = (data_02175624->mUnk_04 & 1) ? 1 : 0;
-        c = (func_0205e0a0() != 2 || (data_02175624->mUnk_04 & 2)) ? 1 : z2;
+        q = 0;
+        c = (func_0205e0a0() != 2 || (data_02175624->mUnk_04 & 2)) ? 1 : 0;
         p = &data_02175628[i];
         w = data_02175624->mUnk_04;
         if (!(w & 8)) {
@@ -92,7 +84,7 @@ void func_02043648(void) {
                         q = 1;
                     }
                     n = 0xffff;
-                    o = z3;
+                    o = 0;
                     break;
                 case 2:
                     if (f == 0) {
@@ -120,7 +112,7 @@ void func_02043648(void) {
                     if (f != 0) {
                         q = 1;
                     } else {
-                        o = z4;
+                        o = 0;
                         m = p->mUnk_40;
                         n = 0xffff;
                         p->mUnk_40 = o;
@@ -129,7 +121,7 @@ void func_02043648(void) {
                 case 5:
                     m = a;
                     n = b;
-                    o = z5;
+                    o = 0;
                     break;
                 case 4:
                     if (f == 0) {
@@ -158,7 +150,7 @@ void func_02043648(void) {
                     o = k;
                     break;
                 case 0:
-                    m = z6;
+                    m = 0;
                     n = 0xffff;
                     o = m;
                     break;

@@ -183,15 +183,14 @@ u32 func_0200a184(void) {
     return (v2 + *(vu32 *) 0x27ffc3c) * 7 % 0x14;
 }
 
-// non-matching: 0x5b0 bytes, original 0x5c0; in the case that searches the entries the original keeps the count in r7 and
-// the first byte of the message in r0 and spills the entry offset to the stack twice, ours keeps the count in r1
 void func_0200a1bc(Unk021425e8 *a) {
+    Unk0216fda8_600 *e;
+    u8 c;
     Unk0216fda8 *v1;
     s32 i;
     s32 n;
     u32 v2;
     u8 *v3;
-    Unk0216fda8_600 *e;
     v1 = data_0216fda8;
     switch (a->mUnk_00) {
     case 0:
@@ -239,18 +238,17 @@ void func_0200a1bc(Unk021425e8 *a) {
             n = v1->mUnk_5e0;
             if (n > 0) {
                 e = (Unk0216fda8_600 *) v3;
+                c = a->mUnk_0a[0];
                 do {
-                    if (a->mUnk_0a[0] == e->mUnk_0c0.mUnk_0a[0] && a->mUnk_0a[1] == e->mUnk_0c0.mUnk_0a[1] &&
+                    if (c == e->mUnk_0c0.mUnk_0a[0] && a->mUnk_0a[1] == e->mUnk_0c0.mUnk_0a[1] &&
                         a->mUnk_0a[2] == e->mUnk_0c0.mUnk_0a[2] && a->mUnk_0a[3] == e->mUnk_0c0.mUnk_0a[3] &&
                         a->mUnk_0a[4] == e->mUnk_0c0.mUnk_0a[4] && a->mUnk_0a[5] == e->mUnk_0c0.mUnk_0a[5]) {
                         v2 = i * 0x180;
-                        e = (Unk0216fda8_600 *) (v3 + v2);
-                        e->mUnk_0c0.mUnk_36 = a->mUnk_36;
-                        e->mUnk_0c0.mUnk_38 = a->mUnk_38;
-                        e = &v1->mUnk_600[0];
-                        e = (Unk0216fda8_600 *) ((u8 *) e + v2);
-                        func_0200ee3c(e, 0xc0);
-                        func_0214cb10(data_usa_0216fd80, v1->mUnk_440, e, 0xc0);
+                        ((Unk0216fda8_600 *) (v3 + v2))->mUnk_0c0.mUnk_36 = a->mUnk_36;
+                        ((Unk0216fda8_600 *) (v3 + (s32) v2))->mUnk_0c0.mUnk_38 = a->mUnk_38;
+                        func_0200ee3c((Unk0216fda8_600 *) ((u8 *) v1->mUnk_600 + v2), 0xc0);
+                        func_0214cb10(data_usa_0216fd80, v1->mUnk_440,
+                                      (Unk0216fda8_600 *) ((u8 *) v1->mUnk_600 + v2), 0xc0);
                         v1->mUnk_5ec = i;
                         goto done;
                     }
@@ -386,9 +384,12 @@ done:
         v1->mUnk_51c(0x19, 0);
         return;
     case 0x80:
-        if (a->mUnk_04 == 0x16) {
+        switch (a->mUnk_04) {
+        case 0x16:
             func_0200fd1c();
-        } else if (a->mUnk_04 == 0x17) {
+            break;
+        case 0x17:
+            break;
         }
         return;
     default:
@@ -407,11 +408,9 @@ void func_0200a77c(Unk021425e8 *a) {
     }
 }
 
-// non-matching: 0x54c bytes, original 0x550; after the check of the halfword at 0x52c in case 8/7 the original loads
-// data_0216fda8 again (ldr r3 through r1) while ours reuses the first pointer in r3
 void func_0200a7b0(Unk021425e8 *a) {
-    u32 i;
     u32 n;
+    u32 i;
     Unk0216fdac *p;
     u32 x;
     switch (a->mUnk_00) {
@@ -576,10 +575,11 @@ void func_0200a7b0(Unk021425e8 *a) {
             return;
         case 0x16:
             func_0200fd1c();
-            return;
-        default:
-            return;
+            break;
+        case 0x17:
+            break;
         }
+        break;
     default:
         data_0216fda8->mUnk_51c(0x100, a);
         return;

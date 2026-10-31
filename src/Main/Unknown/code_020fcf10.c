@@ -6,9 +6,6 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_020ee684.h"
 
-// non-matching: one load in another place (0x344 bytes both): in `v2->x = (v2->x * e + t.x) >> f;` the original
-// loads e from the stack first (ldr r3, [sp, #0x6c]), then t.x, then v2->x; this compiler loads t.x, v2->x, e
-// (same registers, same mla and asr).
 void func_020fcf10(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     Vec3 t;
     Vec3 *v;
@@ -51,8 +48,8 @@ void func_020fcf10(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         t.y = (s32) (((s64) t.y * a) >> 12);
         t.z = (s32) (((s64) t.z * a) >> 12);
     }
-    v2->x = (v2->x * e + t.x) >> f;
-    v2->y = (v2->y * e + t.y) >> f;
+    v2->x = (v2->x * (s32) e + t.x) >> f;
+    v2->y = (v2->y * (s32) e + t.y) >> f;
     v2->z = (v2->z * e + t.z) >> f;
     func_02148504(v2, v1, v1);
     if (func_01ffdee4((int *) v1, (u32 *) &p0->mUnk_000.mUnk_0e4, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mUnk_da,
