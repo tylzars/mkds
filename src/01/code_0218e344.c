@@ -1,9 +1,9 @@
 #include "01/code_0218e344.h"
 
 void func_ov001_0218e344(int param_1) {
-    int iVar1;
-    iVar1 = func_ov001_021871f8((Unk02188950 *) (param_1), 5);
-    if (iVar1 != 0) {
+    int v1;
+    v1 = func_ov001_021871f8((Unk02188950 *) (param_1), 5);
+    if (v1 != 0) {
         func_ov001_0218edc8((Unk02188950 *) (param_1));
     }
     *(u32 *) (param_1 + 0x2d8) = 0xd;

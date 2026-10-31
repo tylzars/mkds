@@ -1,9 +1,9 @@
 #include "01/code_0218cfe8.h"
 
 u32 func_ov001_0218d264(u32 param_1) {
-    int iVar1;
-    iVar1 = func_02061fec();
-    if (iVar1 == 1) {
+    int v1;
+    v1 = func_02061fec();
+    if (v1 == 1) {
         func_ov001_0218d4c8((int) param_1);
     }
     return 0;
@@ -42,24 +42,24 @@ void func_ov001_0218d188(int param_1) {
 }
 
 u32 func_ov001_0218d16c(u32 param_1) {
-    int iVar1;
-    iVar1 = func_02061fec();
-    if (iVar1 == 1) {
-        func_ov001_0218d950((Unk02188950 *) ((int) param_1));
+    int v1;
+    v1 = func_02061fec();
+    if (v1 == 1) {
+        func_ov001_0218d950((Unk02188950 *) param_1);
     }
     return 0;
 }
 
 u32 func_ov001_0218d0fc(int param_1) {
-    int iVar1;
-    iVar1 = func_0209b620((int) (*(u32 *) (param_1 + 0x304)));
-    if (iVar1 == 0x33) {
+    int v1;
+    v1 = func_0209b620((int) (*(u32 *) (param_1 + 0x304)));
+    if (v1 == 0x33) {
         func_ov001_02187af4((Unk02188950 *) (param_1));
         func_ov001_021875c0((Unk02188950 *) param_1, (u32) (((u32) 0xfffff666u)), (u32) 0, (u32) (((u32) 0x00000400u)),
                             (u32) (((u32) 0x00000434u)), (u32) 0);
     } else {
-        iVar1 = func_0209b620((int) (*(u32 *) (param_1 + 0x304)));
-        if (iVar1 == 0x66) {
+        v1 = func_0209b620((int) (*(u32 *) (param_1 + 0x304)));
+        if (v1 == 0x66) {
             func_ov001_02187af4((Unk02188950 *) (param_1));
             func_ov001_021875c0((Unk02188950 *) param_1, (u32) (((u32) 0x0000099au)), (u32) 0, (u32) (((u32) 0x00000400u)),
                                 (u32) (((u32) 0x00000434u)), (u32) 0);

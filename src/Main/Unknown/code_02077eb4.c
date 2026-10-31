@@ -4,13 +4,13 @@
 #pragma thumb on
 
 void func_02077eb4(void *param_1, u32 *param_2) {
-    u32 uVar1;
-    u32 uVar2;
-    uVar1 = ((u32) func_02036bec(param_1, (u32) (((u32) 0x0000f000u))));
-    uVar2 = (u32) func_02017988((void *) ((void *) uVar1), (u32) ((u32) (((u32) 0x0000f000u))),
-                          (u32) ((u32) 0));
-    param_2[1] = uVar2;
-    *param_2 = uVar1;
+    u32 v1;
+    u32 v2;
+    v1 = ((u32) func_02036bec(param_1, (u32) (((u32) 0x0000f000u))));
+    v2 = (u32) func_02017988((void *) ((void *) v1), (u32) ((u32) (((u32) 0x0000f000u))),
+                          (u32) 0);
+    param_2[1] = v2;
+    *param_2 = v1;
     param_2[4] = 0;
     param_2[3] = param_2[4];
     param_2[2] = param_2[3];

@@ -3,19 +3,19 @@
 #pragma thumb on
 
 void func_02117830(void) {
-    int iVar1;
+    int v1;
     func_02118414();
-    iVar1 = func_021277c8();
-    if (iVar1 != 0) {
+    v1 = func_021277c8();
+    if (v1 != 0) {
         func_02118114();
     }
 }
 
 void func_02117814(void) {
-    int iVar1;
+    int v1;
     func_02118414();
-    iVar1 = ((u32) func_02127788());
-    if (iVar1 != 0) {
+    v1 = func_02127788();
+    if (v1 != 0) {
         func_021180f8();
     }
 }

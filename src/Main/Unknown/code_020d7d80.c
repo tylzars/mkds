@@ -3,23 +3,23 @@
 #pragma thumb on
 
 void func_020d7d80(u32 *param_1) {
-    int *piVar5;
-    int iVar4;
-    int iVar3;
-    int iVar2;
-    int iVar1;
-    piVar5 = (int *) *param_1;
-    iVar3 = piVar5[1];
-    iVar4 = 0;
-    if (0 < iVar3) {
-        iVar2 = 0;
+    int *v1;
+    int v2;
+    int v3;
+    int v4;
+    int v5;
+    v1 = (int *) *param_1;
+    v3 = v1[1];
+    v2 = 0;
+    if (0 < v3) {
+        v4 = 0;
         do {
-            iVar1 = *piVar5 + iVar2;
-            *(u32 *) (iVar1 + 0x30) = *(u32 *) (iVar1 + 0x40);
-            *(u32 *) (iVar1 + 0x34) = *(u32 *) (iVar1 + 0x44);
-            iVar2 = iVar2 + 0x54;
-            iVar4 = iVar4 + 1;
-        } while (iVar4 < iVar3);
+            v5 = *v1 + v4;
+            *(u32 *) (v5 + 0x30) = *(u32 *) (v5 + 0x40);
+            *(u32 *) (v5 + 0x34) = *(u32 *) (v5 + 0x44);
+            v4 = v4 + 0x54;
+            v2 = v2 + 1;
+        } while (v2 < v3);
     }
 }
 

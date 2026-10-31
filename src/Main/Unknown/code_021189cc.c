@@ -3,17 +3,17 @@
 #pragma thumb on
 
 void func_021189cc(void) {
-    int iVar4;
-    int iVar3;
-    u32 uVar2;
-    iVar4 = 0;
-    iVar3 = 0;
+    int v1;
+    int v2;
+    u32 v3;
+    v1 = 0;
+    v2 = 0;
     do {
-        uVar2 = func_021189f4(iVar4);
-        *(u32 *) (*(int *) &data_0217d360 + iVar3 + 0x48) = uVar2;
-        iVar3 = iVar3 + 4;
-        iVar4 = iVar4 + 1;
-    } while (iVar4 < 8);
+        v3 = func_021189f4(v1);
+        *(u32 *) (*(int *) &data_0217d360 + v2 + 0x48) = v3;
+        v2 = v2 + 4;
+        v1 = v1 + 1;
+    } while (v1 < 8);
 }
 
 #pragma thumb off

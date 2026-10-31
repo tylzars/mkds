@@ -5,9 +5,9 @@
 #include "03/code_021d254c.h"
 
 void func_ov003_021c5258(void) {
-    int iVar1;
-    iVar1 = func_ov003_021d1f70(1);
-    if (iVar1 == 0) {
+    int v1;
+    v1 = func_ov003_021d1f70(1);
+    if (v1 == 0) {
         func_ov003_021bf344();
         if (data_ov003_021da1dc == 0) {
             func_ov003_021d1ee0(3, 1, 1, 8);
@@ -19,10 +19,10 @@ void func_ov003_021c5258(void) {
 }
 
 void func_ov003_021c51bc(void) {
-    int iVar1;
-    iVar1 = func_ov003_021d1f70(0);
-    if ((iVar1 == 0) && (((data_ov003_021da1dc != 0 || (iVar1 = func_ov003_021d1f70(1), iVar1 == 0)) &&
-                          (iVar1 = func_ov003_021bf2f0(), iVar1 != 0)))) {
+    int v1;
+    v1 = func_ov003_021d1f70(0);
+    if ((v1 == 0) && (((data_ov003_021da1dc != 0 || (v1 = func_ov003_021d1f70(1), v1 == 0)) &&
+                          (v1 = func_ov003_021bf2f0(), v1 != 0)))) {
         func_ov003_021c1f84((int) (data_ov003_021da1dc != 0));
         func_ov003_021beecc();
         func_ov003_021d2168(0);
@@ -51,9 +51,9 @@ void func_ov003_021c51a0(void) {
 }
 
 void func_ov003_021c5178(void) {
-    int iVar1;
-    iVar1 = func_ov003_021cef80();
-    if (iVar1 == 0) {
+    int v1;
+    v1 = func_ov003_021cef80();
+    if (v1 == 0) {
         func_ov003_021cdc10(6);
         func_ov003_021cef90();
         func_ov003_021c212c(func_ov003_021c515c);
@@ -62,9 +62,9 @@ void func_ov003_021c5178(void) {
 }
 
 void func_ov003_021c515c(void) {
-    int iVar1;
-    iVar1 = func_ov003_021cef6c();
-    if (iVar1 == 0) {
+    int v1;
+    v1 = func_ov003_021cef6c();
+    if (v1 == 0) {
         func_ov003_021c212c(func_ov003_021c52a0);
     }
     return;

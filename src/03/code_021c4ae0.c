@@ -3,8 +3,8 @@
 #include "03/code_021d254c.h"
 
 void func_ov003_021c4ae0(void) {
-    int iVar1;
-    if (((data_ov003_021da1d0 == 0) && (data_ov003_021da1d4 != 0)) || (iVar1 = func_ov003_021c27e4(), iVar1 != 0)) {
+    int v1;
+    if (((data_ov003_021da1d0 == 0) && (data_ov003_021da1d4 != 0)) || (v1 = func_ov003_021c27e4(), v1 != 0)) {
         func_ov003_021d2168(0);
         func_ov003_021d272c(0, 0x15);
         if (data_ov003_021da1d4 == 0) {

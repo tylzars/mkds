@@ -3,14 +3,14 @@
 #pragma thumb on
 
 void func_020581f4(void) {
-    int iVar1;
+    int v1;
     if ((int *) (int) data_0217aa00 == (int *) 0x0) {
-        iVar1 = 0;
+        v1 = 0;
     } else {
-        iVar1 = *(int *) (int) data_0217aa00;
+        v1 = *(int *) (int) data_0217aa00;
     }
-    if (iVar1 == 1) {
-        func_020518c8((u32) (1));
+    if (v1 == 1) {
+        func_020518c8(1);
     }
     return;
 }

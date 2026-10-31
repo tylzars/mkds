@@ -2,16 +2,16 @@
 #include "00/code_021a8c94.h"
 
 u32 func_ov000_0218a24c(Unk02188ec0 *param_1) {
-    u32 uVar1;
-    u32 uVar2;
-    int iVar3;
-    uVar1 = func_ov000_02188584((u32) (1));
-    uVar2 = func_ov000_02188584((u32) (4));
-    func_ov000_0218a064((const u32 *) uVar1, param_1, (Unk0218a064 *) uVar2);
+    u32 v1;
+    u32 v2;
+    int v3;
+    v1 = func_ov000_02188584(1);
+    v2 = func_ov000_02188584(4);
+    func_ov000_0218a064((const u32 *) v1, param_1, (Unk0218a064 *) v2);
     *(u32 *) &data_ov000_021b5f98 = 4;
-    iVar3 = func_ov000_021a8c94((void *) (uVar2));
-    if (iVar3 != 0) {
-        func_ov000_02188508((u32) (2));
+    v3 = func_ov000_021a8c94((void *) (v2));
+    if (v3 != 0) {
+        func_ov000_02188508(2);
         return 0x11;
     }
     return 0xc;

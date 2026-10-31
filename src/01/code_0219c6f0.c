@@ -189,9 +189,9 @@ void func_ov001_0219cdd4(void) {
 }
 
 void func_ov001_0219cdb4(void) {
-    int iVar1;
-    iVar1 = ((u32) func_02128294());
-    if (iVar1 != 0) {
+    int v1;
+    v1 = func_02128294();
+    if (v1 != 0) {
         *(u32 *) ((int) data_ov001_021a9bf8 + 4) = 2;
     }
     return;

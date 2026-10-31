@@ -1,9 +1,9 @@
 #include "01/code_0218a19c.h"
 
 u32 func_ov001_0218a2b8(u32 param_1) {
-    int iVar1;
-    iVar1 = func_02061fec();
-    if (iVar1 == 1) {
+    int v1;
+    v1 = func_02061fec();
+    if (v1 == 1) {
         func_ov001_02188e88((Unk02188950 *) (param_1));
     }
     return 0;

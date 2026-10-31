@@ -4,11 +4,11 @@
 #include "03/code_021d254c.h"
 
 void func_ov003_021cbe44(void) {
-    int iVar1;
+    int v1;
     func_ov003_021cbe40();
     func_ov003_021cbe3c();
-    iVar1 = func_ov003_021cef80();
-    if (iVar1 == 0) {
+    v1 = func_ov003_021cef80();
+    if (v1 == 0) {
         func_ov003_021cdc10((u32) 6);
         func_ov003_021cef90();
         func_ov003_021cdc10((u32) 6);
@@ -25,18 +25,18 @@ void func_ov003_021cbe3c(void) {
 }
 
 void func_ov003_021cbe14(void) {
-    int iVar1;
-    iVar1 = func_ov003_021cef6c();
-    if (iVar1 == 0) {
+    int v1;
+    v1 = func_ov003_021cef6c();
+    if (v1 == 0) {
         func_ov003_021d1ee0(3, 0, (u32) 0x14, (u16) 8);
         func_ov003_021c212c(func_ov003_021cbde4);
     }
 }
 
 void func_ov003_021cbde4(void) {
-    int iVar1;
-    iVar1 = func_ov003_021d1f70(0);
-    if (iVar1 == 0) {
+    int v1;
+    v1 = func_ov003_021d1f70(0);
+    if (v1 == 0) {
         func_ov003_021d272c(0, (u32) 0x14);
         func_ov003_021c2120((u32) 0, (u32) 1);
         func_ov003_021c212c(func_ov003_021cbb98);

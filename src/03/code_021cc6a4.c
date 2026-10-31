@@ -3,14 +3,14 @@
 #include "03/code_021cc8b4.h"
 
 void func_ov003_021cc700(void) {
-    int iVar1;
-    iVar1 = func_ov003_021d2b04(2);
-    if (iVar1 != 0) {
+    int v1;
+    v1 = func_ov003_021d2b04(2);
+    if (v1 != 0) {
         func_ov003_021bf31c(0);
         return;
     }
-    iVar1 = func_ov003_021cc8b4();
-    if (iVar1 != 0) {
+    v1 = func_ov003_021cc8b4();
+    if (v1 != 0) {
         func_ov003_021bf31c(0);
     }
     return;
@@ -21,8 +21,8 @@ void func_ov003_021cc6fc(void) {
 }
 
 void func_ov003_021cc6c4(void) {
-    int iVar1;
-    if ((data_ov003_021da258 == 0) && (iVar1 = func_ov003_021bf334(), iVar1 == 0)) {
+    int v1;
+    if ((data_ov003_021da258 == 0) && (v1 = func_ov003_021bf334(), v1 == 0)) {
         data_ov003_021da258 = 2;
         func_ov003_021cdbd0();
         func_ov003_021cdc10(7);

@@ -3,11 +3,11 @@
 #pragma thumb on
 
 void func_020ce7e4(void) {
-    int iVar1;
-    iVar1 = ((u32) func_020cccc0());
-    if (iVar1 != 0) {
-        iVar1 = func_020ce778();
-        if (iVar1 == 0) {
+    int v1;
+    v1 = func_020cccc0();
+    if (v1 != 0) {
+        v1 = func_020ce778();
+        if (v1 == 0) {
             func_020ce760(0x19);
             func_02148950((u16) 1, (u32) 0, 0);
             func_020ce744(0x1e);

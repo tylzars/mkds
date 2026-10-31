@@ -1,25 +1,25 @@
 #include "01/code_0218e690.h"
 
 void func_ov001_0218ead0(Unk02188950 *param_1) {
-    int iVar1;
-    u32 uVar4;
+    int v1;
+    u32 v2;
 
     func_ov001_02187218(param_1, 5, (s32 (*)(Unk02188950 *)) func_ov001_0218edb8);
     func_ov001_0218f850((int) param_1);
     func_ov001_02188e24(param_1, param_1->mUnk_0a0->mUnk_1a8, (UnkFunc *) func_ov001_0218eb94);
     func_ov001_02182a3c(0);
     func_ov001_02187e48(param_1, param_1->mUnk_0a0->mUnk_140);
-    iVar1 = param_1->mUnk_0a8;
-    if (iVar1 == 1) {
-        uVar4 = 2;
-    } else if (iVar1 == 2) {
-        uVar4 = 3;
-    } else if (iVar1 == 3) {
-        uVar4 = 3;
+    v1 = param_1->mUnk_0a8;
+    if (v1 == 1) {
+        v2 = 2;
+    } else if (v1 == 2) {
+        v2 = 3;
+    } else if (v1 == 3) {
+        v2 = 3;
     } else {
-        uVar4 = 1;
+        v2 = 1;
     }
-    param_1->mUnk_0a8 = uVar4;
+    param_1->mUnk_0a8 = v2;
     if (data_0217d20c != 3) {
         data_0217d21c = data_0217d20c;
     }
@@ -31,14 +31,14 @@ void func_ov001_0218ead0(Unk02188950 *param_1) {
 }
 
 u32 func_ov001_0218ea98(int param_1) {
-    int iVar1;
-    int iVar2;
-    iVar2 = *(int *) (*(int *) (param_1 + 0x9c) + 4) + *(int *) (*(int *) (param_1 + 0xa0) + 0x84);
-    iVar1 = *(int *) (param_1 + 8) - *(int *) (*(int *) (param_1 + 0xa0) + 0x88);
-    if (iVar1 <= iVar2) {
-        iVar1 = iVar2;
+    int v1;
+    int v2;
+    v2 = *(int *) (*(int *) (param_1 + 0x9c) + 4) + *(int *) (*(int *) (param_1 + 0xa0) + 0x84);
+    v1 = *(int *) (param_1 + 8) - *(int *) (*(int *) (param_1 + 0xa0) + 0x88);
+    if (v1 <= v2) {
+        v1 = v2;
     }
-    *(int *) (param_1 + 8) = iVar1;
+    *(int *) (param_1 + 8) = v1;
     func_02061860();
     return 0;
 }

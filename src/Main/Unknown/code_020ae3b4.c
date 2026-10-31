@@ -4,15 +4,15 @@
 #pragma thumb on
 
 u32 func_020ae3b4(u32 param_1) {
-    int iVar1;
-    u32 uVar2;
-    iVar1 = ((u32) func_020ae3f4());
-    if (iVar1 == 0) {
-        uVar2 = (u32) func_0204aa60();
+    int v1;
+    u32 v2;
+    v1 = func_020ae3f4();
+    if (v1 == 0) {
+        v2 = (u32) func_0204aa60();
     } else {
-        uVar2 = ((int) func_020ae3d8());
+        v2 = func_020ae3d8();
     }
-    return func_02046524((Unk020f41c4_B *) uVar2, param_1);
+    return func_02046524((Unk020f41c4_B *) v2, param_1);
 }
 
 #pragma thumb off

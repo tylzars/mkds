@@ -65,18 +65,18 @@ void func_ov003_021c9f48(void) {
 }
 
 void func_ov003_021c9f24(void) {
-    int iVar1;
-    iVar1 = func_ov003_021d1f70(0);
-    if (iVar1 == 0) {
+    int v1;
+    v1 = func_ov003_021d1f70(0);
+    if (v1 == 0) {
         func_ov003_021bf5c8((u32) 1);
         func_ov003_021c212c(func_ov003_021c9f00);
     }
 }
 
 void func_ov003_021c9f00(void) {
-    int iVar1;
-    iVar1 = func_ov003_021bf334();
-    if (iVar1 != -2) {
+    int v1;
+    v1 = func_ov003_021bf334();
+    if (v1 != -2) {
         func_ov003_021bf2e0();
         func_ov003_021c212c(func_ov003_021c9ee0);
     }

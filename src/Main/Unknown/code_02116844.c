@@ -3,11 +3,11 @@
 #pragma thumb on
 
 u32 func_02116844(int param_1) {
-    int iVar1;
-    int iVar2;
-    iVar1 = func_02116870();
-    iVar2 = func_021143b4();
-    if (iVar2 > iVar1 + param_1) {
+    int v1;
+    int v2;
+    v1 = func_02116870();
+    v2 = func_021143b4();
+    if (v2 > v1 + param_1) {
         return 1;
     }
     return 0;

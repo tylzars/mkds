@@ -1,14 +1,14 @@
 #include "Main/Unknown/code_0210cf20.h"
 
 void func_0210cf20(int param_1, u32 param_2) {
-    u32 uVar1;
-    u32 uVar2;
+    u32 v1;
+    u32 v2;
     func_02017538((Unk02017328 *) ((u32 *) (u32) (param_1 + 0xc)), (u16) 8);
-    uVar1 = ((u32) (&func_0210d0b4));
+    v1 = ((u32) (&func_0210d0b4));
     *(u32 *) (param_1 + 0x38) = 1;
-    uVar2 = ((u32) (&func_0210d078));
-    *(u32 *) (param_1 + 0x2c) = uVar1;
-    *(u32 *) (param_1 + 0x30) = uVar2;
+    v2 = ((u32) (&func_0210d078));
+    *(u32 *) (param_1 + 0x2c) = v1;
+    *(u32 *) (param_1 + 0x30) = v2;
     *(u16 *) (param_1 + 0x34) = 0;
     *(u32 *) (param_1 + 0x28) = param_2;
     *(u32 *) (param_1 + 0x18) = 3;

@@ -35,9 +35,9 @@ void func_ov003_021c212c(void (*callback)(void)) {
 }
 
 void func_ov003_021c2120(u32 param_1, u32 param_2) {
-    u32 *puVar1;
-    puVar1 = (u32 *) &data_ov003_021da180;
+    u32 *v1;
+    v1 = (u32 *) &data_ov003_021da180;
     *(u32 *) &data_ov003_021da180 = param_1;
-    puVar1[1] = param_2;
+    v1[1] = param_2;
     return;
 }

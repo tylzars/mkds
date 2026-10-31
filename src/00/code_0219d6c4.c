@@ -8,9 +8,9 @@ void func_ov000_0219d708(u32 param_1, u32 *param_2) {
 }
 
 u32 func_ov000_0219d6c4(u32 param_1, u32 *param_2) {
-    int iVar1;
-    iVar1 = func_0213a074((const u8 *) (param_2[2]), (const u8 *) &data_ov000_021b4078);
-    if (iVar1 == 0) {
+    int v1;
+    v1 = func_0213a074((const u8 *) (param_2[2]), (const u8 *) &data_ov000_021b4078);
+    if (v1 == 0) {
         func_ov000_0218eff8((Unk0218f960 *) (param_1), *param_2, 0, 0, (Unk0218eff8Cb) func_ov000_0219cc94, 0);
         return 1;
     }

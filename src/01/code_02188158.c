@@ -19,22 +19,22 @@ s32 func_ov001_021881a8(Unk02188950 *param_1, Vec3 *param_2, s32 param_3, s32 pa
 }
 
 int func_ov001_02188158(u32 param_1, u32 param_2, u32 param_3) {
-    int iVar1;
-    int iVar2;
-    int iVar3;
-    int iVar4;
-    iVar1 = func_020fd7f0();
-    iVar4 = 0;
-    if (0 < iVar1) {
+    int v1;
+    int v2;
+    int v3;
+    int v4;
+    v1 = func_020fd7f0();
+    v4 = 0;
+    if (0 < v1) {
         do {
-            iVar2 = func_020fd7a4((int) (iVar4));
-            if ((iVar2 != 0) &&
-                (iVar3 = func_ov001_021881a8((Unk02188950 *) (param_1), (Vec3 *) (iVar2 + 0x50), (s32) (param_2), (s32) (param_3)),
-                 iVar3 != 0)) {
-                return iVar2;
+            v2 = func_020fd7a4((int) (v4));
+            if ((v2 != 0) &&
+                (v3 = func_ov001_021881a8((Unk02188950 *) (param_1), (Vec3 *) (v2 + 0x50), (s32) (param_2), (s32) (param_3)),
+                 v3 != 0)) {
+                return v2;
             }
-            iVar4 = iVar4 + 1;
-        } while (iVar4 < iVar1);
+            v4 = v4 + 1;
+        } while (v4 < v1);
     }
     return 0;
 }

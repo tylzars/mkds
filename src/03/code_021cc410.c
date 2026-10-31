@@ -2,9 +2,9 @@
 #include "03/code_021cef6c.h"
 
 void func_ov003_021cc410(void) {
-    int iVar1;
-    iVar1 = func_ov003_021cef6c();
-    if (iVar1 == 0) {
+    int v1;
+    v1 = func_ov003_021cef6c();
+    if (v1 == 0) {
         if (data_ov003_021da258 == 1) {
             func_ov003_021c212c(func_ov003_021cc6a4);
             return;

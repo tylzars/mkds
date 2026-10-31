@@ -3,39 +3,39 @@
 #pragma thumb on
 
 void func_0202a734(void) {
-    u32 uVar1;
-    Unk020b4934 *local_18;
-    Unk020b4a44 *local_14;
-    Unk02021dc8 *local_10;
-    Unk020b47d8 *local_c[1];
-    local_18 = 0;
-    local_14 = 0;
-    local_10 = 0;
-    local_c[0] = 0;
-    uVar1 = ((int) func_0204799c((const char *) &data_021622f8));
-    func_020b496c(&local_18, (void *) uVar1);
-    uVar1 = ((int) func_0204799c((const char *) &data_02162318));
-    func_020b496c(&local_18, (void *) uVar1);
-    uVar1 = ((int) func_0204799c((const char *) &data_02162338));
-    func_020b49f4(&local_18, (void *) uVar1);
-    uVar1 = ((int) func_0204799c((const char *) &data_0216235c));
-    func_020b49f4(&local_18, (void *) uVar1);
-    uVar1 = ((int) func_0204799c((const char *) &data_02162380));
-    func_020b48ec(&local_10, (void *) uVar1);
-    uVar1 = ((int) func_0204799c((const char *) &data_021623a4));
-    func_020b48ec(&local_10, (void *) uVar1);
-    uVar1 = ((int) func_0204799c((const char *) &data_021623c8));
-    func_020b4a7c(&local_14, (void *) uVar1);
-    uVar1 = ((int) func_0204799c((const char *) &data_021623e8));
-    func_020b4a7c(&local_14, (void *) uVar1);
-    uVar1 = ((int) func_0204799c((const char *) &data_02162408));
-    func_020b4a7c(&local_14, (void *) uVar1);
-    uVar1 = ((int) func_0204799c((const char *) &data_02162428));
-    func_020b4a7c(&local_14, (void *) uVar1);
-    uVar1 = ((int) func_0204799c((const char *) &data_02162448));
-    func_020b4810(local_c, (void *) uVar1);
-    uVar1 = ((int) func_0204799c((const char *) &data_02162468));
-    func_020b4810(local_c, (void *) uVar1);
+    void *v1;
+    Unk020b4934 *v2;
+    Unk020b4a44 *v3;
+    Unk02021dc8 *v4;
+    Unk020b47d8 *v5[1];
+    v2 = 0;
+    v3 = 0;
+    v4 = 0;
+    v5[0] = 0;
+    v1 = func_0204799c((const char *) &data_021622f8);
+    func_020b496c(&v2, v1);
+    v1 = func_0204799c((const char *) &data_02162318);
+    func_020b496c(&v2, v1);
+    v1 = func_0204799c((const char *) &data_02162338);
+    func_020b49f4(&v2, v1);
+    v1 = func_0204799c((const char *) &data_0216235c);
+    func_020b49f4(&v2, v1);
+    v1 = func_0204799c((const char *) &data_02162380);
+    func_020b48ec(&v4, v1);
+    v1 = func_0204799c((const char *) &data_021623a4);
+    func_020b48ec(&v4, v1);
+    v1 = func_0204799c((const char *) &data_021623c8);
+    func_020b4a7c(&v3, v1);
+    v1 = func_0204799c((const char *) &data_021623e8);
+    func_020b4a7c(&v3, v1);
+    v1 = func_0204799c((const char *) &data_02162408);
+    func_020b4a7c(&v3, v1);
+    v1 = func_0204799c((const char *) &data_02162428);
+    func_020b4a7c(&v3, v1);
+    v1 = func_0204799c((const char *) &data_02162448);
+    func_020b4810(v5, v1);
+    v1 = func_0204799c((const char *) &data_02162468);
+    func_020b4810(v5, v1);
 }
 
 #pragma thumb off

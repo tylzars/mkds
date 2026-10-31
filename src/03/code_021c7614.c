@@ -67,17 +67,17 @@ void func_ov003_021c7678(void) {
 }
 
 void func_ov003_021c7614(void) {
-    int iVar1;
-    iVar1 = func_ov003_021d1f70(1);
-    if ((iVar1 == 0) && (iVar1 = func_ov003_021d1f70(0), iVar1 == 0)) {
+    int v1;
+    v1 = func_ov003_021d1f70(1);
+    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021c1cd8();
         func_ov003_021cdc10((u32) 0x14);
         if (*(u8 *) ((int) data_ov003_021da1fc + 0x14) == 0) {
             func_ov003_021c1c90((u8) 0);
             func_ov003_021c1c70((u8) 0);
         } else {
-            iVar1 = func_ov003_021c735c(0x1a);
-            if (iVar1 != 0) {
+            v1 = func_ov003_021c735c(0x1a);
+            if (v1 != 0) {
                 func_ov003_021c1c80((u8) 0);
             }
             func_ov003_021c1c70((u8) 0);

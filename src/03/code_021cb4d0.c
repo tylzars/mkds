@@ -7,9 +7,9 @@ void func_ov003_021cb518(void) {
 }
 
 void func_ov003_021cb4d0(void) {
-    int iVar1;
-    iVar1 = func_ov003_021d1f70(1);
-    if (iVar1 == 0) {
+    int v1;
+    v1 = func_ov003_021d1f70(1);
+    if (v1 == 0) {
         if ((*(u8 *) &data_ov003_021da240) != 0) {
             func_ov003_021bf344();
         }

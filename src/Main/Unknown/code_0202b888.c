@@ -10,22 +10,22 @@ u32 func_0202b8c0(void) {
 }
 
 u32 func_0202b888(void) {
-    u32 uVar5;
-    int iVar4;
-    int iVar3;
-    int iVar2;
-    uVar5 = 1;
-    iVar4 = 0;
+    u32 v1;
+    int v2;
+    int v3;
+    int v4;
+    v1 = 1;
+    v2 = 0;
     if (0 < data_02174e3c->mUnk_048) {
-        iVar3 = 0;
+        v3 = 0;
         do {
-            iVar2 = ((u32) func_02029930());
-            uVar5 = uVar5 & *(u32 *) (iVar2 + iVar3 + 0x14);
-            iVar3 = iVar3 + 0x18;
-            iVar4 = iVar4 + 1;
-        } while (iVar4 < *(int *) (*(int *) &data_02174e3c + 0x48));
+            v4 = ((u32) func_02029930());
+            v1 = v1 & *(u32 *) (v4 + v3 + 0x14);
+            v3 = v3 + 0x18;
+            v2 = v2 + 1;
+        } while (v2 < *(int *) (*(int *) &data_02174e3c + 0x48));
     }
-    return uVar5;
+    return v1;
 }
 
 #pragma thumb off

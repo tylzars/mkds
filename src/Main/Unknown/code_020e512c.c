@@ -3,12 +3,12 @@
 #pragma thumb on
 
 u32 func_020e512c(Vec3 *param_1) {
-    u32 local_8[1];
-    local_8[0] = 0;
+    u32 v1[1];
+    v1[0] = 0;
     func_01ffdee4((int *) ((int *) (u32) param_1), (u32 *) 0, (u32) 0, (int) (((u32) 0x0000a000u)), (u32) 8,
-                  (short) 0xfffffffe, (int *) 0, (int *) 0, (int *) 0, (u32 *) local_8, (u32 *) 0,
+                  (short) 0xfffffffe, (int *) 0, (int *) 0, (int *) 0, (u32 *) v1, (u32 *) 0,
                   (int *) 0, (u16 *) 0, (u32 *) 0);
-    return local_8[0] & ((u32) 0x01000000u);
+    return v1[0] & ((u32) 0x01000000u);
 }
 
 #pragma thumb off

@@ -10,8 +10,8 @@
 #include "code_02147cd8.h"
 
 void func_ov001_0218f724(Unk02188950 *param_1) {
-    Vec3 local_1;
-    Vec3 local_2;
+    Vec3 v1;
+    Vec3 v2;
     u32 a;
     s32 i;
     s32 s;
@@ -19,23 +19,23 @@ void func_ov001_0218f724(Unk02188950 *param_1) {
     s64 z;
     s64 x;
     func_021484d0(data_021759c0->mUnk_08 == 4 ? func_ov001_02181a94() : 0,
-                  data_021759c0->mUnk_08 == 4 ? func_ov001_02181a88() : 0, &local_1);
-    local_1.y = 0;
+                  data_021759c0->mUnk_08 == 4 ? func_ov001_02181a88() : 0, &v1);
+    v1.y = 0;
     a = 0;
     if (data_021759c0->mUnk_08 == 4) {
         a = func_ov001_02181a68();
     }
     a = (data_021759c0->mUnk_08 == 4 ? func_ov001_02181a78() : 0) - a;
-    func_021484d0(&param_1->mUnk_000.mUnk_04, data_021759c0->mUnk_08 == 4 ? func_ov001_02181a94() : 0, &local_2);
+    func_021484d0(&param_1->mUnk_000.mUnk_04, data_021759c0->mUnk_08 == 4 ? func_ov001_02181a94() : 0, &v2);
     for (i = 0; i < 1; i++) {
         c = data_0215d4b4[((u16)a >> 4) * 2 + 1];
-        x = local_2.x;
+        x = v2.x;
         s = data_0215d4b4[((u16)a >> 4) * 2];
-        z = local_2.z;
+        z = v2.z;
     }
-    local_1.x += (s32)(z * s >> 12) + (s32)(x * c >> 12) - local_2.x;
-    local_1.z += (s32)(z * c >> 12) - (s32)(x * s >> 12) - local_2.z;
-    func_ov001_02188950(param_1, &local_1);
+    v1.x += (s32)(z * s >> 12) + (s32)(x * c >> 12) - v2.x;
+    v1.z += (s32)(z * c >> 12) - (s32)(x * s >> 12) - v2.z;
+    func_ov001_02188950(param_1, &v1);
 }
 
 void func_ov001_0218f6d8(Unk02188950 *param_1) {

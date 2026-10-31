@@ -2,12 +2,12 @@
 
 void func_ov003_021bf098(int param_1) {
     u32 stackValue;
-    int local_c;
+    int v1;
     func_ov003_021d1770((Unk021d1770 *) (*(u32 *) ((int) data_ov003_021da108 + 8)), 0, &stackValue,
-                        &local_c);
-    local_c = local_c + 4;
-    func_ov003_021bf258(local_c);
-    if (192 <= local_c) {
+                        &v1);
+    v1 = v1 + 4;
+    func_ov003_021bf258(v1);
+    if (192 <= v1) {
         func_ov003_021d34e0((Unk021d34e0 *) (param_1), func_ov003_021bf048);
     }
     return;

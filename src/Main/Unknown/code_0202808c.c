@@ -3,13 +3,13 @@
 #pragma thumb on
 
 void func_0202808c(void) {
-    int iVar1;
+    int v1;
     if ((data_02174e18->mUnk_100 == 1) &&
-        (iVar1 = ((u32) func_0202811c()), iVar1 == 2)) {
+        (v1 = ((u32) func_0202811c()), v1 == 2)) {
         func_021281fc();
     }
-    iVar1 = func_020280dc();
-    if (iVar1 == 0) {
+    v1 = func_020280dc();
+    if (v1 == 0) {
         func_0212b91c();
     } else {
         func_0211f498();

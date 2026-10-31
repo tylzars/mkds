@@ -68,31 +68,31 @@ void func_ov001_021886f8(int param_1, u32 param_2, u32 param_3, u32 param_4, int
 }
 
 void func_ov001_02188644(int param_1, int param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6, u32 param_7) {
-    u32 *puVar1;
-    int *piVar2;
+    u32 *v1;
+    int *v2;
     *(u32 *) (param_1 + 0x27c) = 0;
     if ((*(u16 *) (param_1 + 2) & ((u32) 0x00000400u)) != 0) {
         param_2 = -param_2;
     }
-    piVar2 = (int *) (param_1 + 0x28c);
-    *piVar2 = param_2;
-    *(int *) (param_1 + 0x280) = *piVar2;
-    puVar1 = (u32 *) (param_1 + 0x290);
-    *puVar1 = param_3;
-    *(u32 *) (param_1 + 0x284) = *puVar1;
-    puVar1 = (u32 *) (param_1 + 0x294);
-    *puVar1 = param_4;
-    *(u32 *) (param_1 + 0x288) = *puVar1;
+    v2 = (int *) (param_1 + 0x28c);
+    *v2 = param_2;
+    *(int *) (param_1 + 0x280) = *v2;
+    v1 = (u32 *) (param_1 + 0x290);
+    *v1 = param_3;
+    *(u32 *) (param_1 + 0x284) = *v1;
+    v1 = (u32 *) (param_1 + 0x294);
+    *v1 = param_4;
+    *(u32 *) (param_1 + 0x288) = *v1;
     *(u32 *) (param_1 + 0x2b0) = 0;
-    puVar1 = (u32 *) (param_1 + 0x2a4);
-    *puVar1 = param_5;
-    *(u32 *) (param_1 + 0x298) = *puVar1;
-    puVar1 = (u32 *) (param_1 + 0x2a8);
-    *puVar1 = ((u32) 0x0000a000u);
-    *(u32 *) (param_1 + 0x29c) = *puVar1;
-    puVar1 = (u32 *) (param_1 + 0x2ac);
-    *puVar1 = param_7;
-    *(u32 *) (param_1 + 0x2a0) = *puVar1;
+    v1 = (u32 *) (param_1 + 0x2a4);
+    *v1 = param_5;
+    *(u32 *) (param_1 + 0x298) = *v1;
+    v1 = (u32 *) (param_1 + 0x2a8);
+    *v1 = ((u32) 0x0000a000u);
+    *(u32 *) (param_1 + 0x29c) = *v1;
+    v1 = (u32 *) (param_1 + 0x2ac);
+    *v1 = param_7;
+    *(u32 *) (param_1 + 0x2a0) = *v1;
     *(u32 *) (param_1 + 0x2b4) = 0;
 }
 
@@ -113,41 +113,41 @@ void func_ov001_021885d4(int param_1, int param_2, u32 param_3, u32 param_4, u32
 }
 
 void func_ov001_021884f0(int param_1, int param_2, int param_3, int param_4, u32 param_5, u32 param_6, u32 param_7) {
-    int *piVar1;
-    int *piVar2;
-    int *piVar3;
-    int *piVar4;
-    u32 *puVar5;
+    int *v1;
+    int *v2;
+    int *v3;
+    int *v4;
+    u32 *v5;
     *(u32 *) (param_1 + 0x234) = 1;
     if ((*(u16 *) (param_1 + 2) & ((u32) 0x00000400u)) != 0) {
         param_2 = -param_2;
     }
-    piVar2 = (int *) (param_1 + 0x250);
-    *piVar2 = param_2;
-    piVar1 = (int *) (param_1 + 0x244);
-    *piVar1 = *piVar2;
-    piVar3 = (int *) (param_1 + 0x254);
-    *piVar3 = param_3;
-    piVar2 = (int *) (param_1 + 0x248);
-    *piVar2 = *piVar3;
-    piVar4 = (int *) (param_1 + 0x258);
-    *piVar4 = param_4;
-    piVar3 = (int *) (param_1 + 0x24c);
-    *piVar3 = *piVar4;
+    v2 = (int *) (param_1 + 0x250);
+    *v2 = param_2;
+    v1 = (int *) (param_1 + 0x244);
+    *v1 = *v2;
+    v3 = (int *) (param_1 + 0x254);
+    *v3 = param_3;
+    v2 = (int *) (param_1 + 0x248);
+    *v2 = *v3;
+    v4 = (int *) (param_1 + 0x258);
+    *v4 = param_4;
+    v3 = (int *) (param_1 + 0x24c);
+    *v3 = *v4;
     *(u32 *) (param_1 + 0x274) = 0;
-    puVar5 = (u32 *) (param_1 + 0x268);
-    *puVar5 = param_5;
-    *(u32 *) (param_1 + 0x25c) = *puVar5;
-    puVar5 = (u32 *) (param_1 + 0x26c);
-    *puVar5 = param_6;
-    *(u32 *) (param_1 + 0x260) = *puVar5;
-    puVar5 = (u32 *) (param_1 + 0x270);
-    *puVar5 = param_7;
-    *(u32 *) (param_1 + 0x264) = *puVar5;
+    v5 = (u32 *) (param_1 + 0x268);
+    *v5 = param_5;
+    *(u32 *) (param_1 + 0x25c) = *v5;
+    v5 = (u32 *) (param_1 + 0x26c);
+    *v5 = param_6;
+    *(u32 *) (param_1 + 0x260) = *v5;
+    v5 = (u32 *) (param_1 + 0x270);
+    *v5 = param_7;
+    *(u32 *) (param_1 + 0x264) = *v5;
     *(u32 *) (param_1 + 0x278) = 0;
-    *(int *) (param_1 + 0x238) = *(int *) (param_1 + 4) + *piVar1;
-    *(int *) (param_1 + 0x23c) = *(int *) (param_1 + 8) + *piVar2;
-    *(int *) (param_1 + 0x240) = *(int *) (param_1 + 0xc) + *piVar3;
+    *(int *) (param_1 + 0x238) = *(int *) (param_1 + 4) + *v1;
+    *(int *) (param_1 + 0x23c) = *(int *) (param_1 + 8) + *v2;
+    *(int *) (param_1 + 0x240) = *(int *) (param_1 + 0xc) + *v3;
 }
 
 void func_ov001_02188484(int param_1, int param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6, u32 param_7,

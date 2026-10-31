@@ -64,9 +64,9 @@ void func_ov003_021cc310(void) {
 }
 
 void func_ov003_021cc2e0(void) {
-    int iVar1;
-    iVar1 = func_ov003_021d1f70(1);
-    if ((iVar1 == 0) && (iVar1 = func_ov003_021d1f70(0), iVar1 == 0)) {
+    int v1;
+    v1 = func_ov003_021d1f70(1);
+    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021bf5c8((u32) 6);
         func_ov003_021c212c(func_ov003_021cc2bc);
     }

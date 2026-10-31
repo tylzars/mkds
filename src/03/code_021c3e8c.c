@@ -21,9 +21,9 @@ void func_ov003_021c3f64(void) {
 }
 
 void func_ov003_021c3ef0(void) {
-    int iVar1;
-    iVar1 = func_ov003_021d1f70(0);
-    if ((iVar1 == 0) && (iVar1 = func_ov003_021c27e4(), iVar1 != 0)) {
+    int v1;
+    v1 = func_ov003_021d1f70(0);
+    if ((v1 == 0) && (v1 = func_ov003_021c27e4(), v1 != 0)) {
         func_ov003_021bf9b8();
         func_ov003_021beecc();
         func_ov003_021d2168(0);

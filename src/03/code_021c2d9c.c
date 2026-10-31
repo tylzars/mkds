@@ -8,11 +8,11 @@ void func_ov003_021c2dd4(void) {
 }
 
 void func_ov003_021c2d9c(void) {
-    int iVar1;
-    iVar1 = func_ov003_021d1f70(1);
-    if (iVar1 == 0) {
-        func_ov003_021d1ee0(3, 1, (u32) (1), (u16) (8));
-        func_ov003_021d1ee0(3, 0, (u32) (0x14), (u16) (8));
+    int v1;
+    v1 = func_ov003_021d1f70(1);
+    if (v1 == 0) {
+        func_ov003_021d1ee0(3, 1, 1, (u16) (8));
+        func_ov003_021d1ee0(3, 0, 0x14, (u16) (8));
         func_ov003_021c212c(func_ov003_021c2d18);
     }
     return;

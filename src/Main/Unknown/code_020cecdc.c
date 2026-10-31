@@ -3,9 +3,9 @@
 #pragma thumb on
 
 void func_020cecdc(void) {
-    int iVar1;
-    iVar1 = ((u32) func_020cccc0());
-    if (iVar1 != 0) {
+    int v1;
+    v1 = func_020cccc0();
+    if (v1 != 0) {
         func_020ceb70(0x18);
         func_02148950((u16) 1, (u32) 0, 0);
         func_020ceb54(0x12);

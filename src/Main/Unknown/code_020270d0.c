@@ -3,8 +3,8 @@
 #pragma thumb on
 
 u32 func_020270d0(void) {
-    int iVar1;
-    if ((data_02174e14->mUnk_080 != 0) && (iVar1 = func_0202b8c0(), iVar1 != 0)) {
+    int v1;
+    if ((data_02174e14->mUnk_080 != 0) && (v1 = func_0202b8c0(), v1 != 0)) {
         return 1;
     }
     return 0;

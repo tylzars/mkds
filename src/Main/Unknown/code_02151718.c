@@ -4,9 +4,9 @@
 #pragma thumb on
 
 u32 func_02151830(u16 *param_1) {
-    int iVar1;
-    iVar1 = func_0215122c((u32) 0x20, (u32) 0x20, (void *) param_1);
-    if (iVar1 == 0) {
+    int v1;
+    v1 = func_0215122c((u32) 0x20, (u32) 0x20, (void *) param_1);
+    if (v1 == 0) {
         return 0;
     }
     *(int *) &data_0218049c = (u32) *param_1 * 8 - 0x400;
@@ -14,67 +14,67 @@ u32 func_02151830(u16 *param_1) {
 }
 
 u32 func_02151804(u32 param_1) {
-    int iVar1;
-    iVar1 = func_0215122c((u32) ((*(u32 *) &data_0218049c)), (u32) (((u32) 0x00000400u)), (void *) param_1);
-    if (iVar1 != 0) {
+    int v1;
+    v1 = func_0215122c((u32) ((*(u32 *) &data_0218049c)), (u32) (((u32) 0x00000400u)), (void *) param_1);
+    if (v1 != 0) {
         return 1;
     }
     return 0;
 }
 
 u32 func_02151794(int param_1, int *param_2, u32 param_3) {
-    int iVar1;
-    int iVar2;
-    int iVar3;
-    int *local_20;
-    int local_1c;
-    iVar2 = 0x100;
-    iVar3 = *(int *) &data_0218049c;
-    local_1c = 0;
-    local_20 = param_2;
+    int v1;
+    int v2;
+    int v3;
+    int *v4;
+    int v5;
+    v2 = 0x100;
+    v3 = *(int *) &data_0218049c;
+    v5 = 0;
+    v4 = param_2;
     do {
-        if (*local_20 != 0) {
+        if (*v4 != 0) {
             do {
-                func_021511d8(iVar3, iVar2, (void *) param_1);
-                iVar1 = func_0215119c((const u8 *) param_1, iVar3, iVar2, (const u8 *) param_3);
-            } while (iVar1 == 0);
+                func_021511d8(v3, v2, (void *) param_1);
+                v1 = func_0215119c((const u8 *) param_1, v3, v2, (const u8 *) param_3);
+            } while (v1 == 0);
         }
-        local_20 = local_20 + 1;
-        param_1 = param_1 + iVar2;
-        local_1c = local_1c + 1;
-        iVar3 = iVar3 + iVar2;
-    } while (local_1c < 4);
-    iVar2 = func_02151154();
-    if (iVar2 != 0) {
+        v4 = v4 + 1;
+        param_1 = param_1 + v2;
+        v5 = v5 + 1;
+        v3 = v3 + v2;
+    } while (v5 < 4);
+    v2 = func_02151154();
+    if (v2 != 0) {
         return 1;
     }
     return 0;
 }
 
 u32 func_02151718(int param_1) {
-    int local_18;
-    int iVar5;
-    int iVar4;
-    int iVar3;
-    int iVar2;
-    u16 uVar1;
-    iVar3 = 0x100;
-    iVar5 = *(int *) &data_0218049c;
-    local_18 = 0;
-    iVar4 = param_1;
+    int v1;
+    int v2;
+    int v3;
+    int v4;
+    int v5;
+    u16 v6;
+    v4 = 0x100;
+    v2 = *(int *) &data_0218049c;
+    v1 = 0;
+    v3 = param_1;
     do {
-        uVar1 = func_020205e8((const u16 *) (param_1 + 0x500), (const u8 *) iVar4, 0xfe);
-        *(u16 *) (iVar4 + 0xfe) = uVar1;
+        v6 = func_020205e8((const u16 *) (param_1 + 0x500), (const u8 *) v3, 0xfe);
+        *(u16 *) (v3 + 0xfe) = v6;
         do {
-            func_021511d8(iVar5, iVar3, (void *) iVar4);
-            iVar2 = func_0215119c((const u8 *) iVar4, iVar5, iVar3, (const u8 *) (param_1 + 0x400));
-        } while (iVar2 == 0);
-        iVar4 = iVar4 + iVar3;
-        local_18 = local_18 + 1;
-        iVar5 = iVar5 + iVar3;
-    } while (local_18 < 4);
-    iVar3 = func_02151154();
-    if (iVar3 != 0) {
+            func_021511d8(v2, v4, (void *) v3);
+            v5 = func_0215119c((const u8 *) v3, v2, v4, (const u8 *) (param_1 + 0x400));
+        } while (v5 == 0);
+        v3 = v3 + v4;
+        v1 = v1 + 1;
+        v2 = v2 + v4;
+    } while (v1 < 4);
+    v4 = func_02151154();
+    if (v4 != 0) {
         return 1;
     }
     return 0;

@@ -1,15 +1,15 @@
 #include "Main/Unknown/code_02089d70.h"
 
 void func_02089d70(Unk0217b034_784 *a) {
-    u32 *puVar1;
-    u32 *puVar2;
-    puVar1 = ((u32 *) 0x0400046cu);
+    u32 *v1;
+    u32 *v2;
+    v1 = ((u32 *) 0x0400046cu);
     *((u32 *) 0x040004a4u) = ((u32) 0x090000c0u) | (int) a->mUnk_02 << 0x10;
-    *puVar1 = 0x8c000;
-    *puVar1 = 0x6e000;
-    puVar2 = ((u32 *) 0x04000500u);
-    *puVar1 = 0xa000;
-    *puVar2 = 1;
+    *v1 = 0x8c000;
+    *v1 = 0x6e000;
+    v2 = ((u32 *) 0x04000500u);
+    *v1 = 0xa000;
+    *v2 = 1;
     *((u32 *) 0x04000480u) = (u32) a->mUnk_04;
     func_02089e10(0);
     func_02089e10(1);

@@ -5,10 +5,10 @@ u32 func_ov003_021cd4dc(void) {
 }
 
 void func_ov003_021cd4ac(int param_1) {
-    int iVar1;
-    iVar1 = (int) data_ov003_021da270 + param_1 * 0x100;
-    func_0214d168((void *) ((u32 *) (u32) (iVar1)), (u8) (0), (u32) (0xef));
-    *(u8 *) (iVar1 + 0xe7) = 0xff;
+    int v1;
+    v1 = (int) data_ov003_021da270 + param_1 * 0x100;
+    func_0214d168((void *) ((u32 *) (u32) (v1)), (u8) (0), 0xef);
+    *(u8 *) (v1 + 0xe7) = 0xff;
     func_ov003_021cd338((u32) (param_1));
     return;
 }

@@ -3,10 +3,10 @@
 #pragma thumb on
 
 void func_0202cca4(int param_1, int param_2) {
-    u32 uVar1;
+    u32 v1;
     if ((param_1 != 0xc) || (param_2 != 1)) {
-        uVar1 = func_02025eb0((u32) param_1);
-        func_02110720(uVar1, (u32) param_2);
+        v1 = func_02025eb0((u32) param_1);
+        func_02110720(v1, (u32) param_2);
     }
 }
 

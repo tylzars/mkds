@@ -3,28 +3,28 @@
 #pragma thumb on
 
 void func_021049a4(void) {
-    int iVar6;
-    int iVar5;
-    int iVar4;
-    int *piVar3;
-    u32 uVar2;
-    int iVar1;
+    int v1;
+    int v2;
+    int v3;
+    int *v4;
+    u32 v5;
+    int v6;
     if (*(int *) ((int) data_0217bc48 + 0x1dc) != 0) {
-        iVar1 = (int) data_027e00cc + 0x220;
-        piVar3 = *(int **) (iVar1 + 4);
-        iVar6 = *(int *) (iVar1 + 8);
-        iVar5 = 0;
-        if (0 < iVar6) {
+        v6 = (int) data_027e00cc + 0x220;
+        v4 = *(int **) (v6 + 4);
+        v1 = *(int *) (v6 + 8);
+        v2 = 0;
+        if (0 < v1) {
             do {
-                iVar4 = *piVar3;
-                uVar2 = func_0210543c();
-                *(u32 *) (iVar4 + 0x134) = uVar2;
-                *(int *) (*(int *) (iVar4 + 0x134) + 0xfc) = iVar4 + 0x13c;
-                piVar3 = piVar3 + 1;
-                iVar5 = iVar5 + 1;
-            } while (iVar5 < iVar6);
+                v3 = *v4;
+                v5 = func_0210543c();
+                *(u32 *) (v3 + 0x134) = v5;
+                *(int *) (*(int *) (v3 + 0x134) + 0xfc) = v3 + 0x13c;
+                v4 = v4 + 1;
+                v2 = v2 + 1;
+            } while (v2 < v1);
         }
-        *(u32 *) (iVar1 + 0x40) = 1;
+        *(u32 *) (v6 + 0x40) = 1;
     }
 }
 

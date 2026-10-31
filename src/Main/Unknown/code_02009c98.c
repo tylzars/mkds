@@ -3,13 +3,13 @@
 #pragma thumb on
 
 int func_02009c98(void) {
-    int iVar1;
-    iVar1 = func_02143dd0(data_0216fda8->mUnk_508);
-    func_02009928((u16) 1, iVar1);
-    if (iVar1 == 2) {
-        iVar1 = 0;
+    int v1;
+    v1 = func_02143dd0(data_0216fda8->mUnk_508);
+    func_02009928((u16) 1, v1);
+    if (v1 == 2) {
+        v1 = 0;
     }
-    return iVar1;
+    return v1;
 }
 
 #pragma thumb off

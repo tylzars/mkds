@@ -3,9 +3,9 @@
 #pragma thumb on
 
 u32 func_0202ee68(void) {
-    u32 extraout_r1;
-    extraout_r1 = (data_02174e48->mUnk_03c + 6) % (7);
-    return extraout_r1;
+    u32 v1;
+    v1 = (data_02174e48->mUnk_03c + 6) % (7);
+    return v1;
 }
 
 #pragma thumb off

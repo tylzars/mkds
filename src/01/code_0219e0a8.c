@@ -78,7 +78,7 @@ void func_ov001_0219e5d4(int i) {
 }
 
 void func_ov001_0219e5a0(void) {
-    *((u16 *) 0x04000008u) = *((u16 *) 0x04000008u) & 0x43 | (u16) ((u32) 0x00001f80u);
+    *((u16 *) 0x04000008u) = *((u16 *) 0x04000008u) & 0x43 | (u16) 0x00001f80u;
     func_ov001_0219e5d4(1);
     *(u32 *) ((int) data_ov001_021ca400 + 0x18) = 1;
     return;
@@ -155,9 +155,9 @@ void func_ov001_0219e310(void)
 }
 
 void func_ov001_0219e2f0(void) {
-    int iVar1;
-    iVar1 = ((u32) func_02036d08());
-    if (iVar1 != 0) {
+    int v1;
+    v1 = func_02036d08();
+    if (v1 != 0) {
         *(u32 *) ((int) data_ov001_021ca400 + 4) = 3;
     }
     return;
@@ -178,9 +178,9 @@ void func_ov001_0219e2b4(void)
 }
 
 void func_ov001_0219e294(void) {
-    int iVar1;
-    iVar1 = func_02036c5c();
-    if (iVar1 != 0) {
+    int v1;
+    v1 = func_02036c5c();
+    if (v1 != 0) {
         *(u32 *) ((int) data_ov001_021ca400 + 4) = 5;
     }
     return;

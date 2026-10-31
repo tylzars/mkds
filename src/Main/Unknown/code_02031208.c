@@ -17,25 +17,25 @@ u32 func_02031250(void) {
 }
 
 void func_02031208(void) {
-    int iVar5;
-    int iVar4;
-    int iVar3;
-    int iVar2;
-    int *piVar1;
-    piVar1 = (int *) &data_02174e58;
+    int v1;
+    int v2;
+    int v3;
+    int v4;
+    int *v5;
+    v5 = (int *) &data_02174e58;
     if (*(int *) (0x94 + (int) data_02174e58) != 6) {
-        iVar5 = 0;
-        iVar4 = 0;
-        iVar3 = 0;
+        v1 = 0;
+        v2 = 0;
+        v3 = 0;
         do {
-            iVar2 = *piVar1 + 0x24 + iVar4;
-            func_02124c30((void *) (*(u32 *) (iVar2 + 0xc)), (void *) (*(u32 *) (iVar2 + 8)),
-                          (void *) (*(u32 *) (iVar2 + 0x14)), (void *) (*(u32 *) (*piVar1 + iVar3 + 0x5c)),
-                          (void *) (*(u32 *) (iVar2 + 0x18)));
-            iVar4 = iVar4 + 0x1c;
-            iVar3 = iVar3 + 4;
-            iVar5 = iVar5 + 1;
-        } while (iVar5 < 2);
+            v4 = *v5 + 0x24 + v2;
+            func_02124c30((void *) (*(u32 *) (v4 + 0xc)), (void *) (*(u32 *) (v4 + 8)),
+                          (void *) (*(u32 *) (v4 + 0x14)), (void *) (*(u32 *) (*v5 + v3 + 0x5c)),
+                          (void *) (*(u32 *) (v4 + 0x18)));
+            v2 = v2 + 0x1c;
+            v3 = v3 + 4;
+            v1 = v1 + 1;
+        } while (v1 < 2);
     }
 }
 

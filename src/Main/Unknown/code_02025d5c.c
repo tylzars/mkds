@@ -3,21 +3,21 @@
 #pragma thumb on
 
 int func_02025d74(int param_1) {
-    int iVar1;
-    iVar1 = ((int *) &data_021533fc)[param_1];
-    if (iVar1 != -1) {
-        iVar1 = iVar1 + -0x1a;
+    int v1;
+    v1 = ((int *) &data_021533fc)[param_1];
+    if (v1 != -1) {
+        v1 = v1 + -0x1a;
     }
-    return iVar1;
+    return v1;
 }
 
 int func_02025d5c(int param_1) {
-    int iVar1;
-    iVar1 = ((int *) &data_021533fc)[param_1];
-    if (iVar1 != -1) {
-        iVar1 = iVar1 + 4;
+    int v1;
+    v1 = ((int *) &data_021533fc)[param_1];
+    if (v1 != -1) {
+        v1 = v1 + 4;
     }
-    return iVar1;
+    return v1;
 }
 
 #pragma thumb off

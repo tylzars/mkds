@@ -3,9 +3,9 @@
 #pragma thumb on
 
 void func_020cb3e4(void) {
-    int iVar1;
-    iVar1 = ((u32) func_020cccc0());
-    if (iVar1 != 0) {
+    int v1;
+    v1 = func_020cccc0();
+    if (v1 != 0) {
         func_020cb4a8(0x18);
         func_02148950((u16) 1, (u32) 0, 0);
         func_0214c090((const void *) (*(u32 *) (*(int *) ((int) data_0217b43c + 0x910) + 0xc)),

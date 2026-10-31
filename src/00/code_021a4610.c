@@ -1,10 +1,10 @@
 #include "00/code_021a4610.h"
 
 void func_ov000_021a4648(u8 *param_1, u8 *param_2) {
-    u8 uVar1;
-    uVar1 = *param_1;
+    u8 v1;
+    v1 = *param_1;
     *param_1 = *param_2;
-    *param_2 = uVar1;
+    *param_2 = v1;
 }
 
 u8 func_ov000_021a4610(u32 param_1) {

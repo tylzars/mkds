@@ -22,14 +22,14 @@ void *func_ov000_021a36f0(u32 p0, void *p1, u32 p2, u32 p3) {
 }
 
 void *func_ov000_021a369c(u32 param_1, void *param_2, u32 param_3, u32 param_4, u32 param_5) {
-    void *iVar1;
-    iVar1 = (*(void *(**)(u32, u32, u32)) &data_ov000_021b5df0)(param_1, param_4, param_5);
-    if (iVar1 == 0) {
+    void *v1;
+    v1 = (*(void *(**)(u32, u32, u32)) &data_ov000_021b5df0)(param_1, param_4, param_5);
+    if (v1 == 0) {
         return 0;
     }
     if (param_2 != 0) {
-        func_0214d1fc(param_2, iVar1, param_4);
+        func_0214d1fc(param_2, v1, param_4);
         (*(UnkWordFunc *) (*(u32 *) &data_ov000_021b5dec))(param_1, param_2, param_3);
     }
-    return iVar1;
+    return v1;
 }

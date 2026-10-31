@@ -9,12 +9,12 @@ u32 func_020b4df8(void) {
 }
 
 u32 func_020b4dc4(int param_1) {
-    int iVar1;
-    u32 uVar2;
-    iVar1 = ((u32) func_020b4df8());
-    if ((iVar1 == 1) && (param_1 != 0)) {
+    int v1;
+    u32 v2;
+    v1 = func_020b4df8();
+    if ((v1 == 1) && (param_1 != 0)) {
         return 1;
     }
-    uVar2 = func_0207a68c(param_1);
-    return uVar2;
+    v2 = func_0207a68c(param_1);
+    return v2;
 }

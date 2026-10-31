@@ -1,17 +1,17 @@
 #include "00/code_0218d180.h"
 
 void func_ov000_0218d1a0(u32 param_1) {
-    int iVar1;
-    u32 *puVar2;
-    int iVar3;
-    iVar1 = func_ov000_0218dc44((u32 *) ((u32 *) (u32) (*(u32 *) (param_1 + 4))));
-    iVar3 = 0;
-    if (0 < iVar1) {
+    int v1;
+    u32 *v2;
+    int v3;
+    v1 = func_ov000_0218dc44((u32 *) ((u32 *) (u32) (*(u32 *) (param_1 + 4))));
+    v3 = 0;
+    if (0 < v1) {
         do {
-            puVar2 = (u32 *) func_ov000_0218dbf8((int *) ((int *) (u32) (*(u32 *) (param_1 + 4))), iVar3);
-            func_ov000_0218d278((Unk021b4d24 *) param_1, (u32) (*puVar2));
-            iVar3 = iVar3 + 1;
-        } while (iVar3 < iVar1);
+            v2 = (u32 *) func_ov000_0218dbf8((int *) ((int *) (u32) (*(u32 *) (param_1 + 4))), v3);
+            func_ov000_0218d278((Unk021b4d24 *) param_1, (u32) (*v2));
+            v3 = v3 + 1;
+        } while (v3 < v1);
     }
     func_ov000_0218d8b4((int *) (*(u32 *) (param_1 + 4)));
     func_ov000_0218d1dc((Unk021b4d24 *) param_1);

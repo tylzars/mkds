@@ -13,9 +13,9 @@ u32 func_ov001_021811b8(void) {
 }
 
 int func_ov001_02181198(void) {
-    int iVar1;
-    iVar1 = _s32_div_f((u32) data_ov001_021a9b88->mUnk_04, 8);
-    return iVar1 * iVar1;
+    int v1;
+    v1 = _s32_div_f((u32) data_ov001_021a9b88->mUnk_04, 8);
+    return v1 * v1;
 }
 
 u32 func_ov001_02181194(void) {

@@ -20,13 +20,13 @@ s32 func_ov000_0218e394(u32 p0, void *p1, u32 *p2) {
 }
 
 u32 func_ov000_0218e374(u32 param_1) {
-    int iVar1;
-    u32 local_8[1];
-    iVar1 = func_ov000_021a8c1c(param_1, (u32 *) local_8);
-    if (iVar1 == 0) {
+    int v1;
+    u32 v2[1];
+    v1 = func_ov000_021a8c1c(param_1, (u32 *) v2);
+    if (v1 == 0) {
         return 0xffffffff;
     }
-    return local_8[0];
+    return v2[0];
 }
 
 u32 func_ov000_0218e368(s32 param_1) {

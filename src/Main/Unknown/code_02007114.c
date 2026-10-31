@@ -10,9 +10,9 @@ u32 func_02007138(u32 param_1) {
 }
 
 void func_02007120(u32 param_1, u16 param_2) {
-    u16 local_8[1];
-    local_8[0] = param_2;
-    func_02007cf8(param_1, 0xd, local_8);
+    u16 v1[1];
+    v1[0] = param_2;
+    func_02007cf8(param_1, 0xd, v1);
 }
 
 u32 func_02007114(void) {

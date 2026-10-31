@@ -8,12 +8,12 @@ s32 func_ov000_0219d660(void) {
 }
 
 int func_ov000_0219d630(int param_1) {
-    Unk02152500 *uVar1;
-    u32 iVar2;
-    uVar1 = func_ov000_0219c9c4();
-    iVar2 = func_02152520((void *) (uVar1), (void *) (*(int *) ((int) data_ov000_021b5664 + 0x18) + param_1 * 0xc));
-    if ((iVar2 == 0) || (iVar2 == -1)) {
-        iVar2 = 0;
+    Unk02152500 *v1;
+    u32 v2;
+    v1 = func_ov000_0219c9c4();
+    v2 = func_02152520((void *) (v1), (void *) (*(int *) ((int) data_ov000_021b5664 + 0x18) + param_1 * 0xc));
+    if ((v2 == 0) || (v2 == -1)) {
+        v2 = 0;
     }
-    return iVar2;
+    return v2;
 }

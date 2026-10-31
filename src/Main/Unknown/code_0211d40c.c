@@ -3,9 +3,9 @@
 #pragma thumb on
 
 u32 func_0211d40c(u16 param_1) {
-    u32 uVar1;
-    uVar1 = func_0211d650();
-    if (uVar1 > param_1) {
+    u32 v1;
+    v1 = func_0211d650();
+    if (v1 > param_1) {
         return 1;
     }
     return 0;

@@ -3,9 +3,9 @@
 #pragma thumb on
 
 void func_02112b30(void) {
-    int iVar1;
-    iVar1 = func_02036c5c();
-    if (iVar1 != 0) {
+    int v1;
+    v1 = func_02036c5c();
+    if (v1 != 0) {
         func_021134b8();
     }
 }

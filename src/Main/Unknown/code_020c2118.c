@@ -1,9 +1,9 @@
 #include "Main/Unknown/code_020c2118.h"
 
 void func_020c2118(Unk020c06c4 *param_1) {
-    int iVar1;
-    iVar1 = ((u32) func_020b1dbc());
-    if (iVar1 != 5) {
+    int v1;
+    v1 = func_020b1dbc();
+    if (v1 != 5) {
         func_020c28dc(param_1);
         return;
     }

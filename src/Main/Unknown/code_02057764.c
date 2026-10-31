@@ -3,12 +3,12 @@
 #pragma thumb on
 
 void func_020577b4(void *param_1) {
-    u32 *puVar1;
-    puVar1 = data_021759d4->mUnk_60;
+    u32 *v1;
+    v1 = data_021759d4->mUnk_60;
     if (data_021759d4->mUnk_0c != 0) {
-        func_0214d1fc(param_1, puVar1, 0xc00);
-        *puVar1 = 0x4c464b4e;
-        func_0204b430(0x1f00, 0x32e00, puVar1, 0xc00, 0, 0);
+        func_0214d1fc(param_1, v1, 0xc00);
+        *v1 = 0x4c464b4e;
+        func_0204b430(0x1f00, 0x32e00, v1, 0xc00, 0, 0);
     }
 }
 

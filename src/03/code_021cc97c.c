@@ -5,17 +5,17 @@ void func_ov003_021cc9fc(void) {
 }
 
 void func_ov003_021cc9c0(int param_1, int param_2, int param_3, int param_4) {
-    int iVar2;
-    int iVar1;
-    iVar2 = (int) data_ov003_021da25c + 4 + param_2 * 2;
-    iVar1 = 0;
+    int v1;
+    int v2;
+    v1 = (int) data_ov003_021da25c + 4 + param_2 * 2;
+    v2 = 0;
     if (param_4 > 0) {
         do {
-            func_0214cffc((const void *) param_1, (void *) iVar2, (u32) (param_3 << 1));
-            iVar1 = iVar1 + 1;
+            func_0214cffc((const void *) param_1, (void *) v1, (u32) (param_3 << 1));
+            v2 = v2 + 1;
             param_1 = param_1 + 0x40;
-            iVar2 = iVar2 + 0x40;
-        } while (iVar1 < param_4);
+            v1 = v1 + 0x40;
+        } while (v2 < param_4);
     }
 }
 

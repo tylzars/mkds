@@ -3,36 +3,36 @@
 #pragma thumb on
 
 void func_020d2d94(void) {
-    int iVar4;
-    int *piVar3;
-    u32 *puVar2;
-    int *piVar1;
-    piVar3 = (int *) ((int) data_0217b4f0 + 8);
-    piVar1 = (int *) ((int) data_0217b4f0 + 0x134);
-    iVar4 = 0;
+    int v1;
+    int *v2;
+    u32 *v3;
+    int *v4;
+    v2 = (int *) ((int) data_0217b4f0 + 8);
+    v4 = (int *) ((int) data_0217b4f0 + 0x134);
+    v1 = 0;
     do {
-        if (*piVar3 != 0) {
-            puVar2 = *(u32 **) (*piVar3 + 0x28);
-            if (puVar2 != (u32 *) 0x0) {
-                *puVar2 = 0;
+        if (*v2 != 0) {
+            v3 = *(u32 **) (*v2 + 0x28);
+            if (v3 != (u32 *) 0x0) {
+                *v3 = 0;
             }
-            *piVar3 = 0;
+            *v2 = 0;
         }
-        piVar3 = piVar3 + 1;
-        iVar4 = iVar4 + 1;
-    } while (iVar4 < 0x18);
-    iVar4 = 0;
+        v2 = v2 + 1;
+        v1 = v1 + 1;
+    } while (v1 < 0x18);
+    v1 = 0;
     do {
-        if (*piVar1 != 0) {
-            puVar2 = *(u32 **) (*piVar1 + 0x24);
-            if (puVar2 != (u32 *) 0x0) {
-                *puVar2 = 0;
+        if (*v4 != 0) {
+            v3 = *(u32 **) (*v4 + 0x24);
+            if (v3 != (u32 *) 0x0) {
+                *v3 = 0;
             }
-            *piVar1 = 0;
+            *v4 = 0;
         }
-        piVar1 = piVar1 + 1;
-        iVar4 = iVar4 + 1;
-    } while (iVar4 < 0x10);
+        v4 = v4 + 1;
+        v1 = v1 + 1;
+    } while (v1 < 0x10);
 }
 
 #pragma thumb off

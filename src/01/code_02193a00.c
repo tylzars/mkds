@@ -21,9 +21,9 @@ void func_ov001_02193a20(void) {
 }
 
 void func_ov001_02193a00(void) {
-    int iVar1;
-    iVar1 = func_02036c5c();
-    if (iVar1 != 0) {
+    int v1;
+    v1 = func_02036c5c();
+    if (v1 != 0) {
         *(u32 *) ((int) data_ov001_021a9bd4 + 4) = 1;
     }
     return;
