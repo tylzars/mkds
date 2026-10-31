@@ -200,7 +200,6 @@ s32 func_ov003_021bac0c(void) {
     return 1;
 }
 
-// non-matching: same instructions and size; the switch value, the halfword offset constant 2, the constant 3 and the callback pointer are in r1/r2/r2 where the original has r2/r3/r3 (original keeps the zero offset of the first halfword load in r1); 80 words differ
 void func_ov003_021bac90(s16 *a) {
     if (a == 0) {
         return;
@@ -211,7 +210,7 @@ void func_ov003_021bac90(s16 *a) {
             if (data_ov003_021d8b98 == 4) {
                 data_ov003_021d8b98 = 3;
                 if (data_ov003_021d8b9c != 0) {
-                    data_ov003_021d8b9c(6);
+                    data_ov003_021d8b9c(6, 0);
                 }
             } else if (data_ov003_021d8b98 == 6) {
                 if (func_ov000_021a61c4(data_ov003_021d8b90, data_ov003_021d8b94, data_ov003_021d8b84) != 3) {
@@ -231,7 +230,7 @@ void func_ov003_021bac90(s16 *a) {
         } else {
             data_ov003_021d8b98 = 1;
             if (data_ov003_021d8b9c != 0) {
-                data_ov003_021d8b9c(2);
+                data_ov003_021d8b9c(2, 0);
             }
         }
         break;
@@ -240,13 +239,13 @@ void func_ov003_021bac90(s16 *a) {
             if (data_ov003_021d8b98 == 6) {
                 data_ov003_021d8b98 = 5;
                 if (data_ov003_021d8b9c != 0) {
-                    data_ov003_021d8b9c(8);
+                    data_ov003_021d8b9c(8, 0);
                 }
             }
         } else {
             data_ov003_021d8b98 = 3;
             if (data_ov003_021d8b9c != 0) {
-                data_ov003_021d8b9c(9);
+                data_ov003_021d8b9c(9, 0);
             }
         }
         break;
@@ -255,13 +254,13 @@ void func_ov003_021bac90(s16 *a) {
             if (data_ov003_021d8b98 == 8) {
                 data_ov003_021d8b98 = 7;
                 if (data_ov003_021d8b9c != 0) {
-                    data_ov003_021d8b9c(0xc);
+                    data_ov003_021d8b9c(0xc, 0);
                 }
             }
         } else {
             data_ov003_021d8b98 = 3;
             if (data_ov003_021d8b9c != 0) {
-                data_ov003_021d8b9c(0xd);
+                data_ov003_021d8b9c(0xd, 0);
             }
         }
         break;
@@ -270,7 +269,7 @@ void func_ov003_021bac90(s16 *a) {
             if (data_ov003_021d8b98 == 4) {
                 data_ov003_021d8b98 = 3;
                 if (data_ov003_021d8b9c != 0) {
-                    data_ov003_021d8b9c(0xa);
+                    data_ov003_021d8b9c(0xa, 0);
                 }
             } else if (data_ov003_021d8b98 == 6) {
                 if (func_ov000_021a61c4(data_ov003_021d8b90, data_ov003_021d8b94, data_ov003_021d8b84) != 3) {
@@ -297,7 +296,7 @@ void func_ov003_021bac90(s16 *a) {
         } else {
             data_ov003_021d8b98 = 3;
             if (data_ov003_021d8b9c != 0) {
-                data_ov003_021d8b9c(0xb);
+                data_ov003_021d8b9c(0xb, 0);
             }
         }
         break;
@@ -306,7 +305,7 @@ void func_ov003_021bac90(s16 *a) {
             if (data_ov003_021d8b98 == 4) {
                 data_ov003_021d8b98 = 3;
                 if (data_ov003_021d8b9c != 0) {
-                    data_ov003_021d8b9c(0xe);
+                    data_ov003_021d8b9c(0xe, 0);
                 }
             } else if (data_ov003_021d8b98 == 6) {
                 if (func_ov000_021a61c4(data_ov003_021d8b90, data_ov003_021d8b94, data_ov003_021d8b84) != 3) {
@@ -335,7 +334,7 @@ void func_ov003_021bac90(s16 *a) {
         } else {
             data_ov003_021d8b98 = 3;
             if (data_ov003_021d8b9c != 0) {
-                data_ov003_021d8b9c(0xf);
+                data_ov003_021d8b9c(0xf, 0);
             }
         }
         break;
@@ -345,20 +344,20 @@ void func_ov003_021bac90(s16 *a) {
                 func_ov000_021a6428();
                 data_ov003_021d8b98 = 0;
                 if (data_ov003_021d8b9c != 0) {
-                    data_ov003_021d8b9c(0x14);
+                    data_ov003_021d8b9c(0x14, 0);
                 }
             }
         } else {
             data_ov003_021d8b98 = 3;
             if (data_ov003_021d8b9c != 0) {
-                data_ov003_021d8b9c(2);
+                data_ov003_021d8b9c(2, 0);
             }
         }
         break;
     case 7:
         if (data_ov003_021d8b98 == 5) {
             if (data_ov003_021d8b9c != 0) {
-                data_ov003_021d8b9c(5);
+                data_ov003_021d8b9c(5, 0);
             }
         }
         break;
