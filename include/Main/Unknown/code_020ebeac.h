@@ -3,4 +3,9 @@
 #include "types.h"
 #include "Main/Unknown/unk_02159000.h"
 
-void func_020ebeac(unsigned int p0);
+typedef struct Unk020ebeac {
+    /* 00 */ u8 mUnk_00[0x2];
+    /* 02 */ u16 mUnk_02;
+} Unk020ebeac;
+
+void func_020ebeac(Unk020ebeac *p0);

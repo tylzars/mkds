@@ -1,101 +1,42 @@
 #include "Main/Unknown/code_020b837c.h"
+#include "Main/Unknown/code_020b8624.h"
 
 Unk020224e0_c *func_020b8454(u32 p0) {
-    return ((Unk020224e0_c *) *(
-        const u32 *) ((u8 *) (u32) ((
-                                   (((u32) *(const u32 *) ((u8 *) (u32) ((
-                                                                                 (u32) (&data_0217b3c4))) +
-                                                                             0))) +
-                                   (((p0) << 2)))) +
-                               224));
+    return ((Unk020224e0_c *) data_0217b3c4->mUnk_0e0[p0]);
 }
 
 Unk020224e0_c *func_020b843c(u32 p0) {
-    return ((Unk020224e0_c *) *(
-        const u32 *) ((u8 *) (u32) ((
-                                   (((u32) *(const u32 *) ((u8 *) (u32) ((
-                                                                                 (u32) (&data_0217b3c4))) +
-                                                                             0))) +
-                                   (((p0) << 2)))) +
-                               496));
+    return ((Unk020224e0_c *) data_0217b3c4->mUnk_1f0[p0]);
 }
 
 Unk020224e0_c *func_020b8424(u32 p0) {
-    return ((Unk020224e0_c *) *(
-        const u32 *) ((u8 *) (u32) ((
-                                   (((u32) *(const u32 *) ((u8 *) (u32) ((
-                                                                                 (u32) (&data_0217b3c4))) +
-                                                                             0))) +
-                                   (((p0) << 2)))) +
-                               556));
+    return ((Unk020224e0_c *) data_0217b3c4->mUnk_22c[p0]);
 }
 
 Unk020224e0_c *func_020b840c(u32 p0) {
-    return ((Unk020224e0_c *) *(
-        const u32 *) ((u8 *) (u32) ((
-                                   (((u32) *(const u32 *) ((u8 *) (u32) ((
-                                                                                 (u32) (&data_0217b3c4))) +
-                                                                             0))) +
-                                   (((p0) << 2)))) +
-                               608));
+    return ((Unk020224e0_c *) data_0217b3c4->mUnk_260[p0]);
 }
 
 Unk020224e0_c *func_020b83f4(u32 p0) {
-    return ((Unk020224e0_c *) *(
-        const u32 *) ((u8 *) (u32) ((
-                                   (((u32) *(const u32 *) ((u8 *) (u32) ((
-                                                                                 (u32) (&data_0217b3c4))) +
-                                                                             0))) +
-                                   (((p0) << 2)))) +
-                               696));
+    return ((Unk020224e0_c *) data_0217b3c4->mUnk_2b8[p0]);
 }
 
 Unk020224e0_c *func_020b83dc(u32 p0) {
-    return ((Unk020224e0_c *) *(
-        const u32 *) ((u8 *) (u32) ((
-                                   (((u32) *(const u32 *) ((u8 *) (u32) ((
-                                                                                 (u32) (&data_0217b3c4))) +
-                                                                             0))) +
-                                   (((p0) << 2)))) +
-                               728));
+    return ((Unk020224e0_c *) data_0217b3c4->mUnk_2d8[p0]);
 }
 
 Unk020224e0_c *func_020b83c4(u32 p0) {
-    return ((Unk020224e0_c *) *(
-        const u32 *) ((u8 *) (u32) ((
-                                   (((u32) *(const u32 *) ((u8 *) (u32) ((
-                                                                                 (u32) (&data_0217b3c4))) +
-                                                                             0))) +
-                                   (((p0) << 2)))) +
-                               1532));
+    return ((Unk020224e0_c *) data_0217b3c4->mUnk_5fc[p0]);
 }
 
 Unk020224e0_c *func_020b83ac(u32 p0) {
-    return ((Unk020224e0_c *) *(
-        const u32 *) ((u8 *) (u32) ((
-                                   (((u32) *(const u32 *) ((u8 *) (u32) ((
-                                                                                 (u32) (&data_0217b3c4))) +
-                                                                             0))) +
-                                   (((p0) << 2)))) +
-                               1708));
+    return ((Unk020224e0_c *) data_0217b3c4->mUnk_6ac[p0]);
 }
 
 Unk020224e0_c *func_020b8394(u32 p0) {
-    return ((Unk020224e0_c *) *(
-        const u32 *) ((u8 *) (u32) ((
-                                   (((u32) *(const u32 *) ((u8 *) (u32) ((
-                                                                                 (u32) (&data_0217b3c4))) +
-                                                                             0))) +
-                                   (((p0) << 2)))) +
-                               1868));
+    return ((Unk020224e0_c *) data_0217b3c4->mUnk_74c[p0]);
 }
 
 Unk020224e0_c *func_020b837c(u32 p0) {
-    return ((Unk020224e0_c *) *(
-        const u32 *) ((u8 *) (u32) ((
-                                   (((u32) *(const u32 *) ((u8 *) (u32) ((
-                                                                                 (u32) (&data_0217b3c4))) +
-                                                                             0))) +
-                                   (((p0) << 2)))) +
-                               2000));
+    return ((Unk020224e0_c *) data_0217b3c4->mUnk_7d0[p0]);
 }

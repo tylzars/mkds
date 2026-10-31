@@ -3,7 +3,7 @@
 #pragma thumb off
 
 u32 func_ov001_02180ca4(void) {
-    return ((u32) *(const u32 *) ((u8 *) (u32) (((u32) (&data_021755a0))) + 0));
+    return ((u32) data_021755a0);
 }
 
 void func_ov001_02180c88(u32 p0) {

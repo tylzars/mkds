@@ -26,7 +26,7 @@ void func_ov001_021a5140(void) {
     Unk0217aa08_04 *p;
 
     data_ov001_021ca41c = func_02036bec((void *) func_020364e0(func_020364e8()), 0x10c0);
-    func_020391d4((u32) &unk);
+    func_020391d4(&unk);
     unk.mUnk_06 = 1;
     unk.mUnk_08 = 0;
     unk.mUnk_0a = 1;
