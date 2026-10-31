@@ -5,7 +5,7 @@ s32 func_ov001_02183d94(Unk02188950 *param_1) {
     func_ov001_02188998(param_1, &func_0207a974((u16)data_021759c0->mUnk_62)->mUnk_80);
     if (param_1->mUnk_174 < param_1->mUnk_0a0->mUnk_108) {
         func_ov001_02188200(param_1, func_ov001_02184874);
-        func_ov001_02184e6c((u32)param_1);
+        func_ov001_02184e6c(param_1);
     }
     return 0;
 }

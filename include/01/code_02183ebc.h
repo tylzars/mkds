@@ -6,4 +6,4 @@
 #include "Main/Unknown/code_020d2000.h"
 
 u32 func_ov001_02183ebc(Unk02188950 *param_1);
-void func_ov001_02183ed4(int param_1);
+void func_ov001_02183ed4(Unk02188950 *param_1);

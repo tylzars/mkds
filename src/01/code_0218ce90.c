@@ -22,9 +22,9 @@ void func_ov001_0218cf94(Unk0218d87c *param_1) {
         for (i = 0; i < param_1->mUnk_04 && (p = param_1->mUnk_00[i]) != 0; i++) {
             p->mUnk_2c4 = 1;
             if (func_02062ec4() != 0) {
-                func_ov001_0218d188((int)p);
+                func_ov001_0218d188(p);
             } else {
-                func_ov001_0218d1e0((int)p);
+                func_ov001_0218d1e0(p);
             }
         }
     }
@@ -71,9 +71,9 @@ void func_ov001_0218ce90(Unk0218d87c *param_1) {
     if (param_1 != 0) {
         for (i = 0; i < param_1->mUnk_04 && (p = param_1->mUnk_00[i]) != 0; i++) {
             if (func_02062ec4() != 0) {
-                func_ov001_0218d01c((int)p);
+                func_ov001_0218d01c(p);
             } else if (i == 0) {
-                func_ov001_0218d074((int)p);
+                func_ov001_0218d074(p);
             } else {
                 func_ov001_0218cfe8((int)p);
             }

@@ -38,7 +38,7 @@ void func_ov001_0218a120(Unk0218d87c *param_1) {
             Vec3 v = {0, 0, 0};
             v.x = obj->mUnk_0a0->mUnk_0fc;
             v.y = obj->mUnk_0a0->mUnk_100;
-            func_ov001_02187c88((Unk02188950 *) (obj), 5, (const Vec3 *) (&v));
+            func_ov001_02187c88(obj, 5, (const Vec3 *) (&v));
             if (func_02062ec4() != 0) {
                 func_ov001_0218a19c((int)obj);
             } else {
@@ -65,9 +65,9 @@ void func_ov001_0218a074(u32 param_1, Unk02188950 *param_2) {
                 active = 0;
             }
             if (active != 0) {
-                func_ov001_0218a3ec((int)param_2);
+                func_ov001_0218a3ec(param_2);
             } else {
-                func_ov001_0218a2dc((int)param_2);
+                func_ov001_0218a2dc(param_2);
             }
         }
     } else {
@@ -112,7 +112,7 @@ void func_ov001_02189ed8(Unk02188950 *param_1, Unk0206bcb0 *param_2) {
     s64 scale;
 
     if (func_ov001_02187c4c((int)param_1) != 0) {
-        func_ov001_02187bfc((Unk02188950 *) (param_1), (Vec3 *) (0), 0);
+        func_ov001_02187bfc(param_1, (Vec3 *) (0), 0);
     }
     param_1->mUnk_2e0 = 2;
     func_ov001_021881f4(param_1, (UnkFunc *) func_ov001_02189ed8);

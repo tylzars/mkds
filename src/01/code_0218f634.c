@@ -50,7 +50,7 @@ s32 func_ov001_0218f688(Unk02188950 *param_1) {
     Unk0206bcb0 *obj = func_0207a974((u16)data_021759c0->mUnk_62);
     if ((obj->mUnk_48 & 0x200) == 0) {
         func_ov001_02188998(param_1, &obj->mUnk_80);
-        func_ov001_02188d8c((Unk02188950 *) (param_1), (Vec3 *) (&obj->mUnk_80));
+        func_ov001_02188d8c(param_1, (Vec3 *) (&obj->mUnk_80));
     }
     func_ov001_0218f6d8(param_1);
     return 0;
@@ -60,7 +60,7 @@ s32 func_ov001_0218f634(Unk02188950 *param_1) {
     Unk0206bcb0 *obj = func_0207a974((u16)data_021759c0->mUnk_62);
     if ((obj->mUnk_48 & 0x200) == 0) {
         func_ov001_02188998(param_1, &obj->mUnk_80);
-        func_ov001_02188d8c((Unk02188950 *) (param_1), (Vec3 *) (&obj->mUnk_80));
+        func_ov001_02188d8c(param_1, (Vec3 *) (&obj->mUnk_80));
     }
     func_ov001_0218f6d8(param_1);
     func_02061860();

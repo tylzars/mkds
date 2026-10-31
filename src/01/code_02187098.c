@@ -83,7 +83,7 @@ void func_ov001_02187218(Unk02188950 *param_1, int param_2, s32 (*param_3)(Unk02
         param_1->mUnk_224 = 0;
         param_1->mUnk_228 = 0;
         param_1->mUnk_22c = 0;
-        func_ov001_02187af4((Unk02188950 *) ((int)param_1));
+        func_ov001_02187af4(param_1);
     }
 }
 

@@ -24,11 +24,11 @@
 void func_ov001_0218e690(Unk02188950 *p);
 void func_ov001_0218e710(Unk02188950 *p);
 void func_ov001_0218e760(Unk02188950 *p);
-void func_ov001_0218e7b0(u32 param_1);
+void func_ov001_0218e7b0(Unk02188950 *param_1);
 void func_ov001_0218e7d0(Unk02188950 *p);
 void func_ov001_0218e860(Unk02188950 *param_1);
-void func_ov001_0218e8b0(u32 param_1);
-void func_ov001_0218e8d8(int param_1);
+void func_ov001_0218e8b0(Unk02188950 *param_1);
+void func_ov001_0218e8d8(Unk02188950 *param_1);
 void func_ov001_0218e92c(Unk02188950 *p);
 u32 func_ov001_0218ea98(int param_1);
 void func_ov001_0218ead0(Unk02188950 *param_1);

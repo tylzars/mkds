@@ -22,11 +22,11 @@ void func_ov001_02184874(Unk02188950 *param_1, Unk0206bcb0 *param_2) {
                 a.z = (s32)(((s64)a.z * scale) >> 12);
                 a.y = param_1->mUnk_0a0->mUnk_1dc;
                 func_ov001_02187218(param_1, 7, 0);
-                func_ov001_02188d64((Unk02188950 *) (param_1), (s32) (param_1->mUnk_0a0->mUnk_1d4), (s32) (param_1->mUnk_0a0->mUnk_1d8));
+                func_ov001_02188d64(param_1, (s32) (param_1->mUnk_0a0->mUnk_1d4), (s32) (param_1->mUnk_0a0->mUnk_1d8));
                 func_ov001_02188a8c(param_1, param_1->mUnk_0a0->mUnk_1e4, 0x270f000);
                 func_ov001_02188950(param_1, &a);
                 func_ov001_02188dcc(param_1, func_ov001_02184d70);
-                func_ov001_02188cec((Unk02188950 *) (param_1), 0);
+                func_ov001_02188cec(param_1, 0);
             }
             {
                 Vec3 b;
@@ -71,11 +71,11 @@ void func_ov001_02184874(Unk02188950 *param_1, Unk0206bcb0 *param_2) {
             c.z = (s32)(((s64)c.z * scale) >> 12);
             c.y = param_1->mUnk_0a0->mUnk_1c4;
             func_ov001_02187218(param_1, 7, 0);
-            func_ov001_02188d64((Unk02188950 *) (param_1), (s32) (param_1->mUnk_0a0->mUnk_1bc), (s32) (param_1->mUnk_0a0->mUnk_1c0));
+            func_ov001_02188d64(param_1, (s32) (param_1->mUnk_0a0->mUnk_1bc), (s32) (param_1->mUnk_0a0->mUnk_1c0));
             func_ov001_02188a8c(param_1, param_1->mUnk_0a0->mUnk_1cc, 0x270f000);
             func_ov001_02188950(param_1, &c);
             func_ov001_02188dcc(param_1, 0);
-            func_ov001_02188cec((Unk02188950 *) (param_1), 0);
+            func_ov001_02188cec(param_1, 0);
         }
     }
     func_ov001_02188200(param_1, func_ov001_02184874);

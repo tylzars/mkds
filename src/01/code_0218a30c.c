@@ -14,7 +14,7 @@ void func_ov001_0218a30c(Unk02188950 *param_1) {
     Unk021a7c08 local;
 
     func_ov001_02187218(param_1, 8, 0);
-    func_ov001_02187af4((Unk02188950 *) ((int)param_1));
+    func_ov001_02187af4(param_1);
     func_ov001_021875c0(param_1, 0, 0x2000, 0, 0x421, 0);
     func_ov001_021875c0(param_1, 0, 0x2000, 0, 0x40c, 0);
     func_ov001_021875c0(param_1, 0, 0x2000, 0, 0x40e, 0);

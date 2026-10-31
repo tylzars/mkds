@@ -18,7 +18,7 @@ s32 func_ov001_021881a8(Unk02188950 *param_1, Vec3 *param_2, s32 param_3, s32 pa
     return 0;
 }
 
-int func_ov001_02188158(u32 param_1, u32 param_2, u32 param_3) {
+int func_ov001_02188158(Unk02188950 *param_1, u32 param_2, u32 param_3) {
     int v1;
     int v2;
     int v3;
@@ -29,7 +29,7 @@ int func_ov001_02188158(u32 param_1, u32 param_2, u32 param_3) {
         do {
             v2 = func_020fd7a4((int) (v4));
             if ((v2 != 0) &&
-                (v3 = func_ov001_021881a8((Unk02188950 *) (param_1), (Vec3 *) (v2 + 0x50), (s32) (param_2), (s32) (param_3)),
+                (v3 = func_ov001_021881a8(param_1, (Vec3 *) (v2 + 0x50), (s32) (param_2), (s32) (param_3)),
                  v3 != 0)) {
                 return v2;
             }

@@ -22,8 +22,8 @@ void func_ov001_021913b8(Unk02188950 *param_1) {
     Unk0206bcb0 *v1 = func_0207a974((u16)data_021759c0->mUnk_62);
     Vec3 local = {0, 0, 0};
 
-    func_ov001_02187e78((Unk02188950 *) (param_1));
-    func_ov001_02187218((Unk02188950 *) (param_1), 3, (s32 (*)(Unk02188950 *)) (func_ov001_02191470));
+    func_ov001_02187e78(param_1);
+    func_ov001_02187218(param_1, 3, (s32 (*)(Unk02188950 *)) (func_ov001_02191470));
     func_ov001_02188d64(param_1, param_1->mUnk_0a0->mUnk_0d0, param_1->mUnk_0a0->mUnk_0d4);
     func_ov001_02188950(param_1, &local);
     func_ov001_02188c90(param_1);
@@ -38,7 +38,7 @@ void func_ov001_02191318(Unk02188950 *param_1) {
     Vec3 local = {0, 0, 0};
 
     local.y = param_1->mUnk_0a0->mUnk_0a4;
-    func_ov001_02187218((Unk02188950 *) (param_1), 3, (s32 (*)(Unk02188950 *)) (func_ov001_02191470));
+    func_ov001_02187218(param_1, 3, (s32 (*)(Unk02188950 *)) (func_ov001_02191470));
     func_ov001_02188d64(param_1, param_1->mUnk_0a0->mUnk_08c, param_1->mUnk_0a0->mUnk_090);
     func_ov001_02188950(param_1, &local);
     func_ov001_02188c90(param_1);
@@ -50,17 +50,17 @@ void func_ov001_02191318(Unk02188950 *param_1) {
 void func_ov001_02191258(Unk02188950 *param_1) {
     Vec3 local = {0, 0, 0};
 
-    func_ov001_02187218((Unk02188950 *) (param_1), 3, (s32 (*)(Unk02188950 *)) (0));
+    func_ov001_02187218(param_1, 3, (s32 (*)(Unk02188950 *)) (0));
     func_ov001_02188d64(param_1, param_1->mUnk_0a0->mUnk_210, param_1->mUnk_0a0->mUnk_214);
     func_ov001_02188e24(param_1, param_1->mUnk_0a0->mUnk_218, 0);
     func_ov001_02188c90(param_1);
     func_ov001_02188cec(param_1, 0);
     func_ov001_02188950(param_1, &local);
-    func_ov001_02188200((Unk02188950 *) (param_1), (UnkFunc *) (func_ov001_02192878));
+    func_ov001_02188200(param_1, (UnkFunc *) (func_ov001_02192878));
     func_02073fb0(param_1->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
-    func_ov001_02187518((Unk02188950 *) (param_1), 0x1000, 0, 0x2000, 0x414, 0);
-    func_ov001_02187518((Unk02188950 *) (param_1), 0x1000, 0, 0x2000, 0x415, 0);
-    func_020d2774(&param_1->mUnk_000, 0x218);
+    func_ov001_02187518(param_1, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x414), (u32) (0));
+    func_ov001_02187518(param_1, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x415), (u32) (0));
+    func_020d2774(&param_1->mUnk_000, (u32) (0x218));
 }
 
 void func_ov001_021911a8(Unk02188950 *param_1) {
@@ -68,12 +68,12 @@ void func_ov001_021911a8(Unk02188950 *param_1) {
     Vec3 local = {0, 0, 0};
 
     local.y = param_1->mUnk_0a0->mUnk_1e4;
-    func_ov001_02187218((Unk02188950 *) (param_1), 3, (s32 (*)(Unk02188950 *)) (0));
+    func_ov001_02187218(param_1, 3, (s32 (*)(Unk02188950 *)) (0));
     func_ov001_02188d64(param_1, param_1->mUnk_0a0->mUnk_1cc, param_1->mUnk_0a0->mUnk_1d0);
     func_ov001_02188950(param_1, &local);
     func_ov001_02188c90(param_1);
     func_ov001_02188998(param_1, &v1->mUnk_80);
     func_ov001_02188cd8(param_1, param_1->mUnk_0a0->mUnk_1d4, param_1->mUnk_0a0->mUnk_1d8);
     func_ov001_02188db8(param_1, func_ov001_02191258);
-    func_ov001_02188200((Unk02188950 *) (param_1), (UnkFunc *) (func_ov001_02192794));
+    func_ov001_02188200(param_1, (UnkFunc *) (func_ov001_02192794));
 }

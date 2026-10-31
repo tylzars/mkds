@@ -65,20 +65,20 @@ void func_ov001_0218e92c(Unk02188950 *p) {
     p->mUnk_25c = p->mUnk_268 = p->mUnk_264 = p->mUnk_270 = (s32)p->mUnk_0a0->mUnk_00c / 2;
 }
 
-void func_ov001_0218e8d8(int param_1) {
-    func_ov001_02187218((Unk02188950 *) param_1, 5, (s32 (*)(Unk02188950 *)) (0));
-    func_ov001_02188d30((Unk02188950 *) param_1, (s32) (*(u32 *) (*(int *) (param_1 + 0xa0) + 0x168)),
-                        (s32) (*(u32 *) (*(int *) (param_1 + 0xa0) + 0x16c)),
+void func_ov001_0218e8d8(Unk02188950 *param_1) {
+    func_ov001_02187218(param_1, 5, (s32 (*)(Unk02188950 *)) (0));
+    func_ov001_02188d30(param_1, (s32) (param_1->mUnk_0a0->mUnk_168),
+                        (s32) (param_1->mUnk_0a0->mUnk_16c),
                         (UnkFunc *) &func_ov001_0218e92c);
-    func_ov001_02188c90((Unk02188950 *) param_1);
-    func_ov001_02188cec((Unk02188950 *) param_1, 0);
+    func_ov001_02188c90(param_1);
+    func_ov001_02188cec(param_1, 0);
     func_ov001_02182a3c(0);
-    func_020d2774((Unk020e71a0 *) (param_1), (u32) (((u32) 0x00000230u)));
+    func_020d2774(&param_1->mUnk_000, (u32) (((u32) 0x00000230u)));
 }
 
-void func_ov001_0218e8b0(u32 param_1) {
-    func_ov001_02187218((Unk02188950 *) param_1, 1, (s32 (*)(Unk02188950 *)) (0));
-    func_ov001_021888a4((Unk02188950 *) param_1, 0, (s32) (((u32) 0x00019000u)));
+void func_ov001_0218e8b0(Unk02188950 *param_1) {
+    func_ov001_02187218(param_1, 1, (s32 (*)(Unk02188950 *)) (0));
+    func_ov001_021888a4(param_1, 0, (s32) (((u32) 0x00019000u)));
     func_0206184c();
     func_ov001_021827f0();
 }
@@ -107,9 +107,9 @@ void func_ov001_0218e7d0(Unk02188950 *p) {
     p->mUnk_000.mUnk_02 |= data_ov001_021a65bc;
 }
 
-void func_ov001_0218e7b0(u32 param_1) {
-    func_ov001_02187218((Unk02188950 *) param_1, 1, (s32 (*)(Unk02188950 *)) (0));
-    func_ov001_021888a4((Unk02188950 *) param_1, 0, (s32) (((u32) 0x00019000u)));
+void func_ov001_0218e7b0(Unk02188950 *param_1) {
+    func_ov001_02187218(param_1, 1, (s32 (*)(Unk02188950 *)) (0));
+    func_ov001_021888a4(param_1, 0, (s32) (((u32) 0x00019000u)));
 }
 
 void func_ov001_0218e760(Unk02188950 *p) {

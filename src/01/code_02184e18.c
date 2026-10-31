@@ -32,8 +32,8 @@ void func_ov001_02184e8c(Unk02188950 *param_1) {
     return;
 }
 
-void func_ov001_02184e6c(u32 param_1) {
-    func_ov001_02188e48((Unk02188950 *) ((int) (param_1)), (s32) ((u32) (0x19)),
+void func_ov001_02184e6c(Unk02188950 *param_1) {
+    func_ov001_02188e48(param_1, (s32) ((u32) (0x19)),
                         func_ov001_02184f8c, (s32) ((u32) (0x36)),
                         func_ov001_02184f7c);
     return;

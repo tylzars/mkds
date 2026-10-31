@@ -16,7 +16,7 @@ int func_ov001_02183780(Unk02188950 *param_1) {
         }
     }
     if (func_02061fec() == 1) {
-        func_ov001_02183b9c((int)param_1);
+        func_ov001_02183b9c(param_1);
     }
     return 0;
 }
