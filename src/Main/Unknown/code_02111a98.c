@@ -7,17 +7,18 @@
 #include "Main/Unknown/code_02112b48.h"
 #include "Main/Unknown/code_021114cc.h"
 #include "Main/Unknown/unk_0217d000.h"
+#include "registers.h"
 
 #pragma thumb on
 
 void func_02111adc(void) {
     u32 v;
     if (func_0211146c() == 12) {
-        *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & 0xffffe0ff) | 0x1b00;
-        *(vu32 *) 0x04001000 = (*(vu32 *) 0x04001000 & 0xffffe0ff) | 0x1600;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1b00;
+        reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1600;
     } else {
-        v = (*(vu32 *) 0x04000000 & 0x1f00) >> 8;
-        *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & 0xffffe0ff) | ((v | 0x13) << 8);
+        v = (reg_GX_DISPCNT & 0x1f00) >> 8;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((v | 0x13) << 8);
     }
 }
 

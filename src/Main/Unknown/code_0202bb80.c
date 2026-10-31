@@ -31,6 +31,7 @@
 #include "code_0214cfe4.h"
 #include "code_0214d018.h"
 #include "code_0202056c.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -286,8 +287,8 @@ void func_0202c0d4(s32 a, s32 b) {
                 q->mUnk_18[data_usa_02174e0c[i].mUnk_02].mUnk_00 = 1;
             }
         }
-        *(vu16 *) 0x04000008 = (*(vu16 *) 0x04000008 & 0x43) | 0xd08;
-        *(vu16 *) 0x0400000a = (*(vu16 *) 0x0400000a & 0x43) | 0xc00;
+        reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0xd08;
+        reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0xc00;
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
             func_020258d4(0, v1, data_usa_02162904, data_usa_0216292c, data_usa_02162954, 0, func_0204799c);
             func_020258d4(0, v1, data_usa_02162980, data_usa_021629a8, data_usa_021629d0, 1, func_0204799c);

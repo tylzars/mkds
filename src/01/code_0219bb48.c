@@ -6,6 +6,7 @@
 #include "Main/Unknown/code_0211e000.h"
 #include "Main/Unknown/code_0212b000.h"
 #include "Main/Unknown/code_02148ca0.h"
+#include "registers.h"
 
 void func_ov001_0219c3ec(void) {
     data_ov001_021a9bf4->mUnk_4c = 4;
@@ -175,9 +176,9 @@ void func_ov001_0219bb48(u32 param_1, u32 param_2, u32 param_3) {
     s32 rem;
     s32 i;
 
-    *(vu16 *)0x04001008 = *(vu16 *)0x04001008 & ~3;
-    *(vu16 *)0x0400100e = (*(vu16 *)0x0400100e & ~3) | 1;
-    *(vu16 *)0x0400100e = (*(vu16 *)0x0400100e & 0x43) | 0x8300;
+    reg_G2S_DB_BG0CNT = reg_G2S_DB_BG0CNT & ~3;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8300;
     heap = func_02036948((void *) param_1);
     data_ov001_021a9bf4 = func_02036bec(heap, 0x70);
     data_ov001_021a9bf4->mUnk_44 = heap;

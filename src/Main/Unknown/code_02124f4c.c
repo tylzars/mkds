@@ -11,6 +11,7 @@
 #include "Main/Unknown/unk_02175000.h"
 #include "01/code_021804e0.h"
 #include "01/code_021a5140.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -348,8 +349,8 @@ void *func_021250b0(void *a) {
     func_02038d28(p->mUnk_28, 0, 0, 0, 0, 0x12, 2, 0);
     func_02038cd8(p->mUnk_70, 1, 0, 0, 0, 0x10, 4);
     func_02037abc(p);
-    *(vu32 *)0x04000000 = (*(vu32 *)0x04000000 & 0xffcfffef) | 0x10;
-    *(vu32 *)0x04001000 = (*(vu32 *)0x04001000 & 0xffcfffef) | 0x10;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
     return p;
 }
 
@@ -361,8 +362,8 @@ void *func_02125028(void *a) {
     func_02038d28(p->mUnk_28, 0, 0, 0, 0, 0x12, 2, 0);
     func_02038cd8(p->mUnk_70, 1, 0, 0, 0, 0xf, 0);
     func_02037abc(p);
-    *(vu32 *)0x04000000 = (*(vu32 *)0x04000000 & 0xffcfffef) | 0x10;
-    *(vu32 *)0x04001000 = (*(vu32 *)0x04001000 & 0xffcfffef) | 0x10;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
     return p;
 }
 

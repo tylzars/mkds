@@ -24,6 +24,7 @@
 #include "Main/Unknown/code_02125f54.h"
 #include "Main/Unknown/code_02148ca0.h"
 #include "code_0201ea58.h"
+#include "registers.h"
 
 void func_ov001_021997dc(void)
 {
@@ -117,8 +118,8 @@ void func_ov001_021995f8(void)
 
     func_ov001_02199374();
     func_ov001_02199420();
-    v = (*(vu32 *) 0x04000000 & 0x1f00) >> 8;
-    *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & 0xffffe0ff) | ((v & ~2) << 8);
+    v = (reg_GX_DISPCNT & 0x1f00) >> 8;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((v & ~2) << 8);
     func_0212b91c();
     data_ov001_021a9be8 = 0;
 }

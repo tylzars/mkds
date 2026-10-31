@@ -6,6 +6,7 @@
 #include "Main/Unknown/code_02028058.h"
 #include "Main/Unknown/code_0202b000.h"
 #include "Main/Unknown/unk_02174000.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -36,6 +37,6 @@ void func_02027e78(void) {
 #pragma thumb off
 
 void func_02027f1c(u32 a, u32 b, u32 c, u32 d) {
-    *(vu16 *) 0x04001040 = ((a << 8) & 0xff00) | (c & 0xff);
-    *(vu16 *) 0x04001044 = ((b << 8) & 0xff00) | (d & 0xff);
+    reg_G2S_DB_WIN0H = ((a << 8) & 0xff00) | (c & 0xff);
+    reg_G2S_DB_WIN0V = ((b << 8) & 0xff00) | (d & 0xff);
 }

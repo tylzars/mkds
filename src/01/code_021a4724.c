@@ -11,15 +11,16 @@
 #include "Main/Unknown/code_02078000.h"
 #include "Main/Unknown/code_02110000.h"
 #include "Main/Unknown/code_0214a000.h"
+#include "registers.h"
 
 void func_ov001_021a4fa0(void) {
-    *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & 0xffffe0ff) | 0x1700;
-    *(vu32 *) 0x04000000 = *(vu32 *) 0x04000000 & 0xffcfffef;
-    *(vu16 *) 0x04000008 = (*(vu16 *) 0x04000008 & ~3) | 1;
-    *(vu16 *) 0x0400000a = *(vu16 *) 0x0400000a & ~3;
-    *(vu16 *) 0x0400000a = (*(vu16 *) 0x0400000a & 0x43) | 0x400;
-    *(vu16 *) 0x0400000c = (*(vu16 *) 0x0400000c & ~3) | 3;
-    *(vu16 *) 0x0400000c = (*(vu16 *) 0x0400000c & 0x43) | 0x600;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1700;
+    reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffcfffef;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 1;
+    reg_G2_BG1CNT = reg_G2_BG1CNT & ~3;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x400;
+    reg_G2_BG2CNT = (reg_G2_BG2CNT & ~3) | 3;
+    reg_G2_BG2CNT = (reg_G2_BG2CNT & 0x43) | 0x600;
     func_0200ee74(data_ov001_021ca41c->mUnk_0808->mUnk_0c, data_ov001_021ca41c->mUnk_0808->mUnk_08);
     func_0214c090((const void *) data_ov001_021ca41c->mUnk_0808->mUnk_0c, 0, data_ov001_021ca41c->mUnk_0808->mUnk_08);
     func_0200ee74((const void *) data_ov001_021ca41c->mUnk_0810->mUnk_14, data_ov001_021ca41c->mUnk_0810->mUnk_10);
@@ -34,24 +35,24 @@ void func_ov001_021a4fa0(void) {
     func_0214bd6c((const void *) data_ov001_021ca41c->mUnk_0818->mUnk_0c, 0, data_ov001_021ca41c->mUnk_0818->mUnk_08);
     func_0200ee74(data_ov001_021ca41c->mUnk_081c->mUnk_0c, data_ov001_021ca41c->mUnk_081c->mUnk_08);
     func_0214bc9c((const void *) data_ov001_021ca41c->mUnk_081c->mUnk_0c, 0, data_ov001_021ca41c->mUnk_081c->mUnk_08);
-    *(vu32 *)0x04000014 = 0;
-    *(vu32 *)0x04000018 = 0;
+    reg_G2_BG1OFS = 0;
+    reg_G2_BG2OFS = 0;
 }
 
 void func_ov001_021a4d10(void)
 {
     func_02148934(1);
-    *(vu32 *)0x04001000 = (*(vu32 *)0x04001000 & 0xffffe0ff) | 0x1e00;
-    *(vu16 *)0x04001008 = (*(vu16 *)0x04001008 & ~3) | 1;
-    *(vu16 *)0x04001008 = (*(vu16 *)0x04001008 & 0x43) | 0x8a10;
-    *(vu16 *)0x0400100a = (*(vu16 *)0x0400100a & ~3) | 2;
-    *(vu16 *)0x0400100a = (*(vu16 *)0x0400100a & 0x43) | 0xc10;
-    *(vu16 *)0x0400100c = (*(vu16 *)0x0400100c & ~3) | 3;
-    *(vu16 *)0x0400100c = (*(vu16 *)0x0400100c & 0x43) | 0xe10;
-    *(vu16 *)0x0400100e = (*(vu16 *)0x0400100e & ~3) | 2;
-    *(vu32 *)0x04001010 = 0;
-    *(vu32 *)0x04001014 = 0;
-    *(vu32 *)0x04001018 = 0;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1e00;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 1;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x8a10;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 2;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0xc10;
+    reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 3;
+    reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & 0x43) | 0xe10;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 2;
+    reg_G2S_DB_BG0OFS = 0;
+    reg_G2S_DB_BG1OFS = 0;
+    reg_G2S_DB_BG2OFS = 0;
     func_0214a428((u32 *)0x04001030, data_ov001_021a6fd8, 16, 16, -0x70, -0x40);
     func_0200ee74(data_ov001_021ca41c->mUnk_082c->mUnk_0c, data_ov001_021ca41c->mUnk_082c->mUnk_08);
     func_0214c028((const void *) data_ov001_021ca41c->mUnk_082c->mUnk_0c, 0, data_ov001_021ca41c->mUnk_082c->mUnk_08);
@@ -69,10 +70,10 @@ void func_ov001_021a4d10(void)
     func_0214bd04((const void *) data_ov001_021ca41c->mUnk_0840->mUnk_0c, 0, data_ov001_021ca41c->mUnk_0840->mUnk_08);
     func_0200ee74(data_ov001_021ca41c->mUnk_0844->mUnk_0c, data_ov001_021ca41c->mUnk_0844->mUnk_08);
     func_0214bc34((const void *) data_ov001_021ca41c->mUnk_0844->mUnk_0c, 0, data_ov001_021ca41c->mUnk_0844->mUnk_08);
-    *(vu16 *)0x0400100e = (*(vu16 *)0x0400100e & 0x43) | 0x1010;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x1010;
     func_0200ee74(data_ov001_021ca41c->mUnk_084c->mUnk_0c, data_ov001_021ca41c->mUnk_084c->mUnk_08);
     func_0214bb64((const void *) data_ov001_021ca41c->mUnk_084c->mUnk_0c, 0, data_ov001_021ca41c->mUnk_084c->mUnk_08);
-    *(vu16 *)0x0400100e = (*(vu16 *)0x0400100e & 0x43) | 0x1218;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x1218;
     func_0200ee74((const void *) func_ov001_021811bc(), func_ov001_02181198());
     func_0214bb64((const void *) (func_ov001_021811bc()), func_ov001_021811b8(), func_ov001_02181198());
 }
@@ -80,14 +81,14 @@ void func_ov001_021a4d10(void)
 void func_ov001_021a4ba0(void)
 {
     func_02148934(1);
-    *(vu32 *)0x04001000 = (*(vu32 *)0x04001000 & 0xffffe0ff) | 0x1600;
-    *(vu16 *)0x0400100a = (*(vu16 *)0x0400100a & ~3) | 3;
-    *(vu16 *)0x0400100a = (*(vu16 *)0x0400100a & 0x43) | 0xe10;
-    *(vu16 *)0x0400100c = (*(vu16 *)0x0400100c & ~3) | 3;
-    *(vu16 *)0x0400100c = (*(vu16 *)0x0400100c & 0x43) | 0x1010;
-    *(vu32 *)0x04001014 = 0;
-    *(vu32 *)0x04001018 = 0;
-    *(vu32 *)0x0400101c = 0;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1600;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0xe10;
+    reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 3;
+    reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & 0x43) | 0x1010;
+    reg_G2S_DB_BG1OFS = 0;
+    reg_G2S_DB_BG2OFS = 0;
+    reg_G2S_DB_BG3OFS = 0;
     func_0200ee74(data_ov001_021ca41c->mUnk_082c->mUnk_0c, data_ov001_021ca41c->mUnk_082c->mUnk_08);
     func_0214c028((const void *) data_ov001_021ca41c->mUnk_082c->mUnk_0c, 0, data_ov001_021ca41c->mUnk_082c->mUnk_08);
     func_0200ee74((const void *) data_ov001_021ca41c->mUnk_0860->mUnk_14, data_ov001_021ca41c->mUnk_0860->mUnk_10);

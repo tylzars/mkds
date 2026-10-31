@@ -1,6 +1,7 @@
 #include "code_0214e308.h"
 #include "code_0214e6e4.h"
 #include "Main/Unknown/code_0200f000.h"
+#include "registers.h"
 
 // non-matching: 79.5: size 0x260 against 0x270; the original keeps out in r7, a in r6, b in r5, c in r4, loads e and
 // f before the range tests into caller-saved registers and reloads the stack arguments after func_0200fca0 (e into a
@@ -23,13 +24,13 @@ u32 func_0214e464(Unk0214e334 *out, u32 a, u32 b, u32 c, u16 d, u16 e, u16 f, u1
         return 1;
     }
     s = func_0200fca0();
-    *(vu16 *) 0x04000280 = 0;
+    reg_CP_DIVCNT = 0;
     *(vu32 *) 0x04000290 = (a - e) << 8;
     *(vu64 *) 0x04000298 = (u32) (c - g);
-    while (*(vu16 *) 0x04000280 & 0x8000) {
+    while (reg_CP_DIVCNT & 0x8000) {
     }
     q = *(vs32 *) 0x040002a0;
-    *(vu16 *) 0x04000280 = 0;
+    reg_CP_DIVCNT = 0;
     *(vu32 *) 0x04000290 = (b - f) << 8;
     *(vu64 *) 0x04000298 = (u32) (d - h);
     if (q >= 0x8000 || q < -0x8000) {
@@ -43,7 +44,7 @@ u32 func_0214e464(Unk0214e334 *out, u32 a, u32 b, u32 c, u16 d, u16 e, u16 f, u1
         return 1;
     }
     out->mUnk_00 = v;
-    while (*(vu16 *) 0x04000280 & 0x8000) {
+    while (reg_CP_DIVCNT & 0x8000) {
     }
     q = *(vs32 *) 0x040002a0;
     func_0200fcb4(s);

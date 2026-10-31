@@ -6,6 +6,7 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/code_0214a2a0.h"
 #include "Main/Unknown/code_0214a2f4.h"
+#include "registers.h"
 
 void func_ov001_02193144(void)
 {
@@ -40,13 +41,13 @@ void func_ov001_021930ac(void)
     vu32 b;
     void *d1;
     void *d2;
-    t = (*(vu32 *) 0x04000000 & 0x1f00) >> 8;
+    t = (reg_GX_DISPCNT & 0x1f00) >> 8;
     t |= 1;
-    *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & ~0x1f00) | (t << 8);
-    *(vu16 *) 0x04000008 = (*(vu16 *) 0x04000008 & 0x43) | 0x9000;
-    *(vu16 *) 0x04000008 = (*(vu16 *) 0x04000008 & ~3) | 2;
-    *(vu16 *) 0x0400000a = (*(vu16 *) 0x0400000a & 0x43) | 0x9204;
-    *(vu16 *) 0x0400000a = (*(vu16 *) 0x0400000a & ~3) | 1;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (t << 8);
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x9000;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 2;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x9204;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 1;
     d1 = (void *) func_0214a2f4();
     a = 0;
     func_0214d05c(a, d1, 0x1000);

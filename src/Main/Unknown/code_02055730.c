@@ -23,6 +23,7 @@
 #include "code_02148d34.h"
 #include "code_0214a390.h"
 #include "code_0214b824.h"
+#include "registers.h"
 
 static inline u32 func_02055808_inline(void) {
     if (data_0217aa00 == 0) {
@@ -241,7 +242,7 @@ void func_02055d5c(s32 a) {
     u8 x;
 
     x = data_0217aa04->mUnk_0a + (((16 - data_0217aa04->mUnk_0a) * data_0217aa04->mUnk_0c) >> 12);
-    *(vu32 *) 0x04000064 = x | (0xc0330000 | (u8) (16 - x) << 8);
+    reg_GX_DISPCAPCNT = x | (0xc0330000 | (u8) (16 - x) << 8);
     if (a != 0) {
         return;
     }
@@ -271,24 +272,24 @@ void func_02055e54(void) {
     func_02148fc8();
     func_02148fb4();
     if (data_0217aa04->mUnk_08 & 1) {
-        *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & ~0x1f00) | 0x300;
-        *(vu32 *) 0x04001000 = (*(vu32 *) 0x04001000 & ~0x1f00) | 0x1000;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | 0x300;
+        reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1000;
         func_021492d8(4);
         func_021491b0(8);
         data_0217aa04->mUnk_08 &= ~1;
         x = 2;
         y = 1;
     } else {
-        *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & ~0x1f00) | 0x300;
-        *(vu32 *) 0x04001000 = (*(vu32 *) 0x04001000 & ~0x1f00) | 0x400;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | 0x300;
+        reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x400;
         func_0214922c(4);
         func_021492d8(8);
         data_0217aa04->mUnk_08 |= 1;
         x = 3;
         y = 0;
     }
-    *(vu16 *) 0x04000304 = (*(vu16 *) 0x04000304 & ~0x8000) | (y << 15);
-    *(vu32 *) 0x04000064 = 0x80300010 | (x << 16);
+    reg_GX_POWCNT = (reg_GX_POWCNT & ~0x8000) | (y << 15);
+    reg_GX_DISPCAPCNT = 0x80300010 | (x << 16);
 }
 
 void func_02055f68(void) {
@@ -336,7 +337,7 @@ void func_02055fc8(void) {
     func_0214bf64(v1, 0, 0x400);
     VBlankIntrWait();
     data_0217aa04->mUnk_08 &= ~1;
-    *(vu16 *) 0x04000304 = *(vu16 *) 0x04000304 | 0x8000;
+    reg_GX_POWCNT = reg_GX_POWCNT | 0x8000;
     func_02055e54();
 }
 

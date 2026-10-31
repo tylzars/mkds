@@ -1,5 +1,6 @@
 #include "Main/Unknown/code_0203810c.h"
 #include "code_0214a390.h"
+#include "registers.h"
 // Enum-typed parameters of the inlines below: the original reads their values before the register.
 typedef enum { UNK_0203810C_ARG_0 } Unk0203810c_Arg;
 
@@ -52,11 +53,11 @@ void func_0203810c(Unk0203810c *a, s32 b) {
     switch (a->mUnk_00) {
         case 1:
             if (b != 0) {
-                *(vu32 *) 0x0400001c = 0;
+                reg_G2_BG3OFS = 0;
                 func_0203810c_inline((vu16 *) 0x0400000e, q);
                 func_0203810c_inline2((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06, (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
             } else {
-                *(vu32 *) 0x0400101c = 0;
+                reg_G2S_DB_BG3OFS = 0;
                 func_0203810c_inline((vu16 *) 0x0400100e, q);
                 func_0203810c_inline2((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06, (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
             }
@@ -159,11 +160,11 @@ void func_020386d0(Unk0203810c *a, s32 b) {
     switch (a->mUnk_00) {
         case 1:
             if (b != 0) {
-                *(vu32 *) 0x04000018 = 0;
+                reg_G2_BG2OFS = 0;
                 func_020386d0_inline((vu16 *) 0x0400000c, q);
                 func_020386d0_inline2((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06, (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
             } else {
-                *(vu32 *) 0x04001018 = 0;
+                reg_G2S_DB_BG2OFS = 0;
                 func_020386d0_inline((vu16 *) 0x0400100c, q);
                 func_020386d0_inline2((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06, (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
             }

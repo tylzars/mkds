@@ -10,6 +10,7 @@
 #include "01/code_021a1000.h"
 #include "Main/Unknown/code_02028000.h"
 #include "Main/Unknown/code_020cc000.h"
+#include "registers.h"
 
 #pragma optimize_for_size on
 
@@ -18,15 +19,15 @@
 void func_ov001_02185778(int param_1)
 {
     if (param_1 != 0) {
-        *(vu16 *)0x0400000a |= 0x40;
+        reg_G2_BG1CNT |= 0x40;
     } else {
-        *(vu16 *)0x0400000a &= ~0x40;
+        reg_G2_BG1CNT &= ~0x40;
     }
 }
 
 void func_ov001_02185740(u32 param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5)
 {
-    *(vu16 *)0x0400000a = (*(vu16 *)0x0400000a & 0x43) | (param_1 << 14) | (param_2 << 7) | (param_3 << 8) | (param_4 << 2) | (param_5 << 13);
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | (param_1 << 14) | (param_2 << 7) | (param_3 << 8) | (param_4 << 2) | (param_5 << 13);
 }
 
 #pragma thumb on
@@ -62,12 +63,12 @@ void func_ov001_021856c0(void)
 
 void func_ov001_021856a8(u32 param_1)
 {
-    *(vu32 *)0x04000000 = (*(vu32 *)0x04000000 & ~0x1f00) | (param_1 << 8);
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (param_1 << 8);
 }
 
 void func_ov001_0218568c(u32 param_1)
 {
-    *(vu32 *)0x04001000 = (*(vu32 *)0x04001000 & ~0x1f00) | (param_1 << 8);
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (param_1 << 8);
 }
 
 #pragma thumb on

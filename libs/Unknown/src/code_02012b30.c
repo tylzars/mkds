@@ -13,6 +13,7 @@
 #include "Main/Unknown/code_02013730.h"
 #include "Main/Unknown/code_02147000.h"
 #include "Main/Unknown/unk_02161000.h"
+#include "registers.h"
 
 void *func_020136f0(Unk020136f0 *a) {
     u8 *p;
@@ -292,9 +293,9 @@ void func_02012f58(Unk02012f58 *a, void *b) {
     s32 m[16];
 
     func_01ff9234();
-    *(vu32 *) 0x04000440 = 0;
-    *(vu32 *) 0x04000444 = 0;
-    *(vu32 *) 0x04000454 = 0;
+    reg_G3_MTX_MODE = 0;
+    reg_G3_MTX_PUSH = 0;
+    reg_G3_MTX_IDENTITY = 0;
     if (a != 0) {
         while (func_0214a7a4(m) != 0) {
         }
@@ -304,14 +305,14 @@ void func_02012f58(Unk02012f58 *a, void *b) {
         while (func_0214a75c(b) != 0) {
         }
     }
-    *(vu32 *) 0x04000448 = 1;
-    *(vu32 *) 0x04000440 = 2;
+    reg_G3_MTX_POP = 1;
+    reg_G3_MTX_MODE = 2;
 }
 
 void func_02012f24(void) {
     func_0214aa58();
     func_02011074();
-    *(vu32 *) 0x04000600 = (*(vu32 *) 0x04000600 & ~0xc0000000) | 0x80000000;
+    reg_G3X_GXSTAT = (reg_G3X_GXSTAT & ~0xc0000000) | 0x80000000;
 }
 
 s32 func_02012cbc(Unk020136f0 *a) {

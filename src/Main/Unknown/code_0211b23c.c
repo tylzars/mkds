@@ -42,6 +42,7 @@
 #include "Main/Unknown/code_0212b91c.h"
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_02148ca0.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -1171,14 +1172,14 @@ void func_0211b23c(void) {
     u32 b;
     p = data_0217d368;
     if (p->mUnk_b8 == 1 && (p->mUnk_2c == 3 || p->mUnk_68[2] == 1)) {
-        a = ((*(vu32 *) 0x04000000) & 0x1f00) >> 8;
+        a = ((reg_GX_DISPCNT) & 0x1f00) >> 8;
         a &= ~3;
-        (*(vu32 *) 0x04000000) = ((*(vu32 *) 0x04000000) & 0xffffe0ff) | (a << 8);
+        (reg_GX_DISPCNT) = ((reg_GX_DISPCNT) & 0xffffe0ff) | (a << 8);
     }
-    b = (*(vu16 *) 0x0400000c);
+    b = (reg_G2_BG2CNT);
     b &= ~3;
-    (*(vu16 *) 0x0400000c) = b;
-    (*(vu16 *) 0x0400000c) = ((*(vu16 *) 0x0400000c) & 0x43) | 0x9e10;
+    (reg_G2_BG2CNT) = b;
+    (reg_G2_BG2CNT) = ((reg_G2_BG2CNT) & 0x43) | 0x9e10;
     func_02116dc8();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_0212b91c();

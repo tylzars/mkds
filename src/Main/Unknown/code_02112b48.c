@@ -23,6 +23,7 @@
 #include "Main/Unknown/unk_0217d068.h"
 #include "00/code_02182fdc.h"
 #include "code_0212df7c.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -228,11 +229,11 @@ void func_02112bb4(void *a) {
     s32 j;
     u16 e;
     u16 x;
-    *(vu16 *) 0x04000008 = (*(vu16 *) 0x04000008 & ~3) | 2;
-    *(vu16 *) 0x0400000a = (*(vu16 *) 0x0400000a & ~3) | 1;
-    *(vu16 *) 0x04000008 = (*(vu16 *) 0x04000008 & 0x43) | 0xc800;
-    *(vu16 *) 0x0400000a = (*(vu16 *) 0x0400000a & 0x43) | 0xcc00;
-    *(vu16 *) 0x0400100a = (*(vu16 *) 0x0400100a & 0x43) | 0x1018;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 2;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 1;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0xc800;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0xcc00;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0x1018;
     data_0217d348 = func_02036bec(a, 0x94);
     data_0217d348->mUnk_48 = a;
     data_0217d348->mUnk_6a = func_02111418();
@@ -324,8 +325,8 @@ void func_02112b48(void) {
     } else {
         func_021113fc(0);
         func_021113f0(0);
-        v = (*(vu32 *) 0x04000000 & 0x1f00) >> 8;
-        *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & 0xffffe0ff) | ((v & ~0x13) << 8);
+        v = (reg_GX_DISPCNT & 0x1f00) >> 8;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((v & ~0x13) << 8);
     }
     data_0217d348 = 0;
 }

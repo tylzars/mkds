@@ -22,6 +22,7 @@
 #include "Main/Unknown/code_02148ca0.h"
 #include "Main/Unknown/unk_0215c000.h"
 #include "Main/Unknown/unk_0217d000.h"
+#include "registers.h"
 
 #pragma thumb on
 void func_02119a38(void) {
@@ -62,10 +63,10 @@ void func_02119770(void *param_1, void *param_2, void *param_3, s32 param_4) {
     s32 i;
     u32 v;
 
-    *(vu16 *)0x04000008 = (*(vu16 *)0x04000008 & ~3) | 1;
-    *(vu16 *)0x0400100e = (*(vu16 *)0x0400100e & ~3) | 1;
-    *(vu16 *)0x04000008 = (*(vu16 *)0x04000008 & 0x43) | 0x9004;
-    *(vu16 *)0x0400100e = (*(vu16 *)0x0400100e & 0x43) | 0x8300;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 1;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x9004;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8300;
     a = func_02036948(param_1);
     data_0217d364 = func_02036bec(a, 0x70);
     data_0217d364->mUnk_30 = a;
@@ -112,10 +113,10 @@ void func_021196f4(void) {
     if (data_0217d364->mUnk_6c == 1) {
         if (data_0217d364->mUnk_40 == 0) {
             if (func_0211e130() != 0) {
-                *(vu32 *)0x04000000 = (*(vu32 *)0x04000000 & 0xffffe0ff) | 0x1800;
+                reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1800;
             }
         } else {
-            *(vu32 *)0x04000000 = (*(vu32 *)0x04000000 & 0xffffe0ff) | 0x1800;
+            reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1800;
         }
     }
     if (*(vu16 *)0x027ffc40 != 2) {

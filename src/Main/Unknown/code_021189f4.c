@@ -38,6 +38,7 @@
 #include "Main/Unknown/unk_0217d068.h"
 #include "code_0201ea58.h"
 #include "code_0212df7c.h"
+#include "registers.h"
 
 #pragma thumb on
 static inline s32 func_02119340_inline(Unk02175628Index i) {
@@ -349,8 +350,8 @@ s32 func_02118e64(void) {
 }
 
 void func_02118e30(void) {
-    *(vu32 *)0x04000010 = (-data_0217d364->mUnk_44 << 16) & 0x1ff0000;
-    *(vu32 *)0x0400101c = (-data_0217d364->mUnk_48 << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (-data_0217d364->mUnk_44 << 16) & 0x1ff0000;
+    reg_G2S_DB_BG3OFS = (-data_0217d364->mUnk_48 << 16) & 0x1ff0000;
 }
 
 void func_02118d44(void) {

@@ -10,6 +10,7 @@
 #include "code_0200fd1c.h"
 #include "code_0214a348.h"
 #include "code_0214d018.h"
+#include "registers.h"
 
 u32 func_ov003_021ce920(void (*a)(u32)) {
     Unk021da280 *d;
@@ -47,7 +48,7 @@ u32 func_ov003_021ce920(void (*a)(u32)) {
 void func_ov003_021cea3c(u32 a) {
     s32 i;
 
-    *(vu32 *) 0x04000000 = *(vu32 *) 0x04000000 & 0xffff1fff;
+    reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
     func_ov003_021d197c(data_ov003_021da284->mUnk_00);
     func_ov003_021d197c(data_ov003_021da284->mUnk_04);
     for (i = 0; i < data_ov003_021d6720[data_ov003_021da284->mUnk_1c]; i++) {

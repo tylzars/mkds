@@ -1,5 +1,6 @@
 #include "00/code_02182fdc.h"
 #include "Main/Unknown/code_02148ca0.h"
+#include "registers.h"
 
 void func_ov000_02184130(void) {
     Unk020b4934 *chr;
@@ -18,7 +19,7 @@ void func_ov000_02184130(void) {
     func_020b49bc(&data_ov000_021b4c74->mUnk_16e8, func_0204799c("WiFi_VS_matching_s.nce.ncgr"));
     func_020b48b4(&data_ov000_021b4c74->mUnk_16e4, func_0204799c("WiFi_VS_matching_s.nce.ncer"));
     func_020b4a44(&data_ov000_021b4c74->mUnk_16ec, func_0204799c("WiFi_VS_matching_s_o.nclr"));
-    (*(vu16 *) 0x0400100e) = ((*(vu16 *) 0x0400100e) & 0x43) | 0x4400;
+    (reg_G2S_DB_BG3CNT) = ((reg_G2S_DB_BG3CNT) & 0x43) | 0x4400;
     zero = 0;
     func_0214cfe4(zero, data_ov000_021b4c74->mUnk_d4, 0x1000);
     func_0214cffc(scrn->mUnk_0c, data_ov000_021b4c74->mUnk_d4, 0x800);
@@ -521,8 +522,8 @@ void func_ov000_02183330(void) {
     s32 x;
     u32 plane;
 
-    plane = ((*(vu32 *) 0x04001000) & 0x1f00) >> 8;
-    (*(vu32 *) 0x04001000) = ((*(vu32 *) 0x04001000) & 0xffffe0ff) | ((plane | 8) << 8);
+    plane = ((reg_GXS_DB_DISPCNT) & 0x1f00) >> 8;
+    (reg_GXS_DB_DISPCNT) = ((reg_GXS_DB_DISPCNT) & 0xffffe0ff) | ((plane | 8) << 8);
     x = -data_ov000_021b4c74->mUnk_10;
     if (x <= -0x100) {
         x = -0x100;
@@ -530,7 +531,7 @@ void func_ov000_02183330(void) {
     if (x >= 0x100) {
         x = 0x100;
     }
-    (*(vu32 *) 0x0400101c) = x & 0x1ff;
+    (reg_G2S_DB_BG3OFS) = x & 0x1ff;
 }
 
 void func_ov000_0218330c(void) {

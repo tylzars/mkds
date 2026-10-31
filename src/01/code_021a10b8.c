@@ -20,6 +20,7 @@
 #include "01/code_021a1000.h"
 #include "code_0212df7c.h"
 #include "code_0201ea58.h"
+#include "registers.h"
 
 void func_ov001_021a13d8(void) {
     u32 r5 = -1;
@@ -232,7 +233,7 @@ int func_ov001_021a11c4(void)
 
 void func_ov001_021a11a4(void)
 {
-    *(vu32 *)0x04000010 = (-data_ov001_021ca418->mUnk_30 << 16) & 0x01ff0000;
+    reg_G2_BG0OFS = (-data_ov001_021ca418->mUnk_30 << 16) & 0x01ff0000;
 }
 
 void func_ov001_021a10b8(void)

@@ -10,6 +10,7 @@
 #include "03/unk_021d6000.h"
 #include "03/unk_021d7000.h"
 #include "code_0214a390.h"
+#include "registers.h"
 
 void func_ov003_021cef90(void) {
     func_ov003_021d34c8(0, data_ov003_021da284->mUnk_14);
@@ -47,7 +48,7 @@ void func_ov003_021cefc0(u32 a, s32 b, s32 c, u32 d, u32 e) {
     func_ov003_021d254c(0, 3, 0x1f, 1);
     func_ov003_021d2658(0, 1, data_ov003_021d6728);
     func_ov003_021cec50(0xc0);
-    *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & 0xffff1fff) | 0x6000;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffff1fff) | 0x6000;
     if (c != 0) {
         data_ov003_021da284->mUnk_14 = func_ov003_021d3544(1, (u32) func_ov003_021cef28, 0, 0x78);
     } else {

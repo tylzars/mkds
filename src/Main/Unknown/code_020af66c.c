@@ -54,6 +54,7 @@
 #include "code_0214a390.h"
 #include "code_0214b338.h"
 #include "code_0214b824.h"
+#include "registers.h"
 
 void func_020af66c(void) {
     u32 v;
@@ -166,8 +167,8 @@ void func_020af86c(void) {
     func_020c31ec();
     func_020c6f84();
     func_020c476c();
-    *(vu32 *) 0x04000000 &= ~0xe000;
-    *(vu32 *) 0x04001000 &= ~0xe000;
+    reg_GX_DISPCNT &= ~0xe000;
+    reg_GXS_DB_DISPCNT &= ~0xe000;
 }
 
 void func_020af99c(void) {
@@ -190,17 +191,17 @@ void func_020af99c(void) {
     func_0214bc9c(data_0217b350->mUnk_81c[0]->mUnk_0c, 0, data_0217b350->mUnk_81c[0]->mUnk_08);
     func_0214c090(func_020b85f0(0)->mUnk_00->mUnk_0c, 0, func_020b85f0(0)->mUnk_00->mUnk_08);
     func_0214bf04(func_020b85f0(0)->mUnk_04->mUnk_14, 0, 0x4000);
-    *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & ~0xe000) | 0xe000;
-    w = *(vu16 *) 0x04000048;
-    *(vu16 *) 0x04000048 = (u32) ((w & ~0x3f) | 0x1f) | 0x20;
-    *(vu16 *) 0x04000040 = 0xff;
-    *(vu16 *) 0x04000044 = 0x60c0;
-    *(vu16 *) 0x04000048 = (u32) ((*(vu16 *) 0x04000048 & ~0x3f00) | 0x1f00) | 0x2000;
-    *(vu16 *) 0x04000042 = 0x40ff;
-    *(vu16 *) 0x04000046 = 0x60;
-    *(vu16 *) 0x0400004a = (u32) ((*(vu16 *) 0x0400004a & ~0x3f00) | 0x1200) | 0x2000;
-    *(vu16 *) 0x0400004a = (u32) ((*(vu16 *) 0x0400004a & ~0x3f) | 0xf) | 0x20;
-    *(vu32 *) 0x04001000 &= ~0xe000;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0xe000) | 0xe000;
+    w = reg_G2_WININ;
+    reg_G2_WININ = (u32) ((w & ~0x3f) | 0x1f) | 0x20;
+    reg_G2_WIN0H = 0xff;
+    reg_G2_WIN0V = 0x60c0;
+    reg_G2_WININ = (u32) ((reg_G2_WININ & ~0x3f00) | 0x1f00) | 0x2000;
+    reg_G2_WIN1H = 0x40ff;
+    reg_G2_WIN1V = 0x60;
+    reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f00) | 0x1200) | 0x2000;
+    reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f) | 0xf) | 0x20;
+    reg_GXS_DB_DISPCNT &= ~0xe000;
     func_02148934(5);
     func_0214c028(func_020b85f0(6)->mUnk_00->mUnk_0c, 0, func_020b85f0(6)->mUnk_00->mUnk_08);
     func_0214bea4(func_020b85f0(6)->mUnk_04->mUnk_14, 0, 0x4000);
@@ -216,10 +217,10 @@ void func_020af99c(void) {
     func_0214b468(data_0217b34c + 0x100, 0x6000, 0x200);
     func_0214b41c();
     func_0214c0f8(func_020b33c4()->mUnk_0c, 0, 0x200);
-    *(vu32 *) 0x04001010 = 0;
-    *(vu16 *) 0x04001008 = *(vu16 *) 0x04001008 & ~3;
-    *(vu16 *) 0x04001008 &= ~0x40;
-    *(vu16 *) 0x04001008 = (*(vu16 *) 0x04001008 & 0x43) | 0x10c;
+    reg_G2S_DB_BG0OFS = 0;
+    reg_G2S_DB_BG0CNT = reg_G2S_DB_BG0CNT & ~3;
+    reg_G2S_DB_BG0CNT &= ~0x40;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x10c;
     func_0214ba94(func_020b3374()->mUnk_14, 0, func_020b3374()->mUnk_10);
     func_0214bdd4(func_020b32f8(), 0, 0x600);
     func_020b18b0();

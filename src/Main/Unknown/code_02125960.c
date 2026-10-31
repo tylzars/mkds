@@ -5,6 +5,7 @@
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "code_02016468.h"
+#include "registers.h"
 
 const char *data_0216e37c[1] = {"back_screen_s_b_00.nclr"};
 const char *data_0216e380[1] = {"back_screen_s_b_00.ncgr"};
@@ -46,14 +47,14 @@ void func_02125ba4(void) {
     u32 v;
     u32 w;
 
-    v = (*(vu32 *)0x04000000 & 0x1f00) >> 8;
-    *(vu32 *)0x04000000 = (*(vu32 *)0x04000000 & 0xffffe0ff) | ((v | 8) << 8);
-    *(vu16 *)0x0400000e = (*(vu16 *)0x0400000e & ~3) | 3;
-    *(vu16 *)0x0400000e = (*(vu16 *)0x0400000e & 0x43) | 0x1d18;
-    w = (*(vu32 *)0x04001000 & 0x1f00) >> 8;
-    *(vu32 *)0x04001000 = (*(vu32 *)0x04001000 & 0xffffe0ff) | ((w | 2) << 8);
-    *(vu16 *)0x0400100a = (*(vu16 *)0x0400100a & ~3) | 3;
-    *(vu16 *)0x0400100a = (*(vu16 *)0x0400100a & 0x43) | 0xd00;
+    v = (reg_GX_DISPCNT & 0x1f00) >> 8;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((v | 8) << 8);
+    reg_G2_BG3CNT = (reg_G2_BG3CNT & ~3) | 3;
+    reg_G2_BG3CNT = (reg_G2_BG3CNT & 0x43) | 0x1d18;
+    w = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((w | 2) << 8);
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0xd00;
 }
 
 s32 func_02125960(s32 a) {

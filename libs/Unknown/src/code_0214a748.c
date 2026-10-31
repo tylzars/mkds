@@ -4,6 +4,7 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_0214a000.h"
 #include "Main/Unknown/code_0214d000.h"
+#include "registers.h"
 
 void func_0214b048(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk0214ad4c *i) {
     s64 x;
@@ -19,7 +20,7 @@ void func_0214b048(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
 
     func_02147dec(d - c);
     if (h != 0) {
-        *(vu32 *) 0x04000440 = 0;
+        reg_G3_MTX_MODE = 0;
         p = (vu32 *) 0x04000458;
     }
     if (i != 0) {
@@ -113,7 +114,7 @@ void func_0214ad4c(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
 
     func_02147dec(d - c);
     if (h != 0) {
-        *(vu32 *) 0x04000440 = 0;
+        reg_G3_MTX_MODE = 0;
         p = (vu32 *) 0x04000458;
     }
     if (i != 0) {
@@ -212,7 +213,7 @@ void func_0214abb4(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, Unk02012f
     func_0214818c(&v1, &v1);
     func_021483a0(&v0, &v1, &v2);
     if (d != 0) {
-        *(vu32 *) 0x04000440 = 2;
+        reg_G3_MTX_MODE = 2;
         p = (vu32 *) 0x0400045c;
         *p = v1.x;
         *p = v2.x;
@@ -250,30 +251,30 @@ void func_0214abb4(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, Unk02012f
 
 void func_0214aa58(void) {
     func_0214a99c();
-    *(vu32 *) 0x04000504 = 0;
-    while (*(vu32 *) 0x04000600 & 0x8000000) {
+    reg_G3_END_VTXS = 0;
+    while (reg_G3X_GXSTAT & 0x8000000) {
     }
-    *(vu16 *) 0x04000060 = 0;
-    *(vu32 *) 0x04000600 = 0;
-    *(vu32 *) 0x04000010 = 0;
-    *(vu16 *) 0x04000060 |= 0x2000;
-    *(vu16 *) 0x04000060 |= 0x1000;
-    *(vu16 *) 0x04000060 &= 0xffffcffd;
-    *(vu16 *) 0x04000060 = (*(vu16 *) 0x04000060 & ~0x3000) | 0x10;
-    *(vu16 *) 0x04000060 &= 0xcffb;
-    *(vu32 *) 0x04000600 |= 0x8000;
-    *(vu32 *) 0x04000600 = (*(vu32 *) 0x04000600 & ~0xc0000000) | 0x80000000;
+    reg_G3X_DISP3DCNT = 0;
+    reg_G3X_GXSTAT = 0;
+    reg_G2_BG0OFS = 0;
+    reg_G3X_DISP3DCNT |= 0x2000;
+    reg_G3X_DISP3DCNT |= 0x1000;
+    reg_G3X_DISP3DCNT &= 0xffffcffd;
+    reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 0x10;
+    reg_G3X_DISP3DCNT &= 0xcffb;
+    reg_G3X_GXSTAT |= 0x8000;
+    reg_G3X_GXSTAT = (reg_G3X_GXSTAT & ~0xc0000000) | 0x80000000;
     func_0214a8ec();
-    *(vu32 *) 0x04000350 = 0;
-    *(vu16 *) 0x04000354 = 0x7fff;
-    *(vu16 *) 0x04000356 = 0;
-    *(vu32 *) 0x04000358 = 0;
-    *(vu16 *) 0x0400035c = 0;
-    *(vu16 *) 0x04000008 &= ~3;
+    reg_G3X_CLEAR_COLOR = 0;
+    reg_G3X_CLEAR_DEPTH = 0x7fff;
+    reg_G3X_CLRIMAGE_OFFSET = 0;
+    reg_G3X_FOG_COLOR = 0;
+    reg_G3X_FOG_OFFSET = 0;
+    reg_G2_BG0CNT &= ~3;
     func_0214a648();
-    *(vu32 *) 0x040004a4 = 0x1f0080;
-    *(vu32 *) 0x040004a8 = 0;
-    *(vu32 *) 0x040004ac = 0;
+    reg_G3_POLYGON_ATTR = 0x1f0080;
+    reg_G3_TEXIMAGE_PARAM = 0;
+    reg_G3_PLTT_BASE = 0;
 }
 
 void func_0214a9d0(void) {

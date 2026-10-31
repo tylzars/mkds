@@ -18,6 +18,7 @@
 #include "code_02135014.h"
 #include "code_0214a4dc.h"
 #include "code_0214a748.h"
+#include "registers.h"
 
 void func_02089fa0(void) {
     Unk02012f58 a;
@@ -56,14 +57,14 @@ void func_02089fa0(void) {
         }
     }
     if (data_0217b034->mUnk_784.mUnk_08 != 0) {
-        *(vu16 *) 0x04000060 = (*(vu16 *) 0x04000060 & ~0x3000) | 8;
-        *(vu32 *) 0x040004c4 = 0x4210;
-        *(vu32 *) 0x040004c0 = 0x42100000;
-        *(vu32 *) 0x04000440 = 0;
+        reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 8;
+        reg_G3_SPE_EMI = 0x4210;
+        reg_G3_DIF_AMB = 0x42100000;
+        reg_G3_MTX_MODE = 0;
         func_0214a530(&data_0217b034->mUnk_744);
-        *(vu32 *) 0x040004a8 = 0x20000000;
-        *(vu32 *) 0x04000440 = 2;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_TEXIMAGE_PARAM = 0x20000000;
+        reg_G3_MTX_MODE = 2;
+        reg_G3_MTX_IDENTITY = 0;
         func_02089d70(&data_0217b034->mUnk_784);
     }
 }
@@ -259,7 +260,7 @@ void func_0208aa30(void *a) {
     data_0217b034 = func_02036bec(a, 0x79c);
     func_0208a460(a);
     data_0217b034->mUnk_73c = 9;
-    *(vu32 *) 0x04000440 = 0;
+    reg_G3_MTX_MODE = 0;
     func_0214ad4c(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x200, 1, &data_0217b034->mUnk_744);
     p = &data_0217b034->mUnk_784;
     data_0217b034->mUnk_784.mUnk_00 = 0;

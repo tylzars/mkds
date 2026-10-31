@@ -12,6 +12,7 @@
 #include "Main/Unknown/code_02128210.h"
 #include "01/code_0219c000.h"
 #include "code_0201ea58.h"
+#include "registers.h"
 
 const u8 data_ov001_021a6bc4[] = {0};
 const u8 data_ov001_021a6bc8[] = {0, 1};
@@ -83,7 +84,7 @@ void func_ov001_0219d2c0(void *param_1, s32 param_2, void *param_3, void *param_
             data_ov001_021a9bf8->mUnk_1034[0][6].mUnk_00 = 0;
         }
     }
-    *(vu16 *) 0x0400000c = (*(vu16 *) 0x0400000c & 0x43) | 0x9e10;
+    reg_G2_BG2CNT = (reg_G2_BG2CNT & 0x43) | 0x9e10;
     func_021281c8(14);
 }
 

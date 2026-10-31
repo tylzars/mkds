@@ -20,6 +20,7 @@
 #include "Main/Unknown/unk_02154000.h"
 #include "Main/Unknown/unk_02163000.h"
 #include "Main/Unknown/unk_02174000.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -106,9 +107,9 @@ void func_0202f2b4(void *a) {
 #pragma thumb off
 
 void func_0202f454(u32 v) {
-    *(vu32 *) 0x04001000 = (*(vu32 *) 0x04001000 & 0xffcfffef) | v;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | v;
 }
 
 void func_0202f478(u32 v) {
-    *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & 0xffcfffef) | v;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | v;
 }

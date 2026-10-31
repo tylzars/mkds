@@ -7,6 +7,7 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "code_02147cd8.h"
 #include "code_02148538.h"
+#include "registers.h"
 
 void func_0210a53c(Unk0206bcb0 *a)
 {
@@ -360,12 +361,12 @@ u32 func_02109184(Unk0210bcf4 *p)
     } else {
         a = p->mUnk_20->mUnk_0c;
     }
-    *(vu16 *) 0x040002b0 = 0;
+    reg_CP_SQRTCNT = 0;
     *(vu32 *) 0x040002b8 = a;
     b = p->mUnk_04;
     p->mUnk_08 = func_02073e4c(b) >> 12;
     p->mUnk_0c = func_02073e04(b) >> 12;
-    while (*(vu16 *) 0x040002b0 & 0x8000) {
+    while (reg_CP_SQRTCNT & 0x8000) {
     }
     return *(vu32 *) 0x040002b4;
 }

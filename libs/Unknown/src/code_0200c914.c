@@ -5,6 +5,7 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_00000000.h"
+#include "registers.h"
 
 u16 data_021617bc[8] = {8, 9, 10, 11, 3, 4, 5, 6};
 Unk0216fee0 data_0216fee0[8];
@@ -70,12 +71,12 @@ u32 func_0200cb1c(u32 v) {
     u16 w;
     u32 o;
 
-    w = *(vu16 *) 0x04000208;
-    *(vu16 *) 0x04000208 = 0;
-    o = *(vu32 *) 0x04000210;
-    *(vu32 *) 0x04000210 = v;
-    *(vu16 *) 0x04000208;
-    *(vu16 *) 0x04000208 = w;
+    w = reg_OS_IME;
+    reg_OS_IME = 0;
+    o = reg_OS_IE;
+    reg_OS_IE = v;
+    reg_OS_IME;
+    reg_OS_IME = w;
     return o;
 }
 
@@ -83,12 +84,12 @@ u32 func_0200cae4(u32 m) {
     u16 w;
     u32 o;
 
-    w = *(vu16 *) 0x04000208;
-    *(vu16 *) 0x04000208 = 0;
-    o = *(vu32 *) 0x04000210;
-    *(vu32 *) 0x04000210 = o | m;
-    *(vu16 *) 0x04000208;
-    *(vu16 *) 0x04000208 = w;
+    w = reg_OS_IME;
+    reg_OS_IME = 0;
+    o = reg_OS_IE;
+    reg_OS_IE = o | m;
+    reg_OS_IME;
+    reg_OS_IME = w;
     return o;
 }
 
@@ -96,12 +97,12 @@ u32 func_0200ca9c(u32 m) {
     u16 w;
     u32 o;
 
-    w = *(vu16 *) 0x04000208;
-    *(vu16 *) 0x04000208 = 0;
-    o = *(vu32 *) 0x04000210;
-    *(vu32 *) 0x04000210 = o & ~m;
-    *(vu16 *) 0x04000208;
-    *(vu16 *) 0x04000208 = w;
+    w = reg_OS_IME;
+    reg_OS_IME = 0;
+    o = reg_OS_IE;
+    reg_OS_IE = o & ~m;
+    reg_OS_IME;
+    reg_OS_IME = w;
     return o;
 }
 
@@ -109,12 +110,12 @@ u32 func_0200ca68(u32 v) {
     u16 w;
     u32 o;
 
-    w = *(vu16 *) 0x04000208;
-    *(vu16 *) 0x04000208 = 0;
-    o = *(vu32 *) 0x04000214;
-    *(vu32 *) 0x04000214 = v;
-    *(vu16 *) 0x04000208;
-    *(vu16 *) 0x04000208 = w;
+    w = reg_OS_IME;
+    reg_OS_IME = 0;
+    o = reg_OS_IF;
+    reg_OS_IF = v;
+    reg_OS_IME;
+    reg_OS_IME = w;
     return o;
 }
 

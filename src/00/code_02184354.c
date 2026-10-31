@@ -3,13 +3,14 @@
 #include "Main/Unknown/code_02029930.h"
 #include "Main/Unknown/code_02148ca0.h"
 #include "00/code_02180650.h"
+#include "registers.h"
 
 void func_ov000_02184354(void) {
     u32 a;
     func_0210895c();
-    a = (*(vu32 *) 0x04001000 & 0x1f00) >> 8;
-    *(vu32 *) 0x04001000 = (*(vu32 *) 0x04001000 & 0xffffe0ff) | ((a & ~8) << 8);
-    *(vu16 *) 0x0400100e = (*(vu16 *) 0x0400100e & 0x43) | 0xf00;
+    a = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((a & ~8) << 8);
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0xf00;
     data_ov000_021b4c74 = 0;
 }
 

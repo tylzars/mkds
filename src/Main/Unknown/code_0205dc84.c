@@ -28,6 +28,7 @@
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "registers.h"
 
 static inline void func_0205dee0_inline(void *c, void *e) {
     u8 d;
@@ -35,8 +36,8 @@ static inline void func_0205dee0_inline(void *c, void *e) {
     if (func_02005198(0, (u32) e) != 0) {
         func_0200cc74(1, 0);
         func_0200ca9c(1);
-        *(vu16 *) 0x04000208;
-        *(vu16 *) 0x04000208 = 0;
+        reg_OS_IME;
+        reg_OS_IME = 0;
         func_0200fca0();
         func_02148a58(0);
         func_ov000_021a397c(2);

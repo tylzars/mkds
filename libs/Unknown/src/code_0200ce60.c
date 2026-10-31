@@ -6,6 +6,7 @@
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_0200f000.h"
 #include "Main/Unknown/code_0214d000.h"
+#include "registers.h"
 
 s32 data_0216ff40;
 
@@ -29,8 +30,8 @@ void func_0200d028(void) {
     *(u32 *) 0x027fffb4 = 0xffff0000;
     v = 0;
     func_0214d018(v, (void *) 0x027fffc0, 0x28);
-    *(vu16 *) 0x04000204 |= 0x800;
-    *(vu16 *) 0x04000204 |= 0x80;
+    reg_MI_EXMEMCNT |= 0x800;
+    reg_MI_EXMEMCNT |= 0x80;
     func_0200cf20(0x7e, (Unk0200ce60 *) 0x027ffff0, 0);
     func_0200cfc0(0x7f, (Unk0200ce60 *) 0x027ffff0, 0);
 }

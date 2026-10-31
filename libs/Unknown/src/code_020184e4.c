@@ -10,6 +10,7 @@
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_02173000.h"
+#include "registers.h"
 
 void func_0201c09c(Unk020184e4 *p, Unk0201e3c8 *n) {
     Vec3 t;
@@ -36,8 +37,8 @@ void func_0201c09c(Unk020184e4 *p, Unk0201e3c8 *n) {
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
     k = (n->mUnk_2e_0 * (n->mUnk_2e_5 + 1)) >> 5;
-    *(vu32 *) 0x040004a4 = (n->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (k << 16);
-    *(vu32 *) 0x040004a4; // read back after the write
+    reg_G3_POLYGON_ATTR = (n->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (k << 16);
+    reg_G3_POLYGON_ATTR; // read back after the write
     if (k == 0) {
         return;
     }
@@ -70,7 +71,7 @@ void func_0201c09c(Unk020184e4 *p, Unk0201e3c8 *n) {
         m.mUnk_24.x = t.x;
         m.mUnk_24.y = t.y;
         m.mUnk_24.z = t.z;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_MTX_IDENTITY = 0;
         func_0214a4f8(&m);
     } else {
         t.x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
@@ -91,16 +92,16 @@ void func_0201c09c(Unk020184e4 *p, Unk0201e3c8 *n) {
         m.mUnk_24.x = t.x;
         m.mUnk_24.y = t.y;
         m.mUnk_24.z = t.z;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_MTX_IDENTITY = 0;
         z = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
         y = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         x = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        *(vu32 *) 0x04000470 = x;
-        *(vu32 *) 0x04000470 = y;
-        *(vu32 *) 0x04000470 = z;
+        reg_G3_MTX_TRANS = x;
+        reg_G3_MTX_TRANS = y;
+        reg_G3_MTX_TRANS = z;
         func_0214a4f8(&m);
     }
-    *(vu32 *) 0x04000480 = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
+    reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                                   ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
     func_0201c690(p->mUnk_40->mUnk_78, p->mUnk_40->mUnk_7a, p->mUnk_40->mUnk_20->mUnk_00->mUnk_50,
                   p->mUnk_40->mUnk_20->mUnk_00->mUnk_52);
@@ -125,8 +126,8 @@ void func_0201bc48(Unk020184e4 *p, Unk0201e3c8 *n) {
     s = p->mUnk_40->mUnk_20->mUnk_00->mUnk_30;
     q = p->mUnk_44;
     k = (n->mUnk_2e_0 * (n->mUnk_2e_5 + 1)) >> 5;
-    *(vu32 *) 0x040004a4 = (n->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (k << 16);
-    *(vu32 *) 0x040004a4; // read back after the write
+    reg_G3_POLYGON_ATTR = (n->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (k << 16);
+    reg_G3_POLYGON_ATTR; // read back after the write
     if (k == 0) {
         return;
     }
@@ -163,7 +164,7 @@ void func_0201bc48(Unk020184e4 *p, Unk0201e3c8 *n) {
         m.mUnk_24.x = t.x;
         m.mUnk_24.y = t.y;
         m.mUnk_24.z = t.z;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_MTX_IDENTITY = 0;
         func_0214a4f8(&m);
     } else {
         t.x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
@@ -184,18 +185,18 @@ void func_0201bc48(Unk020184e4 *p, Unk0201e3c8 *n) {
         m.mUnk_24.x = t.x;
         m.mUnk_24.y = t.y;
         m.mUnk_24.z = t.z;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_MTX_IDENTITY = 0;
         z = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
         y = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         x = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        *(vu32 *) 0x04000470 = x;
-        *(vu32 *) 0x04000470 = y;
-        *(vu32 *) 0x04000470 = z;
+        reg_G3_MTX_TRANS = x;
+        reg_G3_MTX_TRANS = y;
+        reg_G3_MTX_TRANS = z;
         func_0214a4f8(&m);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
-    *(vu32 *) 0x04000480 = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
+    reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                                   ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
     func_0201c690(p->mUnk_40->mUnk_7c, p->mUnk_40->mUnk_7e, 0, 0);
 }
@@ -228,7 +229,7 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
     m = p->mUnk_44;
     s = p->mUnk_40->mUnk_20->mUnk_00->mUnk_30;
     a = (e->mUnk_2e_0 * (e->mUnk_2e_5 + 1)) >> 5;
-    r = *(vu32 *) 0x040004a4 = p->mUnk_3c | 0xc0 | (e->mUnk_2e_10 << 24) | (a << 16);
+    r = reg_G3_POLYGON_ATTR = p->mUnk_3c | 0xc0 | (e->mUnk_2e_10 << 24) | (a << 16);
     if (a == 0) {
         return;
     }
@@ -283,7 +284,7 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
         buf[9] = pos.x;
         buf[10] = pos.y;
         buf[11] = pos.z;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_MTX_IDENTITY = 0;
         func_0214a4f8(buf);
     } else {
         pos.x = e->mUnk_08.x + e->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
@@ -322,18 +323,18 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
         buf[9] = pos.x;
         buf[10] = pos.y;
         buf[11] = pos.z;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_MTX_IDENTITY = 0;
         n = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
         j = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         i = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        *(vu32 *) 0x04000470 = i;
-        *(vu32 *) 0x04000470 = j;
-        *(vu32 *) 0x04000470 = n;
+        reg_G3_MTX_TRANS = i;
+        reg_G3_MTX_TRANS = j;
+        reg_G3_MTX_TRANS = n;
         func_0214a4f8(buf);
     }
     q = e->mUnk_36;
     k = p->mUnk_40->mUnk_72;
-    *(vu32 *) 0x04000480 = (u16) ((((q & 0x1f) * (k & 0x1f)) >> 5) | ((((q & 0x3e0) * (k & 0x3e0)) >> 15) << 5) |
+    reg_G3_COLOR = (u16) ((((q & 0x1f) * (k & 0x1f)) >> 5) | ((((q & 0x3e0) * (k & 0x3e0)) >> 15) << 5) |
                                   ((((q & 0x7c00) * (k & 0x7c00)) >> 25) << 10));
     func_0201c690(p->mUnk_40->mUnk_78, p->mUnk_40->mUnk_7a, p->mUnk_40->mUnk_20->mUnk_00->mUnk_50,
                   p->mUnk_40->mUnk_20->mUnk_00->mUnk_52);
@@ -367,7 +368,7 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
     m = p->mUnk_44;
     s = p->mUnk_40->mUnk_20->mUnk_00->mUnk_30;
     a = (e->mUnk_2e_0 * (e->mUnk_2e_5 + 1)) >> 5;
-    r = *(vu32 *) 0x040004a4 = p->mUnk_3c | 0xc0 | (e->mUnk_2e_10 << 24) | (a << 16);
+    r = reg_G3_POLYGON_ATTR = p->mUnk_3c | 0xc0 | (e->mUnk_2e_10 << 24) | (a << 16);
     if (a == 0) {
         return;
     }
@@ -422,7 +423,7 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
         buf[9] = pos.x;
         buf[10] = pos.y;
         buf[11] = pos.z;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_MTX_IDENTITY = 0;
         func_0214a4f8(buf);
     } else {
         pos.x = e->mUnk_08.x + e->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
@@ -461,18 +462,18 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
         buf[9] = pos.x;
         buf[10] = pos.y;
         buf[11] = pos.z;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_MTX_IDENTITY = 0;
         n = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
         j = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         i = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        *(vu32 *) 0x04000470 = i;
-        *(vu32 *) 0x04000470 = j;
-        *(vu32 *) 0x04000470 = n;
+        reg_G3_MTX_TRANS = i;
+        reg_G3_MTX_TRANS = j;
+        reg_G3_MTX_TRANS = n;
         func_0214a4f8(buf);
     }
     q = e->mUnk_36;
     k = p->mUnk_40->mUnk_72;
-    *(vu32 *) 0x04000480 = (u16) ((((q & 0x1f) * (k & 0x1f)) >> 5) | ((((q & 0x3e0) * (k & 0x3e0)) >> 15) << 5) |
+    reg_G3_COLOR = (u16) ((((q & 0x1f) * (k & 0x1f)) >> 5) | ((((q & 0x3e0) * (k & 0x3e0)) >> 15) << 5) |
                                   ((((q & 0x7c00) * (k & 0x7c00)) >> 25) << 10));
     func_0201c690(p->mUnk_40->mUnk_7c, p->mUnk_40->mUnk_7e, 0, 0);
 }
@@ -491,8 +492,8 @@ void func_0201ab30(Unk020184e4 *p, Unk0201e3c8 *n) {
     s32 z;
 
     k = (n->mUnk_2e_0 * (n->mUnk_2e_5 + 1)) >> 5;
-    *(vu32 *) 0x040004a4 = (n->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (k << 16);
-    *(vu32 *) 0x040004a4; // read back after the write
+    reg_G3_POLYGON_ATTR = (n->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (k << 16);
+    reg_G3_POLYGON_ATTR; // read back after the write
     if (k == 0) {
         return;
     }
@@ -524,19 +525,19 @@ void func_0201ab30(Unk020184e4 *p, Unk0201e3c8 *n) {
         a.mUnk_24.x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         a.mUnk_24.y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         a.mUnk_24.z = n->mUnk_08.z + n->mUnk_38.z - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_MTX_IDENTITY = 0;
         z = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
         y = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         x = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        *(vu32 *) 0x04000470 = x;
-        *(vu32 *) 0x04000470 = y;
-        *(vu32 *) 0x04000470 = z;
+        reg_G3_MTX_TRANS = x;
+        reg_G3_MTX_TRANS = y;
+        reg_G3_MTX_TRANS = z;
         func_0214a4f8(p->mUnk_44);
         func_0214a4f8(&a);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
-    *(vu32 *) 0x04000480 = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
+    reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                                   ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
     data_02161ac0[p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_19](p->mUnk_40->mUnk_78, p->mUnk_40->mUnk_7a,
                                                                     p->mUnk_40->mUnk_20->mUnk_00->mUnk_50,
@@ -557,8 +558,8 @@ void func_0201a7e0(Unk020184e4 *p, Unk0201e3c8 *n) {
     s32 z;
 
     k = (n->mUnk_2e_0 * (n->mUnk_2e_5 + 1)) >> 5;
-    *(vu32 *) 0x040004a4 = (n->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (k << 16);
-    *(vu32 *) 0x040004a4; // read back after the write
+    reg_G3_POLYGON_ATTR = (n->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (k << 16);
+    reg_G3_POLYGON_ATTR; // read back after the write
     if (k == 0) {
         return;
     }
@@ -590,19 +591,19 @@ void func_0201a7e0(Unk020184e4 *p, Unk0201e3c8 *n) {
         a.mUnk_24.x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         a.mUnk_24.y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         a.mUnk_24.z = n->mUnk_08.z + n->mUnk_38.z - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_MTX_IDENTITY = 0;
         z = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
         y = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         x = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        *(vu32 *) 0x04000470 = x;
-        *(vu32 *) 0x04000470 = y;
-        *(vu32 *) 0x04000470 = z;
+        reg_G3_MTX_TRANS = x;
+        reg_G3_MTX_TRANS = y;
+        reg_G3_MTX_TRANS = z;
         func_0214a4f8(p->mUnk_44);
         func_0214a4f8(&a);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
-    *(vu32 *) 0x04000480 = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
+    reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                                   ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
     data_02161ac0[p->mUnk_40->mUnk_20->mUnk_14->mUnk_00_11](p->mUnk_40->mUnk_7c, p->mUnk_40->mUnk_7e, 0, 0);
 }
@@ -627,8 +628,8 @@ void func_0201a364(Unk020184e4 *p, Unk0201e3c8 *n) {
     s32 z;
 
     k = (n->mUnk_2e_0 * (n->mUnk_2e_5 + 1)) >> 5;
-    *(vu32 *) 0x040004a4 = (n->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (k << 16);
-    *(vu32 *) 0x040004a4; // read back after the write
+    reg_G3_POLYGON_ATTR = (n->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (k << 16);
+    reg_G3_POLYGON_ATTR; // read back after the write
     if (k == 0) {
         return;
     }
@@ -690,19 +691,19 @@ void func_0201a364(Unk020184e4 *p, Unk0201e3c8 *n) {
         a.mUnk_24.x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         a.mUnk_24.y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         a.mUnk_24.z = n->mUnk_08.z + n->mUnk_38.z - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_MTX_IDENTITY = 0;
         z = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
         y = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         x = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        *(vu32 *) 0x04000470 = x;
-        *(vu32 *) 0x04000470 = y;
-        *(vu32 *) 0x04000470 = z;
+        reg_G3_MTX_TRANS = x;
+        reg_G3_MTX_TRANS = y;
+        reg_G3_MTX_TRANS = z;
         func_0214a4f8(p->mUnk_44);
         func_0214a4f8(&a);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
-    *(vu32 *) 0x04000480 = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
+    reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                                   ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
     data_02161ac0[p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_19](p->mUnk_40->mUnk_78, p->mUnk_40->mUnk_7a,
                                                                     p->mUnk_40->mUnk_20->mUnk_00->mUnk_50,
@@ -729,8 +730,8 @@ void func_02019ee4(Unk020184e4 *p, Unk0201e3c8 *n) {
     s32 z;
 
     k = (n->mUnk_2e_0 * (n->mUnk_2e_5 + 1)) >> 5;
-    *(vu32 *) 0x040004a4 = (n->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (k << 16);
-    *(vu32 *) 0x040004a4; // read back after the write
+    reg_G3_POLYGON_ATTR = (n->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (k << 16);
+    reg_G3_POLYGON_ATTR; // read back after the write
     if (k == 0) {
         return;
     }
@@ -792,19 +793,19 @@ void func_02019ee4(Unk020184e4 *p, Unk0201e3c8 *n) {
         a.mUnk_24.x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         a.mUnk_24.y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         a.mUnk_24.z = n->mUnk_08.z + n->mUnk_38.z - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
-        *(vu32 *) 0x04000454 = 0;
+        reg_G3_MTX_IDENTITY = 0;
         z = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
         y = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         x = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        *(vu32 *) 0x04000470 = x;
-        *(vu32 *) 0x04000470 = y;
-        *(vu32 *) 0x04000470 = z;
+        reg_G3_MTX_TRANS = x;
+        reg_G3_MTX_TRANS = y;
+        reg_G3_MTX_TRANS = z;
         func_0214a4f8(p->mUnk_44);
         func_0214a4f8(&a);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
-    *(vu32 *) 0x04000480 = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
+    reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                                   ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
     data_02161ac0[p->mUnk_40->mUnk_20->mUnk_14->mUnk_00_11](p->mUnk_40->mUnk_7c, p->mUnk_40->mUnk_7e, 0, 0);
 }
@@ -815,15 +816,15 @@ void func_02019df8(Unk020184e4_2c *a) {
     Unk020184e4_2c_0c w;
 
     w = a->mUnk_0c;
-    *(vu32 *) 0x040004a8 = (a->mUnk_04 >> 3) | (w.mUnk_00_0 << 26) | 0x40000000 | (w.mUnk_00_4 << 20) |
+    reg_G3_TEXIMAGE_PARAM = (a->mUnk_04 >> 3) | (w.mUnk_00_0 << 26) | 0x40000000 | (w.mUnk_00_4 << 20) |
                            (w.mUnk_00_8 << 23) | (w.mUnk_00_12 << 16) | (w.mUnk_00_14 << 18) | (w.mUnk_00_16 << 29);
-    *(vu32 *) 0x040004ac = a->mUnk_08 >> (4 - (w.mUnk_00_0 == 2 ? 1 : 0));
-    *(vu32 *) 0x04000440 = 3;
-    *(vu32 *) 0x04000454 = 0;
-    *(vu32 *) 0x0400046c = a->mUnk_10 << 12;
-    *(vu32 *) 0x0400046c = a->mUnk_12 << 12;
-    *(vu32 *) 0x0400046c = 0;
-    *(vu32 *) 0x04000440 = 1;
+    reg_G3_PLTT_BASE = a->mUnk_08 >> (4 - (w.mUnk_00_0 == 2 ? 1 : 0));
+    reg_G3_MTX_MODE = 3;
+    reg_G3_MTX_IDENTITY = 0;
+    reg_G3_MTX_SCALE = a->mUnk_10 << 12;
+    reg_G3_MTX_SCALE = a->mUnk_12 << 12;
+    reg_G3_MTX_SCALE = 0;
+    reg_G3_MTX_MODE = 1;
 }
 
 void func_02019df4(Unk020184e4_2c *a) {}
@@ -1406,7 +1407,7 @@ void func_0201873c(Unk020184e4 *a) {
 void func_02018674(Unk020184e4 *a, Unk02012f58 *b) {
     Unk0201ca6c *n;
 
-    *(vu16 *) 0x04000060 = (*(vu16 *) 0x04000060 & ~0x3000) | 8;
+    reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 8;
     a->mUnk_44 = b;
     if (a->mUnk_38_24 == 0) {
         for (n = (Unk0201ca6c *) a->mUnk_04.mUnk_00; n != 0; n = n->mUnk_00) {

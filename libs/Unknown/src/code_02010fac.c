@@ -12,6 +12,7 @@
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/unk_02170000.h"
 #include "Main/Unknown/unk_02171000.h"
+#include "registers.h"
 
 void func_0201290c(Unk0201290c *a, u32 b, u32 c, s32 d) {
     u32 s[7];
@@ -136,9 +137,9 @@ void func_0201261c(Unk02011624 *a, u32 b) {
     }
     if (!(a->mUnk_08 & 0x100)) {
         func_01ff9234();
-        *(vu32 *) 0x04000400 = 0x151110;
-        *(vu32 *) 0x04000400 = 0;
-        *(vu32 *) 0x04000400 = 0;
+        reg_G3X_GXFIFO = 0x151110;
+        reg_G3X_GXFIFO = 0;
+        reg_G3X_GXFIFO = 0;
         while (func_0214a7a4(mm) != 0) {
         }
         if (data_0217029c.mUnk_fc & 1) {
@@ -155,16 +156,16 @@ void func_0201261c(Unk02011624 *a, u32 b) {
         p18->y = func_021482cc((Vec3 *) &mm[4]);
         p18->z = func_021482cc((Vec3 *) &mm[8]);
         if (data_0217029c.mUnk_fc & 1) {
-            *(vu32 *) 0x04000400 = 0x171012;
+            reg_G3X_GXFIFO = 0x171012;
             func_0214d044(data_021618e0, (vu32 *) 0x04000400, 8);
             func_0214d044(func_02010de8(), (vu32 *) 0x04000400, 0x30);
-            *(vu32 *) 0x04000400 = 0x1b19;
+            reg_G3X_GXFIFO = 0x1b19;
             func_0214d044(data_021618e8, (vu32 *) 0x04000400, 0x3c);
         } else if (data_0217029c.mUnk_fc & 2) {
-            *(vu32 *) 0x04000400 = 0x171012;
+            reg_G3X_GXFIFO = 0x171012;
             func_0214d044(data_021618e0, (vu32 *) 0x04000400, 8);
             func_0214d044(func_02010ed4(), (vu32 *) 0x04000400, 0x30);
-            *(vu32 *) 0x04000400 = 0x1b19;
+            reg_G3X_GXFIFO = 0x1b19;
             func_0214d044(data_021618e8, (vu32 *) 0x04000400, 0x3c);
         } else {
             func_0214d044(data_021618dc, (vu32 *) 0x04000400, 0x48);
@@ -227,9 +228,9 @@ void func_020122cc(Unk02011624 *a, u32 b) {
     }
     if (!(a->mUnk_08 & 0x100)) {
         func_01ff9234();
-        *(vu32 *) 0x04000400 = 0x151110;
-        *(vu32 *) 0x04000400 = 0;
-        *(vu32 *) 0x04000400 = 0;
+        reg_G3X_GXFIFO = 0x151110;
+        reg_G3X_GXFIFO = 0;
+        reg_G3X_GXFIFO = 0;
         while (func_0214a7a4(mm) != 0) {
         }
         if (data_0217029c.mUnk_fc & 1) {
@@ -255,16 +256,16 @@ void func_020122cc(Unk02011624 *a, u32 b) {
             p30[1].y = p30[2].z;
         }
         if (data_0217029c.mUnk_fc & 1) {
-            *(vu32 *) 0x04000400 = 0x171012;
+            reg_G3X_GXFIFO = 0x171012;
             func_0214d044(data_02161928, (vu32 *) 0x04000400, 8);
             func_0214d044(func_02010de8(), (vu32 *) 0x04000400, 0x30);
-            *(vu32 *) 0x04000400 = 0x1b19;
+            reg_G3X_GXFIFO = 0x1b19;
             func_0214d044(data_02161930, (vu32 *) 0x04000400, 0x3c);
         } else if (data_0217029c.mUnk_fc & 2) {
-            *(vu32 *) 0x04000400 = 0x171012;
+            reg_G3X_GXFIFO = 0x171012;
             func_0214d044(data_02161928, (vu32 *) 0x04000400, 8);
             func_0214d044(func_02010ed4(), (vu32 *) 0x04000400, 0x30);
-            *(vu32 *) 0x04000400 = 0x1b19;
+            reg_G3X_GXFIFO = 0x1b19;
             func_0214d044(data_02161930, (vu32 *) 0x04000400, 0x3c);
         } else {
             func_0214d044(data_02161924, (vu32 *) 0x04000400, 0x48);
@@ -307,18 +308,18 @@ void func_02011c58(Unk02011624 *a) {
     p = a->mUnk_00 + 3;
     func_0214d05c_inline(&t, sizeof(t));
     func_01ff9234();
-    *(vu32 *) 0x04000440 = 0;
-    *(vu32 *) 0x0400044c = 1;
-    *(vu32 *) 0x04000454 = 0;
-    *(vu32 *) 0x04000440 = 2;
+    reg_G3_MTX_MODE = 0;
+    reg_G3_MTX_STORE = 1;
+    reg_G3_MTX_IDENTITY = 0;
+    reg_G3_MTX_MODE = 2;
     for (i = 0; i < n; i++) {
         k = p[1];
         d = ((s32 *) a->mUnk_cc)[k >> 5] & (1 << (k & 0x1f));
         m = data_02171904[k];
         if (!d) {
             a->mUnk_cc[k >> 5] |= 1 << (k & 0x1f);
-            *(vu32 *) 0x04000450 = p[0];
-            *(vu32 *) 0x04000440 = 1;
+            reg_G3_MTX_RESTORE = p[0];
+            reg_G3_MTX_MODE = 1;
             func_0214a4f8(q + k * 0x54);
         }
         if (i != 0) {
@@ -335,7 +336,7 @@ void func_02011c58(Unk02011624 *a) {
         if (!d) {
             while (func_0214a7a4(m) != 0) {
             }
-            *(vu32 *) 0x04000440 = 2;
+            reg_G3_MTX_MODE = 2;
             func_0214a4dc(q + k * 0x54 + 0x30);
         }
         r = data_02171944[k];
@@ -368,12 +369,12 @@ void func_02011c58(Unk02011624 *a) {
     t.mUnk_30[7] += (v * r[7]) >> 12;
     t.mUnk_30[8] += (v * r[8]) >> 12;
     func_0214a514(t.mUnk_30);
-    *(vu32 *) 0x04000440 = 1;
+    reg_G3_MTX_MODE = 1;
     func_0214a514(t.mUnk_00);
-    *(vu32 *) 0x04000440 = 0;
-    *(vu32 *) 0x04000450 = 1;
-    *(vu32 *) 0x04000440 = 2;
-    *(vu32 *) 0x0400044c = a->mUnk_00[1];
+    reg_G3_MTX_MODE = 0;
+    reg_G3_MTX_RESTORE = 1;
+    reg_G3_MTX_MODE = 2;
+    reg_G3_MTX_STORE = a->mUnk_00[1];
     a->mUnk_00 += (a->mUnk_00[2] + 1) * 3;
 }
 
@@ -557,13 +558,13 @@ void func_02011624(Unk02011624 *a) {
                 func_01ff9048(0x19, &m, 0xc);
             }
             func_01ff9234();
-            *(vu32 *) 0x04000440 = 0;
-            *(vu32 *) 0x04000444 = 0;
-            *(vu32 *) 0x04000454 = 0;
+            reg_G3_MTX_MODE = 0;
+            reg_G3_MTX_PUSH = 0;
+            reg_G3_MTX_IDENTITY = 0;
             while (func_0214a7a4(mm) != 0) {
             }
-            *(vu32 *) 0x04000448 = 1;
-            *(vu32 *) 0x04000440 = 3;
+            reg_G3_MTX_POP = 1;
+            reg_G3_MTX_MODE = 3;
             func_01ff9048(0x16, mm, 0x10);
             x = mm[12];
             y = mm[13];

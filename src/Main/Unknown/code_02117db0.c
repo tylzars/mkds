@@ -23,6 +23,7 @@
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/unk_0215c000.h"
 #include "Main/Unknown/unk_0217d000.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -41,10 +42,10 @@ void func_02117e24(void *param_1, void *param_2, void *param_3, s32 param_4) {
     s32 rem;
     int i;
 
-    *(vu16 *) 0x04000008 = (*(vu16 *) 0x04000008 & ~3) | 1;
-    *(vu16 *) 0x04000008 = (*(vu16 *) 0x04000008 & 0x43) | 0x9004;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 1;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x9004;
     if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
-        *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & 0xffffe0ff) | 0x1800;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1800;
     }
     param_1 = func_02036948(param_1);
     data_0217d360 = func_02036bec(param_1, 0x8c);
@@ -96,7 +97,7 @@ void func_02117e24(void *param_1, void *param_2, void *param_3, s32 param_4) {
 
 void func_02117db0(void) {
     if ((data_0217d360->mUnk_3c == 0 && data_0217d360->mUnk_88 == 1) || data_0217d360->mUnk_88 == 2) {
-        *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & 0xffffe0ff) | 0x1800;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1800;
     }
     if (*(vu16 *) 0x027ffc40 != 2) {
         func_0211de34();

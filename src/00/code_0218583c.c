@@ -9,6 +9,7 @@
 #include "Main/Unknown/code_02056d40.h"
 #include "Main/Unknown/code_02057d10.h"
 #include "Main/Unknown/unk_0217a000.h"
+#include "registers.h"
 
 void func_ov000_0218583c(void) {
     u32 a;
@@ -18,12 +19,12 @@ void func_ov000_0218583c(void) {
     if (func_02036d08() != 0) {
         data_ov000_021b4c8c->mUnk_04 = 1;
         func_02037288(0x1e);
-        *(vu16 *) 0x0400000a = (*(vu16 *) 0x0400000a & 0x43) | 0x1208;
-        *(vu16 *) 0x0400000a = *(vu16 *) 0x0400000a & ~3;
-        *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & 0xffffe0ff) | 0x1f00;
-        *(vu32 *) 0x04001000 = (*(vu32 *) 0x04001000 & 0xffffe0ff) | 0x1700;
-        *(vu32 *) 0x04000000 = *(vu32 *) 0x04000000 & 0xffff1fff;
-        *(vu32 *) 0x04001000 = *(vu32 *) 0x04001000 & 0xffff1fff;
+        reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x1208;
+        reg_G2_BG1CNT = reg_G2_BG1CNT & ~3;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1f00;
+        reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1700;
+        reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
+        reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
         func_02148950(1, 0, 1);
         if (data_0217b488->mUnk_6c != 0) {
             p = data_0217aa08->mUnk_00;

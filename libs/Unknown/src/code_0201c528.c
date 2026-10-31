@@ -5,6 +5,7 @@
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_02173000.h"
+#include "registers.h"
 
 void func_0201e540(Vec3 *v) {
     v->x = (s32) (data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 8;
@@ -764,20 +765,20 @@ void func_0201c690(u32 a, u32 b, s32 c, s32 d) {
 
     e = (a << 8) >> 16;
     f = (b << 8) >> 16;
-    *(vu32 *) 0x04000500 = 1;
+    reg_G3_BEGIN_VTXS = 1;
     p = ((s16) (d + 0x1000) >> 6) & 0x3ff;
     q = ((s16) (c - 0x1000) >> 6) & 0x3ff;
     r = ((s16) (c + 0x1000) >> 6) & 0x3ff;
     s = ((s16) (d - 0x1000) >> 6) & 0x3ff;
-    *(vu32 *) 0x04000488 = 0;
-    *(vu32 *) 0x04000490 = q | (p << 10);
-    *(vu32 *) 0x04000488 = e;
-    *(vu32 *) 0x04000490 = r | (p << 10);
-    *(vu32 *) 0x04000488 = e | (f << 16);
-    *(vu32 *) 0x04000490 = r | (s << 10);
-    *(vu32 *) 0x04000488 = f << 16;
-    *(vu32 *) 0x04000490 = q | (s << 10);
-    *(vu32 *) 0x04000504 = 0;
+    reg_G3_TEXCOORD = 0;
+    reg_G3_VTX_10 = q | (p << 10);
+    reg_G3_TEXCOORD = e;
+    reg_G3_VTX_10 = r | (p << 10);
+    reg_G3_TEXCOORD = e | (f << 16);
+    reg_G3_VTX_10 = r | (s << 10);
+    reg_G3_TEXCOORD = f << 16;
+    reg_G3_VTX_10 = q | (s << 10);
+    reg_G3_END_VTXS = 0;
 }
 
 void func_0201c5d4(u32 a, u32 b, s32 c, s32 d) {
@@ -788,22 +789,22 @@ void func_0201c5d4(u32 a, u32 b, s32 c, s32 d) {
     s32 p;
     s32 q;
 
-    *(vu32 *) 0x04000500 = 1;
-    *(vu32 *) 0x04000488 = 0;
+    reg_G3_BEGIN_VTXS = 1;
+    reg_G3_TEXCOORD = 0;
     q = ((s16) (c - 0x1000) >> 6) & 0x3ff;
     e = (a << 8) >> 16;
     f = (b << 8) >> 16;
     s = ((s16) (d - 0x1000) >> 6) & 0x3ff;
     p = ((s16) (d + 0x1000) >> 6) & 0x3ff;
-    *(vu32 *) 0x04000490 = q | (p << 20);
-    *(vu32 *) 0x04000488 = e;
+    reg_G3_VTX_10 = q | (p << 20);
+    reg_G3_TEXCOORD = e;
     r = ((s16) (c + 0x1000) >> 6) & 0x3ff;
-    *(vu32 *) 0x04000490 = r | (p << 20);
-    *(vu32 *) 0x04000488 = e | (f << 16);
-    *(vu32 *) 0x04000490 = r | (s << 20);
-    *(vu32 *) 0x04000488 = f << 16;
-    *(vu32 *) 0x04000490 = q | (s << 20);
-    *(vu32 *) 0x04000504 = 0;
+    reg_G3_VTX_10 = r | (p << 20);
+    reg_G3_TEXCOORD = e | (f << 16);
+    reg_G3_VTX_10 = r | (s << 20);
+    reg_G3_TEXCOORD = f << 16;
+    reg_G3_VTX_10 = q | (s << 20);
+    reg_G3_END_VTXS = 0;
 }
 
 void func_0201c528(s32 a, s32 b, Unk02012f58 *m) {

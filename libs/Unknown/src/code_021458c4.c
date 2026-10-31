@@ -19,6 +19,7 @@
 #include "code_0214c778.h"
 #include "code_0214d3d8.h"
 #include "code_0214d5b8.h"
+#include "registers.h"
 
 Unk021458b4 data_0217fa00;
 u32 data_02180060;
@@ -104,7 +105,7 @@ int func_021467d0(Unk02146154 *p) {
 // Waits for bit 31 of 0x040001a4 to clear, then writes 0xc0 and the eight bytes of a and b to 0x040001a1 and
 // 0x040001a8 to 0x040001af.
 void func_02146730(u32 a, u32 b) {
-    while (*(vu32 *) 0x040001a4 & 0x80000000) {
+    while (reg_MI_MCCNT1 & 0x80000000) {
     }
     *(vu8 *) 0x040001a1 = 0xc0;
     *(vu8 *) 0x040001a8 = a >> 24;
@@ -125,7 +126,7 @@ void func_021466d8(void) {
     d = (Unk021458c4 *) (u32) &data_0217fa40;
     func_0214d3d8(d->mUnk_28, (void *) 0x04100010, (void *) d->mUnk_20, 0x200);
     func_02146730((d->mUnk_1c >> 8) | 0xb7000000, d->mUnk_1c << 24);
-    *(vu32 *) 0x040001a4 = data_02180080.mUnk_04;
+    reg_MI_MCCNT1 = data_02180080.mUnk_04;
 }
 
 // Advances mUnk_1c, mUnk_20 and mUnk_24 by one block; calls mUnk_38 when nothing is left, else func_021466d8.
@@ -249,10 +250,10 @@ void func_021463a4(Unk02146154 *p) {
             p->mUnk_08 = a;
         }
         func_02146730((a >> 8) | 0xb7000000, a << 24);
-        *(vu32 *) 0x040001a4 = p->mUnk_04;
+        reg_MI_MCCNT1 = p->mUnk_04;
         n = 0;
         do {
-            s = *(vu32 *) 0x040001a4;
+            s = reg_MI_MCCNT1;
             if (s & 0x800000) {
                 w = *(vu32 *) 0x04100010;
                 if (n < 0x200) {

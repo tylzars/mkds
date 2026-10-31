@@ -4,6 +4,7 @@
 #include "Main/Unknown/code_02125f54.h"
 #include "Main/Unknown/code_02148ca0.h"
 #include "code_0201ea58.h"
+#include "registers.h"
 
 void func_ov001_02196d8c(void) {
     data_ov001_021a9bdc->mUnk_54 = 0x10;
@@ -63,13 +64,13 @@ void func_ov001_02196960(void *heap) {
     s32 rem;
     Unk021a9bdc *p;
 
-    (*(vu16 *) 0x04000008) = ((*(vu16 *) 0x04000008) & ~3) | 1;
-    (*(vu16 *) 0x0400000a) = ((*(vu16 *) 0x0400000a) & ~3) | 1;
-    (*(vu16 *) 0x0400100e) = ((*(vu16 *) 0x0400100e) & ~3) | 1;
-    (*(vu16 *) 0x04000008) = ((*(vu16 *) 0x04000008) & 0x43) | 0x8800;
-    (*(vu16 *) 0x0400000a) = ((*(vu16 *) 0x0400000a) & 0x43) | 0xcc00;
-    (*(vu16 *) 0x0400100a) = ((*(vu16 *) 0x0400100a) & 0x43) | 0x1018;
-    (*(vu16 *) 0x0400100e) = ((*(vu16 *) 0x0400100e) & 0x43) | 0x5810;
+    (reg_G2_BG0CNT) = ((reg_G2_BG0CNT) & ~3) | 1;
+    (reg_G2_BG1CNT) = ((reg_G2_BG1CNT) & ~3) | 1;
+    (reg_G2S_DB_BG3CNT) = ((reg_G2S_DB_BG3CNT) & ~3) | 1;
+    (reg_G2_BG0CNT) = ((reg_G2_BG0CNT) & 0x43) | 0x8800;
+    (reg_G2_BG1CNT) = ((reg_G2_BG1CNT) & 0x43) | 0xcc00;
+    (reg_G2S_DB_BG1CNT) = ((reg_G2S_DB_BG1CNT) & 0x43) | 0x1018;
+    (reg_G2S_DB_BG3CNT) = ((reg_G2S_DB_BG3CNT) & 0x43) | 0x5810;
     data_ov001_021a9bdc = func_02036bec(heap, 0x94);
     data_ov001_021a9bdc->mUnk_4c = heap;
     data_ov001_021a9bdc->mUnk_50 = 0;
@@ -122,10 +123,10 @@ void func_ov001_02196904(void) {
 
     func_02117218();
     data_ov001_021a9bdc = 0;
-    a = ((*(vu32 *) 0x04000000) & 0x1f00) >> 8;
-    (*(vu32 *) 0x04000000) = ((*(vu32 *) 0x04000000) & ~0x1f00) | ((a & ~0x13) << 8);
-    b = ((*(vu32 *) 0x04001000) & 0x1f00) >> 8;
-    (*(vu32 *) 0x04001000) = ((*(vu32 *) 0x04001000) & ~0x1f00) | ((b & ~9) << 8);
+    a = ((reg_GX_DISPCNT) & 0x1f00) >> 8;
+    (reg_GX_DISPCNT) = ((reg_GX_DISPCNT) & ~0x1f00) | ((a & ~0x13) << 8);
+    b = ((reg_GXS_DB_DISPCNT) & 0x1f00) >> 8;
+    (reg_GXS_DB_DISPCNT) = ((reg_GXS_DB_DISPCNT) & ~0x1f00) | ((b & ~9) << 8);
 }
 
 void func_ov001_021968bc(void) {

@@ -9,6 +9,7 @@
 #include "code_02148d34.h"
 #include "code_0214a5f0.h"
 #include "code_0214a748.h"
+#include "registers.h"
 
 // Enum-typed parameters of the inlines below: the original reads their values before the register.
 typedef enum { UNK_02037ABC_ARG_0 } Unk02037abc_Arg;
@@ -36,12 +37,12 @@ static inline void func_02037abc_inline3(vu32 *r, Unk02037abc_Arg v) {
 
 // Sets bits 5, 6 and 22 of the word at 0x04000000.
 static inline void func_02037abc_inline4(Unk02037abc_Arg v) {
-    *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & 0xffbfff9f) | v;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffbfff9f) | v;
 }
 
 // Sets bits 5 and 6 of the word at 0x04001000.
 static inline void func_02037abc_inline5(Unk02037abc_Arg v) {
-    *(vu32 *) 0x04001000 = (*(vu32 *) 0x04001000 & ~0x60) | v;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x60) | v;
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r and sets the rest from five values.
@@ -103,20 +104,20 @@ void func_02037abc(void *a) {
     }
     data_02175614.mUnk_00;
     func_02148950(p->mUnk_06, p->mUnk_08, p->mUnk_0a);
-    *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & ~0x1f00) | (p->mUnk_02 << 8);
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (p->mUnk_02 << 8);
     func_02148934(p->mUnk_0c);
-    *(vu32 *) 0x04001000 = (*(vu32 *) 0x04001000 & ~0x1f00) | (p->mUnk_04 << 8);
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (p->mUnk_04 << 8);
     if (p->mUnk_0a == 1) {
         func_0214aa58();
         func_0214a648();
         func_0214a8ec();
-        *(vu16 *) 0x04000060 &= 0xffffcffd;
-        *(vu16 *) 0x04000060 = (*(vu16 *) 0x04000060 & ~0x3000) | 0x10;
-        *(vu16 *) 0x04000060 = (*(vu16 *) 0x04000060 & ~0x3000) | 4;
-        *(vu16 *) 0x04000340 = 0;
-        *(vu16 *) 0x04000060 = (*(vu16 *) 0x04000060 & ~0x3000) | 8;
-        *(vu16 *) 0x04000050 = 0;
-        *(vu32 *) 0x04000540 = (p->mUnk_6c->mUnk_03 << 1) | p->mUnk_6c->mUnk_02;
+        reg_G3X_DISP3DCNT &= 0xffffcffd;
+        reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 0x10;
+        reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 4;
+        reg_G3X_ALPHA_TEST_REF = 0;
+        reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 8;
+        reg_G2_BLDCNT = 0;
+        reg_G3_SWAP_BUFFERS = (p->mUnk_6c->mUnk_03 << 1) | p->mUnk_6c->mUnk_02;
         v = p->mUnk_6c->mUnk_00;
         func_0214a700((u16) (v & 0x7fff), (u8) ((v & 0x8000) >> 15), 0x7fff, 0x3f, 0);
     }
@@ -126,28 +127,28 @@ void func_02037abc(void *a) {
         if (p->mUnk_0a == 1) {
             func_0214a5e0(0);
         } else {
-            *(vu32 *) 0x04000010 = 0;
+            reg_G2_BG0OFS = 0;
             func_02037abc_inline6((vu16 *) 0x04000008, (Unk02037abc_Arg) q->mUnk_04, (Unk02037abc_Arg) q->mUnk_06,
                                   (Unk02037abc_Arg) q->mUnk_08, (Unk02037abc_Arg) q->mUnk_0a,
                                   (Unk02037abc_Arg) q->mUnk_0c);
         }
     }
     if (p->mUnk_04 & 1) {
-        *(vu32 *) 0x04001010 = 0;
+        reg_G2S_DB_BG0OFS = 0;
         q = &p->mUnk_70;
         func_02037abc_inline2((vu16 *) 0x04001008, q);
         func_02037abc_inline6((vu16 *) 0x04001008, (Unk02037abc_Arg) q->mUnk_04, (Unk02037abc_Arg) q->mUnk_06,
                               (Unk02037abc_Arg) q->mUnk_08, (Unk02037abc_Arg) q->mUnk_0a, (Unk02037abc_Arg) q->mUnk_0c);
     }
     if (p->mUnk_02 & 2) {
-        *(vu32 *) 0x04000014 = 0;
+        reg_G2_BG1OFS = 0;
         q = &p->mUnk_38;
         func_02037abc_inline2((vu16 *) 0x0400000a, q);
         func_02037abc_inline6((vu16 *) 0x0400000a, (Unk02037abc_Arg) q->mUnk_04, (Unk02037abc_Arg) q->mUnk_06,
                               (Unk02037abc_Arg) q->mUnk_08, (Unk02037abc_Arg) q->mUnk_0a, (Unk02037abc_Arg) q->mUnk_0c);
     }
     if (p->mUnk_04 & 2) {
-        *(vu32 *) 0x04001014 = 0;
+        reg_G2S_DB_BG1OFS = 0;
         q = &p->mUnk_80;
         func_02037abc_inline2((vu16 *) 0x0400100a, q);
         func_02037abc_inline6((vu16 *) 0x0400100a, (Unk02037abc_Arg) q->mUnk_04, (Unk02037abc_Arg) q->mUnk_06,
@@ -173,5 +174,5 @@ void func_02037abc(void *a) {
         func_02037abc_inline3((vu32 *) 0x04001000, (Unk02037abc_Arg) p->mUnk_b0);
         func_02037abc_inline5((Unk02037abc_Arg) p->mUnk_b2);
     }
-    *(vu16 *) 0x04000304 |= 0x8000;
+    reg_GX_POWCNT |= 0x8000;
 }

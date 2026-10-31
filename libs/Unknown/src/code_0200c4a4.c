@@ -11,6 +11,7 @@
 #include "Main/Unknown/code_0200c000.h"
 #include "code_0200c46c.h"
 #include "code_0214c778.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -53,8 +54,8 @@ void func_0200c6b8(void) {
         return;
     }
     v = func_0200cb1c(0x40000);
-    w = *(vu16 *) 0x04000208;
-    *(vu16 *) 0x04000208 = 1;
+    w = reg_OS_IME;
+    reg_OS_IME = 1;
     func_0200c4c0(data_0216fe04.mUnk_02, &a);
     c = (*(u16 *) 0x04000204 & 0x8000) >> 15;
     func_0200c534(&b);
@@ -78,8 +79,8 @@ void func_0200c6b8(void) {
     while (data_0216fe04.mUnk_00 != 1) {
         WaitByLoop(1);
     }
-    *(vu16 *) 0x04000208;
-    *(vu16 *) 0x04000208 = w;
+    reg_OS_IME;
+    reg_OS_IME = w;
     func_0200cb1c(v);
 }
 
@@ -150,10 +151,10 @@ s32 func_0200c568(void) {
 }
 
 void func_0200c534(Unk0200c4a4 *p) {
-    p->mUnk_00 = (*(vu16 *) 0x04000204 & 0xc) >> 2;
-    p->mUnk_04 = (*(vu16 *) 0x04000204 & 0x10) >> 4;
-    *(vu16 *) 0x04000204 = (*(vu16 *) 0x04000204 & ~0xc) | 0xc;
-    *(vu16 *) 0x04000204 &= ~0x10;
+    p->mUnk_00 = (reg_MI_EXMEMCNT & 0xc) >> 2;
+    p->mUnk_04 = (reg_MI_EXMEMCNT & 0x10) >> 4;
+    reg_MI_EXMEMCNT = (reg_MI_EXMEMCNT & ~0xc) | 0xc;
+    reg_MI_EXMEMCNT &= ~0x10;
 }
 
 void func_0200c508(Unk0200c4a4 *p) {
@@ -161,9 +162,9 @@ void func_0200c508(Unk0200c4a4 *p) {
     u32 b;
 
     a = p->mUnk_00;
-    *(vu16 *) 0x04000204 = (*(vu16 *) 0x04000204 & ~0xc) | (a << 2);
+    reg_MI_EXMEMCNT = (reg_MI_EXMEMCNT & ~0xc) | (a << 2);
     b = p->mUnk_04;
-    *(vu16 *) 0x04000204 = (*(vu16 *) 0x04000204 & ~0x10) | (b << 4);
+    reg_MI_EXMEMCNT = (reg_MI_EXMEMCNT & ~0x10) | (b << 4);
 }
 
 void func_0200c4c0(u32 a, Unk0200c4a4 *p) {

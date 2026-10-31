@@ -14,6 +14,7 @@
 #include "code_02148d34.h"
 #include "code_0214b338.h"
 #include "code_0214b824.h"
+#include "registers.h"
 
 static inline void func_020afd68_inline(u16 *v1) {
     s32 j;
@@ -125,15 +126,15 @@ void func_020afd68(void) {
         }
         func_0200eddc();
         func_02148934(5);
-        *(vu32 *) 0x04001000 = (*(vu32 *) 0x04001000 & ~0x1f00) | 0x1c00;
+        reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
         func_02148934(0);
-        *(vu32 *) 0x04001018 = 0;
-        *(vu16 *) 0x0400100c = (*(vu16 *) 0x0400100c & ~3) | 2;
-        *(vu16 *) 0x0400100c = *(vu16 *) 0x0400100c & ~0x40;
-        *(vu16 *) 0x0400100c = (*(vu16 *) 0x0400100c & 0x43) | 0x208;
-        *(vu16 *) 0x0400100c = (*(vu16 *) 0x0400100c & ~3) | 3;
-        *(vu16 *) 0x0400100e = *(vu16 *) 0x0400100e & ~0x40;
-        *(vu16 *) 0x0400100e = (*(vu16 *) 0x0400100e & 0x43) | 0x308;
+        reg_G2S_DB_BG2OFS = 0;
+        reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 2;
+        reg_G2S_DB_BG2CNT = reg_G2S_DB_BG2CNT & ~0x40;
+        reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & 0x43) | 0x208;
+        reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 3;
+        reg_G2S_DB_BG3CNT = reg_G2S_DB_BG3CNT & ~0x40;
+        reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x308;
         func_0214c0f8(a[0]->mUnk_0c, 0, a[0]->mUnk_08);
         func_0214b8f4(b[0]->mUnk_14, 0, b[0]->mUnk_10);
         func_0214b8f4(b[1]->mUnk_14, 0x1800, b[1]->mUnk_10);

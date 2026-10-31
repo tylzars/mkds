@@ -7,6 +7,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_0214a390.h"
 #include "code_0214d018.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -21,12 +22,12 @@ void func_0202a658(void *a) {
         func_02032f94(a, (s32) data_02174e24, (s32) data_02174e24->mUnk_404);
     }
     func_0212abdc(a, data_02174e24);
-    *(vu32 *) 0x04000000 = (*(vu32 *) 0x04000000 & 0xffcfffef) | 0x10;
-    *(vu32 *) 0x04001000 = (*(vu32 *) 0x04001000 & 0xffcfffef) | 0x10;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
     func_0214a40c((u32 *) 0x04000050, 1, 0x3f, 8, 8);
     func_0214a40c((u32 *) 0x04001050, 0, 0x2f, 8, 8);
-    *(vu32 *) 0x04000000 = *(vu32 *) 0x04000000 & 0xffff1fff;
-    *(vu32 *) 0x04001000 = *(vu32 *) 0x04001000 & 0xffff1fff;
+    reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
+    reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
 }
 
 #pragma thumb off

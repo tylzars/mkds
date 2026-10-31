@@ -19,6 +19,7 @@
 #include "Main/Unknown/code_0203b680.h"
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_02148ca0.h"
+#include "registers.h"
 
 void func_ov001_021a0734(void)
 {
@@ -185,10 +186,10 @@ void func_ov001_021a0190(s32 param_1, s32 param_2, s32 param_3) {
     s32 rem;
     u16 base;
 
-    *(vu16 *)0x04000008 = (*(vu16 *)0x04000008 & ~3) | 1;
-    *(vu16 *)0x0400000a = (*(vu16 *)0x0400000a & ~3) | 1;
-    *(vu16 *)0x04000008 = (*(vu16 *)0x04000008 & 0x43) | 0xd204;
-    *(vu16 *)0x0400000a = (*(vu16 *)0x0400000a & 0x43) | 0x9004;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 1;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 1;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0xd204;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x9004;
     heap = func_02036948((void *) param_1);
     data_ov001_021ca414 = func_02036bec(heap, 0xc0);
     data_ov001_021ca414->mUnk_5c = heap;

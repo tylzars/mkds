@@ -1,6 +1,7 @@
 #include "code_0214d5b8.h"
 #include "code_0200c914.h"
 #include "Main/Unknown/code_0200f000.h"
+#include "registers.h"
 
 UnkFunc *data_0218032c[32];
 u16 data_02180328;
@@ -25,7 +26,7 @@ void func_0214d830(void) {
         for (i = 0; i < 32; i++) {
             data_0218032c[i] = 0;
         }
-        *(vu16 *) 0x04000184 = 0xc408;
+        reg_PXI_SUBP_FIFO_CNT = 0xc408;
         func_0200ca68(0x40000);
         func_0200cc74(0x40000, (UnkFunc *) func_0214d5c4);
         func_0200cae4(0x40000);
@@ -83,12 +84,12 @@ s32 func_0214d6e8(u32 a, u32 b, u32 c) {
     v.mUnk_00_0 = a;
     v.mUnk_00_5 = c;
     v.mUnk_00_6 = b;
-    if (*(vu16 *) 0x04000184 & 0x4000) {
-        *(vu16 *) 0x04000184 |= 0xc000;
+    if (reg_PXI_SUBP_FIFO_CNT & 0x4000) {
+        reg_PXI_SUBP_FIFO_CNT |= 0xc000;
         return -1;
     }
     s = func_0200fca0();
-    if (*(vu16 *) 0x04000184 & 2) {
+    if (reg_PXI_SUBP_FIFO_CNT & 2) {
         func_0200fcb4(s);
         return -2;
     }
@@ -106,12 +107,12 @@ void func_0214d5c4(void) {
     UnkFunc *f;
 
     for (;;) {
-        if (*(vu16 *) 0x04000184 & 0x4000) {
-            *(vu16 *) 0x04000184 |= 0xc000;
+        if (reg_PXI_SUBP_FIFO_CNT & 0x4000) {
+            reg_PXI_SUBP_FIFO_CNT |= 0xc000;
             r = -3;
         } else {
             s = func_0200fca0();
-            if (*(vu16 *) 0x04000184 & 0x100) {
+            if (reg_PXI_SUBP_FIFO_CNT & 0x100) {
                 func_0200fcb4(s);
                 r = -4;
             } else {
@@ -136,12 +137,12 @@ void func_0214d5c4(void) {
         }
         if (v.mUnk_00_5 == 0) {
             v.mUnk_00_5 = 1;
-            if (*(vu16 *) 0x04000184 & 0x4000) {
-                *(vu16 *) 0x04000184 |= 0xc000;
+            if (reg_PXI_SUBP_FIFO_CNT & 0x4000) {
+                reg_PXI_SUBP_FIFO_CNT |= 0xc000;
                 continue;
             }
             s = func_0200fca0();
-            if (*(vu16 *) 0x04000184 & 2) {
+            if (reg_PXI_SUBP_FIFO_CNT & 2) {
                 func_0200fcb4(s);
             } else {
                 *(vu32 *) 0x04000188 = *(u32 *) &v;
