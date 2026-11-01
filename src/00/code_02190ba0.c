@@ -120,7 +120,6 @@ u32 func_ov000_02190cd4(Unk0218f960 *a, s32 b) {
     return 0;
 }
 
-// non-matching: in the branch for 9 the data pointer is in r4 and the offset register in r5 (original: r5 and r4)
 void func_ov000_02190da0(Unk0218f960 *a, Unk02190ed4Node *b) {
     Unk02190da0Data *c;
     Unk02190da0Data *e;
@@ -167,13 +166,13 @@ void func_ov000_02190da0(Unk0218f960 *a, Unk02190ed4Node *b) {
             c->mUnk_08 = 0;
         }
     } else if (b->mUnk_0c == 9) {
-        e = b->mUnk_08;
-        for (d = 0; d < e->mUnk_04; d++) {
-            func_ov000_021a3668(e->mUnk_08[d]);
-            e->mUnk_08[d] = 0;
+        Unk02190da0Data *f = b->mUnk_08;
+        for (d = 0; d < f->mUnk_04; d++) {
+            func_ov000_021a3668(f->mUnk_08[d]);
+            f->mUnk_08[d] = 0;
         }
-        func_ov000_021a3668(e->mUnk_08);
-        e->mUnk_08 = 0;
+        func_ov000_021a3668(f->mUnk_08);
+        f->mUnk_08 = 0;
     }
     func_ov000_021a3668(b->mUnk_08);
     b->mUnk_08 = 0;

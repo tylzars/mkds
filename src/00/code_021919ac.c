@@ -163,14 +163,12 @@ u32 func_ov000_02191cb0(Unk021919ac *p, const u8 *a, const u8 *b, const u8 *c, c
     return 0;
 }
 
-// non-matching: -1 compares load the descriptor into r1 and build -1 in r0 (original: r0 and r2, via movs r1,#0; mvns
-// r2,r1); the 8-byte address is zeroed with stores at [sp] (original: str through r1 = sp, then a second add for strb);
-// same size
 u32 func_ov000_02191e58(Unk021919ac *p, Unk021919ac_node *n) {
     Unk021919ac_00 *o;
     Unk021919ac_sa s;
     Unk021a8f84 *x;
     s32 z;
+    s32 r;
 
     o = p->mUnk_00;
     if (o->mUnk_10c == 0) {
@@ -185,8 +183,7 @@ u32 func_ov000_02191e58(Unk021919ac *p, Unk021919ac_node *n) {
             func_ov000_02190f4c((Unk0218f960 *) p, 3, 1);
             return 3;
         }
-        s.w[0] = 0;
-        s.w[1] = 0;
+        __builtin__clear(&s, sizeof(s));
         s.f.mUnk_01 = 2;
         if (func_ov000_0218e4e4(o->mUnk_204, &s, 8) == -1) {
             func_ov000_021965a0((Unk0218f960 *) p, 5, data_ov000_021b2e18);
@@ -226,8 +223,7 @@ u32 func_ov000_02191e58(Unk021919ac *p, Unk021919ac_node *n) {
         func_ov000_02190f4c((Unk0218f960 *) p, 3, 1);
         return 3;
     }
-    s.w[0] = 0;
-    s.w[1] = 0;
+    __builtin__clear(&s, sizeof(s));
     s.f.mUnk_01 = 2;
     s.f.mUnk_04 = **x->mUnk_0c;
     if (s.f.mUnk_04 == 0) {
@@ -235,8 +231,8 @@ u32 func_ov000_02191e58(Unk021919ac *p, Unk021919ac_node *n) {
     }
     s.f.mUnk_02 = 0xcc74;
     if (func_ov000_0218e4b4(o->mUnk_1d4, &s, 8) == -1) {
-        z = func_ov000_0218e368(o->mUnk_1d4);
-        if (z != -6 && z != -26 && z != -76) {
+        r = func_ov000_0218e368(o->mUnk_1d4);
+        if (r != -6 && r != -26 && r != -76) {
             func_ov000_021965a0((Unk0218f960 *) p, 5, data_ov000_021b2ef0);
             func_ov000_02190f4c((Unk0218f960 *) p, 3, 1);
             return 3;

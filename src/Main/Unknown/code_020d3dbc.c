@@ -4,9 +4,6 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020d94dc.h"
 
-// non-matching: 12 words in case 2 and after it: the original keeps the negated bound in lr and the second difference
-// in r7 (here r7 and lr), the high word of the 64-bit sum in lr and of t * t in r5 (here r5 and lr), and the function
-// pointer loaded at +0x27c in r5 (here r3)
 s32 func_020d3e34(Vec3 *param_1, s32 param_2, Unk020e71a0 *param_3, Vec3 *param_4) {
     s32 t;
     s32 u;
@@ -78,7 +75,7 @@ s32 func_020d3e34(Vec3 *param_1, s32 param_2, Unk020e71a0 *param_3, Vec3 *param_
             return 0;
         case 5:
             if (param_3->mUnk_98->mUnk_18 != 0) {
-                return param_3->mUnk_98->mUnk_18(param_3, param_1, param_2) != 0;
+                return param_3->mUnk_98->mUnk_18(param_3, param_1, param_2, param_4) != 0;
             }
             return 0;
         default:

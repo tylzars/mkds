@@ -23,12 +23,13 @@ u32 func_020360e4(void) {
 
 #pragma thumb on
 
-// non-matching: 91%, differs by loop register numbers and order of the pointer loads
+// non-matching: registers only in both loop nests: loop 1 swaps the hoisted address and the hoisted constant 1,
+// loop 2 gives the counter a register before the hoisted address
 void func_02036108(void *a) {
     void *h;
     u32 b;
-    s32 i;
     s32 j;
+    s32 i;
     u16 v;
 
     func_02036438(a);
@@ -43,7 +44,7 @@ void func_02036108(void *a) {
     for (i = 0x16; i < 0x18; i++) {
         for (j = 0; j < 0x20; j++) {
             v = (((j + i + 1) & 1) << 12) | 1;
-            data_02174e6c->mUnk_034[j + i * 0x20] = v;
+            data_02174e6c->mUnk_034[j + (u32) i * 0x20] = v;
         }
     }
     func_0200ee58(data_02174e6c->mUnk_034, 0x600);
@@ -51,7 +52,7 @@ void func_02036108(void *a) {
     func_02036264(data_02174e6c->mUnk_034, 0x600);
     for (i = 0x14; i < 0x16; i++) {
         for (j = 0; j < 0x20; j++) {
-            data_02174e6c->mUnk_034[j + i * 0x20] = j + (i - 0x14) * 0x20 + 0x20;
+            data_02174e6c->mUnk_034[j + (u32) i * 0x20] = j + (u32) (i - 0x14) * 0x20 + 0x20;
         }
     }
     func_0200ee58(data_02174e6c->mUnk_034, 0x600);

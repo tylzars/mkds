@@ -87,8 +87,6 @@ s32 func_020fc79c(Unk020eda5c *a, Unk020fc2e8 *e) {
     return 1;
 }
 
-// non-matching: registers only (0x148 bytes both): the value read from p->mUnk_260 is allocated r12 where the
-// original uses r0, which moves the value read from 0x74 from r1 to r0 and shifts every register in both arms.
 void func_020fc654(Unk020fc2e8 *p) {
     Vec3 buf;
     s16 v;
@@ -105,10 +103,9 @@ void func_020fc654(Unk020fc2e8 *p) {
         p->mUnk_000.mUnk_0c4.y += p->mUnk_000.mUnk_5c.y >> 1;
         p->mUnk_268 += 0x5dc;
         v = data_0215d4b4[(p->mUnk_268 >> 4) * 2];
-        p->mUnk_000.mUnk_0c4.y +=
-            (s32) (((s64) (a + (s32) (((s64) p->mUnk_264 * v) >> 12) + p->mUnk_000.mUnk_50.y - p->mUnk_000.mUnk_0c4.y) *
-                    0x19a) >>
-                   12);
+        a += (s32) (((s64) p->mUnk_264 * v) >> 12);
+        a = a + p->mUnk_000.mUnk_50.y - p->mUnk_000.mUnk_0c4.y;
+        p->mUnk_000.mUnk_0c4.y += (s32) (((s64) a * 0x19a) >> 12);
         p->mUnk_000.mUnk_0c4.x = p->mUnk_000.mUnk_50.x;
         p->mUnk_000.mUnk_0c4.z = p->mUnk_000.mUnk_50.z;
     }

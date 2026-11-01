@@ -112,9 +112,6 @@ u8 func_0204dcf0(u8 a) {
     return r;
 }
 
-// non-matching: same size; 95 words differ; first: original `push {r4, r5, r6, lr}`, ours `push {r4, r5, lr}`. The
-// original keeps the 0x1692 offset in r6 in case 30 (one more saved register) and data_0217aa00 in r1 where ours has
-// r2.
 s32 func_0204dd24(u16 a) {
     s32 r = 0;
     Unk0217aa00 *g = data_0217aa00;
@@ -160,15 +157,6 @@ s32 func_0204dd24(u16 a) {
         return 0;
     }
     switch (g->mUnk_000c) {
-        case 1:
-            g->mUnk_1692 = 0;
-        case 2:
-            if (*(u16 *) 0x027ffc40 == 2) {
-                func_0204df90();
-            } else {
-                func_02051d24(0, 0, 0, (s32(*)()) func_0204df5c, 0);
-            }
-            break;
         case 7:
             g->mUnk_0454 |= 0x40;
             func_02051e98();
@@ -176,31 +164,12 @@ s32 func_0204dd24(u16 a) {
         case 9:
             func_0204e4d8();
             break;
-        case 10:
-            func_02051a24();
-            break;
-        case 11:
-            g->mUnk_0004 = 6;
-            func_02059878();
-            r = 1;
-            break;
-        case 26:
-        case 32:
-            func_02052ecc();
-            break;
         case 28:
             g->mUnk_1692 = 0;
             func_0204e474();
             break;
         case 30:
             func_0204e074();
-            break;
-        case 31:
-            if (g->mUnk_1692 < 0x3c) {
-                g->mUnk_1692 = g->mUnk_1692 + 1;
-            } else {
-                g->mUnk_000c = 32;
-            }
             break;
         case 33:
             if (g->mUnk_169a == -1) {
@@ -223,8 +192,36 @@ s32 func_0204dd24(u16 a) {
         case 35:
             func_0204e4bc();
             break;
+        case 1:
+            g->mUnk_1692 = 0;
+        case 2:
+            if (*(u16 *) 0x027ffc40 == 2) {
+                func_0204df90();
+            } else {
+                func_02051d24(0, 0, 0, (s32(*)()) func_0204df5c, 0);
+            }
+            break;
+        case 31:
+            if (g->mUnk_1692 < 0x3c) {
+                g->mUnk_1692 = g->mUnk_1692 + 1;
+            } else {
+                g->mUnk_000c = 32;
+            }
+            break;
+        case 26:
+        case 32:
+            func_02052ecc();
+            break;
         case 36:
             func_02051d24(0, 0, 0, (s32(*)()) func_0204df5c, 0);
+            break;
+        case 10:
+            func_02051a24();
+            break;
+        case 11:
+            g->mUnk_0004 = 6;
+            func_02059878();
+            r = 1;
             break;
     }
     return r;

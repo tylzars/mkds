@@ -8,8 +8,6 @@
 #include "Main/Unknown/code_02152000.h"
 #include "Main/Unknown/code_02152468.h"
 
-// non-matching: the loop entry computes `r7 = i * 12` then `r0 = a + r7` for the func_02152a24 argument and `r7 = a +
-// r7` later; ours adds first (`r1 = i * 12`, `r7 = a + r1`, `r0 = r7`), 4 words differ, same size
 void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
     s32 c;
     s32 d;
@@ -23,7 +21,7 @@ void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
             func_ov000_0219d034(func_ov000_0218ec44(data_ov000_021b5664->mUnk_04, d, &f));
             for (i = 0; i < b; i++) {
                 if (f.mUnk_000 == func_ov000_0219d630(i)) {
-                    if (func_02152a24(&a[i]) == 0) {
+                    if (func_02152a24((Unk02152490 *) a + i) == 0) {
                         func_02152468(&a[i], f.mUnk_000);
                         func_021529bc(&a[i]);
                         data_ov000_021b5664->mUnk_1d = 1;

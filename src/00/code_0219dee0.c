@@ -44,13 +44,11 @@ void func_ov000_0219dee0(s32 a, Unk021a471c *b, void *c) {
     }
 }
 
-// non-matching: registers r4 and r5 swapped between the loop counter and the entry value (13 words, same size and
-// order)
 s32 func_ov000_0219dfe4(s32 a) {
     s32 c;
     s32 d;
-    u32 f;
     s32 e;
+    u32 f;
     u32 g;
     s32 h;
     c = 0;

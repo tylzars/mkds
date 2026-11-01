@@ -4,9 +4,10 @@
 #include "03/code_021d34c8.h"
 #include "code_0214cfe4.h"
 
-// non-matching: the original reads the object pointer into r0 and the offset into r1 (ours swaps them) and its switch
-// is a table for 0..20 plus compares for 23, 26, 29, 34 under a first compare against 26; ours is a compare tree
-// (size 0x1bc against the original's 0x1d4)
+static inline void func_ov003_021c25e0_inline(const void *s, void *d, s32 n) {
+    func_0214cffc(s, d, n);
+}
+
 void func_ov003_021c25e0(u32 a) {
     u8 b[2];
     Unk021da194 *p;
@@ -21,11 +22,16 @@ void func_ov003_021c25e0(u32 a) {
     }
     func_ov003_021d0e9c(&b[0], &b[1]);
     switch (b[0]) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            break;
         case 5:
             if (b[1] == 0) {
                 break;
             }
-            func_0214cffc(func_ov003_021d0e90(), data_ov003_021da194->mUnk_1e280, 0x16);
+            func_ov003_021c25e0_inline(func_ov003_021d0e90(), data_ov003_021da194->mUnk_1e280, 0x16);
             if (data_ov003_021da194->mUnk_1e298 != 0) {
                 data_ov003_021da194->mUnk_1e298(0);
             } else {

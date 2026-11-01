@@ -45,13 +45,10 @@ void func_ov003_021c9500(void) {
     *(u16 *) 0x400000e = (*(u16 *) 0x400000e & ~0x3) | 0x2;
 }
 
-// non-matching: before the seven-pointer loop the original sets the byte offset (adds r4, r5, #0) before loading the
-// table byte into r6; ours loads r6 first (2 instructions swapped, same size)
 void func_ov003_021c965c(void) {
     int a;
     int b;
     int i;
-    u8 c;
     Unk021da214 *p;
     b = func_ov003_021cdb6c();
     p = func_ov003_021d283c(0x48, 4);
@@ -69,10 +66,8 @@ void func_ov003_021c965c(void) {
     func_ov003_021bf83c();
     func_ov003_021ccea4(2, 0x55, 0xf1, 0x41, _s32_div_f(*(u16 *) &data_ov003_021da210 * 0x37, 0x91));
     data_ov003_021da214->mUnk_14 = func_ov003_021d2288(0, 1);
-    i = 0;
-    c = data_ov003_021d6478[0][1];
-    for (; i < 7; i++) {
-        data_ov003_021da214->mUnk_18[i] = (Unk021da104_04 *) func_ov003_021d1c18(0, c);
+    for (i = 0; i < 7; i++) {
+        data_ov003_021da214->mUnk_18[i] = (Unk021da104_04 *) func_ov003_021d1c18(0, data_ov003_021d6478[0][1]);
     }
     b += 0xe7;
     switch (*(u8 *) b) {

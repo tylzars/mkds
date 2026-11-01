@@ -8,8 +8,6 @@
 #include "03/unk_021d5f00.h"
 #include "03/unk_021da000.h"
 
-// non-matching: in the second loop the counter sits in r5 and the two table pointers in r6 and r7; the original has the
-// counter in r6 and the pointers in r5 and r4 (9 instruction words differ, same size)
 void func_ov003_021c06e0(void) {
     Unk021d299c a;
     s32 i;
@@ -35,9 +33,10 @@ void func_ov003_021c06e0(void) {
             return;
         }
     }
-    p = data_ov003_021d5f98;
+    j = 2;
     q = data_ov003_021d5fa8;
-    for (j = 2; j < 4; j++, p++, q++) {
+    p = data_ov003_021d5f98;
+    for (; j < 4; q++, p++, j++) {
         func_ov003_021d250c(*p, *q, (short *) &a);
         if (func_ov003_021d299c(&a) != 0) {
             if (data_ov003_021da15c->mUnk_11e != j + 0x2f) {

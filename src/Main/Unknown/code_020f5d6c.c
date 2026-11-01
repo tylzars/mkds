@@ -38,11 +38,10 @@
 #include "code_0212c6ac.h"
 #include "code_0212df7c.h"
 
-// non-matching: same size; 11 lines differ; first: original `ldr r2, [r4, #96]`, ours `ldr r3, [r4, #96]`
 void func_020f6a6c(Unk020f41c4_A *a, void *b) {
     s32 t;
     enum { K0 } i;
-    Unk0217bc34 *e;
+    s32 k;
 
     func_02147fd8(-a->mUnk_dc, &a->mUnk_f0, &a->mUnk_50, &a->mUnk_108);
     func_020d5aa0(b, a->mUnk_fc, a->mUnk_104, &a->mUnk_108, &a->mUnk_f0);
@@ -60,12 +59,12 @@ void func_020f6a6c(Unk020f41c4_A *a, void *b) {
     }
     a->mUnk_124 = func_020f6830;
     i = a->mUnk_44;
-    e = &data_0217bc34[i];
+    k = data_0217bc34[i].mUnk_7c;
     t = a->mUnk_5c.y;
     if (t <= 0) {
         t = -t;
     }
-    a->mUnk_100 = -(s32) (((s64) t * e->mUnk_7c) >> 12);
+    a->mUnk_100 = -(s32) (((s64) t * k) >> 12);
     if (a->mUnk_100 < -0x5c3) {
         a->mUnk_100 = -0x5c3;
     }

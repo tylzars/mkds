@@ -119,7 +119,7 @@ s32 func_ov000_0218c550(Unk021b4d24 *a, void *b, u8 *c, s32 d, s32 e) {
                         q = (u8 *) &k;
                         q[0] = c[0];
                         q[1] = c[1];
-                        func_ov000_0218b358(b, r->mUnk_00, (k >> 8 & 0xff) | (k << 8 & 0xff00));
+                        func_ov000_0218b358(b, r->mUnk_00, (u16) ((k >> 8 & 0xff) | (k << 8 & 0xff00)));
                         c += 2;
                         d -= 2;
                         break;

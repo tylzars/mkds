@@ -43,9 +43,6 @@ u32 func_ov000_0219fb48(void) {
     return 1;
 }
 
-// non-matching: original keeps the data pointer address and 0x19d constant in r4/r6 across the loop and spills the two
-// flags and the start index (frame 0x23c, 0x1dc bytes); ours reloads them and keeps one flag in r5 (frame 0x234, 0x1e8
-// bytes)
 u32 func_ov000_0219fbec(s32 a, s32 b) {
     s32 d;
     s32 i;
@@ -55,10 +52,8 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
     s32 q;
     u8 x[12];
     Unk0218ec44 h;
-    u8 v1[0x208];
     Unk021b566c *p;
     s32 n;
-    u32 m;
     u32 r;
     s32 k;
     s32 t;
@@ -72,11 +67,7 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
         i = 0;
     }
     c = 0;
-    if (b == 0) {
-        d = 1;
-    } else {
-        d = 0;
-    }
+    d = b == 0;
     while (1) {
         if (d != 0 || c != 0) {
             data_ov000_021b566c->mUnk_19d++;
@@ -103,14 +94,12 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
                           data_ov000_021b566c->mUnk_2ec[data_ov000_021b566c->mUnk_19d] * 12) == 0) {
             continue;
         }
-        p = data_ov000_021b566c;
-        m = p->mUnk_0d;
-        for (k = 1; k <= p->mUnk_0d; k++) {
-            if (n == p->mUnk_f4[k]) {
+        for (k = 1; k <= data_ov000_021b566c->mUnk_0d; k++) {
+            if (n == data_ov000_021b566c->mUnk_f4[k]) {
                 break;
             }
         }
-        if (k <= m) {
+        if (k <= data_ov000_021b566c->mUnk_0d) {
             continue;
         }
         r = func_ov000_0218ebe8((Unk0218f960 *) data_ov000_021b566c->mUnk_00, n, &q);
@@ -121,9 +110,9 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
         if (h.mUnk_004 != 4) {
             continue;
         }
-        t = func_ov000_021a3530(data_ov000_021b4118, x, v1, 0x2f);
-        e = func_ov000_021a3530(data_ov000_021b411c, g + 2, v1, 0x2f);
-        z = func_ov000_021a3530(data_ov000_021b4120, g, v1, 0x2f);
+        t = func_ov000_021a3530(data_ov000_021b4118, x, h.mUnk_008, 0x2f);
+        e = func_ov000_021a3530(data_ov000_021b411c, g + 2, h.mUnk_008, 0x2f);
+        z = func_ov000_021a3530(data_ov000_021b4120, g, h.mUnk_008, 0x2f);
         if (t > 0 && e > 0 && z > 0) {
             if (func_0213c074(x, 0, 10) == 3) {
                 if (data_ov000_021b566c->mUnk_16 == func_0213c074(g + 2, 0, 10)) {

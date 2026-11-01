@@ -38,12 +38,12 @@ asm u32 func_ov000_021a4bbc(u32 a) {
 #pragma thumb on
 // clang-format on
 
-// non-matching: 9 words differ from +0xac; original keeps the flags in r0 and the 0xc0000 test in r5, ours flags in r5
 void func_ov000_021a4bc4(Unk021425e8 *v1) {
     u16 a;
     u32 b;
     u32 c;
     s32 e;
+    u16 f;
 
     if (v1->mUnk_02 == 0) {
         data_ov000_021b5f50->mUnk_226b = 0;
@@ -67,13 +67,14 @@ void func_ov000_021a4bc4(Unk021425e8 *v1) {
                     if ((data_ov000_021b5f50->mUnk_2264 & 0xc0000) == 0xc0000) {
                         b = 1;
                     }
+                    f = b;
                     if ((data_ov000_021b5f50->mUnk_2264 & 0x30000) == 0x30000) {
                         c = 0;
                     } else {
                         c = 1;
                     }
                     e = func_021437d8((Unk021425e8Func) func_ov000_021a5088, (u16 *) data_ov000_021b5f50->mUnk_2140, 0,
-                                      c, b);
+                                      c, f);
                     switch (e) {
                         case 2:
                             return;

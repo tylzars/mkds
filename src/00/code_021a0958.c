@@ -159,14 +159,13 @@ u32 func_ov000_021a0c30(Unk021a0c30 *a) {
     return r;
 }
 
-// non-matching: original keeps the flag in r7 and the return value at [sp, #8] (frame 0x14, 0x22c bytes); ours keeps
-// the return value in r6 and the flag at [sp, #8] with an extra stack word (frame 0x1c, 0x238 bytes)
 u32 func_ov000_021a0cac(s32 a, s32 b, u32 c) {
     u32 t[2];
     u16 v1;
     u32 k;
     s32 x;
     u32 v2;
+    u32 r;
 
     k = data_ov000_021b566c->mUnk_14;
     v2 = 0;
@@ -183,7 +182,7 @@ u32 func_ov000_021a0cac(s32 a, s32 b, u32 c) {
         } else {
             v1 = func_ov000_021a8ed4();
             if ((v1 & 0xffff) == 0xa8c0 ||
-                ((v1 & 0xff) == 0xac && (v1 & 0xff00) >= 0x1000 && (v1 & 0xff00) <= 0x1f00) || (v1 & 0xff) == 0x10) {
+                ((v1 & 0xff) == 0xac && (v1 & 0xff00u) >= 0x1000 && (v1 & 0xff00u) <= 0x1f00) || (v1 & 0xff) == 0x10) {
                 x = 1;
             } else {
                 data_ov000_021b566c->mUnk_1f8[k] = func_ov000_0218b27c((u32 *) c);
@@ -197,10 +196,10 @@ u32 func_ov000_021a0cac(s32 a, s32 b, u32 c) {
         } else {
             t[0] = func_ov000_021a8ed4();
             t[1] = func_ov000_021988e4(*data_ov000_021b566c->mUnk_04);
-            v2 = func_ov000_021a0ae8(6, data_ov000_021b566c->mUnk_f4[k], func_ov000_0218b27c((u32 *) c),
-                                     func_ov000_0218b260(c), t, 2);
+            r = func_ov000_021a0ae8(6, data_ov000_021b566c->mUnk_f4[k], func_ov000_0218b27c((u32 *) c),
+                                    func_ov000_0218b260(c), t, 2);
             data_ov000_021b566c->mUnk_3b5 = 0;
-            if (v2 != 0) {
+            if (r != 0) {
                 return 2;
             }
             data_ov000_021b566c->mUnk_194 = 0;

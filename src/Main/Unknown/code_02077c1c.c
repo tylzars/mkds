@@ -54,13 +54,11 @@ void func_02077c1c(void) {
     }
 }
 
-// non-matching: same instructions and size; r4 and r5 swapped (the 0x34-byte entry pointer is in r4, the word at 4 of
-// the 0x58 entry in r5, the original has them the other way round)
 void func_02077d68(void) {
     Unk0217ad08_1f4 *a;
     s32 b;
-    s32 c;
     Unk0217ad08_1f4 *p;
+    s32 c;
     s32 i;
     char *e;
 
@@ -71,7 +69,7 @@ void func_02077d68(void) {
     c = data_0217ad08->mUnk_020->mUnk_04;
     p->mUnk_30 = 0;
     func_0201797c(&p->mUnk_04->mUnk_00);
-    p->mUnk_04 = func_02017988(a[i].mUnk_00, 0xf000, 0);
+    p->mUnk_04 = func_02017988(p->mUnk_00, 0xf000, 0);
     if (b != -1 && p->mUnk_08 != 0) {
         func_02012b30(p->mUnk_08);
         func_02012b30(p->mUnk_0c);

@@ -6,14 +6,11 @@
 #include "03/unk_021d5f00.h"
 #include "03/unk_021da000.h"
 
-// non-matching: in the second loop the counter sits in r5 and the two table pointers in r6 and r7; the original has the
-// counter in r6 and the pointers in r5 and r4 (8 instruction words differ, same size)
 void func_ov003_021c0528(void) {
     Unk021d299c a;
     s32 i;
     s32 j;
-    u16(*p)[2];
-    u16(*q)[2];
+
     if (func_ov003_021d2a80(&data_ov003_021d67e8) == 0) {
         goto fail;
     }
@@ -27,10 +24,8 @@ void func_ov003_021c0528(void) {
             goto done;
         }
     }
-    p = data_ov003_021d5f98;
-    q = data_ov003_021d5fa8;
-    for (j = 2; j < 4; j++, p++, q++) {
-        func_ov003_021d250c(*p, *q, (short *) &a);
+    for (j = 2; j < 4; j++) {
+        func_ov003_021d250c(data_ov003_021d5f90[j], data_ov003_021d5fa0[j], (short *) &a);
         if (func_ov003_021d2a80(&a) != 0) {
             if (data_ov003_021da15c->mUnk_11e != j + 0x2f) {
                 goto fail;

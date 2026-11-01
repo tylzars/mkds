@@ -172,22 +172,22 @@ void func_02042c3c(void *a) {
     }
 }
 
-// non-matching: the original keeps more values in registers (counter r5, stack frame 0x2c bytes instead of 0x24), and
-// takes the member 0x84 entry address through one reused stack value
 void func_02042a10(void *a) {
     Unk02175620 *g;
     Unk02175620_8c *r;
     Unk02175620_8c *t;
     Unk02175620_bc **q;
-    Unk02175620_bc *e;
-    Unk02175620_84 *s;
     s32 i;
+    Unk02175620_bc *e;
+    Unk02175620_bc *d;
     s32 j;
     s32 k;
     u16 m;
     u16 n;
     u16 h;
-    u8 c;
+    Unk02175620_84 *s;
+    u16 b;
+    u16 c;
 
     g = data_02175620;
     r = g->mUnk_8c;
@@ -207,52 +207,48 @@ void func_02042a10(void *a) {
     }
     for (j = 0; j < data_02175620->mUnk_88; j++) {
         s = data_02175620->mUnk_84 + (u16) j;
-        e = q[0] + j;
+        d = q[0] + j;
         n = 0;
-        if (data_02175620->mUnk_90 != 0) {
-            for (m = 0; m < data_02175620->mUnk_90; m++) {
-                t = data_02175620->mUnk_8c;
-                r = t + m;
-                if (j >= t[m].mUnk_00 && j < t[m].mUnk_00 + r->mUnk_02) {
-                    break;
-                }
+        for (m = 0; m < data_02175620->mUnk_90; m++) {
+            t = data_02175620->mUnk_8c;
+            r = t + m;
+            if (j >= t[m].mUnk_00 && j < r->mUnk_00 + r->mUnk_02) {
+                break;
             }
         }
-        e->mUnk_2e = 0;
+        d->mUnk_2e = 0;
         h = r->mUnk_00 + r->mUnk_02 - 1;
         if (j == r->mUnk_00) {
-            for (m = 0; m < 8; m++) {
-                c = r->mUnk_0c[m];
-                if (c != 0xff) {
-                    e->mUnk_2e |= 1 << n;
-                    e->mUnk_00[n++] = q[0] + c;
+            for (b = 0; b < 8; b++) {
+                if (r->mUnk_0c[b] != 0xff) {
+                    d->mUnk_2e |= 1 << n;
+                    d->mUnk_00[n++] = q[0] + r->mUnk_0c[b];
                 }
             }
             if (r->mUnk_02 > 1) {
-                e->mUnk_00[n++] = e + 1;
+                d->mUnk_00[n++] = d + 1;
             }
         }
         if (j == h) {
-            for (m = 0; m < 8; m++) {
-                c = r->mUnk_04[m];
-                if (c != 0xff) {
-                    e->mUnk_2e |= 1 << n;
-                    e->mUnk_00[n++] = q[0] + c;
+            for (c = 0; c < 8; c++) {
+                if (r->mUnk_04[c] != 0xff) {
+                    d->mUnk_2e |= 1 << n;
+                    d->mUnk_00[n++] = q[0] + r->mUnk_04[c];
                 }
             }
             if (r->mUnk_02 > 1) {
-                e->mUnk_00[n++] = e - 1;
+                d->mUnk_00[n++] = d - 1;
             }
         }
         if (j != r->mUnk_00 && j != h) {
-            e->mUnk_00[0] = e + 1;
-            n = 2;
-            e->mUnk_00[1] = e - 1;
+            n = 0;
+            d->mUnk_00[n++] = d + 1;
+            d->mUnk_00[n++] = d - 1;
         }
-        e->mUnk_20 = (Vec3 *) s;
-        e->mUnk_24 = s->mUnk_0c;
-        e->mUnk_28 = (s16 *) s->mUnk_10;
-        e->mUnk_2c = n;
+        d->mUnk_20 = (Vec3 *) s;
+        d->mUnk_24 = s->mUnk_0c;
+        d->mUnk_28 = (s16 *) s->mUnk_10;
+        d->mUnk_2c = n;
     }
 }
 

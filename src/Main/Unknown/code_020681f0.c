@@ -34,13 +34,12 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_02075d08.h"
 
-// non-matching: the index of the data_02175628 element is loaded into r1 and the product goes to r2 (original: index in
-// r2, product in r1); the rest is identical
 void func_020681f0(Unk0206bcb0 *a) {
     Unk0208c5b8 *b;
     u16 *c;
     u16 *d;
     u32 e;
+    enum { K0 } k;
 
     if ((a->mUnk_7c & 0x402) == 0) {
         if (a->mUnk_2fc >= 3) {
@@ -50,7 +49,8 @@ void func_020681f0(Unk0206bcb0 *a) {
         if (a->mUnk_30c > 0) {
             return;
         }
-        e = data_02175628[a->mUnk_78].mUnk_00;
+        k = a->mUnk_78;
+        e = data_02175628[k].mUnk_00;
         if ((u16) (e & 0x20) != 0) {
             c = &a->mUnk_300;
             if (a->mUnk_304 == c) {

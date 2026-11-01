@@ -91,13 +91,10 @@ void func_02071788(Unk0206bcb0 *p) {
     }
 }
 
-// non-matching: same size and instructions; registers differ: the original loads the address of data_02154b64 into r5
-// first and keeps the index, next index and fraction in r2, r1 and r3 with the 4ec value in r4; here the table is in
-// r4, the index values are in r3, r2 and r1 and the 4ec value is in r5 (first difference at 0xc).
 void func_02071568(Unk0206bcb0 *p) {
+    s32 f;
     u16 i;
     u16 j;
-    s32 f;
     s32 v;
     s32 s;
     s32 t;
@@ -107,12 +104,12 @@ void func_02071568(Unk0206bcb0 *p) {
     if (t >= 0) {
         p->mUnk_4ec = t;
     }
+    f = p->mUnk_4ec & 0xfff;
     i = (u16) (p->mUnk_4ec >> 12);
     j = i + 1;
     if (j >= 8) {
         j = 0;
     }
-    f = p->mUnk_4ec & 0xfff;
     p->mUnk_4f0.x = data_02154b64[i] + (s32) (((s64) ((data_02154b64[j] - data_02154b64[i]) >> 1) * f) >> 12);
     p->mUnk_4f0.y = data_02154b84[i] + (s32) (((s64) ((data_02154b84[j] - data_02154b84[i]) >> 1) * f) >> 12);
     p->mUnk_4f0.z = data_02154ba4[i] + (s32) (((s64) ((data_02154ba4[j] - data_02154ba4[i]) >> 1) * f) >> 12);

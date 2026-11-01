@@ -75,9 +75,10 @@ void func_020b4428(u16 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     }
 }
 
-// non-matching: same size, 14 words: in the first of the 16-iteration loops the sum d + e * 32 is added to j % 4 as
-// (add r1, r5, r1), ours (add r1, r1, r5); in the third loop the original keeps the counter in r7, the row term in r5,
-// the pointer o2->mUnk_14 in r8 and the running index in r6 (ours r5, r7, r6 and r8).
+static inline u16 *func_020b41e8_inline(u16 *p, s32 r, s32 k) {
+    return p + (r + k % 4) * 16 + k / 4 * 512;
+}
+
 void func_020b41e8(s32 a, s32 b, s32 c, s32 d, s32 e) {
     Unk021759c0 *p = data_021759c0;
     Unk020b4a44 *o1;
@@ -91,6 +92,8 @@ void func_020b41e8(s32 a, s32 b, s32 c, s32 d, s32 e) {
     s32 j;
     s32 x;
     u16 i;
+    u16 *q;
+    s32 w;
 
     i = p->mUnk_00c == 1 ? p->mUnk_063 : p->mUnk_62;
     n = p->mUnk_68[i].mUnk_00;
@@ -112,15 +115,15 @@ void func_020b41e8(s32 a, s32 b, s32 c, s32 d, s32 e) {
     }
     s = o2->mUnk_14;
     for (j = 0; j < 16; j++) {
-        func_0214cffc(s + (n * 25 + j) * 16, (u16 *) c + (j % 4 + (d + e * 32)) * 16 + j / 4 * 512, 0x20);
+        func_0214cffc(s + (n * 25 + j) * 16, func_020b41e8_inline((u16 *) c, d + e * 32, j), 0x20);
     }
     s3 = o2->mUnk_14;
     for (y = 0; y < 4; y++) {
         func_0214cffc(s3 + (n * 25 + 16 + y) * 16, (u16 *) c + (d + 4 + e * 32) * 16 + y * 512, 0x20);
     }
-    s = o2->mUnk_14;
-    for (j = 0; j < 4; j++) {
-        func_0214cffc(s + (n * 25 + 20 + j) * 16, (u16 *) c + (d + (e + 4) * 32 + j % 4) * 16 + j / 4 * 512, 0x20);
+    q = o2->mUnk_14;
+    for (w = 0; w < 4; w++) {
+        func_0214cffc(q + (n * 25 + 20 + w) * 16, func_020b41e8_inline((u16 *) c, d + (e + 4) * 32, w), 0x20);
     }
     func_0214cffc(o2->mUnk_14 + (n * 25 + 24) * 16, (u16 *) c + (d + 4 + (e + 4) * 32) * 16, 0x20);
 }

@@ -37,12 +37,13 @@ void func_020362c4(Unk02180728 *a, void *b, void *c, s32 d, s32 e) {
 
 #pragma thumb on
 
-// non-matching: 91%, differs by loop register numbers and order of the pointer loads
+// non-matching: second loop registers only (9 words, same size): the original has the counter in r3, the
+// data_02174e6c address in r7 and the two shifted rows in r5/r4; here r7, r5 and r4/r3.
 void func_020362dc(void *a) {
     void *h;
     u32 b;
-    s32 i;
     s32 j;
+    s32 i;
     u16 v;
 
     func_02036438(a);
@@ -58,8 +59,8 @@ void func_020362dc(void *a) {
     for (i = 7; i < 9; i++) {
         for (j = 0; j < 0x20; j++) {
             v = (((j + i + 1) & 1) << 12) | 1;
-            data_02174e6c->mUnk_034[j + i * 0x20] = v;
-            data_02174e6c->mUnk_034[j + (i + 7) * 0x20] = v;
+            data_02174e6c->mUnk_034[j + (u32) i * 0x20] = v;
+            data_02174e6c->mUnk_034[j + ((u32) i + 7) * 0x20] = v;
         }
     }
     func_0200ee58(data_02174e6c->mUnk_034, 0x600);
@@ -67,7 +68,7 @@ void func_020362dc(void *a) {
     func_02036264(data_02174e6c->mUnk_034, 0x600);
     for (i = 10; i < 14; i++) {
         for (j = 0; j < 0x20; j++) {
-            data_02174e6c->mUnk_034[j + i * 0x20] = j + (i - 10) * 0x20 + 0x20;
+            data_02174e6c->mUnk_034[j + (u32) i * 0x20] = j + ((u32) i - 10) * 0x20 + 0x20;
         }
     }
     func_0200ee58(data_02174e6c->mUnk_034, 0x600);

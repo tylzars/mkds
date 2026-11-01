@@ -17,16 +17,15 @@ static inline u32 func_020e4ad0_inline(Unk020f41c4_B *r, u32 c) {
     }
 }
 
-// non-matching: 99.1: the original merges the first mUnk_100 product at once and copies it (add r2, r3, #0)
-// into the final add without storing it; here it is stored and reloaded (one word more), and a single sum
-// keeps both words of the first product live instead (one word less).
 void func_020e4ad0(Unk020e43a8 *p) {
     s32 y;
 
     p->mUnk_00.mUnk_10.y -= 0x385;
     func_02148504(&p->mUnk_00.mUnk_04, &p->mUnk_00.mUnk_10, &p->mUnk_00.mUnk_04);
-    p->mUnk_100 = (s32) (((s64) p->mUnk_104 * (p->mUnk_00.mUnk_04.x - p->mUnk_a0.mUnk_18.x)) >> 12);
-    p->mUnk_100 += (s32) (((s64) p->mUnk_108 * (p->mUnk_00.mUnk_04.z - p->mUnk_a0.mUnk_18.z)) >> 12);
+    y = 0;
+    y += (s32) (((s64) p->mUnk_104 * (p->mUnk_00.mUnk_04.x - p->mUnk_a0.mUnk_18.x)) >> 12);
+    y += (s32) (((s64) p->mUnk_108 * (p->mUnk_00.mUnk_04.z - p->mUnk_a0.mUnk_18.z)) >> 12);
+    p->mUnk_100 = y;
     y = p->mUnk_a0.mUnk_18.y + p->mUnk_100;
     if (p->mUnk_00.mUnk_04.y >= y) {
         return;

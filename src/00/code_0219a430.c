@@ -24,14 +24,13 @@ typedef struct Unk0219a430Addr {
     /* 4 */ u32 mUnk_04;
 } Unk0219a430Addr;
 
-// non-matching: registers only; the original reuses the zero from the -1 compare for the two zero stores into the
-// struct, keeps the byte-swapped halfword in r5 and reads the compared field into r1 (ours r2)
 u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
     Unk02197e8c *f;
     u16 i;
     Unk0219a430Addr g;
     u32 h;
     s32 j;
+    u32 *p;
     func_ov000_0218e8b8();
     if (d == 0) {
         d = 0x10000;
@@ -70,8 +69,9 @@ u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
         func_ov000_021a3668(f);
         return 3;
     }
-    ((u32 *) &g)[0] = 0;
-    ((u32 *) &g)[1] = 0;
+    p = (u32 *) &g;
+    p[0] = 0;
+    p[1] = 0;
     g.mUnk_01 = 2;
     g.mUnk_04 = h;
     g.mUnk_02 = ((i >> 8) & 0xff) | ((i << 8) & 0xff00);

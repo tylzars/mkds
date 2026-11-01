@@ -12,6 +12,7 @@
 #include "code_02139f70.h"
 #include "00/code_0218e554.h"
 #include "00/code_0218e368.h"
+#include "00/code_0218e80c.h"
 
 s32 func_ov000_02196240(Unk0218f960 *a, Unk02196240 **b, u32 c) {
     Unk02196240 *d;
@@ -42,8 +43,6 @@ s32 func_ov000_02196240(Unk0218f960 *a, Unk02196240 **b, u32 c) {
     return 0;
 }
 
-// non-matching: first compare against -1 (0x40) is mvns r1, r1 where the original has movs r1, #0; mvns r2, r1; size
-// equal, one word differs
 s32 func_ov000_021962d4(Unk0218f960 *a, Unk021937c0Node *b) {
     Unk02196240 *c;
     Unk021a8f84 *h;
@@ -62,7 +61,7 @@ s32 func_ov000_021962d4(Unk0218f960 *a, Unk021937c0Node *b) {
         func_ov000_02190f4c(a, 3, 1);
         return 3;
     }
-    if (func_ov000_0218e80c(c->mUnk_004) == 0) {
+    if (func_ov000_0218e80c(c->mUnk_004, 0) == 0) {
         func_ov000_021965a0(a, 5, data_ov000_021b38e8);
         func_ov000_02190f4c(a, 3, 1);
         return 3;

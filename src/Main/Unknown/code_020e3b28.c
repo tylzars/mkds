@@ -47,12 +47,13 @@ s32 func_020e4320(s32 a) {
 
 #pragma thumb on
 
-// non-matching: second loop's counter and byte offset use r2/r4 instead of r4/r2 (5 words)
 void func_020e4184(Unk020e1dc0 *a) {
     Unk020e3ef4 *e;
     s32 i;
     s32 k;
     s32 n;
+    s32 j;
+    s32 l;
     u32 *p;
     u32 m[5];
 
@@ -89,9 +90,9 @@ void func_020e4184(Unk020e1dc0 *a) {
             *p = 1;
         }
     }
-    n = a->mUnk_04;
-    for (i = 0; i < n; i++) {
-        e = a->mUnk_00[i];
+    l = a->mUnk_04;
+    for (j = 0; j < l; j++) {
+        e = a->mUnk_00[j];
         switch (e->mUnk_158) {
             case 0:
                 e->mUnk_140 = data_0217b7e8;

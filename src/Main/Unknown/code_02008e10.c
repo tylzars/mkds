@@ -101,25 +101,20 @@ void func_02008ff0(u32 a, Unk02008f00Func b) {
     }
 }
 
-// non-matching: same size and instruction order; in the first loop the Unk0216fc1c pointer sits in r3 and the
-// entry-offset walk in r2 (original: r2 and r3 the other way round), and the original reads the mask through a copy of
-// the table pointer in r3
 s32 func_02009098(const u8 *a, Unk02008f00Func b) {
     s32 i;
     Unk0216fc20 *d;
     Unk02008934 *e;
     u16 v1;
-    Unk0216fc1c *s;
     i = 0;
     d = data_0216fc40;
     e = d->mUnk_10;
-    v1 = d->mUnk_00;
-    s = data_usa_0216fc1c;
     for (; i < 0x10; i++) {
         u32 m = 1 << i;
-        if ((v1 & m) != 0 && e->mUnk_4b8 == s->mUnk_00 && e->mUnk_4c4[0] == a[4] && e->mUnk_4c4[1] == a[5] &&
-            e->mUnk_4c4[2] == a[6] && e->mUnk_4c4[3] == a[7] && e->mUnk_4c4[4] == a[8] && e->mUnk_4c4[5] == a[9] &&
-            s->mUnk_04_2 == d->mUnk_10[i].mUnk_4b5) {
+        v1 = d->mUnk_00;
+        if ((v1 & m) != 0 && e->mUnk_4b8 == data_usa_0216fc1c->mUnk_00 && e->mUnk_4c4[0] == a[4] &&
+            e->mUnk_4c4[1] == a[5] && e->mUnk_4c4[2] == a[6] && e->mUnk_4c4[3] == a[7] && e->mUnk_4c4[4] == a[8] &&
+            e->mUnk_4c4[5] == a[9] && data_usa_0216fc1c->mUnk_04_2 == d->mUnk_10[i].mUnk_4b5) {
             if ((d->mUnk_04 & m) == 0) {
                 func_02008a4c(i);
             }
@@ -128,7 +123,7 @@ s32 func_02009098(const u8 *a, Unk02008f00Func b) {
         e++;
     }
     i = 0;
-    v1 = d->mUnk_00;
+    v1 = *(u16 *) d;
     for (; i < 0x10; i++) {
         u32 m = 1 << i;
         if ((v1 & m) == 0) {

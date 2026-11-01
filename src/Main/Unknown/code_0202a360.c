@@ -2,10 +2,15 @@
 
 #pragma thumb on
 
-// non-matching: 90.7%; same control flow, register and stack-offset differences in the array loops
+static inline Unk0217aa1c_144_00 *func_0202a360_inline(s32 j) {
+    return &data_0217aa1c->mUnk_144[func_0205db28()].mUnk_00[j];
+}
+
+// non-matching: 99.97%; the early `if (... < 3) return 0; return 1;` is rebuilt into one compare value
+// (blt to the 0, fall-through 1); the original keeps the branch shape (bge to the 1, fall-through 0)
 u32 func_0202a360(void) {
     Unk021759c0 *d;
-    u32 n;
+    s32 n;
     s32 v;
     s32 a[8];
     s32 b;
@@ -18,6 +23,7 @@ u32 func_0202a360(void) {
     s32 r5;
     s32 r6;
     s32 w;
+    Unk0217aa1c_00 *p;
 
     d = data_021759c0;
     n = d->mUnk_3d0;
@@ -49,12 +55,12 @@ u32 func_0202a360(void) {
         r6 = *(s32 *) ((u8 *) data_021759c0 + v + 0x74);
         switch (data_021759c0->mUnk_1c) {
             case 1:
-                r4 = data_0217aa1c->mUnk_144[func_0205db28()].mUnk_00[0].mUnk_02;
-                r5 = data_0217aa1c->mUnk_144[func_0205db28()].mUnk_00[1].mUnk_02;
+                r4 = func_0202a360_inline(0)->mUnk_02;
+                r5 = func_0202a360_inline(1)->mUnk_02;
                 break;
             case 2:
-                r4 = data_0217aa1c->mUnk_144[func_0205db28()].mUnk_00[0].mUnk_00;
-                r5 = data_0217aa1c->mUnk_144[func_0205db28()].mUnk_00[1].mUnk_00;
+                r4 = func_0202a360_inline(0)->mUnk_00;
+                r5 = func_0202a360_inline(1)->mUnk_00;
                 break;
         }
         if (r4 == r5) {
@@ -78,11 +84,13 @@ u32 func_0202a360(void) {
         if (data_021759d0->mUnk_20 == 3 || data_021759c0->mUnk_1c == 2) {
             x = func_0205dc7c((u16) i);
             y = func_0205db28();
-            a[i] = data_0217aa1c->mUnk_000[y][func_0205dc7c(x)].mUnk_00;
+            p = &data_0217aa1c->mUnk_000[y][func_0205dc7c(x)];
+            a[i] = p->mUnk_00;
         } else {
             x = func_0205dc7c((u16) i);
             y = func_0205db28();
-            a[i] = data_0217aa1c->mUnk_000[y][func_0205dc7c(x)].mUnk_05;
+            p = &data_0217aa1c->mUnk_000[y][func_0205dc7c(x)];
+            a[i] = p->mUnk_05;
         }
         if (m < a[i]) {
             m = a[i];

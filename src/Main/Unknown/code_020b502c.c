@@ -101,7 +101,17 @@ void func_020b5dcc(s32 idx, UnkPair020b502c *out, s32 v1) {
     }
 }
 
-// non-matching: register allocation only (py in r6 and tx in r4, original r4 and r6)
+static inline s32 func_020b5ae8_inline(s32 v) {
+    float f;
+
+    if (func_020b5250(v) > 0) {
+        f = 0.5f + (float) (func_020b5250(v) << 12);
+    } else {
+        f = (float) (func_020b5250(v) << 12) - 0.5f;
+    }
+    return (s32) f;
+}
+
 s32 func_020b5ae8(const Vec3 *pos, UnkPair020b502c *out, s32 unk, s32 flag, s32 flag2) {
     UnkPair020b502c a = data_0217b3c0->mUnk_00;
     s32 v20 = data_0217b3c0->mUnk_20;
@@ -109,10 +119,11 @@ s32 func_020b5ae8(const Vec3 *pos, UnkPair020b502c *out, s32 unk, s32 flag, s32 
     UnkPair020b502c o = data_0217b3c0->mUnk_4c;
     s32 x;
     s32 y;
+    s32 dx;
     s32 px;
     s32 py;
-    s32 dx;
     s32 dy;
+    s32 e;
     s32 ox;
     s32 oy;
     UnkPair020b502c c;
@@ -136,24 +147,8 @@ s32 func_020b5ae8(const Vec3 *pos, UnkPair020b502c *out, s32 unk, s32 flag, s32 
         x = a.mUnk_00;
         y = a.mUnk_04;
     } else {
-        s32 t;
-        float f;
-
-        t = func_020b5250(a.mUnk_00);
-        if (t > 0) {
-            f = 0.5f + (float) (func_020b5250(a.mUnk_00) << 12);
-        } else {
-            f = (float) (func_020b5250(a.mUnk_00) << 12) - 0.5f;
-        }
-        x = (s32) f;
-        y = a.mUnk_04;
-        t = func_020b5250(y);
-        if (t > 0) {
-            f = 0.5f + (float) (func_020b5250(y) << 12);
-        } else {
-            f = (float) (func_020b5250(y) << 12) - 0.5f;
-        }
-        y = (s32) f;
+        x = func_020b5ae8_inline(a.mUnk_00);
+        y = func_020b5ae8_inline(a.mUnk_04);
     }
     if (func_020b523c() != 0) {
         dx = px - x;
@@ -162,9 +157,9 @@ s32 func_020b5ae8(const Vec3 *pos, UnkPair020b502c *out, s32 unk, s32 flag, s32 
         oy = func_020b5250(func_020b502c(v24, dx) + func_020b502c(v20, dy)) + 0x60;
     } else {
         dx = px - x;
-        dy = py - y;
-        ox = func_020b5250(func_020b502c(v20, dx) - func_020b502c(v24, dy)) + 0x80;
-        oy = func_020b5250(func_020b502c(v24, dx) + func_020b502c(v20, dy)) + 0x60;
+        e = py - y;
+        ox = func_020b5250(func_020b502c(v20, dx) - func_020b502c(v24, e)) + 0x80;
+        oy = func_020b5250(func_020b502c(v24, dx) + func_020b502c(v20, e)) + 0x60;
     }
     if (ox > -32 && ox < 0x120 && oy > -32 && oy < 0xe0) {
         out->mUnk_00 = ox;

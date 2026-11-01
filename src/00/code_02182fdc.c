@@ -283,8 +283,6 @@ void func_ov000_021839d0(void) {
     }
 }
 
-// non-matching: instructions identical; the stack slots of the cur * 2 temporary (sp+0x18, original sp+0x1c) and of the
-// tbl[cur] << 6 temporary (sp+0x1c, original sp+0x18) are swapped, 5 words.
 void func_ov000_02183858(void) {
     s32 orig;
     s32 i1;
@@ -295,7 +293,7 @@ void func_ov000_02183858(void) {
     u32 base;
     u16 c;
     s32 j;
-    u8 e;
+    u32 e;
 
     orig = data_ov000_021b4c74->mUnk_08;
     i1 = orig;
@@ -320,13 +318,13 @@ void func_ov000_02183858(void) {
         data_ov000_021b4c74->mUnk_10d4[(&data_ov000_021b0678[0][0] + cur * 2)[j]].mUnk_00 = 1;
         data_ov000_021b4c74->mUnk_10d4[base + (&data_ov000_021b0670[0][0] + cur * 2)[j]].mUnk_00 = 1;
     }
-    e = data_ov000_021b0668[cur];
-    data_ov000_021b4c74->mUnk_10d4[e].mUnk_00 = 1;
+    e = data_ov000_021b0668[cur] << 6;
+    ((Unk02124b1c *) ((u32) data_ov000_021b4c74->mUnk_10d4 + e))->mUnk_00 = 1;
     *(s16 *) ((u8 *) data_ov000_021b4c74->mUnk_18 + cur * 2) = data_ov000_021b069c[i1];
     for (j = 0; j < 2; j++) {
         func_02124b1c(&data_ov000_021b4c74->mUnk_10d4[(&data_ov000_021b0678[0][0] + cur * 2)[j]], 0, a);
     }
-    func_02124b1c(&data_ov000_021b4c74->mUnk_10d4[e], c, b);
+    func_02124b1c((Unk02124b1c *) ((u32) data_ov000_021b4c74->mUnk_10d4 + e), c, b);
     data_ov000_021b4c74->mUnk_08 = data_ov000_021b4c74->mUnk_08 + 1;
     if (data_ov000_021b4c74->mUnk_08 >= 0x1e && data_ov000_021b4c74->mUnk_08 >= 0x28) {
         data_ov000_021b4c74->mUnk_08 = 0;

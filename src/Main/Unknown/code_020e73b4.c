@@ -148,9 +148,6 @@ void func_020e7760(void) {
     func_02046bcc(&data_0217b9ec, 0);
 }
 
-// non-matching: the first loop's preheader only: the original puts the shared zero into a second register for the
-// 64-bit constant high words (r5 moved to r0, then four word writes of r0 at [sp, #16..]) and starts the byte offset
-// with "movs r4, r5"; this compiles to "adds r4, r5, #0" and four writes of r5 (one instruction and one encoding).
 void func_020e7460(void) {
     s32 x;
     s32 j;
@@ -178,8 +175,7 @@ void func_020e7460(void) {
     data_0217b8a0 = func_02036bec(h, 0x78);
     data_0217b8e0 = func_02036bec(h, 0x78);
     data_0217b904 = func_02036bec(h, 0x78);
-    x = 0;
-    for (i = 0; i < 0x3c; i++) {
+    for (i = 0, x = 0; i < 0x3c; i++) {
         data_0217b8a4[i] = (u16) (((s64) data_0215d4b4[(x >> 4) * 2] * 0x4c) >> 12);
         k = (u16) (((u64) (s64) data_0215d4b4[((u16) (x + 0xa218) >> 4) * 2] * 0xb60b60b60b + 0x80000000000) >> 44) >>
             4;
@@ -191,9 +187,7 @@ void func_020e7460(void) {
     }
     data_0217b8e8 = 0;
     n = 2;
-    s = data_0216c324;
-    q = data_0217bb08;
-    for (j = n; j < 4; j++) {
+    for (j = n, s = data_0216c324, q = data_0217bb08; j < 4; j++) {
         if (s->mUnk_00 != 0) {
             q->mUnk_00 = func_02036bec(h, 0x6c);
             p = func_0204799c(s->mUnk_00);

@@ -253,10 +253,6 @@ void func_02101c84(Unk02101c84 *p) {
     func_02148504(w, &v, &p->mUnk_000.mUnk_0c4);
 }
 
-// non-matching: 79.5: size 0x2e8 against 0x320; the original keeps d in memory (frame 0x0c, d[0] at sp+0, d[2] at
-// sp+8, every update stored and reloaded, clamps as strgt/strlt) and pushes r4-r9 only; here
-// the compiler turns d into temporaries (also as a Vec3, with an inline subtract or a clamp
-// helper taking &d[0]) and the rest of the registers follow.
 void func_02101964(Unk02101c84 *p, s32 a) {
     Unk0206bcb0 *q;
     Vec3 *v;
@@ -288,7 +284,7 @@ void func_02101964(Unk02101c84 *p, s32 a) {
             p->mUnk_144 = 1;
         }
     }
-    d[0] = v->x - (&p->mUnk_000.mUnk_5c)->x;
+    ((Vec3 *) d)->x = v->x - (&p->mUnk_000.mUnk_5c)->x;
     d[2] = v->z - (&p->mUnk_000.mUnk_5c)->z;
     if (p->mUnk_144 != 0) {
         func_02148504((Vec3 *) &p->mUnk_184, (Vec3 *) &p->mUnk_190, (Vec3 *) &p->mUnk_184);
@@ -318,7 +314,7 @@ void func_02101964(Unk02101c84 *p, s32 a) {
     }
     d[0] -= v->x;
     d[2] -= v->z;
-    t = (s32) (((s64) d[2] * w[2] + (s64) d[0] * w[0]) >> 12);
+    t = (s32) (((s64) w[0] * d[0] + (s64) w[2] * d[2]) >> 12);
     d[0] = (s32) (((s64) w[0] * t) >> 12);
     d[2] = (s32) (((s64) w[2] * t) >> 12);
     d[0] = (s32) (((s64) d[0] * s) >> 12);
@@ -333,8 +329,8 @@ void func_02101964(Unk02101c84 *p, s32 a) {
     } else if (d[2] < -c) {
         d[2] = -c;
     }
-    p->mUnk_16c += d[0];
-    p->mUnk_174 += d[2];
+    p->mUnk_16c = d[0] + (s32) p->mUnk_16c;
+    p->mUnk_174 = d[2] + (s32) p->mUnk_174;
 }
 
 void func_021018a0(Unk02101c84 *p) {

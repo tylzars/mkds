@@ -16,6 +16,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
     u16 n2 = 0;
     Unk02175620_bc *v2[8] = {0, 0, 0, 0, 0, 0, 0, 0};
     u16 n1;
+    s32 m0;
     Unk0206bcb0 *o;
     Unk02175620_bc *q;
     s32 u;
@@ -25,7 +26,6 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
     u32 v32;
     s32 v3;
     Unk02175620_bc *f;
-    s32 m0;
     u16 n0;
     s32 t;
     u16 i;

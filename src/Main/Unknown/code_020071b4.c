@@ -50,9 +50,6 @@ int func_020071b4(void) {
     return v2;
 }
 
-// non-matching: same instructions up to the call of func_0200adfc, then the registers differ (the original computes the
-// byte at 0x14 of the local buffer times 4 before reloading data_0216fdac, and keeps the argument value in r6, the
-// entry pointer in r7; ours has them swapped and the pointer to data_0216fdac + 0x7ce0 in r6)
 u32 func_020072c0(void) {
     Unk020074d8_msg v1;
     Unk020072c0_buf v2;
@@ -62,11 +59,11 @@ u32 func_020072c0(void) {
     Unk0216fdac *v4;
     Unk0200adfc *v5;
     Unk0200adfc_30 *v6;
+    s32 i;
     Unk0200adfc_30 *v7;
-    Unk02007478 *v8;
     u8 *v9;
     u32 v10;
-    s32 i;
+    Unk02007478 *v8;
     Unk0216fdac *v12;
     Unk0216fdac *v13;
     v12 = data_0216fdac;
@@ -101,8 +98,9 @@ u32 func_020072c0(void) {
     v9 = func_0200c3a4((u8 *) &v1, (u8 *) v3);
     v14 = v2.mUnk_0c;
     v3 = data_0216fdac;
+    v10 = v2.mUnk_08 - ((u32 *) ((Unk0216fdac *) ((u8 *) v3 + v3->mUnk_1525 * 0x5d4))->mUnk_1d2c)[v14] +
+          ((Unk0216fdac *) ((u8 *) v3 + v3->mUnk_1525 * 0x5d4))->mUnk_1d58[v14];
     v4 = (Unk0216fdac *) ((u8 *) v3 + v3->mUnk_1525 * 0x5d4);
-    v10 = v2.mUnk_08 - ((u32 *) v4->mUnk_1d2c)[v14] + v4->mUnk_1d58[v14];
     v5 = v4->mUnk_1d54;
     if (func_0200adfc(v5, v10, v9, v2.mUnk_04) == 0) {
         v8 = (Unk02007478 *) data_0216fdac->mUnk_7ce0;
@@ -110,7 +108,7 @@ u32 func_020072c0(void) {
             if (v5->mUnk_00 != 0) {
                 v7 = v5->mUnk_30;
                 v6 = 0;
-                for (i = 0; i < 4; i++, v7++) {
+                for (i = 0; i < 4; v7++, i++) {
                     if (v7->mUnk_0c == 2) {
                         if (v6 == 0 || v6->mUnk_00 > v7->mUnk_00) {
                             v6 = v7;

@@ -223,58 +223,57 @@ s32 func_ov000_0218bb44(Unk021b4d24 *a) {
     return 0;
 }
 
-// non-matching: before the loop the original orders `str r5, [sp, #0]; str r5, [sp, #4]; add r6, sp, #8; add r7, sp,
-// #8`, ours `add r7, sp, #8; str r5, [sp, #0]; str r5, [sp, #4]; add r6, sp, #8` (same size)
 s32 func_ov000_0218bc08(Unk021b4d24 *a) {
     s32 b;
     u16 c;
     u8 *q;
     u8 *p;
     b = 0;
-    if (a->mUnk_080 >= 3) {
+    while (a->mUnk_080 >= 3) {
         q = (u8 *) &c;
-        do {
-            p = a->mUnk_07c;
-            q[0] = p[0];
-            q[1] = p[1];
-            c = (c >> 8 & 0xff) | (c << 8 & 0xff00);
-            if (c > 0x1000) {
-                b = 4;
+        p = a->mUnk_07c;
+        q[0] = p[0];
+        q[1] = p[1];
+        c = (c >> 8 & 0xff) | (c << 8 & 0xff00);
+        if (c > 0x1000) {
+            b = 4;
+            break;
+        }
+        if (a->mUnk_080 < c) {
+            return 0;
+        }
+        switch ((s8) a->mUnk_07c[2]) {
+            case 1:
+                b = func_ov000_0218c0bc(a, a->mUnk_07c + 3, c - 3);
                 break;
-            }
-            if (a->mUnk_080 < c) {
-                return 0;
-            }
-            switch ((s8) a->mUnk_07c[2]) {
-                case 1:
-                    b = func_ov000_0218c0bc(a, a->mUnk_07c + 3, c - 3);
-                    break;
-                case 2:
-                    b = func_ov000_0218bd5c(a, a->mUnk_07c + 3, c - 3);
-                    break;
-                case 3:
-                    if (func_ov000_0218e420(a->mUnk_4b0, a->mUnk_07c, c, 0) <= 0) {
-                        return 3;
-                    }
-                    break;
-                case 4:
-                    b = func_ov000_0218be10(a, a->mUnk_07c + 3, c - 3);
-                    break;
-                case 5:
-                    b = func_ov000_0218be68(a, a->mUnk_07c + 3, c - 3);
-                    break;
-                case 6:
-                    b = func_ov000_0218bf78(a, a->mUnk_07c + 3, c - 3);
-                    break;
-            }
-            a->mUnk_080 -= c;
-            if (a->mUnk_080 < 0) {
-                func_0213442c(data_ov000_021b2200, data_ov000_021b2218, 0, 0x5b4);
-            }
-            if (a->mUnk_080 != 0 && a->mUnk_07c != 0) {
-                func_02134df8(a->mUnk_07c, a->mUnk_07c + c, a->mUnk_080);
-            }
-        } while (b == 0 && a->mUnk_080 >= 3);
+            case 2:
+                b = func_ov000_0218bd5c(a, a->mUnk_07c + 3, c - 3);
+                break;
+            case 3:
+                if (func_ov000_0218e420(a->mUnk_4b0, a->mUnk_07c, c, 0) <= 0) {
+                    return 3;
+                }
+                break;
+            case 4:
+                b = func_ov000_0218be10(a, a->mUnk_07c + 3, c - 3);
+                break;
+            case 5:
+                b = func_ov000_0218be68(a, a->mUnk_07c + 3, c - 3);
+                break;
+            case 6:
+                b = func_ov000_0218bf78(a, a->mUnk_07c + 3, c - 3);
+                break;
+        }
+        a->mUnk_080 -= c;
+        if (a->mUnk_080 < 0) {
+            func_0213442c(data_ov000_021b2200, data_ov000_021b2218, 0, 0x5b4);
+        }
+        if (a->mUnk_080 != 0 && a->mUnk_07c != 0) {
+            func_02134df8(a->mUnk_07c, a->mUnk_07c + c, a->mUnk_080);
+        }
+        if (b != 0) {
+            break;
+        }
     }
     if (b != 0) {
         func_ov000_0218cf30(a);

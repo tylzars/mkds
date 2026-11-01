@@ -38,7 +38,7 @@ void func_02124b1c(Unk02124b1c *a, s32 b, s32 c) {
     q[3] = func_021488e8(q[3], c);
 }
 
-s32 func_02124ae4(u32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
+s32 func_02124ae4(s32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
     Unk02124a68 *p;
     Unk0201ea30_08 *e;
     e = (Unk0201ea30_08 *) (c + 1);
@@ -93,7 +93,7 @@ void func_02124a20(s32 a, s32 b, void *c, void *d) {
     }
 }
 
-u8 func_021249f0(u32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
+u8 func_021249f0(s32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
     Unk02124a68 *p;
     Unk0201ea30_08 *e;
     e = (Unk0201ea30_08 *) (c + 1);
@@ -286,8 +286,6 @@ void func_0212463c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
     func_02016468(k, w, z, 0x20);
 }
 
-// non-matching: 90.6: the loop matches up to registers; before it the original keeps f in r5 (here it is spilled to its
-// own slot), keeps q at [sp+0x1c] and n2 and x at [sp+0x3c]/[sp+0x44], and the code is 0x14 bytes shorter there
 s32 func_021243ac(void *a, s32 b, void *c, s32 d, s32 e, s32 f, void *g, void *h, void *i, s32 j) {
     Unk02022eb0 buf[128];
     Unk0212428c *p;
@@ -300,11 +298,12 @@ s32 func_021243ac(void *a, s32 b, void *c, s32 d, s32 e, s32 f, void *g, void *h
     s32 k;
     s32 m;
     s32 n;
-    s32 sa;
-    s32 sb;
     s32 u;
     s32 v;
+    s32 sa;
+    s32 sb;
     s32 n2;
+    void *t;
     n2 = ((Unk0201ea30 *) h)->mUnk_06;
     ((Unk02124b1c *) i)[f].mUnk_38 = b;
     q = func_02036bec(a, 0x48);
@@ -320,8 +319,9 @@ s32 func_021243ac(void *a, s32 b, void *c, s32 d, s32 e, s32 f, void *g, void *h
     q->mUnk_18(q, 0);
     sb = p->mUnk_05;
     sa = p->mUnk_04;
+    t = func_020b403c(p->mUnk_06_12);
     q->mUnk_20.mUnk_00 = q;
-    q->mUnk_20.mUnk_04 = func_020b403c(p->mUnk_06_12);
+    q->mUnk_20.mUnk_04 = t;
     q->mUnk_20.mUnk_08 = sa;
     q->mUnk_20.mUnk_0c = sb;
     q->mUnk_20.mUnk_1c = d;
@@ -362,15 +362,15 @@ s32 func_021243ac(void *a, s32 b, void *c, s32 d, s32 e, s32 f, void *g, void *h
     r->mUnk_0c = -w << 2;
     r->mUnk_0e = -x << 2;
     for (k = 0; k < z; k++) {
-        buf[k].mUnk_04 = (buf[k].mUnk_04 & ~0xc00) | (u << 10);
+        buf[k].mUnk_04 = (buf[k].mUnk_04 & ~0xc00) | (u * 0x400);
         if (v != 0) {
             m = p->mUnk_06_8;
             buf[k].mUnk_00 = (buf[k].mUnk_00 & ~0xc00) | 0x400;
-            buf[k].mUnk_04 = (buf[k].mUnk_04 & ~0xf000) | (m << 12);
+            buf[k].mUnk_04 = (buf[k].mUnk_04 & ~0xf000) | (m * 0x1000);
         } else {
             m = p->mUnk_06_8;
             buf[k].mUnk_00 &= ~0xc00;
-            buf[k].mUnk_04 = (buf[k].mUnk_04 & ~0xf000) | (m << 12);
+            buf[k].mUnk_04 = (buf[k].mUnk_04 & ~0xf000) | (m * 0x1000);
         }
         buf[k].mUnk_00 &= ~0x1000;
         buf[k].mUnk_00 &= 0xc1fffcff;
@@ -466,7 +466,7 @@ void func_021241c0(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, Unk02124b1c *e)
     }
 }
 
-s32 func_0212418c(u32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d) {
+s32 func_0212418c(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d) {
     Unk02124b1c *p;
     Unk02124b1c *q;
     p = c + a;
@@ -513,7 +513,7 @@ void func_02124100(s32 a, u8 b, void *c, void *d, void *e) {
     }
 }
 
-u8 func_021240d4(u32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d) {
+u8 func_021240d4(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d) {
     Unk02124b1c *p;
     Unk02124b1c *q;
     p = c + a;

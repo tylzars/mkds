@@ -271,15 +271,13 @@ u32 func_02097ed0(Unk020975ec *p, Vec3 *a, s32 b, Vec3 *c) {
     return r != 0;
 }
 
-// non-matching: p, q and the scale are in r6, r5, r4 where the original has r5, r4, r6, and the entry address at 0xa8
-// is recomputed for each word (size 0x178 against 0x17c)
 u32 func_020980ec(Unk020975ec *p, Unk0206bcb0 *q, void *b, u8 *c) {
     u32 v;
     s32 t;
     s32 f;
     Vec3 w;
     s32 s;
-    Unk02012f58 *e;
+    Vec3 *e;
 
     v = *c;
     t = (p->mUnk_ecc == 2 || p->mUnk_ecc == 5) && p->mUnk_a0 > 0;
@@ -297,11 +295,12 @@ u32 func_020980ec(Unk020975ec *p, Unk0206bcb0 *q, void *b, u8 *c) {
             p->mUnk_00.mUnk_10.z = 0;
         } else {
             func_021484d0(&q->mUnk_80, &p->mUnk_00.mUnk_04, &w);
-            f = (s32) (((s64) func_021482cc(&w) * s) >> 12);
-            e = &p->mUnk_a8[p->mUnk_ec0];
-            p->mUnk_00.mUnk_10.x = (s32) (((s64) e->mUnk_18.x * f) >> 12);
-            p->mUnk_00.mUnk_10.y = (s32) (((s64) e->mUnk_18.y * f) >> 12);
-            p->mUnk_00.mUnk_10.z = (s32) (((s64) e->mUnk_18.z * f) >> 12);
+            f = func_021482cc(&w);
+            e = &p->mUnk_a8[p->mUnk_ec0].mUnk_18;
+            f = (s32) (((s64) f * s) >> 12);
+            p->mUnk_00.mUnk_10.x = (s32) (((s64) e->x * f) >> 12);
+            p->mUnk_00.mUnk_10.y = (s32) (((s64) e->y * f) >> 12);
+            p->mUnk_00.mUnk_10.z = (s32) (((s64) e->z * f) >> 12);
             p->mUnk_00.mUnk_78 = p->mUnk_00.mUnk_78 | data_usa_02156588;
             func_020d26ec(q, 0x1d1);
         }

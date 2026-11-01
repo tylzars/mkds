@@ -2,9 +2,6 @@
 #include "code_02142c24.h"
 #include "code_021453ec.h"
 
-// non-matching: case 0x27 computes the two flag arguments in the other order (ours: 0x30000 test first, original:
-// 0xc0000 test first, value kept in r3 instead of r4, constant words 0xc0000 and 0x30000 swapped); size equal, rest
-// identical
 void func_ov000_021a54b0(Unk021425e8 *v1) {
     Unk021b5f50 *g;
     s32 r = 0x14;
@@ -48,7 +45,7 @@ void func_ov000_021a54b0(Unk021425e8 *v1) {
                     g = data_ov000_021b5f50;
                     v = g->mUnk_2264;
                     e = (v & 0xc0000) == 0xc0000;
-                    d = (v & 0x30000) != 0x30000;
+                    d = (v & 0x30000) != 0x30000 ? 1 : 0;
                     r = func_021437d8((Unk021425e8Func) func_ov000_021a5088, (u16 *) g->mUnk_2140, 0, d, e);
                     break;
                 }

@@ -109,26 +109,26 @@ void func_02092940(void *a) {
     func_0209b940(data_usa_0217b0a4, 0x3f);
 }
 
-// non-matching: same instructions, but the original keeps eleven registers live (r4 to r10) and squares the word at
-// stack offset 4 first, before the projection, while here the squares are summed after the two components are stored.
 u8 func_0209297c(Unk0209219c *a, Unk0209297c *b, void *c, u8 *d) {
     Vec3 u;
     Vec3 t;
     s32 k;
-    u8 m;
+    s32 x;
+    s32 z;
     u8 r;
+    u8 m;
     s64 q;
 
     m = 1 << b->mUnk_74;
     r = *d;
     if ((a->mUnk_d0 & m) == 0) {
         func_021484d0(&b->mUnk_80, &a->mUnk_00.mUnk_04, &t);
-        k = ((s64) a->mUnk_00.mUnk_28.mUnk_18.z * t.z + (s64) a->mUnk_00.mUnk_28.mUnk_18.x * t.x) >> 12;
-        u.x = t.x - (s32) (((s64) a->mUnk_00.mUnk_28.mUnk_18.x * k) >> 12);
-        u.z = t.z - (s32) (((s64) a->mUnk_00.mUnk_28.mUnk_18.z * k) >> 12);
-        q = (s64) u.y * u.y;
-        q += (s64) u.x * u.x;
-        q += (s64) u.z * u.z;
+        k = ((s64) a->mUnk_00.mUnk_28.mUnk_18.x * t.x + (s64) a->mUnk_00.mUnk_28.mUnk_18.z * t.z) >> 12;
+        x = t.x - (s32) (((s64) a->mUnk_00.mUnk_28.mUnk_18.x * k) >> 12);
+        z = t.z - (s32) (((s64) a->mUnk_00.mUnk_28.mUnk_18.z * k) >> 12);
+        q = (s64) x * x + (s64) u.y * u.y + (s64) z * z;
+        u.x = x;
+        u.z = z;
         if (q < 0x10) {
             a->mUnk_00.mUnk_10.x = (s32) (((s64) a->mUnk_00.mUnk_28.mUnk_18.x * 0x1333) >> 12);
             a->mUnk_00.mUnk_10.y = (s32) (((s64) a->mUnk_00.mUnk_28.mUnk_18.y * 0x1333) >> 12);

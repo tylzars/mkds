@@ -213,14 +213,14 @@ void func_02047f7c(s32 a, const u8 *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
     }
 }
 
-// non-matching: size 0x230 against 0x234; a lives in r7 (r5 in the original), the stack offset a * 0x18 is kept in r5
-// across the calls (recomputed at the end in the original), g is spilled to a stack offset (r7 in the original), and
-// the two stack-argument words swap places (sp+0xc / sp+0x10)
+// non-matching: 2 words; the last read of data_usa_021543e0 loads the table address before the a * 0x18 multiply in
+// the original (ours: multiply first). The two (s32) a casts keep those reads from sharing the first reads' a * 0x18
+// (as in the original); f is declared before e for the stack slots
 void func_02048050(int a, int b) {
     u8 c[0x80] = {0};
     u32 *d;
-    s32 e;
     s32 f;
+    s32 e;
     s32 g;
     s32 h;
 
@@ -317,14 +317,15 @@ void func_02048050(int a, int b) {
         case 14:
         case 16:
         case 18:
-            func_0213a228(c, (const u8 *) data_usa_021543e0[a].mUnk_00, 0x80);
+            func_0213a228(c, (const u8 *) data_usa_021543e0[(s32) a].mUnk_00, 0x80);
             break;
     }
     if (c[0] != 0) {
         func_02047f7c(a, c, d, 0, f, e, g);
     }
-    if (data_usa_021543e0[a].mUnk_04 != -1) {
-        func_02048050(data_usa_021543e0[a].mUnk_04, b);
+    h = data_usa_021543e0[(s32) a].mUnk_04;
+    if (h != -1) {
+        func_02048050(h, b);
     }
 }
 

@@ -8,16 +8,11 @@
 #include "code_0200fd1c.h"
 #include "code_0214d018.h"
 
-// non-matching: in the case for the value 2, the original computes the record offset (subs; movs #30; muls) before it
-// loads the pointer and adds 36, and the offset and the record pointer are in r1 / r0 (ours r0 / r1), 11 words differ,
-// same size
 void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
     Unk021cf260 *s;
     u32 t;
     u16 m;
     u8 *p;
-    u8 *m8;
-    s32 o;
 
     switch (b) {
         case 2:
@@ -26,10 +21,8 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
                 t = func_0200fca0();
                 s->mMask |= 1 << a;
                 func_0200fcb4(t);
-                o = (a - 1) * 0x1e;
-                m8 = data_ov003_021da288->mRecords[0].mUnk_16;
-                p = m8 + o;
-                m8[o] = c->mUnk_0a[0];
+                p = data_ov003_021da288->mRecords[a - 1].mUnk_16;
+                p[0] = c->mUnk_0a[0];
                 p[1] = c->mUnk_0a[1];
                 p[2] = c->mUnk_0a[2];
                 p[3] = c->mUnk_0a[3];

@@ -859,23 +859,21 @@ void func_0211bd10(void) {
     }
 }
 
-// non-matching: func_0211baec: only the stack slot of the value data_0217d368->mUnk_04->mUnk_06 differs (original
-// sp+0x18, after the four table-pointer slots sp+0x8..0x14; compiled sp+0x8, before them); every instruction is
-// otherwise equal
 void func_0211baec(void) {
     s32 i;
     s32 j;
     s32 c;
-    i = 0;
     data_0217d368->mUnk_34 = 0;
     data_0217d368->mUnk_38 = 0;
-    data_0217d368->mUnk_5c = data_0217d368->mUnk_58 - 0xc0;
-    data_0217d368->mUnk_5c = data_0217d368->mUnk_58 - 0xc0;
+    c = data_0217d368->mUnk_58 - 0xc0;
+    data_0217d368->mUnk_5c = c;
+    c = data_0217d368->mUnk_58 - 0xc0;
+    data_0217d368->mUnk_5c = c;
     c = data_0217d368->mUnk_04->mUnk_06;
     data_0217d368->mUnk_14[40].mUnk_06 = data_0217d368->mUnk_58 + 0xc0;
     data_0217d368->mUnk_14[41].mUnk_06 = data_0217d368->mUnk_58 + 0xc0;
     data_0217d368->mUnk_14[42].mUnk_06 = data_0217d368->mUnk_58 + 0xc0;
-    for (; i < 5; i++) {
+    for (i = 0; i < 5; i++) {
         for (j = 0; j < 2; j++) {
             data_0217d368->mUnk_14[data_0215cd88[i][j]].mUnk_06 = data_0217d368->mUnk_58 - 0xc0;
             data_0217d368->mUnk_14[data_0215cdb0[i][j]].mUnk_06 = data_0217d368->mUnk_58 - 0xc0;

@@ -6,7 +6,6 @@
 #include "code_021384dc.h"
 #include "code_02139f70.h"
 
-// non-matching: 7 words differ from +0x52; original forms the destination address before the stack address of the value
 void func_ov000_021a41dc(Unk021a4a08 *a, Unk021a471c *b, s32 c, s32 d, const u8 *e) {
     Unk021a3fc8 f;
     u16 g;
@@ -33,8 +32,8 @@ void func_ov000_021a41dc(Unk021a4a08 *a, Unk021a471c *b, s32 c, s32 d, const u8 
         i = a->mUnk_098(c, a->mUnk_10c);
         g = (u16) i;
         h = (g >> 8 & 0xff) | (g << 8 & 0xff00);
-        q = (u8 *) &h;
         r = &b->mUnk_000[b->mUnk_800];
+        q = (u8 *) &h;
         r[0] = q[0];
         r[1] = q[1];
         b->mUnk_800 += 2;

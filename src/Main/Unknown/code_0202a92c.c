@@ -286,21 +286,19 @@ void func_0202afe4(void) {
     }
 }
 
-// non-matching: size 0x168, original 0x164; original keeps the counter in r5 and v in r6, ours spills the counter to
-// the stack offset 12 and keeps v in r5
 void func_0202b100(void) {
+    s32 i;
     Unk02174e14_00 *p;
     s32 n;
     s32 v;
     void *h;
-    s32 i;
 
     p = &data_02174e28->mUnk_048;
     n = p->mUnk_0c->mUnk_06;
     for (i = 0; i < data_02174e28->mUnk_0b8; i++) {
         func_02025edc(&data_02174e28->mUnk_0fc[i]);
         if (func_02122734((u8) i) >= 0) {
-            v = func_02121e24((u8) func_02122734((u8) i));
+            v = func_02121e24((u8) func_02122734((s32) (u8) i));
         } else {
             v = 0;
         }

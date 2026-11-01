@@ -25,13 +25,15 @@
 #include "code_02147cd8.h"
 #include "code_020222ec.h"
 
-// non-matching: the value stored last into mUnk_08 (the 0x13 default) is in r5 here (original r4) and the product with
-// 0x210 in r4 (original r6); 27 words differ in register choice only
+static inline Unk020ee684 *func_020bab54_inline(u32 o) {
+    return (Unk020ee684 *) ((u32) data_027e00c8 + o);
+}
+
 void func_020bab54(void) {
     s32 e;
-    s32 i;
-    s32 v;
+    u32 i;
     s32 n;
+    s32 v;
     s32 s;
     u32 k;
     Unk0212c400 **r;
@@ -41,11 +43,11 @@ void func_020bab54(void) {
     Unk020ee684 *c;
 
     n = data_0217b3cc->mUnk_04;
-    i = func_020b4d9c();
-    e = data_027e00c8[i].mUnk_028;
+    i = func_020b4d9c() * 0x210;
+    e = func_020bab54_inline(i)->mUnk_028;
     data_0217b3cc->mUnk_14 = data_0217b3cc->mUnk_10;
     v = 0x13;
-    c = &data_027e00c8[i];
+    c = func_020bab54_inline(i);
     if (c->mUnk_000 == 1) {
         data_0217b3cc->mUnk_04 = c->mUnk_004;
         n = data_0217b3cc->mUnk_04;
@@ -108,7 +110,7 @@ void func_020bab54(void) {
         func_0212c6f0((Unk0212c400 **) func_02108e88(), 0);
         data_0217b3cc->mUnk_04 = 0;
         n = data_0217b3cc->mUnk_04;
-        if (data_027e00c8[i].mUnk_00c >= 9) {
+        if (func_020bab54_inline(i)->mUnk_00c >= 9) {
             if (data_021759c0->mUnk_00c != 2) {
                 k = 0x40;
                 if (data_021759c0->mUnk_00 == 0x21) {
@@ -167,7 +169,7 @@ void func_020bab54(void) {
             }
         }
     }
-    c = &data_027e00c8[i];
+    c = func_020bab54_inline(i);
     if (c->mUnk_000 == 0) {
         data_0217b3cc->mUnk_0c = c->mUnk_030.mUnk_00 == 0x13 ? c->mUnk_014 : c->mUnk_030.mUnk_00;
     } else {
@@ -213,10 +215,10 @@ void func_020bab54(void) {
             case 214:
 
                 data_0217b3cc->mUnk_0c = c->mUnk_00c;
-                func_020f830c(&data_027e00c8[i]);
+                func_020f830c(func_020bab54_inline(i));
                 break;
         }
-        v = data_027e00c8[i].mUnk_00c;
+        v = func_020bab54_inline(i)->mUnk_00c;
         data_0217b3cc->mUnk_18.mUnk_00 = 0;
     }
     if (n < 6) {
@@ -232,7 +234,7 @@ void func_020bab54(void) {
     } else if (n >= e + 0xd6) {
         s = 0;
     } else {
-        s = ((n - 0xd6) & ((s32) data_027e00c8[i].mUnk_028 - 1)) << 5 >> data_027e00c8[i].mUnk_02c;
+        s = ((n - 0xd6) & ((s32) func_020bab54_inline(i)->mUnk_028 - 1)) << 5 >> func_020bab54_inline(i)->mUnk_02c;
     }
     if (data_0217b3cc->mUnk_18.mUnk_00 != 0) {
         w = &data_0217b3cc->mUnk_18;
@@ -247,9 +249,10 @@ void func_020bab54(void) {
             data_0217b3cc->mUnk_18.mUnk_00 = 0;
         }
     }
-    if (data_027e00c8[i].mUnk_204 != 0) {
+    if (func_020bab54_inline(i)->mUnk_204 != 0) {
         s32 q;
-        q = data_027e00c8[i].mUnk_030.mUnk_00 == 0x13 ? data_027e00c8[i].mUnk_014 : data_027e00c8[i].mUnk_030.mUnk_00;
+        q = func_020bab54_inline(i)->mUnk_030.mUnk_00 == 0x13 ? func_020bab54_inline(i)->mUnk_014
+                                                              : func_020bab54_inline(i)->mUnk_030.mUnk_00;
         if (q == 0xd) {
             data_0217b3cc->mUnk_18.mUnk_00 += 1;
             data_0217b3cc->mUnk_18.mUnk_04 = 0x1000;

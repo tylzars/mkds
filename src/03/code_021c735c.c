@@ -28,8 +28,6 @@ u32 func_ov003_021c735c(s32 a) {
     return 0;
 }
 
-// non-matching: in the first case the stack-free temporaries swap registers (original loads the count byte into r2 and
-// its product with 3 into r3, ours r3 and r2); everything else identical
 void func_ov003_021c73cc(void) {
     s32 a;
     u8 *b;
@@ -46,9 +44,8 @@ void func_ov003_021c73cc(void) {
                 break;
             }
             func_ov003_021cdc10(3);
-            e = data_ov003_021da1fc->mUnk_14;
-            if (data_ov003_021da1fc->mUnk_08[e * 3 + 2] == 0) {
-                data_ov003_021da1fc->mUnk_14 = e - 1;
+            if (data_ov003_021da1fc->mUnk_08[data_ov003_021da1fc->mUnk_14 * 3 + 2] == 0) {
+                data_ov003_021da1fc->mUnk_14--;
             }
             func_0214d168(data_ov003_021da1fc->mUnk_08 + data_ov003_021da1fc->mUnk_14 * 3, 0, 3);
             if (data_ov003_021da1fc->mUnk_14 == 0 && data_ov003_021da1fc->mUnk_08[2] == 0) {

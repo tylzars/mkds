@@ -51,22 +51,17 @@ void func_01ffae14(Unk0206bcb0 *p, s32 a) {
     }
 }
 
-// non-matching: same size; the locals sit in other registers (original: 2a8 value r5, sign flag r4, flags word r3,
-// clamped difference lr; ours differ), the zero stored on the 0x2a8 branch is a shared r4 store instead of a separate
-// `streq ip`, and 0x38c/0x39c load into r2/r1 swapped
 s32 func_01ffaf18(Unk0206bcb0 *p) {
     s32 v1;
-    s32 b;
+    s32 a = p->mUnk_2a8;
     s32 c;
     s32 g;
-    s32 a = p->mUnk_2a8;
+    s32 b;
     u32 f = p->mUnk_48;
 
     v1 = a < 0;
 
-    if (a <= 0) {
-        a = -a;
-    }
+    a = a > 0 ? a : -a;
     b = p->mUnk_274;
     c = p->mUnk_d0 - b;
     if ((f & 4) && (p->mUnk_44 & 0x100)) {
@@ -78,14 +73,14 @@ s32 func_01ffaf18(Unk0206bcb0 *p) {
     if (a > g) {
         p->mUnk_2a8 = g;
     } else {
-        if (a > (s32) ((s64) p->mUnk_38c * 0x19a >> 12) || (p->mUnk_44 & 0x80000) || (f & 6)) {
-            p->mUnk_2a8 = a;
-        } else {
+        if (a <= (s32) (p->mUnk_38c * (s64) 0x19a >> 12) && !(p->mUnk_44 & 0x80000) && !(f & 6)) {
             p->mUnk_2a8 = 0;
+        } else {
+            p->mUnk_2a8 = a;
         }
     }
     if (v1) {
-        p->mUnk_2a8 = p->mUnk_2a8 * -1;
+        p->mUnk_2a8 *= -1;
     }
     g = p->mUnk_3a0;
     if (g != 0) {
@@ -97,14 +92,8 @@ s32 func_01ffaf18(Unk0206bcb0 *p) {
                     p->mUnk_2a8 = p->mUnk_3a0;
                 }
             } else {
-                if (a <= 0) {
-                    a = -a;
-                }
-                if (g > 0) {
-                    c = g;
-                } else {
-                    c = -g;
-                }
+                a = a > 0 ? a : -a;
+                c = g > 0 ? g : -g;
                 if (c > a) {
                     p->mUnk_2a8 = g;
                 }
@@ -117,14 +106,8 @@ s32 func_01ffaf18(Unk0206bcb0 *p) {
                     p->mUnk_2a8 = p->mUnk_3a0;
                 }
             } else {
-                if (a <= 0) {
-                    a = -a;
-                }
-                if (g > 0) {
-                    c = g;
-                } else {
-                    c = -g;
-                }
+                a = a > 0 ? a : -a;
+                c = g > 0 ? g : -g;
                 if (c > a) {
                     p->mUnk_2a8 = g;
                 }

@@ -35,9 +35,10 @@ s32 func_ov003_021bdd1c(s32 v1, const Unk021bdcd8 *v2, const u8 *param_2, const 
     return a;
 }
 
-// non-matching: 85.8: the record copy loop in the original keeps g and h both live on the stack, three stepping
-// pointers (name, record, the six-byte value at +0x28) and copies the six-byte value from the source plus 4 into its
-// own pointer; here (h indexes two of the fields) one record pointer and the h pointer remain, size 0x2f0 against 0x2ec
+// non-matching: 95.9: size 0x2e8 against 0x2ec. The original keeps a second loop counter that nothing reads (g and h
+// both incremented in their stack slots, one slot more), and steps three pointers (name, record, the six-byte value)
+// where this has four (mUnk_2e uses its own g pointer); the zero values hoisted out of the outer loop get other
+// registers and slots (the original's r7 zero is a switch case's c = 0).
 s32 func_ov003_021bdd3c(void) {
     s32 a;
     s32 b;
@@ -51,6 +52,8 @@ s32 func_ov003_021bdd3c(void) {
     Unk021bdd3c *k;
     Unk021d8c2c *l;
     Unk021bdd3c_Entry *m;
+    u8 *s;
+    u8 *t;
     u32 i;
     char o[0x20];
     Unk0200fb08 n;
@@ -145,7 +148,14 @@ s32 func_ov003_021bdd3c(void) {
                 j->mUnk_04[h].mUnk_00 = l->mUnk_0a;
                 j->mUnk_04[h].mUnk_04[l->mUnk_0a] = 0;
                 j->mUnk_04[g].mUnk_2e = (l->mUnk_2c & 0x10) ? 1 : 0;
-                j->mUnk_04[g].mUnk_28 = l->mUnk_04;
+                s = (u8 *) &l->mUnk_04;
+                t = (u8 *) &j->mUnk_04[g].mUnk_28;
+                t[0] = s[0];
+                t[1] = s[1];
+                t[2] = s[2];
+                t[3] = s[3];
+                t[4] = s[4];
+                t[5] = s[5];
                 g++;
                 h++;
                 l++;
@@ -156,7 +166,14 @@ s32 func_ov003_021bdd3c(void) {
             m = &j->mUnk_04[i];
             data_ov003_021d8be8 = i;
             func_0213a2d0(data_ov003_021d8ce4, m->mUnk_04);
-            data_ov003_021d8c5c = m->mUnk_28;
+            t = (u8 *) &data_ov003_021d8c5c;
+            s = (u8 *) &m->mUnk_28;
+            t[0] = s[0];
+            t[1] = s[1];
+            t[2] = s[2];
+            t[3] = s[3];
+            t[4] = s[4];
+            t[5] = s[5];
             func_ov003_021bb29c((u8 *) o, (const s8 *) &data_ov003_021d8c5c);
             break;
         }

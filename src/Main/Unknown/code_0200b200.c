@@ -86,11 +86,14 @@ void func_0200b344(Unk021425e8 *a) {
     }
 }
 
-// non-matching: 0x1c8 bytes, original 0x1d4; first: original `bgt.n T`, ours `bhi.n T`
-void func_0200b43c(u32 a, Unk021425e8 *b) {
+void func_0200b43c(s32 a, Unk021425e8 *b) {
     u16 v1;
     u16 v2;
+    u16 t;
     switch (a) {
+        case 7:
+        case 8:
+            break;
         case 11:
             func_0200ba44(3, 0);
             break;
@@ -118,26 +121,30 @@ void func_0200b43c(u32 a, Unk021425e8 *b) {
             }
             break;
         case 0xff:
+            t = b->mUnk_02;
             if (data_0216fde8->mUnk_05e0 != 0) {
-                switch (b->mUnk_02) {
+                switch (t) {
                     case 1:
                     case 4:
                     case 5:
                     case 6:
                     case 8:
                     case 9:
-                        v1 = 9;
+                        t = 9;
                         break;
+                    case 15:
                     default:
-                        v1 = 8;
+                        t = 8;
                         break;
                 }
+                v1 = t;
                 data_0216fde8->mUnk_05e0(0x13, &v1);
             }
             break;
         case 0x100:
+            t = b->mUnk_00;
             if (data_0216fde8->mUnk_05e0 != 0) {
-                switch (b->mUnk_00) {
+                switch (t) {
                     case 0:
                     case 7:
                     case 8:
@@ -149,12 +156,14 @@ void func_0200b43c(u32 a, Unk021425e8 *b) {
                     case 21:
                     case 25:
                     case 29:
-                        v2 = 9;
+                        t = 9;
                         break;
+                    case 1:
                     default:
-                        v2 = 8;
+                        t = 8;
                         break;
                 }
+                v2 = t;
                 data_0216fde8->mUnk_05e0(0x13, &v2);
             }
             break;

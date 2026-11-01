@@ -11,9 +11,10 @@ static inline u32 func_02008570_inline(u8 *a) {
     return b;
 }
 
-// non-matching: 94.3: frame, stack slots and shape match; left: registers (the original keeps param_1, param_2 and
-// the read pointer in r7, r6, r5 and holds 0x160 in r4 for the add, the read size and the compare; here they
-// are r5, r7, r6 and 0x160 is reloaded from the pool).
+// non-matching: registers: the original keeps param_1, param_2 and the read pointer in r7, r6, r5 and holds 0x160
+// in r4 for the add, the read size and the compare (here r5, r7, r6, 0x160 reloaded after the call); it also loads
+// v1->mUnk_08 once before the length loop and reuses it for the copy (holding it in a local or an inline helper
+// changes which locals are spilled), and reads v6[1] again in the body of the table loop.
 int func_02008570(u8 *param_1, int param_2, u32 param_3) {
     Unk02003024 *v1;
     u8 *v2;
@@ -27,7 +28,7 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
     u32 *v6;
     u32 v8;
     u32 v9;
-    u32 v10;
+    s32 v10;
     u32 v14[4];
     v1 = (Unk02003024 *) param_1;
     v2 = (u8 *) param_2;
@@ -82,8 +83,8 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
         if (v13 >= 0x10) {
             v6 = (u32 *) v3;
             v6[0] = 0;
-            v6[1] = *(u32 *) (v2 + 0x20) + v7 + v1->mUnk_20.w.mUnk_04;
-            v6[2] = *(u32 *) (v2 + 0x30) + v7 + v1->mUnk_20.w.mUnk_04;
+            v6[1] = *(u32 *) (v2 + 0x20) + (v7 + v1->mUnk_20.w.mUnk_04);
+            v6[2] = *(u32 *) (v2 + 0x30) + (v7 + v1->mUnk_20.w.mUnk_04);
             v3 += 0x10;
             v13 -= 0x10;
         } else {
@@ -118,12 +119,12 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
         if (v12 != 0) {
             func_020049e8(&v4);
             if (v11 != 0) {
+                v6 = data_usa_02161788;
                 v14[0] = *(u32 *) (v2 + 0x20);
                 v14[1] = *(u32 *) (v2 + 0x28) - *(u32 *) (v2 + 0x20);
                 v14[2] = *(u32 *) ((u8 *) v5 + 0x48) - *(u32 *) (v2 + 0x20);
                 v14[3] = param_3;
                 func_0200850c(v14, 0x4000, 0x8000, 1);
-                v6 = data_usa_02161788;
                 while (v6[1] != 0) {
                     func_0200850c(v14, v6[0], v6[0] + v6[1], 0);
                     v6 += 2;

@@ -16,16 +16,18 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_020172d0.h"
 
-// non-matching: 87.1: same size; the constants and pool addresses of the first block get other registers (the
-// original stores 8 through r1, keeps 3 and then n in r7 and 0x4d then 0xe in r10) and data_021759c0 is loaded
-// after the first store there
+// non-matching: same size; 29 words differ, all in the two blocks of constant stores: the original stores each
+// constant right after loading it (8 in r1, 3 then 1 in r7, 0x4d then 0xe in r10) and loads &data_021759c0 after the
+// first store, so the constants and pool addresses get other registers here
 void func_0208f0f8(void *a) {
     void *s;
-    u16 n;
-    u16 m;
-    u16 i;
     Unk0208ec64 *e;
     Unk0208ec64_08 *f;
+    u16 i;
+    u16 n;
+    u16 m;
+    Unk020850c4 *q;
+    s32 t;
 
     s = func_02047b08(data_021759c0->mUnk_00c == 5 ? data_02166514 : data_02166530);
     data_021663e0 = 8;
@@ -66,16 +68,14 @@ void func_0208f0f8(void *a) {
         func_020174a4(&data_0217b08c->mUnk_18, &f[i]);
     }
     func_0208526c(&data_0217b08c->mUnk_24, s, s);
+    q = data_0217b08c->mUnk_24.mUnk_0c;
+    t = (q->mUnk_08 & 0xffff) << 3;
     data_021663f4.mUnk_00 = data_021663f4.mUnk_00 & 0xffff0000;
-    data_021663f4.mUnk_00 = data_021663f4.mUnk_00 | (data_0217b08c->mUnk_24.mUnk_0c->mUnk_08 & 0xffff);
-    data_021663f4.mUnk_18 = (data_0217b08c->mUnk_24.mUnk_0c->mUnk_2c & 0xffff) << 3;
+    data_021663f4.mUnk_00 = data_021663f4.mUnk_00 | (((u32) t >> 3) & 0xffff);
+    data_021663f4.mUnk_18 = (q->mUnk_2c & 0xffff) << 3;
     data_021663f4.mUnk_1c = 0x10000;
     data_021663f4.mUnk_20 = 0x8000;
-    if (data_021759c0->mUnk_00 == 0x1d) {
-        data_0217b08c->mUnk_34 = 0;
-    } else {
-        data_0217b08c->mUnk_34 = 0x8000;
-    }
+    data_0217b08c->mUnk_34 = data_021759c0->mUnk_00 == 0x1d ? 0 : 0x8000;
 }
 
 void func_0208f3d0(Unk0208fd8c *a, struct Unk020888b4 *b) {

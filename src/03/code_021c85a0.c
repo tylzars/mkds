@@ -34,11 +34,11 @@ static inline void func_ov003_021c85a0_inline(Unk021da104_04 *p, u32 *x, u32 *y)
     *y = p->mUnk_00 & 0xff;
 }
 
-// non-matching: original keeps both field values in stack words and stores both (frame 0x14, size 0x178); ours drops
-// the dead stores (frame 0xc, size 0x138), registers differ
 void func_ov003_021c85a0(void) {
     int a;
     int b;
+    Unk021da104_04 *p;
+    int c;
     int i;
     u32 x;
     u32 y;
@@ -53,13 +53,13 @@ void func_ov003_021c85a0(void) {
         data_ov003_021da214->mUnk_34->mUnk_00 =
             ((x & 0x1ff) << 16) | ((data_ov003_021da214->mUnk_34->mUnk_00 & 0xfe00ff00) | (b & 0xff));
     }
-    for (i = 0; i < 5; i++) {
-        func_ov003_021c85a0_inline(data_ov003_021da214->mUnk_18[i], &x, &y);
-        data_ov003_021da214->mUnk_18[i]->mUnk_00 =
-            ((x & 0x1ff) << 16) | ((data_ov003_021da214->mUnk_18[i]->mUnk_00 & 0xfe00ff00) | ((b + i * 0x1d) & 0xff));
+    for (i = 0, c = b; i < 5; i++, c += 0x1d) {
+        func_ov003_021c85a0_inline(data_ov003_021da214->mUnk_18[i], (u32 *) &x, (u32 *) &y);
+        p = data_ov003_021da214->mUnk_18[i];
+        p->mUnk_00 = ((x & 0x1ff) << 16) | ((p->mUnk_00 & 0xfe00ff00) | (c & 0xff));
     }
     if (a <= 2) {
-        func_ov003_021c85a0_inline(data_ov003_021da214->mUnk_18[5], &x, &y);
+        func_ov003_021c85a0_inline(data_ov003_021da214->mUnk_18[5], (u32 *) &x, (u32 *) &y);
         data_ov003_021da214->mUnk_18[5]->mUnk_00 =
             ((x & 0x1ff) << 16) |
             ((data_ov003_021da214->mUnk_18[5]->mUnk_00 & 0xfe00ff00) | ((b + (2 - a) * 0x1d) & 0xff));
@@ -67,7 +67,7 @@ void func_ov003_021c85a0(void) {
         data_ov003_021da214->mUnk_18[5]->mUnk_00 = (data_ov003_021da214->mUnk_18[5]->mUnk_00 & 0xfe00ff00) | 0x1000000;
     }
     if (a >= 2 && a <= 6) {
-        func_ov003_021c85a0_inline(data_ov003_021da214->mUnk_18[6], &x, &y);
+        func_ov003_021c85a0_inline(data_ov003_021da214->mUnk_18[6], (u32 *) &x, (u32 *) &y);
         data_ov003_021da214->mUnk_18[6]->mUnk_00 =
             ((x & 0x1ff) << 16) |
             ((data_ov003_021da214->mUnk_18[6]->mUnk_00 & 0xfe00ff00) | ((b + (6 - a) * 0x1d) & 0xff));

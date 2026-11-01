@@ -104,9 +104,6 @@ void func_020ff910(Unk020ff438 *e, Unk02012f58 *out) {
     func_02146dfc((const s32 *) &data_0217c600, (const s32 *) out, (s32 *) out);
 }
 
-// non-matching: the original holds e and out in r7/r6, the constant 0xa4 in fp and reserves 12 bytes of stack for the
-// operands of the two products; this compile keeps e and out in r8/r7, 0xa4 in r2 and reserves 4 bytes (0x23c vs
-// 0x238).
 void func_020ff6d8(Unk020ff438 *e, Unk02012f58 *out) {
     s32 a, b;
     Vec3 *v;
@@ -114,16 +111,16 @@ void func_020ff6d8(Unk020ff438 *e, Unk02012f58 *out) {
     if ((e->mUnk_000.mUnk_000.mUnk_74 & 0x80000) && func_020b2ec0() == 0) {
         s32 c, d;
 
+        c = (s32) (((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00.x * e->mUnk_130.x +
+                    (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00.z * e->mUnk_130.z) >>
+                   12);
         a = (s32) (((s64) e->mUnk_130.x * 0xa4) >> 12);
+        d = (s32) (((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_18.x * e->mUnk_130.x +
+                    (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_18.z * e->mUnk_130.z) >>
+                   12);
         b = (s32) (((s64) e->mUnk_130.z * 0xa4) >> 12);
-        e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c.x += a;
+        e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c.x = (s32) (e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c.x + a);
         e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c.z += b;
-        c = (s32) (((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00.z * e->mUnk_130.z +
-                    (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00.x * e->mUnk_130.x) >>
-                   12);
-        d = (s32) (((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_18.z * e->mUnk_130.z +
-                    (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_18.x * e->mUnk_130.x) >>
-                   12);
         if ((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c.x * e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c.x +
                 (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c.y * e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c.y +
                 (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c.z * e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c.z >=
@@ -131,7 +128,7 @@ void func_020ff6d8(Unk020ff438 *e, Unk02012f58 *out) {
             func_02039860(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c, &e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c);
         }
         if (c * c > d * d) {
-            e->mUnk_000.mUnk_000.mUnk_94.mUnk_18.x -= a;
+            e->mUnk_000.mUnk_000.mUnk_94.mUnk_18.x = (s32) (e->mUnk_000.mUnk_000.mUnk_94.mUnk_18.x - a);
             e->mUnk_000.mUnk_000.mUnk_94.mUnk_18.z -= b;
             func_020397a8(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_0c, &e->mUnk_000.mUnk_000.mUnk_94.mUnk_18,
                           &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00);

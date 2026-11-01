@@ -12,21 +12,18 @@
 #include "03/unk_021da000.h"
 #include "03/code_021d2070.h"
 
-// non-matching: 91.1: zero constants and loop counters sit at different stack offsets (frame 0x54 against 0x64, s at
-// sp+0x40 against sp+0x50), size 0x298 against 0x2ac
 void func_ov003_021c0d2c(void) {
-    Unk021c0d2c s;
+    u16 v[4] = {0};
+    u32 w;
+    u16 x[2];
     Unk021da15c *p;
     int i;
     int j;
     int k;
+    int l;
 
-    s.mUnk_00[0] = 0;
-    s.mUnk_00[1] = 0;
-    s.mUnk_00[2] = 0;
-    s.mUnk_00[3] = 0;
-    s.mUnk_00[2] = data_ov003_021d5f7c[0][0];
-    s.mUnk_00[3] = data_ov003_021d5f7c[0][1];
+    v[2] = data_ov003_021d5f7c[0][0];
+    v[3] = data_ov003_021d5f7c[0][1];
     p = func_ov003_021d283c(0x128, 4);
     data_ov003_021da15c = p;
     p->mUnk_11c = 0xff;
@@ -48,20 +45,18 @@ void func_ov003_021c0d2c(void) {
         func_ov003_021d18f0(data_ov003_021da15c->mUnk_0fc[i], -1, 0x200, 0);
         func_ov003_021d1790(data_ov003_021da15c->mUnk_0fc[i], -1, 3);
     }
-    s.mUnk_0c[1] = 0;
+    x[1] = 0;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 4; j++) {
             data_ov003_021da15c->mUnk_000[i][j] =
-                func_ov003_021d23b0(0, data_ov003_021d5f74[0], data_ov003_021d5f74[1], 0, &s.mUnk_08, 0);
-            s.mUnk_00[0] = 0;
-            for (k = 0; k < 12; k++) {
-                s.mUnk_0c[0] = data_ov003_021d6be8[i][j * 12 + k];
-                func_ov003_021d2070(data_ov003_021da15c->mUnk_000[i][j], s.mUnk_00[0], s.mUnk_00[1], s.mUnk_00[2],
-                                    s.mUnk_00[3], 2, 0x480, s.mUnk_0c);
-                s.mUnk_00[0] = s.mUnk_00[0] + 0x12;
+                func_ov003_021d23b0(0, data_ov003_021d5f74[0], data_ov003_021d5f74[1], 0, &w, 0);
+            l = j * 12;
+            for (k = 0, v[0] = 0; k < 12; k++, l++, v[0] += 0x12) {
+                x[0] = data_ov003_021d6be8[i][l];
+                func_ov003_021d2070(data_ov003_021da15c->mUnk_000[i][j], v[0], v[1], v[2], v[3], 2, 0x480, x);
             }
             if (i == 0) {
-                data_ov003_021da15c->mUnk_104[j] = func_ov003_021d19e0(0, s.mUnk_08, 1);
+                data_ov003_021da15c->mUnk_104[j] = func_ov003_021d19e0(0, w, 1);
             }
         }
     }

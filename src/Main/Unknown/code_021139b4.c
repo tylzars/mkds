@@ -13,12 +13,9 @@
 
 #pragma thumb on
 
-// non-matching: second loop increments in a different order: the original adds 2 to the pointers for data_0215c3ec,
-// data_0215c3bc and data_0215c3e0, then increments the stack variable a, then the pointers for data_0215c3f8 and
-// data_0215c404; the compiled code increments a first
 void func_02113d84(void) {
     s32 i;
-    s32 a;
+    u16 a;
     u16 b;
 
     b = data_0217d348->mUnk_30->mUnk_06;
@@ -41,11 +38,10 @@ void func_02113d84(void) {
                 func_02124100(data_0215c3bc[i], 0xf, data_0217d348->mUnk_38, data_0217d348->mUnk_3c,
                               data_0217d348->mUnk_30);
             }
-            data_0217d348->mUnk_3c[data_0215c3f8[i]].mUnk_00 = !func_02114398(a);
-            data_0217d348->mUnk_3c[data_0215c404[i]].mUnk_00 = func_02114398(a);
+            data_0217d348->mUnk_3c[data_0215c3f8[i]].mUnk_00 = !func_02114398(a + i);
+            data_0217d348->mUnk_3c[data_0215c404[i]].mUnk_00 = func_02114398(a + i);
             data_0217d348->mUnk_3c[b + data_0215c3bc[i]].mUnk_00 = 1;
         }
-        a++;
     }
 }
 

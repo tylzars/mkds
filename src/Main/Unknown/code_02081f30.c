@@ -196,9 +196,6 @@ void func_0208266c(Unk0201ca6c *p, s32 a) {
     p->mUnk_28.z = u.z + p->mUnk_20->mUnk_00->mUnk_04.z;
 }
 
-// non-matching: same size; register allocation, 28 words: the original saves r8 and keeps the result of
-// func_020748a8 in r8, the func_0207a974 result in r7 and the 64-bit length sum in r6/r5; ours saves one register
-// fewer (first difference `push`).
 void func_02082750(Unk0201ca6c *p, s32 a) {
     Unk02148038 h;
     Vec3 v;
@@ -210,6 +207,7 @@ void func_02082750(Unk0201ca6c *p, s32 a) {
     Unk0206bcb0 *q;
     s32 t;
     s32 k;
+    s32 s;
     u16 i;
 
     if (a != 0) {
@@ -225,10 +223,10 @@ void func_02082750(Unk0201ca6c *p, s32 a) {
     func_021483a0(&data_02155a08, &v, &x);
     t = (s32) (((s64) q->mUnk_2a4 * data_0217ae9c + 0x800) >> 12);
     y = data_02165984;
+    k = 0;
     if (t > 0x1000) {
         t = 0x1000;
     }
-    k = 0;
     if (q->mUnk_44 & 0x100) {
         t = t * 0xffffffff;
         k = data_02165938;
@@ -241,7 +239,8 @@ void func_02082750(Unk0201ca6c *p, s32 a) {
     h.mUnk_04 = y.z;
     p->mUnk_68 = (s16) ((s32) (((s64) (0x1000 - t) * 0x800 + 0x800) >> 12) + 0x800);
     p->mUnk_50 = h;
-    func_02147fd8(data_02165938 + (s32) (((s64) t * (data_02165954 + k) + 0x800) >> 12), &v, &g->mUnk_9c, &u);
+    s = data_02165954 + k;
+    func_02147fd8(data_02165938 + (s32) (((s64) s * (s64) t + 0x800) >> 12), &v, &g->mUnk_9c, &u);
     u.y = func_0207a974(data_021759c0->mUnk_62)->mUnk_508->y >> 4;
     u.y = u.y - (s32) (((s64) data_02165934 * t + 0x800) >> 12);
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;

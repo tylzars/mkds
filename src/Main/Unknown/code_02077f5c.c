@@ -102,10 +102,8 @@ void func_020780f4(void) {
     }
 }
 
-// non-matching: same size (0x270) and same logic; the index constant 8 of data_02175628 is kept on the stack (frame 20
-// bytes against 12) where the original rebuilds it with movs (movs #8, movs #0x5c, muls at each use, no stack slot and
-// no shared address), so the stack offsets and several registers differ. Plain s32/u32/u8/s16/u16 locals, a literal
-// 8, the enum constant, const and static const all fold the multiply (size 0x254); only the enum local keeps it.
+// non-matching: same size; 6 words differ in the last key test: the original loads the key word into r1 and the
+// 0x400 / 2 masks into r0 (here the other way round)
 void func_02078158(void) {
     Unk0217ad08_024 *q = &data_0217ad08->mUnk_024;
     s32 a = 0;
@@ -113,11 +111,14 @@ void func_02078158(void) {
     s32 d;
     s32 w;
     u16 k;
-    Unk02175628Index v1 = UNK_02175628_INDEX_8;
+    Unk02175628Index v1;
     s32 v = 2;
+    Unk0217ad08_1f4 *p;
 
-    if (data_0217aa0c->mUnk_f8 == 0 && data_0217ad08->mUnk_1f4[data_0217ad08->mUnk_266].mUnk_2c == 0) {
+    p = &data_0217ad08->mUnk_1f4[data_0217ad08->mUnk_266];
+    if (data_0217aa0c->mUnk_f8 == 0 && p->mUnk_2c == 0) {
         w = ~a;
+        v1 = UNK_02175628_INDEX_8;
         k = data_02175628[v1].mUnk_00;
         if ((u16) (k & 0x100) != 0) {
             d = a;
@@ -130,7 +131,7 @@ void func_02078158(void) {
                     func_02078a9c(w);
                     func_02078a34(data_0217ad08->mUnk_000);
                     d = 1;
-                    func_0212ecc0(data_0217d068, a, 0x1fd);
+                    func_0212ecc0(&data_0217d068, a, 0x1fd);
                 }
             } while (d == 0);
             data_0217ad08->mUnk_004++;
@@ -148,7 +149,7 @@ void func_02078158(void) {
                     func_02078a9c(w);
                     func_02078a34(data_0217ad08->mUnk_000);
                     d = 1;
-                    func_0212ecc0(data_0217d068, a, 0x1fe);
+                    func_0212ecc0(&data_0217d068, a, 0x1fe);
                 }
             } while (d == 0);
             data_0217ad08->mUnk_004--;
@@ -160,6 +161,7 @@ void func_02078158(void) {
     b = 0;
     d = b;
     func_02108e6c(2);
+    v1 = UNK_02175628_INDEX_8;
     k = data_02175628[v1].mUnk_02;
     if ((u16) (k & 0x10) != 0) {
         q->mUnk_16 += 0x1c2;
@@ -168,6 +170,7 @@ void func_02078158(void) {
         q->mUnk_16 -= 0x1c2;
         b = 1;
     }
+    v1 = UNK_02175628_INDEX_8;
     k = data_02175628[v1].mUnk_02;
     if ((u16) (k & 0x80) != 0) {
         q->mUnk_18 += 0x1c2;
@@ -188,6 +191,7 @@ void func_02078158(void) {
         a = 1;
     }
     func_02108e6c(1);
+    v1 = UNK_02175628_INDEX_8;
     k = data_02175628[v1].mUnk_02;
     if ((u16) (k & 0x400) != 0) {
         q->mUnk_08 += 0x7b;

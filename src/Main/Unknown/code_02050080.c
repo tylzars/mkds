@@ -52,9 +52,8 @@ u32 func_020501b0(u32 a) {
     return r;
 }
 
-// non-matching: register choice only, 8 words; the original keeps the zero in r2 and the func_02050080_inline value
-// in r1 (this source gives the reverse), and in the loop it builds the 0x1e52 entry address in ip alone where this
-// source goes through r4.
+// non-matching: registers only, 6 words: the original keeps the zero in r2 and the func_02050080_inline value in r1
+// (this source gives the reverse; the getter's if/return is rebuilt into a conditional value here, not in the original)
 void func_02050080(void) {
     s32 r;
     u16 i;
@@ -70,13 +69,13 @@ void func_02050080(void) {
     i = 0;
     n = 0;
     for (; i < 8; i++) {
-        if ((data_0217aa00->mUnk_15f6 & (1 << i)) == 0) {
-            data_0217aa00->mUnk_1e52[i].mUnk_00 = 0xffff;
-        } else {
+        if ((data_0217aa00->mUnk_15f6 & (1 << i)) != 0) {
             data_0217aa00->mUnk_1e52[i].mUnk_00 = n;
             data_0217aa00->mUnk_1e8c[n] = i;
             data_0217aa00->mUnk_1e9c[n] = i;
             n++;
+        } else {
+            data_0217aa00->mUnk_1e52[i].mUnk_00 = 0xffff;
         }
     }
     for (; n < 8; n++) {

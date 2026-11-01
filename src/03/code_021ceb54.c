@@ -47,9 +47,6 @@ void func_ov003_021cec00(Unk021d1770 *a, s32 b) {
     }
 }
 
-// non-matching: the global pointer is reloaded at the top of each loop pass in the original (ldr r0, [r0] after the
-// constant -1 is stored to sp+8) and the loop bound is loaded through r0; here r1 and the pointer stays in r0, 4 bytes
-// smaller
 void func_ov003_021cec50(s32 a) {
     s32 i;
     u8 m;
@@ -63,14 +60,17 @@ void func_ov003_021cec50(s32 a) {
                         a + data_ov003_021d6714[1]);
     func_ov003_021cec00(data_ov003_021da284->mUnk_00, a);
     func_ov003_021cec00(data_ov003_021da284->mUnk_04, a);
-    i = 0;
-    m = data_ov003_021da284->mUnk_1c;
-    for (; i < data_ov003_021d6720[m]; i++) {
-        func_ov003_021d17d4(data_ov003_021da284->mUnk_08[i], -1, data_ov003_021d67b0[m][data_ov003_021d6730[m][i]][0],
-                            a + data_ov003_021d67b0[m][data_ov003_021d6730[m][i]][1] - data_ov003_021d6780[m][1]);
+    for (i = 0; i < data_ov003_021d6720[data_ov003_021da284->mUnk_1c]; i++) {
+        func_ov003_021d17d4(
+            data_ov003_021da284->mUnk_08[i], -1,
+            data_ov003_021d67b0[data_ov003_021da284->mUnk_1c][data_ov003_021d6730[data_ov003_021da284->mUnk_1c][i]][0],
+            a +
+                data_ov003_021d67b0[data_ov003_021da284->mUnk_1c][data_ov003_021d6730[data_ov003_021da284->mUnk_1c][i]]
+                                   [1] -
+                data_ov003_021d6780[data_ov003_021da284->mUnk_1c][1]);
         func_ov003_021cec00(data_ov003_021da284->mUnk_08[i], a);
-        m = data_ov003_021da284->mUnk_1c;
     }
+    m = data_ov003_021da284->mUnk_1c;
     y = a & 0xff;
     if (y >= 0xc0) {
         x = 0;

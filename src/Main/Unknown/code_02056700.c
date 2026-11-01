@@ -36,10 +36,6 @@ void func_02056700(void) {
     }
 }
 
-// non-matching: 7 words in the two bit-field stores from the table at +0x68 / +0x6c: the original loads the table
-// pointer and reads the field first, then loads the bit-field word and clears it (here the word is loaded and cleared
-// first, then the read). Tried: locals (u8 x, i, j, m) for the two values, no cast, & 0xff, swapped order, static
-// inline helpers.
 void func_02056750(s32 a, u16 b) {
     Unk0217aa08_14 *p;
     s32 k;
@@ -63,9 +59,12 @@ void func_02056750(s32 a, u16 b) {
     p->mUnk_04_16 = t[0];
     p->mUnk_04_23 = t[1];
     p->mUnk_04_27 = t[2];
-    p->mUnk_04_0 = (u8) data_021759c0->mUnk_68[b].mUnk_00;
-    p->mUnk_04_4 = (u8) data_021759c0->mUnk_68[b].mUnk_04;
-    p->mUnk_04_10 = (u8) data_021759c0->mUnk_00;
+    w = data_021759c0->mUnk_68[b].mUnk_00;
+    p->mUnk_04_0 = (u8) w;
+    w = data_021759c0->mUnk_68[b].mUnk_04;
+    p->mUnk_04_4 = (u8) w;
+    w = data_021759c0->mUnk_00;
+    p->mUnk_04_10 = (u8) w;
     p->mUnk_08_0 = 1;
     p->mUnk_08_1 = 0;
     p->mUnk_08_2 = data_021759d0->mUnk_00;

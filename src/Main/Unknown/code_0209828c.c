@@ -308,14 +308,11 @@ void func_02098d04(void *a) {
     func_0209b9a4(data_usa_0217b0e0, 0x1f);
 }
 
-// non-matching: same size and instructions, registers differ: loop counter r8 (original r9), pointer to mUnk_1ba r9
-// (r6), base of mUnk_0b8 r7 (r8), constant 100 in r6 (r7)
 void func_02098d4c(Unk020983c4 *p) {
     s32 v;
     s32 d;
     Vec3 a;
     Vec3 b;
-    u16 *q;
     s32 i;
     p->mUnk_1d8 = (u32) (((s64) p->mUnk_000.mUnk_9c->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 32 << 4) >> 16;
     p->mUnk_1e4 = 1;
@@ -327,7 +324,6 @@ void func_02098d4c(Unk020983c4 *p) {
     for (i = 0; i < 7; i++) {
         p->mUnk_0b8[i].mUnk_08 = 0xffff;
     }
-    q = &p->mUnk_1ba;
     for (i = 0; i < 7; i++) {
         if (i == 0) {
             v = p->mUnk_000.mUnk_9c->mUnk_28;
@@ -353,7 +349,7 @@ void func_02098d4c(Unk020983c4 *p) {
             }
             p->mUnk_1bc[p->mUnk_1ba] = d;
             p->mUnk_1fc = p->mUnk_000.mUnk_04.y - a.y;
-            *q = *q + 1;
+            p->mUnk_1ba++;
         }
     }
     p->mUnk_0a0 = func_020d3c2c();

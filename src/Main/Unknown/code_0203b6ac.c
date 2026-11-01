@@ -13,9 +13,6 @@
 
 #pragma thumb on
 
-// non-matching: same size and instructions in the main shuffle loop; differs in register choice around the two shifts
-// of the generator value (zero word of the shift and the counters sit in other registers, r2/r3 and r4/r5 swapped in
-// places) and in the order of `movs r2, #0` / `adds r0, r1, r0` at the start; size 0x234 against 0x238
 void func_0203b6ac(u8 *a) {
     Unk020f41c4_B r;
     u32 t[3];
@@ -25,21 +22,21 @@ void func_0203b6ac(u8 *a) {
     u16 v2[8];
     u16 c;
     u16 d;
-    u16 e;
     u16 f;
     u16 g;
     u16 i;
     u16 j;
     u16 k;
+    u16 e;
     u32 h;
-    u64 q;
+    u32 l;
 
     if (func_0214df78(t) != 0) {
         t[0] = 0;
         t[1] = 0;
         t[2] = 0;
     }
-    r.mUnk_00 = (t[0] * 60 + t[1]) * 60 + t[2] + (u32) func_0200f5ac();
+    r.mUnk_00 = (u32) ((t[0] * 60 + t[1]) * 60 + t[2] + func_0200f5ac());
     r.mUnk_08 = 0x5d588b656c078965ULL;
     r.mUnk_10 = 0x269ec3;
     data_021759c0->mUnk_1e8.mUnk_08 = 0;
@@ -52,13 +49,11 @@ void func_0203b6ac(u8 *a) {
     data_021759c0->mUnk_1e8.mUnk_64 = -1;
     data_021759c0->mUnk_1e8.mUnk_14 = 2;
     r.mUnk_00 = _ll_mul(r.mUnk_08, r.mUnk_00) + r.mUnk_10;
-    q = (u32) (r.mUnk_00 >> 32);
-    d = q >> 30;
+    d = (u64) (u32) (r.mUnk_00 >> 32) * 4 >> 32;
     c = func_0203b8e4(&r);
     data_021759c0->mUnk_1e8.mUnk_00 = data_02154128[c][d];
     r.mUnk_00 = _ll_mul(r.mUnk_08, r.mUnk_00) + r.mUnk_10;
-    q = (u32) (r.mUnk_00 >> 32);
-    e = q >> 29;
+    e = (u64) (u32) (r.mUnk_00 >> 32) * 8 >> 32;
     data_021759c0->mUnk_1e8.mUnk_63 = e;
     for (k = 0; k < 2; k++) {
         for (j = 0; j < 8; j++) {
@@ -82,15 +77,15 @@ void func_0203b6ac(u8 *a) {
     func_0203be6c(a, 0, 0, 0);
     func_0203ba70(a);
     for (i = 0; i < 8; i++) {
-        h = 3;
+        l = 3;
         if (v1[0] == i) {
-            h = 0;
+            l = 0;
         }
         if (v1[1] == i) {
-            h = 1;
+            l = 1;
         }
         func_0203be48(a, i, &x, &y);
-        func_020468b0(i, x, y, 1, -1, h);
+        func_020468b0(i, x, y, 1, -1, l);
     }
     func_020467a0();
 }

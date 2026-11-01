@@ -30,21 +30,29 @@ static inline u16 func_020a1790_inline(Unk0217b1fc *d, s32 i) {
     return 0;
 }
 
-// non-matching: same size; register allocation only, 10 words: the original keeps data_0217b1fc (later the walking
-// pointer of the check loop) in r2 and the counter of func_020a1790_inline in r3, ours the other way round.
 void func_020a1790(void) {
     s32 n;
     s32 v;
     s32 i;
     s32 j;
     s32 v1;
+    s32 k;
+    u16 x;
     Unk0217b1fc *d;
     Unk0217b1fc_000 *e;
     Unk0206bcb0 *c;
 
     n = data_021759c0->mUnk_3d0;
     d = data_0217b1fc;
-    v = d->mUnk_000[func_020a1790_inline(d, 0)].mUnk_46;
+    for (k = 0; k < 8; k++) {
+        if (d->mUnk_000[k].mUnk_48 == 0) {
+            x = k;
+            goto found;
+        }
+    }
+    x = 0;
+found:
+    v = d->mUnk_000[x].mUnk_46;
     e = d->mUnk_000;
     for (j = 0; j < 8; j++, e++) {
         if (e->mUnk_08 == 0) {

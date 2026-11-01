@@ -100,25 +100,22 @@ static inline s32 func_02126a00_inline(u16 a, u16 b, u8 c, u8 d, u8 e, u8 f) {
 static inline s32 func_02126a00_inline2(u32 v) {
     s32 r = 0;
     s32 s = 0;
-    u16 c = data_02175674[v].mUnk_00;
 
-    if (c == 0 && data_02175680[v].mUnk_00 < 5) {
+    if (data_02175674[v].mUnk_00 == 0 && data_02175680[v].mUnk_00 < 5) {
         s = 1;
     }
-    if (s == 0 && data_0217567c[v].mUnk_00 == 0 && c != 0) {
+    if (s == 0 && data_0217567c[v].mUnk_00 == 0 && data_02175674[v].mUnk_00 != 0) {
         r = 1;
     }
     return r;
 }
 
-// non-matching: register allocation differs (52 words): the original keeps the element offset in r1, t in r3 and y in
-// r4 (here r5, r1 and r1)
 void func_02126a00(void) {
     s32 m;
     s32 t;
+    u16 y;
     s32 hit;
     u16 x;
-    u16 y;
     Unk0217d3f0 *p;
     u32 v;
     u16 w;

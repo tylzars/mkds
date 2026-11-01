@@ -131,8 +131,6 @@ void func_0203a05c(void) {
     }
 }
 
-// non-matching: two words differ at +0x274: the original has movcc r0, #0 then movcs r0, #1 for the b >= 0x708 flag,
-// this source has movcs r0, #1 then movcc r0, #0 (same size).
 void func_0203a0dc(Unk0203a0dc *a, u32 b) {
     Unk021759c0 *q;
     u32 c;
@@ -235,7 +233,11 @@ void func_0203a0dc(Unk0203a0dc *a, u32 b) {
     if (q->mUnk_00c != 6) {
         c = 1;
     } else {
-        c = (b < 0x708) ? 0 : 1;
+        if (b < 0x708) {
+            c = 0;
+        } else {
+            c = 1;
+        }
     }
     if (c != 0) {
         if (q->mUnk_08 != 5 || func_02037a20() == 0) {

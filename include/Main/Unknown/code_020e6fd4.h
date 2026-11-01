@@ -25,7 +25,7 @@ typedef struct Unk020e71a0_98 {
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
-    /* 18 */ s32 (*mUnk_18)(struct Unk020e71a0 *a, Vec3 *b, s32 c);
+    /* 18 */ s32 (*mUnk_18)(struct Unk020e71a0 *a, Vec3 *b, s32 c, Vec3 *d);
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s32 mUnk_20;
     /* 24 */ s32 mUnk_24;

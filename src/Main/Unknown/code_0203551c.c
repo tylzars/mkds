@@ -168,14 +168,11 @@ s32 func_0203551c(u16 *a) {
     return r;
 }
 
-// non-matching: 91.4: same size; the original frame is 8 bytes larger: in the second table loop it keeps n in r7 with k
-// and m spilled (here n and the second pointer are spilled and k is in r7), and the guard-free second loop with the
-// two pointers comes out 4 bytes shorter here, so the guard stays
 void func_020357dc(void *a, void *b, void *c) {
     void *h;
     Unk02174e14_00 *s;
-    u32 n;
     s32 i;
+    u32 n;
     s32 j;
     s32 k;
     s32 m;
@@ -183,7 +180,6 @@ void func_020357dc(void *a, void *b, void *c) {
     s32 y;
     s32 z;
     s16 *t;
-    s16 *u;
     void *g;
     u16 w[3];
 
@@ -198,7 +194,6 @@ void func_020357dc(void *a, void *b, void *c) {
     s = &data_02174e68->mUnk_2c[0];
     n = func_02148cb8();
     func_02025b20(s, data_021644f8, data_02164518, data_02164538, data_02164558, data_02164574, 0, func_0204799c);
-    z = 0;
     func_02025a50(0, data_02174e68->mUnk_a4, s);
     for (i = 0; i < s->mUnk_14->mUnk_06; i++) {
         n -= func_02025a00(0, data_02174e68->mUnk_a4, s, data_0215404c[i], n);
@@ -212,32 +207,28 @@ void func_020357dc(void *a, void *b, void *c) {
     func_02025a50(1, data_02174e68->mUnk_a4, s);
     m = s->mUnk_0c->mUnk_06;
     j = 0;
-    if (s->mUnk_14->mUnk_06 > 0) {
-        t = (s16 *) data_02164470;
-        g = t;
-        for (; j < s->mUnk_14->mUnk_06; j++) {
+    if (j < s->mUnk_14->mUnk_06) {
+        t = data_02164470[0];
+        do {
             if (t[3] < 0) {
-                t[3] = m + k;
-                k++;
+                t[3] = m + k++;
             }
-            n -= func_02025a00(1, data_02174e68->mUnk_a4, s, g, n);
+            n -= func_02025a00(1, data_02174e68->mUnk_a4, s, data_02164470[j], n);
             t += 4;
-            g = (u8 *) g + 8;
-        }
+            j++;
+        } while (j < s->mUnk_14->mUnk_06);
     }
     for (i = 0; i < 8; i++) {
         func_021249a8(i, 3, s->mUnk_08, s->mUnk_0c);
     }
-    t = (s16 *) data_02164470;
-    u = t;
-    z = 0;
-    for (j = 0; j < 7; j++) {
+    for (j = 0, t = data_02164470[0]; j < 7; j++) {
         x = t[3];
-        y = *(s16 *) ((u8 *) t + z);
-        i = u[(j + 7) * 4];
-        func_02025c1c(x, (int) ((u8 *) s->mUnk_18 + (x << 6)), (u32) s->mUnk_0c);
-        func_02025bf0(y, (int) ((u8 *) s->mUnk_18 + (y << 6) + (m << 6)), (u32) s->mUnk_14);
-        func_02025bf0(i, (int) ((u8 *) s->mUnk_18 + (i << 6) + (m << 6)), (u32) s->mUnk_14);
+        y = t[0];
+        z = data_02164470[j + 7][0];
+        g = s->mUnk_18;
+        func_02025c1c(x, (int) ((u8 *) g + (x << 6)), (u32) s->mUnk_0c);
+        func_02025bf0(y, (int) ((u8 *) g + (y << 6) + (m << 6)), (u32) s->mUnk_14);
+        func_02025bf0(z, (int) ((u8 *) g + (z << 6) + (m << 6)), (u32) s->mUnk_14);
         t += 4;
     }
     func_02025c1c(7, (int) ((u8 *) s->mUnk_18 + 0x1c0), (u32) s->mUnk_0c);
