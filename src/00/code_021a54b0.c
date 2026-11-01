@@ -2,6 +2,23 @@
 #include "code_02142c24.h"
 #include "code_021453ec.h"
 
+void func_ov000_021a56e4(Unk021425e8 *v1) {
+    if (v1->mUnk_02 == 8 && v1->mUnk_04 == 0x16 && v1->mUnk_06 == 0x25) {
+        switch (data_ov000_021b5f50->mUnk_2260) {
+            case 8:
+                func_ov000_021a57fc(0xc);
+                return;
+            case 9:
+            case 12:
+                func_ov000_021a574c();
+                return;
+            case 10:
+                func_ov000_021a57fc(0xc);
+                break;
+        }
+    }
+}
+
 void func_ov000_021a54b0(Unk021425e8 *v1) {
     Unk021b5f50 *g;
     s32 r = 0x14;
@@ -78,22 +95,5 @@ void func_ov000_021a54b0(Unk021425e8 *v1) {
             func_ov000_021a57fc(0xb);
             func_ov000_021a58a4(7, data_ov000_021b5f50->mUnk_2280 == 5 ? data_ov000_021b5f50->mUnk_2140 : 0, 0, 0x6da);
             return;
-    }
-}
-
-void func_ov000_021a56e4(Unk021425e8 *v1) {
-    if (v1->mUnk_02 == 8 && v1->mUnk_04 == 0x16 && v1->mUnk_06 == 0x25) {
-        switch (data_ov000_021b5f50->mUnk_2260) {
-            case 8:
-                func_ov000_021a57fc(0xc);
-                return;
-            case 9:
-            case 12:
-                func_ov000_021a574c();
-                return;
-            case 10:
-                func_ov000_021a57fc(0xc);
-                break;
-        }
     }
 }

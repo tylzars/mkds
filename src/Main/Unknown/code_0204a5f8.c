@@ -4,59 +4,6 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "01/code_021a2398.h"
 
-void func_0204a5f8(void) {
-    func_020364e0(func_020364e8());
-    func_020399a8();
-    func_02043c14();
-    func_ov001_021a23f4();
-}
-
-s32 func_0204a620(Unk02175650 *a) {
-    if (a->mUnk_08 != 2) {
-        return 0;
-    }
-    return ((u32) a->mUnk_04 << 1) > 0xd1b;
-}
-
-s32 func_0204a650(Unk02175650 *a) {
-    return a->mUnk_08 == 3;
-}
-
-u16 func_0204a664(Unk02175650 *a) {
-    Unk02175650_buf *b;
-    u8 *e;
-    u16 i;
-    u16 r;
-    u8 v;
-
-    if (a->mUnk_08 != 2) {
-        return 0;
-    }
-    b = a->mUnk_00;
-    i = a->mUnk_04;
-    if (i >= b->mUnk_00) {
-        a->mUnk_08 = 0;
-        return 0;
-    }
-    e = &b->mUnk_04[i * 2];
-    v = e[0];
-    r = 0;
-    r |= (v & 1) ? 1 : 0;
-    r |= (v & 2) ? 2 : 0;
-    r |= (v & 4) ? 0x100 : 0;
-    r |= (v & 8) ? 0x600 : 0;
-    r |= (v & 0x10) ? 0x10 : 0;
-    r |= (v & 0x20) ? 0x20 : 0;
-    r |= (v & 0x80) ? 0x40 : 0;
-    r |= (v & 0x40) ? 0x80 : 0;
-    a->mUnk_06++;
-    if (a->mUnk_06 >= e[1]) {
-        a->mUnk_04++;
-        a->mUnk_06 = 0;
-    }
-    return r;
-}
-
 void func_0204a798(Unk02175650 *a, u16 b) {
     s32 f;
     u8 n;
@@ -105,4 +52,57 @@ void func_0204a798(Unk02175650 *a, u16 b) {
     }
     e[0] = v;
     e[1]++;
+}
+
+u16 func_0204a664(Unk02175650 *a) {
+    Unk02175650_buf *b;
+    u8 *e;
+    u16 i;
+    u16 r;
+    u8 v;
+
+    if (a->mUnk_08 != 2) {
+        return 0;
+    }
+    b = a->mUnk_00;
+    i = a->mUnk_04;
+    if (i >= b->mUnk_00) {
+        a->mUnk_08 = 0;
+        return 0;
+    }
+    e = &b->mUnk_04[i * 2];
+    v = e[0];
+    r = 0;
+    r |= (v & 1) ? 1 : 0;
+    r |= (v & 2) ? 2 : 0;
+    r |= (v & 4) ? 0x100 : 0;
+    r |= (v & 8) ? 0x600 : 0;
+    r |= (v & 0x10) ? 0x10 : 0;
+    r |= (v & 0x20) ? 0x20 : 0;
+    r |= (v & 0x80) ? 0x40 : 0;
+    r |= (v & 0x40) ? 0x80 : 0;
+    a->mUnk_06++;
+    if (a->mUnk_06 >= e[1]) {
+        a->mUnk_04++;
+        a->mUnk_06 = 0;
+    }
+    return r;
+}
+
+s32 func_0204a650(Unk02175650 *a) {
+    return a->mUnk_08 == 3;
+}
+
+s32 func_0204a620(Unk02175650 *a) {
+    if (a->mUnk_08 != 2) {
+        return 0;
+    }
+    return ((u32) a->mUnk_04 << 1) > 0xd1b;
+}
+
+void func_0204a5f8(void) {
+    func_020364e0(func_020364e8());
+    func_020399a8();
+    func_02043c14();
+    func_ov001_021a23f4();
 }

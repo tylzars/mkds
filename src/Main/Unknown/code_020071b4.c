@@ -3,53 +3,6 @@
 
 #pragma thumb on
 
-int func_020071b4(void) {
-    u16 v1[6];
-    u16 i;
-    int v2;
-    Unk0216fdac *v3;
-    v1[0] = 0;
-    func_0214cfe4(v1[0], &v1[1], 10);
-    i = 1;
-    v3 = data_0216fdac;
-    for (; i <= 15; i++) {
-        switch (v3->mUnk_14e8[i - 1]) {
-            case 2:
-                v1[1] |= 1 << i;
-                break;
-            case 5:
-                v1[2] |= 1 << i;
-                break;
-            case 4:
-                v1[3] |= 1 << i;
-                break;
-            case 8:
-                v1[4] |= 1 << i;
-                break;
-            case 11:
-                v1[5] |= 1 << i;
-                break;
-        }
-    }
-    if (v1[4] != 0) {
-        v2 = func_020075f8(5, v1[4]);
-    } else if (v1[1] != 0) {
-        v2 = func_020075f8(1, v1[1]);
-    } else if (v1[5] != 0) {
-        v2 = func_020075f8(6, v1[5]);
-    } else if (v1[3] != 0) {
-        v2 = func_020075f8(2, v1[3]);
-    } else if (v1[2] != 0) {
-        v2 = func_020074d8();
-    } else {
-        v2 = func_020072c0();
-    }
-    if (v2 == 21) {
-        v2 = func_020075f8(0, 0xffff);
-    }
-    return v2;
-}
-
 u32 func_020072c0(void) {
     Unk020074d8_msg v1;
     Unk020072c0_buf v2;
@@ -130,6 +83,53 @@ u32 func_020072c0(void) {
     }
     v3 = data_0216fdac;
     return func_02008908(v2.mUnk_04 + 6, ((Unk0216fdac *) ((u8 *) v3 + v3->mUnk_1525 * 0x5d4))->mUnk_1d4c, (u32) v3);
+}
+
+int func_020071b4(void) {
+    u16 v1[6];
+    u16 i;
+    int v2;
+    Unk0216fdac *v3;
+    v1[0] = 0;
+    func_0214cfe4(v1[0], &v1[1], 10);
+    i = 1;
+    v3 = data_0216fdac;
+    for (; i <= 15; i++) {
+        switch (v3->mUnk_14e8[i - 1]) {
+            case 2:
+                v1[1] |= 1 << i;
+                break;
+            case 5:
+                v1[2] |= 1 << i;
+                break;
+            case 4:
+                v1[3] |= 1 << i;
+                break;
+            case 8:
+                v1[4] |= 1 << i;
+                break;
+            case 11:
+                v1[5] |= 1 << i;
+                break;
+        }
+    }
+    if (v1[4] != 0) {
+        v2 = func_020075f8(5, v1[4]);
+    } else if (v1[1] != 0) {
+        v2 = func_020075f8(1, v1[1]);
+    } else if (v1[5] != 0) {
+        v2 = func_020075f8(6, v1[5]);
+    } else if (v1[3] != 0) {
+        v2 = func_020075f8(2, v1[3]);
+    } else if (v1[2] != 0) {
+        v2 = func_020074d8();
+    } else {
+        v2 = func_020072c0();
+    }
+    if (v2 == 21) {
+        v2 = func_020075f8(0, 0xffff);
+    }
+    return v2;
 }
 
 #pragma thumb off

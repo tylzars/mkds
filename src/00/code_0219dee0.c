@@ -9,41 +9,6 @@
 #include "00/code_021a2950.h"
 #include "00/code_021a4654.h"
 
-void func_ov000_0219dee0(s32 a, Unk021a471c *b, void *c) {
-    s32 d;
-    switch (a) {
-        case 8:
-            func_ov000_021a4760(b, data_ov000_021b566c->mUnk_14);
-            return;
-        case 0xa:
-            func_ov000_021a4760(b, data_ov000_021b566c->mUnk_16);
-            return;
-        case 0x32:
-            func_ov000_021a4760(b, data_ov000_021b566c->mUnk_1e8);
-            return;
-        case 0x33:
-            func_ov000_021a4760(b, data_ov000_021b566c->mUnk_15);
-            return;
-        case 0x34:
-            func_ov000_021a4760(b, data_ov000_021b566c->mUnk_20);
-            return;
-        case 0x35:
-            func_ov000_021a4760(b, 3);
-            return;
-        case 0x36:
-            func_ov000_021a4760(b, 1);
-            return;
-    }
-    d = a - 100;
-    if (data_ov000_021b5698[d][0] != 0) {
-        if (data_ov000_021b5699[d * 12] != 0) {
-            func_ov000_021a471c(b, *(const u8 **) &data_ov000_021b56a0[d * 12]);
-        } else {
-            func_ov000_021a4760(b, **(s32 **) &data_ov000_021b56a0[d * 12]);
-        }
-    }
-}
-
 s32 func_ov000_0219dfe4(s32 a) {
     s32 c;
     s32 d;
@@ -93,4 +58,39 @@ s32 func_ov000_0219dfe4(s32 a) {
         return 0;
     }
     return 1;
+}
+
+void func_ov000_0219dee0(s32 a, Unk021a471c *b, void *c) {
+    s32 d;
+    switch (a) {
+        case 8:
+            func_ov000_021a4760(b, data_ov000_021b566c->mUnk_14);
+            return;
+        case 0xa:
+            func_ov000_021a4760(b, data_ov000_021b566c->mUnk_16);
+            return;
+        case 0x32:
+            func_ov000_021a4760(b, data_ov000_021b566c->mUnk_1e8);
+            return;
+        case 0x33:
+            func_ov000_021a4760(b, data_ov000_021b566c->mUnk_15);
+            return;
+        case 0x34:
+            func_ov000_021a4760(b, data_ov000_021b566c->mUnk_20);
+            return;
+        case 0x35:
+            func_ov000_021a4760(b, 3);
+            return;
+        case 0x36:
+            func_ov000_021a4760(b, 1);
+            return;
+    }
+    d = a - 100;
+    if (data_ov000_021b5698[d][0] != 0) {
+        if (data_ov000_021b5699[d * 12] != 0) {
+            func_ov000_021a471c(b, *(const u8 **) &data_ov000_021b56a0[d * 12]);
+        } else {
+            func_ov000_021a4760(b, **(s32 **) &data_ov000_021b56a0[d * 12]);
+        }
+    }
 }

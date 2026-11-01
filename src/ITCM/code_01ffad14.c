@@ -4,51 +4,14 @@
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/unk_02154000.h"
 
-void func_01ffad14(Unk0206bcb0 *p, Vec3 *a) {
-    Vec4 v;
-    Vec4 w;
-    Vec4 *q = &p->mUnk_100_q;
-    s32 r;
-
-    r = func_01ffd0e8(&v, &data_02154f7c, a);
-    func_01ffd0e8(&w, &p->mUnk_244, a);
-    func_01ffcebc(&w, q, q);
-    if (r != 0) {
-        if ((v.w < 0 && q->w > 0) || (v.w > 0 && q->w < 0)) {
-            q->x = -v.x;
-            q->y = 0;
-            q->z = -v.z;
-            q->w = -v.w;
-            p->mUnk_48 = p->mUnk_48 | 0x80000000;
-        } else {
-            q->x = v.x;
-            q->y = 0;
-            q->z = v.z;
-            q->w = v.w;
-            p->mUnk_48 = p->mUnk_48 & ~0x80000000;
-        }
+void func_01ffb0cc(Unk0206bcb0 *p) {
+    p->mUnk_4fc = p->mUnk_4fc + 1;
+    if (p->mUnk_4fc >= 8) {
+        p->mUnk_4fc = 0;
     }
-    func_01ffcf7c(q, q);
-}
-
-void func_01ffae14(Unk0206bcb0 *p, s32 a) {
-    s32 r;
-
-    p->mUnk_a4.x = (s64) p->mUnk_a4.x * a >> 12;
-    r = 0;
-    p->mUnk_a4.y = (s64) p->mUnk_a4.y * a >> 12;
-    p->mUnk_a4.z = (s64) p->mUnk_a4.z * a >> 12;
-    if ((s64) p->mUnk_a4.x * p->mUnk_a4.x + (s64) p->mUnk_a4.y * p->mUnk_a4.y + (s64) p->mUnk_a4.z * p->mUnk_a4.z >=
-        0x10) {
-        r = func_02039860(&p->mUnk_a4, &p->mUnk_b0);
-    }
-    p->mUnk_2a4 = r;
-    if (p->mUnk_2a4 > 0xd000) {
-        p->mUnk_2a4 = 0xd000;
-        p->mUnk_a4.x = (s64) p->mUnk_b0.x * 0xd000 >> 12;
-        p->mUnk_a4.y = (s64) p->mUnk_b0.y * 0xd000 >> 12;
-        p->mUnk_a4.z = (s64) p->mUnk_b0.z * 0xd000 >> 12;
-    }
+    p->mUnk_4f0.x = data_02154b64[p->mUnk_4fc];
+    p->mUnk_4f0.y = data_02154b84[p->mUnk_4fc];
+    p->mUnk_4f0.z = data_02154ba4[p->mUnk_4fc];
 }
 
 s32 func_01ffaf18(Unk0206bcb0 *p) {
@@ -117,12 +80,49 @@ s32 func_01ffaf18(Unk0206bcb0 *p) {
     return ((s64) p->mUnk_2a8 * (0x1000 - (p->mUnk_274 >> 3)) + 0x800) >> 12;
 }
 
-void func_01ffb0cc(Unk0206bcb0 *p) {
-    p->mUnk_4fc = p->mUnk_4fc + 1;
-    if (p->mUnk_4fc >= 8) {
-        p->mUnk_4fc = 0;
+void func_01ffae14(Unk0206bcb0 *p, s32 a) {
+    s32 r;
+
+    p->mUnk_a4.x = (s64) p->mUnk_a4.x * a >> 12;
+    r = 0;
+    p->mUnk_a4.y = (s64) p->mUnk_a4.y * a >> 12;
+    p->mUnk_a4.z = (s64) p->mUnk_a4.z * a >> 12;
+    if ((s64) p->mUnk_a4.x * p->mUnk_a4.x + (s64) p->mUnk_a4.y * p->mUnk_a4.y + (s64) p->mUnk_a4.z * p->mUnk_a4.z >=
+        0x10) {
+        r = func_02039860(&p->mUnk_a4, &p->mUnk_b0);
     }
-    p->mUnk_4f0.x = data_02154b64[p->mUnk_4fc];
-    p->mUnk_4f0.y = data_02154b84[p->mUnk_4fc];
-    p->mUnk_4f0.z = data_02154ba4[p->mUnk_4fc];
+    p->mUnk_2a4 = r;
+    if (p->mUnk_2a4 > 0xd000) {
+        p->mUnk_2a4 = 0xd000;
+        p->mUnk_a4.x = (s64) p->mUnk_b0.x * 0xd000 >> 12;
+        p->mUnk_a4.y = (s64) p->mUnk_b0.y * 0xd000 >> 12;
+        p->mUnk_a4.z = (s64) p->mUnk_b0.z * 0xd000 >> 12;
+    }
+}
+
+void func_01ffad14(Unk0206bcb0 *p, Vec3 *a) {
+    Vec4 v;
+    Vec4 w;
+    Vec4 *q = &p->mUnk_100_q;
+    s32 r;
+
+    r = func_01ffd0e8(&v, &data_02154f7c, a);
+    func_01ffd0e8(&w, &p->mUnk_244, a);
+    func_01ffcebc(&w, q, q);
+    if (r != 0) {
+        if ((v.w < 0 && q->w > 0) || (v.w > 0 && q->w < 0)) {
+            q->x = -v.x;
+            q->y = 0;
+            q->z = -v.z;
+            q->w = -v.w;
+            p->mUnk_48 = p->mUnk_48 | 0x80000000;
+        } else {
+            q->x = v.x;
+            q->y = 0;
+            q->z = v.z;
+            q->w = v.w;
+            p->mUnk_48 = p->mUnk_48 & ~0x80000000;
+        }
+    }
+    func_01ffcf7c(q, q);
 }

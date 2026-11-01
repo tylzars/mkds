@@ -9,6 +9,44 @@
 
 #pragma thumb on
 
+void func_02077d68(void) {
+    Unk0217ad08_1f4 *a;
+    s32 b;
+    Unk0217ad08_1f4 *p;
+    s32 c;
+    s32 i;
+    char *e;
+
+    a = data_0217ad08->mUnk_1f4;
+    i = data_0217ad08->mUnk_266;
+    p = &a[i];
+    b = data_0217ad08->mUnk_020->mUnk_00;
+    c = data_0217ad08->mUnk_020->mUnk_04;
+    p->mUnk_30 = 0;
+    func_0201797c(&p->mUnk_04->mUnk_00);
+    p->mUnk_04 = func_02017988(p->mUnk_00, 0xf000, 0);
+    if (b != -1 && p->mUnk_08 != 0) {
+        func_02012b30(p->mUnk_08);
+        func_02012b30(p->mUnk_0c);
+        func_02012b30(p->mUnk_10);
+        func_02012b30(p->mUnk_18);
+        func_02012b30(p->mUnk_1c);
+        func_02012b30(p->mUnk_20);
+        func_02012b30(p->mUnk_24);
+        func_02012b30(p->mUnk_28);
+    }
+    e = (char *) &data_0217ad08->mUnk_1c8[c];
+    func_02048590(func_020887d8(b, 1), (u32) p->mUnk_04, (void **) &p->mUnk_08);
+    func_02048590(func_02088728(b, 1), (u32) p->mUnk_04, (void **) &p->mUnk_0c);
+    func_02048590(func_0207b8f4(b, 2), (u32) p->mUnk_04, (void **) &p->mUnk_14);
+    func_02048590(func_02088390(b), (u32) p->mUnk_04, (void **) &p->mUnk_10);
+    func_02048590(func_0208867c(c), (u32) p->mUnk_04, (void **) &p->mUnk_18);
+    func_02048590(func_020885d0(c), (u32) p->mUnk_04, (void **) &p->mUnk_1c);
+    func_02048590(func_020884bc(c), (u32) p->mUnk_04, (void **) &p->mUnk_28);
+    func_02048590(func_02088574(c, e), (u32) p->mUnk_04, (void **) &p->mUnk_20);
+    func_02048590(func_02088518(c, e), (u32) p->mUnk_04, (void **) &p->mUnk_24);
+}
+
 void func_02077c1c(void) {
     Unk0217ad08_1f4 *p;
     Unk0217ad08_058 *q;
@@ -52,44 +90,6 @@ void func_02077c1c(void) {
             data_0217ad08->mUnk_020 = &data_0217ad08->mUnk_058[data_0217ad08->mUnk_266];
         }
     }
-}
-
-void func_02077d68(void) {
-    Unk0217ad08_1f4 *a;
-    s32 b;
-    Unk0217ad08_1f4 *p;
-    s32 c;
-    s32 i;
-    char *e;
-
-    a = data_0217ad08->mUnk_1f4;
-    i = data_0217ad08->mUnk_266;
-    p = &a[i];
-    b = data_0217ad08->mUnk_020->mUnk_00;
-    c = data_0217ad08->mUnk_020->mUnk_04;
-    p->mUnk_30 = 0;
-    func_0201797c(&p->mUnk_04->mUnk_00);
-    p->mUnk_04 = func_02017988(p->mUnk_00, 0xf000, 0);
-    if (b != -1 && p->mUnk_08 != 0) {
-        func_02012b30(p->mUnk_08);
-        func_02012b30(p->mUnk_0c);
-        func_02012b30(p->mUnk_10);
-        func_02012b30(p->mUnk_18);
-        func_02012b30(p->mUnk_1c);
-        func_02012b30(p->mUnk_20);
-        func_02012b30(p->mUnk_24);
-        func_02012b30(p->mUnk_28);
-    }
-    e = (char *) &data_0217ad08->mUnk_1c8[c];
-    func_02048590(func_020887d8(b, 1), (u32) p->mUnk_04, (void **) &p->mUnk_08);
-    func_02048590(func_02088728(b, 1), (u32) p->mUnk_04, (void **) &p->mUnk_0c);
-    func_02048590(func_0207b8f4(b, 2), (u32) p->mUnk_04, (void **) &p->mUnk_14);
-    func_02048590(func_02088390(b), (u32) p->mUnk_04, (void **) &p->mUnk_10);
-    func_02048590(func_0208867c(c), (u32) p->mUnk_04, (void **) &p->mUnk_18);
-    func_02048590(func_020885d0(c), (u32) p->mUnk_04, (void **) &p->mUnk_1c);
-    func_02048590(func_020884bc(c), (u32) p->mUnk_04, (void **) &p->mUnk_28);
-    func_02048590(func_02088574(c, e), (u32) p->mUnk_04, (void **) &p->mUnk_20);
-    func_02048590(func_02088518(c, e), (u32) p->mUnk_04, (void **) &p->mUnk_24);
 }
 
 #pragma thumb off

@@ -1,33 +1,5 @@
 #include "03/code_021c735c.h"
 
-u32 func_ov003_021c735c(s32 a) {
-    u8 b[4];
-    u8 *c;
-    u8 *d;
-    s32 e;
-    u8 f;
-    d = data_ov003_021da1fc->mUnk_08;
-    c = d + data_ov003_021da1fc->mUnk_14 * 3;
-    f = *c;
-    if (f != 0 && f != 0x20) {
-        return 1;
-    }
-    func_0214d1fc(c, b, 3);
-    b[3] = 0;
-    c = b;
-    for (e = 0; e < 3; e++) {
-        if (*c != 0) {
-            break;
-        }
-        *c = 0x20;
-        c++;
-    }
-    if (func_0213bf90(b) >= a) {
-        return 1;
-    }
-    return 0;
-}
-
 void func_ov003_021c73cc(void) {
     s32 a;
     u8 *b;
@@ -129,4 +101,32 @@ void func_ov003_021c73cc(void) {
     }
     func_ov003_021c71a0();
     func_ov003_021c7160();
+}
+
+u32 func_ov003_021c735c(s32 a) {
+    u8 b[4];
+    u8 *c;
+    u8 *d;
+    s32 e;
+    u8 f;
+    d = data_ov003_021da1fc->mUnk_08;
+    c = d + data_ov003_021da1fc->mUnk_14 * 3;
+    f = *c;
+    if (f != 0 && f != 0x20) {
+        return 1;
+    }
+    func_0214d1fc(c, b, 3);
+    b[3] = 0;
+    c = b;
+    for (e = 0; e < 3; e++) {
+        if (*c != 0) {
+            break;
+        }
+        *c = 0x20;
+        c++;
+    }
+    if (func_0213bf90(b) >= a) {
+        return 1;
+    }
+    return 0;
 }

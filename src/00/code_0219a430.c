@@ -24,6 +24,24 @@ typedef struct Unk0219a430Addr {
     /* 4 */ u32 mUnk_04;
 } Unk0219a430Addr;
 
+void func_ov000_0219a5dc(Unk02197fe8 **a) {
+    func_ov000_021984b4(*a);
+}
+
+Unk02197fe8 *func_ov000_0219a5b0(Unk02197e8c *a, u32 b, u32 c) {
+    Unk02197fe8 d;
+    Unk02197fe8 *e;
+    void *f;
+    d.mUnk_00 = b;
+    d.mUnk_04 = c;
+    e = &d;
+    f = func_ov000_0218de28(a->mUnk_0c, &e);
+    if (f != 0) {
+        return *(Unk02197fe8 **) f;
+    }
+    return 0;
+}
+
 u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
     Unk02197e8c *f;
     u16 i;
@@ -88,22 +106,4 @@ u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
     f->mUnk_08 = ((g.mUnk_02 >> 8) & 0xff) | ((g.mUnk_02 << 8) & 0xff00);
     *a = f;
     return 0;
-}
-
-Unk02197fe8 *func_ov000_0219a5b0(Unk02197e8c *a, u32 b, u32 c) {
-    Unk02197fe8 d;
-    Unk02197fe8 *e;
-    void *f;
-    d.mUnk_00 = b;
-    d.mUnk_04 = c;
-    e = &d;
-    f = func_ov000_0218de28(a->mUnk_0c, &e);
-    if (f != 0) {
-        return *(Unk02197fe8 **) f;
-    }
-    return 0;
-}
-
-void func_ov000_0219a5dc(Unk02197fe8 **a) {
-    func_ov000_021984b4(*a);
 }
