@@ -336,6 +336,37 @@ Inline getters and helpers:
   compare; `p == 0 ? 0 : p->f` gave `moveq` before `ldrne` (func_020401ac).
 - Statement order inside a small inline can decide a whole loop's registers: `v1 = a->x - b->x; v2 = a->z - b->z;
   return (s64) v1 * v1 + (s64) v2 * v2;` matched func_020919e8; z first did not.
+- Reused locals whose later values take registers in the wrong order, where swapping the first statements breaks the
+  load order: a dead initializer on the variable that must come first, `s32 *p = 0;` (the only spelling that matched;
+  func_020d1a98).
+- A later loop that reuses an earlier loop's counter or pointer locals can come out with its registers rotated or
+  swapped: give each loop its own named local (func_0208552c, func_020b41e8, func_02042a10). The same holds for a reused
+  local whose second use takes its register after the loop counter: give that value its own local (func_0203b6ac).
+- A value assigned in both arms of an if/else that takes its register too early: give one arm's value its own local,
+  declared before the local it swaps with (func_020b5ae8).
+- A narrow local converted where it is passed to a call can take its register before the local it swaps with: declare it
+  `u32`, put the narrowing cast at its assignment, and declare it first (func_0214f83c).
+- An `s32` local passed to a `u32` parameter inside a loop: declare it `u32` (func_02106580).
+- A local whose register must stay apart from a pointer's: assign it earlier, before the preceding test (func_02082750).
+- Two values that swap registers: declare the one with the lower register in the original later (`q` before `p`, `s`
+  before `c`; func_0204a798, func_020d2c2c).
+- A product `i * size` that takes a register in place of `i`: keep the byte offset in the index local, `u32 i = f() *
+  size;`, and access through `(T *) ((u32) base + i)`; `(u8 *) base + i` sets the product up again (func_020bab54).
+- The loop counter kept in a callee-saved register and the running total spilled, where the original has it the other
+  way round: fold the increment into the use, `t[3] = m + k++;` (func_020357dc).
+- A call result kept in the return-value local where the original only tests it: use a separate local for the result;
+  the return local keeps its initial 0 (func_ov000_021a0cac).
+- Scale and component in each other's registers across repeated vector blocks: one pointer local, assigned right before
+  each block, instead of several set up at the top (func_0208ecd8).
+- A pointer local `p = &a[i]` that disappears because `a[i].f` is also written elsewhere: write `p->f` so the pointer
+  stays a named local, then order the declarations (func_02077d68).
+- A spilled value whose slot sits above the loop pointers but below another variable's: give it two assignments of its
+  expression before its read (`c = expr; store c;` twice; one is optimised away) and mention it in the text before that
+  other variable, which here is the `for (i = 0; ...)` after them (func_0211baec).
+- A flag stored into a bit-field without the `u8` truncation its `&` partners get: declare the flag `u8`
+  (func_ov003_021d2b3c).
+- An index local reloaded or held differently around a table read: an enum-typed index local, `enum { K0 } k; k = a->m;
+  e = tbl[k].f;` (func_020681f0).
 
 ### 1.2 Locals, Copies and Constants
 
@@ -402,6 +433,14 @@ Pointer locals and addresses:
   if (a == 0) { b = 1; }`, then both statements; func_0205d6d0).
 - An extra copy `ldr r0, [..]; adds r5, r0, #0; adds r5, #8` means the plain loaded value is used a second time
   (func_0204b7b8 passed the base to the call instead of the adjusted pointer).
+- A kept `add rX, rY, #0` between two summed terms, with the first term never stored: accumulate from zero in a local,
+  `v = 0; v += a; v += b; p->m = v;` (func_020e4ad0, like func_020cf310).
+- `n = 2` folded where the original adds 2 to a zero slot: `n = 0; x[n++] = ..; x[n++] = ..;` (func_02042a10).
+- A table byte read again after stores: no local; write the element at the test and again at the use (func_02042a10).
+- `movs #K; movs #size; muls` rebuilt at each table read across calls, where ours keeps `K` on the stack: an enum-typed
+  index local assigned right before each read (func_02078158; 6 words were left).
+- A spilled value reloaded into a low register for an argument add, with the add before the other argument copies:
+  compute that argument in its own statement first (func_02022eb0).
 
 ### 1.3 Scheduling and Evaluation Order
 
@@ -471,6 +510,48 @@ Expression shapes:
   can't stop it; the original avoids it only with different registers per arm.
 - `mov rX, rY` just before a load through rX with rY live is a second identical load turned into a copy. A
   `const T *` read (a const-parameter inline helper) keeps the second load apart.
+- A stack parameter loaded before the other operands of an `mla` statement: an explicit same-type cast `(s32) e` on two
+  of its uses (the only spelling that matched; func_020fcf10).
+- A mask computed after the load it is tested against and then reused: write `1U << b` at the test only (func_02007698).
+- `x == f()` compiled with the compare operands the other way round: put the result in a local and write it on the left,
+  `k = f(); if (k == x)` (func_02151b38).
+- `cmp t, reg` with the hardware word read before `t`: read the word through a static inline helper and write `t ==
+  helper()` (func_0214f83c).
+- Stores to one global array in a different order than ours, with two shifted values in each other's registers: write
+  the stores in index order (func_02011624).
+- A bit-field update that reads the value before the word: put the value in a local first; reuse one local for the
+  stores that follow so only the last definition is folded (func_02056750).
+- A member address for a call argument formed before a branch instead of in the call's own block: write that update as
+  `m = (s32) (m + v);`, not `m += v;`, and keep the cast (func_020ff6d8).
+- A row address added before the element offset (`&t[y]` first, then the element): a pointer local, `p = &t[y][f(x)]; v
+  = p->m;` (func_0202a360). A reused index, casts and row or element helpers did not help.
+- A final add that loads the local first: `p->m = d[0] + (s32) p->m;` with the same-type cast on the member; `+=` and
+  plain `d[0] + p->m` did not match (the only spelling that matched; func_02101964).
+- Two differences computed before a wait loop and shifted after it: compute them into two locals before the loop
+  (func_0214e464).
+- A call result stored to a member before the call where the original stores after: put the call result in a local, then
+  the stores in order (func_021243ac).
+- `(x & mask) | (m << k)` with the shift evaluated first: write `m * (1 << k)` as a constant multiply (func_021243ac).
+- The mask or fraction computed before the table loads, with the index, next index and fraction rotated across r1-r3
+  (ARM): assign `f = x & 0xfff` before the indices and declare `f` before them (func_02071568).
+- Six byte stores where the original computes `(a - 1) * size` before loading the base: `p = tbl->rec[a - 1].arr; p[0] =
+  ...; ... p[5] = ...;` with no offset or base locals (Thumb; func_ov003_021cf378).
+- An add with the loaded `s16` element first: `x = a[i]; x += p[i].m;` (func_0212f1f8).
+- A call's later argument computed before the call in an earlier argument: pass through a static inline wrapper taking
+  all the arguments (func_ov003_021c25e0).
+- Index scaled (`lsl #2`) before the base pointer is reloaded: compute the entry address inside the statement that uses
+  the index, and set the pointer local after it (func_020072c0).
+- A field load after an abs branch, with the `-K` constant load filling its delay and taking r0 across the multiply:
+  read the field into a local before the `if` (func_020f6a6c).
+- A table byte loaded before the loop's offset init in ours, after it in the original: the table is in `.rodata`, so
+  declare it `const` and read it inside the loop (func_ov003_021c965c).
+- An address or constant from the early-return test shared with a store far below it, where ours reloads: write that
+  store before the first if/else join; the scheduler moves it down to the original's place (func_0200e388).
+- Two 0/1 flag arguments computed in the other order: put `? 1 : 0` on the later one only, `d = (v & M) != M ? 1 : 0`
+  (Thumb; func_ov000_021a54b0).
+- A global pointer loaded before an unrelated subtraction with its index add after it: reuse an existing dead local for
+  the pointer, `q = g; v1 = a - b; v2 = ((T *) q)->arr[n].m;`; a fresh local of any type is folded away and does not
+  move the load (Thumb; func_0204f644).
 
 ### 1.4 Hoisting and Addressing
 
@@ -498,6 +579,28 @@ Expression shapes:
 - When the ROM reuses one address register in two loads from one table, write the address in both and make the
   expressions differ by a cast on one index: `data[(u32) o->mUnk_78].mUnk_02` and `data[o->mUnk_78].mUnk_5a`
   (func_020a08ec).
+- A field loaded twice back to back before a min compare, with one copy kept for the arm and later uses: use a named `t
+  = v.x` for those uses and read the compare through `((const Vec3 *) &v)->x` (func_020d2c2c).
+- `i << 1` computed early and kept live through a long block for a late store, costing a saved register: write `(u32) i
+  * 2` at the store so it is not shared with the address (func_0204a798).
+- An element address recomputed per word, where the original adds the base and member offset once and then `i * size`: a
+  pointer local to the member, `Vec3 *e = &a[i].m; e->x` (func_020980ec).
+- `p += 8` recomputed at each later use where the original adds in place: `p = (u8 *) p + 8;` (func_02018344).
+- `i * 0x20` strength-reduced across the outer loop where the original shifts each pass: write `(u32) i * 0x20` (or
+  `0x20U`) in the subscript (func_020362dc).
+- An address used twice that is shared as `(base + i * 2) + off`: write one of the two accesses through `(u8 *) base + i
+  * 2` (func_02007698).
+- Only `i * 12` kept across a call and `a + r7` formed twice: a same-type cast on the base at the first use only, `f((T
+  *) a + i)`, and `&a[i]` later (func_ov000_0219d2e8).
+- A global's loads hoisted out of a loop with calls and kept in stack slots, ours reloading each pass: declare the
+  extern `const`; a const cast at the use does not do it (func_ov003_021c1cd8).
+- Pool address plus constant kept in callee-saved registers across a loop, ours reloading: the loop needs a preheader. A
+  0/1 flag set by if/else right before the loop jumps into the header from its then arm, so write `d = b == 0;`
+  (func_ov000_0219fbec).
+- Every field reloaded after a free-room test while ours reuses the loads: declare the pointer locals loaded from the
+  tables `volatile`, and only those (hand-picked; the only spelling that matched; func_02015fa0).
+- A loop bound reloaded each pass while the guard's load is reused after the loop (signed `ble`): no named copy of the
+  bound; write the condition and the after-loop test through the global (func_ov000_0219fbec).
 
 ### 1.5 Loops
 
@@ -522,6 +625,51 @@ Expression shapes:
 
 - A loop counter set to 0 before earlier calls and kept in a callee-saved register across them was initialised at
   its declaration: `u16 i = 0;` with `for (; i < n; i++)` (func_0206c354).
+- Two induction pointers for one row address, both set after the guard: an explicit same-type array cast on one access,
+  `(s16 (*)[4]) tbl + i` (the only spelling that matched; func_0202d210).
+- A struct-member step placed after the counter increments is in the for update, after `k++`; its reset is in the for
+  init, after `k = 0` (func_ov003_021c1cd8).
+- Thumb: `movs rX, rY` copying a shared zero for a loop's induction variable, or a loop counter's constant stored before
+  the pointer loads of the preheader: assign the counter first, `for (i = 0, x = 0; ...)` or `for (j = n, s = ..., q =
+  ...; ...)` (func_020e7460).
+- Thumb: one `cmp #0; ble` guard with the pointer load after it and no second guard: `j = 0; if (j < N) { t = ..; do {
+  .. j++; } while (j < N); }` (func_020357dc).
+- A pointer stepped only to pass as a call argument, with its own spill slot: pass `arr[j]`, not a second pointer
+  (func_020357dc).
+- Thumb: `ldrsh` with a 0 offset held in a stack slot: write `t[0]`; the 0 is the compiler's hoisted offset, not a
+  variable (func_020357dc).
+- An inner table loop with a dead counter and a byte offset stepped by 2: `l = j * 12; for (k = 0, s.x = 0; k < N; k++,
+  l++, s.x += STEP) tbl[i][l]` (func_ov003_021c0d2c, like func_ov003_021c1cd8).
+- A pointer to a field incremented in a loop with its address formed early: drop the pointer and write `p->f++`
+  (func_02098d4c).
+- Loop counter set before two pool-loaded table pointers: `j = 2; q = ..; p = ..; for (; j < 4; q++, p++, j++)`
+  (func_ov003_021c06e0).
+- A loop counter taking its register before `counter + off` and before the loop's sum, the reverse of the original:
+  count with the variable an earlier loop used, and sum into a variable first used in this loop (func_0212f1f8).
+- Loop pointer and counter registers swapped: declare the counter right before the pointer local (func_020072c0).
+- A hand-rotated do-while guard giving `bcc` (ROM `blt`) and swapped registers at `j++`: a plain `for (j = 1; j <= f();
+  j++)` with the increment at the end (func_020b1a34).
+- A later loop's counter and its strength-reduced offset swapped: a new named counter and a new named bound for that
+  loop (func_020e4184).
+- A stack variable's `+1` placed among the pointer steps, where its first use appears in the body, is a derived
+  induction variable: no `a++`; pass `a + i` with a `u16` type like its source. An `s32 a` gives a per-pass add (Thumb;
+  func_02113d84).
+- Two table pointers stepped before the counter's `+1` and loaded after the counter init: indexed access from a table 8
+  bytes earlier, `tbl[j]` with `j = 2..`, not named pointers; `tbl[j - 2]` is not reduced (func_ov003_021c0528).
+- A pointer to a local defined last in the preheader, after the hoisted zeros and addresses: `while (n >= K) { q = &c;
+  ...; if (b) break; }` instead of an `if` with a `do-while` and `q` set before; the optimiser pulls `q = &c` out of a
+  `do-while` even when it is written inside (func_ov000_0218bc08).
+- A read placed after the stepped pointer's init and read through a copy of it, while the next loop rereads the field:
+  read it inside the first loop and spell the second read as a different expression, `*(u16 *) d`, so the two are not
+  merged (hand-picked; func_02009098).
+- A pointer re-read placed after `i++` in the latch: no `p = global` in the body; read the global directly
+  (func_ov000_021a18e0).
+- A global pointer kept across the loop header into the body where the original reloads it each pass: no pointer or byte
+  local inside the loop; write `global->member` at every use (condition and indices) and assign the local after the loop
+  (Thumb; func_ov003_021cec50, like func_ov003_021cedbc).
+- A step after the counter's `+1` in the original, with a named for-update variable that gets the order right but adds a
+  round of register changes: `for (i = 0, c = b; ...; i++, c += K)` with `c` declared before `i`, and the other `|`
+  operand read through a pointer local, `p = base->arr[i]; p->m = X | ((p->m & K) | (c & 0xff));` (func_ov003_021c85a0).
 
 ### 1.6 Switches, Branches and Selects
 
@@ -576,6 +724,32 @@ Expression shapes:
 - `A && f()` whose false path jumps to the compare of f's result is a value: `A ? f() : 0` (func_0206c5e4).
 - Only the order inside one arm of an if/else differs: try the arms the other way round with the test negated
   (func_0209cf34; seen once).
+- `cmp #K; beq` to a call placed at the end: `if (x != K) { ... } else { call(); }` (func_02106580).
+- The else arm placed first, with the last test branching to the then arm: `if (!A || !B || C != D) { else-body } else {
+  then-body }` (func_02007698).
+- `movcc #0` then `movcs #1` where `c = (b < K) ? 0 : 1` gives `movcs` first: write `if (b < K) { c = 0; } else { c = 1;
+  }` (func_0203a0dc).
+- Switch case bodies placed in a different order: write the case bodies in the order of the original's branch targets
+  (func_0204dd24).
+- A compare tree where the original has a jump table, or a table over a different range: add empty case labels. The
+  compiler groups sorted case values into a table while (count / value span) is at least 0.4; pick the labels to hit
+  that (func_ov003_021c25e0, func_0200b43c).
+- Signed `bgt`/`blt` on a switch where ours has `bhi`/`bcc`: the switch operand is signed, an `s32` parameter or an
+  `(s32)` cast (func_0200b43c).
+- An inner switch value loaded before its guard, with case results set in the same register and stored once after the
+  switch: one local, `t = b->m; if (..) { switch (t) { .. t = 9; .. } v = t; }` (func_0200b43c).
+- Range compare signed (`blt`/`ble`) where the original is unsigned (`bcc`/`bls`): an unsigned mask constant, `v &
+  0xff00u` (func_ov000_021a0cac).
+- A sign flag and its source swapped: write abs as `a = a > 0 ? a : -a;`, not `if (a <= 0) a = -a;` (func_01ffaf18).
+- `streq` of the zero arm before the other arm's store: negate the `||` chain to `&&` and swap the arms (func_01ffaf18).
+- An early `popeq`/`bxeq` return of 0 where ours if-converts the tail: `if (ok != 0) { return expr; } return 0;`
+  (func_02015fa0).
+- Two failure paths sharing one `flag = 0` block: `goto done` after the success test with a single `flag = 0` below, and
+  carry the 0/1 flag in a variable whose first use is elsewhere (func_020162d4).
+- A predicated arm that forms its address in `ip` alone where ours goes through r4: write the multi-statement arm first,
+  with the `!= 0` test (func_02050080).
+- A one-argument call whose other copy of the declaration is unprototyped: pass the missing `0` argument
+  (func_ov000_021962d4).
 
 ### 1.7 Constants and Literal Pools
 
@@ -643,6 +817,26 @@ Expression shapes:
 - A by-value struct parameter read through a `volatile T *p = &b;` local keeps an `add r0, sp, #4` in a register;
   the ROM re-reads from the frame. Make the parameter itself volatile (`volatile Unk b`; the header prototype stays
   without it), func_020ab660.
+- A nibble store that loads the byte, clears it with `bic`, then ors `(v & 0xf) << 4` is a bit-field member
+  (func_02007698).
+- A halfword stored through `lsl 8; asr 16; lsl 16; lsr 16` with the x/y chains in crossed registers: `x = m >> 4; ...`
+  and `(u16) (s16) (x >> 8)` for the store (func_02011624).
+- A `-0x8000` compare constant that takes r0 before the final value: write `(s16) (x >> 7)` instead of `(s32) (x << 9)
+  >> 16` (func_0214e464).
+- A `u16` argument converted right after its value's `if`, before the next test: assign it to a `u16` local at that
+  point and pass the local (Thumb; func_ov000_021a4bc4).
+- `lsl/lsr #16` before a call whose callee passes that register on untouched: widen the parameter to `u32` and write
+  `(u16)` at the callers that need the narrowing (func_ov000_0219dfe4).
+- `(u8) i` converted again at a second identical call, where ours reuses it in a callee-saved register: `(s32) (u8) i`
+  on exactly one of the two calls (hand-picked; the only spelling that matched; func_0202b100).
+- Stack `u16` arguments reloaded after a call while ours keeps one temporary across it: type the register parameters
+  `u16` too; `u32` compares share the conversion across the call (func_0214e464).
+- A stack parameter spilled while the original keeps it callee-saved, with callees taking `u32`: make the callee's
+  parameter `s32`, so no conversion temporary is made and `f -= n2` writes `f` (func_021243ac).
+- A value passed where every other caller passes `&global`: pass the address (a real bug, not only codegen;
+  func_02078158).
+- A callback kept in a callee-saved register although nothing is live across the call: the call passes one more
+  argument, already in r3; add it to the prototype (func_020d3e34).
 
 ### 1.9 Calls, Parameters and Frames
 
@@ -692,6 +886,32 @@ Expression shapes:
   static inline helpers `func_X_inline(cmd, val) { f(cmd, &val, 1); }` (func_02063cc4, frame 0xa4 -> 0xbc at once).
 
 - A local array zeroed through `add rX, sp, #N` and two stores had `= {0}` at its declaration (func_0206e874).
+- A call result stored to a local's stack slot where the original keeps it in r0: that local has its address taken
+  elsewhere; use a separate local (func_ov000_02191e58).
+- Thumb: an 8-byte local zeroed twice mid-function through `add rX, sp, #N; str [rX]; str [rX, #4]` on one slot:
+  `__builtin__clear(&s, sizeof(s));`, like `= {0}` without the extra slot (hand-picked; the only spelling that matched;
+  func_ov000_02191e58).
+- A small local array kept in memory and reloaded after stores, where ours is in registers: one store through `((Vec3 *)
+  d)->x` at the first assignment. `*(d + 0)`, `*&d[0]`, unions, wrapped arrays and inline pointer helpers did not work
+  (func_02101964).
+- Thumb: `add rX, sp` before `movs #0` and four `strh`, then the address formed again for the next stores: the array as
+  its own local with an initializer, `u16 v[4] = {0};`; a `{0}` on the whole struct gives word stores
+  (func_ov003_021c0d2c).
+- A struct cleared through `add rN, sp, #off` with the address reused for the next call: `u32 *p = (u32 *) &g; p[0] = 0;
+  p[1] = 0;` (func_ov000_0219a430).
+- A zero vector built through `add rN, sp` then `ldmia` from the same address, using the 0 from another register: `{
+  Vec3 z = {0, 0, 0}; m = z; }` blocks (func_020d2c2c, like func_020d41e0).
+- Spill slots in the wrong order: the declaration order of the spilled locals sets it (func_021243ac).
+- A spill slot just after the named locals and before a temporary, holding a scaled table index: it is a named local,
+  `u32 e = tbl[i] << 6;`, added to `(u32) base` at each use; `(u8 *)` adds let the compiler fold `e` away
+  (func_ov000_02183858).
+- Out-parameter locals of an inline getter kept in stack words with their dead stores, ours in registers: cast the
+  addresses at every call, `f(p, (u32 *) &x, (u32 *) &y)` (func_ov003_021c85a0).
+- A frame about 0x200 too big with a separate scratch buffer: make the buffer an array member of a local struct
+  (`h.mUnk_008`; func_ov000_0219fbec).
+- Thumb: values read before a call and kept across it: read them into locals before the call (func_0202d210).
+- Thumb: a `movs` copy of `b - 1` right after a call, used for an index and then times `0x16`: `v = b - 1; ... a[v] ...;
+  v *= 0x16;` (func_02007698).
 
 ### 1.10 Inlines and Macros
 
@@ -720,6 +940,20 @@ Expression shapes:
 - Thumb: a byte copy that forms the destination address before the source, with the value always in r0, is
   `__memcpy(dst, src, n)` with a constant n (func_ov000_021923b4). A struct store whose nearby address is loaded early
   can be `__memcpy(dst, src, sizeof(T))`; use it only at the store that needs it (func_020a29cc).
+- The same block written out twice can split a value in two: use one static inline helper taking the value
+  (func_020b5ae8).
+- An inline's local whose stack slot comes after the slots of later expansions was a shared expression: read the
+  expression twice instead of keeping it in an inline local (func_02126a00).
+- `add rD, inv, mod` where `inv + k % 4` gives the operands swapped: pass the invariant as a parameter of a static
+  inline that writes `r + k % 4` (func_020b41e8).
+- `adds r0, r0, #0` / `#4` kept before a byte load after a table-index call: a static inline returning
+  `&tbl[idx()].mUnk_00[j]`, used as `helper(j)->member` (func_0202a360; may also fit func_020c0dd8 and func_020c13e8).
+- Inline arguments moved into place in the wrong order (they are passed right to left) while the registers are right:
+  the inline assigns its parameters to its own locals in the original's order, `i = size; p = a; q = b;`, declared
+  `p, q, t, i` (func_021382a8).
+- An inline helper's loop counter taking its register before a named pointer (inline locals come after every named
+  local): write the loop out in the caller with the counter and result declared before the pointer, and a `goto` for the
+  early return (the only spelling that matched; func_020a1790).
 
 ### 1.11 Data Layout, Sections and Link Order
 
@@ -817,6 +1051,27 @@ Link order and linking:
   `((s64) (x >> 32) * 8) >> 32` (func_020401ac).
 - Name runtime helpers (`_fmul`, `_ll_ufrom_d`) in `symbols.txt`, or the callee check skips every caller. The
   soft-float and division runtime itself is hand-written assembly (1.13).
+- `smull` with the sum as the second operand, where `(s64) t * (a + b)` gives `t` second: put the sum in a local and
+  cast both, `s = a + b; (s64) s * (s64) t`; keep `(s64) t` explicit if it is shared with another product
+  (func_02082750).
+- A 64-bit sum of products whose right term comes first in the original: write that term on the left (func_020ff6d8).
+  For `smull`/`smlal` operands in a sum of products, write the products in the original's order: `(s64) w[0] * d[0] +
+  (s64) w[2] * d[2]` (func_02101964).
+- A random draw computed after the call that follows it, with the 64-bit shift halves in the other order: `(u64) (u32)
+  (x >> 32) * 4 >> 32`, no `u64` local (func_0203b6ac).
+- A zero high word set before the add in a `u64` store of a sum with a call: `(u32) (sum + call())` (Thumb;
+  func_0203b6ac).
+- The sign word of a constant product computed early and shared with an earlier product of the same value: put the
+  `(s64)` cast on the constant, `x * (s64) 0x19a` (func_01ffaf18).
+- A first `smull` taking the second term of the source sum: write the first two terms swapped, `x * x + y * y + z * z`
+  for an `smull` of `y * y` first (func_0209297c).
+- Projected components kept in registers and stored to the vector after the sum of squares, ours storing then reloading
+  a pointer field: compute into locals, sum from the locals, then `u.x = x; u.z = z;` (func_0209297c).
+- `smull` with a call result as the second operand where ours has the scalar: put the call result in a local first, `f =
+  g(); (s64) f * s`; a call moves right whatever the source order (func_020980ec).
+- A 64-bit multiply's operand taking its register after the result registers: accumulate into the already-loaded local
+  and put the difference in its own statement, `a += x; a = a + y - z; t += (s32) (((s64) a * K) >> 12);`
+  (func_020fc654).
 
 ### 1.13 Asm Bodies
 
@@ -871,6 +1126,11 @@ Link order and linking:
   (func_ov000_021a9d68, 021ab09c, 021ad898, 021aea34).
 - Thumb `ldrsb` and `ldrsh` have only the register-offset form, so `*(p + 11 - i)` differs from `p[11 - i]`
   (func_021528bc).
+- A byte loaded, moved to a second register for `muls` and used again after, with the two registers swapped: read the
+  field inside the index expression and write the update as `x--` or `x -= 1`, not a local or `x = x - 1`
+  (func_ov003_021c73cc).
+- Two byte stores whose address is shared with the halfword read that follows: `__memcpy(t.m, v, 2)`
+  (func_ov000_0218b010).
 
 ## Placeholders
 
