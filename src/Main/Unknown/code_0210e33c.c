@@ -400,7 +400,7 @@ void func_0210e434(Unk0217c7b4 *p) {
         return;
     }
     func_0212da38(data_0217d130, p->mUnk_0c);
-    func_0212da2c((u32) data_0217d130);
+    func_0212da2c(data_0217d130);
     p->mUnk_00 = data_0215c38c;
 }
 

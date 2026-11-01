@@ -56,7 +56,7 @@ void func_ov003_021c3e8c(int param_1) {
         func_ov003_021cdbd0();
         func_ov003_021cdc10((u32) 0x12);
     }
-    func_ov003_021c27d0((u32) 0);
+    func_ov003_021c27d0(0);
     func_ov003_021c2824();
     func_ov003_021c212c(func_ov003_021c3f64);
 }

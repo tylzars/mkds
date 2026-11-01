@@ -31,7 +31,7 @@ void func_02039cbc(void) {
     void *e;
     u32 f;
     f = func_02039e08(func_020364e0(func_020364e8()), &a, &e, &b, &c, &d);
-    func_02146b04((u32) func_02039e00);
+    func_02146b04(func_02039e00);
     func_0205e180(a);
     func_02049c3c(a);
     func_020486d4(a);

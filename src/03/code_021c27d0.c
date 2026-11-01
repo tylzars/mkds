@@ -20,6 +20,6 @@ u32 func_ov003_021c27e4(void) {
     return 0;
 }
 
-void func_ov003_021c27d0(u32 param_1) {
-    *(u32 *) ((int) data_ov003_021da194 + 0x1e298) = param_1;
+void func_ov003_021c27d0(void *param_1) {
+    *(u32 *) ((int) data_ov003_021da194 + 0x1e298) = (u32) param_1;
 }

@@ -87,7 +87,7 @@ s32 func_ov000_0219dfe4(s32 a) {
         }
     }
     if (a != 0 && func_ov000_0218b474((u32) data_ov000_021b566c->mUnk_e4) != 0) {
-        func_ov000_0218b464((u32) data_ov000_021b566c->mUnk_e4, 0, (u32) data_ov000_021b40cc, 0);
+        func_ov000_0218b464(data_ov000_021b566c->mUnk_e4, 0, data_ov000_021b40cc, 0);
     }
     if (c != 0 && func_ov000_0218b474((u32) data_ov000_021b566c->mUnk_e4) == 0) {
         return 0;

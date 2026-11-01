@@ -199,7 +199,7 @@ void func_02052ecc(void) {
     }
     if (d != 0) {
         v1 = data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000;
-        func_0204bf48(v1 == 1 ? 1 : 0, 4, 0x154, (u32) func_02052e64, (u32) func_02052fa4, 0);
+        func_0204bf48(v1 == 1 ? 1 : 0, 4, 0x154, func_02052e64, func_02052fa4, 0);
     }
     data_0217aa00->mUnk_0010 = 0;
     func_0204f5e4();

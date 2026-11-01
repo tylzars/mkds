@@ -204,7 +204,7 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
     func_02047ba0(a->mUnk_02);
     func_02047b6c(9);
     func_020364e0(func_020364e8());
-    func_02016554((u32) func_02036bec(func_020364e0(func_020364e8()), 0x800), 0x80);
+    func_02016554(func_02036bec(func_020364e0(func_020364e8()), 0x800), 0x80);
     if (func_0204a428(a->mUnk_02, &n)) {
         func_0204acd0(n);
     }
@@ -215,7 +215,7 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
     }
     func_020b409c();
     func_02043b48();
-    func_02146b04((u32) func_0204a540);
+    func_02146b04(func_0204a540);
     data_021759d0->mUnk_78 = 0;
     if (b->mUnk_00 != 0) {
         b->mUnk_00(a);
@@ -339,7 +339,7 @@ end:
     if (b->mUnk_08 != 0) {
         b->mUnk_08(a);
     }
-    func_02146b04((u32) func_0204a548);
+    func_02146b04(func_0204a548);
     if (data_021755a0 != 0) {
         func_02037a94();
     }

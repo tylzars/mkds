@@ -21,12 +21,12 @@ void *func_ov000_021886c4(u8 param_1, u32 param_2) {
     return 0;
 }
 
-void func_ov000_02188694(u8 param_1, u32 param_2, u32 param_3) {
+void func_ov000_02188694(u8 param_1, void *param_2, u32 param_3) {
     u32 v1 = func_ov000_02188584(1);
     if ((*(u8 *) (v1 + 8) & param_1) != 0) {
         *(u8 *) (v1 + 8) = *(u8 *) (8 + (u32) v1) & ~param_1;
         v1 = 4 + v1;
-        (**(UnkFunc **) v1)(param_1, param_2, param_3);
+        (**(UnkFunc **) v1)(param_1, (u32) param_2, param_3);
     }
     return;
 }

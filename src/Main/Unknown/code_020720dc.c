@@ -361,7 +361,7 @@ void func_02072930(Unk0206bcb0 *p) {
         p->mUnk_7c &= ~0xc000;
         p->mUnk_29c = 0;
         if (!(p->mUnk_7c & 1)) {
-            func_0208c4e8((u32) func_0208c5b8(p->mUnk_74));
+            func_0208c4e8(func_0208c5b8(p->mUnk_74));
         } else {
             func_021090c4(&p->mUnk_00, 0xf9, 0x7f, 0);
         }

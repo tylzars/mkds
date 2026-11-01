@@ -347,11 +347,11 @@ void func_ov000_021a1ef4(s32 param_1) {
     }
 }
 
-void func_ov000_021a2468(const void *param_1, s32 param_2, s32 param_3, s32 param_4, u32 param_5, u32 param_6,
+void func_ov000_021a2468(const void *param_1, s32 param_2, s32 param_3, s32 param_4, void *param_5, u32 param_6,
                          u32 param_7, u32 param_8) {
     char v1[12];
     u8 v2[0x24];
-    ((void (*)(u32, u32, u32, u32)) func_ov000_021a10b0)(1, param_3, param_5, param_6);
+    ((void (*)(u32, u32, u32, u32)) func_ov000_021a10b0)(1, param_3, (u32) param_5, param_6);
     data_ov000_021b566c->mUnk_19e = param_4 != 0 ? 1 : 0;
     data_ov000_021b566c->mUnk_45c = param_7;
     data_ov000_021b566c->mUnk_460 = param_8;
@@ -464,12 +464,12 @@ u32 func_ov000_021a2768(u32 param_1) {
     return r;
 }
 
-void func_ov000_021a2870(Unk021b566c *param_1, Unk0218f960 *param_2, void **param_3, u32 param_4, u32 param_5, u32 param_6,
-                         u32 param_7, u32 param_8) {
+void func_ov000_021a2870(Unk021b566c *param_1, Unk0218f960 *param_2, void **param_3, void *param_4, void *param_5,
+                         void *param_6, void *param_7, u32 param_8) {
     data_ov000_021b566c = param_1;
     param_1->mUnk_00 = param_2;
     data_ov000_021b566c->mUnk_04 = param_3;
-    data_ov000_021b566c->mUnk_08 = param_4;
+    data_ov000_021b566c->mUnk_08 = (u32) param_4;
     data_ov000_021b566c->mUnk_10 = 0;
     data_ov000_021b566c->mUnk_1c = 0;
     data_ov000_021b566c->mUnk_1a = 0;
@@ -479,9 +479,9 @@ void func_ov000_021a2870(Unk021b566c *param_1, Unk0218f960 *param_2, void **para
     data_ov000_021b566c->mUnk_19 = 0;
     data_ov000_021b566c->mUnk_1a5 = 0;
     data_ov000_021b566c->mUnk_1e8 = 0;
-    data_ov000_021b566c->mUnk_2dc = param_5;
-    data_ov000_021b566c->mUnk_2e0 = param_6;
-    data_ov000_021b566c->mUnk_2e4 = param_7;
+    data_ov000_021b566c->mUnk_2dc = (u32) param_5;
+    data_ov000_021b566c->mUnk_2e0 = (u32) param_6;
+    data_ov000_021b566c->mUnk_2e4 = (u32) param_7;
     data_ov000_021b566c->mUnk_2e8 = param_8;
     func_0214d168(data_ov000_021b566c->mUnk_2ec, 0, 0x40);
     data_ov000_021b566c->mUnk_32c = 0;

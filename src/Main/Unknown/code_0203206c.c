@@ -172,7 +172,7 @@ s32 func_02032280(void) {
                         p = func_020b3f7c(data_02174e5c->mUnk_50, 0x14);
                         p1 = func_020b3f7c(data_02174e5c->mUnk_50, 0x16);
                     }
-                    func_021277f8((void *) p, (void *) p1, 0);
+                    func_021277f8(p, p1, 0);
                     data_02174e5c->mUnk_54 = 7;
                     func_020329dc(0);
                 }

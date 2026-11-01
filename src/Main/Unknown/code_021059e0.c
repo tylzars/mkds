@@ -147,7 +147,7 @@ void func_02105a30(u32 a) {
     }
     r = (a == 1) ? 0x47 : 0x48;
     func_0212da38(data_0217d130, data_0217c798[0]);
-    func_0212da2c((u32) data_0217d130);
+    func_0212da2c(data_0217d130);
     func_0212e9cc(r, data_0217d130);
     func_0212c6f0(&data_0217d07c, 2);
     func_0210d7dc(r, 0x7f, (Unk0212c400 **) data_0217c83c);

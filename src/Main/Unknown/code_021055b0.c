@@ -60,7 +60,7 @@ void func_021057f0(u32 a, u32 b) {
             break;
     }
     func_0212da38(data_0217d130, data_0217c798[0]);
-    func_0212da2c((u32) data_0217d130);
+    func_0212da2c(data_0217d130);
     func_0212e95c(r, data_0217d130);
     func_0212e95c(0x2a, data_0217d130);
     func_0212e994(4, data_0217d130);

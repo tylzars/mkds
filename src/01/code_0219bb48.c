@@ -11,8 +11,7 @@
 void func_ov001_0219c3ec(void) {
     data_ov001_021a9bf4->mUnk_4c = 4;
     data_ov001_021a9bf4->mUnk_50 = 0;
-    func_021277f8((void *) ((u32) func_020b3f7c(data_ov001_021a9bf4->mUnk_38, 4)),
-                  (void *) ((u32) func_020b3f7c(data_ov001_021a9bf4->mUnk_38, 2)), 0);
+    func_021277f8(func_020b3f7c(data_ov001_021a9bf4->mUnk_38, 4), func_020b3f7c(data_ov001_021a9bf4->mUnk_38, 2), 0);
 }
 
 void func_ov001_0219c3d8(void) {

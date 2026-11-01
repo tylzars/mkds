@@ -54,9 +54,8 @@ void func_ov000_0219c1e4(void *a, void *b, s32 c, const char *d, const char *e, 
                         ((Unk02152500 *) b)->mUnk_24, func_ov000_0219b6c0, 0);
     func_ov000_0219d8c8(&data_ov000_021b54c8->mUnk_2e8, &data_ov000_021b54c8->mUnk_1c, data_ov000_021b54c8->mUnk_34, h,
                         i);
-    func_ov000_021a2870(&data_ov000_021b54c8->mUnk_33c, &data_ov000_021b54c8->mUnk_1c,
-                        &data_ov000_021b54c8->mUnk_00, (u32) &data_ov000_021b54c8->mUnk_04, (u32) data_ov000_021b4e84,
-                        (u32) data_ov000_021b4f84, (u32) h, i);
+    func_ov000_021a2870(&data_ov000_021b54c8->mUnk_33c, &data_ov000_021b54c8->mUnk_1c, &data_ov000_021b54c8->mUnk_00,
+                        &data_ov000_021b54c8->mUnk_04, data_ov000_021b4e84, data_ov000_021b4f84, h, i);
     func_ov000_021a31a4(&data_ov000_021b54c8->mUnk_7a0);
     if (func_0213a434((const u8 *) d) < 0x100) {
         n = func_0213a434((const u8 *) d);

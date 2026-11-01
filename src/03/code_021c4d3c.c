@@ -24,6 +24,6 @@ void func_ov003_021c4d3c(void) {
                         data_ov003_021d6380.mUnk_04 - data_ov003_021d6380.mUnk_00,
                         data_ov003_021d6380.mUnk_06 - data_ov003_021d6380.mUnk_02, 2, 0x480, &c[1]);
     func_ov003_021d1fd0(b);
-    func_ov003_021c27d0((u32) func_ov003_021c4ad4);
+    func_ov003_021c27d0(func_ov003_021c4ad4);
     func_ov003_021c212c(func_ov003_021c4cb0);
 }

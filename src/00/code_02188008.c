@@ -226,6 +226,6 @@ s32 func_ov000_02188408(void) {
 }
 
 void func_ov000_021884a8(void) {
-    func_ov000_02188694(8, (u32) data_ov000_021b4d0c, 0xc);
-    func_ov000_02188694(0x10, (u32) data_ov000_021b4d00, 0xd18);
+    func_ov000_02188694(8, data_ov000_021b4d0c, 0xc);
+    func_ov000_02188694(0x10, data_ov000_021b4d00, 0xd18);
 }

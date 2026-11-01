@@ -83,7 +83,7 @@ void func_0204b574(void) {
     if (r == 0) {
         func_0204ba7c();
         func_02145e8c((u32) data_021759d4->mUnk_40, data_021759d4->mUnk_44, data_021759d4->mUnk_48,
-                      (UnkFunc *) func_0204b5dc, (u32) data_021759d4->mUnk_54, 1, 7, 10, 2);
+                      (UnkFunc *) func_0204b5dc, data_021759d4->mUnk_54, 1, 7, 10, 2);
     } else {
         func_0204b3dc();
         data_021759d4->mUnk_10 = 0;
@@ -130,7 +130,7 @@ u32 func_0204b458(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, s32 e) {
         func_0200ee58(b, n);
         return func_0204b518();
     }
-    func_02145e8c((u32) b, a, n, (UnkFunc *) func_0204b5dc, (u32) c, 1, 7, 10, 2);
+    func_02145e8c((u32) b, a, n, (UnkFunc *) func_0204b5dc, c, 1, 7, 10, 2);
     return 1;
 }
 

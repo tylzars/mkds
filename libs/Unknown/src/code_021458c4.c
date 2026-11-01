@@ -438,7 +438,7 @@ void func_02145f80(Unk021458c4 *p) {
 
 // Stores the arguments in mUnk_1c to mUnk_3c; starts func_02145f80 on the object at mUnk_44 and returns 1 when f is
 // not 0, else runs it and returns whether the word at mUnk_00 is 0.
-int func_02145e8c(u32 a, u32 b, u32 c, UnkFunc *d, u32 e, u32 f, u32 g, u32 h, u32 i) {
+int func_02145e8c(u32 a, u32 b, u32 c, UnkFunc *d, void *e, u32 f, u32 g, u32 h, u32 i) {
     Unk021458c4 *p;
     u32 s;
 
@@ -450,7 +450,7 @@ int func_02145e8c(u32 a, u32 b, u32 c, UnkFunc *d, u32 e, u32 f, u32 g, u32 h, u
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = d;
-    p->mUnk_3c = e;
+    p->mUnk_3c = (u32) e;
     func_0200fcb4(s);
     p->mUnk_1c = a;
     p->mUnk_20 = b;

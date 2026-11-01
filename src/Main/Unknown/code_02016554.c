@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_02016554.h"
 
-void func_02016554(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
+void func_02016554(void *arg0, u32 arg1) {
+    u32 value0 = (u32) arg0;
     u32 value1 = arg1;
     u32 value2;
     u32 value12;

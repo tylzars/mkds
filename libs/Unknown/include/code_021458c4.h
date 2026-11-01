@@ -73,7 +73,7 @@ void func_02145b54(s32 a);
 int func_02145d2c(void);
 int func_02145d38(void);
 int func_02145d44(s32 a);
-int func_02145e8c(u32 a, u32 b, u32 c, UnkFunc *d, u32 e, u32 f, u32 g, u32 h, u32 i);
+int func_02145e8c(u32 a, u32 b, u32 c, UnkFunc *d, void *e, u32 f, u32 g, u32 h, u32 i);
 void func_02145f80(Unk021458c4 *p);
 UnkFunc *func_0214613c(void);
 int func_02146148(void);

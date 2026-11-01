@@ -166,12 +166,12 @@ void func_020ff67c(Unk020ff438 *e) {
     *(Unk02146dfc *) &e->mUnk_000.mUnk_000.mUnk_94 = *(Unk02146dfc *) &data_0217c600;
     func_021053e4(e->mUnk_140);
     e->mUnk_140->mUnk_b0 = 2;
-    func_021052f0((u32) e->mUnk_140, (u32) func_020ff910, (u32) e);
+    func_021052f0(e->mUnk_140, func_020ff910, e);
 }
 
 void func_020ff654(Unk020ff438 *e) {
     e->mUnk_140->mUnk_b0 = 1;
-    func_021052f0((u32) e->mUnk_140, (u32) func_020ff6d8, (u32) e);
+    func_021052f0(e->mUnk_140, func_020ff6d8, e);
 }
 
 void func_020ff638(Unk020eda5c *a, Unk020ff438 *e) {

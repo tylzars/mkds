@@ -79,7 +79,7 @@ void func_020f9114(void *param_1) {
     Unk020f41c4_A *p = param_1;
     enum { K0 } a = p->mUnk_44;
 
-    func_02109038((u32) p, (u32) data_0217bc34[a].mUnk_a0, (u32) &p->mUnk_50);
+    func_02109038(p, (u32) data_0217bc34[a].mUnk_a0, &p->mUnk_50);
     func_0210cf9c(&p->mUnk_00, 1);
     p->mUnk_74 |= 0x400000;
 }
@@ -146,7 +146,7 @@ void func_020f8e78(void *param_1) {
     p->mUnk_11c = 1;
     if ((p->mUnk_74 & 0x400000) == 0) {
         k = p->mUnk_44;
-        func_02109038((u32) p, (u32) data_0217bc34[k].mUnk_a0, (u32) &p->mUnk_50);
+        func_02109038(p, (u32) data_0217bc34[k].mUnk_a0, &p->mUnk_50);
         func_0210cf9c(&p->mUnk_00, 1);
         p->mUnk_74 |= 0x400000;
     }

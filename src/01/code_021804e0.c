@@ -97,11 +97,11 @@ void func_ov001_02180800(void) {
         }
         if (func_ov001_021805bc(keys, 0x20) != 0) {
             data_ov001_021a99e8 = (data_ov001_021a99e8 + 8) % 9;
-            func_ov001_02180af8((u32) data_ov001_021a99e4->mUnk_0018[idx], 0);
+            func_ov001_02180af8(data_ov001_021a99e4->mUnk_0018[idx], 0);
             moved = 1;
         } else if (func_ov001_021805bc(keys, 0x10) != 0) {
             data_ov001_021a99e8 = (data_ov001_021a99e8 + 1) % 9;
-            func_ov001_02180af8((u32) data_ov001_021a99e4->mUnk_0018[idx], 0);
+            func_ov001_02180af8(data_ov001_021a99e4->mUnk_0018[idx], 0);
             moved = 1;
         }
         if (moved != 0) {

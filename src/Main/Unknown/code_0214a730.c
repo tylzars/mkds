@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_0214a730.h"
 
-void func_0214a730(u32 arg0) {
-    u32 value0 = arg0;
+void func_0214a730(const u16 *arg0) {
+    u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;
     u32 value12;

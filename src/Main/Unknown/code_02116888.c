@@ -13,7 +13,7 @@ void func_02116888(void) {
     v5 = 0;
     v6[0] = 0;
     v2 = ((int) func_0204799c((const char *) data_0216d20c));
-    func_020b49bc((Unk020b4934 **) ((int *) (u32) data_0217d350), (void *) v2);
+    func_020b49bc((Unk020b4934 **) data_0217d350, (void *) v2);
     v2 = ((int) func_0204799c((const char *) data_0216d200));
     func_020b48b4(&data_0217d350->mUnk_04, (void *) v2);
     v2 = ((int) func_0204799c((const char *) data_0216d1f4));

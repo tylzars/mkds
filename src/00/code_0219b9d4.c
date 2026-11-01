@@ -20,7 +20,7 @@ s32 func_ov000_0219ba20(void) {
     if (func_ov000_0219b704(r) != 0) {
         return r;
     }
-    func_ov000_02198a84((u32) data_ov000_021b54c8->mUnk_00, (u32) func_ov000_021a1ca8);
+    func_ov000_02198a84(data_ov000_021b54c8->mUnk_00, func_ov000_021a1ca8);
     func_ov000_021988d4((int) data_ov000_021b54c8->mUnk_00, (u32) func_ov000_021a1e40);
     return r;
 }

@@ -27,7 +27,7 @@ void func_02116dd4(void *param_1, void *param_2, void *param_3, u32 param_4, u16
     v3 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216d4c4))));
     func_020b48b4(&data_0217d354->mUnk_00, (void *) v3);
     v3 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216d4bc))));
-    func_020b49bc((Unk020b4934 **) ((int *) (u32) ((int) data_0217d354 + 4)), (void *) v3);
+    func_020b49bc((Unk020b4934 **) &data_0217d354->mUnk_04, (void *) v3);
     v3 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216d4c0))));
     func_020b4a44((Unk020b4a44 **) ((int *) (u32) ((int) data_0217d354 + 8)), (void *) v3);
     v3 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216d4c8))));

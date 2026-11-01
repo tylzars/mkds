@@ -137,7 +137,7 @@ void func_ov001_021a0428(void) {
     data_ov001_021ca414->mUnk_64 = 5;
     data_ov001_021ca414->mUnk_68 = 0;
     v0 = func_020b3f7c(data_ov001_021ca414->mUnk_54, 4);
-    func_021277f8((void *) ((u32) v0), (void *) ((u32) func_020b3f7c(data_ov001_021ca414->mUnk_54, 2)), 0);
+    func_021277f8(v0, func_020b3f7c(data_ov001_021ca414->mUnk_54, 2), 0);
     for (i = 0; i < 9; i++) {
         data_ov001_021ca414->mUnk_44[data_ov001_021a6e7c[i][0]].mUnk_00 = 0;
     }
