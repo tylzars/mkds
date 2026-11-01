@@ -210,8 +210,8 @@ s32 func_020a5268(u16 a, u16 b) {
             if (func_020a1154(b) >= 2 && func_020a2204(b) != 0) {
                 e->mUnk_34 = 4;
             }
-            func_02081f10((u32) func_0208b7bc(0x7a, &o->mUnk_80), o->mUnk_74, 0x20);
-            func_02081f10((u32) func_0208b7bc(0x7b, &o->mUnk_80), o->mUnk_74, 0x20);
+            func_02081f10(func_0208b7bc(0x7a, &o->mUnk_80), o->mUnk_74, 0x20);
+            func_02081f10(func_0208b7bc(0x7b, &o->mUnk_80), o->mUnk_74, 0x20);
             func_020d26ec(func_0207a974(b), 0x14f);
             if (func_020a1154(a) == 0) {
                 func_020a16d0(a);

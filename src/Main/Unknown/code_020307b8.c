@@ -98,13 +98,13 @@ void func_02030954(s32 a) {
             v = z1;
         }
         q = data_02153d20[i];
-        *(s32 *) ((u8 *) o->mUnk_18 + (q[0] << 6)) = v;
+        o->mUnk_18[q[0]].mUnk_00 = v;
         if (v == 0) {
             w = 1;
         } else {
             w = z2;
         }
-        *(s32 *) ((u8 *) o->mUnk_18 + (q[1] << 6)) = w;
+        o->mUnk_18[q[1]].mUnk_00 = w;
         func_02124100(q[2], (u8) t[v], o->mUnk_14, o->mUnk_18, o->mUnk_0c);
     }
 }
@@ -119,7 +119,7 @@ void func_020309d8(void) {
     o = data_02174e54;
     n = func_02030a18((u32) o->mUnk_0c) + func_02030a10((u32) o->mUnk_14);
     for (i = 0; i < n; i++) {
-        *(u16 *) ((u8 *) o->mUnk_18 + (i << 6) + 6) = data_02174e54->mUnk_38;
+        o->mUnk_18[i].mUnk_06 = data_02174e54->mUnk_38;
     }
 }
 

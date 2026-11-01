@@ -62,13 +62,13 @@ extern u16 data_0215881c;
 extern const u32 data_02158094[];
 
 // Objects whose layout isn't known yet.
-extern u8 data_02158160[];
+extern u16 data_02158160;
 extern u8 data_0215877c[];
 extern u8 data_02158780[];
 extern s32 data_02158908;
-extern u8 data_02158bb4[];
+extern u16 data_02158bb4;
 extern u8 data_02158bb8[];
-extern u8 data_02158fe4[];
+extern u16 data_02158fe4;
 extern u8 data_02158fe8[];
 extern u8 data_02158fec[];
 extern u16 data_02158c88;

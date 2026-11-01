@@ -69,7 +69,7 @@ void func_0211db90(void) {
     v1 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216dbd8))));
     func_020b4a44((Unk020b4a44 **) v4, (void *) v1);
     v1 = ((u32) func_02036bec((void *) data_0217d368->mUnk_28, (u32) (((u32) 0x00000800u))));
-    *(u32 *) ((int) data_0217d368 + 0x24) = v1;
+    data_0217d368->mUnk_24 = v1;
     v1 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216dbf8))));
     func_020b49bc((Unk020b4934 **) (&v2), (void *) v1);
     v1 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216dc04))));
@@ -81,7 +81,7 @@ void func_0211db90(void) {
     ((u32) func_02016468((u32) 0x1b, (u32) 0, (void *) ((int) data_0217d368->mUnk_20 + 0xc),
                          (u32) (*(u32 *) ((int) data_0217d368->mUnk_20 + 8))));
     ((u32) func_02016468((u32) 0x1b, (u32) (((u32) 0x00000800u)),
-                         (void *) (*(u32 *) ((int) data_0217d368 + 0x24)), (u32) (((u32) 0x00000800u))));
+                         (void *) (data_0217d368->mUnk_24), (u32) (((u32) 0x00000800u))));
     ((u32) func_02016468((u32) 0x1f, (u32) 0, (void *) (*(u32 *) (v4[0] + 0xc)), (u32) 0x80));
     ((u32) func_02016468((u32) 0x23, (u32) 0, (void *) (*(u32 *) (v2 + 0x14)),
                          (u32) (*(u32 *) (v2 + 0x10))));

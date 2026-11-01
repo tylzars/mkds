@@ -24,13 +24,13 @@ void func_ov000_021a49cc(void *param_1, void (*param_2)(void *, u16)) {
     return;
 }
 
-void func_ov000_021a49a0(void *param_1) {
+void func_ov000_021a49a0(Unk021a4a08 *param_1) {
     if (param_1 == 0) {
         param_1 = data_ov000_021b426c;
     }
-    if (*(int *) ((u8 *) param_1 + 0xbc) != 0) {
-        func_ov000_021a4868((Unk021a4a08 *) param_1);
+    if (param_1->mUnk_0bc != 0) {
+        func_ov000_021a4868(param_1);
     }
-    func_ov000_021a4940((Unk021a4a08 *) param_1);
+    func_ov000_021a4940(param_1);
     return;
 }

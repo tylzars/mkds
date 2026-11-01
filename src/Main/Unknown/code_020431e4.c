@@ -33,7 +33,7 @@ void func_020431e4(void) {
     for (i = 0; i < 10; i++) {
         p = &data_02175628[(u32) i];
         func_02039728(p);
-        func_02039520((u32) p, 0xff3, 0x1e, 0xa);
+        func_02039520(p, 0xff3, 0x1e, 0xa);
         p->mUnk_3c = 0;
         p->mUnk_40 = 0;
         p->mUnk_44 = 0;
@@ -49,7 +49,7 @@ void func_020431e4(void) {
     for (k = 0; k < 10; k++) {
         func_02039728(p);
         p->mUnk_40 = 0;
-        func_02039520((u32) p, 0xff3, 0x1e, 0xa);
+        func_02039520(p, 0xff3, 0x1e, 0xa);
         p++;
     }
     q = data_021759c0;
@@ -92,7 +92,7 @@ void func_02043410(void) {
     for (i = 0; i < 8; i++) {
         p = &data_02175628[i];
         func_02039728(p);
-        func_02039520((u32) p, 0xff3, 0x1e, 0xa);
+        func_02039520(p, 0xff3, 0x1e, 0xa);
         p->mUnk_3c = 0;
         p->mUnk_40 = 0;
         p->mUnk_44 = 0;

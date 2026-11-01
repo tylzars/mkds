@@ -96,7 +96,7 @@ typedef struct Unk0217d350 {
     /* 1c */ void *mUnk_1c;
     /* 20 */ Unk0217d350_10 *mUnk_20;
     /* 24 */ Unk02124b1c *mUnk_24;
-    /* 28 */ u8 mUnk_28[4];
+    /* 28 */ struct Unk020b4934 *mUnk_28;
     /* 2c */ struct Unk02021dc8 *mUnk_2c;
     /* 30 */ Unk0201ea30 *mUnk_30;
     /* 34 */ void *mUnk_34;
@@ -301,7 +301,7 @@ typedef struct Unk0217d368 {
     /* 18 */ void *mUnk_18;
     /* 1c */ void *mUnk_1c;
     /* 20 */ Unk0217d368_20 *mUnk_20;
-    /* 24 */ u8 mUnk_24[0x04];
+    /* 24 */ u32 mUnk_24;
     /* 28 */ void *mUnk_28;
     /* 2c */ s32 mUnk_2c;
     /* 30 */ s32 mUnk_30;

@@ -42,7 +42,7 @@ static inline void func_02043c14_inline(void) {
     for (i = 0; i < 10; i++) {
         p = &data_02175628[(u32) i];
         func_02039728(p);
-        func_02039520((u32) p, 0xff3, 0x1e, 0xa);
+        func_02039520(p, 0xff3, 0x1e, 0xa);
         p->mUnk_3c = 0;
         p->mUnk_40 = 0;
         p->mUnk_44 = 0;
@@ -58,7 +58,7 @@ static inline void func_02043c14_inline(void) {
     for (k = 0; k < 10; k++) {
         func_02039728(q);
         q->mUnk_40 = 0;
-        func_02039520((u32) q, 0xff3, 0x1e, 0xa);
+        func_02039520(q, 0xff3, 0x1e, 0xa);
         q++;
     }
 }
@@ -111,7 +111,7 @@ void func_02043b48(void) {
     for (i = 0; i < 10; i++) {
         func_02039728(p);
         p->mUnk_40 = 0;
-        func_02039520((u32) p, 0xff3, 0x1e, 0xa);
+        func_02039520(p, 0xff3, 0x1e, 0xa);
         p++;
     }
     func_02047054();
@@ -120,7 +120,7 @@ void func_02043b48(void) {
     for (j = 0; j < 10; j++) {
         q->mUnk_12 = 0;
         q->mUnk_14 = 0;
-        func_02039520((u32) q, 0xff3, 0x1e, 0xa);
+        func_02039520(q, 0xff3, 0x1e, 0xa);
         q++;
     }
     data_02175624->mUnk_02 = 0;

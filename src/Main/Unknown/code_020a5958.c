@@ -148,7 +148,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
                 }
             }
             if (p->mUnk_a8 <= 0) {
-                func_02081f10((u32)func_0208b7bc(0x7c, &v->mUnk_80), v->mUnk_74, 0x16);
+                func_02081f10(func_0208b7bc(0x7c, &v->mUnk_80), v->mUnk_74, 0x16);
             }
         } else {
             p->mUnk_a8 += 0x19a;

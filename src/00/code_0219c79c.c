@@ -20,6 +20,6 @@ void func_ov000_0219c79c(char *param_1, char *param_2, void (*param_3)(), s32 pa
     v2 = func_ov000_0219c8dc(func_ov000_0218f15c((int *) (u32) (*v1), (s8 *) (void *) (v1 + 0x13),
                                                     (s8 *) (u32) ((int) v1 + 0x14c), 1, 0, param_3, 0));
     if (v2 == 0) {
-        *(u32 *) ((int) data_ov000_021b565c + 4) = param_4;
+        data_ov000_021b565c->mUnk_04 = param_4;
     }
 }

@@ -1,11 +1,7 @@
 #include "01/code_02181124.h"
 
 u32 func_ov001_021811bc(void) {
-    return ((u32) *(const u32 *) ((u8 *) (u32) (((u32) *(
-                                                        const u32 *) ((u8 *) (u32) ((
-                                                                                   (u32) (&data_ov001_021a9b88))) +
-                                                                               0))) +
-                                                    28));
+    return ((u32) data_ov001_021a9b88->mUnk_1c);
 }
 
 u32 func_ov001_021811b8(void) {
@@ -24,26 +20,14 @@ u32 func_ov001_02181194(void) {
 
 u32 func_ov001_02181180(void) {
     return (
-        (((((u32) *(const u32 *) ((u8 *) (u32) (((u32) *(
-                                                        const u32 *) ((u8 *) (u32) ((
-                                                                                   (u32) (&data_ov001_021a9b88))) +
-                                                                               0))) +
-                                                    0))) *
-          (((((u32) *(const u32 *) ((u8 *) (u32) (((u32) *(
-                                                          const u32 *) ((u8 *) (u32) ((
-                                                                                     (u32) (&data_ov001_021a9b88))) +
-                                                                                 0))) +
-                                                      0))) +
+        (((((u32) data_ov001_021a9b88->mUnk_00)) *
+          (((((u32) data_ov001_021a9b88->mUnk_00)) +
             (0x0u))))) +
         (0x40u));
 }
 
 u32 func_ov001_02181174(void) {
-    return ((u32) *(const u32 *) ((u8 *) (u32) (((u32) *(
-                                                        const u32 *) ((u8 *) (u32) ((
-                                                                                   (u32) (&data_ov001_021a9b88))) +
-                                                                               0))) +
-                                                    32));
+    return ((u32) data_ov001_021a9b88->mUnk_20);
 }
 
 u32 func_ov001_02181124(u8 *a) {

@@ -496,7 +496,7 @@ void func_0206ff50(Unk0206bcb0 *p, u32 a) {
         if (((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_058 == 0) {
             e = data_usa_02165560;
             for (f = 0; f < 3; f++) {
-                func_02081f10((u32) func_0208b7bc(e.mUnk_00[f], &p->mUnk_80), p->mUnk_74, 0x14);
+                func_02081f10(func_0208b7bc(e.mUnk_00[f], &p->mUnk_80), p->mUnk_74, 0x14);
             }
         }
         func_020815dc(p->mUnk_74);

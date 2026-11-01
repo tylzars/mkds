@@ -26,7 +26,7 @@ void func_020fc94c(Unk020fc2e8 *p) {
     p->mUnk_000.mUnk_0c4 = p->mUnk_000.mUnk_50;
     func_020f9c40((int) p);
     p->mUnk_000.mUnk_74 |= 0x200000;
-    func_020fd254((u32) p);
+    func_020fd254(p);
     if (data_0217561c->mUnk_4cc != 0) {
         p->mUnk_274 = 1;
         p->mUnk_276 = data_0217561c->mUnk_474[(p->mUnk_274 & 0xff) - 1];

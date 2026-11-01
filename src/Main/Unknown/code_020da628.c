@@ -112,7 +112,7 @@ u32 func_020da73c(Unk020da494 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
                 func_020d26ec(&a->mUnk_00, 0x185);
                 func_020d26f8(&p->mUnk_00, a);
                 func_020da820(p, &a->mUnk_a4);
-                p->mUnk_00.mUnk_02 = p->mUnk_00.mUnk_02 | *(u16 *) data_02158160;
+                p->mUnk_00.mUnk_02 = p->mUnk_00.mUnk_02 | data_02158160;
             }
             break;
     }
@@ -136,7 +136,7 @@ u32 func_020da684(Unk020da494 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
                 if (a != 0) {
                     func_020da820(p, &a->mUnk_05c);
                 }
-                p->mUnk_00.mUnk_02 = p->mUnk_00.mUnk_02 | *(u16 *) data_02158160;
+                p->mUnk_00.mUnk_02 = p->mUnk_00.mUnk_02 | data_02158160;
             }
             break;
     }

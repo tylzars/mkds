@@ -32,7 +32,7 @@ void func_ov000_02185164(void) {
     int v1;
     v1 = func_02036c5c();
     if (v1 != 0) {
-        *(u32 *) ((int) data_ov000_021b4c84 + 4) = 1;
+        data_ov000_021b4c84->mUnk_04 = 1;
     }
     return;
 }

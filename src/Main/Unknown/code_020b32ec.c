@@ -1,13 +1,10 @@
 #include "Main/Unknown/code_020b32ec.h"
+#include "Main/Unknown/code_020b1de4.h"
 
 #pragma thumb on
 
 Unk020b4a44 *func_020b33c4(void) {
-    return ((Unk020b4a44 *) *(
-        const u32 *) ((u8 *) (u32) (((u32) *(
-                                   const u32 *) ((u8 *) (u32) (((u32) (&data_0217b354))) +
-                                                          0))) +
-                               0 + (0x16cu)));
+    return ((Unk020b4a44 *) data_0217b354->mUnk_16c);
 }
 
 Unk020b4934 *func_020b3374(void) {
@@ -23,7 +20,7 @@ Unk020b4934 *func_020b3374(void) {
                 *(u32 *) ((int) data_0217b354 + 0x178);
         }
     }
-    return *(Unk020b4934 **) ((int) data_0217b354 + 0x170);
+    return data_0217b354->mUnk_170;
 }
 
 void *func_020b32f8(void) {
@@ -50,11 +47,7 @@ void *func_020b32f8(void) {
 }
 
 u32 func_020b32ec(void) {
-    return ((u32) *(
-        const u32 *) ((u8 *) (u32) (((u32) *(
-                                   const u32 *) ((u8 *) (u32) (((u32) (&data_0217b354))) +
-                                                          0))) +
-                               12));
+    return ((u32) data_0217b354->mUnk_00c);
 }
 
 #pragma thumb off

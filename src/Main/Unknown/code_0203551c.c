@@ -289,10 +289,10 @@ void func_02035b0c(void) {
     m = t->mUnk_0c->mUnk_06 + t->mUnk_14->mUnk_06;
     c = func_02025ebc(&data_02174e68->mUnk_90);
     for (i = 0; i < n; i++) {
-        *(s16 *) ((u8 *) s->mUnk_18 + (i << 6) + 6) = -c;
+        s->mUnk_18[i].mUnk_06 = -c;
     }
     for (i = 0; i < m; i++) {
-        *(s16 *) ((u8 *) t->mUnk_18 + (i << 6) + 6) = c;
+        t->mUnk_18[i].mUnk_06 = c;
     }
 }
 
