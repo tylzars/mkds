@@ -75,8 +75,8 @@ void func_0214818c(const Vec3 *a, Vec3 *b) {
     s += (s64) a->y * a->y;
     s += (s64) a->z * a->z;
     reg_CP_DIVCNT = 2;
-    *(vu64 *) 0x04000290 = 0x0100000000000000ULL;
-    *(vu64 *) 0x04000298 = s;
+    reg_CP_DIV_NUMER = 0x0100000000000000ULL;
+    reg_CP_DIV_DENOM = s;
     reg_CP_SQRTCNT = 1;
     *(vu64 *) 0x040002B8 = s << 2;
     while (reg_CP_SQRTCNT & 0x8000) {
@@ -99,8 +99,8 @@ void func_02148038(const Unk02148038 *a, Unk02148038 *b) {
     s += a->mUnk_02 * a->mUnk_02;
     s += a->mUnk_04 * a->mUnk_04;
     reg_CP_DIVCNT = 2;
-    *(vu64 *) 0x04000290 = 0x0100000000000000ULL;
-    *(vu64 *) 0x04000298 = s;
+    reg_CP_DIV_NUMER = 0x0100000000000000ULL;
+    reg_CP_DIV_DENOM = s;
     reg_CP_SQRTCNT = 1;
     *(vu64 *) 0x040002B8 = s << 2;
     while (reg_CP_SQRTCNT & 0x8000) {
@@ -179,8 +179,8 @@ s32 func_02147e28(void) {
 
 void func_02147dec(s32 a) {
     reg_CP_DIVCNT = 1;
-    *(vu64 *) 0x04000290 = 0x100000000000ULL;
-    *(vu64 *) 0x04000298 = (u32) a;
+    reg_CP_DIV_NUMER = 0x100000000000ULL;
+    reg_CP_DIV_DENOM = (u32) a;
 }
 
 u32 func_02147dc0(void) {
@@ -191,14 +191,14 @@ u32 func_02147dc0(void) {
 
 void func_02147d88(s32 a, s32 b) {
     reg_CP_DIVCNT = 1;
-    *(vu64 *) 0x04000290 = (u64) (u32) a << 32;
-    *(vu64 *) 0x04000298 = (u32) b;
+    reg_CP_DIV_NUMER = (u64) (u32) a << 32;
+    reg_CP_DIV_DENOM = (u32) b;
 }
 
 u32 func_02147d30(u32 a, u32 b) {
     reg_CP_DIVCNT = 0;
     *(vu32 *) 0x04000290 = a;
-    *(vu64 *) 0x04000298 = b;
+    reg_CP_DIV_DENOM = b;
     while (reg_CP_DIVCNT & 0x8000) {
     }
     return *(vu32 *) 0x040002A0;
@@ -207,7 +207,7 @@ u32 func_02147d30(u32 a, u32 b) {
 u32 func_02147cd8(u32 a, u32 b) {
     reg_CP_DIVCNT = 0;
     *(vu32 *) 0x04000290 = a;
-    *(vu64 *) 0x04000298 = b;
+    reg_CP_DIV_DENOM = b;
     while (reg_CP_DIVCNT & 0x8000) {
     }
     return *(vu32 *) 0x040002A8;

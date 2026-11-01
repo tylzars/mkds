@@ -255,7 +255,7 @@ void func_021463a4(Unk02146154 *p) {
         do {
             s = reg_MI_MCCNT1;
             if (s & 0x800000) {
-                w = *(vu32 *) 0x04100010;
+                w = reg_MI_MCD1;
                 if (n < 0x200) {
                     buf[n] = w;
                     n++;

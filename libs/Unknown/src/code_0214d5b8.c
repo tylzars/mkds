@@ -32,13 +32,13 @@ void func_0214d830(void) {
         func_0200cae4(0x40000);
         j = 0;
         for (;;) {
-            v = *(vu16 *) 0x04000180 & 0xf;
-            *(vu16 *) 0x04000180 = v << 8;
+            v = reg_PXI_SUBPINTF & 0xf;
+            reg_PXI_SUBPINTF = v << 8;
             if (v == 0 && j > 4) {
                 break;
             }
             n = 1000;
-            while ((*(vu16 *) 0x04000180 & 0xf) == v) {
+            while ((reg_PXI_SUBPINTF & 0xf) == v) {
                 if (n <= 0) {
                     j = 0;
                     break;
@@ -93,7 +93,7 @@ s32 func_0214d6e8(u32 a, u32 b, u32 c) {
         func_0200fcb4(s);
         return -2;
     }
-    *(vu32 *) 0x04000188 = *(u32 *) &v;
+    reg_PXI_SEND_FIFO = *(u32 *) &v;
     func_0200fcb4(s);
     return 0;
 }
@@ -116,7 +116,7 @@ void func_0214d5c4(void) {
                 func_0200fcb4(s);
                 r = -4;
             } else {
-                *(u32 *) &v = *(vu32 *) 0x04100000;
+                *(u32 *) &v = reg_PXI_RECV_FIFO;
                 func_0200fcb4(s);
                 r = 0;
             }
@@ -145,7 +145,7 @@ void func_0214d5c4(void) {
             if (reg_PXI_SUBP_FIFO_CNT & 2) {
                 func_0200fcb4(s);
             } else {
-                *(vu32 *) 0x04000188 = *(u32 *) &v;
+                reg_PXI_SEND_FIFO = *(u32 *) &v;
                 func_0200fcb4(s);
             }
         }

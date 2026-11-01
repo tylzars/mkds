@@ -37,8 +37,8 @@ void func_0214b048(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
     }
     e2 = e << 1;
     x = func_02147e64();
-    *(vu64 *) 0x04000290 = 0x100000000000ULL;
-    *(vu64 *) 0x04000298 = (u32) (a - b);
+    reg_CP_DIV_NUMER = 0x100000000000ULL;
+    reg_CP_DIV_DENOM = (u32) (a - b);
     if (g != 0x1000) {
         x = x * g / 0x1000;
     }
@@ -53,8 +53,8 @@ void func_0214b048(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
         i->mUnk_00 = t1;
     }
     y = func_02147e64();
-    *(vu64 *) 0x04000290 = 0x100000000000ULL;
-    *(vu64 *) 0x04000298 = (u32) (e - f);
+    reg_CP_DIV_NUMER = 0x100000000000ULL;
+    reg_CP_DIV_DENOM = (u32) (e - f);
     if (g != 0x1000) {
         y = y * g / 0x1000;
     }
@@ -130,8 +130,8 @@ void func_0214ad4c(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
         i->mUnk_3c = g;
     }
     x = func_02147e64();
-    *(vu64 *) 0x04000290 = 0x100000000000ULL;
-    *(vu64 *) 0x04000298 = (u32) (a - b);
+    reg_CP_DIV_NUMER = 0x100000000000ULL;
+    reg_CP_DIV_DENOM = (u32) (a - b);
     if (g != 0x1000) {
         x = x * g / 0x1000;
     }
@@ -147,8 +147,8 @@ void func_0214ad4c(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
         i->mUnk_00 = u;
     }
     y = func_02147e64();
-    *(vu64 *) 0x04000290 = 0x100000000000ULL;
-    *(vu64 *) 0x04000298 = (u32) (e - f);
+    reg_CP_DIV_NUMER = 0x100000000000ULL;
+    reg_CP_DIV_DENOM = (u32) (e - f);
     if (g != 0x1000) {
         y = y * g / 0x1000;
     }

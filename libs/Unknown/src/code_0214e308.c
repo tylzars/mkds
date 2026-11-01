@@ -23,7 +23,7 @@ u32 func_0214e464(Unk0214e334 *out, u16 a, u16 b, u16 c, u16 d, u16 e, u16 f, u1
     s = func_0200fca0();
     reg_CP_DIVCNT = 0;
     *(vu32 *) 0x04000290 = (a - e) << 8;
-    *(vu64 *) 0x04000298 = (u32) (c - g);
+    reg_CP_DIV_DENOM = (u32) (c - g);
     z = b - f;
     w = d - h;
     while (reg_CP_DIVCNT & 0x8000) {
@@ -31,7 +31,7 @@ u32 func_0214e464(Unk0214e334 *out, u16 a, u16 b, u16 c, u16 d, u16 e, u16 f, u1
     q = *(vs32 *) 0x040002a0;
     reg_CP_DIVCNT = 0;
     *(vu32 *) 0x04000290 = z << 8;
-    *(vu64 *) 0x04000298 = (u32) w;
+    reg_CP_DIV_DENOM = (u32) w;
     if (q >= 0x8000 || q < -0x8000) {
         func_0200fcb4(s);
         return 1;

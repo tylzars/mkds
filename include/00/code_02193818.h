@@ -68,9 +68,6 @@ typedef struct Unk02193d64 {
     /* 4 */ u32 mUnk_04;
 } Unk02193d64;
 
-// Declared here until the code that defines them is decompiled.
-s32 func_ov000_0218e80c();
-
 void func_ov000_02193818(Unk0218f960 *param_1, Unk021937c0Node *param_2);
 void func_ov000_02193858(Unk0218f960 *param_1, Unk021937c0Node *param_2);
 u32 func_ov000_021938cc(Unk0218f960 *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6, int param_7);

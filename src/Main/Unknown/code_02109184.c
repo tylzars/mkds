@@ -380,5 +380,5 @@ u32 func_02109184(Unk0210bcf4 *p) {
     p->mUnk_0c = func_02073e04(b) >> 12;
     while (reg_CP_SQRTCNT & 0x8000) {
     }
-    return *(vu32 *) 0x040002b4;
+    return reg_CP_SQRT_RESULT;
 }

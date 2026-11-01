@@ -4,6 +4,7 @@
 #include "00/code_02194000.h"
 #include "00/code_02196000.h"
 #include "00/code_0218d000.h"
+#include "00/code_0218e80c.h"
 #include "00/code_0218dc44.h"
 #include "00/code_0218e524.h"
 #include "00/code_0218e53c.h"
@@ -75,7 +76,7 @@ void func_ov000_0219405c(Unk0218f960 *param_1, Unk02193f2cNode *param_2) {
     }
     if (func_ov000_0218dc44(param_2->mUnk_38) != 0) {
         do {
-            d = (Unk0219405c *) func_ov000_0218dbf8(param_2->mUnk_38, 0);
+            d = func_ov000_0218dbf8(param_2->mUnk_38, 0);
             if (d->mUnk_10 < 0x64) {
                 func_ov000_0218fbe0(param_1, param_2->mUnk_0c, d->mUnk_10, (const u8 *) (d->mUnk_00 + d->mUnk_14));
             }
