@@ -34,4 +34,5 @@ src/ITCM/code_01ffdee4.c:
 src/ITCM/code_01fff95c.c:
     .text       start:0x01fff95c end:0x01ffff88
 src/ITCM/code_01fff434.c:
+    complete
     .text       start:0x01fff434 end:0x01fff95c

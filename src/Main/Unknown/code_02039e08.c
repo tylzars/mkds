@@ -42,95 +42,6 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "01/code_0219e0a8.h"
 
-u32 func_02039e08(Unk020176c0 *a, void **b, void **c, void **d, void **e, void **f) {
-    u32 r;
-    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        *b = func_02036854(a, 0x19000);
-    } else {
-        *b = func_02036854(a, 0x1b800);
-    }
-    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        *d = 0;
-        *e = 0;
-        *f = 0;
-    } else {
-        *d = func_020368e0(a, 0x19000);
-        *e = func_020368e0(a, 0x4b000);
-        *f = func_020368e0(a, 0x1b800);
-    }
-    r = func_021087c4(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 ? 2 : 0);
-    *c = func_02036bec(a, r);
-    func_02017748(a);
-    return r;
-}
-
-u32 func_02039eec(Unk020487fc *a) {
-    Unk021a9034 b = data_usa_021646f8;
-    func_020487fc(a, &b);
-    return 0;
-}
-
-void func_02039f34(void) {
-    func_020cb51c();
-    func_020cb4c0();
-}
-
-void func_02039f50(void) {
-    func_020cc36c();
-}
-
-void func_02039f5c(void) {
-    func_020cb9b8();
-    data_021759d0->mUnk_50 &= ~1;
-    func_0204465c();
-}
-
-void func_02039f90(void) {
-    func_020cbb10();
-}
-
-u32 func_02039f9c(Unk020487fc *a) {
-    Unk021a9034 b = data_usa_02164734;
-    func_02044940();
-    if (data_021759c0->mUnk_08 == 5) {
-        b.mUnk_1c = 1;
-    }
-    if (data_021759c0->mUnk_00c != 5) {
-        if (data_021759c0->mUnk_00c == 6) {
-            b.mUnk_18 = 1;
-            b.mUnk_1a = 0x78;
-        }
-    } else {
-        b.mUnk_18 = 0x3c;
-        b.mUnk_1a = 0x78;
-    }
-    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_02043f28(1);
-    }
-    func_020487fc(a, &b);
-    return 0;
-}
-
-void func_0203a050(void) {
-    func_02046e24();
-}
-
-void func_0203a05c(void) {
-    data_021759d0->mUnk_54 = 0;
-    if (data_021759c0->mUnk_00c == 0) {
-        func_020b2e64(1);
-    }
-    func_02046e84();
-    while ((u32) data_0217c7ac != 0) {
-        func_02037a40();
-        func_020b2574();
-        func_0210823c();
-        func_02037850();
-        func_020b255c();
-        func_020373ec();
-    }
-}
-
 void func_0203a0dc(Unk0203a0dc *a, u32 b) {
     Unk021759c0 *q;
     u32 c;
@@ -246,4 +157,93 @@ void func_0203a0dc(Unk0203a0dc *a, u32 b) {
     }
     func_020ae824();
     func_020b255c();
+}
+
+void func_0203a05c(void) {
+    data_021759d0->mUnk_54 = 0;
+    if (data_021759c0->mUnk_00c == 0) {
+        func_020b2e64(1);
+    }
+    func_02046e84();
+    while ((u32) data_0217c7ac != 0) {
+        func_02037a40();
+        func_020b2574();
+        func_0210823c();
+        func_02037850();
+        func_020b255c();
+        func_020373ec();
+    }
+}
+
+void func_0203a050(void) {
+    func_02046e24();
+}
+
+u32 func_02039f9c(Unk020487fc *a) {
+    Unk021a9034 b = data_usa_02164734;
+    func_02044940();
+    if (data_021759c0->mUnk_08 == 5) {
+        b.mUnk_1c = 1;
+    }
+    if (data_021759c0->mUnk_00c != 5) {
+        if (data_021759c0->mUnk_00c == 6) {
+            b.mUnk_18 = 1;
+            b.mUnk_1a = 0x78;
+        }
+    } else {
+        b.mUnk_18 = 0x3c;
+        b.mUnk_1a = 0x78;
+    }
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
+        func_02043f28(1);
+    }
+    func_020487fc(a, &b);
+    return 0;
+}
+
+void func_02039f90(void) {
+    func_020cbb10();
+}
+
+void func_02039f5c(void) {
+    func_020cb9b8();
+    data_021759d0->mUnk_50 &= ~1;
+    func_0204465c();
+}
+
+void func_02039f50(void) {
+    func_020cc36c();
+}
+
+void func_02039f34(void) {
+    func_020cb51c();
+    func_020cb4c0();
+}
+
+u32 func_02039eec(Unk020487fc *a) {
+    Unk021a9034 b = data_usa_021646f8;
+    func_020487fc(a, &b);
+    return 0;
+}
+
+u32 func_02039e08(Unk020176c0 *a, void **b, void **c, void **d, void **e, void **f) {
+    u32 r;
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
+        *b = func_02036854(a, 0x19000);
+    } else {
+        *b = func_02036854(a, 0x1b800);
+    }
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
+        *d = 0;
+        *e = 0;
+        *f = 0;
+    } else {
+        *d = func_020368e0(a, 0x19000);
+        *e = func_020368e0(a, 0x4b000);
+        *f = func_020368e0(a, 0x1b800);
+    }
+    r = func_021087c4(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 ? 2 : 0);
+    *c = func_02036bec(a, r);
+    func_02017748(a);
+    return r;
 }

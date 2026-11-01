@@ -13,6 +13,76 @@
 
 #pragma thumb on
 
+s32 func_0203b96c(s32 a) {
+    if (a == 9) {
+        return 0;
+    }
+    switch (a) {
+        case 0:
+        case 1:
+        case 4:
+        case 5:
+            return 1;
+        case 2:
+            if (func_02056dec(0) != 0 || func_02056dec(1) != 0 || func_02056dec(2) != 0 || func_02056dec(3) != 0) {
+                return 1;
+            }
+            break;
+        case 3:
+            if (func_02056dec(4) != 0 || func_02056dec(5) != 0 || func_02056dec(6) != 0 || func_02056dec(7) != 0) {
+                return 1;
+            }
+            break;
+        case 6:
+            if (func_02056dec(8) != 0 || func_02056dec(9) != 0 || func_02056dec(10) != 0 || func_02056dec(11) != 0) {
+                return 1;
+            }
+            break;
+        case 7:
+            if (func_02056dec(12) != 0 || func_02056dec(13) != 0 || func_02056dec(14) != 0 || func_02056dec(15) != 0) {
+                return 1;
+            }
+            break;
+    }
+    return 0;
+}
+
+u32 func_0203b8e4(Unk020f41c4_B *a) {
+    u8 n;
+    u8 i;
+    u16 k;
+    u16 m;
+    u32 v;
+
+    n = 0;
+    k = 0;
+    for (i = 0; i < 8; i++) {
+        if (func_0203b96c(i) != 0) {
+            n++;
+        }
+    }
+    if (n == 0) {
+        v = 0;
+    } else {
+        a->mUnk_00 = _ll_mul(a->mUnk_08, a->mUnk_00) + a->mUnk_10;
+        if (n == 0) {
+            v = a->mUnk_00 >> 32;
+        } else {
+            v = (u64) (u32) (a->mUnk_00 >> 32) * (u32) n >> 32;
+        }
+    }
+    m = v;
+    for (i = 0; i < 8; i++) {
+        if (func_0203b96c(i) != 0) {
+            k++;
+            if (k > m) {
+                break;
+            }
+        }
+    }
+    return i;
+}
+
 void func_0203b6ac(u8 *a) {
     Unk020f41c4_B r;
     u32 t[3];
@@ -88,76 +158,6 @@ void func_0203b6ac(u8 *a) {
         func_020468b0(i, x, y, 1, -1, l);
     }
     func_020467a0();
-}
-
-u32 func_0203b8e4(Unk020f41c4_B *a) {
-    u8 n;
-    u8 i;
-    u16 k;
-    u16 m;
-    u32 v;
-
-    n = 0;
-    k = 0;
-    for (i = 0; i < 8; i++) {
-        if (func_0203b96c(i) != 0) {
-            n++;
-        }
-    }
-    if (n == 0) {
-        v = 0;
-    } else {
-        a->mUnk_00 = _ll_mul(a->mUnk_08, a->mUnk_00) + a->mUnk_10;
-        if (n == 0) {
-            v = a->mUnk_00 >> 32;
-        } else {
-            v = (u64) (u32) (a->mUnk_00 >> 32) * (u32) n >> 32;
-        }
-    }
-    m = v;
-    for (i = 0; i < 8; i++) {
-        if (func_0203b96c(i) != 0) {
-            k++;
-            if (k > m) {
-                break;
-            }
-        }
-    }
-    return i;
-}
-
-s32 func_0203b96c(s32 a) {
-    if (a == 9) {
-        return 0;
-    }
-    switch (a) {
-        case 0:
-        case 1:
-        case 4:
-        case 5:
-            return 1;
-        case 2:
-            if (func_02056dec(0) != 0 || func_02056dec(1) != 0 || func_02056dec(2) != 0 || func_02056dec(3) != 0) {
-                return 1;
-            }
-            break;
-        case 3:
-            if (func_02056dec(4) != 0 || func_02056dec(5) != 0 || func_02056dec(6) != 0 || func_02056dec(7) != 0) {
-                return 1;
-            }
-            break;
-        case 6:
-            if (func_02056dec(8) != 0 || func_02056dec(9) != 0 || func_02056dec(10) != 0 || func_02056dec(11) != 0) {
-                return 1;
-            }
-            break;
-        case 7:
-            if (func_02056dec(12) != 0 || func_02056dec(13) != 0 || func_02056dec(14) != 0 || func_02056dec(15) != 0) {
-                return 1;
-            }
-            break;
-    }
-    return 0;
 }
 
 #pragma thumb off

@@ -1032,6 +1032,7 @@ src/00/code_02191200.c:
 src/00/code_02191284.c:
     .text       start:0x02191250 end:0x02191978
 src/00/code_021919ac.c:
+    complete
     .text       start:0x02191978 end:0x021920d8
 
 // provisional: file name and boundaries
