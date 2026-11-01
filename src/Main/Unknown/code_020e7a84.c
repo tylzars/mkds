@@ -20,10 +20,9 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-// non-matching: same instructions and data references; only the registers of
-// the third block differ: data_0217b9a8.z stays in r5 where the original keeps
-// it in lr, so the umull destination pair is lr/ip here and r5/r4 there (and
-// the registers after it follow).
+// non-matching: same instructions and data references; only the registers of the third block differ: data_0217b9a8.z
+// stays in r5 where the original keeps it in lr, so the umull destination pair is lr/ip here and r5/r4 there (and the
+// registers after it follow).
 void func_020e8790(void) {
     Unk020e6514 *p;
     s32 t;
@@ -87,11 +86,9 @@ void func_020e8790(void) {
     data_0217b894 = 0;
 }
 
-// non-matching: same instructions and data references; only registers differ,
-// in two blocks: here the data_0217baf0 table is walked with r2 and the base
-// in r0 (original r3 and r2), and in the third block data_0217b9a8.x,
-// data_0215d4b4[i], [i+1] and data_0217b9a8.z are in r0/r1/r7/r9 here
-// (original r9/r7/r1/r0).
+// non-matching: same instructions and data references; only registers differ, in two blocks: here the data_0217baf0
+// table is walked with r2 and the base in r0 (original r3 and r2), and in the third block data_0217b9a8.x,
+// data_0215d4b4[i], [i+1] and data_0217b9a8.z are in r0/r1/r7/r9 here (original r9/r7/r1/r0).
 void func_020e84b0(void) {
     Unk020e6514 *p;
     s32 n;

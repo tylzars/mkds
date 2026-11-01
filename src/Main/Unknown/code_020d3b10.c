@@ -78,4 +78,3 @@ void func_020d3b10(void) {
 }
 
 #pragma thumb off
-

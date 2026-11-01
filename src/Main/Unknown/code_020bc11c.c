@@ -29,13 +29,13 @@ void func_020bc958(void) {
     }
     if (data_021759c0->mUnk_08 == 4) {
         switch (data_021759c0->mUnk_2f) {
-        case 2:
-        case 4:
-        case 6:
-        case 10:
-            break;
-        default:
-            return;
+            case 2:
+            case 4:
+            case 6:
+            case 10:
+                break;
+            default:
+                return;
         }
     }
     data_0217b3d4->mUnk_04 = data_0217b3d4->mUnk_00;
@@ -96,16 +96,16 @@ void func_020bc208(Unk020d029c *a) {
     }
     if (data_021759c0->mUnk_08 == 4) {
         switch (data_021759c0->mUnk_2f) {
-        case 2:
-        case 4:
-        case 6:
-        case 10:
-            if (data_0217b3d4->mUnk_08 < 2) {
+            case 2:
+            case 4:
+            case 6:
+            case 10:
+                if (data_0217b3d4->mUnk_08 < 2) {
+                    return;
+                }
+                break;
+            default:
                 return;
-            }
-            break;
-        default:
-            return;
         }
     }
     if (data_021759c0->mUnk_08 == 2) {
@@ -122,18 +122,18 @@ void func_020bc208(Unk020d029c *a) {
         a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q2, 0, 1);
     }
     switch (data_0217b3d4->mUnk_08) {
-    case 2:
-        c = func_020b85dc(0x26);
-        q3[0] = t[0] << 12;
-        q3[1] = t[1] << 12;
-        a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q3, 0, 1);
-        break;
-    case 4:
-        c = func_020b85dc(0x27);
-        q4[0] = t[0] << 12;
-        q4[1] = t[1] << 12;
-        a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q4, 0, 1);
-        break;
+        case 2:
+            c = func_020b85dc(0x26);
+            q3[0] = t[0] << 12;
+            q3[1] = t[1] << 12;
+            a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q3, 0, 1);
+            break;
+        case 4:
+            c = func_020b85dc(0x27);
+            q4[0] = t[0] << 12;
+            q4[1] = t[1] << 12;
+            a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q4, 0, 1);
+            break;
     }
     if (func_020b19f8() == 0) {
         return;

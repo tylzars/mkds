@@ -10,14 +10,12 @@
 #include "Main/Unknown/code_02078000.h"
 #include "Main/Unknown/code_020ac000.h"
 
-void func_ov001_021a23f4(void)
-{
+void func_ov001_021a23f4(void) {
     func_ov001_021a5140();
     func_ov001_021a401c();
 }
 
-s32 func_ov001_021a23c8(void)
-{
+s32 func_ov001_021a23c8(void) {
     func_ov001_021a2a40();
     if (data_ov001_021ca41c->mUnk_1090 == 0xc) {
         return 1;
@@ -25,17 +23,14 @@ s32 func_ov001_021a23c8(void)
     return 0;
 }
 
-void func_ov001_021a23c0(void)
-{
+void func_ov001_021a23c0(void) {
     func_ov001_021a2408();
 }
 
-u16 *func_ov001_021a23ac(void)
-{
+u16 *func_ov001_021a23ac(void) {
     return data_ov001_021ca41c->mUnk_0830->mUnk_0c;
 }
 
-u8 *func_ov001_021a2398(void)
-{
+u8 *func_ov001_021a2398(void) {
     return data_ov001_021ca41c->mUnk_087c;
 }

@@ -94,7 +94,8 @@ void func_02075eb8(void) {
     data_0217aca8 = 1;
 }
 
-// non-matching: 0x100 bytes against 0x10c: the original keeps the constant, the value of the third argument's second word and the flag word in r7, r6 and r3 and pushes r4-r7 (ours r4-r6) with the same instructions otherwise
+// non-matching: 0x100 bytes against 0x10c: the original keeps the constant, the value of the third argument's second
+// word and the flag word in r7, r6 and r3 and pushes r4-r7 (ours r4-r6) with the same instructions otherwise
 void func_02075fe0(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
     u32 d = b->mUnk_48;
     s32 e = -0x2d000;
@@ -212,7 +213,8 @@ static inline void func_02076528_inline(Vec3 *v, s32 k) {
     v->z = (s32) (((s64) v->z * k) >> 12);
 }
 
-// non-matching: 0x528 bytes against 0x534: the original keeps the second argument in r4, the first in r5 and the stack offset 0xcd0 product in r6 (ours r5, r6, r4) and the three scaled components follow different load order
+// non-matching: 0x528 bytes against 0x534: the original keeps the second argument in r4, the first in r5 and the stack
+// offset 0xcd0 product in r6 (ours r5, r6, r4) and the three scaled components follow different load order
 void func_02076528(Unk02061808 *a, Unk0206bcb0 *b) {
     Vec3 v = b->mUnk_80;
     Vec3 g;
@@ -347,7 +349,8 @@ void func_02076a5c(void) {
     (data_0217ac94)->mUnk_018.y = q->mUnk_80.y + (data_0217ac94)->mUnk_0d4;
 }
 
-// non-matching: ours pushes r4, r5 and keeps the first argument in r5 (original r4 only, address 0x9c in lr, 0x90 in ip, 8 bytes of stack against 4)
+// non-matching: ours pushes r4, r5 and keeps the first argument in r5 (original r4 only, address 0x9c in lr, 0x90 in
+// ip, 8 bytes of stack against 4)
 void func_02076bcc(Unk02061808 *a) {
     Vec3 *b = &a->mUnk_09c;
     Vec3 *c = (Vec3 *) &a->mUnk_090;

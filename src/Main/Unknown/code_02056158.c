@@ -43,14 +43,14 @@ u8 func_02056208(void) {
         }
     }
     switch (m) {
-    case 5:
-        return 1;
-    case 6:
-        return 2;
-    case 7:
-        return 3;
-    default:
-        return 0;
+        case 5:
+            return 1;
+        case 6:
+            return 2;
+        case 7:
+            return 3;
+        default:
+            return 0;
     }
 }
 

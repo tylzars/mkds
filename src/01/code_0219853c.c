@@ -20,8 +20,7 @@
 #include "Main/Unknown/code_02056d40.h"
 #include "Main/Unknown/code_02125f54.h"
 
-void func_ov001_021987d4(void *heap, s16 param_2)
-{
+void func_ov001_021987d4(void *heap, s16 param_2) {
     Unk02125de0Arg arg;
 
     data_ov001_021a9be4 = func_02036bec(heap, 0x18);
@@ -61,7 +60,7 @@ void func_ov001_02198768(void) {
         a = func_020b3f7c(data_ov001_021a9be4->mUnk_14, 0xc);
         b = func_020b3f7c(data_ov001_021a9be4->mUnk_14, 0);
         c = func_020b3f7c(data_ov001_021a9be4->mUnk_14, 1);
-        func_0212611c((void *) ((u32)a), (void *) ((u32)b), (void *) ((u32)c), 0);
+        func_0212611c((void *) ((u32) a), (void *) ((u32) b), (void *) ((u32) c), 0);
     }
 }
 
@@ -79,7 +78,7 @@ void func_ov001_021986e8(void) {
             a = func_020b3f7c(data_ov001_021a9be4->mUnk_14, 0xd);
             b = func_020b3f7c(data_ov001_021a9be4->mUnk_14, 0);
             c = func_020b3f7c(data_ov001_021a9be4->mUnk_14, 1);
-            func_0212611c((void *) ((u32)a), (void *) ((u32)b), (void *) ((u32)c), 0);
+            func_0212611c((void *) ((u32) a), (void *) ((u32) b), (void *) ((u32) c), 0);
         } else {
             data_ov001_021a9be4->mUnk_0e = 0xe;
         }
@@ -106,7 +105,7 @@ void func_ov001_02198624(void) {
             a = func_020b3f7c(data_ov001_021a9be4->mUnk_14, 0x13);
             b = func_020b3f7c(data_ov001_021a9be4->mUnk_14, 0);
             c = func_020b3f7c(data_ov001_021a9be4->mUnk_14, 1);
-            func_0212611c((void *) ((u32)a), (void *) ((u32)b), (void *) ((u32)c), 1);
+            func_0212611c((void *) ((u32) a), (void *) ((u32) b), (void *) ((u32) c), 1);
         } else {
             data_ov001_021a9be4->mUnk_0e = 0xe;
         }
@@ -143,18 +142,18 @@ void func_ov001_02198554(void) {
     func_02125928();
     data_ov001_021a9be4->mUnk_00 = data_ov001_021a9be4->mUnk_04;
     switch (data_ov001_021a9be4->mUnk_00) {
-    case 0:
-        func_ov001_02198768();
-        break;
-    case 1:
-        func_ov001_021986e8();
-        break;
-    case 2:
-        func_ov001_02198624();
-        break;
-    case 3:
-        func_ov001_021985b0();
-        break;
+        case 0:
+            func_ov001_02198768();
+            break;
+        case 1:
+            func_ov001_021986e8();
+            break;
+        case 2:
+            func_ov001_02198624();
+            break;
+        case 3:
+            func_ov001_021985b0();
+            break;
     }
 }
 

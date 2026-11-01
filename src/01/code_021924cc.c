@@ -7,8 +7,7 @@
 #include "01/code_02192000.h"
 #include "Main/Unknown/unk_02175000.h"
 
-void func_ov001_02192694(void)
-{
+void func_ov001_02192694(void) {
     Vec3 pos;
     Unk02188950 *obj;
     Unk02188950_a0 *a0;
@@ -17,11 +16,12 @@ void func_ov001_02192694(void)
     u16 ang;
 
     if (data_021759c0->mUnk_08 == 4) {
-        obj = (Unk02188950 *)func_ov001_02181b68((u16)((data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0) + 2));
+        obj =
+            (Unk02188950 *) func_ov001_02181b68((u16) ((data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0) + 2));
     } else {
         obj = 0;
     }
-    other = func_0207a974((u16)data_021759c0->mUnk_62);
+    other = func_0207a974((u16) data_021759c0->mUnk_62);
     if (obj->mUnk_0a8 == 4) {
         a0 = obj->mUnk_0a0;
         ang = func_02148714(other->mUnk_80.z - obj->mUnk_000.mUnk_04.z, other->mUnk_80.x - obj->mUnk_000.mUnk_04.x) -
@@ -38,8 +38,7 @@ void func_ov001_02192694(void)
     func_ov001_02188998(obj, &pos);
 }
 
-void func_ov001_021924cc(void)
-{
+void func_ov001_021924cc(void) {
     Vec3 b;
     Vec3 c;
     Vec3 a;
@@ -48,29 +47,31 @@ void func_ov001_021924cc(void)
     Unk02188950 *objC;
 
     if (data_021759c0->mUnk_08 == 4) {
-        objB = (Unk02188950 *)func_ov001_02181b68((u16)((data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0) + 2));
+        objB =
+            (Unk02188950 *) func_ov001_02181b68((u16) ((data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0) + 2));
     } else {
         objB = 0;
     }
     if (data_021759c0->mUnk_08 == 4) {
-        obj = (Unk02188950 *)func_ov001_02181b68((u16)(data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0));
+        obj = (Unk02188950 *) func_ov001_02181b68((u16) (data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0));
     } else {
         obj = 0;
     }
     if (data_021759c0->mUnk_08 == 4) {
-        objC = (Unk02188950 *)func_ov001_02181b68((u16)((data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0) + 1));
+        objC =
+            (Unk02188950 *) func_ov001_02181b68((u16) ((data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0) + 1));
     } else {
         objC = 0;
     }
-    a.x = (s32)(((s64)objB->mUnk_0a0->mUnk_274 * data_0215d4b4[((u16)objB->mUnk_184 >> 4) * 2]) >> 12);
+    a.x = (s32) (((s64) objB->mUnk_0a0->mUnk_274 * data_0215d4b4[((u16) objB->mUnk_184 >> 4) * 2]) >> 12);
     a.y = objB->mUnk_000.mUnk_04.y;
-    a.z = (s32)(((s64)objB->mUnk_0a0->mUnk_274 * data_0215d4b4[((u16)objB->mUnk_184 >> 4) * 2 + 1]) >> 12);
-    b.x = -(s32)(((s64)objB->mUnk_0a0->mUnk_278 * data_0215d4b4[((u16)objB->mUnk_184 >> 4) * 2 + 1]) >> 12);
+    a.z = (s32) (((s64) objB->mUnk_0a0->mUnk_274 * data_0215d4b4[((u16) objB->mUnk_184 >> 4) * 2 + 1]) >> 12);
+    b.x = -(s32) (((s64) objB->mUnk_0a0->mUnk_278 * data_0215d4b4[((u16) objB->mUnk_184 >> 4) * 2 + 1]) >> 12);
     b.y = objB->mUnk_000.mUnk_04.y;
-    b.z = (s32)(((s64)objB->mUnk_0a0->mUnk_278 * data_0215d4b4[((u16)objB->mUnk_184 >> 4) * 2]) >> 12);
-    c.x = (s32)(((s64)objB->mUnk_0a0->mUnk_278 * data_0215d4b4[((u16)objB->mUnk_184 >> 4) * 2 + 1]) >> 12);
+    b.z = (s32) (((s64) objB->mUnk_0a0->mUnk_278 * data_0215d4b4[((u16) objB->mUnk_184 >> 4) * 2]) >> 12);
+    c.x = (s32) (((s64) objB->mUnk_0a0->mUnk_278 * data_0215d4b4[((u16) objB->mUnk_184 >> 4) * 2 + 1]) >> 12);
     c.y = objB->mUnk_000.mUnk_04.y;
-    c.z = -(s32)(((s64)objB->mUnk_0a0->mUnk_278 * data_0215d4b4[((u16)objB->mUnk_184 >> 4) * 2]) >> 12);
+    c.z = -(s32) (((s64) objB->mUnk_0a0->mUnk_278 * data_0215d4b4[((u16) objB->mUnk_184 >> 4) * 2]) >> 12);
     func_ov001_02188968(obj, &a);
     func_ov001_02188968(objC, &a);
     func_ov001_02188980(obj, &b);

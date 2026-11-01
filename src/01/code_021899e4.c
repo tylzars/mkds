@@ -7,7 +7,8 @@
 #include "00/code_02182fdc.h"
 
 void *func_ov001_02189dbc(void) {
-    return (void *) func_0209bf1c((u32) (func_ov001_02189e2c), (u32) (func_ov001_02189e0c), (u32) (func_ov001_02187098));
+    return (void *) func_0209bf1c((u32) (func_ov001_02189e2c), (u32) (func_ov001_02189e0c),
+                                  (u32) (func_ov001_02187098));
 }
 
 void *func_ov001_02189da4(void) {
@@ -38,7 +39,7 @@ void func_ov001_02189c10(void) {
         if (!(obj->mUnk_02 & 1)) {
             pos = &obj->mUnk_04;
             if (func_020b5ae8(pos, &data_ov001_021a9bc4->mUnk_10[count].mUnk_00, var, 1, 1)) {
-                if (func_ov001_0218f9c0((Unk02188950 *)obj)) {
+                if (func_ov001_0218f9c0((Unk02188950 *) obj)) {
                     arg = (obj->mUnk_02 & 0x400) ? 0xc8 : 0xc6;
                 } else {
                     arg = (obj->mUnk_02 & 0x400) ? 0xc7 : 0xc5;
@@ -83,15 +84,14 @@ void func_ov001_021899e4(void) {
         if (!(obj->mUnk_02 & 1)) {
             pos = &obj->mUnk_04;
             if (func_020b5ae8(pos, &data_ov001_021a9bc0->mUnk_10[count].mUnk_00, var, 1, 1)) {
-                row = func_ov001_0218b2d4((Unk02188950 *)obj);
+                row = func_ov001_0218b2d4((Unk02188950 *) obj);
                 dst = func_020b85f0(6)->mUnk_00->mUnk_0c;
                 res = 0;
                 func_020b4a44((Unk020b4a44 **) (&res), (void *) (func_020b47c0("race_transfer_map_mr_s_o.NCLR")));
                 for (k = 0; k < 16; k++) {
                     dst[0x50 + k] = res->mUnk_0c[(row + 2) * 16 + k];
                 }
-                func_0200ee74(func_020b85f0(6)->mUnk_00->mUnk_0c,
-                              func_020b85f0(6)->mUnk_00->mUnk_08);
+                func_0200ee74(func_020b85f0(6)->mUnk_00->mUnk_0c, func_020b85f0(6)->mUnk_00->mUnk_08);
                 data_ov001_021a9bc0->mUnk_10[count].mUnk_08 = func_020b83dc(0xc5);
                 data_ov001_021a9bc0->mUnk_10[count].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
                 data_ov001_021a9bc0->mUnk_10[count].mUnk_0e = obj->mUnk_02 & 0x20;

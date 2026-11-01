@@ -172,56 +172,56 @@ s32 func_02121990(Unk02121990 *a, u32 b, u32 c, u32 d) {
 // non-matching: cases 0 and 2 compile to `cmp r0, #1; bhi` where the original has `add r0, r0, #0` before the compare
 s32 func_021217e8(u32 a) {
     switch (a) {
-    case 0:
-        if ((u32) data_0217d384->mUnk_1950 <= 1) {
-            return 1;
-        }
-        break;
-    case 1:
-        if (data_0217d384->mUnk_1950 == 0) {
-            return 1;
-        }
-        break;
-    case 2:
-        if ((u32) data_0217d384->mUnk_1950 <= 1) {
-            return 1;
-        }
-        break;
-    case 8:
-        if ((u32) (data_0217d384->mUnk_1950 - 3) <= 1) {
-            return 1;
-        }
-        break;
-    case 9:
-        if ((u32) (data_0217d384->mUnk_1950 - 3) <= 2) {
-            return 1;
-        }
-        break;
-    case 3:
-        if (data_0217d384->mUnk_1950 == 1 || (u32) (data_0217d384->mUnk_1950 - 4) <= 2) {
-            return 1;
-        }
-        break;
-    case 4:
-        if ((u32) (data_0217d384->mUnk_1950 - 5) <= 1) {
-            return 1;
-        }
-        break;
-    case 5:
-        if ((u32) (data_0217d384->mUnk_1950 - 6) <= 1) {
-            return 1;
-        }
-        break;
-    case 6:
-        if ((u32) (data_0217d384->mUnk_1950 - 7) <= 1) {
-            return 1;
-        }
-        break;
-    case 7:
-        if ((u32) (data_0217d384->mUnk_1950 - 8) <= 1) {
-            return 1;
-        }
-        break;
+        case 0:
+            if ((u32) data_0217d384->mUnk_1950 <= 1) {
+                return 1;
+            }
+            break;
+        case 1:
+            if (data_0217d384->mUnk_1950 == 0) {
+                return 1;
+            }
+            break;
+        case 2:
+            if ((u32) data_0217d384->mUnk_1950 <= 1) {
+                return 1;
+            }
+            break;
+        case 8:
+            if ((u32) (data_0217d384->mUnk_1950 - 3) <= 1) {
+                return 1;
+            }
+            break;
+        case 9:
+            if ((u32) (data_0217d384->mUnk_1950 - 3) <= 2) {
+                return 1;
+            }
+            break;
+        case 3:
+            if (data_0217d384->mUnk_1950 == 1 || (u32) (data_0217d384->mUnk_1950 - 4) <= 2) {
+                return 1;
+            }
+            break;
+        case 4:
+            if ((u32) (data_0217d384->mUnk_1950 - 5) <= 1) {
+                return 1;
+            }
+            break;
+        case 5:
+            if ((u32) (data_0217d384->mUnk_1950 - 6) <= 1) {
+                return 1;
+            }
+            break;
+        case 6:
+            if ((u32) (data_0217d384->mUnk_1950 - 7) <= 1) {
+                return 1;
+            }
+            break;
+        case 7:
+            if ((u32) (data_0217d384->mUnk_1950 - 8) <= 1) {
+                return 1;
+            }
+            break;
     }
     return 0;
 }
@@ -303,8 +303,10 @@ void func_0212145c(u32 a) {
     u8 k;
 
     for (i = 0; i < data_0217d384->mUnk_1f53; i++) {
-        if ((k = func_ov000_0219bb50(), data_0217d384->mUnk_1e10[k].mUnk_1c[i]) != data_0217d384->mUnk_1d00[a].mUnk_1c[i] ||
-            (k = func_ov000_0219bb50(), data_0217d384->mUnk_1e10[k].mUnk_0c[i]) != data_0217d384->mUnk_1d00[a].mUnk_0c[i]) {
+        if ((k = func_ov000_0219bb50(), data_0217d384->mUnk_1e10[k].mUnk_1c[i]) !=
+                data_0217d384->mUnk_1d00[a].mUnk_1c[i] ||
+            (k = func_ov000_0219bb50(), data_0217d384->mUnk_1e10[k].mUnk_0c[i]) !=
+                data_0217d384->mUnk_1d00[a].mUnk_0c[i]) {
             f = 1;
         }
     }
@@ -401,13 +403,17 @@ void func_02120d50(void) {
     data_0217d384->mUnk_18ec[0].mUnk_00 = data_0217d384->mUnk_021c[0].mUnk_234;
     data_0217d384->mUnk_18ec[3].mUnk_00 = data_0217d384->mUnk_021c[0].mUnk_222;
     __memcpy(data_0217d384->mUnk_18ec[2].mUnk_04, "kart_filter", 12);
-    data_0217d384->mUnk_18ec[2].mUnk_14 = func_ov000_021a2ad0(data_0217d384->mUnk_18ec[2].mUnk_14, data_0217d384->mUnk_18ec[2].mUnk_04, "ds_mario_kart_product");
+    data_0217d384->mUnk_18ec[2].mUnk_14 = func_ov000_021a2ad0(
+        data_0217d384->mUnk_18ec[2].mUnk_14, data_0217d384->mUnk_18ec[2].mUnk_04, "ds_mario_kart_product");
     __memcpy(data_0217d384->mUnk_18ec[1].mUnk_04, "kart_type", 10);
-    data_0217d384->mUnk_18ec[1].mUnk_14 = func_ov000_021a2b9c(data_0217d384->mUnk_18ec[1].mUnk_14, data_0217d384->mUnk_18ec[1].mUnk_04, &data_0217d384->mUnk_18ec[1]);
+    data_0217d384->mUnk_18ec[1].mUnk_14 = func_ov000_021a2b9c(
+        data_0217d384->mUnk_18ec[1].mUnk_14, data_0217d384->mUnk_18ec[1].mUnk_04, &data_0217d384->mUnk_18ec[1]);
     __memcpy(data_0217d384->mUnk_18ec[3].mUnk_04, "kart_elo", 9);
-    data_0217d384->mUnk_18ec[3].mUnk_14 = func_ov000_021a2b9c(data_0217d384->mUnk_18ec[3].mUnk_14, data_0217d384->mUnk_18ec[3].mUnk_04, &data_0217d384->mUnk_18ec[3]);
+    data_0217d384->mUnk_18ec[3].mUnk_14 = func_ov000_021a2b9c(
+        data_0217d384->mUnk_18ec[3].mUnk_14, data_0217d384->mUnk_18ec[3].mUnk_04, &data_0217d384->mUnk_18ec[3]);
     __memcpy(data_0217d384->mUnk_18ec[0].mUnk_04, "kart_region", 12);
-    data_0217d384->mUnk_18ec[0].mUnk_14 = func_ov000_021a2b9c(data_0217d384->mUnk_18ec[0].mUnk_14, data_0217d384->mUnk_18ec[0].mUnk_04, &data_0217d384->mUnk_18ec[0]);
+    data_0217d384->mUnk_18ec[0].mUnk_14 = func_ov000_021a2b9c(
+        data_0217d384->mUnk_18ec[0].mUnk_14, data_0217d384->mUnk_18ec[0].mUnk_04, &data_0217d384->mUnk_18ec[0]);
     a = data_0217d384->mUnk_021c[0].mUnk_222 - 0x3e8;
     if (a <= 0) {
         a = 0;
@@ -418,23 +424,24 @@ void func_02120d50(void) {
     }
     func_0214d168(data_0217d388, 0, 0x64);
     if (data_0217d384->mUnk_18ec[1].mUnk_00 == 1) {
-        func_02135014(data_0217d388, (const u8 *) "%s = '%s' and %s > %d and %s < %d", "kart_filter", "ds_mario_kart_product", "kart_elo", a, "kart_elo", b);
+        func_02135014(data_0217d388, (const u8 *) "%s = '%s' and %s > %d and %s < %d", "kart_filter",
+                      "ds_mario_kart_product", "kart_elo", a, "kart_elo", b);
     } else {
         func_02135014(data_0217d388, (const u8 *) "%s = '%s'", "kart_filter", "ds_mario_kart_product");
     }
     switch (data_0217d384->mUnk_18ec[1].mUnk_00) {
-    case 3:
-        func_ov000_0219bd90(data_0217d384->mUnk_194c, data_0217d388, func_02120934, 0, func_02120b80, 0);
-        break;
-    case 4:
-        func_ov000_0219bd90(data_0217d384->mUnk_194c, data_0217d388, func_02120934, 0, func_02120a64, 0);
-        break;
-    case 0:
-        func_ov000_0219bc78(0, 0, data_0217d384->mUnk_194c, 1, func_02120934, 0, 0, 0);
-        break;
-    case 1:
-        func_ov000_0219bd90(data_0217d384->mUnk_194c, data_0217d388, func_02120934, 0, func_02120c30, 0);
-        break;
+        case 3:
+            func_ov000_0219bd90(data_0217d384->mUnk_194c, data_0217d388, func_02120934, 0, func_02120b80, 0);
+            break;
+        case 4:
+            func_ov000_0219bd90(data_0217d384->mUnk_194c, data_0217d388, func_02120934, 0, func_02120a64, 0);
+            break;
+        case 0:
+            func_ov000_0219bc78(0, 0, data_0217d384->mUnk_194c, 1, func_02120934, 0, 0, 0);
+            break;
+        case 1:
+            func_ov000_0219bd90(data_0217d384->mUnk_194c, data_0217d388, func_02120934, 0, func_02120c30, 0);
+            break;
     }
     data_0217d384->mUnk_18e8 = 1;
 }
@@ -444,12 +451,12 @@ s32 func_02120d14(void) {
 
     v = data_0217d384->mUnk_18e8;
     switch (v) {
-    case 1:
-        break;
-    case 3:
-        return 1;
-    case 4:
-        break;
+        case 1:
+            break;
+        case 3:
+            return 1;
+        case 4:
+            break;
     }
     return 0;
 }

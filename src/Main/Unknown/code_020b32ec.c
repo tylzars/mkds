@@ -11,13 +11,11 @@ Unk020b4934 *func_020b3374(void) {
     int v1;
     v1 = func_020b2d04();
     if (v1 == 1) {
-        *(u32 *) (*(int *) ((int) data_0217b354 + 0x170) + 0x14) =
-            *(u32 *) ((int) data_0217b354 + 0x174);
+        *(u32 *) (*(int *) ((int) data_0217b354 + 0x170) + 0x14) = *(u32 *) ((int) data_0217b354 + 0x174);
     } else {
         v1 = func_020b2d04();
         if (v1 == 2) {
-            *(u32 *) (*(int *) ((int) data_0217b354 + 0x170) + 0x14) =
-                *(u32 *) ((int) data_0217b354 + 0x178);
+            *(u32 *) (*(int *) ((int) data_0217b354 + 0x170) + 0x14) = *(u32 *) ((int) data_0217b354 + 0x178);
         }
     }
     return data_0217b354->mUnk_170;

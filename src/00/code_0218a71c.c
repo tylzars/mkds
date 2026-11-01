@@ -17,7 +17,9 @@ u8 func_ov000_0218a71c(Unk0218a71c *p, u8 x) {
     p->mUnk_000[p->mUnk_100] = b;
     p->mUnk_102 = p->mUnk_102 + p->mUnk_000[b];
     e = x ^ p->mUnk_000[(p->mUnk_000[p->mUnk_102] + p->mUnk_000[p->mUnk_100]) & 0xff];
-    p->mUnk_103 = e ^ p->mUnk_000[p->mUnk_000[(p->mUnk_000[p->mUnk_101] + (p->mUnk_000[p->mUnk_103] + p->mUnk_000[p->mUnk_104])) & 0xff]];
+    p->mUnk_103 =
+        e ^ p->mUnk_000[p->mUnk_000[(p->mUnk_000[p->mUnk_101] + (p->mUnk_000[p->mUnk_103] + p->mUnk_000[p->mUnk_104])) &
+                                    0xff]];
     p->mUnk_104 = x;
     return p->mUnk_103;
 }

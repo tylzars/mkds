@@ -32,9 +32,11 @@ void func_0212a670(void) {
     s32 i;
     for (i = 0; i < 2; i++) {
         Unk0217d400 *p = data_0217d400;
-        func_0212426c(1, data_0215d0e4[i][0], data_0217d400->mUnk_ac[i], func_020b3f7c(p->mUnk_c0, 4), p->mUnk_9c[i], p->mUnk_74[i][1]);
+        func_0212426c(1, data_0215d0e4[i][0], data_0217d400->mUnk_ac[i], func_020b3f7c(p->mUnk_c0, 4), p->mUnk_9c[i],
+                      p->mUnk_74[i][1]);
         p = data_0217d400;
-        func_0212426c(1, data_0215d0e4[i][1], data_0217d400->mUnk_ac[i], func_020b3f7c(p->mUnk_c0, 5), p->mUnk_9c[i], p->mUnk_74[i][1]);
+        func_0212426c(1, data_0215d0e4[i][1], data_0217d400->mUnk_ac[i], func_020b3f7c(p->mUnk_c0, 5), p->mUnk_9c[i],
+                      p->mUnk_74[i][1]);
     }
 }
 
@@ -109,7 +111,7 @@ void func_0212a410(void) {
     s32 i;
     func_0214d168(&data_0217d400->mUnk_2c[2], 0, 0xd);
     for (i = 0; i < 12; i++) {
-        ((u8 *)&data_0217d400->mUnk_2c[2])[i] = data_0217d400->mUnk_2c[0].mUnk_00[i];
+        ((u8 *) &data_0217d400->mUnk_2c[2])[i] = data_0217d400->mUnk_2c[0].mUnk_00[i];
     }
 }
 

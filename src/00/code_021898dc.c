@@ -55,37 +55,36 @@ u32 func_ov000_021898dc(Unk02188ec0 *v1, u32 a) {
 
 u32 func_ov000_02189998(Unk02188ec0 *v1, u32 a) {
     switch (a) {
-    case 3:
-        if (v1->mUnk_d12 != 0 || v1->mUnk_d16 != 0) {
-            if (func_ov000_0218973c(1) != 0) {
-                a = 4;
+        case 3:
+            if (v1->mUnk_d12 != 0 || v1->mUnk_d16 != 0) {
+                if (func_ov000_0218973c(1) != 0) {
+                    a = 4;
+                } else {
+                    a = func_ov000_02189888(v1);
+                }
+            } else if (v1->mUnk_d0b_4 < 1) {
+                a = func_ov000_02189c04(v1);
             } else {
-                a = func_ov000_02189888(v1);
+                a = 6;
             }
-        } else if (v1->mUnk_d0b_4 < 1) {
-            a = func_ov000_02189c04(v1);
-        } else {
-            a = 6;
-        }
-        break;
-    case 4:
-        a = func_ov000_02189888(v1);
-        break;
-    case 5:
-        if (v1->mUnk_d0b_4 < 1) {
-            a = func_ov000_02189c04(v1);
-        } else {
-            a = 6;
-        }
-        break;
+            break;
+        case 4:
+            a = func_ov000_02189888(v1);
+            break;
+        case 5:
+            if (v1->mUnk_d0b_4 < 1) {
+                a = func_ov000_02189c04(v1);
+            } else {
+                a = 6;
+            }
+            break;
     }
     func_ov000_02189d2c(a);
     return a;
 }
 
 u32 func_ov000_02189a28(Unk02188ec0 *v1) {
-    if ((func_0200f5ac() - v1->mUnk_cb0) * 64 / 0x82ea >= 0x96 ||
-        v1->mUnk_300[v1->mUnk_d0f].mUnk_00_lo == 1) {
+    if ((func_0200f5ac() - v1->mUnk_cb0) * 64 / 0x82ea >= 0x96 || v1->mUnk_300[v1->mUnk_d0f].mUnk_00_lo == 1) {
         v1->mUnk_300[v1->mUnk_d0f].mUnk_00_lo = 0;
         v1->mUnk_d0f++;
         if (v1->mUnk_d10 == v1->mUnk_d0f) {
@@ -98,15 +97,13 @@ u32 func_ov000_02189a28(Unk02188ec0 *v1) {
             return func_ov000_02189998(v1, 5);
         }
         v1->mUnk_cb0 = func_0200f5ac();
-        func_ov000_02189868(data_ov000_021b07bc, v1->mUnk_300[v1->mUnk_d0f].mUnk_04, v1->mUnk_d11,
-                            0x300000);
+        func_ov000_02189868(data_ov000_021b07bc, v1->mUnk_300[v1->mUnk_d0f].mUnk_04, v1->mUnk_d11, 0x300000);
     }
     return 5;
 }
 
 u32 func_ov000_02189b28(Unk02188ec0 *v1) {
-    if ((func_0200f5ac() - v1->mUnk_cb0) * 64 / 0x82ea >= 0x96 ||
-        v1->mUnk_300[v1->mUnk_d0f].mUnk_00_lo == 1) {
+    if ((func_0200f5ac() - v1->mUnk_cb0) * 64 / 0x82ea >= 0x96 || v1->mUnk_300[v1->mUnk_d0f].mUnk_00_lo == 1) {
         v1->mUnk_300[v1->mUnk_d0f].mUnk_00_lo = 0;
         v1->mUnk_d0f++;
         if (v1->mUnk_d10 <= v1->mUnk_d0f) {
@@ -114,8 +111,8 @@ u32 func_ov000_02189b28(Unk02188ec0 *v1) {
             return func_ov000_02189998(v1, 4);
         }
         v1->mUnk_cb0 = func_0200f5ac();
-        func_ov000_02189868(data_ov000_021b07bc, v1->mUnk_300[v1->mUnk_d0f].mUnk_04,
-                            v1->mUnk_300[v1->mUnk_d0f].mUnk_02, 0x300000);
+        func_ov000_02189868(data_ov000_021b07bc, v1->mUnk_300[v1->mUnk_d0f].mUnk_04, v1->mUnk_300[v1->mUnk_d0f].mUnk_02,
+                            0x300000);
     }
     return 4;
 }
@@ -153,20 +150,19 @@ void func_ov000_02189d2c(u32 a) {
 
     v1 = (Unk02188ec0 *) func_ov000_02188584(0x10);
     switch (a) {
-    case 3:
-        v1->mUnk_cb0 = func_0200f5ac();
-        func_ov000_02189868(data_ov000_021b07bc, data_ov000_021b07c4, v1->mUnk_d11, 0x200000);
-        break;
-    case 4:
-        v1->mUnk_cb0 = func_0200f5ac();
-        func_ov000_02189868(data_ov000_021b07bc, v1->mUnk_300[v1->mUnk_d0f].mUnk_04,
-                            v1->mUnk_300[v1->mUnk_d0f].mUnk_02, 0x300000);
-        break;
-    case 5:
-        v1->mUnk_cb0 = func_0200f5ac();
-        func_ov000_02189868(data_ov000_021b07bc, v1->mUnk_300[v1->mUnk_d0f].mUnk_04, v1->mUnk_d11,
-                            0x300000);
-        break;
+        case 3:
+            v1->mUnk_cb0 = func_0200f5ac();
+            func_ov000_02189868(data_ov000_021b07bc, data_ov000_021b07c4, v1->mUnk_d11, 0x200000);
+            break;
+        case 4:
+            v1->mUnk_cb0 = func_0200f5ac();
+            func_ov000_02189868(data_ov000_021b07bc, v1->mUnk_300[v1->mUnk_d0f].mUnk_04,
+                                v1->mUnk_300[v1->mUnk_d0f].mUnk_02, 0x300000);
+            break;
+        case 5:
+            v1->mUnk_cb0 = func_0200f5ac();
+            func_ov000_02189868(data_ov000_021b07bc, v1->mUnk_300[v1->mUnk_d0f].mUnk_04, v1->mUnk_d11, 0x300000);
+            break;
     }
 }
 

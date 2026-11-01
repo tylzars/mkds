@@ -98,7 +98,8 @@ s32 func_ov000_021adcec(const u8 *a, u32 b, const u8 *c, s32 d, void *e) {
     s->mUnk_34 = 0;
     g = 0;
     j = func_0200f5ac() >> 16;
-    while (data_ov000_021b6388() != 0 && b != 0 && s->mUnk_08 == 4 && (s32) ((u32) (func_0200f5ac() >> 16) - j) < 0x9f) {
+    while (data_ov000_021b6388() != 0 && b != 0 && s->mUnk_08 == 4 &&
+           (s32) ((u32) (func_0200f5ac() >> 16) - j) < 0x9f) {
         h = s->mUnk_28;
         func_ov000_021ade40(a, b, c, d, s, g);
         k = func_0200f5ac() >> 16;

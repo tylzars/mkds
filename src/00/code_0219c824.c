@@ -37,22 +37,22 @@ s32 func_ov000_0219c8dc(s32 a) {
         return 0;
     }
     switch (a) {
-    case 1:
-        x = 0xb;
-        y = -1;
-        break;
-    case 2:
-        x = 0xb;
-        y = -2;
-        break;
-    case 3:
-        x = 6;
-        y = -10;
-        break;
-    case 4:
-        x = 6;
-        y = -20;
-        break;
+        case 1:
+            x = 0xb;
+            y = -1;
+            break;
+        case 2:
+            x = 0xb;
+            y = -2;
+            break;
+        case 3:
+            x = 6;
+            y = -10;
+            break;
+        case 4:
+            x = 6;
+            y = -20;
+            break;
     }
     func_ov000_0219c990(x, y - 0xee48);
     return a;

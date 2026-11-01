@@ -64,7 +64,8 @@ void func_020938c0(void) {
     o->mUnk_3c = -0x64000;
 }
 
-// non-matching: 75.9%: branch layout and register use differ from the original (the original tests the state with compare-and-branch pairs and keeps the halfword flags update in predicated instructions)
+// non-matching: 75.9%: branch layout and register use differ from the original (the original tests the state with
+// compare-and-branch pairs and keeps the halfword flags update in predicated instructions)
 void func_02093910(void *a, Unk02093910 *p) {
     if ((func_0207a780() & p->mUnk_00.mUnk_74) == 0) {
         p->mUnk_00.mUnk_02 &= ~2;
@@ -162,51 +163,51 @@ void func_02093cf4(void *a, Unk02093cf4 *p) {
     Unk0210b7a8 s;
 
     switch (p->mUnk_a8) {
-    case 0:
-        if (p->mUnk_a0-- > 0) {
-            return;
-        }
-        p->mUnk_ac.mUnk_04 = 0x2000;
-        p->mUnk_ac.mUnk_10 =
-            ((s64) p->mUnk_ac.mUnk_00->mUnk_00[p->mUnk_ac.mUnk_0c].mUnk_34 << 13) >> 12;
-        p->mUnk_a8 = 1;
-        break;
-    case 1:
-        if (func_020d8cc8(&p->mUnk_ac) != 0) {
-            p->mUnk_a0 = 0x2d;
-            p->mUnk_a8 = 2;
-        }
-        func_020d879c(&p->mUnk_ac, &p->mUnk_00.mUnk_04);
-        break;
-    case 2:
-        if (p->mUnk_a0 == 0x2d) {
-            if ((p->mUnk_00.mUnk_78 & 4) == 0) {
-                func_0212c6f0(func_02108e6c(8), 0);
-                s = data_0216676c;
-                s.mUnk_04 = &p->mUnk_00.mUnk_04;
-                s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mUnk_04);
-                func_0210b708(&s, func_02108e6c(8));
+        case 0:
+            if (p->mUnk_a0-- > 0) {
+                return;
             }
-        } else if (p->mUnk_a0 <= 0) {
-            p->mUnk_a0 = 0;
-            p->mUnk_a8 = 3;
-        }
-        p->mUnk_a0--;
-        break;
-    case 3:
-        func_020937c4(&p->mUnk_00.mUnk_04, &p->mUnk_00.mUnk_28.mUnk_18, p->mUnk_00.mUnk_7e);
-        if ((p->mUnk_00.mUnk_02 & 0x12) == 0) {
-            func_0208b7bc(0x4b, &p->mUnk_00.mUnk_04);
-            func_0208b7bc(0x4c, &p->mUnk_00.mUnk_04);
-            func_0208b7bc(0x4d, &p->mUnk_00.mUnk_04);
-        }
-        p->mUnk_a0 = 0x4b;
-        p->mUnk_a8 = 0;
-        break;
+            p->mUnk_ac.mUnk_04 = 0x2000;
+            p->mUnk_ac.mUnk_10 = ((s64) p->mUnk_ac.mUnk_00->mUnk_00[p->mUnk_ac.mUnk_0c].mUnk_34 << 13) >> 12;
+            p->mUnk_a8 = 1;
+            break;
+        case 1:
+            if (func_020d8cc8(&p->mUnk_ac) != 0) {
+                p->mUnk_a0 = 0x2d;
+                p->mUnk_a8 = 2;
+            }
+            func_020d879c(&p->mUnk_ac, &p->mUnk_00.mUnk_04);
+            break;
+        case 2:
+            if (p->mUnk_a0 == 0x2d) {
+                if ((p->mUnk_00.mUnk_78 & 4) == 0) {
+                    func_0212c6f0(func_02108e6c(8), 0);
+                    s = data_0216676c;
+                    s.mUnk_04 = &p->mUnk_00.mUnk_04;
+                    s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mUnk_04);
+                    func_0210b708(&s, func_02108e6c(8));
+                }
+            } else if (p->mUnk_a0 <= 0) {
+                p->mUnk_a0 = 0;
+                p->mUnk_a8 = 3;
+            }
+            p->mUnk_a0--;
+            break;
+        case 3:
+            func_020937c4(&p->mUnk_00.mUnk_04, &p->mUnk_00.mUnk_28.mUnk_18, p->mUnk_00.mUnk_7e);
+            if ((p->mUnk_00.mUnk_02 & 0x12) == 0) {
+                func_0208b7bc(0x4b, &p->mUnk_00.mUnk_04);
+                func_0208b7bc(0x4c, &p->mUnk_00.mUnk_04);
+                func_0208b7bc(0x4d, &p->mUnk_00.mUnk_04);
+            }
+            p->mUnk_a0 = 0x4b;
+            p->mUnk_a8 = 0;
+            break;
     }
 }
 
-// non-matching: 14.9%: the original enters the loop with a branch to the test and reads the list element inside the loop condition (return when it is zero); ours has a different loop shape
+// non-matching: 14.9%: the original enters the loop with a branch to the test and reads the list element inside the
+// loop condition (return when it is zero); ours has a different loop shape
 void func_02093eac(Unk020e6fd4 *p) {
     s32 i;
     Unk02093cf4 *e;

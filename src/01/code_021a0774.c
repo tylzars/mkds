@@ -30,10 +30,12 @@ void func_ov001_021a0b3c(void) {
         if (i == 8) {
             if (data_ov001_021ca414->mUnk_a0 != 0) {
                 data_ov001_021ca414->mUnk_44[data_ov001_021a6e7c[i][1]].mUnk_00 = 1;
-                func_ov001_021a6430((s32) ((s16) (func_02029608() - 1)), 1, (void *) data_ov001_021ca414->mUnk_0c, (void *) data_ov001_021ca414->mUnk_10, (u32) (0x2d), (u16) (8), 1);
+                func_ov001_021a6430((s32) ((s16) (func_02029608() - 1)), 1, (void *) data_ov001_021ca414->mUnk_0c,
+                                    (void *) data_ov001_021ca414->mUnk_10, (u32) (0x2d), (u16) (8), 1);
             } else {
                 data_ov001_021ca414->mUnk_44[data_ov001_021a6e7c[i][4]].mUnk_00 = 1;
-                func_ov001_021a6430((s32) ((s16) (func_02029608() - 1)), 0, (void *) data_ov001_021ca414->mUnk_0c, (void *) data_ov001_021ca414->mUnk_10, (u32) (0x2d), (u16) (8), 1);
+                func_ov001_021a6430((s32) ((s16) (func_02029608() - 1)), 0, (void *) data_ov001_021ca414->mUnk_0c,
+                                    (void *) data_ov001_021ca414->mUnk_10, (u32) (0x2d), (u16) (8), 1);
             }
         } else {
             data_ov001_021ca414->mUnk_44[data_ov001_021a6e7c[i][1]].mUnk_00 = 1;
@@ -122,8 +124,8 @@ void func_ov001_021a09a4(void) {
             func_0214cfe4(zero, data_ov001_021ca414->mUnk_20, 0x20);
             pal = data_ov001_021ca414->mUnk_1c->mUnk_0c;
             for (k = 0; k < 16; k++) {
-                col0 = ((u16 *)(pal + c0 * 32))[k];
-                col1 = ((u16 *)(pal + c1 * 32))[k];
+                col0 = ((u16 *) (pal + c0 * 32))[k];
+                col1 = ((u16 *) (pal + c1 * 32))[k];
                 ra = col0 & 0x1f;
                 ga = (col0 & 0x3e0) >> 5;
                 ba = (col0 & 0x7c00) >> 10;
@@ -214,7 +216,9 @@ void func_ov001_021a0774(void) {
     }
     d = data_ov001_021ca414;
     func_0212426c(0, 0, data_ov001_021ca414->mUnk_08,
-                  func_020b3f7c(d->mUnk_58,
-                                d->mUnk_50[func_0203b680((u32) (data_ov001_021ca414->mUnk_4c), (u32) (func_02029608()), (u32) (d->mUnk_9e + 1)) - 1].mUnk_0c),
+                  func_020b3f7c(d->mUnk_58, d->mUnk_50[func_0203b680((u32) (data_ov001_021ca414->mUnk_4c),
+                                                                     (u32) (func_02029608()), (u32) (d->mUnk_9e + 1)) -
+                                                       1]
+                                                .mUnk_0c),
                   d->mUnk_04, d->mUnk_40);
 }

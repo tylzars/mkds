@@ -4,8 +4,7 @@ void func_020b681c(UnkPair020b502c *param_1, UnkPair020b502c *param_2) {
     int v1;
     v1 = func_020b4e5c();
     if (v1 == 0xe) {
-        func_020b6b18(param_1, param_2, (int) 0xfffff434u, (int) 0xfffffff6, (short) 0x00000ba4u,
-                      (short) 0x00001766u);
+        func_020b6b18(param_1, param_2, (int) 0xfffff434u, (int) 0xfffffff6, (short) 0x00000ba4u, (short) 0x00001766u);
         return;
     }
     if (v1 == 0x12) {
@@ -17,23 +16,19 @@ void func_020b681c(UnkPair020b502c *param_1, UnkPair020b502c *param_2) {
         return;
     }
     if (v1 == 0x1c) {
-        func_020b6b18(param_1, param_2, (int) 0xffffff42, (int) 0xfffff132u, (short) 0x000018a6u,
-                      (short) 0x00000a96u);
+        func_020b6b18(param_1, param_2, (int) 0xffffff42, (int) 0xfffff132u, (short) 0x000018a6u, (short) 0x00000a96u);
         return;
     }
     if (v1 == 0x1e) {
-        func_020b6b18(param_1, param_2, (int) 0xfffff7c2u, (int) 0xffffffec, (short) 0x00000f32u,
-                      (short) 0x0000175cu);
+        func_020b6b18(param_1, param_2, (int) 0xfffff7c2u, (int) 0xffffffec, (short) 0x00000f32u, (short) 0x0000175cu);
         return;
     }
     if (v1 == 0x21) {
-        func_020b6b18(param_1, param_2, (int) 0xfffff443u, (int) 0xffffffe2, (short) 0x00000bb3u,
-                      (short) 0x00001752u);
+        func_020b6b18(param_1, param_2, (int) 0xfffff443u, (int) 0xffffffe2, (short) 0x00000bb3u, (short) 0x00001752u);
         return;
     }
     if (v1 == 0x26) {
-        func_020b6b18(param_1, param_2, (int) 0xfffffff6, (int) 0xfffff434u, (short) 0x00001766u,
-                      (short) 0x00000ba4u);
+        func_020b6b18(param_1, param_2, (int) 0xfffffff6, (int) 0xfffff434u, (short) 0x00001766u, (short) 0x00000ba4u);
         return;
     }
     func_020b6a98(param_1, param_2);

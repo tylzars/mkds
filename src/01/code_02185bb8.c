@@ -67,14 +67,13 @@ void func_ov001_02185d1c(void *param_1) {
     func_020849a0(data_ov001_021a9b9c->mUnk_10, 0x294a);
 }
 
-void func_ov001_02185d18(void) {
-}
+void func_ov001_02185d18(void) {}
 
 void func_ov001_02185ca0(void *param_1, Unk02185bb8 *param_2) {
     s32 buf;
 
     buf = 0x1e;
-    func_01ff9048((u32) (0x14), (void *) ((u32)&buf), 1);
+    func_01ff9048((u32) (0x14), (void *) ((u32) &buf), 1);
     param_2->mUnk_000.mUnk_28.mUnk_24.x = param_2->mUnk_000.mUnk_04.x >> 4;
     param_2->mUnk_000.mUnk_28.mUnk_24.y = param_2->mUnk_000.mUnk_04.y >> 4;
     param_2->mUnk_000.mUnk_28.mUnk_24.z = param_2->mUnk_000.mUnk_04.z >> 4;
@@ -82,7 +81,7 @@ void func_ov001_02185ca0(void *param_1, Unk02185bb8 *param_2) {
     func_01ff9048((u32) (0x1b), (void *) ((u32) &param_2->mUnk_000.mUnk_1c), 3);
     func_0209b688((void *) (data_ov001_021a9b9c), (u16) param_2->mUnk_000.mUnk_9c->mUnk_28);
     func_0209b734(data_ov001_021a9b9c, param_2->mUnk_0a8);
-    func_0209bb2c((void *) ((u32)param_1), (void *) ((int)data_ov001_021a9b9c), (void *) ((int)param_2));
+    func_0209bb2c((void *) ((u32) param_1), (void *) ((int) data_ov001_021a9b9c), (void *) ((int) param_2));
 }
 
 void func_ov001_02185c4c(Unk02185c4c *param_1) {
@@ -106,20 +105,20 @@ void func_ov001_02185bb8(void *param_1, Unk02185bb8 *param_2) {
     s32 pos;
 
     switch (param_2->mUnk_0ac) {
-    case 0:
-        pos = data_021759c0->mUnk_08 == 4 ? func_ov001_02181820() : 0;
-        if (pos >= param_2->mUnk_000.mUnk_9c->mUnk_28 - 1) {
-            param_2->mUnk_000.mUnk_02 &= ~1;
-            param_2->mUnk_0ac = 1;
-        }
-        break;
-    case 2:
-        pos = func_0209b710(data_ov001_021a9b9c);
-        param_2->mUnk_0a8++;
-        if (param_2->mUnk_0a8 >= pos - 1) {
-            param_2->mUnk_0a8 = func_0209b710(data_ov001_021a9b9c) - 1;
-            param_2->mUnk_0ac = 1;
-        }
-        break;
+        case 0:
+            pos = data_021759c0->mUnk_08 == 4 ? func_ov001_02181820() : 0;
+            if (pos >= param_2->mUnk_000.mUnk_9c->mUnk_28 - 1) {
+                param_2->mUnk_000.mUnk_02 &= ~1;
+                param_2->mUnk_0ac = 1;
+            }
+            break;
+        case 2:
+            pos = func_0209b710(data_ov001_021a9b9c);
+            param_2->mUnk_0a8++;
+            if (param_2->mUnk_0a8 >= pos - 1) {
+                param_2->mUnk_0a8 = func_0209b710(data_ov001_021a9b9c) - 1;
+                param_2->mUnk_0ac = 1;
+            }
+            break;
     }
 }

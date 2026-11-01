@@ -46,8 +46,7 @@ void func_ov003_021ca64c(void) {
 void func_ov003_021ca5b0(void) {
     int v1;
     v1 = func_ov003_021d1f70(1);
-    if (((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) &&
-        (v1 = func_ov003_021bf2f0(), v1 != 0)) {
+    if (((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) && (v1 = func_ov003_021bf2f0(), v1 != 0)) {
         do {
             v1 = func_ov003_021cd118();
         } while (v1 == 0);

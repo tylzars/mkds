@@ -1,6 +1,8 @@
 #include "03/code_021bcadc.h"
 
-// non-matching: stack offsets of the spilled locals differ (frame 0x1ac against 0x1b4), the 64-bit product is computed before the loop guard instead of after it, and the 8-byte copy loops end in bgt/bhi instead of bne; size 0x1fc against 0x1f4
+// non-matching: stack offsets of the spilled locals differ (frame 0x1ac against 0x1b4), the 64-bit product is computed
+// before the loop guard instead of after it, and the 8-byte copy loops end in bgt/bhi instead of bne; size 0x1fc
+// against 0x1f4
 int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
     u8 a[16];
     u64 b;
@@ -32,7 +34,10 @@ int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
     for (h = 5; h >= 0; h--) {
         for (i = f; i > 0; i--) {
             t = (s64) f * h + i;
-            b = ((((u64) t & 0xff00000000000000ULL) >> 56) | (((u64) t & 0x00ff000000000000ULL) >> 40) | (((u64) t & 0x0000ff0000000000ULL) >> 24) | (((u64) t & 0x000000ff00000000ULL) >> 8) | (((u64) t & 0x00000000ff000000ULL) << 8) | (((u64) t & 0x0000000000ff0000ULL) << 24) | (((u64) t & 0x000000000000ff00ULL) << 40) | (((u64) t & 0x00000000000000ffULL) << 56));
+            b = ((((u64) t & 0xff00000000000000ULL) >> 56) | (((u64) t & 0x00ff000000000000ULL) >> 40) |
+                 (((u64) t & 0x0000ff0000000000ULL) >> 24) | (((u64) t & 0x000000ff00000000ULL) >> 8) |
+                 (((u64) t & 0x00000000ff000000ULL) << 8) | (((u64) t & 0x0000000000ff0000ULL) << 24) |
+                 (((u64) t & 0x000000000000ff00ULL) << 40) | (((u64) t & 0x00000000000000ffULL) << 56));
             func_ov003_021bca90(a, (u8 *) &b, a);
             p = param_1 + (i - 1) * 8;
             q = p;
@@ -59,7 +64,8 @@ int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
     return e;
 }
 
-// non-matching: 8-byte copy loops end in bgt instead of bne (counter in a different register), stack offsets of the locals differ (frame 0x1cc against 0x1d4); size 0x21c against 0x20c
+// non-matching: 8-byte copy loops end in bgt instead of bne (counter in a different register), stack offsets of the
+// locals differ (frame 0x1cc against 0x1d4); size 0x21c against 0x20c
 int func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
     u8 a[16];
     u64 b;
@@ -98,7 +104,10 @@ int func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
             } while (--k != 0);
             func_ov003_021bc1c4(c, g, a, a);
             t = (s64) f * h + i;
-            b = ((((u64) t & 0xff00000000000000ULL) >> 56) | (((u64) t & 0x00ff000000000000ULL) >> 40) | (((u64) t & 0x0000ff0000000000ULL) >> 24) | (((u64) t & 0x000000ff00000000ULL) >> 8) | (((u64) t & 0x00000000ff000000ULL) << 8) | (((u64) t & 0x0000000000ff0000ULL) << 24) | (((u64) t & 0x000000000000ff00ULL) << 40) | (((u64) t & 0x00000000000000ffULL) << 56));
+            b = ((((u64) t & 0xff00000000000000ULL) >> 56) | (((u64) t & 0x00ff000000000000ULL) >> 40) |
+                 (((u64) t & 0x0000ff0000000000ULL) >> 24) | (((u64) t & 0x000000ff00000000ULL) >> 8) |
+                 (((u64) t & 0x00000000ff000000ULL) << 8) | (((u64) t & 0x0000000000ff0000ULL) << 24) |
+                 (((u64) t & 0x000000000000ff00ULL) << 40) | (((u64) t & 0x00000000000000ffULL) << 56));
             func_ov003_021bca90(a, (u8 *) &b, a);
             r = a + 8;
             k = 8;

@@ -38,7 +38,9 @@ typedef struct Unk02023d84 {
     /* 24 */ u32 mUnk_24;
 } Unk02023d84;
 
-void func_02023510(Unk02023374 *a, void *b, s32 c, s32 d, u32 e, void (*f)(Unk02023374 *, Unk02022aa8 *, s32, s32, u32, Unk02023374_24 *), void (*g)(Unk02023374 *, u32), void (*h)(Unk02023374 *, u32, s32, s32, s32, s32), u32 i);
+void func_02023510(Unk02023374 *a, void *b, s32 c, s32 d, u32 e,
+                   void (*f)(Unk02023374 *, Unk02022aa8 *, s32, s32, u32, Unk02023374_24 *),
+                   void (*g)(Unk02023374 *, u32), void (*h)(Unk02023374 *, u32, s32, s32, s32, s32), u32 i);
 void func_02023548(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f);
 void func_02023764(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f);
 void func_02023944(Unk02023374 *a, u32 b);

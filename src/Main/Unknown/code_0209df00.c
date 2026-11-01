@@ -121,9 +121,9 @@ void func_0209df84(void *a, Unk0209df84 *b) {
     func_020d275c(&b->mUnk_00, 0x160);
 }
 
-// non-matching: same size; in each random-value step the original sets the zero high word (mov r1, #0 and lsl r1, r1, #16)
-// before the multiply and ends with orr r1, r1, r0, lsr #16, here mov r1, #0 comes after it and ends with lsr r0, r0, #16;
-// orr r0, r0, r1, lsl #16; the registers of the multiply (r5/r6, r2/r3) differ with it.
+// non-matching: same size; in each random-value step the original sets the zero high word (mov r1, #0 and lsl r1, r1,
+// #16) before the multiply and ends with orr r1, r1, r0, lsr #16, here mov r1, #0 comes after it and ends with lsr r0,
+// r0, #16; orr r0, r0, r1, lsl #16; the registers of the multiply (r5/r6, r2/r3) differ with it.
 void func_0209e310(Unk020e6fd4 *p) {
     s32 i;
     s32 j;
@@ -257,8 +257,9 @@ void func_0209e950(Unk0209e950 *a) {
     a->mUnk_1c = 1;
 }
 
-// non-matching: same size; the original loads the y then x words of the element (0xc8, 0xc4) and subtracts y first, here
-// 0xc4 is loaded and subtracted first (registers r6/r8/r9 and the order of the first three instructions in the loop differ).
+// non-matching: same size; the original loads the y then x words of the element (0xc8, 0xc4) and subtracts y first,
+// here 0xc4 is loaded and subtracted first (registers r6/r8/r9 and the order of the first three instructions in the
+// loop differ).
 s32 func_0209e988(Unk0209df84 *a, Vec3 *b, s32 c) {
     s32 i;
 

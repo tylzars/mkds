@@ -69,19 +69,19 @@ void func_ov000_0219b27c(Unk0219887c *a, u32 b) {
         return;
     }
     switch (b) {
-    case 0:
-    case 1:
-        c = 0;
-        break;
-    case 2:
-    case 3:
-        c = 6;
-        d = -0x1db0;
-        break;
-    case 4:
-        c = 0xb;
-        d = -0x1db1;
-        break;
+        case 0:
+        case 1:
+            c = 0;
+            break;
+        case 2:
+        case 3:
+            c = 6;
+            d = -0x1db0;
+            break;
+        case 4:
+            c = 0xb;
+            d = -0x1db1;
+            break;
     }
     if (c == 0) {
         g = func_ov000_0219887c(a);

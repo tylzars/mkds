@@ -7,7 +7,8 @@
 
 #pragma thumb on
 
-// non-matching: 0x78 bytes, original 0x74; 4 lines differ; first: original `ldr r1, [pc, #96]`, ours `ldr r0, [pc, // #96]`
+// non-matching: 0x78 bytes, original 0x74; 4 lines differ; first: original `ldr r1, [pc, #96]`, ours `ldr r0, [pc, //
+// #96]`
 void func_02007ec4(Unk02007ec4 *a, u16 b, u16 c, u32 d, u32 e) {
     u32 v1;
     u32 v2;
@@ -36,7 +37,8 @@ u32 func_02007f38(u32 a, u32 b, u32 c) {
     switch (data_02152bc0[a]) {
         case 0:
         case 2:
-// non-matching: 0x84 bytes, original 0x7c; 43 lines differ; first: original `ldr r0, [pc, #96]`, ours `ldr r0, [pc, // #104]`
+// non-matching: 0x84 bytes, original 0x7c; 43 lines differ; first: original `ldr r0, [pc, #96]`, ours `ldr
+// r0, [pc, // #104]`
             return func_02007ff0(a, b, c);
         case 1:
             if (b >= 0x02000000 && b < 0x023fe800) {
@@ -142,9 +144,7 @@ u32 func_020080e8(Unk0200806c_b *a, Unk020082b4 *b) {
     for (i = 0; i < 3; i++) {
         v4 = &b->mUnk_0c[i];
         v2 = v4->mUnk_08;
-        v3 = a->mUnk_0c[i]
-             + (u16) ((v2 + data_0216fdac->mUnk_1318 - 1)
-                      / data_0216fdac->mUnk_1318);
+        v3 = a->mUnk_0c[i] + (u16) ((v2 + data_0216fdac->mUnk_1318 - 1) / data_0216fdac->mUnk_1318);
         if (func_02007f38(i, v4->mUnk_04, v2) == 0) {
             return 0;
         }
@@ -278,8 +278,7 @@ u32 func_02008310(void *a, Unk02008188 *b) {
         func_0200fcb4(v1);
         return 0;
     }
-    func_02009828((Unk0200b610 *) (data_0216fdac->mUnk_1788 + 0xe4 + v3), a,
-                  (const u8 *) &data_0216fdac->mUnk_1300);
+    func_02009828((Unk0200b610 *) (data_0216fdac->mUnk_1788 + 0xe4 + v3), a, (const u8 *) &data_0216fdac->mUnk_1300);
     ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d21 = v2;
     func_020096f4((Unk0200b610 *) (data_0216fdac->mUnk_1788 + 0xe4 + v3));
     ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d1f = data_0216fc30++;

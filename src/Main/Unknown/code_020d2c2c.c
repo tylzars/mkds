@@ -8,7 +8,9 @@
 
 #pragma thumb on
 
-// non-matching: the compiled code keeps the stack-passed fifth argument in r7 and the loop counter in memory, the original keeps the counter in r6 and the byte offset in r7; the two zero vectors are built the same way; one word longer
+// non-matching: the compiled code keeps the stack-passed fifth argument in r7 and the loop counter in memory, the
+// original keeps the counter in r6 and the byte offset in r7; the two zero vectors are built the same way; one word
+// longer
 s32 func_020d2c2c(Vec3 *param_1, Vec3 *param_2, s32 param_3, s16 param_4, s32 param_5, Vec3 *param_6) {
     s32 a;
     s32 i;

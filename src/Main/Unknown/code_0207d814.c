@@ -17,7 +17,8 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217a000.h"
 
-// non-matching: extra callee-saved r5 (b kept in r5, value temp in r4, zero in ip instead of lr, push {r4, r5, lr} + sub sp, #4), size 0xe0 against 0xd0
+// non-matching: extra callee-saved r5 (b kept in r5, value temp in r4, zero in ip instead of lr, push {r4, r5, lr} +
+// sub sp, #4), size 0xe0 against 0xd0
 void func_0207d814(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     a->mUnk_00 = b->mUnk_00->mUnk_2cc->mUnk_10;
     a->mUnk_04 = a->mUnk_00;
@@ -32,7 +33,9 @@ void func_0207d814(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         return;
     }
     if (data_021759c0->mUnk_00c == 6) {
-        b->mUnk_00->mUnk_2a8 = (s32) (((s64) b->mUnk_00->mUnk_2cc->mUnk_10 * func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00) + 0x800) >> 12);
+        b->mUnk_00->mUnk_2a8 =
+            (s32) (((s64) b->mUnk_00->mUnk_2cc->mUnk_10 * func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00) + 0x800) >>
+                   12);
         b->mUnk_00->mUnk_cc = b->mUnk_00->mUnk_2a8;
         b->mUnk_00->mUnk_d0 = b->mUnk_00->mUnk_cc;
         return;
@@ -64,17 +67,18 @@ u16 func_0207d8e4(s32 a) {
         i = (u16) (((r->mUnk_00 >> 32) * 3) >> 32);
     }
     switch (data_021759c0->mUnk_014) {
-    case 1:
-        p = &v[0];
-        break;
-    case 2:
-        p = &v[3];
-        break;
+        case 1:
+            p = &v[0];
+            break;
+        case 2:
+            p = &v[3];
+            break;
     }
     return p[i];
 }
 
-// non-matching: callee-saved registers assigned in another order (original: m r4, n r5, b r6, a r7, loop r8, r9, k r10, c r11), the entry pointer in the loop is read at 0x104/0x108 instead of through add #0xe8; size 0x490 against 0x494
+// non-matching: callee-saved registers assigned in another order (original: m r4, n r5, b r6, a r7, loop r8, r9, k r10,
+// c r11), the entry pointer in the loop is read at 0x104/0x108 instead of through add #0xe8; size 0x490 against 0x494
 void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
     u16 i;
     s32 f;

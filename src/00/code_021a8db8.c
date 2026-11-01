@@ -15,18 +15,18 @@ s32 func_ov000_021a8dd8(Unk021a6fa8 *a, s32 b, u32 c) {
         return -1;
     }
     switch (b) {
-    case 3:
-        if (a->mUnk_72 == 1) {
-            return 0;
-        }
-        return 4;
-    case 4:
-        if (c & 4) {
-            a->mUnk_72 = 0;
-        } else {
-            a->mUnk_72 = 1;
-        }
-        break;
+        case 3:
+            if (a->mUnk_72 == 1) {
+                return 0;
+            }
+            return 4;
+        case 4:
+            if (c & 4) {
+                a->mUnk_72 = 0;
+            } else {
+                a->mUnk_72 = 1;
+            }
+            break;
     }
     return 0;
 }

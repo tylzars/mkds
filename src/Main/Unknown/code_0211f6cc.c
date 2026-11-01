@@ -77,12 +77,12 @@ u32 func_0211fda8(void) {
 
 s32 func_0211fd68(void) {
     switch (data_0217d384->mUnk_1f20.mUnk_0c) {
-    case 5:
-        return 1;
-    case 7:
-        return -1;
-    default:
-        return 0;
+        case 5:
+            return 1;
+        case 7:
+            return -1;
+        default:
+            return 0;
     }
 }
 
@@ -132,46 +132,46 @@ void func_0211fa70(void) {
         return;
     }
     switch (func_ov000_021a3810()) {
-    case 4:
-        func_ov000_0219bea8(0, 0, func_0211f864, 0);
-        data_0217d384->mUnk_1f20.mUnk_0c = 2;
-        break;
-    case 7:
-        data_0217d384->mUnk_1f44 = func_ov000_0219c3cc(&data_0217d384->mUnk_1f48);
-        func_ov000_0219c0f4();
-        func_ov000_021a37dc();
-        data_0217d384->mUnk_1f20.mUnk_0c = 7;
-        break;
-    case 8:
-        break;
+        case 4:
+            func_ov000_0219bea8(0, 0, func_0211f864, 0);
+            data_0217d384->mUnk_1f20.mUnk_0c = 2;
+            break;
+        case 7:
+            data_0217d384->mUnk_1f44 = func_ov000_0219c3cc(&data_0217d384->mUnk_1f48);
+            func_ov000_0219c0f4();
+            func_ov000_021a37dc();
+            data_0217d384->mUnk_1f20.mUnk_0c = 7;
+            break;
+        case 8:
+            break;
     }
 }
 
 u32 func_0211f91c(void) {
     switch (data_0217d384->mUnk_1f20.mUnk_0c) {
-    case 1:
-        func_0211fa70();
-        break;
-    case 3:
-        if (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1) {
+        case 1:
+            func_0211fa70();
             break;
-        }
-        func_02152324(&data_0217d384->mUnk_19b0);
-        if (func_ov000_0219bdec(0, func_0211f77c, 0, func_0211f6cc, 0, func_0211f6e8, 0) == 0) {
+        case 3:
+            if (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1) {
+                break;
+            }
+            func_02152324(&data_0217d384->mUnk_19b0);
+            if (func_ov000_0219bdec(0, func_0211f77c, 0, func_0211f6cc, 0, func_0211f6e8, 0) == 0) {
+                data_0217d384->mUnk_1f20.mUnk_0c = 7;
+            }
+            func_ov000_0219d934((void *) func_0211f6b0, 0);
+            data_0217d384->mUnk_1f20.mUnk_0c = 4;
+            break;
+        case 6:
+            func_ov000_0219c0f4();
+            func_ov000_021a37dc();
             data_0217d384->mUnk_1f20.mUnk_0c = 7;
-        }
-        func_ov000_0219d934((void *) func_0211f6b0, 0);
-        data_0217d384->mUnk_1f20.mUnk_0c = 4;
-        break;
-    case 6:
-        func_ov000_0219c0f4();
-        func_ov000_021a37dc();
-        data_0217d384->mUnk_1f20.mUnk_0c = 7;
-        break;
-    case 5:
-        return 1;
-    case 7:
-        break;
+            break;
+        case 5:
+            return 1;
+        case 7:
+            break;
     }
     return 0;
 }

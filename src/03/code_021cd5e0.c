@@ -14,22 +14,22 @@ void func_ov003_021cd5e0(const Unk021cd5e0_arg *a) {
     func_0214d168(p, 0, 0xef);
     func_0214d1fc(a, p->mUnk_00.mUnk_40, 0x20);
     switch (a->mUnk_20) {
-    case 1:
-        p->mUnk_00.mUnk_e6_0 = 1;
-        n = 5;
-        break;
-    case 2:
-        p->mUnk_00.mUnk_e6_0 = 2;
-        n = 0xd;
-        break;
-    case 3:
-        p->mUnk_00.mUnk_e6_0 = 3;
-        n = 0x10;
-        break;
-    default:
-        p->mUnk_00.mUnk_e6_0 = 0;
-        n = 0;
-        break;
+        case 1:
+            p->mUnk_00.mUnk_e6_0 = 1;
+            n = 5;
+            break;
+        case 2:
+            p->mUnk_00.mUnk_e6_0 = 2;
+            n = 0xd;
+            break;
+        case 3:
+            p->mUnk_00.mUnk_e6_0 = 3;
+            n = 0x10;
+            break;
+        default:
+            p->mUnk_00.mUnk_e6_0 = 0;
+            n = 0;
+            break;
     }
     p->mUnk_00.mUnk_e6_2 = 0;
     i = 0;
@@ -78,8 +78,8 @@ void func_ov003_021cd790(s32 a) {
     } else {
         data_ov003_021da270->mUnk_400.mUnk_f5 = 1;
     }
-    if (func_02134d30(q->mUnk_c8, data_ov003_021d6684, 4) != 0
-        || func_02134d30(q->mUnk_c8 + 4, data_ov003_021d6684, 4) != 0) {
+    if (func_02134d30(q->mUnk_c8, data_ov003_021d6684, 4) != 0 ||
+        func_02134d30(q->mUnk_c8 + 4, data_ov003_021d6684, 4) != 0) {
         data_ov003_021da270->mUnk_400.mUnk_f6 = 0;
     } else {
         data_ov003_021da270->mUnk_400.mUnk_f6 = 1;

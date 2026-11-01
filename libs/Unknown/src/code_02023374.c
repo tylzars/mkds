@@ -164,14 +164,14 @@ next_sizes:
     add sp, sp, #0x4
     ldmfd sp!, {r4, r5, r6, r7, r8, r9, r10, r11, lr}
     bx lr
-}
-// clang-format on
+}// clang-format on
 
 u32 func_02024168(const u8 *a) {
     return data_02153118[a[1]][a[0]];
 }
 
-// non-matching: 57.6%, the 4-byte format matches in shape but the 8-byte format builds its 64-bit mask with other shifts and registers
+// non-matching: 57.6%, the 4-byte format matches in shape but the 8-byte format builds its 64-bit mask with other
+// shifts and registers
 void func_02024000(u8 *a, s32 b, s32 c, s32 d, s32 e, u32 f, s32 g) {
     u32 *p;
     u32 *q;
@@ -594,7 +594,8 @@ void func_02023764(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
     }
 }
 
-// non-matching: 73.1%, same shape as func_02023764, 8 bytes more stack; spill order and registers of the loop locals differ
+// non-matching: 73.1%, same shape as func_02023764, 8 bytes more stack; spill order and registers of the loop locals
+// differ
 void func_02023548(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
     s32 yy;
     s32 yh;
@@ -673,7 +674,9 @@ void func_02023548(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
     }
 }
 
-void func_02023510(Unk02023374 *a, void *b, s32 c, s32 d, u32 e, void (*f)(Unk02023374 *, Unk02022aa8 *, s32, s32, u32, Unk02023374_24 *), void (*g)(Unk02023374 *, u32), void (*h)(Unk02023374 *, u32, s32, s32, s32, s32), u32 i) {
+void func_02023510(Unk02023374 *a, void *b, s32 c, s32 d, u32 e,
+                   void (*f)(Unk02023374 *, Unk02022aa8 *, s32, s32, u32, Unk02023374_24 *),
+                   void (*g)(Unk02023374 *, u32), void (*h)(Unk02023374 *, u32, s32, s32, s32, s32), u32 i) {
     a->mUnk_04 = c;
     a->mUnk_08 = d;
     a->mUnk_0c = e;

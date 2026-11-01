@@ -39,7 +39,8 @@ void func_020c1060(void) {
         for (i = 0; (u32) i < (u32) data_021759c0->mUnk_3d0; i++) {
             if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
                 v = x0;
-                if ((u32) data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 <= 3 && ((1 << data_021759c0->mUnk_68[i].mUnk_08.mUnk_00) & 0xd)) {
+                if ((u32) data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 <= 3 &&
+                    ((1 << data_021759c0->mUnk_68[i].mUnk_08.mUnk_00) & 0xd)) {
                     v = 1;
                 }
                 c = v != 0 ? 1 : x1;
@@ -49,7 +50,8 @@ void func_020c1060(void) {
                 a[i] = w * 16 + c * 8 + 8 - func_0203c8dc(i);
             } else {
                 v = x2;
-                if ((u32) data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 <= 3 && ((1 << data_021759c0->mUnk_68[i].mUnk_08.mUnk_00) & 0xd)) {
+                if ((u32) data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 <= 3 &&
+                    ((1 << data_021759c0->mUnk_68[i].mUnk_08.mUnk_00) & 0xd)) {
                     v = 1;
                 }
                 c = v != 0 ? 1 : x3;

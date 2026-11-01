@@ -6,7 +6,8 @@
 #include "code_0200dc3c.h"
 #include "Main/Unknown/code_02000800.h"
 
-// non-matching: loop guard at +0x2c is `cmp r6, r0` + `bcs` (ours) against `cmp r0, #0` + `bls` (original); size and all other words equal
+// non-matching: loop guard at +0x2c is `cmp r6, r0` + `bcs` (ours) against `cmp r0, #0` + `bls` (original); size and
+// all other words equal
 Unk021b5f50_2270_0c *func_ov000_021a669c(void) {
     Unk021b5f50 *g;
     Unk021b5f50_2270 *l;

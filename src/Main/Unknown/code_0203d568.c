@@ -57,7 +57,9 @@ static inline s32 func_0203d568_c_inline(void) {
     return r;
 }
 
-// non-matching: in both inlined tests of the object at data_0217aa00 the original keeps the result flag in r2 and the loaded word in r1 (mov r2, #0 / moveq r1, r2 / ldrne r1 / movne r2, #1), here the two registers are swapped; same size (0x2e0)
+// non-matching: in both inlined tests of the object at data_0217aa00 the original keeps the result flag in r2 and the
+// loaded word in r1 (mov r2, #0 / moveq r1, r2 / ldrne r1 / movne r2, #1), here the two registers are swapped; same
+// size (0x2e0)
 void func_0203d568(void) {
     u16 i;
     enum { K0 } k;
@@ -98,7 +100,8 @@ void func_0203d848(void *a) {
     func_020401ac();
 }
 
-// non-matching: the original forms the entry pointer (add ip, r0, #0x1c) after the loop guard, among the loads of data_021759c0; here it is formed first, before the store of zero (same size, 0xd8)
+// non-matching: the original forms the entry pointer (add ip, r0, #0x1c) after the loop guard, among the loads of
+// data_021759c0; here it is formed first, before the store of zero (same size, 0xd8)
 void func_0203d8fc(Unk0217561c_4c8 *a) {
     s32 i;
     Unk0217561c_4c8_1c *e;
@@ -124,7 +127,9 @@ void func_0203d8fc(Unk0217561c_4c8 *a) {
     }
 }
 
-// non-matching: the original keeps the unit count (data_021759c0->mUnk_3d0) in lr across the whole function; here it is spilled to [sp] and every stack offset after it moves by 4, the registers of the two bounds of the sort loop differ (0x5b0 bytes against 0x5a0)
+// non-matching: the original keeps the unit count (data_021759c0->mUnk_3d0) in lr across the whole function; here it is
+// spilled to [sp] and every stack offset after it moves by 4, the registers of the two bounds of the sort loop differ
+// (0x5b0 bytes against 0x5a0)
 void func_0203d9d4(void) {
     Unk02040d24 t;
     s32 a[8];
@@ -330,7 +335,8 @@ static inline s32 func_0203df74_c_inline(Unk02175620_4c *r, u16 c, s32 v) {
     return (s32) (((s64) x * data_0217561c->mUnk_4e4 + 0x800) >> 12);
 }
 
-// non-matching: the original keeps the halfword at 0x32 of the entry in r6 and the one at 0x38 in r5, here they are in r5 and r6, and the registers that follow from it differ (sizes match, 0x3fc)
+// non-matching: the original keeps the halfword at 0x32 of the entry in r6 and the one at 0x38 in r5, here they are in
+// r5 and r6, and the registers that follow from it differ (sizes match, 0x3fc)
 void func_0203df74(Vec3 *a, Unk0217561c_14 *b) {
     s32 v;
     u16 d;

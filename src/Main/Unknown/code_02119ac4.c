@@ -26,7 +26,7 @@ void func_02119d78(void) {
         if (data_0217d364->mUnk_58 == 7) {
             data_0217d364->mUnk_5c = data_0217d364->mUnk_50;
             func_02119e88();
-        } else if (*(vu16 *)0x027ffc40 != 2) {
+        } else if (*(vu16 *) 0x027ffc40 != 2) {
             w = data_0217d364->mUnk_04->mUnk_06;
             r = func_02116d10(7 - data_0217d364->mUnk_58, 1);
             data_0217d364->mUnk_1c[w].mUnk_06 = r;
@@ -46,7 +46,7 @@ void func_02119c20(void) {
 
     data_0217d364->mUnk_38 = 0;
     data_0217d364->mUnk_3c = 0;
-    if (*(vu16 *)0x027ffc40 != 2) {
+    if (*(vu16 *) 0x027ffc40 != 2) {
         if (func_020cccb4() != 0x1a) {
             w = data_0217d364->mUnk_04->mUnk_06;
             data_0217d364->mUnk_44 = -0xc0;
@@ -104,7 +104,7 @@ void func_02119bdc(void) {
 void func_02119ba8(void) {
     data_0217d364->mUnk_38 = 4;
     data_0217d364->mUnk_3c = 0;
-    if (*(vu16 *)0x027ffc40 != 2) {
+    if (*(vu16 *) 0x027ffc40 != 2) {
         func_0212ecc0(&data_0217d068, 0, 5);
     }
 }
@@ -117,20 +117,21 @@ void func_02119ac4(void) {
     data_0217d364->mUnk_3c = 0;
     d = data_0217d364;
     switch (d->mUnk_40) {
-    case 0:
-    case 1:
-    case 3:
-        func_021277f8(func_020b3f7c(d->mUnk_28, 4), func_020b3f7c(d->mUnk_28, 2), 0);
-        break;
-    case 2:
-        func_021277f8(func_020b3f7c(d->mUnk_28, 4), func_020b3f7c(d->mUnk_28, 2), 0);
-        if (*(vu16 *)0x027ffc40 == 2) {
-            func_0212513c(func_020b3f7c(data_0217d364->mUnk_2c, data_0215cb3c[data_0215cadc[func_0202968c()]][data_0217d364->mUnk_50]),
-                          func_020b3f7c(data_0217d364->mUnk_28, 0x8b), buf, 0x200);
-            func_02125ebc(0x23);
-            func_021266e4(buf);
-        }
-        break;
+        case 0:
+        case 1:
+        case 3:
+            func_021277f8(func_020b3f7c(d->mUnk_28, 4), func_020b3f7c(d->mUnk_28, 2), 0);
+            break;
+        case 2:
+            func_021277f8(func_020b3f7c(d->mUnk_28, 4), func_020b3f7c(d->mUnk_28, 2), 0);
+            if (*(vu16 *) 0x027ffc40 == 2) {
+                func_0212513c(func_020b3f7c(data_0217d364->mUnk_2c,
+                                            data_0215cb3c[data_0215cadc[func_0202968c()]][data_0217d364->mUnk_50]),
+                              func_020b3f7c(data_0217d364->mUnk_28, 0x8b), buf, 0x200);
+                func_02125ebc(0x23);
+                func_021266e4(buf);
+            }
+            break;
     }
 }
 #pragma thumb off

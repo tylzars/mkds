@@ -10,7 +10,8 @@
 #include "Main/Unknown/code_020ae630.h"
 
 s32 func_ov000_02180500(Unk020487fc *a) {
-    Unk021a9034 b = {func_ov000_021805cc, func_ov000_02180534, func_ov000_021805b4, func_ov000_0218058c, 0, 0, 10, 10, 0};
+    Unk021a9034 b = {
+        func_ov000_021805cc, func_ov000_02180534, func_ov000_021805b4, func_ov000_0218058c, 0, 0, 10, 10, 0};
     func_020487fc(a, &b);
     return 0;
 }

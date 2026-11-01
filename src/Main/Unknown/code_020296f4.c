@@ -34,7 +34,8 @@ void func_02029758(void) {
     }
 }
 
-// non-matching: size 0xd8 against 0xd4; the second loop gets a test before it (cmp/bcs) where the original jumps to the test at the bottom; registers otherwise equal
+// non-matching: size 0xd8 against 0xd4; the second loop gets a test before it (cmp/bcs) where the original jumps to the
+// test at the bottom; registers otherwise equal
 void func_020297bc(void) {
     u16 b;
     u16 a = 0;

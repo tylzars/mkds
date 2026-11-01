@@ -20,24 +20,24 @@ void func_021114cc(void) {
         func_02036ab0(data_0217d344->mUnk_04);
         data_0217d344->mUnk_04 = func_020369fc(data_0217d344->mUnk_00);
         switch (data_0217d344->mUnk_0c) {
-        case 0:
-            if (data_0217d344->mUnk_08 == 3) {
-                func_021143f4();
-            }
-            func_ov001_0219a050();
-            break;
-        case 1:
-            func_ov001_02193c5c();
-            break;
-        case 2:
-            func_ov001_021956dc();
-            break;
-        case 3:
-            func_02111ab4();
-            break;
-        case 4:
-            func_021145b4();
-            break;
+            case 0:
+                if (data_0217d344->mUnk_08 == 3) {
+                    func_021143f4();
+                }
+                func_ov001_0219a050();
+                break;
+            case 1:
+                func_ov001_02193c5c();
+                break;
+            case 2:
+                func_ov001_021956dc();
+                break;
+            case 3:
+                func_02111ab4();
+                break;
+            case 4:
+                func_021145b4();
+                break;
         }
         data_0217d344->mUnk_10 = data_0217d344->mUnk_08;
         data_0217d344->mUnk_08 = data_0217d344->mUnk_0c;

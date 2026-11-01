@@ -38,9 +38,6 @@ extern const char data_02166384[];
 extern const char data_021663a8[];
 extern const char data_021663c0[];
 
-
-
-
 extern u8 data_021663d8;
 extern u8 data_021663dc;
 extern u16 data_021663e0;

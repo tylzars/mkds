@@ -57,21 +57,21 @@ s32 func_ov000_021a7378(Unk021a7064 *param_1) {
     func_ov000_021ae304(a);
     b = a->mUnk_68;
     switch (a->mUnk_73) {
-    case 0:
-    case 4:
-        func_ov000_021ae244(&b->mUnk_20);
-        func_ov000_021ae270();
-        break;
-    case 1:
-        func_ov000_021ae270();
-        func_ov000_021ae2d8();
-        func_ov000_021ae214(func_ov000_021a78a4);
-        break;
-    case 2:
-        func_ov000_021ae2d8();
-        break;
-    case 3:
-        break;
+        case 0:
+        case 4:
+            func_ov000_021ae244(&b->mUnk_20);
+            func_ov000_021ae270();
+            break;
+        case 1:
+            func_ov000_021ae270();
+            func_ov000_021ae2d8();
+            func_ov000_021ae214(func_ov000_021a78a4);
+            break;
+        case 2:
+            func_ov000_021ae2d8();
+            break;
+        case 3:
+            break;
     }
     a->mUnk_70 = 1;
     return 0;

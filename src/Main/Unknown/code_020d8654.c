@@ -25,16 +25,16 @@ u32 func_020d8828(Unk020e0144 *a, Vec3 *b) {
         z = b->z;
         do {
             d = x - q->mUnk_00[0].x;
-            s = (s64)d * d;
+            s = (s64) d * d;
             d = z - q->mUnk_00[0].z;
-            s = s + (s64)d * d;
+            s = s + (s64) d * d;
             if (m < s) {
                 m = s;
             }
             d = x - q->mUnk_00[3].x;
-            s = (s64)d * d;
+            s = (s64) d * d;
             d = z - q->mUnk_00[3].z;
-            s = s + (s64)d * d;
+            s = s + (s64) d * d;
             if (m < s) {
                 m = s;
             }
@@ -56,10 +56,10 @@ void func_020d879c(Unk020e0144 *a, Vec3 *b) {
     p = &a->mUnk_00->mUnk_00[a->mUnk_0c];
     t = a->mUnk_14;
     u = 0x1000000 - t;
-    b->x = (s32)(((s64)p->mUnk_00[0].x * u) >> 24);
-    b->z = (s32)(((s64)p->mUnk_00[0].z * u) >> 24);
-    b->x = b->x + (s32)(((s64)p->mUnk_00[3].x * t) >> 24);
-    b->z = b->z + (s32)(((s64)p->mUnk_00[3].z * t) >> 24);
+    b->x = (s32) (((s64) p->mUnk_00[0].x * u) >> 24);
+    b->z = (s32) (((s64) p->mUnk_00[0].z * u) >> 24);
+    b->x = b->x + (s32) (((s64) p->mUnk_00[3].x * t) >> 24);
+    b->z = b->z + (s32) (((s64) p->mUnk_00[3].z * t) >> 24);
 }
 
 Vec3 *func_020d8654(Unk020fa294 *a) {
@@ -83,7 +83,7 @@ Vec3 *func_020d8654(Unk020fa294 *a) {
             f = func_02042044(k, (u16) (n - 1));
             func_021484d0(&e->mUnk_00, &f->mUnk_00, &v);
         } else {
-            e = func_02042044(k, (u16)(i + 1));
+            e = func_02042044(k, (u16) (i + 1));
             f = func_02042044(k, i);
             func_021484d0(&e->mUnk_00, &f->mUnk_00, &v);
         }

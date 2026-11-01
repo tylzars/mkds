@@ -35,7 +35,7 @@ void func_0208f0f8(void *a) {
     data_021663d8 = 0xe;
     data_021663e8 = 1;
     n = 1;
-    data_021663ec = (s32 (*)()) func_0208ee40;
+    data_021663ec = (s32(*)()) func_0208ee40;
     if (data_021759c0->mUnk_08 == 5) {
         n += 3;
     } else if (data_021759c0->mUnk_00c == 5) {
@@ -43,7 +43,7 @@ void func_0208f0f8(void *a) {
         data_021663dc = 2;
         data_021663f0 = 0;
         data_021663e4 = 0x1e;
-        data_021663ec = (s32 (*)()) func_0208ecd8;
+        data_021663ec = (s32(*)()) func_0208ecd8;
         data_021663d8 = 4;
         data_021663e8 = 0;
         n = 6;

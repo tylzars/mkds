@@ -2,7 +2,7 @@
 #include "code_02147cd8.h"
 
 u32 func_02073e88(void) {
-    return ((u32) *(const u32 *) ((u8 *) (u32) (((u32) (&data_0217aca8))) + 0));
+    return ((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217aca8))) + 0));
 }
 
 int func_02073e4c(u32 param_1) {

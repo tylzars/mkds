@@ -123,79 +123,79 @@ void func_020d9f8c(Unk020d9cf4 *a) {
         }
     }
     switch (a->mUnk_24) {
-    case 0:
-        a->mUnk_30 = data_0215d4b4[(a->mUnk_2c >> 4) * 2];
-        a->mUnk_04 = a->mUnk_1c + (s32)(((s64)a->mUnk_28 * a->mUnk_30) >> 12);
-        a->mUnk_10 = a->mUnk_04;
-        a->mUnk_2c = a->mUnk_2c + a->mUnk_2e;
-        a->mUnk_3a = a->mUnk_3a + a->mUnk_2e;
-        if (a->mUnk_2c > 0x3fff && a->mUnk_2c < 0x7fff) {
-            a->mUnk_24 = 1;
-            a->mUnk_38 = 0;
-            a->mUnk_3e = a->mUnk_2e;
-        }
-        break;
-    case 1:
-        a->mUnk_38 = a->mUnk_38 + 1;
-        if (a->mUnk_38 > a->mUnk_34) {
-            a->mUnk_24 = 2;
-            if (a->mUnk_170 != 0 && v >= 0) {
-                s1.mUnk_00 = 0x114;
-                s1.mUnk_04 = 0;
-                s1.mUnk_08 = 4;
-                s1.mUnk_0c = func_020d4ef4(0);
-                func_0210b760(&s1, h);
+        case 0:
+            a->mUnk_30 = data_0215d4b4[(a->mUnk_2c >> 4) * 2];
+            a->mUnk_04 = a->mUnk_1c + (s32) (((s64) a->mUnk_28 * a->mUnk_30) >> 12);
+            a->mUnk_10 = a->mUnk_04;
+            a->mUnk_2c = a->mUnk_2c + a->mUnk_2e;
+            a->mUnk_3a = a->mUnk_3a + a->mUnk_2e;
+            if (a->mUnk_2c > 0x3fff && a->mUnk_2c < 0x7fff) {
+                a->mUnk_24 = 1;
+                a->mUnk_38 = 0;
+                a->mUnk_3e = a->mUnk_2e;
             }
-        } else if (a->mUnk_38 > (a->mUnk_34 >> 1)) {
-            a->mUnk_3e = a->mUnk_3e + 1;
-            a->mUnk_3a = a->mUnk_3a + a->mUnk_3e;
-        } else {
-            a->mUnk_3e = a->mUnk_3e - 1;
-            a->mUnk_3a = a->mUnk_3a + a->mUnk_3e;
-        }
-        break;
-    case 2:
-        a->mUnk_30 = data_0215d4b4[(a->mUnk_2c >> 4) * 2];
-        a->mUnk_04 = a->mUnk_1c + (s32)(((s64)a->mUnk_28 * a->mUnk_30) >> 12);
-        a->mUnk_10 = a->mUnk_04;
-        a->mUnk_2c = a->mUnk_2c + a->mUnk_2e;
-        a->mUnk_3a = a->mUnk_3a + a->mUnk_2e;
-        if (a->mUnk_2c > 0xbfff) {
-            a->mUnk_24 = 3;
-            a->mUnk_38 = 0;
-            a->mUnk_3e = a->mUnk_2e;
-        }
-        break;
-    case 3:
-        a->mUnk_38 = a->mUnk_38 + 1;
-        if (a->mUnk_38 > a->mUnk_36) {
-            a->mUnk_24 = 0;
-            if (a->mUnk_170 != 0 && v >= 0) {
-                s2.mUnk_00 = 0x113;
-                s2.mUnk_04 = 0;
-                s2.mUnk_08 = 4;
-                s2.mUnk_0c = func_020d4ef4(0);
-                func_0210b760(&s2, h);
+            break;
+        case 1:
+            a->mUnk_38 = a->mUnk_38 + 1;
+            if (a->mUnk_38 > a->mUnk_34) {
+                a->mUnk_24 = 2;
+                if (a->mUnk_170 != 0 && v >= 0) {
+                    s1.mUnk_00 = 0x114;
+                    s1.mUnk_04 = 0;
+                    s1.mUnk_08 = 4;
+                    s1.mUnk_0c = func_020d4ef4(0);
+                    func_0210b760(&s1, h);
+                }
+            } else if (a->mUnk_38 > (a->mUnk_34 >> 1)) {
+                a->mUnk_3e = a->mUnk_3e + 1;
+                a->mUnk_3a = a->mUnk_3a + a->mUnk_3e;
+            } else {
+                a->mUnk_3e = a->mUnk_3e - 1;
+                a->mUnk_3a = a->mUnk_3a + a->mUnk_3e;
             }
-        } else if (a->mUnk_38 > (a->mUnk_36 >> 1)) {
-            a->mUnk_3e = a->mUnk_3e + 1;
-            a->mUnk_3a = a->mUnk_3a + a->mUnk_3e;
-        } else {
-            a->mUnk_3e = a->mUnk_3e - 1;
-            a->mUnk_3a = a->mUnk_3a + a->mUnk_3e;
-        }
-        break;
+            break;
+        case 2:
+            a->mUnk_30 = data_0215d4b4[(a->mUnk_2c >> 4) * 2];
+            a->mUnk_04 = a->mUnk_1c + (s32) (((s64) a->mUnk_28 * a->mUnk_30) >> 12);
+            a->mUnk_10 = a->mUnk_04;
+            a->mUnk_2c = a->mUnk_2c + a->mUnk_2e;
+            a->mUnk_3a = a->mUnk_3a + a->mUnk_2e;
+            if (a->mUnk_2c > 0xbfff) {
+                a->mUnk_24 = 3;
+                a->mUnk_38 = 0;
+                a->mUnk_3e = a->mUnk_2e;
+            }
+            break;
+        case 3:
+            a->mUnk_38 = a->mUnk_38 + 1;
+            if (a->mUnk_38 > a->mUnk_36) {
+                a->mUnk_24 = 0;
+                if (a->mUnk_170 != 0 && v >= 0) {
+                    s2.mUnk_00 = 0x113;
+                    s2.mUnk_04 = 0;
+                    s2.mUnk_08 = 4;
+                    s2.mUnk_0c = func_020d4ef4(0);
+                    func_0210b760(&s2, h);
+                }
+            } else if (a->mUnk_38 > (a->mUnk_36 >> 1)) {
+                a->mUnk_3e = a->mUnk_3e + 1;
+                a->mUnk_3a = a->mUnk_3a + a->mUnk_3e;
+            } else {
+                a->mUnk_3e = a->mUnk_3e - 1;
+                a->mUnk_3a = a->mUnk_3a + a->mUnk_3e;
+            }
+            break;
     }
     a->mUnk_3c = a->mUnk_3c + a->mUnk_40;
     w = a->mUnk_3c - a->mUnk_50;
     if (a->mUnk_60 != 0) {
         j = (a->mUnk_3c >> 4) * 2;
-        a->mUnk_00 = a->mUnk_18 + (s32)(((s64)a->mUnk_44 * data_0215d4b4[j]) >> 12);
-        a->mUnk_08 = a->mUnk_20 + (s32)(((s64)a->mUnk_44 * data_0215d4b4[j + 1]) >> 12);
+        a->mUnk_00 = a->mUnk_18 + (s32) (((s64) a->mUnk_44 * data_0215d4b4[j]) >> 12);
+        a->mUnk_08 = a->mUnk_20 + (s32) (((s64) a->mUnk_44 * data_0215d4b4[j + 1]) >> 12);
     }
     k = (w >> 4) * 2;
-    a->mUnk_0c = a->mUnk_18 + (s32)(((s64)a->mUnk_48 * data_0215d4b4[k]) >> 12);
-    a->mUnk_14 = a->mUnk_20 + (s32)(((s64)a->mUnk_48 * data_0215d4b4[k + 1]) >> 12);
+    a->mUnk_0c = a->mUnk_18 + (s32) (((s64) a->mUnk_48 * data_0215d4b4[k]) >> 12);
+    a->mUnk_14 = a->mUnk_20 + (s32) (((s64) a->mUnk_48 * data_0215d4b4[k + 1]) >> 12);
 }
 
 void func_020d9e60(Unk020d9cf4 *a, struct Unk02012f58 *b) {
@@ -239,7 +239,8 @@ Unk020d9de0 *func_020d9de0(void) {
 
 #pragma thumb on
 
-void func_020d9cf4(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i, u16 j, u16 k, u16 l, u16 m, u16 n, s32 o) {
+void func_020d9cf4(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i, u16 j, u16 k, u16 l, u16 m, u16 n,
+                   s32 o) {
     data_0217b678->mUnk_1c = (a + b) >> 1;
     data_0217b678->mUnk_04 = data_0217b678->mUnk_1c;
     data_0217b678->mUnk_10 = data_0217b678->mUnk_04;
@@ -250,7 +251,7 @@ void func_020d9cf4(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i
     data_0217b678->mUnk_50 = f;
     data_0217b678->mUnk_52 = g;
     data_0217b678->mUnk_2e = 0x10000 / h;
-    data_0217b678->mUnk_40 = (u32)data_0217b678->mUnk_2e >> 2;
+    data_0217b678->mUnk_40 = (u32) data_0217b678->mUnk_2e >> 2;
     data_0217b678->mUnk_24 = 0;
     data_0217b678->mUnk_34 = i;
     data_0217b678->mUnk_36 = j;
@@ -368,54 +369,54 @@ void func_020d98a4(Unk020da384 *a) {
 
 void func_020d9810(s32 t, s32 *a, s32 *b, s32 *c, s32 *d) {
     s32 u = 0x1000000 - t;
-    s32 v = (s32)(((s64)u * u) >> 24);
-    *a = (s32)(((s64)u * v) >> 24);
-    *b = (s32)(((s64)u * t) >> 24) * 3;
-    *c = (s32)(((s64)*b * t) >> 24);
-    v = (s32)(((s64)t * t) >> 24);
-    *d = (s32)(((s64)t * v) >> 24);
-    *b = (s32)(((s64)*b * u) >> 24);
+    s32 v = (s32) (((s64) u * u) >> 24);
+    *a = (s32) (((s64) u * v) >> 24);
+    *b = (s32) (((s64) u * t) >> 24) * 3;
+    *c = (s32) (((s64) *b * t) >> 24);
+    v = (s32) (((s64) t * t) >> 24);
+    *d = (s32) (((s64) t * v) >> 24);
+    *b = (s32) (((s64) *b * u) >> 24);
 }
 
 void func_020d970c(s32 t, s32 *a, s32 *b, s32 *c, s32 *d, s32 *e, s32 *f, s32 *g, s32 *h) {
     s32 u = 0x1000000 - t;
-    *e = (s32)(((s64)u * u) >> 24);
-    *a = (s32)(((s64)*e * u) >> 24);
-    *h = (s32)(((s64)t * t) >> 24);
-    *d = (s32)(((s64)*h * t) >> 24);
-    *b = (s32)(((s64)u * t) >> 24) * 3;
+    *e = (s32) (((s64) u * u) >> 24);
+    *a = (s32) (((s64) *e * u) >> 24);
+    *h = (s32) (((s64) t * t) >> 24);
+    *d = (s32) (((s64) *h * t) >> 24);
+    *b = (s32) (((s64) u * t) >> 24) * 3;
     *e = *e * 3;
     *h = *h * 3;
     *g = *b << 1;
     *f = *e - *g;
     *g = *g - *h;
     *e = -*e;
-    *c = (s32)(((s64)*b * t) >> 24);
-    *b = (s32)(((s64)*b * u) >> 24);
+    *c = (s32) (((s64) *b * t) >> 24);
+    *b = (s32) (((s64) *b * u) >> 24);
 }
 
 void func_020d95c0(const Vec3 *p, Vec3 *o, s32 a, s32 b, s32 c, s32 d) {
-    o->x = (s32)(((s64)p[0].x * a) >> 24);
-    o->y = (s32)(((s64)p[0].y * a) >> 24);
-    o->z = (s32)(((s64)p[0].z * a) >> 24);
-    o->x = o->x + (s32)(((s64)p[1].x * b) >> 24);
-    o->y = o->y + (s32)(((s64)p[1].y * b) >> 24);
-    o->z = o->z + (s32)(((s64)p[1].z * b) >> 24);
-    o->x = o->x + (s32)(((s64)p[2].x * c) >> 24);
-    o->y = o->y + (s32)(((s64)p[2].y * c) >> 24);
-    o->z = o->z + (s32)(((s64)p[2].z * c) >> 24);
-    o->x = o->x + (s32)(((s64)p[3].x * d) >> 24);
-    o->y = o->y + (s32)(((s64)p[3].y * d) >> 24);
-    o->z = o->z + (s32)(((s64)p[3].z * d) >> 24);
+    o->x = (s32) (((s64) p[0].x * a) >> 24);
+    o->y = (s32) (((s64) p[0].y * a) >> 24);
+    o->z = (s32) (((s64) p[0].z * a) >> 24);
+    o->x = o->x + (s32) (((s64) p[1].x * b) >> 24);
+    o->y = o->y + (s32) (((s64) p[1].y * b) >> 24);
+    o->z = o->z + (s32) (((s64) p[1].z * b) >> 24);
+    o->x = o->x + (s32) (((s64) p[2].x * c) >> 24);
+    o->y = o->y + (s32) (((s64) p[2].y * c) >> 24);
+    o->z = o->z + (s32) (((s64) p[2].z * c) >> 24);
+    o->x = o->x + (s32) (((s64) p[3].x * d) >> 24);
+    o->y = o->y + (s32) (((s64) p[3].y * d) >> 24);
+    o->z = o->z + (s32) (((s64) p[3].z * d) >> 24);
 }
 
 void func_020d94dc(const Vec3 *p, Vec3 *o, s32 a, s32 b, s32 c, s32 d) {
-    o->x = (s32)(((s64)p[0].x * a) >> 24);
-    o->z = (s32)(((s64)p[0].z * a) >> 24);
-    o->x = o->x + (s32)(((s64)p[1].x * b) >> 24);
-    o->z = o->z + (s32)(((s64)p[1].z * b) >> 24);
-    o->x = o->x + (s32)(((s64)p[2].x * c) >> 24);
-    o->z = o->z + (s32)(((s64)p[2].z * c) >> 24);
-    o->x = o->x + (s32)(((s64)p[3].x * d) >> 24);
-    o->z = o->z + (s32)(((s64)p[3].z * d) >> 24);
+    o->x = (s32) (((s64) p[0].x * a) >> 24);
+    o->z = (s32) (((s64) p[0].z * a) >> 24);
+    o->x = o->x + (s32) (((s64) p[1].x * b) >> 24);
+    o->z = o->z + (s32) (((s64) p[1].z * b) >> 24);
+    o->x = o->x + (s32) (((s64) p[2].x * c) >> 24);
+    o->z = o->z + (s32) (((s64) p[2].z * c) >> 24);
+    o->x = o->x + (s32) (((s64) p[3].x * d) >> 24);
+    o->z = o->z + (s32) (((s64) p[3].z * d) >> 24);
 }

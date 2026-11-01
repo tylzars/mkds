@@ -60,7 +60,6 @@ typedef struct Unk0218635c {
     /* 177 */ u8 mUnk_177[0x4d];
 } Unk0218635c;
 
-
 extern Unk021b4cb4 data_ov000_021b4cb4;
 extern Unk021b4cd4 data_ov000_021b4cd4;
 extern u8 *data_ov000_021b1384;

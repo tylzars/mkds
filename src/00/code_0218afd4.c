@@ -23,7 +23,8 @@ u32 func_ov000_0218afd4(const s8 *v1, u32 v2) {
     return a % v2;
 }
 
-// non-matching: the original recomputes the stack address of the count halfword (add r0, sp, #44) before its ldrh, ours reuses r0 from the two byte stores (one add fewer, later words shift by 2 bytes)
+// non-matching: the original recomputes the stack address of the count halfword (add r0, sp, #44) before its ldrh, ours
+// reuses r0 from the two byte stores (one add fewer, later words shift by 2 bytes)
 void func_ov000_0218b010(Unk0218af28 *e, s8 *v1, s32 n) {
     Unk0218b010 t;
     s8 *s;

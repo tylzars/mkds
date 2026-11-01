@@ -1,6 +1,7 @@
 #include "Main/Unknown/code_02060cb4.h"
 
-// non-matching: the original sets the loop index to 0 (mov r8, #0) and loads the pointer from data_0217aa08 before taking the address of the stack buffer; this takes the stack buffer address first (3 words reordered).
+// non-matching: the original sets the loop index to 0 (mov r8, #0) and loads the pointer from data_0217aa08 before
+// taking the address of the stack buffer; this takes the stack buffer address first (3 words reordered).
 void func_020613a0(void) {
     u8 i;
     u8 *a;
@@ -124,7 +125,8 @@ s32 func_0206105c(const void *a) {
     return c;
 }
 
-// non-matching: the original sets the address of the first 3-byte stack array (r11) before that of the second (r4); this sets them in the other order (2 words differ).
+// non-matching: the original sets the address of the first 3-byte stack array (r11) before that of the second (r4);
+// this sets them in the other order (2 words differ).
 s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     u8 h[3];
     u8 j[3];
@@ -149,8 +151,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     p = a;
     for (i = 0; i < 60; i = (s8) (i + 1), p += 12) {
         func_0205ee14((u8) i, &k);
-        if (k.mUnk_22_0 == 1 && func_02152698(c) != 0 && func_02152698(p) != 0
-            && func_02152390(p, c) != 0) {
+        if (k.mUnk_22_0 == 1 && func_02152698(c) != 0 && func_02152698(p) != 0 && func_02152390(p, c) != 0) {
             m = i;
             n = 1;
             break;

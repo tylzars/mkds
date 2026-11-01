@@ -105,89 +105,89 @@ void func_020a3154(void *p, Unk020a2fe4 *a) {
 
     if (a->mUnk_a4 >= 0) {
         switch (a->mUnk_fc) {
-        case 0:
-            a->mUnk_d8 = a->mUnk_d8 + a->mUnk_dc;
-            if (a->mUnk_d8 >= 0) {
-                if (a->mUnk_dc < 0) {
-                    a->mUnk_dc = -50;
+            case 0:
+                a->mUnk_d8 = a->mUnk_d8 + a->mUnk_dc;
+                if (a->mUnk_d8 >= 0) {
+                    if (a->mUnk_dc < 0) {
+                        a->mUnk_dc = -50;
+                    } else {
+                        a->mUnk_dc = a->mUnk_dc - 10;
+                    }
                 } else {
-                    a->mUnk_dc = a->mUnk_dc - 10;
+                    if (a->mUnk_dc >= 0) {
+                        a->mUnk_dc = 50;
+                    } else {
+                        a->mUnk_dc = a->mUnk_dc + 10;
+                    }
                 }
-            } else {
-                if (a->mUnk_dc >= 0) {
-                    a->mUnk_dc = 50;
+                if (a->mUnk_a4 == data_021759c0->mUnk_62) {
+                    if (func_02061fec() == 1) {
+                        o = func_0207a974((u16) a->mUnk_a4);
+                        func_020249b8(o, a->mUnk_d0 + a->mUnk_d8, a->mUnk_d4);
+                    }
+                }
+                if (a->mUnk_f4 == 1 && a->mUnk_f8 == 0) {
+                    func_020a36a8(a);
+                    if (func_020a369c(a) != 0) {
+                        return;
+                    }
+                    if (func_020a3690(a) >= 0x9c40) {
+                        return;
+                    }
+                    func_020a35b0(a);
                 } else {
-                    a->mUnk_dc = a->mUnk_dc + 10;
+                    a->mUnk_00.mUnk_04.x = a->mUnk_b0.x;
+                    a->mUnk_00.mUnk_04.y = a->mUnk_b0.y + 0xf666;
+                    a->mUnk_00.mUnk_04.z = a->mUnk_b0.z;
                 }
-            }
-            if (a->mUnk_a4 == data_021759c0->mUnk_62) {
-                if (func_02061fec() == 1) {
-                    o = func_0207a974((u16) a->mUnk_a4);
-                    func_020249b8(o, a->mUnk_d0 + a->mUnk_d8, a->mUnk_d4);
+                break;
+            case 1:
+                a->mUnk_d8 = 0;
+                a->mUnk_d0 = a->mUnk_d0 + a->mUnk_d4;
+                if (a->mUnk_d0 >= 0x1000) {
+                    a->mUnk_d4 = a->mUnk_d4 - 200;
                 }
-            }
-            if (a->mUnk_f4 == 1 && a->mUnk_f8 == 0) {
-                func_020a36a8(a);
-                if (func_020a369c(a) != 0) {
-                    return;
+                if (a->mUnk_d4 < 0) {
+                    if (a->mUnk_d0 <= 0x1000) {
+                        a->mUnk_d0 = 0x1000;
+                        a->mUnk_fc = 2;
+                    }
                 }
-                if (func_020a3690(a) >= 0x9c40) {
-                    return;
+                if (a->mUnk_f4 == 1 && a->mUnk_f8 == 0) {
+                    func_020a36a8(a);
+                    if (func_020a369c(a) != 0) {
+                        return;
+                    }
+                    if (func_020a3690(a) >= 0x9c40) {
+                        return;
+                    }
+                    func_020a35b0(a);
+                } else {
+                    a->mUnk_00.mUnk_04.x = a->mUnk_b0.x;
+                    a->mUnk_00.mUnk_04.y = a->mUnk_b0.y + 0xf666;
+                    a->mUnk_00.mUnk_04.z = a->mUnk_b0.z;
                 }
-                func_020a35b0(a);
-            } else {
-                a->mUnk_00.mUnk_04.x = a->mUnk_b0.x;
-                a->mUnk_00.mUnk_04.y = a->mUnk_b0.y + 0xf666;
-                a->mUnk_00.mUnk_04.z = a->mUnk_b0.z;
-            }
-            break;
-        case 1:
-            a->mUnk_d8 = 0;
-            a->mUnk_d0 = a->mUnk_d0 + a->mUnk_d4;
-            if (a->mUnk_d0 >= 0x1000) {
-                a->mUnk_d4 = a->mUnk_d4 - 200;
-            }
-            if (a->mUnk_d4 < 0) {
-                if (a->mUnk_d0 <= 0x1000) {
-                    a->mUnk_d0 = 0x1000;
-                    a->mUnk_fc = 2;
+                break;
+            case 2:
+                a->mUnk_d8 = 0;
+                a->mUnk_d0 = 0x1000;
+                if (a->mUnk_f4 == 1 && a->mUnk_f8 == 0) {
+                    func_020a36a8(a);
+                    if (func_020a369c(a) != 0) {
+                        return;
+                    }
+                    if (func_020a3690(a) >= 0x9c40) {
+                        return;
+                    }
+                    func_020a35b0(a);
+                } else {
+                    a->mUnk_00.mUnk_04.x = a->mUnk_b0.x;
+                    a->mUnk_00.mUnk_04.y = a->mUnk_b0.y + 0xf666;
+                    a->mUnk_00.mUnk_04.z = a->mUnk_b0.z;
                 }
-            }
-            if (a->mUnk_f4 == 1 && a->mUnk_f8 == 0) {
-                func_020a36a8(a);
-                if (func_020a369c(a) != 0) {
-                    return;
-                }
-                if (func_020a3690(a) >= 0x9c40) {
-                    return;
-                }
-                func_020a35b0(a);
-            } else {
-                a->mUnk_00.mUnk_04.x = a->mUnk_b0.x;
-                a->mUnk_00.mUnk_04.y = a->mUnk_b0.y + 0xf666;
-                a->mUnk_00.mUnk_04.z = a->mUnk_b0.z;
-            }
-            break;
-        case 2:
-            a->mUnk_d8 = 0;
-            a->mUnk_d0 = 0x1000;
-            if (a->mUnk_f4 == 1 && a->mUnk_f8 == 0) {
-                func_020a36a8(a);
-                if (func_020a369c(a) != 0) {
-                    return;
-                }
-                if (func_020a3690(a) >= 0x9c40) {
-                    return;
-                }
-                func_020a35b0(a);
-            } else {
-                a->mUnk_00.mUnk_04.x = a->mUnk_b0.x;
-                a->mUnk_00.mUnk_04.y = a->mUnk_b0.y + 0xf666;
-                a->mUnk_00.mUnk_04.z = a->mUnk_b0.z;
-            }
-            break;
-        default:
-            return;
+                break;
+            default:
+                return;
         }
     } else {
         a->mUnk_d8 = 0;

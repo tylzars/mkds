@@ -7,8 +7,7 @@
 #include "code_0212d254.h"
 #include "code_0212df7c.h"
 
-void func_0210aa14(Unk0206bcb0 *a, Unk0210bf24 *b, s32 c)
-{
+void func_0210aa14(Unk0206bcb0 *a, Unk0210bf24 *b, s32 c) {
     u32 d;
     u32 e;
     s32 f;

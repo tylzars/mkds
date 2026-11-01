@@ -8,8 +8,7 @@
 #include "Main/Unknown/code_0214a2f4.h"
 #include "registers.h"
 
-void func_ov001_02193144(void)
-{
+void func_ov001_02193144(void) {
     Unk02111684_v v;
     func_020b496c(&v.m4934, func_0204799c("Option_top_menu_m_b.ncgr"));
     func_020b4810(&v.m47d8, func_0204799c("Option_top_menu_m.nscr"));
@@ -34,8 +33,7 @@ void func_ov001_02193144(void)
     func_020b4a7c(&v.m4a44, func_0204799c("Option_embrem_select_s_o.nclr"));
 }
 
-void func_ov001_021930ac(void)
-{
+void func_ov001_021930ac(void) {
     u32 t;
     vu32 a;
     vu32 b;
@@ -56,8 +54,7 @@ void func_ov001_021930ac(void)
     func_0214d05c(b, d2, 0x1000);
 }
 
-void func_ov001_02192fb8(void *heap, s16 param_2)
-{
+void func_ov001_02192fb8(void *heap, s16 param_2) {
     Unk02125de0Arg arg;
     data_ov001_021a9bd0 = func_02036bec(heap, 0x2c);
     data_ov001_021a9bd0->mUnk_00 = heap;
@@ -81,26 +78,26 @@ void func_ov001_02192fb8(void *heap, s16 param_2)
     func_ov001_021932c8();
     data_ov001_021a9bd0->mUnk_14 = -1;
     switch (param_2) {
-    case 0:
-        data_ov001_021a9bd0->mUnk_10 = 4;
-        data_ov001_021a9bd0->mUnk_08 = 0;
-        func_ov001_021932e4();
-        break;
-    case 14:
-        data_ov001_021a9bd0->mUnk_10 = 5;
-        data_ov001_021a9bd0->mUnk_08 = 2;
-        func_ov001_02199964();
-        break;
-    case 3:
-        data_ov001_021a9bd0->mUnk_10 = 6;
-        if (data_0217b488->mUnk_18 == 0) {
+        case 0:
+            data_ov001_021a9bd0->mUnk_10 = 4;
+            data_ov001_021a9bd0->mUnk_08 = 0;
+            func_ov001_021932e4();
+            break;
+        case 14:
+            data_ov001_021a9bd0->mUnk_10 = 5;
             data_ov001_021a9bd0->mUnk_08 = 2;
             func_ov001_02199964();
-        } else {
-            data_ov001_021a9bd0->mUnk_08 = 3;
-            func_ov001_0219d5dc();
-        }
-        break;
+            break;
+        case 3:
+            data_ov001_021a9bd0->mUnk_10 = 6;
+            if (data_0217b488->mUnk_18 == 0) {
+                data_ov001_021a9bd0->mUnk_08 = 2;
+                func_ov001_02199964();
+            } else {
+                data_ov001_021a9bd0->mUnk_08 = 3;
+                func_ov001_0219d5dc();
+            }
+            break;
     }
     data_ov001_021a9bd0->mUnk_0c = -1;
     data_ov001_021a9bd0->mUnk_18.mUnk_00(data_ov001_021a9bd0->mUnk_04);

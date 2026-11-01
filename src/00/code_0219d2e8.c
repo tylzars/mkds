@@ -8,7 +8,8 @@
 #include "Main/Unknown/code_02152000.h"
 #include "Main/Unknown/code_02152468.h"
 
-// non-matching: the loop entry computes `r7 = i * 12` then `r0 = a + r7` for the func_02152a24 argument and `r7 = a + r7` later; ours adds first (`r1 = i * 12`, `r7 = a + r1`, `r0 = r7`), 4 words differ, same size
+// non-matching: the loop entry computes `r7 = i * 12` then `r0 = a + r7` for the func_02152a24 argument and `r7 = a +
+// r7` later; ours adds first (`r1 = i * 12`, `r7 = a + r1`, `r0 = r7`), 4 words differ, same size
 void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
     s32 c;
     s32 d;
@@ -50,8 +51,8 @@ void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
             }
         } else if (func_02152520((void *) func_ov000_0219c9c4(), &a[data_ov000_021b5664->mUnk_1c]) == -1) {
             func_02152458((void *) func_ov000_0219c9c4(), &a[data_ov000_021b5664->mUnk_1c], e);
-            func_ov000_0218f0a8(data_ov000_021b5664->mUnk_04, 0, 0, 0, 0, (s8 *) e, 0, 0, (Unk0218f0a8Cb) func_ov000_0219ce48,
-                                data_ov000_021b5664->mUnk_1c);
+            func_ov000_0218f0a8(data_ov000_021b5664->mUnk_04, 0, 0, 0, 0, (s8 *) e, 0, 0,
+                                (Unk0218f0a8Cb) func_ov000_0219ce48, data_ov000_021b5664->mUnk_1c);
             data_ov000_021b5664->mUnk_1e = 2;
             return;
         }

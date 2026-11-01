@@ -1,7 +1,6 @@
 #include "01/code_0218c5fc.h"
 
 void func_ov001_0218c5fc(Unk02188950 *param_1) {
-    func_ov001_02188e48(param_1, (s32) ((u32) (0x20)), func_ov001_0218c62c,
-                        (s32) ((u32) (0x40)), func_ov001_0218c61c);
+    func_ov001_02188e48(param_1, (s32) ((u32) (0x20)), func_ov001_0218c62c, (s32) ((u32) (0x40)), func_ov001_0218c61c);
     return;
 }

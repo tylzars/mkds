@@ -1,8 +1,7 @@
 #include "03/code_021c27d0.h"
 
 void func_ov003_021c2824(void) {
-    func_ov003_021d3544((u32) 0, (u32) &func_ov003_021c27f8, (u32) 0,
-                        (u32) 0x78);
+    func_ov003_021d3544((u32) 0, (u32) &func_ov003_021c27f8, (u32) 0, (u32) 0x78);
 }
 
 void func_ov003_021c27f8(u32 param_1) {

@@ -16,25 +16,25 @@ void func_02125de0(void *a, void *b) {
     data_0217d3ec->mUnk_00 = 0;
     data_0217d3ec->mUnk_04 = 0;
     data_0217d3ec->mUnk_08 = 0;
-    if (((Unk02125de0Arg *)b)->mUnk_00 != 0) {
-        t.mUnk_00 = (u32)((Unk02125de0Arg *)b)->mUnk_04;
-        t.mUnk_04 = ((Unk02125de0Arg *)b)->mUnk_08;
-        t.mUnk_08 = ((Unk02125de0Arg *)b)->mUnk_0c;
-        t.mUnk_0c = ((Unk02125de0Arg *)b)->mUnk_10;
+    if (((Unk02125de0Arg *) b)->mUnk_00 != 0) {
+        t.mUnk_00 = (u32) ((Unk02125de0Arg *) b)->mUnk_04;
+        t.mUnk_04 = ((Unk02125de0Arg *) b)->mUnk_08;
+        t.mUnk_08 = ((Unk02125de0Arg *) b)->mUnk_0c;
+        t.mUnk_0c = ((Unk02125de0Arg *) b)->mUnk_10;
         t.mUnk_10 = data_0217d3ec->mUnk_810;
         data_0217d3ec->mUnk_00 = 1;
         data_0217d3ec->mUnk_810 = func_021274ec(a, &t);
     }
-    if (((Unk02125de0Arg *)b)->mUnk_14 != 0) {
+    if (((Unk02125de0Arg *) b)->mUnk_14 != 0) {
         data_0217d3ec->mUnk_04 = 1;
-        data_0217d3ec->mUnk_810 = func_02128058(a, ((Unk02125de0Arg *)b)->mUnk_18, data_0217d3ec->mUnk_810);
+        data_0217d3ec->mUnk_810 = func_02128058(a, ((Unk02125de0Arg *) b)->mUnk_18, data_0217d3ec->mUnk_810);
     }
-    if (((Unk02125de0Arg *)b)->mUnk_1c != 0) {
+    if (((Unk02125de0Arg *) b)->mUnk_1c != 0) {
         data_0217d3ec->mUnk_08 = 1;
         data_0217d3ec->mUnk_810 = func_021287cc(a, data_0217d3ec->mUnk_810);
     }
-    if (((Unk02125de0Arg *)b)->mUnk_20 != 0) {
-        data_0217d3ec->mUnk_0c = ((Unk02125de0Arg *)b)->mUnk_24;
+    if (((Unk02125de0Arg *) b)->mUnk_20 != 0) {
+        data_0217d3ec->mUnk_0c = ((Unk02125de0Arg *) b)->mUnk_24;
         func_02125ba4();
         data_0217d3ec->mUnk_810 = func_02125960(data_0217d3ec->mUnk_810);
     }

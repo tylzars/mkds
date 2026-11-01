@@ -10,32 +10,32 @@ void func_0207a14c(Unk0201290c *a, u32 b) {
     u32 e;
     u32 f;
     switch (b) {
-    case 0: {
-        u16 *p = (u16 *) data_0217ad00->mUnk_004;
-        c = p[0];
-        d = p[1];
-        e = p[2];
-        f = p[3];
-        break;
-    }
-    case 2:
-        d = 0;
-        e = 0;
-        f = 0;
-        c = 0x2108;
-        break;
-    case 3:
-        d = 0;
-        e = 0;
-        c = 0x2108;
-        f = 0x4210;
-        break;
-    case 1:
-        c = 0x7fff;
-        d = 0x14a5;
-        f = 0x2108;
-        e = 0;
-        break;
+        case 0: {
+            u16 *p = (u16 *) data_0217ad00->mUnk_004;
+            c = p[0];
+            d = p[1];
+            e = p[2];
+            f = p[3];
+            break;
+        }
+        case 2:
+            d = 0;
+            e = 0;
+            f = 0;
+            c = 0x2108;
+            break;
+        case 3:
+            d = 0;
+            e = 0;
+            c = 0x2108;
+            f = 0x4210;
+            break;
+        case 1:
+            c = 0x7fff;
+            d = 0x14a5;
+            f = 0x2108;
+            e = 0;
+            break;
     }
     func_020132cc(a, c);
     func_02013284(a, d);

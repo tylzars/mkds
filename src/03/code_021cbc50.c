@@ -28,8 +28,7 @@ void func_ov003_021cbc50(void) {
     int v1;
     int v2[1];
     v1 = func_ov003_021d1f70(1);
-    if (((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) &&
-        (v1 = func_ov003_021cdd28(), v1 != 0)) {
+    if (((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) && (v1 = func_ov003_021cdd28(), v1 != 0)) {
         func_ov003_021d2168(0);
         func_ov003_021bf410();
         func_ov003_021d272c(1, 1);

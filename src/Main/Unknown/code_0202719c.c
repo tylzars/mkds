@@ -46,8 +46,8 @@ void func_0202721c(void) {
         p = &g->mUnk_038;
         func_02124748(*(s16 *) &g->mUnk_090[g->mUnk_060].mUnk_04, p->mUnk_08, g->mUnk_038.mUnk_00, p->mUnk_0c, 0, 2,
                       g->mUnk_000.mUnk_08, g->mUnk_000.mUnk_0c);
-        func_02124748(*(s16 *) &data_02174e14->mUnk_090[data_02174e14->mUnk_060].mUnk_04, p->mUnk_08, g->mUnk_038.mUnk_00,
-                      p->mUnk_0c, 0, 1, g->mUnk_000.mUnk_08, g->mUnk_000.mUnk_0c);
+        func_02124748(*(s16 *) &data_02174e14->mUnk_090[data_02174e14->mUnk_060].mUnk_04, p->mUnk_08,
+                      g->mUnk_038.mUnk_00, p->mUnk_0c, 0, 1, g->mUnk_000.mUnk_08, g->mUnk_000.mUnk_0c);
     }
 }
 

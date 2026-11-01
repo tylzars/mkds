@@ -241,8 +241,8 @@ void func_02072600(Unk0206bcb0 *p) {
     p->mUnk_386 = 0;
 }
 
-// non-matching: ours is 0x10c bytes, original 0x118; the original reloads the pointer at 0x2cc where ours reuses it, so the
-// literal offsets and 60 lines differ.
+// non-matching: ours is 0x10c bytes, original 0x118; the original reloads the pointer at 0x2cc where ours reuses it, so
+// the literal offsets and 60 lines differ.
 void func_020726bc(Unk0206bcb0 *p) {
     s32 a;
     s32 b;
@@ -412,7 +412,7 @@ void func_02072b94(Unk0206bcb0 *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc 
     }
     if (p->mUnk_7c & 1) {
         func_0207409c(a, &p->mUnk_e0_m);
-        func_02089f9c(((u32 (*)(void)) func_02074828)());
+        func_02089f9c(((u32(*)(void)) func_02074828)());
         func_020747f4(0);
     }
 }
@@ -493,11 +493,13 @@ void func_02072eb8(Unk0206bcb0 *p) {
         func_02147fd8((s32) (((s64) data_usa_02165504 * y) >> 12), &b, &a, &a);
         if (c.x != 0 && y != 0) {
             i = ((u16) ((s32) (((s64) c.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
-            a.y += (s32) (((s64) (s32) (((s64) data_0215d4b4[i * 2] * -y + 0x800) >> 12) * data_usa_02165504 + 0x800) >> 12);
+            a.y += (s32) (((s64) (s32) (((s64) data_0215d4b4[i * 2] * -y + 0x800) >> 12) * data_usa_02165504 + 0x800) >>
+                          12);
         }
         if (c.z != 0 && x != 0) {
             i = ((u16) ((s32) (((s64) c.z * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
-            a.y += (s32) (((s64) (s32) (((s64) data_0215d4b4[i * 2] * x + 0x800) >> 12) * data_usa_02165504 + 0x800) >> 12);
+            a.y += (s32) (((s64) (s32) (((s64) data_0215d4b4[i * 2] * x + 0x800) >> 12) * data_usa_02165504 + 0x800) >>
+                          12);
         }
     }
     a.y += 0x28000;

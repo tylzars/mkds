@@ -160,7 +160,8 @@ void func_ov000_021a9ca8(u8 *a, s32 n) {
     }
 }
 
-// non-matching: the record-type switch dispatch differs from +0x148: original reads the table with ldrh, lsls, asrs and ends in `add pc, r0`, ours ends in `add r0, pc; bx r0` (2 bytes longer), the rest follows in the same order
+// non-matching: the record-type switch dispatch differs from +0x148: original reads the table with ldrh, lsls, asrs and
+// ends in `add pc, r0`, ours ends in `add r0, pc; bx r0` (2 bytes longer), the rest follows in the same order
 u8 func_ov000_021a9d68(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
     u32 n;
@@ -217,62 +218,62 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
         r = q + 5;
         n -= 5;
         switch (v1) {
-        case 0x14:
-            func_0214d168(c->mUnk_2b8, 0, 8);
-            c->mUnk_429 = 7;
-            break;
-        case 0x15:
-            if (r[0] == 2) {
-                c->mUnk_429 = 9;
-            }
-            break;
-        case 0x16:
-            do {
-                v2 = r[0];
-                v3 = r[3] + ((r[1] << 16) + (r[2] << 8));
-                r += 4;
-                switch (v2) {
-                case 1:
-                    if (c->mUnk_428 != 0 && c->mUnk_429 == 0) {
-                        func_ov000_021aa9ec(c, r);
-                    }
-                    break;
-                case 2:
-                    func_ov000_021aab74(c, r);
-                    break;
-                case 0xb:
-                    func_ov000_021aabf0(c, r);
-                    break;
-                case 0xe:
-                    c->mUnk_429 = 4;
-                    break;
-                case 0x10:
-                    func_ov000_021aa5b0((int *) c, (u32) r);
-                    break;
-                case 0x14:
-                    func_ov000_021aa3b8((int) c, (int) r);
-                    break;
-                default:
+            case 0x14:
+                func_0214d168(c->mUnk_2b8, 0, 8);
+                c->mUnk_429 = 7;
+                break;
+            case 0x15:
+                if (r[0] == 2) {
                     c->mUnk_429 = 9;
-                    break;
                 }
-                s = v3 + 4;
-                func_ov000_021abca0(c->mUnk_2c0, r - 4, s);
-                func_ov000_021ab728(c->mUnk_378, r - 4, s);
-                r += v3;
-                n -= s;
-                if (n == 0) {
-                    break;
-                }
-            } while (c->mUnk_429 != 9);
-            break;
-        case 0x17:
-            c->mUnk_7f8 = q;
-            c->mUnk_800 = 5;
-            c->mUnk_7fc = n + 5;
-            return c->mUnk_429;
+                break;
+            case 0x16:
+                do {
+                    v2 = r[0];
+                    v3 = r[3] + ((r[1] << 16) + (r[2] << 8));
+                    r += 4;
+                    switch (v2) {
+                        case 1:
+                            if (c->mUnk_428 != 0 && c->mUnk_429 == 0) {
+                                func_ov000_021aa9ec(c, r);
+                            }
+                            break;
+                        case 2:
+                            func_ov000_021aab74(c, r);
+                            break;
+                        case 0xb:
+                            func_ov000_021aabf0(c, r);
+                            break;
+                        case 0xe:
+                            c->mUnk_429 = 4;
+                            break;
+                        case 0x10:
+                            func_ov000_021aa5b0((int *) c, (u32) r);
+                            break;
+                        case 0x14:
+                            func_ov000_021aa3b8((int) c, (int) r);
+                            break;
+                        default:
+                            c->mUnk_429 = 9;
+                            break;
+                    }
+                    s = v3 + 4;
+                    func_ov000_021abca0(c->mUnk_2c0, r - 4, s);
+                    func_ov000_021ab728(c->mUnk_378, r - 4, s);
+                    r += v3;
+                    n -= s;
+                    if (n == 0) {
+                        break;
+                    }
+                } while (c->mUnk_429 != 9);
+                break;
+            case 0x17:
+                c->mUnk_7f8 = q;
+                c->mUnk_800 = 5;
+                c->mUnk_7fc = n + 5;
+                return c->mUnk_429;
         }
-    data_ov000_021b63ac(q);
+        data_ov000_021b63ac(q);
     }
     return c->mUnk_429;
 }

@@ -31,15 +31,15 @@ s32 func_ov003_021b9078(s32 a, Unk021d7c54 *b, s32 *c, Unk021b916c *d, s32 e) {
     }
     v = func_ov003_021b7c44(p->mUnk_06);
     switch (v) {
-    case 0x1010:
-        a = func_ov003_021b8f68(a, b, c, d);
-        break;
-    case 0x2010:
-        a = func_ov003_021b8e60(a, b, c, d);
-        break;
-    case 0x3010:
-        a = func_ov003_021b8d9c(a, b, c, d);
-        break;
+        case 0x1010:
+            a = func_ov003_021b8f68(a, b, c, d);
+            break;
+        case 0x2010:
+            a = func_ov003_021b8e60(a, b, c, d);
+            break;
+        case 0x3010:
+            a = func_ov003_021b8d9c(a, b, c, d);
+            break;
     }
     return a;
 }
@@ -79,7 +79,8 @@ s32 func_ov003_021b91a4(Unk021ba1b0 *a) {
     return 0;
 }
 
-// non-matching: counter and the name pointer are in swapped registers (ours n=r6, pointer=r4; original n=r4, pointer=r6); same size
+// non-matching: counter and the name pointer are in swapped registers (ours n=r6, pointer=r4; original n=r4,
+// pointer=r6); same size
 s32 func_ov003_021b91f0(Unk021ba734 *a) {
     s32 m;
     s32 r;
@@ -97,7 +98,8 @@ s32 func_ov003_021b91f0(Unk021ba734 *a) {
     for (i = 0; i < m; i++) {
         if (a->mUnk_04[i].mUnk_50 & 1) {
             if (a->mUnk_04[i].mUnk_00 == func_ov003_021b7c30(data_ov003_021d6870)) {
-                if (func_ov003_021b7da0(a->mUnk_04[i].mUnk_04, data_ov003_021d6870, func_ov003_021b7c30(data_ov003_021d6870)) == 0) {
+                if (func_ov003_021b7da0(a->mUnk_04[i].mUnk_04, data_ov003_021d6870,
+                                        func_ov003_021b7c30(data_ov003_021d6870)) == 0) {
                     n++;
                 }
             }

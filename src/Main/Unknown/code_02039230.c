@@ -40,8 +40,8 @@ u32 func_02039230(void) {
 }
 
 // non-matching: instructions identical; only registers differ: the original addresses data_usa_021755a0 through r1 and
-// keeps the element size in ip, the position in lr, the end in r2 and the sum in r3 (here r2, lr, r1, r3 and ip), and the
-// mask in r3 (lr).
+// keeps the element size in ip, the position in lr, the end in r2 and the sum in r3 (here r2, lr, r1, r3 and ip), and
+// the mask in r3 (lr).
 void func_020392c8(u32 a) {
     u32 b = data_usa_021755a0.mUnk_14;
     u8 *c = data_usa_021755a0.mUnk_08;
@@ -84,15 +84,15 @@ void func_02039378(u32 a, u32 b) {
     u8 *d;
     u8 *s;
     switch (b) {
-    case 2:
-        d = data_usa_021755a0.mUnk_0c - a * c;
-        break;
-    case 0:
-        d = data_usa_021755a0.mUnk_00 + a * c;
-        break;
-    case 1:
-        d = data_usa_021755a0.mUnk_08 + a * c;
-        break;
+        case 2:
+            d = data_usa_021755a0.mUnk_0c - a * c;
+            break;
+        case 0:
+            d = data_usa_021755a0.mUnk_00 + a * c;
+            break;
+        case 1:
+            d = data_usa_021755a0.mUnk_08 + a * c;
+            break;
     }
     s = data_usa_021755a0.mUnk_00;
     if (d < s) {

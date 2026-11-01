@@ -19,8 +19,7 @@
 
 #pragma thumb on
 
-void func_02114c48(void)
-{
+void func_02114c48(void) {
     u16 a;
 
     a = func_02116870();
@@ -35,8 +34,7 @@ void func_02114c48(void)
     }
 }
 
-void func_02114ad8(void)
-{
+void func_02114ad8(void) {
     s32 i;
     s32 j;
     s16 a;
@@ -84,8 +82,7 @@ void func_02114ad8(void)
     }
 }
 
-void func_0211489c(void)
-{
+void func_0211489c(void) {
     s32 i;
     s32 j;
     s16 a;
@@ -142,8 +139,7 @@ void func_0211489c(void)
     }
 }
 
-void func_02114754(void)
-{
+void func_02114754(void) {
     s32 i;
     s16 a;
     s16 b;
@@ -171,80 +167,79 @@ void func_02114754(void)
     }
 }
 
-void func_02114668(void)
-{
+void func_02114668(void) {
     data_0217d350->mUnk_54 = data_0217d350->mUnk_58;
     switch (data_0217d350->mUnk_54) {
-    case 0:
-        func_021156bc();
-        break;
-    case 1:
-        func_021156a4();
-        break;
-    case 2:
-        func_0211568c();
-        break;
-    case 3:
-        func_0211553c();
-        break;
-    case 4:
-        func_02115204();
-        break;
-    case 5:
-        func_02115000();
-        break;
-    case 6:
-        func_02114dfc();
-        break;
-    case 7:
-        func_02114cb0();
-        break;
-    case 8:
-        func_02114c98();
-        break;
-    case 9:
-        func_02114c48();
-        break;
-    case 10:
-        func_02114ad8();
-        break;
-    case 11:
-        func_0211489c();
-        break;
-    case 12:
-        func_02114754();
-        break;
+        case 0:
+            func_021156bc();
+            break;
+        case 1:
+            func_021156a4();
+            break;
+        case 2:
+            func_0211568c();
+            break;
+        case 3:
+            func_0211553c();
+            break;
+        case 4:
+            func_02115204();
+            break;
+        case 5:
+            func_02115000();
+            break;
+        case 6:
+            func_02114dfc();
+            break;
+        case 7:
+            func_02114cb0();
+            break;
+        case 8:
+            func_02114c98();
+            break;
+        case 9:
+            func_02114c48();
+            break;
+        case 10:
+            func_02114ad8();
+            break;
+        case 11:
+            func_0211489c();
+            break;
+        case 12:
+            func_02114754();
+            break;
     }
     func_02116624();
     switch (data_0217d350->mUnk_40) {
-    case 0:
-        func_02124c30(data_0217d350->mUnk_08, data_0217d350->mUnk_04, data_0217d350->mUnk_0c, func_02111318(), data_0217d350->mUnk_14);
-        break;
-    case 1:
-        func_02124c30(data_0217d350->mUnk_18, data_0217d350->mUnk_04, data_0217d350->mUnk_1c, func_02111318(), data_0217d350->mUnk_24);
-        break;
+        case 0:
+            func_02124c30(data_0217d350->mUnk_08, data_0217d350->mUnk_04, data_0217d350->mUnk_0c, func_02111318(),
+                          data_0217d350->mUnk_14);
+            break;
+        case 1:
+            func_02124c30(data_0217d350->mUnk_18, data_0217d350->mUnk_04, data_0217d350->mUnk_1c, func_02111318(),
+                          data_0217d350->mUnk_24);
+            break;
     }
-    func_02124c30(data_0217d350->mUnk_30, data_0217d350->mUnk_2c, data_0217d350->mUnk_38, func_0211130c(), data_0217d350->mUnk_3c);
+    func_02124c30(data_0217d350->mUnk_30, data_0217d350->mUnk_2c, data_0217d350->mUnk_38, func_0211130c(),
+                  data_0217d350->mUnk_3c);
 }
 
-void func_02114604(void)
-{
-    *(vu32 *)0x4000010 = (-data_0217d350->mUnk_60 & 0x1ff) | ((-data_0217d350->mUnk_64 << 16) & 0x1ff0000);
-    *(vu32 *)0x4000014 = (-data_0217d350->mUnk_68 & 0x1ff) | ((-data_0217d350->mUnk_6c << 16) & 0x1ff0000);
-    *(vu32 *)0x400101c = (-data_0217d350->mUnk_70 << 16) & 0x1ff0000;
+void func_02114604(void) {
+    *(vu32 *) 0x4000010 = (-data_0217d350->mUnk_60 & 0x1ff) | ((-data_0217d350->mUnk_64 << 16) & 0x1ff0000);
+    *(vu32 *) 0x4000014 = (-data_0217d350->mUnk_68 & 0x1ff) | ((-data_0217d350->mUnk_6c << 16) & 0x1ff0000);
+    *(vu32 *) 0x400101c = (-data_0217d350->mUnk_70 << 16) & 0x1ff0000;
     func_02111428();
 }
 
-void func_021145dc(void)
-{
+void func_021145dc(void) {
     u32 a;
 
-    a = (*(vu32 *)0x4001000 & 0x1f00) >> 8;
-    *(vu32 *)0x4001000 = (*(vu32 *)0x4001000 & ~0x1f00) | ((a | 9) << 8);
+    a = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
+    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & ~0x1f00) | ((a | 9) << 8);
 }
 
-void func_021145b4(void)
-{
+void func_021145b4(void) {
     void (*a[5])() = {func_02115728, func_021156d4, func_02114668, func_02114604, func_021145dc};
 
     func_02111494(a);

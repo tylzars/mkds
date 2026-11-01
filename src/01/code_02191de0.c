@@ -5,8 +5,7 @@
 #include "Main/Unknown/code_0214a000.h"
 #include "Main/Unknown/code_0214d000.h"
 
-void func_ov001_02191de0(Unk02188950 *param_1)
-{
+void func_ov001_02191de0(Unk02188950 *param_1) {
     Vec3 v = {0, 0, 0};
     func_ov001_02188e88(param_1);
     func_ov001_02188c90(param_1);

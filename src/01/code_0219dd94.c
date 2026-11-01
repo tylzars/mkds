@@ -2,8 +2,7 @@
 #include "01/unk_021a6000.h"
 #include "Main/Unknown/code_02037000.h"
 
-void func_ov001_0219dd94(void)
-{
+void func_ov001_0219dd94(void) {
     s32 i;
     s32 j;
     s16 v;

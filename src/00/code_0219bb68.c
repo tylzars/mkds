@@ -104,8 +104,8 @@ void func_ov000_0219bd90(u32 a, void *b, void *c, u32 d, void *e, u32 f) {
     }
 }
 
-s32 func_ov000_0219bdec(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32, u8), void *e,
-                        void (*f)(u32, u32), void *g) {
+s32 func_ov000_0219bdec(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32, u8), void *e, void (*f)(u32, u32),
+                        void *g) {
     Unk021b54c8 *p;
     u32 n;
     if (data_ov000_021b54c8 == 0 || func_ov000_0219c39c() != 0 || (p = data_ov000_021b54c8)->mUnk_24 < 3 ||

@@ -144,7 +144,9 @@ void func_01ffbe70(Unk0206bcb0 *p) {
     s32 *q;
     u32 f;
 
-    p->mUnk_cc = (s32) (((s64) (s32) (((s64) p->mUnk_2cc->mUnk_10 * p->mUnk_dc) >> 12) * (s32) (((s64) (s32) p->mUnk_d4 * p->mUnk_d8) >> 12)) >> 12);
+    p->mUnk_cc = (s32) (((s64) (s32) (((s64) p->mUnk_2cc->mUnk_10 * p->mUnk_dc) >> 12) *
+                         (s32) (((s64) (s32) p->mUnk_d4 * p->mUnk_d8) >> 12)) >>
+                        12);
     q = &p->mUnk_cc;
     if (p->mUnk_7c & 0x402000) {
         *q = p->mUnk_2cc->mUnk_10;
@@ -190,7 +192,8 @@ void func_01ffc064(Vec3 *a, const Vec3 *b, s32 c, Unk0206bcb0 *p) {
     func_02147fd8(p->mUnk_1d0 + c, &p->mUnk_12c, b, a);
 }
 
-// non-matching: 3ec kept in r2 and the constant word in r1 (original: r1 and r0), 4 words differ in register numbers only
+// non-matching: 3ec kept in r2 and the constant word in r1 (original: r1 and r0), 4 words differ in register numbers
+// only
 void func_01ffc090(Unk0206bcb0 *p, s32 a) {
     if (a == 0) {
         if (p->mUnk_44 & 8) {
@@ -247,7 +250,8 @@ s32 func_01ffc158(Unk0206bcb0 *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
     return 1;
 }
 
-// non-matching: 0x30 halfword kept in r5 and the zero constant shared in r4 (original r4, lr and ip); size 0x288 against 0x284
+// non-matching: 0x30 halfword kept in r5 and the zero constant shared in r4 (original r4, lr and ip); size 0x288
+// against 0x284
 s32 func_01ffc27c(Unk0206bcb0 *p, s32 a) {
     s32 x = p->mUnk_2cc->mUnk_30;
     s32 d = 0;
@@ -561,7 +565,8 @@ void func_01ffcc50(Unk0206bcb0 *p) {
     }
 }
 
-// non-matching: same products, but ours needs one more saved register (r10) and no stack word, 0xac bytes against 0xb4; the original forms the three diagonal sums before the z products
+// non-matching: same products, but ours needs one more saved register (r10) and no stack word, 0xac bytes against 0xb4;
+// the original forms the three diagonal sums before the z products
 void func_01ffccd0(void *a, void *b) {
     s32 *o = a;
     const Vec4 *q = b;
@@ -618,7 +623,8 @@ void func_01ffce48(Vec4 *a, const Vec4 *b, Vec4 *c, s32 d) {
     c->w = a->w + ((d * (b->w - a->w)) >> 12);
 }
 
-// non-matching: same products and stack word, but the load, multiply and register order differ throughout (37 words differ)
+// non-matching: same products and stack word, but the load, multiply and register order differ throughout (37 words
+// differ)
 void func_01ffcebc(const Vec4 *a, const Vec4 *b, Vec4 *c) {
     Vec4 t;
     s32 b1 = b->y;

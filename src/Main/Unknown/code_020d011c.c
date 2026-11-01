@@ -17,7 +17,7 @@ void func_020d0150(void) {
     for (i = 0; i < data_0217b498->mUnk_08; i++) {
         e = data_0217b498->mUnk_00[i];
         p = &e->mUnk_04;
-        if (func_020b5ae8(p, (UnkPair020b502c *)&data_0217b498->mUnk_10[n], a, 1, 1) == 0) {
+        if (func_020b5ae8(p, (UnkPair020b502c *) &data_0217b498->mUnk_10[n], a, 1, 1) == 0) {
             continue;
         }
         data_0217b498->mUnk_10[n].mUnk_08 = func_020b83dc(0xb8);

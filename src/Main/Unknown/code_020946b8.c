@@ -75,34 +75,34 @@ void func_02094768(void *a, Unk02094000 *o) {
     Unk0206bcb0 *g;
 
     switch (o->mUnk_110) {
-    case 1:
-        t = o->mUnk_b4;
-        o->mUnk_b4 = t - 1;
-        if (t <= 0) {
-            o->mUnk_b4 = 0;
-            func_02094768_inline(o);
-            if (o->mUnk_fc >= 0x2000) {
-                o->mUnk_110 = 0;
+        case 1:
+            t = o->mUnk_b4;
+            o->mUnk_b4 = t - 1;
+            if (t <= 0) {
+                o->mUnk_b4 = 0;
+                func_02094768_inline(o);
+                if (o->mUnk_fc >= 0x2000) {
+                    o->mUnk_110 = 0;
+                }
             }
-        }
-        break;
-    case 0:
-        t = o->mUnk_b8;
-        o->mUnk_b8 = t - 1;
-        if (t <= 0) {
-            o->mUnk_b8 = 0;
-            o->mUnk_fc = o->mUnk_fc - 0x1000;
-            if (o->mUnk_fc > 0) {
-                o->mUnk_ac = o->mUnk_fc >> 12;
+            break;
+        case 0:
+            t = o->mUnk_b8;
+            o->mUnk_b8 = t - 1;
+            if (t <= 0) {
+                o->mUnk_b8 = 0;
+                o->mUnk_fc = o->mUnk_fc - 0x1000;
+                if (o->mUnk_fc > 0) {
+                    o->mUnk_ac = o->mUnk_fc >> 12;
+                } else {
+                    o->mUnk_ac = 0;
+                    func_020d2398(&o->mUnk_00);
+                    data_0217b0d8--;
+                }
             } else {
-                o->mUnk_ac = 0;
-                func_020d2398(&o->mUnk_00);
-                data_0217b0d8--;
+                func_02094768_inline(o);
             }
-        } else {
-            func_02094768_inline(o);
-        }
-        break;
+            break;
     }
     if (o->mUnk_b8 <= 0) {
         return;
@@ -129,7 +129,8 @@ void func_02094768(void *a, Unk02094000 *o) {
         o->mUnk_00.mUnk_04.z = o->mUnk_a0.z + (s32) (((s64) n * data_0215d4b4[(w >> 4) * 2]) >> 12);
     } else {
         g = func_0207a974((u16) data_021759c0->mUnk_62);
-        o->mUnk_00.mUnk_04.x = g->mUnk_80.x + (o->mUnk_a0.x + (s32) (((s64) n * data_0215d4b4[(w >> 4) * 2 + 1]) >> 12));
+        o->mUnk_00.mUnk_04.x =
+            g->mUnk_80.x + (o->mUnk_a0.x + (s32) (((s64) n * data_0215d4b4[(w >> 4) * 2 + 1]) >> 12));
         o->mUnk_00.mUnk_04.y = o->mUnk_a0.y + m;
         o->mUnk_00.mUnk_04.z = g->mUnk_80.z + (o->mUnk_a0.z + (s32) (((s64) n * data_0215d4b4[(w >> 4) * 2]) >> 12));
     }

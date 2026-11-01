@@ -130,7 +130,8 @@ void func_ov000_0219a7e4(u8 *a, s32 b, void *c) {
             if (b >= 0x14) {
                 d = *(Unk0219ade4 *) a;
                 g = *(u32 *) d.mUnk_08;
-                h = func_ov000_0219b1f8((g << 24 & 0xff000000) | ((g << 8 & 0xff0000) | ((g >> 24 & 0xff) | (g >> 8 & 0xff00))));
+                h = func_ov000_0219b1f8((g << 24 & 0xff000000) |
+                                        ((g << 8 & 0xff0000) | ((g >> 24 & 0xff) | (g >> 8 & 0xff00))));
                 if (h != 0) {
                     if (f == 5) {
                         func_ov000_0219a9e4(h, &d, c);
@@ -142,7 +143,8 @@ void func_ov000_0219a7e4(u8 *a, s32 b, void *c) {
         } else if (b >= 0x15) {
             e = *(Unk0219aa64 *) a;
             g = *(u32 *) e.mUnk_08;
-            h = func_ov000_0219b1f8((g << 24 & 0xff000000) | ((g << 8 & 0xff0000) | ((g >> 24 & 0xff) | (g >> 8 & 0xff00))));
+            h = func_ov000_0219b1f8((g << 24 & 0xff000000) |
+                                    ((g << 8 & 0xff0000) | ((g >> 24 & 0xff) | (g >> 8 & 0xff00))));
             if (h != 0) {
                 func_ov000_0219a8bc(h, &e, c);
             }
@@ -154,21 +156,22 @@ void func_ov000_0219a8bc(Unk0219b1d4 *a, Unk0219aa64 *b, Unk021a4654 *c) {
     u32 d;
 
     switch (b->mUnk_07) {
-    case 1:
-        d = b->mUnk_0c;
-        if (d <= 2) {
-            a->mUnk_14[d] = 1;
-            if (a->mUnk_10 == 0 && a->mUnk_14[1] != 0 && a->mUnk_14[2] != 0 && (a->mUnk_04 == -1 || a->mUnk_14[0] != 0)) {
-                a->mUnk_10 = 1;
-                a->mUnk_28 = func_ov000_0218e8c4() + 10000;
-                a->mUnk_34(a->mUnk_10, a->mUnk_3c);
+        case 1:
+            d = b->mUnk_0c;
+            if (d <= 2) {
+                a->mUnk_14[d] = 1;
+                if (a->mUnk_10 == 0 && a->mUnk_14[1] != 0 && a->mUnk_14[2] != 0 &&
+                    (a->mUnk_04 == -1 || a->mUnk_14[0] != 0)) {
+                    a->mUnk_10 = 1;
+                    a->mUnk_28 = func_ov000_0218e8c4() + 10000;
+                    a->mUnk_34(a->mUnk_10, a->mUnk_3c);
+                }
             }
-        }
-        break;
-    case 2:
-        b->mUnk_07 = 3;
-        func_ov000_0219b0b0(a->mDescriptor, c->mUnk_04, c->mUnk_02 >> 8 & 0xff | c->mUnk_02 << 8 & 0xff00, b, 0x15);
-        break;
+            break;
+        case 2:
+            b->mUnk_07 = 3;
+            func_ov000_0219b0b0(a->mDescriptor, c->mUnk_04, c->mUnk_02 >> 8 & 0xff | c->mUnk_02 << 8 & 0xff00, b, 0x15);
+            break;
     }
 }
 
@@ -430,7 +433,8 @@ void func_ov000_0219ade4(Unk0219b1d4 *a) {
     }
 }
 
-// non-matching: the original holds the message address in r4 (add r4, sp, #12 first), spills two values at [sp+4] and [sp+8] and has a frame of 0x64; ours addresses it from sp, has no spills and a frame of 0x5c (4 bytes larger code)
+// non-matching: the original holds the message address in r4 (add r4, sp, #12 first), spills two values at [sp+4] and
+// [sp+8] and has a frame of 0x64; ours addresses it from sp, has no spills and a frame of 0x5c (4 bytes larger code)
 void func_ov000_0219aeb0(Unk0219b1d4 *a) {
     Unk0219aeb0 b;
     u32 c;
@@ -499,7 +503,8 @@ u16 func_ov000_0219b038(u32 a) {
     return e;
 }
 
-// non-matching: the original loads the constant 0x0100007f into r7 once before the loop and keeps the result in r6, the table pointer in r5 and the offset in r4; ours reloads the constant in the loop and uses r7, r6, r5, r4 for them
+// non-matching: the original loads the constant 0x0100007f into r7 once before the loop and keeps the result in r6, the
+// table pointer in r5 and the offset in r4; ours reloads the constant in the loop and uses r7, r6, r5, r4 for them
 u32 func_ov000_0219b05c(void) {
     u32 a;
     u32 *c;

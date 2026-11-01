@@ -7,8 +7,7 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020f9c6c.h"
 
-void func_ov001_02192e10(Unk02188950 *param_1)
-{
+void func_ov001_02192e10(Unk02188950 *param_1) {
     s32 m[9];
     func_020d2450(param_1);
     param_1->mUnk_000.mUnk_7e =
@@ -18,16 +17,14 @@ void func_ov001_02192e10(Unk02188950 *param_1)
     func_02146dfc(m, &param_1->mUnk_000.mUnk_28.mUnk_00.x, &param_1->mUnk_000.mUnk_28.mUnk_00.x);
 }
 
-void func_ov001_02192dd4(Unk0219b478 *param_1)
-{
+void func_ov001_02192dd4(Unk0219b478 *param_1) {
     data_ov001_021a9bcc = func_ov001_0219b478(param_1, "StopSign.nsbmd");
     func_0209b940(data_ov001_021a9bcc, 0x3f);
     func_0209ba08(data_ov001_021a9bcc, 2);
     func_020849a0(data_ov001_021a9bcc->mUnk_10, 0x294a);
 }
 
-void func_ov001_02192d7c(void *param_1, Unk02192d7c *param_2)
-{
+void func_ov001_02192d7c(void *param_1, Unk02192d7c *param_2) {
     s32 v = 0x1e;
     func_01ff9048(0x14, &v, 1);
     param_2->mUnk_4c = param_2->mUnk_04 >> 4;

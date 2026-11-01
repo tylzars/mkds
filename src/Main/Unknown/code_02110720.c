@@ -6,8 +6,7 @@
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_021059e0.h"
 
-void func_02110874(void)
-{
+void func_02110874(void) {
     s32 a;
     a = data_0217d1f4;
     if (a == 7) {
@@ -17,8 +16,7 @@ void func_02110874(void)
     data_0217d1f4 = 7;
 }
 
-void func_02110838(void)
-{
+void func_02110838(void) {
     s32 i;
     i = 0;
     data_0217d2a4.mUnk_78 = i;
@@ -30,8 +28,7 @@ void func_02110838(void)
     }
 }
 
-void func_02110754(void)
-{
+void func_02110754(void) {
     Unk0217d2a4 *p = &data_0217d2a4;
     s32 i;
     s32 v;
@@ -74,8 +71,7 @@ void func_02110754(void)
     }
 }
 
-void func_02110720(u32 a, u32 b)
-{
+void func_02110720(u32 a, u32 b) {
     s32 i;
     s32 n;
     i = data_0217d2a4.mUnk_70;

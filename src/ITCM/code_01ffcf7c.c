@@ -160,7 +160,8 @@ end:
     }
 }
 
-// non-matching: second half reloads the data_0217b4f8 base per use (ldr r4 base, y computed in r3) where the original keeps one base in r3 and y in r2; size 0x12c against 0x130
+// non-matching: second half reloads the data_0217b4f8 base per use (ldr r4 base, y computed in r3) where the original
+// keeps one base in r3 and y in r2; size 0x12c against 0x130
 s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     Vec3 v;
     s32 r;
@@ -190,7 +191,8 @@ s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     return r;
 }
 
-// non-matching: original has a 4-byte stack local and r7 (push r4-r7, sub sp 4), loads a->z and a->x up front; ours push r4-r6, no stack local, size 0x16c against 0x188
+// non-matching: original has a 4-byte stack local and r7 (push r4-r7, sub sp 4), loads a->z and a->x up front; ours
+// push r4-r6, no stack local, size 0x16c against 0x188
 s32 func_01ffd778(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     s32 r;
     s32 x;
@@ -212,7 +214,8 @@ s32 func_01ffd778(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
         r |= data_usa_021568f8;
     }
     y = (a->y - data_0217b4f8.mUnk_08.y) >> 12;
-    if (y * data_0217b4f8.mUnk_14.y + x * data_0217b4f8.mUnk_14.x + z * data_0217b4f8.mUnk_14.z < data_0217b4f8.mUnk_00 - b) {
+    if (y * data_0217b4f8.mUnk_14.y + x * data_0217b4f8.mUnk_14.x + z * data_0217b4f8.mUnk_14.z <
+        data_0217b4f8.mUnk_00 - b) {
         return r | 2;
     }
     if (y * data_0217b4f8.mUnk_20.y + x * data_0217b4f8.mUnk_20.x + z * data_0217b4f8.mUnk_20.z > b) {
@@ -230,7 +233,8 @@ s32 func_01ffd778(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     return r;
 }
 
-// non-matching: register assignment differs throughout (original keeps the index in r0, the two tables in r4 and r5, the upper bounds in r8 and r9; ours uses r4 to r9 in another order), size 0x26c against 0x270
+// non-matching: register assignment differs throughout (original keeps the index in r0, the two tables in r4 and r5,
+// the upper bounds in r8 and r9; ours uses r4 to r9 in another order), size 0x26c against 0x270
 void func_01ffd900(s32 a, s32 b) {
     Unk0217b5b8 *e;
     Unk0217b5b4 *x;
@@ -307,7 +311,8 @@ void func_01ffd900(s32 a, s32 b) {
     }
 }
 
-// non-matching: original spills the outer loop counter of the first sort to the stack (sub sp, 4; str/ldr [sp]) and keeps it in r3 in the second, with another register order; size 0x360 against 0x374
+// non-matching: original spills the outer loop counter of the first sort to the stack (sub sp, 4; str/ldr [sp]) and
+// keeps it in r3 in the second, with another register order; size 0x360 against 0x374
 void func_01ffdb70(void) {
     s32 i = 0;
     s32 k = 0;

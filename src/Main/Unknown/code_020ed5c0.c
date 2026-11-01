@@ -44,9 +44,8 @@ s32 func_020ee528(Unk020eda5c *a) {
     return 0;
 }
 
-// non-matching: the first parameter is allocated r5 and the function pointer at
-// 0x18 of data_0217bc48 r10; the original has them in r10 and r6. The stack is
-// 8 bytes instead of 4.
+// non-matching: the first parameter is allocated r5 and the function pointer at 0x18 of data_0217bc48 r10; the original
+// has them in r10 and r6. The stack is 8 bytes instead of 4.
 void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     s32 k;
     s32 t;
@@ -347,9 +346,8 @@ void func_020edad8(Unk020eda5c *p) {
     }
 }
 
-// non-matching: the original copies the second parameter to r2 and uses r1 as the
-// loop counter; the compiled code keeps the parameter in r1 and the counter in r2
-// (0x78 bytes against 0x7c).
+// non-matching: the original copies the second parameter to r2 and uses r1 as the loop counter; the compiled code keeps
+// the parameter in r1 and the counter in r2 (0x78 bytes against 0x7c).
 void func_020eda5c(Unk020eda5c *p, Unk020f41c4_A *q) {
     s32 n;
     Unk020f41c4_A *e;

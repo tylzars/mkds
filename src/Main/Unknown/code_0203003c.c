@@ -9,7 +9,8 @@
 
 #pragma thumb on
 
-// non-matching: 81%, the original keeps the table pointer and the zero constants in stack words and loads the first entry values in another order; size 4 bytes over
+// non-matching: 81%, the original keeps the table pointer and the zero constants in stack words and loads the first
+// entry values in another order; size 4 bytes over
 void func_0203003c(s32 a) {
     Unk02174e50_24 *p;
     Unk02153c58 *q;
@@ -135,7 +136,8 @@ s32 func_02030274(s32 a, s32 b) {
     return f;
 }
 
-// non-matching: the then-arm ends with `b` to the shared epilogue in the original; here it gets its own copy of the epilogue (add sp, pop, bx; 4 bytes over), all other instructions match
+// non-matching: the then-arm ends with `b` to the shared epilogue in the original; here it gets its own copy of the
+// epilogue (add sp, pop, bx; 4 bytes over), all other instructions match
 void func_020302a0(void) {
     Unk02174e54 *o;
 

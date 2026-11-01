@@ -9,6 +9,5 @@ extern Unk021a8f84 data_ov000_021b6020;
 extern u32 *data_ov000_021b6018[2];
 extern u32 data_ov000_021b600c;
 
-
 unsigned int func_ov000_021a8f0c(unsigned int param_1, unsigned int param_2);
 Unk021a8f84 *func_ov000_021a8f84(const u8 *a);

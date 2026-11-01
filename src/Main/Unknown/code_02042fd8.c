@@ -44,7 +44,8 @@ s32 func_02043108(void *a, ...) {
     return 1;
 }
 
-// non-matching: the original loads the entry index before the table pointer inside the first loop, and copies the zero start values with movs where adds is emitted here
+// non-matching: the original loads the entry index before the table pointer inside the first loop, and copies the zero
+// start values with movs where adds is emitted here
 s32 func_02043078(u16 a) {
     u16 n;
     s32 s;

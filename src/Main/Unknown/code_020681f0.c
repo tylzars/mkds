@@ -34,7 +34,8 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_02075d08.h"
 
-// non-matching: the index of the data_02175628 element is loaded into r1 and the product goes to r2 (original: index in r2, product in r1); the rest is identical
+// non-matching: the index of the data_02175628 element is loaded into r1 and the product goes to r2 (original: index in
+// r2, product in r1); the rest is identical
 void func_020681f0(Unk0206bcb0 *a) {
     Unk0208c5b8 *b;
     u16 *c;

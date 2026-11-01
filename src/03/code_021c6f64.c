@@ -1,6 +1,7 @@
 #include "03/code_021c6f64.h"
 
-// non-matching: same instructions, registers differ (loop pointer and counters swapped: ours r7 count, r6 offset, r2 object; original r5, r3, r7), size 0xf0 against 0xec
+// non-matching: same instructions, registers differ (loop pointer and counters swapped: ours r7 count, r6 offset, r2
+// object; original r5, r3, r7), size 0xf0 against 0xec
 s32 func_ov003_021c6f64(void) {
     u8 a[4];
     u8 b[4];

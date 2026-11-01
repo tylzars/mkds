@@ -50,14 +50,14 @@ s32 func_020f8a04(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_
     t = 0;
     if (data_021759c0->mUnk_08 != 4) {
         for (i = 0; i < 0xe; i++) {
-            t += (u16) (data_0217bc34[(s32) i].mUnk_90 * (data_027e00cc[(s32) i].mUnk_1c - data_027e00cc[(s32) i].mUnk_18));
+            t += (u16) (data_0217bc34[(s32) i].mUnk_90 *
+                        (data_027e00cc[(s32) i].mUnk_1c - data_027e00cc[(s32) i].mUnk_18));
         }
     }
     for (j = 0; j < param_6; j++) {
         n = data_0217bc48[(s32) j].mUnk_08;
         if (!((j == 8 && data_0217bc60 > 0) || (j == 7 && data_0217bc5c > 0) || (j == 0xf && data_0217bc58 > 0))) {
-            if (data_027e00cc[n].mUnk_20 - data_027e00cc[n].mUnk_1c > 0 &&
-                data_0217bc48[(s32) j].mUnk_00 != 0) {
+            if (data_027e00cc[n].mUnk_20 - data_027e00cc[n].mUnk_1c > 0 && data_0217bc48[(s32) j].mUnk_00 != 0) {
                 x = data_0217bc34[n].mUnk_90 * data_0217bc48[(s32) j].mUnk_0c;
                 if (x == 0 || x + t <= 0x28) {
                     if (j >= 9 && m != 0) {

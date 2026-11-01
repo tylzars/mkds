@@ -56,7 +56,7 @@ void func_ov003_021c9d94(void) {
     int v1;
     v1 = func_ov003_021d1f70(0);
     if ((v1 == 0) && (((data_ov003_021da21c != 0 || (v1 = func_ov003_021d1f70(1), v1 == 0)) &&
-                          (v1 = func_ov003_021bf2f0(), v1 != 0)))) {
+                       (v1 = func_ov003_021bf2f0(), v1 != 0)))) {
         func_ov003_021beecc();
         func_ov003_021d2168(0);
         if (data_ov003_021da21c == 0) {

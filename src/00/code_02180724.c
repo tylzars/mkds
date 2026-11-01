@@ -49,36 +49,36 @@ void func_ov000_02180724(void) {
         func_02036ab0(data_ov000_021b4c64->mUnk_04);
         data_ov000_021b4c64->mUnk_04 = func_020369fc(data_ov000_021b4c64->mUnk_00);
         switch (data_ov000_021b4c64->mUnk_0c) {
-        case 0:
-            func_ov000_02180c04();
-            break;
-        case 1:
-            func_ov000_02181714();
-            break;
-        case 2:
-            func_ov000_02181fcc();
-            break;
-        case 3:
-            func_ov000_0218330c();
-            break;
-        case 4:
-            func_ov000_021848c8();
-            break;
-        case 5:
-            func_ov000_021849e0();
-            break;
-        case 6:
-            func_ov000_02184aa4();
-            break;
-        case 7:
-            func_ov000_021857b8();
-            break;
-        case 8:
-            func_ov000_02184ba8();
-            break;
-        case 9:
-            func_ov000_02185344();
-            break;
+            case 0:
+                func_ov000_02180c04();
+                break;
+            case 1:
+                func_ov000_02181714();
+                break;
+            case 2:
+                func_ov000_02181fcc();
+                break;
+            case 3:
+                func_ov000_0218330c();
+                break;
+            case 4:
+                func_ov000_021848c8();
+                break;
+            case 5:
+                func_ov000_021849e0();
+                break;
+            case 6:
+                func_ov000_02184aa4();
+                break;
+            case 7:
+                func_ov000_021857b8();
+                break;
+            case 8:
+                func_ov000_02184ba8();
+                break;
+            case 9:
+                func_ov000_02185344();
+                break;
         }
         data_ov000_021b4c64->mUnk_10 = data_ov000_021b4c64->mUnk_08;
         data_ov000_021b4c64->mUnk_08 = data_ov000_021b4c64->mUnk_0c;
@@ -141,64 +141,64 @@ void func_ov000_02180844(void *a, s32 b) {
         data_0217b488->mUnk_58 = 0;
     }
     switch (b) {
-    case 0:
-        data_ov000_021b4c64->mUnk_10 = 10;
-        data_ov000_021b4c64->mUnk_08 = 1;
-        func_ov000_02181714();
-        func_021204d0();
-        data_0217b488->mUnk_1c = 0;
-        break;
-    case 12:
-        data_ov000_021b4c64->mUnk_10 = 13;
-        data_ov000_021b4c64->mUnk_08 = 1;
-        func_ov000_02181714();
-        break;
-    case 2:
-    case 10:
-        switch (data_0217b488->mUnk_1c) {
         case 0:
+            data_ov000_021b4c64->mUnk_10 = 10;
+            data_ov000_021b4c64->mUnk_08 = 1;
+            func_ov000_02181714();
+            func_021204d0();
+            data_0217b488->mUnk_1c = 0;
+            break;
+        case 12:
+            data_ov000_021b4c64->mUnk_10 = 13;
             data_ov000_021b4c64->mUnk_08 = 1;
             func_ov000_02181714();
             break;
-        case 1:
-            q = &data_0217d384->mUnk_0008;
-            q->mUnk_10 = 2;
-            q->mUnk_12 = 1;
-            data_ov000_021b4c64->mUnk_08 = 2;
-            func_ov000_02181fcc();
-            break;
         case 2:
-            func_02123a48(1);
-            data_ov000_021b4c64->mUnk_08 = 4;
-            func_ov000_021848c8();
+        case 10:
+            switch (data_0217b488->mUnk_1c) {
+                case 0:
+                    data_ov000_021b4c64->mUnk_08 = 1;
+                    func_ov000_02181714();
+                    break;
+                case 1:
+                    q = &data_0217d384->mUnk_0008;
+                    q->mUnk_10 = 2;
+                    q->mUnk_12 = 1;
+                    data_ov000_021b4c64->mUnk_08 = 2;
+                    func_ov000_02181fcc();
+                    break;
+                case 2:
+                    func_02123a48(1);
+                    data_ov000_021b4c64->mUnk_08 = 4;
+                    func_ov000_021848c8();
+                    break;
+                case 3:
+                    func_02123a48(2);
+                    func_020296f4();
+                    data_ov000_021b4c64->mUnk_08 = 6;
+                    func_ov000_02184aa4();
+                    break;
+            }
             break;
-        case 3:
-            func_02123a48(2);
-            func_020296f4();
-            data_ov000_021b4c64->mUnk_08 = 6;
-            func_ov000_02184aa4();
-            break;
-        }
-        break;
-    case 14:
-        data_ov000_021b4c64->mUnk_10 = 11;
-        data_ov000_021b4c64->mUnk_08 = 8;
-        func_ov000_02184ba8();
-        break;
-    case 8:
-        switch (data_0217b488->mUnk_50) {
-        case 0:
-            data_ov000_021b4c64->mUnk_10 = 14;
-            data_ov000_021b4c64->mUnk_08 = 2;
-            func_ov000_02181fcc();
-            break;
-        case 1:
-            data_ov000_021b4c64->mUnk_10 = 14;
+        case 14:
+            data_ov000_021b4c64->mUnk_10 = 11;
             data_ov000_021b4c64->mUnk_08 = 8;
             func_ov000_02184ba8();
             break;
-        }
-        break;
+        case 8:
+            switch (data_0217b488->mUnk_50) {
+                case 0:
+                    data_ov000_021b4c64->mUnk_10 = 14;
+                    data_ov000_021b4c64->mUnk_08 = 2;
+                    func_ov000_02181fcc();
+                    break;
+                case 1:
+                    data_ov000_021b4c64->mUnk_10 = 14;
+                    data_ov000_021b4c64->mUnk_08 = 8;
+                    func_ov000_02184ba8();
+                    break;
+            }
+            break;
     }
     data_ov000_021b4c64->mUnk_0c = -1;
     data_ov000_021b4c64->mUnk_1c.mUnk_00(data_ov000_021b4c64->mUnk_04);

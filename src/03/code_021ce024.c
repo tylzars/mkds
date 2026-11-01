@@ -5,7 +5,8 @@
 #include "03/code_021d1970.h"
 #include "03/code_021d3544.h"
 
-// non-matching: original keeps a second zero in r5 for the object offset (movs r5, #0; str r5, [sp, #4]) and steps r5, r6, r7 before the counter at [sp, #4]; ours loads r5 from [sp, #4] each pass, 0xa4 bytes against 0xa0
+// non-matching: original keeps a second zero in r5 for the object offset (movs r5, #0; str r5, [sp, #4]) and steps r5,
+// r6, r7 before the counter at [sp, #4]; ours loads r5 from [sp, #4] each pass, 0xa4 bytes against 0xa0
 void func_ov003_021ce024(u32 a) {
     s32 i;
     u8 *b;

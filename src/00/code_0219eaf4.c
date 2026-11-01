@@ -26,44 +26,44 @@ u32 func_ov000_0219eaf4(void) {
         return 1;
     }
     switch (p->mUnk_198) {
-    case 8:
-        if (t > 6000) {
-            if (func_ov000_0219edb0(p->mUnk_f4[0], 14) == 0) {
-                return 0;
-            }
-        }
-        break;
-    case 14:
-        if (t > 6000) {
-            p->mUnk_1a3[1]++;
-            p = data_ov000_021b566c;
-            if (p->mUnk_1a3[1] > 5) {
-                if (func_ov000_0219f00c(p->mUnk_1cc) == 0) {
+        case 8:
+            if (t > 6000) {
+                if (func_ov000_0219edb0(p->mUnk_f4[0], 14) == 0) {
                     return 0;
                 }
+            }
+            break;
+        case 14:
+            if (t > 6000) {
+                p->mUnk_1a3[1]++;
                 p = data_ov000_021b566c;
-                if (p->mUnk_0d != 0) {
-                    p->mUnk_1a3[1] = 0;
-                    data_ov000_021b566c->mUnk_1d8 = func_ov000_021a350c();
+                if (p->mUnk_1a3[1] > 5) {
+                    if (func_ov000_0219f00c(p->mUnk_1cc) == 0) {
+                        return 0;
+                    }
+                    p = data_ov000_021b566c;
+                    if (p->mUnk_0d != 0) {
+                        p->mUnk_1a3[1] = 0;
+                        data_ov000_021b566c->mUnk_1d8 = func_ov000_021a350c();
+                    } else {
+                        func_ov000_0219f23c(2);
+                    }
                 } else {
-                    func_ov000_0219f23c(2);
-                }
-            } else {
-                for (n = 1; n <= p->mUnk_0d; n++, p = data_ov000_021b566c) {
-                    if ((data_ov000_021b566c->mUnk_1cc & (1 << data_ov000_021b566c->mUnk_2b8[n])) == 0) {
-                        if (func_ov000_0219edb0(p->mUnk_f4[n], 13) == 0) {
-                            return 0;
+                    for (n = 1; n <= p->mUnk_0d; n++, p = data_ov000_021b566c) {
+                        if ((data_ov000_021b566c->mUnk_1cc & (1 << data_ov000_021b566c->mUnk_2b8[n])) == 0) {
+                            if (func_ov000_0219edb0(p->mUnk_f4[n], 13) == 0) {
+                                return 0;
+                            }
                         }
                     }
                 }
             }
-        }
-        break;
-    case 15:
-        if (p->mUnk_1a8 < t) {
-            func_ov000_0219f23c(2);
-        }
-        break;
+            break;
+        case 15:
+            if (p->mUnk_1a8 < t) {
+                func_ov000_0219f23c(2);
+            }
+            break;
     }
     return 1;
 }
@@ -80,51 +80,51 @@ s32 func_ov000_0219ec44(u32 a, s32 b, u32 c) {
         return 1;
     }
     switch (b) {
-    case 13:
-        if (data_ov000_021b566c->mUnk_198 != 8) {
-            data_ov000_021b566c->mUnk_198 = 8;
-            func_ov000_0219f124(c);
-        }
-        if (func_ov000_0219edb0(a, 14) == 0) {
-            return 0;
-        }
-        break;
-    case 14:
-        if (data_ov000_021b566c->mUnk_198 == 14) {
-            t = func_ov000_021a350c();
-            p = data_ov000_021b566c;
-            x = p->mUnk_1d8;
-            if (x + 600 < t) {
-                d = ((t - x) >> 1) - 300;
-                if (p->mUnk_1a8 < d) {
-                    p->mUnk_1a8 = d;
-                }
+        case 13:
+            if (data_ov000_021b566c->mUnk_198 != 8) {
+                data_ov000_021b566c->mUnk_198 = 8;
+                func_ov000_0219f124(c);
             }
-            r = func_ov000_0219e948(a, 0);
-            if (r != 0xff) {
-                data_ov000_021b566c->mUnk_1cc |= 1 << r;
-            }
-            m = func_ov000_0219e8fc(1);
-            p = data_ov000_021b566c;
-            if (p->mUnk_1cc == m) {
-                for (n = 1; n <= p->mUnk_0d; n++, p = data_ov000_021b566c) {
-                    if (func_ov000_0219edb0(p->mUnk_f4[n], 15) == 0) {
-                        return 0;
-                    }
-                }
-                p->mUnk_198 = 15;
-            }
-        } else {
-            if (func_ov000_0219edb0(a, 15) == 0) {
+            if (func_ov000_0219edb0(a, 14) == 0) {
                 return 0;
             }
-        }
-        break;
-    case 15:
-        if (data_ov000_021b566c->mUnk_198 == 8) {
-            func_ov000_0219f23c(2);
-        }
-        break;
+            break;
+        case 14:
+            if (data_ov000_021b566c->mUnk_198 == 14) {
+                t = func_ov000_021a350c();
+                p = data_ov000_021b566c;
+                x = p->mUnk_1d8;
+                if (x + 600 < t) {
+                    d = ((t - x) >> 1) - 300;
+                    if (p->mUnk_1a8 < d) {
+                        p->mUnk_1a8 = d;
+                    }
+                }
+                r = func_ov000_0219e948(a, 0);
+                if (r != 0xff) {
+                    data_ov000_021b566c->mUnk_1cc |= 1 << r;
+                }
+                m = func_ov000_0219e8fc(1);
+                p = data_ov000_021b566c;
+                if (p->mUnk_1cc == m) {
+                    for (n = 1; n <= p->mUnk_0d; n++, p = data_ov000_021b566c) {
+                        if (func_ov000_0219edb0(p->mUnk_f4[n], 15) == 0) {
+                            return 0;
+                        }
+                    }
+                    p->mUnk_198 = 15;
+                }
+            } else {
+                if (func_ov000_0219edb0(a, 15) == 0) {
+                    return 0;
+                }
+            }
+            break;
+        case 15:
+            if (data_ov000_021b566c->mUnk_198 == 8) {
+                func_ov000_0219f23c(2);
+            }
+            break;
     }
     return 1;
 }
@@ -157,49 +157,49 @@ u32 func_ov000_0219ee14(void) {
         return 1;
     }
     switch (p->mUnk_198) {
-    case 9:
-        if (t > 6000) {
-            func_ov000_0219ef68(p->mUnk_2b8[0], 3);
-        }
-        break;
-    case 16:
-        if (t > 6000) {
-            p->mUnk_1a3[0]++;
-            p = data_ov000_021b566c;
-            if (p->mUnk_1a3[0] > 5) {
-                if (p->mUnk_15 == 0 || p->mUnk_15 == 1) {
-                    func_ov000_0219f0f4();
-                    func_ov000_0219f23c(1);
-                    break;
-                }
-                if (func_ov000_0219f00c(p->mUnk_1c8) == 0) {
-                    return 0;
-                }
+        case 9:
+            if (t > 6000) {
+                func_ov000_0219ef68(p->mUnk_2b8[0], 3);
+            }
+            break;
+        case 16:
+            if (t > 6000) {
+                p->mUnk_1a3[0]++;
                 p = data_ov000_021b566c;
-                if (p->mUnk_0d != 0) {
-                    p->mUnk_1a3[0] = 0;
-                    data_ov000_021b566c->mUnk_1d0 = func_ov000_021a350c();
-                } else {
-                    if (func_ov000_0219f9bc(p->mUnk_1f4) == 0) {
+                if (p->mUnk_1a3[0] > 5) {
+                    if (p->mUnk_15 == 0 || p->mUnk_15 == 1) {
+                        func_ov000_0219f0f4();
+                        func_ov000_0219f23c(1);
+                        break;
+                    }
+                    if (func_ov000_0219f00c(p->mUnk_1c8) == 0) {
                         return 0;
                     }
-                }
-            } else {
-                for (n = 1; n <= p->mUnk_0d; n++, p = data_ov000_021b566c) {
                     p = data_ov000_021b566c;
-                    b = p->mUnk_2b8[n];
-                    if ((p->mUnk_1c8 & (1 << b)) == 0) {
-                        func_ov000_0219ef68(b, 2);
+                    if (p->mUnk_0d != 0) {
+                        p->mUnk_1a3[0] = 0;
+                        data_ov000_021b566c->mUnk_1d0 = func_ov000_021a350c();
+                    } else {
+                        if (func_ov000_0219f9bc(p->mUnk_1f4) == 0) {
+                            return 0;
+                        }
+                    }
+                } else {
+                    for (n = 1; n <= p->mUnk_0d; n++, p = data_ov000_021b566c) {
+                        p = data_ov000_021b566c;
+                        b = p->mUnk_2b8[n];
+                        if ((p->mUnk_1c8 & (1 << b)) == 0) {
+                            func_ov000_0219ef68(b, 2);
+                        }
                     }
                 }
             }
-        }
-        break;
-    case 17:
-        if (p->mUnk_1a6 < t) {
-            func_ov000_0219f544(4);
-        }
-        break;
+            break;
+        case 17:
+            if (p->mUnk_1a6 < t) {
+                func_ov000_0219f544(4);
+            }
+            break;
     }
     return 1;
 }
@@ -209,32 +209,33 @@ void func_ov000_0219ef68(s32 a, u16 b) {
     u8 v1[3];
     volatile Unk021b566c *p; // fields are read again on each use
     switch (b) {
-    case 2:
-        p = data_ov000_021b566c;
-        if (a == p->mUnk_2b8[p->mUnk_0d]) {
-            v1[0] = 1;
-        } else {
-            v1[0] = 0;
-        }
-        for (n = 1; n <= p->mUnk_0d; n++) {
-            if (a == p->mUnk_2b8[n]) {
-                v1[1] = n;
-                v1[2] = a;
-                break;
+        case 2:
+            p = data_ov000_021b566c;
+            if (a == p->mUnk_2b8[p->mUnk_0d]) {
+                v1[0] = 1;
+            } else {
+                v1[0] = 0;
             }
-        }
-        break;
-    case 3:
-        p = data_ov000_021b566c;
-        v1[0] = p->mUnk_1a6;
-        v1[1] = p->mUnk_1a6 >> 8;
-        break;
+            for (n = 1; n <= p->mUnk_0d; n++) {
+                if (a == p->mUnk_2b8[n]) {
+                    v1[1] = n;
+                    v1[2] = a;
+                    break;
+                }
+            }
+            break;
+        case 3:
+            p = data_ov000_021b566c;
+            v1[0] = p->mUnk_1a6;
+            v1[1] = p->mUnk_1a6 >> 8;
+            break;
     }
     func_ov000_021a3310(b, a, v1, 4);
     data_ov000_021b566c->mUnk_1d0 = func_ov000_021a350c();
 }
 
-// non-matching: the original keeps the object pointer on the stack and steps a pointer into the bytes at offset 0x2b8 (0xe8 bytes against 0xe0); ours indexes
+// non-matching: the original keeps the object pointer on the stack and steps a pointer into the bytes at offset 0x2b8
+// (0xe8 bytes against 0xe0); ours indexes
 u32 func_ov000_0219f00c(u32 a) {
     u32 d[32];
     u32 e[32];
@@ -429,7 +430,8 @@ void func_ov000_0219f3cc(void) {
         func_ov000_0219f344();
         return;
     }
-    if (p->mUnk_198 == 4 || p->mUnk_198 == 5 || p->mUnk_198 == 6 || p->mUnk_198 == 7 || p->mUnk_198 == 11 || p->mUnk_198 == 12) {
+    if (p->mUnk_198 == 4 || p->mUnk_198 == 5 || p->mUnk_198 == 6 || p->mUnk_198 == 7 || p->mUnk_198 == 11 ||
+        p->mUnk_198 == 12) {
         if (p->mUnk_1ec != 0) {
             if (func_ov000_0219fee4(func_ov000_0219fb14(p->mUnk_f4[0])) != 0) {
                 return;

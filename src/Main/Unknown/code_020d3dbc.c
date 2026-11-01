@@ -19,70 +19,70 @@ s32 func_020d3e34(Vec3 *param_1, s32 param_2, Unk020e71a0 *param_3, Vec3 *param_
         return 0;
     }
     switch (param_3->mUnk_98->mUnk_08) {
-    case 1:
-        t = param_2 + param_3->mUnk_58.x;
-        n = -t;
-        dz = param_1->z - param_3->mUnk_04.z;
-        if (dz > t || dz < n) {
-            r = 0;
-        } else {
-            dx = param_1->x - param_3->mUnk_04.x;
-            if (dx > t || dx < n) {
+        case 1:
+            t = param_2 + param_3->mUnk_58.x;
+            n = -t;
+            dz = param_1->z - param_3->mUnk_04.z;
+            if (dz > t || dz < n) {
                 r = 0;
             } else {
-                dy = param_1->y - param_3->mUnk_04.y;
-                if (dy > t || dy < n) {
+                dx = param_1->x - param_3->mUnk_04.x;
+                if (dx > t || dx < n) {
                     r = 0;
                 } else {
-                    r = (s64) dx * dx + (s64) dy * dy + (s64) dz * dz < (s64) t * t;
+                    dy = param_1->y - param_3->mUnk_04.y;
+                    if (dy > t || dy < n) {
+                        r = 0;
+                    } else {
+                        r = (s64) dx * dx + (s64) dy * dy + (s64) dz * dz < (s64) t * t;
+                    }
                 }
             }
-        }
-        if (r == 0) {
-            return 0;
-        }
-        func_020eb3f0(param_1, &param_3->mUnk_04, t, param_4);
-        return 1;
-    case 2:
-        t = param_2 + param_3->mUnk_58.x;
-        u = param_2 + param_3->mUnk_58.y;
-        n = -t;
-        dz = param_1->z - param_3->mUnk_04.z;
-        if (dz > t || dz < n) {
-            r = 0;
-        } else {
-            dx = param_1->x - param_3->mUnk_04.x;
-            if (dx > t || dx < n) {
+            if (r == 0) {
+                return 0;
+            }
+            func_020eb3f0(param_1, &param_3->mUnk_04, t, param_4);
+            return 1;
+        case 2:
+            t = param_2 + param_3->mUnk_58.x;
+            u = param_2 + param_3->mUnk_58.y;
+            n = -t;
+            dz = param_1->z - param_3->mUnk_04.z;
+            if (dz > t || dz < n) {
                 r = 0;
             } else {
-                dy = param_1->y - param_3->mUnk_04.y;
-                if (dy > u || dy < -u) {
+                dx = param_1->x - param_3->mUnk_04.x;
+                if (dx > t || dx < n) {
                     r = 0;
                 } else {
-                    r = (s64) dx * dx + (s64) dz * dz < (s64) t * t;
+                    dy = param_1->y - param_3->mUnk_04.y;
+                    if (dy > u || dy < -u) {
+                        r = 0;
+                    } else {
+                        r = (s64) dx * dx + (s64) dz * dz < (s64) t * t;
+                    }
                 }
             }
-        }
-        if (r == 0) {
+            if (r == 0) {
+                return 0;
+            }
+            func_020eb2a0(param_1, &param_3->mUnk_04, t, u, param_4);
+            return 1;
+        case 3:
+            return func_020ead80(param_1, &param_3->mUnk_04, &param_3->mUnk_28.mUnk_00, param_3->mUnk_58.x,
+                                 param_3->mUnk_58.y, param_3->mUnk_58.y, param_2, param_4) != 0;
+        case 4:
+            return func_020eafc4(param_1, &param_3->mUnk_04, &param_3->mUnk_28.mUnk_00, &param_3->mUnk_58,
+                                 &param_3->mUnk_58, param_2, param_4) != 0;
+        case 0:
             return 0;
-        }
-        func_020eb2a0(param_1, &param_3->mUnk_04, t, u, param_4);
-        return 1;
-    case 3:
-        return func_020ead80(param_1, &param_3->mUnk_04, &param_3->mUnk_28.mUnk_00, param_3->mUnk_58.x, param_3->mUnk_58.y,
-                             param_3->mUnk_58.y, param_2, param_4) != 0;
-    case 4:
-        return func_020eafc4(param_1, &param_3->mUnk_04, &param_3->mUnk_28.mUnk_00, &param_3->mUnk_58, &param_3->mUnk_58,
-                             param_2, param_4) != 0;
-    case 0:
-        return 0;
-    case 5:
-        if (param_3->mUnk_98->mUnk_18 != 0) {
-            return param_3->mUnk_98->mUnk_18(param_3, param_1, param_2) != 0;
-        }
-        return 0;
-    default:
-        return 0;
+        case 5:
+            if (param_3->mUnk_98->mUnk_18 != 0) {
+                return param_3->mUnk_98->mUnk_18(param_3, param_1, param_2) != 0;
+            }
+            return 0;
+        default:
+            return 0;
     }
 }
 

@@ -44,6 +44,7 @@ Unk021a8f84 *func_ov000_021a8f84(const u8 *a) {
     data_ov000_021b6020.mUnk_0c = data_ov000_021b6018;
     data_ov000_021b6018[0] = &data_ov000_021b600c;
     data_ov000_021b6018[1] = 0;
-    data_ov000_021b600c = ((b << 24) & 0xff000000) | (((b << 8) & 0xff0000) | (((b >> 24) & 0xff) | ((b >> 8) & 0xff00)));
+    data_ov000_021b600c =
+        ((b << 24) & 0xff000000) | (((b << 8) & 0xff0000) | (((b >> 24) & 0xff) | ((b >> 8) & 0xff00)));
     return &data_ov000_021b6020;
 }

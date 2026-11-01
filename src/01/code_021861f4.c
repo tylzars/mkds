@@ -82,7 +82,7 @@ void func_ov001_021861f4(void *param_1, Unk02188950 *param_2, s32 param_3) {
             if (t <= 4) {
                 t = 4;
             }
-            depth = (u16)t;
+            depth = (u16) t;
         }
         v.x = param_2->mUnk_000.mUnk_04.x;
         v.y = param_2->mUnk_000.mUnk_9c->mUnk_00.y;
@@ -106,7 +106,7 @@ void func_ov001_021861f4(void *param_1, Unk02188950 *param_2, s32 param_3) {
         value = 0x1e;
         func_01ff9048(0x14, &value, 1);
         func_01ff9048(0x19, func_020e6b58(&v), 0xc);
-        k = (u16)param_2->mUnk_184 >> 4;
+        k = (u16) param_2->mUnk_184 >> 4;
         func_02146d44(m, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
         func_01ff9048(0x1a, m, 9);
         c = param_2->mUnk_288 >> 4;

@@ -33,9 +33,8 @@
 #include "Main/Unknown/code_02110000.h"
 #include "Main/Unknown/code_020a128c.h"
 
-void func_ov001_0218e298(Unk02188950 *param_1, Unk0206bcb0 *param_2)
-{
-    func_ov001_02182bbc((u16)param_1->mUnk_0a0->mUnk_110);
+void func_ov001_0218e298(Unk02188950 *param_1, Unk0206bcb0 *param_2) {
+    func_ov001_02182bbc((u16) param_1->mUnk_0a0->mUnk_110);
     param_1->mUnk_000.mUnk_10.x = 0;
     param_1->mUnk_000.mUnk_10.y = param_1->mUnk_0a0->mUnk_114;
     param_1->mUnk_000.mUnk_10.z = 0;
@@ -51,8 +50,7 @@ void func_ov001_0218e298(Unk02188950 *param_1, Unk0206bcb0 *param_2)
     }
 }
 
-void func_ov001_0218e208(Unk0218d87c *param_1)
-{
+void func_ov001_0218e208(Unk0218d87c *param_1) {
     s32 i;
     Unk02188950 *obj;
     Unk02188950_a0 *a0;
@@ -73,13 +71,12 @@ void func_ov001_0218e208(Unk0218d87c *param_1)
     func_020a2314((void (*)(void)) func_ov001_0218e58c);
 }
 
-void func_ov001_0218df20(u32 param_1, Unk02188950 *param_2)
-{
+void func_ov001_0218df20(u32 param_1, Unk02188950 *param_2) {
     Unk0206bcb0 *p;
 
     if (data_021759c0->mUnk_08 == 4 ? func_020a126c() : 0) {
         if (func_ov001_021871f8(param_2, 5) != 0) {
-            if (data_021759c0->mUnk_08 == 4 ? func_020a1084((u16)data_021759c0->mUnk_62) : 0) {
+            if (data_021759c0->mUnk_08 == 4 ? func_020a1084((u16) data_021759c0->mUnk_62) : 0) {
                 func_ov001_0218e710(param_2);
             } else if (data_021759c0->mUnk_08 == 4 ? func_020a128c() : 0) {
                 func_ov001_0218e5c4(param_2);
@@ -90,7 +87,7 @@ void func_ov001_0218df20(u32 param_1, Unk02188950 *param_2)
     } else {
         if (param_2->mUnk_0a8 != 0) {
             if (func_ov001_021871f8(param_2, 5) != 0) {
-                p = func_0207a974((u16)data_021759c0->mUnk_62);
+                p = func_0207a974((u16) data_021759c0->mUnk_62);
                 if (p->mUnk_180 == 0 && (p->mUnk_48 & 0x200) == 0 &&
                     func_ov001_02188104(param_2, 0, param_2->mUnk_0a0->mUnk_184) != 0 &&
                     func_ov001_02188000(param_2, 0, param_2->mUnk_0a0->mUnk_180) != 0 &&
@@ -99,7 +96,8 @@ void func_ov001_0218df20(u32 param_1, Unk02188950 *param_2)
                 }
             }
             if (func_ov001_021871f8(param_2, 3) != 0) {
-                if (func_ov001_021881a8(param_2, (Vec3 *) func_ov001_02187fc0(param_2), (s32) (param_2->mUnk_0a0->mUnk_138), 0) != 0) {
+                if (func_ov001_021881a8(param_2, (Vec3 *) func_ov001_02187fc0(param_2),
+                                        (s32) (param_2->mUnk_0a0->mUnk_138), 0) != 0) {
                     func_ov001_02187e78(param_2);
                 }
                 func_ov001_02188200(param_2, func_ov001_0218e344);
@@ -108,11 +106,11 @@ void func_ov001_0218df20(u32 param_1, Unk02188950 *param_2)
                 func_ov001_0218ec40(param_2);
             }
         } else {
-            p = func_0207a974((u16)data_021759c0->mUnk_62);
+            p = func_0207a974((u16) data_021759c0->mUnk_62);
             if (p->mUnk_48 & 0x200) {
                 if (data_021759c0->mUnk_08 == 4 ? func_ov001_02181820() : 0) {
                     if (data_021759c0->mUnk_08 == 4) {
-                        func_ov001_0218182c((u16)param_2->mUnk_0a0->mUnk_1bc);
+                        func_ov001_0218182c((u16) param_2->mUnk_0a0->mUnk_1bc);
                     }
                 } else {
                     if (data_021759c0->mUnk_08 == 4) {
@@ -127,7 +125,7 @@ void func_ov001_0218df20(u32 param_1, Unk02188950 *param_2)
             }
             if (data_021759c0->mUnk_08 == 4 ? func_ov001_02181838() : 0) {
                 if (func_ov001_021871f8(param_2, 3) != 0) {
-                    if ((s32)(data_021759c0->mUnk_08 == 4 ? func_ov001_02181838() : 0) < param_2->mUnk_0a0->mUnk_1c8) {
+                    if ((s32) (data_021759c0->mUnk_08 == 4 ? func_ov001_02181838() : 0) < param_2->mUnk_0a0->mUnk_1c8) {
                         if (param_2->mUnk_000.mUnk_02 & 1) {
                             func_ov001_02188200(param_2, func_ov001_0218f9a8);
                             param_2->mUnk_000.mUnk_02 |= data_ov001_021a65b0;

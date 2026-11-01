@@ -35,7 +35,9 @@ s32 func_ov003_021bdd1c(s32 v1, const Unk021bdcd8 *v2, const u8 *param_2, const 
     return a;
 }
 
-// non-matching: 85.8: the record copy loop in the original keeps g and h both live on the stack, three stepping pointers (name, record, the six-byte value at +0x28) and copies the six-byte value from the source plus 4 into its own pointer; here (h indexes two of the fields) one record pointer and the h pointer remain, size 0x2f0 against 0x2ec
+// non-matching: 85.8: the record copy loop in the original keeps g and h both live on the stack, three stepping
+// pointers (name, record, the six-byte value at +0x28) and copies the six-byte value from the source plus 4 into its
+// own pointer; here (h indexes two of the fields) one record pointer and the h pointer remain, size 0x2f0 against 0x2ec
 s32 func_ov003_021bdd3c(void) {
     s32 a;
     s32 b;
@@ -211,9 +213,9 @@ s32 func_ov003_021be028(Unk021bdd3c *a, Unk021bdd3c *b, u32 *c) {
                 if (m == 1 && (h->mUnk_04[0] == 0 || h->mUnk_04[0] == 0x20)) {
                     break;
                 }
-                if (func_02134d30(n, i->mUnk_04, func_0213a434(n)) == 0
-                    && func_02134d30(h->mUnk_28.mUnk_00, i->mUnk_28.mUnk_00, 4) == 0
-                    && h->mUnk_2e != i->mUnk_2e && h->mUnk_2e == 0) {
+                if (func_02134d30(n, i->mUnk_04, func_0213a434(n)) == 0 &&
+                    func_02134d30(h->mUnk_28.mUnk_00, i->mUnk_28.mUnk_00, 4) == 0 && h->mUnk_2e != i->mUnk_2e &&
+                    h->mUnk_2e == 0) {
                     e = 1;
                     break;
                 }
@@ -247,8 +249,8 @@ s32 func_ov003_021be028(Unk021bdd3c *a, Unk021bdd3c *b, u32 *c) {
         for (; j < a->mUnk_00; j++) {
             func_02134eb8(o, h->mUnk_04, 0x20);
             o[h->mUnk_00] = 0;
-            if (func_0213a434(o) == func_0213a434(data_ov003_021d68c0)
-                && func_02134d30(o, data_ov003_021d68c0, func_0213a434(data_ov003_021d68c0)) == 0 && h->mUnk_2e == 0) {
+            if (func_0213a434(o) == func_0213a434(data_ov003_021d68c0) &&
+                func_02134d30(o, data_ov003_021d68c0, func_0213a434(data_ov003_021d68c0)) == 0 && h->mUnk_2e == 0) {
                 f = 1;
                 break;
             }

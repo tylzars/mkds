@@ -147,32 +147,32 @@ void func_0212abdc(void *a, void *b) {
         data_0217d404->mUnk_000[i] = 0;
     }
     switch (func_0205e0a0()) {
-    case 1:
-        if ((u32) (data_021759d0->mUnk_20 - 1) <= 1) {
+        case 1:
+            if ((u32) (data_021759d0->mUnk_20 - 1) <= 1) {
+                data_0217d404->mUnk_000[0] = 1;
+            }
+            break;
+        case 6:
+        case 13:
             data_0217d404->mUnk_000[0] = 1;
-        }
-        break;
-    case 6:
-    case 13:
-        data_0217d404->mUnk_000[0] = 1;
-        break;
-    case 12:
-        data_0217d404->mUnk_000[4] = 1;
-        break;
-    case 10:
-        if (data_021759d0->mUnk_20 == 3) {
-            data_0217d404->mUnk_000[1] = 1;
+            break;
+        case 12:
             data_0217d404->mUnk_000[4] = 1;
-        } else if ((u32) (data_021759d0->mUnk_20 - 1) <= 1) {
-            data_0217d404->mUnk_000[0] = 1;
-        }
-        break;
-    case 8:
-        if (data_021759d0->mUnk_20 == 3) {
-            data_0217d404->mUnk_000[1] = 1;
-            data_0217d404->mUnk_000[4] = 1;
-        }
-        break;
+            break;
+        case 10:
+            if (data_021759d0->mUnk_20 == 3) {
+                data_0217d404->mUnk_000[1] = 1;
+                data_0217d404->mUnk_000[4] = 1;
+            } else if ((u32) (data_021759d0->mUnk_20 - 1) <= 1) {
+                data_0217d404->mUnk_000[0] = 1;
+            }
+            break;
+        case 8:
+            if (data_021759d0->mUnk_20 == 3) {
+                data_0217d404->mUnk_000[1] = 1;
+                data_0217d404->mUnk_000[4] = 1;
+            }
+            break;
     }
     for (i = 0; i < 2; i++) {
         data_0217d404->mUnk_014[i] = -1;

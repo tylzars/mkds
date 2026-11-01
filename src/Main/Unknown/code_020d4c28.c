@@ -8,8 +8,7 @@
 #include "Main/Unknown/unk_02156000.h"
 #include "Main/Unknown/code_020d7000.h"
 
-void func_020d4f94(Unk020d4f94 *p)
-{
+void func_020d4f94(Unk020d4f94 *p) {
     s32 buf[10];
 
     func_02146d0c(p, buf);
@@ -35,8 +34,7 @@ void func_020d4f94(Unk020d4f94 *p)
     }
 }
 
-u32 func_020d4f34(Vec3 *a, s32 b, s32 c, s32 d)
-{
+u32 func_020d4f34(Vec3 *a, s32 b, s32 c, s32 d) {
     s32 x;
     s32 z;
     s32 v;
@@ -52,8 +50,7 @@ u32 func_020d4f34(Vec3 *a, s32 b, s32 c, s32 d)
     return r | 3;
 }
 
-s32 func_020d4ef4(Vec3 *p)
-{
+s32 func_020d4ef4(Vec3 *p) {
     s32 x;
     s32 z;
 
@@ -65,8 +62,7 @@ s32 func_020d4ef4(Vec3 *p)
     return x * x + z * z;
 }
 
-void func_020d4e28(Unk020f41c4_A *p, Vec3 *v, u32 a)
-{
+void func_020d4e28(Unk020f41c4_A *p, Vec3 *v, u32 a) {
     s32 d;
 
     if (a & 4) {
@@ -87,8 +83,7 @@ void func_020d4e28(Unk020f41c4_A *p, Vec3 *v, u32 a)
     }
 }
 
-s32 func_020d4ddc(Unk020e71a0 *p)
-{
+s32 func_020d4ddc(Unk020e71a0 *p) {
     s32 d;
 
     if (p->mUnk_78 & 4) {
@@ -101,8 +96,7 @@ s32 func_020d4ddc(Unk020e71a0 *p)
     return 1;
 }
 
-s32 func_020d4d60(Unk020e71a0 *p, s32 a)
-{
+s32 func_020d4d60(Unk020e71a0 *p, s32 a) {
     s32 h;
     Vec3 *v;
     Unk020e71a0_98 *q;
@@ -124,8 +118,7 @@ void func_020d4d44(Unk02012f58 *p) {
     func_020d7bec(p);
 }
 
-void func_020d4c28(Unk020e6fd4 *p, void *a)
-{
+void func_020d4c28(Unk020e6fd4 *p, void *a) {
     s32 i;
     Unk020e71a0 *e;
     UnkFunc *f;
@@ -146,7 +139,7 @@ void func_020d4c28(Unk020e6fd4 *p, void *a)
             e = t[i];
             if (!(e->mUnk_02 & 0x12) && e->mUnk_66 != 0) {
                 f(p, e, a, e->mUnk_66);
-                if (b != 0 && (s32)(e->mUnk_78 & ~0xc000001f) > (s32)(b->mUnk_78 & ~0xc000001f)) {
+                if (b != 0 && (s32) (e->mUnk_78 & ~0xc000001f) > (s32) (b->mUnk_78 & ~0xc000001f)) {
                     t[m] = e;
                     t[i] = b;
                 } else {

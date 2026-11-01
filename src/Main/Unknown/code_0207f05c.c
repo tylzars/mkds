@@ -31,7 +31,8 @@ static inline s32 func_0207f554_inline(u32 a, u32 b) {
     s32 v;
     s32 t;
 
-    if (data_021759c0->mUnk_58 == 0 || data_021759c0->mUnk_68[b].mUnk_08.mUnk_04 != data_021759c0->mUnk_68[a].mUnk_08.mUnk_04) {
+    if (data_021759c0->mUnk_58 == 0 ||
+        data_021759c0->mUnk_68[b].mUnk_08.mUnk_04 != data_021759c0->mUnk_68[a].mUnk_08.mUnk_04) {
         t = 0;
         v = data_021759c0->mUnk_68[b].mUnk_08.mUnk_00;
         if ((u32) v <= 3) {
@@ -82,30 +83,30 @@ void func_0207f05c(Unk020888b4 *p) {
         }
         if (j != 0) {
             switch (i) {
-            case 1:
-                p->mUnk_90 = 1;
-                p->mUnk_94 = 1;
-                p->mUnk_98 = 0;
-                p->mUnk_a0 = 1;
-                break;
-            case 2:
-                p->mUnk_90 = 1;
-                p->mUnk_94 = 1;
-                p->mUnk_98 = 0;
-                p->mUnk_a0 = 0;
-                break;
-            case 3:
-                p->mUnk_90 = 1;
-                p->mUnk_94 = 2;
-                p->mUnk_98 = 0;
-                p->mUnk_a0 = 1;
-                break;
-            case 4:
-                p->mUnk_90 = 1;
-                p->mUnk_94 = 2;
-                p->mUnk_98 = 0;
-                p->mUnk_a0 = 0;
-                break;
+                case 1:
+                    p->mUnk_90 = 1;
+                    p->mUnk_94 = 1;
+                    p->mUnk_98 = 0;
+                    p->mUnk_a0 = 1;
+                    break;
+                case 2:
+                    p->mUnk_90 = 1;
+                    p->mUnk_94 = 1;
+                    p->mUnk_98 = 0;
+                    p->mUnk_a0 = 0;
+                    break;
+                case 3:
+                    p->mUnk_90 = 1;
+                    p->mUnk_94 = 2;
+                    p->mUnk_98 = 0;
+                    p->mUnk_a0 = 1;
+                    break;
+                case 4:
+                    p->mUnk_90 = 1;
+                    p->mUnk_94 = 2;
+                    p->mUnk_98 = 0;
+                    p->mUnk_a0 = 0;
+                    break;
             }
         }
     }
@@ -176,14 +177,15 @@ void func_0207f2e4(Unk020888b4 *p) {
     }
 }
 
-// non-matching: one instruction: the original compares the loaded 0x74 words as "cmp r1, r2" (word of a, word of b, with
-// b loaded first), ours compares "cmp r2, r1"
+// non-matching: one instruction: the original compares the loaded 0x74 words as "cmp r1, r2" (word of a, word of b,
+// with b loaded first), ours compares "cmp r2, r1"
 s32 func_0207f554(u32 a, u32 b) {
     s32 r = 0;
     s32 v;
     s32 t;
 
-    if (data_021759c0->mUnk_58 == 0 || data_021759c0->mUnk_68[b].mUnk_08.mUnk_04 != data_021759c0->mUnk_68[a].mUnk_08.mUnk_04) {
+    if (data_021759c0->mUnk_58 == 0 ||
+        data_021759c0->mUnk_68[b].mUnk_08.mUnk_04 != data_021759c0->mUnk_68[a].mUnk_08.mUnk_04) {
         t = 0;
         v = data_021759c0->mUnk_68[b].mUnk_08.mUnk_00;
         if ((u32) v <= 3) {
@@ -364,22 +366,22 @@ void func_0207fa74(Unk020888b4 *p, Unk0206bcb0 *q, s32 a) {
 void func_0207fba0(void) {
     data_usa_0217ae40 = data_021759c0->mUnk_08 == 2 ? &data_usa_021557bc : &data_usa_021557c0;
     switch (func_020853dc()) {
-    case 0:
-        data_usa_0217ae38 = data_usa_0215572c;
-        data_usa_0217ae48 = data_usa_02155798;
-        break;
-    case 1:
-        data_usa_0217ae38 = data_usa_02155750;
-        data_usa_0217ae48 = data_usa_021556e4;
-        break;
-    case 2:
-        data_usa_0217ae38 = data_usa_02155774;
-        data_usa_0217ae48 = data_usa_02155708;
-        break;
-    default:
-        data_usa_0217ae38 = data_usa_02155774;
-        data_usa_0217ae48 = data_usa_02155708;
-        break;
+        case 0:
+            data_usa_0217ae38 = data_usa_0215572c;
+            data_usa_0217ae48 = data_usa_02155798;
+            break;
+        case 1:
+            data_usa_0217ae38 = data_usa_02155750;
+            data_usa_0217ae48 = data_usa_021556e4;
+            break;
+        case 2:
+            data_usa_0217ae38 = data_usa_02155774;
+            data_usa_0217ae48 = data_usa_02155708;
+            break;
+        default:
+            data_usa_0217ae38 = data_usa_02155774;
+            data_usa_0217ae48 = data_usa_02155708;
+            break;
     }
     if (data_021759c0->mUnk_00c == 5) {
         data_usa_0217ae3c = func_0207fec0;

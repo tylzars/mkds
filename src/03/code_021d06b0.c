@@ -7,7 +7,8 @@
 #include "code_021453ec.h"
 #include "code_02142eac.h"
 
-// non-matching: r1 and r2 swapped in 3 instructions around the indirect call (data pointer in r2 and offset constant in r1 instead of r1 and r2)
+// non-matching: r1 and r2 swapped in 3 instructions around the indirect call (data pointer in r2 and offset constant in
+// r1 instead of r1 and r2)
 s32 func_ov003_021d06b0(void) {
     u32 a;
     s32 r;

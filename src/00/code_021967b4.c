@@ -60,5 +60,4 @@ s32 func_ov000_02196870(Unk0218f960 *a, const u8 *b, s32 c) {
     return 0;
 }
 
-void func_ov000_0219690c(Unk0218f960 *a, const u8 *b, ...) {
-}
+void func_ov000_0219690c(Unk0218f960 *a, const u8 *b, ...) {}

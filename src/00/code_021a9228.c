@@ -160,7 +160,8 @@ s32 func_ov000_021a9494(Unk021a998c *a) {
     return 0;
 }
 
-// non-matching: 2 instructions swapped; ours computes the 0x2c0 offset (ldr, adds r6) before `movs r7, #0`, the original after it; size equal
+// non-matching: 2 instructions swapped; ours computes the 0x2c0 offset (ldr, adds r6) before `movs r7, #0`, the
+// original after it; size equal
 void func_ov000_021a9534(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
     u8 *d;

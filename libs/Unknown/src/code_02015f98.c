@@ -18,7 +18,7 @@ void func_020161b4(u32 a, u32 b) {
     data_02173210 = a;
     func_02016134();
     if (b != 0) {
-        data_021619ec = (u32 (*)(s32, s32, s32)) func_02015fa0;
+        data_021619ec = (u32(*)(s32, s32, s32)) func_02015fa0;
         data_021619f0 = (void (*)(void *)) func_02015f98;
     }
 }

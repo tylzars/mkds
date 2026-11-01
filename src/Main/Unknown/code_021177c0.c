@@ -17,16 +17,16 @@ void func_021177c0(void) {
     if (func_021277ac() != 0) {
         a = func_02127794();
         switch (a) {
-        case 0:
-            func_021185ec();
-            data_0217d360->mUnk_88 = 1;
-            func_02118024();
-            func_021282c8();
-            break;
-        case -1:
-        case 1:
-            func_021181b8();
-            break;
+            case 0:
+                func_021185ec();
+                data_0217d360->mUnk_88 = 1;
+                func_02118024();
+                func_021282c8();
+                break;
+            case -1:
+            case 1:
+                func_021181b8();
+                break;
         }
     }
 }

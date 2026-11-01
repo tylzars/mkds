@@ -24,10 +24,10 @@ Unk021ca41c_085c *func_ov001_021852f8(const char *param_1, void *param_2, void *
     Unk021852f8_02 *rec;
     Unk021a5a58_2c_2c *cell;
 
-    list = func_02036bec((void *)func_020364e0(func_020364e8()), (u32) (0x18));
+    list = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x18));
     data = func_0204799c((const char *) (param_1));
     list->mUnk_00 = data->mUnk_00;
-    list->mUnk_04 = func_02036bec((void *)func_020364e0(func_020364e8()), (u32) (list->mUnk_00 * 0x88));
+    list->mUnk_04 = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (list->mUnk_00 * 0x88));
     list->mUnk_08 = param_2;
     list->mUnk_0c = param_3;
     rec = data->mUnk_02;
@@ -35,8 +35,10 @@ Unk021ca41c_085c *func_ov001_021852f8(const char *param_1, void *param_2, void *
         entry = &list->mUnk_04[i];
         entry->mUnk_80 = list;
         entry->mUnk_00 = rec[i].mUnk_00;
-        entry->mUnk_04 = (s32)(rec[i].mUnk_02 > 0 ? 0.5f + (float)(rec[i].mUnk_02 << 12) : (float)(rec[i].mUnk_02 << 12) - 0.5f);
-        entry->mUnk_08 = (s32)(rec[i].mUnk_04 > 0 ? 0.5f + (float)(rec[i].mUnk_04 << 12) : (float)(rec[i].mUnk_04 << 12) - 0.5f);
+        entry->mUnk_04 =
+            (s32) (rec[i].mUnk_02 > 0 ? 0.5f + (float) (rec[i].mUnk_02 << 12) : (float) (rec[i].mUnk_02 << 12) - 0.5f);
+        entry->mUnk_08 =
+            (s32) (rec[i].mUnk_04 > 0 ? 0.5f + (float) (rec[i].mUnk_04 << 12) : (float) (rec[i].mUnk_04 << 12) - 0.5f);
         entry->mUnk_18 = 0x1000;
         entry->mUnk_0c = rec[i].mUnk_06 != 0;
         func_02022904((Unk02022030 *) &entry->mUnk_2c, func_02021db0(param_3, rec[i].mUnk_00), param_2);
@@ -85,21 +87,25 @@ void func_ov001_0218516c(Unk021ca41c_085c *param_1, Unk0218516c *param_2) {
 
                     mtx[0] = func_02147f34(0x1000, entry->mUnk_18);
                     mtx[3] = func_02147f34(0x1000, entry->mUnk_18);
-                    ((Unk0218516c_000 *)param_2->mUnk_000)[idx].mUnk_06 = mtx[0] >> 4;
-                    ((Unk0218516c_000 *)param_2->mUnk_000)[idx].mUnk_0e = mtx[1] >> 4;
-                    ((Unk0218516c_000 *)param_2->mUnk_000)[idx].mUnk_16 = mtx[2] >> 4;
-                    ((Unk0218516c_000 *)param_2->mUnk_000)[idx].mUnk_1e = mtx[3] >> 4;
+                    ((Unk0218516c_000 *) param_2->mUnk_000)[idx].mUnk_06 = mtx[0] >> 4;
+                    ((Unk0218516c_000 *) param_2->mUnk_000)[idx].mUnk_0e = mtx[1] >> 4;
+                    ((Unk0218516c_000 *) param_2->mUnk_000)[idx].mUnk_16 = mtx[2] >> 4;
+                    ((Unk0218516c_000 *) param_2->mUnk_000)[idx].mUnk_1e = mtx[3] >> 4;
                     mtx[0] = entry->mUnk_18;
                     mtx[3] = entry->mUnk_18;
                     cell = entry->mUnk_2c.mUnk_2c;
                     pos_a[0] = x << 12;
                     pos_a[1] = y << 12;
-                    param_2->mUnk_400 += func_020224e0((Unk020224e0_o *) &param_2->mUnk_000[param_2->mUnk_400 * 8], 0x80 - param_2->mUnk_400, (Unk020224e0_c *) cell, mtx, pos_a, idx, 1);
+                    param_2->mUnk_400 +=
+                        func_020224e0((Unk020224e0_o *) &param_2->mUnk_000[param_2->mUnk_400 * 8],
+                                      0x80 - param_2->mUnk_400, (Unk020224e0_c *) cell, mtx, pos_a, idx, 1);
                 } else {
                     cell = entry->mUnk_2c.mUnk_2c;
                     pos_b[0] = x << 12;
                     pos_b[1] = y << 12;
-                    param_2->mUnk_400 += func_020224e0((Unk020224e0_o *) &param_2->mUnk_000[param_2->mUnk_400 * 8], 0x80 - param_2->mUnk_400, (Unk020224e0_c *) cell, 0, pos_b, 0, 0);
+                    param_2->mUnk_400 +=
+                        func_020224e0((Unk020224e0_o *) &param_2->mUnk_000[param_2->mUnk_400 * 8],
+                                      0x80 - param_2->mUnk_400, (Unk020224e0_c *) cell, 0, pos_b, 0, 0);
                 }
             }
         }
@@ -120,8 +126,8 @@ s32 func_ov001_021850b4(Unk021ca41c_085c *param_1, s32 param_2, s32 param_3, s32
     u16 count;
     Unk021a5a58 *entry;
 
-    fx = (s32)(param_3 > 0 ? 0.5f + (float)(param_3 << 12) : (float)(param_3 << 12) - 0.5f);
-    fy = (s32)(param_4 > 0 ? 0.5f + (float)(param_4 << 12) : (float)(param_4 << 12) - 0.5f);
+    fx = (s32) (param_3 > 0 ? 0.5f + (float) (param_3 << 12) : (float) (param_3 << 12) - 0.5f);
+    fy = (s32) (param_4 > 0 ? 0.5f + (float) (param_4 << 12) : (float) (param_4 << 12) - 0.5f);
     count = param_1->mUnk_00;
     for (; param_2 < count; param_2++) {
         entry = &param_1->mUnk_04[param_2];

@@ -45,7 +45,8 @@ void func_020c1ef8(void) {
         data_0217b3e0->mUnk_0040[i] = i;
         if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
             v = x0;
-            if ((u32) data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 <= 3 && ((1 << data_021759c0->mUnk_68[i].mUnk_08.mUnk_00) & 0xd)) {
+            if ((u32) data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 <= 3 &&
+                ((1 << data_021759c0->mUnk_68[i].mUnk_08.mUnk_00) & 0xd)) {
                 v = 1;
             }
             c = v != 0 ? 1 : x1;
@@ -214,30 +215,30 @@ void func_020c1728(void) {
         if (m < data_021759c0->mUnk_3d0) {
             if (n % 5 == 0) {
                 switch (m) {
-                case 0:
-                    func_0212ecc0(&data_0217d068, 0, 0x32);
-                    break;
-                case 1:
-                    func_0212ecc0(&data_0217d068, 0, 0x33);
-                    break;
-                case 2:
-                    func_0212ecc0(&data_0217d068, 0, 0x34);
-                    break;
-                case 3:
-                    func_0212ecc0(&data_0217d068, 0, 0x35);
-                    break;
-                case 4:
-                    func_0212ecc0(&data_0217d068, 0, 0x36);
-                    break;
-                case 5:
-                    func_0212ecc0(&data_0217d068, 0, 0x37);
-                    break;
-                case 6:
-                    func_0212ecc0(&data_0217d068, 0, 0x38);
-                    break;
-                case 7:
-                    func_0212ecc0(&data_0217d068, 0, 0x39);
-                    break;
+                    case 0:
+                        func_0212ecc0(&data_0217d068, 0, 0x32);
+                        break;
+                    case 1:
+                        func_0212ecc0(&data_0217d068, 0, 0x33);
+                        break;
+                    case 2:
+                        func_0212ecc0(&data_0217d068, 0, 0x34);
+                        break;
+                    case 3:
+                        func_0212ecc0(&data_0217d068, 0, 0x35);
+                        break;
+                    case 4:
+                        func_0212ecc0(&data_0217d068, 0, 0x36);
+                        break;
+                    case 5:
+                        func_0212ecc0(&data_0217d068, 0, 0x37);
+                        break;
+                    case 6:
+                        func_0212ecc0(&data_0217d068, 0, 0x38);
+                        break;
+                    case 7:
+                        func_0212ecc0(&data_0217d068, 0, 0x39);
+                        break;
                 }
                 data_0217b3e0->mUnk_0000[data_0217b3e0->mUnk_00a8++] = 0;
             }

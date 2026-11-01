@@ -14,13 +14,10 @@ u16 func_020a1250(int arg0) {
 }
 
 u32 func_020a1238(void) {
-    return ((u32) *(
-        const u16 *) ((u8 *) (u32) ((
-                                     (((u32) *(const u32 *) ((u8 *) (u32) ((
-                                                                                   (u32) (&data_0217b1fc))) +
-                                                                               0))) +
-                                     (0x300u))) +
-                                 160));
+    return ((u32) *
+            (const u16 *) ((u8 *) (u32) (((((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217b1fc))) + 0))) +
+                                          (0x300u))) +
+                           160));
 }
 
 void func_020a1218(short param_1) {

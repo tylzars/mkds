@@ -53,18 +53,18 @@ void func_0203ba84(u8 *param_1) {
         v = -1;
         if (i != 0xc) {
             switch (i) {
-            case 8:
-                v = 0x14;
-                break;
-            case 9:
-                v = 0x15;
-                break;
-            case 10:
-                v = 0x16;
-                break;
-            case 11:
-                v = 0x17;
-                break;
+                case 8:
+                    v = 0x14;
+                    break;
+                case 9:
+                    v = 0x15;
+                    break;
+                case 10:
+                    v = 0x16;
+                    break;
+                case 11:
+                    v = 0x17;
+                    break;
             }
             if (v == -1 || func_0205fc28(v) != 0) {
                 m = (u16) (m | (1 << i));

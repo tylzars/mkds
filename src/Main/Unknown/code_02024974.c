@@ -114,13 +114,15 @@ void func_02024a88(Unk0206bcb0 *a) {
                 g = func_02024eec((Unk02024eec *) &a->mUnk_450, i, 0);
                 q->mUnk_04 = 0x7f;
                 q->mUnk_00 = q->mUnk_44;
-                func_0210ddf4(&data_0217d274, func_02086080(a->mUnk_74), (void (*)(void *, int)) func_02024fc0, a, (int) q);
+                func_0210ddf4(&data_0217d274, func_02086080(a->mUnk_74), (void (*)(void *, int)) func_02024fc0, a,
+                              (int) q);
             } else {
                 i = ((s64) h * 0x480000 + 0x800) >> 12;
                 g = func_02024eec((Unk02024eec *) &a->mUnk_450, i, 0);
                 q->mUnk_04 = 0x46;
                 q->mUnk_00 = q->mUnk_44;
-                func_0210ddf4(&data_0217d274, func_02086080(a->mUnk_74), (void (*)(void *, int)) func_02024fc0, a, (int) q);
+                func_0210ddf4(&data_0217d274, func_02086080(a->mUnk_74), (void (*)(void *, int)) func_02024fc0, a,
+                              (int) q);
             }
         } else {
             q->mUnk_0c = 0;

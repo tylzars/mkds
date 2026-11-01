@@ -143,8 +143,7 @@ void func_ov003_021c1908(void) {
     for (j = 0, q = data_ov003_021d623c; j < 2; q += 2, j++) {
         func_ov003_021d250c(q, data_ov003_021d6234, (short *) &a);
         if (func_ov003_021d2a34(&a) != 0) {
-            if ((j == 0 && data_ov003_021da160->mUnk_66 == 0) ||
-                (j == 1 && data_ov003_021da160->mUnk_68 == 0)) {
+            if ((j == 0 && data_ov003_021da160->mUnk_66 == 0) || (j == 1 && data_ov003_021da160->mUnk_68 == 0)) {
                 func_ov003_021cdc10(9);
                 return;
             }

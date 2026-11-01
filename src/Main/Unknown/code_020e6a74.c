@@ -13,24 +13,16 @@ u32 func_020e6b28(void) {
 }
 
 u32 func_020e6b14(void) {
-    return (
-        (((u32) data_0217b848)) +
-        (0x18u));
+    return ((((u32) data_0217b848)) + (0x18u));
 }
 
 void func_020e6ab8(Unk020e6488 *p0) {
-    p0->mUnk_10 = (u32) ((
-        (((u32) p0->mUnk_10)) & (0x8000ffffu)));
-    p0->mUnk_10 = (u32) ((
-        (((u32) p0->mUnk_10)) | (0x294a0000u)));
-    p0->mUnk_14 = (u32) ((
-        p0->mUnk_14 & ~(0x3f000000u)));
-    p0->mUnk_14 = (u32) ((
-        p0->mUnk_14 | (0x3f000000u)));
-    p0->mUnk_14 = (u32) ((
-        p0->mUnk_14 & ~(0xfu)));
-    p0->mUnk_14 = (u32) ((
-        p0->mUnk_14 | (0x2u)));
+    p0->mUnk_10 = (u32) (((((u32) p0->mUnk_10)) & (0x8000ffffu)));
+    p0->mUnk_10 = (u32) (((((u32) p0->mUnk_10)) | (0x294a0000u)));
+    p0->mUnk_14 = (u32) ((p0->mUnk_14 & ~(0x3f000000u)));
+    p0->mUnk_14 = (u32) ((p0->mUnk_14 | (0x3f000000u)));
+    p0->mUnk_14 = (u32) ((p0->mUnk_14 & ~(0xfu)));
+    p0->mUnk_14 = (u32) ((p0->mUnk_14 | (0x2u)));
 }
 
 void func_020e6a74(void) {

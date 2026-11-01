@@ -135,7 +135,8 @@ void func_0208c884(Unk0208c5b8 *p, int v1) {
     p->mUnk_44 = 1;
 }
 
-// non-matching: same instructions as the original; in the sums two registers are swapped and the second group of loads starts one instruction later
+// non-matching: same instructions as the original; in the sums two registers are swapped and the second group of loads
+// starts one instruction later
 void func_0208c930(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b) {
     u16 i;
     Unk0201ca6c *e;
@@ -362,7 +363,8 @@ void func_0208d02c(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b) {
     }
 }
 
-// non-matching: same instructions as the original; registers differ in the sums and in the copies from the first argument
+// non-matching: same instructions as the original; registers differ in the sums and in the copies from the first
+// argument
 void func_0208d0dc(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b) {
     u16 i;
     Unk0201ca6c *e;

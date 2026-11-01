@@ -5,8 +5,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217c000.h"
 
-void func_0210a880(Unk0206bcb0 *a, Unk0210bf24 *b, s32 c)
-{
+void func_0210a880(Unk0206bcb0 *a, Unk0210bf24 *b, s32 c) {
     s32 d;
     u32 e;
     u32 f;
@@ -45,8 +44,7 @@ void func_0210a880(Unk0206bcb0 *a, Unk0210bf24 *b, s32 c)
     func_02105b0c(&b->mUnk_00, b->mUnk_14 + d);
 }
 
-void func_0210a77c(Unk0206bcb0 *a, Unk0210bf24 *b)
-{
+void func_0210a77c(Unk0206bcb0 *a, Unk0210bf24 *b) {
     Vec3 *o;
     u32 c;
     s32 v;
@@ -79,13 +77,11 @@ void func_0210a77c(Unk0206bcb0 *a, Unk0210bf24 *b)
     func_02105b0c(&b->mUnk_00, b->mUnk_14 + v);
 }
 
-void func_0210a76c(Unk0206bcb0 *a, Unk0210bf24 *b)
-{
+void func_0210a76c(Unk0206bcb0 *a, Unk0210bf24 *b) {
     func_0210a880(a, b, 0);
 }
 
-void func_0210a724(Unk0206bcb0 *a, Unk0210bf24 *b)
-{
+void func_0210a724(Unk0206bcb0 *a, Unk0210bf24 *b) {
     u32 c;
     s32 v;
 
@@ -100,8 +96,7 @@ void func_0210a724(Unk0206bcb0 *a, Unk0210bf24 *b)
     func_0210a880(a, b, v);
 }
 
-void func_0210a6ec(Unk0206bcb0 *a, Unk0210bf24 *b)
-{
+void func_0210a6ec(Unk0206bcb0 *a, Unk0210bf24 *b) {
     u32 c;
 
     c = a->mUnk_4c;
@@ -109,8 +104,7 @@ void func_0210a6ec(Unk0206bcb0 *a, Unk0210bf24 *b)
     func_02105b0c(&b->mUnk_00, b->mUnk_14 + c);
 }
 
-void func_0210a6b4(Unk0206bcb0 *a, Unk0210bf24 *b)
-{
+void func_0210a6b4(Unk0206bcb0 *a, Unk0210bf24 *b) {
     u32 c;
 
     c = a->mUnk_4c;
@@ -118,8 +112,7 @@ void func_0210a6b4(Unk0206bcb0 *a, Unk0210bf24 *b)
     func_02105b0c(&b->mUnk_00, b->mUnk_14 + c);
 }
 
-void func_0210a67c(Unk0206bcb0 *a, Unk0210bf24 *b)
-{
+void func_0210a67c(Unk0206bcb0 *a, Unk0210bf24 *b) {
     s32 c;
 
     c = (s32) a->mUnk_308;

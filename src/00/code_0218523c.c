@@ -23,13 +23,13 @@ void func_ov000_0218523c(void *a) {
     data_ov000_021b4c84->mUnk_10 = -1;
     b = func_ov000_021806d4();
     switch (b) {
-    case 1:
-    case 11:
-        data_ov000_021b4c84->mUnk_08 = 0;
-        break;
-    case 9:
-        data_ov000_021b4c84->mUnk_08 = 1;
-        break;
+        case 1:
+        case 11:
+            data_ov000_021b4c84->mUnk_08 = 0;
+            break;
+        case 9:
+            data_ov000_021b4c84->mUnk_08 = 1;
+            break;
     }
     data_ov000_021b4c84->mUnk_0c = 0;
     data_ov000_021b4c84->mUnk_14 = 1;

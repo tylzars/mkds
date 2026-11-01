@@ -67,7 +67,8 @@ void func_02085778(void) {
     }
 }
 
-// non-matching: register numbering only (57 words); the original keeps the pointer loaded from data_021759c0 in sl across all three loops, here it lands in temporaries.
+// non-matching: register numbering only (57 words); the original keeps the pointer loaded from data_021759c0 in sl
+// across all three loops, here it lands in temporaries.
 void func_0208552c(void) {
     s32 m;
     u16 i;
@@ -128,7 +129,8 @@ void func_0208552c(void) {
         if (x >= 0) {
             q = x;
             f = 0;
-            if ((u32) data_021759c0->mUnk_68[q].mUnk_08.mUnk_00 <= 3 && ((1 << data_021759c0->mUnk_68[q].mUnk_08.mUnk_00) & 0xd)) {
+            if ((u32) data_021759c0->mUnk_68[q].mUnk_08.mUnk_00 <= 3 &&
+                ((1 << data_021759c0->mUnk_68[q].mUnk_08.mUnk_00) & 0xd)) {
                 f = 1;
             }
             if (f != 0) {

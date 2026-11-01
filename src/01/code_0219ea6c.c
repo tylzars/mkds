@@ -4,7 +4,6 @@
 #include "01/unk_021a6000.h"
 #include "Main/Unknown/code_02105000.h"
 
-void func_ov001_0219ea6c(void)
-{
+void func_ov001_0219ea6c(void) {
     func_ov001_0219e0d4();
 }

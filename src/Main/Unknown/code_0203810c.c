@@ -15,12 +15,14 @@ static inline void func_0203810c_inline(vu16 *r, Unk0203810c_04 *q) {
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r and sets the rest from four values.
-static inline void func_0203810c_inline2(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d, Unk0203810c_Arg e) {
+static inline void func_0203810c_inline2(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d,
+                                         Unk0203810c_Arg e) {
     *r = (*r & 0x43) | (b << 14) | (c << 7) | (d << 8) | (e << 2);
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r and sets the rest from four values.
-static inline void func_0203810c_inline3(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d, Unk0203810c_Arg e) {
+static inline void func_0203810c_inline3(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d,
+                                         Unk0203810c_Arg e) {
     *r = (*r & 0x43) | (b << 14) | (c << 8) | (d << 2) | (e << 13);
 }
 
@@ -55,55 +57,65 @@ void func_0203810c(Unk0203810c *a, s32 b) {
             if (b != 0) {
                 reg_G2_BG3OFS = 0;
                 func_0203810c_inline((vu16 *) 0x0400000e, q);
-                func_0203810c_inline2((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06, (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
+                func_0203810c_inline2((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                                      (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
             } else {
                 reg_G2S_DB_BG3OFS = 0;
                 func_0203810c_inline((vu16 *) 0x0400100e, q);
-                func_0203810c_inline2((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06, (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
+                func_0203810c_inline2((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                                      (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
             }
             break;
         case 2:
             if (b != 0) {
                 func_0214a428((u32 *) 0x04000030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400000e, q);
-                func_0203810c_inline3((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
+                func_0203810c_inline3((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
             } else {
                 func_0214a428((u32 *) 0x04001030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400100e, q);
-                func_0203810c_inline3((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
+                func_0203810c_inline3((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
             }
             break;
         case 3:
             if (b != 0) {
                 func_0214a428((u32 *) 0x04000030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400000e, q);
-                func_0203810c_inline4((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, q);
+                func_0203810c_inline4((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      q);
             } else {
                 func_0214a428((u32 *) 0x04001030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400100e, q);
-                func_0203810c_inline4((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, q);
+                func_0203810c_inline4((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      q);
             }
             break;
         case 4:
             if (b != 0) {
                 func_0214a428((u32 *) 0x04000030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400000e, q);
-                func_0203810c_inline5((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, q);
+                func_0203810c_inline5((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      q);
             } else {
                 func_0214a428((u32 *) 0x04001030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400100e, q);
-                func_0203810c_inline5((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, q);
+                func_0203810c_inline5((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      q);
             }
             break;
         case 5:
             if (b != 0) {
                 func_0214a428((u32 *) 0x04000030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400000e, q);
-                func_0203810c_inline6((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, q);
+                func_0203810c_inline6((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      q);
             } else {
                 func_0214a428((u32 *) 0x04001030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400100e, q);
-                func_0203810c_inline6((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, q);
+                func_0203810c_inline6((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      q);
             }
             break;
         default:
@@ -122,12 +134,14 @@ static inline void func_020386d0_inline(vu16 *r, Unk0203810c_04 *q) {
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r and sets the rest from four values.
-static inline void func_020386d0_inline2(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d, Unk0203810c_Arg e) {
+static inline void func_020386d0_inline2(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d,
+                                         Unk0203810c_Arg e) {
     *r = (*r & 0x43) | (b << 14) | (c << 7) | (d << 8) | (e << 2);
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r and sets the rest from four values.
-static inline void func_020386d0_inline3(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d, Unk0203810c_Arg e) {
+static inline void func_020386d0_inline3(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d,
+                                         Unk0203810c_Arg e) {
     *r = (*r & 0x43) | (b << 14) | (c << 8) | (d << 2) | (e << 13);
 }
 
@@ -162,55 +176,65 @@ void func_020386d0(Unk0203810c *a, s32 b) {
             if (b != 0) {
                 reg_G2_BG2OFS = 0;
                 func_020386d0_inline((vu16 *) 0x0400000c, q);
-                func_020386d0_inline2((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06, (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
+                func_020386d0_inline2((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                                      (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
             } else {
                 reg_G2S_DB_BG2OFS = 0;
                 func_020386d0_inline((vu16 *) 0x0400100c, q);
-                func_020386d0_inline2((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06, (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
+                func_020386d0_inline2((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                                      (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
             }
             break;
         case 2:
             if (b != 0) {
                 func_0214a428((u32 *) 0x04000020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400000c, q);
-                func_020386d0_inline3((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
+                func_020386d0_inline3((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
             } else {
                 func_0214a428((u32 *) 0x04001020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400100c, q);
-                func_020386d0_inline3((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
+                func_020386d0_inline3((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
             }
             break;
         case 3:
             if (b != 0) {
                 func_0214a428((u32 *) 0x04000020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400000c, q);
-                func_020386d0_inline4((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, q);
+                func_020386d0_inline4((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      q);
             } else {
                 func_0214a428((u32 *) 0x04001020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400100c, q);
-                func_020386d0_inline4((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, q);
+                func_020386d0_inline4((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      q);
             }
             break;
         case 4:
             if (b != 0) {
                 func_0214a428((u32 *) 0x04000020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400000c, q);
-                func_020386d0_inline5((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, q);
+                func_020386d0_inline5((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      q);
             } else {
                 func_0214a428((u32 *) 0x04001020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400100c, q);
-                func_020386d0_inline5((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, q);
+                func_020386d0_inline5((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      q);
             }
             break;
         case 5:
             if (b != 0) {
                 func_0214a428((u32 *) 0x04000020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400000c, q);
-                func_020386d0_inline6((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, q);
+                func_020386d0_inline6((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      q);
             } else {
                 func_0214a428((u32 *) 0x04001020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400100c, q);
-                func_020386d0_inline6((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08, q);
+                func_020386d0_inline6((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                                      q);
             }
             break;
         default:

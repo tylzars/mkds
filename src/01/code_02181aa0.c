@@ -11,13 +11,11 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-u16 func_ov001_02181b30(void)
-{
+u16 func_ov001_02181b30(void) {
     return data_ov001_021a9b90->mUnk_44 + data_021759c0->mUnk_3d0 - 1;
 }
 
-void func_ov001_02181aa0(void)
-{
+void func_ov001_02181aa0(void) {
     Unk021a9b90 *p;
     u32 n;
 
@@ -32,15 +30,15 @@ void func_ov001_02181aa0(void)
     p->mUnk_04 = p->mUnk_04 + 1;
     func_02108edc(data_ov001_021a9b90->mUnk_04, func_ov001_0218180c());
     switch (data_021759c0->mUnk_2f) {
-    case 0:
-    case 1:
-    case 3:
-    case 5:
-    case 7:
-        n = func_ov001_0218180c();
-        if (data_ov001_021a9b90->mUnk_04 >= n) {
-            func_0203e74c(data_021759c0->mUnk_62);
-        }
-        break;
+        case 0:
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+            n = func_ov001_0218180c();
+            if (data_ov001_021a9b90->mUnk_04 >= n) {
+                func_0203e74c(data_021759c0->mUnk_62);
+            }
+            break;
     }
 }

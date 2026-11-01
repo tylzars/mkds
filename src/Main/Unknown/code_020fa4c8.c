@@ -263,9 +263,8 @@ void func_020fba6c(Unk020fc2e8 *param_1) {
     }
 }
 
-// non-matching: 0x26c vs 0x274 bytes. The selection of q is laid out as in func_020fbc18: the
-// original reaches one shared `mov r4, #0` with `beq` / `bne`, this build starts with
-// `mov r4, #0` and predicates the two selections.
+// non-matching: 0x26c vs 0x274 bytes. The selection of q is laid out as in func_020fbc18: the original reaches one
+// shared `mov r4, #0` with `beq` / `bne`, this build starts with `mov r4, #0` and predicates the two selections.
 void func_020fb7f8(Unk020fc2e8 *param_1) {
     Vec3 v;
     void *q;
@@ -789,10 +788,9 @@ void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
     }
 }
 
-// non-matching: 0x2dc vs 0x2c4 bytes. The original reserves 0x2c bytes of stack (here 0x34) and
-// keeps param_1 in r9 (here sl); the bit 0x8000000 value is formed with `movne r8, #1` /
-// `moveq r8, r6` (here `movne r0, #1; strne r0, [sp]; streq r8, [sp]`), so the rest of the
-// register assignment differs.
+// non-matching: 0x2dc vs 0x2c4 bytes. The original reserves 0x2c bytes of stack (here 0x34) and keeps param_1 in r9
+// (here sl); the bit 0x8000000 value is formed with `movne r8, #1` / `moveq r8, r6` (here `movne r0, #1; strne r0,
+// [sp]; streq r8, [sp]`), so the rest of the register assignment differs.
 s32 func_020fa4c8(Unk0206bcb0 *param_1) {
     s32 n;
     s32 i;

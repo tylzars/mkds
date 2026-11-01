@@ -34,41 +34,41 @@ u32 func_ov000_021a299c(u32 a, void *b, u32 c) {
         return 3;
     }
     switch (a) {
-    case 0:
-        if (p->mUnk_198 == 0x13) {
-            return 1;
-        }
-        if (*(u8 *) b != 0 && ((u8 *) b)[1] <= 1) {
-            return 3;
-        }
-        q = data_ov000_021b5670;
-        if (q == 0) {
-            q = func_ov000_021a372c(4, 0x20);
-            data_ov000_021b5670 = q;
-            if (q == 0) {
-                return 4;
+        case 0:
+            if (p->mUnk_198 == 0x13) {
+                return 1;
             }
-        }
-        q->mUnk_00 = *(u8 *) b;
-        data_ov000_021b5670->mUnk_01 = ((u8 *) b)[1];
-        data_ov000_021b5670->mUnk_02 = 0;
-        data_ov000_021b5670->mUnk_03 = 0;
-        data_ov000_021b5670->mUnk_04 = *(u32 *) ((u8 *) b + 4);
-        data_ov000_021b5670->mUnk_08 = 0;
-        data_ov000_021b5670->mUnk_0c = 0;
-        data_ov000_021b5670->mUnk_10 = func_ov000_021a350c();
-        data_ov000_021b5670->mUnk_18 = func_ov000_021a350c();
-        return 0;
-    case 1:
-        if (*(u32 *) b != 0) {
-            data_ov000_021b5668.mUnk_00 = 1;
-        } else {
-            data_ov000_021b5668.mUnk_00 = 0;
-        }
-        data_ov000_021b5668.mUnk_01 = 0;
-        return 0;
-    default:
-        return 2;
+            if (*(u8 *) b != 0 && ((u8 *) b)[1] <= 1) {
+                return 3;
+            }
+            q = data_ov000_021b5670;
+            if (q == 0) {
+                q = func_ov000_021a372c(4, 0x20);
+                data_ov000_021b5670 = q;
+                if (q == 0) {
+                    return 4;
+                }
+            }
+            q->mUnk_00 = *(u8 *) b;
+            data_ov000_021b5670->mUnk_01 = ((u8 *) b)[1];
+            data_ov000_021b5670->mUnk_02 = 0;
+            data_ov000_021b5670->mUnk_03 = 0;
+            data_ov000_021b5670->mUnk_04 = *(u32 *) ((u8 *) b + 4);
+            data_ov000_021b5670->mUnk_08 = 0;
+            data_ov000_021b5670->mUnk_0c = 0;
+            data_ov000_021b5670->mUnk_10 = func_ov000_021a350c();
+            data_ov000_021b5670->mUnk_18 = func_ov000_021a350c();
+            return 0;
+        case 1:
+            if (*(u32 *) b != 0) {
+                data_ov000_021b5668.mUnk_00 = 1;
+            } else {
+                data_ov000_021b5668.mUnk_00 = 0;
+            }
+            data_ov000_021b5668.mUnk_01 = 0;
+            return 0;
+        default:
+            return 2;
     }
 }
 

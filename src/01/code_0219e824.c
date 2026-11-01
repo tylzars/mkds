@@ -22,8 +22,10 @@
 u8 *data_ov001_021ca404;
 u8 *data_ov001_021ca408;
 
-static Unk021a9034 data_ov001_021a9064 = {func_ov001_0219e9e0, func_ov001_0219e960, func_ov001_0219e9c8, func_ov001_0219e9a4, 0, 0, 10, 10, 0};
-static Unk021a9034 data_ov001_021a9084 = {func_ov001_0219ea8c, func_ov001_0219ea48, func_ov001_0219ea74, func_ov001_0219ea6c, 0, 0, 30, 1, 0};
+static Unk021a9034 data_ov001_021a9064 = {
+    func_ov001_0219e9e0, func_ov001_0219e960, func_ov001_0219e9c8, func_ov001_0219e9a4, 0, 0, 10, 10, 0};
+static Unk021a9034 data_ov001_021a9084 = {
+    func_ov001_0219ea8c, func_ov001_0219ea48, func_ov001_0219ea74, func_ov001_0219ea6c, 0, 0, 30, 1, 0};
 
 int func_ov001_0219ea14(void *param_1) {
     Unk021a9034 local = data_ov001_021a9084;
@@ -35,7 +37,7 @@ int func_ov001_0219ea14(void *param_1) {
 void func_ov001_0219e9e0(s16 *param_1) {
     void *heap;
 
-    heap = (void *)func_020364e0(func_020364e8());
+    heap = (void *) func_020364e0(func_020364e8());
     data_ov001_021ca408 = func_02036bec(heap, 0x808);
     func_ov001_02192fb8((void *) (heap), (s16) (*param_1));
 }
@@ -47,13 +49,13 @@ void func_ov001_0219e9c8(void) {
 
 void func_ov001_0219e9a4(void) {
     func_ov001_02192ec4();
-    func_020ae5f0((void *) ((int)data_ov001_021ca408), (void *) (data_ov001_021ca408 + 0x404));
+    func_020ae5f0((void *) ((int) data_ov001_021ca408), (void *) (data_ov001_021ca408 + 0x404));
 }
 
 void func_ov001_0219e960(s16 *param_1) {
-    func_020ae6ac((void *) ((int)data_ov001_021ca408), (void *) (data_ov001_021ca408 + 0x404));
+    func_020ae6ac((void *) ((int) data_ov001_021ca408), (void *) (data_ov001_021ca408 + 0x404));
     func_ov001_02192ee4();
-    func_020ae630((void *) ((int)data_ov001_021ca408), (void *) (data_ov001_021ca408 + 0x404));
+    func_020ae630((void *) ((int) data_ov001_021ca408), (void *) (data_ov001_021ca408 + 0x404));
     if (param_1 != 0 && func_ov001_02192e84() != -1) {
         param_1[2] = func_ov001_02192e84();
     }
@@ -77,7 +79,7 @@ u8 *func_ov001_0219e90c(void) {
 void func_ov001_0219e8d8(s16 *param_1) {
     void *heap;
 
-    heap = (void *)func_020364e0(func_020364e8());
+    heap = (void *) func_020364e0(func_020364e8());
     data_ov001_021ca404 = func_02036bec(heap, 0x808);
     func_ov001_021987d4(heap, *param_1);
 }
@@ -92,7 +94,7 @@ void func_ov001_0219e89c(void) {
 
     func_ov001_0219854c();
     p = data_ov001_021ca404;
-    func_020ae5f0((void *) ((int)p), (void *) (p + 0x404));
+    func_020ae5f0((void *) ((int) p), (void *) (p + 0x404));
 }
 
 void func_ov001_0219e858(s16 *a) {
@@ -104,8 +106,7 @@ void func_ov001_0219e858(s16 *a) {
     }
 }
 
-int func_ov001_0219e824(void *param_1)
-{
+int func_ov001_0219e824(void *param_1) {
     Unk021a9034 callbacks = {
         func_ov001_0219e8d8, func_ov001_0219e858, func_ov001_0219e8c0, func_ov001_0219e89c, 0, 0, 10, 10, 0,
     };

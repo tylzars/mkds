@@ -6,8 +6,7 @@
 #include "01/code_021a1000.h"
 #include "01/unk_021a6000.h"
 
-void func_ov001_021a0e34(void)
-{
+void func_ov001_021a0e34(void) {
     s32 out;
     s32 i;
 

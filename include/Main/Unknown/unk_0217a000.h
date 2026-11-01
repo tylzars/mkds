@@ -126,7 +126,8 @@ typedef struct Unk0217aa08_10_04 {
     };
 } Unk0217aa08_10_04;
 
-// What member 0x10 of Unk0217aa08 points to: bytes from 0x04, read in rows of nine (the count is not shown by the code).
+// What member 0x10 of Unk0217aa08 points to: bytes from 0x04, read in rows of nine (the count is not shown by the
+// code).
 typedef struct Unk0217aa08_10 {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ Unk0217aa08_10_04 mUnk_04[1];
@@ -701,59 +702,59 @@ typedef struct Unk0217aa00 {
     };
     /* 16a0 */ union {
         struct {
-        /* 16a0 */ Unk0217aa00_16a0 mUnk_16a0[12];
-        /* 1d00 */ s32 mUnk_1d00;
-        /* 1d04 */ void *mUnk_1d04;
-        /* 1d08 */ u16 mUnk_1d08;
-        /* 1d0a */ u16 mUnk_1d0a;
-        /* 1d0c */ Unk02003024 mUnk_1d0c;
-        /* 1d54 */ u8 mUnk_1d54;
-        /* 1d55 */ u8 mUnk_1d55[0x3];
-        /* 1d58 */ void *mUnk_1d58;
-        /* 1d5c */ s16 mUnk_1d5c;
-        /* 1d5e */ u16 mUnk_1d5e;
-        /* 1d60 */ u32 *mUnk_1d60;
-        /* 1d64 */ u8 mUnk_1d64[0x3c];
-        /* 1da0 */ Unk0217aa00_1da0 *mUnk_1da0[16];
-        /* 1de0 */ void *mUnk_1de0[16];
-        /* 1e20 */ void *mUnk_1e20;
-        /* 1e24 */ void *mUnk_1e24;
-        /* 1e28 */ s32 mUnk_1e28;
-        /* 1e2c */ s32 mUnk_1e2c;
-        /* 1e30 */ s32 mUnk_1e30;
-        /* 1e34 */ s32 mUnk_1e34;
-        /* 1e38 */ s32 mUnk_1e38;
-        /* 1e3c */ s32 mUnk_1e3c;
-        /* 1e40 */ u16 mUnk_1e40;
-        /* 1e42 */ u16 mUnk_1e42;
-        /* 1e44 */ u8 mUnk_1e44;
-        /* 1e45 */ s8 mUnk_1e45;
-        /* 1e46 */ u8 mUnk_1e46;
-        /* 1e47 */ u8 mUnk_1e47[0x1];
-        /* 1e48 */ Unk0217aa00_1e48 *mUnk_1e48;
-        /* 1e4c */ union {
-            struct {
-                /* 1e4c */ u16 mUnk_1e4c;
-                /* 1e4e */ u8 mUnk_1e4e[0x4];
-                /* 1e52 */ Unk0217aa00_1e52 mUnk_1e52[7];
-                /* 1e8a */ u16 mUnk_1e8a;
-                /* 1e8c */ u16 mUnk_1e8c[8];
-                /* 1e9c */ u16 mUnk_1e9c[8];
-                /* 1eac */ u8 mUnk_1eac[4];
-                /* 1eb0 */ s32 mUnk_1eb0;
-                /* 1eb4 */ u8 mUnk_1eb4[4];
-                /* 1eb8 */ Unk0217aa00_1eb8 mUnk_1eb8;
+            /* 16a0 */ Unk0217aa00_16a0 mUnk_16a0[12];
+            /* 1d00 */ s32 mUnk_1d00;
+            /* 1d04 */ void *mUnk_1d04;
+            /* 1d08 */ u16 mUnk_1d08;
+            /* 1d0a */ u16 mUnk_1d0a;
+            /* 1d0c */ Unk02003024 mUnk_1d0c;
+            /* 1d54 */ u8 mUnk_1d54;
+            /* 1d55 */ u8 mUnk_1d55[0x3];
+            /* 1d58 */ void *mUnk_1d58;
+            /* 1d5c */ s16 mUnk_1d5c;
+            /* 1d5e */ u16 mUnk_1d5e;
+            /* 1d60 */ u32 *mUnk_1d60;
+            /* 1d64 */ u8 mUnk_1d64[0x3c];
+            /* 1da0 */ Unk0217aa00_1da0 *mUnk_1da0[16];
+            /* 1de0 */ void *mUnk_1de0[16];
+            /* 1e20 */ void *mUnk_1e20;
+            /* 1e24 */ void *mUnk_1e24;
+            /* 1e28 */ s32 mUnk_1e28;
+            /* 1e2c */ s32 mUnk_1e2c;
+            /* 1e30 */ s32 mUnk_1e30;
+            /* 1e34 */ s32 mUnk_1e34;
+            /* 1e38 */ s32 mUnk_1e38;
+            /* 1e3c */ s32 mUnk_1e3c;
+            /* 1e40 */ u16 mUnk_1e40;
+            /* 1e42 */ u16 mUnk_1e42;
+            /* 1e44 */ u8 mUnk_1e44;
+            /* 1e45 */ s8 mUnk_1e45;
+            /* 1e46 */ u8 mUnk_1e46;
+            /* 1e47 */ u8 mUnk_1e47[0x1];
+            /* 1e48 */ Unk0217aa00_1e48 *mUnk_1e48;
+            /* 1e4c */ union {
+                struct {
+                    /* 1e4c */ u16 mUnk_1e4c;
+                    /* 1e4e */ u8 mUnk_1e4e[0x4];
+                    /* 1e52 */ Unk0217aa00_1e52 mUnk_1e52[7];
+                    /* 1e8a */ u16 mUnk_1e8a;
+                    /* 1e8c */ u16 mUnk_1e8c[8];
+                    /* 1e9c */ u16 mUnk_1e9c[8];
+                    /* 1eac */ u8 mUnk_1eac[4];
+                    /* 1eb0 */ s32 mUnk_1eb0;
+                    /* 1eb4 */ u8 mUnk_1eb4[4];
+                    /* 1eb8 */ Unk0217aa00_1eb8 mUnk_1eb8;
+                };
+                Unk0217aa00_1e4c mUnk_1e4c_view;
             };
-            Unk0217aa00_1e4c mUnk_1e4c_view;
-        };
-        /* 1ed0 */ s32 mUnk_1ed0;
-        /* 1ed4 */ u16 mUnk_1ed4;
-        /* 1ed6 */ u16 mUnk_1ed6;
-        /* 1ed8 */ s32 mUnk_1ed8;
-        /* 1edc */ u16 mUnk_1edc;
-        /* 1ede */ u16 mUnk_1ede;
-        /* 1ee0 */ u8 mUnk_1ee0[2];
-        /* 1ee2 */ u8 mUnk_1ee2[6];
+            /* 1ed0 */ s32 mUnk_1ed0;
+            /* 1ed4 */ u16 mUnk_1ed4;
+            /* 1ed6 */ u16 mUnk_1ed6;
+            /* 1ed8 */ s32 mUnk_1ed8;
+            /* 1edc */ u16 mUnk_1edc;
+            /* 1ede */ u16 mUnk_1ede;
+            /* 1ee0 */ u8 mUnk_1ee0[2];
+            /* 1ee2 */ u8 mUnk_1ee2[6];
         };
         Unk0217aa00_16a0_view mUnk_16a0_view;
     };

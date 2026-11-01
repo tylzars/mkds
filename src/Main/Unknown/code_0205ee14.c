@@ -28,7 +28,9 @@ static inline s32 func_0205f218_inline(void) {
     return (p == 0 ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13;
 }
 
-// non-matching: the original keeps the bit counters in other registers (the outer index in r5 and the bit offset in r3 where this has them in r2 and ip, the inner count in ip and the accumulator in lr) and pushes sl as well, so the frame is 0x10 bytes and the function 0x1e8 bytes; this is 0x1e4 bytes.
+// non-matching: the original keeps the bit counters in other registers (the outer index in r5 and the bit offset in r3
+// where this has them in r2 and ip, the inner count in ip and the accumulator in lr) and pushes sl as well, so the
+// frame is 0x10 bytes and the function 0x1e8 bytes; this is 0x1e4 bytes.
 u32 func_0205fe1c(u8 *a, Unk02056bc0 *b, s32 c) {
     u8 d[10] = {0};
     u32 e;
@@ -116,7 +118,8 @@ u32 func_0205fd2c(Unk0205fd2c *a, u32 b, u32 c) {
     return 0;
 }
 
-// non-matching: the flag of the first test sits in r2 and the loaded word in r1 in the original (r1 and r2 swapped here, together with the copies of the two arguments; 8 words).
+// non-matching: the flag of the first test sits in r2 and the loaded word in r1 in the original (r1 and r2 swapped
+// here, together with the copies of the two arguments; 8 words).
 s32 func_0205fc98(Unk0205fd2c *a, u32 b, u32 c) {
     u8 d;
     u8 e;
@@ -133,7 +136,8 @@ s32 func_0205fc98(Unk0205fd2c *a, u32 b, u32 c) {
     return 0;
 }
 
-// non-matching: the flag of the first test sits in r3 and the loaded word in r2 in the original (swapped here; 6 words).
+// non-matching: the flag of the first test sits in r3 and the loaded word in r2 in the original (swapped here; 6
+// words).
 s32 func_0205fc28(s32 a) {
     if (func_0205f218_inline() == 0) {
         return func_02056dec(a);
@@ -141,7 +145,8 @@ s32 func_0205fc28(s32 a) {
     return func_02056e00(a, data_0217aa08->mUnk_30);
 }
 
-// non-matching: the flag of the first test sits in r3 and the loaded word in r2 in the original (swapped here; 6 words).
+// non-matching: the flag of the first test sits in r3 and the loaded word in r2 in the original (swapped here; 6
+// words).
 s32 func_0205fbb8(s32 a) {
     if (func_0205f218_inline() == 0) {
         return func_02056dec(a);
@@ -177,30 +182,30 @@ void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
         func_0214d1fc(data_021759c0->mUnk_68[a].mUnk_08.mUnk_18, e.mUnk_0e, 0x14);
     }
     switch (c) {
-    case 0:
-        f = &e.mUnk_00[0][0];
-        g = &e.mUnk_00[0][1];
-        break;
-    case 1:
-        f = &e.mUnk_00[1][0];
-        g = &e.mUnk_00[1][1];
-        break;
-    case 2:
-        f = &e.mUnk_00[2][0];
-        g = &e.mUnk_00[2][1];
-        break;
+        case 0:
+            f = &e.mUnk_00[0][0];
+            g = &e.mUnk_00[0][1];
+            break;
+        case 1:
+            f = &e.mUnk_00[1][0];
+            g = &e.mUnk_00[1][1];
+            break;
+        case 2:
+            f = &e.mUnk_00[2][0];
+            g = &e.mUnk_00[2][1];
+            break;
     }
     switch (d) {
-    case 0:
-        if (*f < 0xffff) {
-            *f = *f + 1;
-        }
-        break;
-    case 1:
-        if (*g < 0xffff) {
-            *g = *g + 1;
-        }
-        break;
+        case 0:
+            if (*f < 0xffff) {
+                *f = *f + 1;
+            }
+            break;
+        case 1:
+            if (*g < 0xffff) {
+                *g = *g + 1;
+            }
+            break;
     }
     e.mUnk_0c_0 = b[0];
     e.mUnk_0c_7 = b[1];
@@ -209,7 +214,9 @@ void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
     func_0205ee74(h, &e);
 }
 
-// non-matching: the flag of the first test sits in r2 and the loaded word in r1 in the original (swapped here), the first store to the stack comes before the load of the data pointer, and the four stores of zero before the loop are in the order 4, 12, 8, 16 (15 words).
+// non-matching: the flag of the first test sits in r2 and the loaded word in r1 in the original (swapped here), the
+// first store to the stack comes before the load of the data pointer, and the four stores of zero before the loop are
+// in the order 4, 12, 8, 16 (15 words).
 void func_0205f700(void) {
     s32 v1;
     u32 t;
@@ -255,23 +262,23 @@ void func_0205f700(void) {
                 t = 2;
             } else {
                 switch (data_021759c0->mUnk_1c) {
-                case 0:
-                case 2:
-                    if (func_0203c8dc(i) > a) {
-                        t = 0;
-                    } else {
-                        t = 1;
-                    }
-                    break;
-                case 1:
-                    if (c == func_0205d480()) {
-                        t = 0;
-                    } else if (data_0217561c->mUnk_000[i].mUnk_14 == 4) {
-                        t = 2;
-                    } else {
-                        t = 1;
-                    }
-                    break;
+                    case 0:
+                    case 2:
+                        if (func_0203c8dc(i) > a) {
+                            t = 0;
+                        } else {
+                            t = 1;
+                        }
+                        break;
+                    case 1:
+                        if (c == func_0205d480()) {
+                            t = 0;
+                        } else if (data_0217561c->mUnk_000[i].mUnk_14 == 4) {
+                            t = 2;
+                        } else {
+                            t = 1;
+                        }
+                        break;
                 }
             }
         } else {
@@ -305,7 +312,8 @@ void func_0205f700(void) {
     }
 }
 
-// non-matching: the flag of the first test sits in r2 and the loaded word in r1 in the original (swapped here; 6 words).
+// non-matching: the flag of the first test sits in r2 and the loaded word in r1 in the original (swapped here; 6
+// words).
 void func_0205f498(void) {
     u16 i;
     u32 a;
@@ -373,7 +381,8 @@ void func_0205f498(void) {
     }
 }
 
-// non-matching: the flag of the first test sits in r2 and the loaded word in r1 in the original (swapped here; 6 words).
+// non-matching: the flag of the first test sits in r2 and the loaded word in r1 in the original (swapped here; 6
+// words).
 void func_0205f218(void) {
     u16 i;
     u32 a;
@@ -453,7 +462,8 @@ static inline u16 func_0205ef70_inline(u16 a) {
     return data_0217aa1c->mUnk_000[c][d].mUnk_00;
 }
 
-// non-matching: the two halfword loads from the table behind data_0217aa1c take the row pointer and the offset in the other order than the original ([r6, r3] and [r2, r1]; 2 words).
+// non-matching: the two halfword loads from the table behind data_0217aa1c take the row pointer and the offset in the
+// other order than the original ([r6, r3] and [r2, r1]; 2 words).
 void func_0205ef70(void) {
     u16 i;
     s32 c;
@@ -527,25 +537,25 @@ void func_0205ef70(void) {
 void func_0205eeb0(void) {
     if (data_021759c0->mUnk_00c == 0) {
         switch (data_021759c0->mUnk_08) {
-        case 3:
-            func_0205f700();
-            break;
-        case 4:
-            func_0203b230();
-            break;
-        case 2:
-            switch (data_021759c0->mUnk_18) {
-            case 0:
-                func_0205f498();
+            case 3:
+                func_0205f700();
                 break;
-            case 1:
-                func_0205f218();
+            case 4:
+                func_0203b230();
                 break;
-            }
-            break;
-        case 5:
-            func_0205ef70();
-            break;
+            case 2:
+                switch (data_021759c0->mUnk_18) {
+                    case 0:
+                        func_0205f498();
+                        break;
+                    case 1:
+                        func_0205f218();
+                        break;
+                }
+                break;
+            case 5:
+                func_0205ef70();
+                break;
         }
     }
 }

@@ -51,8 +51,9 @@ void func_ov000_021856a8(void) {
         }
     }
     for (i = 0; i < 12; i++) {
-        n -= func_021243ac(data_ov000_021b4c88->mUnk_2c, data_ov000_021b06dc[i], data_ov000_021b4c88->mUnk_48, 8, 0x10, a[i],
-                           data_ov000_021b4c88->mUnk_34, data_ov000_021b4c88->mUnk_40, data_ov000_021b4c88->mUnk_30, n);
+        n -= func_021243ac(data_ov000_021b4c88->mUnk_2c, data_ov000_021b06dc[i], data_ov000_021b4c88->mUnk_48, 8, 0x10,
+                           a[i], data_ov000_021b4c88->mUnk_34, data_ov000_021b4c88->mUnk_40,
+                           data_ov000_021b4c88->mUnk_30, n);
         z[0] = 0;
         z[1] = 0;
         z[0] = data_ov000_021b4c88->mUnk_0e[i];

@@ -213,7 +213,9 @@ void func_02047f7c(s32 a, const u8 *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
     }
 }
 
-// non-matching: size 0x230 against 0x234; a lives in r7 (r5 in the original), the stack offset a * 0x18 is kept in r5 across the calls (recomputed at the end in the original), g is spilled to a stack offset (r7 in the original), and the two stack-argument words swap places (sp+0xc / sp+0x10)
+// non-matching: size 0x230 against 0x234; a lives in r7 (r5 in the original), the stack offset a * 0x18 is kept in r5
+// across the calls (recomputed at the end in the original), g is spilled to a stack offset (r7 in the original), and
+// the two stack-argument words swap places (sp+0xc / sp+0x10)
 void func_02048050(int a, int b) {
     u8 c[0x80] = {0};
     u32 *d;

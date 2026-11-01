@@ -84,7 +84,9 @@ void func_020dd6c8(void *a, Unk020dc474 *p, void *b, u32 c) {
     func_020ea868(data_0217b6d0, &s, &p->mUnk_00.mUnk_1c, c);
 }
 
-// non-matching: the original keeps the constant 0 in r1 (stored to the words at 0x48 and 0x50 and passed as the zero arguments) and copies it into r4 (mov r4, r1); this build uses r4 itself for the zeros and the registers of the code after it differ (0x448 bytes vs 0x44c)
+// non-matching: the original keeps the constant 0 in r1 (stored to the words at 0x48 and 0x50 and passed as the zero
+// arguments) and copies it into r4 (mov r4, r1); this build uses r4 itself for the zeros and the registers of the code
+// after it differ (0x448 bytes vs 0x44c)
 void func_020dd27c(void *a, Unk020dc474 *p) {
     u32 f;
     Unk020d7b88 m;

@@ -1,5 +1,5 @@
 #include "Main/Unknown/code_0210f858.h"
 
 u32 func_0210f858(void) {
-    return ((u32) *(const u32 *) ((u8 *) (u32) (((u32) (&data_0217d220))) + 0));
+    return ((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217d220))) + 0));
 }

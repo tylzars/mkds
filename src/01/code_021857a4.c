@@ -10,11 +10,13 @@
 #pragma optimize_for_size on
 
 void func_ov001_02185b7c(void) {
-    func_0209bf1c((u32) ((UnkFunc *) func_ov001_02185d1c), (u32) ((UnkFunc *) func_ov001_02185ca0), (u32) ((UnkFunc *) func_ov001_02185d18));
+    func_0209bf1c((u32) ((UnkFunc *) func_ov001_02185d1c), (u32) ((UnkFunc *) func_ov001_02185ca0),
+                  (u32) ((UnkFunc *) func_ov001_02185d18));
 }
 
 void func_ov001_02185b64(void) {
-    func_0209bf48((u32) ((UnkFunc *) func_ov001_02185c4c), (u32) ((UnkFunc *) func_ov001_02185bb8), (u32) ((UnkFunc *) (0)));
+    func_0209bf48((u32) ((UnkFunc *) func_ov001_02185c4c), (u32) ((UnkFunc *) func_ov001_02185bb8),
+                  (u32) ((UnkFunc *) (0)));
 }
 
 u16 func_ov001_02185b50(Unk02185bb8 *param_1) {
@@ -33,12 +35,12 @@ void func_ov001_02185b1c(void) {
 
 void func_ov001_02185af0(void) {
     switch (func_ov001_0219ead4()) {
-    case 1:
-        func_020ccc74(0x13, 0x1f);
-        break;
-    case 2:
-        func_020ccc74(0, 0x1f);
-        break;
+        case 1:
+            func_020ccc74(0x13, 0x1f);
+            break;
+        case 2:
+            func_020ccc74(0, 0x1f);
+            break;
     }
 }
 
@@ -66,12 +68,12 @@ void func_ov001_02185a88(void) {
 
 void func_ov001_02185a5c(void) {
     switch (func_ov001_0219f934()) {
-    case 1:
-        func_020ccc74(0x1d, 0x1f);
-        break;
-    case 2:
-        func_020ccc74(0x12, 0x1f);
-        break;
+        case 1:
+            func_020ccc74(0x1d, 0x1f);
+            break;
+        case 2:
+            func_020ccc74(0x12, 0x1f);
+            break;
     }
 }
 
@@ -93,20 +95,20 @@ void func_ov001_02185a14(s32 param_1) {
 
 void func_ov001_021859b8(void) {
     switch (func_ov001_02197b54()) {
-    case 1:
-        func_020ccc74(0x15, 0x1f);
-        break;
-    case 2:
-        func_020ccc74(0x1c, 0x1f);
-        func_ov001_02185a14(0);
-        break;
-    case 3:
-        func_020ccc74(0x1c, 0x1f);
-        func_ov001_02185a14(1);
-        break;
-    case 4:
-        func_020ccc74(0, 0x1f);
-        break;
+        case 1:
+            func_020ccc74(0x15, 0x1f);
+            break;
+        case 2:
+            func_020ccc74(0x1c, 0x1f);
+            func_ov001_02185a14(0);
+            break;
+        case 3:
+            func_020ccc74(0x1c, 0x1f);
+            func_ov001_02185a14(1);
+            break;
+        case 4:
+            func_020ccc74(0, 0x1f);
+            break;
     }
 }
 
@@ -123,12 +125,12 @@ void func_ov001_02185980(void) {
 
 void func_ov001_02185954(void) {
     switch (func_02026120()) {
-    case 1:
-        func_020ccc74(0x16, 0x1f);
-        break;
-    case 2:
-        func_020ccc74(0x14, 0x1f);
-        break;
+        case 1:
+            func_020ccc74(0x16, 0x1f);
+            break;
+        case 2:
+            func_020ccc74(0x14, 0x1f);
+            break;
     }
 }
 
@@ -143,12 +145,12 @@ void func_ov001_02185928(void) {
 
 void func_ov001_021858fc(void) {
     switch (func_02028130()) {
-    case 1:
-        func_020ccc74(0x17, 0x1f);
-        break;
-    case 2:
-        func_020ccc74(0x15, 0x1f);
-        break;
+        case 1:
+            func_020ccc74(0x17, 0x1f);
+            break;
+        case 2:
+            func_020ccc74(0x15, 0x1f);
+            break;
     }
 }
 
@@ -174,17 +176,17 @@ void func_ov001_021858a0(s32 param_1) {
 
 void func_ov001_0218585c(void) {
     switch (func_02117418()) {
-    case 1:
-        func_020ccc74(0x18, 0x1f);
-        break;
-    case 2:
-        func_020ccc74(0x16, 0x1f);
-        break;
-    case 3:
-        func_020ccc74(0, 0x1f);
-        func_ov001_021858b4(0);
-        func_ov001_021858a0(1);
-        break;
+        case 1:
+            func_020ccc74(0x18, 0x1f);
+            break;
+        case 2:
+            func_020ccc74(0x16, 0x1f);
+            break;
+        case 3:
+            func_020ccc74(0, 0x1f);
+            func_ov001_021858b4(0);
+            func_ov001_021858a0(1);
+            break;
     }
 }
 
@@ -200,16 +202,16 @@ void func_ov001_02185828(void) {
 
 void func_ov001_021857ec(void) {
     switch (func_02118e64()) {
-    case 1:
-        if (func_0211e130()) {
-            func_020ccc74(0x1d, 0x1f);
-        } else {
-            func_020ccc74(0x1a, 0x1f);
-        }
-        break;
-    case 2:
-        func_020ccc74(0x18, 0x1f);
-        break;
+        case 1:
+            if (func_0211e130()) {
+                func_020ccc74(0x1d, 0x1f);
+            } else {
+                func_020ccc74(0x1a, 0x1f);
+            }
+            break;
+        case 2:
+            func_020ccc74(0x18, 0x1f);
+            break;
     }
 }
 

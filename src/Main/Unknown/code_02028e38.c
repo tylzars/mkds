@@ -7,8 +7,7 @@ void func_02028e38(void) {
     short *v2;
     v1 = func_020280dc();
     if (v1 == 0) {
-        v2 = (short *) func_02078b04((int) data_02174e18->mUnk_0a8,
-                                         (int) data_02174e18->mUnk_0a4);
+        v2 = (short *) func_02078b04((int) data_02174e18->mUnk_0a8, (int) data_02174e18->mUnk_0a4);
         v1 = (int) data_02174e18 + 100;
         func_02028ec0(10, (u32) 0x10, (int) ((int) *v2), (Unk02174e14_00 *) v1);
         func_02028ec0(9, (u32) 0xf, (int) ((int) v2[1]), (Unk02174e14_00 *) v1);

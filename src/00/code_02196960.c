@@ -25,18 +25,18 @@ void func_ov000_021969d8(s32 a, s32 b, s32 c, const u8 *d, s32 e) {
         p = func_ov000_0218dbf8(data_ov000_021b4e5c, a);
         if (p->mUnk_18.mUnk_00 != 0) {
             switch (p->mUnk_00) {
-            case 0:
-                p->mUnk_18.mUnk_00(p->mUnk_04, p->mUnk_08, b, d, p->mUnk_14);
-                break;
-            case 1:
-                p->mUnk_18.mUnk_01(p->mUnk_04, p->mUnk_08, p->mUnk_0c, p->mUnk_10, b, c, d, e, p->mUnk_14);
-                break;
-            case 2:
-                p->mUnk_18.mUnk_02(p->mUnk_04, p->mUnk_08, p->mUnk_0c, p->mUnk_10, b, c, p->mUnk_14);
-                break;
-            case 3:
-                p->mUnk_18.mUnk_03(p->mUnk_04, p->mUnk_08, b, p->mUnk_14);
-                break;
+                case 0:
+                    p->mUnk_18.mUnk_00(p->mUnk_04, p->mUnk_08, b, d, p->mUnk_14);
+                    break;
+                case 1:
+                    p->mUnk_18.mUnk_01(p->mUnk_04, p->mUnk_08, p->mUnk_0c, p->mUnk_10, b, c, d, e, p->mUnk_14);
+                    break;
+                case 2:
+                    p->mUnk_18.mUnk_02(p->mUnk_04, p->mUnk_08, p->mUnk_0c, p->mUnk_10, b, c, p->mUnk_14);
+                    break;
+                case 3:
+                    p->mUnk_18.mUnk_03(p->mUnk_04, p->mUnk_08, b, p->mUnk_14);
+                    break;
             }
         }
         func_ov000_0218da5c(data_ov000_021b4e5c, a);

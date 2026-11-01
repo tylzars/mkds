@@ -4,7 +4,8 @@
 #include "Main/Unknown/code_020d50c4.h"
 #include "code_02147cd8.h"
 
-// non-matching: original negates the halfword with mvn #0 + smulbb (0xd8 bytes), ours uses rsb (0xd0 bytes); registers r2/r3 swapped
+// non-matching: original negates the halfword with mvn #0 + smulbb (0xd8 bytes), ours uses rsb (0xd0 bytes); registers
+// r2/r3 swapped
 void func_02073eb8(Unk02061808 *p) {
     s32 t;
     s32 u;

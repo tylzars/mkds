@@ -174,8 +174,9 @@ static inline s32 func_02055b1c_inline(void) {
     return r;
 }
 
-// non-matching: same size; register allocation only; 2 lines differ; first: original `cmp r0, #0`, ours `mov r1, r2`. The
-// original compares r0 first and fills r1 with `moveq r1, r2` / `ldrne r1, [r0]`; ours copies r2 into r1 before the compare.
+// non-matching: same size; register allocation only; 2 lines differ; first: original `cmp r0, #0`, ours `mov r1, r2`.
+// The original compares r0 first and fills r1 with `moveq r1, r2` / `ldrne r1, [r0]`; ours copies r2 into r1 before the
+// compare.
 s32 func_02055b1c(void) {
     if (func_02055b1c_inline()) {
         if (func_0204ffbc() != 0) {

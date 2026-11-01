@@ -15,15 +15,15 @@ u8 func_ov000_0218973c(u32 a) {
     z = 0;
     func_0214d018(z, v1->mUnk_300, 0x144);
     switch (a) {
-    case 0:
-        v1->mUnk_d10 = func_ov000_021896c4(v1);
-        break;
-    case 1:
-        v1->mUnk_d10 = func_ov000_021894e4(v1->mUnk_d12, v1->mUnk_444, v1->mUnk_300, v1->mUnk_470);
-        break;
-    case 2:
-        v1->mUnk_d10 = func_ov000_02189614(v1);
-        break;
+        case 0:
+            v1->mUnk_d10 = func_ov000_021896c4(v1);
+            break;
+        case 1:
+            v1->mUnk_d10 = func_ov000_021894e4(v1->mUnk_d12, v1->mUnk_444, v1->mUnk_300, v1->mUnk_470);
+            break;
+        case 2:
+            v1->mUnk_d10 = func_ov000_02189614(v1);
+            break;
     }
     return v1->mUnk_d10;
 }
@@ -35,30 +35,30 @@ u32 func_ov000_021897bc(void) {
     v1 = (Unk02188ec0 *) func_ov000_02188584(0x10);
     r = 9;
     switch (func_ov000_021a5bfc()) {
-    case 3:
-        r = v1->mUnk_d0e;
-        if (v1->mUnk_d0c_6 == 1) {
-            v1->mUnk_444[v1->mUnk_d13].mUnk_00 = 0;
-            r = 7;
-        } else if (r >= 3 && r <= 5) {
-            func_ov000_02189d2c(r);
-        }
-        break;
-    case 6:
-        func_ov000_021a6024();
-        break;
-    case 9:
-        func_ov000_021a5db0();
-        break;
-    case 12:
-        func_ov000_021a5c24();
-        func_ov000_02188508(4);
-        r = 0x11;
-        break;
-    case 11:
-        func_ov000_02188508(0);
-        r = 0x11;
-        break;
+        case 3:
+            r = v1->mUnk_d0e;
+            if (v1->mUnk_d0c_6 == 1) {
+                v1->mUnk_444[v1->mUnk_d13].mUnk_00 = 0;
+                r = 7;
+            } else if (r >= 3 && r <= 5) {
+                func_ov000_02189d2c(r);
+            }
+            break;
+        case 6:
+            func_ov000_021a6024();
+            break;
+        case 9:
+            func_ov000_021a5db0();
+            break;
+        case 12:
+            func_ov000_021a5c24();
+            func_ov000_02188508(4);
+            r = 0x11;
+            break;
+        case 11:
+            func_ov000_02188508(0);
+            r = 0x11;
+            break;
     }
     return r;
 }

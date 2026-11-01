@@ -49,7 +49,8 @@ void func_0211f4b0(void *a, void *b) {
     func_02124ed0(a, data_0217d380->mUnk_04, data_0217d380->mUnk_0c, &data_0217d380->mUnk_10);
     data_0217d380->mUnk_14 = func_02047a28("common.bmg");
     v = func_02148ca0();
-    func_021243ac(a, 0xe, data_0217d380->mUnk_0c, 0xc8, 0xd, 0, data_0217d380->mUnk_00, data_0217d380->mUnk_04, data_0217d380->mUnk_10, v);
+    func_021243ac(a, 0xe, data_0217d380->mUnk_0c, 0xc8, 0xd, 0, data_0217d380->mUnk_00, data_0217d380->mUnk_04,
+                  data_0217d380->mUnk_10, v);
     p = data_0217d380;
     func_0212426c(1, 0xe, data_0217d380->mUnk_0c, func_020b3f7c(p->mUnk_14, 0x79), p->mUnk_04, p->mUnk_10);
     i = 0;

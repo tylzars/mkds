@@ -99,19 +99,19 @@ s32 func_0204e1a8(s32 a) {
         return 0;
     }
     switch (func_0204e1a8_inline()) {
-    case 1:
-        r = func_0204e29c();
-        break;
-    case 2:
-        r = func_0204e204();
-        break;
-    case 0:
-        if (a != 0) {
-            data_0217aa00->mUnk_0000 = 1;
-        } else {
-            data_0217aa00->mUnk_0000 = 2;
-        }
-        break;
+        case 1:
+            r = func_0204e29c();
+            break;
+        case 2:
+            r = func_0204e204();
+            break;
+        case 0:
+            if (a != 0) {
+                data_0217aa00->mUnk_0000 = 1;
+            } else {
+                data_0217aa00->mUnk_0000 = 2;
+            }
+            break;
     }
     return r;
 }
@@ -121,29 +121,29 @@ s32 func_0204e204(void) {
     s32 r = 0;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         switch (data_0217aa00->mUnk_000c) {
-        case 0:
-            data_0217aa00->mUnk_0454 |= 0x40;
-            data_0217aa00->mUnk_0004 = 1;
-            func_020536e0();
-            break;
-        case 1:
-            s = 1;
-            break;
+            case 0:
+                data_0217aa00->mUnk_0454 |= 0x40;
+                data_0217aa00->mUnk_0004 = 1;
+                func_020536e0();
+                break;
+            case 1:
+                s = 1;
+                break;
         }
     } else {
         switch (data_0217aa00->mUnk_000c) {
-        case 0:
-            data_0217aa00->mUnk_0454 |= 0x40;
-            data_0217aa00->mUnk_0004 = 1;
-            func_020536e0();
-            break;
-        case 1:
-            func_0204e4d8();
-            break;
-        case 0x1c:
-            func_0204e498();
-            s = 1;
-            break;
+            case 0:
+                data_0217aa00->mUnk_0454 |= 0x40;
+                data_0217aa00->mUnk_0004 = 1;
+                func_020536e0();
+                break;
+            case 1:
+                func_0204e4d8();
+                break;
+            case 0x1c:
+                func_0204e498();
+                s = 1;
+                break;
         }
     }
     if (s != 0) {
@@ -156,73 +156,74 @@ s32 func_0204e204(void) {
 s32 func_0204e29c(void) {
     s32 r = 0;
     switch (data_0217aa00->mUnk_000c) {
-    case 0:
-        data_0217aa00->mUnk_0454 |= 0x40;
-        data_0217aa00->mUnk_0004 = 1;
-        func_020536e0();
-        break;
-    case 1:
-        func_02053094(r);
-        break;
-    case 4:
-        func_0204f814();
-        func_0204e568();
-        break;
-    case 0x16:
-        func_0200104c();
-        r = 1;
-        break;
+        case 0:
+            data_0217aa00->mUnk_0454 |= 0x40;
+            data_0217aa00->mUnk_0004 = 1;
+            func_020536e0();
+            break;
+        case 1:
+            func_02053094(r);
+            break;
+        case 4:
+            func_0204f814();
+            func_0204e568();
+            break;
+        case 0x16:
+            func_0200104c();
+            r = 1;
+            break;
     }
     return r;
 }
 
-// non-matching: size 0xac against 0xb0; the original puts the compare with 20 after the table's range check and lays out
-// the case bodies as 11, 20, 7, 4, 3 and 6, with the empty cases sharing the last exit; here the compare is the default.
+// non-matching: size 0xac against 0xb0; the original puts the compare with 20 after the table's range check and lays
+// out the case bodies as 11, 20, 7, 4, 3 and 6, with the empty cases sharing the last exit; here the compare is the
+// default.
 void func_0204e304(u32 a) {
     switch (a) {
-    case 0:
-    case 1:
-    case 2:
-    case 5:
-    case 8:
-    case 9:
-    case 10:
-        break;
-    case 3:
-    case 6:
-        data_0217aa00->mUnk_169c = 0;
-        data_0217aa00->mUnk_0010 = 0;
-        break;
-    case 4:
-        func_02050e60(5);
-        break;
-    case 7:
-        data_0217aa00->mUnk_169c = 1;
-        data_0217aa00->mUnk_0004 = 6;
-        break;
-    case 11:
-        data_0217aa00->mUnk_0010 = 0;
-        break;
-    default:
-        if (a == 20) {
-            data_0217aa00->mUnk_1692 = (func_0200f5ac() >> 10) % 40;
+        case 0:
+        case 1:
+        case 2:
+        case 5:
+        case 8:
+        case 9:
+        case 10:
+            break;
+        case 3:
+        case 6:
+            data_0217aa00->mUnk_169c = 0;
             data_0217aa00->mUnk_0010 = 0;
-        }
-        break;
+            break;
+        case 4:
+            func_02050e60(5);
+            break;
+        case 7:
+            data_0217aa00->mUnk_169c = 1;
+            data_0217aa00->mUnk_0004 = 6;
+            break;
+        case 11:
+            data_0217aa00->mUnk_0010 = 0;
+            break;
+        default:
+            if (a == 20) {
+                data_0217aa00->mUnk_1692 = (func_0200f5ac() >> 10) % 40;
+                data_0217aa00->mUnk_0010 = 0;
+            }
+            break;
     }
 }
 
 void func_0204e3b4(u32 a) {
     switch (a) {
-    case 0:
-    case 1:
-        break;
-    case 2:
-        func_02050e60(5);
-        break;
-    case 3:
-        data_0217aa00->mUnk_0010 = 0;
-        break;
+        case 0:
+        case 1:
+            break;
+        case 2:
+            func_02050e60(5);
+            break;
+        case 3:
+            data_0217aa00->mUnk_0010 = 0;
+            break;
     }
 }
 
@@ -236,8 +237,8 @@ s32 func_0204e3f0(u32 a) {
             if (func_0200b1b0(i, &b) != 0) {
                 u8 *p = data_0217aa00->mUnk_00ac[0].mUnk_c0;
                 u8 *q = p + a * 0xe0;
-                if (b.mUnk_02[2] == p[a * 0xe0] && b.mUnk_02[3] == q[1] && b.mUnk_02[4] == q[2] && b.mUnk_02[5] == q[3]
-                    && b.mUnk_02[6] == q[4] && b.mUnk_02[7] == q[5]) {
+                if (b.mUnk_02[2] == p[a * 0xe0] && b.mUnk_02[3] == q[1] && b.mUnk_02[4] == q[2] &&
+                    b.mUnk_02[5] == q[3] && b.mUnk_02[6] == q[4] && b.mUnk_02[7] == q[5]) {
                     r = (s8) i;
                     break;
                 }
@@ -294,7 +295,7 @@ void func_0204e568(void) {
     }
     func_02009f38(0x1fe, 7);
     func_02007ea0(func_0204e6e8);
-    if (((s32 (*)(u32)) func_02009cc8)(data_0217aa00->mUnk_0088) != 0) {
+    if (((s32(*)(u32)) func_02009cc8)(data_0217aa00->mUnk_0088) != 0) {
         func_02050e60(5);
     }
     if (func_0204ea3c() == 0) {
@@ -333,75 +334,77 @@ void func_0204e6e8(u32 a, u32 b, Unk0204e4d8 *c) {
         return;
     }
     switch (b) {
-    case 10: {
-        u32 v = 1;
-        if (data_0217aa00->mUnk_1694 & 1) {
-            v = 0;
-        } else if ((data_0217aa00->mUnk_008b & 4) && c->mUnk_00_4 == 0) {
-            v = 0;
+        case 10: {
+            u32 v = 1;
+            if (data_0217aa00->mUnk_1694 & 1) {
+                v = 0;
+            } else if ((data_0217aa00->mUnk_008b & 4) && c->mUnk_00_4 == 0) {
+                v = 0;
+            }
+            if (v != 0) {
+                func_02007d50(a, 1);
+            } else {
+                func_02007d50(a, 0);
+            }
+            return;
         }
-        if (v != 0) {
-            func_02007d50(a, 1);
-        } else {
-            func_02007d50(a, 0);
-        }
-        return;
-    }
-    case 7:
-        data_0217aa00->mUnk_1697 |= 1 << a;
-        if (data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1697)) {
-            data_0217aa00->mUnk_0010 = 0;
-        }
-        break;
-    case 9:
-        data_0217aa00->mUnk_1695 |= 1 << a;
-        break;
-    case 12:
-        data_0217aa00->mUnk_0010 = 0;
-        break;
-    case 1:
-        data_0217aa00->mUnk_0010 = 0;
-        break;
-    case 3:
-        if (data_0217aa00->mUnk_1695 & (1 << a)) {
-            data_0217aa00->mUnk_1698 |= 1 << a;
-            if (data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1698)) {
+        case 7:
+            data_0217aa00->mUnk_1697 |= 1 << a;
+            if (data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1697)) {
                 data_0217aa00->mUnk_0010 = 0;
             }
-        }
-        if (!(data_0217aa00->mUnk_1694 & 2)) {
-            if (data_0217aa00->mUnk_1699 != 0) {
-                if (data_0217aa00->mUnk_1696 & (1 << a)) {
-                    data_0217aa00->mUnk_1696 &= ~(1 << a);
-                    data_0217aa00->mUnk_1699--;
+            break;
+        case 9:
+            data_0217aa00->mUnk_1695 |= 1 << a;
+            break;
+        case 12:
+            data_0217aa00->mUnk_0010 = 0;
+            break;
+        case 1:
+            data_0217aa00->mUnk_0010 = 0;
+            break;
+        case 3:
+            if (data_0217aa00->mUnk_1695 & (1 << a)) {
+                data_0217aa00->mUnk_1698 |= 1 << a;
+                if (data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1698)) {
+                    data_0217aa00->mUnk_0010 = 0;
                 }
-                if ((data_0217aa00->mUnk_1694 & 1) && data_0217aa00->mUnk_1696 == 0) {
-                    func_02050e60(7);
-                }
-            } else {
-                data_0217aa00->mUnk_1696 = 0;
-                data_0217aa00->mUnk_1698 = 0;
-                data_0217aa00->mUnk_1695 = 0;
-                data_0217aa00->mUnk_1699 = 0;
             }
-        }
-        if ((data_0217aa00->mUnk_1694 & 2) && data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1698)
-            && data_0217aa00->mUnk_000c == 0x19) {
-            data_0217aa00->mUnk_0010 = 0;
-            return;
-        }
-        if ((data_0217aa00->mUnk_1694 & 1) && data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1697)
-            && data_0217aa00->mUnk_000c == 0x18) {
-            data_0217aa00->mUnk_0010 = 0;
-            return;
-        }
-        break;
-    case 14:
-        if (!(data_0217aa00->mUnk_1696 & (1 << a))) {
-            data_0217aa00->mUnk_1696 |= 1 << a;
-            data_0217aa00->mUnk_1699++;
-        }
-        break;
+            if (!(data_0217aa00->mUnk_1694 & 2)) {
+                if (data_0217aa00->mUnk_1699 != 0) {
+                    if (data_0217aa00->mUnk_1696 & (1 << a)) {
+                        data_0217aa00->mUnk_1696 &= ~(1 << a);
+                        data_0217aa00->mUnk_1699--;
+                    }
+                    if ((data_0217aa00->mUnk_1694 & 1) && data_0217aa00->mUnk_1696 == 0) {
+                        func_02050e60(7);
+                    }
+                } else {
+                    data_0217aa00->mUnk_1696 = 0;
+                    data_0217aa00->mUnk_1698 = 0;
+                    data_0217aa00->mUnk_1695 = 0;
+                    data_0217aa00->mUnk_1699 = 0;
+                }
+            }
+            if ((data_0217aa00->mUnk_1694 & 2) &&
+                data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1698) &&
+                data_0217aa00->mUnk_000c == 0x19) {
+                data_0217aa00->mUnk_0010 = 0;
+                return;
+            }
+            if ((data_0217aa00->mUnk_1694 & 1) &&
+                data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1697) &&
+                data_0217aa00->mUnk_000c == 0x18) {
+                data_0217aa00->mUnk_0010 = 0;
+                return;
+            }
+            break;
+        case 14:
+            if (!(data_0217aa00->mUnk_1696 & (1 << a))) {
+                data_0217aa00->mUnk_1696 |= 1 << a;
+                data_0217aa00->mUnk_1699++;
+            }
+            break;
     }
 }
 

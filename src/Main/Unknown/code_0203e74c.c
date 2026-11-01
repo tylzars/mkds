@@ -140,7 +140,8 @@ void func_0203e9a0(Unk0217561c_14 *a, s32 b) {
     data_0217561c->mUnk_000[0].mUnk_0e++;
 }
 
-// non-matching: same size; after the call to func_0203f5f0 the halfword at 0x3c is loaded after the compare against 4 in the original, before it in ours (8 words differ).
+// non-matching: same size; after the call to func_0203f5f0 the halfword at 0x3c is loaded after the compare against 4
+// in the original, before it in ours (8 words differ).
 void func_0203eb38(void) {
     u16 i;
     Unk0217561c_14 *p;
@@ -158,8 +159,8 @@ void func_0203eb38(void) {
             case 1:
             case 2:
             case 3:
-            f = 1;
-            break;
+                f = 1;
+                break;
         }
         if (f == 0) {
             p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + i * 0x8c);
@@ -221,8 +222,8 @@ void func_0203ecf0(void) {
             case 1:
             case 2:
             case 3:
-            f = 1;
-            break;
+                f = 1;
+                break;
         }
         if (f == 0 && s != 4) {
             p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + i * 0x8c);
@@ -264,8 +265,8 @@ void func_0203ee28(void) {
             case 1:
             case 2:
             case 3:
-            f = 1;
-            break;
+                f = 1;
+                break;
         }
         if (f == 0 && s != 4) {
             p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + i * 0x8c);
@@ -288,7 +289,8 @@ void func_0203ee28(void) {
     data_0217561c->mUnk_000[0].mUnk_0e = data_021759c0->mUnk_3d0;
 }
 
-// non-matching: 0x314 bytes, original 0x328; the original keeps zero constants in r0/r8 and loads data_0217561c after the loop guard, ours folds them.
+// non-matching: 0x314 bytes, original 0x328; the original keeps zero constants in r0/r8 and loads data_0217561c after
+// the loop guard, ours folds them.
 s32 func_0203ef58(void) {
     s32 r;
     u16 i;

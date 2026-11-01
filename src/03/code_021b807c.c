@@ -262,15 +262,15 @@ s32 func_ov003_021b858c(Unk021b86e4 *a, Unk021b916c *b, s32 c) {
 
 s32 func_ov003_021b86e4(s32 v1, Unk021b86e4 *v2, Unk021b916c *v3, s32 v4) {
     switch (v1) {
-    case 0:
-        func_ov003_021b9134(2);
-        return func_ov003_021b858c(v2, v3, v4);
-    case 1:
-        func_ov003_021b9134(3);
-        return func_ov003_021b8498(v2, v3, v4);
-    case 2:
-        func_ov003_021b9134(5);
-        return func_ov003_021b8428(v2, v3, v4);
+        case 0:
+            func_ov003_021b9134(2);
+            return func_ov003_021b858c(v2, v3, v4);
+        case 1:
+            func_ov003_021b9134(3);
+            return func_ov003_021b8498(v2, v3, v4);
+        case 2:
+            func_ov003_021b9134(5);
+            return func_ov003_021b8428(v2, v3, v4);
     }
     return -1;
 }

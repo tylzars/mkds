@@ -59,7 +59,7 @@ void func_ov003_021c4e14(void) {
     int v1;
     v1 = func_ov003_021d1f70(0);
     if (((v1 == 0) && (((data_ov003_021da1d8 != 0 || (v1 = func_ov003_021d1f70(1), v1 == 0)) &&
-                           (v1 = func_ov003_021bf2f0(), v1 != 0)))) &&
+                        (v1 = func_ov003_021bf2f0(), v1 != 0)))) &&
         ((data_ov003_021da1d8 != 0 || (v1 = func_ov003_021c27e4(), v1 != 0)))) {
         func_ov003_021beecc();
         func_ov003_021d2168(0);

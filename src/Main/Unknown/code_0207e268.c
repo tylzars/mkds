@@ -16,19 +16,19 @@ void func_0207e268(void) {
     s32 d;
 
     switch (func_020853dc()) {
-    case 0:
-        data_usa_0217ae30 = data_usa_02155630;
-        data_usa_0217ae2c = data_usa_0215569c;
-        break;
-    case 1:
-        data_usa_0217ae30 = data_usa_02155654;
-        data_usa_0217ae2c = data_usa_021556c0;
-        break;
-    case 2:
-    default:
-        data_usa_0217ae30 = data_usa_02155678;
-        data_usa_0217ae2c = data_usa_0215560c;
-        break;
+        case 0:
+            data_usa_0217ae30 = data_usa_02155630;
+            data_usa_0217ae2c = data_usa_0215569c;
+            break;
+        case 1:
+            data_usa_0217ae30 = data_usa_02155654;
+            data_usa_0217ae2c = data_usa_021556c0;
+            break;
+        case 2:
+        default:
+            data_usa_0217ae30 = data_usa_02155678;
+            data_usa_0217ae2c = data_usa_0215560c;
+            break;
     }
     data_usa_021658f0 = 3;
     d = data_021759c0->mUnk_3d0 - data_021759c0->mUnk_3d1;

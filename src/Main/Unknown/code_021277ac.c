@@ -9,17 +9,23 @@
 
 #pragma thumb on
 
-void func_021279a0(void)
-{
+void func_021279a0(void) {
     if (data_0217d3f4->mUnk_00 != 0) {
         data_0217d3f4->mUnk_04 = data_0217d3f4->mUnk_08;
         switch (data_0217d3f4->mUnk_04) {
-            case 0: func_02127c78(); break;
-            case 1: func_02127a84(); break;
-            case 2: func_02127a38(); break;
+            case 0:
+                func_02127c78();
+                break;
+            case 1:
+                func_02127a84();
+                break;
+            case 2:
+                func_02127a38();
+                break;
         }
         data_0217d3f4->mUnk_10++;
-        if ((data_0217d3f4->mUnk_14 != 0 && data_0217d3f4->mUnk_10 > 0x1e) || (data_0217d3f4->mUnk_14 == 0 && data_0217d3f4->mUnk_10 > 0x14)) {
+        if ((data_0217d3f4->mUnk_14 != 0 && data_0217d3f4->mUnk_10 > 0x1e) ||
+            (data_0217d3f4->mUnk_14 == 0 && data_0217d3f4->mUnk_10 > 0x14)) {
             data_0217d3f4->mUnk_14 = data_0217d3f4->mUnk_14 == 0;
             data_0217d3f4->mUnk_10 = 0;
             func_02127e30();
@@ -30,8 +36,7 @@ void func_021279a0(void)
     }
 }
 
-void func_021278f4(void)
-{
+void func_021278f4(void) {
     u32 a;
 
     if (data_0217d3f4->mUnk_00 != 0) {
@@ -48,8 +53,7 @@ void func_021278f4(void)
     }
 }
 
-void func_021278c8(void)
-{
+void func_021278c8(void) {
     if ((data_0217d3f4->mUnk_04 == 0 && data_0217d3f4->mUnk_24 != 0) || data_0217d3f4->mUnk_04 == 1) {
         data_0217d3f4->mUnk_28 = 1;
     } else {
@@ -58,8 +62,7 @@ void func_021278c8(void)
     data_0217d3f4->mUnk_24 = 1;
 }
 
-void func_021277f8(void *param_1, void *param_2, s32 param_3)
-{
+void func_021277f8(void *param_1, void *param_2, s32 param_3) {
     Unk0217d3f0_2098 *p;
 
     p = &data_0217d3f4->mUnk_834[0];
@@ -82,14 +85,12 @@ void func_021277f8(void *param_1, void *param_2, s32 param_3)
     data_0217d3f4->mUnk_14 = 1;
 }
 
-void func_021277e4(void)
-{
+void func_021277e4(void) {
     data_0217d3f4->mUnk_24 = 0;
     data_0217d3f4->mUnk_28 = 1;
 }
 
-u32 func_021277c8(void)
-{
+u32 func_021277c8(void) {
     u32 r;
 
     r = 0;
@@ -99,8 +100,7 @@ u32 func_021277c8(void)
     return r;
 }
 
-s32 func_021277ac(void)
-{
+s32 func_021277ac(void) {
     s32 r;
 
     r = 0;

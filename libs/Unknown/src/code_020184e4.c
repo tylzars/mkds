@@ -102,7 +102,7 @@ void func_0201c09c(Unk020184e4 *p, Unk0201e3c8 *n) {
         func_0214a4f8(&m);
     }
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
-                                  ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
+                          ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
     func_0201c690(p->mUnk_40->mUnk_78, p->mUnk_40->mUnk_7a, p->mUnk_40->mUnk_20->mUnk_00->mUnk_50,
                   p->mUnk_40->mUnk_20->mUnk_00->mUnk_52);
 }
@@ -197,7 +197,7 @@ void func_0201bc48(Unk020184e4 *p, Unk0201e3c8 *n) {
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
-                                  ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
+                          ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
     func_0201c690(p->mUnk_40->mUnk_7c, p->mUnk_40->mUnk_7e, 0, 0);
 }
 
@@ -335,7 +335,7 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
     q = e->mUnk_36;
     k = p->mUnk_40->mUnk_72;
     reg_G3_COLOR = (u16) ((((q & 0x1f) * (k & 0x1f)) >> 5) | ((((q & 0x3e0) * (k & 0x3e0)) >> 15) << 5) |
-                                  ((((q & 0x7c00) * (k & 0x7c00)) >> 25) << 10));
+                          ((((q & 0x7c00) * (k & 0x7c00)) >> 25) << 10));
     func_0201c690(p->mUnk_40->mUnk_78, p->mUnk_40->mUnk_7a, p->mUnk_40->mUnk_20->mUnk_00->mUnk_50,
                   p->mUnk_40->mUnk_20->mUnk_00->mUnk_52);
 }
@@ -474,7 +474,7 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
     q = e->mUnk_36;
     k = p->mUnk_40->mUnk_72;
     reg_G3_COLOR = (u16) ((((q & 0x1f) * (k & 0x1f)) >> 5) | ((((q & 0x3e0) * (k & 0x3e0)) >> 15) << 5) |
-                                  ((((q & 0x7c00) * (k & 0x7c00)) >> 25) << 10));
+                          ((((q & 0x7c00) * (k & 0x7c00)) >> 25) << 10));
     func_0201c690(p->mUnk_40->mUnk_7c, p->mUnk_40->mUnk_7e, 0, 0);
 }
 
@@ -538,7 +538,7 @@ void func_0201ab30(Unk020184e4 *p, Unk0201e3c8 *n) {
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
-                                  ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
+                          ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
     data_02161ac0[p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_19](p->mUnk_40->mUnk_78, p->mUnk_40->mUnk_7a,
                                                                     p->mUnk_40->mUnk_20->mUnk_00->mUnk_50,
                                                                     p->mUnk_40->mUnk_20->mUnk_00->mUnk_52);
@@ -604,7 +604,7 @@ void func_0201a7e0(Unk020184e4 *p, Unk0201e3c8 *n) {
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
-                                  ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
+                          ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
     data_02161ac0[p->mUnk_40->mUnk_20->mUnk_14->mUnk_00_11](p->mUnk_40->mUnk_7c, p->mUnk_40->mUnk_7e, 0, 0);
 }
 
@@ -704,7 +704,7 @@ void func_0201a364(Unk020184e4 *p, Unk0201e3c8 *n) {
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
-                                  ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
+                          ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
     data_02161ac0[p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_19](p->mUnk_40->mUnk_78, p->mUnk_40->mUnk_7a,
                                                                     p->mUnk_40->mUnk_20->mUnk_00->mUnk_50,
                                                                     p->mUnk_40->mUnk_20->mUnk_00->mUnk_52);
@@ -806,7 +806,7 @@ void func_02019ee4(Unk020184e4 *p, Unk0201e3c8 *n) {
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
-                                  ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
+                          ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
     data_02161ac0[p->mUnk_40->mUnk_20->mUnk_14->mUnk_00_11](p->mUnk_40->mUnk_7c, p->mUnk_40->mUnk_7e, 0, 0);
 }
 
@@ -817,7 +817,7 @@ void func_02019df8(Unk020184e4_2c *a) {
 
     w = a->mUnk_0c;
     reg_G3_TEXIMAGE_PARAM = (a->mUnk_04 >> 3) | (w.mUnk_00_0 << 26) | 0x40000000 | (w.mUnk_00_4 << 20) |
-                           (w.mUnk_00_8 << 23) | (w.mUnk_00_12 << 16) | (w.mUnk_00_14 << 18) | (w.mUnk_00_16 << 29);
+                            (w.mUnk_00_8 << 23) | (w.mUnk_00_12 << 16) | (w.mUnk_00_14 << 18) | (w.mUnk_00_16 << 29);
     reg_G3_PLTT_BASE = a->mUnk_08 >> (4 - (w.mUnk_00_0 == 2 ? 1 : 0));
     reg_G3_MTX_MODE = 3;
     reg_G3_MTX_IDENTITY = 0;

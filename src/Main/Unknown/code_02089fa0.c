@@ -46,7 +46,8 @@ void func_02089fa0(void) {
         func_02146cbc(&b);
         for (i = 0; i < data_0217b034->mUnk_000[8]->mUnk_10; i++) {
             e = &data_0217b034->mUnk_000[8]->mUnk_00[i];
-            func_0214ad4c(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x1f6, 0, (Unk0214ad4c *) data_0217029c.mUnk_08);
+            func_0214ad4c(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x1f6, 0,
+                          (Unk0214ad4c *) data_0217029c.mUnk_08);
             data_0217029c.mUnk_fc &= ~0x50;
             func_02010fe4(&d);
             func_0214d0fc(&b, &data_0217029c.mUnk_bc);

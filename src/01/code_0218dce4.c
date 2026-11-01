@@ -14,11 +14,13 @@
 #include "Main/Unknown/code_0209bef0.h"
 
 void *func_ov001_0218ddcc(void) {
-    return (void *) func_0209bf1c((u32) (func_ov001_0218de50), (u32) (func_ov001_0218de14), (u32) (func_ov001_02187098));
+    return (void *) func_0209bf1c((u32) (func_ov001_0218de50), (u32) (func_ov001_0218de14),
+                                  (u32) (func_ov001_02187098));
 }
 
 void *func_ov001_0218ddb4(void) {
-    return (void *) func_0209bf48((u32) ((UnkFunc *) (func_ov001_0218e208)), (u32) ((UnkFunc *) (func_ov001_0218df20)), (u32) ((UnkFunc *) (0)));
+    return (void *) func_0209bf48((u32) ((UnkFunc *) (func_ov001_0218e208)), (u32) ((UnkFunc *) (func_ov001_0218df20)),
+                                  (u32) ((UnkFunc *) (0)));
 }
 
 void func_ov001_0218dd9c(Unk02188950 *param_1) {

@@ -8,8 +8,7 @@
 #include "code_0212c6ac.h"
 #include "code_0212df7c.h"
 
-void func_02108edc(s32 a, s32 b)
-{
+void func_02108edc(s32 a, s32 b) {
     u32 c;
     Unk0210bf24 *p;
 

@@ -77,7 +77,8 @@ void func_0206d138(Unk0206bcb0 *p) {
 }
 
 // non-matching: +0x2b4 to +0x2c4 the mask 1 << mUnk_74 & 0xff and the test with the byte at 0x128 use r2 for the
-// `and` result and r0 for `ands`/`orr` in ours; the original keeps the mask in r0 and sends the `ands` result to r2; same size
+// `and` result and r0 for `ands`/`orr` in ours; the original keeps the mask in r0 and sends the `ands` result to r2;
+// same size
 void func_0206d18c(Unk0206bcb0 *p) {
     s32 r;
     Unk020f41c4_A *e;
@@ -101,65 +102,65 @@ void func_0206d18c(Unk0206bcb0 *p) {
     e = func_020fa4b4(0);
     r = 0;
     switch (e->mUnk_44) {
-    case 0:
-    case 1:
-    case 7:
-        r = func_0206b4d0(p);
-        break;
-    case 2:
-        r = func_0206bcb0(p, 1, r);
-        if (r != 0 && ((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_058 == 0) {
-            func_0208b7bc(0xc, &p->mUnk_80);
-            func_0208b7bc(0xd, &p->mUnk_80);
-            func_0208b7bc(0xe, &p->mUnk_80);
-        }
-        break;
-    case 3:
-        func_0206d020(p, r, 0x5a);
-        p->mUnk_48 |= 0x100000;
-        p->mUnk_538.mUnk_00 = 0x5a;
-        if (data_021759c0->mUnk_08 == 2) {
-            func_020a1ddc(p->mUnk_74);
-        }
-        break;
-    case 4:
-        func_02069c38(p);
-        break;
-    case 5:
-        if (((Unk020fc2e8 *) e)->mUnk_2e4 != 0) {
-            r = func_0206bcb0(p, 2, r);
-        } else {
-            r = func_0206bab8(p);
-        }
-        break;
-    case 9:
-        if (((Unk020fc2e8 *) e)->mUnk_16c != 0) {
-            r = func_0206bcb0(p, 2, r);
-        } else {
-            r = func_0206bab8(p);
-        }
-        break;
-    case 6:
-        i = r;
-        func_02061874();
-        func_02082e4c(p->mUnk_74);
-        t = p->mUnk_7c & 0x200;
-        if (t) {
+        case 0:
+        case 1:
+        case 7:
+            r = func_0206b4d0(p);
+            break;
+        case 2:
+            r = func_0206bcb0(p, 1, r);
+            if (r != 0 && ((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_058 == 0) {
+                func_0208b7bc(0xc, &p->mUnk_80);
+                func_0208b7bc(0xd, &p->mUnk_80);
+                func_0208b7bc(0xe, &p->mUnk_80);
+            }
+            break;
+        case 3:
+            func_0206d020(p, r, 0x5a);
+            p->mUnk_48 |= 0x100000;
+            p->mUnk_538.mUnk_00 = 0x5a;
+            if (data_021759c0->mUnk_08 == 2) {
+                func_020a1ddc(p->mUnk_74);
+            }
+            break;
+        case 4:
+            func_02069c38(p);
+            break;
+        case 5:
+            if (((Unk020fc2e8 *) e)->mUnk_2e4 != 0) {
+                r = func_0206bcb0(p, 2, r);
+            } else {
+                r = func_0206bab8(p);
+            }
+            break;
+        case 9:
+            if (((Unk020fc2e8 *) e)->mUnk_16c != 0) {
+                r = func_0206bcb0(p, 2, r);
+            } else {
+                r = func_0206bab8(p);
+            }
+            break;
+        case 6:
+            i = r;
+            func_02061874();
+            func_02082e4c(p->mUnk_74);
+            t = p->mUnk_7c & 0x200;
             if (t) {
-                p->mUnk_514->mUnk_2c ^= 0x4000;
-            }
-        } else {
-            while (i < data_021759c0->mUnk_3d0) {
-                if (i != p->mUnk_74) {
-                    func_0206a624(func_0207a974(i));
+                if (t) {
+                    p->mUnk_514->mUnk_2c ^= 0x4000;
                 }
-                i = (u16) (i + 1);
+            } else {
+                while (i < data_021759c0->mUnk_3d0) {
+                    if (i != p->mUnk_74) {
+                        func_0206a624(func_0207a974(i));
+                    }
+                    i = (u16) (i + 1);
+                }
             }
-        }
-        break;
-    case 8:
-        func_02104ee0((Unk02104c68 *) e, p);
-        break;
+            break;
+        case 8:
+            func_02104ee0((Unk02104c68 *) e, p);
+            break;
     }
     if (r != 0 && data_021759c0->mUnk_08 == 4) {
         func_0207a70c(p->mUnk_74);
@@ -255,9 +256,10 @@ void func_0206d578(Unk0206bcb0 *p) {
     }
 }
 
-// non-matching: same size (0x430); register and scheduling differences only: the product (a * t >> 12) * scale keeps the
-// first product in r2 (original r1) with scale in r5/r4 swapped (+0xd0 to +0xdc), and the three products of q->mUnk_244 with dot
-// are ordered x, z, y in different registers from +0x2d8, with the 0xaab/0x800 rounding product placed after them
+// non-matching: same size (0x430); register and scheduling differences only: the product (a * t >> 12) * scale keeps
+// the first product in r2 (original r1) with scale in r5/r4 swapped (+0xd0 to +0xdc), and the three products of
+// q->mUnk_244 with dot are ordered x, z, y in different registers from +0x2d8, with the 0xaab/0x800 rounding product
+// placed after them
 void func_0206d7c8(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v, s32 c, Vec3 *v1) {
     s32 a;
     s32 b;
@@ -417,8 +419,8 @@ static inline s32 func_0206dbf8_inline(Unk0206bcb0 *q) {
     return c;
 }
 
-// non-matching: size 0x248 against 0x220; the original keeps `mov r0, #1` (the result) in r0 and the masked 0x200 word of
-// the flag in r2 for the whole switch and ends each case with its own epilogue; ours rebuilds `mov r0, #1` at every
+// non-matching: size 0x248 against 0x220; the original keeps `mov r0, #1` (the result) in r0 and the masked 0x200 word
+// of the flag in r2 for the whole switch and ends each case with its own epilogue; ours rebuilds `mov r0, #1` at every
 // return and tests r1; the opening flag test also differs (original keeps the 0x4c word in r2, the flag result in r1)
 s32 func_0206dbf8(Unk0206bcb0 *p, Unk0206bcb0 *q) {
     Vec3 a;
@@ -449,26 +451,26 @@ s32 func_0206dbf8(Unk0206bcb0 *p, Unk0206bcb0 *q) {
         return 1;
     }
     switch (q->mUnk_74) {
-    case 0:
-        if (w) {
-            p->mUnk_514->mUnk_2c ^= 0x400000;
-        }
-        return 1;
-    case 1:
-        if (w) {
-            p->mUnk_514->mUnk_2c ^= 0x800000;
-        }
-        return 1;
-    case 2:
-        if (w) {
-            p->mUnk_514->mUnk_2c ^= 0x1000000;
-        }
-        return 1;
-    case 3:
-        if (w) {
-            p->mUnk_514->mUnk_2c ^= 0x2000000;
-        }
-        return 1;
+        case 0:
+            if (w) {
+                p->mUnk_514->mUnk_2c ^= 0x400000;
+            }
+            return 1;
+        case 1:
+            if (w) {
+                p->mUnk_514->mUnk_2c ^= 0x800000;
+            }
+            return 1;
+        case 2:
+            if (w) {
+                p->mUnk_514->mUnk_2c ^= 0x1000000;
+            }
+            return 1;
+        case 3:
+            if (w) {
+                p->mUnk_514->mUnk_2c ^= 0x2000000;
+            }
+            return 1;
     }
     return 1;
 }
@@ -492,26 +494,26 @@ s32 func_0206de18(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v) {
         return 1;
     }
     switch (q->mUnk_74) {
-    case 0:
-        if (w) {
-            p->mUnk_514->mUnk_2c ^= 0x200;
-        }
-        return 1;
-    case 1:
-        if (w) {
-            p->mUnk_514->mUnk_2c ^= 0x400;
-        }
-        return 1;
-    case 2:
-        if (w) {
-            p->mUnk_514->mUnk_2c ^= 0x800;
-        }
-        return 1;
-    case 3:
-        if (w) {
-            p->mUnk_514->mUnk_2c ^= 0x1000;
-        }
-        return 1;
+        case 0:
+            if (w) {
+                p->mUnk_514->mUnk_2c ^= 0x200;
+            }
+            return 1;
+        case 1:
+            if (w) {
+                p->mUnk_514->mUnk_2c ^= 0x400;
+            }
+            return 1;
+        case 2:
+            if (w) {
+                p->mUnk_514->mUnk_2c ^= 0x800;
+            }
+            return 1;
+        case 3:
+            if (w) {
+                p->mUnk_514->mUnk_2c ^= 0x1000;
+            }
+            return 1;
     }
     return 1;
 }

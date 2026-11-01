@@ -34,7 +34,6 @@ typedef struct Unk021b3b68 {
     /* 00 */ s8 mUnk_00[0x10];
 } Unk021b3b68;
 
-
 extern const Unk021b3c08 data_ov000_021b3c08;
 extern const Unk021b3b68 data_ov000_021b3b68;
 

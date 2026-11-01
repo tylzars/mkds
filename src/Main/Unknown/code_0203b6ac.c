@@ -13,9 +13,9 @@
 
 #pragma thumb on
 
-// non-matching: same size and instructions in the main shuffle loop; differs in register choice around the two shifts of the
-// generator value (zero word of the shift and the counters sit in other registers, r2/r3 and r4/r5 swapped in places) and
-// in the order of `movs r2, #0` / `adds r0, r1, r0` at the start; size 0x234 against 0x238
+// non-matching: same size and instructions in the main shuffle loop; differs in register choice around the two shifts
+// of the generator value (zero word of the shift and the counters sit in other registers, r2/r3 and r4/r5 swapped in
+// places) and in the order of `movs r2, #0` / `adds r0, r1, r0` at the start; size 0x234 against 0x238
 void func_0203b6ac(u8 *a) {
     Unk020f41c4_B r;
     u32 t[3];

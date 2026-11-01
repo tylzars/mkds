@@ -14,8 +14,8 @@ void func_ov000_02184354(void) {
     data_ov000_021b4c74 = 0;
 }
 
-// non-matching: 0x1fc bytes against 0x204; the original keeps the three zero constants in r4, r6 and a stack offset 0x1c
-// and uses stack offsets 0x20/0x14 for the pointer locals, ours folds the zeros into immediates
+// non-matching: 0x1fc bytes against 0x204; the original keeps the three zero constants in r4, r6 and a stack offset
+// 0x1c and uses stack offsets 0x20/0x14 for the pointer locals, ours folds the zeros into immediates
 void func_ov000_021843a8(void *a) {
     s32 i;
     s32 j;
@@ -110,7 +110,8 @@ void func_ov000_021845ac(void) {
     }
 }
 
-// non-matching: size 0x248 against 0x258; stack frame 0x4c against 0x54 and the byte arrays at stack offsets 0x30.. against 0x38..; same call sequence
+// non-matching: size 0x248 against 0x258; stack frame 0x4c against 0x54 and the byte arrays at stack offsets 0x30..
+// against 0x38..; same call sequence
 void func_ov000_02184670(void) {
     s32 n;
     u32 q;
@@ -142,8 +143,8 @@ void func_ov000_02184670(void) {
 
         for (i = 0; i < 3; i++) {
             for (j = 0; j < 2; j++) {
-                n -= func_021243ac(data_ov000_021b4c74->mUnk_d0, t2[j], data_ov000_021b4c74->mUnk_16f8, w[0], w[1], t1[j],
-                                   data_ov000_021b4c74->mUnk_16e4, data_ov000_021b4c74->mUnk_16f0,
+                n -= func_021243ac(data_ov000_021b4c74->mUnk_d0, t2[j], data_ov000_021b4c74->mUnk_16f8, w[0], w[1],
+                                   t1[j], data_ov000_021b4c74->mUnk_16e4, data_ov000_021b4c74->mUnk_16f0,
                                    data_ov000_021b4c74->mUnk_10d4, n);
                 w += 2;
             }

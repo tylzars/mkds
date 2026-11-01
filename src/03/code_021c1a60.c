@@ -20,7 +20,8 @@ void func_ov003_021c1a60(Unk021d34e0 *param_1) {
     func_ov003_021d34e0(param_1, func_ov003_021c1a44);
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the call), size 0x50 against 0x68
+// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
+// call), size 0x50 against 0x68
 void func_ov003_021c1abc(Unk021d34e0 *param_1) {
     u32 a;
     s32 b;
@@ -38,7 +39,8 @@ void func_ov003_021c1abc(Unk021d34e0 *param_1) {
     func_ov003_021d34e0(param_1, func_ov003_021c1a60);
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the call), size 0x50 against 0x68
+// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
+// call), size 0x50 against 0x68
 void func_ov003_021c1b24(Unk021d34e0 *param_1) {
     u32 a;
     s32 b;
@@ -56,7 +58,8 @@ void func_ov003_021c1b24(Unk021d34e0 *param_1) {
     func_ov003_021d34e0(param_1, func_ov003_021c1abc);
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the call), size 0x50 against 0x68
+// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
+// call), size 0x50 against 0x68
 void func_ov003_021c1b8c(Unk021d34e0 *param_1) {
     u32 a;
     s32 b;
@@ -74,7 +77,8 @@ void func_ov003_021c1b8c(Unk021d34e0 *param_1) {
     func_ov003_021d34e0(param_1, func_ov003_021c1b24);
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the call), size 0x50 against 0x68
+// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
+// call), size 0x50 against 0x68
 void func_ov003_021c1bf4(Unk021d34e0 *param_1) {
     u32 a;
     s32 b;

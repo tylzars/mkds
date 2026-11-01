@@ -42,7 +42,7 @@ void func_ov001_0218cedc(u32 param_1, Unk02188950 *param_2) {
     if (r != 0) {
         if (func_ov001_021871f8(param_2, 1) != 0) {
             if (data_021759c0->mUnk_08 == 4) {
-                r = func_020a1084((u16)data_021759c0->mUnk_62);
+                r = func_020a1084((u16) data_021759c0->mUnk_62);
             } else {
                 r = 0;
             }
@@ -75,7 +75,7 @@ void func_ov001_0218ce90(Unk0218d87c *param_1) {
             } else if (i == 0) {
                 func_ov001_0218d074(p);
             } else {
-                func_ov001_0218cfe8((int)p);
+                func_ov001_0218cfe8((int) p);
             }
         }
     }

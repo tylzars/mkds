@@ -2,7 +2,9 @@
 #include "Main/Unknown/code_020b502c.h"
 #include "code_0214d018.h"
 
-// non-matching: the original (0x178 bytes, 0x1c stack bytes) keeps the address of the local pair in r5, the constants 0 and 4 in r6 and r4 and spills the entry offset and the constant 1 to stack offsets 0xc and 0x10; ours is 0x154 bytes with 0x14 stack bytes and forms the address in the loop
+// non-matching: the original (0x178 bytes, 0x1c stack bytes) keeps the address of the local pair in r5, the constants 0
+// and 4 in r6 and r4 and spills the entry offset and the constant 1 to stack offsets 0xc and 0x10; ours is 0x154 bytes
+// with 0x14 stack bytes and forms the address in the loop
 u16 func_0203c5f8(u16 a, u8 *b, u8 *c, u16 *d) {
     u16 r = 1;
     s32 f = 1;
@@ -45,11 +47,11 @@ u16 func_0203c5f8(u16 a, u8 *b, u8 *c, u16 *d) {
     return r;
 }
 
-// non-matching: same instructions and order; registers differ (b - 1 in r4, the entry base in r5 and the element in lr where the original has lr, r4 and r5)
+// non-matching: same instructions and order; registers differ (b - 1 in r4, the entry base in r5 and the element in lr
+// where the original has lr, r4 and r5)
 void func_0203c778(s32 a, u16 b, u8 *c, u8 *d, u16 *e) {
     s32 k = b - 1;
-    Unk0217aa1c_144_00 *p =
-        (Unk0217aa1c_144_00 *) ((u8 *) &data_0217561c->mUnk_14[0].mUnk_0c[0] + a * 0x8c);
+    Unk0217aa1c_144_00 *p = (Unk0217aa1c_144_00 *) ((u8 *) &data_0217561c->mUnk_14[0].mUnk_0c[0] + a * 0x8c);
     Unk0217aa1c_144_00 *q = &p[k];
     *c = q->mUnk_02;
     *d = q->mUnk_03;

@@ -30,7 +30,8 @@ void func_ov000_021a39d8(Unk021b5df4 *a, u16 b, u32 c, u32 d) {
     }
 }
 
-// non-matching: the buffer address is kept in r4 after the loop and passed from it (original: add r0, sp, #0x28 before every call); size 0x1a8 against 0x1a4
+// non-matching: the buffer address is kept in r4 after the loop and passed from it (original: add r0, sp, #0x28 before
+// every call); size 0x1a8 against 0x1a4
 void func_ov000_021a3a18(Unk021a3a18 *a, s32 b) {
     Unk021a4480 k;
     u8 t[0x14];
@@ -45,7 +46,8 @@ void func_ov000_021a3a18(Unk021a3a18 *a, s32 b) {
     func_ov000_021a471c((Unk021a471c *) &k, (const u8 *) data_ov000_021b4394);
     func_ov000_021a4760((Unk021a471c *) &k, a->mUnk_c0);
     func_ov000_021a471c((Unk021a471c *) &k, (const u8 *) data_ov000_021b43a0);
-    func_ov000_021a471c((Unk021a471c *) &k, a->mUnk_c8 != 0 ? (const u8 *) data_ov000_021b43a8 : (const u8 *) data_ov000_021b43ac);
+    func_ov000_021a471c((Unk021a471c *) &k,
+                        a->mUnk_c8 != 0 ? (const u8 *) data_ov000_021b43a8 : (const u8 *) data_ov000_021b43ac);
     if (b != 0) {
         func_ov000_021a471c((Unk021a471c *) &k, (const u8 *) data_ov000_021b43b0);
         func_ov000_021a4760((Unk021a471c *) &k, b);
@@ -79,7 +81,9 @@ void func_ov000_021a3bbc(Unk021a3a18 *a) {
     a->mUnk_b0 = func_ov000_0218e8c4();
 }
 
-// non-matching: 95.9: in the case that stores the four bytes after the length, the original keeps the length address in r5 and rebuilds the address of the shared stack word (add r0, sp, #16); here it is the other way round; size 0x24c against 0x248
+// non-matching: 95.9: in the case that stores the four bytes after the length, the original keeps the length address in
+// r5 and rebuilds the address of the shared stack word (add r0, sp, #16); here it is the other way round; size 0x24c
+// against 0x248
 void func_ov000_021a3c14(Unk021a3a18 *a, s8 *b, s32 c, void *d) {
     Unk021a4480 k;
     s32 t;
@@ -111,61 +115,61 @@ void func_ov000_021a3c14(Unk021a3a18 *a, s8 *b, s32 c, void *d) {
                 c = c - 7;
                 func_ov000_021a4480((u32) &k, t, (u32) p5);
                 switch (t) {
-                case 0:
-                    func_ov000_021a412c((Unk021a4a08 *) a, (Unk021a471c *) &k, (u8 *) p6, c);
-                    break;
-                case 1:
-                    if (c >= 13 && a->mUnk_a8 != 0) {
-                        func_ov000_021a438c((Unk021a4a08 *) a, (u8 *) (p6 + c - 13));
-                    }
-                    func_ov000_021a4418((Unk021a4a08 *) a, (Unk021a471c *) &k, (u8 *) p6, c);
-                    break;
-                case 2:
-                    if (c > 0x20) {
-                        c = 0x20;
-                    }
-                    k.mUnk_000[0] = 5;
-                    func_02134eb8(&k.mUnk_000[k.mUnk_800], p6, c);
-                    k.mUnk_800 += c;
-                    break;
-                case 4:
-                    if (a->mUnk_b8 == -1) {
-                        return;
-                    }
-                    for (i = 0; i < 4; i++) {
-                        if (p5[i] != a->mUnk_84[i]) {
+                    case 0:
+                        func_ov000_021a412c((Unk021a4a08 *) a, (Unk021a471c *) &k, (u8 *) p6, c);
+                        break;
+                    case 1:
+                        if (c >= 13 && a->mUnk_a8 != 0) {
+                            func_ov000_021a438c((Unk021a4a08 *) a, (u8 *) (p6 + c - 13));
+                        }
+                        func_ov000_021a4418((Unk021a4a08 *) a, (Unk021a471c *) &k, (u8 *) p6, c);
+                        break;
+                    case 2:
+                        if (c > 0x20) {
+                            c = 0x20;
+                        }
+                        k.mUnk_000[0] = 5;
+                        func_02134eb8(&k.mUnk_000[k.mUnk_800], p6, c);
+                        k.mUnk_800 += c;
+                        break;
+                    case 4:
+                        if (a->mUnk_b8 == -1) {
                             return;
                         }
-                    }
-                    if (c < 2) {
-                        return;
-                    }
-                    a->mUnk_b8 = -1;
-                    a->mUnk_9c(p6[0], (u8 *) (p6 + 1), a->mUnk_10c);
-                    return;
-                case 6:
-                    for (i = 0; i < 4; i++) {
-                        if (p5[i] != a->mUnk_84[i]) {
+                        for (i = 0; i < 4; i++) {
+                            if (p5[i] != a->mUnk_84[i]) {
+                                return;
+                            }
+                        }
+                        if (c < 2) {
                             return;
                         }
-                    }
-                    if (c < 4) {
+                        a->mUnk_b8 = -1;
+                        a->mUnk_9c(p6[0], (u8 *) (p6 + 1), a->mUnk_10c);
                         return;
-                    }
-                    k.mUnk_000[0] = 7;
-                    *(Unk021a3c14 *) &k.mUnk_000[k.mUnk_800] = *(Unk021a3c14 *) p6;
-                    k.mUnk_800 += 4;
-                    *(Unk021a3c14 *) &i = *(Unk021a3c14 *) p6;
-                    if (func_ov000_021a3e5c((int) a, i) == 0) {
-                        func_ov000_021a3eb0(a, (u8 *) (p6 + 4), c - 4);
-                    }
-                    break;
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                default:
-                    return;
+                    case 6:
+                        for (i = 0; i < 4; i++) {
+                            if (p5[i] != a->mUnk_84[i]) {
+                                return;
+                            }
+                        }
+                        if (c < 4) {
+                            return;
+                        }
+                        k.mUnk_000[0] = 7;
+                        *(Unk021a3c14 *) &k.mUnk_000[k.mUnk_800] = *(Unk021a3c14 *) p6;
+                        k.mUnk_800 += 4;
+                        *(Unk021a3c14 *) &i = *(Unk021a3c14 *) p6;
+                        if (func_ov000_021a3e5c((int) a, i) == 0) {
+                            func_ov000_021a3eb0(a, (u8 *) (p6 + 4), c - 4);
+                        }
+                        break;
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    default:
+                        return;
                 }
                 func_ov000_0218e3e4(a->mUnk_00, &k, k.mUnk_800, 0, d, 8);
             }

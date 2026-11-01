@@ -126,31 +126,31 @@ void func_021293b4(void) {
         n = p->mUnk_08;
         f = 0;
         switch (v) {
-        case 0:
-            p->mUnk_08 = 1;
-            func_020ab9d0(data_0217d400->mUnk_08);
-            f = 1;
-            break;
-        case 1:
-            p->mUnk_08 = 2;
-            func_020ab9d0(data_0217d400->mUnk_08);
-            f = 1;
-            break;
-        case 2:
-            p->mUnk_08 = 3;
-            func_020ab9d0(data_0217d400->mUnk_08);
-            f = 1;
-            break;
-        case 3:
-            p->mUnk_08 = 4;
-            func_020ab9d0(data_0217d400->mUnk_08);
-            f = 1;
-            break;
-        case 4:
-            p->mUnk_08 = 5;
-            func_020ab9d0(data_0217d400->mUnk_08);
-            f = 1;
-            break;
+            case 0:
+                p->mUnk_08 = 1;
+                func_020ab9d0(data_0217d400->mUnk_08);
+                f = 1;
+                break;
+            case 1:
+                p->mUnk_08 = 2;
+                func_020ab9d0(data_0217d400->mUnk_08);
+                f = 1;
+                break;
+            case 2:
+                p->mUnk_08 = 3;
+                func_020ab9d0(data_0217d400->mUnk_08);
+                f = 1;
+                break;
+            case 3:
+                p->mUnk_08 = 4;
+                func_020ab9d0(data_0217d400->mUnk_08);
+                f = 1;
+                break;
+            case 4:
+                p->mUnk_08 = 5;
+                func_020ab9d0(data_0217d400->mUnk_08);
+                f = 1;
+                break;
         }
         if (f != 0) {
             if (n != data_0217d400->mUnk_08) {
@@ -221,8 +221,8 @@ void func_0212913c(void) {
     s32 v;
     data_0217d400->mUnk_28++;
     v = data_0215d100[1][0];
-    data_0217d400->mUnk_86[0][0] = func_020ae4c0(1, data_0215d100[0][0], (s16) (data_0215d100[0][0] - (0xc0 - v)),
-                                                 data_0217d400->mUnk_28, 0xf);
+    data_0217d400->mUnk_86[0][0] =
+        func_020ae4c0(1, data_0215d100[0][0], (s16) (data_0215d100[0][0] - (0xc0 - v)), data_0217d400->mUnk_28, 0xf);
     data_0217d400->mUnk_86[1][0] = func_020ae4c0(1, data_0215d108[1][0], v, data_0217d400->mUnk_28, 0xf);
     if (data_0217d400->mUnk_28 >= 0xf) {
         data_0217d400->mUnk_28 = 0xf;
@@ -246,8 +246,8 @@ void func_02128f7c(void) {
     if (func_02125f54() != 0 && func_02125f60() == 1) {
         v = data_0215d100[1][0];
         data_0217d400->mUnk_86[1][0] = func_020ae4c0(1, v, data_0215d108[1][0], data_0217d400->mUnk_28, 0xf);
-        data_0217d400->mUnk_86[0][0] = func_020ae4c0(1, (s16) (data_0215d100[0][0] - (0xc0 - v)),
-                                                     data_0215d100[0][0], data_0217d400->mUnk_28, 0xf);
+        data_0217d400->mUnk_86[0][0] = func_020ae4c0(1, (s16) (data_0215d100[0][0] - (0xc0 - v)), data_0215d100[0][0],
+                                                     data_0217d400->mUnk_28, 0xf);
     }
     if (func_02125f88() != 0 && data_0217d400->mUnk_28 >= 0xf) {
         if (func_02125f60() == 0) {
@@ -399,8 +399,8 @@ void func_02128c40(void) {
     }
 }
 
-// non-matching: register allocation of the loop (original: i in r2, n in r4, &data_0217d400 hoisted in r5 and data_0215d14c in r7;
-// compiled: i in r3, n in r4, &data_0217d400 in r7) and the code is 8 bytes shorter (0x64 vs 0x6c)
+// non-matching: register allocation of the loop (original: i in r2, n in r4, &data_0217d400 hoisted in r5 and
+// data_0215d14c in r7; compiled: i in r3, n in r4, &data_0217d400 in r7) and the code is 8 bytes shorter (0x64 vs 0x6c)
 void func_02128bd4(void) {
     s32 i;
     s32 n;
@@ -475,48 +475,48 @@ void func_021289e0(void) {
         func_020abae0();
     }
     switch (data_0217d400->mUnk_0c) {
-    case 0:
-        func_02129bdc();
-        break;
-    case 1:
-        func_02129acc();
-        break;
-    case 2:
-        func_02129994();
-        break;
-    case 3:
-        func_0212982c();
-        break;
-    case 4:
-        func_021297cc();
-        break;
-    case 5:
-        func_02129788();
-        break;
-    case 6:
-        func_021295f4();
-        break;
-    case 7:
-        func_021293b4();
-        break;
-    case 8:
-        func_021291d4();
-        break;
-    case 9:
-        func_0212913c();
-        break;
-    case 10:
-        func_02128f7c();
-        break;
-    case 11:
-        func_02128ecc();
-        break;
-    case 12:
-        func_02128e08();
-        break;
-    case 13:
-        func_02128dbc();
-        break;
+        case 0:
+            func_02129bdc();
+            break;
+        case 1:
+            func_02129acc();
+            break;
+        case 2:
+            func_02129994();
+            break;
+        case 3:
+            func_0212982c();
+            break;
+        case 4:
+            func_021297cc();
+            break;
+        case 5:
+            func_02129788();
+            break;
+        case 6:
+            func_021295f4();
+            break;
+        case 7:
+            func_021293b4();
+            break;
+        case 8:
+            func_021291d4();
+            break;
+        case 9:
+            func_0212913c();
+            break;
+        case 10:
+            func_02128f7c();
+            break;
+        case 11:
+            func_02128ecc();
+            break;
+        case 12:
+            func_02128e08();
+            break;
+        case 13:
+            func_02128dbc();
+            break;
     }
     func_02128cfc();
     func_02128bd4();
@@ -529,7 +529,8 @@ void func_021289e0(void) {
         func_02124c30(p->mUnk_9c[i], p->mUnk_90, p->mUnk_ac[i], func_02128898(), p->mUnk_74[i][0]);
     }
     p = data_0217d400;
-    func_02124c30(p->mUnk_9c[p->mUnk_04], p->mUnk_90, p->mUnk_ac[p->mUnk_04], func_02128884(), p->mUnk_74[p->mUnk_04][1]);
+    func_02124c30(p->mUnk_9c[p->mUnk_04], p->mUnk_90, p->mUnk_ac[p->mUnk_04], func_02128884(),
+                  p->mUnk_74[p->mUnk_04][1]);
 }
 
 void func_0212899c(void) {

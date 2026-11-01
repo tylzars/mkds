@@ -77,9 +77,8 @@ void func_0211d910(s16 a) {
     data_0217d368->mUnk_88 = a;
     func_02124f4c(data_0217d368->mUnk_88, buf2);
     if (data_021759d0->mUnk_20 != 2) {
-        func_0212426c(1, 9, data_0217d368->mUnk_0c,
-                      func_020b3f7c(data_0217d368->mUnk_1c, data_0216dc0c[3][0]), data_0217d368->mUnk_04,
-                      data_0217d368->mUnk_14);
+        func_0212426c(1, 9, data_0217d368->mUnk_0c, func_020b3f7c(data_0217d368->mUnk_1c, data_0216dc0c[3][0]),
+                      data_0217d368->mUnk_04, data_0217d368->mUnk_14);
         func_02124248(1, 8, data_0217d368->mUnk_0c, buf2, data_0217d368->mUnk_04, data_0217d368->mUnk_14, 0xb);
     } else {
         func_02124f4c(data_0217d368->mUnk_88, buf);
@@ -101,9 +100,8 @@ void func_0211d844(s16 a) {
     data_0217d368->mUnk_8a = a;
     func_02124f4c(data_0217d368->mUnk_8a, buf2);
     if (data_021759d0->mUnk_20 != 2) {
-        func_0212426c(1, 9, data_0217d368->mUnk_0c,
-                      func_020b3f7c(data_0217d368->mUnk_1c, data_0216dc0c[3][1]), data_0217d368->mUnk_04,
-                      data_0217d368->mUnk_14);
+        func_0212426c(1, 9, data_0217d368->mUnk_0c, func_020b3f7c(data_0217d368->mUnk_1c, data_0216dc0c[3][1]),
+                      data_0217d368->mUnk_04, data_0217d368->mUnk_14);
         func_02124248(1, 8, data_0217d368->mUnk_0c, buf2, data_0217d368->mUnk_04, data_0217d368->mUnk_14, 0xb);
     } else {
         func_02124f4c(data_0217d368->mUnk_8a, buf);
@@ -155,8 +153,8 @@ void func_0211d66c(void) {
             case 2:
                 data_0217d368->mUnk_14[h + 10].mUnk_00 = 1;
                 func_0212426c(1, 0xa, data_0217d368->mUnk_0c,
-                              func_020b3f7c(data_0217d368->mUnk_1c, data_0216dc0c[3][2]),
-                              data_0217d368->mUnk_04, data_0217d368->mUnk_14);
+                              func_020b3f7c(data_0217d368->mUnk_1c, data_0216dc0c[3][2]), data_0217d368->mUnk_04,
+                              data_0217d368->mUnk_14);
                 break;
         }
         switch (data_0217d368->mUnk_78) {

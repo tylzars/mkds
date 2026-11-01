@@ -43,8 +43,10 @@ void func_ov000_021af550(u8 *a, u32 b, Unk021a998c *c, u32 d, u16 e) {
     *(u16 *) (f + 0x10) = 0;
     *(u16 *) (f + 0x12) = (e >> 8) | (e << 8);
     if (d & 2) {
-        *(u16 *) (f + 0x14) = ((u16) ((data_ov000_021b6370 + 0x2040000U) >> 16) >> 8) | ((u16) ((data_ov000_021b6370 + 0x2040000U) >> 16) << 8);
-        *(u16 *) (f + 0x16) = ((u16) (data_ov000_021b6370 + 0x2040000U) >> 8) | ((u16) (data_ov000_021b6370 + 0x2040000U) << 8);
+        *(u16 *) (f + 0x14) = ((u16) ((data_ov000_021b6370 + 0x2040000U) >> 16) >> 8) |
+                              ((u16) ((data_ov000_021b6370 + 0x2040000U) >> 16) << 8);
+        *(u16 *) (f + 0x16) =
+            ((u16) (data_ov000_021b6370 + 0x2040000U) >> 8) | ((u16) (data_ov000_021b6370 + 0x2040000U) << 8);
     }
     h = func_ov000_021b01b4(f - 0xc, g + 0xc, 0);
     h = func_ov000_021b01b4(a, b, h);
@@ -207,7 +209,8 @@ void func_ov000_021afaac(u8 *a, u32 b, void *c, u32 d, u32 e, u16 f) {
     func_ov000_021affcc(a - 0xe, b + 0xe, c, d);
 }
 
-// non-matching: a is kept in r7 instead of the stack, e/f/g/p take r2/r6/r0/r1 instead of r6/r7/r2/r3 (size 0xcc against 0xc8)
+// non-matching: a is kept in r7 instead of the stack, e/f/g/p take r2/r6/r0/r1 instead of r6/r7/r2/r3 (size 0xcc
+// against 0xc8)
 void func_ov000_021afb58(u8 *a, u32 b, u32 c) {
     u16 d;
     u16 e;
@@ -267,7 +270,8 @@ u8 *func_ov000_021afc20(u32 a) {
     return 0;
 }
 
-// non-matching: the value loaded from data_ov000_021b63b4 sits in r0 and the halves in r1 where the original keeps it in r3 and uses r0 (5 words differ from +0x48)
+// non-matching: the value loaded from data_ov000_021b63b4 sits in r0 and the halves in r1 where the original keeps it
+// in r3 and uses r0 (5 words differ from +0x48)
 void func_ov000_021afc5c(u32 a) {
     Unk021afc5c b;
 

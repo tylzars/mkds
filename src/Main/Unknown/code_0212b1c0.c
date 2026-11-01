@@ -55,39 +55,39 @@ void func_0212b260(void) {
                     x = q->mUnk_06;
                 }
                 switch (f) {
-                case 0:
-                    p->mUnk_854 = 0x40;
-                    switch (x) {
                     case 0:
-                        data_0217d40c->mUnk_854 |= 0x200;
+                        p->mUnk_854 = 0x40;
+                        switch (x) {
+                            case 0:
+                                data_0217d40c->mUnk_854 |= 0x200;
+                                break;
+                            case 1:
+                                data_0217d40c->mUnk_854 |= 0x400;
+                                break;
+                            case 2:
+                                data_0217d40c->mUnk_854 |= 0x800;
+                                break;
+                        }
                         break;
                     case 1:
-                        data_0217d40c->mUnk_854 |= 0x400;
+                        n = 1;
+                        p->mUnk_010 += x << 16;
                         break;
                     case 2:
-                        data_0217d40c->mUnk_854 |= 0x800;
+                        p->mUnk_850 = x * 2 + 1;
                         break;
-                    }
-                    break;
-                case 1:
-                    n = 1;
-                    p->mUnk_010 += x << 16;
-                    break;
-                case 2:
-                    p->mUnk_850 = x * 2 + 1;
-                    break;
-                case 3:
-                    p->mUnk_01c = x;
-                    break;
-                case 4:
-                    p->mUnk_00c = (x << 12) / 100;
-                    break;
-                case 5:
-                    break;
-                case 0x63:
-                    n = 1;
-                    p->mUnk_014 = 0xd0000;
-                    break;
+                    case 3:
+                        p->mUnk_01c = x;
+                        break;
+                    case 4:
+                        p->mUnk_00c = (x << 12) / 100;
+                        break;
+                    case 5:
+                        break;
+                    case 0x63:
+                        n = 1;
+                        p->mUnk_014 = 0xd0000;
+                        break;
                 }
             }
             data_0217d40c->mUnk_018 += e;
@@ -127,13 +127,13 @@ void func_0212b260(void) {
 void func_0212b204(void) {
     data_0217d40c->mUnk_000 = data_0217d40c->mUnk_004;
     switch (data_0217d40c->mUnk_000) {
-    case 0:
-        break;
-    case 1:
-        func_0212b260();
-        break;
-    case 2:
-        break;
+        case 0:
+            break;
+        case 1:
+            func_0212b260();
+            break;
+        case 2:
+            break;
     }
 }
 

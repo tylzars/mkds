@@ -38,8 +38,7 @@ void func_02036108(void *a) {
     b = func_02149fe0();
     h = func_020b3f7c(data_02174e6c->mUnk_634, 0x79);
     func_02023408(data_02174e6c->mUnk_004, (u8 *) b + 0x400, 0x20, 4, 4);
-    func_020362c4(&data_02174e6c->mUnk_024, data_02174e6c->mUnk_004,
-                  data_02174e6c->mUnk_000, 1, 4);
+    func_020362c4(&data_02174e6c->mUnk_024, data_02174e6c->mUnk_004, data_02174e6c->mUnk_000, 1, 4);
     func_0203629c(&data_02174e6c->mUnk_024, 8, 0, 3, 0x209, h);
     for (i = 0x16; i < 0x18; i++) {
         for (j = 0; j < 0x20; j++) {

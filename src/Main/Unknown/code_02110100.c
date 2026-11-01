@@ -10,8 +10,7 @@
 #include "code_0212c478.h"
 #include "code_02147cd8.h"
 
-void func_021103c0(void)
-{
+void func_021103c0(void) {
     data_0217d1fc = func_02147f34(0x7f000, 0x1e000);
     data_0217d224[0] = func_02147f34(0x7f000, 0x1e000);
     data_0217d224[1] = func_02147f34(0x7f000, 0x5a000);
@@ -33,8 +32,7 @@ void func_02110350(Unk020e71a0_94 *a) {
     func_02109078(&a->mUnk_00, 0x231, (0x7f - v) & 0xff, 0);
 }
 
-u32 func_02110324(void)
-{
+u32 func_02110324(void) {
     u32 a;
     u32 b;
     a = 0;
@@ -48,8 +46,7 @@ u32 func_02110324(void)
 }
 
 // Moves the object at data_0217d234 towards t.
-static inline void func_02110114_inline(Unk0212c400 **p, s32 v, s32 k, s32 t)
-{
+static inline void func_02110114_inline(Unk0212c400 **p, s32 v, s32 k, s32 t) {
     s32 m;
     s32 c;
     s32 r;
@@ -89,38 +86,37 @@ static inline void func_02110114_inline(Unk0212c400 **p, s32 v, s32 k, s32 t)
     }
 }
 
-void func_02110114(Unk0212c400 **a)
-{
+void func_02110114(Unk0212c400 **a) {
     s32 b;
     s32 c;
     c = data_0217d20c;
     b = data_0216cb28;
     switch (c) {
-    case 0:
-        c = (s32) (((s64) data_0217d210 * (0x29000 - func_ov001_02181528()) + 0x800) >> 12) >> 12;
-        b = 0;
-        if (c >= 0) {
-            b = data_0216cb28;
-            if (c <= b) {
-                b = c;
+        case 0:
+            c = (s32) (((s64) data_0217d210 * (0x29000 - func_ov001_02181528()) + 0x800) >> 12) >> 12;
+            b = 0;
+            if (c >= 0) {
+                b = data_0216cb28;
+                if (c <= b) {
+                    b = c;
+                }
             }
-        }
-        break;
-    case 1:
-        b = 0;
-        break;
-    case 2:
-        b = 0;
-        break;
-    case 5:
-        if (data_0217d21c == 2) {
-            if (data_0217d1e8 < 0x14) {
-                b = 0;
+            break;
+        case 1:
+            b = 0;
+            break;
+        case 2:
+            b = 0;
+            break;
+        case 5:
+            if (data_0217d21c == 2) {
+                if (data_0217d1e8 < 0x14) {
+                    b = 0;
+                }
             }
-        }
-        break;
-    case 7:
-        break;
+            break;
+        case 7:
+            break;
     }
     if (data_0217d1f8 != data_0217d20c) {
         data_0217d1e8 = 0;
@@ -135,8 +131,7 @@ void func_02110114(Unk0212c400 **a)
     func_02110114_inline(a, 0x7f, 0, b);
 }
 
-u32 func_02110100(Unk0212c400 **a)
-{
+u32 func_02110100(Unk0212c400 **a) {
     if (*a != 0) {
         return 1;
     }

@@ -21,8 +21,8 @@ void func_02060b68(void) {
 
     for (i = 0; i < 60; i++) {
         func_0205ee14(i, &a);
-        if (a.mUnk_22_0 == 1 && a.mUnk_22_1 == 1
-            && func_02152a24((u8 *) data_0217aa08->mUnk_20 + 0x874 + i * 12) != 0) {
+        if (a.mUnk_22_0 == 1 && a.mUnk_22_1 == 1 &&
+            func_02152a24((u8 *) data_0217aa08->mUnk_20 + 0x874 + i * 12) != 0) {
             a.mUnk_22_1 = 0;
             func_0205ee74(i, &a);
         }

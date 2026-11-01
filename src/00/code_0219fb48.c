@@ -43,7 +43,9 @@ u32 func_ov000_0219fb48(void) {
     return 1;
 }
 
-// non-matching: original keeps the data pointer address and 0x19d constant in r4/r6 across the loop and spills the two flags and the start index (frame 0x23c, 0x1dc bytes); ours reloads them and keeps one flag in r5 (frame 0x234, 0x1e8 bytes)
+// non-matching: original keeps the data pointer address and 0x19d constant in r4/r6 across the loop and spills the two
+// flags and the start index (frame 0x23c, 0x1dc bytes); ours reloads them and keeps one flag in r5 (frame 0x234, 0x1e8
+// bytes)
 u32 func_ov000_0219fbec(s32 a, s32 b) {
     s32 d;
     s32 i;
@@ -90,8 +92,7 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
         }
         c = 1;
         p = data_ov000_021b566c;
-        n = func_02152520((void *) func_ov000_0219c9c4(),
-                          (u8 *) p->mUnk_2e4 + p->mUnk_2ec[p->mUnk_19d] * 12);
+        n = func_02152520((void *) func_ov000_0219c9c4(), (u8 *) p->mUnk_2e4 + p->mUnk_2ec[p->mUnk_19d] * 12);
         if (n == 0) {
             continue;
         }
@@ -235,7 +236,8 @@ s32 func_ov000_021a0064(s32 a, u32 b, s32 c) {
                 (data_ov000_021b566c->mUnk_17 != 0 && data_ov000_021b566c->mUnk_20 == data_ov000_021b566c->mUnk_1e8)) {
                 r = 3;
                 if (data_ov000_021b566c->mUnk_15 == 0 && *(u32 *) ((u8 *) data_ov000_021b566c->mUnk_10 + 0xb4) == 0 &&
-                    data_ov000_021b566c->mUnk_17 != 0 && data_ov000_021b566c->mUnk_20 == data_ov000_021b566c->mUnk_1e8) {
+                    data_ov000_021b566c->mUnk_17 != 0 &&
+                    data_ov000_021b566c->mUnk_20 == data_ov000_021b566c->mUnk_1e8) {
                     func_ov000_021a4818(data_ov000_021b566c->mUnk_10);
                 }
             } else if ((data_ov000_021b566c->mUnk_198 != 3 && data_ov000_021b566c->mUnk_198 != 4) ||

@@ -10,7 +10,8 @@
 #include "03/unk_021da000.h"
 #include "03/code_021d1ffc.h"
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the call), size 0x3c against 0x4c
+// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
+// call), size 0x3c against 0x4c
 void func_ov003_021c105c(Unk021d34e0 *param_1) {
     u32 a;
     s32 b;
@@ -25,7 +26,8 @@ void func_ov003_021c105c(Unk021d34e0 *param_1) {
     }
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the call), size 0x3c against 0x4c
+// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
+// call), size 0x3c against 0x4c
 void func_ov003_021c10a8(Unk021d34e0 *param_1) {
     u32 a;
     s32 b;
@@ -40,7 +42,8 @@ void func_ov003_021c10a8(Unk021d34e0 *param_1) {
     }
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the call), size 0x3c against 0x4c
+// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
+// call), size 0x3c against 0x4c
 void func_ov003_021c10f4(Unk021d34e0 *param_1) {
     u32 a;
     s32 b;
@@ -55,7 +58,8 @@ void func_ov003_021c10f4(Unk021d34e0 *param_1) {
     }
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the call), size 0x3c against 0x4c
+// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
+// call), size 0x3c against 0x4c
 void func_ov003_021c1140(Unk021d34e0 *param_1) {
     u32 a;
     s32 b;
@@ -70,7 +74,8 @@ void func_ov003_021c1140(Unk021d34e0 *param_1) {
     }
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the call), size 0x40 against 0x50
+// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
+// call), size 0x40 against 0x50
 void func_ov003_021c118c(Unk021d34e0 *param_1) {
     u32 a;
     s32 b;
@@ -94,15 +99,13 @@ void func_ov003_021c11dc(u32 param_1) {
     if (b == 0xd && (param_1 == 1 || param_1 == 3)) {
         data_ov003_021da160->mUnk_64 = a;
     } else if (b == -1) {
-        if (data_ov003_021da160->mUnk_64 == 1 ||
-            data_ov003_021da160->mUnk_64 == 10) {
+        if (data_ov003_021da160->mUnk_64 == 1 || data_ov003_021da160->mUnk_64 == 10) {
             data_ov003_021da160->mUnk_63 = 10;
         } else {
             data_ov003_021da160->mUnk_63 = 11;
         }
     } else if (b == -2) {
-        if (data_ov003_021da160->mUnk_64 == 1 ||
-            data_ov003_021da160->mUnk_64 == 10) {
+        if (data_ov003_021da160->mUnk_64 == 1 || data_ov003_021da160->mUnk_64 == 10) {
             data_ov003_021da160->mUnk_63 = 1;
         } else {
             data_ov003_021da160->mUnk_63 = 2;
@@ -121,8 +124,7 @@ void func_ov003_021c1268(void) {
     }
     func_ov003_021d1c3c(0, a, (u8 *) func_ov003_021d1974((int) data_ov003_021da160->mUnk_58, 0));
     func_ov003_021d1790(data_ov003_021da160->mUnk_58, -1, 2);
-    func_ov003_021d17d4(data_ov003_021da160->mUnk_58, -1,
-                        data_ov003_021d629c[data_ov003_021da160->mUnk_63 * 2],
+    func_ov003_021d17d4(data_ov003_021da160->mUnk_58, -1, data_ov003_021d629c[data_ov003_021da160->mUnk_63 * 2],
                         data_ov003_021d629e[data_ov003_021da160->mUnk_63 * 2]);
 }
 
@@ -145,8 +147,7 @@ void func_ov003_021c12cc(int param_1, int param_2) {
         p->mUnk_04 = (p->mUnk_04 & 0xffff0fff) | (data_ov003_021d6220[param_2] << 12);
         return;
     }
-    func_ov003_021d1890(data_ov003_021da160->mUnk_40[param_1 - 12], -1, 0,
-                        data_ov003_021d6214[param_2]);
+    func_ov003_021d1890(data_ov003_021da160->mUnk_40[param_1 - 12], -1, 0, data_ov003_021d6214[param_2]);
 }
 
 // non-matching: loop address registers are computed per iteration instead of stepped, size 0x1a8 against 0x1ac
@@ -162,12 +163,11 @@ void func_ov003_021c1364(int param_1, u32 param_2) {
         p = data_ov003_021da160->mUnk_10[param_1 * 3 + i];
         p->mUnk_00 = p->mUnk_00 & 0xc1fffcff;
         p = data_ov003_021da160->mUnk_10[param_1 * 3 + i];
-        p->mUnk_00 = ((data_ov003_021d6274[(param_1 * 3 + i) * 2] & 0x1ff) << 16) | (p->mUnk_00 & 0xfe00ff00) |
-                     (param_2 & 0xff);
+        p->mUnk_00 =
+            ((data_ov003_021d6274[(param_1 * 3 + i) * 2] & 0x1ff) << 16) | (p->mUnk_00 & 0xfe00ff00) | (param_2 & 0xff);
     }
     if (param_1 < 4) {
-        func_ov003_021d1ffc(data_ov003_021da160->mUnk_00[param_1],
-                            data_ov003_021d6274[param_1 * 3 * 2], param_2,
+        func_ov003_021d1ffc(data_ov003_021da160->mUnk_00[param_1], data_ov003_021d6274[param_1 * 3 * 2], param_2,
                             data_ov003_021da160->mUnk_48[param_1], 2);
     }
     for (i = 0; i < s.mUnk_05.mUnk_00[param_1]; i++) {
@@ -179,8 +179,7 @@ void func_ov003_021c1364(int param_1, u32 param_2) {
     b = 0;
     for (i = 0; i < s.mUnk_0a.mUnk_00[param_1]; i++) {
         func_ov003_021d18f0(data_ov003_021da160->mUnk_40[i], -1, b, b);
-        func_ov003_021d17d4(data_ov003_021da160->mUnk_40[i], -1, data_ov003_021d6244[i * 2],
-                            param_2);
+        func_ov003_021d17d4(data_ov003_021da160->mUnk_40[i], -1, data_ov003_021d6244[i * 2], param_2);
     }
 }
 

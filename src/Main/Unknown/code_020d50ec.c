@@ -19,10 +19,9 @@
 #include "Main/Unknown/unk_02156000.h"
 #include "Main/Unknown/code_020d8654.h"
 
-// non-matching: 73 words differ from +0x10: the original keeps the multiplier in r0 and the word at 0x78 in r3 and orders the table
-// loads and the products differently
-void func_020d634c(Unk020d5bf0 *p, s32 b)
-{
+// non-matching: 73 words differ from +0x10: the original keeps the multiplier in r0 and the word at 0x78 in r3 and
+// orders the table loads and the products differently
+void func_020d634c(Unk020d5bf0 *p, s32 b) {
     Unk020d634c u;
     Unk020d634c w;
     s32 y;
@@ -41,14 +40,14 @@ void func_020d634c(Unk020d5bf0 *p, s32 b)
                 k = 3;
                 j = 2;
             }
-            u.mUnk_00 = data_02156960[j] + (s32)(((s64)data_02156960[k] * y) >> 12);
-            u.mUnk_04 = data_02156940[j] + (s32)(((s64)data_02156940[k] * y) >> 12);
-            w.mUnk_00 = data_02156950[j] + (s32)(((s64)data_02156950[k] * y) >> 12);
-            u.mUnk_06 = data_02156948[j] + (s32)(((s64)data_02156948[k] * y) >> 12);
-            u.mUnk_08 = data_02156920[j] + (s32)(((s64)data_02156920[k] * y) >> 12);
-            w.mUnk_04 = data_02156928[j] + (s32)(((s64)data_02156928[k] * y) >> 12);
-            w.mUnk_06 = data_02156930[j] + (s32)(((s64)data_02156930[k] * y) >> 12);
-            w.mUnk_08 = data_02156938[j] + (s32)(((s64)data_02156938[k] * y) >> 12);
+            u.mUnk_00 = data_02156960[j] + (s32) (((s64) data_02156960[k] * y) >> 12);
+            u.mUnk_04 = data_02156940[j] + (s32) (((s64) data_02156940[k] * y) >> 12);
+            w.mUnk_00 = data_02156950[j] + (s32) (((s64) data_02156950[k] * y) >> 12);
+            u.mUnk_06 = data_02156948[j] + (s32) (((s64) data_02156948[k] * y) >> 12);
+            u.mUnk_08 = data_02156920[j] + (s32) (((s64) data_02156920[k] * y) >> 12);
+            w.mUnk_04 = data_02156928[j] + (s32) (((s64) data_02156928[k] * y) >> 12);
+            w.mUnk_06 = data_02156930[j] + (s32) (((s64) data_02156930[k] * y) >> 12);
+            w.mUnk_08 = data_02156938[j] + (s32) (((s64) data_02156938[k] * y) >> 12);
             if (p->mUnk_000.mUnk_00 == 0x192) {
                 func_0208b748(0x54, &p->mUnk_000.mUnk_04, &u, func_020d6538);
                 func_0208b748(0x57, &p->mUnk_000.mUnk_04, &w, func_020d6538);
@@ -61,8 +60,7 @@ void func_020d634c(Unk020d5bf0 *p, s32 b)
     func_020d5dd0(p);
 }
 
-void func_020d5fb4(void *a, Unk020d5bf0 *p)
-{
+void func_020d5fb4(void *a, Unk020d5bf0 *p) {
     s32 x;
     s32 z;
     s32 d;
@@ -104,10 +102,10 @@ void func_020d5fb4(void *a, Unk020d5bf0 *p)
             if (v >= -0x2000) {
                 p->mUnk_000.mUnk_10.y = 0;
             } else {
-                p->mUnk_000.mUnk_10.y = -(s32)(((s64)v * p->mUnk_120) >> 12);
+                p->mUnk_000.mUnk_10.y = -(s32) (((s64) v * p->mUnk_120) >> 12);
                 p->mUnk_0f4 = (p->mUnk_0f4 == 0);
                 if (p->mUnk_000.mUnk_10.y > 0x4000) {
-                    i = (u16)p->mUnk_0a4.mUnk_00.mUnk_0c;
+                    i = (u16) p->mUnk_0a4.mUnk_00.mUnk_0c;
                     p->mUnk_000.mUnk_10.y = 0x4000;
                     if (p->mUnk_0f4 != 0) {
                         p->mUnk_0f8 = p->mUnk_0f0[i].x << 1;
@@ -144,7 +142,7 @@ void func_020d5fb4(void *a, Unk020d5bf0 *p)
         if (p->mUnk_000.mUnk_64 >= 0) {
             func_020d5148(p->mUnk_000.mUnk_64, p->mUnk_000.mUnk_58.x);
         }
-        p->mUnk_000.mUnk_68 = ((s64)p->mUnk_000.mUnk_98->mUnk_2c * r) >> 12;
+        p->mUnk_000.mUnk_68 = ((s64) p->mUnk_000.mUnk_98->mUnk_2c * r) >> 12;
         p->mUnk_118 = func_02147e28();
     }
     if (p->mUnk_0a4.mUnk_00.mUnk_18 == 0) {
@@ -154,24 +152,21 @@ void func_020d5fb4(void *a, Unk020d5bf0 *p)
     }
 }
 
-u8 func_020d5f8c(Unk020d5bf0 *a, s32 b, u8 *c, u8 *d)
-{
+u8 func_020d5f8c(Unk020d5bf0 *a, s32 b, u8 *c, u8 *d) {
     if (*c == 1) {
         func_020d634c(a, 1);
     }
     return *d;
 }
 
-u8 func_020d5f64(Unk020d5bf0 *a, s32 b, u8 *c, u8 *d)
-{
+u8 func_020d5f64(Unk020d5bf0 *a, s32 b, u8 *c, u8 *d) {
     if (*c == 1) {
         func_020d634c(a, 1);
     }
     return *d;
 }
 
-void func_020d5dd0(Unk020d5bf0 *p)
-{
+void func_020d5dd0(Unk020d5bf0 *p) {
     s64 r;
     s32 u;
     s32 z;
@@ -208,13 +203,12 @@ void func_020d5dd0(Unk020d5bf0 *p)
     if (p->mUnk_000.mUnk_64 >= 0) {
         func_020d5148(p->mUnk_000.mUnk_64, p->mUnk_000.mUnk_58.x);
     }
-    p->mUnk_000.mUnk_68 = ((s64)p->mUnk_000.mUnk_98->mUnk_2c * r) >> 12;
+    p->mUnk_000.mUnk_68 = ((s64) p->mUnk_000.mUnk_98->mUnk_2c * r) >> 12;
     p->mUnk_118 = func_02147e28();
 }
 
 #pragma thumb on
-void func_020d5d80(void *a, const char *b, const char *c)
-{
+void func_020d5d80(void *a, const char *b, const char *c) {
     func_020ea588((void **) &data_0217b65c, func_020d21ec(b), 0);
     func_020ea55c((void **) &data_0217b658, func_020d21ec(c), 7);
     func_02084968(data_0217b65c, 0x3f, 2, 0x294a);
@@ -223,22 +217,19 @@ void func_020d5d80(void *a, const char *b, const char *c)
 #pragma thumb off
 
 #pragma thumb on
-void func_020d5d6c(void *a)
-{
+void func_020d5d6c(void *a) {
     func_020d5d80(a, "rock.nsbmd", "rock_shadow.nsbmd");
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_020d5d58(void *a)
-{
+void func_020d5d58(void *a) {
     func_020d5d80(a, "rock2.nsbmd", "rock2_shadow.nsbmd");
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_020d5bf0(Unk020d5bf0 *p, struct Unk020fa294 *q)
-{
+void func_020d5bf0(Unk020d5bf0 *p, struct Unk020fa294 *q) {
     Unk02042044 *t;
     s32 v;
     float f;
@@ -251,18 +242,18 @@ void func_020d5bf0(Unk020d5bf0 *p, struct Unk020fa294 *q)
     p->mUnk_10c = p->mUnk_000.mUnk_1c.y;
     v = q->mUnk_2e;
     if (v > 0) {
-        f = 0.5f + (float)(v << 12);
+        f = 0.5f + (float) (v << 12);
     } else {
-        f = (float)(v << 12) - 0.5f;
+        f = (float) (v << 12) - 0.5f;
     }
-    p->mUnk_110 = (s32)f / 60000;
+    p->mUnk_110 = (s32) f / 60000;
     v = q->mUnk_30;
     if (v > 0) {
-        f = 0.5f + (float)(v << 12);
+        f = 0.5f + (float) (v << 12);
     } else {
-        f = (float)(v << 12) - 0.5f;
+        f = (float) (v << 12) - 0.5f;
     }
-    p->mUnk_114 = (s32)f / 1000 + 0x1000;
+    p->mUnk_114 = (s32) f / 1000 + 0x1000;
     func_020d5dd0(p);
     p->mUnk_108 = 0;
     p->mUnk_0e0 = q->mUnk_32;
@@ -285,26 +276,23 @@ void func_020d5bf0(Unk020d5bf0 *p, struct Unk020fa294 *q)
 #pragma thumb off
 
 #pragma thumb on
-void func_020d5bac(Unk0217b614 *p, Unk0217b614 *a)
-{
+void func_020d5bac(Unk0217b614 *p, Unk0217b614 *a) {
     *p = *a;
-    p->mUnk_00 = (Vec3 *)((u32)a + (u32)p->mUnk_00);
-    p->mUnk_04 = (UnkVec16 *)((u32)a + (u32)p->mUnk_04);
-    p->mUnk_08 = (Unk0217b614_08 *)((u32)a + (u32)p->mUnk_08);
-    p->mUnk_0c = (u8 *)((u32)a + (u32)p->mUnk_0c);
+    p->mUnk_00 = (Vec3 *) ((u32) a + (u32) p->mUnk_00);
+    p->mUnk_04 = (UnkVec16 *) ((u32) a + (u32) p->mUnk_04);
+    p->mUnk_08 = (Unk0217b614_08 *) ((u32) a + (u32) p->mUnk_08);
+    p->mUnk_0c = (u8 *) ((u32) a + (u32) p->mUnk_0c);
     data_0217b610 = 0;
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_020d5b8c(void)
-{
+void func_020d5b8c(void) {
     func_020d5bac(&data_0217b614, func_02047974("course_collision.kcl"));
 }
 #pragma thumb off
 
-void func_020d5aa0(void *a, u32 b, Unk020e04b0 *c, Vec3 *d, Vec3 *e)
-{
+void func_020d5aa0(void *a, u32 b, Unk020e04b0 *c, Vec3 *d, Vec3 *e) {
     Unk020d5a68 **q = a;
     Unk020d5a68 *p;
 
@@ -337,8 +325,7 @@ void func_020d5aa0(void *a, u32 b, Unk020e04b0 *c, Vec3 *d, Vec3 *e)
     func_020e0584(p->mUnk_00, d, e, c);
 }
 
-s32 func_020d5a68(void *a, u32 b, Unk020e04b0 *c)
-{
+s32 func_020d5a68(void *a, u32 b, Unk020e04b0 *c) {
     Unk020d5a68 **q = a;
 
     if ((b & 0x80000000) || (*q)->mUnk_04 != 0 || c->mUnk_00 != (*q)->mUnk_00) {
@@ -347,8 +334,7 @@ s32 func_020d5a68(void *a, u32 b, Unk020e04b0 *c)
     return 0;
 }
 
-u16 func_020d59f8(u32 a)
-{
+u16 func_020d59f8(u32 a) {
     s32 i;
     s32 r;
     u32 v;
@@ -373,8 +359,7 @@ u16 func_020d59f8(u32 a)
     return data_027e0064[r];
 }
 
-void func_020d58c0(void)
-{
+void func_020d58c0(void) {
     void *h;
     s16 i;
     s16 j;
@@ -401,10 +386,9 @@ void func_020d58c0(void)
     } while (j < 0x100);
 }
 
-// non-matching: 4 instructions larger (0x374 against 0x364): the registers of the slot pointer, the loop variable and the two search positions
-// differ from +0x8
-s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d)
-{
+// non-matching: 4 instructions larger (0x374 against 0x364): the registers of the slot pointer, the loop variable and
+// the two search positions differ from +0x8
+s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
     s32 i;
     Unk0217b5b8 *e;
     s32 hi;
@@ -504,10 +488,9 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d)
     return i;
 }
 
-// non-matching: 106 words differ from +0x30: the original keeps the slot pointer in a stack slot and the loop variables in other
-// registers; the compiled code keeps everything in registers
-u32 func_020d5344(s32 a)
-{
+// non-matching: 106 words differ from +0x30: the original keeps the slot pointer in a stack slot and the loop variables
+// in other registers; the compiled code keeps everything in registers
+u32 func_020d5344(s32 a) {
     Unk0217b5b8 *e;
     s32 s;
     s32 t;
@@ -566,8 +549,7 @@ u32 func_020d5344(s32 a)
 
 // non-matching: same size; registers only: the loop variables are in other registers from +0x8 (original: r8, r7,
 // r5 for the first three values, r4 and lr for the bounds)
-void func_020d5180(void *a, s32 b, s32 c)
-{
+void func_020d5180(void *a, s32 b, s32 c) {
     Vec3 *v = a;
     s32 m;
     s32 p;
@@ -639,8 +621,7 @@ void func_020d5180(void *a, s32 b, s32 c)
     } while (--q >= s);
 }
 
-void func_020d5148(s16 a, s32 b)
-{
+void func_020d5148(s16 a, s32 b) {
     Unk0217b5b8 *e;
 
     e = &data_0217b5b8[a];
@@ -650,12 +631,10 @@ void func_020d5148(s16 a, s32 b)
     }
 }
 
-void func_020d5114(s16 a)
-{
+void func_020d5114(s16 a) {
     data_0217b5b8[a].mUnk_14 |= data_021568fc;
 }
 
-void func_020d50ec(s16 a)
-{
+void func_020d50ec(s16 a) {
     data_0217b5b8[a].mUnk_14 &= ~0x200;
 }

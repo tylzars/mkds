@@ -32,7 +32,8 @@ void func_02046c74(void) {
     data_021759c4 = 0;
 }
 
-// non-matching: the original reaches the same stores with the low byte in r3 and the shifted value in ip, here the two are in other registers.
+// non-matching: the original reaches the same stores with the low byte in r3 and the shifted value in ip, here the two
+// are in other registers.
 void func_02046ca8(Unk02175628_48 *a, s32 b, s32 c) {
     Unk0214e334_b d;
     u32 e;

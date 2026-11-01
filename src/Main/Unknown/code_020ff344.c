@@ -104,9 +104,8 @@ void func_020ff910(Unk020ff438 *e, Unk02012f58 *out) {
     func_02146dfc((const s32 *) &data_0217c600, (const s32 *) out, (s32 *) out);
 }
 
-// non-matching: the original holds e and out in r7/r6, the constant 0xa4 in fp and
-// reserves 12 bytes of stack for the operands of the two products; this compile
-// keeps e and out in r8/r7, 0xa4 in r2 and reserves 4 bytes (0x23c vs
+// non-matching: the original holds e and out in r7/r6, the constant 0xa4 in fp and reserves 12 bytes of stack for the
+// operands of the two products; this compile keeps e and out in r8/r7, 0xa4 in r2 and reserves 4 bytes (0x23c vs
 // 0x238).
 void func_020ff6d8(Unk020ff438 *e, Unk02012f58 *out) {
     s32 a, b;

@@ -105,7 +105,8 @@ void func_020875b4(void) {
             t = 0;
             if (f == 0) {
                 if (i != data_021759c0->mUnk_62) {
-                    if (data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 != 2 || data_021759c0->mUnk_68[i].mUnk_08.mUnk_10 != 0) {
+                    if (data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 != 2 ||
+                        data_021759c0->mUnk_68[i].mUnk_08.mUnk_10 != 0) {
                         t = 1;
                     }
                 }

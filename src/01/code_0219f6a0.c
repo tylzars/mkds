@@ -169,16 +169,16 @@ void func_ov001_0219fb5c(void) {
     if (func_021277ac()) {
         r = func_02127794();
         switch (r) {
-        case 0:
-            func_ov001_021a0734();
-            data_ov001_021ca414->mUnk_bc = 1;
-            data_ov001_021ca414->mUnk_9c = -0x100;
-            func_ov001_021a03a0();
-            break;
-        case -1:
-        case 1:
-            func_ov001_021a04ac();
-            break;
+            case 0:
+                func_ov001_021a0734();
+                data_ov001_021ca414->mUnk_bc = 1;
+                data_ov001_021ca414->mUnk_9c = -0x100;
+                func_ov001_021a03a0();
+                break;
+            case -1:
+            case 1:
+                func_ov001_021a04ac();
+                break;
         }
         for (i = 0; i < 9; i++) {
             data_ov001_021ca414->mUnk_44[data_ov001_021a6e7c[i][0]].mUnk_00 = 1;
@@ -230,33 +230,33 @@ void func_ov001_0219f9f8(void) {
 s32 func_ov001_0219f934(void) {
     data_ov001_021ca414->mUnk_60 = data_ov001_021ca414->mUnk_64;
     switch (data_ov001_021ca414->mUnk_60) {
-    case 0:
-        func_ov001_021a0118();
-        break;
-    case 1:
-        func_ov001_0219ffb4();
-        break;
-    case 2:
-        func_ov001_0219ff8c();
-        break;
-    case 3:
-        func_ov001_0219fc70();
-        break;
-    case 4:
-        func_ov001_0219fc34();
-        break;
-    case 5:
-        func_ov001_0219fc08();
-        break;
-    case 6:
-        func_ov001_0219fbdc();
-        break;
-    case 7:
-        func_ov001_0219fb5c();
-        break;
-    case 8:
-        func_ov001_0219f9f8();
-        break;
+        case 0:
+            func_ov001_021a0118();
+            break;
+        case 1:
+            func_ov001_0219ffb4();
+            break;
+        case 2:
+            func_ov001_0219ff8c();
+            break;
+        case 3:
+            func_ov001_0219fc70();
+            break;
+        case 4:
+            func_ov001_0219fc34();
+            break;
+        case 5:
+            func_ov001_0219fc08();
+            break;
+        case 6:
+            func_ov001_0219fbdc();
+            break;
+        case 7:
+            func_ov001_0219fb5c();
+            break;
+        case 8:
+            func_ov001_0219f9f8();
+            break;
     }
     func_ov001_021a08d8();
     func_ov001_021a09a4();

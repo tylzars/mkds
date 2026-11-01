@@ -25,7 +25,8 @@
 #include "code_0212df7c.h"
 
 void func_02071980(void *p, int b) {
-    func_0210b2a8((Unk0206bcb0 *) p, b, ((Unk0206bcb0 *) p)->mUnk_3e0, ((Unk0206bcb0 *) p)->mUnk_3e4, ((Unk0206bcb0 *) p)->mUnk_500);
+    func_0210b2a8((Unk0206bcb0 *) p, b, ((Unk0206bcb0 *) p)->mUnk_3e0, ((Unk0206bcb0 *) p)->mUnk_3e4,
+                  ((Unk0206bcb0 *) p)->mUnk_500);
 }
 
 void func_02071958(Unk0206bcb0 *p, s32 b) {
@@ -91,8 +92,8 @@ void func_02071788(Unk0206bcb0 *p) {
 }
 
 // non-matching: same size and instructions; registers differ: the original loads the address of data_02154b64 into r5
-// first and keeps the index, next index and fraction in r2, r1 and r3 with the 4ec value in r4; here the table is in r4,
-// the index values are in r3, r2 and r1 and the 4ec value is in r5 (first difference at 0xc).
+// first and keeps the index, next index and fraction in r2, r1 and r3 with the 4ec value in r4; here the table is in
+// r4, the index values are in r3, r2 and r1 and the 4ec value is in r5 (first difference at 0xc).
 void func_02071568(Unk0206bcb0 *p) {
     u16 i;
     u16 j;
@@ -242,33 +243,33 @@ void func_020710b0(Unk0206bcb0 *p, s32 b) {
     }
     func_02073f90();
     switch (data_021759c0->mUnk_00) {
-    case 0x13:
-        func_02089d14(0);
-        d = func_021090c4((Unk0210bfbc *) p, 0x15c, 0x7f, 0);
-        if (d != 0) {
-            d->mUnk_19 |= 0x10;
-        }
-        h = func_02108e6c(7);
-        if (!(data_0217c780 & 1)) {
-            return;
-        }
-        if (data_0217d084.mUnk_0c == 0) {
-            return;
-        }
-        if (h[0] != 0) {
-            func_0212c6f0(h, 0);
-        }
-        if (h[0] != 0) {
-            func_0212c6f0(h, 0);
-        }
-        func_0212ecc0(h, 0, 0x1d2);
-        break;
-    case 0x21:
-        d = func_021090c4((Unk0210bfbc *) p, 0x15b, 0x7f, 0);
-        if (d != 0) {
-            d->mUnk_19 |= 0x10;
-        }
-        break;
+        case 0x13:
+            func_02089d14(0);
+            d = func_021090c4((Unk0210bfbc *) p, 0x15c, 0x7f, 0);
+            if (d != 0) {
+                d->mUnk_19 |= 0x10;
+            }
+            h = func_02108e6c(7);
+            if (!(data_0217c780 & 1)) {
+                return;
+            }
+            if (data_0217d084.mUnk_0c == 0) {
+                return;
+            }
+            if (h[0] != 0) {
+                func_0212c6f0(h, 0);
+            }
+            if (h[0] != 0) {
+                func_0212c6f0(h, 0);
+            }
+            func_0212ecc0(h, 0, 0x1d2);
+            break;
+        case 0x21:
+            d = func_021090c4((Unk0210bfbc *) p, 0x15b, 0x7f, 0);
+            if (d != 0) {
+                d->mUnk_19 |= 0x10;
+            }
+            break;
     }
 }
 

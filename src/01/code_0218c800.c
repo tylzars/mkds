@@ -12,12 +12,10 @@
 #include "Main/Unknown/code_02110000.h"
 #include "Main/Unknown/code_0209bef0.h"
 
-void *func_ov001_0218c818(void)
-{
+void *func_ov001_0218c818(void) {
     return (void *) func_0209bf1c((u32) (func_ov001_0218cb14), (u32) (func_ov001_0218c85c), (u32) (0));
 }
 
-void *func_ov001_0218c800(void)
-{
+void *func_ov001_0218c800(void) {
     return (void *) func_0209bf48((u32) (func_ov001_0218cf94), (u32) (func_ov001_0218cedc), (u32) (0));
 }

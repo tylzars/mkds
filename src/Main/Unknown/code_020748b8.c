@@ -49,10 +49,9 @@ void func_02074978(Unk02061808 *p) {
     func_02076ed4(p);
 }
 
-// non-matching: 0xd4 bytes against 0xc0: each component is stored before the next one is loaded and
-// mUnk_244 is read again for every component; the original loads all six values and mUnk_244 once before the
-// three stores (passing the three sums to a static inline that stores them gives the size, with 29 instructions in
-// other registers and order)
+// non-matching: 0xd4 bytes against 0xc0: each component is stored before the next one is loaded and mUnk_244 is read
+// again for every component; the original loads all six values and mUnk_244 once before the three stores (passing the
+// three sums to a static inline that stores them gives the size, with 29 instructions in other registers and order)
 void func_020748b8(Unk02061808 *p) {
     Unk020748b8_218 *q = p->mUnk_218;
 

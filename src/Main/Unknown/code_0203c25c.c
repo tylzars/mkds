@@ -20,7 +20,8 @@ s32 func_0203c25c(u16 a) {
     return r != 0;
 }
 
-// non-matching: same instructions and order; registers differ (a in r5 and the entry pointer in r4 where the original has r4 and r5; the stack-free temporaries in r1/r2/r3 are rotated)
+// non-matching: same instructions and order; registers differ (a in r5 and the entry pointer in r4 where the original
+// has r4 and r5; the stack-free temporaries in r1/r2/r3 are rotated)
 void func_0203c2e4(u16 a) {
     Unk0217561c_14 *p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + a * 0x8c);
     s32 f = 0;
@@ -75,7 +76,9 @@ void func_0203c2e4(u16 a) {
     }
 }
 
-// non-matching: same control flow; the data_021759c0 pointer is in ip and the result in r3 where the original has r3 and ip, and the table address is formed as (r + 1) * 8 plus a - 1 with a register-offset load instead of adding the row start and loading at offset 8
+// non-matching: same control flow; the data_021759c0 pointer is in ip and the result in r3 where the original has r3
+// and ip, and the table address is formed as (r + 1) * 8 plus a - 1 with a register-offset load instead of adding the
+// row start and loading at offset 8
 u16 func_0203c4d0(u8 a) {
     u16 r = 0;
     Unk0217561c_4dc *t = data_0217561c->mUnk_4dc;

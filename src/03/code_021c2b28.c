@@ -32,14 +32,14 @@ void func_ov003_021c2d18(void) {
         func_ov003_021d272c(1, 1);
         func_ov003_021d272c(0, 0x14);
         switch (data_ov003_021da1a0) {
-        case 0:
-            func_ov003_021c2120(1, 0);
-            func_ov003_021c212c(func_ov003_021cb294);
-            break;
-        case 1:
-            func_ov003_021c2120(0, 0);
-            func_ov003_021c212c(func_ov003_021c3dd4);
-            break;
+            case 0:
+                func_ov003_021c2120(1, 0);
+                func_ov003_021c212c(func_ov003_021cb294);
+                break;
+            case 1:
+                func_ov003_021c2120(0, 0);
+                func_ov003_021c212c(func_ov003_021c3dd4);
+                break;
         }
     }
 }
@@ -83,12 +83,12 @@ void func_ov003_021c2b28(void) {
     func_ov003_021bf620((u32) data_ov003_021d6f78, (u32) func_0214bf04);
     func_ov003_021bf620((u32) data_ov003_021d6f90, (u32) func_0214c090);
     switch (func_ov003_021c20c0()) {
-    case 0:
-        func_ov003_021bf620((u32) data_ov003_021d6fa8, (u32) func_0214bd04);
-        break;
-    case 1:
-        func_ov003_021bf620((u32) data_ov003_021d6fbc, (u32) func_0214bd04);
-        break;
+        case 0:
+            func_ov003_021bf620((u32) data_ov003_021d6fa8, (u32) func_0214bd04);
+            break;
+        case 1:
+            func_ov003_021bf620((u32) data_ov003_021d6fbc, (u32) func_0214bd04);
+            break;
     }
     *(u16 *) 0x400100a = (*(u16 *) 0x400100a & ~3) | 3;
     *(u16 *) 0x400000a = (*(u16 *) 0x400000a & ~3) | 3;

@@ -4,8 +4,7 @@
 
 #pragma optimize_for_size on
 
-void func_02108e38(void)
-{
+void func_02108e38(void) {
     s32 i;
 
     for (i = 7; i < 12; i++) {

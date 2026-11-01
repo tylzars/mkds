@@ -6,4 +6,3 @@
 #include "Main/Unknown/code_0208aea8.h"
 
 void *func_0208b7bc(u32 a, const Vec3 *b);
-

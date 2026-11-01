@@ -24,7 +24,8 @@ typedef struct Unk0219a430Addr {
     /* 4 */ u32 mUnk_04;
 } Unk0219a430Addr;
 
-// non-matching: registers only; the original reuses the zero from the -1 compare for the two zero stores into the struct, keeps the byte-swapped halfword in r5 and reads the compared field into r1 (ours r2)
+// non-matching: registers only; the original reuses the zero from the -1 compare for the two zero stores into the
+// struct, keeps the byte-swapped halfword in r5 and reads the compared field into r1 (ours r2)
 u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
     Unk02197e8c *f;
     u16 i;
@@ -50,12 +51,13 @@ u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
     f->mUnk_3c = d;
     f->mUnk_38 = c;
     f->mUnk_24 = (void (*)(Unk02197e8c *)) e;
-    f->mUnk_0c = func_ov000_0218e004(4, 0x20, 2, (s32 (*)(void *, s32)) &func_ov000_0219a604, (s32 (*)(void *, void *)) &func_ov000_0219a5e8, 0);
+    f->mUnk_0c = func_ov000_0218e004(4, 0x20, 2, (s32(*)(void *, s32)) & func_ov000_0219a604,
+                                     (s32(*)(void *, void *)) & func_ov000_0219a5e8, 0);
     if (f->mUnk_0c == 0) {
         func_ov000_021a3668(f);
         return 1;
     }
-    f->mUnk_10 = (void *) func_ov000_0218dc94(4, 4, (void (*)(void *)) &func_ov000_0219a5dc);
+    f->mUnk_10 = (void *) func_ov000_0218dc94(4, 4, (void (*)(void *)) & func_ov000_0219a5dc);
     if (f->mUnk_10 == 0) {
         func_ov000_0218dfb4(f->mUnk_0c);
         func_ov000_021a3668(f);

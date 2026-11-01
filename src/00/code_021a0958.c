@@ -90,7 +90,8 @@ u32 func_ov000_021a0a40(u32 a, u32 b, u32 c, u32 *d, u32 e) {
     s.mUnk_0c = (u32) data_ov000_021b566c->mUnk_1c;
     s.mUnk_10 = data_ov000_021b566c->mUnk_1e8;
     for (i = 0; i < 5; i++) {
-        r = func_ov000_0218b530(data_ov000_021b566c->mUnk_e4, func_ov000_0219a760(b, 0, 0), c, (u8 *) &s, s.mUnk_09 + 0x14);
+        r = func_ov000_0218b530(data_ov000_021b566c->mUnk_e4, func_ov000_0219a760(b, 0, 0), c, (u8 *) &s,
+                                s.mUnk_09 + 0x14);
         if (r == 0 || r != 2) {
             break;
         }
@@ -158,7 +159,8 @@ u32 func_ov000_021a0c30(Unk021a0c30 *a) {
     return r;
 }
 
-// non-matching: original keeps the flag in r7 and the return value at [sp, #8] (frame 0x14, 0x22c bytes); ours keeps the return value in r6 and the flag at [sp, #8] with an extra stack word (frame 0x1c, 0x238 bytes)
+// non-matching: original keeps the flag in r7 and the return value at [sp, #8] (frame 0x14, 0x22c bytes); ours keeps
+// the return value in r6 and the flag at [sp, #8] with an extra stack word (frame 0x1c, 0x238 bytes)
 u32 func_ov000_021a0cac(s32 a, s32 b, u32 c) {
     u32 t[2];
     u16 v1;
@@ -196,7 +198,7 @@ u32 func_ov000_021a0cac(s32 a, s32 b, u32 c) {
             t[0] = func_ov000_021a8ed4();
             t[1] = func_ov000_021988e4(*data_ov000_021b566c->mUnk_04);
             v2 = func_ov000_021a0ae8(6, data_ov000_021b566c->mUnk_f4[k], func_ov000_0218b27c((u32 *) c),
-                                      func_ov000_0218b260(c), t, 2);
+                                     func_ov000_0218b260(c), t, 2);
             data_ov000_021b566c->mUnk_3b5 = 0;
             if (v2 != 0) {
                 return 2;

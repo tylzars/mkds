@@ -36,14 +36,14 @@ s32 func_02056574(s32 a, Unk020565e4 *b) {
 
     r = 0;
     switch (a) {
-    case 0:
-        r = func_020565e4(data_0217aa08->mUnk_14, b);
-        break;
-    case 1:
-        r = func_020565e4(data_0217aa08->mUnk_18, b);
-        break;
-    case 2:
-        break;
+        case 0:
+            r = func_020565e4(data_0217aa08->mUnk_14, b);
+            break;
+        case 1:
+            r = func_020565e4(data_0217aa08->mUnk_18, b);
+            break;
+        case 2:
+            break;
     }
     return r;
 }
@@ -53,14 +53,14 @@ s32 func_020565ac(s32 a, s32 b, Unk020565e4 *c) {
 
     r = 0;
     switch (a) {
-    case 0:
-        r = func_0205660c(data_0217aa08->mUnk_14, b, c);
-        break;
-    case 1:
-        r = func_0205660c(data_0217aa08->mUnk_18, b, c);
-        break;
-    case 2:
-        break;
+        case 0:
+            r = func_0205660c(data_0217aa08->mUnk_14, b, c);
+            break;
+        case 1:
+            r = func_0205660c(data_0217aa08->mUnk_18, b, c);
+            break;
+        case 2:
+            break;
     }
     return r;
 }

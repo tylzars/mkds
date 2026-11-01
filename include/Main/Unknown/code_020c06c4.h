@@ -13,7 +13,8 @@ typedef struct Unk020c06c4_08 {
     /* 4 */ u32 mUnk_10 : 20;
 } Unk020c06c4_08;
 
-// 0x20-byte elements of the first table of Unk020c06c4 (the same bytes as eight-byte elements): a halfword at each of 0x06, 0x0e, 0x16 and 0x1e.
+// 0x20-byte elements of the first table of Unk020c06c4 (the same bytes as eight-byte elements): a halfword at each of
+// 0x06, 0x0e, 0x16 and 0x1e.
 typedef struct Unk020c06c4_20 {
     /* 00 */ u8 mUnk_00[6];
     /* 06 */ s16 mUnk_06;

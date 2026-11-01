@@ -6,8 +6,7 @@
 #include "Main/Unknown/code_02105000.h"
 #include "Main/Unknown/code_02148ca0.h"
 
-s32 func_ov001_0219f31c(void)
-{
+s32 func_ov001_0219f31c(void) {
     s32 i;
     s32 ok = 1;
     s32 result;
@@ -23,8 +22,7 @@ s32 func_ov001_0219f31c(void)
     return 0;
 }
 
-void func_ov001_0219f2a4(void)
-{
+void func_ov001_0219f2a4(void) {
     s32 i;
     s32 j;
     s32 count;
@@ -42,8 +40,7 @@ void func_ov001_0219f2a4(void)
     }
 }
 
-void func_ov001_0219f260(void)
-{
+void func_ov001_0219f260(void) {
     data_ov001_021ca410->mUnk_20 = 1;
     data_ov001_021ca410->mUnk_24 = 0;
     if (func_020cccb4() == 0x13) {
@@ -53,21 +50,18 @@ void func_ov001_0219f260(void)
     }
 }
 
-void func_ov001_0219f244(void)
-{
+void func_ov001_0219f244(void) {
     data_ov001_021ca410->mUnk_20 = 2;
     data_ov001_021ca410->mUnk_24 = 0;
     func_02128374();
 }
 
-void func_ov001_0219f230(void)
-{
+void func_ov001_0219f230(void) {
     data_ov001_021ca410->mUnk_20 = 3;
     data_ov001_021ca410->mUnk_24 = 0;
 }
 
-void func_ov001_0219f1f4(void)
-{
+void func_ov001_0219f1f4(void) {
     data_ov001_021ca410->mUnk_20 = 4;
     data_ov001_021ca410->mUnk_24 = 0;
     data_ov001_021ca410->mUnk_48 = 0x100;
@@ -75,26 +69,24 @@ void func_ov001_0219f1f4(void)
     func_0212ecc0(&data_0217d068, 0, 5);
 }
 
-void func_ov001_0219f198(void)
-{
+void func_ov001_0219f198(void) {
     data_ov001_021ca410->mUnk_20 = 5;
     data_ov001_021ca410->mUnk_24 = 0;
     switch (data_ov001_021ca410->mUnk_58) {
-    case 1:
-        if (func_ov001_0219f31c() != 0) {
-            func_02105980(3, 10);
-        } else {
-            func_02105980(0, 10);
-        }
-        break;
-    case 2:
-        func_02105980(4, 10);
-        break;
+        case 1:
+            if (func_ov001_0219f31c() != 0) {
+                func_02105980(3, 10);
+            } else {
+                func_02105980(0, 10);
+            }
+            break;
+        case 2:
+            func_02105980(4, 10);
+            break;
     }
 }
 
-void func_ov001_0219f058(void *param_1, void *param_2, void *param_3)
-{
+void func_ov001_0219f058(void *param_1, void *param_2, void *param_3) {
     s32 i;
     s32 remaining;
 
@@ -141,20 +133,19 @@ void func_ov001_0219f058(void *param_1, void *param_2, void *param_3)
     func_02036820((void *) data_ov001_021ca410->mUnk_18);
 }
 
-void func_ov001_0219efec(void)
-{
+void func_ov001_0219efec(void) {
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | 0x1800;
     switch (data_ov001_021ca410->mUnk_58) {
-    case 1:
-        if (func_ov001_0219f31c() != 0) {
-            func_02105980(3, 10);
-        } else {
-            func_02105980(0, 10);
-        }
-        break;
-    case 2:
-        func_0210593c(4);
-        break;
+        case 1:
+            if (func_ov001_0219f31c() != 0) {
+                func_02105980(3, 10);
+            } else {
+                func_02105980(0, 10);
+            }
+            break;
+        case 2:
+            func_0210593c(4);
+            break;
     }
     func_02036ab0((void *) data_ov001_021ca410->mUnk_18);
     data_ov001_021ca410 = 0;

@@ -46,7 +46,8 @@ void func_0205bc08(void) {
     }
     func_0205c234(v);
     func_0205be0c();
-    if (func_0203c880(*(u8 *) &data_0217aa18->mUnk_06[func_ov000_0219bb50()]) == 0 && (data_0217aa14->mUnk_75c & 0x200) == 0) {
+    if (func_0203c880(*(u8 *) &data_0217aa18->mUnk_06[func_ov000_0219bb50()]) == 0 &&
+        (data_0217aa14->mUnk_75c & 0x200) == 0) {
         if (data_0217562a[func_020435bc()].mUnk_00 == 0) {
             data_0217aa14->mUnk_738 = data_0217aa14->mUnk_738 + 1;
             if (data_0217aa14->mUnk_738 > 0x708) {
@@ -59,24 +60,25 @@ void func_0205bc08(void) {
     }
     if (data_0217aa14->mUnk_758 == 2) {
         switch (func_020b2e34()) {
-        case 2:
-        case 7:
-            data_0217aa14->mUnk_758 = 4;
-            p = data_0217aa14;
-            p->mUnk_010 = 5;
-            p->mUnk_012 = 1;
-            break;
-        case 9:
-            data_0217aa14->mUnk_758 = 3;
-            p = data_0217aa14;
-            p->mUnk_010 = 5;
-            p->mUnk_012 = 1;
-            break;
+            case 2:
+            case 7:
+                data_0217aa14->mUnk_758 = 4;
+                p = data_0217aa14;
+                p->mUnk_010 = 5;
+                p->mUnk_012 = 1;
+                break;
+            case 9:
+                data_0217aa14->mUnk_758 = 3;
+                p = data_0217aa14;
+                p->mUnk_010 = 5;
+                p->mUnk_012 = 1;
+                break;
         }
     }
 }
 
-// non-matching: 0x438 bytes, original 0x428; the sort and count loops differ in register use and the zero values the original keeps on the stack.
+// non-matching: 0x438 bytes, original 0x428; the sort and count loops differ in register use and the zero values the
+// original keeps on the stack.
 void func_0205be0c(void) {
     u32 a[4];
     u8 b[4];
@@ -198,7 +200,8 @@ void func_0205be0c(void) {
                         u16 o;
 
                         o = (u16) data_0217aa18->mUnk_06[n];
-                        if (data_0217561c->mUnk_000[o].mUnk_14 != 4 && e != 0 && (data_0217561c->mUnk_000[o].mUnk_50 & 0xf) > c) {
+                        if (data_0217561c->mUnk_000[o].mUnk_14 != 4 && e != 0 &&
+                            (data_0217561c->mUnk_000[o].mUnk_50 & 0xf) > c) {
                             z = (z + 1) & 0xff;
                         }
                     }
@@ -250,7 +253,8 @@ void func_0205c234(s32 a) {
     data_0217aa14->mUnk_73a = i << 1;
 }
 
-// non-matching: 0x150 bytes, original 0x130; the message bitfield stores are written as separate read-modify-write sequences by the original in a different order.
+// non-matching: 0x150 bytes, original 0x130; the message bitfield stores are written as separate read-modify-write
+// sequences by the original in a different order.
 int func_0205c340(u32 a, u32 b, int c) {
     int r;
     Unk0205b504 *m;

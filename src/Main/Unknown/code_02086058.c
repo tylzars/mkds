@@ -5,7 +5,5 @@ u16 func_0208606c(int param_1) {
 }
 
 u16 *func_02086058(void) {
-    return (u16 *) (
-        (((u32) *(const u32 *) ((u8 *) (u32) (((u32) (&data_0217aed0))) + 0))) +
-        (0x94u));
+    return (u16 *) ((((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217aed0))) + 0))) + (0x94u));
 }

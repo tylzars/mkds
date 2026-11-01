@@ -38,7 +38,9 @@ u32 func_020b2bc8(void) {
 }
 
 u32 func_020b2b70(void) {
-    if (func_020b33d8() != 0 && func_020b2bc8() != 0 && func_020c5dc4() != 0 && func_020c3da0() == 0 && func_020c70bc() == 0 && func_020c70a0() == 0 && func_020b1a20() == 0 && (func_020b2ec0() != 0 || func_02055b1c() == 0)) {
+    if (func_020b33d8() != 0 && func_020b2bc8() != 0 && func_020c5dc4() != 0 && func_020c3da0() == 0 &&
+        func_020c70bc() == 0 && func_020c70a0() == 0 && func_020b1a20() == 0 &&
+        (func_020b2ec0() != 0 || func_02055b1c() == 0)) {
         return 1;
     }
     return 0;

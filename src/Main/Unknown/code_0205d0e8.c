@@ -156,7 +156,8 @@ s32 func_0205d480(void) {
     return r;
 }
 
-// non-matching: same instructions; the original loads the table pointer first and the index byte after, with the row base in r1 and the index in r2, here the registers are swapped (5 words).
+// non-matching: same instructions; the original loads the table pointer first and the index byte after, with the row
+// base in r1 and the index in r2, here the registers are swapped (5 words).
 s32 func_0205d4e8(u32 a) {
     s32 m;
     Unk0217aa1c_00 *v1;
@@ -169,7 +170,9 @@ s32 func_0205d4e8(u32 a) {
     return 0;
 }
 
-// non-matching: the original computes the entry pointer from the row base plus the counter on each pass and keeps one stack word, here the compiler steps one pointer through the entries and keeps two stack words; the inner counter test is unsigned in the original (4 bytes shorter).
+// non-matching: the original computes the entry pointer from the row base plus the counter on each pass and keeps one
+// stack word, here the compiler steps one pointer through the entries and keeps two stack words; the inner counter test
+// is unsigned in the original (4 bytes shorter).
 void func_0205d558(s32 a) {
     s32 j;
     u16 k, n;
@@ -252,7 +255,9 @@ void func_0205d818(u32 a, Unk0217aa1c_144_00 *b) {
     t->mUnk_00 = b->mUnk_00;
 }
 
-// non-matching: same instructions; the original keeps the value read at 0x8 in r4 and the signed index in lr, here ip and r4, and stores the u16 at offset 0 through the row base plus the byte offset (strh [r4, lr]), here through the element pointer.
+// non-matching: same instructions; the original keeps the value read at 0x8 in r4 and the signed index in lr, here ip
+// and r4, and stores the u16 at offset 0 through the row base plus the byte offset (strh [r4, lr]), here through the
+// element pointer.
 void func_0205d88c(u32 a, s32 b) {
     Unk021759c0 *p;
     s8 i;
@@ -346,7 +351,8 @@ u8 func_0205db28(void) {
     return (u8) ((data_021759c0->mUnk_60 - 1) % 4);
 }
 
-// non-matching: the original uses three separate zero registers (r1, r2, r4) for the stores and counters and keeps the first pointer in r0 with a 4-byte-smaller frame, here one zero register and one stack word more; 0xc bytes shorter.
+// non-matching: the original uses three separate zero registers (r1, r2, r4) for the stores and counters and keeps the
+// first pointer in r0 with a 4-byte-smaller frame, here one zero register and one stack word more; 0xc bytes shorter.
 void func_0205db50(void) {
     Unk0217aa1c *p;
     Unk0217aa1c_00 *e;

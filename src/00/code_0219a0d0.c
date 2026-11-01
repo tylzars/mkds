@@ -103,8 +103,8 @@ u32 func_ov000_0219a28c(Unk02197e8c *a, Unk02197fe8 **b, u32 c, u32 d) {
         e->mUnk_88 = e->mUnk_1c;
         e->mUnk_64 = 0;
         e->mUnk_66 = 0;
-        if (func_ov000_02197e60((int *) &e->mUnk_44, (int) a->mUnk_3c) != 0
-            && func_ov000_02197e60((int *) &e->mUnk_50, (int) a->mUnk_38) != 0) {
+        if (func_ov000_02197e60((int *) &e->mUnk_44, (int) a->mUnk_3c) != 0 &&
+            func_ov000_02197e60((int *) &e->mUnk_50, (int) a->mUnk_38) != 0) {
             e->mUnk_5c = (void *) func_ov000_0218dc94(0x10, 0x40, 0);
             if (e->mUnk_5c != 0) {
                 e->mUnk_60 = (void *) func_ov000_0218dc94(0x10, 0x40, 0);

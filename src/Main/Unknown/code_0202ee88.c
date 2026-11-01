@@ -13,7 +13,8 @@
 
 #pragma thumb on
 
-// non-matching: original loads mUnk_02e << 6 into r5 before mUnk_008 into r4 and ends with adds r1, r4, r5 (3 words differ, same size)
+// non-matching: original loads mUnk_02e << 6 into r5 before mUnk_008 into r4 and ends with adds r1, r4, r5 (3 words
+// differ, same size)
 void func_0202ee88(void) {
     Unk02174e48 *p = data_02174e48;
     s32 v1 = p->mUnk_02e;

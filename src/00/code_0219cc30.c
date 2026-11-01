@@ -55,7 +55,8 @@ void func_ov000_0219cc94(Unk0218f960 *a, Unk0219c400 *b, u32 c) {
         }
     }
     if (f != 0) {
-        func_ov000_0219d504(func_ov000_0219d14c(data_ov000_021b5664->mUnk_18, data_ov000_021b5664->mUnk_14, b->mUnk_04));
+        func_ov000_0219d504(
+            func_ov000_0219d14c(data_ov000_021b5664->mUnk_18, data_ov000_021b5664->mUnk_14, b->mUnk_04));
         data_ov000_021b5664->mUnk_1d = 1;
     }
 }

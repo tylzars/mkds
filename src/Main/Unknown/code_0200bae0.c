@@ -162,8 +162,8 @@ void func_0200bd7c(void) {
     }
 }
 
-// non-matching: same size; original keeps the address of data_0216fdec in r3 and the halfwords in r1/r2, ours loads it into r1 and
-// uses r3 for a halfword
+// non-matching: same size; original keeps the address of data_0216fdec in r3 and the halfwords in r1/r2, ours loads it
+// into r1 and uses r3 for a halfword
 void func_0200bdb4(Unk021425e8 *a) {
     Unk0200bd34 v;
     Unk0216fdec *p = data_0216fdec;
@@ -199,8 +199,8 @@ void func_0200be00(void) {
     }
 }
 
-// non-matching: case 10 uses r2 for the pointer and r1 for the zero in the original, ours swaps them (5 words), and the final
-// branch loads the halfword before the data address in the original
+// non-matching: case 10 uses r2 for the pointer and r1 for the zero in the original, ours swaps them (5 words), and the
+// final branch loads the halfword before the data address in the original
 void func_0200be44(Unk021425e8 *a) {
     Unk0200bd34 v;
     Unk0200bd34 w;

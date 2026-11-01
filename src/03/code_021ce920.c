@@ -36,8 +36,7 @@ u32 func_ov003_021ce920(void (*a)(u32)) {
         data_ov003_021da280->mUnk_1374.mUnk_14[9] = 1;
         func_0214d1fc(s.mUnk_04, &data_ov003_021da280->mUnk_1374.mUnk_14[0xc], s.mUnk_18 * 2);
         if (func_ov003_021ce8ec() != 0) {
-            data_ov003_021da280->mUnk_1b7c =
-                func_ov003_021d3544(0, (u32) func_ov003_021ce4d4, 0, 0x78);
+            data_ov003_021da280->mUnk_1b7c = func_ov003_021d3544(0, (u32) func_ov003_021ce4d4, 0, 0x78);
             return 1;
         }
     }

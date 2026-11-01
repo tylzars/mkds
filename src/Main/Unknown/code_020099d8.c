@@ -17,31 +17,31 @@ int func_020099d8(void *a, u32 b, u32 c) {
         return 1;
     }
     switch (v1->mUnk_524) {
-    case 1:
-        if (v1->mUnk_52c == 0) {
-            v2 = 0x3e8;
-        } else {
-            v2 = 0;
-        }
-        v3 = func_02009aa8(v1->mUnk_508, a, v4, v2, v5);
-        if (v3 == 2) {
-            data_0216fda8->mUnk_50c = 1;
-        }
-        if (v3 == 2) {
-            v3 = 0;
-        }
-        return v3;
-    case 2:
-        v3 = func_02009aa8(func_0200a1bc, a, v4, 0, v5);
-        if (v3 == 2) {
-            data_0216fda8->mUnk_50c = 1;
-        }
-        if (v3 == 2) {
-            v3 = 0;
-        }
-        return v3;
-    default:
-        return 1;
+        case 1:
+            if (v1->mUnk_52c == 0) {
+                v2 = 0x3e8;
+            } else {
+                v2 = 0;
+            }
+            v3 = func_02009aa8(v1->mUnk_508, a, v4, v2, v5);
+            if (v3 == 2) {
+                data_0216fda8->mUnk_50c = 1;
+            }
+            if (v3 == 2) {
+                v3 = 0;
+            }
+            return v3;
+        case 2:
+            v3 = func_02009aa8(func_0200a1bc, a, v4, 0, v5);
+            if (v3 == 2) {
+                data_0216fda8->mUnk_50c = 1;
+            }
+            if (v3 == 2) {
+                v3 = 0;
+            }
+            return v3;
+        default:
+            return 1;
     }
 }
 

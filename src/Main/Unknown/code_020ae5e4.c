@@ -14,7 +14,7 @@ void func_020ae5f0(void *param_1, void *param_2) {
 }
 
 u16 func_020ae5e4(u32 p0) {
-    return ((u32) *(const u16 *) ((u8 *) p0 + 0 + (0x402u)));
+    return ((u32) * (const u16 *) ((u8 *) p0 + 0 + (0x402u)));
 }
 
 #pragma thumb off

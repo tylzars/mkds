@@ -35,7 +35,8 @@ void func_020d1fd4(Unk020d029c *param_1) {
 }
 
 void func_020d1de8(Unk020d029c *param_1, s32 param_2) {
-    s32 t[20] = {0, 205, 410, 614, 819, 1638, 2253, 2867, 3891, 4506, 4710, 4915, 5120, 5325, 5325, 5120, 4915, 4710, 4506, 4096};
+    s32 t[20] = {0,    205,  410,  614,  819,  1638, 2253, 2867, 3891, 4506,
+                 4710, 4915, 5120, 5325, 5325, 5120, 4915, 4710, 4506, 4096};
     s32 a;
     Unk020224e0_o *e;
 
@@ -97,7 +98,8 @@ void func_020d1a98(Unk020d029c *param_1) {
         c = func_020b85dc(data_0217b4b4->mUnk_00 / 10 + 0x2d);
         q0[0] = (t[0] + data_0217b4b4->mUnk_24) << 12;
         q0[1] = 0xb1000;
-        param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q0, a, 1);
+        param_1->mUnk_400 +=
+            func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q0, a, 1);
     }
     a = data_0217b4b4->mUnk_20;
     p = data_0217b4b4->mUnk_18;
@@ -162,38 +164,38 @@ void func_020d1640(void *param_1) {
     func_020b48ec(&data_0217b4b0->mUnk_0c, func_02047a28("search_icon_00.nce.ncer"));
     func_020b4a7c(&data_0217b4b0->mUnk_10, func_02047a28("search_icon_00_o.nclr"));
     switch (data_021759d0->mUnk_04) {
-    default:
-        func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_us.NFTR"));
-        break;
-    case 2:
-        func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_fr.NFTR"));
-        break;
-    case 3:
-        func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_ge.NFTR"));
-        break;
-    case 4:
-        func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_it.NFTR"));
-        break;
-    case 5:
-        func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_es.NFTR"));
-        break;
+        default:
+            func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_us.NFTR"));
+            break;
+        case 2:
+            func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_fr.NFTR"));
+            break;
+        case 3:
+            func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_ge.NFTR"));
+            break;
+        case 4:
+            func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_it.NFTR"));
+            break;
+        case 5:
+            func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_es.NFTR"));
+            break;
     }
     switch (data_021759d0->mUnk_04) {
-    default:
-        data_0217b4b0->mUnk_20 = func_02047a28("MBChild_us.bmg");
-        break;
-    case 2:
-        data_0217b4b0->mUnk_20 = func_02047a28("MBChild_fr.bmg");
-        break;
-    case 3:
-        data_0217b4b0->mUnk_20 = func_02047a28("MBChild_ge.bmg");
-        break;
-    case 4:
-        data_0217b4b0->mUnk_20 = func_02047a28("MBChild_it.bmg");
-        break;
-    case 5:
-        data_0217b4b0->mUnk_20 = func_02047a28("MBChild_es.bmg");
-        break;
+        default:
+            data_0217b4b0->mUnk_20 = func_02047a28("MBChild_us.bmg");
+            break;
+        case 2:
+            data_0217b4b0->mUnk_20 = func_02047a28("MBChild_fr.bmg");
+            break;
+        case 3:
+            data_0217b4b0->mUnk_20 = func_02047a28("MBChild_ge.bmg");
+            break;
+        case 4:
+            data_0217b4b0->mUnk_20 = func_02047a28("MBChild_it.bmg");
+            break;
+        case 5:
+            data_0217b4b0->mUnk_20 = func_02047a28("MBChild_es.bmg");
+            break;
     }
     func_020b496c(&data_0217b4b0->mUnk_24, func_02047a28("multi_download_00_b.NCGR"));
     func_020b4a7c(&data_0217b4b0->mUnk_28, func_02047a28("multi_download_00_b.NCLR"));

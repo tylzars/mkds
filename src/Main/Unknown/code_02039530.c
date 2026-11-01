@@ -12,36 +12,36 @@ void func_02039530(u32 a, Unk02175628 *b) {
     b->mUnk_02 = a;
     b->mUnk_06 = 0;
     switch (b->mUnk_08) {
-    case 0:
-        if (a & b->mUnk_0c) {
-            b->mUnk_08 = 1;
-            b->mUnk_0a = 0;
-            b->mUnk_06 = a & b->mUnk_0c;
-        }
-        break;
-    case 1:
-        if (a & b->mUnk_0c) {
-            b->mUnk_0a++;
-            if (b->mUnk_0a >= b->mUnk_0e) {
-                b->mUnk_08 = 2;
+        case 0:
+            if (a & b->mUnk_0c) {
+                b->mUnk_08 = 1;
                 b->mUnk_0a = 0;
                 b->mUnk_06 = a & b->mUnk_0c;
             }
-        } else {
-            b->mUnk_08 = 0;
-        }
-        break;
-    case 2:
-        if (a & b->mUnk_0c) {
-            b->mUnk_0a++;
-            if (b->mUnk_0a >= b->mUnk_10) {
-                b->mUnk_0a = 0;
-                b->mUnk_06 = a & b->mUnk_0c;
+            break;
+        case 1:
+            if (a & b->mUnk_0c) {
+                b->mUnk_0a++;
+                if (b->mUnk_0a >= b->mUnk_0e) {
+                    b->mUnk_08 = 2;
+                    b->mUnk_0a = 0;
+                    b->mUnk_06 = a & b->mUnk_0c;
+                }
+            } else {
+                b->mUnk_08 = 0;
             }
-        } else {
-            b->mUnk_08 = 0;
-        }
-        break;
+            break;
+        case 2:
+            if (a & b->mUnk_0c) {
+                b->mUnk_0a++;
+                if (b->mUnk_0a >= b->mUnk_10) {
+                    b->mUnk_0a = 0;
+                    b->mUnk_06 = a & b->mUnk_0c;
+                }
+            } else {
+                b->mUnk_08 = 0;
+            }
+            break;
     }
     c = b->mUnk_02 & 0x30c;
     if (b->mUnk_14 != 0 && c == 0x30c) {

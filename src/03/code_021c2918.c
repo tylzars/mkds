@@ -49,25 +49,25 @@ void func_ov003_021c29b8(void) {
 u32 func_ov003_021c2938(void) {
     Unk021d8dc8 a;
     switch (data_ov003_021da198->mUnk_00) {
-    case 0:
-    case 1:
-    case 3:
-    case 5:
-        return 0;
-    case 2:
-        return 1;
-    case 4:
-        return 2;
-    case 6:
-        if (func_ov003_021bb058(&a) != 1) {
-            func_0200fd1c();
-        }
-        if (a.mUnk_20 >= 0 && a.mUnk_20 <= 3 && a.mUnk_24 == 1) {
-            return 3;
-        }
-        return 5;
-    case 7:
-        return 4;
+        case 0:
+        case 1:
+        case 3:
+        case 5:
+            return 0;
+        case 2:
+            return 1;
+        case 4:
+            return 2;
+        case 6:
+            if (func_ov003_021bb058(&a) != 1) {
+                func_0200fd1c();
+            }
+            if (a.mUnk_20 >= 0 && a.mUnk_20 <= 3 && a.mUnk_24 == 1) {
+                return 3;
+            }
+            return 5;
+        case 7:
+            return 4;
     }
 }
 

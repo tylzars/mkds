@@ -18,33 +18,33 @@ void func_ov000_02181758(void) {
     Unk021b4c6c *p;
     data_ov000_021b4c6c->mUnk_00 = data_ov000_021b4c6c->mUnk_04;
     switch (data_ov000_021b4c6c->mUnk_00) {
-    case 0:
-        func_ov000_02181dd0();
-        break;
-    case 1:
-        func_ov000_02181d44();
-        break;
-    case 2:
-        func_ov000_02181d20();
-        break;
-    case 3:
-        func_ov000_02181b4c();
-        break;
-    case 4:
-        func_ov000_02181ab8();
-        break;
-    case 5:
-        func_ov000_0218198c();
-        break;
-    case 6:
-        func_ov000_02181940();
-        break;
-    case 7:
-        func_ov000_02181904();
-        break;
-    case 8:
-        func_ov000_02181854();
-        break;
+        case 0:
+            func_ov000_02181dd0();
+            break;
+        case 1:
+            func_ov000_02181d44();
+            break;
+        case 2:
+            func_ov000_02181d20();
+            break;
+        case 3:
+            func_ov000_02181b4c();
+            break;
+        case 4:
+            func_ov000_02181ab8();
+            break;
+        case 5:
+            func_ov000_0218198c();
+            break;
+        case 6:
+            func_ov000_02181940();
+            break;
+        case 7:
+            func_ov000_02181904();
+            break;
+        case 8:
+            func_ov000_02181854();
+            break;
     }
     func_ov000_021817e8();
     p = data_ov000_021b4c6c;

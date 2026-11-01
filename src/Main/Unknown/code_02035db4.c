@@ -13,25 +13,25 @@ s32 func_02035db4(u32 a) {
     Unk02174e6c *o;
 
     switch (data_02174e6c->mUnk_64c) {
-    case 9:
-        r = func_020591bc();
-        switch (r) {
-            case 1:
-                if (func_02035e44() != 0) {
-                    func_02035e38();
-                }
-                data_02174e6c->mUnk_64c = 10;
-                break;
-            case 2:
-                break;
-        }
-        break;
-    case 10:
-        if (a != 0) {
-            func_02035e30(a, 1);
-        }
-        data_02174e6c->mUnk_64c = 11;
-        break;
+        case 9:
+            r = func_020591bc();
+            switch (r) {
+                case 1:
+                    if (func_02035e44() != 0) {
+                        func_02035e38();
+                    }
+                    data_02174e6c->mUnk_64c = 10;
+                    break;
+                case 2:
+                    break;
+            }
+            break;
+        case 10:
+            if (a != 0) {
+                func_02035e30(a, 1);
+            }
+            data_02174e6c->mUnk_64c = 11;
+            break;
     }
     o = data_02174e6c;
     o->mUnk_640 = (o->mUnk_640 + 1) % 0x100;

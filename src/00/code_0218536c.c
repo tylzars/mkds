@@ -15,15 +15,15 @@ void func_ov000_0218536c(void) {
 
     data_ov000_021b4c88->mUnk_00 = data_ov000_021b4c88->mUnk_04;
     switch (data_ov000_021b4c88->mUnk_00) {
-    case 0:
-        func_ov000_021854a8();
-        break;
-    case 1:
-        func_ov000_02185418();
-        break;
-    case 2:
-        func_ov000_021853c4();
-        break;
+        case 0:
+            func_ov000_021854a8();
+            break;
+        case 1:
+            func_ov000_02185418();
+            break;
+        case 2:
+            func_ov000_021853c4();
+            break;
     }
     func_ov000_021854f8();
     p = data_ov000_021b4c88;

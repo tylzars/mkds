@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_020e6000.h"
 
 u16 func_ov001_02187024(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4) {
-    s32 diff = (u16)(func_02148714(param_1->x - param_2->x, param_1->z - param_2->z) - param_4);
+    s32 diff = (u16) (func_02148714(param_1->x - param_2->x, param_1->z - param_2->z) - param_4);
     s32 res;
 
     if (param_3 < 0) {
@@ -27,7 +27,7 @@ u16 func_ov001_02187024(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4) 
 }
 
 u16 func_ov001_02186fb4(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, s32 param_5) {
-    s32 diff = (u16)(func_02148714(param_1->x - param_2->x, param_1->z - param_2->z) - param_5);
+    s32 diff = (u16) (func_02148714(param_1->x - param_2->x, param_1->z - param_2->z) - param_5);
     s32 limit;
     s32 res;
     s32 target;

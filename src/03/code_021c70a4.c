@@ -6,8 +6,7 @@ void func_ov003_021c70a4(void) {
     a = data_ov003_021d7324;
     if (func_ov003_021cef6c() == 0) {
         if (data_ov003_021da1fc->mUnk_15 == 0) {
-            data_ov003_021da1fc->mUnk_04->mUnk_00 =
-                data_ov003_021da1fc->mUnk_04->mUnk_00 & 0xc1fffcff;
+            data_ov003_021da1fc->mUnk_04->mUnk_00 = data_ov003_021da1fc->mUnk_04->mUnk_00 & 0xc1fffcff;
             func_ov003_021c212c(func_ov003_021c7614);
             return;
         }
@@ -20,14 +19,14 @@ void func_ov003_021c70a4(void) {
 void func_ov003_021c7118(void) {
     data_ov003_021da1fc->mUnk_15 = func_ov003_021cef80();
     switch (data_ov003_021da1fc->mUnk_15) {
-    case 0:
-        func_ov003_021cdc10(7);
-        break;
-    case 1:
-        func_ov003_021cdc10(0xe);
-        break;
-    default:
-        return;
+        case 0:
+            func_ov003_021cdc10(7);
+            break;
+        case 1:
+            func_ov003_021cdc10(0xe);
+            break;
+        default:
+            return;
     }
     func_ov003_021cef90();
     func_ov003_021c212c(func_ov003_021c70a4);
@@ -48,7 +47,8 @@ void func_ov003_021c7160(void) {
     p->mUnk_00 = t | ((p->mUnk_00 & 0xfe00ff00) | 0x28);
 }
 
-// non-matching: the first argument is reloaded from the stack halfword into r1 and the stack arguments go through r1 (original keeps r1 from the byte load and uses r2, and holds the constant 2 in r7); size 0x90 against 0x8c
+// non-matching: the first argument is reloaded from the stack halfword into r1 and the stack arguments go through r1
+// (original keeps r1 from the byte load and uses r2, and holds the constant 2 in r7); size 0x90 against 0x8c
 void func_ov003_021c71a0(void) {
     u16 a[6];
     s32 b;

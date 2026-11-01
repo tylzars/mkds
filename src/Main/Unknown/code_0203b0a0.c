@@ -139,7 +139,8 @@ s32 func_0203b324(void) {
     return r;
 }
 
-// non-matching: same instructions and size, but the final sum loads the bytes at 3 before the bytes at 2 and the constant 0xea60 later (6 words differ from +0xa0)
+// non-matching: same instructions and size, but the final sum loads the bytes at 3 before the bytes at 2 and the
+// constant 0xea60 later (6 words differ from +0xa0)
 s32 func_0203b3d8(Unk02056bc0 *a, Unk02056bc0 *b) {
     s32 x;
     s32 y;

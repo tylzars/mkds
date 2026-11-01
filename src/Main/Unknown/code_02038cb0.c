@@ -103,89 +103,89 @@ void func_02038e6c(void *a, u32 b) {
     p->mUnk_1c = 0;
     c = 6;
     switch (b) {
-    case 0:
-    case 1:
-    case 3:
-        c = 1;
-        break;
-    case 2:
-    case 4:
-        c = 2;
-        break;
-    case 5:
-        c = 3;
-        break;
-    case 6:
-        break;
+        case 0:
+        case 1:
+        case 3:
+            c = 1;
+            break;
+        case 2:
+        case 4:
+            c = 2;
+            break;
+        case 5:
+            c = 3;
+            break;
+        case 6:
+            break;
     }
     p->mUnk_20 = c;
     switch (c) {
-    case 1:
-        p->mUnk_24 = 2;
-        p->mUnk_28 = 0;
-        p->mUnk_2a = 0;
-        p->mUnk_26 = 0;
-        p->mUnk_2c = 0;
-        p->mUnk_2e = 0;
-        break;
-    case 2:
-        p->mUnk_24 = 2;
-        p->mUnk_28 = 0;
-        p->mUnk_26 = 0;
-        p->mUnk_2a = 0;
-        p->mUnk_2c = 0;
-        p->mUnk_2e = 0;
-        break;
-    case 3:
-        p->mUnk_24 = 2;
-        p->mUnk_26 = 0;
-        p->mUnk_28 = 0;
-        p->mUnk_2a = 0;
-        p->mUnk_2c = 0;
-        break;
+        case 1:
+            p->mUnk_24 = 2;
+            p->mUnk_28 = 0;
+            p->mUnk_2a = 0;
+            p->mUnk_26 = 0;
+            p->mUnk_2c = 0;
+            p->mUnk_2e = 0;
+            break;
+        case 2:
+            p->mUnk_24 = 2;
+            p->mUnk_28 = 0;
+            p->mUnk_26 = 0;
+            p->mUnk_2a = 0;
+            p->mUnk_2c = 0;
+            p->mUnk_2e = 0;
+            break;
+        case 3:
+            p->mUnk_24 = 2;
+            p->mUnk_26 = 0;
+            p->mUnk_28 = 0;
+            p->mUnk_2a = 0;
+            p->mUnk_2c = 0;
+            break;
     }
     c = 6;
     switch (b) {
-    case 0:
-        c = 1;
-        break;
-    case 1:
-    case 2:
-        c = 2;
-        break;
-    case 3:
-    case 4:
-    case 5:
-        c = 3;
-        break;
-    case 6:
-        break;
+        case 0:
+            c = 1;
+            break;
+        case 1:
+        case 2:
+            c = 2;
+            break;
+        case 3:
+        case 4:
+        case 5:
+            c = 3;
+            break;
+        case 6:
+            break;
     }
     p->mUnk_30 = c;
     switch (c) {
-    case 1:
-        p->mUnk_34 = 2;
-        p->mUnk_38 = 0;
-        p->mUnk_3a = 0;
-        p->mUnk_36 = 0;
-        p->mUnk_3c = 0;
-        p->mUnk_3e = 0;
-        break;
-    case 2:
-        p->mUnk_34 = 2;
-        p->mUnk_38 = 0;
-        p->mUnk_36 = 0;
-        p->mUnk_3a = 0;
-        p->mUnk_3c = 0;
-        p->mUnk_3e = 0;
-        break;
-    case 3:
-        p->mUnk_34 = 2;
-        p->mUnk_36 = 0;
-        p->mUnk_38 = 0;
-        p->mUnk_3a = 0;
-        p->mUnk_3c = 0;
-        break;
+        case 1:
+            p->mUnk_34 = 2;
+            p->mUnk_38 = 0;
+            p->mUnk_3a = 0;
+            p->mUnk_36 = 0;
+            p->mUnk_3c = 0;
+            p->mUnk_3e = 0;
+            break;
+        case 2:
+            p->mUnk_34 = 2;
+            p->mUnk_38 = 0;
+            p->mUnk_36 = 0;
+            p->mUnk_3a = 0;
+            p->mUnk_3c = 0;
+            p->mUnk_3e = 0;
+            break;
+        case 3:
+            p->mUnk_34 = 2;
+            p->mUnk_36 = 0;
+            p->mUnk_38 = 0;
+            p->mUnk_3a = 0;
+            p->mUnk_3c = 0;
+            break;
     }
     p->mUnk_40 = 0;
     p->mUnk_42 = 0;

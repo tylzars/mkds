@@ -106,12 +106,12 @@ void func_0202dfd4(void *a) {
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffcfffef) | 0x10;
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffcfffef) | 0x10;
     switch (data_0217b488->mUnk_0c) {
-    case 0:
-        data_02174e44->mUnk_8c8 = 0;
-        break;
-    case 1:
-        data_02174e44->mUnk_8c8 = 1;
-        break;
+        case 0:
+            data_02174e44->mUnk_8c8 = 0;
+            break;
+        case 1:
+            data_02174e44->mUnk_8c8 = 1;
+            break;
     }
     data_02174e44->mUnk_8cc = data_02174e44->mUnk_8c8;
     data_02174e44->mUnk_8c4 = data_usa_02162f4c[data_02174e44->mUnk_8c8];

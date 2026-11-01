@@ -169,5 +169,5 @@ void func_ov001_021a2408(void) {
         data_ov001_021ca41c->mUnk_10b8 = 0;
     }
     func_020ca9e4();
-    func_020ae5f0((void *) ((int)data_ov001_021ca41c->mUnk_0000), (void *) ((int)data_ov001_021ca41c->mUnk_0404));
+    func_020ae5f0((void *) ((int) data_ov001_021ca41c->mUnk_0000), (void *) ((int) data_ov001_021ca41c->mUnk_0404));
 }

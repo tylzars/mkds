@@ -1,4 +1,3 @@
 #include "Main/Unknown/code_020649e8.h"
 
-void func_020649e8(Unk0206bcb0 *a) {
-}
+void func_020649e8(Unk0206bcb0 *a) {}

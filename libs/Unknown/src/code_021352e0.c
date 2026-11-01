@@ -403,10 +403,9 @@ u8 *func_02136f14(u64 v, u8 *end, Unk021352e0 spec) {
     return p;
 }
 
-// non-matching: 23 words. (1) the exponent ((x[0] << 25 | x[1] << 17) >> 21 & 0x7ff) is computed after the
-// copy of b into the argument area (original: before it, kept in r7, then add r0, r7, #-1023 at the call);
-// (2) the final digit gets r3 instead of the register of the shifted byte (r8) at the four assignments and the
-// store's and.
+// non-matching: 23 words. (1) the exponent ((x[0] << 25 | x[1] << 17) >> 21 & 0x7ff) is computed after the copy of b
+// into the argument area (original: before it, kept in r7, then add r0, r7, #-1023 at the call); (2) the final digit
+// gets r3 instead of the register of the shifted byte (r8) at the four assignments and the store's and.
 u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
     int n;
     u8 c;
@@ -490,9 +489,7 @@ u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
         w[i] = w[7 - i];
         w[7 - i] = t;
     }
-    p = (char *) func_02137358(
-        (((u32) (((u8 *) &x)[0] << 25 | ((u8 *) &x)[1] << 17) >> 21) & 0x7ff) - 1023,
-        buf, b);
+    p = (char *) func_02137358((((u32) (((u8 *) &x)[0] << 25 | ((u8 *) &x)[1] << 17) >> 21) & 0x7ff) - 1023, buf, b);
     if (c == 'a') {
         *--p = 'p';
     } else {

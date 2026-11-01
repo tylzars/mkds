@@ -20,7 +20,9 @@
 #include "03/code_021be264.h"
 #include "03/code_021bb0b0.h"
 
-// non-matching: the original keeps the tick base (m) at stack offset 0x40 and the address of data_ov003_021d8bec in r6, with the receive buffer address reloaded from the constant words; ours keeps m and the buffer address in registers, so the frame is 0x5c bytes against 0x64 and the code is 0x410 bytes against 0x41c
+// non-matching: the original keeps the tick base (m) at stack offset 0x40 and the address of data_ov003_021d8bec in r6,
+// with the receive buffer address reloaded from the constant words; ours keeps m and the buffer address in registers,
+// so the frame is 0x5c bytes against 0x64 and the code is 0x410 bytes against 0x41c
 s32 func_ov003_021bcf1c(void) {
     u32 m;
     s32 b;
@@ -111,8 +113,8 @@ s32 func_ov003_021bcf1c(void) {
                     c = 1;
                     break;
                 }
-                if (func_ov000_021a90a0(b, data_ov003_021d9904, 0x800, 4, &l) > 0
-                    && func_ov003_021bd938(data_ov003_021d9904, 3, data_ov003_021d9104, data_ov003_021d8c7c) != 0) {
+                if (func_ov000_021a90a0(b, data_ov003_021d9904, 0x800, 4, &l) > 0 &&
+                    func_ov003_021bd938(data_ov003_021d9904, 3, data_ov003_021d9104, data_ov003_021d8c7c) != 0) {
                     g = func_ov003_021bdbd0(data_ov003_021d9104, &h, &i);
                     if (h == 0x101) {
                         j = func_ov003_021bb354();
@@ -130,7 +132,8 @@ s32 func_ov003_021bcf1c(void) {
                 break;
             case 7:
                 data_ov003_021d8c04 = func_ov003_021bda78(data_ov003_021d9104, 0x102, data_ov003_021d8cac, 8);
-                data_ov003_021d8be4 = func_ov003_021bdb0c(data_ov003_021d9904, 4, data_ov003_021d9104, data_ov003_021d8c04, data_ov003_021d8c7c);
+                data_ov003_021d8be4 = func_ov003_021bdb0c(data_ov003_021d9904, 4, data_ov003_021d9104,
+                                                          data_ov003_021d8c04, data_ov003_021d8c7c);
                 func_ov003_021bdccc(b, &l, data_ov003_021d9904, data_ov003_021d8be4);
                 m = func_ov003_021bb354();
                 __clear(data_ov003_021d8eb0, 0x254);
@@ -138,7 +141,8 @@ s32 func_ov003_021bcf1c(void) {
                 break;
             case 8:
                 if (func_ov000_021a90a0(b, data_ov003_021d9904, 0x800, 4, &l) > 0) {
-                    data_ov003_021d8c04 = func_ov003_021bd938(data_ov003_021d9904, 5, data_ov003_021d9104, data_ov003_021d8ca4);
+                    data_ov003_021d8c04 =
+                        func_ov003_021bd938(data_ov003_021d9904, 5, data_ov003_021d9104, data_ov003_021d8ca4);
                     if (data_ov003_021d8c04 != 0 && func_ov003_021bd59c(data_ov003_021d9104) != 0) {
                         if (data_ov003_021d8fb0.mUnk_00[0] != 0) {
                             data_ov003_021d8bd0 = 1;
@@ -163,7 +167,8 @@ s32 func_ov003_021bcf1c(void) {
                 break;
             case 9:
                 data_ov003_021d8c04 = func_ov003_021bda78(data_ov003_021d9104, 0x301, &data_ov003_021d8bd0, 1);
-                data_ov003_021d8be4 = func_ov003_021bdb0c(data_ov003_021d9904, 6, data_ov003_021d9104, data_ov003_021d8c04, data_ov003_021d8ca4);
+                data_ov003_021d8be4 = func_ov003_021bdb0c(data_ov003_021d9904, 6, data_ov003_021d9104,
+                                                          data_ov003_021d8c04, data_ov003_021d8ca4);
                 if (func_ov003_021be604() != 7) {
                     m = func_ov003_021bb354() + 1000;
                     e = 10;
@@ -196,7 +201,8 @@ s32 func_ov003_021bcf1c(void) {
     return a;
 }
 
-// non-matching: the two 0x40-byte struct copies (cases 2 and 3) use r4 as source and r3 as destination (ldmia r4!, stmia r3!); the original has the destination in r4 and the source in r3 (ldmia r3!, stmia r4!), 4 words differ
+// non-matching: the two 0x40-byte struct copies (cases 2 and 3) use r4 as source and r3 as destination (ldmia r4!,
+// stmia r3!); the original has the destination in r4 and the source in r3 (ldmia r3!, stmia r4!), 4 words differ
 s32 func_ov003_021bd338(void) {
     s32 a;
     s32 b;
@@ -321,7 +327,9 @@ s32 func_ov003_021bd4cc(u8 *a, const s8 *b, s32 c) {
     return 1;
 }
 
-// non-matching: the parse pointer is in r4 and the walk pointer in r5 (original: r5 and r4), and the two four-entry loops (0x203, 0x204) use other registers for value, counter and pointer than the original (r1/r3/r2 and r2/r1/r3), 24 words differ
+// non-matching: the parse pointer is in r4 and the walk pointer in r5 (original: r5 and r4), and the two four-entry
+// loops (0x203, 0x204) use other registers for value, counter and pointer than the original (r1/r3/r2 and r2/r1/r3), 24
+// words differ
 s32 func_ov003_021bd59c(u8 *p) {
     u8 *c;
     s32 b;
@@ -399,7 +407,9 @@ s32 func_ov003_021bd59c(u8 *p) {
     return b;
 }
 
-// non-matching: the original computes the destination address first (adds r2, r4, #12) and reads the six-byte local through a pointer built as sp + 4 + 2; ours loads the source first and addresses the locals from sp, size 0x10c against 0x11c
+// non-matching: the original computes the destination address first (adds r2, r4, #12) and reads the six-byte local
+// through a pointer built as sp + 4 + 2; ours loads the source first and addresses the locals from sp, size 0x10c
+// against 0x11c
 s32 func_ov003_021bd768(u8 *a, void *b) {
     u8 c[6];
     u8 d[6];

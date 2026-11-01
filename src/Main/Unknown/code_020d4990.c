@@ -3,8 +3,7 @@
 #include "Main/Unknown/code_02036bec.h"
 
 #pragma thumb on
-void func_020d4990(Unk020e6fd4 *p)
-{
+void func_020d4990(Unk020e6fd4 *p) {
     s32 i;
 
     if (p->mUnk_1c != 0) {

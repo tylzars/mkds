@@ -4,8 +4,7 @@
 
 void func_0202808c(void) {
     int v1;
-    if ((data_02174e18->mUnk_100 == 1) &&
-        (v1 = ((u32) func_0202811c()), v1 == 2)) {
+    if ((data_02174e18->mUnk_100 == 1) && (v1 = ((u32) func_0202811c()), v1 == 2)) {
         func_021281fc();
     }
     v1 = func_020280dc();

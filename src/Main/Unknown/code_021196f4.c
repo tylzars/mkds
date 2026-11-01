@@ -29,17 +29,17 @@ void func_02119a38(void) {
     data_0217d364->mUnk_38 = 7;
     data_0217d364->mUnk_3c = 0;
     switch (data_0217d364->mUnk_40) {
-    case 0:
-    case 1:
-    case 3:
-        func_021277e4();
-        break;
-    case 2:
-        func_021277e4();
-        if (*(vu16 *)0x027ffc40 == 2) {
-            func_02125fc0();
-        }
-        break;
+        case 0:
+        case 1:
+        case 3:
+            func_021277e4();
+            break;
+        case 2:
+            func_021277e4();
+            if (*(vu16 *) 0x027ffc40 == 2) {
+                func_02125fc0();
+            }
+            break;
     }
 }
 
@@ -82,19 +82,27 @@ void func_02119770(void *param_1, void *param_2, void *param_3, s32 param_4) {
     data_0217d364->mUnk_6c = 0;
     func_0211a3bc();
     data_0217d364->mUnk_28 = func_02047a28("common.bmg");
-    if (*(vu16 *)0x027ffc40 != 2) {
+    if (*(vu16 *) 0x027ffc40 != 2) {
         func_02124ed0(data_0217d364->mUnk_30, data_0217d364->mUnk_04, data_0217d364->mUnk_08, &data_0217d364->mUnk_1c);
         func_02124ed0(data_0217d364->mUnk_30, data_0217d364->mUnk_10, data_0217d364->mUnk_18, &data_0217d364->mUnk_20);
         x = 0x8000;
-        x -= func_021243ac(data_0217d364->mUnk_30, 0, data_0217d364->mUnk_08, 0xb4, 0xd, 0, data_0217d364->mUnk_00, data_0217d364->mUnk_04, data_0217d364->mUnk_1c, x);
-        x -= func_021243ac(data_0217d364->mUnk_30, 1, data_0217d364->mUnk_08, 0xb4, 0xd, 1, data_0217d364->mUnk_00, data_0217d364->mUnk_04, data_0217d364->mUnk_1c, x);
-        x -= func_021243ac(data_0217d364->mUnk_30, 2, data_0217d364->mUnk_08, 0x96, 0xd, 2, data_0217d364->mUnk_00, data_0217d364->mUnk_04, data_0217d364->mUnk_1c, x);
-        x -= func_021243ac(data_0217d364->mUnk_30, 3, data_0217d364->mUnk_08, 0x50, 0xd, 3, data_0217d364->mUnk_00, data_0217d364->mUnk_04, data_0217d364->mUnk_1c, x);
-        x -= func_021243ac(data_0217d364->mUnk_30, 4, data_0217d364->mUnk_08, 0x96, 0xd, 4, data_0217d364->mUnk_00, data_0217d364->mUnk_04, data_0217d364->mUnk_1c, x);
-        func_021243ac(data_0217d364->mUnk_30, 5, data_0217d364->mUnk_08, 0x50, 0xd, 5, data_0217d364->mUnk_00, data_0217d364->mUnk_04, data_0217d364->mUnk_1c, x);
+        x -= func_021243ac(data_0217d364->mUnk_30, 0, data_0217d364->mUnk_08, 0xb4, 0xd, 0, data_0217d364->mUnk_00,
+                           data_0217d364->mUnk_04, data_0217d364->mUnk_1c, x);
+        x -= func_021243ac(data_0217d364->mUnk_30, 1, data_0217d364->mUnk_08, 0xb4, 0xd, 1, data_0217d364->mUnk_00,
+                           data_0217d364->mUnk_04, data_0217d364->mUnk_1c, x);
+        x -= func_021243ac(data_0217d364->mUnk_30, 2, data_0217d364->mUnk_08, 0x96, 0xd, 2, data_0217d364->mUnk_00,
+                           data_0217d364->mUnk_04, data_0217d364->mUnk_1c, x);
+        x -= func_021243ac(data_0217d364->mUnk_30, 3, data_0217d364->mUnk_08, 0x50, 0xd, 3, data_0217d364->mUnk_00,
+                           data_0217d364->mUnk_04, data_0217d364->mUnk_1c, x);
+        x -= func_021243ac(data_0217d364->mUnk_30, 4, data_0217d364->mUnk_08, 0x96, 0xd, 4, data_0217d364->mUnk_00,
+                           data_0217d364->mUnk_04, data_0217d364->mUnk_1c, x);
+        func_021243ac(data_0217d364->mUnk_30, 5, data_0217d364->mUnk_08, 0x50, 0xd, 5, data_0217d364->mUnk_00,
+                      data_0217d364->mUnk_04, data_0217d364->mUnk_1c, x);
         v = func_02148ca0();
         for (i = 0; i < 4; i++) {
-            v -= func_021243ac(data_0217d364->mUnk_30, data_0215cab4[i], data_0217d364->mUnk_18, data_0215cabc[i], data_0215cac4[i], data_0215caa4[i], data_0217d364->mUnk_0c, data_0217d364->mUnk_10, data_0217d364->mUnk_20, v);
+            v -= func_021243ac(data_0217d364->mUnk_30, data_0215cab4[i], data_0217d364->mUnk_18, data_0215cabc[i],
+                               data_0215cac4[i], data_0215caa4[i], data_0217d364->mUnk_0c, data_0217d364->mUnk_10,
+                               data_0217d364->mUnk_20, v);
         }
         func_0211de40(data_0217d364->mUnk_30);
         func_0211df44(data_0217d364->mUnk_30);
@@ -119,7 +127,7 @@ void func_021196f4(void) {
             reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1800;
         }
     }
-    if (*(vu16 *)0x027ffc40 != 2) {
+    if (*(vu16 *) 0x027ffc40 != 2) {
         func_0211de34();
         func_0211df38();
     } else {

@@ -45,21 +45,21 @@ void func_02128458(void) {
     if (p->mUnk_00 != 0) {
         p->mUnk_04 = p->mUnk_08;
         switch (data_0217d3f8->mUnk_04) {
-        case 0:
-            func_021285f8();
-            break;
-        case 1:
-            func_021285b0();
-            break;
-        case 2:
-            func_02128570();
-            break;
-        case 3:
-            func_02128508();
-            break;
-        case 4:
-            func_021284c0();
-            break;
+            case 0:
+                func_021285f8();
+                break;
+            case 1:
+                func_021285b0();
+                break;
+            case 2:
+                func_02128570();
+                break;
+            case 3:
+                func_02128508();
+                break;
+            case 4:
+                func_021284c0();
+                break;
         }
     }
 }

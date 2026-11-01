@@ -10,8 +10,7 @@
 #include "Main/Unknown/code_021000d0.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_020c756c(void)
-{
+void func_020c756c(void) {
     s32 i;
     s32 n;
     Unk0217b498_00 *p;
@@ -36,13 +35,11 @@ void func_020c756c(void)
     data_0217b400->mUnk_04 = n;
 }
 
-void func_020c7550(Unk020c06c4 *param_1)
-{
+void func_020c7550(Unk020c06c4 *param_1) {
     func_020c092c(param_1, data_0217b400, 0);
 }
 
-s32 func_020c7464(void)
-{
+s32 func_020c7464(void) {
     u16 a[2] = {0x65, 0xc9};
     u16 i;
     u16 b;
@@ -56,7 +53,7 @@ s32 func_020c7464(void)
             n = func_020c0c2c(&data_0217b3fc, b);
             m = 0;
             for (j = 0; j < data_0217b3fc->mUnk_08; j++) {
-                s32 v = func_020de9f8((Unk020de6a8 *)data_0217b3fc->mUnk_00[j]);
+                s32 v = func_020de9f8((Unk020de6a8 *) data_0217b3fc->mUnk_00[j]);
                 if (v > m) {
                     m = v;
                 }

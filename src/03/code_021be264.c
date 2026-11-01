@@ -36,26 +36,26 @@ s32 func_ov003_021be264(void) {
         func_0200dc3c(10);
         while ((d = func_ov003_021be528()) != 0) {
             switch (d) {
-            case 12:
-                a = c;
-                b = 1;
-                break;
-            case 13:
-                if (data_ov003_021d8be0 != 0) {
+                case 12:
                     a = c;
-                    b = -8;
-                } else if (func_ov003_021be708(p0, 0, 0x30000) == 0) {
-                    return b;
-                }
-                break;
-            case 4:
-            case 5:
-            case 18:
-            case 19:
-                break;
-            default:
-                a = c;
-                break;
+                    b = 1;
+                    break;
+                case 13:
+                    if (data_ov003_021d8be0 != 0) {
+                        a = c;
+                        b = -8;
+                    } else if (func_ov003_021be708(p0, 0, 0x30000) == 0) {
+                        return b;
+                    }
+                    break;
+                case 4:
+                case 5:
+                case 18:
+                case 19:
+                    break;
+                default:
+                    a = c;
+                    break;
             }
         }
     } while (a != 0);
@@ -82,15 +82,15 @@ u32 func_ov003_021be3b8(void) {
             func_0200dc3c(10);
             while ((b = func_ov003_021be528()) != 0) {
                 switch (b) {
-                case 4:
-                case 5:
-                    break;
-                case 20:
-                    a = 0;
-                    break;
-                default:
-                    a = 0;
-                    break;
+                    case 4:
+                    case 5:
+                        break;
+                    case 20:
+                        a = 0;
+                        break;
+                    default:
+                        a = 0;
+                        break;
                 }
             }
         } while (a != 0);
@@ -102,7 +102,8 @@ u32 func_ov003_021be3b8(void) {
     return 1;
 }
 
-// non-matching: the original keeps 0x1f in r3 for both alignments (movs r3,#31; adds r1,r0,r3; bics r1,r3), ours adds the immediate; 0xcc bytes against 0xc8
+// non-matching: the original keeps 0x1f in r3 for both alignments (movs r3,#31; adds r1,r0,r3; bics r1,r3), ours adds
+// the immediate; 0xcc bytes against 0xc8
 s32 func_ov003_021be418(u32 param_0) {
     u32 a = 1;
     s32 b;

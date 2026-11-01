@@ -10,7 +10,9 @@
 #include "code_02147288.h"
 #include "code_02147cd8.h"
 
-// non-matching: the original saves two more registers (r10, r11) and has an 8-byte larger frame; it computes the products of the second and third components before the first sum and the loop index is kept as a pointer step, here the order of the multiplies and the loop registers differ
+// non-matching: the original saves two more registers (r10, r11) and has an 8-byte larger frame; it computes the
+// products of the second and third components before the first sum and the loop index is kept as a pointer step, here
+// the order of the multiplies and the loop registers differ
 void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
     Unk02175620_34 *q = 0;
     s32 i;
@@ -51,7 +53,8 @@ void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
     k = (s64) -r.mUnk_00.y * d;
     l = (s64) -r.mUnk_18.y * e;
     n = (s64) -r.mUnk_18.z * e;
-    a->x = q->mUnk_00.x + (s32) (((s64) -r.mUnk_00.x * d + 0x800) >> 12) + (s32) (((s64) -r.mUnk_18.x * e + 0x800) >> 12);
+    a->x =
+        q->mUnk_00.x + (s32) (((s64) -r.mUnk_00.x * d + 0x800) >> 12) + (s32) (((s64) -r.mUnk_18.x * e + 0x800) >> 12);
     a->y = q->mUnk_00.y + (s32) ((k + 0x800) >> 12) + (s32) ((l + 0x800) >> 12);
     a->z = q->mUnk_00.z + (s32) ((h + 0x800) >> 12) + (s32) ((n + 0x800) >> 12);
     b->x = q->mUnk_0c.x;
@@ -137,7 +140,8 @@ s32 func_02041a70(Vec3 *a, Unk02175620_74 *b) {
     return 1;
 }
 
-// non-matching: the original keeps the result in r3 and reuses the zero constant of the result for the products, here the result lives in another register
+// non-matching: the original keeps the result in r3 and reuses the zero constant of the result for the products, here
+// the result lives in another register
 s32 func_02041944(Vec3 *a, Unk02175620_74 *b) {
     Vec3 v;
     s32 r = 0;
@@ -155,7 +159,8 @@ s32 func_02041944(Vec3 *a, Unk02175620_74 *b) {
                 x = func_0214848c(&v, &b->mUnk_18) >> 4;
                 y = func_0214848c(&v, &b->mUnk_30) >> 4;
                 z = (s32) (((s64) b->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                if ((s32) (((s64) z * z + 0x800) >> 12) >= (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
+                if ((s32) (((s64) z * z + 0x800) >> 12) >=
+                    (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
                     r = 1;
                 }
             }
@@ -188,7 +193,8 @@ s32 func_0204176c(Vec3 *a, s32 *b) {
                         x = func_0214848c(&v, &p->mUnk_18) >> 4;
                         y = func_0214848c(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                        if ((s32) (((s64) z * z + 0x800) >> 12) >= (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
+                        if ((s32) (((s64) z * z + 0x800) >> 12) >=
+                            (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
                             t = 1;
                         }
                     }
@@ -235,7 +241,8 @@ void *func_02041588(Vec3 *a) {
                         x = func_0214848c(&v, &p->mUnk_18) >> 4;
                         y = func_0214848c(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                        if ((s32) (((s64) z * z + 0x800) >> 12) >= (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
+                        if ((s32) (((s64) z * z + 0x800) >> 12) >=
+                            (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
                             t = 1;
                         }
                     }
@@ -277,7 +284,8 @@ Unk02175620_bc *func_020413a4(Vec3 *a) {
                         x = func_0214848c(&v, &p->mUnk_18) >> 4;
                         y = func_0214848c(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                        if ((s32) (((s64) z * z + 0x800) >> 12) >= (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
+                        if ((s32) (((s64) z * z + 0x800) >> 12) >=
+                            (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
                             t = 1;
                         }
                     }
@@ -292,7 +300,8 @@ Unk02175620_bc *func_020413a4(Vec3 *a) {
     return r;
 }
 
-// non-matching: the original reloads the constants 0 and 1 from stack words, here they are constants in the arms (0xc bytes shorter)
+// non-matching: the original reloads the constants 0 and 1 from stack words, here they are constants in the arms (0xc
+// bytes shorter)
 s32 func_020411e4(Vec3 *a) {
     u16 i;
     Unk02175620_74 *p;
@@ -317,7 +326,8 @@ s32 func_020411e4(Vec3 *a) {
                         x = func_0214848c(&v, &p->mUnk_18) >> 4;
                         y = func_0214848c(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                        if ((s32) (((s64) z * z + 0x800) >> 12) >= (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
+                        if ((s32) (((s64) z * z + 0x800) >> 12) >=
+                            (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
                             t = 1;
                         }
                     }
@@ -450,7 +460,8 @@ s32 func_02040de0(s32 a, u32 b) {
                     x = func_0214848c(&w, &p->mUnk_18) >> 4;
                     y = func_0214848c(&w, &p->mUnk_30) >> 4;
                     z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                    if ((s32) (((s64) z * z + 0x800) >> 12) >= (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
+                    if ((s32) (((s64) z * z + 0x800) >> 12) >=
+                        (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
                         t = 1;
                     }
                 }

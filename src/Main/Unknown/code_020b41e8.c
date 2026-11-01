@@ -102,7 +102,8 @@ void func_020b41e8(s32 a, s32 b, s32 c, s32 d, s32 e) {
     o2 = func_020b4018(1);
     k = o1->mUnk_0c;
     if (n == 12) {
-        m = data_0217b488->mUnk_10c[(u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mUnk_62)];
+        m = data_0217b488
+                ->mUnk_10c[(u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mUnk_62)];
     } else {
         m = n;
     }

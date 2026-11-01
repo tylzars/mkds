@@ -14,7 +14,8 @@ u32 func_020b29c4(void) {
     u32 c = 0;
     u32 d;
 
-    if (func_020b33d8() != 0 && func_020b33f4() > 0xf0 && func_020b2a4c() == 0 && (func_020b252c() != 2 || func_020a126c() == 0)) {
+    if (func_020b33d8() != 0 && func_020b33f4() > 0xf0 && func_020b2a4c() == 0 &&
+        (func_020b252c() != 2 || func_020a126c() == 0)) {
         d = 1;
         if (func_020b252c() == 4) {
             if ((func_020b252c() == 4 ? func_020a126c() : 0) != 0) {

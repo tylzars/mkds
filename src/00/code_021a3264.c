@@ -94,7 +94,8 @@ s32 func_ov000_021a33e4(u32 a, s32 b) {
     return 0;
 }
 
-// non-matching: movs r1, #0 for the high word of the second product sits before cmp r4, #0 (original: after the beq); 2 words
+// non-matching: movs r1, #0 for the high word of the second product sits before cmp r4, #0 (original: after the beq); 2
+// words
 u32 func_ov000_021a3448(u32 a) {
     u32 r;
     u64 s;
@@ -107,7 +108,8 @@ u32 func_ov000_021a3448(u32 a) {
         data_ov000_021b5dd4.mUnk_08 = 0x5d588b656c078965;
         data_ov000_021b5dd4.mUnk_10 = 0x269ec3;
     }
-    data_ov000_021b5dd4.mUnk_00 = data_ov000_021b5dd4.mUnk_08 * data_ov000_021b5dd4.mUnk_00 + data_ov000_021b5dd4.mUnk_10;
+    data_ov000_021b5dd4.mUnk_00 =
+        data_ov000_021b5dd4.mUnk_08 * data_ov000_021b5dd4.mUnk_00 + data_ov000_021b5dd4.mUnk_10;
     r = data_ov000_021b5dd4.mUnk_00 >> 32;
     if (a != 0) {
         r = ((u64) r * a) >> 32;
@@ -119,7 +121,8 @@ u64 func_ov000_021a350c(void) {
     return _ll_udiv(func_0200f5ac() << 6, 0x82ea);
 }
 
-// non-matching: the character load is adds r0, r4, r0 / ldrsb r0, [r7, r0] (original: adds r0, r0, r4 / ldrsb r0, [r0, r7]); 2 words
+// non-matching: the character load is adds r0, r4, r0 / ldrsb r0, [r7, r0] (original: adds r0, r0, r4 / ldrsb r0, [r0,
+// r7]); 2 words
 s32 func_ov000_021a3530(const u8 *a, u8 *b, const u8 *c, int d) {
     const u8 *p;
     const u8 *q;

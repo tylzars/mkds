@@ -86,23 +86,23 @@ void func_0205ab78(void) {
             continue;
         }
         switch (e->mUnk_08) {
-        case 0:
-            break;
-        case 1:
-            if ((u32) e->mUnk_00 < (u32) data_0217aa14->mUnk_728) {
-                e->mUnk_08 = 2;
-            }
-            break;
-        case 2:
-            if ((u32) e->mUnk_00 + 30 < (u32) data_0217aa14->mUnk_728) {
-                e->mUnk_08 = 0;
-                e->mUnk_00 = 0;
-                e->mUnk_09 = 15;
-                e->mUnk_0a = 0;
-                e->mUnk_0b = 0;
-                func_0214d168(e->mUnk_04, 0, 20);
-            }
-            break;
+            case 0:
+                break;
+            case 1:
+                if ((u32) e->mUnk_00 < (u32) data_0217aa14->mUnk_728) {
+                    e->mUnk_08 = 2;
+                }
+                break;
+            case 2:
+                if ((u32) e->mUnk_00 + 30 < (u32) data_0217aa14->mUnk_728) {
+                    e->mUnk_08 = 0;
+                    e->mUnk_00 = 0;
+                    e->mUnk_09 = 15;
+                    e->mUnk_0a = 0;
+                    e->mUnk_0b = 0;
+                    func_0214d168(e->mUnk_04, 0, 20);
+                }
+                break;
         }
     }
 }
@@ -129,17 +129,17 @@ void func_0205ac38(void) {
         }
         *a++ = c;
         switch (e->mUnk_08) {
-        case 0:
-            break;
-        case 1:
-            if (e->mUnk_0b != 0 && 0x30 - (v + e->mUnk_0b) >= 0) {
-                func_0214d1fc(e->mUnk_04, b, e->mUnk_0b);
-                v = v + e->mUnk_0b;
-                b += e->mUnk_0b;
-            }
-            break;
-        case 2:
-            break;
+            case 0:
+                break;
+            case 1:
+                if (e->mUnk_0b != 0 && 0x30 - (v + e->mUnk_0b) >= 0) {
+                    func_0214d1fc(e->mUnk_04, b, e->mUnk_0b);
+                    v = v + e->mUnk_0b;
+                    b += e->mUnk_0b;
+                }
+                break;
+            case 2:
+                break;
         }
     }
     data_0217aa14->mUnk_724 = 0x30 - v;

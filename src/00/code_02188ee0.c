@@ -137,12 +137,12 @@ u32 func_ov000_0218922c(void) {
     s = func_ov000_02188528();
     v1 = (Unk02188ec0 *) func_ov000_02188584(0x10);
     switch (s) {
-    case 7:
-        s = func_ov000_02189134(v1);
-        break;
-    case 8:
-        s = func_ov000_02189030(v1);
-        break;
+        case 7:
+            s = func_ov000_02189134(v1);
+            break;
+        case 8:
+            s = func_ov000_02189030(v1);
+            break;
     }
     return s;
 }
@@ -159,26 +159,26 @@ u32 func_ov000_0218925c(void) {
 
 s32 func_ov000_02189280(void) {
     switch (func_ov000_021a5bfc()) {
-    case 0:
-        return 1;
-    case 1:
-        func_ov000_021a6428();
-        break;
-    case 3:
-        func_ov000_021a61e4();
-        break;
-    case 6:
-        func_ov000_021a6024();
-        break;
-    case 9:
-        func_ov000_021a5db0();
-        break;
-    case 12:
-        func_ov000_021a5c24();
-        break;
-    case 11:
-        func_ov000_02188508(0);
-        return -1;
+        case 0:
+            return 1;
+        case 1:
+            func_ov000_021a6428();
+            break;
+        case 3:
+            func_ov000_021a61e4();
+            break;
+        case 6:
+            func_ov000_021a6024();
+            break;
+        case 9:
+            func_ov000_021a5db0();
+            break;
+        case 12:
+            func_ov000_021a5c24();
+            break;
+        case 11:
+            func_ov000_02188508(0);
+            return -1;
     }
     return 0;
 }

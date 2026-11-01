@@ -22,32 +22,32 @@
 void func_ov003_021cc4ec(u32 param_1) {
     if (data_ov003_021da258 == 0) {
         switch (param_1) {
-        case 0:
-            data_ov003_021da258 = 3;
-            func_ov003_021cdbd0();
-            func_ov003_021cdc10(0x12);
-            func_ov003_021cefc0(0x45, 1, 1, -1, 0);
-            func_ov003_021bf2d0();
-            func_ov003_021c212c(func_ov003_021cc4c4);
-            break;
-        case 1:
-            data_ov003_021da258 = 1;
-            func_ov003_021cdbd0();
-            func_ov003_021c212c(func_ov003_021cc6a4);
-            break;
-        case 2:
-            func_ov003_021cdbd0();
-            func_ov003_021ce834(0);
-            func_ov003_021cefc0(0x47, 0, 1, -1, 0);
-            func_ov003_021bf2d0();
-            func_ov003_021c212c(func_ov003_021cc464);
-            break;
-        case 3:
-            data_ov003_021da258 = 2;
-            func_ov003_021cdbd0();
-            func_ov003_021cdc10(9);
-            func_ov003_021c212c(func_ov003_021cc6a4);
-            break;
+            case 0:
+                data_ov003_021da258 = 3;
+                func_ov003_021cdbd0();
+                func_ov003_021cdc10(0x12);
+                func_ov003_021cefc0(0x45, 1, 1, -1, 0);
+                func_ov003_021bf2d0();
+                func_ov003_021c212c(func_ov003_021cc4c4);
+                break;
+            case 1:
+                data_ov003_021da258 = 1;
+                func_ov003_021cdbd0();
+                func_ov003_021c212c(func_ov003_021cc6a4);
+                break;
+            case 2:
+                func_ov003_021cdbd0();
+                func_ov003_021ce834(0);
+                func_ov003_021cefc0(0x47, 0, 1, -1, 0);
+                func_ov003_021bf2d0();
+                func_ov003_021c212c(func_ov003_021cc464);
+                break;
+            case 3:
+                data_ov003_021da258 = 2;
+                func_ov003_021cdbd0();
+                func_ov003_021cdc10(9);
+                func_ov003_021c212c(func_ov003_021cc6a4);
+                break;
         }
     }
 }

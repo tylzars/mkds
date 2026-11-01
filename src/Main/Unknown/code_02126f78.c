@@ -13,8 +13,7 @@
 
 #pragma thumb on
 
-void func_0212745c(void)
-{
+void func_0212745c(void) {
     u32 a;
     u32 b;
 
@@ -28,15 +27,13 @@ void func_0212745c(void)
     *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & 0x43) | 0x8b00;
 }
 
-static inline void func_0212717c_inline(void *dst, u16 value)
-{
+static inline void func_0212717c_inline(void *dst, u16 value) {
     vu16 v = value;
 
     func_0214cfe4(v, dst, 0x1000);
 }
 
-s32 func_0212717c(s32 param_1)
-{
+s32 func_0212717c(s32 param_1) {
     Unk020b4934 *a;
     Unk020b4934 *b;
     Unk020b4a44 *c;
@@ -94,8 +91,7 @@ s32 func_0212717c(s32 param_1)
     return param_1;
 }
 
-void func_021270bc(void)
-{
+void func_021270bc(void) {
     s32 r;
     s32 i;
     s32 c;
@@ -111,15 +107,15 @@ void func_021270bc(void)
             }
             for (r = data_0215d080[n].mUnk_02; r <= data_0215d080[n].mUnk_03; r++) {
                 for (c = data_0215d080[n].mUnk_00; c <= data_0215d080[n].mUnk_01; c++) {
-                    *(d + r * 32 + c) = data_0217d3f0->mUnk_223c[i] + *((u16 *) data_0217d3f0->mUnk_225c[n]->mUnk_0c + r * 32 + c);
+                    *(d + r * 32 + c) =
+                        data_0217d3f0->mUnk_223c[i] + *((u16 *) data_0217d3f0->mUnk_225c[n]->mUnk_0c + r * 32 + c);
                 }
             }
         }
     }
 }
 
-void func_02126f78(u32 *param_1)
-{
+void func_02126f78(u32 *param_1) {
     u8 a[9] = {0, 1, 0, 1, 2, 3, 0, 0, 0};
     s32 i;
     s32 r;
@@ -141,7 +137,8 @@ void func_02126f78(u32 *param_1)
                 }
                 for (r = data_0215d080[k].mUnk_02; r <= data_0215d080[k].mUnk_03; r++) {
                     for (c = data_0215d080[k].mUnk_00; c <= data_0215d080[k].mUnk_01; c++) {
-                        *(d + r * 32 + c) = data_0217d3f0->mUnk_2220[i] + *((u16 *) data_0217d3f0->mUnk_225c[k]->mUnk_0c + r * 32 + c);
+                        *(d + r * 32 + c) =
+                            data_0217d3f0->mUnk_2220[i] + *((u16 *) data_0217d3f0->mUnk_225c[k]->mUnk_0c + r * 32 + c);
                     }
                 }
             }

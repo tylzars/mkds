@@ -18,7 +18,6 @@ void func_020acad0(void) {
     func_020acff4();
 }
 
-void func_020acacc(void) {
-}
+void func_020acacc(void) {}
 
 #pragma thumb off

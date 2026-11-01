@@ -172,7 +172,8 @@ void func_02042c3c(void *a) {
     }
 }
 
-// non-matching: the original keeps more values in registers (counter r5, stack frame 0x2c bytes instead of 0x24), and takes the member 0x84 entry address through one reused stack value
+// non-matching: the original keeps more values in registers (counter r5, stack frame 0x2c bytes instead of 0x24), and
+// takes the member 0x84 entry address through one reused stack value
 void func_02042a10(void *a) {
     Unk02175620 *g;
     Unk02175620_8c *r;

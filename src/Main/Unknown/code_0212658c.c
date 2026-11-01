@@ -7,13 +7,13 @@
 
 #pragma thumb on
 
-void func_02126638(void *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s32 param_6, s32 param_7)
-{
+void func_02126638(void *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s32 param_6, s32 param_7) {
     Unk0217d3f0_2098 *p;
 
     p = &data_0217d3f0->mUnk_2098[0];
     p->mUnk_18(p, 0xf);
-    func_0212583c(&data_0217d3f0->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1, param_1);
+    func_0212583c(&data_0217d3f0->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1,
+                  param_1);
     func_02127734();
     data_0217d3f0->mUnk_2204[0] = 1;
     func_02126700();
@@ -27,13 +27,13 @@ void func_02126638(void *param_1, s32 param_2, s32 param_3, s32 param_4, s32 par
     data_0217d3f0->mUnk_40 = param_5;
 }
 
-void func_0212658c(void *param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6, u32 param_7)
-{
+void func_0212658c(void *param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6, u32 param_7) {
     Unk0217d3f0_2098 *p;
 
     p = &data_0217d3f0->mUnk_2098[1];
     p->mUnk_18(p, 0xf);
-    func_0212583c(&data_0217d3f0->mUnk_2178[1], 0, 0, data_0215d044[1][0] << 3, data_0215d044[1][1] << 3, 1, 0x480, 1, param_1);
+    func_0212583c(&data_0217d3f0->mUnk_2178[1], 0, 0, data_0215d044[1][0] << 3, data_0215d044[1][1] << 3, 1, 0x480, 1,
+                  param_1);
     func_02127734();
     data_0217d3f0->mUnk_2204[1] = 1;
     func_02126700();

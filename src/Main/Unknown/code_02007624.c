@@ -201,10 +201,9 @@ void func_020079c4(s32 a, Unk021425e8 *b) {
             do {
                 p = data_0216fdac;
                 v2 = i * 0x5d4;
-                if (((Unk0216fdac *) ((u8 *) p + v2))->mUnk_1d52 != 0
-                    && ((Unk0216fdac *) ((u8 *) p + v2))->mUnk_1d50 != 0) {
-                    func_0200973c((Unk0200b610 *) (p->mUnk_1788 + 0xe4 + v2),
-                                  p->mUnk_1340,
+                if (((Unk0216fdac *) ((u8 *) p + v2))->mUnk_1d52 != 0 &&
+                    ((Unk0216fdac *) ((u8 *) p + v2))->mUnk_1d50 != 0) {
+                    func_0200973c((Unk0200b610 *) (p->mUnk_1788 + 0xe4 + v2), p->mUnk_1340,
                                   ((Unk0216fdac *) ((u8 *) p + v2))->mUnk_1d4e,
                                   ((Unk0216fdac *) ((u8 *) p + v2))->mUnk_1d50);
                     ((Unk0216fdac *) ((u8 *) data_0216fdac + v2))->mUnk_1d50 = v1;
@@ -308,8 +307,7 @@ u32 func_02007d50(u32 a, u32 b) {
             func_0200fcb4(v1);
             return 0;
     }
-    if (*(u32 *) &data_0216fdac != 0 && func_02007138(a) != 0
-        && v2 == data_0216fdac->mUnk_14e8[a - 1]) {
+    if (*(u32 *) &data_0216fdac != 0 && func_02007138(a) != 0 && v2 == data_0216fdac->mUnk_14e8[a - 1]) {
         data_0216fdac->mUnk_1754[a - 1] = v3;
         func_0200fcb4(v1);
         return 1;
@@ -319,8 +317,7 @@ u32 func_02007d50(u32 a, u32 b) {
 }
 
 u32 func_02007df8(u32 a) {
-    if (*(u32 *) &data_0216fdac != 0 && func_02007138(a) != 0
-        && data_0216fdac->mUnk_14e8[a - 1] == 7) {
+    if (*(u32 *) &data_0216fdac != 0 && func_02007138(a) != 0 && data_0216fdac->mUnk_14e8[a - 1] == 7) {
         return 1;
     }
     return 0;
@@ -330,8 +327,7 @@ void *func_02007e38(u32 a) {
     u32 v1;
     v1 = func_0200fca0();
     if (*(u32 *) &data_0216fdac != 0 && func_02007138(a) != 0) {
-        func_0214d1fc(data_0216fdac->mUnk_1340 + (a - 1) * 0x16,
-                      data_0216fdac->mUnk_1772, 0x16);
+        func_0214d1fc(data_0216fdac->mUnk_1340 + (a - 1) * 0x16, data_0216fdac->mUnk_1772, 0x16);
         func_0200fcb4(v1);
         return data_0216fdac->mUnk_1772;
     }

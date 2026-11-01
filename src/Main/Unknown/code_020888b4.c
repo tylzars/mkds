@@ -118,12 +118,12 @@ void func_02089a24(Unk020888b4 *a, Unk02089a24 *b) {
     v = (s16) (u16) (r->mUnk_00 >> 52);
     t = 0x333;
     switch (data_021759c0->mUnk_014) {
-    case 2:
-        t = 0x666;
-        break;
-    case 3:
-        t = 0x99a;
-        break;
+        case 2:
+            t = 0x666;
+            break;
+        case 3:
+            t = 0x99a;
+            break;
     }
     if (v > t) {
         return;
@@ -140,12 +140,12 @@ void func_02089974(void) {
     t = data_021759c0;
     if (t->mUnk_18 == 0) {
         switch (t->mUnk_014) {
-        case 2:
-            data_0217b030 = &data_02166028;
-            break;
-        case 3:
-            data_0217b030 = &data_02165ff0;
-            break;
+            case 2:
+                data_0217b030 = &data_02166028;
+                break;
+            case 3:
+                data_0217b030 = &data_02165ff0;
+                break;
         }
     } else {
         data_0217b02c = 0x190000;

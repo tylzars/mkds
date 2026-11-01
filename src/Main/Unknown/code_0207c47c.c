@@ -114,31 +114,31 @@ void func_0207c8d8(Unk0208fd8c *a, struct Unk020888b4 *b) {
 
 void func_0207c78c(void) {
     switch (data_021759c0->mUnk_014) {
-    case 1:
-        data_0217ae38 = data_usa_021554a4;
-        data_0217ae34 = data_usa_0215524c;
-        data_0217ae48 = func_0207ca18;
-        data_0217ae44 = func_0207c8d8;
-        data_0217ae3c = func_0207ca18;
-        data_0217ae40 = func_0207c8d8;
-        break;
-    case 2:
-        data_0217ae38 = data_usa_021552f4;
-        data_0217ae34 = data_usa_0215524c;
-        data_0217ae48 = func_0207ca18;
-        data_0217ae44 = func_0207c8d8;
-        data_0217ae3c = func_0207ca18;
-        data_0217ae40 = func_0207c8d8;
-        break;
-    case 3:
-    default:
-        data_0217ae38 = data_usa_021553cc;
-        data_0217ae34 = data_usa_0215524c;
-        data_0217ae48 = func_0207ca60;
-        data_0217ae44 = func_0207c978;
-        data_0217ae3c = func_0207ca60;
-        data_0217ae40 = func_0207c978;
-        break;
+        case 1:
+            data_0217ae38 = data_usa_021554a4;
+            data_0217ae34 = data_usa_0215524c;
+            data_0217ae48 = func_0207ca18;
+            data_0217ae44 = func_0207c8d8;
+            data_0217ae3c = func_0207ca18;
+            data_0217ae40 = func_0207c8d8;
+            break;
+        case 2:
+            data_0217ae38 = data_usa_021552f4;
+            data_0217ae34 = data_usa_0215524c;
+            data_0217ae48 = func_0207ca18;
+            data_0217ae44 = func_0207c8d8;
+            data_0217ae3c = func_0207ca18;
+            data_0217ae40 = func_0207c8d8;
+            break;
+        case 3:
+        default:
+            data_0217ae38 = data_usa_021553cc;
+            data_0217ae34 = data_usa_0215524c;
+            data_0217ae48 = func_0207ca60;
+            data_0217ae44 = func_0207c978;
+            data_0217ae3c = func_0207ca60;
+            data_0217ae40 = func_0207c978;
+            break;
     }
 }
 

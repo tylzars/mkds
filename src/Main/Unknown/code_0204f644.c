@@ -8,7 +8,8 @@
 
 #pragma thumb on
 
-// non-matching: same size; the original loads the data pointer into r2 before the length subtraction (ldr r2,[r0]; adds r2,r2,r5 after it), ours loads it into r0 after it (4 instructions differ at +0xb4)
+// non-matching: same size; the original loads the data pointer into r2 before the length subtraction (ldr r2,[r0]; adds
+// r2,r2,r5 after it), ours loads it into r0 after it (4 instructions differ at +0xb4)
 s32 func_0204f644(void) {
     u16 n = data_0217aa00->mUnk_1d08;
     s16 m = n - 1;

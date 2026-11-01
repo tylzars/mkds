@@ -19,7 +19,7 @@ void func_020d859c(Unk020d84e4 *p, u16 b, s32 c) {
     p->mUnk_34 = a != 0 ? p->mUnk_24 * a : p->mUnk_28;
     d = p->mUnk_30;
     p->mUnk_00.mUnk_04 = d;
-    p->mUnk_00.mUnk_10 = (s32)(((s64)d * p->mUnk_00.mUnk_00->mUnk_00[p->mUnk_00.mUnk_0c].mUnk_34) >> 12);
+    p->mUnk_00.mUnk_10 = (s32) (((s64) d * p->mUnk_00.mUnk_00->mUnk_00[p->mUnk_00.mUnk_0c].mUnk_34) >> 12);
 }
 
 s32 func_020d84e4(Unk020d84e4 *p) {
@@ -35,9 +35,9 @@ s32 func_020d84e4(Unk020d84e4 *p) {
     }
     if (p->mUnk_2c != p->mUnk_34) {
         b = func_020d8cac(&p->mUnk_00);
-        c = (s32)(((s64)p->mUnk_2c * (0x1000 - b)) >> 12) + (s32)(((s64)p->mUnk_34 * b) >> 12);
+        c = (s32) (((s64) p->mUnk_2c * (0x1000 - b)) >> 12) + (s32) (((s64) p->mUnk_34 * b) >> 12);
         p->mUnk_00.mUnk_04 = c;
-        p->mUnk_00.mUnk_10 = (s32)(((s64)c * p->mUnk_00.mUnk_00->mUnk_00[p->mUnk_00.mUnk_0c].mUnk_34) >> 12);
+        p->mUnk_00.mUnk_10 = (s32) (((s64) c * p->mUnk_00.mUnk_00->mUnk_00[p->mUnk_00.mUnk_0c].mUnk_34) >> 12);
     }
     return r;
 }
@@ -45,7 +45,7 @@ s32 func_020d84e4(Unk020d84e4 *p) {
 void func_020d84c0(Unk020d849c *p, s32 a) {
     s32 t = p->mUnk_00.mUnk_34;
     p->mUnk_54 = a;
-    a = t != 0 ? (s32)(((s64)a * t) >> 12) : 0x1000000;
+    a = t != 0 ? (s32) (((s64) a * t) >> 12) : 0x1000000;
     p->mUnk_58 = a;
 }
 

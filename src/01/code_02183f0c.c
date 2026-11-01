@@ -8,13 +8,13 @@ void func_ov001_02183ff4(Unk02188950 *param_1) {
     sp.x = param_1->mUnk_000.mUnk_04.x;
     sp.y = 0;
     sp.z = param_1->mUnk_000.mUnk_04.z;
-    if ((s64)sp.z * sp.z + ((s64)sp.x * sp.x + (s64)sp.y * sp.y) >= 16) {
+    if ((s64) sp.z * sp.z + ((s64) sp.x * sp.x + (s64) sp.y * sp.y) >= 16) {
         func_02039860(&sp, &sp);
     }
     scale = param_1->mUnk_0a0->mUnk_204;
-    sp.x = (s64)sp.x * scale >> 12;
-    sp.y = (s64)sp.y * scale >> 12;
-    sp.z = (s64)sp.z * scale >> 12;
+    sp.x = (s64) sp.x * scale >> 12;
+    sp.y = (s64) sp.y * scale >> 12;
+    sp.z = (s64) sp.z * scale >> 12;
     sp.y = -param_1->mUnk_0a0->mUnk_208;
     func_ov001_02187218(param_1, 8, 0);
     func_ov001_02188d64(param_1, param_1->mUnk_0a0->mUnk_1fc, param_1->mUnk_0a0->mUnk_200);

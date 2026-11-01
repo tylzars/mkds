@@ -29,14 +29,14 @@ void func_ov000_021a3910(void) {
 
 void func_ov000_021a397c(s32 a) {
     switch (a) {
-    case 0:
-        func_ov000_02186628(data_ov000_021b4200);
-        break;
-    case 1:
-        func_ov000_02186628(data_ov000_021b4228);
-        break;
-    case 2:
-        func_ov000_02186628(data_ov000_021b424c);
-        break;
+        case 0:
+            func_ov000_02186628(data_ov000_021b4200);
+            break;
+        case 1:
+            func_ov000_02186628(data_ov000_021b4228);
+            break;
+        case 2:
+            func_ov000_02186628(data_ov000_021b424c);
+            break;
     }
 }

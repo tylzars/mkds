@@ -19,7 +19,7 @@ const char *data_0216e398[2] = {"back_screen_m_b_00.nclr", "back_screen_m_b_01.n
 void func_02125c2c(void) {
     Unk02111684_v p;
 
-    if (((Unk027ffc40 *)0x027ffc40)->mUnk_00 == 2) {
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_020b496c(&p.m4934, func_0204799c("txt_system_b_00.ncgr"));
         func_020b4810(&p.m47d8, func_0204799c("txt_system_bg_00.nscr"));
         func_020b4a7c(&p.m4a44, func_0204799c("txt_system_b_00.nclr"));
@@ -81,7 +81,7 @@ s32 func_02125960(s32 a) {
     r7 = (0xe - data_0215d034[x]) << 5;
     k8 = data_0215d030[y] << 5;
     kc = (0xc - data_0215d030[y]) << 5;
-    if (((Unk027ffc40 *)0x027ffc40)->mUnk_00 == 2) {
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_020b4934(&p14, func_0204799c("common/select_race_rule_s_b.NCGR"));
         func_020b4810(&p18, func_0204799c("common/select_race_rule_download_bg_m.NSCR"));
         func_020b4a44(&p1c, func_0204799c("common/select_race_rule_s_b.NCLR"));
@@ -110,16 +110,16 @@ s32 func_02125960(s32 a) {
     }
     func_02016468(7, 0, p14->mUnk_14, p14->mUnk_10);
     func_02016468(0xb, 0, p18->mUnk_0c, p18->mUnk_08);
-    func_02016468(0xf, r6, (void *)((u32)p1c->mUnk_0c + r6), r7);
+    func_02016468(0xf, r6, (void *) ((u32) p1c->mUnk_0c + r6), r7);
     a -= p20->mUnk_10;
     func_02016468(0x15, a, p20->mUnk_14, p20->mUnk_10);
     for (i = 0; i < 0x20; i++) {
         for (j = 0; j < 0x20; j++) {
-            *(data_0217d3ec->mUnk_10 + i * 0x20 + j) = (a >> 5) + *((u16 *)p24->mUnk_0c + i * 0x20 + j);
+            *(data_0217d3ec->mUnk_10 + i * 0x20 + j) = (a >> 5) + *((u16 *) p24->mUnk_0c + i * 0x20 + j);
         }
     }
     func_02016468(0x19, 0, data_0217d3ec->mUnk_10, p24->mUnk_08);
-    func_02016468(0x1f, k8, (void *)((u32)p28->mUnk_0c + k8), kc);
+    func_02016468(0x1f, k8, (void *) ((u32) p28->mUnk_0c + k8), kc);
     return a;
 }
 

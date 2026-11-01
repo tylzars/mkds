@@ -8,7 +8,8 @@
 #include "Main/Unknown/code_020ae000.h"
 #include "Main/Unknown/code_020e6000.h"
 
-void func_ov001_02187614(Unk02188950 *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, u32 param_6, s32 param_7) {
+void func_ov001_02187614(Unk02188950 *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, u32 param_6,
+                         s32 param_7) {
     Vec3 pos;
 
     param_1->mUnk_0bc[param_2].mUnk_04 = param_7;

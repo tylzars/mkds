@@ -12,8 +12,7 @@
 #include "Main/Unknown/unk_0217d000.h"
 #include "Main/Unknown/code_020d7da8.h"
 
-u8 func_ov001_0218274c(Unk02181c3c *param_1, Unk0218274c *param_2, u8 *param_3, u8 *param_4)
-{
+u8 func_ov001_0218274c(Unk02181c3c *param_1, Unk0218274c *param_2, u8 *param_3, u8 *param_4) {
     u8 a = *param_3;
     u8 b = *param_4;
 
@@ -31,8 +30,7 @@ u8 func_ov001_0218274c(Unk02181c3c *param_1, Unk0218274c *param_2, u8 *param_3, 
     return b;
 }
 
-void func_ov001_021826fc(Unk0219b478 *param_1)
-{
+void func_ov001_021826fc(Unk0219b478 *param_1) {
     data_ov001_021a9b98 = func_ov001_0219b478(param_1, data_ov001_021a78c0);
     func_ov001_0219b2e8(data_ov001_021a9b98, data_ov001_021a78cc);
     func_0209b940(data_ov001_021a9b98, 0x3f);
@@ -41,8 +39,7 @@ void func_ov001_021826fc(Unk0219b478 *param_1)
     param_1->mUnk_1c = 1;
 }
 
-void func_ov001_0218263c(void *param_1, Unk02181c3c *param_2)
-{
+void func_ov001_0218263c(void *param_1, Unk02181c3c *param_2) {
     s32 a;
     Vec3 v;
     u32 t;
@@ -72,8 +69,7 @@ void func_ov001_0218263c(void *param_1, Unk02181c3c *param_2)
     }
 }
 
-void func_ov001_02182550(Unk02181c3c_list *param_1)
-{
+void func_ov001_02182550(Unk02181c3c_list *param_1) {
     int i;
     Unk02181c3c *p;
     s32 n;
@@ -87,7 +83,7 @@ void func_ov001_02182550(Unk02181c3c_list *param_1)
                 func_020d7da8(&p->mUnk_0b4, p->mUnk_000.mUnk_9c, 0);
                 n = (p->mUnk_000.mUnk_9c->mUnk_28 << 12) / 100;
                 p->mUnk_0b4.mUnk_04 = n;
-                p->mUnk_0b4.mUnk_10 = ((s64)n * p->mUnk_0b4.mUnk_00->mUnk_00[p->mUnk_0b4.mUnk_0c].mUnk_34) >> 12;
+                p->mUnk_0b4.mUnk_10 = ((s64) n * p->mUnk_0b4.mUnk_00->mUnk_00[p->mUnk_0b4.mUnk_0c].mUnk_34) >> 12;
             } else {
                 p->mUnk_0b4.mUnk_08 = 0xffff;
             }
@@ -101,6 +97,4 @@ void func_ov001_02182550(Unk02181c3c_list *param_1)
     }
 }
 
-void func_ov001_0218254c(void)
-{
-}
+void func_ov001_0218254c(void) {}

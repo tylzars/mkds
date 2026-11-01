@@ -19,8 +19,7 @@
 #include "Main/Unknown/unk_02156000.h"
 #include "Main/Unknown/code_020df890.h"
 
-void func_020d47e0(void)
-{
+void func_020d47e0(void) {
     u32 f;
     s32 i;
     s32 n;
@@ -59,9 +58,11 @@ void func_020d47e0(void)
                     e->mUnk_02 |= a;
                 } else {
                     if (e->mUnk_7c != 0) {
-                        e->mUnk_78 = (e->mUnk_78 & 0x10) | func_01ffd648(&e->mUnk_04, e->mUnk_68, e->mUnk_6c, e->mUnk_70, e->mUnk_66);
+                        e->mUnk_78 = (e->mUnk_78 & 0x10) |
+                                     func_01ffd648(&e->mUnk_04, e->mUnk_68, e->mUnk_6c, e->mUnk_70, e->mUnk_66);
                     } else {
-                        e->mUnk_78 = (e->mUnk_78 & 0x10) | func_01ffd778(&e->mUnk_04, e->mUnk_68, e->mUnk_6c, e->mUnk_70, e->mUnk_66);
+                        e->mUnk_78 = (e->mUnk_78 & 0x10) |
+                                     func_01ffd778(&e->mUnk_04, e->mUnk_68, e->mUnk_6c, e->mUnk_70, e->mUnk_66);
                     }
                     e->mUnk_78 |= b;
                     if (e->mUnk_78 & 2) {
@@ -75,8 +76,7 @@ void func_020d47e0(void)
     } while (++i < n);
 }
 
-void func_020d4698(void)
-{
+void func_020d4698(void) {
     u32 f;
     s32 i;
     s32 n;
@@ -102,9 +102,11 @@ void func_020d4698(void)
                 e->mUnk_02 |= a;
             } else {
                 if (e->mUnk_7c != 0) {
-                    e->mUnk_78 = (e->mUnk_78 & 0x10) | func_01ffd648(&e->mUnk_04, e->mUnk_68, e->mUnk_6c, e->mUnk_70, e->mUnk_66);
+                    e->mUnk_78 = (e->mUnk_78 & 0x10) |
+                                 func_01ffd648(&e->mUnk_04, e->mUnk_68, e->mUnk_6c, e->mUnk_70, e->mUnk_66);
                 } else {
-                    e->mUnk_78 = (e->mUnk_78 & 0x10) | func_01ffd778(&e->mUnk_04, e->mUnk_68, e->mUnk_6c, e->mUnk_70, e->mUnk_66);
+                    e->mUnk_78 = (e->mUnk_78 & 0x10) |
+                                 func_01ffd778(&e->mUnk_04, e->mUnk_68, e->mUnk_6c, e->mUnk_70, e->mUnk_66);
                 }
                 e->mUnk_78 |= b;
                 if (e->mUnk_78 & 1) {
@@ -122,8 +124,7 @@ void func_020d4698(void)
     } while (++i < n);
 }
 
-void func_020d4590(void)
-{
+void func_020d4590(void) {
     Unk020e6fd4 *e;
     s32 i;
     s32 n;
@@ -164,8 +165,7 @@ void func_020d4590(void)
     }
 }
 
-void func_020d4484(Unk020d4418 *p)
-{
+void func_020d4484(Unk020d4418 *p) {
     s32 i;
     s32 n;
     Unk020e6fd4 **t;
@@ -209,8 +209,7 @@ void func_020d4484(Unk020d4418 *p)
     }
 }
 
-void func_020d4418(Unk020d4418 *p)
-{
+void func_020d4418(Unk020d4418 *p) {
     Unk02012f58 *v;
 
     v = &p->mUnk_30;
@@ -225,8 +224,7 @@ void func_020d4418(Unk020d4418 *p)
     }
 }
 
-s32 func_020d41e0(Unk0206bcb0 *a, Vec3 *b, Vec3 *c)
-{
+s32 func_020d41e0(Unk0206bcb0 *a, Vec3 *b, Vec3 *c) {
     Vec3 v;
     Vec3 lo;
     Vec3 hi;
@@ -288,8 +286,7 @@ s32 func_020d41e0(Unk0206bcb0 *a, Vec3 *b, Vec3 *c)
     return n;
 }
 
-s32 func_020d4130(Vec3 *a, s32 b, s32 c)
-{
+s32 func_020d4130(Vec3 *a, s32 b, s32 c) {
     s32 n;
     Unk020e71a0 *e;
     s32 d;
@@ -303,7 +300,7 @@ s32 func_020d4130(Vec3 *a, s32 b, s32 c)
         if (e->mUnk_00 == c) {
             f = a->x - e->mUnk_04.x;
             d = a->z - e->mUnk_04.z;
-            if ((s64)f * f + (s64)d * d < (s64)b * b) {
+            if ((s64) f * f + (s64) d * d < (s64) b * b) {
                 data_0217b4e8[n] = e;
                 n++;
             }

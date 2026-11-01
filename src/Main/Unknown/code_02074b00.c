@@ -308,36 +308,37 @@ void func_020757d8(void) {
 
 // non-matching: 0x18c bytes against 0x194: the original keeps mUnk_32, mUnk_34 and mUnk_240 in r7, r6 and r5 (push of
 // r4-r7 and a stack offset of 4), loads all four halfwords and mUnk_240 before the two subtractions and the two
-// multiplies, and reads mUnk_3c once more after the stores; the same interpolation in func_02074b00 differs the same way
+// multiplies, and reads mUnk_3c once more after the stores; the same interpolation in func_02074b00 differs the same
+// way
 void func_02075900(Unk02061808 *p) {
     switch (p->mUnk_218->mUnk_3e) {
-    case 0:
-        p->mUnk_024 = p->mUnk_218->mUnk_00;
-        if (data_021759c0->mUnk_00c == 5) {
-            p->mUnk_210 = (p->mUnk_218->mUnk_24.z >> 12) - 1;
-            func_0207a948(&p->mUnk_018, p->mUnk_210);
-            p->mUnk_018.y = p->mUnk_018.y + p->mUnk_218->mUnk_18.y;
-        } else {
-            func_0207a948(&p->mUnk_018, p->mUnk_210);
-            p->mUnk_018.y = p->mUnk_018.y + 0x6000;
-        }
-        func_02076cd0(p);
-        break;
-    case 1:
-        func_02075390(p);
-        break;
-    case 5:
-    case 6:
-        func_02074e6c(p);
-        break;
-    case 2:
-        p->mUnk_024 = p->mUnk_218->mUnk_00;
-        func_020748b8(p);
-        func_02076ed4(p);
-        break;
-    case 3:
-        func_02074978(p);
-        break;
+        case 0:
+            p->mUnk_024 = p->mUnk_218->mUnk_00;
+            if (data_021759c0->mUnk_00c == 5) {
+                p->mUnk_210 = (p->mUnk_218->mUnk_24.z >> 12) - 1;
+                func_0207a948(&p->mUnk_018, p->mUnk_210);
+                p->mUnk_018.y = p->mUnk_018.y + p->mUnk_218->mUnk_18.y;
+            } else {
+                func_0207a948(&p->mUnk_018, p->mUnk_210);
+                p->mUnk_018.y = p->mUnk_018.y + 0x6000;
+            }
+            func_02076cd0(p);
+            break;
+        case 1:
+            func_02075390(p);
+            break;
+        case 5:
+        case 6:
+            func_02074e6c(p);
+            break;
+        case 2:
+            p->mUnk_024 = p->mUnk_218->mUnk_00;
+            func_020748b8(p);
+            func_02076ed4(p);
+            break;
+        case 3:
+            func_02074978(p);
+            break;
     }
     if (p->mUnk_218->mUnk_3c != 0) {
         Unk020748b8_218 *q = p->mUnk_218;

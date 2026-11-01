@@ -8,8 +8,7 @@ u32 func_ov000_02198fdc(int param_1) {
         func_0213442c(data_ov000_021b3fb0, data_ov000_021b3fb8, 0, 0x475);
     }
     v2 = (int *) func_ov000_0218dbf8((int *) ((int *) (u32) (*(u32 *) (param_1 + 0x60))), (int) (v1 + -1));
-    v1 = func_ov000_02198714((u32 *) ((u32 *) (u32) (param_1)), (u32) (*(int *) (param_1 + 0x50) + *v2),
-                                (u32) (v2[1]));
+    v1 = func_ov000_02198714((u32 *) ((u32 *) (u32) (param_1)), (u32) (*(int *) (param_1 + 0x50) + *v2), (u32) (v2[1]));
     if (v1 == 0) {
         return 0;
     }

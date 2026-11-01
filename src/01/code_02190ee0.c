@@ -9,7 +9,7 @@
 #include "01/unk_021a7000.h"
 
 void func_ov001_02190ee0(Unk02188950 *param_1) {
-    func_ov001_02187218(param_1, 8, (s32 (*)(Unk02188950 *)) (0));
+    func_ov001_02187218(param_1, 8, (s32(*)(Unk02188950 *))(0));
     func_ov001_02187af4(param_1);
     func_ov001_021875c0(param_1, (u32) 0, (u32) 0x1000, (u32) 0xffffdccd, (u32) 0x3ef, (u32) 0);
     func_ov001_021875c0(param_1, (u32) 0, (u32) 0x1000, (u32) 0xffffdccd, (u32) 0x3ee, (u32) 0);

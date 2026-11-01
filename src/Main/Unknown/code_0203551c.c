@@ -244,8 +244,8 @@ void func_020357dc(void *a, void *b, void *c) {
     w[0] = 0;
     w[1] = m;
     w[2] = m + 7;
-    func_0202e530(data_02174e68->mUnk_a4, 3, w, 7, 8, 0x7c, s->mUnk_18, s->mUnk_10,
-                  data_02174e68->mUnk_20 + 0xc, 0, 1, 2, 10, func_02035c50);
+    func_0202e530(data_02174e68->mUnk_a4, 3, w, 7, 8, 0x7c, s->mUnk_18, s->mUnk_10, data_02174e68->mUnk_20 + 0xc, 0, 1,
+                  2, 10, func_02035c50);
     func_02025b84(0, (u32) &data_02174e68->mUnk_64);
     func_02035a9c();
     func_02025f80(&data_02174e68->mUnk_90, 0, 10, -0xc0, 0);

@@ -6,8 +6,7 @@
 #include "Main/Unknown/code_02105000.h"
 #include "code_0201ea58.h"
 
-void func_ov001_0219ec38(void)
-{
+void func_ov001_0219ec38(void) {
     u32 sel = -1;
     Unk02175628Index i = UNK_02175628_INDEX_8;
     s32 f2;
@@ -101,8 +100,7 @@ next:
     }
 }
 
-void func_ov001_0219ebfc(void)
-{
+void func_ov001_0219ebfc(void) {
     data_ov001_021ca410->mUnk_24 = data_ov001_021ca410->mUnk_24 + 1;
     func_021059e0();
     if (data_ov001_021ca410->mUnk_24 >= 5) {
@@ -112,8 +110,7 @@ void func_ov001_0219ebfc(void)
     }
 }
 
-void func_ov001_0219eb60(void)
-{
+void func_ov001_0219eb60(void) {
     s32 i;
     s32 j;
     s32 count;
@@ -131,28 +128,27 @@ void func_ov001_0219eb60(void)
     }
 }
 
-s32 func_ov001_0219ead4(void)
-{
+s32 func_ov001_0219ead4(void) {
     data_ov001_021ca410->mUnk_1c = data_ov001_021ca410->mUnk_20;
     switch (data_ov001_021ca410->mUnk_1c) {
-    case 0:
-        func_ov001_0219efd0();
-        break;
-    case 1:
-        func_ov001_0219ef24();
-        break;
-    case 2:
-        func_ov001_0219ef08();
-        break;
-    case 3:
-        func_ov001_0219ec38();
-        break;
-    case 4:
-        func_ov001_0219ebfc();
-        break;
-    case 5:
-        func_ov001_0219eb60();
-        break;
+        case 0:
+            func_ov001_0219efd0();
+            break;
+        case 1:
+            func_ov001_0219ef24();
+            break;
+        case 2:
+            func_ov001_0219ef08();
+            break;
+        case 3:
+            func_ov001_0219ec38();
+            break;
+        case 4:
+            func_ov001_0219ebfc();
+            break;
+        case 5:
+            func_ov001_0219eb60();
+            break;
     }
     func_ov001_0219f430();
     func_02124c30(data_ov001_021ca410->mUnk_04, data_ov001_021ca410->mUnk_00, data_ov001_021ca410->mUnk_0c,
@@ -163,13 +159,11 @@ s32 func_ov001_0219ead4(void)
     return 0;
 }
 
-void func_ov001_0219eab4(void)
-{
+void func_ov001_0219eab4(void) {
     *(vu32 *) 0x4000010 = (-data_ov001_021ca410->mUnk_44 << 16) & 0x1ff0000;
 }
 
-void func_ov001_0219ea8c(void)
-{
+void func_ov001_0219ea8c(void) {
     void *heap = func_020364e0(func_020364e8());
 
     data_ov001_021ca40c = func_02036bec(heap, 4);

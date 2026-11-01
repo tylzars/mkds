@@ -113,15 +113,15 @@ u32 func_ov000_02191cb0(Unk021919ac *p, const u8 *a, const u8 *b, const u8 *c, c
         return 2;
     }
     switch (h) {
-    case 1:
-        o->mUnk_10c = 1;
-        break;
-    case 0:
-        o->mUnk_10c = 0;
-        break;
-    default:
-        func_ov000_02196590(p, data_ov000_021b2da8);
-        return 2;
+        case 1:
+            o->mUnk_10c = 1;
+            break;
+        case 0:
+            o->mUnk_10c = 0;
+            break;
+        default:
+            func_ov000_02196590(p, data_ov000_021b2da8);
+            return 2;
     }
     o->mUnk_10c = 1;
     func_ov000_02196914(o->mUnk_110, a, 0x1f);
@@ -163,7 +163,9 @@ u32 func_ov000_02191cb0(Unk021919ac *p, const u8 *a, const u8 *b, const u8 *c, c
     return 0;
 }
 
-// non-matching: -1 compares load the descriptor into r1 and build -1 in r0 (original: r0 and r2, via movs r1,#0; mvns r2,r1); the 8-byte address is zeroed with stores at [sp] (original: str through r1 = sp, then a second add for strb); same size
+// non-matching: -1 compares load the descriptor into r1 and build -1 in r0 (original: r0 and r2, via movs r1,#0; mvns
+// r2,r1); the 8-byte address is zeroed with stores at [sp] (original: str through r1 = sp, then a second add for strb);
+// same size
 u32 func_ov000_02191e58(Unk021919ac *p, Unk021919ac_node *n) {
     Unk021919ac_00 *o;
     Unk021919ac_sa s;

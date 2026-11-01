@@ -13,24 +13,24 @@ s32 func_ov001_021860cc(Unk02188950 *param_1, Vec3 *param_2, s32 param_3, Vec3 *
     s32 d3;
 
     switch (param_1->mUnk_234) {
-    case 0:
-        param_3 += param_1->mUnk_25c;
-        d1 = param_2->x - param_1->mUnk_238.x;
-        d2 = param_2->y - param_1->mUnk_238.y;
-        d3 = param_2->z - param_1->mUnk_238.z;
-        if ((s64) d3 * d3 + ((s64) d1 * d1 + (s64) d2 * d2) < (s64) param_3 * param_3) {
-            func_020eb3f0(param_2, &param_1->mUnk_238, param_3, param_4);
-            return 1;
-        }
-        return 0;
-    case 2:
-        return func_020ead80(param_2, &param_1->mUnk_238, &param_1->mUnk_000.mUnk_28.mUnk_00, param_1->mUnk_25c,
-                             param_1->mUnk_260, param_1->mUnk_260, param_3, param_4);
-    case 1:
-        return func_020eafc4(param_2, &param_1->mUnk_238, &param_1->mUnk_000.mUnk_28.mUnk_00,
-                             (Vec3 *) &param_1->mUnk_25c, (Vec3 *) &param_1->mUnk_25c, param_3, param_4);
-    default:
-        return 0;
+        case 0:
+            param_3 += param_1->mUnk_25c;
+            d1 = param_2->x - param_1->mUnk_238.x;
+            d2 = param_2->y - param_1->mUnk_238.y;
+            d3 = param_2->z - param_1->mUnk_238.z;
+            if ((s64) d3 * d3 + ((s64) d1 * d1 + (s64) d2 * d2) < (s64) param_3 * param_3) {
+                func_020eb3f0(param_2, &param_1->mUnk_238, param_3, param_4);
+                return 1;
+            }
+            return 0;
+        case 2:
+            return func_020ead80(param_2, &param_1->mUnk_238, &param_1->mUnk_000.mUnk_28.mUnk_00, param_1->mUnk_25c,
+                                 param_1->mUnk_260, param_1->mUnk_260, param_3, param_4);
+        case 1:
+            return func_020eafc4(param_2, &param_1->mUnk_238, &param_1->mUnk_000.mUnk_28.mUnk_00,
+                                 (Vec3 *) &param_1->mUnk_25c, (Vec3 *) &param_1->mUnk_25c, param_3, param_4);
+        default:
+            return 0;
     }
 }
 

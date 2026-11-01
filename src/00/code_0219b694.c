@@ -18,7 +18,6 @@ void func_ov000_0219b6c0(int param_1, u32 param_2) {
 
 void func_ov000_0219b694(u32 param_1, u32 param_2) {
     func_ov000_0219b8a8((u32) (data_ov000_021b54c8->mUnk_28));
-    (**(UnkFunc **) ((int) data_ov000_021b54c8 + 100))(param_1, param_2,
-                                                             *(u32 *) ((int) data_ov000_021b54c8 + 0x68));
+    (**(UnkFunc **) ((int) data_ov000_021b54c8 + 100))(param_1, param_2, *(u32 *) ((int) data_ov000_021b54c8 + 0x68));
     return;
 }

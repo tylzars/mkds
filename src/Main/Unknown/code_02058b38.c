@@ -101,10 +101,10 @@ void func_02058c74(void) {
     func_02056464(&data_0217aa00->mUnk_045c[v]);
 }
 
-// non-matching: ours is 4 bytes shorter; first difference at +0x36: original `ldr r1, [pc, #196]` (member 0x432 offset),
-// ours `ldr r2, [pc, #192]`. The original keeps the halfword in r2 and reloads the first word of the object before the
-// compare with 2; ours holds the halfword in r3 and reuses the first load. In the second chain of conditions the
-// original keeps the flags in r1, r2 and r3 and the loaded value in r5.
+// non-matching: ours is 4 bytes shorter; first difference at +0x36: original `ldr r1, [pc, #196]` (member 0x432
+// offset), ours `ldr r2, [pc, #192]`. The original keeps the halfword in r2 and reloads the first word of the object
+// before the compare with 2; ours holds the halfword in r3 and reuses the first load. In the second chain of conditions
+// the original keeps the flags in r1, r2 and r3 and the loaded value in r5.
 s32 func_02058cac(void) {
     s32 r;
     u16 v;

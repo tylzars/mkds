@@ -20,7 +20,8 @@ void func_ov003_021c0a40(u32 param_1) {
     func_ov003_021d34e0((Unk021d34e0 *) param_1, func_ov003_021c0a24);
 }
 
-// non-matching: size 0x68 against 0x80. The original keeps both values in stack offsets 0 and 4; the compiled code keeps them in registers.
+// non-matching: size 0x68 against 0x80. The original keeps both values in stack offsets 0 and 4; the compiled code
+// keeps them in registers.
 void func_ov003_021c0ab0(u32 param_1) {
     u32 x;
     s32 y;
@@ -36,7 +37,8 @@ void func_ov003_021c0ab0(u32 param_1) {
     func_ov003_021d34e0((Unk021d34e0 *) param_1, func_ov003_021c0a40);
 }
 
-// non-matching: size 0x68 against 0x80. The original keeps both values in stack offsets 0 and 4; the compiled code keeps them in registers.
+// non-matching: size 0x68 against 0x80. The original keeps both values in stack offsets 0 and 4; the compiled code
+// keeps them in registers.
 void func_ov003_021c0b30(u32 param_1) {
     u32 x;
     s32 y;
@@ -52,7 +54,8 @@ void func_ov003_021c0b30(u32 param_1) {
     func_ov003_021d34e0((Unk021d34e0 *) param_1, func_ov003_021c0ab0);
 }
 
-// non-matching: size 0x64 against 0x7c. The original keeps both values in stack offsets 0 and 4; the compiled code keeps them in registers.
+// non-matching: size 0x64 against 0x7c. The original keeps both values in stack offsets 0 and 4; the compiled code
+// keeps them in registers.
 void func_ov003_021c0bb0(u32 param_1) {
     u32 x;
     s32 y;
@@ -68,7 +71,8 @@ void func_ov003_021c0bb0(u32 param_1) {
     func_ov003_021d34e0((Unk021d34e0 *) param_1, func_ov003_021c0b30);
 }
 
-// non-matching: size 0x64 against 0x7c. The original keeps both values in stack offsets 0 and 4; the compiled code keeps them in registers.
+// non-matching: size 0x64 against 0x7c. The original keeps both values in stack offsets 0 and 4; the compiled code
+// keeps them in registers.
 void func_ov003_021c0c2c(u32 param_1) {
     u32 x;
     s32 y;

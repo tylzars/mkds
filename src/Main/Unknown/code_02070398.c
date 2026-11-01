@@ -43,7 +43,9 @@ void func_020705fc(Unk0206bcb0 *p, u32 b) {
     a.x = data_02175620->mUnk_34[i].mUnk_00.x;
     a.y = data_02175620->mUnk_34[i].mUnk_00.y;
     a.z = data_02175620->mUnk_34[i].mUnk_00.z;
-    k = (u16) (((s64) data_02175620->mUnk_34[data_02175620->mUnk_fc[b]].mUnk_0c.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >> 4;
+    k = (u16) (((s64) data_02175620->mUnk_34[data_02175620->mUnk_fc[b]].mUnk_0c.y * 0xb60b60b60bLL + 0x80000000LL) >>
+               44) >>
+        4;
     func_02146d44(m, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
     func_02146d78(&data_02154f70, m, &e);
     if (data_021759c0->mUnk_08 == 2) {
@@ -130,8 +132,7 @@ s32 func_02070398(Unk0206bcb0 *p, u32 b, void *c) {
 
     w = p->mUnk_44;
     if (!(w & 0xc2200) && !(p->mUnk_7c & 0x400)) {
-        if (!(w & 0xc0000) && !(p->mUnk_4c & 0x100) && p->mUnk_1fc.x == 0 && p->mUnk_1fc.y == 0 &&
-            p->mUnk_1fc.z == 0 &&
+        if (!(w & 0xc0000) && !(p->mUnk_4c & 0x100) && p->mUnk_1fc.x == 0 && p->mUnk_1fc.y == 0 && p->mUnk_1fc.z == 0 &&
             p->mUnk_274 == 0 && p->mUnk_4d0 >= 0x64) {
             p->mUnk_80.x = p->mUnk_8c.x;
             p->mUnk_80.z = p->mUnk_8c.z;

@@ -206,9 +206,9 @@ void func_0207b354(Unk0206bcb0 *p) {
     q->mUnk_10 += 0x96;
 }
 
-// non-matching: same size and instruction order; registers differ: the original keeps the word at 0x08 of the data_021759c0
-// object in r8 (saved register), that object in r0 and the constant 1 in r1, ours uses r3 for the word and r1 for the object
-// (so the first compare, the 0x3d0 load and the movs after it use other registers throughout)
+// non-matching: same size and instruction order; registers differ: the original keeps the word at 0x08 of the
+// data_021759c0 object in r8 (saved register), that object in r0 and the constant 1 in r1, ours uses r3 for the word
+// and r1 for the object (so the first compare, the 0x3d0 load and the movs after it use other registers throughout)
 void func_0207b44c(Unk0206bcb0 *a) {
     u32 f;
     u16 b;
@@ -308,8 +308,8 @@ void func_0207b708(struct Unk0206bcb0_590 *a, s32 b) {
 }
 
 // non-matching: same size and instruction order; the original holds the word at 0x48 in r3 and the word at 0x08 of the
-// 0x24 block in r2 (the step in r1, the object at 0x08 in r4); ours has them in r2 and r0, so the compares and the negation use
-// other registers, and the `add r5, r6, #36` comes before the step selection in the original
+// 0x24 block in r2 (the step in r1, the object at 0x08 in r4); ours has them in r2 and r0, so the compares and the
+// negation use other registers, and the `add r5, r6, #36` comes before the step selection in the original
 void func_0207b734(Unk0206bcb0 *a) {
     s32 b;
     Unk0206bcb0_590 *q;

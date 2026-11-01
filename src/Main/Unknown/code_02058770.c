@@ -46,15 +46,15 @@ void func_02058820(void) {
 void func_020587d8(void) {
     if (data_0217aa00->mUnk_0010 == 0) {
         switch (data_0217aa00->mUnk_000c) {
-        case 0xc:
-            data_0217aa00->mUnk_000c = 0xb;
-            break;
-        case 0xb:
-            func_020587d8_inline(8);
-            break;
-        default:
-            func_02050e60(2);
-            break;
+            case 0xc:
+                data_0217aa00->mUnk_000c = 0xb;
+                break;
+            case 0xb:
+                func_020587d8_inline(8);
+                break;
+            default:
+                func_02050e60(2);
+                break;
         }
     }
 }

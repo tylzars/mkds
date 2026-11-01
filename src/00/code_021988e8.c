@@ -30,7 +30,8 @@ void func_ov000_02198914(Unk02197fe8 *a, u8 *b, int c, int d) {
 }
 
 // non-matching: the original keeps the first out value at sp+0x10 in r2 (not r4), spills the second one to sp+4 and
-// puts the u16 at sp+8; ours keeps them in r4/r6 with the u16 at sp+4 (same size apart from that, 0xfc bytes either way)
+// puts the u16 at sp+8; ours keeps them in r4/r6 with the u16 at sp+4 (same size apart from that, 0xfc bytes either
+// way)
 int func_ov000_02198968(void *a, Unk02197fe8 **b, u32 c, void *d, int e, u32 f, int g, int h) {
     u32 i;
     u16 j;
@@ -41,7 +42,8 @@ int func_ov000_02198968(void *a, Unk02197fe8 **b, u32 c, void *d, int e, u32 f, 
     if (func_ov000_0219a654((const u8 *) c, &i, &j) == 0 || i == 0 || (k = j) == 0) {
         return 4;
     }
-    if (((((i << 24) & 0xff000000) | (((i << 8) & 0xff0000) | (((i >> 24) & 0xff) | ((i >> 8) & 0xff00)))) & 0xe0000000) == 0xe0000000) {
+    if (((((i << 24) & 0xff000000) | (((i << 8) & 0xff0000) | (((i >> 24) & 0xff) | ((i >> 8) & 0xff00)))) &
+         0xe0000000) == 0xe0000000) {
         return 4;
     }
     l = func_ov000_0219885c(a, &m, 0, k);

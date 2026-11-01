@@ -16,7 +16,8 @@
 #include "Main/Unknown/code_020b3f64.h"
 #include "Main/Unknown/code_021108bc.h"
 
-// non-matching: same instructions; in the loop that stores the halfword at 0x50 of each entry the original keeps the table base in r2, the offset in r1, the loaded halfword in r8 and the byte in r3 (ours r8, r3, r1, r9)
+// non-matching: same instructions; in the loop that stores the halfword at 0x50 of each entry the original keeps the
+// table base in r2, the offset in r1, the loaded halfword in r8 and the byte in r3 (ours r8, r3, r1, r9)
 void func_0203ca38(void) {
     u32 i;
     func_0203fed4();
@@ -113,7 +114,9 @@ void func_0203cd04(u16 a) {
     func_0203e788(a, 4);
 }
 
-// non-matching: same control flow; the original (0x2a0 bytes) loads the halfword index into r2 before the multiply (mul r4, r2, r0 after the constant) and keeps the data_021759c0 pointer in r3, the flag in ip and the counter value in r3 / r2 differently; ours is 0x298 bytes
+// non-matching: same control flow; the original (0x2a0 bytes) loads the halfword index into r2 before the multiply (mul
+// r4, r2, r0 after the constant) and keeps the data_021759c0 pointer in r3, the flag in ip and the counter value in r3
+// / r2 differently; ours is 0x298 bytes
 void func_0203cd14(void) {
     s32 g = 0;
     s32 k = 2;
@@ -202,7 +205,9 @@ void func_0203cd14(void) {
     func_0203e788((u16) data_021759c0->mUnk_62, k);
 }
 
-// non-matching: the original (0xc4 bytes) reloads the byte at 0x3d0 through the same pointer register on every iteration and keeps the counter and index in r4 and r5; ours (0xb8 bytes) holds the byte in a register across the loop
+// non-matching: the original (0xc4 bytes) reloads the byte at 0x3d0 through the same pointer register on every
+// iteration and keeps the counter and index in r4 and r5; ours (0xb8 bytes) holds the byte in a register across the
+// loop
 s32 func_0203cfb4(void) {
     s32 r = 1;
     Unk0217561c *d = data_0217561c;
@@ -276,7 +281,8 @@ void func_0203d078(void) {
     }
 }
 
-// non-matching: same control flow and instructions but 0x348 bytes against 0x34c; the data_021759c0 pointer is held in r7 where the original keeps it in r1 for the first loop head, and r4/r5/r6/sl/fp are rotated
+// non-matching: same control flow and instructions but 0x348 bytes against 0x34c; the data_021759c0 pointer is held in
+// r7 where the original keeps it in r1 for the first loop head, and r4/r5/r6/sl/fp are rotated
 void func_0203d21c(void) {
     s32 v = -1;
     s32 f = 0;

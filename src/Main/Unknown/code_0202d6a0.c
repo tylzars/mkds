@@ -14,7 +14,8 @@ void func_0202d6a0(void) {
     m[10] = 0;
     a = func_0202dbe8(data_02174e40->mUnk_0a4);
     b = func_0202db68(data_02174e40->mUnk_0a4);
-    func_0202de00((Unk02174e14 *) data_02174e40->mUnk_050, data_usa_02153bec, m, a, b, func_0202db04(data_02174e40->mUnk_0a4), &t);
+    func_0202de00((Unk02174e14 *) data_02174e40->mUnk_050, data_usa_02153bec, m, a, b,
+                  func_0202db04(data_02174e40->mUnk_0a4), &t);
 }
 
 void func_0202d720(void) {

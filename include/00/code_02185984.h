@@ -12,7 +12,8 @@
 #include "00/code_021a6abc.h"
 #include "00/code_0218a67c.h"
 
-// Written into Unk02185984 at 0x1cc; mUnk_24 and mUnk_28 allocate and release the 0x13e0 bytes of the object and the buffers.
+// Written into Unk02185984 at 0x1cc; mUnk_24 and mUnk_28 allocate and release the 0x13e0 bytes of the object and the
+// buffers.
 typedef struct Unk02186560 {
     /* 00 */ u8 mUnk_00[0x15];
     /* 15 */ u8 mUnk_15[0xc];

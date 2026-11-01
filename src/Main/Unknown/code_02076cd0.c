@@ -40,7 +40,9 @@ void func_02076cd0(Unk02061808 *p) {
         p->mUnk_000.x = 0x1000;
         p->mUnk_000.y = 0x1000;
         p->mUnk_000.z = 0x1000;
-        if ((s64) p->mUnk_000.x * p->mUnk_000.x + (s64) p->mUnk_000.y * p->mUnk_000.y + (s64) p->mUnk_000.z * p->mUnk_000.z >= 0x10) {
+        if ((s64) p->mUnk_000.x * p->mUnk_000.x + (s64) p->mUnk_000.y * p->mUnk_000.y +
+                (s64) p->mUnk_000.z * p->mUnk_000.z >=
+            0x10) {
             func_02039860(&p->mUnk_000, &p->mUnk_000);
         }
     }
@@ -80,7 +82,9 @@ void func_02076ed4(Unk02061808 *p) {
         p->mUnk_000.x = 0x1000;
         p->mUnk_000.y = 0x1000;
         p->mUnk_000.z = 0x1000;
-        if ((s64) p->mUnk_000.x * p->mUnk_000.x + (s64) p->mUnk_000.y * p->mUnk_000.y + (s64) p->mUnk_000.z * p->mUnk_000.z >= 0x10) {
+        if ((s64) p->mUnk_000.x * p->mUnk_000.x + (s64) p->mUnk_000.y * p->mUnk_000.y +
+                (s64) p->mUnk_000.z * p->mUnk_000.z >=
+            0x10) {
             func_02039860(&p->mUnk_000, &p->mUnk_000);
         }
     }
@@ -138,11 +142,13 @@ void func_02077060(Unk02061808 *p) {
     }
     func_020d4a20(a, b, p->mUnk_080, p->mUnk_084, p->mUnk_070, p->mUnk_074);
     *(u32 *) 0x4000440 = 0;
-    func_0214b048(p->mUnk_078, p->mUnk_07c, p->mUnk_080, p->mUnk_084, p->mUnk_070, p->mUnk_074, 0x1000, 1, (Unk0214ad4c *) data_0217acc0);
+    func_0214b048(p->mUnk_078, p->mUnk_07c, p->mUnk_080, p->mUnk_084, p->mUnk_070, p->mUnk_074, 0x1000, 1,
+                  (Unk0214ad4c *) data_0217acc0);
 }
 
-// non-matching: 0x340 bytes against 0x348; the original copies data_usa_02154fdc through a second stack vector (two ldm/stm
-// hops, frame 0x3c) and loads the constant words and vector copies in a different order (first difference at 0x28)
+// non-matching: 0x340 bytes against 0x348; the original copies data_usa_02154fdc through a second stack vector (two
+// ldm/stm hops, frame 0x3c) and loads the constant words and vector copies in a different order (first difference at
+// 0x28)
 void func_0207729c(Unk02061808 *p) {
     Vec3 a;
     Vec3 b;

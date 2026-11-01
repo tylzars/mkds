@@ -11,8 +11,8 @@ typedef struct Unk020dc474_1d8 {
     /* a8 */ s32 mUnk_a8;
 } Unk020dc474_1d8;
 
-// Object of func_020dc474, func_020dc608 and the functions after it up to func_020dd860: vectors at 0x04, 0x10 and 0xa0, ring of four
-// vector pointers at 0x160, words at 0xe8, 0xec, 0xf0 and 0x1fc.
+// Object of func_020dc474, func_020dc608 and the functions after it up to func_020dd860: vectors at 0x04, 0x10 and
+// 0xa0, ring of four vector pointers at 0x160, words at 0xe8, 0xec, 0xf0 and 0x1fc.
 typedef struct Unk020dc474 {
     /* 00 */ Unk020e71a0 mUnk_00;
     /* a0 */ Vec3 mUnk_a0;

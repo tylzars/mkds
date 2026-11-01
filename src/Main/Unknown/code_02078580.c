@@ -200,18 +200,18 @@ void func_020789e4(void) {
 void func_020789f4(void) {
     Unk0217ad08_024 *q = &data_0217ad08->mUnk_024;
     switch (q->mUnk_30) {
-    case 0:
-        q->mUnk_2c += 0x15;
-        if (q->mUnk_2c > -0x2e) {
-            q->mUnk_2c = -0x2e;
-        }
-        break;
-    case 1:
-        q->mUnk_2c -= 0x15;
-        if (q->mUnk_2c < -0xfa) {
-            q->mUnk_2c = -0xfa;
-        }
-        break;
+        case 0:
+            q->mUnk_2c += 0x15;
+            if (q->mUnk_2c > -0x2e) {
+                q->mUnk_2c = -0x2e;
+            }
+            break;
+        case 1:
+            q->mUnk_2c -= 0x15;
+            if (q->mUnk_2c < -0xfa) {
+                q->mUnk_2c = -0xfa;
+            }
+            break;
     }
 }
 

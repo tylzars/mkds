@@ -61,18 +61,24 @@ void func_ov001_021a5140(void) {
     func_020b4a7c(&data_ov001_021ca41c->mUnk_0830, (void *) (func_0204799c("emblem_s_b.NCLR")));
     func_020b496c((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0838), (void *) (func_0204799c("emblem_s_b.NCGR")));
     func_020b496c(&data_ov001_021ca41c->mUnk_083c, (void *) (func_0204799c("emblem_template_b.NCGR")));
-    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0848), (void *) (func_0204799c("emblem_s_template_frame.NSCR")));
+    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0848),
+                  (void *) (func_0204799c("emblem_s_template_frame.NSCR")));
     func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0840), (void *) (func_0204799c("emblem_s_tool.NSCR")));
     func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0844), (void *) (func_0204799c("emblem_s_bg.NSCR")));
-    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_084c), (void *) (func_0204799c("emblem_s_template_dark.NSCR")));
-    func_020b49f4((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0860), (void *) (func_0204799c("emblem_camera_s_o.NCGR")));
+    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_084c),
+                  (void *) (func_0204799c("emblem_s_template_dark.NSCR")));
+    func_020b49f4((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0860),
+                  (void *) (func_0204799c("emblem_camera_s_o.NCGR")));
     func_020b48ec(&data_ov001_021ca41c->mUnk_0870, func_0204799c("emblem_camera_s.NCER"));
     func_020b486c(&data_ov001_021ca41c->mUnk_0874, func_0204799c("emblem_camera_s.NANR"));
     data_ov001_021ca41c->mUnk_0878 =
         func_ov001_021852f8("emblem_camera_s.lld", data_ov001_021ca41c->mUnk_0870, data_ov001_021ca41c->mUnk_0874);
-    func_020b496c((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0864), (void *) (func_0204799c("emblem_camera_s_b.NCGR")));
-    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0868), (void *) (func_0204799c("emblem_camera_s_DS.NSCR")));
-    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_086c), (void *) (func_0204799c("emblem_camera_s_bg.NSCR")));
+    func_020b496c((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0864),
+                  (void *) (func_0204799c("emblem_camera_s_b.NCGR")));
+    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0868),
+                  (void *) (func_0204799c("emblem_camera_s_DS.NSCR")));
+    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_086c),
+                  (void *) (func_0204799c("emblem_camera_s_bg.NSCR")));
     func_ov001_02192d28();
     func_02078c58((void *) func_020364e0(func_020364e8()));
     func_020ca6c4();
@@ -91,7 +97,8 @@ void func_ov001_021a5140(void) {
     func_ov001_021a63c0((u8) 1);
     func_ov001_021a63a8(0);
     func_ov001_021a6388(0);
-    func_ov001_021a6350((s32) (func_ov001_02184fc8(func_ov001_02185160(data_ov001_021ca41c->mUnk_0858, 0))), (s32) (func_ov001_02184fb8(func_ov001_02185160(data_ov001_021ca41c->mUnk_0858, 0))));
+    func_ov001_021a6350((s32) (func_ov001_02184fc8(func_ov001_02185160(data_ov001_021ca41c->mUnk_0858, 0))),
+                        (s32) (func_ov001_02184fb8(func_ov001_02185160(data_ov001_021ca41c->mUnk_0858, 0))));
     func_ov001_02185018(func_ov001_02185160(data_ov001_021ca41c->mUnk_0858, 14), 1);
     func_ov001_02185018(func_ov001_02185160(data_ov001_021ca41c->mUnk_0858, 12), 0);
     func_ov001_02185018(func_ov001_02185160(data_ov001_021ca41c->mUnk_0858, 10), 0);

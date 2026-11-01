@@ -17,16 +17,16 @@ void func_ov000_021aa5e0(Unk021a998c_0c *a) {
     u8 c[0x15];
     u32 *h;
     switch (a->mUnk_006) {
-    case 4:
-        x = 0x10;
-        y = 0x10;
-        z = 0;
-        break;
-    case 5:
-        x = 0x14;
-        y = 0x10;
-        z = 0;
-        break;
+        case 4:
+            x = 0x10;
+            y = 0x10;
+            z = 0;
+            break;
+        case 5:
+            x = 0x14;
+            y = 0x10;
+            z = 0;
+            break;
     }
     n = (x + y + z) * 2;
     i = 0;

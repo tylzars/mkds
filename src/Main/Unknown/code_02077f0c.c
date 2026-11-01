@@ -3,9 +3,7 @@
 #pragma thumb on
 
 void func_02077f48(u32 p0) {
-    *(u32 *) ((u8 *) (u32) (((u32) *(
-                           const u32 *) ((u8 *) (u32) (((u32) (&data_0217ad08))) + 0))) +
-                       0 + (0x1d8u)) = p0;
+    *(u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217ad08))) + 0))) + 0 + (0x1d8u)) = p0;
 }
 
 void func_02077f0c(u16 *param_1, int param_2, u32 param_3) {

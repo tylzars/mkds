@@ -29,7 +29,7 @@ void func_020d1464(void) {
 
     data_0217b4ac = func_02036bec(func_020364e0(func_020364e8()), 0x414);
     for (i = 0; i < 0x80; i++) {
-        w = (u32 *)&data_0217b4ac->mUnk_10.mUnk_000[i];
+        w = (u32 *) &data_0217b4ac->mUnk_10.mUnk_000[i];
         w[0] = (w[0] & ~0xc00) | 0xc00;
     }
     data_0217b4ac->mUnk_00 = 0;
@@ -37,8 +37,8 @@ void func_020d1464(void) {
     func_020b49f4(&data_0217b4ac->mUnk_08, func_020b47c0("ending_staffRoll_m_00.nce.ncgr"));
     a = 0;
     func_020b48ec(&a, func_020b47c0("ending_staffRoll_m_00.nce.ncer"));
-    data_0217b4ac->mUnk_0c = (Unk020224e0_c *)func_02021f1c(a, 0);
+    data_0217b4ac->mUnk_0c = (Unk020224e0_c *) func_02021f1c(a, 0);
     func_0214c090(data_0217b4ac->mUnk_04->mUnk_0c, 0, data_0217b4ac->mUnk_04->mUnk_08);
     func_0214bf04(data_0217b4ac->mUnk_08->mUnk_14, 0, data_0217b4ac->mUnk_08->mUnk_10);
-    *(vu32 *)0x4000000 = (*(vu32 *)0x4000000 & 0xffcfffef) | 0x10;
+    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffcfffef) | 0x10;
 }

@@ -110,36 +110,36 @@ s32 func_ov000_0218c550(Unk021b4d24 *a, void *b, u8 *c, s32 d, s32 e) {
             do {
                 r = func_ov000_0218dbf8(a->mUnk_008, i);
                 switch (r->mUnk_04) {
-                case 1:
-                    func_ov000_0218b358(b, r->mUnk_00, c[0]);
-                    c += 1;
-                    d -= 1;
-                    break;
-                case 2:
-                    q = (u8 *) &k;
-                    q[0] = c[0];
-                    q[1] = c[1];
-                    func_ov000_0218b358(b, r->mUnk_00, (k >> 8 & 0xff) | (k << 8 & 0xff00));
-                    c += 2;
-                    d -= 2;
-                    break;
-                case 0:
-                    if (e != 0) {
-                        n = c[0];
+                    case 1:
+                        func_ov000_0218b358(b, r->mUnk_00, c[0]);
                         c += 1;
                         d -= 1;
-                    } else {
-                        n = 0xff;
-                    }
-                    if (n == 0xff) {
-                        func_ov000_0218b380(b, r->mUnk_00, c);
-                        n = func_0213a434(c) + 1;
-                        c += n;
-                        d -= n;
-                    } else {
-                        func_ov000_0218b380(b, r->mUnk_00, a->mUnk_084[n]);
-                    }
-                    break;
+                        break;
+                    case 2:
+                        q = (u8 *) &k;
+                        q[0] = c[0];
+                        q[1] = c[1];
+                        func_ov000_0218b358(b, r->mUnk_00, (k >> 8 & 0xff) | (k << 8 & 0xff00));
+                        c += 2;
+                        d -= 2;
+                        break;
+                    case 0:
+                        if (e != 0) {
+                            n = c[0];
+                            c += 1;
+                            d -= 1;
+                        } else {
+                            n = 0xff;
+                        }
+                        if (n == 0xff) {
+                            func_ov000_0218b380(b, r->mUnk_00, c);
+                            n = func_0213a434(c) + 1;
+                            c += n;
+                            d -= n;
+                        } else {
+                            func_ov000_0218b380(b, r->mUnk_00, a->mUnk_084[n]);
+                        }
+                        break;
                 }
                 i++;
             } while (i < h);
@@ -199,33 +199,33 @@ s32 func_ov000_0218c794(Unk021b4d24 *a, u8 *b, s32 c) {
     if (d > 0) {
         do {
             switch (((Unk0218c0bc *) func_ov000_0218dbf8(a->mUnk_008, i))->mUnk_04) {
-            case 1:
-                b += 1;
-                c -= 1;
-                break;
-            case 2:
-                b += 2;
-                c -= 2;
-                break;
-            case 0:
-                if (c < 1) {
-                    return 0;
-                }
-                t = b[0];
-                b += 1;
-                c -= 1;
-                if (t == 0xff) {
-                    k = func_ov000_0218d0c8((int) b, c);
-                    if (k == -1) {
+                case 1:
+                    b += 1;
+                    c -= 1;
+                    break;
+                case 2:
+                    b += 2;
+                    c -= 2;
+                    break;
+                case 0:
+                    if (c < 1) {
                         return 0;
                     }
-                    b += k;
-                    c -= k;
-                }
-                break;
-            default:
-                func_0213442c(data_ov000_021b223c, data_ov000_021b2218, 0, 0x317);
-                return 0;
+                    t = b[0];
+                    b += 1;
+                    c -= 1;
+                    if (t == 0xff) {
+                        k = func_ov000_0218d0c8((int) b, c);
+                        if (k == -1) {
+                            return 0;
+                        }
+                        b += k;
+                        c -= k;
+                    }
+                    break;
+                default:
+                    func_0213442c(data_ov000_021b223c, data_ov000_021b2218, 0, 0x317);
+                    return 0;
             }
             if (c < 0) {
                 return 0;

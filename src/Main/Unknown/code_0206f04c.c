@@ -41,7 +41,8 @@
 #include "Main/Unknown/unk_027e0000.h"
 #include "code_02147cd8.h"
 
-// non-matching: the two s16 sign flips (l * -1) compile to one rsb instead of mvn + smulbb (original is 8 bytes longer), and the 0x7fff constant word is loaded after the lsl instead of before it
+// non-matching: the two s16 sign flips (l * -1) compile to one rsb instead of mvn + smulbb (original is 8 bytes
+// longer), and the 0x7fff constant word is loaded after the lsl instead of before it
 s32 func_0206f04c(Unk0206bcb0 *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     s32 j;
     s32 g;
@@ -220,7 +221,9 @@ void func_0206f694(Unk0206bcb0 *p, u32 a, Vec3 *b, s32 c) {
         p->mUnk_1fc.x = (s32) (((s64) p->mUnk_1fc.x * e.x) >> 12);
         p->mUnk_1fc.y = (s32) (((s64) p->mUnk_1fc.y * e.y) >> 12);
         p->mUnk_1fc.z = (s32) (((s64) p->mUnk_1fc.z * e.z) >> 12);
-        if ((s64) p->mUnk_1fc.x * p->mUnk_1fc.x + (s64) p->mUnk_1fc.y * p->mUnk_1fc.y + (s64) p->mUnk_1fc.z * p->mUnk_1fc.z < 0xa429) {
+        if ((s64) p->mUnk_1fc.x * p->mUnk_1fc.x + (s64) p->mUnk_1fc.y * p->mUnk_1fc.y +
+                (s64) p->mUnk_1fc.z * p->mUnk_1fc.z <
+            0xa429) {
             p->mUnk_1fc = data_02154f94;
         }
     }
@@ -299,7 +302,8 @@ void func_0206f914(Unk0206bcb0 *p) {
                     w = p->mUnk_7c;
                     if ((w & 0x10) && ((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_058 == 0) {
                         if ((w & 1) || !(w & 0x402000)) {
-                            func_02147fd8(g.mUnk_00[((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_004] << 4, &p->mUnk_138, &p->mUnk_80, &e);
+                            func_02147fd8(g.mUnk_00[((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_004] << 4, &p->mUnk_138,
+                                          &p->mUnk_80, &e);
                             func_0208b748(0x72, &e, p, func_0206c1ac);
                             func_0208b748(0x73, &e, p, func_0206c1ac);
                         }
@@ -336,7 +340,8 @@ void func_0206f914(Unk0206bcb0 *p) {
                     w = p->mUnk_7c;
                     if ((w & 0x10) && ((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_058 == 0) {
                         if ((w & 1) || !(w & 0x402000)) {
-                            func_02147fd8(h.mUnk_00[((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_004] << 4, &p->mUnk_138, &p->mUnk_80, &f);
+                            func_02147fd8(h.mUnk_00[((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_004] << 4, &p->mUnk_138,
+                                          &p->mUnk_80, &f);
                             func_0208b748(0x72, &f, p, func_0206c1ac);
                             func_0208b748(0x73, &f, p, func_0206c1ac);
                         }
@@ -415,7 +420,9 @@ void func_0206fe08(Unk0206bcb0 *p) {
     }
 }
 
-// non-matching: the three (func_020d59f8(..) & 0xe0) << 11 >> 16 extractions are scheduled differently (original keeps the value in r0 and shifts in place interleaved with the next loads; ours uses another register), 22 words differ, same size 0x448
+// non-matching: the three (func_020d59f8(..) & 0xe0) << 11 >> 16 extractions are scheduled differently (original keeps
+// the value in r0 and shifts in place interleaved with the next loads; ours uses another register), 22 words differ,
+// same size 0x448
 void func_0206ff50(Unk0206bcb0 *p, u32 a) {
     u32 b;
     u32 c;

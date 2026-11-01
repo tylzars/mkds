@@ -28,7 +28,8 @@
 #include "code_0212c6ac.h"
 #include "code_0212df7c.h"
 
-// non-matching: same instructions and size; the halfword/word operands of the four products sit in r0/r5/r3 (22, 18, 20) instead of r5/r3/r0, and the first two products land in r7/r6 instead of r6/r7
+// non-matching: same instructions and size; the halfword/word operands of the four products sit in r0/r5/r3 (22, 18,
+// 20) instead of r5/r3/r0, and the first two products land in r7/r6 instead of r6/r7
 void func_01ff9598(Unk01ff9598_A *a, Unk01ff9598 *b) {
     s32 w = b->mUnk_2c << 12;
     s32 h = b->mUnk_2e << 12;
@@ -73,7 +74,8 @@ void func_01ff96cc(Unk01ff9598_A *a, Unk01ff9598 *b) {
     a->mUnk_14 = b->mUnk_1c;
     a->mUnk_04 = 0;
     a->mUnk_30 = b->mUnk_2c * -(s32) ((s64) b->mUnk_18 * b->mUnk_24 >> 8);
-    a->mUnk_34 = b->mUnk_2e * (s32) ((s64) b->mUnk_1c * b->mUnk_28 >> 8) + (b->mUnk_2e * (b->mUnk_1c * -2 + 0x2000) << 3);
+    a->mUnk_34 =
+        b->mUnk_2e * (s32) ((s64) b->mUnk_1c * b->mUnk_28 >> 8) + (b->mUnk_2e * (b->mUnk_1c * -2 + 0x2000) << 3);
     a->mUnk_10 = 0;
 }
 
@@ -94,7 +96,8 @@ void func_01ff974c(Unk01ff9598_A *a, Unk01ff9598 *b) {
     a->mUnk_10 = b->mUnk_20 * func_02147e28() >> 12;
 }
 
-// non-matching: same instructions and size; operand registers of the four products are r0/r5/r3 instead of r5/r3/r0 and the first two products land in r7/r6 instead of r6/r7
+// non-matching: same instructions and size; operand registers of the four products are r0/r5/r3 instead of r5/r3/r0 and
+// the first two products land in r7/r6 instead of r6/r7
 void func_01ff9828(Unk01ff9598_A *a, Unk01ff9598 *b) {
     s32 w = b->mUnk_2c << 12;
     s32 h = b->mUnk_2e << 12;
@@ -121,7 +124,8 @@ void func_01ff9828(Unk01ff9598_A *a, Unk01ff9598 *b) {
     a->mUnk_04 = -e * func_02147e28() >> 12;
     func_02147d88(w, h);
     a->mUnk_30 = (b->mUnk_2c * (b->mUnk_18 - (c + d)) << 3) - b->mUnk_2c * (s32) ((s64) b->mUnk_18 * b->mUnk_24 >> 8);
-    a->mUnk_34 = b->mUnk_2e * (s32) ((s64) b->mUnk_1c * b->mUnk_28 >> 8) + (b->mUnk_2e * (e - f - b->mUnk_1c + 0x2000) << 3);
+    a->mUnk_34 =
+        b->mUnk_2e * (s32) ((s64) b->mUnk_1c * b->mUnk_28 >> 8) + (b->mUnk_2e * (e - f - b->mUnk_1c + 0x2000) << 3);
     a->mUnk_10 = d * func_02147e28() >> 12;
 }
 

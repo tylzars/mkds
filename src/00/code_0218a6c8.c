@@ -18,8 +18,7 @@ u32 func_ov000_0218a6c8(u32 param_1) {
     int v1;
     u8 v2[24];
     func_ov000_0218a5b0((const u8 *) (param_1), v2);
-    v1 =
-        func_02134d30((const u8 *) ((u32) (v2)), (const u8 *) &data_ov000_021b2174, 8);
+    v1 = func_02134d30((const u8 *) ((u32) (v2)), (const u8 *) &data_ov000_021b2174, 8);
     if (v1 == 0) {
         return 1;
     }

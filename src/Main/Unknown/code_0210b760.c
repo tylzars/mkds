@@ -16,8 +16,7 @@ void func_0210b7ec(Unk0210b7ec *p, u32 b) {
     c = p->mUnk_08;
     p->mUnk_04 = a;
     p->mUnk_00 = b;
-    p->mUnk_08 =
-        (p->mUnk_04 - p->mUnk_00) >> p->mUnk_0c;
+    p->mUnk_08 = (p->mUnk_04 - p->mUnk_00) >> p->mUnk_0c;
     a = p->mUnk_08;
     if (a > 0x600 || a < -0x600) {
         p->mUnk_08 = c;

@@ -20,7 +20,7 @@
 #include "Main/Unknown/unk_0217c000.h"
 
 void func_ov001_0218c490(Unk02188950 *param_1) {
-    Unk0206bcb0 *p = func_0207a974((u16)data_021759c0->mUnk_62);
+    Unk0206bcb0 *p = func_0207a974((u16) data_021759c0->mUnk_62);
 
     func_ov001_02187218(param_1, 2, func_ov001_0218c5d4);
     func_ov001_02188d64(param_1, (s32) (param_1->mUnk_0a0->mUnk_104), (s32) (param_1->mUnk_0a0->mUnk_108));
@@ -45,7 +45,8 @@ void func_ov001_0218c3ac(Unk02188950 *param_1) {
     }
     func_ov001_02188998(param_1, (Vec3 *) func_ov001_02187fc0(param_1));
     func_ov001_02188e24(param_1, param_1->mUnk_0a0->mUnk_0b8, 0);
-    func_ov001_02188de0(param_1, (s32) (param_1->mUnk_0a0->mUnk_0b4), 0, (Vec3 *) func_ov001_02187fc0(param_1), (UnkFunc *) (0));
+    func_ov001_02188de0(param_1, (s32) (param_1->mUnk_0a0->mUnk_0b4), 0, (Vec3 *) func_ov001_02187fc0(param_1),
+                        (UnkFunc *) (0));
 }
 
 void func_ov001_0218c354(Unk02188950 *param_1) {
@@ -81,11 +82,11 @@ void func_ov001_0218c0a4(Unk02188950 *param_1) {
         res1 = (r->mUnk_00 >> 32) * 0x10000 >> 32;
     } else {
         r = func_020d22d0();
-        if ((u16)n1 == 0) {
+        if ((u16) n1 == 0) {
             t1 = 0;
         } else {
             r->mUnk_00 = r->mUnk_10 + (s64) r->mUnk_08 * (s64) r->mUnk_00;
-            m1 = (u16)n1;
+            m1 = (u16) n1;
             if (m1 == 0) {
                 t1 = r->mUnk_00 >> 32;
             } else {
@@ -102,11 +103,11 @@ void func_ov001_0218c0a4(Unk02188950 *param_1) {
             res2 = (r->mUnk_00 >> 32) * 0x10000 >> 32;
         } else {
             r = func_020d22d0();
-            if ((u16)n2 == 0) {
+            if ((u16) n2 == 0) {
                 t2 = 0;
             } else {
                 r->mUnk_00 = r->mUnk_10 + (s64) r->mUnk_08 * (s64) r->mUnk_00;
-                m2 = (u16)n2;
+                m2 = (u16) n2;
                 if (m2 == 0) {
                     t2 = r->mUnk_00 >> 32;
                 } else {
@@ -127,9 +128,9 @@ void func_ov001_0218c0a4(Unk02188950 *param_1) {
         pos.x = param_1->mUnk_000.mUnk_04.x + (((s64) radius * data_0215d4b4[((u16) angle >> 4) * 2]) >> 12);
         pos.y = param_1->mUnk_000.mUnk_04.y + param_1->mUnk_0a0->mUnk_194;
         pos.z = param_1->mUnk_000.mUnk_04.z + (((s64) radius * data_0215d4b4[((u16) angle >> 4) * 2 + 1]) >> 12);
-        vel.x = ((s64)param_1->mUnk_0a0->mUnk_1a0 * data_0215d4b4[((u16)angle >> 4) * 2]) >> 12;
+        vel.x = ((s64) param_1->mUnk_0a0->mUnk_1a0 * data_0215d4b4[((u16) angle >> 4) * 2]) >> 12;
         vel.y = param_1->mUnk_0a0->mUnk_19c;
-        vel.z = ((s64)param_1->mUnk_0a0->mUnk_1a0 * data_0215d4b4[((u16)angle >> 4) * 2 + 1]) >> 12;
+        vel.z = ((s64) param_1->mUnk_0a0->mUnk_1a0 * data_0215d4b4[((u16) angle >> 4) * 2 + 1]) >> 12;
         if (i == sel) {
             func_ov001_02187b2c(func_020f4ee8(), &pos, &vel, param_1->mUnk_0a0->mUnk_1ac);
         } else {

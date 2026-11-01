@@ -102,7 +102,8 @@ void func_0211256c(void) {
     func_02128310(0);
     return;
 l1:
-    if ((a == 10 && data_0217d348->mUnk_88 != 0) || (b == 10 && data_0217d348->mUnk_88 == 0) || (u16) (data_0217562a[i].mUnk_00 & 0x20) != 0) {
+    if ((a == 10 && data_0217d348->mUnk_88 != 0) || (b == 10 && data_0217d348->mUnk_88 == 0) ||
+        (u16) (data_0217562a[i].mUnk_00 & 0x20) != 0) {
         if (func_02113790() != 0) {
             return;
         }
@@ -116,7 +117,8 @@ l1:
         func_0212ecc0(&data_0217d068, 0, 2);
         return;
     }
-    if ((a == 11 && data_0217d348->mUnk_8c != 0) || (b == 11 && data_0217d348->mUnk_8c == 0) || (u16) (data_0217562a[i].mUnk_00 & 0x10) != 0) {
+    if ((a == 11 && data_0217d348->mUnk_8c != 0) || (b == 11 && data_0217d348->mUnk_8c == 0) ||
+        (u16) (data_0217562a[i].mUnk_00 & 0x10) != 0) {
         if (func_02113790() != 0) {
             return;
         }
@@ -182,12 +184,12 @@ void func_021123a0(void) {
     c = 0;
     func_021137f4();
     switch (data_0217d348->mUnk_6c) {
-    case 0:
-        c = -256;
-        break;
-    case 1:
-        c = 0x100;
-        break;
+        case 0:
+            c = -256;
+            break;
+        case 1:
+            c = 0x100;
+            break;
     }
     data_0217d348->mUnk_54 = data_0217d348->mUnk_54 + 1;
     a = data_0217d348->mUnk_08->mUnk_06;
@@ -239,12 +241,12 @@ void func_021121d4(void) {
     c = 0;
     func_021137f4();
     switch (data_0217d348->mUnk_6c) {
-    case 0:
-        c = 0x100;
-        break;
-    case 1:
-        c = -256;
-        break;
+        case 0:
+            c = 0x100;
+            break;
+        case 1:
+            c = -256;
+            break;
     }
     data_0217d348->mUnk_54 = data_0217d348->mUnk_54 + 1;
     a = data_0217d348->mUnk_08->mUnk_06;
@@ -432,28 +434,52 @@ void func_02111b94(void) {
     Unk0217d348 *p;
     data_0217d348->mUnk_4c = data_0217d348->mUnk_50;
     switch (data_0217d348->mUnk_4c) {
-    case 0: func_02112b30(); break;
-    case 1: func_02112a0c(); break;
-    case 2: func_021128cc(); break;
-    case 3: func_021128b4(); break;
-    case 4: func_0211256c(); break;
-    case 5: func_021123a0(); break;
-    case 6: func_021121d4(); break;
-    case 7: func_0211209c(); break;
-    case 8: func_02111f54(); break;
-    case 9: func_02111ef4(); break;
-    case 10: func_02111db8(); break;
-    case 11: func_02111c78(); break;
+        case 0:
+            func_02112b30();
+            break;
+        case 1:
+            func_02112a0c();
+            break;
+        case 2:
+            func_021128cc();
+            break;
+        case 3:
+            func_021128b4();
+            break;
+        case 4:
+            func_0211256c();
+            break;
+        case 5:
+            func_021123a0();
+            break;
+        case 6:
+            func_021121d4();
+            break;
+        case 7:
+            func_0211209c();
+            break;
+        case 8:
+            func_02111f54();
+            break;
+        case 9:
+            func_02111ef4();
+            break;
+        case 10:
+            func_02111db8();
+            break;
+        case 11:
+            func_02111c78();
+            break;
     }
     func_02113d84();
     p = data_0217d348;
     switch (p->mUnk_40) {
-    case 0:
-        func_02124c30(p->mUnk_08, p->mUnk_04, p->mUnk_0c, func_02111318(), p->mUnk_14);
-        break;
-    case 1:
-        func_02124c30(p->mUnk_18, p->mUnk_04, p->mUnk_1c, func_02111318(), p->mUnk_24);
-        break;
+        case 0:
+            func_02124c30(p->mUnk_08, p->mUnk_04, p->mUnk_0c, func_02111318(), p->mUnk_14);
+            break;
+        case 1:
+            func_02124c30(p->mUnk_18, p->mUnk_04, p->mUnk_1c, func_02111318(), p->mUnk_24);
+            break;
     }
     p = data_0217d348;
     func_02124c30(p->mUnk_30, p->mUnk_2c, p->mUnk_38, func_0211130c(), p->mUnk_3c);

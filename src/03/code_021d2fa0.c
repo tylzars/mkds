@@ -27,8 +27,7 @@ void func_ov003_021d2fdc(void) {
     b = 0x200;
     func_0214d05c(b, a, 0x800);
     for (i = 0; i < 2; i++) {
-        data_ov003_021da2f0->mUnk_800[i] =
-            func_ov003_021d1d60(0x40, data_ov003_021da2f0->mUnk_000[i], 8);
+        data_ov003_021da2f0->mUnk_800[i] = func_ov003_021d1d60(0x40, data_ov003_021da2f0->mUnk_000[i], 8);
     }
     data_ov003_021da2f0->mUnk_808 = func_ov003_021d3544(1, (u32) func_ov003_021d2fa0, 0, 200);
 }

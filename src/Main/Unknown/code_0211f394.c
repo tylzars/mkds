@@ -38,17 +38,18 @@ void func_0211f3e8(void) {
 void func_0211f39c(void) {
     data_0217d380->mUnk_1c = data_0217d380->mUnk_20;
     switch (data_0217d380->mUnk_1c) {
-    case 0:
-        func_0211f440();
-        break;
-    case 1:
-        break;
-    case 2:
-        func_0211f3e8();
-        break;
+        case 0:
+            func_0211f440();
+            break;
+        case 1:
+            break;
+        case 2:
+            func_0211f3e8();
+            break;
     }
     func_02116d24();
-    func_02124c30(data_0217d380->mUnk_04, data_0217d380->mUnk_00, data_0217d380->mUnk_0c, data_0217d380->mUnk_18, data_0217d380->mUnk_10);
+    func_02124c30(data_0217d380->mUnk_04, data_0217d380->mUnk_00, data_0217d380->mUnk_0c, data_0217d380->mUnk_18,
+                  data_0217d380->mUnk_10);
 }
 
 void func_0211f394(void) {

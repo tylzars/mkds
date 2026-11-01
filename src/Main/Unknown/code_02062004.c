@@ -132,17 +132,17 @@ void func_02062b50(void) {
     func_02077060(data_0217aa88);
     func_02047b6c(3);
     switch (data_021759c0->mUnk_08) {
-    case 2:
-        func_020a0e00();
-        break;
-    case 4:
-        if (data_021759c0->mUnk_08 == 4) {
-            func_ov001_021819f4();
-        }
-        if (data_021759c0->mUnk_08 == 4) {
+        case 2:
             func_020a0e00();
-        }
-        break;
+            break;
+        case 4:
+            if (data_021759c0->mUnk_08 == 4) {
+                func_ov001_021819f4();
+            }
+            if (data_021759c0->mUnk_08 == 4) {
+                func_020a0e00();
+            }
+            break;
     }
     func_02047b6c(3);
     func_020e7460();
@@ -240,17 +240,17 @@ void func_02062464(void) {
         func_02085778();
     }
     switch (data_021759c0->mUnk_08) {
-    case 2:
-        func_020a08ec();
-        break;
-    case 4:
-        if (data_021759c0->mUnk_08 == 4) {
-            func_ov001_02181860();
-        }
-        if (data_021759c0->mUnk_08 == 4) {
+        case 2:
             func_020a08ec();
-        }
-        break;
+            break;
+        case 4:
+            if (data_021759c0->mUnk_08 == 4) {
+                func_ov001_02181860();
+            }
+            if (data_021759c0->mUnk_08 == 4) {
+                func_020a08ec();
+            }
+            break;
     }
     func_02073e98();
     if (data_0217aa54->mUnk_28 != 0) {

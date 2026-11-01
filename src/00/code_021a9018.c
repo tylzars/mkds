@@ -9,7 +9,8 @@ s32 func_ov000_021a9018(s32 v1, void *v2, s32 v3, s32 v4, void *v5) {
     u32 c;
     if (a != 0) {
         b = ((a->mUnk_02 >> 8) & 0xff) | ((a->mUnk_02 << 8) & 0xff00);
-        c = ((a->mUnk_04 << 24) & 0xff000000) | (((a->mUnk_04 << 8) & 0xff0000) | (((a->mUnk_04 >> 24) & 0xff) | ((a->mUnk_04 >> 8) & 0xff00)));
+        c = ((a->mUnk_04 << 24) & 0xff000000) |
+            (((a->mUnk_04 << 8) & 0xff0000) | (((a->mUnk_04 >> 24) & 0xff) | ((a->mUnk_04 >> 8) & 0xff00)));
     } else {
         b = 0;
         c = 0;

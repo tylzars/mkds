@@ -12,8 +12,9 @@ Unk0218af28 *func_ov000_0218af28(Unk021b4d24 *a, u32 b, u16 c) {
     if (p == 0) {
         return 0;
     }
-    p->mUnk_18 = func_ov000_0218e004(8, 8, 4, (s32 (*)(void *, s32)) func_ov000_0218afac, (s32 (*)(void *, void *)) func_ov000_0218afa0,
-                                     (void (*)(void *)) func_ov000_0218afb8);
+    p->mUnk_18 =
+        func_ov000_0218e004(8, 8, 4, (s32(*)(void *, s32)) func_ov000_0218afac,
+                            (s32(*)(void *, void *)) func_ov000_0218afa0, (void (*)(void *)) func_ov000_0218afb8);
     if (p->mUnk_18 == 0) {
         func_ov000_021a3668(p);
         return 0;

@@ -21,13 +21,20 @@
 #include "code_020176c0.h"
 
 UnkFunc *const data_0216e21c[14] = {
-    0, 0,
-    func_02120144, func_021200fc,
-    0, 0,
-    func_021200f0, func_021200a8,
-    func_021200a4, func_02120098,
-    func_02120054, func_02120048,
-    0, func_02120044,
+    0,
+    0,
+    func_02120144,
+    func_021200fc,
+    0,
+    0,
+    func_021200f0,
+    func_021200a8,
+    func_021200a4,
+    func_02120098,
+    func_02120054,
+    func_02120048,
+    0,
+    func_02120044,
 };
 
 u32 func_021205e8(void) {
@@ -92,11 +99,11 @@ void func_02120404(void) {
     i = 0;
     do {
         switch (p->mUnk_1cc0[i]) {
-        case 2:
-            break;
-        case 4:
-            n++;
-            break;
+            case 2:
+                break;
+            case 4:
+                n++;
+                break;
         }
         i++;
     } while (i < 0x3c);

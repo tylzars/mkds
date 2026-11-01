@@ -21,9 +21,11 @@ void func_020c4ae8(void) {
     p = &data_0217b3e8->mUnk_18;
     v[0] = 0x80000;
     v[1] = 0x60000;
-    p->mUnk_400 += func_020224e0((Unk020224e0_o *) &p->mUnk_000.mUnk_00[p->mUnk_400], 0x80 - p->mUnk_400, (Unk020224e0_c *) c, 0, v, 0, 1);
+    p->mUnk_400 += func_020224e0((Unk020224e0_o *) &p->mUnk_000.mUnk_00[p->mUnk_400], 0x80 - p->mUnk_400,
+                                 (Unk020224e0_c *) c, 0, v, 0, 1);
     func_0200ee74(&data_0217b3e8->mUnk_18, 0x400);
-    func_0214cc04(3, &data_0217b3e8->mUnk_18.mUnk_000.mUnk_00[data_0217b3e8->mUnk_18.mUnk_400], 0xc0, (0x80 - data_0217b3e8->mUnk_18.mUnk_400) * 8);
+    func_0214cc04(3, &data_0217b3e8->mUnk_18.mUnk_000.mUnk_00[data_0217b3e8->mUnk_18.mUnk_400], 0xc0,
+                  (0x80 - data_0217b3e8->mUnk_18.mUnk_400) * 8);
 }
 
 void func_020c4ab8(s32 a) {
@@ -86,8 +88,8 @@ void func_020c4780(void) {
         } while (a < data_021759c0->mUnk_3d0);
     }
     for (a = 0; a < 16; a++) {
-        s32 s = data_0215d4b4[((u16)(a * 0x10000 / 16) >> 4) * 2];
-        s32 c = data_0215d4b4[((u16)(a * 0x10000 / 16) >> 4) * 2 + 1];
+        s32 s = data_0215d4b4[((u16) (a * 0x10000 / 16) >> 4) * 2];
+        s32 c = data_0215d4b4[((u16) (a * 0x10000 / 16) >> 4) * 2 + 1];
         data_0217b3e4->mUnk_810[a].mUnk_00 = c;
         data_0217b3e4->mUnk_810[a].mUnk_04 = s;
         data_0217b3e4->mUnk_810[a].mUnk_08 = -s;

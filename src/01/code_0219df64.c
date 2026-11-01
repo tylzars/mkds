@@ -2,8 +2,7 @@
 #include "01/unk_021a6000.h"
 #include "Main/Unknown/code_02037000.h"
 
-void func_ov001_0219df70(void *param_1)
-{
+void func_ov001_0219df70(void *param_1) {
     s32 i;
     Unk021a9bfc *p;
     void *ptr;
@@ -41,7 +40,6 @@ void func_ov001_0219df70(void *param_1)
     func_021281c8(0xe);
 }
 
-void func_ov001_0219df64(void)
-{
+void func_ov001_0219df64(void) {
     data_ov001_021a9bfc = 0;
 }

@@ -5,8 +5,7 @@
 #include "Main/Unknown/code_0214a000.h"
 #include "Main/Unknown/code_0214d000.h"
 
-void func_ov001_02191adc(Unk02188950 *param_1)
-{
+void func_ov001_02191adc(Unk02188950 *param_1) {
     Vec3 v = {0, 0, 0};
     func_ov001_02187218(param_1, 3, 0);
     func_ov001_02188d64(param_1, param_1->mUnk_0a0->mUnk_1c0, param_1->mUnk_0a0->mUnk_1c4);
@@ -16,8 +15,7 @@ void func_ov001_02191adc(Unk02188950 *param_1)
     func_ov001_02188e24(param_1, param_1->mUnk_0a0->mUnk_1c8, 0);
 }
 
-void func_ov001_02191a3c(Unk02188950 *param_1)
-{
+void func_ov001_02191a3c(Unk02188950 *param_1) {
     Vec3 v = {0, 0, 0};
     v.y = param_1->mUnk_0a0->mUnk_1bc;
     func_ov001_02187218(param_1, 3, 0);
@@ -29,8 +27,7 @@ void func_ov001_02191a3c(Unk02188950 *param_1)
     param_1->mUnk_2c0 = 1;
 }
 
-void func_ov001_02191980(Unk02188950 *param_1)
-{
+void func_ov001_02191980(Unk02188950 *param_1) {
     Vec3 v = {0, 0, 0};
     func_ov001_02187218(param_1, 3, 0);
     func_ov001_02188d64(param_1, param_1->mUnk_0a0->mUnk_184, param_1->mUnk_0a0->mUnk_188);
@@ -42,8 +39,7 @@ void func_ov001_02191980(Unk02188950 *param_1)
     param_1->mUnk_2c0 = 0;
 }
 
-void func_ov001_021918c8(Unk02188950 *param_1)
-{
+void func_ov001_021918c8(Unk02188950 *param_1) {
     Vec3 v = {0, 0, 0};
     v.y = param_1->mUnk_0a0->mUnk_17c;
     func_ov001_021924cc();
@@ -56,8 +52,7 @@ void func_ov001_021918c8(Unk02188950 *param_1)
     func_ov001_02188e24(param_1, param_1->mUnk_0a0->mUnk_180, func_ov001_02191980);
 }
 
-int func_ov001_02191888(Unk02188950 *param_1)
-{
+int func_ov001_02191888(Unk02188950 *param_1) {
     if (param_1->mUnk_174 > 0) {
         func_020d275c(&param_1->mUnk_000, (u32) (0x219));
     } else {

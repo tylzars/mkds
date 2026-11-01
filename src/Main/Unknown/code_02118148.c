@@ -55,10 +55,12 @@ void func_02118458(void) {
         for (i = 0; i < 4; i++) {
             if (data_0217d360->mUnk_78 == i) {
                 data_0217d360->mUnk_18[data_0215c7d0[i]].mUnk_00 = 1;
-                func_02124100(data_0215c7d8[i], 0xe, data_0217d360->mUnk_08, data_0217d360->mUnk_18, data_0217d360->mUnk_04);
+                func_02124100(data_0215c7d8[i], 0xe, data_0217d360->mUnk_08, data_0217d360->mUnk_18,
+                              data_0217d360->mUnk_04);
             } else {
                 data_0217d360->mUnk_18[data_0215c7d0[i]].mUnk_00 = 0;
-                func_02124100(data_0215c7d8[i], 0xf, data_0217d360->mUnk_08, data_0217d360->mUnk_18, data_0217d360->mUnk_04);
+                func_02124100(data_0215c7d8[i], 0xf, data_0217d360->mUnk_08, data_0217d360->mUnk_18,
+                              data_0217d360->mUnk_04);
             }
         }
     }

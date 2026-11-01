@@ -55,7 +55,8 @@ void func_0209b088(void *a, Unk0209a7dc *b) {
     func_0209b688(data_usa_0217b158, (u16) (b->mUnk_0a8 >> 12));
     func_0209bbd0(a, data_usa_0217b158);
     func_0209bb2c(a, data_usa_0217b158, b);
-    func_02146d60(f1, data_0215d4b4[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2], data_0215d4b4[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2 + 1]);
+    func_02146d60(f1, data_0215d4b4[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2],
+                  data_0215d4b4[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, f1, 9);
     func_0209b688(data_usa_0217b154, (u16) (b->mUnk_0ac >> 12));
     func_0209bbd0(a, data_usa_0217b154);

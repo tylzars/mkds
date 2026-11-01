@@ -308,8 +308,8 @@ void func_02098d04(void *a) {
     func_0209b9a4(data_usa_0217b0e0, 0x1f);
 }
 
-// non-matching: same size and instructions, registers differ: loop counter r8 (original r9), pointer to mUnk_1ba r9 (r6),
-// base of mUnk_0b8 r7 (r8), constant 100 in r6 (r7)
+// non-matching: same size and instructions, registers differ: loop counter r8 (original r9), pointer to mUnk_1ba r9
+// (r6), base of mUnk_0b8 r7 (r8), constant 100 in r6 (r7)
 void func_02098d4c(Unk020983c4 *p) {
     s32 v;
     s32 d;

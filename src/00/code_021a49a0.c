@@ -20,7 +20,7 @@ void func_ov000_021a49cc(void *param_1, void (*param_2)(void *, u16)) {
     if (param_1 == 0) {
         param_1 = data_ov000_021b426c;
     }
-    *(void (**)(void *, u16)) ((u8 *) param_1 + 0xa8) = param_2;
+    *(void (**)(void *, u16))((u8 *) param_1 + 0xa8) = param_2;
     return;
 }
 

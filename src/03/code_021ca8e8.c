@@ -41,8 +41,7 @@ void func_ov003_021ca940(void) {
             if (c > 2) {
                 c = 3;
             }
-            func_ov003_021d1890(data_ov003_021da234->mUnk_04[*(u8 *) &data_ov003_021da230], -1, 0,
-                                b.mUnk_00[c]);
+            func_ov003_021d1890(data_ov003_021da234->mUnk_04[*(u8 *) &data_ov003_021da230], -1, 0, b.mUnk_00[c]);
         }
     }
 }

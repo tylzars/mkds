@@ -28,9 +28,8 @@
 
 #pragma thumb on
 
-// non-matching: n * 4 is computed before the func_020364e8 and func_020364e0
-// calls, and the 0xc00f0000 mask and the zero store are emitted before the loop
-// pre-test; the original computes n * 4 after the two calls and puts the mask
+// non-matching: n * 4 is computed before the func_020364e8 and func_020364e0 calls, and the 0xc00f0000 mask and the
+// zero store are emitted before the loop pre-test; the original computes n * 4 after the two calls and puts the mask
 // and the store after cmp/bls (5 words differ, first +0x58).
 void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
     Unk020e52bc_4 *a;
@@ -167,9 +166,8 @@ void func_020e61a8(u32 param_1, Unk020e5e24 *a) {
     a->mUnk_b0 = a->mUnk_04;
 }
 
-// non-matching: register assignment at the top; the original holds a in r6, c in
-// r4, out in r5 and t in r0, the compiled code a in r4, c in r5, out in r6 and
-// t in r3.
+// non-matching: register assignment at the top; the original holds a in r6, c in r4, out in r5 and t in r0, the
+// compiled code a in r4, c in r5, out in r6 and t in r3.
 s32 func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
     Vec3 v;
     s32 r;

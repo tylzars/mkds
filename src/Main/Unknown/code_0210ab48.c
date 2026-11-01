@@ -18,20 +18,19 @@
 #include "code_0212c6ac.h"
 #include "code_0212df7c.h"
 
-void func_0210b4e0(Unk0206bcb0 *a, s32 b, s32 c, s32 d)
-{
+void func_0210b4e0(Unk0206bcb0 *a, s32 b, s32 c, s32 d) {
     u32 e;
 
     switch (a->mUnk_490) {
-    case 0:
-        e = 0xb2;
-        break;
-    case 1:
-        e = 0xb9;
-        break;
-    case 2:
-        e = 0xc0;
-        break;
+        case 0:
+            e = 0xb2;
+            break;
+        case 1:
+            e = 0xb9;
+            break;
+        case 2:
+            e = 0xc0;
+            break;
     }
     if (b != 0) {
         func_02109078(&a->mUnk_00, func_0210bb74(1, c, d), 0x5f, -0x345);
@@ -39,8 +38,7 @@ void func_0210b4e0(Unk0206bcb0 *a, s32 b, s32 c, s32 d)
     func_02109078(&a->mUnk_00, e, 0x7f, 0);
 }
 
-void func_0210b2a8(Unk0206bcb0 *a, s32 b, s32 c, s32 d, u32 e)
-{
+void func_0210b2a8(Unk0206bcb0 *a, s32 b, s32 c, s32 d, u32 e) {
     Unk0206bcb0_A *p;
     s16 f;
     s32 g;
@@ -93,30 +91,29 @@ void func_0210b2a8(Unk0206bcb0 *a, s32 b, s32 c, s32 d, u32 e)
             return;
         }
         switch (i) {
-        case 0xffd0:
-        case 0xffd1:
-            m = i & 1;
-            j = func_0203c5ac(a->mUnk_74);
-            k = j - p->mUnk_28;
-            if (k < 0) {
-                k = -k;
-            }
-            if (k > func_02110590(m)) {
-                n = func_0211057c(m);
-                p->mUnk_2c++;
-                func_021090c4(&a->mUnk_00, (u16) ((p->mUnk_2c & 1) + n), 0x7f, 0);
-                p->mUnk_28 = j;
-            }
-            break;
-        default:
-            func_02109078(&a->mUnk_00, i, g & 0xff, f);
-            break;
+            case 0xffd0:
+            case 0xffd1:
+                m = i & 1;
+                j = func_0203c5ac(a->mUnk_74);
+                k = j - p->mUnk_28;
+                if (k < 0) {
+                    k = -k;
+                }
+                if (k > func_02110590(m)) {
+                    n = func_0211057c(m);
+                    p->mUnk_2c++;
+                    func_021090c4(&a->mUnk_00, (u16) ((p->mUnk_2c & 1) + n), 0x7f, 0);
+                    p->mUnk_28 = j;
+                }
+                break;
+            default:
+                func_02109078(&a->mUnk_00, i, g & 0xff, f);
+                break;
         }
     }
 }
 
-void func_0210b234(Unk0206bcb0 *a, s32 b, s32 c, s32 d, s32 param_5)
-{
+void func_0210b234(Unk0206bcb0 *a, s32 b, s32 c, s32 d, s32 param_5) {
     u32 e;
 
     if (!(a->mUnk_00.mUnk_34 & 1)) {
@@ -132,8 +129,7 @@ void func_0210b234(Unk0206bcb0 *a, s32 b, s32 c, s32 d, s32 param_5)
     func_021090c4(&a->mUnk_00, e, 0x7f, 0);
 }
 
-void func_0210b198(s32 a, s32 b, u32 c, s32 d, s32 e)
-{
+void func_0210b198(s32 a, s32 b, u32 c, s32 d, s32 e) {
     Unk0212c400 *h;
     u16 f;
 
@@ -150,8 +146,7 @@ void func_0210b198(s32 a, s32 b, u32 c, s32 d, s32 e)
     func_0212c688(&h);
 }
 
-void func_0210b12c(Unk0206bcb0 *a, s32 b, s16 d)
-{
+void func_0210b12c(Unk0206bcb0 *a, s32 b, s16 d) {
     Unk0210bf24 *p;
     s32 c;
 
@@ -167,8 +162,7 @@ void func_0210b12c(Unk0206bcb0 *a, s32 b, s16 d)
     p->mUnk_19 |= 0x40;
 }
 
-void func_0210af40(Unk0206bcb0 *a, s32 b, s32 c)
-{
+void func_0210af40(Unk0206bcb0 *a, s32 b, s32 c) {
     Unk0212c400 *h;
     Unk0206bcb0_A *p;
     u32 d;
@@ -236,8 +230,7 @@ void func_0210af40(Unk0206bcb0 *a, s32 b, s32 c)
     }
 }
 
-void func_0210aefc(void)
-{
+void func_0210aefc(void) {
     s32 i;
     Unk0217ccc0 *q = &data_0217ccc0;
 
@@ -251,8 +244,7 @@ void func_0210aefc(void)
     q->mUnk_6c = -1;
 }
 
-void func_0210add4(void)
-{
+void func_0210add4(void) {
     Unk0217ccc0 *q = &data_0217ccc0;
     s32 i;
 
@@ -290,8 +282,7 @@ void func_0210add4(void)
     }
 }
 
-void func_0210ad58(Unk0206bcb0 *a, s32 b)
-{
+void func_0210ad58(Unk0206bcb0 *a, s32 b) {
     Unk0217ccc0 *q = &data_0217ccc0;
 
     if (q->mUnk_64 != 0) {
@@ -307,8 +298,7 @@ void func_0210ad58(Unk0206bcb0 *a, s32 b)
     q->mUnk_60++;
 }
 
-void func_0210abf4(Unk0206bcb0 *a, s32 b, s32 c, s32 d)
-{
+void func_0210abf4(Unk0206bcb0 *a, s32 b, s32 c, s32 d) {
     Unk0212c400 *h;
     Unk0210bf24 *p;
     Unk0210bf24 *q;
@@ -353,8 +343,7 @@ void func_0210abf4(Unk0206bcb0 *a, s32 b, s32 c, s32 d)
     func_0212c688(&h);
 }
 
-void func_0210ab48(s32 a, s32 b)
-{
+void func_0210ab48(s32 a, s32 b) {
     Unk0212c400 *h;
     s32 c;
     u16 d;

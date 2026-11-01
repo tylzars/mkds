@@ -14,7 +14,7 @@ u32 func_020364f8(Unk02036590 *a, u32 b) {
     }
     a->mUnk_0c = func_020369fc(d);
     data_02174e70 = a;
-    c = ((u32 (*)(u32)) a->mUnk_04)(b);
+    c = ((u32(*)(u32)) a->mUnk_04)(b);
     if (a->mUnk_08 != 0) {
         ((void (*)(void)) a->mUnk_08)();
     }

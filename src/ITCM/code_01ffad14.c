@@ -38,7 +38,8 @@ void func_01ffae14(Unk0206bcb0 *p, s32 a) {
     r = 0;
     p->mUnk_a4.y = (s64) p->mUnk_a4.y * a >> 12;
     p->mUnk_a4.z = (s64) p->mUnk_a4.z * a >> 12;
-    if ((s64) p->mUnk_a4.x * p->mUnk_a4.x + (s64) p->mUnk_a4.y * p->mUnk_a4.y + (s64) p->mUnk_a4.z * p->mUnk_a4.z >= 0x10) {
+    if ((s64) p->mUnk_a4.x * p->mUnk_a4.x + (s64) p->mUnk_a4.y * p->mUnk_a4.y + (s64) p->mUnk_a4.z * p->mUnk_a4.z >=
+        0x10) {
         r = func_02039860(&p->mUnk_a4, &p->mUnk_b0);
     }
     p->mUnk_2a4 = r;
@@ -50,7 +51,9 @@ void func_01ffae14(Unk0206bcb0 *p, s32 a) {
     }
 }
 
-// non-matching: same size; the locals sit in other registers (original: 2a8 value r5, sign flag r4, flags word r3, clamped difference lr; ours differ), the zero stored on the 0x2a8 branch is a shared r4 store instead of a separate `streq ip`, and 0x38c/0x39c load into r2/r1 swapped
+// non-matching: same size; the locals sit in other registers (original: 2a8 value r5, sign flag r4, flags word r3,
+// clamped difference lr; ours differ), the zero stored on the 0x2a8 branch is a shared r4 store instead of a separate
+// `streq ip`, and 0x38c/0x39c load into r2/r1 swapped
 s32 func_01ffaf18(Unk0206bcb0 *p) {
     s32 v1;
     s32 b;

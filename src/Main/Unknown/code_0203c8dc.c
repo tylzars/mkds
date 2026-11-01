@@ -11,7 +11,8 @@ u32 func_0203c8dc(u32 param_1) {
     return data_0217561c->mUnk_14[param_1].mUnk_3c_0;
 }
 
-// non-matching: same instructions and order; the data pointer is in lr and the entry pair address in ip where the original has ip and lr
+// non-matching: same instructions and order; the data pointer is in lr and the entry pair address in ip where the
+// original has ip and lr
 void func_0203c950(u8 *a, u8 *b, u16 *c) {
     Unk0217aa1c_144_00 *t;
     Unk0217561c *d;

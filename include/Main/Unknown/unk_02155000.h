@@ -88,7 +88,8 @@ extern const s32 data_usa_021557bc;
 extern const s32 data_usa_021557c0;
 extern const s32 data_usa_021557dc[];
 extern const s32 data_usa_021551a4[];
-// 12-byte entries from data_usa_021551b0 (a string pointer at 0x00); the second table starts at the word at 0x04 of the first entry.
+// 12-byte entries from data_usa_021551b0 (a string pointer at 0x00); the second table starts at the word at 0x04 of the
+// first entry.
 typedef struct Unk021551b0 {
     /* 00 */ const char *mUnk_00;
     /* 04 */ s32 mUnk_04;

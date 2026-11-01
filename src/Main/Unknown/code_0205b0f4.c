@@ -34,7 +34,8 @@ u32 func_0205bba8(void) {
     return 9;
 }
 
-// non-matching: the register of the data pointer (r4) and of the byte read from 0x749 in the value-5 arm (r3) are swapped (r3 and r4 here); nothing else differs (7 words).
+// non-matching: the register of the data pointer (r4) and of the byte read from 0x749 in the value-5 arm (r3) are
+// swapped (r3 and r4 here); nothing else differs (7 words).
 void func_0205ba60(void) {
     Unk0217aa14 *p;
     u8 a;
@@ -46,34 +47,34 @@ void func_0205ba60(void) {
     b = 0;
     p = data_0217aa14;
     switch (p->mUnk_758) {
-    case 3:
-    case 4:
-        for (i = 0; i < 4; i++) {
-            v1 = 1 << i;
-            if ((data_0217aa14->mUnk_749 & v1) != 0 && i != func_ov000_0219bb50()) {
-                if (data_0217aa14->mUnk_74e[i] != 4 && data_0217aa14->mUnk_74e[i] != 5) {
-                    a = a | v1;
+        case 3:
+        case 4:
+            for (i = 0; i < 4; i++) {
+                v1 = 1 << i;
+                if ((data_0217aa14->mUnk_749 & v1) != 0 && i != func_ov000_0219bb50()) {
+                    if (data_0217aa14->mUnk_74e[i] != 4 && data_0217aa14->mUnk_74e[i] != 5) {
+                        a = a | v1;
+                    }
                 }
             }
-        }
-        if (a == 0) {
-            data_0217aa14->mUnk_758 = 5;
-        }
-        break;
-    case 5:
-        for (a = 0; a < 4; a++) {
-            v1 = 1 << a;
-            if ((p->mUnk_749 & v1) != 0 && p->mUnk_74e[a] == 5) {
-                b = b | v1;
+            if (a == 0) {
+                data_0217aa14->mUnk_758 = 5;
             }
-        }
-        if ((p->mUnk_749 & ~b) == 0) {
-            p->mUnk_75c = p->mUnk_75c | 0x100;
-        }
-        if ((data_0217aa14->mUnk_749 | ~b) != 0) {
-            data_0217aa14->mUnk_75c = data_0217aa14->mUnk_75c | 0x100;
-        }
-        break;
+            break;
+        case 5:
+            for (a = 0; a < 4; a++) {
+                v1 = 1 << a;
+                if ((p->mUnk_749 & v1) != 0 && p->mUnk_74e[a] == 5) {
+                    b = b | v1;
+                }
+            }
+            if ((p->mUnk_749 & ~b) == 0) {
+                p->mUnk_75c = p->mUnk_75c | 0x100;
+            }
+            if ((data_0217aa14->mUnk_749 | ~b) != 0) {
+                data_0217aa14->mUnk_75c = data_0217aa14->mUnk_75c | 0x100;
+            }
+            break;
     }
     if ((data_0217aa14->mUnk_749 & ~b) == 0) {
         data_0217aa14->mUnk_758 = 5;
@@ -180,7 +181,8 @@ void func_0205b778(u32 a, Unk0205b504 *b) {
     func_0214d1fc(s, e, n);
 }
 
-// non-matching: the original keeps the new 0xf4 value in r2 and reuses it for the 0x800 step (add r2, r2, r1, asr #1); here it is built in r1 and the byte index and the 0xfa byte swap r0 and r1 (16 words).
+// non-matching: the original keeps the new 0xf4 value in r2 and reuses it for the 0x800 step (add r2, r2, r1, asr #1);
+// here it is built in r1 and the byte index and the 0xfa byte swap r0 and r1 (16 words).
 void func_0205b6bc(u32 a, Unk0205b504 *b) {
     s32 t;
     Unk0217aa14 *p;
@@ -215,7 +217,8 @@ void func_0205b6bc(u32 a, Unk0205b504 *b) {
     data_0217aa14->mUnk_736 = data_0217aa14->mUnk_736 + (((t + 0x800) << 4) >> 16);
 }
 
-// non-matching: the original also pushes r7 and a stack pad (index in r7, 0x1b8 bytes); here the same code uses r5 and lr and is 0x18c bytes.
+// non-matching: the original also pushes r7 and a stack pad (index in r7, 0x1b8 bytes); here the same code uses r5 and
+// lr and is 0x18c bytes.
 void func_0205b504(u32 a, Unk0205b504 *b, u32 c, u32 d) {
     u32 v1;
     Unk0217aa14 *p;
@@ -237,37 +240,37 @@ void func_0205b504(u32 a, Unk0205b504 *b, u32 c, u32 d) {
     data_0217aa14->mUnk_74a[b->mUnk_00_0] = b->mUnk_02_0;
     data_0217aa14->mUnk_74e[b->mUnk_00_0] = b->mUnk_01;
     switch (b->mUnk_00_4) {
-    case 0:
-        m = &b->mUnk_04;
-        i = b->mUnk_00_0;
-        v = func_ov000_0219bb50();
-        if (m->mUnk_00 == v) {
-            m->mUnk_04[3] = func_0200f5ac();
-            func_0205b824(m->mUnk_04, i);
-            return;
-        }
-        if (m->mUnk_00 >= 4) {
-            return;
-        }
-        e = &data_0217aa14->mUnk_014[i];
-        func_0214d1fc(m, e, 0x28);
-        t = func_0200f5ac();
-        e->mUnk_0c = t;
-        e->mUnk_10 = t >> 32;
-        data_0217aa14->mUnk_014[i].mUnk_30 = 1;
-        break;
-    case 1:
-        data_0217aa14->mUnk_0fa = data_0217aa14->mUnk_0fa | (1 << b->mUnk_00_0);
-        break;
-    case 2:
-        func_0205b6bc(a, b);
-        break;
-    case 3:
-        func_0205b778(a, b);
-        break;
-    case 4:
-    case 5:
-        break;
+        case 0:
+            m = &b->mUnk_04;
+            i = b->mUnk_00_0;
+            v = func_ov000_0219bb50();
+            if (m->mUnk_00 == v) {
+                m->mUnk_04[3] = func_0200f5ac();
+                func_0205b824(m->mUnk_04, i);
+                return;
+            }
+            if (m->mUnk_00 >= 4) {
+                return;
+            }
+            e = &data_0217aa14->mUnk_014[i];
+            func_0214d1fc(m, e, 0x28);
+            t = func_0200f5ac();
+            e->mUnk_0c = t;
+            e->mUnk_10 = t >> 32;
+            data_0217aa14->mUnk_014[i].mUnk_30 = 1;
+            break;
+        case 1:
+            data_0217aa14->mUnk_0fa = data_0217aa14->mUnk_0fa | (1 << b->mUnk_00_0);
+            break;
+        case 2:
+            func_0205b6bc(a, b);
+            break;
+        case 3:
+            func_0205b778(a, b);
+            break;
+        case 4:
+        case 5:
+            break;
     }
 }
 
@@ -345,8 +348,7 @@ void func_0205b0f4(void) {
 
     for (i = 0; i < 4; i++) {
         v1 = 1 << i;
-        if ((data_0217aa14->mUnk_749 & v1) != 0 && i != func_ov000_0219bb50() &&
-            (data_0217aa14->mUnk_748 & v1) == 0) {
+        if ((data_0217aa14->mUnk_749 & v1) != 0 && i != func_ov000_0219bb50() && (data_0217aa14->mUnk_748 & v1) == 0) {
             v2 = 300;
             if (data_0217aa14->mUnk_014[i].mUnk_34 == 0) {
                 v2 = 600;

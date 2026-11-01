@@ -56,21 +56,21 @@ void func_0208805c(void *a, void *b, void *c) {
 
     for (i = 0; i < p->mUnk_18; i++) {
         switch (p->mUnk_28) {
-        case 0:
-            v = func_02013a4c(func_02013a30(b), i);
-            break;
-        case 2:
-            v = func_02013b00(func_02013ae4(b), i);
-            break;
-        case 1:
-            v = func_02013ac4(func_02013aa8(b), i);
-            break;
-        case 3:
-            v = func_02013bf8(func_02013bdc(b), i);
-            break;
-        case 4:
-            v = func_02013a88(func_02013a6c(b), i);
-            break;
+            case 0:
+                v = func_02013a4c(func_02013a30(b), i);
+                break;
+            case 2:
+                v = func_02013b00(func_02013ae4(b), i);
+                break;
+            case 1:
+                v = func_02013ac4(func_02013aa8(b), i);
+                break;
+            case 3:
+                v = func_02013bf8(func_02013bdc(b), i);
+                break;
+            case 4:
+                v = func_02013a88(func_02013a6c(b), i);
+                break;
         }
         if (c != 0) {
             data_0217af20 = func_02010d98(v, p->mUnk_14->mUnk_04);
@@ -88,7 +88,6 @@ void func_0208805c(void *a, void *b, void *c) {
 void func_02087f84(void *b, s32 a) {
     Unk02087d0c *p = b;
     s32 v;
-
 
     if (p->mUnk_1c[a] == 0) {
         return;
@@ -109,7 +108,6 @@ void func_02087f84(void *b, s32 a) {
 void func_02087e90(void *b, u16 a) {
     Unk02087d0c *p = b;
     s32 v;
-
 
     if (p->mUnk_1c[a] == 0) {
         return;
@@ -133,7 +131,6 @@ void func_02087e90(void *b, u16 a) {
 
 void func_02087de0(void *a) {
     Unk02087d0c *p = a;
-
 
     if (p->mUnk_2c != 0) {
         p->mUnk_1c[p->mUnk_1a]->mUnk_04 += p->mUnk_30;

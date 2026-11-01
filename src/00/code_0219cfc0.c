@@ -11,30 +11,30 @@ int func_ov000_0219cfc0(int a) {
         return 0;
     }
     switch (a) {
-    case 1:
-        b = 6;
-        c = -50;
-        break;
-    case 2:
-        b = 6;
-        c = -30;
-        break;
-    case 3:
-        b = 6;
-        c = -20;
-        break;
-    case 5:
-        b = 6;
-        c = -40;
-        break;
-    case 7:
-        b = 6;
-        c = -70;
-        break;
-    default:
-        b = 11;
-        c = -9;
-        break;
+        case 1:
+            b = 6;
+            c = -50;
+            break;
+        case 2:
+            b = 6;
+            c = -30;
+            break;
+        case 3:
+            b = 6;
+            c = -20;
+            break;
+        case 5:
+            b = 6;
+            c = -40;
+            break;
+        case 7:
+            b = 6;
+            c = -70;
+            break;
+        default:
+            b = 11;
+            c = -9;
+            break;
     }
     func_ov000_0219d734(b, c - 0x11940);
     return a;
@@ -47,22 +47,22 @@ int func_ov000_0219d034(int a) {
         return 0;
     }
     switch (a) {
-    case 1:
-        b = 11;
-        c = -1;
-        break;
-    case 2:
-        b = 11;
-        c = -2;
-        break;
-    case 3:
-        b = 6;
-        c = -10;
-        break;
-    case 4:
-        b = 6;
-        c = -20;
-        break;
+        case 1:
+            b = 11;
+            c = -1;
+            break;
+        case 2:
+            b = 11;
+            c = -2;
+            break;
+        case 3:
+            b = 6;
+            c = -10;
+            break;
+        case 4:
+            b = 6;
+            c = -20;
+            break;
     }
     func_ov000_0219d734(b, c - 0x11558);
     return a;

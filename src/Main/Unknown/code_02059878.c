@@ -70,35 +70,35 @@ void func_02059954(u8 *a) {
         v1 = a[1] * 0x168;
     }
     switch (a[1]) {
-    case 0xff:
-        if (func_02059878_inline() == 2) {
-            func_02059878_inline2(9);
-        }
-        break;
-    case 0xfe:
-        if (func_02059878_inline() == 2) {
-            data_0217aa00->mUnk_043a = *(u16 *) (a + 2);
-        }
-        break;
-    case 0xfd:
-        if (func_02059878_inline() == 1) {
-            data_0217aa00->mUnk_162a |= 1 << i;
-            if (data_0217aa00->mUnk_0044.mUnk_43 == (data_0217aa00->mUnk_0044.mUnk_43 & data_0217aa00->mUnk_162a)) {
-                func_02059878_inline2(10);
+        case 0xff:
+            if (func_02059878_inline() == 2) {
+                func_02059878_inline2(9);
             }
-        }
-        break;
-    case 0xfc:
-        data_0217aa00->mUnk_045c[i].mUnk_214 = 0;
-        f = 1;
-        break;
-    default:
-        func_0214d1fc(a + 4, e->mUnk_000 + v1, *(u16 *) (a + 2));
-        data_0217aa00->mUnk_162c[a[0]][a[1]] = 1;
-        if (func_02059b28(a[0]) != 0) {
+            break;
+        case 0xfe:
+            if (func_02059878_inline() == 2) {
+                data_0217aa00->mUnk_043a = *(u16 *) (a + 2);
+            }
+            break;
+        case 0xfd:
+            if (func_02059878_inline() == 1) {
+                data_0217aa00->mUnk_162a |= 1 << i;
+                if (data_0217aa00->mUnk_0044.mUnk_43 == (data_0217aa00->mUnk_0044.mUnk_43 & data_0217aa00->mUnk_162a)) {
+                    func_02059878_inline2(10);
+                }
+            }
+            break;
+        case 0xfc:
+            data_0217aa00->mUnk_045c[i].mUnk_214 = 0;
             f = 1;
-        }
-        break;
+            break;
+        default:
+            func_0214d1fc(a + 4, e->mUnk_000 + v1, *(u16 *) (a + 2));
+            data_0217aa00->mUnk_162c[a[0]][a[1]] = 1;
+            if (func_02059b28(a[0]) != 0) {
+                f = 1;
+            }
+            break;
     }
     if (f != 0) {
         m = (u8) (1U << a[0]);
@@ -123,12 +123,12 @@ void func_02059920(Unk02059920 *a) {
     if (a->mUnk_02 == 0 && a->mUnk_0c != 0 && a->mUnk_10 >= 4) {
         func_0200ee58(a->mUnk_0c, a->mUnk_10);
         switch (a->mUnk_04) {
-        case 7:
-        case 9:
-            break;
-        case 0x15:
-            func_02059954(a->mUnk_0c);
-            break;
+            case 7:
+            case 9:
+                break;
+            case 0x15:
+                func_02059954(a->mUnk_0c);
+                break;
         }
     }
 }

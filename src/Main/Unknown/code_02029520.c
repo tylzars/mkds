@@ -63,15 +63,11 @@ u32 func_020295f8(void) {
 }
 
 u32 func_020295e4(void) {
-    return ((u32) *(
-        const u8 *) ((u8 *) (u32) (((u32) data_02174e1c)) +
-                                0 + (0x10cu)));
+    return ((u32) * (const u8 *) ((u8 *) (u32) (((u32) data_02174e1c)) + 0 + (0x10cu)));
 }
 
 u32 func_020295d0(void) {
-    return ((u32) *(
-        const u8 *) ((u8 *) (u32) (((u32) data_02174e1c)) +
-                                0 + (0x10du)));
+    return ((u32) * (const u8 *) ((u8 *) (u32) (((u32) data_02174e1c)) + 0 + (0x10du)));
 }
 
 void func_020295c0(u32 p0) {

@@ -40,45 +40,45 @@ void func_020719d0(Unk0206bcb0 *p) {
     q->mUnk_34 = -1;
     q->mUnk_38 = -1;
     switch (((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_004 / 3) {
-    case 0:
-        k = 4;
-        break;
-    case 1:
-        k = 0;
-        break;
-    case 2:
-        k = 1;
-        break;
-    case 3:
-        k = 2;
-        break;
-    case 4:
-        k = 5;
-        break;
-    case 5:
-        k = 6;
-        break;
-    case 6:
-        k = 7;
-        break;
-    case 7:
-        k = 3;
-        break;
-    case 8:
-        k = 10;
-        break;
-    case 9:
-        k = 8;
-        break;
-    case 10:
-        k = 9;
-        break;
-    case 11:
-        k = 11;
-        break;
-    case 12:
-        k = 12;
-        break;
+        case 0:
+            k = 4;
+            break;
+        case 1:
+            k = 0;
+            break;
+        case 2:
+            k = 1;
+            break;
+        case 3:
+            k = 2;
+            break;
+        case 4:
+            k = 5;
+            break;
+        case 5:
+            k = 6;
+            break;
+        case 6:
+            k = 7;
+            break;
+        case 7:
+            k = 3;
+            break;
+        case 8:
+            k = 10;
+            break;
+        case 9:
+            k = 8;
+            break;
+        case 10:
+            k = 9;
+            break;
+        case 11:
+            k = 11;
+            break;
+        case 12:
+            k = 12;
+            break;
     }
     q->mUnk_68 = k;
     i = func_0202578c(((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_004);
@@ -114,45 +114,45 @@ void func_02071c18(Unk0206bcb0 *p) {
     func_0210a5a8(p, (Unk0210a5a8 *) &p->mUnk_450);
     func_020719d0(p);
     switch (((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_000) {
-    case 0:
-        p->mUnk_3cc = 4;
-        break;
-    case 1:
-        p->mUnk_3cc = 0;
-        break;
-    case 2:
-        p->mUnk_3cc = 1;
-        break;
-    case 3:
-        p->mUnk_3cc = 2;
-        break;
-    case 4:
-        p->mUnk_3cc = 5;
-        break;
-    case 5:
-        p->mUnk_3cc = 6;
-        break;
-    case 6:
-        p->mUnk_3cc = 7;
-        break;
-    case 7:
-        p->mUnk_3cc = 3;
-        break;
-    case 8:
-        p->mUnk_3cc = 10;
-        break;
-    case 9:
-        p->mUnk_3cc = 8;
-        break;
-    case 10:
-        p->mUnk_3cc = 9;
-        break;
-    case 11:
-        p->mUnk_3cc = 11;
-        break;
-    case 12:
-        p->mUnk_3cc = 12;
-        break;
+        case 0:
+            p->mUnk_3cc = 4;
+            break;
+        case 1:
+            p->mUnk_3cc = 0;
+            break;
+        case 2:
+            p->mUnk_3cc = 1;
+            break;
+        case 3:
+            p->mUnk_3cc = 2;
+            break;
+        case 4:
+            p->mUnk_3cc = 5;
+            break;
+        case 5:
+            p->mUnk_3cc = 6;
+            break;
+        case 6:
+            p->mUnk_3cc = 7;
+            break;
+        case 7:
+            p->mUnk_3cc = 3;
+            break;
+        case 8:
+            p->mUnk_3cc = 10;
+            break;
+        case 9:
+            p->mUnk_3cc = 8;
+            break;
+        case 10:
+            p->mUnk_3cc = 9;
+            break;
+        case 11:
+            p->mUnk_3cc = 11;
+            break;
+        case 12:
+            p->mUnk_3cc = 12;
+            break;
     }
     p->mUnk_3d0 = ((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_004 % 3;
     if (p->mUnk_7c & 1) {

@@ -28,7 +28,7 @@ void func_ov003_021c1fc8(void) {
     data_ov003_021da168->mUnk_10c = -1;
     data_ov003_021da168->mUnk_10e = -1;
     func_0200fe58(data_ov003_021da168->mUnk_110);
-    if (func_ov003_021ba61c((void *(*)(u32)) func_ov003_021c1f28, func_ov003_021c1f20) != 0) {
+    if (func_ov003_021ba61c((void *(*) (u32)) func_ov003_021c1f28, func_ov003_021c1f20) != 0) {
         func_0200fd1c();
     }
 }

@@ -66,8 +66,7 @@ void func_ov003_021c5cdc(void) {
     } else {
         func_ov003_021cdb14(s->mUnk_00 + s->mUnk_52 * 0x2a);
         func_ov003_021c2120(0, 0);
-        if ((data_ov003_021da1f4->mUnk_00 +
-             data_ov003_021da1f4->mUnk_52 * 0x2a)[0x28] != 0) {
+        if ((data_ov003_021da1f4->mUnk_00 + data_ov003_021da1f4->mUnk_52 * 0x2a)[0x28] != 0) {
             func_ov003_021c2120(0, 1);
             func_ov003_021c20f8(1, 1);
             func_ov003_021c212c(func_ov003_021c6e38);

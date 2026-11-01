@@ -61,8 +61,8 @@ void func_ov001_021832cc(u32 param_1, Unk02188950 *param_2) {
             }
         }
         if (func_ov001_021871f8(param_2, 3) != 0) {
-            if (func_ov001_021881a8(param_2, (Vec3 *) param_2->mUnk_000.mUnk_9c,
-                                    (s32) (param_2->mUnk_0a0->mUnk_180), 0) == 0) {
+            if (func_ov001_021881a8(param_2, (Vec3 *) param_2->mUnk_000.mUnk_9c, (s32) (param_2->mUnk_0a0->mUnk_180),
+                                    0) == 0) {
                 func_ov001_021839ac(param_2);
             }
         }
@@ -94,7 +94,8 @@ void func_ov001_021831f0(Unk0218fa78 *param_1) {
             if (data_021759c0->mUnk_08 == 4) {
                 func_ov001_02181b8c(o);
             }
-            func_ov001_021870e4(param_1, o, (const char *) data_ov001_021a79a8, (const char *) data_ov001_021a79bc, (const char *) data_ov001_021a79d0);
+            func_ov001_021870e4(param_1, o, (const char *) data_ov001_021a79a8, (const char *) data_ov001_021a79bc,
+                                (const char *) data_ov001_021a79d0);
             func_ov001_021870b0(param_1, o, (const char *) data_ov001_021a79e4);
             func_ov001_0218875c(o, (s32) (o->mUnk_0a0->mUnk_008), (s32) (o->mUnk_0a0->mUnk_00c), 0);
             func_ov001_021888a4(o, 0, 0x11000);
@@ -113,7 +114,8 @@ void func_ov001_02183158(Unk0218fa78 *param_1) {
             if (data_021759c0->mUnk_08 == 4) {
                 func_ov001_02181b8c(o);
             }
-            func_ov001_021870e4(param_1, o, (const char *) data_ov001_021a7950, (const char *) data_ov001_021a7968, (const char *) data_ov001_021a7980);
+            func_ov001_021870e4(param_1, o, (const char *) data_ov001_021a7950, (const char *) data_ov001_021a7968,
+                                (const char *) data_ov001_021a7980);
             func_ov001_021870b0(param_1, o, (const char *) data_ov001_021a7998);
             func_ov001_0218875c(o, (s32) (o->mUnk_0a0->mUnk_008), (s32) (o->mUnk_0a0->mUnk_00c), 0);
             func_ov001_021888a4(o, 0, 0x21000);

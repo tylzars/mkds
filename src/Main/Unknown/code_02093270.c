@@ -19,42 +19,42 @@ void func_02093270(void *a, Unk02093270 *p) {
     u8 c;
 
     switch (p->mUnk_ac) {
-    case 0:
-        p->mUnk_a0++;
-        if (p->mUnk_a0 >= p->mUnk_00.mUnk_9c->mUnk_2a) {
-            p->mUnk_a0 = 0;
-            p->mUnk_ac = 1;
-            p->mUnk_00.mUnk_02 &= ~1;
-        }
-        break;
-    case 1:
-        p->mUnk_a8 += 0x7b;
-        if (p->mUnk_a8 >= 0x1000) {
-            p->mUnk_a8 = 0x1000;
-            p->mUnk_ac = 2;
-        }
-        p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mUnk_98->mUnk_10 * p->mUnk_a8) >> 12;
-        break;
-    case 2:
-        p->mUnk_a0++;
-        if (p->mUnk_a0 >= p->mUnk_00.mUnk_9c->mUnk_28) {
-            p->mUnk_a0 = 0;
-            p->mUnk_ac = 3;
-        }
-        func_020d275c(&p->mUnk_00, 0x170);
-        break;
-    case 3:
-        p->mUnk_a8 -= 0x29;
-        if (p->mUnk_a8 <= 0) {
-            p->mUnk_a8 = 0;
-            p->mUnk_ac = 0;
-            p->mUnk_00.mUnk_02 |= data_usa_0215646c;
-        }
-        p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mUnk_98->mUnk_10 * p->mUnk_a8) >> 12;
-        break;
-    case 4:
-        func_020d275c(&p->mUnk_00, 0x170);
-        break;
+        case 0:
+            p->mUnk_a0++;
+            if (p->mUnk_a0 >= p->mUnk_00.mUnk_9c->mUnk_2a) {
+                p->mUnk_a0 = 0;
+                p->mUnk_ac = 1;
+                p->mUnk_00.mUnk_02 &= ~1;
+            }
+            break;
+        case 1:
+            p->mUnk_a8 += 0x7b;
+            if (p->mUnk_a8 >= 0x1000) {
+                p->mUnk_a8 = 0x1000;
+                p->mUnk_ac = 2;
+            }
+            p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mUnk_98->mUnk_10 * p->mUnk_a8) >> 12;
+            break;
+        case 2:
+            p->mUnk_a0++;
+            if (p->mUnk_a0 >= p->mUnk_00.mUnk_9c->mUnk_28) {
+                p->mUnk_a0 = 0;
+                p->mUnk_ac = 3;
+            }
+            func_020d275c(&p->mUnk_00, 0x170);
+            break;
+        case 3:
+            p->mUnk_a8 -= 0x29;
+            if (p->mUnk_a8 <= 0) {
+                p->mUnk_a8 = 0;
+                p->mUnk_ac = 0;
+                p->mUnk_00.mUnk_02 |= data_usa_0215646c;
+            }
+            p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mUnk_98->mUnk_10 * p->mUnk_a8) >> 12;
+            break;
+        case 4:
+            func_020d275c(&p->mUnk_00, 0x170);
+            break;
     }
     n = func_0209b6ec(data_0217b0c8);
     p->mUnk_a4++;
@@ -76,7 +76,8 @@ void func_02093270(void *a, Unk02093270 *p) {
     }
 }
 
-// non-matching: 20 bytes longer than the original (0x18c against 0x178); the original keeps the constants 0, 1, 0x1000 and 4 in registers before the loop and the zero argument in a stack word.
+// non-matching: 20 bytes longer than the original (0x18c against 0x178); the original keeps the constants 0, 1, 0x1000
+// and 4 in registers before the loop and the zero argument in a stack word.
 void func_02093484(Unk020e6fd4 *p) {
     s32 z;
     s32 i;
@@ -102,8 +103,7 @@ void func_02093484(Unk020e6fd4 *p) {
             e->mUnk_b0.mUnk_10 =
                 ((s64) e->mUnk_b0.mUnk_04 * e->mUnk_b0.mUnk_00->mUnk_00[e->mUnk_b0.mUnk_0c].mUnk_34) >> 12;
         }
-        if (e->mUnk_00.mUnk_9c->mUnk_28 == 0 && e->mUnk_00.mUnk_9c->mUnk_2a == 0 &&
-            e->mUnk_00.mUnk_9c->mUnk_2c == 0) {
+        if (e->mUnk_00.mUnk_9c->mUnk_28 == 0 && e->mUnk_00.mUnk_9c->mUnk_2a == 0 && e->mUnk_00.mUnk_9c->mUnk_2c == 0) {
             e->mUnk_a8 = 0x1000;
             e->mUnk_ac = 4;
             e->mUnk_00.mUnk_02 &= ~1;

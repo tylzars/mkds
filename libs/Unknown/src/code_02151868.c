@@ -17,7 +17,6 @@ void func_02151910(Unk021510a4 *a) {
     func_0214d1fc(data_021804a0 + 12, &a->mUnk_12, 2);
 }
 
-
 u32 func_02151868(Unk021510a4 *a, u8 *b) {
     u32 c;
     s32 d;

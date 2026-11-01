@@ -401,7 +401,6 @@ typedef struct Unk0217d378 {
     /* 50 */ s32 mUnk_50;
 } Unk0217d378;
 
-
 // Halfword objects behind data_0217d34c member 0x4.
 typedef struct Unk0217d34c_04 {
     /* 00 */ u16 mUnk_00;

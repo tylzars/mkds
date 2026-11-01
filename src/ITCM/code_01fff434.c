@@ -56,7 +56,8 @@ after:
     p->mUnk_1ec |= data_usa_021595b4;
 }
 
-// non-matching: 9 words differ from +0x14, only the order of the first loads and the registers of the halfword mask (original: ldrh of the flags before the table load, mul in r2, flags pointer in r1)
+// non-matching: 9 words differ from +0x14, only the order of the first loads and the registers of the halfword mask
+// (original: ldrh of the flags before the table load, mul in r2, flags pointer in r1)
 void func_01fff694(Unk020ee684 *p) {
     Unk020f40dc *b = &p->mUnk_030;
     Unk020eda5c *a = &p->mUnk_058;

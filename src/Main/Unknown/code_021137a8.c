@@ -9,8 +9,7 @@
 
 #pragma thumb on
 
-void func_021137f4(void)
-{
+void func_021137f4(void) {
     s32 i;
     u16 a;
 
@@ -35,8 +34,7 @@ void func_021137f4(void)
     }
 }
 
-void func_021137a8(s32 a)
-{
+void func_021137a8(s32 a) {
     s32 b;
 
     b = func_02113f1c();

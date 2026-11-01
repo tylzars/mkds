@@ -92,8 +92,8 @@ typedef struct Unk020f41c4_A {
     /* 129 */ u8 mUnk_129[3];
 } Unk020f41c4_A;
 
-// One 0x8c-byte entry of the array at Unk0217561c::mUnk_14 (the bytes of an entry of mUnk_000 from its member 0x14, and the
-// 0x14 bytes after it).
+// One 0x8c-byte entry of the array at Unk0217561c::mUnk_14 (the bytes of an entry of mUnk_000 from its member 0x14, and
+// the 0x14 bytes after it).
 typedef struct Unk0217561c_14 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;

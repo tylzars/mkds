@@ -148,11 +148,9 @@ void func_020e7760(void) {
     func_02046bcc(&data_0217b9ec, 0);
 }
 
-// non-matching: the first loop's preheader only: the original puts the shared zero
-// into a second register for the 64-bit constant high words (r5 moved to r0, then
-// four word writes of r0 at [sp, #16..]) and starts the byte offset with
-// "movs r4, r5"; this compiles to "adds r4, r5, #0" and four writes of r5 (one
-// instruction and one encoding).
+// non-matching: the first loop's preheader only: the original puts the shared zero into a second register for the
+// 64-bit constant high words (r5 moved to r0, then four word writes of r0 at [sp, #16..]) and starts the byte offset
+// with "movs r4, r5"; this compiles to "adds r4, r5, #0" and four writes of r5 (one instruction and one encoding).
 void func_020e7460(void) {
     s32 x;
     s32 j;

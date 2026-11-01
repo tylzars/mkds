@@ -18,7 +18,9 @@ void func_0212b874(s32 a) {
     Unk0217d410 *p;
     for (i = 0; i < 4; i++) {
         p = data_0217d410;
-        (&p->mUnk_0a[1])[i] = ((((0x1000 - a) * p->mUnk_2c[i].mUnk_08 + a * p->mUnk_5c[i].mUnk_08) >> 12) << 10) | ((((0x1000 - a) * p->mUnk_2c[i].mUnk_00 + a * p->mUnk_5c[i].mUnk_00) >> 12) | ((((0x1000 - a) * p->mUnk_2c[i].mUnk_04 + a * p->mUnk_5c[i].mUnk_04) >> 12) << 5));
+        (&p->mUnk_0a[1])[i] = ((((0x1000 - a) * p->mUnk_2c[i].mUnk_08 + a * p->mUnk_5c[i].mUnk_08) >> 12) << 10) |
+                              ((((0x1000 - a) * p->mUnk_2c[i].mUnk_00 + a * p->mUnk_5c[i].mUnk_00) >> 12) |
+                               ((((0x1000 - a) * p->mUnk_2c[i].mUnk_04 + a * p->mUnk_5c[i].mUnk_04) >> 12) << 5));
     }
     if (data_0217d410->mUnk_8c == 0) {
         func_02016468(0x1e, data_0217d410->mUnk_08 << 5, data_0217d410->mUnk_0a, 0x20);

@@ -2,8 +2,7 @@
 
 #pragma thumb on
 
-u16 func_02113f1c(void)
-{
+u16 func_02113f1c(void) {
     return data_0217d348->mUnk_6a * 5;
 }
 

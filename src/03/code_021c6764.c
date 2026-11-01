@@ -61,8 +61,7 @@ void func_ov003_021c6854(void) {
     s32 b;
     if (func_ov003_021cef6c() == 0) {
         if (data_ov003_021da1f8->mUnk_2a == 0) {
-            data_ov003_021da1f8->mUnk_04->mUnk_00 =
-                data_ov003_021da1f8->mUnk_04->mUnk_00 & 0xc1fffcff;
+            data_ov003_021da1f8->mUnk_04->mUnk_00 = data_ov003_021da1f8->mUnk_04->mUnk_00 & 0xc1fffcff;
             func_ov003_021c212c(func_ov003_021c6d0c);
             return;
         }

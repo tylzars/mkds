@@ -23,7 +23,8 @@ void func_ov000_0218acf4(Unk0218a9bc *p, s32 a, u32 b, s32 c, UnkFunc *f, void *
     func_ov000_0218ae5c((u32 *) &p->mUnk_08);
 }
 
-// non-matching: size 0x114 against 0x118; the original copies the four bytes into b[3] through a destination pointer and a source pointer in two registers (push of r6), ours uses one pointer
+// non-matching: size 0x114 against 0x118; the original copies the four bytes into b[3] through a destination pointer
+// and a source pointer in two registers (push of r6), ours uses one pointer
 void func_ov000_0218ad44(Unk0218a9bc *p, Unk0218af28 *e) {
     Unk0218aa14 a;
     u8 b[0x100];

@@ -57,7 +57,8 @@ u16 func_0204a664(Unk02175650 *a) {
     return r;
 }
 
-// non-matching: the original needs only r4 to r6 (the entry byte count shares a register with the bit temporaries), here a fourth saved register is used and the function is 0x14 bytes larger.
+// non-matching: the original needs only r4 to r6 (the entry byte count shares a register with the bit temporaries),
+// here a fourth saved register is used and the function is 0x14 bytes larger.
 void func_0204a798(Unk02175650 *a, u16 b) {
     s32 f;
     u8 n;

@@ -4,7 +4,8 @@
 #include "code_0214d018.h"
 #include "Main/Unknown/code_021507c8.h"
 
-// non-matching: size 0xf4 against 0xf2; ours spills the base pointer and strength-reduces the offset into a second register, the original keeps the base pointer in r7 and loads the offset from the stack offset 12 each pass
+// non-matching: size 0xf4 against 0xf2; ours spills the base pointer and strength-reduces the offset into a second
+// register, the original keeps the base pointer in r7 and loads the offset from the stack offset 12 each pass
 s32 func_ov000_0218a350(const u8 *a, u8 *b, s32 c, u32 d) {
     s32 f;
     s32 g;

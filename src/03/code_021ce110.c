@@ -106,7 +106,8 @@ void func_ov003_021ce370(Unk021d34e0 *a) {
     func_ov003_021d34e0(a, func_ov003_021ce2d0);
 }
 
-// non-matching: the original loads r5 (object offset from the counter at [sp, #4]) before r7 and the stack pointer, and steps r5 second in the loop; ours loads r5 after them and steps it last, same size
+// non-matching: the original loads r5 (object offset from the counter at [sp, #4]) before r7 and the stack pointer, and
+// steps r5 second in the loop; ours loads r5 after them and steps it last, same size
 void func_ov003_021ce408(u32 a) {
     s32 i;
     u8 *b;

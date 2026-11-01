@@ -52,7 +52,7 @@ void func_020a0064(Unk020a0064 *p) {
         o->mUnk_a4 = (o->mUnk_00.mUnk_9c->mUnk_28 * 0x5000L) / 100;
         v = o->mUnk_a4;
         o->mUnk_c8.mUnk_04 = v;
-        o->mUnk_c8.mUnk_10 = ((s64)v * o->mUnk_c8.mUnk_00->mUnk_00[o->mUnk_c8.mUnk_0c].mUnk_34) >> 12;
+        o->mUnk_c8.mUnk_10 = ((s64) v * o->mUnk_c8.mUnk_00->mUnk_00[o->mUnk_c8.mUnk_0c].mUnk_34) >> 12;
         o->mUnk_a0 = o->mUnk_00.mUnk_04.y;
         func_020d8bf8(&o->mUnk_c8, &o->mUnk_00.mUnk_04, &o->mUnk_00.mUnk_10);
         o->mUnk_a0 = o->mUnk_a0 - o->mUnk_00.mUnk_04.y;
@@ -75,5 +75,5 @@ s32 func_020a0044(s32 a) {
 }
 
 s32 func_020a0028(s32 a, s32 b) {
-    return (s32)(((s64)a * b + 0x800) >> 12);
+    return (s32) (((s64) a * b + 0x800) >> 12);
 }

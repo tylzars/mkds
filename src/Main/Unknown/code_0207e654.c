@@ -55,30 +55,30 @@ void func_0207e668(Unk020888b4 *p) {
         return;
     }
     switch (p->mUnk_a8) {
-    case 0:
-        p->mUnk_a8 = 1;
-        p->mUnk_7a = 0x78;
-        break;
-    case 1:
-        if (data_021759c0->mUnk_08 == 2) {
+        case 0:
+            p->mUnk_a8 = 1;
+            p->mUnk_7a = 0x78;
+            break;
+        case 1:
+            if (data_021759c0->mUnk_08 == 2) {
+                p->mUnk_a8 = 3;
+                func_0208c1f4(p->mUnk_00->mUnk_310);
+                p->mUnk_7a = 0xb4;
+            } else {
+                p->mUnk_a8 = 2;
+                p->mUnk_7a = 0xb4;
+                func_02080ac0(&p->mUnk_08.mUnk_00);
+            }
+            break;
+        case 2:
             p->mUnk_a8 = 3;
             func_0208c1f4(p->mUnk_00->mUnk_310);
             p->mUnk_7a = 0xb4;
-        } else {
-            p->mUnk_a8 = 2;
-            p->mUnk_7a = 0xb4;
-            func_02080ac0(&p->mUnk_08.mUnk_00);
-        }
-        break;
-    case 2:
-        p->mUnk_a8 = 3;
-        func_0208c1f4(p->mUnk_00->mUnk_310);
-        p->mUnk_7a = 0xb4;
-        break;
-    case 3:
-        p->mUnk_a8 = 4;
-        func_02063a68(p->mUnk_00);
-        break;
+            break;
+        case 3:
+            p->mUnk_a8 = 4;
+            func_02063a68(p->mUnk_00);
+            break;
     }
 }
 

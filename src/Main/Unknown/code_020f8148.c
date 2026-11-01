@@ -6,10 +6,9 @@
 
 #pragma thumb on
 
-// non-matching: head byte reads: the original forms the address of the second
-// byte as `adds r0, r5, #1` before `adds r5, r5, #2` and loads it afterwards;
-// here the byte is read with the immediate offset (`ldrb r0, [r5, #1]`) before
-// the pointer is advanced. Every other instruction matches.
+// non-matching: head byte reads: the original forms the address of the second byte as `adds r0, r5, #1` before `adds
+// r5, r5, #2` and loads it afterwards; here the byte is read with the immediate offset (`ldrb r0, [r5, #1]`) before the
+// pointer is advanced. Every other instruction matches.
 u8 *func_020f8148(Unk0217bc6c *param_1, u8 *param_2) {
     u8 *p;
     s32 a;

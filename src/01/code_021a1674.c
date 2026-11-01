@@ -19,18 +19,18 @@ void func_ov001_021a16e4(void) {
         data_ov001_021ca418->mUnk_14[data_ov001_021a6f28[i]].mUnk_06 = -b;
         if (func_02056dec(0x10)) {
             switch (i) {
-            case 0:
-            case 2:
-                for (j = 0; j < 3; j++) {
-                    data_ov001_021ca418->mUnk_18[data_ov001_021a6fa0[i][j]].mUnk_04 = -a;
-                }
-                break;
-            case 1:
-            case 3:
-                for (j = 0; j < 3; j++) {
-                    data_ov001_021ca418->mUnk_18[data_ov001_021a6fa0[i][j]].mUnk_04 = a;
-                }
-                break;
+                case 0:
+                case 2:
+                    for (j = 0; j < 3; j++) {
+                        data_ov001_021ca418->mUnk_18[data_ov001_021a6fa0[i][j]].mUnk_04 = -a;
+                    }
+                    break;
+                case 1:
+                case 3:
+                    for (j = 0; j < 3; j++) {
+                        data_ov001_021ca418->mUnk_18[data_ov001_021a6fa0[i][j]].mUnk_04 = a;
+                    }
+                    break;
             }
         } else {
             for (j = 0; j < 3; j++) {

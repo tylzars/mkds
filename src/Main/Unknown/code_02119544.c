@@ -13,7 +13,7 @@ void func_02119544(void) {
     s32 i;
 
     data_0217d364->mUnk_3c++;
-    if (*(vu16 *)0x027ffc40 != 2) {
+    if (*(vu16 *) 0x027ffc40 != 2) {
         func_020ae4c0(1, 0x100, 0, data_0217d364->mUnk_3c, 10);
         v = func_020ae4c0(1, -0xc0, 0, data_0217d364->mUnk_3c, 10);
         if (func_020cccb4() != 0x1a) {

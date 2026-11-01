@@ -66,7 +66,7 @@ void func_0206e874(Unk0206bcb0 *p) {
                     v4 = 0;
                     e = func_020d411c(i);
                     h = func_020d6be0(p, e);
-                    r = ((s32 (*)(Unk0206bcb0 *, s32 *, Unk020e71a0 *)) data_0217ac18[h])(p, &v2, e);
+                    r = ((s32(*)(Unk0206bcb0 *, s32 *, Unk020e71a0 *)) data_0217ac18[h])(p, &v2, e);
                     if (r != 0) {
                         v = z;
                         u = &e->mUnk_10;
@@ -211,7 +211,9 @@ void func_0206edac(Unk0206bcb0 *p, Vec3 *a) {
         func_020c4a04(p->mUnk_74);
         return;
     }
-    if ((!(p->mUnk_4c & 0x10000000) && p->mUnk_a4.y < 0 && (p->mUnk_380 > 0x19 || p->mUnk_2ac - p->mUnk_80.y > 0x1e000)) || p->mUnk_180 == 6) {
+    if ((!(p->mUnk_4c & 0x10000000) && p->mUnk_a4.y < 0 &&
+         (p->mUnk_380 > 0x19 || p->mUnk_2ac - p->mUnk_80.y > 0x1e000)) ||
+        p->mUnk_180 == 6) {
         s = func_0214848c(a, &p->mUnk_a4);
         v.x = ((s64) a->x * s) >> 12;
         v.y = ((s64) a->y * s) >> 12;

@@ -20,7 +20,8 @@ void func_ov001_0219dadc(void) {
         cond2 = 1;
     }
     if (cond2 != 0) {
-        result = func_0201ea84(data_ov001_021a9bfc->mUnk_48, data_02175628[index].mUnk_48, data_02175628[index].mUnk_4a);
+        result =
+            func_0201ea84(data_ov001_021a9bfc->mUnk_48, data_02175628[index].mUnk_48, data_02175628[index].mUnk_4a);
     }
     flags = data_02175628[index].mUnk_00 & 2;
     if (flags != 0) {
@@ -36,7 +37,7 @@ void func_ov001_0219dadc(void) {
         cond2 = 1;
     }
     if (cond2 != 0 && func_02128210(data_02175628[index].mUnk_48, data_02175628[index].mUnk_4a) != 0) {
-next:
+    next:
         data_ov001_021a9bfc->mUnk_04 = 5;
         data_ov001_021a9bfc->mUnk_20 = 2;
         if (data_ov001_021a9bfc->mUnk_0c != data_ov001_021a9bfc->mUnk_10) {

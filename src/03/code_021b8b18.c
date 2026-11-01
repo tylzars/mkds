@@ -19,30 +19,30 @@ s32 func_ov003_021b8b18(Unk021b8760 *a, u8 *b) {
             return -1;
         }
         switch (c->mUnk_00) {
-        case 0:
-            func_ov003_021b7d90(b, c->mUnk_06, d);
-            break;
-        case 1:
-            func_ov003_021b7d90(b + 0x80, c->mUnk_06, d);
-            break;
-        case 2:
-            func_ov003_021b7d90(b + 0x100, c->mUnk_06, d);
-            break;
-        case 3:
-        case 4:
-            e = func_ov003_021b7c44(c->mUnk_06[0]);
-            if (e <= 0) {
-                return -2;
-            }
-            break;
-        case 5:
-            data_ov003_021d7c6c.mUnk_10 = func_ov003_021b7c5c(func_ov003_021b8af4(c->mUnk_06, d));
-            break;
-        case 6:
-            data_ov003_021d7c6c.mUnk_14 = func_ov003_021b7c5c(func_ov003_021b8af4(c->mUnk_06, d));
-            break;
-        default:
-            return -1;
+            case 0:
+                func_ov003_021b7d90(b, c->mUnk_06, d);
+                break;
+            case 1:
+                func_ov003_021b7d90(b + 0x80, c->mUnk_06, d);
+                break;
+            case 2:
+                func_ov003_021b7d90(b + 0x100, c->mUnk_06, d);
+                break;
+            case 3:
+            case 4:
+                e = func_ov003_021b7c44(c->mUnk_06[0]);
+                if (e <= 0) {
+                    return -2;
+                }
+                break;
+            case 5:
+                data_ov003_021d7c6c.mUnk_10 = func_ov003_021b7c5c(func_ov003_021b8af4(c->mUnk_06, d));
+                break;
+            case 6:
+                data_ov003_021d7c6c.mUnk_14 = func_ov003_021b7c5c(func_ov003_021b8af4(c->mUnk_06, d));
+                break;
+            default:
+                return -1;
         }
         if (c->mUnk_04 != 0) {
             c = (Unk021b8760 *) ((u8 *) a + func_ov003_021b7c44(c->mUnk_04));
@@ -201,7 +201,8 @@ s32 func_ov003_021b8e60(s32 v1, Unk021d7c54 *v2, s32 *v3, Unk021b916c *v4) {
         return -1;
     }
     func_ov003_021b7d84(data_ov003_021d836c, 0, 0x6a0);
-    c = func_ov003_021b8758(0, (Unk021b8760 *) b, func_ov003_021b7c44(a->mUnk_0a), data_ov003_021d836c, data_ov003_021d7cec);
+    c = func_ov003_021b8758(0, (Unk021b8760 *) b, func_ov003_021b7c44(a->mUnk_0a), data_ov003_021d836c,
+                            data_ov003_021d7cec);
     if (c < 0) {
         (*v3)++;
         return v1;

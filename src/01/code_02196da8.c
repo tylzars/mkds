@@ -29,7 +29,7 @@ void func_ov001_02196dbc(void) {
         }
     }
     str[n] = 0;
-    func_02126248((u32)str, 0, 1, 0, 0, 0);
+    func_02126248((u32) str, 0, 1, 0, 0, 0);
 }
 
 void func_ov001_02196da8(void) {

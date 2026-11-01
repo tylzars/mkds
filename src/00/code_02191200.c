@@ -5,8 +5,7 @@ int func_ov000_02191200(int *param_1) {
     int v2;
     int v3;
     v2 = *param_1;
-    v1 = func_ov000_02196714((Unk0218f960 *) param_1, (u32) (*(u32 *) (v2 + 0x1d4)),
-                                (u32 *) (&v3));
+    v1 = func_ov000_02196714((Unk0218f960 *) param_1, (u32) (*(u32 *) (v2 + 0x1d4)), (u32 *) (&v3));
     if (v1 == 0) {
         if (v3 == 4) {
             func_ov000_021965a0((Unk0218f960 *) param_1, 0x107u, data_ov000_021b2b48);

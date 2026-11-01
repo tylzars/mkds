@@ -46,7 +46,8 @@ s32 func_02033e24(void) {
     return r;
 }
 
-// non-matching: same instructions and size (0x1b8); registers differ: the original keeps the object pointer of the sorting loops in r3, the rank in r4 and the inner counter in r1, ours r2, r3 and r4
+// non-matching: same instructions and size (0x1b8); registers differ: the original keeps the object pointer of the
+// sorting loops in r3, the rank in r4 and the inner counter in r1, ours r2, r3 and r4
 void func_02033e6c(void) {
     u16 i;
     u16 j;
@@ -86,7 +87,8 @@ void func_02033e6c(void) {
     }
 }
 
-// non-matching: 0x168 bytes, original 0x164; same loops, but the original keeps the rank on the stack (offset 0x24) and fills the two index lists through post-incremented pointers, ours through indexes
+// non-matching: 0x168 bytes, original 0x164; same loops, but the original keeps the rank on the stack (offset 0x24) and
+// fills the two index lists through post-incremented pointers, ours through indexes
 void func_02034024(void) {
     Unk02174e60 *o;
     s32 a[8];

@@ -49,7 +49,8 @@ void func_020c092c(Unk020c06c4 *a, Unk0217b498 *b, s32 c) {
             k = a->mUnk_400;
             e[0] = x << 12;
             e[1] = y << 12;
-            a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, z, c != 0 ? d : 0, e, n, 1);
+            a->mUnk_400 +=
+                func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, z, c != 0 ? d : 0, e, n, 1);
             t = &a->mUnk_000.mUnk_00[k];
             for (; k < a->mUnk_400; k++, t++) {
                 if ((q != 0 ? 1 : -1) != -1) {

@@ -8,13 +8,13 @@
 #include "03/unk_021d5f00.h"
 #include "03/unk_021da000.h"
 
-// non-matching: in the second loop the counter sits in r5 and the two table pointers in r6 and r7; the original has the counter in r6 and the
-// pointers in r5 and r4 (9 instruction words differ, same size)
+// non-matching: in the second loop the counter sits in r5 and the two table pointers in r6 and r7; the original has the
+// counter in r6 and the pointers in r5 and r4 (9 instruction words differ, same size)
 void func_ov003_021c06e0(void) {
     Unk021d299c a;
     s32 i;
-    u16 (*q)[2];
-    u16 (*p)[2];
+    u16(*q)[2];
+    u16(*p)[2];
     s32 j;
     data_ov003_021da15c->mUnk_11c = 0;
     if (func_ov003_021d299c(&data_ov003_021d67e8) == 0) {

@@ -7,7 +7,8 @@
 #include "Main/Unknown/code_02077f00.h" // data_usa_0217ace4
 #include "Main/Unknown/code_020790e0.h"
 
-// 0x88-byte object built from an entry of the table at Unk02175620::mUnk_7c: the entry, two Unk0207b960 and two halfwords.
+// 0x88-byte object built from an entry of the table at Unk02175620::mUnk_7c: the entry, two Unk0207b960 and two
+// halfwords.
 typedef struct Unk02077750 {
     /* 00 */ Unk020748b8_218 *mUnk_00;
     /* 04 */ Unk0207b960 mUnk_04;

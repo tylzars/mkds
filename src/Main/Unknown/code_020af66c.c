@@ -91,7 +91,9 @@ void func_020af66c(void) {
         func_020d1298();
     }
     v = data_021759c0->mUnk_08;
-    if ((v == 2 ? data_0217561c->mUnk_4cc : v == 4 ? func_0203c174() : (func_0203c880(func_020b4d9c()) != 0 && data_0217b350->mUnk_8dc == 0)) == 0) {
+    if ((v == 2   ? data_0217561c->mUnk_4cc
+         : v == 4 ? func_0203c174()
+                  : (func_0203c880(func_020b4d9c()) != 0 && data_0217b350->mUnk_8dc == 0)) == 0) {
         func_020bab54();
         func_020bc958();
         func_020d2090();

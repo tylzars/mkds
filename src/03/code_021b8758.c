@@ -34,28 +34,28 @@ s32 func_ov003_021b8758(s32 a, Unk021b8760 *b, s32 c, Unk021b8758 *d, u8 *e) {
     l = -3;
     do {
         switch (b->mUnk_00) {
-        case 3:
-            l = func_ov003_021b8990(b, &j->mUnk_008);
-            f |= 1;
-            break;
-        case 4:
-            l = func_ov003_021b8990(b, &j->mUnk_138);
-            f |= 2;
-            break;
-        case 5:
-            l = func_ov003_021b88c0(b, &j->mUnk_268);
-            f |= 4;
-            break;
-        case 6:
-            l = func_ov003_021b88c0(b, &j->mUnk_2d8);
-            f |= 8;
-            break;
-        case 10:
-            l = func_ov003_021b887c(b, k);
-            break;
-        default:
-            l = -3;
-            break;
+            case 3:
+                l = func_ov003_021b8990(b, &j->mUnk_008);
+                f |= 1;
+                break;
+            case 4:
+                l = func_ov003_021b8990(b, &j->mUnk_138);
+                f |= 2;
+                break;
+            case 5:
+                l = func_ov003_021b88c0(b, &j->mUnk_268);
+                f |= 4;
+                break;
+            case 6:
+                l = func_ov003_021b88c0(b, &j->mUnk_2d8);
+                f |= 8;
+                break;
+            case 10:
+                l = func_ov003_021b887c(b, k);
+                break;
+            default:
+                l = -3;
+                break;
         }
         if (l != 0) {
             return l;
@@ -88,34 +88,34 @@ s32 func_ov003_021b88c0(Unk021b8760 *a, Unk021b88c0 *b) {
     while (1) {
         d = func_ov003_021b7c44(c->mUnk_02);
         switch (c->mUnk_00) {
-        case 0x30:
-        case 0x40:
-            if (d > 0x40) {
-                return -1;
-            }
-            break;
-        case 0x35:
-        case 0x45:
-            if (d > 0x21) {
-                return -1;
-            }
-            break;
+            case 0x30:
+            case 0x40:
+                if (d > 0x40) {
+                    return -1;
+                }
+                break;
+            case 0x35:
+            case 0x45:
+                if (d > 0x21) {
+                    return -1;
+                }
+                break;
         }
         switch (c->mUnk_00) {
-        case 0x30:
-        case 0x40:
-            func_ov003_021b7d90(b->mUnk_30, c->mUnk_06, d);
-            b->mUnk_04 = d;
-            break;
-        case 0x35:
-        case 0x45:
-            if (d != 0 && c->mUnk_06[d - 1] != 0) {
+            case 0x30:
+            case 0x40:
+                func_ov003_021b7d90(b->mUnk_30, c->mUnk_06, d);
+                b->mUnk_04 = d;
+                break;
+            case 0x35:
+            case 0x45:
+                if (d != 0 && c->mUnk_06[d - 1] != 0) {
+                    return -1;
+                }
+                func_ov003_021b7d90(b->mUnk_08, c->mUnk_06, d);
+                break;
+            default:
                 return -1;
-            }
-            func_ov003_021b7d90(b->mUnk_08, c->mUnk_06, d);
-            break;
-        default:
-            return -1;
         }
         if (c->mUnk_04 != 0) {
             c = (Unk021b8760 *) ((u8 *) a + 6 + func_ov003_021b7c44(c->mUnk_04));
@@ -131,59 +131,59 @@ s32 func_ov003_021b8990(Unk021b8760 *a, Unk021b8990 *b) {
     while (1) {
         d = func_ov003_021b7c44(c->mUnk_02);
         switch (c->mUnk_00) {
-        case 0x10:
-        case 0x11:
-        case 0x12:
-        case 0x13:
-            if (d > 5) {
-                return -1;
-            }
-            break;
-        case 0x20:
-        case 0x21:
-        case 0x22:
-        case 0x23:
-            if (d > 0xd) {
-                return -1;
-            }
-            break;
-        case 0x15:
-        case 0x25:
-            if (d > 0x21) {
-                return -1;
-            }
-            break;
+            case 0x10:
+            case 0x11:
+            case 0x12:
+            case 0x13:
+                if (d > 5) {
+                    return -1;
+                }
+                break;
+            case 0x20:
+            case 0x21:
+            case 0x22:
+            case 0x23:
+                if (d > 0xd) {
+                    return -1;
+                }
+                break;
+            case 0x15:
+            case 0x25:
+                if (d > 0x21) {
+                    return -1;
+                }
+                break;
         }
         switch (c->mUnk_00) {
-        case 0x10:
-        case 0x20:
-            func_ov003_021b7d90(b->mUnk_030, c->mUnk_06, d);
-            b->mUnk_004 = d;
-            break;
-        case 0x11:
-        case 0x21:
-            func_ov003_021b7d90(b->mUnk_070, c->mUnk_06, d);
-            b->mUnk_004 = d;
-            break;
-        case 0x12:
-        case 0x22:
-            func_ov003_021b7d90(b->mUnk_0b0, c->mUnk_06, d);
-            b->mUnk_004 = d;
-            break;
-        case 0x13:
-        case 0x23:
-            func_ov003_021b7d90(b->mUnk_0f0, c->mUnk_06, d);
-            b->mUnk_004 = d;
-            break;
-        case 0x15:
-        case 0x25:
-            if (d != 0 && c->mUnk_06[d - 1] != 0) {
+            case 0x10:
+            case 0x20:
+                func_ov003_021b7d90(b->mUnk_030, c->mUnk_06, d);
+                b->mUnk_004 = d;
+                break;
+            case 0x11:
+            case 0x21:
+                func_ov003_021b7d90(b->mUnk_070, c->mUnk_06, d);
+                b->mUnk_004 = d;
+                break;
+            case 0x12:
+            case 0x22:
+                func_ov003_021b7d90(b->mUnk_0b0, c->mUnk_06, d);
+                b->mUnk_004 = d;
+                break;
+            case 0x13:
+            case 0x23:
+                func_ov003_021b7d90(b->mUnk_0f0, c->mUnk_06, d);
+                b->mUnk_004 = d;
+                break;
+            case 0x15:
+            case 0x25:
+                if (d != 0 && c->mUnk_06[d - 1] != 0) {
+                    return -1;
+                }
+                func_ov003_021b7d90(b->mUnk_008, c->mUnk_06, d);
+                break;
+            default:
                 return -1;
-            }
-            func_ov003_021b7d90(b->mUnk_008, c->mUnk_06, d);
-            break;
-        default:
-            return -1;
         }
         if (c->mUnk_04 != 0) {
             c = (Unk021b8760 *) ((u8 *) a + 6 + func_ov003_021b7c44(c->mUnk_04));

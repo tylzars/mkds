@@ -2,8 +2,8 @@
 
 #pragma thumb on
 
-// non-matching: 4 words differ; the original keeps the address of data_0216fda8 in r3 and the loaded pointer in r0, ours
-// has them the other way round (same instructions, same size)
+// non-matching: 4 words differ; the original keeps the address of data_0216fda8 in r3 and the loaded pointer in r0,
+// ours has them the other way round (same instructions, same size)
 u32 func_02009c34(void) {
     Unk0216fda8 **p;
     u32 v1;

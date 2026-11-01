@@ -11,8 +11,9 @@ void func_ov003_021c3b60(void) {
         if (func_ov003_021d2a34(&data_ov003_021d6350[i]) != 0) {
             func_ov003_021bf31c(1);
             data_ov003_021da1ac = i;
-            func_ov003_021bf6c8(data_ov003_021d6368[data_ov003_021da1ac * 4], data_ov003_021d636c[data_ov003_021da1ac * 4],
-                                data_ov003_021d636a[data_ov003_021da1ac * 4], data_ov003_021d636e[data_ov003_021da1ac * 4]);
+            func_ov003_021bf6c8(
+                data_ov003_021d6368[data_ov003_021da1ac * 4], data_ov003_021d636c[data_ov003_021da1ac * 4],
+                data_ov003_021d636a[data_ov003_021da1ac * 4], data_ov003_021d636e[data_ov003_021da1ac * 4]);
             return;
         }
     }

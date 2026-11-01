@@ -11,8 +11,7 @@ void func_ov003_021d0acc(void) {
 
     switch (func_ov003_021d010c()) {
         case 1:
-            func_ov003_021cfc4c(4, data_ov003_021da2ac->mUnk_648 + 1,
-                                data_ov003_021da2ac->mUnk_64a);
+            func_ov003_021cfc4c(4, data_ov003_021da2ac->mUnk_648 + 1, data_ov003_021da2ac->mUnk_64a);
             break;
         case 4:
         case 5:

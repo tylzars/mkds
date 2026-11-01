@@ -17,51 +17,51 @@ void func_020d29cc(Unk020e71a0 *param_1, Vec3 *param_2) {
     param_1->mUnk_58.x = (s64) param_1->mUnk_98->mUnk_0c * param_1->mUnk_1c.x >> 12;
     if (param_1->mUnk_64 >= 0) {
         switch (param_1->mUnk_98->mUnk_08) {
-        case 3:
-        case 4:
-        case 5:
-            a = func_021482cc(&param_1->mUnk_58);
-            break;
-        case 0:
-        case 1:
-        case 2:
-        default:
-            a = param_1->mUnk_58.x;
-            break;
+            case 3:
+            case 4:
+            case 5:
+                a = func_021482cc(&param_1->mUnk_58);
+                break;
+            case 0:
+            case 1:
+            case 2:
+            default:
+                a = param_1->mUnk_58.x;
+                break;
         }
         func_020d5148(param_1->mUnk_64, a);
     }
     param_1->mUnk_58.y = (s64) param_1->mUnk_98->mUnk_10 * param_1->mUnk_1c.y >> 12;
     if (param_1->mUnk_64 >= 0) {
         switch (param_1->mUnk_98->mUnk_08) {
-        case 3:
-        case 4:
-        case 5:
-            a = func_021482cc(&param_1->mUnk_58);
-            break;
-        case 0:
-        case 1:
-        case 2:
-        default:
-            a = param_1->mUnk_58.x;
-            break;
+            case 3:
+            case 4:
+            case 5:
+                a = func_021482cc(&param_1->mUnk_58);
+                break;
+            case 0:
+            case 1:
+            case 2:
+            default:
+                a = param_1->mUnk_58.x;
+                break;
         }
         func_020d5148(param_1->mUnk_64, a);
     }
     param_1->mUnk_58.z = (s64) param_1->mUnk_98->mUnk_14 * param_1->mUnk_1c.z >> 12;
     if (param_1->mUnk_64 >= 0) {
         switch (param_1->mUnk_98->mUnk_08) {
-        case 3:
-        case 4:
-        case 5:
-            a = func_021482cc(&param_1->mUnk_58);
-            break;
-        case 0:
-        case 1:
-        case 2:
-        default:
-            a = param_1->mUnk_58.x;
-            break;
+            case 3:
+            case 4:
+            case 5:
+                a = func_021482cc(&param_1->mUnk_58);
+                break;
+            case 0:
+            case 1:
+            case 2:
+            default:
+                a = param_1->mUnk_58.x;
+                break;
         }
         func_020d5148(param_1->mUnk_64, a);
     }
@@ -84,17 +84,17 @@ void func_020d2950(Unk020e71a0 *param_1, s32 param_2) {
         return;
     }
     switch (param_1->mUnk_98->mUnk_08) {
-    case 3:
-    case 4:
-    case 5:
-        a = func_021482cc(&param_1->mUnk_58);
-        break;
-    case 0:
-    case 1:
-    case 2:
-    default:
-        a = param_1->mUnk_58.x;
-        break;
+        case 3:
+        case 4:
+        case 5:
+            a = func_021482cc(&param_1->mUnk_58);
+            break;
+        case 0:
+        case 1:
+        case 2:
+        default:
+            a = param_1->mUnk_58.x;
+            break;
     }
     func_020d5148(param_1->mUnk_64, a);
 }

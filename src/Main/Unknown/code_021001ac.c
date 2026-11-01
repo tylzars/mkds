@@ -101,7 +101,7 @@ void func_0210045c(Unk02101c84 *p) {
     } else {
         i = 8;
     }
-    func_020f81b8((u32) &((Unk020ee684 *) (void *) data_027e00c8)[(u16) i], 0x10);
+    func_020f81b8((u32) & ((Unk020ee684 *) (void *) data_027e00c8)[(u16) i], 0x10);
 }
 
 void func_021003e8(Unk02101c84 *p, u32 sel, s32 v1) {

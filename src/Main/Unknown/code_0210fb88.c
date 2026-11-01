@@ -15,13 +15,11 @@
 #include "code_0212c6ac.h"
 #include "code_0212df7c.h"
 
-void func_021100d0(Unk0212c400 **a, u32 b)
-{
+void func_021100d0(Unk0212c400 **a, u32 b) {
     func_0212c6f0(a, b);
 }
 
-void func_0211003c(u32 a, Unk0212c400 **b)
-{
+void func_0211003c(u32 a, Unk0212c400 **b) {
     if ((data_0217c780 & 1) == 0) {
         return;
     }
@@ -38,8 +36,7 @@ void func_0211003c(u32 a, Unk0212c400 **b)
 }
 
 // Fades the object at data_0217d234 towards t, then writes the value that was reached.
-static inline void func_0210fb88_inline(Unk0212c400 **p, s32 v, s32 k, s32 t)
-{
+static inline void func_0210fb88_inline(Unk0212c400 **p, s32 v, s32 k, s32 t) {
     s32 m;
     s32 c;
     s32 r;
@@ -79,8 +76,7 @@ static inline void func_0210fb88_inline(Unk0212c400 **p, s32 v, s32 k, s32 t)
     }
 }
 
-void func_0210fb88(Unk0217d244 *a, Unk0212c400 **b)
-{
+void func_0210fb88(Unk0217d244 *a, Unk0212c400 **b) {
     u32 i;
     s32 j;
     s32 k;
@@ -97,11 +93,11 @@ void func_0210fb88(Unk0217d244 *a, Unk0212c400 **b)
     n = -1;
     if (a->mUnk_00 > 0) {
         switch (a->mUnk_00) {
-        case 1:
-            l = k;
-            break;
-        case 2:
-            break;
+            case 1:
+                l = k;
+                break;
+            case 2:
+                break;
         }
         func_0210fb88_inline(b, 0x7f, 0, l);
         return;

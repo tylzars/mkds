@@ -22,14 +22,14 @@ void func_ov001_0218d3ec(Unk02188950 *param_1) {
     s32 y;
     s32 t;
 
-    if (func_020a1154((u16)data_021759c0->mUnk_62) <= 1) {
+    if (func_020a1154((u16) data_021759c0->mUnk_62) <= 1) {
         y = 0x1000 - param_1->mUnk_0a0->mUnk_0ac;
         t = func_ov001_02187f38(param_1);
-        x = (s32)(((s64)t * y) >> 12);
-    } else if (func_020a1154((u16)data_021759c0->mUnk_62) <= 2) {
+        x = (s32) (((s64) t * y) >> 12);
+    } else if (func_020a1154((u16) data_021759c0->mUnk_62) <= 2) {
         y = 0x1000 - param_1->mUnk_0a0->mUnk_0a8;
         t = func_ov001_02187f38(param_1);
-        x = (s32)(((s64)t * y) >> 12);
+        x = (s32) (((s64) t * y) >> 12);
     } else {
         x = func_ov001_02187f38(param_1);
     }

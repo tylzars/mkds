@@ -17,12 +17,12 @@ void func_020b3fb0(Unk020b3fb0 *a) {
         p = p + ((Unk020b3fb0_20 *) p)->mUnk_04;
         t = func_020ae1d0(((Unk020b3fb0_20 *) q)->mUnk_00);
         switch (t) {
-        case 0x494e4631:
-            data_0217b360 = (Unk0217b340 *) q;
-            break;
-        case 0x44415431:
-            data_0217b364 = (Unk0217b344 *) q;
-            break;
+            case 0x494e4631:
+                data_0217b360 = (Unk0217b340 *) q;
+                break;
+            case 0x44415431:
+                data_0217b364 = (Unk0217b344 *) q;
+                break;
         }
     }
 }

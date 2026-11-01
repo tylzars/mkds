@@ -14,8 +14,10 @@ void func_02126474(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
     p->mUnk_18(p, 0xf);
     p = &data_0217d3f0->mUnk_2098[4];
     p->mUnk_18(p, 0xe);
-    func_0212583c(&data_0217d3f0->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1, (void *)a);
-    func_021257d8(&data_0217d3f0->mUnk_2178[4], 0, 0, data_0215d044[4][0] << 3, data_0215d044[4][1] << 3, 2, 0x480, 1, (void *)b);
+    func_0212583c(&data_0217d3f0->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1,
+                  (void *) a);
+    func_021257d8(&data_0217d3f0->mUnk_2178[4], 0, 0, data_0215d044[4][0] << 3, data_0215d044[4][1] << 3, 2, 0x480, 1,
+                  (void *) b);
     func_02127734();
     data_0217d3f0->mUnk_2204[0] = 1;
     data_0217d3f0->mUnk_2204[4] = 1;
@@ -32,7 +34,7 @@ void func_02126474(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
 }
 
 void func_02126454(void *a, void *b, void *c, s32 d) {
-    func_0212630c((u32)a, (u32)b, (u32)c, d, 1, 1, 1, 0, 0);
+    func_0212630c((u32) a, (u32) b, (u32) c, d, 1, 1, 1, 0, 0);
 }
 
 void func_0212630c(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 i) {
@@ -44,9 +46,12 @@ void func_0212630c(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 i
     p->mUnk_18(p, 0xe);
     p = &data_0217d3f0->mUnk_2098[6];
     p->mUnk_18(p, 0xd);
-    func_0212583c(&data_0217d3f0->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1, (void *)a);
-    func_021257d8(&data_0217d3f0->mUnk_2178[5], 0, 0, data_0215d044[5][0] << 3, data_0215d044[5][1] << 3, 2, 0x480, 1, (void *)b);
-    func_021257d8(&data_0217d3f0->mUnk_2178[6], 0, 0, data_0215d044[6][0] << 3, data_0215d044[6][1] << 3, 2, 0x480, 1, (void *)c);
+    func_0212583c(&data_0217d3f0->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1,
+                  (void *) a);
+    func_021257d8(&data_0217d3f0->mUnk_2178[5], 0, 0, data_0215d044[5][0] << 3, data_0215d044[5][1] << 3, 2, 0x480, 1,
+                  (void *) b);
+    func_021257d8(&data_0217d3f0->mUnk_2178[6], 0, 0, data_0215d044[6][0] << 3, data_0215d044[6][1] << 3, 2, 0x480, 1,
+                  (void *) c);
     func_02127734();
     data_0217d3f0->mUnk_2204[0] = 1;
     data_0217d3f0->mUnk_2204[5] = 1;

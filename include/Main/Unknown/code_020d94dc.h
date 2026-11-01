@@ -120,7 +120,8 @@ void func_020da384(Unk020da384 *a, void *b, UnkFunc *c);
 void func_020d9f8c(Unk020d9cf4 *a);
 void func_020d9e60(Unk020d9cf4 *a, struct Unk02012f58 *b);
 Unk020d9de0 *func_020d9de0(void);
-void func_020d9cf4(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i, u16 j, u16 k, u16 l, u16 m, u16 n, s32 o);
+void func_020d9cf4(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i, u16 j, u16 k, u16 l, u16 m, u16 n,
+                   s32 o);
 void func_020d9c54(void);
 void func_020d9bb8(void);
 void func_020d9b20(void);

@@ -100,8 +100,8 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
                     }
                 }
                 data_ov000_021b566c->mUnk_198 = 6;
-                if (func_ov000_0219e4a0(func_ov000_021a0cac(0, 0, func_ov000_0218b480((u32) data_ov000_021b566c->mUnk_e4, 0))) ==
-                    0) {
+                if (func_ov000_0219e4a0(
+                        func_ov000_021a0cac(0, 0, func_ov000_0218b480((u32) data_ov000_021b566c->mUnk_e4, 0))) == 0) {
                     break;
                 }
                 return 0;

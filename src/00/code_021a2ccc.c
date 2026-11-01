@@ -32,11 +32,11 @@ void func_ov000_021a2d38(u32 a, void *b, s32 c) {
     Unk021a2d68 *e = (Unk021a2d68 *) func_ov000_021a2fdc(a);
     e->mUnk_1d = e->mUnk_1e;
     switch (e->mUnk_22) {
-    case 2:
-    case 3:
-    case 4:
-        func_ov000_021a18e0(a, e->mUnk_22, b);
-        break;
+        case 2:
+        case 3:
+        case 4:
+            func_ov000_021a18e0(a, e->mUnk_22, b);
+            break;
     }
 }
 
@@ -71,24 +71,24 @@ void func_ov000_021a2dfc(int a, void *b, s32 c) {
     e->mUnk_1e = func_ov000_021a2fb4(a);
     n = func_ov000_021a31e8(b);
     switch (n) {
-    case 1:
-        if (c != 8) {
-            return;
-        }
-        func_0214d1fc(b, t, 8);
-        e->mUnk_18 = t[0];
-        e->mUnk_10 = 0;
-        if (e->mUnk_04 != 0 && e->mUnk_08 >= e->mUnk_18) {
-            e->mUnk_1d = 2;
-        } else {
-            e->mUnk_1d = 4;
-        }
-        break;
-    case 2:
-    case 3:
-    case 4:
-        e->mUnk_1d = 3;
-        break;
+        case 1:
+            if (c != 8) {
+                return;
+            }
+            func_0214d1fc(b, t, 8);
+            e->mUnk_18 = t[0];
+            e->mUnk_10 = 0;
+            if (e->mUnk_04 != 0 && e->mUnk_08 >= e->mUnk_18) {
+                e->mUnk_1d = 2;
+            } else {
+                e->mUnk_1d = 4;
+            }
+            break;
+        case 2:
+        case 3:
+        case 4:
+            e->mUnk_1d = 3;
+            break;
     }
     e->mUnk_22 = n;
 }

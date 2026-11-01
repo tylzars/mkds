@@ -174,12 +174,12 @@ void func_02058338(void) {
 void func_020582f4(void) {
     if (data_0217aa00->mUnk_0010 == 0) {
         switch (data_0217aa00->mUnk_000c) {
-        case 0xb:
-            func_02052da4();
-            break;
-        case 0x25:
-            func_0205821c_inline2(6);
-            break;
+            case 0xb:
+                func_02052da4();
+                break;
+            case 0x25:
+                func_0205821c_inline2(6);
+                break;
         }
     }
 }
@@ -195,28 +195,28 @@ void func_0205821c(void) {
     u32 c;
 
     switch (func_0205821c_inline()) {
-    case 1:
-        a = data_0217aa00->mUnk_164e;
-        b = data_0217aa00->mUnk_162a;
-        c = b & (1 << a);
-        if (c != 0) {
-            if (func_020504a4(a, b) != 0) {
+        case 1:
+            a = data_0217aa00->mUnk_164e;
+            b = data_0217aa00->mUnk_162a;
+            c = b & (1 << a);
+            if (c != 0) {
+                if (func_020504a4(a, b) != 0) {
+                    data_0217aa00->mUnk_164e++;
+                }
+            } else {
                 data_0217aa00->mUnk_164e++;
             }
-        } else {
-            data_0217aa00->mUnk_164e++;
-        }
-        if (data_0217aa00->mUnk_164e >= 8) {
-            func_0205821c_inline2(6);
-        }
-        break;
-    case 2:
-        a = data_0217aa00->mUnk_162a;
-        b = data_0217aa00->mUnk_164c;
-        if (a == (a & b)) {
-            func_0205821c_inline2(6);
-        }
-        break;
+            if (data_0217aa00->mUnk_164e >= 8) {
+                func_0205821c_inline2(6);
+            }
+            break;
+        case 2:
+            a = data_0217aa00->mUnk_162a;
+            b = data_0217aa00->mUnk_164c;
+            if (a == (a & b)) {
+                func_0205821c_inline2(6);
+            }
+            break;
     }
 }
 

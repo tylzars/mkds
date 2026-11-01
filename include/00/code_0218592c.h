@@ -11,6 +11,5 @@ typedef struct Unk021b4c90 {
     /* 3bc */ u8 mUnk_3bc[4];
 } Unk021b4c90;
 
-
 void func_ov000_0218592c(void *a);
 void func_ov000_02185954(s32 a);

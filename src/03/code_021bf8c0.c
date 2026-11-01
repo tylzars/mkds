@@ -50,9 +50,9 @@ void func_ov003_021bf920(void) {
     *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = a;
     func_ov003_021d1c3c(0, data_ov003_021d5f58[data_ov003_021da158->mUnk_08][i], (u8 *) data_ov003_021da158->mUnk_00);
-    data_ov003_021da158->mUnk_00->mUnk_00 = ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
-                                            ((data_ov003_021da158->mUnk_00->mUnk_00 & 0xfe00ff00) |
-                                             (data_ov003_021d5f54[1] & 0xff));
+    data_ov003_021da158->mUnk_00->mUnk_00 =
+        ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
+        ((data_ov003_021da158->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
     data_ov003_021da158->mUnk_00->mUnk_04 = (data_ov003_021da158->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;
 }
 
@@ -69,9 +69,9 @@ void func_ov003_021bf9e8(int param_1) {
         data_ov003_021da158 = func_ov003_021d285c(0xc, 4);
         data_ov003_021da158->mUnk_08 = param_1;
         data_ov003_021da158->mUnk_00 = (Unk021bf920 *) func_ov003_021d1c18(0, data_ov003_021d5f58[param_1][0]);
-        data_ov003_021da158->mUnk_00->mUnk_00 = ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
-                                                ((data_ov003_021da158->mUnk_00->mUnk_00 & 0xfe00ff00) |
-                                                 (data_ov003_021d5f54[1] & 0xff));
+        data_ov003_021da158->mUnk_00->mUnk_00 =
+            ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
+            ((data_ov003_021da158->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
         data_ov003_021da158->mUnk_00->mUnk_04 = (data_ov003_021da158->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;
         data_ov003_021da158->mUnk_04 = func_ov003_021d3544(0, (u32) func_ov003_021bf920, 0, 0x78);
     }
@@ -101,7 +101,8 @@ void func_ov003_021bfa80(u32 param_1) {
     func_ov003_021d2808(&data_ov003_021da15c);
 }
 
-// non-matching: size 0x44 against 0x54. The original keeps both values in stack offsets 0 and 4; the compiled code keeps them in registers.
+// non-matching: size 0x44 against 0x54. The original keeps both values in stack offsets 0 and 4; the compiled code
+// keeps them in registers.
 void func_ov003_021bfb28(u32 param_1) {
     u32 x;
     s32 y;
@@ -114,8 +115,9 @@ void func_ov003_021bfb28(u32 param_1) {
     }
 }
 
-// non-matching: size 0x44 against 0x54. The original keeps the two values in stack offsets 0 and 4 (stores both, adds 12 to
-// the second in a register and stores it again, reloads it for the compare); the compiled code keeps them in registers.
+// non-matching: size 0x44 against 0x54. The original keeps the two values in stack offsets 0 and 4 (stores both, adds
+// 12 to the second in a register and stores it again, reloads it for the compare); the compiled code keeps them in
+// registers.
 void func_ov003_021bfb7c(u32 param_1) {
     u32 x;
     s32 y;
@@ -128,8 +130,9 @@ void func_ov003_021bfb7c(u32 param_1) {
     }
 }
 
-// non-matching: size 0x44 against 0x54. The original keeps the two values in stack offsets 0 and 4 (stores both, adds 12 to
-// the second in a register and stores it again, reloads it for the compare); the compiled code keeps them in registers.
+// non-matching: size 0x44 against 0x54. The original keeps the two values in stack offsets 0 and 4 (stores both, adds
+// 12 to the second in a register and stores it again, reloads it for the compare); the compiled code keeps them in
+// registers.
 void func_ov003_021bfbd0(u32 param_1) {
     u32 x;
     s32 y;
@@ -142,8 +145,9 @@ void func_ov003_021bfbd0(u32 param_1) {
     }
 }
 
-// non-matching: size 0x44 against 0x54. The original keeps the two values in stack offsets 0 and 4 (stores both, adds 12 to
-// the second in a register and stores it again, reloads it for the compare); the compiled code keeps them in registers.
+// non-matching: size 0x44 against 0x54. The original keeps the two values in stack offsets 0 and 4 (stores both, adds
+// 12 to the second in a register and stores it again, reloads it for the compare); the compiled code keeps them in
+// registers.
 void func_ov003_021bfc28(u32 param_1) {
     u32 x;
     s32 y;
@@ -156,8 +160,9 @@ void func_ov003_021bfc28(u32 param_1) {
     }
 }
 
-// non-matching: size 0x44 against 0x54. The original keeps the two values in stack offsets 0 and 4 (stores both, adds 12 to
-// the second in a register and stores it again, reloads it for the compare); the compiled code keeps them in registers.
+// non-matching: size 0x44 against 0x54. The original keeps the two values in stack offsets 0 and 4 (stores both, adds
+// 12 to the second in a register and stores it again, reloads it for the compare); the compiled code keeps them in
+// registers.
 void func_ov003_021bfc80(u32 param_1) {
     Unk021bf920 *p;
     u32 x;
@@ -356,8 +361,9 @@ void func_ov003_021c0050(int param_1, int param_2) {
     func_ov003_021d1890(data_ov003_021da15c->mUnk_0fc[param_1 - 0x33], -1, 0, data_ov003_021d5f64[param_2]);
 }
 
-// non-matching: size 0x64 against 0x68. The original indexes the constant halfword table with a counter stepping by 12 (shift and add
-// per use); the compiled code steps a pointer by 48 instead, and the registers of the counters and parameter differ.
+// non-matching: size 0x64 against 0x68. The original indexes the constant halfword table with a counter stepping by 12
+// (shift and add per use); the compiled code steps a pointer by 48 instead, and the registers of the counters and
+// parameter differ.
 void func_ov003_021c00ec(int param_1) {
     s32 a;
     s32 b;
@@ -380,8 +386,9 @@ void func_ov003_021c00ec(int param_1) {
     func_ov003_021c0050(0x30, b);
 }
 
-// non-matching: size 0x1b8 against 0x1c4. The original spills the product of the parameter by 12 and the pointer to the first
-// row length to stack offsets 20 and 28 and steps pointers through the halfword table; the compiled code keeps them in registers.
+// non-matching: size 0x1b8 against 0x1c4. The original spills the product of the parameter by 12 and the pointer to the
+// first row length to stack offsets 20 and 28 and steps pointers through the halfword table; the compiled code keeps
+// them in registers.
 void func_ov003_021c0154(u32 param_1, s32 param_2, u32 param_3) {
     u8 a[5] = {12, 12, 12, 11, 0};
     u8 c[5] = {1, 1, 1, 1, 0};
@@ -396,7 +403,8 @@ void func_ov003_021c0154(u32 param_1, s32 param_2, u32 param_3) {
             p = data_ov003_021da15c->mUnk_030[b + i];
             p->mUnk_00 = p->mUnk_00 & 0xc1fffcff;
             p = data_ov003_021da15c->mUnk_030[b + i];
-            p->mUnk_00 = ((data_ov003_021d5fb0[b + i][0] & 0x1ff) << 16) | ((p->mUnk_00 & 0xfe00ff00) | (param_3 & 0xff));
+            p->mUnk_00 =
+                ((data_ov003_021d5fb0[b + i][0] & 0x1ff) << 16) | ((p->mUnk_00 & 0xfe00ff00) | (param_3 & 0xff));
         }
     }
     if (param_2 < 4) {

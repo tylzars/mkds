@@ -1,6 +1,7 @@
 #include "00/code_021a3eb0.h"
 #include "00/unk_021b4000.h"
-// non-matching: the four bytes are written to [sp, #8..#11] from [r0, #6..#9] (original: add r1, sp, #8 and adds r2, r0, #6 with offsets 0..3 and 1..3); size 0xc4 against 0xc8
+// non-matching: the four bytes are written to [sp, #8..#11] from [r0, #6..#9] (original: add r1, sp, #8 and adds r2,
+// r0, #6 with offsets 0..3 and 1..3); size 0xc4 against 0xc8
 void func_ov000_021a3eb0(Unk021a3a18 *a, u8 *b, s32 c) {
     Unk021a3eb0 s = data_ov000_021b4270;
     s32 i;

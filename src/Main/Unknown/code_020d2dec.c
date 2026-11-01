@@ -35,8 +35,9 @@
 
 #pragma thumb on
 
-// non-matching: compiled code is longer by 0x24 bytes; the loop over the table keeps its two spilled temporaries (table pointer and zero) at swapped stack offsets and the object set-up part differs in register choice and statement order; the original converts each of the five
-// fields to an integer once after the +/-0.5f arms (5 `_ffix` calls, ours 10)
+// non-matching: compiled code is longer by 0x24 bytes; the loop over the table keeps its two spilled temporaries (table
+// pointer and zero) at swapped stack offsets and the object set-up part differs in register choice and statement order;
+// the original converts each of the five fields to an integer once after the +/-0.5f arms (5 `_ffix` calls, ours 10)
 Unk020e71a0 *func_020d34e4(u32 param_1, Unk020fa294 *param_2, Unk020e71a0 *param_3) {
     s32 i;
     s32 j;
@@ -274,8 +275,8 @@ Unk020e71a0 *func_020d34e4(u32 param_1, Unk020fa294 *param_2, Unk020e71a0 *param
                 if (c->mUnk_20 == 0) {
                     m |= data_021568e0;
                 }
-                if (func_020dff70(p->mUnk_00) != 0 || func_020e4320(p->mUnk_00) != 0 || func_020e3af0(p->mUnk_00) != 0 ||
-                    func_020ffabc(p->mUnk_00) != 0) {
+                if (func_020dff70(p->mUnk_00) != 0 || func_020e4320(p->mUnk_00) != 0 ||
+                    func_020e3af0(p->mUnk_00) != 0 || func_020ffabc(p->mUnk_00) != 0) {
                     m |= data_021568e4;
                 }
                 p->mUnk_64 = func_020d555c(&p->mUnk_04, func_020d252c(p), m, p);
@@ -290,7 +291,6 @@ Unk020e71a0 *func_020d34e4(u32 param_1, Unk020fa294 *param_2, Unk020e71a0 *param
     return 0;
 }
 
-
 Unk020e71a0 *func_020d34d4(Unk020e71a0 *param_1, s32 param_2) {
     return func_020d34e4(param_2, 0, param_1);
 }
@@ -299,7 +299,9 @@ Unk020e71a0 *func_020d34c4(Unk020fa294 *param_1, s32 param_2) {
     return func_020d34e4(param_2, param_1, 0);
 }
 
-// non-matching: register allocation only: in the counting loop over data_0217b4f0->mUnk_008 the index and the walking pointer take r0/r1 the other way round, and in the pass over the mUnk_30 values the flag and the data_0217b4f0 value take r0/r1 the other way round
+// non-matching: register allocation only: in the counting loop over data_0217b4f0->mUnk_008 the index and the walking
+// pointer take r0/r1 the other way round, and in the pass over the mUnk_30 values the flag and the data_0217b4f0 value
+// take r0/r1 the other way round
 void func_020d2e6c(void) {
     void *h;
     s32 i;

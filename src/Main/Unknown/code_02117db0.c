@@ -73,7 +73,9 @@ void func_02117e24(void *param_1, void *param_2, void *param_3, s32 param_4) {
         func_02124ed0(data_0217d360->mUnk_2c, data_0217d360->mUnk_10, 0, &data_0217d360->mUnk_1c);
         rem = 0x8000;
         for (i = 0; i < 4; i++) {
-            rem -= func_021243ac(data_0217d360->mUnk_2c, data_0215c7d8[i], data_0217d360->mUnk_08, data_0215c7e0[i], data_0215c7e8[i], data_0215c7d0[i], data_0217d360->mUnk_00, data_0217d360->mUnk_04, data_0217d360->mUnk_18, rem);
+            rem -= func_021243ac(data_0217d360->mUnk_2c, data_0215c7d8[i], data_0217d360->mUnk_08, data_0215c7e0[i],
+                                 data_0215c7e8[i], data_0215c7d0[i], data_0217d360->mUnk_00, data_0217d360->mUnk_04,
+                                 data_0217d360->mUnk_18, rem);
         }
         func_0211de40(data_0217d360->mUnk_2c);
         func_0211df44(data_0217d360->mUnk_2c);

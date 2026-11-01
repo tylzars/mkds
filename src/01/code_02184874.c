@@ -13,13 +13,13 @@ void func_ov001_02184874(Unk02188950 *param_1, Unk0206bcb0 *param_2) {
                 Vec3 a = {0, 0, 0};
                 a.x = param_2->mUnk_a4.x;
                 a.z = param_2->mUnk_a4.z;
-                if ((s64)a.z * a.z + ((s64)a.x * a.x + (s64)a.y * a.y) >= 0x10) {
+                if ((s64) a.z * a.z + ((s64) a.x * a.x + (s64) a.y * a.y) >= 0x10) {
                     func_02039860(&a, &a);
                 }
                 scale = param_1->mUnk_0a0->mUnk_1e0;
-                a.x = (s32)(((s64)a.x * scale) >> 12);
-                a.y = (s32)(((s64)a.y * scale) >> 12);
-                a.z = (s32)(((s64)a.z * scale) >> 12);
+                a.x = (s32) (((s64) a.x * scale) >> 12);
+                a.y = (s32) (((s64) a.y * scale) >> 12);
+                a.z = (s32) (((s64) a.z * scale) >> 12);
                 a.y = param_1->mUnk_0a0->mUnk_1dc;
                 func_ov001_02187218(param_1, 7, 0);
                 func_ov001_02188d64(param_1, (s32) (param_1->mUnk_0a0->mUnk_1d4), (s32) (param_1->mUnk_0a0->mUnk_1d8));
@@ -32,7 +32,7 @@ void func_ov001_02184874(Unk02188950 *param_1, Unk0206bcb0 *param_2) {
                 Vec3 b;
 
                 func_021484d0(&param_1->mUnk_000.mUnk_04, &param_2->mUnk_1b8, &b);
-                if ((s64)b.z * b.z + ((s64)b.x * b.x + (s64)b.y * b.y) >= 0x10) {
+                if ((s64) b.z * b.z + ((s64) b.x * b.x + (s64) b.y * b.y) >= 0x10) {
                     func_02039860(&b, &b);
                 }
                 func_02147fd8(param_2->mUnk_1d0, &b, &param_2->mUnk_1b8, &b);
@@ -62,13 +62,13 @@ void func_ov001_02184874(Unk02188950 *param_1, Unk0206bcb0 *param_2) {
             Vec3 c = {0, 0, 0};
             c.x = param_2->mUnk_a4.x;
             c.z = param_2->mUnk_a4.z;
-            if ((s64)c.z * c.z + ((s64)c.x * c.x + (s64)c.y * c.y) >= 0x10) {
+            if ((s64) c.z * c.z + ((s64) c.x * c.x + (s64) c.y * c.y) >= 0x10) {
                 func_02039860(&c, &c);
             }
             scale = param_1->mUnk_0a0->mUnk_1c8;
-            c.x = (s32)(((s64)c.x * scale) >> 12);
-            c.y = (s32)(((s64)c.y * scale) >> 12);
-            c.z = (s32)(((s64)c.z * scale) >> 12);
+            c.x = (s32) (((s64) c.x * scale) >> 12);
+            c.y = (s32) (((s64) c.y * scale) >> 12);
+            c.z = (s32) (((s64) c.z * scale) >> 12);
             c.y = param_1->mUnk_0a0->mUnk_1c4;
             func_ov001_02187218(param_1, 7, 0);
             func_ov001_02188d64(param_1, (s32) (param_1->mUnk_0a0->mUnk_1bc), (s32) (param_1->mUnk_0a0->mUnk_1c0));

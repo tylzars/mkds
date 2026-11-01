@@ -12,9 +12,15 @@ void func_ov000_02181e98(void *a) {
     data_ov000_021b4c6c->mUnk_10 = -1;
     switch (func_ov000_021806d4()) {
         case 0:
-        case 2: data_ov000_021b4c6c->mUnk_08 = 0; break;
-        case 8: data_ov000_021b4c6c->mUnk_08 = 1; break;
-        case 13: data_ov000_021b4c6c->mUnk_08 = 2; break;
+        case 2:
+            data_ov000_021b4c6c->mUnk_08 = 0;
+            break;
+        case 8:
+            data_ov000_021b4c6c->mUnk_08 = 1;
+            break;
+        case 13:
+            data_ov000_021b4c6c->mUnk_08 = 2;
+            break;
     }
     data_ov000_021b4c6c->mUnk_0c = 0;
     data_ov000_021b4c6c->mUnk_18 = 1;

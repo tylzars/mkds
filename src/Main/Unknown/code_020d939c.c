@@ -13,7 +13,7 @@ void func_020d939c(Unk020e0144_00_0 *a, s32 b, s32 c, Vec3 *d, Vec3 *e) {
     func_020d970c(b, &f, &g, &h, &i, &j, &k, &l, &m);
     func_020d95c0(a->mUnk_00, d, f, g, h, i);
     func_020d95c0(a->mUnk_00, e, j, k, l, m);
-    e->x = (s32)(((s64)e->x * c) >> 24);
-    e->y = (s32)(((s64)e->y * c) >> 24);
-    e->z = (s32)(((s64)e->z * c) >> 24);
+    e->x = (s32) (((s64) e->x * c) >> 24);
+    e->y = (s32) (((s64) e->y * c) >> 24);
+    e->z = (s32) (((s64) e->z * c) >> 24);
 }

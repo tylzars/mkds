@@ -46,7 +46,8 @@ u8 *func_ov000_021ad754(u8 *a, u8 b, u32 *c) {
     return a + 0x10d;
 }
 
-// non-matching: the switch jump table is dispatched with add r0, pc; bx r0 here and with add pc, r0 in the original; nothing else differs
+// non-matching: the switch jump table is dispatched with add r0, pc; bx r0 here and with add pc, r0 in the original;
+// nothing else differs
 void func_ov000_021ad898(void) {
     u32 a;
     u32 b;
@@ -86,34 +87,34 @@ void func_ov000_021ad898(void) {
                     }
                 } else {
                     switch (b) {
-                    case 0:
-                        if (d != 0) {
-                            data_ov000_021b637c = 2;
-                            d = 0;
-                        }
-                        if (func_ov000_021ad36c() == 0 || func_ov000_021ad2b8(&a, 0) == 0) {
-                            func_ov000_021adb00();
-                            b = 3;
-                        } else {
-                            b = 1;
-                        }
-                        break;
-                    case 1:
-                        if (func_ov000_021ad2b8(&a, 1) == 0 && a < 0x3c) {
-                            b = 2;
-                        }
-                        break;
-                    case 2:
-                        if (func_ov000_021ad2b8(&a, 2) != 0) {
-                            b = 1;
-                        } else if (a < 0x3c) {
-                            func_ov000_021b04f8(3);
-                            b = 0;
-                            a = 1;
-                        }
-                        break;
-                    case 3:
-                        break;
+                        case 0:
+                            if (d != 0) {
+                                data_ov000_021b637c = 2;
+                                d = 0;
+                            }
+                            if (func_ov000_021ad36c() == 0 || func_ov000_021ad2b8(&a, 0) == 0) {
+                                func_ov000_021adb00();
+                                b = 3;
+                            } else {
+                                b = 1;
+                            }
+                            break;
+                        case 1:
+                            if (func_ov000_021ad2b8(&a, 1) == 0 && a < 0x3c) {
+                                b = 2;
+                            }
+                            break;
+                        case 2:
+                            if (func_ov000_021ad2b8(&a, 2) != 0) {
+                                b = 1;
+                            } else if (a < 0x3c) {
+                                func_ov000_021b04f8(3);
+                                b = 0;
+                                a = 1;
+                            }
+                            break;
+                        case 3:
+                            break;
                     }
                 }
             }

@@ -25,7 +25,7 @@ void func_ov001_021a0e7c(void) {
     data_ov001_021ca414->mUnk_18 = func_0204799c(data_ov001_021a9280);
     func_020b49bc(&c, func_0204799c(data_ov001_021a92b0));
     func_020b48b4(&data_ov001_021ca414->mUnk_0c, func_0204799c(data_ov001_021a9284));
-    func_020b4a44((Unk020b4a44 **)&data_ov001_021ca414->mUnk_1c, func_0204799c(data_ov001_021a927c));
+    func_020b4a44((Unk020b4a44 **) &data_ov001_021ca414->mUnk_1c, func_0204799c(data_ov001_021a927c));
     p = b->mUnk_0c;
     func_02016468(4, 0, d->mUnk_14, d->mUnk_10);
     func_02016468(0xf, 0, g->mUnk_0c, 0x40);

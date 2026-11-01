@@ -357,14 +357,14 @@ end:
         w = data_021759cc->mUnk_118;
         if (w != -1) {
             switch (w) {
-            case 4:
-            case 5:
-            case 6:
-                a->mUnk_04 = data_021759cc->mUnk_120;
-                break;
-            default:
-                a->mUnk_04 = 0;
-                break;
+                case 4:
+                case 5:
+                case 6:
+                    a->mUnk_04 = data_021759cc->mUnk_120;
+                    break;
+                default:
+                    a->mUnk_04 = 0;
+                    break;
             }
         }
     }

@@ -37,7 +37,8 @@ void func_020092a4(void) {
     ((Unk0216fc40 *) data_0216fc40)->mUnk_0c = 1;
 }
 
-// non-matching: 0x1d0 bytes, original 0x1c4; 189 lines differ; first: original `ldr r0, [pc, #376]`, ours `ldr r0, [pc, // #388]`
+// non-matching: 0x1d0 bytes, original 0x1c4; 189 lines differ; first: original `ldr r0, [pc, #376]`, ours `ldr r0, [pc,
+// // #388]`
 void func_020092d0(u32 a, u32 b, u32 c) {
     Unk0200b610 *v1;
     u32 v2;
@@ -106,7 +107,8 @@ void func_02009494(void) {
     data_0216fc4c.mUnk_0c = 5;
 }
 
-// non-matching: 0x114 bytes, original 0x10c; 117 lines differ; first: original `adds r7, r1, #0`, ours `adds r5, r1, // #0`
+// non-matching: 0x114 bytes, original 0x10c; 117 lines differ; first: original `adds r7, r1, #0`, ours `adds r5, r1, //
+// #0`
 void func_020094b8(u32 a, u32 b, u32 c) {
     Unk0200b610 *v1;
     u8 *v2;

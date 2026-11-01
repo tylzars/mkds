@@ -5,11 +5,11 @@
 void func_ov000_021857e0(void) {
     data_ov000_021b4c8c->mUnk_00 = data_ov000_021b4c8c->mUnk_04;
     switch (data_ov000_021b4c8c->mUnk_00) {
-    case 0:
-        func_ov000_0218583c();
-        break;
-    case 1:
-        func_ov000_02185818();
-        break;
+        case 0:
+            func_ov000_0218583c();
+            break;
+        case 1:
+            func_ov000_02185818();
+            break;
     }
 }

@@ -57,7 +57,7 @@ void func_ov001_0219a5bc(void) {
     func_02128310(1);
     return;
 skip:
-    if ((u32)sel <= 2) {
+    if ((u32) sel <= 2) {
         t = data_ov001_021a6acc[sel];
         if (data_ov001_021a9bf0->mUnk_1c[data_ov001_021a6aa4[t]].mUnk_00 != 0) {
             if (data_ov001_021a9bf0->mUnk_40 == t) {

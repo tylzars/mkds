@@ -12,15 +12,13 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-void func_ov001_02182bbc(u32 param_1)
-{
+void func_ov001_02182bbc(u32 param_1) {
     if (data_021759c0->mUnk_08 == 4) {
         func_ov001_02181660(param_1);
     }
 }
 
-void func_ov001_02182a3c(s32 param_1)
-{
+void func_ov001_02182a3c(s32 param_1) {
     int i;
     s32 n;
     Unk02181c3c_list *list;
@@ -40,10 +38,14 @@ void func_ov001_02182a3c(s32 param_1)
                     if (p->mUnk_0e8 == 0) {
                         rng = func_020d22d0();
                         rng->mUnk_00 = (s64) rng->mUnk_08 * (s64) rng->mUnk_00 + rng->mUnk_10;
-                        r = ((u64)(u32)(rng->mUnk_00 >> 32) * 0x10000) >> 32;
+                        r = ((u64) (u32) (rng->mUnk_00 >> 32) * 0x10000) >> 32;
                         p->mUnk_0b0 = 0x1000;
                         p->mUnk_0a0 = 0;
-                        p->mUnk_0e8 = (Vec3 *)((data_021759c0->mUnk_08 == 4 ? (u32) func_ov001_02181b68(data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0) : 0) + 4);
+                        p->mUnk_0e8 = (Vec3 *) ((data_021759c0->mUnk_08 == 4
+                                                     ? (u32) func_ov001_02181b68(
+                                                           data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0)
+                                                     : 0) +
+                                                4);
                         p->mUnk_000.mUnk_04.x = p->mUnk_0e8->x;
                         p->mUnk_000.mUnk_04.y = p->mUnk_0e8->y;
                         p->mUnk_000.mUnk_04.z = p->mUnk_0e8->z;
@@ -51,9 +53,9 @@ void func_ov001_02182a3c(s32 param_1)
                         p->mUnk_000.mUnk_10.y = 0x4cd;
                         p->mUnk_000.mUnk_10.z = 0;
                         k = (r >> 4) * 2;
-                        p->mUnk_0ec.x = ((s64)data_0215d4b4[k] * 0x14000) >> 12;
+                        p->mUnk_0ec.x = ((s64) data_0215d4b4[k] * 0x14000) >> 12;
                         p->mUnk_0ec.y = -0xa000;
-                        p->mUnk_0ec.z = ((s64)data_0215d4b4[k + 1] * 0x14000) >> 12;
+                        p->mUnk_0ec.z = ((s64) data_0215d4b4[k + 1] * 0x14000) >> 12;
                     }
                 } else {
                     if (p->mUnk_0e8 != 0) {
@@ -65,8 +67,7 @@ void func_ov001_02182a3c(s32 param_1)
     }
 }
 
-void func_ov001_021829ac(s32 param_1)
-{
+void func_ov001_021829ac(s32 param_1) {
     Unk02181c3c_list *list;
     Unk02181c3c *p;
     s32 n;
@@ -95,8 +96,7 @@ void func_ov001_021829ac(s32 param_1)
     }
 }
 
-void func_ov001_021828f0(void)
-{
+void func_ov001_021828f0(void) {
     int i;
     Unk02181c3c *p;
     Unk02181c3c_list *list;
@@ -125,8 +125,7 @@ void func_ov001_021828f0(void)
     }
 }
 
-void func_ov001_021827f0(void)
-{
+void func_ov001_021827f0(void) {
     int i;
     Unk02181c3c *p;
     Unk02181c3c_list *list;

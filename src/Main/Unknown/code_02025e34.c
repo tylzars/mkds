@@ -19,15 +19,15 @@ s32 func_02025e34(u32 a) {
 s32 func_02025e60(s32 a) {
     s32 r = -1;
     switch (func_02029930()->mUnk_c8) {
-    case 0:
-    case 1:
-    case 3:
-    case 5:
-        r = data_usa_02153274[a];
-        break;
-    case 2:
-        r = data_usa_02153240[a];
-        break;
+        case 0:
+        case 1:
+        case 3:
+        case 5:
+            r = data_usa_02153274[a];
+            break;
+        case 2:
+            r = data_usa_02153240[a];
+            break;
     }
     return r;
 }

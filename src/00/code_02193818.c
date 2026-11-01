@@ -92,7 +92,8 @@ u32 func_ov000_021938cc(int *param_1, int param_2, int param_3, int *param_4, in
     return 0;
 }
 
-// non-matching: case 3's clearing loop compiles as r0/r1/r2 = zero/count/pointer with a bgt exit where the original has r2 = pointer, r1 = count, r0 = zero with a bne exit (size 0x230 against 0x234)
+// non-matching: case 3's clearing loop compiles as r0/r1/r2 = zero/count/pointer with a bgt exit where the original has
+// r2 = pointer, r1 = count, r0 = zero with a bne exit (size 0x230 against 0x234)
 s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
     Unk0218f960_00 *a = param_1->mUnk_00;
     Unk02190ed4Cb b;
@@ -116,94 +117,94 @@ s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
     b = param_2->mUnk_0c;
     if (b.mUnk_00 != 0) {
         switch (param_2->mUnk_00) {
-        case 0:
-            c = func_ov000_021a3690(0x20);
-            if (c == 0) {
-                func_ov000_02196590(param_1, data_ov000_021b32e0);
-                return 1;
-            }
-            func_02134de0(c, 0, 0x20);
-            c->mUnk_00 = param_2->mUnk_1c;
-            if (a->mUnk_418 == 0x201) {
-                c->mUnk_04 = a->mUnk_1a0;
-                a->mUnk_1a0 = 0;
-            }
-            g = func_ov000_02190ed4(param_1, b, c, param_2, 0);
-            if (g != 0) {
-                return g;
-            }
-            break;
-        case 1:
-            d = func_ov000_021a3690(8);
-            if (d == 0) {
-                func_ov000_02196590(param_1, data_ov000_021b32e0);
-                return 1;
-            }
-            ((u8 *) d)[0] = 0;
-        ((u8 *) d)[1] = 0;
-        ((u8 *) d)[2] = 0;
-        ((u8 *) d)[3] = 0;
-        ((u8 *) d)[4] = 0;
-        ((u8 *) d)[5] = 0;
-        ((u8 *) d)[6] = 0;
-        ((u8 *) d)[7] = 0;
-            d->mUnk_00 = param_2->mUnk_1c;
-            g = func_ov000_02190ed4(param_1, b, d, param_2, 0);
-            if (g != 0) {
-                return g;
-            }
-            break;
-        case 2:
-            c = func_ov000_021a3690(0x204);
-            if (c == 0) {
-                func_ov000_02196590(param_1, data_ov000_021b32e0);
-                return 1;
-            }
-            func_02134de0(c, 0, 0x204);
-            c->mUnk_00 = param_2->mUnk_1c;
-            g = func_ov000_02190ed4(param_1, b, c, param_2, 0);
-            if (g != 0) {
-                return g;
-            }
-            break;
-        case 3:
-            e = func_ov000_021a3690(0x10);
-            if (e == 0) {
-                func_ov000_02196590(param_1, data_ov000_021b32e0);
-                return 1;
-            }
-            h = 0x10;
-            q = (u8 *) e;
-            do {
-                *q++ = 0;
-                h--;
-            } while (h != 0);
-            e->mUnk_00 = param_2->mUnk_1c;
-            e->mUnk_0c = 0;
-            g = func_ov000_02190ed4(param_1, b, e, param_2, 0);
-            if (g != 0) {
-                return g;
-            }
-            break;
-        case 4:
-            f = func_ov000_021a3690(4);
-            if (f == 0) {
-                func_ov000_02196590(param_1, data_ov000_021b32e0);
-                return 1;
-            }
-            ((u8 *) f)[0] = 0;
-            ((u8 *) f)[1] = 0;
-            ((u8 *) f)[2] = 0;
-            ((u8 *) f)[3] = 0;
-            f->mUnk_00 = param_2->mUnk_1c;
-            g = func_ov000_02190ed4(param_1, b, f, param_2, 0);
-            if (g != 0) {
-                return g;
-            }
-            break;
-        default:
-            func_0213442c(data_ov000_021b32ac, data_ov000_021b32b0, 0, 0x6b);
-            break;
+            case 0:
+                c = func_ov000_021a3690(0x20);
+                if (c == 0) {
+                    func_ov000_02196590(param_1, data_ov000_021b32e0);
+                    return 1;
+                }
+                func_02134de0(c, 0, 0x20);
+                c->mUnk_00 = param_2->mUnk_1c;
+                if (a->mUnk_418 == 0x201) {
+                    c->mUnk_04 = a->mUnk_1a0;
+                    a->mUnk_1a0 = 0;
+                }
+                g = func_ov000_02190ed4(param_1, b, c, param_2, 0);
+                if (g != 0) {
+                    return g;
+                }
+                break;
+            case 1:
+                d = func_ov000_021a3690(8);
+                if (d == 0) {
+                    func_ov000_02196590(param_1, data_ov000_021b32e0);
+                    return 1;
+                }
+                ((u8 *) d)[0] = 0;
+                ((u8 *) d)[1] = 0;
+                ((u8 *) d)[2] = 0;
+                ((u8 *) d)[3] = 0;
+                ((u8 *) d)[4] = 0;
+                ((u8 *) d)[5] = 0;
+                ((u8 *) d)[6] = 0;
+                ((u8 *) d)[7] = 0;
+                d->mUnk_00 = param_2->mUnk_1c;
+                g = func_ov000_02190ed4(param_1, b, d, param_2, 0);
+                if (g != 0) {
+                    return g;
+                }
+                break;
+            case 2:
+                c = func_ov000_021a3690(0x204);
+                if (c == 0) {
+                    func_ov000_02196590(param_1, data_ov000_021b32e0);
+                    return 1;
+                }
+                func_02134de0(c, 0, 0x204);
+                c->mUnk_00 = param_2->mUnk_1c;
+                g = func_ov000_02190ed4(param_1, b, c, param_2, 0);
+                if (g != 0) {
+                    return g;
+                }
+                break;
+            case 3:
+                e = func_ov000_021a3690(0x10);
+                if (e == 0) {
+                    func_ov000_02196590(param_1, data_ov000_021b32e0);
+                    return 1;
+                }
+                h = 0x10;
+                q = (u8 *) e;
+                do {
+                    *q++ = 0;
+                    h--;
+                } while (h != 0);
+                e->mUnk_00 = param_2->mUnk_1c;
+                e->mUnk_0c = 0;
+                g = func_ov000_02190ed4(param_1, b, e, param_2, 0);
+                if (g != 0) {
+                    return g;
+                }
+                break;
+            case 4:
+                f = func_ov000_021a3690(4);
+                if (f == 0) {
+                    func_ov000_02196590(param_1, data_ov000_021b32e0);
+                    return 1;
+                }
+                ((u8 *) f)[0] = 0;
+                ((u8 *) f)[1] = 0;
+                ((u8 *) f)[2] = 0;
+                ((u8 *) f)[3] = 0;
+                f->mUnk_00 = param_2->mUnk_1c;
+                g = func_ov000_02190ed4(param_1, b, f, param_2, 0);
+                if (g != 0) {
+                    return g;
+                }
+                break;
+            default:
+                func_0213442c(data_ov000_021b32ac, data_ov000_021b32b0, 0, 0x6b);
+                break;
         }
     }
     return 0;
@@ -269,39 +270,40 @@ s32 func_ov000_02193c74(Unk0218f960 *param_1, Unk02193f2cNode *param_2, u32 para
         c = func_ov000_02190b80(param_1, &a, data_ov000_021b338c);
         if (c != 0) {
             return c;
-    }
-    c = func_ov000_02190b58(param_1, &a, param_3);
-    if (c != 0) {
-        return c;
-    }
-    c = func_ov000_02190b80(param_1, &a, data_ov000_021b3390);
-    if (c != 0) {
-        return c;
-    }
-    c = func_ov000_02190b58(param_1, &a, b);
-    if (c != 0) {
-        return c;
-    }
-    c = func_ov000_02190b80(param_1, &a, data_ov000_021b3398);
-    if (c != 0) {
-        return c;
-    }
-    a.mUnk_14 = a.mUnk_08;
-    c = func_ov000_02190ba0(param_1, (Unk021906e4 *) &a, param_4, b);
-    if (c != 0) {
-        return c;
-    }
-    c = func_ov000_02190c64(param_1, (Unk021906e4 *) &a, 0);
-    if (c != 0) {
-        return c;
-    }
-    func_ov000_0218dbc0(param_2->mUnk_38, &a);
-    param_2->mUnk_10 = func_ov000_0218e320(0) + 0x12c;
-    return 0;
+        }
+        c = func_ov000_02190b58(param_1, &a, param_3);
+        if (c != 0) {
+            return c;
+        }
+        c = func_ov000_02190b80(param_1, &a, data_ov000_021b3390);
+        if (c != 0) {
+            return c;
+        }
+        c = func_ov000_02190b58(param_1, &a, b);
+        if (c != 0) {
+            return c;
+        }
+        c = func_ov000_02190b80(param_1, &a, data_ov000_021b3398);
+        if (c != 0) {
+            return c;
+        }
+        a.mUnk_14 = a.mUnk_08;
+        c = func_ov000_02190ba0(param_1, (Unk021906e4 *) &a, param_4, b);
+        if (c != 0) {
+            return c;
+        }
+        c = func_ov000_02190c64(param_1, (Unk021906e4 *) &a, 0);
+        if (c != 0) {
+            return c;
+        }
+        func_ov000_0218dbc0(param_2->mUnk_38, &a);
+        param_2->mUnk_10 = func_ov000_0218e320(0) + 0x12c;
+        return 0;
     }
 }
 
-// non-matching: the 8-byte local sits at stack offset 4 and the pointer local at 0, the original has them at 0 and 8 (6 words)
+// non-matching: the 8-byte local sits at stack offset 4 and the pointer local at 0, the original has them at 0 and 8 (6
+// words)
 s32 func_ov000_02193d64(Unk0218f960 *param_1, Unk02193f2cNode *param_2) {
     Unk02194934 *a;
     s32 c;
@@ -335,8 +337,8 @@ s32 func_ov000_02193d64(Unk0218f960 *param_1, Unk02193f2cNode *param_2) {
                 func_ov000_02190f4c(param_1, 3, 1);
                 return 3;
             }
-    }
-    param_2->mUnk_00 = 0x67;
-    return 0;
+        }
+        param_2->mUnk_00 = 0x67;
+        return 0;
     }
 }

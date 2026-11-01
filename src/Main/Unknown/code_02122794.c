@@ -2,8 +2,7 @@
 #include "00/code_0219b000.h"
 #include "00/code_021a2000.h"
 
-void func_02122ab0(void)
-{
+void func_02122ab0(void) {
     Unk0217d384_08 *p;
     data_0217d384->mUnk_19ad = 0;
     p = &data_0217d384->mUnk_0008;
@@ -11,8 +10,7 @@ void func_02122ab0(void)
     p->mUnk_12 = 1;
 }
 
-void func_02122960(void)
-{
+void func_02122960(void) {
     u8 i;
     u32 m;
     if (data_0217d384->mUnk_1950 == 11 || data_0217d384->mUnk_1950 == 12) {
@@ -41,8 +39,7 @@ void func_02122960(void)
     }
 }
 
-void func_02122818(void)
-{
+void func_02122818(void) {
     u8 i;
     u8 n;
     if (data_0217d384->mUnk_1950 > 2 && data_0217d384->mUnk_1950 < 9) {
@@ -67,13 +64,11 @@ void func_02122818(void)
     }
 }
 
-u32 func_021227f8(u32 a)
-{
+u32 func_021227f8(u32 a) {
     return data_0217d384->mUnk_1f55 & (1 << a);
 }
 
-u32 func_02122794(s32 a)
-{
+u32 func_02122794(s32 a) {
     s8 i;
     for (i = 0; i < 4; i++) {
         if (a == data_0217d384->mUnk_1f4e[i]) {

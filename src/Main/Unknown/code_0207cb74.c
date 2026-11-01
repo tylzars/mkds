@@ -105,60 +105,60 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         return;
     } else if ((u32) k >= 2 && k <= data_021759c0->mUnk_3d0 - 1) {
         switch (a->mUnk_04->mUnk_04) {
-        case 0:
-            func_0204360c(b->mUnk_00->mUnk_78, 0x600);
-            a->mUnk_10 = 0;
-            if (a->mUnk_08 == 0) {
+            case 0:
+                func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+                a->mUnk_10 = 0;
+                if (a->mUnk_08 == 0) {
+                    return;
+                }
+                n = a->mUnk_08->mUnk_0a;
+                r = func_0208537c();
+                if (n == 0) {
+                    v = 0;
+                } else {
+                    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+                    v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+                }
+                a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
                 return;
-            }
-            n = a->mUnk_08->mUnk_0a;
-            r = func_0208537c();
-            if (n == 0) {
-                v = 0;
-            } else {
-                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
-            }
-            a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
-            return;
-        case 1:
-            func_0204360c(b->mUnk_00->mUnk_78, 0x600);
-            a->mUnk_14 = 1;
-            a->mUnk_1c = 2;
-            a->mUnk_10 = 0;
-            if (a->mUnk_08 == 0) {
+            case 1:
+                func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+                a->mUnk_14 = 1;
+                a->mUnk_1c = 2;
+                a->mUnk_10 = 0;
+                if (a->mUnk_08 == 0) {
+                    return;
+                }
+                n = a->mUnk_08->mUnk_0a;
+                r = func_0208537c();
+                if (n == 0) {
+                    v = 0;
+                } else {
+                    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+                    v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+                }
+                a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
                 return;
-            }
-            n = a->mUnk_08->mUnk_0a;
-            r = func_0208537c();
-            if (n == 0) {
-                v = 0;
-            } else {
-                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
-            }
-            a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
-            return;
-        case 2:
-            func_0204360c(b->mUnk_00->mUnk_78, 0x600);
-            a->mUnk_18 = 1;
-            a->mUnk_1e = 2;
-            a->mUnk_10 = 0;
-            if (a->mUnk_08 == 0) {
+            case 2:
+                func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+                a->mUnk_18 = 1;
+                a->mUnk_1e = 2;
+                a->mUnk_10 = 0;
+                if (a->mUnk_08 == 0) {
+                    return;
+                }
+                n = a->mUnk_08->mUnk_0a;
+                r = func_0208537c();
+                if (n == 0) {
+                    v = 0;
+                } else {
+                    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+                    v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+                }
+                a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
                 return;
-            }
-            n = a->mUnk_08->mUnk_0a;
-            r = func_0208537c();
-            if (n == 0) {
-                v = 0;
-            } else {
-                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
-            }
-            a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
-            return;
-        default:
-            return;
+            default:
+                return;
         }
     } else {
         func_0204360c(b->mUnk_00->mUnk_78, 0x600);

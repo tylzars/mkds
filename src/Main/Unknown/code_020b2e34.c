@@ -17,11 +17,8 @@ void func_020b2e64(u32 param_1) {
 }
 
 u32 func_020b2e58(void) {
-    return ((u32) *(
-        const u32 *) ((u8 *) (u32) (((u32) *(
-                                   const u32 *) ((u8 *) (u32) (((u32) (&data_0217b354))) +
-                                                          0))) +
-                               4));
+    return ((u32) *
+            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217b354))) + 0))) + 4));
 }
 
 int func_020b2e34(void) {

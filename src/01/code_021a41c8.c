@@ -49,7 +49,8 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                         func_0212ecc0(&data_0217d068, 0, 0x1f0);
                     }
                     if (func_ov001_021a639c() == 1) {
-                        func_ov001_021a5ab0((void *) (data_ov001_021ca41c->mUnk_0858), (s32) (func_ov001_021a637c() + 0xe));
+                        func_ov001_021a5ab0((void *) (data_ov001_021ca41c->mUnk_0858),
+                                            (s32) (func_ov001_021a637c() + 0xe));
                         func_ov001_021a63a8(0);
                     }
                     data_ov001_021ca41c->mUnk_1094 = 3;

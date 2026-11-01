@@ -85,7 +85,8 @@ void func_0207926c(Unk0206bcb0_590 *a, void *b) {
     func_0207a14c(v4, 0);
 }
 
-// non-matching: same instructions, but the second table index is kept in r3 and the entries come out in r2/r3/r0/r1 instead of r1/r2/r3/r0 in the second lookup; 9 words differ, same size
+// non-matching: same instructions, but the second table index is kept in r3 and the entries come out in r2/r3/r0/r1
+// instead of r1/r2/r3/r0 in the second lookup; 9 words differ, same size
 void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
     u8 *c;
     u32 k;
@@ -104,12 +105,12 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
             c = 0;
             p = (u8 *) a->mUnk_014->mUnk_04;
             switch (a->mUnk_004) {
-            case 0x22:
-                c = data_usa_021550e8;
-                break;
-            case 0x23:
-                c = data_usa_02155108;
-                break;
+                case 0x22:
+                    c = data_usa_021550e8;
+                    break;
+                case 0x23:
+                    c = data_usa_02155108;
+                    break;
             }
             i = func_02013754(p + *(s32 *) (p + 8) + 4, data_usa_02155008);
             q = p + *(s32 *) (p + 8);
@@ -252,7 +253,8 @@ void func_0207954c(Unk0206bcb0_590 *a, void *b, s32 c) {
     func_02087f84(a->mUnk_00c, 0);
 }
 
-// non-matching: the original spills the loop counter (stack offset 0xc) and keeps the remainder flag in r6; ours does the opposite, so it is 0x170 bytes against 0x160
+// non-matching: the original spills the loop counter (stack offset 0xc) and keeps the remainder flag in r6; ours does
+// the opposite, so it is 0x170 bytes against 0x160
 void func_02079678(void *a, s32 b) {
     s32 v6;
     s32 v4;

@@ -95,13 +95,14 @@ s32 func_ov001_02180ce8(s32 p0, s32 p1, s32 p2) {
         val = *ptr;
         if (val != p2) {
             top = 1;
-            ((Unk02180ce8 *)data_ov001_021a9b88->mUnk_2c)[0] = s0;
-            func_0214d05c_inline(data_ov001_021a9b88->mUnk_28, data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
+            ((Unk02180ce8 *) data_ov001_021a9b88->mUnk_2c)[0] = s0;
+            func_0214d05c_inline(data_ov001_021a9b88->mUnk_28,
+                                 data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
             do {
                 s32 steps[2] = {-1, 1};
 
                 top--;
-                s0 = ((Unk02180ce8 *)data_ov001_021a9b88->mUnk_2c)[top];
+                s0 = ((Unk02180ce8 *) data_ov001_021a9b88->mUnk_2c)[top];
                 for (k = 0, b = buf, sk = steps, py = s0.mUnk_01; k < 2; k++) {
                     *b = s0.mUnk_00;
                     for (;;) {
@@ -126,10 +127,11 @@ s32 func_ov001_02180ce8(s32 p0, s32 p1, s32 p2) {
                             do {
                                 s1.mUnk_00++;
                                 ptr = func_ov001_02181200(s1.mUnk_00, s1.mUnk_01);
-                                q = &data_ov001_021a9b88->mUnk_28[s1.mUnk_00 + s1.mUnk_01 * data_ov001_021a9b88->mUnk_00];
+                                q = &data_ov001_021a9b88
+                                         ->mUnk_28[s1.mUnk_00 + s1.mUnk_01 * data_ov001_021a9b88->mUnk_00];
                             } while (ptr != 0 && *ptr == val && *q == 0);
                             s1.mUnk_00--;
-                            ((Unk02180ce8 *)data_ov001_021a9b88->mUnk_2c)[top++] = s1;
+                            ((Unk02180ce8 *) data_ov001_021a9b88->mUnk_2c)[top++] = s1;
                         }
                     }
                     sm++;

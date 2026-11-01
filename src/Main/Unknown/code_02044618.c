@@ -46,7 +46,9 @@ void func_0204465c(void) {
     }
 }
 
-// non-matching: 0x25c bytes, original 0x260; the original keeps the object pointer in r1 and the switch value in r0 (here r0 and r1 the other way round), counts the loops in r10/r9/r8 (here sl/r8/r9) and reloads the address constant once more before the last stores.
+// non-matching: 0x25c bytes, original 0x260; the original keeps the object pointer in r1 and the switch value in r0
+// (here r0 and r1 the other way round), counts the loops in r10/r9/r8 (here sl/r8/r9) and reloads the address constant
+// once more before the last stores.
 void func_020446e0(void) {
     u8 i;
     s8 j;
@@ -55,57 +57,57 @@ void func_020446e0(void) {
     u8 n;
 
     switch (data_021759c0->mUnk_1e8.mUnk_08) {
-    case 0:
-        if (data_021759c0->mUnk_1e8.mUnk_00 == 0x34) {
-            data_021759c0->mUnk_1e8.mUnk_00 = 0x34;
-            data_021759c0->mUnk_1e8.mUnk_0c = 5;
-            for (i = 3; i < 8; i++) {
-                func_020468b0(i, i, i * 3, 4, -1, 3);
-            }
-            data_021759c0->mUnk_1e8.mUnk_63 = 0;
-        } else if ((u32) (data_021759c0->mUnk_1e8.mUnk_00 - 0x35) <= 1) {
-            data_021759c0->mUnk_1e8.mUnk_0c = 6;
-            data_021759c0->mUnk_1e8.mUnk_10 = 1;
-            for (i = 0; i < 8; i++) {
-                for (j = 0; j < data_021759c0->mUnk_3d0; j++) {
-                    if (i + 1 == func_0205d4e8((u16) j)) {
-                        break;
+        case 0:
+            if (data_021759c0->mUnk_1e8.mUnk_00 == 0x34) {
+                data_021759c0->mUnk_1e8.mUnk_00 = 0x34;
+                data_021759c0->mUnk_1e8.mUnk_0c = 5;
+                for (i = 3; i < 8; i++) {
+                    func_020468b0(i, i, i * 3, 4, -1, 3);
+                }
+                data_021759c0->mUnk_1e8.mUnk_63 = 0;
+            } else if ((u32) (data_021759c0->mUnk_1e8.mUnk_00 - 0x35) <= 1) {
+                data_021759c0->mUnk_1e8.mUnk_0c = 6;
+                data_021759c0->mUnk_1e8.mUnk_10 = 1;
+                for (i = 0; i < 8; i++) {
+                    for (j = 0; j < data_021759c0->mUnk_3d0; j++) {
+                        if (i + 1 == func_0205d4e8((u16) j)) {
+                            break;
+                        }
+                    }
+                    if (data_021759c0->mUnk_1e8.mUnk_00 != 0x36) {
+                        func_020468b0(i, i, i * 3, 1, -1, 3);
                     }
                 }
-                if (data_021759c0->mUnk_1e8.mUnk_00 != 0x36) {
-                    func_020468b0(i, i, i * 3, 1, -1, 3);
+                data_021759c0->mUnk_1e8.mUnk_63 = 0;
+            } else {
+                for (k = 0; k < 32; k++) {
+                    m = (s32) k / 4;
+                    n = (s32) k % 4;
+                    if (data_021759c0->mUnk_1e8.mUnk_00 == data_02154128[m][n]) {
+                        break;
+                    }
+                    if (k == 31) {
+                        m = 0;
+                        n = 3;
+                    }
                 }
+                data_021759c0->mUnk_1e8.mUnk_60 = n + 1;
+                data_021759c0->mUnk_1e8.mUnk_0c = 3;
+                data_021759c0->mUnk_1e8.mUnk_04 = m;
             }
-            data_021759c0->mUnk_1e8.mUnk_63 = 0;
-        } else {
-            for (k = 0; k < 32; k++) {
-                m = (s32) k / 4;
-                n = (s32) k % 4;
-                if (data_021759c0->mUnk_1e8.mUnk_00 == data_02154128[m][n]) {
-                    break;
-                }
-                if (k == 31) {
-                    m = 0;
-                    n = 3;
-                }
+            break;
+        case 2:
+            if (data_021759d0->mUnk_1c_2 != 0) {
+                data_021759c0->mUnk_1e8.mUnk_0c = 0;
+            } else {
+                data_021759c0->mUnk_1e8.mUnk_0c = 4;
             }
-            data_021759c0->mUnk_1e8.mUnk_60 = n + 1;
-            data_021759c0->mUnk_1e8.mUnk_0c = 3;
-            data_021759c0->mUnk_1e8.mUnk_04 = m;
-        }
-        break;
-    case 2:
-        if (data_021759d0->mUnk_1c_2 != 0) {
+            break;
+        case 4:
+            break;
+        default:
             data_021759c0->mUnk_1e8.mUnk_0c = 0;
-        } else {
-            data_021759c0->mUnk_1e8.mUnk_0c = 4;
-        }
-        break;
-    case 4:
-        break;
-    default:
-        data_021759c0->mUnk_1e8.mUnk_0c = 0;
-        break;
+            break;
     }
 }
 
@@ -120,84 +122,84 @@ void func_02044940(void) {
 
     r = 0;
     switch (data_021759c0->mUnk_1e8.mUnk_08) {
-    case 0:
-    case 2:
-    case 3:
-        r = 8;
-        break;
-    case 5:
-        r = 4;
-        break;
-    case 1:
-        n = 1;
-        e = data_0217aa08->mUnk_14;
-        if (e->mUnk_08_0 == 1) {
-            data_021759c0->mUnk_3e6 = 1;
-            data_021759c0->mUnk_3e4 = e->mUnk_08_8;
-            data_021759c0->mUnk_3e5 = e->mUnk_08_15;
-            data_021759c0->mUnk_3e2 = e->mUnk_08_22;
-        } else {
-            data_021759c0->mUnk_3e6 = 0;
-            data_021759c0->mUnk_3e4 = 0;
-            data_021759c0->mUnk_3e5 = 0;
-            data_021759c0->mUnk_3e2 = 0;
-        }
-        switch (data_021759c0->mUnk_1e8.mUnk_24) {
         case 0:
-            if (func_02044e9c(data_021759c0->mUnk_1e8.mUnk_00, 1) != 0) {
-                n++;
-            }
+        case 2:
+        case 3:
+            r = 8;
+            break;
+        case 5:
+            r = 4;
             break;
         case 1:
-            if (func_02044d4c(data_021759c0->mUnk_1e8.mUnk_00, 1) != 0) {
-                n++;
+            n = 1;
+            e = data_0217aa08->mUnk_14;
+            if (e->mUnk_08_0 == 1) {
+                data_021759c0->mUnk_3e6 = 1;
+                data_021759c0->mUnk_3e4 = e->mUnk_08_8;
+                data_021759c0->mUnk_3e5 = e->mUnk_08_15;
+                data_021759c0->mUnk_3e2 = e->mUnk_08_22;
+            } else {
+                data_021759c0->mUnk_3e6 = 0;
+                data_021759c0->mUnk_3e4 = 0;
+                data_021759c0->mUnk_3e5 = 0;
+                data_021759c0->mUnk_3e2 = 0;
             }
-            break;
-        case 2:
-            if (func_02044bf8(data_021759c0->mUnk_1e8.mUnk_00, 1) != 0) {
-                n++;
+            switch (data_021759c0->mUnk_1e8.mUnk_24) {
+                case 0:
+                    if (func_02044e9c(data_021759c0->mUnk_1e8.mUnk_00, 1) != 0) {
+                        n++;
+                    }
+                    break;
+                case 1:
+                    if (func_02044d4c(data_021759c0->mUnk_1e8.mUnk_00, 1) != 0) {
+                        n++;
+                    }
+                    break;
+                case 2:
+                    if (func_02044bf8(data_021759c0->mUnk_1e8.mUnk_00, 1) != 0) {
+                        n++;
+                    }
+                    break;
+                case 3:
+                    break;
             }
+            r = n;
             break;
-        case 3:
+        case 4:
+            r = 2;
             break;
-        }
-        r = n;
-        break;
-    case 4:
-        r = 2;
-        break;
     }
     switch (data_021759c0->mUnk_1e8.mUnk_0c) {
-    case 1:
-    case 5:
-        data_021759c0->mUnk_1e8.mUnk_62 = data_021759c0->mUnk_1e8.mUnk_63;
-        break;
-    case 6:
-        data_021759c0->mUnk_1e8.mUnk_62 = data_021759c0->mUnk_1e8.mUnk_63;
-        r = 8;
-        break;
-    case 0:
-    case 2:
-    case 3:
-    case 4:
-        h = 0;
-        for (i = 0; i < 8; i++) {
-            if (data_021759c0->mUnk_250[i].mUnk_08.mUnk_00 == 0) {
-                h = i;
-                break;
+        case 1:
+        case 5:
+            data_021759c0->mUnk_1e8.mUnk_62 = data_021759c0->mUnk_1e8.mUnk_63;
+            break;
+        case 6:
+            data_021759c0->mUnk_1e8.mUnk_62 = data_021759c0->mUnk_1e8.mUnk_63;
+            r = 8;
+            break;
+        case 0:
+        case 2:
+        case 3:
+        case 4:
+            h = 0;
+            for (i = 0; i < 8; i++) {
+                if (data_021759c0->mUnk_250[i].mUnk_08.mUnk_00 == 0) {
+                    h = i;
+                    break;
+                }
             }
-        }
-        q = data_0217aa00;
-        f = 0;
-        if ((q == 0 ? 0 : q->mUnk_0000) != 0 && q->mUnk_0004 != 13) {
-            f = 1;
-        }
-        if (f != 0) {
-            h = (s16) q->mUnk_1e52[(u16) (q->mUnk_0000 == 2 ? q->mUnk_0432 : 0)].mUnk_00;
-        }
-        data_021759c0->mUnk_1e8.mUnk_62 = h;
-        data_021759c0->mUnk_1e8.mUnk_63 = h;
-        break;
+            q = data_0217aa00;
+            f = 0;
+            if ((q == 0 ? 0 : q->mUnk_0000) != 0 && q->mUnk_0004 != 13) {
+                f = 1;
+            }
+            if (f != 0) {
+                h = (s16) q->mUnk_1e52[(u16) (q->mUnk_0000 == 2 ? q->mUnk_0432 : 0)].mUnk_00;
+            }
+            data_021759c0->mUnk_1e8.mUnk_62 = h;
+            data_021759c0->mUnk_1e8.mUnk_63 = h;
+            break;
     }
     *(Unk02044940_block *) data_021759c0 = *(Unk02044940_block *) &data_021759c0->mUnk_1e8;
     func_02046968(r);
@@ -276,7 +278,8 @@ s32 func_02044e9c(s32 a, s32 b) {
     return r;
 }
 
-// non-matching: same size; the original keeps the second loop index in r0, the 0x30-step offset in r1 and the counter in r2 (here the offset in r0, the index in r1) and holds the global's address in r1 (here r2).
+// non-matching: same size; the original keeps the second loop index in r0, the 0x30-step offset in r1 and the counter
+// in r2 (here the offset in r0, the index in r1) and holds the global's address in r1 (here r2).
 void func_02044fc0(void) {
     s8 i;
     u8 n;
@@ -302,7 +305,9 @@ static inline Unk0217aa00_45c *func_02045084_inline(Unk0217aa00 *q, s32 a) {
     return e == 0xffff ? 0 : &q->mUnk_045c[e];
 }
 
-// non-matching: 0x500 bytes, original 0x50c; the original keeps the first flag in r3 (reused as the zero constant after its compare) and makes two conditional-move copies of it (r1 and r3), here the flag lives in sl and one copy is left out.
+// non-matching: 0x500 bytes, original 0x50c; the original keeps the first flag in r3 (reused as the zero constant after
+// its compare) and makes two conditional-move copies of it (r1 and r3), here the flag lives in sl and one copy is left
+// out.
 void func_02045084(s32 a) {
     Unk0217aa08 *p;
     Unk0217aa00 *q;
@@ -349,72 +354,73 @@ void func_02045084(s32 a) {
         return;
     }
     switch (data_021759c0->mUnk_68[a].mUnk_08.mUnk_00) {
-    case 0:
-        q = data_0217aa00;
-        t = 0;
-        if ((q == 0 ? 0 : q->mUnk_0000) != 0 && q->mUnk_0004 != 13) {
-            t = 1;
-        }
-        if (t == 0) {
-            return;
-        }
-        if (func_02045084_inline(data_0217aa00, a) == 0) {
-            return;
-        }
-        *b0 = func_02045084_inline(data_0217aa00, a);
-        *b1 = &func_02045084_inline(data_0217aa00, a)->mUnk_014;
-        *b2 = func_02045084_inline(data_0217aa00, a)->mUnk_214;
-        *b3 = func_02045084_inline(data_0217aa00, a)->mUnk_228_0;
-        q = data_0217aa00;
-        if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || (q->mUnk_0457 & (1 << q->mUnk_1e8c[a])) != 0) {
-            *b5 = 0;
-        } else {
-            *b5 = (s32) &func_02045084_inline(data_0217aa00, a)->mUnk_218;
-        }
-        *b4 = func_02045084_inline(data_0217aa00, a)->mUnk_229;
-        break;
-    case 2:
-        switch (data_021759c0->mUnk_68[a].mUnk_08.mUnk_10) {
         case 0:
-            *b0 = &data_0217aa08->mUnk_14->mUnk_0c;
-            *b1 = &data_0217aa08->mUnk_04->mUnk_008;
-            *b2 = g != 0 ? 1 : 0;
-            *b3 = data_0217aa08->mUnk_14->mUnk_08_2;
-            *b4 = 0;
-            break;
-        case 1:
-            *b0 = &data_0217aa08->mUnk_18->mUnk_0c;
-            *b1 = &data_0217aa08->mUnk_18->mUnk_30;
-            *b2 = data_0217aa08->mUnk_18->mUnk_08_1;
-            *b3 = data_0217aa08->mUnk_18->mUnk_08_2;
-            *b4 = data_0217aa08->mUnk_18->mUnk_2f_0;
+            q = data_0217aa00;
+            t = 0;
+            if ((q == 0 ? 0 : q->mUnk_0000) != 0 && q->mUnk_0004 != 13) {
+                t = 1;
+            }
+            if (t == 0) {
+                return;
+            }
+            if (func_02045084_inline(data_0217aa00, a) == 0) {
+                return;
+            }
+            *b0 = func_02045084_inline(data_0217aa00, a);
+            *b1 = &func_02045084_inline(data_0217aa00, a)->mUnk_014;
+            *b2 = func_02045084_inline(data_0217aa00, a)->mUnk_214;
+            *b3 = func_02045084_inline(data_0217aa00, a)->mUnk_228_0;
+            q = data_0217aa00;
+            if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || (q->mUnk_0457 & (1 << q->mUnk_1e8c[a])) != 0) {
+                *b5 = 0;
+            } else {
+                *b5 = (s32) &func_02045084_inline(data_0217aa00, a)->mUnk_218;
+            }
+            *b4 = func_02045084_inline(data_0217aa00, a)->mUnk_229;
             break;
         case 2:
-            *b0 = &data_0217aa08->mUnk_1c->mUnk_0c;
-            *b1 = &data_0217aa08->mUnk_1c->mUnk_30;
-            *b2 = 1;
-            *b3 = data_0217aa08->mUnk_1c->mUnk_08_2;
-            *b4 = 1;
+            switch (data_021759c0->mUnk_68[a].mUnk_08.mUnk_10) {
+                case 0:
+                    *b0 = &data_0217aa08->mUnk_14->mUnk_0c;
+                    *b1 = &data_0217aa08->mUnk_04->mUnk_008;
+                    *b2 = g != 0 ? 1 : 0;
+                    *b3 = data_0217aa08->mUnk_14->mUnk_08_2;
+                    *b4 = 0;
+                    break;
+                case 1:
+                    *b0 = &data_0217aa08->mUnk_18->mUnk_0c;
+                    *b1 = &data_0217aa08->mUnk_18->mUnk_30;
+                    *b2 = data_0217aa08->mUnk_18->mUnk_08_1;
+                    *b3 = data_0217aa08->mUnk_18->mUnk_08_2;
+                    *b4 = data_0217aa08->mUnk_18->mUnk_2f_0;
+                    break;
+                case 2:
+                    *b0 = &data_0217aa08->mUnk_1c->mUnk_0c;
+                    *b1 = &data_0217aa08->mUnk_1c->mUnk_30;
+                    *b2 = 1;
+                    *b3 = data_0217aa08->mUnk_1c->mUnk_08_2;
+                    *b4 = 1;
+                    break;
+            }
             break;
-        }
-        break;
-    case 3:
-        x = data_0217aa18->mUnk_00[(u8) a];
-        if (x < 0) {
-            return;
-        }
-        v = x;
-        *b0 = func_021202b0(v);
-        *b1 = func_02120294(v);
-        *b2 = func_02120278(v);
-        *b3 = func_021202cc(v);
-        *b5 = func_021202f0(v);
-        *b4 = func_021201e4(v);
-        break;
+        case 3:
+            x = data_0217aa18->mUnk_00[(u8) a];
+            if (x < 0) {
+                return;
+            }
+            v = x;
+            *b0 = func_021202b0(v);
+            *b1 = func_02120294(v);
+            *b2 = func_02120278(v);
+            *b3 = func_021202cc(v);
+            *b5 = func_021202f0(v);
+            *b4 = func_021201e4(v);
+            break;
     }
 }
 
-// non-matching: same size; in the loop the original keeps the zero constants in r3/r4 and the 0x30 offset in r5 (here zero in r5/ip, offset in r4), and orders the moveq/movne pair of the (i == 0) select the other way.
+// non-matching: same size; in the loop the original keeps the zero constants in r3/r4 and the 0x30 offset in r5 (here
+// zero in r5/ip, offset in r4), and orders the moveq/movne pair of the (i == 0) select the other way.
 void func_02045590(void) {
     u16 i;
     u16 j;

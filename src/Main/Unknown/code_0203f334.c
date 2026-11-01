@@ -46,7 +46,8 @@ void func_0203f334(Unk0217561c_14 *a, s32 b) {
         func_02148504(&p, &w, &p);
         i++;
     } while (n > 0 && i < 0x11);
-    func_0203f5f0(&e[a->mUnk_24 - 2].mUnk_02, &e[a->mUnk_24 - 2].mUnk_03, &e[a->mUnk_24 - 2].mUnk_00, -i * 0xf0, a->mUnk_04);
+    func_0203f5f0(&e[a->mUnk_24 - 2].mUnk_02, &e[a->mUnk_24 - 2].mUnk_03, &e[a->mUnk_24 - 2].mUnk_00, -i * 0xf0,
+                  a->mUnk_04);
     a->mUnk_04 = 0;
     q = &e[5];
     q->mUnk_02 = 0;
@@ -61,7 +62,8 @@ void func_0203f334(Unk0217561c_14 *a, s32 b) {
     a->mUnk_2c = (q->mUnk_02 * 60 + q->mUnk_03) * 1000 + q->mUnk_00;
 }
 
-// non-matching: 9 words differ; same instructions, the three sums are formed in other registers (original: r4 for the first sum, ip for the second, r3 for the third)
+// non-matching: 9 words differ; same instructions, the three sums are formed in other registers (original: r4 for the
+// first sum, ip for the second, r3 for the third)
 void func_0203f544(const Unk0217aa1c_144_00 *a, const Unk0217aa1c_144_00 *b, Unk0217aa1c_144_00 *c) {
     s16 y;
     s16 x;
@@ -88,7 +90,8 @@ void func_0203f544(const Unk0217aa1c_144_00 *a, const Unk0217aa1c_144_00 *b, Unk
     c->mUnk_00 = x;
 }
 
-// non-matching: size 0x1d8 against 0x1d0; same instruction sequence but different registers (original keeps the argument in r6 and saves r10 for the 64-bit product with 0x44 in r5/lr)
+// non-matching: size 0x1d8 against 0x1d0; same instruction sequence but different registers (original keeps the
+// argument in r6 and saves r10 for the 64-bit product with 0x44 in r5/lr)
 void func_0203f5f0(u8 *a, u8 *b, u16 *c, s32 d, u32 e) {
     Unk0217561c *p;
     s8 m;
@@ -149,7 +152,8 @@ void func_0203f5f0(u8 *a, u8 *b, u16 *c, s32 d, u32 e) {
     *c = f;
 }
 
-// non-matching: size 0x160 against 0x15c; the original keeps the fourth argument in r9 and reuses r9 for the value -1 compared with the call result (no stack copy of the argument), and returns r0 at the end instead of reloading -1
+// non-matching: size 0x160 against 0x15c; the original keeps the fourth argument in r9 and reuses r9 for the value -1
+// compared with the call result (no stack copy of the argument), and returns r0 at the end instead of reloading -1
 s16 func_0203f7c0(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     s16 t;
     s8 k;
@@ -171,7 +175,9 @@ s16 func_0203f7c0(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         for (j = 0; j < 3; j++) {
             k = ((s8 *) &p->mUnk_07)[j];
             if (k != -1) {
-                x = func_0203f7c0(a, b, c, (u16) k, data_02175620->mUnk_4c[(u16) k].mUnk_00 + data_02175620->mUnk_4c[(u16) k].mUnk_02 - 1, f - 1);
+                x = func_0203f7c0(a, b, c, (u16) k,
+                                  data_02175620->mUnk_4c[(u16) k].mUnk_00 + data_02175620->mUnk_4c[(u16) k].mUnk_02 - 1,
+                                  f - 1);
                 if (x != r) {
                     return x;
                 }
@@ -182,7 +188,8 @@ s16 func_0203f7c0(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     return func_0203f7c0(a, b, c, d, e - 1, f - 1);
 }
 
-// non-matching: size 0x148 against 0x144; same difference as func_0203f7c0 (fourth argument kept in r9, then reused for -1)
+// non-matching: size 0x148 against 0x144; same difference as func_0203f7c0 (fourth argument kept in r9, then reused for
+// -1)
 s16 func_0203f91c(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     s16 t;
     s8 k;
@@ -297,7 +304,8 @@ s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
     return func_02147f34((s32) x, (s32) y);
 }
 
-// non-matching: size 0xe0 against 0xf4; the original also stores the first and third words of the first argument to a 12-byte stack frame (never read back), saves r9 and keeps 0x800 in r5 with 0 in r0
+// non-matching: size 0xe0 against 0xf4; the original also stores the first and third words of the first argument to a
+// 12-byte stack frame (never read back), saves r9 and keeps 0x800 in r5 with 0 in r0
 s32 func_0203fde0(const Vec3 *a, const Unk02175620_44 *b, const Unk02175620_44 *c) {
     UnkPair020b502c p;
 
@@ -316,7 +324,9 @@ s32 func_0203fde0(const Vec3 *a, const Unk02175620_44 *b, const Unk02175620_44 *
     return 0;
 }
 
-// non-matching: size 0x2cc against 0x2d8; the original keeps a second copy of the global pointer in r0 (mov r0, r5) used for the final call, forms the address of the first member at 0x14 as base + 0x14 before the mla, and orders the first test of the switch cases differently
+// non-matching: size 0x2cc against 0x2d8; the original keeps a second copy of the global pointer in r0 (mov r0, r5)
+// used for the final call, forms the address of the first member at 0x14 as base + 0x14 before the mla, and orders the
+// first test of the switch cases differently
 void func_0203fed4(void) {
     Unk0217561c *p;
     s32 t;

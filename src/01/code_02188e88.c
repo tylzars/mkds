@@ -138,5 +138,5 @@ void func_ov001_02188e94(Unk02188950 *param_1, void (**param_2)()) {
 }
 
 void func_ov001_02188e88(Unk02188950 *param_1) {
-    func_ov001_02187218(param_1, 0, (s32 (*)(Unk02188950 *)) (0));
+    func_ov001_02187218(param_1, 0, (s32(*)(Unk02188950 *))(0));
 }

@@ -182,18 +182,18 @@ void func_0209fc78(Unk020e71a0 *p) {
         *data_usa_0217b18c[i] = *data_usa_0217b18c[0];
     }
     switch (i) {
-    case 0x10:
-        data_usa_0217b18c[i]->mUnk_24 = 0x127;
-        break;
-    case 0x11:
-        data_usa_0217b18c[i]->mUnk_24 = 0x100;
-        break;
-    case 0x12:
-        data_usa_0217b18c[i]->mUnk_24 = 0x1da;
-        break;
-    default:
-        data_usa_0217b18c[i]->mUnk_24 = func_0210bafc(0, 8, i);
-        break;
+        case 0x10:
+            data_usa_0217b18c[i]->mUnk_24 = 0x127;
+            break;
+        case 0x11:
+            data_usa_0217b18c[i]->mUnk_24 = 0x100;
+            break;
+        case 0x12:
+            data_usa_0217b18c[i]->mUnk_24 = 0x1da;
+            break;
+        default:
+            data_usa_0217b18c[i]->mUnk_24 = func_0210bafc(0, 8, i);
+            break;
     }
     p->mUnk_98 = data_usa_0217b18c[i];
 }
@@ -253,24 +253,24 @@ static inline s32 func_0209fdb4_inline_b(void) {
 
 void func_0209fdb4(void *a, Unk020a018c *p) {
     switch (p->mUnk_ec) {
-    case 0:
-        if (func_0209fdb4_inline_b() != 0) {
-            p->mUnk_ec = 1;
-        }
-        break;
-    case 1:
-        p->mUnk_a0 += 0x1000;
-        if (p->mUnk_a0 >= 0) {
-            p->mUnk_a0 = 0;
-            p->mUnk_ec = 2;
-        }
-        func_0209fdb4_inline(p);
-        break;
-    case 2:
-        func_020d8cc8(&p->mUnk_c8);
-        func_020d8bf8(&p->mUnk_c8, &p->mUnk_00.mUnk_04, &p->mUnk_00.mUnk_10);
-        func_0209fdb4_inline(p);
-        break;
+        case 0:
+            if (func_0209fdb4_inline_b() != 0) {
+                p->mUnk_ec = 1;
+            }
+            break;
+        case 1:
+            p->mUnk_a0 += 0x1000;
+            if (p->mUnk_a0 >= 0) {
+                p->mUnk_a0 = 0;
+                p->mUnk_ec = 2;
+            }
+            func_0209fdb4_inline(p);
+            break;
+        case 2:
+            func_020d8cc8(&p->mUnk_c8);
+            func_020d8bf8(&p->mUnk_c8, &p->mUnk_00.mUnk_04, &p->mUnk_00.mUnk_10);
+            func_0209fdb4_inline(p);
+            break;
     }
     p->mUnk_00.mUnk_7e = func_02148714(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z);
 }

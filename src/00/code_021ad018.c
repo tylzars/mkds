@@ -52,7 +52,8 @@ u32 func_ov000_021ad07c(const char *a, const char **b) {
     return c;
 }
 
-// non-matching: same size 0x19c; in the name-building loop the original keeps the write pointer in r1, the character in r4 and the zero in r3 (here r4, r3, r2), 29 words differ
+// non-matching: same size 0x19c; in the name-building loop the original keeps the write pointer in r1, the character in
+// r4 and the zero in r3 (here r4, r3, r2), 29 words differ
 s32 func_ov000_021ad0a4(const char *a, u32 b, s32 c) {
     struct {
         /* 00 */ u32 mUnk_00;
@@ -210,17 +211,17 @@ s32 func_ov000_021ad2b8(u32 *a, s32 b) {
     data_ov000_021b63a0 = e;
     *a = e;
     switch (b) {
-    case 1:
-        if (e < 0x3c) {
-            *a = 1;
-            data_ov000_021b63a0 = data_ov000_021b63b8 >> 3;
-        }
-        break;
-    case 2:
-        if (e < 0x3c) {
-            *a = 1;
-        }
-        break;
+        case 1:
+            if (e < 0x3c) {
+                *a = 1;
+                data_ov000_021b63a0 = data_ov000_021b63b8 >> 3;
+            }
+            break;
+        case 2:
+            if (e < 0x3c) {
+                *a = 1;
+            }
+            break;
     }
     return 0;
 }

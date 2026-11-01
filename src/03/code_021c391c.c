@@ -29,18 +29,18 @@ void func_ov003_021c39a4(void) {
             func_ov003_021c212c(func_ov003_021c3078);
         } else {
             switch (data_ov003_021da1ac) {
-            case 0:
-                func_ov003_021c2120(0, 1);
-                func_ov003_021c212c(func_ov003_021c38f0);
-                break;
-            case 1:
-                func_ov003_021c2120(0, 1);
-                func_ov003_021c212c(func_ov003_021c33ac);
-                break;
-            case 2:
-                func_ov003_021c2120(0, 1);
-                func_ov003_021c212c(func_ov003_021c4670);
-                break;
+                case 0:
+                    func_ov003_021c2120(0, 1);
+                    func_ov003_021c212c(func_ov003_021c38f0);
+                    break;
+                case 1:
+                    func_ov003_021c2120(0, 1);
+                    func_ov003_021c212c(func_ov003_021c33ac);
+                    break;
+                case 2:
+                    func_ov003_021c2120(0, 1);
+                    func_ov003_021c212c(func_ov003_021c4670);
+                    break;
             }
         }
     }

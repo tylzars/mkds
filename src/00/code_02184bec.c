@@ -25,30 +25,30 @@ void func_ov000_02184bec(void) {
 
     data_ov000_021b4c84->mUnk_00 = data_ov000_021b4c84->mUnk_04;
     switch (data_ov000_021b4c84->mUnk_00) {
-    case 0:
-        func_ov000_02185164();
-        break;
-    case 1:
-        func_ov000_021850d0();
-        break;
-    case 2:
-        func_ov000_021850b0();
-        break;
-    case 3:
-        func_ov000_02184f1c();
-        break;
-    case 4:
-        func_ov000_02184ed4();
-        break;
-    case 5:
-        func_ov000_02184dbc();
-        break;
-    case 6:
-        func_ov000_02184d4c();
-        break;
-    case 7:
-        func_ov000_02184ce0();
-        break;
+        case 0:
+            func_ov000_02185164();
+            break;
+        case 1:
+            func_ov000_021850d0();
+            break;
+        case 2:
+            func_ov000_021850b0();
+            break;
+        case 3:
+            func_ov000_02184f1c();
+            break;
+        case 4:
+            func_ov000_02184ed4();
+            break;
+        case 5:
+            func_ov000_02184dbc();
+            break;
+        case 6:
+            func_ov000_02184d4c();
+            break;
+        case 7:
+            func_ov000_02184ce0();
+            break;
     }
     func_ov000_02184c74();
     p = data_ov000_021b4c84;
@@ -204,22 +204,22 @@ next:
         f = p->mUnk_08;
         if ((u16) e == 0) {
             switch (a) {
-            case 0:
-                p->mUnk_08 = 0;
-                break;
-            case 1:
-                p->mUnk_08 = 1;
-                break;
+                case 0:
+                    p->mUnk_08 = 0;
+                    break;
+                case 1:
+                    p->mUnk_08 = 1;
+                    break;
             }
         }
         data_ov000_021b4c84->mUnk_04 = 4;
         switch (data_ov000_021b4c84->mUnk_08) {
-        case 0:
-            data_ov000_021b4c84->mUnk_10 = 11;
-            break;
-        case 1:
-            data_ov000_021b4c84->mUnk_10 = 9;
-            break;
+            case 0:
+                data_ov000_021b4c84->mUnk_10 = 11;
+                break;
+            case 1:
+                data_ov000_021b4c84->mUnk_10 = 9;
+                break;
         }
         if (data_ov000_021b4c84->mUnk_08 == f) {
             data_ov000_021b4c84->mUnk_14 = 0;

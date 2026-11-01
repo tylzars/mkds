@@ -20,8 +20,8 @@ void func_02035c50(s32 a, s32 b, s32 c, s32 d) {
     s = &data_02174e68->mUnk_2c[1];
     if (a == 1) {
         c += func_0202ddb0();
-        func_0212426c(1, b, s->mUnk_14, func_020b3f7c(data_02174e68->mUnk_88, func_02025d74(func_0202db04(c))), s->mUnk_0c,
-                      s->mUnk_18);
+        func_0212426c(1, b, s->mUnk_14, func_020b3f7c(data_02174e68->mUnk_88, func_02025d74(func_0202db04(c))),
+                      s->mUnk_0c, s->mUnk_18);
         func_0202dcf4(c, x);
         func_02025cd0(w, x[2], x[3], *(u16 *) x);
         func_02124224(1, b + 7, s->mUnk_14, w, s->mUnk_0c, s->mUnk_18, 7);

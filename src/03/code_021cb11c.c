@@ -36,8 +36,8 @@ void func_ov003_021cb11c(void) {
             a = 3;
         } else {
             data_ov003_021da234->mUnk_10[i] = func_ov003_021d1be4(0, 0x11, 1);
-            func_ov003_021d17d4(data_ov003_021da234->mUnk_10[i], -1,
-                                data_ov003_021d64f0[i + 3].mUnk_00, data_ov003_021d64f0[i + 3].mUnk_02);
+            func_ov003_021d17d4(data_ov003_021da234->mUnk_10[i], -1, data_ov003_021d64f0[i + 3].mUnk_00,
+                                data_ov003_021d64f0[i + 3].mUnk_02);
             func_ov003_021d1790(data_ov003_021da234->mUnk_10[i], -1, 3);
         }
         data_ov003_021da234->mUnk_04[i] = func_ov003_021d1be4(0, data_ov003_021d64e4[a], 1);
@@ -112,24 +112,24 @@ void func_ov003_021cb3d8(void) {
             func_ov003_021c212c(func_ov003_021cb294);
         } else {
             switch (data_ov003_021da23c) {
-            case 0:
-                func_ov003_021c2120(2, 1);
-                func_ov003_021c212c(func_ov003_021ca8e8);
-                break;
-            case 1:
-                func_ov003_021c2120(2, 1);
-                func_ov003_021c212c(func_ov003_021c54dc);
-                break;
-            case 2:
-                func_ov003_021c2120(2, 1);
-                func_ov003_021c212c(func_ov003_021ca504);
-                break;
-            case 3:
-                func_ov003_021c2120(2, 0);
-                func_ov003_021c20f8(0, 0);
-                func_ov003_021c7d30(1);
-                func_ov003_021c212c(func_ov003_021c965c);
-                break;
+                case 0:
+                    func_ov003_021c2120(2, 1);
+                    func_ov003_021c212c(func_ov003_021ca8e8);
+                    break;
+                case 1:
+                    func_ov003_021c2120(2, 1);
+                    func_ov003_021c212c(func_ov003_021c54dc);
+                    break;
+                case 2:
+                    func_ov003_021c2120(2, 1);
+                    func_ov003_021c212c(func_ov003_021ca504);
+                    break;
+                case 3:
+                    func_ov003_021c2120(2, 0);
+                    func_ov003_021c20f8(0, 0);
+                    func_ov003_021c7d30(1);
+                    func_ov003_021c212c(func_ov003_021c965c);
+                    break;
             }
         }
     }

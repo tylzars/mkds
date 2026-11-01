@@ -36,6 +36,7 @@ void func_020f112c(int arg0, int arg1) {
 }
 
 void func_020f1104(int param_1) {
-    func_02148504((const Vec3 *) ((u32) (param_1 + 0x22c)), (const Vec3 *) ((u32) (param_1 + 0x5c)), (Vec3 *) ((int *) ((int *) (u32) (param_1 + 0x5c))));
+    func_02148504((const Vec3 *) ((u32) (param_1 + 0x22c)), (const Vec3 *) ((u32) (param_1 + 0x5c)),
+                  (Vec3 *) ((int *) ((int *) (u32) (param_1 + 0x5c))));
     func_020f29e8(param_1);
 }

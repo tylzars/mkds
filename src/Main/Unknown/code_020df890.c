@@ -58,10 +58,10 @@ void func_020dff88(void *a) {
 
 u32 func_020dff70(u32 a) {
     switch (a) {
-    case 0xca:
-        return 1;
-    default:
-        return 0;
+        case 0xca:
+            return 1;
+        default:
+            return 0;
     }
 }
 

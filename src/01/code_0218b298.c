@@ -5,7 +5,8 @@
 #include "Main/Unknown/code_0209bef0.h"
 
 void *func_ov001_0218b2f4(void) {
-    return (void *) func_0209bf1c((u32) (func_ov001_0218b35c), (u32) (func_ov001_0218b33c), (u32) (func_ov001_02187098));
+    return (void *) func_0209bf1c((u32) (func_ov001_0218b35c), (u32) (func_ov001_0218b33c),
+                                  (u32) (func_ov001_02187098));
 }
 
 void *func_ov001_0218b2dc(void) {

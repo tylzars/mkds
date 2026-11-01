@@ -14,21 +14,21 @@ int func_020071b4(void) {
     v3 = data_0216fdac;
     for (; i <= 15; i++) {
         switch (v3->mUnk_14e8[i - 1]) {
-        case 2:
-            v1[1] |= 1 << i;
-            break;
-        case 5:
-            v1[2] |= 1 << i;
-            break;
-        case 4:
-            v1[3] |= 1 << i;
-            break;
-        case 8:
-            v1[4] |= 1 << i;
-            break;
-        case 11:
-            v1[5] |= 1 << i;
-            break;
+            case 2:
+                v1[1] |= 1 << i;
+                break;
+            case 5:
+                v1[2] |= 1 << i;
+                break;
+            case 4:
+                v1[3] |= 1 << i;
+                break;
+            case 8:
+                v1[4] |= 1 << i;
+                break;
+            case 11:
+                v1[5] |= 1 << i;
+                break;
         }
     }
     if (v1[4] != 0) {

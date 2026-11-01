@@ -40,8 +40,7 @@ void func_02129cbc(void) {
                   (int) (*(u32 *) (*(int *) ((int) data_0217d400 + 0x98) + 8)));
     func_0214c090((const void *) (*(u32 *) (*(int *) ((int) data_0217d400 + 0x98) + 0xc)), 0,
                   (u32) (((u32) 0x000001a0u)));
-    func_0214c090((const void *) (*(int *) (*(int *) ((int) data_0217d400 + 0x98) + 0xc) + 0x1c0),
-                  0x1c0, (u32) 0x40);
+    func_0214c090((const void *) (*(int *) (*(int *) ((int) data_0217d400 + 0x98) + 0xc) + 0x1c0), 0x1c0, (u32) 0x40);
     func_0214c028((const void *) (*(u32 *) (*(int *) ((int) data_0217d400 + 0x98) + 0xc)), 0,
                   (u32) (*(u32 *) (*(int *) ((int) data_0217d400 + 0x98) + 8)));
     v1 = ((int) func_0204799c((const char *) &data_0216e9fc));

@@ -136,8 +136,8 @@ typedef struct {
     /* 18 */ Vec3 mUnk_18;
 } Unk020eda5c_02c;
 
-// Object at 0x58 of a Unk020ee684 (that Unk020ee684 at 0x0c), passed first to the function pointers in the data_0217bc34 entries:
-// three Unk020f41c4_A pointers at 0x14, vectors from 0x2c to 0x0e4.
+// Object at 0x58 of a Unk020ee684 (that Unk020ee684 at 0x0c), passed first to the function pointers in the
+// data_0217bc34 entries: three Unk020f41c4_A pointers at 0x14, vectors from 0x2c to 0x0e4.
 typedef struct Unk020eda5c {
     /* 000 */ s32 mUnk_000;
     /* 004 */ s32 mUnk_004;

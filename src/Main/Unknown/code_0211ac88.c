@@ -81,18 +81,18 @@ void func_0211afd0(void) {
         data_0217d368->mUnk_14[b + 14].mUnk_06 = a;
     }
     switch (data_0217d368->mUnk_2c) {
-    case 0:
-    case 1:
-        if (data_0217d368->mUnk_38 >= 10 && func_02128294() != 0) {
-            func_0211ba98();
-            return;
-        }
-        break;
-    default:
-        if (data_0217d368->mUnk_38 >= 10) {
-            func_0211ba98();
-        }
-        break;
+        case 0:
+        case 1:
+            if (data_0217d368->mUnk_38 >= 10 && func_02128294() != 0) {
+                func_0211ba98();
+                return;
+            }
+            break;
+        default:
+            if (data_0217d368->mUnk_38 >= 10) {
+                func_0211ba98();
+            }
+            break;
     }
 }
 
@@ -147,14 +147,14 @@ void func_0211acec(void) {
         }
     }
     switch (data_0217d368->mUnk_2c) {
-    case 0:
-    case 1:
-        func_021281c8(0xe);
-        func_0211b9d8();
-        data_0217d368->mUnk_b8 = 2;
-        func_02128310(0);
-        func_0202b7c0(1);
-        break;
+        case 0:
+        case 1:
+            func_021281c8(0xe);
+            func_0211b9d8();
+            data_0217d368->mUnk_b8 = 2;
+            func_02128310(0);
+            func_0202b7c0(1);
+            break;
     }
     goto end;
 chain:

@@ -913,8 +913,8 @@ call_800_80:
     } else {
         f5 = f5 + a->mUnk_104;
     }
-    return func_020e16dc(c, f6, f5, n, 0x800, 0x80, g, d, a->mUnk_110, a->mUnk_114.x, a, b, &a->mUnk_028,
-                         &a->mUnk_034, o, p, q, r, s);
+    return func_020e16dc(c, f6, f5, n, 0x800, 0x80, g, d, a->mUnk_110, a->mUnk_114.x, a, b, &a->mUnk_028, &a->mUnk_034,
+                         o, p, q, r, s);
 call_80_8:
     if (n & 0x80) {
         f5 = f5 - a->mUnk_104;
@@ -926,8 +926,8 @@ call_80_8:
     } else {
         f4 = f4 + a->mUnk_10c;
     }
-    return func_020e16dc(c, f5, f4, n, 0x80, 0x8, g, d, a->mUnk_114.x, a->mUnk_114.y, a, b, &a->mUnk_034,
-                         &a->mUnk_040, o, p, q, r, s);
+    return func_020e16dc(c, f5, f4, n, 0x80, 0x8, g, d, a->mUnk_114.x, a->mUnk_114.y, a, b, &a->mUnk_034, &a->mUnk_040,
+                         o, p, q, r, s);
 call_8_800:
     if (n & 0x800) {
         f6 = f6 - a->mUnk_100;
@@ -939,8 +939,8 @@ call_8_800:
     } else {
         f4 = f4 + a->mUnk_10c;
     }
-    return func_020e16dc(c, f4, f6, n, 8, 0x800, g, d, a->mUnk_114.y, a->mUnk_110, a, b, &a->mUnk_040, &a->mUnk_028,
-                         o, p, q, r, s);
+    return func_020e16dc(c, f4, f6, n, 8, 0x800, g, d, a->mUnk_114.y, a->mUnk_110, a, b, &a->mUnk_040, &a->mUnk_028, o,
+                         p, q, r, s);
 rest:
     u = 0;
     if ((d & 0x60) == 0) {
@@ -1154,7 +1154,7 @@ s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *o, Unk020e
                 goto apply3000;
             }
         }
-apply80:
+    apply80:
         func_020e1a80(c, n, d0, fl, 0x80, g, a->mUnk_114.x, a, b, &a->mUnk_034, o, p, q, r, s);
         return 1;
     }

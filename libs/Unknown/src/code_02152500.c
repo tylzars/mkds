@@ -28,18 +28,18 @@ u32 func_02152520(void *a, void *b) {
     u64 r;
 
     switch (func_02152a58(q)) {
-    case 2:
-        r = func_02152ab4(q);
-        if (func_02152950(r, p->mUnk_24) != 0) {
-            return func_02152934(r, p->mUnk_24);
-        }
-        return 0;
-    case 3:
-        return func_02152ab0(q);
-    case 1:
-        return -1;
-    default:
-        return 0;
+        case 2:
+            r = func_02152ab4(q);
+            if (func_02152950(r, p->mUnk_24) != 0) {
+                return func_02152934(r, p->mUnk_24);
+            }
+            return 0;
+        case 3:
+            return func_02152ab0(q);
+        case 1:
+            return -1;
+        default:
+            return 0;
     }
 }
 

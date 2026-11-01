@@ -1,6 +1,7 @@
 #include "00/code_021a9640.h"
 
-// non-matching: 15 words differ from +0x18c; the halfword copy loop keeps its counter and source pointer in r1 and r0 (original r3 and r2) and ours computes the pointer before the loop test, the original after it; size equal
+// non-matching: 15 words differ from +0x18c; the halfword copy loop keeps its counter and source pointer in r1 and r0
+// (original r3 and r2) and ours computes the pointer before the loop test, the original after it; size equal
 void func_ov000_021a9640(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
     s32 b;
@@ -84,7 +85,8 @@ void func_ov000_021a9640(Unk021a998c *a) {
     data_ov000_021b63ac(e);
 }
 
-// non-matching: 3 instructions differ at +0xcc; the length minus 4 is computed in r0 (original r1, then shifted into r0), size equal
+// non-matching: 3 instructions differ at +0xcc; the length minus 4 is computed in r0 (original r1, then shifted into
+// r0), size equal
 void func_ov000_021a9868(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
     u8 *b;

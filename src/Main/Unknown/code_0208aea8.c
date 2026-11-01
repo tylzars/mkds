@@ -37,7 +37,8 @@ void func_0208af40(void *a, u32 b) {
     data_0217b038->mUnk_08 = *(s32 *) (data_0217b038->mUnk_0c + 0x10);
 }
 
-// non-matching: 0x198 bytes, original 0x1ac; stack frame 0x5c in the original, 0x54 here; the loop locals and the saved x differ
+// non-matching: 0x198 bytes, original 0x1ac; stack frame 0x5c in the original, 0x54 here; the loop locals and the saved
+// x differ
 void func_0208afe4(void) {
     Unk02166108 a = data_usa_02166108;
     Unk021660f8 b = data_usa_021660f8;

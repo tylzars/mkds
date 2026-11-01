@@ -24,40 +24,40 @@ u32 func_ov000_0219e4e8(u32 a) {
         return 0;
     }
     switch (a) {
-    case 1:
-        b = 6;
-        c = -50;
-        break;
-    case 2:
-        b = 6;
-        c = -60;
-        break;
-    case 3:
-        b = 6;
-        c = -30;
-        break;
-    case 4:
-        b = 6;
-        c = -80;
-        break;
-    case 5:
-        b = 6;
-        c = -20;
-        break;
+        case 1:
+            b = 6;
+            c = -50;
+            break;
+        case 2:
+            b = 6;
+            c = -60;
+            break;
+        case 3:
+            b = 6;
+            c = -30;
+            break;
+        case 4:
+            b = 6;
+            c = -80;
+            break;
+        case 5:
+            b = 6;
+            c = -20;
+            break;
     }
     switch (func_ov000_0219bab4()) {
-    case 2:
-        func_ov000_0219c990(b, c - 0xfa00);
-        break;
-    case 4:
-        func_ov000_0219d734(b, c - 0x12110);
-        break;
-    case 5:
-        func_ov000_021a1a38(b, c - 0x14820);
-        break;
-    default:
-        func_ov000_0219c384(b, c - 0x16f30);
-        break;
+        case 2:
+            func_ov000_0219c990(b, c - 0xfa00);
+            break;
+        case 4:
+            func_ov000_0219d734(b, c - 0x12110);
+            break;
+        case 5:
+            func_ov000_021a1a38(b, c - 0x14820);
+            break;
+        default:
+            func_ov000_0219c384(b, c - 0x16f30);
+            break;
     }
     return a;
 }
@@ -69,30 +69,30 @@ u32 func_ov000_0219e594(u32 a) {
         return 0;
     }
     switch (a) {
-    case 1:
-        b = 6;
-        c = -50;
-        break;
-    case 2:
-        b = 6;
-        c = -30;
-        break;
-    case 3:
-        b = 6;
-        c = -20;
-        break;
-    case 4:
-        b = 6;
-        c = -40;
-        break;
-    case 5:
-        b = 11;
-        c = -1;
-        break;
-    case 6:
-        b = 11;
-        c = -2;
-        break;
+        case 1:
+            b = 6;
+            c = -50;
+            break;
+        case 2:
+            b = 6;
+            c = -30;
+            break;
+        case 3:
+            b = 6;
+            c = -20;
+            break;
+        case 4:
+            b = 6;
+            c = -40;
+            break;
+        case 5:
+            b = 11;
+            c = -1;
+            break;
+        case 6:
+            b = 11;
+            c = -2;
+            break;
     }
     func_ov000_021a1a38(b, c - 0x14c08);
     return a;
@@ -105,22 +105,22 @@ u32 func_ov000_0219e608(u32 a) {
         return 0;
     }
     switch (a) {
-    case 1:
-        b = 11;
-        c = -1;
-        break;
-    case 2:
-        b = 11;
-        c = -2;
-        break;
-    case 3:
-        b = 6;
-        c = -10;
-        break;
-    case 4:
-        b = 6;
-        c = -20;
-        break;
+        case 1:
+            b = 11;
+            c = -1;
+            break;
+        case 2:
+            b = 11;
+            c = -2;
+            break;
+        case 3:
+            b = 6;
+            c = -10;
+            break;
+        case 4:
+            b = 6;
+            c = -20;
+            break;
     }
     func_ov000_021a1a38(b, c - 0x13c68);
     return a;
@@ -182,7 +182,8 @@ void func_ov000_0219e668(void) {
         for (n = 1; n <= (p = data_ov000_021b566c)->mUnk_0d; n++) {
             if ((data_ov000_021b5670->mUnk_08 & (1 << p->mUnk_2b8[n])) == 0) {
                 p = data_ov000_021b566c;
-                if (func_ov000_0219fee4(func_ov000_021a0ae8(0x11, p->mUnk_f4[n], p->mUnk_24[n], p->mUnk_a4[n], 0, 0)) != 0) {
+                if (func_ov000_0219fee4(func_ov000_021a0ae8(0x11, p->mUnk_f4[n], p->mUnk_24[n], p->mUnk_a4[n], 0, 0)) !=
+                    0) {
                     return;
                 }
             }
@@ -211,7 +212,8 @@ void func_ov000_0219e668(void) {
         p->mUnk_198 = 0x13;
         for (n = 1; n <= data_ov000_021b566c->mUnk_0d; n++) {
             p = data_ov000_021b566c;
-            if (func_ov000_0219fee4(func_ov000_021a0ae8(0x11, p->mUnk_f4[n], p->mUnk_24[n], p->mUnk_a4[n], 0, 0)) != 0) {
+            if (func_ov000_0219fee4(func_ov000_021a0ae8(0x11, p->mUnk_f4[n], p->mUnk_24[n], p->mUnk_a4[n], 0, 0)) !=
+                0) {
                 return;
             }
         }
@@ -235,7 +237,8 @@ void func_ov000_0219e8b8(s32 a) {
     }
 }
 
-// non-matching: registers (result in r2 against r1, counter, object pointer) and the original steps a pointer into the bytes at offset 0x2b8 where ours indexes
+// non-matching: registers (result in r2 against r1, counter, object pointer) and the original steps a pointer into the
+// bytes at offset 0x2b8 where ours indexes
 u32 func_ov000_0219e8fc(s32 a) {
     s32 i;
     u32 r;
@@ -278,7 +281,8 @@ s32 func_ov000_0219e994(u32 a) {
     if (func_ov000_0218b2a8((Unk0218af28 *) a, data_ov000_021b40f0, -1) == -1) {
         return 0;
     }
-    if (func_ov000_0218b2a8((Unk0218af28 *) a, data_ov000_021b40fc, -1) == -1 && func_ov000_0218b2a8((Unk0218af28 *) a, data_ov000_021b40fc, 0) == 0) {
+    if (func_ov000_0218b2a8((Unk0218af28 *) a, data_ov000_021b40fc, -1) == -1 &&
+        func_ov000_0218b2a8((Unk0218af28 *) a, data_ov000_021b40fc, 0) == 0) {
         return 0;
     }
     if (func_ov000_0218b2a8((Unk0218af28 *) a, data_ov000_021b4108, -1) == -1) {

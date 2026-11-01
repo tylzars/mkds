@@ -45,32 +45,32 @@ void func_020d2584(Unk020e71a0 *param_1, s32 param_2) {
         return;
     }
     switch (param_1->mUnk_98->mUnk_08) {
-    case 3:
-    case 4:
-    case 5:
-        a = func_021482cc(&param_1->mUnk_58);
-        break;
-    case 0:
-    case 1:
-    case 2:
-    default:
-        a = param_1->mUnk_58.x;
-        break;
+        case 3:
+        case 4:
+        case 5:
+            a = func_021482cc(&param_1->mUnk_58);
+            break;
+        case 0:
+        case 1:
+        case 2:
+        default:
+            a = param_1->mUnk_58.x;
+            break;
     }
     func_020d5148(param_1->mUnk_64, a);
 }
 
 s32 func_020d252c(Unk020e71a0 *param_1) {
     switch (param_1->mUnk_98->mUnk_08) {
-    case 3:
-    case 4:
-    case 5:
-        return func_021482cc(&param_1->mUnk_58);
-    case 0:
-    case 1:
-    case 2:
-    default:
-        return param_1->mUnk_58.x;
+        case 3:
+        case 4:
+        case 5:
+            return func_021482cc(&param_1->mUnk_58);
+        case 0:
+        case 1:
+        case 2:
+        default:
+            return param_1->mUnk_58.x;
     }
 }
 

@@ -11,7 +11,8 @@ typedef struct Unk020dd7a8 {
     /* 24 */ struct Unk020dd7a8 **mUnk_24;
 } Unk020dd7a8;
 
-// Object of func_020dd804: functions at 0x08 and 0x10, a word at 0x18 and the address of the pointer that holds it at 0x28.
+// Object of func_020dd804: functions at 0x08 and 0x10, a word at 0x18 and the address of the pointer that holds it at
+// 0x28.
 typedef struct Unk020dd804 {
     /* 00 */ u8 mUnk_00[8];
     /* 08 */ void (*mUnk_08)(void);

@@ -372,7 +372,6 @@ struct Unk02174e6c;
 extern struct Unk02174e6c *data_02174e6c;
 extern Unk02036590 *data_02174e70;
 
-
 // Object at data_02174e78: mUnk_0c is the pointer func_020365ac returns; mUnk_10 overlaps the first member of
 // data_02174e88.
 typedef struct Unk02174e78 {

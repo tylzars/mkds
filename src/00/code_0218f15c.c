@@ -185,7 +185,8 @@ u32 func_ov000_0218f408(Unk0218f960 *a) {
         if (r != 0) {
             return r;
         }
-        r = func_ov000_021907e8(a, o->mUnk_1d4, (Unk021906e4 *) &o->mUnk_1dc, &v1, &v2, (const s8 *) data_ov000_021b262c);
+        r = func_ov000_021907e8(a, o->mUnk_1d4, (Unk021906e4 *) &o->mUnk_1dc, &v1, &v2,
+                                (const s8 *) data_ov000_021b262c);
         if (r != 0) {
             if (r == 3) {
                 func_ov000_021965a0(a, 5, data_ov000_021b2630);

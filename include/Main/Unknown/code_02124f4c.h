@@ -34,7 +34,8 @@ void func_02125808(void *a, s32 b, s32 c, s32 d, s32 e, u32 f, u32 g, u32 h, voi
 void func_021257d8(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, void *i);
 void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s32 g, s32 h);
 s32 func_021253ac(u32 a, s32 b, s32 c, s32 d, s32 e);
-void func_021251c4(Unk021243ac_20 *a, s32 b, s32 *c, s32 d, s32 e, s32 f, s32 g, s32 h, s32 i, u32 j, s32 k, void *l, s32 m, s32 n, s32 o);
+void func_021251c4(Unk021243ac_20 *a, s32 b, s32 *c, s32 d, s32 e, s32 f, s32 g, s32 h, s32 i, u32 j, s32 k, void *l,
+                   s32 m, s32 n, s32 o);
 void func_0212513c(u16 *a, u16 *b, u16 *c, u32 d);
 void *func_021250b0(void *a);
 void *func_02125028(void *a);

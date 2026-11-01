@@ -15,7 +15,8 @@ double func_ov000_0218b280(Unk0218af28 *e, const u8 *v1, double d) {
     return d;
 }
 
-// non-matching: same size 0x64, but the original returns d first (beq to the return d block, bne to the func_0213bf90 call at the end); ours puts the call first and the return d block last, 5 words differ from +0x2c
+// non-matching: same size 0x64, but the original returns d first (beq to the return d block, bne to the func_0213bf90
+// call at the end); ours puts the call first and the return d block last, 5 words differ from +0x2c
 s32 func_ov000_0218b2a8(Unk0218af28 *e, const u8 *v1, s32 d) {
     u8 *a;
     s32 c;

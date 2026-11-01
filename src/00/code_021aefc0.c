@@ -96,7 +96,8 @@ u32 func_ov000_021af0dc(const Unk021ae3f0 *param_1, const Unk021ae87c *param_2, 
         }
     }
     if (c != 0) {
-        if (param_3->mUnk_1c == (u32) (((u16) ((param_1->mUnk_0c >> 8) | (param_1->mUnk_0c << 8)) << 16) | (u16) ((param_1->mUnk_0e >> 8) | (param_1->mUnk_0e << 8)))) {
+        if (param_3->mUnk_1c == (u32) (((u16) ((param_1->mUnk_0c >> 8) | (param_1->mUnk_0c << 8)) << 16) |
+                                       (u16) ((param_1->mUnk_0e >> 8) | (param_1->mUnk_0e << 8)))) {
             a = 1;
         }
     }
@@ -109,13 +110,15 @@ Unk021a998c *func_ov000_021af15c(const Unk021ae3f0 *param_1, const Unk021ae87c *
 
     for (a = data_0216ff5c.mUnk_08; a != 0; a = a->mUnk_68) {
         b = *(Unk021a998c **) a->mUnk_a4;
-        if (b == 0 || b->mUnk_00 == 0 || b->mUnk_08 != 1 || b->mUnk_0a != (u16) ((param_2->mUnk_02 >> 8) | (param_2->mUnk_02 << 8))) {
+        if (b == 0 || b->mUnk_00 == 0 || b->mUnk_08 != 1 ||
+            b->mUnk_0a != (u16) ((param_2->mUnk_02 >> 8) | (param_2->mUnk_02 << 8))) {
             continue;
         }
         if (b->mUnk_18 != 0 && b->mUnk_18 != (u16) ((param_2->mUnk_00 >> 8) | (param_2->mUnk_00 << 8))) {
             continue;
         }
-        if (b->mUnk_1c != 0 && b->mUnk_1c != (u32) (((u16) ((param_1->mUnk_0c >> 8) | (param_1->mUnk_0c << 8)) << 16) | (u16) ((param_1->mUnk_0e >> 8) | (param_1->mUnk_0e << 8)))) {
+        if (b->mUnk_1c != 0 && b->mUnk_1c != (u32) (((u16) ((param_1->mUnk_0c >> 8) | (param_1->mUnk_0c << 8)) << 16) |
+                                                    (u16) ((param_1->mUnk_0e >> 8) | (param_1->mUnk_0e << 8)))) {
             continue;
         }
         return b;
@@ -125,16 +128,19 @@ Unk021a998c *func_ov000_021af15c(const Unk021ae3f0 *param_1, const Unk021ae87c *
 
 void func_ov000_021af1e4(Unk021ae3f0 *param_1, Unk021af1e4 *param_2, u32 param_3) {
     if (func_ov000_021b0188(param_2, param_3) == 0xffff) {
-        if (func_ov000_021af284((u32) (((u16) ((param_1->mUnk_0c >> 8) | (param_1->mUnk_0c << 8)) << 16) | (u16) ((param_1->mUnk_0e >> 8) | (param_1->mUnk_0e << 8))), (u32) (((u16) ((param_1->mUnk_10 >> 8) | (param_1->mUnk_10 << 8)) << 16) | (u16) ((param_1->mUnk_12 >> 8) | (param_1->mUnk_12 << 8)))) != 0) {
+        if (func_ov000_021af284((u32) (((u16) ((param_1->mUnk_0c >> 8) | (param_1->mUnk_0c << 8)) << 16) |
+                                       (u16) ((param_1->mUnk_0e >> 8) | (param_1->mUnk_0e << 8))),
+                                (u32) (((u16) ((param_1->mUnk_10 >> 8) | (param_1->mUnk_10 << 8)) << 16) |
+                                       (u16) ((param_1->mUnk_12 >> 8) | (param_1->mUnk_12 << 8)))) != 0) {
             switch (param_2->mUnk_00) {
-            case 0:
-                func_ov000_021af2a0(param_1, param_2, param_3);
-                break;
-            case 8:
-                if (data_ov000_021b4c24 != 0) {
-                    func_ov000_021af348(param_1, param_2, param_3);
-                }
-                break;
+                case 0:
+                    func_ov000_021af2a0(param_1, param_2, param_3);
+                    break;
+                case 8:
+                    if (data_ov000_021b4c24 != 0) {
+                        func_ov000_021af348(param_1, param_2, param_3);
+                    }
+                    break;
             }
         }
     }

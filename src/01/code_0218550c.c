@@ -16,8 +16,7 @@
 
 #pragma thumb off
 
-void func_ov001_02185778(int param_1)
-{
+void func_ov001_02185778(int param_1) {
     if (param_1 != 0) {
         reg_G2_BG1CNT |= 0x40;
     } else {
@@ -25,15 +24,14 @@ void func_ov001_02185778(int param_1)
     }
 }
 
-void func_ov001_02185740(u32 param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5)
-{
-    reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | (param_1 << 14) | (param_2 << 7) | (param_3 << 8) | (param_4 << 2) | (param_5 << 13);
+void func_ov001_02185740(u32 param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5) {
+    reg_G2_BG1CNT =
+        (reg_G2_BG1CNT & 0x43) | (param_1 << 14) | (param_2 << 7) | (param_3 << 8) | (param_4 << 2) | (param_5 << 13);
 }
 
 #pragma thumb on
 
-void func_ov001_021856ec(void)
-{
+void func_ov001_021856ec(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021856a8(0x19);
         func_02148950(1, 0, 0);
@@ -47,34 +45,30 @@ void func_ov001_021856ec(void)
     func_ov001_0219b540();
 }
 
-void func_ov001_021856c0(void)
-{
+void func_ov001_021856c0(void) {
     switch (func_ov001_0219b574()) {
-    case 1:
-        func_020ccc74(29, 0x1f);
-        break;
-    case 2:
-        func_020ccc74(25, 0x1f);
-        break;
+        case 1:
+            func_020ccc74(29, 0x1f);
+            break;
+        case 2:
+            func_020ccc74(25, 0x1f);
+            break;
     }
 }
 
 #pragma thumb off
 
-void func_ov001_021856a8(u32 param_1)
-{
+void func_ov001_021856a8(u32 param_1) {
     reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (param_1 << 8);
 }
 
-void func_ov001_0218568c(u32 param_1)
-{
+void func_ov001_0218568c(u32 param_1) {
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (param_1 << 8);
 }
 
 #pragma thumb on
 
-void func_ov001_02185658(void)
-{
+void func_ov001_02185658(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021856a8(0x19);
         func_02148950(1, 0, 0);
@@ -84,20 +78,18 @@ void func_ov001_02185658(void)
     func_0211e4e8();
 }
 
-void func_ov001_0218562c(void)
-{
+void func_ov001_0218562c(void) {
     switch (func_0211e51c()) {
-    case 1:
-        func_020ccc74(25, 0x1f);
-        break;
-    case 2:
-        func_020ccc74(23, 0x1f);
-        break;
+        case 1:
+            func_020ccc74(25, 0x1f);
+            break;
+        case 2:
+            func_020ccc74(23, 0x1f);
+            break;
     }
 }
 
-void func_ov001_021855f8(void)
-{
+void func_ov001_021855f8(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021854f4(0x1b);
         func_02148950(1, 0, 0);
@@ -107,20 +99,18 @@ void func_ov001_021855f8(void)
     func_ov001_021a11a4();
 }
 
-void func_ov001_021855cc(void)
-{
+void func_ov001_021855cc(void) {
     switch (func_ov001_021a11c4()) {
-    case 1:
-        func_020ccc74(5, 0x1f);
-        break;
-    case 2:
-        func_020ccc74(0, 0x1f);
-        break;
+        case 1:
+            func_020ccc74(5, 0x1f);
+            break;
+        case 2:
+            func_020ccc74(0, 0x1f);
+            break;
     }
 }
 
-void func_ov001_02185598(void)
-{
+void func_ov001_02185598(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021854f4(0xb);
         func_02148950(1, 0, 1);
@@ -130,20 +120,18 @@ void func_ov001_02185598(void)
     func_02026058();
 }
 
-void func_ov001_0218556c(void)
-{
+void func_ov001_0218556c(void) {
     switch (func_02026120()) {
-    case 1:
-        func_020ccc74(6, 0x1f);
-        break;
-    case 2:
-        func_020ccc74(4, 0x1f);
-        break;
+        case 1:
+            func_020ccc74(6, 0x1f);
+            break;
+        case 2:
+            func_020ccc74(4, 0x1f);
+            break;
     }
 }
 
-void func_ov001_02185538(void)
-{
+void func_ov001_02185538(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021854f4(9);
         func_02148950(1, 0, 1);
@@ -153,14 +141,13 @@ void func_ov001_02185538(void)
     func_02027e78();
 }
 
-void func_ov001_0218550c(void)
-{
+void func_ov001_0218550c(void) {
     switch (func_02028130()) {
-    case 1:
-        func_020ccc74(7, 0x1f);
-        break;
-    case 2:
-        func_020ccc74(5, 0x1f);
-        break;
+        case 1:
+            func_020ccc74(7, 0x1f);
+            break;
+        case 2:
+            func_020ccc74(5, 0x1f);
+            break;
     }
 }

@@ -40,4 +40,3 @@ typedef struct Unk021762e0_4000 {
     /* 000 */ u8 mUnk_000[0x6c8];
     /* 6c8 */ Unk021762e0_46c8 *mUnk_6c8;
 } Unk021762e0_4000;
-

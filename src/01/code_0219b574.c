@@ -19,17 +19,17 @@ void func_ov001_0219b7c8(void) {
     }
     r = func_02127794();
     switch (r) {
-    case 0:
-        func_ov001_0219bfc0();
-        data_ov001_021a9bf4->mUnk_6c = 1;
-        func_ov001_0219c3a8();
-        func_021282c8();
-        break;
-    case -1:
-    case 1:
-        func_0212b7d8();
-        func_ov001_0219c458();
-        break;
+        case 0:
+            func_ov001_0219bfc0();
+            data_ov001_021a9bf4->mUnk_6c = 1;
+            func_ov001_0219c3a8();
+            func_021282c8();
+            break;
+        case -1:
+        case 1:
+            func_0212b7d8();
+            func_ov001_0219c458();
+            break;
     }
 }
 
@@ -80,30 +80,30 @@ void func_ov001_0219b64c(void) {
 int func_ov001_0219b574(void) {
     data_ov001_021a9bf4->mUnk_48 = data_ov001_021a9bf4->mUnk_4c;
     switch (data_ov001_021a9bf4->mUnk_48) {
-    case 0:
-        func_ov001_0219ba3c();
-        break;
-    case 1:
-        func_ov001_0219b9dc();
-        break;
-    case 2:
-        func_ov001_0219b874();
-        break;
-    case 3:
-        func_ov001_0219b84c();
-        break;
-    case 4:
-        func_ov001_0219b834();
-        break;
-    case 5:
-        func_ov001_0219b81c();
-        break;
-    case 6:
-        func_ov001_0219b7c8();
-        break;
-    case 7:
-        func_ov001_0219b64c();
-        break;
+        case 0:
+            func_ov001_0219ba3c();
+            break;
+        case 1:
+            func_ov001_0219b9dc();
+            break;
+        case 2:
+            func_ov001_0219b874();
+            break;
+        case 3:
+            func_ov001_0219b84c();
+            break;
+        case 4:
+            func_ov001_0219b834();
+            break;
+        case 5:
+            func_ov001_0219b81c();
+            break;
+        case 6:
+            func_ov001_0219b7c8();
+            break;
+        case 7:
+            func_ov001_0219b64c();
+            break;
     }
     func_0212b80c();
     func_ov001_0219c358();
@@ -113,18 +113,18 @@ int func_ov001_0219b574(void) {
                   (void *) data_ov001_021a9bf4->mUnk_68, data_ov001_021a9bf4->mUnk_34);
     if (data_ov001_021a9bf4->mUnk_48 == 7) {
         switch (data_ov001_021a9bf4->mUnk_6c) {
-        case 1:
-            if (data_ov001_021a9bf4->mUnk_50 >= 10) {
-                if (func_02128274() != 0) {
-                    return 1;
+            case 1:
+                if (data_ov001_021a9bf4->mUnk_50 >= 10) {
+                    if (func_02128274() != 0) {
+                        return 1;
+                    }
                 }
-            }
-            break;
-        case 2:
-            if (data_ov001_021a9bf4->mUnk_50 >= 10) {
-                return 2;
-            }
-            break;
+                break;
+            case 2:
+                if (data_ov001_021a9bf4->mUnk_50 >= 10) {
+                    return 2;
+                }
+                break;
         }
     }
     return 0;

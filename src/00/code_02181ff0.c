@@ -25,18 +25,42 @@ void func_ov000_02181ff0(void) {
 void func_ov000_02182084(void) {
     data_ov000_021b4c70->mUnk_00 = data_ov000_021b4c70->mUnk_04;
     switch (data_ov000_021b4c70->mUnk_00) {
-        case 0: func_ov000_02182d74(); break;
-        case 1: func_ov000_02182d28(); break;
-        case 2: func_ov000_02182cb8(); break;
-        case 3: func_ov000_02182c60(); break;
-        case 4: func_ov000_021828e4(); break;
-        case 5: func_ov000_02182878(); break;
-        case 6: func_ov000_02182688(); break;
-        case 7: func_ov000_021825b8(); break;
-        case 8: func_ov000_021824e8(); break;
-        case 9: func_ov000_02182474(); break;
-        case 10: func_ov000_021823e4(); break;
-        case 11: func_ov000_021823b0(); break;
+        case 0:
+            func_ov000_02182d74();
+            break;
+        case 1:
+            func_ov000_02182d28();
+            break;
+        case 2:
+            func_ov000_02182cb8();
+            break;
+        case 3:
+            func_ov000_02182c60();
+            break;
+        case 4:
+            func_ov000_021828e4();
+            break;
+        case 5:
+            func_ov000_02182878();
+            break;
+        case 6:
+            func_ov000_02182688();
+            break;
+        case 7:
+            func_ov000_021825b8();
+            break;
+        case 8:
+            func_ov000_021824e8();
+            break;
+        case 9:
+            func_ov000_02182474();
+            break;
+        case 10:
+            func_ov000_021823e4();
+            break;
+        case 11:
+            func_ov000_021823b0();
+            break;
     }
     func_0212b80c();
     func_ov000_02182270();

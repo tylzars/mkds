@@ -146,32 +146,32 @@ void func_0212982c(void) {
         if (p->mUnk_2c[2].mUnk_10 != 0) {
             func_0212a410();
             switch (func_02061104(&data_0217d400->mUnk_2c[2])) {
-            case 1:
-                data_0217d400->mUnk_10 = 4;
-                func_021262f0((u32) func_020b3f7c(data_0217d400->mUnk_c0, 0xa));
-                data_0217d400->mUnk_28 = 0;
-                return;
-            case 2:
-                data_0217d400->mUnk_10 = 4;
-                func_021262f0((u32) func_020b3f7c(data_0217d400->mUnk_c0, 0xb));
-                data_0217d400->mUnk_28 = 0;
-                return;
-            default:
-                data_0217d400->mUnk_10 = 6;
-                func_02126638(func_020b3f7c(data_0217d400->mUnk_c0, 8), 0, 0, 0, 0, 0, 0);
-                data_0217d400->mUnk_28 = 0;
-                data_0217d400->mUnk_04 = 1;
-                if (data_021759d0->mUnk_00 == 0) {
-                    data_0217d400->mUnk_08 = 1;
-                } else {
-                    data_0217d400->mUnk_08 = 2;
-                }
-                func_020ab9d0(data_0217d400->mUnk_08);
-                func_020ab758(data_0215d0e0[1]);
-                func_0212a484();
-                func_02129e78();
-                func_02128b0c();
-                return;
+                case 1:
+                    data_0217d400->mUnk_10 = 4;
+                    func_021262f0((u32) func_020b3f7c(data_0217d400->mUnk_c0, 0xa));
+                    data_0217d400->mUnk_28 = 0;
+                    return;
+                case 2:
+                    data_0217d400->mUnk_10 = 4;
+                    func_021262f0((u32) func_020b3f7c(data_0217d400->mUnk_c0, 0xb));
+                    data_0217d400->mUnk_28 = 0;
+                    return;
+                default:
+                    data_0217d400->mUnk_10 = 6;
+                    func_02126638(func_020b3f7c(data_0217d400->mUnk_c0, 8), 0, 0, 0, 0, 0, 0);
+                    data_0217d400->mUnk_28 = 0;
+                    data_0217d400->mUnk_04 = 1;
+                    if (data_021759d0->mUnk_00 == 0) {
+                        data_0217d400->mUnk_08 = 1;
+                    } else {
+                        data_0217d400->mUnk_08 = 2;
+                    }
+                    func_020ab9d0(data_0217d400->mUnk_08);
+                    func_020ab758(data_0215d0e0[1]);
+                    func_0212a484();
+                    func_02129e78();
+                    func_02128b0c();
+                    return;
             }
         } else {
             p->mUnk_2c[2].mUnk_16 = 0xc;

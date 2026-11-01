@@ -143,7 +143,9 @@ typedef struct Unk0219958cArg {
     /* 4 */ Unk0219958cWord mUnk_04;
 } Unk0219958cArg;
 
-// non-matching: the 4-byte copy loads all four bytes from r4 offsets 4 to 7 (original loads the first from r4 and the rest from r2 = r4 + 4, set before the first load); no extra move before the subtraction in the original; size 0x7c against 0x80
+// non-matching: the 4-byte copy loads all four bytes from r4 offsets 4 to 7 (original loads the first from r4 and the
+// rest from r2 = r4 + 4, set before the first load); no extra move before the subtraction in the original; size 0x7c
+// against 0x80
 u32 func_ov000_0219958c(Unk02197fe8 *a, u8 *b, s32 c) {
     Unk0219958cWord d;
     if (a->mUnk_28.mUnk_0c == 0) {

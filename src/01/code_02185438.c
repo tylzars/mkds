@@ -12,16 +12,16 @@
 
 void func_ov001_02185438(void) {
     switch (func_02117418()) {
-    case 1:
-        func_020ccc74(0x1d, 0x1f);
-        break;
-    case 2:
-        func_020ccc74(6, 0x1f);
-        break;
-    case 3:
-        func_020ccc74(0, 0x1f);
-        func_ov001_02185490(0);
-        func_ov001_0218547c(1);
-        break;
+        case 1:
+            func_020ccc74(0x1d, 0x1f);
+            break;
+        case 2:
+            func_020ccc74(6, 0x1f);
+            break;
+        case 3:
+            func_020ccc74(0, 0x1f);
+            func_ov001_02185490(0);
+            func_ov001_0218547c(1);
+            break;
     }
 }

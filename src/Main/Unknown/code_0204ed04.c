@@ -21,12 +21,12 @@ void func_0204ed04(Unk0204ed04 *a) {
                 v = data_0217aa00->mUnk_0000;
             }
             switch (v) {
-            case 1:
-                func_0200692c(b, a->mUnk_10, a->mUnk_12);
-                break;
-            case 2:
-                func_020068f4(b, a->mUnk_10);
-                break;
+                case 1:
+                    func_0200692c(b, a->mUnk_10, a->mUnk_12);
+                    break;
+                case 2:
+                    func_020068f4(b, a->mUnk_10);
+                    break;
             }
         }
     }
@@ -43,16 +43,16 @@ void func_0204ed84(void) {
             v = data_0217aa00->mUnk_0000;
         }
         switch (v) {
-        case 1:
-            data_usa_0216522c.mUnk_04 = 0x192;
-            b = func_02006954(data_0217aa00->mUnk_1e30, 0x192);
-            c = data_0217aa00->mUnk_0044.mUnk_43;
-            break;
-        case 2:
-            data_usa_0216522c.mUnk_04 = 0xe;
-            b = func_02006914(data_0217aa00->mUnk_1e30, 0xe);
-            c = 1;
-            break;
+            case 1:
+                data_usa_0216522c.mUnk_04 = 0x192;
+                b = func_02006954(data_0217aa00->mUnk_1e30, 0x192);
+                c = data_0217aa00->mUnk_0044.mUnk_43;
+                break;
+            case 2:
+                data_usa_0216522c.mUnk_04 = 0xe;
+                b = func_02006914(data_0217aa00->mUnk_1e30, 0xe);
+                c = 1;
+                break;
         }
         if (func_02050650((void *) data_0217aa00->mUnk_1e30, b, c, 0, &data_usa_0216522c) == 0) {
             data_0217aa00->mUnk_1e42 = data_usa_02165228;

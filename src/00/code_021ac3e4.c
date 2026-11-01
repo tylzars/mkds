@@ -148,12 +148,12 @@ void func_ov000_021ac650(u16 *a, u16 *b, u16 *c, s32 d, s32 e, u16 *f, u16 *g, u
     func_0214d168(a + d - e, 0, l);
     m = func_ov000_021acc8c(a, f, d);
     switch (m) {
-    case 0:
-        func_0214d168(a, 0, j);
-        break;
-    case 1:
-        func_ov000_021acd24(a, a, f, d);
-        break;
+        case 0:
+            func_0214d168(a, 0, j);
+            break;
+        case 1:
+            func_ov000_021acd24(a, a, f, d);
+            break;
     }
 }
 
@@ -248,11 +248,11 @@ void func_ov000_021ac900(u16 *a, u16 *b, u16 *c, u16 *d, s32 e, u16 *f) {
         } else {
             func_0214d1fc(b, g + k, i * 2);
             if (j > 2) {
-                m = ((u64) *(c + j - 1) << 32) + ((u64) *(c + j - 2) << 16) + (u64) *(c + j - 3);
+                m = ((u64) * (c + j - 1) << 32) + ((u64) * (c + j - 2) << 16) + (u64) * (c + j - 3);
             } else if (j > 1) {
-                m = ((u64) *(c + j - 1) << 32) + ((u64) *(c + j - 2) << 16);
+                m = ((u64) * (c + j - 1) << 32) + ((u64) * (c + j - 2) << 16);
             } else {
-                m = (u64) *(c + j - 1) << 32;
+                m = (u64) * (c + j - 1) << 32;
             }
             p = h + j;
             while (k < e) {

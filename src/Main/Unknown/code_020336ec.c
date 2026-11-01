@@ -20,7 +20,9 @@ static inline void func_020338f8_inline(void *p, s32 n) {
 
 #pragma thumb on
 
-// non-matching: 0x158 bytes, original 0x154; the original reads the count at 0xd4 into one register and the loop counter in another through the table loops (ours keeps the table entry in a stack word), and its two stack words for the pair of constants are swapped
+// non-matching: 0x158 bytes, original 0x154; the original reads the count at 0xd4 into one register and the loop
+// counter in another through the table loops (ours keeps the table entry in a stack word), and its two stack words for
+// the pair of constants are swapped
 void func_020336ec(void *a) {
     Unk02174e60 *o;
     Unk02174e14_00 *t;
@@ -106,7 +108,9 @@ void func_02033840(void *a) {
     }
 }
 
-// non-matching: same size (0x114), 16 words differ; the original compares the halfword count with ble (ours beq) and keeps the remaining size in r7 and the loop counter in r6, ours the opposite; its last loop is laid out with the constant 0 loaded first
+// non-matching: same size (0x114), 16 words differ; the original compares the halfword count with ble (ours beq) and
+// keeps the remaining size in r7 and the loop counter in r6, ours the opposite; its last loop is laid out with the
+// constant 0 loaded first
 void func_020338f8(void *a) {
     Unk02174e14_00 *t;
     u32 r;
@@ -174,7 +178,8 @@ void func_02033a0c(void *a) {
     func_02033ab8(0, data_02174e60->mUnk_0d0, 0, 1);
 }
 
-// non-matching: same size (0xc8), 5 words differ from +0x7c; the original loads the word at 0x10c of data_0217b488 before the member at 0xc of the entry, ours after it
+// non-matching: same size (0xc8), 5 words differ from +0x7c; the original loads the word at 0x10c of data_0217b488
+// before the member at 0xc of the entry, ours after it
 void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
     Unk02174e14_00 *q;
     Unk02174e14_00 *s;

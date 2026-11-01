@@ -66,23 +66,23 @@ void func_02042064(void *a) {
     u16 j;
 
     switch (data_021759c0->mUnk_08) {
-    case 4:
-        if (data_021759c0->mUnk_00c == 6) {
+        case 4:
+            if (data_021759c0->mUnk_00c == 6) {
+                d = func_02047974("/course_map.nkm");
+            } else {
+                func_02135048(v1, 0x100, "/MissionRun/%s_tool.nkm", data_021759c0->mUnk_048);
+                d = func_02047974(v1);
+            }
+            break;
+        case 5:
+            d = func_02047974("/Net/net_course_map.nkm");
+            if (d == 0) {
+                d = func_02047974("/course_map.nkm");
+            }
+            break;
+        default:
             d = func_02047974("/course_map.nkm");
-        } else {
-            func_02135048(v1, 0x100, "/MissionRun/%s_tool.nkm", data_021759c0->mUnk_048);
-            d = func_02047974(v1);
-        }
-        break;
-    case 5:
-        d = func_02047974("/Net/net_course_map.nkm");
-        if (d == 0) {
-            d = func_02047974("/course_map.nkm");
-        }
-        break;
-    default:
-        d = func_02047974("/course_map.nkm");
-        break;
+            break;
     }
     p = (Unk02175620 *) func_020431bc((u32) a);
     data_02175620 = p;
