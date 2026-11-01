@@ -4,7 +4,7 @@
 // non-matching: 4 instructions differ; first at +0x6: original nothing, ours `add r0, #0x98`
 void func_ov000_021a9200(u8 param_1) {
     Unk021a998c *v1;
-    func_02000b44((u32) (((u32) ((u32) ((u8 *) &BuildInfo + 0x98)))));
+    func_02000b44((u32) ((u8 *) &BuildInfo + 0x98));
     v1 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
     if (v1 != 0) {
         v1->mUnk_09 = param_1;

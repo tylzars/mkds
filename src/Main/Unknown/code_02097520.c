@@ -1,9 +1,9 @@
 #include "Main/Unknown/code_02097520.h"
 
 u32 func_0209753c(u32 param_1) {
-    Unk0209753c *iVar2;
-    iVar2 = func_0209bc5c(func_02100138(0x1a9), param_1);
-    iVar2->mUnk_ebc = 0xaa;
+    Unk0209753c *v1;
+    v1 = func_0209bc5c(func_02100138(0x1a9), param_1);
+    v1->mUnk_ebc = 0xaa;
     return 1;
 }
 

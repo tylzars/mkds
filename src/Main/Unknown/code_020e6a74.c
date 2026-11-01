@@ -26,8 +26,8 @@ void func_020e6ab8(Unk020e6488 *p0) {
 }
 
 void func_020e6a74(void) {
-    u32 local_8[1];
+    u32 v1[1];
     func_01ff9048((u32) 0x17, (void *) (u32) data_0217b854, 0xc);
-    local_8[0] = 0x1e;
-    func_01ff9048((u32) 0x13, (void *) ((u32) local_8), 1);
+    v1[0] = 0x1e;
+    func_01ff9048((u32) 0x13, (void *) ((u32) v1), 1);
 }
