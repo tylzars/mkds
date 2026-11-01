@@ -6,7 +6,7 @@ void func_ov001_02183c54(Unk02188950 *param_1) {
     func_ov001_02188c90(param_1);
     func_ov001_02188cd8(param_1, (s32) (param_1->mUnk_0a0->mUnk_0fc), (s32) (param_1->mUnk_0a0->mUnk_100));
     func_ov001_02188e24(param_1, (s32) ((u32) (param_1->mUnk_0a0->mUnk_104)), (UnkFunc *) ((int) &func_ov001_02183cc8));
-    func_ov001_02188200(param_1, (UnkFunc *) ((u32) &func_ov001_021843b0));
+    func_ov001_02188200(param_1, func_ov001_021843b0);
     func_ov001_02184e18((u16 *) param_1);
 }
 
@@ -24,6 +24,6 @@ void func_ov001_02183b9c(Unk02188950 *param_1) {
     func_ov001_02188c90(param_1);
     func_ov001_02188cd8(param_1, (s32) (param_1->mUnk_0a0->mUnk_088), (s32) (param_1->mUnk_0a0->mUnk_08c));
     func_ov001_02188e24(param_1, (s32) ((u32) (param_1->mUnk_0a0->mUnk_090)), (UnkFunc *) ((int) &func_ov001_02183cc8));
-    func_ov001_02188200(param_1, (UnkFunc *) ((u32) &func_ov001_021843b0));
+    func_ov001_02188200(param_1, func_ov001_021843b0);
     func_ov001_02184e18((u16 *) param_1);
 }

@@ -39,5 +39,5 @@ void func_ov003_021bf364(u32 param_0) {
     data_ov003_021da108->mUnk_08 = (u32) func_ov003_021d1be4(0, 1, 1);
     func_ov003_021d1790((Unk021d1770 *) data_ov003_021da108->mUnk_08, -1, 1);
     func_ov003_021bf258(0xc0);
-    data_ov003_021da108->mUnk_0c = (Unk021d34e0 *) func_ov003_021d3544(0, (u32) func_ov003_021bf20c, 0, 0x78);
+    data_ov003_021da108->mUnk_0c = (Unk021d34e0 *) func_ov003_021d3544(0, func_ov003_021bf20c, 0, 0x78);
 }

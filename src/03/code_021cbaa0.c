@@ -25,5 +25,5 @@ void func_ov003_021cbaa0(void) {
     if (a == 0) {
         func_ov000_021886fc(*(u8 *) (c + 0xf4), c);
     }
-    func_ov003_021d3544(0, (u32) func_ov003_021cb8f0, 0, 0x78);
+    func_ov003_021d3544(0, func_ov003_021cb8f0, 0, 0x78);
 }

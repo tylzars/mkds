@@ -34,7 +34,7 @@ void func_ov003_021bf0d8(void) {
                 func_ov003_021d17d4((Unk021d1770 *) data_ov003_021da108->mUnk_00[i], -1, data_ov003_021d5ed4[b * 2],
                                     data_ov003_021d5ed6[b * 2]);
                 func_ov003_021d1790((Unk021d1770 *) data_ov003_021da108->mUnk_00[i], -1, 1);
-                data_ov003_021da108->mUnk_10 = func_ov003_021d3544(0, (u32) func_ov003_021befa4, 0, 0x6e);
+                data_ov003_021da108->mUnk_10 = func_ov003_021d3544(0, func_ov003_021befa4, 0, 0x6e);
                 data_ov003_021da108->mUnk_16 = i;
                 return;
             }

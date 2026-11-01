@@ -148,12 +148,12 @@ void func_0212982c(void) {
             switch (func_02061104(&data_0217d400->mUnk_2c[2])) {
                 case 1:
                     data_0217d400->mUnk_10 = 4;
-                    func_021262f0((u32) func_020b3f7c(data_0217d400->mUnk_c0, 0xa));
+                    func_021262f0(func_020b3f7c(data_0217d400->mUnk_c0, 0xa));
                     data_0217d400->mUnk_28 = 0;
                     return;
                 case 2:
                     data_0217d400->mUnk_10 = 4;
-                    func_021262f0((u32) func_020b3f7c(data_0217d400->mUnk_c0, 0xb));
+                    func_021262f0(func_020b3f7c(data_0217d400->mUnk_c0, 0xb));
                     data_0217d400->mUnk_28 = 0;
                     return;
                 default:

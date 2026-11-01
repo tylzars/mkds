@@ -13,9 +13,9 @@ u16 func_020931ac(Unk0217b498_00 *a) {
 }
 
 void func_020931f0(void) {
-    func_0209bf48((u32) &func_02093484, (u32) &func_02093270, 0);
+    func_0209bf48(&func_02093484, &func_02093270, 0);
 }
 
 void func_02093210(void) {
-    func_0209bf1c((u32) &func_02093708, (u32) &func_020935fc, (u32) &func_020936f0);
+    func_0209bf1c(&func_02093708, &func_020935fc, &func_020936f0);
 }

@@ -43,8 +43,8 @@ void func_ov003_021c3cc4(void) {
     u8 *f;
     b = data_ov003_021d70f8;
     c = data_ov003_021d7110;
-    func_ov003_021bf620((u32) data_ov003_021d7128, (u32) func_0214b95c);
-    func_ov003_021bf620((u32) data_ov003_021d7140, (u32) func_0214bc9c);
+    func_ov003_021bf620(data_ov003_021d7128, func_0214b95c);
+    func_ov003_021bf620(data_ov003_021d7140, func_0214bc9c);
     data_ov003_021da1b4 = func_ov003_021d14b8(func_ov003_021bf650(c.mUnk_00), 0, 4);
     a = func_ov003_021d14b8(func_ov003_021bf650(b.mUnk_00), 0, 4);
     func_02151910(&d);

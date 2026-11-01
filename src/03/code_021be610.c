@@ -456,7 +456,7 @@ void func_ov003_021beef8(int param_1) {
     b = data_ov003_021da104->mUnk_04;
     b->mUnk_00 =
         ((data_ov003_021d5ec0[0] & 0x1ff) << 16) | ((b->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5ec0[1] & 0xff));
-    data_ov003_021da104->mUnk_00 = func_ov003_021d3544(1, (u32) func_ov003_021bee24, 0, 0x78);
+    data_ov003_021da104->mUnk_00 = func_ov003_021d3544(1, func_ov003_021bee24, 0, 0x78);
 }
 
 void func_ov003_021befa4(u32 param_0) {

@@ -14,7 +14,7 @@ void func_020353a4(void) {
     e = func_020b3f7c(data_02174e64->mUnk_088, 0x11);
     f = func_020b3f7c(data_02174e64->mUnk_084, 4);
     func_02125ed0(0, 5);
-    func_02126230((u32) e, (u32) f);
+    func_02126230(e, f);
     data_02174e64->mUnk_090 = 0;
     data_02174e64->mUnk_094 = 15;
 }

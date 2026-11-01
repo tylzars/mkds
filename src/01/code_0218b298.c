@@ -5,12 +5,11 @@
 #include "Main/Unknown/code_0209bef0.h"
 
 void *func_ov001_0218b2f4(void) {
-    return (void *) func_0209bf1c((u32) (func_ov001_0218b35c), (u32) (func_ov001_0218b33c),
-                                  (u32) (func_ov001_02187098));
+    return (void *) func_0209bf1c(func_ov001_0218b35c, func_ov001_0218b33c, func_ov001_02187098);
 }
 
 void *func_ov001_0218b2dc(void) {
-    return (void *) func_0209bf48((u32) (func_ov001_0218b5d8), (u32) (func_ov001_0218b404), (u32) (0));
+    return (void *) func_0209bf48(func_ov001_0218b5d8, func_ov001_0218b404, 0);
 }
 
 u16 func_ov001_0218b2d4(Unk02188950 *param_1) {

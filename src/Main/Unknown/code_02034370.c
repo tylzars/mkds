@@ -110,7 +110,7 @@ s32 func_02034370(Unk02034370 *a) {
         case 2:
             switch (func_02054c98(0, 0)) {
                 case 1:
-                    func_021262f0((u32) func_020b3f7c(data_02174e64->mUnk_088, 0xf));
+                    func_021262f0(func_020b3f7c(data_02174e64->mUnk_088, 0xf));
                     func_0212d5e0(&data_0217c868);
                     func_0212ecc0(&data_0217d068, 0, 9);
                     func_0212d5e0(&data_0217d0a0);
@@ -318,7 +318,7 @@ s32 func_02034370(Unk02034370 *a) {
                 e = func_020b3f7c(data_02174e64->mUnk_088, 0x54);
                 f = func_020b3f7c(data_02174e64->mUnk_084, 4);
                 func_02125ed0(0, 5);
-                func_02126230((u32) e, (u32) f);
+                func_02126230(e, f);
                 data_02174e64->mUnk_094 = 14;
             }
             break;
@@ -327,7 +327,7 @@ s32 func_02034370(Unk02034370 *a) {
                 e = func_020b3f7c(data_02174e64->mUnk_088, 0x10);
                 f = func_020b3f7c(data_02174e64->mUnk_084, 4);
                 func_02125ed0(0, 5);
-                func_02126230((u32) e, (u32) f);
+                func_02126230(e, f);
                 data_02174e64->mUnk_094 = 14;
             }
             break;

@@ -39,7 +39,7 @@ void func_ov001_0219ade8(void) {
 void func_ov001_0219adbc(void) {
     data_ov001_021a9bf0->mUnk_34 = 8;
     data_ov001_021a9bf0->mUnk_38 = 0;
-    func_021262f0((u32) func_020b3f7c(data_ov001_021a9bf0->mUnk_20, 0x76));
+    func_021262f0(func_020b3f7c(data_ov001_021a9bf0->mUnk_20, 0x76));
 }
 
 void func_ov001_0219ad98(void) {

@@ -25,16 +25,16 @@ void func_0209a728(void) {
 }
 
 void *func_0209a748(void) {
-    return (void *) func_0209bf48((u32) func_0209af98, (u32) func_0209a7dc, 0);
+    return (void *) func_0209bf48(func_0209af98, func_0209a7dc, 0);
 }
 
 void *func_0209a768(void) {
-    return (void *) func_0209bef0((u32) func_0209b1fc, (u32) func_0209b088, (u32) func_0209b1f8);
+    return (void *) func_0209bef0(func_0209b1fc, func_0209b088, func_0209b1f8);
 }
 
 void func_0209a78c(void) {
     Unk0209bf70 *o;
 
-    o = func_0209bf70((u32) func_0209b344, (u32) func_0209b270, 0, 2, 1, 0x10e);
+    o = func_0209bf70(func_0209b344, func_0209b270, 0, 2, 1, 0x10e);
     o->mUnk_28 = 0x10f;
 }

@@ -1,9 +1,9 @@
 #include "Main/Unknown/code_02025b84.h"
 
 #pragma thumb on
-u32 func_02025b84(u32 arg0, u32 arg1) {
+u32 func_02025b84(u32 arg0, void *arg1) {
     u32 value0 = arg0;
-    u32 value1 = arg1;
+    u32 value1 = (u32) arg1;
     u32 value4;
     u32 value5;
     value5 = (value0) + (0u);

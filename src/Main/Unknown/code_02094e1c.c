@@ -14,7 +14,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 
 void func_02094e1c(void) {
-    func_0209bf48((u32) func_02095228, (u32) func_02094e8c, 0);
+    func_0209bf48(func_02095228, func_02094e8c, 0);
 }
 
 u32 func_02094e3c(void) {

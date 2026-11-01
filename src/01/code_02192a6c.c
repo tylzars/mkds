@@ -8,7 +8,7 @@
 #include "Main/Unknown/code_0209bef0.h"
 
 void *func_ov001_02192d48(void) {
-    return (void *) func_0209bf1c((u32) (func_ov001_02192dd4), (u32) (func_ov001_02192d7c), (u32) (0));
+    return (void *) func_0209bf1c(func_ov001_02192dd4, func_ov001_02192d7c, 0);
 }
 
 void func_ov001_02192d28(void) {

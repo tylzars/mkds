@@ -185,7 +185,7 @@ void func_02026910(void *a, s32 b, void *c, void *d) {
     func_02029930()->mUnk_00[data_02174e14->mUnk_078].mUnk_14 = 0;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         s = &data_02174e14->mUnk_01c;
-        func_02025b84(0, (u32) &w);
+        func_02025b84(0, &w);
         for (i = 0; i < data_02174e14->mUnk_07c; i++) {
             func_0212481c(data_02174e14->mUnk_090[i].mUnk_00, w.mUnk_08, w.mUnk_00, w.mUnk_04, w.mUnk_0c, 1,
                           data_usa_02153554[i].mUnk_02, s->mUnk_08, s->mUnk_0c);

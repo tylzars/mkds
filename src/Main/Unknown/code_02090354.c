@@ -494,19 +494,19 @@ u32 func_020911a8(void) {
 }
 
 u32 func_020911f4(void) {
-    return func_0209bf48((u32) func_0209151c, (u32) func_020912a0, 0);
+    return func_0209bf48(func_0209151c, func_020912a0, 0);
 }
 
 u32 func_02091214(void) {
-    return func_0209bef0((u32) func_0209166c, (u32) func_020915c0, (u32) func_02091654);
+    return func_0209bef0(func_0209166c, func_020915c0, func_02091654);
 }
 
 u32 func_02091238(void) {
-    return func_0209bef0((u32) func_0209179c, (u32) func_020916a0, (u32) func_02091784);
+    return func_0209bef0(func_0209179c, func_020916a0, func_02091784);
 }
 
 void func_0209125c(void) {
-    func_0209bf70((u32) func_02091828, (u32) func_020917d0, 0, 0, 1, 0x161);
+    func_0209bf70(func_02091828, func_020917d0, 0, 0, 1, 0x161);
 }
 
 void func_020912a0(void *a, Unk020912a0 *b) {

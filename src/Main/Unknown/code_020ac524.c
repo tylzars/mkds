@@ -60,9 +60,9 @@ void func_020ac5e4(Unk0206bcb0 *a) {
 }
 
 void *func_020ac63c(void) {
-    return (void *) func_0209bf48(0, (u32) func_020ac6a8, 0);
+    return (void *) func_0209bf48(0, func_020ac6a8, 0);
 }
 
 void *func_020ac658(void) {
-    return (void *) func_0209bef0((u32) func_020ac9c8, (u32) func_020ac890, (u32) func_020ac9b0);
+    return (void *) func_0209bef0(func_020ac9c8, func_020ac890, func_020ac9b0);
 }

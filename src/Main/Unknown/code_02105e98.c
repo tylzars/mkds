@@ -4,5 +4,5 @@
 void func_02105e98(void) {
     u32 v1;
     v1 = func_0210d960();
-    func_0212c6f0((Unk0212c400 **) ((u32) &data_0217d07c), v1);
+    func_0212c6f0(&data_0217d07c, v1);
 }

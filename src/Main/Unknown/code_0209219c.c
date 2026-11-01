@@ -63,9 +63,9 @@ void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
 }
 
 void func_02092468(void) {
-    func_0209bf48(0, (u32) func_020924d8, 0);
+    func_0209bf48(0, func_020924d8, 0);
 }
 
 void func_02092484(void) {
-    func_0209bef0((u32) func_02092940, (u32) func_0209280c, (u32) func_02092928);
+    func_0209bef0(func_02092940, func_0209280c, func_02092928);
 }

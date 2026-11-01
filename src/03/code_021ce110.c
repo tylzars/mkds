@@ -127,7 +127,7 @@ void func_ov003_021ce408(u32 a) {
         d++;
         c++;
     }
-    data_ov003_021da27c->mTask = func_ov003_021d3544(0, (u32) func_ov003_021ce370, 0, 0x78);
+    data_ov003_021da27c->mTask = func_ov003_021d3544(0, func_ov003_021ce370, 0, 0x78);
     func_ov003_021cdcf0(a);
     func_ov003_021cdc10(0xd);
 }

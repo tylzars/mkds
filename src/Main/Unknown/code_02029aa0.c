@@ -254,7 +254,7 @@ void func_02029dcc(void *a, void *b, void *c) {
     q->mUnk_18[0].mUnk_00 = q->mUnk_18[1].mUnk_00;
     u = data_0217b488->mUnk_90;
     q = &data_usa_02174e00->mUnk_00[0];
-    func_02025b84(1, (u32) &w3);
+    func_02025b84(1, &w3);
     func_0212463c(u, w3.mUnk_08, w3.mUnk_00, w3.mUnk_04, w3.mUnk_0c, 0, 0x14, q->mUnk_08, q->mUnk_0c);
     func_02025854(1, &t2, data_usa_0216220c, data_usa_02162220, data_usa_02162234, 3, func_0204799c);
     m = func_02148ca0();

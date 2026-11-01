@@ -50,13 +50,13 @@ void func_0209d694(Vec3 *a, Vec3 *b) {
 }
 
 void func_0209d7e0(void) {
-    func_0209bf48((u32) &func_0209dd40, (u32) &func_0209d84c, 0);
+    func_0209bf48(&func_0209dd40, &func_0209d84c, 0);
 }
 
 void func_0209d800(void) {
     Unk0209bf70 *o;
 
-    o = func_0209bf70((u32) &func_0209ddec, (u32) &func_0209dd44, 0, 1, 0, 0x18d);
+    o = func_0209bf70(&func_0209ddec, &func_0209dd44, 0, 1, 0, 0x18d);
     o->mUnk_28 = 0x196;
 }
 

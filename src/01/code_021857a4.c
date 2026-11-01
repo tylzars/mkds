@@ -10,13 +10,11 @@
 #pragma optimize_for_size on
 
 void func_ov001_02185b7c(void) {
-    func_0209bf1c((u32) ((UnkFunc *) func_ov001_02185d1c), (u32) ((UnkFunc *) func_ov001_02185ca0),
-                  (u32) ((UnkFunc *) func_ov001_02185d18));
+    func_0209bf1c(func_ov001_02185d1c, func_ov001_02185ca0, func_ov001_02185d18);
 }
 
 void func_ov001_02185b64(void) {
-    func_0209bf48((u32) ((UnkFunc *) func_ov001_02185c4c), (u32) ((UnkFunc *) func_ov001_02185bb8),
-                  (u32) ((UnkFunc *) (0)));
+    func_0209bf48(func_ov001_02185c4c, func_ov001_02185bb8, 0);
 }
 
 u16 func_ov001_02185b50(Unk02185bb8 *param_1) {

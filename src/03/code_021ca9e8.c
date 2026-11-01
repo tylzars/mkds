@@ -184,7 +184,7 @@ void func_ov003_021cacfc(void) {
         func_ov003_021bf698();
         func_ov003_021bf410();
         func_ov003_021d1490(data_ov003_021da234->mUnk_00);
-        func_ov003_021bf620((u32) data_ov003_021d75e0, (u32) func_0214c090);
+        func_ov003_021bf620(data_ov003_021d75e0, func_0214c090);
         func_ov003_021d272c(1, 1);
         func_ov003_021d272c(0, 0x14);
         if (data_ov003_021da234->mUnk_1d == 2) {

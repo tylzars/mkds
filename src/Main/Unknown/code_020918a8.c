@@ -60,7 +60,7 @@ static inline void func_020919e8_inline_3(Unk020919e8 *p, s32 n) {
 }
 
 void func_020918a8(void) {
-    func_0209bef0((u32) func_0209196c, (u32) func_020918cc, (u32) func_02091954);
+    func_0209bef0(func_0209196c, func_020918cc, func_02091954);
 }
 
 void func_020918cc(void *a, Unk020919e8 *b) {
@@ -84,11 +84,11 @@ void func_0209196c(void *a) {
 }
 
 void func_020919a8(void) {
-    func_0209bf48((u32) func_02091fd8, (u32) func_020919e8, 0);
+    func_0209bf48(func_02091fd8, func_020919e8, 0);
 }
 
 void func_020919c8(void) {
-    func_0209bf1c((u32) func_02092140, (u32) func_020920a0, 0);
+    func_0209bf1c(func_02092140, func_020920a0, 0);
 }
 
 static inline s64 func_020919e8_inline_5(const Vec3 *a, const Vec3 *b) {

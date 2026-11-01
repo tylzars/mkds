@@ -31,8 +31,8 @@ void func_ov003_021ca194(void) {
 }
 
 void func_ov003_021ca130(void) {
-    u32 v2 = ((u32) (&data_ov003_021d7524));
-    u32 v3 = ((u32) (&func_0214bc9c));
+    void *v2 = &data_ov003_021d7524;
+    void *v3 = &func_0214bc9c;
     u32 v4 = func_ov003_021bf620(v2, v3);
     u32 v5 = 0x4001008u;
     u32 v6 = ((u32) * (u16 *) ((v5) + (0)));

@@ -18,7 +18,7 @@ void func_ov001_0219b540(void) {
     *(u32 *) 0x400101c = (-data_ov001_021a9bf4->mUnk_5c << 16) & 0x1ff0000;
 }
 
-void *func_ov001_0219b510(u32 p0, u32 p1, u32 p2, u32 p3, u16 p4, u16 p5, u16 p6) {
+void *func_ov001_0219b510(void *p0, void *p1, void *p2, u32 p3, u16 p4, u16 p5, u16 p6) {
     u8 *r = func_0209bfa8(p0, p1, p2, p3, p4);
     *(u32 *) (r + 0x24) = p5;
     *(u32 *) (r + 0x28) = p6;

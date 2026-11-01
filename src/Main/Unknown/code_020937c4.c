@@ -49,17 +49,17 @@ void func_020937c4(Vec3 *a, Vec3 *b, u16 c) {
 }
 
 void func_02093884(void) {
-    func_0209bf48(0, (u32) func_02093910, 0);
+    func_0209bf48(0, func_02093910, 0);
 }
 
 void func_020938a0(void) {
-    func_0209bf1c((u32) func_02093b30, (u32) func_02093a50, 0);
+    func_0209bf1c(func_02093b30, func_02093a50, 0);
 }
 
 void func_020938c0(void) {
     Unk0209bf70 *o;
 
-    o = func_0209bf70((u32) func_02093b7c, 0, 0, 1, 1, 0x17b);
+    o = func_0209bf70(func_02093b7c, 0, 0, 1, 1, 0x17b);
     o->mUnk_38 = 0x32000;
     o->mUnk_3c = -0x64000;
 }
@@ -152,11 +152,11 @@ void func_02093c64(Unk02093910 *p) {
 }
 
 void func_02093cb4(void) {
-    func_0209bf48((u32) func_02093eac, (u32) func_02093cf4, 0);
+    func_0209bf48(func_02093eac, func_02093cf4, 0);
 }
 
 void func_02093cd4(void) {
-    func_0209bf1c((u32) func_02093f78, (u32) func_02093ee8, 0);
+    func_0209bf1c(func_02093f78, func_02093ee8, 0);
 }
 
 void func_02093cf4(void *a, Unk02093cf4 *p) {

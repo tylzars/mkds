@@ -7,12 +7,11 @@
 #include "00/code_02182fdc.h"
 
 void *func_ov001_02189dbc(void) {
-    return (void *) func_0209bf1c((u32) (func_ov001_02189e2c), (u32) (func_ov001_02189e0c),
-                                  (u32) (func_ov001_02187098));
+    return (void *) func_0209bf1c(func_ov001_02189e2c, func_ov001_02189e0c, func_ov001_02187098);
 }
 
 void *func_ov001_02189da4(void) {
-    return (void *) func_0209bf48((u32) (func_ov001_0218a120), (u32) (func_ov001_0218a074), (u32) (0));
+    return (void *) func_0209bf48(func_ov001_0218a120, func_ov001_0218a074, 0);
 }
 
 #pragma thumb off

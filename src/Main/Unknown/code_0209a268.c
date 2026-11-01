@@ -16,5 +16,5 @@ void func_0209a280(void *a) {
 }
 
 void *func_0209a2b4(void) {
-    return (void *) func_0209bef0((u32) func_0209a364, (u32) func_0209a2d8, (u32) func_0209a34c);
+    return (void *) func_0209bef0(func_0209a364, func_0209a2d8, func_0209a34c);
 }

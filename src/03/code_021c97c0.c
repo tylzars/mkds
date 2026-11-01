@@ -28,14 +28,14 @@ void func_ov003_021c9944(void) {
 }
 
 void func_ov003_021c98d0(void) {
-    u32 v2 = ((u32) (&data_ov003_021d74b8));
-    u32 v3 = ((u32) (&func_0214b95c));
+    void *v2 = &data_ov003_021d74b8;
+    void *v3 = &func_0214b95c;
     u32 v4 = func_ov003_021bf620(v2, v3);
-    u32 v5 = ((u32) (&data_ov003_021d74d0));
-    u32 v6 = ((u32) (&func_0214c160));
+    void *v5 = &data_ov003_021d74d0;
+    void *v6 = &func_0214c160;
     u32 v7 = func_ov003_021bf620(v5, v6);
-    u32 v8 = ((u32) (&data_ov003_021d74e8));
-    u32 v9 = ((u32) (&func_0214bc9c));
+    void *v8 = &data_ov003_021d74e8;
+    void *v9 = &func_0214bc9c;
     u32 v10 = func_ov003_021bf620(v8, v9);
     u32 v11 = 0x4001008u;
     u32 v12 = ((u32) * (u16 *) ((v11) + (0)));

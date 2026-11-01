@@ -189,8 +189,8 @@ void func_0209ba58(void *a, void *b, void *c) {
     func_020ea740(o->mUnk_10, ((Unk020e71a0 *) c)->mUnk_66);
 }
 
-void func_0209ba88(u32 param_1, int param_2, int param_3) {
-    Unk0209bc74 *o = (Unk0209bc74 *) param_2;
+void func_0209ba88(u32 param_1, Unk0209bc74 *param_2, int param_3) {
+    Unk0209bc74 *o = param_2;
     Unk020e71a0 *c = (Unk020e71a0 *) param_3;
 
     func_01ff9048(0x1b, o, 3);

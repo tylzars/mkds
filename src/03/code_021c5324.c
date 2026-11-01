@@ -40,7 +40,7 @@ void func_ov003_021c5324(void) {
 
 void func_ov003_021c53b4(void) {
     if (func_ov003_021bf334() != -2) {
-        data_ov003_021da1e4 = func_ov003_021d3544(1, (u32) func_ov003_021c51a0, 0, 0x78);
+        data_ov003_021da1e4 = func_ov003_021d3544(1, func_ov003_021c51a0, 0, 0x78);
         func_ov003_021c212c(func_ov003_021c5324);
     }
 }

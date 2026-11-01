@@ -10,5 +10,5 @@ void func_ov003_021bf86c(int param_1) {
     a = func_ov003_021d14b8(func_ov003_021bf650(data_ov003_021d6b60[param_1]), 0, 4);
     func_0214d0a8(a, data_ov003_021da154, 0xc0);
     func_ov003_021d1490(a);
-    func_ov003_021d3544(1, (u32) func_ov003_021bf810, 0, 0x78);
+    func_ov003_021d3544(1, func_ov003_021bf810, 0, 0x78);
 }

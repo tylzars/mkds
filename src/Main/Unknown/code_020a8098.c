@@ -31,5 +31,5 @@ void func_020a8098(Unk020a7f18 *p) {
 }
 
 u32 func_020a824c(void) {
-    return func_0209bf48((u32) func_020a8a6c, (u32) func_020a826c, 0);
+    return func_0209bf48(func_020a8a6c, func_020a826c, 0);
 }

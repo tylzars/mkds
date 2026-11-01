@@ -12,7 +12,7 @@
 #include "Main/Unknown/code_0209bef0.h"
 
 void *func_ov001_02185ef4(void) {
-    return (void *) func_0209bf48((u32) ((UnkFunc *) (0)), (u32) ((UnkFunc *) (0)), (u32) ((UnkFunc *) (0)));
+    return (void *) func_0209bf48(0, 0, 0);
 }
 
 void func_ov001_02185dd0(Unk02185bb8 *param_1) {

@@ -29,11 +29,11 @@ void func_020946b8(void) {
 }
 
 void func_02094724(void) {
-    func_0209bf48((u32) func_02094c24, (u32) func_02094768, 0);
+    func_0209bf48(func_02094c24, func_02094768, 0);
 }
 
 void func_02094744(void) {
-    func_0209bef0((u32) func_02094db4, (u32) func_02094c70, (u32) func_02094d9c);
+    func_0209bef0(func_02094db4, func_02094c70, func_02094d9c);
 }
 
 static inline void func_02094768_inline(Unk02094000 *o) {

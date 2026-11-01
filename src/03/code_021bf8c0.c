@@ -27,13 +27,13 @@
 
 void func_ov003_021bf8c0(void) {
     data_ov003_021da154 = func_ov003_021d285c(0xc0, 4);
-    func_ov003_021bf620((u32) data_ov003_021d6bb0, (u32) func_0214ba2c);
+    func_ov003_021bf620(data_ov003_021d6bb0, func_0214ba2c);
     switch (func_ov003_021c20c0()) {
         case 0:
-            func_ov003_021bf620((u32) data_ov003_021d6b60[0], (u32) func_0214bd6c);
+            func_ov003_021bf620(data_ov003_021d6b60[0], func_0214bd6c);
             break;
         case 1:
-            func_ov003_021bf620((u32) data_ov003_021d6b60[1], (u32) func_0214bd6c);
+            func_ov003_021bf620(data_ov003_021d6b60[1], func_0214bd6c);
             break;
     }
 }
@@ -73,7 +73,7 @@ void func_ov003_021bf9e8(int param_1) {
             ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
             ((data_ov003_021da158->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
         data_ov003_021da158->mUnk_00->mUnk_04 = (data_ov003_021da158->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;
-        data_ov003_021da158->mUnk_04 = func_ov003_021d3544(0, (u32) func_ov003_021bf920, 0, 0x78);
+        data_ov003_021da158->mUnk_04 = func_ov003_021d3544(0, func_ov003_021bf920, 0, 0x78);
     }
 }
 

@@ -11,9 +11,9 @@
 #include "code_0214b824.h"
 
 void func_ov003_021c5458(void) {
-    func_ov003_021bf620((u32) data_ov003_021d71d0, (u32) func_0214b95c);
-    func_ov003_021bf620((u32) data_ov003_021d71e8, (u32) func_0214c160);
-    func_ov003_021bf620((u32) data_ov003_021d7200, (u32) func_0214bc9c);
+    func_ov003_021bf620(data_ov003_021d71d0, func_0214b95c);
+    func_ov003_021bf620(data_ov003_021d71e8, func_0214c160);
+    func_ov003_021bf620(data_ov003_021d7200, func_0214bc9c);
     *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 3;
     *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & ~3) | 3;
     *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 3;

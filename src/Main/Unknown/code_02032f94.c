@@ -153,8 +153,8 @@ void func_02032f94(void *a, s32 b, s32 c) {
     } else {
         data_02174e60->mUnk_0dc = 1;
     }
-    func_02025b84(1, (u32) &data_02174e60->mUnk_048[2]);
-    func_02025b84(0, (u32) &data_02174e60->mUnk_048[3]);
+    func_02025b84(1, &data_02174e60->mUnk_048[2]);
+    func_02025b84(0, &data_02174e60->mUnk_048[3]);
     data_02174e60->mUnk_0c0 = func_020b4024(1);
     data_02174e60->mUnk_0c4 = func_020b4024(0);
     t = &data_02174e60->mUnk_000[0];

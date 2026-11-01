@@ -34,21 +34,21 @@
 void func_020a5918(void) {
     Unk0209bfa8 *p;
 
-    p = func_0209bfa8((u32) func_020a6ae4, 0, 0, 1, 0);
+    p = func_0209bfa8(func_020a6ae4, 0, 0, 1, 0);
     p->mUnk_38 = 0x190000;
     p->mUnk_3c = -0x190000;
 }
 
 u32 func_020a58f4(void) {
-    return func_0209bef0((u32) func_020a6aa8, (u32) func_020a69b4, (u32) func_020a6a90);
+    return func_0209bef0(func_020a6aa8, func_020a69b4, func_020a6a90);
 }
 
 u32 func_020a58d0(void) {
-    return func_0209bf1c((u32) func_020a69a0, (u32) func_020a683c, (u32) func_020a697c);
+    return func_0209bf1c(func_020a69a0, func_020a683c, func_020a697c);
 }
 
 u32 func_020a58b4(void) {
-    return func_0209bf48(0, (u32) func_020a5958, 0);
+    return func_0209bf48(0, func_020a5958, 0);
 }
 
 void func_020a5848(void) {

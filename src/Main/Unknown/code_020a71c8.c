@@ -10,11 +10,11 @@
 #include "Main/Unknown/code_021000d0.h"
 
 u32 func_020a7358(void) {
-    return func_0209bef0((u32) func_020a7eb4, (u32) func_020a79c4, (u32) func_020a7eb0);
+    return func_0209bef0(func_020a7eb4, func_020a79c4, func_020a7eb0);
 }
 
 u32 func_020a7338(void) {
-    return func_0209bf48((u32) func_020a78c8, (u32) func_020a73b0, 0);
+    return func_0209bf48(func_020a78c8, func_020a73b0, 0);
 }
 
 s32 func_020a72c8(u16 a, u16 b) {

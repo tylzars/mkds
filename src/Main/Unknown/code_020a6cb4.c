@@ -31,7 +31,7 @@ void func_020a6cb4(s32 a) {
 }
 
 void *func_020a6d20(void) {
-    return (void *) func_0209bf48((u32) func_020a6e70, (u32) func_020a6d8c, 0);
+    return (void *) func_0209bf48(func_020a6e70, func_020a6d8c, 0);
 }
 
 s32 func_020a6d40(void) {

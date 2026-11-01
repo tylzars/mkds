@@ -41,11 +41,11 @@ void func_0209ec18(void *a) {
 }
 
 u32 func_0209ec44(void) {
-    return func_0209bf48(0, (u32) func_0209ec80, 0);
+    return func_0209bf48(0, func_0209ec80, 0);
 }
 
 u32 func_0209ec60(void) {
-    return func_0209bf1c((u32) func_0209f0a8, (u32) func_0209efb4, 0);
+    return func_0209bf1c(func_0209f0a8, func_0209efb4, 0);
 }
 
 void func_0209ec80(void *a, Unk0209ec80 *b) {

@@ -19,5 +19,5 @@ u32 func_020a3f48(void) {
 }
 
 u32 func_020a3f2c(void) {
-    return func_0209bf48(0, (u32) func_020a3fa8, 0);
+    return func_0209bf48(0, func_020a3fa8, 0);
 }

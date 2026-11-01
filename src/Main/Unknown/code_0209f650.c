@@ -61,11 +61,11 @@ void func_0209f650(void *a) {
 }
 
 void *func_0209f698(void) {
-    return (void *) func_0209bf48((u32) func_0209f800, (u32) func_0209f6d8, 0);
+    return (void *) func_0209bf48(func_0209f800, func_0209f6d8, 0);
 }
 
 void *func_0209f6b8(void) {
-    return (void *) func_0209bef0((u32) func_0209fbe4, (u32) func_0209fb0c, 0);
+    return (void *) func_0209bef0(func_0209fbe4, func_0209fb0c, 0);
 }
 
 void func_0209f6d8(void *a, Unk0209f6d8 *p) {
@@ -199,11 +199,11 @@ void func_0209fc78(Unk020e71a0 *p) {
 }
 
 void *func_0209fd74(void) {
-    return (void *) func_0209bf48((u32) func_020a0064, (u32) func_0209fdb4, 0);
+    return (void *) func_0209bf48(func_020a0064, func_0209fdb4, 0);
 }
 
 void *func_0209fd94(void) {
-    return (void *) func_0209bf1c((u32) func_020a0294, (u32) func_020a018c, 0);
+    return (void *) func_0209bf1c(func_020a0294, func_020a018c, 0);
 }
 
 static inline void func_0209fdb4_inline(Unk020a018c *p) {

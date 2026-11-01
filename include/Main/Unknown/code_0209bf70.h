@@ -83,9 +83,9 @@ extern const char data_usa_02167388[];
 extern const char data_usa_02167394[];
 extern const char data_usa_021673a0[];
 
-Unk0209bf70 *func_0209bf70(u32 a, u32 b, u32 c, u32 d, u16 e, u16 f);
+Unk0209bf70 *func_0209bf70(void *a, void *b, void *c, u32 d, u16 e, u16 f);
 u32 func_0209bf8c(void);
-void *func_0209bfa8(u32 param_1, u32 param_2, u32 param_3, u32 param_4, u16 param_5);
+void *func_0209bfa8(void *param_1, void *param_2, void *param_3, u32 param_4, u16 param_5);
 s32 func_0209bfe0(s32 a);
 void func_0209c0d4(void);
 void func_0209c0f4(void);

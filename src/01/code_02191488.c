@@ -41,7 +41,7 @@ void func_ov001_021916e0(Unk02188950 *param_1) {
     func_ov001_02188cd8(param_1, param_1->mUnk_0a0->mUnk_130, param_1->mUnk_0a0->mUnk_134);
     func_ov001_021889c8(param_1);
     func_ov001_02188e24(param_1, param_1->mUnk_0a0->mUnk_140, func_ov001_021917d0);
-    func_ov001_02188200(param_1, (UnkFunc *) (func_ov001_021927c0));
+    func_ov001_02188200(param_1, func_ov001_021927c0);
     func_ov001_021875c0(param_1, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x433), (u32) (0));
 }
 
@@ -54,7 +54,7 @@ void func_ov001_02191618(Unk02188950 *param_1) {
     func_ov001_02188c90(param_1);
     func_ov001_02188cec(param_1, 0);
     func_ov001_02188950(param_1, &local);
-    func_ov001_02188200(param_1, (UnkFunc *) (func_ov001_02192878));
+    func_ov001_02188200(param_1, func_ov001_02192878);
     func_02073fb0(param_1->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
     func_ov001_02187518(param_1, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x414), (u32) (0));
     func_ov001_02187518(param_1, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x415), (u32) (0));
@@ -70,7 +70,7 @@ void func_ov001_02191550(Unk02188950 *param_1) {
     func_ov001_02188c90(param_1);
     func_ov001_02188cec(param_1, 0);
     func_ov001_02188950(param_1, &local);
-    func_ov001_02188200(param_1, (UnkFunc *) (func_ov001_02192878));
+    func_ov001_02188200(param_1, func_ov001_02192878);
     func_02073fb0(param_1->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
     func_ov001_02187518(param_1, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x414), (u32) (0));
     func_ov001_02187518(param_1, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x415), (u32) (0));
@@ -95,5 +95,5 @@ void func_ov001_02191488(Unk02188950 *param_1) {
         func_ov001_02188db8(param_1, func_ov001_02191550);
     }
     param_1->mUnk_2c0 = 1;
-    func_ov001_02188200(param_1, (UnkFunc *) (func_ov001_02192794));
+    func_ov001_02188200(param_1, func_ov001_02192794);
 }

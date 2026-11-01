@@ -40,7 +40,7 @@ void func_ov003_021c9268(void) {
             return;
         }
         func_ov003_021cdc10(0x13);
-        data_ov003_021da214->mUnk_38 = func_ov003_021d3544(0, (u32) func_ov003_021c82b4, 0, 0x78);
+        data_ov003_021da214->mUnk_38 = func_ov003_021d3544(0, func_ov003_021c82b4, 0, 0x78);
         return;
     }
     if (func_ov003_021d2acc(0x200) != 0) {
@@ -57,7 +57,7 @@ void func_ov003_021c9268(void) {
             return;
         }
         func_ov003_021cdc10(0x13);
-        data_ov003_021da214->mUnk_38 = func_ov003_021d3544(0, (u32) func_ov003_021c8320, 0, 0x78);
+        data_ov003_021da214->mUnk_38 = func_ov003_021d3544(0, func_ov003_021c8320, 0, 0x78);
         return;
     }
     if (func_ov003_021d2acc(0x100) != 0) {

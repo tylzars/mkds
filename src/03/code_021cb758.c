@@ -16,9 +16,9 @@
 
 void func_ov003_021cb758(void) {
     Unk021d7654 a = data_ov003_021d7654;
-    func_ov003_021bf620((u32) data_ov003_021d766c, (u32) func_0214b95c);
-    func_ov003_021bf620((u32) data_ov003_021d7684, (u32) func_0214c160);
-    func_ov003_021bf620((u32) data_ov003_021d769c, (u32) func_0214bc9c);
+    func_ov003_021bf620(data_ov003_021d766c, func_0214b95c);
+    func_ov003_021bf620(data_ov003_021d7684, func_0214c160);
+    func_ov003_021bf620(data_ov003_021d769c, func_0214bc9c);
     data_ov003_021da244 = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), 0, 4);
     *(u16 *) 0x4001008 = (*(u16 *) 0x4001008 & ~3) | 3;
     *(u16 *) 0x400100a = (*(u16 *) 0x400100a & ~3) | 3;

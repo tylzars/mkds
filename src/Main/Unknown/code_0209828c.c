@@ -21,26 +21,26 @@
 #include "code_02148538.h"
 
 void *func_0209828c(void) {
-    data_usa_0217b0dc = (Unk020e6fd4 *) func_0209bf48((u32) func_0209886c, (u32) func_020983c4, 0);
+    data_usa_0217b0dc = (Unk020e6fd4 *) func_0209bf48(func_0209886c, func_020983c4, 0);
     func_020e6f50(&data_usa_0217b0dc);
     return data_usa_0217b0dc;
 }
 
 void *func_020982d4(void) {
-    data_usa_0217b0f0 = (Unk020982d4 *) func_0209bef0((u32) func_02098b34, (u32) func_02098a58, (u32) func_02098b1c);
+    data_usa_0217b0f0 = (Unk020982d4 *) func_0209bef0(func_02098b34, func_02098a58, func_02098b1c);
     data_usa_0217b0f0->mUnk_1c = 1;
     func_020d49d8(&data_usa_0217b0f0);
     return data_usa_0217b0f0;
 }
 
 void *func_02098328(void) {
-    data_usa_0217b0e8 = (void *) func_0209bef0((u32) func_02098a14, (u32) func_02098954, (u32) func_020989fc);
+    data_usa_0217b0e8 = (void *) func_0209bef0(func_02098a14, func_02098954, func_020989fc);
     func_020d49d8(&data_usa_0217b0e8);
     return data_usa_0217b0e8;
 }
 
 void *func_02098374(void) {
-    data_usa_0217b0f4 = (Unk020982d4 *) func_0209bf1c((u32) func_02098d04, (u32) func_02098b68, 0);
+    data_usa_0217b0f4 = (Unk020982d4 *) func_0209bf1c(func_02098d04, func_02098b68, 0);
     data_usa_0217b0f4->mUnk_1c = 1;
     func_020d49d8(&data_usa_0217b0f4);
     return data_usa_0217b0f4;
@@ -379,5 +379,5 @@ void func_02098f18(Unk020e0144 *a, s32 b) {
 }
 
 void *func_02099004(void) {
-    return (void *) func_0209bf48(0, (u32) func_0209905c, 0);
+    return (void *) func_0209bf48(0, func_0209905c, 0);
 }

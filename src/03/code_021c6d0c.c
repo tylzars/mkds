@@ -4,17 +4,17 @@
 #include "03/code_021d254c.h"
 
 void func_ov003_021c6da4(void) {
-    u32 v2 = ((u32) (&data_ov003_021d72a4));
-    u32 v3 = ((u32) (&func_0214c090));
+    void *v2 = &data_ov003_021d72a4;
+    void *v3 = &func_0214c090;
     u32 v4 = func_ov003_021bf620(v2, v3);
-    u32 v5 = ((u32) (&data_ov003_021d72b8));
-    u32 v6 = ((u32) (&func_0214b95c));
+    void *v5 = &data_ov003_021d72b8;
+    void *v6 = &func_0214b95c;
     u32 v7 = func_ov003_021bf620(v5, v6);
-    u32 v8 = ((u32) (&data_ov003_021d72d0));
-    u32 v9 = ((u32) (&func_0214c160));
+    void *v8 = &data_ov003_021d72d0;
+    void *v9 = &func_0214c160;
     u32 v10 = func_ov003_021bf620(v8, v9);
-    u32 v11 = ((u32) (&data_ov003_021d72e8));
-    u32 v12 = ((u32) (&func_0214bc9c));
+    void *v11 = &data_ov003_021d72e8;
+    void *v12 = &func_0214bc9c;
     u32 v13 = func_ov003_021bf620(v11, v12);
     u32 v14 = 0x4001008u;
     u32 v15 = ((u32) * (u16 *) ((v14) + (0)));

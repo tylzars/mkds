@@ -13,11 +13,11 @@
 #include "code_02146cbc.h"
 
 void *func_0209f13c(void) {
-    return (void *) func_0209bf48(0, (u32) func_0209f178, 0);
+    return (void *) func_0209bf48(0, func_0209f178, 0);
 }
 
 void *func_0209f158(void) {
-    return (void *) func_0209bf1c((u32) func_0209f2b0, (u32) func_0209f1c8, 0);
+    return (void *) func_0209bf1c(func_0209f2b0, func_0209f1c8, 0);
 }
 
 void func_0209f178(void *a, Unk0209f1c8 *b) {
@@ -58,11 +58,11 @@ void func_0209f2b0(void *a) {
 }
 
 void *func_0209f2f8(void) {
-    return (void *) func_0209bf48((u32) func_0209f514, (u32) func_0209f338, 0);
+    return (void *) func_0209bf48(func_0209f514, func_0209f338, 0);
 }
 
 void *func_0209f318(void) {
-    return (void *) func_0209bf1c((u32) func_0209f650, (u32) func_0209f5cc, 0);
+    return (void *) func_0209bf1c(func_0209f650, func_0209f5cc, 0);
 }
 
 void func_0209f338(void *a, Unk0209f1c8 *b) {

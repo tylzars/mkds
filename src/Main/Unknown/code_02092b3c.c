@@ -29,7 +29,7 @@ static inline u16 func_02092b5c_inline_2(u32 n) {
 }
 
 void func_02092b3c(void) {
-    func_0209bf48((u32) func_020930c8, (u32) func_02092b5c, 0);
+    func_0209bf48(func_020930c8, func_02092b5c, 0);
 }
 
 static inline s64 func_02092b5c_inline_4(const Vec3 *a, const Vec3 *b) {

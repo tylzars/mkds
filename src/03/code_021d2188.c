@@ -85,7 +85,7 @@ Unk021d2188 *func_ov003_021d2288(u32 param_1, u32 param_2) {
     }
     func_020232b0((u16 *) e, c, b, 0, 0, 0x20, data_ov003_021d67dc[param_1], 0xf);
     func_ov003_021d2060(a, 0);
-    a->mUnk_34 = func_ov003_021d3544(1, (u32) func_ov003_021d21f8,
-                                     (u32) (&(*(Unk021d1fd0 **) &data_ov003_021da2c4)->mUnk_794 + param_1), 200);
+    a->mUnk_34 =
+        func_ov003_021d3544(1, func_ov003_021d21f8, &(*(Unk021d1fd0 **) &data_ov003_021da2c4)->mUnk_794 + param_1, 200);
     return a;
 }

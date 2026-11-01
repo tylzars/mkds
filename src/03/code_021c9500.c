@@ -27,11 +27,11 @@ void func_ov003_021c9500(void) {
     b = data_ov003_021d73e0;
     c = data_ov003_021d73f8;
     *(u16 *) 0x400000c = (*(u16 *) 0x400000c & 0x43) | 0xe18;
-    func_ov003_021bf620((u32) data_ov003_021d7460, (u32) func_0214c090);
-    func_ov003_021bf620((u32) data_ov003_021d7474, (u32) func_0214b88c);
-    func_ov003_021bf620((u32) data_ov003_021d748c, (u32) func_0214b95c);
-    func_ov003_021bf620((u32) &b, (u32) func_0214c160);
-    func_ov003_021bf620((u32) data_ov003_021d74a4, (u32) func_0214bbcc);
+    func_ov003_021bf620(data_ov003_021d7460, func_0214c090);
+    func_ov003_021bf620(data_ov003_021d7474, func_0214b88c);
+    func_ov003_021bf620(data_ov003_021d748c, func_0214b95c);
+    func_ov003_021bf620(&b, func_0214c160);
+    func_ov003_021bf620(data_ov003_021d74a4, func_0214bbcc);
     data_ov003_021da214->mUnk_08 = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), 0, 4);
     func_ov003_021cca30(data_ov003_021da214->mUnk_08);
     func_ov003_021cc9fc();
@@ -80,8 +80,8 @@ void func_ov003_021c965c(void) {
             data_ov003_021da214->mUnk_34->mUnk_04 = (data_ov003_021da214->mUnk_34->mUnk_04 & ~0xc00) | 0xc00;
             break;
     }
-    data_ov003_021da214->mUnk_3c = func_ov003_021d3544(1, (u32) func_ov003_021c824c, 0, 0x6e);
-    data_ov003_021da214->mUnk_00 = func_ov003_021d3544(0, (u32) func_ov003_021c7e8c, 0, 0x78);
+    data_ov003_021da214->mUnk_3c = func_ov003_021d3544(1, func_ov003_021c824c, 0, 0x6e);
+    data_ov003_021da214->mUnk_00 = func_ov003_021d3544(0, func_ov003_021c7e8c, 0, 0x78);
     func_ov003_021c8b94();
     func_ov003_021c81b8();
     func_ov003_021c212c(func_ov003_021c948c);

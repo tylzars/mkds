@@ -8,7 +8,7 @@ void func_ov001_02191064(Unk02188950 *param_1) {
     func_ov001_02188cec(param_1, 0);
     param_1->mUnk_2c0 = 1;
     func_ov001_0219226c(param_1);
-    func_ov001_02188200(param_1, (UnkFunc *) ((u32) &func_ov001_02192878));
+    func_ov001_02188200(param_1, func_ov001_02192878);
     func_020d2774(&param_1->mUnk_000, (u32) (((u32) 0x00000216u)));
 }
 
@@ -26,6 +26,6 @@ void func_ov001_02190fc4(Unk02188950 *param_1) {
     func_ov001_02188cec(param_1, 0);
     param_1->mUnk_2c0 = 1;
     func_ov001_0219226c(param_1);
-    func_ov001_02188200(param_1, (UnkFunc *) ((u32) &func_ov001_02192878));
+    func_ov001_02188200(param_1, func_ov001_02192878);
     func_020d2774(&param_1->mUnk_000, (u32) (((u32) 0x00000216u)));
 }

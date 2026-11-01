@@ -11,15 +11,15 @@ void func_0202d5f8(s32 a, s32 b) {
     x[10] = 0;
     func_0212513c(x, r, y, 0x100);
     if (b != 0) {
-        func_02126230((u32) y, (u32) func_020b3f7c(data_02174e40->mUnk_0a8, 4));
+        func_02126230(y, func_020b3f7c(data_02174e40->mUnk_0a8, 4));
     } else {
-        func_021262f0((u32) y);
+        func_021262f0(y);
     }
 }
 
 void func_0202d5c0(void) {
     func_0202daa4(data_02174e40->mUnk_0a4);
-    func_021262f0((u32) func_020b3f7c(data_02174e40->mUnk_0ac, 9));
+    func_021262f0(func_020b3f7c(data_02174e40->mUnk_0ac, 9));
     func_021281c8(0xe);
     func_021282c8();
 }
@@ -120,7 +120,7 @@ void func_0202d210(void *a, void *b, void *c) {
             q->mUnk_18[w + i].mUnk_00 = 0;
         }
     }
-    func_02025b84(0, (u32) &data_02174e40->mUnk_050[2]);
+    func_02025b84(0, &data_02174e40->mUnk_050[2]);
     func_02025f80(&data_02174e40->mUnk_0cc, 3, 10, -0xc0, 0);
     func_021281c8(0xf);
     func_0204f804();
@@ -166,8 +166,8 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
         case 1:
             if (func_02036c5c() == 0) {
                 if (func_0202ddc4() == 0) {
-                    func_02126230((u32) func_020b3f7c(data_02174e40->mUnk_0ac, 0x53),
-                                  (u32) func_020b3f7c(data_02174e40->mUnk_0a8, 4));
+                    func_02126230(func_020b3f7c(data_02174e40->mUnk_0ac, 0x53),
+                                  func_020b3f7c(data_02174e40->mUnk_0a8, 4));
                     data_02174e40->mUnk_0b0 = 0;
                 } else {
                     func_0202d6a0();

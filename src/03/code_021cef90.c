@@ -14,7 +14,7 @@
 
 void func_ov003_021cef90(void) {
     func_ov003_021d34c8(0, data_ov003_021da284->mUnk_14);
-    data_ov003_021da284->mUnk_14 = func_ov003_021d3544(1, (u32) func_ov003_021ceb54, 0, 0x78);
+    data_ov003_021da284->mUnk_14 = func_ov003_021d3544(1, func_ov003_021ceb54, 0, 0x78);
 }
 
 void func_ov003_021cefc0(u32 a, s32 b, s32 c, u32 d, u32 e) {
@@ -50,9 +50,9 @@ void func_ov003_021cefc0(u32 a, s32 b, s32 c, u32 d, u32 e) {
     func_ov003_021cec50(0xc0);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffff1fff) | 0x6000;
     if (c != 0) {
-        data_ov003_021da284->mUnk_14 = func_ov003_021d3544(1, (u32) func_ov003_021cef28, 0, 0x78);
+        data_ov003_021da284->mUnk_14 = func_ov003_021d3544(1, func_ov003_021cef28, 0, 0x78);
     } else {
-        data_ov003_021da284->mUnk_14 = func_ov003_021d3544(1, (u32) func_ov003_021cee98, 0, 0x78);
+        data_ov003_021da284->mUnk_14 = func_ov003_021d3544(1, func_ov003_021cee98, 0, 0x78);
     }
 }
 

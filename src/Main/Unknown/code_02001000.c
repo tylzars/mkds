@@ -35,7 +35,7 @@ void func_020010e0(void) {
 void func_02001144(void) {
     void *v1;
     v1 = func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 138);
-    func_02126230((u32) v1, (u32) func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 4));
+    func_02126230(v1, func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 4));
 }
 
 void func_0200118c(void) {
@@ -55,7 +55,7 @@ void func_0200118c(void) {
 void func_020011f0(void) {
     void *v1;
     v1 = func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 137);
-    func_02126230((u32) v1, (u32) func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 6));
+    func_02126230(v1, func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 6));
 }
 
 void func_02001238(void) {

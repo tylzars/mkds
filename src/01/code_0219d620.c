@@ -40,7 +40,7 @@ void func_ov001_0219d998(void) {
                 obj->mUnk_04 = 6;
                 func_02125ebc(0x21);
                 first = func_020b3f7c(data_ov001_021a9bfc->mUnk_50, arg);
-                func_02126230((u32) first, (u32) func_020b3f7c(data_ov001_021a9bfc->mUnk_54, 4));
+                func_02126230(first, func_020b3f7c(data_ov001_021a9bfc->mUnk_54, 4));
                 data_ov001_021a9bfc->mUnk_14 = 0;
             }
         }

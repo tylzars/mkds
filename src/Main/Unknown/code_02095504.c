@@ -21,11 +21,11 @@
 #include "code_02148538.h"
 
 void func_02095504(void) {
-    func_0209bf48((u32) func_020957ec, (u32) func_02095544, 0);
+    func_0209bf48(func_020957ec, func_02095544, 0);
 }
 
 void func_02095524(void) {
-    func_0209bf1c((u32) func_02095958, (u32) func_02095848, 0);
+    func_0209bf1c(func_02095958, func_02095848, 0);
 }
 
 void func_02095544(void *a, Unk02095544 *p) {
@@ -149,15 +149,15 @@ void func_02095958(void *a) {
 }
 
 void func_020959bc(void) {
-    func_0209bf48((u32) func_02095d1c, (u32) func_02095a3c, 0);
+    func_0209bf48(func_02095d1c, func_02095a3c, 0);
 }
 
 void func_020959dc(void) {
-    func_0209bf1c((u32) func_02095eb4, (u32) func_02095db8, 0);
+    func_0209bf1c(func_02095eb4, func_02095db8, 0);
 }
 
 void func_020959fc(void) {
-    func_0209bf70((u32) func_02095efc, 0, 0, 2, 1, 0x125);
+    func_0209bf70(func_02095efc, 0, 0, 2, 1, 0x125);
 }
 
 void func_02095a3c(void *a, Unk02095a3c *p) {

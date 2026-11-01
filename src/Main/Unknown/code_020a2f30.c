@@ -93,11 +93,11 @@ void func_020a305c(void) {
 }
 
 u32 func_020a3114(void) {
-    return func_0209bf48(0, (u32) func_020a3154, 0);
+    return func_0209bf48(0, func_020a3154, 0);
 }
 
 u32 func_020a3130(void) {
-    return func_0209bef0((u32) func_020a3eb8, (u32) func_020a3948, (u32) func_020a3e38);
+    return func_0209bef0(func_020a3eb8, func_020a3948, func_020a3e38);
 }
 
 void func_020a3154(void *p, Unk020a2fe4 *a) {

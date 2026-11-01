@@ -310,21 +310,21 @@ void func_020a9268(void *a, Unk020a9268 *p) {
 void func_020a9224(void) {
     Unk020a9224 *p;
 
-    p = func_0209bfa8((u32) func_020a9de4, 0, 0, 1, 1);
+    p = func_0209bfa8(func_020a9de4, 0, 0, 1, 1);
     p->mUnk_38 = 0x190000;
     p->mUnk_3c = -0x1f4000;
 }
 
 u32 func_020a9204(void) {
-    return func_0209bf1c((u32) func_020a9cd0, (u32) func_020a9c54, 0);
+    return func_0209bf1c(func_020a9cd0, func_020a9c54, 0);
 }
 
 u32 func_020a91e0(void) {
-    return func_0209bef0((u32) func_020a9db0, (u32) func_020a9cd4, (u32) func_020a9d98);
+    return func_0209bef0(func_020a9db0, func_020a9cd4, func_020a9d98);
 }
 
 u32 func_020a91c0(void) {
-    return func_0209bf48((u32) func_020a9a5c, (u32) func_020a9268, 0);
+    return func_0209bf48(func_020a9a5c, func_020a9268, 0);
 }
 
 void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {

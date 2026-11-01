@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_0200e000.h"
 #include "code_02139f70.h"
 
-u32 func_ov003_021bf620(u32 param_0, u32 param_1) {
+u32 func_ov003_021bf620(void *param_0, void *param_1) {
     u32 a;
     void *b;
 

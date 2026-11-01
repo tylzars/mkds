@@ -30,5 +30,5 @@ void func_ov003_021ce024(u32 a) {
 
 void func_ov003_021ce0c4(void) {
     data_ov003_021da27c->mUnk_18 = 1;
-    data_ov003_021da27c->mTask = func_ov003_021d3544(0, (u32) func_ov003_021cdf98, 0, 0x78);
+    data_ov003_021da27c->mTask = func_ov003_021d3544(0, func_ov003_021cdf98, 0, 0x78);
 }

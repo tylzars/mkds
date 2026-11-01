@@ -16,12 +16,11 @@
 #include "Main/Unknown/code_0209bef0.h"
 
 void *func_ov001_0218c7b8(void) {
-    return (void *) func_0209bf1c((u32) (func_ov001_0218c87c), (u32) (func_ov001_0218c85c),
-                                  (u32) (func_ov001_02187098));
+    return (void *) func_0209bf1c(func_ov001_0218c87c, func_ov001_0218c85c, func_ov001_02187098);
 }
 
 void *func_ov001_0218c7a0(void) {
-    return (void *) func_0209bf48((u32) (func_ov001_0218ce90), (u32) (func_ov001_0218ce30), (u32) (0));
+    return (void *) func_0209bf48(func_ov001_0218ce90, func_ov001_0218ce30, 0);
 }
 
 u32 func_ov001_0218c790(Unk02188950 *param_1) {

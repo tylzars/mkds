@@ -9,17 +9,15 @@
 #include "Main/Unknown/code_0209bef0.h"
 
 void *func_ov001_021830e8(void) {
-    return (void *) func_0209bf1c((u32) (func_ov001_021831f0), (u32) (func_ov001_02183138),
-                                  (u32) (func_ov001_02187098));
+    return (void *) func_0209bf1c(func_ov001_021831f0, func_ov001_02183138, func_ov001_02187098);
 }
 
 void *func_ov001_021830cc(void) {
-    return (void *) func_0209bf1c((u32) (func_ov001_02183158), (u32) (func_ov001_02183138),
-                                  (u32) (func_ov001_02187098));
+    return (void *) func_0209bf1c(func_ov001_02183158, func_ov001_02183138, func_ov001_02187098);
 }
 
 void *func_ov001_021830b4(void) {
-    return (void *) func_0209bf48((u32) (func_ov001_02183450), (u32) (func_ov001_021832cc), (u32) (0));
+    return (void *) func_0209bf48(func_ov001_02183450, func_ov001_021832cc, 0);
 }
 
 void func_ov001_021830a8(void) {

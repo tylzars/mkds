@@ -26,15 +26,15 @@
 #include "code_0212df7c.h"
 
 u32 func_0209df00(void) {
-    return func_0209bf48((u32) func_0209e310, (u32) func_0209df84, 0);
+    return func_0209bf48(func_0209e310, func_0209df84, 0);
 }
 
 u32 func_0209df20(void) {
-    return func_0209bef0((u32) func_0209e950, (u32) func_0209e508, (u32) func_0209e938);
+    return func_0209bef0(func_0209e950, func_0209e508, func_0209e938);
 }
 
 void func_0209df44(void) {
-    func_0209bf70((u32) func_0209ea10, 0, (u32) func_0209e988, 0, 0, 0x18d);
+    func_0209bf70(func_0209ea10, 0, func_0209e988, 0, 0, 0x18d);
 }
 
 static inline s32 func_0209df84_inline(Unk0206bcb0 *p, Unk0209df84 *b, s32 t) {
@@ -300,5 +300,5 @@ void func_0209ea90(Unk0209df84 *a) {
 }
 
 u32 func_0209eb04(void) {
-    return func_0209bef0((u32) func_0209ec18, (u32) func_0209eb54, (u32) func_0209ec00);
+    return func_0209bef0(func_0209ec18, func_0209eb54, func_0209ec00);
 }

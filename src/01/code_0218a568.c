@@ -30,7 +30,7 @@ void func_ov001_0218aaac(Unk02188950 *param_1) {
                         (UnkFunc *) (0));
     func_ov001_02188c90(param_1);
     func_ov001_02188cec(param_1, 0);
-    func_ov001_02188e74(param_1, (s32) (param_1->mUnk_0a0->mUnk_148), (UnkFunc *) ((u32) &func_ov001_0218b034));
+    func_ov001_02188e74(param_1, (s32) (param_1->mUnk_0a0->mUnk_148), func_ov001_0218b034);
 }
 
 void func_ov001_0218aa34(Unk02188950 *param_1) {
@@ -47,7 +47,7 @@ void func_ov001_0218aa34(Unk02188950 *param_1) {
         func_ov001_02188d30(param_1, (s32) (param_1->mUnk_0a0->mUnk_0d4), (s32) (param_1->mUnk_0a0->mUnk_0d8),
                             (UnkFunc *) (0));
         func_ov001_02188cec(param_1, 0);
-        func_ov001_02188e74(param_1, (s32) (param_1->mUnk_0a0->mUnk_0dc), (UnkFunc *) ((u32) &func_ov001_0218b1d8));
+        func_ov001_02188e74(param_1, (s32) (param_1->mUnk_0a0->mUnk_0dc), func_ov001_0218b1d8);
     }
     func_020d2774(&param_1->mUnk_000, (u32) (0x23c));
 }
@@ -77,7 +77,7 @@ void func_ov001_0218a910(Unk02188950 *param_1) {
         func_ov001_02188d30(param_1, (s32) (param_1->mUnk_0a0->mUnk_0d4), (s32) (param_1->mUnk_0a0->mUnk_0d8),
                             (UnkFunc *) (0));
         func_ov001_02188cec(param_1, 0);
-        func_ov001_02188e74(param_1, (s32) (param_1->mUnk_0a0->mUnk_0dc), (UnkFunc *) ((u32) &func_ov001_0218b1d8));
+        func_ov001_02188e74(param_1, (s32) (param_1->mUnk_0a0->mUnk_0dc), func_ov001_0218b1d8);
         func_020d2774(&param_1->mUnk_000, (u32) (0x23c));
     }
 }

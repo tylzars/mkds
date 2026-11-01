@@ -21,5 +21,5 @@ void func_ov003_021c2840(u32 a) {
     if (func_ov003_021d11d4() == 0) {
         func_0200fd1c();
     }
-    data_ov003_021da194->mUnk_1e29c = func_ov003_021d3544(0, (u32) func_ov003_021c25e0, 0, 0x78);
+    data_ov003_021da194->mUnk_1e29c = func_ov003_021d3544(0, func_ov003_021c25e0, 0, 0x78);
 }

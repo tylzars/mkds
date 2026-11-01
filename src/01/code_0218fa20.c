@@ -8,9 +8,8 @@ void func_ov001_0218fa58(u32 param_1, u32 param_2) {
 void func_ov001_0218fa20(void) {
     u32 v4 = 0x21au;
     u32 v6 = 0x216u;
-    u32 v8 = ((u32) (&func_ov001_02185fb0));
-    u32 v9 = ((u32) (&func_ov001_02185f04));
-    u32 v10 = ((u32) (&func_ov001_021860cc));
-    u32 v12 = (u32) func_ov001_0219b510((u32) (v8), (u32) (v9), (u32) (v10), (u32) 0x2u, (u16) ((u32) 0x1u), (u16) (v4),
-                                        (u16) (v6));
+    void *v8 = &func_ov001_02185fb0;
+    void *v9 = &func_ov001_02185f04;
+    void *v10 = &func_ov001_021860cc;
+    u32 v12 = (u32) func_ov001_0219b510(v8, v9, v10, (u32) 0x2u, (u16) ((u32) 0x1u), (u16) (v4), (u16) (v6));
 }

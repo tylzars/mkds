@@ -6,5 +6,5 @@
 
 extern u8 data_ov003_021da110[];
 
-unsigned int func_ov003_021bf620(unsigned int param_0, unsigned int param_1);
+unsigned int func_ov003_021bf620(void *param_0, void *param_1);
 u8 *func_ov003_021bf650(const u8 *param_0);

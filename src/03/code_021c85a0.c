@@ -377,7 +377,7 @@ void func_ov003_021c8c14(void) {
     for (i = 0; i < 2; i++) {
         func_ov003_021d1490(data_ov003_021da214->mUnk_0c[i]);
     }
-    func_ov003_021bf620((u32) data_ov003_021d7448, (u32) func_0214c090);
+    func_ov003_021bf620(data_ov003_021d7448, func_0214c090);
     func_ov003_021d272c(1, 1);
     func_ov003_021d272c(0, 0x1d);
     *(u32 *) 0x4000010 = 0;

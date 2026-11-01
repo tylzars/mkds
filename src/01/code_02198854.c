@@ -412,7 +412,7 @@ void func_ov001_02198d8c(void) {
                 func_02125ebc(0x21);
                 a = func_020b3f7c(data_ov001_021a9be8->mUnk_88, 0x10);
                 b = func_020b3f7c(data_ov001_021a9be8->mUnk_8c, 4);
-                func_02126230((u32) a, (u32) b);
+                func_02126230(a, b);
                 data_ov001_021a9be8->mUnk_04 = 5;
                 data_ov001_021a9be8->mUnk_20 = 0;
                 func_021282c8();
