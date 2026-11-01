@@ -3,16 +3,13 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "registers.h"
 
-// non-matching: 79.5: size 0x260 against 0x270; the original keeps out in r7, a in r6, b in r5, c in r4, loads e and
-// f before the range tests into caller-saved registers and reloads the stack arguments after func_0200fca0 (e into a
-// stack slot, d, f, h into r9, r8, r10), and starts the second division before the first result is checked;
-// here e and f stay in callee-saved registers across the call.
 // Returns 1 when an argument is out of range or two paired values are equal; otherwise writes to the registers at
 // 0x04000280-0x0400029c twice and fills out from the words read back at 0x040002a0.
-u32 func_0214e464(Unk0214e334 *out, u32 a, u32 b, u32 c, u16 d, u16 e, u16 f, u16 g, u16 h) {
-    u32 s;
+u32 func_0214e464(Unk0214e334 *out, u16 a, u16 b, u16 c, u16 d, u16 e, u16 f, u16 g, u16 h) {
+    s32 z;
+    s32 w;
     s32 q;
-    s32 v;
+    u32 s;
 
     if (a >= 0x1000 || b >= 0x1000 || e >= 0x1000 || f >= 0x1000) {
         return 1;
@@ -27,23 +24,25 @@ u32 func_0214e464(Unk0214e334 *out, u32 a, u32 b, u32 c, u16 d, u16 e, u16 f, u1
     reg_CP_DIVCNT = 0;
     *(vu32 *) 0x04000290 = (a - e) << 8;
     *(vu64 *) 0x04000298 = (u32) (c - g);
+    z = b - f;
+    w = d - h;
     while (reg_CP_DIVCNT & 0x8000) {
     }
     q = *(vs32 *) 0x040002a0;
     reg_CP_DIVCNT = 0;
-    *(vu32 *) 0x04000290 = (b - f) << 8;
-    *(vu64 *) 0x04000298 = (u32) (d - h);
+    *(vu32 *) 0x04000290 = z << 8;
+    *(vu64 *) 0x04000298 = (u32) w;
     if (q >= 0x8000 || q < -0x8000) {
         func_0200fcb4(s);
         return 1;
     }
     out->mUnk_04 = q;
-    v = (s32) ((((a + e) << 8) - out->mUnk_04 * (c + g)) << 9) >> 16;
-    if (v >= 0x8000 || v < -0x8000) {
+    q = (s16) ((((a + e) << 8) - out->mUnk_04 * (c + g)) >> 7);
+    if (q >= 0x8000 || q < -0x8000) {
         func_0200fcb4(s);
         return 1;
     }
-    out->mUnk_00 = v;
+    out->mUnk_00 = q;
     while (reg_CP_DIVCNT & 0x8000) {
     }
     q = *(vs32 *) 0x040002a0;
@@ -52,11 +51,11 @@ u32 func_0214e464(Unk0214e334 *out, u32 a, u32 b, u32 c, u16 d, u16 e, u16 f, u1
         return 1;
     }
     out->mUnk_06 = q;
-    v = (s32) ((((b + f) << 8) - out->mUnk_06 * (d + h)) << 9) >> 16;
-    if (v >= 0x8000 || v < -0x8000) {
+    q = (s16) ((((b + f) << 8) - out->mUnk_06 * (d + h)) >> 7);
+    if (q >= 0x8000 || q < -0x8000) {
         return 1;
     }
-    out->mUnk_02 = v;
+    out->mUnk_02 = q;
     return 0;
 }
 

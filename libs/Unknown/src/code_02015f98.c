@@ -50,17 +50,14 @@ void func_02016134(void) {
     }
 }
 
-// non-matching: 0x190 bytes against 0x194. Same branches and literal pools; the original keeps the size in r7, the
-// halved size in lr and the address base in r8 with the table pointers and null hoisted into r0, r2, r3 and ip, and
-// uses no fp; here the size lands in r9 and the temporaries use fp.
 u32 func_02015fa0(u32 a, u32 b) {
-    u32 s;
-    u32 h;
     u32 base;
+    u32 s;
     u32 ok;
     s32 i;
-    Unk02015fa0 *e;
+    volatile Unk02015fa0 *e;
     Unk02015fa0 *t;
+    u32 h;
 
     if (a == 0) {
         s = 0x10;
@@ -99,7 +96,7 @@ u32 func_02015fa0(u32 a, u32 b) {
         ok = 0;
     } else {
         s32 j;
-        Unk02015fa0 *q;
+        volatile Unk02015fa0 *q;
 
         for (j = 0; j < 5; j++) {
             q = data_02161a04[j];
@@ -113,10 +110,10 @@ u32 func_02015fa0(u32 a, u32 b) {
         ok = 0;
     }
 done:
-    if (ok == 0) {
-        return 0;
+    if (ok != 0) {
+        return ((base >> 3) & 0xffff) | ((s >> 4) << 16) | (b << 31);
     }
-    return ((base >> 3) & 0xffff) | ((s >> 4) << 16) | (b << 31);
+    return 0;
 }
 
 s32 func_02015f98(void) {

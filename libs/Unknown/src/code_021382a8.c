@@ -4,17 +4,21 @@
 
 // Swaps size bytes between a and b.
 static inline void func_021382a8_inline(u8 *a, u8 *b, u32 size) {
+    u8 *p;
+    u8 *q;
     u8 t;
+    u32 i;
 
-    for (; size != 0; size--) {
-        t = *b;
-        *b++ = *a;
-        *a++ = t;
+    i = size;
+    p = a;
+    q = b;
+    for (; i != 0; i--) {
+        t = *q;
+        *q++ = *p;
+        *p++ = t;
     }
 }
 
-// non-matching: the two pointer copies of the first swap are loaded in the other order (ldr [sp,#4] then [sp,#8]
-// instead of [sp,#8] then [sp,#4]), so r4/r5 are used the other way round in that loop
 void func_021382a8(u8 *base, u32 n, u32 size, int (*cmp)(void *, void *)) {
     u32 l;
     u8 *lo;

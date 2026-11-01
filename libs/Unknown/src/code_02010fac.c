@@ -482,8 +482,6 @@ void func_02011928(Unk02011624 *a) {
     a->mUnk_00 += 3;
 }
 
-// non-matching: registers of the four shifted stores to data_0216189c and of the instructions that pack the two halves
-// differ
 void func_02011624(Unk02011624 *a) {
     u32 c0;
     u32 c1;
@@ -517,10 +515,10 @@ void func_02011624(Unk02011624 *a) {
         }
         h = a->mUnk_b0->mUnk_2e;
         w = a->mUnk_b0->mUnk_2c;
-        data_0216189c[13] = h << 15;
         data_0216189c[0] = w << 15;
         data_0216189c[5] = -h << 15;
         data_0216189c[12] = w << 15;
+        data_0216189c[13] = h << 15;
         func_01ff9048(0x16, data_0216189c, 0x10);
         t = a->mUnk_d8 + 4;
         t = t + *(u16 *) (a->mUnk_d8 + 0xa);
@@ -566,9 +564,9 @@ void func_02011624(Unk02011624 *a) {
             reg_G3_MTX_POP = 1;
             reg_G3_MTX_MODE = 3;
             func_01ff9048(0x16, mm, 0x10);
-            x = mm[12];
-            y = mm[13];
-            c1 = (u16) (((x >> 4) << 8) >> 16) | ((u16) (((y >> 4) << 8) >> 16) << 16);
+            x = mm[12] >> 4;
+            y = mm[13] >> 4;
+            c1 = (u16) (s16) (x >> 8) | ((u16) (s16) (y >> 8) << 16);
             func_01ff9048(0x22, &c1, 1);
         }
         c2 = 2;

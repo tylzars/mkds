@@ -12,8 +12,9 @@ void func_021470f8(const Unk02012f58 *a, Unk02012f58 *b, s32 c, s32 d, s32 e) {
     b->mUnk_18.z = (s32) (((s64) e * a->mUnk_18.z) >> 12);
 }
 
-// non-matching: compiles to 0x15c bytes against 0x160; the stack frame (0x1c) matches, the register assignment of the
-// loaded and 64-bit values differs
+// non-matching: 0x15c against 0x160; the original stores the x * x low word to the stack, computes t into its
+// register r1 and reloads it twice; ours keeps t in r8 and reloads once; otherwise the same instructions in other
+// registers and order
 void func_02146f98(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
     s32 x;
     s32 y;
@@ -32,15 +33,15 @@ void func_02146f98(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
     x = b->x;
     y = b->y;
     z = b->z;
-    xx = (s64) x * x;
     t = 0x1000 - d;
+    xx = (s64) t * ((s64) x * x);
     xy = (s32) (((s64) t * x * y) >> 24);
     sx = (s32) (((s64) c * x) >> 12);
-    a->mUnk_00.x = (s32) (((s64) t * xx) >> 24) + d;
-    yy = (s64) y * y;
-    a->mUnk_0c.y = (s32) (((s64) t * yy) >> 24) + d;
-    zz = (s64) z * z;
-    a->mUnk_18.z = (s32) (((s64) t * zz) >> 24) + d;
+    a->mUnk_00.x = (s32) (xx >> 24) + d;
+    yy = (s64) t * ((s64) y * y);
+    a->mUnk_0c.y = (s32) (yy >> 24) + d;
+    zz = (s64) t * ((s64) z * z);
+    a->mUnk_18.z = (s32) (zz >> 24) + d;
     sy = (s32) (((s64) c * y) >> 12);
     sz = (s32) (((s64) c * z) >> 12);
     a->mUnk_00.y = xy + sz;

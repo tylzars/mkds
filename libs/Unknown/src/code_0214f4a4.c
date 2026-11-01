@@ -313,9 +313,10 @@ void func_0214fa7c(u32 a) {
     }
 }
 
-// non-matching: 7 words differ. The halfword saved from 0x4000208 and the combined halfword g are in r5 and r4
-// (original r4 and r5), and the three wait loops compare the volatile word with its register as cmp reg, t
-// (original cmp t, reg).
+static inline u32 func_0214f83c_inline(void) {
+    return *(vu32 *) 0x27ffc3c;
+}
+
 void func_0214f83c(u32 a, u32 b, u32 c) {
     u32 v0;
     u32 v1;
@@ -326,8 +327,8 @@ void func_0214f83c(u32 a, u32 b, u32 c) {
     u32 d;
     u32 k0;
     u32 k1;
+    u32 g;
     u16 saved;
-    u16 g;
     u16 tmp;
 
     d = 0;
@@ -355,18 +356,18 @@ void func_0214f83c(u32 a, u32 b, u32 c) {
     v2 = func_0214f710();
     func_0214faac(&w0, &w1);
     func_0214fba8(2, 0);
-    t = *(vu32 *) 0x27ffc3c;
-    while (*(vu32 *) 0x27ffc3c == t) {
+    t = func_0214f83c_inline();
+    while (t == func_0214f83c_inline()) {
     }
-    t = *(vu32 *) 0x27ffc3c;
+    t = func_0214f83c_inline();
     *(vu32 *) 0x4000000 &= ~0x30000;
     *(vu32 *) 0x4001000 &= ~0x10000;
-    while (*(vu32 *) 0x27ffc3c == t) {
+    while (t == func_0214f83c_inline()) {
     }
-    t = *(vu32 *) 0x27ffc3c;
-    while (*(vu32 *) 0x27ffc3c == t) {
+    t = func_0214f83c_inline();
+    while (t == func_0214f83c_inline()) {
     }
-    g = a | (w0 << 5) | (w1 << 6);
+    g = (u16) (a | (w0 << 5) | (w1 << 6));
     while (func_0214fefc(g, (u16) (b | c)) != 0) {
     }
     func_0200fd04();

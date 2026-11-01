@@ -88,7 +88,6 @@ u32 func_02151da8(void) {
     return 0;
 }
 
-// non-matching: same instructions except `cmp r1, r0` instead of `cmp r0, r1` at the two checksum compares (2 words)
 s32 func_02151b38(u8 *a) {
     u32 b[4];
     s32 c;
@@ -112,7 +111,8 @@ s32 func_02151b38(u8 *a) {
     e = a;
     f = b;
     do {
-        if (*(u16 *) (d + 0xfe) == func_020205e8((u16 *) (a + 0x500), d, 0xfe)) {
+        k = func_020205e8((u16 *) (a + 0x500), d, 0xfe);
+        if (k == *(u16 *) (d + 0xfe)) {
             if (func_02151a64(e) != 0) {
                 *f = 1;
             }
@@ -122,7 +122,8 @@ s32 func_02151b38(u8 *a) {
         f++;
         c++;
     } while (c < 3);
-    if (*(u16 *) (a + 0x3fe) == func_020205e8((u16 *) (a + 0x500), a + 0x300, 0xfe)) {
+    k = func_020205e8((u16 *) (a + 0x500), a + 0x300, 0xfe);
+    if (k == *(u16 *) (a + 0x3fe)) {
         b[3] = 1;
     }
     if (b[0] != 0 && b[1] != 0 && b[2] != 0 && b[3] != 0) {

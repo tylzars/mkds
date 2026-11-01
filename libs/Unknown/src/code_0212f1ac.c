@@ -145,69 +145,71 @@ void func_0212f3f8(s16 *a, s16 *b, u32 n, Unk0212f1f8 *d) {
     }
 }
 
-// non-matching: 78 words differ, register assignment only (m in r10 not r6, the block offset in r9 not ip, the clamp
-// constants in r2/ip not r8/r9); the instruction sequence is the same
 // Adds the pairs in mUnk_18 of d to a and b in blocks of 24 entries with 16-bit clamping and stores new pairs.
 void func_0212f1f8(s16 *a, s16 *b, u32 n, Unk0212f1f8 *d) {
     u32 m;
-    u32 off;
     u32 r;
-    u32 i;
+    s32 i;
     s32 j;
     s32 x;
     s32 y;
+    u32 off;
     s32 c;
     s32 e;
 
     m = n >> 1;
     off = 0;
     while (m > off + 24) {
-        for (j = 0; j < 24; j++) {
-            x = a[off + j] + d->mUnk_18.p[j].mUnk_00;
-            y = b[off + j] + d->mUnk_18.p[j].mUnk_04;
+        for (i = 0; i < 24; i++) {
+            x = a[i + off];
+            x += d->mUnk_18.p[i].mUnk_00;
+            y = b[i + off];
+            y += d->mUnk_18.p[i].mUnk_04;
             c = x;
             if (x < -32768) {
                 c = -32768;
             } else if (x > 32767) {
                 c = 32767;
             }
-            a[off + j] = c;
+            a[i + off] = c;
             e = y;
             if (y < -32768) {
                 e = -32768;
             } else if (y > 32767) {
                 e = 32767;
             }
-            b[off + j] = e;
-            d->mUnk_18.p[j].mUnk_00 = (y + 1) >> 2;
-            d->mUnk_18.p[j].mUnk_04 = (x + 1) >> 2;
+            b[i + off] = e;
+            d->mUnk_18.p[i].mUnk_00 = (y + 1) >> 2;
+            d->mUnk_18.p[i].mUnk_04 = (x + 1) >> 2;
         }
         off += 24;
     }
     r = m - off;
     for (i = 0; i < r; i++) {
-        x = a[off + i] + d->mUnk_18.p[i].mUnk_00;
-        y = b[off + i] + d->mUnk_18.p[i].mUnk_04;
-        if (x < -32768) {
-            x = -32768;
-        } else if (x > 32767) {
-            x = 32767;
+        j = a[i + off];
+        j += d->mUnk_18.p[i].mUnk_00;
+        y = b[i + off];
+        y += d->mUnk_18.p[i].mUnk_04;
+        if (j < -32768) {
+            j = -32768;
+        } else if (j > 32767) {
+            j = 32767;
         }
-        a[off + i] = x;
+        a[i + off] = j;
         if (y < -32768) {
             y = -32768;
         } else if (y > 32767) {
             y = 32767;
         }
-        b[off + i] = y;
+        b[i + off] = y;
     }
     for (i = 0; i < 24 - r; i++) {
-        d->mUnk_18.p[i].mUnk_00 = d->mUnk_18.p[r + i].mUnk_00;
-        d->mUnk_18.p[i].mUnk_04 = d->mUnk_18.p[r + i].mUnk_04;
+        d->mUnk_18.p[i].mUnk_00 = (d->mUnk_18.p + r)[i].mUnk_00;
+        d->mUnk_18.p[i].mUnk_04 = (d->mUnk_18.p + r)[i].mUnk_04;
     }
     for (i = 0; i < r; i++) {
-        d->mUnk_18.p[24 + i - r].mUnk_00 = (b[off + i] + 1) >> 2;
-        d->mUnk_18.p[24 + i - r].mUnk_04 = (a[off + i] + 1) >> 2;
+        d->mUnk_18.p[24 + i - r].mUnk_00 = (b[i + off] + 1) >> 2;
+        d->mUnk_18.p[24 + i - r].mUnk_04 = (a[i + off] + 1) >> 2;
     }
 }
 

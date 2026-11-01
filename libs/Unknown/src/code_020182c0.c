@@ -15,15 +15,12 @@ u32 func_020184a0(Unk02018344 *a) {
     return a->mUnk_06 == 0x100 ? 1 : 0;
 }
 
-// non-matching: the original adds 8 to the pointer in r4 in place and compares the three words in the order of the pool
-// loads r3, ip, lr with the three assignments after beq blocks; here the add is recomputed into r1 at each use and the
-// loop counter and pointer swap r1 and r2 (26 words differ, same size).
 u32 func_02018344(Unk020182c0 *a, const u8 *b, Unk02018344 *c) {
     u8 *p6;
     u8 *p5;
     u8 *p4;
-    u8 *p;
     s32 i;
+    u8 *p;
     s32 n;
 
     p6 = 0;
@@ -51,7 +48,7 @@ u32 func_02018344(Unk020182c0 *a, const u8 *b, Unk02018344 *c) {
     func_02004238(&a->mUnk_00);
     a->mUnk_5c = c;
     a->mUnk_60 = p6;
-    p4 += 8;
+    p4 = (u8 *) p4 + 8;
     a->mUnk_64 = p4;
     if (func_02004128(&a->mUnk_00, b, func_0213a434(b)) == 0) {
         return 0;

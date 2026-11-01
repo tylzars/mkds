@@ -11,13 +11,10 @@ void func_02016414(u32 a, s32 b) {
     }
 }
 
-// non-matching: 3 extra instructions. The pool constant 0x7fff8 and the result p land in r3 and r2 (the original
-// keeps the constant in ip and p in r3), and the two failure branches of the c != 1 arm go to separate blocks (the
-// original shares one block).
 u32 func_020162d4(u32 a, s32 b, s32 c) {
-    u32 p;
-    u32 e;
+    u32 p = 0;
     u32 r;
+    u32 e;
     u32 pad;
     u32 end;
     if (a == 0) {
@@ -28,7 +25,6 @@ u32 func_020162d4(u32 a, s32 b, s32 c) {
     if (a >= 0x7fff8) {
         return 0;
     }
-    p = 0;
     if (c == 1) {
         e = data_02173214.mUnk_00;
         if (b != 0) {
@@ -40,41 +36,41 @@ u32 func_020162d4(u32 a, s32 b, s32 c) {
         if (data_02173214.mUnk_04 - e >= r) {
             end = e + r;
             if (b != 0 && end > 0x10000) {
-                e = 0;
+                end = 0;
             } else {
                 p = e + pad;
-                e = 1;
+                end = 1;
                 data_02173214.mUnk_00 += r;
             }
         } else {
-            e = 0;
+            end = 0;
         }
     } else {
         e = data_02173214.mUnk_04;
         if (e >= a) {
+            r = e - a;
             if (b != 0) {
-                pad = (e - a) & 7;
+                pad = r & 7;
             } else {
-                pad = (e - a) & 0xf;
+                pad = r & 0xf;
             }
             r = a + pad;
             if (e - data_02173214.mUnk_00 >= r) {
                 if (b != 0 && e > 0x10000) {
-                    e = 0;
+                    end = 0;
                 } else {
-                    e = 1;
+                    end = 1;
                     data_02173214.mUnk_04 -= r;
                     p = data_02173214.mUnk_04;
                 }
-            } else {
-                e = 0;
+                goto done;
             }
-        } else {
-            e = 0;
         }
+        end = 0;
     }
-    if (e != 0) {
-        return ((p >> 3) & 0xffff) | ((a >> 3) << 16);
+done:
+    if (end != 0) {
+        return ((a >> 3) << 16) | ((p >> 3) & 0xffff);
     }
     return 0;
 }
