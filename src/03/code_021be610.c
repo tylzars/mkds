@@ -447,7 +447,7 @@ void func_ov003_021beef8(int param_1) {
     a = func_ov003_021d283c(0xc, 4);
     data_ov003_021da104 = a;
     a->mUnk_08 = param_1;
-    data_ov003_021da104->mUnk_04 = (Unk021da104_04 *) func_ov003_021d1c18(0, 0x47);
+    data_ov003_021da104->mUnk_04 = func_ov003_021d1c18(0, 0x47);
     b = data_ov003_021da104->mUnk_04;
     b->mUnk_04 = (b->mUnk_04 & 0xfffff3ff) | 0x400;
     b = data_ov003_021da104->mUnk_04;

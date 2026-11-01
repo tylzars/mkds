@@ -119,7 +119,7 @@ void func_ov003_021ce408(u32 a) {
     d = data_ov003_021d66a8;
     c = data_ov003_021d6698 + a * 5;
     for (; i < 5; i++) {
-        data_ov003_021da27c->mUnk_00[i] = (Unk021d1770 *) func_ov003_021d1be4(1, *b, 1);
+        data_ov003_021da27c->mUnk_00[i] = func_ov003_021d1be4(1, *b, 1);
         func_ov003_021d1790(data_ov003_021da27c->mUnk_00[i], -1, 0);
         func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, -0x2a, d->mUnk_02);
         func_ov003_021d1890(data_ov003_021da27c->mUnk_00[i], -1, 0, *c);

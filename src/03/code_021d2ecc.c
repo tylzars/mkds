@@ -2,8 +2,8 @@
 #include "03/code_021d2fa0.h"
 #include "03/code_021d27d8.h"
 
-int func_ov003_021d2eec(int param_1, int param_2) {
-    return (int) &data_ov003_021da2f0->mUnk_000[param_1][param_2 * 8];
+Unk021d1770_08 *func_ov003_021d2eec(int param_1, int param_2) {
+    return (Unk021d1770_08 *) (&data_ov003_021da2f0->mUnk_000[param_1][param_2 * 8]);
 }
 
 void *func_ov003_021d2ecc(void) {

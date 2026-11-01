@@ -85,7 +85,7 @@ u32 func_02102eb8(Unk02102674 *p, s32 param_1) {
     s32 b2;
 
     a = data_021759c0->mUnk_62;
-    s = (Unk020748a8 *) func_020748a8();
+    s = func_020748a8();
     func_020f82a4(0);
     if (a < 0) {
         b2 = (u16) (p->mUnk_000.mUnk_78 & ~0xff00);

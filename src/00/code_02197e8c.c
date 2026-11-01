@@ -30,7 +30,7 @@ s32 func_ov000_02198098(Unk02197fe8 *a, s32 b, s32 c, void *d, s32 e) {
     if (a == 0) {
         return 1;
     }
-    f = (Unk02197fe8Entry *) func_ov000_0218dbf8(a->mUnk_98, b);
+    f = func_ov000_0218dbf8(a->mUnk_98, b);
     if (f == 0) {
         return 1;
     }
@@ -58,7 +58,7 @@ s32 func_ov000_02197fe8(Unk02197fe8 *a, s32 b, void *c, s32 d, s32 e) {
     if (a == 0) {
         return 1;
     }
-    f = (Unk02197fe8Entry *) func_ov000_0218dbf8(a->mUnk_9c, b);
+    f = func_ov000_0218dbf8(a->mUnk_9c, b);
     if (f == 0) {
         return 1;
     }

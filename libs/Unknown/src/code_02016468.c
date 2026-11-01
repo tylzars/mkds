@@ -27,7 +27,7 @@ s32 func_02016468(u32 a, u32 b, void *c, u32 d) {
     if (func_02016960(p) != 0) {
         return 0;
     }
-    e = (Unk02016638 *) func_020165b8((u32) p);
+    e = func_020165b8((u32) p);
     e->mUnk_00 = a;
     e->mUnk_04 = (u32) c;
     e->mUnk_08 = b;

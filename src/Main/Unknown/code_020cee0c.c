@@ -19,7 +19,7 @@ void func_020cee5c(void) {
     n = 8;
     if (data_0217b488->mUnk_12c == 0) {
         if (func_020cef08() == 1 || func_020cef08() == 2) {
-            p = (Unk020f41c4_B *) func_020ceeec();
+            p = func_020ceeec();
             for (i = 0; i < 8; i++) {
                 a[i] = i;
             }

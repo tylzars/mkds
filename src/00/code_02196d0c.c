@@ -24,7 +24,7 @@ s32 func_ov000_02196d84(s32 a, s32 b, s32 c) {
     d = 0;
     if ((s32) func_ov000_0218dc44((u32 *) data_ov000_021b4e5c) > 0) {
         do {
-            e = (Unk02196d84 *) func_ov000_0218dbf8(data_ov000_021b4e5c, d);
+            e = func_ov000_0218dbf8(data_ov000_021b4e5c, d);
             if (e->mUnk_00 == a && e->mUnk_04 == b && e->mUnk_08 == c) {
                 return d;
             }
@@ -40,7 +40,7 @@ void func_ov000_02196d0c(u8 *param_1, s32 param_2) {
     const s8 *c = func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3df8);
     s32 d = func_ov000_02196d84(0, b, 0);
     if (d != -1) {
-        Unk02196d84 *e = (Unk02196d84 *) func_ov000_0218dbf8(data_ov000_021b4e5c, d);
+        Unk02196d84 *e = func_ov000_0218dbf8(data_ov000_021b4e5c, d);
         e->mUnk_08 = a;
         func_ov000_021969d8(d, a > 0 ? 1 : 0, 0, (const u8 *) c, 0);
     }

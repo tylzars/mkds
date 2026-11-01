@@ -15,7 +15,7 @@
 #include "code_02134d30.h"
 
 s32 func_ov000_021a3264(u32 a, void *b, s32 c) {
-    Unk021a2d68 *e = (Unk021a2d68 *) func_ov000_021a2fdc(a);
+    Unk021a2d68 *e = func_ov000_021a2fdc(a);
     if (func_ov000_021a2fb4(a) == 2) {
         return 0;
     }
@@ -45,7 +45,7 @@ s32 func_ov000_021a32a0(u32 a, void *b, s32 c) {
 }
 
 s32 func_ov000_021a3310(u16 a, u32 b, u8 *c, s32 d) {
-    Unk021a2d68 *e = (Unk021a2d68 *) func_ov000_021a2fdc(b);
+    Unk021a2d68 *e = func_ov000_021a2fdc(b);
     u32 t[2];
     s32 n;
     if (func_ov000_0219c39c() != 0) {

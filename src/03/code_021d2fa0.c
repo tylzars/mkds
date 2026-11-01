@@ -53,7 +53,7 @@ Unk021d309c *func_ov003_021d309c(u32 a, s32 b, s32 c, u32 *d) {
     s32 l;
     u32 i;
 
-    e = (Unk021d309c *) func_ov003_021d1cd4(data_ov003_021da2f4[a].mUnk_19c);
+    e = func_ov003_021d1cd4(data_ov003_021da2f4[a].mUnk_19c);
     l = (b + 3 & ~3) >> 2;
     e->mUnk_0a = l;
     i = func_0200ca9c(1);

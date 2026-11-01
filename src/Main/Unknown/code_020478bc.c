@@ -15,12 +15,12 @@ void *func_02047950(const char *param_1) {
     int v1;
     v1 = func_0205e0a0();
     if (v1 == 3) {
-        return (void *) func_020478bc(param_1);
+        return func_020478bc(param_1);
     }
     return func_02047780(param_1);
 }
 
-int func_020478bc(const char *param_1) {
+void *func_020478bc(const char *param_1) {
     int v1;
     int v2;
     v2 = 0;
@@ -38,7 +38,7 @@ int func_020478bc(const char *param_1) {
             v2 = func_02047b30(data_02164e04[8], param_1);
         }
     }
-    return v2;
+    return (void *) v2;
 }
 
 #pragma thumb off

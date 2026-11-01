@@ -21,7 +21,7 @@ void func_ov003_021c3dd4(void) {
     func_ov003_021bf86c(0x10);
     func_ov003_021cdcf0(3);
     func_ov003_021bf43c(0x88, -1, 0);
-    data_ov003_021da1b8 = (Unk021da104_04 *) func_ov003_021d1c18(0, 0x5b);
+    data_ov003_021da1b8 = func_ov003_021d1c18(0, 0x5b);
     a = data_ov003_021da1b8;
     a->mUnk_00 =
         ((data_ov003_021d634c[0] & 0x1ff) << 16) | ((a->mUnk_00 & 0xfe00ff00) | (data_ov003_021d634c[1] & 0xff));

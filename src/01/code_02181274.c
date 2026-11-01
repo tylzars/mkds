@@ -113,7 +113,7 @@ void func_ov001_02181274(s32 p0, s32 p1, s32 p2) {
     void *heap;
 
     heap = func_020364e0(func_020364e8());
-    data_ov001_021a9b88 = (Unk021a9b88 *) func_02036b74(heap, 0x30, 0x20);
+    data_ov001_021a9b88 = func_02036b74(heap, 0x30, 0x20);
     data_ov001_021a9b88->mUnk_00 = p0;
     data_ov001_021a9b88->mUnk_04 = p1;
     data_ov001_021a9b88->mUnk_08 = p2;

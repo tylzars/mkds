@@ -67,16 +67,16 @@ void func_ov003_021c965c(void) {
     func_ov003_021ccea4(2, 0x55, 0xf1, 0x41, _s32_div_f(*(u16 *) &data_ov003_021da210 * 0x37, 0x91));
     data_ov003_021da214->mUnk_14 = func_ov003_021d2288(0, 1);
     for (i = 0; i < 7; i++) {
-        data_ov003_021da214->mUnk_18[i] = (Unk021da104_04 *) func_ov003_021d1c18(0, data_ov003_021d6478[0][1]);
+        data_ov003_021da214->mUnk_18[i] = func_ov003_021d1c18(0, data_ov003_021d6478[0][1]);
     }
     b += 0xe7;
     switch (*(u8 *) b) {
         case 1:
-            data_ov003_021da214->mUnk_34 = (Unk021da104_04 *) func_ov003_021d1c18(0, 0x50);
+            data_ov003_021da214->mUnk_34 = func_ov003_021d1c18(0, 0x50);
             data_ov003_021da214->mUnk_34->mUnk_04 = (data_ov003_021da214->mUnk_34->mUnk_04 & ~0xc00) | 0xc00;
             break;
         case 2:
-            data_ov003_021da214->mUnk_34 = (Unk021da104_04 *) func_ov003_021d1c18(0, 0x51);
+            data_ov003_021da214->mUnk_34 = func_ov003_021d1c18(0, 0x51);
             data_ov003_021da214->mUnk_34->mUnk_04 = (data_ov003_021da214->mUnk_34->mUnk_04 & ~0xc00) | 0xc00;
             break;
     }

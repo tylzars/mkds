@@ -72,7 +72,7 @@ void func_0206390c(Unk0206390c *a) {
     if (k != ((a->mUnk_08 & 0x10) != 0 ? a->mUnk_ae : -1)) {
         return;
     }
-    i = (Unk02012f58 *) func_0206182c();
+    i = func_0206182c();
     func_02012f58(&d, c);
     func_0214755c(i, &e);
     func_0214733c(&d, &e, &d);

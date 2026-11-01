@@ -108,10 +108,10 @@ u32 func_ov000_02188868(Unk02188868 *p) {
     z->mUnk_09 = 1;
     z->mUnk_16 = 1;
     z->mUnk_08 = 1;
-    data_ov000_021b4d00 = (Unk02188408 *) func_ov000_021886c4(0x10, 0xd18);
-    data_ov000_021b4d04 = (void *) func_ov000_021886c4(2, 0x2300);
-    data_ov000_021b4d08 = (void *) func_ov000_021886c4(4, 0x58);
-    data_ov000_021b4d0c = (Unk02188114 *) func_ov000_021886c4(8, 0xc);
+    data_ov000_021b4d00 = func_ov000_021886c4(0x10, 0xd18);
+    data_ov000_021b4d04 = func_ov000_021886c4(2, 0x2300);
+    data_ov000_021b4d08 = func_ov000_021886c4(4, 0x58);
+    data_ov000_021b4d0c = func_ov000_021886c4(8, 0xc);
     func_0214d018_inline(data_ov000_021b4d00, 0xd18);
     func_0214d018_inline(data_ov000_021b4d04, 0x2300);
     func_0214d018_inline(data_ov000_021b4d08, 0x58);

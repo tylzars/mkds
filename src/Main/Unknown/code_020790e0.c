@@ -49,7 +49,7 @@ void func_0207913c(void *a, const void *b, void **c) {
 
 void func_0207916c(void *a) {
     void *v4 = func_02047950("character/common/KillerItem.nsbmd");
-    Unk020136f0 *v6 = (Unk020136f0 *) func_020478bc("character/common/KillerItem.nsbtx");
+    Unk020136f0 *v6 = func_020478bc("character/common/KillerItem.nsbtx");
     void *v7 = func_02047950("character/common/KillerItem_s.nsbmd");
     void *v8;
     func_0207a14c(func_02084b2c(a, &data_0217ad00->mUnk_02c, v4, v6), 0);
@@ -78,7 +78,7 @@ void func_0207926c(Unk0206bcb0_590 *a, void *b) {
     Unk0201290c *v4;
     Unk020136f0 *v8;
     v7 = func_02047950(func_02088574(v6, a->mUnk_020->mUnk_00));
-    v8 = (Unk020136f0 *) func_020478bc(func_02088518(v6, a->mUnk_020->mUnk_00));
+    v8 = func_020478bc(func_02088518(v6, a->mUnk_020->mUnk_00));
     a->mUnk_018 = func_02036bec(b, 0x6c);
     v4 = func_02084b2c(b, a->mUnk_018, v7, v8);
     func_020849c0(a->mUnk_018, 3);
@@ -195,7 +195,7 @@ void func_020794bc(Unk0206bcb0_590 *a, void *b, s32 c) {
     Unk0201290c *r4;
     s32 i;
     s = func_02047950(func_0208867c(v7));
-    t = (Unk020136f0 *) func_020478bc(func_020885d0(v7));
+    t = func_020478bc(func_020885d0(v7));
     a->mUnk_014 = func_02036bec(b, 0x6c);
     r4 = func_02084b2c(b, a->mUnk_014, s, t);
     func_020849c0(a->mUnk_014, 3);
@@ -218,7 +218,7 @@ void func_0207954c(Unk0206bcb0_590 *a, void *b, s32 c) {
     void *s;
     e8 = (u16) a->mUnk_000;
     v7 = func_02047950(func_020887d8(e8, c));
-    v10 = (Unk020136f0 *) func_020478bc(func_02088728(e8, c));
+    v10 = func_020478bc(func_02088728(e8, c));
     a->mUnk_010 = func_02036bec(b, 0x6c);
     p = func_02084b2c(b, a->mUnk_010, v7, v10);
     func_020849c0(a->mUnk_010, 3);

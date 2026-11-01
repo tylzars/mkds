@@ -28,7 +28,7 @@ u32 func_ov000_0219a28c(Unk02197e8c *a, Unk02197fe8 **b, u32 c, u32 d) {
     if (func_ov000_0219a5b0(a, c, d) != 0) {
         return 5;
     }
-    e = (Unk02197fe8 *) func_ov000_0219a3e8();
+    e = func_ov000_0219a3e8();
     if (e != 0) {
         func_02134de0(e, 0, 0xa0);
         e->mUnk_00 = c;

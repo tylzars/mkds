@@ -331,7 +331,7 @@ void func_02046024(s32 a) {
                 s32 z;
                 u8 w;
                 u8 x;
-                g = (Unk020f41c4_B *) func_0204aa60();
+                g = func_0204aa60();
                 c = 0;
                 m = f != 0 ? 2 : 8;
                 t = f != 0 ? data_usa_021540c0 : data_usa_02154108;
@@ -361,7 +361,7 @@ void func_02046024(s32 a) {
                 u32 k;
                 u32 z;
                 Unk020f41c4_B *g;
-                g = (Unk020f41c4_B *) func_0204aa60();
+                g = func_0204aa60();
                 n = f != 0 ? 3 : 6;
                 t = f != 0 ? data_usa_021540c8 : data_usa_021540d4;
                 for (k = 0; k < n; k++) {

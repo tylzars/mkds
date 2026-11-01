@@ -4,8 +4,8 @@ u32 func_020e6b48(void) {
     return ((u32) data_0217b860);
 }
 
-u32 func_020e6b38(void) {
-    return ((u32) data_0217b848);
+void *func_020e6b38(void) {
+    return data_0217b848;
 }
 
 u32 func_020e6b28(void) {

@@ -84,7 +84,7 @@ void func_02042064(void *a) {
             d = func_02047974("/course_map.nkm");
             break;
     }
-    p = (Unk02175620 *) func_020431bc((u32) a);
+    p = func_020431bc((u32) a);
     data_02175620 = p;
     p->mUnk_10c = d->mUnk_04;
     q = d->mUnk_08;

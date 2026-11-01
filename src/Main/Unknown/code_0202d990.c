@@ -42,7 +42,7 @@ void func_0202daa4(s32 a) {
     s32 x;
     if (func_0202dd80(a) == 0) {
         x = data_02174e44->mUnk_814[a];
-        func_0205798c(x, (Unk0217aa08_14 *) func_0202ddec());
+        func_0205798c(x, func_0202ddec());
     } else {
         x = data_02174e44->mUnk_894[a - func_0202ddb0()];
         func_020578fc((u8) x, (Unk0217aa08_14 *) func_0202ddd8());

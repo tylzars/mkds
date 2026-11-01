@@ -73,7 +73,7 @@ u16 func_020b6368(void) {
             if (func_020b4df8() == 2) {
                 p = func_02061808();
             } else {
-                p = (Unk020748a8 *) func_020748a8();
+                p = func_020748a8();
             }
             a = func_02148714(p->mUnk_030[8], p->mUnk_030[2]);
             r = (0x14000 - a) % 0x10000;

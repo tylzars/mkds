@@ -215,7 +215,7 @@ void func_02044060(u32 a) {
         data_0217aa08->mUnk_14->mUnk_08_0 = 0;
     }
     if (func_0203b018(a, v1, 0x80) != 0) {
-        p = (Unk0217aa08_14 *) func_02056284((u32) v1);
+        p = func_02056284((u32) v1);
     }
     if (p != 0) {
         return;

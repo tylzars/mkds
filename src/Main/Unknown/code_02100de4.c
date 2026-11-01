@@ -520,7 +520,7 @@ void func_02101178(Unk02101c84 *p) {
     int i;
 
     v = &p->mUnk_16c;
-    g = (Unk02061808 *) func_02061808();
+    g = func_02061808();
     if (!(p->mUnk_000.mUnk_74 & 0x8000000)) {
         o = data_021759c0;
         f = (o->mUnk_08 == 2) ? func_02101d90 : func_02101f7c;

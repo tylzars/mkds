@@ -64,7 +64,7 @@ void func_ov000_021a2d68(int a, void *b, s32 c) {
 }
 
 void func_ov000_021a2d38(u32 a, void *b, s32 c) {
-    Unk021a2d68 *e = (Unk021a2d68 *) func_ov000_021a2fdc(a);
+    Unk021a2d68 *e = func_ov000_021a2fdc(a);
     e->mUnk_1d = e->mUnk_1e;
     switch (e->mUnk_22) {
         case 2:

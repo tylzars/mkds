@@ -10,7 +10,7 @@ Unk021d34e4 *func_ov003_021d34e4(u32 a, void (*b)(Unk021d34e4 *a, u32 b), u32 c,
     Unk021d34e4 *g;
     u32 h;
 
-    f = (Unk021d34e4 *) func_ov003_021d1cd4((Unk021d1d88 *) data_ov003_021da32c[a].mUnk_00);
+    f = func_ov003_021d1cd4((Unk021d1d88 *) data_ov003_021da32c[a].mUnk_00);
     f->mUnk_08 = b;
     f->mUnk_0c = c;
     f->mUnk_10 = d;

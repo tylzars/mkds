@@ -21,7 +21,7 @@ void func_ov003_021c6e38(void) {
     }
     func_ov003_021bf5ec(2);
     data_ov003_021da1f8->mUnk_00 = func_ov003_021d2288(0, 0);
-    data_ov003_021da1f8->mUnk_04 = (Unk021da1f8_04 *) func_ov003_021d1c18(0, 0x3e);
+    data_ov003_021da1f8->mUnk_04 = func_ov003_021d1c18(0, 0x3e);
     data_ov003_021da1f8->mUnk_04->mUnk_04 = (data_ov003_021da1f8->mUnk_04->mUnk_04 & 0xfffff3ff) | 0xc00;
     func_ov003_021c6914();
     func_ov003_021c696c();

@@ -35,7 +35,7 @@ void func_0210298c(Unk02102674 *p) {
     s32 n;
 
     q = p->mUnk_12c;
-    s = (Unk020748a8 *) func_020748a8();
+    s = func_020748a8();
     a2 = p->mUnk_000.mUnk_11c;
     if (a2 == 0x3f) {
         func_021031f4(p);

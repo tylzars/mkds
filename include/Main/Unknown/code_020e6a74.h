@@ -8,5 +8,5 @@ void func_020e6a74(void);
 void func_020e6ab8(Unk020e6488 *p0);
 unsigned int func_020e6b14(void);
 unsigned int func_020e6b28(void);
-unsigned int func_020e6b38(void);
+void *func_020e6b38(void);
 unsigned int func_020e6b48(void);

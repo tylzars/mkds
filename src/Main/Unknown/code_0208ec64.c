@@ -3,7 +3,7 @@
 
 s32 func_0208ec64(u32 param_1) {
     Unk0208ec64 *p;
-    p = (Unk0208ec64 *) func_020172d8(&data_0217b08c->mUnk_0c, 0);
+    p = func_020172d8(&data_0217b08c->mUnk_0c, 0);
     if (p != 0) {
         p->mUnk_14 = param_1;
         p->mUnk_18 = 0;

@@ -22,7 +22,7 @@ void func_0202294c(Unk02022030 *a) {
     if (((Unk02022188 *) a->mUnk_00)->mUnk_04 == 0) {
         return;
     }
-    r = (Unk020229c8 *) func_020222e0((u32) a);
+    r = func_020222e0((u32) a);
     h = a->mUnk_30;
     a->mUnk_2c = func_02021f1c(h, r->mUnk_00);
     m = a->mUnk_18->mUnk_04 & 0xff;

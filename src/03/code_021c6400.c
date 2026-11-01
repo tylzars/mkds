@@ -21,7 +21,7 @@
 #include "code_0214b824.h"
 
 static inline Unk021da104_04 *func_ov003_021c6400_inline(u32 a, u32 b) {
-    return (Unk021da104_04 *) func_ov003_021d1c18(a, b);
+    return func_ov003_021d1c18(a, b);
 }
 
 // non-matching: same size; the original sets the byte offset register (adds r4, r5, #0) before loading the two table

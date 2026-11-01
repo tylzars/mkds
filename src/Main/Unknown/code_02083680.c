@@ -74,7 +74,7 @@ void func_02083680(Unk0201ca6c *p, s32 a) {
     if (a != 0) {
         return;
     }
-    g = (Unk020748a8 *) func_020748a8();
+    g = func_020748a8();
     q = p->mUnk_94;
     if (func_02061818() != 0 || (p->mUnk_24.mUnk_00_1 != 0 && (p->mUnk_98 = p->mUnk_98 + 1, p->mUnk_98 > 5))) {
         p->mUnk_24.mUnk_00_0 = 1;

@@ -570,7 +570,7 @@ void func_020f02c0(Unk027e00cc *q, s32 a, s32 *b) {
     q->mUnk_1c = 0;
     q->mUnk_20 = data_0217bc34[a].mUnk_04;
     for (i = 0; i < n; i++) {
-        q->mUnk_04[i] = (Unk020f41c4_A *) func_02036bec(v, s);
+        q->mUnk_04[i] = func_02036bec(v, s);
         func_020f8d9c((s32) q->mUnk_04[i], k, a);
         k++;
         q->mUnk_04[i]->mUnk_4c = i;

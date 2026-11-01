@@ -9,14 +9,14 @@ void func_ov000_021886fc(int param_1, u32 param_2) {
 
 // non-matching: register allocation only, 6 instructions; first at +0x10: original `ldrb r0, [r2, #0x8]`, ours `ldrb
 // r1, [r2, #0x8]`
-u32 func_ov000_021886c4(u8 param_1, u32 param_2) {
+void *func_ov000_021886c4(u8 param_1, u32 param_2) {
     u32 *v1;
     u32 v2;
     v1 = (u32 *) func_ov000_02188584(1);
     if ((*(u8 *) (v1 + 2) & param_1) == 0) {
         *(u8 *) (v1 + 2) = *(u8 *) (v1 + 2) | (u8) param_1;
         v2 = (*(UnkWordFunc *) *v1)(param_1, param_2);
-        return v2;
+        return (void *) v2;
     }
     return 0;
 }

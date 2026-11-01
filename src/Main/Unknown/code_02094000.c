@@ -45,7 +45,7 @@ void func_02094000(Vec3 *a) {
     o->mUnk_ac = 0;
     o->mUnk_a0 = *a;
     if (func_02061818() == 0) {
-        g = (Unk020748a8 *) func_020748a8();
+        g = func_020748a8();
         e = func_02094000_inline(&data_0217561c->mUnk_498, 0x30);
         c = (u16) (func_02094000_inline(&data_0217561c->mUnk_498, 0) >> 20);
         b = func_02094000_inline(&data_0217561c->mUnk_498, 0x5555);

@@ -35,7 +35,7 @@ int func_ov000_02198658(Unk02197fe8 *a, u32 b) {
     Unk02198af4 *p;
     n = func_ov000_0218dc44((u32 *) a->mUnk_60);
     for (i = 0; i < n; i++) {
-        p = (Unk02198af4 *) func_ov000_0218dbf8(a->mUnk_60, i);
+        p = func_ov000_0218dbf8(a->mUnk_60, i);
         if (b - p->mUnk_0c > 1000) {
             if (func_ov000_02198af4(a, p) == 0) {
                 return 0;

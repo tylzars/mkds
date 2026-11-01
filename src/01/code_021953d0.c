@@ -166,7 +166,7 @@ void func_ov001_021953d0(void) {
     data_ov001_021a9bd8->mUnk_34 = func_0204799c(data_0216ccd8);
     data_ov001_021a9bd8->mUnk_38 = (void *) func_020b4018(0);
     data_ov001_021a9bd8->mUnk_3c = (void *) func_020b400c(0);
-    data_ov001_021a9bd8->mUnk_40 = (Unk021a9bd8_40 *) func_020b4030(0);
+    data_ov001_021a9bd8->mUnk_40 = func_020b4030(0);
     data_ov001_021a9bd8->mUnk_44 = (void *) func_020b4000(0);
     func_020b4934(&l4, func_0204799c(data_0216cc6c));
     func_020b4a44(&l8, func_0204799c(data_0216ccc8));

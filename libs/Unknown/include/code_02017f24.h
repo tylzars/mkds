@@ -35,5 +35,5 @@ Unk02017f24 *func_020180e0(void *a, u32 b, u16 c);
 void func_0201812c(Unk02017f24 *a);
 void func_0201815c(Unk02017f24 *a);
 u32 func_02018174(Unk02018174 *a, u32 b, u32 c);
-u32 func_020181f0(Unk02018174 *a, u32 b, u32 c);
+void *func_020181f0(Unk02018174 *a, u32 b, u32 c);
 Unk02017f24 *func_02018270(Unk02017f24 *a, u32 b, u16 c);

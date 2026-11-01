@@ -40,7 +40,7 @@ void func_ov000_021a3030(void) {
         for (i = 0; i < n; i++) {
             d = l[i];
             if (d != func_ov000_0219bb50() && func_ov000_021a2fc8(d) == 1) {
-                e = (Unk021a2d68 *) func_ov000_021a2fdc(d);
+                e = func_ov000_021a2fdc(d);
                 m = e->mUnk_14 - e->mUnk_0c;
                 k = data_ov000_021b5dd0->mUnk_610;
                 if (m <= k) {
@@ -62,7 +62,7 @@ void func_ov000_021a3030(void) {
                 }
             }
             if (func_ov000_0219bac8(d) != 0) {
-                e = (Unk021a2d68 *) func_ov000_021a2fdc(d);
+                e = func_ov000_021a2fdc(d);
                 if (data_ov000_021b5dd0->mUnk_608 != 0 && e->mUnk_2c != 0) {
                     t = func_0200f5ac();
                     if ((u32) _ll_udiv((t - e->mUnk_24) << 6, 0x82ea) > e->mUnk_2c) {

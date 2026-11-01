@@ -2,8 +2,8 @@
 
 #pragma thumb on
 
-u32 func_0202ddec(void) {
-    return ((u32) data_02174e44->mUnk_8d0);
+void *func_0202ddec(void) {
+    return data_02174e44->mUnk_8d0;
 }
 
 u32 func_0202ddd8(void) {

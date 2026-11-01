@@ -225,7 +225,7 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
             }
             if (i == 0 && d->mUnk_04 == 0) {
                 if (func_0202dd80(data_02174e40->mUnk_0a4) == 0) {
-                    func_0203bf04((void *) func_0202ddec(), (void *) func_0202ddd8());
+                    func_0203bf04(func_0202ddec(), (void *) func_0202ddd8());
                 }
                 data_02174e40->mUnk_0b0 = 5;
             }

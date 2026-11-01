@@ -4,8 +4,8 @@ void func_020a238c(u32 p0) {
     *(u32 *) ((u8 *) (u32) (((u32) data_0217b1fc)) + 956) = p0;
 }
 
-u32 func_020a2378(void) {
-    return ((u32) data_0217b1fc->mUnk_3bc);
+Unk020a3fa8_a4 *func_020a2378(void) {
+    return data_0217b1fc->mUnk_3bc;
 }
 
 void func_020a2364(u32 p0) {

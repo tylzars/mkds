@@ -4,7 +4,7 @@
 #include "Main/Unknown/code_02022000.h"
 
 void func_ov003_021d1ffc(Unk021d1ffc *param_1, s32 param_2, s32 param_3, Unk021d1770 *param_4, s32 param_5) {
-    void *a = (void *) func_ov003_021d1974((int) param_4, 0);
+    void *a = func_ov003_021d1974((int) param_4, 0);
 
     func_ov003_021d18f0(param_4, -1, 0, 0);
     func_ov003_021d1890(param_4, -1, 0, 0xf);

@@ -17,8 +17,8 @@ void func_ov000_021a2fec(void) {
     return;
 }
 
-int func_ov000_021a2fdc(int param_1) {
-    return (int) &data_ov000_021b5dd0->mUnk_000[param_1];
+Unk021a2d68 *func_ov000_021a2fdc(int param_1) {
+    return &data_ov000_021b5dd0->mUnk_000[param_1];
 }
 
 u8 func_ov000_021a2fc8(int param_1) {

@@ -92,7 +92,7 @@ u32 func_0210ed20(u32 a, u32 b) {
             return 0;
         }
     }
-    p = (Unk0212e538 *) func_0212d454(0);
+    p = func_0212d454(0);
     x = (u32) func_0212d254(p->mUnk_00);
     for (i = 0; i < 4; i++) {
         v = p->mUnk_04[i];

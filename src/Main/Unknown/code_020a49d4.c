@@ -155,7 +155,7 @@ s32 func_020a5268(u16 a, u16 b) {
     o = func_0207a974(a);
     func_020a2378();
     if (func_020a1154(b) >= 3 || func_020a1154(a) == 0) {
-        e = (Unk020a3fa8_a4 *) func_020a2378() + a;
+        e = func_020a2378() + a;
         f = func_020a2204(a) != 0 ? e->mUnk_10[func_020a1154(a)] : 0;
         l = func_020a1154(a) != 0 ? e->mUnk_10[func_020a1154(a) - 1] : 0;
         if (func_020a1154(a) != 0 && l != 0) {
@@ -187,7 +187,7 @@ s32 func_020a5268(u16 a, u16 b) {
             return 0;
         }
     } else {
-        e = (Unk020a3fa8_a4 *) func_020a2378() + a;
+        e = func_020a2378() + a;
         f = func_020a2204(a) != 0 ? e->mUnk_10[func_020a1154(a)] : 0;
         l = func_020a1154(a) != 0 ? e->mUnk_10[func_020a1154(a) - 1] : 0;
         if (func_020a1154(a) != 0 && l != 0) {
@@ -200,7 +200,7 @@ s32 func_020a5268(u16 a, u16 b) {
             }
         }
         if (l != 0) {
-            e = (Unk020a3fa8_a4 *) func_020a2378() + b;
+            e = func_020a2378() + b;
             n = func_020a1154(b);
             e->mUnk_10[n + 1] = e->mUnk_10[func_020a1154(b)];
             e->mUnk_10[func_020a1154(b)] = l;
@@ -232,7 +232,7 @@ s32 func_020a4f54(u16 a, u16 b) {
     Unk0210b7a8 s;
     s32 n;
 
-    v1 = (Unk020a3fa8_a4 *) func_020a2378();
+    v1 = func_020a2378();
     v1 += a;
     f = func_020a2204(a) != 0 ? v1->mUnk_10[func_020a1154(a)] : 0;
     l = func_020a1154(a) != 0 ? v1->mUnk_10[func_020a1154(a) - 1] : 0;
@@ -245,7 +245,7 @@ s32 func_020a4f54(u16 a, u16 b) {
             func_020a10f0(a, -1);
         }
     }
-    v2 = (Unk020a3fa8_a4 *) func_020a2378();
+    v2 = func_020a2378();
     v2 += b;
     g = func_020a2204(b) != 0 ? v2->mUnk_10[func_020a1154(b)] : 0;
     m = func_020a1154(b) != 0 ? v2->mUnk_10[func_020a1154(b) - 1] : 0;
@@ -259,7 +259,7 @@ s32 func_020a4f54(u16 a, u16 b) {
         }
     }
     if (l != 0) {
-        v2 = (Unk020a3fa8_a4 *) func_020a2378();
+        v2 = func_020a2378();
         v2 += b;
         n = func_020a1154(b);
         v2->mUnk_10[n + 1] = v2->mUnk_10[func_020a1154(b)];
@@ -272,7 +272,7 @@ s32 func_020a4f54(u16 a, u16 b) {
         }
     }
     if (m != 0) {
-        v1 = (Unk020a3fa8_a4 *) func_020a2378();
+        v1 = func_020a2378();
         v1 += a;
         n = func_020a1154(a);
         v1->mUnk_10[n + 1] = v1->mUnk_10[func_020a1154(a)];
@@ -301,7 +301,7 @@ s32 func_020a4d94(u16 a, u16 b) {
     Unk020a2fe4 *l;
     Vec3 v;
 
-    e = (Unk020a3fa8_a4 *) func_020a2378() + a;
+    e = func_020a2378() + a;
     f = func_020a2204(a) != 0 ? e->mUnk_10[func_020a1154(a)] : 0;
     l = func_020a1154(a) != 0 ? e->mUnk_10[func_020a1154(a) - 1] : 0;
     if (func_020a1154(a) != 0 && l != 0) {
@@ -350,7 +350,7 @@ void func_020a4c58(u16 a) {
         return;
     }
     do {
-        e = (Unk020a3fa8_a4 *) func_020a2378() + a;
+        e = func_020a2378() + a;
         f = func_020a2204(a) != 0 ? e->mUnk_10[func_020a1154(a)] : 0;
         l = func_020a1154(a) != 0 ? e->mUnk_10[func_020a1154(a) - 1] : 0;
         if (func_020a1154(a) != 0 && l != 0) {
@@ -381,7 +381,7 @@ void func_020a4b70(u16 a, Vec3 *b) {
     s32 i;
     s32 n;
 
-    e = (Unk020a3fa8_a4 *) func_020a2378() + a;
+    e = func_020a2378() + a;
     if (b == 0) {
         return;
     }

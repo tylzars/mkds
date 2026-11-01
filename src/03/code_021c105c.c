@@ -80,7 +80,7 @@ void func_ov003_021c118c(Unk021d34e0 *param_1) {
     u32 a;
     s32 b;
     Unk021bf920 *p;
-    p = (Unk021bf920 *) func_ov003_021d1974((int) data_ov003_021da160->mUnk_40[0], 0);
+    p = func_ov003_021d1974((int) data_ov003_021da160->mUnk_40[0], 0);
     a = (p->mUnk_00 & 0x1ff0000) >> 16;
     b = p->mUnk_00 & 0xff;
     b = b + 0xc;
