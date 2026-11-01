@@ -16,7 +16,7 @@ void func_ov000_0219d948(void *a) {
     s32 b;
     if (data_ov000_021b5664 != 0 && func_ov000_0219c3e4() != 0 && func_ov000_0219c9c4() != 0) {
         b = func_02152520((void *) func_ov000_0219c9c4(), a);
-        if (b != 0 && b != -1 && func_ov000_0218eb9c((int *) data_ov000_021b5664->mUnk_04, b) != 0) {
+        if (b != 0 && b != -1 && func_ov000_0218eb9c(data_ov000_021b5664->mUnk_04, b) != 0) {
             func_ov000_0218eb44(data_ov000_021b5664->mUnk_04, b);
         }
     }

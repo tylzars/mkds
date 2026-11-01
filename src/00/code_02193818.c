@@ -63,8 +63,8 @@ void func_ov000_02193858(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
     func_ov000_021a3668(param_2);
 }
 
-u32 func_ov000_021938cc(int *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6, int param_7) {
-    Unk0218f960_00 *a = ((Unk0218f960 *) param_1)->mUnk_00;
+u32 func_ov000_021938cc(Unk0218f960 *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6, int param_7) {
+    Unk0218f960_00 *a = param_1->mUnk_00;
     Unk021937c0Node *b = func_ov000_021a3690(0x24);
 
     if (b == 0) {

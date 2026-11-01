@@ -127,7 +127,7 @@ void func_ov001_0218c87c(Unk0218d87c *param_1) {
     b = func_ov001_0219b4d8(data_ov001_021a7c94);
     c = func_ov001_0219b4d8(data_ov001_021a7ca8);
     if (data_021759c0->mUnk_08 == 4) {
-        src = (Unk02188950 *) func_ov001_02181b68(data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0);
+        src = func_ov001_02181b68(data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0);
     } else {
         src = 0;
     }

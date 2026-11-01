@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "code_0200e0ec.h"
+#include "00/code_021868a4.h" // Unk021868a4Entry
 
 // Three words: a function called with (name, size) that returns a block, a function called with (name, block, 0) that
 // releases it, and a word.
@@ -15,7 +16,7 @@ typedef struct Unk02188114 {
 typedef struct Unk02187490 {
     /* 000 */ u32 mUnk_00;
     /* 004 */ s32 mUnk_04;
-    /* 008 */ u8 pad_008[0x100];
+    /* 008 */ Unk021868a4Entry mUnk_08[0x20];
     /* 108 */ Unk02188114 mUnk_108;
     /* 114 */ void *mUnk_114;
     /* 118 */ void *mUnk_118;

@@ -71,7 +71,7 @@ u32 func_ov003_021be708(void *param_0, void *param_1, u32 param_2) {
         return 1;
     }
     if (data_ov003_021d8bfc == 3) {
-        if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8c1c, (Unk021a5e84_b *) data_ov003_021d8bf8,
+        if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8c1c, (Unk02188de4 *) data_ov003_021d8bf8,
                                 data_ov003_021d8c28) == 3) {
             data_ov003_021d8bfc = 8;
             func_0200fcb4(a);
@@ -243,7 +243,7 @@ void func_ov003_021bea3c(Unk021bea3c *param_0) {
                         data_ov003_021d8c50(2, 0);
                     }
                 } else if (data_ov003_021d8bfc == 8) {
-                    if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8c1c, (Unk021a5e84_b *) data_ov003_021d8bf8,
+                    if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8c1c, (Unk02188de4 *) data_ov003_021d8bf8,
                                             data_ov003_021d8c28) == 3) {
                         return;
                     }
@@ -313,7 +313,7 @@ void func_ov003_021bea3c(Unk021bea3c *param_0) {
                         data_ov003_021d8c50(2, 0);
                     }
                 } else if (data_ov003_021d8bfc == 8) {
-                    if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8c1c, (Unk021a5e84_b *) data_ov003_021d8bf8,
+                    if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8c1c, (Unk02188de4 *) data_ov003_021d8bf8,
                                             data_ov003_021d8c28) == 3) {
                         return;
                     }
@@ -353,7 +353,7 @@ void func_ov003_021bea3c(Unk021bea3c *param_0) {
                         data_ov003_021d8c50(2, 0);
                     }
                 } else if (data_ov003_021d8bfc == 8) {
-                    if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8c1c, (Unk021a5e84_b *) data_ov003_021d8bf8,
+                    if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8c1c, (Unk02188de4 *) data_ov003_021d8bf8,
                                             data_ov003_021d8c28) == 3) {
                         return;
                     }

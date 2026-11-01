@@ -181,7 +181,7 @@ int func_020f1258(int a0, int i, s32 c, u32 b) {
     if (a->mUnk_000.mUnk_000.mUnk_000.mUnk_74 & 0x10000000) {
         return 0;
     }
-    a->mUnk_228 = (Unk020ee684 *) ((u32) data_027e00c8 + i * 0x210);
+    a->mUnk_228 = &data_027e00c8[i];
     a->mUnk_22c.x = 0;
     a->mUnk_22c.y = 0;
     a->mUnk_22c.z = 0;

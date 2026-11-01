@@ -222,7 +222,7 @@ u16 func_020873e4(int a) {
     if (data_021759c0->mUnk_58 != 0) {
         return data_02155a28[data_021759c0->mUnk_68[a].mUnk_08.mUnk_04];
     }
-    if (func_02079bf0(a)->mUnk_00 == 0xc) {
+    if (func_02079bf0(a)->mUnk_000 == 0xc) {
         return func_02077f7c(a)->mUnk_04;
     }
     return data_02155a64[a];

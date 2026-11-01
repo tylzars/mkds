@@ -156,7 +156,7 @@ void func_0208f5c4(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0208f670(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    if (((Unk020ee684 *) (void *) data_027e00c8)[b->mUnk_04].mUnk_058.mUnk_008 == 3) {
+    if (data_027e00c8[b->mUnk_04].mUnk_058.mUnk_008 == 3) {
         data_0217b0ac(a, b);
     } else {
         data_0217b0a8(a, b);
@@ -241,7 +241,7 @@ void func_0208f8ac(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0208f948(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    if (((Unk020ee684 *) (void *) data_027e00c8)[b->mUnk_04].mUnk_058.mUnk_008 == 4) {
+    if (data_027e00c8[b->mUnk_04].mUnk_058.mUnk_008 == 4) {
         data_0217b090(a, b);
     } else {
         data_0217b094(a, b);
@@ -343,7 +343,7 @@ void func_0208fcac(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0208fd24(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    if (((Unk020ee684 *) (void *) data_027e00c8)[b->mUnk_04].mUnk_058.mUnk_008 == 4) {
+    if (data_027e00c8[b->mUnk_04].mUnk_058.mUnk_008 == 4) {
         data_0217b0a0(a, b);
     } else {
         data_0217b098(a, b);

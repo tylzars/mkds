@@ -108,7 +108,7 @@ void func_020708a4(Unk0206bcb0 *p) {
     if (p->mUnk_4c & 0x40) {
         s = &p->mUnk_538;
         func_0208181c(p->mUnk_74);
-        if ((p->mUnk_7c & 0x10) && ((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_008->mUnk_1a == 0) {
+        if ((p->mUnk_7c & 0x10) && p->mUnk_590->mUnk_008->mUnk_1a == 0) {
             func_02068a64(p, 2, 1);
         }
         s->mUnk_06++;

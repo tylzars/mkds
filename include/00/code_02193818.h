@@ -73,7 +73,7 @@ s32 func_ov000_0218e80c();
 
 void func_ov000_02193818(Unk0218f960 *param_1, Unk021937c0Node *param_2);
 void func_ov000_02193858(Unk0218f960 *param_1, Unk021937c0Node *param_2);
-u32 func_ov000_021938cc(int *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6, int param_7);
+u32 func_ov000_021938cc(Unk0218f960 *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6, int param_7);
 s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2);
 s32 func_ov000_02193b88(Unk0218f960 *param_1, Unk02193f2cNode *param_2, const u8 *param_3, s32 param_4);
 u32 func_ov000_02193c20(Unk0218f960 *param_1, Unk02193f2cNode *param_2, u32 param_3, Unk02193c20 *param_4);

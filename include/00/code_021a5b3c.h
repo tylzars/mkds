@@ -5,6 +5,7 @@
 #include "00/code_021a5948.h"
 #include "00/code_021a5b30.h"
 #include "code_02142eac.h"
+#include "00/code_02188de4.h"
 #include "00/code_021a4b98.h"
 
 // Declared here until the code that defines them is decompiled.
@@ -19,17 +20,11 @@ typedef struct Unk021a5e84 {
     /* 3e */ u8 mUnk_3e[0x82];
 } Unk021a5e84;
 
-typedef struct Unk021a5e84_b {
-    /* 00 */ u8 mUnk_00;
-    /* 01 */ u8 mUnk_01;
-    /* 02 */ u8 mUnk_02[0x50];
-} Unk021a5e84_b;
-
 u32 func_ov000_021a5b3c(u32 a);
 u32 func_ov000_021a5bfc(void);
 s32 func_ov000_021a5c24(void);
 s32 func_ov000_021a5db0(void);
-s32 func_ov000_021a5e84(Unk021a5e84 *a, Unk021a5e84_b *b, u32 c);
+s32 func_ov000_021a5e84(Unk021a5e84 *a, Unk02188de4 *b, u32 c);
 s32 func_ov000_021a6024(void);
 s32 func_ov000_021a60a4(const void *a, const u8 *b, u32 c);
 s32 func_ov000_021a61c4(const void *a, const u8 *b, u32 c);

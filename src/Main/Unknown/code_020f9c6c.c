@@ -119,7 +119,7 @@ void func_020fa13c(void) {
     data_027e00c4 = v;
     (void *) data_027e00c8 = func_02036bec(b, v * 0x210);
     for (i = 0; i < data_027e00c4; i++) {
-        func_020efbd4(&((Unk020ee684 *) (void *) data_027e00c8)[i], (u16) i);
+        func_020efbd4(&(data_027e00c8)[i], (u16) i);
     }
     data_027e00cc = func_02036bec(b, 0x3b8);
     for (j = 0; j < 0xe; j++) {
@@ -132,7 +132,7 @@ void func_020fa13c(void) {
     }
     if (data_021759c0->mUnk_08 == 1) {
         for (i = 0; i < data_027e00c4; i++) {
-            p = &((Unk020ee684 *) (void *) data_027e00c8)[i].mUnk_030;
+            p = &(data_027e00c8)[i].mUnk_030;
             func_020f47e4(p, 5);
             switch (func_02079b40((u16) i)) {
                 case 0:

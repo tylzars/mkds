@@ -20,25 +20,13 @@ typedef struct Unk021b4cac {
     /* 9d4 */ s32 mUnk_9d4;
 } Unk021b4cac;
 
-// Object behind data_ov000_021b4cb0.
-typedef struct Unk021b4cb0 {
-    /* 000 */ u8 mUnk_000[4];
-    /* 004 */ s32 mUnk_004;
-    /* 008 */ Unk021868a4Entry mUnk_008[0x20];
-    /* 108 */ u8 *(*mUnk_108)(u8 *a, u32 b);
-    /* 10c */ void (*mUnk_10c)(u8 *a, u8 *b, s32 c);
-    /* 110 */ u8 mUnk_110[4];
-    /* 114 */ u8 *mUnk_114;
-    /* 118 */ u8 *mUnk_118;
-} Unk021b4cb0;
-
 typedef struct Unk021b4cb4 {
     /* 00 */ u8 *mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
-    /* 10 */ u8 *(*mUnk_10)(u8 *a, u32 b);
-    /* 14 */ void (*mUnk_14)(u8 *a, u8 *b, s32 c);
+    /* 10 */ void *(*mUnk_10)();
+    /* 14 */ void (*mUnk_14)();
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
 } Unk021b4cb4;
@@ -48,8 +36,8 @@ typedef struct Unk021b4cd4 {
     /* 01 */ u8 mUnk_01[0x14];
     /* 15 */ u8 mUnk_15;
     /* 16 */ u8 mUnk_16[0xe];
-    /* 24 */ u8 *(*mUnk_24)(u8 *a, u32 b);
-    /* 28 */ void (*mUnk_28)(u8 *a, u8 *b, s32 c);
+    /* 24 */ void *(*mUnk_24)();
+    /* 28 */ void (*mUnk_28)();
 } Unk021b4cd4;
 
 // Object filled by func_ov000_0218635c.

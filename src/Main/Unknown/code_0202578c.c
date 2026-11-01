@@ -62,7 +62,7 @@ void func_02025854(u32 a, void *b, const char *c, const char *d, const char *e, 
 }
 
 void func_02025884(void *a, const char *b, const char *c, const char *d, s32 e, void *(*f)(const char *) ) {
-    Unk02025854 *p = a;
+    Unk02174e60_00 *p = a;
     if (b) {
         func_020b496c(&p->mUnk_00[e], f(b));
     }
@@ -80,7 +80,7 @@ void func_020258d4(u32 a, void *b, const char *c, const char *d, const char *e, 
 }
 
 void func_02025904(void *a, const char *b, const char *c, const char *d, s32 e, void *(*f)(const char *) ) {
-    Unk02025854 *p = a;
+    Unk02174e60_00 *p = a;
     if (b) {
         func_020b4934(&p->mUnk_00[e], f(b));
     }
@@ -93,7 +93,7 @@ void func_02025904(void *a, const char *b, const char *c, const char *d, s32 e, 
 }
 
 void func_02025954(u32 a, void *b, u32 c) {
-    Unk02025854 *p = b;
+    Unk02174e60_00 *p = b;
     u32 r0;
     u32 r5;
     u32 r7;

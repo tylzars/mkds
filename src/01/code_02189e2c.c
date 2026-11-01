@@ -40,9 +40,9 @@ void func_ov001_0218a120(Unk0218d87c *param_1) {
             v.y = obj->mUnk_0a0->mUnk_100;
             func_ov001_02187c88(obj, 5, (const Vec3 *) (&v));
             if (func_02062ec4() != 0) {
-                func_ov001_0218a19c((int) obj);
+                func_ov001_0218a19c(obj);
             } else {
-                func_ov001_0218a20c((int) obj);
+                func_ov001_0218a20c(obj);
             }
         }
     }

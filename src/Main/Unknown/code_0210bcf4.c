@@ -34,13 +34,13 @@ void func_0210c084(Unk0210bf24 *p, u32 b) {
 }
 
 void func_0210bfbc(Unk0210bfbc *p) {
-    void *a;
+    Unk0210bf24 *a;
     u32 v;
     u8 f;
 
     v = 3;
     for (a = p->mUnk_0c.mUnk_00; a != 0; a = func_0201733c(&p->mUnk_0c, a)) {
-        f = ((Unk0210bf24 *) a)->mUnk_19;
+        f = a->mUnk_19;
         if (f & 2) {
             v = 0;
             break;
@@ -68,7 +68,7 @@ void func_0210bf24(u32 a, u32 b, u32 c, u32 d) {
     if (data_0217d084.mUnk_10 == 0) {
         return;
     }
-    v = (Unk0210bf24 *) func_0210e128((Unk0217c7c4 *) data_0217d034);
+    v = func_0210e128((Unk0217c7c4 *) data_0217d034);
     func_0210c084(v, 0);
     w = v->mUnk_10;
     if (w != 0) {

@@ -413,7 +413,7 @@ void func_0207fd28(Unk02080b1c *p) {
     p->mUnk_04 = p->mUnk_00;
     p->mUnk_00 = p->mUnk_00->mUnk_00[i];
     t = data_usa_021557dc[p->mUnk_00->mUnk_20->mUnk_04];
-    if (t != ((Unk0206bcb0_590 *) a->mUnk_590)->mUnk_008->mUnk_1a) {
+    if (t != a->mUnk_590->mUnk_008->mUnk_1a) {
         func_02068a64(a, t, 1);
     }
     if (p->mUnk_1c != 0) {
@@ -444,7 +444,7 @@ void func_0207fec0(Unk02080b1c *p) {
     p->mUnk_04 = p->mUnk_00;
     p->mUnk_00 = p->mUnk_00->mUnk_00[i];
     t = data_usa_021557dc[p->mUnk_00->mUnk_20->mUnk_04];
-    if (t != ((Unk0206bcb0_590 *) a->mUnk_590)->mUnk_008->mUnk_1a) {
+    if (t != a->mUnk_590->mUnk_008->mUnk_1a) {
         func_02068a64(a, t, 1);
     }
     func_021484d0(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);

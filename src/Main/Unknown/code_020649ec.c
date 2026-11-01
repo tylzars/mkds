@@ -38,7 +38,7 @@ void func_020649ec(Unk0206bcb0 *a, void (**b)(Unk0206bcb0 *)) {
     func_020364e0(func_020364e8());
     c = data_021759c0->mUnk_68[a->mUnk_74].mUnk_08.mUnk_00 == 3;
     a->mUnk_590 = func_02079bf0(a->mUnk_74);
-    func_0208adc8(&((Unk0206bcb0_590 *) a->mUnk_590)->mUnk_040, 1);
+    func_0208adc8(&a->mUnk_590->mUnk_040, 1);
     if (data_021759c0->mUnk_08 == 5) {
         for (i = 0; i < 9; i++) {
             if (i == 3) {
@@ -107,7 +107,7 @@ void func_020649ec(Unk0206bcb0 *a, void (**b)(Unk0206bcb0 *)) {
         a->mUnk_174.z = a->mUnk_174.z >> 4;
         if ((a->mUnk_7c & 0x10) != 0) {
             func_0207b734(a);
-            d = ((Unk0206bcb0_590 *) a->mUnk_590)->mUnk_008;
+            d = a->mUnk_590->mUnk_008;
             *d->mUnk_1c[d->mUnk_1a] = d->mUnk_0c;
         }
     }

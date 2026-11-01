@@ -75,7 +75,7 @@ u32 func_ov000_0218efa8(Unk0218f960 *a, s32 b, const s8 *c) {
         func_ov000_02196590(a, data_ov000_021b23e8);
         return 2;
     }
-    return func_ov000_021923b4((Unk021919ac *) a, b, c);
+    return func_ov000_021923b4(a, b, c);
 }
 
 u32 func_ov000_0218eff8(Unk0218f960 *a, u32 b, s32 c, u32 d, Unk0218eff8Cb e, u32 f) {
@@ -96,7 +96,7 @@ u32 func_ov000_0218eff8(Unk0218f960 *a, u32 b, s32 c, u32 d, Unk0218eff8Cb e, u3
         func_ov000_02196590(a, data_ov000_021b23e8);
         return 2;
     }
-    return func_ov000_0219222c((Unk021919ac *) a, b, c, d, (u32) e, f);
+    return func_ov000_0219222c(a, b, c, d, (u32) e, f);
 }
 
 u32 func_ov000_0218f0a8(Unk0218f960 *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, s32 g, u32 h, Unk0218f0a8Cb i, u32 j) {

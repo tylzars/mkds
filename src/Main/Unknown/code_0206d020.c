@@ -109,7 +109,7 @@ void func_0206d18c(Unk0206bcb0 *p) {
             break;
         case 2:
             r = func_0206bcb0(p, 1, r);
-            if (r != 0 && ((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_058 == 0) {
+            if (r != 0 && p->mUnk_590->mUnk_058 == 0) {
                 func_0208b7bc(0xc, &p->mUnk_80);
                 func_0208b7bc(0xd, &p->mUnk_80);
                 func_0208b7bc(0xe, &p->mUnk_80);
@@ -360,7 +360,7 @@ void func_0206d7c8(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v, s32 c, Vec3 *v
     if (v10.y < 0) {
         v2 = v2 * v5;
     }
-    if (((Unk0206bcb0_590 *) q->mUnk_590)->mUnk_058 != 0) {
+    if (q->mUnk_590->mUnk_058 != 0) {
         return;
     }
     t = q->mUnk_2a8;

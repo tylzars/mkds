@@ -321,7 +321,7 @@ void func_02068a64(Unk0206bcb0 *a, s32 b, s32 c) {
 
     d = a->mUnk_7c;
     if ((d & 0x10) != 0) {
-        e = (Unk0206bcb0_590 *) a->mUnk_590;
+        e = a->mUnk_590;
         h = 0;
         f = &e->mUnk_024;
         g = e->mUnk_008->mUnk_1a;

@@ -34,7 +34,7 @@ static inline u32 func_02101f7c_inline_2(Unk020f41c4_B *b, u32 n) {
     return (u32) (((b->mUnk_00 >> 32) * n) >> 32);
 }
 
-static inline s32 func_02101f7c_inline(u8 *v1, Unk021759c0 *o, s32 a, u16 k) {
+static inline s32 func_02101f7c_inline(Unk020ee684 *v1, Unk021759c0 *o, s32 a, u16 k) {
     Unk020ee684 *e;
     Unk0206bcb0 *q;
     s32 v2;
@@ -42,7 +42,7 @@ static inline s32 func_02101f7c_inline(u8 *v1, Unk021759c0 *o, s32 a, u16 k) {
 
     l = 1;
     v2 = 1;
-    e = (Unk020ee684 *) (v1 + k * 0x210);
+    e = &v1[k];
     q = e->mUnk_1fc;
     if (q->mUnk_180 < 4 && (q->mUnk_7c & 0x400020) == 0) {
         v2 = 0;
@@ -77,9 +77,9 @@ void func_02101f7c(Unk02101c84 *p, s32 a) {
     u16 s;
     u16 *t;
     u32 n;
-    u8 *v2;
+    Unk020ee684 *v2;
     Unk021759c0 *v3;
-    u8 *v1;
+    Unk020ee684 *v1;
     Unk021759c0 *o;
 
     lim = data_021759c0->mUnk_3d0;
@@ -88,7 +88,7 @@ void func_02101f7c(Unk02101c84 *p, s32 a) {
     j = n = func_0203c8dc((u16) ((p->mUnk_000.mUnk_78 & 0x8000) == 0 ? (u16) (p->mUnk_000.mUnk_78 & ~0xff00) : 8));
     if (p->mUnk_148 != 0) {
         m = data_0217561c;
-        v1 = (u8 *) data_027e00c8;
+        v1 = data_027e00c8;
         o = data_021759c0;
         do {
             if (n > 1) {
@@ -116,7 +116,7 @@ void func_02101f7c(Unk02101c84 *p, s32 a) {
         } while (j < lim || n > 1);
     } else {
         m = data_0217561c;
-        v2 = (u8 *) data_027e00c8;
+        v2 = data_027e00c8;
         v3 = data_021759c0;
         do {
             if (j < lim) {
@@ -160,7 +160,7 @@ void func_02101d90(Unk02101c84 *p, s32 a) {
     s32 i;
     u32 lim;
     s32 b3;
-    u8 *v1;
+    Unk020ee684 *v1;
     Unk021759c0 *o;
     s32 k;
     Unk020ee684 *e;
@@ -180,14 +180,14 @@ void func_02101d90(Unk02101c84 *p, s32 a) {
     if (i >= end) {
         return;
     }
-    v1 = (u8 *) data_027e00c8;
+    v1 = data_027e00c8;
     row = &data_0215a164[i];
     do {
         k = *row;
         if (k >= lim || k == b3) {
             goto next;
         }
-        e = (Unk020ee684 *) (v1 + k * 0x210);
+        e = &v1[k];
         q = e->mUnk_1fc;
         n = l = 1;
         if (q->mUnk_180 < 4 && (q->mUnk_7c & 0x400020) == 0) {
@@ -568,7 +568,7 @@ s32 func_02101014(Unk02101c84 *p) {
     s32 b;
     enum { K0 } k;
 
-    e = &((Unk020ee684 *) (void *) data_027e00c8)[(u16) p->mUnk_140];
+    e = &data_027e00c8[(u16) p->mUnk_140];
     q = e->mUnk_1fc;
     r = &e->mUnk_030;
     if (r->mUnk_00 == 0x13 || r->mUnk_20 != 0) {

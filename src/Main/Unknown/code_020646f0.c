@@ -71,11 +71,11 @@ void func_020646f0(Unk0206bcb0 *a, s32 b) {
     a->mUnk_278.z = m->mUnk_18.z;
     a->mUnk_50 = a->mUnk_278;
     a->mUnk_1b4 = &a->mUnk_150_m;
-    i = ((Unk0206bcb0_590 *) a->mUnk_590)->mUnk_008;
+    i = a->mUnk_590->mUnk_008;
     if (i == 0) {
         return;
     }
     if (i->mUnk_18 != 0) {
-        i->mUnk_0c = ((Unk0206bcb0_590 *) a->mUnk_590)->mUnk_02c;
+        i->mUnk_0c = a->mUnk_590->mUnk_02c;
     }
 }

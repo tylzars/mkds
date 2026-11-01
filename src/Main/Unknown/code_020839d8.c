@@ -311,7 +311,7 @@ void func_02084478(Unk0206bcb0 *p) {
     e = &data_0217ae84[p->mUnk_74];
     p->mUnk_174 = *p->mUnk_508;
     for (i = 0; i < 2; i++) {
-        v = ((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_020->mUnk_14[i + 2];
+        v = p->mUnk_590->mUnk_020->mUnk_14[i + 2];
         v.y = 0;
         v.x = v.x + data_02155800[i];
         q.x = (s32) (((s64) v.x * p->mUnk_bc.x) >> 12);

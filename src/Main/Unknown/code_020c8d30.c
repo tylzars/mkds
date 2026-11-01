@@ -203,7 +203,7 @@ void func_020c97c0(void) {
                         data_0217b428->mUnk_110[i] = 0;
                     }
                     data_0217b428->mUnk_150[i] = func_020b4e70(&v) != 0 ? 2 : 3;
-                    s = &((Unk020ee684 *) data_027e00c8)[i].mUnk_058;
+                    s = &data_027e00c8[i].mUnk_058;
                     v2 = s->mUnk_014;
                     v3 = s->mUnk_020;
                     m = data_0217b428->mUnk_190->mUnk_04;

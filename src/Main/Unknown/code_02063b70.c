@@ -26,7 +26,7 @@ s32 func_02063b70(Unk0206bcb0 *a) {
     Vec3 i;
     Unk02012f58 g;
 
-    b = (Unk0206bcb0_590 *) a->mUnk_590;
+    b = a->mUnk_590;
     d = b->mUnk_058 == 0;
     if (d != 0) {
         t = a->mUnk_1d0 + 0x5000;
@@ -45,7 +45,7 @@ s32 func_02063b70(Unk0206bcb0 *a) {
         func_01ff9048(0x1b, &i, 3);
         func_0208ab4c(&b->mUnk_040);
         func_0207a30c(a->mUnk_74);
-        e = ((Unk0206bcb0_590 *) a->mUnk_590)->mUnk_0a4;
+        e = a->mUnk_590->mUnk_0a4;
         c = func_02079b60();
         c->mUnk_0c = e;
         *c->mUnk_1c[c->mUnk_1a] = c->mUnk_0c;
@@ -90,7 +90,7 @@ void func_02063cc4(Unk0206bcb0 *a) {
     c = a->mUnk_4c;
     b = (c & 0x10) != 0;
     d = a->mUnk_7c;
-    e = (Unk0206bcb0_590 *) a->mUnk_590;
+    e = a->mUnk_590;
     if ((d & 0x1008040) != 0 || (c & 0x11800000) != 0) {
         g = 0;
         if ((d & 0x1008040) == 0 && (c & 0x1800000) == 0) {
@@ -131,8 +131,8 @@ void func_02063cc4(Unk0206bcb0 *a) {
         func_02063cc4_inline2(0x1b, a->mUnk_4f0.x, a->mUnk_4f0.y, 0x1000);
         func_020849d0(e->mUnk_014);
         if (e->mUnk_018 != 0) {
-            f = ((Unk0206bcb0_590 *) a->mUnk_590)->mUnk_054;
-            h = ((Unk0206bcb0_590 *) a->mUnk_590)->mUnk_020->mUnk_10;
+            f = a->mUnk_590->mUnk_054;
+            h = a->mUnk_590->mUnk_020->mUnk_10;
             func_02063cc4_inline(0x14, 0x1c);
             func_01ff9048(0x1c, &f->mUnk_18, 3);
             w = (a->mUnk_3a4 >> 4) * 2;

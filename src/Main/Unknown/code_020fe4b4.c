@@ -530,7 +530,7 @@ void func_020fe5b8(u32 a, u32 b, u8 *c, u32 d) {
     if (c[1] == 0xff) {
         return;
     }
-    func_020f81b8((u32) & ((Unk020ee684 *) (void *) data_027e00c8)[(u16) d], 0x10);
+    func_020f81b8((u32) & (data_027e00c8)[(u16) d], 0x10);
 }
 
 void func_020fe56c(u32 a, u32 b, u32 c, void *d, u32 e) {

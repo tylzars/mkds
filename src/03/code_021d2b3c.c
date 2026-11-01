@@ -26,11 +26,11 @@ void func_ov003_021d2b3c(void) {
     g->mUnk_2e = g->mUnk_2a;
     i = 0;
     do {
-        Unk0214e788 *e = &data_ov003_021da2d4->mUnk_00[c];
+        Unk0214e334_b *e = &data_ov003_021da2d4->mUnk_00[c];
 
         if (e->mUnk_04 == 1 && e->mUnk_06 == 0) {
             b = 1;
-            func_0214e334((Unk0214e334 *) d, (Unk0214e334_b *) e);
+            func_0214e334((Unk0214e334 *) d, e);
             func_ov003_021d2544(d[0], d[1], &data_ov003_021da2d4->mUnk_28);
             break;
         }

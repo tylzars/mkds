@@ -105,7 +105,7 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
         q->mUnk_0e4 = q->mUnk_50;
         q->mUnk_5c = a->mUnk_05c;
         func_020f9f08(q, a->mUnk_084.x, a->mUnk_084.y);
-        q->mUnk_90 = &((Unk0206bcb0_590 *) a->mUnk_010->mUnk_590)->mUnk_040;
+        q->mUnk_90 = &a->mUnk_010->mUnk_590->mUnk_040;
         q->mUnk_74 |= 0x1000;
     }
 }

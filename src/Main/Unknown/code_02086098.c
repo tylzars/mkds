@@ -39,7 +39,7 @@ void func_02086a04(void) {
         data_0217aed0->mUnk_0e4[i] = 0;
         p = func_0207a974(i);
         k = p->mUnk_1d0 * 3;
-        s = (Unk0206bcb0_590 *) p->mUnk_590;
+        s = p->mUnk_590;
         func_021484d0(p->mUnk_508, &q->mUnk_08, &v30);
         d = func_0214848c(&v30, &q->mUnk_14);
         data_0217aed0->mUnk_104[i] = d + k;

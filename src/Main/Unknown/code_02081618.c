@@ -144,9 +144,8 @@ void func_0208181c(s32 a) {
     i = 0;
     do {
         if (e->mUnk_00[i] != 0) {
-            func_02147fd8(
-                (s32) (((s64) q->mUnk_bc.y * data_02155854[((Unk0206bcb0_590 *) q->mUnk_590)->mUnk_000] + 0x800) >> 12),
-                &q->mUnk_12c, &q->mUnk_80, &v);
+            func_02147fd8((s32) (((s64) q->mUnk_bc.y * data_02155854[q->mUnk_590->mUnk_000] + 0x800) >> 12),
+                          &q->mUnk_12c, &q->mUnk_80, &v);
             func_0208b5b0(e->mUnk_00[i], &v);
             w.x = (s32) (((s64) q->mUnk_3b0.x * 0xc00) >> 12);
             w.y = (s32) (((s64) q->mUnk_3b0.y * 0xc00) >> 12);

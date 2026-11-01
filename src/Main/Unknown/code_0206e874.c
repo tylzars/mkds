@@ -229,7 +229,7 @@ void func_0206edac(Unk0206bcb0 *p, Vec3 *a) {
                 p->mUnk_260 = m;
             }
             f = p->mUnk_7c;
-            if ((f & 0x10) && ((Unk0206bcb0_590 *) p->mUnk_590)->mUnk_058 == 0) {
+            if ((f & 0x10) && p->mUnk_590->mUnk_058 == 0) {
                 if ((f & 1) || !(f & 0x402000)) {
                     func_0208b748(0x4e, &p->mUnk_80, p, func_0206c2b4);
                 }

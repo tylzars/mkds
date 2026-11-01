@@ -8,5 +8,5 @@
 #include "01/code_02190000.h"
 #include "01/code_021921e4.h"
 
-void func_ov001_02190df8(int param_1);
-void func_ov001_02190eb0(int param_1);
+void func_ov001_02190df8(Unk02188950 *param_1);
+void func_ov001_02190eb0(Unk02188950 *param_1);

@@ -2,7 +2,8 @@
 
 #include "types.h"
 
-// Four halfwords; func_0214e89c copies them from Unk0214e308 and func_0214e334 reads them.
+// Four halfwords; func_0214e89c copies them from Unk0214e308 and func_0214e334 reads them. Also the 8-byte entries of
+// the array at mUnk_10 of Unk0214e308: func_0214e788 clears mUnk_04 of each, func_0214ec18 fills one.
 typedef struct Unk0214e334_b {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
@@ -27,15 +28,6 @@ typedef struct Unk0214e334_c {
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
 } Unk0214e334_c;
-
-// 8-byte entries of the array at mUnk_10 of Unk0214e308; func_0214e788 clears mUnk_04 of each, func_0214ec18 fills
-// one.
-typedef struct Unk0214e788 {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
-    /* 06 */ u16 mUnk_06;
-} Unk0214e788;
 
 // Two fixed-address halfwords func_0214ec18 reads, split into bit fields.
 typedef union Unk0214ec18 {
@@ -70,7 +62,7 @@ typedef struct Unk0214e308 {
     /* 04 */ Unk0214e334_b mUnk_04;
     /* 0c */ u16 mUnk_0c;
     /* 0e */ u16 mUnk_0e;
-    /* 10 */ Unk0214e788 *mUnk_10;
+    /* 10 */ Unk0214e334_b *mUnk_10;
     /* 14 */ u16 mUnk_14;
     /* 16 */ u8 mUnk_16[2];
     /* 18 */ Unk0214e334_c mUnk_18;
@@ -84,7 +76,7 @@ extern u16 data_021803d4;
 extern Unk0214e308 data_021803d8;
 
 void func_0214e6e4(void);
-void func_0214e788(u32 a, u32 b, Unk0214e788 *p, u32 n);
+void func_0214e788(u32 a, u32 b, Unk0214e334_b *p, u32 n);
 u32 func_0214e89c(Unk0214e334_b *out);
 void func_0214e8f4(void);
 void func_0214e994(Unk0214e334 *p);

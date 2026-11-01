@@ -86,10 +86,10 @@ void func_ov001_02191488(Unk02188950 *param_1) {
     func_ov001_02188950(param_1, &local);
     func_ov001_02188c90(param_1);
     func_ov001_02188cd8(param_1, param_1->mUnk_0a0->mUnk_0f8, param_1->mUnk_0a0->mUnk_0fc);
-    if (func_ov001_02188220(data_021759c0->mUnk_08 == 4
-                                ? (Unk02188950 *) func_ov001_02181b68(
-                                      (u16) ((data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0) + 2))
-                                : 0) >= 1) {
+    if (func_ov001_02188220(
+            data_021759c0->mUnk_08 == 4
+                ? func_ov001_02181b68((u16) ((data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0) + 2))
+                : 0) >= 1) {
         func_ov001_02188db8(param_1, func_ov001_02191618);
     } else {
         func_ov001_02188db8(param_1, func_ov001_02191550);

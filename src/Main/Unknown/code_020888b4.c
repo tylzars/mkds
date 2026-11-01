@@ -406,7 +406,7 @@ void func_02088e44(Unk020888b4 *p) {
         p->mUnk_b0 = o;
         return;
     }
-    v1 = &((Unk020ee684 *) (void *) data_027e00c8)[m];
+    v1 = &data_027e00c8[m];
     if (v1->mUnk_058.mUnk_000 == 0xf && v1->mUnk_030.mUnk_00 == 0x13 && (p->mUnk_00->mUnk_4c & 0x40) == 0) {
         goto clear;
     }
@@ -441,7 +441,7 @@ void func_02088e44(Unk020888b4 *p) {
     }
     p->mUnk_b4 = c != 0;
     if (p->mUnk_b4 != 0) {
-        v1 = &((Unk020ee684 *) (void *) data_027e00c8)[p->mUnk_04];
+        v1 = &data_027e00c8[p->mUnk_04];
         c = 1;
         if (v1->mUnk_058.mUnk_000 == 0xf && v1->mUnk_030.mUnk_00 == 0x13) {
             if ((func_0207a974(p->mUnk_04)->mUnk_4c & 0x40) == 0) {

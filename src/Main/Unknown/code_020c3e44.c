@@ -33,7 +33,7 @@ void func_020c43c4(void) {
         data_0217b3e4->mUnk_000 = data_0217b3e4->mUnk_000 == 0 ? 1 : 0;
     }
     for (i = 0; i < data_021759c0->mUnk_3d0; i = (u16) (i + 1)) {
-        if (((Unk020ee684 *) (void *) data_027e00c8)[i].mUnk_204 != 0) {
+        if ((data_027e00c8)[i].mUnk_204 != 0) {
             n = data_0217b3e4->mUnk_790[i].mUnk_00;
             data_0217b3e4->mUnk_790[i].mUnk_00 = n + 1;
             func_0207a91c(&data_0217b3e4->mUnk_790[i].mUnk_04[n], i);

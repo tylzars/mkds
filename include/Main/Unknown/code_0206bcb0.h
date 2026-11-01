@@ -421,7 +421,7 @@ typedef struct Unk0206bcb0 {
     /* 528 */ u8 mUnk_528[0xc];
     /* 534 */ Vec3 *mUnk_534;
     /* 538 */ Unk0206ceb4 mUnk_538;
-    /* 590 */ void *mUnk_590;
+    /* 590 */ struct Unk0206bcb0_590 *mUnk_590;
     /* 594 */ s32 mUnk_594;
     /* 598 */ s16 mUnk_598;
     /* 59a */ u8 mUnk_59a[2];

@@ -52,7 +52,7 @@ u32 func_ov000_02191284(Unk0218f960 *a, Unk021937c0Node *b, const u8 *c) {
                 }
                 b->mUnk_14 = 3;
             } else {
-                m = func_ov000_021919ac((Unk021919ac *) a, (Unk021919ac_q *) e);
+                m = func_ov000_021919ac(a, (Unk021919ac_q *) e);
                 if (m != 0) {
                     return m;
                 }
@@ -77,7 +77,7 @@ u32 func_ov000_02191284(Unk0218f960 *a, Unk021937c0Node *b, const u8 *c) {
                 return 3;
             }
             d->mUnk_1a0 = func_0213bf90(h);
-            m = func_ov000_021919ac((Unk021919ac *) a, (Unk021919ac_q *) e);
+            m = func_ov000_021919ac(a, (Unk021919ac_q *) e);
             if (m != 0) {
                 return m;
             }

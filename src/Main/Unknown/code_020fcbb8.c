@@ -68,7 +68,7 @@ s32 func_020fcbb8(Unk020fc2e8 *p0, s32 v1) {
     if (func_0206c0b0(p) != 0) {
         return 0;
     }
-    e = &((Unk020ee684 *) (void *) data_027e00c8)[v1];
+    e = &(data_027e00c8)[v1];
     q = &p->mUnk_98;
     if (e->mUnk_1f0.mUnk_00 != p0->mUnk_168) {
         f = ((p0->mUnk_000.mUnk_74 & 0x40000000) || (p->mUnk_48 & 1)) ? 1 : 0;

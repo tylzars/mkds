@@ -9,7 +9,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 
 void func_0207cb0c(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    if (((Unk020ee684 *) (void *) data_027e00c8)[b->mUnk_04].mUnk_058.mUnk_008 == 4) {
+    if ((data_027e00c8)[b->mUnk_04].mUnk_058.mUnk_008 == 4) {
         data_0217ae48(a, b);
     } else {
         data_0217ae44(a, b);
@@ -17,7 +17,7 @@ void func_0207cb0c(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0207caa8(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    if (((Unk020ee684 *) (void *) data_027e00c8)[b->mUnk_04].mUnk_058.mUnk_008 == 3) {
+    if ((data_027e00c8)[b->mUnk_04].mUnk_058.mUnk_008 == 3) {
         data_0217ae3c(a, b);
     } else {
         data_0217ae40(a, b);
@@ -59,7 +59,7 @@ void func_0207c978(Unk0208fd8c *a, struct Unk020888b4 *b) {
     s32 t;
     s32 r;
 
-    e = &((Unk020ee684 *) (void *) data_027e00c8)[b->mUnk_04];
+    e = &(data_027e00c8)[b->mUnk_04];
     t = e->mUnk_030.mUnk_00;
     if (a->mUnk_10 != 0) {
         if (t != 0x13) {
@@ -88,7 +88,7 @@ void func_0207c8d8(Unk0208fd8c *a, struct Unk020888b4 *b) {
     s32 t;
     s32 r;
 
-    e = &((Unk020ee684 *) (void *) data_027e00c8)[b->mUnk_04];
+    e = &(data_027e00c8)[b->mUnk_04];
     t = e->mUnk_030.mUnk_00;
     if (a->mUnk_10 != 0) {
         if (t != 0x13) {

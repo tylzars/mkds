@@ -9,9 +9,9 @@
 #include "Main/Unknown/code_02061fec.h"
 #include "Main/Unknown/code_020d2000.h"
 
-void func_ov001_0218a19c(int param_1);
+void func_ov001_0218a19c(Unk02188950 *param_1);
 void func_ov001_0218a1d0(int param_1);
-void func_ov001_0218a20c(int param_1);
-void func_ov001_0218a250(int param_1);
+void func_ov001_0218a20c(Unk02188950 *param_1);
+void func_ov001_0218a250(Unk02188950 *param_1);
 void func_ov001_0218a290(int param_1);
-u32 func_ov001_0218a2b8(u32 param_1);
+u32 func_ov001_0218a2b8(Unk02188950 *param_1);

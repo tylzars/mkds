@@ -9,5 +9,5 @@
 #include "Main/Unknown/code_020d2000.h"
 
 s32 func_ov001_021910fc(Unk02188950 *param_1);
-void func_ov001_02191130(int param_1);
-void func_ov001_0219116c(int param_1);
+void func_ov001_02191130(Unk02188950 *param_1);
+void func_ov001_0219116c(Unk02188950 *param_1);

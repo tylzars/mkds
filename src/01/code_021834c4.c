@@ -36,12 +36,10 @@ void func_ov001_0218355c(u16 *param_1) {
                         (s32) (*(u32 *) (*(int *) (param_1 + 0x50) + 0x5c)), (UnkFunc *) &func_ov001_021835b8);
 }
 
-void func_ov001_02183524(int param_1) {
-    func_ov001_02187218((Unk02188950 *) param_1, 8, (s32(*)(Unk02188950 *))((int) &func_ov001_021835e0));
-    func_ov001_02188d64((Unk02188950 *) param_1, (s32) (*(u32 *) (*(int *) (param_1 + 0xa0) + 0x4c)),
-                        (s32) (*(u32 *) (*(int *) (param_1 + 0xa0) + 0x50)));
-    func_ov001_02188e24((Unk02188950 *) (param_1), (s32) ((u32) (*(u32 *) (*(int *) (param_1 + 0xa0) + 0x54))),
-                        (UnkFunc *) ((int) &func_ov001_0218355c));
+void func_ov001_02183524(Unk02188950 *param_1) {
+    func_ov001_02187218(param_1, 8, (s32(*)(Unk02188950 *))((int) &func_ov001_021835e0));
+    func_ov001_02188d64(param_1, (s32) (param_1->mUnk_0a0->mUnk_04c), (s32) (param_1->mUnk_0a0->mUnk_050));
+    func_ov001_02188e24(param_1, (s32) ((u32) (param_1->mUnk_0a0->mUnk_054)), (UnkFunc *) ((int) &func_ov001_0218355c));
 }
 
 void func_ov001_021834fc(int param_1) {
@@ -50,10 +48,8 @@ void func_ov001_021834fc(int param_1) {
                         (s32) (*(u32 *) (*(int *) (param_1 + 0xa0) + 0x44)));
 }
 
-void func_ov001_021834c4(int param_1) {
-    func_ov001_02187218((Unk02188950 *) param_1, 8, (s32(*)(Unk02188950 *))((int) &func_ov001_021835e0));
-    func_ov001_02188d64((Unk02188950 *) param_1, (s32) (*(u32 *) (*(int *) (param_1 + 0xa0) + 0x34)),
-                        (s32) (*(u32 *) (*(int *) (param_1 + 0xa0) + 0x38)));
-    func_ov001_02188e24((Unk02188950 *) (param_1), (s32) ((u32) (*(u32 *) (*(int *) (param_1 + 0xa0) + 0x3c))),
-                        (UnkFunc *) ((int) &func_ov001_021834fc));
+void func_ov001_021834c4(Unk02188950 *param_1) {
+    func_ov001_02187218(param_1, 8, (s32(*)(Unk02188950 *))((int) &func_ov001_021835e0));
+    func_ov001_02188d64(param_1, (s32) (param_1->mUnk_0a0->mUnk_034), (s32) (param_1->mUnk_0a0->mUnk_038));
+    func_ov001_02188e24(param_1, (s32) ((u32) (param_1->mUnk_0a0->mUnk_03c)), (UnkFunc *) ((int) &func_ov001_021834fc));
 }

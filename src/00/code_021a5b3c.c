@@ -194,7 +194,7 @@ s32 func_ov000_021a5db0(void) {
     return 3;
 }
 
-s32 func_ov000_021a5e84(Unk021a5e84 *a, Unk021a5e84_b *b, u32 c) {
+s32 func_ov000_021a5e84(Unk021a5e84 *a, Unk02188de4 *b, u32 c) {
     u32 v1;
     s32 r;
     Unk021b5f50 *g;

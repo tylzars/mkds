@@ -54,7 +54,7 @@ u32 func_ov000_0218f15c(Unk0218f960 *a, s8 *b, s8 *c, s32 d, s32 e, Unk0218f15cC
         f(a, &h, g);
         return 0;
     }
-    return func_ov000_02191cb0((Unk021919ac *) a, data_ov000_021b2514, data_ov000_021b2514, data_ov000_021b2514,
+    return func_ov000_02191cb0(a, data_ov000_021b2514, data_ov000_021b2514, data_ov000_021b2514,
                                data_ov000_021b2514, b, c, 0, d, 0, e, (s32) f, g);
 }
 
@@ -115,7 +115,7 @@ int func_ov000_0218f2e8(void *a, int b) {
     }
     if (o->mUnk_1d8 == 1) {
         do {
-            r = func_ov000_02191200((int *) p);
+            r = func_ov000_02191200(p);
             if (r == 0 && b != 0 && o->mUnk_1d8 == 1) {
                 t = 1;
             } else {

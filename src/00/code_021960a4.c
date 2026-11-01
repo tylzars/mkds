@@ -2,12 +2,12 @@
 #include "00/code_0218e80c.h"
 #include "00/code_0218f15c.h"
 
-int func_ov000_021961e8(int *param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5) {
+int func_ov000_021961e8(Unk0218f960 *param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5) {
     int v1;
     int v2;
-    *(int *) (*param_1 + 0x210) = *(int *) (*param_1 + 0x210) + 1;
+    param_1->mUnk_00->mUnk_210 = param_1->mUnk_00->mUnk_210 + 1;
     v1 = func_ov000_021938cc(param_1, 3, (int) param_2, (int *) (&v2), (int) param_3, (int) param_4, (int) param_5);
-    if (((v1 == 0) && (v1 = func_ov000_021962d4((Unk0218f960 *) param_1, (Unk021937c0Node *) v2), v1 == 0)) &&
+    if (((v1 == 0) && (v1 = func_ov000_021962d4(param_1, (Unk021937c0Node *) v2), v1 == 0)) &&
         ((*(int *) (v2 + 8) == 0 || (v1 = func_ov000_0218f2e8(param_1, (int) (*(u32 *) (v2 + 0x18))), v1 == 0)))) {
         v1 = 0;
     }
@@ -58,7 +58,7 @@ int func_ov000_021960a4(Unk0218f960 *param_1, s8 *param_2, s8 *param_3, s8 *para
             param_8 = 0;
         }
         *(int *) (v2[0] + 0x134) = param_8;
-        v1 = func_ov000_021961e8((int *) ((int *) param_1), (u32) (v2[0]), param_9, param_10, param_11);
+        v1 = func_ov000_021961e8(param_1, (u32) (v2[0]), param_9, param_10, param_11);
         if (v1 == 0) {
             v1 = 0;
         }

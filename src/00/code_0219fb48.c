@@ -102,8 +102,8 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
         if (k <= data_ov000_021b566c->mUnk_0d) {
             continue;
         }
-        r = func_ov000_0218ebe8((Unk0218f960 *) data_ov000_021b566c->mUnk_00, n, &q);
-        r |= func_ov000_0218ec44((Unk0218f960 *) data_ov000_021b566c->mUnk_00, q, &h);
+        r = func_ov000_0218ebe8(data_ov000_021b566c->mUnk_00, n, &q);
+        r |= func_ov000_0218ec44(data_ov000_021b566c->mUnk_00, q, &h);
         if (r != 0) {
             continue;
         }

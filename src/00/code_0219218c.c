@@ -14,7 +14,7 @@
 #include "code_02133048.h"
 #include "00/code_0218e80c.h"
 
-u32 func_ov000_0219218c(Unk021919ac *p, Unk021919ac_node *n, Unk021919ac_f0 *a) {
+u32 func_ov000_0219218c(Unk0218f960 *p, Unk021919ac_node *n, Unk021919ac_f0 *a) {
     if (p->mUnk_00->mUnk_100 == 0) {
         return 1;
     }
@@ -36,7 +36,7 @@ u32 func_ov000_0219218c(Unk021919ac *p, Unk021919ac_node *n, Unk021919ac_f0 *a) 
     return 0;
 }
 
-u32 func_ov000_0219222c(Unk021919ac *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
+u32 func_ov000_0219222c(Unk0218f960 *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
     Unk02194934 *x;
     Unk021919ac_node *n;
     Unk021919ac_m *m;
@@ -44,7 +44,7 @@ u32 func_ov000_0219222c(Unk021919ac *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
     u32 r;
     s32 f;
     u32 t;
-    Unk021919ac_00 *o;
+    Unk0218f960_00 *o;
 
     o = p->mUnk_00;
     n = 0;
@@ -55,7 +55,7 @@ u32 func_ov000_0219222c(Unk021919ac *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
     if (o->mUnk_100 == 0) {
         f = 0;
     }
-    if (d != 0 && f != 0 && func_ov000_02194934((Unk0218f960 *) p, a, &x) != 0 && x->mUnk_0c != 0) {
+    if (d != 0 && f != 0 && func_ov000_02194934(p, a, &x) != 0 && x->mUnk_0c != 0) {
         m = func_ov000_021a3690(0x204);
         if (m == 0) {
             func_ov000_02196590(p, data_ov000_021b2f58);
@@ -66,18 +66,18 @@ u32 func_ov000_0219222c(Unk021919ac *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
         m->mUnk_004 = a;
         w.mUnk_00 = (void (*)(void *, void *, u32)) d;
         w.mUnk_04 = e;
-        r = func_ov000_021938cc((int *) p, 2, 0, (int *) &n, 1, d, e);
+        r = func_ov000_021938cc(p, 2, 0, (int *) &n, 1, d, e);
         if (r != 0) {
             return r;
         }
         t = n->mUnk_18;
-        r = func_ov000_02190ed4((Unk0218f960 *) p, w, m, (Unk021937c0Node *) n, 0);
+        r = func_ov000_02190ed4(p, w, m, (Unk021937c0Node *) n, 0);
         if (r != 0) {
             return r;
         }
-        func_ov000_02193818((Unk0218f960 *) p, (Unk021937c0Node *) n);
+        func_ov000_02193818(p, (Unk021937c0Node *) n);
     } else {
-        r = func_ov000_021938cc((int *) p, 2, 0, (int *) &n, c, d, e);
+        r = func_ov000_021938cc(p, 2, 0, (int *) &n, c, d, e);
         if (r != 0) {
             return r;
         }
@@ -96,22 +96,22 @@ u32 func_ov000_0219222c(Unk021919ac *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
     return 0;
 }
 
-u32 func_ov000_02192330(Unk021919ac *p, u32 a, u32 b) {
-    Unk021919ac_00 *o;
+u32 func_ov000_02192330(Unk0218f960 *p, u32 a, u32 b) {
+    Unk0218f960_00 *o;
 
     o = p->mUnk_00;
-    func_ov000_02190b80(p, o->mUnk_1f4, data_ov000_021b2f68);
-    func_ov000_02190b58(p, o->mUnk_1f4, o->mUnk_198);
-    func_ov000_02190b80(p, o->mUnk_1f4, data_ov000_021b2f80);
-    func_ov000_02190b58(p, o->mUnk_1f4, a);
-    func_ov000_02190b80(p, o->mUnk_1f4, data_ov000_021b2f8c);
-    func_ov000_02190b58(p, o->mUnk_1f4, b);
-    func_ov000_02190b80(p, o->mUnk_1f4, data_ov000_021b2f94);
+    func_ov000_02190b80(p, &o->mUnk_1f4, data_ov000_021b2f68);
+    func_ov000_02190b58(p, &o->mUnk_1f4, o->mUnk_198);
+    func_ov000_02190b80(p, &o->mUnk_1f4, data_ov000_021b2f80);
+    func_ov000_02190b58(p, &o->mUnk_1f4, a);
+    func_ov000_02190b80(p, &o->mUnk_1f4, data_ov000_021b2f8c);
+    func_ov000_02190b58(p, &o->mUnk_1f4, b);
+    func_ov000_02190b80(p, &o->mUnk_1f4, data_ov000_021b2f94);
     return 0;
 }
 
-u32 func_ov000_021923b4(Unk021919ac *p, s32 a, const s8 *b) {
-    Unk021919ac_00 *o;
+u32 func_ov000_021923b4(Unk0218f960 *p, s32 a, const s8 *b) {
+    Unk0218f960_00 *o;
     u8 c[0x100];
     u32 r;
 
@@ -164,7 +164,7 @@ u32 func_ov000_021923b4(Unk021919ac *p, s32 a, const s8 *b) {
                 return 2;
             }
             func_ov000_02196914(c, b, 0x1f);
-            func_ov000_02196914(o->mUnk_177, c, 0x1f);
+            func_ov000_02196914((u8 *) o->mUnk_177, c, 0x1f);
             r = func_ov000_02192cfc(p, data_ov000_021b2fec, c);
             if (r != 0) {
                 return r;
@@ -356,7 +356,7 @@ u32 func_ov000_021923b4(Unk021919ac *p, s32 a, const s8 *b) {
     return 0;
 }
 
-u32 func_ov000_0219296c(Unk021919ac *p, s32 a, s32 b) {
+u32 func_ov000_0219296c(Unk0218f960 *p, s32 a, s32 b) {
     u8 c[0x10];
     u32 r;
 
@@ -519,32 +519,32 @@ u32 func_ov000_0219296c(Unk021919ac *p, s32 a, s32 b) {
     return 0;
 }
 
-u32 func_ov000_02192cfc(Unk021919ac *p, const u8 *a, const u8 *b) {
-    Unk021919ac_00 *o;
+u32 func_ov000_02192cfc(Unk0218f960 *p, const u8 *a, const u8 *b) {
+    Unk0218f960_00 *o;
     u32 r;
 
     o = p->mUnk_00;
-    r = func_ov000_02190b80(p, o->mUnk_450, a);
+    r = func_ov000_02190b80(p, &o->mUnk_450, a);
     if (r != 0) {
         return r;
     }
-    r = func_ov000_02190b80(p, o->mUnk_450, b);
+    r = func_ov000_02190b80(p, &o->mUnk_450, b);
     if (r != 0) {
         return r;
     }
     return 0;
 }
 
-u32 func_ov000_02192d30(Unk021919ac *p, const u8 *a, const u8 *b) {
-    Unk021919ac_00 *o;
+u32 func_ov000_02192d30(Unk0218f960 *p, const u8 *a, const u8 *b) {
+    Unk0218f960_00 *o;
     u32 r;
 
     o = p->mUnk_00;
-    r = func_ov000_02190b80(p, o->mUnk_440, a);
+    r = func_ov000_02190b80(p, &o->mUnk_440, a);
     if (r != 0) {
         return r;
     }
-    r = func_ov000_02190b80(p, o->mUnk_440, b);
+    r = func_ov000_02190b80(p, &o->mUnk_440, b);
     if (r != 0) {
         return r;
     }

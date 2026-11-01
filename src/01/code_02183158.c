@@ -17,9 +17,9 @@ void func_ov001_02183450(Unk0218fa78 *param_1) {
             o->mUnk_000.mUnk_9c->mUnk_00.x = 0;
             o->mUnk_000.mUnk_9c->mUnk_00.z = 0;
             if (func_02062ec4() != 0) {
-                func_ov001_021834c4((int) o);
+                func_ov001_021834c4(o);
             } else {
-                func_ov001_02183524((int) o);
+                func_ov001_02183524(o);
             }
             func_ov001_02188da4(o, func_ov001_02183b9c);
         }
@@ -54,7 +54,7 @@ void func_ov001_021832cc(u32 param_1, Unk02188950 *param_2) {
                     c = func_ov001_02188000(param_2, a->mUnk_140, a->mUnk_144);
                     if (c != 0) {
                         if ((func_0207a974(c->mUnk_74)->mUnk_48 & 0x100000) != 0 && c->mUnk_238 > 0) {
-                            func_ov001_02183dec((int) param_2);
+                            func_ov001_02183dec(param_2);
                         }
                     }
                 }

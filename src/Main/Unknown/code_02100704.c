@@ -29,7 +29,7 @@ void func_021009fc(Unk02101c84 *p) {
     } else {
         i = 8;
     }
-    e = &((Unk020ee684 *) (void *) data_027e00c8)[(u16) i];
+    e = &(data_027e00c8)[(u16) i];
     p->mUnk_168 = e->mUnk_1fc;
     p->mUnk_144 = 0;
     if (p->mUnk_24c != 0) {
@@ -76,7 +76,7 @@ void func_02100704(Unk02101c84 *p) {
     } else {
         i = 8;
     }
-    e = &((Unk020ee684 *) (void *) data_027e00c8)[(u16) i];
+    e = &(data_027e00c8)[(u16) i];
     if (p->mUnk_24c != 0 && e->mUnk_014 != 0x10 && p->mUnk_158 != -0x40) {
         p->mUnk_144 = 1;
         if (p->mUnk_000.mUnk_74 & 0x8000000) {

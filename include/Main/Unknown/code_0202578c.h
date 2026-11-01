@@ -5,13 +5,6 @@
 #include "Main/Unknown/code_02124094.h"
 #include "Main/Unknown/unk_02174000.h"
 
-// Three groups of objects: four at 0x0, one at 0x10 and four at 0x14.
-typedef struct Unk02025854 {
-    /* 00 */ Unk020b4934 *mUnk_00[4];
-    /* 10 */ Unk020b4a44 *mUnk_10;
-    /* 14 */ Unk020b47d8 *mUnk_14[4];
-} Unk02025854;
-
 // 12-byte entries of the table at data_usa_02153918.
 typedef struct Unk02153918 {
     /* 00 */ s16 mUnk_00;

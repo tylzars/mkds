@@ -8,4 +8,4 @@
 #include "01/code_0218c000.h"
 #include "01/code_0218c5fc.h"
 
-void func_ov001_0218bfc8(int param_1);
+void func_ov001_0218bfc8(Unk02188950 *param_1);

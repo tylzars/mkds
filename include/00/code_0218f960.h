@@ -40,7 +40,7 @@ typedef struct Unk0218f960_00 {
     /* 1f0 */ s32 mUnk_1f0;
     /* 1f4 */ Unk021906e4 mUnk_1f4;
     /* 204 */ s32 mUnk_204;
-    /* 208 */ u8 mUnk_208[4];
+    /* 208 */ u32 mUnk_208;
     /* 20c */ s32 mUnk_20c;
     /* 210 */ s32 mUnk_210;
     /* 214 */ s32 mUnk_214;

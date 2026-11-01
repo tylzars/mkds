@@ -20,7 +20,7 @@ void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     }
     v1 = b->mUnk_04;
     if (v1 == func_02061f90()) {
-        e = &((Unk020ee684 *) (void *) data_027e00c8)[v1];
+        e = &(data_027e00c8)[v1];
         if (e->mUnk_058.mUnk_000 != 0xf && a->mUnk_08 != 0) {
             a->mUnk_08->mUnk_00(a, b);
         } else if ((a->mUnk_04 != 0) & (e->mUnk_030.mUnk_00 != 0x13)) {
@@ -50,7 +50,7 @@ void func_0207c270(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (func_0203c880(b->mUnk_04) != 0) {
         return;
     }
-    if (((Unk020ee684 *) (void *) data_027e00c8)[b->mUnk_04].mUnk_030.mUnk_00 == 0xe) {
+    if ((data_027e00c8)[b->mUnk_04].mUnk_030.mUnk_00 == 0xe) {
         if (*(u16 *) &b->mUnk_08.mUnk_00.mUnk_00->mUnk_24 > 1) {
             return;
         }
@@ -64,7 +64,7 @@ void func_0207c144(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     u32 v;
     enum { K0 } k;
 
-    k = ((Unk020ee684 *) (void *) data_027e00c8)[b->mUnk_04].mUnk_030.mUnk_00;
+    k = (data_027e00c8)[b->mUnk_04].mUnk_030.mUnk_00;
     a->mUnk_04 = &data_0217ae38[k];
     r = func_0208537c();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
@@ -149,7 +149,7 @@ void func_0207becc(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     u32 v;
     enum { K0 } k;
 
-    k = ((Unk020ee684 *) (void *) data_027e00c8)[b->mUnk_04].mUnk_058.mUnk_000;
+    k = (data_027e00c8)[b->mUnk_04].mUnk_058.mUnk_000;
     a->mUnk_08 = &data_0217ae34[k];
     a->mUnk_0c = 0;
     if (a->mUnk_08 == 0) {

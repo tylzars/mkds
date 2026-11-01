@@ -7,4 +7,4 @@
 #include "00/unk_021b2000.h"
 #include "code_0213442c.h"
 
-int func_ov000_02191200(int *param_1);
+int func_ov000_02191200(Unk0218f960 *param_1);

@@ -23,14 +23,14 @@ void func_0207a32c(void) {
     if (n == 1) {
         d[1] = func_02085408(2);
         if (d[1] >= 0) {
-            if (((Unk0206bcb0_590 *) data_0217ad18[d[1]].mUnk_590)->mUnk_060 != 0) {
+            if ((data_0217ad18[d[1]].mUnk_590)->mUnk_060 != 0) {
                 d[1] = -1;
             }
         }
     } else {
         d[1] = func_02085408((u16) (n - 1));
         if (d[1] >= 0) {
-            if (((Unk0206bcb0_590 *) data_0217ad18[d[1]].mUnk_590)->mUnk_060 != 0) {
+            if ((data_0217ad18[d[1]].mUnk_590)->mUnk_060 != 0) {
                 d[1] = -1;
             }
         }
@@ -78,7 +78,7 @@ void func_0207a5f0(s32 a) {
     Unk0206bcb0 *p = data_0217ad18;
     Unk0206bcb0_590 *s;
     for (i = 0; i < data_usa_0217acf4; i++) {
-        s = (Unk0206bcb0_590 *) p->mUnk_590;
+        s = p->mUnk_590;
         func_02013044(s->mUnk_014->mUnk_04, a);
         func_02013044(s->mUnk_010->mUnk_04, a);
         if (s->mUnk_018 != 0) {

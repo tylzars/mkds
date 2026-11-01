@@ -93,7 +93,7 @@ u32 func_ov000_02189030(Unk02188ec0 *v1) {
                 return 9;
             }
         }
-        func_ov000_021a5e84((Unk021a5e84 *) b, (Unk021a5e84_b *) &v1->mUnk_cb8, r | func_ov000_02188ea0(v1));
+        func_ov000_021a5e84((Unk021a5e84 *) b, &v1->mUnk_cb8, r | func_ov000_02188ea0(v1));
     } else if (s == 9) {
         v1->mUnk_d15 = 0;
         v1->mUnk_cb0 = func_0200f5ac();

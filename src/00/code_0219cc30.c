@@ -89,7 +89,7 @@ void func_ov000_0219cd74(Unk0218f960 *a, Unk0219c400 *b, u32 c) {
     if (f != 0) {
         func_ov000_0219d128(b->mUnk_04);
     } else {
-        func_ov000_0218ed74((int *) h, b->mUnk_04);
+        func_ov000_0218ed74(h, b->mUnk_04);
     }
 }
 

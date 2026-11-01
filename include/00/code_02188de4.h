@@ -7,7 +7,7 @@ struct Unk02188ec0;
 // Bytes handed out by func_ov000_02188de4: a leading byte, then the payload.
 typedef struct Unk02188de4 {
     /* 00 */ u8 mUnk_00;
-    /* 01 */ u8 pad_01;
+    /* 01 */ u8 mUnk_01;
     /* 02 */ u8 mUnk_02[0x50];
 } Unk02188de4;
 

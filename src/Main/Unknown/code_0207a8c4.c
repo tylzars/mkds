@@ -49,7 +49,7 @@ void func_0207a990(void) {
 void func_0207a9f4(void) {
     s32 i = 0;
     u16 *p = func_02086058();
-    ((Unk0206bcb0_590 *) data_0217ad18[data_021759c0->mUnk_62].mUnk_590)->mUnk_060 = 1;
+    (data_0217ad18[data_021759c0->mUnk_62].mUnk_590)->mUnk_060 = 1;
     for (; i < data_usa_0217acf4; i++) {
         func_02063cc4(&data_0217ad18[*p]);
         p++;

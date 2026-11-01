@@ -12,7 +12,7 @@ void func_0214ec18(u32 a, u32 b, u32 c) {
     u32 n;
     Unk0214ec18 w;
     Unk0214ec18 v;
-    Unk0214e788 *e;
+    Unk0214e334_b *e;
 
     if (c != 0) {
         data_021803d8.mUnk_34 |= 1 << k;
@@ -215,7 +215,7 @@ u32 func_0214e89c(Unk0214e334_b *out) {
 
 // Stores p, b and n (clearing mUnk_04 of each entry), sends two words through func_0214d6e8 and sets bit 2 of mUnk_34
 // (calling mUnk_00 with (1, 4, 0)) when either call returns a negative value, or bit 2 of mUnk_36 otherwise.
-void func_0214e788(u32 a, u32 b, Unk0214e788 *p, u32 n) {
+void func_0214e788(u32 a, u32 b, Unk0214e334_b *p, u32 n) {
     u32 i;
     u32 s;
     u8 ok;

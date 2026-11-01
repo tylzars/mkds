@@ -715,7 +715,7 @@ void func_020fa9e4(void) {
         func_020f03bc(&data_027e00cc[i]);
     }
     for (j = 0; j < data_027e00c4; j++) {
-        func_020f0044(&((Unk020ee684 *) (void *) data_027e00c8)[j]);
+        func_020f0044(&(data_027e00c8)[j]);
     }
 }
 
@@ -733,7 +733,7 @@ void func_020fa920(void) {
         }
     }
     for (j = 0; j < data_027e00c4; j++) {
-        func_01fff694(&((Unk020ee684 *) (void *) data_027e00c8)[j]);
+        func_01fff694(&(data_027e00c8)[j]);
     }
     func_020f8258();
     func_02104368();
@@ -760,7 +760,7 @@ void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
     s32 v;
     s32 c;
 
-    if (((Unk020ee684 *) (void *) data_027e00c8)[param_1].mUnk_030.mUnk_00 != 0x13) {
+    if ((data_027e00c8)[param_1].mUnk_030.mUnk_00 != 0x13) {
         return;
     }
     v = data_021759c0->mUnk_68[param_1].mUnk_08.mUnk_00;
@@ -774,8 +774,7 @@ void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
                 c = 1;
             }
         }
-        func_020f87a8(&((Unk020ee684 *) (void *) data_027e00c8)[param_1], param_2, func_020a1cd8(param_1), c != 0,
-                      param_3);
+        func_020f87a8(&(data_027e00c8)[param_1], param_2, func_020a1cd8(param_1), c != 0, param_3);
     } else {
         c = 0;
         if ((u32) v <= 3) {
@@ -783,8 +782,7 @@ void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
                 c = 1;
             }
         }
-        func_020f87a8(&((Unk020ee684 *) (void *) data_027e00c8)[param_1], param_2, func_0203c8dc(param_1), c != 0,
-                      param_3);
+        func_020f87a8(&(data_027e00c8)[param_1], param_2, func_0203c8dc(param_1), c != 0, param_3);
     }
 }
 
@@ -859,7 +857,7 @@ s32 func_020fa4c8(Unk0206bcb0 *param_1) {
         }
         data_0217bd30[n++] = e;
         if (e->mUnk_74 & 0x1000) {
-            func_020eda5c(&((Unk020ee684 *) (void *) data_027e00c8)[(u8) e->mUnk_78].mUnk_058, e);
+            func_020eda5c(&(data_027e00c8)[(u8) e->mUnk_78].mUnk_058, e);
         }
         if (data_0217bc34[e->mUnk_44].mUnk_88 != 0) {
             if (func_020f9880(e) == 0) {

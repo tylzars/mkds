@@ -754,7 +754,7 @@ void func_020efd1c(Unk020ee684 *p, Unk020f41c4_A *a) {
     } else {
         v = &data_021595d8;
     }
-    func_020f98a0(a, &b->mUnk_98, v, &((Unk0206bcb0_590 *) b->mUnk_590)->mUnk_040, func_0206c0a8(b));
+    func_020f98a0(a, &b->mUnk_98, v, &b->mUnk_590->mUnk_040, func_0206c0a8(b));
     if ((b->mUnk_48 & 1) != 0) {
         a->mUnk_74 |= 0x40000000;
     }

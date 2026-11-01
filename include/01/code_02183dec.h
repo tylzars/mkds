@@ -6,4 +6,4 @@
 #include "01/code_02188000.h"
 #include "01/code_02188e24.h"
 
-void func_ov001_02183dec(int param_1);
+void func_ov001_02183dec(Unk02188950 *param_1);
