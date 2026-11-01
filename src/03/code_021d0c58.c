@@ -3,5 +3,5 @@
 void func_ov003_021d0c58(void) {
     func_ov003_021d0a18();
     func_ov003_021cfc40((u32) &func_ov003_021d0a50);
-    *(u8 *) ((int) data_ov003_021da2ac + 0xa90) = 8;
+    data_ov003_021da2ac->mUnk_a90 = 8;
 }

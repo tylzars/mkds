@@ -4,25 +4,25 @@
 
 void func_0204f5e4(void) {
     int v1;
-    int v2;
-    int v3;
+    Unk0217aa00_16a0_view *v2;
+    Unk0217aa00_16a0 *v3;
     u32 v4;
     u32 v5;
     v4 = ((int) 0xe0000000u);
     v5 = ((u32) 0xdfffffffu);
-    v2 = (int) data_0217aa00 + 0x16a0;
+    v2 = &data_0217aa00->mUnk_16a0_view;
     v1 = 0;
-    v3 = v2;
+    v3 = v2->mUnk_000;
     do {
-        *(u8 *) (v3 + 0x34) = 0;
-        *(u32 *) (v3 + 0x74) = 0;
-        *(u32 *) (v3 + 0x78) = 0;
-        *(u32 *) (v3 + 0x84) = *(u32 *) (v3 + 0x84) & v5;
-        *(u32 *) (v3 + 0x84) = *(u32 *) (v3 + 0x84) & v4;
-        v3 = v3 + 0x88;
+        v3->mUnk_34 = 0;
+        v3->mUnk_74 = 0;
+        v3->mUnk_78 = 0;
+        v3->mUnk_84 = v3->mUnk_84 & v5;
+        v3->mUnk_84 = v3->mUnk_84 & v4;
+        v3 = v3 + 1;
         v1 = v1 + 1;
     } while (v1 < 0xc);
-    *(u16 *) (v2 + 0x668) = 0xc;
+    v2->mUnk_668 = 0xc;
 }
 
 #pragma thumb off

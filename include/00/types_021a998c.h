@@ -71,7 +71,9 @@ typedef struct Unk021a998c_0c {
     /* 7dc */ s32 mUnk_7dc;
     /* 7e0 */ u32 mUnk_7e0;
     /* 7e4 */ Unk021a998c_Func mUnk_7e4;
-    /* 7e8 */ u8 mUnk_7e8[0xc];
+    /* 7e8 */ u32 mUnk_7e8;
+    /* 7ec */ u32 mUnk_7ec;
+    /* 7f0 */ u8 mUnk_7f0[4];
     /* 7f4 */ Unk021a998c_0c_7f4 *mUnk_7f4;
     /* 7f8 */ u8 *mUnk_7f8;
     /* 7fc */ u32 mUnk_7fc;

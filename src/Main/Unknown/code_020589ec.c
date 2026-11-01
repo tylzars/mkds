@@ -4,11 +4,12 @@
 
 void func_020589ec(void) {
     int v1;
+    Unk0217aa00_1608 *v2;
     v1 = func_0205955c();
     if (v1 == 1) {
-        v1 = (int) data_0217aa00 + 0x1608;
-        *(u16 *) (v1 + 0x10) = 4;
-        *(u16 *) (v1 + 0x12) = 1;
+        v2 = &data_0217aa00->mUnk_1608;
+        v2->mUnk_10 = 4;
+        v2->mUnk_12 = 1;
     }
 }
 

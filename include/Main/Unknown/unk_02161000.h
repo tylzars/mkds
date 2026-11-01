@@ -13,7 +13,7 @@ extern s32 data_02161770;
 extern u32 data_02161774;
 extern s32 data_02161778;
 extern s32 data_0216177c;
-extern u8 data_02161780[];
+extern u32 data_02161780;
 extern u8 data_02161790[];
 extern u8 data_02161794[];
 extern u8 data_02161798[];

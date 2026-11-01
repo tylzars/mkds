@@ -16,7 +16,7 @@ void func_02007120(u32 param_1, u16 param_2) {
 }
 
 u32 func_02007114(void) {
-    return ((u32) * (const u8 *) ((u8 *) (u32) (((u32) (&data_0216f3cc))) + 0));
+    return (u32) data_0216f3cc[0];
 }
 
 #pragma thumb off

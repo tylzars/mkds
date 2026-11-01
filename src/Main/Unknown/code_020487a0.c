@@ -8,12 +8,12 @@ void func_020487e0(const void *param_1, void *param_2, u32 param_3) {
 }
 
 void func_020487a0(int param_1) {
-    int v1;
-    v1 = (int) data_021759c8 + 0x9b0 + param_1 * 0xc;
-    *(u32 *) ((int) data_021759c8 + 0x9b0 + param_1 * 0xc) = 0;
-    *(u32 *) (v1 + 8) = *(u32 *) (v1 + 8) & ((u32) 0xe0000000u);
-    *(u32 *) (v1 + 8) = *(u32 *) (v1 + 8) | ((u32) 0x20000000u);
-    *(u32 *) (v1 + 8) = *(u32 *) (v1 + 8) & ((u32) 0xbfffffffu);
+    Unk021759c8_9b0 *v1;
+    v1 = &data_021759c8->mUnk_9b0[param_1];
+    v1->mUnk_00 = 0;
+    v1->mUnk_08 = v1->mUnk_08 & ((u32) 0xe0000000u);
+    v1->mUnk_08 = v1->mUnk_08 | ((u32) 0x20000000u);
+    v1->mUnk_08 = v1->mUnk_08 & ((u32) 0xbfffffffu);
 }
 
 #pragma thumb off

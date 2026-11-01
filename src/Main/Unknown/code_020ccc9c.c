@@ -1,30 +1,26 @@
 #include "Main/Unknown/code_020ccc9c.h"
+#include "Main/Unknown/code_020cae8c.h"
 
 #pragma thumb on
 
 s32 func_020ccccc(void) {
-    return ((s32) *
-            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217b43c))) + 0))) + 0));
+    return data_0217b43c->mUnk_000;
 }
 
 u32 func_020cccc0(void) {
-    return ((u32) *
-            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217b43c))) + 0))) + 4));
+    return ((u32) data_0217b43c->mUnk_004);
 }
 
 u32 func_020cccb4(void) {
-    return ((u32) *
-            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217b43c))) + 0))) + 8));
+    return ((u32) data_0217b43c->mUnk_008);
 }
 
 u32 func_020ccca8(void) {
-    return ((u32) *
-            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217b43c))) + 0))) + 12));
+    return ((u32) data_0217b43c->mUnk_00c);
 }
 
 u32 func_020ccc9c(void) {
-    return ((u32) *
-            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217b43c))) + 0))) + 16));
+    return ((u32) data_0217b43c->mUnk_010);
 }
 
 #pragma thumb off

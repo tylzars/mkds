@@ -2,4 +2,9 @@
 
 #include "types.h"
 
-void func_020e4dec(unsigned int p0);
+typedef struct Unk020e4dec {
+    /* 00 */ u8 mUnk_00[0xac];
+    /* ac */ u16 mUnk_ac;
+} Unk020e4dec;
+
+void func_020e4dec(Unk020e4dec *p0);

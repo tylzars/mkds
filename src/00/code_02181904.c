@@ -28,6 +28,6 @@ void func_ov000_02181904(void) {
     }
     v1 = func_0211fd68();
     if (v1 != 1) {
-        *(u32 *) ((int) data_ov000_021b4c6c + 0x10) = 10;
+        data_ov000_021b4c6c->mUnk_10 = 10;
     }
 }

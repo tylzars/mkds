@@ -9,6 +9,5 @@ u32 func_0204a540(void) {
 }
 
 u32 func_0204a52c(void) {
-    return ((u32) *
-            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_021759cc))) + 0))) + 228));
+    return ((u32) data_021759cc->mUnk_0e4);
 }

@@ -1,19 +1,20 @@
 #include "Main/Unknown/code_020d2d94.h"
+#include "Main/Unknown/code_020d2000.h"
 
 #pragma thumb on
 
 void func_020d2d94(void) {
     int v1;
-    int *v2;
-    u32 *v3;
-    int *v4;
-    v2 = (int *) ((int) data_0217b4f0 + 8);
-    v4 = (int *) ((int) data_0217b4f0 + 0x134);
+    Unk020e6fd4 **v2;
+    void **v3;
+    Unk020e6fd4 **v4;
+    v2 = data_0217b4f0->mUnk_008;
+    v4 = data_0217b4f0->mUnk_134;
     v1 = 0;
     do {
         if (*v2 != 0) {
-            v3 = *(u32 **) (*v2 + 0x28);
-            if (v3 != (u32 *) 0x0) {
+            v3 = *(void ***) ((int) *v2 + 0x28);
+            if (v3 != 0) {
                 *v3 = 0;
             }
             *v2 = 0;
@@ -24,8 +25,8 @@ void func_020d2d94(void) {
     v1 = 0;
     do {
         if (*v4 != 0) {
-            v3 = *(u32 **) (*v4 + 0x24);
-            if (v3 != (u32 *) 0x0) {
+            v3 = (*v4)->mUnk_24;
+            if (v3 != 0) {
                 *v3 = 0;
             }
             *v4 = 0;

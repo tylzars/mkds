@@ -1,5 +1,5 @@
 #include "Main/Unknown/code_02100b78.h"
 
-void func_02100b78(u32 p0) {
-    *(u32 *) ((u8 *) p0 + 208) = (u32) (((p0) + (0xc4u)));
+void func_02100b78(Unk02101c84 *p0) {
+    p0->mUnk_000.mUnk_d0 = &p0->mUnk_000.mUnk_0c4;
 }

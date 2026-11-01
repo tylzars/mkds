@@ -169,7 +169,7 @@ void func_ov000_021a9534(Unk021a998c *a) {
     d = c->mUnk_2c0;
     b = 0;
     while (1) {
-        func_ov000_021ae228((int) a);
+        func_ov000_021ae228(a);
         c->mUnk_429 = b;
         c->mUnk_428 = 1;
         func_ov000_021abd2c((u32 *) d);

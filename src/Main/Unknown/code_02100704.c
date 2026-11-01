@@ -59,7 +59,7 @@ void func_021009fc(Unk02101c84 *p) {
         func_020f8e3c((u32) p->mUnk_168, 0xf7);
     }
     p->mUnk_270 = 0;
-    f = (p->mUnk_168->mUnk_48 & 1) ? (void (*)(Unk02101c84 *)) func_02100b78 : func_02100b54;
+    f = (p->mUnk_168->mUnk_48 & 1) ? func_02100b78 : func_02100b54;
     f(p);
 }
 

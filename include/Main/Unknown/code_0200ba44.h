@@ -18,7 +18,9 @@ typedef struct Unk0216fde8 {
     /* 05dc */ void (*mUnk_05dc)(u32, void *);
     /* 05e0 */ void (*mUnk_05e0)(u32, void *);
     /* 05e4 */ u32 mUnk_05e4;
-    /* 05e8 */ u8 mUnk_05e8[0x5ef8 - 0x5e8];
+    /* 05e8 */ u8 mUnk_05e8[0x5ee - 0x5e8];
+    /* 05ee */ u16 mUnk_05ee;
+    /* 05f0 */ u8 mUnk_05f0[0x5ef8 - 0x5f0];
     /* 5ef8 */ u32 mUnk_5ef8;
     /* 5efc */ u32 mUnk_5efc;
     /* 5f00 */ u32 mUnk_5f00;

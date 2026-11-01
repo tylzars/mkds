@@ -2,4 +2,9 @@
 
 #include "types.h"
 
-void func_020ffd94(unsigned int p0);
+typedef struct Unk020ffd94 {
+    /* 00 */ u8 mUnk_00[0xac];
+    /* ac */ u32 mUnk_ac;
+} Unk020ffd94;
+
+void func_020ffd94(Unk020ffd94 *p0);

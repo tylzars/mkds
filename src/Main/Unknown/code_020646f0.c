@@ -31,9 +31,9 @@ void func_020646f0(Unk0206bcb0 *a, s32 b) {
         if (c->mUnk_3c != 0) {
             n = &a->mUnk_80;
             if (n != 0) {
-                *n = *(Vec3 *) c->mUnk_3c;
+                *n = c->mUnk_3c->mUnk_00;
             }
-            d = *(Vec3 *) ((u8 *) c->mUnk_3c + 0xc);
+            d = c->mUnk_3c->mUnk_0c;
         }
     }
     if ((a->mUnk_7c & 0x600) != 0) {

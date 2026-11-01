@@ -98,12 +98,14 @@ void func_0208b190(void) {
     s32 m;
     s32 n;
     Unk0217b050Func *f;
+    Unk02061808 *g;
 
     data_0217b048->mUnk_60--;
     if (data_0217b048->mUnk_60 > 0) {
         return;
     }
-    v3 = *(Vec3 *) ((u8 *) func_02061808() + 0x15c);
+    g = func_02061808();
+    v3 = g->mUnk_15c;
     for (i = 0; i < 6; i++) {
         if (data_0217b048->mUnk_48[i] != 0) {
             s32 e;

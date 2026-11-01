@@ -5,7 +5,7 @@ void func_ov000_02185818(void) {
     v1 = func_02036c5c();
     if (v1 != 0) {
         func_ov000_021806e0(2);
-        *(u32 *) ((int) data_0217b488 + 0x1c) = 1;
+        data_0217b488->mUnk_1c = 1;
     }
     return;
 }

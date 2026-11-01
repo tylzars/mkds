@@ -3,24 +3,7 @@
 #pragma thumb on
 
 u32 func_0202ee20(u32 p0, u32 p1) {
-    return ((((u32) *
-              (const short *) ((u8 *) (u32) ((
-                                   (((u32) *
-                                     (const u32 *) ((u8 *) (u32) ((
-                                                        (u32) *
-                                                        (const u32 *) ((u8 *) (u32) (((u32) (&data_02174e48))) + 0))) +
-                                                    8))) +
-                                   (((p1) << 6)))) +
-                               0 + (0xeu)))) -
-            (((u32) *
-              (const short *) ((u8 *) (u32) ((
-                                   (((u32) *
-                                     (const u32 *) ((u8 *) (u32) ((
-                                                        (u32) *
-                                                        (const u32 *) ((u8 *) (u32) (((u32) (&data_02174e48))) + 0))) +
-                                                    8))) +
-                                   (((p0) << 6)))) +
-                               0 + (0xeu)))));
+    return ((((u32) data_02174e48->mUnk_008[p1].mUnk_0e)) - (((u32) data_02174e48->mUnk_008[p0].mUnk_0e)));
 }
 
 u32 func_0202edfc(void) {

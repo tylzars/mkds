@@ -1,15 +1,14 @@
 #include "Main/Unknown/code_020099c0.h"
+#include "Main/Unknown/code_0200ad4c.h"
 
 #pragma thumb on
 
 u32 func_020099cc(void) {
-    return ((u32) *
-            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0216fda8))) + 0))) + 8));
+    return data_0216fda8->mUnk_008;
 }
 
 u32 func_020099c0(void) {
-    return ((u32) *
-            (const u16 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0216fda8))) + 0))) + 12));
+    return ((u32) data_0216fda8->mUnk_00c);
 }
 
 #pragma thumb off

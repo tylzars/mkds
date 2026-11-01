@@ -6,6 +6,7 @@
 #include "Main/Unknown/code_02084000.h"
 #include "Main/Unknown/code_0208a000.h"
 #include "Main/Unknown/code_020d6000.h"
+#include "Main/Unknown/code_020ee684.h"
 #include "Main/Unknown/code_020e5000.h"
 #include "Main/Unknown/code_020ea000.h"
 #include "Main/Unknown/code_020ea588.h"
@@ -109,7 +110,7 @@ void func_020e2ccc(Unk020e20a8 *a) {
         return;
     }
     if (b < 8) {
-        func_020f3678(*(u32 *) ((u8 *) data_027e00c8 + b * 0x210 + 0x1f0), (u32) &a->mUnk_02c);
+        func_020f3678((u32) data_027e00c8[b].mUnk_1f0.mUnk_00, (u32) &a->mUnk_02c);
         a->mUnk_03c = func_02039828(&a->mUnk_02c, (Vec3 *) func_020e6b14()) < 0;
     } else {
         a->mUnk_03c = 0;

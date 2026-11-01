@@ -1,21 +1,21 @@
 #include "Main/Unknown/code_020882fc.h"
 
-u32 func_0208832c(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) p0 + 8))) + 4));
+u32 func_0208832c(Unk020882fc *p0) {
+    return p0->mUnk_08->mUnk_04;
 }
 
-u32 func_02088320(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) p0 + 8))) + 4));
+u32 func_02088320(Unk020882fc *p0) {
+    return p0->mUnk_08->mUnk_04;
 }
 
-u32 func_02088314(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) p0 + 8))) + 4));
+u32 func_02088314(Unk020882fc *p0) {
+    return p0->mUnk_08->mUnk_04;
 }
 
-u32 func_02088308(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) p0 + 8))) + 4));
+u32 func_02088308(Unk020882fc *p0) {
+    return p0->mUnk_08->mUnk_04;
 }
 
-u32 func_020882fc(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) p0 + 8))) + 4));
+u32 func_020882fc(Unk020882fc *p0) {
+    return p0->mUnk_08->mUnk_04;
 }

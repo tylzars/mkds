@@ -2,7 +2,7 @@
 
 u32 func_ov000_0219bab4(void) {
     if ((int) data_ov000_021b54c8 != 0) {
-        return *(u32 *) ((int) data_ov000_021b54c8 + 0x24);
+        return data_ov000_021b54c8->mUnk_24;
     }
     return 0;
 }

@@ -7,7 +7,7 @@ void func_0202d82c(void) {
     u32 v2;
     v1 = ((int) func_020b3f7c((void *) data_02174e40->mUnk_0ac, 0xd));
     v2 = ((int) func_020b3f7c((void *) data_02174e40->mUnk_0a8, 4));
-    *(u32 *) ((int) data_02174e40 + 0xb0) = 8;
+    data_02174e40->mUnk_0b0 = 8;
     func_02126230(v1, v2);
 }
 

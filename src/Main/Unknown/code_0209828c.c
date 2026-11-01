@@ -345,7 +345,7 @@ void func_02098d4c(Unk020983c4 *p) {
             v = p->mUnk_000.mUnk_9c->mUnk_34;
         }
         if (v >= 0) {
-            func_020d7db4((int *) &p->mUnk_0b8[p->mUnk_1ba], (u16) v, 100);
+            func_020d7db4(&p->mUnk_0b8[p->mUnk_1ba], (u16) v, 100);
             func_020d8918(&p->mUnk_0b8[p->mUnk_1ba], &a, &b);
             d = func_02148714(b.x, b.z) - p->mUnk_1d8;
             if (d > 0x8000) {

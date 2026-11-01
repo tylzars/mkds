@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020b2e34.h"
+#include "Main/Unknown/code_020b1de4.h"
 
 #pragma thumb on
 
@@ -17,14 +18,13 @@ void func_020b2e64(u32 param_1) {
 }
 
 u32 func_020b2e58(void) {
-    return ((u32) *
-            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217b354))) + 0))) + 4));
+    return ((u32) data_0217b354->mUnk_004);
 }
 
 int func_020b2e34(void) {
     int v1;
     int v2;
-    v2 = *(int *) ((int) data_0217b354 + 0x24);
+    v2 = data_0217b354->mUnk_024;
     if ((v2 == 2) && (v1 = func_020c3db4(), v1 != 0)) {
         v2 = 7;
     }

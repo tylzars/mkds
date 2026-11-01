@@ -1,5 +1,5 @@
 #include "Main/Unknown/code_020ffcf8.h"
 
-void func_020ffcf8(u32 p0) {
-    *(u32 *) ((u8 *) p0 + 172) = (u32) 0x1000u;
+void func_020ffcf8(Unk020ffcf8 *p0) {
+    p0->mUnk_ac = 0x1000u;
 }

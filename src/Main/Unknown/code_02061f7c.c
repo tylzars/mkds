@@ -1,21 +1,17 @@
 #include "Main/Unknown/code_02061f7c.h"
 
 u32 func_02061fb8(void) {
-    return ((u32) *
-            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217aa54))) + 0))) + 4));
+    return ((u32) data_0217aa54->mUnk_04);
 }
 
 u32 func_02061fa4(void) {
-    return ((u32) *
-            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217aa54))) + 0))) + 20));
+    return ((u32) data_0217aa54->mUnk_14);
 }
 
 u32 func_02061f90(void) {
-    return ((u32) *
-            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217aa54))) + 0))) + 12));
+    return ((u32) data_0217aa54->mUnk_0c);
 }
 
 u32 func_02061f7c(void) {
-    return ((u32) *
-            (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217aa54))) + 0))) + 16));
+    return ((u32) data_0217aa54->mUnk_10);
 }

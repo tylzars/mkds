@@ -4,10 +4,10 @@
 
 void func_020593b4(void) {
     int v1;
-    if ((int *) (int) data_0217aa00 == (int *) 0x0) {
+    if (data_0217aa00 == 0) {
         v1 = 0;
     } else {
-        v1 = *(int *) (int) data_0217aa00;
+        v1 = data_0217aa00->mUnk_0000;
     }
     if (v1 == 1) {
         func_020518c8((u32) 0);
@@ -16,11 +16,12 @@ void func_020593b4(void) {
 
 void func_02059388(void) {
     int v1;
+    Unk0217aa00_1608 *v2;
     v1 = func_020593dc();
     if (v1 == 1) {
-        v1 = (int) data_0217aa00 + 0x1608;
-        *(u16 *) (v1 + 0x10) = 0x11;
-        *(u16 *) (v1 + 0x12) = 1;
+        v2 = &data_0217aa00->mUnk_1608;
+        v2->mUnk_10 = 0x11;
+        v2->mUnk_12 = 1;
     }
 }
 

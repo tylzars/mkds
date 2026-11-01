@@ -24,7 +24,7 @@ void func_ov001_02193a00(void) {
     int v1;
     v1 = func_02036c5c();
     if (v1 != 0) {
-        *(u32 *) ((int) data_ov001_021a9bd4 + 4) = 1;
+        data_ov001_021a9bd4->mUnk_04 = 1;
     }
     return;
 }

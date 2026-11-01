@@ -2,10 +2,8 @@
 
 u16 func_02028dd4(void) {
     int v1;
-    u32 v2;
-    v2 = *(u32 *) &data_0217aa00;
-    if ((*(u32 *) v2) == 2) {
-        v1 = *(u16 *) (v2 + 0x432);
+    if (data_0217aa00->mUnk_0000 == 2) {
+        v1 = data_0217aa00->mUnk_0432;
     } else {
         v1 = 0;
     }
@@ -13,9 +11,5 @@ u16 func_02028dd4(void) {
 }
 
 u32 func_02028db8(u32 p0) {
-    return ((u32) *
-            (const u16 *) ((u8 *) (u32) (((((((u32) * (const u32 *) ((u8 *) (u32) (((u32) (&data_0217aa00))) + 0))) +
-                                            (((p0) << 3)))) +
-                                          (0x1e00u))) +
-                           82));
+    return ((u32) data_0217aa00->mUnk_1e52[p0].mUnk_00);
 }

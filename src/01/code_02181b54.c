@@ -16,5 +16,5 @@ Unk02188950 *func_ov001_02181b68(int param_1) {
 }
 
 u8 func_ov001_02181b54(void) {
-    return *(u8 *) ((int) data_021759c0 + 0x3d0);
+    return data_021759c0->mUnk_3d0;
 }

@@ -11,6 +11,6 @@ void func_ov001_02193448(void) {
     if (v1 != 0) {
         func_02125ebc((u32) 0x23);
         func_02125fc0();
-        *(u32 *) ((int) data_ov001_021a9bd4 + 0x10) = 4;
+        data_ov001_021a9bd4->mUnk_10 = 4;
     }
 }

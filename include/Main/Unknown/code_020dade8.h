@@ -2,4 +2,10 @@
 
 #include "types.h"
 
-void func_020dade8(unsigned int p0);
+typedef struct Unk020dade8 {
+    /* 00 */ u8 mUnk_00[0xc4];
+    /* c4 */ s32 mUnk_c4;
+    /* c8 */ s32 mUnk_c8;
+} Unk020dade8;
+
+void func_020dade8(Unk020dade8 *p0);

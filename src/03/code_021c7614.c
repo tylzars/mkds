@@ -72,7 +72,7 @@ void func_ov003_021c7614(void) {
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021c1cd8();
         func_ov003_021cdc10((u32) 0x14);
-        if (*(u8 *) ((int) data_ov003_021da1fc + 0x14) == 0) {
+        if (data_ov003_021da1fc->mUnk_14 == 0) {
             func_ov003_021c1c90((u8) 0);
             func_ov003_021c1c70((u8) 0);
         } else {

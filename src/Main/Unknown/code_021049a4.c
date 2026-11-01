@@ -5,26 +5,26 @@
 void func_021049a4(void) {
     int v1;
     int v2;
-    int v3;
-    int *v4;
+    Unk020f41c4_A *v3;
+    Unk020f41c4_A **v4;
+    Unk027e00cc *v6;
     u32 v5;
-    int v6;
-    if (*(int *) ((int) data_0217bc48 + 0x1dc) != 0) {
-        v6 = (int) data_027e00cc + 0x220;
-        v4 = *(int **) (v6 + 4);
-        v1 = *(int *) (v6 + 8);
+    if (data_0217bc48[17].mUnk_00 != 0) {
+        v6 = &data_027e00cc[8];
+        v4 = v6->mUnk_04;
+        v1 = v6->mUnk_08;
         v2 = 0;
         if (0 < v1) {
             do {
                 v3 = *v4;
                 v5 = func_0210543c();
-                *(u32 *) (v3 + 0x134) = v5;
-                *(int *) (*(int *) (v3 + 0x134) + 0xfc) = v3 + 0x13c;
+                *(u32 *) ((int) v3 + 0x134) = v5;
+                *(int *) (*(int *) ((int) v3 + 0x134) + 0xfc) = (int) v3 + 0x13c;
                 v4 = v4 + 1;
                 v2 = v2 + 1;
             } while (v2 < v1);
         }
-        *(u32 *) (v6 + 0x40) = 1;
+        v6->mUnk_40 = 1;
     }
 }
 

@@ -73,10 +73,10 @@ void func_ov003_021c6d0c(void) {
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021c0d2c();
         func_ov003_021cdc10((u32) 0x14);
-        if (*(u8 *) ((int) data_ov003_021da1f8 + 0x29) == 0) {
+        if (data_ov003_021da1f8->mUnk_29 == 0) {
             func_ov003_021c0cd0((u8) 0);
         }
-        if (*(u8 *) ((int) data_ov003_021da1f8 + 0x29) == ' ') {
+        if (data_ov003_021da1f8->mUnk_29 == ' ') {
             func_ov003_021c0cbc((u8) 0);
         }
         func_ov003_021c212c(func_ov003_021c6cf0);

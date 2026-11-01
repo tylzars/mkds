@@ -58,7 +58,7 @@ void func_ov000_021ae1e4(void) {
         if (a->mUnk_09 != 0) {
             func_ov000_021a9534(a);
         } else {
-            func_ov000_021ae228((int) a);
+            func_ov000_021ae228(a);
         }
     }
 }

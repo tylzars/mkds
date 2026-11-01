@@ -3,9 +3,7 @@
 #pragma thumb on
 
 void func_02078f78(Unk020136f0 *param_1) {
-    u32 v1;
-    v1 = (u32) func_020136f0(param_1);
-    *(u32 *) ((int) data_0217ad08 + 0x1d4) = v1;
+    data_0217ad08->mUnk_1d4 = func_020136f0(param_1);
     func_02012cbc(param_1);
 }
 

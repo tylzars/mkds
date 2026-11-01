@@ -241,7 +241,7 @@ s32 func_0202af60(void) {
         q = (u32 *) d;
         t = data_usa_02153a4c[v];
         for (; i < 4; i++) {
-            if (*(u32 *) ((u8 *) q + 0x5c) == t) {
+            if (q[0x17] == t) {
                 f = 0;
                 break;
             }

@@ -9,9 +9,9 @@ void func_ov000_02182d28(void) {
     }
     v1 = func_02125f88();
     if (v1 != 0) {
-        *(u32 *) ((int) data_ov000_021b4c70 + 4) = 2;
+        data_ov000_021b4c70->mUnk_04 = 2;
         func_ov000_02182de8();
-        *(u32 *) ((int) data_ov000_021b4c70 + 0x10) = 0;
+        data_ov000_021b4c70->mUnk_10 = 0;
     }
     return;
 }

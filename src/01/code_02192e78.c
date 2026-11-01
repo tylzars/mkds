@@ -1,7 +1,7 @@
 #include "01/code_02192e78.h"
 
 void func_ov001_02192ea0(u32 param_1) {
-    *(u32 *) ((int) data_ov001_021a9bd0 + 0xc) = param_1;
+    data_ov001_021a9bd0->mUnk_0c = param_1;
     return;
 }
 
@@ -14,6 +14,6 @@ int func_ov001_02192e84(void) {
 }
 
 void func_ov001_02192e78(u16 param_1) {
-    *(u16 *) ((int) data_ov001_021a9bd0 + 0x14) = param_1;
+    data_ov001_021a9bd0->mUnk_14 = param_1;
     return;
 }

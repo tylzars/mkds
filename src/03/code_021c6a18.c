@@ -18,7 +18,7 @@ void func_ov003_021c6a18(void) {
         func_ov003_021c2120((u32) 2, (u32) 1);
         func_ov003_021c20f8((u32) 0, (u32) v1);
         func_ov003_021c212c(func_ov003_021c965c);
-    } else if (*(u8 *) ((int) data_ov003_021da1f8 + 0x2a) == 0) {
+    } else if (data_ov003_021da1f8->mUnk_2a == 0) {
         func_ov003_021c2120((u32) 0, (u32) 1);
         func_ov003_021c20f8((u32) 1, (u32) 0);
         func_ov003_021c212c(func_ov003_021c6668);

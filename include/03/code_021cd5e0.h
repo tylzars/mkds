@@ -27,13 +27,16 @@ typedef struct Unk021cd5e0_400 {
     /* f4 */ u8 mUnk_f4;
     /* f5 */ u8 mUnk_f5;
     /* f6 */ u8 mUnk_f6;
+    /* f7 */ u8 pad_f7;
+    /* f8 */ u16 mUnk_f8;
 } Unk021cd5e0_400;
 
 // Object at data_ov003_021da270, as far as func_ov003_021cd5e0 through func_ov003_021cd790 use it.
 typedef struct Unk021cd5e0 {
     /* 000 */ struct {
         Unk021cd5e0_entry mUnk_00;
-        u8 mUnk_f0[0x10];
+        u8 mUnk_f0[0xe];
+        u16 mUnk_fe;
     } mUnk_000[4];
     /* 400 */ Unk021cd5e0_400 mUnk_400;
 } Unk021cd5e0;

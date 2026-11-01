@@ -25,7 +25,7 @@ void func_0210d2cc(void) {
         data_0217d020 = 0;
     }
     func_0210e280((Unk0217c7c4 *) data_0217d034);
-    l = (Unk02017328 *) data_0217d048;
+    l = data_0217d048;
     for (p = l->mUnk_00; p != 0; p = l->mUnk_00) {
         func_0210ca4c(p);
         if (p->mUnk_18 != 3) {
@@ -37,7 +37,7 @@ void func_0210d2cc(void) {
     p = m->mUnk_00;
     t = data_0217d024[0];
     if (p != 0) {
-        l = (Unk02017328 *) data_0217d048;
+        l = data_0217d048;
         do {
             if ((t++ & 3) == data_0217d010[0]) {
                 func_0210ca4c(p);
@@ -83,7 +83,7 @@ void func_0210d200(u32 a) {
             } while (q != 0);
         }
         if (p->mUnk_18 != 3) {
-            func_0210bc54(&((Unk02017328 *) data_0217d048)[p->mUnk_18], p);
+            func_0210bc54(&data_0217d048[p->mUnk_18], p);
             p->mUnk_18 = 3;
         }
         p = func_0201733c(&data_0217d028, p);

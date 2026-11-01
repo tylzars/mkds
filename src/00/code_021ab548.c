@@ -1,11 +1,13 @@
 #include "00/code_021ab548.h"
+#include "00/code_021a998c.h"
 
 void func_ov000_021ab594(u32 param_1, u32 param_2) {
-    int v1;
-    v1 = *(int *) (*(int *) (((int) (u32) ((u8 *) &data_0216ff5c)) + 4) + 0xa4);
-    if ((v1 != 0) && (v1 = *(int *) (v1 + 0xc), v1 != 0)) {
-        *(u32 *) (v1 + 0x7e8) = param_1;
-        *(u32 *) (v1 + 0x7ec) = param_2;
+    Unk021a998c *v1;
+    Unk021a998c_0c *v2;
+    v1 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
+    if ((v1 != 0) && (v2 = v1->mUnk_0c, v2 != 0)) {
+        v2->mUnk_7e8 = param_1;
+        v2->mUnk_7ec = param_2;
     }
 }
 

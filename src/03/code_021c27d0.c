@@ -8,13 +8,13 @@ void func_ov003_021c27f8(u32 param_1) {
     int v1;
     v1 = func_ov003_021d1290();
     if (v1 != 0) {
-        *(u8 *) ((int) data_ov003_021da194 + 0x1e2a1) = 1;
+        data_ov003_021da194->mUnk_1e2a1 = 1;
         func_ov003_021d34c8(0, param_1);
     }
 }
 
 u32 func_ov003_021c27e4(void) {
-    if ((int) data_ov003_021da194 == 0) {
+    if (data_ov003_021da194 == 0) {
         return 1;
     }
     return 0;

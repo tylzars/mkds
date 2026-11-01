@@ -2,7 +2,7 @@
 
 void func_ov003_021c06b0(void) {
     u32 v1;
-    if (*(u8 *) ((int) data_ov003_021da15c + 0x11d) == 2) {
+    if (data_ov003_021da15c->mUnk_11d == 2) {
         v1 = 0;
     } else {
         v1 = 2;
@@ -12,6 +12,6 @@ void func_ov003_021c06b0(void) {
 }
 
 void func_ov003_021c0680(void) {
-    func_ov003_021c00ec((int) (*(u8 *) ((int) data_ov003_021da15c + 0x11d) != 1));
+    func_ov003_021c00ec((int) (data_ov003_021da15c->mUnk_11d != 1));
     func_ov003_021cdc10((u32) 1);
 }

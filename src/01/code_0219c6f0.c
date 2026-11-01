@@ -206,7 +206,7 @@ void func_ov001_0219cdb4(void) {
     int v1;
     v1 = func_02128294();
     if (v1 != 0) {
-        *(u32 *) ((int) data_ov001_021a9bf8 + 4) = 2;
+        data_ov001_021a9bf8->mUnk_04 = 2;
     }
     return;
 }

@@ -1,7 +1,7 @@
 #include "03/code_021cae88.h"
 
 void func_ov003_021cae88(void) {
-    if (*(u8 *) ((int) data_ov003_021da234 + 0x1d) == 2) {
+    if (data_ov003_021da234->mUnk_1d == 2) {
         func_ov003_021ce0c4();
     }
     func_ov003_021bf2d0();
