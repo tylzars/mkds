@@ -126,20 +126,20 @@ void func_0201804c(Unk02017f24 *a, u32 b) {
     }
 }
 
-// non-matching: 0x3c bytes, original 0x40: the original keeps `add r3, r4, #0x24` and reads the second word through
-// r3; here that read is folded into [r4, #0x28].
 u32 func_0201800c(Unk02017f24 *a, u32 b) {
-    u32 m;
+    u32 n;
     u32 s;
+    u32 t;
     Unk02018174 *p;
 
+    n = func_02134420(b);
     p = &a->mUnk_24;
-    m = func_02134420(b) - 1;
-    s = (m + a->mUnk_24.mUnk_00) & ~m;
-    if (s > p->mUnk_04) {
+    t = p->mUnk_04;
+    s = ((n - 1) + p->mUnk_00) & ~(n - 1);
+    if (s > t) {
         return 0;
     }
-    return p->mUnk_04 - s;
+    return t - s;
 }
 
 u32 func_02017fb4(Unk02017f24 *a, u32 b) {

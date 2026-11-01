@@ -219,8 +219,6 @@ void func_02005314(Unk020055f0 *rec) {
     } while (p < end);
 }
 
-// non-matching: same instructions, but the callee-saved registers are assigned in a different order
-// (hi/lo/last/found/list head/zero/prev)
 void func_02005210(Unk020055f0 *rec) {
     Unk02005210 *prev;
     Unk02005210 *head;
@@ -239,8 +237,8 @@ void func_02005210(Unk020055f0 *rec) {
         hi = lo + (rec->mUnk_08 + rec->mUnk_0c);
         found = 0;
         last = 0;
-        prev = 0;
         irq = func_0200fca0();
+        prev = 0;
         head = data_0217eeb0;
         cur = head;
         if (head != 0) {
@@ -259,10 +257,10 @@ void func_02005210(Unk020055f0 *rec) {
                         head = next;
                     }
                     cur->mUnk_00 = 0;
+                    last = cur;
                     if (prev != 0) {
                         prev->mUnk_00 = next;
                     }
-                    last = cur;
                 } else {
                     prev = cur;
                 }

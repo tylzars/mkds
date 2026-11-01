@@ -18,25 +18,16 @@ u32 func_02152934(u64 a, u32 b) {
     return r;
 }
 
-// non-matching: the zero register is set up before the sign word of the checksum (movs r2 then asrs r1) where the
-// original does asrs r1 then movs r2; same size
 s32 func_02152950(u64 a, u32 b) {
     u32 s[2];
     u8 t[0x100];
-    s32 r;
     s32 c;
-    u32 h;
 
-    h = a >> 32;
     s[0] = a;
     s[1] = b;
     func_020207a8(t, 7);
     c = func_0202061c(t, s, 8) & 0x7f;
-    r = 0;
-    if ((s64) c == h) {
-        r = 1;
-    }
-    return r;
+    return c == (a >> 32);
 }
 
 u64 func_02152988(u32 a, u32 b) {

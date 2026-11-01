@@ -94,7 +94,9 @@ u32 func_02004018(Unk02003a6c *p0, u8 *p1, u32 p2, u32 p3, u32 p4, u32 p5, s32 (
     return 1;
 }
 
-// non-matching: 'mov r0' and 'ldr r1' before the call to func_02003cfc are swapped (2 words)
+// non-matching: 'mov r0' and 'ldr r1' before the call to func_02003cfc are swapped (2 words); the load is the
+// taller node in either schedule (before or after colouring), so the original's block has a dependence or
+// readiness difference that this source does not give
 u32 func_02003f50(Unk02003a6c *p0) {
     u32 state;
     Unk02003024 *p;

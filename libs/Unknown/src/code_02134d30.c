@@ -4,7 +4,6 @@
 
 void func_02135010(void) {}
 
-// non-matching: the counter of the 32-byte loop is in r3, the original keeps it in ip
 void func_02134f18(u8 *p, int c, u32 n) {
     u32 *w;
     u32 m;
@@ -25,15 +24,14 @@ void func_02134f18(u8 *p, int c, u32 n) {
             c = (c << 24) | (c << 16) | (c << 8) | c;
         }
         for (k = n >> 5; k != 0; k--) {
-            w[0] = c;
-            w[1] = c;
-            w[2] = c;
-            w[3] = c;
-            w[4] = c;
-            w[5] = c;
-            w[6] = c;
-            w[7] = c;
-            w += 8;
+            *w++ = c;
+            *w++ = c;
+            *w++ = c;
+            *w++ = c;
+            *w++ = c;
+            *w++ = c;
+            *w++ = c;
+            *w++ = c;
         }
         for (k = (n & 0x1f) >> 2; k != 0; k--) {
             *w++ = c;

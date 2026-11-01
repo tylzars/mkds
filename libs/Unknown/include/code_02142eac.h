@@ -191,7 +191,7 @@ u16 func_02143090(void);
 u16 func_02143134(void);
 u16 func_021431d8(void);
 u16 func_02143280(void);
-void *func_021432ac(Unk021432ac *a, u32 b);
+void *func_021432ac(const Unk021432ac *a, u32 b);
 s32 func_021433b0(void);
 s32 func_0214349c(void);
 s32 func_02143520(void *a);

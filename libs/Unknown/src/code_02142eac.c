@@ -671,13 +671,10 @@ s32 func_021433b0(void) {
     return (((v + 0xc) * p->mUnk_004->mUnk_0f4 + 0x29) & ~0x1f) << 1;
 }
 
-// non-matching: in the loop the two temporaries take r1/r0 where the ROM has r0/r1 (6 words), and add r2,sp,#0 comes
-// before str r0,[sp] instead of after mov r3,#0
-void *func_021432ac(Unk021432ac *a, u32 b) {
+void *func_021432ac(const Unk021432ac *a, u32 b) {
     Unk02142aa8 *p;
-    u8 *ptrs[16];
+    u32 ptrs[16];
     s32 i;
-    u8 **q;
 
     p = func_02142aa8();
     if (func_02142a8c() != 0) {
@@ -693,15 +690,14 @@ void *func_021432ac(Unk021432ac *a, u32 b) {
     if (a->mUnk_04 == 0) {
         return 0;
     }
-    ptrs[0] = a->mUnk_0a;
+    ptrs[0] = (u32) a->mUnk_0a;
     i = 0;
-    q = ptrs;
     do {
-        if (b == *(u16 *) (q[i] + 4)) {
-            return q[i];
+        if (b == *(u16 *) (ptrs[i] + 4)) {
+            return (void *) ptrs[i];
         }
         i++;
-        q[i] = a->mUnk_06 + q[i - 1];
+        ptrs[i] = a->mUnk_06 + ptrs[i - 1];
     } while (i < a->mUnk_04);
     return 0;
 }

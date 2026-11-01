@@ -83,7 +83,7 @@ u32 func_02151620(const u8 *a) {
 
 // non-matching: same instructions, but the stores of the constant zero words to the stack at the start come in a
 // different order (15 words differ, first at +0xac)
-u32 func_02151288(u32 a, u32 b, u32 c, u32 d) {
+u32 func_02151288(u32 a, u32 b, u16 c, u32 d) {
     u32 e;
     u32 f;
     u32 l1;
@@ -113,7 +113,6 @@ u32 func_02151288(u32 a, u32 b, u32 c, u32 d) {
     l4 = d;
     l4 |= 0x1050000;
     l5 |= 0x2002500;
-    c |= 0x20000;
     l6 |= 0x30000;
     d |= 0x1040000;
     l7 = (u32) &data_usa_021804a0 >> 24;
@@ -168,7 +167,7 @@ u32 func_02151288(u32 a, u32 b, u32 c, u32 d) {
                         e = 0;
                     } else if (func_0214d6e8(f, b, 0) < 0) {
                         e = 0;
-                    } else if (func_0214d6e8(f, c, 0) < 0) {
+                    } else if (func_0214d6e8(f, c | 0x20000, 0) < 0) {
                         e = 0;
                     } else if (func_0214d6e8(f, l6, 0) < 0) {
                         e = 0;
@@ -253,8 +252,6 @@ u32 func_02151288(u32 a, u32 b, u32 c, u32 d) {
     return e;
 }
 
-// non-matching: 0x64 bytes against 0x5c; the original keeps the second argument in r4 and truncates it to 16 bits
-// inside the loop, here it is saved on the stack and truncated once before the loop
 u32 func_0215122c(u32 a, u32 b, void *c) {
     u32 d;
     func_0200ee3c(c, b);
@@ -264,7 +261,7 @@ u32 func_0215122c(u32 a, u32 b, void *c) {
     func_0214d7c4(4, (UnkFunc *) func_02151128);
     d = 1;
     while (1) {
-        if (func_02151288(d, a, (u16) b, (u32) c) == 1) {
+        if (func_02151288(d, a, b, (u32) c) == 1) {
             break;
         }
         WaitByLoop(0x40000);
@@ -273,7 +270,7 @@ u32 func_0215122c(u32 a, u32 b, void *c) {
     return 1;
 }
 
-void func_021511d8(u32 a, u32 b, void *c) {
+void func_021511d8(u32 a, u16 b, void *c) {
     u32 d;
     d = 4;
     while (func_0214d79c(d, 1) == 0) {

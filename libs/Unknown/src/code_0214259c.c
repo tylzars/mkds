@@ -168,14 +168,9 @@ void func_021425e8(u32 a, Unk021425e8 *m, s32 c) {
     func_0200ee58(m, 0x100);
 }
 
-// non-matching: the loaded halfword, the address and the temporary of the bit test take r1/r2/r0 where the ROM has
-// r0/r1/r2: 5 words differ
 void func_021425cc(void) {
-    u16 v;
-
-    v = *(u16 *) 0x27fff96;
-    if ((v & 1) != 0) {
-        *(u16 *) 0x27fff96 = v & ~1;
+    if ((*(u16 *) 0x27fff96 & 1) != 0) {
+        *(u16 *) 0x27fff96 &= ~1;
     }
 }
 
