@@ -297,7 +297,7 @@ void func_021123a0(void) {
     s32 l;
     u16 a;
     s32 j;
-    s32 c;
+    s16 c;
     s16 v;
     c = 0;
     func_021137f4();
@@ -354,7 +354,7 @@ void func_021121d4(void) {
     s32 l;
     u16 a;
     s32 j;
-    s32 c;
+    s16 c;
     s16 v;
     c = 0;
     func_021137f4();

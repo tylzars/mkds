@@ -496,7 +496,7 @@ void func_02115204(void) {
 }
 
 void func_02115000(void) {
-    s32 k;
+    s16 k;
     u16 a;
     s32 i;
     u16 b;
@@ -555,7 +555,7 @@ void func_02115000(void) {
 }
 
 void func_02114dfc(void) {
-    s32 k;
+    s16 k;
     u16 a;
     s32 i;
     u16 b;

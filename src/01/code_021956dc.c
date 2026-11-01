@@ -720,7 +720,7 @@ void func_ov001_021963a8(void) {
     u16 x;
     u16 y;
     s32 j;
-    s32 k;
+    s16 k;
     s16 v;
 
     k = 0;
@@ -769,7 +769,7 @@ void func_ov001_0219623c(void) {
     u16 x;
     u16 y;
     s32 j;
-    s32 k;
+    s16 k;
     s16 v;
 
     k = 0;

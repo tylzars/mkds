@@ -37,11 +37,7 @@ s16 func_020ae488(s32 a) {
     return 0;
 }
 
-// non-matching: the two early returns (`return b`, `return c`) get `lsls`/`asrs` narrowing in ours (the original
-// returns the register as is); 4 extra instructions; declaring b and c as s16 matches but narrows the arguments in 10
-// callers, and an s32 return with `(s16)` on the two computed returns matches but its callers then narrow the result
-// (50 of them)
-s16 func_020ae4c0(s32 a, s32 b, s32 c, s32 d, s32 e) {
+s16 func_020ae4c0(s32 a, s16 b, s16 c, s32 d, s32 e) {
     s32 t;
     s32 v1;
     float f;

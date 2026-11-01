@@ -575,7 +575,7 @@ void func_ov001_02194148(void) {
     s32 j;
     s32 a;
     s32 b;
-    s32 x = 0;
+    s16 x = 0;
 
     func_ov001_02194f20();
     switch (data_ov001_021a9bd8->mUnk_7c) {
@@ -622,7 +622,7 @@ void func_ov001_02193f98(void) {
     s32 j;
     s32 a;
     s32 b;
-    s32 x = 0;
+    s16 x = 0;
 
     func_ov001_02194f20();
     switch (data_ov001_021a9bd8->mUnk_7c) {

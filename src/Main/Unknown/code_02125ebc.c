@@ -523,7 +523,7 @@ void func_021268f8(void) {
 
     data_0217d3f0->mUnk_0c++;
     for (i = 0; i < 2; i++) {
-        data_0217d3f0->mUnk_2054[i] = func_020ae4c0(1, (s16) -data_0217d3f0->mUnk_205c[i],
+        data_0217d3f0->mUnk_2054[i] = func_020ae4c0(1, -data_0217d3f0->mUnk_205c[i],
                                                     data_0215d040[data_0217d3f0->mUnk_40], data_0217d3f0->mUnk_0c, 0xf);
     }
     p = data_0217d3f0;
