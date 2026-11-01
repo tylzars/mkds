@@ -1,6 +1,6 @@
 #include "code_0214e1e0.h"
 #include "code_0214e274.h"
-#include "Main/Unknown/code_0214e258.h"
+#include "code_0214e258.h"
 
 // Returns func_0214e274(a) * 86400 + func_0214e258(b), or -1 when either returns -1.
 s64 func_0214e1e0(const Unk0214e1e0 *a, const Unk0214e1e0 *b) {

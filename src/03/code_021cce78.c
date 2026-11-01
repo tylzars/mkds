@@ -11,7 +11,7 @@
 #include "03/code_021d3488.h"
 #include "code_02134d30.h"
 #include "code_0214d018.h"
-#include "Main/Unknown/code_0200eddc.h"
+#include "code_0200eddc.h"
 
 void func_ov003_021cce78(void) {
     func_ov003_021d34c0(0, data_ov003_021da268->mUnk_0c);

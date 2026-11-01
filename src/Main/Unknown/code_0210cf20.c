@@ -19,7 +19,7 @@
 #include "Main/Unknown/code_0210d4a4.h"
 #include "Main/Unknown/code_0210e328.h"
 #include "Main/Unknown/code_0210bce0.h"
-#include "Main/Unknown/code_0201750c.h"
+#include "code_0201750c.h"
 
 void func_0210d4a4(Unk0210bf24 *a, s32 b) {
     s32 i;

@@ -22,7 +22,7 @@
 #include "00/code_021ae2f4.h"
 #include "00/code_021adb80.h"
 #include "Main/Unknown/unk_0216f000.h"
-#include "Main/Unknown/code_0200edc0.h"
+#include "code_0200edc0.h"
 #include "code_0200e77c.h"
 
 s32 func_ov000_021873d4(Unk02186d7c *p, const Unk021873d4 *q) {

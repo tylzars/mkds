@@ -3,7 +3,7 @@
 #include "Main/Unknown/unk_02173000.h"
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/code_0200e000.h"
-#include "Main/Unknown/code_0214f1a0.h"
+#include "code_0214f1a0.h"
 
 u8 func_0201ec30(void) {
     u8 *p;

@@ -45,7 +45,7 @@
 #include "00/code_021a3668.h"
 #include "00/unk_021b23b0.h"
 #include "00/unk_021b4000.h"
-#include "Main/Unknown/code_021384cc.h"
+#include "code_021384cc.h"
 
 u32 func_ov000_0218f654(Unk0218f960 *a) {
     Unk0218f960_00 *o;

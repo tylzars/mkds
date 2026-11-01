@@ -8,7 +8,7 @@
 #include "00/code_021a3668.h"
 #include "00/code_021a3690.h"
 #include "00/unk_021b23b0.h"
-#include "Main/Unknown/code_021384cc.h"
+#include "code_021384cc.h"
 #include "code_02134d30.h"
 
 u32 func_ov000_0218f848(Unk0218f960 *a, s32 b, s32 c) {

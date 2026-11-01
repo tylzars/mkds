@@ -9,7 +9,7 @@
 #include "03/code_021c2530.h"
 #include "03/code_021c2afc.h"
 #include "03/code_021cb000.h"
-#include "Main/Unknown/code_0202041c.h"
+#include "code_0202041c.h"
 #include "Main/Unknown/code_02151718.h"
 #include "03/code_021cd4ac.h"
 #include "03/code_021d1000.h"

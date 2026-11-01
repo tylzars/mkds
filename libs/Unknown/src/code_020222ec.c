@@ -1,9 +1,9 @@
 #include "code_020222ec.h"
 #include "code_02021e8c.h"
 #include "code_0214cfe4.h"
-#include "Main/Unknown/code_02022a60.h"
-#include "Main/Unknown/code_020220b0.h"
-#include "Main/Unknown/code_020222e0.h"
+#include "code_02022a60.h"
+#include "code_020220b0.h"
+#include "code_020222e0.h"
 #include "Main/Unknown/unk_02153000.h"
 #include "code_0202210c.h"
 

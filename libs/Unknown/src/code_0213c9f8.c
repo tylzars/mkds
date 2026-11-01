@@ -1,7 +1,7 @@
 #pragma avoid_byte all
 
 #include "code_0213c9f8.h"
-#include "Main/Unknown/code_0213c9e8.h"
+#include "code_0213c9e8.h"
 #include "code_0213cae0.h"
 
 void *func_0213ca94(void *p, const u16 *s, u32 n) {

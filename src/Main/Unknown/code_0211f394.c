@@ -11,7 +11,7 @@
 #include "Main/Unknown/code_020b3f7c.h"
 #include "Main/Unknown/code_0212426c.h"
 #include "Main/Unknown/code_02116dd4.h"
-#include "Main/Unknown/code_02148ca0.h"
+#include "code_02148ca0.h"
 #include "Main/Unknown/code_020472a8.h"
 
 #pragma thumb on

@@ -11,7 +11,7 @@
 #include "code_02133274.h"
 #include "code_02139f70.h"
 #include "code_0214d018.h"
-#include "Main/Unknown/code_0200edc0.h"
+#include "code_0200edc0.h"
 
 void func_ov000_02188008(void) {
     if (data_ov000_021b4cb0->mUnk_11c.mUnk_6c == 0 || func_0200e070(&data_ov000_021b4cb0->mUnk_11c) != 0) {

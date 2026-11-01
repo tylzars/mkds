@@ -14,9 +14,9 @@
 #include "code_02142c24.h"
 #include "code_0214d018.h"
 #include "Main/Unknown/code_0200e000.h"
-#include "Main/Unknown/code_0200f6e4.h"
+#include "code_0200f6e4.h"
 #include "code_0200f6f4.h"
-#include "Main/Unknown/code_0200fb18.h"
+#include "code_0200fb18.h"
 #include "code_0200fb28.h"
 
 u32 func_ov000_021a5b3c(u32 a) {

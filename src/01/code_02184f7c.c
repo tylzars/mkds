@@ -12,7 +12,7 @@
 #include "Main/Unknown/code_0209b000.h"
 #include "Main/Unknown/code_020ae000.h"
 #include "Main/Unknown/code_020e6000.h"
-#include "Main/Unknown/code_020220f0.h"
+#include "code_020220f0.h"
 #include "code_02147cd8.h"
 
 Unk021ca41c_085c *func_ov001_021852f8(const char *param_1, void *param_2, void *param_3) {

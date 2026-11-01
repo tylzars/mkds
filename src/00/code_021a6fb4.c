@@ -7,7 +7,7 @@
 #include "00/unk_021b5000.h"
 #include "code_0200dc3c.h"
 #include "code_0200e0ec.h"
-#include "Main/Unknown/code_0200edc0.h"
+#include "code_0200edc0.h"
 
 int func_ov000_021a72a4(Unk021a72a4 *param_1) {
     int v1;

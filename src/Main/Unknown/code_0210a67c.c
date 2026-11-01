@@ -22,7 +22,7 @@
 #include "Main/Unknown/code_0210c1b0.h"
 #include "Main/Unknown/code_0211057c.h"
 #include "Main/Unknown/code_02110590.h"
-#include "Main/Unknown/code_0212c6a0.h"
+#include "code_0212c6a0.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "code_020172d0.h"
 #include "code_0212c688.h"

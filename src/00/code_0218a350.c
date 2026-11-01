@@ -2,7 +2,7 @@
 #include "code_02150228.h"
 #include "code_02133048.h"
 #include "code_0214d018.h"
-#include "Main/Unknown/code_021507c8.h"
+#include "code_021507c8.h"
 
 s32 func_ov000_0218a350(const u8 *a, u8 *b, s32 c, u32 d) {
     s32 f;

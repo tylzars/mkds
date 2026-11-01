@@ -4,11 +4,11 @@
 #include "code_0200e77c.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_0214d000.h"
-#include "Main/Unknown/code_0202041c.h"
+#include "code_0202041c.h"
 #include "Main/Unknown/code_02021000.h"
 #include "code_0212bb7c.h"
 #include "code_0212f788.h"
-#include "Main/Unknown/code_0212f864.h"
+#include "code_0212f864.h"
 #include "Main/Unknown/unk_0217d000.h"
 
 void func_0212d03c(void) {

@@ -2,18 +2,18 @@
 
 #include "code_02004270.h"
 #include "code_0212da38.h"
-#include "Main/Unknown/code_02004d80.h"
-#include "Main/Unknown/code_0212d214.h"
+#include "code_02004d80.h"
+#include "code_0212d214.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "code_0212d968.h"
 #include "code_02020eb0.h"
-#include "Main/Unknown/code_0201750c.h"
+#include "code_0201750c.h"
 #include "Main/Unknown/code_02017000.h"
 #include "code_020172d0.h"
 #include "Main/Unknown/code_02018000.h"
 #include "Main/Unknown/code_02021000.h"
-#include "Main/Unknown/code_0212da1c.h"
+#include "code_0212da1c.h"
 #include "code_02017f24.h"
 
 u32 func_0212d9dc(Unk0212d9dc *a, void *p) {

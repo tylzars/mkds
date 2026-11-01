@@ -1,6 +1,6 @@
 #include "code_0200ce60.h"
-#include "Main/Unknown/code_0200cdb0.h"
-#include "Main/Unknown/code_0200ce30.h"
+#include "code_0200cdb0.h"
+#include "code_0200ce30.h"
 #include "Main/Unknown/code_02000000.h"
 #include "Main/Unknown/code_0200c000.h"
 #include "Main/Unknown/code_0200e000.h"

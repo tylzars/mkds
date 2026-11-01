@@ -1,5 +1,5 @@
 #include "code_020172d0.h"
-#include "Main/Unknown/code_0201750c.h"
+#include "code_0201750c.h"
 
 void func_020174a4(Unk02017328 *a, void *p) {
     u32 o;

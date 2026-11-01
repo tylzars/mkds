@@ -1,6 +1,6 @@
 #include "code_020182c0.h"
-#include "Main/Unknown/code_02004d80.h"
-#include "Main/Unknown/code_02004238.h"
+#include "code_02004d80.h"
+#include "code_02004238.h"
 #include "code_02003be0.h"
 #include "code_02004270.h"
 #include "code_02139f70.h"

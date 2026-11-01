@@ -25,7 +25,7 @@
 #include "00/code_021906e4.h"
 #include "00/code_021919ac.h"
 #include "00/code_021a4654.h"
-#include "Main/Unknown/code_021384cc.h"
+#include "code_021384cc.h"
 #include "code_0214177c.h"
 #include "00/code_0218c958.h"
 #include "00/code_0218e8c4.h"

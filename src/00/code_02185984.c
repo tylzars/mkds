@@ -20,7 +20,7 @@
 #include "code_0213a460.h"
 #include "code_0214d018.h"
 #include "code_0214d964.h"
-#include "Main/Unknown/code_0200edc0.h"
+#include "code_0200edc0.h"
 #include "Main/Unknown/code_02151f88.h"
 
 u32 func_ov000_02185984(Unk021868d0 *a, const u8 *b, const u8 *c, Unk021868a4Entry *d, s32 e, s32 f) {

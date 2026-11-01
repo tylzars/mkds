@@ -26,7 +26,7 @@
 #include "code_0214c1bc.h"
 #include "code_02133048.h"
 #include "code_0214d018.h"
-#include "Main/Unknown/code_02013730.h"
+#include "code_02013730.h"
 
 #pragma thumb on
 

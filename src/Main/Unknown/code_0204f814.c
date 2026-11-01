@@ -1,5 +1,5 @@
 #include "Main/Unknown/code_0204f814.h"
-#include "Main/Unknown/code_0200f59c.h"
+#include "code_0200f59c.h"
 #include "Main/Unknown/code_02007624.h"
 #include "Main/Unknown/code_0203b000.h"
 #include "Main/Unknown/code_0204bca0.h"

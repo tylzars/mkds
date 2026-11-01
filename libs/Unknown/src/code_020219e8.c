@@ -1,6 +1,6 @@
 #include "code_020219e8.h"
 #include "Main/Unknown/code_0200e000.h"
-#include "Main/Unknown/code_02020e3c.h"
+#include "code_02020e3c.h"
 
 void func_02021cd4(Unk02021968 *a, u32 b, Unk02021968 *c) {
     Unk02021968 *n;

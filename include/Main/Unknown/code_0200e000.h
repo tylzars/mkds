@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0200eddc.h"
+#include "code_0200eddc.h"
 #include "code_0200e0ec.h" // Unk0200db5c
 #include "code_0200e6ec.h"
 

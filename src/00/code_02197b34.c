@@ -1,6 +1,6 @@
 #include "00/code_02197b34.h"
 #include "00/code_0218e8c4.h"
-#include "Main/Unknown/code_021384cc.h"
+#include "code_021384cc.h"
 
 s8 *func_ov000_02197b34(s8 *a, const s8 *b) {
     s32 d;

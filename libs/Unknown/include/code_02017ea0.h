@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02017e70.h" // Unk02017e70, Unk02017ef8
+#include "code_02017e70.h" // Unk02017e70, Unk02017ef8
 
 // First and last entries of a chain linked through mUnk_08 and mUnk_0c of Unk02017e70.
 typedef struct Unk02017ea0 {

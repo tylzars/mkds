@@ -1,6 +1,6 @@
 #include "code_020207ec.h"
 #include "code_02020eb0.h"
-#include "Main/Unknown/code_02021764.h"
+#include "code_02021764.h"
 
 void func_02020e10(u32 a) {
     func_020207ec(1, a, 0, 0, 0);

@@ -7,7 +7,7 @@
 #include "code_0214cfe4.h"
 #include "code_021453ec.h"
 #include "code_02004270.h"
-#include "Main/Unknown/code_02004d80.h"
+#include "code_02004d80.h"
 #include "Main/Unknown/code_02008e10.h"
 
 // Entry of the list that data_0216fc4c walks (the lists are chained through mUnk_4bc). func_02008934 returns one;

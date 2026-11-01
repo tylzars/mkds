@@ -8,7 +8,7 @@
 #include "code_0214d964.h"
 #include "code_02134d30.h"
 #include "code_0200fd1c.h"
-#include "Main/Unknown/code_0200f6e4.h"
+#include "code_0200f6e4.h"
 #include "Main/Unknown/code_02151708.h"
 #include "Main/Unknown/code_02151718.h"
 

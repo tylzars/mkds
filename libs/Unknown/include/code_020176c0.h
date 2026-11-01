@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_02017550.h" // Unk02017584
-#include "Main/Unknown/code_02017e70.h" // Unk02017e70
+#include "code_02017e70.h" // Unk02017e70
 #include "code_02017ea0.h" // Unk02017ea0
 
 // Two Unk02017ea0 followed by two halfwords.

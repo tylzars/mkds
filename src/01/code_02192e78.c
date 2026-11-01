@@ -5,8 +5,8 @@
 #include "Main/Unknown/code_0212a000.h"
 #include "Main/Unknown/code_0214a000.h"
 #include "Main/Unknown/code_0214d000.h"
-#include "Main/Unknown/code_0214a2a0.h"
-#include "Main/Unknown/code_0214a2f4.h"
+#include "code_0214a2a0.h"
+#include "code_0214a2f4.h"
 #include "registers.h"
 
 void func_ov001_021932c8(void) {

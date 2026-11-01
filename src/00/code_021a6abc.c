@@ -4,7 +4,7 @@
 #include "00/code_021a669c.h"
 #include "00/code_021a6934.h"
 #include "00/unk_021b5000.h"
-#include "Main/Unknown/code_0200edc0.h"
+#include "code_0200edc0.h"
 #include "code_02133048.h"
 #include "code_02142eac.h"
 #include "code_0200fc8c.h"
