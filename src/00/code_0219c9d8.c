@@ -7,6 +7,12 @@
 #include "00/code_0219c79c.h"
 #include "code_0200f5ac.h"
 
+void func_ov000_0219ca84(void) {
+    func_ov000_0219c67c(func_ov000_0219c80c, 0);
+    data_ov000_021b565c->mUnk_04 = 1;
+    data_ov000_021b565c->mUnk_34 = 0;
+}
+
 void func_ov000_0219c9d8(void) {
     Unk021b565c *p;
     if (data_ov000_021b565c == 0 || func_ov000_0219c39c() != 0) {
@@ -33,10 +39,4 @@ void func_ov000_0219c9d8(void) {
         case 5:
             break;
     }
-}
-
-void func_ov000_0219ca84(void) {
-    func_ov000_0219c67c(func_ov000_0219c80c, 0);
-    data_ov000_021b565c->mUnk_04 = 1;
-    data_ov000_021b565c->mUnk_34 = 0;
 }

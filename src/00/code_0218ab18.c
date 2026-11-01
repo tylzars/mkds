@@ -9,24 +9,25 @@
 #include "code_02139f70.h"
 #include "00/code_0218e8c4.h"
 
-void func_ov000_0218ab18(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
-    s32 a;
-    if (func_02139f70((u8 *) v1, data_ov000_021b2180) != 0) {
-        a = 1;
-    } else {
-        a = 0;
+void func_ov000_0218ac54(Unk0218a9bc *p, Unk0218af28 *e, s32 a, s32 b) {
+    u8 *c;
+    c = &e->mUnk_14;
+    e->mUnk_14 &= 0xc3;
+    if (b == 0) {
+        *c |= 4;
+    } else if (b == 1) {
+        *c |= 8;
+    } else if (b == 2) {
+        return;
     }
-    func_ov000_0218b148(e, v1);
+    if (p->mUnk_08.mUnk_08 < p->mUnk_04) {
+        func_ov000_0218ad44(p, e);
+        return;
+    }
     if (a != 0) {
-        if ((e->mUnk_14 & 4) != 0) {
-            e->mUnk_14 |= 0x41;
-        } else {
-            e->mUnk_14 |= 0x42;
-        }
-        e->mUnk_14 &= 0xf3;
-        e->mUnk_1c = func_ov000_0218e8c4() - e->mUnk_1c;
-        func_ov000_0218ae68(&p->mUnk_08, e);
-        p->mUnk_44(p, 0, e, p->mUnk_48);
+        func_ov000_0218aec4((int *) &p->mUnk_14, (int) e);
+    } else {
+        func_ov000_0218aedc((int *) &p->mUnk_14, (int) e);
     }
 }
 
@@ -62,24 +63,23 @@ void func_ov000_0218ab90(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
     }
 }
 
-void func_ov000_0218ac54(Unk0218a9bc *p, Unk0218af28 *e, s32 a, s32 b) {
-    u8 *c;
-    c = &e->mUnk_14;
-    e->mUnk_14 &= 0xc3;
-    if (b == 0) {
-        *c |= 4;
-    } else if (b == 1) {
-        *c |= 8;
-    } else if (b == 2) {
-        return;
-    }
-    if (p->mUnk_08.mUnk_08 < p->mUnk_04) {
-        func_ov000_0218ad44(p, e);
-        return;
-    }
-    if (a != 0) {
-        func_ov000_0218aec4((int *) &p->mUnk_14, (int) e);
+void func_ov000_0218ab18(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
+    s32 a;
+    if (func_02139f70((u8 *) v1, data_ov000_021b2180) != 0) {
+        a = 1;
     } else {
-        func_ov000_0218aedc((int *) &p->mUnk_14, (int) e);
+        a = 0;
+    }
+    func_ov000_0218b148(e, v1);
+    if (a != 0) {
+        if ((e->mUnk_14 & 4) != 0) {
+            e->mUnk_14 |= 0x41;
+        } else {
+            e->mUnk_14 |= 0x42;
+        }
+        e->mUnk_14 &= 0xf3;
+        e->mUnk_1c = func_ov000_0218e8c4() - e->mUnk_1c;
+        func_ov000_0218ae68(&p->mUnk_08, e);
+        p->mUnk_44(p, 0, e, p->mUnk_48);
     }
 }

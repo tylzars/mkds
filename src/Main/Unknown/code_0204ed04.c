@@ -2,6 +2,35 @@
 
 #pragma thumb on
 
+void func_0204ed84(void) {
+    u16 b;
+    u16 c;
+    if (!(data_0217aa00->mUnk_1e44 & 1)) {
+        u32 v;
+        if (data_0217aa00 == 0) {
+            v = 0;
+        } else {
+            v = data_0217aa00->mUnk_0000;
+        }
+        switch (v) {
+            case 1:
+                data_usa_0216522c.mUnk_04 = 0x192;
+                b = func_02006954(data_0217aa00->mUnk_1e30, 0x192);
+                c = data_0217aa00->mUnk_0044.mUnk_43;
+                break;
+            case 2:
+                data_usa_0216522c.mUnk_04 = 0xe;
+                b = func_02006914(data_0217aa00->mUnk_1e30, 0xe);
+                c = 1;
+                break;
+        }
+        if (func_02050650((void *) data_0217aa00->mUnk_1e30, b, c, 0, &data_usa_0216522c) == 0) {
+            data_0217aa00->mUnk_1e42 = data_usa_02165228;
+            data_0217aa00->mUnk_1e44 &= ~1;
+        }
+    }
+}
+
 void func_0204ed04(Unk0204ed04 *a) {
     u8 b[0x192];
     u32 v;
@@ -28,35 +57,6 @@ void func_0204ed04(Unk0204ed04 *a) {
                     func_020068f4(b, a->mUnk_10);
                     break;
             }
-        }
-    }
-}
-
-void func_0204ed84(void) {
-    u16 b;
-    u16 c;
-    if (!(data_0217aa00->mUnk_1e44 & 1)) {
-        u32 v;
-        if (data_0217aa00 == 0) {
-            v = 0;
-        } else {
-            v = data_0217aa00->mUnk_0000;
-        }
-        switch (v) {
-            case 1:
-                data_usa_0216522c.mUnk_04 = 0x192;
-                b = func_02006954(data_0217aa00->mUnk_1e30, 0x192);
-                c = data_0217aa00->mUnk_0044.mUnk_43;
-                break;
-            case 2:
-                data_usa_0216522c.mUnk_04 = 0xe;
-                b = func_02006914(data_0217aa00->mUnk_1e30, 0xe);
-                c = 1;
-                break;
-        }
-        if (func_02050650((void *) data_0217aa00->mUnk_1e30, b, c, 0, &data_usa_0216522c) == 0) {
-            data_0217aa00->mUnk_1e42 = data_usa_02165228;
-            data_0217aa00->mUnk_1e44 &= ~1;
         }
     }
 }

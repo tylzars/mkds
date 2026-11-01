@@ -1,6 +1,13 @@
 #include "00/code_021abd68.h"
 #include "00/code_021ac3a8.h"
 
+void func_ov000_021ac34c(u32 *a, const u8 *b, u32 c) {
+    u32 i;
+    for (i = 0; i < c; i += 4) {
+        *a++ = (b[i] << 24) | (b[i + 1] << 16) | (b[i + 2] << 8) | b[i + 3];
+    }
+}
+
 void func_ov000_021abd68(Unk021abca0 *a, const u8 *b) {
     u32 w[16];
     u32 p;
@@ -91,11 +98,4 @@ void func_ov000_021abd68(Unk021abca0 *a, const u8 *b) {
     a->mUnk_08 += r;
     a->mUnk_0c += s;
     a->mUnk_10 += t;
-}
-
-void func_ov000_021ac34c(u32 *a, const u8 *b, u32 c) {
-    u32 i;
-    for (i = 0; i < c; i += 4) {
-        *a++ = (b[i] << 24) | (b[i + 1] << 16) | (b[i + 2] << 8) | b[i + 3];
-    }
 }

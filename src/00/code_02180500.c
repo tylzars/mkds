@@ -9,11 +9,10 @@
 #include "Main/Unknown/code_020ae5e4.h"
 #include "Main/Unknown/code_020ae630.h"
 
-s32 func_ov000_02180500(Unk020487fc *a) {
-    Unk021a9034 b = {
-        func_ov000_021805cc, func_ov000_02180534, func_ov000_021805b4, func_ov000_0218058c, 0, 0, 10, 10, 0};
-    func_020487fc(a, &b);
-    return 0;
+void func_ov000_0218058c(void) {
+    func_02077c1c();
+    func_ov000_02180704();
+    func_020ae5f0(data_ov000_021b4c60, data_ov000_021b4c60 + 0x404);
 }
 
 void func_ov000_02180534(Unk020487fc *a) {
@@ -30,8 +29,9 @@ void func_ov000_02180534(Unk020487fc *a) {
     }
 }
 
-void func_ov000_0218058c(void) {
-    func_02077c1c();
-    func_ov000_02180704();
-    func_020ae5f0(data_ov000_021b4c60, data_ov000_021b4c60 + 0x404);
+s32 func_ov000_02180500(Unk020487fc *a) {
+    Unk021a9034 b = {
+        func_ov000_021805cc, func_ov000_02180534, func_ov000_021805b4, func_ov000_0218058c, 0, 0, 10, 10, 0};
+    func_020487fc(a, &b);
+    return 0;
 }

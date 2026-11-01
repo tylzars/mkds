@@ -12,35 +12,6 @@
 #include "00/code_0218e8c4.h"
 #include "Main/Unknown/code_02152698.h"
 
-void func_ov000_0219d948(void *a) {
-    s32 b;
-    if (data_ov000_021b5664 != 0 && func_ov000_0219c3e4() != 0 && func_ov000_0219c9c4() != 0) {
-        b = func_02152520((void *) func_ov000_0219c9c4(), a);
-        if (b != 0 && b != -1 && func_ov000_0218eb9c(data_ov000_021b5664->mUnk_04, b) != 0) {
-            func_ov000_0218eb44(data_ov000_021b5664->mUnk_04, b);
-        }
-    }
-    func_0214d168(a, 0, 12);
-}
-
-s32 func_ov000_0219d9b0(void *a, s32 b) {
-    s32 c;
-    s32 i;
-    Unk02152490 *d;
-    c = 0;
-    d = a;
-    if (a == 0) {
-        return 0;
-    }
-    for (i = 0; i < b; i++) {
-        if (func_02152698(d) != 0) {
-            c++;
-        }
-        d++;
-    }
-    return c;
-}
-
 u8 func_ov000_0219d9ec(void *a, u8 *b, u8 *c, char *d) {
     u8 e[4];
     Unk0218ec44 f;
@@ -80,4 +51,33 @@ u8 func_ov000_0219d9ec(void *a, u8 *b, u8 *c, char *d) {
         *c = 0;
     }
     return 0;
+}
+
+s32 func_ov000_0219d9b0(void *a, s32 b) {
+    s32 c;
+    s32 i;
+    Unk02152490 *d;
+    c = 0;
+    d = a;
+    if (a == 0) {
+        return 0;
+    }
+    for (i = 0; i < b; i++) {
+        if (func_02152698(d) != 0) {
+            c++;
+        }
+        d++;
+    }
+    return c;
+}
+
+void func_ov000_0219d948(void *a) {
+    s32 b;
+    if (data_ov000_021b5664 != 0 && func_ov000_0219c3e4() != 0 && func_ov000_0219c9c4() != 0) {
+        b = func_02152520((void *) func_ov000_0219c9c4(), a);
+        if (b != 0 && b != -1 && func_ov000_0218eb9c(data_ov000_021b5664->mUnk_04, b) != 0) {
+            func_ov000_0218eb44(data_ov000_021b5664->mUnk_04, b);
+        }
+    }
+    func_0214d168(a, 0, 12);
 }

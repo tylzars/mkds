@@ -5,6 +5,25 @@
 #include "00/unk_021b4000.h"
 #include "00/code_0218e8c4.h"
 
+void func_ov000_021a4940(Unk021a4a08 *a) {
+    u8 b[8];
+    s32 c;
+    s32 d;
+    s32 e;
+
+    c = 8;
+    if (a->mUnk_0c4 != 0 && func_ov000_0218e668(a->mUnk_000) != 0) {
+        d = 0;
+        do {
+            e = func_ov000_0218e438(a->mUnk_000, data_ov000_021b5e50, 0xff, d, b, &c);
+            if (e != ~d) {
+                data_ov000_021b5e50[e] = d;
+                func_ov000_021a3c14((Unk021a3a18 *) a, (s8 *) data_ov000_021b5e50, e, b);
+            }
+        } while (func_ov000_0218e668(a->mUnk_000) != 0);
+    }
+}
+
 void func_ov000_021a4868(Unk021a4a08 *a) {
     u32 b;
     s32 c;
@@ -28,24 +47,5 @@ void func_ov000_021a4868(Unk021a4a08 *a) {
         if (b - a->mUnk_0b0 > 20000) {
             func_ov000_021a3bbc((Unk021a3a18 *) a);
         }
-    }
-}
-
-void func_ov000_021a4940(Unk021a4a08 *a) {
-    u8 b[8];
-    s32 c;
-    s32 d;
-    s32 e;
-
-    c = 8;
-    if (a->mUnk_0c4 != 0 && func_ov000_0218e668(a->mUnk_000) != 0) {
-        d = 0;
-        do {
-            e = func_ov000_0218e438(a->mUnk_000, data_ov000_021b5e50, 0xff, d, b, &c);
-            if (e != ~d) {
-                data_ov000_021b5e50[e] = d;
-                func_ov000_021a3c14((Unk021a3a18 *) a, (s8 *) data_ov000_021b5e50, e, b);
-            }
-        } while (func_ov000_0218e668(a->mUnk_000) != 0);
     }
 }

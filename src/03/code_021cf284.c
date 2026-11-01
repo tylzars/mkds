@@ -3,6 +3,19 @@
 #include "code_0200fc8c.h"
 #include "code_0214d018.h"
 
+u16 func_ov003_021cf32c(u32 a) {
+    Unk021cf260 *s;
+
+    s = data_ov003_021da288;
+    data_ov003_021da28c[0] = &s->mMask;
+    data_ov003_021da28c[1] = &s->mUnk_04;
+    data_ov003_021da28c[2] = &s->mUnk_06;
+    data_ov003_021da28c[3] = &s->mUnk_08;
+    data_ov003_021da28c[4] = &s->mUnk_0a;
+    data_ov003_021da28c[5] = &s->mUnk_0c;
+    return *data_ov003_021da28c[a];
+}
+
 u32 func_ov003_021cf284(u32 a) {
     u32 t;
     u16 b;
@@ -32,17 +45,4 @@ u32 func_ov003_021cf284(u32 a) {
         return 6;
     }
     return 1;
-}
-
-u16 func_ov003_021cf32c(u32 a) {
-    Unk021cf260 *s;
-
-    s = data_ov003_021da288;
-    data_ov003_021da28c[0] = &s->mMask;
-    data_ov003_021da28c[1] = &s->mUnk_04;
-    data_ov003_021da28c[2] = &s->mUnk_06;
-    data_ov003_021da28c[3] = &s->mUnk_08;
-    data_ov003_021da28c[4] = &s->mUnk_0a;
-    data_ov003_021da28c[5] = &s->mUnk_0c;
-    return *data_ov003_021da28c[a];
 }

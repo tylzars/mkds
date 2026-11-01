@@ -5,6 +5,10 @@
 #include "Main/Unknown/code_020d22c0.h"
 #include "Main/Unknown/unk_0215d000.h"
 
+u32 func_020a824c(void) {
+    return func_0209bf48(func_020a8a6c, func_020a826c, 0);
+}
+
 void func_020a8098(Unk020a7f18 *p) {
     s32 i;
     Unk020f41c4_B *r;
@@ -28,8 +32,4 @@ void func_020a8098(Unk020a7f18 *p) {
     }
     p->mUnk_0a8 = 300;
     p->mUnk_1fc = 2;
-}
-
-u32 func_020a824c(void) {
-    return func_0209bf48(func_020a8a6c, func_020a826c, 0);
 }

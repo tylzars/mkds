@@ -4,15 +4,22 @@
 
 #pragma thumb on
 
-u32 func_02006f14(s32 a, s32 b) {
-    switch (func_020070b8()->mUnk_000.mUnk_00) {
-        case 4:
-        case 6:
-            return 0;
+s32 func_02006fdc(s32 a) {
+    s32 i;
+    for (i = 0; i < 16; i++) {
+        if (((a >> i) & 1) != 0) {
+            return i;
+        }
     }
-    func_020070c0(a - 0xe);
-    func_020070cc(b - 0xe);
-    return 1;
+    return -1;
+}
+
+u32 func_02006f98(s32 a) {
+    s32 v1;
+    s32 v2;
+    v1 = func_020070e4();
+    v2 = a / v1 + ((a % v1) != 0 ? 1 : 0);
+    return ((v2 >> 5) + ((v2 & 0x1f) != 0 ? 1 : 0)) << 2;
 }
 
 s32 func_02006f50(u32 a, s32 b, s32 *c, s32 *d) {
@@ -28,22 +35,15 @@ s32 func_02006f50(u32 a, s32 b, s32 *c, s32 *d) {
     return 0;
 }
 
-u32 func_02006f98(s32 a) {
-    s32 v1;
-    s32 v2;
-    v1 = func_020070e4();
-    v2 = a / v1 + ((a % v1) != 0 ? 1 : 0);
-    return ((v2 >> 5) + ((v2 & 0x1f) != 0 ? 1 : 0)) << 2;
-}
-
-s32 func_02006fdc(s32 a) {
-    s32 i;
-    for (i = 0; i < 16; i++) {
-        if (((a >> i) & 1) != 0) {
-            return i;
-        }
+u32 func_02006f14(s32 a, s32 b) {
+    switch (func_020070b8()->mUnk_000.mUnk_00) {
+        case 4:
+        case 6:
+            return 0;
     }
-    return -1;
+    func_020070c0(a - 0xe);
+    func_020070cc(b - 0xe);
+    return 1;
 }
 
 #pragma thumb off

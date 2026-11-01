@@ -5,44 +5,16 @@
 #include "Main/Unknown/unk_02155000.h"
 #include "Main/Unknown/unk_0217a000.h"
 
-void func_02082d64(Unk0201ca6c *p, s32 a) {
-    Unk0201ca6c_98 *s;
-    Unk0206bcb0 *q;
-    u32 n;
-    u32 f;
-    u32 x;
-    s32 y;
-    s32 v1;
-    s32 v2;
-    s32 v3;
-
-    s = &p->mUnk_98_b;
-    y = s->mUnk_02;
-    n = p->mUnk_94_u;
-    y = (y == 0) ? s->mUnk_00 : s->mUnk_01;
-    x = s->mUnk_01;
-    f = 1;
-    if (x > 8) {
-        if (y > 8) {
-            f = 0;
-        }
-        y = s->mUnk_00;
+void func_02082f94(Unk0201ca6c *p, s32 a) {
+    if (a != 0) {
+        return;
     }
-    q = func_0207a974(y);
-    v1 = q->mUnk_1d8.x;
-    v2 = q->mUnk_1d8.y;
-    v3 = q->mUnk_1d8.z;
-    p->mUnk_28.x = (v1 >> 4) + p->mUnk_20->mUnk_00->mUnk_04.x;
-    p->mUnk_28.y = (v2 >> 4) + p->mUnk_20->mUnk_00->mUnk_04.y;
-    p->mUnk_28.z = (v3 >> 4) + p->mUnk_20->mUnk_00->mUnk_04.z;
-    if (q->mUnk_7c & 0x402000) {
-        f = 0;
+    func_02082d64(p, a);
+    p->mUnk_98_24 = p->mUnk_98_24 + 1;
+    if (p->mUnk_98_24 >= 2) {
+        p->mUnk_98_16 = (p->mUnk_98_16 == 0);
+        p->mUnk_98_24 = 0;
     }
-    p->mUnk_24.mUnk_00_3 = (f == 0);
-    if (n + 1 >= 0x32) {
-        p->mUnk_24.mUnk_00_0 = 1;
-    }
-    p->mUnk_94_u = n + 1;
 }
 
 void func_02082e4c(s32 a) {
@@ -92,14 +64,42 @@ void func_02082e4c(s32 a) {
     }
 }
 
-void func_02082f94(Unk0201ca6c *p, s32 a) {
-    if (a != 0) {
-        return;
+void func_02082d64(Unk0201ca6c *p, s32 a) {
+    Unk0201ca6c_98 *s;
+    Unk0206bcb0 *q;
+    u32 n;
+    u32 f;
+    u32 x;
+    s32 y;
+    s32 v1;
+    s32 v2;
+    s32 v3;
+
+    s = &p->mUnk_98_b;
+    y = s->mUnk_02;
+    n = p->mUnk_94_u;
+    y = (y == 0) ? s->mUnk_00 : s->mUnk_01;
+    x = s->mUnk_01;
+    f = 1;
+    if (x > 8) {
+        if (y > 8) {
+            f = 0;
+        }
+        y = s->mUnk_00;
     }
-    func_02082d64(p, a);
-    p->mUnk_98_24 = p->mUnk_98_24 + 1;
-    if (p->mUnk_98_24 >= 2) {
-        p->mUnk_98_16 = (p->mUnk_98_16 == 0);
-        p->mUnk_98_24 = 0;
+    q = func_0207a974(y);
+    v1 = q->mUnk_1d8.x;
+    v2 = q->mUnk_1d8.y;
+    v3 = q->mUnk_1d8.z;
+    p->mUnk_28.x = (v1 >> 4) + p->mUnk_20->mUnk_00->mUnk_04.x;
+    p->mUnk_28.y = (v2 >> 4) + p->mUnk_20->mUnk_00->mUnk_04.y;
+    p->mUnk_28.z = (v3 >> 4) + p->mUnk_20->mUnk_00->mUnk_04.z;
+    if (q->mUnk_7c & 0x402000) {
+        f = 0;
     }
+    p->mUnk_24.mUnk_00_3 = (f == 0);
+    if (n + 1 >= 0x32) {
+        p->mUnk_24.mUnk_00_0 = 1;
+    }
+    p->mUnk_94_u = n + 1;
 }

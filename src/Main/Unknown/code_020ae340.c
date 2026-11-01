@@ -7,6 +7,10 @@
 #pragma optimize_for_size on
 #pragma thumb on
 
+u32 func_020ae3a4(s32 a, s32 b) {
+    return data_02168024[a * 4 + b];
+}
+
 void func_020ae340(u32 a, u8 *b, u8 *c) {
     u32 f;
     s32 n;
@@ -25,10 +29,6 @@ void func_020ae340(u32 a, u8 *b, u8 *c) {
             }
         }
     }
-}
-
-u32 func_020ae3a4(s32 a, s32 b) {
-    return data_02168024[a * 4 + b];
 }
 
 #pragma thumb off

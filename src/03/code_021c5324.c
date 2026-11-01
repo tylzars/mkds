@@ -11,6 +11,13 @@
 #include "03/code_021d3544.h"
 #include "03/unk_021da000.h"
 
+void func_ov003_021c53b4(void) {
+    if (func_ov003_021bf334() != -2) {
+        data_ov003_021da1e4 = func_ov003_021d3544(1, func_ov003_021c51a0, 0, 0x78);
+        func_ov003_021c212c(func_ov003_021c5324);
+    }
+}
+
 void func_ov003_021c5324(void) {
     int a;
     func_ov003_021c52f4();
@@ -35,12 +42,5 @@ void func_ov003_021c5324(void) {
             data_ov003_021da1e4 = 0;
             func_ov003_021c212c(func_ov003_021c5178);
             break;
-    }
-}
-
-void func_ov003_021c53b4(void) {
-    if (func_ov003_021bf334() != -2) {
-        data_ov003_021da1e4 = func_ov003_021d3544(1, func_ov003_021c51a0, 0, 0x78);
-        func_ov003_021c212c(func_ov003_021c5324);
     }
 }

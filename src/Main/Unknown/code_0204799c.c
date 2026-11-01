@@ -6,24 +6,6 @@
 
 #pragma thumb on
 
-void *func_0204799c(const char *v1) {
-    u32 r;
-
-    r = func_02047b30(data_02164e04[5], v1);
-    if (r == 0 && data_021759c8->mUnk_458 != 0) {
-        r = func_02047b30(data_02164e04[9], v1);
-    }
-    if (func_0205e0a0() == 2) {
-        if (r == 0 && data_021759c8->mUnk_538 != 0) {
-            r = func_02047b30(data_02164e04[11], v1);
-        }
-        if (r == 0 && data_021759c8->mUnk_5a8 != 0) {
-            r = func_02047b30(data_02164e04[12], v1);
-        }
-    }
-    return (void *) r;
-}
-
 void *func_02047a28(const char *v1) {
     u32 r;
 
@@ -48,6 +30,24 @@ void *func_02047a28(const char *v1) {
     }
     if (r == 0 && data_021759c8->mUnk_d8 != 0) {
         r = func_02047b30(data_02164e04[1], v1);
+    }
+    return (void *) r;
+}
+
+void *func_0204799c(const char *v1) {
+    u32 r;
+
+    r = func_02047b30(data_02164e04[5], v1);
+    if (r == 0 && data_021759c8->mUnk_458 != 0) {
+        r = func_02047b30(data_02164e04[9], v1);
+    }
+    if (func_0205e0a0() == 2) {
+        if (r == 0 && data_021759c8->mUnk_538 != 0) {
+            r = func_02047b30(data_02164e04[11], v1);
+        }
+        if (r == 0 && data_021759c8->mUnk_5a8 != 0) {
+            r = func_02047b30(data_02164e04[12], v1);
+        }
     }
     return (void *) r;
 }

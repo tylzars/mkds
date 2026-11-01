@@ -13,20 +13,21 @@
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-void func_02094e1c(void) {
-    func_0209bf48(func_02095228, func_02094e8c, 0);
+u16 func_020951b4(Unk020f41c4_B *a) {
+    a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
+    return (u16) (((a->mUnk_00 >> 32) * 0x10000) >> 32);
 }
 
-u32 func_02094e3c(void) {
-    s32 m;
+s16 func_0209519c(s32 a) {
+    return data_0215d4b4[(a >> 4) * 2];
+}
 
-    m = data_021759c0->mUnk_08;
-    if (m == 3 || m == 5) {
-        if (func_02061818() == 0) {
-            return 0;
-        }
-    }
-    return func_0209bf8c();
+s32 func_0209518c(s32 a, s32 b) {
+    return (s32) (((s64) a * b) >> 12);
+}
+
+s16 func_0209516c(s32 a) {
+    return data_0215d4b4[(a >> 4) * 2 + 1];
 }
 
 void func_02094e8c(void *a, Unk02094e8c *o) {
@@ -122,19 +123,18 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
     }
 }
 
-s16 func_0209516c(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2 + 1];
+u32 func_02094e3c(void) {
+    s32 m;
+
+    m = data_021759c0->mUnk_08;
+    if (m == 3 || m == 5) {
+        if (func_02061818() == 0) {
+            return 0;
+        }
+    }
+    return func_0209bf8c();
 }
 
-s32 func_0209518c(s32 a, s32 b) {
-    return (s32) (((s64) a * b) >> 12);
-}
-
-s16 func_0209519c(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2];
-}
-
-u16 func_020951b4(Unk020f41c4_B *a) {
-    a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-    return (u16) (((a->mUnk_00 >> 32) * 0x10000) >> 32);
+void func_02094e1c(void) {
+    func_0209bf48(func_02095228, func_02094e8c, 0);
 }

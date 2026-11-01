@@ -6,6 +6,10 @@
 
 #pragma thumb on
 
+void *func_02079008(void *a, void *b) {
+    return func_0207afa8(a, b, 3);
+}
+
 void func_02078f9c(void *param_1) {
     void *a;
     void *b;
@@ -15,10 +19,6 @@ void func_02078f9c(void *param_1) {
     func_02084d3c(data_0217ad08->mUnk_1cc, a, b);
     func_020849c0(data_0217ad08->mUnk_1cc, 2);
     func_02012ffc(data_0217ad08->mUnk_1cc->mUnk_04, 1);
-}
-
-void *func_02079008(void *a, void *b) {
-    return func_0207afa8(a, b, 3);
 }
 
 #pragma thumb off

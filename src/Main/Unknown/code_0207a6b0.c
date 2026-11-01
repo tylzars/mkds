@@ -2,8 +2,10 @@
 
 #include "Main/Unknown/unk_0217a000.h"
 
-Unk0206cdd4_B *func_0207a6b0(void) {
-    return data_usa_0217acfc;
+void func_0207a70c(s32 a) {
+    if (a == data_021759c0->mUnk_62) {
+        data_usa_0217acfc->mUnk_08++;
+    }
 }
 
 void func_0207a6c0(Unk0206bcb0 *a) {
@@ -18,8 +20,6 @@ void func_0207a6c0(Unk0206bcb0 *a) {
     }
 }
 
-void func_0207a70c(s32 a) {
-    if (a == data_021759c0->mUnk_62) {
-        data_usa_0217acfc->mUnk_08++;
-    }
+Unk0206cdd4_B *func_0207a6b0(void) {
+    return data_usa_0217acfc;
 }

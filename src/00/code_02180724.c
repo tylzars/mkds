@@ -39,71 +39,33 @@
 #include "Main/Unknown/code_0212abdc.h"
 #include "Main/Unknown/unk_0217a000.h"
 
-void func_ov000_02180724(void) {
-    if (data_ov000_021b4c64->mUnk_1c.mUnk_08 != 0) {
-        data_ov000_021b4c64->mUnk_1c.mUnk_08();
-    }
-    if (data_ov000_021b4c64->mUnk_0c != -1) {
-        data_ov000_021b4c64->mUnk_1c.mUnk_04();
-        func_ov000_02180be8();
-        func_02036ab0(data_ov000_021b4c64->mUnk_04);
-        data_ov000_021b4c64->mUnk_04 = func_020369fc(data_ov000_021b4c64->mUnk_00);
-        switch (data_ov000_021b4c64->mUnk_0c) {
-            case 0:
-                func_ov000_02180c04();
-                break;
-            case 1:
-                func_ov000_02181714();
-                break;
-            case 2:
-                func_ov000_02181fcc();
-                break;
-            case 3:
-                func_ov000_0218330c();
-                break;
-            case 4:
-                func_ov000_021848c8();
-                break;
-            case 5:
-                func_ov000_021849e0();
-                break;
-            case 6:
-                func_ov000_02184aa4();
-                break;
-            case 7:
-                func_ov000_021857b8();
-                break;
-            case 8:
-                func_ov000_02184ba8();
-                break;
-            case 9:
-                func_ov000_02185344();
-                break;
-        }
-        data_ov000_021b4c64->mUnk_10 = data_ov000_021b4c64->mUnk_08;
-        data_ov000_021b4c64->mUnk_08 = data_ov000_021b4c64->mUnk_0c;
-        data_ov000_021b4c64->mUnk_0c = -1;
-        if (data_ov000_021b4c64->mUnk_1c.mUnk_00 != 0) {
-            data_ov000_021b4c64->mUnk_1c.mUnk_00(data_ov000_021b4c64->mUnk_04);
-        }
-    }
-    func_02125928();
-    func_0212a920();
-    data_ov000_021b4c64->mUnk_14++;
-    if (data_ov000_021b4c64->mUnk_14 > 0) {
-        data_ov000_021b4c64->mUnk_14 = 0;
-    }
-}
-
-void func_ov000_02180814(void) {
-    if (data_ov000_021b4c64->mUnk_1c.mUnk_04 != 0) {
-        data_ov000_021b4c64->mUnk_1c.mUnk_04();
-    }
-    func_ov000_02180be8();
-    func_0202bb60();
-    func_0212abd0();
-    func_02125da0();
-    data_ov000_021b4c64 = 0;
+void func_ov000_02180a54(void) {
+    Unk02111684_v v;
+    func_020b496c(&v.m4934, func_0204799c("WiFi_VS_setting_s_b.ncgr"));
+    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_VS_setting_s_b.nclr"));
+    func_020b4810(&v.m47d8, func_0204799c("WiFi_VS_s_setting.nscr"));
+    func_020b496c(&v.m4934, func_0204799c("WiFi_VS_matching_s_b.ncgr"));
+    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_VS_matching_s_b.nclr"));
+    func_020b4810(&v.m47d8, func_0204799c("WiFi_VS_matching_s.nscr"));
+    func_020b49f4(&v.m4934, func_0204799c("WiFi_top_menu_s.nce.ncgr"));
+    func_020b48ec(&v.m21dc8, func_0204799c("WiFi_top_menu_s.nce.ncer"));
+    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_top_menu_s_o.nclr"));
+    func_020b49f4(&v.m4934, func_0204799c("WiFi_VS_setting_s.nce.ncgr"));
+    func_020b48ec(&v.m21dc8, func_0204799c("WiFi_VS_setting_s.nce.ncer"));
+    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_VS_setting_s_o.nclr"));
+    func_020b49f4(&v.m4934, func_0204799c("WiFi_VS_matching_s.nce.ncgr"));
+    func_020b48ec(&v.m21dc8, func_0204799c("WiFi_VS_matching_s.nce.ncer"));
+    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_VS_matching_s_o.nclr"));
+    func_020b49f4(&v.m4934, func_0204799c("WiFi_aikotoba_s.nce.ncgr"));
+    func_020b48ec(&v.m21dc8, func_0204799c("WiFi_aikotoba_s.nce.ncer"));
+    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_aikotoba_s_o.nclr"));
+    func_020b49f4(&v.m4934, func_0204799c("WiFi_aikotoba_check_m.nce.ncgr"));
+    func_020b48ec(&v.m21dc8, func_0204799c("WiFi_aikotoba_check_m.nce.ncer"));
+    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_aikotoba_check_m_o.nclr"));
+    func_02025f90();
+    func_02027df8();
+    func_0202a734();
+    func_0202b8d8();
 }
 
 void func_ov000_02180844(void *a, s32 b) {
@@ -205,31 +167,69 @@ void func_ov000_02180844(void *a, s32 b) {
     data_0217b488->mUnk_78 = 1;
 }
 
-void func_ov000_02180a54(void) {
-    Unk02111684_v v;
-    func_020b496c(&v.m4934, func_0204799c("WiFi_VS_setting_s_b.ncgr"));
-    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_VS_setting_s_b.nclr"));
-    func_020b4810(&v.m47d8, func_0204799c("WiFi_VS_s_setting.nscr"));
-    func_020b496c(&v.m4934, func_0204799c("WiFi_VS_matching_s_b.ncgr"));
-    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_VS_matching_s_b.nclr"));
-    func_020b4810(&v.m47d8, func_0204799c("WiFi_VS_matching_s.nscr"));
-    func_020b49f4(&v.m4934, func_0204799c("WiFi_top_menu_s.nce.ncgr"));
-    func_020b48ec(&v.m21dc8, func_0204799c("WiFi_top_menu_s.nce.ncer"));
-    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_top_menu_s_o.nclr"));
-    func_020b49f4(&v.m4934, func_0204799c("WiFi_VS_setting_s.nce.ncgr"));
-    func_020b48ec(&v.m21dc8, func_0204799c("WiFi_VS_setting_s.nce.ncer"));
-    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_VS_setting_s_o.nclr"));
-    func_020b49f4(&v.m4934, func_0204799c("WiFi_VS_matching_s.nce.ncgr"));
-    func_020b48ec(&v.m21dc8, func_0204799c("WiFi_VS_matching_s.nce.ncer"));
-    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_VS_matching_s_o.nclr"));
-    func_020b49f4(&v.m4934, func_0204799c("WiFi_aikotoba_s.nce.ncgr"));
-    func_020b48ec(&v.m21dc8, func_0204799c("WiFi_aikotoba_s.nce.ncer"));
-    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_aikotoba_s_o.nclr"));
-    func_020b49f4(&v.m4934, func_0204799c("WiFi_aikotoba_check_m.nce.ncgr"));
-    func_020b48ec(&v.m21dc8, func_0204799c("WiFi_aikotoba_check_m.nce.ncer"));
-    func_020b4a7c(&v.m4a44, func_0204799c("WiFi_aikotoba_check_m_o.nclr"));
-    func_02025f90();
-    func_02027df8();
-    func_0202a734();
-    func_0202b8d8();
+void func_ov000_02180814(void) {
+    if (data_ov000_021b4c64->mUnk_1c.mUnk_04 != 0) {
+        data_ov000_021b4c64->mUnk_1c.mUnk_04();
+    }
+    func_ov000_02180be8();
+    func_0202bb60();
+    func_0212abd0();
+    func_02125da0();
+    data_ov000_021b4c64 = 0;
+}
+
+void func_ov000_02180724(void) {
+    if (data_ov000_021b4c64->mUnk_1c.mUnk_08 != 0) {
+        data_ov000_021b4c64->mUnk_1c.mUnk_08();
+    }
+    if (data_ov000_021b4c64->mUnk_0c != -1) {
+        data_ov000_021b4c64->mUnk_1c.mUnk_04();
+        func_ov000_02180be8();
+        func_02036ab0(data_ov000_021b4c64->mUnk_04);
+        data_ov000_021b4c64->mUnk_04 = func_020369fc(data_ov000_021b4c64->mUnk_00);
+        switch (data_ov000_021b4c64->mUnk_0c) {
+            case 0:
+                func_ov000_02180c04();
+                break;
+            case 1:
+                func_ov000_02181714();
+                break;
+            case 2:
+                func_ov000_02181fcc();
+                break;
+            case 3:
+                func_ov000_0218330c();
+                break;
+            case 4:
+                func_ov000_021848c8();
+                break;
+            case 5:
+                func_ov000_021849e0();
+                break;
+            case 6:
+                func_ov000_02184aa4();
+                break;
+            case 7:
+                func_ov000_021857b8();
+                break;
+            case 8:
+                func_ov000_02184ba8();
+                break;
+            case 9:
+                func_ov000_02185344();
+                break;
+        }
+        data_ov000_021b4c64->mUnk_10 = data_ov000_021b4c64->mUnk_08;
+        data_ov000_021b4c64->mUnk_08 = data_ov000_021b4c64->mUnk_0c;
+        data_ov000_021b4c64->mUnk_0c = -1;
+        if (data_ov000_021b4c64->mUnk_1c.mUnk_00 != 0) {
+            data_ov000_021b4c64->mUnk_1c.mUnk_00(data_ov000_021b4c64->mUnk_04);
+        }
+    }
+    func_02125928();
+    func_0212a920();
+    data_ov000_021b4c64->mUnk_14++;
+    if (data_ov000_021b4c64->mUnk_14 > 0) {
+        data_ov000_021b4c64->mUnk_14 = 0;
+    }
 }

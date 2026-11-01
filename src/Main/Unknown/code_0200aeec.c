@@ -3,6 +3,13 @@
 
 #pragma thumb on
 
+u32 func_0200aff8(Unk0200aeec *a) {
+    if (a->mUnk_04_0 != 0) {
+        return 1;
+    }
+    return 0;
+}
+
 void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
     Unk0200aeec_head *v1;
     u32 v2;
@@ -69,13 +76,6 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
         }
     }
     func_0200fcb4(v3);
-}
-
-u32 func_0200aff8(Unk0200aeec *a) {
-    if (a->mUnk_04_0 != 0) {
-        return 1;
-    }
-    return 0;
 }
 
 #pragma thumb off

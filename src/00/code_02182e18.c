@@ -2,6 +2,17 @@
 #include "00/code_02182fdc.h"
 #include "Main/Unknown/code_0212b91c.h"
 
+void func_ov000_02182f88(void) {
+    u32 a;
+
+    a = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
+    a &= ~8;
+    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (a << 8);
+    *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0xf00;
+    func_0212b91c();
+    data_ov000_021b4c70 = 0;
+}
+
 void func_ov000_02182e18(void) {
     Unk020b4934 *v1;
     Unk020b47d8 *v2;
@@ -26,15 +37,4 @@ void func_ov000_02182e18(void) {
     func_02016468(0x1f, 0, v3->mUnk_0c, 0x80);
     func_02016468(0x23, 0, data_ov000_021b4c70->mUnk_1044->mUnk_14, data_ov000_021b4c70->mUnk_1044->mUnk_10);
     func_02016468(0x1e, 0, data_ov000_021b4c70->mUnk_1048->mUnk_0c, data_ov000_021b4c70->mUnk_1048->mUnk_08);
-}
-
-void func_ov000_02182f88(void) {
-    u32 a;
-
-    a = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
-    a &= ~8;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (a << 8);
-    *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0xf00;
-    func_0212b91c();
-    data_ov000_021b4c70 = 0;
 }

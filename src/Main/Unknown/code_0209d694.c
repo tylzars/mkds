@@ -20,46 +20,6 @@ static inline u32 func_0209d84c_inline(Unk020f41c4_B *b) {
     return (u32) (b->mUnk_00 >> 32);
 }
 
-void func_0209d694(Vec3 *a, Vec3 *b) {
-    Unk0209d694 *p;
-
-    p = func_0209bbfc(func_02100138(0x1ae));
-    if (p == 0) {
-        return;
-    }
-    p->mUnk_a0 = 0x1c2;
-    p->mUnk_a8 = *a;
-    p->mUnk_00.mUnk_04 = p->mUnk_a8;
-    p->mUnk_00.mUnk_28.mUnk_18 = *b;
-    p->mUnk_00.mUnk_10.x = ((s64) b->x * 0x2000) >> 12;
-    p->mUnk_00.mUnk_10.y = ((s64) b->y * 0x2000) >> 12;
-    p->mUnk_00.mUnk_10.z = ((s64) b->z * 0x2000) >> 12;
-    p->mUnk_a4 = 0;
-    p->mUnk_b8 = 0;
-    p->mUnk_bc = func_0208b7bc(0x35, &p->mUnk_00.mUnk_04);
-    p->mUnk_c0 = func_0208b7bc(0x34, &p->mUnk_00.mUnk_04);
-    p->mUnk_bc->mUnk_70 = 0x15;
-    p->mUnk_c0->mUnk_70 = 0x15;
-    p->mUnk_bc->mUnk_80 = 3;
-    p->mUnk_c0->mUnk_80 = 3;
-    p->mUnk_00.mUnk_02 &= ~1;
-    p->mUnk_00.mUnk_02 &= ~8;
-    p->mUnk_00.mUnk_02 &= ~2;
-    p->mUnk_00.mUnk_02 &= ~8;
-    p->mUnk_00.mUnk_66 = 0x1f;
-}
-
-void func_0209d7e0(void) {
-    func_0209bf48(&func_0209dd40, &func_0209d84c, 0);
-}
-
-void func_0209d800(void) {
-    Unk0209bf70 *o;
-
-    o = func_0209bf70(&func_0209ddec, &func_0209dd44, 0, 1, 0, 0x18d);
-    o->mUnk_28 = 0x196;
-}
-
 void func_0209d84c(void *a, Unk0209d694 *p) {
     Vec3 v;
     Unk0210b7a8 s;
@@ -175,4 +135,44 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
             p->mUnk_c0->mUnk_24 |= 2;
         }
     }
+}
+
+void func_0209d800(void) {
+    Unk0209bf70 *o;
+
+    o = func_0209bf70(&func_0209ddec, &func_0209dd44, 0, 1, 0, 0x18d);
+    o->mUnk_28 = 0x196;
+}
+
+void func_0209d7e0(void) {
+    func_0209bf48(&func_0209dd40, &func_0209d84c, 0);
+}
+
+void func_0209d694(Vec3 *a, Vec3 *b) {
+    Unk0209d694 *p;
+
+    p = func_0209bbfc(func_02100138(0x1ae));
+    if (p == 0) {
+        return;
+    }
+    p->mUnk_a0 = 0x1c2;
+    p->mUnk_a8 = *a;
+    p->mUnk_00.mUnk_04 = p->mUnk_a8;
+    p->mUnk_00.mUnk_28.mUnk_18 = *b;
+    p->mUnk_00.mUnk_10.x = ((s64) b->x * 0x2000) >> 12;
+    p->mUnk_00.mUnk_10.y = ((s64) b->y * 0x2000) >> 12;
+    p->mUnk_00.mUnk_10.z = ((s64) b->z * 0x2000) >> 12;
+    p->mUnk_a4 = 0;
+    p->mUnk_b8 = 0;
+    p->mUnk_bc = func_0208b7bc(0x35, &p->mUnk_00.mUnk_04);
+    p->mUnk_c0 = func_0208b7bc(0x34, &p->mUnk_00.mUnk_04);
+    p->mUnk_bc->mUnk_70 = 0x15;
+    p->mUnk_c0->mUnk_70 = 0x15;
+    p->mUnk_bc->mUnk_80 = 3;
+    p->mUnk_c0->mUnk_80 = 3;
+    p->mUnk_00.mUnk_02 &= ~1;
+    p->mUnk_00.mUnk_02 &= ~8;
+    p->mUnk_00.mUnk_02 &= ~2;
+    p->mUnk_00.mUnk_02 &= ~8;
+    p->mUnk_00.mUnk_66 = 0x1f;
 }

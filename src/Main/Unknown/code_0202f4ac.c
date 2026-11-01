@@ -2,20 +2,20 @@
 #include "Main/Unknown/code_02038000.h"
 #include "Main/Unknown/code_0214d000.h"
 
-void func_0202f4ac(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    func_02038cd8(a->mUnk_70, b, c, d, e, f, g);
-}
+void func_0202f530(void *p, u32 v, u32 n) {
+    volatile u32 value = v;
 
-void func_0202f4e0(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    func_02038d28(a->mUnk_28, b, c, d, e, f, g, h);
+    func_0214d05c(value, p, n);
 }
 
 void func_0202f51c(void *p, u32 n) {
     func_0202f530(p, 0, n);
 }
 
-void func_0202f530(void *p, u32 v, u32 n) {
-    volatile u32 value = v;
+void func_0202f4e0(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
+    func_02038d28(a->mUnk_28, b, c, d, e, f, g, h);
+}
 
-    func_0214d05c(value, p, n);
+void func_0202f4ac(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
+    func_02038cd8(a->mUnk_70, b, c, d, e, f, g);
 }

@@ -3,6 +3,10 @@
 #include "03/unk_021d7000.h"
 #include "code_021445e0.h"
 
+u8 *func_ov003_021cfc1c(u32 param_1) {
+    return func_0214461c(&data_ov003_021da2a8->mUnk_13e0, &data_ov003_021da2a8->mUnk_1c00, param_1);
+}
+
 s32 func_ov003_021cfb98(void *param_1) {
     s32 r = func_02144c6c(&data_ov003_021da2a8->mUnk_13e0, param_1, &data_ov003_021da2a8->mUnk_1c00);
     if (r == 7) {
@@ -23,8 +27,4 @@ s32 func_ov003_021cfb98(void *param_1) {
         return 0;
     }
     return 1;
-}
-
-u8 *func_ov003_021cfc1c(u32 param_1) {
-    return func_0214461c(&data_ov003_021da2a8->mUnk_13e0, &data_ov003_021da2a8->mUnk_1c00, param_1);
 }

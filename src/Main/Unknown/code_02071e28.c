@@ -8,46 +8,6 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_020172d0.h"
 
-void func_02071e28(Unk0206bcb0 *p) {
-    p->mUnk_7c = 0;
-    if (p->mUnk_74 == data_021759c0->mUnk_62) {
-        p->mUnk_7c |= 1;
-        if (data_021759c0->mUnk_08 == 5) {
-            p->mUnk_7c |= 0x200;
-            if (func_0203c5e4() != 0) {
-                p->mUnk_7c &= ~0x200;
-                p->mUnk_7c |= 0x400;
-            }
-        }
-    } else if (data_021759c0->mUnk_08 == 5) {
-        p->mUnk_7c |= 0x400;
-    }
-    if (data_021759c0->mUnk_68[p->mUnk_74].mUnk_08.mUnk_00 == 2) {
-        p->mUnk_7c |= 4;
-        p->mUnk_384 = 0;
-    }
-    if (p->mUnk_590->mUnk_008 != 0) {
-        p->mUnk_7c |= 0x10;
-    }
-    if (data_021759c0->mUnk_08 == 1 || func_02062eb0() != 0) {
-        p->mUnk_7c |= 0x8000000;
-    }
-}
-
-void func_02071f44(Unk0206bcb0 *p) {
-    Unk0206bcb0_514 *q;
-
-    if (!(p->mUnk_7c & 0x400)) {
-        return;
-    }
-    q = p->mUnk_514;
-    q->mUnk_00 = p->mUnk_80;
-    q->mUnk_10 = q->mUnk_00;
-    q->mUnk_4c = *(Vec4 *) &p->mUnk_108.z;
-    q->mUnk_a8 = data_02154f94;
-    q->mUnk_b4 = 0;
-}
-
 void func_02071fb8(Unk0206bcb0 *p, void *a) {
     Unk0206bcb0_514 *q;
     Vec3 v;
@@ -84,5 +44,45 @@ void func_02071fb8(Unk0206bcb0 *p, void *a) {
     b = func_02036bec(a, 0x438);
     for (i = 0; i < 0x1e; i++) {
         func_020174a4(&q->mUnk_8c, b + i * 0x24);
+    }
+}
+
+void func_02071f44(Unk0206bcb0 *p) {
+    Unk0206bcb0_514 *q;
+
+    if (!(p->mUnk_7c & 0x400)) {
+        return;
+    }
+    q = p->mUnk_514;
+    q->mUnk_00 = p->mUnk_80;
+    q->mUnk_10 = q->mUnk_00;
+    q->mUnk_4c = *(Vec4 *) &p->mUnk_108.z;
+    q->mUnk_a8 = data_02154f94;
+    q->mUnk_b4 = 0;
+}
+
+void func_02071e28(Unk0206bcb0 *p) {
+    p->mUnk_7c = 0;
+    if (p->mUnk_74 == data_021759c0->mUnk_62) {
+        p->mUnk_7c |= 1;
+        if (data_021759c0->mUnk_08 == 5) {
+            p->mUnk_7c |= 0x200;
+            if (func_0203c5e4() != 0) {
+                p->mUnk_7c &= ~0x200;
+                p->mUnk_7c |= 0x400;
+            }
+        }
+    } else if (data_021759c0->mUnk_08 == 5) {
+        p->mUnk_7c |= 0x400;
+    }
+    if (data_021759c0->mUnk_68[p->mUnk_74].mUnk_08.mUnk_00 == 2) {
+        p->mUnk_7c |= 4;
+        p->mUnk_384 = 0;
+    }
+    if (p->mUnk_590->mUnk_008 != 0) {
+        p->mUnk_7c |= 0x10;
+    }
+    if (data_021759c0->mUnk_08 == 1 || func_02062eb0() != 0) {
+        p->mUnk_7c |= 0x8000000;
     }
 }

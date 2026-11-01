@@ -6,16 +6,6 @@
 #include "code_0200fc8c.h"
 #include "code_0214d018.h"
 
-void func_ov000_021a6944(Unk021425e8 *param_1) {
-    if (param_1->mUnk_00 == 0x12) {
-        data_ov000_021b5f54.mUnk_24 = param_1->mUnk_02;
-        if (param_1->mUnk_02 == 0) {
-            func_ov000_021a57a8();
-        }
-        func_0200df9c(&data_ov000_021b5f54.mUnk_04);
-    }
-}
-
 s32 func_ov000_021a6974(const void *param_1, const void *param_2, s32 param_3) {
     u32 a;
     Unk021b5f50 *b;
@@ -66,5 +56,15 @@ s32 func_ov000_021a6974(const void *param_1, const void *param_2, s32 param_3) {
                     func_0200fcb4(a);
                     return param_3;
             }
+    }
+}
+
+void func_ov000_021a6944(Unk021425e8 *param_1) {
+    if (param_1->mUnk_00 == 0x12) {
+        data_ov000_021b5f54.mUnk_24 = param_1->mUnk_02;
+        if (param_1->mUnk_02 == 0) {
+            func_ov000_021a57a8();
+        }
+        func_0200df9c(&data_ov000_021b5f54.mUnk_04);
     }
 }

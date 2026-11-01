@@ -3,8 +3,9 @@
 #include "code_0200f5ac.h"
 #include "code_0214a748.h"
 
-u32 func_02037a20(void) {
-    return (data_021755a0->mUnk_d8 & 2) ? 1 : 0;
+void func_02037a94(void) {
+    func_02039b24();
+    data_021755a0 = 0;
 }
 
 void func_02037a40(void) {
@@ -21,7 +22,6 @@ void func_02037a40(void) {
     }
 }
 
-void func_02037a94(void) {
-    func_02039b24();
-    data_021755a0 = 0;
+u32 func_02037a20(void) {
+    return (data_021755a0->mUnk_d8 & 2) ? 1 : 0;
 }

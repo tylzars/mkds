@@ -1,13 +1,5 @@
 #include "00/code_021b04d4.h"
 
-void func_ov000_021b04d4(void) {
-    if (data_ov000_021b6390 == 0) {
-        func_0200dd94();
-    } else {
-        func_0200dc3c(data_ov000_021b6390);
-    }
-}
-
 void func_ov000_021b04f8(u32 a) {
     u32 b;
     Unk0200db5c *c;
@@ -55,5 +47,13 @@ void func_ov000_021b04f8(u32 a) {
             e++;
         }
         func_ov000_021a91b4();
+    }
+}
+
+void func_ov000_021b04d4(void) {
+    if (data_ov000_021b6390 == 0) {
+        func_0200dd94();
+    } else {
+        func_0200dc3c(data_ov000_021b6390);
     }
 }

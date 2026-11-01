@@ -6,6 +6,20 @@
 #include "00/unk_021b4000.h"
 #include "code_0214d018.h"
 
+void func_ov000_021a397c(s32 a) {
+    switch (a) {
+        case 0:
+            func_ov000_02186628(data_ov000_021b4200);
+            break;
+        case 1:
+            func_ov000_02186628(data_ov000_021b4228);
+            break;
+        case 2:
+            func_ov000_02186628(data_ov000_021b424c);
+            break;
+    }
+}
+
 void func_ov000_021a3910(void) {
     Unk021a3910 t;
     if (data_ov000_021b5df4 != 0) {
@@ -25,18 +39,4 @@ void func_ov000_021a3910(void) {
         return;
     }
     func_ov000_0219c384(0xb, -4);
-}
-
-void func_ov000_021a397c(s32 a) {
-    switch (a) {
-        case 0:
-            func_ov000_02186628(data_ov000_021b4200);
-            break;
-        case 1:
-            func_ov000_02186628(data_ov000_021b4228);
-            break;
-        case 2:
-            func_ov000_02186628(data_ov000_021b424c);
-            break;
-    }
 }

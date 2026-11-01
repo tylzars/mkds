@@ -8,9 +8,17 @@
 #include "00/unk_021b2000.h"
 #include "code_0214177c.h"
 
-void func_ov000_0218d340(Unk021b4d24 *p, u32 a) {
-    func_ov000_0218dbc0(p->mUnk_004, &a);
-    p->mUnk_488(p, 0, a, p->mUnk_494);
+s32 func_ov000_0218d3d8(u32 *a, u32 *b) {
+    u8 *x;
+    u8 *y;
+    s32 r;
+    x = func_ov000_0218b30c((Unk0218af28 *) *a, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
+    y = func_ov000_0218b30c((Unk0218af28 *) *b, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
+    r = func_02142368(x, y);
+    if (data_ov000_021b4d24->mUnk_49c == 0) {
+        r = -r;
+    }
+    return r;
 }
 
 void func_ov000_0218d374(Unk021b4d24 *p, s32 a, u32 b, u32 c) {
@@ -38,15 +46,7 @@ void func_ov000_0218d374(Unk021b4d24 *p, s32 a, u32 b, u32 c) {
     func_ov000_0218da04((u32) p->mUnk_004, (u32) f);
 }
 
-s32 func_ov000_0218d3d8(u32 *a, u32 *b) {
-    u8 *x;
-    u8 *y;
-    s32 r;
-    x = func_ov000_0218b30c((Unk0218af28 *) *a, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
-    y = func_ov000_0218b30c((Unk0218af28 *) *b, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
-    r = func_02142368(x, y);
-    if (data_ov000_021b4d24->mUnk_49c == 0) {
-        r = -r;
-    }
-    return r;
+void func_ov000_0218d340(Unk021b4d24 *p, u32 a) {
+    func_ov000_0218dbc0(p->mUnk_004, &a);
+    p->mUnk_488(p, 0, a, p->mUnk_494);
 }

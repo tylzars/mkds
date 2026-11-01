@@ -10,17 +10,17 @@
 #include "code_0200fc8c.h"
 #include "Main/Unknown/unk_0216f000.h"
 
-u32 func_ov000_021ae134(void) {
+void func_ov000_021ae1e4(void) {
     Unk021a998c *a;
 
     a = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
     if (a != 0) {
         if (a->mUnk_09 != 0) {
-            return func_ov000_021a943c(a);
+            func_ov000_021a9534(a);
+        } else {
+            func_ov000_021ae228(a);
         }
-        return func_ov000_021ae16c(a);
     }
-    return 1;
 }
 
 u32 func_ov000_021ae16c(Unk021a998c *param_1) {
@@ -50,15 +50,15 @@ u32 func_ov000_021ae16c(Unk021a998c *param_1) {
     return 1;
 }
 
-void func_ov000_021ae1e4(void) {
+u32 func_ov000_021ae134(void) {
     Unk021a998c *a;
 
     a = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
     if (a != 0) {
         if (a->mUnk_09 != 0) {
-            func_ov000_021a9534(a);
-        } else {
-            func_ov000_021ae228(a);
+            return func_ov000_021a943c(a);
         }
+        return func_ov000_021ae16c(a);
     }
+    return 1;
 }

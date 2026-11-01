@@ -3,6 +3,28 @@
 #include "00/code_0218e3c4.h"
 #include "00/code_021a8b20.h"
 
+s32 func_ov000_0218e7dc(s32 param_1, u32 param_2) {
+    return func_ov000_0218e3b8(param_1, 0xffff, 0x1002, &param_2, 4) != -1 ? 1 : 0;
+}
+
+s32 func_ov000_0218e7ac(s32 param_1, u32 param_2) {
+    return func_ov000_0218e3b8(param_1, 0xffff, 0x1001, &param_2, 4) != -1 ? 1 : 0;
+}
+
+s32 func_ov000_0218e77c(s32 param_1) {
+    s32 a;
+    s32 b = 4;
+    s32 c = func_ov000_0218e3c4(param_1, 0xffff, 0x1002, &a, &b);
+    return c != -1 ? a : -1;
+}
+
+s32 func_ov000_0218e74c(s32 param_1) {
+    s32 a;
+    s32 b = 4;
+    s32 c = func_ov000_0218e3c4(param_1, 0xffff, 0x1001, &a, &b);
+    return c != -1 ? a : -1;
+}
+
 s32 func_ov000_0218e68c(s32 param_1, u32 *param_2, u32 *param_3, u32 *param_4) {
     Unk0218e68c a;
     s32 b;
@@ -41,26 +63,4 @@ s32 func_ov000_0218e68c(s32 param_1, u32 *param_2, u32 *param_3, u32 *param_4) {
         }
     }
     return b;
-}
-
-s32 func_ov000_0218e74c(s32 param_1) {
-    s32 a;
-    s32 b = 4;
-    s32 c = func_ov000_0218e3c4(param_1, 0xffff, 0x1001, &a, &b);
-    return c != -1 ? a : -1;
-}
-
-s32 func_ov000_0218e77c(s32 param_1) {
-    s32 a;
-    s32 b = 4;
-    s32 c = func_ov000_0218e3c4(param_1, 0xffff, 0x1002, &a, &b);
-    return c != -1 ? a : -1;
-}
-
-s32 func_ov000_0218e7ac(s32 param_1, u32 param_2) {
-    return func_ov000_0218e3b8(param_1, 0xffff, 0x1001, &param_2, 4) != -1 ? 1 : 0;
-}
-
-s32 func_ov000_0218e7dc(s32 param_1, u32 param_2) {
-    return func_ov000_0218e3b8(param_1, 0xffff, 0x1002, &param_2, 4) != -1 ? 1 : 0;
 }

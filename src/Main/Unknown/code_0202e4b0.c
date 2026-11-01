@@ -13,34 +13,6 @@
 
 #pragma thumb on
 
-void func_0202e4b0(void) {
-    data_02174e48->mUnk_668 = 0;
-    data_02174e48->mUnk_664 = data_02174e48->mUnk_668;
-    func_0202eec0();
-    func_0202ed04();
-    switch (data_02174e48->mUnk_670) {
-        case 0:
-            func_0202e9f0();
-            break;
-        case 1:
-            func_0202e9ac();
-            break;
-        case 2:
-            func_0202e968();
-            break;
-        case 3:
-            func_0202e84c();
-            break;
-        case 4:
-            func_0202e72c();
-            break;
-        case 5:
-            func_0202e6c4();
-            break;
-    }
-    func_0202ee88();
-}
-
 void func_0202e530(void *a, s32 b, const void *c, u16 d, u16 e, s32 f, Unk02124b1c *g, void *h, const void *i, s32 j,
                    s32 k, s32 l, s32 m, void (*n)(int a, int b, int c, int d)) {
     s32 i0;
@@ -79,6 +51,34 @@ void func_0202e530(void *a, s32 b, const void *c, u16 d, u16 e, s32 f, Unk02124b
         data_02174e48->mUnk_008[data_02174e48->mUnk_02c].mUnk_00 = 0;
     }
     data_02174e48->mUnk_048 = 0xf;
+}
+
+void func_0202e4b0(void) {
+    data_02174e48->mUnk_668 = 0;
+    data_02174e48->mUnk_664 = data_02174e48->mUnk_668;
+    func_0202eec0();
+    func_0202ed04();
+    switch (data_02174e48->mUnk_670) {
+        case 0:
+            func_0202e9f0();
+            break;
+        case 1:
+            func_0202e9ac();
+            break;
+        case 2:
+            func_0202e968();
+            break;
+        case 3:
+            func_0202e84c();
+            break;
+        case 4:
+            func_0202e72c();
+            break;
+        case 5:
+            func_0202e6c4();
+            break;
+    }
+    func_0202ee88();
 }
 
 #pragma thumb off

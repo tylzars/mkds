@@ -6,6 +6,24 @@
 #include "code_02139f70.h"
 #include "code_0214d018.h"
 
+void func_ov000_0219ddbc(u32 a) {
+    if (data_ov000_021b566c->mUnk_198 == 1) {
+        data_ov000_021b566c->mUnk_198 = 6;
+    } else if (data_ov000_021b566c->mUnk_198 != 6 && data_ov000_021b566c->mUnk_198 != 0xb) {
+        return;
+    }
+    if (data_ov000_021b566c->mUnk_178 == a) {
+        data_ov000_021b566c->mUnk_174[0]++;
+    } else {
+        data_ov000_021b566c->mUnk_174[0] = 0;
+        data_ov000_021b566c->mUnk_178 = a;
+    }
+    data_ov000_021b566c->mUnk_17c = 0;
+    if (func_ov000_0219e4a0(func_ov000_021a0cac(1, a, 0)) == 0) {
+        data_ov000_021b566c->mUnk_3b4 = 0xff;
+    }
+}
+
 void func_ov000_0219dd4c(const void *a, u32 b) {
     Unk0219dd4c c;
     u8 d[0x80];
@@ -26,23 +44,5 @@ void func_ov000_0219dd4c(const void *a, u32 b) {
             }
             e += c.mUnk_09 + 0x14;
         } while (e + 0x14 <= b);
-    }
-}
-
-void func_ov000_0219ddbc(u32 a) {
-    if (data_ov000_021b566c->mUnk_198 == 1) {
-        data_ov000_021b566c->mUnk_198 = 6;
-    } else if (data_ov000_021b566c->mUnk_198 != 6 && data_ov000_021b566c->mUnk_198 != 0xb) {
-        return;
-    }
-    if (data_ov000_021b566c->mUnk_178 == a) {
-        data_ov000_021b566c->mUnk_174[0]++;
-    } else {
-        data_ov000_021b566c->mUnk_174[0] = 0;
-        data_ov000_021b566c->mUnk_178 = a;
-    }
-    data_ov000_021b566c->mUnk_17c = 0;
-    if (func_ov000_0219e4a0(func_ov000_021a0cac(1, a, 0)) == 0) {
-        data_ov000_021b566c->mUnk_3b4 = 0xff;
     }
 }

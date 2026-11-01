@@ -27,11 +27,6 @@
 
 #pragma thumb on
 
-void func_02032ab0(void) {
-    data_0217b488->mUnk_04 = 1;
-    func_02125da0();
-}
-
 void func_02032ac4(Unk02032ac4 *a) {
     Unk02174e14_00 *s;
     Unk02174e14_00 *t;
@@ -220,6 +215,11 @@ void func_02032ac4(Unk02032ac4 *a) {
         t->mUnk_18[i + j].mUnk_06 = t->mUnk_18[i + j].mUnk_06 - 1;
     }
     func_02125928();
+}
+
+void func_02032ab0(void) {
+    data_0217b488->mUnk_04 = 1;
+    func_02125da0();
 }
 
 #pragma thumb off

@@ -7,24 +7,29 @@
 #include "00/unk_021b2000.h"
 #include "code_02135014.h"
 
-void func_ov000_0218e0fc(const u8 *param_1, s32 param_2, u8 *param_3) {
-    u8 a[16];
-    Unk02150610 b;
-    func_ov000_021acef0(&b);
-    func_ov000_021acee8(&b, param_1, param_2);
-    func_ov000_021acee0(a, &b);
-    func_ov000_0218e130(a, param_3);
+s32 func_ov000_0218e284(s32 param_1, s32 param_2) {
+    s32 a = param_2 - param_1;
+    s32 r;
+    if (a == 0) {
+        return param_1;
+    }
+    r = func_ov000_0218e2c0() % a;
+    return r + param_1;
 }
 
-void func_ov000_0218e130(const u8 *param_1, u8 *param_2) {
-    u32 a;
-    s32 b;
-    a = 0;
-    b = 0;
-    for (; a < 16; a++) {
-        func_02135014(param_2 + b, data_ov000_021b23a4, param_1[a]);
-        b += 2;
+void func_ov000_0218e220(const s8 *param_1, u8 *param_2, s32 param_3) {
+    u8 a[3];
+    s32 b = 0;
+    for (; b < param_3; b++) {
+        a[b] = param_1[b];
     }
+    for (; b < 3; b++) {
+        a[b] = 0;
+    }
+    param_2[0] = a[0] >> 2;
+    param_2[1] = ((a[0] & 3) << 4) | (a[1] >> 4);
+    param_2[2] = ((a[1] & 0xf) << 2) | (a[2] >> 6);
+    param_2[3] = a[2] & 0x3f;
 }
 
 void func_ov000_0218e15c(const void *param_1, void *param_2, s32 param_3, s32 param_4) {
@@ -80,27 +85,22 @@ void func_ov000_0218e15c(const void *param_1, void *param_2, s32 param_3, s32 pa
     }
 }
 
-void func_ov000_0218e220(const s8 *param_1, u8 *param_2, s32 param_3) {
-    u8 a[3];
-    s32 b = 0;
-    for (; b < param_3; b++) {
-        a[b] = param_1[b];
+void func_ov000_0218e130(const u8 *param_1, u8 *param_2) {
+    u32 a;
+    s32 b;
+    a = 0;
+    b = 0;
+    for (; a < 16; a++) {
+        func_02135014(param_2 + b, data_ov000_021b23a4, param_1[a]);
+        b += 2;
     }
-    for (; b < 3; b++) {
-        a[b] = 0;
-    }
-    param_2[0] = a[0] >> 2;
-    param_2[1] = ((a[0] & 3) << 4) | (a[1] >> 4);
-    param_2[2] = ((a[1] & 0xf) << 2) | (a[2] >> 6);
-    param_2[3] = a[2] & 0x3f;
 }
 
-s32 func_ov000_0218e284(s32 param_1, s32 param_2) {
-    s32 a = param_2 - param_1;
-    s32 r;
-    if (a == 0) {
-        return param_1;
-    }
-    r = func_ov000_0218e2c0() % a;
-    return r + param_1;
+void func_ov000_0218e0fc(const u8 *param_1, s32 param_2, u8 *param_3) {
+    u8 a[16];
+    Unk02150610 b;
+    func_ov000_021acef0(&b);
+    func_ov000_021acee8(&b, param_1, param_2);
+    func_ov000_021acee0(a, &b);
+    func_ov000_0218e130(a, param_3);
 }

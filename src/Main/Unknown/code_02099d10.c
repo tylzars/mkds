@@ -5,8 +5,8 @@
 #include "Main/Unknown/code_02099d80.h"
 #include "Main/Unknown/code_02099df4.h"
 
-void func_02099d10(void *a) {
-    func_0209bbd0(a, data_0217b168);
+void func_02099d5c(void) {
+    func_0209bef0(func_02099e0c, func_02099d80, func_02099df4);
 }
 
 void func_02099d28(void *a) {
@@ -14,6 +14,6 @@ void func_02099d28(void *a) {
     func_0209b940(data_0217b168, 0x3f);
 }
 
-void func_02099d5c(void) {
-    func_0209bef0(func_02099e0c, func_02099d80, func_02099df4);
+void func_02099d10(void *a) {
+    func_0209bbd0(a, data_0217b168);
 }

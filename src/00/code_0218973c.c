@@ -7,25 +7,11 @@
 #include "00/unk_021b0000.h"
 #include "code_0214d018.h"
 
-u8 func_ov000_0218973c(u32 a) {
-    Unk02188ec0 *v1;
-    volatile u32 z;
-
-    v1 = (Unk02188ec0 *) func_ov000_02188584(0x10);
-    z = 0;
-    func_0214d018(z, v1->mUnk_300, 0x144);
-    switch (a) {
-        case 0:
-            v1->mUnk_d10 = func_ov000_021896c4(v1);
-            break;
-        case 1:
-            v1->mUnk_d10 = func_ov000_021894e4(v1->mUnk_d12, v1->mUnk_444, v1->mUnk_300, v1->mUnk_470);
-            break;
-        case 2:
-            v1->mUnk_d10 = func_ov000_02189614(v1);
-            break;
+void func_ov000_02189868(const u8 *a, const u8 *b, s32 c, u32 d) {
+    if (c > 12) {
+        c = 12;
     }
-    return v1->mUnk_d10;
+    func_ov000_021a61c4(a, b, d | data_ov000_021b0704[c]);
 }
 
 u32 func_ov000_021897bc(void) {
@@ -63,9 +49,23 @@ u32 func_ov000_021897bc(void) {
     return r;
 }
 
-void func_ov000_02189868(const u8 *a, const u8 *b, s32 c, u32 d) {
-    if (c > 12) {
-        c = 12;
+u8 func_ov000_0218973c(u32 a) {
+    Unk02188ec0 *v1;
+    volatile u32 z;
+
+    v1 = (Unk02188ec0 *) func_ov000_02188584(0x10);
+    z = 0;
+    func_0214d018(z, v1->mUnk_300, 0x144);
+    switch (a) {
+        case 0:
+            v1->mUnk_d10 = func_ov000_021896c4(v1);
+            break;
+        case 1:
+            v1->mUnk_d10 = func_ov000_021894e4(v1->mUnk_d12, v1->mUnk_444, v1->mUnk_300, v1->mUnk_470);
+            break;
+        case 2:
+            v1->mUnk_d10 = func_ov000_02189614(v1);
+            break;
     }
-    func_ov000_021a61c4(a, b, d | data_ov000_021b0704[c]);
+    return v1->mUnk_d10;
 }

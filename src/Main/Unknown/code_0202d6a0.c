@@ -2,22 +2,6 @@
 
 #pragma thumb on
 
-void func_0202d6a0(void) {
-    Unk0202de00_g t;
-    u16 n[10];
-    u16 m[11];
-    s32 a;
-    s32 b;
-    func_0202dcf4(data_02174e40->mUnk_0a4, &t);
-    func_0202dc68(data_02174e40->mUnk_0a4, n);
-    func_0214cffc(n, m, 0x14);
-    m[10] = 0;
-    a = func_0202dbe8(data_02174e40->mUnk_0a4);
-    b = func_0202db68(data_02174e40->mUnk_0a4);
-    func_0202de00((Unk02174e14 *) data_02174e40->mUnk_050, data_usa_02153bec, m, a, b,
-                  func_0202db04(data_02174e40->mUnk_0a4), &t);
-}
-
 void func_0202d720(void) {
     u16 s[6];
     Unk02174e14_00 *p;
@@ -49,6 +33,22 @@ void func_0202d720(void) {
     s[4] = '0';
     s[5] = 0;
     func_02124224(1, 0x11, p->mUnk_14, s, p->mUnk_0c, p->mUnk_18, 6);
+}
+
+void func_0202d6a0(void) {
+    Unk0202de00_g t;
+    u16 n[10];
+    u16 m[11];
+    s32 a;
+    s32 b;
+    func_0202dcf4(data_02174e40->mUnk_0a4, &t);
+    func_0202dc68(data_02174e40->mUnk_0a4, n);
+    func_0214cffc(n, m, 0x14);
+    m[10] = 0;
+    a = func_0202dbe8(data_02174e40->mUnk_0a4);
+    b = func_0202db68(data_02174e40->mUnk_0a4);
+    func_0202de00((Unk02174e14 *) data_02174e40->mUnk_050, data_usa_02153bec, m, a, b,
+                  func_0202db04(data_02174e40->mUnk_0a4), &t);
 }
 
 #pragma thumb off

@@ -9,11 +9,6 @@
 #include "03/unk_021da000.h"
 #include "03/code_021be610.h"
 
-void func_ov003_021bf344(void) {
-    data_ov003_021da108->mUnk_19 = 1;
-    func_ov003_021d34e0(data_ov003_021da108->mUnk_0c, func_ov003_021bf098);
-}
-
 void func_ov003_021bf364(u32 param_0) {
     s32 n;
     s32 i;
@@ -40,4 +35,9 @@ void func_ov003_021bf364(u32 param_0) {
     func_ov003_021d1790((Unk021d1770 *) data_ov003_021da108->mUnk_08, -1, 1);
     func_ov003_021bf258(0xc0);
     data_ov003_021da108->mUnk_0c = (Unk021d34e0 *) func_ov003_021d3544(0, func_ov003_021bf20c, 0, 0x78);
+}
+
+void func_ov003_021bf344(void) {
+    data_ov003_021da108->mUnk_19 = 1;
+    func_ov003_021d34e0(data_ov003_021da108->mUnk_0c, func_ov003_021bf098);
 }

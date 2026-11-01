@@ -3,9 +3,19 @@
 
 #pragma thumb on
 
-void func_0200b70c(void) {
-    data_0216fde8->mUnk_5ef8 = 0;
-    data_0216fde8->mUnk_5efc = 1;
+void func_0200b794(u32 a, void *b, u32 c) {
+    switch (a) {
+        case 0:
+        case 2:
+        case 4:
+            break;
+        case 1:
+            func_0200b850(0, b, c);
+            break;
+        case 3:
+            func_0200b850(1, b, c);
+            break;
+    }
 }
 
 u32 func_0200b72c(void) {
@@ -24,19 +34,9 @@ u32 func_0200b72c(void) {
     return 1;
 }
 
-void func_0200b794(u32 a, void *b, u32 c) {
-    switch (a) {
-        case 0:
-        case 2:
-        case 4:
-            break;
-        case 1:
-            func_0200b850(0, b, c);
-            break;
-        case 3:
-            func_0200b850(1, b, c);
-            break;
-    }
+void func_0200b70c(void) {
+    data_0216fde8->mUnk_5ef8 = 0;
+    data_0216fde8->mUnk_5efc = 1;
 }
 
 #pragma thumb off

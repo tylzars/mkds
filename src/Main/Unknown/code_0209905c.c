@@ -9,6 +9,20 @@
 #include "Main/Unknown/code_0210b760.h"
 #include "Main/Unknown/unk_0217c000.h"
 
+u32 func_02099208(Unk0209905c *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
+    u32 v1 = *c;
+    u8 v2 = *d;
+    if (v1 == 1) {
+        a->mUnk_00.mUnk_02 = a->mUnk_00.mUnk_02 | data_usa_02156590;
+        a->mUnk_cc = 1;
+        if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
+            a->mUnk_00.mUnk_78 = a->mUnk_00.mUnk_78 | data_usa_02156594;
+        }
+        func_020d26f8(&a->mUnk_00, b);
+    }
+    return v2;
+}
+
 void func_0209905c(void *a, Unk0209905c *p) {
     s32 t;
     Unk0210b7a8 s;
@@ -61,18 +75,4 @@ void func_0209905c(void *a, Unk0209905c *p) {
             func_020d2398(&p->mUnk_00);
             return;
     }
-}
-
-u32 func_02099208(Unk0209905c *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
-    u32 v1 = *c;
-    u8 v2 = *d;
-    if (v1 == 1) {
-        a->mUnk_00.mUnk_02 = a->mUnk_00.mUnk_02 | data_usa_02156590;
-        a->mUnk_cc = 1;
-        if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
-            a->mUnk_00.mUnk_78 = a->mUnk_00.mUnk_78 | data_usa_02156594;
-        }
-        func_020d26f8(&a->mUnk_00, b);
-    }
-    return v2;
 }

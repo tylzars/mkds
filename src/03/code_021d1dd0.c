@@ -6,16 +6,28 @@
 #include "code_0214a348.h"
 #include "code_0214a390.h"
 
-u32 func_ov003_021d1dd0(u16 param_1) {
-    Unk021d1da8 *a = data_ov003_021da2c0;
+u32 func_ov003_021d1ee0(s32 param_1, s32 param_2, u32 param_3, u16 param_4) {
+    s8 a[4] = {-0x10, 0x00, 0x10, 0x00};
+    Unk021d1da8 *b;
 
-    if (a->mEnabled != 0) {
+    if (param_2 == 1) {
+        b = data_ov003_021da2c0;
+    } else {
+        b = data_ov003_021da2c0 + 1;
+    }
+    if (b->mEnabled != 0) {
         return 0;
     }
-    a->mUnk_00 = func_ov003_021d3544(1, func_ov003_021d1da8, a, 200);
-    a->mFrames = 0;
-    a->mFrameCount = param_1;
-    a->mEnabled = 1;
+    if (param_2 == 1) {
+        func_0214a3e8((u16 *) 0x4001050, param_3, a[param_1]);
+    } else {
+        func_0214a3e8((u16 *) 0x4000050, param_3, a[param_1]);
+    }
+    b->mUnk_00 = func_ov003_021d3544(1, func_ov003_021d1e14, b, 200);
+    b->mFrames = 0;
+    b->mUnk_08 = param_1;
+    b->mFrameCount = param_4;
+    b->mEnabled = 1;
     return 1;
 }
 
@@ -50,27 +62,15 @@ void func_ov003_021d1e14(u32 param_1, Unk021d1da8 *param_2) {
     }
 }
 
-u32 func_ov003_021d1ee0(s32 param_1, s32 param_2, u32 param_3, u16 param_4) {
-    s8 a[4] = {-0x10, 0x00, 0x10, 0x00};
-    Unk021d1da8 *b;
+u32 func_ov003_021d1dd0(u16 param_1) {
+    Unk021d1da8 *a = data_ov003_021da2c0;
 
-    if (param_2 == 1) {
-        b = data_ov003_021da2c0;
-    } else {
-        b = data_ov003_021da2c0 + 1;
-    }
-    if (b->mEnabled != 0) {
+    if (a->mEnabled != 0) {
         return 0;
     }
-    if (param_2 == 1) {
-        func_0214a3e8((u16 *) 0x4001050, param_3, a[param_1]);
-    } else {
-        func_0214a3e8((u16 *) 0x4000050, param_3, a[param_1]);
-    }
-    b->mUnk_00 = func_ov003_021d3544(1, func_ov003_021d1e14, b, 200);
-    b->mFrames = 0;
-    b->mUnk_08 = param_1;
-    b->mFrameCount = param_4;
-    b->mEnabled = 1;
+    a->mUnk_00 = func_ov003_021d3544(1, func_ov003_021d1da8, a, 200);
+    a->mFrames = 0;
+    a->mFrameCount = param_1;
+    a->mEnabled = 1;
     return 1;
 }

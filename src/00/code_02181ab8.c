@@ -1,25 +1,5 @@
 #include "00/code_02181ab8.h"
 
-void func_ov000_02181ab8(void) {
-    s32 i;
-    s32 v;
-
-    data_ov000_021b4c6c->mUnk_0c = data_ov000_021b4c6c->mUnk_0c + 1;
-    v = func_020ae488(data_ov000_021b4c6c->mUnk_0c);
-    for (i = 0; i < data_ov000_021b05cc[data_ov000_021b4c6c->mUnk_08]; i++) {
-        data_ov000_021b4c6c->mUnk_1c[data_ov000_021b05d8[data_ov000_021b4c6c->mUnk_08][i]].mUnk_04 = v;
-    }
-    if (data_ov000_021b4c6c->mUnk_0c >= 10) {
-        data_ov000_021b4c6c->mUnk_04 = 5;
-        if (data_ov000_021b4c6c->mUnk_08 == 0 || data_ov000_021b4c6c->mUnk_08 == 2) {
-            func_021282c8();
-        }
-        data_ov000_021b4c6c->mUnk_0c = 0;
-    } else if (data_ov000_021b4c6c->mUnk_0c >= 5) {
-        data_ov000_021b4c6c->mUnk_18 = 1;
-    }
-}
-
 void func_ov000_02181b4c(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
     s32 v1 = 0;
@@ -111,5 +91,25 @@ skip:
             data_ov000_021b4c6c->mUnk_08 = 0;
         }
         func_02105ac0(0);
+    }
+}
+
+void func_ov000_02181ab8(void) {
+    s32 i;
+    s32 v;
+
+    data_ov000_021b4c6c->mUnk_0c = data_ov000_021b4c6c->mUnk_0c + 1;
+    v = func_020ae488(data_ov000_021b4c6c->mUnk_0c);
+    for (i = 0; i < data_ov000_021b05cc[data_ov000_021b4c6c->mUnk_08]; i++) {
+        data_ov000_021b4c6c->mUnk_1c[data_ov000_021b05d8[data_ov000_021b4c6c->mUnk_08][i]].mUnk_04 = v;
+    }
+    if (data_ov000_021b4c6c->mUnk_0c >= 10) {
+        data_ov000_021b4c6c->mUnk_04 = 5;
+        if (data_ov000_021b4c6c->mUnk_08 == 0 || data_ov000_021b4c6c->mUnk_08 == 2) {
+            func_021282c8();
+        }
+        data_ov000_021b4c6c->mUnk_0c = 0;
+    } else if (data_ov000_021b4c6c->mUnk_0c >= 5) {
+        data_ov000_021b4c6c->mUnk_18 = 1;
     }
 }

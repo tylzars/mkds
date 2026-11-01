@@ -6,6 +6,33 @@
 #include "Main/Unknown/code_02152a1c.h"
 #include "code_0214d018.h"
 
+void func_ov000_0219d288(Unk02152490 *a, s32 b, s32 c) {
+    if (data_ov000_021b5664 != 0) {
+        func_0214d168(&a[b], 0, 12);
+        if (data_ov000_021b5664->mUnk_3c != 0) {
+            data_ov000_021b5664->mUnk_3c(b, c, data_ov000_021b5664->mUnk_40);
+        }
+    }
+}
+
+s32 func_ov000_0219d210(Unk02152490 *a, s32 b, s32 c) {
+    s32 i;
+    s32 j;
+    for (i = 0; i < b; i++) {
+        j = func_ov000_0219d630(i);
+        if (j != 0 && j == c) {
+            if (func_02152a24(&a[b]) != 0 && func_02152a24(&a[i]) == 0) {
+                func_ov000_0219d288(a, i, b);
+            } else {
+                func_ov000_0219d288(a, b, i);
+            }
+            data_ov000_021b5664->mUnk_1d = 1;
+            return 1;
+        }
+    }
+    return 0;
+}
+
 s32 func_ov000_0219d14c(Unk02152490 *a, s32 b, s32 c) {
     s32 l;
     s32 i;
@@ -50,31 +77,4 @@ s32 func_ov000_0219d14c(Unk02152490 *a, s32 b, s32 c) {
         } while (i < b - 1);
     }
     return l;
-}
-
-s32 func_ov000_0219d210(Unk02152490 *a, s32 b, s32 c) {
-    s32 i;
-    s32 j;
-    for (i = 0; i < b; i++) {
-        j = func_ov000_0219d630(i);
-        if (j != 0 && j == c) {
-            if (func_02152a24(&a[b]) != 0 && func_02152a24(&a[i]) == 0) {
-                func_ov000_0219d288(a, i, b);
-            } else {
-                func_ov000_0219d288(a, b, i);
-            }
-            data_ov000_021b5664->mUnk_1d = 1;
-            return 1;
-        }
-    }
-    return 0;
-}
-
-void func_ov000_0219d288(Unk02152490 *a, s32 b, s32 c) {
-    if (data_ov000_021b5664 != 0) {
-        func_0214d168(&a[b], 0, 12);
-        if (data_ov000_021b5664->mUnk_3c != 0) {
-            data_ov000_021b5664->mUnk_3c(b, c, data_ov000_021b5664->mUnk_40);
-        }
-    }
 }

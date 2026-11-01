@@ -4,6 +4,30 @@
 #include "code_02142eac.h"
 #include "code_0214d018.h"
 
+void func_ov000_021a5a78(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
+    u8 *p;
+
+    if (a == 0) {
+        data_ov000_021b5f50->mUnk_226c = 3;
+        data_ov000_021b5f50->mUnk_2270 = 0;
+        data_ov000_021b5f50->mUnk_2274 = 0;
+        data_ov000_021b5f50->mUnk_2278 = 0;
+    } else {
+        data_ov000_021b5f50->mUnk_226c = a->mUnk_00 & 3;
+        p = a->mUnk_04;
+        if ((((4 - ((u32) p & 3)) & 3) + 0xc) > a->mUnk_08) {
+            data_ov000_021b5f50->mUnk_2270 = 0;
+            data_ov000_021b5f50->mUnk_2274 = 0;
+        } else {
+            data_ov000_021b5f50->mUnk_2270 = (Unk021b5f50_2270 *) (((u32) p + 3) & ~3);
+            data_ov000_021b5f50->mUnk_2274 = a->mUnk_08 - ((4 - ((u32) a->mUnk_04 & 3)) & 3);
+            func_0214d168(data_ov000_021b5f50->mUnk_2270, 0, data_ov000_021b5f50->mUnk_2274);
+        }
+        data_ov000_021b5f50->mUnk_2278 = a->mUnk_0c;
+    }
+    data_ov000_021b5f50->mUnk_227c = b;
+}
+
 void func_ov000_021a5948(const void *a, const u8 *b, u32 c) {
     u16 v;
     s32 i;
@@ -37,28 +61,4 @@ void func_ov000_021a5948(const void *a, const u8 *b, u32 c) {
         data_ov000_021b5f50->mUnk_2288.mUnk_12 = i;
     }
     data_ov000_021b5f50->mUnk_2284 = 0;
-}
-
-void func_ov000_021a5a78(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
-    u8 *p;
-
-    if (a == 0) {
-        data_ov000_021b5f50->mUnk_226c = 3;
-        data_ov000_021b5f50->mUnk_2270 = 0;
-        data_ov000_021b5f50->mUnk_2274 = 0;
-        data_ov000_021b5f50->mUnk_2278 = 0;
-    } else {
-        data_ov000_021b5f50->mUnk_226c = a->mUnk_00 & 3;
-        p = a->mUnk_04;
-        if ((((4 - ((u32) p & 3)) & 3) + 0xc) > a->mUnk_08) {
-            data_ov000_021b5f50->mUnk_2270 = 0;
-            data_ov000_021b5f50->mUnk_2274 = 0;
-        } else {
-            data_ov000_021b5f50->mUnk_2270 = (Unk021b5f50_2270 *) (((u32) p + 3) & ~3);
-            data_ov000_021b5f50->mUnk_2274 = a->mUnk_08 - ((4 - ((u32) a->mUnk_04 & 3)) & 3);
-            func_0214d168(data_ov000_021b5f50->mUnk_2270, 0, data_ov000_021b5f50->mUnk_2274);
-        }
-        data_ov000_021b5f50->mUnk_2278 = a->mUnk_0c;
-    }
-    data_ov000_021b5f50->mUnk_227c = b;
 }

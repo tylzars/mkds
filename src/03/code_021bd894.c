@@ -11,43 +11,6 @@ typedef struct Unk021bd894_buf {
     /* 2 */ Unk021d68c8 mUnk_02;
 } Unk021bd894_buf;
 
-s32 func_ov003_021bd894(u8 *p) {
-    Unk021bd894_buf a;
-    u8 *b;
-    a.mUnk_00 = 0x100;
-    a.mUnk_02 = data_ov003_021d68c8;
-    b = func_ov003_021bdaa4(data_ov003_021d68ac, 1, &a, 2);
-    b = func_ov003_021bdaa4(b, 2, &a, 2);
-    if (data_ov003_021d8c20 != 0) {
-        b = func_ov003_021bdaa4(b, 5, &a, 2);
-    }
-    b = func_ov003_021bdaa4(b, 3, &a.mUnk_02, 7);
-    if (data_ov003_021d8c20 != 0) {
-        b = func_ov003_021bdaa4(b, 4, &data_ov003_021d8c54, 6);
-    }
-    return func_ov003_021bdb0c(p, 2, data_ov003_021d9104, b - data_ov003_021d68ac + 8, 0);
-}
-
-s32 func_ov003_021bd938(const u8 *p, u32 a, u8 *b, const void *c) {
-    u32 d;
-    s32 e;
-    u8 *f;
-    f = func_ov003_021bdc5c(p, &d, &e);
-    if (f == 0) {
-        return 0;
-    }
-    if (d != a) {
-        return 0;
-    }
-    if (c != 0) {
-        func_ov003_021bcadc(b, f, e, c, 0x10);
-        e -= 8;
-    } else {
-        func_02134eb8(b, f, e);
-    }
-    return e;
-}
-
 s32 func_ov003_021bd998(const u8 *p, s32 *a) {
     u32 b;
     u32 g;
@@ -97,4 +60,41 @@ s32 func_ov003_021bd998(const u8 *p, s32 *a) {
         *a = 0;
     }
     return 1;
+}
+
+s32 func_ov003_021bd938(const u8 *p, u32 a, u8 *b, const void *c) {
+    u32 d;
+    s32 e;
+    u8 *f;
+    f = func_ov003_021bdc5c(p, &d, &e);
+    if (f == 0) {
+        return 0;
+    }
+    if (d != a) {
+        return 0;
+    }
+    if (c != 0) {
+        func_ov003_021bcadc(b, f, e, c, 0x10);
+        e -= 8;
+    } else {
+        func_02134eb8(b, f, e);
+    }
+    return e;
+}
+
+s32 func_ov003_021bd894(u8 *p) {
+    Unk021bd894_buf a;
+    u8 *b;
+    a.mUnk_00 = 0x100;
+    a.mUnk_02 = data_ov003_021d68c8;
+    b = func_ov003_021bdaa4(data_ov003_021d68ac, 1, &a, 2);
+    b = func_ov003_021bdaa4(b, 2, &a, 2);
+    if (data_ov003_021d8c20 != 0) {
+        b = func_ov003_021bdaa4(b, 5, &a, 2);
+    }
+    b = func_ov003_021bdaa4(b, 3, &a.mUnk_02, 7);
+    if (data_ov003_021d8c20 != 0) {
+        b = func_ov003_021bdaa4(b, 4, &data_ov003_021d8c54, 6);
+    }
+    return func_ov003_021bdb0c(p, 2, data_ov003_021d9104, b - data_ov003_021d68ac + 8, 0);
 }

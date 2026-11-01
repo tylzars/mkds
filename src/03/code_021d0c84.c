@@ -13,6 +13,35 @@
 #include "03/unk_021da000.h"
 #include "code_0200fd1c.h"
 
+void func_ov003_021d0df8(void) {
+    switch (func_ov003_021d010c()) {
+        case 1:
+            func_ov003_021d0078();
+            return;
+        case 7:
+            data_ov003_021da2ac->mUnk_64a = func_ov003_021cfed8();
+            data_ov003_021da2ac->mUnk_a98 = 0;
+            data_ov003_021da2ac->mUnk_a90 = 3;
+            return;
+        case 0:
+            data_ov003_021da2ac->mUnk_a98 = 0;
+            data_ov003_021da2ac->mUnk_a90 = 3;
+            return;
+        case 9:
+            func_ov003_021cfb80();
+            return;
+        case 3:
+            break;
+        default:
+            func_0200fd1c();
+            break;
+    }
+}
+
+void func_ov003_021d0dd8(void) {
+    func_ov003_021cf978(data_ov003_021da2ac->mUnk_ac8, data_ov003_021da2ac->mUnk_648);
+}
+
 void func_ov003_021d0c84(void) {
     switch (func_ov003_021cf360()) {
         case 1:
@@ -67,35 +96,6 @@ void func_ov003_021d0c84(void) {
                     data_ov003_021da2ac->mUnk_a90 = 0x1f;
                     break;
             }
-            break;
-    }
-}
-
-void func_ov003_021d0dd8(void) {
-    func_ov003_021cf978(data_ov003_021da2ac->mUnk_ac8, data_ov003_021da2ac->mUnk_648);
-}
-
-void func_ov003_021d0df8(void) {
-    switch (func_ov003_021d010c()) {
-        case 1:
-            func_ov003_021d0078();
-            return;
-        case 7:
-            data_ov003_021da2ac->mUnk_64a = func_ov003_021cfed8();
-            data_ov003_021da2ac->mUnk_a98 = 0;
-            data_ov003_021da2ac->mUnk_a90 = 3;
-            return;
-        case 0:
-            data_ov003_021da2ac->mUnk_a98 = 0;
-            data_ov003_021da2ac->mUnk_a90 = 3;
-            return;
-        case 9:
-            func_ov003_021cfb80();
-            return;
-        case 3:
-            break;
-        default:
-            func_0200fd1c();
             break;
     }
 }

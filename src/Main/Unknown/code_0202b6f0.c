@@ -5,6 +5,33 @@
 
 #pragma thumb on
 
+void func_0202b7c0(s32 a) {
+    s32 i;
+
+    func_02025f14(&data_02174e3c->mUnk_210[0], 2);
+    func_02025f14(&data_02174e3c->mUnk_210[3], 2);
+    func_02025f14(&data_02174e3c->mUnk_210[2], 2);
+    switch (a) {
+        case 0:
+        case 1:
+            for (i = 0; i < 8; i++) {
+                if (i < data_02174e3c->mUnk_048 || data_02174e3c->mUnk_208 != 0) {
+                    func_0202cc18(i, 1);
+                }
+            }
+            break;
+        case 2:
+            func_02025f14(&data_02174e3c->mUnk_210[1], 2);
+            break;
+        case 3:
+            for (i = 0; i < 8; i++) {
+                func_0202cb2c(i);
+            }
+            data_02174e3c->mUnk_20c = 1;
+            break;
+    }
+}
+
 void func_0202b6f0(s32 a) {
     s32 i;
     s32 k;
@@ -34,33 +61,6 @@ void func_0202b6f0(s32 a) {
         }
     }
     data_02174e3c->mUnk_204 = a;
-}
-
-void func_0202b7c0(s32 a) {
-    s32 i;
-
-    func_02025f14(&data_02174e3c->mUnk_210[0], 2);
-    func_02025f14(&data_02174e3c->mUnk_210[3], 2);
-    func_02025f14(&data_02174e3c->mUnk_210[2], 2);
-    switch (a) {
-        case 0:
-        case 1:
-            for (i = 0; i < 8; i++) {
-                if (i < data_02174e3c->mUnk_048 || data_02174e3c->mUnk_208 != 0) {
-                    func_0202cc18(i, 1);
-                }
-            }
-            break;
-        case 2:
-            func_02025f14(&data_02174e3c->mUnk_210[1], 2);
-            break;
-        case 3:
-            for (i = 0; i < 8; i++) {
-                func_0202cb2c(i);
-            }
-            data_02174e3c->mUnk_20c = 1;
-            break;
-    }
 }
 
 #pragma thumb off

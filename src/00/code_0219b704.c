@@ -3,47 +3,6 @@
 #include "00/code_0219c000.h"
 #include "00/code_021a01dc.h"
 
-u32 func_ov000_0219b704(u32 a) {
-    s32 b;
-    s32 c;
-
-    if (a == 0) {
-        return 0;
-    }
-    switch (a) {
-        case 1:
-            b = 0xb;
-            c = -1;
-            break;
-        case 2:
-        case 5:
-            b = 0;
-            c = 0;
-            a = 0;
-            break;
-        case 3:
-            b = 6;
-            c = -10;
-            break;
-        case 4:
-            b = 6;
-            c = -30;
-            break;
-        case 6:
-            b = 6;
-            c = -70;
-            break;
-        case 7:
-            b = 6;
-            c = -80;
-            break;
-    }
-    if (b != 0) {
-        func_ov000_0219c990(b, c - 0x105b8);
-    }
-    return a;
-}
-
 int func_ov000_0219b77c(int param_1) {
     s32 a;
     s32 b;
@@ -91,4 +50,45 @@ int func_ov000_0219b77c(int param_1) {
     }
     func_ov000_0219d734(a, b);
     return param_1;
+}
+
+u32 func_ov000_0219b704(u32 a) {
+    s32 b;
+    s32 c;
+
+    if (a == 0) {
+        return 0;
+    }
+    switch (a) {
+        case 1:
+            b = 0xb;
+            c = -1;
+            break;
+        case 2:
+        case 5:
+            b = 0;
+            c = 0;
+            a = 0;
+            break;
+        case 3:
+            b = 6;
+            c = -10;
+            break;
+        case 4:
+            b = 6;
+            c = -30;
+            break;
+        case 6:
+            b = 6;
+            c = -70;
+            break;
+        case 7:
+            b = 6;
+            c = -80;
+            break;
+    }
+    if (b != 0) {
+        func_ov000_0219c990(b, c - 0x105b8);
+    }
+    return a;
 }

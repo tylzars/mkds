@@ -19,21 +19,6 @@ typedef struct Unk0219914cHeader {
     /* 4 */ u32 mUnk_04;
 } Unk0219914cHeader;
 
-u32 func_ov000_021990f8(Unk02197fe8 *a, u16 b, s32 c) {
-    Unk021990f8Entry d = {0, 0, 0, {0, 0}, 0};
-    s32 e;
-    d.mUnk_00 = a->mUnk_50.mUnk_08;
-    d.mUnk_04 = c;
-    d.mUnk_08 = b;
-    d.mUnk_0c = func_ov000_0218e8c4();
-    e = func_ov000_0218dc44(a->mUnk_60);
-    func_ov000_0218dbc0(a->mUnk_60, &d);
-    if (e + 1 == func_ov000_0218dc44(a->mUnk_60)) {
-        return 1;
-    }
-    return 0;
-}
-
 u32 func_ov000_0219914c(Unk02197e8c *a) {
     Unk0219914cHeader h;
     u8 v1[0x5dc];
@@ -62,4 +47,19 @@ u32 func_ov000_0219914c(Unk02197e8c *a) {
         }
     }
     return 1;
+}
+
+u32 func_ov000_021990f8(Unk02197fe8 *a, u16 b, s32 c) {
+    Unk021990f8Entry d = {0, 0, 0, {0, 0}, 0};
+    s32 e;
+    d.mUnk_00 = a->mUnk_50.mUnk_08;
+    d.mUnk_04 = c;
+    d.mUnk_08 = b;
+    d.mUnk_0c = func_ov000_0218e8c4();
+    e = func_ov000_0218dc44(a->mUnk_60);
+    func_ov000_0218dbc0(a->mUnk_60, &d);
+    if (e + 1 == func_ov000_0218dc44(a->mUnk_60)) {
+        return 1;
+    }
+    return 0;
 }

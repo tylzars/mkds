@@ -7,41 +7,35 @@
 
 #pragma thumb on
 
-void func_0200b7e0(const u8 *a) {
-    u8 *p;
-    data_0216fde8->mUnk_5f00 = 1;
-    p = data_0216fde8->mUnk_0580.mUnk_08;
-    p[0] = a[0];
-    p[1] = a[1];
-    p[2] = a[2];
-    p[3] = a[3];
-    p[4] = a[4];
-    p[5] = a[5];
-}
-
-void func_0200b820(u16 a, u16 b) {
-    Unk0200b820 v;
-    if (data_0216fde8->mUnk_05dc != 0) {
-        v.mUnk_00 = a;
-        v.mUnk_02 = b;
-        data_0216fde8->mUnk_05dc(2, &v);
-    }
-}
-
-void func_0200b850(u32 a, Unk02008934 *b, u32 c) {
-    Unk0200b850 v;
+void func_0200b934(void) {
+    s32 r;
     Unk0216fde8 *d;
+    u8 *p;
+    u8 *q;
     d = data_0216fde8;
-    if (d->mUnk_05dc != 0) {
-        v.mUnk_00 = c;
-        if (b != 0) {
-            v.mUnk_04 = b;
-            v.mUnk_08 = b->mUnk_4c0;
-        } else {
-            v.mUnk_04 = 0;
-            v.mUnk_08 = 0;
+    if (d->mUnk_5f00 != 0) {
+        d->mUnk_0580.mUnk_06 = 0xdc;
+    } else {
+        p = d->mUnk_0580.mUnk_08;
+        q = data_usa_02152be4;
+        p[0] = q[0];
+        p[1] = q[1];
+        p[2] = q[2];
+        p[3] = q[3];
+        p[4] = q[4];
+        p[5] = q[5];
+        data_0216fde8->mUnk_0580.mUnk_06 = 10;
+        if (func_0200b72c() == 0) {
+            func_0200b820(0x1e, 0);
+            return;
         }
-        d->mUnk_05dc(a, &v);
+    }
+    if (data_0216fde8->mUnk_0580.mUnk_04 == 0) {
+        data_0216fde8->mUnk_0580.mUnk_04 = 1;
+    }
+    r = func_02143a78(func_0200b894, &data_0216fde8->mUnk_0580);
+    if (r != 2) {
+        func_0200b820(0xa, r);
     }
 }
 
@@ -73,36 +67,42 @@ void func_0200b894(Unk021425e8 *a) {
     }
 }
 
-void func_0200b934(void) {
-    s32 r;
+void func_0200b850(u32 a, Unk02008934 *b, u32 c) {
+    Unk0200b850 v;
     Unk0216fde8 *d;
-    u8 *p;
-    u8 *q;
     d = data_0216fde8;
-    if (d->mUnk_5f00 != 0) {
-        d->mUnk_0580.mUnk_06 = 0xdc;
-    } else {
-        p = d->mUnk_0580.mUnk_08;
-        q = data_usa_02152be4;
-        p[0] = q[0];
-        p[1] = q[1];
-        p[2] = q[2];
-        p[3] = q[3];
-        p[4] = q[4];
-        p[5] = q[5];
-        data_0216fde8->mUnk_0580.mUnk_06 = 10;
-        if (func_0200b72c() == 0) {
-            func_0200b820(0x1e, 0);
-            return;
+    if (d->mUnk_05dc != 0) {
+        v.mUnk_00 = c;
+        if (b != 0) {
+            v.mUnk_04 = b;
+            v.mUnk_08 = b->mUnk_4c0;
+        } else {
+            v.mUnk_04 = 0;
+            v.mUnk_08 = 0;
         }
+        d->mUnk_05dc(a, &v);
     }
-    if (data_0216fde8->mUnk_0580.mUnk_04 == 0) {
-        data_0216fde8->mUnk_0580.mUnk_04 = 1;
+}
+
+void func_0200b820(u16 a, u16 b) {
+    Unk0200b820 v;
+    if (data_0216fde8->mUnk_05dc != 0) {
+        v.mUnk_00 = a;
+        v.mUnk_02 = b;
+        data_0216fde8->mUnk_05dc(2, &v);
     }
-    r = func_02143a78(func_0200b894, &data_0216fde8->mUnk_0580);
-    if (r != 2) {
-        func_0200b820(0xa, r);
-    }
+}
+
+void func_0200b7e0(const u8 *a) {
+    u8 *p;
+    data_0216fde8->mUnk_5f00 = 1;
+    p = data_0216fde8->mUnk_0580.mUnk_08;
+    p[0] = a[0];
+    p[1] = a[1];
+    p[2] = a[2];
+    p[3] = a[3];
+    p[4] = a[4];
+    p[5] = a[5];
 }
 
 #pragma thumb off

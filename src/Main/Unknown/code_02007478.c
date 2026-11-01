@@ -3,26 +3,6 @@
 
 #pragma thumb on
 
-void func_02007478(Unk02007478 *a) {
-    Unk0200adfc_30 *v1;
-    Unk0200adfc *v2;
-    Unk02003024 v3;
-    u32 v4;
-    v1 = a->mUnk_10;
-    v2 = a->mUnk_14;
-    func_02004d80(&v3);
-    v4 = v1->mUnk_00;
-    if (func_02004afc(&v3, func_020041e8(v2->mUnk_10, v2->mUnk_14), v4, v4 + v1->mUnk_04, -1) != 0) {
-        if (v1->mUnk_04 == func_020048ac(&v3, v1->mUnk_08, v1->mUnk_04)) {
-            v1->mUnk_0c = 2;
-        }
-        func_020049e8(&v3);
-    }
-    if (v1->mUnk_0c != 2) {
-        func_0200fd1c();
-    }
-}
-
 u32 func_020074d8(void) {
     Unk020074d8_msg v1;
     u8 v2[16];
@@ -69,6 +49,26 @@ u32 func_020074d8(void) {
         func_0214d1fc(data_0216fdac->mUnk_1788 + v4 * 0x5d4, v9, 0xe4);
     }
     return func_02008908(0xea, v5, *(u32 *) &data_0216fdac);
+}
+
+void func_02007478(Unk02007478 *a) {
+    Unk0200adfc_30 *v1;
+    Unk0200adfc *v2;
+    Unk02003024 v3;
+    u32 v4;
+    v1 = a->mUnk_10;
+    v2 = a->mUnk_14;
+    func_02004d80(&v3);
+    v4 = v1->mUnk_00;
+    if (func_02004afc(&v3, func_020041e8(v2->mUnk_10, v2->mUnk_14), v4, v4 + v1->mUnk_04, -1) != 0) {
+        if (v1->mUnk_04 == func_020048ac(&v3, v1->mUnk_08, v1->mUnk_04)) {
+            v1->mUnk_0c = 2;
+        }
+        func_020049e8(&v3);
+    }
+    if (v1->mUnk_0c != 2) {
+        func_0200fd1c();
+    }
 }
 
 #pragma thumb off

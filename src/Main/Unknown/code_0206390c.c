@@ -9,6 +9,52 @@
 #include "code_02147288.h"
 #include "code_02147cd8.h"
 
+void func_02063b30(const Unk0206bcb0 *a, Vec3 *b) {
+    const Unk02012f58 *c;
+
+    c = (const Unk02012f58 *) ((u8 *) a + 0x120);
+    b->x = c->mUnk_0c.x;
+    b->y = c->mUnk_0c.y;
+    b->z = c->mUnk_0c.z;
+}
+
+void func_02063b10(const Unk0206bcb0 *a, Vec3 *b) {
+    const Unk02012f58 *c;
+
+    c = (const Unk02012f58 *) ((u8 *) a + 0x120);
+    b->x = c->mUnk_18.x;
+    b->y = c->mUnk_18.y;
+    b->z = c->mUnk_18.z;
+}
+
+void func_02063ad0(Unk0206bcb0 *a) {
+    if ((a->mUnk_7c & 0x400) != 0) {
+        return;
+    }
+    a->mUnk_20c_fn[6](a);
+    if ((a->mUnk_7c & 0x200) != 0) {
+        a->mUnk_514->mUnk_2c ^= 0x10000;
+    }
+}
+
+void func_02063a68(Unk0206bcb0 *a) {
+    u32 b;
+
+    b = a->mUnk_7c & 0x400;
+    if (b != 0) {
+        return;
+    }
+    if (b == 0) {
+        a->mUnk_20c_fn[6](a);
+        if ((a->mUnk_7c & 0x200) != 0) {
+            a->mUnk_514->mUnk_2c ^= 0x10000;
+        }
+    }
+    if (data_021759c0->mUnk_08 == 2) {
+        a->mUnk_48 &= ~0x200;
+    }
+}
+
 void func_0206390c(Unk0206390c *a) {
     u32 b;
     Vec3 c[3];
@@ -42,50 +88,4 @@ void func_0206390c(Unk0206390c *a) {
     func_02081618(b, &f);
     a->mUnk_24 = 0;
     a->mUnk_92 = 0;
-}
-
-void func_02063a68(Unk0206bcb0 *a) {
-    u32 b;
-
-    b = a->mUnk_7c & 0x400;
-    if (b != 0) {
-        return;
-    }
-    if (b == 0) {
-        a->mUnk_20c_fn[6](a);
-        if ((a->mUnk_7c & 0x200) != 0) {
-            a->mUnk_514->mUnk_2c ^= 0x10000;
-        }
-    }
-    if (data_021759c0->mUnk_08 == 2) {
-        a->mUnk_48 &= ~0x200;
-    }
-}
-
-void func_02063ad0(Unk0206bcb0 *a) {
-    if ((a->mUnk_7c & 0x400) != 0) {
-        return;
-    }
-    a->mUnk_20c_fn[6](a);
-    if ((a->mUnk_7c & 0x200) != 0) {
-        a->mUnk_514->mUnk_2c ^= 0x10000;
-    }
-}
-
-void func_02063b10(const Unk0206bcb0 *a, Vec3 *b) {
-    const Unk02012f58 *c;
-
-    c = (const Unk02012f58 *) ((u8 *) a + 0x120);
-    b->x = c->mUnk_18.x;
-    b->y = c->mUnk_18.y;
-    b->z = c->mUnk_18.z;
-}
-
-void func_02063b30(const Unk0206bcb0 *a, Vec3 *b) {
-    const Unk02012f58 *c;
-
-    c = (const Unk02012f58 *) ((u8 *) a + 0x120);
-    b->x = c->mUnk_0c.x;
-    b->y = c->mUnk_0c.y;
-    b->z = c->mUnk_0c.z;
 }

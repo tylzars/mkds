@@ -14,11 +14,26 @@
 #include "Main/Unknown/unk_02175628.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-void func_0203c094(void) {
-    func_020364e0(func_020364e8());
-    func_02039a1c();
-    func_020ad344();
-    func_02043c14();
+void func_0203c1a8(void *a, u32 b) {
+    s32 v;
+    if (func_0204176c(a, &v) == 0) {
+        return;
+    }
+    if (v != 0) {
+        if (data_021759c0->mUnk_08 == 4) {
+            func_ov001_021816fc();
+        }
+        if (data_021759c0->mUnk_08 != 4) {
+            return;
+        }
+        func_0203e788(b, 0);
+    } else {
+        func_0203e788(b, 6);
+    }
+}
+
+s32 func_0203c174(void) {
+    return data_0217561c->mUnk_4fa > data_021759c0->mUnk_038;
 }
 
 u32 func_0203c0bc(void) {
@@ -41,24 +56,9 @@ u32 func_0203c0bc(void) {
     return 0;
 }
 
-s32 func_0203c174(void) {
-    return data_0217561c->mUnk_4fa > data_021759c0->mUnk_038;
-}
-
-void func_0203c1a8(void *a, u32 b) {
-    s32 v;
-    if (func_0204176c(a, &v) == 0) {
-        return;
-    }
-    if (v != 0) {
-        if (data_021759c0->mUnk_08 == 4) {
-            func_ov001_021816fc();
-        }
-        if (data_021759c0->mUnk_08 != 4) {
-            return;
-        }
-        func_0203e788(b, 0);
-    } else {
-        func_0203e788(b, 6);
-    }
+void func_0203c094(void) {
+    func_020364e0(func_020364e8());
+    func_02039a1c();
+    func_020ad344();
+    func_02043c14();
 }

@@ -9,40 +9,6 @@ static inline void func_0204bcec_inline(Unk02175ec0 *a, void *p) {
     }
 }
 
-void func_0204bcec(void) {
-    Unk02175ec0 *g;
-    Unk02175ec0_440s *q;
-    u32 s;
-    void *p;
-    Unk02003a6c *u;
-    g = (Unk02175ec0 *) &data_02175ec0;
-    s = func_0200fca0();
-    if (data_usa_02175e84 != 0) {
-        p = g->mUnk_0020;
-        if (p != 0) {
-            func_0204bcec_inline(&data_02175ec0, p);
-            g->mUnk_0020 = 0;
-            g->mUnk_0024 = 0;
-        }
-        g->mUnk_000c = 0;
-        if (data_02175ec0.mUnk_0000 == 0) {
-            q = &g->mUnk_0440;
-            if (g->mUnk_001c != 0) {
-                u = g->mUnk_001c->mUnk_08;
-                g->mUnk_001c = 0;
-                func_02003be0(u, 5);
-            }
-            func_0204bcec_inline(&data_02175ec0, q->mUnk_0afc);
-        } else {
-            func_0204ba8c();
-        }
-        func_02006974();
-        func_0214358c(data_02175ec0.mUnk_0030, 0, 0);
-        data_usa_02175e84 = 0;
-    }
-    func_0200fcb4(s);
-}
-
 void func_0204be0c(void) {
     Unk021762e0 *w;
     Unk02175ec0 *g;
@@ -80,4 +46,38 @@ void func_0204be0c(void) {
     }
     g->mUnk_0008 = func_02144048(func_0204ce60, 0, q, r, 0xffff, g->mUnk_0030, 3) == 2;
     g->mUnk_0004 = data_02175ec0.mUnk_0008 == 0;
+}
+
+void func_0204bcec(void) {
+    Unk02175ec0 *g;
+    Unk02175ec0_440s *q;
+    u32 s;
+    void *p;
+    Unk02003a6c *u;
+    g = (Unk02175ec0 *) &data_02175ec0;
+    s = func_0200fca0();
+    if (data_usa_02175e84 != 0) {
+        p = g->mUnk_0020;
+        if (p != 0) {
+            func_0204bcec_inline(&data_02175ec0, p);
+            g->mUnk_0020 = 0;
+            g->mUnk_0024 = 0;
+        }
+        g->mUnk_000c = 0;
+        if (data_02175ec0.mUnk_0000 == 0) {
+            q = &g->mUnk_0440;
+            if (g->mUnk_001c != 0) {
+                u = g->mUnk_001c->mUnk_08;
+                g->mUnk_001c = 0;
+                func_02003be0(u, 5);
+            }
+            func_0204bcec_inline(&data_02175ec0, q->mUnk_0afc);
+        } else {
+            func_0204ba8c();
+        }
+        func_02006974();
+        func_0214358c(data_02175ec0.mUnk_0030, 0, 0);
+        data_usa_02175e84 = 0;
+    }
+    func_0200fcb4(s);
 }

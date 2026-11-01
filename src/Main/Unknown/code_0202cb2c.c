@@ -4,28 +4,6 @@
 
 #pragma thumb on
 
-void func_0202cb2c(s32 a) {
-    switch (data_02174e3c->mUnk_04c[a].mUnk_04.mUnk_04) {
-        case 1:
-            func_0202cc18(a, 0);
-            break;
-        case 2:
-            func_0202cc18(a, 3);
-            break;
-    }
-}
-
-void func_0202cb68(s32 a) {
-    switch (data_02174e3c->mUnk_04c[a].mUnk_04.mUnk_04) {
-        case 0:
-            func_0202cc18(a, 1);
-            break;
-        case 3:
-            func_0202cc18(a, 2);
-            break;
-    }
-}
-
 void func_0202cba4(void) {
     s32 i;
     Unk02174e3c_4c_04 *p;
@@ -42,6 +20,28 @@ void func_0202cba4(void) {
                 p->mUnk_0c--;
             }
         }
+    }
+}
+
+void func_0202cb68(s32 a) {
+    switch (data_02174e3c->mUnk_04c[a].mUnk_04.mUnk_04) {
+        case 0:
+            func_0202cc18(a, 1);
+            break;
+        case 3:
+            func_0202cc18(a, 2);
+            break;
+    }
+}
+
+void func_0202cb2c(s32 a) {
+    switch (data_02174e3c->mUnk_04c[a].mUnk_04.mUnk_04) {
+        case 1:
+            func_0202cc18(a, 0);
+            break;
+        case 2:
+            func_0202cc18(a, 3);
+            break;
     }
 }
 

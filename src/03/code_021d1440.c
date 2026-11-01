@@ -10,24 +10,6 @@
 #include "code_0214d018.h"
 #include "code_0200fd1c.h"
 
-u32 func_ov003_021d1440(const u8 *param_1, const u8 *param_2, s32 param_3) {
-    s32 a = func_0213a434(param_1);
-    s32 b = func_0213a434(param_2);
-
-    if (a < param_3 || b < param_3) {
-        return 0;
-    }
-    if (func_02134d30(param_1 + (a - param_3), param_2 + (b - param_3), param_3) == 0) {
-        return 1;
-    }
-    return 0;
-}
-
-void func_ov003_021d1490(void *param_1, ...) {
-    func_ov003_021d2808(&param_1);
-    func_ov003_021d1d0c(data_ov003_021da2b0->mUnk_84, param_1);
-}
-
 void *func_ov003_021d14b8(const u8 *param_1, u32 *param_2, s32 param_3) {
     Unk02003024 a;
     void *b;
@@ -65,4 +47,22 @@ void *func_ov003_021d14b8(const u8 *param_1, u32 *param_2, s32 param_3) {
         func_ov003_021d2808(&b);
         return d;
     }
+}
+
+void func_ov003_021d1490(void *param_1, ...) {
+    func_ov003_021d2808(&param_1);
+    func_ov003_021d1d0c(data_ov003_021da2b0->mUnk_84, param_1);
+}
+
+u32 func_ov003_021d1440(const u8 *param_1, const u8 *param_2, s32 param_3) {
+    s32 a = func_0213a434(param_1);
+    s32 b = func_0213a434(param_2);
+
+    if (a < param_3 || b < param_3) {
+        return 0;
+    }
+    if (func_02134d30(param_1 + (a - param_3), param_2 + (b - param_3), param_3) == 0) {
+        return 1;
+    }
+    return 0;
 }

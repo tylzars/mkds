@@ -32,6 +32,14 @@ static inline u16 func_0209219c_inline(u32 n) {
     return (u16) r;
 }
 
+void func_02092484(void) {
+    func_0209bef0(func_02092940, func_0209280c, func_02092928);
+}
+
+void func_02092468(void) {
+    func_0209bf48(0, func_020924d8, 0);
+}
+
 void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
     Unk0209219c *p;
     Unk020f41c4_B *r;
@@ -60,12 +68,4 @@ void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
     p->mUnk_a0 = *c;
     p->mUnk_d4 = 0;
     p->mUnk_d0 = 0;
-}
-
-void func_02092468(void) {
-    func_0209bf48(0, func_020924d8, 0);
-}
-
-void func_02092484(void) {
-    func_0209bef0(func_02092940, func_0209280c, func_02092928);
 }

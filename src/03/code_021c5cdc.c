@@ -21,6 +21,19 @@
 #include "03/unk_021da000.h"
 #include "03/code_021c5724.h"
 
+void func_ov003_021c5e54(void) {
+    if (func_ov003_021d1f70(1) == 0) {
+        if (data_ov003_021da1f4->mUnk_54 != 0) {
+            func_ov003_021bf344();
+        } else {
+            func_ov003_021bf2d0();
+        }
+        func_ov003_021d1ee0(3, 1, 1, 8);
+        func_ov003_021d1ee0(3, 0, 0x1d, 8);
+        func_ov003_021c212c(func_ov003_021c5cdc);
+    }
+}
+
 void func_ov003_021c5cdc(void) {
     int i;
     Unk021c5c68State *s;
@@ -77,17 +90,4 @@ void func_ov003_021c5cdc(void) {
         }
     }
     func_ov003_021d2808(&data_ov003_021da1f4);
-}
-
-void func_ov003_021c5e54(void) {
-    if (func_ov003_021d1f70(1) == 0) {
-        if (data_ov003_021da1f4->mUnk_54 != 0) {
-            func_ov003_021bf344();
-        } else {
-            func_ov003_021bf2d0();
-        }
-        func_ov003_021d1ee0(3, 1, 1, 8);
-        func_ov003_021d1ee0(3, 0, 0x1d, 8);
-        func_ov003_021c212c(func_ov003_021c5cdc);
-    }
 }

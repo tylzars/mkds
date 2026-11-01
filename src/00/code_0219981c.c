@@ -14,45 +14,6 @@
 #include "00/code_0218daf8.h"
 #include "00/code_02198ba8.h"
 
-u32 func_ov000_0219981c(Unk02197fe8 *a) {
-    s32 b;
-    Unk0219981cEntry *c;
-top:
-    for (b = func_ov000_0218dc44(a->mUnk_5c) - 1; b >= 0; b--) {
-        c = func_ov000_0218dbf8(a->mUnk_5c, b);
-        if (c->mUnk_0c == a->mUnk_66) {
-            if (func_ov000_02199a0c((int) a, c->mUnk_08, (u32) ((u8 *) a->mUnk_44.mUnk_00 + c->mUnk_00), c->mUnk_04) ==
-                0) {
-                return 0;
-            }
-            func_ov000_02199878(a, c, b);
-            goto top;
-        }
-    }
-    return 1;
-}
-
-void func_ov000_02199878(Unk02197fe8 *a, Unk0219981cEntry *b, s32 c) {
-    s32 d = 0;
-    s32 e = b->mUnk_00;
-    s32 f = b->mUnk_04;
-    s32 g;
-    s32 i;
-    Unk0219981cEntry *h;
-    func_ov000_0218da5c(a->mUnk_5c, c);
-    g = func_ov000_0218dc44(a->mUnk_5c);
-    for (i = 0; i < g; i++) {
-        h = func_ov000_0218dbf8(a->mUnk_5c, i);
-        if (h->mUnk_00 > e) {
-            h->mUnk_00 -= f;
-            if (d <= h->mUnk_00 + h->mUnk_04) {
-                d = h->mUnk_00 + h->mUnk_04;
-            }
-        }
-    }
-    func_ov000_02197d20((int *) &a->mUnk_44, e, f);
-}
-
 u32 func_ov000_021998d8(Unk02197fe8 *a, s32 b, u32 c, const u8 *d, s32 e, s32 *f) {
     Unk0219981cEntry g;
     s32 h;
@@ -99,5 +60,44 @@ u32 func_ov000_021998d8(Unk02197fe8 *a, s32 b, u32 c, const u8 *d, s32 e, s32 *f
         }
     }
     *f = 0;
+    return 1;
+}
+
+void func_ov000_02199878(Unk02197fe8 *a, Unk0219981cEntry *b, s32 c) {
+    s32 d = 0;
+    s32 e = b->mUnk_00;
+    s32 f = b->mUnk_04;
+    s32 g;
+    s32 i;
+    Unk0219981cEntry *h;
+    func_ov000_0218da5c(a->mUnk_5c, c);
+    g = func_ov000_0218dc44(a->mUnk_5c);
+    for (i = 0; i < g; i++) {
+        h = func_ov000_0218dbf8(a->mUnk_5c, i);
+        if (h->mUnk_00 > e) {
+            h->mUnk_00 -= f;
+            if (d <= h->mUnk_00 + h->mUnk_04) {
+                d = h->mUnk_00 + h->mUnk_04;
+            }
+        }
+    }
+    func_ov000_02197d20((int *) &a->mUnk_44, e, f);
+}
+
+u32 func_ov000_0219981c(Unk02197fe8 *a) {
+    s32 b;
+    Unk0219981cEntry *c;
+top:
+    for (b = func_ov000_0218dc44(a->mUnk_5c) - 1; b >= 0; b--) {
+        c = func_ov000_0218dbf8(a->mUnk_5c, b);
+        if (c->mUnk_0c == a->mUnk_66) {
+            if (func_ov000_02199a0c((int) a, c->mUnk_08, (u32) ((u8 *) a->mUnk_44.mUnk_00 + c->mUnk_00), c->mUnk_04) ==
+                0) {
+                return 0;
+            }
+            func_ov000_02199878(a, c, b);
+            goto top;
+        }
+    }
     return 1;
 }

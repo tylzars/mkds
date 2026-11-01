@@ -5,11 +5,6 @@
 #include "code_02022aa8.h"
 #include "code_02023374.h"
 
-void func_ov003_021d2070(Unk021d2188 *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, u32 param_6,
-                         u32 param_7, void *param_8) {
-    func_0202428c(&param_1->mUnk_20, param_2, param_3, param_4, param_5, param_6, param_7, param_8);
-}
-
 void func_ov003_021d2094(void *param_1, s32 param_2, u32 param_3, u32 param_4, s32 param_5, u16 *param_6, s32 param_7) {
     Unk02022aa8 *a;
     u32 b;
@@ -32,4 +27,9 @@ void func_ov003_021d2094(void *param_1, s32 param_2, u32 param_3, u32 param_4, s
         param_2 += param_5;
         param_6++;
     }
+}
+
+void func_ov003_021d2070(Unk021d2188 *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, u32 param_6,
+                         u32 param_7, void *param_8) {
+    func_0202428c(&param_1->mUnk_20, param_2, param_3, param_4, param_5, param_6, param_7, param_8);
 }

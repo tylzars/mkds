@@ -2,30 +2,24 @@
 #include "00/code_02198d04.h"
 #include "code_02134d30.h"
 
-void func_ov000_02198748(Unk02197fe8 *a, void *b, u32 c, ...) {
-    a->mUnk_14 = 0;
-    if (a->mUnk_0c == 4) {
-        func_ov000_0219a61c((const u8 **) &b, (s32 *) &c);
-        func_ov000_02198d9c((int) a, (u32) b, c);
-        a->mUnk_0c = 6;
+int func_ov000_0219885c(void *a, Unk02197fe8 **b, int c, u32 d) {
+    int r = func_ov000_0219a28c(a, b, c, d);
+    if (r != 0) {
+        return r;
     }
+    (*b)->mUnk_0c = 0;
+    (*b)->mUnk_10 = 1;
+    return 0;
 }
 
-int func_ov000_02198778(Unk02197fe8 *a, Unk02198778 *b) {
-    if (a->mUnk_14 != 0) {
-        a->mUnk_14 = 0;
-        return 0;
+int func_ov000_0219883c(void *a, Unk02197fe8 **b, int c, u32 d) {
+    int r = func_ov000_0219a28c(a, b, c, d);
+    if (r != 0) {
+        return r;
     }
-    a->mUnk_14 = 0;
-    if (a->mUnk_0c != 4) {
-        return 0;
-    }
-    func_ov000_02198df8((u32) a);
-    a->mUnk_0c = 5;
-    if (b != 0) {
-        a->mUnk_28 = *b;
-    }
-    return 1;
+    (*b)->mUnk_0c = 2;
+    (*b)->mUnk_10 = 0;
+    return 0;
 }
 
 int func_ov000_021987c8(Unk02197fe8 *a, void *b, int c, Unk02198778 *d) {
@@ -49,22 +43,28 @@ int func_ov000_021987c8(Unk02197fe8 *a, void *b, int c, Unk02198778 *d) {
     return 0;
 }
 
-int func_ov000_0219883c(void *a, Unk02197fe8 **b, int c, u32 d) {
-    int r = func_ov000_0219a28c(a, b, c, d);
-    if (r != 0) {
-        return r;
+int func_ov000_02198778(Unk02197fe8 *a, Unk02198778 *b) {
+    if (a->mUnk_14 != 0) {
+        a->mUnk_14 = 0;
+        return 0;
     }
-    (*b)->mUnk_0c = 2;
-    (*b)->mUnk_10 = 0;
-    return 0;
+    a->mUnk_14 = 0;
+    if (a->mUnk_0c != 4) {
+        return 0;
+    }
+    func_ov000_02198df8((u32) a);
+    a->mUnk_0c = 5;
+    if (b != 0) {
+        a->mUnk_28 = *b;
+    }
+    return 1;
 }
 
-int func_ov000_0219885c(void *a, Unk02197fe8 **b, int c, u32 d) {
-    int r = func_ov000_0219a28c(a, b, c, d);
-    if (r != 0) {
-        return r;
+void func_ov000_02198748(Unk02197fe8 *a, void *b, u32 c, ...) {
+    a->mUnk_14 = 0;
+    if (a->mUnk_0c == 4) {
+        func_ov000_0219a61c((const u8 **) &b, (s32 *) &c);
+        func_ov000_02198d9c((int) a, (u32) b, c);
+        a->mUnk_0c = 6;
     }
-    (*b)->mUnk_0c = 0;
-    (*b)->mUnk_10 = 1;
-    return 0;
 }

@@ -6,6 +6,48 @@
 #include "code_02135014.h"
 #include "00/code_021a41a0.h"
 
+void func_ov000_021a412c(Unk021a4a08 *a, Unk021a471c *b, const u8 *c, s32 d) {
+    u8 h;
+    u8 i;
+    u8 j;
+    const u8 *e;
+    const u8 *g;
+    const u8 *f;
+
+    e = 0;
+    g = 0;
+    f = 0;
+    if (d >= 3) {
+        h = *c++;
+        d--;
+        if (h != 0 && h != 0xff) {
+            e = c;
+            c += h;
+            d -= h;
+        }
+        if (d >= 2) {
+            i = *c++;
+            d--;
+            if (i != 0 && i != 0xff) {
+                g = c;
+                c += i;
+                d -= i;
+            }
+            if (d >= 1) {
+                j = *c;
+                d--;
+                if (j != 0 && j != 0xff) {
+                    f = c + 1;
+                    d -= j;
+                }
+                if (d >= 0) {
+                    func_ov000_021a41a0(a, b, h, e, i, g, j, f);
+                }
+            }
+        }
+    }
+}
+
 void func_ov000_021a3fc8(Unk021a4a08 *a, Unk021a471c *b, s32 c) {
     u8 e[0x80];
     Unk021a3fc8 d;
@@ -66,47 +108,5 @@ void func_ov000_021a3fc8(Unk021a4a08 *a, Unk021a471c *b, s32 c) {
             l++;
             h++;
         } while (h < d.mUnk_100);
-    }
-}
-
-void func_ov000_021a412c(Unk021a4a08 *a, Unk021a471c *b, const u8 *c, s32 d) {
-    u8 h;
-    u8 i;
-    u8 j;
-    const u8 *e;
-    const u8 *g;
-    const u8 *f;
-
-    e = 0;
-    g = 0;
-    f = 0;
-    if (d >= 3) {
-        h = *c++;
-        d--;
-        if (h != 0 && h != 0xff) {
-            e = c;
-            c += h;
-            d -= h;
-        }
-        if (d >= 2) {
-            i = *c++;
-            d--;
-            if (i != 0 && i != 0xff) {
-                g = c;
-                c += i;
-                d -= i;
-            }
-            if (d >= 1) {
-                j = *c;
-                d--;
-                if (j != 0 && j != 0xff) {
-                    f = c + 1;
-                    d -= j;
-                }
-                if (d >= 0) {
-                    func_ov000_021a41a0(a, b, h, e, i, g, j, f);
-                }
-            }
-        }
     }
 }

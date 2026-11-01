@@ -6,34 +6,6 @@
 #include "Main/Unknown/code_0208bfd8.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_0208c188(Unk020888b4 *p) {
-    data_0217b06c(p);
-}
-
-void func_0208c1ac(Unk020888b4 *p) {
-    data_0217b068(p);
-}
-
-void func_0208c1d0(Vec3 *a, Vec3 *b, Unk020888b4 *c) {
-    data_0217b064(a, b, c);
-}
-
-void func_0208c1f4(Unk020888b4 *p) {
-    data_0217b070(p);
-}
-
-void func_0208c218(Unk020888b4 *p) {
-    data_0217b058(p);
-}
-
-void func_0208c23c(Unk020888b4 *p, Unk02175620_bc *a) {
-    data_0217b060(p, a);
-}
-
-void func_0208c260(Unk020888b4 *p, s32 a) {
-    data_0217b05c(p, a);
-}
-
 void func_0208c284(void) {
     if (data_021759c0->mUnk_00c == 5 || data_021759c0->mUnk_08 == 4) {
         data_0217b05c = func_0208be00;
@@ -72,4 +44,32 @@ void func_0208c284(void) {
         data_0217b068 = func_0208bfec;
         data_0217b06c = func_0208bfd8;
     }
+}
+
+void func_0208c260(Unk020888b4 *p, s32 a) {
+    data_0217b05c(p, a);
+}
+
+void func_0208c23c(Unk020888b4 *p, Unk02175620_bc *a) {
+    data_0217b060(p, a);
+}
+
+void func_0208c218(Unk020888b4 *p) {
+    data_0217b058(p);
+}
+
+void func_0208c1f4(Unk020888b4 *p) {
+    data_0217b070(p);
+}
+
+void func_0208c1d0(Vec3 *a, Vec3 *b, Unk020888b4 *c) {
+    data_0217b064(a, b, c);
+}
+
+void func_0208c1ac(Unk020888b4 *p) {
+    data_0217b068(p);
+}
+
+void func_0208c188(Unk020888b4 *p) {
+    data_0217b06c(p);
 }

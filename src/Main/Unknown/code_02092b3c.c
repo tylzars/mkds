@@ -28,8 +28,18 @@ static inline u16 func_02092b5c_inline_2(u32 n) {
     return (u32) (((b->mUnk_00 >> 32) * n) >> 32);
 }
 
-void func_02092b3c(void) {
-    func_0209bf48(func_020930c8, func_02092b5c, 0);
+void func_020930c8(Unk020e6fd4 *a) {
+    s32 i;
+    Unk020919e8 *p;
+
+    if (a == 0) {
+        return;
+    }
+    for (i = 0; i < a->mUnk_04 && (p = (Unk020919e8 *) a->mUnk_00[i]) != 0; i++) {
+        if (p->mUnk_00.mUnk_02 & 0x800) {
+            p->mUnk_a4 = (u16) (func_02092b5c_inline_2(25) + 200);
+        }
+    }
 }
 
 static inline s64 func_02092b5c_inline_4(const Vec3 *a, const Vec3 *b) {
@@ -75,6 +85,18 @@ static inline void func_02092b5c_inline_5(Vec3 *v, s32 x, s32 y, s32 z) {
     v->x = x - 0x5000 + func_02092b5c_inline(0xa000);
     v->y = y - 0x5000 + func_02092b5c_inline(0xa000);
     v->z = z - 0x28000 + func_02092b5c_inline(0x50000);
+}
+
+s16 func_020930b0(s32 a) {
+    return data_0215d4b4[(a >> 4) * 2];
+}
+
+s32 func_020930a0(s32 a, s32 b) {
+    return (s32) (((s64) a * b) >> 12);
+}
+
+s16 func_02093080(s32 a) {
+    return data_0215d4b4[(a >> 4) * 2 + 1];
 }
 
 void func_02092b5c(void *a, Unk020919e8 *p) {
@@ -146,28 +168,6 @@ void func_02092b5c(void *a, Unk020919e8 *p) {
     }
 }
 
-s16 func_02093080(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2 + 1];
-}
-
-s32 func_020930a0(s32 a, s32 b) {
-    return (s32) (((s64) a * b) >> 12);
-}
-
-s16 func_020930b0(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2];
-}
-
-void func_020930c8(Unk020e6fd4 *a) {
-    s32 i;
-    Unk020919e8 *p;
-
-    if (a == 0) {
-        return;
-    }
-    for (i = 0; i < a->mUnk_04 && (p = (Unk020919e8 *) a->mUnk_00[i]) != 0; i++) {
-        if (p->mUnk_00.mUnk_02 & 0x800) {
-            p->mUnk_a4 = (u16) (func_02092b5c_inline_2(25) + 200);
-        }
-    }
+void func_02092b3c(void) {
+    func_0209bf48(func_020930c8, func_02092b5c, 0);
 }

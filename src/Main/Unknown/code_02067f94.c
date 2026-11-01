@@ -1,62 +1,6 @@
 #include "Main/Unknown/code_02067f94.h"
 #include "Main/Unknown/code_0206a000.h"
 
-void func_02067f94(Unk0206bcb0 *a, const Vec3 *b) {
-    s32 c;
-    s32 d;
-    s32 e;
-    s32 f;
-    u32 g;
-    s32 h;
-
-    g = a->mUnk_4c;
-    if ((g & 0x400000) != 0) {
-        c = 0;
-    } else if ((a->mUnk_7c & 0x200) != 0) {
-        if (a->mUnk_180 == 0 && (a->mUnk_48 & 0x1800) == 0 && (g & 0x10000040) == 0) {
-            c = 1;
-        } else {
-            c = 0;
-        }
-    } else {
-        d = 1;
-        if ((g & 0x10000040) == 0 && (a->mUnk_48 & 0x1800) == 0) {
-            e = 0;
-            h = a->mUnk_180;
-            if (h != 0 && h != 1 && h != 2) {
-                e = d;
-            }
-            if (e == 0) {
-                d = 0;
-            }
-        }
-        c = d == 0 ? 1 : 0;
-    }
-    if (c != 0) {
-        func_0206a980(a, b, 0);
-        f = 1;
-    } else {
-        f = 0;
-    }
-    if (f == 0) {
-        return;
-    }
-    if ((a->mUnk_7c & 1) != 0) {
-        func_0207a6b0()->mUnk_14++;
-    }
-    a->mUnk_48 |= 0x20000;
-}
-
-void func_02068094(Unk0206bcb0 *a, s32 b, s32 c) {
-    if (func_0206b020(a, (Unk0206b020 *) c) == 0) {
-        return;
-    }
-    if ((a->mUnk_7c & 1) != 0) {
-        func_0207a6b0()->mUnk_14++;
-    }
-    a->mUnk_48 |= 0x20000;
-}
-
 void func_020680e0(Unk0206bcb0 *a, const Vec3 *b) {
     s32 c;
     s32 d;
@@ -90,6 +34,62 @@ void func_020680e0(Unk0206bcb0 *a, const Vec3 *b) {
     }
     if (c != 0) {
         func_0206add0(a, b, 0);
+        f = 1;
+    } else {
+        f = 0;
+    }
+    if (f == 0) {
+        return;
+    }
+    if ((a->mUnk_7c & 1) != 0) {
+        func_0207a6b0()->mUnk_14++;
+    }
+    a->mUnk_48 |= 0x20000;
+}
+
+void func_02068094(Unk0206bcb0 *a, s32 b, s32 c) {
+    if (func_0206b020(a, (Unk0206b020 *) c) == 0) {
+        return;
+    }
+    if ((a->mUnk_7c & 1) != 0) {
+        func_0207a6b0()->mUnk_14++;
+    }
+    a->mUnk_48 |= 0x20000;
+}
+
+void func_02067f94(Unk0206bcb0 *a, const Vec3 *b) {
+    s32 c;
+    s32 d;
+    s32 e;
+    s32 f;
+    u32 g;
+    s32 h;
+
+    g = a->mUnk_4c;
+    if ((g & 0x400000) != 0) {
+        c = 0;
+    } else if ((a->mUnk_7c & 0x200) != 0) {
+        if (a->mUnk_180 == 0 && (a->mUnk_48 & 0x1800) == 0 && (g & 0x10000040) == 0) {
+            c = 1;
+        } else {
+            c = 0;
+        }
+    } else {
+        d = 1;
+        if ((g & 0x10000040) == 0 && (a->mUnk_48 & 0x1800) == 0) {
+            e = 0;
+            h = a->mUnk_180;
+            if (h != 0 && h != 1 && h != 2) {
+                e = d;
+            }
+            if (e == 0) {
+                d = 0;
+            }
+        }
+        c = d == 0 ? 1 : 0;
+    }
+    if (c != 0) {
+        func_0206a980(a, b, 0);
         f = 1;
     } else {
         f = 0;

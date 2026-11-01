@@ -8,36 +8,38 @@
 #include "code_0200dc3c.h"
 #include "code_0214d018.h"
 
-s32 func_ov003_021bb0b0(void) {
-    s32 a;
-    if (data_ov003_021d8c34 != 0) {
-        a = data_ov003_021d8c08;
-        data_ov003_021d8be0 = 1;
-        while (data_ov003_021d8c08 >= 1 && data_ov003_021d8c08 <= 5) {
-            func_0200dc3c(100);
+s32 func_ov003_021bb2d8(u8 *a, s8 b) {
+    u8 *c = a;
+    u8 w = b;
+    s32 i;
+    s32 d;
+    s32 e;
+    d = (w & 0xf0) >> 4;
+    i = 0;
+    e = w & 0xf;
+    for (; i < 2; i++) {
+        if (d <= 9) {
+            *c++ = d + 0x30;
+        } else {
+            *c++ = d + 0x37;
         }
-        func_0200dc3c(500);
-        if (func_0200e070(&data_ov003_021d8d08) == 0) {
-            do {
-                func_0200df68(&data_ov003_021d8d08);
-                func_0200e084(&data_ov003_021d8d08);
-            } while (func_0200e070(&data_ov003_021d8d08) == 0);
-        }
-        if (data_ov003_021d8c00 != 0) {
-            data_ov003_021d8bdc(data_ov003_021d8c00);
-            data_ov003_021d8c00 = 0;
-        }
-        data_ov003_021d8c34 = 0;
-        if (a != data_ov003_021d8c08) {
-            func_ov003_021bb03c();
+        d = e;
+    }
+    *c = 0;
+    return c - a;
+}
+
+s32 func_ov003_021bb29c(u8 *a, const s8 *b) {
+    u8 *c = a;
+    s32 i;
+    for (i = 0; i < 6; i++) {
+        c += func_ov003_021bb2d8(c, *b++);
+        if (i < 5) {
+            *c++ = ':';
         }
     }
-    if (data_ov003_021d8c44 > 0) {
-        s32 b = func_ov003_021be3b8();
-        data_ov003_021d8c44 = 0;
-        return b;
-    }
-    return -10;
+    *c = 0;
+    return c - a;
 }
 
 s32 func_ov003_021bb168(u32 a, s32 b, UnkFunc *c, UnkWordFunc *d, UnkFunc *e, u32 f) {
@@ -78,36 +80,34 @@ s32 func_ov003_021bb168(u32 a, s32 b, UnkFunc *c, UnkWordFunc *d, UnkFunc *e, u3
     return 1;
 }
 
-s32 func_ov003_021bb29c(u8 *a, const s8 *b) {
-    u8 *c = a;
-    s32 i;
-    for (i = 0; i < 6; i++) {
-        c += func_ov003_021bb2d8(c, *b++);
-        if (i < 5) {
-            *c++ = ':';
+s32 func_ov003_021bb0b0(void) {
+    s32 a;
+    if (data_ov003_021d8c34 != 0) {
+        a = data_ov003_021d8c08;
+        data_ov003_021d8be0 = 1;
+        while (data_ov003_021d8c08 >= 1 && data_ov003_021d8c08 <= 5) {
+            func_0200dc3c(100);
+        }
+        func_0200dc3c(500);
+        if (func_0200e070(&data_ov003_021d8d08) == 0) {
+            do {
+                func_0200df68(&data_ov003_021d8d08);
+                func_0200e084(&data_ov003_021d8d08);
+            } while (func_0200e070(&data_ov003_021d8d08) == 0);
+        }
+        if (data_ov003_021d8c00 != 0) {
+            data_ov003_021d8bdc(data_ov003_021d8c00);
+            data_ov003_021d8c00 = 0;
+        }
+        data_ov003_021d8c34 = 0;
+        if (a != data_ov003_021d8c08) {
+            func_ov003_021bb03c();
         }
     }
-    *c = 0;
-    return c - a;
-}
-
-s32 func_ov003_021bb2d8(u8 *a, s8 b) {
-    u8 *c = a;
-    u8 w = b;
-    s32 i;
-    s32 d;
-    s32 e;
-    d = (w & 0xf0) >> 4;
-    i = 0;
-    e = w & 0xf;
-    for (; i < 2; i++) {
-        if (d <= 9) {
-            *c++ = d + 0x30;
-        } else {
-            *c++ = d + 0x37;
-        }
-        d = e;
+    if (data_ov003_021d8c44 > 0) {
+        s32 b = func_ov003_021be3b8();
+        data_ov003_021d8c44 = 0;
+        return b;
     }
-    *c = 0;
-    return c - a;
+    return -10;
 }

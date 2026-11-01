@@ -7,13 +7,15 @@
 #include "code_0200e0ec.h"
 #include "Main/Unknown/code_0200edc0.h"
 
-s32 func_ov000_021a70b0(void) {
-    if (data_ov000_021b5fdc.mUnk_1c < data_ov000_021b5fdc.mUnk_14) {
-        return -1;
-    }
-    data_ov000_021b5f94->mUnk_1c(data_ov000_021b5fd8);
-    data_ov000_021b5fd8 = 0;
-    return 0;
+u8 *func_ov000_021a7154(u8 *param_1, Unk021a7154 *param_2, Unk021a72a4 *param_3) {
+    u8 *a;
+
+    a = param_1 + func_ov000_021a72a4(param_3);
+    func_0200eb90(&param_2->mUnk_00, (void **) param_1, param_3->mUnk_03);
+    func_0200edc0(&param_2->mUnk_e0);
+    func_0200e28c(&param_2->mUnk_20, func_ov000_021a6f18, param_2, a, param_3->mUnk_00, param_3->mUnk_02);
+    func_0200df68(&param_2->mUnk_20);
+    return a;
 }
 
 s32 func_ov000_021a70ec(s32 param_1) {
@@ -41,13 +43,11 @@ s32 func_ov000_021a70ec(s32 param_1) {
     return 0;
 }
 
-u8 *func_ov000_021a7154(u8 *param_1, Unk021a7154 *param_2, Unk021a72a4 *param_3) {
-    u8 *a;
-
-    a = param_1 + func_ov000_021a72a4(param_3);
-    func_0200eb90(&param_2->mUnk_00, (void **) param_1, param_3->mUnk_03);
-    func_0200edc0(&param_2->mUnk_e0);
-    func_0200e28c(&param_2->mUnk_20, func_ov000_021a6f18, param_2, a, param_3->mUnk_00, param_3->mUnk_02);
-    func_0200df68(&param_2->mUnk_20);
-    return a;
+s32 func_ov000_021a70b0(void) {
+    if (data_ov000_021b5fdc.mUnk_1c < data_ov000_021b5fdc.mUnk_14) {
+        return -1;
+    }
+    data_ov000_021b5f94->mUnk_1c(data_ov000_021b5fd8);
+    data_ov000_021b5fd8 = 0;
+    return 0;
 }

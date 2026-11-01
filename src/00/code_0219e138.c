@@ -14,6 +14,92 @@
 #include "00/code_021a3264.h"
 #include "code_0200f5ac.h"
 
+s32 func_ov000_0219e4a0(s32 a) {
+    s32 b;
+    s32 c;
+    if (a == 0) {
+        return 0;
+    }
+    switch (a) {
+        case 1:
+            b = 11;
+            c = -1;
+            break;
+        case 2:
+            b = 6;
+            c = -50;
+            break;
+        case 3:
+            b = 6;
+            c = -30;
+            break;
+    }
+    func_ov000_021a1a38(b, c - 0x14ff0);
+    return a;
+}
+
+s32 func_ov000_0219e45c(s32 a) {
+    enum { K6 = 6 } b;
+    s32 c;
+    if (a == 0) {
+        return 0;
+    }
+    switch (a) {
+        case 1:
+            return 1;
+        case 2:
+            return 2;
+        default:
+            b = K6;
+            c = -9;
+            break;
+    }
+    if (b != 0) {
+        func_ov000_021a1a38(b, c - 0x14ff0);
+    }
+    return a;
+}
+
+u32 func_ov000_0219e3e4(u32 a) {
+    s32 b;
+    s32 c;
+    if (a == 0) {
+        return 0;
+    }
+    switch (a) {
+        case 1:
+            b = 11;
+            c = -1;
+            break;
+        case 2:
+        case 5:
+            b = 0;
+            c = 0;
+            a = 0;
+            break;
+        case 3:
+            b = 6;
+            c = -10;
+            break;
+        case 4:
+            b = 6;
+            c = -30;
+            break;
+        case 6:
+            b = 6;
+            c = -70;
+            break;
+        case 7:
+            b = 6;
+            c = -80;
+            break;
+    }
+    if (b != 0) {
+        func_ov000_021a1a38(b, c - 0x153d8);
+    }
+    return a;
+}
+
 void func_ov000_0219e138(u32 a, s32 b, s32 c) {
     s32 d;
     u32 e;
@@ -118,90 +204,4 @@ void func_ov000_0219e138(u32 a, s32 b, s32 c) {
         case 5:
             break;
     }
-}
-
-u32 func_ov000_0219e3e4(u32 a) {
-    s32 b;
-    s32 c;
-    if (a == 0) {
-        return 0;
-    }
-    switch (a) {
-        case 1:
-            b = 11;
-            c = -1;
-            break;
-        case 2:
-        case 5:
-            b = 0;
-            c = 0;
-            a = 0;
-            break;
-        case 3:
-            b = 6;
-            c = -10;
-            break;
-        case 4:
-            b = 6;
-            c = -30;
-            break;
-        case 6:
-            b = 6;
-            c = -70;
-            break;
-        case 7:
-            b = 6;
-            c = -80;
-            break;
-    }
-    if (b != 0) {
-        func_ov000_021a1a38(b, c - 0x153d8);
-    }
-    return a;
-}
-
-s32 func_ov000_0219e45c(s32 a) {
-    enum { K6 = 6 } b;
-    s32 c;
-    if (a == 0) {
-        return 0;
-    }
-    switch (a) {
-        case 1:
-            return 1;
-        case 2:
-            return 2;
-        default:
-            b = K6;
-            c = -9;
-            break;
-    }
-    if (b != 0) {
-        func_ov000_021a1a38(b, c - 0x14ff0);
-    }
-    return a;
-}
-
-s32 func_ov000_0219e4a0(s32 a) {
-    s32 b;
-    s32 c;
-    if (a == 0) {
-        return 0;
-    }
-    switch (a) {
-        case 1:
-            b = 11;
-            c = -1;
-            break;
-        case 2:
-            b = 6;
-            c = -50;
-            break;
-        case 3:
-            b = 6;
-            c = -30;
-            break;
-    }
-    func_ov000_021a1a38(b, c - 0x14ff0);
-    return a;
 }

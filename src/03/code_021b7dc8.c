@@ -4,13 +4,6 @@
 #include "00/code_021b0014.h"
 #include "03/code_021b94b8.h"
 
-s32 func_ov003_021b7dc8(void) {
-    if (func_ov000_021a8c8c() < 0) {
-        return -1;
-    }
-    return -(func_ov003_021ba524() != 0);
-}
-
 s32 func_ov003_021b7df4(u32 a, u32 b, u32 c) {
     data_ov003_021d6810.mUnk_10 = func_ov003_021b7cac(a);
     data_ov003_021d6810.mUnk_14 = func_ov003_021b7cac(b);
@@ -22,4 +15,11 @@ s32 func_ov003_021b7df4(u32 a, u32 b, u32 c) {
         func_0200dc3c(100);
     }
     return 0;
+}
+
+s32 func_ov003_021b7dc8(void) {
+    if (func_ov000_021a8c8c() < 0) {
+        return -1;
+    }
+    return -(func_ov003_021ba524() != 0);
 }

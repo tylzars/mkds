@@ -2,44 +2,6 @@
 #include "code_0214d018.h"
 #include "code_02139f70.h"
 
-s32 func_ov000_02186634(Unk021868a4Entry *a, s32 b, const u8 *c, char *d, s32 e) {
-    const u8 *f = func_ov000_021866b8(a, b, c);
-    if (f == 0) {
-        return 0;
-    }
-    if ((s32) func_0213a434(f) >= e) {
-        return 0;
-    }
-    func_0213a2d0(d, f);
-    return 1;
-}
-
-s32 func_ov000_02186674(Unk021868a4Entry *a, s32 b, const u8 *c, char *d, s32 e) {
-    const u8 *f = func_ov000_021866b8(a, b, c);
-    u32 g;
-    if (f == 0) {
-        return 0;
-    }
-    g = func_ov000_021881d0((const s8 *) f, func_0213a434(f), (u8 *) d, e);
-    if (g != -1 && g < e) {
-        d[g] = 0;
-    }
-    return g;
-}
-
-void *func_ov000_021866b8(Unk021868a4Entry *a, s32 b, const u8 *c) {
-    s32 e;
-    for (e = 0; e < b; e++) {
-        if (a[e].mFirst == 0) {
-            break;
-        }
-        if (func_0213a074(c, a[e].mFirst) == 0) {
-            return a[e].mSecond;
-        }
-    }
-    return 0;
-}
-
 // differ only by that register choice
 s32 func_ov000_021866fc(Unk021868a4Entry *a, s32 b, s32 c, const u8 *d) {
     u8 *e;
@@ -117,5 +79,43 @@ s32 func_ov000_021866fc(Unk021868a4Entry *a, s32 b, s32 c, const u8 *d) {
             j = (u8 *) h + func_0213a434((const u8 *) h) + 1;
         } while (j < f);
     }
+    return 1;
+}
+
+void *func_ov000_021866b8(Unk021868a4Entry *a, s32 b, const u8 *c) {
+    s32 e;
+    for (e = 0; e < b; e++) {
+        if (a[e].mFirst == 0) {
+            break;
+        }
+        if (func_0213a074(c, a[e].mFirst) == 0) {
+            return a[e].mSecond;
+        }
+    }
+    return 0;
+}
+
+s32 func_ov000_02186674(Unk021868a4Entry *a, s32 b, const u8 *c, char *d, s32 e) {
+    const u8 *f = func_ov000_021866b8(a, b, c);
+    u32 g;
+    if (f == 0) {
+        return 0;
+    }
+    g = func_ov000_021881d0((const s8 *) f, func_0213a434(f), (u8 *) d, e);
+    if (g != -1 && g < e) {
+        d[g] = 0;
+    }
+    return g;
+}
+
+s32 func_ov000_02186634(Unk021868a4Entry *a, s32 b, const u8 *c, char *d, s32 e) {
+    const u8 *f = func_ov000_021866b8(a, b, c);
+    if (f == 0) {
+        return 0;
+    }
+    if ((s32) func_0213a434(f) >= e) {
+        return 0;
+    }
+    func_0213a2d0(d, f);
     return 1;
 }

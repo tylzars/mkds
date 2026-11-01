@@ -7,18 +7,6 @@
 
 #pragma thumb on
 
-void func_020353a4(void) {
-    void *e;
-    void *f;
-
-    e = func_020b3f7c(data_02174e64->mUnk_088, 0x11);
-    f = func_020b3f7c(data_02174e64->mUnk_084, 4);
-    func_02125ed0(0, 5);
-    func_02126230(e, f);
-    data_02174e64->mUnk_090 = 0;
-    data_02174e64->mUnk_094 = 15;
-}
-
 void func_020353f8(void) {
     s32 r;
     s32 n;
@@ -42,6 +30,18 @@ void func_020353f8(void) {
         *(u32 *) 0x4000000 = (u32) (*(u32 *) 0x4000000 & 0xffff1fff);
         *(u32 *) 0x4001000 = (u32) (*(u32 *) 0x4001000 & 0xffff1fff);
     }
+}
+
+void func_020353a4(void) {
+    void *e;
+    void *f;
+
+    e = func_020b3f7c(data_02174e64->mUnk_088, 0x11);
+    f = func_020b3f7c(data_02174e64->mUnk_084, 4);
+    func_02125ed0(0, 5);
+    func_02126230(e, f);
+    data_02174e64->mUnk_090 = 0;
+    data_02174e64->mUnk_094 = 15;
 }
 
 #pragma thumb off

@@ -11,63 +11,48 @@
 #include "Main/Unknown/unk_02174000.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-s32 func_02024974(s32 a, s32 b, u32 c, u32 d) {
-    s32 r;
-    s32 t;
-
-    r = b != 0 ? 4 : 0;
-    if (a == 0) {
-        if (c == d) {
-            t = 0;
-        } else if (c == d + 1) {
-            t = 1;
-        } else {
-            t = 2;
-        }
-        r += t;
-    } else {
-        r += 3;
-    }
-    return r + 0x130;
-}
-
-void func_020249b8(Unk0206bcb0 *a, s32 b, s32 c) {
+s32 func_02024eec(Unk02024eec *a, s32 b, s32 c) {
     s32 d;
-    u8 e;
+    s32 e;
+    s32 f;
+    s32 g;
+    s32 h;
 
-    if (b <= 0) {
-        return;
-    }
-    if (b >= 0x1000) {
-        return;
-    }
-    d = (b << 14) >> 16;
-    e = (b << 7) >> 12;
-    if (d > 0x400) {
-        d = 0x400;
-    }
-    if (e > 0x7f) {
-        e = 0x7f;
-    }
-    func_02109078(&a->mUnk_00, c > 0 ? 0x150 : 0x151, e, d);
-}
-
-void func_02024a28(Unk0210bfbc *p, u16 a, s32 b, s32 c) {
-    u8 t;
-    u8 v;
-
-    if (c == 2) {
-        t = (b << 7) >> 12;
-        v = t + 0x14;
-        if (v > 0x7f) {
-            v = 0x7f;
-        } else if (v < 0x32) {
-            v = 0x32;
-        }
+    d = a->mUnk_08;
+    e = a->mUnk_0c;
+    f = a->mUnk_10;
+    if (d == -1) {
+        b = 0;
+        f = b;
+        a->mUnk_0c = b;
     } else {
-        v = 0x7f;
+        g = b & 0x7fff0000;
+        if ((d & 0x7fff0000) == g) {
+            a->mUnk_0c = b;
+            f = 0;
+        } else if ((e & 0x7fff0000) != g) {
+            a->mUnk_0c = b;
+            if (b < d) {
+                h = *(s32 *) data_02174e0c;
+            } else if (c != 0) {
+                h = *(s32 *) data_02174e08;
+            } else {
+                h = *(s32 *) data_02174e10;
+            }
+            f = ((s64) h * (b - d) + 0x800) >> 12;
+            b = f + d;
+        } else if (f != 0) {
+            b = f + d;
+        }
     }
-    func_0210c86c(p, 0, a, v, 0);
+    if (b > 0x880000) {
+        b = 0x880000;
+    }
+    if (b < 0) {
+        b = 0;
+    }
+    a->mUnk_10 = f;
+    return b;
 }
 
 void func_02024a88(Unk0206bcb0 *a) {
@@ -179,46 +164,61 @@ void func_02024a88(Unk0206bcb0 *a) {
     q->mUnk_14 = f;
 }
 
-s32 func_02024eec(Unk02024eec *a, s32 b, s32 c) {
-    s32 d;
-    s32 e;
-    s32 f;
-    s32 g;
-    s32 h;
+void func_02024a28(Unk0210bfbc *p, u16 a, s32 b, s32 c) {
+    u8 t;
+    u8 v;
 
-    d = a->mUnk_08;
-    e = a->mUnk_0c;
-    f = a->mUnk_10;
-    if (d == -1) {
-        b = 0;
-        f = b;
-        a->mUnk_0c = b;
-    } else {
-        g = b & 0x7fff0000;
-        if ((d & 0x7fff0000) == g) {
-            a->mUnk_0c = b;
-            f = 0;
-        } else if ((e & 0x7fff0000) != g) {
-            a->mUnk_0c = b;
-            if (b < d) {
-                h = *(s32 *) data_02174e0c;
-            } else if (c != 0) {
-                h = *(s32 *) data_02174e08;
-            } else {
-                h = *(s32 *) data_02174e10;
-            }
-            f = ((s64) h * (b - d) + 0x800) >> 12;
-            b = f + d;
-        } else if (f != 0) {
-            b = f + d;
+    if (c == 2) {
+        t = (b << 7) >> 12;
+        v = t + 0x14;
+        if (v > 0x7f) {
+            v = 0x7f;
+        } else if (v < 0x32) {
+            v = 0x32;
         }
+    } else {
+        v = 0x7f;
     }
-    if (b > 0x880000) {
-        b = 0x880000;
+    func_0210c86c(p, 0, a, v, 0);
+}
+
+void func_020249b8(Unk0206bcb0 *a, s32 b, s32 c) {
+    s32 d;
+    u8 e;
+
+    if (b <= 0) {
+        return;
     }
-    if (b < 0) {
-        b = 0;
+    if (b >= 0x1000) {
+        return;
     }
-    a->mUnk_10 = f;
-    return b;
+    d = (b << 14) >> 16;
+    e = (b << 7) >> 12;
+    if (d > 0x400) {
+        d = 0x400;
+    }
+    if (e > 0x7f) {
+        e = 0x7f;
+    }
+    func_02109078(&a->mUnk_00, c > 0 ? 0x150 : 0x151, e, d);
+}
+
+s32 func_02024974(s32 a, s32 b, u32 c, u32 d) {
+    s32 r;
+    s32 t;
+
+    r = b != 0 ? 4 : 0;
+    if (a == 0) {
+        if (c == d) {
+            t = 0;
+        } else if (c == d + 1) {
+            t = 1;
+        } else {
+            t = 2;
+        }
+        r += t;
+    } else {
+        r += 3;
+    }
+    return r + 0x130;
 }

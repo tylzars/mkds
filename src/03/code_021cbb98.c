@@ -15,6 +15,25 @@
 #include "03/code_021cbc50.h"
 #include "03/code_021cdc10.h"
 
+void func_ov003_021cbc00(void) {
+    s32 a;
+    data_ov003_021da24c[0]++;
+    if (data_ov003_021da24c[0] >= 0xb4) {
+        func_ov003_021c20dc(0, &a);
+        switch (func_ov003_021c20c0()) {
+            case 0:
+                break;
+            case 1:
+                if (a != 0) {
+                    func_ov003_021c212c(func_ov003_021c2a74);
+                    return;
+                }
+                break;
+        }
+        func_ov003_021c212c(func_ov003_021cbcc8);
+    }
+}
+
 void func_ov003_021cbb98(void) {
     s32 a;
     data_ov003_021da248 = 0;
@@ -33,23 +52,4 @@ void func_ov003_021cbb98(void) {
     func_ov003_021bf9e8(0);
     func_ov003_021cdc10(0xc);
     func_ov003_021c212c(func_ov003_021cba54);
-}
-
-void func_ov003_021cbc00(void) {
-    s32 a;
-    data_ov003_021da24c[0]++;
-    if (data_ov003_021da24c[0] >= 0xb4) {
-        func_ov003_021c20dc(0, &a);
-        switch (func_ov003_021c20c0()) {
-            case 0:
-                break;
-            case 1:
-                if (a != 0) {
-                    func_ov003_021c212c(func_ov003_021c2a74);
-                    return;
-                }
-                break;
-        }
-        func_ov003_021c212c(func_ov003_021cbcc8);
-    }
 }

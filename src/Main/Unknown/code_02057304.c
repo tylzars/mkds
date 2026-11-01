@@ -8,6 +8,39 @@
 
 #pragma thumb on
 
+void func_0205746c(s32 a, u8 *b, s32 c) {
+    u8 *p;
+
+    p = func_02057498(a, b);
+    *p |= 1 << (u8) (a % 8);
+}
+
+s32 func_0205743c(s32 a, u8 *b, s32 c) {
+    u8 *p;
+
+    p = func_02057498(a, b);
+    return (*p & (1 << (u8) (a % 8))) != 0 ? 1 : 0;
+}
+
+void func_02057410(s32 a, u8 *b, s32 c) {
+    u8 *p;
+
+    p = func_02057498(a, b);
+    *p &= ~(1 << (u8) (a % 8));
+}
+
+s32 func_020573f8(u8 a) {
+    return func_0205743c(a, data_0217aa08->mUnk_00->mUnk_26, 4);
+}
+
+void func_020573e0(s32 a) {
+    func_02057410(a, data_0217aa08->mUnk_00->mUnk_26, 4);
+}
+
+s32 func_020573c8(u32 a) {
+    return func_0205743c(a, data_0217aa08->mUnk_00->mUnk_2a, 2);
+}
+
 void func_02057304(s32 a) {
     u16 n;
     u8 *p;
@@ -26,39 +59,6 @@ void func_02057304(s32 a) {
     data_0217aa08->mUnk_00->mUnk_24 = 0x1388;
     func_0209119c();
     func_02152690(data_0217aa08->mUnk_00->mUnk_4c, 0x414d434a);
-}
-
-s32 func_020573c8(u32 a) {
-    return func_0205743c(a, data_0217aa08->mUnk_00->mUnk_2a, 2);
-}
-
-void func_020573e0(s32 a) {
-    func_02057410(a, data_0217aa08->mUnk_00->mUnk_26, 4);
-}
-
-s32 func_020573f8(u8 a) {
-    return func_0205743c(a, data_0217aa08->mUnk_00->mUnk_26, 4);
-}
-
-void func_02057410(s32 a, u8 *b, s32 c) {
-    u8 *p;
-
-    p = func_02057498(a, b);
-    *p &= ~(1 << (u8) (a % 8));
-}
-
-s32 func_0205743c(s32 a, u8 *b, s32 c) {
-    u8 *p;
-
-    p = func_02057498(a, b);
-    return (*p & (1 << (u8) (a % 8))) != 0 ? 1 : 0;
-}
-
-void func_0205746c(s32 a, u8 *b, s32 c) {
-    u8 *p;
-
-    p = func_02057498(a, b);
-    *p |= 1 << (u8) (a % 8);
 }
 
 #pragma thumb off

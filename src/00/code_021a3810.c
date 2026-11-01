@@ -3,6 +3,16 @@
 #include "00/code_0219c384.h"
 #include "00/code_021a5000.h"
 
+void func_ov000_021a3884(void) {
+    Unk021b5df4 *p = data_ov000_021b5df4;
+    if (p != 0 && p->mUnk_04 == 2) {
+        data_ov000_021b5df4->mUnk_00 = func_ov000_021887cc();
+    } else if (p != 0 && p->mUnk_04 == 4 && p->mUnk_06 != 0 && func_ov000_021a5bfc() != 9) {
+        data_ov000_021b5df4->mUnk_06 = 0;
+        data_ov000_021b5df4->mUnk_04 = 6;
+    }
+}
+
 u32 func_ov000_021a3810(void) {
     u32 v = 0;
     s32 r;
@@ -26,14 +36,4 @@ u32 func_ov000_021a3810(void) {
         v = 2;
     }
     return v;
-}
-
-void func_ov000_021a3884(void) {
-    Unk021b5df4 *p = data_ov000_021b5df4;
-    if (p != 0 && p->mUnk_04 == 2) {
-        data_ov000_021b5df4->mUnk_00 = func_ov000_021887cc();
-    } else if (p != 0 && p->mUnk_04 == 4 && p->mUnk_06 != 0 && func_ov000_021a5bfc() != 9) {
-        data_ov000_021b5df4->mUnk_06 = 0;
-        data_ov000_021b5df4->mUnk_04 = 6;
-    }
 }

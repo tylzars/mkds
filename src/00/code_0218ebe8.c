@@ -7,24 +7,6 @@
 #include "code_0213442c.h"
 #include "code_02134d30.h"
 
-u32 func_ov000_0218ebe8(Unk0218f960 *a, u32 b, s32 *c) {
-    Unk0218f960_00 *o;
-    Unk02194934 *e;
-    if (a == 0 || (o = a->mUnk_00) == 0) {
-        return 2;
-    }
-    if (o->mUnk_108 != 0) {
-        *c = 0;
-        return 0;
-    }
-    if (func_ov000_02194934(a, b, &e) != 0 && e->mUnk_08 != 0) {
-        *c = e->mUnk_08->mUnk_00;
-    } else {
-        *c = -1;
-    }
-    return 0;
-}
-
 u32 func_ov000_0218ec44(Unk0218f960 *a, s32 b, Unk0218ec44 *c) {
     Unk0218f960_00 *o;
     Unk02194934 *e;
@@ -72,5 +54,23 @@ u32 func_ov000_0218ec44(Unk0218f960 *a, s32 b, Unk0218ec44 *c) {
     }
     c->mUnk_208 = n->mUnk_10;
     c->mUnk_20c = n->mUnk_14;
+    return 0;
+}
+
+u32 func_ov000_0218ebe8(Unk0218f960 *a, u32 b, s32 *c) {
+    Unk0218f960_00 *o;
+    Unk02194934 *e;
+    if (a == 0 || (o = a->mUnk_00) == 0) {
+        return 2;
+    }
+    if (o->mUnk_108 != 0) {
+        *c = 0;
+        return 0;
+    }
+    if (func_ov000_02194934(a, b, &e) != 0 && e->mUnk_08 != 0) {
+        *c = e->mUnk_08->mUnk_00;
+    } else {
+        *c = -1;
+    }
     return 0;
 }

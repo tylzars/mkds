@@ -2,11 +2,13 @@
 #include "Main/Unknown/code_0210bafc.h"
 #include "Main/Unknown/code_02109054.h"
 
-void func_02024fe8(Unk0206bcb0 *a, Unk02024eec *b) {
-    u32 v;
+void func_0202506c(Unk0206bcb0 *a, Unk02024eec *b) {
+    Unk0210bf24 *p;
 
-    v = func_0210bb74(3, a->mUnk_3e0, a->mUnk_3e4);
-    func_02109078(&a->mUnk_00, v, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
+    p = func_02109078(&a->mUnk_00, b->mUnk_00, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
+    if (p != 0) {
+        p->mUnk_19 |= 0x80;
+    }
 }
 
 void func_02025030(Unk0206bcb0 *a, Unk02024eec *b) {
@@ -18,11 +20,9 @@ void func_02025030(Unk0206bcb0 *a, Unk02024eec *b) {
     }
 }
 
-void func_0202506c(Unk0206bcb0 *a, Unk02024eec *b) {
-    Unk0210bf24 *p;
+void func_02024fe8(Unk0206bcb0 *a, Unk02024eec *b) {
+    u32 v;
 
-    p = func_02109078(&a->mUnk_00, b->mUnk_00, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
-    if (p != 0) {
-        p->mUnk_19 |= 0x80;
-    }
+    v = func_0210bb74(3, a->mUnk_3e0, a->mUnk_3e4);
+    func_02109078(&a->mUnk_00, v, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
 }

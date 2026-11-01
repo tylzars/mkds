@@ -15,6 +15,25 @@
 #include "code_0200fc8c.h"
 #include "code_02004dc0.h"
 
+void func_020367c4(void) {
+    if (data_021755a0 != 0) {
+        func_02037a04();
+        if (data_021755a0->mUnk_b8 != 0) {
+            data_021755a0->mUnk_b8();
+        }
+    }
+    *(u32 *) ((u8 *) &data_027e0000 + 0x3ff8) |= 1;
+}
+
+void func_02036778(void) {
+    func_0200cc74(1, func_020367c4);
+    func_0200cae4(1);
+    *(vu16 *) 0x4000208;
+    *(vu16 *) 0x4000208 = 1;
+    func_0200fc8c();
+    func_02148a58(1);
+}
+
 void func_020366bc(void) {
     func_0200ef10();
     func_0200eec0();
@@ -37,23 +56,4 @@ void func_020366bc(void) {
     func_02039774();
     data_usa_02174e54 = func_02152b08(data_usa_02174e80);
     func_02039a1c();
-}
-
-void func_02036778(void) {
-    func_0200cc74(1, func_020367c4);
-    func_0200cae4(1);
-    *(vu16 *) 0x4000208;
-    *(vu16 *) 0x4000208 = 1;
-    func_0200fc8c();
-    func_02148a58(1);
-}
-
-void func_020367c4(void) {
-    if (data_021755a0 != 0) {
-        func_02037a04();
-        if (data_021755a0->mUnk_b8 != 0) {
-            data_021755a0->mUnk_b8();
-        }
-    }
-    *(u32 *) ((u8 *) &data_027e0000 + 0x3ff8) |= 1;
 }

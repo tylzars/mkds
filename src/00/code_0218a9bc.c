@@ -7,24 +7,6 @@
 #include "00/code_0218e644.h"
 #include "00/code_0218e8c4.h"
 
-void func_ov000_0218a9bc(Unk0218a9bc *p) {
-    u32 a;
-    Unk0218af28 *e;
-    a = func_ov000_0218e8c4();
-    e = p->mUnk_08.mUnk_00;
-    while (e != 0) {
-        if (a <= e->mUnk_1c + 0x9c4) {
-            break;
-        }
-        e->mUnk_15 |= 0x10;
-        p->mUnk_08.mUnk_00->mUnk_1c = 0x9c4;
-        p->mUnk_08.mUnk_00->mUnk_15 &= 0xd3;
-        p->mUnk_44(p, 1, p->mUnk_08.mUnk_00, p->mUnk_48);
-        func_ov000_0218aea4((int *) &p->mUnk_08);
-        e = p->mUnk_08.mUnk_00;
-    }
-}
-
 void func_ov000_0218aa14(Unk0218a9bc *p, s32 q) {
     s32 s;
     Unk0218aa14 v1;
@@ -63,5 +45,23 @@ void func_ov000_0218aa14(Unk0218a9bc *p, s32 q) {
                 }
             }
         }
+    }
+}
+
+void func_ov000_0218a9bc(Unk0218a9bc *p) {
+    u32 a;
+    Unk0218af28 *e;
+    a = func_ov000_0218e8c4();
+    e = p->mUnk_08.mUnk_00;
+    while (e != 0) {
+        if (a <= e->mUnk_1c + 0x9c4) {
+            break;
+        }
+        e->mUnk_15 |= 0x10;
+        p->mUnk_08.mUnk_00->mUnk_1c = 0x9c4;
+        p->mUnk_08.mUnk_00->mUnk_15 &= 0xd3;
+        p->mUnk_44(p, 1, p->mUnk_08.mUnk_00, p->mUnk_48);
+        func_ov000_0218aea4((int *) &p->mUnk_08);
+        e = p->mUnk_08.mUnk_00;
     }
 }

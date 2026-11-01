@@ -10,6 +10,22 @@
 #include "code_0200f5ac.h"
 #include "code_021329f8.h"
 
+void func_ov000_021a317c(Unk0219887c *a, void *b, s32 c, u32 d) {
+    if (data_ov000_021b5dd0 != 0) {
+        if (d != 0) {
+            func_ov000_021a2eec(a, b, c);
+        } else {
+            func_ov000_021a2e7c(a, (u32) b, c);
+        }
+    }
+}
+
+void func_ov000_021a314c(Unk0219887c *a, u32 b) {
+    if (data_ov000_021b5dd0->mUnk_60c != 0) {
+        data_ov000_021b5dd0->mUnk_60c(b, func_ov000_0219b9c4(a));
+    }
+}
+
 void func_ov000_021a3030(void) {
     u8 *l;
     s32 n;
@@ -55,22 +71,6 @@ void func_ov000_021a3030(void) {
                     }
                 }
             }
-        }
-    }
-}
-
-void func_ov000_021a314c(Unk0219887c *a, u32 b) {
-    if (data_ov000_021b5dd0->mUnk_60c != 0) {
-        data_ov000_021b5dd0->mUnk_60c(b, func_ov000_0219b9c4(a));
-    }
-}
-
-void func_ov000_021a317c(Unk0219887c *a, void *b, s32 c, u32 d) {
-    if (data_ov000_021b5dd0 != 0) {
-        if (d != 0) {
-            func_ov000_021a2eec(a, b, c);
-        } else {
-            func_ov000_021a2e7c(a, (u32) b, c);
         }
     }
 }

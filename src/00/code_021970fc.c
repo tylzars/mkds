@@ -1,5 +1,14 @@
 #include "00/code_021970fc.h"
 
+void func_ov000_02197190(u32 a, s8 *b) {
+    s8 *c = b;
+    func_02135014((u8 *) b, data_ov000_021b3e04, a);
+    while (*c != 0) {
+        *c = *c + 0x11 + (c - b);
+        c++;
+    }
+}
+
 const s8 *func_ov000_021970fc(const s8 *v1, const u8 *v2) {
     Unk021b3c88 a = data_ov000_021b3c88;
     const s8 *b;
@@ -20,13 +29,4 @@ const s8 *func_ov000_021970fc(const s8 *v1, const u8 *v2) {
     }
     *c = 0;
     return e;
-}
-
-void func_ov000_02197190(u32 a, s8 *b) {
-    s8 *c = b;
-    func_02135014((u8 *) b, data_ov000_021b3e04, a);
-    while (*c != 0) {
-        *c = *c + 0x11 + (c - b);
-        c++;
-    }
 }

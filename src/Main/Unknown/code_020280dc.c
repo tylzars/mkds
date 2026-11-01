@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_020280dc.h"
 
-u32 func_020280dc(void) {
-    return func_020280e8();
+u16 *func_02028110(void) {
+    return (u16 *) 0x27ffc40;
 }
 
 u32 func_020280e8(void) {
@@ -11,6 +11,6 @@ u32 func_020280e8(void) {
     return 0;
 }
 
-u16 *func_02028110(void) {
-    return (u16 *) 0x27ffc40;
+u32 func_020280dc(void) {
+    return func_020280e8();
 }

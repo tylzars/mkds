@@ -9839,10 +9839,10 @@ data_usa_02166070 kind:data(any) addr:0x02166070
 data_usa_02166078 kind:data(any) addr:0x02166078
 data_usa_02166080 kind:data(any) addr:0x02166080
 data_0216608c kind:data(any) addr:0x0216608c
-data_usa_02166098 kind:data(any) addr:0x02166098
-data_usa_021660a4 kind:data(any) addr:0x021660a4
-data_usa_021660b0 kind:data(any) addr:0x021660b0
-data_usa_021660bc kind:data(any) addr:0x021660bc
+@2491 kind:data(any) addr:0x02166098 local
+@2492 kind:data(any) addr:0x021660a4 local
+@2493 kind:data(any) addr:0x021660b0 local
+@2494 kind:data(any) addr:0x021660bc local
 data_usa_021660c8 kind:data(any) addr:0x021660c8
 data_usa_021660e0 kind:data(any) addr:0x021660e0
 data_usa_021660f8 kind:data(any) addr:0x021660f8
@@ -9970,16 +9970,16 @@ data_usa_021670fc kind:data(any) addr:0x021670fc
 data_usa_0216710c kind:data(any) addr:0x0216710c
 data_usa_0216711c kind:data(any) addr:0x0216711c
 data_usa_02167130 kind:data(any) addr:0x02167130
-data_usa_02167144 kind:data(any) addr:0x02167144
-data_usa_02167154 kind:data(any) addr:0x02167154
-data_usa_02167168 kind:data(any) addr:0x02167168
-data_usa_0216717c kind:data(any) addr:0x0216717c
-data_usa_02167190 kind:data(any) addr:0x02167190
-data_usa_021671a0 kind:data(any) addr:0x021671a0
-data_usa_021671b0 kind:data(any) addr:0x021671b0
-data_usa_021671c0 kind:data(any) addr:0x021671c0
-data_usa_021671d0 kind:data(any) addr:0x021671d0
-data_usa_021671e0 kind:data(any) addr:0x021671e0
+@4875 kind:data(any) addr:0x02167144 local
+@4875 kind:data(any) addr:0x02167154 local
+@4875 kind:data(any) addr:0x02167168 local
+@4875 kind:data(any) addr:0x0216717c local
+@4875 kind:data(any) addr:0x02167190 local
+@4875 kind:data(any) addr:0x021671a0 local
+@4875 kind:data(any) addr:0x021671b0 local
+@4875 kind:data(any) addr:0x021671c0 local
+@4875 kind:data(any) addr:0x021671d0 local
+@4759 kind:data(any) addr:0x021671e0 local
 data_usa_021671f4 kind:data(any) addr:0x021671f4
 data_usa_02167228 kind:data(any) addr:0x02167228
 data_usa_02167234 kind:data(any) addr:0x02167234
@@ -10092,7 +10092,7 @@ data_02167db0 kind:data(any) addr:0x02167db0
 data_02167dc0 kind:data(any) addr:0x02167dc0
 data_02167dd0 kind:data(any) addr:0x02167dd0
 data_usa_02167de0 kind:data(any) addr:0x02167de0
-data_usa_02167e14 kind:data(any) addr:0x02167e14
+@4973 kind:data(any) addr:0x02167e14 local
 @2785 kind:data(any) addr:0x02167e28 local
 data_02167e34 kind:data(any) addr:0x02167e34
 data_02167e6c kind:data(any) addr:0x02167e6c
@@ -10120,7 +10120,7 @@ data_02168024 kind:data(any) addr:0x0216801c
 data_02168100 kind:data(any) addr:0x021680f8
 data_0216810c kind:data(any) addr:0x02168104
 data_02168114 kind:data(any) addr:0x0216810c
-data_usa_02168118 kind:data(any) addr:0x02168118
+@60 kind:data(any) addr:0x02168118 local
 @2361 kind:data(any) addr:0x0216812c local
 @2362 kind:data(any) addr:0x02168140 local
 @2363 kind:data(any) addr:0x02168154 local

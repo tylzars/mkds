@@ -4,12 +4,6 @@
 
 #pragma thumb on
 
-void func_02059304(void) {
-    data_0217aa00->mUnk_1e34 = 0;
-    data_0217aa00->mUnk_1e44 &= ~2;
-    data_0217aa00->mUnk_164f = 0;
-}
-
 void func_0205933c(void) {
     u32 a;
 
@@ -20,6 +14,12 @@ void func_0205933c(void) {
     if (a == 0) {
         data_0217aa00->mUnk_164f = 1;
     }
+}
+
+void func_02059304(void) {
+    data_0217aa00->mUnk_1e34 = 0;
+    data_0217aa00->mUnk_1e44 &= ~2;
+    data_0217aa00->mUnk_164f = 0;
 }
 
 #pragma thumb off

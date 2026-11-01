@@ -12,6 +12,30 @@
 #include "code_0214d018.h"
 #include "registers.h"
 
+void func_ov003_021ceab8(Unk021d34e0 *a) {
+    data_ov003_021da284->mUnk_1a++;
+    func_0214a348((u16 *) 0x04000050, data_ov003_021da284->mUnk_1a);
+    if (data_ov003_021da284->mUnk_1a >= 0) {
+        func_ov003_021d34e0(a, func_ov003_021cea3c);
+    }
+}
+
+void func_ov003_021cea3c(u32 a) {
+    s32 i;
+
+    reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
+    func_ov003_021d197c(data_ov003_021da284->mUnk_00);
+    func_ov003_021d197c(data_ov003_021da284->mUnk_04);
+    for (i = 0; i < data_ov003_021d6720[data_ov003_021da284->mUnk_1c]; i++) {
+        if (data_ov003_021da284->mUnk_08[i] != 0) {
+            func_ov003_021d197c(data_ov003_021da284->mUnk_08[i]);
+        }
+    }
+    func_ov003_021d2388((int) data_ov003_021da284->mUnk_10);
+    func_ov003_021d34c8(1, a);
+    func_ov003_021d2808(&data_ov003_021da284);
+}
+
 u32 func_ov003_021ce920(void (*a)(u32)) {
     Unk021da280 *d;
     Unk0200fddc s;
@@ -42,28 +66,4 @@ u32 func_ov003_021ce920(void (*a)(u32)) {
     }
     func_ov003_021d2808(&data_ov003_021da280);
     return 0;
-}
-
-void func_ov003_021cea3c(u32 a) {
-    s32 i;
-
-    reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
-    func_ov003_021d197c(data_ov003_021da284->mUnk_00);
-    func_ov003_021d197c(data_ov003_021da284->mUnk_04);
-    for (i = 0; i < data_ov003_021d6720[data_ov003_021da284->mUnk_1c]; i++) {
-        if (data_ov003_021da284->mUnk_08[i] != 0) {
-            func_ov003_021d197c(data_ov003_021da284->mUnk_08[i]);
-        }
-    }
-    func_ov003_021d2388((int) data_ov003_021da284->mUnk_10);
-    func_ov003_021d34c8(1, a);
-    func_ov003_021d2808(&data_ov003_021da284);
-}
-
-void func_ov003_021ceab8(Unk021d34e0 *a) {
-    data_ov003_021da284->mUnk_1a++;
-    func_0214a348((u16 *) 0x04000050, data_ov003_021da284->mUnk_1a);
-    if (data_ov003_021da284->mUnk_1a >= 0) {
-        func_ov003_021d34e0(a, func_ov003_021cea3c);
-    }
 }

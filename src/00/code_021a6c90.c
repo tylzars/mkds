@@ -5,6 +5,21 @@
 #include "code_02133048.h"
 #include "code_0200fc8c.h"
 
+u32 func_ov000_021a6ce4(void) {
+    u32 a;
+    Unk021b5f50 *b;
+    u32 c;
+
+    a = func_0200fca0();
+    b = func_ov000_021a5b30();
+    c = 0;
+    if (b != 0 && b->mUnk_2260 == 9) {
+        c = func_ov000_021a6c68();
+    }
+    func_0200fcb4(a);
+    return c;
+}
+
 u8 func_ov000_021a6c90(void) {
     s32 a = 0;
     u32 b = data_ov000_021b5f80;
@@ -22,19 +37,4 @@ u8 func_ov000_021a6c90(void) {
         a = a / (s32) b;
     }
     return a;
-}
-
-u32 func_ov000_021a6ce4(void) {
-    u32 a;
-    Unk021b5f50 *b;
-    u32 c;
-
-    a = func_0200fca0();
-    b = func_ov000_021a5b30();
-    c = 0;
-    if (b != 0 && b->mUnk_2260 == 9) {
-        c = func_ov000_021a6c68();
-    }
-    func_0200fcb4(a);
-    return c;
 }

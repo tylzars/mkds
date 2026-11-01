@@ -13,6 +13,27 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_02148538.h"
 
+void func_020a3eb8(Unk020a3eb8 *a) {
+    data_0217b204 = func_0209bc74(a, data_02167878, data_02167888);
+    func_0209b940(data_0217b204, 0x3f);
+    func_0209b9a4(data_0217b204, 0x1a);
+    func_0209b8ac(data_0217b204, 0);
+    a->mUnk_1c = 1;
+}
+
+void func_020a3e38(void *p) {
+    Unk02061808 *g;
+
+    g = func_02061808();
+    data_0217b214.x = g->mUnk_024.x >> 1;
+    data_0217b214.y = g->mUnk_024.y >> 1;
+    data_0217b214.z = g->mUnk_024.z >> 1;
+    data_0217b208.x = g->mUnk_024.x >> 3;
+    data_0217b208.y = g->mUnk_024.y >> 3;
+    data_0217b208.z = g->mUnk_024.z >> 3;
+    func_0209bbd0(p, data_0217b204);
+}
+
 void func_020a3948(void *p, Unk020a2fe4 *a) {
     s32 j;
     s32 n;
@@ -127,25 +148,4 @@ void func_020a3948(void *p, Unk020a2fe4 *a) {
             func_01ff9048(0x12, &w2, 1);
         }
     }
-}
-
-void func_020a3e38(void *p) {
-    Unk02061808 *g;
-
-    g = func_02061808();
-    data_0217b214.x = g->mUnk_024.x >> 1;
-    data_0217b214.y = g->mUnk_024.y >> 1;
-    data_0217b214.z = g->mUnk_024.z >> 1;
-    data_0217b208.x = g->mUnk_024.x >> 3;
-    data_0217b208.y = g->mUnk_024.y >> 3;
-    data_0217b208.z = g->mUnk_024.z >> 3;
-    func_0209bbd0(p, data_0217b204);
-}
-
-void func_020a3eb8(Unk020a3eb8 *a) {
-    data_0217b204 = func_0209bc74(a, data_02167878, data_02167888);
-    func_0209b940(data_0217b204, 0x3f);
-    func_0209b9a4(data_0217b204, 0x1a);
-    func_0209b8ac(data_0217b204, 0);
-    a->mUnk_1c = 1;
 }

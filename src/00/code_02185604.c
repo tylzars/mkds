@@ -14,25 +14,14 @@
 #include "Main/Unknown/code_0212426c.h"
 #include "Main/Unknown/code_0212658c.h"
 
-void func_ov000_02185604(void *a) {
-    void *b;
+void func_ov000_02185788(void) {
+    u8 a[20];
+    s32 i;
 
-    data_ov000_021b4c88 = func_02036bec(a, 0x54);
-    data_ov000_021b4c88->mUnk_2c = a;
-    data_ov000_021b4c88->mUnk_00 = 0;
-    data_ov000_021b4c88->mUnk_04 = 0;
-    data_ov000_021b4c88->mUnk_28 = -1;
-    data_ov000_021b4c88->mUnk_08 = 0;
-    data_ov000_021b4c88->mUnk_4c = func_0204799c(data_ov000_021b0fc0);
-    data_ov000_021b4c88->mUnk_50 = func_02047a28(data_ov000_021b0fcc);
-    func_ov000_0218554c();
-    b = func_ov000_021804f4();
-    func_020ae6d4(b, func_ov000_021804e0());
-    func_02124ed0(a, data_ov000_021b4c88->mUnk_40, data_ov000_021b4c88->mUnk_48, &data_ov000_021b4c88->mUnk_30);
-    data_ov000_021b4c88->mUnk_0c = 0x50;
-    func_ov000_021854f8();
-    func_ov000_021856a8();
-    func_02126638(func_020b3f7c(data_ov000_021b4c88->mUnk_4c, 0x11), 0, 1, 0, 0, 0, 0);
+    func_02061220((u32) a);
+    for (i = 0; i < 12; i++) {
+        data_ov000_021b4c88->mUnk_0e[i] = a[i];
+    }
 }
 
 void func_ov000_021856a8(void) {
@@ -62,12 +51,23 @@ void func_ov000_021856a8(void) {
     }
 }
 
-void func_ov000_02185788(void) {
-    u8 a[20];
-    s32 i;
+void func_ov000_02185604(void *a) {
+    void *b;
 
-    func_02061220((u32) a);
-    for (i = 0; i < 12; i++) {
-        data_ov000_021b4c88->mUnk_0e[i] = a[i];
-    }
+    data_ov000_021b4c88 = func_02036bec(a, 0x54);
+    data_ov000_021b4c88->mUnk_2c = a;
+    data_ov000_021b4c88->mUnk_00 = 0;
+    data_ov000_021b4c88->mUnk_04 = 0;
+    data_ov000_021b4c88->mUnk_28 = -1;
+    data_ov000_021b4c88->mUnk_08 = 0;
+    data_ov000_021b4c88->mUnk_4c = func_0204799c(data_ov000_021b0fc0);
+    data_ov000_021b4c88->mUnk_50 = func_02047a28(data_ov000_021b0fcc);
+    func_ov000_0218554c();
+    b = func_ov000_021804f4();
+    func_020ae6d4(b, func_ov000_021804e0());
+    func_02124ed0(a, data_ov000_021b4c88->mUnk_40, data_ov000_021b4c88->mUnk_48, &data_ov000_021b4c88->mUnk_30);
+    data_ov000_021b4c88->mUnk_0c = 0x50;
+    func_ov000_021854f8();
+    func_ov000_021856a8();
+    func_02126638(func_020b3f7c(data_ov000_021b4c88->mUnk_4c, 0x11), 0, 1, 0, 0, 0, 0);
 }

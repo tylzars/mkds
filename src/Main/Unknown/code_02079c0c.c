@@ -3,26 +3,29 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_02012b30.h"
 
-void func_02079c0c(struct Unk0206bcb0_590 *a) {
-    u16 *p = (u16 *) data_0217ad00->mUnk_004;
-    u32 b;
-    u32 c;
-    u32 d;
+void func_02079f70(struct Unk0206bcb0_590 *a, u16 b, u16 c, u16 d) {
+    Unk0206bcb0_590_6a *q;
 
-    b = p[0];
-    c = p[3];
-    d = p[1];
-    func_020132cc(a->mUnk_010->mUnk_04, b);
-    func_020132cc(a->mUnk_014->mUnk_04, b);
-    func_020131f4(a->mUnk_010->mUnk_04, c);
-    func_020131f4(a->mUnk_014->mUnk_04, c);
-    func_02013284(a->mUnk_010->mUnk_04, d);
-    func_02013284(a->mUnk_014->mUnk_04, d);
-    if (a->mUnk_018 != 0) {
-        func_020132cc(a->mUnk_018->mUnk_04, b);
-        func_020131f4(a->mUnk_018->mUnk_04, c);
-        func_02013284(a->mUnk_018->mUnk_04, d);
-    }
+    q = &a->mUnk_06a;
+    q->mUnk_06 = a->mUnk_06a.mUnk_00 & 0x1f;
+    q->mUnk_0c = (s16) (b & 0x1f) - q->mUnk_06;
+    q->mUnk_08 = (a->mUnk_06a.mUnk_00 >> 5) & 0x1f;
+    q->mUnk_0e = (s16) ((b >> 5) & 0x1f) - q->mUnk_08;
+    q->mUnk_0a = (a->mUnk_06a.mUnk_00 >> 10) & 0x1f;
+    q->mUnk_10 = (s16) ((b >> 10) & 0x1f) - q->mUnk_0a;
+    q->mUnk_12 = q->mUnk_02 & 0x1f;
+    q->mUnk_18 = (s16) (c & 0x1f) - q->mUnk_12;
+    q->mUnk_14 = (q->mUnk_02 >> 5) & 0x1f;
+    q->mUnk_1a = (s16) ((c >> 5) & 0x1f) - q->mUnk_14;
+    q->mUnk_16 = (q->mUnk_02 >> 10) & 0x1f;
+    q->mUnk_1c = (s16) ((c >> 10) & 0x1f) - q->mUnk_16;
+    q->mUnk_1e = q->mUnk_04 & 0x1f;
+    q->mUnk_24 = (s16) (d & 0x1f) - q->mUnk_1e;
+    q->mUnk_20 = (q->mUnk_04 >> 5) & 0x1f;
+    q->mUnk_26 = (s16) ((d >> 5) & 0x1f) - q->mUnk_20;
+    q->mUnk_22 = (q->mUnk_04 >> 10) & 0x1f;
+    q->mUnk_28 = (s16) ((d >> 10) & 0x1f) - q->mUnk_22;
+    q->mUnk_2a = 0;
 }
 
 s32 func_02079ce0(struct Unk0206bcb0_590 *a, s32 b) {
@@ -68,27 +71,24 @@ s32 func_02079ce0(struct Unk0206bcb0_590 *a, s32 b) {
     return r;
 }
 
-void func_02079f70(struct Unk0206bcb0_590 *a, u16 b, u16 c, u16 d) {
-    Unk0206bcb0_590_6a *q;
+void func_02079c0c(struct Unk0206bcb0_590 *a) {
+    u16 *p = (u16 *) data_0217ad00->mUnk_004;
+    u32 b;
+    u32 c;
+    u32 d;
 
-    q = &a->mUnk_06a;
-    q->mUnk_06 = a->mUnk_06a.mUnk_00 & 0x1f;
-    q->mUnk_0c = (s16) (b & 0x1f) - q->mUnk_06;
-    q->mUnk_08 = (a->mUnk_06a.mUnk_00 >> 5) & 0x1f;
-    q->mUnk_0e = (s16) ((b >> 5) & 0x1f) - q->mUnk_08;
-    q->mUnk_0a = (a->mUnk_06a.mUnk_00 >> 10) & 0x1f;
-    q->mUnk_10 = (s16) ((b >> 10) & 0x1f) - q->mUnk_0a;
-    q->mUnk_12 = q->mUnk_02 & 0x1f;
-    q->mUnk_18 = (s16) (c & 0x1f) - q->mUnk_12;
-    q->mUnk_14 = (q->mUnk_02 >> 5) & 0x1f;
-    q->mUnk_1a = (s16) ((c >> 5) & 0x1f) - q->mUnk_14;
-    q->mUnk_16 = (q->mUnk_02 >> 10) & 0x1f;
-    q->mUnk_1c = (s16) ((c >> 10) & 0x1f) - q->mUnk_16;
-    q->mUnk_1e = q->mUnk_04 & 0x1f;
-    q->mUnk_24 = (s16) (d & 0x1f) - q->mUnk_1e;
-    q->mUnk_20 = (q->mUnk_04 >> 5) & 0x1f;
-    q->mUnk_26 = (s16) ((d >> 5) & 0x1f) - q->mUnk_20;
-    q->mUnk_22 = (q->mUnk_04 >> 10) & 0x1f;
-    q->mUnk_28 = (s16) ((d >> 10) & 0x1f) - q->mUnk_22;
-    q->mUnk_2a = 0;
+    b = p[0];
+    c = p[3];
+    d = p[1];
+    func_020132cc(a->mUnk_010->mUnk_04, b);
+    func_020132cc(a->mUnk_014->mUnk_04, b);
+    func_020131f4(a->mUnk_010->mUnk_04, c);
+    func_020131f4(a->mUnk_014->mUnk_04, c);
+    func_02013284(a->mUnk_010->mUnk_04, d);
+    func_02013284(a->mUnk_014->mUnk_04, d);
+    if (a->mUnk_018 != 0) {
+        func_020132cc(a->mUnk_018->mUnk_04, b);
+        func_020131f4(a->mUnk_018->mUnk_04, c);
+        func_02013284(a->mUnk_018->mUnk_04, d);
+    }
 }

@@ -3,13 +3,6 @@
 
 #pragma thumb on
 
-u32 func_02007148(u32 a, u32 b) {
-    if (b <= a) {
-        b = a;
-    }
-    return b;
-}
-
 void func_02007154(u32 a) {
     Unk0216fdac *v1;
     u16 v2;
@@ -30,6 +23,13 @@ void func_02007154(u32 a) {
         return;
     }
     v1->mUnk_1d48 = v3;
+}
+
+u32 func_02007148(u32 a, u32 b) {
+    if (b <= a) {
+        b = a;
+    }
+    return b;
 }
 
 #pragma thumb off

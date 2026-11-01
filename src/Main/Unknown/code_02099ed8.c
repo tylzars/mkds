@@ -6,8 +6,8 @@
 #include "Main/Unknown/code_0209bef0.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_02099ed8(void *a) {
-    func_0209bbd0(a, data_0217b124);
+void *func_02099f24(void) {
+    return (void *) func_0209bef0(func_02099fd4, func_02099f48, func_02099fbc);
 }
 
 void func_02099ef0(void *a) {
@@ -15,6 +15,6 @@ void func_02099ef0(void *a) {
     func_0209b940(data_0217b124, 0x3f);
 }
 
-void *func_02099f24(void) {
-    return (void *) func_0209bef0(func_02099fd4, func_02099f48, func_02099fbc);
+void func_02099ed8(void *a) {
+    func_0209bbd0(a, data_0217b124);
 }

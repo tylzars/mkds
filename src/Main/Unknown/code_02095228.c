@@ -37,18 +37,6 @@ static inline u16 func_020952dc_inline(u32 n) {
     return (u16) t;
 }
 
-void func_02095228(Unk02095228 *a) {
-    s32 i;
-    Unk02094e8c *o;
-
-    if (a == 0) {
-        return;
-    }
-    for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != 0; i++) {
-        o->mUnk_a0 = (u16) func_02095228_inline(&data_0217561c->mUnk_498, 0xf);
-    }
-}
-
 void func_020952dc(Unk02094e8c *a, s32 b, s32 c, s32 d, s32 e) {
     s32 i;
     s32 k;
@@ -79,5 +67,17 @@ void func_020952dc(Unk02094e8c *a, s32 b, s32 c, s32 d, s32 e) {
             func_02094000(&v);
         }
         a->mUnk_a8 = func_020952dc_inline((u16) e);
+    }
+}
+
+void func_02095228(Unk02095228 *a) {
+    s32 i;
+    Unk02094e8c *o;
+
+    if (a == 0) {
+        return;
+    }
+    for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != 0; i++) {
+        o->mUnk_a0 = (u16) func_02095228_inline(&data_0217561c->mUnk_498, 0xf);
     }
 }

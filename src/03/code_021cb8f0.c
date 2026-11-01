@@ -18,23 +18,6 @@
 #include "Main/Unknown/code_0215109c.h"
 #include "code_0214d018.h"
 
-void func_ov003_021cb8f0(u32 param_1) {
-    s32 a = func_ov000_021887cc();
-    if (a != 0) {
-        func_ov003_021bf9b8();
-        func_ov003_021cdbd0();
-        if (a > 0) {
-            data_ov003_021da248 = 1;
-            func_ov003_021cdc10(0x11);
-        } else {
-            func_ov003_021c7844(func_ov000_02188758());
-            func_ov003_021cdc10(0x12);
-        }
-        func_ov003_021c212c(func_ov003_021cb9e8);
-        func_ov003_021d34c8(0, param_1);
-    }
-}
-
 void func_ov003_021cb948(void) {
     u32 a = func_ov003_021cd4dc();
     if (func_ov000_02188720() != 0) {
@@ -50,5 +33,22 @@ void func_ov003_021cb948(void) {
             func_ov003_021c2120(0, 1);
             func_ov003_021c212c(func_ov003_021cbdbc);
         }
+    }
+}
+
+void func_ov003_021cb8f0(u32 param_1) {
+    s32 a = func_ov000_021887cc();
+    if (a != 0) {
+        func_ov003_021bf9b8();
+        func_ov003_021cdbd0();
+        if (a > 0) {
+            data_ov003_021da248 = 1;
+            func_ov003_021cdc10(0x11);
+        } else {
+            func_ov003_021c7844(func_ov000_02188758());
+            func_ov003_021cdc10(0x12);
+        }
+        func_ov003_021c212c(func_ov003_021cb9e8);
+        func_ov003_021d34c8(0, param_1);
     }
 }

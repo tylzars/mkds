@@ -12,17 +12,9 @@
 #include "code_02139f70.h"
 #include "Main/Unknown/code_0200f6e4.h"
 
-u32 func_ov000_0218e8c4(void) {
-    u64 t;
-    if (func_0200f6e4() != 1) {
-        func_0213442c(data_ov000_021b23b0, data_ov000_021b23d0, 0, 0x109);
-    }
-    t = func_0200f5ac();
-    return (t << 6) / 0x82ea;
-}
-
-u32 func_ov000_0218e908(Unk0218f960 *a, s32 b, const u8 *c) {
+u32 func_ov000_0218eb44(Unk0218f960 *a, u32 b) {
     Unk0218f960_00 *o;
+    u32 r;
     if (a == 0 || (o = a->mUnk_00) == 0) {
         return 2;
     }
@@ -33,11 +25,11 @@ u32 func_ov000_0218e908(Unk0218f960 *a, s32 b, const u8 *c) {
         func_ov000_02196590(a, data_ov000_021b23e8);
         return 2;
     }
-    if (c == 0) {
-        func_ov000_02196590(a, data_ov000_021b243c);
-        return 2;
+    r = func_ov000_0218f960(a, b);
+    if (r == 0) {
+        return 0;
     }
-    return func_ov000_0218fb3c(a, b, 1, c);
+    return r;
 }
 
 u32 func_ov000_0218e974(Unk0218f960 *a, s32 b, const u8 *c, const u8 *d) {
@@ -101,9 +93,8 @@ u32 func_ov000_0218e974(Unk0218f960 *a, s32 b, const u8 *c, const u8 *d) {
     return 0;
 }
 
-u32 func_ov000_0218eb44(Unk0218f960 *a, u32 b) {
+u32 func_ov000_0218e908(Unk0218f960 *a, s32 b, const u8 *c) {
     Unk0218f960_00 *o;
-    u32 r;
     if (a == 0 || (o = a->mUnk_00) == 0) {
         return 2;
     }
@@ -114,9 +105,18 @@ u32 func_ov000_0218eb44(Unk0218f960 *a, u32 b) {
         func_ov000_02196590(a, data_ov000_021b23e8);
         return 2;
     }
-    r = func_ov000_0218f960(a, b);
-    if (r == 0) {
-        return 0;
+    if (c == 0) {
+        func_ov000_02196590(a, data_ov000_021b243c);
+        return 2;
     }
-    return r;
+    return func_ov000_0218fb3c(a, b, 1, c);
+}
+
+u32 func_ov000_0218e8c4(void) {
+    u64 t;
+    if (func_0200f6e4() != 1) {
+        func_0213442c(data_ov000_021b23b0, data_ov000_021b23d0, 0, 0x109);
+    }
+    t = func_0200f5ac();
+    return (t << 6) / 0x82ea;
 }
