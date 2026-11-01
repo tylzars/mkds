@@ -30,11 +30,9 @@ int func_ov000_02198ba8(Unk02197fe8 *a, u16 b, u16 c) {
     return 1;
 }
 
-// non-matching: same size; same register order difference in the three-byte buffer set-up as func_ov000_02198ba8
 int func_ov000_02198c08(Unk02197fe8 *a) {
     u8 b[3];
-    b[0] = data_ov000_021b3fa4[0];
-    b[1] = data_ov000_021b3fa4[1];
+    func_ov000_02198ba8_inline(b, data_ov000_021b3fa4);
     b[2] = 0x64;
     func_ov000_0219a01c(b, 3, a->mUnk_66);
     if (func_ov000_02198714((u32 *) a, (u32) b, 5) == 0) {

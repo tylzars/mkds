@@ -117,9 +117,6 @@ void func_020adec0(u16 *a, s32 b, s32 c, s32 d) {
     a[(b + c * 64) / 8] = t | (d << s);
 }
 
-// non-matching: the original reads the halfword a[i * 16 + j] once before the k loop and keeps the value in a stack
-// word; here the loop keeps the element address in the stack word and reloads the halfword for every k (2 bytes
-// longer). Tried: a named value, a const pointer, the order of the quotient and remainder locals.
 void func_020ade08(const u16 *a, u16 *b, s32 c, s32 d, Unk020ade08_f *e) {
     s32 i;
     s32 j;
@@ -128,6 +125,7 @@ void func_020ade08(const u16 *a, u16 *b, s32 c, s32 d, Unk020ade08_f *e) {
     s32 q;
     s32 u;
     s32 w;
+    u16 v;
 
     for (i = 0; i < 16; i++) {
         p = i / 8;
@@ -135,8 +133,9 @@ void func_020ade08(const u16 *a, u16 *b, s32 c, s32 d, Unk020ade08_f *e) {
         for (j = 0; j < 16; j++) {
             u = j / 2;
             w = j % 2;
+            v = a[i * 16 + j];
             for (k = 0; k < 4; k++) {
-                switch ((u8) ((a[i * 16 + j] >> (k * 4)) % 16)) {
+                switch ((u8) ((v >> (k * 4)) % 16)) {
                     case 0:
                         break;
                     case 1:

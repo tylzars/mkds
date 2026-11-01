@@ -6,14 +6,12 @@
 #include "code_0200dc3c.h"
 #include "Main/Unknown/code_02000800.h"
 
-// non-matching: loop guard at +0x2c is `cmp r6, r0` + `bcs` (ours) against `cmp r0, #0` + `bls` (original); size and
-// all other words equal
 Unk021b5f50_2270_0c *func_ov000_021a669c(void) {
     Unk021b5f50 *g;
     Unk021b5f50_2270 *l;
     Unk021b5f50_2270_0c *e;
     u32 n;
-    enum { K0 } i;
+    s32 i;
 
     g = func_ov000_021a5b30();
     l = g->mUnk_2270;
@@ -22,7 +20,7 @@ Unk021b5f50_2270_0c *func_ov000_021a669c(void) {
         n = (g->mUnk_2274 - 0xc) / 0xd0;
         if (n != 0 && n > l->mUnk_00) {
             for (i = 0; i < n; i++) {
-                e = &l->mUnk_0c[i];
+                e = &l->mUnk_0c[(u32) i];
                 if (e->mUnk_00 == 0) {
                     break;
                 }

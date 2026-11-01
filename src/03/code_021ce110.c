@@ -106,26 +106,14 @@ void func_ov003_021ce370(Unk021d34e0 *a) {
     func_ov003_021d34e0(a, func_ov003_021ce2d0);
 }
 
-// non-matching: the original loads r5 (object offset from the counter at [sp, #4]) before r7 and the stack pointer, and
-// steps r5 second in the loop; ours loads r5 after them and steps it last, same size
 void func_ov003_021ce408(u32 a) {
     s32 i;
-    u8 *b;
-    Unk021cdd48_66a8 *d;
-    u8 *c;
     data_ov003_021da27c = func_ov003_021d283c(0x1c, 4);
-    i = 0;
-    b = data_ov003_021d6688 + a * 5;
-    d = data_ov003_021d66a8;
-    c = data_ov003_021d6698 + a * 5;
-    for (; i < 5; i++) {
-        data_ov003_021da27c->mUnk_00[i] = func_ov003_021d1be4(1, *b, 1);
+    for (i = 0; i < 5; i++) {
+        data_ov003_021da27c->mUnk_00[i] = func_ov003_021d1be4(1, data_ov003_021d6688[a][i], 1);
         func_ov003_021d1790(data_ov003_021da27c->mUnk_00[i], -1, 0);
-        func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, -0x2a, d->mUnk_02);
-        func_ov003_021d1890(data_ov003_021da27c->mUnk_00[i], -1, 0, *c);
-        b++;
-        d++;
-        c++;
+        func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, -0x2a, data_ov003_021d66a8[i].mUnk_02);
+        func_ov003_021d1890(data_ov003_021da27c->mUnk_00[i], -1, 0, data_ov003_021d6698[a][i]);
     }
     data_ov003_021da27c->mTask = func_ov003_021d3544(0, func_ov003_021ce370, 0, 0x78);
     func_ov003_021cdcf0(a);

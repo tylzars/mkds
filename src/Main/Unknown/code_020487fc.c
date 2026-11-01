@@ -32,6 +32,8 @@
 #include "Main/Unknown/code_02055000.h"
 #include "Main/Unknown/code_020b4000.h"
 
+#pragma opt_rebuildconditionals off
+
 static inline u32 func_020487fc_inline(void) {
     if (data_0217aa00 == 0) {
         return 0;
@@ -171,11 +173,6 @@ static inline s32 func_020487fc_inline14(void) {
     return 1;
 }
 
-// non-matching: register choice only, in the four expansions of func_020487fc_inline6 that sit in the loops with
-// hoisted constants (0x358-0x3bc, 0x62c-0x690, 0x754-0x7bc, 0xd68-0xdcc): the original keeps the
-// func_020487fc_inline2 value in r0 (r1 at 0x754), the func_020487fc_inline3 value in r2, the func_020487fc_inline4
-// value in r3, the func_020487fc_inline6 value in r6/r5/r5/fp and the func_020487fc_inline value in ip; this
-// source gives r3, r6/r5/r5/fp, ip, r0, r2 (rotated). Every other instruction matches.
 void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
     u32 v;
     u32 t;

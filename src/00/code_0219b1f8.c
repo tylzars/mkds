@@ -151,15 +151,14 @@ void func_ov000_0219b4a4(Unk0219887c *a, void *b, s32 c, u32 d) {
     func_ov000_021a317c(a, b, c, d);
 }
 
-// non-matching: registers only, the twelve zero stores of c use r3 as base and r2 as zero; the original uses r4 and r3
-void func_ov000_0219b4b4(u32 a, Unk0219b4b4 *b) {
+void func_ov000_0219b4b4(u32 a, Unk0219b4b4 *b, u32 g) {
     u8 *d;
     u8 c[12] = {0};
     u32 e;
     Unk021b54c8 *f;
 
     d = b->mUnk_08;
-    if (func_ov000_0219d6c4(a, (u32 *) b) == 0) {
+    if (func_ov000_0219d6c4(a, (u32 *) b, g) == 0) {
         if (func_02134d30(d, data_ov000_021b4058, func_0213a434(data_ov000_021b4058)) == 0) {
             d += func_0213a434(data_ov000_021b4058);
             e = func_02139ffc(d, 0x76) - d;

@@ -176,39 +176,26 @@ s32 func_0204e29c(void) {
     return r;
 }
 
-// non-matching: size 0xac against 0xb0; the original puts the compare with 20 after the table's range check and lays
-// out the case bodies as 11, 20, 7, 4, 3 and 6, with the empty cases sharing the last exit; here the compare is the
-// default.
 void func_0204e304(u32 a) {
     switch (a) {
-        case 0:
-        case 1:
-        case 2:
-        case 5:
-        case 8:
-        case 9:
-        case 10:
-            break;
-        case 3:
-        case 6:
-            data_0217aa00->mUnk_169c = 0;
+        case 11:
             data_0217aa00->mUnk_0010 = 0;
             break;
-        case 4:
-            func_02050e60(5);
+        case 20:
+            data_0217aa00->mUnk_1692 = (func_0200f5ac() >> 10) % 40;
+            data_0217aa00->mUnk_0010 = 0;
             break;
         case 7:
             data_0217aa00->mUnk_169c = 1;
             data_0217aa00->mUnk_0004 = 6;
             break;
-        case 11:
-            data_0217aa00->mUnk_0010 = 0;
+        case 4:
+            func_02050e60(5);
             break;
-        default:
-            if (a == 20) {
-                data_0217aa00->mUnk_1692 = (func_0200f5ac() >> 10) % 40;
-                data_0217aa00->mUnk_0010 = 0;
-            }
+        case 3:
+        case 6:
+            data_0217aa00->mUnk_169c = 0;
+            data_0217aa00->mUnk_0010 = 0;
             break;
     }
 }

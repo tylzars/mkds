@@ -354,28 +354,16 @@ u32 func_0210e5e4(u32 a, u32 b) {
     return x;
 }
 
-// non-matching: 15 words from +0x10 to +0x84, the same 0xc0 bytes: the original stores a.mUnk_00 first and
-// shifts one variable three times, copies b to c as four byte writes, then reads the bytes of c into v; the
-// compiled copy shifts three separate locals and orders the byte writes of c and the reads of v differently.
 u32 func_0210e524(void) {
-    Unk0210e524 a, b, c;
+    Unk0215316c b, c;
     Unk0215c380 v;
-    u32 x, y, z, w;
 
-    x = func_0202577c(0x29);
-    a.mUnk_00 = x;
-    y = x >> 8;
-    a.mUnk_01 = y;
-    z = y >> 8;
-    a.mUnk_02 = z;
-    w = z >> 8;
-    a.mUnk_03 = w;
-    b = a;
-    b.mUnk_01 = func_0211127c();
+    b = func_0202577c(0x29);
+    b.mUnk_00[1] = func_0211127c();
     c = b;
-    v.mUnk_00 = c.mUnk_01;
-    v.mUnk_04 = c.mUnk_02;
-    v.mUnk_08 = c.mUnk_03;
+    v.mUnk_00 = c.mUnk_00[1];
+    v.mUnk_04 = c.mUnk_00[2];
+    v.mUnk_08 = c.mUnk_00[3];
     func_0212d5e0(&data_0217d0a0);
     return func_0210e98c(v, 1) != 0;
 }

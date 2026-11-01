@@ -25,8 +25,8 @@ typedef struct Unk021ce4d4 {
 } Unk021ce4d4;
 
 extern u8 data_ov003_021d66bc[];
-extern u8 data_ov003_021d6688[];
-extern u8 data_ov003_021d6698[];
+extern u8 data_ov003_021d6688[][5];
+extern u8 data_ov003_021d6698[][5];
 
 void func_ov003_021ce110(Unk021d34e0 *a);
 void func_ov003_021ce190(Unk021d34e0 *a);

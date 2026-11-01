@@ -13,14 +13,11 @@
 
 #pragma thumb on
 
-// non-matching: original loads mUnk_02e << 6 into r5 before mUnk_008 into r4 and ends with adds r1, r4, r5 (3 words
-// differ, same size)
 void func_0202ee88(void) {
-    Unk02174e48 *p = data_02174e48;
-    s32 v1 = p->mUnk_02e;
-    Unk02124b1c *q = p->mUnk_008;
-    if (q[v1].mUnk_00 != 0) {
-        q[v1].mUnk_06 = p->mUnk_030 * (p->mUnk_040 - p->mUnk_044) / (p->mUnk_034 - 5);
+    if (data_02174e48->mUnk_008[data_02174e48->mUnk_02e].mUnk_00 != 0) {
+        data_02174e48->mUnk_008[data_02174e48->mUnk_02e].mUnk_06 = data_02174e48->mUnk_030 *
+                                                                   (data_02174e48->mUnk_040 - data_02174e48->mUnk_044) /
+                                                                   (data_02174e48->mUnk_034 - 5);
     }
 }
 

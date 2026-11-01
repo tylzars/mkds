@@ -19,12 +19,14 @@ Unk0201ca6c *func_0208b60c(s32 a, Vec3 *b) {
     return q;
 }
 
-// non-matching: 0x4c bytes, original 0x5c; the original pushes lr and reserves 4 stack bytes
 void func_0208b5b0(void *v1, const Vec3 *b) {
     Unk0201ca6c *a = v1;
-    a->mUnk_28.x = a->mUnk_20->mUnk_00->mUnk_04.x + (b->x >> 4);
-    a->mUnk_28.y = a->mUnk_20->mUnk_00->mUnk_04.y + (b->y >> 4);
-    a->mUnk_28.z = a->mUnk_20->mUnk_00->mUnk_04.z + (b->z >> 4);
+    s32 c = b->x;
+    s32 d = b->y;
+    s32 e = b->z;
+    a->mUnk_28.x = (c >> 4) + a->mUnk_20->mUnk_00->mUnk_04.x;
+    a->mUnk_28.y = (d >> 4) + a->mUnk_20->mUnk_00->mUnk_04.y;
+    a->mUnk_28.z = (e >> 4) + a->mUnk_20->mUnk_00->mUnk_04.z;
 }
 
 void *func_0208b498(u32 a, Vec3 *b, u32 c, s32 d) {

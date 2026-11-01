@@ -7,6 +7,8 @@
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/unk_0217a000.h"
 
+#pragma opt_rebuildconditionals off
+
 s32 func_02059b78(Unk020487fc *a) {
     Unk021a9034 b = data_02165368;
 
@@ -30,9 +32,9 @@ static inline void func_02059878_inline2(u16 v) {
 }
 
 u32 func_02059b28(u32 a) {
+    u32 n;
     u8 *p;
     u32 r;
-    u32 n;
     u32 i;
 
     p = data_0217aa00->mUnk_162c[a];
@@ -51,8 +53,6 @@ u32 func_02059b28(u32 a) {
     return r;
 }
 
-// non-matching: register choice only; the original keeps the (u8) (1 << a[0]) value in r3 and the
-// func_02059878_inline value in r2, this source gives r2 and r3.
 void func_02059954(u8 *a) {
     u32 i;
     Unk0217aa00_45c *e;

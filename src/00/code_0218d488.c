@@ -16,7 +16,8 @@
 #include "code_02139f70.h"
 #include "00/code_0218e8c4.h"
 
-// non-matching: the entry loads of *a and *b are in the other order (2 instructions, same size)
+#pragma opt_propagation off
+
 s32 func_ov000_0218d488(u32 *a, u32 *b) {
     u32 e;
     u32 f;
@@ -37,7 +38,6 @@ s32 func_ov000_0218d488(u32 *a, u32 *b) {
     return -((float) d < 0);
 }
 
-// non-matching: the entry loads of *a and *b are in the other order (2 instructions, same size)
 s32 func_ov000_0218d528(u32 *a, u32 *b) {
     u32 e;
     u32 f;

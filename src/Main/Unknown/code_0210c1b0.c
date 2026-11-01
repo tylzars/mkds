@@ -15,8 +15,8 @@
 #include "code_0212c6ac.h"
 #include "code_0212d254.h"
 
-// non-matching: the parameter is in r6 here and r5 in the original, the loop pointer in r5 and r4, and
-// the hoisted address of data_0217d054 in r4 and r6; the instructions are otherwise identical.
+#pragma opt_loop_invariants off
+
 void func_0210cc3c(Unk0210bfbc *p) {
     Unk0210bf24 *a;
     u32 v;

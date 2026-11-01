@@ -21,6 +21,8 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "00/code_02182fdc.h"
 
+#pragma opt_rebuildconditionals off
+
 Unk0205ec14 *func_0205eda0(void *a) {
     Unk0205ec14 *p = func_02036bec(a, 0xb04);
     if (p != 0) {
@@ -221,8 +223,6 @@ static inline s32 func_0205e5c4_inline(void) {
     return data_0217aa00->mUnk_0000;
 }
 
-// non-matching: 6 instructions differ: the result of the inline getter and the local c are in each other's registers
-// (r1 and r2).
 void func_0205e5c4(s32 a) {
     void (*f)(void);
     s32 c;

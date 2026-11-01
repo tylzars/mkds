@@ -138,23 +138,16 @@ s32 func_ov000_021881d0(const s8 *a, u32 b, u8 *c, u32 d) {
     return v1 - c;
 }
 
-// non-matching: one instruction, +0x28: original `adds r0, r0, r5`, ours `adds r0, r5, r0`; size equal. The calls
-// differ too: the original divides b by 3 unsigned (`_u32_div_f`), e by 6 signed (`_s32_div_f`)
-s32 func_ov000_021882f8(const u8 *a, s32 b, s8 *c, u32 d) {
+s32 func_ov000_021882f8(const u8 *a, u32 b, s8 *c, u32 d) {
     const u8 *v1;
-    u32 e;
+    s32 e;
     u32 r;
     s32 k;
     s32 l;
     s8 *v2;
     u8 v3[3];
 
-    if (b % 3 != 0) {
-        r = 4;
-    } else {
-        r = 0;
-    }
-    r += b / 3 * 4;
+    r = b / 3 * 4 + (b % 3 != 0 ? 4 : 0);
     if (c == 0) {
         return r;
     }
@@ -166,12 +159,7 @@ s32 func_ov000_021882f8(const u8 *a, s32 b, s8 *c, u32 d) {
     while (a != v1) {
         l = v1 - a;
         e = l * 8;
-        if (e % 6 != 0) {
-            k = 1;
-        } else {
-            k = 0;
-        }
-        k = e / 6 + k;
+        k = e / 6 + (e % 6 != 0 ? 1 : 0);
         if (l >= 3) {
             l = 3;
         }

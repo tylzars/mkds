@@ -31,6 +31,8 @@
 #include "code_021488e8.h"
 #include "Main/Unknown/code_02039230.h"
 
+#pragma opt_rebuildconditionals off
+
 static inline u32 func_0204984c_inline(void) {
     if (data_0217aa00 == 0) {
         return 0;
@@ -137,8 +139,6 @@ void func_02049980(s32 a) {
     func_02049e38(a);
 }
 
-// non-matching: registers only, in the inlined func_0204984c_inline2: the original keeps the zero constant and the flag
-// in r2 and the func_0204984c_inline value in r1; this source gives r1 and r2 (swapped). Same size as the original.
 u32 func_0204998c(void) {
     s32 v;
 
@@ -160,8 +160,6 @@ u32 func_0204998c(void) {
     return 0;
 }
 
-// non-matching: registers only, in the inlined func_0204984c_inline2: the original keeps the zero constant and the flag
-// in r2 and the func_0204984c_inline value in r1; this source gives r1 and r2 (swapped). Same size as the original.
 s32 func_02049aa4(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || func_0204984c_inline2() ||
         (func_0205e0a0() == 12 && func_ov000_02180600() == 0) ||

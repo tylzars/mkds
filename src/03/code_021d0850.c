@@ -6,8 +6,6 @@
 #include "03/unk_021da000.h"
 #include "code_0214d018.h"
 
-// non-matching: the entry pointer is stepped by 0x44 in a register each pass (adds r4, #0x44) instead of computed with
-// muls, so the registers differ from the first load on; size 0xb4 against 0xb0
 void func_ov003_021d0850(void) {
     s32 i;
     Unk021da2ac *p;
@@ -16,7 +14,7 @@ void func_ov003_021d0850(void) {
     for (i = 0; i < 16; i++) {
         p = data_ov003_021da2ac;
         if (p->mUnk_208[i] != 0) {
-            e = &p->mUnk_100[i];
+            e = &p->mUnk_100[(u32) i];
             if (i == 1) {
                 if (p->mUnk_a93 == 1) {
                     if (e->mUnk_00 != 0x10) {

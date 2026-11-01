@@ -7,14 +7,12 @@
 #include "code_021453ec.h"
 #include "code_02142eac.h"
 
-// non-matching: r1 and r2 swapped in 3 instructions around the indirect call (data pointer in r2 and offset constant in
-// r1 instead of r1 and r2)
 s32 func_ov003_021d06b0(void) {
     u32 a;
     s32 r;
 
     func_ov003_021d07b0(3);
-    a = data_ov003_021da2a8->mUnk_13ac(data_ov003_021da2a8->mUnk_13c0);
+    a = data_ov003_021da2a8->mUnk_13ac(data_ov003_021da2a8->mUnk_13c0, data_ov003_021da2a8);
     r = func_02145708((u32) func_ov003_021d0680, a, data_ov003_021da2a8->mUnk_13c0);
     if (r != 2) {
         func_ov003_021d079c(r);

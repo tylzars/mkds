@@ -16,8 +16,11 @@ void func_ov003_021d1790(Unk021d1770 *param_1, s32 param_2, u32 param_3) {
     }
 }
 
-// non-matching: size 0xa8 against 0xbc; the original spills the first argument and the temporaries of the loop to the
-// stack (frame 0x18, five spilled values)
+static inline void func_ov003_021d17d4_inline(Unk021d1770_08 *p, u32 *x, u32 *y) {
+    *x = (p->mUnk_00 & 0x1ff0000) >> 16;
+    *y = p->mUnk_00 & 0xff;
+}
+
 void func_ov003_021d17d4(Unk021d1770 *param_1, s32 param_2, u32 param_3, u32 param_4) {
     Unk021d1770_08 *a = param_1->mUnk_08;
     s32 i;
@@ -25,22 +28,21 @@ void func_ov003_021d17d4(Unk021d1770 *param_1, s32 param_2, u32 param_3, u32 par
     s32 c;
     s32 d;
     s32 e;
+    s32 f;
+    s32 g;
 
     if (param_2 >= 0) {
-        a[param_2].mUnk_00 = ((param_3 & 0x1ff) << 16) | (a[param_2].mUnk_00 & 0xfe00ff00) | (param_4 & 0xff);
+        u32 t = a[param_2].mUnk_00;
+
+        a[param_2].mUnk_00 = ((param_3 & 0x1ff) << 16) | ((t & 0xfe00ff00) | (param_4 & 0xff));
     } else {
-        b = (a->mUnk_00 & 0x1ff0000) >> 16;
-        c = a->mUnk_00 & 0xff;
-        a->mUnk_00 = ((param_3 & 0x1ff) << 16) | (a->mUnk_00 & 0xfe00ff00) | (param_4 & 0xff);
+        func_ov003_021d17d4_inline(a, (u32 *) &b, (u32 *) &c);
+        a->mUnk_00 = ((param_3 & 0x1ff) << 16) | ((a->mUnk_00 & 0xfe00ff00) | (param_4 & 0xff));
         d = param_3 - b;
         e = param_4 - c;
-        a++;
         for (i = 1; i < param_1->mUnk_0c; i++) {
-            s32 f = (a->mUnk_00 & 0x1ff0000) >> 16;
-            s32 g = a->mUnk_00 & 0xff;
-
-            a->mUnk_00 = (((f + d) & 0x1ff) << 16) | (a->mUnk_00 & 0xfe00ff00) | ((g + e) & 0xff);
-            a++;
+            func_ov003_021d17d4_inline(&a[i], (u32 *) &f, (u32 *) &g);
+            a[i].mUnk_00 = (((f + d) & 0x1ff) << 16) | ((a[i].mUnk_00 & 0xfe00ff00) | ((g + e) & 0xff));
         }
     }
 }

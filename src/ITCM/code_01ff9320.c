@@ -2,6 +2,8 @@
 #include "ITCM/code_01ff8000.h"
 #include "code_02147cd8.h"
 
+#pragma opt_arithtransformation off
+
 // non-matching: same instructions and stores, but the constants are held in other registers (this one loads 0x1000
 // into r3, 3 into r2, 2 into r1 and 0 into r0; the original keeps 0 in r1, 3 in r3, 2 in r2 and 0x1000 in r0), and
 // the 64-bit products are compiled in a different order.
@@ -48,8 +50,8 @@ void func_01ff946c(s32 *o) {
     o[13] = 0;
 }
 
-// non-matching: size 0x40 against 0x44; the original computes -(x << 1) with lsl, rsb #0 and then add #0x2000 (this one
-// folds it to rsb r, r, #0x2000), and holds the halfword in r3 with ip as the zero register.
+// non-matching: registers only, 9 words (same size): the original keeps the zero in ip and the halfword in r3, and
+// computes the lsl / rsb #0 / add #0x2000 chain in r1; this source gives r3, r1 and r2.
 void func_01ff9490(s32 *o, const Unk0201290c_1c *v1) {
     s32 t;
 
@@ -62,8 +64,6 @@ void func_01ff9490(s32 *o, const Unk0201290c_1c *v1) {
     o[4] = 0;
 }
 
-// non-matching: size 0xc0 against 0xc4; the original negates with rsb #0 and adds #0x1000 afterwards in the two
-// products at +0x30/+0x34 (this one folds them to rsb r, r, #0x1000 and add/sub order differs).
 void func_01ff94d4(s32 *o, const Unk0201290c_1c *v1) {
     s32 a;
     s32 b;

@@ -34,15 +34,6 @@ void func_0210bc54(Unk02017328 *a, void *b) {
     }
 }
 
-// non-matching: the original fills the 0x17 rows with eight zero words each (two stm per row, no loads);
-// mine keeps the zero struct on the stack and loads it (ldm) into each row.
 void func_0210bc14(void) {
-    s32 i;
-    Unk0217cd30 *p;
-    Unk0217cd30 v = {0};
-
-    p = (Unk0217cd30 *) data_0217cd30;
-    for (i = 0; i < 0x17; i++) {
-        *p++ = v;
-    }
+    __clear(data_0217cd30, 0x17 * sizeof(Unk0217cd30));
 }

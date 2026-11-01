@@ -4,41 +4,31 @@
 #include "code_0214d018.h"
 #include "Main/Unknown/code_021507c8.h"
 
-// non-matching: size 0xf4 against 0xf2; ours spills the base pointer and strength-reduces the offset into a second
-// register, the original keeps the base pointer in r7 and loads the offset from the stack offset 12 each pass
 s32 func_ov000_0218a350(const u8 *a, u8 *b, s32 c, u32 d) {
     s32 f;
     s32 g;
-    s32 l;
-    u32 e;
     s32 h;
-    s32 i;
     u32 t;
+    s32 i;
     u32 w;
     u32 x;
     s32 m;
-    s32 n;
-    s32 o;
-    e = (u32) (c * 3) >> 2;
-    if (d >= e) {
+    if (d >= (u32) (c * 3) >> 2) {
         f = c & 3;
         g = c - f;
     } else {
         return -1;
     }
     h = 0;
-    l = 0;
     for (; h < g; h += 4) {
         t = 0;
         for (i = 0; i < 4; i++) {
             t |= func_ov000_0218a444(a[h + i]) << ((3 - i) * 6);
         }
         w = t;
-        o = l * 3;
         for (m = 0; m < 3; m++) {
-            b[o + m] = ((u8 *) &w)[2 - m];
+            b[h / 4 * 3 + m] = ((u8 *) &w)[2 - m];
         }
-        l++;
     }
     if (f != 0) {
         t = 0;
@@ -47,14 +37,11 @@ s32 func_ov000_0218a350(const u8 *a, u8 *b, s32 c, u32 d) {
             t |= func_ov000_0218a444(a[g + i]) << ((3 - i) * 6);
             x |= t;
         }
-        g *= 3;
-        n = g / 4;
         for (i = 0; i < f; i++) {
-            b[n] = ((u8 *) &x)[2 - i];
-            n++;
+            b[g * 3 / 4 + i] = ((u8 *) &x)[2 - i];
         }
     }
-    return e;
+    return (u32) (c * 3) >> 2;
 }
 
 s32 func_ov000_0218a444(u32 c) {

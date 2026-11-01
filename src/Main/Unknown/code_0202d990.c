@@ -1,5 +1,7 @@
 #include "Main/Unknown/code_0202d990.h"
 
+#pragma opt_arithtransformation off
+
 #pragma thumb on
 
 s32 func_0202d990(s32 a) {
@@ -117,8 +119,6 @@ void func_0202dcf4(u32 a, void *b) {
     }
 }
 
-// non-matching: ours branches with blt over `movs r0, #1`, original branches with bge over `movs r0, #0` (the two
-// result moves are swapped, 3 words differ, size matches)
 s32 func_0202dd80(s32 a) {
     return a < data_02174e44->mUnk_80c ? 0 : 1;
 }

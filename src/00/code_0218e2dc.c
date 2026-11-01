@@ -4,8 +4,8 @@
 #include "Main/Unknown/code_0200f6e4.h"
 #include "code_0213442c.h"
 
-// non-matching: the product of the high half is computed before the one of the low half and the constant words load
-// in another order (size 0x40 against 0x44)
+#pragma opt_propagation off
+
 u32 func_ov000_0218e2dc(u32 param_1) {
     u32 a = (param_1 & 0xffff) * 0x41a7;
     u32 b = (param_1 >> 16) * 0x41a7;

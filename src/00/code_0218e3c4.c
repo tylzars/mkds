@@ -9,6 +9,8 @@
 #include "00/code_021a9104.h"
 #include "code_0214d018.h"
 
+#pragma opt_propagation off
+
 s32 func_ov000_0218e3c4(s32 param_1, s32 param_2, s32 param_3, void *param_4, s32 *param_5) {
     func_0214d168(param_4, 0, *param_5);
     return func_ov000_0218e56c(0, -1);
@@ -28,7 +30,6 @@ s32 func_ov000_0218e420(s32 param_1, void *param_2, s32 param_3, s32 param_4) {
     return func_ov000_0218e56c(func_ov000_021a9088(param_1, param_2, param_3, param_4), -1);
 }
 
-// non-matching: r4 and r5 swapped (same instructions otherwise)
 s32 func_ov000_0218e438(s32 param_1, void *param_2, s32 param_3, s32 param_4, void *param_5, s32 *param_6) {
     u8 *a = param_5;
     s32 *b = param_6;

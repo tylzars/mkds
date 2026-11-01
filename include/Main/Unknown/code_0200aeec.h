@@ -24,7 +24,7 @@ typedef struct Unk0200aeec {
 typedef struct Unk0200aeec_head {
     /* 00 */ Unk0200db5c mUnk_00;
     /* b8 */ u8 mUnk_b8[8];
-    /* c0 */ Unk0200aeec *mUnk_c0;
+    /* c0 */ Unk0200aeec *volatile mUnk_c0;
     /* c4 */ Unk0200aeec mUnk_c4;
 } Unk0200aeec_head;
 

@@ -7,6 +7,8 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_02154000.h"
 
+#pragma opt_rebuildconditionals off
+
 static inline u32 func_0204f814_inline(void) {
     if (data_0217aa00 == 0) {
         return 0;
@@ -63,9 +65,6 @@ void func_0204f8a0(u8 a) {
     func_0204bcb4(a);
 }
 
-// non-matching: 12 words, registers and operand load order in the seed product; the original loads both product
-// constants (r2, r1), then ors the call result into r0 and keeps the zero high word in r6; this source ors it into r6
-// and loads the constants after it, so the last shifts take the high word from r2/r0 (same size).
 void func_0204f938(Unk0217aa08_14 *a) {
     Unk02143c30 *q;
     Unk0217aa00_24_50 *e;
@@ -95,7 +94,7 @@ void func_0204f938(Unk0217aa08_14 *a) {
     x = func_0200f59c() | m << 16;
     x = x * 0x5d588b656c078965ull + 0x269ec3;
     y = x >> 32;
-    q->mUnk_0c = (u16) (y >> 16) | 0x8000;
+    q->mUnk_0c = (u16) (y * 0x10000 >> 32) | 0x8000;
     q->mUnk_32 = data_0217aa00->mUnk_0088;
     q->mUnk_18 = func_02143134();
     q->mUnk_00 = data_0217aa00->mUnk_0044.mUnk_38;
@@ -105,9 +104,6 @@ void func_0204f938(Unk0217aa08_14 *a) {
     q->mUnk_36 = 0x2e;
 }
 
-// non-matching: 12 words, registers and operand load order in the seed product; the original loads both product
-// constants (r2, r1), then ors the call result into r0 and keeps the zero high word in r6; this source ors it into r6
-// and loads the constants after it, so the last shifts take the high word from r2/r0 (same size).
 void func_0204fb40(s32 a) {
     Unk02143c30 *q;
     Unk0217aa00_24_50 *e;
@@ -140,7 +136,7 @@ void func_0204fb40(s32 a) {
         x = func_0200f59c() | m << 16;
         x = x * 0x5d588b656c078965ull + 0x269ec3;
         y = x >> 32;
-        q->mUnk_0c = (u16) (y >> 16) | 0x8000;
+        q->mUnk_0c = (u16) (y * 0x10000 >> 32) | 0x8000;
     }
     q->mUnk_32 = data_0217aa00->mUnk_0088;
     q->mUnk_18 = func_02143134();
@@ -233,9 +229,6 @@ static inline u32 func_0204ff14_inline(Unk0217aa00 *p) {
     return p->mUnk_0000;
 }
 
-// non-matching: registers only, 17 words; the original keeps the object pointer in r3, the zero result in r2 and the
-// mode in ip (the 0xe0 product goes to ip); this source keeps the pointer in ip, the mode in r2, the result in lr and
-// the product in r3 (same size).
 s32 func_0204ff14(u16 a, void *b) {
     Unk0217aa00 *t;
     s32 r;

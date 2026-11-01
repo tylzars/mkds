@@ -1,13 +1,13 @@
 #include "Main/Unknown/code_0202a360.h"
 
+#pragma opt_rebuildconditionals off
+
 #pragma thumb on
 
 static inline Unk0217aa1c_144_00 *func_0202a360_inline(s32 j) {
     return &data_0217aa1c->mUnk_144[func_0205db28()].mUnk_00[j];
 }
 
-// non-matching: 99.97%; the early `if (... < 3) return 0; return 1;` is rebuilt into one compare value
-// (blt to the 0, fall-through 1); the original keeps the branch shape (bge to the 1, fall-through 0)
 u32 func_0202a360(void) {
     Unk021759c0 *d;
     s32 n;

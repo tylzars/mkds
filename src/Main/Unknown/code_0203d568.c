@@ -25,6 +25,8 @@
 #include "code_02147cd8.h"
 #include "code_021458c4.h"
 
+#pragma opt_rebuildconditionals off
+
 static inline s32 func_0203d568_inline(Unk0217aa00 *p) {
     s32 r = 0;
     if ((p == 0 ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13) {
@@ -57,9 +59,6 @@ static inline s32 func_0203d568_c_inline(void) {
     return r;
 }
 
-// non-matching: in both inlined tests of the object at data_0217aa00 the original keeps the result flag in r2 and the
-// loaded word in r1 (mov r2, #0 / moveq r1, r2 / ldrne r1 / movne r2, #1), here the two registers are swapped; same
-// size (0x2e0)
 void func_0203d568(void) {
     u16 i;
     enum { K0 } k;

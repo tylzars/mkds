@@ -41,8 +41,6 @@ void func_ov003_021c57b4(void) {
     }
 }
 
-// non-matching: same size; in the cases that step the index up, the compiler adds 1 to the index register before
-// loading the byte at 0x51 (the original loads it into r3 first, then adds into r0, and compares r3 against r0).
 void func_ov003_021c580c(int param_0) {
     int a;
     u8 v;
@@ -69,7 +67,7 @@ void func_ov003_021c580c(int param_0) {
             if (param_0 == 1) {
                 data_ov003_021da1ec = v - 1;
             } else if (data_ov003_021da1f4->mUnk_51 > v + 1) {
-                data_ov003_021da1ec = v + 1;
+                data_ov003_021da1ec++;
             } else {
                 a = 0;
             }

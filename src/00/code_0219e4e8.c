@@ -237,22 +237,15 @@ void func_ov000_0219e8b8(s32 a) {
     }
 }
 
-// non-matching: registers (result in r2 against r1, counter, object pointer) and the original steps a pointer into the
-// bytes at offset 0x2b8 where ours indexes
 u32 func_ov000_0219e8fc(s32 a) {
     s32 i;
-    u32 r;
-    Unk021b566c *p;
-    s32 n;
-    r = 0;
+    u32 r = 0;
+
     if (a != 0) {
         return data_ov000_021b566c->mUnk_2d8 & ~1;
     }
-    i = 1;
-    p = data_ov000_021b566c;
-    n = p->mUnk_0d;
-    for (; i <= n; i++) {
-        r = r | (1 << p->mUnk_2b8[i]);
+    for (i = 1; i <= data_ov000_021b566c->mUnk_0d; i++) {
+        r |= 1 << data_ov000_021b566c->mUnk_2b8[i];
     }
     return r;
 }

@@ -9,6 +9,8 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217a000.h"
 
+#pragma opt_rebuildconditionals off
+
 static inline s32 func_020431e4_inline(Unk0217aa00 *p) {
     s32 r = 0;
     if ((p == 0 ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13) {
@@ -17,8 +19,6 @@ static inline s32 func_020431e4_inline(Unk0217aa00 *p) {
     return r;
 }
 
-// non-matching: 8 words in the inlined func_020431e4_inline call of the last loop: the value of
-// z->mUnk_0000 (or 0) and the result flag are in r4 and r5, the other way round in the original
 void func_020431e4(void) {
     s32 i;
     s32 k;

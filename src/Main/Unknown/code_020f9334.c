@@ -126,8 +126,6 @@ s32 func_020f9880(Unk020f41c4_A *param_1) {
     return data_0217bc34[param_1->mUnk_44].mUnk_84;
 }
 
-// non-matching: 11 words from +0x50: the original computes the x difference in ip and loads 0x1d0 into r4 right
-// after it, then reads 0xe0, 0x1e0 and 0x58; here the x difference sits in r4 and 0x58 and 0x1e0 are read first
 s32 func_020f97e0(Unk020f41c4_A *param_1, Unk0206bcb0 *param_2) {
     Vec3 d;
     s32 n;
@@ -136,10 +134,10 @@ s32 func_020f97e0(Unk020f41c4_A *param_1, Unk0206bcb0 *param_2) {
         param_2->mUnk_74 == (u16) ((param_1->mUnk_78 & 0x4000) != 0 ? (u16) (param_1->mUnk_78 & ~0xff00) : 8)) {
         return 0;
     }
-    d.y = param_1->mUnk_50.y - param_2->mUnk_1d8.y;
-    d.x = param_1->mUnk_50.x - param_2->mUnk_1d8.x;
-    d.z = param_1->mUnk_50.z - param_2->mUnk_1d8.z;
     n = param_2->mUnk_1d0 + param_1->mUnk_e0;
+    d.x = param_1->mUnk_50.x - param_2->mUnk_1d8.x;
+    d.y = param_1->mUnk_50.y - param_2->mUnk_1d8.y;
+    d.z = param_1->mUnk_50.z - param_2->mUnk_1d8.z;
     return (s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z < (s64) n * n;
 }
 

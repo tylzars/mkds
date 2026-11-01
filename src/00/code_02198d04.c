@@ -1,5 +1,7 @@
 #include "00/code_02198d04.h"
 
+#pragma opt_common_subs off
+
 u32 func_ov000_02198fdc(int param_1) {
     int v1;
     int *v2;
@@ -52,8 +54,6 @@ u32 func_ov000_02198f24(int param_1, u32 param_2) {
     return 0;
 }
 
-// non-matching: 17 instructions differ; first at +0x0: original `push {r4, r5, r6, lr}`, ours `push {r4, r5, r6, r7,
-// lr}`
 u32 func_ov000_02198eb0(int param_1, u32 param_2, u32 param_3) {
     int v1;
     int v2[2];
@@ -74,7 +74,6 @@ u32 func_ov000_02198eb0(int param_1, u32 param_2, u32 param_3) {
     return 1;
 }
 
-// non-matching: 21 instructions differ; first at +0x2: original `sub sp, #0x4`, ours `sub sp, #0xc`
 u32 func_ov000_02198e44(int param_1, u32 param_2, u32 param_3, int param_4) {
     int v1;
     int v2;

@@ -134,14 +134,12 @@ Unk0217b278_10 *func_020ab338(u16 a) {
     return 0;
 }
 
-// non-matching: same size; register allocation only (22 lines differ); the original keeps the address of data_0217b278
-// in r1 and the table pointer in r2, ours r2 and r4; first: original `ldr r1, [pc, #136]`, ours `ldr r2, [pc, #136]`
 s32 func_020ab2a4(Unk0217b278_10 *p) {
     Unk0217b278_10 *e;
-    u16 n;
     s32 i;
-    u16 *w;
+    s32 n;
     u16 c;
+    u16 *w;
 
     if (data_0217b278.mUnk_2c != 0) {
         e = data_0217b278.mUnk_2c->mUnk_00;

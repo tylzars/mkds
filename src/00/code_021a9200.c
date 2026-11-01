@@ -1,7 +1,8 @@
 #include "00/code_021a9200.h"
 #include "00/code_021a998c.h"
 
-// non-matching: 4 instructions differ; first at +0x6: original nothing, ours `add r0, #0x98`
+#pragma opt_unpromotetypes on
+
 void func_ov000_021a9200(u8 param_1) {
     Unk021a998c *v1;
     func_02000b44((u32) ((u8 *) &BuildInfo + 0x98));

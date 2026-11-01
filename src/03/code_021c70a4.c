@@ -47,13 +47,12 @@ void func_ov003_021c7160(void) {
     p->mUnk_00 = t | ((p->mUnk_00 & 0xfe00ff00) | 0x28);
 }
 
-// non-matching: the first argument is reloaded from the stack halfword into r1 and the stack arguments go through r1
-// (original keeps r1 from the byte load and uses r2, and holds the constant 2 in r7); size 0x90 against 0x8c
 void func_ov003_021c71a0(void) {
     u16 a[6];
     s32 b;
     u8 *c;
     Unk021da1fc *s;
+    u16 d;
     a[0] = data_ov003_021d7308[0];
     a[1] = data_ov003_021d7308[1];
     a[2] = data_ov003_021d7308[2];
@@ -67,8 +66,9 @@ void func_ov003_021c71a0(void) {
     do {
         s = data_ov003_021da1fc;
         a[4] = s->mUnk_08[b];
-        a[0] = *c;
-        func_ov003_021d2070(s->mUnk_00, a[0], a[1], a[2], a[3], 2, 0x480, &a[4]);
+        d = *c;
+        a[0] = d;
+        func_ov003_021d2070(s->mUnk_00, d, a[1], a[2], a[3], 2, 0x480, &a[4]);
         c++;
         b++;
     } while (b < 12);

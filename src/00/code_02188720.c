@@ -170,18 +170,18 @@ void func_ov000_021889b0(u32 a, Unk02188408 *s) {
     func_0214d018_inline(e + 10, 0xc0);
 }
 
-// non-matching: size 0x5c against 0x60; the original joins the two arms in r0 and masks again (lsls #24; lsrs r5, r0,
-// #24), ours assigns r5 in each arm
 void func_ov000_02188a74(u32 a, Unk02188408Entry0xc0 *p, Unk02188408 *s) {
     Unk02188408Entry4 *t;
     Unk02188408Entry0xc0 *e;
     u16 h;
     u8 v;
+    s32 x;
 
     t = &s->mUnk_444[a];
     e = &s->mUnk_470[a];
     h = p->mUnk_02;
-    v = (u8) ((h & 2) != 0 ? (u8) (h >> 2) : (u8) ((h >> 2) + 0x19));
+    x = (h & 2) != 0 ? (u8) (h >> 2) : (u8) ((h >> 2) + 0x19);
+    v = x;
     if (v > t->mUnk_02) {
         t->mUnk_02 = v;
         t->mUnk_03 = s->mUnk_d11 + 1;

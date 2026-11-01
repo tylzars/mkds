@@ -23,15 +23,11 @@ void func_ov000_0218acf4(Unk0218a9bc *p, s32 a, u32 b, s32 c, UnkFunc *f, void *
     func_ov000_0218ae5c((u32 *) &p->mUnk_08);
 }
 
-// non-matching: size 0x114 against 0x118; the original copies the four bytes into b[3] through a destination pointer
-// and a source pointer in two registers (push of r6), ours uses one pointer
 void func_ov000_0218ad44(Unk0218a9bc *p, Unk0218af28 *e) {
     Unk0218aa14 a;
     u8 b[0x100];
     s32 c;
     s32 i;
-    Unk0218ad44 *q;
-    q = (Unk0218ad44 *) &e->mUnk_1c;
     func_ov000_0218aedc((int *) &p->mUnk_08, (int) e);
     e->mUnk_1c = func_ov000_0218e8c4();
     a.mUnk_01 = 2;
@@ -40,7 +36,7 @@ void func_ov000_0218ad44(Unk0218a9bc *p, Unk0218af28 *e) {
             b[0] = 0xfe;
             b[1] = 0xfd;
             b[2] = 0;
-            *(Unk0218ad44 *) &b[3] = *q;
+            __memcpy(&b[3], &e->mUnk_1c, 4);
             if ((e->mUnk_14 & 4) != 0) {
                 b[7] = p->mUnk_40;
                 for (i = 0; i < p->mUnk_40; i++) {
@@ -56,10 +52,10 @@ void func_ov000_0218ad44(Unk0218a9bc *p, Unk0218af28 *e) {
                 c = 10;
             }
         } else if ((e->mUnk_14 & 4) != 0) {
-            *(Unk021b2148 *) b = data_ov000_021b2188;
+            __memcpy(b, &data_ov000_021b2188, 13);
             c = 13;
         } else {
-            *(Unk021b2158 *) b = data_ov000_021b2198;
+            __memcpy(b, &data_ov000_021b2198, 8);
             c = 8;
         }
         if (e->mUnk_00 == p->mUnk_28 && (e->mUnk_15 & 2) != 0) {

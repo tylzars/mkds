@@ -15,6 +15,8 @@
 #include "Main/Unknown/unk_02174000.h"
 #include "code_0214b824.h"
 
+#pragma optimize_for_size on
+
 void func_02036264(void *a, u32 b) {
     func_02036278(a, 0, b);
 }
@@ -37,8 +39,6 @@ void func_020362c4(Unk02180728 *a, void *b, void *c, s32 d, s32 e) {
 
 #pragma thumb on
 
-// non-matching: second loop registers only (9 words, same size): the original has the counter in r3, the
-// data_02174e6c address in r7 and the two shifted rows in r5/r4; here r7, r5 and r4/r3.
 void func_020362dc(void *a) {
     void *h;
     u32 b;

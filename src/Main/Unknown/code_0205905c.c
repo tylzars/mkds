@@ -5,6 +5,8 @@
 #include "Main/Unknown/code_0211d4a8.h"
 #include "Main/Unknown/unk_0217a000.h"
 
+#pragma opt_rebuildconditionals off
+
 #pragma thumb on
 
 static inline u32 func_0205905c_inline(void) {
@@ -80,8 +82,6 @@ s32 func_020591c4(void) {
     return func_020591cc();
 }
 
-// non-matching: in the second chain of conditions the original keeps the three flags in r1, r2 and r3 and the loaded
-// value in r5; here the flags are in r5, r1 and r2 and the loaded value in r3. The rest is the same.
 s32 func_020591cc(void) {
     s32 r;
 

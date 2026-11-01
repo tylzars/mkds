@@ -17,14 +17,14 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_0214b824.h"
 
+#pragma optimize_for_size on
+
 u32 func_020360e4(void) {
     return (data_0217aa00->mUnk_0454 & 0x40) != 0;
 }
 
 #pragma thumb on
 
-// non-matching: registers only in both loop nests: loop 1 swaps the hoisted address and the hoisted constant 1,
-// loop 2 gives the counter a register before the hoisted address
 void func_02036108(void *a) {
     void *h;
     u32 b;

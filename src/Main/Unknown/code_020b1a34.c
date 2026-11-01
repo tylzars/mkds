@@ -5,6 +5,8 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_020b4000.h"
 
+#pragma opt_arithtransformation off
+
 s32 func_020b1bf8(Unk020b1bf8 *a, Unk020b1bf8 *b, Unk020b1a34_0c *c) {
     s32 x;
     s32 y;
@@ -37,8 +39,6 @@ s32 func_020b1bf8(Unk020b1bf8 *a, Unk020b1bf8 *b, Unk020b1a34_0c *c) {
     return r;
 }
 
-// non-matching: the original keeps `add r0, r0, #0` between the load of member 0x08 and the `cmp r0, #1` of the range
-// test (4 bytes more); with that add kept the rest is identical
 void func_020b1a34(void) {
     Unk020b1a34_0c a;
     Unk020b1a34_0c b;
@@ -48,7 +48,7 @@ void func_020b1a34(void) {
     u8 i;
     u8 j;
 
-    if ((u32) data_021759c0->mUnk_08 <= 1) {
+    if (data_021759c0->mUnk_08 == 0 || data_021759c0->mUnk_08 == 1) {
         data_0217b350->mUnk_8dc = 1;
     }
     if (data_0217b350->mUnk_8e4 == 0) {

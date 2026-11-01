@@ -160,19 +160,13 @@ s32 func_ov000_021a9494(Unk021a998c *a) {
     return 0;
 }
 
-// non-matching: 2 instructions swapped; ours computes the 0x2c0 offset (ldr, adds r6) before `movs r7, #0`, the
-// original after it; size equal
 void func_ov000_021a9534(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
-    u8 *d;
-    u8 b;
-    d = c->mUnk_2c0;
-    b = 0;
     while (1) {
         func_ov000_021ae228(a);
-        c->mUnk_429 = b;
+        c->mUnk_429 = 0;
         c->mUnk_428 = 1;
-        func_ov000_021abd2c((u32 *) d);
+        func_ov000_021abd2c((u32 *) c->mUnk_2c0);
         func_ov000_021ab7b4((u32 *) c->mUnk_378);
         if (func_ov000_021a95a0(a) == 0) {
             c->mUnk_429 = 8;

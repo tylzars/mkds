@@ -21,6 +21,8 @@
 #include "00/code_02182fdc.h"
 #include "00/code_0219bb50.h"
 
+#pragma opt_rebuildconditionals off
+
 static inline s32 func_0205f218_inline(void) {
     Unk0217aa00 *p;
 
@@ -118,8 +120,6 @@ u32 func_0205fd2c(Unk0205fd2c *a, u32 b, u32 c) {
     return 0;
 }
 
-// non-matching: the flag of the first test sits in r2 and the loaded word in r1 in the original (r1 and r2 swapped
-// here, together with the copies of the two arguments; 8 words).
 s32 func_0205fc98(Unk0205fd2c *a, u32 b, u32 c) {
     u8 d;
     u8 e;
@@ -136,8 +136,6 @@ s32 func_0205fc98(Unk0205fd2c *a, u32 b, u32 c) {
     return 0;
 }
 
-// non-matching: the flag of the first test sits in r3 and the loaded word in r2 in the original (swapped here; 6
-// words).
 s32 func_0205fc28(s32 a) {
     if (func_0205f218_inline() == 0) {
         return func_02056dec(a);
@@ -145,8 +143,6 @@ s32 func_0205fc28(s32 a) {
     return func_02056e00(a, data_0217aa08->mUnk_30);
 }
 
-// non-matching: the flag of the first test sits in r3 and the loaded word in r2 in the original (swapped here; 6
-// words).
 s32 func_0205fbb8(s32 a) {
     if (func_0205f218_inline() == 0) {
         return func_02056dec(a);
@@ -214,9 +210,8 @@ void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
     func_0205ee74(h, &e);
 }
 
-// non-matching: the flag of the first test sits in r2 and the loaded word in r1 in the original (swapped here), the
-// first store to the stack comes before the load of the data pointer, and the four stores of zero before the loop are
-// in the order 4, 12, 8, 16 (15 words).
+// non-matching: 4 words: the four stores of zero before the loop are in the order 4, 12, 8, 16 in the original, with
+// the `mov fp, #2` after the second one; this source gives 12, 8, 4, 16 with the mov after the first.
 void func_0205f700(void) {
     s32 v1;
     u32 t;
@@ -312,8 +307,6 @@ void func_0205f700(void) {
     }
 }
 
-// non-matching: the flag of the first test sits in r2 and the loaded word in r1 in the original (swapped here; 6
-// words).
 void func_0205f498(void) {
     u16 i;
     u32 a;
@@ -381,8 +374,6 @@ void func_0205f498(void) {
     }
 }
 
-// non-matching: the flag of the first test sits in r2 and the loaded word in r1 in the original (swapped here; 6
-// words).
 void func_0205f218(void) {
     u16 i;
     u32 a;

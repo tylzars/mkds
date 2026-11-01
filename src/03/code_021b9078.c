@@ -79,15 +79,13 @@ s32 func_ov003_021b91a4(Unk021ba1b0 *a) {
     return 0;
 }
 
-// non-matching: counter and the name pointer are in swapped registers (ours n=r6, pointer=r4; original n=r4,
-// pointer=r6); same size
 s32 func_ov003_021b91f0(Unk021ba734 *a) {
     s32 m;
     s32 r;
     s32 i;
     s32 n;
-    n = 0;
     r = 0;
+    n = 0;
     m = a->mUnk_00;
     if (m == 0) {
         return 5;

@@ -5,6 +5,8 @@
 #include "code_02134d30.h"
 #include "code_02139f70.h"
 
+#pragma opt_lifetimes off
+
 s32 func_ov000_02186a9c(Unk021868d0 *a, const u8 *b) {
     s32 d;
     Unk02186998 *c;
@@ -59,7 +61,6 @@ s32 func_ov000_02186b0c(Unk021868d0 *a, const u8 *b, const void *c, s32 d) {
     return 0;
 }
 
-// non-matching: buf pointer in r5 and the length of c in r4 (original: r4 and r5), 11 words differ only by that
 s32 func_ov000_02186bd4(Unk021868d0 *a, const u8 *b, const u8 *c) {
     s32 e;
     Unk02186998 *d;

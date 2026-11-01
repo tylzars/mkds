@@ -36,19 +36,21 @@ s32 func_ov000_021a4654(const u8 *a, u32 b, Unk021a4654 *c, Unk021a8f84 **d) {
     return 1;
 }
 
-// non-matching: size 0x4c vs 0x48; original reloads the global index each pass, ours keeps it in r4
 void func_ov000_021a46d4(void) {
     Unk021a8f84 *a;
     Unk021a46d4 *b;
+    Unk021a46d4 *d;
 
     a = func_ov000_0218e5e4();
     if (a != 0) {
-        for (data_ov000_021b5df8 = 0; data_ov000_021b5df8 < 5; data_ov000_021b5df8++) {
+        data_ov000_021b5df8 = 0;
+        d = (Unk021a46d4 *) data_ov000_021b5dfc;
+        for (; data_ov000_021b5df8 < 5; data_ov000_021b5df8++) {
             b = (Unk021a46d4 *) a->mUnk_0c[data_ov000_021b5df8];
             if (b == 0) {
                 break;
             }
-            *(Unk021a46d4 *) &data_ov000_021b5dfc[data_ov000_021b5df8 * 4] = *b;
+            d[data_ov000_021b5df8] = *b;
         }
     }
 }

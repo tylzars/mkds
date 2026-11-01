@@ -55,7 +55,7 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
         v1->mUnk_c0 = a;
         func_0200df68(&v1->mUnk_00);
     } else {
-        v4 = ((const Unk0200aeec_head *) v1)->mUnk_c0;
+        v4 = v1->mUnk_c0;
         if (a == &v1->mUnk_c4) {
             if (v4->mUnk_00 != 0) {
                 do {

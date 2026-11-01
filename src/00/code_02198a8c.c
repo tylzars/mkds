@@ -44,12 +44,10 @@ int func_ov000_02198af4(Unk02197fe8 *a, Unk02198af4 *b) {
     return 1;
 }
 
-// non-matching: same size and instruction mix, but the original computes sp+4 into r3 first and keeps the data pointer
-// in r5 and the loaded bytes in r4 (ours: pointer in r4, bytes in r5, sp+4 in r3 after the load)
 int func_ov000_02198b50(Unk02197e8c *a, u32 b, int c) {
     u8 d[3];
-    d[0] = data_ov000_021b3fa4[0];
-    d[1] = data_ov000_021b3fa4[1];
+
+    __memcpy(d, data_ov000_021b3fa4, 2);
     d[2] = 0x68;
     if (func_ov000_0219a110((u32 *) a, b, c, (u32) d, 3) != 0) {
         return 1;

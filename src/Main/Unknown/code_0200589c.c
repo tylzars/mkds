@@ -550,15 +550,12 @@ s32 func_0200628c(Unk0200628c *a, s32 b, const u8 *c) {
     return 1;
 }
 
-// non-matching: the original puts the block that stores the found index after the loop (the loop ends with a jump to
-// the return of -1) and keeps the limit in r2 and the bitmap base in r1; here they are swapped and the stores sit
-// inside the loop (2 bytes smaller)
 s32 func_020062f4(Unk0200628c *a) {
     s32 v1;
     s32 v2;
     s32 v3;
-    s32 v6;
     u32 *v4;
+    s32 v6;
     u32 *v5;
     v1 = a->mUnk_0c + 1;
     v6 = a->mUnk_04;
@@ -570,24 +567,27 @@ s32 func_020062f4(Unk0200628c *a) {
     v4 = v5 + (v1 >> 5);
     v3 = v1 & 0x1f;
     do {
-        if ((*v4 & (1 << v3)) != 0) {
-            v1 = v1 + 1;
-            if (v1 < v6) {
-                v3 = v3 + 1;
-                if (v3 > 0x1f) {
-                    v3 = 0;
-                    v4 = v4 + 1;
-                }
-            } else {
-                v1 = 0;
-                v3 = v1;
-                v4 = v5;
+        if ((*v4 & (1 << v3)) == 0) {
+            goto found;
+        }
+        v1 = v1 + 1;
+        if (v1 < v6) {
+            v3 = v3 + 1;
+            if (v3 > 0x1f) {
+                v3 = 0;
+                v4 = v4 + 1;
             }
         } else {
-            a->mUnk_08 = v1;
-            return v1;
+            v1 = 0;
+            v3 = v1;
+            v4 = v5;
         }
     } while (v1 != v2);
+    goto fail;
+found:
+    a->mUnk_08 = v1;
+    return v1;
+fail:
     return -1;
 }
 

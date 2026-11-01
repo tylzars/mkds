@@ -44,8 +44,10 @@ s32 func_02043108(void *a, ...) {
     return 1;
 }
 
-// non-matching: the original loads the entry index before the table pointer inside the first loop, and copies the zero
-// start values with movs where adds is emitted here
+static inline Unk02175620_44 *func_02043078_inline(u16 i) {
+    return &data_02175620->mUnk_44[i];
+}
+
 s32 func_02043078(u16 a) {
     u16 n;
     s32 s;
@@ -56,11 +58,11 @@ s32 func_02043078(u16 a) {
     s8 c;
 
     e = data_02175620->mUnk_4c + a;
+    s = 0;
     n = 0;
-    s = n;
-    t = s;
+    t = 0;
     for (k = 0; k < e->mUnk_02; k++) {
-        t += data_02175620->mUnk_44[(u16) (e->mUnk_00 + k)].mUnk_18;
+        t += func_02043078_inline(e->mUnk_00 + k)->mUnk_18;
     }
     for (m = 0; m < 3; m++) {
         c = ((s8 *) e->mUnk_04)[m];

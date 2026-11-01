@@ -61,13 +61,9 @@ void func_020870ec(void *a, u16 b) {
     }
 }
 
-// non-matching: 1 instruction longer, registers differ: the original forms the entry address as the base plus index *
-// 0x30 and reaches the fields at 0x68, 0x74, 0x8c and 0x94 from it; here the base plus 0x70 is formed first and the
-// index stays live across the calls.
 void func_02087000(void) {
     u16 i;
     Unk020b4a44 *o;
-    Unk021759c0_70 *e;
     u8 *p;
     char *s;
     u8 *q;
@@ -75,12 +71,11 @@ void func_02087000(void) {
     for (i = 0; (u32) i < data_021759c0->mUnk_3d0; i++) {
         data_0217aed0->mUnk_144[i] = 0;
         data_0217aed0->mUnk_164[i] = 0;
-        e = &data_021759c0->mUnk_68[i].mUnk_08;
-        if (e->mUnk_24 == 0 || data_021759c0->mUnk_58 != 0) {
+        if (data_021759c0->mUnk_68[i].mUnk_08.mUnk_24 == 0 || data_021759c0->mUnk_58 != 0) {
             if (data_021759c0->mUnk_58 != 0) {
-                s = func_02088338(e->mUnk_04 == 1 ? 1 : 0);
+                s = func_02088338(data_021759c0->mUnk_68[i].mUnk_08.mUnk_04 == 1 ? 1 : 0);
             } else {
-                s = func_02088390((u16) * (u32 *) ((u8 *) e - 8));
+                s = func_02088390((u16) data_021759c0->mUnk_68[i].mUnk_00);
             }
             p = func_020136f0(func_02047950(s));
             q = p + *(u32 *) (p + 0x38);
@@ -88,10 +83,11 @@ void func_02087000(void) {
             data_0217aed0->mUnk_144[i] = r;
             data_0217aed0->mUnk_164[i] = q;
         } else {
-            r = (void *) e->mUnk_1c;
+            r = (void *) data_021759c0->mUnk_68[i].mUnk_08.mUnk_1c;
             func_020b4a7c(&o, func_02047950(data_02165a7c));
+            q = (u8 *) o->mUnk_0c;
             data_0217aed0->mUnk_144[i] = r;
-            data_0217aed0->mUnk_164[i] = o->mUnk_0c;
+            data_0217aed0->mUnk_164[i] = q;
         }
     }
 }

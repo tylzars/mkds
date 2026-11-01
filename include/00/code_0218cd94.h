@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Four bytes func_ov000_0218cd94 copies; the target may be unaligned.
+// Four bytes copied byte by byte (func_ov000_0218ce14_inline in code_0218cdd8.c); the target may be unaligned.
 typedef struct Unk0218cd94 {
     /* 0 */ u8 mUnk_00[4];
 } Unk0218cd94;

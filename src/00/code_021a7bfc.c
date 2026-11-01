@@ -381,10 +381,7 @@ s32 func_ov000_021a81a8(Unk021a6fa8 *a, u8 *b, s32 c, u16 d, u16 *e, s32 f) {
     return g;
 }
 
-// non-matching: the incoming arguments sit in other registers (original: second in r6, third in r7, fourth at [sp, #8];
-// ours: r7, [sp, #8], r6); the volatile view reloads the halfword at 0x70 for each test as the original does; size 0xdc
-// against 0xda
-u32 func_ov000_021a8268(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
+u32 func_ov000_021a8268(u32 a, u32 b, u32 c, u16 d, u32 e, u32 f) {
     volatile Unk021a6fa8 *v;
     Unk021a6fa8 *g = (Unk021a6fa8 *) a;
     Unk021a722a *h;

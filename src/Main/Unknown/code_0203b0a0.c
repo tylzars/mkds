@@ -139,8 +139,6 @@ s32 func_0203b324(void) {
     return r;
 }
 
-// non-matching: same instructions and size, but the final sum loads the bytes at 3 before the bytes at 2 and the
-// constant 0xea60 later (6 words differ from +0xa0)
 s32 func_0203b3d8(Unk02056bc0 *a, Unk02056bc0 *b) {
     s32 x;
     s32 y;
@@ -168,8 +166,8 @@ s32 func_0203b3d8(Unk02056bc0 *a, Unk02056bc0 *b) {
     if (a->mUnk_1d > b->mUnk_1d) {
         return 0;
     }
-    x = a->mUnk_02 * 60000 + a->mUnk_03 * 1000 + a->mUnk_00;
-    y = b->mUnk_02 * 60000 + b->mUnk_03 * 1000 + b->mUnk_00;
+    x = a->mUnk_03 * 1000 + a->mUnk_02 * 60000 + a->mUnk_00;
+    y = b->mUnk_03 * 1000 + b->mUnk_02 * 60000 + b->mUnk_00;
     return x > y;
 }
 

@@ -58,23 +58,22 @@ void func_020f1b10(void) {
     }
 }
 
-// non-matching: same loop difference as above (four loops of this function).
 void func_020f1a38(void) {
     s32 a[14];
-    s32 i;
-    s32 j;
+    enum { K0 } i;
+    enum { K1 } j;
     s32 n;
 
     for (i = 0; i < 0xe; i++) {
         data_0217bc34[i].mUnk_10 = data_0217bc34[i].mUnk_04 - 1;
         a[i] = 1;
     }
-    for (i = 0; i < 0x12; i++) {
-        if (data_0217bc48[i].mUnk_00 != 0) {
-            j = data_0217bc48[i].mUnk_08;
-            n = data_0217bc48[i].mUnk_0c;
-            if (a[j] < n) {
-                a[j] = n;
+    for (j = 0; j < 0x12; j++) {
+        if (data_0217bc48[j].mUnk_00 != 0) {
+            i = data_0217bc48[j].mUnk_08;
+            n = data_0217bc48[j].mUnk_0c;
+            if (a[i] < n) {
+                a[i] = n;
             }
         }
     }

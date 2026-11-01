@@ -4,8 +4,6 @@
 #include "Main/Unknown/code_020d50c4.h"
 #include "code_02147cd8.h"
 
-// non-matching: original negates the halfword with mvn #0 + smulbb (0xd8 bytes), ours uses rsb (0xd0 bytes); registers
-// r2/r3 swapped
 void func_02073eb8(Unk02061808 *p) {
     s32 t;
     s32 u;
@@ -16,10 +14,10 @@ void func_02073eb8(Unk02061808 *p) {
     p->mUnk_144 = p->mUnk_144 + p->mUnk_14c * p->mUnk_150;
     t = p->mUnk_144;
     if (t > 0x1000) {
-        p->mUnk_150 = (s16) (-p->mUnk_150);
+        p->mUnk_150 *= -1;
         p->mUnk_144 = 0x2000 - p->mUnk_144;
     } else if (t < -0x1000) {
-        p->mUnk_150 = (s16) (-p->mUnk_150);
+        p->mUnk_150 *= -1;
         p->mUnk_144 = -0x2000 - p->mUnk_144;
     }
     p->mUnk_148 = (s32) (((s64) p->mUnk_148 * p->mUnk_154) >> 12);

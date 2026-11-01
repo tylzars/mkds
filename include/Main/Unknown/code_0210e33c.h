@@ -16,8 +16,8 @@ typedef struct Unk0217c7b4 {
     /* 0c */ u32 mUnk_0c;
 } Unk0217c7b4;
 
-// Four bytes at 0 to 3: func_0202553c writes one, and func_0210e524, func_0210e5e4 and func_0210e888
-// read the bytes at 1, 2 and 3.
+// Four bytes at 0 to 3: func_0202553c writes one, and func_0210e5e4 and func_0210e888 read the bytes at 1, 2
+// and 3.
 typedef struct Unk0210e524 {
     /* 00 */ u8 mUnk_00;
     /* 01 */ u8 mUnk_01;

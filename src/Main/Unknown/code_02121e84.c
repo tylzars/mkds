@@ -6,6 +6,8 @@
 #include "Main/Unknown/code_02120610.h"
 #include "Main/Unknown/code_0214d000.h"
 
+#pragma opt_arithtransformation off
+
 void func_02122728(void) {
     func_02122684();
 }
@@ -30,8 +32,6 @@ void func_02122684(void) {
     }
 }
 
-// non-matching: the original copies the loaded value of mUnk_1950 with add r1, r2, #0 before the cmp #2 (value in r2,
-// copy in r1), one instruction more
 s32 func_021225ac(u32 a) {
     s32 n;
     s32 s;

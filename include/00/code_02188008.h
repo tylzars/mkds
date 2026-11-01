@@ -72,6 +72,6 @@ void func_ov000_02188008(void);
 void func_ov000_02188068(void);
 u32 func_ov000_02188114(Unk02188114 *p);
 s32 func_ov000_021881d0(const s8 *a, u32 b, u8 *c, u32 d);
-s32 func_ov000_021882f8(const u8 *a, s32 b, s8 *c, u32 d);
+s32 func_ov000_021882f8(const u8 *a, u32 b, s8 *c, u32 d);
 s32 func_ov000_02188408(void);
 void func_ov000_021884a8(void);

@@ -4,6 +4,8 @@
 #include "00/code_0219d734.h"
 #include "Main/Unknown/code_02152000.h"
 
+#pragma opt_rebuildconditionals off
+
 int func_ov000_0219cfc0(int a) {
     s32 b;
     s32 c;
@@ -68,7 +70,6 @@ int func_ov000_0219d034(int a) {
     return a;
 }
 
-// non-matching: final test is bne with `movs r0, #1` first instead of beq with `movs r0, #0` first (same size)
 u32 func_ov000_0219d094(void *a, Unk0218ec44 *b) {
     s32 c;
     s32 d = 0;
@@ -82,5 +83,8 @@ u32 func_ov000_0219d094(void *a, Unk0218ec44 *b) {
     if (c <= 0 || d == -1) {
         return 0;
     }
-    return func_ov000_0218ec44(data_ov000_021b5664->mUnk_04, d, b) == 0;
+    if (func_ov000_0218ec44(data_ov000_021b5664->mUnk_04, d, b) != 0) {
+        return 0;
+    }
+    return 1;
 }

@@ -13,12 +13,7 @@
 #include "Main/Unknown/unk_0217d000.h"
 
 #pragma thumb on
-// non-matching: registers only, 13 words differ (first at +0x10): ours keep the u16 loaded from the +4 member of the
-// first object in r7, the first loop's counter in r6, its zero copy in r3 and the table pointers in r5/r4, and make the
-// zero copy before the pointer loads; the original has r6, r5, r7 and r4/r3 with the copy after the loads (second loop:
-// outer counter r3 / row pointer r7 in ours, r7 / r3 in the original)
 void func_021188dc(void) {
-    s32 j;
     s32 k;
     s32 i;
     u16 v;
@@ -27,12 +22,11 @@ void func_021188dc(void) {
 
     if (*(vu16 *) 0x027ffc40 != 2) {
         v = data_0217d360->mUnk_04->mUnk_06;
-        i = 0;
-        for (j = 0; j < 4; j++) {
-            data_0217d360->mUnk_18[data_0215c7d0[j]].mUnk_00 = i;
-            data_0217d360->mUnk_18[v + data_0215c7d8[j]].mUnk_00 = 1;
+        for (i = 0; i < 4; i++) {
+            data_0217d360->mUnk_18[data_0215c7d0[i]].mUnk_00 = 0;
+            data_0217d360->mUnk_18[v + data_0215c7d8[i]].mUnk_00 = 1;
         }
-        for (; i < 8; i++) {
+        for (i = 0; i < 8; i++) {
             for (k = 0, q = data_0215c9bc[i]; k < 6; k++) {
                 data_0217d360->mUnk_1c[q[k]].mUnk_00 = 0;
             }

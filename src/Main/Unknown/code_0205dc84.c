@@ -30,6 +30,8 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "registers.h"
 
+#pragma opt_loop_invariants off
+
 static inline void func_0205dee0_inline(void *c, void *e) {
     u8 d;
     u32 f;
@@ -87,8 +89,6 @@ static inline s32 func_0205dd38_inline(void) {
     return 0;
 }
 
-// non-matching: registers only: the original holds the value 3 in r8 and the address of data_021653b8 in r7; here the
-// two are swapped.
 s32 func_0205dd38(s16 *a) {
     Unk02036590 q;
     void *h;
@@ -137,8 +137,6 @@ s32 func_0205dd38(s16 *a) {
     return 0;
 }
 
-// non-matching: the original keeps no register across the calls of its endless loop (push {lr} only) and loads the
-// addresses and the constants 0 and 3 again in every pass; here they are hoisted into r4-r7 before the loop.
 void func_0205dc84(void) {
     Unk02036590 q;
     data_0217aa20->mUnk_08 = 9;

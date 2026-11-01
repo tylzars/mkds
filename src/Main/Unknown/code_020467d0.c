@@ -58,20 +58,15 @@ void func_020468b0(int a, u32 b, u32 c, int d, u32 e, int f) {
     }
 }
 
-// non-matching: same size and registers; the original builds the stack address of the byte pair (add r4, sp, #0) first
-// and stores both zero bytes through r4, this source stores them through sp and builds r4 after the loads of r5/r6.
 void func_02046968(s32 a) {
-    u8 b[2];
+    u8 b[2] = {0};
     s32 i;
     u8 n;
     u8 m;
 
     n = 0;
-    b[0] = 0;
     m = 0;
-    i = 0;
-    b[1] = 0;
-    for (; i < a; i++) {
+    for (i = 0; i < a; i++) {
         if (data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 != 4) {
             if (data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 == 0 || data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 == 3) {
                 n++;

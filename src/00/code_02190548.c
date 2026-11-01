@@ -36,40 +36,39 @@ u32 func_ov000_021905d4(Unk0218f960 *a, Unk021906e4 *b) {
     return 0;
 }
 
-// non-matching: the 0x08 field is loaded into r0 (original r1) for the compare with 5, and the blt to the exit lands 2
-// bytes earlier (2 instructions differ, same size)
 u32 func_ov000_02190618(Unk0218f960 *a, Unk021906e4 *b, s32 *c, s32 *d, s32 *e) {
     u8 f[0x10];
     u8 *p;
     s32 n;
     s32 m;
     *c = 0;
-    if (b->mUnk_08 >= 5) {
-        p = (u8 *) func_02139ffc(b->mUnk_00, 10);
-        if (p != 0) {
-            if (func_0213a038(p - 5, data_ov000_021b287c, 5) != 0) {
+    if (b->mUnk_08 < 5) {
+        return 0;
+    }
+    p = (u8 *) func_02139ffc(b->mUnk_00, 10);
+    if (p != 0) {
+        if (func_0213a038(p - 5, data_ov000_021b287c, 5) != 0) {
+            return 3;
+        }
+        *p = 0;
+        if (func_ov000_021967b4(b->mUnk_00, data_ov000_021b2884, f, 0x10) == 0) {
+            return 3;
+        }
+        *d = func_0213bf90(f);
+        if (func_ov000_021967b4(b->mUnk_00, data_ov000_021b2888, f, 0x10) == 0) {
+            return 3;
+        }
+        n = func_0213bf90(f);
+        m = n + 1;
+        if (b->mUnk_08 > m + (p - b->mUnk_00)) {
+            if (*(s8 *) (p + m) != 0) {
                 return 3;
             }
-            *p = 0;
-            if (func_ov000_021967b4(b->mUnk_00, data_ov000_021b2884, f, 0x10) == 0) {
-                return 3;
-            }
-            *d = func_0213bf90(f);
-            if (func_ov000_021967b4(b->mUnk_00, data_ov000_021b2888, f, 0x10) == 0) {
-                return 3;
-            }
-            n = func_0213bf90(f);
-            m = n + 1;
-            if (b->mUnk_08 > m + (p - b->mUnk_00)) {
-                if (*(s8 *) (p + m) != 0) {
-                    return 3;
-                }
-                *c = (s32) (p + 1);
-                *e = n;
-                b->mUnk_0c = m + (p - b->mUnk_00) + 1;
-            } else {
-                *p = 10;
-            }
+            *c = (s32) (p + 1);
+            *e = n;
+            b->mUnk_0c = m + (p - b->mUnk_00) + 1;
+        } else {
+            *p = 10;
         }
     }
     return 0;

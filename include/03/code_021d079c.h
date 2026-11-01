@@ -40,7 +40,7 @@ typedef struct Unk021da2a8 {
     /* 12a4 */ u32 mUnk_12a4;
     /* 12a8 */ u8 pad_12a8[0x100];
     /* 13a8 */ u32 mUnk_13a8;
-    /* 13ac */ u32 (*mUnk_13ac)(void *);
+    /* 13ac */ u32 (*mUnk_13ac)(void *, struct Unk021da2a8 *);
     /* 13b0 */ u32 mUnk_13b0;
     /* 13b4 */ u8 pad_13b4[0xc];
     /* 13c0 */ u8 mUnk_13c0[0x20];

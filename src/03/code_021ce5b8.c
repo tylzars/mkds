@@ -101,8 +101,6 @@ void func_ov003_021ce6ac(Unk021ce5b8 *a) {
     }
 }
 
-// non-matching: the code for the value 4 (call to func_ov003_021ce8ec and return) follows the test for 4 here, the
-// original places it after the code for the value 5, same size
 void func_ov003_021ce7c0(Unk021425e8 *a) {
     Unk021da280 *d;
 
@@ -119,16 +117,20 @@ void func_ov003_021ce7c0(Unk021425e8 *a) {
     if (a->mUnk_00 != 0x26) {
         return;
     }
-    if (a->mUnk_08_0 == 4) {
-        func_ov003_021ce8ec();
-    } else if (a->mUnk_08_0 == 5) {
-        if (d->mUnk_1b82 != 0) {
-            func_ov003_021ce5b8((Unk021ce5b8 *) a);
-        } else {
-            func_ov003_021ce6ac((Unk021ce5b8 *) a);
-        }
-        func_ov003_021ce8ec();
-    } else {
-        func_0200fd1c();
+    switch (a->mUnk_08_0) {
+        case 5:
+            if (d->mUnk_1b82 != 0) {
+                func_ov003_021ce5b8((Unk021ce5b8 *) a);
+            } else {
+                func_ov003_021ce6ac((Unk021ce5b8 *) a);
+            }
+            func_ov003_021ce8ec();
+            break;
+        case 4:
+            func_ov003_021ce8ec();
+            break;
+        default:
+            func_0200fd1c();
+            break;
     }
 }

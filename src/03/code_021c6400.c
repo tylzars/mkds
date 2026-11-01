@@ -20,31 +20,17 @@
 #include "code_02147cd8.h"
 #include "code_0214b824.h"
 
-static inline Unk021da104_04 *func_ov003_021c6400_inline(u32 a, u32 b) {
-    return func_ov003_021d1c18(a, b);
-}
-
-// non-matching: same size; the original sets the byte offset register (adds r4, r5, #0) before loading the two table
-// bytes in the first loop, ours after them (3 instructions in a different order).
 void func_ov003_021c6400(void) {
     int n;
     int i;
     u32 j;
-    u8 c;
-    u8 d;
     n = data_ov003_021da1f4->mUnk_51;
     if (n > 5) {
         n = 5;
     }
-    i = 0;
-    if (n > 0) {
-        c = data_ov003_021d6388[0];
-        d = data_ov003_021d638c[0];
-        do {
-            data_ov003_021da1f4->mUnk_10[i] = func_ov003_021c6400_inline(0, c);
-            data_ov003_021da1f4->mUnk_24[i] = func_ov003_021c6400_inline(0, d);
-            i++;
-        } while (i < n);
+    for (i = 0; i < n; i++) {
+        data_ov003_021da1f4->mUnk_10[i] = func_ov003_021d1c18(0, data_ov003_021d6388[0]);
+        data_ov003_021da1f4->mUnk_24[i] = func_ov003_021d1c18(0, data_ov003_021d638c[0]);
     }
     for (j = 0; j < 3; j++) {
         func_ov003_021d1c3c(0, data_ov003_021d6388[j], (u8 *) data_ov003_021da1f4->mUnk_10[0]);

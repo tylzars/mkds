@@ -7,7 +7,7 @@ void func_ov000_0219d708(u32 param_1, u32 *param_2) {
     return;
 }
 
-u32 func_ov000_0219d6c4(u32 param_1, u32 *param_2) {
+u32 func_ov000_0219d6c4(u32 param_1, u32 *param_2, u32 param_3) {
     int v1;
     v1 = func_0213a074((const u8 *) (param_2[2]), (const u8 *) &data_ov000_021b4078);
     if (v1 == 0) {

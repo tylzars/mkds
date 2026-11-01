@@ -28,6 +28,8 @@
 #include "code_0212c6ac.h"
 #include "code_0212df7c.h"
 
+#pragma opt_arithtransformation off
+
 // non-matching: same instructions and size; the halfword/word operands of the four products sit in r0/r5/r3 (22, 18,
 // 20) instead of r5/r3/r0, and the first two products land in r7/r6 instead of r6/r7
 void func_01ff9598(Unk01ff9598_A *a, Unk01ff9598 *b) {
@@ -79,7 +81,6 @@ void func_01ff96cc(Unk01ff9598_A *a, Unk01ff9598 *b) {
     a->mUnk_10 = 0;
 }
 
-// non-matching: size 0xd8 vs 0xdc; 0x1000 - (a + b) is one rsb #0x1000 where the original has rsb #0 then add #0x1000
 void func_01ff974c(Unk01ff9598_A *a, Unk01ff9598 *b) {
     s32 w = b->mUnk_2c << 12;
     s32 h = b->mUnk_2e << 12;

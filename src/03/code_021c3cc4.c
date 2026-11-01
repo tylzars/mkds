@@ -32,15 +32,14 @@ void func_ov003_021c3dd4(void) {
     func_ov003_021c212c(func_ov003_021c3c88);
 }
 
-// non-matching: the loop increments come out as p += 0x20, q += 0x20, i++ (original: i++, p += 0x20, q += 0x20)
 void func_ov003_021c3cc4(void) {
     u8 *a;
     Unk021d70f8 b;
     Unk021d7110 c;
     Unk021510a4 d;
-    s32 i;
     u8 *e;
     u8 *f;
+    s32 i;
     b = data_ov003_021d70f8;
     c = data_ov003_021d7110;
     func_ov003_021bf620(data_ov003_021d7128, func_0214b95c);
@@ -51,10 +50,8 @@ void func_ov003_021c3cc4(void) {
     if (d.mUnk_00 == 0) {
         e = a + 0xc0;
         f = a + 0x40;
-        for (i = 0; i < 2; i++) {
+        for (i = 0; i < 2; i++, e += 0x20, f += 0x20) {
             func_0214d1fc(e, f, 0x20);
-            e += 0x20;
-            f += 0x20;
         }
     }
     func_0200ee74(a, 0x200);

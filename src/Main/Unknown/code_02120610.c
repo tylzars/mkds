@@ -11,6 +11,8 @@
 #include "Main/Unknown/code_02029930.h"
 #include "code_02135014.h"
 
+#pragma opt_arithtransformation off
+
 void func_02121dec(u32 a) {
     data_0217d384->mUnk_1e10[func_ov000_0219bb50()].mUnk_40 = a != 0 ? 1 : 2;
 }
@@ -169,11 +171,10 @@ s32 func_02121990(Unk02121990 *a, u32 b, u32 c, u32 d) {
     return 0;
 }
 
-// non-matching: cases 0 and 2 compile to `cmp r0, #1; bhi` where the original has `add r0, r0, #0` before the compare
 s32 func_021217e8(u32 a) {
     switch (a) {
         case 0:
-            if ((u32) data_0217d384->mUnk_1950 <= 1) {
+            if (data_0217d384->mUnk_1950 == 0 || data_0217d384->mUnk_1950 == 1) {
                 return 1;
             }
             break;
@@ -183,7 +184,7 @@ s32 func_021217e8(u32 a) {
             }
             break;
         case 2:
-            if ((u32) data_0217d384->mUnk_1950 <= 1) {
+            if (data_0217d384->mUnk_1950 == 0 || data_0217d384->mUnk_1950 == 1) {
                 return 1;
             }
             break;

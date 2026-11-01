@@ -41,8 +41,8 @@
 #include "Main/Unknown/unk_027e0000.h"
 #include "code_02147cd8.h"
 
-// non-matching: the two s16 sign flips (l * -1) compile to one rsb instead of mvn + smulbb (original is 8 bytes
-// longer), and the 0x7fff constant word is loaded after the lsl instead of before it
+#pragma opt_arithtransformation off
+
 s32 func_0206f04c(Unk0206bcb0 *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     s32 j;
     s32 g;

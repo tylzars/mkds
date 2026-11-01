@@ -1,5 +1,7 @@
 #include "00/code_02188694.h"
 
+#pragma opt_common_subs off
+
 void func_ov000_021886fc(int param_1, u32 param_2) {
     int v1;
     v1 = func_ov000_02188584(0x10);
@@ -7,8 +9,6 @@ void func_ov000_021886fc(int param_1, u32 param_2) {
     return;
 }
 
-// non-matching: register allocation only, 6 instructions; first at +0x10: original `ldrb r0, [r2, #0x8]`, ours `ldrb
-// r1, [r2, #0x8]`
 void *func_ov000_021886c4(u8 param_1, u32 param_2) {
     u32 *v1;
     u32 v2;

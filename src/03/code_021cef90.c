@@ -12,6 +12,8 @@
 #include "code_0214a390.h"
 #include "registers.h"
 
+#pragma opt_dead_assignments off
+
 void func_ov003_021cef90(void) {
     func_ov003_021d34c8(0, data_ov003_021da284->mUnk_14);
     data_ov003_021da284->mUnk_14 = func_ov003_021d3544(1, func_ov003_021ceb54, 0, 0x78);
@@ -56,8 +58,6 @@ void func_ov003_021cefc0(u32 a, s32 b, s32 c, u32 d, u32 e) {
     }
 }
 
-// non-matching: `adds r5, r2, #0; adds r5, #36` (pointer to the first byte of the record) comes before
-// `movs r0, #30; muls r1, r0` (the record offset) here and after it in the original, instruction order only, same size
 u16 func_ov003_021cf1e8(u8 *a) {
     u16 i;
     u16 v1;

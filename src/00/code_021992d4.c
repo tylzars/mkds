@@ -134,20 +134,10 @@ u32 func_ov000_02199554(Unk02197fe8 *a) {
     return 1;
 }
 
-typedef struct Unk0219958cWord {
-    /* 0 */ u8 mUnk_00[4];
-} Unk0219958cWord;
-
-typedef struct Unk0219958cArg {
-    /* 0 */ u8 mUnk_00[4];
-    /* 4 */ Unk0219958cWord mUnk_04;
-} Unk0219958cArg;
-
-// non-matching: the 4-byte copy loads all four bytes from r4 offsets 4 to 7 (original loads the first from r4 and the
-// rest from r2 = r4 + 4, set before the first load); no extra move before the subtraction in the original; size 0x7c
-// against 0x80
 u32 func_ov000_0219958c(Unk02197fe8 *a, u8 *b, s32 c) {
-    Unk0219958cWord d;
+    s32 d;
+    u8 *t;
+    u8 *p;
     if (a->mUnk_28.mUnk_0c == 0) {
         return 1;
     }
@@ -157,8 +147,13 @@ u32 func_ov000_0219958c(Unk02197fe8 *a, u8 *b, s32 c) {
     if (func_02134d30(b, data_ov000_021b3fa8, 4) != 0) {
         return 1;
     }
-    d = ((Unk0219958cArg *) b)->mUnk_04;
-    if (func_ov000_02198148(a, func_ov000_0218e8c4() - *(s32 *) &d) != 0) {
+    t = (u8 *) &d;
+    p = b + 4;
+    t[0] = p[0];
+    t[1] = p[1];
+    t[2] = p[2];
+    t[3] = p[3];
+    if (func_ov000_02198148(a, func_ov000_0218e8c4() - d) != 0) {
         return 1;
     }
     return 0;

@@ -7,6 +7,7 @@
 #include "Main/Unknown/unk_02174000.h"
 
 #pragma thumb on
+#pragma optimize_for_size on
 
 void func_020296f4(void) {
     u8 i;
@@ -34,13 +35,11 @@ void func_02029758(void) {
     }
 }
 
-// non-matching: size 0xd8 against 0xd4; the second loop gets a test before it (cmp/bcs) where the original jumps to the
-// test at the bottom; registers otherwise equal
 void func_020297bc(void) {
     u16 b;
     u16 a = 0;
-    u8 c;
     u8 d;
+    u8 c;
     func_0202991c(0);
     for (b = 0; b < 4; b++) {
         if (func_02122794((u8) b) != 0) {

@@ -18,7 +18,6 @@ void func_0200b02c(Unk0200aeec_head *a, u32 b) {
     func_0200fcb4(v1);
 }
 
-// non-matching: 0xb0 bytes, original 0xce; 86 lines differ; first: original `movs r4, #0`, ours `movs r6, #0`
 void func_0200b08c(void *param_1) {
     Unk0200aeec_head *a;
     Unk0200aeec *v1;

@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_02060cb4.h"
 
-// non-matching: the original sets the loop index to 0 (mov r8, #0) and loads the pointer from data_0217aa08 before
-// taking the address of the stack buffer; this takes the stack buffer address first (3 words reordered).
+#pragma opt_loop_invariants off
+
 void func_020613a0(void) {
     u8 i;
     u8 *a;

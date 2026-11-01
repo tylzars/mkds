@@ -5,13 +5,12 @@
 #include "code_0200c894.h"
 #include "code_021488e8.h"
 
-// non-matching: same instructions and stores, but ip and lr are swapped (zero in lr, two in ip) from the first mov on
 void func_02036c90(void) {
-    data_021755b4.mUnk_08 = 0;
     data_021755b4.mUnk_00 = 2;
     data_021755b4.mUnk_02 = 0;
     data_021755b4.mUnk_04 = 0;
     data_021755b4.mUnk_06 = 0;
+    data_021755b4.mUnk_08 = 0;
     data_021755a8.mUnk_00 = 2;
     data_021755a8.mUnk_02 = 0;
     data_021755a8.mUnk_04 = 0;

@@ -96,8 +96,6 @@ void func_02052bf8(void) {
     }
 }
 
-// non-matching: 12 words, registers and operand load order; the original loads both product constants, then ors the
-// call result into r0 and keeps the zero high word in lr; this source ors it into lr and loads the constants after it.
 u16 func_02052c5c(u32 a) {
     Unk0203bfc4 t;
     u32 h;
@@ -114,7 +112,7 @@ u16 func_02052c5c(u32 a) {
     x = func_0200f59c() | m << 16;
     x = x * 0x5d588b656c078965ull + 0x269ec3;
     y = x >> 32;
-    return (u16) (y >> 16) | 0x8000;
+    return (u16) (y * 0x10000 >> 32) | 0x8000;
 }
 
 void func_02052cf4(void) {

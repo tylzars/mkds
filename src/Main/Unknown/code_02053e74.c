@@ -15,6 +15,8 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_020176c0.h"
 
+#pragma opt_rebuildconditionals off
+
 static inline u32 func_02053e74_inline(void) {
     if (data_0217aa00 == 0) {
         return 0;
@@ -93,9 +95,6 @@ static inline u32 func_0205465c_inline(Unk0217aa00 *p) {
     return p->mUnk_0000;
 }
 
-// non-matching: same size; register allocation only; 19 lines differ; first: original `mov r2, #0`, ours `mov lr, #0`.
-// In the chain of three conditions before the switch the original holds the last flag in r2 and the first two in lr and
-// ip.
 s32 func_02054c98(s32 a, void *b) {
     s32 r;
 

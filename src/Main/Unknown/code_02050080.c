@@ -6,6 +6,8 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0217a000.h"
 
+#pragma opt_rebuildconditionals off
+
 static inline u32 func_02050080_inline(void) {
     if (data_0217aa00 == 0) {
         return 0;
@@ -52,8 +54,6 @@ u32 func_020501b0(u32 a) {
     return r;
 }
 
-// non-matching: registers only, 6 words: the original keeps the zero in r2 and the func_02050080_inline value in r1
-// (this source gives the reverse; the getter's if/return is rebuilt into a conditional value here, not in the original)
 void func_02050080(void) {
     s32 r;
     u16 i;

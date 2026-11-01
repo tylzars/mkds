@@ -53,13 +53,12 @@ static inline s32 func_ov000_021a797c_inline(Unk021a6fa8 *a) {
     return b;
 }
 
-// non-matching: the original loads the word at 0x104 once more ahead of the interrupt call (`ldr r0, [r4, r0]` before
-// the first call), size 0xec against 0xf0
 s32 func_ov000_021a797c(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f) {
     Unk021a71c0 *h = a->mUnk_64;
     u32 i;
     s32 g;
     Unk021a78a4 *j;
+    *(Unk021a78a4 *volatile *) &h->mUnk_104;
     i = func_0200fca0();
     j = h->mUnk_104;
     while (j == 0) {

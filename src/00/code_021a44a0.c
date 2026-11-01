@@ -1,12 +1,10 @@
 #include "00/code_021a44a0.h"
 #include "00/code_021a4610.h"
 
-// non-matching: 4 words differ; the spill slots [sp, #12] and [sp, #20] (the n pointer and the e pointer) are swapped.
 void func_ov000_021a44a0(u8 *a, s32 b, u8 *c, s32 d) {
     u8 e[0x100];
     s16 o;
     u8 *n;
-    u8 *f;
     u8 g;
     u8 h;
     u8 i;
@@ -22,11 +20,10 @@ void func_ov000_021a44a0(u8 *a, s32 b, u8 *c, s32 d) {
     h = 0;
     l = 0;
     m = e;
-    f = m;
     do {
         h = (m[0] + a[g] + h) % 0x100;
         g = (g + 1) % b;
-        func_ov000_021a4648(m, f + h);
+        func_ov000_021a4648(m, e + h);
         m++;
         l++;
     } while (l < 0x100);
@@ -37,9 +34,9 @@ void func_ov000_021a44a0(u8 *a, s32 b, u8 *c, s32 d) {
         do {
             i = (i + c[o] + 1) % 0x100;
             n = e + i;
-            h = (e[i] + h) % 0x100;
+            h = (*n + h) % 0x100;
             func_ov000_021a4648(n, e + h);
-            j = (e[i] + e[h]) % 0x100;
+            j = (*n + e[h]) % 0x100;
             c[o] ^= e[j];
             o++;
         } while (o < d);

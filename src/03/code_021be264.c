@@ -102,8 +102,6 @@ u32 func_ov003_021be3b8(void) {
     return 1;
 }
 
-// non-matching: the original keeps 0x1f in r3 for both alignments (movs r3,#31; adds r1,r0,r3; bics r1,r3), ours adds
-// the immediate; 0xcc bytes against 0xc8
 s32 func_ov003_021be418(u32 param_0) {
     u32 a = 1;
     s32 b;
@@ -111,6 +109,8 @@ s32 func_ov003_021be418(u32 param_0) {
     u32 d;
     u32 e;
     u32 f;
+    enum { K0 } g;
+    u32 h;
 
     data_ov003_021d8c40 = param_0;
     func_ov003_021be568();
@@ -119,10 +119,12 @@ s32 func_ov003_021be418(u32 param_0) {
     if (data_ov003_021d8c24 == 0) {
         return -1;
     }
-    d = ((u32) data_ov003_021d8c24 + 0x1f) & ~0x1f;
+    g = 0x1f;
+    d = ((u32) data_ov003_021d8c24 + g) & ~0x1f;
     data_ov003_021d8c10 = (void *) d;
     f = e + 0x2490;
-    data_ov003_021d8c2c = (Unk021d8c2c *) ((d + f + 0x1f) & ~0x1f);
+    h = d + f;
+    data_ov003_021d8c2c = (Unk021d8c2c *) ((h + g) & ~0x1f);
     if (func_ov003_021be610(func_ov003_021be4ec, (void *) d, f) == 0) {
         return -2;
     }

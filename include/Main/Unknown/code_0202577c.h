@@ -3,4 +3,4 @@
 #include "types.h"
 #include "Main/Unknown/unk_02153000.h"
 
-u32 func_0202577c(u32 arg0);
+Unk0215316c func_0202577c(u32 arg0);
