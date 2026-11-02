@@ -192,8 +192,10 @@ void func_01ffc064(Vec3 *a, const Vec3 *b, s32 c, Unk0206bcb0 *p) {
     func_02147fd8(p->mUnk_1d0 + c, &p->mUnk_12c, b, a);
 }
 
-// non-matching: 3ec kept in r2 and the constant word in r1 (original: r1 and r0), 4 words differ in register numbers
-// only
+static inline const s32 func_01ffc090_inline(void) {
+    return data_usa_02165500;
+}
+
 void func_01ffc090(Unk0206bcb0 *p, s32 a) {
     if (a == 0) {
         if (p->mUnk_44 & 8) {
@@ -204,7 +206,7 @@ void func_01ffc090(Unk0206bcb0 *p, s32 a) {
     if (p->mUnk_3ec == 0 && (p->mUnk_3f0 <= 0 ? -p->mUnk_3f0 : p->mUnk_3f0) < 5) {
         p->mUnk_3f0 = 0;
     } else {
-        p->mUnk_3f0 = p->mUnk_3f0 + (s32) (((s64) (p->mUnk_3ec - p->mUnk_3f0) * data_usa_02165500 + 0x800) >> 12);
+        p->mUnk_3f0 = p->mUnk_3f0 + (s32) (((s64) (p->mUnk_3ec - p->mUnk_3f0) * func_01ffc090_inline() + 0x800) >> 12);
     }
     p->mUnk_236 += (u16) p->mUnk_3f0;
 }

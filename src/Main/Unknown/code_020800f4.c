@@ -6,8 +6,6 @@
 #include "Main/Unknown/unk_02155000.h"
 #include "code_02147cd8.h"
 
-// non-matching: register allocation only (21 words): m0 is in fp where the original has r7 (the original keeps n1,
-// &w and the p->mUnk_04 / mUnk_2e loads of the first and third loops in fp).
 void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s32 e) {
     s32 m2;
     Unk02175620_bc *r;
@@ -51,6 +49,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
 
         n = 0;
         n1 = 0;
+        n1 = (u16) n1;
         n0 = 0;
         if (d != 0) {
             k = 0;
@@ -81,6 +80,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
                 }
             }
         } else if (e != -1) {
+            n1 = (u16) n1;
             if (func_0207a974(e)->mUnk_4c & 0x40) {
                 v3 = 1;
             } else {
