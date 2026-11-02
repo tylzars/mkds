@@ -13,11 +13,8 @@
 #include "Main/Unknown/code_020b3000.h"
 #include "Main/Unknown/code_020c4bec.h"
 
-// non-matching: in the last loop the original keeps the loop variable in r8, the row offset in r7 and the second loop
-// variable in r6; ours allocates r4, r6 and sl (the rest of the function matches)
 void func_020c43c4(void) {
     Unk0206bcb0 *p;
-    u16 k;
     Unk0217b3e4 *d;
     u16 j;
     s32 n;
@@ -36,7 +33,7 @@ void func_020c43c4(void) {
         if ((data_027e00c8)[i].mUnk_204 != 0) {
             n = data_0217b3e4->mUnk_790[i].mUnk_00;
             data_0217b3e4->mUnk_790[i].mUnk_00 = n + 1;
-            func_0207a91c(&data_0217b3e4->mUnk_790[i].mUnk_04[n], i);
+            ((void (*)(Vec3 *, s32)) func_0207a91c)(&data_0217b3e4->mUnk_790[i].mUnk_04[n], i);
             data_0217b3e4->mUnk_790[i].mUnk_28[n] = func_020b4e70(&data_0217b3e4->mUnk_790[i].mUnk_04[n]) != 0 ? 2 : 3;
         }
     }
@@ -55,10 +52,10 @@ void func_020c43c4(void) {
         for (i = 0; i < data_021759c0->mUnk_3d0; i = (u16) (i + 1)) {
             p = func_0207a974(i);
             d = data_0217b3e4;
-            for (k = 0x27; k != 0; k--) {
-                d->mUnk_010[i][k] = d->mUnk_010[i][k - 1];
+            for (j = 0x27; j != 0; j--) {
+                d->mUnk_010[i][j] = d->mUnk_010[i][j - 1];
             }
-            func_0207a91c(&d->mUnk_010[i][0].mUnk_00, i);
+            func_0207a91c(&data_0217b3e4->mUnk_010[i][0].mUnk_00, i);
             data_0217b3e4->mUnk_010[i][0].mUnk_14 = func_020b4e70(&data_0217b3e4->mUnk_010[i][0].mUnk_00) != 0 ? 2 : 3;
             data_0217b3e4->mUnk_010[i][0].mUnk_0c = func_020b6338(i);
             if ((p->mUnk_44 & 0xa) != 0) {
@@ -76,10 +73,6 @@ void func_020c43c4(void) {
     }
 }
 
-// non-matching: 89 words differ, register and stack-slot choice only (same size and frame): the original keeps i in r6
-// (ours r9) and the entry pointer and counter of the two per-entry loops in r7 and r8 (ours r6 and r7); in the last
-// loop it holds the group base in r5 and the row in r4 (ours r2 and r5), and the three spilled loop words sit one slot
-// apart
 void func_020c3e44(Unk020c06c4 *a) {
     UnkPair020b502c o1;
     UnkPair020b502c o2;
@@ -92,12 +85,13 @@ void func_020c3e44(Unk020c06c4 *a) {
     s32 s;
     s32 i;
     s32 j;
-    s32 k;
+    u32 m;
     s32 n;
     Unk020c06c4_08 *e;
-    u32 m;
     void *q;
-    Unk020c06c4_20 *g;
+    u32 h;
+    s32 d;
+    Unk020c06c4_08 *p;
 
     if (data_021759c0->mUnk_08 != 1) {
         return;
@@ -138,11 +132,11 @@ void func_020c3e44(Unk020c06c4 *a) {
                     }
                 }
             }
-            for (k = 0; k < 0x28; k++) {
-                u16 x = (u16) (data_0217b3e4->mUnk_010[i][k].mUnk_0c + func_020b6368()) + 0x800;
+            for (j = 0; j < 0x28; j++) {
+                u16 x = (u16) (data_0217b3e4->mUnk_010[i][j].mUnk_0c + func_020b6368()) + 0x800;
                 u16 y = ((x << 4) / 0x10000) % 16;
-                if (func_020b5ae8(&data_0217b3e4->mUnk_010[i][k].mUnk_00, &o2, s, 1, 1) != 0) {
-                    switch (data_0217b3e4->mUnk_010[i][k].mUnk_10) {
+                if (func_020b5ae8(&data_0217b3e4->mUnk_010[i][j].mUnk_00, &o2, s, 1, 1) != 0) {
+                    switch (data_0217b3e4->mUnk_010[i][j].mUnk_10) {
                         case 0:
                             r = 0;
                             break;
@@ -157,19 +151,19 @@ void func_020c3e44(Unk020c06c4 *a) {
                             break;
                     }
                     if (r != 0) {
-                        n = a->mUnk_400;
-                        m = data_0217b3e4->mUnk_010[i][k].mUnk_14;
+                        h = data_0217b3e4->mUnk_010[i][j].mUnk_14;
+                        d = a->mUnk_400;
                         w2[0] = o2.mUnk_00 << 12;
                         w2[1] = o2.mUnk_04 << 12;
-                        e = &a->mUnk_000.mUnk_00[n];
-                        a->mUnk_400 += func_020224e0((Unk020224e0_o *) e, 0x80 - n, r,
-                                                     &data_0217b3e4->mUnk_810[y].mUnk_00, w2, (u16) (c + y), 1);
-                        for (; n < a->mUnk_400; n++, e++) {
+                        p = &a->mUnk_000.mUnk_00[d];
+                        a->mUnk_400 += func_020224e0((Unk020224e0_o *) p, 0x80 - d, r,
+                                                     &data_0217b3e4->mUnk_810[y].mUnk_00, w2, (u16) (y + c), 1);
+                        for (; d < a->mUnk_400; d++, p++) {
                             if ((i != 0 ? 1 : -1) != -1) {
-                                e->mUnk_0a = i != 0 ? 1 : -1;
+                                p->mUnk_0a = i != 0 ? 1 : -1;
                             }
-                            if (m != -1) {
-                                e->mUnk_0e = m;
+                            if (h != -1) {
+                                p->mUnk_0e = h;
                             }
                         }
                     }
@@ -177,12 +171,11 @@ void func_020c3e44(Unk020c06c4 *a) {
             }
         }
     }
-    g = &a->mUnk_000.mUnk_20[c];
     for (i = 0; i < 16; i++) {
         Unk0217b3e4_810 *t = &data_0217b3e4->mUnk_810[i];
-        g[i].mUnk_06 = t->mUnk_00 >> 4;
-        g[i].mUnk_0e = t->mUnk_04 >> 4;
-        g[i].mUnk_16 = t->mUnk_08 >> 4;
-        g[i].mUnk_1e = t->mUnk_0c >> 4;
+        (a->mUnk_000.mUnk_20 + c)[i].mUnk_06 = t->mUnk_00 >> 4;
+        (a->mUnk_000.mUnk_20 + c)[i].mUnk_0e = t->mUnk_04 >> 4;
+        (a->mUnk_000.mUnk_20 + c)[i].mUnk_16 = t->mUnk_08 >> 4;
+        (a->mUnk_000.mUnk_20 + c)[i].mUnk_1e = t->mUnk_0c >> 4;
     }
 }

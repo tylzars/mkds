@@ -171,131 +171,97 @@ u8 *func_020fefe8(u8 *a, s32 *b, void *c) {
     return a;
 }
 
-// non-matching: 0x29c bytes against 0x30c. The original keeps every advanced cursor as its own value
-// (add r1, r0, #1 and the following fields addressed as [r1, #n]) and forms each vector component's address
-// first (add r2, r0, #4 / [r2]); this compiler coalesces the advances into the cursor register and addresses the
-// later fields and components as [r0, #n] / [r2, #4]; t1 is read with ldrsb where the original has ldrb.
+static inline u8 *func_020fecdc_inline(u8 *a, s16 *p, void *c) {
+    volatile u8 t;
+    u8 *q;
+
+    if (p != 0) {
+        if (c != 0) {
+            t = *p;
+        }
+        if (c != 0) {
+            *a = t;
+        } else {
+            t = *a;
+        }
+        q = a + 1;
+        if (c == 0) {
+            *p = t;
+        }
+        return q;
+    }
+    return a + 1;
+}
+
+static inline u8 *func_020fecdc_inline2(u8 *a, u32 *p, void *c) {
+    volatile u16 t;
+
+    if (p != 0) {
+        if (c != 0) {
+            t = *p >> 12;
+        }
+        if (c != 0) {
+            *(u16 *) a = t;
+        } else {
+            t = *(u16 *) a;
+        }
+        if (c == 0) {
+            *p = t << 12;
+        }
+        return a + 2;
+    }
+    return a + 2;
+}
+
+static inline u8 *func_020fecdc_inline3(u8 *a, s32 *p, void *c) {
+    if (p != 0) {
+        if (c != 0) {
+            *(s16 *) a = *p >> 9;
+        } else {
+            *p = *(s16 *) a << 9;
+        }
+    }
+    return a + 2;
+}
+
+static inline u8 *func_020fecdc_inline4(u8 *a, s32 *p, void *c, s32 n) {
+    if (p != 0) {
+        if (c != 0) {
+            *a = *p >> n;
+        } else {
+            *p = *(s8 *) a << n;
+        }
+    }
+    return a + 1;
+}
+
 u8 *func_020fecdc(u8 *a, void *b, void *c) {
-    volatile s8 t1;
-    volatile u16 t2;
     Unk020f41c4_A *e;
-    void *p;
-    Vec3 *v;
-    Vec3 *w;
+    u16 *p;
 
     e = b;
 
-    if (b != 0 && c != 0) {
-        a = data_0217bd6c + 1;
-    }
-    p = b != 0 ? &e->mUnk_4e : 0;
-    if (p != 0) {
+    if (b != 0) {
         if (c != 0) {
-            t1 = *(s16 *) p;
+            a = data_0217bd6c;
         }
-        if (c != 0) {
-            *a = t1;
-        } else {
-            t1 = *a;
-        }
-        if (c == 0) {
-            *(s16 *) p = t1;
-        }
+        a++;
     }
-    a++;
-    p = b != 0 ? &e->mUnk_74 : 0;
-    if (p != 0) {
-        if (c != 0) {
-            t2 = *(u32 *) p >> 12;
-        }
-        if (c != 0) {
-            *(u16 *) a = t2;
-        } else {
-            t2 = *(u16 *) a;
-        }
-        if (c == 0) {
-            *(u32 *) p = t2 << 12;
-        }
-    }
-    a += 2;
-    v = b != 0 ? &e->mUnk_50 : 0;
-    if (v != 0) {
-        w = b != 0 ? &e->mUnk_50 : 0;
-        if (w != 0) {
-            if (c != 0) {
-                *(s16 *) a = w->x >> 9;
-            } else {
-                w->x = *(s16 *) a << 9;
-            }
-        }
-    }
-    a += 2;
-    v = b != 0 ? &e->mUnk_50 : 0;
-    if (v != 0) {
-        w = b != 0 ? &e->mUnk_50 : 0;
-        if (w != 0) {
-            if (c != 0) {
-                *(s16 *) a = w->y >> 9;
-            } else {
-                w->y = *(s16 *) a << 9;
-            }
-        }
-    }
-    a += 2;
-    v = b != 0 ? &e->mUnk_50 : 0;
-    if (v != 0) {
-        w = b != 0 ? &e->mUnk_50 : 0;
-        if (w != 0) {
-            if (c != 0) {
-                *(s16 *) a = w->z >> 9;
-            } else {
-                w->z = *(s16 *) a << 9;
-            }
-        }
-    }
-    a = func_020ff0b0(a + 2, b != 0 ? &e->mUnk_50 : 0, b != 0 ? &e->mUnk_0e4 : 0, c);
-    v = b != 0 ? &e->mUnk_5c : 0;
-    if (v != 0) {
-        w = b != 0 ? &e->mUnk_5c : 0;
-        if (w != 0) {
-            if (c != 0) {
-                *a = w->x >> 10;
-            } else {
-                w->x = *(s8 *) a << 10;
-            }
-        }
-    }
-    a++;
-    v = b != 0 ? &e->mUnk_5c : 0;
-    if (v != 0) {
-        w = b != 0 ? &e->mUnk_5c : 0;
-        if (w != 0) {
-            if (c != 0) {
-                *a = w->y >> 9;
-            } else {
-                w->y = *(s8 *) a << 9;
-            }
-        }
-    }
-    a++;
-    v = b != 0 ? &e->mUnk_5c : 0;
-    if (v != 0) {
-        w = b != 0 ? &e->mUnk_5c : 0;
-        if (w != 0) {
-            if (c != 0) {
-                *a = w->z >> 10;
-            } else {
-                w->z = *(s8 *) a << 10;
-            }
-        }
-    }
-    a++;
+    a = func_020fecdc_inline(a, b != 0 ? &e->mUnk_4e : 0, c);
+    a = func_020fecdc_inline2(a, b != 0 ? &e->mUnk_74 : 0, c);
+    a = func_020fecdc_inline3(a, (b != 0 ? &e->mUnk_50 : 0) != 0 ? &(b != 0 ? &e->mUnk_50 : 0)->x : 0, c);
+    a = func_020fecdc_inline3(a, (b != 0 ? &e->mUnk_50 : 0) != 0 ? &(b != 0 ? &e->mUnk_50 : 0)->y : 0, c);
+    a = func_020fecdc_inline3(a, (b != 0 ? &e->mUnk_50 : 0) != 0 ? &(b != 0 ? &e->mUnk_50 : 0)->z : 0, c);
+    a = func_020ff0b0(a, b != 0 ? &e->mUnk_50 : 0, b != 0 ? &e->mUnk_0e4 : 0, c);
+    a = func_020fecdc_inline4(a, (b != 0 ? &e->mUnk_5c : 0) != 0 ? &(b != 0 ? &e->mUnk_5c : 0)->x : 0, c, 10);
+    a = func_020fecdc_inline4(a, (b != 0 ? &e->mUnk_5c : 0) != 0 ? &(b != 0 ? &e->mUnk_5c : 0)->y : 0, c, 9);
+    a = func_020fecdc_inline4(a, (b != 0 ? &e->mUnk_5c : 0) != 0 ? &(b != 0 ? &e->mUnk_5c : 0)->z : 0, c, 10);
     p = b != 0 ? &e->mUnk_78 : 0;
     if (p != 0) {
         if (c != 0) {
-            *(u16 *) a = *(u16 *) p;
+            *(u16 *) a = *p;
         } else {
-            *(u16 *) p = *(u16 *) a;
+            *p = *(u16 *) a;
         }
     }
     return a + 2;
@@ -329,12 +295,10 @@ void func_020fec30(void) {
     } while (v2 != 0xff);
 }
 
-// non-matching: 0xe8 bytes against 0xec. The original reads the second byte of the row twice (ldrb r1 and ldrb r2,
-// both [r3, #1]: one for the decrement, one for the test) and stores the first byte of the row through
-// `lsl r2, r0, #1` / `strb r1, [r7, r2]`; this compiler reads it once and stores through [r7, r3, lsl #1]. v1, v3 and
-// v4 also take other registers (the original has v1 in r10, v3 in r9, v4 in r8).
+// non-matching: same size; 6 words differ in the func_020f0758 call: the original loads p->mUnk_14 into r2 before the
+// pool load, keeps data_027e00cc in r0 and 68 in ip (mla r0, r2, ip, r0); ours mla r0, r1, r0, r2
 void func_020feb44(void) {
-    s32 v1;
+    u32 v1;
     u32 v2;
     u32 v3;
     u32 v4;
@@ -348,19 +312,18 @@ void func_020feb44(void) {
     while (v2 != 0xff) {
         v5 = data_0217bdc0[v2][1];
         v4 = data_0217bdc0[v2][0];
-        data_0217bdc0[v2][1] = v5 - 1;
+        data_0217bdc0[v2][1]--;
         if (v5 == 0) {
             h = data_0217bd5c[0];
-            if (v3 == 0xff) {
-                data_0217bd68[0] = v4;
-            }
             data_0217bdc0[v2][0] = h;
             data_0217bd5c[0] = v2;
-            if (v3 != 0xff) {
+            if (v3 == 0xff) {
+                data_0217bd68[0] = v4;
+            } else {
                 data_0217bdc0[v3][0] = v4;
             }
             p = &data_0217c200[v2];
-            if (p->mUnk_1c == 0 || (u32) (p->mUnk_1c + 0x100) >= (u32) v1) {
+            if (p->mUnk_1c == 0 || (u32) (p->mUnk_1c + 0x100) >= v1) {
                 func_020f0758(data_027e00cc + p->mUnk_14, p->mUnk_18, 0, (u8 *) p, p->mUnk_1c);
             }
         } else {

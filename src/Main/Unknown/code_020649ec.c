@@ -120,7 +120,6 @@ void func_02064d44(Unk0206bcb0 *a) {
     func_01ffc064(&a->mUnk_1c4, &a->mUnk_8c, 0x400, a);
 }
 
-// non-matching: 99.6: one register choice differs
 void func_02064d60(Unk0206bcb0 *a, Vec3 *b) {
     Unk0206bcb0_514 *c;
     Vec4 d;
@@ -144,7 +143,7 @@ void func_02064d60(Unk0206bcb0 *a, Vec3 *b) {
             e = e + 0xffff;
         }
     }
-    c->mUnk_0e = c->mUnk_0e + ((s64) e * 0x19a >> 12);
+    c->mUnk_0e = c->mUnk_0e + (s32) ((s64) e * 0x19a >> 12);
     func_01ffd190(&data_02154f7c, (u16) (a->mUnk_236 + a->mUnk_4de), &a->mUnk_e0_m);
     func_01ffcebc(&a->mUnk_f0_q, &a->mUnk_e0_m, &a->mUnk_110_q);
     if ((a->mUnk_44 & 2) != 0) {
@@ -165,17 +164,17 @@ void func_02064d60(Unk0206bcb0 *a, Vec3 *b) {
     func_01ffcf7c(&a->mUnk_110_q, &a->mUnk_110_q);
 }
 
-// non-matching: 96.4: stack offsets of the vectors differ
 void func_02064f50(Unk0206bcb0 *a) {
     Unk0206bcb0_514 *b;
     s32 c;
     Vec3 d;
     Vec3 e;
-    Vec3 f;
-    Vec3 g;
-    Vec3 h;
     Vec3 i;
+    Vec3 h;
+    Vec3 g;
+    Vec3 f;
     u32 j;
+    Vec3 *k;
 
     b = a->mUnk_514;
     if ((a->mUnk_7c & 0x20) != 0) {
@@ -210,9 +209,10 @@ void func_02064f50(Unk0206bcb0 *a) {
     func_02148504(&b->mUnk_00, &f, &b->mUnk_00);
     if ((a->mUnk_514->mUnk_44 & 1) != 0) {
         func_01ffc064(&g, &b->mUnk_00, 0x400, a);
-        h.x = (s64) a->mUnk_12c.x * -0x7000 >> 12;
-        h.y = (s64) a->mUnk_12c.y * -0x7000 >> 12;
-        h.z = (s64) a->mUnk_12c.z * -0x7000 >> 12;
+        k = &a->mUnk_12c;
+        h.x = (s64) k->x * -0x7000 >> 12;
+        h.y = (s64) k->y * -0x7000 >> 12;
+        h.z = (s64) k->z * -0x7000 >> 12;
         func_02148504(&g, &h, &g);
         if (func_01ffdee4(&g, 0, 0, a->mUnk_1d0, 1, a->mUnk_2c8, &i, 0, 0, &j, 0, 0, 0, 0) != 0) {
             func_02148504(&i, &h, &i);

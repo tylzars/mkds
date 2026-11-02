@@ -135,18 +135,25 @@ void func_020f45f0(Unk020f40dc *rec, s32 keep) {
     }
 }
 
-// non-matching: 0x43c bytes vs 0x42c; in the original the rec kind is loaded right after the mode compare (before the
-// generator pointer is chosen) and the per-element block is four instructions shorter (register assignment and
-// scheduling of the 64-bit products).
+static inline u32 func_020f41c4_inline(Unk020f41c4_B *r, u32 c) {
+    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+    if (c == 0) {
+        return (u32) (r->mUnk_00 >> 32);
+    } else {
+        return (u32) (((r->mUnk_00 >> 32) * c) >> 32);
+    }
+}
+
 void func_020f41c4(Unk020f40dc *rec) {
     Unk0206bcb0 *owner = rec->mUnk_04->mUnk_1fc;
     Unk020f41c4_C *halves = (Unk020f41c4_C *) ((u8 *) owner->mUnk_590 + 0x40);
     Vec3 *dir = &owner->mUnk_168;
     Vec3 *axis = &owner->mUnk_150;
+    s32 i;
+    s32 count;
     Unk020f41c4_B *st;
     Unk020f41c4_Row *row;
     Unk020f41c4_A *elem;
-    s32 count;
     s32 kind = rec->mUnk_00;
     s32 tab;
     s32 radius;
@@ -156,45 +163,47 @@ void func_020f41c4(Unk020f40dc *rec) {
     s32 w1;
     s32 w2;
     s32 d;
-    s32 i;
+    s32 x;
+    s32 y;
 
     if (data_021759c0->mUnk_08 == 1) {
         st = &data_0217561c->mUnk_498;
     } else {
         st = &data_0217561c->mUnk_47c;
     }
-    st->mUnk_00 = st->mUnk_00 * st->mUnk_08 + st->mUnk_10;
+    angle = (u16) func_020f41c4_inline(st, 0x10000);
+    angle >>= 4;
     tab = data_0217bc48[kind].mUnk_08;
     if (data_0217bc34[tab].mUnk_80 != 0) {
         radius = 0x2000;
     } else {
         radius = 0x1800;
     }
-    angle = (u16) (st->mUnk_00 >> 48) >> 4;
     count = rec->mUnk_08;
     va = (s32) (((s64) radius * data_0215d4b4[angle * 2]) >> 12);
     vb = (s32) (((s64) radius * data_0215d4b4[angle * 2 + 1]) >> 12);
     func_020f1048(&data_027e00cc[tab], count, rec->mUnk_14, owner->mUnk_74, &owner->mUnk_98);
-    if (count <= 0) {
-        return;
-    }
-    row = &data_0215961c[count - 1];
-    for (i = 0; i < count; i++) {
-        st->mUnk_00 = st->mUnk_00 * st->mUnk_08 + st->mUnk_10;
-        w1 = (s32) (((s64) row->mUnk_00[i].mUnk_00 * (0x1000 + (s32) (((st->mUnk_00 >> 32) * 0x333) >> 32))) >> 12);
-        st->mUnk_00 = st->mUnk_00 * st->mUnk_08 + st->mUnk_10;
-        w2 = (s32) (((s64) row->mUnk_00[i].mUnk_04 * (0x1000 + (s32) (((st->mUnk_00 >> 32) * 0x333) >> 32))) >> 12);
-        elem = rec->mUnk_14[i];
-        d = (s32) (((s64) w1 * vb) >> 12) - (s32) (((s64) w2 * va) >> 12);
-        elem->mUnk_5c.x = (s32) (((s64) dir->x * d) >> 12);
-        elem->mUnk_5c.y = (s32) (((s64) dir->y * d) >> 12);
-        elem->mUnk_5c.z = (s32) (((s64) dir->z * d) >> 12);
-        func_02147fd8((s32) (((s64) w2 * vb) >> 12) + (s32) (((s64) d * va) >> 12), axis, &elem->mUnk_5c,
-                      &elem->mUnk_5c);
-        elem->mUnk_68.x = 0xcd;
-        elem->mUnk_68.y = 0xcd;
-        elem->mUnk_68.z = 0xcd;
-        elem->mUnk_7c = *halves;
+    i = 0;
+    if (i < count) {
+        row = &data_0215961c[count - 1];
+        do {
+            x = row->mUnk_00[i].mUnk_00;
+            y = row->mUnk_00[i].mUnk_04;
+            w1 = (s32) (((s64) x * (0x1000 + (s32) func_020f41c4_inline(st, 0x333))) >> 12);
+            w2 = (s32) (((s64) y * (0x1000 + (s32) func_020f41c4_inline(st, 0x333))) >> 12);
+            d = (s32) (((s64) w1 * vb) >> 12) - (s32) (((s64) w2 * va) >> 12);
+            elem = rec->mUnk_14[i];
+            elem->mUnk_5c.x = (s32) (((s64) dir->x * d) >> 12);
+            elem->mUnk_5c.y = (s32) (((s64) dir->y * d) >> 12);
+            elem->mUnk_5c.z = (s32) (((s64) dir->z * d) >> 12);
+            func_02147fd8((s32) (((s64) w2 * vb) >> 12) + (s32) (((s64) d * va) >> 12), axis, &elem->mUnk_5c,
+                          &elem->mUnk_5c);
+            elem->mUnk_68.x = 0xcd;
+            elem->mUnk_68.y = 0xcd;
+            elem->mUnk_68.z = 0xcd;
+            elem->mUnk_7c = *halves;
+            i++;
+        } while (i < count);
     }
 }
 
@@ -462,23 +471,22 @@ s32 func_020f3a58(Unk020f371c_Ref *in, Unk020f371c_Ref *out, Vec3 *pos) {
     return 0;
 }
 
-// non-matching: 0x334 bytes vs 0x33c; the original keeps the pointer behind `origin` in a stack rec across the call to
-// func_0207a974 (one store and the reloads), ours holds it in r6 and keeps a second copy in a rec.
+// non-matching: 74 words differ (same size and frame): in both loops the original computes the dot product's four
+// differences in x, x, z, z order before the multiplies (ours does the z terms before the second x difference) and
+// keeps i, child and c in r7, r9 and r6 (ours r9, sl and r7; second loop sl, fp and r9 against fp, ip and sl)
 void func_020f371c(Unk020f371c_Ref *in, Unk020f371c_Ref *out, u32 idx, s32 flag) {
     Unk020f371c *node = in->mUnk_00;
     s32 side = in->mUnk_04;
     Unk020f371c *cur;
     Unk020f371c *child;
-    Unk020f371c *best2;
-    s32 count;
     s32 count2;
+    s32 count;
+    Vec3 *origin;
     s32 found;
     s32 best;
+    Unk020f371c *best2;
     s32 i;
-    Vec3 *origin;
     Vec3 *pos;
-    Vec3 *o2;
-    Vec3 *p2;
     Vec3 *c;
     Unk0206bcb0 *other;
     s32 d;
@@ -502,23 +510,23 @@ void func_020f371c(Unk020f371c_Ref *in, Unk020f371c_Ref *out, u32 idx, s32 flag)
     if (idx < 8) {
         other = func_0207a974(idx);
         pos = &other->mUnk_98;
-        o2 = origin;
-        p2 = pos;
         {
-            s64 sq = (s64) (pos->z - origin->z) * (pos->z - origin->z);
-            sq += (s64) (pos->x - origin->x) * (pos->x - origin->x);
+            s64 sq = (s64) (((const Vec3 *) pos)->x - ((const Vec3 *) origin)->x) *
+                     (((const Vec3 *) pos)->x - ((const Vec3 *) origin)->x);
+            sq += (s64) (((const Vec3 *) pos)->z - ((const Vec3 *) origin)->z) *
+                  (((const Vec3 *) pos)->z - ((const Vec3 *) origin)->z);
             if (sq < 0x225510000000LL) {
                 found = 1;
                 for (i = 0; i < count; i++) {
                     child = side != 0 ? node->mUnk_00[i] : node->mUnk_0c[i];
                     if (child != 0) {
                         c = child->mUnk_18;
-                        if (((p2->x - o2->x) >> 12) * ((c->x - o2->x) >> 12) +
-                                ((p2->z - o2->z) >> 12) * ((c->z - o2->z) >> 12) >
+                        if (((c->x - origin->x) >> 12) * ((pos->x - origin->x) >> 12) +
+                                ((pos->z - origin->z) >> 12) * ((c->z - origin->z) >> 12) >
                             0) {
-                            d = ((c->y - p2->y) >> 12) * ((c->y - p2->y) >> 12) +
-                                ((c->x - p2->x) >> 12) * ((c->x - p2->x) >> 12) +
-                                ((c->z - p2->z) >> 12) * ((c->z - p2->z) >> 12);
+                            d = ((c->x - pos->x) >> 12) * ((c->x - pos->x) >> 12) +
+                                ((c->y - pos->y) >> 12) * ((c->y - pos->y) >> 12) +
+                                ((c->z - pos->z) >> 12) * ((c->z - pos->z) >> 12);
                             if (d < best) {
                                 best = d;
                                 cur = child;
@@ -538,12 +546,12 @@ void func_020f371c(Unk020f371c_Ref *in, Unk020f371c_Ref *out, u32 idx, s32 flag)
                 if (child != 0 && child != node) {
                     if (found != 0) {
                         c = child->mUnk_18;
-                        if (((p2->x - o2->x) >> 12) * ((c->x - o2->x) >> 12) +
-                                ((p2->z - o2->z) >> 12) * ((c->z - o2->z) >> 12) >
+                        if (((c->x - origin->x) >> 12) * ((pos->x - origin->x) >> 12) +
+                                ((pos->z - origin->z) >> 12) * ((c->z - origin->z) >> 12) >
                             0) {
-                            d = ((c->y - p2->y) >> 12) * ((c->y - p2->y) >> 12) +
-                                ((c->x - p2->x) >> 12) * ((c->x - p2->x) >> 12) +
-                                ((c->z - p2->z) >> 12) * ((c->z - p2->z) >> 12);
+                            d = ((c->x - pos->x) >> 12) * ((c->x - pos->x) >> 12) +
+                                ((c->y - pos->y) >> 12) * ((c->y - pos->y) >> 12) +
+                                ((c->z - pos->z) >> 12) * ((c->z - pos->z) >> 12);
                             if (d < best) {
                                 best = d;
                                 best2 = child;
@@ -558,11 +566,7 @@ void func_020f371c(Unk020f371c_Ref *in, Unk020f371c_Ref *out, u32 idx, s32 flag)
             }
             if (best2 != 0) {
                 cur = best2;
-                if (side == 0) {
-                    side = 1;
-                } else {
-                    side = 0;
-                }
+                side = side == 0 ? 1 : 0;
             }
         }
     }

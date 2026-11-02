@@ -9,9 +9,6 @@
 #include "Main/Unknown/code_02109000.h"
 #include "code_02147cd8.h"
 
-// non-matching: 25 words differ from +0xf8 (push, frame and the stack arguments now as in the original): in the
-// three products after func_0214848c the original multiplies x and y first and loads z into the register y's
-// operand used (r8), and forms &a->mUnk_000.mUnk_5c after the three subtractions instead of before them
 void func_020f2b94(void *a0, void *b0, s32 c, s32 d, s32 e, s32 f) {
     Unk020f1d70 *a;
     Unk020eda5c *b;
@@ -44,9 +41,9 @@ void func_020f2b94(void *a0, void *b0, s32 c, s32 d, s32 e, s32 f) {
             s32 x, y, z;
 
             x = (s32) (((s64) b->mUnk_02c.mUnk_0c.x * n) >> 12);
-            z = (s32) (((s64) b->mUnk_02c.mUnk_0c.z * n) >> 12);
             y = (s32) (((s64) b->mUnk_02c.mUnk_0c.y * n) >> 12);
-            a->mUnk_000.mUnk_5c.x -= x;
+            z = (s32) (((s64) b->mUnk_02c.mUnk_0c.z * n) >> 12);
+            a->mUnk_000.mUnk_5c.x = (s32) (a->mUnk_000.mUnk_5c.x - x);
             a->mUnk_000.mUnk_5c.y -= y;
             a->mUnk_000.mUnk_5c.z -= z;
         }
@@ -174,9 +171,6 @@ void func_020f2768(Unk020f1d70 *a, Vec3 *b, Vec3 *c) {
     func_021090c4(&a->mUnk_000.mUnk_00, 0xd5, 0x7f, 0);
 }
 
-// non-matching: 8 instructions differ; first at +0x1a4: the 64-bit dot-product accumulator uses r1/r2
-// (low/high) where the original uses r2/r1, which also swaps the two registers of the following comparison
-// and the two argument registers of func_02039860
 void func_020f2228(Unk020f1d70 *a, s32 b) {
     Vec3 v1;
     Vec3 v2;
@@ -212,7 +206,7 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
                 a->mUnk_000.mUnk_74 |= 0x100;
                 if (f != 0) {
                     n = func_0214848c(&v2, &a->mUnk_13c);
-                    a->mUnk_13c.x -= (s32) (((s64) v2.x * n) >> 12);
+                    a->mUnk_13c.x = (s32) (a->mUnk_13c.x - (s32) (((s64) v2.x * n) >> 12));
                     a->mUnk_13c.y -= (s32) (((s64) v2.y * n) >> 12);
                     a->mUnk_13c.z -= (s32) (((s64) v2.z * n) >> 12);
                     if ((s64) a->mUnk_13c.x * a->mUnk_13c.x + (s64) a->mUnk_13c.y * a->mUnk_13c.y +

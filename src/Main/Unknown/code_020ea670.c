@@ -324,27 +324,23 @@ void func_020eb2a0(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, Vec3 
     param_5->y = 0;
 }
 
-// non-matching: registers holding param_3/param_4/param_5 differ (mine param_3->fp,
-// param_6->sl; the original param_3->fp, param_6->sl, param_7->r9 with param_5 reloaded
-// from its stack slot); 0x2e0 bytes here, 0x2dc in the original
 s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Vec3 *param_5, s32 param_6,
                   Vec3 *param_7) {
     Vec3 dv;
+    s32 ry;
+    Vec3 *b;
     s32 d1;
     s32 d2;
     s32 d3;
     s32 rx;
-    s32 ry;
     s32 rz;
     Vec3 *c;
 
+    b = &param_3[1];
     c = &param_3[2];
     func_021484d0(param_1, param_2, &dv);
     d1 = func_02039828(&dv, param_3);
-    if (d1 >= param_4->x + param_6) {
-        return 0;
-    }
-    if (d1 <= -(param_5->x + param_6)) {
+    if (d1 >= param_4->x + param_6 || d1 <= -(param_5->x + param_6)) {
         return 0;
     }
     if (d1 > 0) {
@@ -352,23 +348,18 @@ s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Ve
     } else {
         rx = d1 + (param_5->x + param_6);
     }
-    d2 = func_02039828(&dv, &param_3[1]);
-    if (d2 >= param_4->y + param_6) {
-        return 0;
-    }
-    if (d2 <= -(param_5->y + param_6)) {
+    d2 = func_02039828(&dv, b);
+    if (d2 >= param_4->y + param_6 || d2 <= -(param_5->y + param_6)) {
         return 0;
     }
     if (d2 > 0) {
-        ry = (param_4->y + param_6) - d2;
+        ry = param_4->y + param_6;
+        ry -= d2;
     } else {
         ry = d2 + (param_5->y + param_6);
     }
-    d3 = func_02039828(&dv, &param_3[2]);
-    if (d3 >= param_4->z + param_6) {
-        return 0;
-    }
-    if (d3 <= -(param_5->z + param_6)) {
+    d3 = func_02039828(&dv, c);
+    if (d3 >= param_4->z + param_6 || d3 <= -(param_5->z + param_6)) {
         return 0;
     }
     if (d3 > 0) {
@@ -379,9 +370,9 @@ s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Ve
     if (rz < rx) {
         if (ry < rz && d2 > 0) {
             if (param_7 != 0) {
-                param_7->x = (s32) (((s64) param_3[1].x * ry) >> 12);
-                param_7->y = (s32) (((s64) param_3[1].y * ry) >> 12);
-                param_7->z = (s32) (((s64) param_3[1].z * ry) >> 12);
+                param_7->x = (s32) (((s64) b->x * ry) >> 12);
+                param_7->y = (s32) (((s64) b->y * ry) >> 12);
+                param_7->z = (s32) (((s64) b->z * ry) >> 12);
             }
             return 1;
         }
@@ -398,9 +389,9 @@ s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Ve
     }
     if (ry < rx && d2 > 0) {
         if (param_7 != 0) {
-            param_7->x = (s32) (((s64) param_3[1].x * ry) >> 12);
-            param_7->y = (s32) (((s64) param_3[1].y * ry) >> 12);
-            param_7->z = (s32) (((s64) param_3[1].z * ry) >> 12);
+            param_7->x = (s32) (((s64) b->x * ry) >> 12);
+            param_7->y = (s32) (((s64) b->y * ry) >> 12);
+            param_7->z = (s32) (((s64) b->z * ry) >> 12);
         }
         return 1;
     }
@@ -416,42 +407,38 @@ s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Ve
     return 3;
 }
 
-// non-matching: 16 bytes longer than the original (0x234 vs 0x244) and the registers
-// holding param_3/param_4 differ (mine param_4->r4, the original r6)
 s32 func_020ead80(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, s32 param_5, s32 param_6, s32 param_7,
                   Vec3 *param_8) {
     Vec3 dv;
     Vec3 v;
-    Vec3 w;
-    Vec3 *p;
-    s32 d;
     s32 r;
     s32 m;
+    s32 n;
+    Vec3 *p;
+    Vec3 *q;
 
     p = &param_3[1];
+    q = &param_3[2];
 
     func_021484d0(param_1, param_2, &dv);
-    d = func_02039828(&dv, p);
-    if (d >= param_5 + param_7) {
+    v.y = func_02039828(&dv, p);
+    if (v.y >= param_5 + param_7 || v.y <= -(param_6 + param_7)) {
         return 0;
     }
-    if (d <= -(param_6 + param_7)) {
-        return 0;
-    }
-    if (d > 0) {
-        r = (param_5 + param_7) - d;
+    if (v.y > 0) {
+        r = (param_5 + param_7) - v.y;
     } else {
-        r = d + (param_6 + param_7);
+        r = v.y + (param_6 + param_7);
     }
     v.x = func_02039828(&dv, param_3);
     v.y = 0;
-    v.z = func_02039828(&dv, &param_3[2]);
+    v.z = func_02039828(&dv, q);
     m = func_021482cc(&v);
     if (m >= param_4 + param_7) {
         return 0;
     }
-    m = (param_4 + param_7) - m;
-    if (r < m && v.y > 0) {
+    n = (param_4 + param_7) - m;
+    if (r < n && v.y > 0) {
         if (param_8 != 0) {
             param_8->x = (s32) (((s64) p->x * r) >> 12);
             param_8->y = (s32) (((s64) p->y * r) >> 12);
@@ -460,17 +447,17 @@ s32 func_020ead80(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, s32 
         return 1;
     }
     if (param_8 != 0) {
-        w.x = 0;
-        w.y = 0;
-        w.z = 0;
-        if (v.x * v.x + v.y * v.y + v.z * v.z < 16) {
+        Vec3 w = {0};
+
+        if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 16) {
             func_02039860(&v, &w);
         }
-        w.x = (s32) (((s64) w.x * m) >> 12);
-        w.z = (s32) (((s64) w.z * m) >> 12);
-        param_8->x = (s32) (((s64) param_3->x * w.x) >> 12) + (s32) (((s64) param_3[2].x * w.z) >> 12);
-        param_8->y = (s32) (((s64) param_3->y * w.x) >> 12) + (s32) (((s64) param_3[2].y * w.z) >> 12);
-        param_8->z = (s32) (((s64) param_3->z * w.x) >> 12) + (s32) (((s64) param_3[2].z * w.z) >> 12);
+        w.x = (s32) (((s64) w.x * n) >> 12);
+        w.y = 0;
+        w.z = (s32) (((s64) w.z * n) >> 12);
+        param_8->x = (s32) (((s64) param_3->x * w.x) >> 12) + (s32) (((s64) q->x * w.z) >> 12);
+        param_8->y = (s32) (((s64) param_3->y * w.x) >> 12) + (s32) (((s64) q->y * w.z) >> 12);
+        param_8->z = (s32) (((s64) param_3->z * w.x) >> 12) + (s32) (((s64) q->z * w.z) >> 12);
     }
     return 2;
 }

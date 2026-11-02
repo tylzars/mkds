@@ -282,9 +282,9 @@ s32 func_02054938(void) {
     return r;
 }
 
-// non-matching: same size; register allocation only; 31 lines differ; first: original `ldr r0, [pc, #320]`, ours `ldr
-// r1, [pc, #320]`. In the loop the original keeps the entry pointer, the object pointer and the bit mask in r10, r9 and
-// r11, with the counter in r0.
+// non-matching: same size; register allocation only; 31 words differ; first: original `ldr r0, [pc, #320]`, ours `ldr
+// r1, [pc, #320]`. The original keeps e in r10, the inline's mask in r11 and its counter in r0; ours rotates them (e in
+// r0, mask in r10, counter in r11) because e is coloured first.
 s32 func_02054754(void) {
     s32 r;
     Unk0217aa00_15bc *q;

@@ -34,8 +34,10 @@
 
 #pragma thumb on
 
-// non-matching: one load order: in the d == 0xc arm the original reads data_0217b488->mUnk_10c[i] before the first
-// argument (6 words differ, registers of that block only)
+static inline s32 func_0202bb80_inline(s32 i) {
+    return data_0217b488->mUnk_10c[i];
+}
+
 void func_0202bb80(void) {
     Unk02174e14_00 *q = &data_02174e3c->mUnk_000;
     Unk02174e3c *t;
@@ -115,8 +117,8 @@ void func_0202bb80(void) {
                     } else if ((c & 0x40) != 0) {
                         d = c & 0x3f;
                         if (d == 0xc) {
-                            func_02025c48(data_usa_02174e0c[i].mUnk_02,
-                                          data_0217b488->mUnk_10c[i] + data_usa_02174e10[d], q->mUnk_0c);
+                            func_02025c48(data_usa_02174e0c[i].mUnk_02, data_usa_02174e10[d] + func_0202bb80_inline(i),
+                                          q->mUnk_0c);
                         } else {
                             func_02025c48(data_usa_02174e0c[i].mUnk_02, data_usa_02174e10[d], q->mUnk_0c);
                         }

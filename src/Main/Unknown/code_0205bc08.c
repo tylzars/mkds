@@ -77,26 +77,29 @@ void func_0205bc08(void) {
     }
 }
 
-// non-matching: 0x438 bytes, original 0x428; the sort and count loops differ in register use and the zero values the
-// original keeps on the stack.
 void func_0205be0c(void) {
     u32 a[4];
     u8 b[4];
     u8 i;
     u8 j;
-    u8 k;
+    u8 l;
     u8 n;
     s16 m;
     u32 x;
     u32 y;
-    u32 z;
+    u8 k;
+    u8 z;
     u32 t;
     u32 f;
     u32 g;
     u32 h;
+    u32 u;
     u32 q;
     Unk0217aa14 *d;
     u32 s;
+    u8 p;
+    u32 c;
+    u32 r;
 
     x = 0xf;
     for (i = 0; i < 4; i++) {
@@ -108,9 +111,7 @@ void func_0205be0c(void) {
         if (t != 0) {
             q = 0;
             if ((d->mUnk_0fc & s) != 0) {
-                if (t == 0) {
-                    q = 1;
-                }
+                q = t == 0;
             }
             if (q != 0) {
                 a[i] = d->mUnk_104[i].mUnk_80 & 0x3fffff;
@@ -120,7 +121,7 @@ void func_0205be0c(void) {
                     g = data_0217aa14->mUnk_73e;
                 } else {
                     f = data_0217aa14->mUnk_104[i].mUnk_04;
-                    g = ((f & 0x7800000) >> 23) & 0xff;
+                    g = (u8) ((f & 0x7800000) >> 23);
                 }
                 x = x & g;
                 if (f == 0 && func_02061fec() == 0) {
@@ -138,32 +139,30 @@ void func_0205be0c(void) {
             }
         }
     }
-    for (j = 0; j < 4; j++) {
+    for (i = 0; i < 4; i++) {
         d = data_0217aa14;
-        s = 1 << j;
-        h = *(u8 *) &data_0217aa18->mUnk_06[j];
+        s = 1 << i;
+        h = *(u8 *) &data_0217aa18->mUnk_06[i];
+        u = d->mUnk_104[i].mUnk_80;
         t = d->mUnk_749 & s;
-        f = d->mUnk_104[j].mUnk_80;
         if (t != 0) {
             q = 0;
             if ((d->mUnk_0fc & s) != 0) {
-                if (t == 0) {
-                    q = 1;
-                }
+                q = t == 0;
             }
             if (q == 0 && (x & s) != 0 && func_0203c880(h) == 0) {
-                func_0203e4c4(h, (f & 0x7ffff) != 0x7ffff);
+                func_0203e4c4(h, (u & 0x7ffff) != 0x7ffff);
             }
         }
     }
-    for (i = 1; i < 4; i++) {
-        n = i;
-        y = a[i];
-        k = b[i];
+    for (l = 1; l < 4; l++) {
+        n = l;
+        y = a[l];
+        k = b[l];
         while (n != 0 && a[n - 1] > y) {
             a[n] = a[n - 1];
             b[n] = b[n - 1];
-            n = n - 1;
+            n--;
         }
         a[n] = y;
         b[n] = k;
@@ -172,43 +171,44 @@ void func_0205be0c(void) {
         i = b[j];
         z = 0;
         d = data_0217aa14;
-        q = d->mUnk_0fc;
-        if ((q & (1 << i)) != 0) {
-            if ((u8) ((d->mUnk_104[i].mUnk_80 & 0x400000) >> 22) == 0) {
-                z = (j + 1) & 0xff;
+        r = d->mUnk_0fc;
+        if ((r & (1 << i)) != 0) {
+            if ((u8) (((u32) d->mUnk_104[i].mUnk_80 & 0x400000) >> 22) == 0) {
+                z = j + 1;
                 for (m = j; m >= 0; m--) {
-                    if ((u8) ((d->mUnk_104[b[m]].mUnk_80 & 0x400000) >> 22) != 0) {
-                        z = (z - 1) & 0xff;
+                    if ((u8) (((u32) d->mUnk_104[b[m]].mUnk_80 & 0x400000) >> 22) != 0) {
+                        z = z - 1;
                     }
                 }
             } else {
                 u16 w;
-                u32 c;
 
                 w = (u16) data_0217aa18->mUnk_06[i];
-                c = data_0217561c->mUnk_000[w].mUnk_50 & 0xf;
+                c = data_0217561c->mUnk_000[w].mUnk_50_0;
                 z = c;
-                for (n = 0; n < 4; n++) {
+                for (p = 0; p < 4; p++) {
                     u32 e;
 
-                    if ((u8) ((d->mUnk_104[n].mUnk_80 & 0x400000) >> 22) == 0) {
+                    if ((u8) (((u32) d->mUnk_104[p].mUnk_80 & 0x400000) >> 22) == 0) {
                         e = 1;
                     } else {
                         e = 0;
                     }
-                    if ((q & (1 << n)) != 0) {
+                    if ((r & (1 << p)) != 0) {
                         u16 o;
+                        u32 v;
 
-                        o = (u16) data_0217aa18->mUnk_06[n];
-                        if (data_0217561c->mUnk_000[o].mUnk_14 != 4 && e != 0 &&
-                            (data_0217561c->mUnk_000[o].mUnk_50 & 0xf) > c) {
-                            z = (z + 1) & 0xff;
+                        o = data_0217aa18->mUnk_06[p];
+                        o = (u16) o;
+                        v = data_0217561c->mUnk_000[o].mUnk_50_0;
+                        if (data_0217561c->mUnk_000[o].mUnk_14 != 4 && e != 0 && v > c) {
+                            z = z + 1;
                         }
                     }
                 }
             }
         }
-        d->mUnk_104[i].mUnk_86_1 = z & 0x7f;
+        d->mUnk_104[i].mUnk_86_1 = z;
     }
 }
 
@@ -253,11 +253,9 @@ void func_0205c234(s32 a) {
     data_0217aa14->mUnk_73a = i << 1;
 }
 
-// non-matching: 0x150 bytes, original 0x130; the message bitfield stores are written as separate read-modify-write
-// sequences by the original in a different order.
-int func_0205c340(u32 a, u32 b, int c) {
-    int r;
+int func_0205c340(u8 a, u32 b, int c) {
     Unk0205b504 *m;
+    int r;
 
     r = 1;
     if ((data_0217aa14->mUnk_75c & 4) != 0) {
@@ -267,11 +265,11 @@ int func_0205c340(u32 a, u32 b, int c) {
         r = c + 4;
         m = (Unk0205b504 *) data_0217aa14->mUnk_754;
         data_0217aa14->mUnk_75c = data_0217aa14->mUnk_75c | 4;
-        m->mUnk_00_0 = func_ov000_0219bb50() & 3;
-        m->mUnk_00_2 = a & 3;
-        m->mUnk_00_4 = (u8) b & 0xf;
+        m->mUnk_00_0 = func_ov000_0219bb50();
+        m->mUnk_00_2 = a;
+        m->mUnk_00_4 = (u8) b;
         m->mUnk_01 = data_0217aa14->mUnk_758;
-        m->mUnk_02_0 = data_0217aa14->mUnk_748 & 0xf;
+        m->mUnk_02_0 = data_0217aa14->mUnk_748;
         func_0200ee58(m, r);
         r = func_02120340(a, m, r, func_0211ff74);
         if (r == 0) {

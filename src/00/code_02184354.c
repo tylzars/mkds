@@ -15,8 +15,8 @@ void func_ov000_02184354(void) {
     data_ov000_021b4c74 = 0;
 }
 
-// non-matching: 0x1fc bytes against 0x204; the original keeps the three zero constants in r4, r6 and a stack offset
-// 0x1c and uses stack offsets 0x20/0x14 for the pointer locals, ours folds the zeros into immediates
+// non-matching: 0x1fc bytes against 0x204; the original spills p3 to a stack slot (0x20) and keeps the zeros in r4
+// and r6, ours keeps p3 in r7 and the zeros in r1 and r2
 void func_ov000_021843a8(void *a) {
     s32 i;
     s32 j;
@@ -111,21 +111,19 @@ void func_ov000_021845ac(void) {
     }
 }
 
-// non-matching: size 0x248 against 0x258; stack frame 0x4c against 0x54 and the byte arrays at stack offsets 0x30..
-// against 0x38..; same call sequence
 void func_ov000_02184670(void) {
     s32 n;
     u32 q;
+    s32 i;
 
     n = func_02148ca0();
     {
-        s32 i;
         u8 b[3][2] = {{0x78, 0x10}, {0x78, 0x10}, {0x78, 0x10}};
         u8 *t1 = &b[0][0];
-        u8 *t2 = data_ov000_021b066c;
-        u8 *t3 = data_ov000_021b0664;
+        u8 *t2;
+        u8 *t3;
 
-        for (i = 0; i < 3; i++) {
+        for (i = 0, t2 = data_ov000_021b066c, t3 = data_ov000_021b0664; i < 3; i++) {
             n -= func_021243ac(data_ov000_021b4c74->mUnk_d0, *t3, data_ov000_021b4c74->mUnk_16f8, t1[0], t1[1], *t2,
                                data_ov000_021b4c74->mUnk_16e4, data_ov000_021b4c74->mUnk_16f0,
                                data_ov000_021b4c74->mUnk_10d4, n);
@@ -135,39 +133,33 @@ void func_ov000_02184670(void) {
         }
     }
     {
-        s32 i;
         s32 j;
         u8 e[3][2][2] = {{{0x30, 0x10}, {0x30, 0x10}}, {{0x30, 0x10}, {0x30, 0x10}}, {{0x30, 0x10}, {0x30, 0x10}}};
-        u8 *w = &e[0][0][0];
-        u8 *t1 = &data_ov000_021b0678[0][0];
-        u8 *t2 = &data_ov000_021b0670[0][0];
 
         for (i = 0; i < 3; i++) {
             for (j = 0; j < 2; j++) {
-                n -= func_021243ac(data_ov000_021b4c74->mUnk_d0, t2[j], data_ov000_021b4c74->mUnk_16f8, w[0], w[1],
-                                   t1[j], data_ov000_021b4c74->mUnk_16e4, data_ov000_021b4c74->mUnk_16f0,
+                n -= func_021243ac(data_ov000_021b4c74->mUnk_d0, data_ov000_021b0670[i][j],
+                                   data_ov000_021b4c74->mUnk_16f8, e[i][j][0], e[i][j][1], data_ov000_021b0678[i][j],
+                                   data_ov000_021b4c74->mUnk_16e4, data_ov000_021b4c74->mUnk_16f0,
                                    data_ov000_021b4c74->mUnk_10d4, n);
-                w += 2;
             }
-            t1 += 2;
-            t2 += 2;
         }
     }
     {
-        s32 i;
         void *p;
+        Unk021b4c74 *g;
         u8 c[3][2] = {{0x78, 0x20}, {0x78, 0x20}, {0x78, 0x20}};
         u8 *w = &c[0][0];
-        u8 *t1 = data_ov000_021b0668;
-        u8 *t2 = data_ov000_021b0660;
+        u8 *t1;
+        u8 *t2;
 
-        for (i = 0; i < 3; i++) {
+        for (i = 0, t1 = data_ov000_021b0668, t2 = data_ov000_021b0660; i < 3; i++) {
             n -= func_021243ac(data_ov000_021b4c74->mUnk_d0, *t2, data_ov000_021b4c74->mUnk_16f8, w[0], w[1], *t1,
                                data_ov000_021b4c74->mUnk_16e4, data_ov000_021b4c74->mUnk_16f0,
                                data_ov000_021b4c74->mUnk_10d4, n);
-            p = func_020b3f7c(data_ov000_021b4c74->mUnk_16fc, 9);
-            func_0212426c(1, *t2, data_ov000_021b4c74->mUnk_16f8, p, data_ov000_021b4c74->mUnk_16f0,
-                          data_ov000_021b4c74->mUnk_10d4);
+            g = data_ov000_021b4c74;
+            p = func_020b3f7c(g->mUnk_16fc, 9);
+            func_0212426c(1, *t2, data_ov000_021b4c74->mUnk_16f8, p, g->mUnk_16f0, g->mUnk_10d4);
             t1++;
             w += 2;
             t2++;
@@ -176,8 +168,7 @@ void func_ov000_02184670(void) {
     {
         u8 a[2] = {0xa0, 0x10};
 
-        func_ov000_0218065c();
-        q = func_ov000_02180668(0);
+        q = func_ov000_02180668(func_ov000_0218065c());
         func_021243ac(data_ov000_021b4c74->mUnk_d0, 0xc, data_ov000_021b4c74->mUnk_16f8, a[0], a[1],
                       data_ov000_021b4c74->mUnk_16f0->mUnk_06, data_ov000_021b4c74->mUnk_16e4,
                       data_ov000_021b4c74->mUnk_16f0, data_ov000_021b4c74->mUnk_10d4, n);

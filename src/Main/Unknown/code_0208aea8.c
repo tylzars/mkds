@@ -41,8 +41,6 @@ void func_0208af40(void *a, u32 b) {
     data_0217b038->mUnk_08 = *(s32 *) (data_0217b038->mUnk_0c + 0x10);
 }
 
-// non-matching: 0x198 bytes, original 0x1ac; stack frame 0x5c in the original, 0x54 here; the loop locals and the saved
-// x differ
 void func_0208afe4(void) {
     Unk02166108 a = data_usa_02166108;
     Unk021660f8 b = data_usa_021660f8;
@@ -50,17 +48,18 @@ void func_0208afe4(void) {
     s32 y = data_usa_02155fc0.y;
     s32 z = data_usa_02155fc0.z;
     u16 i;
-    u16 j;
-    Unk0217b050Func *f = data_0217b050;
+    s32 k = x >> 4;
+    s32 l = y >> 4;
+    s32 m = z >> 4;
 
     for (i = 0; i < 2; i++) {
         s32 e;
         Vec3 v;
         Unk0201ca6c *q;
-        Unk020184e4 *p = f(&e, b.mUnk_00[i]);
-        v.x = x >> 4;
-        v.y = y >> 4;
-        v.z = z >> 4;
+        Unk020184e4 *p = data_0217b050(&e, b.mUnk_00[i]);
+        v.x = k;
+        v.y = l;
+        v.z = m;
         q = func_02018600(p, e, &v);
         if (q != 0) {
             if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
@@ -70,14 +69,14 @@ void func_0208afe4(void) {
             }
         }
     }
-    for (j = 0; j < 0x18; j++) {
+    for (i = 0; i < 0x18; i++) {
         s32 e;
         Vec3 v;
         Unk0201ca6c *q;
-        Unk020184e4 *p = f(&e, a.mUnk_00[j]);
+        Unk020184e4 *p = data_0217b050(&e, a.mUnk_00[i]);
         v.x = x >> 4;
-        v.y = y >> 4;
-        v.z = z >> 4;
+        v.y = l;
+        v.z = m;
         q = func_02018600(p, e, &v);
         if (q != 0) {
             if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
@@ -89,14 +88,13 @@ void func_0208afe4(void) {
     }
 }
 
-// non-matching: 0x2b4 bytes, original 0x2c8; literal order and registers differ from the first load of data_0217b048
 void func_0208b190(void) {
-    s32 v1 = -0x1000;
-    s32 v2 = -1;
+    s16 i;
+    s32 v2;
     Vec3 v3;
-    s32 w[6];
     s32 u[6];
-    s32 i;
+    s32 w[6];
+    s32 v1;
     s32 j;
     s32 k;
     s32 m;
@@ -108,14 +106,17 @@ void func_0208b190(void) {
     if (data_0217b048->mUnk_60 > 0) {
         return;
     }
+    v1 = -0x1000;
+    v2 = -1;
     g = func_02061808();
     v3 = g->mUnk_15c;
     for (i = 0; i < 6; i++) {
-        if (data_0217b048->mUnk_48[i] != 0) {
+        Unk0217b048 *h = data_0217b048;
+        if (h->mUnk_48[i] != 0) {
             s32 e;
-            f = data_0217b050;
-            func_020184e4(f(&e, 0), data_0217b048->mUnk_48[i]);
-            data_0217b048->mUnk_48[i] = 0;
+            Unk0201ca6c **r = &h->mUnk_48[i];
+            func_020184e4(data_0217b050(&e, 0), *r);
+            *r = 0;
         }
     }
     for (i = 0; i < 6; i++) {
@@ -139,12 +140,9 @@ void func_0208b190(void) {
     u[3] = data_usa_02155f48[v2 * 2 + 1];
     u[4] = data_usa_02155f48[k * 2];
     u[5] = data_usa_02155f48[k * 2 + 1];
-    w[0] = j;
-    w[1] = j;
-    w[2] = v2;
-    w[3] = v2;
-    w[4] = k;
-    w[5] = k;
+    w[0] = w[1] = j;
+    w[2] = w[3] = v2;
+    w[4] = w[5] = k;
     for (m = 0; m < 6; m++) {
         s32 e;
         Vec3 v;

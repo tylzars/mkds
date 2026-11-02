@@ -65,13 +65,14 @@ void func_02061c28(void) {
     }
 }
 
-// non-matching: same operations; register allocation and the order of the products and loads differ.
+// non-matching: same size, 32 words differ: the original multiplies the data_0217aa8c elements as signed values
+// (element first, its asr inside the loop), ours zero-extends them with u as the first operand; at the start the
+// data_0217aa44 value and u are in r5/r4 here (original r4/r5).
 void func_02061944(s32 a, s32 b) {
     s32 t;
     s32 u;
-    s32 c;
-    u32 w;
     u32 j;
+    u32 w;
     u16 i;
 
     if (data_02175620->mUnk_018->mUnk_05 != 0 && b == 0) {
@@ -79,13 +80,12 @@ void func_02061944(s32 a, s32 b) {
         data_0217aa78 = t;
         u = 4096 - t;
         data_0217aa84 = u;
-        c = (s32) (((s64) t * 72 + 0x800) >> 12);
-        data_0217aa44 = c;
+        data_0217aa44 = (s32) (((s64) t * 72 + 0x800) >> 12);
         data_0217aa28 = (s32) (((s64) data_0217aa40 * u + 0x800) >> 12) +
                         ((s32) (((s64) data_0217aa34 * u + 0x800) >> 12) << 5) +
                         ((s32) (((s64) data_0217aa3c * u + 0x800) >> 12) << 10);
         data_0217aa68 =
-            (s32) (((s64) data_0217aa50 * u + 0x800) >> 12) + (s32) (((s64) t * data_0217aa60 + 0x800) >> 12);
+            (s32) (((s64) u * data_0217aa50 + 0x800) >> 12) + (s32) (((s64) t * data_0217aa60 + 0x800) >> 12);
         data_0217aa70 = (s32) (((s64) u * data_0217aa48 + 0x800) >> 12);
         for (i = 0; i < 8; i++) {
             w = data_0217aabc[i];
@@ -94,7 +94,7 @@ void func_02061944(s32 a, s32 b) {
             data_0217aa8c[2] = (w & 0xff0000) >> 16;
             data_0217aa8c[3] = (w & 0xff000000) >> 24;
             for (j = 0; j < 4; j++) {
-                data_0217aa8c[j] = (s32) (((s64) data_0217aa8c[j] * u + 0x800) >> 12) + c;
+                data_0217aa8c[j] = (s32) (((s64) data_0217aa8c[j] * u + 0x800) >> 12) + data_0217aa44;
             }
             data_0217aa9c[i] =
                 data_0217aa8c[0] | (data_0217aa8c[1] << 8) | (data_0217aa8c[2] << 16) | (data_0217aa8c[3] << 24);

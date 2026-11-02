@@ -79,8 +79,10 @@ s32 func_020b3120(s32 a) {
     return i;
 }
 
-// non-matching: 3 words in the second loop: the original loads the word at 0x28 before the element
-// (ldr r2, [r0, #0x28]; ldr r1, [r1, #0x38]; cmp r2, r1), the compiled code loads the element first.
+static inline Unk0217b354 *func_020b302c_inline(void) {
+    return data_0217b354;
+}
+
 u32 func_020b302c(void) {
     u32 r = 0;
     s32 n;
@@ -89,7 +91,6 @@ u32 func_020b302c(void) {
     Unk020ae244 e[6];
     s32 d;
     s32 t;
-    Unk0217b354_38 *q;
 
     if (func_020b2e98() != 0) {
         func_020b3120(0);
@@ -104,9 +105,8 @@ u32 func_020b302c(void) {
         }
         for (i = 0; i < n; i++) {
             if (func_020ae244(func_020b2b54(), e[i]) != 0) {
-                q = data_0217b354->mUnk_038;
-                if (data_0217b354->mUnk_028 != q[k].mUnk_00[i]) {
-                    data_0217b354->mUnk_028 = q[k].mUnk_00[i];
+                if (data_0217b354->mUnk_028 != func_020b302c_inline()->mUnk_038[k].mUnk_00[i]) {
+                    data_0217b354->mUnk_028 = data_0217b354->mUnk_038[k].mUnk_00[i];
                     func_020b3120(0);
                 } else {
                     data_0217b354->mUnk_010 = 1;

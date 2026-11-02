@@ -417,9 +417,8 @@ void func_0206fe08(Unk0206bcb0 *p) {
     }
 }
 
-// non-matching: the three (func_020d59f8(..) & 0xe0) << 11 >> 16 extractions are scheduled differently (original keeps
-// the value in r0 and shifts in place interleaved with the next loads; ours uses another register), 22 words differ,
-// same size 0x448
+// non-matching: 7 words at +0x33c: in the 0x800 extraction the original shifts in r0 and loads mUnk_4c and mUnk_7c
+// into r1; ours loads mUnk_4c into r2 and mUnk_7c into r0 (the shift is coloured after the mUnk_7c load here)
 void func_0206ff50(Unk0206bcb0 *p, u32 a) {
     u32 b;
     u32 c;
@@ -437,8 +436,9 @@ void func_0206ff50(Unk0206bcb0 *p, u32 a) {
         if (p->mUnk_180 == 6) {
             return;
         }
-        b = ((u32) (func_020d59f8(0x8000) & 0xe0) << 11) >> 16;
+        b = func_020d59f8(0x8000) & 0xe0;
         h = data_021759c0->mUnk_08;
+        b = (b << 11) >> 16;
         if (h == 2 || h == 4) {
             func_020705fc(p, b);
             return;
@@ -508,16 +508,18 @@ void func_0206ff50(Unk0206bcb0 *p, u32 a) {
     }
     func_020f00f0(&(data_027e00c8)[p->mUnk_74]);
     if (a & 0x400) {
-        b = ((u32) (func_020d59f8(0x400) & 0xe0) << 11) >> 16;
+        b = func_020d59f8(0x400) & 0xe0;
         p->mUnk_48 |= 0x2000;
+        b = (b << 11) >> 16;
         if (b == 4) {
             p->mUnk_48 |= 0x800000;
         }
         return;
     }
-    b = ((u32) (func_020d59f8(0x800) & 0xe0) << 11) >> 16;
+    b = func_020d59f8(0x800);
     p->mUnk_4bc = p->mUnk_3f8;
     p->mUnk_4c |= 0x200000;
+    b = ((b & 0xe0) << 11) >> 16;
     if (p->mUnk_7c & 1) {
         func_02075d08(1);
     }

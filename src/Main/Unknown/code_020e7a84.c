@@ -86,9 +86,9 @@ void func_020e8790(void) {
     data_0217b894 = 0;
 }
 
-// non-matching: same instructions and data references; only registers differ, in two blocks: here the data_0217baf0
-// table is walked with r2 and the base in r0 (original r3 and r2), and in the third block data_0217b9a8.x,
-// data_0215d4b4[i], [i+1] and data_0217b9a8.z are in r0/r1/r7/r9 here (original r9/r7/r1/r0).
+// non-matching: 6 words at +0x4: the first block's addresses and loads are coloured differently (original
+// data_0217b890 address r1, its value r3, &data_0217baf0 r2, data_0217b8b4 r1); the original loads data_0217b8b4
+// between p and p->mUnk_00c, ours before p
 void func_020e84b0(void) {
     Unk020e6514 *p;
     s32 n;
@@ -111,7 +111,7 @@ void func_020e84b0(void) {
         if (t > 0) {
             data_0217b9c0.z = t * 3;
         }
-        data_0217b9c0.x = (s32) (((s64) data_0217b9a8.x * c) >> 12) + (s32) (((s64) data_0217b9a8.z * s) >> 12);
+        data_0217b9c0.x = (s32) (((s64) data_0217b9a8.z * s) >> 12) + (s32) (((s64) data_0217b9a8.x * c) >> 12);
         data_0217b9c0.y = data_0217b9a8.y;
         func_02147288(&data_0217b9c0, &data_0217bab8, &data_0217b9c0);
         if (data_0217b8f8 != 0) {

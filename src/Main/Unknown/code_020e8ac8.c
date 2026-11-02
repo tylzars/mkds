@@ -68,8 +68,11 @@ void func_020ea37c(void) {
     data_0217b960.y += data_0217b8d4;
 }
 
-// non-matching: same size; the original loads param_2->y and param_3->x first, then the table values, param_3->y and
-// param_2->x, and computes the y term first; here the y-term loads come first in another order (24 words)
+static inline s32 func_020ea1d4_inline(s32 a, s32 b, s32 t) {
+    s32 d = b - a;
+    return a + (s32) (((s64) d * t) >> 12);
+}
+
 void func_020ea1d4(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
     Vec3 v;
     Vec3 w;
@@ -94,8 +97,8 @@ void func_020ea1d4(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
     i = data_0217b878 >> 4;
     c = data_0215d4b4[i * 2];
     s = data_0215d4b4[i * 2 + 1];
-    a = param_3->y + (s32) (((s64) (param_2->y - param_3->y) * ((c + 0x1000) >> 2)) >> 12);
-    b = param_3->x + (s32) (((s64) (param_2->x - param_3->x) * ((s + 0x1000) >> 2)) >> 12);
+    b = func_020ea1d4_inline(param_3->x, param_2->x, (s + 0x1000) >> 2);
+    a = func_020ea1d4_inline(param_3->y, param_2->y, (c + 0x1000) >> 2);
     v.x = (s32) (((s64) v.x * b) >> 12);
     v.y = (s32) (((s64) v.y * a) >> 12);
     v.z = 0;
@@ -353,9 +356,9 @@ reset:
 done:;
 }
 
-// non-matching: at +0x48..+0x74 the original keeps the field read-modify-write contiguous between the two copies
-// (sub/add into r4, store, then the stm); here the field load is hoisted above the first copy and the sub/add/store
-// sink after the stm (one extra pool word)
+// non-matching: same size; at +0x48..+0x74 the original keeps the field read-modify-write contiguous between the two
+// copies (sub/add into r4, store, then the stm); here the field load is hoisted above the first copy and the
+// sub/add/store sink after the stm
 void func_020e9658(void) {
     s32 r;
     s64 sq;
@@ -384,7 +387,7 @@ void func_020e9658(void) {
         r = func_02039860(&data_0217bad0, &data_0217bad0);
     }
     if (r != 0) {
-        data_0217bab8.mUnk_18 = data_0217bad0;
+        data_0217bab8.mUnk_00 = data_0217bad0;
     }
     func_020397a8(&data_0217bab8.mUnk_00, &data_0217bac4, &data_0217bad0);
     func_02146d0c(&data_0217bab8, &data_0217ba58);

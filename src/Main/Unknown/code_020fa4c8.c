@@ -785,30 +785,48 @@ void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
     }
 }
 
-// non-matching: 0x2dc vs 0x2c4 bytes. The original reserves 0x2c bytes of stack (here 0x34) and keeps param_1 in r9
-// (here sl); the bit 0x8000000 value is formed with `movne r8, #1` / `moveq r8, r6` (here `movne r0, #1; strne r0,
-// [sp]; streq r8, [sp]`), so the rest of the register assignment differs.
-s32 func_020fa4c8(Unk0206bcb0 *param_1) {
-    s32 n;
-    s32 i;
-    s32 fl;
-    s32 v;
-    s32 t;
-    s32 u0;
-    s32 u1;
-    s32 u2;
-    s32 lim;
+static inline s32 func_020fa4c8_inline(Unk020f41c4_A *e, Unk0206bcb0 *a) {
+    Vec3 b;
+    Vec3 c;
     s32 d1;
     s32 d2;
+    s64 f;
+
+    if (!(e->mUnk_74 & 0x8000)) {
+        return 1;
+    }
+    if ((u16) a->mUnk_74 != (u16) ((e->mUnk_78 & 0x8000) ? 8 : (u16) (e->mUnk_78 & ~0xff00))) {
+        return 1;
+    }
+    if (e->mUnk_5c.x != 0 || e->mUnk_5c.y != 0 || e->mUnk_5c.z != 0 || a->mUnk_2a8 != 0) {
+        func_021484d0(&e->mUnk_0e4, &a->mUnk_1e4, &b);
+        b.y = 0;
+        func_021484d0(&e->mUnk_50, &a->mUnk_1d8, &c);
+        c.y = 0;
+        d1 = func_02039828(&b, &b);
+        d2 = func_02039828(&c, &c);
+        if (d1 - 0x1000 > d2) {
+            return 1;
+        }
+    }
+    f = (s64) (e->mUnk_50.x - a->mUnk_1d8.x) * (e->mUnk_50.x - a->mUnk_1d8.x) +
+        (s64) (e->mUnk_50.y - a->mUnk_1d8.y) * (e->mUnk_50.y - a->mUnk_1d8.y) +
+        (s64) (e->mUnk_50.z - a->mUnk_1d8.z) * (e->mUnk_50.z - a->mUnk_1d8.z);
+    return f < (s64) e->mUnk_e0 * e->mUnk_e0 ? 1 : 0;
+}
+
+// non-matching: same size; 15 words differ: the three squared differences are loaded and summed in another order
+// (the original loads e->mUnk_50.x first), and the data_0217bc34 index mla has its operands in other registers
+s32 func_020fa4c8(Unk0206bcb0 *param_1) {
+    s32 i;
+    s32 n;
+    s32 fl;
+    s32 v;
+    s32 lim;
     Unk020f41c4_A *e;
-    Vec3 va;
-    Vec3 vb;
 
     n = 0;
     fl = (param_1->mUnk_48 & 0x8000000) != 0;
-    u0 = 0;
-    u2 = 0;
-    u1 = 0;
     lim = 0xf;
     for (i = 0; i < data_0217b5a8; i++) {
         if (!(data_0217b5bc[i] & 0x4000)) {
@@ -821,33 +839,7 @@ s32 func_020fa4c8(Unk0206bcb0 *param_1) {
         if (!func_020f97e0(e, param_1)) {
             continue;
         }
-        v = 1;
-        if (e->mUnk_74 & 0x8000) {
-            if ((u16) param_1->mUnk_74 != (u16) ((e->mUnk_78 & 0x8000) ? 8 : (u8) e->mUnk_78)) {
-                v = 1;
-            } else {
-                t = 1;
-                if (e->mUnk_5c.x != 0 || e->mUnk_5c.y != 0 || e->mUnk_5c.z != 0 || param_1->mUnk_2a8 != 0) {
-                    func_021484d0(&e->mUnk_0e4, &param_1->mUnk_1e4, &va);
-                    va.y = u0;
-                    func_021484d0(&e->mUnk_50, &param_1->mUnk_1d8, &vb);
-                    vb.y = u1;
-                    d1 = func_02039828(&va, &va);
-                    d2 = func_02039828(&vb, &vb);
-                    if (d1 - 0x1000 > d2) {
-                        v = 1;
-                        t = 0;
-                    }
-                }
-                if (t) {
-                    s64 dd;
-                    dd = (s64) (e->mUnk_50.x - param_1->mUnk_1d8.x) * (e->mUnk_50.x - param_1->mUnk_1d8.x) +
-                         (s64) (e->mUnk_50.y - param_1->mUnk_1d8.y) * (e->mUnk_50.y - param_1->mUnk_1d8.y) +
-                         (s64) (e->mUnk_50.z - param_1->mUnk_1d8.z) * (e->mUnk_50.z - param_1->mUnk_1d8.z);
-                    v = dd - (s64) e->mUnk_e0 * e->mUnk_e0 < 0 ? 1 : u2;
-                }
-            }
-        }
+        v = func_020fa4c8_inline(e, param_1);
         if (v == 0) {
             continue;
         }
@@ -856,14 +848,14 @@ s32 func_020fa4c8(Unk0206bcb0 *param_1) {
         }
         data_0217bd30[n++] = e;
         if (e->mUnk_74 & 0x1000) {
-            func_020eda5c(&(data_027e00c8)[(u8) e->mUnk_78].mUnk_058, e);
+            func_020eda5c(&(data_027e00c8)[(u16) (e->mUnk_78 & ~0xff00)].mUnk_058, e);
         }
         if (data_0217bc34[e->mUnk_44].mUnk_88 != 0) {
-            if (func_020f9880(e) == 0) {
-                func_020f7430(e, 1);
-            } else {
+            if (func_020f9880(e) != 0) {
                 func_020f6be8(e, &param_1->mUnk_1b8, &param_1->mUnk_a4, &param_1->mUnk_05c);
                 func_020f6f10(e, 1, (u16) param_1->mUnk_74);
+            } else {
+                func_020f7430(e, 1);
             }
         }
         if (n >= 0x10) {

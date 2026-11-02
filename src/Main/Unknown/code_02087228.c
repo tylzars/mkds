@@ -39,8 +39,6 @@ void func_0208784c(s32 a, s32 b) {
 
 #pragma thumb on
 
-// non-matching: same instructions in the same order; from the first loop on, the original holds the loaded
-// data_021759c0 pointer and the base of data_0217aed0 in r0 and r1 where this holds them the other way round.
 void func_020875b4(void) {
     void *v1;
     s32 f;
@@ -51,6 +49,7 @@ void func_020875b4(void) {
     u32 v;
     Unk02086250 *q;
     s32 w;
+    s32 k;
     v1 = func_020364e0(func_020364e8());
     if (data_021759c0->mUnk_08 == 0) {
         f = 1;
@@ -111,12 +110,12 @@ void func_020875b4(void) {
                     }
                 }
             } else {
-                u = 0;
+                k = 0;
                 v = data_021759c0->mUnk_68[i].mUnk_08.mUnk_00;
                 if (v <= 3 && ((1 << v) & 0xd) != 0) {
-                    u = 1;
+                    k = 1;
                 }
-                if (u != 0 && i != data_021759c0->mUnk_62) {
+                if (k != 0 && i != data_021759c0->mUnk_62) {
                     t = 1;
                 }
             }

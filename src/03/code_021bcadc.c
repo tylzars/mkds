@@ -1,8 +1,8 @@
 #include "03/code_021bcadc.h"
 
 // non-matching: stack offsets of the spilled locals differ (frame 0x1ac against 0x1b4), the 64-bit product is computed
-// before the loop guard instead of after it, and the 8-byte copy loops end in bgt/bhi instead of bne; size 0x1fc
-// against 0x1f4
+// before the loop guard instead of after it with h's high word 0 instead of h >> 31, and the 8-byte copy loops end in
+// bgt/bhi instead of bne; size 0x1fc against 0x1f4
 int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
     u8 a[16];
     u64 b;
@@ -65,7 +65,8 @@ int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
 }
 
 // non-matching: 8-byte copy loops end in bgt instead of bne (counter in a different register), stack offsets of the
-// locals differ (frame 0x1cc against 0x1d4); size 0x21c against 0x20c
+// locals differ (frame 0x1cc against 0x1d4), and the original computes f * h (h sign-extended) once after the inner
+// loop's guard; size 0x21c against 0x20c
 int func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
     u8 a[16];
     u64 b;

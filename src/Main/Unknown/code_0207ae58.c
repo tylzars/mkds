@@ -206,9 +206,8 @@ void func_0207b354(Unk0206bcb0 *p) {
     q->mUnk_10 += 0x96;
 }
 
-// non-matching: same size and instruction order; registers differ: the original keeps the word at 0x08 of the
-// data_021759c0 object in r8 (saved register), that object in r0 and the constant 1 in r1, ours uses r3 for the word
-// and r1 for the object (so the first compare, the 0x3d0 load and the movs after it use other registers throughout)
+// non-matching: same size; 1 word differs: the mUnk_68 compare is `cmp r0, r2` (b's word first) in the original,
+// ours `cmp r2, r0`
 void func_0207b44c(Unk0206bcb0 *a) {
     u32 f;
     u16 b;
@@ -218,13 +217,15 @@ void func_0207b44c(Unk0206bcb0 *a) {
     s32 k;
     Unk0206bcb0_590_24 *q;
     Unk020f41c4_B *r;
+    u32 t;
 
-    b = data_021759c0->mUnk_3d0;
     c = 1;
     f = c;
     e = 0;
+    b = data_021759c0->mUnk_3d0;
 
-    if ((a->mUnk_7c & 0x10) == 0) {
+    t = a->mUnk_7c;
+    if ((t & 0x10) == 0) {
         return;
     }
     m = data_021759c0->mUnk_08;
@@ -237,8 +238,8 @@ void func_0207b44c(Unk0206bcb0 *a) {
     if (m != 2 && data_021759c0->mUnk_1c == 1) {
         b = (u16) data_0217561c->mUnk_474[0];
         if (data_021759c0->mUnk_58 != 0) {
-            u32 g = a->mUnk_74;
-            if (data_021759c0->mUnk_68[b].mUnk_08.mUnk_04 != data_021759c0->mUnk_68[g].mUnk_08.mUnk_04) {
+            enum { K0 } g = a->mUnk_74;
+            if (data_021759c0->mUnk_68[g].mUnk_08.mUnk_04 != data_021759c0->mUnk_68[b].mUnk_08.mUnk_04) {
                 f = 2;
             } else {
                 f = 0;
@@ -253,7 +254,7 @@ void func_0207b44c(Unk0206bcb0 *a) {
             e = c;
         }
     } else if (m == 1) {
-        if ((a->mUnk_7c & 4) == 0) {
+        if ((t & 4) == 0) {
             if (func_020c7148() != 0 || func_020c70ec() != 0) {
                 f = 0;
             } else {
@@ -265,8 +266,8 @@ void func_0207b44c(Unk0206bcb0 *a) {
     }
     if (f == 0) {
         Unk0206bcb0_590 *s = a->mUnk_590;
-        func_02087cfc(s->mUnk_008, (u16) f, 1);
         q = (Unk0206bcb0_590_24 *) &s->mUnk_024;
+        func_02087cfc(s->mUnk_008, (u16) f, 1);
         func_02068a64(a, 2, 1);
         if (e != 0) {
             a->mUnk_7c |= 0x10000;
@@ -283,10 +284,12 @@ void func_0207b44c(Unk0206bcb0 *a) {
     }
     if ((a->mUnk_7c & 1) != 0) {
         k = 1;
-        if (f == 0) {
+        if (f != 0) {
+            if (f == 2) {
+                k = 2;
+            }
+        } else {
             k = 0;
-        } else if (f == 2) {
-            k = 2;
         }
         func_021112fc(k);
     }
@@ -307,9 +310,8 @@ void func_0207b708(struct Unk0206bcb0_590 *a, s32 b) {
     *p->mUnk_1c[p->mUnk_1a] = p->mUnk_0c;
 }
 
-// non-matching: same size and instruction order; the original holds the word at 0x48 in r3 and the word at 0x08 of the
-// 0x24 block in r2 (the step in r1, the object at 0x08 in r4); ours has them in r2 and r0, so the compares and the
-// negation use other registers, and the `add r5, r6, #36` comes before the step selection in the original
+// non-matching: same size; 25 words differ: the original holds the word at 0x48 in r3 and c in r2 (temps in r0), ours
+// has them in r2 and r0, and the original forms `add r5, r6, #36` before the step selection
 void func_0207b734(Unk0206bcb0 *a) {
     s32 b;
     Unk0206bcb0_590 *q;
@@ -334,7 +336,7 @@ void func_0207b734(Unk0206bcb0 *a) {
         }
     } else if ((v & 0x10) != 0) {
         if (data_021759c0->mUnk_00c != 6) {
-            c = -c;
+            c *= -1;
             p->mUnk_00 -= b;
             if (p->mUnk_00 < c) {
                 p->mUnk_00 = c;
