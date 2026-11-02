@@ -60,7 +60,7 @@ void func_ov003_021d1654(void) {
 
 void func_ov003_021d15f4(void) {
     FS_ChangeDir(data_ov003_021d7bd8);
-    ((u32(*)(Unk02003a6c *)) FS_UnloadArchiveTables)(&data_ov003_021da2b0->mUnk_88);
+    FS_UnloadArchiveTables(&data_ov003_021da2b0->mUnk_88);
     FS_UnloadArchive(&data_ov003_021da2b0->mUnk_88);
     FS_ReleaseArchiveName(&data_ov003_021da2b0->mUnk_88);
     func_0200cd80(data_ov003_021da2b0->mUnk_e4);

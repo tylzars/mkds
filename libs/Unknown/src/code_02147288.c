@@ -17,11 +17,6 @@ void func_021478f0(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
     a->mUnk_24.z = 0;
 }
 
-// non-matching: 6 words differ, all between +0x18 and +0x50 (the words at 0x18 and 0x10 of the first argument are
-// loaded into r0 and r3 instead of r3 and r0, and two smull and a mov are one slot apart); the rest matches.
-// No change from: other operand orders, cast placements or statement orders of the c products, declaration
-// order, the p select as init + if, ?: or switch, s64 rounding constants. The original's second c1 product has the
-// 0x18 word as the second smull operand while the 0x14 word is still loaded first.
 s32 func_0214755c(const Unk02012f58 *a, Unk02012f58 *b) {
     Unk02012f58 buf;
     Unk02012f58 *p;
@@ -36,15 +31,21 @@ s32 func_0214755c(const Unk02012f58 *a, Unk02012f58 *b) {
     s32 d3;
     s32 e0;
     s32 e1;
+    s32 u;
+    s32 t;
+    s32 w;
 
+    u = a->mUnk_0c.z;
+    t = a->mUnk_18.y;
     if (a == b) {
         p = &buf;
     } else {
         p = b;
     }
-    c1 = (s32) (((s64) a->mUnk_0c.x * a->mUnk_18.z - (s64) a->mUnk_18.x * a->mUnk_0c.z + 0x800) >> 12);
-    c0 = (s32) (((s64) a->mUnk_0c.y * a->mUnk_18.z - (s64) a->mUnk_0c.z * a->mUnk_18.y + 0x800) >> 12);
-    c2 = (s32) (((s64) a->mUnk_0c.x * a->mUnk_18.y - (s64) a->mUnk_18.x * a->mUnk_0c.y + 0x800) >> 12);
+    w = a->mUnk_0c.y;
+    c1 = (s32) (((s64) a->mUnk_0c.x * a->mUnk_18.z - (s64) u * a->mUnk_18.x + 0x800) >> 12);
+    c0 = (s32) (((s64) w * a->mUnk_18.z - (s64) u * t + 0x800) >> 12);
+    c2 = (s32) (((s64) a->mUnk_0c.x * a->mUnk_18.y - w * (s64) a->mUnk_18.x + 0x800) >> 12);
     n = ((s64) a->mUnk_00.x * c0 - (s64) a->mUnk_00.y * c1 + (s64) a->mUnk_00.z * c2 + 0x800) >> 12;
     if (n == 0) {
         return -1;

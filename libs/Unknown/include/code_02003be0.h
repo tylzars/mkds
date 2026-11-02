@@ -11,8 +11,8 @@ extern Unk02003024U data_0216f344;
 void FS_NotifyArchiveAsyncEnd(Unk02003a6c *p0, u32 p1);
 void FS_SetArchiveProc(Unk02003a6c *p0, s32 (*p1)(Unk02003024 *, u32), u32 p2);
 u32 FS_ResumeArchive(Unk02003a6c *p0);
-u32 FS_SuspendArchive(Unk02003a6c *p0, u32 p1);
-u32 FS_UnloadArchiveTables(Unk02003a6c *p0, u32 p1);
+u32 FS_SuspendArchive(Unk02003a6c *p0);
+u32 FS_UnloadArchiveTables(Unk02003a6c *p0);
 u32 FS_LoadArchiveTables(Unk02003a6c *p0, u32 p1, u32 p2);
 u32 FS_UnloadArchive(Unk02003a6c *p0);
 u32 FS_LoadArchive(Unk02003a6c *p0, u8 *p1, u32 p2, u32 p3, u32 p4, u32 p5, s32 (*p6)(Unk02003a6c *, void *, u32, u32),

@@ -94,9 +94,6 @@ u32 FS_LoadArchive(Unk02003a6c *p0, u8 *p1, u32 p2, u32 p3, u32 p4, u32 p5, s32 
     return 1;
 }
 
-// non-matching: 'mov r0' and 'ldr r1' before the call to FS_SuspendArchive are swapped (2 words); the load is the
-// taller node in either schedule (before or after colouring), so the original's block has a dependence or
-// readiness difference that this source does not give
 u32 FS_UnloadArchive(Unk02003a6c *p0) {
     u32 state;
     Unk02003024 *p;
@@ -105,7 +102,8 @@ u32 FS_UnloadArchive(Unk02003a6c *p0) {
 
     state = func_0200fca0();
     if (((p0->mUnk_1c & 2) ? 1 : 0) != 0) {
-        s = FS_SuspendArchive(p0, p0->mUnk_1c);
+        p0->mUnk_1c;
+        s = FS_SuspendArchive(p0);
         p0->mUnk_1c |= 0x80;
         p = p0->mUnk_24;
         if (p != 0) {
@@ -164,13 +162,13 @@ u32 FS_LoadArchiveTables(Unk02003a6c *p0, u32 p1, u32 p2) {
     return sz;
 }
 
-u32 FS_UnloadArchiveTables(Unk02003a6c *p0, u32 p1) {
+u32 FS_UnloadArchiveTables(Unk02003a6c *p0) {
     u32 r;
     u32 s;
 
     r = 0;
     if (((p0->mUnk_1c & 2) ? 1 : 0) != 0) {
-        s = FS_SuspendArchive(p0, p1);
+        s = FS_SuspendArchive(p0);
         if (((p0->mUnk_1c & 4) ? 1 : 0) != 0) {
             p0->mUnk_1c &= ~4;
             r = p0->mUnk_44;
@@ -186,7 +184,7 @@ u32 FS_UnloadArchiveTables(Unk02003a6c *p0, u32 p1) {
     return r;
 }
 
-u32 FS_SuspendArchive(Unk02003a6c *p0, u32 p1) {
+u32 FS_SuspendArchive(Unk02003a6c *p0) {
     u32 state;
     u32 r;
 
