@@ -25,7 +25,7 @@ Unk021ca41c_085c *func_ov001_021852f8(const char *a, void *b, void *c) {
     Unk021a5a58_2c_2c *cell;
 
     list = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x18));
-    data = func_0204799c((const char *) (a));
+    data = FindSceneFile((const char *) (a));
     list->mUnk_00 = data->mUnk_00;
     list->mUnk_04 = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (list->mUnk_00 * 0x88));
     list->mUnk_08 = b;

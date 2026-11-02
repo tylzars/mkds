@@ -25,14 +25,14 @@ void func_02117388(void) {
     v4 = 0;
     v5 = 0;
     v6[0] = 0;
-    v1 = func_0204799c((const char *) data_0216d534);
+    v1 = FindSceneFile((const char *) data_0216d534);
     func_020b496c(&v4, v1);
-    v1 = func_0204799c((const char *) data_0216d538);
+    v1 = FindSceneFile((const char *) data_0216d538);
     func_020b48ec(&v5, v1);
     v2 = 0;
     v3 = (u32 *) &data_0216d53c;
     do {
-        v1 = func_0204799c((const char *) (*v3));
+        v1 = FindSceneFile((const char *) (*v3));
         func_020b4a7c(v6, v1);
         v3 = v3 + 1;
         v2 = v2 + 1;
@@ -49,14 +49,14 @@ void func_0211732c(void) {
     v4 = 0;
     v5 = 0;
     v6[0] = 0;
-    v1 = func_0204799c((const char *) data_0216d524);
+    v1 = FindSceneFile((const char *) data_0216d524);
     func_020b496c(&v4, v1);
-    v1 = func_0204799c((const char *) data_0216d528);
+    v1 = FindSceneFile((const char *) data_0216d528);
     func_020b48ec(&v5, v1);
     v2 = 0;
     v3 = (u32 *) &data_0216d548;
     do {
-        v1 = func_0204799c((const char *) (*v3));
+        v1 = FindSceneFile((const char *) (*v3));
         func_020b4a7c(v6, v1);
         v3 = v3 + 1;
         v2 = v2 + 1;
@@ -71,12 +71,12 @@ void func_021172a8(void *a) {
     int i;
 
     data_0217d35c = func_02036bec(a, 0x18);
-    func_020b49bc(&data_0217d35c->mUnk_00, func_0204799c(data_0216d534));
-    func_020b48b4(&data_0217d35c->mUnk_04, func_0204799c(data_0216d538));
+    func_020b49bc(&data_0217d35c->mUnk_00, FindSceneFile(data_0216d534));
+    func_020b48b4(&data_0217d35c->mUnk_04, FindSceneFile(data_0216d538));
     for (i = 0; i < 3; i++) {
-        func_020b4a44(&data_0217d35c->mUnk_08[i], func_0204799c(data_0216d53c[i]));
+        func_020b4a44(&data_0217d35c->mUnk_08[i], FindSceneFile(data_0216d53c[i]));
     }
-    data_0217d35c->mUnk_14 = func_0204799c(data_0216d52c);
+    data_0217d35c->mUnk_14 = FindSceneFile(data_0216d52c);
 }
 
 #pragma thumb off
@@ -87,12 +87,12 @@ void func_02117224(void *heap) {
     s32 i;
 
     data_0217d35c = func_02036bec(heap, 0x18);
-    func_020b49bc(&data_0217d35c->mUnk_00, func_0204799c(data_0216d524));
-    func_020b48b4(&data_0217d35c->mUnk_04, func_0204799c(data_0216d528));
+    func_020b49bc(&data_0217d35c->mUnk_00, FindSceneFile(data_0216d524));
+    func_020b48b4(&data_0217d35c->mUnk_04, FindSceneFile(data_0216d528));
     for (i = 0; i < 3; i++) {
-        func_020b4a44(&data_0217d35c->mUnk_08[i], func_0204799c(data_0216d548[i]));
+        func_020b4a44(&data_0217d35c->mUnk_08[i], FindSceneFile(data_0216d548[i]));
     }
-    data_0217d35c->mUnk_14 = func_0204799c(data_0216d530);
+    data_0217d35c->mUnk_14 = FindSceneFile(data_0216d530);
 }
 
 #pragma thumb off

@@ -263,7 +263,7 @@ void func_02119770(void *b, void *c, void *d, s32 e) {
         func_0211de40(data_0217d364->mUnk_30);
         func_0211df44(data_0217d364->mUnk_30);
     } else {
-        data_0217d364->mUnk_2c = func_0204799c("ghost.bmg");
+        data_0217d364->mUnk_2c = FindSceneFile("ghost.bmg");
         func_0211f4b0(data_0217d364->mUnk_30, data_0217d364->mUnk_68);
         func_0211f380();
     }

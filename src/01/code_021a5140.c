@@ -38,45 +38,45 @@ void func_ov001_021a5140(void) {
     unk.mUnk_1c = 4;
     unk.mUnk_1e = 8;
     func_02037abc(func_02038d88((void *) func_020364e0(func_020364e8()), &unk));
-    func_020b4a7c((Unk020b4a44 **) (&data_ov001_021ca41c->mUnk_0808), (void *) (func_0204799c("emblem_m_o.NCLR")));
-    func_020b49f4((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0810), (void *) (func_0204799c("emblem_m_o.NCGR")));
-    func_020b48ec(&data_ov001_021ca41c->mUnk_0820, func_0204799c("emblem_m.NCER"));
-    func_020b486c(&data_ov001_021ca41c->mUnk_0824, func_0204799c("emblem_m.NANR"));
+    func_020b4a7c((Unk020b4a44 **) (&data_ov001_021ca41c->mUnk_0808), (void *) (FindSceneFile("emblem_m_o.NCLR")));
+    func_020b49f4((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0810), (void *) (FindSceneFile("emblem_m_o.NCGR")));
+    func_020b48ec(&data_ov001_021ca41c->mUnk_0820, FindSceneFile("emblem_m.NCER"));
+    func_020b486c(&data_ov001_021ca41c->mUnk_0824, FindSceneFile("emblem_m.NANR"));
     data_ov001_021ca41c->mUnk_0828 =
         func_ov001_021852f8("emblem_m.lld", data_ov001_021ca41c->mUnk_0820, data_ov001_021ca41c->mUnk_0824);
-    func_020b4a7c((Unk020b4a44 **) (&data_ov001_021ca41c->mUnk_080c), (void *) (func_0204799c("emblem_m_b.NCLR")));
-    func_020b496c((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0814), (void *) (func_0204799c("emblem_m_b.NCGR")));
-    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0818), (void *) (func_0204799c("emblem_m.NSCR")));
-    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_081c), (void *) (func_0204799c("emblem_m_bg.NSCR")));
-    func_020b4a7c(&data_ov001_021ca41c->mUnk_082c, (void *) (func_0204799c("emblem_s_o.NCLR")));
-    func_020b49f4((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0834), (void *) (func_0204799c("emblem_s_o.NCGR")));
-    func_020b48ec(&data_ov001_021ca41c->mUnk_0850, func_0204799c("emblem_s.NCER"));
-    func_020b486c(&data_ov001_021ca41c->mUnk_0854, func_0204799c("emblem_s.NANR"));
+    func_020b4a7c((Unk020b4a44 **) (&data_ov001_021ca41c->mUnk_080c), (void *) (FindSceneFile("emblem_m_b.NCLR")));
+    func_020b496c((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0814), (void *) (FindSceneFile("emblem_m_b.NCGR")));
+    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0818), (void *) (FindSceneFile("emblem_m.NSCR")));
+    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_081c), (void *) (FindSceneFile("emblem_m_bg.NSCR")));
+    func_020b4a7c(&data_ov001_021ca41c->mUnk_082c, (void *) (FindSceneFile("emblem_s_o.NCLR")));
+    func_020b49f4((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0834), (void *) (FindSceneFile("emblem_s_o.NCGR")));
+    func_020b48ec(&data_ov001_021ca41c->mUnk_0850, FindSceneFile("emblem_s.NCER"));
+    func_020b486c(&data_ov001_021ca41c->mUnk_0854, FindSceneFile("emblem_s.NANR"));
     data_ov001_021ca41c->mUnk_0858 =
         func_ov001_021852f8("emblem_s.lld", data_ov001_021ca41c->mUnk_0850, data_ov001_021ca41c->mUnk_0854);
     data_ov001_021ca41c->mUnk_085c =
         func_ov001_021852f8("emblem_template_s.lld", data_ov001_021ca41c->mUnk_0850, data_ov001_021ca41c->mUnk_0854);
-    func_020b4a7c(&data_ov001_021ca41c->mUnk_0830, (void *) (func_0204799c("emblem_s_b.NCLR")));
-    func_020b496c((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0838), (void *) (func_0204799c("emblem_s_b.NCGR")));
-    func_020b496c(&data_ov001_021ca41c->mUnk_083c, (void *) (func_0204799c("emblem_template_b.NCGR")));
+    func_020b4a7c(&data_ov001_021ca41c->mUnk_0830, (void *) (FindSceneFile("emblem_s_b.NCLR")));
+    func_020b496c((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0838), (void *) (FindSceneFile("emblem_s_b.NCGR")));
+    func_020b496c(&data_ov001_021ca41c->mUnk_083c, (void *) (FindSceneFile("emblem_template_b.NCGR")));
     func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0848),
-                  (void *) (func_0204799c("emblem_s_template_frame.NSCR")));
-    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0840), (void *) (func_0204799c("emblem_s_tool.NSCR")));
-    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0844), (void *) (func_0204799c("emblem_s_bg.NSCR")));
+                  (void *) (FindSceneFile("emblem_s_template_frame.NSCR")));
+    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0840), (void *) (FindSceneFile("emblem_s_tool.NSCR")));
+    func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0844), (void *) (FindSceneFile("emblem_s_bg.NSCR")));
     func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_084c),
-                  (void *) (func_0204799c("emblem_s_template_dark.NSCR")));
+                  (void *) (FindSceneFile("emblem_s_template_dark.NSCR")));
     func_020b49f4((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0860),
-                  (void *) (func_0204799c("emblem_camera_s_o.NCGR")));
-    func_020b48ec(&data_ov001_021ca41c->mUnk_0870, func_0204799c("emblem_camera_s.NCER"));
-    func_020b486c(&data_ov001_021ca41c->mUnk_0874, func_0204799c("emblem_camera_s.NANR"));
+                  (void *) (FindSceneFile("emblem_camera_s_o.NCGR")));
+    func_020b48ec(&data_ov001_021ca41c->mUnk_0870, FindSceneFile("emblem_camera_s.NCER"));
+    func_020b486c(&data_ov001_021ca41c->mUnk_0874, FindSceneFile("emblem_camera_s.NANR"));
     data_ov001_021ca41c->mUnk_0878 =
         func_ov001_021852f8("emblem_camera_s.lld", data_ov001_021ca41c->mUnk_0870, data_ov001_021ca41c->mUnk_0874);
     func_020b496c((Unk020b4934 **) (&data_ov001_021ca41c->mUnk_0864),
-                  (void *) (func_0204799c("emblem_camera_s_b.NCGR")));
+                  (void *) (FindSceneFile("emblem_camera_s_b.NCGR")));
     func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_0868),
-                  (void *) (func_0204799c("emblem_camera_s_DS.NSCR")));
+                  (void *) (FindSceneFile("emblem_camera_s_DS.NSCR")));
     func_020b4810((Unk020b47d8 **) (&data_ov001_021ca41c->mUnk_086c),
-                  (void *) (func_0204799c("emblem_camera_s_bg.NSCR")));
+                  (void *) (FindSceneFile("emblem_camera_s_bg.NSCR")));
     func_ov001_02192d28();
     func_02078c58((void *) func_020364e0(func_020364e8()));
     func_020ca6c4();

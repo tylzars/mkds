@@ -87,7 +87,7 @@ void func_0212b5ec(void *a) {
     for (i = 0; i < 0x400; i++) {
         ((u16 *) func_0214a2f4())[i] = i | 0xf000;
     }
-    func_020b4a7c(&p, func_0204799c(data_0216ea78));
+    func_020b4a7c(&p, FindSceneFile(data_0216ea78));
     func_02016468(0x1f, 0x1e0, p->mUnk_0c + 0xf0, 0x20);
     func_02023408(data_0217d40c->mUnk_020, data_0217d40c->mUnk_050, 0x20, 2, 4);
     v = data_0217d40c->mUnk_01c;
@@ -99,5 +99,5 @@ void func_0212b5ec(void *a) {
     q->mUnk_08 = v;
     q->mUnk_0c = 0;
     func_0214d168(data_0217d40c->mUnk_050, 0, 0x800);
-    data_0217d40c->mUnk_018 = func_020b3f7c(func_0204799c(data_0216ea94), 0);
+    data_0217d40c->mUnk_018 = func_020b3f7c(FindSceneFile(data_0216ea94), 0);
 }

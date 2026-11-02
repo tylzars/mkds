@@ -293,7 +293,7 @@ s32 func_020e48e0(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
 
 void func_020e48b4(void) {
     u32 v1;
-    v1 = (u32) func_020d21ec((const char *) data_0216c20c);
+    v1 = (u32) FindCourseMapObjFile((const char *) data_0216c20c);
     func_020e6488((Unk020e6488 **) (((u32 *) &data_0217b7f0)), (void *) v1, (u32) 0, (u32) 0);
     func_020e6ab8((Unk020e6488 *) data_0217b7f0);
 }

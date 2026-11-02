@@ -60,13 +60,13 @@ void func_0208b934(void *a) {
     }
     data_0217b040 = c;
     data_0217b044 = func_02018d94((void *(*) (u32)) func_0208bd04, f, e, 3, 0xe, func_02061768());
-    g = func_02047b08(data_usa_02166138);
+    g = FindMainRaceOrMainEffectFile(data_usa_02166138);
     func_02018a1c(data_0217b044, g);
     func_02018888(data_0217b044);
     func_02018874(data_0217b044);
     func_02047220(g, *(u32 *) ((u8 *) g + 0x18));
     data_0217b04c = func_02018d94((void *(*) (u32)) func_0208bd04, 0x1e, 0x64, 3, 0xe, 0x1e);
-    h = func_02047b08(data_usa_02166148);
+    h = FindMainRaceOrMainEffectFile(data_usa_02166148);
     func_02018a1c(data_0217b04c, h);
     func_02018888(data_0217b04c);
     func_02018874(data_0217b04c);

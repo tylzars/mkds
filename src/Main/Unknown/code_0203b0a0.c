@@ -45,7 +45,7 @@ void func_0203b0f8(void *a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_0204f240(a, 1);
     } else {
-        r = func_0204799c(data_usa_0216478c);
+        r = FindSceneFile(data_usa_0216478c);
     }
     t = data_021759d0->mUnk_20;
     f = 1;

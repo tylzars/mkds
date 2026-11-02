@@ -62,7 +62,7 @@ void func_02029dcc(void *a, void *b, void *c) {
     data_usa_02174e00->mUnk_38[0] = b;
     data_usa_02174e00->mUnk_38[1] = c;
     data_usa_02174e00->mUnk_4c = func_02047a28(data_usa_02162138);
-    data_usa_02174e00->mUnk_50 = func_0204799c(data_usa_02162144);
+    data_usa_02174e00->mUnk_50 = FindSceneFile(data_usa_02162144);
     data_usa_02174e00->mUnk_40 = data_0217b488->mUnk_84;
     data_usa_02174e00->mUnk_48 = data_0217b488->mUnk_7c;
     if (data_usa_02174e00->mUnk_48 < 0) {
@@ -87,13 +87,13 @@ void func_02029dcc(void *a, void *b, void *c) {
     s.mUnk_24 = 0;
     func_02125c2c();
     func_02125de0(a, &s);
-    func_02025854(0, &t1, data_usa_02162150, data_usa_02162164, data_usa_02162178, 1, func_0204799c);
-    func_020b4810(&t1.mUnk_14[3], func_0204799c(data_usa_0216218c));
+    func_02025854(0, &t1, data_usa_02162150, data_usa_02162164, data_usa_02162178, 1, FindSceneFile);
+    func_020b4810(&t1.mUnk_14[3], FindSceneFile(data_usa_0216218c));
     func_02016468(0xb, 0, &t1.mUnk_14[3]->mUnk_0c, t1.mUnk_14[3]->mUnk_08);
     n = func_02148cb8();
     q = &data_usa_02174e00->mUnk_00[0];
     func_02025abc(q, data_usa_021621a0, data_usa_021621b8, data_usa_021621d0, data_usa_021621e4, data_usa_021621f8, 0,
-                  func_0204799c);
+                  FindSceneFile);
     func_02025a50(0, a, q);
     func_0214cffc(&data_0217aa08->mUnk_00->mUnk_0c, v2, 0x14);
     v2[10] = 0;
@@ -129,11 +129,11 @@ void func_02029dcc(void *a, void *b, void *c) {
     q = &data_usa_02174e00->mUnk_00[0];
     func_02025b84(1, &w3);
     func_0212463c(u, w3.mUnk_08, w3.mUnk_00, w3.mUnk_04, w3.mUnk_0c, 0, 0x14, q->mUnk_08, q->mUnk_0c);
-    func_02025854(1, &t2, data_usa_0216220c, data_usa_02162220, data_usa_02162234, 3, func_0204799c);
+    func_02025854(1, &t2, data_usa_0216220c, data_usa_02162220, data_usa_02162234, 3, FindSceneFile);
     m = func_02148ca0();
     r = &data_usa_02174e00->mUnk_00[1];
     func_02025abc(r, data_usa_02162248, data_usa_02162260, data_usa_02162278, data_usa_0216228c, data_usa_021622a0, 0,
-                  func_0204799c);
+                  FindSceneFile);
     func_02025a50(1, a, r);
     j = 0;
     p = data_usa_02153918;
@@ -167,7 +167,7 @@ void func_02029dcc(void *a, void *b, void *c) {
         k++;
     }
     r = &data_usa_02174e00->mUnk_00[1];
-    func_02025abc(&w4, data_usa_021622b4, data_usa_021622cc, 0, data_usa_021622e4, 0, 0, func_0204799c);
+    func_02025abc(&w4, data_usa_021622b4, data_usa_021622cc, 0, data_usa_021622e4, 0, 0, FindSceneFile);
     func_02124748(data_usa_02153868[data_usa_02174e00->mUnk_40], w4.mUnk_08, w4.mUnk_00, w4.mUnk_0c, 1, 0, r->mUnk_08,
                   r->mUnk_0c);
     func_020629a4();

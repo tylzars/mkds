@@ -337,7 +337,7 @@ void func_020d2e6c(void) {
         }
         data_0217b4ec++;
     } while (data_0217b4ec < 0x85);
-    data_0217b4d4 = func_02047b08("MapObj/grpconf.tbl");
+    data_0217b4d4 = FindMainRaceOrMainEffectFile("MapObj/grpconf.tbl");
     v = 1;
     if (data_021759c0->mUnk_08 != 1 && data_021759c0->mUnk_08 != 5) {
         v = 0;

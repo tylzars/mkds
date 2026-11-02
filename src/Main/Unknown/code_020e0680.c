@@ -417,19 +417,21 @@ void func_020e20a8(Unk020e20a8 *a) {
     Unk020e1e98_12c **z;
     s32 n;
 
-    b = (u32) func_020d21ec((const char *) data_0216c054);
-    c = (u32) func_020d21ec((const char *) data_0216c060);
+    b = (u32) FindCourseMapObjFile((const char *) data_0216c054);
+    c = (u32) FindCourseMapObjFile((const char *) data_0216c060);
     a->mUnk_038 = data_021759c0->mUnk_08 != 4 && func_0203c5e4() == 0 && (u16) data_021759c0->mUnk_62 < 8;
     a->mUnk_03c = 0;
     func_020ea588(&data_0217b7a0, (void *) b, 0);
     func_020ea588(&data_0217b794, (void *) c, 0);
-    func_020ea588(&data_0217b7ac, (void *) func_020d21ec((const char *) data_0216c070), 0);
-    func_020ea588(&data_0217b790, (void *) func_020d21ec((const char *) data_0216c07c), 0);
-    func_020ea55c(&data_0217b788, (void *) func_020d21ec((const char *) data_0216c08c), 7);
-    func_020ea55c(&data_0217b798, (void *) func_020d21ec((const char *) data_0216c0a0), 7);
-    func_020ea55c(&data_0217b7b0, (void *) func_020d21ec((const char *) data_0216c0b8), 7);
-    func_020ea4bc(2, data_0217b7a0, &data_0217b78c, (void *) b, (void *) func_020d21ec((const char *) data_0216c0cc));
-    func_020ea4bc(2, data_0217b794, &data_0217b7a8, (void *) c, (void *) func_020d21ec((const char *) data_0216c0d8));
+    func_020ea588(&data_0217b7ac, (void *) FindCourseMapObjFile((const char *) data_0216c070), 0);
+    func_020ea588(&data_0217b790, (void *) FindCourseMapObjFile((const char *) data_0216c07c), 0);
+    func_020ea55c(&data_0217b788, (void *) FindCourseMapObjFile((const char *) data_0216c08c), 7);
+    func_020ea55c(&data_0217b798, (void *) FindCourseMapObjFile((const char *) data_0216c0a0), 7);
+    func_020ea55c(&data_0217b7b0, (void *) FindCourseMapObjFile((const char *) data_0216c0b8), 7);
+    func_020ea4bc(2, data_0217b7a0, &data_0217b78c, (void *) b,
+                  (void *) FindCourseMapObjFile((const char *) data_0216c0cc));
+    func_020ea4bc(2, data_0217b794, &data_0217b7a8, (void *) c,
+                  (void *) FindCourseMapObjFile((const char *) data_0216c0d8));
     func_02084968(data_0217b7a0, 0x3f, 2, 0x294a);
     for (k1 = 0, y1 = ((Unk0217b7a0 *) data_0217b7a0)->mUnk_04; k1 < y1->mUnk_18; k1++) {
         func_020134b0(y1, k1, 7);

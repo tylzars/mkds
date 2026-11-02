@@ -11,8 +11,8 @@ void *func_020b47cc(const char *arg0) {
 void *func_020b47c0(const char *arg0) {
     u32 value0 = (u32) arg0;
     u32 value12;
-    value12 = (u32) &func_0204799c;
-    value0 = (u32) func_0204799c((const char *) value0);
+    value12 = (u32) &FindSceneFile;
+    value0 = (u32) FindSceneFile((const char *) value0);
     return (void *) value0;
 }
 

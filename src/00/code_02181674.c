@@ -17,7 +17,7 @@ void func_ov000_021816b0(void *a) {
     data_ov000_021b4c68->mUnk_04 = 0;
     data_ov000_021b4c68->mUnk_0c = -1;
     data_ov000_021b4c68->mUnk_08 = 0;
-    data_ov000_021b4c68->mUnk_38 = func_0204799c("wifi.bmg");
+    data_ov000_021b4c68->mUnk_38 = FindSceneFile("wifi.bmg");
     data_ov000_021b4c68->mUnk_3c = func_02047a28("common.bmg");
     func_ov000_021816a0();
     func_0212a910(1, 1);

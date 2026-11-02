@@ -4,7 +4,7 @@
 #include "Main/Unknown/unk_02175000.h" // Unk021a9034
 #include "Main/Unknown/code_02086098.h" // Unk02086098
 
-extern const char data_02165048[];
+extern const char gArchiveColonFormat[];
 extern const char data_usa_021658e0[];
 extern u16 data_usa_021656d8;
 extern u16 data_usa_021656dc;
@@ -20,7 +20,7 @@ extern u8 data_usa_02165738[];
 extern u8 data_usa_0216574c[];
 extern u8 data_usa_02165760[];
 extern u8 data_usa_0216577c[];
-extern const char data_02165050[];
+extern const char gArchiveColonSlashFormat[];
 extern const u8 data_usa_021651d0[];
 
 // Objects whose layout isn't known yet.

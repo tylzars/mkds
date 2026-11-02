@@ -10,15 +10,15 @@ void func_ov000_02184130(void) {
     u16 c;
     s32 i;
 
-    func_020b4934(&chr, func_0204799c("WiFi_VS_matching_s_b.ncgr"));
-    func_020b47d8(&scrn, func_0204799c("WiFi_VS_matching_s.nscr"));
-    func_020b4a44(&pltt, func_0204799c("WiFi_VS_matching_s_b.nclr"));
-    data_ov000_021b4c74->mUnk_16f0 = func_0204799c("WiFi_VS_matching.bncl");
-    data_ov000_021b4c74->mUnk_16f4 = func_0204799c("WiFi_VS_matching.bnbl");
-    data_ov000_021b4c74->mUnk_16f8 = func_0204799c("WiFi_VS_matching.bnll");
-    func_020b49bc(&data_ov000_021b4c74->mUnk_16e8, func_0204799c("WiFi_VS_matching_s.nce.ncgr"));
-    func_020b48b4(&data_ov000_021b4c74->mUnk_16e4, func_0204799c("WiFi_VS_matching_s.nce.ncer"));
-    func_020b4a44(&data_ov000_021b4c74->mUnk_16ec, func_0204799c("WiFi_VS_matching_s_o.nclr"));
+    func_020b4934(&chr, FindSceneFile("WiFi_VS_matching_s_b.ncgr"));
+    func_020b47d8(&scrn, FindSceneFile("WiFi_VS_matching_s.nscr"));
+    func_020b4a44(&pltt, FindSceneFile("WiFi_VS_matching_s_b.nclr"));
+    data_ov000_021b4c74->mUnk_16f0 = FindSceneFile("WiFi_VS_matching.bncl");
+    data_ov000_021b4c74->mUnk_16f4 = FindSceneFile("WiFi_VS_matching.bnbl");
+    data_ov000_021b4c74->mUnk_16f8 = FindSceneFile("WiFi_VS_matching.bnll");
+    func_020b49bc(&data_ov000_021b4c74->mUnk_16e8, FindSceneFile("WiFi_VS_matching_s.nce.ncgr"));
+    func_020b48b4(&data_ov000_021b4c74->mUnk_16e4, FindSceneFile("WiFi_VS_matching_s.nce.ncer"));
+    func_020b4a44(&data_ov000_021b4c74->mUnk_16ec, FindSceneFile("WiFi_VS_matching_s_o.nclr"));
     (reg_G2S_DB_BG3CNT) = ((reg_G2S_DB_BG3CNT) & 0x43) | 0x4400;
     zero = 0;
     func_0214cfe4(zero, data_ov000_021b4c74->mUnk_d4, 0x1000);
@@ -565,7 +565,7 @@ void func_ov000_02182fdc(void *heap) {
     func_020ae6d4(func_ov000_021804f4(), func_ov000_021804e0());
     func_02124ed0(heap, data_ov000_021b4c70->mUnk_104c, data_ov000_021b4c70->mUnk_1054,
                   &data_ov000_021b4c70->mUnk_103c);
-    data_ov000_021b4c70->mUnk_1058 = func_0204799c("wifi.bmg");
+    data_ov000_021b4c70->mUnk_1058 = FindSceneFile("wifi.bmg");
     data_ov000_021b4c70->mUnk_105c = func_02047a28("common.bmg");
     {
         s32 v = func_02148ca0();

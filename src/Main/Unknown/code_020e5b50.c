@@ -61,8 +61,8 @@ u8 func_020e5b88(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
 void func_020e5b50(void) {
     u32 v1;
     u32 v2;
-    v1 = (u32) func_020d21ec((const char *) data_0216c274);
-    v2 = (u32) func_020d21ec((const char *) data_0216c288);
+    v1 = (u32) FindCourseMapObjFile((const char *) data_0216c274);
+    v2 = (u32) FindCourseMapObjFile((const char *) data_0216c288);
     func_020e6488((Unk020e6488 **) (((u32 *) &data_0217b830)), (void *) v1, v2, (u32) 0);
     func_020e6ab8((Unk020e6488 *) data_0217b830);
 }

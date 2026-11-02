@@ -22,8 +22,8 @@ void func_020de84c(void) {
     u32 n;
     Unk020e6488 *p;
 
-    func_020e6488(&data_0217b71c, func_020d2210("box.nsbmd"), 0, 0);
-    func_020e6488(&data_0217b710, func_020d2210("question.nsbmd"), 0, 0);
+    func_020e6488(&data_0217b71c, FindMainRaceOrMainEffectMapObjFile("box.nsbmd"), 0, 0);
+    func_020e6488(&data_0217b710, FindMainRaceOrMainEffectMapObjFile("question.nsbmd"), 0, 0);
     func_020e6ab8(data_0217b71c);
     func_020e6ab8(data_0217b710);
     p = data_0217b71c;

@@ -32,9 +32,9 @@ s32 func_020e3af0(u32 a) {
 void func_020e3a7c(void) {
     void *p;
 
-    p = (void *) func_020d21ec((const char *) data_0216c148);
+    p = (void *) FindCourseMapObjFile((const char *) data_0216c148);
     func_020ea588(&data_0217b7d0, p, 0);
-    func_020ea4bc(0, data_0217b7d0, &data_0217b7cc, p, (void *) func_020d21ec((const char *) data_0216c158));
+    func_020ea4bc(0, data_0217b7d0, &data_0217b7cc, p, (void *) FindCourseMapObjFile((const char *) data_0216c158));
     ((Unk020e1dc0 *) *(void **) data_0217b7c4)->mUnk_2c = func_02087d0c(data_0217b7cc);
     func_02084968(data_0217b7d0, 0x3f, 2, 0x294a);
     func_020e1dc0(*(void **) data_0217b7c4, data_0217b7d0);

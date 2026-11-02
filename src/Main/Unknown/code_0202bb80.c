@@ -299,8 +299,8 @@ void func_0202c0d4(s32 a, s32 b) {
         reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0xd08;
         reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0xc00;
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-            func_020258d4(0, v1, data_usa_02162904, data_usa_0216292c, data_usa_02162954, 0, func_0204799c);
-            func_020258d4(0, v1, data_usa_02162980, data_usa_021629a8, data_usa_021629d0, 1, func_0204799c);
+            func_020258d4(0, v1, data_usa_02162904, data_usa_0216292c, data_usa_02162954, 0, FindSceneFile);
+            func_020258d4(0, v1, data_usa_02162980, data_usa_021629a8, data_usa_021629d0, 1, FindSceneFile);
         } else {
             func_020258d4(0, v1, data_usa_021629fc, data_usa_02162a18, data_usa_02162a34, 0, func_02047a28);
             func_020258d4(0, v1, data_usa_02162a54, data_usa_02162a70, data_usa_02162a8c, 1, func_02047a28);
@@ -366,7 +366,7 @@ void func_0202c65c(void *a, void *b) {
     q = &data_02174e3c->mUnk_000;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_02025b20(q, data_usa_02162aac, data_usa_02162ad4, data_usa_02162afc, data_usa_02162b24, data_usa_02162b48,
-                      0, func_0204799c);
+                      0, FindSceneFile);
     } else {
         func_02025b20(q, data_usa_02162b6c, data_usa_02162b88, data_usa_02162ba4, data_usa_02162bc0, data_usa_02162bd8,
                       0, func_02047a28);

@@ -100,7 +100,7 @@ void func_020e57a0(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c) {
 #pragma thumb on
 
 void func_020e576c(void) {
-    func_020ea588(&data_0217b820, (void *) func_020d21ec((const char *) data_0216c260), 0);
+    func_020ea588(&data_0217b820, (void *) FindCourseMapObjFile((const char *) data_0216c260), 0);
     func_02084968(data_0217b820, 0x3f, 2, 0x294a);
 }
 

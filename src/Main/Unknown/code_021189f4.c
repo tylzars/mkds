@@ -369,15 +369,15 @@ void func_02118d44(void) {
     Unk020b4a44 *i = 0;
 
     if (*(vu16 *) 0x027ffc40 != 2) {
-        func_020b496c(&g, func_0204799c(data_0216d690));
-        func_020b4a7c(&i, func_0204799c(data_0216d6b8));
-        func_020b4810(&h, func_0204799c(data_0216d6bc));
-        func_020b49f4(&a, func_0204799c(data_0216d6ac));
-        func_020b48ec(&b, func_0204799c(data_0216d694));
-        func_020b4a7c(&c, func_0204799c(data_0216d6a0));
-        func_020b49f4(&d, func_0204799c(data_0216d69c));
-        func_020b48ec(&e, func_0204799c(data_0216d6b4));
-        func_020b4a7c(&f, func_0204799c(data_0216d68c));
+        func_020b496c(&g, FindSceneFile(data_0216d690));
+        func_020b4a7c(&i, FindSceneFile(data_0216d6b8));
+        func_020b4810(&h, FindSceneFile(data_0216d6bc));
+        func_020b49f4(&a, FindSceneFile(data_0216d6ac));
+        func_020b48ec(&b, FindSceneFile(data_0216d694));
+        func_020b4a7c(&c, FindSceneFile(data_0216d6a0));
+        func_020b49f4(&d, FindSceneFile(data_0216d69c));
+        func_020b48ec(&e, FindSceneFile(data_0216d6b4));
+        func_020b4a7c(&f, FindSceneFile(data_0216d68c));
         func_0211de98();
         func_0211e024();
         func_0211f328();
@@ -395,23 +395,23 @@ void func_02118b48(void) {
     u16 *p;
 
     if (*(vu16 *) 0x027ffc40 == 2) {
-        data_0217d360->mUnk_14 = func_0204799c(data_0216d6a4);
+        data_0217d360->mUnk_14 = FindSceneFile(data_0216d6a4);
         return;
     }
-    func_020b4934(&e, func_0204799c(data_0216d690));
-    func_020b4a44(&g, func_0204799c(data_0216d6b8));
-    func_020b47d8(&f, func_0204799c(data_0216d6bc));
+    func_020b4934(&e, FindSceneFile(data_0216d690));
+    func_020b4a44(&g, FindSceneFile(data_0216d6b8));
+    func_020b47d8(&f, FindSceneFile(data_0216d6bc));
     data_0217d360->mUnk_20 = func_02036bec(data_0217d360->mUnk_2c, 0x800);
-    data_0217d360->mUnk_04 = func_0204799c(data_0216d698);
-    data_0217d360->mUnk_08 = func_0204799c(data_0216d6a8);
-    func_020b49bc(&a, func_0204799c(data_0216d6ac));
-    func_020b48b4(&data_0217d360->mUnk_00, func_0204799c(data_0216d694));
-    func_020b4a44(&b, func_0204799c(data_0216d6a0));
-    data_0217d360->mUnk_10 = func_0204799c(data_0216d6b0);
-    data_0217d360->mUnk_14 = func_0204799c(data_0216d6a4);
-    func_020b49bc(&c, func_0204799c(data_0216d69c));
-    func_020b48b4(&data_0217d360->mUnk_0c, func_0204799c(data_0216d6b4));
-    func_020b4a44(&d, func_0204799c(data_0216d68c));
+    data_0217d360->mUnk_04 = FindSceneFile(data_0216d698);
+    data_0217d360->mUnk_08 = FindSceneFile(data_0216d6a8);
+    func_020b49bc(&a, FindSceneFile(data_0216d6ac));
+    func_020b48b4(&data_0217d360->mUnk_00, FindSceneFile(data_0216d694));
+    func_020b4a44(&b, FindSceneFile(data_0216d6a0));
+    data_0217d360->mUnk_10 = FindSceneFile(data_0216d6b0);
+    data_0217d360->mUnk_14 = FindSceneFile(data_0216d6a4);
+    func_020b49bc(&c, FindSceneFile(data_0216d69c));
+    func_020b48b4(&data_0217d360->mUnk_0c, FindSceneFile(data_0216d6b4));
+    func_020b4a44(&d, FindSceneFile(data_0216d68c));
     p = b->mUnk_0c;
     if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
         func_02016468(4, 0, e->mUnk_14, e->mUnk_10);

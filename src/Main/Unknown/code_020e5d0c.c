@@ -227,8 +227,8 @@ s32 func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
 #pragma thumb on
 
 void func_020e5f68(void) {
-    func_020ea588((void **) &data_0217b838, (void *) func_020d21ec((const char *) data_0216c29c), 0);
-    func_020ea55c((void **) &data_0217b83c, (void *) func_020d21ec((const char *) data_0216c2ac), 0x3f);
+    func_020ea588((void **) &data_0217b838, (void *) FindCourseMapObjFile((const char *) data_0216c29c), 0);
+    func_020ea55c((void **) &data_0217b83c, (void *) FindCourseMapObjFile((const char *) data_0216c2ac), 0x3f);
     func_02084968(data_0217b838, 0x3f, 2, 0x294a);
 }
 

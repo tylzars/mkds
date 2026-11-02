@@ -21,11 +21,11 @@
 void func_020df758(void) {
     void *r;
 
-    r = func_020d21ec("mkd_ef_bubble.nsbmd");
+    r = FindCourseMapObjFile("mkd_ef_bubble.nsbmd");
     func_020ea588(&data_0217b770, r, 0);
     func_02084968(data_0217b770, 0x3f, 2, 0x294a);
     data_0217b778 = func_02036bec(func_020364e0(func_020364e8()), 0x38);
-    func_020ea514(1, data_0217b770, data_0217b778, r, func_020d21ec("mkd_ef_bubble.nsbta"));
+    func_020ea514(1, data_0217b770, data_0217b778, r, FindCourseMapObjFile("mkd_ef_bubble.nsbta"));
     func_02087cfc(data_0217b778, 0, 1);
 }
 

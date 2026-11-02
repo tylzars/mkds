@@ -216,7 +216,7 @@ u32 func_020eb760(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *p
 #pragma thumb on
 
 void func_020eb72c(void) {
-    func_020ea588((void **) &data_0217bbf8, (void *) func_020d21ec((const char *) &data_0216c404), 0);
+    func_020ea588((void **) &data_0217bbf8, (void *) FindCourseMapObjFile((const char *) &data_0216c404), 0);
     func_02084968(data_0217bbf8, 0x3f, 2, 0x294a);
 }
 

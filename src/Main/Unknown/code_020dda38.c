@@ -46,7 +46,7 @@ void func_020de184(Unk020de000 *o) {
 void func_020de130(void) {
     void *v;
 
-    func_020e6488(&data_0217b6e8, func_020d21ec("wanwan_chain.nsbmd"), 0, 0);
+    func_020e6488(&data_0217b6e8, FindCourseMapObjFile("wanwan_chain.nsbmd"), 0, 0);
     func_020e6ab8(data_0217b6e8);
     v = FindCourseFile("MapObj/wanwan_kui.nsbmd");
     if (v != 0) {

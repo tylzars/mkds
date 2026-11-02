@@ -240,7 +240,7 @@ void func_02115728(void *a) {
     func_02124ed0(a, data_0217d350->mUnk_18, data_0217d350->mUnk_1c, &data_0217d350->mUnk_24);
     func_02124ed0(a, data_0217d350->mUnk_30, data_0217d350->mUnk_38, &data_0217d350->mUnk_3c);
     data_0217d350->mUnk_44 = func_02047a28(data_0216d4a4);
-    data_0217d350->mUnk_48 = func_0204799c(data_0216d4b0);
+    data_0217d350->mUnk_48 = FindSceneFile(data_0216d4b0);
     v = 0x8000;
     v -= func_021243ac(a, 0, data_0217d350->mUnk_0c, 0x8c, 0x10, 0, data_0217d350->mUnk_04, data_0217d350->mUnk_08,
                        data_0217d350->mUnk_14, v);

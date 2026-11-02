@@ -52,15 +52,15 @@ void func_ov000_02182e18(void) {
     Unk020b4a44 *v3;
     vu16 v4;
 
-    func_020b4934(&v1, func_0204799c("WiFi_VS_setting_s_b.ncgr"));
-    func_020b47d8(&v2, func_0204799c("WiFi_VS_s_setting.nscr"));
-    func_020b4a44(&v3, func_0204799c("WiFi_VS_setting_s_b.nclr"));
-    data_ov000_021b4c70->mUnk_104c = func_0204799c("WiFi_VS_setting.bncl");
-    data_ov000_021b4c70->mUnk_1050 = func_0204799c("WiFi_VS_setting.bnbl");
-    data_ov000_021b4c70->mUnk_1054 = func_0204799c("WiFi_VS_setting.bnll");
-    func_020b49bc(&data_ov000_021b4c70->mUnk_1044, func_0204799c("WiFi_VS_setting_s.nce.ncgr"));
-    func_020b48b4(&data_ov000_021b4c70->mUnk_1040, func_0204799c("WiFi_VS_setting_s.nce.ncer"));
-    func_020b4a44(&data_ov000_021b4c70->mUnk_1048, func_0204799c("WiFi_VS_setting_s_o.nclr"));
+    func_020b4934(&v1, FindSceneFile("WiFi_VS_setting_s_b.ncgr"));
+    func_020b47d8(&v2, FindSceneFile("WiFi_VS_s_setting.nscr"));
+    func_020b4a44(&v3, FindSceneFile("WiFi_VS_setting_s_b.nclr"));
+    data_ov000_021b4c70->mUnk_104c = FindSceneFile("WiFi_VS_setting.bncl");
+    data_ov000_021b4c70->mUnk_1050 = FindSceneFile("WiFi_VS_setting.bnbl");
+    data_ov000_021b4c70->mUnk_1054 = FindSceneFile("WiFi_VS_setting.bnll");
+    func_020b49bc(&data_ov000_021b4c70->mUnk_1044, FindSceneFile("WiFi_VS_setting_s.nce.ncgr"));
+    func_020b48b4(&data_ov000_021b4c70->mUnk_1040, FindSceneFile("WiFi_VS_setting_s.nce.ncer"));
+    func_020b4a44(&data_ov000_021b4c70->mUnk_1048, FindSceneFile("WiFi_VS_setting_s_o.nclr"));
     *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x4400;
     v4 = 0;
     func_0214cfe4(v4, data_ov000_021b4c70->mUnk_38, 0x1000);

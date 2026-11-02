@@ -1178,7 +1178,7 @@ void func_0211b2cc(void *a, s32 b, void *c, s32 d) {
     func_0211db90();
     func_02124ed0(data_0217d368->mUnk_28, data_0217d368->mUnk_04, data_0217d368->mUnk_0c, &data_0217d368->mUnk_14);
     data_0217d368->mUnk_18 = func_02047a28(data_0216de38);
-    data_0217d368->mUnk_1c = func_0204799c(data_0216de44);
+    data_0217d368->mUnk_1c = FindSceneFile(data_0216de44);
     n = data_0217d368->mUnk_04->mUnk_06;
     e = func_02148ca0();
     for (i = 0; i < 5; i++) {

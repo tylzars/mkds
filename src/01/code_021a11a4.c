@@ -46,15 +46,15 @@ void func_ov001_021a1f60(void) {
     Unk020b47d8 *l7 = 0;
     Unk020b4a44 *l8 = 0;
 
-    func_020b496c(&l6, func_0204799c(data_ov001_021a94ec));
-    func_020b4a7c(&l8, func_0204799c(data_ov001_021a9508));
-    func_020b4810(&l7, func_0204799c(data_ov001_021a94f0));
-    func_020b49f4(&l0, func_0204799c(data_ov001_021a94dc));
-    func_020b48ec(&l1, func_0204799c(data_ov001_021a94e4));
-    func_020b4a7c(&l2, func_0204799c(data_ov001_021a950c));
-    func_020b49f4(&l3, func_0204799c(data_ov001_021a94f4));
-    func_020b48ec(&l4, func_0204799c(data_ov001_021a94f8));
-    func_020b4a7c(&l5, func_0204799c(data_ov001_021a94fc));
+    func_020b496c(&l6, FindSceneFile(data_ov001_021a94ec));
+    func_020b4a7c(&l8, FindSceneFile(data_ov001_021a9508));
+    func_020b4810(&l7, FindSceneFile(data_ov001_021a94f0));
+    func_020b49f4(&l0, FindSceneFile(data_ov001_021a94dc));
+    func_020b48ec(&l1, FindSceneFile(data_ov001_021a94e4));
+    func_020b4a7c(&l2, FindSceneFile(data_ov001_021a950c));
+    func_020b49f4(&l3, FindSceneFile(data_ov001_021a94f4));
+    func_020b48ec(&l4, FindSceneFile(data_ov001_021a94f8));
+    func_020b4a7c(&l5, FindSceneFile(data_ov001_021a94fc));
 }
 
 void func_ov001_021a1d78(void) {
@@ -67,23 +67,23 @@ void func_ov001_021a1d78(void) {
     Unk020b4a44 *g = 0;
     u16 *h;
 
-    func_020b4934(&e, func_0204799c(data_ov001_021a94ec));
-    func_020b4a44(&g, func_0204799c(data_ov001_021a9508));
-    func_020b47d8(&f, func_0204799c(data_ov001_021a94f0));
+    func_020b4934(&e, FindSceneFile(data_ov001_021a94ec));
+    func_020b4a44(&g, FindSceneFile(data_ov001_021a9508));
+    func_020b47d8(&f, FindSceneFile(data_ov001_021a94f0));
     data_ov001_021ca418->mUnk_1c = func_02036bec(data_ov001_021ca418->mUnk_20, 0x800);
-    data_ov001_021ca418->mUnk_04 = func_0204799c(data_ov001_021a9504);
-    func_020b49bc(&a, func_0204799c(data_ov001_021a94dc));
-    func_020b48b4(&data_ov001_021ca418->mUnk_00, func_0204799c(data_ov001_021a94e4));
-    func_020b4a44(&b, func_0204799c(data_ov001_021a950c));
-    func_020b49bc(&c, func_0204799c(data_ov001_021a94f4));
-    func_020b48b4(&data_ov001_021ca418->mUnk_08, func_0204799c(data_ov001_021a94f8));
-    func_020b4a44(&d, func_0204799c(data_ov001_021a94fc));
+    data_ov001_021ca418->mUnk_04 = FindSceneFile(data_ov001_021a9504);
+    func_020b49bc(&a, FindSceneFile(data_ov001_021a94dc));
+    func_020b48b4(&data_ov001_021ca418->mUnk_00, FindSceneFile(data_ov001_021a94e4));
+    func_020b4a44(&b, FindSceneFile(data_ov001_021a950c));
+    func_020b49bc(&c, FindSceneFile(data_ov001_021a94f4));
+    func_020b48b4(&data_ov001_021ca418->mUnk_08, FindSceneFile(data_ov001_021a94f8));
+    func_020b4a44(&d, FindSceneFile(data_ov001_021a94fc));
     if (func_02056dec(0x10) != 0) {
-        data_ov001_021ca418->mUnk_0c = func_0204799c(data_ov001_021a94e8);
-        data_ov001_021ca418->mUnk_10 = func_0204799c(data_ov001_021a9510);
+        data_ov001_021ca418->mUnk_0c = FindSceneFile(data_ov001_021a94e8);
+        data_ov001_021ca418->mUnk_10 = FindSceneFile(data_ov001_021a9510);
     } else {
-        data_ov001_021ca418->mUnk_0c = func_0204799c(data_ov001_021a9500);
-        data_ov001_021ca418->mUnk_10 = func_0204799c(data_ov001_021a94e0);
+        data_ov001_021ca418->mUnk_0c = FindSceneFile(data_ov001_021a9500);
+        data_ov001_021ca418->mUnk_10 = FindSceneFile(data_ov001_021a94e0);
     }
     h = b->mUnk_0c;
     func_02016468(4, 0, e->mUnk_14, e->mUnk_10);

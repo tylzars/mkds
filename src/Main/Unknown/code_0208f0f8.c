@@ -31,7 +31,7 @@ void func_0208f0f8(void *a) {
     Unk020850c4 *q;
     s32 t;
 
-    s = func_02047b08(data_021759c0->mUnk_00c == 5 ? data_02166514 : data_02166530);
+    s = FindMainRaceOrMainEffectFile(data_021759c0->mUnk_00c == 5 ? data_02166514 : data_02166530);
     data_021663e0 = 8;
     data_021663f0 = 0x4d;
     data_021663dc = 3;

@@ -64,13 +64,13 @@ void func_0202b8d8(void) {
     Unk020b47d8 *d;
 
     if (*(vu16 *) 0x27ffc40 == 2) {
-        func_020b496c(&a, func_0204799c(data_usa_021626d0));
-        func_020b49f4(&a, func_0204799c(data_usa_021626f8));
-        func_020b48ec(&c, func_0204799c(data_usa_02162720));
-        func_020b4a7c(&b, func_0204799c(data_usa_02162748));
-        func_020b4a7c(&b, func_0204799c(data_usa_02162770));
-        func_020b4810(&d, func_0204799c(data_usa_02162798));
-        func_020b4810(&d, func_0204799c(data_usa_021627c4));
+        func_020b496c(&a, FindSceneFile(data_usa_021626d0));
+        func_020b49f4(&a, FindSceneFile(data_usa_021626f8));
+        func_020b48ec(&c, FindSceneFile(data_usa_02162720));
+        func_020b4a7c(&b, FindSceneFile(data_usa_02162748));
+        func_020b4a7c(&b, FindSceneFile(data_usa_02162770));
+        func_020b4810(&d, FindSceneFile(data_usa_02162798));
+        func_020b4810(&d, FindSceneFile(data_usa_021627c4));
     } else {
         func_020b496c(&a, func_02047a28(data_usa_021627f0));
         func_020b49f4(&a, func_02047a28(data_usa_0216280c));

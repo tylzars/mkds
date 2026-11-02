@@ -55,23 +55,23 @@ void func_0211efec(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         return;
     }
-    func_020b4934(&e, func_0204799c(data_0216dfb0));
-    func_020b4a44(&g, func_0204799c(data_0216dfac));
-    func_020b47d8(&f, func_0204799c(data_0216df98));
-    func_020b4934(&h, func_0204799c(data_0216dfb0));
-    func_020b4a44(&j, func_0204799c(data_0216dfac));
-    func_020b47d8(&i, func_0204799c(data_0216df98));
+    func_020b4934(&e, FindSceneFile(data_0216dfb0));
+    func_020b4a44(&g, FindSceneFile(data_0216dfac));
+    func_020b47d8(&f, FindSceneFile(data_0216df98));
+    func_020b4934(&h, FindSceneFile(data_0216dfb0));
+    func_020b4a44(&j, FindSceneFile(data_0216dfac));
+    func_020b47d8(&i, FindSceneFile(data_0216df98));
     data_0217d378->mUnk_20 = func_02036bec(data_0217d378->mUnk_28, 0x800);
-    data_0217d378->mUnk_04 = func_0204799c(data_0216df94);
-    data_0217d378->mUnk_08 = func_0204799c(data_0216dfa4);
-    func_020b49bc(&a, func_0204799c(data_0216df9c));
-    func_020b48b4(&data_0217d378->mUnk_00, func_0204799c(data_0216dfa0));
-    func_020b4a44(&b, func_0204799c(data_0216dfa8));
-    data_0217d378->mUnk_10 = func_0204799c(data_0216df94);
-    data_0217d378->mUnk_14 = func_0204799c(data_0216dfa4);
-    func_020b49bc(&c, func_0204799c(data_0216df9c));
-    func_020b48b4(&data_0217d378->mUnk_0c, func_0204799c(data_0216dfa0));
-    func_020b4a44(&d, func_0204799c(data_0216dfa8));
+    data_0217d378->mUnk_04 = FindSceneFile(data_0216df94);
+    data_0217d378->mUnk_08 = FindSceneFile(data_0216dfa4);
+    func_020b49bc(&a, FindSceneFile(data_0216df9c));
+    func_020b48b4(&data_0217d378->mUnk_00, FindSceneFile(data_0216dfa0));
+    func_020b4a44(&b, FindSceneFile(data_0216dfa8));
+    data_0217d378->mUnk_10 = FindSceneFile(data_0216df94);
+    data_0217d378->mUnk_14 = FindSceneFile(data_0216dfa4);
+    func_020b49bc(&c, FindSceneFile(data_0216df9c));
+    func_020b48b4(&data_0217d378->mUnk_0c, FindSceneFile(data_0216dfa0));
+    func_020b4a44(&d, FindSceneFile(data_0216dfa8));
     v = b->mUnk_0c;
     if (!(func_020cccb4() == 0x17 || func_020cccb4() == 0xb)) {
         func_02016468(4, 0, e->mUnk_14, e->mUnk_10);

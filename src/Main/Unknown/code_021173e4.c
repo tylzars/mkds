@@ -332,7 +332,7 @@ void func_02117e24(void *a, void *b, void *c, s32 d) {
     }
     data_0217d360->mUnk_24 = func_02047a28("common.bmg");
     if (*(vu16 *) 0x027ffc40 != 2) {
-        data_0217d360->mUnk_28 = func_0204799c("menu.bmg");
+        data_0217d360->mUnk_28 = FindSceneFile("menu.bmg");
         func_02124ed0(data_0217d360->mUnk_2c, data_0217d360->mUnk_04, data_0217d360->mUnk_08, &data_0217d360->mUnk_18);
         func_02124ed0(data_0217d360->mUnk_2c, data_0217d360->mUnk_10, 0, &data_0217d360->mUnk_1c);
         rem = 0x8000;

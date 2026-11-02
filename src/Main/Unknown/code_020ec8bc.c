@@ -34,7 +34,7 @@ void *func_020ed548(u8 *a) {
         return 0;
     }
     snprintf((char *) buf, 0x100, (const char *) data_0216c604, a);
-    return func_02047b08((const char *) buf);
+    return FindMainRaceOrMainEffectFile((const char *) buf);
 }
 
 Unk020e6488 *func_020ed4d0(u8 *a, u8 *b, u8 *c) {

@@ -163,7 +163,7 @@ u32 func_02103598(void) {
 void func_02103554(const char *a) {
     u32 v;
 
-    func_020e6488((Unk020e6488 **) &v, func_020d21ec(a), 0, 0);
+    func_020e6488((Unk020e6488 **) &v, FindCourseMapObjFile(a), 0, 0);
     func_020e6ab8((Unk020e6488 *) v);
     func_0210340c((Unk0210340c *) data_0217c664, (Unk020e6488 *) v);
 }

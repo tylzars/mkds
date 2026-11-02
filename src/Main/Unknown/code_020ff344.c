@@ -25,7 +25,7 @@
 #pragma thumb on
 
 void func_020ffbd4(void) {
-    func_020ea588(&data_0217c628, (void *) func_020d21ec((const char *) data_0216c770), 0);
+    func_020ea588(&data_0217c628, (void *) FindCourseMapObjFile((const char *) data_0216c770), 0);
     func_02084968(data_0217c628, 0x3f, 2, 0x294a);
 }
 

@@ -81,7 +81,7 @@ s32 func_020dff4c(Unk020e005c *a) {
 void func_020dff08(void) {
     void *r;
 
-    r = func_020d21ec("koopa_block.nsbmd");
+    r = FindCourseMapObjFile("koopa_block.nsbmd");
     func_020ea588(&data_0217b77c, r, 0);
     func_02084968(data_0217b77c, 0x3f, 2, 0x294a);
     func_020e1dc0(data_0217b784, data_0217b77c);

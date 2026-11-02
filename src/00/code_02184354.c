@@ -45,7 +45,7 @@ void func_ov000_021843a8(void *a) {
     b = func_ov000_021804f4();
     func_020ae6d4(b, func_ov000_021804e0());
     func_02124ed0(a, data_ov000_021b4c74->mUnk_16f0, data_ov000_021b4c74->mUnk_16f8, &data_ov000_021b4c74->mUnk_10d4);
-    data_ov000_021b4c74->mUnk_16fc = func_0204799c(data_ov000_021b0e18);
+    data_ov000_021b4c74->mUnk_16fc = FindSceneFile(data_ov000_021b0e18);
     data_ov000_021b4c74->mUnk_1700 = func_02047a28(data_ov000_021b0e24);
     func_ov000_02184670();
     i = 0;

@@ -147,7 +147,7 @@ void func_0202ab2c(u32 param_1, u32 param_2, u32 param_3) {
     data_02174e28->mUnk_080[0] = (void *) param_2;
     data_02174e28->mUnk_080[1] = (void *) param_3;
     data_02174e28->mUnk_088 = func_02047a28(data_usa_02162488);
-    data_02174e28->mUnk_08c = func_0204799c(data_usa_02162494);
+    data_02174e28->mUnk_08c = FindSceneFile(data_usa_02162494);
     a = func_0200f5ac();
     s = (a << 16) + (u32) func_0200f5ac();
     l = &data_02174e28->mUnk_094;
@@ -166,11 +166,11 @@ void func_0202ab2c(u32 param_1, u32 param_2, u32 param_3) {
     func_02025f80(&data_02174e28->mUnk_0cc, 0, 10, -0xc0, 0);
     func_02025f80(&data_02174e28->mUnk_0ec, 0, 10, 0x40, 0);
     *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & 0x43) | 0xc00;
-    func_020258d4(0, data_02174e28, data_usa_021624a0, data_usa_021624c0, data_usa_021624e0, 0, func_0204799c);
+    func_020258d4(0, data_02174e28, data_usa_021624a0, data_usa_021624c0, data_usa_021624e0, 0, FindSceneFile);
     p = &data_02174e28->mUnk_048;
     k = func_02148cb8();
     func_02025b20(p, data_usa_02162500, data_usa_02162524, data_usa_02162548, data_usa_02162568, data_usa_02162588, 0,
-                  func_0204799c);
+                  FindSceneFile);
     func_02025a50(0, data_02174e28->mUnk_090, p);
     n = p->mUnk_0c->mUnk_06;
     for (i = 0; i < n; i++) {
@@ -189,11 +189,11 @@ void func_0202ab2c(u32 param_1, u32 param_2, u32 param_3) {
     p->mUnk_18[4].mUnk_06 = 0x60 - (((s16 *) func_0201ea30(p->mUnk_0c, 4))[1] << 20 >> 20);
     p->mUnk_18[4].mUnk_00 = 0;
     func_020258d4(1, &data_02174e28->mUnk_000[1], data_usa_021625a8, data_usa_021625c8, data_usa_021625e8, 3,
-                  func_0204799c);
+                  FindSceneFile);
     t = &data_02174e28->mUnk_064;
     k = func_02148ca0();
     func_02025b20(t, data_usa_02162608, data_usa_0216262c, data_usa_02162650, data_usa_02162670, data_usa_02162690,
-                  data_usa_021626b0, func_0204799c);
+                  data_usa_021626b0, FindSceneFile);
     func_02025a50(1, data_02174e28->mUnk_090, t);
     m = t->mUnk_0c->mUnk_06;
     for (j = 0; j < m; j++) {

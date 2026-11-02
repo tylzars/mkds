@@ -30,13 +30,13 @@ s32 func_020d2234(Unk020e71a0 *d, Unk020f41c4_A *e) {
 
 #pragma thumb on
 
-void *func_020d2210(const char *a) {
+void *FindMainRaceOrMainEffectMapObjFile(const char *a) {
     char buf[0x100];
     snprintf(buf, 0x100, "MapObj/%s", a);
-    return func_02047b08(buf);
+    return FindMainRaceOrMainEffectFile(buf);
 }
 
-void *func_020d21ec(const char *a) {
+void *FindCourseMapObjFile(const char *a) {
     char buf[0x100];
     snprintf(buf, 0x100, "MapObj/%s", a);
     return FindCourseFile(buf);

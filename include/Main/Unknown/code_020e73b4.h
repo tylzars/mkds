@@ -15,7 +15,7 @@ typedef struct Unk020e7410 {
 extern Unk0210b7a8 data_0217b9dc;
 
 // Source rows read by the second loop of func_020e7460, 0x0c bytes each; a
-// row's non-zero words are names looked up by func_0204799c.
+// row's non-zero words are names looked up by FindSceneFile.
 typedef struct Unk0216c324 {
     /* 00 */ const char *mUnk_00;
     /* 04 */ const char *mUnk_04;

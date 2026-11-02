@@ -277,24 +277,24 @@ void func_020d9cf4(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i
 void func_020d9c54(void) {
     data_0217b678 = func_02036bec(func_020364e0(func_020364e8()), 0x180);
     func_020d9cf4(0xe8000, 0xc5000, 0x50000, 0x32000, 0x3c000, 0x7fff, 0x3fff, 0x1f4, 0x12c, 0x12c, 1, 5, 0xa, 0xa, 1);
-    data_0217b678->mUnk_60 = func_020d21ec("mini_stage3_waterA.nsbmd");
-    data_0217b678->mUnk_64 = func_020d21ec("mini_stage3_waterC.nsbmd");
+    data_0217b678->mUnk_60 = FindCourseMapObjFile("mini_stage3_waterA.nsbmd");
+    data_0217b678->mUnk_64 = FindCourseMapObjFile("mini_stage3_waterC.nsbmd");
     func_020d4980(data_0217b678);
 }
 
 void func_020d9bb8(void) {
     data_0217b678 = func_02036bec(func_020364e0(func_020364e8()), 0x180);
     func_020d9cf4(0x78000, 0x62000, 0x50000, 0x43000, 0x3c000, 0x7fff, 0x3fff, 0x1f4, 0x96, 0x96, 1, 6, 0xa, 0xa, 1);
-    data_0217b678->mUnk_60 = func_020d21ec("beach_waterA.nsbmd");
-    data_0217b678->mUnk_64 = func_020d21ec("beach_waterC.nsbmd");
+    data_0217b678->mUnk_60 = FindCourseMapObjFile("beach_waterA.nsbmd");
+    data_0217b678->mUnk_64 = FindCourseMapObjFile("beach_waterC.nsbmd");
     func_020d4980(data_0217b678);
 }
 
 void func_020d9b20(void) {
     data_0217b678 = func_02036bec(func_020364e0(func_020364e8()), 0x180);
     func_020d9cf4(0, 0, 0x29000, 0x1e000, 0xb000, 0x4e20, 0x3fff, 0x12c, 0x78, 0x1e, 1, 0xd, 0x19, 0x10, 0);
-    data_0217b678->mUnk_60 = func_020d21ec("town_waterA.nsbmd");
-    data_0217b678->mUnk_64 = func_020d21ec("town_waterC.nsbmd");
+    data_0217b678->mUnk_60 = FindCourseMapObjFile("town_waterA.nsbmd");
+    data_0217b678->mUnk_64 = FindCourseMapObjFile("town_waterC.nsbmd");
     func_020d4980(data_0217b678);
 }
 
@@ -302,15 +302,15 @@ void func_020d9a90(void) {
     data_0217b678 = func_02036bec(func_020364e0(func_020364e8()), 0x180);
     func_020d9cf4(0, 0, 0xc8000, 0x55000, 0x3c000, 0x7fff, 0x3fff, 0x1c2, 0x78, 0x1e, 1, 0xa, 0x17, 0x10, 0);
     data_0217b678->mUnk_60 = 0;
-    data_0217b678->mUnk_64 = func_020d21ec("yoshi_waterC.nsbmd");
+    data_0217b678->mUnk_64 = FindCourseMapObjFile("yoshi_waterC.nsbmd");
     func_020d4980(data_0217b678);
 }
 
 void func_020d99f8(void) {
     data_0217b678 = func_02036bec(func_020364e0(func_020364e8()), 0x180);
     func_020d9cf4(0, 0, 0x63000, 0x4d000, 0x1e000, 0x7fff, 0x3fff, 0x1c2, 0x78, 0x1e, 1, 0xf, 0x19, 0x10, 0);
-    data_0217b678->mUnk_60 = func_020d21ec("hyudoro_waterA.nsbmd");
-    data_0217b678->mUnk_64 = func_020d21ec("hyudoro_waterC.nsbmd");
+    data_0217b678->mUnk_60 = FindCourseMapObjFile("hyudoro_waterA.nsbmd");
+    data_0217b678->mUnk_64 = FindCourseMapObjFile("hyudoro_waterC.nsbmd");
     func_020d4980(data_0217b678);
 }
 

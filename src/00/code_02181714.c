@@ -57,7 +57,7 @@ void func_ov000_02181e98(void *a) {
     }
     data_ov000_021b4c6c->mUnk_0c = 0;
     data_ov000_021b4c6c->mUnk_18 = 1;
-    data_ov000_021b4c6c->mUnk_38 = func_0204799c("wifi.bmg");
+    data_ov000_021b4c6c->mUnk_38 = FindSceneFile("wifi.bmg");
     data_ov000_021b4c6c->mUnk_3c = func_02047a28("common.bmg");
     func_ov000_02181df8();
     for (i = 0; i < 3; i++) {
@@ -81,15 +81,15 @@ void func_ov000_02181e8c(void) {
 
 void func_ov000_02181df8(void) {
     void *v1;
-    v1 = func_0204799c((const char *) &data_ov000_021b0af4);
+    v1 = FindSceneFile((const char *) &data_ov000_021b0af4);
     data_ov000_021b4c6c->mUnk_2c = v1;
-    v1 = func_0204799c((const char *) &data_ov000_021b0b0c);
+    v1 = FindSceneFile((const char *) &data_ov000_021b0b0c);
     data_ov000_021b4c6c->mUnk_30 = v1;
-    v1 = func_0204799c((const char *) &data_ov000_021b0b24);
+    v1 = FindSceneFile((const char *) &data_ov000_021b0b24);
     func_020b49bc(&data_ov000_021b4c6c->mUnk_24, v1);
-    v1 = func_0204799c((const char *) &data_ov000_021b0b40);
+    v1 = FindSceneFile((const char *) &data_ov000_021b0b40);
     func_020b48b4(&data_ov000_021b4c6c->mUnk_20, v1);
-    v1 = func_0204799c((const char *) &data_ov000_021b0b5c);
+    v1 = FindSceneFile((const char *) &data_ov000_021b0b5c);
     func_020b4a44(&data_ov000_021b4c6c->mUnk_28, v1);
     func_02016468(0x23, 0, (void *) (data_ov000_021b4c6c->mUnk_24->mUnk_14),
                   (u32) (data_ov000_021b4c6c->mUnk_24->mUnk_10));

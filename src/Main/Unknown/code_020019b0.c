@@ -1,21 +1,21 @@
 #include "Main/Unknown/code_020019b0.h"
 
 void func_02001d30(Unk02001d30 *a, s32 b, const char *c, const char *d, const char *e) {
-    func_020b4a7c(&a->mUnk_00, func_0204799c(c));
+    func_020b4a7c(&a->mUnk_00, FindSceneFile(c));
     func_0200ee58(a->mUnk_00->mUnk_0c, a->mUnk_00->mUnk_08);
     if (b != 0) {
         func_0214c160(a->mUnk_00->mUnk_0c, 0, a->mUnk_00->mUnk_08);
     } else {
         func_0214c0f8(a->mUnk_00->mUnk_0c, 0, a->mUnk_00->mUnk_08);
     }
-    func_020b49f4(&a->mUnk_04, func_0204799c(d));
+    func_020b49f4(&a->mUnk_04, FindSceneFile(d));
     func_0200ee58(a->mUnk_04->mUnk_14, a->mUnk_04->mUnk_10);
     if (b != 0) {
         func_0214ba2c(a->mUnk_04->mUnk_14, 0, a->mUnk_04->mUnk_10);
     } else {
         func_0214b9c4(a->mUnk_04->mUnk_14, 0, a->mUnk_04->mUnk_10);
     }
-    func_020b4810(&a->mUnk_08, func_0204799c(e));
+    func_020b4810(&a->mUnk_08, FindSceneFile(e));
     func_0200ee58(a->mUnk_08->mUnk_0c, a->mUnk_08->mUnk_08);
     if (b != 0) {
         func_0214bd6c(a->mUnk_08->mUnk_0c, 0, a->mUnk_08->mUnk_08);

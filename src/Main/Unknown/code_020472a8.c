@@ -38,9 +38,9 @@ u32 FindArchiveFile(u32 archiveName, const char *path) {
     char fullPath[0x80];
 
     if (path[0] == '/') {
-        func_0200d9e0(fullPath, 0x80, data_02165048, archiveName, path);
+        func_0200d9e0(fullPath, 0x80, gArchiveColonFormat, archiveName, path);
     } else {
-        func_0200d9e0(fullPath, 0x80, data_02165050, archiveName, path);
+        func_0200d9e0(fullPath, 0x80, gArchiveColonSlashFormat, archiveName, path);
     }
     return func_020182c0((const u8 *) fullPath);
 }
@@ -49,7 +49,7 @@ u32 FindArchiveFile(u32 archiveName, const char *path) {
 
 #pragma thumb on
 
-void *func_02047b08(const char *path) {
+void *FindMainRaceOrMainEffectFile(const char *path) {
     int file;
     file = FindArchiveFile(gArchiveNames[0], path);
     if (file == 0) {
@@ -90,7 +90,7 @@ void *func_02047a28(const char *path) {
     return (void *) file;
 }
 
-void *func_0204799c(const char *path) {
+void *FindSceneFile(const char *path) {
     u32 file;
 
     file = FindArchiveFile(gArchiveNames[5], path);
@@ -312,28 +312,28 @@ void func_02047468(const void *a, u32 b) {
     u32 v1;
     u8 v2[128];
     v1 = func_02048440();
-    func_0200d9e0((char *) v2, 0x80, (const char *) data_02164ffc, a, v1);
+    func_0200d9e0((char *) v2, 0x80, (const char *) gArchivePrefixFormat, a, v1);
     func_02047498(v2, b);
 }
 
 void func_020473e4(void) {
     func_0204f5e4();
     func_0201804c((void *) data_021759c8->mUnk_a80, (u32) 3);
-    func_02047498(data_02164f48, 0xb);
-    func_02047498(data_02164f64, 0xc);
-    func_02047498(data_02164f80, 0);
-    func_02047468(data_02164f98, (u32) 1);
-    func_02047498(data_02164fac, 8);
-    func_02047498(data_02164fc0, 9);
-    func_02047468(data_02164fd4, (u32) 10);
-    func_02047498(data_02164fe4, 0xd);
+    func_02047498(gKartModelMainAArchivePath, 0xb);
+    func_02047498(gKartModelMainBArchivePath, 0xc);
+    func_02047498(gMenuDLArchivePath2, 0);
+    func_02047468(gMenuDLArchivePrefix2, (u32) 1);
+    func_02047498(gMainRaceArchivePath, 8);
+    func_02047498(gMain2DArchivePath, 9);
+    func_02047468(gMain2DArchivePrefix, (u32) 10);
+    func_02047498(gMainEffectArchivePath, 0xd);
 }
 
 void func_020473a8(void) {
     func_0204f5e4();
     func_0201804c((void *) data_021759c8->mUnk_a80, (u32) 3);
-    func_02047498(data_02164f1c, 0);
-    func_02047468(data_02164f34, (u32) 1);
+    func_02047498(gMenuDLArchivePath, 0);
+    func_02047468(gMenuDLArchivePrefix, (u32) 1);
 }
 
 #pragma thumb off
@@ -344,14 +344,14 @@ void func_020472e4(void *a, void *b) {
     char c[128];
     func_0204f5e4();
     func_0201804c(data_021759c8->mUnk_a80, 3);
-    func_02047498(data_02164e88, 2);
-    func_02047468(data_02164ea0, 3);
+    func_02047498(gRaceArchivePath, 2);
+    func_02047468(gRaceArchivePrefix, 3);
     if (b == (void *) 3) {
-        func_02047498(data_02164eb4, 4);
-        func_02047468(data_02164ed0, 5);
+        func_02047498(gRaceVsArchivePath, 4);
+        func_02047468(gRaceVsArchivePrefix, 5);
     } else {
-        func_02047498(data_02164ee8, 4);
-        func_02047468(data_02164f04, 5);
+        func_02047498(gRaceMgArchivePath, 4);
+        func_02047468(gRaceMgArchivePrefix, 5);
     }
     data_021759c8->mUnk_a74 = b;
     func_0201804c(data_021759c8->mUnk_a7c, 3);
@@ -369,8 +369,8 @@ void func_020472e4(void *a, void *b) {
 void func_020472a8(void) {
     func_0204f5e4();
     func_0201804c((void *) ((u32) data_021759c8->mUnk_a80), (u32) 3);
-    func_02047498(data_02164e54, 0xe);
-    func_02047468(data_02164e70, (u32) 0xf);
+    func_02047498(gResultDLArchivePath, 0xe);
+    func_02047468(gResultDLArchivePrefix, (u32) 0xf);
 }
 
 #pragma thumb off

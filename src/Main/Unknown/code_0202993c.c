@@ -19,7 +19,7 @@ void func_0202993c(void) {
     data_02174e1c->mUnk_fd = 1;
     if (func_02029a24() == 0) {
         if (func_020299e4() == 0) {
-            data_02174e1c->mUnk_f4 = func_0204799c(data_usa_0216212c);
+            data_02174e1c->mUnk_f4 = FindSceneFile(data_usa_0216212c);
         } else {
             data_02174e1c->mUnk_f4 = 0;
         }

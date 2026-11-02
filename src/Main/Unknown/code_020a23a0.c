@@ -136,8 +136,8 @@ void func_020a269c(s32 a, u32 b) {
     data_0217b200->mUnk_002 = b;
     data_0217b200->mUnk_000 = a;
     if (a < 9 && b < 3) {
-        v1 = func_0204799c(data_021677fc[a]);
-        v2 = func_0204799c(data_02167820[a]);
+        v1 = FindSceneFile(data_021677fc[a]);
+        v2 = FindSceneFile(data_02167820[a]);
         data_0217b200->mUnk_0fc = data_02156640[a];
         data_0217b200->mUnk_100 = data_02156654[a];
         data_0217b200->mUnk_104 = data_02156668[a];

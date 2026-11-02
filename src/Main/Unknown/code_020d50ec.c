@@ -212,8 +212,8 @@ void func_020d5dd0(Unk020d5bf0 *p) {
 
 #pragma thumb on
 void func_020d5d80(void *a, const char *b, const char *c) {
-    func_020ea588((void **) &data_0217b65c, func_020d21ec(b), 0);
-    func_020ea55c((void **) &data_0217b658, func_020d21ec(c), 7);
+    func_020ea588((void **) &data_0217b65c, FindCourseMapObjFile(b), 0);
+    func_020ea55c((void **) &data_0217b658, FindCourseMapObjFile(c), 7);
     func_02084968(data_0217b65c, 0x3f, 2, 0x294a);
     func_020849c0(data_0217b65c, 7);
 }
