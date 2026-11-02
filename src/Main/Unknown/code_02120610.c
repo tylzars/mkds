@@ -353,7 +353,7 @@ s32 func_0212137c(void) {
     return data_0217d384->mUnk_18e8 == 2;
 }
 
-void func_02121190(u32 a, s32 b, s32 c) {
+void func_02121190(u32 kartType, s32 b, s32 c) {
     Unk0217d384_08 *p;
 
     func_ov000_0219bbfc();
@@ -370,7 +370,7 @@ void func_02121190(u32 a, s32 b, s32 c) {
     data_0217d384->mUnk_1f55 = 0;
     data_0217d384->mUnk_1f56 = 0;
     func_0214d168(&data_0217d384->mUnk_1950, 0, 0x60);
-    data_0217d384->mUnk_18ec[1].mUnk_00 = a;
+    data_0217d384->mUnk_18ec[1].mUnk_00 = kartType;
     data_0217d384->mUnk_194c = 4;
     if (b == 0) {
         data_0217d384->mUnk_18e0.mUnk_00 = 1;
@@ -394,9 +394,9 @@ s32 func_0212111c(void) {
     return func_02121d48() != 0;
 }
 
-void func_02120d50(void) {
-    s32 b;
-    s32 a;
+void RegisterKartKeysAndStart(void) {
+    s32 eloHigh;
+    s32 eloLow;
 
     func_02120610();
     func_0214d168(data_0217d384->mUnk_021c, 0, 0x910);
@@ -415,33 +415,36 @@ void func_02120d50(void) {
     __memcpy(data_0217d384->mUnk_18ec[0].mUnk_04, "kart_region", 12);
     data_0217d384->mUnk_18ec[0].mUnk_14 = func_ov000_021a2b9c(
         data_0217d384->mUnk_18ec[0].mUnk_14, data_0217d384->mUnk_18ec[0].mUnk_04, &data_0217d384->mUnk_18ec[0]);
-    a = data_0217d384->mUnk_021c[0].mUnk_222 - 0x3e8;
-    if (a <= 0) {
-        a = 0;
+    eloLow = data_0217d384->mUnk_021c[0].mUnk_222 - 0x3e8;
+    if (eloLow <= 0) {
+        eloLow = 0;
     }
-    b = data_0217d384->mUnk_021c[0].mUnk_222 + 0x3e8;
-    if (b > 0x2710) {
-        b = 0x2710;
+    eloHigh = data_0217d384->mUnk_021c[0].mUnk_222 + 0x3e8;
+    if (eloHigh > 0x2710) {
+        eloHigh = 0x2710;
     }
-    func_0214d168(data_0217d388, 0, 0x64);
+    func_0214d168(gKartFilterString, 0, 0x64);
     if (data_0217d384->mUnk_18ec[1].mUnk_00 == 1) {
-        sprintf(data_0217d388, (const u8 *) "%s = '%s' and %s > %d and %s < %d", "kart_filter", "ds_mario_kart_product",
-                "kart_elo", a, "kart_elo", b);
+        sprintf(gKartFilterString, (const u8 *) "%s = '%s' and %s > %d and %s < %d", "kart_filter",
+                "ds_mario_kart_product", "kart_elo", eloLow, "kart_elo", eloHigh);
     } else {
-        sprintf(data_0217d388, (const u8 *) "%s = '%s'", "kart_filter", "ds_mario_kart_product");
+        sprintf(gKartFilterString, (const u8 *) "%s = '%s'", "kart_filter", "ds_mario_kart_product");
     }
     switch (data_0217d384->mUnk_18ec[1].mUnk_00) {
         case 3:
-            func_ov000_0219bd90(data_0217d384->mUnk_194c, data_0217d388, func_02120934, 0, func_02120b80, 0);
+            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, 0,
+                                ComputeRegionEval, 0);
             break;
         case 4:
-            func_ov000_0219bd90(data_0217d384->mUnk_194c, data_0217d388, func_02120934, 0, func_02120a64, 0);
+            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, 0,
+                                ComputeRegionEloEval, 0);
             break;
         case 0:
-            func_ov000_0219bc78(0, 0, data_0217d384->mUnk_194c, 1, func_02120934, 0, 0, 0);
+            func_ov000_0219bc78(0, 0, data_0217d384->mUnk_194c, 1, KartKeysStartCallback, 0, 0, 0);
             break;
         case 1:
-            func_ov000_0219bd90(data_0217d384->mUnk_194c, data_0217d388, func_02120934, 0, func_02120c30, 0);
+            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, 0, ComputeEloEval,
+                                0);
             break;
     }
     data_0217d384->mUnk_18e8 = 1;
@@ -462,16 +465,16 @@ s32 func_02120d14(void) {
     return 0;
 }
 
-s32 func_02120c30(u32 a) {
-    s32 x;
-    s32 y;
+s32 ComputeEloEval(u32 a) {
+    s32 kartType;
+    s32 kartRegion;
     s32 z;
     Unk0217d384 *d;
 
-    x = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[1].mUnk_04, 5);
-    y = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[0].mUnk_04, 3);
+    kartType = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[1].mUnk_04, 5);
+    kartRegion = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[0].mUnk_04, 3);
     z = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[3].mUnk_04, -1);
-    if (x == 5 || y == 3 || z < 0) {
+    if (kartType == 5 || kartRegion == 3 || z < 0) {
         return 0;
     }
     d = data_0217d384;
@@ -481,49 +484,49 @@ s32 func_02120c30(u32 a) {
         z = z - d->mUnk_021c[0].mUnk_222;
     }
     if (z < 0x3e8) {
-        if (x == 1) {
+        if (kartType == 1) {
             return 0x7d0 - z;
         }
-        if (x == 4) {
+        if (kartType == 4) {
             return 0x3e8 - z;
         }
     }
     return 0;
 }
 
-s32 func_02120b80(u32 a) {
-    s32 x;
-    s32 y;
+s32 ComputeRegionEval(u32 a) {
+    s32 kartType;
+    s32 kartRegion;
 
-    x = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[1].mUnk_04, 5);
-    y = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[0].mUnk_04, 3);
-    if (x == 5 || y == 3) {
+    kartType = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[1].mUnk_04, 5);
+    kartRegion = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[0].mUnk_04, 3);
+    if (kartType == 5 || kartRegion == 3) {
         return 0;
     }
-    if (x == 3) {
-        if (data_0217d384->mUnk_021c[0].mUnk_234 == y) {
+    if (kartType == 3) {
+        if (data_0217d384->mUnk_021c[0].mUnk_234 == kartRegion) {
             return 1;
         }
     }
     return 0;
 }
 
-s32 func_02120a64(u32 a) {
-    s32 x;
-    s32 y;
+s32 ComputeRegionEloEval(u32 a) {
+    s32 kartType;
+    s32 kartRegion;
     s32 z;
     Unk0217d384 *d;
 
-    x = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[1].mUnk_04, 5);
-    y = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[0].mUnk_04, 3);
+    kartType = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[1].mUnk_04, 5);
+    kartRegion = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[0].mUnk_04, 3);
     z = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[3].mUnk_04, -1);
-    if (x == 5 || y == 3 || z < 0) {
+    if (kartType == 5 || kartRegion == 3 || z < 0) {
         return 0;
     }
-    if (x == 4) {
-        return (y != data_0217d384->mUnk_021c[0].mUnk_234 ? 2 : 1) * 0x7d0;
+    if (kartType == 4) {
+        return (kartRegion != data_0217d384->mUnk_021c[0].mUnk_234 ? 2 : 1) * 0x7d0;
     }
-    if (x == 1) {
+    if (kartType == 1) {
         d = data_0217d384;
         if (d->mUnk_021c[0].mUnk_222 > z) {
             z = d->mUnk_021c[0].mUnk_222 - z;
@@ -531,7 +534,7 @@ s32 func_02120a64(u32 a) {
             z = z - d->mUnk_021c[0].mUnk_222;
         }
         if (z < 0x3e8) {
-            if (y != d->mUnk_021c[0].mUnk_234) {
+            if (kartRegion != d->mUnk_021c[0].mUnk_234) {
                 return 0x7d0 - z;
             }
             return 0x3e8 - z;
@@ -540,7 +543,7 @@ s32 func_02120a64(u32 a) {
     return 0;
 }
 
-void func_02120934(u32 a, s32 b) {
+void KartKeysStartCallback(u32 a, s32 b) {
     Unk0217d384 *d;
     u8 i;
 

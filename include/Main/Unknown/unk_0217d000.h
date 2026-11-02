@@ -684,7 +684,7 @@ extern Unk0217d374 *data_0217d374;
 extern Unk0217d378 *data_0217d378;
 extern Unk0217d37c *data_0217d37c;
 extern Unk0217d380 *data_0217d380;
-extern u8 data_0217d388[0x64];
+extern u8 gKartFilterString[0x64];
 extern Unk0217d3ec *data_0217d3ec;
 extern Unk0217d3f0 *data_0217d3f0;
 extern Unk0217d3f4 *data_0217d3f4;

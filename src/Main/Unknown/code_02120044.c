@@ -154,7 +154,7 @@ void func_021200fc(void) {
 }
 
 void func_021200f0(void) {
-    func_02120d50();
+    RegisterKartKeysAndStart();
 }
 
 void func_021200a8(void) {
