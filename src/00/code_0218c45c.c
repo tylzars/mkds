@@ -47,29 +47,29 @@ s32 func_ov000_0218c8ac(u32 a) {
     return b;
 }
 
-s32 func_ov000_0218c84c(u8 *a, s32 b) {
+BOOL func_ov000_0218c84c(u8 *a, s32 b) {
     s32 k;
     while (b > 0 && *(s8 *) a != 0) {
         k = func_ov000_0218d0c8((s32) a, b);
         if (k < 0) {
-            return 0;
+            return FALSE;
         }
         a += k;
         b -= k;
         k = func_ov000_0218d0c8((s32) a, b);
         if (k < 0) {
-            return 0;
+            return FALSE;
         }
         a += k;
         b -= k;
     }
     if (b == 0) {
-        return 0;
+        return FALSE;
     }
     return *(s8 *) a == 0;
 }
 
-s32 func_ov000_0218c794(Unk021b4d24 *a, u8 *b, s32 c) {
+BOOL func_ov000_0218c794(Unk021b4d24 *a, u8 *b, s32 c) {
     s32 d;
     s32 i;
     s32 k;
@@ -89,7 +89,7 @@ s32 func_ov000_0218c794(Unk021b4d24 *a, u8 *b, s32 c) {
                     break;
                 case 0:
                     if (c < 1) {
-                        return 0;
+                        return FALSE;
                     }
                     t = b[0];
                     b += 1;
@@ -97,23 +97,23 @@ s32 func_ov000_0218c794(Unk021b4d24 *a, u8 *b, s32 c) {
                     if (t == 0xff) {
                         k = func_ov000_0218d0c8((s32) b, c);
                         if (k == -1) {
-                            return 0;
+                            return FALSE;
                         }
                         b += k;
                         c -= k;
                     }
                     break;
                 default:
-                    func_0213442c(data_ov000_021b223c, data_ov000_021b2218, 0, 0x317);
-                    return 0;
+                    func_0213442c(data_ov000_021b223c, data_ov000_021b2218, NULL, 0x317);
+                    return FALSE;
             }
             if (c < 0) {
-                return 0;
+                return FALSE;
             }
             i++;
         } while (i < d);
     }
-    return 1;
+    return TRUE;
 }
 
 void func_ov000_0218c744(Unk021b4d24 *a, u8 *b, s32 c, u8 *d, u16 *e) {
@@ -271,13 +271,13 @@ s32 func_ov000_0218c468(Unk021b4d24 *a, u8 *b, s32 c) {
         return 0;
     }
     if ((d & 0x40) != 0) {
-        if (func_ov000_0218c794(a, b + e, c - e) == 0) {
+        if (func_ov000_0218c794(a, b + e, c - e) == FALSE) {
             return 0;
         }
     }
     d = d & 0x80;
     if (d != 0) {
-        if (func_ov000_0218c84c(b + e, c - e) == 0) {
+        if (func_ov000_0218c84c(b + e, c - e) == FALSE) {
             return 0;
         }
     }

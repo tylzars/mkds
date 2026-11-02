@@ -82,7 +82,7 @@ void func_020dff08(void) {
     void *r;
 
     r = FindCourseMapObjFile("koopa_block.nsbmd");
-    func_020ea588(&gKoopaBlock, r, 0);
+    func_020ea588(&gKoopaBlock, r, NULL);
     func_02084968(gKoopaBlock, 0x3f, 2, 0x294a);
     func_020e1dc0(data_0217b784, gKoopaBlock);
 }
@@ -204,7 +204,7 @@ void func_020dfa50(void *a, Unk020df6c8 *b) {
 void func_020df938(Unk020df6c8 *a) {
     Unk0210b7a8 s;
     s32 n;
-    s32 v;
+    BOOL v;
 
     a->mUnk_a8 = 0;
     a->mUnk_00.mUnk_04.y = a->mUnk_a4;
@@ -227,16 +227,16 @@ void func_020df938(Unk020df6c8 *a) {
         func_0210b7a8(&s);
     }
     a->mUnk_e4 = 0;
-    if (a->mUnk_e8 == 0) {
+    if (a->mUnk_e8 == NULL) {
         a->mUnk_e8 = func_0208b7bc(0x45, &a->mUnk_00.mUnk_04);
     }
-    if (a->mUnk_ec == 0) {
+    if (a->mUnk_ec == NULL) {
         a->mUnk_ec = func_0208b7bc(0x46, &a->mUnk_00.mUnk_04);
     }
-    if (a->mUnk_e8 == 0 || a->mUnk_ec == 0) {
-        v = 1;
+    if (a->mUnk_e8 == NULL || a->mUnk_ec == NULL) {
+        v = TRUE;
     } else {
-        v = 0;
+        v = FALSE;
     }
     a->mUnk_f0 = v;
 }

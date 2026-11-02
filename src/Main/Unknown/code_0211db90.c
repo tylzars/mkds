@@ -10,12 +10,12 @@ void func_0211dd44(void) {
     Unk020b4934 *v5;
     Unk020b47d8 *v6;
     Unk020b4a44 *v7[1];
-    v2 = 0;
-    v3 = 0;
-    v4 = 0;
-    v5 = 0;
-    v6 = 0;
-    v7[0] = 0;
+    v2 = NULL;
+    v3 = NULL;
+    v4 = NULL;
+    v5 = NULL;
+    v6 = NULL;
+    v7[0] = NULL;
     v1 = FindSceneFile(data_0216dbe4);
     LoadNcgrData(&v5, v1);
     v1 = FindSceneFile(data_0216dbf0);

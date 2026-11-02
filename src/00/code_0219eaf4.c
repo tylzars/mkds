@@ -70,7 +70,7 @@ u32 func_ov000_0219eaf4(void) {
     return 1;
 }
 
-s32 func_ov000_0219ec44(u32 a, s32 b, u32 c) {
+BOOL func_ov000_0219ec44(u32 a, s32 b, u32 c) {
     Unk021b566c *p;
     u64 t;
     u64 x;
@@ -79,7 +79,7 @@ s32 func_ov000_0219ec44(u32 a, s32 b, u32 c) {
     s32 n;
     u32 r;
     if (func_ov000_0219bab4() != 6) {
-        return 1;
+        return TRUE;
     }
     switch (b) {
         case 13:
@@ -88,7 +88,7 @@ s32 func_ov000_0219ec44(u32 a, s32 b, u32 c) {
                 func_ov000_0219f124(c);
             }
             if (func_ov000_0219edb0(a, 14) == 0) {
-                return 0;
+                return FALSE;
             }
             break;
         case 14:
@@ -111,14 +111,14 @@ s32 func_ov000_0219ec44(u32 a, s32 b, u32 c) {
                 if (p->mUnk_1cc == m) {
                     for (n = 1; n <= p->mUnk_0d; n++, p = data_ov000_021b566c) {
                         if (func_ov000_0219edb0(p->mUnk_f4[n], 15) == 0) {
-                            return 0;
+                            return FALSE;
                         }
                     }
                     p->mUnk_198 = 15;
                 }
             } else {
                 if (func_ov000_0219edb0(a, 15) == 0) {
-                    return 0;
+                    return FALSE;
                 }
             }
             break;
@@ -128,7 +128,7 @@ s32 func_ov000_0219ec44(u32 a, s32 b, u32 c) {
             }
             break;
     }
-    return 1;
+    return TRUE;
 }
 
 u32 func_ov000_0219edb0(u32 a, u32 b) {
@@ -287,7 +287,7 @@ u32 func_ov000_0219f124(u32 a) {
     void **r;
     data_ov000_021b566c->mUnk_1f4 = a;
     r = func_ov000_0219b8fc(a, data_ov000_021b566c->mUnk_0d + 1);
-    if (r != 0) {
+    if (r != NULL) {
         data_ov000_021b566c->mUnk_1a0 = 2;
         func_ov000_02198908(*r);
         data_ov000_021b566c->mUnk_1a0 = 0;
@@ -336,7 +336,7 @@ void func_ov000_0219f214(void) {
 void func_ov000_0219f23c(s32 a) {
     Unk021b566c *p;
     s32 b;
-    s32 c;
+    BOOL c;
     if (a == 0) {
         func_ov000_0219f344();
         return;
@@ -345,9 +345,9 @@ void func_ov000_0219f23c(s32 a) {
     p = data_ov000_021b566c;
     if (p->mUnk_15 == 2 || p->mUnk_15 == 3) {
         if (p->mUnk_1f4 == 0) {
-            c = 1;
+            c = TRUE;
         } else {
-            c = 0;
+            c = FALSE;
         }
         data_ov000_021b566c->mUnk_44c(0, 1, c, 0, func_ov000_0219d5e4(p->mUnk_1f4), p->mUnk_450);
     } else if (p->mUnk_15 == 0) {
@@ -383,24 +383,24 @@ u32 func_ov000_0219f2e4(void) {
 // non-matching: the value read from the object at offset 0x1f4 and the byte at offset 0x15 swap registers (r0 and r1)
 void func_ov000_0219f344(void) {
     Unk021b566c *p;
-    s32 a;
-    s32 b;
+    BOOL a;
+    BOOL b;
     u32 c;
-    if (func_ov000_0219e608(func_ov000_0219d558(1, data_ov000_021b4114, 0)) == 0) {
+    if (func_ov000_0219e608(func_ov000_0219d558(1, data_ov000_021b4114, NULL)) == 0) {
         func_ov000_021a104c();
         p = data_ov000_021b566c;
         c = p->mUnk_1f4;
         if (c != 0) {
-            a = 1;
+            a = TRUE;
         } else if (p->mUnk_15 == 2) {
-            a = 1;
+            a = TRUE;
         } else {
-            a = 0;
+            a = FALSE;
         }
         if (c == 0) {
-            b = 1;
+            b = TRUE;
         } else {
-            b = 0;
+            b = FALSE;
         }
         data_ov000_021b566c->mUnk_44c(0, 1, b, a, func_ov000_0219d5e4(p->mUnk_1f4), p->mUnk_450);
         data_ov000_021b566c->mUnk_1a1 = 0;

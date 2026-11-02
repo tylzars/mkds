@@ -55,7 +55,7 @@ void func_0209905c(void *a, Unk0209905c *p) {
                 func_020d8918(&p->mUnk_a0, &p->mUnk_00.mUnk_04, &p->mUnk_00.mUnk_10);
                 p->mUnk_00.mUnk_04.y = p->mUnk_00.mUnk_04.y + (p->mUnk_c4 + 0xf000);
             }
-            if (p->mUnk_d0 == 0) {
+            if (p->mUnk_d0 == NULL) {
                 return;
             }
             if ((p->mUnk_00.mUnk_02 & 0x12) != 0) {
@@ -66,8 +66,8 @@ void func_0209905c(void *a, Unk0209905c *p) {
             p->mUnk_d0->mUnk_24 &= ~2;
             return;
         case 1:
-            if (p->mUnk_d0 != 0) {
-                for (n = p->mUnk_d0->mUnk_08; n != 0; n = n->mUnk_00) {
+            if (p->mUnk_d0 != NULL) {
+                for (n = p->mUnk_d0->mUnk_08; n != NULL; n = n->mUnk_00) {
                     n->mUnk_26 = n->mUnk_24;
                 }
                 func_0208b6b0((void **) &p->mUnk_d0);

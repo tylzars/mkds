@@ -9,9 +9,9 @@ void func_02116e70(void) {
     Unk02021dc8 *v2;
     Unk020b4934 *v3;
     Unk020b4a44 *v4[1];
-    v2 = 0;
-    v3 = 0;
-    v4[0] = 0;
+    v2 = NULL;
+    v3 = NULL;
+    v4[0] = NULL;
     v1 = FindSceneFile(data_0216d4c4);
     LoadNcerData(&v2, v1);
     v1 = FindSceneFile(data_0216d4bc);

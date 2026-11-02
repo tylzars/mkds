@@ -6,7 +6,7 @@
 #pragma thumb on
 
 u32 func_020799a0(s32 e) {
-    s32 a = 1;
+    BOOL a = TRUE;
     s32 b = a;
     s32 c = a;
     s32 d = a;
@@ -20,9 +20,9 @@ u32 func_020799a0(s32 e) {
         b = 0;
     }
     if (b == 0 && data_021759c0->mUnk_08 != 1) {
-        a = 0;
+        a = FALSE;
     }
-    if (a != 0) {
+    if (a != FALSE) {
         return 1;
     }
     return 0;

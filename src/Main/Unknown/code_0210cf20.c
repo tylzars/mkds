@@ -58,14 +58,14 @@ void func_0210d2cc(void) {
         return;
     }
     if (data_0217d020 != 0) {
-        for (p = data_0217d028.mUnk_00; p != 0; p = func_0201733c(&data_0217d028, p)) {
+        for (p = data_0217d028.mUnk_00; p != NULL; p = func_0201733c(&data_0217d028, p)) {
             func_0210cc3c(p);
         }
         data_0217d020 = 0;
     }
     func_0210e280((Unk0217c7c4 *) data_0217d034);
     l = data_0217d048;
-    for (p = l->mUnk_00; p != 0; p = l->mUnk_00) {
+    for (p = l->mUnk_00; p != NULL; p = l->mUnk_00) {
         func_0210ca4c(p);
         if (p->mUnk_18 != 3) {
             func_0210bc54(&l[p->mUnk_18], p);
@@ -75,15 +75,15 @@ void func_0210d2cc(void) {
     m = (Unk02017328 *) data_0217d054;
     p = m->mUnk_00;
     t = data_0217d024[0];
-    if (p != 0) {
+    if (p != NULL) {
         l = data_0217d048;
         do {
             if ((t++ & 3) == data_0217d010[0]) {
                 func_0210ca4c(p);
             } else if ((t & 1) == (data_0217d010[0] & 1)) {
-                for (q = p->mUnk_0c.mUnk_00; q != 0; q = func_0201733c(&p->mUnk_0c, q)) {
-                    if (q->mUnk_00 != 0) {
-                        p->mUnk_30(p, q, 0);
+                for (q = p->mUnk_0c.mUnk_00; q != NULL; q = func_0201733c(&p->mUnk_0c, q)) {
+                    if (q->mUnk_00 != NULL) {
+                        p->mUnk_30(p, q, NULL);
                     }
                 }
             }
@@ -92,7 +92,7 @@ void func_0210d2cc(void) {
                 p->mUnk_18 = 3;
             }
             p = m->mUnk_00;
-        } while (p != 0);
+        } while (p != NULL);
     }
     data_0217d010[0]++;
     if (data_0217d010[0] == 4) {
@@ -106,12 +106,12 @@ void func_0210d200(u32 a) {
     Unk0210bf24 *q;
 
     p = data_0217d028.mUnk_00;
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
     do {
         q = p->mUnk_0c.mUnk_00;
-        if (q != 0) {
+        if (q != NULL) {
             do {
                 func_0212c6f0(&q->mUnk_00, a);
                 q->mUnk_19 &= ~4;
@@ -119,14 +119,14 @@ void func_0210d200(u32 a) {
                 q->mUnk_19 &= ~2;
                 func_0210bc54(&p->mUnk_0c, q);
                 q = p->mUnk_0c.mUnk_00;
-            } while (q != 0);
+            } while (q != NULL);
         }
         if (p->mUnk_18 != 3) {
             func_0210bc54(&data_0217d048[p->mUnk_18], p);
             p->mUnk_18 = 3;
         }
         p = func_0201733c(&data_0217d028, p);
-    } while (p != 0);
+    } while (p != NULL);
 }
 
 void func_0210d1a4(s32 a, s32 b) {
@@ -155,7 +155,7 @@ void func_0210d120(u32 a) {
 }
 
 void func_0210d0ec(void) {
-    while (data_0217d028.mUnk_00 != 0) {
+    while (data_0217d028.mUnk_00 != NULL) {
         func_0210c3a8(data_0217d028.mUnk_00);
     }
 }

@@ -7,7 +7,7 @@
 void func_0207f05c(Unk020888b4 *p);
 void func_0207f2e4(Unk020888b4 *p);
 s32 func_0207f554(u32 a, u32 b);
-s32 func_0207f600(s32 a);
+BOOL func_0207f600(s32 a);
 void func_0207f630(Unk020888b4 *p, Unk0208001c *q, Unk0206bcb0 *r);
 void func_0207f668(Unk020888b4 *p, Unk0208001c *q, Unk0206bcb0 *r);
 void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Unk0206bcb0 *r, Unk02175620_bc *s, Vec3 *a, Vec3 *b);

@@ -121,8 +121,8 @@ void func_020f87a8(Unk020ee684 *param_1, s32 param_2, s32 param_3, s32 param_4, 
     Unk0217bc48 *e;
     Unk027e00cc *v;
     enum { K0 } k, j;
-    s32 a;
-    s32 b;
+    BOOL a;
+    BOOL b;
 
     p = param_1->mUnk_018;
     a = data_021759c0->mUnk_08 == 5;
@@ -212,7 +212,7 @@ void func_020f86c4(Unk020ee684 *param_1) {
     param_1->mUnk_020 = 1;
 }
 
-s32 func_020f850c(Unk020ee684 *param_1, Unk020ee684 *param_2) {
+BOOL func_020f850c(Unk020ee684 *param_1, Unk020ee684 *param_2) {
     Unk0217bc48 *e;
     Unk027e00cc *v;
     enum { K0 } j;
@@ -240,7 +240,7 @@ s32 func_020f850c(Unk020ee684 *param_1, Unk020ee684 *param_2) {
                 } else if (param_1->mUnk_004 > 0x6e) {
                     param_1->mUnk_004 = 0x67;
                 }
-                return 0;
+                return FALSE;
             }
             if (param_1->mUnk_004 > 0x3c &&
                 (((param_2->mUnk_1ec & 0x241) == 0x241 && a != 5 && param_1->mUnk_01c == 0) ||
@@ -252,11 +252,11 @@ s32 func_020f850c(Unk020ee684 *param_1, Unk020ee684 *param_2) {
         case 2:
             param_1->mUnk_004++;
             if (param_1->mUnk_004 > param_1->mUnk_028 * 2) {
-                return 1;
+                return TRUE;
             }
             break;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_020f8498(Unk020ee684 *param_1) {

@@ -25,7 +25,7 @@
 #pragma thumb on
 
 void CreateDram(void) {
-    func_020ea588(&gDram, (void *) FindCourseMapObjFile(gDramNsbmdName), 0);
+    func_020ea588(&gDram, (void *) FindCourseMapObjFile(gDramNsbmdName), NULL);
     func_02084968(gDram, 0x3f, 2, 0x294a);
 }
 
@@ -59,7 +59,7 @@ Unk02100004 *func_020ffacc(void) {
     return p;
 }
 
-s32 func_020ffabc(u32 a) {
+BOOL func_020ffabc(u32 a) {
     return a == 0xb;
 }
 

@@ -30,8 +30,8 @@
 void *func_020ed548(u8 *a) {
     char buf[0x100];
 
-    if (a == 0) {
-        return 0;
+    if (a == NULL) {
+        return NULL;
     }
     snprintf(buf, 0x100, data_0216c604, a);
     return FindMainRaceOrMainEffectFile(buf);
@@ -69,35 +69,35 @@ void *func_020ed490(u8 *a, u8 *b) {
 void func_020ed2f8(void) {
     enum { K0 } i;
     void *p;
-    s32 f;
+    BOOL f;
 
     i = 0;
     while (i < 0xe) {
-        data_0217bbfc[i] = 0;
+        data_0217bbfc[i] = NULL;
         i++;
     }
-    data_0217bbfc[0] = func_020ed4d0(data_0216c42c, 0, data_0216c440);
-    data_0217bbfc[1] = func_020ed4d0(data_0216c454, 0, data_0216c468);
-    data_0217bbfc[2] = func_020ed4d0(data_0216c47c, 0, data_0216c48c);
-    data_0217bbfc[3] = func_020ed4d0(data_0216c49c, 0, data_0216c4ac);
-    data_0217bbfc[4] = func_020ed4d0(data_0216c4bc, 0, data_0216c4cc);
-    data_0217bbfc[5] = func_020ed4d0(data_0216c4dc, 0, data_0216c4f0);
-    data_0217bbfc[6] = func_020ed4d0(data_0216c504, 0, data_0216c518);
-    data_0217bbfc[7] = func_020ed4d0(data_0216c52c, 0, data_0216c53c);
+    data_0217bbfc[0] = func_020ed4d0(data_0216c42c, NULL, data_0216c440);
+    data_0217bbfc[1] = func_020ed4d0(data_0216c454, NULL, data_0216c468);
+    data_0217bbfc[2] = func_020ed4d0(data_0216c47c, NULL, data_0216c48c);
+    data_0217bbfc[3] = func_020ed4d0(data_0216c49c, NULL, data_0216c4ac);
+    data_0217bbfc[4] = func_020ed4d0(data_0216c4bc, NULL, data_0216c4cc);
+    data_0217bbfc[5] = func_020ed4d0(data_0216c4dc, NULL, data_0216c4f0);
+    data_0217bbfc[6] = func_020ed4d0(data_0216c504, NULL, data_0216c518);
+    data_0217bbfc[7] = func_020ed4d0(data_0216c52c, NULL, data_0216c53c);
     data_0217bbfc[9] = func_020ed4d0(data_0216c54c, data_0216c55c, data_0216c56c);
-    data_0217bbfc[10] = func_020ed4d0(data_0216c57c, 0, data_0216c58c);
-    data_0217bbfc[11] = func_020ed4d0(data_0216c59c, 0, data_0216c5ac);
-    data_0217bbfc[12] = func_020ed4d0(data_0216c5bc, 0, data_0216c5d0);
-    data_0217bbfc[13] = func_020ed4d0(data_0216c5e4, 0, data_0216c5f4);
+    data_0217bbfc[10] = func_020ed4d0(data_0216c57c, NULL, data_0216c58c);
+    data_0217bbfc[11] = func_020ed4d0(data_0216c59c, NULL, data_0216c5ac);
+    data_0217bbfc[12] = func_020ed4d0(data_0216c5bc, NULL, data_0216c5d0);
+    data_0217bbfc[13] = func_020ed4d0(data_0216c5e4, NULL, data_0216c5f4);
     data_0217bbfc[8] = data_0217bbfc[7];
     f = (data_021759c0->mUnk_00 == 0x1d);
     i = 0;
     while (i < 0xe) {
         p = &data_0217bc34[i];
-        if (((Unk0217bc34_14 *) p)->mUnk_14 != 0) {
+        if (((Unk0217bc34_14 *) p)->mUnk_14 != NULL) {
             ((Unk0217bc34_14 *) p)->mUnk_14();
         }
-        if (f != 0) {
+        if (f != FALSE) {
             data_0217bbfc[i]->mUnk_14 &= 0xffff7fff;
         }
         i++;
@@ -116,7 +116,7 @@ void func_020ed268(Unk020ec8bc *p, Unk020eda5c *q, s32 a, s32 b, s32 c, s32 d, s
     p->mUnk_224 = 0;
 }
 
-s32 func_020ed0f4(Unk020ec8bc *p) {
+BOOL func_020ed0f4(Unk020ec8bc *p) {
     Vec3 v[6];
     Vec3 *r;
     Vec3 *q;
@@ -144,9 +144,9 @@ s32 func_020ed0f4(Unk020ec8bc *p) {
         func_02148504(q, &v[0], &v[4]);
         v[5] = *p->mUnk_168.mUnk_00->mUnk_18;
         func_020f4020(&p->mUnk_170, &v[2], p->mUnk_000.mUnk_12c);
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_020ece1c(Unk020ec8bc *p, s32 a, s32 b, s32 c) {
@@ -221,7 +221,7 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
     Vec3 v40;
     Vec3 v4c;
     s32 s;
-    s32 f;
+    BOOL f;
     s32 w;
 
     t = &p->mUnk_170;
@@ -262,7 +262,7 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
     }
     if (func_01ffdee4(q, (u32 *) &p->mUnk_000.mUnk_000.mUnk_0e4, 0, p->mUnk_000.mUnk_000.mUnk_dc, 4,
                       p->mUnk_000.mUnk_000.mUnk_da, &v28, &v34, (s32 *) &v40,
-                      &p->mUnk_000.mUnk_000.mUnk_fc, 0, 0, 0, 0) != 0) {
+                      &p->mUnk_000.mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL) != 0) {
         if (p->mUnk_000.mUnk_158 != 0) {
             if (v28.y > 0) {
                 q->y = q->y + v28.y;
@@ -315,7 +315,7 @@ void func_020ec918(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 d) {
     if (p->mUnk_214 >= 0) {
         func_020ece1c(p, a, c, d);
         if (p->mUnk_214 == 0) {
-            if (func_020ed0f4(p) != 0) {
+            if (func_020ed0f4(p) != FALSE) {
                 p->mUnk_214 = -1;
             }
             return;

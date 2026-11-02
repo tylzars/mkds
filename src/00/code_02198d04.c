@@ -7,7 +7,7 @@ u32 func_ov000_02198fdc(int param_1) {
     int *v2;
     v1 = func_ov000_0218dc44((u32 *) ((u32 *) (u32) (*(u32 *) (param_1 + 0x60))));
     if (v1 <= 0) {
-        func_0213442c(data_ov000_021b3fb0, data_ov000_021b3fb8, 0, 0x475);
+        func_0213442c(data_ov000_021b3fb0, data_ov000_021b3fb8, NULL, 0x475);
     }
     v2 = func_ov000_0218dbf8((s32 *) (*(u32 *) (param_1 + 0x60)), v1 + -1);
     v1 = func_ov000_02198714((u32 *) (param_1), *(s32 *) (param_1 + 0x50) + *v2, v2[1]);

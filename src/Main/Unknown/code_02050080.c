@@ -9,7 +9,7 @@
 #pragma opt_rebuildconditionals off
 
 static inline u32 func_02050080_inline(void) {
-    if (data_0217aa00 == 0) {
+    if (data_0217aa00 == NULL) {
         return 0;
     }
     return data_0217aa00->mUnk_0000;
@@ -55,15 +55,15 @@ u32 func_020501b0(u32 a) {
 }
 
 void func_02050080(void) {
-    s32 r;
+    BOOL r;
     u16 i;
     u16 n;
 
-    r = 0;
+    r = FALSE;
     if (func_02050080_inline() != 0 && data_0217aa00->mUnk_0004 != 13) {
-        r = 1;
+        r = TRUE;
     }
-    if (r == 0) {
+    if (r == FALSE) {
         return;
     }
     i = 0;

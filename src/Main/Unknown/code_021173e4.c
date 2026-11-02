@@ -334,7 +334,7 @@ void func_02117e24(void *a, void *b, void *c, s32 d) {
     if (*(vu16 *) 0x027ffc40 != 2) {
         data_0217d360->mUnk_28 = FindSceneFile("menu.bmg");
         func_02124ed0(data_0217d360->mUnk_2c, data_0217d360->mUnk_04, data_0217d360->mUnk_08, &data_0217d360->mUnk_18);
-        func_02124ed0(data_0217d360->mUnk_2c, data_0217d360->mUnk_10, 0, &data_0217d360->mUnk_1c);
+        func_02124ed0(data_0217d360->mUnk_2c, data_0217d360->mUnk_10, NULL, &data_0217d360->mUnk_1c);
         rem = 0x8000;
         for (i = 0; i < 4; i++) {
             rem -= func_021243ac(data_0217d360->mUnk_2c, data_0215c7d8[i], data_0217d360->mUnk_08, data_0215c7e0[i],
@@ -373,7 +373,7 @@ void func_02117db0(void) {
         func_0211f498();
     }
     func_02036ab0(data_0217d360->mUnk_2c);
-    data_0217d360 = 0;
+    data_0217d360 = NULL;
 }
 
 #pragma thumb off
@@ -852,7 +852,7 @@ s32 func_02117418(void) {
         }
         func_02124c30(data_0217d360->mUnk_04, data_0217d360->mUnk_00, data_0217d360->mUnk_08, data_0217d360->mUnk_80,
                       data_0217d360->mUnk_18);
-        func_02124c30(data_0217d360->mUnk_10, data_0217d360->mUnk_0c, 0, data_0217d360->mUnk_84,
+        func_02124c30(data_0217d360->mUnk_10, data_0217d360->mUnk_0c, NULL, data_0217d360->mUnk_84,
                       data_0217d360->mUnk_1c);
     } else {
         func_0211f39c();

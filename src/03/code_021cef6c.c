@@ -13,7 +13,7 @@ int func_ov003_021cef80(void) {
 }
 
 u32 func_ov003_021cef6c(void) {
-    if (data_ov003_021da284 != 0) {
+    if (data_ov003_021da284 != NULL) {
         return 1;
     }
     return 0;

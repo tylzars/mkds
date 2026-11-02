@@ -11,7 +11,7 @@ void *func_02100138(u32 a) {
             return data_0216b288[i].mUnk_04->mUnk_30;
         }
     }
-    return 0;
+    return NULL;
 }
 
 void *func_021000d0(u32 a) {
@@ -23,5 +23,5 @@ void *func_021000d0(u32 a) {
             return data_0216b288[i].mUnk_04->mUnk_24;
         }
     }
-    return 0;
+    return NULL;
 }

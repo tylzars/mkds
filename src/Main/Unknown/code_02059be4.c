@@ -41,9 +41,9 @@ void func_02059c34(void) {
     }
     data_0217aa10->mUnk_00 = 4;
     data_0217aa10->mUnk_04 = 0;
-    if (data_0217aa10->mUnk_a4 != 0) {
+    if (data_0217aa10->mUnk_a4 != NULL) {
         func_0201797c(data_0217aa10->mUnk_a4);
-        data_0217aa10->mUnk_a4 = 0;
+        data_0217aa10->mUnk_a4 = NULL;
     }
 }
 
@@ -76,11 +76,11 @@ s32 func_02059ce8(void) {
 }
 
 void func_02059d80(void) {
-    if (data_0217aa10->mUnk_a4 == 0) {
+    if (data_0217aa10->mUnk_a4 == NULL) {
         return;
     }
     func_0201797c(data_0217aa10->mUnk_a4);
-    data_0217aa10->mUnk_a4 = 0;
+    data_0217aa10->mUnk_a4 = NULL;
 }
 
 void func_02059dc8(void) {
@@ -91,23 +91,23 @@ void func_02059dc8(void) {
 }
 
 void func_02059e1c(void) {
-    s32 r;
+    BOOL r;
     s32 v;
 
     do {
-        r = 0;
+        r = FALSE;
         v = data_0217aa10->mUnk_04;
         if (v == 2) {
-            r = 1;
+            r = TRUE;
         } else if (v == 1) {
             if (((data_0217aa10->mUnk_58.mUnk_0c & 1) ? 1 : 0) == 0) {
                 FS_StartOverlay(&data_0217aa10->mUnk_2c);
                 FS_CloseFile(&data_0217aa10->mUnk_58);
                 data_0217aa10->mUnk_04 = 2;
-                r = 1;
+                r = TRUE;
             }
         }
-    } while (r == 0);
+    } while (r == FALSE);
 }
 
 void func_02059ea4(s32 a) {
@@ -138,9 +138,9 @@ void func_02059ea4(s32 a) {
                     if (FS_UnloadOverlay(0, p->mUnk_08[v].mUnk_00) != 0) {
                         data_0217aa10->mUnk_00 = 4;
                         data_0217aa10->mUnk_04 = 0;
-                        if (data_0217aa10->mUnk_a4 != 0) {
+                        if (data_0217aa10->mUnk_a4 != NULL) {
                             func_0201797c(data_0217aa10->mUnk_a4);
-                            data_0217aa10->mUnk_a4 = 0;
+                            data_0217aa10->mUnk_a4 = NULL;
                         }
                     }
                     break;
@@ -158,9 +158,9 @@ void func_02059ea4(s32 a) {
                     if (FS_UnloadOverlay(0, p->mUnk_08[v].mUnk_00) != 0) {
                         data_0217aa10->mUnk_00 = 4;
                         data_0217aa10->mUnk_04 = 0;
-                        if (data_0217aa10->mUnk_a4 != 0) {
+                        if (data_0217aa10->mUnk_a4 != NULL) {
                             func_0201797c(data_0217aa10->mUnk_a4);
-                            data_0217aa10->mUnk_a4 = 0;
+                            data_0217aa10->mUnk_a4 = NULL;
                         }
                     }
                     break;
@@ -205,33 +205,33 @@ void func_0205a140(void *a) {
     func_0205a140_inline(0, (s32) SDK_OVERLAY_OV000_ID, (u32) OV000_TEXT_START, (u32) OV000_BSS_END);
     func_0205a140_inline(1, (s32) SDK_OVERLAY_OV001_ID, (u32) OV001_TEXT_START, (u32) OV001_BSS_END);
     func_0205a140_inline(2, (s32) SDK_OVERLAY_OV002_ID, (u32) OV002_CTOR_START, (u32) OV002_BSS_END);
-    data_0217aa10->mUnk_a0 = 0;
-    data_0217aa10->mUnk_a4 = 0;
+    data_0217aa10->mUnk_a0 = NULL;
+    data_0217aa10->mUnk_a4 = NULL;
 }
 
 s32 func_0205a2ac(s32 a) {
     s32 r;
-    s32 f;
+    BOOL f;
 
     r = 0x13;
-    f = 0;
+    f = FALSE;
     if ((u16) (data_0217aa14->mUnk_104[a].mUnk_74 + 0xffff) <= 1) {
-        f = 1;
+        f = TRUE;
     }
-    if (f == 0) {
+    if (f == FALSE) {
         r = data_0217aa14->mUnk_104[a].mUnk_68;
     }
     return r;
 }
 
 s32 func_0205a310(s32 a) {
-    s32 r;
+    BOOL r;
     Unk0217aa14_104 *e;
 
     e = &data_0217aa14->mUnk_104[a];
-    r = 0;
+    r = FALSE;
     if ((u16) (e->mUnk_74 + 0xffff) <= 1) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }

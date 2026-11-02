@@ -28,7 +28,7 @@ extern u8 data_ov000_021b5dfc[5 * 4];
 // Declared here until the code that defines it is decompiled.
 Unk021a8f84 *func_ov000_021a8f84(const u8 *a);
 
-s32 func_ov000_021a4654(const u8 *a, u32 b, Unk021a4654 *c, Unk021a8f84 **d);
+BOOL func_ov000_021a4654(const u8 *a, u32 b, Unk021a4654 *c, Unk021a8f84 **d);
 void func_ov000_021a46d4(void);
 void func_ov000_021a471c(Unk021a471c *a, const u8 *b);
 void func_ov000_021a4760(Unk021a471c *a, s32 b);

@@ -119,14 +119,14 @@ u32 func_ov003_021d2970(const Unk021d299c *input) {
     return func_ov003_021d2a34(&rect);
 }
 
-s32 func_ov003_021d2940(u16 *output) {
+BOOL func_ov003_021d2940(u16 *output) {
     Unk021da2d4Input *state = data_ov003_021da2d4;
     if (state->mBits.mBit_0 == 0) {
         output[0] = state->mUnk_2c;
         output[1] = state->mUnk_2e;
-        return 0;
+        return FALSE;
     }
     output[0] = state->mUnk_28;
     output[1] = state->mUnk_2a;
-    return 1;
+    return TRUE;
 }

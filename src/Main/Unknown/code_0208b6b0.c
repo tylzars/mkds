@@ -70,14 +70,14 @@ void func_0208b934(void *a) {
     func_02018a1c(data_0217b04c, h);
     func_02018888(data_0217b04c);
     func_02018874(data_0217b04c);
-    data_0217b03c = 0;
-    data_0217b054 = 0;
-    data_0217b048 = 0;
+    data_0217b03c = NULL;
+    data_0217b054 = NULL;
+    data_0217b048 = NULL;
     if (func_0205e0a0() != 2) {
         return;
     }
     if (data_021759c0->mUnk_08 == 4) {
-        t = 0;
+        t = NULL;
         data_0217b03c = func_02018d94((void *(*) (u32)) func_0208bd04, 0x32, 0xc8, 3, 0xe, 0x1e);
         func_02048590(data_usa_02166168, (u32) c, &t);
         func_02018a1c(data_0217b03c, t);
@@ -87,7 +87,7 @@ void func_0208b934(void *a) {
     }
     data_0217b044->mUnk_38_24 = 1;
     data_0217b04c->mUnk_38_24 = 1;
-    if (data_0217b03c != 0) {
+    if (data_0217b03c != NULL) {
         data_0217b03c->mUnk_38_24 = 1;
     }
     func_0208d758(a);
@@ -102,7 +102,7 @@ void func_0208b934(void *a) {
             w = data_usa_021660fc;
             data_0217b048 = func_02036bec(c, 0x64);
             for (j = 0; j < 6; j++) {
-                data_0217b048->mUnk_48[j] = 0;
+                data_0217b048->mUnk_48[j] = NULL;
                 func_021484d0(&data_usa_02155f78[j], &w, &v);
                 q = &data_0217b048->mUnk_00[j];
                 if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
@@ -119,12 +119,12 @@ void func_0208b934(void *a) {
 }
 
 void func_0208b8c8(void) {
-    if (data_0217b054 != 0) {
+    if (data_0217b054 != NULL) {
         data_0217b054();
     }
     func_0201873c(data_0217b044);
     func_0201873c(data_0217b04c);
-    if (data_0217b03c != 0) {
+    if (data_0217b03c != NULL) {
         func_0201873c(data_0217b03c);
     }
 }
@@ -132,7 +132,7 @@ void func_0208b8c8(void) {
 void func_0208b870(Unk02012f58 *a) {
     func_02018674(data_0217b044, a);
     func_02018674(data_0217b04c, a);
-    if (data_0217b03c != 0) {
+    if (data_0217b03c != NULL) {
         func_02018674(data_0217b03c, a);
     }
 }
@@ -146,7 +146,7 @@ void *func_0208b7bc(u32 a, const Vec3 *b) {
     v.y = b->y >> 4;
     v.z = b->z >> 4;
     q = func_02018600(p, e, &v);
-    if (q != 0) {
+    if (q != NULL) {
         if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
             q->mUnk_80_16 = 1;
         } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
@@ -178,10 +178,10 @@ void func_0208b6d0(Unk0201ca6c **a) {
     u8 v2[8];
     v1 = (*(UnkWordFunc *) (u32) data_0217b050)(v2, 0);
     func_020184e4((Unk020184e4 *) v1, *a);
-    *a = 0;
+    *a = NULL;
 }
 
 void func_0208b6b0(void **p0) {
     *(u32 *) ((u8 *) *p0 + 36) = (*(u32 *) ((u8 *) *p0 + 36) & ~0x1u) | 0x1u;
-    *p0 = 0;
+    *p0 = NULL;
 }

@@ -11,9 +11,9 @@
 #include "Main/Unknown/unk_0217a000.h"
 
 static inline s32 func_02043648_inline(Unk0217aa00 *p) {
-    s32 r = 0;
-    if ((p == 0 ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13) {
-        r = 1;
+    BOOL r = FALSE;
+    if ((p == NULL ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13) {
+        r = TRUE;
     }
     return r;
 }
@@ -44,7 +44,7 @@ void func_02043648(void) {
     s32 n;
     Unk02175628 *p;
     s32 o;
-    s32 q;
+    BOOL q;
     s32 c;
     s32 f;
     s32 s;
@@ -65,7 +65,7 @@ void func_02043648(void) {
         n = 0xffff;
         o = m;
         f = (data_02175624->mUnk_04 & 1) ? 1 : 0;
-        q = 0;
+        q = FALSE;
         c = (func_0205e0a0() != 2 || (data_02175624->mUnk_04 & 2)) ? 1 : 0;
         p = &data_02175628[i];
         w = data_02175624->mUnk_04;
@@ -81,7 +81,7 @@ void func_02043648(void) {
                             m = func_0204a664((Unk02175650 *) &p->mUnk_28);
                         }
                     } else {
-                        q = 1;
+                        q = TRUE;
                     }
                     n = 0xffff;
                     o = 0;
@@ -102,7 +102,7 @@ void func_02043648(void) {
                             func_0204a798((Unk02175650 *) &p->mUnk_28, m);
                         }
                     } else {
-                        q = 1;
+                        q = TRUE;
                     }
                     n = y;
                     o = k;
@@ -110,7 +110,7 @@ void func_02043648(void) {
                 case 3:
                 case 7:
                     if (f != 0) {
-                        q = 1;
+                        q = TRUE;
                     } else {
                         o = 0;
                         m = p->mUnk_40;
@@ -139,7 +139,7 @@ void func_02043648(void) {
                             }
                         }
                     } else {
-                        q = 1;
+                        q = TRUE;
                     }
                     n = *(u16 *) &data_0217aa00->mUnk_15bc_view.mUnk_0c[func_02050064(i)].mUnk_00[2];
                     o = data_0217aa00->mUnk_15bc_view.mUnk_0c[func_02050064(i)].mUnk_06_7;
@@ -157,7 +157,7 @@ void func_02043648(void) {
             }
         }
         t = m & p->mUnk_42;
-        if (q == 0) {
+        if (q == FALSE) {
             func_02039530(t, p);
         }
         func_02046ca8((Unk02175628_48 *) &p->mUnk_48, n, o);

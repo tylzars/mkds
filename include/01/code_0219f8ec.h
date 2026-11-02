@@ -52,7 +52,7 @@ void func_ov001_021a04c0(void);
 void func_ov001_021a04dc(void);
 void func_ov001_021a04f0(void);
 void func_ov001_021a0620(void);
-s32 func_ov001_021a071c(void);
+BOOL func_ov001_021a071c(void);
 void func_ov001_021a0734(void);
 void func_ov001_021a0774(void);
 void func_ov001_021a08d8(void);

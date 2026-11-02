@@ -28,7 +28,7 @@ void InitEmblemChoises(void) {
     gEmblemChoises->mUnk_00 = 0;
     gEmblemChoises->mUnk_04 = 1;
     gEmblemChoises->mUnk_08 = 0;
-    gEmblemChoises->mUnk_0c = 0;
+    gEmblemChoises->mUnk_0c = NULL;
     func_020cac9c();
     gEmblemChoises->mUnk_24 = 0;
     gEmblemChoises->mUnk_10 = 0;

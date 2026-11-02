@@ -31,18 +31,18 @@ void func_0204236c(void) {
     h = func_020364e0(func_020364e8());
     i = 0;
     for (j = 0; j < 8; j++) {
-        gCourseMap->mUnk_d8[j] = 0;
+        gCourseMap->mUnk_d8[j] = NULL;
     }
     for (i = 0; i < gCourseMap->mUnk_78; i++) {
         e = func_020423fc(i);
         if (e->mUnk_44 == 3) {
             q = &gCourseMap->mUnk_d8[(s16) e->mUnk_3c];
-            while (*q != 0) {
+            while (*q != NULL) {
                 q = &(*q)->mUnk_04;
             }
             *q = func_02036bec(h, 8);
             (*q)->mUnk_00 = e;
-            (*q)->mUnk_04 = 0;
+            (*q)->mUnk_04 = NULL;
         }
     }
 }
@@ -82,7 +82,7 @@ void func_020422c4(void) {
 s32 func_02042280(void *a, ...) {
     gCourseMap->mUnk_78 = func_020431a4(&a);
     if (gCourseMap->mUnk_78 == 0) {
-        gCourseMap->mUnk_74 = 0;
+        gCourseMap->mUnk_74 = NULL;
     } else {
         gCourseMap->mUnk_74 = a;
     }
@@ -98,29 +98,29 @@ s32 func_02042170(void *a, ...) {
 
     gCourseMap->mUnk_80 = func_020431a4(&a);
     if (gCourseMap->mUnk_80 == 0) {
-        gCourseMap->mUnk_7c = 0;
+        gCourseMap->mUnk_7c = NULL;
         return 1;
     }
     gCourseMap->mUnk_7c = a;
-    gCourseMap->mUnk_c4 = 0;
-    gCourseMap->mUnk_c8 = 0;
-    gCourseMap->mUnk_cc = 0;
-    gCourseMap->mUnk_d0 = 0;
+    gCourseMap->mUnk_c4 = NULL;
+    gCourseMap->mUnk_c8 = NULL;
+    gCourseMap->mUnk_cc = NULL;
+    gCourseMap->mUnk_d0 = NULL;
     for (i = 0; i < gCourseMap->mUnk_80; i++) {
         e = gCourseMap->mUnk_7c + i;
-        if (gCourseMap->mUnk_c4 == 0 && e->mUnk_4a == 1) {
+        if (gCourseMap->mUnk_c4 == NULL && e->mUnk_4a == 1) {
             gCourseMap->mUnk_c4 = e;
         }
-        if (gCourseMap->mUnk_c8 == 0 && e->mUnk_4a == 2) {
+        if (gCourseMap->mUnk_c8 == NULL && e->mUnk_4a == 2) {
             gCourseMap->mUnk_c8 = e;
         }
-        if (gCourseMap->mUnk_cc == 0 && e->mUnk_3e == 6) {
+        if (gCourseMap->mUnk_cc == NULL && e->mUnk_3e == 6) {
             gCourseMap->mUnk_cc = e;
         }
-        if (data_021759c0->mUnk_08 == 2 && gCourseMap->mUnk_d0 == 0 && e->mUnk_3e == 7) {
+        if (data_021759c0->mUnk_08 == 2 && gCourseMap->mUnk_d0 == NULL && e->mUnk_3e == 7) {
             gCourseMap->mUnk_d0 = e;
         }
-        if (data_021759c0->mUnk_08 == 4 && gCourseMap->mUnk_d4 == 0 && e->mUnk_3e == 8) {
+        if (data_021759c0->mUnk_08 == 4 && gCourseMap->mUnk_d4 == NULL && e->mUnk_3e == 8) {
             gCourseMap->mUnk_d4 = e;
         }
     }

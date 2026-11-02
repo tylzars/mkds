@@ -23,15 +23,15 @@
 #include "code_02148538.h"
 
 void *func_0209756c(void) {
-    return (void *) func_0209bf48(func_020979c8, func_020975ec, 0);
+    return (void *) func_0209bf48(func_020979c8, func_020975ec, NULL);
 }
 
 void *func_0209758c(void) {
-    return (void *) func_0209bf1c(CreateFlipper, func_02097d80, 0);
+    return (void *) func_0209bf1c(CreateFlipper, func_02097d80, NULL);
 }
 
 void func_020975ac(void) {
-    func_0209bf70(func_020980ec, 0, func_02097ed0, 0, 1, 0x1d0);
+    func_0209bf70(func_020980ec, NULL, func_02097ed0, 0, 1, 0x1d0);
 }
 
 void func_020975ec(void *a, Unk020975ec *p) {
@@ -157,11 +157,11 @@ void func_020979c8(Unk020e6fd4 *a) {
     s32 m2[9];
     s32 m1[9];
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
     v1 = data_usa_0215653c[0].x;
-    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
         switch (p->mUnk_00.mUnk_9c->mUnk_28) {
             case 0:
                 p->mUnk_a4 = 0;
@@ -248,7 +248,7 @@ u32 func_02097ed0(Unk020975ec *p, Vec3 *a, s32 b, Vec3 *c) {
 
     p->mUnk_a0 = 0;
     if (func_020eafc4(a, &p->mUnk_00.mUnk_04, &p->mUnk_a8[p->mUnk_ec0].mUnk_00, &data_usa_0215650c[p->mUnk_a4],
-                      &data_usa_0215653c[p->mUnk_a4], b, 0) != 0) {
+                      &data_usa_0215653c[p->mUnk_a4], b, NULL) != 0) {
         r = func_020eafc4(a, &p->mUnk_00.mUnk_04, &p->mUnk_a8[p->mUnk_ec0].mUnk_00, &data_usa_02156554[p->mUnk_a4],
                           &data_usa_021564dc[p->mUnk_a4], b, c);
         if (r == 4 || p->mUnk_ecc == 2) {
@@ -258,7 +258,7 @@ u32 func_02097ed0(Unk020975ec *p, Vec3 *a, s32 b, Vec3 *c) {
         }
     } else {
         if (func_020eafc4(a, &p->mUnk_00.mUnk_04, &p->mUnk_a8[p->mUnk_ec0].mUnk_00, &data_usa_021564c4[p->mUnk_a4],
-                          &data_usa_02156524[p->mUnk_a4], b, 0) != 0) {
+                          &data_usa_02156524[p->mUnk_a4], b, NULL) != 0) {
             r = func_020eafc4(a, &p->mUnk_00.mUnk_04, &p->mUnk_648[p->mUnk_ec0].mUnk_00, &data_usa_0215656c[p->mUnk_a4],
                               &data_usa_021564f4[p->mUnk_a4], b, c);
             if (r == 4 || p->mUnk_ecc == 3) {
@@ -275,7 +275,7 @@ u32 func_02097ed0(Unk020975ec *p, Vec3 *a, s32 b, Vec3 *c) {
 
 u32 func_020980ec(Unk020975ec *p, Unk0206bcb0 *q, void *b, u8 *c) {
     u32 v;
-    s32 t;
+    BOOL t;
     s32 f;
     Vec3 w;
     s32 s;

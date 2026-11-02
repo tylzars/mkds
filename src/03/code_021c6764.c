@@ -89,13 +89,13 @@ void func_ov003_021c6854(void) {
             func_ov003_021c212c(func_ov003_021c6d0c);
             return;
         }
-        func_ov003_021c20dc(&b, 0);
+        func_ov003_021c20dc(&b, NULL);
         a[b](data_ov003_021da1f8->mUnk_08);
         func_ov003_021c212c(func_ov003_021c6a18);
     }
 }
 
-int func_ov003_021c6764(void) {
+BOOL func_ov003_021c6764(void) {
     s32 a;
     s32 b;
     int v1;
@@ -107,12 +107,12 @@ int func_ov003_021c6764(void) {
     func_ov003_021c20dc(&a, &b);
     if (a == 0) {
         if (data_ov003_021da1f8->mUnk_08[0] != 0) {
-            return 1;
+            return TRUE;
         }
-        return 0;
+        return FALSE;
     }
     if (b == 1 && data_ov003_021da1f8->mUnk_08[0] == 0) {
-        return 0;
+        return FALSE;
     }
     v1 = func_ov003_021d3254(data_ov003_021da1f8->mUnk_08, 0x20);
     switch (v1) {
@@ -120,18 +120,18 @@ int func_ov003_021c6764(void) {
         case 5:
         case 0xd:
         case 0x10:
-            return 1;
+            return TRUE;
         case 0xa:
         case 0x1a:
         case 0x20:
             for (i = 0; i < v1; i++) {
                 u8 c = data_ov003_021da1f8->mUnk_08[i];
                 if (!((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f'))) {
-                    return 0;
+                    return FALSE;
                 }
             }
-            return 1;
+            return TRUE;
         default:
-            return 0;
+            return FALSE;
     }
 }

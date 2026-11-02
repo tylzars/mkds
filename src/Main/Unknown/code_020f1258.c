@@ -19,13 +19,13 @@ int func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
     Vec3 u;
     Vec3 w;
     s32 n;
-    int e;
+    BOOL e;
     Vec3 *p;
     Vec3 *q;
     Unk0206bcb0 *v;
-    int r;
+    BOOL r;
 
-    r = 0;
+    r = FALSE;
     p = &a->mUnk_000.mUnk_000.mUnk_000.mUnk_50;
     q = &a->mUnk_000.mUnk_000.mUnk_000.mUnk_5c;
     if ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_48 & 1) == func_02061f7c()) {
@@ -38,7 +38,7 @@ int func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
             t.y = func_02039828(&a->mUnk_000.mUnk_000.mUnk_000.mUnk_f0, &t) >> 12;
             if (t.y * t.y > 0xbd1) {
                 if ((s64) t.x * t.x + (s64) t.z * t.z < (s64) 0xe1000000u) {
-                    r = 1;
+                    r = TRUE;
                 }
             }
             n = 0;
@@ -91,7 +91,7 @@ int func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
             q->z = q->z - (s32) (((s64) u.z * n) >> 12);
             e = (u.x == a->mUnk_000.mUnk_000.mUnk_000.mUnk_f0.x && u.y == a->mUnk_000.mUnk_000.mUnk_000.mUnk_f0.y &&
                  u.z == a->mUnk_000.mUnk_000.mUnk_000.mUnk_f0.z);
-            if (e == 0) {
+            if (e == FALSE) {
                 a->mUnk_000.mUnk_000.mUnk_000.mUnk_f0 = u;
                 a->mUnk_000.mUnk_000.mUnk_000.mUnk_74 |= 0x100;
             }

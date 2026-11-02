@@ -12,7 +12,7 @@ u16 func_02044618(void);
 void func_0204465c(void);
 void func_020446e0(void);
 void func_02044940(void);
-s32 func_02044bf8(s32 a, s32 b);
+BOOL func_02044bf8(s32 a, s32 b);
 s32 func_02044d4c(s32 a, s32 b);
 s32 func_02044e9c(s32 a, s32 b);
 void func_02044fc0(void);

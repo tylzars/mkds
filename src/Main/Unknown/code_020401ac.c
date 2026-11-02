@@ -22,36 +22,36 @@ s64 func_02040d24(const UnkPair020b502c *a, const UnkPair020b502c *b) {
 }
 
 static inline s32 func_02040bc0_inline(s8 i) {
-    s32 f = 0;
+    BOOL f = FALSE;
     if ((u32) data_021759c0->mUnk_68[(u16) i].mUnk_08.mUnk_00 <= 3 &&
         ((1 << data_021759c0->mUnk_68[(u16) i].mUnk_08.mUnk_00) & 0xd) != 0) {
-        f = 1;
+        f = TRUE;
     }
     return f;
 }
 
 s32 func_02040bc0(void) {
-    s32 r = 0;
-    s32 g;
+    BOOL r = FALSE;
+    BOOL g;
     s8 i = data_021759c0->mUnk_62;
 
     if (i == -1 || func_02040bc0_inline(i) == 0) {
-        r = 1;
+        r = TRUE;
     }
-    if (r != 0) {
+    if (r != FALSE) {
         return r;
     }
     switch (data_021759c0->mUnk_08) {
         case 4:
-            g = 0;
+            g = FALSE;
             switch (data_0217561c->mUnk_000[(u16) i].mUnk_14) {
                 case 1:
                 case 2:
                 case 3:
-                    g = 1;
+                    g = TRUE;
                     break;
             }
-            if (g == 0) {
+            if (g == FALSE) {
                 if (data_0217561c->mUnk_4e0 != 0) {
                     return r;
                 }
@@ -59,20 +59,20 @@ s32 func_02040bc0(void) {
             return 1;
         case 2:
             if (data_0217561c->mUnk_4cc != 0) {
-                r = 1;
+                r = TRUE;
             }
             return r;
         default:
-            g = 0;
+            g = FALSE;
             switch (data_0217561c->mUnk_000[(u16) i].mUnk_14) {
                 case 1:
                 case 2:
                 case 3:
-                    g = 1;
+                    g = TRUE;
                     break;
             }
-            if (g != 0) {
-                r = 1;
+            if (g != FALSE) {
+                r = TRUE;
             }
             return r;
     }
@@ -158,7 +158,7 @@ void func_02040750(Unk0217561c_14 *a, s32 b) {
     Unk02175620_4c *e;
     s32 m;
 
-    if (gCourseMap->mUnk_44 == 0) {
+    if (gCourseMap->mUnk_44 == NULL) {
         a->mUnk_38 = 0;
         a->mUnk_32 = 0;
     } else {
@@ -197,7 +197,7 @@ void func_02040750(Unk0217561c_14 *a, s32 b) {
 }
 
 static inline u32 func_020401ac_inline(Unk0217aa00 *p) {
-    return p == 0 ? 0 : p->mUnk_0000;
+    return p == NULL ? 0 : p->mUnk_0000;
 }
 
 static inline void func_020401ac_inline2(Unk0217561c_000 *q) {
@@ -225,7 +225,7 @@ static inline u32 func_020401ac_inline6(Unk020f41c4_B *x, u32 n) {
 }
 
 void func_020401ac(void) {
-    s32 f;
+    BOOL f;
     s32 i;
     u32 s;
     s32 v1;
@@ -242,7 +242,7 @@ void func_020401ac(void) {
 
     func_020401ac_inline2(&data_0217561c->mUnk_000[0]);
     func_020401ac_inline3(&data_0217561c->mUnk_000[0].mUnk_08_view, data_0217561c->mUnk_000[0].mUnk_00);
-    f = 0;
+    f = FALSE;
     data_0217561c->mUnk_000[0].mUnk_0e = 0;
     data_0217561c->mUnk_000[0].mUnk_10 = 0;
     data_0217561c->mUnk_4cc = 0;
@@ -250,11 +250,11 @@ void func_020401ac(void) {
         case 1:
         case 2:
         case 6:
-            f = 1;
+            f = TRUE;
             break;
         case 0:
             if (func_02040bc0() != 0) {
-                f = 1;
+                f = TRUE;
             }
             break;
     }

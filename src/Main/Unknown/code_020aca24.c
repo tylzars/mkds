@@ -9,7 +9,7 @@
 void func_020aca24(Unk020aca24 *a) {
     s16 v[5] = {1, 6, 12, 7, 8};
 
-    if (a != 0) {
+    if (a != NULL) {
         switch (data_0217b340->mUnk_54) {
             case 0:
             case 3:

@@ -40,12 +40,12 @@ void func_01ffcf7c(const Vec4 *a, Vec4 *b) {
 s32 func_01ffd0e8(Vec4 *a, const Vec3 *b, const Vec3 *c) {
     Vec3 v;
     s32 r;
-    s32 k = 1;
+    BOOL k = TRUE;
     func_021483a0(b, c, &v);
     r = func_02147e8c((func_0214848c(b, c) + 0x1000) << 1);
     *a = data_usa_02155194;
     if (r <= 0) {
-        k = 0;
+        k = FALSE;
     } else {
         a->x = func_02147f34(v.x, r);
         a->y = func_02147f34(v.y, r);
@@ -83,7 +83,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
     s32 e;
     s32 f;
     s32 g;
-    s32 r;
+    BOOL r;
     Vec3 *u;
     s32 s;
     s32 t;
@@ -97,7 +97,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
     if (q->mUnk_4c & 0x10000000) {
         return;
     }
-    r = 0;
+    r = FALSE;
     func_0208c1d0(&v0, &v1, p);
     if (p->mUnk_a8 == 1) {
         u = &q->mUnk_12c;
@@ -108,7 +108,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
         if (func_02039828(&q->mUnk_138, &v5) > -0x333) {
             func_0208c1d0(&v2, &v3, p);
             o = p->mUnk_00;
-            r = 1;
+            r = TRUE;
             func_021484d0(&o->mUnk_80, &v2, &v9);
             v9.y = 0;
             func_02063b30(o, &v8);
@@ -137,20 +137,20 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
         s = (s32) (((s64) p->mUnk_70 * 0xB60B60B60BLL + 0x80000000LL) >> 32);
         t = (s32) (((s64) e * 0xa4) >> 12);
         q->mUnk_236 += g * ((s32) (((s64) s * t) >> 12) >> 12);
-        r = 1;
+        r = TRUE;
     }
     if ((q->mUnk_4c & 0x8000000) && p->mUnk_70 < 0x46000 && (q->mUnk_44 & 0x10) && !(q->mUnk_48 & 0x8020) &&
         q->mUnk_2a4 > 0x3000 && p->mUnk_90 != 2 && p->mUnk_a8 == 0) {
         p->mUnk_c8 += 0x44c;
         p->mUnk_ca = ((s64) data_0215d4b4[(p->mUnk_c8 >> 4) * 2] * 0xfa + 0x800) >> 12;
         q->mUnk_236 += (s16) p->mUnk_ca * p->mUnk_cc;
-        r = 1;
+        r = TRUE;
     } else {
         p->mUnk_ca = 0;
         p->mUnk_c8 = 0;
     }
 end:
-    if (r == 0) {
+    if (r == FALSE) {
         return;
     }
     if (g > 0) {
@@ -264,7 +264,7 @@ void func_01ffd900(s32 a, s32 b) {
     c = x[p].mUnk_02;
     d = e->mUnk_04;
     f = e->mUnk_08;
-    if (e->mUnk_0c == 0) {
+    if (e->mUnk_0c == NULL) {
         data_0217b5a8 = 0;
         return;
     }
@@ -333,7 +333,7 @@ void func_01ffdb70(void) {
             e = &data_0217b5b8[i];
             v = e->mUnk_0c;
             r = e->mUnk_10;
-            if (v != 0) {
+            if (v != NULL) {
                 f = e->mUnk_14;
                 if (f & 0x600) {
                     if (f & 0x100) {

@@ -45,7 +45,7 @@ void func_0209e310(Unk020e6fd4 *p);
 void func_0209e508(void *a, Unk0209df84 *b);
 void func_0209e938(void *a);
 void func_0209e950(Unk0209e950 *a);
-s32 func_0209e988(Unk0209df84 *a, Vec3 *b, s32 c);
+BOOL func_0209e988(Unk0209df84 *a, Vec3 *b, s32 c);
 u8 func_0209ea10(Unk0209df84 *a, Unk0206bcb0 *b, u8 *c, u8 *d);
 void func_0209ea90(Unk0209df84 *a);
 u32 func_0209eb04(void);

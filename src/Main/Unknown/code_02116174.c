@@ -147,7 +147,7 @@ void func_021162cc(void) {
     s32 v;
     s32 i;
     s32 j;
-    s32 z;
+    BOOL z;
     u16 buf[0x10];
     u32 t[3][3] = {0};
     u8 buf3[0x14];
@@ -206,7 +206,7 @@ void func_021162cc(void) {
         case 1:
             func_02114298(v + data_0217d350->mUnk_80, buf, 0x20);
             func_0212426c(0, 0, data_0217d350->mUnk_1c, buf, data_0217d350->mUnk_18, data_0217d350->mUnk_24);
-            z = 0;
+            z = FALSE;
             for (i = 0; i < 12; i++) {
                 func_02124fac(buf3[i] - 0x30, buf);
                 func_0212426c(z, data_0215c584[i], data_0217d350->mUnk_1c, buf, data_0217d350->mUnk_18,

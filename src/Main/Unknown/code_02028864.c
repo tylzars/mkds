@@ -73,7 +73,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         v = 0;
     }
     gSelectKart->mUnk_104 = v;
-    if (gSelectKart->mUnk_104 != 0) {
+    if (gSelectKart->mUnk_104 != FALSE) {
         switch (gSelectKart->mUnk_0fc) {
             case 0:
                 m = 0;
@@ -117,14 +117,14 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     gSelectKart->mUnk_09c = func_02025e34(gSelectKart->mUnk_0a8);
     if (func_020280dc() == 0) {
         g = gSelectKart;
-        if (g->mUnk_104 == 0) {
+        if (g->mUnk_104 == FALSE) {
             p = &g->mUnk_048;
-            func_02025b20(p, gSelectCharacterGpMNcgrName2, gSelectCharacterGpMNcerName2, gSelectCharacterGpMONclrName2, gSelectCharacterGpMBnclName2, 0, 0,
+            func_02025b20(p, gSelectCharacterGpMNcgrName2, gSelectCharacterGpMNcerName2, gSelectCharacterGpMONclrName2, gSelectCharacterGpMBnclName2, NULL, NULL,
                           func_02047a28);
             func_02025a50(0, gSelectKart->mUnk_08c, p);
-            func_02025b20(&e, gSelectCharacterGpTitleMNcgrName2, gSelectCharacterGpTitleMNcerName2, 0, gSelectCharacterGpTitleMBnclName2, 0, 0, func_02047a28);
+            func_02025b20(&e, gSelectCharacterGpTitleMNcgrName2, gSelectCharacterGpTitleMNcerName2, NULL, gSelectCharacterGpTitleMBnclName2, NULL, NULL, func_02047a28);
             func_02124748(1, e.mUnk_08, (void *) e.mUnk_00, e.mUnk_0c, 0, 0, p->mUnk_08, p->mUnk_0c);
-            func_02025b20(&f, gSelectCharacterGpNameMNcgrName2, gSelectCharacterGpNameMNcerName2, 0, gSelectCharacterGpNameMBnclName2, 0, 0, func_02047a28);
+            func_02025b20(&f, gSelectCharacterGpNameMNcgrName2, gSelectCharacterGpNameMNcerName2, NULL, gSelectCharacterGpNameMBnclName2, NULL, NULL, func_02047a28);
             func_02124748(data_usa_021537dc[gSelectKart->mUnk_0a4], f.mUnk_08, (void *) f.mUnk_00, f.mUnk_0c, 0, 2,
                           p->mUnk_08, p->mUnk_0c);
             func_02124748(data_usa_021537dc[gSelectKart->mUnk_0a4], f.mUnk_08, (void *) f.mUnk_00, f.mUnk_0c, 0, 1,

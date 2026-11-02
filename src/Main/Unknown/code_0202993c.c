@@ -21,12 +21,12 @@ void func_0202993c(void) {
         if (func_020299e4() == 0) {
             data_02174e1c->mUnk_f4 = FindSceneFile(data_usa_0216212c);
         } else {
-            data_02174e1c->mUnk_f4 = 0;
+            data_02174e1c->mUnk_f4 = NULL;
         }
-        if (data_02174e1c->mUnk_f4 != 0) {
+        if (data_02174e1c->mUnk_f4 != NULL) {
             data_02174e1c->mUnk_f8 = (Unk02029930_f8 *) (data_02174e1c->mUnk_f4 + 8);
         } else {
-            data_02174e1c->mUnk_f8 = 0;
+            data_02174e1c->mUnk_f8 = NULL;
         }
     }
 }

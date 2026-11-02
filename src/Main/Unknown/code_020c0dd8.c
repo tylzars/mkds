@@ -19,9 +19,9 @@ void func_020c1060(void) {
     u32 w;
     Unk0217aa1c_00 *s;
     s32 v;
-    s32 x0;
+    BOOL x0;
     s32 x1;
-    s32 x2;
+    BOOL x2;
     s32 x3;
     u16 i;
     u16 j;
@@ -31,9 +31,9 @@ void func_020c1060(void) {
     s32 neg;
 
     neg = -1;
-    x0 = 0;
+    x0 = FALSE;
     x1 = 0;
-    x2 = 0;
+    x2 = FALSE;
     x3 = 0;
     {
         for (i = 0; (u32) i < (u32) data_021759c0->mUnk_3d0; i++) {

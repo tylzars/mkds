@@ -232,7 +232,7 @@ void func_0202d210(void *a, void *b, void *c) {
     func_020258d4(0, data_02174e40, data_usa_02162d1c, data_usa_02162d3c, data_usa_02162d5c, 0, FindSceneFile);
     p = &data_02174e40->mUnk_050[0];
     n = func_02148cb8();
-    func_02025b20(p, data_usa_02162d7c, data_usa_02162da0, data_usa_02162dc4, data_usa_02162de4, data_usa_02162e04, 0,
+    func_02025b20(p, data_usa_02162d7c, data_usa_02162da0, data_usa_02162dc4, data_usa_02162de4, data_usa_02162e04, NULL,
                   FindSceneFile);
     func_02025a50(0, data_02174e40->mUnk_0dc, p);
     for (i = 0; i < p->mUnk_14->mUnk_06; i++) {
@@ -321,7 +321,7 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
         case 0:
             if (func_02125f54() != 0) {
                 data_0217b488->mUnk_08 = 5;
-                if (p != 0) {
+                if (p != NULL) {
                     p->mUnk_04 = 1;
                 }
                 data_02174e40->mUnk_0b0 = 0xe;
@@ -370,7 +370,7 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
                     t = data_02175628[e].mUnk_00 & 2;
                     if (t != 0 || c != 0) {
                         data_0217b488->mUnk_08 = 5;
-                        if (p != 0) {
+                        if (p != NULL) {
                             p->mUnk_04 = 1;
                         }
                         data_02174e40->mUnk_0b0 = 0xe;
@@ -386,7 +386,7 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
             } else {
                 i = 0;
             }
-            if (i == 0 && d->mUnk_04 == 0) {
+            if (i == 0 && d->mUnk_04 == NULL) {
                 if (func_0202dd80(data_02174e40->mUnk_0a4) == 0) {
                     func_0203bf04(func_0202ddec(), (void *) func_0202ddd8());
                 }
@@ -449,7 +449,7 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
             if (func_02054f58() == 1) {
                 func_0204f804();
                 data_0217b488->mUnk_08 = 5;
-                if (p != 0) {
+                if (p != NULL) {
                     p->mUnk_04 = 1;
                 }
                 data_02174e40->mUnk_0b0 = 0xe;
@@ -472,7 +472,7 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
         case 13:
             if (func_02125f54() != 0) {
                 data_0217b488->mUnk_08 = 5;
-                if (p != 0) {
+                if (p != NULL) {
                     p->mUnk_04 = 1;
                 }
                 data_02174e40->mUnk_0b0 = 0xe;

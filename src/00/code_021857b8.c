@@ -14,7 +14,7 @@
 #include "01/code_021956dc.h"
 
 void func_ov000_02185920(void) {
-    data_ov000_021b4c8c = 0;
+    data_ov000_021b4c8c = NULL;
 }
 
 void func_ov000_0218583c(void) {

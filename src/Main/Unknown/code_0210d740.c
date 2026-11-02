@@ -37,8 +37,8 @@ u32 func_0210d960(void) {
 void func_0210d894(void *a, u32 b, const u8 *c) {
     func_0212baa8();
     data_0217d130 = func_0212dcc8(a, b);
-    data_0217d06c = func_0212db7c(data_0217d130, 0x1020, func_0210d890, 0, 0);
-    if (c != 0) {
+    data_0217d06c = func_0212db7c(data_0217d130, 0x1020, func_0210d890, NULL, 0);
+    if (c != NULL) {
         func_0212d8e0(&data_0217d0a0, c, data_0217d130, 0);
         data_0217d064 = 1;
         func_0212edac(data_0217d130);
@@ -60,7 +60,7 @@ void func_0210d834(s32 a) {
 }
 
 void func_0210d7dc(u32 a, u32 b, Unk0212c400 **c) {
-    if (*c != 0) {
+    if (*c != NULL) {
         func_0212c6f0(c, 0);
     }
     func_0212d254(((Unk0212ea28 *) func_0212d51c(a))->mUnk_00);

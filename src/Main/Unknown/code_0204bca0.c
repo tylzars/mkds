@@ -14,7 +14,7 @@
 
 void func_0204bf48(int a, u32 b, u32 c, void *d, void *e, u32 f) {
     if (a != 0) {
-        func_0204c090(b, (u32) d, (u32) e, f, c, 0, 1);
+        func_0204c090(b, (u32) d, (u32) e, f, c, NULL, 1);
         return;
     }
     func_0204bfac(b, (u32) d, (u32) e, f);
@@ -22,7 +22,7 @@ void func_0204bf48(int a, u32 b, u32 c, void *d, void *e, u32 f) {
 
 static inline void func_0204bcec_inline(Unk02175ec0 *a, void *p) {
     u32 t;
-    if (p != 0) {
+    if (p != NULL) {
         t = func_0200fca0();
         a->mUnk_0014(a->mUnk_0018, 0, p);
         func_0200fcb4(t);
@@ -44,7 +44,7 @@ void func_0204be0c(void) {
         func_02006ddc(1, (void (*)(Unk0216f3dc_9c *)) func_0204c320);
     } else {
         data_02175ec0.mUnk_000c = 2;
-        if (data_02175ec0.mUnk_0010 != 0) {
+        if (data_02175ec0.mUnk_0010 != NULL) {
             data_02175ec0.mUnk_0010(0);
         }
     }
@@ -64,7 +64,7 @@ void func_0204be0c(void) {
     } else {
         r = func_02006914((s32) q, h);
     }
-    g->mUnk_0008 = func_02144048(func_0204ce60, 0, q, r, 0xffff, g->mUnk_0030, 3) == 2;
+    g->mUnk_0008 = func_02144048(func_0204ce60, NULL, q, r, 0xffff, g->mUnk_0030, 3) == 2;
     g->mUnk_0004 = data_02175ec0.mUnk_0008 == 0;
 }
 
@@ -78,17 +78,17 @@ void func_0204bcec(void) {
     s = func_0200fca0();
     if (data_usa_02175e84 != 0) {
         p = g->mUnk_0020;
-        if (p != 0) {
+        if (p != NULL) {
             func_0204bcec_inline(&data_02175ec0, p);
-            g->mUnk_0020 = 0;
+            g->mUnk_0020 = NULL;
             g->mUnk_0024 = 0;
         }
         g->mUnk_000c = 0;
         if (data_02175ec0.mUnk_0000 == 0) {
             q = &g->mUnk_0440;
-            if (g->mUnk_001c != 0) {
+            if (g->mUnk_001c != NULL) {
                 u = g->mUnk_001c->mUnk_08;
-                g->mUnk_001c = 0;
+                g->mUnk_001c = NULL;
                 FS_NotifyArchiveAsyncEnd(u, 5);
             }
             func_0204bcec_inline(&data_02175ec0, q->mUnk_0afc);
@@ -96,7 +96,7 @@ void func_0204bcec(void) {
             func_0204ba8c();
         }
         func_02006974();
-        func_0214358c(data_02175ec0.mUnk_0030, 0, 0);
+        func_0214358c(data_02175ec0.mUnk_0030, NULL, NULL);
         data_usa_02175e84 = 0;
     }
     func_0200fcb4(s);

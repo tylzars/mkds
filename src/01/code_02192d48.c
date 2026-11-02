@@ -37,10 +37,10 @@ void func_ov001_02192d7c(void *a, Unk02192d7c *b) {
 }
 
 void func_ov001_02192d60(void) {
-    func_0209bfa8(0, 0, 0, (u32) (0), (u16) (1));
+    func_0209bfa8(NULL, NULL, NULL, (u32) (0), (u16) (1));
     return;
 }
 
 void *func_ov001_02192d48(void) {
-    return (void *) func_0209bf1c(LoadStopSign, func_ov001_02192d7c, 0);
+    return (void *) func_0209bf1c(LoadStopSign, func_ov001_02192d7c, NULL);
 }

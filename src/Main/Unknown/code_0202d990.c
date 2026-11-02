@@ -29,11 +29,11 @@ s32 func_0202d9fc(void) {
 
 s32 func_0202da44(s32 a) {
     s32 i;
-    s32 r;
-    r = 0;
+    BOOL r;
+    r = FALSE;
     for (i = 0; i < (s32) func_0202dd9c(); i++) {
         if (a == func_02061654((u8) data_02174e44->mUnk_894[i] * 0x230 + data_02174e44->mUnk_8c0)) {
-            r = 1;
+            r = TRUE;
             break;
         }
     }

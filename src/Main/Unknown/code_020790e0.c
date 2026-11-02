@@ -38,7 +38,7 @@ void func_020790e0(void *a, s32 b) {
         data_0217ad08->mUnk_1e0 = 1;
     }
     data_0217ad08->mUnk_1d0 = LoadKartAPaletteFromKartModelMenu(a);
-    data_0217ad08->mUnk_1cc = 0;
+    data_0217ad08->mUnk_1cc = NULL;
 }
 
 void LoadKartModelMenuFile(void *a, const void *b, void **c) {
@@ -102,7 +102,7 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
     s32 i;
     if (a->mUnk_0b0 != 0) {
         if ((u32) (a->mUnk_004 - 0x22) <= 1) {
-            c = 0;
+            c = NULL;
             p = (u8 *) a->mUnk_014->mUnk_04;
             switch (a->mUnk_004) {
                 case 0x22:
@@ -211,7 +211,7 @@ void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c) {
 void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
     u16 i;
     u16 e8;
-    s32 d;
+    BOOL d;
     void *v7;
     Unk020136f0 *v10;
     Unk0201290c *p;
@@ -225,21 +225,21 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
     func_0207a14c(p, 0);
     if (c != 0) {
         i = 0;
-        d = 0;
+        d = FALSE;
         a->mUnk_008 = func_02036bec(b, 0x38);
-        func_0208823c(0, a->mUnk_008, a->mUnk_010, 4, b, 0);
+        func_0208823c(0, a->mUnk_008, a->mUnk_010, 4, b, NULL);
         do {
             s = func_02047950(BuildCharacterNsbcaPath(e8, i));
-            if (s != 0) {
+            if (s != NULL) {
                 void *w = func_02013a4c(func_02013a30(s), 0);
                 func_020881b0(a->mUnk_008, i, w, func_0207b8dc(i), b);
                 if (i == 0) {
-                    d = 1;
+                    d = TRUE;
                 }
             }
             i++;
         } while (i < 4);
-        if (d != 0) {
+        if (d != FALSE) {
             func_02087f84(a->mUnk_008, 0);
             a->mUnk_02c = (func_02087d0c(a->mUnk_008) - 0x1000) / 2;
             a->mUnk_030 = func_02147f34(0x1000, a->mUnk_02c);
@@ -248,7 +248,7 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
         }
     }
     a->mUnk_00c = func_02036bec(b, 0x38);
-    func_0208823c(2, a->mUnk_00c, a->mUnk_010, 1, b, 0);
+    func_0208823c(2, a->mUnk_00c, a->mUnk_010, 1, b, NULL);
     func_0208805c(a->mUnk_00c, gKartModels->mUnk_028, b);
     func_02087f84(a->mUnk_00c, 0);
 }
@@ -256,11 +256,11 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
 // non-matching: the original spills the loop counter (stack offset 0xc) and keeps the remainder flag in r6; ours does
 // the opposite, so it is 0x170 bytes against 0x160
 void func_02079678(void *a, s32 b) {
-    s32 v6;
+    BOOL v6;
     s32 v4;
     Unk0206bcb0_590 *e;
     u16 j;
-    s32 f;
+    BOOL f;
     s32 g;
     s32 p;
     s32 q;
@@ -287,20 +287,20 @@ void func_02079678(void *a, s32 b) {
         e = &gKartModels->mUnk_000[i];
         v4 = func_020799a0(i);
         if ((u16) e->mUnk_004 % 3 == 0) {
-            v6 = 1;
+            v6 = TRUE;
         } else {
-            v6 = 0;
+            v6 = FALSE;
         }
-        if (v6 != 0 && g != 0) {
-            f = 1;
+        if (v6 != FALSE && g != 0) {
+            f = TRUE;
         } else {
-            f = 0;
+            f = FALSE;
         }
         if (e->mUnk_000 >= p && e->mUnk_000 < q) {
             CreateCharacter(e, a, v4);
         }
-        if (f == 0) {
-            if ((v6 != 0 && b == 0) || (e->mUnk_004 >= r && e->mUnk_004 < s)) {
+        if (f == FALSE) {
+            if ((v6 != FALSE && b == 0) || (e->mUnk_004 >= r && e->mUnk_004 < s)) {
                 CreateKart(e, a, v4);
             }
         }
@@ -330,13 +330,13 @@ void InitKartModels(void *a, u32 b) {
     Unk0206bcb0_590 *d;
     v4 = (u8 *) FindKartModelFile("kartoffsetdata.bin");
     SetKartModelPathPrefix(0);
-    data_0217ad08 = 0;
+    data_0217ad08 = NULL;
     gKartModels = func_02036bec(a, 0x144);
     gKartModels->mUnk_000 = func_02036bec(a, b * 0xb4);
     gKartModels->mUnk_004 = func_02047950("kartcrsmat.bin");
     gKartModels->mUnk_004 = gKartModels->mUnk_004 + (data_021759c0->mUnk_00 << 3) - 8;
     gKartModels->mUnk_010 = LoadKartAPaletteFromKartModelFile();
-    gKartModels->mUnk_014 = 0;
+    gKartModels->mUnk_014 = NULL;
     gKartModels->mUnk_028 = func_02047950((const char *) BuildPFaceanimNsbtpPath());
     gKartModels->mUnk_008 = b;
     gKartModels->mUnk_00c = 0;

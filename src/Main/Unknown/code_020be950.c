@@ -47,38 +47,38 @@ u32 func_020c0d9c(void) {
     return ((u32) data_0217b3dc->mUnk_008);
 }
 
-s32 func_020c0c2c(Unk0217b498 **a, s32 b) {
-    s32 t;
+BOOL func_020c0c2c(Unk0217b498 **a, s32 b) {
+    BOOL t;
     void *q;
     void *p;
     s32 i;
     s32 n;
 
-    t = 0;
+    t = FALSE;
     q = func_021000d0(b);
     p = func_02100138(b);
     if (b == 0x1ae || b == 0x1ab) {
-        t = 1;
+        t = TRUE;
     }
-    if (t != 0) {
-        if (p == 0) {
-            return 0;
+    if (t != FALSE) {
+        if (p == NULL) {
+            return FALSE;
         }
         n = func_021000c8(p);
         if (n == 0) {
-            return 0;
+            return FALSE;
         }
     } else {
-        if (q == 0) {
-            return 0;
+        if (q == NULL) {
+            return FALSE;
         }
         n = func_02100094(q);
         if (n == 0) {
-            return 0;
+            return FALSE;
         }
     }
     *a = func_02036bec(func_020364e0(func_020364e8()), 0x14);
-    if (t != 0) {
+    if (t != FALSE) {
         (*a)->mUnk_00 = (Unk0217b498_00 **) func_0210008c(p);
     } else {
         (*a)->mUnk_00 = (Unk0217b498_00 **) func_02100084(q);
@@ -90,26 +90,26 @@ s32 func_020c0c2c(Unk0217b498 **a, s32 b) {
         func_020b5fe4(&(*a)->mUnk_00[i]->mUnk_04, &(*a)->mUnk_0c[i]);
     }
     (*a)->mUnk_10 = func_020ae730(n * 2, 0x14);
-    return 1;
+    return TRUE;
 }
 
-s32 func_020c0ba8(Unk0217b498 **a, s32 b) {
+BOOL func_020c0ba8(Unk0217b498 **a, s32 b) {
     if (b == 0) {
-        return 0;
+        return FALSE;
     }
     *a = func_02036bec(func_020364e0(func_020364e8()), 0x14);
     (*a)->mUnk_04 = 0;
     (*a)->mUnk_08 = b;
     (*a)->mUnk_0c = func_02036bec(func_020364e0(func_020364e8()), b * 8);
     (*a)->mUnk_10 = func_020ae730(b, 0x14);
-    return 1;
+    return TRUE;
 }
 
 void func_020c0b84(Unk0217b498 **a) {
-    (*a)->mUnk_00 = 0;
-    (*a)->mUnk_0c = 0;
-    (*a)->mUnk_10 = 0;
-    *a = 0;
+    (*a)->mUnk_00 = NULL;
+    (*a)->mUnk_0c = NULL;
+    (*a)->mUnk_10 = NULL;
+    *a = NULL;
 }
 
 void func_020c092c(Unk020c06c4 *a, Unk0217b498 *b, s32 c) {
@@ -845,7 +845,7 @@ void func_020beb40(void) {
     for (i = 0; i < data_0217b3dc->mUnk_00c; i++) {
         data_0217b3dc->mUnk_010[i]();
     }
-    data_0217b3dc = 0;
+    data_0217b3dc = NULL;
 }
 
 void func_020be9d4(void) {

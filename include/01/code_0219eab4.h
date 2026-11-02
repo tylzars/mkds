@@ -47,7 +47,7 @@ void func_ov001_0219f230(void);
 void func_ov001_0219f244(void);
 void func_ov001_0219f260(void);
 void func_ov001_0219f2a4(void);
-s32 func_ov001_0219f31c(void);
+BOOL func_ov001_0219f31c(void);
 void func_ov001_0219f37c(void);
 void func_ov001_0219f3a4(void);
 void func_ov001_0219f430(void);

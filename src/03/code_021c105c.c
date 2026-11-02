@@ -154,7 +154,7 @@ void func_ov003_021c12cc(int param_1, int param_2) {
 // non-matching: loop address registers are computed per iteration instead of stepped, size 0x1a8 against 0x1ac
 void func_ov003_021c1364(int param_1, u32 param_2) {
     Unk021c1364 s;
-    int b;
+    BOOL b;
     int i;
     Unk021bf920 *p;
     s.mUnk_00 = *(Unk021c1364_05 *) data_ov003_021d6dc8;
@@ -177,7 +177,7 @@ void func_ov003_021c1364(int param_1, u32 param_2) {
         p = data_ov003_021da160->mUnk_38[i];
         p->mUnk_00 = ((data_ov003_021d623c[i * 2] & 0x1ff) << 16) | (p->mUnk_00 & 0xfe00ff00) | (param_2 & 0xff);
     }
-    b = 0;
+    b = FALSE;
     for (i = 0; i < s.mUnk_0a.mUnk_00[param_1]; i++) {
         func_ov003_021d18f0(data_ov003_021da160->mUnk_40[i], -1, b, b);
         func_ov003_021d17d4(data_ov003_021da160->mUnk_40[i], -1, data_ov003_021d6244[i * 2], param_2);

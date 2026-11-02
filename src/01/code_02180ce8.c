@@ -63,7 +63,7 @@ u8 *func_ov001_02181200(s32 p0, s32 p1) {
         return data_ov001_021a9b88->mUnk_20 +
                ((p1 & 7) * 8 + ((p0 & 7) + p0 / 8 * 64) + data_ov001_021a9b88->mUnk_00 / 8 * (p1 / 8 * 64));
     }
-    return 0;
+    return NULL;
 }
 
 void func_ov001_021811c8(void) {
@@ -119,12 +119,12 @@ u32 func_ov001_02181124(u8 *a) {
 
 s32 func_ov001_021810bc(u8 *p0, u16 *p1) {
     s32 i;
-    s32 changed;
+    BOOL changed;
 
-    changed = 0;
+    changed = FALSE;
     for (i = 0; i < data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00; i++) {
         if (p0[i] < data_ov001_021a9b88->mUnk_08 && data_ov001_021a9b88->mUnk_20[i] != (u8) p1[p0[i]]) {
-            changed = 1;
+            changed = TRUE;
             func_ov001_021811c8();
             data_ov001_021a9b88->mUnk_20[i] = p1[p0[i]];
         }
@@ -166,7 +166,7 @@ u32 func_ov001_02181020(u32 a, u32 b, u32 c) {
     u32 v2;
     v2 = 0;
     v1 = func_ov001_02181200(a, b);
-    if ((v1 != (u8 *) 0x0) && (*v1 != c)) {
+    if ((v1 != NULL) && (*v1 != c)) {
         v2 = 1;
         func_ov001_021811c8();
         *v1 = (u8) c;
@@ -177,7 +177,7 @@ u32 func_ov001_02181020(u32 a, u32 b, u32 c) {
 u8 func_ov001_02181004(s32 a, s32 b) {
     u8 *v1;
     v1 = func_ov001_02181200(a, b);
-    if (v1 != (u8 *) 0x0) {
+    if (v1 != NULL) {
         return *v1;
     }
     return 0;
@@ -188,12 +188,12 @@ s32 func_ov001_02180eec(s32 p0, s32 p1, s32 p2, s32 p3, s32 p4) {
     s32 dx;
     s32 stepY;
     s32 stepX;
-    s32 changed;
+    BOOL changed;
     s32 n;
     s32 i;
     u8 *ptr;
 
-    changed = 0;
+    changed = FALSE;
     if ((p2 >> 12) > (p0 >> 12)) {
         dx = p2 - p0;
     } else if ((p0 >> 12) > (p2 >> 12)) {
@@ -233,15 +233,15 @@ s32 func_ov001_02180eec(s32 p0, s32 p1, s32 p2, s32 p3, s32 p4) {
     }
     for (i = 0; i <= n; i++, p0 += stepX, p1 += stepY) {
         ptr = func_ov001_02181200(p0 >> 12, p1 >> 12);
-        if (ptr != 0 && *ptr != p4) {
-            changed = 1;
+        if (ptr != NULL && *ptr != p4) {
+            changed = TRUE;
             func_ov001_021811c8();
             *ptr = p4;
         }
     }
     ptr = func_ov001_02181200(p2 >> 12, p3 >> 12);
-    if (ptr != 0 && *ptr != p4) {
-        changed = 1;
+    if (ptr != NULL && *ptr != p4) {
+        changed = TRUE;
         func_ov001_021811c8();
         *ptr = p4;
     }
@@ -249,7 +249,7 @@ s32 func_ov001_02180eec(s32 p0, s32 p1, s32 p2, s32 p3, s32 p4) {
 }
 
 s32 func_ov001_02180ce8(s32 p0, s32 p1, s32 p2) {
-    s32 result;
+    BOOL result;
     s32 top;
     s32 k;
     s32 *sm;
@@ -265,11 +265,11 @@ s32 func_ov001_02180ce8(s32 p0, s32 p1, s32 p2) {
     u8 buf[2];
     Unk02180ce8 s1;
 
-    result = 0;
+    result = FALSE;
     s0.mUnk_00 = p0;
     s0.mUnk_01 = p1;
     ptr = func_ov001_02181200(s0.mUnk_00, s0.mUnk_01);
-    if (ptr != 0) {
+    if (ptr != NULL) {
         val = *ptr;
         if (val != p2) {
             top = 1;
@@ -286,7 +286,7 @@ s32 func_ov001_02180ce8(s32 p0, s32 p1, s32 p2) {
                     for (;;) {
                         ptr = func_ov001_02181200(*b, py);
                         q = &data_ov001_021a9b88->mUnk_28[*b + py * data_ov001_021a9b88->mUnk_00];
-                        if (ptr == 0 || *ptr != val) {
+                        if (ptr == NULL || *ptr != val) {
                             break;
                         }
                         *b += *sk;
@@ -301,13 +301,13 @@ s32 func_ov001_02180ce8(s32 p0, s32 p1, s32 p2) {
                     for (s1.mUnk_00 = buf[0]; s1.mUnk_00 <= hi; s1.mUnk_00++) {
                         ptr = func_ov001_02181200(s1.mUnk_00, s1.mUnk_01);
                         q = &data_ov001_021a9b88->mUnk_28[s1.mUnk_00 + s1.mUnk_01 * data_ov001_021a9b88->mUnk_00];
-                        if (ptr != 0 && *ptr == val && *q == 0) {
+                        if (ptr != NULL && *ptr == val && *q == 0) {
                             do {
                                 s1.mUnk_00++;
                                 ptr = func_ov001_02181200(s1.mUnk_00, s1.mUnk_01);
                                 q = &data_ov001_021a9b88
                                          ->mUnk_28[s1.mUnk_00 + s1.mUnk_01 * data_ov001_021a9b88->mUnk_00];
-                            } while (ptr != 0 && *ptr == val && *q == 0);
+                            } while (ptr != NULL && *ptr == val && *q == 0);
                             s1.mUnk_00--;
                             ((Unk02180ce8 *) data_ov001_021a9b88->mUnk_2c)[top++] = s1;
                         }
@@ -315,7 +315,7 @@ s32 func_ov001_02180ce8(s32 p0, s32 p1, s32 p2) {
                     sm++;
                 }
             } while (top > 0);
-            result = 1;
+            result = TRUE;
             func_ov001_021811c8();
             for (s0.mUnk_01 = 0; s0.mUnk_01 < data_ov001_021a9b88->mUnk_00; s0.mUnk_01++) {
                 for (s0.mUnk_00 = 0; s0.mUnk_00 < data_ov001_021a9b88->mUnk_00; s0.mUnk_00++) {

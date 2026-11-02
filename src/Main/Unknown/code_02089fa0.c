@@ -48,13 +48,13 @@ void func_0208a69c(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16 d) {
     Unk02087d0c *q;
     u16 l;
     u16 k;
-    s32 f;
+    BOOL f;
 
-    n = 0;
+    n = NULL;
     b->mUnk_10 = c->mUnk_00;
-    b->mUnk_00 = 0;
-    b->mUnk_04 = b->mUnk_08 = b->mUnk_0c = 0;
-    f = 0;
+    b->mUnk_00 = NULL;
+    b->mUnk_04 = b->mUnk_08 = b->mUnk_0c = NULL;
+    f = FALSE;
     if (c->mUnk_00 != 0) {
         b->mUnk_00 = func_02036bec(a, c->mUnk_00 * 0x6c);
     }
@@ -66,7 +66,7 @@ void func_0208a69c(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16 d) {
     }
     if (c->mUnk_00 == 1 && c->mUnk_03 > 1) {
         b->mUnk_0c = func_02036bec(a, 0x38);
-        f = 1;
+        f = TRUE;
     } else if (c->mUnk_03 != 0) {
         b->mUnk_0c = func_02036bec(a, c->mUnk_03 * 0x38);
     }
@@ -80,7 +80,7 @@ void func_0208a69c(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16 d) {
         e = &b->mUnk_00[j];
         g = &b->mUnk_04[j];
         snprintf(s, 0x80, "%s.nsbca", c->mUnk_04[j]);
-        func_0208823c(0, g, e, 1, a, 0);
+        func_0208823c(0, g, e, 1, a, NULL);
         func_0208805c(g, FindSceneFile(s), a);
         func_02087f84(g, 0);
     }
@@ -88,11 +88,11 @@ void func_0208a69c(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16 d) {
         p = &b->mUnk_00[l];
         q = &b->mUnk_08[l];
         snprintf(s, 0x80, "%s.nsbma", c->mUnk_04[l]);
-        func_0208823c(4, q, p, 1, a, 0);
+        func_0208823c(4, q, p, 1, a, NULL);
         func_0208805c(q, FindSceneFile(s), a);
         func_02087f84(q, 0);
     }
-    if (f != 0) {
+    if (f != FALSE) {
         g = b->mUnk_0c;
         func_0208823c(2, g, b->mUnk_00, c->mUnk_03, a, n);
         for (k = 0; k < c->mUnk_03; k++) {
@@ -109,7 +109,7 @@ void func_0208a460(void *a) {
     Unk0208a69c *q;
 
     for (i = 0; i < 8; i++) {
-        data_0217b034->mUnk_000[i] = 0;
+        data_0217b034->mUnk_000[i] = NULL;
     }
     if (func_02062eb0() != 0) {
         return;
@@ -120,7 +120,7 @@ void func_0208a460(void *a) {
             p = data_0217b034->mUnk_000[0];
             q = data_0217b034->mUnk_000[2];
             q->mUnk_00 = p->mUnk_00;
-            q->mUnk_04 = 0;
+            q->mUnk_04 = NULL;
             q->mUnk_08 = p->mUnk_08;
             q->mUnk_0c = p->mUnk_0c;
             q->mUnk_10 = p->mUnk_10;
@@ -154,16 +154,16 @@ void func_0208a31c(s32 a) {
 
     data_0217b034->mUnk_000[8] = data_0217b034->mUnk_000[a];
     p = data_0217b034->mUnk_000[8];
-    if (p == 0) {
+    if (p == NULL) {
         data_0217b034->mUnk_73c = 9;
         return;
     }
     data_0217b034->mUnk_73c = a;
     for (i = 0; i < p->mUnk_10; i++) {
-        if (p->mUnk_04 != 0) {
+        if (p->mUnk_04 != NULL) {
             func_02087f84(&p->mUnk_04[i], 0);
         }
-        if (p->mUnk_08 != 0) {
+        if (p->mUnk_08 != NULL) {
             func_02087f84(&p->mUnk_08[i], 0);
         }
         if (a == 0 || a == 2) {
@@ -179,12 +179,12 @@ void func_0208a31c(s32 a) {
             }
             func_02087f84(p->mUnk_0c, (u16) f);
             e = p->mUnk_04;
-            if (e != 0) {
+            if (e != NULL) {
                 e[i].mUnk_00 = 2;
                 e[i].mUnk_12 = v;
             }
             e = p->mUnk_08;
-            if (e != 0) {
+            if (e != NULL) {
                 e[i].mUnk_00 = 2;
                 e[i].mUnk_12 = v;
             }
@@ -205,13 +205,13 @@ void func_0208a218(void) {
     if (data_0217b034->mUnk_73c != 9) {
         p = data_0217b034->mUnk_000[8];
         for (i = 0; i < p->mUnk_10; i++) {
-            if (p->mUnk_04 != 0) {
+            if (p->mUnk_04 != NULL) {
                 func_02087de0(p->mUnk_04);
             }
-            if (p->mUnk_08 != 0) {
+            if (p->mUnk_08 != NULL) {
                 func_02087de0(p->mUnk_08);
             }
-            if (p->mUnk_0c != 0) {
+            if (p->mUnk_0c != NULL) {
                 func_02087de0(p->mUnk_0c);
             }
         }

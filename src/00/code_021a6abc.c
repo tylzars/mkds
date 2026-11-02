@@ -31,8 +31,8 @@ void func_ov000_021a6bdc(void) {
     if (data_ov000_021b5f54.mUnk_00 == 0) {
         data_ov000_021b5f54.mUnk_00 = 1;
         data_ov000_021b5f54.mUnk_24 = 0;
-        data_ov000_021b5f54.mUnk_04.mUnk_04 = 0;
-        data_ov000_021b5f54.mUnk_04.mUnk_00 = 0;
+        data_ov000_021b5f54.mUnk_04.mUnk_04 = NULL;
+        data_ov000_021b5f54.mUnk_04.mUnk_00 = NULL;
         func_0200edc0(&data_ov000_021b5f54.mUnk_0c);
     }
 }
@@ -40,7 +40,7 @@ void func_ov000_021a6bdc(void) {
 void func_ov000_021a6bb4(Unk021a6bb4 *b) {
     Unk021b5f54Func a = data_ov000_021b5f54.mUnk_28;
 
-    if (a != 0) {
+    if (a != NULL) {
         a(b->mUnk_1e, b->mUnk_18, b->mUnk_2c, b->mUnk_06);
     }
 }
@@ -49,7 +49,7 @@ void func_ov000_021a6b54(void) {
     Unk021b5f50 *a;
 
     a = func_ov000_021a5b30();
-    if (a != 0 && a->mUnk_2260 == 9 && a->mUnk_226b != 1) {
+    if (a != NULL && a->mUnk_2260 == 9 && a->mUnk_226b != 1) {
         if (func_ov000_021a6908((u8 *) &data_ov000_021b5f54.mUnk_0c) != 0) {
             if (func_02144438((Unk021425e8Func) func_ov000_021a6934, a->mUnk_2144, a->mUnk_0f00, 0) != 2) {
                 func_ov000_021a68dc(&data_ov000_021b5f54.mUnk_0c);
@@ -59,13 +59,13 @@ void func_ov000_021a6b54(void) {
 }
 
 u8 *func_ov000_021a6b10(void) {
-    u8 *a = 0;
+    u8 *a = NULL;
     Unk021b5f50 *b;
     u32 c;
 
     b = func_ov000_021a5b30();
     c = func_0200fca0();
-    if (b != 0 && b->mUnk_2260 == 9 && b->mUnk_226b == 0) {
+    if (b != NULL && b->mUnk_2260 == 9 && b->mUnk_226b == 0) {
         a = b->mUnk_2144;
     }
     func_0200fcb4(c);
@@ -73,19 +73,19 @@ u8 *func_ov000_021a6b10(void) {
 }
 
 u8 *func_ov000_021a6abc(u16 *e) {
-    u8 *a = 0;
+    u8 *a = NULL;
     u16 b = 0;
     Unk021b5f50 *c;
     u32 d;
 
     c = func_ov000_021a5b30();
     d = func_0200fca0();
-    if (c != 0 && c->mUnk_2260 == 9 && c->mUnk_226b == 0) {
+    if (c != NULL && c->mUnk_2260 == 9 && c->mUnk_226b == 0) {
         a = c->mUnk_214c;
         b = c->mUnk_214a;
     }
     func_0200fcb4(d);
-    if (e != 0) {
+    if (e != NULL) {
         *e = b;
     }
     return a;

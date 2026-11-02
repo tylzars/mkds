@@ -13,7 +13,7 @@ u32 func_ov000_021a6ce4(void) {
     a = func_0200fca0();
     b = func_ov000_021a5b30();
     c = 0;
-    if (b != 0 && b->mUnk_2260 == 9) {
+    if (b != NULL && b->mUnk_2260 == 9) {
         c = func_ov000_021a6c68();
     }
     func_0200fcb4(a);

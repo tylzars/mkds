@@ -7,7 +7,7 @@
 
 #pragma thumb on
 void func_020d10fc(void) {
-    gCupPicture = 0;
+    gCupPicture = NULL;
 }
 
 void LoadCupPictureNclr(void) {

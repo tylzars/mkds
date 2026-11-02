@@ -36,30 +36,30 @@ void func_0207caa8(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0207ca60(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    s32 r;
+    BOOL r;
 
-    r = 0;
+    r = FALSE;
     a->mUnk_02--;
     if (a->mUnk_02 <= 0) {
         a->mUnk_02 = 0;
-        r = 1;
+        r = TRUE;
     }
-    if (r == 0) {
+    if (r == FALSE) {
         return;
     }
     func_0207d194(a, b);
 }
 
 void func_0207ca18(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    s32 r;
+    BOOL r;
 
-    r = 0;
+    r = FALSE;
     a->mUnk_02--;
     if (a->mUnk_02 <= 0) {
         a->mUnk_02 = 0;
-        r = 1;
+        r = TRUE;
     }
-    if (r == 0) {
+    if (r == FALSE) {
         return;
     }
     func_0207cd74(a, b);
@@ -68,7 +68,7 @@ void func_0207ca18(Unk0208fd8c *a, struct Unk020888b4 *b) {
 void func_0207c978(Unk0208fd8c *a, struct Unk020888b4 *b) {
     Unk020ee684 *e;
     s32 t;
-    s32 r;
+    BOOL r;
 
     e = &(data_027e00c8)[b->mUnk_04];
     t = e->mUnk_030.mUnk_00;
@@ -79,13 +79,13 @@ void func_0207c978(Unk0208fd8c *a, struct Unk020888b4 *b) {
         if (a->mUnk_0c == 0) {
             return;
         }
-        r = 0;
+        r = FALSE;
         a->mUnk_02--;
         if (a->mUnk_02 <= 0) {
             a->mUnk_02 = 0;
-            r = 1;
+            r = TRUE;
         }
-        if (r == 0) {
+        if (r == FALSE) {
             return;
         }
         func_0207d194(a, b);
@@ -97,7 +97,7 @@ void func_0207c978(Unk0208fd8c *a, struct Unk020888b4 *b) {
 void func_0207c8d8(Unk0208fd8c *a, struct Unk020888b4 *b) {
     Unk020ee684 *e;
     s32 t;
-    s32 r;
+    BOOL r;
 
     e = &(data_027e00c8)[b->mUnk_04];
     t = e->mUnk_030.mUnk_00;
@@ -108,13 +108,13 @@ void func_0207c8d8(Unk0208fd8c *a, struct Unk020888b4 *b) {
         if (a->mUnk_0c == 0) {
             return;
         }
-        r = 0;
+        r = FALSE;
         a->mUnk_02--;
         if (a->mUnk_02 <= 0) {
             a->mUnk_02 = 0;
-            r = 1;
+            r = TRUE;
         }
-        if (r == 0) {
+        if (r == FALSE) {
             return;
         }
         func_0207cd74(a, b);
@@ -160,7 +160,7 @@ void func_0207c6d0(Unk0208fd8c *a, struct Unk020888b4 *b) {
 
     func_0204360c(b->mUnk_00->mUnk_78, 0x600);
     a->mUnk_10 = 0;
-    if (a->mUnk_04 == 0) {
+    if (a->mUnk_04 == NULL) {
         return;
     }
     n = a->mUnk_04->mUnk_0a;
@@ -181,7 +181,7 @@ void func_0207c614(Unk0208fd8c *a, struct Unk020888b4 *b) {
 
     func_0204360c(b->mUnk_00->mUnk_78, 0x600);
     a->mUnk_10 = 0;
-    if (a->mUnk_08 == 0) {
+    if (a->mUnk_08 == NULL) {
         return;
     }
     n = a->mUnk_08->mUnk_0a;
@@ -204,7 +204,7 @@ void func_0207c548(Unk0208fd8c *a, struct Unk020888b4 *b) {
     a->mUnk_14 = 1;
     a->mUnk_1c = 2;
     a->mUnk_10 = 0;
-    if (a->mUnk_08 == 0) {
+    if (a->mUnk_08 == NULL) {
         return;
     }
     n = a->mUnk_08->mUnk_0a;
@@ -227,7 +227,7 @@ void func_0207c47c(Unk0208fd8c *a, struct Unk020888b4 *b) {
     a->mUnk_18 = 1;
     a->mUnk_1e = 2;
     a->mUnk_10 = 0;
-    if (a->mUnk_08 == 0) {
+    if (a->mUnk_08 == NULL) {
         return;
     }
     n = a->mUnk_08->mUnk_0a;
@@ -265,7 +265,7 @@ void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     v1 = b->mUnk_04;
     if (v1 == func_02061f90()) {
         e = &(data_027e00c8)[v1];
-        if (e->mUnk_058.mUnk_000 != 0xf && a->mUnk_08 != 0) {
+        if (e->mUnk_058.mUnk_000 != 0xf && a->mUnk_08 != NULL) {
             a->mUnk_08->mUnk_00(a, b);
         } else if ((a->mUnk_04 != 0) & (e->mUnk_030.mUnk_00 != 0x13)) {
             a->mUnk_04->mUnk_00(a, b);
@@ -313,7 +313,7 @@ void func_0207c144(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     r = func_0208537c();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     a->mUnk_20 = (s16) (u16) (r->mUnk_00 >> 52);
-    if (a->mUnk_04 == 0) {
+    if (a->mUnk_04 == NULL) {
         return;
     }
     n = a->mUnk_04->mUnk_0a;
@@ -332,7 +332,7 @@ void func_0207c0a0(struct Unk0208fd8c *a) {
     u16 n;
     u32 v;
 
-    if (a->mUnk_04 == 0) {
+    if (a->mUnk_04 == NULL) {
         return;
     }
     n = a->mUnk_04->mUnk_0a;
@@ -347,12 +347,12 @@ void func_0207c0a0(struct Unk0208fd8c *a) {
 }
 
 s32 func_0207c078(struct Unk0208fd8c *a) {
-    s32 r = 0;
+    BOOL r = FALSE;
 
     a->mUnk_00--;
     if (a->mUnk_00 <= 0) {
         a->mUnk_00 = 0;
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
@@ -362,7 +362,7 @@ void func_0207bfd4(struct Unk0208fd8c *a, struct Unk0208fd8c_08 *b) {
     u16 n;
     u32 v;
 
-    if (a->mUnk_08 == 0) {
+    if (a->mUnk_08 == NULL) {
         return;
     }
     n = a->mUnk_08->mUnk_0a;
@@ -377,12 +377,12 @@ void func_0207bfd4(struct Unk0208fd8c *a, struct Unk0208fd8c_08 *b) {
 }
 
 s32 func_0207bfac(struct Unk0208fd8c *a) {
-    s32 r = 0;
+    BOOL r = FALSE;
 
     a->mUnk_02--;
     if (a->mUnk_02 <= 0) {
         a->mUnk_02 = 0;
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
@@ -396,7 +396,7 @@ void func_0207becc(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     k = (data_027e00c8)[b->mUnk_04].mUnk_058.mUnk_000;
     a->mUnk_08 = &data_0217ae34[k];
     a->mUnk_0c = 0;
-    if (a->mUnk_08 == 0) {
+    if (a->mUnk_08 == NULL) {
         return;
     }
     n = a->mUnk_08->mUnk_0a;

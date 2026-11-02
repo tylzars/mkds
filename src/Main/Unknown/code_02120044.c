@@ -117,15 +117,15 @@ u8 func_021201e4(int arg0) {
 
 void func_02120150(void) {
     Unk0217d384 *d;
-    s32 a = 0;
+    BOOL a = FALSE;
 
     d = data_0217d384;
-    if (d != 0) {
+    if (d != NULL) {
         if (d->mUnk_1f30 != 0) {
-            a = 1;
+            a = TRUE;
         }
     }
-    if (a == 0) {
+    if (a == FALSE) {
         return;
     }
     d->mUnk_1f3c++;

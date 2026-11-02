@@ -430,20 +430,20 @@ void func_02129994(void) {
     Unk0217d400_2c *q;
     void *w;
     s32 v;
-    s32 f;
-    s32 g;
+    BOOL f;
+    BOOL g;
     u16 c;
-    f = 0;
+    f = FALSE;
     v = -1;
-    g = 0;
+    g = FALSE;
     c = data_02175674[i].mUnk_00;
     if (c == 0 && data_02175680[i].mUnk_00 < 5) {
-        g = 1;
+        g = TRUE;
     }
-    if (g == 0 && data_0217567c[i].mUnk_00 == 0 && c != 0) {
-        f = 1;
+    if (g == FALSE && data_0217567c[i].mUnk_00 == 0 && c != 0) {
+        f = TRUE;
     }
-    if (f != 0) {
+    if (f != FALSE) {
         v = func_0201ea84(data_0217d400->mUnk_a4[0], data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
     p = data_0217d400;

@@ -75,7 +75,7 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
                     break;
                 }
                 o = func_020a2fe4(e->mUnk_30, &v);
-                if (o == 0) {
+                if (o == NULL) {
                     break;
                 }
                 e->mUnk_10[func_020a1154(i)] = o;
@@ -92,7 +92,7 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
                 if (func_020a10d4(i) != 0 && func_020a1154(i) < 3) {
                     if (e->mUnk_04 > 0) {
                         o = func_020a2fe4(e->mUnk_30, &v);
-                        if (o != 0) {
+                        if (o != NULL) {
                             e->mUnk_10[func_020a1154(i)] = o;
                             func_020a2f9c(o, i, 0x266);
                             func_020a2220(i, 1);
@@ -139,7 +139,7 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
         if (func_020a2204(i) != 0) {
             o = e->mUnk_10[func_020a1154(i)];
             if (func_020a2e60(o) <= 0) {
-                e->mUnk_10[func_020a1154(i)] = 0;
+                e->mUnk_10[func_020a1154(i)] = NULL;
                 func_020a2220(i, 0);
                 func_020a10ac(i, 1);
                 e->mUnk_00 = 0;
@@ -202,7 +202,7 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
                 }
                 func_020a2e88(o, &v, &p->mUnk_a4);
                 func_020a2e58(o, i);
-                func_020a2e4c(o, 1, 0);
+                func_020a2e4c(o, 1, NULL);
                 o->mUnk_00.mUnk_02 &= ~4;
                 o->mUnk_00.mUnk_02 &= ~2;
                 o->mUnk_00.mUnk_02 &= ~8;
@@ -221,7 +221,7 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
                     o->mUnk_00.mUnk_02 &= ~8;
                     o->mUnk_00.mUnk_66 = 0x1f;
                 } else {
-                    func_020a2e4c(o, 0, 0);
+                    func_020a2e4c(o, 0, NULL);
                     o->mUnk_00.mUnk_02 |= data_02156794;
                     o->mUnk_00.mUnk_02 |= data_02156798;
                     o->mUnk_00.mUnk_02 |= data_0215679c;
@@ -247,5 +247,5 @@ u32 func_020a3f48(void) {
 }
 
 u32 func_020a3f2c(void) {
-    return func_0209bf48(0, func_020a3fa8, 0);
+    return func_0209bf48(NULL, func_020a3fa8, NULL);
 }

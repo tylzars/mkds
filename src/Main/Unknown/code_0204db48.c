@@ -18,7 +18,7 @@ s32 func_0204db48(Unk02003a6c *a, void *b, u32 c, u32 d) {
 #pragma thumb on
 
 s32 func_0204db6c(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     switch (data_0217aa00->mUnk_0004) {
         case 2:
             data_0217aa00->mUnk_0004 = 5;
@@ -59,7 +59,7 @@ s32 func_0204db6c(void) {
             func_02052bf8();
             break;
         case 5:
-            func_02052b60(0);
+            func_02052b60(NULL);
             break;
         case 6:
             data_0217aa00->mUnk_1695 = func_0204dcf0(data_0217aa00->mUnk_1695);
@@ -70,7 +70,7 @@ s32 func_0204db6c(void) {
         case 15:
             if (func_0204dc8c() != 0) {
                 func_02059878();
-                r = 1;
+                r = TRUE;
             }
             break;
     }
@@ -78,19 +78,19 @@ s32 func_0204db6c(void) {
 }
 
 s32 func_0204dc8c(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     Unk0217aa00 *g = data_0217aa00;
     u32 a = g->mUnk_1695;
     u8 b = g->mUnk_0044.mUnk_43;
 
     if (a == (a & b)) {
-        r = 1;
+        r = TRUE;
     } else if (g->mUnk_1692 > 0x708) {
         if (b == 0) {
             func_02050e60(5);
         } else {
             data_0217aa00->mUnk_1695 = func_0204dcf0(b);
-            r = 1;
+            r = TRUE;
         }
     } else {
         g->mUnk_1692 = g->mUnk_1692 + 1;
@@ -121,7 +121,7 @@ s32 func_0204dd24(u16 a) {
             if (func_020501b0(a) == 0) {
                 func_02050e60(5);
             }
-            if (func_0204ff14(a, 0) != 0) {
+            if (func_0204ff14(a, NULL) != 0) {
                 func_0204e074();
             } else {
                 func_02050e60(5);
@@ -198,7 +198,7 @@ s32 func_0204dd24(u16 a) {
             if (*(u16 *) 0x027ffc40 == 2) {
                 func_0204df90();
             } else {
-                func_02051d24(0, 0, 0, (s32(*)()) func_0204df5c, 0);
+                func_02051d24(NULL, NULL, NULL, (s32(*)()) func_0204df5c, NULL);
             }
             break;
         case 31:
@@ -213,7 +213,7 @@ s32 func_0204dd24(u16 a) {
             func_02052ecc();
             break;
         case 36:
-            func_02051d24(0, 0, 0, (s32(*)()) func_0204df5c, 0);
+            func_02051d24(NULL, NULL, NULL, (s32(*)()) func_0204df5c, NULL);
             break;
         case 10:
             func_02051a24();

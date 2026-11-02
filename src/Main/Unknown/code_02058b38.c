@@ -12,7 +12,7 @@
 #pragma opt_rebuildconditionals off
 
 static inline u32 func_02058b38_inline(void) {
-    if (data_0217aa00 == 0) {
+    if (data_0217aa00 == NULL) {
         return 0;
     }
     return data_0217aa00->mUnk_0000;
@@ -25,25 +25,25 @@ static inline void func_02058b74_inline(u16 v) {
 }
 
 static inline s32 func_02058cac_inline2(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (func_02058b38_inline() != 0 && data_0217aa00->mUnk_0004 != 13) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 static inline s32 func_02058cac_inline3(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (func_02058cac_inline2() && !(data_0217aa00->mUnk_0454 & 0x80)) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 static inline s32 func_02058cac_inline4(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (func_02058cac_inline3() && data_0217aa00->mUnk_0008 != 9) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
@@ -102,10 +102,10 @@ void func_02058c74(void) {
 }
 
 s32 func_02058cac(void) {
-    s32 r;
+    BOOL r;
     u16 v;
 
-    r = 0;
+    r = FALSE;
     if (!func_02058cac_inline2()) {
         return 1;
     }
@@ -124,15 +124,15 @@ s32 func_02058cac(void) {
         }
     }
     if (data_0217aa00->mUnk_1608.mUnk_0e == 0xf) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 s32 func_02058dc0(void (*a)(void)) {
-    s32 r;
+    BOOL r;
 
-    r = 0;
+    r = FALSE;
     switch (data_0217aa00->mUnk_1e34) {
         case 0:
             if (data_0217aa00->mUnk_0454 & 1) {
@@ -181,7 +181,7 @@ s32 func_02058dc0(void (*a)(void)) {
             break;
         case 1:
             if (data_0217aa00->mUnk_1e44 & 2) {
-                r = 1;
+                r = TRUE;
             }
             break;
     }

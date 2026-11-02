@@ -19,21 +19,21 @@ void func_020b4f64(Vec3 *v1, const Vec3 *a, const Vec3 *b) {
 }
 
 s32 func_020b4e70(const Vec3 *a) {
-    s32 r = 1;
+    BOOL r = TRUE;
 
     switch (func_020b4e5c()) {
         case 0x11:
             if (a->x >= -0x377000 && a->x <= 0x377000 && a->z >= -0x377000 && a->z <= 0x377000 && a->y < 0x2be800) {
-                r = 0;
+                r = FALSE;
             } else {
-                r = 1;
+                r = TRUE;
             }
             break;
         case 0x13:
             if (a->x >= -0x640000 && a->x <= 0x992000 && a->z >= -0x1ce8000 && a->z <= -0x17a2000 && a->y < 0x2e2000) {
-                r = 0;
+                r = FALSE;
             } else {
-                r = 1;
+                r = TRUE;
             }
             break;
     }

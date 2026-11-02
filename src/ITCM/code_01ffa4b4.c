@@ -34,7 +34,7 @@ void func_01ffa4b4(Unk0206bcb0 *p, Vec3 *a) {
     s32 k;
     s32 d;
     s32 t;
-    s32 e;
+    BOOL e;
 
     v2 = data_02154f7c;
     b1 = (p->mUnk_44 & 0x100000) ? 1 : 0;
@@ -189,16 +189,16 @@ void func_01ffa4b4(Unk0206bcb0 *p, Vec3 *a) {
         return;
     }
     p->mUnk_368 += p->mUnk_36c;
-    e = 0;
+    e = FALSE;
     t = p->mUnk_368;
     if ((t > 0 ? t : -t) > p->mUnk_366 * 0xffff) {
         p->mUnk_364 = 0;
-        e = 1;
+        e = TRUE;
     } else {
         p->mUnk_364 += p->mUnk_36c;
     }
     p->mUnk_4c |= 2;
-    if (e == 0) {
+    if (e == FALSE) {
         return;
     }
     p->mUnk_364 = 0;

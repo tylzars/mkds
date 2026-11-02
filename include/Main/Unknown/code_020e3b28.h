@@ -11,7 +11,7 @@ typedef struct Unk020e3e48 {
 
 void func_020e4380(Unk020e3ef4 *a);
 void func_020e435c(void *a);
-s32 func_020e4320(s32 a);
+BOOL func_020e4320(s32 a);
 void func_020e4184(Unk020e1dc0 *a);
 void func_020e410c(Unk020e1dc0 *a);
 void func_020e3ef4(Unk020e3ef4 *a, struct Unk020fa294 *b, Unk020e1e98_154 *c);

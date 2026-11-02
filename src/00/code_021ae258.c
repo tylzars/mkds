@@ -4,7 +4,7 @@
 void func_ov000_021ae2d8(void) {
     Unk021a998c *v1;
     v1 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
-    if (v1 != 0) {
+    if (v1 != NULL) {
         v1->mUnk_08 = 10;
         v1->mUnk_44 = 0;
     }
@@ -14,7 +14,7 @@ void func_ov000_021ae290(int a, u16 b, int c) {
     u16 v1;
     Unk021a998c *v2;
     v2 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
-    if (v2 != 0) {
+    if (v2 != NULL) {
         if (c == 0x7f000001) {
             c = *(s32 *) &data_ov000_021b63b4;
         }
@@ -34,19 +34,19 @@ void func_ov000_021ae290(int a, u16 b, int c) {
 void func_ov000_021ae270(void) {
     Unk021a998c *v1;
     v1 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
-    if (v1 != (Unk021a998c *) 0x0) {
+    if (v1 != NULL) {
         v1->mUnk_00 = data_0216ff5c.mUnk_04;
         v1->mUnk_08 = 0;
         v1->mUnk_44 = 0;
         v1->mUnk_60 = 0;
-        v1->mUnk_38 = 0;
+        v1->mUnk_38 = NULL;
     }
 }
 
 void func_ov000_021ae258(void) {
     Unk021a998c *v1;
     v1 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
-    if (v1 != (Unk021a998c *) 0x0) {
-        v1->mUnk_00 = 0;
+    if (v1 != NULL) {
+        v1->mUnk_00 = NULL;
     }
 }

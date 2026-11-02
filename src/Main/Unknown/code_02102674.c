@@ -150,7 +150,7 @@ void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t) {
     s32 k;
     s32 d;
 
-    if (p->mUnk_12c == 0) {
+    if (p->mUnk_12c == NULL) {
         return;
     }
     if (p->mUnk_198 == 0) {
@@ -188,10 +188,10 @@ void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t) {
 
 void func_02102764(void *param_1, Unk02102674 *param_2, void *param_3) {
     func_020fecdc(param_1, param_2, param_3);
-    if (param_2 == 0) {
+    if (param_2 == NULL) {
         return;
     }
-    if (param_3 == 0) {
+    if (param_3 == NULL) {
         return;
     }
     func_020fe8ac(param_2->mUnk_000.mUnk_44);

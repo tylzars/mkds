@@ -18,7 +18,7 @@ void func_02057524(void *a) {
     data_0217aa08->mUnk_1c = func_02036b74(a, 0x1000, 0x20);
     data_0217aa08->mUnk_20 = func_02036b74(a, 0xc00, 0x20);
     data_0217aa08->mUnk_24 = func_02036b74(a, 0xb00, 0x20);
-    data_0217aa08->mUnk_40 = 0;
+    data_0217aa08->mUnk_40 = NULL;
     func_0205721c(1);
     data_0217aa08->mUnk_2a = 0;
     data_0217aa08->mUnk_2c = 0;

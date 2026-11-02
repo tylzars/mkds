@@ -24,7 +24,7 @@ u32 func_020ab194(u32 arg0, u32 arg1) {
 #pragma thumb on
 
 void func_020ab11c(s32 *a, s32 *b, s32 *c, s32 *d) {
-    if (data_0217b278.mUnk_44 != 0 && a != 0 && b != 0 && c != 0 && d != 0) {
+    if (data_0217b278.mUnk_44 != NULL && a != NULL && b != NULL && c != NULL && d != NULL) {
         *a = data_0217b278.mUnk_44->mUnk_00;
         *b = data_0217b278.mUnk_44->mUnk_01;
         *c = data_0217b278.mUnk_44->mUnk_00 + data_0217b278.mUnk_44->mUnk_02;

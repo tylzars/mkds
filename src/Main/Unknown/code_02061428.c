@@ -13,7 +13,7 @@ void func_02061470(void) {
             if (data_021759d4->mUnk_0c != 0) {
                 func_02145d38();
             }
-            if (data_021759d4->mUnk_04 != 0) {
+            if (data_021759d4->mUnk_04 != NULL) {
                 b->mUnk_08_0 = 0;
             }
         } else {
@@ -21,7 +21,7 @@ void func_02061470(void) {
         }
     }
     func_02057504();
-    data_0217aa08->mUnk_40 = 0;
+    data_0217aa08->mUnk_40 = NULL;
 }
 
 void func_02061428(void *a) {

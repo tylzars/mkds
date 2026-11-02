@@ -17,7 +17,7 @@ u16 func_020431a4(void **a) {
 s32 func_02043170(void *a, ...) {
     gCourseMap->mUnk_04 = func_020431a4(&a);
     if (gCourseMap->mUnk_04 == 0) {
-        gCourseMap->mUnk_00 = 0;
+        gCourseMap->mUnk_00 = NULL;
     } else {
         gCourseMap->mUnk_00 = a;
     }
@@ -27,7 +27,7 @@ s32 func_02043170(void *a, ...) {
 s32 func_0204313c(void *a, ...) {
     gCourseMap->mUnk_0c = func_020431a4(&a);
     if (gCourseMap->mUnk_0c == 0) {
-        gCourseMap->mUnk_08 = 0;
+        gCourseMap->mUnk_08 = NULL;
     } else {
         gCourseMap->mUnk_08 = a;
     }
@@ -115,7 +115,7 @@ void func_02042fd8(void *a) {
             t++;
         }
     } else {
-        g->mUnk_94 = 0;
+        g->mUnk_94 = NULL;
     }
     func_02043038();
 }

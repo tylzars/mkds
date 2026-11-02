@@ -37,7 +37,7 @@ void func_ov003_021c7748(void) {
     b[3] = data_ov003_021d7300[3];
     b[4] = data_ov003_021d7300[4];
     data_ov003_021da1fc = func_ov003_021d283c(0x18, 4);
-    func_ov003_021c20dc(&c, 0);
+    func_ov003_021c20dc(&c, NULL);
     a.mUnk_00[c](data_ov003_021da1fc->mUnk_08);
     d = data_ov003_021da1fc;
     if (memcmp(d->mUnk_08, data_ov003_021d73ac, 3) != 0) {

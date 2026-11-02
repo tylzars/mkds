@@ -6,7 +6,7 @@
 
 void *func_02036bec(void *a, u32 b) {
     Unk02017584 *h = a;
-    void *c = 0;
+    void *c = NULL;
     switch (h->mUnk_00) {
         case 0x45585048:
             c = func_02017938(a, b, 4);
@@ -20,7 +20,7 @@ void *func_02036bec(void *a, u32 b) {
 
 void *func_02036b74(void *a, u32 b, s32 c) {
     Unk02017584 *h = a;
-    void *d = 0;
+    void *d = NULL;
     u32 e;
     switch (h->mUnk_00) {
         case 0x45585048:
@@ -58,7 +58,7 @@ void func_02036ab0(void *a) {
             break;
     }
     p = func_02017550(a);
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
     switch (p->mUnk_00.mUnk_00) {
@@ -82,7 +82,7 @@ void *func_020369fc(void *a) {
             b = func_0201800c(a, 4);
             break;
     }
-    c = 0;
+    c = NULL;
     switch (h->mUnk_00) {
         case 0x45585048:
             c = func_02017938(a, b, 4);
@@ -106,7 +106,7 @@ void *func_02036948(void *a) {
             b = func_0201800c(a, 4);
             break;
     }
-    c = 0;
+    c = NULL;
     switch (h->mUnk_00) {
         case 0x45585048:
             c = func_02017938(a, b, 4);
@@ -120,7 +120,7 @@ void *func_02036948(void *a) {
 
 void *func_020368e0(void *a, u32 b) {
     Unk02017584 *h = a;
-    void *c = 0;
+    void *c = NULL;
     switch (h->mUnk_00) {
         case 0x45585048:
             c = func_02017938(a, b, 4);
@@ -134,7 +134,7 @@ void *func_020368e0(void *a, u32 b) {
 
 void *func_02036854(void *a, u32 b) {
     Unk02017584 *h = a;
-    void *c = 0;
+    void *c = NULL;
     u32 d;
     switch (h->mUnk_00) {
         case 0x45585048:

@@ -10,6 +10,6 @@ void func_0203eb38(void);
 void func_0203ecf0(void);
 void func_0203ee28(void);
 
-s32 func_0203c25c(u16 a);
+BOOL func_0203c25c(u16 a);
 void func_0203c2e4(u16 a);
 u16 func_0203c4d0(u8 a);

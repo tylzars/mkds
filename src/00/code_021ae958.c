@@ -4,7 +4,7 @@ void func_ov000_021ae958(const Unk021ae3f0 *a, const Unk021ae87c *b) {
     Unk021a998c *p;
 
     p = func_ov000_021af090(a, b);
-    if (p != 0) {
+    if (p != NULL) {
         func_0200dd94();
         p->mUnk_08 = 0;
         if (p->mUnk_04 - 1 <= 1) {

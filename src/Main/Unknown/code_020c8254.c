@@ -236,7 +236,7 @@ s32 func_020c8254(void) {
 
     for (i = 0; i < 3; i++) {
         b = a[i];
-        if (func_021000d0(b) != 0) {
+        if (func_021000d0(b) != NULL) {
             return func_020c0c2c(&data_0217b420, b);
         }
     }

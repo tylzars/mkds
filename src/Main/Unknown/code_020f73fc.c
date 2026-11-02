@@ -120,7 +120,7 @@ void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, Unk020e71a0 *e) {
 }
 
 void func_020f7658(Unk020f41c4_A *b, s32 c) {
-    s32 a;
+    BOOL a;
     enum { K0 } k;
 
     if (!(b->mUnk_74 & 0x8000000)) {
@@ -129,7 +129,7 @@ void func_020f7658(Unk020f41c4_A *b, s32 c) {
                 return;
             }
             b->mUnk_78 |= data_02159b74;
-            b->mUnk_120 = 0;
+            b->mUnk_120 = NULL;
             return;
         }
         if (b->mUnk_74 & 0x180000) {
@@ -144,25 +144,25 @@ void func_020f7658(Unk020f41c4_A *b, s32 c) {
     }
     if ((b->mUnk_74 & 0x8000000) && !(b->mUnk_74 & 0x10000000) && !(b->mUnk_74 & 0x20000000)) {
         if (b->mUnk_78 & 0xf00) {
-            a = 0;
+            a = FALSE;
         } else {
             b->mUnk_78 |= data_02159b74;
-            b->mUnk_120 = 0;
-            a = 1;
+            b->mUnk_120 = NULL;
+            a = TRUE;
         }
     } else {
         if (b->mUnk_74 & 0x180000) {
-            a = 0;
+            a = FALSE;
         } else {
             k = b->mUnk_44;
             if (data_0217bc34[k].mUnk_40 == 0 && !(b->mUnk_74 & 0x180000)) {
                 b->mUnk_120 = func_020f758c;
             }
             b->mUnk_74 |= 0x100002;
-            a = 1;
+            a = TRUE;
         }
     }
-    if (a == 0) {
+    if (a == FALSE) {
         return;
     }
     if (c == 0) {
@@ -199,7 +199,7 @@ void func_020f758c(Unk020f41c4_A *a) {
 }
 
 void func_020f7430(Unk020f41c4_A *b, s32 c) {
-    s32 a;
+    BOOL a;
 
     if (!(b->mUnk_74 & 0x8000000)) {
         if ((b->mUnk_74 & 0x8000000) && !(b->mUnk_74 & 0x10000000) && !(b->mUnk_74 & 0x20000000)) {
@@ -207,7 +207,7 @@ void func_020f7430(Unk020f41c4_A *b, s32 c) {
                 return;
             }
             b->mUnk_78 |= data_02159b70;
-            b->mUnk_120 = 0;
+            b->mUnk_120 = NULL;
             return;
         }
         if (b->mUnk_74 & 0x180000) {
@@ -221,24 +221,24 @@ void func_020f7430(Unk020f41c4_A *b, s32 c) {
     }
     if ((b->mUnk_74 & 0x8000000) && !(b->mUnk_74 & 0x10000000) && !(b->mUnk_74 & 0x20000000)) {
         if (b->mUnk_78 & 0xf00) {
-            a = 0;
+            a = FALSE;
         } else {
             b->mUnk_78 |= data_02159b70;
-            b->mUnk_120 = 0;
-            a = 1;
+            b->mUnk_120 = NULL;
+            a = TRUE;
         }
     } else {
         if (b->mUnk_74 & 0x180000) {
-            a = 0;
+            a = FALSE;
         } else {
             if (!(b->mUnk_74 & 0x180000)) {
                 b->mUnk_120 = (void (*)(Unk020f41c4_A *)) func_020f73d4;
             }
             b->mUnk_74 |= 0x100002;
-            a = 1;
+            a = TRUE;
         }
     }
-    if (a == 0) {
+    if (a == FALSE) {
         return;
     }
     if (c == 0) {

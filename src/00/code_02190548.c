@@ -33,7 +33,7 @@ u32 func_ov000_02190548(Unk0218f960 *a, Unk02194934 *b) {
 
 u32 func_ov000_021905d4(Unk0218f960 *a, Unk021906e4 *b) {
     s32 n;
-    if (b == 0 || b->mUnk_00 == 0 || (n = b->mUnk_0c) == 0) {
+    if (b == NULL || b->mUnk_00 == NULL || (n = b->mUnk_0c) == 0) {
         return 0;
     }
     b->mUnk_08 = b->mUnk_08 - n;
@@ -55,7 +55,7 @@ u32 func_ov000_02190618(Unk0218f960 *a, Unk021906e4 *b, s32 *c, s32 *d, s32 *e) 
         return 0;
     }
     p = (u8 *) strchr(b->mUnk_00, 10);
-    if (p != 0) {
+    if (p != NULL) {
         if (strncmp(p - 5, data_ov000_021b287c, 5) != 0) {
             return 3;
         }

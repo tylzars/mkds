@@ -5,8 +5,8 @@
 #include "code_0200dc3c.h"
 
 void (*func_02057f8c(Unk0217aa0c *a))(void) {
-    void (**q)(void) = 0;
-    void (*r)(void) = 0;
+    void (**q)(void) = NULL;
+    void (*r)(void) = NULL;
     s32 i = 0;
     s32 d;
     u8 c = a->mUnk_28;
@@ -15,15 +15,15 @@ void (*func_02057f8c(Unk0217aa0c *a))(void) {
         if (d < 0) {
             d += 10;
         }
-        if (a->mUnk_00[d] == 0) {
+        if (a->mUnk_00[d] == NULL) {
             break;
         }
         i++;
         q = &a->mUnk_00[d];
     } while (i < 10);
-    if (q != 0) {
+    if (q != NULL) {
         r = *q;
-        *q = 0;
+        *q = NULL;
     }
     return r;
 }
@@ -33,12 +33,12 @@ void func_02057ed8(void *a) {
     s32 i;
     data_0217aa0c = func_02036bec(a, 0xfc);
     data_0217aa0c->mUnk_f4 = func_02036b74(a, 0x800, 0x20);
-    func_0200e28c(&data_0217aa0c->mUnk_2c, func_02057e8c, 0, (u8 *) data_0217aa0c->mUnk_f4 + 0x800, 0x800, 0x11);
+    func_0200e28c(&data_0217aa0c->mUnk_2c, func_02057e8c, NULL, (u8 *) data_0217aa0c->mUnk_f4 + 0x800, 0x800, 0x11);
     func_0200df68(&data_0217aa0c->mUnk_2c);
     data_0217aa0c->mUnk_f8 = 0;
     p = data_0217aa0c;
     for (i = 0; i < 10; i++) {
-        p->mUnk_00[i] = 0;
+        p->mUnk_00[i] = NULL;
     }
     p->mUnk_28 = 0;
 }

@@ -6,7 +6,7 @@
 
 void func_02073eb8(Unk02061808 *p) {
     s32 t;
-    s32 u;
+    BOOL u;
 
     if (p->mUnk_140 == 0) {
         return;
@@ -24,7 +24,7 @@ void func_02073eb8(Unk02061808 *p) {
     p->mUnk_148 = p->mUnk_148 - 0x14;
     p->mUnk_158 = (s32) (((s64) p->mUnk_144 * p->mUnk_148) >> 12);
     if (p->mUnk_148 <= 0) {
-        u = 0;
+        u = FALSE;
         p->mUnk_158 = u;
         p->mUnk_140 = u;
     }

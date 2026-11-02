@@ -13,38 +13,38 @@
 
 #pragma thumb on
 
-s32 func_0203b96c(s32 a) {
+BOOL func_0203b96c(s32 a) {
     if (a == 9) {
-        return 0;
+        return FALSE;
     }
     switch (a) {
         case 0:
         case 1:
         case 4:
         case 5:
-            return 1;
+            return TRUE;
         case 2:
             if (func_02056dec(0) != 0 || func_02056dec(1) != 0 || func_02056dec(2) != 0 || func_02056dec(3) != 0) {
-                return 1;
+                return TRUE;
             }
             break;
         case 3:
             if (func_02056dec(4) != 0 || func_02056dec(5) != 0 || func_02056dec(6) != 0 || func_02056dec(7) != 0) {
-                return 1;
+                return TRUE;
             }
             break;
         case 6:
             if (func_02056dec(8) != 0 || func_02056dec(9) != 0 || func_02056dec(10) != 0 || func_02056dec(11) != 0) {
-                return 1;
+                return TRUE;
             }
             break;
         case 7:
             if (func_02056dec(12) != 0 || func_02056dec(13) != 0 || func_02056dec(14) != 0 || func_02056dec(15) != 0) {
-                return 1;
+                return TRUE;
             }
             break;
     }
-    return 0;
+    return FALSE;
 }
 
 u32 func_0203b8e4(Unk020f41c4_B *a) {
@@ -57,7 +57,7 @@ u32 func_0203b8e4(Unk020f41c4_B *a) {
     n = 0;
     k = 0;
     for (i = 0; i < 8; i++) {
-        if (func_0203b96c(i) != 0) {
+        if (func_0203b96c(i) != FALSE) {
             n++;
         }
     }
@@ -73,7 +73,7 @@ u32 func_0203b8e4(Unk020f41c4_B *a) {
     }
     m = v;
     for (i = 0; i < 8; i++) {
-        if (func_0203b96c(i) != 0) {
+        if (func_0203b96c(i) != FALSE) {
             k++;
             if (k > m) {
                 break;

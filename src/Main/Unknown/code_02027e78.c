@@ -25,7 +25,7 @@ void func_02027e78(void) {
     } else {
         func_02027fb8(0);
     }
-    if (gSelectKart->mUnk_104 != 0) {
+    if (gSelectKart->mUnk_104 != FALSE) {
         func_0202ba14();
     }
 }

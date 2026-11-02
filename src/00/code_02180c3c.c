@@ -72,19 +72,19 @@ void func_ov000_02180c3c(void) {
 void func_ov000_02180cdc(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
     s32 a;
-    s32 b;
+    BOOL b;
     u32 v;
     if (func_02125fa4() != 0 && func_02128294() != 0) {
         if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
-            a = b = 0;
+            a = b = FALSE;
             v = data_02175628[i].mUnk_4c;
             if (v == 0 && data_02175628[i].mUnk_58 < 5) {
                 a = 1;
             }
             if (a == 0 && data_02175628[i].mUnk_54 == 0 && v != 0) {
-                b = 1;
+                b = TRUE;
             }
-            if (b == 0 || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+            if (b == FALSE || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
                 goto next;
             }
         }

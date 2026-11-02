@@ -192,7 +192,7 @@ void func_020ad344(void) {
     func_020ad88c(0);
     func_020ad870(0);
     s.mUnk_00 = 0;
-    s.mUnk_04 = 0;
+    s.mUnk_04 = NULL;
     s.mUnk_08 = 0;
     s.mUnk_0c = 0;
     s.mUnk_10 = 0;

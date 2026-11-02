@@ -18,12 +18,12 @@
 
 #pragma thumb off
 
-s32 func_020e3af0(u32 a) {
+BOOL func_020e3af0(u32 a) {
     switch (a) {
         case 0xcc:
-            return 1;
+            return TRUE;
         default:
-            return 0;
+            return FALSE;
     }
 }
 
@@ -33,7 +33,7 @@ void func_020e3a7c(void) {
     void *p;
 
     p = (void *) FindCourseMapObjFile(gBridgeNsbmdName);
-    func_020ea588(&gBridge, p, 0);
+    func_020ea588(&gBridge, p, NULL);
     func_020ea4bc(0, gBridge, &gBridgeNsbca, p, (void *) FindCourseMapObjFile(gBridgeNsbcaName));
     ((Unk020e1dc0 *) *(void **) data_0217b7c4)->mUnk_2c = func_02087d0c(gBridgeNsbca);
     func_02084968(gBridge, 0x3f, 2, 0x294a);

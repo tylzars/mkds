@@ -32,14 +32,14 @@ void ClearFontAndPlayerCharacterTables(void) {
     s32 j;
 
     for (i = 0; i < 3; i++) {
-        gFontTable[i] = 0;
+        gFontTable[i] = NULL;
     }
     for (j = 0; j < 2; j++) {
-        gPlayerCharacterNclr[j] = 0;
-        gPlayerCharacterShyguyNclr[j] = 0;
-        gPlayerCharacterNcgr[j] = 0;
-        gPlayerCharacterNcer[j] = 0;
-        gPlayerCharacterBncl[j] = 0;
+        gPlayerCharacterNclr[j] = NULL;
+        gPlayerCharacterShyguyNclr[j] = NULL;
+        gPlayerCharacterNcgr[j] = NULL;
+        gPlayerCharacterNcer[j] = NULL;
+        gPlayerCharacterBncl[j] = NULL;
     }
 }
 #pragma thumb off

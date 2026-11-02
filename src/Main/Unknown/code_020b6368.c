@@ -10,7 +10,7 @@
 #include "code_02148538.h"
 
 s32 func_020b64e8(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
 
     switch (func_020b4e5c()) {
         case 1:
@@ -34,14 +34,14 @@ s32 func_020b64e8(void) {
         case 40:
         case 48:
         case 50:
-            r = 1;
+            r = TRUE;
             break;
     }
     return r;
 }
 
 s32 func_020b6430(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
 
     switch (func_020b4e5c()) {
         case 1:
@@ -56,7 +56,7 @@ s32 func_020b6430(void) {
         case 40:
         case 48:
         case 50:
-            r = 1;
+            r = TRUE;
             break;
     }
     return r;

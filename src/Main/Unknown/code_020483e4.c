@@ -34,9 +34,9 @@ void func_020486d4(void *a) {
     for (i = 0; i < 16; i++) {
         func_020487a0(i);
     }
-    data_021759c8->mUnk_a70 = 0;
-    data_021759c8->mUnk_a78 = 0;
-    data_021759c8->mUnk_a7c = 0;
+    data_021759c8->mUnk_a70 = NULL;
+    data_021759c8->mUnk_a78 = NULL;
+    data_021759c8->mUnk_a7c = NULL;
     FS_InitFile(&data_021759c8->mUnk_968);
 }
 
@@ -96,7 +96,7 @@ u32 func_02048590(char *a, u32 b, void **c) {
         n = p->mUnk_20.p.mUnk_08 - p->mUnk_20.p.mUnk_04;
         t = func_02036bec((void *) b, n);
         *c = t;
-        if (t == 0) {
+        if (t == NULL) {
             s = 0;
         }
         if (s != 0) {
@@ -109,7 +109,7 @@ u32 func_02048590(char *a, u32 b, void **c) {
     }
     if (s == 0) {
         n = -1;
-        *c = 0;
+        *c = NULL;
     }
     return n;
 }
@@ -120,9 +120,9 @@ void *func_02048504(const char *a, s32 b) {
     void *r;
     u32 n;
 
-    r = 0;
+    r = NULL;
     if (FS_IsAvailable() == 0) {
-        return 0;
+        return NULL;
     }
     FS_InitFile(&f);
     s = FS_OpenFile(&f, (const u8 *) a);
@@ -130,7 +130,7 @@ void *func_02048504(const char *a, s32 b) {
         n = f.mUnk_20.p.mUnk_08 - f.mUnk_20.p.mUnk_04;
         r = func_02036b74(func_020364e0(func_020364e8()), n, b);
         func_0200ee58(r, n);
-        if (r == 0) {
+        if (r == NULL) {
             s = 0;
         } else {
             if (FS_ReadFile(&f, r, n) < 0) {
@@ -141,26 +141,26 @@ void *func_02048504(const char *a, s32 b) {
         }
     }
     if (s == 0) {
-        r = 0;
+        r = NULL;
     }
     return r;
 }
 
 void func_02048498(char *a, s32 b, s32 c) {
-    s32 d;
+    BOOL d;
     const char *e;
     const char *f;
 
-    d = 0;
+    d = FALSE;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 && data_usa_02154228[b].mUnk_04 == 1) {
-        d = 1;
+        d = TRUE;
     }
     if (c != 0) {
         e = data_usa_02165164;
     } else {
         e = data_usa_02165168;
     }
-    if (d != 0) {
+    if (d != FALSE) {
         f = data_usa_0216516c;
     } else {
         f = data_usa_02165170;

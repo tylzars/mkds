@@ -13,7 +13,7 @@ void func_ov003_021cca30(const void *b) {
     Unk021da25c *a = func_ov003_021d283c(0x608, 4);
     data_ov003_021da25c = a;
     func_0214d0a8(b, a->mUnk_004, 0x600);
-    data_ov003_021da25c->mUnk_000 = func_ov003_021d3544(1, func_ov003_021cc97c, 0, 0x78);
+    data_ov003_021da25c->mUnk_000 = func_ov003_021d3544(1, func_ov003_021cc97c, NULL, 0x78);
 }
 
 void func_ov003_021cca10(void) {
@@ -51,7 +51,7 @@ void func_ov003_021cc97c(void) {
 void func_ov003_021cc948(u8 *a, u32 b, u32 c) {
     ((u8 **) data_ov003_021da260)[0] = a + (b << 5);
     ((u8 **) data_ov003_021da260)[1] = (u8 *) 0x5000000 + (c << 5);
-    func_ov003_021d3544(1, func_ov003_021cc924, 0, 0x78);
+    func_ov003_021d3544(1, func_ov003_021cc924, NULL, 0x78);
 }
 
 void func_ov003_021cc924(u32 a) {
@@ -61,7 +61,7 @@ void func_ov003_021cc924(u32 a) {
 
 void func_ov003_021cc900(u32 a) {
     *(u32 *) &data_ov003_021da260 = a;
-    func_ov003_021d3544((u32) 1, &func_ov003_021cc8d4, 0, (u32) 0x78);
+    func_ov003_021d3544((u32) 1, &func_ov003_021cc8d4, NULL, (u32) 0x78);
 }
 
 void func_ov003_021cc8d4(u32 a) {

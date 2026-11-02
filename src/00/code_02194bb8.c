@@ -3,7 +3,7 @@
 #include "00/code_021a3690.h"
 #include "code_0213442c.h"
 
-s32 func_ov000_02194bb8(Unk0218f960 *a) {
+BOOL func_ov000_02194bb8(Unk0218f960 *a) {
     Unk0218f960_00 *r;
     Unk021937c0Node **v;
     Unk021937c0Node *p;
@@ -16,14 +16,14 @@ s32 func_ov000_02194bb8(Unk0218f960 *a) {
     n = 0;
     if (r->mUnk_210 > 0) {
         v = func_ov000_021a3690(r->mUnk_210 * 4);
-        if (v == 0) {
+        if (v == NULL) {
             func_ov000_02196590(a, data_ov000_021b35f8);
-            return 1;
+            return TRUE;
         }
-        for (p = r->mUnk_424; p != 0; p = p->mNext) {
+        for (p = r->mUnk_424; p != NULL; p = p->mNext) {
             if (p->mUnk_00 == 3 && p->mUnk_14 != 5 && p->mUnk_04->mUnk_13c == 0) {
                 if (n >= r->mUnk_210) {
-                    func_0213442c(data_ov000_021b3608, data_ov000_021b3628, 0, 0x563);
+                    func_0213442c(data_ov000_021b3608, data_ov000_021b3628, NULL, 0x563);
                 }
                 v[n++] = p;
                 p->mUnk_04->mUnk_13c = 1;
@@ -44,5 +44,5 @@ s32 func_ov000_02194bb8(Unk0218f960 *a) {
         }
         func_ov000_021a3668(v);
     }
-    return 0;
+    return FALSE;
 }

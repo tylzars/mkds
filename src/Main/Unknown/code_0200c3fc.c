@@ -32,7 +32,7 @@ void func_0200c430(u32 arg0) {
 void func_0200c3fc(s32 a) {
     s32 i;
 
-    if (data_0216fdf4 != 0) {
+    if (data_0216fdf4 != NULL) {
         i = a - 1;
         func_0214d168(&data_0216fdf4->mUnk_000[i * 0x20], 0, 0x1e);
         data_0216fdf4->mUnk_1e0[i] = 0;

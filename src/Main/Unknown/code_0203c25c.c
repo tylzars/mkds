@@ -3,35 +3,35 @@
 #include "Main/Unknown/code_020a12b8.h"
 #include "Main/Unknown/code_020b1cdc.h"
 
-s32 func_0203c25c(u16 a) {
-    s32 f = 0;
-    s32 r;
+BOOL func_0203c25c(u16 a) {
+    BOOL f = FALSE;
+    BOOL r;
     switch (data_0217561c->mUnk_000[a].mUnk_14) {
         case 1:
         case 2:
         case 3:
-            f = 1;
+            f = TRUE;
             break;
     }
-    r = f == 0;
-    if (r != 0) {
+    r = f == FALSE;
+    if (r != FALSE) {
         r = func_02044618() == data_0217561c->mUnk_000[a].mUnk_38;
     }
-    return r != 0;
+    return r != FALSE;
 }
 
 void func_0203c2e4(u16 a) {
     u32 o;
     Unk0217561c_14 *p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + a * 0x8c);
-    s32 f = 0;
+    BOOL f = FALSE;
     switch (p->mUnk_00) {
         case 1:
         case 2:
         case 3:
-            f = 1;
+            f = TRUE;
             break;
     }
-    if (f == 0) {
+    if (f == FALSE) {
         u32 v;
         s32 i;
         o = p->mUnk_3c_0;
@@ -77,7 +77,7 @@ void func_0203c2e4(u16 a) {
 u16 func_0203c4d0(u8 a) {
     u16 r = 0;
     Unk0217561c_4dc *t = data_0217561c->mUnk_4dc;
-    if (t != 0) {
+    if (t != NULL) {
         switch (data_021759c0->mUnk_08) {
             case 0:
                 break;

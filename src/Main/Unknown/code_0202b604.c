@@ -15,7 +15,7 @@
 
 void func_0202bb60(void) {
     func_02036ab0((void *) data_02174e3c->mUnk_03c);
-    *&data_02174e3c = 0;
+    *&data_02174e3c = NULL;
 }
 
 #pragma thumb off
@@ -24,19 +24,19 @@ void func_0202bb60(void) {
 
 void func_0202ba14(void) {
     u32 a = 0x19;
-    s32 b;
+    BOOL b;
     s16 x;
 
     x = func_02025ebc(&data_02174e3c->mUnk_210[2]);
     if (data_02174e3c->mUnk_254 == 2) {
-        b = 0;
+        b = FALSE;
         a |= 2;
         *(vu32 *) 0x4000010 = x & 0x1ff;
         *(vu32 *) 0x4000014 = -x & 0x1ff;
         *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 3;
         *(vu16 *) 0x400000a = (*(vu16 *) 0x400000a & ~3) | 3;
     } else {
-        b = 1;
+        b = TRUE;
     }
     if (data_02174e3c->mUnk_250 == 2) {
         a |= 2;

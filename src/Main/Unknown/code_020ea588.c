@@ -8,13 +8,13 @@
 void func_020ea5b0(Unk020e6488 *a, u32 b, Vec3 *c) {
     Vec3 v;
 
-    if (c != 0) {
+    if (c != NULL) {
         v.x = c->x >> 4;
         v.y = c->y >> 4;
         v.z = c->z >> 4;
         func_020e6854(a, &v, 1, b);
     } else {
-        func_020e6854(a, 0, 0, b);
+        func_020e6854(a, NULL, 0, b);
     }
 }
 

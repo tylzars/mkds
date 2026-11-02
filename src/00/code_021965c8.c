@@ -40,14 +40,14 @@ s32 func_ov000_021965c8(Unk0218f960 *a, s8 *b, s32 *c, s8 *d, s8 *e) {
     s8 f;
     s32 i;
 
-    if (b == 0) {
-        func_0213442c(data_ov000_021b3a0c, data_ov000_021b3a1c, 0, 0x199);
+    if (b == NULL) {
+        func_0213442c(data_ov000_021b3a0c, data_ov000_021b3a1c, NULL, 0x199);
     }
-    if (d == 0) {
-        func_0213442c(data_ov000_021b3a2c, data_ov000_021b3a1c, 0, 0x19a);
+    if (d == NULL) {
+        func_0213442c(data_ov000_021b3a2c, data_ov000_021b3a1c, NULL, 0x19a);
     }
-    if (e == 0) {
-        func_0213442c(data_ov000_021b3a38, data_ov000_021b3a1c, 0, 0x19b);
+    if (e == NULL) {
+        func_0213442c(data_ov000_021b3a38, data_ov000_021b3a1c, NULL, 0x19b);
     }
     p = b + *c;
     if (*p != 0x5c) {

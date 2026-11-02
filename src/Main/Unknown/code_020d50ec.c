@@ -212,7 +212,7 @@ void func_020d5dd0(Unk020d5bf0 *p) {
 
 #pragma thumb on
 void CreateNsbmdAndShadowNsbmd(void *a, const char *name, const char *shadowName) {
-    func_020ea588((void **) &data_0217b65c, FindCourseMapObjFile(name), 0);
+    func_020ea588((void **) &data_0217b65c, FindCourseMapObjFile(name), NULL);
     func_020ea55c((void **) &data_0217b658, FindCourseMapObjFile(shadowName), 7);
     func_02084968(data_0217b65c, 0x3f, 2, 0x294a);
     func_020849c0(data_0217b65c, 7);
@@ -299,9 +299,9 @@ void func_020d5aa0(void *a, u32 b, Unk020e04b0 *c, Vec3 *d, Vec3 *e) {
     Unk020d5a68 **q = a;
     Unk020d5a68 *p;
 
-    if (c->mUnk_00 != 0) {
+    if (c->mUnk_00 != NULL) {
         if (b & 0x80000000) {
-            c->mUnk_00 = 0;
+            c->mUnk_00 = NULL;
             return;
         }
         func_020e0538(c, d);
@@ -309,14 +309,14 @@ void func_020d5aa0(void *a, u32 b, Unk020e04b0 *c, Vec3 *d, Vec3 *e) {
         if (p->mUnk_04 == 0 && c->mUnk_00 == p->mUnk_00) {
             return;
         }
-        c->mUnk_00 = 0;
+        c->mUnk_00 = NULL;
         return;
     }
     if (b & 0x80000000) {
         return;
     }
     p = *q;
-    if (p->mUnk_00 == 0) {
+    if (p->mUnk_00 == NULL) {
         return;
     }
     if (p->mUnk_04 != 0) {
@@ -328,13 +328,13 @@ void func_020d5aa0(void *a, u32 b, Unk020e04b0 *c, Vec3 *d, Vec3 *e) {
     func_020e0584(p->mUnk_00, d, e, c);
 }
 
-s32 func_020d5a68(void *a, u32 b, Unk020e04b0 *c) {
+BOOL func_020d5a68(void *a, u32 b, Unk020e04b0 *c) {
     Unk020d5a68 **q = a;
 
     if ((b & 0x80000000) || (*q)->mUnk_04 != 0 || c->mUnk_00 != (*q)->mUnk_00) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 u16 func_020d59f8(u32 a) {
@@ -384,7 +384,7 @@ void func_020d58c0(void) {
     } while (i < 0x100);
     j = 0;
     do {
-        data_0217b5b8[j].mUnk_0c = 0;
+        data_0217b5b8[j].mUnk_0c = NULL;
         j++;
     } while (j < 0x100);
 }
@@ -507,7 +507,7 @@ u32 func_020d5344(s32 a) {
     }
     e = &data_0217b5b8[a];
     s = e->mUnk_00;
-    if (e->mUnk_0c == 0) {
+    if (e->mUnk_0c == NULL) {
         return -1;
     }
     t = e->mUnk_02;
@@ -543,7 +543,7 @@ u32 func_020d5344(s32 a) {
             k++;
         } while (k < data_0217b5b0 - 1);
     }
-    e->mUnk_0c = 0;
+    e->mUnk_0c = NULL;
     data_0217b5c8[a] = data_0217b5ac;
     data_0217b5ac = a;
     data_0217b5b0 -= 1;

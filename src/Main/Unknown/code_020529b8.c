@@ -40,7 +40,7 @@ void func_020529b8(Unk021425e8 *a) {
                 func_0214d1fc(&data_0217aa08->mUnk_00->mUnk_0c, &data_0217aa00->mUnk_045c[0], 0x14);
                 func_0214d1fc(&data_0217aa08->mUnk_00->mUnk_20, &data_0217aa00->mUnk_045c[0].mUnk_224, 4);
                 v = 0;
-                v1 = data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000;
+                v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
                 switch (v1) {
                     case 1:
                         v = data_0217aa00->mUnk_0018->mUnk_0c;
@@ -58,7 +58,7 @@ void func_020529b8(Unk021425e8 *a) {
             case 9:
                 func_02050b88(a->mUnk_10);
                 n = a->mUnk_10;
-                v1 = data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000;
+                v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
                 if (v1 == 1 && data_0217aa00->mUnk_0004 == 9) {
                     data_0217aa00->mUnk_1eac[0] |= 1 << n;
                 }
@@ -70,7 +70,7 @@ void func_020529b8(Unk021425e8 *a) {
 }
 
 void func_02052b60(Unk021425e8Func a) {
-    if (a == 0) {
+    if (a == NULL) {
         a = func_020529b8;
     }
     data_0217aa00->mUnk_000c = 6;
@@ -117,23 +117,23 @@ u16 func_02052c5c(u32 a) {
 
 void func_02052cf4(void) {
     u32 v1;
-    s32 c;
-    s32 d;
+    BOOL c;
+    BOOL d;
 
     data_0217aa00->mUnk_000c = 0x26;
     data_0217aa00->mUnk_0010 = 1;
-    d = 0;
+    d = FALSE;
     if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
-        c = 1;
-        v1 = data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000;
+        c = TRUE;
+        v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
         if (v1 != 1 && ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-            c = 0;
+            c = FALSE;
         }
-        if (c != 0) {
-            d = 1;
+        if (c != FALSE) {
+            d = TRUE;
         }
     }
-    if (d != 0) {
+    if (d != FALSE) {
         func_0204bcec();
         data_0217aa00->mUnk_0454 &= ~0x100;
     }
@@ -142,23 +142,23 @@ void func_02052cf4(void) {
 
 void func_02052da4(void) {
     u32 v1;
-    s32 c;
-    s32 d;
+    BOOL c;
+    BOOL d;
 
     data_0217aa00->mUnk_000c = 0x25;
     data_0217aa00->mUnk_0010 = 1;
-    d = 0;
+    d = FALSE;
     if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
-        c = 1;
-        v1 = data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000;
+        c = TRUE;
+        v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
         if (v1 != 1 && ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-            c = 0;
+            c = FALSE;
         }
-        if (c != 0) {
-            d = 1;
+        if (c != FALSE) {
+            d = TRUE;
         }
     }
-    if (d != 0) {
+    if (d != FALSE) {
         func_0204be0c();
         data_0217aa00->mUnk_1e34 = 0;
         data_0217aa00->mUnk_0454 |= 0x100;
@@ -179,24 +179,24 @@ void func_02052e64(void) {
 
 void func_02052ecc(void) {
     u32 v1;
-    s32 c;
-    s32 d;
+    BOOL c;
+    BOOL d;
 
     data_0217aa00->mUnk_000c = 0x24;
     data_0217aa00->mUnk_0010 = 1;
-    d = 0;
+    d = FALSE;
     if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
-        c = 1;
-        v1 = data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000;
+        c = TRUE;
+        v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
         if (v1 != 1 && ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-            c = 0;
+            c = FALSE;
         }
-        if (c != 0) {
-            d = 1;
+        if (c != FALSE) {
+            d = TRUE;
         }
     }
-    if (d != 0) {
-        v1 = data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000;
+    if (d != FALSE) {
+        v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
         func_0204bf48(v1 == 1 ? 1 : 0, 4, 0x154, func_02052e64, func_02052fa4, 0);
     }
     data_0217aa00->mUnk_0010 = 0;
@@ -207,9 +207,9 @@ void *func_02052fa4(u32 a, u32 b, void *c) {
     u32 v1;
     void *r;
 
-    r = 0;
+    r = NULL;
     v1 = func_0200fca0();
-    if (c != 0) {
+    if (c != NULL) {
         func_02036b30(data_0217aa00->mUnk_1d04, c);
     } else {
         r = func_02036b74(data_0217aa00->mUnk_1d04, b, -0x20);
@@ -310,24 +310,24 @@ void func_02053348(Unk021425e8 *a) {
 
 void func_020533a0(void) {
     u32 v1;
-    s32 d;
-    s32 c;
+    BOOL d;
+    BOOL c;
 
     if ((data_0217aa00->mUnk_0454 & 0x100) != 0) {
         data_0217aa00->mUnk_000c = 0x26;
         data_0217aa00->mUnk_0010 = 1;
-        d = 0;
+        d = FALSE;
         if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
-            c = 1;
-            v1 = data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000;
+            c = TRUE;
+            v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
             if (v1 != 1 && ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-                c = 0;
+                c = FALSE;
             }
-            if (c != 0) {
-                d = 1;
+            if (c != FALSE) {
+                d = TRUE;
             }
         }
-        if (d != 0) {
+        if (d != FALSE) {
             func_0204bcec();
             data_0217aa00->mUnk_0454 &= ~0x100;
         }
@@ -352,11 +352,11 @@ void func_020533a0(void) {
         data_0217aa00->mUnk_000c = 0x26;
         data_0217aa00->mUnk_0010 = 1;
         if (func_020510e4() != 0 && (func_020510c8() == 1 || func_020510ac() != 0)) {
-            c = 1;
+            c = TRUE;
         } else {
-            c = 0;
+            c = FALSE;
         }
-        if (c != 0) {
+        if (c != FALSE) {
             func_0204bcec();
             data_0217aa00->mUnk_0454 &= ~0x100;
         }
@@ -395,7 +395,7 @@ void func_020533a0(void) {
 void func_02053664(Unk021425e8 *a) {
     s32 r;
 
-    r = func_0214358c(0xf, func_02050764, 0);
+    r = func_0214358c(0xf, func_02050764, NULL);
     data_0217aa00->mUnk_0010 = 0;
     if (r != 0) {
         return;
@@ -404,7 +404,7 @@ void func_02053664(Unk021425e8 *a) {
         return;
     }
     if (data_0217aa00->mUnk_1d00 != 0) {
-        func_0214358c(1, func_0204ed04, 0);
+        func_0214358c(1, func_0204ed04, NULL);
     }
     func_02053fa8();
 }
@@ -417,9 +417,9 @@ void func_020536e0(void) {
     }
 }
 
-s32 func_0205373c(void) {
+BOOL func_0205373c(void) {
     Unk0217aa00_15bc *q;
-    s32 v1;
+    BOOL v1;
     u16 i;
     u16 j;
     u8 m;
@@ -432,35 +432,35 @@ s32 func_0205373c(void) {
     q = &data_0217aa00->mUnk_15bc_view;
     data_0217aa00->mUnk_1606 = data_0217aa00->mUnk_15bc->mUnk_000[data_0217aa00->mUnk_15bc->mUnk_808].mUnk_02;
     data_0217aa00->mUnk_0454 &= ~0x10;
-    switch (data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000) {
+    switch (data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) {
         case 1:
             if (data_0217aa00->mUnk_0044.mUnk_40 != 0) {
                 func_02053ab0();
             } else {
-                return 0;
+                return FALSE;
             }
             break;
         case 2:
             if (data_0217aa00->mUnk_0432 != 0xffff) {
                 func_02053ab0();
             } else {
-                return 0;
+                return FALSE;
             }
             break;
     }
     switch (data_0217aa00->mUnk_0004) {
         case 8:
             if (q->mUnk_34 != 0 && q->mUnk_34 == 5) {
-                return 0;
+                return FALSE;
             }
             break;
         case 9:
             if (q->mUnk_34 != 0) {
                 if (q->mUnk_34 == 5) {
-                    return 0;
+                    return FALSE;
                 }
             } else {
-                if ((data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000) == 1) {
+                if ((data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) == 1) {
                     for (j = 1; j < 8; j++) {
                         if ((data_0217aa00->mUnk_15f6 & (1 << j)) != 0) {
                             data_0217aa00->mUnk_15f8[j - 1] = 0;
@@ -470,9 +470,9 @@ s32 func_0205373c(void) {
             }
             break;
     }
-    v1 = 1;
+    v1 = TRUE;
     v2 = func_0214461c(data_0217aa00->mUnk_15bc, data_0217aa00->mUnk_15c0, 0);
-    if (v2 != 0) {
+    if (v2 != NULL) {
         m = v2[4];
         if (m != 0) {
             for (i = 0; i < 8; i++) {
@@ -484,7 +484,7 @@ s32 func_0205373c(void) {
                     if (data_0217aa00->mUnk_0004 == 9) {
                         func_0203c2e4(v);
                     }
-                    if ((data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000) == 1) {
+                    if ((data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) == 1) {
                         data_0217aa00->mUnk_1eac[0] &= ~v3;
                     }
                 }
@@ -492,30 +492,30 @@ s32 func_0205373c(void) {
         }
         func_0214d1fc(v2, &buf[0], 8);
     } else {
-        v1 = 0;
+        v1 = FALSE;
     }
-    if (v1 != 0) {
+    if (v1 != FALSE) {
         for (i = 1; i < 8; i++) {
             if ((data_0217aa00->mUnk_15f6 & (1 << i)) != 0) {
                 v2 = func_0214461c(data_0217aa00->mUnk_15bc, data_0217aa00->mUnk_15c0, i);
-                if (v2 != 0) {
+                if (v2 != NULL) {
                     func_0214d1fc(v2, &buf[i], 8);
                 } else {
-                    v1 = 0;
+                    v1 = FALSE;
                     break;
                 }
             }
         }
     }
     for (i = 0; i < 8; i++) {
-        if (v1 != 0 && (data_0217aa00->mUnk_15f6 & (1 << i)) != 0) {
+        if (v1 != FALSE && (data_0217aa00->mUnk_15f6 & (1 << i)) != 0) {
             func_0214d1fc(&buf[i], &q->mUnk_0c[i], 8);
             q->mUnk_10[i] = 1;
         } else {
             q->mUnk_10[i] = 0;
         }
     }
-    return v1 != 0;
+    return v1 != FALSE;
 }
 
 void func_02053ab0(void) {
@@ -530,13 +530,13 @@ void func_02053ab0(void) {
     } else {
         p->mUnk_05 = 0;
     }
-    p->mUnk_04 = (data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000) == 1 ? data_0217aa00->mUnk_1eac[0] : 0;
+    p->mUnk_04 = (data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) == 1 ? data_0217aa00->mUnk_1eac[0] : 0;
     p->mUnk_00 = func_02043a20();
     p->mUnk_06_0 = 0;
     p->mUnk_07 = 0;
     v1 = 0;
     if (data_0217aa00->mUnk_0004 == 9) {
-        if (data_0217aa00 != 0) {
+        if (data_0217aa00 != NULL) {
             v1 = data_0217aa00->mUnk_0000;
         }
         if (v1 == 1) {
@@ -547,7 +547,7 @@ void func_02053ab0(void) {
             }
         }
     }
-    v1 = data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000;
+    v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
     if (v1 != 1 || (data_0217aa00->mUnk_008b & 1) != 0) {
         if (data_0217aa00->mUnk_15ec == 0) {
             p->mUnk_06_0 |= 1;
@@ -575,7 +575,7 @@ void func_02053d00(void) {
     Unk0217aa00_16a0 *e;
     s32 i;
 
-    if (data_0217aa00 == 0) {
+    if (data_0217aa00 == NULL) {
         return;
     }
     data_0217aa00->mUnk_0000 = 0;
@@ -606,7 +606,7 @@ void func_02053d00(void) {
     e = &v->mUnk_000[0];
     for (i = 0; i < 0xc; i++) {
         e->mUnk_34 = 0;
-        e->mUnk_74 = 0;
+        e->mUnk_74 = NULL;
         e++;
     }
     v->mUnk_6b4 = 0;

@@ -15,7 +15,7 @@ void func_0210d9a0(Unk0217d084 *a, u32 b) {
                 func_0210d120(0);
                 func_0212c6f0(&a->mUnk_00->mUnk_10, 0);
                 func_0212c6f0(&a->mUnk_00->mUnk_0c, 0);
-                if (a->mUnk_18 != 0) {
+                if (a->mUnk_18 != NULL) {
                     func_0212c6f0(a->mUnk_18, 0);
                 }
                 a->mUnk_10 = 0;
@@ -30,7 +30,7 @@ void func_0210d9a0(Unk0217d084 *a, u32 b) {
                     v = func_0210d960();
                     func_0212c620(&a->mUnk_00->mUnk_0c, 0x7f, v);
                     func_0212c620(&a->mUnk_00->mUnk_10, 0x7f, v);
-                    if (a->mUnk_18 != 0) {
+                    if (a->mUnk_18 != NULL) {
                         func_0212c620(a->mUnk_18, 0x7f, v);
                     }
                 }
@@ -46,7 +46,7 @@ void func_0210d9a0(Unk0217d084 *a, u32 b) {
                     w = func_0210d960();
                     func_0212c620(&a->mUnk_00->mUnk_0c, 0x7f, w);
                     func_0212c620(&a->mUnk_00->mUnk_10, 0x7f, w);
-                    if (a->mUnk_18 != 0) {
+                    if (a->mUnk_18 != NULL) {
                         func_0212c620(a->mUnk_18, 0x7f, w);
                     }
                     func_0210d1a4(0x7f, v);
@@ -72,7 +72,7 @@ void func_0210d9a0(Unk0217d084 *a, u32 b) {
                 func_0210d120(v);
                 func_0212c6f0(&a->mUnk_00->mUnk_10, v);
                 func_0212c6f0(&a->mUnk_00->mUnk_0c, v);
-                if (a->mUnk_18 != 0) {
+                if (a->mUnk_18 != NULL) {
                     func_0212c6f0(a->mUnk_18, v);
                 }
             }
@@ -81,7 +81,7 @@ void func_0210d9a0(Unk0217d084 *a, u32 b) {
             if (a->mUnk_04 != 5) {
                 func_0212c620(&a->mUnk_00->mUnk_0c, 0, v);
                 func_0212c620(&a->mUnk_00->mUnk_10, 0, v);
-                if (a->mUnk_18 != 0) {
+                if (a->mUnk_18 != NULL) {
                     func_0212c620(a->mUnk_18, 0, v);
                 }
                 a->mUnk_10 = 0;

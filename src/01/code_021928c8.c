@@ -19,7 +19,7 @@ void func_ov001_02192d28(void) {
 
 void func_ov001_02192a78(void) {
     Unk02175628Index idx;
-    int f1;
+    BOOL f1;
     int f0;
     u16 v;
     u16 t;
@@ -41,16 +41,16 @@ void func_ov001_02192a78(void) {
         data_ov001_021a9bc8->mUnk_0c = 0;
     }
     idx = UNK_02175628_INDEX_8;
-    f1 = 1;
+    f1 = TRUE;
     f0 = 0;
     v = data_02175628[idx].mUnk_4c;
     if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
         f0 = f1;
     }
     if (f0 == 0 && v == 0) {
-        f1 = 0;
+        f1 = FALSE;
     }
-    if (f1 != 0 && (v = data_02175928[0x14]) != 0 && data_02175928[0x15] != 0) {
+    if (f1 != FALSE && (v = data_02175928[0x14]) != 0 && data_02175928[0x15] != 0) {
         data_ov001_021a9bc8->mUnk_00 = v;
         data_ov001_021a9bc8->mUnk_04 = data_02175928[0x15];
         data_ov001_021a9bc8->mUnk_10 = 1;
@@ -208,7 +208,7 @@ u16 func_ov001_02192a04(u16 a) {
     return data_021758e8[0x11] & a;
 }
 
-int func_ov001_021928c8(int a) {
+BOOL func_ov001_021928c8(int a) {
     switch (a) {
         case 0x20:
             return data_ov001_021a9bc8->mUnk_2c == 1 || data_ov001_021a9bc8->mUnk_2c == 0xf;
@@ -231,5 +231,5 @@ int func_ov001_021928c8(int a) {
         case 0x100:
             return data_ov001_021a9bc8->mUnk_50 == 1 || data_ov001_021a9bc8->mUnk_50 == 0xf;
     }
-    return 0;
+    return FALSE;
 }

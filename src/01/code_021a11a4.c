@@ -36,15 +36,15 @@
 #include "Main/Unknown/code_02029440.h"
 
 void func_ov001_021a1f60(void) {
-    Unk020b4934 *l0 = 0;
-    Unk02021dc8 *l1 = 0;
-    Unk020b4a44 *l2 = 0;
-    Unk020b4934 *l3 = 0;
-    Unk02021dc8 *l4 = 0;
-    Unk020b4a44 *l5 = 0;
-    Unk020b4934 *l6 = 0;
-    Unk020b47d8 *l7 = 0;
-    Unk020b4a44 *l8 = 0;
+    Unk020b4934 *l0 = NULL;
+    Unk02021dc8 *l1 = NULL;
+    Unk020b4a44 *l2 = NULL;
+    Unk020b4934 *l3 = NULL;
+    Unk02021dc8 *l4 = NULL;
+    Unk020b4a44 *l5 = NULL;
+    Unk020b4934 *l6 = NULL;
+    Unk020b47d8 *l7 = NULL;
+    Unk020b4a44 *l8 = NULL;
 
     LoadNcgrData(&l6, FindSceneFile(data_ov001_021a94ec));
     LoadNclrData(&l8, FindSceneFile(data_ov001_021a9508));
@@ -58,13 +58,13 @@ void func_ov001_021a1f60(void) {
 }
 
 void func_ov001_021a1d78(void) {
-    Unk020b4934 *a = 0;
-    Unk020b4a44 *b = 0;
-    Unk020b4934 *c = 0;
-    Unk020b4a44 *d = 0;
-    Unk020b4934 *e = 0;
-    Unk020b47d8 *f = 0;
-    Unk020b4a44 *g = 0;
+    Unk020b4934 *a = NULL;
+    Unk020b4a44 *b = NULL;
+    Unk020b4934 *c = NULL;
+    Unk020b4a44 *d = NULL;
+    Unk020b4934 *e = NULL;
+    Unk020b47d8 *f = NULL;
+    Unk020b4a44 *g = NULL;
     u16 *h;
 
     LocateNcgr(&e, FindSceneFile(data_ov001_021a94ec));
@@ -288,8 +288,8 @@ void func_ov001_021a1858(s32 a, void *b, void *c) {
     data_ov001_021ca418->mUnk_40 = data_ov001_021ca418->mUnk_34;
     func_ov001_021a1d78();
     func_020ae6d4(data_ov001_021ca418->mUnk_44, data_ov001_021ca418->mUnk_48);
-    func_02124ed0(data_ov001_021ca418->mUnk_20, data_ov001_021ca418->mUnk_04, 0, &data_ov001_021ca418->mUnk_14);
-    func_02124ed0(data_ov001_021ca418->mUnk_20, data_ov001_021ca418->mUnk_0c, 0, &data_ov001_021ca418->mUnk_18);
+    func_02124ed0(data_ov001_021ca418->mUnk_20, data_ov001_021ca418->mUnk_04, NULL, &data_ov001_021ca418->mUnk_14);
+    func_02124ed0(data_ov001_021ca418->mUnk_20, data_ov001_021ca418->mUnk_0c, NULL, &data_ov001_021ca418->mUnk_18);
     func_ov001_021a1cb0();
     func_ov001_021a1bf8();
     func_ov001_021a1a04();
@@ -298,7 +298,7 @@ void func_ov001_021a1858(s32 a, void *b, void *c) {
 
 void func_ov001_021a1838(void) {
     func_02036ab0((void *) data_ov001_021ca418->mUnk_20);
-    data_ov001_021ca418 = 0;
+    data_ov001_021ca418 = NULL;
 }
 
 void func_ov001_021a1820(void) {
@@ -380,9 +380,9 @@ void func_ov001_021a165c(void) {
 void func_ov001_021a13d8(void) {
     u32 r5 = -1;
     Unk02175628Index idx = UNK_02175628_INDEX_8;
-    s32 b1;
+    BOOL b1;
     s32 a1;
-    s32 b2;
+    BOOL b2;
     s32 a2;
     u32 v;
     u32 w;
@@ -391,27 +391,27 @@ void func_ov001_021a13d8(void) {
     Unk021ca418 *o;
 
     func_ov001_021a1b08();
-    a1 = b1 = 0;
+    a1 = b1 = FALSE;
     v = data_02175628[idx].mUnk_4c;
     if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
         a1 = 1;
     }
     if (a1 == 0 && data_02175628[idx].mUnk_54 == 0 && v != 0) {
-        b1 = 1;
+        b1 = TRUE;
     }
-    if (b1 != 0) {
+    if (b1 != FALSE) {
         r5 = func_0201ea84(data_ov001_021ca418->mUnk_10, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
-        a2 = b2 = 0;
+        a2 = b2 = FALSE;
         w = data_02175628[idx].mUnk_4c;
         if (w == 0 && data_02175628[idx].mUnk_58 < 5) {
             a2 = 1;
         }
         if (a2 == 0 && data_02175628[idx].mUnk_54 == 0 && w != 0) {
-            b2 = 1;
+            b2 = TRUE;
         }
-        if (b2 == 0 || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
+        if (b2 == FALSE || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
             goto next;
         }
     }
@@ -575,9 +575,9 @@ int func_ov001_021a11c4(void) {
             break;
     }
     func_ov001_021a1c34();
-    func_02124c30(data_ov001_021ca418->mUnk_04, data_ov001_021ca418->mUnk_00, 0, data_ov001_021ca418->mUnk_44,
+    func_02124c30(data_ov001_021ca418->mUnk_04, data_ov001_021ca418->mUnk_00, NULL, data_ov001_021ca418->mUnk_44,
                   data_ov001_021ca418->mUnk_14);
-    func_02124c30(data_ov001_021ca418->mUnk_0c, data_ov001_021ca418->mUnk_08, 0, data_ov001_021ca418->mUnk_48,
+    func_02124c30(data_ov001_021ca418->mUnk_0c, data_ov001_021ca418->mUnk_08, NULL, data_ov001_021ca418->mUnk_48,
                   data_ov001_021ca418->mUnk_18);
     if (data_ov001_021ca418->mUnk_24 == 6 && data_ov001_021ca418->mUnk_2c >= 10) {
         return data_ov001_021ca418->mUnk_4c;

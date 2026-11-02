@@ -25,15 +25,15 @@ void func_0204ec28(u32 a, Unk0217aa00_24_50 *b) {
 }
 
 static inline u32 func_0204eb08_inline(void) {
-    if (data_0217aa00 == 0) {
+    if (data_0217aa00 == NULL) {
         return 0;
     }
     return data_0217aa00->mUnk_0000;
 }
 
-s32 func_0204ebb8(u8 a, void *b, u8 *c, u8 *d, u8 *e, u8 *f, u8 *g, u16 *h) {
+BOOL func_0204ebb8(u8 a, void *b, u8 *c, u8 *d, u8 *e, u8 *f, u8 *g, u16 *h) {
     if (func_0204ff14(a, b) == 0) {
-        return 0;
+        return FALSE;
     }
     *c = data_0217aa00->mUnk_1e48[a].mUnk_00;
     *d = data_0217aa00->mUnk_1e48[a].mUnk_01;
@@ -41,16 +41,16 @@ s32 func_0204ebb8(u8 a, void *b, u8 *c, u8 *d, u8 *e, u8 *f, u8 *g, u16 *h) {
     *f = data_0217aa00->mUnk_1e48[a].mUnk_03;
     *g = data_0217aa00->mUnk_1e48[a].mUnk_04;
     *h = data_0217aa00->mUnk_1e48[a].mUnk_06;
-    return 1;
+    return TRUE;
 }
 
 s32 func_0204eb08(void *a) {
-    s32 r;
+    BOOL r;
     u8 i;
     u8 m;
     u32 v;
 
-    r = 0;
+    r = FALSE;
     if (func_0204eb08_inline() == 1) {
         if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
             v = data_0217aa00->mUnk_1699;
@@ -71,7 +71,7 @@ s32 func_0204eb08(void *a) {
     do {
         if ((m & (1 << i)) != 0) {
             func_0214d1fc(&data_0217aa00->mUnk_045c[i], a, 0x14);
-            r = 1;
+            r = TRUE;
             break;
         }
         i = i + 1;

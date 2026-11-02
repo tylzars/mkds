@@ -31,7 +31,7 @@ Unk02007014 *func_02006df8(u32 a);
 s32 func_02006e74(Unk02007014 *a, u32 b, const void *c, u8 *d, u32 e, u16 f);
 int func_02006ef8(void);
 u32 func_02006f14(s32 a, s32 b);
-s32 func_02006f50(u32 a, s32 b, s32 *c, s32 *d);
+BOOL func_02006f50(u32 a, s32 b, s32 *c, s32 *d);
 u32 func_02006f98(s32 a);
 s32 func_02006fdc(s32 a);
 unsigned int func_02006ffc(void);

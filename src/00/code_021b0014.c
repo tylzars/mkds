@@ -41,7 +41,7 @@ u16 func_ov000_021b0188(const void *buffer, u32 length) {
     return func_ov000_021b01a0((u16) func_ov000_021b01b4(buffer, length, 0));
 }
 
-s32 func_ov000_021b0138(const void *buffer, u32 length, const Unk021b0138 *header, u32 sum) {
+BOOL func_ov000_021b0138(const void *buffer, u32 length, const Unk021b0138 *header, u32 sum) {
     sum = func_ov000_021b01b4(buffer, length, sum);
     sum = func_ov000_021b01b4(header->mUnk_0c, 8, sum);
     sum += length;
@@ -49,51 +49,51 @@ s32 func_ov000_021b0138(const void *buffer, u32 length, const Unk021b0138 *heade
         sum = (sum + 1) & 0xffff;
     }
     if (sum != 0xffff) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
-s32 func_ov000_021b00fc(u32 address) {
+BOOL func_ov000_021b00fc(u32 address) {
     return address == 0xffffffff || address == 0x7f000001 ||
            (address & data_ov000_021b6380) == (data_ov000_021b63b4 & data_ov000_021b6380);
 }
 
 u32 func_ov000_021b00e0(u32 address) {
-    if (func_ov000_021b00fc(address) == 0) {
+    if (func_ov000_021b00fc(address) == FALSE) {
         address = data_ov000_021b639c;
     }
     return address;
 }
 
 s32 func_ov000_021b00b0(u32 address) {
-    s32 result = 0;
+    BOOL result = FALSE;
 
-    if (func_ov000_021b00fc(address) != 0 && (address & ~data_ov000_021b6380) == ~data_ov000_021b6380) {
-        result = 1;
+    if (func_ov000_021b00fc(address) != FALSE && (address & ~data_ov000_021b6380) == ~data_ov000_021b6380) {
+        result = TRUE;
     }
     return result;
 }
 
-s32 func_ov000_021b0094(u32 address) {
+BOOL func_ov000_021b0094(u32 address) {
     if ((address & 0xf0000000) == 0xe0000000) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
-s32 func_ov000_021b003c(u32 address) {
+BOOL func_ov000_021b003c(u32 address) {
     return data_ov000_021b63b4 == 0 || address == data_ov000_021b63b4 || address == 0x7f000001 ||
-           func_ov000_021b00b0(address) != 0 || func_ov000_021b0094(address) != 0;
+           func_ov000_021b00b0(address) != 0 || func_ov000_021b0094(address) != FALSE;
 }
 
-s32 func_ov000_021b0014(const u16 *first, const u16 *second) {
+BOOL func_ov000_021b0014(const u16 *first, const u16 *second) {
     s32 i;
 
     for (i = 0; i < 3; i++) {
         if (*first++ != *second++) {
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }

@@ -64,14 +64,14 @@ void func_ov000_0218ab90(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
 }
 
 void func_ov000_0218ab18(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
-    s32 a;
-    if (strstr((u8 *) v1, data_ov000_021b2180) != 0) {
-        a = 1;
+    BOOL a;
+    if (strstr((u8 *) v1, data_ov000_021b2180) != NULL) {
+        a = TRUE;
     } else {
-        a = 0;
+        a = FALSE;
     }
     func_ov000_0218b148(e, v1);
-    if (a != 0) {
+    if (a != FALSE) {
         if ((e->mUnk_14 & 4) != 0) {
             e->mUnk_14 |= 0x41;
         } else {

@@ -22,9 +22,9 @@ void func_02117388(void) {
     Unk020b4934 *v4;
     Unk02021dc8 *v5;
     Unk020b4a44 *v6[2];
-    v4 = 0;
-    v5 = 0;
-    v6[0] = 0;
+    v4 = NULL;
+    v5 = NULL;
+    v6[0] = NULL;
     v1 = FindSceneFile(data_0216d534);
     LoadNcgrData(&v4, v1);
     v1 = FindSceneFile(data_0216d538);
@@ -46,9 +46,9 @@ void func_0211732c(void) {
     Unk020b4934 *v4;
     Unk02021dc8 *v5;
     Unk020b4a44 *v6[2];
-    v4 = 0;
-    v5 = 0;
-    v6[0] = 0;
+    v4 = NULL;
+    v5 = NULL;
+    v6[0] = NULL;
     v1 = FindSceneFile(data_0216d524);
     LoadNcgrData(&v4, v1);
     v1 = FindSceneFile(data_0216d528);

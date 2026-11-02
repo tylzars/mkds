@@ -8,7 +8,7 @@ u32 func_020364f8(Unk02036590 *a, u32 b) {
     u32 c;
     void *d;
     a->mUnk_10 = data_02174e70;
-    if (a->mUnk_10 != 0) {
+    if (a->mUnk_10 != NULL) {
         d = a->mUnk_10->mUnk_0c;
     } else {
         d = func_020365ac();
@@ -21,7 +21,7 @@ u32 func_020364f8(Unk02036590 *a, u32 b) {
     }
     data_02174e70 = a->mUnk_10;
     func_02036ab0(a->mUnk_0c);
-    a->mUnk_0c = 0;
+    a->mUnk_0c = NULL;
     return c;
 }
 

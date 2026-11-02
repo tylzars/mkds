@@ -27,13 +27,13 @@ void func_02046b40(void *b) {
         a->mUnk_0e = a->mUnk_10;
         a->mUnk_10 = 0;
         e = &a->mUnk_00[a->mUnk_0e];
-        if (e->mUnk_00 != 0) {
+        if (e->mUnk_00 != NULL) {
             e->mUnk_00(a->mUnk_08);
         }
     } else {
         e = &a->mUnk_00[a->mUnk_0e];
     }
-    if (e->mUnk_04 != 0) {
+    if (e->mUnk_04 != NULL) {
         e->mUnk_04(a->mUnk_08);
     }
     a->mUnk_04++;

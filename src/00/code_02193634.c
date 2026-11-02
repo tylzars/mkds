@@ -23,32 +23,32 @@
 #include "00/code_02196000.h"
 #include "00/unk_021b3000.h"
 
-s32 func_ov000_021937e8(Unk0218f960 *object, Unk021937c0Node **output, u32 key) {
+BOOL func_ov000_021937e8(Unk0218f960 *object, Unk021937c0Node **output, u32 key) {
     Unk021937c0Node *node = object->mUnk_00->mUnk_424;
-    while (node != 0) {
+    while (node != NULL) {
         if (node->mUnk_18 == key) {
-            if (output != 0) {
+            if (output != NULL) {
                 *output = node;
             }
-            return 1;
+            return TRUE;
         }
         node = node->mNext;
     }
-    if (output != 0) {
-        *output = 0;
+    if (output != NULL) {
+        *output = NULL;
     }
-    return 0;
+    return FALSE;
 }
 
-s32 func_ov000_021937c0(Unk0218f960 *object) {
+BOOL func_ov000_021937c0(Unk0218f960 *object) {
     Unk021937c0Node *node = object->mUnk_00->mUnk_424;
-    while (node != 0) {
+    while (node != NULL) {
         if (node->mUnk_08 != 0 && node->mUnk_00 != 3) {
-            return 1;
+            return TRUE;
         }
         node = node->mNext;
     }
-    return 0;
+    return FALSE;
 }
 
 s32 func_ov000_02193748(Unk0218f960 *c, Unk021937c0Node *d, const u8 *e) {
@@ -70,7 +70,7 @@ s32 func_ov000_02193748(Unk0218f960 *c, Unk021937c0Node *d, const u8 *e) {
             break;
         default:
             func_ov000_0219690c(c, data_ov000_021b3264, b);
-            func_0213442c(data_ov000_021b32ac, data_ov000_021b32b0, 0, 0x146);
+            func_0213442c(data_ov000_021b32ac, data_ov000_021b32b0, NULL, 0x146);
             break;
     }
     if (a != 0) {

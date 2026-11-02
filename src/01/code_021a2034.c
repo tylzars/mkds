@@ -17,9 +17,9 @@ void func_ov001_021a2300(Unk021a2300 *p) {
     Unk0217561c *d;
     Unk020f41c4_B *b;
 
-    if (p != 0) {
+    if (p != NULL) {
         i = 0;
-        while (i < p->mUnk_04 && (o = p->mUnk_00[i]) != 0) {
+        while (i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL) {
             d = data_0217561c;
             b = &d->mUnk_498;
             b->mUnk_00 = (s64) b->mUnk_08 * (s64) b->mUnk_00 + b->mUnk_10;
@@ -49,7 +49,7 @@ void func_ov001_021a2284(void *p0, Unk021a2048 *p1) {
 }
 
 void *func_ov001_021a226c(void) {
-    return (void *) func_0209bf48(func_ov001_021a2300, func_ov001_021a2284, 0);
+    return (void *) func_0209bf48(func_ov001_021a2300, func_ov001_021a2284, NULL);
 }
 
 void func_ov001_021a2218(Unk021a2048 *o, Unk02061808 *g, Vec3 *out) {
@@ -115,5 +115,5 @@ void func_ov001_021a2048(void *p0, Unk021a2048 *p1) {
 }
 
 void *func_ov001_021a2034(void) {
-    return (void *) func_0209bf48(0, func_ov001_021a2048, 0);
+    return (void *) func_0209bf48(NULL, func_ov001_021a2048, NULL);
 }

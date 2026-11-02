@@ -134,7 +134,7 @@ void func_ov000_0219e668(void) {
     u8 b;
     s32 n;
     q = data_ov000_021b5670;
-    if (q == 0) {
+    if (q == NULL) {
         return;
     }
     if (q->mUnk_00 == 0) {
@@ -183,7 +183,7 @@ void func_ov000_0219e668(void) {
         for (n = 1; n <= (p = data_ov000_021b566c)->mUnk_0d; n++) {
             if ((data_ov000_021b5670->mUnk_08 & (1 << p->mUnk_2b8[n])) == 0) {
                 p = data_ov000_021b566c;
-                if (func_ov000_0219fee4(func_ov000_021a0ae8(0x11, p->mUnk_f4[n], p->mUnk_24[n], p->mUnk_a4[n], 0, 0)) !=
+                if (func_ov000_0219fee4(func_ov000_021a0ae8(0x11, p->mUnk_f4[n], p->mUnk_24[n], p->mUnk_a4[n], NULL, 0)) !=
                     0) {
                     return;
                 }
@@ -213,7 +213,7 @@ void func_ov000_0219e668(void) {
         p->mUnk_198 = 0x13;
         for (n = 1; n <= data_ov000_021b566c->mUnk_0d; n++) {
             p = data_ov000_021b566c;
-            if (func_ov000_0219fee4(func_ov000_021a0ae8(0x11, p->mUnk_f4[n], p->mUnk_24[n], p->mUnk_a4[n], 0, 0)) !=
+            if (func_ov000_0219fee4(func_ov000_021a0ae8(0x11, p->mUnk_f4[n], p->mUnk_24[n], p->mUnk_a4[n], NULL, 0)) !=
                 0) {
                 return;
             }
@@ -227,7 +227,7 @@ void func_ov000_0219e668(void) {
 void func_ov000_0219e8b8(s32 a) {
     Unk021b5670 *q;
     q = data_ov000_021b5670;
-    if (q != 0 && q->mUnk_00 != 0) {
+    if (q != NULL && q->mUnk_00 != 0) {
         q->mUnk_08 = 0;
         data_ov000_021b5670->mUnk_0c = 0;
         data_ov000_021b5670->mUnk_02 = 0;

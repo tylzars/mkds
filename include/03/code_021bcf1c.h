@@ -18,6 +18,6 @@ typedef struct Unk021bd338_16 {
 
 s32 func_ov003_021bcf1c(void);
 s32 func_ov003_021bd338(void);
-s32 func_ov003_021bd4cc(u8 *a, const s8 *b, s32 c);
+BOOL func_ov003_021bd4cc(u8 *a, const s8 *b, s32 c);
 s32 func_ov003_021bd59c(u8 *p);
 s32 func_ov003_021bd768(u8 *a, void *b);

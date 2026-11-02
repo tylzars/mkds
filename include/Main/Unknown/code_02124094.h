@@ -112,7 +112,7 @@ typedef struct Unk0212463c_d {
     /* 0c */ u8 *mUnk_0c;
 } Unk0212463c_d;
 
-s32 func_02124ae4(s32 a, Unk02021dc8 *b, Unk0201ea30 *c);
+BOOL func_02124ae4(s32 a, Unk02021dc8 *b, Unk0201ea30 *c);
 void func_02124b1c(Unk02124b1c *a, s32 b, s32 c);
 void func_02124a98(u32 a, s32 b, void *c, void *d);
 u8 func_02124a68(u32 a, void *b, void *c);
@@ -131,7 +131,7 @@ void func_0212426c(s32 a, s32 b, void *c, void *d, void *e, void *f);
 void func_02124248(s32 a, s32 b, void *c, void *d, void *e, void *f, s8 g);
 void func_02124224(s32 a, u32 b, void *c, void *d, void *e, void *f, s8 g);
 void func_021241c0(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, Unk02124b1c *e);
-s32 func_0212418c(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d);
+BOOL func_0212418c(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d);
 void func_02124140(u32 a, u32 b, void *c, void *d, void *e);
 void func_02124100(s32 a, u8 b, void *c, void *d, void *e);
 u8 func_021240d4(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d);

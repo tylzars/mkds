@@ -28,7 +28,7 @@ void func_ov003_021c574c(void) {
         }
     } else {
         func_ov003_021cdc10(0x13);
-        data_ov003_021da1f4->mUnk_38 = func_ov003_021d3544(0, func_ov003_021c5994, 0, 0x78);
+        data_ov003_021da1f4->mUnk_38 = func_ov003_021d3544(0, func_ov003_021c5994, NULL, 0x78);
     }
 }
 
@@ -40,14 +40,14 @@ void func_ov003_021c57b4(void) {
         }
     } else {
         func_ov003_021cdc10(0x13);
-        data_ov003_021da1f4->mUnk_38 = func_ov003_021d3544(0, func_ov003_021c5a0c, 0, 0x78);
+        data_ov003_021da1f4->mUnk_38 = func_ov003_021d3544(0, func_ov003_021c5a0c, NULL, 0x78);
     }
 }
 
 void func_ov003_021c580c(int param_0) {
-    int a;
+    BOOL a;
     u8 v;
-    a = 1;
+    a = TRUE;
     v = data_ov003_021da1ec;
     switch (v) {
         case 0:
@@ -56,13 +56,13 @@ void func_ov003_021c580c(int param_0) {
                     data_ov003_021da1ec = 4;
                 } else {
                     func_ov003_021cdc10(0x13);
-                    data_ov003_021da1f4->mUnk_38 = func_ov003_021d3544(0, func_ov003_021c5a0c, 0, 0x78);
+                    data_ov003_021da1f4->mUnk_38 = func_ov003_021d3544(0, func_ov003_021c5a0c, NULL, 0x78);
                     return;
                 }
             } else if (data_ov003_021da1f4->mUnk_51 > 1) {
                 data_ov003_021da1ec = v + 1;
             } else {
-                a = 0;
+                a = FALSE;
             }
             break;
         case 1:
@@ -72,7 +72,7 @@ void func_ov003_021c580c(int param_0) {
             } else if (data_ov003_021da1f4->mUnk_51 > v + 1) {
                 data_ov003_021da1ec++;
             } else {
-                a = 0;
+                a = FALSE;
             }
             break;
         case 3:
@@ -85,7 +85,7 @@ void func_ov003_021c580c(int param_0) {
             break;
         case 4:
             if (param_0 == 1) {
-                a = 0;
+                a = FALSE;
             } else {
                 *(u16 *) &data_ov003_021da1f0 = 0;
                 data_ov003_021da1ec = 0;
@@ -94,7 +94,7 @@ void func_ov003_021c580c(int param_0) {
             }
             break;
     }
-    if (a == 0) {
+    if (a == FALSE) {
         if (data_ov003_021da1f4->mUnk_59 == 0) {
             func_ov003_021cdc10(9);
             data_ov003_021da1f4->mUnk_59 = 1;

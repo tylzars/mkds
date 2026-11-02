@@ -165,8 +165,8 @@ void func_02074e6c(Unk02061808 *p) {
     p->mUnk_018.y = p->mUnk_018.y - o->mUnk_2bc;
     p->mUnk_024.y = p->mUnk_024.y - o->mUnk_2bc;
     if (data_021759c0->mUnk_08 != 4 && data_021759c0->mUnk_08 != 2) {
-        if (func_01ffdee4(&p->mUnk_024, (u32 *) &p->mUnk_134, 0, data_usa_021656c0 >> 1, 2, -2, &w, 0, 0, 0, 0, 0, 0,
-                          0) != 0) {
+        if (func_01ffdee4(&p->mUnk_024, (u32 *) &p->mUnk_134, 0, data_usa_021656c0 >> 1, 2, -2, &w, NULL, NULL, NULL, NULL, NULL, NULL,
+                          NULL) != 0) {
             o = func_0207a974(p->mUnk_210);
             v = &o->mUnk_120;
             k = func_0214848c(v, &w);
@@ -196,11 +196,11 @@ static inline void func_02075424_inline(Unk02061808 *p) {
     Unk020748b8_218 *q;
 
     if (p->mUnk_218->mUnk_48 == -1) {
-        q = 0;
+        q = NULL;
     } else {
         q = gCourseMap->mUnk_7c + (u16) p->mUnk_218->mUnk_48;
     }
-    if (q == 0) {
+    if (q == NULL) {
         data_0217561c->mUnk_4d0 = 1;
         return;
     }
@@ -218,7 +218,7 @@ static inline void func_02075424_inline(Unk02061808 *p) {
 }
 
 void func_02075424(Unk02061808 *p) {
-    if (p->mUnk_218 == 0) {
+    if (p->mUnk_218 == NULL) {
         return;
     }
     func_02075900(p);
@@ -227,7 +227,7 @@ void func_02075424(Unk02061808 *p) {
         return;
     }
     func_02075424_inline(p);
-    if (p->mUnk_218 == 0) {
+    if (p->mUnk_218 == NULL) {
         return;
     }
     if (p != data_usa_0217ac98) {
@@ -247,7 +247,7 @@ Unk02012f58 *func_0207564c(void) {
 }
 
 Unk02012f58 *func_02075694(void) {
-    if (data_usa_0217ac84->mUnk_218 != 0) {
+    if (data_usa_0217ac84->mUnk_218 != NULL) {
         if (data_usa_0217ac84->mUnk_218->mUnk_3e == 4) {
             data_usa_0217ac98->mUnk_24c = 1;
             data_usa_0217ac84->mUnk_24c = 2;
@@ -283,7 +283,7 @@ void func_020757d8(void) {
     p = data_0217acbc;
     q = gCourseMap->mUnk_d4;
 
-    if (q == 0) {
+    if (q == NULL) {
         return;
     }
     p->mUnk_238 = 1;
@@ -363,7 +363,7 @@ void func_02075900(Unk02061808 *p) {
 }
 
 s32 func_02075a94(Unk02061808 *p) {
-    s32 r = 1;
+    BOOL r = TRUE;
     Unk020748b8_218 *q;
     Vec3 v;
     s32 i;
@@ -395,7 +395,7 @@ s32 func_02075a94(Unk02061808 *p) {
         }
     }
     if (i == -1) {
-        r = 0;
+        r = FALSE;
     } else {
         Unk020f41c4_B *b;
 

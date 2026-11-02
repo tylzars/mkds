@@ -17,10 +17,10 @@ void func_0209f514(Unk0209f514 *a) {
     Unk0209f1c8 *o;
     Unk020f41c4_B *r;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
         r = &data_0217561c->mUnk_498;
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         o->mUnk_a4 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 0x3c) >> 32) + 0x3c;
@@ -102,11 +102,11 @@ void func_0209f338(void *a, Unk0209f1c8 *b) {
 }
 
 void *func_0209f318(void) {
-    return (void *) func_0209bf1c(CreateChandelier, func_0209f5cc, 0);
+    return (void *) func_0209bf1c(CreateChandelier, func_0209f5cc, NULL);
 }
 
 void *func_0209f2f8(void) {
-    return (void *) func_0209bf48(func_0209f514, func_0209f338, 0);
+    return (void *) func_0209bf48(func_0209f514, func_0209f338, NULL);
 }
 
 void CreateRainStar(void *a) {
@@ -147,9 +147,9 @@ void func_0209f178(void *a, Unk0209f1c8 *b) {
 }
 
 void *func_0209f158(void) {
-    return (void *) func_0209bf1c(CreateRainStar, func_0209f1c8, 0);
+    return (void *) func_0209bf1c(CreateRainStar, func_0209f1c8, NULL);
 }
 
 void *func_0209f13c(void) {
-    return (void *) func_0209bf48(0, func_0209f178, 0);
+    return (void *) func_0209bf48(NULL, func_0209f178, NULL);
 }

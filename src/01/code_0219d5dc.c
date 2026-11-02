@@ -46,7 +46,7 @@ void func_ov001_0219df70(void *a) {
 }
 
 void func_ov001_0219df64(void) {
-    data_ov001_021a9bfc = 0;
+    data_ov001_021a9bfc = NULL;
 }
 
 void func_ov001_0219de58(void) {
@@ -70,14 +70,14 @@ void func_ov001_0219de58(void) {
     func_02016468(0x1e, 0, data_ov001_021a9bfc->mUnk_40->mUnk_0c, data_ov001_021a9bfc->mUnk_40->mUnk_08);
 }
 
-s32 func_ov001_0219de38(void) {
+BOOL func_ov001_0219de38(void) {
     if (data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
-        return 0;
+        return FALSE;
     }
     if (data_0217aa08->mUnk_00->mUnk_31_3 != 0) {
-        return 1;
+        return TRUE;
     }
-    return 1;
+    return TRUE;
 }
 
 void func_ov001_0219de18(void) {
@@ -124,19 +124,19 @@ void func_ov001_0219dd74(void) {
 void func_ov001_0219dadc(void) {
     Unk02175628Index index = UNK_02175628_INDEX_8;
     s32 result = -1;
-    s32 cond2 = 0;
-    s32 cond1 = 0;
+    BOOL cond2 = FALSE;
+    BOOL cond1 = FALSE;
     u16 value;
     u16 flags;
 
     value = data_02175628[index].mUnk_4c;
     if (value == 0 && data_02175628[index].mUnk_58 < 5) {
-        cond1 = 1;
+        cond1 = TRUE;
     }
-    if (cond1 == 0 && data_02175628[index].mUnk_54 == 0 && value != 0) {
-        cond2 = 1;
+    if (cond1 == FALSE && data_02175628[index].mUnk_54 == 0 && value != 0) {
+        cond2 = TRUE;
     }
-    if (cond2 != 0) {
+    if (cond2 != FALSE) {
         result =
             func_0201ea84(data_ov001_021a9bfc->mUnk_48, data_02175628[index].mUnk_48, data_02175628[index].mUnk_4a);
     }
@@ -144,16 +144,16 @@ void func_ov001_0219dadc(void) {
     if (flags != 0) {
         goto next;
     }
-    cond2 = 0;
-    cond1 = 0;
+    cond2 = FALSE;
+    cond1 = FALSE;
     value = data_02175628[index].mUnk_4c;
     if (value == 0 && data_02175628[index].mUnk_58 < 5) {
-        cond1 = 1;
+        cond1 = TRUE;
     }
-    if (cond1 == 0 && data_02175628[index].mUnk_54 == 0 && value != 0) {
-        cond2 = 1;
+    if (cond1 == FALSE && data_02175628[index].mUnk_54 == 0 && value != 0) {
+        cond2 = TRUE;
     }
-    if (cond2 != 0 && func_02128210(data_02175628[index].mUnk_48, data_02175628[index].mUnk_4a) != 0) {
+    if (cond2 != FALSE && func_02128210(data_02175628[index].mUnk_48, data_02175628[index].mUnk_4a) != 0) {
     next:
         data_ov001_021a9bfc->mUnk_04 = 5;
         data_ov001_021a9bfc->mUnk_20 = 2;

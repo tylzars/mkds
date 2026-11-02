@@ -4,14 +4,14 @@
 
 Unk0210bf24 *func_021090c4(Unk0210bfbc *p, u32 a, u32 b, s32 c) {
     if (!(data_0217c780 & 1)) {
-        return 0;
+        return NULL;
     }
     return ((Unk0210bf24 * (*) (Unk0210bfbc *, u32, u32, u32, s32)) func_0210c86c)(p, 0, a, b, c);
 }
 
 Unk0210bf24 *func_02109078(Unk0210bfbc *p, u32 a, u32 b, s32 c) {
     if (!(data_0217c780 & 1)) {
-        return 0;
+        return NULL;
     }
     return ((Unk0210bf24 * (*) (Unk0210bfbc *, u32, u32, u32, s32)) func_0210c610)(p, 0, a, b, c);
 }

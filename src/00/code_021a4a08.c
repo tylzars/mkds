@@ -18,7 +18,7 @@ s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const u8 *d, const u8 *e,
     s32 t;
     Unk021a4a08 *o;
 
-    if (a == 0) {
+    if (a == NULL) {
         o = &data_ov000_021b4278;
     } else {
         *a = func_ov000_021a3690(0x110);
@@ -48,7 +48,7 @@ s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const u8 *d, const u8 *e,
     o->mUnk_0c8 = g;
     o->mUnk_104 = 0;
     o->mUnk_108 = 0;
-    o->mUnk_0a8 = 0;
+    o->mUnk_0a8 = NULL;
     o->mUnk_0b4 = 0;
     do {
         o->mUnk_084[r] = (s32) rand() % 0xff;
@@ -68,7 +68,7 @@ s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const u8 *d, const u8 *e,
         if (s == 0) {
             sprintf(p, data_ov000_021b4464, d);
         }
-        t = func_ov000_021a4654(s != 0 ? (u8 *) data_ov000_021b5e10 : p, 0x6cfc, &o->mUnk_0cc, 0);
+        t = func_ov000_021a4654(s != 0 ? (u8 *) data_ov000_021b5e10 : p, 0x6cfc, &o->mUnk_0cc, NULL);
     } else {
         t = 1;
     }

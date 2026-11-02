@@ -11,7 +11,7 @@ s32 func_ov000_0219488c(Unk0218f960 *a, const u8 *b, const u8 *c, void **d) {
     e.mUnk_0c = 0;
     func_ov000_02194840(a, func_ov000_021948bc, &e);
     if (e.mUnk_0c == 0) {
-        *d = 0;
+        *d = NULL;
     }
     return 0;
 }

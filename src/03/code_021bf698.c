@@ -65,7 +65,7 @@ void func_ov003_021bf698(void) {
     v2 = 0;
     do {
         p = *(Unk021d1770 **) (*(s32 *) data_ov003_021da150 + v2);
-        if (0 != p) {
+        if (NULL != p) {
             func_ov003_021d197c(p);
             *(u32 *) (*(s32 *) data_ov003_021da150 + v2) = 0;
         }

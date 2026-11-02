@@ -10,32 +10,32 @@
 #pragma thumb on
 
 static inline u32 func_0205905c_inline(void) {
-    if (data_0217aa00 == 0) {
+    if (data_0217aa00 == NULL) {
         return 0;
     }
     return data_0217aa00->mUnk_0000;
 }
 
 static inline s32 func_0205905c_inline2(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (func_0205905c_inline() != 0 && data_0217aa00->mUnk_0004 != 13) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 static inline s32 func_0205905c_inline3(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (func_0205905c_inline2() && !(data_0217aa00->mUnk_0454 & 0x80)) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 static inline s32 func_0205905c_inline4(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (func_0205905c_inline3() && data_0217aa00->mUnk_0008 != 9) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
@@ -51,7 +51,7 @@ u32 func_0205905c(void) {
         case 1:
             return func_02059700();
         case 2:
-            return func_020595e8(2, 0, 0);
+            return func_020595e8(2, NULL, NULL);
         default:
             return 3;
     }
@@ -68,7 +68,7 @@ u32 func_0205910c(void) {
         case 1:
             return func_02059700();
         case 2:
-            return func_020595e8(3, 0, 0);
+            return func_020595e8(3, NULL, NULL);
         default:
             return 3;
     }
@@ -83,9 +83,9 @@ s32 func_020591c4(void) {
 }
 
 s32 func_020591cc(void) {
-    s32 r;
+    BOOL r;
 
-    r = 0;
+    r = FALSE;
     if (!func_0205905c_inline2()) {
         return 1;
     }
@@ -96,7 +96,7 @@ s32 func_020591cc(void) {
         }
     }
     if (data_0217aa00->mUnk_1608.mUnk_0e == 0xf) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }

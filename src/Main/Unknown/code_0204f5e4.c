@@ -15,8 +15,8 @@ void func_0204f5e4(void) {
     v3 = v2->mUnk_000;
     do {
         v3->mUnk_34 = 0;
-        v3->mUnk_74 = 0;
-        v3->mUnk_78 = 0;
+        v3->mUnk_74 = NULL;
+        v3->mUnk_78 = NULL;
         v3->mUnk_84 = v3->mUnk_84 & v5;
         v3->mUnk_84 = v3->mUnk_84 & v4;
         v3 = v3 + 1;

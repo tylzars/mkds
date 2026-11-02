@@ -37,12 +37,12 @@ void func_ov000_0219cb64(u32 a, u32 b, s32 c, u32 d, s32 e, u32 f, u32 g) {
     }
     if ((t & 0x80000000) == 0) {
         if (e != 0) {
-            if (data_ov000_021b5664->mUnk_4c != 0) {
+            if (data_ov000_021b5664->mUnk_4c != NULL) {
                 data_ov000_021b5664->mUnk_4c(1, (u32) (c - 2) <= 1 ? 1 : 0, g);
             }
         } else {
             func_ov000_0219d734(6, -72220);
-            if (data_ov000_021b5664->mUnk_4c != 0) {
+            if (data_ov000_021b5664->mUnk_4c != NULL) {
                 data_ov000_021b5664->mUnk_4c(0, 0, g);
             }
         }

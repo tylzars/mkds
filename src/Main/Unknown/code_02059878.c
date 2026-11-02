@@ -19,7 +19,7 @@ s32 func_02059b78(Unk020487fc *a) {
 #pragma thumb on
 
 static inline u32 func_02059878_inline(void) {
-    if (data_0217aa00 == 0) {
+    if (data_0217aa00 == NULL) {
         return 0;
     }
     return data_0217aa00->mUnk_0000;
@@ -103,7 +103,7 @@ void func_02059954(u8 *a) {
     if (f != 0) {
         m = (u8) (1U << a[0]);
         if (func_02059878_inline() == 1) {
-            if (func_020586ac(0xff, 0, 0, 0, m) != 0) {
+            if (func_020586ac(0xff, NULL, 0, 0, m) != 0) {
                 data_0217aa00->mUnk_162a |= 1 << a[0];
                 return;
             }
@@ -111,7 +111,7 @@ void func_02059954(u8 *a) {
             data_0217aa00->mUnk_162a |= 1 << a[0];
             if (data_0217aa00->mUnk_043a == (data_0217aa00->mUnk_043a & data_0217aa00->mUnk_162a)) {
                 v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
-                if (func_020586ac(0xfd, 0, 0, v, 1) != 0) {
+                if (func_020586ac(0xfd, NULL, 0, v, 1) != 0) {
                     func_02059878_inline2(10);
                 }
             }
@@ -120,7 +120,7 @@ void func_02059954(u8 *a) {
 }
 
 void func_02059920(Unk02059920 *a) {
-    if (a->mUnk_02 == 0 && a->mUnk_0c != 0 && a->mUnk_10 >= 4) {
+    if (a->mUnk_02 == 0 && a->mUnk_0c != NULL && a->mUnk_10 >= 4) {
         func_0200ee58(a->mUnk_0c, a->mUnk_10);
         switch (a->mUnk_04) {
             case 7:
@@ -137,7 +137,7 @@ void func_02059878(void) {
     Unk0217aa00 *p;
     u32 v;
 
-    func_02046be8(&data_0217aa00->mUnk_1608, data_021652b0, 0x17, 0);
+    func_02046be8(&data_0217aa00->mUnk_1608, data_021652b0, 0x17, NULL);
     data_0217aa00->mUnk_164e = 0;
     data_0217aa00->mUnk_1608.mUnk_14 = 0;
     data_0217aa00->mUnk_1608.mUnk_1a = 0;
@@ -146,7 +146,7 @@ void func_02059878(void) {
     data_0217aa00->mUnk_164c = 0;
     p = data_0217aa00;
     v = 0;
-    if (p != 0) {
+    if (p != NULL) {
         v = p->mUnk_0000;
     }
     if (v == 1) {

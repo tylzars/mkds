@@ -48,10 +48,10 @@ void func_021188dc(void) {
 
 void func_02118814(void) {
     s32 i;
-    s32 z;
+    BOOL z;
 
     if (*(vu16 *) 0x027ffc40 != 2) {
-        z = 0;
+        z = FALSE;
         for (i = 0; i < 8; i++) {
             u16 *q = data_0215c9bc[i];
             data_0217d360->mUnk_1c[q[1]].mUnk_00 = 0;

@@ -14,7 +14,7 @@ void func_020e6f58(Unk020e6fd4 *p, Unk020e71a0 *q) {
         t = q->mUnk_98;
         p->mUnk_18 = t->mUnk_20;
     }
-    if (p->mUnk_1c == 0) {
+    if (p->mUnk_1c == NULL) {
         t = q->mUnk_98;
         p->mUnk_1c = t->mUnk_04;
     }

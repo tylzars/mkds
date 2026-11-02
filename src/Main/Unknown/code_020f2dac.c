@@ -52,7 +52,7 @@ static inline u32 func_020f3150_inline(Unk020f41c4_B *x, u32 n) {
 void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     Vec3 v;
     s32 n;
-    s32 m;
+    BOOL m;
     Vec3 *u;
     s32 dx;
     s32 dy;
@@ -129,7 +129,7 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
 }
 
 void func_020f30ec(Unk020f2df0 *a, s32 b, Vec3 *c) {
-    if (c != 0) {
+    if (c != NULL) {
         a->mUnk_000.mUnk_5c = *c;
     }
     if (a->mUnk_000.mUnk_68.z < 0xccd) {
@@ -157,7 +157,7 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
     p->y = (s32) (((s64) p->y * c) >> 12);
     p->z = (s32) (((s64) p->z * c) >> 12);
     if (func_01ffdee4(q, (u32 *) &a->mUnk_000.mUnk_0e4, 0, a->mUnk_000.mUnk_dc, 0x24, a->mUnk_000.mUnk_da,
-                      &t, &u, (s32 *) &v, &a->mUnk_000.mUnk_fc, 0, 0, 0,
+                      &t, &u, (s32 *) &v, &a->mUnk_000.mUnk_fc, NULL, NULL, NULL,
                       e) != 0) {
         func_02148504(&t, q, q);
         if (a->mUnk_000.mUnk_fc & 0x1e34ef) {

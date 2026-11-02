@@ -326,7 +326,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
                     p->mUnk_a8 = 0x1000;
                 }
             }
-            if (p->mUnk_e4 == 0) {
+            if (p->mUnk_e4 == NULL) {
                 return;
             }
             func_0208b5b0(p->mUnk_e4, &p->mUnk_00.mUnk_04);
@@ -480,7 +480,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
                 c.x = p->mUnk_00.mUnk_04.x;
                 c.y = p->mUnk_00.mUnk_58.x + (p->mUnk_00.mUnk_04.y - 0x14000);
                 c.z = p->mUnk_00.mUnk_04.z;
-                if (func_01ffdee4(&c, 0, 0, p->mUnk_00.mUnk_58.x, 8, -2, &b, &d, &e.x, &f, 0, 0, 0, 0)) {
+                if (func_01ffdee4(&c, NULL, 0, p->mUnk_00.mUnk_58.x, 8, -2, &b, &d, &e.x, &f, NULL, NULL, NULL, NULL)) {
                     func_02148504(&p->mUnk_00.mUnk_04, &b, &p->mUnk_00.mUnk_04);
                     if (f & 0x214300) {
                         t = p->mUnk_00.mUnk_10.y;

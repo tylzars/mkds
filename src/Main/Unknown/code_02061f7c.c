@@ -437,21 +437,21 @@ void func_02062078(void) {
 
 void func_02062004(void) {
     Unk0217d384 *p;
-    s32 f;
+    BOOL f;
 
     func_020d2d94();
     func_0207a990();
     func_020848fc();
     func_0203d568();
-    f = 0;
+    f = FALSE;
     p = data_0217d384;
-    if (p != 0 && p->mUnk_1f30 != 0) {
-        f = 1;
+    if (p != NULL && p->mUnk_1f30 != 0) {
+        f = TRUE;
     }
-    if (f != 0) {
+    if (f != FALSE) {
         p->mUnk_1f55 = data_0217aa14->mUnk_749;
     }
-    data_0217aa14 = 0;
+    data_0217aa14 = NULL;
 }
 
 void func_02062000(void) {}

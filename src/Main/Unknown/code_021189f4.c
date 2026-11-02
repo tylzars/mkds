@@ -42,18 +42,18 @@
 
 #pragma thumb on
 static inline s32 func_02119340_inline(Unk02175628Index i) {
-    s32 g;
-    s32 f;
+    BOOL g;
+    BOOL f;
     u16 v;
 
-    g = 0;
-    f = 0;
+    g = FALSE;
+    f = FALSE;
     v = data_02175674[i].mUnk_00;
     if (v == 0 && data_02175680[i].mUnk_00 < 5) {
-        f = 1;
+        f = TRUE;
     }
-    if (f == 0 && data_0217567c[i].mUnk_00 == 0 && v != 0) {
-        g = 1;
+    if (f == FALSE && data_0217567c[i].mUnk_00 == 0 && v != 0) {
+        g = TRUE;
     }
     return g;
 }
@@ -235,7 +235,7 @@ void func_0211913c(void) {
 }
 
 void func_02118f98(void) {
-    s32 a;
+    BOOL a;
     s16 v;
     s32 w;
     s32 i;
@@ -247,19 +247,19 @@ void func_02118f98(void) {
     if (gSelectCup->mUnk_40 == 0) {
         if (gSelectCup->mUnk_6c == 1) {
             if (func_0211e130() != 0) {
-                a = 1;
+                a = TRUE;
             } else {
-                a = 0;
+                a = FALSE;
             }
         } else {
-            a = 1;
+            a = TRUE;
         }
     } else {
-        a = 1;
+        a = TRUE;
     }
     func_020ae4c0(1, 0, 0x100, gSelectCup->mUnk_3c, 10);
     v = func_020ae4c0(1, 0, -0xc0, gSelectCup->mUnk_3c, 10);
-    if (a != 0) {
+    if (a != FALSE) {
         w = gSelectCup->mUnk_04->mUnk_06;
         gSelectCup->mUnk_44 = v;
         gSelectCup->mUnk_1c[0].mUnk_06 = v;
@@ -358,15 +358,15 @@ void func_02118e30(void) {
 }
 
 void func_02118d44(void) {
-    Unk020b4934 *a = 0;
-    Unk02021dc8 *b = 0;
-    Unk020b4a44 *c = 0;
-    Unk020b4934 *d = 0;
-    Unk02021dc8 *e = 0;
-    Unk020b4a44 *f = 0;
-    Unk020b4934 *g = 0;
-    Unk020b47d8 *h = 0;
-    Unk020b4a44 *i = 0;
+    Unk020b4934 *a = NULL;
+    Unk02021dc8 *b = NULL;
+    Unk020b4a44 *c = NULL;
+    Unk020b4934 *d = NULL;
+    Unk02021dc8 *e = NULL;
+    Unk020b4a44 *f = NULL;
+    Unk020b4934 *g = NULL;
+    Unk020b47d8 *h = NULL;
+    Unk020b4a44 *i = NULL;
 
     if (*(vu16 *) 0x027ffc40 != 2) {
         LoadNcgrData(&g, FindSceneFile(data_0216d690));
@@ -385,13 +385,13 @@ void func_02118d44(void) {
 }
 
 void func_02118b48(void) {
-    Unk020b4934 *a = 0;
-    Unk020b4a44 *b = 0;
-    Unk020b4934 *c = 0;
-    Unk020b4a44 *d = 0;
-    Unk020b4934 *e = 0;
-    Unk020b47d8 *f = 0;
-    Unk020b4a44 *g = 0;
+    Unk020b4934 *a = NULL;
+    Unk020b4a44 *b = NULL;
+    Unk020b4934 *c = NULL;
+    Unk020b4a44 *d = NULL;
+    Unk020b4934 *e = NULL;
+    Unk020b47d8 *f = NULL;
+    Unk020b4a44 *g = NULL;
     u16 *p;
 
     if (*(vu16 *) 0x027ffc40 == 2) {

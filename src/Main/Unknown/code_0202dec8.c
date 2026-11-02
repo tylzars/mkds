@@ -24,7 +24,7 @@ void func_0202dfd4(void *a) {
     v.mUnk_0c = 1;
     v.mUnk_10 = 0;
     v.mUnk_14 = 0;
-    v.mUnk_18 = 0;
+    v.mUnk_18 = NULL;
     v.mUnk_1c = 1;
     v.mUnk_20 = 1;
     v.mUnk_24 = 0;

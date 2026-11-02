@@ -20,7 +20,7 @@ u8 *func_ov000_021ad754(u8 *a, u8 b, u32 *c) {
     a[2] = 6;
     data_ov000_021b63e0[0] = (s64) data_ov000_021b63e0[1] * (s64) data_ov000_021b63e0[0] + data_ov000_021b63e0[2];
     d = data_ov000_021b63e0[0] >> 32;
-    if (c != 0) {
+    if (c != NULL) {
         *c = d;
     }
     *(u16 *) (a + 4) = (u16) (d >> 16) >> 8 | (u16) (d >> 16) << 8;
@@ -51,7 +51,7 @@ void func_ov000_021ad898(void) {
     u32 a;
     u32 b;
     u32 c;
-    s32 d;
+    BOOL d;
     s32 e;
     s32 i;
     Unk0200db5c *f;
@@ -67,7 +67,7 @@ void func_ov000_021ad898(void) {
     data_ov000_021b6494.mUnk_4c = data_ov000_021b66dc;
     func_ov000_021ae304(&data_ov000_021b6494);
     b = 0;
-    d = 1;
+    d = TRUE;
     a = 1;
     data_ov000_021b637c = 1;
     while (1) {
@@ -87,9 +87,9 @@ void func_ov000_021ad898(void) {
                 } else {
                     switch (b) {
                         case 0:
-                            if (d != 0) {
+                            if (d != FALSE) {
                                 data_ov000_021b637c = 2;
-                                d = 0;
+                                d = FALSE;
                             }
                             if (func_ov000_021ad36c() == 0 || func_ov000_021ad2b8(&a, 0) == 0) {
                                 func_ov000_021adb00();
@@ -131,10 +131,10 @@ void func_ov000_021ad898(void) {
             h++;
         }
         f = data_0216ff5c.mUnk_08;
-        if (f != 0) {
+        if (f != NULL) {
             do {
                 g = *(Unk021a998c **) f->mUnk_a4;
-                if (g != 0 && g->mUnk_00 != 0) {
+                if (g != NULL && g->mUnk_00 != NULL) {
                     if (g->mUnk_08 == 3 && (s32) (c - g->mUnk_10) > 0x27) {
                         g->mUnk_08 = 1;
                         g->mUnk_18 = g->mUnk_1a;
@@ -146,7 +146,7 @@ void func_ov000_021ad898(void) {
                     }
                 }
                 f = f->mUnk_68;
-            } while (f != 0);
+            } while (f != NULL);
         }
         i = 0;
         j = data_ov000_021b69dc;
@@ -158,7 +158,7 @@ void func_ov000_021ad898(void) {
             j++;
         }
         func_ov000_021a91cc(c);
-        if (data_ov000_021b63a8 != 0) {
+        if (data_ov000_021b63a8 != NULL) {
             data_ov000_021b63a8();
         }
     }

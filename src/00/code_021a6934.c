@@ -27,13 +27,13 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
     s32 c;
 
     a = func_0200fca0();
-    if (func_ov000_021a5b30() == 0) {
+    if (func_ov000_021a5b30() == NULL) {
         func_0200fcb4(a);
         return -1;
     }
     func_0200ed34(&data_ov000_021b5f54.mUnk_0c);
     b = func_ov000_021a5b30();
-    if (b == 0) {
+    if (b == NULL) {
         func_0200ecc4(&data_ov000_021b5f54.mUnk_0c);
         func_0200fcb4(a);
         return -1;

@@ -256,30 +256,30 @@ void func_021282c8(void) {
 }
 
 s32 func_02128294(void) {
-    s32 r;
-    s32 t;
+    BOOL r;
+    BOOL t;
     Unk0217d3f8 *p;
-    r = 0;
-    t = 0;
+    r = FALSE;
+    t = FALSE;
     p = data_0217d3f8;
     if (p->mUnk_04 == 2 && p->mUnk_818 == 0) {
-        t = 1;
+        t = TRUE;
     }
-    if (t != 0) {
+    if (t != FALSE) {
         if (p->mUnk_814 == 0) {
-            r = 1;
+            r = TRUE;
         }
     }
     return r;
 }
 
 s32 func_02128274(void) {
-    s32 r;
+    BOOL r;
     Unk0217d3f8 *p;
-    r = 0;
+    r = FALSE;
     p = data_0217d3f8;
     if (p->mUnk_04 == 0 && p->mUnk_810 == 0) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
@@ -310,11 +310,11 @@ int func_02128244(int a) {
 #pragma thumb off
 
 #pragma thumb on
-s32 func_02128210(s32 a, s32 b) {
+BOOL func_02128210(s32 a, s32 b) {
     if (func_02128294() != 0 && a >= 0 && a <= 0x28 && b >= 0x98 && b <= 0xc0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 #pragma thumb off
 

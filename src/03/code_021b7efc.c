@@ -20,11 +20,11 @@ s32 func_ov003_021b7f48(u8 *a, s32 b, const s8 *c, s32 d) {
     u8 *f;
     s32 i;
     e = func_ov003_021ba178(b / 2);
-    if (e == 0) {
+    if (e == NULL) {
         return -1;
     }
     f = func_ov003_021ba178(b);
-    if (f == 0) {
+    if (f == NULL) {
         func_ov003_021ba164(e);
         return -1;
     }

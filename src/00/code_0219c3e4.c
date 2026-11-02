@@ -58,7 +58,7 @@ void func_ov000_0219c824(Unk0218f960 *a, Unk0219c400 *b, u32 c) {
     data_ov000_021b565c->mUnk_34 = 0;
     if (b->mUnk_00 == 0) {
         if (data_ov000_021b565c->mUnk_04 == 2) {
-            if (func_ov000_0219c8dc(func_ov000_0219d558(1, data_ov000_021b4064, 0)) == 0) {
+            if (func_ov000_0219c8dc(func_ov000_0219d558(1, data_ov000_021b4064, NULL)) == 0) {
                 if (data_ov000_021b565c->mUnk_20->mUnk_1c == b->mUnk_04) {
                     if (func_ov000_0219ba20() == 0 && func_ov000_021a2768(b->mUnk_04) == 0) {
                         data_ov000_021b565c->mUnk_04 = 5;
@@ -142,7 +142,7 @@ void func_ov000_0219c524(void) {
         strcpy(data_ov000_021b565c->mUnk_14c, x.mUnk_177);
         func_ov000_02186430();
         func_ov000_021a3704(0, (u32) data_ov000_021b565c->mUnk_28, 0);
-        data_ov000_021b565c->mUnk_28 = 0;
+        data_ov000_021b565c->mUnk_28 = NULL;
         if (func_021526bc(data_ov000_021b565c->mUnk_20) != 0) {
             data_ov000_021b5660(data_ov000_021b565c->mUnk_4c, data_ov000_021b565c->mUnk_14c, data_ov000_021b5658);
         } else {
@@ -153,7 +153,7 @@ void func_ov000_0219c524(void) {
             func_ov000_0218635c(&y.mUnk_000);
             func_ov000_02186430();
             func_ov000_021a3704(0, (u32) data_ov000_021b565c->mUnk_28, 0);
-            data_ov000_021b565c->mUnk_28 = 0;
+            data_ov000_021b565c->mUnk_28 = NULL;
             func_ov000_0219c990(2, y.mUnk_000);
         } else {
             func_ov000_02186430();
@@ -186,7 +186,7 @@ void func_ov000_0219c400(Unk0218f960 *a, Unk0219c400 *b, u32 f) {
             }
         } else {
             func_ov000_0218f130(a);
-            func_ov000_0219c67c(func_ov000_0219c80c, 0);
+            func_ov000_0219c67c(func_ov000_0219c80c, NULL);
             data_ov000_021b565c->mUnk_04 = 1;
         }
     } else if (p->mUnk_04 == 4) {
@@ -205,7 +205,7 @@ void func_ov000_0219c400(Unk0218f960 *a, Unk0219c400 *b, u32 f) {
 }
 
 u32 func_ov000_0219c3e4(void) {
-    if ((data_ov000_021b565c != 0) && (data_ov000_021b565c->mUnk_04 == 5)) {
+    if ((data_ov000_021b565c != NULL) && (data_ov000_021b565c->mUnk_04 == 5)) {
         return 1;
     }
     return 0;

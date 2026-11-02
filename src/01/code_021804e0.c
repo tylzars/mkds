@@ -71,7 +71,7 @@ void func_ov001_02180800(void) {
         func_020ca9e4();
     } else if ((u32) (data_ov001_021a99e4->mUnk_0004 - 1) <= 2) {
         u32 keys;
-        int moved;
+        BOOL moved;
         int idx;
         int col;
         int row;
@@ -87,7 +87,7 @@ void func_ov001_02180800(void) {
                            0x25c7, 0x25c6, 0x25a1, 0x25a0, 0x25b3, 0x25b2, 0x25bd, 0x25bc, 0x203b, 0x3012, 0x2192,
                            0x2190, 0x2191, 0x2193, 0x266f, 0x266d, 0x266a, 0x0};
         keys = func_ov001_021805ec();
-        moved = 0;
+        moved = FALSE;
         if (data_ov001_021a99e4->mUnk_0004 == 1) {
             idx = 0;
         } else if (data_ov001_021a99e4->mUnk_0004 == 2) {
@@ -98,13 +98,13 @@ void func_ov001_02180800(void) {
         if (func_ov001_021805bc(keys, 0x20) != 0) {
             data_ov001_021a99e8 = (data_ov001_021a99e8 + 8) % 9;
             func_ov001_02180af8(data_ov001_021a99e4->mUnk_0018[idx], 0);
-            moved = 1;
+            moved = TRUE;
         } else if (func_ov001_021805bc(keys, 0x10) != 0) {
             data_ov001_021a99e8 = (data_ov001_021a99e8 + 1) % 9;
             func_ov001_02180af8(data_ov001_021a99e4->mUnk_0018[idx], 0);
-            moved = 1;
+            moved = TRUE;
         }
-        if (moved != 0) {
+        if (moved != FALSE) {
             n = 0;
             for (row = 0; row < 6; row++) {
                 for (col = 0; col < 16; col++) {
@@ -216,7 +216,7 @@ void func_ov001_0218052c(Unk0218052c *p0) {
 
     func_ov001_021805ec();
     func_020ae718();
-    if (p0 != 0) {
+    if (p0 != NULL) {
         v = func_ov001_021805ec();
         if (func_ov001_021805bc(v, 1) != 0) {
             p0->mUnk_04 = 0;

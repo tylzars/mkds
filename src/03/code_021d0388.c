@@ -5,16 +5,16 @@
 #include "code_021445e0.h"
 #include "code_02142eac.h"
 
-s32 func_ov003_021d0388(void) {
+BOOL func_ov003_021d0388(void) {
     s32 r;
 
     func_ov003_021d07b0(6);
     r = func_021453c0(&data_ov003_021da2a8->mUnk_1e00, 0xd);
     if (r != 2) {
         func_ov003_021d079c(r);
-        return 0;
+        return FALSE;
     }
-    return 1;
+    return TRUE;
 }
 
 void func_ov003_021d03c0(Unk021425e8 *v1) {
@@ -29,10 +29,10 @@ void func_ov003_021d03c0(Unk021425e8 *v1) {
         case 0xa:
             if (data_ov003_021da2a8->mUnk_44 == 2) {
                 if (data_ov003_021da2a8->mUnk_40 == 4) {
-                    if (func_ov003_021d0388() != 0) {
+                    if (func_ov003_021d0388() != FALSE) {
                         return;
                     }
-                    if (data_ov003_021da2a4 != 0) {
+                    if (data_ov003_021da2a4 != NULL) {
                         data_ov003_021da2a4(0x08000000, data_ov003_021d7b40);
                     }
                     func_ov003_021d07b0(9);
@@ -58,27 +58,27 @@ void func_ov003_021d03c0(Unk021425e8 *v1) {
         case 0xc:
         case 0xd:
         default:
-            if (data_ov003_021da2a4 != 0) {
+            if (data_ov003_021da2a4 != NULL) {
                 data_ov003_021da2a4(0x08000000, data_ov003_021d7af8, v1->mUnk_04);
             }
             break;
     }
 }
 
-s32 func_ov003_021d04a8(void) {
+BOOL func_ov003_021d04a8(void) {
     s32 r;
 
     if ((u32) (data_ov003_021da2a8->mUnk_40 - 4) <= 2) {
-        return 1;
+        return TRUE;
     }
     func_ov003_021d07b0(4);
     r = func_02144230(func_ov003_021d03c0, (u32) data_ov003_021da2a8->mUnk_1060, (u16) data_ov003_021da2a8->mUnk_12a4,
                       (u32) data_ov003_021da2a8->mUnk_f80, (u16) data_ov003_021da2a8->mUnk_12a0, 1, 0, 0, 0, 0, 0);
     if (r != 2) {
         func_ov003_021d079c(r);
-        return 0;
+        return FALSE;
     }
-    return 1;
+    return TRUE;
 }
 
 void func_ov003_021d0530(Unk021425e8 *v1) {
@@ -93,11 +93,11 @@ void func_ov003_021d0530(Unk021425e8 *v1) {
     }
     switch (v1->mUnk_08_0) {
         case 7:
-            if (data_ov003_021da2a4 != 0) {
+            if (data_ov003_021da2a4 != NULL) {
                 data_ov003_021da2a4(0x08000000, data_ov003_021d7b70, v1->mUnk_10);
             }
-            if (data_ov003_021da2a8->mUnk_4c != 0 && data_ov003_021da2a8->mUnk_4c(v1) == 0) {
-                r = func_021436d0(0, v1->mUnk_10);
+            if (data_ov003_021da2a8->mUnk_4c != NULL && data_ov003_021da2a8->mUnk_4c(v1) == 0) {
+                r = func_021436d0(NULL, v1->mUnk_10);
                 if (r == 2) {
                     return;
                 }
@@ -108,38 +108,38 @@ void func_ov003_021d0530(Unk021425e8 *v1) {
             data_ov003_021da2a8->mUnk_52 = data_ov003_021da2a8->mUnk_52 | v2;
             return;
         case 9:
-            if (data_ov003_021da2a4 != 0) {
+            if (data_ov003_021da2a4 != NULL) {
                 data_ov003_021da2a4(0x08000000, data_ov003_021d7b9c, v1->mUnk_10);
             }
             data_ov003_021da2a8->mUnk_52 = data_ov003_021da2a8->mUnk_52 & ~v2;
             return;
         case 0:
-            if (func_ov003_021d04a8() == 0) {
+            if (func_ov003_021d04a8() == FALSE) {
                 func_ov003_021d07b0(9);
             }
             return;
         case 2:
             return;
         default:
-            if (data_ov003_021da2a4 != 0) {
+            if (data_ov003_021da2a4 != NULL) {
                 data_ov003_021da2a4(0x08000000, data_ov003_021d7af8, v1->mUnk_08_0);
             }
             return;
     }
 }
 
-s32 func_ov003_021d0630(void) {
+BOOL func_ov003_021d0630(void) {
     s32 r;
 
     if ((u32) (data_ov003_021da2a8->mUnk_40 - 4) <= 2) {
-        return 1;
+        return TRUE;
     }
     r = func_02143bc4(func_ov003_021d0530);
     if (r != 2) {
         func_ov003_021d079c(r);
-        return 0;
+        return FALSE;
     }
     data_ov003_021da2a8->mUnk_50 = 0;
     data_ov003_021da2a8->mUnk_52 = 1;
-    return 1;
+    return TRUE;
 }

@@ -54,7 +54,7 @@ void func_02111324(Unk02111324 *a) {
     func_020ae6ac(data_0217d33c, data_0217d340);
     func_021114cc();
     func_020ae630(data_0217d33c, data_0217d340);
-    if (a != 0 && func_0211145c() != -1) {
+    if (a != NULL && func_0211145c() != -1) {
         a->mUnk_04 = func_0211145c();
     }
 }

@@ -15,7 +15,7 @@ s32 func_ov003_021b929c(Unk021b94c4 *a) {
     Unk021d8374 *c = &data_ov003_021d84a4;
     Unk021d8374 *d = &data_ov003_021d85d4;
     Unk021d8374 *e = &data_ov003_021d8644;
-    if (p == 0) {
+    if (p == NULL) {
         return -1;
     }
     a->mUnk_000 = data_ov003_021d7c6c.mUnk_08 & data_ov003_021d7c6c.mUnk_0c;

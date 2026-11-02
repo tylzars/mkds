@@ -13,14 +13,14 @@ void func_02061588(void) {
             if (data_021759d4->mUnk_0c != 0) {
                 func_02145d38();
             }
-            if (data_021759d4->mUnk_04 != 0) {
+            if (data_021759d4->mUnk_04 != NULL) {
                 b->mUnk_08_0 = 0;
             }
         } else {
             b->mUnk_08_0 = 0;
         }
     }
-    data_0217aa08->mUnk_40 = 0;
+    data_0217aa08->mUnk_40 = NULL;
     func_02057504();
 }
 

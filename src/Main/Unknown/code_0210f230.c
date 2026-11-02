@@ -79,11 +79,11 @@ void func_0210f458(s32 a) {
         case 3:
             if (v == 0x1cc) {
                 p = (Unk0212c400 **) func_02108e88();
-                if (*p != 0) {
+                if (*p != NULL) {
                     func_0212c6f0(p, 0);
                 }
                 p = (Unk0212c400 **) func_02108e6c(7);
-                if (*p != 0) {
+                if (*p != NULL) {
                     func_0212c6f0(p, 0);
                 }
             };
@@ -100,10 +100,10 @@ void func_0210f458(s32 a) {
         if (data_0217d084.mUnk_0c == 0) {
             return;
         }
-        if (*p != 0) {
+        if (*p != NULL) {
             func_0212c6f0(p, 0);
         }
-        if (*p != 0) {
+        if (*p != NULL) {
             func_0212c6f0(p, 0);
         }
         func_0212ecc0(p, 0, v);
@@ -140,16 +140,16 @@ u32 func_0210f35c(s32 a, u32 b) {
     if (ok != 0) {
         if ((data_0217c780 & 1) != 0) {
             if (data_0217d084.mUnk_0c != 0) {
-                if (*p != 0) {
+                if (*p != NULL) {
                     func_0212c6f0(p, 0);
                 }
-                if (*p != 0) {
+                if (*p != NULL) {
                     func_0212c6f0(p, 0);
                 }
                 func_0212ecc0(p, 0, b);
             }
         }
-        if (*p != 0) {
+        if (*p != NULL) {
             func_02105b28(p, c);
         }
     }
@@ -176,20 +176,20 @@ u32 func_0210f230(u32 a, u32 b) {
         ok = 1;
     }
     if (ok != 0) {
-        if (*p == 0) {
+        if (*p == NULL) {
             if ((data_0217c780 & 1) != 0) {
                 if (data_0217d084.mUnk_0c != 0) {
-                    if (*p != 0) {
+                    if (*p != NULL) {
                         func_0212c6f0(p, 0);
                     }
-                    if (*p != 0) {
+                    if (*p != NULL) {
                         func_0212c6f0(p, 0);
                     }
                     func_0212ecc0(p, 0, b);
                 }
             }
             func_02105b28(p, c);
-        } else if (*p != 0 && ((Unk0217d1c4 *) data_0217d1c4)[a].mUnk_00 != v) {
+        } else if (*p != NULL && ((Unk0217d1c4 *) data_0217d1c4)[a].mUnk_00 != v) {
             func_02105b28(p, c);
         }
     } else {

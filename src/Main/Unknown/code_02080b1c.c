@@ -8,29 +8,29 @@
 s32 func_02080c64(Unk02080b1c *p, Vec3 *a) {
     Vec3 v;
     s32 d;
-    s32 r;
+    BOOL r;
     Unk02080b1c_00 *n = p->mUnk_00;
 
-    r = 0;
+    r = FALSE;
     d = n->mUnk_1c;
     func_021484d0(n->mUnk_18, a, &v);
     v.y = r;
     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z < (s64) d * d) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 s32 func_02080bf4(Unk02080b1c *p, Vec3 *a) {
     Vec3 v;
-    s32 r;
+    BOOL r;
     Vec3 *w = p->mUnk_00->mUnk_18;
 
-    r = 0;
+    r = FALSE;
     if (p->mUnk_08.x != 0 || p->mUnk_08.y != 0 || p->mUnk_08.z != 0) {
         func_021484d0(a, w, &v);
         if (func_02039828(&p->mUnk_08, &v) > 0) {
-            r = 1;
+            r = TRUE;
         }
     }
     return r;

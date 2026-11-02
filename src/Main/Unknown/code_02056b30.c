@@ -20,17 +20,17 @@ void func_02056c0c(Unk0217aa08_0c_04 *a, Unk02056bc0 *b) {
 }
 
 s32 func_02056bc0(s32 a, s32 b, Unk02056bc0 *c) {
-    s32 r;
+    BOOL r;
     s32 n;
 
     n = func_0204684c(a);
-    r = 1;
+    r = TRUE;
     if (n != -1) {
         func_02056c0c(&data_0217aa08->mUnk_0c->mUnk_004[b][n], c);
     } else {
-        r = 0;
+        r = FALSE;
     }
-    if (r == 0) {
+    if (r == FALSE) {
         c->mUnk_18 = 0;
     }
     return r;

@@ -62,11 +62,11 @@ Unk020f5008 *func_020f4ee8(void) {
     Unk020f5008 *p;
 
     p = func_020fa3d0(3, 8, &data_02159764, &data_02159764);
-    if (p == 0) {
-        return 0;
+    if (p == NULL) {
+        return NULL;
     }
     if ((p->mUnk_000.mUnk_000.mUnk_74 & 0x180000) == 0) {
-        p->mUnk_000.mUnk_000.mUnk_120 = 0;
+        p->mUnk_000.mUnk_000.mUnk_120 = NULL;
     }
     func_020f9c40((s32) p);
     p->mUnk_134 = 0;
@@ -78,11 +78,11 @@ Unk020f5008 *func_020f4ee8(void) {
 void func_020f4e78(Unk020f5008 *a, Vec3 *b, Vec3 *c) {
     a->mUnk_134 = 1;
     func_0208ad74(&a->mUnk_000.mUnk_000.mUnk_7c, 1);
-    if (b != 0) {
+    if (b != NULL) {
         a->mUnk_000.mUnk_000.mUnk_f0 = *b;
         a->mUnk_000.mUnk_000.mUnk_74 |= 0x80;
     }
-    if (c == 0) {
+    if (c == NULL) {
         return;
     }
     a->mUnk_000.mUnk_000.mUnk_50 = *c;
@@ -102,7 +102,7 @@ void func_020f4dfc(void **a, Vec3 *b, s32 c) {
         p->mUnk_000.mUnk_000.mUnk_120 = (void (*)(Unk020f41c4_A *)) func_020f4f44;
     }
     p->mUnk_130 = c;
-    a[0] = 0;
+    a[0] = NULL;
 }
 
 #pragma thumb on
@@ -162,7 +162,7 @@ void func_020f4b20(Unk020f40dc *a, Unk020ee684 *b) {
     a->mUnk_10 = 0;
     a->mUnk_12 = 0;
     for (i = 0; i < 3; i++) {
-        a->mUnk_14[i] = 0;
+        a->mUnk_14[i] = NULL;
     }
     a->mUnk_24 = data_021759c0->mUnk_68[b->mUnk_1f8].mUnk_08.mUnk_00 == 3;
 }
@@ -195,7 +195,7 @@ void func_020f49bc(Unk020f40dc *a) {
     func_020f6630(e, 0, q, r, &p->mUnk_244);
     k = e->mUnk_44;
     h = data_0217bc34[k].mUnk_38;
-    if (h != 0) {
+    if (h != NULL) {
         h(e);
     }
     if (a->mUnk_08 != 0) {
@@ -208,6 +208,6 @@ void func_020f49bc(Unk020f40dc *a) {
     a->mUnk_10 = 0;
     a->mUnk_12 = 0;
     for (i = 0; i < 3; i++) {
-        a->mUnk_14[i] = 0;
+        a->mUnk_14[i] = NULL;
     }
 }

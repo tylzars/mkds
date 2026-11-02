@@ -99,7 +99,7 @@ Unk020e5a40 *func_020e5d78(void);
 Unk020e5a9c *func_020e5dd4(void);
 void func_020e5e24(Unk020e5e24 *p, Unk020e5e24_2 *q);
 void CreatePendulumAndPendulumShadow(void);
-s32 func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out);
+BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out);
 void func_020e61a8(u32 param_1, Unk020e5e24 *a);
 void func_020e630c(u32 param_1, Unk020e5e24 *a, u32 param_3, u32 param_4);
 Unk020e59e4 *func_020e6380(void);

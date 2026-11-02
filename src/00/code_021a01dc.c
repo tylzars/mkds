@@ -35,7 +35,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
 
     i = 0;
     o = data_ov000_021b566c;
-    if (o == 0 || o->mUnk_198 == 0) {
+    if (o == NULL || o->mUnk_198 == 0) {
         return 1;
     }
     switch (a) {
@@ -51,7 +51,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
                     return 0;
                 }
                 p = data_ov000_021b566c;
-                if (p->mUnk_15 == 2 && p->mUnk_454 != 0) {
+                if (p->mUnk_15 == 2 && p->mUnk_454 != NULL) {
                     data_ov000_021b566c->mUnk_454(func_ov000_0219d5e4(b), p->mUnk_458);
                 }
                 g[0] = data_ov000_021b566c->mUnk_14;
@@ -204,7 +204,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             data_ov000_021b566c->mUnk_2b8[data_ov000_021b566c->mUnk_14 + 1] = u;
             func_ov000_021a4818(data_ov000_021b566c->mUnk_10);
             p = data_ov000_021b566c;
-            if (p->mUnk_454 == 0) {
+            if (p->mUnk_454 == NULL) {
                 break;
             }
             data_ov000_021b566c->mUnk_454(func_ov000_0219d5e4(z), p->mUnk_458);
@@ -304,7 +304,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             break;
         case 17:
             q = data_ov000_021b5670;
-            if (q != 0 && q->mUnk_00 != 0 && func_ov000_021a350c() - q->mUnk_10 >= q->mUnk_04) {
+            if (q != NULL && q->mUnk_00 != 0 && func_ov000_021a350c() - q->mUnk_10 >= q->mUnk_04) {
                 g[0] = 1;
             } else {
                 g[0] = 0;

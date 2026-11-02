@@ -385,22 +385,22 @@ void func_02126c90(void) {
     }
 }
 
-static inline s32 func_02126a00_inline(u16 a, u16 b, u8 c, u8 d, u8 e, u8 f) {
+static inline BOOL func_02126a00_inline(u16 a, u16 b, u8 c, u8 d, u8 e, u8 f) {
     if (a >= c && a <= d && b >= e && b <= f) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 static inline s32 func_02126a00_inline2(u32 v) {
-    s32 r = 0;
-    s32 s = 0;
+    BOOL r = FALSE;
+    BOOL s = FALSE;
 
     if (data_02175674[v].mUnk_00 == 0 && data_02175680[v].mUnk_00 < 5) {
-        s = 1;
+        s = TRUE;
     }
-    if (s == 0 && data_0217567c[v].mUnk_00 == 0 && data_02175674[v].mUnk_00 != 0) {
-        r = 1;
+    if (s == FALSE && data_0217567c[v].mUnk_00 == 0 && data_02175674[v].mUnk_00 != 0) {
+        r = TRUE;
     }
     return r;
 }
@@ -445,11 +445,11 @@ void func_02126a00(void) {
     if (m == 2) {
         if (func_02126a00_inline2(v) != 0) {
             if (func_02126a00_inline(x, y, data_0215d064[5].mUnk_00, data_0215d064[5].mUnk_01, data_0215d064[5].mUnk_02,
-                                     data_0215d064[5].mUnk_03) != 0) {
+                                     data_0215d064[5].mUnk_03) != FALSE) {
                 hit = 0;
             }
             if (func_02126a00_inline(x, y, data_0215d064[6].mUnk_00, data_0215d064[6].mUnk_01, data_0215d064[6].mUnk_02,
-                                     data_0215d064[6].mUnk_03) != 0) {
+                                     data_0215d064[6].mUnk_03) != FALSE) {
                 hit = 1;
             }
         }
@@ -458,7 +458,7 @@ void func_02126a00(void) {
     if ((u16) (w & 1) == 0) {
         if (func_02126a00_inline2(v) == 0 || m != 1 ||
             func_02126a00_inline(x, y, data_0215d064[4].mUnk_00, data_0215d064[4].mUnk_01, data_0215d064[4].mUnk_02,
-                                 data_0215d064[4].mUnk_03) == 0) {
+                                 data_0215d064[4].mUnk_03) == FALSE) {
             if (hit == -1) {
                 goto L;
             }
@@ -843,31 +843,31 @@ void func_02125fc0(void) {
 }
 
 s32 func_02125fa4(void) {
-    s32 r;
+    BOOL r;
 
-    r = 0;
+    r = FALSE;
     if (data_0217d3f0->mUnk_00 == 2 && data_0217d3f0->mUnk_38 == 0) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 s32 func_02125f88(void) {
-    s32 r;
+    BOOL r;
 
-    r = 0;
+    r = FALSE;
     if (data_0217d3f0->mUnk_00 == 0 && data_0217d3f0->mUnk_34 == 0) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 s32 func_02125f6c(void) {
-    s32 r;
+    BOOL r;
 
-    r = 0;
+    r = FALSE;
     if (data_0217d3f0->mUnk_08 == 1 && data_0217d3f0->mUnk_00 == 2) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }

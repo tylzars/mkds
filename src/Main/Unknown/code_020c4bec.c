@@ -24,7 +24,7 @@
 #include "Main/Unknown/code_0212a000.h"
 
 void func_020c525c(void) {
-    if (data_0217b3ec == 0) {
+    if (data_0217b3ec == NULL) {
         return;
     }
     if (data_021759d0->mUnk_20 == 0) {
@@ -53,10 +53,10 @@ void func_020c525c(void) {
 }
 
 void func_020c4f08(Unk020c06c4 *a) {
-    void *p = 0;
-    void *q = 0;
+    void *p = NULL;
+    void *q = NULL;
 
-    if (data_0217b3ec == 0) {
+    if (data_0217b3ec == NULL) {
         return;
     }
     if (data_021759d0->mUnk_20 != 0) {
@@ -81,7 +81,7 @@ void func_020c4f08(Unk020c06c4 *a) {
             }
         }
     }
-    if (p != 0) {
+    if (p != NULL) {
         s32 v[2];
         s32 w[2];
         s32 n;
@@ -91,7 +91,7 @@ void func_020c4f08(Unk020c06c4 *a) {
         v[0] = 0xf8000;
         v[1] = 0xb8000;
         e = &a->mUnk_000.mUnk_00[n];
-        a->mUnk_400 += func_020224e0((Unk020224e0_o *) e, 0x80 - n, p, 0, v, 0, 1);
+        a->mUnk_400 += func_020224e0((Unk020224e0_o *) e, 0x80 - n, p, NULL, v, 0, 1);
         for (; n < a->mUnk_400; n++, e++) {
             e->mUnk_0a = 2;
             e->mUnk_0e = 1;
@@ -99,9 +99,9 @@ void func_020c4f08(Unk020c06c4 *a) {
         w[0] = 0xf8000;
         w[1] = 0xb8000;
         n = a->mUnk_400;
-        a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[n], 0x80 - n, p, 0, w, 0, 1);
+        a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[n], 0x80 - n, p, NULL, w, 0, 1);
     }
-    if (q != 0) {
+    if (q != NULL) {
         s32 v[2];
         s32 w[2];
         s32 n;
@@ -111,7 +111,7 @@ void func_020c4f08(Unk020c06c4 *a) {
         v[0] = 0xf8000;
         v[1] = 0xa7000;
         e = &a->mUnk_000.mUnk_00[n];
-        a->mUnk_400 += func_020224e0((Unk020224e0_o *) e, 0x80 - n, q, 0, v, 0, 1);
+        a->mUnk_400 += func_020224e0((Unk020224e0_o *) e, 0x80 - n, q, NULL, v, 0, 1);
         for (; n < a->mUnk_400; n++, e++) {
             e->mUnk_0a = 2;
             e->mUnk_0e = 1;
@@ -119,7 +119,7 @@ void func_020c4f08(Unk020c06c4 *a) {
         w[0] = 0xf8000;
         w[1] = 0xa7000;
         n = a->mUnk_400;
-        a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[n], 0x80 - n, q, 0, w, 0, 1);
+        a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[n], 0x80 - n, q, NULL, w, 0, 1);
     }
 }
 
@@ -157,7 +157,7 @@ void InitRaceStartGp(void) {
     gRaceStartGp->mUnk_00 = 0;
     LoadNclrData(&gRaceStartGp->mRaceStartGpMONclr, FindSceneFileWrapper("race_start_gp_m_o.NCLR"));
     LoadNcgrData2(&gRaceStartGp->mRaceStartGpMONcgr, FindSceneFileWrapper("race_start_gp_m_o.NCGR"));
-    v = 0;
+    v = NULL;
     LoadNcerData(&v, FindSceneFileWrapper("race_start_gp_m.NCER"));
     for (i = 0; i < 3; i++) {
         gRaceStartGp->mUnk_0c[i] = func_02021f1c(v, (u16) i);

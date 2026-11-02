@@ -12,45 +12,45 @@
 #include "code_021329f8.h"
 #include "code_02134d30.h"
 
-s32 func_ov000_021a3264(u32 a, void *b, s32 c) {
+BOOL func_ov000_021a3264(u32 a, void *b, s32 c) {
     Unk021a2d68 *e = func_ov000_021a2fdc(a);
     if (func_ov000_021a2fb4(a) == 2) {
-        return 0;
+        return FALSE;
     }
     e->mUnk_04 = b;
     e->mUnk_08 = c;
     e->mUnk_1d = 1;
     e->mUnk_10 = 0;
     e->mUnk_18 = 0;
-    return 1;
+    return TRUE;
 }
 
-s32 func_ov000_021a32a0(u32 a, void *b, s32 c) {
+BOOL func_ov000_021a32a0(u32 a, void *b, s32 c) {
     if (func_ov000_0219c39c() != 0) {
-        return 0;
+        return FALSE;
     }
     if (func_ov000_0219bac8(a) == 0) {
-        return 0;
+        return FALSE;
     }
     if (c > data_ov000_021b5dd0->mUnk_610) {
-        return 0;
+        return FALSE;
     }
     func_ov000_021a2f98(a, (u32) b, c, 0);
-    if (data_ov000_021b5dd0->mUnk_600 != 0) {
+    if (data_ov000_021b5dd0->mUnk_600 != NULL) {
         data_ov000_021b5dd0->mUnk_600(c, a);
     }
-    return 1;
+    return TRUE;
 }
 
-s32 func_ov000_021a3310(u16 a, u32 b, u8 *c, s32 d) {
+BOOL func_ov000_021a3310(u16 a, u32 b, u8 *c, s32 d) {
     Unk021a2d68 *e = func_ov000_021a2fdc(b);
     u32 t[2];
     s32 n;
     if (func_ov000_0219c39c() != 0) {
-        return 0;
+        return FALSE;
     }
     if (func_ov000_021a33e4(b, a) == 0) {
-        return 0;
+        return FALSE;
     }
     e->mUnk_1c = 1;
     e->mUnk_00 = c;
@@ -63,33 +63,33 @@ s32 func_ov000_021a3310(u16 a, u32 b, u8 *c, s32 d) {
         n = d;
     }
     if (n > func_ov000_021a2d18(b)) {
-        return 1;
+        return TRUE;
     }
     func_ov000_021a2f98(b, (u32) c, n, 1);
     e->mUnk_0c += n;
     if (e->mUnk_0c == e->mUnk_14) {
-        if (data_ov000_021b5dd0->mUnk_600 != 0 && a == 1) {
+        if (data_ov000_021b5dd0->mUnk_600 != NULL && a == 1) {
             data_ov000_021b5dd0->mUnk_600(e->mUnk_14, b);
         }
         e->mUnk_1c = 0;
-        e->mUnk_00 = 0;
+        e->mUnk_00 = NULL;
         e->mUnk_0c = 0;
         e->mUnk_14 = 0;
     }
-    return 1;
+    return TRUE;
 }
 
-s32 func_ov000_021a33e4(u32 a, s32 b) {
+BOOL func_ov000_021a33e4(u32 a, s32 b) {
     if ((b == 1 && func_ov000_0219bac8(a) == 0) || func_ov000_0219b8bc(a) == 0) {
-        return 0;
+        return FALSE;
     }
     if (func_ov000_021a2fc8(a) == 1) {
-        return 0;
+        return FALSE;
     }
     if (func_ov000_021a2d18(a) >= func_ov000_021a31d4(b)) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 u32 func_ov000_021a3448(u32 a) {
@@ -120,11 +120,11 @@ s32 func_ov000_021a3530(const u8 *a, u8 *b, const u8 *c, int d) {
     const u8 *q;
     s32 n;
     enum { K1 = 1 } k;
-    if (b == 0) {
+    if (b == NULL) {
         return -1;
     }
     p = strchr(c, d);
-    if (p == 0) {
+    if (p == NULL) {
         return -1;
     }
     k = K1;
@@ -133,20 +133,20 @@ s32 func_ov000_021a3530(const u8 *a, u8 *b, const u8 *c, int d) {
             break;
         }
         q = strchr(p + 1, d);
-        if (q == 0) {
+        if (q == NULL) {
             return -1;
         }
         p = strchr(q + 1, d);
-        if (p == 0) {
+        if (p == NULL) {
             return -1;
         }
     }
     p = strchr(p + 1, d);
-    if (p == 0) {
+    if (p == NULL) {
         return -1;
     }
     q = strchr(p + 1, d);
-    if (q != 0) {
+    if (q != NULL) {
         n = q - (p + 1);
     } else {
         n = strlen(p + 1);

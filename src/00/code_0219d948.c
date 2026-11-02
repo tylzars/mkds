@@ -18,37 +18,37 @@ u8 func_ov000_0219d9ec(void *a, u8 *b, u8 *c, char *d) {
     Unk0218ec44 f;
     if (func_ov000_0219d094(a, &f) != 0) {
         if (f.mUnk_004 == 6) {
-            if (b != 0) {
+            if (b != NULL) {
                 if (func_ov000_021a3530(data_ov000_021b40b0, e, f.mUnk_008, 0x2f) > 0) {
-                    *b = strtoul(e, 0, 10);
+                    *b = strtoul(e, NULL, 10);
                 } else {
                     *b = 0;
                 }
             }
-            if (c != 0) {
+            if (c != NULL) {
                 if (func_ov000_021a3530(data_ov000_021b40b4, e, f.mUnk_008, 0x2f) > 0) {
-                    *c = strtoul(e, 0, 10);
+                    *c = strtoul(e, NULL, 10);
                 } else {
                     *c = 0;
                 }
             }
         } else {
-            if (b != 0) {
+            if (b != NULL) {
                 *b = 0;
             }
-            if (c != 0) {
+            if (c != NULL) {
                 *c = 0;
             }
         }
-        if (d != 0) {
+        if (d != NULL) {
             strcpy(d, f.mUnk_108);
         }
         return f.mUnk_004;
     }
-    if (b != 0) {
+    if (b != NULL) {
         *b = 0;
     }
-    if (c != 0) {
+    if (c != NULL) {
         *c = 0;
     }
     return 0;
@@ -60,7 +60,7 @@ s32 func_ov000_0219d9b0(void *a, s32 b) {
     Unk02152490 *d;
     c = 0;
     d = a;
-    if (a == 0) {
+    if (a == NULL) {
         return 0;
     }
     for (i = 0; i < b; i++) {
@@ -74,7 +74,7 @@ s32 func_ov000_0219d9b0(void *a, s32 b) {
 
 void func_ov000_0219d948(void *a) {
     s32 b;
-    if (data_ov000_021b5664 != 0 && func_ov000_0219c3e4() != 0 && func_ov000_0219c9c4() != 0) {
+    if (data_ov000_021b5664 != NULL && func_ov000_0219c3e4() != 0 && func_ov000_0219c9c4() != NULL) {
         b = func_02152520((void *) func_ov000_0219c9c4(), a);
         if (b != 0 && b != -1 && func_ov000_0218eb9c(data_ov000_021b5664->mUnk_04, b) != 0) {
             func_ov000_0218eb44(data_ov000_021b5664->mUnk_04, b);

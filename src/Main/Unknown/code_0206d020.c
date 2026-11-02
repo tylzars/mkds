@@ -208,13 +208,13 @@ void func_0206d18c(Unk0206bcb0 *p) {
 
 void func_0206d578(Unk0206bcb0 *p) {
     s32 d;
-    s32 v1;
+    BOOL v1;
     s32 i;
     Unk0206bcb0 *q;
     Vec3 v;
 
     d = 0;
-    v1 = 0;
+    v1 = FALSE;
     func_01ffc064(&p->mUnk_1f0, p->mUnk_510, 0x400, p);
     func_02147fd8((s32) (((s64) p->mUnk_1d0 * -0x4000) >> 12), &p->mUnk_50, &p->mUnk_1f0, &p->mUnk_1f0);
     if (p->mUnk_74 == func_02061f90() && !(p->mUnk_4c & 0x10002000)) {
@@ -225,7 +225,7 @@ void func_0206d578(Unk0206bcb0 *p) {
                     func_021484d0(&q->mUnk_80, &p->mUnk_80, &v);
                     d = func_021482cc(&v);
                     if (func_02039828(&q->mUnk_50, &v) > (s32) (((s64) d * 0xe7f) >> 12)) {
-                        v1 = 1;
+                        v1 = TRUE;
                         p->mUnk_538.mUnk_08++;
                         break;
                     }
@@ -233,7 +233,7 @@ void func_0206d578(Unk0206bcb0 *p) {
             }
         }
         if (!(p->mUnk_7c & 0x400)) {
-            if (v1 != 0) {
+            if (v1 != FALSE) {
                 p->mUnk_4c |= 0x4000;
                 func_02081060(p);
                 if (p->mUnk_538.mUnk_08 > 0xf && d < 0x3c000) {
@@ -390,32 +390,32 @@ void func_0206d7c8(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v, s32 c, Vec3 *v
 }
 
 static inline s32 func_0206dbf8_inline(Unk0206bcb0 *q) {
-    s32 c;
-    s32 t;
-    s32 u;
+    BOOL c;
+    BOOL t;
+    BOOL u;
     u32 f;
 
     f = q->mUnk_4c;
     if (f & 0x400000) {
-        c = 0;
+        c = FALSE;
     } else if (q->mUnk_7c & 0x200) {
         if (q->mUnk_180 == 0 && !(q->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
-            c = 1;
+            c = TRUE;
         } else {
-            c = 0;
+            c = FALSE;
         }
     } else {
-        t = 1;
+        t = TRUE;
         if (!(f & 0x10000040) && !(q->mUnk_48 & 0x1800)) {
-            u = 0;
+            u = FALSE;
             if (q->mUnk_180 != 0 && q->mUnk_180 != 1 && q->mUnk_180 != 2) {
-                u = 1;
+                u = TRUE;
             }
-            if (u == 0) {
-                t = 0;
+            if (u == FALSE) {
+                t = FALSE;
             }
         }
-        c = t == 0;
+        c = t == FALSE;
     }
     return c;
 }
@@ -423,7 +423,7 @@ static inline s32 func_0206dbf8_inline(Unk0206bcb0 *q) {
 // non-matching: size 0x248 against 0x220; the original keeps `mov r0, #1` (the result) in r0 and the masked 0x200 word
 // of the flag in r2 for the whole switch and ends each case with its own epilogue; ours rebuilds `mov r0, #1` at every
 // return and tests r1; the opening flag test also differs (original keeps the 0x4c word in r2, the flag result in r1)
-s32 func_0206dbf8(Unk0206bcb0 *p, Unk0206bcb0 *q) {
+BOOL func_0206dbf8(Unk0206bcb0 *p, Unk0206bcb0 *q) {
     Vec3 a;
     Vec3 b;
     Vec3 v1;
@@ -432,7 +432,7 @@ s32 func_0206dbf8(Unk0206bcb0 *p, Unk0206bcb0 *q) {
 
     c = func_0206dbf8_inline(q);
     if (c == 0) {
-        return 0;
+        return FALSE;
     }
     a = p->mUnk_120;
     func_021484d0(&q->mUnk_80, &p->mUnk_80, &b);
@@ -449,41 +449,41 @@ s32 func_0206dbf8(Unk0206bcb0 *p, Unk0206bcb0 *q) {
     }
     w = p->mUnk_7c & 0x200;
     if (w == 0) {
-        return 1;
+        return TRUE;
     }
     switch (q->mUnk_74) {
         case 0:
             if (w) {
                 p->mUnk_514->mUnk_2c ^= 0x400000;
             }
-            return 1;
+            return TRUE;
         case 1:
             if (w) {
                 p->mUnk_514->mUnk_2c ^= 0x800000;
             }
-            return 1;
+            return TRUE;
         case 2:
             if (w) {
                 p->mUnk_514->mUnk_2c ^= 0x1000000;
             }
-            return 1;
+            return TRUE;
         case 3:
             if (w) {
                 p->mUnk_514->mUnk_2c ^= 0x2000000;
             }
-            return 1;
+            return TRUE;
     }
-    return 1;
+    return TRUE;
 }
 
 // non-matching: size 0x1e0 against 0x1b8, the same difference as func_0206dbf8
-s32 func_0206de18(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v) {
+BOOL func_0206de18(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v) {
     s32 c;
     u32 w;
 
     c = func_0206dbf8_inline(q);
     if (c == 0) {
-        return 0;
+        return FALSE;
     }
     func_0206add0(q, v, 1);
     func_021090c4(&q->mUnk_00, 0xe8, 0x7f, 0);
@@ -492,29 +492,29 @@ s32 func_0206de18(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v) {
     }
     w = p->mUnk_7c & 0x200;
     if (w == 0) {
-        return 1;
+        return TRUE;
     }
     switch (q->mUnk_74) {
         case 0:
             if (w) {
                 p->mUnk_514->mUnk_2c ^= 0x200;
             }
-            return 1;
+            return TRUE;
         case 1:
             if (w) {
                 p->mUnk_514->mUnk_2c ^= 0x400;
             }
-            return 1;
+            return TRUE;
         case 2:
             if (w) {
                 p->mUnk_514->mUnk_2c ^= 0x800;
             }
-            return 1;
+            return TRUE;
         case 3:
             if (w) {
                 p->mUnk_514->mUnk_2c ^= 0x1000;
             }
-            return 1;
+            return TRUE;
     }
-    return 1;
+    return TRUE;
 }

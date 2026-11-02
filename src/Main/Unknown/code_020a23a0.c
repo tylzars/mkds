@@ -48,7 +48,7 @@ void func_020a23cc(void) {
     }
     func_0208b870(&data_0217b200->mUnk_0cc);
     func_02011034();
-    func_01ff9048(0x15, 0, 0);
+    func_01ff9048(0x15, NULL, 0);
     v1[0] = 0x1000;
     v1[1] = 0x1000;
     v1[2] = 0x1000;

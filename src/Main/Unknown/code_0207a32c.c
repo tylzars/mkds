@@ -14,7 +14,7 @@ void func_0207a5f0(s32 a) {
         s = p->mUnk_590;
         func_02013044(s->mUnk_014->mUnk_04, a);
         func_02013044(s->mUnk_010->mUnk_04, a);
-        if (s->mUnk_018 != 0) {
+        if (s->mUnk_018 != NULL) {
             func_02013044(s->mUnk_018->mUnk_04, a);
         }
         p++;
@@ -25,12 +25,12 @@ s32 func_0207a5c4(s32 a) {
     return (data_0217ad18[a].mUnk_48 & 0x800) != 0 ? 1 : 0;
 }
 
-s32 func_0207a574(void) {
+BOOL func_0207a574(void) {
     Unk0206bcb0 *p = &data_0217ad18[data_021759c0->mUnk_62];
     if (p->mUnk_180 != 0 || (p->mUnk_48 & 0x4000000) != 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 s32 func_0207a538(void) {

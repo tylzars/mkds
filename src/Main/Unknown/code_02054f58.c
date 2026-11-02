@@ -13,32 +13,32 @@
 #include "Main/Unknown/unk_0217a000.h"
 
 static inline u32 func_02055030_inline(void) {
-    if (data_0217aa00 == 0) {
+    if (data_0217aa00 == NULL) {
         return 0;
     }
     return data_0217aa00->mUnk_0000;
 }
 
 static inline s32 func_02055030_inline2(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (func_02055030_inline() != 0 && data_0217aa00->mUnk_0004 != 13) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 static inline s32 func_02055030_inline3(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (func_02055030_inline2() && !(data_0217aa00->mUnk_0454 & 0x80)) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 static inline s32 func_02055030_inline4(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (func_02055030_inline3() && data_0217aa00->mUnk_0008 != 9) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
@@ -63,7 +63,7 @@ s32 func_02055564(s32 a) {
             func_02051e98();
             break;
         case 9:
-            func_02051d24(0, 0, 0, func_02055710, 0);
+            func_02051d24(NULL, NULL, NULL, func_02055710, NULL);
             break;
         case 2:
         case 10:
@@ -151,9 +151,9 @@ void func_02055340(void) {
 }
 
 s32 func_02055030(void) {
-    s32 r;
+    BOOL r;
 
-    r = 0;
+    r = FALSE;
     if (data_0217aa00->mUnk_0004 == 0) {
         data_0217aa00->mUnk_0454 &= ~0x80;
         return 1;
@@ -199,7 +199,7 @@ s32 func_02055030(void) {
         case 0:
             func_020562b4();
             data_0217aa00->mUnk_0004 = 0;
-            r = 1;
+            r = TRUE;
             data_0217aa00->mUnk_0454 &= ~0x80;
             break;
         case 1:

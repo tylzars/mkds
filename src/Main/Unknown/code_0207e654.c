@@ -25,7 +25,7 @@ void func_0207ebfc(Unk020888b4 *p) {
     Vec3 *a;
     s32 n;
     s32 m;
-    s32 b;
+    BOOL b;
 
     func_02080cc0(&p->mUnk_08.mUnk_00);
     q = p->mUnk_00;
@@ -110,15 +110,15 @@ void func_0207ebfc(Unk020888b4 *p) {
     }
     func_0204360c(q->mUnk_78, 0x100);
     p->mUnk_98++;
-    b = 0;
+    b = FALSE;
     if (p->mUnk_98 == 0x28 && p->mUnk_a0 != 0) {
         Unk0217aebc_128 *r = func_0208537c();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         if ((s16) (u16) (r->mUnk_00 >> 52) <= p->mUnk_8c) {
-            b = 1;
+            b = TRUE;
         }
     }
-    if (b != 0) {
+    if (b != FALSE) {
         func_02068440(q, 3);
     }
     p->mUnk_60 = data_usa_021557d0;
@@ -227,41 +227,41 @@ void func_0207e7f0(Unk020888b4 *p) {
 }
 
 void func_0207e668(Unk020888b4 *p) {
-    s32 a = 0;
-    s32 b = 0;
+    BOOL a = FALSE;
+    BOOL b = FALSE;
     Unk0206bcb0 *q;
 
     p->mUnk_ac--;
     if (p->mUnk_ac <= 0) {
         p->mUnk_ac = 0;
     } else {
-        b = 1;
+        b = TRUE;
     }
     q = p->mUnk_00;
     {
-        s32 c;
+        BOOL c;
         if ((q->mUnk_44 & 0xc0) && q->mUnk_2a4 < 0x3000) {
-            c = 1;
+            c = TRUE;
         } else {
-            c = 0;
+            c = FALSE;
         }
-        if (c != 0) {
+        if (c != FALSE) {
             p->mUnk_ac = 10;
-            b = 1;
+            b = TRUE;
         }
     }
-    if (b != 0) {
+    if (b != FALSE) {
         p->mUnk_78++;
         if (p->mUnk_78 >= p->mUnk_7a) {
             p->mUnk_78 = 0;
-            a = 1;
+            a = TRUE;
         }
     } else if (p->mUnk_ac <= 0) {
         p->mUnk_78 = 0;
         p->mUnk_a8 = 0;
         p->mUnk_7a = 0x14;
     }
-    if (a == 0) {
+    if (a == FALSE) {
         return;
     }
     switch (p->mUnk_a8) {
@@ -292,6 +292,6 @@ void func_0207e668(Unk020888b4 *p) {
     }
 }
 
-int func_0207e654(Unk020888b4 *p) {
-    return p->mUnk_b0 != 0;
+BOOL func_0207e654(Unk020888b4 *p) {
+    return p->mUnk_b0 != NULL;
 }

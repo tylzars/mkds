@@ -25,7 +25,7 @@ void *func_ov001_0219b510(void *p0, void *p1, void *p2, u32 p3, u16 p4, u16 p5, 
 
 void *func_ov001_0219b4d8(char *p0) {
     char buf[0x100];
-    void *out = 0;
+    void *out = NULL;
     snprintf(buf, 0x100, "data/MissionRun/%s", p0);
     func_02048590(buf, (u32) func_020364e0(func_020364e8()), &out);
     return out;
@@ -33,7 +33,7 @@ void *func_ov001_0219b4d8(char *p0) {
 
 Unk0219b250 *func_ov001_0219b478(Unk0219b478 *p0, char *p1) {
     Unk0219b250 *o = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x2c));
-    if (p0 != 0) {
+    if (p0 != NULL) {
         p0->mUnk_18 = 1;
     }
     o->mUnk_18 = func_ov001_0219b4d8((p1));
@@ -47,7 +47,7 @@ Unk0219b250 *func_ov001_0219b478(Unk0219b478 *p0, char *p1) {
 Unk0219b250 *func_ov001_0219b418(Unk0219b478 *p0, char *p1) {
     Unk0219b250 *o = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x2c));
     void *r = func_ov001_0219b4d8((p1));
-    if (p0 != 0) {
+    if (p0 != NULL) {
         p0->mUnk_18 = 1;
     }
     o->mUnk_14 = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x74));

@@ -65,7 +65,7 @@ void func_0202f2b4(void *a) {
         v1.mUnk_0c = 1;
         v1.mUnk_10 = 0;
         v1.mUnk_14 = 0;
-        v1.mUnk_18 = 0;
+        v1.mUnk_18 = NULL;
         v1.mUnk_1c = 1;
         v1.mUnk_20 = func_0202f498() == 0;
         v1.mUnk_24 = 0;

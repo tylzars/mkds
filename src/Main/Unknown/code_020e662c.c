@@ -250,7 +250,7 @@ void func_020e67c4(Unk020e6488 *p, Unk02012f58 *q, Vec3 *v, s32 a4, u16 a5) {
     n = 0x1e;
     func_01ff9048(0x14, &n, 1);
     func_01ff9048(0x19, q, 0xc);
-    if (v != 0) {
+    if (v != NULL) {
         z = v->z;
         y = v->y;
         x = v->x;
@@ -278,7 +278,7 @@ void func_020e66e4(Unk020e6488 *p, Unk02012f58 *q, s32 r, Vec3 *v, s32 a5, u16 a
         func_02146d60((s32 *) *(void **) data_0217b858, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
         func_01ff9048(0x1a, *(void **) data_0217b858, 9);
     }
-    if (v != 0) {
+    if (v != NULL) {
         z = v->z;
         y = v->y;
         x = v->x;

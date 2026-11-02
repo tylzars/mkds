@@ -131,7 +131,7 @@ void func_020720dc(Unk0206bcb0 *p) {
     p->mUnk_2fc = 0;
     p->mUnk_302 = 0;
     p->mUnk_300 = p->mUnk_302;
-    p->mUnk_308 = 0;
+    p->mUnk_308 = NULL;
     p->mUnk_304 = p->mUnk_308;
     p->mUnk_30c = 0;
     p->mUnk_314 = 0;
@@ -180,11 +180,11 @@ void func_020720dc(Unk0206bcb0 *p) {
     p->mUnk_414 = 0x1000;
     p->mUnk_418 = 0x1000;
     for (i = 0; i < 2; i++) {
-        p->mUnk_438[i] = 0;
+        p->mUnk_438[i] = NULL;
         p->mUnk_440[i] = 0;
         p->mUnk_444[i] = 0;
     }
-    p->mUnk_44c = 0;
+    p->mUnk_44c = NULL;
     p->mUnk_408 = 0;
     p->mUnk_40c = 0;
     p->mUnk_410 = 0;
@@ -292,7 +292,7 @@ void func_020727d4(Unk0206bcb0 *p) {
     func_01ffd190(&data_02154f7c, p->mUnk_236, &p->mUnk_e0_m);
     func_01ffcd84(&p->mUnk_120, &p->mUnk_e0_m);
     func_02063b10(p, &b);
-    func_02072b94(p, &a, &b, 0);
+    func_02072b94(p, &a, &b, NULL);
     if (data_021759c0->mUnk_08 == 5) {
         q = &p->mUnk_1d8;
     } else {
@@ -394,7 +394,7 @@ void func_02072b94(Unk0206bcb0 *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc 
         q->mUnk_a8 = data_02154f94;
         q->mUnk_b4 = 0;
     }
-    if (b != 0) {
+    if (b != NULL) {
         p->mUnk_236 = (s32) (((s64) func_02148538(b->x, b->z) * 0x28be60dLL) >> 12) >> 12;
         v = data_02165524;
         func_01ffd190(&v, p->mUnk_236, &p->mUnk_e0_m);
@@ -409,7 +409,7 @@ void func_02072b94(Unk0206bcb0 *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc 
     p->mUnk_1b8 = p->mUnk_80;
     p->mUnk_2ac = p->mUnk_80.y;
     if (p->mUnk_7c & 2) {
-        if (c != 0) {
+        if (c != NULL) {
             func_0208c23c(p->mUnk_310, c);
         } else {
             func_0208c260(p->mUnk_310, p->mUnk_74);
@@ -423,11 +423,11 @@ void func_02072b94(Unk0206bcb0 *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc 
 }
 
 s32 func_02072d84(Unk0206bcb0 *p, s32 *a) {
-    s32 r;
+    BOOL r;
     u32 f;
 
     f = p->mUnk_4c;
-    r = 0;
+    r = FALSE;
     if (f & 0x4000000) {
         if (p->mUnk_4bc > 0x19a) {
             p->mUnk_4bc = (s32) (((s64) p->mUnk_4bc * 0xe66LL) >> 12);
@@ -451,7 +451,7 @@ s32 func_02072d84(Unk0206bcb0 *p, s32 *a) {
         func_020e7a40();
     } else if (p->mUnk_3c0 > 0x78) {
         func_02063ad0(p);
-        r = 1;
+        r = TRUE;
     }
     return r;
 }

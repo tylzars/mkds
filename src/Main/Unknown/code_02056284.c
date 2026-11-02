@@ -8,7 +8,7 @@ Unk0217aa08_14 *func_02056284(u32 a) {
     if (v1 != 0) {
         return data_0217aa08->mUnk_1c;
     }
-    return 0;
+    return NULL;
 }
 
 #pragma thumb off

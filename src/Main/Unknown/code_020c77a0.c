@@ -48,7 +48,7 @@ s32 func_020c77a0(void) {
 
     for (i = 0; i < 2; i++) {
         b = a[i];
-        if (func_021000d0(b) != 0) {
+        if (func_021000d0(b) != NULL) {
             return func_020c0c2c(&data_0217b404, b);
         }
     }

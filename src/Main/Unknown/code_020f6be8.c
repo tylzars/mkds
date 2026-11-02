@@ -32,13 +32,13 @@ s32 func_020f7184(Unk020f41c4_A *a, s32 b, s32 c) {
             a->mUnk_78 |= data_02159b68;
             func_020f9c40((s32) a);
         }
-        a->mUnk_120 = 0;
+        a->mUnk_120 = NULL;
         return 1;
     }
     if (b == 0) {
         k = a->mUnk_44;
         e = &data_0217bc34[k];
-        if (e->mUnk_34 != 0) {
+        if (e->mUnk_34 != NULL) {
             r = e->mUnk_34(a);
             if (r == 0) {
                 return 2;

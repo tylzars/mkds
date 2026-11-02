@@ -147,7 +147,7 @@ void func_ov001_02181860(void) {
                         o->mUnk_04 -= 1;
                         data_ov001_021a9b90->mUnk_06 += 1;
                     }
-                    if (data_ov001_021a9b90->mUnk_20 != 0) {
+                    if (data_ov001_021a9b90->mUnk_20 != NULL) {
                         data_ov001_021a9b90->mUnk_20();
                     }
                     data_ov001_021a9b90->mUnk_0e = 0;
@@ -157,14 +157,14 @@ void func_ov001_02181860(void) {
                     if (o->mUnk_04 != 0) {
                         o->mUnk_04 -= 1;
                     }
-                    if (data_ov001_021a9b90->mUnk_1c != 0) {
+                    if (data_ov001_021a9b90->mUnk_1c != NULL) {
                         data_ov001_021a9b90->mUnk_1c();
                     }
                     data_ov001_021a9b90->mUnk_0e = 0;
                 } else if (o->mUnk_08 != 0) {
                     o->mUnk_08 -= 1;
                     func_ov001_02181aa0();
-                    if (data_ov001_021a9b90->mUnk_18 != 0) {
+                    if (data_ov001_021a9b90->mUnk_18 != NULL) {
                         data_ov001_021a9b90->mUnk_18();
                     }
                 }
@@ -174,7 +174,7 @@ void func_ov001_02181860(void) {
                 o->mUnk_0e -= 1;
                 o = data_ov001_021a9b90;
                 if (o->mUnk_0e == 0) {
-                    if (o->mUnk_24 != 0) {
+                    if (o->mUnk_24 != NULL) {
                         o->mUnk_24();
                     }
                 }
@@ -254,20 +254,20 @@ void func_ov001_021816fc(void) {
     }
 }
 
-s32 func_ov001_021816b4(void) {
+BOOL func_ov001_021816b4(void) {
     Unk021816b4 *list;
     Unk020a2fe4 *e;
     s32 i;
 
     list = func_02100138(0x6c);
-    if (list != 0) {
-        for (i = 0; i < list->mUnk_04 && (e = list->mUnk_00[i]) != 0; i++) {
+    if (list != NULL) {
+        for (i = 0; i < list->mUnk_04 && (e = list->mUnk_00[i]) != NULL; i++) {
             if ((e->mUnk_00.mUnk_02 & 0x100) == 0) {
-                return 1;
+                return TRUE;
             }
         }
     }
-    return 0;
+    return FALSE;
 }
 
 void func_ov001_021816a8(UnkFunc *p0) {

@@ -30,16 +30,16 @@
 #include "Main/Unknown/code_020472a8.h"
 
 void func_ov001_021a10b8(void) {
-    Unk020b4934 *a = 0;
-    Unk02021dc8 *b = 0;
-    Unk020b4a44 *c = 0;
-    Unk020b4934 *d = 0;
-    Unk02021dc8 *e = 0;
-    Unk020b4a44 *f = 0;
-    Unk020b4934 *g = 0;
-    Unk020b47d8 *h = 0;
-    Unk020b47d8 *i = 0;
-    Unk020b4a44 *j = 0;
+    Unk020b4934 *a = NULL;
+    Unk02021dc8 *b = NULL;
+    Unk020b4a44 *c = NULL;
+    Unk020b4934 *d = NULL;
+    Unk02021dc8 *e = NULL;
+    Unk020b4a44 *f = NULL;
+    Unk020b4934 *g = NULL;
+    Unk020b47d8 *h = NULL;
+    Unk020b47d8 *i = NULL;
+    Unk020b4a44 *j = NULL;
 
     LoadNcgrData(&g, FindSceneFile(data_ov001_021a92bc));
     LoadNclrData(&j, FindSceneFile(data_ov001_021a92a8));
@@ -55,13 +55,13 @@ void func_ov001_021a10b8(void) {
 }
 
 void func_ov001_021a0e7c(void) {
-    Unk020b4934 *a = 0;
-    Unk020b4a44 *b = 0;
-    Unk020b4934 *c = 0;
-    Unk020b4934 *d = 0;
-    Unk020b47d8 *e = 0;
-    Unk020b47d8 *f = 0;
-    Unk020b4a44 *g = 0;
+    Unk020b4934 *a = NULL;
+    Unk020b4a44 *b = NULL;
+    Unk020b4934 *c = NULL;
+    Unk020b4934 *d = NULL;
+    Unk020b47d8 *e = NULL;
+    Unk020b47d8 *f = NULL;
+    Unk020b4a44 *g = NULL;
     u16 *p;
 
     LocateNcgr(&d, FindSceneFile(data_ov001_021a92bc));
@@ -342,11 +342,11 @@ void func_ov001_021a0734(void) {
     func_02029468((u32) ((u16) (func_0203b680((u32) (data_ov001_021ca414->mUnk_4c), v0, v1) - 1)));
 }
 
-s32 func_ov001_021a071c(void) {
+BOOL func_ov001_021a071c(void) {
     if (data_ov001_021ca414->mUnk_ac != 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_ov001_021a0620(void) {
@@ -354,7 +354,7 @@ void func_ov001_021a0620(void) {
     s16 v;
     s32 i;
 
-    if (func_ov001_021a071c() != 0) {
+    if (func_ov001_021a071c() != FALSE) {
         if (data_ov001_021ca414->mUnk_ac == 7) {
             data_ov001_021ca414->mUnk_b0 = data_ov001_021ca414->mUnk_9e;
             func_ov001_021a0774();
@@ -547,7 +547,7 @@ void func_ov001_021a0140(void) {
     }
     func_ov001_021a64a0();
     func_02036ab0(data_ov001_021ca414->mUnk_5c);
-    data_ov001_021ca414 = 0;
+    data_ov001_021ca414 = NULL;
 }
 
 void func_ov001_021a0118(void) {
@@ -609,8 +609,8 @@ void func_ov001_0219ff8c(void) {
 void func_ov001_0219fc70(void) {
     u32 result = -1;
     Unk02175628Index slot = UNK_02175628_INDEX_8;
-    s32 flag_b;
-    s32 flag_a;
+    BOOL flag_b;
+    BOOL flag_a;
     u16 value;
     s16 current;
     s16 delta;
@@ -618,33 +618,33 @@ void func_ov001_0219fc70(void) {
 
     func_021055b0(data_ov001_021ca414->mUnk_a8);
     func_ov001_021a0620();
-    flag_b = 0;
-    flag_a = 0;
+    flag_b = FALSE;
+    flag_a = FALSE;
     value = data_02175628[slot].mUnk_4c;
     if (value == 0 && data_02175628[slot].mUnk_58 < 5) {
-        flag_a = 1;
+        flag_a = TRUE;
     }
-    if (flag_a == 0 && data_02175628[slot].mUnk_54 == 0 && value != 0) {
-        flag_b = 1;
+    if (flag_a == FALSE && data_02175628[slot].mUnk_54 == 0 && value != 0) {
+        flag_b = TRUE;
     }
     if (flag_b) {
         result = func_0201ea84(data_ov001_021ca414->mUnk_14, data_02175628[slot].mUnk_48, data_02175628[slot].mUnk_4a);
     }
     if ((u16) (data_02175628[slot].mUnk_00 & 2) == 0) {
-        flag_b = 0;
-        flag_a = 0;
+        flag_b = FALSE;
+        flag_a = FALSE;
         value = data_02175628[slot].mUnk_4c;
         if (value == 0 && data_02175628[slot].mUnk_58 < 5) {
-            flag_a = 1;
+            flag_a = TRUE;
         }
-        if (flag_a == 0 && data_02175628[slot].mUnk_54 == 0 && value != 0) {
-            flag_b = 1;
+        if (flag_a == FALSE && data_02175628[slot].mUnk_54 == 0 && value != 0) {
+            flag_b = TRUE;
         }
         if (!flag_b || func_02128210(data_02175628[slot].mUnk_48, data_02175628[slot].mUnk_4a) == 0) {
             goto skip;
         }
     }
-    if (func_ov001_021a071c() != 0) {
+    if (func_ov001_021a071c() != FALSE) {
         return;
     }
     func_021281c8(0xe);
@@ -736,7 +736,7 @@ void func_ov001_0219fc34(void) {
     func_ov001_021a0620();
     data_ov001_021ca414->mUnk_68 = data_ov001_021ca414->mUnk_68 + 1;
     if (data_ov001_021ca414->mUnk_68 >= 5) {
-        if (func_ov001_021a071c() == 0) {
+        if (func_ov001_021a071c() == FALSE) {
             func_ov001_021a0428();
         }
     }

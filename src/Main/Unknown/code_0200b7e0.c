@@ -71,14 +71,14 @@ void func_0200b850(u32 a, Unk02008934 *b, u32 c) {
     Unk0200b850 v;
     Unk0216fde8 *d;
     d = data_0216fde8;
-    if (d->mUnk_05dc != 0) {
+    if (d->mUnk_05dc != NULL) {
         v.mUnk_00 = c;
-        if (b != 0) {
+        if (b != NULL) {
             v.mUnk_04 = b;
             v.mUnk_08 = b->mUnk_4c0;
         } else {
-            v.mUnk_04 = 0;
-            v.mUnk_08 = 0;
+            v.mUnk_04 = NULL;
+            v.mUnk_08 = NULL;
         }
         d->mUnk_05dc(a, &v);
     }
@@ -86,7 +86,7 @@ void func_0200b850(u32 a, Unk02008934 *b, u32 c) {
 
 void func_0200b820(u16 a, u16 b) {
     Unk0200b820 v;
-    if (data_0216fde8->mUnk_05dc != 0) {
+    if (data_0216fde8->mUnk_05dc != NULL) {
         v.mUnk_00 = a;
         v.mUnk_02 = b;
         data_0216fde8->mUnk_05dc(2, &v);

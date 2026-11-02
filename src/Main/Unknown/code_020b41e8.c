@@ -6,7 +6,7 @@
 #include "code_02022aa8.h"
 
 void func_020b478c(void *a, void *b) {
-    if (b != 0) {
+    if (b != NULL) {
         func_02022d88((Unk02022aa8 *) a, (Unk02021f9c *) b);
     }
 }

@@ -60,7 +60,7 @@ typedef struct Unk02101d18 {
 s32 func_02101014(Unk02101c84 *p);
 void func_02101178(Unk02101c84 *p);
 s32 func_021014a0(Unk02101c84 *p, s32 param_2, s32 param_3);
-s32 func_02101618(Unk02101c84 *p, s32 param_2, s32 param_3);
+BOOL func_02101618(Unk02101c84 *p, s32 param_2, s32 param_3);
 void func_0210174c(Unk02101c84 *p);
 void func_021018a0(Unk02101c84 *p);
 void func_02101964(Unk02101c84 *p, s32 param_2);

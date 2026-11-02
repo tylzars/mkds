@@ -9,7 +9,7 @@ Unk0201ca6c *func_0208b60c(s32 a, Vec3 *b) {
     v.y = b->y >> 4;
     v.z = b->z >> 4;
     q = func_02018600(data_0217b04c, a, &v);
-    if (q != 0) {
+    if (q != NULL) {
         if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
             q->mUnk_80_16 = 1;
         } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
@@ -39,14 +39,14 @@ void *func_0208b498(u32 a, Vec3 *b, u32 c, s32 d) {
     v.y = b->y >> 4;
     v.z = b->z >> 4;
     q = func_02018600(p, e, &v);
-    if (q != 0) {
+    if (q != NULL) {
         if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
             q->mUnk_80_16 = 1;
         } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
             q->mUnk_80_16 = 2;
         }
     }
-    if (q != 0) {
+    if (q != NULL) {
         w = func_0207a974(c)->mUnk_3b0;
         w.x = ((s64) w.x * d) >> 12;
         w.y = ((s64) w.y * d) >> 12;

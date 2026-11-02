@@ -15,12 +15,12 @@ void func_ov001_021a23f4(void) {
     func_ov001_021a401c();
 }
 
-s32 func_ov001_021a23c8(void) {
+BOOL func_ov001_021a23c8(void) {
     func_ov001_021a2a40();
     if (gEmblem->mUnk_1090 == 0xc) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_ov001_021a23c0(void) {

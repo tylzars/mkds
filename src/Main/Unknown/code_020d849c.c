@@ -49,7 +49,7 @@ void func_020d84c0(Unk020d849c *p, s32 a) {
     p->mUnk_58 = a;
 }
 
-s32 func_020d849c(Unk020d849c *p) {
+BOOL func_020d849c(Unk020d849c *p) {
     p->mUnk_5c = p->mUnk_5c + p->mUnk_58;
     return p->mUnk_5c >= 0x1000000;
 }

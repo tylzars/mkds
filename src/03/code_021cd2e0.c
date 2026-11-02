@@ -33,7 +33,7 @@ void func_ov003_021cd2e0(const char *v1, u8 *v2) {
 void func_ov003_021cd338(s32 param_1) {
     u32 a = data_ov003_021da270->mUnk_000[param_1].mUnk_00.mUnk_e7;
     u32 b = 1 << param_1;
-    s32 c = 0;
+    BOOL c = FALSE;
     s32 d[4];
     void *e;
     Unk021cd5e0 *p;
@@ -43,15 +43,15 @@ void func_ov003_021cd338(s32 param_1) {
     if (param_1 <= 2) {
         p = data_ov003_021da270;
         if ((p->mUnk_000[0].mUnk_00.mUnk_e8[7] & b) != 0) {
-            c = 1;
+            c = TRUE;
         }
-        if (a == 0xff && c != 0) {
+        if (a == 0xff && c != FALSE) {
             p->mUnk_000[0].mUnk_00.mUnk_e8[7] = p->mUnk_000[0].mUnk_00.mUnk_e8[7] & ~b;
             data_ov003_021da270->mUnk_000[1].mUnk_00.mUnk_e8[7] =
                 data_ov003_021da270->mUnk_000[1].mUnk_00.mUnk_e8[7] & ~b;
             d[1] = 1;
             d[0] = 1;
-        } else if (a != 0xff && c == 0) {
+        } else if (a != 0xff && c == FALSE) {
             p->mUnk_000[0].mUnk_00.mUnk_e8[7] = p->mUnk_000[0].mUnk_00.mUnk_e8[7] | b;
             data_ov003_021da270->mUnk_000[1].mUnk_00.mUnk_e8[7] =
                 data_ov003_021da270->mUnk_000[1].mUnk_00.mUnk_e8[7] | b;

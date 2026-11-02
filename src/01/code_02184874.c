@@ -21,7 +21,7 @@ void func_ov001_02184874(Unk02188950 *d, Unk0206bcb0 *e) {
                 a.y = (s32) (((s64) a.y * scale) >> 12);
                 a.z = (s32) (((s64) a.z * scale) >> 12);
                 a.y = d->mUnk_0a0->mUnk_1dc;
-                func_ov001_02187218(d, 7, 0);
+                func_ov001_02187218(d, 7, NULL);
                 func_ov001_02188d64(d, (s32) (d->mUnk_0a0->mUnk_1d4), (s32) (d->mUnk_0a0->mUnk_1d8));
                 func_ov001_02188a8c(d, d->mUnk_0a0->mUnk_1e4, 0x270f000);
                 func_ov001_02188950(d, &a);
@@ -70,11 +70,11 @@ void func_ov001_02184874(Unk02188950 *d, Unk0206bcb0 *e) {
             c.y = (s32) (((s64) c.y * scale) >> 12);
             c.z = (s32) (((s64) c.z * scale) >> 12);
             c.y = d->mUnk_0a0->mUnk_1c4;
-            func_ov001_02187218(d, 7, 0);
+            func_ov001_02187218(d, 7, NULL);
             func_ov001_02188d64(d, (s32) (d->mUnk_0a0->mUnk_1bc), (s32) (d->mUnk_0a0->mUnk_1c0));
             func_ov001_02188a8c(d, d->mUnk_0a0->mUnk_1cc, 0x270f000);
             func_ov001_02188950(d, &c);
-            func_ov001_02188dcc(d, 0);
+            func_ov001_02188dcc(d, NULL);
             func_ov001_02188cec(d, 0);
         }
     }

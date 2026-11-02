@@ -259,17 +259,17 @@ void func_ov001_02197274(void) {
     }
 }
 
-s32 func_ov001_02197210(void) {
+BOOL func_ov001_02197210(void) {
     u8 buf[0x14];
 
     if (func_02060228(data_ov001_021a6900[gRecordTAtt->mUnk_6c], data_ov001_021a6828[0]) != 0) {
         if (func_0205fdb4(data_ov001_021a6900[gRecordTAtt->mUnk_6c], buf) != 0) {
-            return 1;
+            return TRUE;
         }
         func_0212ecc0(&data_0217d068, 0, 0x16);
-        return 0;
+        return FALSE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_ov001_02197058(void) {
@@ -480,7 +480,7 @@ void func_ov001_02196cd0(void) {
     }
 }
 
-s32 func_ov001_02196c4c(void) {
+BOOL func_ov001_02196c4c(void) {
     Unk02175628Index idx = UNK_02175628_INDEX_8;
     u16 m;
 
@@ -495,13 +495,13 @@ s32 func_ov001_02196c4c(void) {
             gRecordTAtt->mUnk_84 = 0;
             if (gRecordTAtt->mUnk_80 >= 6) {
                 gRecordTAtt->mUnk_80 = 0;
-                return 1;
+                return TRUE;
             }
         } else {
             gRecordTAtt->mUnk_80 = 0;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 void InitRecordTAtt(void *heap) {
@@ -636,33 +636,33 @@ void func_ov001_02196514(void) {
     s32 a = -1;
     s32 b = -1;
     Unk02175628Index idx = UNK_02175628_INDEX_8;
-    s32 x;
-    s32 y;
+    BOOL x;
+    BOOL y;
     u16 v;
 
     func_ov001_02196cd0();
-    x = 1;
-    y = 0;
+    x = TRUE;
+    y = FALSE;
     v = data_02175628[idx].mUnk_4c;
     if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
-        y = 1;
+        y = TRUE;
     }
-    if (y == 0 && v == 0) {
-        x = 0;
+    if (y == FALSE && v == 0) {
+        x = FALSE;
     }
-    if (x != 0) {
+    if (x != FALSE) {
         a = func_0201ea84(gRecordTAtt->mUnk_20, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
     }
-    x = 0;
-    y = 0;
+    x = FALSE;
+    y = FALSE;
     v = data_02175628[idx].mUnk_4c;
     if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
-        y = 1;
+        y = TRUE;
     }
-    if (y == 0 && data_02175628[idx].mUnk_54 == 0 && v != 0) {
-        x = 1;
+    if (y == FALSE && data_02175628[idx].mUnk_54 == 0 && v != 0) {
+        x = TRUE;
     }
-    if (x != 0) {
+    if (x != FALSE) {
         b = func_0201ea84(gRecordTAtt->mUnk_20, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
     }
     if (a != 0) {
@@ -672,16 +672,16 @@ void func_ov001_02196514(void) {
         gRecordTAtt->mUnk_8c = 0;
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
-        x = 0;
-        y = 0;
+        x = FALSE;
+        y = FALSE;
         v = data_02175628[idx].mUnk_4c;
         if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
-            y = 1;
+            y = TRUE;
         }
-        if (y == 0 && data_02175628[idx].mUnk_54 == 0 && v != 0) {
-            x = 1;
+        if (y == FALSE && data_02175628[idx].mUnk_54 == 0 && v != 0) {
+            x = TRUE;
         }
-        if (x == 0 || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
+        if (x == FALSE || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
             goto other;
         }
     }
@@ -708,8 +708,8 @@ other:
         func_0212ecc0(&data_0217d068, 0, 2);
     }
 done:
-    if (func_ov001_02196c4c() != 0) {
-        if (func_ov001_02197210() != 0) {
+    if (func_ov001_02196c4c() != FALSE) {
+        if (func_ov001_02197210() != FALSE) {
             func_ov001_02196e30();
         }
     }
@@ -1069,17 +1069,17 @@ void func_ov001_02195a54(void) {
 void func_ov001_021959d8(void) {
     Unk02175628Index i;
     u16 f;
-    s32 b;
+    BOOL b;
 
     i = UNK_02175628_INDEX_8;
     f = data_02175628[i].mUnk_00 & 2;
     if (f == 0) {
         f = 0;
-        b = 0;
+        b = FALSE;
         if (data_02175628[i].mUnk_4c == 0 && data_02175628[i].mUnk_58 < 5) {
-            b = 1;
+            b = TRUE;
         }
-        if (b == 0 && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
+        if (b == FALSE && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
             f = 1;
         }
         if (f == 0 || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {

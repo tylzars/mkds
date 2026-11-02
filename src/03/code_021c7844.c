@@ -31,7 +31,7 @@ void func_ov003_021c7a0c(void) {
     u16 f;
     u16 g;
     u16 h[8];
-    func_ov003_021c20dc(0, &b);
+    func_ov003_021c20dc(NULL, &b);
     a = *(s32 *) data_ov003_021da200;
     if (a >= -0x4e83) {
         c = 0x0;
@@ -205,7 +205,7 @@ void func_ov003_021c7850(void) {
         func_ov003_021bf410();
         func_ov003_021d272c(1, 1);
         func_ov003_021d272c(0, 0x15);
-        func_ov003_021c20dc(0, v2);
+        func_ov003_021c20dc(NULL, v2);
         if (v2[0] != 0) {
             func_ov003_021c2120(2, 1);
             func_ov003_021c212c(func_ov003_021cb294);

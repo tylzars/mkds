@@ -91,7 +91,7 @@ void func_020641f0(Unk0206bcb0 *a) {
         a->mUnk_1b4 = &a->mUnk_184_m;
     }
     b = a->mUnk_590;
-    if (b->mUnk_018 != 0) {
+    if (b->mUnk_018 != NULL) {
         r = (Vec4 *) &b->mUnk_024;
         j = (s64) r->w * r->x >> 12;
         l = (s64) j * 0xce4 >> 12;
@@ -116,7 +116,7 @@ void func_020641f0(Unk0206bcb0 *a) {
         a->mUnk_4cc = l;
     }
     c = a->mUnk_590->mUnk_008;
-    if (c != 0 && c->mUnk_18 != 0) {
+    if (c != NULL && c->mUnk_18 != 0) {
         func_0207b734(a);
         if (func_0203c880(a->mUnk_74) != 0) {
             func_0207b354(a);

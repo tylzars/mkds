@@ -11,7 +11,7 @@
 #include "Main/Unknown/code_020d6000.h"
 #include "Main/Unknown/code_020b4000.h"
 
-s32 func_020d2234(Unk020e71a0 *d, Unk020f41c4_A *e) {
+BOOL func_020d2234(Unk020e71a0 *d, Unk020f41c4_A *e) {
     s32 a;
     s32 c;
     s32 b;
@@ -23,9 +23,9 @@ s32 func_020d2234(Unk020e71a0 *d, Unk020f41c4_A *e) {
         c++;
     }
     if (func_020d6d8c(0, b, c, a) == 0 || func_020d6d34(0, b, c, a, 3) != 2) {
-        return 0;
+        return FALSE;
     }
-    return 1;
+    return TRUE;
 }
 
 #pragma thumb on

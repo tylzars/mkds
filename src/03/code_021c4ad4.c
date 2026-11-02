@@ -130,7 +130,7 @@ void func_ov003_021c4c0c(void) {
         default:
             return;
     }
-    func_ov003_021c27d0(0);
+    func_ov003_021c27d0(NULL);
     func_ov003_021cef90();
     func_ov003_021c212c(func_ov003_021c4bc4);
 }

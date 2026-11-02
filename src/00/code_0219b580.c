@@ -134,7 +134,7 @@ void func_ov000_0219b6c0(int a, u32 b) {
         func_ov000_0219b8a8(0);
     }
     v1 = data_ov000_021b54c8->mUnk_5c;
-    if (v1 != (UnkFunc *) 0x0) {
+    if (v1 != NULL) {
         (*v1)(a, b, data_ov000_021b54c8->mUnk_60);
     }
     return;

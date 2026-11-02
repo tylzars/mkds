@@ -125,7 +125,7 @@ void func_ov001_021995f8(void) {
     v = (reg_GX_DISPCNT & 0x1f00) >> 8;
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((v & ~2) << 8);
     func_0212b91c();
-    data_ov001_021a9be8 = 0;
+    data_ov001_021a9be8 = NULL;
 }
 
 void func_ov001_02199464(void) {
@@ -234,8 +234,8 @@ void func_ov001_02198ec0(void) {
     Unk021a9be8 *p;
     s32 sel;
     s32 r5;
-    s32 hasB;
-    s32 hasA;
+    BOOL hasB;
+    BOOL hasA;
     s32 i;
     Unk02175628Index idx;
     u16 v;
@@ -243,32 +243,32 @@ void func_ov001_02198ec0(void) {
     p = data_ov001_021a9be8;
     sel = p->mUnk_08;
     idx = UNK_02175628_INDEX_8;
-    hasB = 0;
+    hasB = FALSE;
     r5 = -1;
-    hasA = 0;
+    hasA = FALSE;
     v = data_02175628[idx].mUnk_4c;
     if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
-        hasA = 1;
+        hasA = TRUE;
     }
-    if (hasA == 0 && data_02175628[idx].mUnk_54 == 0 && v != 0) {
-        hasB = 1;
+    if (hasA == FALSE && data_02175628[idx].mUnk_54 == 0 && v != 0) {
+        hasB = TRUE;
     }
-    if (hasB != 0) {
+    if (hasB != FALSE) {
         r5 = func_0201ea84(p->mUnk_7c, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) != 0) {
         goto L1;
     } else {
-        s32 c = 0;
-        s32 d = 0;
+        BOOL c = FALSE;
+        BOOL d = FALSE;
         v = data_02175628[idx].mUnk_4c;
         if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
-            d = 1;
+            d = TRUE;
         }
-        if (d == 0 && data_02175628[idx].mUnk_54 == 0 && v != 0) {
-            c = 1;
+        if (d == FALSE && data_02175628[idx].mUnk_54 == 0 && v != 0) {
+            c = TRUE;
         }
-        if (c != 0 && func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) != 0) {
+        if (c != FALSE && func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) != 0) {
         L1:
             data_ov001_021a9be8->mUnk_04 = 4;
             data_ov001_021a9be8->mUnk_34 = 0;

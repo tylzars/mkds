@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_0200589c.h"
 
-s32 func_02006380(Unk0200628c *a, s32 b);
+BOOL func_02006380(Unk0200628c *a, s32 b);
 void func_0200639c(Unk0200628c *a, s32 b, void *c, u32 d);
 u32 func_020063f4(u32 a, u32 b);
 s32 func_02006458(u32 a, s32 b);

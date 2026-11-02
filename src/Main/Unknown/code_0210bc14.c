@@ -6,17 +6,17 @@
 #include "code_020172d0.h"
 
 u32 func_0210bc8c(int a, int b) {
-    s32 i;
+    BOOL i;
     Unk0210bc54 *p;
 
     p = (Unk0210bc54 *) (b + ((Unk02017328 *) a)->mUnk_0a);
     if (p->mUnk_08 != 0) {
-        i = 0;
+        i = FALSE;
     } else {
-        i = 1;
+        i = TRUE;
         p->mUnk_08 = (u32) a;
     }
-    if (i != 0) {
+    if (i != FALSE) {
         func_020174a4((Unk02017328 *) a, (void *) b);
     } else {
         return 0;

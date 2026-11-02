@@ -19,7 +19,7 @@
 #include "Main/Unknown/code_020ee684.h"
 #include "code_02147cd8.h"
 
-s32 func_020ee528(Unk020eda5c *a) {
+BOOL func_020ee528(Unk020eda5c *a) {
     Unk0206bcb0 *p;
     Vec3 v;
     s32 s;
@@ -39,9 +39,9 @@ s32 func_020ee528(Unk020eda5c *a) {
     s = (a->mUnk_084.x == v.x && a->mUnk_084.y == v.y && a->mUnk_084.z == v.z) ? 1 : 0;
     if (s == 0) {
         a->mUnk_084 = v;
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
@@ -49,7 +49,7 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     s32 t;
     s32 k;
     void (*f2)(void *, void *);
-    s32 s;
+    BOOL s;
     Unk020f41c4_A **v;
     s32 n;
     Unk020f41c4_A *q;
@@ -71,10 +71,10 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
         func_020be8e4(a->mUnk_028, k, b->mUnk_08);
     }
     if (t == 0) {
-        if (f1 != 0) {
+        if (f1 != NULL) {
             f1(a);
         }
-        if (f2 != 0) {
+        if (f2 != NULL) {
             f2(a, b);
         }
         func_02071894(a->mUnk_010);
@@ -84,20 +84,20 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     a->mUnk_020 = data_0217bc48[k].mUnk_0c;
     a->mUnk_008 = t;
     a->mUnk_004 = k;
-    a->mUnk_170 = 0;
+    a->mUnk_170 = NULL;
     a->mUnk_0e8 = data_0217bc48[k].mUnk_08 == 8 ? 0xb400 : 0x4333;
     u = *(vs32 *) &a->mUnk_000;
     func_020f1048(&data_027e00cc[u], a->mUnk_020, a->mUnk_014, a->mUnk_010->mUnk_74, &a->mUnk_050);
     func_020ee528(a);
-    if (f1 != 0) {
+    if (f1 != NULL) {
         f1(a);
     }
-    if (f2 != 0) {
+    if (f2 != NULL) {
         f2(a, b);
     }
     func_0206c11c(a->mUnk_010);
     func_020f4718(b);
-    if (a->mUnk_170 != 0) {
+    if (a->mUnk_170 != NULL) {
         func_020f81b8((u32) a->mUnk_00c, a->mUnk_004);
     }
     v = a->mUnk_014;
@@ -114,7 +114,7 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     }
 }
 
-s32 func_020ee284(Unk020f41c4_A *p, Vec3 *v, s32 d) {
+BOOL func_020ee284(Unk020f41c4_A *p, Vec3 *v, s32 d) {
     s32 x;
     s32 y;
     s32 z;
@@ -137,19 +137,19 @@ void func_020ee160(Unk020f41c4_A *a, Unk020f41c4_A *b) {
             return;
         }
     }
-    if (func_020ee284(a, &b->mUnk_50, b->mUnk_e0) == 0) {
-        if (func_020ee284(a, &b->mUnk_0e4, b->mUnk_e0) == 0) {
+    if (func_020ee284(a, &b->mUnk_50, b->mUnk_e0) == FALSE) {
+        if (func_020ee284(a, &b->mUnk_0e4, b->mUnk_e0) == FALSE) {
             return;
         }
-        if (func_020ee284(b, &a->mUnk_0e4, a->mUnk_e0) == 0) {
+        if (func_020ee284(b, &a->mUnk_0e4, a->mUnk_e0) == FALSE) {
             return;
         }
     }
     v = a->mUnk_5c;
     n = func_020f7ea8(a, b);
     m = func_020f7ea8(b, a);
-    func_020f77f8(a, n, &b->mUnk_50, &b->mUnk_5c, 0);
-    func_020f77f8(b, m, &a->mUnk_50, &v, 0);
+    func_020f77f8(a, n, &b->mUnk_50, &b->mUnk_5c, NULL);
+    func_020f77f8(b, m, &a->mUnk_50, &v, NULL);
     if (b->mUnk_44 != 1) {
         return;
     }
@@ -237,13 +237,13 @@ void func_020eddb4(Unk020eda5c *p) {
     enum { K0 } k;
 
     id = p->mUnk_008;
-    if (func_020ee528(p) != 0) {
+    if (func_020ee528(p) != FALSE) {
         m = p->mUnk_020;
         for (n = 0; n < m; n++) {
             func_020f9f08(p->mUnk_014[n], p->mUnk_084.x, p->mUnk_084.y);
         }
     }
-    if (data_0216c620[id] != 0) {
+    if (data_0216c620[id] != NULL) {
         data_0216c620[id](p);
     }
     func_020edf10(p);
@@ -264,7 +264,7 @@ void func_020eddb4(Unk020eda5c *p) {
     func_020efb84(p, q);
     func_020f6630(q, n + 1, &o->mUnk_98, &o->mUnk_a4, &o->mUnk_244);
     k = q->mUnk_44;
-    if (data_0217bc34[k].mUnk_38 != 0) {
+    if (data_0217bc34[k].mUnk_38 != NULL) {
         data_0217bc34[k].mUnk_38(q);
     }
     if (p->mUnk_020 != 0) {
@@ -336,17 +336,17 @@ void func_020edb00(Unk020eda5c *p) {
         func_020f0f70(&data_027e00cc[p->mUnk_014[p->mUnk_020]->mUnk_44], p->mUnk_014[p->mUnk_020]);
     }
     func_020ee6a8(p);
-    if (p->mUnk_170 != 0) {
+    if (p->mUnk_170 != NULL) {
         p->mUnk_00c->mUnk_014 = 0x13;
-        p->mUnk_170 = 0;
+        p->mUnk_170 = NULL;
     }
 }
 
 void func_020edad8(Unk020eda5c *p) {
     p->mUnk_024 = 0xa;
-    if (p->mUnk_170 != 0) {
+    if (p->mUnk_170 != NULL) {
         p->mUnk_00c->mUnk_014 = 0x13;
-        p->mUnk_170 = 0;
+        p->mUnk_170 = NULL;
     }
 }
 

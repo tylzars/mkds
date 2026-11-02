@@ -32,7 +32,7 @@ void func_0211e480(void *a) {
 }
 
 void func_0211e474(void) {
-    data_0217d374 = 0;
+    data_0217d374 = NULL;
 }
 
 void func_0211e418(u32 a) {
@@ -169,16 +169,16 @@ s32 func_0211e160(u32 a) {
     return r;
 }
 
-s32 func_0211e130(void) {
+BOOL func_0211e130(void) {
     u32 a = 0;
 
     a |= func_0211e160(a);
     a |= func_0211e160(1);
     a |= func_0211e160(2);
     if (a == 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_0211e0c4(u32 a) {

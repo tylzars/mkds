@@ -27,7 +27,7 @@ void func_ov001_021843b0(Unk02188950 *a, Unk0206bcb0 *b) {
                 vec1.x = (s32) (((s64) -a->mUnk_0a0->mUnk_1ac * data_0215d4b4[((u16) a->mUnk_1a8 >> 4) * 2]) >> 12);
                 vec1.y = a->mUnk_0a0->mUnk_1a8;
                 vec1.z = (s32) (((s64) -a->mUnk_0a0->mUnk_1ac * data_0215d4b4[((u16) a->mUnk_1a8 >> 4) * 2 + 1]) >> 12);
-                func_ov001_02187218(a, 7, 0);
+                func_ov001_02187218(a, 7, NULL);
                 func_ov001_02188d64(a, (s32) (a->mUnk_0a0->mUnk_1a0), (s32) (a->mUnk_0a0->mUnk_1a4));
                 func_ov001_02188a8c(a, a->mUnk_0a0->mUnk_1b0, 0x270f000);
                 func_ov001_02188950(a, &vec1);
@@ -72,7 +72,7 @@ void func_ov001_021843b0(Unk02188950 *a, Unk0206bcb0 *b) {
             vec3.x = (s32) (((s64) -a->mUnk_0a0->mUnk_190 * data_0215d4b4[((u16) a->mUnk_1a8 >> 4) * 2]) >> 12);
             vec3.y = a->mUnk_0a0->mUnk_18c;
             vec3.z = (s32) (((s64) -a->mUnk_0a0->mUnk_190 * data_0215d4b4[((u16) a->mUnk_1a8 >> 4) * 2 + 1]) >> 12);
-            func_ov001_02187218(a, 7, 0);
+            func_ov001_02187218(a, 7, NULL);
             func_ov001_02188d64(a, (s32) (a->mUnk_0a0->mUnk_184), (s32) (a->mUnk_0a0->mUnk_188));
             func_ov001_02188a8c(a, a->mUnk_0a0->mUnk_194, 0x270f000);
             func_ov001_02188950(a, &vec3);

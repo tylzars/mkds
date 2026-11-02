@@ -71,7 +71,7 @@ u16 func_ov001_02187024(Vec3 *a, Vec3 *b, s32 c, s32 d);
 int func_ov001_02187074(int a, int b, int c);
 void func_ov001_02187098(void);
 void func_ov001_021870b0(void *a, Unk02188950 *b, const char *c);
-int func_ov001_021871d0(Unk02188950 *a);
+BOOL func_ov001_021871d0(Unk02188950 *a);
 u32 func_ov001_021871f8(Unk02188950 *a, int b);
 void func_ov001_0218720c(Unk02188950 *a);
 void func_ov001_02187218(Unk02188950 *a, int b, s32 (*c)(Unk02188950 *));

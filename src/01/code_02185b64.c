@@ -85,7 +85,7 @@ void func_ov001_02185c4c(Unk02185c4c *a) {
     Unk02185bb8 *e;
 
     if (a) {
-        for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != 0; i++) {
+        for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != NULL; i++) {
             if (e->mUnk_000.mUnk_9c->mUnk_28 != 0) {
                 e->mUnk_000.mUnk_02 |= data_ov001_021a6580;
                 e->mUnk_0ac = 0;
@@ -120,7 +120,7 @@ void func_ov001_02185bb8(void *a, Unk02185bb8 *b) {
 }
 
 void func_ov001_02185b98(void) {
-    func_0209bfa8(&func_ov001_02185d74, 0, 0, (u32) (0), (u16) (1));
+    func_0209bfa8(&func_ov001_02185d74, NULL, NULL, (u32) (0), (u16) (1));
     return;
 }
 
@@ -129,5 +129,5 @@ void func_ov001_02185b7c(void) {
 }
 
 void func_ov001_02185b64(void) {
-    func_0209bf48(func_ov001_02185c4c, func_ov001_02185bb8, 0);
+    func_0209bf48(func_ov001_02185c4c, func_ov001_02185bb8, NULL);
 }

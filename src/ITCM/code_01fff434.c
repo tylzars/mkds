@@ -68,7 +68,7 @@ void func_01fff694(Unk020ee684 *p) {
             func_020f47e4(b, k);
         }
     }
-    if (p->mUnk_1f8 == func_02061f90() && (r = &p->mUnk_1f0)->mUnk_00 != 0) {
+    if (p->mUnk_1f8 == func_02061f90() && (r = &p->mUnk_1f0)->mUnk_00 != NULL) {
         q = p->mUnk_1fc;
         v = &q->mUnk_98;
         func_020f3c54(r, r, v);
@@ -82,17 +82,17 @@ void func_01fff694(Unk020ee684 *p) {
 }
 
 void func_01fff524(Unk020ee684 *p) {
-    s32 r;
+    BOOL r;
     s32 a;
     p->mUnk_1ec &= ~0xff;
     if (data_021759c0->mUnk_08 == 5) {
         a = p->mUnk_030.mUnk_00;
         if (a == 0x13 || p->mUnk_058.mUnk_000 != 0xf) {
-            r = 0;
+            r = FALSE;
         } else {
             r = (u32) (data_0217bc48[a].mUnk_14 - 1) <= 1;
         }
-        if (r != 0) {
+        if (r != FALSE) {
             if ((p->mUnk_1ec & 0x4000) && func_020f0154(p) != 0) {
                 p->mUnk_1ec |= data_usa_021595b0;
             }

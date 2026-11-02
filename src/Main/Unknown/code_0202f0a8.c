@@ -26,7 +26,7 @@ u32 func_0202f0fc(Unk02175628_48 *a) {
 
 void func_0202f120(s32 a, s32 b, s32 c, s32 d) {
     void (*f)(int, int, int, int) = data_02174e48->mUnk_028;
-    if (f != 0) {
+    if (f != NULL) {
         if (a == 1) {
             if (c < 0 || c >= data_02174e48->mUnk_034) {
                 return;

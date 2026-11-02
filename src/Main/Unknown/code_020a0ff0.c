@@ -84,10 +84,10 @@ u16 func_020a1520(void) {
     if (data_0217c780 & 1) {
         h = (Unk0212c400 **) func_0210e128((void *) func_02108ea0(0));
         if (data_0217d084.mUnk_0c != 0) {
-            if (h[0] != 0) {
+            if (h[0] != NULL) {
                 func_0212c6f0(h, 0);
             }
-            if (h[0] != 0) {
+            if (h[0] != NULL) {
                 func_0212c6f0(h, 0);
             }
             func_0212ecc0(h, 0, 0x4b);
@@ -179,11 +179,11 @@ u32 func_020a128c(void) {
     return value0;
 }
 
-int func_020a126c(void) {
+BOOL func_020a126c(void) {
     if (data_0217b1fc->mUnk_3b4 >= 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 u16 func_020a1250(int arg0) {
@@ -257,24 +257,24 @@ void func_020a10ac(u16 a, s32 b) {
     data_0217b1fc->mUnk_000[a].mUnk_50 += b;
 }
 
-int func_020a1084(int a) {
+BOOL func_020a1084(int a) {
     if (data_0217b1fc->mUnk_000[a].mUnk_08 != 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 s32 func_020a1048(u16 a) {
     Unk0217b1fc *d;
-    s32 r;
+    BOOL r;
     s32 v;
 
     d = data_0217b1fc;
-    r = 0;
+    r = FALSE;
     v = d->mUnk_000[a].mUnk_4c;
     if (d->mUnk_3b0 == v) {
         if (d->mUnk_3ac != v) {
-            r = 1;
+            r = TRUE;
         }
     }
     return r;
@@ -282,13 +282,13 @@ s32 func_020a1048(u16 a) {
 
 s32 func_020a100c(s32 a) {
     Unk0217b1fc_000 *e;
-    s32 r;
+    BOOL r;
 
     e = &data_0217b1fc->mUnk_000[a];
-    r = 0;
+    r = FALSE;
     if (data_0217b1fc->mUnk_3b4 == e->mUnk_46) {
         if (data_0217b1fc->mUnk_3a8 < 0) {
-            r = 1;
+            r = TRUE;
         }
     }
     return r;

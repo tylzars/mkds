@@ -40,8 +40,8 @@ s8 *func_ov000_02197be0(s8 *a) {
     s32 e;
     u32 g;
     u8 *i;
-    if (a == 0) {
-        func_0213442c(data_ov000_021b3e90, data_ov000_021b3e98, 0, 0x2b);
+    if (a == NULL) {
+        func_0213442c(data_ov000_021b3e90, data_ov000_021b3e98, NULL, 0x2b);
     }
     srand(func_ov000_0218e8c4());
     a[0] = (s32) rand() % 0x5d + 0x21;
@@ -87,7 +87,7 @@ s8 *func_ov000_02197be0(s8 *a) {
     return a;
 }
 
-s32 func_ov000_02197ca0(const s8 *a) {
+BOOL func_ov000_02197ca0(const s8 *a) {
     s32 b[8];
     u32 h;
     u32 g;
@@ -126,11 +126,11 @@ s32 func_ov000_02197ca0(const s8 *a) {
         e = d;
         e ^= g;
         if ((e != 0 && ((u8) a[f] & b[6]) == 0) || (e == 0 && ((u8) a[f] & b[7]) == 1)) {
-            return 0;
+            return FALSE;
         }
         f++;
     } while (f < 0x20);
-    return 1;
+    return TRUE;
 }
 
 void func_ov000_02197d20(int *a, int b, int c) {
@@ -138,10 +138,10 @@ void func_ov000_02197d20(int *a, int b, int c) {
         b = a[2] - c;
     }
     if (b > a[2]) {
-        func_0213442c(data_ov000_021b3ea4, data_ov000_021b3ebc, 0, 0x4f);
+        func_0213442c(data_ov000_021b3ea4, data_ov000_021b3ebc, NULL, 0x4f);
     }
     if (c > a[2] - b) {
-        func_0213442c(data_ov000_021b3ec8, data_ov000_021b3ebc, 0, 0x50);
+        func_0213442c(data_ov000_021b3ec8, data_ov000_021b3ebc, NULL, 0x50);
     }
     memmove((u8 *) a[0] + b, (u8 *) a[0] + b + c, a[2] - b - c);
     a[2] = a[2] - c;
@@ -153,7 +153,7 @@ void func_ov000_02197d84(int *a, u32 b, int c) {
             c = strlen((const u8 *) b);
         }
         if (a[2] + c > a[1]) {
-            func_0213442c(data_ov000_021b3eec, data_ov000_021b3ebc, 0, 0x40);
+            func_0213442c(data_ov000_021b3eec, data_ov000_021b3ebc, NULL, 0x40);
         }
         memcpy((void *) (a[0] + a[2]), (const void *) b, c);
         a[2] = a[2] + c;

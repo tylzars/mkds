@@ -123,7 +123,7 @@ s32 func_020678d4(Unk0206bcb0 *a) {
         b = data_02165518;
         if (a->mUnk_3e4 > 0 && (a->mUnk_7c & 1) != 0) {
             c = func_021090c4(&a->mUnk_00, b.mUnk_00[a->mUnk_3e4 - 1], 0x7f, 0);
-            if (c != 0) {
+            if (c != NULL) {
                 c->mUnk_19 = c->mUnk_19 | 0x10;
             }
         }
@@ -156,7 +156,7 @@ s32 func_02067778(Unk0206bcb0 *a) {
         b = data_02165518;
         if (a->mUnk_3e4 > 0 && (a->mUnk_7c & 1) != 0) {
             c = func_021090c4(&a->mUnk_00, b.mUnk_00[a->mUnk_3e4 - 1], 0x7f, 0);
-            if (c != 0) {
+            if (c != NULL) {
                 c->mUnk_19 = c->mUnk_19 | 0x10;
             }
         }
@@ -196,7 +196,7 @@ s32 func_02067630(Unk0206bcb0 *a) {
         func_0206d020(a, 0, 0x3c);
         if ((a->mUnk_7c & 1) != 0) {
             b = func_021090c4(&a->mUnk_00, 0x1b9, 0x7f, 0);
-            if (b != 0) {
+            if (b != NULL) {
                 b->mUnk_19 = b->mUnk_19 | 0x10;
             }
         }
@@ -451,13 +451,13 @@ void func_02066ac0(Unk0206bcb0 *a) {
     b->mUnk_24 = func_02061fec() == 1 ? 0x333 : j;
     if (h > b->mUnk_20) {
         f = func_0205b978(((u8 *) data_0217aa18)[a->mUnk_74 & 0xff], h);
-        g = f != 0 ? (Unk020653d0 *) f->mUnk_08 : 0;
-        if (g != 0) {
+        g = f != NULL ? (Unk020653d0 *) f->mUnk_08 : 0;
+        if (g != NULL) {
             i = data_0217aa14->mUnk_728 - h;
             if (i < 0) {
                 k = -i;
                 c = func_020172d8(&b->mUnk_8c, 0);
-                if (c != 0) {
+                if (c != NULL) {
                     func_02017354(&b->mUnk_8c, c);
                     c->mUnk_0c = *g;
                     c->mUnk_08 = k + 1;
@@ -481,8 +481,8 @@ void func_02066ac0(Unk0206bcb0 *a) {
         a->mUnk_388 = e->mUnk_5c;
     }
     e = a->mUnk_514;
-    m = func_0201733c(&e->mUnk_80, 0);
-    while (m != 0) {
+    m = func_0201733c(&e->mUnk_80, NULL);
+    while (m != NULL) {
         n = func_0201733c(&e->mUnk_80, m);
         m->mUnk_08 = m->mUnk_08 - 1;
         if (m->mUnk_08 <= 0) {
@@ -491,7 +491,7 @@ void func_02066ac0(Unk0206bcb0 *a) {
             }
             func_02017354(&e->mUnk_80, m);
             func_020174a4(&e->mUnk_8c, m);
-            if (n == 0) {
+            if (n == NULL) {
                 break;
             }
             m = n;

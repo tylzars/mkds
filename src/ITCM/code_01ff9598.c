@@ -159,17 +159,17 @@ void func_01ff9940(Unk01ff9940 *a, Unk01ff9940_B *b, Unk01ff9940_C *c, u32 d) {
 }
 
 void func_01ff9a94(Unk01ff9940 *a) {
-    s32 r;
+    BOOL r;
     u32 w = a->mUnk_00;
 
-    r = 0;
+    r = FALSE;
     if ((w & 4) == 0) {
-        r = 1;
+        r = TRUE;
     }
     if ((w & 0x20) && !(w & 8)) {
         if (r) {
             func_01ff9048(0x1c, &a->mUnk_4c, 3);
-            r = 0;
+            r = FALSE;
         }
         func_01ff9048(0x1b, &a->mUnk_10, 3);
     }
@@ -410,7 +410,7 @@ void func_01ffa11c(Unk0206bcb0 *p, const Vec3 *a) {
     }
 }
 
-int func_01ffa1f8(Unk0206bcb0 *p) {
+BOOL func_01ffa1f8(Unk0206bcb0 *p) {
     void *q;
     u32 i;
     u32 r;
@@ -440,11 +440,11 @@ int func_01ffa1f8(Unk0206bcb0 *p) {
                 }
             }
         }
-        return 1;
+        return TRUE;
     }
     p->mUnk_44 = p->mUnk_44 & 0xbbceffff;
     p->mUnk_48 = p->mUnk_48 & 0xff9ffbfe;
-    return 0;
+    return FALSE;
 }
 
 void func_01ffa350(Unk0206bcb0 *p, u32 a) {
@@ -454,47 +454,47 @@ void func_01ffa350(Unk0206bcb0 *p, u32 a) {
     func_020839d8(p);
 }
 
-int func_01ffa380(Unk0206bcb0 *p, u32 a, Vec3 *b) {
-    s32 r = 1;
-    s32 t = 0;
+BOOL func_01ffa380(Unk0206bcb0 *p, u32 a, Vec3 *b) {
+    BOOL r = TRUE;
+    BOOL t = FALSE;
 
     if (a & 0x2000000) {
         if ((s64) b->x * b->x + (s64) b->z * b->z > 0x1000000) {
-            t = 1;
+            t = TRUE;
         }
     }
-    if (t == 0) {
+    if (t == FALSE) {
         if (b->y <= (s32) (((s64) p->mUnk_1d0 * -0xb33 + 0x800) >> 12)) {
-            r = 0;
+            r = FALSE;
         }
     }
-    return r != 0;
+    return r != FALSE;
 }
 
-int func_01ffa41c(Unk0206bcb0 *p, u32 a, Vec3 *b) {
-    s32 r = 1;
-    s32 t = 0;
+BOOL func_01ffa41c(Unk0206bcb0 *p, u32 a, Vec3 *b) {
+    BOOL r = TRUE;
+    BOOL t = FALSE;
 
     if (a & 0x2000000) {
         if ((s64) b->x * b->x + (s64) b->z * b->z > 0x1000000) {
-            t = 1;
+            t = TRUE;
         }
     }
-    if (t == 0) {
+    if (t == FALSE) {
         if (!(p->mUnk_44 & 0x4000000)) {
-            r = 0;
+            r = FALSE;
         }
     }
-    return r != 0;
+    return r != FALSE;
 }
 
-int func_01ffa478(Unk0206bcb0 *p, u32 a, Vec3 *b) {
-    s32 t = 0;
+BOOL func_01ffa478(Unk0206bcb0 *p, u32 a, Vec3 *b) {
+    BOOL t = FALSE;
 
     if (a & 0x2000000) {
         if ((s64) b->x * b->x + (s64) b->z * b->z > 0x1000000) {
-            t = 1;
+            t = TRUE;
         }
     }
-    return t != 0;
+    return t != FALSE;
 }

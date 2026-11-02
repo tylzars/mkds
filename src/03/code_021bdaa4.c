@@ -33,7 +33,7 @@ s32 func_ov003_021bdb0c(u8 *p, u32 a, u8 *b, u32 c, const void *d) {
     b[6] = 0;
     b[7] = 0;
     *(u16 *) b = func_ov003_021b7c44_inline(c - 8);
-    if (d != 0) {
+    if (d != NULL) {
         func_ov003_021bccd0(p + 6, b, c, d, 0x10);
         c += 8;
     } else {
@@ -66,7 +66,7 @@ u8 *func_ov003_021bdc08(u8 **p, u8 *a, u32 *b, s32 *c) {
     u8 *d;
     d = *p;
     if (d >= a) {
-        return 0;
+        return NULL;
     }
     *b = func_ov003_021b7c44_inline(*(u16 *) d);
     *c = func_ov003_021b7c44_inline(*(u16 *) (d + 2));
@@ -87,7 +87,7 @@ u8 *func_ov003_021bdc5c(const u8 *p, u32 *a, s32 *b) {
         c += *e;
     }
     if ((u16) c != func_ov003_021b7c44_inline(*(u16 *) d)) {
-        return 0;
+        return NULL;
     }
     return (u8 *) p + 6;
 }

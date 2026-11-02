@@ -27,7 +27,7 @@ typedef struct Unk021bd894_buf {
     /* 2 */ Unk021d68c8 mUnk_02;
 } Unk021bd894_buf;
 
-s32 func_ov003_021bd998(const u8 *p, s32 *a) {
+BOOL func_ov003_021bd998(const u8 *p, s32 *a) {
     u32 b;
     u32 g;
     s32 h;
@@ -42,16 +42,16 @@ s32 func_ov003_021bd998(const u8 *p, s32 *a) {
     b = 0;
     g = 0;
     h = 0;
-    if (f == 0) {
-        return 0;
+    if (f == NULL) {
+        return FALSE;
     }
     if (i != 1) {
-        return 0;
+        return FALSE;
     }
     d = f + j;
     f += 8;
     e = func_ov003_021bdc08(&f, d, &c, &k);
-    if (e != 0) {
+    if (e != NULL) {
         do {
             switch (c) {
                 case 1:
@@ -65,17 +65,17 @@ s32 func_ov003_021bd998(const u8 *p, s32 *a) {
                     break;
             }
             e = func_ov003_021bdc08(&f, d, &c, &k);
-        } while (e != 0);
+        } while (e != NULL);
     }
     if (b != 1 || g != 1) {
-        return 0;
+        return FALSE;
     }
     if (h >= 1) {
         *a = 1;
     } else {
         *a = 0;
     }
-    return 1;
+    return TRUE;
 }
 
 s32 func_ov003_021bd938(const u8 *p, u32 a, u8 *b, const void *c) {
@@ -83,13 +83,13 @@ s32 func_ov003_021bd938(const u8 *p, u32 a, u8 *b, const void *c) {
     s32 e;
     u8 *f;
     f = func_ov003_021bdc5c(p, &d, &e);
-    if (f == 0) {
+    if (f == NULL) {
         return 0;
     }
     if (d != a) {
         return 0;
     }
-    if (c != 0) {
+    if (c != NULL) {
         func_ov003_021bcadc(b, f, e, c, 0x10);
         e -= 8;
     } else {
@@ -112,7 +112,7 @@ s32 func_ov003_021bd894(u8 *p) {
     if (data_ov003_021d8c20 != 0) {
         b = func_ov003_021bdaa4(b, 4, &data_ov003_021d8c54, 6);
     }
-    return func_ov003_021bdb0c(p, 2, data_ov003_021d9104, b - data_ov003_021d68ac + 8, 0);
+    return func_ov003_021bdb0c(p, 2, data_ov003_021d9104, b - data_ov003_021d68ac + 8, NULL);
 }
 
 u32 func_ov003_021bd884(void *p) {

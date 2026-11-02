@@ -22,24 +22,24 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-s32 func_0203b0a0(const Unk0203b0a0 *a, const Unk0203b0a0 *b) {
+BOOL func_0203b0a0(const Unk0203b0a0 *a, const Unk0203b0a0 *b) {
     if (a->mUnk_00 < b->mUnk_00) {
-        return 1;
+        return TRUE;
     }
     if (a->mUnk_00 > b->mUnk_00) {
-        return 0;
+        return FALSE;
     }
     if (a->mUnk_01 < b->mUnk_01) {
-        return 1;
+        return TRUE;
     }
     if (a->mUnk_01 > b->mUnk_01) {
-        return 0;
+        return FALSE;
     }
     return a->mUnk_02 < b->mUnk_02;
 }
 
 void func_0203b0f8(void *a) {
-    void *r = 0;
+    void *r = NULL;
     s32 t;
     u32 f;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
@@ -87,7 +87,7 @@ u32 func_0203b230(void) {
     s32 a;
     s32 b;
     s32 t;
-    s32 v1;
+    BOOL v1;
     a = (data_021759c0->mUnk_08 == 4) ? data_021759c0->mUnk_54 : -1;
     b = (data_021759c0->mUnk_08 == 4) ? data_021759c0->mUnk_55 : -1;
     t = func_0203c880((u16) data_021759c0->mUnk_62);
@@ -99,11 +99,11 @@ u32 func_0203b230(void) {
     d.mUnk_00 = 1;
     d.mUnk_01 = func_0205d140();
     if (c.mUnk_00 == 0) {
-        v1 = 1;
+        v1 = TRUE;
     } else {
         v1 = c.mUnk_01 < d.mUnk_01;
     }
-    if (v1 != 0) {
+    if (v1 != FALSE) {
         func_02056a04((u16) a, (u16) b, &d);
         func_020563d8();
         r = 1;
@@ -114,7 +114,7 @@ u32 func_0203b230(void) {
 s32 func_0203b324(void) {
     Unk02056bc0 a;
     Unk02056bc0 b;
-    s32 r = 0;
+    BOOL r = FALSE;
     s32 v;
     Unk0217b488 *p = data_0217b488;
     switch (p->mUnk_88) {
@@ -133,37 +133,37 @@ s32 func_0203b324(void) {
     if (func_0203b3d8(&a, &b) != 0) {
         func_02056b08(data_0217b488->mUnk_84, v, &b);
         func_0205641c();
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
-s32 func_0203b3d8(Unk02056bc0 *a, Unk02056bc0 *b) {
+BOOL func_0203b3d8(Unk02056bc0 *a, Unk02056bc0 *b) {
     s32 x;
     s32 y;
     if (b->mUnk_1c == 3) {
-        return 0;
+        return FALSE;
     }
     if (a->mUnk_18 == 0) {
-        return 1;
+        return TRUE;
     }
     if (a->mUnk_1c > b->mUnk_1c) {
-        return 1;
+        return TRUE;
     }
     if (a->mUnk_1c < b->mUnk_1c) {
-        return 0;
+        return FALSE;
     }
     if (a->mUnk_1e < b->mUnk_1e) {
-        return 1;
+        return TRUE;
     }
     if (a->mUnk_1e > b->mUnk_1e) {
-        return 0;
+        return FALSE;
     }
     if (a->mUnk_1d < b->mUnk_1d) {
-        return 1;
+        return TRUE;
     }
     if (a->mUnk_1d > b->mUnk_1d) {
-        return 0;
+        return FALSE;
     }
     x = a->mUnk_03 * 1000 + a->mUnk_02 * 60000 + a->mUnk_00;
     y = b->mUnk_03 * 1000 + b->mUnk_02 * 60000 + b->mUnk_00;

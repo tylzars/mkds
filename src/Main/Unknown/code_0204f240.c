@@ -72,8 +72,8 @@ void func_0204f240(void *a, s32 b) {
     s32 i;
     for (i = 0; i < 12; i++) {
         v->mUnk_000[i].mUnk_34 = 0;
-        v->mUnk_000[i].mUnk_74 = 0;
-        v->mUnk_000[i].mUnk_78 = 0;
+        v->mUnk_000[i].mUnk_74 = NULL;
+        v->mUnk_000[i].mUnk_78 = NULL;
         v->mUnk_000[i].mUnk_84_29 = 0;
         v->mUnk_000[i].mUnk_84_0 = 0;
     }
@@ -88,7 +88,7 @@ void func_0204f240(void *a, s32 b) {
     v->mUnk_6b4 = 0;
     v->mUnk_668 = 0;
     v->mUnk_66a = -1;
-    v->mUnk_6b8 = 0;
+    v->mUnk_6b8 = NULL;
     if (b == 2) {
         func_0204f33c(a);
         func_0204ee64();

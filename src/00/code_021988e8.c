@@ -13,7 +13,7 @@
 #include "00/code_02198a8c.h"
 
 void func_ov000_021988e8(Unk02197e8c *a) {
-    func_ov000_0218dddc(a->mUnk_0c, (void (*)(void *, void *)) func_ov000_021988fc, 0);
+    func_ov000_0218dddc(a->mUnk_0c, (void (*)(void *, void *)) func_ov000_021988fc, NULL);
 }
 
 void func_ov000_021988fc(Unk02197fe8 **a) {
@@ -60,7 +60,7 @@ int func_ov000_02198968(void *a, Unk02197fe8 **b, u32 c, void *d, int e, u32 f, 
         return n;
     }
     if (h == 0) {
-        if (b != 0) {
+        if (b != NULL) {
             *b = m;
         }
         return 0;

@@ -25,7 +25,7 @@ void func_ov001_0219e6ec(void *heap) {
     data_ov001_021ca400->mCommonMessages = func_02047a28("common.bmg");
     func_ov001_0219e660();
     func_ov001_0219e38c();
-    func_020ae6d4(data_ov001_021ca400->mUnk_068, 0);
+    func_020ae6d4(data_ov001_021ca400->mUnk_068, NULL);
     func_02124ed0(data_ov001_021ca400->mHeap, data_ov001_021ca400->mEndingThanksBncl, data_ov001_021ca400->mEndingThanksBnll,
                   &data_ov001_021ca400->mUnk_020);
     result = NULL;
@@ -184,8 +184,8 @@ void func_ov001_0219e294(void) {
 void func_ov001_0219e1f8(void) {
     Unk02175628Index idx = UNK_02175628_INDEX_8;
     u16 flags;
-    s32 a;
-    s32 b;
+    BOOL a;
+    BOOL b;
     u16 x;
 
     data_ov001_021ca400->mUnk_008++;
@@ -193,16 +193,16 @@ void func_ov001_0219e1f8(void) {
         data_ov001_021ca400->mUnk_008 = data_ov001_021a6c50[data_ov001_021ca400->mState];
         flags = data_02175628[idx].mUnk_00 & 0xc0f;
         if (flags == 0) {
-            a = 0;
-            b = 0;
+            a = FALSE;
+            b = FALSE;
             x = data_02175628[idx].mUnk_4c;
             if (x == 0 && data_02175628[idx].mUnk_58 < 5) {
-                b = 1;
+                b = TRUE;
             }
-            if (b == 0 && data_02175628[idx].mUnk_54 == 0 && x != 0) {
-                a = 1;
+            if (b == FALSE && data_02175628[idx].mUnk_54 == 0 && x != 0) {
+                a = TRUE;
             }
-            if (a == 0) {
+            if (a == FALSE) {
                 return;
             }
         }
@@ -263,7 +263,7 @@ void func_ov001_0219e118(void) {
 void func_ov001_0219e0d4(void) {
     u32 bits;
 
-    if (data_ov001_021ca400->mUnk_018 != 0) {
+    if (data_ov001_021ca400->mUnk_018 != FALSE) {
         bits = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
         *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | ((bits | 0x10) << 8);
     }

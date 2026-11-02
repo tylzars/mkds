@@ -50,16 +50,16 @@ s16 func_020adc64(s32 a) {
     return data_02156868[a];
 }
 
-s32 func_020adc24(Unk020adc24 *a, Unk020adc24 *b) {
+BOOL func_020adc24(Unk020adc24 *a, Unk020adc24 *b) {
     s32 x;
     s32 y;
 
     x = a->mUnk_00 + (a->mUnk_03 * 1000 + a->mUnk_02 * 60000);
     y = b->mUnk_00 + (b->mUnk_03 * 1000 + b->mUnk_02 * 60000);
     if (x < y) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 s32 func_020adc04(void) {
@@ -90,21 +90,21 @@ s32 func_020adbc4(void) {
 
 #pragma thumb on
 
-s32 func_020adb34(void) {
+BOOL func_020adb34(void) {
     s32 i;
     s32 j;
     s32 r;
     s32 v;
 
     if (func_020adbe4() < 1 || func_020adbe4() > 6 || func_020adbc4() < 1 || func_020adbc4() > 9) {
-        return 0;
+        return FALSE;
     }
     for (i = 1; i <= 6; i++) {
         for (j = 1; j <= 9; j++) {
             r = func_0205fd78(i, j, &v);
             if (i == func_020adbe4() && j == func_020adbc4()) {
                 if (r != 0 && (u32) (v - 5) <= 2) {
-                    return 0;
+                    return FALSE;
                 }
             } else {
                 if (r != 0) {
@@ -114,15 +114,15 @@ s32 func_020adb34(void) {
                         case 7:
                             break;
                         default:
-                            return 0;
+                            return FALSE;
                     }
                 } else {
-                    return 0;
+                    return FALSE;
                 }
             }
         }
     }
-    return 1;
+    return TRUE;
 }
 
 void func_020adb04(void) {

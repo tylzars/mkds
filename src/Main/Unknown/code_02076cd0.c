@@ -135,7 +135,7 @@ void func_02077060(Unk02061808 *p) {
         p->mUnk_080 = -p->mUnk_080;
     }
     p->mUnk_084 = -p->mUnk_080;
-    if (data_021759c0->mUnk_00c == 6 && p->mUnk_218 != 0) {
+    if (data_021759c0->mUnk_00c == 6 && p->mUnk_218 != NULL) {
         c = (s32) (((s64) p->mUnk_078 * p->mUnk_218->mUnk_00.y + 0x800) >> 12);
         p->mUnk_07c += c;
         p->mUnk_078 += c;
@@ -232,8 +232,8 @@ void func_0207729c(Unk02061808 *p) {
     p->mUnk_0a8 = c;
     p->mUnk_0b4 = c;
     p->mUnk_26c = data_021759c0->mUnk_57 == 0 ? 1 : -1;
-    p->mUnk_21c = 0;
-    p->mUnk_220 = 0;
+    p->mUnk_21c = NULL;
+    p->mUnk_220 = NULL;
     p->mUnk_20c = 0;
     p->mUnk_20e = 0;
     p->mUnk_224 = 0;
@@ -244,12 +244,12 @@ void func_0207729c(Unk02061808 *p) {
 
 void func_020775e4(void) {
     data_usa_0217ac98 = func_02036bec(func_020364e0(func_020364e8()), 0x270);
-    data_usa_0217ac84 = 0;
+    data_usa_0217ac84 = NULL;
     func_0207729c(data_usa_0217ac98);
     data_usa_0217ac98->mUnk_218 = gCourseMap->mUnk_c4;
     data_usa_0217ac98->mUnk_250 = 2;
     data_usa_0217ac98->mUnk_24c = 0;
-    if (data_usa_0217ac98->mUnk_218 == 0) {
+    if (data_usa_0217ac98->mUnk_218 == NULL) {
         data_0217561c->mUnk_4d0 = 1;
         return;
     }
@@ -269,7 +269,7 @@ void func_0207767c(void) {
     data_usa_0217ac84->mUnk_218 = gCourseMap->mUnk_c8;
     data_usa_0217ac98->mUnk_250 = 2;
     data_usa_0217ac84->mUnk_250 = 2;
-    if (data_usa_0217ac98->mUnk_218 == 0) {
+    if (data_usa_0217ac98->mUnk_218 == NULL) {
         data_0217561c->mUnk_4d0 = 1;
         return;
     }
@@ -309,7 +309,7 @@ void func_020777ac(u32 a) {
     data_0217acbc = func_02036bec(h, 0x270);
     func_0207729c(data_0217acbc);
     data_0217acbc->mUnk_210 = a;
-    data_0217acbc->mUnk_218 = 0;
+    data_0217acbc->mUnk_218 = NULL;
     data_0217acbc->mUnk_24c = 0;
     data_0217acbc->mUnk_250 = 1;
     if (data_021759c0->mUnk_00c == 6) {
@@ -317,7 +317,7 @@ void func_020777ac(u32 a) {
     }
     if (data_021759c0->mUnk_08 == 2) {
         data_0217acbc->mUnk_218 = gCourseMap->mUnk_d0;
-        if (data_0217acbc->mUnk_218 != 0) {
+        if (data_0217acbc->mUnk_218 != NULL) {
             n = 0;
             k = -1;
             for (i = 0; i < gCourseMap->mUnk_80; i++) {

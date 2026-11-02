@@ -58,7 +58,7 @@ void func_020de84c(void) {
 void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b) {
     Unk020f41c4_B *r;
     Vec3 v;
-    s32 v1;
+    BOOL v1;
 
     a->mUnk_000.mUnk_04.y += 0xc000;
     a->mUnk_0fc = &a->mUnk_000.mUnk_04;
@@ -69,11 +69,11 @@ void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     a->mUnk_0a2 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 0x82) >> 32);
     a->mUnk_0a4 = 0x80;
-    if (b != 0) {
+    if (b != NULL) {
         if (a->mUnk_000.mUnk_00 == 0xc9 && b->mUnk_26 >= 0) {
-            v1 = 1;
+            v1 = TRUE;
         } else {
-            v1 = 0;
+            v1 = FALSE;
         }
         a->mUnk_0a8 = v1;
         a->mUnk_0ac = b->mUnk_34;
@@ -105,7 +105,7 @@ void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b) {
             }
         }
     }
-    if (b != 0) {
+    if (b != NULL) {
         if (func_020e512c(&b->mUnk_00) != 0) {
             a->mUnk_000.mUnk_02 |= data_02158568;
         }

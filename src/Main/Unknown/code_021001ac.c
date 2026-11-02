@@ -76,25 +76,25 @@ static inline u32 func_02101f7c_inline_2(Unk020f41c4_B *b, u32 n) {
 static inline s32 func_02101f7c_inline(Unk020ee684 *v1, Unk021759c0 *o, s32 a, u16 k) {
     Unk020ee684 *e;
     Unk0206bcb0 *q;
-    s32 v2;
+    BOOL v2;
     s32 l;
 
     l = 1;
-    v2 = 1;
+    v2 = TRUE;
     e = &v1[k];
     q = e->mUnk_1fc;
     if (q->mUnk_180 < 4 && (q->mUnk_7c & 0x400020) == 0) {
-        v2 = 0;
+        v2 = FALSE;
     }
-    if (v2 == 0 && (q->mUnk_4c & 0x10000800) == 0) {
+    if (v2 == FALSE && (q->mUnk_4c & 0x10000800) == 0) {
         l = 0;
     }
     if (l | ((q->mUnk_4c & 0x40) ? 1 : 0)) {
-        v2 = 0;
+        v2 = FALSE;
     } else if (a != -1 && a == o->mUnk_68[k].mUnk_08.mUnk_04) {
-        v2 = 0;
+        v2 = FALSE;
     } else {
-        v2 = 0;
+        v2 = FALSE;
         if (e->mUnk_030.mUnk_00 != 0x13 && e->mUnk_030.mUnk_20 == 0) {
             v2 = e->mUnk_030.mUnk_00 != 0x10;
         }
@@ -281,7 +281,7 @@ void func_02101c84(Unk02101c84 *p) {
         return;
     }
     q = p->mUnk_168;
-    if (q == 0) {
+    if (q == NULL) {
         return;
     }
     w = &q->mUnk_98;
@@ -297,7 +297,7 @@ void func_02101964(Unk02101c84 *p, s32 a) {
     s32 *w;
     s32 d[3];
     s32 k;
-    s32 m;
+    BOOL m;
     s32 s;
     s32 c;
     s32 t;
@@ -306,14 +306,14 @@ void func_02101964(Unk02101c84 *p, s32 a) {
     q = p->mUnk_168;
     g = (s32 *) func_02061808();
     v = &p->mUnk_000.mUnk_50;
-    k = m = 1;
+    k = m = TRUE;
     if (q->mUnk_180 < 4 && (q->mUnk_7c & 0x400020) == 0) {
         k = 0;
     }
     if (k == 0 && (q->mUnk_4c & 0x10000800) == 0) {
-        m = 0;
+        m = FALSE;
     }
-    if (m != 0) {
+    if (m != FALSE) {
         if (p->mUnk_144 == 0 && (p->mUnk_000.mUnk_74 & 0x8000000) && p->mUnk_24c != 0) {
             p->mUnk_144 = 1;
             func_020fe694(0xb, p->mUnk_000.mUnk_4e, 1, p->mUnk_13a & 0xff);
@@ -416,7 +416,7 @@ void func_0210174c(Unk02101c84 *p) {
     func_02147fd8(0x4f6, &s, (Vec3 *) &p->mUnk_16c, (Vec3 *) &p->mUnk_16c);
 }
 
-s32 func_02101618(Unk02101c84 *p, s32 a, s32 b) {
+BOOL func_02101618(Unk02101c84 *p, s32 a, s32 b) {
     s32 n;
     s32 m;
     s32 d;
@@ -456,10 +456,10 @@ s32 func_02101618(Unk02101c84 *p, s32 a, s32 b) {
                 p->mUnk_13c = b;
                 p->mUnk_13e = 1;
             }
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 s32 func_021014a0(Unk02101c84 *p, s32 a, s32 b) {
@@ -641,7 +641,7 @@ s32 func_02101014(Unk02101c84 *p) {
 
 void func_02100de4(Unk02101c84 *p) {
     u32 n;
-    s32 k;
+    BOOL k;
 
     if (p->mUnk_140 == 8) {
         if (p->mUnk_130 > 0x6e) {
@@ -673,11 +673,11 @@ void func_02100de4(Unk02101c84 *p) {
                         func_0205a5b0(((u8 *) data_0217aa18)[p->mUnk_140 & 0xff]);
                     }
                     p->mUnk_164 = 0;
-                    k = 1;
+                    k = TRUE;
                 } else {
-                    k = 0;
+                    k = FALSE;
                 }
-                if (k == 0 && n == 1) {
+                if (k == FALSE && n == 1) {
                     p->mUnk_130--;
                     p->mUnk_26c = 1;
                     p->mUnk_270++;
@@ -840,7 +840,7 @@ void func_02100704(Unk02101c84 *p) {
     s32 i;
     Unk020ee684 *e;
     u32 n;
-    s32 k;
+    BOOL k;
     s32 a0;
     s32 a1;
 
@@ -864,15 +864,15 @@ void func_02100704(Unk02101c84 *p) {
             if (n == 1) {
                 if (p->mUnk_24c == 0) {
                     if (p->mUnk_260 == -1) {
-                        k = 0;
+                        k = FALSE;
                     } else {
                         p->mUnk_154 = p->mUnk_25c;
                         p->mUnk_158 = p->mUnk_260;
                         p->mUnk_25c = 0x12;
                         p->mUnk_260 = -1;
-                        k = 1;
+                        k = TRUE;
                     }
-                    if (k == 0) {
+                    if (k == FALSE) {
                         p->mUnk_130--;
                         p->mUnk_26c = 1;
                         p->mUnk_270++;
@@ -940,7 +940,7 @@ u32 func_02100700(u32 p0) {
 }
 
 void func_02100564(Unk02101c84 *p) {
-    s32 a;
+    BOOL a;
     s32 i;
 
     a = p->mUnk_154 != 0x13;
@@ -950,13 +950,13 @@ void func_02100564(Unk02101c84 *p) {
         p->mUnk_16c += p->mUnk_178;
         p->mUnk_174 += p->mUnk_180;
     }
-    if (a != 0) {
+    if (a != FALSE) {
         if (p->mUnk_164 < 0x1f) {
             p->mUnk_164 += 8;
         }
     }
-    if (func_02101618(p, p->mUnk_15c == 0 ? 1 : 0, 7) != 0) {
-        if (a != 0) {
+    if (func_02101618(p, p->mUnk_15c == 0 ? 1 : 0, 7) != FALSE) {
+        if (a != FALSE) {
             if ((p->mUnk_000.mUnk_78 & 0x8000) == 0) {
                 i = (u16) (p->mUnk_000.mUnk_78 & ~0xff00);
             } else {
@@ -1004,10 +1004,10 @@ void func_0210050c(Unk02101c84 *p) {
 
 void func_021004c4(void *p, Unk02101c84 *a, void *b) {
     func_020fecdc(p, a, b);
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
-    if (b == 0) {
+    if (b == NULL) {
         return;
     }
     func_020fe8ac(a->mUnk_000.mUnk_44);
@@ -1091,7 +1091,7 @@ void func_021001ac(Unk02101c84 *p, s32 c, Unk020e6488 *q) {
         if (n < 1) {
             n = 1;
         }
-        func_01ff9048(0x11, 0, 0);
+        func_01ff9048(0x11, NULL, 0);
         r->mUnk_14 = r->mUnk_14 & ~0x1f0000;
         r->mUnk_14 = r->mUnk_14 | ((u16) n << 16);
         func_020e6a18(r);

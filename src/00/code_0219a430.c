@@ -40,10 +40,10 @@ Unk02197fe8 *func_ov000_0219a5b0(Unk02197e8c *a, u32 b, u32 c) {
     d.mUnk_04 = c;
     e = &d;
     f = func_ov000_0218de28(a->mUnk_0c, &e);
-    if (f != 0) {
+    if (f != NULL) {
         return *(Unk02197fe8 **) f;
     }
-    return 0;
+    return NULL;
 }
 
 u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
@@ -64,7 +64,7 @@ u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
         return 4;
     }
     f = func_ov000_021a3690(0x44);
-    if (f == 0) {
+    if (f == NULL) {
         return 1;
     }
     memset(f, 0, 0x44);
@@ -73,13 +73,13 @@ u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
     f->mUnk_38 = c;
     f->mUnk_24 = (void (*)(Unk02197e8c *)) e;
     f->mUnk_0c = func_ov000_0218e004(4, 0x20, 2, (s32(*)(void *, s32)) & func_ov000_0219a604,
-                                     (s32(*)(void *, void *)) & func_ov000_0219a5e8, 0);
-    if (f->mUnk_0c == 0) {
+                                     (s32(*)(void *, void *)) & func_ov000_0219a5e8, NULL);
+    if (f->mUnk_0c == NULL) {
         func_ov000_021a3668(f);
         return 1;
     }
     f->mUnk_10 = (void *) func_ov000_0218dc94(4, 4, (void (*)(void *)) & func_ov000_0219a5dc);
-    if (f->mUnk_10 == 0) {
+    if (f->mUnk_10 == NULL) {
         func_ov000_0218dfb4(f->mUnk_0c);
         func_ov000_021a3668(f);
         return 1;

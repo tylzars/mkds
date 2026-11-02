@@ -17,7 +17,7 @@ void func_020d2668(Unk020e71a0 *b, Unk0210bfbc *c, s32 d, s32 e) {
     if (b->mUnk_78 & 0x40000000) {
         return;
     }
-    if (b->mUnk_94 != 0) {
+    if (b->mUnk_94 != NULL) {
         func_02024a28(&b->mUnk_94->mUnk_00, a, e, d);
     } else {
         func_02024a28(c, a, e, d);

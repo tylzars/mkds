@@ -52,7 +52,7 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
     p->mUnk_10 = d->mUnk_008;
     p->mUnk_14 = d->mUnk_00c & 0xfffffff0;
     p->mUnk_18 = 0;
-    if (param_2 != 0) {
+    if (param_2 != NULL) {
         x.mUnk_00 = d->mUnk_014;
         n = (u16) (func_02087d0c(param_2) >> 12);
         p->mUnk_1a = n;
@@ -87,11 +87,11 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
 void func_020e64b8(void *p, void *a, void *b, s32 c) {
     ((Unk020e6488 *) p)->mUnk_24 = func_02036bec(func_020364e0(func_020364e8()), 0x6c);
     func_02084e28(((Unk020e6488 *) p)->mUnk_24, a);
-    if (b != 0) {
+    if (b != NULL) {
         ((Unk020e6488 *) p)->mUnk_28 = func_02036bec(func_020364e0(func_020364e8()), 0x38);
         func_020ea514(2, ((Unk020e6488 *) p)->mUnk_24, ((Unk020e6488 *) p)->mUnk_28, a, b);
     } else {
-        ((Unk020e6488 *) p)->mUnk_28 = 0;
+        ((Unk020e6488 *) p)->mUnk_28 = NULL;
     }
     func_020e6514(((Unk020e6488 *) p)->mUnk_24, (Unk020e6514 *) ((Unk020e6488 *) p)->mUnk_28, (Unk020e6488 *) p);
 }
@@ -172,7 +172,7 @@ void func_020e61a8(u32 param_1, Unk020e5e24 *a) {
     a->mUnk_b0 = a->mUnk_04;
 }
 
-s32 func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
+BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
     Vec3 v;
     s32 r;
     s32 t;
@@ -184,12 +184,12 @@ s32 func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
     if (r > 0) {
         t = a->mUnk_108 + c - r;
         if (t < 0) {
-            return 0;
+            return FALSE;
         }
     } else {
         t = -(a->mUnk_108 + c) - r;
         if (t > 0) {
-            return 0;
+            return FALSE;
         }
     }
     d = c + a->mUnk_104;
@@ -201,7 +201,7 @@ s32 func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
         }
         d -= *(volatile u32 *) 0x40002b4;
     } else {
-        return 0;
+        return FALSE;
     }
     if ((t > 0 ? t : -t) < d) {
         out->x = (s32) (((s64) a->mUnk_28.mUnk_18.x * t) >> 12);
@@ -221,13 +221,13 @@ s32 func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
         out->z = (s32) (((s64) v.z * d) >> 12);
         a->mUnk_10c = 1;
     }
-    return 1;
+    return TRUE;
 }
 
 #pragma thumb on
 
 void CreatePendulumAndPendulumShadow(void) {
-    func_020ea588((void **) &gPendulum, (void *) FindCourseMapObjFile(gPendulumNsbmdName), 0);
+    func_020ea588((void **) &gPendulum, (void *) FindCourseMapObjFile(gPendulumNsbmdName), NULL);
     func_020ea55c((void **) &gPendulumShadow, (void *) FindCourseMapObjFile(gPendulumShadowNsbmdName),
                   0x3f);
     func_02084968(gPendulum, 0x3f, 2, 0x294a);

@@ -28,9 +28,9 @@
 #pragma opt_rebuildconditionals off
 
 static inline s32 func_0203d568_inline(Unk0217aa00 *p) {
-    s32 r = 0;
-    if ((p == 0 ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13) {
-        r = 1;
+    BOOL r = FALSE;
+    if ((p == NULL ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13) {
+        r = TRUE;
     }
     return r;
 }
@@ -134,7 +134,7 @@ void func_0203d9d4(void) {
     u16 i;
     s32 k;
     Unk0217561c_14 *e;
-    s32 f;
+    BOOL f;
     Unk0217561c *p;
     Unk02040d24 *o;
     u16 m;
@@ -157,16 +157,16 @@ void func_0203d9d4(void) {
             func_0207a948(&v, i);
             func_02063b10(func_0207a974(i), &w);
             func_0203df74(&v, e);
-            f = 0;
+            f = FALSE;
             if (func_0207a7fc(e->mUnk_3c_4) == 0) {
                 o = &gCourseMap->mUnk_44[e->mUnk_32].mUnk_10;
                 t.mUnk_00 = w.x;
                 t.mUnk_04 = w.z;
                 if (func_02040d68(&t, o) < -1394) {
-                    f = 1;
+                    f = TRUE;
                 }
             }
-            if (f != 0) {
+            if (f != FALSE) {
                 e->mUnk_30 |= 4;
             } else {
                 e->mUnk_30 &= ~4;
@@ -216,31 +216,31 @@ void func_0203d9d4(void) {
             data_0217561c->mUnk_474[g] = -1;
         }
     }
-    f = 0;
+    f = FALSE;
     switch (data_021759c0->mUnk_00c) {
         case 1:
         case 2:
         case 6:
-            f = 1;
+            f = TRUE;
             break;
         case 0:
             if (func_02040bc0() != 0) {
-                f = 1;
+                f = TRUE;
             }
             break;
     }
     data_0217561c->mUnk_4f0 = f;
     for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
         s = &data_0217561c->mUnk_14[i];
-        f = 0;
+        f = FALSE;
         switch (s->mUnk_00) {
             case 1:
             case 2:
             case 3:
-                f = 1;
+                f = TRUE;
                 break;
         }
-        if (f == 0 && (s->mUnk_30 & 0x40) != 0) {
+        if (f == FALSE && (s->mUnk_30 & 0x40) != 0) {
             func_0203e9a0(s, 1);
             if (func_0203ef58() != 0) {
                 switch (data_021759c0->mUnk_08) {
@@ -425,8 +425,8 @@ static inline void func_0203e550_inline(s32 a) {
 }
 
 void func_0203e550(Unk0217561c_14 *a) {
-    s32 f;
-    s32 g;
+    BOOL f;
+    BOOL g;
     Unk021759c0_28 *s;
     Unk0206cdd4_B *t;
 
@@ -435,15 +435,15 @@ void func_0203e550(Unk0217561c_14 *a) {
     }
     a->mUnk_36 = -1;
     a->mUnk_34 = -1;
-    f = 0;
+    f = FALSE;
     switch (a->mUnk_00) {
         case 1:
         case 2:
         case 3:
-            f = 1;
+            f = TRUE;
             break;
     }
-    if (f != 0) {
+    if (f != FALSE) {
         return;
     }
     if (a->mUnk_24 <= a->mUnk_3a) {
@@ -457,19 +457,19 @@ void func_0203e550(Unk0217561c_14 *a) {
     if ((a->mUnk_30 & 1) != 0) {
         func_020b1a34();
     }
-    f = 0;
+    f = FALSE;
     if (data_021759c0->mUnk_08 != 4) {
-        f = 1;
+        f = TRUE;
     } else {
         switch (data_021759c0->mUnk_2f) {
             case 2:
             case 4:
             case 6:
-                f = 1;
+                f = TRUE;
                 break;
         }
     }
-    if (f == 0) {
+    if (f == FALSE) {
         return;
     }
     if (a->mUnk_3a <= func_02044618()) {
@@ -478,21 +478,21 @@ void func_0203e550(Unk0217561c_14 *a) {
     a->mUnk_3a = func_02044618();
     if (data_021759c0->mUnk_08 == 4) {
         s = &data_021759c0->mUnk_28_view;
-        g = 1;
+        g = TRUE;
         t = func_0207a6b0();
         switch (s->mUnk_07) {
             case 4:
                 if (s->mUnk_0f > (u32) t->mUnk_04) {
-                    g = 0;
+                    g = FALSE;
                 }
                 break;
             case 6:
                 if (a->mUnk_3c_0 != 1) {
-                    g = 0;
+                    g = FALSE;
                 }
                 break;
         }
-        if (g != 0) {
+        if (g != FALSE) {
             func_0203e550_inline(a->mUnk_3c_4);
         } else {
             func_0203e788(a->mUnk_3c_4, 4);

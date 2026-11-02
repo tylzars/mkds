@@ -28,7 +28,7 @@ void func_02075d08(s32 a) {
     Vec3 v;
     s32 s;
 
-    if (p->mUnk_218 == 0) {
+    if (p->mUnk_218 == NULL) {
         return;
     }
     if (a != 0 && p->mUnk_218->mUnk_3e != 5 && p->mUnk_218->mUnk_3e != 6) {
@@ -72,7 +72,7 @@ void func_02075eb8(void) {
     Unk020f41c4_B *r;
 
     q = (Unk020748b8_218 *) gCourseMap->mUnk_cc;
-    if (q == 0) {
+    if (q == NULL) {
         return;
     }
     p->mUnk_228 = 1;
@@ -133,14 +133,14 @@ void func_020760ec(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
     Vec3 z;
     Vec3 t;
     u32 j;
-    s32 m = 0;
+    BOOL m = FALSE;
     s32 k;
     s32 l;
 
     data_usa_0217ac80 = 0;
     a->mUnk_258 = 0;
-    if (func_01ffdee4(&a->mUnk_024, (u32 *) &a->mUnk_134, 0, data_usa_021656c0, 2, -2, &v, &w, (s32 *) &x, &j, 0, 0, 0,
-                      0) != 0 &&
+    if (func_01ffdee4(&a->mUnk_024, (u32 *) &a->mUnk_134, 0, data_usa_021656c0, 2, -2, &v, &w, (s32 *) &x, &j, NULL, NULL, NULL,
+                      NULL) != 0 &&
         (j & 0xc00) == 0) {
         if (j & 0x214300) {
             y = b->mUnk_50;
@@ -159,12 +159,12 @@ void func_020760ec(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
             }
             a->mUnk_258 = 1;
             k = func_02039828(&y, &x);
-            m = 1;
+            m = TRUE;
             l = a->mUnk_254;
             if (l == 1 || (l == 3 && k < -0xd9a && func_02039828(&y, c) < 0)) {
                 if (x.y < -0xe66) {
                     a->mUnk_254 = 3;
-                    m = 0;
+                    m = FALSE;
                     a->mUnk_258 = 0;
                 } else {
                     a->mUnk_170 = func_021482cc(&v);
@@ -174,7 +174,7 @@ void func_020760ec(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
                 a->mUnk_254 = 0;
             } else {
                 a->mUnk_25c = 1;
-                m = 0;
+                m = FALSE;
             }
         } else if (j & 0x1e34ef) {
             if (data_021759c0->mUnk_08 != 2 || func_0214848c(&data_usa_02154fc4, &w) < 0xfae ||
@@ -186,7 +186,7 @@ void func_020760ec(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
     if (a->mUnk_258 == 0) {
         a->mUnk_25c = 0;
     }
-    if (m != 0 && a->mUnk_25c == 0) {
+    if (m != FALSE && a->mUnk_25c == 0) {
         if (a->mUnk_254 == 0) {
             k = (s32) (((s64) (0x1000 - b->mUnk_2a0) * 0x5000) >> 12) + 0x3000;
             v.x = (s32) (((s64) v.x * k) >> 12);

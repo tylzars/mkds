@@ -129,7 +129,7 @@ void func_ov003_021cbd08(void) {
 
 void func_ov003_021cbcc8(void) {
     int v1[1];
-    func_ov003_021c20dc(0, v1);
+    func_ov003_021c20dc(NULL, v1);
     if (v1[0] != 0) {
         func_ov003_021ce0c4();
     }
@@ -149,7 +149,7 @@ void func_ov003_021cbc50(void) {
         func_ov003_021d272c(1, 1);
         func_ov003_021d272c(0, 0x15);
         func_ov003_021c2120(2, 1);
-        func_ov003_021c20dc(0, v2);
+        func_ov003_021c20dc(NULL, v2);
         if (v2[0] == 0) {
             func_ov003_021c20f8(0, 0);
             func_ov003_021c212c(func_ov003_021c965c);
@@ -164,7 +164,7 @@ void func_ov003_021cbc00(void) {
     s32 a;
     data_ov003_021da24c[0]++;
     if (data_ov003_021da24c[0] >= 0xb4) {
-        func_ov003_021c20dc(0, &a);
+        func_ov003_021c20dc(NULL, &a);
         switch (func_ov003_021c20c0()) {
             case 0:
                 break;

@@ -5,7 +5,7 @@
 #include "01/code_021a2398.h"
 
 void func_0204a798(Unk02175650 *a, u16 b) {
-    s32 f;
+    BOOL f;
     u8 n;
     u8 *e;
     u8 v;
@@ -30,13 +30,13 @@ void func_0204a798(Unk02175650 *a, u16 b) {
     v |= (b & 0x80) ? 0x40 : 0;
     v |= (b & 0x40) ? 0x80 : 0;
     n = e[1];
-    f = 0;
+    f = FALSE;
     if (n != 0 && e[0] != v) {
-        f = 1;
+        f = TRUE;
     } else if (n >= 0xff) {
-        f = 1;
+        f = TRUE;
     }
-    if (f != 0) {
+    if (f != FALSE) {
         if (i >= 0x6e4) {
             if (s != 1) {
                 return;
@@ -89,13 +89,13 @@ u16 func_0204a664(Unk02175650 *a) {
     return r;
 }
 
-s32 func_0204a650(Unk02175650 *a) {
+BOOL func_0204a650(Unk02175650 *a) {
     return a->mUnk_08 == 3;
 }
 
-s32 func_0204a620(Unk02175650 *a) {
+BOOL func_0204a620(Unk02175650 *a) {
     if (a->mUnk_08 != 2) {
-        return 0;
+        return FALSE;
     }
     return ((u32) a->mUnk_04 << 1) > 0xd1b;
 }

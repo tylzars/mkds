@@ -10,7 +10,7 @@ u32 func_0200b1b0(u32 a, struct Unk0217aa00_24 *b) {
     }
     v1 = ((s64) func_0200fca0());
     v2 = func_02008934(a);
-    if (v2 == 0) {
+    if (v2 == NULL) {
         func_0200fcb4(v1);
         return 0;
     }

@@ -27,9 +27,9 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
     Vec3 pb;
     Vec3 ua;
     Vec3 ub;
-    s32 rv = 0;
+    BOOL rv = FALSE;
     Vec3 uc = {0, 0, 0};
-    s32 fa = f != 0 || g != 0 || h != 0;
+    BOOL fa = f != NULL || g != NULL || h != NULL;
     u32 ra = 0;
     Unk020e0764 wa = data_0216b8c4;
     Unk020e0764 wb = data_0216b8ec;
@@ -61,7 +61,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
     void *ob;
     u32 bi;
 
-    if (j != 0) {
+    if (j != NULL) {
         ud.x = 0;
         ud.z = 0;
         ud.y = r * 2;
@@ -69,7 +69,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
     data_027e0060 = 0;
     kp = &gCourseCollision;
     pa = *(Vec3 *) a;
-    if (b != 0) {
+    if (b != NULL) {
         pb = *(Vec3 *) b;
     }
     x = (pa.x - kp->mUnk_14) >> 12;
@@ -168,7 +168,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
                 goto lm;
             }
             if (d0 < 0) {
-                if (b == 0) {
+                if (b == NULL) {
                     continue;
                 }
                 func_021484d0(&pb, &vt, &ub);
@@ -199,7 +199,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
                 goto lm;
             }
             if (d0 < 0) {
-                if (b == 0) {
+                if (b == NULL) {
                     continue;
                 }
                 func_021484d0(&pb, &vt, &ub);
@@ -230,7 +230,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
                 goto lm;
             }
             if (d0 < 0) {
-                if (b == 0) {
+                if (b == NULL) {
                     continue;
                 }
                 func_021484d0(&pb, &vt, &ub);
@@ -261,7 +261,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
             if (n[1].y > 0x424 || n[1].y < -0x424) {
                 v = 0;
             }
-            if (j != 0) {
+            if (j != NULL) {
                 func_02147fd8(-d1, &n[1], &uc, &uc);
             }
             goto lk;
@@ -270,7 +270,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
             if (n[2].y > 0x424 || n[2].y < -0x424) {
                 v = 0;
             }
-            if (j != 0) {
+            if (j != NULL) {
                 func_02147fd8(-d2, &n[2], &uc, &uc);
             }
             goto lk;
@@ -279,7 +279,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
             if (n[3].y > 0x424 || n[3].y < -0x424) {
                 v = 0;
             }
-            if (j != 0) {
+            if (j != NULL) {
                 func_02147fd8(-d3, &n[3], &uc, &uc);
             }
             goto lk;
@@ -296,7 +296,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
             if (qq <= 0) {
                 continue;
             }
-            if (j != 0) {
+            if (j != NULL) {
                 func_021484d0(&uc, &ua, &uc);
             }
             v = 0;
@@ -312,7 +312,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
             }
             goto ln;
         lm:
-            if (d0 < 0 && b != 0) {
+            if (d0 < 0 && b != NULL) {
                 func_021484d0(&pb, &vt, &ub);
                 if (func_02039828(&ub, &n[0]) < 0) {
                     if (fl & 0x20) {
@@ -334,7 +334,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
             bt = 1 << ((at & 0x1f00) >> 8);
             bt |= 1 << (((at & 0xc) >> 2) + 0x1a);
             bt |= (at & 2) << 0x17;
-            if (b != 0) {
+            if (b != NULL) {
                 func_021484d0(&pb, &vt, &ub);
                 dt = func_02039828(&ub, &n[0]);
                 if (dt < 0) {
@@ -381,7 +381,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
             if ((fl & 2) && (bt & 0x200)) {
                 continue;
             }
-            if (j != 0 && uc.y < ud.y) {
+            if (j != NULL && uc.y < ud.y) {
                 ud = uc;
             }
             if (fa) {
@@ -404,7 +404,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
                     } else if (uc.z < wa.mUnk_14) {
                         wa.mUnk_14 = uc.z;
                     }
-                    if (g != 0 && pe >= wa.mUnk_18) {
+                    if (g != NULL && pe >= wa.mUnk_18) {
                         wa.mUnk_18 = pe;
                         wa.mUnk_1c.x = n[0].x;
                         wa.mUnk_1c.y = n[0].y;
@@ -445,7 +445,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
                             wb.mUnk_14 = uc.z;
                         }
                     }
-                    if (h != 0 && pe >= wb.mUnk_18) {
+                    if (h != NULL && pe >= wb.mUnk_18) {
                         wb.mUnk_18 = pe;
                         wb.mUnk_1c.x = n[0].x;
                         wb.mUnk_1c.y = n[0].y;
@@ -471,23 +471,23 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
                 data_027e0060--;
             }
             data_027e0084[data_027e0060] = bt;
-            rv = 1;
+            rv = TRUE;
             data_027e0064[data_027e0060] = at;
             data_027e0060++;
         }
     }
-    if (k != 0) {
+    if (k != NULL) {
         ((Vec3 *) k)->x = 0;
         ((Vec3 *) k)->y = 0;
         ((Vec3 *) k)->z = 0;
     }
-    if (l != 0) {
+    if (l != NULL) {
         *l = 0;
     }
-    if (m != 0) {
+    if (m != NULL) {
         *(void ***) m = data_0217b5d0;
-        data_0217b5d0[1] = 0;
-        data_0217b5d0[0] = 0;
+        data_0217b5d0[1] = NULL;
+        data_0217b5d0[0] = NULL;
     }
     if (data_0217b610 != 0 && e != -2) {
         ct = 0;
@@ -498,7 +498,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
         }
         for (i = 0; i < data_0217b5a8; i++) {
             ob = data_0217b5c4[i];
-            if (func_020e1d10(ob, (Vec3 *) a, r, fl, &wa, &wb, j != 0 ? &ud : 0, &hw, (Vec3 *) k, l)) {
+            if (func_020e1d10(ob, (Vec3 *) a, r, fl, &wa, &wb, j != NULL ? &ud : 0, &hw, (Vec3 *) k, l)) {
                 ra |= data_0215690c;
                 ra |= 1 << hw;
                 if (data_027e0060 == 16) {
@@ -508,46 +508,46 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
                 data_027e0084[data_027e0060] = bi;
                 data_027e0064[data_027e0060] = hw << 8;
                 data_027e0060++;
-                if (m != 0) {
+                if (m != NULL) {
                     if (bi & 0x1e34ef) {
                         data_0217b5d0[ct++] = data_0217b5d0[0];
                         data_0217b5d0[0] = ob;
                     } else {
                         data_0217b5d0[ct++] = ob;
                     }
-                    data_0217b5d0[ct] = 0;
+                    data_0217b5d0[ct] = NULL;
                     if (ct >= 15) {
                         ct--;
                     }
                 }
-                rv = 1;
+                rv = TRUE;
             }
         }
     }
-    if (rv == 0) {
+    if (rv == FALSE) {
         return rv;
     }
-    if (g != 0) {
+    if (g != NULL) {
         *(Vec3 *) g = wa.mUnk_1c;
     }
-    if (h != 0) {
+    if (h != NULL) {
         *(Vec3 *) h = wb.mUnk_1c;
     }
-    if (j != 0) {
+    if (j != NULL) {
         *(Vec3 *) j = ud;
     }
-    if (f != 0) {
+    if (f != NULL) {
         uc.y = wa.mUnk_04 > wb.mUnk_04 ? wa.mUnk_04 : wb.mUnk_04;
         uc.y += wa.mUnk_10 < wb.mUnk_10 ? wa.mUnk_10 : wb.mUnk_10;
         if (ra & 0x10000) {
-            if (j != 0 && (ra & 0x1e34ef) && !(ra & 0x400) && !(ra & 0x800)) {
+            if (j != NULL && (ra & 0x1e34ef) && !(ra & 0x400) && !(ra & 0x800)) {
                 ud.x >>= 4;
                 ud.y >>= 4;
                 ud.z >>= 4;
                 if (ud.y * ud.y < ud.x * ud.x + ud.z * ud.z) {
                     uc.y = 0;
                     ra = (ra & 0xffe1cb10) | data_02156910;
-                    if (g != 0) {
+                    if (g != NULL) {
                         ((Vec3 *) g)->x = 0;
                         ((Vec3 *) g)->y = 0;
                         ((Vec3 *) g)->z = 0;
@@ -583,7 +583,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
         ((Vec3 *) f)->x = uc.x >> 10;
         ((Vec3 *) f)->y = uc.y >> 10;
         ((Vec3 *) f)->z = uc.z >> 10;
-        if ((ra & 0x214300) && c != 0 && k != 0 && h != 0) {
+        if ((ra & 0x214300) && c != 0 && k != NULL && h != NULL) {
             cc.x = cc.x + cd.x;
             cc.z = cc.z + cd.z;
             qq = (s64) cc.x * ((Vec3 *) h)->z - (s64) cc.z * ((Vec3 *) h)->x;
@@ -606,7 +606,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
             }
         }
     }
-    if (o != 0) {
+    if (o != NULL) {
         *o = ra;
     }
     return rv;

@@ -51,7 +51,7 @@ u32 func_0211127c(void) {
 
 void func_02111250(void *a, u32 b) {
     data_0217d32c.mUnk_04 = func_0212dcc8(a, b);
-    data_0217d32c.mUnk_08 = 0;
+    data_0217d32c.mUnk_08 = NULL;
 }
 
 u32 func_02111158(s32 a) {

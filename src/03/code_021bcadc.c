@@ -9,13 +9,13 @@ int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
     int h;
     int f;
     int g;
-    int e;
+    BOOL e;
     s64 t;
     u8 *p;
     u8 *q;
     enum { K0 } k;
 
-    e = 1;
+    e = TRUE;
     d[0] = 0xa6a6a6a6;
     d[1] = 0xa6a6a6a6;
     if ((param_3 & 7) != 0 || (param_5 & 7) != 0) {
@@ -61,7 +61,7 @@ int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
         }
     }
     if (memcmp((u8 *) d, a, 8) != 0) {
-        e = 0;
+        e = FALSE;
     }
     return e;
 }
@@ -69,7 +69,7 @@ int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
 // non-matching: the original spills p (offset 0x2c) and gives r4 to a byte swap term, here p stays in r4 and that
 // term is spilled; size 0x210 against 0x20c. The (u32) cast keeps i * 8 recomputed each pass as
 // in the original, but is not proven to be the original spelling
-int func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
+BOOL func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
     u8 a[16];
     u64 b;
     u32 c[80];
@@ -87,11 +87,11 @@ int func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
     d[0] = 0xa6a6a6a6;
     d[1] = 0xa6a6a6a6;
     if ((param_3 & 7) != 0 || (param_5 & 7) != 0) {
-        return 0;
+        return FALSE;
     }
     f = param_3 >> 3;
     if (f < 2) {
-        return 0;
+        return FALSE;
     }
     g = func_ov003_021bc7a8(c, param_4, param_5 << 3);
     memcpy(param_1 + 8, param_2, param_3);
@@ -129,7 +129,7 @@ int func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
     do {
         *param_1++ = *q++;
     } while (--k != 0);
-    return 1;
+    return TRUE;
 }
 
 void func_ov003_021bcedc(void) {

@@ -22,13 +22,13 @@ typedef struct Unk02198af4 {
 } Unk02198af4;
 
 // Declared here until the code that defines them is decompiled.
-s32 func_ov000_0219a654(const u8 *a, u32 *b, u16 *c);
+BOOL func_ov000_0219a654(const u8 *a, u32 *b, u16 *c);
 
-int func_ov000_021981d0(Unk02197fe8 *a, void *b);
-int func_ov000_02198258(Unk02197fe8 *a, void *b, int c, int d);
-int func_ov000_021982f4(Unk02197fe8 *a, int b, void *c, int d);
-int func_ov000_02198394(Unk02197e8c *a, Unk02197fe8 *b, int c, int d, int e, int f, int g);
-int func_ov000_02198448(Unk02197e8c *a);
+BOOL func_ov000_021981d0(Unk02197fe8 *a, void *b);
+BOOL func_ov000_02198258(Unk02197fe8 *a, void *b, int c, int d);
+BOOL func_ov000_021982f4(Unk02197fe8 *a, int b, void *c, int d);
+BOOL func_ov000_02198394(Unk02197e8c *a, Unk02197fe8 *b, int c, int d, int e, int f, int g);
+BOOL func_ov000_02198448(Unk02197e8c *a);
 void func_ov000_021984b4(Unk02197fe8 *a);
 void func_ov000_02198514(Unk02197fe8 *a, ...);
 void func_ov000_02198548(Unk02197fe8 *a, int b);

@@ -61,7 +61,7 @@ void func_ov003_021c1cd8(void) {
     data_ov003_021da160->mUnk_58 = func_ov003_021d1be4(0, 0x44, 1);
     func_ov003_021d18f0(data_ov003_021da160->mUnk_58, -1, 0x200, 0);
     func_ov003_021d1790(data_ov003_021da160->mUnk_58, -1, 2);
-    data_ov003_021da160->mUnk_5c = (void *) func_ov003_021d3544(0, func_ov003_021c1bf4, 0, 0x78);
+    data_ov003_021da160->mUnk_5c = (void *) func_ov003_021d3544(0, func_ov003_021c1bf4, NULL, 0x78);
     func_ov003_021c1364(0, 0xc0);
 }
 
@@ -91,7 +91,7 @@ void func_ov003_021c1c70(u8 a) {
 }
 
 u32 func_ov003_021c1c5c(void) {
-    if (data_ov003_021da160 != 0) {
+    if (data_ov003_021da160 != NULL) {
         return 1;
     }
     return 0;

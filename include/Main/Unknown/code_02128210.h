@@ -3,4 +3,4 @@
 #include "types.h"
 #include "Main/Unknown/code_02128274.h"
 
-s32 func_02128210(s32 a, s32 b);
+BOOL func_02128210(s32 a, s32 b);

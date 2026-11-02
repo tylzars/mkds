@@ -151,7 +151,7 @@ u16 func_021143b4(void) {
     u16 n;
 
     n = 0;
-    if (data_0217d34c == 0) {
+    if (data_0217d34c == NULL) {
         for (i = 0; i < 0x3c; i++) {
             if (func_02060b34(i)) {
                 n++;

@@ -209,22 +209,22 @@ u32 func_02096f54(Unk02096a04 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
     return v2;
 }
 
-s32 func_02096df0(Unk02096a04 *p, const Vec3 *a, s32 b, Vec3 *c) {
+BOOL func_02096df0(Unk02096a04 *p, const Vec3 *a, s32 b, Vec3 *c) {
     Vec3 s;
     s32 d;
     func_021484d0(a, &p->mUnk_00.mUnk_04, &s);
     if (s.y >= p->mUnk_a0 + b) {
-        return 0;
+        return FALSE;
     }
     d = func_021482cc(&s);
     if (d >= p->mUnk_00.mUnk_58.x + b) {
-        return 0;
+        return FALSE;
     }
     if (p->mUnk_b0 == 1) {
         c->x = 0;
         c->y = 0;
         c->z = 0;
-        return 1;
+        return TRUE;
     }
     if (p->mUnk_b0 == 4 || (p->mUnk_b0 == 5 && p->mUnk_a0 > 0x7800)) {
         if ((s64) s.x * s.x + (s64) s.y * s.y + (s64) s.z * s.z >= 0x10) {
@@ -234,12 +234,12 @@ s32 func_02096df0(Unk02096a04 *p, const Vec3 *a, s32 b, Vec3 *c) {
         c->x = (s32) (((s64) s.x * d) >> 12);
         c->y = (s32) (((s64) s.y * d) >> 12);
         c->z = (s32) (((s64) s.z * d) >> 12);
-        return 1;
+        return TRUE;
     }
     c->x = 0;
     c->y = 0;
     c->z = 0;
-    return 1;
+    return TRUE;
 }
 
 void CreateCoverPooHole(void *a) {
@@ -268,7 +268,7 @@ void func_02096a04(void *a, Unk02096a04 *p) {
     s32 t;
     w0 = 0x1e;
     func_01ff9048(0x14, &w0, 1);
-    func_01ff9048(0x11, 0, 0);
+    func_01ff9048(0x11, NULL, 0);
     f0[1] = p->mUnk_a8 >> 4;
     f0[0] = 0;
     f0[2] = 0;
@@ -291,7 +291,7 @@ void func_02096a04(void *a, Unk02096a04 *p) {
             break;
     }
     if (p->mUnk_b0 != 0) {
-        func_01ff9048(0x11, 0, 0);
+        func_01ff9048(0x11, NULL, 0);
         if (p->mUnk_104 != 0) {
             t = p->mUnk_b8 >> 4;
             f1[0] = 0;
@@ -350,10 +350,10 @@ void func_020968f4(Unk020968f4 *p) {
     s32 i;
     Unk02096a04 *o;
     Unk020f41c4_B *v1;
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
-    for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
         o->mUnk_a8 = 0x1000;
         v1 = func_020d22d0();
         v1->mUnk_00 = (s64) v1->mUnk_08 * (s64) v1->mUnk_00 + v1->mUnk_10;
@@ -600,16 +600,16 @@ void func_02095f9c(void) {
 }
 
 u32 func_02095f7c(void) {
-    return func_0209bef0(CreateCoverPooHole, func_02096a04, 0);
+    return func_0209bef0(CreateCoverPooHole, func_02096a04, NULL);
 }
 
 u32 func_02095f5c(void) {
-    return func_0209bf48(func_020968f4, func_02095fec, 0);
+    return func_0209bf48(func_020968f4, func_02095fec, NULL);
 }
 
-s32 func_02095f38(Unk0217b498_00 *a) {
+BOOL func_02095f38(Unk0217b498_00 *a) {
     if (a->mUnk_b0 == 1 || a->mUnk_b0 == 4) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }

@@ -14,18 +14,18 @@
 
 void func_ov003_021c9084(u32 param_1) {
     Unk021c8a60 *r;
-    int a;
+    BOOL a;
     r = (Unk021c8a60 *) func_ov003_021cdb6c();
     if (r->mUnk_f5 != param_1) {
         if (param_1 != 0) {
             if (data_ov003_021da214->mUnk_43 != 0) {
-                a = 1;
+                a = TRUE;
             } else {
-                a = 0;
+                a = FALSE;
             }
         } else {
             data_ov003_021da214->mUnk_43 = r->mUnk_f6;
-            a = 0;
+            a = FALSE;
         }
         func_ov003_021cdb58(param_1);
         func_ov003_021cdb44(a);

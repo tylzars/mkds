@@ -8,11 +8,11 @@ void func_ov001_02188de0(Unk02188950 *a, s32 b, s32 c, Vec3 *d, UnkFunc *e) {
 
     a->mUnk_1f8 = b;
     a->mUnk_1fc = c;
-    if (d != 0) {
+    if (d != NULL) {
         a->mUnk_200 = *d;
     }
     cb = e;
-    if (cb == 0) {
+    if (cb == NULL) {
         cb = func_ov001_02188e88;
     }
     a->mUnk_20c = cb;

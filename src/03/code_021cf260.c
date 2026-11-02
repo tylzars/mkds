@@ -90,11 +90,11 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
             } else {
                 func_ov003_021cf36c(0);
             }
-            if (data_ov003_021da288->mUnk_1b144 != 0) {
-                data_ov003_021da288->mUnk_1b144 = 0;
+            if (data_ov003_021da288->mUnk_1b144 != NULL) {
+                data_ov003_021da288->mUnk_1b144 = NULL;
             }
-            if (data_ov003_021da288->mUnk_1b140 != 0) {
-                data_ov003_021da288->mUnk_1b140 = 0;
+            if (data_ov003_021da288->mUnk_1b140 != NULL) {
+                data_ov003_021da288->mUnk_1b140 = NULL;
             }
             break;
         case 13:
@@ -179,5 +179,5 @@ void *func_ov003_021cf260(u32 index) {
     if ((state->mMask & (1 << index)) != 0) {
         return &state->mRecords[index - 1];
     }
-    return 0;
+    return NULL;
 }

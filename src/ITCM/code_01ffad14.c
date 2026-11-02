@@ -15,7 +15,7 @@ void func_01ffb0cc(Unk0206bcb0 *p) {
 }
 
 s32 func_01ffaf18(Unk0206bcb0 *p) {
-    s32 v1;
+    BOOL v1;
     s32 a = p->mUnk_2a8;
     s32 c;
     s32 g;

@@ -7,7 +7,7 @@
 void **func_ov000_0219b8fc(u32 a, s32 b);
 
 u32 func_ov000_0219eaf4(void);
-s32 func_ov000_0219ec44(u32 a, s32 b, u32 c);
+BOOL func_ov000_0219ec44(u32 a, s32 b, u32 c);
 u32 func_ov000_0219edb0(u32 a, u32 b);
 u32 func_ov000_0219ee14(void);
 void func_ov000_0219ef68(s32 a, u16 b);

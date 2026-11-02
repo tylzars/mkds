@@ -43,7 +43,7 @@
 #pragma opt_arithtransformation off
 
 s32 func_0206f04c(Unk0206bcb0 *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
-    s32 j;
+    BOOL j;
     s32 g;
     s32 h;
     s32 i;
@@ -53,7 +53,7 @@ s32 func_0206f04c(Unk0206bcb0 *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     Vec3 o;
     Vec3 n;
 
-    j = 0;
+    j = FALSE;
     i = func_02039828(&p->mUnk_05c, a) + 0x1000;
     if (i > 0x1000) {
         i = 0x1000;
@@ -75,7 +75,7 @@ s32 func_0206f04c(Unk0206bcb0 *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     }
     if (b == 0) {
         h = func_02039828(&p->mUnk_138, a);
-        j = 1;
+        j = TRUE;
         g = func_0214848c(a, &p->mUnk_a4);
         m.x = (s32) (((s64) a->x * g) >> 12);
         m.y = (s32) (((s64) a->y * g) >> 12);
@@ -383,14 +383,14 @@ void func_0206f914(Unk0206bcb0 *p) {
 }
 
 void func_0206fe08(Unk0206bcb0 *p) {
-    s32 b;
+    BOOL b;
     s32 a;
     s32 c;
     Vec3 d;
 
     a = func_020d3d48(p->mUnk_80.y);
     if (a < 0 && !(p->mUnk_4c & 0x4000000)) {
-        b = 0;
+        b = FALSE;
         c = (s32) (((s64) p->mUnk_3f4 * p->mUnk_bc.z) >> 12);
         p->mUnk_dc = (s32) (((s64) c * a) >> 12) + 0x1000;
         if (p->mUnk_dc < p->mUnk_2cc->mUnk_68[4]) {
@@ -402,9 +402,9 @@ void func_0206fe08(Unk0206bcb0 *p) {
             d = p->mUnk_80;
             d.y = p->mUnk_80.y - a;
             func_0208d978(&d, (p->mUnk_7c & 1) != 0);
-            b = 0;
+            b = FALSE;
         }
-        if (b != 0) {
+        if (b != FALSE) {
             return;
         }
         if (p->mUnk_4c & 0x4000000) {
@@ -456,10 +456,10 @@ void func_0206ff50(Unk0206bcb0 *p, u32 a) {
         if ((p->mUnk_7c & 1) && data_021759c0->mUnk_00 == 0x1d && (data_0217c780 & 1)) {
             d = (Unk0212c400 **) func_0210e128((void *) func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
-                if (d[0] != 0) {
+                if (d[0] != NULL) {
                     func_0212c6f0(d, 0);
                 }
-                if (d[0] != 0) {
+                if (d[0] != NULL) {
                     func_0212c6f0(d, 0);
                 }
                 func_0212ecc0(d, 0, 0x1b7);

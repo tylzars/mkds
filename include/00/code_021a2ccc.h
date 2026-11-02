@@ -5,7 +5,7 @@
 #include "00/code_0219b000.h"
 #include "00/code_0219887c.h"
 
-s32 func_ov000_021a2ccc(void);
+BOOL func_ov000_021a2ccc(void);
 s32 func_ov000_021a2d18(u32 a);
 void func_ov000_021a2d38(u32 a, void *b, s32 c);
 void func_ov000_021a2d68(int a, void *b, s32 c);

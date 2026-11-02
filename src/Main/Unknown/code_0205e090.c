@@ -24,7 +24,7 @@ u32 func_0205e2b8(void) {
 }
 
 s32 func_0205e1c4(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     u16 i = 0;
     Unk0217aa24_00 *e;
     Unk02175620_74 *p;
@@ -46,7 +46,7 @@ s32 func_0205e1c4(void) {
         }
         e->mUnk_09 = c;
         if (e->mUnk_08 > p->mUnk_3e) {
-            r = 1;
+            r = TRUE;
             break;
         }
     }
@@ -57,7 +57,7 @@ void func_0205e180(void *a) {
     data_0217aa20 = func_02036bec(a, 0x10);
     data_0217aa20->mUnk_00 = 0;
     data_0217aa20->mUnk_04 = 3;
-    data_0217aa20->mUnk_0c = 0;
+    data_0217aa20->mUnk_0c = NULL;
 }
 
 void func_0205e0b0(void) {

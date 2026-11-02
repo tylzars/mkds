@@ -60,7 +60,7 @@ u32 func_ov003_021bb354(void) {
 void *func_ov003_021bb328(s32 a, s32 b) {
     s32 c = a * b;
     void *d = (void *) data_ov003_021d8bd4(c);
-    if (d != 0) {
+    if (d != NULL) {
         memset(d, 0, c);
     }
     return d;
@@ -124,7 +124,7 @@ s32 func_ov003_021bb168(u32 a, s32 b, UnkFunc *c, UnkWordFunc *d, UnkFunc *e, u3
         return g;
     }
     data_ov003_021d8c00 = (void *) data_ov003_021d8bd4(data_ov003_021d68b4);
-    if (data_ov003_021d8c00 == 0) {
+    if (data_ov003_021d8c00 == NULL) {
         data_ov003_021d8c48 = -1;
         return -1;
     }
@@ -132,7 +132,7 @@ s32 func_ov003_021bb168(u32 a, s32 b, UnkFunc *c, UnkWordFunc *d, UnkFunc *e, u3
         data_ov003_021d8c48 = -9;
         return -9;
     }
-    func_0200e28c(&data_ov003_021d8d08, (void (*)(void *)) func_ov003_021bcedc, 0,
+    func_0200e28c(&data_ov003_021d8d08, (void (*)(void *)) func_ov003_021bcedc, NULL,
                   (u8 *) data_ov003_021d8c00 + (data_ov003_021d68b4 & ~7), data_ov003_021d68b4, a);
     data_ov003_021d8c08 = 1;
     data_ov003_021d68b8 = func_ov003_021bb354() + 60000;
@@ -159,9 +159,9 @@ s32 func_ov003_021bb0b0(void) {
                 func_0200e084(&data_ov003_021d8d08);
             } while (func_0200e070(&data_ov003_021d8d08) == 0);
         }
-        if (data_ov003_021d8c00 != 0) {
+        if (data_ov003_021d8c00 != NULL) {
             data_ov003_021d8bdc(data_ov003_021d8c00);
-            data_ov003_021d8c00 = 0;
+            data_ov003_021d8c00 = NULL;
         }
         data_ov003_021d8c34 = 0;
         if (a != data_ov003_021d8c08) {

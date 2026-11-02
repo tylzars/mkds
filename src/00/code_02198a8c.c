@@ -32,27 +32,27 @@ int func_ov000_02198ad8(Unk02197fe8 *a, u8 *b, int c, int d) {
     return func_ov000_02198c58(a, b, c);
 }
 
-int func_ov000_02198af4(Unk02197fe8 *a, Unk02198af4 *b) {
+BOOL func_ov000_02198af4(Unk02197fe8 *a, Unk02198af4 *b) {
     func_ov000_0219a01c(a->mUnk_50.mUnk_00, b->mUnk_00 + 5, a->mUnk_66);
     if (func_ov000_02198714((u32 *) a, (u32) (a->mUnk_50.mUnk_00 + b->mUnk_00), b->mUnk_04) == 0) {
-        return 0;
+        return FALSE;
     }
     b->mUnk_0c = a->mUnk_88;
     if (a->mUnk_50.mUnk_00[b->mUnk_00 + 2] == 2) {
         a->mUnk_8c = a->mUnk_88;
     }
-    return 1;
+    return TRUE;
 }
 
-int func_ov000_02198b50(Unk02197e8c *a, u32 b, int c) {
+BOOL func_ov000_02198b50(Unk02197e8c *a, u32 b, int c) {
     u8 d[3];
 
     __memcpy(d, data_ov000_021b3fa4, 2);
     d[2] = 0x68;
     if (func_ov000_0219a110((u32 *) a, b, c, (u32) d, 3) != 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 int func_ov000_02198b8c(Unk02197fe8 *a) {

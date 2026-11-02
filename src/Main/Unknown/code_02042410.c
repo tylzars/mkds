@@ -94,7 +94,7 @@ void func_0204274c(void) {
 
     n = gCourseMap->mUnk_38;
     if (n == 0) {
-        gCourseMap->mUnk_fc = 0;
+        gCourseMap->mUnk_fc = NULL;
         return;
     }
     gCourseMap->mUnk_fc = func_02036bec(func_020364e0(func_020364e8()), n * 2);
@@ -104,15 +104,15 @@ void func_0204274c(void) {
 }
 
 s32 func_02042708(void *a, ...) {
-    s32 r = 0;
+    BOOL r = FALSE;
 
     if (gCourseMap->mUnk_10c < 0x1f) {
         gCourseMap->mUnk_38 = 0;
-        gCourseMap->mUnk_34 = 0;
+        gCourseMap->mUnk_34 = NULL;
     } else {
         gCourseMap->mUnk_38 = func_020431a4(&a);
         gCourseMap->mUnk_34 = a;
-        r = 1;
+        r = TRUE;
     }
     func_0204274c();
     return r;
@@ -123,14 +123,14 @@ s32 func_020426ac(void *a, ...) {
 
     if (gCourseMap->mUnk_10c < 0x24) {
         gCourseMap->mUnk_40 = r;
-        gCourseMap->mUnk_3c = 0;
+        gCourseMap->mUnk_3c = NULL;
         return r;
     }
     gCourseMap->mUnk_40 = func_020431a4(&a);
     if (gCourseMap->mUnk_40 != 0) {
         gCourseMap->mUnk_3c = a;
     } else {
-        gCourseMap->mUnk_3c = 0;
+        gCourseMap->mUnk_3c = NULL;
     }
     return 1;
 }
@@ -141,7 +141,7 @@ s32 func_02042628(void *a, ...) {
 
     gCourseMap->mUnk_48 = func_020431a4(&a);
     if (gCourseMap->mUnk_48 == 0) {
-        gCourseMap->mUnk_44 = 0;
+        gCourseMap->mUnk_44 = NULL;
         return 1;
     }
     gCourseMap->mUnk_44 = a;
@@ -163,7 +163,7 @@ s32 func_02042590(void *a, ...) {
 
     gCourseMap->mUnk_50 = func_020431a4(&a);
     if (gCourseMap->mUnk_50 == 0) {
-        gCourseMap->mUnk_4c = 0;
+        gCourseMap->mUnk_4c = NULL;
         gCourseMap->mUnk_9a = 0;
         return 1;
     }
@@ -183,7 +183,7 @@ s32 func_02042590(void *a, ...) {
 s32 func_02042558(void *a, ...) {
     gCourseMap->mUnk_58 = func_020431a4(&a);
     if (gCourseMap->mUnk_58 == 0) {
-        gCourseMap->mUnk_54 = 0;
+        gCourseMap->mUnk_54 = NULL;
     } else {
         gCourseMap->mUnk_54 = a;
     }
@@ -193,7 +193,7 @@ s32 func_02042558(void *a, ...) {
 s32 func_02042520(void *a, ...) {
     gCourseMap->mUnk_60 = func_020431a4(&a);
     if (gCourseMap->mUnk_60 == 0) {
-        gCourseMap->mUnk_5c = 0;
+        gCourseMap->mUnk_5c = NULL;
     } else {
         gCourseMap->mUnk_5c = a;
     }
@@ -204,19 +204,19 @@ s32 func_02042498(void *a, ...) {
     if (gCourseMap->mUnk_020 > 1) {
         gCourseMap->mUnk_88 = func_020431a4(&a);
         if (gCourseMap->mUnk_88 == 0) {
-            gCourseMap->mUnk_84 = 0;
+            gCourseMap->mUnk_84 = NULL;
         } else {
             gCourseMap->mUnk_84 = a;
-            gCourseMap->mUnk_64 = 0;
+            gCourseMap->mUnk_64 = NULL;
             gCourseMap->mUnk_68 = 0;
         }
     } else {
         gCourseMap->mUnk_68 = func_020431a4(&a);
         if (gCourseMap->mUnk_68 == 0) {
-            gCourseMap->mUnk_64 = 0;
+            gCourseMap->mUnk_64 = NULL;
         } else {
             gCourseMap->mUnk_64 = a;
-            gCourseMap->mUnk_84 = 0;
+            gCourseMap->mUnk_84 = NULL;
             gCourseMap->mUnk_88 = 0;
         }
     }
@@ -227,19 +227,19 @@ s32 func_02042410(void *a, ...) {
     if (gCourseMap->mUnk_020 > 1) {
         gCourseMap->mUnk_90 = func_020431a4(&a);
         if (gCourseMap->mUnk_90 == 0) {
-            gCourseMap->mUnk_8c = 0;
+            gCourseMap->mUnk_8c = NULL;
         } else {
             gCourseMap->mUnk_8c = a;
-            gCourseMap->mUnk_6c = 0;
+            gCourseMap->mUnk_6c = NULL;
             gCourseMap->mUnk_70 = 0;
         }
     } else {
         gCourseMap->mUnk_70 = func_020431a4(&a);
         if (gCourseMap->mUnk_70 == 0) {
-            gCourseMap->mUnk_6c = 0;
+            gCourseMap->mUnk_6c = NULL;
         } else {
             gCourseMap->mUnk_6c = a;
-            gCourseMap->mUnk_8c = 0;
+            gCourseMap->mUnk_8c = NULL;
             gCourseMap->mUnk_90 = 0;
         }
     }

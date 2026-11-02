@@ -17,11 +17,11 @@
 #include "00/code_021a8aa8.h"
 #include "00/types_021a8ab8.h"
 
-s32 func_ov000_021a8a5c(Unk021a8ab8 *node) {
-    if (func_ov000_021a8ab8((Unk021a8ab8 **) &data_ov000_021b6008, node) != 0) {
-        return 1;
+BOOL func_ov000_021a8a5c(Unk021a8ab8 *node) {
+    if (func_ov000_021a8ab8((Unk021a8ab8 **) &data_ov000_021b6008, node) != NULL) {
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 u32 func_ov000_021a8a54(int a) {
@@ -32,7 +32,7 @@ u32 func_ov000_021a8a54(int a) {
 u32 func_ov000_021a8994(Unk021a6fa8 *a) {
     u32 b = 0;
     u32 c;
-    s32 d;
+    BOOL d;
     volatile Unk021a6fa8 *v = a;
     if (func_ov000_021a8a80(a) != 0) {
         b |= 0x80;
@@ -50,11 +50,11 @@ u32 func_ov000_021a8994(Unk021a6fa8 *a) {
             }
             func_0200fcb4(c);
         }
-        d = 1;
+        d = TRUE;
         if (a->mUnk_73 != 0 && a->mUnk_73 != 4) {
-            d = 0;
+            d = FALSE;
         }
-        if (d != 0) {
+        if (d != FALSE) {
             if ((v->mUnk_70 & 4) != 0 && a->mUnk_08 != 4 && (b & 1) == 0) {
                 v->mUnk_70 &= ~6;
             }
@@ -89,11 +89,11 @@ s32 func_ov000_021a88e4(const u8 *a) {
     Unk021a88e4 b;
     u8 *c;
     s32 d;
-    if (a == 0) {
+    if (a == NULL) {
         return 0;
     }
     c = data_ov000_021b5f94->mUnk_18(0x1154);
-    if (c == 0) {
+    if (c == NULL) {
         return 0;
     }
     func_0214d168(&b, 0, 0x64);

@@ -4,8 +4,8 @@ void func_020a2ebc(Unk020a2fe4 *a, Vec3 *b) {
     a->mUnk_a0 = 0x1e;
     a->mUnk_a4 = -1;
     a->mUnk_f4 = 1;
-    a->mUnk_f8 = 0;
-    if (b == 0) {
+    a->mUnk_f8 = NULL;
+    if (b == NULL) {
         return;
     }
     a->mUnk_00.mUnk_04.x = b->x;

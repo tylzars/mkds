@@ -26,7 +26,7 @@ void func_0205a92c(void) {
                 if (e->mUnk_09 == 15) {
                     *f = 0;
                 } else if (*f == 0) {
-                    v = 0;
+                    v = NULL;
                     func_0205b954(i);
                     if (e->mUnk_0b != 0) {
                         v = e->mUnk_04;
@@ -143,15 +143,15 @@ void func_0205ac38(void) {
     data_0217aa14->mUnk_724 = 0x30 - v;
 }
 
-s32 func_0205ad44(void) {
+BOOL func_0205ad44(void) {
     u16 i;
 
     for (i = 0; i < 16; i++) {
         if (data_0217aa14->mUnk_324[i].mUnk_08 == 0) {
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 void func_0205ad88(void) {

@@ -437,16 +437,16 @@ extern Unk0206bcb0 *data_0217b8c8;
 extern int data_02154f10[];
 
 void func_0206bf88(Unk0206bcb0 *p, int mode);
-int func_0206c094(Unk0206bcb0 *p);
+BOOL func_0206c094(Unk0206bcb0 *p);
 int func_0206c0a8(Unk0206bcb0 *p);
-int func_0206c0b0(Unk0206bcb0 *p);
-int func_0206c0e0(Unk0206bcb0 *p);
+BOOL func_0206c0b0(Unk0206bcb0 *p);
+BOOL func_0206c0e0(Unk0206bcb0 *p);
 void func_0206c11c(Unk0206bcb0 *p);
 void func_0206c14c(Unk0206bcb0 *p);
 void func_0206c17c(Unk0206bcb0 *p);
 void func_0206c1ac(Unk0206c1ac *obj, Unk0206bcb0 *p);
 void func_0206c2b4(Unk0206c1ac *obj, Unk0206bcb0 *p);
-int func_0206c354(Unk0206bcb0 *p, const Vec3 *a, int flag);
+BOOL func_0206c354(Unk0206bcb0 *p, const Vec3 *a, int flag);
 void func_0206c450(Unk0206c1ac *obj, Unk0206bcb0 *p);
 void func_0206c488(Unk0206c1ac *obj, Unk0206bcb0 *p);
 
@@ -470,8 +470,8 @@ void func_020681f0(Unk0206bcb0 *p);
 void func_020718c8(void *p, int arg);
 void func_02071944(void *p, int arg);
 #include "Main/Unknown/code_021035ac.h"
-int func_0206bcb0(Unk0206bcb0 *p, int a, int b);
-int func_0206be54(Unk0206bcb0 *p, int a);
+BOOL func_0206bcb0(Unk0206bcb0 *p, int a, int b);
+BOOL func_0206be54(Unk0206bcb0 *p, int a);
 void func_0206bbb4(Unk0206bcb0 *p, int a, int b);
 void func_0206c5e4(Unk0206bcb0 *p);
 void func_02063b10(const Unk0206bcb0 *p, Vec3 *out);

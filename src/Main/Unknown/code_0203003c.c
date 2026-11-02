@@ -17,8 +17,8 @@ void func_0203003c(s32 a) {
     s32 v;
     s32 w;
     s32 x;
-    s32 y;
-    s32 z;
+    BOOL y;
+    BOOL z;
     Unk02153c58 *q;
 
     p = &data_02174e50->mUnk_24;
@@ -46,22 +46,22 @@ void func_0203003c(s32 a) {
         p->mUnk_18[q->mUnk_00[1]].mUnk_00 &= *(s32 *) ((u8 *) data_02174e50 + r4 + 0x5c);
         p->mUnk_18[q->mUnk_00[13]].mUnk_00 &= *(s32 *) ((u8 *) data_02174e50 + r4 + 0x5c);
         if (*(s32 *) ((u8 *) data_02174e50 + r4 + 0x5c) == 0) {
-            y = 1;
+            y = TRUE;
         } else {
-            y = 0;
+            y = FALSE;
         }
         p->mUnk_18[q->mUnk_00[2]].mUnk_00 &= y;
         if (*(s32 *) ((u8 *) data_02174e50 + r4 + 0x5c) == 0) {
-            y = 1;
+            y = TRUE;
         } else {
-            y = 0;
+            y = FALSE;
         }
         p->mUnk_18[q->mUnk_00[14]].mUnk_00 &= y;
         for (j = 0; j < 8; j++) {
             if (j == *(s32 *) (r4 + (s32) data_02174e50 + 0x60)) {
-                z = 1;
+                z = TRUE;
             } else {
-                z = 0;
+                z = FALSE;
             }
             p->mUnk_18[(q->mUnk_00 + 4)[j]].mUnk_00 &= z;
             p->mUnk_18[(q->mUnk_00 + 16)[j]].mUnk_00 &= z;
@@ -99,19 +99,19 @@ void func_02030200(void) {
 }
 
 s32 func_0203023c(void) {
-    s32 r;
+    BOOL r;
     s32 i;
-    s32 f;
+    BOOL f;
 
-    r = 1;
+    r = TRUE;
     i = data_02174e50->mUnk_48;
     if (i != 4) {
-        f = 0;
+        f = FALSE;
         if (data_02174e50->mUnk_58[i].mUnk_00 != 0 && data_02174e50->mUnk_58[i].mUnk_08 < 7) {
-            f = 1;
+            f = TRUE;
         }
-        if (f == 0) {
-            r = 0;
+        if (f == FALSE) {
+            r = FALSE;
         }
     }
     return r;
@@ -119,12 +119,12 @@ s32 func_0203023c(void) {
 
 s32 func_02030274(s32 a, s32 b) {
     s32 i;
-    s32 f;
+    BOOL f;
 
-    f = 0;
+    f = FALSE;
     for (i = 0; i < 3; i++) {
         if (a == data_02153c04[b][i]) {
-            f = 1;
+            f = TRUE;
             break;
         }
     }

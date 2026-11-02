@@ -122,7 +122,7 @@ void func_020c3e44(Unk020c06c4 *a) {
                             w1[0] = o1.mUnk_00 << 12;
                             w1[1] = o1.mUnk_04 << 12;
                             e = &a->mUnk_000.mUnk_00[n];
-                            a->mUnk_400 += func_020224e0((Unk020224e0_o *) e, 0x80 - n, q, 0, w1, 0, 1);
+                            a->mUnk_400 += func_020224e0((Unk020224e0_o *) e, 0x80 - n, q, NULL, w1, 0, 1);
                             for (; n < a->mUnk_400; n++, e++) {
                                 if (m != -1) {
                                     e->mUnk_0e = m;
@@ -138,7 +138,7 @@ void func_020c3e44(Unk020c06c4 *a) {
                 if (func_020b5ae8(&data_0217b3e4->mUnk_010[i][j].mUnk_00, &o2, s, 1, 1) != 0) {
                     switch (data_0217b3e4->mUnk_010[i][j].mUnk_10) {
                         case 0:
-                            r = 0;
+                            r = NULL;
                             break;
                         case 1:
                             r = GetRaceSNcerEntry(0x51);
@@ -150,7 +150,7 @@ void func_020c3e44(Unk020c06c4 *a) {
                             r = GetRaceSNcerEntry(0x53);
                             break;
                     }
-                    if (r != 0) {
+                    if (r != NULL) {
                         h = data_0217b3e4->mUnk_010[i][j].mUnk_14;
                         d = a->mUnk_400;
                         w2[0] = o2.mUnk_00 << 12;

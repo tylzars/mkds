@@ -68,7 +68,7 @@ void func_ov003_021d0900(u16 param_1, u16 param_2, u8 *param_3) {
         }
         for (i = 0; i < 2; i++) {
             u8 *p = func_ov003_021cfc1c(i);
-            if (p != 0) {
+            if (p != NULL) {
                 func_0214d1fc(p, &data_ov003_021da2ac->mUnk_100[i], 0x44);
                 data_ov003_021da2ac->mUnk_208[i] = 1;
             } else {

@@ -8,10 +8,10 @@ void func_0202f554(void) {
     Unk020b4a44 *v3;
     Unk02021dc8 *v4;
     Unk020b47d8 *v5[1];
-    v2 = 0;
-    v3 = 0;
-    v4 = 0;
-    v5[0] = 0;
+    v2 = NULL;
+    v3 = NULL;
+    v4 = NULL;
+    v5[0] = NULL;
     v1 = FindSceneFile(data_02163280);
     LoadNcgrData(&v2, v1);
     v1 = FindSceneFile(data_021632a0);

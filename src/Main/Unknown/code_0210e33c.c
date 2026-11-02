@@ -53,7 +53,7 @@ u32 func_0210ed20(u32 a, u32 b) {
             w = ((Unk0212e490 *) r)->mUnk_00;
             v = ((Unk0212e490 *) q)->mUnk_00;
             func_0212d238(w, func_0212d254(v));
-            func_0212d238(v, 0);
+            func_0212d238(v, NULL);
             ok = 1;
             n = ((Unk0217d178 *) data_0217d178)->mUnk_40;
             ((Unk0217d178 *) data_0217d178)->mUnk_40 = n + 1;
@@ -75,7 +75,7 @@ u32 func_0210ed20(u32 a, u32 b) {
             w = ((Unk0212e490 *) r)->mUnk_00;
             v = ((Unk0212e490 *) q)->mUnk_00;
             func_0212d238(w, func_0212d254(v));
-            func_0212d238(v, 0);
+            func_0212d238(v, NULL);
             ok = 1;
             n = ((Unk0217d178 *) data_0217d178)->mUnk_40;
             ((Unk0217d178 *) data_0217d178)->mUnk_40 = n + 1;
@@ -100,7 +100,7 @@ u32 func_0210ed20(u32 a, u32 b) {
             continue;
         }
         q = (u32 *) func_0212d3f0(v);
-        if (q == 0) {
+        if (q == NULL) {
             break;
         }
         w = ((Unk0212e490 *) q)->mUnk_00;
@@ -108,7 +108,7 @@ u32 func_0210ed20(u32 a, u32 b) {
         if (x == 0) {
             continue;
         }
-        if (r == 0) {
+        if (r == NULL) {
             continue;
         }
         func_02021cd4((Unk02021968 *) x, i, (Unk02021968 *) r);
@@ -135,7 +135,7 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
     func_0210e434(func_02108950());
     p = (Unk0217d134 *) data_0217d134;
     for (i = 0; i < p->mUnk_40; i++) {
-        func_0212d238(p->mUnk_00[i], 0);
+        func_0212d238(p->mUnk_00[i], NULL);
     }
     t = (Unk0217d134 *) data_0217d134;
     for (i = 0; i < 16; i++) {
@@ -158,7 +158,7 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                     b = ((Unk0212e490 *) q)->mUnk_00;
                     a = ((Unk0212e490 *) p)->mUnk_00;
                     func_0212d238(b, func_0212d254(a));
-                    func_0212d238(a, 0);
+                    func_0212d238(a, NULL);
                     ok = 1;
                     n = ((Unk0217d134 *) data_0217d134)->mUnk_40;
                     ((Unk0217d134 *) data_0217d134)->mUnk_40 = n + 1;
@@ -182,7 +182,7 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                     b = ((Unk0212e490 *) q)->mUnk_00;
                     a = ((Unk0212e490 *) p)->mUnk_00;
                     func_0212d238(b, func_0212d254(a));
-                    func_0212d238(a, 0);
+                    func_0212d238(a, NULL);
                     ok = 1;
                     n = ((Unk0217d134 *) data_0217d134)->mUnk_40;
                     ((Unk0217d134 *) data_0217d134)->mUnk_40 = n + 1;
@@ -206,7 +206,7 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                     b = ((Unk0212e490 *) q)->mUnk_00;
                     a = ((Unk0212e490 *) p)->mUnk_00;
                     func_0212d238(b, func_0212d254(a));
-                    func_0212d238(a, 0);
+                    func_0212d238(a, NULL);
                     ok = 1;
                     n = ((Unk0217d134 *) data_0217d134)->mUnk_40;
                     ((Unk0217d134 *) data_0217d134)->mUnk_40 = n + 1;
@@ -231,7 +231,7 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                 b = ((Unk0212e490 *) q)->mUnk_00;
                 a = ((Unk0212e490 *) p)->mUnk_00;
                 func_0212d238(b, func_0212d254(a));
-                func_0212d238(a, 0);
+                func_0212d238(a, NULL);
                 ok = 1;
                 n = ((Unk0217d134 *) data_0217d134)->mUnk_40;
                 ((Unk0217d134 *) data_0217d134)->mUnk_40 = n + 1;
@@ -296,7 +296,7 @@ u32 func_0210e680(void) {
     a = *p;
     b = *q;
     func_0212d238(b, func_0212d254(a));
-    func_0212d238(a, 0);
+    func_0212d238(a, NULL);
     n = ((Unk0217d178 *) data_0217d178)->mUnk_40;
     ((Unk0217d178 *) data_0217d178)->mUnk_40 = n + 1;
     ((Unk0217d178 *) data_0217d178)->mUnk_00[n] = b;
@@ -306,7 +306,7 @@ u32 func_0210e680(void) {
         b = ((Unk0212e490 *) q)->mUnk_00;
         a = ((Unk0212e490 *) p)->mUnk_00;
         func_0212d238(b, func_0212d254(a));
-        func_0212d238(a, 0);
+        func_0212d238(a, NULL);
         ok = 1;
         n = ((Unk0217d178 *) data_0217d178)->mUnk_40;
         ((Unk0217d178 *) data_0217d178)->mUnk_40 = n + 1;

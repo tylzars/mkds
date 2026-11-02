@@ -156,7 +156,7 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
     b->mUnk_000.mUnk_28.mUnk_24.y = b->mUnk_000.mUnk_04.y >> 4;
     b->mUnk_000.mUnk_28.mUnk_24.z = b->mUnk_000.mUnk_04.z >> 4;
     r = b->mUnk_12c;
-    if (r != 0) {
+    if (r != NULL) {
         r->mUnk_0c = b->mUnk_130 << 12;
         *r->mUnk_1c[r->mUnk_1a] = r->mUnk_0c;
     }
@@ -173,7 +173,7 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
     buf[0] = b->mUnk_100;
     buf[10] = b->mUnk_104;
     buf[11] = b->mUnk_108;
-    func_01ff9048(0x11, 0, 0);
+    func_01ff9048(0x11, NULL, 0);
     func_01ff9048(0x19, buf, 0xc);
     func_020849d0(gCarTire);
     one = 1;
@@ -190,7 +190,7 @@ static inline s64 func_020e2630_inline(const Vec3 *v) {
 // non-matching: the flag value and the byte pointer sit in r5/r4 instead of r4/r5, and `mov r1, #0` is one place
 // later in the first product (19 words)
 void func_020e2630(u32 a, Unk020e1e98 *b) {
-    s32 f;
+    BOOL f;
     void *p;
     u32 n;
     Unk020e1e98_0b4 m;
@@ -200,9 +200,9 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
     Vec3 w;
 
     if (b->mUnk_0fe > 0xf) {
-        f = 1;
+        f = TRUE;
     } else {
-        f = 0;
+        f = FALSE;
     }
     v = b->mUnk_000.mUnk_04;
     func_020d8cc8(&b->mUnk_0d8);
@@ -223,7 +223,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
         w.y = b->mUnk_000.mUnk_04.y + (f ? 0xf000 : 0);
         w.z = b->mUnk_000.mUnk_04.z;
         u = w;
-        if (func_01ffdee4(&u, 0, 0, 0xf000, 8, -2, out, &u, 0, &n, 0, 0, 0, 0) != 0) {
+        if (func_01ffdee4(&u, NULL, 0, 0xf000, 8, -2, out, &u, NULL, &n, NULL, NULL, NULL, NULL) != 0) {
             if (n & 0x1e34ef) {
                 func_020d7b88((Vec3 *) &u, &b->mUnk_0b4);
                 func_0208ab98(&b->mUnk_132, (u16) ((n & 0x3c000000) >> 26), 0x5000);
@@ -238,7 +238,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
                         func_020d759c(&b->mUnk_0c4, &b->mUnk_0b4, &b->mUnk_0c4, 0x8cd);
                         b->mUnk_152 = 0x320;
                         func_020d2774(&b->mUnk_000, b->mUnk_160);
-                    } else if (f && b != 0) {
+                    } else if (f && b != NULL) {
                         b->mUnk_0fe = 0xf;
                         b->mUnk_000.mUnk_10.y = 0;
                         b->mUnk_152 = 0x258;
@@ -421,10 +421,10 @@ void func_020e20a8(Unk020e20a8 *a) {
     c = (u32) FindCourseMapObjFile(gTruckANsbmdName);
     a->mUnk_038 = data_021759c0->mUnk_08 != 4 && func_0203c5e4() == 0 && (u16) data_021759c0->mUnk_62 < 8;
     a->mUnk_03c = 0;
-    func_020ea588(&gCarA, (void *) b, 0);
-    func_020ea588(&gTruckA, (void *) c, 0);
-    func_020ea588(&gBusA, (void *) FindCourseMapObjFile(gBusANsbmdName), 0);
-    func_020ea588(&gCarTire, (void *) FindCourseMapObjFile(gCarTireNsbmdName), 0);
+    func_020ea588(&gCarA, (void *) b, NULL);
+    func_020ea588(&gTruckA, (void *) c, NULL);
+    func_020ea588(&gBusA, (void *) FindCourseMapObjFile(gBusANsbmdName), NULL);
+    func_020ea588(&gCarTire, (void *) FindCourseMapObjFile(gCarTireNsbmdName), NULL);
     func_020ea55c(&gCarAShadow, (void *) FindCourseMapObjFile(gCarAShadowNsbmdName), 7);
     func_020ea55c(&gTruckAShadow, (void *) FindCourseMapObjFile(gTruckAShadowNsbmdName), 7);
     func_020ea55c(&gBusAShadow, (void *) FindCourseMapObjFile(gBusAShadowNsbmdName), 7);
@@ -452,11 +452,11 @@ void func_020e20a8(Unk020e20a8 *a) {
     for (i = 0; i < n; i++) {
         e = ((Unk0217b79c *) data_0217b79c)->mUnk_00[i];
         q = e->mUnk_154->mUnk_20;
-        e->mUnk_124 = q != 0 ? *q : 0;
+        e->mUnk_124 = q != NULL ? *q : 0;
         q = e->mUnk_154->mUnk_24;
-        e->mUnk_128 = q != 0 ? *q : 0;
+        e->mUnk_128 = q != NULL ? *q : 0;
         z = e->mUnk_154->mUnk_28;
-        e->mUnk_12c = z != 0 ? *z : 0;
+        e->mUnk_12c = z != NULL ? *z : 0;
     }
 }
 
@@ -546,13 +546,13 @@ s32 func_020e1d10(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *e, Unk020e
 
 void func_020e1a80(s32 a, s32 b, s32 c, u32 d, u16 e, u16 *f, s32 v, Unk020e005c *w, Vec3 *g, Vec3 *h, Unk020e0764 *i,
                    Unk020e0764 *j, Vec3 *k, Vec3 *l, u16 *m) {
-    s32 q;
+    BOOL q;
     s32 t;
     Unk020e0764 *s;
     u16 n;
     Vec3 u;
 
-    q = 0;
+    q = FALSE;
     if (v != 0) {
         if (d & e) {
             t = h->y;
@@ -560,7 +560,7 @@ void func_020e1a80(s32 a, s32 b, s32 c, u32 d, u16 e, u16 *f, s32 v, Unk020e005c
             t = -h->y;
         }
         if (t > w->mUnk_120) {
-            q = 1;
+            q = TRUE;
         }
     }
     u.x = h->x << 10;
@@ -602,7 +602,7 @@ void func_020e1a80(s32 a, s32 b, s32 c, u32 d, u16 e, u16 *f, s32 v, Unk020e005c
     } else if (u.z < s->mUnk_14) {
         s->mUnk_14 = u.z;
     }
-    if (k != 0) {
+    if (k != NULL) {
         if (d & e) {
             s32 v = -(a - c);
 
@@ -628,41 +628,41 @@ void func_020e1a80(s32 a, s32 b, s32 c, u32 d, u16 e, u16 *f, s32 v, Unk020e005c
 
 // non-matching: code 0x3a0 vs 0x3a4: the incoming arguments land in different callee-saved registers (r6/r8, r5/r7,
 // r4/r6 against the original)
-s32 func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 i, s32 j, Unk020e005c *w, Vec3 *l,
+BOOL func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 i, s32 j, Unk020e005c *w, Vec3 *l,
                   Vec3 *m, Vec3 *n, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, Vec3 *r, u16 *s) {
-    s32 u;
-    s32 v;
-    s32 k;
+    BOOL u;
+    BOOL v;
+    BOOL k;
     s32 t;
     Unk020e0764 *x;
     Vec3 y;
     Vec3 z;
     Vec3 tmp;
 
-    u = 0;
+    u = FALSE;
     if ((h & 0x60) == 0) {
-        v = 1;
-        k = 0;
+        v = TRUE;
+        k = FALSE;
         if (i != 0) {
             t = (d & e) ? m->y : -m->y;
             if (t > w->mUnk_120) {
-                k = 1;
+                k = TRUE;
             }
         }
-        if (k == 0) {
-            k = 0;
+        if (k == FALSE) {
+            k = FALSE;
             if (j != 0) {
                 t = (d & f) ? n->y : -n->y;
                 if (t > w->mUnk_120) {
-                    k = 1;
+                    k = TRUE;
                 }
             }
-            if (k == 0) {
-                v = 0;
+            if (k == FALSE) {
+                v = FALSE;
             }
         }
-        if (v != 0) {
-            u = 1;
+        if (v != FALSE) {
+            u = TRUE;
         }
     }
     y.x = (s32) (((s64) m->x * b) >> 12);
@@ -677,7 +677,7 @@ s32 func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 i
     y.z <<= 10;
     t = func_020d70ac(&y, &tmp);
     if (t > (a << 10)) {
-        return 0;
+        return FALSE;
     }
     if (t != 0) {
         z.x = (s32) (((s64) tmp.x * a) >> 12);
@@ -729,7 +729,7 @@ s32 func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 i
     } else if (z.z < x->mUnk_14) {
         x->mUnk_14 = z.z;
     }
-    if (q != 0) {
+    if (q != NULL) {
         y.x = -y.x;
         y.y = -y.y;
         y.z = -y.z;
@@ -740,7 +740,7 @@ s32 func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 i
     if (u) {
         func_020e0680(w, l, &tmp, r, s);
     }
-    return 1;
+    return TRUE;
 }
 
 // non-matching: the original keeps n & 0x8 at stack offset 0x4c, so v, w and tmp sit 4 bytes higher; the three
@@ -761,9 +761,9 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *o, Unk020e
     s32 m6;
     s32 m5;
     s32 m4;
-    s32 u;
-    s32 e;
-    s32 h;
+    BOOL u;
+    BOOL e;
+    BOOL h;
     s32 t;
 
     n = 0;
@@ -944,29 +944,29 @@ call_8_800:
     return func_020e16dc(c, f4, f6, n, 8, 0x800, g, d, a->mUnk_114.y, a->mUnk_110, a, b, &a->mUnk_040, &a->mUnk_028, o,
                          p, q, r, s);
 rest:
-    u = 0;
+    u = FALSE;
     if ((d & 0x60) == 0) {
-        e = 1;
-        h = 0;
+        e = TRUE;
+        h = FALSE;
         if (a->mUnk_110 != 0) {
             t = (n & 0x800) ? a->mUnk_028.y : -a->mUnk_028.y;
             if (t > a->mUnk_120) {
-                h = 1;
+                h = TRUE;
             }
         }
-        if (h == 0) {
-            h = 0;
+        if (h == FALSE) {
+            h = FALSE;
             if (a->mUnk_114.x != 0) {
                 t = (n & 0x80) ? a->mUnk_034.y : -a->mUnk_034.y;
                 if (t > a->mUnk_120) {
-                    h = 1;
+                    h = TRUE;
                 }
             }
-            if (h == 0) {
-                e = 0;
+            if (h == FALSE) {
+                e = FALSE;
             }
         }
-        if (e != 0) {
+        if (e != FALSE) {
             k5 = 0;
             if (a->mUnk_114.y != 0) {
                 t = (n & 0x8) ? a->mUnk_040.y : -a->mUnk_040.y;
@@ -975,11 +975,11 @@ rest:
                 }
             }
             if (k5 == 0) {
-                e = 0;
+                e = FALSE;
             }
         }
-        if (e != 0) {
-            u = 1;
+        if (e != FALSE) {
+            u = TRUE;
         }
     }
     if (n & 0x800) {
@@ -1064,7 +1064,7 @@ rest:
     } else if (tmp.z < x->mUnk_14) {
         x->mUnk_14 = tmp.z;
     }
-    if (q != 0) {
+    if (q != NULL) {
         v.x = -v.x;
         v.y = -v.y;
         v.z = -v.z;
@@ -1193,7 +1193,7 @@ apply3000:
 void func_020e0680(Unk020e005c *a, Vec3 *b, Vec3 *c, Vec3 *d, u16 *e) {
     Vec3 f;
 
-    if (d != 0) {
+    if (d != NULL) {
         d->x = -a->mUnk_010.x;
         d->y = -a->mUnk_010.y;
         d->z = -a->mUnk_010.z;
@@ -1203,7 +1203,7 @@ void func_020e0680(Unk020e005c *a, Vec3 *b, Vec3 *c, Vec3 *d, u16 *e) {
         func_02147fd8(func_02039828(&f, &a->mUnk_040), &a->mUnk_0b8, d, d);
         func_021484d0(&f, d, d);
     }
-    if (e != 0) {
+    if (e != NULL) {
         *e = func_02039828(&a->mUnk_124, c);
     }
 }

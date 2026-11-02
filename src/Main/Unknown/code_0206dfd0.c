@@ -12,7 +12,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_02147cd8.h"
 
-static inline s32 func_0206dfd0_inline(Unk0206bcb0 *p, Unk0206bcb0 *q, s32 r) {
+static inline BOOL func_0206dfd0_inline(Unk0206bcb0 *p, Unk0206bcb0 *q, s32 r) {
     s32 x;
     s32 y;
     s32 z;
@@ -21,20 +21,20 @@ static inline s32 func_0206dfd0_inline(Unk0206bcb0 *p, Unk0206bcb0 *q, s32 r) {
     m = -r;
     z = p->mUnk_1d8.z - q->mUnk_1d8.z;
     if (z > r || z < m) {
-        return 0;
+        return FALSE;
     }
     x = p->mUnk_1d8.x - q->mUnk_1d8.x;
     if (x > r || x < m) {
-        return 0;
+        return FALSE;
     }
     y = p->mUnk_1d8.y - q->mUnk_1d8.y;
     if (y > r || y < m) {
-        return 0;
+        return FALSE;
     }
     if ((s64) x * x + (s64) y * y + (s64) z * z < (s64) r * r) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 static inline s32 func_0206dfd0_inline_2(Vec3 *v, Vec3 *n) {
@@ -51,7 +51,7 @@ void func_0206dfd0(Unk0206bcb0 *p) {
     s32 d;
     s32 f;
     s32 k;
-    s32 c;
+    BOOL c;
     s32 s;
     u32 w;
     u32 x;
@@ -95,7 +95,7 @@ void func_0206dfd0(Unk0206bcb0 *p) {
         r = p->mUnk_1d0 + q->mUnk_1d0;
         q->mUnk_2b0 |= 1 << p->mUnk_74;
         p->mUnk_2b0 |= 1 << q->mUnk_74;
-        if (func_0206dfd0_inline(p, q, r) == 0) {
+        if (func_0206dfd0_inline(p, q, r) == FALSE) {
             continue;
         }
         func_020eb3f0(&p->mUnk_1d8, &q->mUnk_1d8, r, &v);
@@ -108,7 +108,7 @@ void func_0206dfd0(Unk0206bcb0 *p) {
             b.y = -a.y;
             b.z = -a.z;
             k = 0;
-            c = 0;
+            c = FALSE;
             if (p->mUnk_44 & 0x10) {
                 f = func_0214848c(&p->mUnk_244, &a);
                 a.x -= (s32) (((s64) p->mUnk_244.x * f) >> 12);
@@ -161,12 +161,12 @@ void func_0206dfd0(Unk0206bcb0 *p) {
             w = p->mUnk_4c;
             if (w & 0x10000000) {
                 if (!(q->mUnk_4c & 0x10000040)) {
-                    c = 1;
+                    c = TRUE;
                     func_0206dbf8(p, q);
                 }
             } else if ((x = q->mUnk_4c) & 0x10000000) {
                 if (!(w & 0x10000040)) {
-                    c = 1;
+                    c = TRUE;
                     func_0206dbf8(q, p);
                 }
             } else if (w & 0x40) {
@@ -174,12 +174,12 @@ void func_0206dfd0(Unk0206bcb0 *p) {
                     m.x = -n.x;
                     m.y = -n.y;
                     m.z = -n.z;
-                    c = 1;
+                    c = TRUE;
                     func_0206de18(p, q, &m);
                 }
             } else if (x & 0x40) {
                 if (!(w & 0x10000040)) {
-                    c = 1;
+                    c = TRUE;
                     func_0206de18(q, p, &n);
                 }
             } else if (p->mUnk_3d4 <= 0) {
@@ -210,7 +210,7 @@ void func_0206dfd0(Unk0206bcb0 *p) {
                 p->mUnk_4c |= 0x100000;
                 q->mUnk_4c |= 0x100000;
             }
-            if (c == 0) {
+            if (c == FALSE) {
                 u = data_02154f94;
                 func_0206d7c8(q, p, &n, 1, &u);
                 n.x = -n.x;

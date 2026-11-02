@@ -16,7 +16,7 @@ void func_ov003_021d1cb0(u32 b, const u8 *c) {
 
 void func_ov003_021d1c90(u32 a) {
     func_ov003_021d1490(data_ov003_021da2b8[a]);
-    data_ov003_021da2b8[a] = 0;
+    data_ov003_021da2b8[a] = NULL;
 }
 
 void func_ov003_021d1c3c(u32 f, u32 g, u8 *h) {

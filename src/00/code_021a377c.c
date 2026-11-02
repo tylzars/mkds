@@ -3,22 +3,22 @@
 #include "00/code_021a6fa8.h"
 #include "00/code_021a86bc.h"
 
-s32 func_ov000_021a377c(void) {
+BOOL func_ov000_021a377c(void) {
     Unk021b5df4 *p = data_ov000_021b5df4;
-    if (p == 0) {
-        return 1;
+    if (p == NULL) {
+        return TRUE;
     }
     if (p->mUnk_04 == 4) {
         p->mUnk_04 = 5;
     } else if (p->mUnk_04 != 5) {
-        return 1;
+        return TRUE;
     }
     if (func_ov000_021a86e8() != 0) {
-        return 0;
+        return FALSE;
     }
     if (func_ov000_02188720() != 0) {
-        data_ov000_021b5df4 = 0;
-        return 1;
+        data_ov000_021b5df4 = NULL;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }

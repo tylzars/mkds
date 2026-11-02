@@ -7,7 +7,7 @@ void func_ov000_021a998c(Unk021a998c *a) {
     Unk021a998c_0c *obj;
     obj = a->mUnk_0c;
     msg = data_ov000_021b63a4(0x83);
-    if (msg == 0) {
+    if (msg == NULL) {
         obj->mUnk_429 = 9;
         return;
     }
@@ -35,6 +35,6 @@ void func_ov000_021a998c(Unk021a998c *a) {
     func_0214d1fc(obj->mUnk_31c, obj->mUnk_2c0, 0x5c);
     func_ov000_021abca0(obj->mUnk_2c0, msg + 0xb, 0x28);
     func_ov000_021ab728(obj->mUnk_378, msg + 0xb, 0x28);
-    func_ov000_021adcec(msg, func_ov000_021aa054(obj, msg + 6) + 6, 0, 0, a);
+    func_ov000_021adcec(msg, func_ov000_021aa054(obj, msg + 6) + 6, NULL, 0, a);
     data_ov000_021b63ac(msg);
 }

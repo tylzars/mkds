@@ -34,7 +34,7 @@ void func_ov000_021a397c(s32 a) {
 
 void func_ov000_021a3910(void) {
     Unk021a3910 t;
-    if (data_ov000_021b5df4 != 0) {
+    if (data_ov000_021b5df4 != NULL) {
         if (data_ov000_021b5df4->mUnk_04 != 1) {
             return;
         }
@@ -56,7 +56,7 @@ void func_ov000_021a3910(void) {
 u32 func_ov000_021a38d8(void) {
     int *v1;
     v1 = (s32 *) data_ov000_021b5df4;
-    if (v1 == 0x0) {
+    if (v1 == NULL) {
         return 0;
     }
     if (*v1 != 0) {
@@ -69,9 +69,9 @@ u32 func_ov000_021a38d8(void) {
 
 void func_ov000_021a3884(void) {
     Unk021b5df4 *p = data_ov000_021b5df4;
-    if (p != 0 && p->mUnk_04 == 2) {
+    if (p != NULL && p->mUnk_04 == 2) {
         data_ov000_021b5df4->mUnk_00 = func_ov000_021887cc();
-    } else if (p != 0 && p->mUnk_04 == 4 && p->mUnk_06 != 0 && func_ov000_021a5bfc() != 9) {
+    } else if (p != NULL && p->mUnk_04 == 4 && p->mUnk_06 != 0 && func_ov000_021a5bfc() != 9) {
         data_ov000_021b5df4->mUnk_06 = 0;
         data_ov000_021b5df4->mUnk_04 = 6;
     }
@@ -80,7 +80,7 @@ void func_ov000_021a3884(void) {
 u32 func_ov000_021a3810(void) {
     u32 v = 0;
     s32 r;
-    if (data_ov000_021b5df4 != 0) {
+    if (data_ov000_021b5df4 != NULL) {
         r = func_ov000_02188758();
         if (r == 5) {
             data_ov000_021b5df4->mUnk_04 = 4;
@@ -104,7 +104,7 @@ u32 func_ov000_021a3810(void) {
 
 void func_ov000_021a37dc(void) {
     int v1;
-    if (data_ov000_021b5df4 != 0) {
+    if (data_ov000_021b5df4 != NULL) {
         v1 = func_ov000_02188720();
         while (v1 == 0) {
             func_0200dc3c(10);

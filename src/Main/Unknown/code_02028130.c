@@ -224,10 +224,10 @@ int AdvanceSelectKart(void) {
         func_020780f4();
     }
     d = gSelectKart;
-    if (d->mUnk_104 != 0) {
+    if (d->mUnk_104 != FALSE) {
         func_0202bb80();
     } else {
-        func_02124c30(q->mUnk_0c, q->mUnk_08, 0, d->mUnk_080, q->mUnk_18);
+        func_02124c30(q->mUnk_0c, q->mUnk_08, NULL, d->mUnk_080, q->mUnk_18);
     }
     if (func_020280dc() == 0) {
         d = gSelectKart;

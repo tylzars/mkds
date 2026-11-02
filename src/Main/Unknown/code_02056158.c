@@ -11,7 +11,7 @@ void func_02056158(void *a) {
     if (data_021759c0->mUnk_00c == 3 || data_021759c0->mUnk_00c == 5) {
         data_0217aa04->mUnk_04 = func_02036b74(a, 0x400, 0x20);
     } else {
-        data_0217aa04->mUnk_04 = 0;
+        data_0217aa04->mUnk_04 = NULL;
     }
     data_0217aa04->mUnk_08 = 0;
     data_0217aa04->mUnk_0a = 0;

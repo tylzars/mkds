@@ -129,10 +129,10 @@ void func_020a78c8(Unk020e6fd4 *l) {
     s32 i;
     Unk020a7f18 *o;
 
-    if (l == 0) {
+    if (l == NULL) {
         return;
     }
-    for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
         o->mUnk_1d4 = (o->mUnk_000.mUnk_9c->mUnk_28 << 12) / 100;
         o->mUnk_1d0 = 4;
         for (j = 0; j < o->mUnk_1d0; j++) {

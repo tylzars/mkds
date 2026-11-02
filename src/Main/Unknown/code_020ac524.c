@@ -131,7 +131,7 @@ void func_020ac6a8(void *a, Unk020ac5e4 *b) {
 }
 
 void func_020ac67c(void) {
-    func_0209bfa8(0, 0, 0, (u32) 1, (u16) 0);
+    func_0209bfa8(NULL, NULL, NULL, (u32) 1, (u16) 0);
 }
 
 void *func_020ac658(void) {
@@ -139,14 +139,14 @@ void *func_020ac658(void) {
 }
 
 void *func_020ac63c(void) {
-    return (void *) func_0209bf48(0, func_020ac6a8, 0);
+    return (void *) func_0209bf48(NULL, func_020ac6a8, NULL);
 }
 
 void func_020ac5e4(Unk0206bcb0 *a) {
     Unk020ac5e4 *o;
 
     o = func_0209bbfc(func_02100138(0x70));
-    if (o == 0) {
+    if (o == NULL) {
         return;
     }
     o->mUnk_00.mUnk_04.x = 0;
@@ -190,5 +190,5 @@ void *func_020ac524(s32 a) {
             return e;
         }
     }
-    return 0;
+    return NULL;
 }

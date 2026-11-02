@@ -56,7 +56,7 @@ void func_02125da0(void) {
     if (data_0217d3ec->mUnk_08 != 0) {
         func_021287c0();
     }
-    *&data_0217d3ec = 0;
+    *&data_0217d3ec = NULL;
 }
 
 #pragma thumb off

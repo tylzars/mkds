@@ -21,7 +21,7 @@ void func_0208fefc(Unk0208fd8c *a, struct Unk020888b4 *b) {
             func_0207c548(a, b);
         }
     } else {
-        if (b->mUnk_b0 == 0) {
+        if (b->mUnk_b0 == NULL) {
             return;
         }
         if (b->mUnk_b8 >= 0x15f90) {

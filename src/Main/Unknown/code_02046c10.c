@@ -29,7 +29,7 @@ u16 func_02046c10(void) {
 
 void func_02046c74(void) {
     func_0210f114(data_021759c4->mUnk_3c);
-    data_021759c4 = 0;
+    data_021759c4 = NULL;
 }
 
 void func_02046ca8(Unk02175628_48 *a, s32 b, s32 c) {
@@ -106,7 +106,7 @@ void func_02046ee4(void) {
         return;
     }
     func_0210f0d8(data_021759c4->mUnk_3c);
-    data_021759c4->mUnk_3c = 0;
+    data_021759c4->mUnk_3c = NULL;
     data_021759c4->mUnk_30_1 = 0;
     data_021759c4->mUnk_30_2 = 0;
 }

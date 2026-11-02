@@ -26,32 +26,32 @@
 #include "registers.h"
 
 static inline u32 func_02055808_inline(void) {
-    if (data_0217aa00 == 0) {
+    if (data_0217aa00 == NULL) {
         return 0;
     }
     return data_0217aa00->mUnk_0000;
 }
 
 static inline s32 func_02055808_inline2(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (func_02055808_inline() != 0 && data_0217aa00->mUnk_0004 != 13) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 static inline s32 func_02055808_inline3(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (func_02055808_inline2() && !(data_0217aa00->mUnk_0454 & 0x80)) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 static inline s32 func_02055808_inline4(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (func_02055808_inline3() && data_0217aa00->mUnk_0008 != 9) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
@@ -80,9 +80,9 @@ s32 func_0205579c(s32 a, s32 b) {
 }
 
 s32 func_02055808(s32 a) {
-    s32 r;
+    BOOL r;
 
-    r = 0;
+    r = FALSE;
     if (data_0217aa00->mUnk_0010 != 0) {
         return r;
     }
@@ -104,9 +104,9 @@ s32 func_02055808(s32 a) {
             if (a != 0) {
                 func_020532dc(0x14);
             } else {
-                r = 1;
+                r = TRUE;
                 data_0217aa00->mUnk_0004 = 3;
-                func_020527c0(1, 0, 0);
+                func_020527c0(1, NULL, NULL);
             }
             break;
         case 3:
@@ -118,7 +118,7 @@ s32 func_02055808(s32 a) {
             func_02052bf8();
             break;
         case 5:
-            func_02052b60(0);
+            func_02052b60(NULL);
             break;
         case 6:
             func_02051a24();
@@ -126,7 +126,7 @@ s32 func_02055808(s32 a) {
         case 11:
             data_0217aa00->mUnk_0004 = 2;
             data_0217aa00->mUnk_0044.mUnk_3e = 0;
-            r = 1;
+            r = TRUE;
             data_0217aa00->mUnk_008b &= ~8;
             break;
         default:
@@ -158,31 +158,31 @@ void func_02055a94(void) {
     data_0217aa04->mUnk_08 |= 8;
 }
 
-s32 func_02055afc(void) {
+BOOL func_02055afc(void) {
     return (data_0217aa04->mUnk_08 & 8) != 0;
 }
 
 static inline s32 func_02055b1c_inline(void) {
-    s32 r = 0;
+    BOOL r = FALSE;
     u32 t;
-    if (data_0217aa00 == 0) {
+    if (data_0217aa00 == NULL) {
         t = 0;
-        r = 0;
+        r = FALSE;
     } else {
         t = data_0217aa00->mUnk_0000;
     }
     if (t != 0 && data_0217aa00->mUnk_0004 != 13) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
-s32 func_02055b1c(void) {
+BOOL func_02055b1c(void) {
     if (func_02055b1c_inline()) {
         if (func_0204ffbc() != 0) {
             return (data_0217aa00->mUnk_15bc_view.mUnk_0c->mUnk_06_0 & 4) != 0;
         }
-        return 0;
+        return FALSE;
     }
     return (data_0217aa04->mUnk_08 & 8) != 0;
 }
@@ -314,7 +314,7 @@ void func_02055fc8(void) {
     Unk0217aa04_04 *p;
 
     v1 = data_0217aa04->mUnk_04;
-    if (v1 == 0) {
+    if (v1 == NULL) {
         return;
     }
     m[0] = 0x1000;

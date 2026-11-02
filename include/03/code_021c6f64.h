@@ -12,4 +12,4 @@
 
 extern u8 data_ov003_021d72fc[];
 
-s32 func_ov003_021c6f64(void);
+BOOL func_ov003_021c6f64(void);

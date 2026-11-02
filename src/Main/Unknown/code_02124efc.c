@@ -18,7 +18,7 @@ void func_02124efc(Unk02124b1c *p, s32 n) {
         func_02146c98(p->mUnk_24);
         p->mUnk_34 = 1;
         p->mUnk_38 = -1;
-        p->mUnk_3c = 0;
+        p->mUnk_3c = NULL;
         p++;
     }
 }

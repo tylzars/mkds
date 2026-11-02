@@ -38,24 +38,24 @@ const Unk02159538 data_02159538 = {
     (u32) &func_020eb7e0, (u32) &func_020eb760, 4, 0xa000, 0xa000, 0xa000, 0, 1, 1, 0x168, 0x169, 0, 0, 0, 0, 0,
 };
 
-s32 func_020ec450(Unk020e43a8 *a, void *b, u8 *c) {
+BOOL func_020ec450(Unk020e43a8 *a, void *b, u8 *c) {
     if (*c != 1) {
-        return 0;
+        return FALSE;
     }
     func_020ec6e4(a, b);
     a->mUnk_00.mUnk_80.mUnk_10 = 1;
     a->mUnk_00.mUnk_80.mUnk_12 = 1;
-    return 1;
+    return TRUE;
 }
 
-s32 func_020ec41c(Unk020e43a8 *a, void *b, u8 *c) {
+BOOL func_020ec41c(Unk020e43a8 *a, void *b, u8 *c) {
     if (*c != 1) {
-        return 0;
+        return FALSE;
     }
     func_020ec538(a, b);
     a->mUnk_00.mUnk_80.mUnk_10 = 1;
     a->mUnk_00.mUnk_80.mUnk_12 = 1;
-    return 1;
+    return TRUE;
 }
 
 Unk02159538 *func_020ec3cc(void) {
@@ -155,7 +155,7 @@ void func_020ebef8(Unk020ebef8 *c, Vec3 *d) {
     }
     i = func_020f8a04(0, c->mUnk_10e, 1, 1, 0, 0x12);
     q = func_020fa3d0(data_0217bc48[i].mUnk_08, 8, &c->mUnk_000.mUnk_04, &c->mUnk_0bc);
-    if (q == 0) {
+    if (q == NULL) {
         return;
     }
     if ((s64) d->x * d->x + (s64) d->y * d->y + (s64) d->z * d->z >= 16) {

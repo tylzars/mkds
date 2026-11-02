@@ -62,7 +62,7 @@ void func_020acbf8(Unk020aca24 *a) {
     s32 j;
     s32 n;
 
-    if (a != 0) {
+    if (a != NULL) {
         i = func_020acef4();
         if (func_020acec4(i, 1) != 0) {
             func_020adad0(4, 8);

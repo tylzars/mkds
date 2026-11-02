@@ -14,7 +14,7 @@ void func_ov000_021ae1e4(void) {
     Unk021a998c *a;
 
     a = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
-    if (a != 0) {
+    if (a != NULL) {
         if (a->mUnk_09 != 0) {
             func_ov000_021a9534(a);
         } else {
@@ -37,7 +37,7 @@ u32 func_ov000_021ae16c(Unk021a998c *b) {
         s = func_0200fca0();
         if (data_ov000_021b63b4 != 0) {
             b->mUnk_04 = 1;
-            func_0200e01c(0);
+            func_0200e01c(NULL);
         }
         func_0200fcb4(s);
         if (b->mUnk_08 == 4) {
@@ -54,7 +54,7 @@ u32 func_ov000_021ae134(void) {
     Unk021a998c *a;
 
     a = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
-    if (a != 0) {
+    if (a != NULL) {
         if (a->mUnk_09 != 0) {
             return func_ov000_021a943c(a);
         }

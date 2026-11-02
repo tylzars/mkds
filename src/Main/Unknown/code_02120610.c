@@ -24,36 +24,36 @@ s32 func_02121d94(void) {
     return func_02029930()->mUnk_d0;
 }
 
-s32 func_02121d48(void) {
+BOOL func_02121d48(void) {
     if (data_0217d384->mUnk_1950 >= 5) {
         if (func_02120644() == 0) {
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 s32 func_02121d0c(void) {
-    s32 r = 1;
+    BOOL r = TRUE;
     Unk0217d384 *d = data_0217d384;
     s32 v = d->mUnk_1950;
 
     if (v < 7) {
         if (d->mUnk_19ad != 1 || v != 0xc) {
-            r = 0;
+            r = FALSE;
         }
     }
     return r;
 }
 
 s32 func_02121cd0(void) {
-    s32 r = 1;
+    BOOL r = TRUE;
     Unk0217d384 *d = data_0217d384;
     s32 v = d->mUnk_1950;
 
     if (v < 10) {
         if (d->mUnk_19ad != 1 || v != 0xc) {
-            r = 0;
+            r = FALSE;
         }
     }
     return r;
@@ -122,7 +122,7 @@ void func_02121af4(void) {
 }
 
 void func_021219cc(void) {
-    s32 z = 0;
+    BOOL z = FALSE;
     u8 i;
 
     for (i = 0; i < data_0217d384->mUnk_1f53; i++) {
@@ -158,73 +158,73 @@ void func_021219cc(void) {
     }
 }
 
-s32 func_02121990(Unk02121990 *a, u32 b, u32 c, u32 d) {
+BOOL func_02121990(Unk02121990 *a, u32 b, u32 c, u32 d) {
     if (a->mUnk_00 < 10) {
         if (a->mUnk_04 == b) {
             if (a->mUnk_08 == c) {
                 if (a->mUnk_09 == d) {
-                    return 1;
+                    return TRUE;
                 }
             }
         }
     }
-    return 0;
+    return FALSE;
 }
 
-s32 func_021217e8(u32 a) {
+BOOL func_021217e8(u32 a) {
     switch (a) {
         case 0:
             if (data_0217d384->mUnk_1950 == 0 || data_0217d384->mUnk_1950 == 1) {
-                return 1;
+                return TRUE;
             }
             break;
         case 1:
             if (data_0217d384->mUnk_1950 == 0) {
-                return 1;
+                return TRUE;
             }
             break;
         case 2:
             if (data_0217d384->mUnk_1950 == 0 || data_0217d384->mUnk_1950 == 1) {
-                return 1;
+                return TRUE;
             }
             break;
         case 8:
             if ((u32) (data_0217d384->mUnk_1950 - 3) <= 1) {
-                return 1;
+                return TRUE;
             }
             break;
         case 9:
             if ((u32) (data_0217d384->mUnk_1950 - 3) <= 2) {
-                return 1;
+                return TRUE;
             }
             break;
         case 3:
             if (data_0217d384->mUnk_1950 == 1 || (u32) (data_0217d384->mUnk_1950 - 4) <= 2) {
-                return 1;
+                return TRUE;
             }
             break;
         case 4:
             if ((u32) (data_0217d384->mUnk_1950 - 5) <= 1) {
-                return 1;
+                return TRUE;
             }
             break;
         case 5:
             if ((u32) (data_0217d384->mUnk_1950 - 6) <= 1) {
-                return 1;
+                return TRUE;
             }
             break;
         case 6:
             if ((u32) (data_0217d384->mUnk_1950 - 7) <= 1) {
-                return 1;
+                return TRUE;
             }
             break;
         case 7:
             if ((u32) (data_0217d384->mUnk_1950 - 8) <= 1) {
-                return 1;
+                return TRUE;
             }
             break;
     }
-    return 0;
+    return FALSE;
 }
 
 u8 func_021216a8(void) {
@@ -260,7 +260,7 @@ u8 func_021216a8(void) {
     return i;
 }
 
-s32 func_02121580(void) {
+BOOL func_02121580(void) {
     u8 i;
     u8 a = 0;
     u8 b = 0;
@@ -285,7 +285,7 @@ s32 func_02121580(void) {
         func_ov000_021a2ccc();
         func_ov000_0219bbfc();
         data_0217d384->mUnk_1950 = 0xb;
-        return 0;
+        return FALSE;
     }
     c = 0;
     n = data_0217d384->mUnk_1f53;
@@ -324,15 +324,15 @@ void func_0212145c(u32 a) {
     data_0217d384->mUnk_1950 = 0xb;
 }
 
-s32 func_02121434(void) {
-    return func_ov000_021a2950(0) == 0;
+BOOL func_02121434(void) {
+    return func_ov000_021a2950(NULL) == 0;
 }
 
 u8 func_02121418(void) {
     return func_ov000_0219bb68();
 }
 
-s32 func_021213f4(void) {
+BOOL func_021213f4(void) {
     return data_0217d384->mUnk_194d != 0;
 }
 
@@ -340,16 +340,16 @@ u32 func_021213e8(void) {
     return func_ov000_021a2cac();
 }
 
-s32 func_021213a0(void) {
+BOOL func_021213a0(void) {
     if (func_ov000_021a2c64() != 0) {
         if (data_0217d384->mUnk_0008.mUnk_0e == 3) {
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
-s32 func_0212137c(void) {
+BOOL func_0212137c(void) {
     return data_0217d384->mStartStatus == 2;
 }
 
@@ -391,7 +391,7 @@ s32 func_0212111c(void) {
     if ((data_0217d384->mUnk_194e != 0 && func_ov000_0219bb68() <= 1) || data_0217d384->mUnk_1f44 == 7) {
         return -1;
     }
-    return func_02121d48() != 0;
+    return func_02121d48() != FALSE;
 }
 
 void RegisterKartKeysAndStart(void) {
@@ -432,25 +432,25 @@ void RegisterKartKeysAndStart(void) {
     }
     switch (data_0217d384->mKeys[1].mValue) {
         case 3:
-            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, 0,
+            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
                                 ComputeRegionEval, 0);
             break;
         case 4:
-            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, 0,
+            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
                                 ComputeRegionEloEval, 0);
             break;
         case 0:
-            func_ov000_0219bc78(0, 0, data_0217d384->mUnk_194c, 1, KartKeysStartCallback, 0, 0, 0);
+            func_ov000_0219bc78(NULL, 0, data_0217d384->mUnk_194c, 1, KartKeysStartCallback, NULL, 0, 0);
             break;
         case 1:
-            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, 0, ComputeEloEval,
+            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL, ComputeEloEval,
                                 0);
             break;
     }
     data_0217d384->mStartStatus = 1;
 }
 
-s32 func_02120d14(void) {
+BOOL func_02120d14(void) {
     s32 v;
 
     v = data_0217d384->mStartStatus;
@@ -458,11 +458,11 @@ s32 func_02120d14(void) {
         case 1:
             break;
         case 3:
-            return 1;
+            return TRUE;
         case 4:
             break;
     }
-    return 0;
+    return FALSE;
 }
 
 s32 ComputeEloEval(u32 a) {
@@ -494,21 +494,21 @@ s32 ComputeEloEval(u32 a) {
     return 0;
 }
 
-s32 ComputeRegionEval(u32 a) {
+BOOL ComputeRegionEval(u32 a) {
     s32 kartType;
     s32 kartRegion;
 
     kartType = func_ov000_021a2a88(a, data_0217d384->mKeys[1].mName, 5);
     kartRegion = func_ov000_021a2a88(a, data_0217d384->mKeys[0].mName, 3);
     if (kartType == 5 || kartRegion == 3) {
-        return 0;
+        return FALSE;
     }
     if (kartType == 3) {
         if (data_0217d384->mUnk_021c[0].mRegion == kartRegion) {
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 s32 ComputeRegionEloEval(u32 a) {

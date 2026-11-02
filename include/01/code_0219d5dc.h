@@ -49,7 +49,7 @@ void func_ov001_0219dadc(void);
 void func_ov001_0219dd74(void);
 void func_ov001_0219dd94(void);
 void func_ov001_0219de18(void);
-s32 func_ov001_0219de38(void);
+BOOL func_ov001_0219de38(void);
 void func_ov001_0219de58(void);
 void func_ov001_0219df64(void);
 void func_ov001_0219df70(void *a);

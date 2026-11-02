@@ -111,4 +111,4 @@ void func_02088e44(Unk020888b4 *p);
 void func_02088d34(Unk020888b4 *p);
 void func_02088c7c(Unk020888b4 *p);
 void func_02088a0c(Unk020888b4 *p);
-s32 func_020888b4(Unk020888b4 *p, s32 a, s32 b);
+BOOL func_020888b4(Unk020888b4 *p, s32 a, s32 b);

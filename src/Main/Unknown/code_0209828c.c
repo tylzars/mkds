@@ -23,7 +23,7 @@
 #include "code_02148538.h"
 
 void *func_0209828c(void) {
-    data_usa_0217b0dc = (Unk020e6fd4 *) func_0209bf48(func_0209886c, func_020983c4, 0);
+    data_usa_0217b0dc = (Unk020e6fd4 *) func_0209bf48(func_0209886c, func_020983c4, NULL);
     func_020e6f50(&data_usa_0217b0dc);
     return data_usa_0217b0dc;
 }
@@ -42,7 +42,7 @@ void *func_02098328(void) {
 }
 
 void *func_02098374(void) {
-    data_usa_0217b0f4 = (Unk020982d4 *) func_0209bf1c(CreatePakkunMouth, func_02098b68, 0);
+    data_usa_0217b0f4 = (Unk020982d4 *) func_0209bf1c(CreatePakkunMouth, func_02098b68, NULL);
     data_usa_0217b0f4->mUnk_1c = 1;
     func_020d49d8(&data_usa_0217b0f4);
     return data_usa_0217b0f4;
@@ -73,7 +73,7 @@ static inline u32 func_020983c4_inline(u32 n) {
 }
 
 void func_020983c4(void *a, Unk020983c4 *p) {
-    s32 f;
+    BOOL f;
     s32 t;
     s32 x;
     s32 y;
@@ -86,19 +86,19 @@ void func_020983c4(void *a, Unk020983c4 *p) {
             }
             p->mUnk_0b4 = 1;
         case 1:
-            f = 0;
+            f = FALSE;
             if (p->mUnk_1dc < p->mUnk_1bc[p->mUnk_1b8]) {
                 p->mUnk_1dc = p->mUnk_1dc + 0x6d;
                 if (p->mUnk_1dc >= p->mUnk_1bc[p->mUnk_1b8]) {
-                    f = 1;
+                    f = TRUE;
                 }
             } else {
                 p->mUnk_1dc = p->mUnk_1dc - 0x6d;
                 if (p->mUnk_1dc <= p->mUnk_1bc[p->mUnk_1b8]) {
-                    f = 1;
+                    f = TRUE;
                 }
             }
-            if (f != 0) {
+            if (f != FALSE) {
                 if (func_020983c4_inline(2) == 0) {
                     p->mUnk_0b4 = 2;
                 } else {
@@ -191,10 +191,10 @@ void func_0209886c(void) {
     s32 i;
     Unk020983c4 *o;
     float f;
-    if (data_usa_0217b0dc == 0) {
+    if (data_usa_0217b0dc == NULL) {
         return;
     }
-    for (i = 0; i < data_usa_0217b0dc->mUnk_04 && (o = (Unk020983c4 *) data_usa_0217b0dc->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < data_usa_0217b0dc->mUnk_04 && (o = (Unk020983c4 *) data_usa_0217b0dc->mUnk_00[i]) != NULL; i++) {
         if (func_0209b758(gPakkunMouth) - 1 > 0) {
             f = 0.5f + (float) ((func_0209b758(gPakkunMouth) - 1) << 12);
         } else {
@@ -361,7 +361,7 @@ void func_02098d4c(Unk020983c4 *p) {
 void func_02098f18(Unk020e0144 *a, s32 b) {
     Unk0209905c *p;
     p = func_0209bbfc(func_02100138(0x1ab));
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
     p->mUnk_00.mUnk_02 = p->mUnk_00.mUnk_02 & ~1;
@@ -381,5 +381,5 @@ void func_02098f18(Unk020e0144 *a, s32 b) {
 }
 
 void *func_02099004(void) {
-    return (void *) func_0209bf48(0, func_0209905c, 0);
+    return (void *) func_0209bf48(NULL, func_0209905c, NULL);
 }

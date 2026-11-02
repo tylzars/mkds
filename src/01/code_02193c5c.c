@@ -25,13 +25,13 @@
 #include "Main/Unknown/code_0205f000.h"
 
 void func_ov001_021953d0(void) {
-    Unk020b4a44 *l0 = 0;
-    Unk020b4934 *l4 = 0;
-    Unk020b4a44 *l8 = 0;
-    Unk020b47d8 *lc = 0;
-    Unk020b4a44 *l10 = 0;
-    Unk020b4934 *l14 = 0;
-    Unk020b4a44 *l18 = 0;
+    Unk020b4a44 *l0 = NULL;
+    Unk020b4934 *l4 = NULL;
+    Unk020b4a44 *l8 = NULL;
+    Unk020b47d8 *lc = NULL;
+    Unk020b4a44 *l10 = NULL;
+    Unk020b4934 *l14 = NULL;
+    Unk020b4a44 *l18 = NULL;
     u16 *x;
 
     LocateNcgr2(&data_ov001_021a9bd8->mUnk_00, FindSceneFile(data_0216cc98));
@@ -440,7 +440,7 @@ void func_ov001_021946d0(void) {
 
     func_02117218();
     func_0211df38();
-    data_ov001_021a9bd8 = 0;
+    data_ov001_021a9bd8 = NULL;
     v = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
     v &= ~0x11;
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (v << 8);
@@ -501,29 +501,29 @@ void func_ov001_021942f8(void) {
     s32 a = -1;
     s32 b = -1;
     Unk02175628Index idx = UNK_02175628_INDEX_8;
-    s32 x1, y1, x2, y2, x3, y3;
+    BOOL x1, y1, x2, y2, x3, y3;
 
     func_ov001_02194f20();
-    x1 = 1;
-    y1 = 0;
+    x1 = TRUE;
+    y1 = FALSE;
     if (data_02175628[idx].mUnk_4c == 0 && data_02175628[idx].mUnk_58 < 5) {
-        y1 = 1;
+        y1 = TRUE;
     }
-    if (y1 == 0 && data_02175628[idx].mUnk_4c == 0) {
-        x1 = 0;
+    if (y1 == FALSE && data_02175628[idx].mUnk_4c == 0) {
+        x1 = FALSE;
     }
-    if (x1 != 0) {
+    if (x1 != FALSE) {
         a = func_0201ea84(data_ov001_021a9bd8->mUnk_20, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
     }
-    x2 = 0;
-    y2 = 0;
+    x2 = FALSE;
+    y2 = FALSE;
     if (data_02175628[idx].mUnk_4c == 0 && data_02175628[idx].mUnk_58 < 5) {
-        y2 = 1;
+        y2 = TRUE;
     }
-    if (y2 == 0 && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
-        x2 = 1;
+    if (y2 == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
+        x2 = TRUE;
     }
-    if (x2 != 0) {
+    if (x2 != FALSE) {
         b = func_0201ea84(data_ov001_021a9bd8->mUnk_20, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
     }
     if (a != 0) {
@@ -533,15 +533,15 @@ void func_ov001_021942f8(void) {
         data_ov001_021a9bd8->mUnk_8c = 0;
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
-        x3 = 0;
-        y3 = 0;
+        x3 = FALSE;
+        y3 = FALSE;
         if (data_02175628[idx].mUnk_4c == 0 && data_02175628[idx].mUnk_58 < 5) {
-            y3 = 1;
+            y3 = TRUE;
         }
-        if (y3 == 0 && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
-            x3 = 1;
+        if (y3 == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
+            x3 = TRUE;
         }
-        if (x3 == 0 || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
+        if (x3 == FALSE || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
             goto next;
         }
     }

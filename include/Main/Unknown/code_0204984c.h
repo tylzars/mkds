@@ -6,7 +6,7 @@
 s32 func_0204984c(void *a, s32 b);
 void func_02049980(s32 a);
 u32 func_0204998c(void);
-s32 func_02049aa4(void);
+BOOL func_02049aa4(void);
 u32 func_02049b6c(void);
 void func_02049c3c(void *a);
 void func_02049d54(void);

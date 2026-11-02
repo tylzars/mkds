@@ -18,7 +18,7 @@ u32 func_02006914(s32 a, s32 b) {
 }
 
 void func_020068f4(const u8 *a, u32 b) {
-    if (a != 0 && b != 0 && b != 0xffff) {
+    if (a != NULL && b != 0 && b != 0xffff) {
         func_02006bec(a, b);
     }
 }
@@ -222,7 +222,7 @@ s32 func_02006458(u32 a, s32 b) {
     if (a < 1000) {
         return b;
     }
-    for (; v1 != 0; v1 = v1->mUnk_28) {
+    for (; v1 != NULL; v1 = v1->mUnk_28) {
         if (v1->mUnk_00 == a) {
             if (a == data_02161774) {
                 i = 0;
@@ -252,7 +252,7 @@ u32 func_020063f4(u32 a, u32 b) {
     v1 = func_02007040();
     if (a < 1000) {
         for (i = 0;; i++, v1 = v1->mUnk_28) {
-            if (v1 == 0) {
+            if (v1 == NULL) {
                 break;
             }
             if (i == a) {
@@ -261,7 +261,7 @@ u32 func_020063f4(u32 a, u32 b) {
         }
         return 0;
     }
-    for (; v1 != 0; v1 = v1->mUnk_28) {
+    for (; v1 != NULL; v1 = v1->mUnk_28) {
         if (v1->mUnk_00 == a) {
             v1 = (Unk02007014 *) v1->mUnk_2c;
             return (u32) v1 + b * func_020070d8();
@@ -283,13 +283,13 @@ void func_0200639c(Unk0200628c *a, s32 b, void *c, u32 d) {
     func_0214d168(c, 0, func_02006f98(b));
 }
 
-s32 func_02006380(Unk0200628c *a, s32 b) {
+BOOL func_02006380(Unk0200628c *a, s32 b) {
     u32 v1;
     v1 = a->mUnk_14[b >> 5];
     if ((v1 & (1 << (b & 0x1f))) != 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 #pragma thumb off

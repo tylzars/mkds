@@ -9,9 +9,9 @@
 #include "code_0212d214.h"
 
 u32 func_0210efcc(Unk0212d5f8 *a, const u8 *b, void *c, u32 d) {
-    a->mUnk_8c = 0;
-    a->mUnk_84 = 0;
-    a->mUnk_88 = 0;
+    a->mUnk_8c = NULL;
+    a->mUnk_84 = NULL;
+    a->mUnk_88 = NULL;
     if (FS_ConvertPathToFileID(&a->mUnk_7c, b) == 0) {
         return 0;
     }
@@ -40,6 +40,6 @@ void func_0210ef68(Unk0217d178 *p) {
     s32 i;
 
     for (i = 0; i < p->mUnk_40; i++) {
-        func_0212d238(p->mUnk_00[i], 0);
+        func_0212d238(p->mUnk_00[i], NULL);
     }
 }

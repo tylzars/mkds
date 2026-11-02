@@ -84,7 +84,7 @@ void func_0210b874(struct Unk020e71a0_94 *p, s32 b) {
 
     c = (b >> 12) + 5;
     v = (Unk0212c400 **) func_02109078(&p->mUnk_00, 0x1cd, 0x7f, (s16) c);
-    if (v != 0) {
+    if (v != NULL) {
         func_0212c4c4(v, 0xffff, c);
     }
 }

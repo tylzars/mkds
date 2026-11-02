@@ -19,7 +19,7 @@
 #include "00/code_0218e8c4.h"
 
 void func_ov000_021a39d8(Unk021b5df4 *a, u16 b, u32 c, u32 d) {
-    if (data_ov000_021b5df4 == 0) {
+    if (data_ov000_021b5df4 == NULL) {
         func_0214d168(a, 0, 12);
         a->mUnk_08 = b;
         a->mUnk_0a = 1;
@@ -60,7 +60,7 @@ void func_ov000_021a3a18(Unk021a3a18 *a, s32 b) {
         func_ov000_021a4760((Unk021a471c *) &k, a->mUnk_108);
     }
     if (b != 2) {
-        func_ov000_021a41a0((Unk021a4a08 *) a, (Unk021a471c *) &k, 0xff, 0, 0xff, 0, 0xff, 0);
+        func_ov000_021a41a0((Unk021a4a08 *) a, (Unk021a471c *) &k, 0xff, NULL, 0xff, NULL, 0xff, NULL);
     } else if (0x800 - k.mUnk_800 >= 1) {
         k.mUnk_000[k.mUnk_800++] = 0;
     }
@@ -87,11 +87,11 @@ void func_ov000_021a3c14(Unk021a3a18 *a, s8 *b, s32 c, void *d) {
     s8 *p5;
     s8 *p6;
     k.mUnk_800 = 0;
-    if (a == 0) {
+    if (a == NULL) {
         a = (Unk021a3a18 *) data_ov000_021b426c;
     }
     if (b[0] == 0x3b) {
-        if (a->mUnk_d4 != 0) {
+        if (a->mUnk_d4 != NULL) {
             a->mUnk_d4(b, c, d);
             return;
         }

@@ -315,7 +315,7 @@ void func_021156d4(void) {
 
     func_021113fc(data_0217d350->mUnk_76);
     func_021113f0(data_0217d350->mUnk_74);
-    data_0217d350 = 0;
+    data_0217d350 = NULL;
     v = (*(volatile u32 *) 0x4001000 & 0x1f00) >> 8;
     v &= ~9;
     *(volatile u32 *) 0x4001000 = (*(volatile u32 *) 0x4001000 & 0xffffe0ff) | (v << 8);
@@ -389,7 +389,7 @@ void func_02115204(void) {
     s32 v;
     u32 w;
     Unk02175628Index i;
-    s32 n;
+    BOOL n;
 
     v = -1;
     w = v;

@@ -26,14 +26,14 @@ u8 func_0209b270(Unk0209a7dc *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
 
     e = *d;
     if (*c == 1) {
-        if (b != 0) {
+        if (b != NULL) {
             if ((s64) b->mUnk_05c.x * b->mUnk_05c.x + (s64) b->mUnk_05c.y * b->mUnk_05c.y +
                     (s64) b->mUnk_05c.z * b->mUnk_05c.z >=
                 0x10) {
                 func_02039860(&b->mUnk_05c, &v);
-                func_0209b388(a, &b->mUnk_50, &v, 0);
+                func_0209b388(a, &b->mUnk_50, &v, NULL);
             } else {
-                func_0209b388(a, 0, 0, 0);
+                func_0209b388(a, NULL, NULL, NULL);
             }
             func_020f8ddc(b);
         } else {
@@ -70,7 +70,7 @@ void func_0209b388(Unk0209a7dc *a, Vec3 *b, Vec3 *c, Vec3 *d) {
     s32 x;
     s32 z;
 
-    if (b != 0 && c != 0) {
+    if (b != NULL && c != NULL) {
         func_021484d0(&a->mUnk_000.mUnk_04, b, &v);
         z = c->z;
         x = c->x;
@@ -102,7 +102,7 @@ void func_0209b388(Unk0209a7dc *a, Vec3 *b, Vec3 *c, Vec3 *d) {
             a->mUnk_0a0 = 0xf8e4;
         }
     }
-    if (d != 0) {
+    if (d != NULL) {
         a->mUnk_000.mUnk_10.x += d->x / 2;
         a->mUnk_000.mUnk_10.z += d->z / 2;
     }

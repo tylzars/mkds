@@ -9,7 +9,7 @@
 void *func_020ae730(s32 a, s32 b) {
     void *p;
 
-    p = 0;
+    p = NULL;
     if (a > 0) {
         p = func_02036bec((void *) func_020ae754(), b * a);
     }

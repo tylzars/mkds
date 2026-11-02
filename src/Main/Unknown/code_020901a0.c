@@ -17,14 +17,14 @@ void func_020902fc(Unk0208fd8c *a, Unk020888b4 *b) {
 }
 
 void func_020902d0(Unk0208fd8c *a, Unk020888b4 *b) {
-    if (b->mUnk_b0 == 0) {
+    if (b->mUnk_b0 == NULL) {
         return;
     }
     func_0207c614(a, b);
 }
 
 void func_02090288(Unk0208fd8c *a, Unk020888b4 *b) {
-    if (func_0207c078(a) == 0 && b->mUnk_b0 == 0) {
+    if (func_0207c078(a) == 0 && b->mUnk_b0 == NULL) {
         return;
     }
     func_0207c614(a, b);
@@ -38,7 +38,7 @@ void func_0209024c(Unk0208fd8c *a, Unk020888b4 *b) {
 }
 
 void func_020901f0(Unk0208fd8c *a, Unk020888b4 *b) {
-    if (func_0207c078(a) == 0 && b->mUnk_b0 == 0) {
+    if (func_0207c078(a) == 0 && b->mUnk_b0 == NULL) {
         return;
     }
     if (b->mUnk_70 >= 0xa000) {

@@ -4,4 +4,4 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_020f504c.h"
 
-int func_020f1180(Unk020f5d6c *a, u32 b);
+BOOL func_020f1180(Unk020f5d6c *a, u32 b);

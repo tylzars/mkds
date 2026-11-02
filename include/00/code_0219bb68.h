@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-s32 func_ov000_0219bdec(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32, u8), void *e, void (*f)(u32, u32),
+BOOL func_ov000_0219bdec(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32, u8), void *e, void (*f)(u32, u32),
                         void *g);
 
 // Declared here until the code that defines them is decompiled.

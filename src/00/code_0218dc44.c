@@ -11,7 +11,7 @@
 
 void func_ov000_0218dd74(void *b, s32 c) {
     Unk0218dc94 *a = b;
-    if (a->mUnk_10 != 0) {
+    if (a->mUnk_10 != NULL) {
         a->mUnk_10(func_ov000_0218dbf8(a, c));
     }
 }
@@ -19,8 +19,8 @@ void func_ov000_0218dd74(void *b, s32 c) {
 void func_ov000_0218dd38(Unk0218dc94 *a) {
     a->mUnk_04 = a->mUnk_04 + a->mUnk_0c;
     a->mUnk_14 = func_ov000_021a3678(a->mUnk_14, a->mUnk_04 * a->mUnk_08);
-    if (a->mUnk_14 == 0) {
-        func_0213442c(data_ov000_021b2348, data_ov000_021b22dc, 0, 0x41);
+    if (a->mUnk_14 == NULL) {
+        func_0213442c(data_ov000_021b2348, data_ov000_021b22dc, NULL, 0x41);
     }
 }
 
@@ -30,11 +30,11 @@ void func_ov000_0218dd18(Unk0218dc94 *a, const void *b, s32 c) {
 
 void *func_ov000_0218dc94(s32 b, s32 c, void (*d)(void *)) {
     Unk0218dc94 *a = func_ov000_021a3690(0x18);
-    if (a == 0) {
-        func_0213442c(data_ov000_021b2334, data_ov000_021b22dc, 0, 0x52);
+    if (a == NULL) {
+        func_0213442c(data_ov000_021b2334, data_ov000_021b22dc, NULL, 0x52);
     }
     if (b == 0) {
-        func_0213442c(data_ov000_021b233c, data_ov000_021b22dc, 0, 0x53);
+        func_0213442c(data_ov000_021b233c, data_ov000_021b22dc, NULL, 0x53);
     }
     if (c == 0) {
         c = 8;
@@ -46,11 +46,11 @@ void *func_ov000_0218dc94(s32 b, s32 c, void (*d)(void *)) {
     a->mUnk_10 = d;
     if (a->mUnk_04 != 0) {
         a->mUnk_14 = func_ov000_021a3690(a->mUnk_04 * a->mUnk_08);
-        if (a->mUnk_14 == 0) {
-            func_0213442c(data_ov000_021b2348, data_ov000_021b22dc, 0, 0x5e);
+        if (a->mUnk_14 == NULL) {
+            func_0213442c(data_ov000_021b2348, data_ov000_021b22dc, NULL, 0x5e);
         }
     } else {
-        a->mUnk_14 = 0;
+        a->mUnk_14 = NULL;
     }
     return a;
 }
@@ -58,8 +58,8 @@ void *func_ov000_0218dc94(s32 b, s32 c, void (*d)(void *)) {
 void func_ov000_0218dc48(void *c) {
     Unk0218dc94 *a = c;
     s32 b;
-    if (a == 0) {
-        func_0213442c(data_ov000_021b2334, data_ov000_021b22dc, 0, 0x69);
+    if (a == NULL) {
+        func_0213442c(data_ov000_021b2334, data_ov000_021b22dc, NULL, 0x69);
     }
     b = 0;
     if (0 < a->mUnk_00) {

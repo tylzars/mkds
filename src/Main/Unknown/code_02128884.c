@@ -45,7 +45,7 @@ void func_021288d8(s16 *a) {
     func_020ae6ac(data_0217d3fc, &data_0217d3fc->mUnk_404);
     func_021289e0();
     func_020ae630(data_0217d3fc, &data_0217d3fc->mUnk_404);
-    if (a != 0) {
+    if (a != NULL) {
         if (func_0212898c() != -1) {
             a[2] = func_0212898c();
         }

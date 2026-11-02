@@ -27,7 +27,7 @@ void func_ov000_0218aa14(Unk0218a9bc *p, s32 q) {
             break;
         }
         v2[n] = 0;
-        for (e = p->mUnk_08.mUnk_00; e != 0; e = e->mUnk_20) {
+        for (e = p->mUnk_08.mUnk_00; e != NULL; e = e->mUnk_20) {
             if ((q != 0 && (e->mUnk_15 & 8) != 0 && e->mUnk_10 == v1.mUnk_04) ||
                 (e->mUnk_00 == v1.mUnk_04 && (e->mUnk_04 == v1.mUnk_02 || q != 0)) ||
                 (e->mUnk_00 == p->mUnk_28 && (e->mUnk_15 & 2) != 0 && e->mUnk_08 == v1.mUnk_04 &&
@@ -54,7 +54,7 @@ void func_ov000_0218a9bc(Unk0218a9bc *p) {
     Unk0218af28 *e;
     a = func_ov000_0218e8c4();
     e = p->mUnk_08.mUnk_00;
-    while (e != 0) {
+    while (e != NULL) {
         if (a <= e->mUnk_1c + 0x9c4) {
             break;
         }

@@ -14,7 +14,7 @@ void func_02124ed0(void *a, Unk0201ea30 *b, Unk0201ea30 *c, Unk02124b1c **d) {
     u16 n;
 
     n = b->mUnk_06;
-    if (c != 0) {
+    if (c != NULL) {
         n = n + c->mUnk_06;
     }
     *d = func_02036bec(a, n << 6);
@@ -36,7 +36,7 @@ u32 func_02124c70(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, Unk0201ea30 *d, Unk0212
     if (f->mUnk_38 != -1) {
         func_02124c70(f->mUnk_38 + c->mUnk_06, b, c, d, e, f - a + c->mUnk_06 + f->mUnk_38, g);
     }
-    v18 = 0;
+    v18 = NULL;
     if (f->mUnk_00 == 0) {
         return (u32) v18;
     }

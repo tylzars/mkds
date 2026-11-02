@@ -38,16 +38,16 @@ void func_02124b1c(Unk02124b1c *a, s32 b, s32 c) {
     q[3] = func_021488e8(q[3], c);
 }
 
-s32 func_02124ae4(s32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
+BOOL func_02124ae4(s32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
     Unk02124a68 *p;
     Unk0201ea30_08 *e;
     e = (Unk0201ea30_08 *) (c + 1);
     e += a;
     p = (Unk02124a68 *) func_02021f1c(b, (u16) e->mUnk_04);
     if ((p->mUnk_04->mUnk_00 & 0xc00) >> 10 == 1) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_02124a98(u32 a, s32 b, void *c, void *d) {
@@ -466,15 +466,15 @@ void func_021241c0(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, Unk02124b1c *e)
     }
 }
 
-s32 func_0212418c(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d) {
+BOOL func_0212418c(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d) {
     Unk02124b1c *p;
     Unk02124b1c *q;
     p = c + a;
     q = p + d->mUnk_06;
     if ((q->mUnk_3c->mUnk_44->mUnk_04->mUnk_00 & 0xc00) >> 10 == 1) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_02124140(u32 a, u32 b, void *c, void *d, void *e) {

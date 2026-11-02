@@ -15,7 +15,7 @@ void func_02057c14(void *a) {
     if (data_021759d4->mUnk_0c != 0) {
         func_0214d1fc(a, v1, 0x300);
         *v1 = 0x4d454b4e;
-        func_0204b430(0x100, 0x31000, v1, 0x300, 0, 0);
+        func_0204b430(0x100, 0x31000, v1, 0x300, NULL, 0);
     }
 }
 
@@ -32,7 +32,7 @@ void func_02057b84(void *a) {
     if (data_021759d4->mUnk_0c != 0) {
         func_0214d1fc(a, v1, 0x400);
         *v1 = 0x50474b4e;
-        func_0204b430(0x400, 0x31300, v1, 0x400, 0, 0);
+        func_0204b430(0x400, 0x31300, v1, 0x400, NULL, 0);
     }
 }
 
@@ -49,7 +49,7 @@ void func_02057af4(void *a) {
     if (data_021759d4->mUnk_0c != 0) {
         func_0214d1fc(a, v1, 0x1600);
         *v1 = 0x41544b4e;
-        func_0204b430(0x800, 0x31700, v1, 0x1600, 0, 0);
+        func_0204b430(0x800, 0x31700, v1, 0x1600, NULL, 0);
     }
 }
 
@@ -66,7 +66,7 @@ void func_02057a60(void *a) {
     if (data_021759d4->mUnk_0c != 0) {
         func_0214d1fc(a, v1, 0x100);
         *v1 = 0x524d4b4e;
-        func_0204b430(0x1e00, 0x32d00, v1, 0x100, 0, 0);
+        func_0204b430(0x1e00, 0x32d00, v1, 0x100, NULL, 0);
     }
 }
 

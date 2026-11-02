@@ -32,19 +32,19 @@ void func_0208c09c(Unk020888b4 *p) {
 }
 
 void func_0208c050(Unk020888b4 *p) {
-    if (p->mUnk_08.mUnk_00.mUnk_14 != 0) {
+    if (p->mUnk_08.mUnk_00.mUnk_14 != NULL) {
         if (p->mUnk_08.mUnk_00.mUnk_18 != 0) {
             return;
         }
     }
     p->mUnk_08.mUnk_00.mUnk_14 = func_02041588(&p->mUnk_00->mUnk_80);
-    if (p->mUnk_08.mUnk_00.mUnk_14 != 0) {
+    if (p->mUnk_08.mUnk_00.mUnk_14 != NULL) {
         p->mUnk_08.mUnk_00.mUnk_18 = 1;
     }
 }
 
-s32 func_0208c03c(Unk020888b4 *p) {
-    return p->mUnk_08.mUnk_00.mUnk_14 != 0;
+BOOL func_0208c03c(Unk020888b4 *p) {
+    return p->mUnk_08.mUnk_00.mUnk_14 != NULL;
 }
 
 void func_0208c000(Vec3 *a, Vec3 *b, Unk020888b4 *p) {

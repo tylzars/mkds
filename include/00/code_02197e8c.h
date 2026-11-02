@@ -81,8 +81,8 @@ extern const u8 data_ov000_021b3f50[];
 extern const u8 data_ov000_021b3f58[];
 extern const u8 data_ov000_021b3f68[];
 
-s32 func_ov000_02197e8c(Unk02197e8c *a, s32 b, s32 c, void *d, s32 e, s32 *f);
+BOOL func_ov000_02197e8c(Unk02197e8c *a, s32 b, s32 c, void *d, s32 e, s32 *f);
 u32 func_ov000_02197f28(int d, int e, u32 f, u32 g, u32 h, int l, int m, int n);
-s32 func_ov000_02197fe8(Unk02197fe8 *a, s32 b, void *c, s32 d, s32 e);
-s32 func_ov000_02198098(Unk02197fe8 *a, s32 b, s32 c, void *d, s32 e);
-s32 func_ov000_02198148(Unk02197fe8 *a, s32 b);
+BOOL func_ov000_02197fe8(Unk02197fe8 *a, s32 b, void *c, s32 d, s32 e);
+BOOL func_ov000_02198098(Unk02197fe8 *a, s32 b, s32 c, void *d, s32 e);
+BOOL func_ov000_02198148(Unk02197fe8 *a, s32 b);

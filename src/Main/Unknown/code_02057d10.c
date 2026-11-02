@@ -11,7 +11,7 @@ void func_02057e8c(void *a) {
     for (;;) {
         if (data_0217aa0c->mUnk_f8 != 0) {
             void (*f)(void) = func_02057f8c(data_0217aa0c);
-            if (f == 0) {
+            if (f == NULL) {
                 data_0217aa0c->mUnk_f8 = 0;
             } else {
                 f();
@@ -35,13 +35,13 @@ u32 func_02057df0(void (*a)(void)) {
     do {
         k = i % 10;
         f = p->mUnk_00[k];
-        if (f == 0) {
+        if (f == NULL) {
             break;
         }
         n++;
         i++;
     } while (n < 10);
-    if (f != 0) {
+    if (f != NULL) {
         return 0;
     }
     p->mUnk_00[k] = a;

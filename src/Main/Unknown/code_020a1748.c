@@ -131,7 +131,7 @@ void func_020a19f8(u16 a) {
 void func_020a1904(u16 a) {
     Unk0206bcb0 *c;
 
-    if (data_0217b1fc->mUnk_38c != 0) {
+    if (data_0217b1fc->mUnk_38c != NULL) {
         data_0217b1fc->mUnk_38c(a);
     }
     data_0217b1fc->mUnk_000[a].mUnk_08 = 1;

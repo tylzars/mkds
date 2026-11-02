@@ -3,25 +3,25 @@
 
 #pragma optimize_for_size on
 
-s32 func_020cb194(u16 *a) {
+BOOL func_020cb194(u16 *a) {
     if (func_020cb1c4(a) == 0 && a[8] < 5) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
-s32 func_020cb170(u16 *a) {
+BOOL func_020cb170(u16 *a) {
     if (a[6] == 0 && a[2] != 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
-s32 func_020cb13c(u16 *a) {
-    if (func_020cb194(a) == 0 && func_020cb170(a) != 0) {
-        return 1;
+BOOL func_020cb13c(u16 *a) {
+    if (func_020cb194(a) == FALSE && func_020cb170(a) != FALSE) {
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 s32 func_020cb11c(u32 a) {

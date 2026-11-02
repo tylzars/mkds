@@ -22,7 +22,7 @@ s32 func_ov001_02181528(void) {
     if (data_021759c0->mUnk_08 == 4) {
         p = func_ov001_02181b68(data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0);
     } else {
-        p = 0;
+        p = NULL;
     }
     return p->mUnk_168;
 }

@@ -240,7 +240,7 @@ void func_ov003_021c6acc(void) {
             func_ov003_021cefc0(0x2f, 3, 1, -1, 0);
             func_ov003_021c212c(func_ov003_021c673c);
         } else {
-            func_ov003_021c20dc(0, &b);
+            func_ov003_021c20dc(NULL, &b);
             func_ov003_021cefc0(a[b], 2, 1, -1, 0);
             func_ov003_021c212c(func_ov003_021c68c8);
         }

@@ -10,6 +10,6 @@ void func_0208be00(Unk020888b4 *p, s32 a);
 void func_0208be7c(Unk020888b4 *p);
 void func_0208be90(Unk020888b4 *p);
 void func_0208bea4(Vec3 *a, Vec3 *b, Unk020888b4 *p);
-s32 func_0208bee0(Unk020888b4 *p);
+BOOL func_0208bee0(Unk020888b4 *p);
 void func_0208bef4(Unk020888b4 *p);
 void func_0208bf40(Unk020888b4 *p);

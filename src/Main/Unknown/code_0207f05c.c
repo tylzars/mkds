@@ -20,27 +20,27 @@
 #include "code_02147cd8.h"
 #include "code_02148538.h"
 
-static inline s32 func_0207f600_inline(s32 a) {
+static inline BOOL func_0207f600_inline(s32 a) {
     return (func_0207a974(a)->mUnk_7c & 0x402020) == 0;
 }
 
 static inline s32 func_0207f554_inline(u32 a, u32 b) {
-    s32 r = 0;
+    BOOL r = FALSE;
     s32 v;
-    s32 t;
+    BOOL t;
 
     if (data_021759c0->mUnk_58 == 0 ||
         data_021759c0->mUnk_68[b].mUnk_08.mUnk_04 != data_021759c0->mUnk_68[a].mUnk_08.mUnk_04) {
-        t = 0;
+        t = FALSE;
         v = data_021759c0->mUnk_68[b].mUnk_08.mUnk_00;
         if ((u32) v <= 3) {
             if ((1 << v) & 0xd) {
-                t = 1;
+                t = TRUE;
             }
         }
-        if (t != 0 || func_02085824(a) <= 0) {
+        if (t != FALSE || func_02085824(a) <= 0) {
             if (func_0207f600_inline(b)) {
-                r = 1;
+                r = TRUE;
             }
         }
     }
@@ -57,14 +57,14 @@ void func_0207f05c(Unk020888b4 *p) {
     Vec3 d;
     Vec3 h;
     s32 i = func_02080cc0(&p->mUnk_08.mUnk_00);
-    s32 j;
+    BOOL j;
     s32 k;
     s32 m;
     Unk0217aebc_128 *r;
     s32 v;
 
     if (p->mUnk_90 == 0 && i >= 1 && i <= 4) {
-        j = 0;
+        j = FALSE;
         r = func_0208537c();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
@@ -76,10 +76,10 @@ void func_0207f05c(Unk020888b4 *p) {
             m = func_02039828(&c, &b);
             k = p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c;
             if (func_020738f8(m) < k) {
-                j = 1;
+                j = TRUE;
             }
         }
-        if (j != 0) {
+        if (j != FALSE) {
             switch (i) {
                 case 1:
                     p->mUnk_90 = 1;
@@ -135,10 +135,10 @@ void func_0207f05c(Unk020888b4 *p) {
 void func_0207f2e4(Unk020888b4 *p) {
     s32 c;
     s32 b;
-    s32 d;
+    BOOL d;
     u32 a;
 
-    p->mUnk_b0 = 0;
+    p->mUnk_b0 = NULL;
     p->mUnk_b4 = 0;
     a = p->mUnk_04;
     if (a != func_02061f90()) {
@@ -152,15 +152,15 @@ void func_0207f2e4(Unk020888b4 *p) {
         return;
     }
     b = data_0217561c->mUnk_474[(u8) (a - 1) - 1];
-    d = 0;
+    d = FALSE;
     if (b >= 0) {
         if (func_0207f554_inline(p->mUnk_04, (u16) b) != 0) {
             p->mUnk_b0 = func_0207a974(b);
-            d = 1;
+            d = TRUE;
             p->mUnk_b4 = 1;
         }
     }
-    if (d != 0) {
+    if (d != FALSE) {
         return;
     }
     if (a >= data_021759c0->mUnk_3d0) {
@@ -180,28 +180,28 @@ static inline s32 func_0207f554_inline2(u32 i) {
 }
 
 s32 func_0207f554(u32 a, u32 b) {
-    s32 r = 0;
+    BOOL r = FALSE;
     s32 v;
-    s32 t;
+    BOOL t;
 
     if (data_021759c0->mUnk_58 == 0 || data_021759c0->mUnk_68[a].mUnk_08.mUnk_04 != func_0207f554_inline2(b)) {
-        t = 0;
+        t = FALSE;
         v = data_021759c0->mUnk_68[b].mUnk_08.mUnk_00;
         if ((u32) v <= 3) {
             if ((1 << v) & 0xd) {
-                t = 1;
+                t = TRUE;
             }
         }
-        if (t != 0 || func_02085824(a) <= 0) {
+        if (t != FALSE || func_02085824(a) <= 0) {
             if ((func_0207a974(b)->mUnk_7c & 0x402020) == 0) {
-                r = 1;
+                r = TRUE;
             }
         }
     }
     return r;
 }
 
-s32 func_0207f600(s32 a) {
+BOOL func_0207f600(s32 a) {
     return (func_0207a974(a)->mUnk_7c & 0x402020) == 0;
 }
 
@@ -237,7 +237,7 @@ void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Unk0206bcb0 *r, Unk02175620_b
     s32 g;
     s32 h;
 
-    if (s != 0 && q->mUnk_00 != s) {
+    if (s != NULL && q->mUnk_00 != s) {
         func_0207f05c(p);
         func_02080adc(q, s);
         data_usa_0217ae44(p, q, r);
@@ -272,7 +272,7 @@ void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Unk0206bcb0 *r, Unk02175620_b
     func_0207f05c(p);
     data_usa_0217ae3c((Unk02080b1c *) q);
     data_usa_0217ae44(p, q, r);
-    q->mUnk_14 = 0;
+    q->mUnk_14 = NULL;
     q->mUnk_18 = 0;
 }
 
@@ -325,7 +325,7 @@ void func_0207f9cc(Unk020888b4 *p, s32 a) {
     p->mUnk_84 = a;
     p->mUnk_a8 = 0;
     p->mUnk_ac = 0;
-    p->mUnk_b0 = 0;
+    p->mUnk_b0 = NULL;
     p->mUnk_b4 = 0;
     p->mUnk_b8 = 0;
     p->mUnk_bc = -0x1000;

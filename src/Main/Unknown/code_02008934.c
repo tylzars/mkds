@@ -113,7 +113,7 @@ void func_02008aa0(u32 a) {
 
 void func_02008a4c(u32 a) {
     if (data_0216fc40->mUnk_06 == 0) {
-        if (data_0216fc38 != 0) {
+        if (data_0216fc38 != NULL) {
             data_0216fc38(data_0216fc40->mUnk_10[a].mUnk_4c4);
         }
         data_0216fc40->mUnk_0c = 0x16;
@@ -157,7 +157,7 @@ void func_0200895c(u32 a) {
 
 Unk02008934 *func_02008934(u32 a) {
     if ((data_0216fc40->mUnk_02 & (1 << a)) == 0) {
-        return 0;
+        return NULL;
     }
     return &data_0216fc40->mUnk_10[a];
 }

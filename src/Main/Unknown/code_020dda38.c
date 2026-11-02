@@ -49,7 +49,7 @@ void CreateWanwanChainAndWanwanKui(void) {
     func_020e6488(&gWanwanChain, FindCourseMapObjFile("wanwan_chain.nsbmd"), 0, 0);
     func_020e6ab8(gWanwanChain);
     v = FindCourseFile("MapObj/wanwan_kui.nsbmd");
-    if (v != 0) {
+    if (v != NULL) {
         func_020e6488(&gWanwanKui, v, 0, 0);
         func_020e6ab8(gWanwanKui);
     }

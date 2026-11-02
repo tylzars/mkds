@@ -33,17 +33,17 @@ void func_ov000_021a54b0(Unk021425e8 *v1) {
                     switch (func_02142c24()) {
                         case 0:
                             func_ov000_021a57fc(1);
-                            func_ov000_021a58a4(0, 0, 0, 0x663);
+                            func_ov000_021a58a4(0, NULL, 0, 0x663);
                             return;
                         case 4:
                         default:
                             func_ov000_021a57fc(0xb);
-                            func_ov000_021a58a4(7, 0, 0, 0x66a);
+                            func_ov000_021a58a4(7, NULL, 0, 0x66a);
                             return;
                     }
                 case 5:
                     func_ov000_021a57fc(3);
-                    func_ov000_021a58a4(0, 0, 0, 0x670);
+                    func_ov000_021a58a4(0, NULL, 0, 0x670);
                     return;
                 case 6:
                     r = func_02143f08(func_ov000_021a54b0);
@@ -63,7 +63,7 @@ void func_ov000_021a54b0(Unk021425e8 *v1) {
                     v = g->mUnk_2264;
                     e = (v & 0xc0000) == 0xc0000;
                     d = (v & 0x30000) != 0x30000 ? 1 : 0;
-                    r = func_021437d8((Unk021425e8Func) func_ov000_021a5088, (u16 *) g->mUnk_2140, 0, d, e);
+                    r = func_021437d8((Unk021425e8Func) func_ov000_021a5088, (u16 *) g->mUnk_2140, NULL, d, e);
                     break;
                 }
             }

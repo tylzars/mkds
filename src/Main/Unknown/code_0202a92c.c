@@ -169,7 +169,7 @@ void InitWiFiVSCourseSelect(u32 param_1, u32 param_2, u32 param_3) {
     func_020258d4(0, gWiFiVSCourseSelect, gWiFiVSCourseSelectMBNcgrName, gWiFiVSCourseSelectMBNclrName, gWiFiVSCourseSelectMNscrName, 0, FindSceneFile);
     p = &gWiFiVSCourseSelect->mUnk_048;
     k = func_02148cb8();
-    func_02025b20(p, gWiFiVSCourseSelectMNcgrName, gWiFiVSCourseSelectMNcerName, gWiFiVSCourseSelectMONclrName, gWiFiVSCourseSelectMBnclName, gWiFiVSCourseSelectMBnllName, 0,
+    func_02025b20(p, gWiFiVSCourseSelectMNcgrName, gWiFiVSCourseSelectMNcerName, gWiFiVSCourseSelectMONclrName, gWiFiVSCourseSelectMBnclName, gWiFiVSCourseSelectMBnllName, NULL,
                   FindSceneFile);
     func_02025a50(0, gWiFiVSCourseSelect->mUnk_090, p);
     n = p->mUnk_0c->mUnk_06;
@@ -226,7 +226,7 @@ s32 func_0202af60(void) {
     Unk0217b488 *d;
     s32 i;
     s32 v;
-    s32 f;
+    BOOL f;
     u32 t;
     u32 *q;
 
@@ -236,19 +236,19 @@ s32 func_0202af60(void) {
     v = (u16) (r->mUnk_00 >> 32 >> 20) % 20;
     d = data_0217b488;
     do {
-        f = 1;
+        f = TRUE;
         v = (v + 1) % 20;
         i = 0;
         q = (u32 *) d;
         t = data_usa_02153a4c[v];
         for (; i < 4; i++) {
             if (q[0x17] == t) {
-                f = 0;
+                f = FALSE;
                 break;
             }
             q++;
         }
-    } while (f == 0);
+    } while (f == FALSE);
     return v;
 }
 

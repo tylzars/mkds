@@ -16,7 +16,7 @@ void func_02090088(Unk0208fd8c *a, Unk020888b4 *b) {
             func_0207c47c(a, b);
         }
     } else {
-        if (b->mUnk_b0 == 0) {
+        if (b->mUnk_b0 == NULL) {
             return;
         }
         if (b->mUnk_b8 >= 0x15f90) {

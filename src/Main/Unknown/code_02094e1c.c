@@ -95,10 +95,10 @@ void func_02095228(Unk02095228 *a) {
     s32 i;
     Unk02094e8c *o;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
         o->mUnk_a0 = (u16) func_02095228_inline(&data_0217561c->mUnk_498, 0xf);
     }
 }
@@ -131,7 +131,7 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
     s32 v1;
     s32 v2;
     s32 i;
-    s32 k;
+    BOOL k;
     s32 x;
     s32 y;
     s32 z;
@@ -160,7 +160,7 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
     }
     switch (o->mUnk_ac) {
         case 0:
-            k = 0;
+            k = FALSE;
             if (func_02061818() == 2) {
                 for (i = 0; i < o->mUnk_00.mUnk_9c->mUnk_2a; i++) {
                     if (o->mUnk_00.mUnk_9c->mUnk_28 > 0) {
@@ -230,5 +230,5 @@ u32 func_02094e3c(void) {
 }
 
 void func_02094e1c(void) {
-    func_0209bf48(func_02095228, func_02094e8c, 0);
+    func_0209bf48(func_02095228, func_02094e8c, NULL);
 }

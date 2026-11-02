@@ -109,7 +109,7 @@ void func_0207a990(void) {
     for (i = 0; i < data_usa_0217acf4; i++) {
         func_020638c0(&data_0217ad18[i]);
     }
-    data_0217ad18 = 0;
+    data_0217ad18 = NULL;
 }
 
 Unk0206bcb0 *func_0207a974(s32 a) {

@@ -11,7 +11,7 @@
 s32 func_0208ec64(u32 a) {
     Unk0208ec64 *p;
     p = func_020172d8(&data_0217b08c->mUnk_0c, 0);
-    if (p != 0) {
+    if (p != NULL) {
         p->mUnk_14 = a;
         p->mUnk_18 = 0;
         p->mUnk_1c = 0x400;
@@ -30,7 +30,7 @@ Unk0208ec64 *func_0208eb1c(s32 a) {
 
     if (data_021759c0->mUnk_00c == 5) {
         p = func_020172d8(&data_0217b08c->mUnk_0c, 0);
-        if (p != 0) {
+        if (p != NULL) {
             o = func_0207a974(a);
             t = o->mUnk_590;
             v = ((Vec3 *) &t->mUnk_020->mUnk_44)[t->mUnk_000];
@@ -48,7 +48,7 @@ Unk0208ec64 *func_0208eb1c(s32 a) {
         }
         return p;
     }
-    return 0;
+    return NULL;
 }
 
 void func_0208eb10(u32 p0) {

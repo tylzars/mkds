@@ -26,14 +26,14 @@ s32 func_020cadac(s32 a) {
 }
 
 s32 func_020cacc0(void) {
-    s32 v;
+    BOOL v;
     s32 n;
-    s32 z;
+    BOOL z;
     s32 i;
     s32 j;
     Unk020ae244 r[6];
 
-    v = 0;
+    v = FALSE;
     if (gEmblemChoises->mUnk_00 != 0) {
         func_020cadac(v);
         n = gEmblemChoises->mChoisesCount;
@@ -46,7 +46,7 @@ s32 func_020cacc0(void) {
             r[i].mUnk_02 = y;
             r[i].mUnk_06 = y + 0x16;
         }
-        z = 0;
+        z = FALSE;
         for (j = 0; j < n; j++) {
             if (func_020ae244(func_020ca9dc(), r[j])) {
                 if (gEmblemChoises->mChoisesIndex != j) {
@@ -66,7 +66,7 @@ s32 func_020cacc0(void) {
                         func_020ca984(5);
                         break;
                 }
-                v = 1;
+                v = TRUE;
             }
         }
     }
@@ -94,7 +94,7 @@ void func_020cac18(void) {
 
     n = gEmblemChoises->mChoisesCount;
     v = gEmblemChoises->mChoisesS3Nscr->mUnk_0c;
-    if (v != 0) {
+    if (v != NULL) {
         for (i = 0; i < n; i++) {
             func_020cac68(v, 2, 13 - n * 2 + i * 4);
         }
@@ -111,7 +111,7 @@ void func_020caba4(s32 a) {
     p = gEmblemChoises;
     n = p->mChoisesCount;
     v = p->mChoisesS3Nscr->mUnk_0c;
-    if (v != 0) {
+    if (v != NULL) {
         if (p->mUnk_10 == 0 || p->mUnk_14 >= 5) {
             c = 13 - n * 2 + a * 4;
             if (p->mUnk_24 < 0x1e) {

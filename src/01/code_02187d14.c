@@ -30,25 +30,25 @@ void *func_ov001_02187e00(u16 a) {
     Unk020ac524 *p;
 
     p = func_020ac524(0xc9);
-    if (p != 0) {
+    if (p != NULL) {
         func_020de9ec((u32) p);
         p->mUnk_f2 = a;
         p->mUnk_f4 = a;
         p->mUnk_ac = 1;
         return func_020fd338(p, 0xa000);
     }
-    return 0;
+    return NULL;
 }
 
 void *func_ov001_02187dd4(void) {
     void *p;
 
     p = func_020ac524(0x191);
-    if (p != 0) {
+    if (p != NULL) {
         func_020da628(p);
         return func_020fd338(p, 0);
     }
-    return 0;
+    return NULL;
 }
 
 void func_ov001_02187d14(Unk02187d14 *c) {
@@ -61,13 +61,13 @@ void func_ov001_02187d14(Unk02187d14 *c) {
     p = c->mUnk_04->mUnk_2c;
     if (c->mUnk_00->mUnk_01 == p->mUnk_2e4) {
         q = func_02061808();
-        func_02012f58(&a, 0);
+        func_02012f58(&a, NULL);
         func_0214755c(&q->mUnk_030, &b);
         func_0214733c(&a, &b, &a);
         p->mUnk_2e8.x = a.mUnk_24.x << 4;
         p->mUnk_2e8.y = a.mUnk_24.y << 4;
         p->mUnk_2e8.z = a.mUnk_24.z << 4;
-        if (p->mUnk_300 != 0) {
+        if (p->mUnk_300 != NULL) {
             v = p->mUnk_2e8;
             func_02147fd8(p->mUnk_2f4.x, &a.mUnk_00, &v, &v);
             func_02147fd8(p->mUnk_2f4.y, &a.mUnk_0c, &v, &v);

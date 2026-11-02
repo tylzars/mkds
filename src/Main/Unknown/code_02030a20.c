@@ -84,7 +84,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
     func_02031960();
     if (data_02174e58->mUnk_94 != 0 && data_02174e58->mUnk_94 != 3 && data_02174e58->mUnk_94 != 4 &&
         data_02174e58->mUnk_94 != 5 && data_02174e58->mUnk_94 != 6) {
-        if (data_0217aa00 == 0) {
+        if (data_0217aa00 == NULL) {
             x = 0;
         } else {
             x = data_0217aa00->mUnk_0000;
@@ -180,7 +180,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
                 if (data_02174e58->mUnk_70 == 11) {
                     data_0217b488->mUnk_04 = 1;
                     data_0217b488->mUnk_08 = 4;
-                    if (a != 0) {
+                    if (a != NULL) {
                         a->mUnk_04 = 1;
                     }
                     data_02174e58->mUnk_98 = 0;
@@ -226,7 +226,7 @@ s32 func_02030b18(Unk02030b18 *a) {
     s32 v2;
     u16 k;
     u16 v3[12];
-    s32 x;
+    BOOL x;
     u32 b1;
     u32 a1;
     u32 w;
@@ -304,13 +304,13 @@ s32 func_02030b18(Unk02030b18 *a) {
                     case 9:
                     case 10:
                     case 11:
-                        x = 1;
+                        x = TRUE;
                         break;
                     default:
-                        x = 0;
+                        x = FALSE;
                         break;
                 }
-                if (x != 0) {
+                if (x != FALSE) {
                     func_021282c8();
                     func_02025f14(&data_02174e58->mUnk_a0, 2);
                     func_0212d5e0(&data_0217c868);
@@ -324,7 +324,7 @@ s32 func_02030b18(Unk02030b18 *a) {
             if (data_02174e58->mUnk_70 == 11) {
                 data_0217b488->mUnk_04 = 1;
                 data_0217b488->mUnk_08 = 4;
-                if (a != 0) {
+                if (a != NULL) {
                     a->mUnk_04 = 1;
                 }
                 data_02174e58->mUnk_94 = 7;
@@ -380,7 +380,7 @@ void func_02030ae8(void) {
     func_02125ee8(0, 0);
     func_0212b91c();
     func_02036ab0((void *) (data_02174e58->mUnk_150));
-    *&data_02174e58 = 0;
+    *&data_02174e58 = NULL;
 }
 
 #pragma thumb off

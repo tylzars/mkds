@@ -60,7 +60,7 @@ void func_020870ec(void *a, u16 b) {
         func_0200ee74(p, q->mUnk_04);
         q->mUnk_0c = p;
     } else {
-        q->mUnk_0c = 0;
+        q->mUnk_0c = NULL;
     }
 }
 
@@ -72,8 +72,8 @@ void func_02087000(void) {
     u8 *q;
     u8 *r;
     for (i = 0; (u32) i < data_021759c0->mUnk_3d0; i++) {
-        data_0217aed0->mUnk_144[i] = 0;
-        data_0217aed0->mUnk_164[i] = 0;
+        data_0217aed0->mUnk_144[i] = NULL;
+        data_0217aed0->mUnk_164[i] = NULL;
         if (data_021759c0->mUnk_68[i].mUnk_08.mUnk_24 == 0 || data_021759c0->mUnk_58 != 0) {
             if (data_021759c0->mUnk_58 != 0) {
                 s = BuildTeamEmblemNsbtxPath(data_021759c0->mUnk_68[i].mUnk_08.mUnk_04 == 1 ? 1 : 0);

@@ -61,12 +61,12 @@ void func_020ca074(void) {
         for (j = 0; j < v2; j++) {
             p = v1[j];
             if ((p->mUnk_74 & 0x80000) != 0) {
-                q = 0;
+                q = NULL;
             } else {
                 q = &p->mUnk_50;
             }
             if (k == 9) {
-                if (q != 0) {
+                if (q != NULL) {
                     if (func_020b5ae8(q, &data_0217b42c->mUnk_10[n].mUnk_00, a, 1, 1) != 0) {
                         if (p->mUnk_d8 > 0) {
                             v = ((Unk02101c84 *) p)->mUnk_170;
@@ -81,7 +81,7 @@ void func_020ca074(void) {
                     }
                 }
             } else if (k == 6) {
-                if (((Unk020fdae8 *) p)->mUnk_1a0 != 0 && q != 0) {
+                if (((Unk020fdae8 *) p)->mUnk_1a0 != 0 && q != NULL) {
                     if (func_020b5ae8(q, &data_0217b42c->mUnk_10[n].mUnk_00, a, 1, 1) != 0) {
                         if (func_020d3d10(q->y) == 0) {
                             data_0217b42c->mUnk_10[n].mUnk_08 = c;
@@ -92,7 +92,7 @@ void func_020ca074(void) {
                     }
                 }
             } else {
-                if (q != 0) {
+                if (q != NULL) {
                     if (func_020b5ae8(q, &data_0217b42c->mUnk_10[n].mUnk_00, a, 1, 1) != 0) {
                         if (func_020d3d10(q->y) == 0) {
                             data_0217b42c->mUnk_10[n].mUnk_08 = c;
@@ -130,7 +130,7 @@ s32 func_020c9fb8(void) {
 
 void func_020c9f84(void) {
     func_020c0b84(&data_0217b428->mUnk_190);
-    data_0217b428 = 0;
+    data_0217b428 = NULL;
 }
 
 void func_020c97c0(void) {
@@ -211,12 +211,12 @@ void func_020c97c0(void) {
                     for (j = 0; j < v3; j++) {
                         o = v2[j];
                         if ((o->mUnk_74 & 0x80000) != 0) {
-                            q = 0;
+                            q = NULL;
                         } else {
                             q = &o->mUnk_50;
                         }
                         f = func_020f91e0(o);
-                        if (q != 0 && f != 0) {
+                        if (q != NULL && f != 0) {
                             func_020b4f64(&t, &v, q);
                             w = t;
                             if (func_020b5ae8(&w, &data_0217b428->mUnk_190->mUnk_10[m].mUnk_00, b, 0, 1) != 0) {
@@ -311,7 +311,7 @@ static inline void func_020c8dbc_inline2(Unk020c06c4 *p, Unk020224e0_c *c, s32 x
     q[0] = x << 12;
     q[1] = y << 12;
     e = p->mUnk_400;
-    p->mUnk_400 += func_020224e0((Unk020224e0_o *) &p->mUnk_000.mUnk_00[e], 0x80 - e, c, 0, q, 0, 1);
+    p->mUnk_400 += func_020224e0((Unk020224e0_o *) &p->mUnk_000.mUnk_00[e], 0x80 - e, c, NULL, q, 0, 1);
 }
 
 static inline void func_020c8dbc_inline3(Unk020c06c4 *p, s32 i, s32 h) {
@@ -373,7 +373,7 @@ void func_020c8dbc(Unk020c06c4 *p) {
                             } else {
                                 c = GetRaceSNcerEntry(i);
                             }
-                            func_020c8dbc_inline(p, c, 0, data_0217b428->mUnk_060[i].mUnk_00,
+                            func_020c8dbc_inline(p, c, NULL, data_0217b428->mUnk_060[i].mUnk_00,
                                                  data_0217b428->mUnk_060[i].mUnk_04, 0, f != 0 ? 1 : -1, -1);
                         }
                     }
@@ -419,7 +419,7 @@ void func_020c8dbc(Unk020c06c4 *p) {
                             } else {
                                 c = GetRaceSNcerEntry(i);
                             }
-                            func_020c8dbc_inline(p, c, 0, v6, v7, 0, b != 0 ? 1 : -1, g);
+                            func_020c8dbc_inline(p, c, NULL, v6, v7, 0, b != 0 ? 1 : -1, g);
                         }
                     }
                     if (data_0217b428->mUnk_170[i] != 0) {
@@ -432,21 +432,21 @@ void func_020c8dbc(Unk020c06c4 *p) {
     }
 }
 
-s32 func_020c8d30(void) {
+BOOL func_020c8d30(void) {
     Unk02100094 *a;
     s32 n;
 
     a = func_021000d0(0xcd);
-    if (a == 0) {
-        return 0;
+    if (a == NULL) {
+        return FALSE;
     }
     n = func_02100094(a);
     if (n == 0) {
-        return 0;
+        return FALSE;
     }
     data_0217b424 = func_02036bec(func_020364e0(func_020364e8()), 0x44);
     data_0217b424->mUnk_00 = (Unk020e1e98 **) func_02100084(a);
     data_0217b424->mUnk_04 = n;
     data_0217b424->mUnk_08 = n;
-    return 1;
+    return TRUE;
 }

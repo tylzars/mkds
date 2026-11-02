@@ -33,15 +33,15 @@ void func_020e435c(void *a) {
     func_020e1e38((Unk020e1dc0 *) data_0217b7e4, a, func_020e1dec);
 }
 
-s32 func_020e4320(s32 a) {
+BOOL func_020e4320(s32 a) {
     switch (a) {
         case 0xcb:
         case 0xce:
         case 0xd0:
         case 0xd1:
-            return 1;
+            return TRUE;
         default:
-            return 0;
+            return FALSE;
     }
 }
 
@@ -68,24 +68,24 @@ void func_020e4184(Unk020e1dc0 *a) {
             switch (e->mUnk_158) {
                 case 0:
                     func_020ea588(&gTestCylinder, (void *) FindCourseMapObjFile(gTestCylinderNsbmdName),
-                                  0);
+                                  NULL);
                     func_02084968(gTestCylinder, 0x3f, 2, 0x294a);
                     break;
                 case 1:
-                    func_020ea588(&gGearBlack, (void *) FindCourseMapObjFile(gGearBlackNsbmdName), 0);
+                    func_020ea588(&gGearBlack, (void *) FindCourseMapObjFile(gGearBlackNsbmdName), NULL);
                     func_02084968(gGearBlack, 0x3f, 2, 0x294a);
                     break;
                 case 2:
-                    func_020ea588(&gGearWhite, (void *) FindCourseMapObjFile(gGearWhiteNsbmdName), 0);
+                    func_020ea588(&gGearWhite, (void *) FindCourseMapObjFile(gGearWhiteNsbmdName), NULL);
                     func_02084968(gGearWhite, 0x3f, 2, 0x294a);
                     break;
                 case 3:
-                    func_020ea588(&gRotaryRoom, (void *) FindCourseMapObjFile(gRotaryRoomNsbmdName), 0);
+                    func_020ea588(&gRotaryRoom, (void *) FindCourseMapObjFile(gRotaryRoomNsbmdName), NULL);
                     func_02084968(gRotaryRoom, 0x3f, 2, 0x294a);
                     break;
                 case 4:
                     func_020ea588(&gRotaryBridge, (void *) FindCourseMapObjFile(gRotaryBridgeNsbmdName),
-                                  0);
+                                  NULL);
                     func_02084968(gRotaryBridge, 0x3f, 2, 0x294a);
                     break;
             }
@@ -260,7 +260,7 @@ void func_020e3bc0(s32 a, Unk020e38a0 *b) {
         b->mUnk_150--;
         return;
     }
-    if (b->mUnk_000.mUnk_94 != 0) {
+    if (b->mUnk_000.mUnk_94 != NULL) {
         func_020d275c(&b->mUnk_000, 0x189);
     }
     b->mUnk_148 += b->mUnk_146;

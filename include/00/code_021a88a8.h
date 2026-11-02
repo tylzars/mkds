@@ -19,4 +19,4 @@ s32 func_ov000_021a88e4(const u8 *a);
 u32 func_ov000_021a8960(int a);
 u32 func_ov000_021a8994(Unk021a6fa8 *a);
 u32 func_ov000_021a8a54(int a);
-s32 func_ov000_021a8a5c(Unk021a8ab8 *node);
+BOOL func_ov000_021a8a5c(Unk021a8ab8 *node);

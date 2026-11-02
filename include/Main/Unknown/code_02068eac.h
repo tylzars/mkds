@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h"
 
-s32 func_02068eac(Unk0206bcb0 *p);
+BOOL func_02068eac(Unk0206bcb0 *p);
 s32 func_02068ec0(Unk0206bcb0 *p, s32 a);
 void func_02069044(Unk0206bcb0 *p);
 void func_02069068(Unk0206bcb0 *p);
@@ -18,4 +18,4 @@ void func_02069db8(Unk0206bcb0 *p);
 void func_02069e10(Unk0206bcb0 *p);
 void func_02069ea8(Unk0206bcb0 *p);
 void func_02069f6c(Unk0206bcb0 *p);
-s32 func_0206a24c(Unk0206bcb0 *p);
+BOOL func_0206a24c(Unk0206bcb0 *p);

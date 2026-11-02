@@ -4,7 +4,7 @@
 
 #pragma thumb on
 #pragma optimize_for_size on
-int func_020b250c(void) {
+BOOL func_020b250c(void) {
     return func_020b252c() == 0 && func_020b24f8() == 4;
 }
 #pragma thumb off

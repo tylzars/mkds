@@ -67,21 +67,21 @@ void func_021293b4(void) {
     Unk0217d400_2c *q;
     void *w;
     s32 v;
-    s32 f;
-    s32 g;
+    BOOL f;
+    BOOL g;
     s32 n;
     u16 c;
-    f = 0;
+    f = FALSE;
     v = -1;
-    g = 0;
+    g = FALSE;
     c = data_02175674[i].mUnk_00;
     if (c == 0 && data_02175680[i].mUnk_00 < 5) {
-        g = 1;
+        g = TRUE;
     }
-    if (g == 0 && data_0217567c[i].mUnk_00 == 0 && c != 0) {
-        f = 1;
+    if (g == FALSE && data_0217567c[i].mUnk_00 == 0 && c != 0) {
+        f = TRUE;
     }
-    if (f != 0) {
+    if (f != FALSE) {
         v = func_0201ea84(data_0217d400->mUnk_a4[1], data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
     p = data_0217d400;
@@ -124,35 +124,35 @@ void func_021293b4(void) {
     } else {
         p = data_0217d400;
         n = p->mUnk_08;
-        f = 0;
+        f = FALSE;
         switch (v) {
             case 0:
                 p->mUnk_08 = 1;
                 func_020ab9d0(data_0217d400->mUnk_08);
-                f = 1;
+                f = TRUE;
                 break;
             case 1:
                 p->mUnk_08 = 2;
                 func_020ab9d0(data_0217d400->mUnk_08);
-                f = 1;
+                f = TRUE;
                 break;
             case 2:
                 p->mUnk_08 = 3;
                 func_020ab9d0(data_0217d400->mUnk_08);
-                f = 1;
+                f = TRUE;
                 break;
             case 3:
                 p->mUnk_08 = 4;
                 func_020ab9d0(data_0217d400->mUnk_08);
-                f = 1;
+                f = TRUE;
                 break;
             case 4:
                 p->mUnk_08 = 5;
                 func_020ab9d0(data_0217d400->mUnk_08);
-                f = 1;
+                f = TRUE;
                 break;
         }
-        if (f != 0) {
+        if (f != FALSE) {
             if (n != data_0217d400->mUnk_08) {
                 func_0212ecc0(&data_0217d068, 0, 0x1e5);
             } else {
@@ -440,12 +440,12 @@ void func_02128b54(void) {
 
 void func_02128b0c(void) {
     s32 i;
-    s32 z;
+    BOOL z;
     u8 *q;
     u8 c;
     i = 0;
     q = data_0215d0e8;
-    z = 0;
+    z = FALSE;
     for (; i < 6; i++) {
         c = *q;
         if (c != 0xff) {

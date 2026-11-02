@@ -246,7 +246,7 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
         func_ov001_02188d8c(a, (Vec3 *) (&p->mUnk_80));
     }
     func_ov001_0218f724(a);
-    if (func_ov001_02188104(a, (s32) (a->mUnk_0a0->mUnk_0b8), 0) == 0) {
+    if (func_ov001_02188104(a, (s32) (a->mUnk_0a0->mUnk_0b8), 0) == NULL) {
         a->mUnk_1c4 = a->mUnk_0a0->mUnk_0c0;
     } else {
         a->mUnk_1c4 = 0;
@@ -261,7 +261,7 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
     }
     a->mUnk_16c = (s32) f / a->mUnk_0a0->mUnk_1d4;
     if ((data_021759c0->mUnk_08 == 4 ? (s32) func_ov001_02181838() : 0) <= a->mUnk_0a0->mUnk_1d0 &&
-        func_ov001_02188000(a, 0, (s32) (a->mUnk_0a0->mUnk_0bc)) != 0) {
+        func_ov001_02188000(a, 0, (s32) (a->mUnk_0a0->mUnk_0bc)) != NULL) {
         func_ov001_02188200(a, func_ov001_0218f9a8);
         a->mUnk_000.mUnk_02 |= data_ov001_021a65b0;
         func_ov001_0218f16c(a);
@@ -352,7 +352,7 @@ void func_ov001_0218eb94(Unk02188950 *a) {
     a->mUnk_000.mUnk_04.z = ((Vec3 *) func_ov001_02187fc0(a))->z;
     func_ov001_02187218(a, 5, (s32(*)(Unk02188950 *)) func_ov001_0218edb8);
     func_ov001_0218f900(a);
-    func_ov001_02188e24(a, a->mUnk_0a0->mUnk_1b4, 0);
+    func_ov001_02188e24(a, a->mUnk_0a0->mUnk_1b4, NULL);
     if (data_0217d20c != 5) {
         data_0217d21c = data_0217d20c;
     }
@@ -452,7 +452,7 @@ void func_ov001_0218e860(Unk02188950 *a) {
 }
 
 void func_ov001_0218e7d0(Unk02188950 *p) {
-    func_ov001_02187218(p, 1, 0);
+    func_ov001_02187218(p, 1, NULL);
     func_ov001_021888a4(p, 0, 0x19000);
     func_ov001_02188d64(p, p->mUnk_0a0->mUnk_198, p->mUnk_0a0->mUnk_19c);
     func_ov001_02188d1c(p, p->mUnk_0a0->mUnk_1a0, p->mUnk_0a0->mUnk_1a4);
@@ -481,7 +481,7 @@ void func_ov001_0218e760(Unk02188950 *p) {
 }
 
 void func_ov001_0218e710(Unk02188950 *p) {
-    func_ov001_02187218(p, 8, 0);
+    func_ov001_02187218(p, 8, NULL);
     func_ov001_02188d64(p, p->mUnk_0a0->mUnk_078, p->mUnk_0a0->mUnk_07c);
     func_ov001_02188c90(p);
     func_ov001_02188cec(p, 0);
@@ -493,7 +493,7 @@ void func_ov001_0218e710(Unk02188950 *p) {
 }
 
 void func_ov001_0218e690(Unk02188950 *p) {
-    func_ov001_02187218(p, 8, 0);
+    func_ov001_02187218(p, 8, NULL);
     func_ov001_02188d64(p, p->mUnk_0a0->mUnk_070, p->mUnk_0a0->mUnk_074);
     func_0208b7bc(0x3fe, &p->mUnk_000.mUnk_04);
     func_0208b7bc(0x3fd, &p->mUnk_000.mUnk_04);
@@ -624,8 +624,8 @@ void func_ov001_0218e208(Unk0218d87c *a) {
     Unk02188950 *obj;
     Unk02188950_a0 *a0;
 
-    if (a != 0) {
-        for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != 0; i++) {
+    if (a != NULL) {
+        for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != NULL; i++) {
             if (func_02062ec4() != 0) {
                 func_ov001_0218e4ac(obj);
             } else {
@@ -658,9 +658,9 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
             if (func_ov001_021871f8(b, 5) != 0) {
                 p = func_0207a974((u16) data_021759c0->mUnk_62);
                 if (p->mUnk_180 == 0 && (p->mUnk_48 & 0x200) == 0 &&
-                    func_ov001_02188104(b, 0, b->mUnk_0a0->mUnk_184) != 0 &&
-                    func_ov001_02188000(b, 0, b->mUnk_0a0->mUnk_180) != 0 &&
-                    func_ov001_02188104(b, b->mUnk_0a0->mUnk_188, 0) != 0) {
+                    func_ov001_02188104(b, 0, b->mUnk_0a0->mUnk_184) != NULL &&
+                    func_ov001_02188000(b, 0, b->mUnk_0a0->mUnk_180) != NULL &&
+                    func_ov001_02188104(b, b->mUnk_0a0->mUnk_188, 0) != NULL) {
                     func_ov001_0218e8d8(b);
                 }
             }
@@ -727,8 +727,8 @@ void func_ov001_0218de50(Unk0218d87c *a) {
     Unk02188950 *p;
     Unk02188950_a0 *a0;
 
-    if (a != 0) {
-        for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != 0; i++) {
+    if (a != NULL) {
+        for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
             if (data_021759c0->mUnk_08 == 4) {
                 func_ov001_02181b8c(p);
             }
@@ -768,5 +768,5 @@ void *func_ov001_0218ddcc(void) {
 }
 
 void *func_ov001_0218ddb4(void) {
-    return (void *) func_0209bf48(func_ov001_0218e208, func_ov001_0218df20, 0);
+    return (void *) func_0209bf48(func_ov001_0218e208, func_ov001_0218df20, NULL);
 }

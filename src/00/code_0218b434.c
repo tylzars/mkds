@@ -28,11 +28,11 @@
 Unk0218b668 *func_ov000_0218b668(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, s32 g, UnkFunc *h, u32 l) {
     Unk0218b668 *p;
     if (g == 0 && data_ov000_021b4d28 != 1) {
-        return 0;
+        return NULL;
     }
     p = func_ov000_021a3690(0x638);
-    if (p == 0) {
-        return 0;
+    if (p == NULL) {
+        return NULL;
     }
     p->mUnk_630 = h;
     p->mUnk_634 = l;

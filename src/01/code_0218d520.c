@@ -110,8 +110,8 @@ void func_ov001_0218d9cc(Unk02188950 *a) {
     Unk02188950 *q;
 
     list = func_02100138(0x1fe);
-    if (list != 0) {
-        for (i = 0; i < list->mUnk_04 && (q = list->mUnk_00[i]) != 0; i++) {
+    if (list != NULL) {
+        for (i = 0; i < list->mUnk_04 && (q = list->mUnk_00[i]) != NULL; i++) {
             func_ov001_02188e24(q, (s32) (q->mUnk_0a8 * 15), (UnkFunc *) func_ov001_0218da1c);
         }
     }
@@ -141,8 +141,8 @@ void func_ov001_0218d8f4(Unk02188950 *a, int b) {
     int i;
 
     list = func_02100138(0x1fe);
-    if (list != 0) {
-        for (i = 0; i < list->mUnk_04 && list->mUnk_00[i] != 0; i++) {
+    if (list != NULL) {
+        for (i = 0; i < list->mUnk_04 && list->mUnk_00[i] != NULL; i++) {
             func_ov001_02188d64(a, (s32) (a->mUnk_0a0->mUnk_088), (s32) (a->mUnk_0a0->mUnk_08c * b / 100));
         }
     }
@@ -154,8 +154,8 @@ void func_ov001_0218d87c(Unk02188950 *a, int b) {
     Unk02188950 *q;
 
     list = func_02100138(0x1fe);
-    if (list != 0) {
-        for (i = 0; i < list->mUnk_04 && (q = list->mUnk_00[i]) != 0; i++) {
+    if (list != NULL) {
+        for (i = 0; i < list->mUnk_04 && (q = list->mUnk_00[i]) != NULL; i++) {
             q->mUnk_13c = q->mUnk_0a0->mUnk_0d8 * q->mUnk_0a8 * 100 / b;
             q->mUnk_194 = a->mUnk_0a0->mUnk_0d4 * b / 100;
         }

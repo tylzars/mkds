@@ -77,7 +77,7 @@ void func_020b4bf8(s32 *a, s32 b, s32 c) {
     a[3] = a[0];
 }
 
-s32 func_020b4b98(s32 a) {
+BOOL func_020b4b98(s32 a) {
     switch (data_021759d0->mUnk_04) {
         case 0:
         case 1:
@@ -86,27 +86,27 @@ s32 func_020b4b98(s32 a) {
         case 5:
         default:
             if (a != 1) {
-                return 1;
+                return TRUE;
             }
-            return 0;
+            return FALSE;
         case 2:
             if (a != 1 && a != 0) {
-                return 1;
+                return TRUE;
             }
-            return 0;
+            return FALSE;
     }
 }
 
-s32 func_020b4b54(void) {
+BOOL func_020b4b54(void) {
     switch (data_021759d0->mUnk_04) {
         case 0:
-            return 1;
+            return TRUE;
         case 1:
         case 2:
         case 3:
         case 4:
         case 5:
-            return 0;
+            return FALSE;
     }
 }
 
@@ -123,25 +123,25 @@ s32 func_020b4b10(void) {
     }
 }
 
-s32 func_020b4acc(void) {
+BOOL func_020b4acc(void) {
     switch (data_021759d0->mUnk_04) {
         case 0:
-            return 1;
+            return TRUE;
         case 1:
         case 2:
         case 3:
         case 4:
         case 5:
-            return 0;
+            return FALSE;
     }
 }
 
 void LoadNclrData(Unk020b4a44 **v1, void *a) {
     Unk02021fd0 *r;
 
-    if (a != 0) {
+    if (a != NULL) {
         r = func_02021fd0(a, 0x504c5454);
-        if (r != 0) {
+        if (r != NULL) {
             *v1 = (Unk020b4a44 *) (r + 1);
             func_02021f8c((u32) *v1);
         }
@@ -152,11 +152,11 @@ void LoadNclrData(Unk020b4a44 **v1, void *a) {
 void LocateNclr(Unk020b4a44 **v1, void *a) {
     Unk02021fd0 *r;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
     r = func_02021fd0(a, 0x504c5454);
-    if (r != 0) {
+    if (r != NULL) {
         *v1 = (Unk020b4a44 *) (r + 1);
     }
 }
@@ -164,9 +164,9 @@ void LocateNclr(Unk020b4a44 **v1, void *a) {
 void LoadNcgrData2(Unk020b4934 **v1, void *a) {
     Unk02021fd0 *r;
 
-    if (a != 0) {
+    if (a != NULL) {
         r = func_02021fd0(a, 0x43484152);
-        if (r != 0) {
+        if (r != NULL) {
             *v1 = (Unk020b4934 *) (r + 1);
             func_02021f7c((u32) *v1);
         }
@@ -177,11 +177,11 @@ void LoadNcgrData2(Unk020b4934 **v1, void *a) {
 void LocateNcgr2(Unk020b4934 **v1, void *a) {
     Unk02021fd0 *r;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
     r = func_02021fd0(a, 0x43484152);
-    if (r != 0) {
+    if (r != NULL) {
         *v1 = (Unk020b4934 *) (r + 1);
     }
 }
@@ -189,9 +189,9 @@ void LocateNcgr2(Unk020b4934 **v1, void *a) {
 void LoadNcgrData(Unk020b4934 **v1, void *a) {
     Unk02021fd0 *r;
 
-    if (a != 0) {
+    if (a != NULL) {
         r = func_02021fd0(a, 0x43484152);
-        if (r != 0) {
+        if (r != NULL) {
             *v1 = (Unk020b4934 *) (r + 1);
             func_02021f6c((u32) *v1);
         }
@@ -202,11 +202,11 @@ void LoadNcgrData(Unk020b4934 **v1, void *a) {
 void LocateNcgr(Unk020b4934 **v1, void *a) {
     Unk02021fd0 *r;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
     r = func_02021fd0(a, 0x43484152);
-    if (r != 0) {
+    if (r != NULL) {
         *v1 = (Unk020b4934 *) (r + 1);
     }
 }
@@ -214,11 +214,11 @@ void LocateNcgr(Unk020b4934 **v1, void *a) {
 void LoadNcerData(Unk02021dc8 **v1, void *a) {
     Unk02021fd0 *r;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
     r = func_02021fd0(a, 0x4345424b);
-    if (r == 0) {
+    if (r == NULL) {
         return;
     }
     *v1 = (Unk02021dc8 *) (r + 1);
@@ -228,11 +228,11 @@ void LoadNcerData(Unk02021dc8 **v1, void *a) {
 void LocateNcer(Unk02021dc8 **v1, void *a) {
     Unk02021fd0 *r;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
     r = func_02021fd0(a, 0x4345424b);
-    if (r != 0) {
+    if (r != NULL) {
         *v1 = (Unk02021dc8 *) (r + 1);
     }
 }
@@ -240,11 +240,11 @@ void LocateNcer(Unk02021dc8 **v1, void *a) {
 void LoadNanrData(Unk02021dc8 **v1, void *a) {
     Unk02021fd0 *r;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
     r = func_02021fd0(a, 0x41424e4b);
-    if (r == 0) {
+    if (r == NULL) {
         return;
     }
     *v1 = (Unk02021dc8 *) (r + 1);
@@ -254,9 +254,9 @@ void LoadNanrData(Unk02021dc8 **v1, void *a) {
 void LoadNscrData(Unk020b47d8 **v1, void *a) {
     Unk02021fd0 *r;
 
-    if (a != 0) {
+    if (a != NULL) {
         r = func_02021fd0(a, 0x5343524e);
-        if (r != 0) {
+        if (r != NULL) {
             *v1 = (Unk020b47d8 *) (r + 1);
             func_02021f9c(a, (Unk02021fd0 **) v1);
         }
@@ -267,11 +267,11 @@ void LoadNscrData(Unk020b47d8 **v1, void *a) {
 void LocateNscr(Unk020b47d8 **v1, void *a) {
     Unk02021fd0 *r;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
     r = func_02021fd0(a, 0x5343524e);
-    if (r != 0) {
+    if (r != NULL) {
         *v1 = (Unk020b47d8 *) (r + 1);
     }
 }

@@ -47,25 +47,25 @@ void func_020e72cc(Unk020e730c *p, struct Unk020fa294 *q) {
 
 void func_020e71a0(Unk020e71a0 *p) {
     Unk020e71a0_94 *q;
-    s32 a;
-    s32 b;
+    BOOL a;
+    BOOL b;
 
     q = p->mUnk_94;
     if ((p->mUnk_02 & 2) == 0) {
         q->mUnk_00.mUnk_40 = p->mUnk_78 & ~0xc000001f;
         a = (func_020d4ddc(p) == 0);
         b = (q->mUnk_00.mUnk_34 & 1) != 0;
-        if (a != 0) {
-            if (b != 0) {
+        if (a != FALSE) {
+            if (b != FALSE) {
                 goto ret;
             }
             goto call;
         }
     ret:
-        if (a != 0) {
+        if (a != FALSE) {
             return;
         }
-        if (b == 0) {
+        if (b == FALSE) {
             return;
         }
     call:
@@ -96,12 +96,12 @@ void func_020e705c(Unk020e6fd4 *p) {
     cb = p->mUnk_10;
     n = p->mUnk_04;
     arr = p->mUnk_00;
-    if (cb == 0) {
+    if (cb == NULL) {
         s32 i;
 
         for (i = 0; i < n; i++) {
             e = arr[i];
-            if (e->mUnk_94 != 0) {
+            if (e->mUnk_94 != NULL) {
                 func_020e71a0(e);
             }
         };
@@ -116,7 +116,7 @@ void func_020e705c(Unk020e6fd4 *p) {
                 t = e->mUnk_04;
                 cb(p, e);
                 func_021484d0(&e->mUnk_04, &t, &e->mUnk_10);
-                if (e->mUnk_94 != 0) {
+                if (e->mUnk_94 != NULL) {
                     func_020e71a0(e);
                 }
             }
@@ -130,7 +130,7 @@ void func_020e705c(Unk020e6fd4 *p) {
             e = arr[i];
             if ((e->mUnk_02 & 4) == 0) {
                 cb(p, e);
-                if (e->mUnk_94 != 0) {
+                if (e->mUnk_94 != NULL) {
                     func_020e71a0(e);
                 }
             }
@@ -151,13 +151,13 @@ void func_020e6fd4(Unk020e6fd4 *p) {
     arr = p->mUnk_00;
     buf[0] = p->mUnk_20;
     buf[1] = 0;
-    if (cb == 0) {
+    if (cb == NULL) {
         return;
     }
     for (i = 0; i < n; i++) {
         e = arr[i];
         if ((e->mUnk_02 & 0x88) == 0) {
-            cb(e, 0, &buf[0], &buf[1]);
+            cb(e, NULL, &buf[0], &buf[1]);
         }
     }
 }

@@ -37,12 +37,12 @@
 #include "Main/Unknown/code_0211732c.h"
 
 void func_ov001_0219c6f0(void) {
-    Unk020b4934 *p3 = 0;
-    Unk02021dc8 *p4 = 0;
-    Unk020b4a44 *p5 = 0;
-    Unk020b4934 *p0 = 0;
-    Unk020b4a44 *p2 = 0;
-    Unk020b47d8 *p1 = 0;
+    Unk020b4934 *p3 = NULL;
+    Unk02021dc8 *p4 = NULL;
+    Unk020b4a44 *p5 = NULL;
+    Unk020b4934 *p0 = NULL;
+    Unk020b4a44 *p2 = NULL;
+    Unk020b47d8 *p1 = NULL;
 
     LoadNcgrData(&p0, FindSceneFile(data_ov001_021a87b8));
     LoadNscrData(&p1, FindSceneFile(data_ov001_021a8794));
@@ -59,10 +59,10 @@ void func_ov001_0219c544(void) {
     Unk020b4a44 *c;
     Unk020b47d8 *d;
 
-    a = 0;
-    b = 0;
-    c = 0;
-    d = 0;
+    a = NULL;
+    b = NULL;
+    c = NULL;
+    d = NULL;
     LocateNcgr(&b, FindSceneFile(data_ov001_021a87b8));
     LocateNscr(&d, FindSceneFile(data_ov001_021a8794));
     LocateNclr(&c, FindSceneFile(data_ov001_021a87a8));
@@ -238,34 +238,34 @@ void func_ov001_0219c0bc(void) {
 }
 
 void func_ov001_0219c058(void) {
-    s32 ok = 1;
+    BOOL ok = TRUE;
     data_ov001_021a9bf4->mUnk_60++;
     if (data_ov001_021a9bf4->mUnk_60 >= 4) {
         data_ov001_021a9bf4->mUnk_60 = 0;
     }
     if (func_0211e160(data_ov001_021a6b78[data_ov001_021a9bf4->mUnk_60]) == 0) {
-        ok = 0;
+        ok = FALSE;
         func_ov001_0219c058();
     }
     data_ov001_021a9bf4->mUnk_54[1] = 6;
-    if (ok != 0) {
+    if (ok != FALSE) {
         func_0212ecc0(&data_0217d068, 0, 1);
         func_ov001_0219c0bc();
     }
 }
 
 void func_ov001_0219bff4(void) {
-    s32 ok = 1;
+    BOOL ok = TRUE;
     data_ov001_021a9bf4->mUnk_60--;
     if (data_ov001_021a9bf4->mUnk_60 < 0) {
         data_ov001_021a9bf4->mUnk_60 = 3;
     }
     if (func_0211e160(data_ov001_021a6b78[data_ov001_021a9bf4->mUnk_60]) == 0) {
-        ok = 0;
+        ok = FALSE;
         func_ov001_0219bff4();
     }
     data_ov001_021a9bf4->mUnk_54[0] = 6;
-    if (ok != 0) {
+    if (ok != FALSE) {
         func_0212ecc0(&data_0217d068, 0, 1);
         func_ov001_0219c0bc();
     }
@@ -387,7 +387,7 @@ void func_ov001_0219baf4(void) {
     func_0211df38();
     func_02117218();
     func_02036ab0(data_ov001_021a9bf4->mUnk_44);
-    data_ov001_021a9bf4 = 0;
+    data_ov001_021a9bf4 = NULL;
 }
 
 void func_ov001_0219ba3c(void) {
@@ -433,36 +433,36 @@ void func_ov001_0219b9dc(void) {
 
 void func_ov001_0219b874(void) {
     s32 r;
-    s32 b;
-    s32 a;
-    s32 d;
-    s32 c;
+    BOOL b;
+    BOOL a;
+    BOOL d;
+    BOOL c;
     Unk02175628Index idx;
 
     r = -1;
     func_ov001_0219c2a4();
     idx = UNK_02175628_INDEX_8;
-    b = 0;
-    a = 0;
+    b = FALSE;
+    a = FALSE;
     if (data_02175628[idx].mUnk_4c == 0 && data_02175628[idx].mUnk_58 < 5) {
-        a = 1;
+        a = TRUE;
     }
-    if (a == 0 && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
-        b = 1;
+    if (a == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
+        b = TRUE;
     }
-    if (b != 0) {
+    if (b != FALSE) {
         r = func_0201ea84(data_ov001_021a9bf4->mUnk_14, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
-        d = 0;
-        c = 0;
+        d = FALSE;
+        c = FALSE;
         if (data_02175628[idx].mUnk_4c == 0 && data_02175628[idx].mUnk_58 < 5) {
-            c = 1;
+            c = TRUE;
         }
-        if (c == 0 && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
-            d = 1;
+        if (c == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
+            d = TRUE;
         }
-        if (d == 0 || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
+        if (d == FALSE || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
             goto next;
         }
     }
@@ -547,7 +547,7 @@ void func_ov001_0219b7c8(void) {
 }
 
 void func_ov001_0219b64c(void) {
-    s32 flag;
+    BOOL flag;
     s16 v;
     s16 w;
     u16 n;

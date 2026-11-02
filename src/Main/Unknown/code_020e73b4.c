@@ -38,7 +38,7 @@ void func_020e79c4(void) {
         return;
     }
     func_0212c6f0((void *) func_02108e6c(4), 1);
-    data_0217b8c8 = 0;
+    data_0217b8c8 = NULL;
 }
 
 #pragma thumb on
@@ -47,17 +47,17 @@ void func_020e7760(void) {
     Vec3 *v;
     s32 i;
     Vec3 *s;
-    s32 a;
+    BOOL a;
 
     if (data_021759c0->mUnk_00c == 6) {
         return;
     }
     if (data_021759c0->mUnk_00c == 3) {
-        data_0217b8c8 = 0;
+        data_0217b8c8 = NULL;
         return;
     }
     if (data_021759c0->mUnk_62 < 0) {
-        data_0217b8c8 = 0;
+        data_0217b8c8 = NULL;
         return;
     }
     data_0217b888 = data_021759c0->mUnk_62;
@@ -84,12 +84,12 @@ void func_020e7760(void) {
     data_0217b8cc = 0;
     data_0217b8ec = 0;
     data_0217b948 = data_0217b930;
-    a = 1;
+    a = TRUE;
     data_0217b8f0 = a;
     data_0217b8bc = a;
     data_0217b894 = 0;
     if (gCourseMap->mUnk_018->mUnk_04 != 0) {
-        a = 0;
+        a = FALSE;
     }
     data_0217b8f8 = a;
     data_0217b890 = 4;
@@ -115,12 +115,12 @@ void func_020e7760(void) {
             data_0217b8b0 = 0;
             break;
         case 4: {
-            s32 b;
+            BOOL b;
 
-            b = 0;
+            b = FALSE;
             if ((u8) (data_021759c0->mUnk_2f + 0xfe) <= 8 &&
                 (0x115 & (1 << (u8) (data_021759c0->mUnk_2f + 0xfe))) != 0) {
-                b = 1;
+                b = TRUE;
             }
             data_0217b8b0 = b;
             break;
@@ -144,7 +144,7 @@ void func_020e7760(void) {
     data_0217b9dc.mUnk_00 = 0x101;
     data_0217b9dc.mUnk_04 = &data_0217b930;
     data_0217b9dc.mUnk_08 = 1;
-    func_02046be8(&data_0217b9ec, (UnkFunc *const *) data_0216c33c, 7, 0);
+    func_02046be8(&data_0217b9ec, (UnkFunc *const *) data_0216c33c, 7, NULL);
     func_02046bcc(&data_0217b9ec, 0);
 }
 
@@ -167,7 +167,7 @@ void func_020e7460(void) {
                   FindSceneFile(data_0216c384), 0);
     func_020e6ab8(&data_0217ba2c);
     data_0217ba2c.mUnk_14 |= 0xc0;
-    func_020e64b8(&data_0217ba00, FindSceneFile(data_0216c394), 0, 0);
+    func_020e64b8(&data_0217ba00, FindSceneFile(data_0216c394), NULL, 0);
     func_020e6ab8(&data_0217ba00);
     data_0217ba00.mUnk_14 |= 0xc0;
     data_0217b8a4 = func_02036bec(h, 0x78);
@@ -188,28 +188,28 @@ void func_020e7460(void) {
     data_0217b8e8 = 0;
     n = 2;
     for (j = n, s = data_0216c324, q = data_0217bb08; j < 4; j++) {
-        if (s->mUnk_00 != 0) {
+        if (s->mUnk_00 != NULL) {
             q->mUnk_00 = func_02036bec(h, 0x6c);
             p = FindSceneFile(s->mUnk_00);
             func_02084e28(q->mUnk_00, p);
             func_02084968(q->mUnk_00, 0x3f, n, 0x294a);
             func_02084958(q->mUnk_00, 3);
         } else {
-            q->mUnk_00 = 0;
+            q->mUnk_00 = NULL;
         }
-        if (s->mUnk_04 != 0) {
+        if (s->mUnk_04 != NULL) {
             q->mUnk_04 = func_02036bec(h, 0x38);
             func_020ea514(0, q->mUnk_00, q->mUnk_04, p, FindSceneFile(s->mUnk_04));
             func_02087cfc(q->mUnk_04, 0, 1);
         } else {
-            q->mUnk_04 = 0;
+            q->mUnk_04 = NULL;
         }
-        if (s->mUnk_08 != 0) {
+        if (s->mUnk_08 != NULL) {
             q->mUnk_08 = func_02036bec(h, 0x38);
             func_020ea514(4, q->mUnk_00, q->mUnk_08, p, FindSceneFile(s->mUnk_08));
             func_02087cfc(q->mUnk_08, 0, 1);
         } else {
-            q->mUnk_08 = 0;
+            q->mUnk_08 = NULL;
         }
         s++;
         q++;

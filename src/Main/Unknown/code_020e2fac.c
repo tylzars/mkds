@@ -37,7 +37,7 @@ void func_020e360c(void) {
 }
 
 void func_020e35f4(void *a, Unk020e1e98 *b, u32 c, u32 d) {
-    func_020e54e4(&b->mUnk_0b4.mUnk_08, 0, 0, d);
+    func_020e54e4(&b->mUnk_0b4.mUnk_08, NULL, 0, d);
 }
 
 void func_020e35e4(u32 arg0, u32 arg1) {
@@ -232,7 +232,7 @@ u8 func_020e2fe4(Unk020e1e98 *a, Unk020e246c *b, u8 *c, u8 *d) {
     Vec3 w;
 
     if (c[0] == 1) {
-        if (b != 0) {
+        if (b != NULL) {
             func_021484d0(&a->mUnk_000.mUnk_04, &b->mUnk_050, &v);
             if ((s64) v.z * b->mUnk_05c - (s64) v.x * b->mUnk_064 < 0) {
                 a->mUnk_0b4.mUnk_00 = 1;

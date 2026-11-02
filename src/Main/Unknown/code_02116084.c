@@ -12,15 +12,15 @@ u16 data_0215c4ac[2] = {0x1e, 0x1f};
 
 void func_02116084(void) {
     s32 v;
-    s32 a;
-    s32 b;
+    BOOL a;
+    BOOL b;
     s32 i;
 
     v = func_02116870();
     data_0217d350->mUnk_3c[data_0215c4a8[0]].mUnk_04 = -func_020adc64(6 - data_0217d350->mUnk_90[0]);
     data_0217d350->mUnk_3c[data_0215c4a8[1]].mUnk_04 = func_020adc64(6 - data_0217d350->mUnk_90[1]);
-    a = 0;
-    b = 0;
+    a = FALSE;
+    b = FALSE;
     for (i = 0; i < 2; i++) {
         if (data_0217d350->mUnk_90[i] > 0) {
             data_0217d350->mUnk_90[i]--;

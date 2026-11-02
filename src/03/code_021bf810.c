@@ -20,10 +20,10 @@ void func_ov003_021bf8b0(void) {
 void func_ov003_021bf86c(int b) {
     void *a;
 
-    a = func_ov003_021d14b8(func_ov003_021bf650(data_ov003_021d6b60[b]), 0, 4);
+    a = func_ov003_021d14b8(func_ov003_021bf650(data_ov003_021d6b60[b]), NULL, 4);
     func_0214d0a8(a, data_ov003_021da154, 0xc0);
     func_ov003_021d1490(a);
-    func_ov003_021d3544(1, func_ov003_021bf810, 0, 0x78);
+    func_ov003_021d3544(1, func_ov003_021bf810, NULL, 0x78);
 }
 
 void func_ov003_021bf854(void) {

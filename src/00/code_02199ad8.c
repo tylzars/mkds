@@ -150,9 +150,9 @@ u32 func_ov000_02199c98(int c, int d, int e) {
     if (func_ov000_02198e44((s32) a, (u32) b, (u32) a->mUnk_38.mUnk_00, a->mUnk_38.mUnk_04) == 0) {
         return 0;
     }
-    if (a->mUnk_38.mUnk_00 != 0) {
+    if (a->mUnk_38.mUnk_00 != NULL) {
         func_ov000_021a3668(a->mUnk_38.mUnk_00);
-        a->mUnk_38.mUnk_00 = 0;
+        a->mUnk_38.mUnk_00 = NULL;
     }
     a->mUnk_0c = 1;
     return 1;
@@ -178,7 +178,7 @@ u32 func_ov000_02199bb4(u32 *b, int c, int d) {
         }
         return 0;
     }
-    if (a->mUnk_08->mUnk_20 == 0) {
+    if (a->mUnk_08->mUnk_20 == NULL) {
         if (func_ov000_02198b8c(a) == 0) {
             return 0;
         }
@@ -201,7 +201,7 @@ u32 func_ov000_02199b70(Unk02197fe8 *a) {
         return 0;
     }
     a->mUnk_0c = 5;
-    if (func_ov000_021982f4(a, 0, 0, 0) != 0) {
+    if (func_ov000_021982f4(a, 0, NULL, 0) != 0) {
         return 1;
     }
     return 0;

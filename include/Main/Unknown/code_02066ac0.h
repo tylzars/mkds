@@ -63,4 +63,4 @@ s32 func_02067b0c(Unk0206bcb0 *a, s32 *b, s32 c);
 s32 func_02067b60(Unk0206bcb0 *a, s32 *b);
 s32 func_02067bf4(Unk0206bcb0 *a, s32 *b);
 // Declared here until the code that defines them is decompiled.
-s32 func_0206a24c(Unk0206bcb0 *p);
+BOOL func_0206a24c(Unk0206bcb0 *p);

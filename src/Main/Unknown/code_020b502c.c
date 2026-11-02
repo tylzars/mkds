@@ -62,15 +62,15 @@ void func_020b5fe4(const Vec3 *pos, UnkPair020b502c *out) {
     out->mUnk_04 = func_020b5250(func_020b502c(0x200000, func_020b57b4(pos->z - o.mUnk_04, data_0217b3c0->mUnk_64)));
 }
 
-s32 func_020b5f68(const UnkPair020b502c *p) {
+BOOL func_020b5f68(const UnkPair020b502c *p) {
     UnkPair020b502c c = data_0217b3c0->mUnk_10;
     s32 r = data_0217b3c0->mUnk_18;
 
     if (p->mUnk_00 - r < c.mUnk_00 && c.mUnk_00 < p->mUnk_00 + r && p->mUnk_04 - r < c.mUnk_04 &&
         c.mUnk_04 < p->mUnk_04 + r) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_020b5dcc(s32 idx, UnkPair020b502c *out, s32 v1) {
@@ -112,7 +112,7 @@ static inline s32 func_020b5ae8_inline(s32 v) {
     return (s32) f;
 }
 
-s32 func_020b5ae8(const Vec3 *pos, UnkPair020b502c *out, s32 unk, s32 flag, s32 flag2) {
+BOOL func_020b5ae8(const Vec3 *pos, UnkPair020b502c *out, s32 unk, s32 flag, s32 flag2) {
     UnkPair020b502c a = data_0217b3c0->mUnk_00;
     s32 v20 = data_0217b3c0->mUnk_20;
     s32 v24 = data_0217b3c0->mUnk_24;
@@ -140,7 +140,7 @@ s32 func_020b5ae8(const Vec3 *pos, UnkPair020b502c *out, s32 unk, s32 flag, s32 
         ty = func_020b5250(py);
 
         if (tx - r >= c.mUnk_00 || c.mUnk_00 >= tx + r || ty - r >= c.mUnk_04 || c.mUnk_04 >= ty + r) {
-            return 0;
+            return FALSE;
         }
     }
     if (flag2 != 0) {
@@ -164,11 +164,11 @@ s32 func_020b5ae8(const Vec3 *pos, UnkPair020b502c *out, s32 unk, s32 flag, s32 
     if (ox > -32 && ox < 0x120 && oy > -32 && oy < 0xe0) {
         out->mUnk_00 = ox;
         out->mUnk_04 = oy;
-        return 1;
+        return TRUE;
     }
     out->mUnk_00 = ox;
     out->mUnk_04 = oy;
-    return 0;
+    return FALSE;
 }
 
 void func_020b58f8(Unk020b503c *out) {

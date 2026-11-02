@@ -73,8 +73,8 @@ s32 func_02034370(Unk02034370 *a) {
     s32 i;
     s32 j;
     s32 v;
-    s32 b1;
-    s32 a1;
+    BOOL b1;
+    BOOL a1;
     u16 w;
     s32 x;
     s32 y;
@@ -109,7 +109,7 @@ s32 func_02034370(Unk02034370 *a) {
             }
             break;
         case 2:
-            switch (func_02054c98(0, 0)) {
+            switch (func_02054c98(0, NULL)) {
                 case 1:
                     func_021262f0(GetBmgEntry(data_02174e64->mUnk_088, 0xf));
                     func_0212d5e0(&data_0217c868);
@@ -155,16 +155,16 @@ s32 func_02034370(Unk02034370 *a) {
                         }
                     }
                     func_02035114();
-                    b1 = 0;
-                    a1 = 0;
+                    b1 = FALSE;
+                    a1 = FALSE;
                     w = data_02175674[k].mUnk_00;
                     if (w == 0 && data_02175680[k].mUnk_00 < 5) {
-                        a1 = 1;
+                        a1 = TRUE;
                     }
-                    if (a1 == 0 && data_0217567c[k].mUnk_00 == 0 && w != 0) {
-                        b1 = 1;
+                    if (a1 == FALSE && data_0217567c[k].mUnk_00 == 0 && w != 0) {
+                        b1 = TRUE;
                     }
-                    if (b1 != 0) {
+                    if (b1 != FALSE) {
                         x = data_02175670[k].mUnk_00;
                         y = data_02175672[k].mUnk_00;
                         z = func_02128210(x, y);
@@ -264,7 +264,7 @@ s32 func_02034370(Unk02034370 *a) {
             if (func_02054f58() == 1) {
                 func_0204f804();
                 data_0217b488->mUnk_08 = 5;
-                if (a != 0) {
+                if (a != NULL) {
                     a->mUnk_04 = 1;
                 }
                 data_02174e64->mUnk_094 = 16;
@@ -345,7 +345,7 @@ s32 func_02034370(Unk02034370 *a) {
         case 14:
             if (func_02125f54() != 0) {
                 data_0217b488->mUnk_08 = 5;
-                if (a != 0) {
+                if (a != NULL) {
                     a->mUnk_04 = 1;
                 }
                 data_02174e64->mUnk_094 = 16;
@@ -375,7 +375,7 @@ s32 func_02034370(Unk02034370 *a) {
 
 void func_0203434c(void) {
     func_02036ab0((void *) ((u32) data_02174e64->mUnk_1a4));
-    *&data_02174e64 = 0;
+    *&data_02174e64 = NULL;
 }
 
 #pragma thumb off

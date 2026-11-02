@@ -70,7 +70,7 @@ void func_020dc354(Unk020dc474 *p) {
 
 #pragma thumb on
 void CreateWanwanAndRockShadow(void) {
-    func_020ea588((void **) &gWanwan, FindCourseMapObjFile("wanwan.nsbmd"), 0);
+    func_020ea588((void **) &gWanwan, FindCourseMapObjFile("wanwan.nsbmd"), NULL);
     func_020ea55c((void **) &gWanwanRockShadow, FindCourseMapObjFile("rock_shadow.nsbmd"), 0x3f);
     func_02084968(gWanwan, 0x3f, 2, 0x294a);
 }
@@ -489,7 +489,7 @@ void func_020db430(Unk020db2b8 *p) {
 
 #pragma thumb on
 void CreateDossunAndDossunShadow(void) {
-    func_020ea588((void **) &gDossun, FindCourseMapObjFile("dossun.nsbmd"), 0);
+    func_020ea588((void **) &gDossun, FindCourseMapObjFile("dossun.nsbmd"), NULL);
     func_020ea55c((void **) &gDossunShadow, FindCourseMapObjFile("dossun_shadow.nsbmd"), 0x3f);
     func_02084968(gDossun, 0x3f, 2, 0x294a);
 }

@@ -19,7 +19,7 @@ u32 func_ov000_021aaaf8(const u8 *a, s32 b, s32 c) {
     return 0;
 }
 
-s32 func_ov000_021aab3c(const u8 *a, s32 b, s32 c, u32 d) {
+BOOL func_ov000_021aab3c(const u8 *a, s32 b, s32 c, u32 d) {
     s32 i;
     u32 e;
     for (i = 0; i < b; i++) {
@@ -28,11 +28,11 @@ s32 func_ov000_021aab3c(const u8 *a, s32 b, s32 c, u32 d) {
             e = (e << 8) + a[2];
         }
         if (e == d) {
-            return 1;
+            return TRUE;
         }
         a += c;
     }
-    return 0;
+    return FALSE;
 }
 
 // non-matching: one instruction order, ours loads ldrb r6, [r0] before adds r4, #0x23 and the original after; same size
@@ -45,10 +45,10 @@ void func_ov000_021aab74(Unk021a998c_0c *a, u8 *b) {
     n = b[0x22];
     c = b + 0x23;
     s = a->mUnk_000;
-    if (s != 0 && n == 0x20 && memcmp(s->mUnk_00, c, 0x20) == 0) {
+    if (s != NULL && n == 0x20 && memcmp(s->mUnk_00, c, 0x20) == 0) {
         a->mUnk_004 = 1;
     } else {
-        if (s != 0) {
+        if (s != NULL) {
             s->mUnk_5a = 0;
         }
         if (n == 0) {
@@ -68,7 +68,7 @@ void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b) {
     s32 n;
     u32 f;
     u32 t;
-    s32 m;
+    BOOL m;
     s32 k;
     u8 *q;
     u32 d[4];
@@ -79,7 +79,7 @@ void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b) {
     a->mUnk_7e0 = d[2] + (((d[0] + 0x7d0) << 16) + (d[1] << 8));
     a->mUnk_684[0] = 0;
     a->mUnk_568 = a->mUnk_574 = 0;
-    m = 0;
+    m = FALSE;
     i = m;
     for (;;) {
         k = (((b[0] << 8) + b[1]) << 8) + b[2];
@@ -99,7 +99,7 @@ void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b) {
             return;
         }
         f = func_ov000_021aae44(a);
-        if (i == 0 && a->mUnk_7d4 != 0 && func_ov000_021aadcc(a->mUnk_7d4, a->mUnk_784) != 0) {
+        if (i == 0 && a->mUnk_7d4 != NULL && func_ov000_021aadcc(a->mUnk_7d4, a->mUnk_784) != 0) {
             f |= 0x4000;
         }
         t = f & 0xff;
@@ -112,12 +112,12 @@ void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b) {
             }
             f = (f & ~0xff) | func_ov000_021aaf38(a, &a->mUnk_454);
         }
-        if (a->mUnk_7e4 != 0) {
+        if (a->mUnk_7e4 != NULL) {
             f = a->mUnk_7e4(f, a, i);
         }
         i++;
         if (t != 0 && f == 0 && n != 0) {
-            m = 1;
+            m = TRUE;
             continue;
         }
         break;
@@ -129,7 +129,7 @@ void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b) {
     }
 }
 
-s32 func_ov000_021aadcc(const s8 *a, const s8 *b) {
+BOOL func_ov000_021aadcc(const s8 *a, const s8 *b) {
     s32 x;
     s32 y;
     s8 c;
@@ -137,17 +137,17 @@ s32 func_ov000_021aadcc(const s8 *a, const s8 *b) {
     for (;;) {
         while ((d = *a++) == (c = *b++)) {
             if (d == 0) {
-                return 0;
+                return FALSE;
             }
         }
         if (c != '*') {
-            return 1;
+            return TRUE;
         }
         a--;
         x = func_ov000_021aae2c(a);
         y = func_ov000_021aae2c(b);
         if (y > x) {
-            return 1;
+            return TRUE;
         }
         a += x - y;
     }

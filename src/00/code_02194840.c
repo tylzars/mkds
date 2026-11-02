@@ -5,7 +5,7 @@
 #include "code_0213442c.h"
 #include "00/code_0218dd8c.h"
 
-s32 func_ov000_02194840(Unk0218f960 *a, void *b, void *c) {
+BOOL func_ov000_02194840(Unk0218f960 *a, void *b, void *c) {
     Unk0218f960_00 *r;
     Unk02194840Arg d;
 
@@ -14,7 +14,7 @@ s32 func_ov000_02194840(Unk0218f960 *a, void *b, void *c) {
     d.mUnk_04 = b;
     d.mUnk_08 = c;
     if (func_ov000_0218dd8c(r->mUnk_428.mUnk_00, (s32) func_ov000_02194874, (u32) &d) == 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }

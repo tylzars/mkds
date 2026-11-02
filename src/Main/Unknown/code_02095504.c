@@ -22,11 +22,11 @@
 #include "code_02148538.h"
 
 void func_02095504(void) {
-    func_0209bf48(func_020957ec, func_02095544, 0);
+    func_0209bf48(func_020957ec, func_02095544, NULL);
 }
 
 void func_02095524(void) {
-    func_0209bf1c(CreateBakubakuAndBakuShadow, func_02095848, 0);
+    func_0209bf1c(CreateBakubakuAndBakuShadow, func_02095848, NULL);
 }
 
 void func_02095544(void *a, Unk02095544 *p) {
@@ -106,10 +106,10 @@ void func_020957ec(Unk020e6fd4 *p) {
     s32 i;
     Unk02095544 *e;
 
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
-    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
         func_02147fd8(0x320000, &e->mUnk_00.mUnk_28.mUnk_18, &e->mUnk_00.mUnk_9c->mUnk_00, &e->mUnk_a4);
     }
 }
@@ -144,15 +144,15 @@ void CreateBakubakuAndBakuShadow(void *a) {
 }
 
 void func_020959bc(void) {
-    func_0209bf48(func_02095d1c, func_02095a3c, 0);
+    func_0209bf48(func_02095d1c, func_02095a3c, NULL);
 }
 
 void func_020959dc(void) {
-    func_0209bf1c(CreateMoveTree, func_02095db8, 0);
+    func_0209bf1c(CreateMoveTree, func_02095db8, NULL);
 }
 
 void func_020959fc(void) {
-    func_0209bf70(func_02095efc, 0, 0, 2, 1, 0x125);
+    func_0209bf70(func_02095efc, NULL, NULL, 2, 1, 0x125);
 }
 
 void func_02095a3c(void *a, Unk02095a3c *p) {
@@ -251,10 +251,10 @@ void func_02095d1c(Unk020e6fd4 *p) {
     s32 i;
     Unk02095a3c *e;
 
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
-    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
         e->mUnk_a8 = (e->mUnk_00.mUnk_9c->mUnk_28 << 12) / 100;
         func_020e516c(&e->mUnk_dc, &e->mUnk_00.mUnk_04, 0x54666, 14);
     }
@@ -277,7 +277,7 @@ void func_02095db8(void *a, Unk02095a3c *p, u32 c, u32 d) {
         return;
     }
     func_020e5668(&p->mUnk_dc, &p->mUnk_00.mUnk_04);
-    func_020e53ac(&p->mUnk_dc, 0, c, d);
+    func_020e53ac(&p->mUnk_dc, NULL, c, d);
 }
 
 void CreateMoveTree(void *a) {

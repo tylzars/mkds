@@ -65,7 +65,7 @@ void func_020649ec(Unk0206bcb0 *a, void (**b)(Unk0206bcb0 *)) {
             b++;
         }
     }
-    a->mUnk_514 = 0;
+    a->mUnk_514 = NULL;
     if (a->mUnk_20c_fn[1] != 0) {
         a->mUnk_20c_fn[1](a);
     }
@@ -214,7 +214,7 @@ void func_02064f50(Unk0206bcb0 *a) {
         h.y = (s64) k->y * -0x7000 >> 12;
         h.z = (s64) k->z * -0x7000 >> 12;
         func_02148504(&g, &h, &g);
-        if (func_01ffdee4(&g, 0, 0, a->mUnk_1d0, 1, a->mUnk_2c8, &i, 0, 0, &j, 0, 0, 0, 0) != 0) {
+        if (func_01ffdee4(&g, NULL, 0, a->mUnk_1d0, 1, a->mUnk_2c8, &i, NULL, NULL, &j, NULL, NULL, NULL, NULL) != 0) {
             func_02148504(&i, &h, &i);
             func_02148504(&b->mUnk_00, &i, &b->mUnk_00);
         }

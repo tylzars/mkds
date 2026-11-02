@@ -219,7 +219,7 @@ s16 func_0203f91c(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
 }
 
 s32 func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
-    s32 r;
+    BOOL r;
     u32 m;
     s32 w;
     s16 t;
@@ -230,7 +230,7 @@ s32 func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
 
     w = e >> 5;
     m = 1 << (e & 0x1f);
-    r = 0;
+    r = FALSE;
     t = gCourseMap->mUnk_44[e].mUnk_1c;
     f = a->mUnk_4c[w];
     if ((f & m) != 0) {
@@ -250,7 +250,7 @@ s32 func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
                             *b = 0x1000 - ((u32) (a->mUnk_3c << 28) >> 28) * 0x190;
                         }
                     }
-                    r = 1;
+                    r = TRUE;
                     break;
                 }
             }
@@ -267,7 +267,7 @@ s32 func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
             if (*b > 0x1000) {
                 *b = 0x1000;
             }
-            r = 1;
+            r = TRUE;
         }
     }
     a->mUnk_4c[w] |= m;
@@ -301,7 +301,7 @@ s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
     return func_02147f34((s32) x, (s32) y);
 }
 
-s32 func_0203fde0(const Vec3 *a, const Unk02175620_44 *b, const Unk02175620_44 *c) {
+BOOL func_0203fde0(const Vec3 *a, const Unk02175620_44 *b, const Unk02175620_44 *c) {
     volatile UnkPair020b502c p;
     s32 d;
 
@@ -310,15 +310,15 @@ s32 func_0203fde0(const Vec3 *a, const Unk02175620_44 *b, const Unk02175620_44 *
     if ((s32) (((s64) ((b->mUnk_04 - c->mUnk_04) >> 4) * ((a->x - c->mUnk_00) >> 4) + 0x800) >> 12) -
             (s32) (((s64) ((b->mUnk_00 - c->mUnk_00) >> 4) * ((a->z - c->mUnk_04) >> 4) + 0x800) >> 12) <
         0) {
-        return 0;
+        return FALSE;
     }
     d = (c->mUnk_08 - b->mUnk_08) >> 4;
     if ((s32) (((s64) ((c->mUnk_0c - b->mUnk_0c) >> 4) * ((a->x - b->mUnk_08) >> 4) + 0x800) >> 12) -
             (s32) (((s64) d * ((a->z - b->mUnk_0c) >> 4) + 0x800) >> 12) >=
         0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 // non-matching: size 0x2cc against 0x2d8; the original keeps a second copy of the global pointer in r0 (mov r0, r5)
@@ -330,8 +330,8 @@ void func_0203fed4(void) {
     u32 e;
     u32 l;
     u32 h;
-    s32 f;
-    s32 g;
+    BOOL f;
+    BOOL g;
     s8 k;
     u16 i;
     Unk020f41c4_B *r;
@@ -342,24 +342,24 @@ void func_0203fed4(void) {
     if (p->mUnk_000[0].mUnk_04 != 0) {
         h = p->mUnk_4f4;
         l = 0x57e40;
-        f = 0;
+        f = FALSE;
         if (h != 0) {
             l = h;
-            f = 1;
+            f = TRUE;
         }
         e = p->mUnk_000[0].mUnk_00;
         if (data_021759c0->mUnk_08 == 5 && e > 0x4650) {
             k = data_0217aa18->mUnk_06[func_ov000_0219bb50()];
             if (k >= 0) {
-                g = 0;
+                g = FALSE;
                 switch (data_0217561c->mUnk_000[(u8) k].mUnk_14) {
                     case 1:
                     case 2:
                     case 3:
-                        g = 1;
+                        g = TRUE;
                         break;
                 }
-                if (g == 0) {
+                if (g == FALSE) {
                     func_0203e9a0(&data_0217561c->mUnk_14[k], 0);
                     if (func_0203ef58() != 0) {
                         switch (data_021759c0->mUnk_08) {
@@ -385,7 +385,7 @@ void func_0203fed4(void) {
         }
         if (e <= l) {
             e++;
-        } else if (f != 0) {
+        } else if (f != FALSE) {
             t = 1;
         }
         p->mUnk_000[0].mUnk_00 = e;

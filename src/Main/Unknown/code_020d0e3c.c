@@ -5,32 +5,32 @@
 #pragma optimize_for_size on
 
 #pragma thumb on
-s32 func_020d0ec4(void) {
-    if (gCupPicture != 0 && func_020d0ee8() == 0) {
-        return 1;
+BOOL func_020d0ec4(void) {
+    if (gCupPicture != NULL && func_020d0ee8() == 0) {
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void *func_020d0ea0(void) {
-    if (func_020d0ec4() != 0) {
+    if (func_020d0ec4() != FALSE) {
         return gCupPicture->mCupPictureNclr->mUnk_0c;
     }
-    return 0;
+    return NULL;
 }
 
 void *func_020d0e7c(void) {
-    if (func_020d0ec4() != 0) {
+    if (func_020d0ec4() != FALSE) {
         return gCupPicture->mCupPictureNcgr->mUnk_14;
     }
-    return 0;
+    return NULL;
 }
 
 void *func_020d0e58(void) {
-    if (func_020d0ec4() != 0) {
+    if (func_020d0ec4() != FALSE) {
         return &gCupPicture->mCupPictureNscr->mUnk_0c;
     }
-    return 0;
+    return NULL;
 }
 #pragma thumb off
 

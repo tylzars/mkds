@@ -115,7 +115,7 @@ void func_ov003_021ce408(u32 a) {
         func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, -0x2a, data_ov003_021d66a8[i].mUnk_02);
         func_ov003_021d1890(data_ov003_021da27c->mUnk_00[i], -1, 0, data_ov003_021d6698[a][i]);
     }
-    data_ov003_021da27c->mTask = func_ov003_021d3544(0, func_ov003_021ce370, 0, 0x78);
+    data_ov003_021da27c->mTask = func_ov003_021d3544(0, func_ov003_021ce370, NULL, 0x78);
     func_ov003_021cdcf0(a);
     func_ov003_021cdc10(0xd);
 }
@@ -140,15 +140,15 @@ void func_ov003_021ce4d4(u32 a) {
             }
         }
         if (f != 0 && g != 0) {
-            if (o->mUnk_1370 != 0) {
+            if (o->mUnk_1370 != NULL) {
                 o->mUnk_1370(2);
             }
         } else if (f != 0) {
-            if (o->mUnk_1370 != 0) {
+            if (o->mUnk_1370 != NULL) {
                 o->mUnk_1370(1);
             }
         } else if (g == 0) {
-            if (o->mUnk_1370 != 0) {
+            if (o->mUnk_1370 != NULL) {
                 o->mUnk_1370(0);
             }
         }

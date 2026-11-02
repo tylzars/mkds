@@ -182,7 +182,7 @@ void func_02103468(void) {
     *(u32 *) data_0217c658 = 0;
     data_0217c64c = 0;
     func_0212c6f0((Unk0212c400 **) func_02108e6c(6), 1);
-    q = func_020ed4d0(data_0216c7b4, 0, data_0216c7c4);
+    q = func_020ed4d0(data_0216c7b4, NULL, data_0216c7c4);
     func_0210340c((Unk0210340c *) data_0217c684, q);
     data_0217c63c = func_020d3c2c();
     for (i = 0; i < 3; i++) {

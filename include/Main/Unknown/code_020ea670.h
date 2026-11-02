@@ -78,5 +78,5 @@ u32 func_020eb7e0(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *p
 void func_020eb8f8(Unk020ebef8 *param_1);
 void func_020ebab0(Unk020ebef8 *param_1);
 void func_020ebb04(Unk020ebef8 *param_1);
-s32 func_020ebc2c(Unk020ebef8 *param_1);
+BOOL func_020ebc2c(Unk020ebef8 *param_1);
 void func_020ebe68(Unk020ebef8 *param_1);

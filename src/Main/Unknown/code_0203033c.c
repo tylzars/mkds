@@ -192,7 +192,7 @@ s32 func_020303e8(void) {
 void func_020303c4(void) {
     func_0204f7f4();
     func_02036ab0((void *) (data_02174e54->mUnk_3c));
-    data_02174e54 = 0;
+    data_02174e54 = NULL;
     return;
 }
 

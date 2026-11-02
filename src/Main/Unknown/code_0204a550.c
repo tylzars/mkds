@@ -16,7 +16,7 @@ void func_0204a598(Unk0204a598 *a) {
     s32 r;
 
     r = func_ov001_021a23c8();
-    if (a != 0 && r != 0) {
+    if (a != NULL && r != 0) {
         switch (a->mUnk_00) {
             case 7:
                 a->mUnk_04 = 7;

@@ -79,15 +79,15 @@ void func_ov000_0218401c(void) {
 
 void func_ov000_02183b80(void) {
     Unk02175628Index idx = UNK_02175628_INDEX_8;
-    s32 a;
-    s32 b;
+    BOOL a;
+    BOOL b;
     u16 v;
     u32 val;
     s32 j;
     s32 sh;
     s32 n;
     s32 i;
-    s32 flag;
+    BOOL flag;
     u16 name[11];
     u16 buf2[10];
     u16 buf3[10];
@@ -112,16 +112,16 @@ void func_ov000_02183b80(void) {
     if (func_02125fa4() != 0 && func_02128294() != 0 && (u16) (data_02175628[idx].mUnk_00 & 2) != 0) {
         goto hit;
     }
-    a = 0;
-    b = 0;
+    a = FALSE;
+    b = FALSE;
     v = data_02175628[idx].mUnk_4c;
     if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
-        b = 1;
+        b = TRUE;
     }
-    if (b == 0 && data_02175628[idx].mUnk_54 == 0 && v != 0) {
-        a = 1;
+    if (b == FALSE && data_02175628[idx].mUnk_54 == 0 && v != 0) {
+        a = TRUE;
     }
-    if (a != 0 && func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) != 0 && func_021213a0() != 0) {
+    if (a != FALSE && func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) != 0 && func_021213a0() != 0) {
     hit:
         func_021213e8();
         func_02128310(0);
@@ -203,7 +203,7 @@ void func_ov000_02183b80(void) {
         return;
     }
     n = func_02121418() - 1;
-    flag = 0;
+    flag = FALSE;
     if (n > 3) {
         n = 3;
     }
@@ -214,11 +214,11 @@ void func_ov000_02183b80(void) {
     if (n > 0) {
         sh = 0x50 >> (n - 1);
         if (gWiFiVSMatching->mUnk_0c % sh >= sh / 2) {
-            flag = 1;
+            flag = TRUE;
         }
     }
     for (i = 0; i < 3; i++) {
-        if (i < n && flag != 0) {
+        if (i < n && flag != FALSE) {
             gWiFiVSMatching->mUnk_10d4[data_ov000_021b065c[i]].mUnk_00 = 1;
             if (i >= gWiFiVSMatching->mUnk_38) {
                 func_02108adc();
@@ -361,8 +361,8 @@ void func_ov000_021837b8(void) {
 }
 
 void func_ov000_021836f4(void) {
-    s32 a;
-    s32 b;
+    BOOL a;
+    BOOL b;
     u16 v;
     Unk02175628Index idx = UNK_02175628_INDEX_8;
 
@@ -371,16 +371,16 @@ void func_ov000_021836f4(void) {
     }
     if (func_02125fa4() != 0) {
         if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
-            a = 0;
-            b = 0;
+            a = FALSE;
+            b = FALSE;
             v = data_02175628[idx].mUnk_4c;
             if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
-                b = 1;
+                b = TRUE;
             }
-            if (b == 0 && data_02175628[idx].mUnk_54 == 0 && v != 0) {
-                a = 1;
+            if (b == FALSE && data_02175628[idx].mUnk_54 == 0 && v != 0) {
+                a = TRUE;
             }
-            if (a == 0) {
+            if (a == FALSE) {
                 return;
             }
             if (func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
@@ -537,11 +537,11 @@ void RegisterWiFiVSMatchingCallbacks(void) {
     SetWiFiStateCallbacks(&x);
 }
 
-s32 func_ov000_021832f0(void) {
+BOOL func_ov000_021832f0(void) {
     if (func_0205e548() != 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void InitWiFiVSSetting(void *heap) {

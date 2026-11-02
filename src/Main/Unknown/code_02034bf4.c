@@ -30,7 +30,7 @@ void func_02034bf4(void *a, void *b, void *c) {
     s32 k;
     s32 m;
     s16 *t;
-    s32 z;
+    BOOL z;
 
     h = func_02036948(a);
     data_02174e64 = func_02036bec(h, 0x1a8);
@@ -48,8 +48,8 @@ void func_02034bf4(void *a, void *b, void *c) {
     func_020258d4(0, data_02174e64, data_021642ac, data_021642cc, data_021642ec, 0, FindSceneFile);
     s = &data_02174e64->mUnk_02c[0];
     n = func_02148cb8();
-    func_02025b20(s, data_02164308, data_02164328, data_02164348, data_02164368, data_02164384, 0, FindSceneFile);
-    z = 0;
+    func_02025b20(s, data_02164308, data_02164328, data_02164348, data_02164368, data_02164384, NULL, FindSceneFile);
+    z = FALSE;
     func_02025a50(0, data_02174e64->mUnk_1a4, s);
     i = 0;
     if (i < s->mUnk_14->mUnk_06) {
@@ -93,25 +93,25 @@ void func_02034bf4(void *a, void *b, void *c) {
     func_02036820(data_02174e64->mUnk_1a4);
 }
 
-s32 func_02034e68(Unk02174e64_9c_00 *a, Unk02174e64_9c_00 *b) {
+BOOL func_02034e68(Unk02174e64_9c_00 *a, Unk02174e64_9c_00 *b) {
     s32 i;
     s32 d;
-    s32 f;
+    BOOL f;
 
     d = 0;
     for (i = 0; i < 11; i++) {
         if (a->mUnk_00[i] != b->mUnk_00[i]) {
-            f = 1;
+            f = TRUE;
         } else {
-            f = 0;
+            f = FALSE;
         }
         d |= f;
     }
     if (d != 0 || a->mUnk_1c != b->mUnk_1c || a->mUnk_18 != b->mUnk_18 || a->mUnk_20 != b->mUnk_20 ||
         a->mUnk_26 != b->mUnk_26 || a->mUnk_27 != b->mUnk_27 || a->mUnk_24 != b->mUnk_24) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_02034ef0(void) {
@@ -141,16 +141,16 @@ void func_02034f60(void) {
     s32 i;
     Unk02174e14_00 *s;
     s32 n;
-    s32 v;
+    BOOL v;
 
     s = &data_02174e64->mUnk_02c[0];
     e = &data_02174e64->mUnk_09c[data_02174e64->mUnk_080];
     n = s->mUnk_0c->mUnk_06 + s->mUnk_14->mUnk_06;
     for (i = 0; i < n; i++) {
         if (data_02174e64->mUnk_080 >= 0) {
-            v = 1;
+            v = TRUE;
         } else {
-            v = 0;
+            v = FALSE;
         }
         s->mUnk_18[i].mUnk_00 = v;
     }

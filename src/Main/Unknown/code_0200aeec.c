@@ -48,27 +48,27 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
     a->mUnk_04_1 = d;
     a->mUnk_08 = b;
     a->mUnk_0c = c;
-    if (v1->mUnk_c0 == 0) {
+    if (v1->mUnk_c0 == NULL) {
         if (a == &v1->mUnk_c4) {
-            data_0216fde0 = 0;
+            data_0216fde0 = NULL;
         }
         v1->mUnk_c0 = a;
         func_0200df68(&v1->mUnk_00);
     } else {
         v4 = v1->mUnk_c0;
         if (a == &v1->mUnk_c4) {
-            if (v4->mUnk_00 != 0) {
+            if (v4->mUnk_00 != NULL) {
                 do {
                     v4 = v4->mUnk_00;
-                } while (v4->mUnk_00 != 0);
+                } while (v4->mUnk_00 != NULL);
             }
             v4->mUnk_00 = a;
-            data_0216fde0 = 0;
+            data_0216fde0 = NULL;
         } else if (v4->mUnk_04_1 > d) {
             v1->mUnk_c0 = a;
             a->mUnk_00 = v4;
         } else {
-            while ((v5 = v4->mUnk_00) != 0 && v5->mUnk_04_1 <= d) {
+            while ((v5 = v4->mUnk_00) != NULL && v5->mUnk_04_1 <= d) {
                 v4 = v5;
             }
             a->mUnk_00 = v5;

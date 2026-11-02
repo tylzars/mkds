@@ -26,11 +26,11 @@ void func_02086a04(void) {
     s32 k;
     u32 e;
     Unk0206bcb0 *p;
-    s32 g;
+    BOOL g;
     s32 d;
     s32 h;
-    s32 a;
-    s32 b;
+    BOOL a;
+    BOOL b;
     u16 n;
     s32 j;
     q = func_020d50e0();
@@ -53,16 +53,16 @@ void func_02086a04(void) {
         data_0217aed0->mUnk_124[i] = e;
         data_0217aed0->mUnk_0a4[(u16) (data_0217aed0->mUnk_024[p->mUnk_74] + data_0217aed0->mUnk_084[p->mUnk_74])] = e;
         if (p->mUnk_74 != data_021759c0->mUnk_62) {
-            a = 1;
+            a = TRUE;
             if (e > data_0217ca6c[0].mUnk_20) {
-                a = 0;
+                a = FALSE;
             }
             if (p->mUnk_00.mUnk_34 & 1) {
-                b = 1;
+                b = TRUE;
             } else {
-                b = 0;
+                b = FALSE;
             }
-            if ((a != 0 && b == 0) || (a == 0 && b != 0)) {
+            if ((a != FALSE && b == FALSE) || (a == FALSE && b != FALSE)) {
                 func_0210cfbc(&p->mUnk_00, 2, 1);
             }
             if (d < 0) {
@@ -70,14 +70,14 @@ void func_02086a04(void) {
                 s->mUnk_01c->mUnk_70 &= ~1;
                 p->mUnk_4c |= 0x800000;
             } else {
-                g = 0;
+                g = FALSE;
                 h = k >> 12;
                 if (func_0214848c(&v24, &q->mUnk_20) - h > 0) {
-                    g = 1;
+                    g = TRUE;
                 } else if (func_0214848c(&v24, &q->mUnk_2c) - h > 0) {
-                    g = 1;
+                    g = TRUE;
                 }
-                if (g != 0) {
+                if (g != FALSE) {
                     p->mUnk_4c |= 0x800000;
                 } else {
                     p->mUnk_4c &= ~0x800000;
@@ -103,7 +103,7 @@ void func_02086a04(void) {
         for (j = data_0217aed0->mUnk_074[data_021759c0->mUnk_62] + 1; j < data_021759c0->mUnk_3d0; j++) {
             Unk02086250 *t;
             t = data_0217aed0->mUnk_000[data_0217aed0->mUnk_044[j]];
-            if (t != 0) {
+            if (t != NULL) {
                 if (n >= 2) {
                     data_0217aed0->mUnk_0e4[t->mUnk_0c] = 1;
                 }
@@ -115,7 +115,7 @@ void func_02086a04(void) {
         for (j = 0; j < data_021759c0->mUnk_3d0; j++) {
             Unk02086250 *t;
             t = data_0217aed0->mUnk_000[data_0217aed0->mUnk_044[j]];
-            if (t != 0) {
+            if (t != NULL) {
                 if (data_0217aed0->mUnk_054[data_0217aed0->mUnk_074[t->mUnk_0c]] >= 0) {
                     if (n >= 2) {
                         data_0217aed0->mUnk_0e4[t->mUnk_0c] = 1;
@@ -267,7 +267,7 @@ void func_02086250(Unk02012f58 *a) {
     Vec3 v;
     Unk02012f58 *m;
     Unk02086250 *p;
-    s32 f;
+    BOOL f;
     if (func_02061818() != 0 && func_02061818() != 3) {
         return;
     }
@@ -280,7 +280,7 @@ void func_02086250(Unk02012f58 *a) {
     *(u32 *) 0x4000454 = 0;
     for (i = data_021759c0->mUnk_3d0 - 1; i >= 0; i--) {
         p = data_0217aed0->mUnk_000[data_0217aed0->mUnk_044[i]];
-        if (p == 0) {
+        if (p == NULL) {
             continue;
         }
         if (data_0217aed0->mUnk_054[i] <= 0) {
@@ -295,7 +295,7 @@ void func_02086250(Unk02012f58 *a) {
         }
         func_02147288(&p->mUnk_00, a, &v);
         if (v.z >= 0) {
-            f = 0;
+            f = FALSE;
         } else {
             m = func_02076cc4();
             t = (s32) (((s64) v.x * m->mUnk_00.x + (s64) v.z * m->mUnk_18.z) >> 12);
@@ -305,12 +305,12 @@ void func_02086250(Unk02012f58 *a) {
             u = func_02147f34(u, z);
             t = (s32) ((((s64) t << 19) + 0x800) >> 12);
             u = (s32) (((s64) u * 0x60000 + 0x800) >> 12);
-            f = 1;
+            f = TRUE;
         }
-        if (f == 0) {
+        if (f == FALSE) {
             continue;
         }
-        if (p->mUnk_1c->mUnk_00[3].mUnk_0c != 0) {
+        if (p->mUnk_1c->mUnk_00[3].mUnk_0c != NULL) {
             func_02086098(&p->mUnk_1c->mUnk_00[3], p, a, data_021659a8, data_021659a0, h, t, u, data_021659bc,
                           data_021659b0, func_02087ab0);
         }

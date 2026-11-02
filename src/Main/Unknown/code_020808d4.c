@@ -6,14 +6,14 @@
 #include "code_02147cd8.h"
 
 void func_02080ac0(Unk0208001c *p) {
-    if (p->mUnk_14 == 0) {
+    if (p->mUnk_14 == NULL) {
         p->mUnk_14 = p->mUnk_04;
         p->mUnk_18 = 0;
     }
 }
 
 void func_02080908(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c) {
-    Unk02175620_bc *r = 0;
+    Unk02175620_bc *r = NULL;
     u16 i;
     u16 j;
     s32 k;
@@ -41,7 +41,7 @@ void func_02080908(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c) {
         }
     }
     for (j = 0; j < 3; j++) {
-        if (v2[j] != 0) {
+        if (v2[j] != NULL) {
             func_021484d0(v2[j]->mUnk_20, a, &w);
             if ((s64) w.x * w.x + (s64) w.y * w.y + (s64) w.z * w.z >= 0x10) {
                 func_02039860(&w, &w);
@@ -56,7 +56,7 @@ void func_02080908(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c) {
     p->mUnk_00 = r;
     p->mUnk_04 = r;
     p->mUnk_08 = data_021557ec;
-    p->mUnk_14 = 0;
+    p->mUnk_14 = NULL;
     p->mUnk_18 = 0;
 }
 
@@ -64,6 +64,6 @@ void func_020808d4(Unk0208001c *p, Unk02175620_bc *a) {
     p->mUnk_04 = a;
     p->mUnk_00 = p->mUnk_04;
     p->mUnk_08 = data_021557ec;
-    p->mUnk_14 = 0;
+    p->mUnk_14 = NULL;
     p->mUnk_18 = 0;
 }

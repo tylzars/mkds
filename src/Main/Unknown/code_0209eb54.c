@@ -146,11 +146,11 @@ void func_0209ec80(void *a, Unk0209ec80 *b) {
 }
 
 u32 func_0209ec60(void) {
-    return func_0209bf1c(CreatePicture1AndPicture2, func_0209efb4, 0);
+    return func_0209bf1c(CreatePicture1AndPicture2, func_0209efb4, NULL);
 }
 
 u32 func_0209ec44(void) {
-    return func_0209bf48(0, func_0209ec80, 0);
+    return func_0209bf48(NULL, func_0209ec80, NULL);
 }
 
 void CreatePuddle(void *a) {

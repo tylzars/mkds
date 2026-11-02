@@ -48,19 +48,19 @@ void func_0203ca38(void) {
             }
         }
     }
-    if (gCourseMap->mUnk_44 != 0) {
+    if (gCourseMap->mUnk_44 != NULL) {
         func_0203d9d4();
     } else {
-        s32 t = 0;
+        BOOL t = FALSE;
         switch (data_021759c0->mUnk_00c) {
             case 1:
             case 2:
             case 6:
-                t = 1;
+                t = TRUE;
                 break;
             case 0:
                 if (func_02040bc0() != 0) {
-                    t = 1;
+                    t = TRUE;
                 }
                 break;
         }
@@ -85,15 +85,15 @@ void func_0203ca38(void) {
         func_0203cd14();
     }
     if (data_021759c0->mUnk_08 == 1) {
-        s32 f = 0;
+        BOOL f = FALSE;
         switch (data_0217561c->mUnk_000[0].mUnk_14) {
             case 1:
             case 2:
             case 3:
-                f = 1;
+                f = TRUE;
                 break;
         }
-        if (f == 0) {
+        if (f == FALSE) {
             return;
         }
         if (data_0217561c->mUnk_4cc == 0) {
@@ -118,29 +118,29 @@ void func_0203cd04(u16 a) {
 // r4, r2, r0 after the constant) and keeps the data_021759c0 pointer in r3, the flag in ip and the counter value in r3
 // / r2 differently; ours is 0x298 bytes
 void func_0203cd14(void) {
-    s32 g = 0;
+    BOOL g = FALSE;
     s32 k = 2;
     Unk021759c0 *d = data_021759c0;
     s8 v = d->mUnk_62;
     u16 w;
     u32 v1;
     Unk0217561c_14 *p;
-    s32 h;
+    BOOL h;
     if (v < 0) {
         return;
     }
     w = v;
     v1 = w * 0x8c;
     p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + v1);
-    h = 0;
+    h = FALSE;
     switch (p->mUnk_00) {
         case 1:
         case 2:
         case 3:
-            h = 1;
+            h = TRUE;
             break;
     }
-    if (h != 0) {
+    if (h != FALSE) {
         if ((p->mUnk_30 & 0x10) != 0) {
             data_0217561c->mUnk_4fa++;
             if (data_0217561c->mUnk_4fa <= data_021759c0->mUnk_038) {
@@ -175,31 +175,31 @@ void func_0203cd14(void) {
     }
     if ((d->mUnk_044 & 2) != 0) {
         if (func_0207a574() != 0) {
-            g = 1;
+            g = TRUE;
         }
     }
-    if (g == 0) {
+    if (g == FALSE) {
         if ((data_021759c0->mUnk_044 & 4) != 0) {
             if (func_0207a538() != 0) {
                 k = 3;
-                g = 1;
+                g = TRUE;
             }
         }
     }
-    if (g == 0) {
+    if (g == FALSE) {
         if ((data_021759c0->mUnk_044 & 8) != 0) {
             if (func_0207a4fc() != 0) {
-                g = 1;
+                g = TRUE;
             }
         }
     }
-    if (g == 0) {
+    if (g == FALSE) {
         if (func_0205e1c4() != 0) {
             k = 4;
-            g = 1;
+            g = TRUE;
         }
     }
-    if (g == 0) {
+    if (g == FALSE) {
         return;
     }
     func_0203e788((u16) data_021759c0->mUnk_62, k);
@@ -209,7 +209,7 @@ void func_0203cd14(void) {
 // iteration and keeps the counter and index in r4 and r5; ours (0xb8 bytes) holds the byte in a register across the
 // loop
 s32 func_0203cfb4(void) {
-    s32 r = 1;
+    BOOL r = TRUE;
     Unk0217561c *d = data_0217561c;
     Unk021759c0 *e;
     if (d->mUnk_4cc != 0) {
@@ -285,14 +285,14 @@ void func_0203d078(void) {
 // r7 where the original keeps it in r1 for the first loop head, and r4/r5/r6/sl/fp are rotated
 void func_0203d21c(void) {
     s32 v = -1;
-    s32 f = 0;
+    BOOL f = FALSE;
     Unk021759c0 *d = data_021759c0;
     s32 m = d->mUnk_08;
     switch (m) {
         case 2:
         case 3:
             if (d->mUnk_58 != 0) {
-                f = 1;
+                f = TRUE;
             }
             break;
     }
@@ -321,7 +321,7 @@ void func_0203d21c(void) {
                         func_0205d974(i);
                     }
                 }
-                if (f != 0) {
+                if (f != FALSE) {
                     if (w == 1) {
                         v = data_021759c0->mUnk_68[i].mUnk_08.mUnk_04;
                     }
@@ -333,10 +333,10 @@ void func_0203d21c(void) {
         case 2: {
             u32 i;
             s32 e;
-            if (f != 0) {
+            if (f != FALSE) {
                 for (i = 0; i < d->mUnk_3d0; i = (u16) (i + 1)) {
                     if (data_0217561c->mUnk_000[i].mUnk_14 == 1) {
-                        if (f != 0) {
+                        if (f != FALSE) {
                             if (v == -1) {
                                 v = d->mUnk_68[i].mUnk_08.mUnk_04;
                             }
@@ -347,14 +347,14 @@ void func_0203d21c(void) {
             for (i = 0; i < data_021759c0->mUnk_3d0; i = (u16) (i + 1)) {
                 data_0217561c->mUnk_000[i].mUnk_44 |= 2;
                 if (data_0217561c->mUnk_000[i].mUnk_14 == 1) {
-                    if (f != 0) {
+                    if (f != FALSE) {
                         e = v == data_021759c0->mUnk_68[i].mUnk_08.mUnk_04 ? 1 : 0;
                     } else {
                         e = 1;
                     }
                     func_0205d88c(i, 1);
                 } else {
-                    if (f != 0) {
+                    if (f != FALSE) {
                         e = v == data_021759c0->mUnk_68[i].mUnk_08.mUnk_04 ? 1 : 0;
                     } else {
                         e = 0;
@@ -370,7 +370,7 @@ void func_0203d21c(void) {
             break;
         }
     }
-    if (f != 0) {
+    if (f != FALSE) {
         func_0205d558(v);
     }
     data_0217561c->mUnk_4cc = 1;

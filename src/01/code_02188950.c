@@ -121,26 +121,26 @@ void func_ov001_021889c8(Unk02188950 *a) {
 }
 
 void func_ov001_02188998(Unk02188950 *a, Vec3 *b) {
-    if (b != 0) {
+    if (b != NULL) {
         a->mUnk_1ac = *b;
         a->mUnk_188 = *b;
     }
 }
 
 void func_ov001_02188980(Unk02188950 *a, Vec3 *b) {
-    if (b != 0) {
+    if (b != NULL) {
         a->mUnk_1ac = *b;
     }
 }
 
 void func_ov001_02188968(Unk02188950 *a, Vec3 *b) {
-    if (b != 0) {
+    if (b != NULL) {
         a->mUnk_188 = *b;
     }
 }
 
 void func_ov001_02188950(Unk02188950 *a, Vec3 *b) {
-    if (b != 0) {
+    if (b != NULL) {
         a->mUnk_1c8 = *b;
     }
 }

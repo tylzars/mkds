@@ -23,5 +23,5 @@ void func_ov000_0219490c(Unk0218f960 *a, u32 b);
 u32 func_ov000_02194934(Unk0218f960 *a, u32 b, Unk02194934 **c);
 Unk02194934 *func_ov000_0219496c(Unk0218f960 *a, s32 b);
 s32 func_ov000_02194a0c(Unk0218f960 *a, Unk021937c0Node *b, const u8 *c);
-s32 func_ov000_02194af4(Unk0218f960 *a);
+BOOL func_ov000_02194af4(Unk0218f960 *a);
 void func_ov000_02194b4c(Unk02194934 *a);

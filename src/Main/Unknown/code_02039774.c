@@ -10,7 +10,7 @@ static inline u32 func_020399a8_inline(void) {
 
 void func_02039c7c(void) {
     data_02175614.mUnk_00 = 1;
-    data_02175614.mUnk_04 = 0;
+    data_02175614.mUnk_04 = NULL;
 }
 
 void func_02039bd4(void) {
@@ -72,7 +72,7 @@ void func_02039abc(u32 a, s32 b) {
         func_0200fd1c();
     }
     data_02175614.mUnk_00 = a;
-    if (data_02175614.mUnk_04 == 0) {
+    if (data_02175614.mUnk_04 == NULL) {
         return;
     }
     switch (a) {

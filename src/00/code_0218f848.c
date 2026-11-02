@@ -15,9 +15,9 @@ u32 func_ov000_0218f848(Unk0218f960 *a, s32 b, s32 c) {
     Unk0218f960 p;
     u32 r;
     s32 i;
-    a->mUnk_00 = 0;
+    a->mUnk_00 = NULL;
     p.mUnk_00 = func_ov000_021a3690(0x490);
-    if (p.mUnk_00 == 0) {
+    if (p.mUnk_00 == NULL) {
         return 1;
     }
     memset(p.mUnk_00, 0, 0x490);
@@ -31,15 +31,15 @@ u32 func_ov000_0218f848(Unk0218f960 *a, s32 b, s32 c) {
     p.mUnk_00->mUnk_470 = c;
     if (func_ov000_02194af4(&p) == 0) {
         func_ov000_021a3668(p.mUnk_00);
-        p.mUnk_00 = 0;
+        p.mUnk_00 = NULL;
         return 1;
     }
     p.mUnk_00->mUnk_420 = 0;
     for (i = 0; i < 6; i++) {
-        p.mUnk_00->mUnk_1a4[i].mUnk_00 = 0;
+        p.mUnk_00->mUnk_1a4[i].mUnk_00 = NULL;
         p.mUnk_00->mUnk_1a4[i].mUnk_04 = 0;
     }
-    p.mUnk_00->mUnk_460 = 0;
+    p.mUnk_00->mUnk_460 = NULL;
     func_ov000_0219690c(&p, data_ov000_021b2718);
     r = func_ov000_0218f654(&p);
     if (r != 0) {

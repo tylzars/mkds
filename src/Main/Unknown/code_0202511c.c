@@ -3,15 +3,15 @@
 u32 func_0202511c(s32 a, void *c) {
     Unk0215316c *b = (Unk0215316c *) c;
     enum { K0 } r;
-    s32 f;
+    BOOL f;
     s32 q;
-    s32 s;
-    s32 t;
+    BOOL s;
+    BOOL t;
     Unk0215316c v1;
     Unk021759c0_28 *p;
 
     r = 0x36;
-    f = 0;
+    f = FALSE;
     switch (a) {
         case 2:
             switch (data_021759c0->mUnk_00c) {
@@ -19,15 +19,15 @@ u32 func_0202511c(s32 a, void *c) {
                 case 2:
                     q = data_021759c0->mUnk_08;
                     r = func_0202553c(data_021759c0->mUnk_00, b);
-                    f = 1;
+                    f = TRUE;
                     if (q == 4) {
                         p = &data_021759c0->mUnk_28_view;
-                        s = 0;
+                        s = FALSE;
                         if (p->mUnk_06 == 4) {
                             b->mUnk_00[1] = 0x2a;
-                            s = 1;
+                            s = TRUE;
                         }
-                        if (s == 0) {
+                        if (s == FALSE) {
                             switch (p->mUnk_07) {
                                 case 1:
                                     b->mUnk_00[1] = 0x2c;
@@ -38,7 +38,7 @@ u32 func_0202511c(s32 a, void *c) {
                                     break;
                             }
                         }
-                        t = 1;
+                        t = TRUE;
                         switch (p->mUnk_06) {
                             case 9:
                             case 10:
@@ -59,10 +59,10 @@ u32 func_0202511c(s32 a, void *c) {
                             case 0x31:
                                 break;
                             default:
-                                t = 0;
+                                t = FALSE;
                                 break;
                         }
-                        if (t != 0) {
+                        if (t != FALSE) {
                             b->mUnk_00[3] = 0x22;
                         }
                     }
@@ -94,7 +94,7 @@ u32 func_0202511c(s32 a, void *c) {
                         r = 6;
                     } else {
                         *b = data_0215316c[r];
-                        f = 1;
+                        f = TRUE;
                         func_0202553c(data_021759c0->mUnk_00, &v1);
                         b->mUnk_00[2] = v1.mUnk_00[2];
                     }
@@ -129,7 +129,7 @@ u32 func_0202511c(s32 a, void *c) {
         case 10:
             r = 0x29;
             *b = data_0215316c[r];
-            f = 1;
+            f = TRUE;
             b->mUnk_00[1] = func_0211127c();
             break;
         case 8:
@@ -150,8 +150,8 @@ u32 func_0202511c(s32 a, void *c) {
         case 14:
             r = 0x30;
             *b = data_0215316c[r];
-            f = 1;
-            if (data_0217d060 != 0) {
+            f = TRUE;
+            if (data_0217d060 != NULL) {
                 b->mUnk_00[1] = 0xff;
                 b->mUnk_00[2] = 0xff;
                 b->mUnk_00[3] = 0xff;
@@ -161,7 +161,7 @@ u32 func_0202511c(s32 a, void *c) {
             r = 0x33;
             break;
     }
-    if (f == 0 && b != 0) {
+    if (f == FALSE && b != NULL) {
         *b = data_0215316c[r];
     }
     return r;
@@ -291,7 +291,7 @@ u32 func_0202553c(u32 a, void *c) {
             r = 51;
             break;
     }
-    if (b != 0) {
+    if (b != NULL) {
         *b = data_0215316c[r];
     }
     return r;

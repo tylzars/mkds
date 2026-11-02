@@ -78,7 +78,7 @@ void func_02029330(void) {
         a = func_02025da4(d->mUnk_098, d->mUnk_0a4, d->mUnk_0a8);
         b = func_02025df4(gSelectKart->mUnk_098, gSelectKart->mUnk_0a4);
         d = gSelectKart;
-        if (d->mUnk_104 != 0) {
+        if (d->mUnk_104 != FALSE) {
             func_0202b554(a, b);
         } else {
             p = &d->mUnk_048;
@@ -97,7 +97,7 @@ void func_02029330(void) {
 }
 
 void func_0202941c(s32 a) {
-    if (gSelectKart->mUnk_104 != 0) {
+    if (gSelectKart->mUnk_104 != FALSE) {
         func_0202b7c0(a);
     }
 }

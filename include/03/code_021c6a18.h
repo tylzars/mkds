@@ -24,7 +24,7 @@ typedef struct Unk021da1f8 {
 extern u8 data_ov003_021d7278[];
 
 // Declared here until the code that defines them is decompiled.
-int func_ov003_021c6764(void);
+BOOL func_ov003_021c6764(void);
 void func_ov003_021c6914(void);
 void func_ov003_021c696c(void);
 void func_ov003_021c6a18(void);

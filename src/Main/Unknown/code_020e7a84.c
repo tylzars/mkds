@@ -38,12 +38,12 @@ void func_020e8790(void) {
     data_0217b8e8 = 0;
     if (data_0217b890 != 4) {
         p = data_0217baec[data_0217b890].mUnk_00;
-        if (p != 0) {
+        if (p != NULL) {
             p->mUnk_00c = 0;
             p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
         }
         p = data_0217baf0[data_0217b890].mUnk_00;
-        if (p != 0) {
+        if (p != NULL) {
             p->mUnk_00c = 0;
             p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
         }
@@ -210,12 +210,12 @@ void func_020e7fa8(void) {
     data_0217b8e8 = 0;
     if (data_0217b890 != 4) {
         p = data_0217baec[data_0217b890].mUnk_00;
-        if (p != 0) {
+        if (p != NULL) {
             p->mUnk_00c = 0;
             p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
         }
         p = data_0217baf0[data_0217b890].mUnk_00;
-        if (p != 0) {
+        if (p != NULL) {
             p->mUnk_00c = 0;
             p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
         }
@@ -330,12 +330,12 @@ void func_020e7b7c(void) {
     data_0217b8e8 = 0;
     if (data_0217b890 != 4) {
         p = data_0217baec[data_0217b890].mUnk_00;
-        if (p != 0) {
+        if (p != NULL) {
             p->mUnk_00c = 0;
             p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
         }
         p = data_0217baf0[data_0217b890].mUnk_00;
-        if (p != 0) {
+        if (p != NULL) {
             p->mUnk_00c = 0;
             p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
         }

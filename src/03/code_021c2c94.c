@@ -40,7 +40,7 @@ void func_ov003_021c2fd4(void) {
     func_ov003_021bf620(data_ov003_021d6fec, func_0214b95c);
     func_ov003_021bf620(data_ov003_021d7004, func_0214c160);
     func_ov003_021bf620(data_ov003_021d701c, func_0214bc9c);
-    data_ov003_021da1a4 = func_ov003_021d14b8(func_ov003_021bf650(a.mUnk_00), 0, 4);
+    data_ov003_021da1a4 = func_ov003_021d14b8(func_ov003_021bf650(a.mUnk_00), NULL, 4);
     *(u16 *) 0x4001008 = (*(u16 *) 0x4001008 & ~3) | 3;
     *(u16 *) 0x400100a = (*(u16 *) 0x400100a & ~3) | 3;
     *(u16 *) 0x400000a = (*(u16 *) 0x400000a & ~3) | 3;

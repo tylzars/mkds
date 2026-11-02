@@ -57,12 +57,12 @@ u32 func_020617d8(void) {
 
 s32 func_020617a8(u32 *a) {
     Unk0217aa54 *b;
-    s32 c;
+    BOOL c;
 
     b = data_0217aa54;
-    c = 0;
+    c = FALSE;
     if (b->mUnk_3c != 0) {
-        c = 1;
+        c = TRUE;
         *a = b->mUnk_04 - b->mUnk_3c;
     }
     return c;
@@ -82,35 +82,35 @@ u16 func_02061768(void) {
     return 0x1e;
 }
 
-s32 func_0206174c(void *v) {
+BOOL func_0206174c(void *v) {
     Unk0217aa08_14 *a = v;
 
     if (a->mUnk_08_0 == 1) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
-s32 func_02061704(void *v, Unk02056bc0 *b) {
+BOOL func_02061704(void *v, Unk02056bc0 *b) {
     Unk0217aa08_14 *a = v;
 
     if (a->mUnk_08_0 != 1) {
-        return 0;
+        return FALSE;
     }
     b->mUnk_02 = a->mUnk_08_8;
     b->mUnk_03 = a->mUnk_08_15;
     b->mUnk_00 = a->mUnk_08_22;
-    return 1;
+    return TRUE;
 }
 
-s32 func_020616c0(void *v, void *b) {
+BOOL func_020616c0(void *v, void *b) {
     Unk0217aa08_14 *a = v;
 
     if (a->mUnk_08_0 != 1) {
-        return 0;
+        return FALSE;
     }
     func_0214d1fc(a->mUnk_0c, b, 0x14);
-    return 1;
+    return TRUE;
 }
 
 s32 func_0206169c(void *v) {

@@ -7,28 +7,28 @@
 
 void func_020b6c74(u32 a, u16 *b, u32 c) {
     u32 n;
-    s32 f;
+    BOOL f;
     u16 *p;
     u16 i;
     u16 v1[10];
     Unk02056bc0 t;
 
-    p = 0;
+    p = NULL;
     n = 0;
     i = 0;
     for (; i < 11; i++) {
         b[i] = 0;
     }
-    f = 0;
+    f = FALSE;
     if (a == 0) {
         if ((u32) data_021759c0->mUnk_68[a].mUnk_08.mUnk_00 <= 3) {
             if ((1 << data_021759c0->mUnk_68[a].mUnk_08.mUnk_00) & 0xd) {
-                f = 1;
+                f = TRUE;
             }
         }
-        if (f != 0) {
+        if (f != FALSE) {
             p = data_021759c0->mUnk_68[a].mUnk_08.mUnk_18;
-            if (p == 0) {
+            if (p == NULL) {
                 return;
             }
             if (c != 0) {
@@ -47,7 +47,7 @@ void func_020b6c74(u32 a, u16 *b, u32 c) {
             }
         }
     }
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
     wcsncpy(b, p, n);

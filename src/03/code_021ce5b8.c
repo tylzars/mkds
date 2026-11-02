@@ -16,7 +16,7 @@ void func_ov003_021ce5b8(Unk021ce5b8 *a) {
 
     d = data_ov003_021da280;
     if (d->mUnk_1b81 != 0) {
-        if (d->mUnk_1370 != 0) {
+        if (d->mUnk_1370 != NULL) {
             d->mUnk_1370(d->mUnk_1b81);
         }
         return;
@@ -43,7 +43,7 @@ void func_ov003_021ce5b8(Unk021ce5b8 *a) {
                     if (q->mUnk_1300[j].mUnk_06 != 0) {
                         break;
                     }
-                    if (q->mUnk_1370 != 0) {
+                    if (q->mUnk_1370 != NULL) {
                         q->mUnk_1370(1);
                         return;
                     }
@@ -83,7 +83,7 @@ void func_ov003_021ce6ac(Unk021ce5b8 *a) {
                 if ((e->mUnk_15 & 1) == 0) {
                     goto next;
                 }
-                if (d->mUnk_1370 != 0) {
+                if (d->mUnk_1370 != NULL) {
                     d->mUnk_1370(1);
                 }
                 return;

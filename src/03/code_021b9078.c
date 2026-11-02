@@ -40,7 +40,7 @@ s32 func_ov003_021b9078(s32 a, Unk021d7c54 *b, s32 *c, Unk021b916c *d, s32 e) {
 }
 
 s32 func_ov003_021b9134(s32 a) {
-    s32 r = 0;
+    BOOL r = FALSE;
     if (a == -1) {
         data_ov003_021d680c = a;
         return r;

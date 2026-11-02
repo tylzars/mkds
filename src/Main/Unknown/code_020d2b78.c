@@ -20,24 +20,24 @@ void func_020d2d94(void) {
     v4 = data_0217b4f0->mUnk_134;
     v1 = 0;
     do {
-        if (*v2 != 0) {
+        if (*v2 != NULL) {
             v3 = *(void ***) ((s32) *v2 + 0x28);
-            if (v3 != 0) {
-                *v3 = 0;
+            if (v3 != NULL) {
+                *v3 = NULL;
             }
-            *v2 = 0;
+            *v2 = NULL;
         }
         v2 = v2 + 1;
         v1 = v1 + 1;
     } while (v1 < 0x18);
     v1 = 0;
     do {
-        if (*v4 != 0) {
+        if (*v4 != NULL) {
             v3 = (*v4)->mUnk_24;
-            if (v3 != 0) {
-                *v3 = 0;
+            if (v3 != NULL) {
+                *v3 = NULL;
             }
-            *v4 = 0;
+            *v4 = NULL;
         }
         v4 = v4 + 1;
         v1 = v1 + 1;
@@ -86,13 +86,13 @@ s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
                 q->mUnk_50 = *b;
                 q->mUnk_5c = *c;
                 q->mUnk_44 = f;
-                r = func_020d6a54(q, p, 0);
+                r = func_020d6a54(q, p, NULL);
                 if (r > a) {
                     a = r;
                 }
             }
         }
-        if (a != 0 && g != 0) {
+        if (a != 0 && g != NULL) {
             g->x = mx.x + mn.x;
             g->y = mx.y + mn.y;
             if (g->y < 0) {
@@ -114,7 +114,7 @@ u32 func_020d2c20(void) {
 
 u32 func_020d2be8(void) {
     int v1;
-    if (data_0217b4d8 != 0) {
+    if (data_0217b4d8 != NULL) {
         return data_0217b4d8->mUnk_04;
     }
     v1 = *(s32 *) &data_0217b4e4;
@@ -126,7 +126,7 @@ u32 func_020d2be8(void) {
 
 u32 func_020d2bb0(void) {
     int v1;
-    if (data_0217b4d8 != 0) {
+    if (data_0217b4d8 != NULL) {
         return data_0217b4d8->mUnk_08;
     }
     v1 = *(s32 *) &data_0217b4e4;
@@ -138,7 +138,7 @@ u32 func_020d2bb0(void) {
 
 u32 func_020d2b78(void) {
     int v1;
-    if (data_0217b4d8 != 0) {
+    if (data_0217b4d8 != NULL) {
         return data_0217b4d8->mUnk_0c;
     }
     v1 = *(s32 *) &data_0217b4e4;

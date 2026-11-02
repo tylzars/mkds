@@ -33,7 +33,7 @@ void func_020e54e4(void *d, void *e, u32 f, u32 g) {
     b = 0x1e;
     func_01ff9048(0x14, &b, 1);
     func_01ff9048(0x19, d, 0xc);
-    if (e != 0) {
+    if (e != NULL) {
         u32 w;
         w = *(u32 *) e;
         c[0] = w;
@@ -63,7 +63,7 @@ void func_020e53ac(Unk020e516c *p, void *d, u32 e, u32 f) {
     b = 0x1e;
     func_01ff9048(0x14, &b, 1);
     func_01ff9048(0x19, p, 0xc);
-    if (d != 0) {
+    if (d != NULL) {
         u32 w;
         w = *(u32 *) d;
         c[0] = w;
@@ -97,7 +97,7 @@ void func_020e52bc(void) {
     Unk020e52bc_c *c;
 
     func_020ea588((void **) &gObjShadow,
-                  (void *) FindMainRaceOrMainEffectMapObjFile(gObjShadowNsbmdName), 0);
+                  (void *) FindMainRaceOrMainEffectMapObjFile(gObjShadowNsbmdName), NULL);
     func_020849c0(gObjShadow, 0x3f);
     func_020849b0(gObjShadow, 0);
     a = gObjShadow->mUnk_004;
@@ -116,13 +116,13 @@ s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c) {
     Vec3 buf1;
     Vec3 s;
     s32 d;
-    s32 r;
+    BOOL r;
 
     s = *v;
-    r = 0;
+    r = FALSE;
     s.y = s.y + 0x1999;
-    if (func_01ffdee4(&s, 0, 0, 0xa000, 8, -2, 0, &buf1, 0, 0, 0, 0, 0, 0) != 0) {
-        r = 1;
+    if (func_01ffdee4(&s, NULL, 0, 0xa000, 8, -2, NULL, &buf1, NULL, NULL, NULL, NULL, NULL, NULL) != 0) {
+        r = TRUE;
         func_020d7b88((Vec3 *) &buf1, &buf2);
         func_01ffccd0(a, &buf2);
         d = b / 10;

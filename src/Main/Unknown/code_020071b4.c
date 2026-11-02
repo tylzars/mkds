@@ -60,15 +60,15 @@ u32 func_020072c0(void) {
         if (func_0200aff8(&v8->mUnk_00) == 0) {
             if (v5->mUnk_00 != 0) {
                 v7 = v5->mUnk_30;
-                v6 = 0;
+                v6 = NULL;
                 for (i = 0; i < 4; v7++, i++) {
                     if (v7->mUnk_0c == 2) {
-                        if (v6 == 0 || v6->mUnk_00 > v7->mUnk_00) {
+                        if (v6 == NULL || v6->mUnk_00 > v7->mUnk_00) {
                             v6 = v7;
                         }
                     }
                 }
-                if (v6 == 0) {
+                if (v6 == NULL) {
                     func_0200fd1c();
                 }
                 v5->mUnk_00 = 0;
@@ -76,7 +76,7 @@ u32 func_020072c0(void) {
                 v6->mUnk_00 = v10 & ~0x1f;
                 v8->mUnk_10 = v6;
                 v8->mUnk_14 = v5;
-                func_0200aeec(&v8->mUnk_00, (void *) func_02007478, 0, 4);
+                func_0200aeec(&v8->mUnk_00, (void *) func_02007478, NULL, 4);
             }
         }
         return 21;

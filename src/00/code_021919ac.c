@@ -80,7 +80,7 @@ u32 func_ov000_02191e58(Unk0218f960 *p, Unk021919ac_node *n) {
         return 3;
     }
     x = func_ov000_021a8f84(data_ov000_021b2ae8);
-    if (x == 0) {
+    if (x == NULL) {
         func_ov000_021965a0(p, 5, data_ov000_021b2e9c);
         func_ov000_02190f4c(p, 3, 1);
         return 3;
@@ -89,7 +89,7 @@ u32 func_ov000_02191e58(Unk0218f960 *p, Unk021919ac_node *n) {
     s.f.mUnk_01 = 2;
     s.f.mUnk_04 = **x->mUnk_0c;
     if (s.f.mUnk_04 == 0) {
-        func_0213442c(data_ov000_021b2ed0, data_ov000_021b2b88, 0, 0x90);
+        func_0213442c(data_ov000_021b2ed0, data_ov000_021b2b88, NULL, 0x90);
     }
     s.f.mUnk_02 = 0xcc74;
     if (func_ov000_0218e4b4(o->mUnk_1d4, &s, 8) == -1) {
@@ -141,7 +141,7 @@ u32 func_ov000_02191cb0(Unk0218f960 *p, const u8 *a, const u8 *b, const u8 *c, c
     func_ov000_02196914((u8 *) o->mUnk_177, d, 0x1f);
     func_ov000_0218e850((s8 *) o->mUnk_144);
     q = func_ov000_021a3690(0x308);
-    if (q == 0) {
+    if (q == NULL) {
         func_ov000_02196590(p, data_ov000_021b2cdc);
         return 1;
     }
@@ -151,7 +151,7 @@ u32 func_ov000_02191cb0(Unk0218f960 *p, const u8 *a, const u8 *b, const u8 *c, c
         func_ov000_02196914((u8 *) q->mUnk_0c2, e, 0x100);
         func_ov000_02196914((u8 *) q->mUnk_1c2, f, 0x100);
     }
-    if (g != 0) {
+    if (g != NULL) {
         func_ov000_02196914(q->mUnk_2c2, g, 0x41);
     }
     r = func_ov000_021938cc(p, 0, (s32) q, (s32 *) &n, j, k, l);
@@ -165,7 +165,7 @@ u32 func_ov000_02191cb0(Unk0218f960 *p, const u8 *a, const u8 *b, const u8 *c, c
         func_ov000_02190ff8(p, 0);
         return r;
     }
-    if (n->mUnk_08 != 0) {
+    if (n->mUnk_08 != NULL) {
         r = func_ov000_0218f2e8(p, n->mUnk_18);
         if (r != 0) {
             return r;
@@ -204,7 +204,7 @@ u32 func_ov000_021919ac(Unk0218f960 *p, Unk021919ac_q *q) {
     func_ov000_0218e0fc(b, strlen(b), a);
     if (o->mUnk_100 != 0) {
         func_ov000_0219488c(p, o->mUnk_110, o->mUnk_144, (void **) &h);
-        if (h != 0) {
+        if (h != NULL) {
             o->mUnk_19c = h->mUnk_04;
             o->mUnk_1a0 = h->mUnk_00;
         }

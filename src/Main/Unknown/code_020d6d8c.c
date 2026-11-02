@@ -28,7 +28,7 @@ void func_020d7d18(Unk020d849c *p, s32 a, Vec3 **b, s32 c) {
     p->mUnk_5c = 0;
 }
 
-s32 func_020d7c84(Unk020d849c *p, s32 a, Vec3 **b) {
+BOOL func_020d7c84(Unk020d849c *p, s32 a, Vec3 **b) {
     s32 v;
     p->mUnk_5c = p->mUnk_5c - 0x1000000;
     p->mUnk_5c = (s32) (((s64) p->mUnk_5c * (s64) p->mUnk_00.mUnk_30) >> 12);
@@ -44,9 +44,9 @@ s32 func_020d7c84(Unk020d849c *p, s32 a, Vec3 **b) {
     }
     p->mUnk_58 = v;
     if (p->mUnk_5c >= 0x1000000) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 #pragma thumb off

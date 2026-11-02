@@ -27,9 +27,9 @@
 #include "code_02004dc0.h"
 
 void func_020367c4(void) {
-    if (data_021755a0 != 0) {
+    if (data_021755a0 != NULL) {
         func_02037a04();
-        if (data_021755a0->mUnk_b8 != 0) {
+        if (data_021755a0->mUnk_b8 != NULL) {
             data_021755a0->mUnk_b8();
         }
     }

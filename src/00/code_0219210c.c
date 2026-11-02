@@ -1,7 +1,7 @@
 #include "00/code_0219210c.h"
 
 void func_ov000_0219210c(int a) {
-    if (*(u32 **) (a + 0xc) != (u32 *) 0x0) {
+    if (*(u32 **) (a + 0xc) != NULL) {
         func_ov000_021a3668((void *) (**(u32 **) (a + 0xc)));
         **(u32 **) (a + 0xc) = 0;
         func_ov000_021a3668((void *) (*(u32 *) (*(s32 *) (a + 0xc) + 4)));

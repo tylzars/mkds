@@ -20,9 +20,9 @@ void func_ov001_021a651c(void) {
     Unk020b4934 *v2;
     Unk02021dc8 *v3;
     Unk020b4a44 *v4[1];
-    v2 = 0;
-    v3 = 0;
-    v4[0] = 0;
+    v2 = NULL;
+    v3 = NULL;
+    v4[0] = NULL;
     v1 = FindSceneFile(data_ov001_021a993c);
     LoadNcgrData(&v2, v1);
     v1 = FindSceneFile(data_ov001_021a9938);

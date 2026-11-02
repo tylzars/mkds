@@ -37,7 +37,7 @@ void func_020f50b4(Unk020f5240 *a);
 void *func_020f5108(void *a, Unk020f5240 *b, void *c);
 void func_020f518c(Unk020f5240 *a);
 s32 func_020f5240(Unk020eda5c *a, Unk020f5240 *b);
-s32 func_020f5324(void *a0, s32 b);
+BOOL func_020f5324(void *a0, s32 b);
 void func_020f53d0(Unk020f5d6c *a);
 void *func_020f5550(void *a, Unk020f5d6c *b, void *c);
 void func_020f5614(void *a0, s32 b, void *c0);

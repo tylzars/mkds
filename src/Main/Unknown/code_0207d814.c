@@ -77,7 +77,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
     s32 n = a->mUnk_14;
     u16 m = b->mUnk_04;
     u16 i;
-    s32 f;
+    BOOL f;
     s32 v;
     s32 d;
     s32 *k = &a->mUnk_1c;
@@ -87,14 +87,14 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
     const s32 *t;
 
     a->mUnk_18 = 0;
-    f = 0;
+    f = FALSE;
     v = data_021759c0->mUnk_68[m].mUnk_08.mUnk_00;
     if ((u32) v <= 3) {
         if ((1 << v) & 0xd) {
-            f = 1;
+            f = TRUE;
         }
     }
-    if (f != 0) {
+    if (f != FALSE) {
         return;
     }
     if (k[0] > 2) {
@@ -205,7 +205,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
 }
 
 void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
-    s32 f;
+    BOOL f;
     s32 v;
     s32 t;
     s32 s;
@@ -214,14 +214,14 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     if (b->mUnk_04 == func_02061f90()) {
         a->mUnk_08 = 0;
         a->mUnk_18 = 0;
-        f = 0;
+        f = FALSE;
         v = data_021759c0->mUnk_68[b->mUnk_04].mUnk_08.mUnk_00;
         if ((u32) v <= 3) {
             if ((1 << v) & 0xd) {
-                f = 1;
+                f = TRUE;
             }
         }
-        if (f != 0) {
+        if (f != FALSE) {
             a->mUnk_14 = func_0203c8dc(b->mUnk_04);
         } else {
             a->mUnk_14 = func_020854c0(b->mUnk_04);
@@ -274,9 +274,9 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
 }
 
 void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
-    s32 f = 0;
+    BOOL f = FALSE;
     s32 v;
-    s32 r6;
+    BOOL r6;
     s32 r5;
     s32 r4;
     s32 t;
@@ -286,13 +286,13 @@ void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     v = data_021759c0->mUnk_68[b->mUnk_04].mUnk_08.mUnk_00;
     if ((u32) v <= 3) {
         if ((1 << v) & 0xd) {
-            f = 1;
+            f = TRUE;
         }
     }
-    if (f != 0) {
+    if (f != FALSE) {
         return;
     }
-    r6 = 0;
+    r6 = FALSE;
     r = func_0208537c();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     r4 = (s16) (u16) (r->mUnk_00 >> 52);
@@ -305,9 +305,9 @@ void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     if (r4 < t || t >= 0x1000) {
         a->mUnk_2c = 1;
         a->mUnk_30 = func_0207d8e4(u->mUnk_154);
-        r6 = 1;
+        r6 = TRUE;
     }
-    if (r6 != 0) {
+    if (r6 != FALSE) {
         return;
     }
     t = data_usa_0217ae2c[r5];

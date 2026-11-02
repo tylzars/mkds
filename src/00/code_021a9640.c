@@ -19,7 +19,7 @@ void func_ov000_021a9640(Unk021a998c *a) {
     b = c->mUnk_568;
     d = (b * 2) / 2;
     e = data_ov000_021b63a4(b);
-    if (e == 0) {
+    if (e == NULL) {
         c->mUnk_429 = 9;
         return;
     }
@@ -29,7 +29,7 @@ void func_ov000_021a9640(Unk021a998c *a) {
     e[b - 0x31] = 0;
     func_0214d1fc(c->mUnk_000->mUnk_20, e + b - 0x30, 0x30);
     f = (u16 *) data_ov000_021b63a4(d * 8);
-    if (f == 0) {
+    if (f == NULL) {
         data_ov000_021b63ac(e);
         c->mUnk_429 = 9;
         return;
@@ -50,7 +50,7 @@ void func_ov000_021a9640(Unk021a998c *a) {
         func_ov000_021ac7e8(f, g, h, d, i);
     }
     j = data_ov000_021b63a4(b + 0x49);
-    if (j == 0) {
+    if (j == NULL) {
         data_ov000_021b63ac(e);
         data_ov000_021b63ac(f);
         c->mUnk_429 = 9;
@@ -76,7 +76,7 @@ void func_ov000_021a9640(Unk021a998c *a) {
         p += 2;
         *k = f[m];
     }
-    func_ov000_021adcec(j, b + 9, 0, 0, a);
+    func_ov000_021adcec(j, b + 9, NULL, 0, a);
     func_ov000_021ab728(c->mUnk_378, j + 5, (u32) b + 4);
     func_ov000_021abca0(c->mUnk_2c0, j + 5, b + 4);
     data_ov000_021b63ac(j);
@@ -94,7 +94,7 @@ void func_ov000_021a9868(Unk021a998c *a) {
     u32 i;
     u16 *h;
     b = data_ov000_021b63a4(0x98);
-    if (b == 0) {
+    if (b == NULL) {
         c->mUnk_429 = 9;
         return;
     }
@@ -109,7 +109,7 @@ void func_ov000_021a9868(Unk021a998c *a) {
     func_ov000_021a9ca8(&c->mUnk_008[4], 0x1c);
     func_0214d1fc(c->mUnk_008, d + 2, 0x20);
     c->mUnk_000 = func_ov000_021ab63c(a->mUnk_1c, a->mUnk_18);
-    if (c->mUnk_000 != 0) {
+    if (c->mUnk_000 != NULL) {
         d[0x22] = 0x20;
         func_0214d1fc(c->mUnk_000, d + 0x23, 0x20);
         d += 0x43;
@@ -144,7 +144,7 @@ void func_ov000_021a9868(Unk021a998c *a) {
     b[6] = (g - 4) >> 16;
     b[7] = (g - 4) >> 8;
     b[8] = g - 4;
-    func_ov000_021adcec(b, g + 5, 0, 0, a);
+    func_ov000_021adcec(b, g + 5, NULL, 0, a);
     func_ov000_021ab728(c->mUnk_378, b + 5, g);
     func_ov000_021abca0(c->mUnk_2c0, b + 5, g);
     data_ov000_021b63ac(b);

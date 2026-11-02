@@ -78,7 +78,7 @@ void func_ov001_021899e4(void) {
             if (func_020b5ae8(pos, &data_ov001_021a9bc0->mUnk_10[count].mUnk_00, var, 1, 1)) {
                 row = func_ov001_0218b2d4((Unk02188950 *) obj);
                 dst = GetRaceNclrNcgr(6)->mNclr->mUnk_0c;
-                res = 0;
+                res = NULL;
                 LocateNclr((Unk020b4a44 **) (&res), (void *) (FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR")));
                 for (k = 0; k < 16; k++) {
                     dst[0x50 + k] = res->mUnk_0c[(row + 2) * 16 + k];

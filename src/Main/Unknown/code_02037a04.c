@@ -182,7 +182,7 @@ void func_02037abc(void *a) {
 
 void func_02037a94(void) {
     func_02039b24();
-    data_021755a0 = 0;
+    data_021755a0 = NULL;
 }
 
 void func_02037a40(void) {
@@ -194,7 +194,7 @@ void func_02037a40(void) {
     if (p->mUnk_0a == 1) {
         func_0214a9d0();
     }
-    if (data_usa_02175584 != 0) {
+    if (data_usa_02175584 != NULL) {
         data_usa_02175584(0);
     }
 }

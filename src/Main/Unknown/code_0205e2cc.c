@@ -25,30 +25,30 @@
 
 Unk0205ec14 *func_0205eda0(void *a) {
     Unk0205ec14 *p = func_02036bec(a, 0xb04);
-    if (p != 0) {
+    if (p != NULL) {
         p->mUnk_00 = -1;
     }
     return p;
 }
 
-s32 func_0205eca4(Unk0205ec14 *a, u8 b, void *c) {
+BOOL func_0205eca4(Unk0205ec14 *a, u8 b, void *c) {
     Unk0217aa08_20_04 e;
     u8 d;
     u8 m;
     d = b / 5;
     m = b % 5;
     if (d != a->mUnk_00) {
-        return 0;
+        return FALSE;
     }
     func_0214d1fc(&data_0217aa08->mUnk_20->mUnk_04[b], &e, 0x24);
     if (e.mUnk_22_0 == 0 || e.mUnk_22_2 == 0) {
-        return 0;
+        return FALSE;
     }
     ((u8 *) c)[0x200] = (a->mUnk_04.mUnk_004 & (1 << m)) != 0;
     if (((u8 *) c)[0x200] != 0) {
         func_0214d1fc(a->mUnk_04.mUnk_008[m], c, 0x200);
     }
-    return 1;
+    return TRUE;
 }
 
 void func_0205ec14(Unk0205ec14 *a, u8 b) {
@@ -75,7 +75,7 @@ void func_0205e900(void) {
     s32 v2;
     u16 k;
     s32 m;
-    s32 f = 0;
+    BOOL f = FALSE;
     s32 t;
     u8 x;
     for (i = 0; i < 12; i++) {
@@ -118,7 +118,7 @@ void func_0205e900(void) {
             } else {
                 func_0214d168(r, 0, 0xb00);
                 func_0205746c(i, &data_0217aa08->mUnk_00->mUnk_2c[2], 2);
-                f = 1;
+                f = TRUE;
             }
             v1 = i * 5;
             v2 = (i + 1) * 5;
@@ -136,7 +136,7 @@ void func_0205e900(void) {
             }
         }
     }
-    if (f != 0) {
+    if (f != FALSE) {
         func_02057ca4(data_0217aa08->mUnk_00);
         if (data_021759d4->mUnk_0c != 0) {
             func_02145d38();
@@ -165,7 +165,7 @@ void func_0205e67c(void) {
         d[j] = -1;
         if (j != func_ov000_0219bb50()) {
             e = func_0212030c(j & 0xff);
-            if (e != 0) {
+            if (e != NULL) {
                 t = func_02060c68(e, 0);
                 if (t != -1) {
                     if (e->mUnk_214 != 0) {
@@ -213,7 +213,7 @@ void func_0205e67c(void) {
 }
 
 static inline s32 func_0205e5c4_inline(void) {
-    if (data_0217aa00 == 0) {
+    if (data_0217aa00 == NULL) {
         return 0;
     }
     return data_0217aa00->mUnk_0000;
@@ -221,23 +221,23 @@ static inline s32 func_0205e5c4_inline(void) {
 
 void func_0205e5c4(s32 a) {
     void (*f)(void);
-    s32 c;
+    BOOL c;
     s32 d;
     if (a != 0) {
-        c = 0;
+        c = FALSE;
         d = func_0205e5c4_inline();
         if (d != 0) {
             if (data_0217aa00->mUnk_0004 != 13) {
-                c = 1;
+                c = TRUE;
             }
         }
-        if (c == 0) {
+        if (c == FALSE) {
             return;
         }
         f = func_0205e900;
     } else {
         d = 0;
-        if (data_0217d384 != 0) {
+        if (data_0217d384 != NULL) {
             if (data_0217d384->mUnk_1f30 != 0) {
                 d = 1;
             }

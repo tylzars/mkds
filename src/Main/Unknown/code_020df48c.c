@@ -22,7 +22,7 @@ void CreateMkdEfBubble(void) {
     void *r;
 
     r = FindCourseMapObjFile("mkd_ef_bubble.nsbmd");
-    func_020ea588(&gMkdEfBubble, r, 0);
+    func_020ea588(&gMkdEfBubble, r, NULL);
     func_02084968(gMkdEfBubble, 0x3f, 2, 0x294a);
     gMkdEfBubbleNsbta = func_02036bec(func_020364e0(func_020364e8()), 0x38);
     func_020ea514(1, gMkdEfBubble, gMkdEfBubbleNsbta, r, FindCourseMapObjFile("mkd_ef_bubble.nsbta"));

@@ -15,7 +15,7 @@
 #include "00/code_021a10b0.h"
 
 s32 func_ov000_0219bb04(u8 **a) {
-    if (data_ov000_021b54c8 == 0) {
+    if (data_ov000_021b54c8 == NULL) {
         return 0;
     }
     *a = data_ov000_021b54c8->mUnk_33c.mUnk_2b8;
@@ -26,7 +26,7 @@ s32 func_ov000_0219bb04(u8 **a) {
 }
 
 s32 func_ov000_0219bac8(u32 a) {
-    if (data_ov000_021b54c8 == 0) {
+    if (data_ov000_021b54c8 == NULL) {
         return 0;
     }
     if ((data_ov000_021b54c8->mUnk_33c.mUnk_2d8 & (1 << a)) != 0) {
@@ -36,7 +36,7 @@ s32 func_ov000_0219bac8(u32 a) {
 }
 
 u32 func_ov000_0219bab4(void) {
-    if (data_ov000_021b54c8 != 0) {
+    if (data_ov000_021b54c8 != NULL) {
         return data_ov000_021b54c8->mUnk_24;
     }
     return 0;
@@ -46,7 +46,7 @@ s32 func_ov000_0219ba20(void) {
     Unk021b54c8 *p;
     u32 v;
     s32 r;
-    if (data_ov000_021b54c8->mUnk_00 != 0) {
+    if (data_ov000_021b54c8->mUnk_00 != NULL) {
         return 0;
     }
     v = (u16) (func_ov000_021a3448(0x4000) + 0xc000);
@@ -64,13 +64,13 @@ s32 func_ov000_0219ba20(void) {
 u32 func_ov000_0219b9d4(u32 a) {
     s32 i;
     void **p;
-    if (data_ov000_021b54c8 == 0) {
+    if (data_ov000_021b54c8 == NULL) {
         return 0;
     }
     i = 0;
     p = data_ov000_021b54d0;
     for (; i < 32; p++, i++) {
-        if (*p != 0 && a == func_ov000_0219887c(*p)[1]) {
+        if (*p != NULL && a == func_ov000_0219887c(*p)[1]) {
             return (u32) data_ov000_021b54d0[i];
         }
     }
@@ -89,7 +89,7 @@ s32 func_ov000_0219b998(void) {
     s32 i = 0;
     void **slot = data_ov000_021b54d0;
     for (; i < 32; slot++, i++) {
-        if (*slot == 0) {
+        if (*slot == NULL) {
             return i;
         }
     }
@@ -114,7 +114,7 @@ void **func_ov000_0219b8fc(u32 a, s32 b) {
         }
     }
     if (c >= b) {
-        return 0;
+        return NULL;
     }
     return func_ov000_0219b958(
         func_ov000_0219b9b4((Unk0219887c *) func_ov000_0219b9d4(data_ov000_021b54c8->mUnk_33c.mUnk_2b8[c])));
@@ -124,13 +124,13 @@ Unk021b5550 *func_ov000_0219b8f0(s32 index) {
     return &data_ov000_021b5550[index];
 }
 
-s32 func_ov000_0219b8bc(u32 a) {
+BOOL func_ov000_0219b8bc(u32 a) {
     s32 b;
 
     for (b = 0; b < 0x20; b++) {
-        if (data_ov000_021b54d0[b] != 0 && a == func_ov000_0219887c(data_ov000_021b54d0[b])[1]) {
-            return 1;
+        if (data_ov000_021b54d0[b] != NULL && a == func_ov000_0219887c(data_ov000_021b54d0[b])[1]) {
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }

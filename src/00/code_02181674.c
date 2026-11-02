@@ -26,18 +26,18 @@ void func_ov000_021816b0(void *a) {
 }
 
 void func_ov000_021816a4(void) {
-    data_ov000_021b4c68 = 0;
+    data_ov000_021b4c68 = NULL;
 }
 
 void func_ov000_021816a0(void) {
     return;
 }
 
-s32 func_ov000_02181684(void) {
+BOOL func_ov000_02181684(void) {
     if (func_02061250() == 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 s32 func_ov000_0218167c(void) {

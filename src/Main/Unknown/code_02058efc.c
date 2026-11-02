@@ -12,7 +12,7 @@
 
 void func_02059034(void) {
     int v1;
-    if (data_0217aa00 == 0) {
+    if (data_0217aa00 == NULL) {
         v1 = 0;
     } else {
         v1 = data_0217aa00->mUnk_0000;
@@ -35,7 +35,7 @@ void func_02059008(void) {
 
 void func_02058fe0(void) {
     int v1;
-    if (data_0217aa00 == 0) {
+    if (data_0217aa00 == NULL) {
         v1 = 0;
     } else {
         v1 = data_0217aa00->mUnk_0000;

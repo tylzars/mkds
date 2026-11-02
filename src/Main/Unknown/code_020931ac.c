@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_0209bef0.h"
 
 void func_02093234(void) {
-    func_0209bf70(&func_02093754, 0, 0, 2, 0, ((u32) 0x0000018du));
+    func_0209bf70(&func_02093754, NULL, NULL, 2, 0, ((u32) 0x0000018du));
 }
 
 void func_02093210(void) {
@@ -13,7 +13,7 @@ void func_02093210(void) {
 }
 
 void func_020931f0(void) {
-    func_0209bf48(&func_02093484, &func_02093270, 0);
+    func_0209bf48(&func_02093484, &func_02093270, NULL);
 }
 
 u16 func_020931ac(Unk0217b498_00 *a) {

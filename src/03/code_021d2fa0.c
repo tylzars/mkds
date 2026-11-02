@@ -105,7 +105,7 @@ void func_ov003_021d2fdc(void) {
     for (i = 0; i < 2; i++) {
         data_ov003_021da2f0->mUnk_800[i] = func_ov003_021d1d60(0x40, data_ov003_021da2f0->mUnk_000[i], 8);
     }
-    data_ov003_021da2f0->mUnk_808 = func_ov003_021d3544(1, func_ov003_021d2fa0, 0, 200);
+    data_ov003_021da2f0->mUnk_808 = func_ov003_021d3544(1, func_ov003_021d2fa0, NULL, 200);
 }
 
 void func_ov003_021d2fa0(void) {

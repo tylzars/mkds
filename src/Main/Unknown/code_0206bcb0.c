@@ -131,7 +131,7 @@ void func_0206cc60(Unk0206bcb0 *p, int arg) {
 
 void func_0206c5e4(Unk0206bcb0 *p) {
     u32 f = p->mUnk_44;
-    int hasB = (f & 2) != 0;
+    BOOL hasB = (f & 2) != 0;
     u32 g;
     Unk0208c5b8 *t;
     int id;
@@ -299,9 +299,9 @@ recheck:
 }
 
 int func_0206c494(Unk0206bcb0 *p) {
-    int result = 0;
-    int pending = 1;
-    int dir = 0;
+    BOOL result = FALSE;
+    BOOL pending = TRUE;
+    BOOL dir = FALSE;
     int delta;
     u16 bits;
     Unk0208c5b8 *t;
@@ -309,16 +309,16 @@ int func_0206c494(Unk0206bcb0 *p) {
 
     if (p->mUnk_2a4 < 0x1800 && (p->mUnk_48 & 0x80)) {
         p->mUnk_2c4 = 0;
-        result = 1;
-        pending = 0;
+        result = TRUE;
+        pending = FALSE;
         k = p->mUnk_78;
         bits = data_02175628[k].mUnk_02;
         if ((u16) (bits & 0x20)) {
-            dir = 1;
+            dir = TRUE;
             p->mUnk_2c4 = -1;
             delta = 500;
         } else if ((u16) (bits & 0x10)) {
-            dir = 1;
+            dir = TRUE;
             p->mUnk_2c4 = 1;
             delta = -500;
         }
@@ -352,7 +352,7 @@ void func_0206c450(Unk0206c1ac *obj, Unk0206bcb0 *p) {
     func_02080e88(obj, p);
 }
 
-int func_0206c354(Unk0206bcb0 *p, const Vec3 *a, int flag) {
+BOOL func_0206c354(Unk0206bcb0 *p, const Vec3 *a, int flag) {
     if (p->mUnk_7c & 0x10) {
         int arr[4] = {0x77, 0x76, 0x78, 0x79};
         u16 i = 0;
@@ -369,9 +369,9 @@ int func_0206c354(Unk0206bcb0 *p, const Vec3 *a, int flag) {
         for (; i < n; i++) {
             func_0208b748(list[i], &tmp, p, func_0206c450);
         }
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_0206c2b4(Unk0206c1ac *obj, Unk0206bcb0 *p) {
@@ -424,25 +424,25 @@ void func_0206c11c(Unk0206bcb0 *p) {
     }
 }
 
-int func_0206c0e0(Unk0206bcb0 *p) {
+BOOL func_0206c0e0(Unk0206bcb0 *p) {
     if ((p->mUnk_7c & 0x402020) || (p->mUnk_4c & 0x800) || p->mUnk_180 != 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
-int func_0206c0b0(Unk0206bcb0 *p) {
+BOOL func_0206c0b0(Unk0206bcb0 *p) {
     if ((p->mUnk_7c & 0x400020) || (p->mUnk_4c & 0x800)) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 int func_0206c0a8(Unk0206bcb0 *p) {
     return p->mUnk_4c0;
 }
 
-int func_0206c094(Unk0206bcb0 *p) {
+BOOL func_0206c094(Unk0206bcb0 *p) {
     return (p->mUnk_4c & 0x800000) != 0;
 }
 
@@ -476,101 +476,101 @@ void func_0206bf88(Unk0206bcb0 *p, int mode) {
     }
 }
 
-int func_0206be54(Unk0206bcb0 *p, int a) {
-    int ok;
-    int res;
-    int t;
+BOOL func_0206be54(Unk0206bcb0 *p, int a) {
+    BOOL ok;
+    BOOL res;
+    BOOL t;
     int v;
     u32 f = p->mUnk_4c;
 
     if (f & 0x400000) {
-        ok = 0;
+        ok = FALSE;
     } else if (p->mUnk_7c & 0x200) {
         if (p->mUnk_180 == 0 && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
-            ok = 1;
+            ok = TRUE;
         } else {
-            ok = 0;
+            ok = FALSE;
         }
     } else {
         switch (a) {
             case 1:
             case 2:
-                res = 1;
+                res = TRUE;
                 if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
                     v = p->mUnk_180;
-                    t = 0;
+                    t = FALSE;
                     if (v != 0 && v != 1 && v != 2) {
-                        t = 1;
+                        t = TRUE;
                     }
-                    if (t == 0) {
-                        res = 0;
+                    if (t == FALSE) {
+                        res = FALSE;
                     }
                 }
-                ok = res == 0;
+                ok = res == FALSE;
                 break;
             default:
-                res = 1;
+                res = TRUE;
                 if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
                     v = p->mUnk_180;
-                    t = 0;
+                    t = FALSE;
                     if (v != 0 && v != 1 && v != 2) {
-                        t = 1;
+                        t = TRUE;
                     }
-                    if (t == 0) {
-                        res = 0;
+                    if (t == FALSE) {
+                        res = FALSE;
                     }
                 }
-                ok = res == 0;
+                ok = res == FALSE;
                 break;
         }
     }
     if (!ok) {
-        return 0;
+        return FALSE;
     }
     func_0206bf88(p, a);
-    return 1;
+    return TRUE;
 }
 
-int func_0206bcb0(Unk0206bcb0 *p, int a, int b) {
+BOOL func_0206bcb0(Unk0206bcb0 *p, int a, int b) {
     int s = p->mUnk_180;
-    int x;
-    int ok;
-    int res;
-    int t;
+    BOOL x;
+    BOOL ok;
+    BOOL res;
+    BOOL t;
     int v;
     u32 f;
 
     x = s != 1 && s != 2;
-    if (x == 0) {
+    if (x == FALSE) {
         if (p->mUnk_366 * 0xffff - p->mUnk_368 > 0xffff || (p->mUnk_7c & 0x200)) {
-            return 0;
+            return FALSE;
         }
     }
     f = p->mUnk_4c;
     if (f & 0x400000) {
-        ok = 0;
+        ok = FALSE;
     } else if (p->mUnk_7c & 0x200) {
         if (p->mUnk_180 == 0 && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
-            ok = 1;
+            ok = TRUE;
         } else {
-            ok = 0;
+            ok = FALSE;
         }
     } else {
-        res = 1;
+        res = TRUE;
         if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
             v = p->mUnk_180;
-            t = 0;
+            t = FALSE;
             if (v != 0 && s != 1 && s != 2) {
-                t = 1;
+                t = TRUE;
             }
-            if (t == 0) {
-                res = 0;
+            if (t == FALSE) {
+                res = FALSE;
             }
         }
-        ok = res == 0;
+        ok = res == FALSE;
     }
     if (!ok) {
-        return 0;
+        return FALSE;
     }
     if (x) {
         func_0206bbb4(p, a, b);
@@ -588,5 +588,5 @@ int func_0206bcb0(Unk0206bcb0 *p, int a, int b) {
     } else {
         p->mUnk_366++;
     }
-    return 1;
+    return TRUE;
 }

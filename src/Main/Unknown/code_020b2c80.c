@@ -45,7 +45,7 @@ void func_020b2c80(s32 a) {
 
     n = data_0217b354->mUnk_038[func_020b2d04()].mUnk_18;
     p = (u16 *) func_020b32f8();
-    if (p != 0) {
+    if (p != NULL) {
         if (data_0217b354->mUnk_010 == 0 || data_0217b354->mUnk_014 >= 5) {
             b = 0xd - n * 2 + a * 4;
             if (data_0217b354->mUnk_034 < 0x1e) {

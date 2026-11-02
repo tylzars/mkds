@@ -6,7 +6,7 @@
 #include "code_021453ec.h"
 #include "code_02142eac.h"
 
-s32 func_ov003_021d06b0(void) {
+BOOL func_ov003_021d06b0(void) {
     u32 a;
     s32 r;
 
@@ -16,9 +16,9 @@ s32 func_ov003_021d06b0(void) {
     if (r != 2) {
         func_ov003_021d079c(r);
         func_ov003_021d07b0(9);
-        return 0;
+        return FALSE;
     }
-    return 1;
+    return TRUE;
 }
 
 void func_ov003_021d0708(Unk021425e8 *v1) {
@@ -27,8 +27,8 @@ void func_ov003_021d0708(Unk021425e8 *v1) {
         func_ov003_021d07b0(9);
         return;
     }
-    if (data_ov003_021da2a8->mUnk_13ac != 0) {
-        if (func_ov003_021d06b0() == 0) {
+    if (data_ov003_021da2a8->mUnk_13ac != NULL) {
+        if (func_ov003_021d06b0() == FALSE) {
             func_ov003_021d07b0(9);
         }
     } else if (func_ov003_021d0630() == 0) {
@@ -36,7 +36,7 @@ void func_ov003_021d0708(Unk021425e8 *v1) {
     }
 }
 
-s32 func_ov003_021d0760(void) {
+BOOL func_ov003_021d0760(void) {
     s32 r;
 
     func_ov003_021d07b0(3);
@@ -44,7 +44,7 @@ s32 func_ov003_021d0760(void) {
     if (r != 2) {
         func_ov003_021d079c(r);
         func_ov003_021d07b0(9);
-        return 0;
+        return FALSE;
     }
-    return 1;
+    return TRUE;
 }

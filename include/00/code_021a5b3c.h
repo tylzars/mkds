@@ -29,7 +29,7 @@ s32 func_ov000_021a60a4(const void *a, const u8 *b, u32 c);
 s32 func_ov000_021a61c4(const void *a, const u8 *b, u32 c);
 s32 func_ov000_021a61e4(void);
 s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *));
-s32 func_ov000_021a6428(void);
+BOOL func_ov000_021a6428(void);
 s32 func_ov000_021a6470(Unk021b5f50 *a, u32 b);
 void func_ov000_021a6558(Unk021b5f50_2270_0c *a);
 Unk021b5f50_2270_0c *func_ov000_021a65d8(u32 a);

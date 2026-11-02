@@ -33,7 +33,7 @@ u8 func_ov000_0218954c(Unk02188ec0 *v1) {
     s32 i;
     u8 n;
     u8 j;
-    s32 v2;
+    BOOL v2;
     Unk02188db0 *e;
     Unk02188ec0_300 *c;
 
@@ -52,11 +52,11 @@ u8 func_ov000_0218954c(Unk02188ec0 *v1) {
                 if (j != 0) {
                     c->mUnk_03 = j;
                     c->mUnk_01 = i;
-                    v2 = 1;
+                    v2 = TRUE;
                 } else {
-                    v2 = 0;
+                    v2 = FALSE;
                 }
-                if (v2 != 0) {
+                if (v2 != FALSE) {
                     n++;
                     c++;
                 }
@@ -70,11 +70,11 @@ u8 func_ov000_0218954c(Unk02188ec0 *v1) {
                     if (j != 0) {
                         c->mUnk_03 = j;
                         c->mUnk_01 = i + 3;
-                        v2 = 1;
+                        v2 = TRUE;
                     } else {
-                        v2 = 0;
+                        v2 = FALSE;
                     }
-                    if (v2 != 0) {
+                    if (v2 != FALSE) {
                         n++;
                         c++;
                     }

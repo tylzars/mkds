@@ -23,12 +23,12 @@
 #include "Main/Unknown/code_020472a8.h"
 
 void func_ov001_021984ac(void) {
-    Unk020b4934 *a = 0;
-    Unk02021dc8 *b = 0;
-    Unk020b4a44 *c = 0;
-    Unk020b4934 *d = 0;
-    Unk020b4a44 *e = 0;
-    Unk020b47d8 *f = 0;
+    Unk020b4934 *a = NULL;
+    Unk02021dc8 *b = NULL;
+    Unk020b4a44 *c = NULL;
+    Unk020b4934 *d = NULL;
+    Unk020b4a44 *e = NULL;
+    Unk020b47d8 *f = NULL;
 
     LoadNcgrData(&d, FindSceneFile(data_ov001_021a835c));
     LoadNclrData(&e, FindSceneFile(data_ov001_021a8360));
@@ -39,11 +39,11 @@ void func_ov001_021984ac(void) {
 }
 
 void func_ov001_02198384(void) {
-    Unk020b4934 *a = 0;
-    Unk020b4a44 *b = 0;
-    Unk020b4934 *c = 0;
-    Unk020b4a44 *d = 0;
-    Unk020b47d8 *e = 0;
+    Unk020b4934 *a = NULL;
+    Unk020b4a44 *b = NULL;
+    Unk020b4934 *c = NULL;
+    Unk020b4a44 *d = NULL;
+    Unk020b47d8 *e = NULL;
 
     LocateNcgr(&c, FindSceneFile(data_ov001_021a835c));
     LocateNclr(&d, FindSceneFile(data_ov001_021a8360));
@@ -138,7 +138,7 @@ void func_ov001_02198100(void *a, void *b, s32 c) {
         func_02124a98(data_ov001_021a6a10[i], 1, data_ov001_021a9be0->mUnk_00, data_ov001_021a9be0->mUnk_04);
     }
     func_020ae6d4(data_ov001_021a9be0->mUnk_2c, (void *) data_ov001_021a9be0->mUnk_30);
-    func_02124ed0(data_ov001_021a9be0->mUnk_14, data_ov001_021a9be0->mUnk_04, 0, &data_ov001_021a9be0->mUnk_0c);
+    func_02124ed0(data_ov001_021a9be0->mUnk_14, data_ov001_021a9be0->mUnk_04, NULL, &data_ov001_021a9be0->mUnk_0c);
     for (i = 0; i < 3; i++) {
         data_ov001_021a9be0->mUnk_0c[data_ov001_021a6a08[i]].mUnk_04 = 0xe0;
         data_ov001_021a9be0->mUnk_0c[data_ov001_021a6a10[i]].mUnk_04 = 0xe0;
@@ -154,7 +154,7 @@ void func_ov001_02198100(void *a, void *b, s32 c) {
 
 void func_ov001_021980e0(void) {
     func_02036ab0(data_ov001_021a9be0->mUnk_14);
-    data_ov001_021a9be0 = 0;
+    data_ov001_021a9be0 = NULL;
 }
 
 void func_ov001_02198014(void) {
@@ -203,36 +203,36 @@ void func_ov001_02197f54(void) {
 }
 
 void func_ov001_02197d58(void) {
-    s32 flag2 = 0;
+    BOOL flag2 = FALSE;
     u32 sel = -1;
     s32 dir = 3;
     Unk02175628Index i = UNK_02175628_INDEX_8;
-    s32 flag1 = 0;
+    BOOL flag1 = FALSE;
     Unk02175628 *e;
     s32 bits;
-    s32 flag4;
+    BOOL flag4;
     s32 flag3;
 
     if (data_02175628[i].mUnk_4c == 0 && data_02175628[i].mUnk_58 < 5) {
-        flag1 = 1;
+        flag1 = TRUE;
     }
-    if (flag1 == 0 && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
-        flag2 = 1;
+    if (flag1 == FALSE && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
+        flag2 = TRUE;
     }
-    if (flag2 != 0) {
+    if (flag2 != FALSE) {
         sel = func_0201ea84(data_ov001_021a9be0->mUnk_08, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
     }
     e = &data_02175628[i];
     bits = e->mUnk_00 & 2;
     if ((u16) bits == 0) {
-        flag3 = flag4 = 0;
+        flag3 = flag4 = FALSE;
         if (data_02175628[i].mUnk_4c == 0 && data_02175628[i].mUnk_58 < 5) {
             flag3 = 1;
         }
         if (flag3 == 0 && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
-            flag4 = 1;
+            flag4 = TRUE;
         }
-        if (flag4 == 0 || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (flag4 == FALSE || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
             goto next;
         }
     }
@@ -361,7 +361,7 @@ s32 func_ov001_02197b54(void) {
             func_ov001_02197bdc();
             break;
     }
-    func_02124c30(data_ov001_021a9be0->mUnk_04, data_ov001_021a9be0->mUnk_00, 0, (void *) data_ov001_021a9be0->mUnk_30,
+    func_02124c30(data_ov001_021a9be0->mUnk_04, data_ov001_021a9be0->mUnk_00, NULL, (void *) data_ov001_021a9be0->mUnk_30,
                   data_ov001_021a9be0->mUnk_0c);
     if (data_ov001_021a9be0->mUnk_18 == 5 && data_ov001_021a9be0->mUnk_20 >= 10) {
         return data_ov001_021a9be0->mUnk_34;

@@ -8,10 +8,10 @@ void func_0203be6c(u8 *a, u32 b, u32 c, u32 d) {
 }
 
 void func_0203be48(u8 *a, u8 b, u32 *c, u32 *d) {
-    if (c != (u32 *) 0x0) {
+    if (c != NULL) {
         *c = *(u32 *) (a + b * 4 + 4);
     }
-    if (d != (u32 *) 0x0) {
+    if (d != NULL) {
         *d = *(u32 *) (a + b * 4 + 0x24);
     }
 }

@@ -44,7 +44,7 @@ void func_ov003_021cea3c(u32 a) {
     func_ov003_021d197c(data_ov003_021da284->mUnk_00);
     func_ov003_021d197c(data_ov003_021da284->mUnk_04);
     for (i = 0; i < data_ov003_021d6720[data_ov003_021da284->mUnk_1c]; i++) {
-        if (data_ov003_021da284->mUnk_08[i] != 0) {
+        if (data_ov003_021da284->mUnk_08[i] != NULL) {
             func_ov003_021d197c(data_ov003_021da284->mUnk_08[i]);
         }
     }

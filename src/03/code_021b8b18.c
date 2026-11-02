@@ -64,21 +64,21 @@ s32 func_ov003_021b8bf0(Unk021b916c *a, Unk021b916c *b) {
 s32 func_ov003_021b8c44(s32 a, const u8 *b) {
     s32 c;
     s32 i;
-    s32 d;
+    BOOL d;
     u8 *p;
     c = 0;
-    d = 0;
+    d = FALSE;
     i = 0;
     p = data_ov003_021d7c58;
     do {
         if (*p != 0) {
-            d = 1;
+            d = TRUE;
             break;
         }
         p++;
         i++;
     } while (i < 6);
-    if (d != 0) {
+    if (d != FALSE) {
         if (func_ov003_021b7da0(data_ov003_021d7c58, b, 6) != 0) {
             c = 1;
         }
@@ -113,7 +113,7 @@ s32 func_ov003_021b8c8c(Unk021b8c8c *a) {
     }
     e = func_ov003_021b7c44(b->mUnk_00);
     f = func_ov003_021ba178(e);
-    if (f == 0) {
+    if (f == NULL) {
         func_ov003_021b94b8(2);
         return 100;
     }

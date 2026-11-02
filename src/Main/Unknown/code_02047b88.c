@@ -88,21 +88,21 @@ void func_02047ba0(s32 a) {
 }
 
 void func_02047cf0(int a) {
-    s32 b;
+    BOOL b;
     s32 c;
 
-    b = 1;
+    b = TRUE;
     if (data_021759c8->mUnk_00[a].mLoaded != 0 && a != 0x13) {
         func_02018314(&data_021759c8->mUnk_00[a].mArchive.mUnk_00);
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
             c = data_usa_021543e0[a].mUnk_08;
             if (c != -1 && data_021759c8->mUnk_9b0[c].mUnk_08_29 != 0) {
-                b = 0;
+                b = FALSE;
             } else {
                 data_021759c8->mUnk_9b0[c].mUnk_08_31 = 1;
             }
         }
-        if (b != 0) {
+        if (b != FALSE) {
             func_02036b30(func_020364e0(func_020364e8()), data_021759c8->mUnk_00[a].mData);
         }
         data_021759c8->mUnk_00[a].mLoaded = 0;
@@ -117,7 +117,7 @@ void func_02047db8(void) {
 
     p = &data_021759c8->mUnk_8c8;
     e = &data_021759c8->mUnk_00[p->mUnk_8c];
-    if (p->mUnk_84 != 0) {
+    if (p->mUnk_84 != NULL) {
         if (func_02018344(&e->mArchive, (const u8 *) gArchiveNames[p->mUnk_8c], p->mUnk_84) != 0) {
             e->mLoaded = 1;
             e->mData = p->mUnk_84;
@@ -189,7 +189,7 @@ void func_02047f7c(s32 a, const u8 *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
     p->mUnk_94 = f;
     p->mUnk_9c = g;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        if (p->mUnk_80 != 0) {
+        if (p->mUnk_80 != NULL) {
             if (p->mUnk_94 != 0) {
                 h = data_usa_021543e0[a].mUnk_08;
                 if (h != -1) {
@@ -222,7 +222,7 @@ void func_02048050(int a, int b) {
     s32 g;
     s32 h;
 
-    d = 0;
+    d = NULL;
     if (data_021759c8->mUnk_00[a].mLoaded != 0) {
         return;
     }
@@ -319,7 +319,7 @@ void func_02048050(int a, int b) {
             break;
     }
     if (c[0] != 0) {
-        func_02047f7c(a, c, d, 0, f, e, g);
+        func_02047f7c(a, c, d, NULL, f, e, g);
     }
     h = data_usa_021543e0[(s32) a].mUnk_04;
     if (h != -1) {

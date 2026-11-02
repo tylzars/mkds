@@ -19,7 +19,7 @@ int func_ov000_02197e58(int a) {
 void func_ov000_02197e20(int *a, u8 b) {
     int v1;
     if (a[2] >= a[1]) {
-        func_0213442c(data_ov000_021b3f34, data_ov000_021b3ebc, 0, 0x23);
+        func_0213442c(data_ov000_021b3f34, data_ov000_021b3ebc, NULL, 0x23);
     }
     v1 = a[2];
     a[2] = v1 + 1;
@@ -30,7 +30,7 @@ void func_ov000_02197e20(int *a, u8 b) {
 void func_ov000_02197ddc(int *a, u32 b) {
     int v1;
     if (a[2] + 2 > a[1]) {
-        func_0213442c(data_ov000_021b3f10, data_ov000_021b3ebc, 0, 0x2e);
+        func_0213442c(data_ov000_021b3f10, data_ov000_021b3ebc, NULL, 0x2e);
     }
     v1 = a[2];
     a[2] = v1 + 1;

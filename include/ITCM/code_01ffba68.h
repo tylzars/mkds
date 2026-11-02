@@ -16,7 +16,7 @@ s32 func_01ffc27c(Unk0206bcb0 *p, s32 a);
 void func_01ffc500(s32 *a);
 void func_01ffc558(Unk0206bcb0 *p);
 void func_01ffc5a0(Unk0206bcb0 *p);
-s32 func_01ffc67c(Unk0206bcb0 *p);
+BOOL func_01ffc67c(Unk0206bcb0 *p);
 void func_01ffc6c0(Unk0206bcb0 *p);
 void func_01ffc8cc(Unk0206bcb0 *p);
 void func_01ffc920(Unk0206bcb0 *p);

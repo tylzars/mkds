@@ -10,7 +10,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_0200fc8c.h"
 
-s32 func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
+BOOL func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
     s32 i;
     u32 v;
     u32 w;
@@ -50,11 +50,11 @@ s32 func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
             }
         }
     }
-    if (p->mUnk_120 != 0) {
+    if (p->mUnk_120 != NULL) {
         p->mUnk_120(p);
     }
     if (p->mUnk_74 & 4) {
-        return 1;
+        return TRUE;
     }
     if (!(p->mUnk_74 & 0x8000) && p->mUnk_da != -1) {
         if (f == 0) {
@@ -150,7 +150,7 @@ s32 func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
             p->mUnk_78 &= ~0x4000;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 void func_01fffe2c(u32 a, const void *b, void *c, u32 d) {

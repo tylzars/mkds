@@ -21,7 +21,7 @@ u8 *func_0200c0d8(Unk0200c0d8 *a, u8 *b) {
         case 6:
             break;
         default:
-            return 0;
+            return NULL;
     }
     return b;
 }
@@ -40,7 +40,7 @@ u8 *func_0200c16c(Unk0200c16c *a, u8 *b) {
         case 7:
             *v1++ = *(u8 *) &a->mUnk_02;
             if (*(u8 *) &a->mUnk_02 > data_0216fdf8.mUnk_04) {
-                return 0;
+                return NULL;
             }
             func_0214d1fc((u8 *) a + 3, v1, data_0216fdf8.mUnk_00);
             v1 += data_0216fdf8.mUnk_00;
@@ -56,7 +56,7 @@ u8 *func_0200c16c(Unk0200c16c *a, u8 *b) {
         case 11:
             break;
         default:
-            return 0;
+            return NULL;
     }
     return v1;
 }
@@ -85,12 +85,12 @@ u8 *func_0200c25c(Unk0200c16c *a, u32 b) {
     u32 v3;
     u32 v4;
     v1 = data_0216fdf4;
-    if (v1 == 0) {
-        return 0;
+    if (v1 == NULL) {
+        return NULL;
     }
     v2 = *(u8 *) &a->mUnk_02;
     if (v2 > data_0216fdf8.mUnk_04) {
-        return 0;
+        return NULL;
     }
     v4 = b - 1;
     v3 = v4 << 5;
@@ -99,7 +99,7 @@ u8 *func_0200c25c(Unk0200c16c *a, u32 b) {
     if (func_0200c20c(b) != 0) {
         return (u8 *) data_0216fdf4 + v3;
     }
-    return 0;
+    return NULL;
 }
 
 u8 *func_0200c2e0(u8 *a, Unk0200c16c *b, u32 c) {
@@ -112,7 +112,7 @@ u8 *func_0200c2e0(u8 *a, Unk0200c16c *b, u32 c) {
             }
             *(u8 *) &b->mUnk_02 = a[1];
             if (*(u8 *) &b->mUnk_02 > data_0216fdf8.mUnk_04) {
-                return 0;
+                return NULL;
             }
             func_0214d1fc(a + 2, (u8 *) b + 3, data_0216fdf8.mUnk_00);
             v1 = func_0200c25c(b, c);
@@ -130,7 +130,7 @@ u8 *func_0200c2e0(u8 *a, Unk0200c16c *b, u32 c) {
             v1 += data_0216fdf8.mUnk_00;
             break;
         default:
-            return 0;
+            return NULL;
     }
     return v1;
 }
@@ -155,7 +155,7 @@ u8 *func_0200c3a4(u8 *param_1, u8 *param_2) {
         case 6:
             break;
         default:
-            return 0;
+            return NULL;
     }
     return v2;
 }

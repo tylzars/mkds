@@ -56,7 +56,7 @@ s32 func_ov000_021972b4(void) {
     func_ov000_021971ec(a, b);
     data_ov000_021b3b38[0] = 0x73;
     c = func_ov000_021970fc(a, data_ov000_021b3b38);
-    if (c == 0) {
+    if (c == NULL) {
         func_ov000_0218e53c(data_ov000_021b3b2c);
         return 5;
     }
@@ -72,7 +72,7 @@ s32 func_ov000_0219735c(const s8 *a, u32 b) {
     s8 g[0x80];
     data_ov000_021b3b40[0] = 0x63;
     d = func_ov000_021970fc(a, data_ov000_021b3b40);
-    if (d == 0) {
+    if (d == NULL) {
         func_ov000_0218e53c(data_ov000_021b3b2c);
         return 5;
     }

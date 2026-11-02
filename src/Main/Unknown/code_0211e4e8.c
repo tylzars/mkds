@@ -42,16 +42,16 @@ void func_0211efec(void) {
     Unk020b4a44 *j;
     u16 *v;
 
-    a = 0;
-    b = 0;
-    c = 0;
-    d = 0;
-    e = 0;
-    f = 0;
-    g = 0;
-    h = 0;
-    i = 0;
-    j = 0;
+    a = NULL;
+    b = NULL;
+    c = NULL;
+    d = NULL;
+    e = NULL;
+    f = NULL;
+    g = NULL;
+    h = NULL;
+    i = NULL;
+    j = NULL;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         return;
     }
@@ -97,8 +97,8 @@ void func_0211ed80(void) {
     u16 c;
     u16 d;
     s32 j;
-    s32 n;
-    s32 v;
+    BOOL n;
+    BOOL v;
     s32 m;
     s32 a;
 
@@ -107,7 +107,7 @@ void func_0211ed80(void) {
     }
     c = data_0217d378->mUnk_04->mUnk_06;
     d = data_0217d378->mUnk_10->mUnk_06;
-    v = 0;
+    v = FALSE;
     for (i = 0; i < 8; i++) {
         data_0217d378->mUnk_18[data_0215cf1c[i]].mUnk_00 = v;
         data_0217d378->mUnk_1c[data_0215cf1c[i]].mUnk_00 = v;
@@ -128,7 +128,7 @@ void func_0211ed80(void) {
     data_0217d378->mUnk_1c[19].mUnk_00 = 1;
     func_0211de00(data_0215cf2c[func_0202968c()], data_0217d378->mUnk_00, data_0217d378->mUnk_04, 0x13, 0);
     func_0211de00(data_0215cf2c[func_0202968c()], data_0217d378->mUnk_0c, data_0217d378->mUnk_10, 0x13, 1);
-    n = 0;
+    n = FALSE;
     for (j = 0; j < 4; j++) {
         func_0212426c(n, data_0215cf0c[j], data_0217d378->mUnk_08,
                       GetBmgEntry(data_0217d378->mUnk_24, data_0215cf4c[data_0215cf2c[func_0202968c()]][j]),
@@ -292,7 +292,7 @@ void func_0211e924(void) {
         func_0211f498();
     }
     func_02036ab0(data_0217d378->mUnk_28);
-    data_0217d378 = 0;
+    data_0217d378 = NULL;
 }
 
 void func_0211e7c0(void) {

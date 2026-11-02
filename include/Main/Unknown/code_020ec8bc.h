@@ -28,7 +28,7 @@ void func_020ec8bc(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, s32
 void func_020ec918(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 d);
 void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e);
 void func_020ece1c(Unk020ec8bc *p, s32 a, s32 b, s32 c);
-s32 func_020ed0f4(Unk020ec8bc *p);
+BOOL func_020ed0f4(Unk020ec8bc *p);
 void func_020ed268(Unk020ec8bc *p, Unk020eda5c *q, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, u16 g, s32 h);
 void func_020ed2f8(void);
 void *func_020ed490(u8 *a, u8 *b);

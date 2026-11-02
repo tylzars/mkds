@@ -10,7 +10,7 @@
 void func_0204f148(void) {
     s32 v1 = data_0217aa00->mUnk_000c;
     u8 v;
-    s32 s = data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000;
+    s32 s = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
     if (s == 1) {
         v = data_0217aa00->mUnk_0044.mUnk_43;
     } else {
@@ -84,7 +84,7 @@ void func_0204efcc(Unk0216f3dc_9c *a) {
 }
 
 void func_0204ef88(void) {
-    s32 v = data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000;
+    s32 v = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
     if (v == 2) {
         if (data_0217aa00->mUnk_0432 == 0xffff) {
             func_02050e60(8);

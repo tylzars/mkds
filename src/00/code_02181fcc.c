@@ -43,7 +43,7 @@ void func_ov000_02182f88(void) {
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (a << 8);
     *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0xf00;
     func_0212b91c();
-    gWiFiVSSetting = 0;
+    gWiFiVSSetting = NULL;
 }
 
 void func_ov000_02182e18(void) {
@@ -152,35 +152,35 @@ void func_ov000_021828e4(void) {
     s32 v1 = gWiFiVSSetting->mUnk_08;
     s32 v2 = gWiFiVSSetting->mUnk_0c;
     Unk02175628Index i = UNK_02175628_INDEX_8;
-    s32 v3 = 0;
+    BOOL v3 = FALSE;
     u32 v4 = -1;
-    s32 v5 = 0;
-    s32 v6;
+    BOOL v5 = FALSE;
+    BOOL v6;
     s32 v7;
     s32 v8;
     Unk02175628 *e;
     u32 t;
 
     if (data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) {
-        v5 = 1;
+        v5 = TRUE;
     }
-    if (v5 == 0 && data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0) {
-        v3 = 1;
+    if (v5 == FALSE && data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0) {
+        v3 = TRUE;
     }
-    if (v3 != 0) {
+    if (v3 != FALSE) {
         v4 = func_0201ea84(gWiFiVSSetting->mWiFiVSSettingBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
     e = &data_02175628[i];
     v8 = e->mUnk_00 & 2;
     if ((u16) v8 == 0) {
-        v7 = v6 = 0;
+        v7 = v6 = FALSE;
         if (data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) {
             v7 = 1;
         }
         if (v7 == 0 && data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0) {
-            v6 = 1;
+            v6 = TRUE;
         }
-        if (v6 == 0 || func_02128210(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
+        if (v6 == FALSE || func_02128210(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
             goto next;
         }
     }
@@ -354,8 +354,8 @@ void func_ov000_02182688(void) {
 
 void func_ov000_021825b8(void) {
     Unk02175628Index v1 = UNK_02175628_INDEX_8;
-    s32 a;
-    s32 b;
+    BOOL a;
+    BOOL b;
     u16 v;
 
     if (func_02125f6c() != 0) {
@@ -369,16 +369,16 @@ void func_ov000_021825b8(void) {
     }
     if (func_02125fa4() != 0 && func_02128294() != 0) {
         if ((u16) (data_02175628[v1].mUnk_00 & 2) == 0) {
-            a = 0;
-            b = 0;
+            a = FALSE;
+            b = FALSE;
             v = data_02175674[v1].mUnk_00;
             if (v == 0 && data_02175680[v1].mUnk_00 < 5) {
-                b = 1;
+                b = TRUE;
             }
-            if (b == 0 && data_0217567c[v1].mUnk_00 == 0 && v != 0) {
-                a = 1;
+            if (b == FALSE && data_0217567c[v1].mUnk_00 == 0 && v != 0) {
+                a = TRUE;
             }
-            if (a == 0) {
+            if (a == FALSE) {
                 return;
             }
             if (func_02128210(data_02175670[v1].mUnk_00, data_02175672[v1].mUnk_00) == 0) {
@@ -392,8 +392,8 @@ void func_ov000_021825b8(void) {
 
 void func_ov000_021824e8(void) {
     Unk02175628Index v1 = UNK_02175628_INDEX_8;
-    s32 a;
-    s32 b;
+    BOOL a;
+    BOOL b;
     u16 v;
 
     if (func_02125f6c() != 0) {
@@ -407,16 +407,16 @@ void func_ov000_021824e8(void) {
     }
     if (func_02125fa4() != 0 && func_02128294() != 0) {
         if ((u16) (data_02175628[v1].mUnk_00 & 2) == 0) {
-            a = 0;
-            b = 0;
+            a = FALSE;
+            b = FALSE;
             v = data_02175674[v1].mUnk_00;
             if (v == 0 && data_02175680[v1].mUnk_00 < 5) {
-                b = 1;
+                b = TRUE;
             }
-            if (b == 0 && data_0217567c[v1].mUnk_00 == 0 && v != 0) {
-                a = 1;
+            if (b == FALSE && data_0217567c[v1].mUnk_00 == 0 && v != 0) {
+                a = TRUE;
             }
-            if (a == 0) {
+            if (a == FALSE) {
                 return;
             }
             if (func_02128210(data_02175670[v1].mUnk_00, data_02175672[v1].mUnk_00) == 0) {
@@ -503,7 +503,7 @@ void func_ov000_02182270(void) {
 
 void func_ov000_021821e0(void) {
     s32 i;
-    s32 z = 0;
+    BOOL z = FALSE;
 
     for (i = 0; i < 3; i++) {
         if (i == gWiFiVSSetting->mUnk_08 && gWiFiVSSetting->mUnk_24 != 0) {
@@ -520,8 +520,8 @@ void func_ov000_021821e0(void) {
 
 void func_ov000_02182150(void) {
     s32 i;
-    s32 z = 0;
-    s32 y = 0;
+    BOOL z = FALSE;
+    BOOL y = FALSE;
 
     for (i = 0; i < 2; i++) {
         if (gWiFiVSSetting->mUnk_08 == 1) {

@@ -100,10 +100,10 @@ void func_02094c24(Unk020946b8 *a) {
     s32 i;
     Unk02094000 *o;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
         o->mUnk_ae = i & 1;
         o->mUnk_b0 = (i / 2) & 1;
     }
@@ -197,7 +197,7 @@ void func_02094744(void) {
 }
 
 void func_02094724(void) {
-    func_0209bf48(func_02094c24, func_02094768, 0);
+    func_0209bf48(func_02094c24, func_02094768, NULL);
 }
 
 void func_020946b8(void) {
@@ -206,10 +206,10 @@ void func_020946b8(void) {
     s32 i;
 
     l = func_02100138(0x13b);
-    if (l == 0) {
+    if (l == NULL) {
         return;
     }
-    for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
         o->mUnk_b4 = 0;
         o->mUnk_b8 = 0;
     }
@@ -245,7 +245,7 @@ void func_02094000(Vec3 *a) {
     s32 f;
 
     o = func_0209bbfc(func_02100138(0x13b));
-    if (o == 0) {
+    if (o == NULL) {
         return;
     }
     o->mUnk_ac = 0;

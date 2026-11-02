@@ -51,8 +51,8 @@ void func_ov003_021c3cc4(void) {
     c = data_ov003_021d7110;
     func_ov003_021bf620(data_ov003_021d7128, func_0214b95c);
     func_ov003_021bf620(data_ov003_021d7140, func_0214bc9c);
-    data_ov003_021da1b4 = func_ov003_021d14b8(func_ov003_021bf650(c.mUnk_00), 0, 4);
-    a = func_ov003_021d14b8(func_ov003_021bf650(b.mUnk_00), 0, 4);
+    data_ov003_021da1b4 = func_ov003_021d14b8(func_ov003_021bf650(c.mUnk_00), NULL, 4);
+    a = func_ov003_021d14b8(func_ov003_021bf650(b.mUnk_00), NULL, 4);
     func_02151910(&d);
     if (d.mUnk_00 == 0) {
         e = a + 0xc0;

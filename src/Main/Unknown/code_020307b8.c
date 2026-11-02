@@ -83,15 +83,15 @@ void func_02030954(s32 a) {
     Unk02174e54 *o;
     s32 v;
     s32 w;
-    s32 z1;
-    s32 z2;
+    BOOL z1;
+    BOOL z2;
     u16 *q;
 
     o = data_02174e54;
     t[0] = data_02163614[0];
     t[1] = data_02163614[1];
-    z1 = 0;
-    z2 = 0;
+    z1 = FALSE;
+    z2 = FALSE;
     for (i = 0; i < 2; i++) {
         if (data_02174e54->mUnk_28 == i && a != 0) {
             v = 1;

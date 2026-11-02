@@ -12,4 +12,4 @@ typedef struct Unk02194828Search {
     /* 04 */ Unk02194828 *mEntry;
 } Unk02194828Search;
 
-s32 func_ov000_02194828(void *unused, Unk02194828 *entry, Unk02194828Search *search);
+BOOL func_ov000_02194828(void *unused, Unk02194828 *entry, Unk02194828Search *search);

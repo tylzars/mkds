@@ -29,7 +29,7 @@ void func_ov000_021afe84(const void *a, const void *b, u8 *c, u32 d, void *e, u3
     u32 m;
 
     g = data_ov000_021b63c4;
-    if (g == 0) {
+    if (g == NULL) {
         return;
     }
     h = data_ov000_021b63c8;
@@ -80,15 +80,15 @@ void func_ov000_021afe84(const void *a, const void *b, u8 *c, u32 d, void *e, u3
     func_0214d1fc(b, data_ov000_021b63c4 + data_ov000_021b6394 + 2, 6);
     func_0214d1fc(a, data_ov000_021b63c4 + data_ov000_021b6394 + 8, 6);
     func_0214d1fc(c + 6, data_ov000_021b63c4 + data_ov000_021b6394 + 0xe, d - 6);
-    if (e != 0 && f != 0) {
+    if (e != NULL && f != 0) {
         func_0214d1fc(e, data_ov000_021b63c4 + data_ov000_021b6394 + 8 + d, f);
     }
     data_ov000_021b6394 = m;
 }
 
 void func_ov000_021afe5c(void *a, void *b, void *c, u16 d) {
-    func_ov000_021afe84(a, b, c, d, 0, 0);
-    if (data_ov000_021b63c0 != 0) {
+    func_ov000_021afe84(a, b, c, d, NULL, 0);
+    if (data_ov000_021b63c0 != NULL) {
         func_0200df68(data_ov000_021b63c0);
     }
 }

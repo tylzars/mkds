@@ -59,7 +59,7 @@
 void func_020af66c(void) {
     u32 v;
 
-    if (data_0217b350 != 0) {
+    if (data_0217b350 != NULL) {
         data_0217b350->mUnk_908 = 1;
     }
     v = data_021759c0->mUnk_00c;
@@ -148,7 +148,7 @@ void func_020af86c(void) {
     }
     func_0214a40c((u32 *) 0x04000050, 0, 0, 0x10, 0x10);
     func_0214a40c((u32 *) 0x04001050, 0, 0, 0x10, 0x10);
-    data_0217b350 = 0;
+    data_0217b350 = NULL;
     func_020b36c8();
     func_020b3af4();
     func_020b65dc();

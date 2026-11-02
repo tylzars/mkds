@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_0206f04c.h"
 
 // Declared here until the code that defines them is decompiled.
-s32 func_01ffa1f8(Unk0206bcb0 *p);
+BOOL func_01ffa1f8(Unk0206bcb0 *p);
 void func_01ff9c9c(Unk0206bcb0 *p, u32 a);
 void func_0206f574(Unk0206bcb0 *p, u32 a, Vec3 *b);
 void func_0206ff50(Unk0206bcb0 *p, u32 a);

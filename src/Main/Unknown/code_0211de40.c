@@ -27,8 +27,8 @@ void func_0211de98(void) {
     void *v1;
     Unk020b4934 *v2;
     Unk02021dc8 *v3[1];
-    v2 = 0;
-    v3[0] = 0;
+    v2 = NULL;
+    v3[0] = NULL;
     v1 = FindSceneFile(data_0216de54);
     LoadNcgrData2(&v2, v1);
     v1 = FindSceneFile(data_0216de58);

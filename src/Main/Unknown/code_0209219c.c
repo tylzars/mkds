@@ -37,7 +37,7 @@ void func_02092484(void) {
 }
 
 void func_02092468(void) {
-    func_0209bf48(0, func_020924d8, 0);
+    func_0209bf48(NULL, func_020924d8, NULL);
 }
 
 void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
@@ -47,7 +47,7 @@ void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
     u16 w;
 
     p = func_0209bbfc(func_02100138(0x19f));
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
     p->mUnk_00.mUnk_02 |= data_usa_02156460;

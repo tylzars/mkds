@@ -42,7 +42,7 @@ void func_0202808c(void) {
         func_0211f498();
     }
     func_02036ab0((void *) gSelectKart->mUnk_08c);
-    *&gSelectKart = 0;
+    *&gSelectKart = NULL;
 }
 
 #pragma thumb off

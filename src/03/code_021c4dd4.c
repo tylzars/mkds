@@ -200,7 +200,7 @@ void func_ov003_021c4dd4(int a) {
         data_ov003_021da1d8 = 2;
         func_ov003_021cdc10(0x12);
     }
-    func_ov003_021c27d0(0);
+    func_ov003_021c27d0(NULL);
     func_ov003_021c212c(func_ov003_021c4f24);
     return;
 }

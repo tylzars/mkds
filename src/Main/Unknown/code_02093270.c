@@ -77,18 +77,18 @@ void func_02093270(void *a, Unk02093270 *p) {
 }
 
 void func_02093484(Unk020e6fd4 *p) {
-    s32 z;
+    BOOL z;
     s32 i;
     Unk02093270 *e;
     u16 f;
     s32 n;
 
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
-    z = 0;
+    z = FALSE;
     f = data_usa_0215646c;
-    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
         e->mUnk_00.mUnk_04.y = e->mUnk_00.mUnk_9c->mUnk_00.y - e->mUnk_00.mUnk_58.y;
         if (e->mUnk_00.mUnk_9c->mUnk_26 < 0) {
             e->mUnk_b0.mUnk_08 = 0xffff;

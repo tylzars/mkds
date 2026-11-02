@@ -16,35 +16,35 @@ u32 func_ov000_021992d4(Unk02197e8c *a, u8 *b, s32 c, u32 d, u32 e) {
     Unk02197fe8 *f;
     Unk02197fe8 *k;
     s32 g;
-    s32 h;
+    BOOL h;
     s32 i;
     f = func_ov000_0219a5b0(a, d, e);
-    if (a->mUnk_2c != 0) {
+    if (a->mUnk_2c != NULL) {
         if (func_ov000_02197f28((s32) a, (s32) f, d, e, 0, (s32) b, c, 0) == 0) {
             return 0;
         }
     }
     if (c > 2 && memcmp(b, data_ov000_021b3fa4, 2) == 0) {
-        h = 1;
+        h = TRUE;
     } else {
-        h = 0;
+        h = FALSE;
     }
-    if (f == 0) {
+    if (f == NULL) {
         if (func_ov000_02197e8c(a, d, e, b, c, &g) == 0) {
             return 0;
         }
         if (g != 0) {
             return 1;
         }
-        if (h == 0 || b[2] != 1) {
-            if (h == 0 || b[2] != 0x68) {
+        if (h == FALSE || b[2] != 1) {
+            if (h == FALSE || b[2] != 0x68) {
                 if (func_ov000_02198b50(a, d, e) == 0) {
                     return 0;
                 }
             }
             return 1;
         } else {
-            if (a->mUnk_20 == 0) {
+            if (a->mUnk_20 == NULL) {
                 return 1;
             }
             i = func_ov000_0219883c(a, &f, d, e);
@@ -58,19 +58,19 @@ u32 func_ov000_021992d4(Unk02197e8c *a, u8 *b, s32 c, u32 d, u32 e) {
     }
     k = f;
     if (k->mUnk_0c == 7) {
-        if (h == 0 || b[2] != 0x68) {
+        if (h == FALSE || b[2] != 0x68) {
             if (func_ov000_02198b8c(k) == 0) {
                 return 0;
             }
         }
         return 1;
     }
-    if (h != 0 && c >= 4 && memcmp(b + 2, data_ov000_021b3fa4, 2) == 0) {
+    if (h != FALSE && c >= 4 && memcmp(b + 2, data_ov000_021b3fa4, 2) == 0) {
         b += 2;
         c -= 2;
-        h = 0;
+        h = FALSE;
     }
-    if (h == 0) {
+    if (h == FALSE) {
         if (func_ov000_02199e50(k, b, c) != 0) {
             return 1;
         }
@@ -138,7 +138,7 @@ u32 func_ov000_0219958c(Unk02197fe8 *a, u8 *b, s32 c) {
     s32 d;
     u8 *t;
     u8 *p;
-    if (a->mUnk_28.mUnk_0c == 0) {
+    if (a->mUnk_28.mUnk_0c == NULL) {
         return 1;
     }
     if (c != 8) {

@@ -68,7 +68,7 @@ void func_ov003_021c722c(void) {
     func_ov003_021bf620(&data_ov003_021d7338, &func_0214c090);
     func_ov003_021d272c(1, (u32) 1);
     func_ov003_021d272c(0, (u32) 0x15);
-    func_ov003_021c20dc(v1, 0);
+    func_ov003_021c20dc(v1, NULL);
     if (3 <= v1[0]) {
         v1[0] = v1[0] + 1;
     }

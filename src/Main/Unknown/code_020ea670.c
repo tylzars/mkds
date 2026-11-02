@@ -37,14 +37,14 @@ void func_020ebe68(Unk020ebef8 *param_1) {
     if (param_1->mUnk_000.mUnk_9c->mUnk_2c != 0) {
         return;
     }
-    if (data_0217bbf0 == 0) {
+    if (data_0217bbf0 == NULL) {
         data_0217bbf0 = param_1;
         param_1->mUnk_000.mUnk_80.mUnk_10 = 2;
         param_1->mUnk_000.mUnk_80.mUnk_12 = 1;
     }
 }
 
-s32 func_020ebc2c(Unk020ebef8 *param_1) {
+BOOL func_020ebc2c(Unk020ebef8 *param_1) {
     Vec3 v;
     Vec3 *p;
     s32 d;
@@ -86,9 +86,9 @@ s32 func_020ebc2c(Unk020ebef8 *param_1) {
         param_1->mUnk_0e4.z = (s32) (((s64) param_1->mUnk_0d8.z * -0x266) >> 12);
         param_1->mUnk_000.mUnk_10.x = (s32) (((s64) param_1->mUnk_0e4.x * 0x9000) >> 12);
         param_1->mUnk_000.mUnk_10.z = (s32) (((s64) param_1->mUnk_0e4.z * 0x9000) >> 12);
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_020ebb04(Unk020ebef8 *param_1) {
@@ -124,7 +124,7 @@ void func_020ebb04(Unk020ebef8 *param_1) {
 }
 
 void func_020ebab0(Unk020ebef8 *param_1) {
-    if (func_020ebc2c(param_1) != 0) {
+    if (func_020ebc2c(param_1) != FALSE) {
         param_1->mUnk_000.mUnk_80.mUnk_10 = 3;
         param_1->mUnk_000.mUnk_80.mUnk_12 = 1;
     }
@@ -160,7 +160,7 @@ void func_020eb8f8(Unk020ebef8 *param_1) {
     func_020d7a3c(&param_1->mUnk_0a0, param_1->mUnk_0ac, &v);
     func_01ffccd0(&param_1->mUnk_000.mUnk_28, &v);
     if (param_1->mUnk_000.mUnk_80.mUnk_04 >= 90) {
-        data_0217bbf0 = 0;
+        data_0217bbf0 = NULL;
         param_1->mUnk_000.mUnk_80.mUnk_10 = 0;
         param_1->mUnk_000.mUnk_80.mUnk_12 = 1;
     }
@@ -172,7 +172,7 @@ u32 func_020eb7e0(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *p
             if (param_2->mUnk_29c == 1 || param_2->mUnk_2a4 > 0x3000) {
                 func_020ebef8(param_1, &param_2->mUnk_0a4);
                 if (data_0217bbf0 == param_1) {
-                    data_0217bbf0 = 0;
+                    data_0217bbf0 = NULL;
                 }
                 param_1->mUnk_000.mUnk_80.mUnk_10 = 1;
                 param_1->mUnk_000.mUnk_80.mUnk_12 = 1;
@@ -201,7 +201,7 @@ u32 func_020eb760(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *p
     if (v <= 1) {
         func_020ebef8(param_1, &param_2->mUnk_05c);
         if (data_0217bbf0 == param_1) {
-            data_0217bbf0 = 0;
+            data_0217bbf0 = NULL;
         }
         param_1->mUnk_000.mUnk_80.mUnk_10 = 1;
         param_1->mUnk_000.mUnk_80.mUnk_12 = 1;
@@ -216,20 +216,20 @@ u32 func_020eb760(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *p
 #pragma thumb on
 
 void CreateWoodbox1(void) {
-    func_020ea588((void **) &gWoodbox1, (void *) FindCourseMapObjFile(gWoodbox1NsbmdName), 0);
+    func_020ea588((void **) &gWoodbox1, (void *) FindCourseMapObjFile(gWoodbox1NsbmdName), NULL);
     func_02084968(gWoodbox1, 0x3f, 2, 0x294a);
 }
 
 void func_020eb720(void) {
-    data_0217bbf0 = 0;
+    data_0217bbf0 = NULL;
 }
 
 void func_020eb498(Unk020ebef8 *param_1, Unk020eb498 *param_2) {
     Vec3 v;
     s32 d;
 
-    if (func_01ffdee4(&param_1->mUnk_000.mUnk_04, 0, 0, 0xa000, 8, -2, 0, &param_1->mUnk_0bc, 0, 0, 0,
-                      0, 0, 0) == 0) {
+    if (func_01ffdee4(&param_1->mUnk_000.mUnk_04, NULL, 0, 0xa000, 8, -2, NULL, &param_1->mUnk_0bc, NULL, NULL, NULL,
+                      NULL, NULL, NULL) == 0) {
         param_1->mUnk_0bc = data_0216c3d8;
     }
     param_1->mUnk_000.mUnk_04.y = param_1->mUnk_000.mUnk_04.y + param_1->mUnk_000.mUnk_58.x;
@@ -369,14 +369,14 @@ s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Ve
     }
     if (rz < rx) {
         if (ry < rz && d2 > 0) {
-            if (param_7 != 0) {
+            if (param_7 != NULL) {
                 param_7->x = (s32) (((s64) b->x * ry) >> 12);
                 param_7->y = (s32) (((s64) b->y * ry) >> 12);
                 param_7->z = (s32) (((s64) b->z * ry) >> 12);
             }
             return 1;
         }
-        if (param_7 != 0) {
+        if (param_7 != NULL) {
             if (d3 <= 0) {
                 rz = -rz;
             }
@@ -388,14 +388,14 @@ s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Ve
         return 4;
     }
     if (ry < rx && d2 > 0) {
-        if (param_7 != 0) {
+        if (param_7 != NULL) {
             param_7->x = (s32) (((s64) b->x * ry) >> 12);
             param_7->y = (s32) (((s64) b->y * ry) >> 12);
             param_7->z = (s32) (((s64) b->z * ry) >> 12);
         }
         return 1;
     }
-    if (param_7 != 0) {
+    if (param_7 != NULL) {
         if (d1 <= 0) {
             rx = -rx;
         }
@@ -439,14 +439,14 @@ s32 func_020ead80(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, s32 
     }
     n = (param_4 + param_7) - m;
     if (r < n && v.y > 0) {
-        if (param_8 != 0) {
+        if (param_8 != NULL) {
             param_8->x = (s32) (((s64) p->x * r) >> 12);
             param_8->y = (s32) (((s64) p->y * r) >> 12);
             param_8->z = (s32) (((s64) p->z * r) >> 12);
         }
         return 1;
     }
-    if (param_8 != 0) {
+    if (param_8 != NULL) {
         Vec3 w = {0};
 
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 16) {

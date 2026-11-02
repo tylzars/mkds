@@ -36,7 +36,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
                 Unk0217aa00 *q;
                 f = 0;
                 q = data_0217aa00;
-                if (q == 0) {
+                if (q == NULL) {
                     t = 0;
                 } else {
                     t = q->mUnk_0000;

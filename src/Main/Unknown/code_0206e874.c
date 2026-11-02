@@ -35,9 +35,9 @@ void func_0206e874(Unk0206bcb0 *p) {
     Vec3 *q;
     Vec3 *u;
     s32 v2;
-    s32 v3;
+    BOOL v3;
     u16 n;
-    s32 v4;
+    BOOL v4;
     s32 g;
     s32 h;
     s32 k;
@@ -50,8 +50,8 @@ void func_0206e874(Unk0206bcb0 *p) {
     s32 v7;
     u16 j;
 
-    v3 = 0;
-    e = 0;
+    v3 = FALSE;
+    e = NULL;
     n = 0;
     p->mUnk_3a0 = p->mUnk_39c = 0;
     k = func_020d41e0(p, &p->mUnk_1b8, &t);
@@ -63,7 +63,7 @@ void func_0206e874(Unk0206bcb0 *p) {
                 z = data_02154f94;
                 do {
                     s = 0;
-                    v4 = 0;
+                    v4 = FALSE;
                     e = func_020d411c(i);
                     h = func_020d6be0(p, e);
                     r = ((s32(*)(Unk0206bcb0 *, s32 *, Unk020e71a0 *)) data_0217ac18[h])(p, &v2, e);
@@ -120,7 +120,7 @@ void func_0206e874(Unk0206bcb0 *p) {
                         }
                         s = p->mUnk_38c;
                         if (r & 8) {
-                            v3 = 1;
+                            v3 = TRUE;
                         }
                     }
                     g = e->mUnk_02 & 0x200;
@@ -133,11 +133,11 @@ void func_0206e874(Unk0206bcb0 *p) {
                         if (n < 2) {
                             for (j = 0; j < 2; j++) {
                                 if (e == p->mUnk_438[j]) {
-                                    v4 = 1;
+                                    v4 = TRUE;
                                     break;
                                 }
                             }
-                            if (v4 == 0) {
+                            if (v4 == FALSE) {
                                 for (j = 0; j < 2; j++) {
                                     if (e == p->mUnk_438[j] || p->mUnk_444[j] != 0) {
                                         continue;
@@ -175,7 +175,7 @@ void func_0206e874(Unk0206bcb0 *p) {
             }
         }
     }
-    if (v3 != 0) {
+    if (v3 != FALSE) {
         p->mUnk_44 |= 0x40;
     } else {
         p->mUnk_44 &= ~0x40;

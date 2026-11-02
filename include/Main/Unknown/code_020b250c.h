@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-int func_020b250c(void);
+BOOL func_020b250c(void);

@@ -401,7 +401,7 @@ void func_02027448(void) {
 }
 
 void func_02027424(s32 a) {
-    if (gSelectCharacter->mUnk_128 != 0) {
+    if (gSelectCharacter->mUnk_128 != FALSE) {
         func_0202b7c0(a);
     }
 }
@@ -458,7 +458,7 @@ void func_020272c0(s16 a, s16 b) {
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         g = gSelectCharacter;
-        if (g->mUnk_128 == 0) {
+        if (g->mUnk_128 == FALSE) {
             g->mUnk_000.mUnk_18[0].mUnk_06 = a;
             g->mUnk_000.mUnk_18[3].mUnk_06 = b;
         }
@@ -470,7 +470,7 @@ void func_0202728c(s16 a) {
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         g = gSelectCharacter;
-        if (g->mUnk_128 == 0) {
+        if (g->mUnk_128 == FALSE) {
             g->mUnk_000.mUnk_18[1].mUnk_04 = a;
             g->mUnk_000.mUnk_18[2].mUnk_04 = g->mUnk_000.mUnk_18[1].mUnk_04;
         }
@@ -482,7 +482,7 @@ void func_0202721c(void) {
     Unk02174e14_00 *p;
 
     g = gSelectCharacter;
-    if (g->mUnk_128 == 0) {
+    if (g->mUnk_128 == FALSE) {
         p = &g->mUnk_038;
         func_02124748(*(s16 *) &g->mUnk_090[g->mUnk_060].mUnk_04, p->mUnk_08, g->mUnk_038.mUnk_00, p->mUnk_0c, 0, 2,
                       g->mUnk_000.mUnk_08, g->mUnk_000.mUnk_0c);

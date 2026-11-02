@@ -23,14 +23,14 @@
 u8 *func_020ff2b0(u8 *a, Unk020ff438 *b, void *c) {
     u8 *p;
 
-    if (b != 0 && c != 0) {
+    if (b != NULL && c != NULL) {
         func_020ff1b8(b->mUnk_13c, &b->mUnk_000.mUnk_000.mUnk_5c.y);
     }
     p = func_020fecdc(a, b, c);
-    if (b != 0 && c == 0) {
+    if (b != NULL && c == NULL) {
         func_020ff1a0(b->mUnk_000.mUnk_000.mUnk_5c.y, &b->mUnk_13c);
     }
-    if (b != 0 && c != 0) {
+    if (b != NULL && c != NULL) {
         return func_020fe8ac(b->mUnk_000.mUnk_000.mUnk_44);
     }
     return p;
@@ -98,7 +98,7 @@ s32 func_020ff178(Unk020f41c4_A *p) {
 }
 
 static inline u8 *func_020ff0b0_inline(u8 *p, volatile s32 *t, void *c, s32 n) {
-    if (c != 0) {
+    if (c != NULL) {
         *p = *t >> n;
     } else {
         *t = *(s8 *) p << n;
@@ -109,14 +109,14 @@ static inline u8 *func_020ff0b0_inline(u8 *p, volatile s32 *t, void *c, s32 n) {
 u8 *func_020ff0b0(u8 *a, Vec3 *b, Vec3 *q, void *c) {
     volatile s32 t[3];
 
-    if (q != 0) {
-        if (c != 0) {
+    if (q != NULL) {
+        if (c != NULL) {
             func_021484d0(q, b, (Vec3 *) t);
         }
         a = func_020ff0b0_inline(a, &t[0], c, 10);
         a = func_020ff0b0_inline(a, &t[1], c, 9);
         a = func_020ff0b0_inline(a, &t[2], c, 10);
-        if (c == 0) {
+        if (c == NULL) {
             func_02148504((Vec3 *) t, b, q);
         }
     } else {
@@ -130,17 +130,17 @@ u8 *func_020ff0b0(u8 *a, Vec3 *b, Vec3 *q, void *c) {
 u8 *func_020ff040(u8 *a, void *b, void *c) {
     volatile u8 v;
 
-    if (b != 0) {
-        if (c != 0) {
+    if (b != NULL) {
+        if (c != NULL) {
             v = func_020f36d8((Unk020f36d8 *) b);
         }
-        if (c != 0) {
+        if (c != NULL) {
             *(u8 *) a = v;
         } else {
             v = *(u8 *) a;
         }
         a++;
-        if (c == 0) {
+        if (c == NULL) {
             func_020f36a0(v, b);
         }
     } else {
@@ -152,17 +152,17 @@ u8 *func_020ff040(u8 *a, void *b, void *c) {
 u8 *func_020fefe8(u8 *a, s32 *b, void *c) {
     volatile s32 t;
 
-    if (b != 0) {
-        if (c != 0) {
+    if (b != NULL) {
+        if (c != NULL) {
             t = *b;
         }
-        if (c != 0) {
+        if (c != NULL) {
             *(u8 *) a = t >> 9;
         } else {
             t = *(s8 *) a << 9;
         }
         a++;
-        if (c == 0) {
+        if (c == NULL) {
             *b = t;
         }
     } else {
@@ -175,17 +175,17 @@ static inline u8 *func_020fecdc_inline(u8 *a, s16 *p, void *c) {
     volatile u8 t;
     u8 *q;
 
-    if (p != 0) {
-        if (c != 0) {
+    if (p != NULL) {
+        if (c != NULL) {
             t = *p;
         }
-        if (c != 0) {
+        if (c != NULL) {
             *a = t;
         } else {
             t = *a;
         }
         q = a + 1;
-        if (c == 0) {
+        if (c == NULL) {
             *p = t;
         }
         return q;
@@ -196,16 +196,16 @@ static inline u8 *func_020fecdc_inline(u8 *a, s16 *p, void *c) {
 static inline u8 *func_020fecdc_inline2(u8 *a, u32 *p, void *c) {
     volatile u16 t;
 
-    if (p != 0) {
-        if (c != 0) {
+    if (p != NULL) {
+        if (c != NULL) {
             t = *p >> 12;
         }
-        if (c != 0) {
+        if (c != NULL) {
             *(u16 *) a = t;
         } else {
             t = *(u16 *) a;
         }
-        if (c == 0) {
+        if (c == NULL) {
             *p = t << 12;
         }
         return a + 2;
@@ -214,8 +214,8 @@ static inline u8 *func_020fecdc_inline2(u8 *a, u32 *p, void *c) {
 }
 
 static inline u8 *func_020fecdc_inline3(u8 *a, s32 *p, void *c) {
-    if (p != 0) {
-        if (c != 0) {
+    if (p != NULL) {
+        if (c != NULL) {
             *(s16 *) a = *p >> 9;
         } else {
             *p = *(s16 *) a << 9;
@@ -225,8 +225,8 @@ static inline u8 *func_020fecdc_inline3(u8 *a, s32 *p, void *c) {
 }
 
 static inline u8 *func_020fecdc_inline4(u8 *a, s32 *p, void *c, s32 n) {
-    if (p != 0) {
-        if (c != 0) {
+    if (p != NULL) {
+        if (c != NULL) {
             *a = *p >> n;
         } else {
             *p = *(s8 *) a << n;
@@ -241,24 +241,24 @@ u8 *func_020fecdc(u8 *a, void *b, void *c) {
 
     e = b;
 
-    if (b != 0) {
-        if (c != 0) {
+    if (b != NULL) {
+        if (c != NULL) {
             a = data_0217bd6c;
         }
         a++;
     }
-    a = func_020fecdc_inline(a, b != 0 ? &e->mUnk_4e : 0, c);
-    a = func_020fecdc_inline2(a, b != 0 ? &e->mUnk_74 : 0, c);
-    a = func_020fecdc_inline3(a, (b != 0 ? &e->mUnk_50 : 0) != 0 ? &(b != 0 ? &e->mUnk_50 : 0)->x : 0, c);
-    a = func_020fecdc_inline3(a, (b != 0 ? &e->mUnk_50 : 0) != 0 ? &(b != 0 ? &e->mUnk_50 : 0)->y : 0, c);
-    a = func_020fecdc_inline3(a, (b != 0 ? &e->mUnk_50 : 0) != 0 ? &(b != 0 ? &e->mUnk_50 : 0)->z : 0, c);
-    a = func_020ff0b0(a, b != 0 ? &e->mUnk_50 : 0, b != 0 ? &e->mUnk_0e4 : 0, c);
-    a = func_020fecdc_inline4(a, (b != 0 ? &e->mUnk_5c : 0) != 0 ? &(b != 0 ? &e->mUnk_5c : 0)->x : 0, c, 10);
-    a = func_020fecdc_inline4(a, (b != 0 ? &e->mUnk_5c : 0) != 0 ? &(b != 0 ? &e->mUnk_5c : 0)->y : 0, c, 9);
-    a = func_020fecdc_inline4(a, (b != 0 ? &e->mUnk_5c : 0) != 0 ? &(b != 0 ? &e->mUnk_5c : 0)->z : 0, c, 10);
-    p = b != 0 ? &e->mUnk_78 : 0;
-    if (p != 0) {
-        if (c != 0) {
+    a = func_020fecdc_inline(a, b != NULL ? &e->mUnk_4e : 0, c);
+    a = func_020fecdc_inline2(a, b != NULL ? &e->mUnk_74 : 0, c);
+    a = func_020fecdc_inline3(a, (b != NULL ? &e->mUnk_50 : 0) != NULL ? &(b != NULL ? &e->mUnk_50 : 0)->x : 0, c);
+    a = func_020fecdc_inline3(a, (b != NULL ? &e->mUnk_50 : 0) != NULL ? &(b != NULL ? &e->mUnk_50 : 0)->y : 0, c);
+    a = func_020fecdc_inline3(a, (b != NULL ? &e->mUnk_50 : 0) != NULL ? &(b != NULL ? &e->mUnk_50 : 0)->z : 0, c);
+    a = func_020ff0b0(a, b != NULL ? &e->mUnk_50 : 0, b != NULL ? &e->mUnk_0e4 : 0, c);
+    a = func_020fecdc_inline4(a, (b != NULL ? &e->mUnk_5c : 0) != NULL ? &(b != NULL ? &e->mUnk_5c : 0)->x : 0, c, 10);
+    a = func_020fecdc_inline4(a, (b != NULL ? &e->mUnk_5c : 0) != NULL ? &(b != NULL ? &e->mUnk_5c : 0)->y : 0, c, 9);
+    a = func_020fecdc_inline4(a, (b != NULL ? &e->mUnk_5c : 0) != NULL ? &(b != NULL ? &e->mUnk_5c : 0)->z : 0, c, 10);
+    p = b != NULL ? &e->mUnk_78 : 0;
+    if (p != NULL) {
+        if (c != NULL) {
             *(u16 *) a = *p;
         } else {
             *p = *(u16 *) a;
@@ -513,7 +513,7 @@ void *func_020fe4c0(void *a, void *b, s32 c) {
 
     e = b;
     p = func_020fecdc(a, b, (void *) c);
-    if (b == 0) {
+    if (b == NULL) {
         return p;
     }
     if (c == 0) {

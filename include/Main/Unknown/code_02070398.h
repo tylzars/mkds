@@ -6,7 +6,7 @@
 
 // Declared here until the code that defines them is decompiled.
 Unk02175620_bc *func_02040da8(u32 a);
-s32 func_02070398(Unk0206bcb0 *p, u32 b, void *c);
+BOOL func_02070398(Unk0206bcb0 *p, u32 b, void *c);
 void func_02070484(Unk0206bcb0 *p, Vec4 *q);
 void func_020705fc(Unk0206bcb0 *p, u32 b);
 void func_020708a4(Unk0206bcb0 *p);

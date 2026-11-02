@@ -7,14 +7,14 @@
 
 void func_020858ac(u32 a) {
     Unk021759c0 *p;
-    s32 f;
+    BOOL f;
     s16 j;
     p = data_021759c0;
-    f = 0;
+    f = FALSE;
     if ((u32) p->mUnk_68[a].mUnk_08.mUnk_00 <= 3 && ((1 << p->mUnk_68[a].mUnk_08.mUnk_00) & 0xd)) {
-        f = 1;
+        f = TRUE;
     }
-    if (f == 0) {
+    if (f == FALSE) {
         return;
     }
     if (p->mUnk_58 != 0) {
@@ -53,7 +53,7 @@ void func_02085778(void) {
     u32 m;
     u16 i;
     u32 v;
-    if (data_0217aec0 == 0) {
+    if (data_0217aec0 == NULL) {
         return;
     }
     func_0208552c();
@@ -82,7 +82,7 @@ void func_0208552c(void) {
     s32 x;
     s32 y;
     u16 q;
-    s32 f;
+    BOOL f;
     m = 1;
     for (i = 0; (u32) i < data_021759c0->mUnk_3d0; i++) {
         w = gCourseMap->mUnk_108;
@@ -132,12 +132,12 @@ void func_0208552c(void) {
         y = data_0217aebc->mUnk_020[k];
         if (y >= 0) {
             q = y;
-            f = 0;
+            f = FALSE;
             if ((u32) data_021759c0->mUnk_68[q].mUnk_08.mUnk_00 <= 3 &&
                 ((1 << data_021759c0->mUnk_68[q].mUnk_08.mUnk_00) & 0xd)) {
-                f = 1;
+                f = TRUE;
             }
-            if (f != 0) {
+            if (f != FALSE) {
                 data_0217aebc->mUnk_060[n] = y;
                 n++;
             }

@@ -3,7 +3,7 @@
 #include "types.h"
 
 void func_0211e0c4(u32 a);
-s32 func_0211e130(void);
+BOOL func_0211e130(void);
 s32 func_0211e160(u32 a);
 s32 func_0211e1f0(u32 a);
 s32 func_0211e274(u32 a);

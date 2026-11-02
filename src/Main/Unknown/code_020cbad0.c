@@ -105,9 +105,9 @@ void func_020cbb10(void) {
         data_0217b43c->mSinglePlaySelectModeSBncl = FindSceneFileWrapper("common/single_play_select_mode_s.bncl");
         data_0217b43c->mSinglePlaySelectModeSBnbl = FindSceneFileWrapper("common/single_play_select_mode_s.bnbl");
         p = data_0217b43c;
-        func_02124ed0(func_020cb99c(), p->mSinglePlaySelectModeMBncl, 0, &p->mUnk_93c);
+        func_02124ed0(func_020cb99c(), p->mSinglePlaySelectModeMBncl, NULL, &p->mUnk_93c);
         p = data_0217b43c;
-        func_02124ed0(func_020cb99c(), p->mSinglePlaySelectModeSBncl, 0, &p->mUnk_948);
+        func_02124ed0(func_020cb99c(), p->mSinglePlaySelectModeSBncl, NULL, &p->mUnk_948);
         p = data_0217b43c;
         func_02124a98(0, 1, p->mSinglePlaySelectModeSNcer, p->mSinglePlaySelectModeSBncl);
         p = data_0217b43c;
@@ -250,7 +250,7 @@ u16 *func_020cbb04(void) {
     return (u16 *) 0x27ffc40;
 }
 
-s32 func_020cbadc(void) {
+BOOL func_020cbadc(void) {
     return *func_020cbb04() == 2;
 }
 

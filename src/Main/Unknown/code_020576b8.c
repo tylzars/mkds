@@ -10,7 +10,7 @@ void func_02057710(void *a, s32 b) {
     if (data_021759d4->mUnk_0c != 0) {
         func_0214d1fc(a, v, 0xb00);
         v[0] = 0x45464b4e;
-        func_0204b430(c + 0x2b00, c + 0x33a00, v, 0xb00, 0, 0);
+        func_0204b430(c + 0x2b00, c + 0x33a00, v, 0xb00, NULL, 0);
     }
 }
 

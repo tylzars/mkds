@@ -39,7 +39,7 @@ void func_02081224(u32 a) {
     Unk0217ae84 *e = &data_0217ae84[a];
     Unk0201ca6c *p;
 
-    if (e->mUnk_30 != 0) {
+    if (e->mUnk_30 != NULL) {
         func_0208b710(e->mUnk_30);
     }
     e->mUnk_30 = func_0208b7bc(0x5e, &data_02155a14);
@@ -81,7 +81,7 @@ void func_02081120(Unk0201ca6c *p, s32 a) {
         p->mUnk_98_16 = j + 1;
     }
     if (v1 != 0) {
-        data_0217ae84[i].mUnk_30 = 0;
+        data_0217ae84[i].mUnk_30 = NULL;
         return;
     }
     p->mUnk_6c = (s16) func_0207a974(i)->mUnk_bc.z;

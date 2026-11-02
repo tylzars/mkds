@@ -3,7 +3,7 @@
 u32 func_ov000_021a6d40(void) {
     u8 *v1;
     v1 = func_ov000_021a6b10();
-    if (v1 != 0) {
+    if (v1 != NULL) {
         return 1;
     }
     return 0;

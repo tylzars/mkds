@@ -10,10 +10,10 @@
 #include "registers.h"
 
 void func_ov001_021932c8(void) {
-    data_ov001_021a9bd0->mUnk_18.mUnk_00 = 0;
-    data_ov001_021a9bd0->mUnk_18.mUnk_04 = 0;
-    data_ov001_021a9bd0->mUnk_18.mUnk_08 = 0;
-    data_ov001_021a9bd0->mUnk_18.mUnk_0c = 0;
+    data_ov001_021a9bd0->mUnk_18.mUnk_00 = NULL;
+    data_ov001_021a9bd0->mUnk_18.mUnk_04 = NULL;
+    data_ov001_021a9bd0->mUnk_18.mUnk_08 = NULL;
+    data_ov001_021a9bd0->mUnk_18.mUnk_0c = NULL;
 }
 
 void LoadOptionData(void) {
@@ -112,17 +112,17 @@ void func_ov001_02192fb8(void *heap, s16 a) {
 }
 
 void func_ov001_02192f8c(void) {
-    if (data_ov001_021a9bd0->mUnk_18.mUnk_04 != 0) {
+    if (data_ov001_021a9bd0->mUnk_18.mUnk_04 != NULL) {
         data_ov001_021a9bd0->mUnk_18.mUnk_04();
     }
     func_ov001_021932c8();
     func_0212abd0();
     func_02125da0();
-    data_ov001_021a9bd0 = 0;
+    data_ov001_021a9bd0 = NULL;
 }
 
 void func_ov001_02192ee4(void) {
-    if (data_ov001_021a9bd0->mUnk_18.mUnk_08 != 0) {
+    if (data_ov001_021a9bd0->mUnk_18.mUnk_08 != NULL) {
         data_ov001_021a9bd0->mUnk_18.mUnk_08();
     }
     if (data_ov001_021a9bd0->mUnk_0c != -1) {
@@ -147,7 +147,7 @@ void func_ov001_02192ee4(void) {
         data_ov001_021a9bd0->mUnk_10 = data_ov001_021a9bd0->mUnk_08;
         data_ov001_021a9bd0->mUnk_08 = data_ov001_021a9bd0->mUnk_0c;
         data_ov001_021a9bd0->mUnk_0c = -1;
-        if (data_ov001_021a9bd0->mUnk_18.mUnk_00 != 0) {
+        if (data_ov001_021a9bd0->mUnk_18.mUnk_00 != NULL) {
             data_ov001_021a9bd0->mUnk_18.mUnk_00(data_ov001_021a9bd0->mUnk_04);
         }
     }
@@ -156,7 +156,7 @@ void func_ov001_02192ee4(void) {
 }
 
 void func_ov001_02192ec4(void) {
-    if (data_ov001_021a9bd0->mUnk_18.mUnk_0c != (UnkFunc *) 0x0) {
+    if (data_ov001_021a9bd0->mUnk_18.mUnk_0c != NULL) {
         (*data_ov001_021a9bd0->mUnk_18.mUnk_0c)();
     }
     func_021258f0();

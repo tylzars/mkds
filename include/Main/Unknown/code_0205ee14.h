@@ -27,7 +27,7 @@ void func_0205f700(void);
 void func_0205fa00(u32 a, s32 *b, u32 c, u32 d);
 s32 func_0205fbb8(s32 a);
 s32 func_0205fc28(s32 a);
-s32 func_0205fc98(Unk0205fd2c *a, u32 b, u32 c);
+BOOL func_0205fc98(Unk0205fd2c *a, u32 b, u32 c);
 u32 func_0205fd2c(Unk0205fd2c *a, u32 b, u32 c);
 s32 func_0205fd78(s32 a, s32 b, s32 *out);
 s32 func_0205fdb4(s32 a, void *b);

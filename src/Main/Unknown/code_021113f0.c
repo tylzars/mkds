@@ -150,8 +150,8 @@ void func_0211256c(void) {
     s32 a;
     s32 b;
     Unk02175628Index i;
-    s32 g;
-    s32 f;
+    BOOL g;
+    BOOL f;
     u16 x;
     Unk02175628 *p;
     Unk02175628 *q;
@@ -161,29 +161,29 @@ void func_0211256c(void) {
     i = UNK_02175628_INDEX_8;
     func_021137f4();
     func_021136f8();
-    g = 1;
-    f = 0;
+    g = TRUE;
+    f = FALSE;
     p = &data_02175674[i];
     x = data_02175674[i].mUnk_00;
     if (x == 0 && data_02175680[i].mUnk_00 < 5) {
-        f = 1;
+        f = TRUE;
     }
-    if (f == 0 && x == 0) {
-        g = 0;
+    if (f == FALSE && x == 0) {
+        g = FALSE;
     }
-    if (g != 0) {
+    if (g != FALSE) {
         a = func_0201ea84(gRecordVS->mUnk_34, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
-    g = 0;
-    f = 0;
+    g = FALSE;
+    f = FALSE;
     x = p->mUnk_00;
     if (x == 0 && data_02175680[i].mUnk_00 < 5) {
-        f = 1;
+        f = TRUE;
     }
-    if (f == 0 && data_0217567c[i].mUnk_00 == 0 && x != 0) {
-        g = 1;
+    if (f == FALSE && data_0217567c[i].mUnk_00 == 0 && x != 0) {
+        g = TRUE;
     }
-    if (g != 0) {
+    if (g != FALSE) {
         b = func_0201ea84(gRecordVS->mUnk_34, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
     if (a != 10) {
@@ -194,16 +194,16 @@ void func_0211256c(void) {
     }
     q = &data_02175628[i];
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
-        g = 0;
-        f = 0;
+        g = FALSE;
+        f = FALSE;
         x = p->mUnk_00;
         if (x == 0 && data_02175680[i].mUnk_00 < 5) {
-            f = 1;
+            f = TRUE;
         }
-        if (f == 0 && data_0217567c[i].mUnk_00 == 0 && x != 0) {
-            g = 1;
+        if (f == FALSE && data_0217567c[i].mUnk_00 == 0 && x != 0) {
+            g = TRUE;
         }
-        if (g == 0 || func_02128210(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
+        if (g == FALSE || func_02128210(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
             goto l1;
         }
     }
@@ -634,10 +634,10 @@ void func_02111ab4(void) {
 }
 
 void func_02111a98(void) {
-    data_0217d344->mUnk_18.mUnk_00 = 0;
-    data_0217d344->mUnk_18.mUnk_04 = 0;
-    data_0217d344->mUnk_18.mUnk_08 = 0;
-    data_0217d344->mUnk_18.mUnk_0c = 0;
+    data_0217d344->mUnk_18.mUnk_00 = NULL;
+    data_0217d344->mUnk_18.mUnk_04 = NULL;
+    data_0217d344->mUnk_18.mUnk_08 = NULL;
+    data_0217d344->mUnk_18.mUnk_0c = NULL;
 }
 
 #pragma thumb off
@@ -647,7 +647,7 @@ void func_02111a98(void) {
 void func_02111684(void) {
     void *v1;
     Unk02111684_v v2;
-    v2.m4934 = 0;
+    v2.m4934 = NULL;
     v1 = FindSceneFile(gRecordTopMenuMBNcgrName);
     LoadNcgrData(&v2.m4934, v1);
     v1 = FindSceneFile(gRecordTopMenuMBNclrName);
@@ -808,7 +808,7 @@ void func_02111584(void) {
     func_02111a98();
     func_0212abd0();
     func_02125da0();
-    *&data_0217d344 = 0;
+    *&data_0217d344 = NULL;
 }
 
 #pragma thumb off

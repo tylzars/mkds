@@ -75,7 +75,7 @@ void func_ov000_021a41dc(Unk021a4a08 *a, Unk021a471c *b, s32 c, s32 d, const u8 
             o = f.mUnk_000;
             do {
                 p = data_ov000_021b45bc[*o];
-                if (p == 0) {
+                if (p == NULL) {
                     p = data_ov000_021b43f8;
                 }
                 func_ov000_021a471c(b, p);

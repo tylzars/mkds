@@ -12,7 +12,7 @@
 #include "Main/Unknown/code_020a737c.h"
 
 void func_020a737c(void) {
-    func_0209bfa8(&func_020a7fc4, &func_020a7f18, 0, (u32) 1, (u16) 1);
+    func_0209bfa8(&func_020a7fc4, &func_020a7f18, NULL, (u32) 1, (u16) 1);
 }
 
 u32 func_020a7358(void) {
@@ -20,19 +20,19 @@ u32 func_020a7358(void) {
 }
 
 u32 func_020a7338(void) {
-    return func_0209bf48(func_020a78c8, func_020a73b0, 0);
+    return func_0209bf48(func_020a78c8, func_020a73b0, NULL);
 }
 
-s32 func_020a72c8(u16 a, u16 b) {
+BOOL func_020a72c8(u16 a, u16 b) {
     if (func_020a1154(a) != 0) {
         func_020a10f0(a, -1);
         if (b >= 8) {
             b = a;
         }
         func_020a5608(func_0207a974(a), func_0207a974(b));
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_020a7270(u16 a) {
@@ -49,16 +49,16 @@ void func_020a71c8(void) {
     Unk020e6fd4 *l;
 
     l = func_02100138(0x6b);
-    if (l != 0) {
-        for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != 0; i++) {
+    if (l != NULL) {
+        for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
             if ((o->mUnk_02 & 0x100) == 0) {
                 func_020d2398(o);
             }
         }
     }
     l = func_02100138(0x70);
-    if (l != 0) {
-        for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != 0; i++) {
+    if (l != NULL) {
+        for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
             if ((o->mUnk_02 & 0x100) == 0) {
                 func_020d2398(o);
             }

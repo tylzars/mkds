@@ -77,7 +77,7 @@ int func_ov000_0219d034(int a) {
 u32 func_ov000_0219d094(void *a, Unk0218ec44 *b) {
     s32 c;
     s32 d = 0;
-    if (data_ov000_021b5664 == 0 || func_ov000_0219c3e4() == 0) {
+    if (data_ov000_021b5664 == NULL || func_ov000_0219c3e4() == 0) {
         return 0;
     }
     c = func_02152520((void *) func_ov000_0219c9c4(), a);

@@ -65,25 +65,25 @@ void func_0200bb98(Unk0216fde8 *a, void *b) {
 }
 
 void func_0200bc0c(void) {
-    func_0214358c(1, 0, 0);
+    func_0214358c(1, NULL, NULL);
 }
 
 void func_0200bc1c(Unk021425e8 *a) {
     data_0216fdec->mUnk_20 = 0;
     if (a->mUnk_02 == 0) {
-        if (data_0216fdec->mUnk_00 != 0) {
+        if (data_0216fdec->mUnk_00 != NULL) {
             data_0216fdec->mUnk_00(8, a);
         }
     } else if (a->mUnk_02 == 9) {
-        if (data_0216fdec->mUnk_00 != 0) {
+        if (data_0216fdec->mUnk_00 != NULL) {
             data_0216fdec->mUnk_00(0x29, a);
         }
     } else {
-        if (data_0216fdec->mUnk_00 != 0) {
+        if (data_0216fdec->mUnk_00 != NULL) {
             data_0216fdec->mUnk_00(0x12, a);
         }
     }
-    if (data_0216fdec->mUnk_00 != 0) {
+    if (data_0216fdec->mUnk_00 != NULL) {
         data_0216fdec->mUnk_00(0x19, 0);
     }
 }
@@ -95,7 +95,7 @@ s32 func_0200bc78(u32 a, u16 b, u8 *c) {
     if (func_0200bd0c() == 0) {
         return 1;
     }
-    r = func_02144048(func_0200bc1c, 0, c, (u16) a, b, 1, 3);
+    r = func_02144048(func_0200bc1c, NULL, c, (u16) a, b, 1, 3);
     if (r == 2) {
         data_0216fdec->mUnk_20 = 1;
         return 2;
@@ -110,7 +110,7 @@ void func_0200bcd8(Unk021425e8 *a) {
             case 9:
                 break;
             case 21:
-                if (data_0216fdec->mUnk_00 != 0) {
+                if (data_0216fdec->mUnk_00 != NULL) {
                     data_0216fdec->mUnk_00(9, a);
                 }
                 break;
@@ -137,13 +137,13 @@ void func_0200bd34(Unk021425e8 *a) {
     if (b != 0) {
         u16 c = a->mUnk_00;
         Unk0216fdec *p = data_0216fdec;
-        if (p->mUnk_00 != 0) {
+        if (p->mUnk_00 != NULL) {
             v.mUnk_00 = c;
             v.mUnk_02 = b;
             p->mUnk_00(0x100, &v);
         }
     } else {
-        if (data_0216fdec->mUnk_00 != 0) {
+        if (data_0216fdec->mUnk_00 != NULL) {
             data_0216fdec->mUnk_00(15, 0);
         }
     }
@@ -154,7 +154,7 @@ void func_0200bd7c(void) {
     s32 r = func_02143dd0(func_0200bd34);
     if (r != 2) {
         Unk0216fdec *p = data_0216fdec;
-        if (p->mUnk_00 != 0) {
+        if (p->mUnk_00 != NULL) {
             v.mUnk_00 = 1;
             v.mUnk_02 = r;
             p->mUnk_00(0xff, &v);
@@ -170,13 +170,13 @@ void func_0200bdb4(Unk021425e8 *a) {
     if (b != 0) {
         u16 c = a->mUnk_00;
         Unk0216fdec *p = data_0216fdec;
-        if (p->mUnk_00 != 0) {
+        if (p->mUnk_00 != NULL) {
             v.mUnk_00 = c;
             v.mUnk_02 = b;
             p->mUnk_00(0x100, &v);
         }
     } else {
-        if (data_0216fdec->mUnk_00 != 0) {
+        if (data_0216fdec->mUnk_00 != NULL) {
             data_0216fdec->mUnk_00(15, 0);
         }
     }
@@ -191,7 +191,7 @@ void func_0200be00(void) {
         Unk0216fdec *p;
         data_0216fdec->mUnk_1c = 0;
         p = data_0216fdec;
-        if (p->mUnk_00 != 0) {
+        if (p->mUnk_00 != NULL) {
             v.mUnk_00 = 1;
             v.mUnk_02 = r;
             p->mUnk_00(0xff, &v);
@@ -209,7 +209,7 @@ void func_0200be44(Unk021425e8 *a) {
         if (b != 15 && b != 9 && b != 13) {
             c = a->mUnk_00;
             p = data_0216fdec;
-            if (p->mUnk_00 != 0) {
+            if (p->mUnk_00 != NULL) {
                 v.mUnk_00 = c;
                 v.mUnk_02 = b;
                 p->mUnk_00(0x100, &v);
@@ -221,10 +221,10 @@ void func_0200be44(Unk021425e8 *a) {
                 data_0216fdec->mUnk_1a = 1;
                 data_0216fdec->mUnk_20 = 0;
                 data_0216fdec->mUnk_1e = 0;
-                if (data_0216fdec->mUnk_00 != 0) {
+                if (data_0216fdec->mUnk_00 != NULL) {
                     data_0216fdec->mUnk_00(20, 0);
                 }
-                if (data_0216fdec->mUnk_00 != 0) {
+                if (data_0216fdec->mUnk_00 != NULL) {
                     data_0216fdec->mUnk_00(25, 0);
                 }
                 break;
@@ -232,7 +232,7 @@ void func_0200be44(Unk021425e8 *a) {
             default:
                 c = a->mUnk_00;
                 p = data_0216fdec;
-                if (p->mUnk_00 != 0) {
+                if (p->mUnk_00 != NULL) {
                     w.mUnk_00 = c;
                     w.mUnk_02 = 1;
                     p->mUnk_00(0x100, &w);
@@ -252,10 +252,10 @@ void func_0200bef8(void *a, u8 *b) {
     Unk0216fdec *p;
     data_0216fdec->mUnk_04 = a;
     data_0216fdec->mUnk_08 = b;
-    r = func_0214358c(1, func_0200bcd8, 0);
+    r = func_0214358c(1, func_0200bcd8, NULL);
     if (r != 0) {
         p = data_0216fdec;
-        if (p->mUnk_00 != 0) {
+        if (p->mUnk_00 != NULL) {
             v.mUnk_00 = 14;
             v.mUnk_02 = r;
             p->mUnk_00(0xff, &v);
@@ -266,7 +266,7 @@ void func_0200bef8(void *a, u8 *b) {
     r = func_02144230(func_0200be44, (u32) b, p->mUnk_12, (u32) a, p->mUnk_10, 1, 0, 0, 0, 1, 1);
     if (r != 2) {
         p = data_0216fdec;
-        if (p->mUnk_00 != 0) {
+        if (p->mUnk_00 != NULL) {
             w.mUnk_00 = 14;
             w.mUnk_02 = r;
             p->mUnk_00(0xff, &w);
@@ -276,7 +276,7 @@ void func_0200bef8(void *a, u8 *b) {
 
 void func_0200bf90(Unk021425e8 *a) {
     if (a->mUnk_02 != 0) {
-        if (data_0216fdec->mUnk_00 != 0) {
+        if (data_0216fdec->mUnk_00 != NULL) {
             data_0216fdec->mUnk_00(11, a);
         }
     } else {
@@ -291,12 +291,12 @@ void func_0200bf90(Unk021425e8 *a) {
             case 8:
                 break;
             case 9:
-                if (data_0216fdec->mUnk_00 != 0) {
+                if (data_0216fdec->mUnk_00 != NULL) {
                     data_0216fdec->mUnk_00(10, 0);
                 }
                 break;
             case 7:
-                if (data_0216fdec->mUnk_00 != 0) {
+                if (data_0216fdec->mUnk_00 != NULL) {
                     data_0216fdec->mUnk_00(6, a);
                 }
                 break;
@@ -314,9 +314,9 @@ void func_0200c008(u8 *a) {
     data_0216fdec->mUnk_16 = *(u16 *) (a + 0x4e);
     data_0216fdec->mUnk_18 = data_0216fdec->mUnk_14 - 6;
     func_0200c448(data_0216fdec->mUnk_16);
-    r = func_021437d8(func_0200bf90, (u16 *) a, 0, 1, 0);
+    r = func_021437d8(func_0200bf90, (u16 *) a, NULL, 1, 0);
     if (r != 2) {
-        if (data_0216fdec->mUnk_00 != 0) {
+        if (data_0216fdec->mUnk_00 != NULL) {
             data_0216fdec->mUnk_00(11, 0);
         }
     }

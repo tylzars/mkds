@@ -3,5 +3,5 @@
 #include "types.h"
 #include "Main/Unknown/code_020f36d8.h"
 
-s32 func_0203f2b4(u32 a);
-s32 func_0203f2dc(u32 a);
+BOOL func_0203f2b4(u32 a);
+BOOL func_0203f2dc(u32 a);

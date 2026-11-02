@@ -28,9 +28,9 @@ void func_020646f0(Unk0206bcb0 *a, s32 b) {
         }
     } else {
         c = gCourseMap;
-        if (c->mUnk_3c != 0) {
+        if (c->mUnk_3c != NULL) {
             n = &a->mUnk_80;
-            if (n != 0) {
+            if (n != NULL) {
                 *n = c->mUnk_3c->mUnk_00;
             }
             d = c->mUnk_3c->mUnk_0c;
@@ -47,7 +47,7 @@ void func_020646f0(Unk0206bcb0 *a, s32 b) {
     g = a->mUnk_80;
     g.y = g.y + 0x1000;
     a->mUnk_80.y = a->mUnk_80.y - 0x1400;
-    if (func_01ffdee4(&a->mUnk_80, (u32 *) &g, (u32) &a->mUnk_50, 0x5000, 1, -2, &e, &f, 0, 0, 0, 0, 0, 0) != 0) {
+    if (func_01ffdee4(&a->mUnk_80, (u32 *) &g, (u32) &a->mUnk_50, 0x5000, 1, -2, &e, &f, NULL, NULL, NULL, NULL, NULL, NULL) != 0) {
         h.x = (s64) f.x * 0x5000 >> 12;
         h.y = (s64) f.y * 0x5000 >> 12;
         h.z = (s64) f.z * 0x5000 >> 12;
@@ -72,7 +72,7 @@ void func_020646f0(Unk0206bcb0 *a, s32 b) {
     a->mUnk_50 = a->mUnk_278;
     a->mUnk_1b4 = &a->mUnk_150_m;
     i = a->mUnk_590->mUnk_008;
-    if (i == 0) {
+    if (i == NULL) {
         return;
     }
     if (i->mUnk_18 != 0) {

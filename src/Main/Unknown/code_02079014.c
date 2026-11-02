@@ -10,7 +10,7 @@ void func_02079078(void *a, void *b, void *c, Unk020136f0 *d, Unk020136f0 *e, vo
     v2 = (u32) func_02084d3c(b, d, e);
     func_020849c0(b, 3);
     func_0207a14c((Unk0201290c *) v2, (u32) 1);
-    func_0208823c(0, c, b, 1, a, 0);
+    func_0208823c(0, c, b, 1, a, NULL);
     v1 = func_02013a4c(func_02013a30(f), 0);
     v3 = func_0207b8dc(2);
     func_020881b0(c, 0, v1, v3, a);

@@ -205,9 +205,9 @@ s32 func_ov003_021b8758(s32 a, Unk021b8760 *b, s32 c, Unk021b8758 *d, u8 *e) {
 }
 
 s32 func_ov003_021b8748(u32 value) {
-    s32 result = 0;
+    BOOL result = FALSE;
     if (value & 0x10) {
-        result = 1;
+        result = TRUE;
     }
     return result;
 }

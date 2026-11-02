@@ -44,10 +44,10 @@ void func_02108edc(s32 a, s32 b) {
         if (data_0217d084.mUnk_0c == 0) {
             return;
         }
-        if (p->mUnk_00 != 0) {
+        if (p->mUnk_00 != NULL) {
             func_0212c6f0(&p->mUnk_00, 0);
         }
-        if (p->mUnk_00 != 0) {
+        if (p->mUnk_00 != NULL) {
             func_0212c6f0(&p->mUnk_00, 0);
         }
         func_0212ecc0(p, 0, c);

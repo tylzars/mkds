@@ -9,12 +9,12 @@
 #include "01/unk_021a9000.h"
 
 void func_ov001_0219f85c(void) {
-    Unk020b4934 *v1 = 0;
-    Unk02021dc8 *v2 = 0;
-    Unk020b4a44 *v3 = 0;
-    Unk020b4934 *v4 = 0;
-    Unk020b47d8 *v5 = 0;
-    Unk020b4a44 *v6 = 0;
+    Unk020b4934 *v1 = NULL;
+    Unk02021dc8 *v2 = NULL;
+    Unk020b4a44 *v3 = NULL;
+    Unk020b4934 *v4 = NULL;
+    Unk020b47d8 *v5 = NULL;
+    Unk020b4a44 *v6 = NULL;
 
     LoadNcgrData(&v4, FindSceneFile(data_ov001_021a90a8));
     LoadNscrData(&v5, FindSceneFile(data_ov001_021a90e4));
@@ -25,11 +25,11 @@ void func_ov001_0219f85c(void) {
 }
 
 void func_ov001_0219f6e0(void) {
-    Unk020b4934 *v1 = 0;
-    Unk020b4a44 *v2 = 0;
-    Unk020b4934 *v3 = 0;
-    Unk020b47d8 *v4 = 0;
-    Unk020b4a44 *v5 = 0;
+    Unk020b4934 *v1 = NULL;
+    Unk020b4a44 *v2 = NULL;
+    Unk020b4934 *v3 = NULL;
+    Unk020b47d8 *v4 = NULL;
+    Unk020b4a44 *v5 = NULL;
 
     LocateNcgr(&v3, FindSceneFile(data_ov001_021a90a8));
     LocateNscr(&v4, FindSceneFile(data_ov001_021a90e4));
@@ -147,7 +147,7 @@ void func_ov001_0219f430(void) {
 }
 
 void func_ov001_0219f3a4(void) {
-    s32 all = 1;
+    BOOL all = TRUE;
     s32 i = 0;
     s32 ok;
     s32 j;
@@ -161,7 +161,7 @@ void func_ov001_0219f3a4(void) {
         for (; j < 9; j++) {
             ok &= func_0205fd78(x, (u8) (j + 1), &out);
             if (!ok || out < 5) {
-                all = 0;
+                all = FALSE;
             }
         }
         if (ok) {
@@ -181,7 +181,7 @@ void func_ov001_0219f37c(void) {
     func_0202947c((u32) 1);
 }
 
-s32 func_ov001_0219f31c(void) {
+BOOL func_ov001_0219f31c(void) {
     s32 i;
     s32 ok = 1;
     s32 result;
@@ -192,9 +192,9 @@ s32 func_ov001_0219f31c(void) {
     }
     result = func_0205fd78((u8) (data_ov001_021ca410->mUnk_4c + 1), 9, &out);
     if (ok != 0 && result == 0) {
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_ov001_0219f2a4(void) {
@@ -249,7 +249,7 @@ void func_ov001_0219f198(void) {
     data_ov001_021ca410->mUnk_24 = 0;
     switch (data_ov001_021ca410->mUnk_58) {
         case 1:
-            if (func_ov001_0219f31c() != 0) {
+            if (func_ov001_0219f31c() != FALSE) {
                 func_02105980(3, 10);
             } else {
                 func_02105980(0, 10);
@@ -312,7 +312,7 @@ void func_ov001_0219efec(void) {
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | 0x1800;
     switch (data_ov001_021ca410->mUnk_58) {
         case 1:
-            if (func_ov001_0219f31c() != 0) {
+            if (func_ov001_0219f31c() != FALSE) {
                 func_02105980(3, 10);
             } else {
                 func_02105980(0, 10);
@@ -323,7 +323,7 @@ void func_ov001_0219efec(void) {
             break;
     }
     func_02036ab0((void *) data_ov001_021ca410->mUnk_18);
-    data_ov001_021ca410 = 0;
+    data_ov001_021ca410 = NULL;
 }
 
 void func_ov001_0219efd0(void) {
@@ -371,32 +371,32 @@ void func_ov001_0219ef08(void) {
 void func_ov001_0219ec38(void) {
     u32 sel = -1;
     Unk02175628Index i = UNK_02175628_INDEX_8;
-    s32 f2;
-    s32 f1;
+    BOOL f2;
+    BOOL f1;
     s16 n;
 
     func_021059e0();
-    f2 = 0;
-    f1 = 0;
+    f2 = FALSE;
+    f1 = FALSE;
     if (data_02175628[i].mUnk_4c == 0 && data_02175628[i].mUnk_58 < 5) {
-        f1 = 1;
+        f1 = TRUE;
     }
-    if (f1 == 0 && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
-        f2 = 1;
+    if (f1 == FALSE && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
+        f2 = TRUE;
     }
-    if (f2 != 0) {
+    if (f2 != FALSE) {
         sel = func_0201ea84(data_ov001_021ca410->mUnk_08, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
-        s32 g2 = 0;
-        s32 g1 = 0;
+        BOOL g2 = FALSE;
+        BOOL g1 = FALSE;
         if (data_02175628[i].mUnk_4c == 0 && data_02175628[i].mUnk_58 < 5) {
-            g1 = 1;
+            g1 = TRUE;
         }
-        if (g1 == 0 && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
-            g2 = 1;
+        if (g1 == FALSE && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
+            g2 = TRUE;
         }
-        if (g2 == 0 || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (g2 == FALSE || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
             goto next;
         }
     }

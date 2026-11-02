@@ -182,7 +182,7 @@ s32 func_02005bec(Unk0216f3dc *a, s32 b, s32 c, s32 d) {
         }
         if (v7->mUnk_01 == 4) {
             v5 = func_02007014(v7->mUnk_10);
-            if (v5 != 0) {
+            if (v5 != NULL) {
                 v3 = func_02006458(v7->mUnk_10, v7->mUnk_14);
                 if (v3 != -1) {
                     if (v5->mUnk_32 == 0) {
@@ -263,7 +263,7 @@ u32 func_02005dac(Unk0216f3dc *a, s32 b, const u8 *c, s32 d) {
     s32 v1;
     u32 v2;
     u32 v3;
-    s32 v4;
+    BOOL v4;
     Unk0216f3dc_68 *v5;
     Unk0200628c *v6;
     v1 = 0;
@@ -289,16 +289,16 @@ u32 func_02005dac(Unk0216f3dc *a, s32 b, const u8 *c, s32 d) {
                     v1 = v1 + 2;
                     v2 = v5->mUnk_08;
                     if (func_02006ffc() == -1) {
-                        v4 = 0;
+                        v4 = FALSE;
                     } else {
                         v2 = v2 & (1 << func_02006ffc());
                         if (v2 != 0) {
-                            v4 = 1;
+                            v4 = TRUE;
                         } else {
-                            v4 = 0;
+                            v4 = FALSE;
                         }
                     }
-                    if (v4 == 0) {
+                    if (v4 == FALSE) {
                         return v1;
                     }
                     v2 = 3;
@@ -474,7 +474,7 @@ void func_02006144(Unk0216f3dc *a, s32 b, s32 c) {
                     break;
             }
             a->mUnk_000.mUnk_04 = b;
-            if (a->mUnk_000.mUnk_10 != 0) {
+            if (a->mUnk_000.mUnk_10 != NULL) {
                 a->mUnk_000.mUnk_10(&a->mUnk_000);
             }
         }
@@ -517,13 +517,13 @@ void func_020061d8(Unk0216f3dc *a, s32 b, s32 c, u32 d) {
                 break;
         }
         v1->mUnk_04 = b;
-        if (v1->mUnk_10 != 0) {
+        if (v1->mUnk_10 != NULL) {
             v1->mUnk_10(v1);
         }
     }
 }
 
-s32 func_0200628c(Unk0200628c *a, s32 b, const u8 *c) {
+BOOL func_0200628c(Unk0200628c *a, s32 b, const u8 *c) {
     u32 v1;
     u8 *v2;
     u32 v3;
@@ -541,9 +541,9 @@ s32 func_0200628c(Unk0200628c *a, s32 b, const u8 *c) {
             func_0214d1fc(c, v2 + b * v1, v1);
         }
     } else {
-        return 0;
+        return FALSE;
     }
-    return 1;
+    return TRUE;
 }
 
 s32 func_020062f4(Unk0200628c *a) {

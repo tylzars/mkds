@@ -2,7 +2,7 @@
 
 #pragma thumb on
 void func_020cae7c(Unk020cadf4 *a) {
-    if (a != 0) {
+    if (a != NULL) {
         a->mUnk_04 = 0;
     }
 }

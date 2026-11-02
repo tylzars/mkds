@@ -29,14 +29,14 @@ void func_0205a5b0(u32 a) {
 }
 
 s32 func_0205a630(s32 a) {
-    s32 r;
+    BOOL r;
     s32 t;
 
     t = data_0217aa14->mUnk_104[a].mUnk_6c;
-    r = 0;
+    r = FALSE;
     if (func_020efd84(&data_027e00c8[(u8) data_0217aa18->mUnk_06[a]], t) != 0) {
         data_0217aa14->mUnk_104[a].mUnk_6c = 0x13;
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
@@ -98,7 +98,7 @@ void func_0205a858(u32 a, u32 b, void *c, u8 d) {
             goto found;
         }
     }
-    e = 0;
+    e = NULL;
 found:
     e->mUnk_09 = a;
     e->mUnk_0a = b;

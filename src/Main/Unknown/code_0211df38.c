@@ -9,9 +9,9 @@ void func_0211e074(void) {
     Unk020b4934 *v2;
     Unk02021dc8 *v3;
     Unk020b4a44 *v4[1];
-    v2 = 0;
-    v3 = 0;
-    v4[0] = 0;
+    v2 = NULL;
+    v3 = NULL;
+    v4[0] = NULL;
     v1 = FindSceneFile(data_0216ded4);
     LoadNcgrData(&v2, v1);
     v1 = FindSceneFile(data_0216ded8);
@@ -25,9 +25,9 @@ void func_0211e024(void) {
     Unk020b4934 *v2;
     Unk02021dc8 *v3;
     Unk020b4a44 *v4[1];
-    v2 = 0;
-    v3 = 0;
-    v4[0] = 0;
+    v2 = NULL;
+    v3 = NULL;
+    v4[0] = NULL;
     v1 = FindSceneFile(data_0216dedc);
     LoadNcgrData(&v2, v1);
     v1 = FindSceneFile(data_0216decc);

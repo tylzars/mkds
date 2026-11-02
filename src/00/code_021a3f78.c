@@ -21,9 +21,9 @@ void func_ov000_021a412c(Unk021a4a08 *a, Unk021a471c *b, const u8 *c, s32 d) {
     const u8 *g;
     const u8 *f;
 
-    e = 0;
-    g = 0;
-    f = 0;
+    e = NULL;
+    g = NULL;
+    f = NULL;
     if (d >= 3) {
         h = *c++;
         d--;
@@ -79,7 +79,7 @@ void func_ov000_021a3fc8(Unk021a4a08 *a, Unk021a471c *b, s32 c) {
         i = h;
         do {
             k = data_ov000_021b45bc[*l];
-            if (k == 0) {
+            if (k == NULL) {
                 k = data_ov000_021b43f8;
             }
             if (c == 0) {

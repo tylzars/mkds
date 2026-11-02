@@ -28,10 +28,10 @@ void func_020a8a6c(Unk020a8a6c *a) {
     s32 z5;
     s32 v1;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
         if (func_02062ec4() != 0) {
             switch (data_021759c0->mUnk_00) {
                 case 0x14:

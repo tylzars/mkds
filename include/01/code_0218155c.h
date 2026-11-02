@@ -30,7 +30,7 @@ void func_ov001_02181678(u32 a);
 void func_ov001_02181690(UnkFunc *p0);
 void func_ov001_0218169c(UnkFunc *p0);
 void func_ov001_021816a8(UnkFunc *p0);
-s32 func_ov001_021816b4(void);
+BOOL func_ov001_021816b4(void);
 void func_ov001_021816fc(void);
 void func_ov001_0218171c(void);
 void func_ov001_0218173c(void);

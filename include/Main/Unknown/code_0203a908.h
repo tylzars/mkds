@@ -10,4 +10,4 @@ void func_0203aacc(void);
 void func_0203abdc(void);
 void func_0203ad58(void *a);
 u32 func_0203afe4(u32 a);
-int func_0203b018(u32 a, void *b, u32 c);
+BOOL func_0203b018(u32 a, void *b, u32 c);

@@ -17,13 +17,13 @@
 #include "Main/Unknown/code_0210b000.h"
 #include "Main/Unknown/code_020e337c.h"
 
-s32 func_020f9290(void *a, Vec3 *b) {
+BOOL func_020f9290(void *a, Vec3 *b) {
     Unk020f41c4_A *p = a;
     if ((p->mUnk_74 & 0x2000000) != 0 && func_02039828(b, &p->mUnk_108) < 0 && (p->mUnk_74 & 8) == 0) {
         func_020f6fc4(p, 1);
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_020f91fc(void *b, s32 c) {
@@ -46,33 +46,33 @@ void func_020f91fc(void *b, s32 c) {
     func_0210b7a8(&a);
 }
 
-s32 func_020f91e0(void *a) {
+BOOL func_020f91e0(void *a) {
     Unk020f41c4_A *p = a;
 
     return p->mUnk_68.z >= 0xccd;
 }
 
-s32 func_020f91c4(Unk020f41c4_A *a, s32 b) {
+BOOL func_020f91c4(Unk020f41c4_A *a, s32 b) {
     return (s32) (a->mUnk_d4 & ~0xc000001f) > b * b;
 }
 
-s32 func_020f9160(Unk020f41c4_A *c) {
-    s32 a;
-    s32 b;
+BOOL func_020f9160(Unk020f41c4_A *c) {
+    BOOL a;
+    BOOL b;
 
-    a = 0;
+    a = FALSE;
     if ((c->mUnk_74 & 0x10000) == 0) {
-        a = 1;
+        a = TRUE;
     }
-    if (a != 0 && (s32) (c->mUnk_d4 & ~0xc000001f) <= 0x3d0900) {
-        b = 1;
+    if (a != FALSE && (s32) (c->mUnk_d4 & ~0xc000001f) <= 0x3d0900) {
+        b = TRUE;
     } else {
-        b = 0;
+        b = FALSE;
     }
-    if (b == 0 && (s32) (c->mUnk_d4 & ~0xc000001f) > 0x3d090) {
-        return 1;
+    if (b == FALSE && (s32) (c->mUnk_d4 & ~0xc000001f) > 0x3d090) {
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_020f9114(void *b) {
@@ -90,7 +90,7 @@ void func_020f90dc(void *a) {
         return;
     }
     func_02109054(&p->mUnk_00);
-    p->mUnk_00.mUnk_30 = 0;
+    p->mUnk_00.mUnk_30 = NULL;
     p->mUnk_74 &= ~0x400000;
 }
 
@@ -115,7 +115,7 @@ void func_020f9054(void *a, s32 b, void *c, s32 d) {
 void func_020f8e78(void *b) {
     Unk020f41c4_A *p = b;
     Unk0217bc34 *e;
-    s32 a;
+    BOOL a;
     s32 m;
     enum { K0 } k;
     void (*f)(struct Unk020f41c4_A *);
@@ -131,11 +131,11 @@ void func_020f8e78(void *b) {
     p->mUnk_e0 = (s32) (((s64) p->mUnk_68.y * m) >> 12);
     func_020d5148(p->mUnk_da, p->mUnk_e0 + 0xa000);
     func_0208adc8(p->mUnk_7c.mUnk_00, 1);
-    p->mUnk_90 = 0;
+    p->mUnk_90 = NULL;
     p->mUnk_f0 = data_02159ca0;
     p->mUnk_fc = 0;
     p->mUnk_100 = 0;
-    p->mUnk_104->mUnk_00 = 0;
+    p->mUnk_104->mUnk_00 = NULL;
     p->mUnk_108.x = 0;
     p->mUnk_108.y = 0;
     p->mUnk_108.z = 0;
@@ -163,10 +163,10 @@ void func_020f8e78(void *b) {
         return;
     }
     a = p->mUnk_da != -1;
-    if (a != 0) {
+    if (a != FALSE) {
         return;
     }
-    if (a != 0) {
+    if (a != FALSE) {
         return;
     }
     p->mUnk_da = func_020d555c(&p->mUnk_50, p->mUnk_e0 + 0xa000, 0x4000, p);

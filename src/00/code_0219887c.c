@@ -20,16 +20,16 @@ void func_ov000_021988d4(int a, u32 b) {
 }
 
 void func_ov000_021988a4(Unk0219887c *a, void *b) {
-    if (a == 0) {
-        func_0213442c(data_ov000_021b3f8c, data_ov000_021b3f98, 0, 0x19c);
+    if (a == NULL) {
+        func_0213442c(data_ov000_021b3f8c, data_ov000_021b3f98, NULL, 0x19c);
     }
     a->mUnk_40 = b;
     return;
 }
 
 u8 *func_ov000_0219887c(Unk0219887c *object) {
-    if (object == 0) {
-        func_0213442c(data_ov000_021b3f8c, data_ov000_021b3f98, 0, 0x1a3);
+    if (object == NULL) {
+        func_0213442c(data_ov000_021b3f8c, data_ov000_021b3f98, NULL, 0x1a3);
     }
     return object->mUnk_40;
 }

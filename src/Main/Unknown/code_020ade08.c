@@ -38,7 +38,7 @@ void func_020adff0(u32 a, u16 *b, u32 c) {
     }
     if (func_020ae114(a) != 0) {
         p = (u16 *) func_020ae0f8(a);
-        if (p == 0) {
+        if (p == NULL) {
             return;
         }
         if (c != 0) {
@@ -58,7 +58,7 @@ void func_020adff0(u32 a, u16 *b, u32 c) {
             n = 10;
         }
     }
-    if (p != 0) {
+    if (p != NULL) {
         wcsncpy(b, p, n);
     }
 }

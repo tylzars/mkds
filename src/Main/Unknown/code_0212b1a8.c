@@ -25,7 +25,7 @@ void func_0212b260(void) {
     Unk0217d40c *p;
     u16 buf[100];
     s32 v;
-    s32 n;
+    BOOL n;
     s32 f;
     s32 x;
     u32 w;
@@ -50,7 +50,7 @@ void func_0212b260(void) {
         return;
     }
     i = 0;
-    n = 0;
+    n = FALSE;
     func_0214d168(buf, 0, 0xc8);
     do {
         p = data_0217d40c;
@@ -82,7 +82,7 @@ void func_0212b260(void) {
                         }
                         break;
                     case 1:
-                        n = 1;
+                        n = TRUE;
                         p->mUnk_010 += x << 16;
                         break;
                     case 2:
@@ -97,14 +97,14 @@ void func_0212b260(void) {
                     case 5:
                         break;
                     case 0x63:
-                        n = 1;
+                        n = TRUE;
                         p->mUnk_014 = 0xd0000;
                         break;
                 }
             }
             data_0217d40c->mUnk_018 += e;
         } else if (w == 0xa) {
-            n = 1;
+            n = TRUE;
             p->mUnk_010 += 0x10000;
             data_0217d40c->mUnk_018 += 2;
         } else if (w == 0) {
@@ -114,7 +114,7 @@ void func_0212b260(void) {
             i++;
             p->mUnk_018 += 2;
         }
-    } while (n == 0);
+    } while (n == FALSE);
     func_0214d168(data_0217d40c->mUnk_050, 0, 0x800);
     v = data_0217d40c->mUnk_850;
     c = 0;

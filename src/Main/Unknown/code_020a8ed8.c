@@ -45,7 +45,7 @@ void func_020a9c54(void *a, Unk020a9268 *p, u32 c, u32 d) {
     if (v > 0x1c) {
         return;
     }
-    func_020e53ac(&p->mUnk_0e8, 0, c, d);
+    func_020e53ac(&p->mUnk_0e8, NULL, c, d);
 }
 
 void func_020a9a5c(Unk020a9a5c *p) {
@@ -59,7 +59,7 @@ void func_020a9a5c(Unk020a9a5c *p) {
     u16 c;
     u16 a;
 
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
     z0 = 0;
@@ -69,7 +69,7 @@ void func_020a9a5c(Unk020a9a5c *p) {
     b = data_021567ec;
     c = data_021567f0;
     a = data_021567f4;
-    for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
         o->mUnk_000.mUnk_02 |= b;
         o->mUnk_000.mUnk_02 |= c;
         o->mUnk_000.mUnk_02 |= a;
@@ -98,7 +98,7 @@ void func_020a9a5c(Unk020a9a5c *p) {
 void func_020a9268(void *a, Unk020a9268 *p) {
     Unk02042044 *e;
     Unk020f41c4_B *q;
-    s32 f;
+    BOOL f;
     s32 v;
     s32 w;
     s32 i;
@@ -124,13 +124,13 @@ void func_020a9268(void *a, Unk020a9268 *p) {
             w = p->mUnk_0ac;
             for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
                 if (func_0203c8c0((u16) i) >= w) {
-                    f = 1;
+                    f = TRUE;
                     goto found;
                 }
             }
-            f = 0;
+            f = FALSE;
         found:
-            if (f == 0) {
+            if (f == FALSE) {
                 return;
             }
             p->mUnk_0ac = p->mUnk_0ac + 1;
@@ -312,13 +312,13 @@ void func_020a9268(void *a, Unk020a9268 *p) {
 void func_020a9224(void) {
     Unk020a9224 *p;
 
-    p = func_0209bfa8(func_020a9de4, 0, 0, 1, 1);
+    p = func_0209bfa8(func_020a9de4, NULL, NULL, 1, 1);
     p->mUnk_38 = 0x190000;
     p->mUnk_3c = -0x1f4000;
 }
 
 u32 func_020a9204(void) {
-    return func_0209bf1c(func_020a9cd0, func_020a9c54, 0);
+    return func_0209bf1c(func_020a9cd0, func_020a9c54, NULL);
 }
 
 u32 func_020a91e0(void) {
@@ -326,7 +326,7 @@ u32 func_020a91e0(void) {
 }
 
 u32 func_020a91c0(void) {
-    return func_0209bf48(func_020a9a5c, func_020a9268, 0);
+    return func_0209bf48(func_020a9a5c, func_020a9268, NULL);
 }
 
 void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {

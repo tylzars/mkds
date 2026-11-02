@@ -11,9 +11,9 @@ void func_0211f328(void) {
     Unk020b4934 *v2;
     Unk02021dc8 *v3;
     Unk020b4a44 *v4[1];
-    v2 = 0;
-    v3 = 0;
-    v4[0] = 0;
+    v2 = NULL;
+    v3 = NULL;
+    v4[0] = NULL;
     v1 = FindSceneFile(data_0216e0a8);
     LoadNcgrData(&v2, v1);
     v1 = FindSceneFile(data_0216e0ac);
@@ -42,7 +42,7 @@ void func_0211f2b8(void *a) {
 #pragma thumb on
 
 void func_0211f2ac(void) {
-    data_0217d37c = 0;
+    data_0217d37c = NULL;
 }
 
 #pragma thumb off

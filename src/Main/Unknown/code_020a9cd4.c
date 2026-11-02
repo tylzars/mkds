@@ -23,9 +23,9 @@ void func_020a9ea0(u16 a) {
     u16 v;
 
     p = func_020ab338(a);
-    if (p != 0) {
+    if (p != NULL) {
         data_0217b278.mUnk_44 = p;
-        if (data_0217b278.mUnk_4c != 0) {
+        if (data_0217b278.mUnk_4c != NULL) {
             v = data_0217b278.mUnk_4c(func_020ab2a4(p), 0);
             if (v != 0) {
                 data_0217b278.mUnk_44 = func_020ab338(v);

@@ -133,7 +133,7 @@ void func_ov000_0219e138(u32 a, s32 b, s32 c) {
                         do {
                             e = func_ov000_0218b480(a, d);
                             f = data_ov000_021b566c;
-                            if (f->mUnk_1c != 0 && f->mUnk_1c == (void *) func_ov000_0218b27c((u32 *) e) &&
+                            if (f->mUnk_1c != NULL && f->mUnk_1c == (void *) func_ov000_0218b27c((u32 *) e) &&
                                 f->mUnk_1a != 0 && data_ov000_021b566c->mUnk_1a == func_ov000_0218b260(e)) {
                                 break;
                             }

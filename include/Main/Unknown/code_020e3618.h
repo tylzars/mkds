@@ -39,7 +39,7 @@ typedef struct Unk020e38a0 {
     /* 154 */ s32 mUnk_154;
 } Unk020e38a0;
 
-s32 func_020e3af0(u32 a);
+BOOL func_020e3af0(u32 a);
 void func_020e3a7c(void);
 void func_020e38a0(Unk020e38a0 *a, struct Unk020fa294 *b);
 void *func_020e3850(void);

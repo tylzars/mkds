@@ -7,16 +7,16 @@ void func_ov003_021d0810(Unk021da2a8 *a) {
     data_ov003_021da2a8 = a;
     a->mUnk_40 = 0;
     data_ov003_021da2a8->mUnk_13a8 = 0;
-    data_ov003_021da2a8->mUnk_13ac = 0;
+    data_ov003_021da2a8->mUnk_13ac = NULL;
     data_ov003_021da2a8->mUnk_13b0 = 0;
 }
 
 void func_ov003_021d07b0(u32 v1) {
-    if (data_ov003_021da2a4 != 0) {
+    if (data_ov003_021da2a4 != NULL) {
         data_ov003_021da2a4(0x08000000, data_ov003_021d7bc8, data_ov003_021d79a8[data_ov003_021da2a8->mUnk_40]);
     }
     data_ov003_021da2a8->mUnk_40 = v1;
-    if (data_ov003_021da2a4 != 0) {
+    if (data_ov003_021da2a4 != NULL) {
         data_ov003_021da2a4(0x08000000, data_ov003_021d7bd0, data_ov003_021d79a8[data_ov003_021da2a8->mUnk_40]);
     }
 }

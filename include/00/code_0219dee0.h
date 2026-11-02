@@ -8,6 +8,6 @@
 #include "00/code_021a4654.h"
 
 void func_ov000_0219dee0(s32 a, Unk021a471c *b, void *c);
-s32 func_ov000_0219dfe4(s32 a);
+BOOL func_ov000_0219dfe4(s32 a);
 
 // Declared here until the code that defines them is decompiled.

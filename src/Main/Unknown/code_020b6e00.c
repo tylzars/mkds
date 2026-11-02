@@ -582,7 +582,7 @@ void func_020b80a8(void) {
     s32 x;
     s32 b;
     s32 c;
-    s32 k;
+    BOOL k;
     u8 v1[0x20];
     Unk02180728 o;
     u16 t[22];
@@ -596,7 +596,7 @@ void func_020b80a8(void) {
     o.mUnk_04 = p;
     o.mUnk_0c = 0;
     i = 0;
-    k = 0;
+    k = FALSE;
     for (; i < 8; i++) {
         y = (i % 4) << 6;
         x = (((u32) i >> 2) << 4) + 8;

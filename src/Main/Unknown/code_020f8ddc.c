@@ -7,7 +7,7 @@
 void func_020f8ddc(void *a) {
     Unk020f41c4_A *p = a;
 
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
     if (data_021759c0->mUnk_08 != 4) {

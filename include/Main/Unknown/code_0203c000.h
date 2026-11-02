@@ -9,7 +9,7 @@ void func_0203c7cc(s32 a, u8 *b, u8 *c, u16 *d);
 void func_0203c778(s32 a, u16 b, u8 *c, u8 *d, u16 *e);
 u32 func_0203c8dc(u32 param_1);
 s32 func_0203c880(u32 param_1);
-s32 func_0203c25c(u16 a);
+BOOL func_0203c25c(u16 a);
 u16 func_0203c5f8(u16 a, u8 *b, u8 *c, u16 *d);
 void func_0203cd04(u16 a);
 void func_0203c98c(void);

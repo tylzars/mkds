@@ -96,7 +96,7 @@ void func_02110754(void) {
                 x = (u16) (w + v * 2);
             }
             func_0212ecc0(&data_0217d068, t, x);
-            if (data_0217d068 != 0) {
+            if (data_0217d068 != NULL) {
                 func_02105b28(&data_0217d068, 0x3c);
             }
             data_0217d2a4.mUnk_00[p->mUnk_74] = 13;
@@ -143,7 +143,7 @@ void func_021106a8(s32 a, s32 b) {
         id = b + a * 2;
     }
     func_0212ecc0(&data_0217d068, mode, id);
-    if (data_0217d068 != 0) {
+    if (data_0217d068 != NULL) {
         func_02105b28(&data_0217d068, 100);
     }
     func_0212ecc0(&data_0217d068, 0, 4);
@@ -376,7 +376,7 @@ void func_02110114(Unk0212c400 **a) {
 }
 
 u32 func_02110100(Unk0212c400 **a) {
-    if (*a != 0) {
+    if (*a != NULL) {
         return 1;
     }
     return 0;
@@ -420,10 +420,10 @@ void func_0211003c(u32 a, Unk0212c400 **b) {
     if (data_0217d084.mUnk_0c == 0) {
         return;
     }
-    if (*b != 0) {
+    if (*b != NULL) {
         func_0212c6f0(b, 0);
     }
-    if (*b != 0) {
+    if (*b != NULL) {
         func_0212c6f0(b, 0);
     }
     func_0212ecc0(b, 0, a);

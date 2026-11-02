@@ -346,8 +346,8 @@ void func_020b03bc(void) {
     func_020c4780();
     data_0217b350->mUnk_000 = 0;
     for (i = 0; i < 7; i++) {
-        data_0217b350->mUnk_80c[i] = 0;
-        data_0217b350->mUnk_814[i] = 0;
+        data_0217b350->mUnk_80c[i] = NULL;
+        data_0217b350->mUnk_814[i] = NULL;
     }
     data_0217b350->mUnk_828 = 1;
     data_0217b350->mUnk_82c = 0;
@@ -473,7 +473,7 @@ void func_020afd68(void) {
     Unk020b4a44 *a[3];
     Unk020b4934 *b[3];
     Unk020b47d8 *c[4];
-    s32 v1;
+    BOOL v1;
     s32 i;
     s32 k;
 
@@ -486,11 +486,11 @@ void func_020afd68(void) {
     }
     data_0217b34c = func_02036bec(func_020364e0(func_020364e8()), 0x400);
     for (i = 0; i < 2; i++) {
-        a[i] = 0;
-        b[i] = 0;
+        a[i] = NULL;
+        b[i] = NULL;
     }
     for (i = 0; i < 3; i++) {
-        c[i] = 0;
+        c[i] = NULL;
     }
 
     if (func_02047250()) {

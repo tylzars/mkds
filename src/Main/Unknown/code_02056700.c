@@ -112,18 +112,18 @@ void func_02056750(s32 a, u16 b) {
 
 void func_02056700(void) {
     s32 n;
-    s32 f;
+    BOOL f;
     Unk0217aa08_14 *p;
 
-    f = 0;
+    f = FALSE;
     n = func_0204684c();
     p = data_0217aa08->mUnk_14;
     if (n == -1) {
-        f = 1;
+        f = TRUE;
     } else if (func_020573f8(n) == 0) {
-        f = 1;
+        f = TRUE;
     }
-    if (f != 0) {
+    if (f != FALSE) {
         p->mUnk_08_0 = 0;
     } else {
         func_0205798c(n, p);

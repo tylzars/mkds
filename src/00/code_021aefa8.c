@@ -21,7 +21,7 @@ void func_ov000_021af4d4(Unk021af3e8 *a) {
     a->mUnk_10 = (u16) (((u16) data_ov000_021b63b4 >> 8) | ((u16) data_ov000_021b63b4 << 8));
     func_0214d1fc(a->mUnk_12, (u8 *) a - 0xe, 6);
     func_0214d1fc(data_ov000_021b63d0, (u8 *) a - 8, 6);
-    func_ov000_021affcc((u8 *) a - 0xe, 0x2a, 0, 0);
+    func_ov000_021affcc((u8 *) a - 0xe, 0x2a, NULL, 0);
 }
 
 void func_ov000_021af3e8(Unk021af3e8 *f, u32 g) {
@@ -91,7 +91,7 @@ void func_ov000_021af348(Unk021ae3f0 *d, Unk021af1e4 *e, u32 f) {
     if (b == 0) {
         return;
     }
-    if (func_ov000_021afd00(b) == 0) {
+    if (func_ov000_021afd00(b) == NULL) {
         func_ov000_021afc5c(b);
         return;
     }
@@ -100,7 +100,7 @@ void func_ov000_021af348(Unk021ae3f0 *d, Unk021af1e4 *e, u32 f) {
     c = func_ov000_021b0188(e, f);
     e->mUnk_02 = (u16) ((c >> 8) | (c << 8));
     func_ov000_021af858(
-        (u8 *) e, f, 0, 0,
+        (u8 *) e, f, NULL, 0,
         (u32) (((u16) ((d->mUnk_0c >> 8) | (d->mUnk_0c << 8)) << 16) | (u16) ((d->mUnk_0e >> 8) | (d->mUnk_0e << 8))),
         1);
 }
@@ -109,9 +109,9 @@ void func_ov000_021af2a0(Unk021ae3f0 *c, Unk021af1e4 *d, u32 e) {
     Unk0200db5c *a;
     Unk021a998c *b;
 
-    for (a = data_0216ff5c.mUnk_08; a != 0; a = a->mUnk_68) {
+    for (a = data_0216ff5c.mUnk_08; a != NULL; a = a->mUnk_68) {
         b = *(Unk021a998c **) a->mUnk_a4;
-        if (b == 0 || b->mUnk_00 == 0 || b->mUnk_08 != 0xb || (u16) (u32) b->mUnk_00 != d->mUnk_04) {
+        if (b == NULL || b->mUnk_00 == NULL || b->mUnk_08 != 0xb || (u16) (u32) b->mUnk_00 != d->mUnk_04) {
             continue;
         }
         if (b->mUnk_0a != d->mUnk_06 || b->mUnk_44 != 0) {
@@ -168,9 +168,9 @@ Unk021a998c *func_ov000_021af15c(const Unk021ae3f0 *c, const Unk021ae87c *d) {
     Unk021a998c *b;
     Unk0200db5c *a;
 
-    for (a = data_0216ff5c.mUnk_08; a != 0; a = a->mUnk_68) {
+    for (a = data_0216ff5c.mUnk_08; a != NULL; a = a->mUnk_68) {
         b = *(Unk021a998c **) a->mUnk_a4;
-        if (b == 0 || b->mUnk_00 == 0 || b->mUnk_08 != 1 ||
+        if (b == NULL || b->mUnk_00 == NULL || b->mUnk_08 != 1 ||
             b->mUnk_0a != (u16) ((d->mUnk_02 >> 8) | (d->mUnk_02 << 8))) {
             continue;
         }
@@ -183,7 +183,7 @@ Unk021a998c *func_ov000_021af15c(const Unk021ae3f0 *c, const Unk021ae87c *d) {
         }
         return b;
     }
-    return 0;
+    return NULL;
 }
 
 u32 func_ov000_021af0dc(const Unk021ae3f0 *e, const Unk021ae87c *f, const Unk021a998c *g) {
@@ -219,14 +219,14 @@ Unk021a998c *func_ov000_021af090(const Unk021ae3f0 *c, const Unk021ae87c *d) {
     Unk0200db5c *a;
 
     a = data_0216ff5c.mUnk_08;
-    while (a != 0) {
+    while (a != NULL) {
         b = *(Unk021a998c **) a->mUnk_a4;
-        if (b != 0 && b->mUnk_00 != 0 && func_ov000_021af0dc(c, d, b) != 0) {
+        if (b != NULL && b->mUnk_00 != NULL && func_ov000_021af0dc(c, d, b) != 0) {
             return b;
         }
         a = a->mUnk_68;
     }
-    return 0;
+    return NULL;
 }
 
 void func_ov000_021af030(const Unk021ae87c *f, Unk021a998c *g) {
@@ -273,7 +273,7 @@ u32 func_ov000_021af010(u32 b) {
 
 void func_ov000_021aefc0(Unk021a998c *a, u32 b, u16 c) {
     if (func_ov000_021af010(a->mUnk_1c) != 0 || data_0216ff5c.mUnk_04 != &data_ov000_021b661c) {
-        func_ov000_021af550(0, 0, a, b, c);
+        func_ov000_021af550(NULL, 0, a, b, c);
     } else {
         func_ov000_021afc5c(func_ov000_021b00e0(a->mUnk_1c));
     }

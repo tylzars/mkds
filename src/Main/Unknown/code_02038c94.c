@@ -115,14 +115,14 @@ void func_02038de4(Unk021755a0 *a, void *b) {
     *(Unk02038de4 *) a = *c;
     func_02038e6c(&a->mUnk_28, c->mUnk_08);
     func_02038e6c(&a->mUnk_70, c->mUnk_0c);
-    a->mUnk_6c = 0;
+    a->mUnk_6c = NULL;
     a->mUnk_bc = 0;
     a->mUnk_c4 = 0;
     a->mUnk_cc = 0;
     a->mUnk_d0 = 0;
     a->mUnk_d4 = 0;
     a->mUnk_b4 = 0;
-    a->mUnk_b8 = 0;
+    a->mUnk_b8 = NULL;
     a->mUnk_d8 = 0;
 }
 

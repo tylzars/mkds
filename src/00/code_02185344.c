@@ -79,7 +79,7 @@ void InitWiFiAikotobaCheck(void *a) {
 }
 
 void func_ov000_021855f8(void) {
-    gWiFiAikotobaCheck = 0;
+    gWiFiAikotobaCheck = NULL;
 }
 
 void func_ov000_0218554c(void) {
@@ -122,21 +122,21 @@ void func_ov000_021854a8(void) {
 
 void func_ov000_02185418(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
-    s32 a;
-    s32 b;
+    BOOL a;
+    BOOL b;
     u16 c;
 
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
-        a = 0;
-        b = 0;
+        a = FALSE;
+        b = FALSE;
         c = data_02175628[i].mUnk_4c;
         if (c == 0 && data_02175628[i].mUnk_58 < 5) {
-            b = 1;
+            b = TRUE;
         }
-        if (b == 0 && data_02175628[i].mUnk_54 == 0 && c != 0) {
-            a = 1;
+        if (b == FALSE && data_02175628[i].mUnk_54 == 0 && c != 0) {
+            a = TRUE;
         }
-        if (a == 0 || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (a == FALSE || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
             return;
         }
     }

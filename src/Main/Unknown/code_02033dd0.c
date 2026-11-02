@@ -15,21 +15,21 @@ static inline Unk0217aa1c_00 *func_02033e6c_inline(u32 a) {
 #pragma thumb on
 
 s32 func_02033dd0(void) {
-    s32 r;
+    BOOL r;
 
-    r = 0;
+    r = FALSE;
     if (data_02174e60->mUnk_148 != 0 && data_02174e60->mUnk_14c < 0x12c) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }
 
 s32 func_02033dfc(void) {
-    s32 r;
+    BOOL r;
 
-    r = 0;
+    r = FALSE;
     if (data_02174e60->mUnk_148 != 0 && data_02174e60->mUnk_14c == 0) {
-        r = 1;
+        r = TRUE;
     }
     return r;
 }

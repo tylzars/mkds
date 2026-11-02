@@ -53,7 +53,7 @@ s32 func_ov000_021a90a0(s32 v1, void *v2, s32 v3, s32 v4, void *v5) {
     u16 b;
     u32 c;
     s32 d = func_ov000_021a7de0(v1, (u32) v2, v3, (u32) &b, (u32) &c, v4);
-    if (d >= 0 && v5 != 0) {
+    if (d >= 0 && v5 != NULL) {
         a = v5;
         a->mUnk_02 = ((b >> 8) & 0xff) | ((b << 8) & 0xff00);
         a->mUnk_04 = ((c << 24) & 0xff000000) | (((c << 8) & 0xff0000) | (((c >> 24) & 0xff) | ((c >> 8) & 0xff00)));
@@ -71,7 +71,7 @@ s32 func_ov000_021a9018(s32 v1, void *v2, s32 v3, s32 v4, void *v5) {
     Unk021a8e18 *a = v5;
     u16 b;
     u32 c;
-    if (a != 0) {
+    if (a != NULL) {
         b = ((a->mUnk_02 >> 8) & 0xff) | ((a->mUnk_02 << 8) & 0xff00);
         c = ((a->mUnk_04 << 24) & 0xff000000) |
             (((a->mUnk_04 << 8) & 0xff0000) | (((a->mUnk_04 >> 24) & 0xff) | ((a->mUnk_04 >> 8) & 0xff00)));
@@ -93,16 +93,16 @@ s32 func_ov000_021a9008(s32 descriptor) {
 Unk021a8f84 *func_ov000_021a8f84(const u8 *a) {
     u32 b = func_ov000_021a88e4(a);
     if (b == 0) {
-        return 0;
+        return NULL;
     }
     func_0200c858(data_ov000_021b6078, (const s8 *) a, 0x101);
     data_ov000_021b6020.mUnk_00 = (u8 *) data_ov000_021b6078;
-    data_ov000_021b6020.mUnk_04 = 0;
+    data_ov000_021b6020.mUnk_04 = NULL;
     data_ov000_021b6020.mUnk_08 = 2;
     data_ov000_021b6020.mUnk_0a = 4;
     data_ov000_021b6020.mUnk_0c = data_ov000_021b6018;
     data_ov000_021b6018[0] = &data_ov000_021b600c;
-    data_ov000_021b6018[1] = 0;
+    data_ov000_021b6018[1] = NULL;
     data_ov000_021b600c =
         ((b << 24) & 0xff000000) | (((b << 8) & 0xff0000) | (((b >> 24) & 0xff) | ((b >> 8) & 0xff00)));
     return &data_ov000_021b6020;
@@ -114,11 +114,11 @@ u32 func_ov000_021a8f0c(u32 f, u32 g) {
     u32 c;
     u32 d;
     u16 e;
-    if (a == 0) {
+    if (a == NULL) {
         return -0x27;
     }
     c = func_ov000_021a8830();
-    if (a != 0) {
+    if (a != NULL) {
         d = a->mUnk_74;
     } else {
         d = 0;
@@ -204,7 +204,7 @@ s32 func_ov000_021a8e18(Unk021a6fa8 *a, Unk021a8e18 *b, s32 f) {
 }
 
 s32 func_ov000_021a8dd8(Unk021a6fa8 *a, s32 b, u32 c) {
-    if (a == 0) {
+    if (a == NULL) {
         return -1;
     }
     switch (b) {
@@ -227,7 +227,7 @@ s32 func_ov000_021a8dd8(Unk021a6fa8 *a, s32 b, u32 c) {
 void *func_ov000_021a8db8(u32 a) {
     u32 b = a + 4;
     u32 *c = data_ov000_021b6014(0, b);
-    if (c != 0) {
+    if (c != NULL) {
         *c = b;
         c++;
     }
@@ -290,10 +290,10 @@ u32 func_ov000_021a8c1c(u32 b, u32 *c) {
 char *func_ov000_021a8bc0(s32 a, const void *b, char *c, u32 d) {
     u8 e[8];
     if (a != 2) {
-        return 0;
+        return NULL;
     }
     if (d < 0x10) {
-        return 0;
+        return NULL;
     }
     func_0214d1fc(b, e, 4);
     func_ov000_021a8bb0(*(u32 *) e, &e[4]);
@@ -314,7 +314,7 @@ s32 func_ov000_021a8b20(void *a, s32 b, s64 c) {
     s32 e;
     u32 f;
     u32 g;
-    s32 h;
+    BOOL h;
     h = c != -1;
     for (;;) {
         d = a;
@@ -331,7 +331,7 @@ s32 func_ov000_021a8b20(void *a, s32 b, s64 c) {
         if (e > 0) {
             break;
         }
-        if (h != 0 && c <= 0) {
+        if (h != FALSE && c <= 0) {
             break;
         }
         func_0200dc3c(1);
@@ -385,7 +385,7 @@ void func_ov000_021a8ae8(u32 arg0) {
 
 void func_ov000_021a8ad0(Unk021a8ab8 **head, Unk021a8ab8 *node) {
     Unk021a8ab8 **link = func_ov000_021a8ab8(head, node);
-    if (link != 0) {
+    if (link != NULL) {
         *link = node->mUnk_7c;
     }
     return;
@@ -393,14 +393,14 @@ void func_ov000_021a8ad0(Unk021a8ab8 **head, Unk021a8ab8 *node) {
 
 Unk021a8ab8 **func_ov000_021a8ab8(Unk021a8ab8 **head, Unk021a8ab8 *node) {
     Unk021a8ab8 *entry = *head;
-    while (entry != 0) {
+    while (entry != NULL) {
         if (entry == node) {
             return head;
         }
         head = &entry->mUnk_7c;
         entry = entry->mUnk_7c;
     }
-    return 0;
+    return NULL;
 }
 
 void func_ov000_021a8aa8(u32 arg0) {

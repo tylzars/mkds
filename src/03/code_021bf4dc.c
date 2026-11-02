@@ -41,7 +41,7 @@ u32 func_ov003_021bf620(void *c, void *d) {
 
 void func_ov003_021bf5ec(u32 a) {
     int v1[2];
-    func_ov003_021c2104(v1, 0);
+    func_ov003_021c2104(v1, NULL);
     if (v1[0] == 1) {
         func_ov003_021ce408(a);
         return;
@@ -54,7 +54,7 @@ void func_ov003_021bf5ec(u32 a) {
 
 void func_ov003_021bf5c8(u32 a) {
     int v1[2];
-    func_ov003_021c2104(0, v1);
+    func_ov003_021c2104(NULL, v1);
     if (v1[0] == 1) {
         func_ov003_021bf364(a);
     }

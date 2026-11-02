@@ -11,7 +11,7 @@ s32 func_020b1bf8(Unk020b1bf8 *a, Unk020b1bf8 *b, Unk020b1a34_0c *c) {
     s32 x;
     s32 y;
     s32 d;
-    s32 r;
+    BOOL r;
     s32 m;
     s32 s;
     s32 n;
@@ -19,7 +19,7 @@ s32 func_020b1bf8(Unk020b1bf8 *a, Unk020b1bf8 *b, Unk020b1a34_0c *c) {
     x = (a->mUnk_00 * 60 + a->mUnk_04) * 1000 + a->mUnk_08;
     y = (b->mUnk_00 * 60 + b->mUnk_04) * 1000 + b->mUnk_08;
     r = x >= y;
-    if (r != 0) {
+    if (r != FALSE) {
         d = x - y;
     } else {
         d = y - x;

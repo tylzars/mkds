@@ -61,11 +61,11 @@ void CreateChandelier(void *a) {
 }
 
 void *func_0209f698(void) {
-    return (void *) func_0209bf48(func_0209f800, func_0209f6d8, 0);
+    return (void *) func_0209bf48(func_0209f800, func_0209f6d8, NULL);
 }
 
 void *func_0209f6b8(void) {
-    return (void *) func_0209bef0(func_0209fbe4, func_0209fb0c, 0);
+    return (void *) func_0209bef0(func_0209fbe4, func_0209fb0c, NULL);
 }
 
 void func_0209f6d8(void *a, Unk0209f6d8 *p) {
@@ -106,10 +106,10 @@ void func_0209f800(Unk0209f800 *a) {
     u32 n;
     u16 m;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
         p->mUnk_a4 = 0;
         p->mUnk_a8 = 0;
         n = func_0209b634(gTownMonte);
@@ -168,7 +168,7 @@ void func_0209fc38(void) {
     s32 i;
 
     for (i = 0; i < 19; i++) {
-        data_usa_0217b18c[i] = 0;
+        data_usa_0217b18c[i] = NULL;
     }
     data_usa_0217b18c[0] = (Unk020e71a0_98 *) func_0209bf8c();
 }
@@ -177,7 +177,7 @@ void func_0209fc78(Unk020e71a0 *p) {
     s32 i;
 
     i = p->mUnk_9c->mUnk_28;
-    if (data_usa_0217b18c[i] == 0) {
+    if (data_usa_0217b18c[i] == NULL) {
         data_usa_0217b18c[i] = func_02036bec(func_020364e0(func_020364e8()), 0x40);
         *data_usa_0217b18c[i] = *data_usa_0217b18c[0];
     }
@@ -199,11 +199,11 @@ void func_0209fc78(Unk020e71a0 *p) {
 }
 
 void *func_0209fd74(void) {
-    return (void *) func_0209bf48(func_020a0064, func_0209fdb4, 0);
+    return (void *) func_0209bf48(func_020a0064, func_0209fdb4, NULL);
 }
 
 void *func_0209fd94(void) {
-    return (void *) func_0209bf1c(CreateAirship, func_020a018c, 0);
+    return (void *) func_0209bf1c(CreateAirship, func_020a018c, NULL);
 }
 
 static inline void func_0209fdb4_inline(Unk020a018c *p) {
@@ -240,21 +240,21 @@ static inline void func_0209fdb4_inline(Unk020a018c *p) {
     }
 }
 
-static inline s32 func_0209fdb4_inline_b(void) {
+static inline BOOL func_0209fdb4_inline_b(void) {
     s32 i;
 
     for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
         if (func_0203c8c0((u16) i) >= 2) {
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 void func_0209fdb4(void *a, Unk020a018c *p) {
     switch (p->mUnk_ec) {
         case 0:
-            if (func_0209fdb4_inline_b() != 0) {
+            if (func_0209fdb4_inline_b() != FALSE) {
                 p->mUnk_ec = 1;
             }
             break;

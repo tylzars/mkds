@@ -35,14 +35,14 @@ void func_ov001_0218aef4(Unk02188950 *a) {
 
 void func_ov001_0218ae60(Unk02188950 *a) {
     func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d30(a, a->mUnk_0a0->mUnk_200, a->mUnk_0a0->mUnk_204, 0);
+    func_ov001_02188d30(a, a->mUnk_0a0->mUnk_200, a->mUnk_0a0->mUnk_204, NULL);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     func_ov001_02187518(a, (u32) (0), (u32) (0), (u32) (0), (u32) (0x411), (u32) (0));
     func_ov001_02187518(a, (u32) (0), (u32) (0), (u32) (0), (u32) (0x412), (u32) (0));
     func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
     a->mUnk_000.mUnk_02 &= ~0x20;
-    func_ov001_02188200(a, 0);
+    func_ov001_02188200(a, NULL);
 }
 
 void func_ov001_0218add0(Unk02188950 *a) {

@@ -36,7 +36,7 @@ typedef struct Unk021b3e44 {
 
 // Declared here until the code that defines them is decompiled.
 void func_ov000_02196960(void);
-s32 func_ov000_0218e80c(s32 a, s32 b);
+BOOL func_ov000_0218e80c(s32 a, s32 b);
 
 extern s32 data_ov000_021b4e60;
 extern s8 *data_ov000_021b4e58;
@@ -55,7 +55,7 @@ extern const u8 data_ov000_021b3e40[];
 extern const u8 data_ov000_021b3c48[];
 extern u32 data_ov000_021b3b34;
 
-s32 func_ov000_0219746c(void);
+BOOL func_ov000_0219746c(void);
 void func_ov000_02197558(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g);
 void func_ov000_02197594(s32 a, s32 b, s32 c, UnkFunc *d, s32 e);
 s8 *func_ov000_021975f4(s8 *a);

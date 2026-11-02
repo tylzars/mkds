@@ -72,9 +72,9 @@ void func_ov001_0218516c(Unk021ca41c_085c *a, Unk0218516c *b) {
     for (i = 0; i < a->mUnk_00; i++) {
         entry = &a->mUnk_04[i];
         sub = &entry->mUnk_2c;
-        if (entry->mUnk_84 != 0) {
+        if (entry->mUnk_84 != NULL) {
             if (entry->mUnk_84(entry) != 0) {
-                entry->mUnk_84 = 0;
+                entry->mUnk_84 = NULL;
             }
         }
         if (entry->mUnk_0c != 0 && entry->mUnk_18 > 0) {
@@ -103,7 +103,7 @@ void func_ov001_0218516c(Unk021ca41c_085c *a, Unk0218516c *b) {
                     pos_b[0] = x << 12;
                     pos_b[1] = y << 12;
                     b->mUnk_400 += func_020224e0((Unk020224e0_o *) &b->mUnk_000[b->mUnk_400 * 8], 0x80 - b->mUnk_400,
-                                                 (Unk020224e0_c *) cell, 0, pos_b, 0, 0);
+                                                 (Unk020224e0_c *) cell, NULL, pos_b, 0, 0);
                 }
             }
         }

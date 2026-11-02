@@ -40,11 +40,11 @@ typedef struct Unk020504a4 {
 #include "code_02142eac.h" // Unk021425e8
 
 u32 func_02050300(void);
-s32 func_02050320(s32 a, u16 b, s32 c);
-s32 func_020503cc(s32 a, u16 b);
-s32 func_020504a4(s32 a, u16 b);
-s32 func_020505a8(s32 a, u16 b);
-s32 func_02050650(void *a, s32 b, u16 c, void *d, Unk021652a0 *e);
+BOOL func_02050320(s32 a, u16 b, s32 c);
+BOOL func_020503cc(s32 a, u16 b);
+BOOL func_020504a4(s32 a, u16 b);
+BOOL func_020505a8(s32 a, u16 b);
+BOOL func_02050650(void *a, s32 b, u16 c, void *d, Unk021652a0 *e);
 void func_02050764(Unk021425e8 *a);
 void func_0205081c(u32 a, Unk0205081c *b);
 void func_02050b88(u32 a);
@@ -53,9 +53,9 @@ void func_02050e60(s32 a);
 void func_02050e80(Unk021425e8 *a);
 void func_02050ec0(void);
 void func_0205108c(s32 a);
-s32 func_020510ac(void);
+BOOL func_020510ac(void);
 s32 func_020510c8(void);
-s32 func_020510e4(void);
+BOOL func_020510e4(void);
 void func_02051108(Unk021425e8 *a);
 void func_02051230(void);
 void func_02051364(Unk021425e8 *a);

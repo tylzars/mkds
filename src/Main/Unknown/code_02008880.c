@@ -21,9 +21,9 @@ u32 func_02008880(Unk02003024 *a) {
     Unk02008880 *v2;
     u32 v3;
     s32 v4;
-    v2 = 0;
+    v2 = NULL;
     v3 = 0;
-    if (a != 0) {
+    if (a != NULL) {
         v4 = a->mUnk_2c - a->mUnk_20.w.mUnk_04;
         if ((u32) FS_ReadFile(a, &v1, 0x60) >= 0x60) {
             v2 = &v1;
@@ -32,7 +32,7 @@ u32 func_02008880(Unk02003024 *a) {
     } else {
         v2 = (Unk02008880 *) 0x027ffe00;
     }
-    if (v2 != 0) {
+    if (v2 != NULL) {
         v3 = v2->mUnk_2c + 0x268 + v2->mUnk_3c;
         if (v3 < 0x10000) {
             v3 = 0x10000;

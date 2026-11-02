@@ -10,7 +10,7 @@
 #include "00/code_0218e3c4.h"
 
 void func_ov000_021a49f4(void *a, UnkFunc *b) {
-    if (a == 0) {
+    if (a == NULL) {
         a = data_ov000_021b426c;
     }
     *(UnkFunc **) ((u8 *) a + 0xa0) = b;
@@ -18,7 +18,7 @@ void func_ov000_021a49f4(void *a, UnkFunc *b) {
 }
 
 void func_ov000_021a49e0(void *a, UnkFunc *b) {
-    if (a == 0) {
+    if (a == NULL) {
         a = data_ov000_021b426c;
     }
     *(UnkFunc **) ((u8 *) a + 0xa4) = b;
@@ -26,7 +26,7 @@ void func_ov000_021a49e0(void *a, UnkFunc *b) {
 }
 
 void func_ov000_021a49cc(void *a, void (*b)(void *, u16)) {
-    if (a == 0) {
+    if (a == NULL) {
         a = data_ov000_021b426c;
     }
     *(void (**)(void *, u16))((u8 *) a + 0xa8) = b;
@@ -34,7 +34,7 @@ void func_ov000_021a49cc(void *a, void (*b)(void *, u16)) {
 }
 
 void func_ov000_021a49a0(Unk021a4a08 *a) {
-    if (a == 0) {
+    if (a == NULL) {
         a = data_ov000_021b426c;
     }
     if (a->mUnk_0bc != 0) {
@@ -91,7 +91,7 @@ void func_ov000_021a4868(Unk021a4a08 *a) {
 
 void func_ov000_021a4818(Unk021a4a08 *a) {
     int v1;
-    if (a == 0) {
+    if (a == NULL) {
         a = data_ov000_021b426c;
     }
     if (a->mUnk_0bc != 0) {
@@ -107,7 +107,7 @@ void func_ov000_021a4818(Unk021a4a08 *a) {
 }
 
 void func_ov000_021a47ac(Unk021a4a08 *a) {
-    if (a == 0) {
+    if (a == NULL) {
         a = data_ov000_021b426c;
     }
     if (a->mUnk_0bc != 0) {

@@ -50,7 +50,7 @@ Unk0209bf70 *func_0209bf70(void *a, void *b, void *c, u32 d, u16 e, u16 f) {
 
 #pragma thumb on
 u32 func_0209bf8c(void) {
-    return (u32) func_0209bfa8(0, 0, 0, 0, 1);
+    return (u32) func_0209bfa8(NULL, NULL, NULL, 0, 1);
 }
 #pragma thumb off
 
@@ -69,7 +69,7 @@ void *func_0209bfa8(void *param_1, void *param_2, void *param_3, u32 param_4, u1
 }
 #pragma thumb off
 
-s32 func_0209bfe0(s32 a) {
+BOOL func_0209bfe0(s32 a) {
     Unk0209c220 *p;
     Unk0210b7a8 s;
     s32 k;
@@ -103,25 +103,25 @@ s32 func_0209bfe0(s32 a) {
             s.mUnk_0c = func_020d4ef4(&p->mUnk_000.mUnk_04);
             func_0210b7a8(&s);
         }
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_0209c0d4(void) {
-    func_0209bf48(func_0209c4f0, func_0209c220, 0);
+    func_0209bf48(func_0209c4f0, func_0209c220, NULL);
 }
 
 void func_0209c0f4(void) {
-    func_0209bf1c(func_0209c738, func_0209c5b8, 0);
+    func_0209bf1c(func_0209c738, func_0209c5b8, NULL);
 }
 
 void func_0209c114(void) {
-    func_0209bf1c(func_0209c770, func_0209c678, 0);
+    func_0209bf1c(func_0209c770, func_0209c678, NULL);
 }
 
 void func_0209c134(void) {
-    func_0209bf1c(CreateBound, func_0209c7a8, 0);
+    func_0209bf1c(CreateBound, func_0209c7a8, NULL);
 }
 
 void func_0209c154(void) {
@@ -255,10 +255,10 @@ void func_0209c4f0(Unk02100094 *a) {
     s32 i;
     Unk0209c220 *p;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
         if (p->mUnk_000.mUnk_9c->mUnk_26 >= 0) {
             func_020d7da8(&p->mUnk_0f8, p->mUnk_000.mUnk_9c, 0);
             p->mUnk_0f8.mUnk_04 = 0x3000;
@@ -354,7 +354,7 @@ void CreateBound(void *a) {
     func_0209bde8(gBound, gBoundNsbtpName);
 }
 
-s32 func_0209c8b0(Unk0209c220 *p, Vec3 *a, s32 b, Vec3 *c) {
+BOOL func_0209c8b0(Unk0209c220 *p, Vec3 *a, s32 b, Vec3 *c) {
     if ((p->mUnk_000.mUnk_02 & 0x800) == 0 && p->mUnk_11c == 1) {
         p->mUnk_0a4 = func_020ead80(a, &p->mUnk_000.mUnk_04, &p->mUnk_000.mUnk_28.mUnk_00,
                                     ((s64) p->mUnk_000.mUnk_58.x * p->mUnk_0bc) >> 12, p->mUnk_000.mUnk_58.y, 0, b, c);
@@ -493,25 +493,25 @@ void func_0209cebc(Unk0209c220 *p) {
 }
 
 void func_0209cef0(void) {
-    func_0209bf48(func_0209d394, func_0209cf34, 0);
+    func_0209bf48(func_0209d394, func_0209cf34, NULL);
 }
 
 void func_0209cf10(void) {
     func_0209bf1c(CreateSunAndSunLOD, func_0209d3fc, func_0209d5e8);
 }
 
-static inline s32 func_0209cf34_inline(void) {
+static inline BOOL func_0209cf34_inline(void) {
     s32 i;
 
     for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
         if ((s32) func_0203c8c0((u16) i) >= 2) {
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
-static inline s32 func_0209cf34_inline_b(Unk0209cf34 *p) {
+static inline BOOL func_0209cf34_inline_b(Unk0209cf34 *p) {
     s32 i;
     Unk0206bcb0 *k;
     Vec3 *q;
@@ -524,10 +524,10 @@ static inline s32 func_0209cf34_inline_b(Unk0209cf34 *p) {
         x = q->x - p->mUnk_000.mUnk_04.x;
         z = q->z - p->mUnk_000.mUnk_04.z;
         if ((s64) x * x + (s64) z * z < 0x15f900000000LL) {
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 void func_0209cf34(Unk02100094 *a, Unk0209cf34 *p) {
@@ -640,10 +640,10 @@ void func_0209d394(Unk02100094 *a) {
     s32 i;
     Unk0209cf34 *p;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
         if (data_021759c0->mUnk_08 == 1) {
             p->mUnk_0a8 = (u16) p->mUnk_000.mUnk_9c->mUnk_28;
         } else if (data_021759c0->mUnk_08 == 5) {

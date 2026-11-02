@@ -20,7 +20,7 @@ void func_0212b158(void *a) {
     p = data_0217d408;
     q = &p->mUnk_0034;
     p->mUnk_0034.mUnk_00 = p->mUnk_0014;
-    q->mUnk_04 = 0;
+    q->mUnk_04 = NULL;
     q->mUnk_08 = 1;
     q->mUnk_0c = 2;
     func_0212b144();

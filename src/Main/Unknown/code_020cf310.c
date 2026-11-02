@@ -100,7 +100,7 @@ void func_020cf340(Unk020cf340 *a) {
             u16 w;
 
             p = func_021000d0(0xcb);
-            if (p != 0) {
+            if (p != NULL) {
                 q = (Unk0217b498_00 **) func_02100084(p);
                 for (i = 0; i < 5; i++) {
                     w = q[i]->mUnk_7e;
@@ -194,7 +194,7 @@ void func_020cf340(Unk020cf340 *a) {
             Unk020e005c **r;
 
             p = func_021000d0(0xd0);
-            if (p != 0) {
+            if (p != NULL) {
                 q = (Unk0217b498_00 **) func_02100084(p);
                 v = (q[1]->mUnk_7e * 0x48) >> 16;
                 for (i = 0; i < 6; i++) {
@@ -208,7 +208,7 @@ void func_020cf340(Unk020cf340 *a) {
                 }
             }
             p = func_021000d0(0xca);
-            if (p != 0) {
+            if (p != NULL) {
                 r = (Unk020e005c **) func_02100084(p);
                 for (i = 0; i < 4; i++) {
                     v = func_020dff4c(r[i]);

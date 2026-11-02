@@ -6,7 +6,7 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void func_020cadf4(Unk020cadf4 *a) {
-    if (a != 0) {
+    if (a != NULL) {
         if (func_020cae54() != 0 && func_020cae38() != 0) {
             a->mUnk_04 = 6;
             func_020cae24(1);

@@ -63,7 +63,7 @@ void func_020d90a8(Unk020e0144 *a, u16 b, s32 c) {
     a->mUnk_20 = func_02042044(a->mUnk_08, e);
 }
 
-s32 func_020d8cc8(Unk020e0144 *a) {
+BOOL func_020d8cc8(Unk020e0144 *a) {
     Unk020e0144_00 *p;
     s32 k;
     s32 r;
@@ -105,7 +105,7 @@ s32 func_020d8cc8(Unk020e0144 *a) {
                 }
                 a->mUnk_10 = k != 0 ? (s32) (((s64) a->mUnk_04 * k) >> 12) : 0x1000000;
             }
-            return 1;
+            return TRUE;
         }
     } else {
         a->mUnk_14 = a->mUnk_14 - a->mUnk_10;
@@ -141,10 +141,10 @@ s32 func_020d8cc8(Unk020e0144 *a) {
                 a->mUnk_14 = a->mUnk_14 + 0x1000000;
                 a->mUnk_10 = k != 0 ? (s32) (((s64) a->mUnk_04 * k) >> 12) : 0x1000000;
             }
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 s32 func_020d8cac(Unk020e0144 *a) {

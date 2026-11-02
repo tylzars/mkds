@@ -79,7 +79,7 @@ typedef struct Unk02008188 {
 void func_02007ec4(Unk02007ec4 *a, u16 b, u16 c, u32 d, u32 e);
 u32 func_02007f38(u32 a, u32 b, u32 c);
 u32 func_02007ff0(u32 a, u32 b, u32 c);
-s32 func_0200806c(Unk020072c0_buf *a, void *b, u16 c, void *d);
+BOOL func_0200806c(Unk020072c0_buf *a, void *b, u16 c, void *d);
 u32 func_020080e8(Unk0200806c_b *a, Unk020082b4 *b);
 void func_02008188(Unk02008188 *a, u32 *b, Unk020082b4_0c *c, u32 *d);
 void func_020082b4(Unk020082b4 *a, Unk02008188 *b);

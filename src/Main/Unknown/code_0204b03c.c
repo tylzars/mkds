@@ -164,12 +164,12 @@ u16 func_0204b2cc(u8 *p, u32 n) {
 }
 
 void func_0204b344(s32 a) {
-    s32 f;
-    f = 1;
+    BOOL f;
+    f = TRUE;
     switch (data_021759d4->mUnk_00) {
         case 1:
         case 2:
-            f = 0;
+            f = FALSE;
     }
     data_021759d4->mUnk_00 = 4;
     data_021759d4->mUnk_04 = (void *) a;
@@ -178,7 +178,7 @@ void func_0204b344(s32 a) {
             break;
         case 1:
         case 2:
-            if (f != 0) {
+            if (f != FALSE) {
                 func_02049980(1);
             } else {
                 func_02049980(2);

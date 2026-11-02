@@ -82,7 +82,7 @@ void func_0208f0f8(void *a) {
 
 void func_0208f3d0(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (func_0207bfac(a) == 0) {
-        if (b->mUnk_b0 == 0) {
+        if (b->mUnk_b0 == NULL) {
             return;
         }
         if (b->mUnk_b8 >= 0x15f90) {
@@ -97,7 +97,7 @@ void func_0208f434(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (func_0207bfac(a) == 0) {
         return;
     }
-    if (b->mUnk_b0 == 0) {
+    if (b->mUnk_b0 == NULL) {
         return;
     }
     if (b->mUnk_b8 >= 0x15f90) {
@@ -127,7 +127,7 @@ void func_0208f4e8(Unk0208fd8c *a, struct Unk020888b4 *b) {
             func_0207c548(a, b);
         }
     } else {
-        if (b->mUnk_b0 == 0) {
+        if (b->mUnk_b0 == NULL) {
             return;
         }
         if (b->mUnk_b8 >= 0x15f90) {
@@ -141,7 +141,7 @@ void func_0208f5c4(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (func_0207bfac(a) == 0) {
         return;
     }
-    if (b->mUnk_b0 == 0) {
+    if (b->mUnk_b0 == NULL) {
         return;
     }
     if (b->mUnk_b8 >= 0x15f90) {
@@ -169,7 +169,7 @@ void func_0208f6d4(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (func_0207bfac(a) == 0) {
         return;
     }
-    if (b->mUnk_b0 == 0) {
+    if (b->mUnk_b0 == NULL) {
         return;
     }
     if (b->mUnk_b8 >= 0x15f90) {
@@ -185,7 +185,7 @@ void func_0208f754(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (func_0207bfac(a) == 0) {
         return;
     }
-    if (b->mUnk_b0 == 0) {
+    if (b->mUnk_b0 == NULL) {
         return;
     }
     if (b->mUnk_b8 >= 0x15f90) {
@@ -208,7 +208,7 @@ void func_0208f810(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (func_0207bfac(a) == 0) {
         return;
     }
-    if (b->mUnk_b0 == 0) {
+    if (b->mUnk_b0 == NULL) {
         return;
     }
     if (b->mUnk_b8 >= 0x15f90) {
@@ -227,7 +227,7 @@ void func_0208f8ac(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (func_0207bfac(a) == 0) {
         return;
     }
-    if (b->mUnk_b0 == 0) {
+    if (b->mUnk_b0 == NULL) {
         return;
     }
     if (b->mUnk_b8 >= 0x15f90) {
@@ -272,7 +272,7 @@ void func_0208fa50(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (func_0207bfac(a) == 0) {
         return;
     }
-    if (b->mUnk_b0 == 0) {
+    if (b->mUnk_b0 == NULL) {
         return;
     }
     if (b->mUnk_b8 >= 0x15f90) {
@@ -316,7 +316,7 @@ void func_0208fba0(Unk0208fd8c *a, struct Unk020888b4 *b) {
             func_0207c47c(a, b);
         }
     } else {
-        if (b->mUnk_b0 == 0) {
+        if (b->mUnk_b0 == NULL) {
             return;
         }
         if (b->mUnk_b8 >= 0x15f90) {
@@ -331,7 +331,7 @@ void func_0208fba0(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0208fcac(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    if (b->mUnk_b0 == 0) {
+    if (b->mUnk_b0 == NULL) {
         return;
     }
     if (b->mUnk_b8 >= 0x15f90) {

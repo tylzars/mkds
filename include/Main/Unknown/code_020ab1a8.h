@@ -13,4 +13,4 @@ u16 func_020ab4d4(void);
 u16 func_020ab500(void);
 void func_020ab528(void);
 void func_020ab580(u16 a);
-s32 func_020ab59c(Unk0217b278_34 *p);
+BOOL func_020ab59c(Unk0217b278_34 *p);

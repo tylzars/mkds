@@ -15,12 +15,12 @@ void func_ov001_02184d9c(Unk02188950 *a) {
         Vec3 sp = {0, 0, 0};
 
         sp.y = a->mUnk_0a0->mUnk_1f4;
-        func_ov001_02187218(a, 5, 0);
+        func_ov001_02187218(a, 5, NULL);
         func_ov001_02188d64(a, a->mUnk_0a0->mUnk_1ec, a->mUnk_0a0->mUnk_1f0);
         func_ov001_02188950(a, &sp);
         func_ov001_02188db8(a, (UnkFunc *) func_ov001_02184d9c);
     } else {
-        func_ov001_02187218(a, 0, 0);
+        func_ov001_02187218(a, 0, NULL);
     }
 }
 
@@ -35,12 +35,12 @@ void func_ov001_02184cf4(Unk02188950 *a) {
         Vec3 sp = {0, 0, 0};
 
         sp.y = a->mUnk_0a0->mUnk_124;
-        func_ov001_02187218(a, 5, 0);
+        func_ov001_02187218(a, 5, NULL);
         func_ov001_02188d64(a, a->mUnk_0a0->mUnk_11c, a->mUnk_0a0->mUnk_120);
         func_ov001_02188950(a, &sp);
         func_ov001_02188db8(a, (UnkFunc *) func_ov001_02184cf4);
     } else {
-        func_ov001_02187218(a, 0, 0);
+        func_ov001_02187218(a, 0, NULL);
     }
 }
 

@@ -33,7 +33,7 @@ void func_020937c4(Vec3 *a, Vec3 *b, u16 c) {
     Unk020937c4 *o;
 
     o = func_0209bbfc(func_02100138(0x1a2));
-    if (o == 0) {
+    if (o == NULL) {
         return;
     }
     o->mUnk_a0 = 600;
@@ -51,17 +51,17 @@ void func_020937c4(Vec3 *a, Vec3 *b, u16 c) {
 }
 
 void func_02093884(void) {
-    func_0209bf48(0, func_02093910, 0);
+    func_0209bf48(NULL, func_02093910, NULL);
 }
 
 void func_020938a0(void) {
-    func_0209bf1c(CreateNsKiller2AndNsKiller2S, func_02093a50, 0);
+    func_0209bf1c(CreateNsKiller2AndNsKiller2S, func_02093a50, NULL);
 }
 
 void func_020938c0(void) {
     Unk0209bf70 *o;
 
-    o = func_0209bf70(func_02093b7c, 0, 0, 1, 1, 0x17b);
+    o = func_0209bf70(func_02093b7c, NULL, NULL, 1, 1, 0x17b);
     o->mUnk_38 = 0x32000;
     o->mUnk_3c = -0x64000;
 }
@@ -155,11 +155,11 @@ void func_02093c64(Unk02093910 *p) {
 }
 
 void func_02093cb4(void) {
-    func_0209bf48(func_02093eac, func_02093cf4, 0);
+    func_0209bf48(func_02093eac, func_02093cf4, NULL);
 }
 
 void func_02093cd4(void) {
-    func_0209bf1c(CreateNsKiller1, func_02093ee8, 0);
+    func_0209bf1c(CreateNsKiller1, func_02093ee8, NULL);
 }
 
 void func_02093cf4(void *a, Unk02093cf4 *p) {
@@ -213,10 +213,10 @@ void func_02093eac(Unk020e6fd4 *p) {
     s32 i;
     Unk02093cf4 *e;
 
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
-    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
         e->mUnk_a0 = 0;
     }
 }

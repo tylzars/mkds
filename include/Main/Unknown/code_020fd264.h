@@ -8,7 +8,7 @@ u32 func_020fd7a4(int a);
 void func_020fd754(void *a);
 void func_020fd684(void *c, Vec3 *d, Vec3 *f);
 void func_020fd540(void **b, Vec3 *param_2, s32 param_3);
-int func_020fd528(Unk0206bcb0 *a);
+BOOL func_020fd528(Unk0206bcb0 *a);
 void func_020fd494(void **a);
 void *func_020fd428(void);
 void *func_020fd338(void *b, s32 param_2);

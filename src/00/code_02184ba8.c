@@ -54,7 +54,7 @@ void InitWiFiAikotoba(void *a) {
     }
     c = func_ov000_021804f4();
     func_020ae6d4(c, func_ov000_021804e0());
-    func_02124ed0(a, gWiFiAikotoba->mUnk_2c, 0, &gWiFiAikotoba->mUnk_1c);
+    func_02124ed0(a, gWiFiAikotoba->mUnk_2c, NULL, &gWiFiAikotoba->mUnk_1c);
     gWiFiAikotoba->mUnk_38 = FindSceneFile(data_ov000_021b0ee8);
     gWiFiAikotoba->mUnk_3c = func_02047a28(data_ov000_021b0ef4);
     for (i = 0; i < 2; i++) {
@@ -66,7 +66,7 @@ void InitWiFiAikotoba(void *a) {
 }
 
 void func_ov000_02185230(void) {
-    gWiFiAikotoba = 0;
+    gWiFiAikotoba = NULL;
 }
 
 void func_ov000_021851a0(void) {
@@ -141,36 +141,36 @@ void func_ov000_021850b0(void) {
 void func_ov000_02184f1c(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
     u32 a = -1;
-    s32 b;
-    s32 c;
+    BOOL b;
+    BOOL c;
     u16 d;
     s32 f;
     u32 e;
     Unk021b4c84 *p;
 
-    b = 0;
-    c = 0;
+    b = FALSE;
+    c = FALSE;
     d = data_02175628[i].mUnk_4c;
     if (d == 0 && data_02175628[i].mUnk_58 < 5) {
-        c = 1;
+        c = TRUE;
     }
-    if (c == 0 && data_02175628[i].mUnk_54 == 0 && d != 0) {
-        b = 1;
+    if (c == FALSE && data_02175628[i].mUnk_54 == 0 && d != 0) {
+        b = TRUE;
     }
-    if (b != 0) {
+    if (b != FALSE) {
         a = func_0201ea84(gWiFiAikotoba->mUnk_30, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
-        b = 0;
-        c = 0;
+        b = FALSE;
+        c = FALSE;
         d = data_02175628[i].mUnk_4c;
         if (d == 0 && data_02175628[i].mUnk_58 < 5) {
-            c = 1;
+            c = TRUE;
         }
-        if (c == 0 && data_02175628[i].mUnk_54 == 0 && d != 0) {
-            b = 1;
+        if (c == FALSE && data_02175628[i].mUnk_54 == 0 && d != 0) {
+            b = TRUE;
         }
-        if (b == 0 || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (b == FALSE || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
             goto next;
         }
     }
@@ -353,7 +353,7 @@ void AdvanceWiFiAikotoba(void) {
     }
     func_ov000_02184c74();
     p = gWiFiAikotoba;
-    func_02124c30(p->mUnk_2c, p->mUnk_20, 0, func_ov000_021804e0(), p->mUnk_1c);
+    func_02124c30(p->mUnk_2c, p->mUnk_20, NULL, func_ov000_021804e0(), p->mUnk_1c);
 }
 
 void func_ov000_02184bcc(void) {

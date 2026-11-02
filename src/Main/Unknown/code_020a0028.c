@@ -40,14 +40,14 @@ void func_020a018c(void *a, Unk020a018c *p) {
 void func_020a0064(Unk020a0064 *p) {
     s32 i;
     Unk020a018c *o;
-    s32 z;
+    BOOL z;
     s32 v;
 
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
-    z = 0;
-    for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != 0; i++) {
+    z = FALSE;
+    for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
         func_020d7da8(&o->mUnk_c8, o->mUnk_00.mUnk_9c, z);
         o->mUnk_a4 = (o->mUnk_00.mUnk_9c->mUnk_28 * 0x5000L) / 100;
         v = o->mUnk_a4;

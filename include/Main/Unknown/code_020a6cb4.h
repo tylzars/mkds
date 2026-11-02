@@ -17,4 +17,4 @@ void *func_020a6d20(void);
 s32 func_020a6d40(void);
 void func_020a6d8c(Unk02100094 *a, Unk020a6cb4 *b);
 void func_020a6e70(Unk02100094 *a);
-s32 func_020a6f94(Unk02100094 *a);
+BOOL func_020a6f94(Unk02100094 *a);

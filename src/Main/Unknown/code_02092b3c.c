@@ -47,10 +47,10 @@ void func_020930c8(Unk020e6fd4 *a) {
     s32 i;
     Unk020919e8 *p;
 
-    if (a == 0) {
+    if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (p = (Unk020919e8 *) a->mUnk_00[i]) != 0; i++) {
+    for (i = 0; i < a->mUnk_04 && (p = (Unk020919e8 *) a->mUnk_00[i]) != NULL; i++) {
         if (p->mUnk_00.mUnk_02 & 0x800) {
             p->mUnk_a4 = (u16) (func_02092b5c_inline_2(25) + 200);
         }
@@ -66,19 +66,19 @@ static inline s64 func_02092b5c_inline_4(const Vec3 *a, const Vec3 *b) {
     return (s64) v1 * v1 + (s64) v2 * v2;
 }
 
-static inline s32 func_02092b5c_inline_3(Unk020919e8 *p, s32 k) {
+static inline BOOL func_02092b5c_inline_3(Unk020919e8 *p, s32 k) {
     s32 i;
-    s32 f;
+    BOOL f;
     s32 d;
     Unk0206bcb0 *o;
 
     for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
-        f = 0;
+        f = FALSE;
         if ((u32) data_021759c0->mUnk_68[(u16) i].mUnk_08.mUnk_00 <= 3 &&
             ((1 << data_021759c0->mUnk_68[(u16) i].mUnk_08.mUnk_00) & 0xd)) {
-            f = 1;
+            f = TRUE;
         }
-        if (f == 0 && i != data_021759c0->mUnk_62) {
+        if (f == FALSE && i != data_021759c0->mUnk_62) {
             continue;
         }
         o = func_0207a974((u16) i);
@@ -90,10 +90,10 @@ static inline s32 func_02092b5c_inline_3(Unk020919e8 *p, s32 k) {
             continue;
         }
         if (d <= 0x1f40) {
-            return 1;
+            return TRUE;
         }
     }
-    return 0;
+    return FALSE;
 }
 
 static inline void func_02092b5c_inline_5(Vec3 *v, s32 x, s32 y, s32 z) {
@@ -135,7 +135,7 @@ void func_02092b5c(void *a, Unk020919e8 *p) {
                 }
                 return;
             }
-            if (func_02092b5c_inline_3(p, p->mUnk_00.mUnk_7e) != 0) {
+            if (func_02092b5c_inline_3(p, p->mUnk_00.mUnk_7e) != FALSE) {
                 p->mUnk_a4 = 4;
                 p->mUnk_ac = 1;
             }
@@ -184,5 +184,5 @@ void func_02092b5c(void *a, Unk020919e8 *p) {
 }
 
 void func_02092b3c(void) {
-    func_0209bf48(func_020930c8, func_02092b5c, 0);
+    func_0209bf48(func_020930c8, func_02092b5c, NULL);
 }

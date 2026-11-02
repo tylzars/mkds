@@ -31,7 +31,7 @@ void func_0212b064(void) {
 void *func_0212afac(void) {
     void *a;
     s32 v;
-    a = 0;
+    a = NULL;
     if (*(vu16 *) 0x27ffc40 != 2) {
         a = func_02047a28(data_0216ea6c);
     }
@@ -60,7 +60,7 @@ void *func_0212afac(void) {
         }
         return GetBmgEntry(a, 0x82);
     }
-    return 0;
+    return NULL;
 }
 
 void func_0212ae80(void) {

@@ -10,13 +10,13 @@ static inline u16 func_ov000_021a4654_inline(u16 v1) {
     return ((v1 >> 8) & 0xff) | ((v1 << 8) & 0xff00);
 }
 
-s32 func_ov000_021a4654(const u8 *a, u32 b, Unk021a4654 *c, Unk021a8f84 **d) {
+BOOL func_ov000_021a4654(const u8 *a, u32 b, Unk021a4654 *c, Unk021a8f84 **d) {
     Unk021a8f84 *e;
 
-    e = 0;
+    e = NULL;
     c->mUnk_01 = 2;
     c->mUnk_02 = func_ov000_021a4654_inline(b);
-    if (a == 0) {
+    if (a == NULL) {
         c->mUnk_04 = 0;
     } else {
         c->mUnk_04 = func_ov000_0218e374((u32) a);
@@ -24,16 +24,16 @@ s32 func_ov000_021a4654(const u8 *a, u32 b, Unk021a4654 *c, Unk021a8f84 **d) {
     if (c->mUnk_04 == -1) {
         if (strcmp(a, data_ov000_021b4418) != 0) {
             e = func_ov000_021a8f84(a);
-            if (e == 0) {
-                return 0;
+            if (e == NULL) {
+                return FALSE;
             }
             c->mUnk_04 = **e->mUnk_0c;
         }
     }
-    if (d != 0) {
+    if (d != NULL) {
         *d = e;
     }
-    return 1;
+    return TRUE;
 }
 
 void func_ov000_021a46d4(void) {
@@ -42,12 +42,12 @@ void func_ov000_021a46d4(void) {
     Unk021a46d4 *d;
 
     a = func_ov000_0218e5e4();
-    if (a != 0) {
+    if (a != NULL) {
         data_ov000_021b5df8 = 0;
         d = (Unk021a46d4 *) data_ov000_021b5dfc;
         for (; data_ov000_021b5df8 < 5; data_ov000_021b5df8++) {
             b = (Unk021a46d4 *) a->mUnk_0c[data_ov000_021b5df8];
-            if (b == 0) {
+            if (b == NULL) {
                 break;
             }
             d[data_ov000_021b5df8] = *b;

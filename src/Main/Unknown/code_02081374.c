@@ -8,7 +8,7 @@
 void func_0208155c(s32 a, s32 b) {
     Unk0201ca6c *p = data_0217ae84[a].mUnk_2c;
 
-    if (p == 0) {
+    if (p == NULL) {
         return;
     }
     p->mUnk_24.mUnk_00_3 = (b == 0);
@@ -22,13 +22,13 @@ void func_020813ec(s32 a, Vec3 *b) {
     Unk0217ae84 *e = &data_0217ae84[a];
     Unk0201ca6c *p;
 
-    if ((q->mUnk_4c & 0x8000) && e->mUnk_28 == 0 && q->mUnk_2a4 > 0x1000) {
+    if ((q->mUnk_4c & 0x8000) && e->mUnk_28 == NULL && q->mUnk_2a4 > 0x1000) {
         p = func_0208b7bc(0x53, q->mUnk_508);
         p->mUnk_94 = q;
         p->mUnk_90 = func_02081374;
         e->mUnk_28 = p;
     }
-    if (e->mUnk_28 == 0) {
+    if (e->mUnk_28 == NULL) {
         return;
     }
     v.x = (s32) (((s64) q->mUnk_3b0.x * 0xccd) >> 12);
@@ -60,6 +60,6 @@ void func_02081374(Unk0201ca6c *p, s32 a) {
     e = &data_0217ae84[q->mUnk_74];
     if (p == e->mUnk_28) {
         p->mUnk_24.mUnk_00_0 = 1;
-        e->mUnk_28 = 0;
+        e->mUnk_28 = NULL;
     }
 }

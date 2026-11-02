@@ -17,7 +17,7 @@ void func_020ec854(Unk020e43a8 *param_1, s32 param_2, u32 param_3, u16 param_4, 
     param_1->mUnk_0b4 = param_6;
 }
 
-s32 func_020ec7e8(Unk020e43a8 *param_1) {
+BOOL func_020ec7e8(Unk020e43a8 *param_1) {
     if (param_1->mUnk_0a8) {
         param_1->mUnk_0ac = param_1->mUnk_0ac + param_1->mUnk_0ae;
     } else {

@@ -34,7 +34,7 @@ void func_0203c1a8(void *a, u32 b) {
     }
 }
 
-s32 func_0203c174(void) {
+BOOL func_0203c174(void) {
     return data_0217561c->mUnk_4fa > data_021759c0->mUnk_038;
 }
 

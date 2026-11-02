@@ -35,7 +35,7 @@ void func_020da494(Unk020da494 *a, Unk020fa294 *b) {
     Vec3 *q;
     Unk020e005c_080 *o;
     a->mUnk_100 = 0x1f;
-    if (b != 0) {
+    if (b != NULL) {
         func_020d7da8(&a->mUnk_cc, b, (b->mUnk_28 << 11) / 100);
         e = func_02042044(b->mUnk_26, b->mUnk_2e);
         a->mUnk_a0 = e->mUnk_00.y;
@@ -144,9 +144,9 @@ void func_020d9f8c(Unk020d9cf4 *a) {
                 a->mUnk_24 = 2;
                 if (a->mUnk_170 != 0 && v >= 0) {
                     s1.mUnk_00 = 0x114;
-                    s1.mUnk_04 = 0;
+                    s1.mUnk_04 = NULL;
                     s1.mUnk_08 = 4;
-                    s1.mUnk_0c = func_020d4ef4(0);
+                    s1.mUnk_0c = func_020d4ef4(NULL);
                     func_0210b760(&s1, h);
                 }
             } else if (a->mUnk_38 > (a->mUnk_34 >> 1)) {
@@ -175,9 +175,9 @@ void func_020d9f8c(Unk020d9cf4 *a) {
                 a->mUnk_24 = 0;
                 if (a->mUnk_170 != 0 && v >= 0) {
                     s2.mUnk_00 = 0x113;
-                    s2.mUnk_04 = 0;
+                    s2.mUnk_04 = NULL;
                     s2.mUnk_08 = 4;
-                    s2.mUnk_0c = func_020d4ef4(0);
+                    s2.mUnk_0c = func_020d4ef4(NULL);
                     func_0210b760(&s2, h);
                 }
             } else if (a->mUnk_38 > (a->mUnk_36 >> 1)) {
@@ -191,7 +191,7 @@ void func_020d9f8c(Unk020d9cf4 *a) {
     }
     a->mUnk_3c = a->mUnk_3c + a->mUnk_40;
     w = a->mUnk_3c - a->mUnk_50;
-    if (a->mUnk_60 != 0) {
+    if (a->mUnk_60 != NULL) {
         j = (a->mUnk_3c >> 4) * 2;
         a->mUnk_00 = a->mUnk_18 + (s32) (((s64) a->mUnk_44 * data_0215d4b4[j]) >> 12);
         a->mUnk_08 = a->mUnk_20 + (s32) (((s64) a->mUnk_44 * data_0215d4b4[j + 1]) >> 12);
@@ -206,26 +206,26 @@ void func_020d9e60(Unk020d9cf4 *a, struct Unk02012f58 *b) {
         return;
     }
     if (a->mUnk_54 != 0) {
-        if (a->mUnk_60 != 0) {
+        if (a->mUnk_60 != NULL) {
             a->mUnk_140.mUnk_24.x = a->mUnk_00 >> 4;
             a->mUnk_140.mUnk_24.y = a->mUnk_04 >> 4;
             a->mUnk_140.mUnk_24.z = a->mUnk_08 >> 4;
-            func_020849f8(&a->mUnk_68, &a->mUnk_140, 0);
+            func_020849f8(&a->mUnk_68, &a->mUnk_140, NULL);
         }
         a->mUnk_140.mUnk_24.x = a->mUnk_0c >> 4;
         a->mUnk_140.mUnk_24.y = a->mUnk_10 >> 4;
         a->mUnk_140.mUnk_24.z = a->mUnk_14 >> 4;
-        func_020849f8(&a->mUnk_d4, &a->mUnk_140, 0);
+        func_020849f8(&a->mUnk_d4, &a->mUnk_140, NULL);
     } else {
         a->mUnk_140.mUnk_24.x = a->mUnk_0c >> 4;
         a->mUnk_140.mUnk_24.y = a->mUnk_10 >> 4;
         a->mUnk_140.mUnk_24.z = a->mUnk_14 >> 4;
-        func_020849f8(&a->mUnk_d4, &a->mUnk_140, 0);
-        if (a->mUnk_60 != 0) {
+        func_020849f8(&a->mUnk_d4, &a->mUnk_140, NULL);
+        if (a->mUnk_60 != NULL) {
             a->mUnk_140.mUnk_24.x = a->mUnk_00 >> 4;
             a->mUnk_140.mUnk_24.y = a->mUnk_04 >> 4;
             a->mUnk_140.mUnk_24.z = a->mUnk_08 >> 4;
-            func_020849f8(&a->mUnk_68, &a->mUnk_140, 0);
+            func_020849f8(&a->mUnk_68, &a->mUnk_140, NULL);
         }
     }
 }
@@ -301,7 +301,7 @@ void CreateTownWater(void) {
 void CreateYoshiWater(void) {
     gWater = func_02036bec(func_020364e0(func_020364e8()), 0x180);
     func_020d9cf4(0, 0, 0xc8000, 0x55000, 0x3c000, 0x7fff, 0x3fff, 0x1c2, 0x78, 0x1e, 1, 0xa, 0x17, 0x10, 0);
-    gWater->mUnk_60 = 0;
+    gWater->mUnk_60 = NULL;
     gWater->mUnk_64 = FindCourseMapObjFile("yoshi_waterC.nsbmd");
     func_020d4980(gWater);
 }
@@ -320,7 +320,7 @@ void func_020d9900(Unk020d9cf4 *a) {
     Unk0201290c *q;
     s32 r;
     u32 n;
-    if (a->mUnk_60 != 0) {
+    if (a->mUnk_60 != NULL) {
         func_02084e28(&a->mUnk_68, a->mUnk_60);
         i = 0;
         p = a->mUnk_68.mUnk_04;
@@ -346,7 +346,7 @@ void func_020d9900(Unk020d9cf4 *a) {
     }
     q = a->mUnk_d4.mUnk_04;
     r = func_02013754(&q->mUnk_00[q->mUnk_08] + 4, data_02158094);
-    if (a->mUnk_60 != 0) {
+    if (a->mUnk_60 != NULL) {
         n = a->mUnk_58;
         i = 0;
         p = a->mUnk_68.mUnk_04;

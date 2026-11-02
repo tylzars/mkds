@@ -12,4 +12,4 @@ typedef struct Unk021b5df4 {
 
 extern Unk021b5df4 *data_ov000_021b5df4;
 
-s32 func_ov000_021a377c(void);
+BOOL func_ov000_021a377c(void);

@@ -29,19 +29,19 @@ void func_0203e788(s32 a, s32 b) {
     Unk0206bcb0 *q;
     Unk0217aa1c_144_00 t;
     s32 s;
-    s32 f;
+    BOOL f;
     Unk0217561c_14 *e;
     e = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + a * 0x8c);
     s = e->mUnk_00;
-    f = 0;
+    f = FALSE;
     switch (s) {
         case 1:
         case 2:
         case 3:
-            f = 1;
+            f = TRUE;
             break;
     }
-    if (f != 0) {
+    if (f != FALSE) {
         return;
     }
     if ((e->mUnk_30 & 0x10) != 0) {
@@ -146,22 +146,22 @@ void func_0203eb38(void) {
     Unk0217561c_14 *p;
     Unk0206cdd4_B *q;
     s32 s;
-    s32 f;
+    BOOL f;
     u32 g;
     u8 *r;
     Unk0217aa1c_144_00 *t;
     u32 h;
     for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
         s = ((Unk0217561c_000 *) ((u8 *) data_0217561c + i * 0x8c))->mUnk_14;
-        f = 0;
+        f = FALSE;
         switch (s) {
             case 1:
             case 2:
             case 3:
-                f = 1;
+                f = TRUE;
                 break;
         }
-        if (f == 0) {
+        if (f == FALSE) {
             p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + i * 0x8c);
             t = &p->mUnk_0c[5];
             h = data_0217561c->mUnk_000[0].mUnk_00;
@@ -207,24 +207,24 @@ void func_0203ecf0(void) {
     u16 i;
     Unk0217561c_14 *p;
     s32 s;
-    s32 f;
-    s32 u;
-    s32 v;
+    BOOL f;
+    BOOL u;
+    BOOL v;
     Unk0217aa1c_144_00 *t;
     u32 h;
-    u = 0;
-    v = 0;
+    u = FALSE;
+    v = FALSE;
     for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
         s = ((Unk0217561c_000 *) ((u8 *) data_0217561c + i * 0x8c))->mUnk_14;
-        f = 0;
+        f = FALSE;
         switch (s) {
             case 1:
             case 2:
             case 3:
-                f = 1;
+                f = TRUE;
                 break;
         }
-        if (f == 0 && s != 4) {
+        if (f == FALSE && s != 4) {
             p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + i * 0x8c);
             t = &p->mUnk_0c[5];
             h = data_0217561c->mUnk_000[0].mUnk_00;
@@ -250,24 +250,24 @@ void func_0203ee28(void) {
     u16 i;
     Unk0217561c_14 *p;
     s32 s;
-    s32 f;
-    s32 u;
-    s32 v;
+    BOOL f;
+    BOOL u;
+    BOOL v;
     Unk0217aa1c_144_00 *t;
     u32 h;
-    u = 0;
-    v = 0;
+    u = FALSE;
+    v = FALSE;
     for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
         s = ((Unk0217561c_000 *) ((u8 *) data_0217561c + i * 0x8c))->mUnk_14;
-        f = 0;
+        f = FALSE;
         switch (s) {
             case 1:
             case 2:
             case 3:
-                f = 1;
+                f = TRUE;
                 break;
         }
-        if (f == 0 && s != 4) {
+        if (f == FALSE && s != 4) {
             p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + i * 0x8c);
             t = &p->mUnk_0c[5];
             h = data_0217561c->mUnk_000[0].mUnk_00;
@@ -291,7 +291,7 @@ void func_0203ee28(void) {
 // non-matching: 0x314 bytes, original 0x328; the original keeps zero constants in r0/r8 and loads data_0217561c after
 // the loop guard, ours folds them.
 s32 func_0203ef58(void) {
-    s32 r;
+    BOOL r;
     u16 i;
     s32 s;
     s32 f;
@@ -301,7 +301,7 @@ s32 func_0203ef58(void) {
     o = data_021759c0;
     switch (o->mUnk_08) {
         case 0:
-            r = 1;
+            r = TRUE;
             for (i = 0; i < (u32) o->mUnk_3d0; i++) {
                 s = o->mUnk_68[i].mUnk_08.mUnk_00;
                 f = 0;
@@ -319,41 +319,41 @@ s32 func_0203ef58(void) {
                             break;
                     }
                     if (f == 0) {
-                        r = 0;
+                        r = FALSE;
                         break;
                     }
                 }
             }
             break;
         case 3:
-            r = 1;
+            r = TRUE;
             q = data_0217561c;
             if (q->mUnk_000[0].mUnk_0e < (s32) func_0203f320() - (q->mUnk_000[0].mUnk_10 + 1)) {
                 for (i = 0; i < func_0203f320(); i++) {
                     if (func_0203f2dc(i) != 0 && func_0203c880(i) == 0) {
                         if (func_0203f2b4(i) == 0) {
-                            r = 0;
+                            r = FALSE;
                             break;
                         }
                     }
                 }
             }
-            if (r == 0 && func_0203f2a0() == 1) {
+            if (r == FALSE && func_0203f2a0() == 1) {
                 if (func_0203c880(func_0203f280()) != 0) {
-                    r = 1;
+                    r = TRUE;
                 }
             }
             break;
         case 5:
             v = data_0217aa18->mUnk_06[func_ov000_0219bb50()];
             if (v < 0) {
-                r = 0;
+                r = FALSE;
             } else {
                 q = data_0217561c;
                 s = q->mUnk_000[(u16) v].mUnk_14;
                 f = data_021759c0->mUnk_3d0 - q->mUnk_000[0].mUnk_10;
                 if (f <= 1) {
-                    r = 0;
+                    r = FALSE;
                 } else {
                     f = 0;
                     switch (s) {
@@ -372,17 +372,17 @@ s32 func_0203ef58(void) {
             }
             break;
         case 1:
-            r = 0;
+            r = FALSE;
             switch (data_0217561c->mUnk_000[0].mUnk_14) {
                 case 1:
                 case 2:
                 case 3:
-                    r = 1;
+                    r = TRUE;
                     break;
             }
             break;
         case 2:
-            r = 1;
+            r = TRUE;
             for (i = 0; i < (u32) o->mUnk_3d0; i++) {
                 s = o->mUnk_68[i].mUnk_08.mUnk_00;
                 f = 0;
@@ -391,7 +391,7 @@ s32 func_0203ef58(void) {
                 }
                 if (f != 0) {
                     if (func_020a1084(i) == 0) {
-                        r = 0;
+                        r = FALSE;
                         break;
                     }
                 }
@@ -399,13 +399,13 @@ s32 func_0203ef58(void) {
             }
             break;
         case 4:
-            r = 0;
+            r = FALSE;
             if (o->mUnk_2f == 6 && data_0217561c->mUnk_000[0].mUnk_0e != 0) {
-                r = 1;
+                r = TRUE;
             }
             break;
         default:
-            r = 0;
+            r = FALSE;
             break;
     }
     return r;

@@ -55,7 +55,7 @@ void func_020c7164(void) {
     if (data_021759c0->mUnk_08 != 1) {
         return;
     }
-    if (data_0217b3f4 == 0) {
+    if (data_0217b3f4 == NULL) {
         return;
     }
     if (data_021759c0->mUnk_00c == 0) {
@@ -82,21 +82,21 @@ found:
 }
 
 s32 func_020c7148(void) {
-    return data_0217b3f4 != 0 ? data_0217b3f4->mUnk_08 : 0;
+    return data_0217b3f4 != NULL ? data_0217b3f4->mUnk_08 : 0;
 }
 
-s32 func_020c7108(void) {
-    if (data_0217b3f4 != 0) {
+BOOL func_020c7108(void) {
+    if (data_0217b3f4 != NULL) {
         if (data_0217b3f4->mUnk_08 != 0) {
             if (data_0217b3f4->mUnk_0c == 0) {
-                return 1;
+                return TRUE;
             }
         }
-        return 0;
+        return FALSE;
     }
-    return 0;
+    return FALSE;
 }
 
 s32 func_020c70ec(void) {
-    return data_0217b3f4 != 0 ? data_0217b3f4->mUnk_10 : 0;
+    return data_0217b3f4 != NULL ? data_0217b3f4->mUnk_10 : 0;
 }

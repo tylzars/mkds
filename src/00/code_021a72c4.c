@@ -40,7 +40,7 @@ Unk021a6fa8 *func_ov000_021a732c(Unk021b49b8 *param_1) {
     a = func_ov000_021a72c4(param_1);
     b = func_0200fca0();
     c = data_ov000_021b5f94->mUnk_18(a);
-    if (c != 0) {
+    if (c != NULL) {
         func_0214d168(c, 0, a);
         func_ov000_021a71c0(c, param_1);
         func_ov000_021a8b10(c);

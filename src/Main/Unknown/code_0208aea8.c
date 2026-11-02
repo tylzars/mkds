@@ -61,7 +61,7 @@ void func_0208afe4(void) {
         v.y = l;
         v.z = m;
         q = func_02018600(p, e, &v);
-        if (q != 0) {
+        if (q != NULL) {
             if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
                 q->mUnk_80_16 = 1;
             } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
@@ -78,7 +78,7 @@ void func_0208afe4(void) {
         v.y = l;
         v.z = m;
         q = func_02018600(p, e, &v);
-        if (q != 0) {
+        if (q != NULL) {
             if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
                 q->mUnk_80_16 = 1;
             } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
@@ -112,11 +112,11 @@ void func_0208b190(void) {
     v3 = g->mUnk_15c;
     for (i = 0; i < 6; i++) {
         Unk0217b048 *h = data_0217b048;
-        if (h->mUnk_48[i] != 0) {
+        if (h->mUnk_48[i] != NULL) {
             s32 e;
             Unk0201ca6c **r = &h->mUnk_48[i];
             func_020184e4(data_0217b050(&e, 0), *r);
-            *r = 0;
+            *r = NULL;
         }
     }
     for (i = 0; i < 6; i++) {
@@ -155,7 +155,7 @@ void func_0208b190(void) {
         v.y = t->y >> 4;
         v.z = t->z >> 4;
         q = func_02018600(p, e, &v);
-        if (q != 0) {
+        if (q != NULL) {
             if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
                 q->mUnk_80_16 = 1;
             } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {

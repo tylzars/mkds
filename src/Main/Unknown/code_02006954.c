@@ -47,7 +47,7 @@ u32 func_0200704c(const Unk0216f3dc_9c *a) {
         return 0;
     }
     v2 = (s32 *) func_020070b0();
-    if (v2 == 0 || *v2 != 0) {
+    if (v2 == NULL || *v2 != 0) {
         func_0200fcb4(v1);
         return 0;
     }
@@ -74,12 +74,12 @@ void func_02007034(u32 p0) {
 
 Unk02007014 *func_02007014(u32 a) {
     Unk02007014 *v1;
-    for (v1 = func_02007040(); v1 != 0; v1 = v1->mUnk_28) {
+    for (v1 = func_02007040(); v1 != NULL; v1 = v1->mUnk_28) {
         if (v1->mUnk_00 == a) {
             return v1;
         }
     }
-    return 0;
+    return NULL;
 }
 
 #pragma thumb off
@@ -116,7 +116,7 @@ u32 func_02006f98(s32 a) {
     return ((v2 >> 5) + ((v2 & 0x1f) != 0 ? 1 : 0)) << 2;
 }
 
-s32 func_02006f50(u32 a, s32 b, s32 *c, s32 *d) {
+BOOL func_02006f50(u32 a, s32 b, s32 *c, s32 *d) {
     Unk0216f3dc *v1;
     Unk0200628c *v2;
     v1 = func_020070b8();
@@ -124,9 +124,9 @@ s32 func_02006f50(u32 a, s32 b, s32 *c, s32 *d) {
     if (v1->mUnk_000.mUnk_00 == 4 && v1->mUnk_000.mUnk_14 == a) {
         *d = v2->mUnk_04;
         *c = v2->mUnk_10;
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 u32 func_02006f14(s32 a, s32 b) {
@@ -148,7 +148,7 @@ int func_02006ef8(void) {
     int v1;
     Unk02007014 *v2;
     v1 = 0;
-    for (v2 = func_02007040(); v2 != 0; v2 = v2->mUnk_28) {
+    for (v2 = func_02007040(); v2 != NULL; v2 = v2->mUnk_28) {
         v1 = v1 + 1;
     }
     return v1;
@@ -162,24 +162,24 @@ s32 func_02006e74(Unk02007014 *a, u32 b, const void *c, u8 *d, u32 e, u16 f) {
     Unk02007014 *v1;
     u32 v2;
     v2 = func_0200fca0();
-    if (func_02007040() == 0) {
+    if (func_02007040() == NULL) {
         func_02007034((u32) a);
     } else {
-        for (v1 = func_02007040(); v1->mUnk_28 != 0; v1 = v1->mUnk_28) {
+        for (v1 = func_02007040(); v1->mUnk_28 != NULL; v1 = v1->mUnk_28) {
         }
         v1->mUnk_28 = a;
     }
-    if (d == 0) {
+    if (d == NULL) {
         a->mUnk_32 = 1;
     } else {
         a->mUnk_2c = d;
         a->mUnk_32 = 0;
     }
-    a->mUnk_28 = 0;
+    a->mUnk_28 = NULL;
     a->mUnk_00 = b;
     a->mUnk_04 = e;
     a->mUnk_30 = f;
-    if (c != 0) {
+    if (c != NULL) {
         func_0214d1fc(c, a->mUnk_08, 0x20);
     } else {
         func_0214d168(a->mUnk_08, 0, 0x20);
@@ -194,16 +194,16 @@ Unk02007014 *func_02006df8(u32 a) {
     u32 v3;
     v3 = func_0200fca0();
     v1 = func_02007040();
-    if (v1 == 0) {
+    if (v1 == NULL) {
         func_0200fcb4(v3);
-        return 0;
+        return NULL;
     }
     if (v1->mUnk_00 == a) {
         func_02007034((u32) v1->mUnk_28);
         func_0200fcb4(v3);
         return v1;
     }
-    for (v2 = v1->mUnk_28; v2 != 0; v1 = v2, v2 = v2->mUnk_28) {
+    for (v2 = v1->mUnk_28; v2 != NULL; v1 = v2, v2 = v2->mUnk_28) {
         if (v2->mUnk_00 == a) {
             v1->mUnk_28 = v2->mUnk_28;
             func_0200fcb4(v3);
@@ -211,7 +211,7 @@ Unk02007014 *func_02006df8(u32 a) {
         }
     }
     func_0200fcb4(v3);
-    return 0;
+    return NULL;
 }
 
 u32 func_02006ddc(u16 a, void (*b)(Unk0216f3dc_9c *)) {
@@ -386,7 +386,7 @@ void func_02006aac(s32 a, s32 b, void (*c)(Unk0216f3dc_9c *)) {
     v2->mUnk_000.mUnk_00 = 0;
     v2->mUnk_000.mUnk_08 = 0;
     v2->mUnk_000.mUnk_0a = 0;
-    v2->mUnk_000.mUnk_10 = 0;
+    v2->mUnk_000.mUnk_10 = NULL;
     v2->mUnk_138.mUnk_00 = 0;
     v2->mUnk_138.mUnk_08 = 0;
     v2->mUnk_138.mUnk_0a = 0;
@@ -419,7 +419,7 @@ void func_02006a10(void (*a)(Unk0216f3dc_9c *)) {
     v2->mUnk_000.mUnk_00 = 0;
     v2->mUnk_000.mUnk_08 = 0;
     v2->mUnk_000.mUnk_0a = 0;
-    v2->mUnk_000.mUnk_10 = 0;
+    v2->mUnk_000.mUnk_10 = NULL;
     v2->mUnk_138.mUnk_00 = 0;
     v2->mUnk_138.mUnk_08 = 0;
     v2->mUnk_138.mUnk_0a = 0;
@@ -452,11 +452,11 @@ void func_02006974(void) {
     v2->mUnk_000.mUnk_00 = 0;
     v2->mUnk_000.mUnk_08 = 0;
     v2->mUnk_000.mUnk_0a = 0;
-    v2->mUnk_000.mUnk_10 = 0;
+    v2->mUnk_000.mUnk_10 = NULL;
     v2->mUnk_138.mUnk_00 = 0;
     v2->mUnk_138.mUnk_08 = 0;
     v2->mUnk_138.mUnk_0a = 0;
-    v2->mUnk_138.mUnk_10 = 0;
+    v2->mUnk_138.mUnk_10 = NULL;
     for (i = 0; i < 16; i++) {
         v2->mUnk_1d4[i].mUnk_03 = 0;
     }

@@ -19,7 +19,7 @@ void func_02047104(void *a) {
     data_021759c4->mUnk_30_1 = 0;
     data_021759c4->mUnk_30_2 = 0;
     data_021759c4->mUnk_30_3 = 0;
-    data_021759c4->mUnk_3c = 0;
+    data_021759c4->mUnk_3c = NULL;
     func_0210f1d4();
 }
 

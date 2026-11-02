@@ -159,10 +159,10 @@ u32 func_0211f91c(void) {
                 break;
             }
             func_02152324(&data_0217d384->mUnk_19b0);
-            if (func_ov000_0219bdec(0, func_0211f77c, 0, func_0211f6cc, 0, func_0211f6e8, 0) == 0) {
+            if (func_ov000_0219bdec(NULL, func_0211f77c, NULL, func_0211f6cc, NULL, func_0211f6e8, NULL) == 0) {
                 data_0217d384->mUnk_1f20.mUnk_0c = 7;
             }
-            func_ov000_0219d934((void *) func_0211f6b0, 0);
+            func_ov000_0219d934((void *) func_0211f6b0, NULL);
             data_0217d384->mUnk_1f20.mUnk_0c = 4;
             break;
         case 6:

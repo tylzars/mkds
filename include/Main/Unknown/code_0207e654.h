@@ -4,7 +4,7 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_020888b4.h"
 
-int func_0207e654(Unk020888b4 *p);
+BOOL func_0207e654(Unk020888b4 *p);
 void func_0207e668(Unk020888b4 *p);
 void func_0207e7f0(Unk020888b4 *p);
 void func_0207e944(Unk020888b4 *p);

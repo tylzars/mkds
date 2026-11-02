@@ -36,7 +36,7 @@ void func_02001ba0(void *a) {
                   data_usa_ov001_021a76c4);
     func_02001d30(&data_usa_ov001_021a99c0->mUnk_0c, 0, data_usa_ov001_021a76dc, data_usa_ov001_021a76f4,
                   data_usa_ov001_021a770c);
-    func_02046be8(&data_usa_ov001_021a99c0->mUnk_18, (UnkFunc *const *) 0x02001080, 12, 0);
+    func_02046be8(&data_usa_ov001_021a99c0->mUnk_18, (UnkFunc *const *) 0x02001080, 12, NULL);
     data_usa_ov001_021a99c0->mUnk_2c_0 = 0;
     data_usa_ov001_021a99c0->mUnk_30 = 0;
     data_usa_ov001_021a99c0->mUnk_38 = func_02047a28(data_usa_ov001_021a7720);
@@ -58,7 +58,7 @@ void func_02001b38(void) {
     s32 v1;
     s32 v2;
     v1 = 0;
-    data_usa_ov001_021a99c0 = 0;
+    data_usa_ov001_021a99c0 = NULL;
     v2 = data_0217aa08->mUnk_00->mUnk_31_1;
     switch (v2) {
         case 1:
@@ -90,7 +90,7 @@ void func_02001abc(void) {
 
 void func_02001a74(Unk02001a74 *a) {
     func_02046b40(&data_usa_ov001_021a99c0->mUnk_18);
-    if (a != 0 && data_usa_ov001_021a99c0->mUnk_18.mUnk_0e == 11) {
+    if (a != NULL && data_usa_ov001_021a99c0->mUnk_18.mUnk_0e == 11) {
         a->mUnk_04 = 0;
     }
     func_02125928();

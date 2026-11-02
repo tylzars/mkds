@@ -7,7 +7,7 @@
 
 // Declared here until the code that defines them is decompiled.
 
-s32 func_ov000_02186a9c(Unk021868d0 *a, const u8 *b);
-s32 func_ov000_02186b0c(Unk021868d0 *a, const u8 *b, const void *c, s32 d);
-s32 func_ov000_02186bd4(Unk021868d0 *a, const u8 *b, const u8 *c);
-s32 func_ov000_02186c74(Unk021868d0 *a);
+BOOL func_ov000_02186a9c(Unk021868d0 *a, const u8 *b);
+BOOL func_ov000_02186b0c(Unk021868d0 *a, const u8 *b, const void *c, s32 d);
+BOOL func_ov000_02186bd4(Unk021868d0 *a, const u8 *b, const u8 *c);
+BOOL func_ov000_02186c74(Unk021868d0 *a);

@@ -35,8 +35,8 @@ s32 func_02009098(const u8 *a, Unk02008f00Func b) {
             return i;
         }
     }
-    if (b != 0) {
-        b(4, 0, 0);
+    if (b != NULL) {
+        b(4, NULL, 0);
     }
     return -1;
 }
@@ -51,7 +51,7 @@ void func_02008ff0(u32 a, Unk02008f00Func b) {
             data_0216fc40->mUnk_04 |= m;
             data_0216fc40->mUnk_02 |= m;
             func_02008a14();
-            if (b != 0) {
+            if (b != NULL) {
                 b(1, e, a);
             }
         }
@@ -59,7 +59,7 @@ void func_02008ff0(u32 a, Unk02008f00Func b) {
         m = 1 << a;
         if ((data_0216fc40->mUnk_04 & m) != 0) {
             data_0216fc40->mUnk_04 ^= m;
-            if (b != 0) {
+            if (b != NULL) {
                 b(2, e, a);
             }
         }
@@ -80,8 +80,8 @@ void func_02008f00(Unk02008f00Func a, u32 b) {
             e->mUnk_58a -= data_0216fc40->mUnk_0c;
             if (e->mUnk_58a < 0) {
                 e->mUnk_58a = 0;
-                if ((data_0216fc40->mUnk_04 & m) != 0 && a != 0) {
-                    a(3, 0, i);
+                if ((data_0216fc40->mUnk_04 & m) != 0 && a != NULL) {
+                    a(3, NULL, i);
                 }
                 if ((data_0216fc40->mUnk_06 & m) != 0) {
                     v1 = 1;

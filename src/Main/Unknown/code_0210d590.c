@@ -5,7 +5,7 @@
 #include "code_0212c6ac.h"
 
 static inline void func_0210d614_inline(Unk0217d070 *a, u32 b, Unk0212c400 **c) {
-    if (c == 0) {
+    if (c == NULL) {
         c = &data_0217d07c;
     }
     if (a->mUnk_0b == 0xff) {

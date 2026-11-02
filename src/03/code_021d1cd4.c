@@ -16,7 +16,7 @@ void func_ov003_021d1d0c(Unk021d1d88 *c, void *d) {
 }
 
 void *func_ov003_021d1cd4(Unk021d1d88 *d) {
-    void *a = 0;
+    void *a = NULL;
     u32 b = func_0200ca9c(1);
     u8 c = d->mUnk_03;
 

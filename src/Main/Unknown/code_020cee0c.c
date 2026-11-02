@@ -38,9 +38,9 @@ void func_020cee5c(void) {
 
 void func_020cee28(void) {
     s32 i;
-    s32 v;
+    BOOL v;
 
-    v = 0;
+    v = FALSE;
     for (i = 0; i < 8; i++) {
         data_0217b488->mUnk_10c[i] = v;
     }

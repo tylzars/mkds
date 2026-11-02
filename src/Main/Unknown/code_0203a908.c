@@ -49,13 +49,13 @@ static inline u32 func_0203a908_inline(void) {
     return b;
 }
 
-int func_0203b018(u32 a, void *b, u32 c) {
+BOOL func_0203b018(u32 a, void *b, u32 c) {
     int v = func_0204684c(a);
     if (v == -1) {
-        return 0;
+        return FALSE;
     }
     func_0200d9e0(b, c, data_usa_02164754, v & 0xff);
-    return 1;
+    return TRUE;
 }
 
 static inline u32 func_0203a9ec_inline(void) {
@@ -121,7 +121,7 @@ void func_0203abdc(void) {
     void *p;
     s32 x;
     Unk0217d384 *q;
-    s32 f;
+    BOOL f;
     p = func_020364e0(func_020364e8());
     func_02059dc8();
     if (data_021759c0->mUnk_00c == 3 || data_021759c0->mUnk_00c == 5) {
@@ -154,14 +154,14 @@ void func_0203abdc(void) {
     func_02047b6c(9);
     if (data_021759c0->mUnk_08 != 2) {
         if (data_021759c0->mUnk_08 == 5) {
-            f = 0;
+            f = FALSE;
             q = data_0217d384;
-            if (q != 0) {
+            if (q != NULL) {
                 if (q->mUnk_1f30 != 0) {
-                    f = 1;
+                    f = TRUE;
                 }
             }
-            if (f != 0) {
+            if (f != FALSE) {
                 Unk0217d384_08 *p;
                 q->mUnk_1f38 = 1;
                 p = &data_0217d384->mUnk_0008;
@@ -180,16 +180,16 @@ void func_0203aacc(void) {
     Unk021759c0 *p;
     Unk0217d384 *q;
     s32 t;
-    s32 f;
+    BOOL f;
     if (data_021759c0->mUnk_08 == 5) {
-        f = 0;
+        f = FALSE;
         q = data_0217d384;
-        if (q != 0) {
+        if (q != NULL) {
             if (q->mUnk_1f30 != 0) {
-                f = 1;
+                f = TRUE;
             }
         }
-        if (f != 0) {
+        if (f != FALSE) {
             Unk0217d384_08 *p;
             q->mUnk_1f38 = 0;
             p = &data_0217d384->mUnk_0008;

@@ -57,7 +57,7 @@ s32 func_0204aab4(s32 a, s32 b) {
     Unk021759d0 *p = data_021759d0;
     s32 c = p->mUnk_48;
     s32 d = p->mUnk_4c;
-    s32 r = 1;
+    BOOL r = TRUE;
 
     if (a == 0) {
         c = 1;
@@ -73,21 +73,21 @@ s32 func_0204aab4(s32 a, s32 b) {
         if (func_0214fba8(0, c) == 0) {
             data_021759d0->mUnk_48 = c;
         } else {
-            r = 0;
+            r = FALSE;
         }
     }
     if (d != data_021759d0->mUnk_4c) {
         if (func_0214fba8(1, d) == 0) {
             data_021759d0->mUnk_4c = d;
         } else {
-            r = 0;
+            r = FALSE;
         }
     }
     return r;
 }
 
 void *func_0204aa60(void) {
-    void *r = 0;
+    void *r = NULL;
     Unk021759d0 *p = data_021759d0;
 
     switch (p->mUnk_20) {

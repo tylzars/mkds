@@ -13,6 +13,6 @@ extern u8 data_ov000_021b3af4[];
 extern u8 data_ov000_021b3afc[];
 extern u8 data_ov000_021b3b08[];
 
-s32 func_ov000_021967b4(const u8 *a, const void *b, void *c, s32 d);
-s32 func_ov000_02196870(Unk0218f960 *a, const u8 *b, s32 c);
+BOOL func_ov000_021967b4(const u8 *a, const void *b, void *c, s32 d);
+BOOL func_ov000_02196870(Unk0218f960 *a, const u8 *b, s32 c);
 void func_ov000_0219690c(Unk0218f960 *a, const u8 *b, ...);

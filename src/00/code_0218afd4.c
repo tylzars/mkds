@@ -25,7 +25,7 @@ s8 *func_ov000_0218b19c(s8 *s, s32 c) {
     s8 *a;
     s8 *b;
     s32 d;
-    if (s != 0) {
+    if (s != NULL) {
         data_ov000_021b4d14 = s;
     }
     a = data_ov000_021b4d14;
@@ -33,7 +33,7 @@ s8 *func_ov000_0218b19c(s8 *s, s32 c) {
         data_ov000_021b4d14++;
     }
     if (b == a) {
-        a = 0;
+        a = NULL;
     }
     if (d != 0) {
         data_ov000_021b4d14++;
@@ -46,15 +46,15 @@ void func_ov000_0218b148(Unk0218af28 *e, s8 *v1) {
     s8 *a;
     s8 *b;
     a = func_ov000_0218b19c(v1 + 1, 0x5c);
-    while (a != 0) {
-        b = func_ov000_0218b19c(0, 0x5c);
-        if (b == 0) {
+    while (a != NULL) {
+        b = func_ov000_0218b19c(NULL, 0x5c);
+        if (b == NULL) {
             b = data_ov000_021b21c4;
         }
         if (func_ov000_0218b1e0((u8 *) a) != 0) {
             func_ov000_0218b380(e, (u8 *) a, (u8 *) b);
         }
-        a = func_ov000_0218b19c(0, 0x5c);
+        a = func_ov000_0218b19c(NULL, 0x5c);
     }
 }
 

@@ -17,7 +17,7 @@ typedef struct Unk021b5550 {
 extern void *data_ov000_021b54d0[32];
 extern Unk021b5550 data_ov000_021b5550[32];
 
-s32 func_ov000_0219b8bc(u32 a);
+BOOL func_ov000_0219b8bc(u32 a);
 Unk021b5550 *func_ov000_0219b8f0(s32 index);
 void **func_ov000_0219b8fc(u32 a, s32 b);
 void **func_ov000_0219b958(s32 index);

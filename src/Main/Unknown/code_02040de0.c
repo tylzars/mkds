@@ -14,7 +14,7 @@
 // products of the second and third components before the first sum and the loop index is kept as a pointer step, here
 // the order of the multiplies and the loop registers differ
 void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
-    Unk02175620_34 *q = 0;
+    Unk02175620_34 *q = NULL;
     s32 i;
     u16 x;
     u16 y;
@@ -117,7 +117,7 @@ void func_02041bb0(Vec3 *a, Vec3 *b, s32 c) {
     }
 }
 
-s32 func_02041a70(Vec3 *a, Unk02175620_74 *b) {
+BOOL func_02041a70(Vec3 *a, Unk02175620_74 *b) {
     Vec3 v;
     s32 d;
     s32 t;
@@ -125,19 +125,19 @@ s32 func_02041a70(Vec3 *a, Unk02175620_74 *b) {
     func_021484d0(a, (Vec3 *) b, &v);
     d = func_0214848c(&v, &b->mUnk_24);
     if (d > (s32) (((s64) b->mUnk_0c.y * 0x64000 + 0x800) >> 12) || d < 0) {
-        return 0;
+        return FALSE;
     }
     d = func_0214848c(&v, &b->mUnk_18);
     t = (s32) (((s64) b->mUnk_0c.x * 0x32000 + 0x800) >> 12);
     if (d < -t || d > t) {
-        return 0;
+        return FALSE;
     }
     d = func_0214848c(&v, &b->mUnk_30);
     t = (s32) (((s64) b->mUnk_0c.z * 0x32000 + 0x800) >> 12);
     if (d < -t || d > t) {
-        return 0;
+        return FALSE;
     }
-    return 1;
+    return TRUE;
 }
 
 // non-matching: the original keeps the result in r3 and reuses the zero constant of the result for the products, here
@@ -173,7 +173,7 @@ s32 func_0204176c(Vec3 *a, s32 *b) {
     u16 i;
     Unk02175620_74 *p;
     Vec3 v;
-    s32 r = 0;
+    BOOL r = FALSE;
     s32 x;
     s32 y;
     s32 z;
@@ -206,7 +206,7 @@ s32 func_0204176c(Vec3 *a, s32 *b) {
                 } else {
                     *b = 0;
                 }
-                r = 1;
+                r = TRUE;
                 break;
             }
         }
@@ -221,7 +221,7 @@ void *func_02041588(Vec3 *a) {
     s32 x;
     s32 y;
     s32 z;
-    void *r = 0;
+    void *r = NULL;
     s32 t;
 
     if (gCourseMap->mUnk_102 == 0) {
@@ -264,7 +264,7 @@ Unk02175620_bc *func_020413a4(Vec3 *a) {
     s32 x;
     s32 y;
     s32 z;
-    Unk02175620_bc *r = 0;
+    Unk02175620_bc *r = NULL;
     s32 t;
 
     if (gCourseMap->mUnk_102 == 0) {
@@ -360,12 +360,12 @@ void *func_020410a4(u32 a, Vec3 *b, Vec3 *c) {
     Unk02175620_24 *e;
     s32 i;
 
-    if (gCourseMap->mUnk_44 == 0 && gCourseMap->mUnk_024 == 0) {
-        e = 0;
+    if (gCourseMap->mUnk_44 == NULL && gCourseMap->mUnk_024 == NULL) {
+        e = NULL;
     } else {
         e = &gCourseMap->mUnk_024[gCourseMap->mUnk_f8[a]];
     }
-    if (e == 0) {
+    if (e == NULL) {
         b->x = 0;
         b->y = 0;
         b->z = 0;
@@ -383,7 +383,7 @@ void *func_020410a4(u32 a, Vec3 *b, Vec3 *c) {
         i = e->mUnk_18;
     }
     if (i == -1) {
-        return 0;
+        return NULL;
     }
     return (u8 *) gCourseMap->mUnk_a0 + i * 0x28;
 }
@@ -392,12 +392,12 @@ Unk02175620_bc *func_02040fd8(u32 a, Vec3 *b, Vec3 *c) {
     Unk02175620_24 *e;
     s32 i;
 
-    if (gCourseMap->mUnk_44 == 0 && gCourseMap->mUnk_024 == 0) {
-        e = 0;
+    if (gCourseMap->mUnk_44 == NULL && gCourseMap->mUnk_024 == NULL) {
+        e = NULL;
     } else {
         e = &gCourseMap->mUnk_024[gCourseMap->mUnk_f8[a]];
     }
-    if (e == 0) {
+    if (e == NULL) {
         b->x = 0;
         b->y = 0;
         b->z = 0;
@@ -415,7 +415,7 @@ Unk02175620_bc *func_02040fd8(u32 a, Vec3 *b, Vec3 *c) {
         i = e->mUnk_18;
     }
     if (i == -1) {
-        return 0;
+        return NULL;
     }
     return &gCourseMap->mUnk_b8[i];
 }
@@ -423,13 +423,13 @@ Unk02175620_bc *func_02040fd8(u32 a, Vec3 *b, Vec3 *c) {
 struct Unk020f371c *func_02040f78(u32 a) {
     Unk02175620_24 *e;
 
-    if (gCourseMap->mUnk_44 == 0 && gCourseMap->mUnk_024 == 0) {
-        e = 0;
+    if (gCourseMap->mUnk_44 == NULL && gCourseMap->mUnk_024 == NULL) {
+        e = NULL;
     } else {
         e = &gCourseMap->mUnk_024[gCourseMap->mUnk_f8[a]];
     }
-    if (e == 0) {
-        return 0;
+    if (e == NULL) {
+        return NULL;
     }
     return &gCourseMap->mUnk_ac[e->mUnk_1a];
 }
@@ -443,11 +443,11 @@ s32 func_02040de0(s32 a, u32 b) {
     s32 x;
     s32 y;
     s32 z;
-    s32 f = 0;
+    BOOL f = FALSE;
 
     n = gCourseMap->mUnk_d8[b];
     func_0207a948(&v, a);
-    for (; f == 0 && n != 0; n = n->mUnk_04) {
+    for (; f == FALSE && n != NULL; n = n->mUnk_04) {
         p = n->mUnk_00;
         t = 0;
         switch (p->mUnk_42) {
@@ -468,7 +468,7 @@ s32 func_02040de0(s32 a, u32 b) {
                 break;
         }
         if (t != 0) {
-            f = 1;
+            f = TRUE;
         }
     }
     return f;

@@ -345,40 +345,40 @@ void func_0206add0(Unk0206bcb0 *p, const Vec3 *a, s32 b) {
     }
 }
 
-s32 func_0206b020(Unk0206bcb0 *p, Unk0206b020 *a) {
+BOOL func_0206b020(Unk0206bcb0 *p, Unk0206b020 *a) {
     Vec3 t;
     Vec3 u;
     Vec3 w;
-    int v1;
-    int v2;
-    int c;
+    BOOL v1;
+    BOOL v2;
+    BOOL c;
     int v;
     u32 f = p->mUnk_4c;
 
     if (f & 0x400000) {
-        v1 = 0;
+        v1 = FALSE;
     } else if (p->mUnk_7c & 0x200) {
         if (p->mUnk_180 == 0 && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
-            v1 = 1;
+            v1 = TRUE;
         } else {
-            v1 = 0;
+            v1 = FALSE;
         }
     } else {
-        v2 = 1;
+        v2 = TRUE;
         if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
             v = p->mUnk_180;
-            c = 0;
+            c = FALSE;
             if (v != 0 && v != 1 && v != 2) {
-                c = 1;
+                c = TRUE;
             }
-            if (c == 0) {
-                v2 = 0;
+            if (c == FALSE) {
+                v2 = FALSE;
             }
         }
-        v1 = v2 == 0;
+        v1 = v2 == FALSE;
     }
     if (!v1) {
-        return 0;
+        return FALSE;
     }
     t = a->mUnk_28;
     func_021484d0(&p->mUnk_80, &a->mUnk_04, &u);
@@ -389,7 +389,7 @@ s32 func_0206b020(Unk0206bcb0 *p, Unk0206b020 *a) {
         t.z = -t.z;
     }
     func_0206add0(p, &t, 0);
-    return 1;
+    return TRUE;
 }
 
 void func_0206b16c(Unk0206bcb0 *p) {
@@ -471,43 +471,43 @@ void func_0206b358(Unk0206bcb0 *p) {
     }
 }
 
-s32 func_0206b4d0(Unk0206bcb0 *p) {
-    int v1;
-    int v2;
-    int c;
+BOOL func_0206b4d0(Unk0206bcb0 *p) {
+    BOOL v1;
+    BOOL v2;
+    BOOL c;
     int v;
     u32 f = p->mUnk_4c;
 
     if (f & 0x400000) {
-        v1 = 0;
+        v1 = FALSE;
     } else if (p->mUnk_7c & 0x200) {
         if (p->mUnk_180 == 0 && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
-            v1 = 1;
+            v1 = TRUE;
         } else {
-            v1 = 0;
+            v1 = FALSE;
         }
     } else {
-        v2 = 1;
+        v2 = TRUE;
         if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
             v = p->mUnk_180;
-            c = 0;
+            c = FALSE;
             if (v != 0 && v != 1 && v != 2) {
-                c = 1;
+                c = TRUE;
             }
-            if (c == 0) {
-                v2 = 0;
+            if (c == FALSE) {
+                v2 = FALSE;
             }
         }
-        v1 = v2 == 0;
+        v1 = v2 == FALSE;
     }
     if (!v1) {
-        return 0;
+        return FALSE;
     }
     func_0206b358(p);
     if (p->mUnk_7c & 0x200) {
         p->mUnk_514->mUnk_2c ^= 0x10;
     }
-    return 1;
+    return TRUE;
 }
 
 void func_0206b5b4(Unk0206bcb0 *p) {
@@ -640,15 +640,15 @@ void func_0206b914(Unk0206bcb0 *p) {
     }
 }
 
-s32 func_0206bab8(Unk0206bcb0 *p) {
+BOOL func_0206bab8(Unk0206bcb0 *p) {
     if (!func_0206be54(p, 6)) {
-        return 0;
+        return FALSE;
     }
     func_0206b914(p);
     if (p->mUnk_7c & 0x200) {
         p->mUnk_514->mUnk_2c ^= 0x20000;
     }
-    return 1;
+    return TRUE;
 }
 
 void func_0206bb04(Unk0206bcb0 *p) {

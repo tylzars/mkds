@@ -31,20 +31,20 @@
 void func_020f5824(Unk020f5d6c *a) {
     Unk020ee684 *o;
     Unk0206bcb0 *b;
-    s32 d;
+    BOOL d;
     u32 c;
     s32 n;
 
     o = a->mUnk_228;
     b = o->mUnk_1fc;
     c = *(u32 *) &b->mUnk_7c;
-    d = 1;
+    d = TRUE;
     if ((c & 0x402020) == 0) {
         if ((b->mUnk_4c & 0x800) == 0) {
-            d = 0;
+            d = FALSE;
         }
     }
-    if (d != 0) {
+    if (d != FALSE) {
         func_020f1104((s32) a);
         a->mUnk_23c.mUnk_10 = 6;
         a->mUnk_23c.mUnk_12 = 1;
@@ -63,7 +63,7 @@ void func_020f5824(Unk020f5d6c *a) {
             func_020f1104((s32) a);
             a->mUnk_23c.mUnk_10 = 2;
             a->mUnk_23c.mUnk_12 = 1;
-            a->mUnk_000.mUnk_21c.mUnk_00 = 0;
+            a->mUnk_000.mUnk_21c.mUnk_00 = NULL;
             a->mUnk_000.mUnk_21c.mUnk_04 = 1;
         }
     }
@@ -129,7 +129,7 @@ void func_020f5614(void *a0, s32 b, void *c0) {
     }
     o = a->mUnk_228;
     n = (u16) (!(c->mUnk_78 & 0x8000) ? (u16) (c->mUnk_78 & ~0xff00) : 8);
-    if (o == 0) {
+    if (o == NULL) {
         return;
     }
     k = o->mUnk_1fc;
@@ -157,18 +157,18 @@ void *func_020f5550(void *a, Unk020f5d6c *b, void *c) {
     s32 dot;
     void *p;
 
-    if (b != 0 && c != 0) {
+    if (b != NULL && c != NULL) {
         dot = func_02039828(&b->mUnk_000.mUnk_000.mUnk_000.mUnk_5c, &b->mUnk_000.mUnk_000.mUnk_130);
         func_020ff1b8(dot < 0, &b->mUnk_000.mUnk_000.mUnk_000.mUnk_5c.y);
         func_020ff1b8(b->mUnk_254, &b->mUnk_000.mUnk_000.mUnk_000.mUnk_50.y);
     }
     p = func_020fecdc(a, b, c);
-    p = func_020ff040(p, b != 0 ? &b->mUnk_000.mUnk_21c : 0, c);
-    if (b != 0 && c == 0) {
+    p = func_020ff040(p, b != NULL ? &b->mUnk_000.mUnk_21c : 0, c);
+    if (b != NULL && c == NULL) {
         func_020ff1a0(b->mUnk_000.mUnk_000.mUnk_000.mUnk_5c.y, &b->mUnk_250);
         func_020ff1a0(b->mUnk_000.mUnk_000.mUnk_000.mUnk_50.y, &b->mUnk_254);
     }
-    if (b != 0 && c != 0) {
+    if (b != NULL && c != NULL) {
         return func_020fe8ac(b->mUnk_000.mUnk_000.mUnk_000.mUnk_44);
     }
     return p;
@@ -187,7 +187,7 @@ void func_020f53d0(Unk020f5d6c *a) {
     a->mUnk_000.mUnk_000.mUnk_000.mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     func_02046be8(&a->mUnk_23c, (UnkFunc *const *) data_0216c648, 7, a);
     if (a->mUnk_254 != 0) {
-        if (a->mUnk_000.mUnk_21c.mUnk_00 != 0) {
+        if (a->mUnk_000.mUnk_21c.mUnk_00 != NULL) {
             a->mUnk_23c.mUnk_10 = 3;
             a->mUnk_23c.mUnk_12 = 1;
             x = (u16) (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
@@ -220,7 +220,7 @@ void func_020f53d0(Unk020f5d6c *a) {
 
 // Returns 1 while func_0207a974(b) is within the 0x1d0/0x1d4 radius of the 0x50/0x54/0x58
 // words, or when the 0xda halfword is -1; otherwise sets the 0x24c/0x24e halfwords, returns 0.
-s32 func_020f5324(void *a0, s32 b) {
+BOOL func_020f5324(void *a0, s32 b) {
     Unk020f5d6c *a;
     Unk0206bcb0 *k;
     s32 n;
@@ -233,16 +233,16 @@ s32 func_020f5324(void *a0, s32 b) {
     n = a->mUnk_000.mUnk_000.mUnk_000.mUnk_50.z - k->mUnk_1d8.z;
     t = a->mUnk_000.mUnk_000.mUnk_000.mUnk_50.x - k->mUnk_1d8.x;
     if ((s64) t * t + (s64) n * n < (s64) r * r) {
-        return 1;
+        return TRUE;
     }
     if (a->mUnk_000.mUnk_000.mUnk_000.mUnk_da == -1) {
-        return 1;
+        return TRUE;
     }
     func_020f9c40((s32) a);
     a->mUnk_23c.mUnk_10 = 5;
     a->mUnk_23c.mUnk_12 = 1;
     func_020f112c((s32) a, b);
-    return 0;
+    return FALSE;
 }
 
 // Runs func_020f9114, ors data_02159834 into the 0x78 halfword, then makes one of two
@@ -296,14 +296,14 @@ void func_020f518c(Unk020f5240 *a) {
 void *func_020f5108(void *a, Unk020f5240 *b, void *c) {
     void *p;
 
-    if (b != 0 && c != 0) {
+    if (b != NULL && c != NULL) {
         func_020ff1b8(b->mUnk_130, &b->mUnk_000.mUnk_000.mUnk_5c.y);
     }
     p = func_020fecdc(a, b, c);
-    if (b != 0 && c == 0) {
+    if (b != NULL && c == NULL) {
         func_020ff1a0(b->mUnk_000.mUnk_000.mUnk_5c.y, &b->mUnk_130);
     }
-    if (b != 0 && c != 0) {
+    if (b != NULL && c != NULL) {
         return func_020fe8ac(b->mUnk_000.mUnk_000.mUnk_44);
     }
     return p;

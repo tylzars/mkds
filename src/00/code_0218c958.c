@@ -29,17 +29,17 @@ void func_ov000_0218c958(Unk021b4d24 *p) {
     func_ov000_0218c980(p);
     func_ov000_0218d1a0((u32) p);
     func_ov000_0218b3c8(p);
-    if (p->mUnk_004 != 0) {
+    if (p->mUnk_004 != NULL) {
         func_ov000_0218dc48(p->mUnk_004);
     }
-    p->mUnk_004 = 0;
+    p->mUnk_004 = NULL;
 }
 
 void func_ov000_0218c980(Unk021b4d24 *p) {
-    if (p->mUnk_07c != 0) {
+    if (p->mUnk_07c != NULL) {
         func_ov000_021a3668(p->mUnk_07c);
     }
-    p->mUnk_07c = 0;
+    p->mUnk_07c = NULL;
     p->mUnk_080 = 0;
     if (p->mUnk_4b0 != -1) {
         func_ov000_0218e53c(p->mUnk_4b0);
@@ -53,12 +53,12 @@ void func_ov000_0218c980(Unk021b4d24 *p) {
 
 void func_ov000_0218c9d4(Unk021b4d24 *p) {
     int i;
-    if (p->mUnk_008 != 0) {
+    if (p->mUnk_008 != NULL) {
         for (i = 0; i < func_ov000_0218dc44(p->mUnk_008); i++) {
             func_ov000_0218d0e4(p, *(u32 *) func_ov000_0218dbf8(p->mUnk_008, i));
         }
         func_ov000_0218dc48(p->mUnk_008);
-        p->mUnk_008 = 0;
+        p->mUnk_008 = NULL;
     }
 }
 
@@ -80,12 +80,12 @@ s32 func_ov000_0218ca58(Unk021b4d24 *p, const u8 *a, const u8 *b, u32 c, u32 d) 
     u8 *q;
     s32 r;
     if (p->mUnk_000 != 1) {
-        func_0213442c(data_ov000_021b2240, data_ov000_021b2218, 0, 0x20a);
+        func_0213442c(data_ov000_021b2240, data_ov000_021b2218, NULL, 0x20a);
     }
-    if (a == 0) {
+    if (a == NULL) {
         a = data_ov000_021b2260;
     }
-    if (b == 0) {
+    if (b == NULL) {
         b = data_ov000_021b2260;
     }
     if (strlen(a) > 0x100) {
@@ -128,9 +128,9 @@ s32 func_ov000_0218ca58(Unk021b4d24 *p, const u8 *a, const u8 *b, u32 c, u32 d) 
     }
     p->mUnk_000 = 3;
     p->mUnk_5c8 = 0;
-    if (p->mUnk_07c == 0) {
+    if (p->mUnk_07c == NULL) {
         p->mUnk_07c = func_ov000_021a3690(0x1000);
-        if (p->mUnk_07c == 0) {
+        if (p->mUnk_07c == NULL) {
             return 5;
         }
         p->mUnk_080 = 0;
@@ -152,7 +152,7 @@ s32 func_ov000_0218cc48(Unk021b4d24 *p, void *a, s32 b) {
             break;
         }
         func_ov000_0218c980(p);
-        r = func_ov000_0218ca58(p, 0, 0, 2, 0);
+        r = func_ov000_0218ca58(p, NULL, NULL, 2, 0);
         if (r != 0) {
             func_ov000_0218cf30(p);
             return r;
@@ -171,7 +171,7 @@ void func_ov000_0218ccbc(Unk021b4d24 *p) {
     s32 v2;
     s32 v3;
     s32 v4;
-    s32 v5;
+    BOOL v5;
     s32 v6;
     s32 v7;
     s32 v8;
@@ -186,7 +186,7 @@ void func_ov000_0218ccbc(Unk021b4d24 *p) {
     v4 = 0;
     v3 = 1;
     v6 = 1;
-    v5 = 1;
+    v5 = TRUE;
     v7 = 1;
     v8 = 1;
     for (; i < 8; i++) {

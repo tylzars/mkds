@@ -18,7 +18,7 @@ Unk021ab5e4 *func_ov000_021ab684(const u8 *a) {
         }
         e++;
     }
-    return 0;
+    return NULL;
 }
 
 Unk021ab5e4 *func_ov000_021ab63c(u32 a, u32 b) {
@@ -33,7 +33,7 @@ Unk021ab5e4 *func_ov000_021ab63c(u32 a, u32 b) {
         }
         e++;
     }
-    return 0;
+    return NULL;
 }
 
 Unk021ab5e4 *func_ov000_021ab5e4(const u8 *a) {

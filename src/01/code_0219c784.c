@@ -216,21 +216,21 @@ void func_ov001_0219cba0(void) {
     Unk02175628Index idx = UNK_02175628_INDEX_8;
     s32 res = -1;
     s32 sel = -4;
-    s32 b = 0;
-    s32 a;
+    BOOL b = FALSE;
+    BOOL a;
     s32 i;
     s32 prev;
     u16 x;
 
-    a = 0;
+    a = FALSE;
     x = data_02175628[idx].mUnk_4c;
     if (x == 0 && data_02175628[idx].mUnk_58 < 5) {
-        a = 1;
+        a = TRUE;
     }
-    if (a == 0 && data_02175628[idx].mUnk_54 == 0 && x != 0) {
-        b = 1;
+    if (a == FALSE && data_02175628[idx].mUnk_54 == 0 && x != 0) {
+        b = TRUE;
     }
-    if (b != 0) {
+    if (b != FALSE) {
         res = func_0201ea84(gSelectBattleStage->mSelectBattleStageBnbls[1], data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
     }
     for (i = 0; i < 6; i++) {
@@ -239,16 +239,16 @@ void func_ov001_0219cba0(void) {
         }
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
-        b = 0;
-        a = 0;
+        b = FALSE;
+        a = FALSE;
         x = data_02175628[idx].mUnk_4c;
         if (x == 0 && data_02175628[idx].mUnk_58 < 5) {
-            a = 1;
+            a = TRUE;
         }
-        if (a == 0 && data_02175628[idx].mUnk_54 == 0 && x != 0) {
-            b = 1;
+        if (a == FALSE && data_02175628[idx].mUnk_54 == 0 && x != 0) {
+            b = TRUE;
         }
-        if (b == 0 || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
+        if (b == FALSE || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
             goto next;
         }
     }
@@ -381,7 +381,7 @@ void func_ov001_0219c950(void) {
 
 void func_ov001_0219c8ec(void) {
     s32 i;
-    s32 zero = 0;
+    BOOL zero = FALSE;
 
     for (i = 0; i < 6; i++) {
         if (i == gSelectBattleStage->mUnk_08 && gSelectBattleStage->mUnk_20 != 0) {

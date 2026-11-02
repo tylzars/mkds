@@ -49,7 +49,7 @@ s32 func_020c7464(void) {
 
     for (i = 0; i < 2; i++) {
         b = a[i];
-        if (func_021000d0(b) != 0) {
+        if (func_021000d0(b) != NULL) {
             n = func_020c0c2c(&data_0217b3fc, b);
             m = 0;
             for (j = 0; j < data_0217b3fc->mUnk_08; j++) {

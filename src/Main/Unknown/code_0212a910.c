@@ -62,7 +62,7 @@ void func_0212a99c(void) {
     s32 n;
     s32 i;
     s32 v;
-    s32 r;
+    BOOL r;
     n = 0;
     for (i = 0; i < 2; i++) {
         data_0217d404->mUnk_014[i] = -1;
@@ -81,13 +81,13 @@ void func_0212a99c(void) {
         }
         data_0217d404->mUnk_01c[n] = v;
     } else if (data_0217d404->mUnk_000[4] != 0) {
-        r = 0;
+        r = FALSE;
         if (!data_0217aa08->mUnk_00->mUnk_31_4) {
             if (func_021213f4() != 0) {
-                r = 1;
+                r = TRUE;
             }
         }
-        if (r != 0) {
+        if (r != FALSE) {
             data_0217d404->mUnk_014[n] = 4;
         }
     }

@@ -45,7 +45,7 @@ u32 func_020074d8(void) {
     v1.mUnk_00 = 3;
     v1.mUnk_02 = v4;
     v9 = func_0200c3a4((u8 *) &v1, (u8 *) v7);
-    if (v9 != 0) {
+    if (v9 != NULL) {
         func_0214d1fc(data_0216fdac->mUnk_1788 + v4 * 0x5d4, v9, 0xe4);
     }
     return func_02008908(0xea, v5, *(u32 *) &data_0216fdac);

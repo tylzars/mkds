@@ -225,12 +225,12 @@ void func_0211a794(void) {
 }
 
 void func_0211a6bc(void) {
-    Unk020b4934 *a = 0;
-    Unk02021dc8 *b = 0;
-    Unk020b4a44 *c = 0;
-    Unk020b4934 *d = 0;
-    Unk020b47d8 *e = 0;
-    Unk020b4a44 *f = 0;
+    Unk020b4934 *a = NULL;
+    Unk02021dc8 *b = NULL;
+    Unk020b4a44 *c = NULL;
+    Unk020b4934 *d = NULL;
+    Unk020b47d8 *e = NULL;
+    Unk020b4a44 *f = NULL;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         LoadNcgrData(&d, FindSceneFile(data_0216d894));
         LoadNclrData(&f, FindSceneFile(data_0216d88c));
@@ -245,16 +245,16 @@ void func_0211a6bc(void) {
 }
 
 void func_0211a3bc(void) {
-    Unk020b4934 *a = 0;
-    Unk020b4a44 *b = 0;
-    Unk020b4934 *c = 0;
-    Unk020b4a44 *d = 0;
-    Unk020b4934 *e = 0;
-    Unk020b47d8 *f = 0;
-    Unk020b4a44 *g = 0;
-    Unk020b4934 *h = 0;
-    Unk020b47d8 *i = 0;
-    Unk020b4a44 *j = 0;
+    Unk020b4934 *a = NULL;
+    Unk020b4a44 *b = NULL;
+    Unk020b4934 *c = NULL;
+    Unk020b4a44 *d = NULL;
+    Unk020b4934 *e = NULL;
+    Unk020b47d8 *f = NULL;
+    Unk020b4a44 *g = NULL;
+    Unk020b4934 *h = NULL;
+    Unk020b47d8 *i = NULL;
+    Unk020b4a44 *j = NULL;
     u16 *p;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         gSelectCup->mUnk_14 = FindSceneFile(data_0216d864);

@@ -302,7 +302,7 @@ extern Unk0217b488 *data_0217b488;
 extern Unk0217d384 *data_0217d384;
 
 void InitWiFiVSSetting(void *heap);
-s32 func_ov000_021832f0(void);
+BOOL func_ov000_021832f0(void);
 void RegisterWiFiVSMatchingCallbacks(void);
 void func_ov000_02183330(void);
 void AdvanceWiFiVSMatching(void);

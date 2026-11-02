@@ -30,5 +30,5 @@ void func_020cb9b8(void) {
     func_020cbaa8(0);
     func_020cba6c(0, 0x3f, 6, 10);
     func_020cba30(0, 0x3f, 6, 10);
-    data_0217b43c = 0;
+    data_0217b43c = NULL;
 }

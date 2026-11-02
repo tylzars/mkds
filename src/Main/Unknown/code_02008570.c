@@ -17,8 +17,8 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
     u8 *v2;
     u8 *v3;
     Unk02003024 v4;
-    s32 v11;
-    s32 v12;
+    BOOL v11;
+    BOOL v12;
     u32 v13;
     u32 v7;
     Unk0200adfc *v5;
@@ -30,16 +30,16 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
     s8 *p;
     v1 = (Unk02003024 *) param_1;
     v2 = (u8 *) param_2;
-    v11 = 0;
+    v11 = FALSE;
     if (param_3 >= 0x164) {
-        v12 = 0;
+        v12 = FALSE;
         v13 = param_3;
         v3 = v2;
-        v5 = 0;
-        v6 = 0;
+        v5 = NULL;
+        v6 = NULL;
         v3 += 0x160;
         v13 -= 0x160;
-        if (v1 != 0) {
+        if (v1 != NULL) {
             v7 = v1->mUnk_2c - v1->mUnk_20.w.mUnk_04;
             if ((s32) FS_ReadFile(v1, v2, 0x160) < 0x160) {
                 v13 = 0;
@@ -47,7 +47,7 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
             v9 = func_02008570_inline(v2);
         } else {
             v9 = func_02008570_inline((u8 *) 0x027ffe00);
-            v12 = 1;
+            v12 = TRUE;
             FS_InitFile(&v4);
             FS_OpenFileDirect(&v4, FS_FindArchive(data_usa_0216178c, 3), 0, v9 + 0x88, -1);
             v1 = &v4;
@@ -99,7 +99,7 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
             FS_SeekFile(v1, v6[2] - v10, 0);
             FS_ReadFile(v1, v3, *(u32 *) (v2 + 0x3c));
             func_0200ae60(v5, v6[2], *(u32 *) (v2 + 0x3c), (u32) v3, 3);
-            v11 = 1;
+            v11 = TRUE;
         } else if (v13 >= 0xcc00) {
             v10 = v1->mUnk_20.w.mUnk_04;
             v8 = v6[1];
@@ -112,12 +112,12 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
             FS_SeekFile(v1, v8 + 0x8800 - v10, 0);
             FS_ReadFile(v1, v3 + 0x8800, 0x4400);
             func_0200ae60(v5, v8 + 0x8800, 0x4400, (u32) (v3 + 0x8800), 2);
-            v11 = 1;
+            v11 = TRUE;
         }
         FS_SeekFile(v1, v7, 0);
-        if (v12 != 0) {
+        if (v12 != FALSE) {
             FS_CloseFile(&v4);
-            if (v11 != 0) {
+            if (v11 != FALSE) {
                 v6 = data_usa_02161788;
                 v14[0] = *(u32 *) (v2 + 0x20);
                 v14[1] = *(u32 *) (v2 + 0x28) - *(u32 *) (v2 + 0x20);
@@ -133,7 +133,7 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
                 *(u32 *) v3 = 0xe12fff1e;
             }
         }
-        if (v11 != 0) {
+        if (v11 != FALSE) {
             func_0200ee74(v2, param_3);
         }
     }

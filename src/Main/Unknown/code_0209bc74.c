@@ -13,7 +13,7 @@ void *func_0209be84(void *a, const char *b) {
     Unk0209bc74 *o;
 
     o = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
-    if (a != 0) {
+    if (a != NULL) {
         ((Unk0209bc74_a *) a)->mUnk_18 = 1;
     }
     o->mUnk_18 = FindCourseMapObjFile(b);
@@ -63,7 +63,7 @@ void *func_0209bd90(void *a, const char *b) {
 
     o = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
     x = FindCourseMapObjFile(b);
-    if (a != 0) {
+    if (a != NULL) {
         ((Unk0209bc74_a *) a)->mUnk_18 = 1;
     }
     o->mUnk_14 = func_02036bec(func_020364e0(func_020364e8()), 0x74);
@@ -81,11 +81,11 @@ void *func_0209bd08(void *a, const char *b) {
 
     o = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
     x = FindCourseMapObjFile(b);
-    if (a != 0) {
+    if (a != NULL) {
         ((Unk0209bc74_a *) a)->mUnk_18 = 2;
     }
     o->mUnk_0c = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
-    func_020e64b8(o->mUnk_0c, x, 0, 0);
+    func_020e64b8(o->mUnk_0c, x, NULL, 0);
     m = o->mUnk_0c;
     m->mUnk_10 &= 0x8000ffff;
     m->mUnk_10 |= 0x294a0000;
@@ -107,7 +107,7 @@ void *func_0209bc74(void *a, const char *b, const char *c) {
     o = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
     x = FindCourseMapObjFile(b);
     y = FindCourseMapObjFile(c);
-    if (a != 0) {
+    if (a != NULL) {
         ((Unk0209bc74_a *) a)->mUnk_18 = 2;
     }
     o->mUnk_0c = func_02036bec(func_020364e0(func_020364e8()), 0x2c);

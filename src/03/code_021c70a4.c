@@ -10,7 +10,7 @@ void func_ov003_021c70a4(void) {
             func_ov003_021c212c(func_ov003_021c7614);
             return;
         }
-        func_ov003_021c20dc(&b, 0);
+        func_ov003_021c20dc(&b, NULL);
         a.mUnk_00[b](data_ov003_021da1fc->mUnk_08);
         func_ov003_021c212c(func_ov003_021c722c);
     }

@@ -117,8 +117,8 @@ extern Unk0217d234 data_0217d234;
 // Values of the two switches in func_02108344.
 typedef enum { E0 = 0, E1 = 1, E2 = 2 } Unk02108344;
 
-s32 func_0210887c(s32 a);
-s32 func_021087f4(s32 a);
+BOOL func_0210887c(s32 a);
+BOOL func_021087f4(s32 a);
 int func_021087d4(int a);
 int func_021087c4(int a);
 void func_02108720(void);

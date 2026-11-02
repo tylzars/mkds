@@ -12,7 +12,7 @@ void func_ov000_02184354(void) {
     a = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((a & ~8) << 8);
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0xf00;
-    gWiFiVSMatching = 0;
+    gWiFiVSMatching = NULL;
 }
 
 void InitWiFiVSMatching(void *a) {

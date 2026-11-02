@@ -17,7 +17,7 @@ void func_02071fb8(Unk0206bcb0 *p, void *a) {
     u8 *b;
 
     q = p->mUnk_514;
-    if (q == 0) {
+    if (q == NULL) {
         return;
     }
     q->mUnk_00 = p->mUnk_80;
@@ -81,7 +81,7 @@ void func_02071e28(Unk0206bcb0 *p) {
         p->mUnk_7c |= 4;
         p->mUnk_384 = 0;
     }
-    if (p->mUnk_590->mUnk_008 != 0) {
+    if (p->mUnk_590->mUnk_008 != NULL) {
         p->mUnk_7c |= 0x10;
     }
     if (data_021759c0->mUnk_08 == 1 || func_02062eb0() != 0) {

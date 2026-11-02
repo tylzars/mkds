@@ -186,10 +186,10 @@ void func_ov003_021c2120(u32 a, u32 b) {
 }
 
 void func_ov003_021c2104(s32 *first, s32 *second) {
-    if (first != 0) {
+    if (first != NULL) {
         *first = data_ov003_021da180[0];
     }
-    if (second != 0) {
+    if (second != NULL) {
         *second = data_ov003_021da180[1];
     }
 }
@@ -205,10 +205,10 @@ void func_ov003_021c20f8(u32 arg0, u32 arg1) {
 }
 
 void func_ov003_021c20dc(s32 *first, s32 *second) {
-    if (first != 0) {
+    if (first != NULL) {
         *first = data_ov003_021da180[2];
     }
-    if (second != 0) {
+    if (second != NULL) {
         *second = data_ov003_021da180[3];
     }
 }

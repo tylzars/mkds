@@ -99,7 +99,7 @@ u16 func_020aa650(u16 a) {
     }
     for (i = 0, p = data_02167a04; i < 4; p++, i++) {
         q = wcschr(*p, a);
-        if (q != 0) {
+        if (q != NULL) {
             n = q - data_02167a04[i];
             break;
         }
@@ -118,21 +118,21 @@ u16 func_020aa650(u16 a) {
 }
 
 u32 func_020aa628(u16 a) {
-    if (wcschr(data_0217b24c[1], a) != 0) {
+    if (wcschr(data_0217b24c[1], a) != NULL) {
         return 1;
     }
     return 0;
 }
 
 u32 func_020aa600(u16 a) {
-    if (wcschr(data_0217b244[1], a) != 0) {
+    if (wcschr(data_0217b244[1], a) != NULL) {
         return 1;
     }
     return 0;
 }
 
 u32 func_020aa5d8(u16 a) {
-    if (wcschr(data_0217b23c[1], a) != 0) {
+    if (wcschr(data_0217b23c[1], a) != NULL) {
         return 1;
     }
     return 0;
@@ -247,7 +247,7 @@ void func_020aa300(Unk0217b278 *a) {
     s32 y;
 
     q = a->mUnk_44;
-    if (q == 0) {
+    if (q == NULL) {
         a->mUnk_44 = a->mUnk_2c->mUnk_00 + a->mUnk_2c->mUnk_0c;
         return;
     }
@@ -259,7 +259,7 @@ void func_020aa300(Unk0217b278 *a) {
         y = ((q->mUnk_01 << 1) + q->mUnk_03) / 2 - 3;
     }
     r = func_020aaea0(a, x, y);
-    if (r != 0) {
+    if (r != NULL) {
         a->mUnk_44 = r;
         return;
     }
@@ -289,11 +289,11 @@ Unk0217b278_10 *func_020aa0ec(u32 a, Unk0217b278_10 *b, Unk0217b278_10 *c) {
     Unk0217b278_10 *e;
     Unk020b4934 *g;
 
-    if (data_0217b278.mUnk_4c != 0) {
+    if (data_0217b278.mUnk_4c != NULL) {
         r = data_0217b278.mUnk_4c(func_020ab2a4(b), a);
         if (r != 0) {
             q = func_020ab338(r);
-            if (q != 0) {
+            if (q != NULL) {
                 return q;
             }
         }
@@ -358,7 +358,7 @@ Unk0217b278_10 *func_020aa0ec(u32 a, Unk0217b278_10 *b, Unk0217b278_10 *c) {
                     y2 = y2 - (w8 + k * 2);
                 }
                 e = func_020aaea0(&data_0217b278, x2, y2);
-                if (e != 0 && e != b) {
+                if (e != NULL && e != b) {
                     return e;
                 }
                 x += v1;
@@ -375,7 +375,7 @@ u16 func_020aa094(u16 **a, u16 b) {
 
     for (i = 0; i < 2; i++) {
         p = wcschr(a[i], b);
-        if (p != 0) {
+        if (p != NULL) {
             r = a[1 - i][p - a[i]];
             if (r != 0x3000) {
                 return r;
@@ -397,7 +397,7 @@ void func_020aa028(Unk0217b278_10 *a, Unk020b4934 *b, void (*c)(Unk0217b278 *), 
     data_0217b278.mUnk_2c->mUnk_0c = d - 1;
     data_0217b278.mUnk_2c->mUnk_0e = e;
     data_0217b278.mUnk_30 = f + 1;
-    if (data_0217b278.mUnk_10 != 0) {
+    if (data_0217b278.mUnk_10 != NULL) {
         x = func_020ab61c();
         y = func_020ab610();
         data_0217b278.mUnk_10 = func_020aaea0(&data_0217b278, x, y);
@@ -431,7 +431,7 @@ void func_020a9f98(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
     v1 = (u16 *) &data_0217b2b8;
     *(u16 *) &data_0217b2b8 = 0;
     v1[1] = 0;
-    func_020aa028(a, b, 0, 4, c, data_0217b328);
+    func_020aa028(a, b, NULL, 4, c, data_0217b328);
 }
 
 void func_020a9f6c(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
@@ -439,7 +439,7 @@ void func_020a9f6c(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
     v1 = (u16 *) &data_0217b2b8;
     *(u16 *) &data_0217b2b8 = 0;
     v1[1] = 0;
-    func_020aa028(a, b, 0, 4, c, data_0217b32c);
+    func_020aa028(a, b, NULL, 4, c, data_0217b32c);
 }
 
 void func_020a9f40(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
@@ -447,7 +447,7 @@ void func_020a9f40(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
     v1 = (u16 *) &data_0217b2b8;
     *(u16 *) &data_0217b2b8 = 0;
     v1[1] = 0;
-    func_020aa028(a, b, 0, 4, c, data_0217b330);
+    func_020aa028(a, b, NULL, 4, c, data_0217b330);
 }
 
 #pragma thumb off
@@ -455,7 +455,7 @@ void func_020a9f40(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
 #pragma thumb on
 
 void func_020a9f20(Unk0217b278_10 *p, u32 a, u32 b, u32 c, u32 d) {
-    if (p != 0) {
+    if (p != NULL) {
         p->mUnk_00 = a;
         p->mUnk_01 = b;
         p->mUnk_02 = c - a;

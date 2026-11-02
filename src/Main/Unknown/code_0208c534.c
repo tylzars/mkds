@@ -23,7 +23,7 @@ void func_0208c534(Unk0208c5b8 *p) {
     }
     for (i = 0; i < 2; i++) {
         p->mUnk_00[i]->mUnk_24.mUnk_00_0 = 1;
-        p->mUnk_00[i] = 0;
+        p->mUnk_00[i] = NULL;
     }
     p->mUnk_3c = 0;
 }
@@ -54,8 +54,8 @@ void func_0208c5d0(Unk0208c5b8 *p) {
         for (i = 0; i < 2; i++) {
             func_0208b710(p->mUnk_20[i]);
             func_0208b710(p->mUnk_28[i]);
-            p->mUnk_20[i] = 0;
-            p->mUnk_28[i] = 0;
+            p->mUnk_20[i] = NULL;
+            p->mUnk_28[i] = NULL;
         }
     }
     p->mUnk_40 = 0;
@@ -63,7 +63,7 @@ void func_0208c5d0(Unk0208c5b8 *p) {
     if (p->mUnk_44 != 0) {
         for (j = 0; j < 2; j++) {
             func_0208b710(p->mUnk_08[j]);
-            p->mUnk_08[j] = 0;
+            p->mUnk_08[j] = NULL;
         }
     }
     p->mUnk_44 = 0;
@@ -83,7 +83,7 @@ void func_0208c6dc(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b) {
         if (p->mUnk_44 != 0) {
             for (i = 0; i < 2; i++) {
                 func_0208b710(p->mUnk_08[i]);
-                p->mUnk_08[i] = 0;
+                p->mUnk_08[i] = NULL;
             }
         }
         p->mUnk_44 = 0;
@@ -124,7 +124,7 @@ void func_0208c884(Unk0208c5b8 *p, int v1) {
     if (p->mUnk_44 != 0) {
         for (i = 0; i < 2; i++) {
             func_0208b710(p->mUnk_08[i]);
-            p->mUnk_08[i] = 0;
+            p->mUnk_08[i] = NULL;
         }
     }
     p->mUnk_44 = 0;
@@ -149,8 +149,8 @@ void func_0208c930(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b) {
             for (i = 0; i < 2; i++) {
                 func_0208b710(p->mUnk_20[i]);
                 func_0208b710(p->mUnk_28[i]);
-                p->mUnk_20[i] = 0;
-                p->mUnk_28[i] = 0;
+                p->mUnk_20[i] = NULL;
+                p->mUnk_28[i] = NULL;
             }
         }
         p->mUnk_40 = 0;
@@ -187,8 +187,8 @@ void func_0208cacc(Unk0208c5b8 *p, int v1) {
         for (i = 0; i < 2; i++) {
             func_0208b710(p->mUnk_20[i]);
             func_0208b710(p->mUnk_28[i]);
-            p->mUnk_20[i] = 0;
-            p->mUnk_28[i] = 0;
+            p->mUnk_20[i] = NULL;
+            p->mUnk_28[i] = NULL;
         }
     }
     p->mUnk_40 = 0;
@@ -422,7 +422,7 @@ void func_0208d298(Unk0208c5b8 *p) {
 
     for (i = 0; i < 2; i++) {
         func_0208b710(p->mUnk_10[i]);
-        p->mUnk_10[i] = 0;
+        p->mUnk_10[i] = NULL;
     }
 }
 
@@ -432,8 +432,8 @@ void func_0208d2d8(Unk0208c5b8 *p) {
     for (i = 0; i < 2; i++) {
         func_0208b710(p->mUnk_10[i]);
         func_0208b710(p->mUnk_18[i]);
-        p->mUnk_10[i] = 0;
-        p->mUnk_18[i] = 0;
+        p->mUnk_10[i] = NULL;
+        p->mUnk_18[i] = NULL;
     }
 }
 
@@ -529,7 +529,7 @@ void func_0208d650(Unk0208c5b8 *p) {
     }
     for (i = 0; i < 2; i++) {
         p->mUnk_00[i]->mUnk_24.mUnk_00_0 = 1;
-        p->mUnk_00[i] = 0;
+        p->mUnk_00[i] = NULL;
     }
     p->mUnk_3c = 0;
 }
@@ -589,11 +589,11 @@ void func_0208d758(void *a) {
         e->mUnk_58 = 0x16;
         e->mUnk_5c = 0x17;
         for (j = 0; j < 2; j++) {
-            e->mUnk_10[j] = 0;
-            e->mUnk_18[j] = 0;
-            e->mUnk_00[j] = 0;
-            e->mUnk_20[j] = 0;
-            e->mUnk_28[j] = 0;
+            e->mUnk_10[j] = NULL;
+            e->mUnk_18[j] = NULL;
+            e->mUnk_00[j] = NULL;
+            e->mUnk_20[j] = NULL;
+            e->mUnk_28[j] = NULL;
         }
         e->mUnk_30 = 0;
         e->mUnk_34 = 0;

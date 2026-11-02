@@ -18,7 +18,7 @@ void func_020260e4(void) {
         }
     }
     func_02036ab0(gSelectCharacter->mUnk_05c);
-    gSelectCharacter = 0;
+    gSelectCharacter = NULL;
 }
 
 void func_02026058(void) {
@@ -31,15 +31,15 @@ void func_02026058(void) {
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (a << 8);
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | 0x1600;
     *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 1;
-    if (gSelectCharacter->mUnk_128 != 0) {
+    if (gSelectCharacter->mUnk_128 != FALSE) {
         func_0202ba14();
     }
 }
 
 void func_02025f90(void) {
-    Unk020b4934 *a = 0;
-    Unk020b4a44 *b = 0;
-    Unk02021dc8 *c = 0;
+    Unk020b4934 *a = NULL;
+    Unk020b4a44 *b = NULL;
+    Unk02021dc8 *c = NULL;
 
     LoadNcgrData2(&a, func_02047a28(data_usa_02161b3c));
     LoadNcerData(&c, func_02047a28(data_usa_02161b5c));

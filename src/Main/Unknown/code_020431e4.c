@@ -12,9 +12,9 @@
 #pragma opt_rebuildconditionals off
 
 static inline s32 func_020431e4_inline(Unk0217aa00 *p) {
-    s32 r = 0;
-    if ((p == 0 ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13) {
-        r = 1;
+    BOOL r = FALSE;
+    if ((p == NULL ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13) {
+        r = TRUE;
     }
     return r;
 }
@@ -24,7 +24,7 @@ void func_020431e4(void) {
     s32 k;
     u16 j;
     s32 w;
-    s32 t;
+    BOOL t;
     Unk02175628 *p;
     Unk021759c0 *q;
     Unk0217aa00 *z;
@@ -56,12 +56,12 @@ void func_020431e4(void) {
     z = data_0217aa00;
     for (j = 0; j < 8; j++) {
         s = q->mUnk_68[j].mUnk_08.mUnk_00;
-        t = 0;
+        t = FALSE;
         w = q->mUnk_68[j].mUnk_08.mUnk_0c;
         if ((u32) s <= 3 && ((1 << s) & 0xd)) {
-            t = 1;
+            t = TRUE;
         }
-        if (t != 0) {
+        if (t != FALSE) {
             if (j == q->mUnk_62) {
                 if (func_020431e4_inline(z) != 0) {
                     data_02175628[w].mUnk_3c = 4;

@@ -181,7 +181,7 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
     Vec3 *r;
     s32 f;
     s32 n;
-    s32 t;
+    BOOL t;
     Vec3 *w;
 
     q = &a->mUnk_000.mUnk_50;
@@ -189,7 +189,7 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
     r = &a->mUnk_130;
     func_02148504((const Vec3 *) p, q, q);
     n = func_01ffdee4(q, (u32 *) &a->mUnk_000.mUnk_0e4, 0, a->mUnk_000.mUnk_dc, a->mUnk_164,
-                      a->mUnk_000.mUnk_da, &v1, &v2, (s32 *) &v3, &a->mUnk_000.mUnk_fc, 0, 0, 0, 0);
+                      a->mUnk_000.mUnk_da, &v1, &v2, (s32 *) &v3, &a->mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL);
     if (n != 0) {
         f = a->mUnk_000.mUnk_fc & 0x80000;
         if (a->mUnk_158 != 0) {
@@ -201,7 +201,7 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
         }
         if (a->mUnk_000.mUnk_fc & 0x1e34ef) {
             t = v2.x == a->mUnk_000.mUnk_f0.x && v2.y == a->mUnk_000.mUnk_f0.y && v2.z == a->mUnk_000.mUnk_f0.z;
-            if (t == 0) {
+            if (t == FALSE) {
                 a->mUnk_000.mUnk_f0 = v2;
                 a->mUnk_000.mUnk_74 |= 0x100;
                 if (f != 0) {
@@ -231,7 +231,7 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
                 func_020f288c(a, &v3);
             } else {
                 v3.y = 0;
-                func_020f2768(a, &v3, 0);
+                func_020f2768(a, &v3, NULL);
             }
             a->mUnk_000.mUnk_78 &= ~0x4000;
             if (a->mUnk_15c != 0) {
@@ -371,7 +371,7 @@ void func_020f1f98(Unk020f1d70 *a, Vec3 *b, Vec3 *c) {
     } else {
         v = *c;
         v.y = 0;
-        func_020f2768(a, &v, 0);
+        func_020f2768(a, &v, NULL);
     }
     n = a->mUnk_12c;
     a->mUnk_000.mUnk_5c.x = (s32) (((s64) a->mUnk_13c.x * n) >> 12);

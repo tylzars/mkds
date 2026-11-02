@@ -58,7 +58,7 @@ void func_ov003_021cb1d8(void) {
     func_ov003_021bf620(data_ov003_021d760c, func_0214b95c);
     func_ov003_021bf620(data_ov003_021d7624, func_0214c160);
     func_ov003_021bf620(data_ov003_021d763c, func_0214bc9c);
-    data_ov003_021da234->mUnk_00 = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), 0, 4);
+    data_ov003_021da234->mUnk_00 = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), NULL, 4);
     func_ov003_021d2784(1, 0x10);
     *(u16 *) 0x4001008 = (*(u16 *) 0x4001008 & ~3) | 3;
     *(u16 *) 0x400100a = (*(u16 *) 0x400100a & ~3) | 3;

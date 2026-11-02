@@ -358,12 +358,12 @@ void func_0205db50(void) {
     Unk0217aa1c_00 *e;
     Unk0217aa1c_144_00 *f;
     s32 i, j;
-    s32 x;
+    BOOL x;
 
     p = data_0217aa1c;
     e = (Unk0217aa1c_00 *) p;
     f = (Unk0217aa1c_144_00 *) p->mUnk_144;
-    x = 0;
+    x = FALSE;
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 8; j++) {
             e->mUnk_03 = 0;
@@ -382,12 +382,12 @@ void func_0205db50(void) {
             f++;
         }
     }
-    if (data_0217aa00 != 0 && data_0217aa00->mUnk_0000 != 0) {
+    if (data_0217aa00 != NULL && data_0217aa00->mUnk_0000 != 0) {
         if (data_0217aa00->mUnk_0004 != 13) {
-            x = 1;
+            x = TRUE;
         }
     }
-    if (x == 0) {
+    if (x == FALSE) {
         data_0217aa1c->mUnk_164_0 = 0;
     } else {
         data_0217aa1c->mUnk_164_0 = 1;

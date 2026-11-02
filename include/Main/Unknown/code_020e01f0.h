@@ -21,6 +21,6 @@ void *func_020e0340(void);
 void *func_020e039c(void);
 void *func_020e03f8(void);
 s32 func_020e0448(Unk020e0448 *a);
-s32 func_020e04b0(Unk020e04b0 *a, Vec3 *b, Vec3 *c);
+BOOL func_020e04b0(Unk020e04b0 *a, Vec3 *b, Vec3 *c);
 void func_020e0538(Unk020e04b0 *a, Vec3 *b);
 void func_020e0584(Unk020e005c *a, Vec3 *b, Vec3 *c, Unk020e04b0 *d);

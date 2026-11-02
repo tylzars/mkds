@@ -40,7 +40,7 @@ void func_0203a0dc(Unk0203a0dc *a, u32 b) {
     u32 c;
     if (func_02049b6c() == 0) {
         if (func_0204359c() == 0) {
-            if (a != 0) {
+            if (a != NULL) {
                 if (func_0203a8f4() == 5) {
                     c = func_0205bba8();
                 } else {
@@ -227,9 +227,9 @@ u32 func_02039e08(Unk020176c0 *a, void **b, void **c, void **d, void **e, void *
         *b = func_02036854(a, 0x1b800);
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        *d = 0;
-        *e = 0;
-        *f = 0;
+        *d = NULL;
+        *e = NULL;
+        *f = NULL;
     } else {
         *d = func_020368e0(a, 0x19000);
         *e = func_020368e0(a, 0x4b000);

@@ -61,7 +61,7 @@ u32 func_020290ac(s32 a) {
 void func_02029008(void) {
     Unk02174e18 *d = gSelectKart;
     Unk02174e50_24 *p;
-    if (d->mUnk_104 == 0) {
+    if (d->mUnk_104 == FALSE) {
         p = &d->mUnk_048;
         p->mUnk_18[1].mUnk_04 = func_02025ebc(&d->mUnk_0ac);
         p->mUnk_18[2].mUnk_04 = p->mUnk_18[1].mUnk_04;

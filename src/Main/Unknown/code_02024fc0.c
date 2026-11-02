@@ -37,7 +37,7 @@ void func_0202506c(Unk0206bcb0 *a, Unk02024eec *b) {
     Unk0210bf24 *p;
 
     p = func_02109078(&a->mUnk_00, b->mUnk_00, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
-    if (p != 0) {
+    if (p != NULL) {
         p->mUnk_19 |= 0x80;
     }
 }
@@ -46,7 +46,7 @@ void func_02025030(Unk0206bcb0 *a, Unk02024eec *b) {
     Unk0210bf24 *p;
 
     p = func_02109078(&a->mUnk_00, b->mUnk_58, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
-    if (p != 0) {
+    if (p != NULL) {
         p->mUnk_19 |= 0x80;
     }
 }

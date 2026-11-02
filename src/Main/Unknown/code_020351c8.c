@@ -21,12 +21,12 @@ void func_02035378(void) {
 #pragma thumb on
 
 void func_020352fc(s32 a) {
-    s32 f;
+    BOOL f;
     s32 c;
     s32 i;
     Unk02174e64 *p;
 
-    f = 0;
+    f = FALSE;
     p = data_02174e64;
     c = p->mUnk_080;
     i = c - 1;
@@ -39,7 +39,7 @@ void func_020352fc(s32 a) {
     if (i != c) {
         do {
             if (p->mUnk_09c[i].mUnk_28 == 1 && p->mUnk_09c[i].mUnk_2c.mUnk_00 == 1) {
-                f = 1;
+                f = TRUE;
                 p->mUnk_080 = i;
                 break;
             }
@@ -52,18 +52,18 @@ void func_020352fc(s32 a) {
             }
         } while (i != p->mUnk_080);
     }
-    if (f != 0) {
+    if (f != FALSE) {
         func_0212ecc0(&data_0217d068, 0, 0);
     }
 }
 
 void func_02035280(s32 a) {
-    s32 f;
+    BOOL f;
     s32 c;
     s32 i;
     Unk02174e64 *p;
 
-    f = 0;
+    f = FALSE;
     p = data_02174e64;
     c = p->mUnk_080;
     i = c + 1;
@@ -76,7 +76,7 @@ void func_02035280(s32 a) {
     if (i != c) {
         do {
             if (p->mUnk_09c[i].mUnk_28 == 1 && p->mUnk_09c[i].mUnk_2c.mUnk_00 == 1) {
-                f = 1;
+                f = TRUE;
                 p->mUnk_080 = i;
                 break;
             }
@@ -89,7 +89,7 @@ void func_02035280(s32 a) {
             }
         } while (i != p->mUnk_080);
     }
-    if (f != 0) {
+    if (f != FALSE) {
         func_0212ecc0(&data_0217d068, 0, 0);
     }
 }

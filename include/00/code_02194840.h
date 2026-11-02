@@ -11,4 +11,4 @@ typedef struct Unk02194840Arg {
     /* 08 */ void *mUnk_08;
 } Unk02194840Arg;
 
-s32 func_ov000_02194840(Unk0218f960 *a, void *b, void *c);
+BOOL func_ov000_02194840(Unk0218f960 *a, void *b, void *c);
