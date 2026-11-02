@@ -33,11 +33,11 @@ void func_0209d650(u32 arg0) {
     *(u32 *) ((value4) + (24)) = value0;
 }
 
-void func_0209d5ec(void *a) {
-    data_usa_0217b16c = func_0209be84(a, data_usa_02167388);
-    func_0209be50(data_usa_0217b16c, data_usa_02167394);
-    data_usa_0217b168 = func_0209be84(a, data_usa_021673a0);
-    func_0209b940(data_usa_0217b16c, func_020d3c2c());
+void CreateSunAndSunLOD(void *a) {
+    gSun = func_0209be84(a, gSunNsbmdName);
+    func_0209be50(gSun, gSunNsbcaName);
+    gSunLOD = func_0209be84(a, gSunLODNsbmdName);
+    func_0209b940(gSun, func_020d3c2c());
 }
 
 u32 func_0209d5e8(u32 p0) {
@@ -63,15 +63,15 @@ void func_0209d3fc(void *a, Unk0209d3fc *b) {
     }
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
     if (func_02061818() == 2) {
-        func_0209bbd0(a, data_usa_0217b16c);
-        func_0209b77c(data_usa_0217b16c, b->mUnk_b2);
-        func_0209bb2c(a, data_usa_0217b16c, b);
+        func_0209bbd0(a, gSun);
+        func_0209b77c(gSun, b->mUnk_b2);
+        func_0209bb2c(a, gSun, b);
     } else if ((s32) (b->mUnk_00.mUnk_78 & 0x3fffffe0) < 0x3d0900) {
-        func_0209bbd0(a, data_usa_0217b16c);
-        func_0209b77c(data_usa_0217b16c, b->mUnk_b2);
-        func_0209bb2c(a, data_usa_0217b16c, b);
+        func_0209bbd0(a, gSun);
+        func_0209b77c(gSun, b->mUnk_b2);
+        func_0209bb2c(a, gSun, b);
     } else {
-        func_0209bbd0(a, data_usa_0217b168);
-        func_0209ba58(a, data_usa_0217b168, b);
+        func_0209bbd0(a, gSunLOD);
+        func_0209ba58(a, gSunLOD, b);
     }
 }

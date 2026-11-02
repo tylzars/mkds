@@ -14,5 +14,5 @@ typedef struct Unk0209297c {
 void func_020924d8(void *a, Unk0209219c *b);
 void func_0209280c(void *a, Unk0209219c *b);
 void func_02092928(void *a);
-void func_02092940(void *a);
+void CreateBasabasa(void *a);
 u8 func_0209297c(Unk0209219c *a, Unk0209297c *b, void *c, u8 *d);

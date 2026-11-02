@@ -27,7 +27,7 @@ void *func_0209756c(void) {
 }
 
 void *func_0209758c(void) {
-    return (void *) func_0209bf1c(func_02097e84, func_02097d80, 0);
+    return (void *) func_0209bf1c(CreateFlipper, func_02097d80, 0);
 }
 
 void func_020975ac(void) {
@@ -121,12 +121,12 @@ void func_020975ec(void *a, Unk020975ec *p) {
     }
     if (p->mUnk_ec8 != 0 && (p->mUnk_00.mUnk_02 & 0x12) == 0) {
         w = p->mUnk_ec4 + 1;
-        if (w >= func_0209b634(data_usa_0217b0d8)) {
+        if (w >= func_0209b634(gFlipper)) {
             w = 1;
         }
         p->mUnk_ec4 = w;
         w = p->mUnk_ec6 + 1;
-        if (w >= func_0209b6ec(data_usa_0217b0d8)) {
+        if (w >= func_0209b6ec(gFlipper)) {
             w = 1;
         }
         p->mUnk_ec6 = w;
@@ -227,20 +227,20 @@ void func_02097d80(void *a, Unk020975ec *p) {
     e->mUnk_24.z = p->mUnk_00.mUnk_04.z >> 4;
     func_01ff9048(0x19, e, 0xc);
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
-    func_0209b7a0(data_usa_0217b0d8, p->mUnk_a4, 0);
-    s = data_usa_0217b0d8->mUnk_20;
+    func_0209b7a0(gFlipper, p->mUnk_a4, 0);
+    s = gFlipper->mUnk_20;
     s->mUnk_0c = p->mUnk_ec4 << 12;
     s->mUnk_1c[s->mUnk_1a]->mUnk_00 = s->mUnk_0c;
-    s = data_usa_0217b0d8->mUnk_28;
+    s = gFlipper->mUnk_28;
     s->mUnk_0c = p->mUnk_ec6 << 12;
     s->mUnk_1c[s->mUnk_1a]->mUnk_00 = s->mUnk_0c;
-    func_0209bb2c(a, data_usa_0217b0d8, p);
+    func_0209bb2c(a, gFlipper, p);
 }
 
-void func_02097e84(void *a) {
-    data_usa_0217b0d8 = func_0209be84(a, data_usa_0216698c);
-    func_0209bde8(data_usa_0217b0d8, data_usa_0216699c);
-    func_0209be1c(data_usa_0217b0d8, data_usa_021669ac);
+void CreateFlipper(void *a) {
+    gFlipper = func_0209be84(a, gFlipperNsbmdName);
+    func_0209bde8(gFlipper, gFlipperNsbtpName);
+    func_0209be1c(gFlipper, gFlipperNsbtaName);
 }
 
 u32 func_02097ed0(Unk020975ec *p, Vec3 *a, s32 b, Vec3 *c) {

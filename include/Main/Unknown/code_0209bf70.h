@@ -73,15 +73,15 @@ typedef struct Unk0209cf34 {
 
 extern u32 data_usa_021565d0;
 extern u16 data_usa_021565d4;
-extern const char data_usa_021672fc[];
-extern const char data_usa_02167308[];
-extern const char data_usa_0216731c[];
+extern const char gBerryNsbmdName[];
+extern const char gCreamEffectNsbmdName[];
+extern const char gCreamNsbmdName[];
 extern const char data_usa_02167328[];
-extern const char data_usa_0216733c[];
-extern const char data_usa_02167348[];
-extern const char data_usa_02167388[];
-extern const char data_usa_02167394[];
-extern const char data_usa_021673a0[];
+extern const char gBoundNsbmdName[];
+extern const char gBoundNsbtpName[];
+extern const char gSunNsbmdName[];
+extern const char gSunNsbcaName[];
+extern const char gSunLODNsbmdName[];
 
 Unk0209bf70 *func_0209bf70(void *a, void *b, void *c, u32 d, u16 e, u16 f);
 u32 func_0209bf8c(void);
@@ -103,7 +103,7 @@ void func_0209c678(Unk02100094 *a, Unk0209c220 *p);
 void func_0209c738(void *a);
 void func_0209c770(void *a);
 void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p);
-void func_0209c878(void *a);
+void CreateBound(void *a);
 s32 func_0209c8b0(Unk0209c220 *p, Vec3 *a, s32 b, Vec3 *c);
 u8 func_0209c964(Unk0209c220 *p, void *a, u8 *b, u8 *c);
 s32 func_0209c9fc(Unk0209c220 *p, Unk0206bcb0 *k, u8 *b, u8 *c);

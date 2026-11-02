@@ -16,9 +16,9 @@ typedef struct Unk0209ec80 {
 
 void func_0209eb54(void *a, Unk0209ec80 *b);
 void func_0209ec00(void *a);
-void func_0209ec18(void *a);
+void CreatePuddle(void *a);
 u32 func_0209ec44(void);
 u32 func_0209ec60(void);
 void func_0209ec80(void *a, Unk0209ec80 *b);
 void func_0209efb4(void *a, Unk0209ec80 *b);
-void func_0209f0a8(void *a);
+void CreatePicture1AndPicture2(void *a);

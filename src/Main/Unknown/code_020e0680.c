@@ -175,12 +175,12 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
     buf[11] = b->mUnk_108;
     func_01ff9048(0x11, 0, 0);
     func_01ff9048(0x19, buf, 0xc);
-    func_020849d0(data_0217b790);
+    func_020849d0(gCarTire);
     one = 1;
     func_01ff9048(0x12, &one, 1);
     buf[11] = -buf[11];
     func_01ff9048(0x19, buf, 0xc);
-    func_020849d0(data_0217b790);
+    func_020849d0(gCarTire);
 }
 
 static inline s64 func_020e2630_inline(const Vec3 *v) {
@@ -417,38 +417,37 @@ void func_020e20a8(Unk020e20a8 *a) {
     Unk020e1e98_12c **z;
     s32 n;
 
-    b = (u32) FindCourseMapObjFile((const char *) data_0216c054);
-    c = (u32) FindCourseMapObjFile((const char *) data_0216c060);
+    b = (u32) FindCourseMapObjFile((const char *) gCarANsbmdName);
+    c = (u32) FindCourseMapObjFile((const char *) gTruckANsbmdName);
     a->mUnk_038 = data_021759c0->mUnk_08 != 4 && func_0203c5e4() == 0 && (u16) data_021759c0->mUnk_62 < 8;
     a->mUnk_03c = 0;
-    func_020ea588(&data_0217b7a0, (void *) b, 0);
-    func_020ea588(&data_0217b794, (void *) c, 0);
-    func_020ea588(&data_0217b7ac, (void *) FindCourseMapObjFile((const char *) data_0216c070), 0);
-    func_020ea588(&data_0217b790, (void *) FindCourseMapObjFile((const char *) data_0216c07c), 0);
-    func_020ea55c(&data_0217b788, (void *) FindCourseMapObjFile((const char *) data_0216c08c), 7);
-    func_020ea55c(&data_0217b798, (void *) FindCourseMapObjFile((const char *) data_0216c0a0), 7);
-    func_020ea55c(&data_0217b7b0, (void *) FindCourseMapObjFile((const char *) data_0216c0b8), 7);
-    func_020ea4bc(2, data_0217b7a0, &data_0217b78c, (void *) b,
-                  (void *) FindCourseMapObjFile((const char *) data_0216c0cc));
-    func_020ea4bc(2, data_0217b794, &data_0217b7a8, (void *) c,
-                  (void *) FindCourseMapObjFile((const char *) data_0216c0d8));
-    func_02084968(data_0217b7a0, 0x3f, 2, 0x294a);
-    for (k1 = 0, y1 = ((Unk0217b7a0 *) data_0217b7a0)->mUnk_04; k1 < y1->mUnk_18; k1++) {
+    func_020ea588(&gCarA, (void *) b, 0);
+    func_020ea588(&gTruckA, (void *) c, 0);
+    func_020ea588(&gBusA, (void *) FindCourseMapObjFile((const char *) gBusANsbmdName), 0);
+    func_020ea588(&gCarTire, (void *) FindCourseMapObjFile((const char *) gCarTireNsbmdName), 0);
+    func_020ea55c(&gCarAShadow, (void *) FindCourseMapObjFile((const char *) gCarAShadowNsbmdName), 7);
+    func_020ea55c(&gTruckAShadow, (void *) FindCourseMapObjFile((const char *) gTruckAShadowNsbmdName), 7);
+    func_020ea55c(&gBusAShadow, (void *) FindCourseMapObjFile((const char *) gBusAShadowNsbmdName), 7);
+    func_020ea4bc(2, gCarA, &gCarANsbtp, (void *) b, (void *) FindCourseMapObjFile((const char *) gCarANsbtpName));
+    func_020ea4bc(2, gTruckA, &gTruckANsbtp, (void *) c,
+                  (void *) FindCourseMapObjFile((const char *) gTruckANsbtpName));
+    func_02084968(gCarA, 0x3f, 2, 0x294a);
+    for (k1 = 0, y1 = ((Unk0217b7a0 *) gCarA)->mUnk_04; k1 < y1->mUnk_18; k1++) {
         func_020134b0(y1, k1, 7);
     }
-    func_02084968(data_0217b794, 0x3f, 2, 0x294a);
-    for (k2 = 0, y2 = ((Unk0217b7a0 *) data_0217b794)->mUnk_04; k2 < y2->mUnk_18; k2++) {
+    func_02084968(gTruckA, 0x3f, 2, 0x294a);
+    for (k2 = 0, y2 = ((Unk0217b7a0 *) gTruckA)->mUnk_04; k2 < y2->mUnk_18; k2++) {
         func_020134b0(y2, k2, 7);
     }
-    func_02084968(data_0217b7ac, 0x3f, 2, 0x294a);
-    for (k3 = 0, y3 = ((Unk0217b7a0 *) data_0217b7ac)->mUnk_04; k3 < y3->mUnk_18; k3++) {
+    func_02084968(gBusA, 0x3f, 2, 0x294a);
+    for (k3 = 0, y3 = ((Unk0217b7a0 *) gBusA)->mUnk_04; k3 < y3->mUnk_18; k3++) {
         func_020134b0(y3, k3, 7);
     }
-    func_02084968(data_0217b790, 0x3f, 2, 0x294a);
-    for (k4 = 0, y4 = ((Unk0217b7a0 *) data_0217b790)->mUnk_04; k4 < y4->mUnk_18; k4++) {
+    func_02084968(gCarTire, 0x3f, 2, 0x294a);
+    for (k4 = 0, y4 = ((Unk0217b7a0 *) gCarTire)->mUnk_04; k4 < y4->mUnk_18; k4++) {
         func_020134b0(y4, k4, 7);
     }
-    func_020849b0(data_0217b790, 0);
+    func_020849b0(gCarTire, 0);
     n = ((Unk0217b79c *) data_0217b79c)->mUnk_04;
     for (i = 0; i < n; i++) {
         e = ((Unk0217b79c *) data_0217b79c)->mUnk_00[i];

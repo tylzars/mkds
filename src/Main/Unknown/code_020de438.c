@@ -10,13 +10,13 @@ void func_020de4e4(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
     Unk02012f58 *v1;
     if (b->mUnk_00.mUnk_80.mUnk_0e == 0) {
         v1 = func_020e6cbc(&b->mUnk_00.mUnk_04);
-        func_020e67c4(data_0217b6f0, v1, &b->mUnk_00.mUnk_1c, 0, d);
+        func_020e67c4(gEarthenPipe1, v1, &b->mUnk_00.mUnk_1c, 0, d);
         return;
     }
-    func_020e6a18(data_0217b6f4);
+    func_020e6a18(gEarthenPipe2);
     v1 = func_020e6cbc(&b->mUnk_00.mUnk_04);
-    func_020e66e4(data_0217b6f4, v1, *(u16 *) &b->mUnk_a0.mUnk_0c.x, &b->mUnk_00.mUnk_1c, 0, d);
-    func_020e6a18(data_0217b6f0);
+    func_020e66e4(gEarthenPipe2, v1, *(u16 *) &b->mUnk_a0.mUnk_0c.x, &b->mUnk_00.mUnk_1c, 0, d);
+    func_020e6a18(gEarthenPipe1);
 }
 
 void func_020de4d4(u32 arg0, u32 arg1) {
@@ -42,14 +42,14 @@ u8 func_020de488(Unk020e43a8 *a, void *b, u8 *c, u8 *d) {
 
 #pragma thumb on
 
-void func_020de438(void) {
+void CreateEarthenPipe1AndEarthenPipe2(void) {
     u32 v1;
-    v1 = (u32) FindCourseMapObjFile((const char *) data_0216bf7c);
-    func_020e6488((Unk020e6488 **) (((u32 *) &data_0217b6f0)), (void *) v1, (u32) 0, (u32) 0);
-    v1 = (u32) FindCourseMapObjFile((const char *) data_0216bf90);
-    func_020e6488((Unk020e6488 **) (((u32 *) &data_0217b6f4)), (void *) v1, (u32) 0, (u32) 0);
-    func_020e6ab8((Unk020e6488 *) data_0217b6f0);
-    func_020e6ab8((Unk020e6488 *) data_0217b6f4);
+    v1 = (u32) FindCourseMapObjFile((const char *) gEarthenPipe1NsbmdName);
+    func_020e6488((Unk020e6488 **) (((u32 *) &gEarthenPipe1)), (void *) v1, (u32) 0, (u32) 0);
+    v1 = (u32) FindCourseMapObjFile((const char *) gEarthenPipe2NsbmdName);
+    func_020e6488((Unk020e6488 **) (((u32 *) &gEarthenPipe2)), (void *) v1, (u32) 0, (u32) 0);
+    func_020e6ab8((Unk020e6488 *) gEarthenPipe1);
+    func_020e6ab8((Unk020e6488 *) gEarthenPipe2);
 }
 
 #pragma thumb off

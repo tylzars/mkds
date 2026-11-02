@@ -31,7 +31,7 @@ const Unk021594e4 data_021594e4 = {
 };
 
 const Unk0215950c data_0215950c = {
-    0, 0, (u32) &func_020eb72c, 0, (u32) &func_020ec1fc, 0, 1, 0, 0, 0, 0,
+    0, 0, (u32) &CreateWoodbox1, 0, (u32) &func_020ec1fc, 0, 1, 0, 0, 0, 0,
 };
 
 const Unk02159538 data_02159538 = {
@@ -95,7 +95,7 @@ void func_020ec1fc(void *a, Unk020e43a8 *b, void *c, u32 d) {
     b->mUnk_00.mUnk_28.mUnk_24.x = b->mUnk_00.mUnk_04.x >> 4;
     b->mUnk_00.mUnk_28.mUnk_24.y = b->mUnk_00.mUnk_04.y >> 4;
     b->mUnk_00.mUnk_28.mUnk_24.z = b->mUnk_00.mUnk_04.z >> 4;
-    func_020ea8a8(data_0217bbf8, &b->mUnk_00.mUnk_28, &b->mUnk_00.mUnk_1c, d);
+    func_020ea8a8(gWoodbox1, &b->mUnk_00.mUnk_28, &b->mUnk_00.mUnk_1c, d);
     if (h == 0) {
         return;
     }

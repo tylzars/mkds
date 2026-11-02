@@ -16,7 +16,7 @@ void func_020a737c(void) {
 }
 
 u32 func_020a7358(void) {
-    return func_0209bef0(func_020a7eb4, func_020a79c4, func_020a7eb0);
+    return func_0209bef0(CreateSanboHAndSanboB, func_020a79c4, func_020a7eb0);
 }
 
 u32 func_020a7338(void) {

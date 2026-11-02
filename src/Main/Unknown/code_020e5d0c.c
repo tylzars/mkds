@@ -132,8 +132,8 @@ void func_020e630c(u32 param_1, Unk020e5e24 *a, u32 param_3, u32 param_4) {
     a->mUnk_4c.x = a->mUnk_bc.x >> 4;
     a->mUnk_4c.y = a->mUnk_bc.y >> 4;
     a->mUnk_4c.z = a->mUnk_bc.z >> 4;
-    func_020ea8a8(data_0217b838, &a->mUnk_28, &a->mUnk_1c, param_4);
-    func_020ea868(data_0217b83c, &a->mUnk_c8, &a->mUnk_1c, param_4);
+    func_020ea8a8(gPendulum, &a->mUnk_28, &a->mUnk_1c, param_4);
+    func_020ea868(gPendulumShadow, &a->mUnk_c8, &a->mUnk_1c, param_4);
 }
 
 void func_020e61a8(u32 param_1, Unk020e5e24 *a) {
@@ -228,10 +228,11 @@ s32 func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
 
 #pragma thumb on
 
-void func_020e5f68(void) {
-    func_020ea588((void **) &data_0217b838, (void *) FindCourseMapObjFile((const char *) data_0216c29c), 0);
-    func_020ea55c((void **) &data_0217b83c, (void *) FindCourseMapObjFile((const char *) data_0216c2ac), 0x3f);
-    func_02084968(data_0217b838, 0x3f, 2, 0x294a);
+void CreatePendulumAndPendulumShadow(void) {
+    func_020ea588((void **) &gPendulum, (void *) FindCourseMapObjFile((const char *) gPendulumNsbmdName), 0);
+    func_020ea55c((void **) &gPendulumShadow, (void *) FindCourseMapObjFile((const char *) gPendulumShadowNsbmdName),
+                  0x3f);
+    func_02084968(gPendulum, 0x3f, 2, 0x294a);
 }
 
 void func_020e5e24(Unk020e5e24 *p, Unk020e5e24_2 *q) {
@@ -285,5 +286,5 @@ Unk020e59e4 *func_020e5d24(void) {
 }
 
 void func_020e5d0c(void) {
-    func_020e6a18(data_0217b830);
+    func_020e6a18(gObPakkunSf);
 }

@@ -16,5 +16,5 @@ typedef struct Unk020e5684 {
 } Unk020e5684;
 
 void func_020e57a0(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c);
-void func_020e576c(void);
+void CreateSecondHand(void);
 void func_020e5684(Unk020e43a8 *p, Unk020e5684 *q);

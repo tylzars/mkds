@@ -19,16 +19,16 @@ typedef struct Unk0209f514 {
     /* 04 */ u16 mUnk_04;
 } Unk0209f514;
 
-extern char data_usa_02167548[];
-extern char data_usa_02167558[];
+extern char gRainStarNsbmdName[];
+extern char gRainStarNsbtaName[];
 
-void func_0209f650(void *a);
+void CreateChandelier(void *a);
 
 void *func_0209f13c(void);
 void *func_0209f158(void);
 void func_0209f178(void *a, Unk0209f1c8 *b);
 void func_0209f1c8(void *a, Unk0209f1c8 *b);
-void func_0209f2b0(void *a);
+void CreateRainStar(void *a);
 void *func_0209f2f8(void);
 void *func_0209f318(void);
 void func_0209f338(void *a, Unk0209f1c8 *b);

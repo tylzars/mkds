@@ -32,13 +32,13 @@ u32 func_02094df4(u32 arg0) {
 }
 
 void func_02094db4(Unk02094db4 *a) {
-    data_0217b0dc = func_0209bc74(a, data_usa_021667f4, data_usa_02166804);
-    func_0209b940(data_0217b0dc, 0x3f);
+    gTeresa = func_0209bc74(a, gTeresaNsbmdName, gTeresaNsbtpName);
+    func_0209b940(gTeresa, 0x3f);
     a->mUnk_1c = 1;
 }
 
 void func_02094d9c(void *a) {
-    func_0209bbd0(a, data_0217b0dc);
+    func_0209bbd0(a, gTeresa);
 }
 
 void func_02094c70(void *a, Unk02094000 *b) {
@@ -49,11 +49,11 @@ void func_02094c70(void *a, Unk02094000 *b) {
         return;
     }
     func_0207a974((u16) data_021759c0->mUnk_62);
-    func_0209b940(data_0217b0dc, func_020d3c44());
-    func_0209b688(data_0217b0dc, b->mUnk_ae);
-    func_0209b9a4(data_0217b0dc, b->mUnk_ac);
-    func_0209b8ac(data_0217b0dc, func_0206183c());
-    func_0209b7a0(data_0217b0dc, b->mUnk_b0, 0);
+    func_0209b940(gTeresa, func_020d3c44());
+    func_0209b688(gTeresa, b->mUnk_ae);
+    func_0209b9a4(gTeresa, b->mUnk_ac);
+    func_0209b8ac(gTeresa, func_0206183c());
+    func_0209b7a0(gTeresa, b->mUnk_b0, 0);
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
     func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mUnk_04), 0xc);
@@ -64,7 +64,7 @@ void func_02094c70(void *a, Unk02094000 *b) {
         func_01ff9048(0x1b, v, 3);
     }
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
-    func_0209bb2c(a, data_0217b0dc, b);
+    func_0209bb2c(a, gTeresa, b);
 }
 
 static inline void func_02094768_inline(Unk02094000 *o) {

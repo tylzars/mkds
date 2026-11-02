@@ -71,7 +71,7 @@ Unk020e4fc8 *func_020e4fc8(void) {
 }
 
 void func_020e4fb0(void) {
-    func_020e6a18(data_0217b7f0);
+    func_020e6a18(gPukupuku);
 }
 
 void func_020e4ea8(u32 a, Unk020e43a8 *p, u32 b, u16 c) {
@@ -83,7 +83,7 @@ void func_020e4ea8(u32 a, Unk020e43a8 *p, u32 b, u16 c) {
         Unk02012f58 *r;
         neg = p->mUnk_00.mUnk_64 & 1;
         r = func_020e6cf8(&p->mUnk_00.mUnk_04);
-        q = data_0217b7f0;
+        q = gPukupuku;
         q->mUnk_14 = q->mUnk_14 | 0xc0;
         data_0217b800 = p->mUnk_00.mUnk_1c;
         if (neg) {
@@ -95,7 +95,7 @@ void func_020e4ea8(u32 a, Unk020e43a8 *p, u32 b, u16 c) {
         neg = p->mUnk_00.mUnk_64 & 1;
         v = *(u16 *) &p->mUnk_a0.mUnk_0c.x;
         r = func_020e6cf8(&p->mUnk_00.mUnk_04);
-        q = data_0217b7f0;
+        q = gPukupuku;
         q->mUnk_14 = q->mUnk_14 | 0xc0;
         data_0217b800 = p->mUnk_00.mUnk_1c;
         if (neg) {
@@ -291,11 +291,11 @@ s32 func_020e48e0(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
 
 #pragma thumb on
 
-void func_020e48b4(void) {
+void CreatePukupuku(void) {
     u32 v1;
-    v1 = (u32) FindCourseMapObjFile((const char *) data_0216c20c);
-    func_020e6488((Unk020e6488 **) (((u32 *) &data_0217b7f0)), (void *) v1, (u32) 0, (u32) 0);
-    func_020e6ab8((Unk020e6488 *) data_0217b7f0);
+    v1 = (u32) FindCourseMapObjFile((const char *) gPukupukuNsbmdName);
+    func_020e6488((Unk020e6488 **) (((u32 *) &gPukupuku)), (void *) v1, (u32) 0, (u32) 0);
+    func_020e6ab8((Unk020e6488 *) gPukupuku);
 }
 
 #pragma thumb off

@@ -17,7 +17,7 @@ typedef struct Unk020919e8 {
 void func_020918a8(void);
 void func_020918cc(void *a, Unk020919e8 *b);
 void func_02091954(void *a);
-void func_0209196c(void *a);
+void CreateCow(void *a);
 void func_020919a8(void);
 void func_020919c8(void);
 void func_020919e8(void *a, Unk020919e8 *p);
@@ -27,4 +27,4 @@ s16 func_02091f54(s32 a);
 u32 func_02091f6c(Unk020f41c4_B *a, u32 b);
 void func_02091fd8(Unk020e6fd4 *a);
 void func_020920a0(void *a, Unk020919e8 *p);
-void func_02092140(void *a);
+void CreateKanoke64(void *a);

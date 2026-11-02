@@ -322,7 +322,7 @@ u32 func_020a9204(void) {
 }
 
 u32 func_020a91e0(void) {
-    return func_0209bef0(func_020a9db0, func_020a9cd4, func_020a9d98);
+    return func_0209bef0(CreateIronBall, func_020a9cd4, func_020a9d98);
 }
 
 u32 func_020a91c0(void) {

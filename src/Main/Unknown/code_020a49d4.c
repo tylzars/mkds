@@ -42,7 +42,7 @@ void func_020a5918(void) {
 }
 
 u32 func_020a58f4(void) {
-    return func_0209bef0(func_020a6aa8, func_020a69b4, func_020a6a90);
+    return func_0209bef0(CreateShine16, func_020a69b4, func_020a6a90);
 }
 
 u32 func_020a58d0(void) {

@@ -55,7 +55,7 @@ void func_02093884(void) {
 }
 
 void func_020938a0(void) {
-    func_0209bf1c(func_02093b30, func_02093a50, 0);
+    func_0209bf1c(CreateNsKiller2AndNsKiller2S, func_02093a50, 0);
 }
 
 void func_020938c0(void) {
@@ -113,14 +113,14 @@ void func_02093a50(void *a, Unk02093910 *p) {
     func_02146d44(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
-    func_0209bb2c(a, data_0217b0d0, p);
-    func_0209bb2c(a, data_0217b0cc, p);
+    func_0209bb2c(a, gNsKiller2S, p);
+    func_0209bb2c(a, gNsKiller2, p);
 }
 
-void func_02093b30(void *a) {
-    data_0217b0cc = func_0209be84(a, data_02166748);
-    data_0217b0d0 = func_0209bd90(a, data_02166758);
-    func_0209b940(data_0217b0d0, 0x3f);
+void CreateNsKiller2AndNsKiller2S(void *a) {
+    gNsKiller2 = func_0209be84(a, gNsKiller2NsbmdName);
+    gNsKiller2S = func_0209bd90(a, gNsKiller2SNsbmdName);
+    func_0209b940(gNsKiller2S, 0x3f);
 }
 
 u8 func_02093b7c(Unk02093910 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
@@ -158,7 +158,7 @@ void func_02093cb4(void) {
 }
 
 void func_02093cd4(void) {
-    func_0209bf1c(func_02093f78, func_02093ee8, 0);
+    func_0209bf1c(CreateNsKiller1, func_02093ee8, 0);
 }
 
 void func_02093cf4(void *a, Unk02093cf4 *p) {
@@ -236,9 +236,9 @@ void func_02093ee8(void *a, Unk02093cf4 *p) {
     p->mUnk_00.mUnk_28.mUnk_24.y = p->mUnk_00.mUnk_04.y >> 4;
     p->mUnk_00.mUnk_28.mUnk_24.z = p->mUnk_00.mUnk_04.z >> 4;
     func_01ff9048(0x19, &p->mUnk_00.mUnk_28, 12);
-    func_0209bb2c(a, data_0217b0d4, p);
+    func_0209bb2c(a, gNsKiller1, p);
 }
 
-void func_02093f78(void *a) {
-    data_0217b0d4 = func_0209be84(a, data_021667b0);
+void CreateNsKiller1(void *a) {
+    gNsKiller1 = func_0209be84(a, gNsKiller1NsbmdName);
 }

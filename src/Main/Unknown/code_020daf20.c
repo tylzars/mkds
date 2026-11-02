@@ -542,7 +542,7 @@ Unk020db1b0 *func_020db1b0(void) {
 }
 
 void func_020db198(void) {
-    func_020e6a18(data_0217b688);
+    func_020e6a18(gKuribo);
 }
 
 void func_020db050(void *a, Unk020da494 *p, void *c, u16 d) {
@@ -563,16 +563,16 @@ void func_020db050(void *a, Unk020da494 *p, void *c, u16 d) {
     p->mUnk_00.mUnk_28.mUnk_24.y = p->mUnk_00.mUnk_04.y >> 4;
     p->mUnk_00.mUnk_28.mUnk_24.z = p->mUnk_00.mUnk_04.z >> 4;
     if (p->mUnk_f0 < 0x14) {
-        data_0217b688->mUnk_18 = p->mUnk_f0;
+        gKuribo->mUnk_18 = p->mUnk_f0;
     } else {
         s.x = -s.x;
-        data_0217b688->mUnk_18 = p->mUnk_f0 - 0x14;
+        gKuribo->mUnk_18 = p->mUnk_f0 - 0x14;
     }
     e = p->mUnk_100;
-    q = data_0217b688;
+    q = gKuribo;
     q->mUnk_14 &= ~0x1f0000;
     q->mUnk_14 |= e << 16;
-    func_020e67c4(data_0217b688, &p->mUnk_00.mUnk_28, &s, 0, d);
+    func_020e67c4(gKuribo, &p->mUnk_00.mUnk_28, &s, 0, d);
 }
 
 void func_020daf20(void *a, Unk020da494 *p) {

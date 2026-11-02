@@ -137,5 +137,5 @@ Unk020de2d8 *func_020de5a0(void) {
 }
 
 void func_020de588(void) {
-    func_020e6a18(data_0217b6f0);
+    func_020e6a18(gEarthenPipe1);
 }

@@ -8,9 +8,9 @@
 #include "Main/Unknown/unk_02167000.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_020a0294(void *a) {
-    data_0217b1f8 = func_0209be84(a, data_02167680);
-    func_0209b940(data_0217b1f8, 0x3f);
+void CreateAirship(void *a) {
+    gAirship = func_0209be84(a, gAirshipNsbmdName);
+    func_0209b940(gAirship, 0x3f);
 }
 
 void func_020a018c(void *a, Unk020a018c *p) {
@@ -34,7 +34,7 @@ void func_020a018c(void *a, Unk020a018c *p) {
         func_01ff9048(0x1a, q, 9);
     }
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
-    func_0209bb2c(a, data_0217b1f8, p);
+    func_0209bb2c(a, gAirship, p);
 }
 
 void func_020a0064(Unk020a0064 *p) {

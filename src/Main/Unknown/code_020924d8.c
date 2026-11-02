@@ -46,13 +46,13 @@ u8 func_0209297c(Unk0209219c *a, Unk0209297c *b, void *c, u8 *d) {
     return r;
 }
 
-void func_02092940(void *a) {
-    data_usa_0217b0a4 = func_0209bc74(a, data_usa_02166698, data_usa_021666a8);
-    func_0209b940(data_usa_0217b0a4, 0x3f);
+void CreateBasabasa(void *a) {
+    gBasabasa = func_0209bc74(a, gBasabasaNsbmdName, gBasabasaNsbtpName);
+    func_0209b940(gBasabasa, 0x3f);
 }
 
 void func_02092928(void *a) {
-    func_0209bbd0(a, data_usa_0217b0a4);
+    func_0209bbd0(a, gBasabasa);
 }
 
 void func_0209280c(void *a, Unk0209219c *b) {
@@ -71,8 +71,8 @@ void func_0209280c(void *a, Unk0209219c *b) {
     }
     func_01ff9048(0x1a, m, 9);
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
-    func_0209b688(data_usa_0217b0a4, b->mUnk_ac);
-    func_0209bb2c(a, data_usa_0217b0a4, b);
+    func_0209b688(gBasabasa, b->mUnk_ac);
+    func_0209bb2c(a, gBasabasa, b);
 }
 
 void func_020924d8(void *a, Unk0209219c *b) {
@@ -134,7 +134,7 @@ void func_020924d8(void *a, Unk0209219c *b) {
         return;
     }
     v = b->mUnk_ac + 1;
-    if (v >= func_0209b634(data_usa_0217b0a4)) {
+    if (v >= func_0209b634(gBasabasa)) {
         v = 0;
     }
     b->mUnk_ac = v;

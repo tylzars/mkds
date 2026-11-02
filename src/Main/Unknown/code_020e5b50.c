@@ -12,14 +12,14 @@
 
 void func_020e5c6c(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
     Unk02012f58 *v1;
-    data_0217b830->mUnk_18 = (short) ((int) (*(u16 *) &b->mUnk_a0.mUnk_18.x & 0x10) >> 4);
+    gObPakkunSf->mUnk_18 = (short) ((int) (*(u16 *) &b->mUnk_a0.mUnk_18.x & 0x10) >> 4);
     if (b->mUnk_00.mUnk_80.mUnk_0e == 0) {
         v1 = func_020e6cbc(&b->mUnk_00.mUnk_04);
-        func_020e67c4(data_0217b830, v1, &b->mUnk_00.mUnk_1c, 0, d);
+        func_020e67c4(gObPakkunSf, v1, &b->mUnk_00.mUnk_1c, 0, d);
         return;
     }
     v1 = func_020e6cbc(&b->mUnk_00.mUnk_04);
-    func_020e66e4(data_0217b830, v1, *(u16 *) &b->mUnk_a0.mUnk_0c.x, &b->mUnk_00.mUnk_1c, 0, d);
+    func_020e66e4(gObPakkunSf, v1, *(u16 *) &b->mUnk_a0.mUnk_0c.x, &b->mUnk_00.mUnk_1c, 0, d);
 }
 
 void func_020e5bd4(u32 a, Unk020e43a8 *p) {
@@ -58,13 +58,13 @@ u8 func_020e5b88(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
 
 #pragma thumb on
 
-void func_020e5b50(void) {
+void CreateObPakkunSf(void) {
     u32 v1;
     u32 v2;
-    v1 = (u32) FindCourseMapObjFile((const char *) data_0216c274);
-    v2 = (u32) FindCourseMapObjFile((const char *) data_0216c288);
-    func_020e6488((Unk020e6488 **) (((u32 *) &data_0217b830)), (void *) v1, v2, (u32) 0);
-    func_020e6ab8((Unk020e6488 *) data_0217b830);
+    v1 = (u32) FindCourseMapObjFile((const char *) gObPakkunSfNsbmdName);
+    v2 = (u32) FindCourseMapObjFile((const char *) gObPakkunSfNsbtpName);
+    func_020e6488((Unk020e6488 **) (((u32 *) &gObPakkunSf)), (void *) v1, v2, (u32) 0);
+    func_020e6ab8((Unk020e6488 *) gObPakkunSf);
 }
 
 #pragma thumb off

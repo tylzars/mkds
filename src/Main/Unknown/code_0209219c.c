@@ -33,7 +33,7 @@ static inline u16 func_0209219c_inline(u32 n) {
 }
 
 void func_02092484(void) {
-    func_0209bef0(func_02092940, func_0209280c, func_02092928);
+    func_0209bef0(CreateBasabasa, func_0209280c, func_02092928);
 }
 
 void func_02092468(void) {

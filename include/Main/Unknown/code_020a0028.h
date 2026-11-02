@@ -29,7 +29,7 @@ typedef struct Unk020a0064 {
     /* 04 */ u16 mUnk_04;
 } Unk020a0064;
 
-void func_020a0294(void *a);
+void CreateAirship(void *a);
 void func_020a018c(void *a, Unk020a018c *p);
 void func_020a0064(Unk020a0064 *p);
 s32 func_020a0044(s32 a);

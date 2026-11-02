@@ -22,14 +22,14 @@ typedef struct Unk0209f800 {
     /* 04 */ u16 mUnk_04;
 } Unk0209f800;
 
-extern char data_usa_0216759c[];
-extern char data_usa_021675b0[];
-extern char data_usa_021675f8[];
-extern char data_usa_02167608[];
-extern void *data_usa_0217b188;
+extern char gChandelierNsbmdName[];
+extern char gChandelierNsbcaName[];
+extern char gTownMonteNsbmdName[];
+extern char gTownMonteNsbtpName[];
+extern void *gTownMonte;
 extern Unk020e71a0_98 *data_usa_0217b18c[19];
 
-void func_0209f650(void *a);
+void CreateChandelier(void *a);
 void *func_0209f698(void);
 void *func_0209f6b8(void);
 void func_0209f6d8(void *a, Unk0209f6d8 *p);

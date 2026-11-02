@@ -67,24 +67,26 @@ void func_020e4184(Unk020e1dc0 *a) {
         if (m[e->mUnk_158] == 0) {
             switch (e->mUnk_158) {
                 case 0:
-                    func_020ea588(&data_0217b7e8, (void *) FindCourseMapObjFile((const char *) data_0216c188), 0);
-                    func_02084968(data_0217b7e8, 0x3f, 2, 0x294a);
+                    func_020ea588(&gTestCylinder, (void *) FindCourseMapObjFile((const char *) gTestCylinderNsbmdName),
+                                  0);
+                    func_02084968(gTestCylinder, 0x3f, 2, 0x294a);
                     break;
                 case 1:
-                    func_020ea588(&data_0217b7d8, (void *) FindCourseMapObjFile((const char *) data_0216c19c), 0);
-                    func_02084968(data_0217b7d8, 0x3f, 2, 0x294a);
+                    func_020ea588(&gGearBlack, (void *) FindCourseMapObjFile((const char *) gGearBlackNsbmdName), 0);
+                    func_02084968(gGearBlack, 0x3f, 2, 0x294a);
                     break;
                 case 2:
-                    func_020ea588(&data_0217b7d4, (void *) FindCourseMapObjFile((const char *) data_0216c1b0), 0);
-                    func_02084968(data_0217b7d4, 0x3f, 2, 0x294a);
+                    func_020ea588(&gGearWhite, (void *) FindCourseMapObjFile((const char *) gGearWhiteNsbmdName), 0);
+                    func_02084968(gGearWhite, 0x3f, 2, 0x294a);
                     break;
                 case 3:
-                    func_020ea588(&data_0217b7ec, (void *) FindCourseMapObjFile((const char *) data_0216c1c4), 0);
-                    func_02084968(data_0217b7ec, 0x3f, 2, 0x294a);
+                    func_020ea588(&gRotaryRoom, (void *) FindCourseMapObjFile((const char *) gRotaryRoomNsbmdName), 0);
+                    func_02084968(gRotaryRoom, 0x3f, 2, 0x294a);
                     break;
                 case 4:
-                    func_020ea588(&data_0217b7e0, (void *) FindCourseMapObjFile((const char *) data_0216c1d8), 0);
-                    func_02084968(data_0217b7e0, 0x3f, 2, 0x294a);
+                    func_020ea588(&gRotaryBridge, (void *) FindCourseMapObjFile((const char *) gRotaryBridgeNsbmdName),
+                                  0);
+                    func_02084968(gRotaryBridge, 0x3f, 2, 0x294a);
                     break;
             }
             *p = 1;
@@ -95,19 +97,19 @@ void func_020e4184(Unk020e1dc0 *a) {
         e = a->mUnk_00[j];
         switch (e->mUnk_158) {
             case 0:
-                e->mUnk_140 = data_0217b7e8;
+                e->mUnk_140 = gTestCylinder;
                 break;
             case 1:
-                e->mUnk_140 = data_0217b7d8;
+                e->mUnk_140 = gGearBlack;
                 break;
             case 2:
-                e->mUnk_140 = data_0217b7d4;
+                e->mUnk_140 = gGearWhite;
                 break;
             case 3:
-                e->mUnk_140 = data_0217b7ec;
+                e->mUnk_140 = gRotaryRoom;
                 break;
             case 4:
-                e->mUnk_140 = data_0217b7e0;
+                e->mUnk_140 = gRotaryBridge;
                 break;
         }
     }
@@ -283,7 +285,7 @@ void func_020e3b4c(Unk020e3ef4 *a, void *b, u32 c) {
     a->mUnk_000.mUnk_28.mUnk_24.x = a->mUnk_000.mUnk_04.x >> 4;
     a->mUnk_000.mUnk_28.mUnk_24.y = a->mUnk_000.mUnk_04.y >> 4;
     a->mUnk_000.mUnk_28.mUnk_24.z = a->mUnk_000.mUnk_04.z >> 4;
-    p = (Unk020e1e98_12c *) data_0217b7cc;
+    p = (Unk020e1e98_12c *) gBridgeNsbca;
     p->mUnk_0c = a->mUnk_154;
     *p->mUnk_1c[p->mUnk_1a] = p->mUnk_0c;
     func_020ea8a8(a->mUnk_140, &a->mUnk_000.mUnk_28, &a->mUnk_000.mUnk_1c.x, c);

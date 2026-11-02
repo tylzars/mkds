@@ -497,11 +497,11 @@ u32 func_020911f4(void) {
 }
 
 u32 func_02091214(void) {
-    return func_0209bef0(func_0209166c, func_020915c0, func_02091654);
+    return func_0209bef0(CreateSmanBottom, func_020915c0, func_02091654);
 }
 
 u32 func_02091238(void) {
-    return func_0209bef0(func_0209179c, func_020916a0, func_02091784);
+    return func_0209bef0(CreateSmanTop, func_020916a0, func_02091784);
 }
 
 void func_0209125c(void) {
@@ -626,17 +626,17 @@ void func_020915c0(void *a, Unk020912a0 *b) {
     d[1] = v;
     d[2] = v;
     func_01ff9048(0x1b, d, 3);
-    func_0209bb2c(a, data_0217b0b4, b);
+    func_0209bb2c(a, gSmanBottom, b);
 }
 
 void func_02091654(void *a) {
-    func_0209bbd0(a, data_0217b0b4);
+    func_0209bbd0(a, gSmanBottom);
 }
 
-void func_0209166c(void *a) {
+void CreateSmanBottom(void *a) {
     void *p;
-    p = func_0209bd08(a, data_021665a0);
-    data_0217b0b4 = p;
+    p = func_0209bd08(a, gSmanBottomNsbmdName);
+    gSmanBottom = p;
     func_0209b940(p, 0x3f);
 }
 
@@ -654,16 +654,16 @@ void func_020916a0(void *a, Unk020912a0 *b) {
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
     func_02146d60(m, data_0215d4b4[((u16) b->mUnk_a4 >> 4) * 2], data_0215d4b4[((u16) b->mUnk_a4 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
-    func_0209bb2c(a, data_0217b0b8, b);
+    func_0209bb2c(a, gSmanTop, b);
 }
 
 void func_02091784(void *a) {
-    func_0209bbd0(a, data_0217b0b8);
+    func_0209bbd0(a, gSmanTop);
 }
 
-void func_0209179c(void *a) {
+void CreateSmanTop(void *a) {
     void *p;
-    p = func_0209bd08(a, data_021665b4);
-    data_0217b0b8 = p;
+    p = func_0209bd08(a, gSmanTopNsbmdName);
+    gSmanTop = p;
     func_0209b940(p, 0x3f);
 }

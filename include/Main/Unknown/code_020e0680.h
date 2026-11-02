@@ -61,13 +61,13 @@ typedef struct Unk020e246c {
     /* 0ac */ s32 mUnk_0ac;
 } Unk020e246c;
 
-// Object behind data_0217b7a0, data_0217b794, data_0217b7ac and data_0217b790.
+// Object behind gCarA, gTruckA, gBusA and gCarTire.
 typedef struct Unk0217b7a0 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ Unk0201290c *mUnk_04;
 } Unk0217b7a0;
 
-// Object a pointer at 0x12c of Unk020e1e98 points to (also behind data_0217b7cc).
+// Object a pointer at 0x12c of Unk020e1e98 points to (also behind gBridgeNsbca).
 typedef struct Unk020e1e98_12c {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ s32 mUnk_0c;

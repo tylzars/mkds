@@ -83,4 +83,4 @@ extern s32 data_0217c724;
 extern u16 data_0217c774;
 extern s32 data_0217c79c;
 extern s32 data_0217c7a0;
-extern void *data_0217c628;
+extern void *gDram;

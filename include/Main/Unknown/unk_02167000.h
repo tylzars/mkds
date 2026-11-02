@@ -3,17 +3,17 @@
 #include "types.h"
 
 // Objects whose layout isn't known yet.
-extern const char data_usa_02167418[];
-extern const char data_usa_0216745c[];
-extern const char data_usa_021674d4[];
-extern const char data_usa_021674e4[];
-extern const char data_usa_021674f4[];
-extern const char data_usa_02167504[];
-extern const char data_02167680[];
-extern const char data_02167878[];
-extern const char data_02167888[];
-extern const char data_021678cc[];
-extern const char data_021678dc[];
+extern const char gFireball2NsbmdName[];
+extern const char gPuddleNsbmdName[];
+extern const char gPicture1NsbmdName[];
+extern const char gPicture1NsbcaName[];
+extern const char gPicture2NsbmdName[];
+extern const char gPicture2NsbcaName[];
+extern const char gAirshipNsbmdName[];
+extern const char gBalloonNsbmdName[];
+extern const char gBalloonNsbtpName[];
+extern const char gShine16NsbmdName[];
+extern const char gShine16NsbtpName[];
 extern s32 data_usa_021679f8;
 extern u16 data_021679fc[3];
 extern u16 *data_02167a04[4];
@@ -21,11 +21,11 @@ extern Vec3 data_021676c4;
 extern Vec3 data_021676d0;
 extern char *data_021677fc[];
 extern char *data_02167820[];
-extern const char data_02167920[];
-extern const char data_02167930[];
+extern const char gSanboHNsbmdName[];
+extern const char gSanboBNsbmdName[];
 
 extern Vec3 data_02167974;
-extern const char data_021679e8[];
+extern const char gIronBallNsbmdName[];
 extern const char data_02167bf4[];
 extern const char data_02167c0c[];
 extern const char data_02167c24[];

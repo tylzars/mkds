@@ -55,9 +55,9 @@ static inline void func_0209f6d8_inline(Unk0209f6d8 *p) {
     }
 }
 
-void func_0209f650(void *a) {
-    func_0209be50(data_0217b1a4 = func_0209be84(a, data_usa_0216759c), data_usa_021675b0);
-    func_0209b940(data_0217b1a4, 0x3f);
+void CreateChandelier(void *a) {
+    func_0209be50(gChandelier = func_0209be84(a, gChandelierNsbmdName), gChandelierNsbcaName);
+    func_0209b940(gChandelier, 0x3f);
 }
 
 void *func_0209f698(void) {
@@ -112,7 +112,7 @@ void func_0209f800(Unk0209f800 *a) {
     for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != 0; i++) {
         p->mUnk_a4 = 0;
         p->mUnk_a8 = 0;
-        n = func_0209b634(data_usa_0217b188);
+        n = func_0209b634(gTownMonte);
         p->mUnk_a0 = func_0209f800_inline(n);
         r = func_020d22d0();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
@@ -150,14 +150,14 @@ void func_0209fb0c(void *a, Unk0209f6d8 *p) {
         func_01ff9048(0x19, h, 0xc);
     }
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
-    func_0209b688(data_usa_0217b188, p->mUnk_a0);
-    func_0209bbd0(a, data_usa_0217b188);
-    func_0209bb2c(a, data_usa_0217b188, p);
+    func_0209b688(gTownMonte, p->mUnk_a0);
+    func_0209bbd0(a, gTownMonte);
+    func_0209bb2c(a, gTownMonte, p);
 }
 
 void func_0209fbe4(Unk0209bc74 *a) {
     a->mUnk_14 = (void *) func_0209fc2c;
-    func_0209b940(data_usa_0217b188 = func_0209bc74(a, data_usa_021675f8, data_usa_02167608), 0x3f);
+    func_0209b940(gTownMonte = func_0209bc74(a, gTownMonteNsbmdName, gTownMonteNsbtpName), 0x3f);
 }
 
 void func_0209fc2c(void) {
@@ -203,7 +203,7 @@ void *func_0209fd74(void) {
 }
 
 void *func_0209fd94(void) {
-    return (void *) func_0209bf1c(func_020a0294, func_020a018c, 0);
+    return (void *) func_0209bf1c(CreateAirship, func_020a018c, 0);
 }
 
 static inline void func_0209fdb4_inline(Unk020a018c *p) {

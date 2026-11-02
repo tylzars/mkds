@@ -2,13 +2,13 @@
 
 #include "types.h"
 
-// Object behind data_0217b810; only the field at 0x6e is used here.
+// Object behind gJgShadow; only the field at 0x6e is used here.
 typedef struct Unk020e5348 {
     /* 000 */ u8 mUnk_000[0x6e];
     /* 06e */ u16 mUnk_06e;
 } Unk020e5348;
 
-extern Unk020e5348 *data_0217b810;
+extern Unk020e5348 *gJgShadow;
 
 // Object behind Unk020e52bc::mUnk_004: byte offsets at 0x08 and 0x0c, a word at 0x1c.
 typedef struct Unk020e52bc_4 {
@@ -33,13 +33,13 @@ typedef struct Unk020e52bc_c {
     /* 008 */ u8 mUnk_008[4];
 } Unk020e52bc_c;
 
-// Object behind data_0217b80c; only the field at 0x04 is used here.
+// Object behind gObjShadow; only the field at 0x04 is used here.
 typedef struct Unk020e52bc {
     /* 000 */ u32 mUnk_000;
     /* 004 */ Unk020e52bc_4 *mUnk_004;
 } Unk020e52bc;
 
-extern Unk020e52bc *data_0217b80c;
+extern Unk020e52bc *gObjShadow;
 
 // Object behind data_0217b814.
 typedef struct Unk020e53ac {

@@ -65,13 +65,13 @@ u32 func_020a9de4(Unk020a9224 *p, void *a, u8 *b, u8 *c) {
     return (u8) y;
 }
 
-void func_020a9db0(void *a) {
-    data_0217b230 = func_0209bd08(a, data_021679e8);
-    func_0209b940(data_0217b230, 0x3f);
+void CreateIronBall(void *a) {
+    gIronBall = func_0209bd08(a, gIronBallNsbmdName);
+    func_0209b940(gIronBall, 0x3f);
 }
 
 void func_020a9d98(void *a) {
-    func_0209bbd0(a, data_0217b230);
+    func_0209bbd0(a, gIronBall);
 }
 
 void func_020a9cd4(void *a, Unk020a9268 *p) {
@@ -88,5 +88,5 @@ void func_020a9cd4(void *a, Unk020a9268 *p) {
         func_01ff9048(0x1a, v1, 9);
     }
     func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
-    func_0209bb2c(a, data_0217b230, p);
+    func_0209bb2c(a, gIronBall, p);
 }

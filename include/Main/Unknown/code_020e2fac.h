@@ -7,4 +7,4 @@
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_020e2fac(void);
+void CreateChoropu(void);

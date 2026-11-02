@@ -102,13 +102,13 @@ u32 func_020a6ae4(Unk020a5958 *p, Unk0206bcb0 *o, u8 *a, u8 *b) {
     return v2;
 }
 
-void func_020a6aa8(void *a) {
-    data_0217b224 = func_0209bc74(a, data_021678cc, data_021678dc);
-    func_0209b940(data_0217b224, 0x3f);
+void CreateShine16(void *a) {
+    gShine16 = func_0209bc74(a, gShine16NsbmdName, gShine16NsbtpName);
+    func_0209b940(gShine16, 0x3f);
 }
 
 void func_020a6a90(void *a) {
-    func_0209bbd0(a, data_0217b224);
+    func_0209bbd0(a, gShine16);
 }
 
 void func_020a69b4(void *a, Unk020a5958 *p) {
@@ -130,9 +130,9 @@ void func_020a69b4(void *a, Unk020a5958 *p) {
         func_01ff9048(0x1b, &s, 3);
     }
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
-    func_0209b7a0(data_0217b224, p->mUnk_b8, 0);
-    func_0209b688(data_0217b224, (u16) p->mUnk_b0);
-    func_0209bb2c(a, data_0217b224, p);
+    func_0209b7a0(gShine16, p->mUnk_b8, 0);
+    func_0209b688(gShine16, (u16) p->mUnk_b0);
+    func_0209bb2c(a, gShine16, p);
 }
 
 u32 func_020a69a0(void) {
@@ -215,8 +215,8 @@ void func_020a5958(void *a, Unk020a5958 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mUnk_b0++;
-                if (p->mUnk_b0 >= func_0209b634(data_0217b224)) {
-                    p->mUnk_b0 -= func_0209b634(data_0217b224);
+                if (p->mUnk_b0 >= func_0209b634(gShine16)) {
+                    p->mUnk_b0 -= func_0209b634(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {
@@ -246,8 +246,8 @@ void func_020a5958(void *a, Unk020a5958 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mUnk_b0++;
-                if (p->mUnk_b0 >= func_0209b634(data_0217b224)) {
-                    p->mUnk_b0 -= func_0209b634(data_0217b224);
+                if (p->mUnk_b0 >= func_0209b634(gShine16)) {
+                    p->mUnk_b0 -= func_0209b634(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {
@@ -266,8 +266,8 @@ void func_020a5958(void *a, Unk020a5958 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mUnk_b0++;
-                if (p->mUnk_b0 >= func_0209b634(data_0217b224)) {
-                    p->mUnk_b0 -= func_0209b634(data_0217b224);
+                if (p->mUnk_b0 >= func_0209b634(gShine16)) {
+                    p->mUnk_b0 -= func_0209b634(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {
@@ -292,8 +292,8 @@ void func_020a5958(void *a, Unk020a5958 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mUnk_b0++;
-                if (p->mUnk_b0 >= func_0209b634(data_0217b224)) {
-                    p->mUnk_b0 -= func_0209b634(data_0217b224);
+                if (p->mUnk_b0 >= func_0209b634(gShine16)) {
+                    p->mUnk_b0 -= func_0209b634(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {
@@ -341,8 +341,8 @@ void func_020a5958(void *a, Unk020a5958 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mUnk_b0++;
-                if (p->mUnk_b0 >= func_0209b634(data_0217b224)) {
-                    p->mUnk_b0 -= func_0209b634(data_0217b224);
+                if (p->mUnk_b0 >= func_0209b634(gShine16)) {
+                    p->mUnk_b0 -= func_0209b634(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {
@@ -419,8 +419,8 @@ void func_020a5958(void *a, Unk020a5958 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mUnk_b0++;
-                if (p->mUnk_b0 >= func_0209b634(data_0217b224)) {
-                    p->mUnk_b0 -= func_0209b634(data_0217b224);
+                if (p->mUnk_b0 >= func_0209b634(gShine16)) {
+                    p->mUnk_b0 -= func_0209b634(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {
@@ -445,8 +445,8 @@ void func_020a5958(void *a, Unk020a5958 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mUnk_b0++;
-                if (p->mUnk_b0 >= func_0209b634(data_0217b224)) {
-                    p->mUnk_b0 -= func_0209b634(data_0217b224);
+                if (p->mUnk_b0 >= func_0209b634(gShine16)) {
+                    p->mUnk_b0 -= func_0209b634(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {

@@ -63,7 +63,7 @@ void func_020ffeb8(void *a, Unk020ffb1c *e, void *c, s32 d) {
     q->mUnk_24.x = e->mUnk_00.mUnk_04.x >> 4;
     q->mUnk_24.y = e->mUnk_00.mUnk_04.y >> 4;
     q->mUnk_24.z = e->mUnk_00.mUnk_04.z >> 4;
-    func_020ea8a8(data_0217c628, q, &e->mUnk_00.mUnk_1c, d);
+    func_020ea8a8(gDram, q, &e->mUnk_00.mUnk_1c, d);
 }
 
 void func_020ffdd4(Unk020e6fd4 *v1) {

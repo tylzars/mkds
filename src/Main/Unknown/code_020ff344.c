@@ -24,9 +24,9 @@
 
 #pragma thumb on
 
-void func_020ffbd4(void) {
-    func_020ea588(&data_0217c628, (void *) FindCourseMapObjFile((const char *) data_0216c770), 0);
-    func_02084968(data_0217c628, 0x3f, 2, 0x294a);
+void CreateDram(void) {
+    func_020ea588(&gDram, (void *) FindCourseMapObjFile((const char *) gDramNsbmdName), 0);
+    func_02084968(gDram, 0x3f, 2, 0x294a);
 }
 
 void func_020ffb1c(Unk020ffb1c *a, struct Unk020fa294 *b) {

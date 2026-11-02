@@ -7,4 +7,4 @@
 #include "Main/Unknown/unk_0216b000.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_020de438(void);
+void CreateEarthenPipe1AndEarthenPipe2(void);

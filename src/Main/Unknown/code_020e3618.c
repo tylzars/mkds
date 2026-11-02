@@ -32,12 +32,12 @@ s32 func_020e3af0(u32 a) {
 void func_020e3a7c(void) {
     void *p;
 
-    p = (void *) FindCourseMapObjFile((const char *) data_0216c148);
-    func_020ea588(&data_0217b7d0, p, 0);
-    func_020ea4bc(0, data_0217b7d0, &data_0217b7cc, p, (void *) FindCourseMapObjFile((const char *) data_0216c158));
-    ((Unk020e1dc0 *) *(void **) data_0217b7c4)->mUnk_2c = func_02087d0c(data_0217b7cc);
-    func_02084968(data_0217b7d0, 0x3f, 2, 0x294a);
-    func_020e1dc0(*(void **) data_0217b7c4, data_0217b7d0);
+    p = (void *) FindCourseMapObjFile((const char *) gBridgeNsbmdName);
+    func_020ea588(&gBridge, p, 0);
+    func_020ea4bc(0, gBridge, &gBridgeNsbca, p, (void *) FindCourseMapObjFile((const char *) gBridgeNsbcaName));
+    ((Unk020e1dc0 *) *(void **) data_0217b7c4)->mUnk_2c = func_02087d0c(gBridgeNsbca);
+    func_02084968(gBridge, 0x3f, 2, 0x294a);
+    func_020e1dc0(*(void **) data_0217b7c4, gBridge);
 }
 
 void func_020e38a0(Unk020e38a0 *a, struct Unk020fa294 *b) {
@@ -119,7 +119,7 @@ void *func_020e373c(void) {
 }
 
 void func_020e3724(void) {
-    func_020e6a18(data_0217b7b8);
+    func_020e6a18(gChoropu);
 }
 
 void func_020e3618(s32 a, Unk020e1e98 *b, s32 c, u16 d) {
@@ -127,21 +127,21 @@ void func_020e3618(s32 a, Unk020e1e98 *b, s32 c, u16 d) {
 
     switch (b->mUnk_000.mUnk_80.mUnk_0e) {
         case 4:
-            data_0217b7b8->mUnk_18 = 1;
+            gChoropu->mUnk_18 = 1;
             p = func_020e6cf8(&b->mUnk_000.mUnk_04);
-            func_020e67c4(data_0217b7b8, p, &b->mUnk_000.mUnk_1c, 0, d);
+            func_020e67c4(gChoropu, p, &b->mUnk_000.mUnk_1c, 0, d);
             break;
         case 5:
             break;
         case 6:
         case 7:
-            data_0217b7b8->mUnk_18 = 1;
+            gChoropu->mUnk_18 = 1;
             p = func_020e6cf8(&b->mUnk_000.mUnk_04);
-            func_020e66e4(data_0217b7b8, p, b->mUnk_0b4.mUnk_04, &b->mUnk_000.mUnk_1c, 0, d);
+            func_020e66e4(gChoropu, p, b->mUnk_0b4.mUnk_04, &b->mUnk_000.mUnk_1c, 0, d);
             break;
         default:
-            data_0217b7b8->mUnk_18 = 0;
+            gChoropu->mUnk_18 = 0;
             p = func_020e6cf8(&b->mUnk_000.mUnk_04);
-            func_020e67c4(data_0217b7b8, p, &b->mUnk_000.mUnk_1c, 0, d);
+            func_020e67c4(gChoropu, p, &b->mUnk_000.mUnk_1c, 0, d);
     }
 }

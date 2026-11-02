@@ -121,7 +121,7 @@ void func_0209c114(void) {
 }
 
 void func_0209c134(void) {
-    func_0209bf1c(func_0209c878, func_0209c7a8, 0);
+    func_0209bf1c(CreateBound, func_0209c7a8, 0);
 }
 
 void func_0209c154(void) {
@@ -154,7 +154,7 @@ void func_0209c220(Unk02100094 *a, Unk0209c220 *p) {
     if (p->mUnk_0f8.mUnk_08 != 0xffff) {
         func_020d8cc8(&p->mUnk_0f8);
         func_020d8bf8(&p->mUnk_0f8, &p->mUnk_000.mUnk_04, &p->mUnk_000.mUnk_10);
-        v = func_0209b634(data_usa_0217b164);
+        v = func_0209b634(gBound);
         p->mUnk_0a0 += 1;
         if (p->mUnk_0a0 >= v) {
             p->mUnk_0a0 = 1;
@@ -289,7 +289,7 @@ void func_0209c5b8(Unk02100094 *a, Unk0209c220 *p) {
         func_01ff9048(0x1b, &v[1], 3);
     }
     func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
-    func_0209bb2c(a, data_usa_0217b15c, p);
+    func_0209bb2c(a, gBerry, p);
 }
 
 void func_0209c678(Unk02100094 *a, Unk0209c220 *p) {
@@ -312,16 +312,16 @@ void func_0209c678(Unk02100094 *a, Unk0209c220 *p) {
         func_01ff9048(0x1b, &v[1], 3);
     }
     func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
-    func_0209bb2c(a, data_usa_0217b160, p);
+    func_0209bb2c(a, gCream, p);
 }
 
 void func_0209c738(void *a) {
-    data_usa_0217b15c = func_0209be84(a, data_usa_021672fc);
-    func_02103554(data_usa_02167308);
+    gBerry = func_0209be84(a, gBerryNsbmdName);
+    func_02103554(gCreamEffectNsbmdName);
 }
 
 void func_0209c770(void *a) {
-    data_usa_0217b160 = func_0209be84(a, data_usa_0216731c);
+    gCream = func_0209be84(a, gCreamNsbmdName);
     func_02103554(data_usa_02167328);
 }
 
@@ -345,13 +345,13 @@ void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p) {
         func_01ff9048(0x1b, &v[1], 3);
     }
     func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
-    func_0209b688(data_usa_0217b164, p->mUnk_0a0);
-    func_0209bb2c(a, data_usa_0217b164, p);
+    func_0209b688(gBound, p->mUnk_0a0);
+    func_0209bb2c(a, gBound, p);
 }
 
-void func_0209c878(void *a) {
-    data_usa_0217b164 = func_0209be84(a, data_usa_0216733c);
-    func_0209bde8(data_usa_0217b164, data_usa_02167348);
+void CreateBound(void *a) {
+    gBound = func_0209be84(a, gBoundNsbmdName);
+    func_0209bde8(gBound, gBoundNsbtpName);
 }
 
 s32 func_0209c8b0(Unk0209c220 *p, Vec3 *a, s32 b, Vec3 *c) {
@@ -497,7 +497,7 @@ void func_0209cef0(void) {
 }
 
 void func_0209cf10(void) {
-    func_0209bf1c(func_0209d5ec, func_0209d3fc, func_0209d5e8);
+    func_0209bf1c(CreateSunAndSunLOD, func_0209d3fc, func_0209d5e8);
 }
 
 static inline s32 func_0209cf34_inline(void) {
@@ -631,7 +631,7 @@ void func_0209cf34(Unk02100094 *a, Unk0209cf34 *p) {
         p->mUnk_0b4 = t;
     }
     p->mUnk_0b2 += p->mUnk_0b4 >> 12;
-    if (p->mUnk_0b2 >= func_0209b758(data_usa_0217b16c)) {
+    if (p->mUnk_0b2 >= func_0209b758(gSun)) {
         p->mUnk_0b2 = 0;
     }
 }

@@ -32,7 +32,7 @@ void func_020975ac(void);
 void func_020975ec(void *a, Unk020975ec *p);
 void func_020979c8(Unk020e6fd4 *a);
 void func_02097d80(void *a, Unk020975ec *p);
-void func_02097e84(void *a);
+void CreateFlipper(void *a);
 u32 func_02097ed0(Unk020975ec *p, Vec3 *a, s32 b, Vec3 *c);
 u32 func_020980ec(Unk020975ec *p, Unk0206bcb0 *q, void *b, u8 *c);
 void func_02098268(Unk020975ec *p);

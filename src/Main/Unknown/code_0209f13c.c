@@ -92,7 +92,7 @@ void func_0209f338(void *a, Unk0209f1c8 *b) {
         }
     }
     n = b->mUnk_a0 + 1;
-    if (n >= func_0209b758(data_0217b1a4)) {
+    if (n >= func_0209b758(gChandelier)) {
         n = 0;
     }
     b->mUnk_a0 = n;
@@ -102,16 +102,16 @@ void func_0209f338(void *a, Unk0209f1c8 *b) {
 }
 
 void *func_0209f318(void) {
-    return (void *) func_0209bf1c(func_0209f650, func_0209f5cc, 0);
+    return (void *) func_0209bf1c(CreateChandelier, func_0209f5cc, 0);
 }
 
 void *func_0209f2f8(void) {
     return (void *) func_0209bf48(func_0209f514, func_0209f338, 0);
 }
 
-void func_0209f2b0(void *a) {
-    func_0209be1c(data_usa_0217b180 = func_0209be84(a, data_usa_02167548), data_usa_02167558);
-    func_0209b940(data_usa_0217b180, 0x3f);
+void CreateRainStar(void *a) {
+    func_0209be1c(gRainStar = func_0209be84(a, gRainStarNsbmdName), gRainStarNsbtaName);
+    func_0209b940(gRainStar, 0x3f);
 }
 
 void func_0209f1c8(void *a, Unk0209f1c8 *b) {
@@ -131,14 +131,14 @@ void func_0209f1c8(void *a, Unk0209f1c8 *b) {
         func_01ff9048(0x1a, m, 9);
     }
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
-    func_0209b6c8(data_usa_0217b180, b->mUnk_a0);
-    func_0209bb2c(a, data_usa_0217b180, b);
+    func_0209b6c8(gRainStar, b->mUnk_a0);
+    func_0209bb2c(a, gRainStar, b);
 }
 
 void func_0209f178(void *a, Unk0209f1c8 *b) {
     u16 n;
 
-    n = func_0209b6ec(data_usa_0217b180);
+    n = func_0209b6ec(gRainStar);
     b->mUnk_a0 += 1;
     if (b->mUnk_a0 >= n) {
         b->mUnk_a0 = 0;
@@ -147,7 +147,7 @@ void func_0209f178(void *a, Unk0209f1c8 *b) {
 }
 
 void *func_0209f158(void) {
-    return (void *) func_0209bf1c(func_0209f2b0, func_0209f1c8, 0);
+    return (void *) func_0209bf1c(CreateRainStar, func_0209f1c8, 0);
 }
 
 void *func_0209f13c(void) {

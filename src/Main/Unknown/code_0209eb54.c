@@ -11,13 +11,13 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_02167000.h"
 
-void func_0209f0a8(void *a) {
-    data_usa_0217b178 = func_0209be84(a, data_usa_021674d4);
-    func_0209be50(data_usa_0217b178, data_usa_021674e4);
-    data_usa_0217b17c = func_0209be84(a, data_usa_021674f4);
-    func_0209be50(data_usa_0217b17c, data_usa_02167504);
-    func_0209b940(data_usa_0217b178, 0x3f);
-    func_0209b940(data_usa_0217b17c, 0x3f);
+void CreatePicture1AndPicture2(void *a) {
+    gPicture1 = func_0209be84(a, gPicture1NsbmdName);
+    func_0209be50(gPicture1, gPicture1NsbcaName);
+    gPicture2 = func_0209be84(a, gPicture2NsbmdName);
+    func_0209be50(gPicture2, gPicture2NsbcaName);
+    func_0209b940(gPicture1, 0x3f);
+    func_0209b940(gPicture2, 0x3f);
 }
 
 void func_0209efb4(void *a, Unk0209ec80 *b) {
@@ -32,12 +32,12 @@ void func_0209efb4(void *a, Unk0209ec80 *b) {
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
     switch (b->mUnk_a4) {
         case 0:
-            func_0209b77c(data_usa_0217b178, b->mUnk_a0);
-            func_0209bb2c(a, data_usa_0217b178, b);
+            func_0209b77c(gPicture1, b->mUnk_a0);
+            func_0209bb2c(a, gPicture1, b);
             break;
         case 1:
-            func_0209b77c(data_usa_0217b17c, b->mUnk_a0);
-            func_0209bb2c(a, data_usa_0217b17c, b);
+            func_0209b77c(gPicture2, b->mUnk_a0);
+            func_0209bb2c(a, gPicture2, b);
             break;
     }
 }
@@ -60,7 +60,7 @@ void func_0209ec80(void *a, Unk0209ec80 *b) {
         case 2:
             if (b->mUnk_a4 == 0) {
                 n = b->mUnk_a0 + 1;
-                if (n >= func_0209b758(data_usa_0217b178)) {
+                if (n >= func_0209b758(gPicture1)) {
                     n = 0;
                 }
                 b->mUnk_a0 = n;
@@ -113,7 +113,7 @@ void func_0209ec80(void *a, Unk0209ec80 *b) {
                 }
             } else if (b->mUnk_a4 == 1) {
                 n = b->mUnk_a0 + 1;
-                if (n >= func_0209b758(data_usa_0217b17c)) {
+                if (n >= func_0209b758(gPicture2)) {
                     n = 0;
                 }
                 b->mUnk_a0 = n;
@@ -146,19 +146,19 @@ void func_0209ec80(void *a, Unk0209ec80 *b) {
 }
 
 u32 func_0209ec60(void) {
-    return func_0209bf1c(func_0209f0a8, func_0209efb4, 0);
+    return func_0209bf1c(CreatePicture1AndPicture2, func_0209efb4, 0);
 }
 
 u32 func_0209ec44(void) {
     return func_0209bf48(0, func_0209ec80, 0);
 }
 
-void func_0209ec18(void *a) {
-    data_usa_0217b174 = func_0209bd08(a, data_usa_0216745c);
+void CreatePuddle(void *a) {
+    gPuddle = func_0209bd08(a, gPuddleNsbmdName);
 }
 
 void func_0209ec00(void *a) {
-    func_0209bbd0(a, data_usa_0217b174);
+    func_0209bbd0(a, gPuddle);
 }
 
 void func_0209eb54(void *a, Unk0209ec80 *b) {
@@ -179,5 +179,5 @@ void func_0209eb54(void *a, Unk0209ec80 *b) {
     func_01ff9048(0x1c, &v, 3);
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
     func_01ff9048(0x1a, &b->mUnk_00.mUnk_28, 9);
-    func_0209bb2c(a, data_usa_0217b174, b);
+    func_0209bb2c(a, gPuddle, b);
 }

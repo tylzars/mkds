@@ -10,7 +10,7 @@ typedef struct Unk020ea670 {
     /* 004 */ Unk0201290c *mUnk_004;
 } Unk020ea670;
 
-extern Unk020ea670 *data_0217bbf8;
+extern Unk020ea670 *gWoodbox1;
 
 // First argument of func_020ea868.
 typedef struct Unk020ea868 {
@@ -72,7 +72,7 @@ void func_020eb2a0(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, Vec3 
 void func_020eb3f0(Vec3 *param_1, Vec3 *param_2, s32 param_3, Vec3 *param_4);
 void func_020eb498(Unk020ebef8 *param_1, Unk020eb498 *param_2);
 void func_020eb720(void);
-void func_020eb72c(void);
+void CreateWoodbox1(void);
 u32 func_020eb760(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4);
 u32 func_020eb7e0(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4);
 void func_020eb8f8(Unk020ebef8 *param_1);

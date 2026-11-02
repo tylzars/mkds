@@ -55,9 +55,9 @@ u8 func_020a7f18(Unk020a7f18 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
     return d;
 }
 
-void func_020a7eb4(void *a) {
-    data_0217b228 = func_0209bd08(a, data_02167920);
-    data_0217b22c = func_0209bd08(a, data_02167930);
-    func_0209b940(data_0217b228, 0x3f);
-    func_0209b940(data_0217b22c, 0x3f);
+void CreateSanboHAndSanboB(void *a) {
+    gSanboH = func_0209bd08(a, gSanboHNsbmdName);
+    gSanboB = func_0209bd08(a, gSanboBNsbmdName);
+    func_0209b940(gSanboH, 0x3f);
+    func_0209b940(gSanboB, 0x3f);
 }

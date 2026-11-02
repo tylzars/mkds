@@ -41,10 +41,10 @@ void func_020a3f18(u32 arg0) {
 }
 
 void func_020a3eb8(Unk020a3eb8 *a) {
-    data_0217b204 = func_0209bc74(a, data_02167878, data_02167888);
-    func_0209b940(data_0217b204, 0x3f);
-    func_0209b9a4(data_0217b204, 0x1a);
-    func_0209b8ac(data_0217b204, 0);
+    gBalloon = func_0209bc74(a, gBalloonNsbmdName, gBalloonNsbtpName);
+    func_0209b940(gBalloon, 0x3f);
+    func_0209b9a4(gBalloon, 0x1a);
+    func_0209b8ac(gBalloon, 0);
     a->mUnk_1c = 1;
 }
 
@@ -58,7 +58,7 @@ void func_020a3e38(void *p) {
     data_0217b208.x = g->mUnk_024.x >> 3;
     data_0217b208.y = g->mUnk_024.y >> 3;
     data_0217b208.z = g->mUnk_024.z >> 3;
-    func_0209bbd0(p, data_0217b204);
+    func_0209bbd0(p, gBalloon);
 }
 
 void func_020a3948(void *p, Unk020a2fe4 *a) {
@@ -123,9 +123,9 @@ void func_020a3948(void *p, Unk020a2fe4 *a) {
             g0[2] = t;
             func_01ff9048(0x1b, g0, 3);
         }
-        func_0209b940(data_0217b204, func_020d3c44());
-        func_0209b688(data_0217b204, a->mUnk_a8);
-        func_0209bb2c(p, data_0217b204, a);
+        func_0209b940(gBalloon, func_020d3c44());
+        func_0209b688(gBalloon, a->mUnk_a8);
+        func_0209bb2c(p, gBalloon, a);
     } else if (n > 0) {
         m = a->mUnk_00.mUnk_78 & ~0xc000001f;
         if (m < 0x2710) {
@@ -168,9 +168,9 @@ void func_020a3948(void *p, Unk020a2fe4 *a) {
             h[1] = 0xf66;
             h[2] = 0;
             func_01ff9048(0x1c, h, 3);
-            func_0209b940(data_0217b204, func_020d3c44());
-            func_0209b688(data_0217b204, e->mUnk_a8);
-            func_0209bb2c(p, data_0217b204, a);
+            func_0209b940(gBalloon, func_020d3c44());
+            func_0209b688(gBalloon, e->mUnk_a8);
+            func_0209bb2c(p, gBalloon, a);
             w2 = 1;
             func_01ff9048(0x12, &w2, 1);
         }
