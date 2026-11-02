@@ -12,11 +12,11 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_0209b1fc(void *a) {
-    data_usa_0217b158 = func_0209bc74(a, "crab.nsbmd", "crab.nsbtp");
-    data_usa_0217b154 = func_0209bc74(a, "crab_hand.nsbmd", "crab_hand.nsbtp");
-    func_0209b940(data_usa_0217b158, 0x3f);
-    func_0209b940(data_usa_0217b154, 0x3f);
+void CreateCrabAndCrabHand(void *a) {
+    gCrab = func_0209bc74(a, "crab.nsbmd", "crab.nsbtp");
+    gCrabHand = func_0209bc74(a, "crab_hand.nsbmd", "crab_hand.nsbtp");
+    func_0209b940(gCrab, 0x3f);
+    func_0209b940(gCrabHand, 0x3f);
 }
 
 u8 func_0209b270(Unk0209a7dc *a, Unk0206bcb0 *b, u8 *c, u8 *d) {

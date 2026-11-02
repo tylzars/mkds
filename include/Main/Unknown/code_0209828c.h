@@ -41,10 +41,10 @@ typedef struct Unk020982d4 {
 } Unk020982d4;
 
 extern Unk020e6fd4 *data_usa_0217b0dc;
-extern Unk0209bc74 *data_usa_0217b0e0;
-extern void *data_usa_0217b0e4;
+extern Unk0209bc74 *gPakkunMouth;
+extern void *gPakkunZHead;
 extern void *data_usa_0217b0e8;
-extern void *data_usa_0217b0ec;
+extern void *gPakkunBody;
 extern Unk020982d4 *data_usa_0217b0f0;
 extern Unk020982d4 *data_usa_0217b0f4;
 
@@ -56,12 +56,12 @@ void func_020983c4(void *a, Unk020983c4 *p);
 void func_0209886c(void);
 void func_02098954(void *a, Unk020983c4 *p);
 void func_020989fc(void *a);
-void func_02098a14(void *a);
+void CreatePakkunBody(void *a);
 void func_02098a58(void *a, Unk020983c4 *p);
 void func_02098b1c(void *a);
-void func_02098b34(void *a);
+void CreatePakkunZHead(void *a);
 void func_02098b68(void *a, Unk020983c4 *p);
-void func_02098d04(void *a);
+void CreatePakkunMouth(void *a);
 void func_02098d4c(Unk020983c4 *p);
 void func_02098f18(Unk020e0144 *a, s32 b);
 void *func_02099004(void);

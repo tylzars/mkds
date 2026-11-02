@@ -29,20 +29,20 @@ void *func_0209828c(void) {
 }
 
 void *func_020982d4(void) {
-    data_usa_0217b0f0 = (Unk020982d4 *) func_0209bef0(func_02098b34, func_02098a58, func_02098b1c);
+    data_usa_0217b0f0 = (Unk020982d4 *) func_0209bef0(CreatePakkunZHead, func_02098a58, func_02098b1c);
     data_usa_0217b0f0->mUnk_1c = 1;
     func_020d49d8(&data_usa_0217b0f0);
     return data_usa_0217b0f0;
 }
 
 void *func_02098328(void) {
-    data_usa_0217b0e8 = (void *) func_0209bef0(func_02098a14, func_02098954, func_020989fc);
+    data_usa_0217b0e8 = (void *) func_0209bef0(CreatePakkunBody, func_02098954, func_020989fc);
     func_020d49d8(&data_usa_0217b0e8);
     return data_usa_0217b0e8;
 }
 
 void *func_02098374(void) {
-    data_usa_0217b0f4 = (Unk020982d4 *) func_0209bf1c(func_02098d04, func_02098b68, 0);
+    data_usa_0217b0f4 = (Unk020982d4 *) func_0209bf1c(CreatePakkunMouth, func_02098b68, 0);
     data_usa_0217b0f4->mUnk_1c = 1;
     func_020d49d8(&data_usa_0217b0f4);
     return data_usa_0217b0f4;
@@ -195,10 +195,10 @@ void func_0209886c(void) {
         return;
     }
     for (i = 0; i < data_usa_0217b0dc->mUnk_04 && (o = (Unk020983c4 *) data_usa_0217b0dc->mUnk_00[i]) != 0; i++) {
-        if (func_0209b758(data_usa_0217b0e0) - 1 > 0) {
-            f = 0.5f + (float) ((func_0209b758(data_usa_0217b0e0) - 1) << 12);
+        if (func_0209b758(gPakkunMouth) - 1 > 0) {
+            f = 0.5f + (float) ((func_0209b758(gPakkunMouth) - 1) << 12);
         } else {
-            f = (float) ((func_0209b758(data_usa_0217b0e0) - 1) << 12) - 0.5f;
+            f = (float) ((func_0209b758(gPakkunMouth) - 1) << 12) - 0.5f;
         }
         o->mUnk_0a4 = 0;
         o->mUnk_0a8 = 0x1000;
@@ -225,17 +225,17 @@ void func_02098954(void *a, Unk020983c4 *p) {
     v[2] = d;
     func_01ff9048(0x1b, v, 3);
     func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
-    func_0209bb2c(a, data_usa_0217b0ec, p);
+    func_0209bb2c(a, gPakkunBody, p);
 }
 
 void func_020989fc(void *a) {
-    func_0209bbd0(a, data_usa_0217b0ec);
+    func_0209bbd0(a, gPakkunBody);
 }
 
-void func_02098a14(void *a) {
-    data_usa_0217b0ec = func_0209bd08(a, "PakkunBody.nsbmd");
-    func_0209b940(data_usa_0217b0ec, 0x3f);
-    func_0209b9a4(data_usa_0217b0ec, 0x1f);
+void CreatePakkunBody(void *a) {
+    gPakkunBody = func_0209bd08(a, "PakkunBody.nsbmd");
+    func_0209b940(gPakkunBody, 0x3f);
+    func_0209b9a4(gPakkunBody, 0x1f);
 }
 
 void func_02098a58(void *a, Unk020983c4 *p) {
@@ -255,17 +255,17 @@ void func_02098a58(void *a, Unk020983c4 *p) {
     f[2] = t;
     func_01ff9048(0x1b, f, 3);
     func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
-    func_0209b940(data_usa_0217b0e4, p->mUnk_0a0);
-    func_0209bb2c(a, data_usa_0217b0e4, p);
+    func_0209b940(gPakkunZHead, p->mUnk_0a0);
+    func_0209bb2c(a, gPakkunZHead, p);
 }
 
 void func_02098b1c(void *a) {
-    func_0209bbd0(a, data_usa_0217b0e4);
+    func_0209bbd0(a, gPakkunZHead);
 }
 
-void func_02098b34(void *a) {
-    data_usa_0217b0e4 = func_0209bd08(a, "PakkunZHead.nsbmd");
-    func_0209b9a4(data_usa_0217b0e4, 0x1e);
+void CreatePakkunZHead(void *a) {
+    gPakkunZHead = func_0209bd08(a, "PakkunZHead.nsbmd");
+    func_0209b9a4(gPakkunZHead, 0x1e);
 }
 
 void func_02098b68(void *a, Unk020983c4 *p) {
@@ -299,15 +299,15 @@ void func_02098b68(void *a, Unk020983c4 *p) {
     g[2] = t;
     func_01ff9048(0x1b, g, 3);
     func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
-    func_0209b940(data_usa_0217b0e0, p->mUnk_0a0);
-    func_0209b77c(data_usa_0217b0e0, p->mUnk_0a4 >> 12);
-    func_0209bb2c(a, data_usa_0217b0e0, p);
+    func_0209b940(gPakkunMouth, p->mUnk_0a0);
+    func_0209b77c(gPakkunMouth, p->mUnk_0a4 >> 12);
+    func_0209bb2c(a, gPakkunMouth, p);
 }
 
-void func_02098d04(void *a) {
-    data_usa_0217b0e0 = func_0209be84(a, "PakkunMouth.nsbmd");
-    func_0209be50(data_usa_0217b0e0, "PakkunMouth.nsbca");
-    func_0209b9a4(data_usa_0217b0e0, 0x1f);
+void CreatePakkunMouth(void *a) {
+    gPakkunMouth = func_0209be84(a, "PakkunMouth.nsbmd");
+    func_0209be50(gPakkunMouth, "PakkunMouth.nsbca");
+    func_0209b9a4(gPakkunMouth, 0x1f);
 }
 
 void func_02098d4c(Unk020983c4 *p) {

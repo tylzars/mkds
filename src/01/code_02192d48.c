@@ -18,11 +18,11 @@ void func_ov001_02192e10(Unk02188950 *a) {
     func_02146dfc(m, &a->mUnk_000.mUnk_28.mUnk_00.x, &a->mUnk_000.mUnk_28.mUnk_00.x);
 }
 
-void func_ov001_02192dd4(Unk0219b478 *a) {
-    data_ov001_021a9bcc = func_ov001_0219b478(a, "StopSign.nsbmd");
-    func_0209b940(data_ov001_021a9bcc, 0x3f);
-    func_0209ba08(data_ov001_021a9bcc, 2);
-    func_020849a0(data_ov001_021a9bcc->mUnk_10, 0x294a);
+void LoadStopSign(Unk0219b478 *a) {
+    gStopSign = func_ov001_0219b478(a, "StopSign.nsbmd");
+    func_0209b940(gStopSign, 0x3f);
+    func_0209ba08(gStopSign, 2);
+    func_020849a0(gStopSign->mUnk_10, 0x294a);
 }
 
 void func_ov001_02192d7c(void *a, Unk02192d7c *b) {
@@ -33,7 +33,7 @@ void func_ov001_02192d7c(void *a, Unk02192d7c *b) {
     b->mUnk_54 = b->mUnk_0c >> 4;
     func_01ff9048(0x19, b->mUnk_28, 0xc);
     func_01ff9048(0x1b, b->mUnk_1c, 3);
-    func_0209bb2c(a, data_ov001_021a9bcc, b);
+    func_0209bb2c(a, gStopSign, b);
 }
 
 void func_ov001_02192d60(void) {
@@ -42,5 +42,5 @@ void func_ov001_02192d60(void) {
 }
 
 void *func_ov001_02192d48(void) {
-    return (void *) func_0209bf1c(func_ov001_02192dd4, func_ov001_02192d7c, 0);
+    return (void *) func_0209bf1c(LoadStopSign, func_ov001_02192d7c, 0);
 }

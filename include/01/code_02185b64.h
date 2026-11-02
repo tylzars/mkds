@@ -12,7 +12,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
-extern Unk0219b250 *data_ov001_021a9b9c;
+extern Unk0219b250 *gMissionGate;
 
 void func_ov001_02185b64(void);
 void func_ov001_02185b7c(void);
@@ -21,7 +21,7 @@ void func_ov001_02185bb8(void *a, Unk02185bb8 *b);
 void func_ov001_02185c4c(Unk02185c4c *a);
 void func_ov001_02185ca0(void *a, Unk02185bb8 *b);
 void func_ov001_02185d18(void);
-void func_ov001_02185d1c(void *a);
+void LoadMissionGate(void *a);
 u32 func_ov001_02185d74(Unk02185bb8 *c, Unk02185d74 *d, u8 *e, u8 *f);
 void func_ov001_02185dd0(Unk02185bb8 *a);
 

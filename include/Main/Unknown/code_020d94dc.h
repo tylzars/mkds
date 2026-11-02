@@ -13,7 +13,7 @@ struct Unk02012f58;
 #include "Main/Unknown/code_020d6dc0.h"
 #include "Main/Unknown/code_020e6b58.h"
 
-// Two words of the object allocated by func_020d98a4; the function at 0x04, 0x08 and 0x0c holds loaded files.
+// Two words of the object allocated by CreateWaterEfct; the function at 0x04, 0x08 and 0x0c holds loaded files.
 typedef struct Unk020d98a4 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ void *mUnk_04;
@@ -39,7 +39,7 @@ typedef struct Unk020d9cf4_68 {
     /* 08 */ u8 mUnk_08[0x64];
 } Unk020d9cf4_68;
 
-// Object behind data_0217b678 and data_0217b4e4, 0x180 bytes.
+// Object behind gWater and data_0217b4e4, 0x180 bytes.
 typedef struct Unk020d9cf4 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -122,13 +122,13 @@ void func_020d9e60(Unk020d9cf4 *a, struct Unk02012f58 *b);
 Unk020d9de0 *func_020d9de0(void);
 void func_020d9cf4(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i, u16 j, u16 k, u16 l, u16 m, u16 n,
                    s32 o);
-void func_020d9c54(void);
-void func_020d9bb8(void);
-void func_020d9b20(void);
-void func_020d9a90(void);
-void func_020d99f8(void);
+void CreateMiniStage3Water(void);
+void CreateBeachWater(void);
+void CreateTownWater(void);
+void CreateYoshiWater(void);
+void CreateHyudoroWater(void);
 void func_020d9900(Unk020d9cf4 *a);
-void func_020d98a4(Unk020da384 *a);
+void CreateWaterEfct(Unk020da384 *a);
 void func_020d9810(s32 a, s32 *b, s32 *c, s32 *d, s32 *e);
 void func_020d970c(s32 a, s32 *b, s32 *c, s32 *d, s32 *e, s32 *f, s32 *g, s32 *h, s32 *i);
 void func_020d95c0(const Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e, s32 f);

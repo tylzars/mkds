@@ -242,12 +242,12 @@ s32 func_02096df0(Unk02096a04 *p, const Vec3 *a, s32 b, Vec3 *c) {
     return 1;
 }
 
-void func_02096d68(void *a) {
-    data_0217b0f0 = func_0209bd08(a, "cover.nsbmd");
-    data_0217b0f4 = func_0209bc74(a, "poo.nsbmd", "poo.nsbtp");
-    data_0217b0ec = func_0209bd08(a, "hole.nsbmd");
-    func_0209b940(data_0217b0f4, 0x3f);
-    func_0209b940(data_0217b0ec, 0x3f);
+void CreateCoverPooHole(void *a) {
+    gCover = func_0209bd08(a, "cover.nsbmd");
+    gPoo = func_0209bc74(a, "poo.nsbmd", "poo.nsbtp");
+    gHole = func_0209bd08(a, "hole.nsbmd");
+    func_0209b940(gPoo, 0x3f);
+    func_0209b940(gHole, 0x3f);
 }
 
 void func_02096a04(void *a, Unk02096a04 *p) {
@@ -274,20 +274,20 @@ void func_02096a04(void *a, Unk02096a04 *p) {
     f0[2] = 0;
     func_01ff9048(0x1c, f0, 3);
     func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mUnk_04), 12);
-    func_0209bbd0(a, data_0217b0ec);
-    func_0209bb2c(a, data_0217b0ec, p);
+    func_0209bbd0(a, gHole);
+    func_0209bb2c(a, gHole, p);
     w1 = 1;
     func_01ff9048(0x12, &w1, 1);
     switch (p->mUnk_b0) {
         case 1:
         case 2:
         case 6:
-            func_0209b688(data_0217b0f4, 0);
+            func_0209b688(gPoo, 0);
             break;
         case 4:
         case 5:
         case 7:
-            func_0209b688(data_0217b0f4, 1);
+            func_0209b688(gPoo, 1);
             break;
     }
     if (p->mUnk_b0 != 0) {
@@ -306,8 +306,8 @@ void func_02096a04(void *a, Unk02096a04 *p) {
             func_01ff9048(0x1c, f2, 3);
         }
         func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mUnk_04), 12);
-        func_0209bbd0(a, data_0217b0f4);
-        func_0209bb2c(a, data_0217b0f4, p);
+        func_0209bbd0(a, gPoo);
+        func_0209bb2c(a, gPoo, p);
         w2 = 1;
         func_01ff9048(0x12, &w2, 1);
     }
@@ -342,8 +342,8 @@ void func_02096a04(void *a, Unk02096a04 *p) {
         func_01ff9048(0x1c, f4, 3);
         func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mUnk_04), 12);
     }
-    func_0209bbd0(a, data_0217b0f0);
-    func_0209bb2c(a, data_0217b0f0, p);
+    func_0209bbd0(a, gCover);
+    func_0209bb2c(a, gCover, p);
 }
 
 void func_020968f4(Unk020968f4 *p) {
@@ -600,7 +600,7 @@ void func_02095f9c(void) {
 }
 
 u32 func_02095f7c(void) {
-    return func_0209bef0(func_02096d68, func_02096a04, 0);
+    return func_0209bef0(CreateCoverPooHole, func_02096a04, 0);
 }
 
 u32 func_02095f5c(void) {

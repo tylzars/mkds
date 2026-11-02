@@ -25,7 +25,7 @@ typedef struct Unk020de000 {
 extern const u16 data_021583d4;
 
 void func_020de184(Unk020de000 *o);
-void func_020de130(void);
+void CreateWanwanChainAndWanwanKui(void);
 void func_020de000(Unk020de000 *o, void *a, Unk020dc474 *p);
 void func_020ddb44(Unk020dd950 *a, Vec3 *b, Vec3 *v);
 void func_020ddaa0(Unk020dd950 *a, Unk020e6488 *b, s32 c, u16 e);

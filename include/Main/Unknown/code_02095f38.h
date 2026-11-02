@@ -65,7 +65,7 @@ s32 func_020968c0(s32 a, s32 b);
 s32 func_020968dc(s32 a);
 void func_020968f4(Unk020968f4 *p);
 void func_02096a04(void *a, Unk02096a04 *p);
-void func_02096d68(void *a);
+void CreateCoverPooHole(void *a);
 s32 func_02096df0(Unk02096a04 *p, const Vec3 *a, s32 b, Vec3 *c);
 u32 func_02096f54(Unk02096a04 *p, Unk0206bcb0 *a, u8 *b, u8 *c);
 u32 func_0209702c(Unk02096a04 *p, Unk0206bcb0 *a, u8 *b, u8 *c);

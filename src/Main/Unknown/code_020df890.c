@@ -82,9 +82,9 @@ void func_020dff08(void) {
     void *r;
 
     r = FindCourseMapObjFile("koopa_block.nsbmd");
-    func_020ea588(&data_0217b77c, r, 0);
-    func_02084968(data_0217b77c, 0x3f, 2, 0x294a);
-    func_020e1dc0(data_0217b784, data_0217b77c);
+    func_020ea588(&gKoopaBlock, r, 0);
+    func_02084968(gKoopaBlock, 0x3f, 2, 0x294a);
+    func_020e1dc0(data_0217b784, gKoopaBlock);
 }
 
 void func_020dfd64(Unk020e005c *a, Unk020fa294 *b) {
@@ -162,7 +162,7 @@ void func_020dfafc(void *a, Unk020df6c8 *b, void *c, s32 d) {
         func_01ff9048(0x1a, m, 9);
     }
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
-    func_020ea7cc(data_0217b770, d);
+    func_020ea7cc(gMkdEfBubble, d);
     v = b->mUnk_00.mUnk_04.y - b->mUnk_ac;
     if (v > 0x10000) {
         v = 0x1000 - ((v - 0x10000) >> 8);
@@ -182,7 +182,7 @@ void func_020dfafc(void *a, Unk020df6c8 *b, void *c, s32 d) {
 }
 
 void func_020dfae4(void) {
-    func_02087de0(data_0217b778);
+    func_02087de0(gMkdEfBubbleNsbta);
 }
 
 void func_020dfa50(void *a, Unk020df6c8 *b) {

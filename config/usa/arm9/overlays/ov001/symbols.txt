@@ -229,7 +229,7 @@ func_ov001_02185bb8 kind:function(thumb,size=0x94) addr:0x02185b98
 func_ov001_02185c4c kind:function(thumb,size=0x54) addr:0x02185c2c
 func_ov001_02185ca0 kind:function(thumb,size=0x78) addr:0x02185c80
 func_ov001_02185d18 kind:function(thumb,size=0x2) addr:0x02185cf8
-func_ov001_02185d1c kind:function(thumb,size=0x58) addr:0x02185cfc
+LoadMissionGate kind:function(thumb,size=0x58) addr:0x02185cfc
 func_ov001_02185d74 kind:function(thumb,size=0x5c) addr:0x02185d54
 func_ov001_02185dd0 kind:function(thumb,size=0x124) addr:0x02185db0
 func_ov001_02185ef4 kind:function(thumb,size=0x10) addr:0x02185ed4
@@ -677,7 +677,7 @@ func_ov001_02192d28 kind:function(thumb,size=0x20) addr:0x02192d08
 func_ov001_02192d48 kind:function(thumb,size=0x18) addr:0x02192d28
 func_ov001_02192d60 kind:function(thumb,size=0x1a) addr:0x02192d40
 func_ov001_02192d7c kind:function(thumb,size=0x58) addr:0x02192d5c
-func_ov001_02192dd4 kind:function(thumb,size=0x3c) addr:0x02192db4
+LoadStopSign kind:function(thumb,size=0x3c) addr:0x02192db4
 func_ov001_02192e10 kind:function(thumb,size=0x68) addr:0x02192df0
 func_ov001_02192e78 kind:function(thumb,size=0xc) addr:0x02192e58
 func_ov001_02192e84 kind:function(thumb,size=0x10) addr:0x02192e64
@@ -1772,7 +1772,7 @@ data_ov001_021a9b8c kind:bss addr:0x021a9b6c
 data_ov001_021a9b90 kind:bss addr:0x021a9b70
 data_ov001_021a9b94 kind:bss addr:0x021a9b74
 data_ov001_021a9b98 kind:bss addr:0x021a9b78
-data_ov001_021a9b9c kind:bss addr:0x021a9b7c
+gMissionGate kind:bss addr:0x021a9b7c
 data_ov001_021a9ba0 kind:bss addr:0x021a9b80
 data_ov001_021a9ba4 kind:bss addr:0x021a9b84
 data_ov001_021a9ba8 kind:bss addr:0x021a9b88
@@ -1784,7 +1784,7 @@ data_ov001_021a9bbc kind:bss addr:0x021a9b9c
 data_ov001_021a9bc0 kind:bss addr:0x021a9ba0
 data_ov001_021a9bc4 kind:bss addr:0x021a9ba4
 data_ov001_021a9bc8 kind:bss addr:0x021a9ba8
-data_ov001_021a9bcc kind:bss addr:0x021a9bac
+gStopSign kind:bss addr:0x021a9bac
 data_ov001_021a9bd0 kind:bss addr:0x021a9bb0
 data_ov001_021a9bd4 kind:bss addr:0x021a9bb4
 data_ov001_021a9bd8 kind:bss addr:0x021a9bb8

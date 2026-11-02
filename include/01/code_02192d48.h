@@ -29,7 +29,7 @@ typedef struct Unk02192d7c {
 void *func_ov001_02192d48(void);
 void func_ov001_02192d60(void);
 void func_ov001_02192d7c(void *a, Unk02192d7c *b);
-void func_ov001_02192dd4(Unk0219b478 *a);
+void LoadStopSign(Unk0219b478 *a);
 void func_ov001_02192e10(Unk02188950 *a);
 
 #include "01/code_0219b540.h"

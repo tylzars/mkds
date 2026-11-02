@@ -43,15 +43,15 @@ void func_020de184(Unk020de000 *o) {
 
 #pragma thumb on
 
-void func_020de130(void) {
+void CreateWanwanChainAndWanwanKui(void) {
     void *v;
 
-    func_020e6488(&data_0217b6e8, FindCourseMapObjFile("wanwan_chain.nsbmd"), 0, 0);
-    func_020e6ab8(data_0217b6e8);
+    func_020e6488(&gWanwanChain, FindCourseMapObjFile("wanwan_chain.nsbmd"), 0, 0);
+    func_020e6ab8(gWanwanChain);
     v = FindCourseFile("MapObj/wanwan_kui.nsbmd");
     if (v != 0) {
-        func_020e6488(&data_0217b6e4, v, 0, 0);
-        func_020e6ab8(data_0217b6e4);
+        func_020e6488(&gWanwanKui, v, 0, 0);
+        func_020e6ab8(gWanwanKui);
     }
 }
 

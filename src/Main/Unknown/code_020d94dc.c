@@ -24,8 +24,8 @@
 #include "Main/Unknown/code_020d7da8.h"
 #include "Main/Unknown/code_020d8b88.h"
 
-Unk020d98a4 *data_0217b674;
-Unk020d9cf4 *data_0217b678;
+Unk020d98a4 *gWaterEfct;
+Unk020d9cf4 *gWater;
 Unk020da384 *data_0217b67c;
 
 #pragma thumb on
@@ -101,9 +101,9 @@ void func_020da384(Unk020da384 *a, void *b, UnkFunc *c) {
     a->mUnk_02 &= ~8;
     a->mUnk_66 = 0x1f;
     c();
-    data_0217b678->mUnk_174 = FindCourseFile("MapObj/water_efct.nsbmd");
-    data_0217b678->mUnk_178 = FindCourseFile("MapObj/water_efct.nsbca");
-    data_0217b678->mUnk_17c = FindCourseFile("MapObj/water_efct.nsbma");
+    gWater->mUnk_174 = FindCourseFile("MapObj/water_efct.nsbmd");
+    gWater->mUnk_178 = FindCourseFile("MapObj/water_efct.nsbca");
+    gWater->mUnk_17c = FindCourseFile("MapObj/water_efct.nsbma");
 }
 
 void func_020d9f8c(Unk020d9cf4 *a) {
@@ -244,74 +244,74 @@ Unk020d9de0 *func_020d9de0(void) {
 
 void func_020d9cf4(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i, u16 j, u16 k, u16 l, u16 m, u16 n,
                    s32 o) {
-    data_0217b678->mUnk_1c = (a + b) >> 1;
-    data_0217b678->mUnk_04 = data_0217b678->mUnk_1c;
-    data_0217b678->mUnk_10 = data_0217b678->mUnk_04;
-    data_0217b678->mUnk_28 = (a - b) >> 1;
-    data_0217b678->mUnk_2c = 0;
-    data_0217b678->mUnk_3a = 0;
-    data_0217b678->mUnk_3c = 0;
-    data_0217b678->mUnk_50 = f;
-    data_0217b678->mUnk_52 = g;
-    data_0217b678->mUnk_2e = 0x10000 / h;
-    data_0217b678->mUnk_40 = (u32) data_0217b678->mUnk_2e >> 2;
-    data_0217b678->mUnk_24 = 0;
-    data_0217b678->mUnk_34 = i;
-    data_0217b678->mUnk_36 = j;
-    data_0217b678->mUnk_30 = 0;
-    data_0217b678->mUnk_18 = data_0217b67c->mUnk_04;
-    data_0217b678->mUnk_00 = data_0217b678->mUnk_18;
-    data_0217b678->mUnk_20 = data_0217b67c->mUnk_0c;
-    data_0217b678->mUnk_08 = data_0217b678->mUnk_20;
-    data_0217b678->mUnk_44 = c;
-    data_0217b678->mUnk_48 = d;
-    data_0217b678->mUnk_4c = e;
-    data_0217b678->mUnk_54 = k;
-    data_0217b678->mUnk_58 = l;
-    data_0217b678->mUnk_5a = m;
-    data_0217b678->mUnk_5c = n;
-    func_021471bc(&data_0217b678->mUnk_140);
-    data_0217b678->mUnk_170 = o;
+    gWater->mUnk_1c = (a + b) >> 1;
+    gWater->mUnk_04 = gWater->mUnk_1c;
+    gWater->mUnk_10 = gWater->mUnk_04;
+    gWater->mUnk_28 = (a - b) >> 1;
+    gWater->mUnk_2c = 0;
+    gWater->mUnk_3a = 0;
+    gWater->mUnk_3c = 0;
+    gWater->mUnk_50 = f;
+    gWater->mUnk_52 = g;
+    gWater->mUnk_2e = 0x10000 / h;
+    gWater->mUnk_40 = (u32) gWater->mUnk_2e >> 2;
+    gWater->mUnk_24 = 0;
+    gWater->mUnk_34 = i;
+    gWater->mUnk_36 = j;
+    gWater->mUnk_30 = 0;
+    gWater->mUnk_18 = data_0217b67c->mUnk_04;
+    gWater->mUnk_00 = gWater->mUnk_18;
+    gWater->mUnk_20 = data_0217b67c->mUnk_0c;
+    gWater->mUnk_08 = gWater->mUnk_20;
+    gWater->mUnk_44 = c;
+    gWater->mUnk_48 = d;
+    gWater->mUnk_4c = e;
+    gWater->mUnk_54 = k;
+    gWater->mUnk_58 = l;
+    gWater->mUnk_5a = m;
+    gWater->mUnk_5c = n;
+    func_021471bc(&gWater->mUnk_140);
+    gWater->mUnk_170 = o;
 }
 
-void func_020d9c54(void) {
-    data_0217b678 = func_02036bec(func_020364e0(func_020364e8()), 0x180);
+void CreateMiniStage3Water(void) {
+    gWater = func_02036bec(func_020364e0(func_020364e8()), 0x180);
     func_020d9cf4(0xe8000, 0xc5000, 0x50000, 0x32000, 0x3c000, 0x7fff, 0x3fff, 0x1f4, 0x12c, 0x12c, 1, 5, 0xa, 0xa, 1);
-    data_0217b678->mUnk_60 = FindCourseMapObjFile("mini_stage3_waterA.nsbmd");
-    data_0217b678->mUnk_64 = FindCourseMapObjFile("mini_stage3_waterC.nsbmd");
-    func_020d4980(data_0217b678);
+    gWater->mUnk_60 = FindCourseMapObjFile("mini_stage3_waterA.nsbmd");
+    gWater->mUnk_64 = FindCourseMapObjFile("mini_stage3_waterC.nsbmd");
+    func_020d4980(gWater);
 }
 
-void func_020d9bb8(void) {
-    data_0217b678 = func_02036bec(func_020364e0(func_020364e8()), 0x180);
+void CreateBeachWater(void) {
+    gWater = func_02036bec(func_020364e0(func_020364e8()), 0x180);
     func_020d9cf4(0x78000, 0x62000, 0x50000, 0x43000, 0x3c000, 0x7fff, 0x3fff, 0x1f4, 0x96, 0x96, 1, 6, 0xa, 0xa, 1);
-    data_0217b678->mUnk_60 = FindCourseMapObjFile("beach_waterA.nsbmd");
-    data_0217b678->mUnk_64 = FindCourseMapObjFile("beach_waterC.nsbmd");
-    func_020d4980(data_0217b678);
+    gWater->mUnk_60 = FindCourseMapObjFile("beach_waterA.nsbmd");
+    gWater->mUnk_64 = FindCourseMapObjFile("beach_waterC.nsbmd");
+    func_020d4980(gWater);
 }
 
-void func_020d9b20(void) {
-    data_0217b678 = func_02036bec(func_020364e0(func_020364e8()), 0x180);
+void CreateTownWater(void) {
+    gWater = func_02036bec(func_020364e0(func_020364e8()), 0x180);
     func_020d9cf4(0, 0, 0x29000, 0x1e000, 0xb000, 0x4e20, 0x3fff, 0x12c, 0x78, 0x1e, 1, 0xd, 0x19, 0x10, 0);
-    data_0217b678->mUnk_60 = FindCourseMapObjFile("town_waterA.nsbmd");
-    data_0217b678->mUnk_64 = FindCourseMapObjFile("town_waterC.nsbmd");
-    func_020d4980(data_0217b678);
+    gWater->mUnk_60 = FindCourseMapObjFile("town_waterA.nsbmd");
+    gWater->mUnk_64 = FindCourseMapObjFile("town_waterC.nsbmd");
+    func_020d4980(gWater);
 }
 
-void func_020d9a90(void) {
-    data_0217b678 = func_02036bec(func_020364e0(func_020364e8()), 0x180);
+void CreateYoshiWater(void) {
+    gWater = func_02036bec(func_020364e0(func_020364e8()), 0x180);
     func_020d9cf4(0, 0, 0xc8000, 0x55000, 0x3c000, 0x7fff, 0x3fff, 0x1c2, 0x78, 0x1e, 1, 0xa, 0x17, 0x10, 0);
-    data_0217b678->mUnk_60 = 0;
-    data_0217b678->mUnk_64 = FindCourseMapObjFile("yoshi_waterC.nsbmd");
-    func_020d4980(data_0217b678);
+    gWater->mUnk_60 = 0;
+    gWater->mUnk_64 = FindCourseMapObjFile("yoshi_waterC.nsbmd");
+    func_020d4980(gWater);
 }
 
-void func_020d99f8(void) {
-    data_0217b678 = func_02036bec(func_020364e0(func_020364e8()), 0x180);
+void CreateHyudoroWater(void) {
+    gWater = func_02036bec(func_020364e0(func_020364e8()), 0x180);
     func_020d9cf4(0, 0, 0x63000, 0x4d000, 0x1e000, 0x7fff, 0x3fff, 0x1c2, 0x78, 0x1e, 1, 0xf, 0x19, 0x10, 0);
-    data_0217b678->mUnk_60 = FindCourseMapObjFile("hyudoro_waterA.nsbmd");
-    data_0217b678->mUnk_64 = FindCourseMapObjFile("hyudoro_waterC.nsbmd");
-    func_020d4980(data_0217b678);
+    gWater->mUnk_60 = FindCourseMapObjFile("hyudoro_waterA.nsbmd");
+    gWater->mUnk_64 = FindCourseMapObjFile("hyudoro_waterC.nsbmd");
+    func_020d4980(gWater);
 }
 
 void func_020d9900(Unk020d9cf4 *a) {
@@ -357,15 +357,15 @@ void func_020d9900(Unk020d9cf4 *a) {
     func_02013468(q, r, a->mUnk_5a);
 }
 
-void func_020d98a4(Unk020da384 *a) {
+void CreateWaterEfct(Unk020da384 *a) {
     Unk020d98a4 *p;
     p = func_02036bec(func_020364e0(func_020364e8()), 0x10);
-    data_0217b674 = p;
+    gWaterEfct = p;
     p->mUnk_00 = a->mUnk_08;
-    data_0217b674->mUnk_04 = FindCourseFile("MapObj/water_efct.nsbmd");
-    data_0217b674->mUnk_08 = FindCourseFile("MapObj/water_efct.nsbca");
-    data_0217b674->mUnk_0c = FindCourseFile("MapObj/water_efct.nsbma");
-    func_020d4970(data_0217b674);
+    gWaterEfct->mUnk_04 = FindCourseFile("MapObj/water_efct.nsbmd");
+    gWaterEfct->mUnk_08 = FindCourseFile("MapObj/water_efct.nsbca");
+    gWaterEfct->mUnk_0c = FindCourseFile("MapObj/water_efct.nsbma");
+    func_020d4970(gWaterEfct);
 }
 
 #pragma thumb off

@@ -54,13 +54,13 @@ u32 func_ov001_02185d74(Unk02185bb8 *c, Unk02185d74 *d, u8 *e, u8 *f) {
     return b;
 }
 
-void func_ov001_02185d1c(void *a) {
-    data_ov001_021a9b9c = func_ov001_0219b478(a, "MissionGate.nsbmd");
-    func_ov001_0219b2e8(data_ov001_021a9b9c, "MissionGate.nsbtp");
-    func_ov001_0219b380(data_ov001_021a9b9c, "MissionGate.nsbma");
-    func_0209b940(data_ov001_021a9b9c, 0x3f);
-    func_0209ba08(data_ov001_021a9b9c, 2);
-    func_020849a0(data_ov001_021a9b9c->mUnk_10, 0x294a);
+void LoadMissionGate(void *a) {
+    gMissionGate = func_ov001_0219b478(a, "MissionGate.nsbmd");
+    func_ov001_0219b2e8(gMissionGate, "MissionGate.nsbtp");
+    func_ov001_0219b380(gMissionGate, "MissionGate.nsbma");
+    func_0209b940(gMissionGate, 0x3f);
+    func_0209ba08(gMissionGate, 2);
+    func_020849a0(gMissionGate->mUnk_10, 0x294a);
 }
 
 void func_ov001_02185d18(void) {}
@@ -75,9 +75,9 @@ void func_ov001_02185ca0(void *a, Unk02185bb8 *b) {
     b->mUnk_000.mUnk_28.mUnk_24.z = b->mUnk_000.mUnk_04.z >> 4;
     func_01ff9048((u32) (0x19), (void *) ((u32) &b->mUnk_000.mUnk_28), 0xc);
     func_01ff9048((u32) (0x1b), (void *) ((u32) &b->mUnk_000.mUnk_1c), 3);
-    func_0209b688((void *) (data_ov001_021a9b9c), (u16) b->mUnk_000.mUnk_9c->mUnk_28);
-    func_0209b734(data_ov001_021a9b9c, b->mUnk_0a8);
-    func_0209bb2c((void *) ((u32) a), (void *) ((int) data_ov001_021a9b9c), (void *) ((int) b));
+    func_0209b688((void *) (gMissionGate), (u16) b->mUnk_000.mUnk_9c->mUnk_28);
+    func_0209b734(gMissionGate, b->mUnk_0a8);
+    func_0209bb2c((void *) ((u32) a), (void *) ((int) gMissionGate), (void *) ((int) b));
 }
 
 void func_ov001_02185c4c(Unk02185c4c *a) {
@@ -109,10 +109,10 @@ void func_ov001_02185bb8(void *a, Unk02185bb8 *b) {
             }
             break;
         case 2:
-            pos = func_0209b710(data_ov001_021a9b9c);
+            pos = func_0209b710(gMissionGate);
             b->mUnk_0a8++;
             if (b->mUnk_0a8 >= pos - 1) {
-                b->mUnk_0a8 = func_0209b710(data_ov001_021a9b9c) - 1;
+                b->mUnk_0a8 = func_0209b710(gMissionGate) - 1;
                 b->mUnk_0ac = 1;
             }
             break;
@@ -125,7 +125,7 @@ void func_ov001_02185b98(void) {
 }
 
 void func_ov001_02185b7c(void) {
-    func_0209bf1c(func_ov001_02185d1c, func_ov001_02185ca0, func_ov001_02185d18);
+    func_0209bf1c(LoadMissionGate, func_ov001_02185ca0, func_ov001_02185d18);
 }
 
 void func_ov001_02185b64(void) {

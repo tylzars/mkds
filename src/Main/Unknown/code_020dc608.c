@@ -33,7 +33,7 @@ Unk020dd7a8 *data_0217b6d4 = 0;
 Unk020dd804 *data_0217b6d8 = 0;
 
 const Unk020dd860 data_02158388 = {func_020dd230, func_020dd1f4, 1, 0x1b000, {0}, 1, 1, 0x12e, {0}};
-const Unk020dd804 data_0215835c = {{0}, func_020dc308, {0}, func_020dd6c8, {0}, 1, {0}, 0};
+const Unk020dd804 data_0215835c = {{0}, CreateWanwanAndRockShadow, {0}, func_020dd6c8, {0}, 1, {0}, 0};
 const Unk020dd7a8 data_02158334 = {{0}, func_020dd27c, {0}, 0};
 
 Unk020dd860 *func_020dd860(void) {
@@ -76,12 +76,12 @@ void func_020dd6c8(void *a, Unk020dc474 *p, void *b, u32 c) {
     p->mUnk_00.mUnk_28.mUnk_24.x = p->mUnk_00.mUnk_04.x >> 4;
     p->mUnk_00.mUnk_28.mUnk_24.y = p->mUnk_00.mUnk_04.y >> 4;
     p->mUnk_00.mUnk_28.mUnk_24.z = p->mUnk_00.mUnk_04.z >> 4;
-    func_020ea8a8(data_0217b6cc, &p->mUnk_00.mUnk_28, &p->mUnk_00.mUnk_1c, c);
+    func_020ea8a8(gWanwan, &p->mUnk_00.mUnk_28, &p->mUnk_00.mUnk_1c, c);
     func_01ffccd0(&s, &p->mUnk_d4);
     s.mUnk_24.x = p->mUnk_00.mUnk_04.x >> 4;
     s.mUnk_24.y = p->mUnk_00.mUnk_04.y >> 4;
     s.mUnk_24.z = p->mUnk_00.mUnk_04.z >> 4;
-    func_020ea868(data_0217b6d0, &s, &p->mUnk_00.mUnk_1c, c);
+    func_020ea868(gWanwanRockShadow, &s, &p->mUnk_00.mUnk_1c, c);
 }
 
 // non-matching: the original keeps the constant 0 in r1 (stored to the words at 0x48 and 0x50 and passed as the zero

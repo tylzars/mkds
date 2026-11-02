@@ -27,16 +27,16 @@ void func_020ac9fc(u32 arg0) {
     func_020d2398((void *) value0);
 }
 
-void func_020ac9c8(void *a) {
+void CreateShineBalloon(void *a) {
     void *p;
 
     p = func_0209bd08(a, "shine_balloon.nsbmd");
-    data_0217b33c = p;
+    gShineBalloon = p;
     func_0209b940(p, 0x3f);
 }
 
 void func_020ac9b0(void *a) {
-    func_0209bbd0(a, data_0217b33c);
+    func_0209bbd0(a, gShineBalloon);
 }
 
 void func_020ac890(void *a, Unk020ac5e4 *b) {
@@ -72,7 +72,7 @@ void func_020ac890(void *a, Unk020ac5e4 *b) {
     v4.y = v5;
     v4.z = v5;
     func_01ff9048(0x1b, &v4, 3);
-    func_0209bb2c(a, data_0217b33c, b);
+    func_0209bb2c(a, gShineBalloon, b);
 }
 
 void func_020ac6a8(void *a, Unk020ac5e4 *b) {
@@ -135,7 +135,7 @@ void func_020ac67c(void) {
 }
 
 void *func_020ac658(void) {
-    return (void *) func_0209bef0(func_020ac9c8, func_020ac890, func_020ac9b0);
+    return (void *) func_0209bef0(CreateShineBalloon, func_020ac890, func_020ac9b0);
 }
 
 void *func_020ac63c(void) {

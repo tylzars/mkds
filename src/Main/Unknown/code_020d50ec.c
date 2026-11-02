@@ -211,23 +211,23 @@ void func_020d5dd0(Unk020d5bf0 *p) {
 }
 
 #pragma thumb on
-void func_020d5d80(void *a, const char *b, const char *c) {
-    func_020ea588((void **) &data_0217b65c, FindCourseMapObjFile(b), 0);
-    func_020ea55c((void **) &data_0217b658, FindCourseMapObjFile(c), 7);
+void CreateNsbmdAndShadowNsbmd(void *a, const char *name, const char *shadowName) {
+    func_020ea588((void **) &data_0217b65c, FindCourseMapObjFile(name), 0);
+    func_020ea55c((void **) &data_0217b658, FindCourseMapObjFile(shadowName), 7);
     func_02084968(data_0217b65c, 0x3f, 2, 0x294a);
     func_020849c0(data_0217b65c, 7);
 }
 #pragma thumb off
 
 #pragma thumb on
-void LoadRock(void *a) {
-    func_020d5d80(a, "rock.nsbmd", "rock_shadow.nsbmd");
+void CreateRock(void *a) {
+    CreateNsbmdAndShadowNsbmd(a, "rock.nsbmd", "rock_shadow.nsbmd");
 }
 #pragma thumb off
 
 #pragma thumb on
-void LoadRock2(void *a) {
-    func_020d5d80(a, "rock2.nsbmd", "rock2_shadow.nsbmd");
+void CreateRock2(void *a) {
+    CreateNsbmdAndShadowNsbmd(a, "rock2.nsbmd", "rock2_shadow.nsbmd");
 }
 #pragma thumb off
 

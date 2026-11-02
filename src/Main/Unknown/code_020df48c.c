@@ -18,15 +18,15 @@
 #include "Main/Unknown/unk_0217b000.h"
 
 #pragma thumb on
-void func_020df758(void) {
+void CreateMkdEfBubble(void) {
     void *r;
 
     r = FindCourseMapObjFile("mkd_ef_bubble.nsbmd");
-    func_020ea588(&data_0217b770, r, 0);
-    func_02084968(data_0217b770, 0x3f, 2, 0x294a);
-    data_0217b778 = func_02036bec(func_020364e0(func_020364e8()), 0x38);
-    func_020ea514(1, data_0217b770, data_0217b778, r, FindCourseMapObjFile("mkd_ef_bubble.nsbta"));
-    func_02087cfc(data_0217b778, 0, 1);
+    func_020ea588(&gMkdEfBubble, r, 0);
+    func_02084968(gMkdEfBubble, 0x3f, 2, 0x294a);
+    gMkdEfBubbleNsbta = func_02036bec(func_020364e0(func_020364e8()), 0x38);
+    func_020ea514(1, gMkdEfBubble, gMkdEfBubbleNsbta, r, FindCourseMapObjFile("mkd_ef_bubble.nsbta"));
+    func_02087cfc(gMkdEfBubbleNsbta, 0, 1);
 }
 
 void func_020df6c8(Unk020df6c8 *a, Unk020fa294 *b) {

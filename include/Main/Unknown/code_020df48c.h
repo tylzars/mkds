@@ -29,7 +29,7 @@ typedef struct Unk020df6c8 {
     /* f0 */ s32 mUnk_f0;
 } Unk020df6c8;
 
-void func_020df758(void);
+void CreateMkdEfBubble(void);
 void func_020df6c8(Unk020df6c8 *a, Unk020fa294 *b);
 Unk020de390 *func_020df678(void);
 Unk020de2d8 *func_020df61c(void);

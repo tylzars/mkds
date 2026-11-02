@@ -69,10 +69,10 @@ void func_020dc354(Unk020dc474 *p) {
 }
 
 #pragma thumb on
-void func_020dc308(void) {
-    func_020ea588((void **) &data_0217b6cc, FindCourseMapObjFile("wanwan.nsbmd"), 0);
-    func_020ea55c((void **) &data_0217b6d0, FindCourseMapObjFile("rock_shadow.nsbmd"), 0x3f);
-    func_02084968(data_0217b6cc, 0x3f, 2, 0x294a);
+void CreateWanwanAndRockShadow(void) {
+    func_020ea588((void **) &gWanwan, FindCourseMapObjFile("wanwan.nsbmd"), 0);
+    func_020ea55c((void **) &gWanwanRockShadow, FindCourseMapObjFile("rock_shadow.nsbmd"), 0x3f);
+    func_02084968(gWanwan, 0x3f, 2, 0x294a);
 }
 #pragma thumb off
 
@@ -193,8 +193,8 @@ void func_020dbdac(void *a, Unk020db2b8 *p, void *c, s32 d) {
     q->mUnk_24.x = p->mUnk_00.mUnk_04.x >> 4;
     q->mUnk_24.y = p->mUnk_00.mUnk_04.y >> 4;
     q->mUnk_24.z = p->mUnk_00.mUnk_04.z >> 4;
-    func_020ea8a8(data_0217b68c, q, &p->mUnk_00.mUnk_1c, d);
-    func_020ea868(data_0217b694, q, &p->mUnk_00.mUnk_1c, d);
+    func_020ea8a8(gDossun, q, &p->mUnk_00.mUnk_1c, d);
+    func_020ea868(gDossunShadow, q, &p->mUnk_00.mUnk_1c, d);
 }
 
 void func_020db760(void *a, Unk020db2b8 *p) {
@@ -488,10 +488,10 @@ void func_020db430(Unk020db2b8 *p) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020db3e4(void) {
-    func_020ea588((void **) &data_0217b68c, FindCourseMapObjFile("dossun.nsbmd"), 0);
-    func_020ea55c((void **) &data_0217b694, FindCourseMapObjFile("dossun_shadow.nsbmd"), 0x3f);
-    func_02084968(data_0217b68c, 0x3f, 2, 0x294a);
+void CreateDossunAndDossunShadow(void) {
+    func_020ea588((void **) &gDossun, FindCourseMapObjFile("dossun.nsbmd"), 0);
+    func_020ea55c((void **) &gDossunShadow, FindCourseMapObjFile("dossun_shadow.nsbmd"), 0x3f);
+    func_02084968(gDossun, 0x3f, 2, 0x294a);
 }
 #pragma thumb off
 

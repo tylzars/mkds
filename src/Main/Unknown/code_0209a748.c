@@ -35,15 +35,15 @@ void func_0209b088(void *a, Unk0209a7dc *b) {
         func_01ff9048(0x1a, f0, 9);
     }
     func_01ff9048(0x1b, &b->mUnk_000.mUnk_1c, 3);
-    func_0209b688(data_usa_0217b158, (u16) (b->mUnk_0a8 >> 12));
-    func_0209bbd0(a, data_usa_0217b158);
-    func_0209bb2c(a, data_usa_0217b158, b);
+    func_0209b688(gCrab, (u16) (b->mUnk_0a8 >> 12));
+    func_0209bbd0(a, gCrab);
+    func_0209bb2c(a, gCrab, b);
     func_02146d60(f1, data_0215d4b4[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2],
                   data_0215d4b4[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, f1, 9);
-    func_0209b688(data_usa_0217b154, (u16) (b->mUnk_0ac >> 12));
-    func_0209bbd0(a, data_usa_0217b154);
-    func_0209bb2c(a, data_usa_0217b154, b);
+    func_0209b688(gCrabHand, (u16) (b->mUnk_0ac >> 12));
+    func_0209bbd0(a, gCrabHand);
+    func_0209bb2c(a, gCrabHand, b);
 }
 
 void func_0209af98(Unk0209af98 *p) {
@@ -117,9 +117,8 @@ void func_0209a7dc(void *a, Unk0209a7dc *b) {
     switch (b->mUnk_114) {
         case 0:
             b->mUnk_0ac += 0x200;
-            if (b->mUnk_0ac >= (s32) (func_0209b634(data_usa_0217b154) > 0
-                                          ? 0.5f + (float) (func_0209b634(data_usa_0217b154) << 12)
-                                          : (float) (func_0209b634(data_usa_0217b154) << 12) - 0.5f)) {
+            if (b->mUnk_0ac >= (s32) (func_0209b634(gCrabHand) > 0 ? 0.5f + (float) (func_0209b634(gCrabHand) << 12)
+                                                                   : (float) (func_0209b634(gCrabHand) << 12) - 0.5f)) {
                 b->mUnk_0ac = 0;
             }
             if (b->mUnk_0a4-- > 0) {
@@ -145,9 +144,8 @@ void func_0209a7dc(void *a, Unk0209a7dc *b) {
                 b->mUnk_114 = 0;
             }
             b->mUnk_0a8 += 0x200;
-            if (b->mUnk_0a8 >= (s32) (func_0209b634(data_usa_0217b158) > 0
-                                          ? 0.5f + (float) (func_0209b634(data_usa_0217b158) << 12)
-                                          : (float) (func_0209b634(data_usa_0217b158) << 12) - 0.5f)) {
+            if (b->mUnk_0a8 >= (s32) (func_0209b634(gCrab) > 0 ? 0.5f + (float) (func_0209b634(gCrab) << 12)
+                                                               : (float) (func_0209b634(gCrab) << 12) - 0.5f)) {
                 b->mUnk_0a8 = 0;
             }
             func_0209a7dc_inline(&b->mUnk_0d0);
@@ -187,9 +185,8 @@ void func_0209a7dc(void *a, Unk0209a7dc *b) {
             break;
         case 3:
             b->mUnk_0ac += 0x200;
-            if (b->mUnk_0ac >= (s32) (func_0209b634(data_usa_0217b154) > 0
-                                          ? 0.5f + (float) (func_0209b634(data_usa_0217b154) << 12)
-                                          : (float) (func_0209b634(data_usa_0217b154) << 12) - 0.5f)) {
+            if (b->mUnk_0ac >= (s32) (func_0209b634(gCrabHand) > 0 ? 0.5f + (float) (func_0209b634(gCrabHand) << 12)
+                                                                   : (float) (func_0209b634(gCrabHand) << 12) - 0.5f)) {
                 b->mUnk_0ac = 0;
             }
             func_0209a7dc_inline(&b->mUnk_0b0);
@@ -226,7 +223,7 @@ void func_0209a78c(void) {
 }
 
 void *func_0209a768(void) {
-    return (void *) func_0209bef0(func_0209b1fc, func_0209b088, func_0209b1f8);
+    return (void *) func_0209bef0(CreateCrabAndCrabHand, func_0209b088, func_0209b1f8);
 }
 
 void *func_0209a748(void) {

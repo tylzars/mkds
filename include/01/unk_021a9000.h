@@ -251,7 +251,7 @@ extern Unk0217b498 *data_ov001_021a9bb4;
 extern Unk0217b498 *data_ov001_021a9bb8;
 extern Unk0217b498 *data_ov001_021a9bbc;
 extern Unk0217b498 *data_ov001_021a9bc0;
-extern Unk0219b250 *data_ov001_021a9bcc;
+extern Unk0219b250 *gStopSign;
 extern Unk0217b498 *data_ov001_021a9b8c;
 extern Unk0217b498 *data_ov001_021a9bc4;
 extern u16 data_ov001_021a9b94;
