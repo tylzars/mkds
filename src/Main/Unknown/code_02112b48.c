@@ -86,15 +86,15 @@ void func_02114504(s32 a, u16 b) {
 
 void func_021144c0(void *a) {
     int v1;
-    u32 v2;
+    void *v2;
     v1 = ((u32) func_02036bec(a, (u32) 0x10));
     *(int *) &data_0217d34c = v1;
-    v2 = ((u32) func_02036bec(a, (u32) 0x78));
-    data_0217d34c->mUnk_04 = (Unk0217d34c_04 *) v2;
-    v2 = (u32) func_0205eda0(a);
-    data_0217d34c->mUnk_08 = (void *) v2;
-    v2 = ((int) func_0204799c((const char *) &data_0216d3e4));
-    data_0217d34c->mUnk_0c = (void *) v2;
+    v2 = func_02036bec(a, (u32) 0x78);
+    data_0217d34c->mUnk_04 = v2;
+    v2 = func_0205eda0(a);
+    data_0217d34c->mUnk_08 = v2;
+    v2 = func_0204799c((const char *) &data_0216d3e4);
+    data_0217d34c->mUnk_0c = v2;
 }
 
 #pragma thumb off
@@ -243,7 +243,7 @@ s32 func_02114158(u16 a, void *b) {
 #pragma thumb on
 
 void func_02113f34(void) {
-    u32 v1;
+    void *v1;
     int v2;
     int v3;
     int v4;
@@ -256,43 +256,43 @@ void func_02113f34(void) {
     v6 = 0;
     v7 = 0;
     v8 = 0;
-    v1 = ((int) func_0204799c((const char *) data_0216d20c));
-    func_020b49bc(&data_0217d348->mUnk_00, (void *) v1);
-    v1 = ((int) func_0204799c((const char *) data_0216d200));
-    func_020b48b4(&data_0217d348->mUnk_04, (void *) v1);
-    v1 = ((int) func_0204799c((const char *) data_0216d1f8));
-    func_020b4a44((Unk020b4a44 **) (&v4), (void *) v1);
-    v1 = ((int) func_0204799c((const char *) data_0216d1f4));
-    data_0217d348->mUnk_08 = (Unk0201ea30 *) v1;
-    v1 = ((int) func_0204799c((const char *) data_0216d22c));
-    data_0217d348->mUnk_0c = (void *) v1;
-    v1 = ((int) func_0204799c((const char *) data_0216d238));
-    data_0217d348->mUnk_18 = (Unk0201ea30 *) v1;
-    v1 = ((int) func_0204799c((const char *) data_0216d1fc));
-    data_0217d348->mUnk_1c = (void *) v1;
-    v1 = ((int) func_0204799c((const char *) data_0216d208));
-    func_020b49bc(&data_0217d348->mUnk_28, (void *) v1);
-    v1 = ((int) func_0204799c((const char *) data_0216d210));
-    func_020b48b4(&data_0217d348->mUnk_2c, (void *) v1);
-    v1 = ((int) func_0204799c((const char *) data_0216d218));
-    func_020b4a44((Unk020b4a44 **) (&v8), (void *) v1);
-    v1 = ((int) func_0204799c((const char *) data_0216d204));
-    data_0217d348->mUnk_30 = (Unk0201ea30 *) v1;
-    v1 = ((int) func_0204799c((const char *) data_0216d234));
-    data_0217d348->mUnk_34 = (Unk0201ea30 *) v1;
-    v1 = ((int) func_0204799c((const char *) data_0216d21c));
-    data_0217d348->mUnk_38 = (void *) v1;
+    v1 = func_0204799c((const char *) data_0216d20c);
+    func_020b49bc(&data_0217d348->mUnk_00, v1);
+    v1 = func_0204799c((const char *) data_0216d200);
+    func_020b48b4(&data_0217d348->mUnk_04, v1);
+    v1 = func_0204799c((const char *) data_0216d1f8);
+    func_020b4a44((Unk020b4a44 **) (&v4), v1);
+    v1 = func_0204799c((const char *) data_0216d1f4);
+    data_0217d348->mUnk_08 = v1;
+    v1 = func_0204799c((const char *) data_0216d22c);
+    data_0217d348->mUnk_0c = v1;
+    v1 = func_0204799c((const char *) data_0216d238);
+    data_0217d348->mUnk_18 = v1;
+    v1 = func_0204799c((const char *) data_0216d1fc);
+    data_0217d348->mUnk_1c = v1;
+    v1 = func_0204799c((const char *) data_0216d208);
+    func_020b49bc(&data_0217d348->mUnk_28, v1);
+    v1 = func_0204799c((const char *) data_0216d210);
+    func_020b48b4(&data_0217d348->mUnk_2c, v1);
+    v1 = func_0204799c((const char *) data_0216d218);
+    func_020b4a44((Unk020b4a44 **) (&v8), v1);
+    v1 = func_0204799c((const char *) data_0216d204);
+    data_0217d348->mUnk_30 = v1;
+    v1 = func_0204799c((const char *) data_0216d234);
+    data_0217d348->mUnk_34 = v1;
+    v1 = func_0204799c((const char *) data_0216d21c);
+    data_0217d348->mUnk_38 = v1;
     v2 = ((u32) func_02077f00());
-    v1 = ((int) func_0204799c((const char *) data_0216d220));
-    func_020b4934((Unk020b4934 **) (&v5), (void *) v1);
-    v1 = ((int) func_0204799c((const char *) data_0216d230));
-    func_020b47d8((Unk020b47d8 **) (&v6), (void *) v1);
-    v1 = ((int) func_0204799c((const char *) data_0216d228));
-    func_020b47d8(&data_0217d348->mUnk_10, (void *) v1);
-    v1 = ((int) func_0204799c((const char *) data_0216d214));
-    func_020b47d8(&data_0217d348->mUnk_20, (void *) v1);
-    v1 = ((int) func_0204799c((const char *) data_0216d224));
-    func_020b4a44((Unk020b4a44 **) (&v7), (void *) v1);
+    v1 = func_0204799c((const char *) data_0216d220);
+    func_020b4934((Unk020b4934 **) (&v5), v1);
+    v1 = func_0204799c((const char *) data_0216d230);
+    func_020b47d8((Unk020b47d8 **) (&v6), v1);
+    v1 = func_0204799c((const char *) data_0216d228);
+    func_020b47d8(&data_0217d348->mUnk_10, v1);
+    v1 = func_0204799c((const char *) data_0216d214);
+    func_020b47d8(&data_0217d348->mUnk_20, v1);
+    v1 = func_0204799c((const char *) data_0216d224);
+    func_020b4a44((Unk020b4a44 **) (&v7), v1);
     v3 = *(int *) (v4 + 0xc);
     func_02016468((u32) 0x13, (u32) 0, (void *) (data_0217d348->mUnk_00->mUnk_14),
                   (u32) (data_0217d348->mUnk_00->mUnk_10));

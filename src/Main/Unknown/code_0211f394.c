@@ -17,21 +17,21 @@
 #pragma thumb on
 
 void func_0211f61c(void) {
-    u32 v1;
+    void *v1;
     int v2;
     int v3[1];
     v2 = 0;
     v3[0] = 0;
-    v1 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216e128))));
-    func_020b48b4(&data_0217d380->mUnk_00, (void *) v1);
-    v1 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216e134))));
-    func_020b49bc((Unk020b4934 **) (&v2), (void *) v1);
-    v1 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216e130))));
-    func_020b4a44((Unk020b4a44 **) v3, (void *) v1);
-    v1 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216e124))));
-    data_0217d380->mUnk_04 = (Unk0201ea30 *) v1;
-    v1 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216e12c))));
-    data_0217d380->mUnk_0c = (void *) v1;
+    v1 = func_0204799c((const char *) ((*(u32 *) &data_0216e128)));
+    func_020b48b4(&data_0217d380->mUnk_00, v1);
+    v1 = func_0204799c((const char *) ((*(u32 *) &data_0216e134)));
+    func_020b49bc((Unk020b4934 **) (&v2), v1);
+    v1 = func_0204799c((const char *) ((*(u32 *) &data_0216e130)));
+    func_020b4a44((Unk020b4a44 **) v3, v1);
+    v1 = func_0204799c((const char *) ((*(u32 *) &data_0216e124)));
+    data_0217d380->mUnk_04 = v1;
+    v1 = func_0204799c((const char *) ((*(u32 *) &data_0216e12c)));
+    data_0217d380->mUnk_0c = v1;
     func_02016468((u32) 0x23, (u32) 0, (void *) (*(u32 *) (v2 + 0x14)), (u32) (*(u32 *) (v2 + 0x10)));
     func_02016468((u32) 0x1e, (u32) 0, (void *) (*(u32 *) (v3[0] + 0xc)), (u32) (*(u32 *) (v3[0] + 8)));
 }

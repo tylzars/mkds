@@ -275,17 +275,17 @@ s32 func_ov000_0219bdec(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32
     return 1;
 }
 
-void func_ov000_0219bd90(u32 a, void *b, void *c, u32 d, void *e, u32 f) {
+void func_ov000_0219bd90(u32 a, void *b, void *c, void *d, void *e, u32 f) {
     if (func_ov000_0219c39c() == 0 && data_ov000_021b54c8->mUnk_24 == 3) {
         func_ov000_0219b964();
         data_ov000_021b54c8->mUnk_6c = (void (*)(u32, u32, void *)) c;
-        data_ov000_021b54c8->mUnk_70 = (void *) d;
+        data_ov000_021b54c8->mUnk_70 = d;
         func_ov000_0219b8a8(5);
         func_ov000_021a260c((u8) (a - 1), b, (u32) func_ov000_0219b5a8, 0, (u32) e, f);
     }
 }
 
-void func_ov000_0219bc78(void *a, u32 b, u32 c, u32 d, void *e, u32 f, u32 g, u32 h) {
+void func_ov000_0219bc78(void *a, u32 b, u32 c, u32 d, void *e, void *f, u32 g, u32 h) {
     u8 s[0x40];
     u8 t[0x40];
     u8 i;
@@ -294,7 +294,7 @@ void func_ov000_0219bc78(void *a, u32 b, u32 c, u32 d, void *e, u32 f, u32 g, u3
     if (func_ov000_0219c39c() == 0 && data_ov000_021b54c8->mUnk_24 == 3) {
         func_ov000_0219b964();
         data_ov000_021b54c8->mUnk_6c = (void (*)(u32, u32, void *)) e;
-        data_ov000_021b54c8->mUnk_70 = (void *) f;
+        data_ov000_021b54c8->mUnk_70 = f;
         func_ov000_0219b8a8(5);
         if (a != 0) {
             func_ov000_021a2468(a, b, (u8) (c - 1), d, func_ov000_0219b5a8, 0, g, h);

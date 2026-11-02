@@ -37,15 +37,15 @@ void func_0211de98(void) {
 
 void func_0211de40(void *a) {
     int v1;
-    u32 v2;
+    void *v2;
     v1 = ((u32) func_02036bec(a, (u32) 0xc));
     *(int *) &data_0217d36c = v1;
-    v2 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216de54))));
-    func_020b49bc((Unk020b4934 **) data_0217d36c, (void *) v2);
-    v2 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216de58))));
-    func_020b48b4(&data_0217d36c->mUnk_04, (void *) v2);
-    v2 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216de50))));
-    data_0217d36c->mUnk_08 = (void *) v2;
+    v2 = func_0204799c((const char *) ((*(u32 *) &data_0216de54)));
+    func_020b49bc((Unk020b4934 **) data_0217d36c, v2);
+    v2 = func_0204799c((const char *) ((*(u32 *) &data_0216de58)));
+    func_020b48b4(&data_0217d36c->mUnk_04, v2);
+    v2 = func_0204799c((const char *) ((*(u32 *) &data_0216de50)));
+    data_0217d36c->mUnk_08 = v2;
 }
 
 #pragma thumb off
