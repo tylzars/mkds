@@ -53,8 +53,6 @@ void *func_02013a30(void *a) {
     return func_02013c18(a, 0x30414342, 0x30544e4a);
 }
 
-// non-matching: same instructions; the loop base and entry pointers swap r6/r7 and the index temporary is r4 where the
-// original has ip.
 void *func_020138b4(const void *a, const u32 *key) {
     const Unk02013754 *p;
     const u8 *t;
@@ -77,8 +75,8 @@ void *func_020138b4(const void *a, const u32 *key) {
         k2 = key[2];
         k3 = key[3];
         for (i = 0; i < p->mUnk_01; i++) {
-            tab = (const u8 *) p + p->mUnk_06;
-            tab += *(u16 *) (tab + 2);
+            e = (const u8 *) p + p->mUnk_06;
+            tab = e + *(u16 *) (e + 2);
             e = tab + i * 16;
             if (*(u32 *) e == k0 && *(u32 *) (e + 4) == k1 && *(u32 *) (e + 8) == k2 && *(u32 *) (e + 12) == k3) {
                 tab = (const u8 *) p + p->mUnk_06;
@@ -94,8 +92,8 @@ void *func_020138b4(const void *a, const u32 *key) {
             d = t[0];
             while (d > c) {
                 j = (n + ((key[c >> 5] >> (c & 0x1f)) & 1))[1];
-                d = n[0];
                 c = t[j * 4];
+                d = n[0];
                 n = t + j * 4;
             }
             tab = (const u8 *) p + p->mUnk_06;
@@ -111,8 +109,6 @@ void *func_020138b4(const void *a, const u32 *key) {
     return 0;
 }
 
-// non-matching: same instructions; the loop base and entry pointers swap r6/r7 and the index temporary is r4 where the
-// original has ip.
 int func_02013754(const void *a, const u32 *key) {
     const Unk02013754 *p;
     const u8 *t;
@@ -135,8 +131,8 @@ int func_02013754(const void *a, const u32 *key) {
         k2 = key[2];
         k3 = key[3];
         for (i = 0; i < p->mUnk_01; i++) {
-            tab = (const u8 *) p + p->mUnk_06;
-            tab += *(u16 *) (tab + 2);
+            e = (const u8 *) p + p->mUnk_06;
+            tab = e + *(u16 *) (e + 2);
             e = tab + i * 16;
             if (*(u32 *) e == k0 && *(u32 *) (e + 4) == k1 && *(u32 *) (e + 8) == k2 && *(u32 *) (e + 12) == k3) {
                 return i;
@@ -151,8 +147,8 @@ int func_02013754(const void *a, const u32 *key) {
             d = t[0];
             while (d > c) {
                 j = (n + ((key[c >> 5] >> (c & 0x1f)) & 1))[1];
-                d = n[0];
                 c = t[j * 4];
+                d = n[0];
                 n = t + j * 4;
             }
             tab = (const u8 *) p + p->mUnk_06;
