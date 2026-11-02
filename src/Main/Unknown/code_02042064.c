@@ -158,8 +158,8 @@ void CreateCourseMap(void *a) {
     courseMap = func_020431bc((u32) a);
     gCourseMap = courseMap;
     courseMap->mUnk_10c = header->mUnk_04;
-    offset = header->mUnk_08;
-    base = (u8 *) header + header->mUnk_06;
+    offset = header->mSectionOffsets;
+    base = (u8 *) header + header->mBaseOffset;
     for (i = 0; i < 17; i++) {
         if (data_usa_0215407c[i](base + *offset) != 0) {
             offset++;

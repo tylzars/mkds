@@ -20,7 +20,7 @@ void func_020ca844(void) {
         } else if (func_020ca9ac(func_020ca9dc(), 1)) {
             gEmblemChoises->mUnk_14 = 1;
             gEmblemChoises->mUnk_10 = 1;
-            switch (gEmblemChoises->mUnk_20) {
+            switch (gEmblemChoises->mChoisesIndex) {
                 case 0:
                     func_020ca984(0x10);
                     break;
@@ -45,7 +45,7 @@ void func_020ca844(void) {
         gEmblemChoises->mUnk_14++;
         if (gEmblemChoises->mUnk_14 > 0xf) {
             if (gEmblemChoises->mUnk_00 != 0) {
-                gEmblemChoises->mUnk_1c = gEmblemChoises->mUnk_20;
+                gEmblemChoises->mUnk_1c = gEmblemChoises->mChoisesIndex;
                 gEmblemChoises->mUnk_14 = 0;
             }
             gEmblemChoises->mUnk_14 = 0;

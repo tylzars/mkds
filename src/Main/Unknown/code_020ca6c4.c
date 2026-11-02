@@ -34,19 +34,19 @@ void InitEmblemChoises(void) {
     gEmblemChoises->mUnk_10 = 0;
     gEmblemChoises->mUnk_14 = 0;
     gEmblemChoises->mUnk_18 = 0;
-    gEmblemChoises->mUnk_28 = 3;
-    LoadNclrData(&gEmblemChoises->mUnk_60, FindSceneFileWrapper("choises_s_b.NCLR"));
-    LoadNcgrData(&gEmblemChoises->mUnk_64, FindSceneFileWrapper("choises_s_b.NCGR"));
-    LoadNscrData(&gEmblemChoises->mUnk_68, FindSceneFileWrapper("choises_s_3.NSCR"));
+    gEmblemChoises->mChoisesCount = 3;
+    LoadNclrData(&gEmblemChoises->mChoisesSBNclr, FindSceneFileWrapper("choises_s_b.NCLR"));
+    LoadNcgrData(&gEmblemChoises->mChoisesSBNcgr, FindSceneFileWrapper("choises_s_b.NCGR"));
+    LoadNscrData(&gEmblemChoises->mChoisesS3Nscr, FindSceneFileWrapper("choises_s_3.NSCR"));
     gEmblemChoises->mUnk_2c = func_020b403c(2);
-    func_02023408(&gEmblemChoises->mUnk_30, gEmblemChoises->mUnk_64->mUnk_14, 0x20, 0xc, 4);
+    func_02023408(&gEmblemChoises->mUnk_30, gEmblemChoises->mChoisesSBNcgr->mUnk_14, 0x20, 0xc, 4);
     p = gEmblemChoises;
     func_020ca808(&p->mUnk_50, &p->mUnk_30, p->mUnk_2c, func_020b4acc(), 0);
     {
         s32 bmgIndices[3] = {2, 0, 1};
         s32 i;
 
-        for (i = 0; i < gEmblemChoises->mUnk_28; i++) {
+        for (i = 0; i < gEmblemChoises->mChoisesCount; i++) {
             func_020ca7e0(&gEmblemChoises->mUnk_50, 0x90, i * 16 + 9, 12, 0x412,
                           func_020b3f7c(FindSceneFileWrapper("emblem.bmg"), bmgIndices[i]));
         }

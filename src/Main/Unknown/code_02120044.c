@@ -30,7 +30,7 @@ u32 func_021202f0(u32 arg0) {
 }
 
 u32 func_021202cc(u32 a) {
-    return data_0217d384->mUnk_021c[a].mUnk_234;
+    return data_0217d384->mUnk_021c[a].mRegion;
 }
 
 void *func_021202b0(u32 a) {

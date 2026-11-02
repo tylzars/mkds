@@ -189,9 +189,9 @@ typedef struct Unk0217d384_021c {
     /* 020 */ u8 mUnk_020[0x200];
     /* 220 */ u8 mUnk_220;
     /* 221 */ u8 mUnk_221[0x1];
-    /* 222 */ s16 mUnk_222;
+    /* 222 */ s16 mElo;
     /* 224 */ u8 mUnk_224[0x10];
-    /* 234 */ u8 mUnk_234 : 4;
+    /* 234 */ u8 mRegion : 4;
     /* 235 */ u8 mUnk_235;
     /* 236 */ u8 mUnk_236[0x2];
     /* 238 */ s32 mUnk_238;
@@ -201,9 +201,9 @@ typedef struct Unk0217d384_021c {
 
 // 0x18-byte object at member 0x1954 of Unk0217d384: three 64-bit values (x = x * [8] + [0x10] in func_02121af4).
 typedef struct Unk0217d384_1954 {
-    /* 00 */ u64 mUnk_00;
-    /* 08 */ u64 mUnk_08;
-    /* 10 */ u64 mUnk_10;
+    /* 00 */ u64 mValue;
+    /* 08 */ u64 mMultiplier;
+    /* 10 */ u64 mIncrement;
 } Unk0217d384_1954;
 
 // 8-byte object at member 0x18e0 of Unk0217d384.
@@ -216,9 +216,9 @@ typedef struct Unk0217d384_18e0 {
 
 // 0x18-byte elements of the table at member 0x18ec of Unk0217d384.
 typedef struct Unk0217d384_18ec {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ u8 mUnk_04[0x10];
-    /* 14 */ u8 mUnk_14;
+    /* 00 */ s32 mValue;
+    /* 04 */ u8 mName[0x10];
+    /* 14 */ u8 mId;
     /* 15 */ u8 pad_15[3];
 } Unk0217d384_18ec;
 
@@ -231,8 +231,8 @@ typedef struct Unk0217d384 {
     /* 021c */ Unk0217d384_021c mUnk_021c[4];
     /* 0b2c */ u8 mUnk_0b2c[0xdb4];
     /* 18e0 */ Unk0217d384_18e0 mUnk_18e0;
-    /* 18e8 */ s32 mUnk_18e8;
-    /* 18ec */ Unk0217d384_18ec mUnk_18ec[4];
+    /* 18e8 */ s32 mStartStatus;
+    /* 18ec */ Unk0217d384_18ec mKeys[4];
     /* 194c */ u8 mUnk_194c;
     /* 194d */ u8 mUnk_194d;
     /* 194e */ u8 mUnk_194e;

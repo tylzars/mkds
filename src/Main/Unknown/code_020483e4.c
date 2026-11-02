@@ -24,7 +24,7 @@ void func_020486d4(void *a) {
     data_021759c8 = func_02036bec(a, 0xa84);
     data_021759c8->mUnk_8c8.mUnk_88 = func_02036b74(a, 0x400, 0x20);
     for (i = 0; i < 20; i++) {
-        data_021759c8->mUnk_00[i].mUnk_68 = 0;
+        data_021759c8->mUnk_00[i].mLoaded = 0;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         data_021759c8->mUnk_8c0 = FS_TryLoadTable(0, 0);

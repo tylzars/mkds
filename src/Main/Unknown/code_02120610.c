@@ -110,11 +110,11 @@ void func_02121af4(void) {
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
         if (n == 0) {
-            v = (u32) (r->mUnk_00 >> 32);
+            v = (u32) (r->mValue >> 32);
         } else {
-            v = (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+            v = (u32) (((r->mValue >> 32) * (u32) n) >> 32);
         }
     }
     w = c[(u16) v];
@@ -350,17 +350,17 @@ s32 func_021213a0(void) {
 }
 
 s32 func_0212137c(void) {
-    return data_0217d384->mUnk_18e8 == 2;
+    return data_0217d384->mStartStatus == 2;
 }
 
 void func_02121190(u32 kartType, s32 b, s32 c) {
     Unk0217d384_08 *p;
 
     func_ov000_0219bbfc();
-    func_0214d168(&data_0217d384->mUnk_18ec[0], 0, 0x18);
-    func_0214d168(&data_0217d384->mUnk_18ec[1], 0, 0x18);
-    func_0214d168(&data_0217d384->mUnk_18ec[2], 0, 0x18);
-    func_0214d168(&data_0217d384->mUnk_18ec[3], 0, 0x18);
+    func_0214d168(&data_0217d384->mKeys[0], 0, 0x18);
+    func_0214d168(&data_0217d384->mKeys[1], 0, 0x18);
+    func_0214d168(&data_0217d384->mKeys[2], 0, 0x18);
+    func_0214d168(&data_0217d384->mKeys[3], 0, 0x18);
     data_0217d384->mUnk_194e = 0;
     data_0217d384->mUnk_194c = 0;
     data_0217d384->mUnk_194d = 0;
@@ -370,7 +370,7 @@ void func_02121190(u32 kartType, s32 b, s32 c) {
     data_0217d384->mUnk_1f55 = 0;
     data_0217d384->mUnk_1f56 = 0;
     func_0214d168(&data_0217d384->mUnk_1950, 0, 0x60);
-    data_0217d384->mUnk_18ec[1].mUnk_00 = kartType;
+    data_0217d384->mKeys[1].mValue = kartType;
     data_0217d384->mUnk_194c = 4;
     if (b == 0) {
         data_0217d384->mUnk_18e0.mUnk_00 = 1;
@@ -401,36 +401,36 @@ void RegisterKartKeysAndStart(void) {
     func_02120610();
     func_0214d168(data_0217d384->mUnk_021c, 0, 0x910);
     func_02056464((Unk0217aa00_45c *) &data_0217d384->mUnk_021c[0].mUnk_00c);
-    data_0217d384->mUnk_18ec[0].mUnk_00 = data_0217d384->mUnk_021c[0].mUnk_234;
-    data_0217d384->mUnk_18ec[3].mUnk_00 = data_0217d384->mUnk_021c[0].mUnk_222;
-    __memcpy(data_0217d384->mUnk_18ec[2].mUnk_04, "kart_filter", 12);
-    data_0217d384->mUnk_18ec[2].mUnk_14 = func_ov000_021a2ad0(
-        data_0217d384->mUnk_18ec[2].mUnk_14, data_0217d384->mUnk_18ec[2].mUnk_04, "ds_mario_kart_product");
-    __memcpy(data_0217d384->mUnk_18ec[1].mUnk_04, "kart_type", 10);
-    data_0217d384->mUnk_18ec[1].mUnk_14 = func_ov000_021a2b9c(
-        data_0217d384->mUnk_18ec[1].mUnk_14, data_0217d384->mUnk_18ec[1].mUnk_04, &data_0217d384->mUnk_18ec[1]);
-    __memcpy(data_0217d384->mUnk_18ec[3].mUnk_04, "kart_elo", 9);
-    data_0217d384->mUnk_18ec[3].mUnk_14 = func_ov000_021a2b9c(
-        data_0217d384->mUnk_18ec[3].mUnk_14, data_0217d384->mUnk_18ec[3].mUnk_04, &data_0217d384->mUnk_18ec[3]);
-    __memcpy(data_0217d384->mUnk_18ec[0].mUnk_04, "kart_region", 12);
-    data_0217d384->mUnk_18ec[0].mUnk_14 = func_ov000_021a2b9c(
-        data_0217d384->mUnk_18ec[0].mUnk_14, data_0217d384->mUnk_18ec[0].mUnk_04, &data_0217d384->mUnk_18ec[0]);
-    eloLow = data_0217d384->mUnk_021c[0].mUnk_222 - 0x3e8;
+    data_0217d384->mKeys[0].mValue = data_0217d384->mUnk_021c[0].mRegion;
+    data_0217d384->mKeys[3].mValue = data_0217d384->mUnk_021c[0].mElo;
+    __memcpy(data_0217d384->mKeys[2].mName, "kart_filter", 12);
+    data_0217d384->mKeys[2].mId =
+        func_ov000_021a2ad0(data_0217d384->mKeys[2].mId, data_0217d384->mKeys[2].mName, "ds_mario_kart_product");
+    __memcpy(data_0217d384->mKeys[1].mName, "kart_type", 10);
+    data_0217d384->mKeys[1].mId =
+        func_ov000_021a2b9c(data_0217d384->mKeys[1].mId, data_0217d384->mKeys[1].mName, &data_0217d384->mKeys[1]);
+    __memcpy(data_0217d384->mKeys[3].mName, "kart_elo", 9);
+    data_0217d384->mKeys[3].mId =
+        func_ov000_021a2b9c(data_0217d384->mKeys[3].mId, data_0217d384->mKeys[3].mName, &data_0217d384->mKeys[3]);
+    __memcpy(data_0217d384->mKeys[0].mName, "kart_region", 12);
+    data_0217d384->mKeys[0].mId =
+        func_ov000_021a2b9c(data_0217d384->mKeys[0].mId, data_0217d384->mKeys[0].mName, &data_0217d384->mKeys[0]);
+    eloLow = data_0217d384->mUnk_021c[0].mElo - 0x3e8;
     if (eloLow <= 0) {
         eloLow = 0;
     }
-    eloHigh = data_0217d384->mUnk_021c[0].mUnk_222 + 0x3e8;
+    eloHigh = data_0217d384->mUnk_021c[0].mElo + 0x3e8;
     if (eloHigh > 0x2710) {
         eloHigh = 0x2710;
     }
     func_0214d168(gKartFilterString, 0, 0x64);
-    if (data_0217d384->mUnk_18ec[1].mUnk_00 == 1) {
+    if (data_0217d384->mKeys[1].mValue == 1) {
         sprintf(gKartFilterString, (const u8 *) "%s = '%s' and %s > %d and %s < %d", "kart_filter",
                 "ds_mario_kart_product", "kart_elo", eloLow, "kart_elo", eloHigh);
     } else {
         sprintf(gKartFilterString, (const u8 *) "%s = '%s'", "kart_filter", "ds_mario_kart_product");
     }
-    switch (data_0217d384->mUnk_18ec[1].mUnk_00) {
+    switch (data_0217d384->mKeys[1].mValue) {
         case 3:
             func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, 0,
                                 ComputeRegionEval, 0);
@@ -447,13 +447,13 @@ void RegisterKartKeysAndStart(void) {
                                 0);
             break;
     }
-    data_0217d384->mUnk_18e8 = 1;
+    data_0217d384->mStartStatus = 1;
 }
 
 s32 func_02120d14(void) {
     s32 v;
 
-    v = data_0217d384->mUnk_18e8;
+    v = data_0217d384->mStartStatus;
     switch (v) {
         case 1:
             break;
@@ -471,17 +471,17 @@ s32 ComputeEloEval(u32 a) {
     s32 z;
     Unk0217d384 *d;
 
-    kartType = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[1].mUnk_04, 5);
-    kartRegion = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[0].mUnk_04, 3);
-    z = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[3].mUnk_04, -1);
+    kartType = func_ov000_021a2a88(a, data_0217d384->mKeys[1].mName, 5);
+    kartRegion = func_ov000_021a2a88(a, data_0217d384->mKeys[0].mName, 3);
+    z = func_ov000_021a2a88(a, data_0217d384->mKeys[3].mName, -1);
     if (kartType == 5 || kartRegion == 3 || z < 0) {
         return 0;
     }
     d = data_0217d384;
-    if (d->mUnk_021c[0].mUnk_222 > z) {
-        z = d->mUnk_021c[0].mUnk_222 - z;
+    if (d->mUnk_021c[0].mElo > z) {
+        z = d->mUnk_021c[0].mElo - z;
     } else {
-        z = z - d->mUnk_021c[0].mUnk_222;
+        z = z - d->mUnk_021c[0].mElo;
     }
     if (z < 0x3e8) {
         if (kartType == 1) {
@@ -498,13 +498,13 @@ s32 ComputeRegionEval(u32 a) {
     s32 kartType;
     s32 kartRegion;
 
-    kartType = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[1].mUnk_04, 5);
-    kartRegion = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[0].mUnk_04, 3);
+    kartType = func_ov000_021a2a88(a, data_0217d384->mKeys[1].mName, 5);
+    kartRegion = func_ov000_021a2a88(a, data_0217d384->mKeys[0].mName, 3);
     if (kartType == 5 || kartRegion == 3) {
         return 0;
     }
     if (kartType == 3) {
-        if (data_0217d384->mUnk_021c[0].mUnk_234 == kartRegion) {
+        if (data_0217d384->mUnk_021c[0].mRegion == kartRegion) {
             return 1;
         }
     }
@@ -517,24 +517,24 @@ s32 ComputeRegionEloEval(u32 a) {
     s32 z;
     Unk0217d384 *d;
 
-    kartType = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[1].mUnk_04, 5);
-    kartRegion = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[0].mUnk_04, 3);
-    z = func_ov000_021a2a88(a, data_0217d384->mUnk_18ec[3].mUnk_04, -1);
+    kartType = func_ov000_021a2a88(a, data_0217d384->mKeys[1].mName, 5);
+    kartRegion = func_ov000_021a2a88(a, data_0217d384->mKeys[0].mName, 3);
+    z = func_ov000_021a2a88(a, data_0217d384->mKeys[3].mName, -1);
     if (kartType == 5 || kartRegion == 3 || z < 0) {
         return 0;
     }
     if (kartType == 4) {
-        return (kartRegion != data_0217d384->mUnk_021c[0].mUnk_234 ? 2 : 1) * 0x7d0;
+        return (kartRegion != data_0217d384->mUnk_021c[0].mRegion ? 2 : 1) * 0x7d0;
     }
     if (kartType == 1) {
         d = data_0217d384;
-        if (d->mUnk_021c[0].mUnk_222 > z) {
-            z = d->mUnk_021c[0].mUnk_222 - z;
+        if (d->mUnk_021c[0].mElo > z) {
+            z = d->mUnk_021c[0].mElo - z;
         } else {
-            z = z - d->mUnk_021c[0].mUnk_222;
+            z = z - d->mUnk_021c[0].mElo;
         }
         if (z < 0x3e8) {
-            if (kartRegion != d->mUnk_021c[0].mUnk_234) {
+            if (kartRegion != d->mUnk_021c[0].mRegion) {
                 return 0x7d0 - z;
             }
             return 0x3e8 - z;
@@ -549,7 +549,7 @@ void KartKeysStartCallback(u32 a, s32 b) {
 
     if (a == 0) {
         if (b != 0) {
-            data_0217d384->mUnk_18e8 = 2;
+            data_0217d384->mStartStatus = 2;
             return;
         }
         data_0217d384->mUnk_1f55 = 0;
@@ -565,9 +565,9 @@ void KartKeysStartCallback(u32 a, s32 b) {
         func_0214d168(d->mUnk_021c, 0, 0x910);
         func_02056464((Unk0217aa00_45c *) &data_0217d384->mUnk_021c[func_ov000_0219bb50()].mUnk_00c);
         func_02123a48(0);
-        data_0217d384->mUnk_18e8 = 3;
+        data_0217d384->mStartStatus = 3;
     } else {
-        data_0217d384->mUnk_18e8 = 4;
+        data_0217d384->mStartStatus = 4;
     }
 }
 

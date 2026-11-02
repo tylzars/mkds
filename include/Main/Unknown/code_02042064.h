@@ -7,8 +7,8 @@
 typedef struct {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ u16 mUnk_04;
-    /* 06 */ u16 mUnk_06;
-    /* 08 */ s32 mUnk_08[1];
+    /* 06 */ u16 mBaseOffset;
+    /* 08 */ s32 mSectionOffsets[1];
 } Unk02042064;
 
 extern s32 (*data_usa_0215407c[17])(void *a, ...);

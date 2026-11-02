@@ -437,14 +437,14 @@ void func_ov001_021a5b4c(void *obj, s32 index) {
 }
 
 void func_ov001_021a5ab0(void *obj, s32 index) {
-    func_ov001_021a5b4c(gEmblem->mUnk_0858, 14);
-    func_ov001_021a5b4c(gEmblem->mUnk_0858, 15);
-    func_ov001_021a5b4c(gEmblem->mUnk_0858, 16);
-    func_ov001_021a5b4c(gEmblem->mUnk_0858, 17);
-    func_ov001_021a5b4c(gEmblem->mUnk_0858, 18);
-    func_ov001_021a5b4c(gEmblem->mUnk_0858, 19);
-    func_ov001_021a5b4c(gEmblem->mUnk_0858, 20);
-    func_ov001_021a5b4c(gEmblem->mUnk_0858, 21);
+    func_ov001_021a5b4c(gEmblem->mEmblemSLld, 14);
+    func_ov001_021a5b4c(gEmblem->mEmblemSLld, 15);
+    func_ov001_021a5b4c(gEmblem->mEmblemSLld, 16);
+    func_ov001_021a5b4c(gEmblem->mEmblemSLld, 17);
+    func_ov001_021a5b4c(gEmblem->mEmblemSLld, 18);
+    func_ov001_021a5b4c(gEmblem->mEmblemSLld, 19);
+    func_ov001_021a5b4c(gEmblem->mEmblemSLld, 20);
+    func_ov001_021a5b4c(gEmblem->mEmblemSLld, 21);
     func_ov001_021850a4(func_ov001_02185160(obj, index), (s32(*)(Unk021a5a58 *)) func_ov001_021a5b70);
 }
 

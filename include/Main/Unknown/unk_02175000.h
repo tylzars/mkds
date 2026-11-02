@@ -178,9 +178,9 @@ typedef struct Unk021759c8_9b0 {
 
 // 0x70-byte entries from the start of Unk021759c8; mUnk_68 is nonzero while the entry is in use.
 typedef struct Unk021759c8_00 {
-    /* 00 */ Unk020182c0 mUnk_00;
-    /* 68 */ s32 mUnk_68;
-    /* 6c */ Unk02018344 *mUnk_6c;
+    /* 00 */ Unk020182c0 mArchive;
+    /* 68 */ s32 mLoaded;
+    /* 6c */ Unk02018344 *mData;
 } Unk021759c8_00;
 
 // The 0xa0 bytes at 0x8c8 of Unk021759c8.

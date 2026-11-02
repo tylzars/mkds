@@ -28,7 +28,7 @@ void func_ov001_021a23c0(void) {
 }
 
 u16 *func_ov001_021a23ac(void) {
-    return gEmblem->mUnk_0830->mUnk_0c;
+    return gEmblem->mEmblemSBNclr->mUnk_0c;
 }
 
 u8 *func_ov001_021a2398(void) {

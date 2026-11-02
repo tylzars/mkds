@@ -156,15 +156,15 @@ typedef struct Unk0217b438 {
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
-    /* 20 */ s32 mUnk_20;
+    /* 20 */ s32 mChoisesIndex;
     /* 24 */ s32 mUnk_24;
-    /* 28 */ s32 mUnk_28;
+    /* 28 */ s32 mChoisesCount;
     /* 2c */ void *mUnk_2c;
     /* 30 */ Unk0217d3f0_2098 mUnk_30;
     /* 50 */ Unk02180728 mUnk_50;
-    /* 60 */ struct Unk020b4a44 *mUnk_60;
-    /* 64 */ struct Unk020b4934 *mUnk_64;
-    /* 68 */ struct Unk020b47d8 *mUnk_68;
+    /* 60 */ struct Unk020b4a44 *mChoisesSBNclr;
+    /* 64 */ struct Unk020b4934 *mChoisesSBNcgr;
+    /* 68 */ struct Unk020b47d8 *mChoisesS3Nscr;
 } Unk0217b438;
 
 // 16-byte rows of the table behind data_0217b4d4 (func_020d34e4 reads the halfwords).

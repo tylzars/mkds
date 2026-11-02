@@ -61,12 +61,12 @@ void func_ov001_021a2408(void) {
             func_0214b824((const void *) (func_ov001_02181174()), func_ov001_02181194(), func_ov001_02181180());
             func_0200ee74(gEmblem->mUnk_0a7c, 0x200);
             func_0214b95c((const void *) (gEmblem->mUnk_0a7c), 0, 0x200);
-            src = gEmblem->mUnk_0830->mUnk_0c;
-            dst = gEmblem->mUnk_082c->mUnk_0c;
+            src = gEmblem->mEmblemSBNclr->mUnk_0c;
+            dst = gEmblem->mEmblemSONclr->mUnk_0c;
             dst[0x91] = src[func_ov001_021a63b4() == 1 ? 2 : 1];
             dst[0x92] = src[func_ov001_021a63b4()];
-            func_0200ee74(gEmblem->mUnk_082c->mUnk_0c, gEmblem->mUnk_082c->mUnk_08);
-            func_0214c028((const void *) gEmblem->mUnk_082c->mUnk_0c, 0, gEmblem->mUnk_082c->mUnk_08);
+            func_0200ee74(gEmblem->mEmblemSONclr->mUnk_0c, gEmblem->mEmblemSONclr->mUnk_08);
+            func_0214c028((const void *) gEmblem->mEmblemSONclr->mUnk_0c, 0, gEmblem->mEmblemSONclr->mUnk_08);
             break;
         case 3:
             *(vu32 *) 0x4001010 = (-(gEmblem->mUnk_10a0 - 0xc0) << 16) & 0x1ff0000;
@@ -89,12 +89,12 @@ void func_ov001_021a2408(void) {
         case 5:
             func_0200ee74(gEmblem->mUnk_0a7c, 0x200);
             func_0214b95c((const void *) (gEmblem->mUnk_0a7c), 0, 0x200);
-            src = gEmblem->mUnk_0830->mUnk_0c;
-            dst = gEmblem->mUnk_082c->mUnk_0c;
+            src = gEmblem->mEmblemSBNclr->mUnk_0c;
+            dst = gEmblem->mEmblemSONclr->mUnk_0c;
             dst[0x91] = src[func_ov001_021a63b4() == 1 ? 2 : 1];
             dst[0x92] = src[func_ov001_021a63b4()];
-            func_0200ee74(gEmblem->mUnk_082c->mUnk_0c, gEmblem->mUnk_082c->mUnk_08);
-            func_0214c028((const void *) gEmblem->mUnk_082c->mUnk_0c, 0, gEmblem->mUnk_082c->mUnk_08);
+            func_0200ee74(gEmblem->mEmblemSONclr->mUnk_0c, gEmblem->mEmblemSONclr->mUnk_08);
+            func_0214c028((const void *) gEmblem->mEmblemSONclr->mUnk_0c, 0, gEmblem->mEmblemSONclr->mUnk_08);
             break;
         case 8:
             *(vu32 *) 0x4001018 =
@@ -103,12 +103,12 @@ void func_ov001_021a2408(void) {
             func_0214b824((const void *) (func_ov001_02181174()), func_ov001_02181194(), func_ov001_02181180());
             func_0200ee74(gEmblem->mUnk_0a7c, 0x200);
             func_0214b95c((const void *) (gEmblem->mUnk_0a7c), 0, 0x200);
-            src = gEmblem->mUnk_0830->mUnk_0c;
-            dst = gEmblem->mUnk_082c->mUnk_0c;
+            src = gEmblem->mEmblemSBNclr->mUnk_0c;
+            dst = gEmblem->mEmblemSONclr->mUnk_0c;
             dst[0x91] = src[func_ov001_021a63b4() == 1 ? 2 : 1];
             dst[0x92] = src[func_ov001_021a63b4()];
-            func_0200ee74(gEmblem->mUnk_082c->mUnk_0c, gEmblem->mUnk_082c->mUnk_08);
-            func_0214c028((const void *) gEmblem->mUnk_082c->mUnk_0c, 0, gEmblem->mUnk_082c->mUnk_08);
+            func_0200ee74(gEmblem->mEmblemSONclr->mUnk_0c, gEmblem->mEmblemSONclr->mUnk_08);
+            func_0214c028((const void *) gEmblem->mEmblemSONclr->mUnk_0c, 0, gEmblem->mEmblemSONclr->mUnk_08);
             break;
         case 12:
             func_0214a3e8((u16 *) 0x4001050, 0x3e, -16);

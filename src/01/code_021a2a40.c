@@ -44,12 +44,12 @@ void func_ov001_021a2e0c(void) {
     if (func_ov001_02192a54() != 0) {
         y = func_ov001_02192a60();
         x = func_ov001_02192a6c();
-        i = func_ov001_021850b4(gEmblem->mUnk_085c, 0, x, y);
+        i = func_ov001_021850b4(gEmblem->mEmblemTemplateSLld, 0, x, y);
         while (i >= 0) {
             func_ov001_021a41c8(i, 1);
             y = func_ov001_02192a60();
             x = func_ov001_02192a6c();
-            i = func_ov001_021850b4(gEmblem->mUnk_085c, i + 1, x, y);
+            i = func_ov001_021850b4(gEmblem->mEmblemTemplateSLld, i + 1, x, y);
         }
     }
     if (func_ov001_02192a14(1) != 0) {
@@ -82,10 +82,10 @@ void func_ov001_021a2e0c(void) {
     gEmblem->mUnk_1080 = u;
     sel = gEmblem->mUnk_1080;
     if (sel != func_ov001_021a63b4() - 1) {
-        entry_c = func_ov001_02185160(gEmblem->mUnk_0858, data_ov001_021a7018[sel]);
-        entry_d = func_ov001_02185160(gEmblem->mUnk_0858, 9);
+        entry_c = func_ov001_02185160(gEmblem->mEmblemSLld, data_ov001_021a7018[sel]);
+        entry_d = func_ov001_02185160(gEmblem->mEmblemSLld, 9);
         func_ov001_02184fd8(entry_d, func_ov001_02184fc8(entry_c), func_ov001_02184fb8(entry_c));
-        entry_d = func_ov001_02185160(gEmblem->mUnk_0858, 10);
+        entry_d = func_ov001_02185160(gEmblem->mEmblemSLld, 10);
         func_ov001_02184fd8(entry_d, func_ov001_02184fc8(entry_c), func_ov001_02184fb8(entry_c));
         func_ov001_021a63c0((u8) (gEmblem->mUnk_1080 + 1));
         func_0212ecc0(&data_0217d068, 0, 0x1f1);
@@ -93,8 +93,8 @@ void func_ov001_021a2e0c(void) {
     sel = gEmblem->mUnk_1084;
     gEmblem->mUnk_1084 = data_ov001_021a73ac[v + 1][sel];
     gEmblem->mUnk_1084 = data_ov001_021a7508[h + 1][gEmblem->mUnk_1084];
-    entry_a = func_ov001_02185160(gEmblem->mUnk_085c, 2);
-    entry_b = func_ov001_02185160(gEmblem->mUnk_085c, data_ov001_021a7098[gEmblem->mUnk_1084]);
+    entry_a = func_ov001_02185160(gEmblem->mEmblemTemplateSLld, 2);
+    entry_b = func_ov001_02185160(gEmblem->mEmblemTemplateSLld, data_ov001_021a7098[gEmblem->mUnk_1084]);
     func_ov001_02185018(entry_a, 0);
     func_ov001_02184fd8(entry_a, func_ov001_02184fc8(entry_b), func_ov001_02184fb8(entry_b));
     if (gEmblem->mUnk_1084 != sel) {
@@ -105,7 +105,7 @@ void func_ov001_021a2e0c(void) {
         void *q;
 
         for (k = 0; k < 0x1d; k++) {
-            q = func_ov001_02185160(gEmblem->mUnk_085c, data_ov001_021a7098[k]);
+            q = func_ov001_02185160(gEmblem->mEmblemTemplateSLld, data_ov001_021a7098[k]);
             func_ov001_02185018(q, k == gEmblem->mUnk_1084 ? 1 : 0);
         }
     }
@@ -119,12 +119,12 @@ void func_ov001_021a2d90(void) {
     if (func_ov001_02192a54() != 0) {
         y = func_ov001_02192a60();
         x = func_ov001_02192a6c();
-        i = func_ov001_021850b4(gEmblem->mUnk_0878, 0, x, y);
+        i = func_ov001_021850b4(gEmblem->mEmblemCameraSLld, 0, x, y);
         while (i >= 0) {
             func_ov001_021a41c8(i, 1);
             y = func_ov001_02192a60();
             x = func_ov001_02192a6c();
-            i = func_ov001_021850b4(gEmblem->mUnk_0878, i + 1, x, y);
+            i = func_ov001_021850b4(gEmblem->mEmblemCameraSLld, i + 1, x, y);
         }
     }
     if (func_ov001_02192a14(4) != 0) {
@@ -169,30 +169,30 @@ void func_ov001_021a2a40(void) {
     }
     gEmblem->mUnk_10a8 = t;
     func_020ae6ac((void *) ((int) gEmblem), (void *) ((int) gEmblem->mUnk_0404));
-    func_ov001_0218516c(gEmblem->mUnk_0828, (Unk0218516c *) gEmblem->mUnk_0000);
+    func_ov001_0218516c(gEmblem->mEmblemMLld, (Unk0218516c *) gEmblem->mUnk_0000);
     switch (gEmblem->mUnk_1090) {
         case 0:
             if (gEmblem->mUnk_10b0 == 0) {
                 func_ov001_021a30e0();
             }
-            func_ov001_0218516c(gEmblem->mUnk_0858, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             break;
         case 1:
             if (gEmblem->mUnk_10b0 == 0) {
                 func_ov001_021a2e0c();
             }
-            func_ov001_0218516c(gEmblem->mUnk_085c, (Unk0218516c *) gEmblem->mUnk_0404);
-            func_ov001_0218516c(gEmblem->mUnk_0858, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemTemplateSLld, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             break;
         case 2:
             func_ov001_021a499c();
-            func_ov001_0218516c(gEmblem->mUnk_085c, (Unk0218516c *) gEmblem->mUnk_0404);
-            func_ov001_0218516c(gEmblem->mUnk_0858, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemTemplateSLld, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             break;
         case 3:
             func_ov001_021a48a4();
-            func_ov001_0218516c(gEmblem->mUnk_085c, (Unk0218516c *) gEmblem->mUnk_0404);
-            func_ov001_0218516c(gEmblem->mUnk_0858, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemTemplateSLld, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             break;
         case 4:
             if (gEmblem->mUnk_10ac == 0) {
@@ -201,42 +201,42 @@ void func_ov001_021a2a40(void) {
             if (gEmblem->mUnk_10b0 == 0) {
                 func_ov001_021a2d90();
             }
-            func_ov001_0218516c(gEmblem->mUnk_0878, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemCameraSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             break;
         case 5:
             if (gEmblem->mUnk_10ac == 0) {
                 func_ov001_021a401c();
             }
             func_ov001_021a4804();
-            func_ov001_0218516c(gEmblem->mUnk_0858, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             break;
         case 6:
             if (gEmblem->mUnk_10ac == 0) {
                 func_ov001_021a401c();
             }
             func_ov001_021a47b4();
-            func_ov001_0218516c(gEmblem->mUnk_0878, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemCameraSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             break;
         case 7:
             if (gEmblem->mUnk_10b0 == 0) {
                 func_ov001_021a30e0();
             }
             func_ov001_021a4774();
-            func_ov001_0218516c(gEmblem->mUnk_0878, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemCameraSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             break;
         case 8:
             if (gEmblem->mUnk_10b0 == 0) {
                 func_ov001_021a30e0();
             }
             func_ov001_021a4724();
-            func_ov001_0218516c(gEmblem->mUnk_0858, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             break;
         case 10:
             func_ov001_021a2cf0();
-            func_ov001_0218516c(gEmblem->mUnk_0858, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             break;
         case 11:
-            func_ov001_0218516c(gEmblem->mUnk_0858, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             if (data_0217aa08->mUnk_28 == 0) {
                 if (data_021759d4->mUnk_0c != 0) {
                     t = data_021759d4->mUnk_10;
@@ -251,7 +251,7 @@ void func_ov001_021a2a40(void) {
             }
             break;
         case 12:
-            func_ov001_0218516c(gEmblem->mUnk_0858, (Unk0218516c *) gEmblem->mUnk_0404);
+            func_ov001_0218516c(gEmblem->mEmblemSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             break;
     }
     func_020ae630((void *) ((int) gEmblem), (void *) ((int) gEmblem->mUnk_0404));

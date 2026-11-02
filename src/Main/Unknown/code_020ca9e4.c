@@ -12,12 +12,12 @@
 #pragma optimize_for_size on
 void func_020ca9e4(void) {
     if (gEmblemChoises->mUnk_08 != 0) {
-        func_0214c0f8(gEmblemChoises->mUnk_60->mUnk_0c + 0xe0, 0x1c0, 0x40);
-        func_0214ba94(gEmblemChoises->mUnk_64->mUnk_14, 0, 0x3000);
+        func_0214c0f8(gEmblemChoises->mChoisesSBNclr->mUnk_0c + 0xe0, 0x1c0, 0x40);
+        func_0214ba94(gEmblemChoises->mChoisesSBNcgr->mUnk_14, 0, 0x3000);
         gEmblemChoises->mUnk_08 = 0;
     }
     if (gEmblemChoises->mUnk_00 != 0) {
-        func_0214bdd4(gEmblemChoises->mUnk_68->mUnk_0c, 0, 0x600);
+        func_0214bdd4(gEmblemChoises->mChoisesS3Nscr->mUnk_0c, 0, 0x600);
     }
     if (gEmblemChoises->mUnk_00 != gEmblemChoises->mUnk_04) {
         if (gEmblemChoises->mUnk_00 != 0) {

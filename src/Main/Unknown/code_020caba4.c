@@ -13,14 +13,14 @@ s32 func_020cadac(s32 a) {
     s32 v;
     s32 n;
 
-    v = gEmblemChoises->mUnk_20;
+    v = gEmblemChoises->mChoisesIndex;
     if (gEmblemChoises->mUnk_00 != 0) {
-        n = gEmblemChoises->mUnk_28;
+        n = gEmblemChoises->mChoisesCount;
         if (a != 0) {
             gEmblemChoises->mUnk_24 = 0;
             func_02105ac0(0);
         }
-        gEmblemChoises->mUnk_20 = (v + a + n) % n;
+        gEmblemChoises->mChoisesIndex = (v + a + n) % n;
     }
     return v;
 }
@@ -36,7 +36,7 @@ s32 func_020cacc0(void) {
     v = 0;
     if (gEmblemChoises->mUnk_00 != 0) {
         func_020cadac(v);
-        n = gEmblemChoises->mUnk_28;
+        n = gEmblemChoises->mChoisesCount;
         for (i = 0; i < n; i++) {
             s32 y;
 
@@ -49,13 +49,13 @@ s32 func_020cacc0(void) {
         z = 0;
         for (j = 0; j < n; j++) {
             if (func_020ae244(func_020ca9dc(), r[j])) {
-                if (gEmblemChoises->mUnk_20 != j) {
-                    gEmblemChoises->mUnk_20 = j;
+                if (gEmblemChoises->mChoisesIndex != j) {
+                    gEmblemChoises->mChoisesIndex = j;
                     func_020cadac(z);
                 } else {
                     gEmblemChoises->mUnk_10 = 1;
                 }
-                switch (gEmblemChoises->mUnk_20) {
+                switch (gEmblemChoises->mChoisesIndex) {
                     case 0:
                         func_020ca984(0x10);
                         break;
@@ -75,7 +75,7 @@ s32 func_020cacc0(void) {
 
 void func_020cac9c(void) {
     gEmblemChoises->mUnk_1c = -1;
-    gEmblemChoises->mUnk_20 = 0;
+    gEmblemChoises->mChoisesIndex = 0;
     gEmblemChoises->mUnk_24 = 0;
     gEmblemChoises->mUnk_10 = 0;
     gEmblemChoises->mUnk_14 = 0;
@@ -92,8 +92,8 @@ void func_020cac18(void) {
     u16 *v;
     s32 i;
 
-    n = gEmblemChoises->mUnk_28;
-    v = gEmblemChoises->mUnk_68->mUnk_0c;
+    n = gEmblemChoises->mChoisesCount;
+    v = gEmblemChoises->mChoisesS3Nscr->mUnk_0c;
     if (v != 0) {
         for (i = 0; i < n; i++) {
             func_020cac68(v, 2, 13 - n * 2 + i * 4);
@@ -109,8 +109,8 @@ void func_020caba4(s32 a) {
     s32 c;
 
     p = gEmblemChoises;
-    n = p->mUnk_28;
-    v = p->mUnk_68->mUnk_0c;
+    n = p->mChoisesCount;
+    v = p->mChoisesS3Nscr->mUnk_0c;
     if (v != 0) {
         if (p->mUnk_10 == 0 || p->mUnk_14 >= 5) {
             c = 13 - n * 2 + a * 4;

@@ -309,9 +309,9 @@ void func_02123384(void) {
         n += p->mUnk_021c[i].mUnk_240;
     }
     r = &p->mUnk_1954;
-    r->mUnk_00 = n;
-    r->mUnk_08 = 0x5d588b656c078965;
-    r->mUnk_10 = 0x269ec3;
+    r->mValue = n;
+    r->mMultiplier = 0x5d588b656c078965;
+    r->mIncrement = 0x269ec3;
     func_0205e5c4(0);
     data_0217d384->mUnk_19aa = 0;
     data_0217d384->mUnk_19ab = 0;

@@ -172,7 +172,7 @@ void *LoadKartModelFile(const char *path) {
         }
         file = func_02048504(fullPath, 8);
     } else {
-        if (data_021759c8->mUnk_00[6].mUnk_68 != 0) {
+        if (data_021759c8->mUnk_00[6].mLoaded != 0) {
             archiveName = gArchiveNames[6];
             if (path[0] == '/') {
                 func_0200d9e0(fullPath, 0x80, data_usa_02165018, archiveName, path);
@@ -181,7 +181,7 @@ void *LoadKartModelFile(const char *path) {
             }
             file = func_02048504(fullPath, 8);
         }
-        if (file == NULL && data_021759c8->mUnk_00[7].mUnk_68 != 0) {
+        if (file == NULL && data_021759c8->mUnk_00[7].mLoaded != 0) {
             archiveName = gArchiveNames[7];
             if (path[0] == '/') {
                 func_0200d9e0(fullPath, 0x80, data_usa_02165028, archiveName, path);
@@ -190,7 +190,7 @@ void *LoadKartModelFile(const char *path) {
             }
             file = func_02048504(fullPath, 8);
         }
-        if (file == NULL && data_021759c8->mUnk_00[8].mUnk_68 != 0) {
+        if (file == NULL && data_021759c8->mUnk_00[8].mLoaded != 0) {
             archiveName = gArchiveNames[8];
             if (path[0] == '/') {
                 func_0200d9e0(fullPath, 0x80, data_usa_02165038, archiveName, path);
