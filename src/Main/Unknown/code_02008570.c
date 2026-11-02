@@ -43,23 +43,23 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
         v13 -= 0x160;
         if (v1 != 0) {
             v7 = v1->mUnk_2c - v1->mUnk_20.w.mUnk_04;
-            if ((s32) func_020048ac(v1, v3, 0x160) < 0x160) {
+            if ((s32) FS_ReadFile(v1, v3, 0x160) < 0x160) {
                 v13 = 0;
             }
             v9 = func_02008570_inline(v2);
         } else {
             v9 = func_02008570_inline((u8 *) 0x027ffe00);
             v12 = 1;
-            func_02004d80(&v4);
-            func_02004afc(&v4, FS_FindArchive(data_usa_0216178c, 3), 0, v9 + 0x88, -1);
+            FS_InitFile(&v4);
+            FS_OpenFileDirect(&v4, FS_FindArchive(data_usa_0216178c, 3), 0, v9 + 0x88, -1);
             v1 = &v4;
             v7 = v4.mUnk_2c - v4.mUnk_20.w.mUnk_04;
             func_0214d1fc((const void *) 0x027ffe00, v2, 0x160);
             *(u32 *) (v2 + 0x60) |= 0x00406000;
         }
         if (v13 >= 0x88) {
-            func_02004840(v1, v7 + v9, 0);
-            func_020048ac(v1, v3, 0x88);
+            FS_SeekFile(v1, v7 + v9, 0);
+            FS_ReadFile(v1, v3, 0x88);
             v3 += 0x88;
             v13 -= 0x88;
         } else {
@@ -93,31 +93,31 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
         v8 = *(u32 *) (v2 + 0x2c) + *(u32 *) (v2 + 0x3c);
         if (v13 >= v8) {
             v10 = v1->mUnk_20.w.mUnk_04;
-            func_02004840(v1, v6[1] - v10, 0);
-            func_020048ac(v1, v3, *(u32 *) (v2 + 0x2c));
+            FS_SeekFile(v1, v6[1] - v10, 0);
+            FS_ReadFile(v1, v3, *(u32 *) (v2 + 0x2c));
             func_0200ae60(v5, v6[1], *(u32 *) (v2 + 0x2c), (u32) v3, 3);
             v3 += *(u32 *) (v2 + 0x2c);
-            func_02004840(v1, v6[2] - v10, 0);
-            func_020048ac(v1, v3, *(u32 *) (v2 + 0x3c));
+            FS_SeekFile(v1, v6[2] - v10, 0);
+            FS_ReadFile(v1, v3, *(u32 *) (v2 + 0x3c));
             func_0200ae60(v5, v6[2], *(u32 *) (v2 + 0x3c), (u32) v3, 3);
             v11 = 1;
         } else if (v13 >= 0xcc00) {
             v10 = v1->mUnk_20.w.mUnk_04;
             v8 = v6[1];
-            func_02004840(v1, v8 - v10, 0);
-            func_020048ac(v1, v3, 0x4400);
+            FS_SeekFile(v1, v8 - v10, 0);
+            FS_ReadFile(v1, v3, 0x4400);
             func_0200ae60(v5, v8, 0x4400, (u32) v3, 3);
-            func_02004840(v1, v8 + 0x4400 - v10, 0);
-            func_020048ac(v1, v3 + 0x4400, 0x4400);
+            FS_SeekFile(v1, v8 + 0x4400 - v10, 0);
+            FS_ReadFile(v1, v3 + 0x4400, 0x4400);
             func_0200ae60(v5, v8 + 0x4400, 0x4400, (u32) (v3 + 0x4400), 2);
-            func_02004840(v1, v8 + 0x8800 - v10, 0);
-            func_020048ac(v1, v3 + 0x8800, 0x4400);
+            FS_SeekFile(v1, v8 + 0x8800 - v10, 0);
+            FS_ReadFile(v1, v3 + 0x8800, 0x4400);
             func_0200ae60(v5, v8 + 0x8800, 0x4400, (u32) (v3 + 0x8800), 2);
             v11 = 1;
         }
-        func_02004840(v1, v7, 0);
+        FS_SeekFile(v1, v7, 0);
         if (v12 != 0) {
-            func_020049e8(&v4);
+            FS_CloseFile(&v4);
             if (v11 != 0) {
                 v6 = data_usa_02161788;
                 v14[0] = *(u32 *) (v2 + 0x20);

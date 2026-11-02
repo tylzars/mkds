@@ -71,7 +71,7 @@ void func_0212efb8(Unk0212c7f0 *a) {
         func_0212c918(a);
     }
     if (a->mUnk_110_0) {
-        func_020048cc(&a->mUnk_5c);
+        FS_CancelFile(&a->mUnk_5c);
     }
     func_0212ef48(a);
     func_0200ecc4(data_0217e3e0);
@@ -80,14 +80,14 @@ void func_0212efb8(Unk0212c7f0 *a) {
     }
 }
 
-// If bit 0 of mUnk_110 is set: runs func_0212ef00, func_020049e8, and func_0212ee8c on data_0217e3f8 and
+// If bit 0 of mUnk_110 is set: runs func_0212ef00, FS_CloseFile, and func_0212ee8c on data_0217e3f8 and
 // mUnk_4e4 of data_0217df04, then func_0212f058.
 void func_0212ef48(Unk0212c7f0 *a) {
     if (!a->mUnk_110_0) {
         return;
     }
     func_0212ef00(a);
-    func_020049e8(&a->mUnk_5c);
+    FS_CloseFile(&a->mUnk_5c);
     func_0212ee8c(&data_0217e3f8, a);
     if (data_0217df04 != 0) {
         func_0212ee8c(&data_0217df04->mUnk_4e4, a);

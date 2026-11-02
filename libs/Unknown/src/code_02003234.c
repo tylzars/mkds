@@ -242,7 +242,7 @@ s32 FileBuildPathString(Unk02003024 *a) {
 
     o = a->mUnk_08;
     p = &a->mUnk_30;
-    func_02004d80(&c);
+    FS_InitFile(&c);
     c.mUnk_08 = a->mUnk_08;
     if (((a->mUnk_0c & 0x20) ? 1 : 0) != 0) {
         k = a->mUnk_20.h.mUnk_04;

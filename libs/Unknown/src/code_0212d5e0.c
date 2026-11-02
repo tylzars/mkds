@@ -46,11 +46,11 @@ void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, void *p, u32 flag) {
     a->mUnk_8c = 0;
     a->mUnk_84 = 0;
     a->mUnk_88 = 0;
-    if (func_02004b54(&a->mUnk_7c, path) == 0) {
+    if (FS_ConvertPathToFileID(&a->mUnk_7c, path) == 0) {
         return;
     }
-    func_02004d80(&a->mUnk_34);
-    if (func_02004a80(&a->mUnk_34, a->mUnk_7c) == 0) {
+    FS_InitFile(&a->mUnk_34);
+    if (FS_OpenFileFast(&a->mUnk_34, a->mUnk_7c) == 0) {
         return;
     }
     a->mUnk_30 = 1;
@@ -62,10 +62,10 @@ void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, void *p, u32 flag) {
 u32 func_0212d6c4(Unk0212d5f8 *a, void *p, u32 flag) {
     s32 n;
 
-    if (func_02004840(&a->mUnk_34, 0, 0) == 0) {
+    if (FS_SeekFile(&a->mUnk_34, 0, 0) == 0) {
         return 0;
     }
-    if (func_020048ac(&a->mUnk_34, a, 0x30) != 0x30) {
+    if (FS_ReadFile(&a->mUnk_34, a, 0x30) != 0x30) {
         return 0;
     }
     if (p != 0) {
@@ -73,10 +73,10 @@ u32 func_0212d6c4(Unk0212d5f8 *a, void *p, u32 flag) {
         if (a->mUnk_8c == 0) {
             return 0;
         }
-        if (func_02004840(&a->mUnk_34, a->mUnk_18, 0) == 0) {
+        if (FS_SeekFile(&a->mUnk_34, a->mUnk_18, 0) == 0) {
             return 0;
         }
-        n = func_020048ac(&a->mUnk_34, a->mUnk_8c, a->mUnk_1c);
+        n = FS_ReadFile(&a->mUnk_34, a->mUnk_8c, a->mUnk_1c);
         if (n != a->mUnk_1c) {
             return 0;
         }
@@ -84,10 +84,10 @@ u32 func_0212d6c4(Unk0212d5f8 *a, void *p, u32 flag) {
         if (a->mUnk_84 == 0) {
             return 0;
         }
-        if (func_02004840(&a->mUnk_34, a->mUnk_20, 0) == 0) {
+        if (FS_SeekFile(&a->mUnk_34, a->mUnk_20, 0) == 0) {
             return 0;
         }
-        n = func_020048ac(&a->mUnk_34, a->mUnk_84, a->mUnk_24);
+        n = FS_ReadFile(&a->mUnk_34, a->mUnk_84, a->mUnk_24);
         if (n != a->mUnk_24) {
             return 0;
         }
@@ -96,10 +96,10 @@ u32 func_0212d6c4(Unk0212d5f8 *a, void *p, u32 flag) {
             if (a->mUnk_88 == 0) {
                 return 0;
             }
-            if (func_02004840(&a->mUnk_34, a->mUnk_10, 0) == 0) {
+            if (FS_SeekFile(&a->mUnk_34, a->mUnk_10, 0) == 0) {
                 return 0;
             }
-            n = func_020048ac(&a->mUnk_34, a->mUnk_88, a->mUnk_14);
+            n = FS_ReadFile(&a->mUnk_34, a->mUnk_88, a->mUnk_14);
             if (n != a->mUnk_14) {
                 return 0;
             }

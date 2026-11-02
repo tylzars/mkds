@@ -4,7 +4,7 @@
 #include "code_02003024.h"
 #include "code_02004270.h"
 
-// Two words of the 0x60-byte block that func_020048ac reads.
+// Two words of the 0x60-byte block that FS_ReadFile reads.
 typedef struct Unk02008880 {
     /* 00 */ u8 mUnk_00[0x2c];
     /* 2c */ u32 mUnk_2c;

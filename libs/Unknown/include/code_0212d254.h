@@ -53,7 +53,7 @@ typedef struct Unk0212d38c {
 } Unk0212d38c;
 
 // 0x90-byte object: func_0212d5f8 copies its first 0x30 bytes from buf, func_0212d6c4 reads them through
-// func_020048ac on mUnk_34.
+// FS_ReadFile on mUnk_34.
 typedef struct Unk0212d5f8 {
     /* 00 */ u8 mUnk_00[0x10];
     /* 10 */ u32 mUnk_10;

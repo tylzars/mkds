@@ -12,11 +12,11 @@ u32 func_0210efcc(Unk0212d5f8 *a, const u8 *b, void *c, u32 d) {
     a->mUnk_8c = 0;
     a->mUnk_84 = 0;
     a->mUnk_88 = 0;
-    if (func_02004b54(&a->mUnk_7c, b) == 0) {
+    if (FS_ConvertPathToFileID(&a->mUnk_7c, b) == 0) {
         return 0;
     }
-    func_02004d80(&a->mUnk_34);
-    if (func_02004a80(&a->mUnk_34, a->mUnk_7c) == 0) {
+    FS_InitFile(&a->mUnk_34);
+    if (FS_OpenFileFast(&a->mUnk_34, a->mUnk_7c) == 0) {
         return 0;
     }
     a->mUnk_30 = 1;

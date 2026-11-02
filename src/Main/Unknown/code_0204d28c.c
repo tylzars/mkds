@@ -198,8 +198,8 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
             v8 = 1;
         }
     }
-    func_02004d80(&v1);
-    func_02004afc(&v1, FS_FindArchive(data_021651d8, 3), 0, 0x7fffffff, -1);
+    FS_InitFile(&v1);
+    FS_OpenFileDirect(&v1, FS_FindArchive(data_021651d8, 3), 0, 0x7fffffff, -1);
     if (v14 != 0) {
         v9 = 0;
         v10 = 0;
@@ -209,8 +209,8 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
         v9 = i + a->mUnk_20.w.mUnk_04;
         v5 = &v2;
         v10 = v9;
-        func_020048ac(a, v5, 0x60);
-        func_02004840(a, i, 0);
+        FS_ReadFile(a, v5, 0x60);
+        FS_SeekFile(a, i, 0);
     }
     if (v8 == 0) {
         t[0].mUnk_00 = (u8 *) v5->mUnk_48;
@@ -257,8 +257,8 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
             v4[j] = v15;
             q = v4[j];
             *q = t[j].mUnk_04;
-            func_02004840(&v1, v10 + (u32) t[j].mUnk_00, v11);
-            func_020048ac(&v1, q + 1, *q);
+            FS_SeekFile(&v1, v10 + (u32) t[j].mUnk_00, v11);
+            FS_ReadFile(&v1, q + 1, *q);
             v15 = (u32 *) ((u8 *) v15 + (v3[j] + 4));
         }
     }
@@ -274,8 +274,8 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
             Unk0204d28c_20 *q = (Unk0204d28c_20 *) (v19 + 1);
             s32 v20 = *v19 >> 5;
             for (j = 0; j < v20; j++) {
-                func_02004840(&v1, v18 + (q[j].mUnk_18 << 3), v11);
-                func_020048ac(&v1, w, v12);
+                FS_SeekFile(&v1, v18 + (q[j].mUnk_18 << 3), v11);
+                FS_ReadFile(&v1, w, v12);
                 *(u32 *) (v17 + (n << 3)) = *(u32 *) (v17 + (n << 3)) + v9;
                 ((u32 *) (v17 + (n << 3)))[1] = ((u32 *) (v17 + (n << 3)))[1] + v9;
                 q[j].mUnk_18 = n;
@@ -287,7 +287,7 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
     }
     func_0200ee74(v6, v7);
     func_0200ee98();
-    func_020049e8(&v1);
+    FS_CloseFile(&v1);
     data_02175ec0.mUnk_0020 = v6;
     data_02175ec0.mUnk_0024 = v7;
 }

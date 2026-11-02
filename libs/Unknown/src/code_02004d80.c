@@ -1,14 +1,14 @@
 #include "code_02004d80.h"
 #include "code_02004dc0.h"
 
-u32 func_02004db0(void) {
+u32 FS_IsAvailable(void) {
     u32 value0;
     value0 = (u32) &data_0216f350;
     value0 = (u32) * (const u32 *) ((value0) + (0));
     return value0;
 }
 
-void func_02004d80(Unk02003024 *arg0) {
+void FS_InitFile(Unk02003024 *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;

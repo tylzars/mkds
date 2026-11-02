@@ -277,16 +277,16 @@ u32 func_020097ac(const u8 *a, u8 *b, u32 c) {
     if (a == 0) {
         return 0;
     }
-    func_02004d80(&v1);
-    if (func_02004a30(&v1, a) == 0) {
+    FS_InitFile(&v1);
+    if (FS_OpenFile(&v1, a) == 0) {
         return 0;
     }
     if (v2 != v1.mUnk_20.w.mUnk_08 - v1.mUnk_20.w.mUnk_04) {
-        func_020049e8(&v1);
+        FS_CloseFile(&v1);
         return 0;
     }
-    func_020048ac(&v1, b, v2);
-    func_020049e8(&v1);
+    FS_ReadFile(&v1, b, v2);
+    FS_CloseFile(&v1);
     return 1;
 }
 

@@ -81,7 +81,7 @@ void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, Unk02003024 *f, s32 g) {
         v6 = v4;
         do {
             v4->mUnk_000 = v4 + 1;
-            func_02004d80(&v4->mUnk_038);
+            FS_InitFile(&v4->mUnk_038);
             v4->mUnk_084 = 0;
             v4->mUnk_080 = 0;
             v4->mUnk_08c = (v4 + 0x10001) - v6;
@@ -448,8 +448,8 @@ void func_0204c7e4(Unk0204c320 *a) {
             v4->mUnk_0a0 = v13;
             v4->mUnk_09c = v13;
             v4->mUnk_0a4[v13] = v11 & -0x200;
-            func_02004840(&v4->mUnk_038, v11 & -0x200, 0);
-            func_020048bc(&v4->mUnk_038, v4->mUnk_0c0[v13], 0x400);
+            FS_SeekFile(&v4->mUnk_038, v11 & -0x200, 0);
+            FS_ReadFileAsync(&v4->mUnk_038, v4->mUnk_0c0[v13], 0x400);
             return;
     }
 }

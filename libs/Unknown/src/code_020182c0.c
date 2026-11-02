@@ -74,10 +74,10 @@ u32 func_020182c0(const u8 *a) {
     u32 r;
 
     r = 0;
-    func_02004d80(&s);
-    if (func_02004a30(&s, a) != 0) {
+    FS_InitFile(&s);
+    if (FS_OpenFile(&s, a) != 0) {
         r = (u32) (((Unk020182c0 *) s.mUnk_08)->mUnk_64 + s.mUnk_20.w.mUnk_04);
-        func_020049e8(&s);
+        FS_CloseFile(&s);
     }
     return r;
 }

@@ -236,13 +236,13 @@ void func_0204bb34(void *a) {
         }
         func_0200fcb4(s);
         if (r->mUnk_80 == 1) {
-            func_02004afc(&r->mUnk_38, o, r->mUnk_90, r->mUnk_90 + r->mUnk_94, r->mUnk_8c);
+            FS_OpenFileDirect(&r->mUnk_38, o, r->mUnk_90, r->mUnk_90 + r->mUnk_94, r->mUnk_8c);
             i = 0;
             v1 = 0;
             q = r->mUnk_c0[0];
             for (; i < 2; i++) {
                 r->mUnk_a4[i] = v1;
-                func_020048ac(&r->mUnk_38, q, 0x400);
+                FS_ReadFile(&r->mUnk_38, q, 0x400);
                 v1 += 0x400;
                 q += 0x400;
             }
@@ -253,7 +253,7 @@ void func_0204bb34(void *a) {
             func_0204d18c(&data_usa_021762e0, (Unk0204c090 *) r, 1);
             func_0200fcb4(s2);
         } else {
-            func_020049e8(&r->mUnk_38);
+            FS_CloseFile(&r->mUnk_38);
             s2 = func_0200fca0();
             func_0204d0bc(&data_usa_021762e0, (Unk0204c090 *) r);
             func_0200fcb4(s2);

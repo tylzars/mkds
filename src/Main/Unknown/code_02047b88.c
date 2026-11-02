@@ -149,11 +149,11 @@ void func_02047e94(void) {
     s32 r;
 
     p = &data_021759c8->mUnk_8c8;
-    func_02004d80(&f);
-    if (func_02004a30(&f, p->mUnk_00) == 0) {
+    FS_InitFile(&f);
+    if (FS_OpenFile(&f, p->mUnk_00) == 0) {
         return;
     }
-    if (func_020048ac(&f, p->mUnk_88, 4) < 0) {
+    if (FS_ReadFile(&f, p->mUnk_88, 4) < 0) {
         return;
     }
     n = *p->mUnk_88 >> 8;
@@ -167,7 +167,7 @@ void func_02047e94(void) {
     }
     func_0214d564((u32) b, (u32) p->mUnk_84, (u32) p->mUnk_88);
     do {
-        r = func_020048ac(&f, p->mUnk_88, 0x400);
+        r = FS_ReadFile(&f, p->mUnk_88, 0x400);
         if (r <= 0) {
             return;
         }

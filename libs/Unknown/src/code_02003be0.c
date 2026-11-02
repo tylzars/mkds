@@ -11,7 +11,7 @@ Unk02003a6c *FS_FindArchive(const u8 *p0, s32 p1) {
     u32 state;
     Unk02003a6c *p;
 
-    name = func_02004788(p0, p1);
+    name = FilePackLowercaseName(p0, p1);
     state = func_0200fca0();
     p = data_0216f340;
     while (p != 0 && p->mUnk_00 != name) {
@@ -43,7 +43,7 @@ u32 FS_RegisterArchiveName(Unk02003a6c *p0, const u8 *p1, s32 p2) {
             p->mUnk_04 = p0;
             p0->mUnk_08 = p;
         }
-        p0->mUnk_00 = func_02004788(p1, p2);
+        p0->mUnk_00 = FilePackLowercaseName(p1, p2);
         ok = 1;
         p0->mUnk_1c |= 1;
     }
@@ -86,8 +86,8 @@ u32 FS_LoadArchive(Unk02003a6c *p0, u8 *p1, u32 p2, u32 p3, u32 p4, u32 p5, s32 
     p0->mUnk_38 = p5;
     p0->mUnk_40 = p4;
     p0->mUnk_34 = p0->mUnk_40;
-    p0->mUnk_48 = (p6 == 0) ? func_02004760 : p6;
-    p0->mUnk_4c = (p7 == 0) ? func_02004734 : p7;
+    p0->mUnk_48 = (p6 == 0) ? FileCopyFromArchiveMemory : p6;
+    p0->mUnk_4c = (p7 == 0) ? FileCopyToArchiveMemory : p7;
     p0->mUnk_50 = p0->mUnk_48;
     p0->mUnk_44 = 0;
     p0->mUnk_1c |= 2;
@@ -141,24 +141,24 @@ u32 FS_LoadArchiveTables(Unk02003a6c *p0, u32 p1, u32 p2) {
         u8 *p;
 
         p = (u8 *) ((p1 + 31) & ~31);
-        func_02004d80(&b);
-        if (func_02004afc(&b, p0, p0->mUnk_2c, p0->mUnk_2c + p0->mUnk_30, -1) != 0) {
-            if (func_020048ac(&b, p, p0->mUnk_30) < 0) {
+        FS_InitFile(&b);
+        if (FS_OpenFileDirect(&b, p0, p0->mUnk_2c, p0->mUnk_2c + p0->mUnk_30, -1) != 0) {
+            if (FS_ReadFile(&b, p, p0->mUnk_30) < 0) {
                 func_0214d168(p, 0, p0->mUnk_30);
             }
-            func_020049e8(&b);
+            FS_CloseFile(&b);
         }
         p0->mUnk_2c = (u32) p;
         p += p0->mUnk_30;
-        if (func_02004afc(&b, p0, p0->mUnk_34, p0->mUnk_34 + p0->mUnk_38, -1) != 0) {
-            if (func_020048ac(&b, p, p0->mUnk_38) < 0) {
+        if (FS_OpenFileDirect(&b, p0, p0->mUnk_34, p0->mUnk_34 + p0->mUnk_38, -1) != 0) {
+            if (FS_ReadFile(&b, p, p0->mUnk_38) < 0) {
                 func_0214d168(p, 0, p0->mUnk_38);
             }
-            func_020049e8(&b);
+            FS_CloseFile(&b);
         }
         p0->mUnk_34 = (u32) p;
         p0->mUnk_44 = p1;
-        p0->mUnk_50 = func_02004710;
+        p0->mUnk_50 = FileCopyFromAddress;
         p0->mUnk_1c |= 4;
     }
     return sz;
@@ -216,11 +216,11 @@ u32 FS_ResumeArchive(Unk02003a6c *p0) {
     r = ((p0->mUnk_1c & 8) ? 1 : 0) == 0;
     if (!r) {
         p0->mUnk_1c &= ~8;
-        p = func_02004518(p0);
+        p = FilePickNextCommand(p0);
     }
     func_0200fcb4(state);
     if (p != 0) {
-        func_02004474(p);
+        FileRunQueueAsync(p);
     }
     return r;
 }
@@ -243,9 +243,9 @@ void FS_NotifyArchiveAsyncEnd(Unk02003a6c *p0, u32 p1) {
         p = p0->mUnk_24;
         p0->mUnk_1c &= ~0x100;
         FileFinishCommand(p, p1);
-        p = func_02004518(p0);
+        p = FilePickNextCommand(p0);
         if (p != 0) {
-            func_02004474(p);
+            FileRunQueueAsync(p);
         }
     } else {
         p = p0->mUnk_24;

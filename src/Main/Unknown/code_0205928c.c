@@ -160,7 +160,7 @@ s32 func_020595e8(s32 a, void *b, void *c) {
                 data_0217aa00->mUnk_000c = 0x27;
                 data_0217aa00->mUnk_0010 = 1;
                 data_0217aa00->mUnk_1d08 = 0;
-                func_02004d80(&data_0217aa00->mUnk_1d0c);
+                FS_InitFile(&data_0217aa00->mUnk_1d0c);
                 data_0217aa00->mUnk_1e34 = 3;
             } else {
                 data_0217aa00->mUnk_1e34 = 5;

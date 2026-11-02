@@ -25,10 +25,10 @@ u32 func_02008880(Unk02003024 *a) {
     v3 = 0;
     if (a != 0) {
         v4 = a->mUnk_2c - a->mUnk_20.w.mUnk_04;
-        if ((u32) func_020048ac(a, &v1, 0x60) >= 0x60) {
+        if ((u32) FS_ReadFile(a, &v1, 0x60) >= 0x60) {
             v2 = &v1;
         }
-        func_02004840(a, v4, 0);
+        FS_SeekFile(a, v4, 0);
     } else {
         v2 = (Unk02008880 *) 0x027ffe00;
     }

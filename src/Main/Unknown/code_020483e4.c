@@ -37,7 +37,7 @@ void func_020486d4(void *a) {
     data_021759c8->mUnk_a70 = 0;
     data_021759c8->mUnk_a78 = 0;
     data_021759c8->mUnk_a7c = 0;
-    func_02004d80(&data_021759c8->mUnk_968);
+    FS_InitFile(&data_021759c8->mUnk_968);
 }
 
 int func_02048684(const char *param_1, void *param_2, u32 param_3) {
@@ -45,17 +45,17 @@ int func_02048684(const char *param_1, void *param_2, u32 param_3) {
     u32 r;
     u32 n;
 
-    func_02004d80(&f);
-    r = func_02004a30(&f, (const u8 *) param_1);
+    FS_InitFile(&f);
+    r = FS_OpenFile(&f, (const u8 *) param_1);
     if (r != 0) {
         n = f.mUnk_20.p.mUnk_08 - f.mUnk_20.p.mUnk_04;
         if (param_3 != 0 && n > param_3) {
             r = 0;
         } else {
-            if (func_020048ac(&f, param_2, n) < 0) {
+            if (FS_ReadFile(&f, param_2, n) < 0) {
                 r = 0;
             }
-            func_020049e8(&f);
+            FS_CloseFile(&f);
         }
     }
     return r;
@@ -65,14 +65,14 @@ u32 func_0204863c(void *a, void *b, u32 c) {
     Unk02003024 f;
     u32 r;
 
-    func_02004d80(&f);
-    r = func_02004a30(&f, a);
+    FS_InitFile(&f);
+    r = FS_OpenFile(&f, a);
     if (r != 0) {
         if (c <= (u32) (f.mUnk_20.p.mUnk_08 - f.mUnk_20.p.mUnk_04)) {
-            if (func_020048ac(&f, b, c) < 0) {
+            if (FS_ReadFile(&f, b, c) < 0) {
                 r = 0;
             }
-            func_020049e8(&f);
+            FS_CloseFile(&f);
         }
     }
     return r;
@@ -89,9 +89,9 @@ u32 func_02048590(char *param_1, u32 param_2, void **param_3) {
         return 0;
     }
     if (((p->mUnk_0c & 0x10) ? 1 : 0) != 0) {
-        func_020049e8(p);
+        FS_CloseFile(p);
     }
-    s = func_02004a30(p, (const u8 *) param_1);
+    s = FS_OpenFile(p, (const u8 *) param_1);
     if (s != 0) {
         n = p->mUnk_20.p.mUnk_08 - p->mUnk_20.p.mUnk_04;
         t = func_02036bec((void *) param_2, n);
@@ -100,12 +100,12 @@ u32 func_02048590(char *param_1, u32 param_2, void **param_3) {
             s = 0;
         }
         if (s != 0) {
-            if (func_020048ac(p, t, n) < 0) {
+            if (FS_ReadFile(p, t, n) < 0) {
                 s = 0;
                 func_02036b30((void *) param_2, t);
             }
         }
-        func_020049e8(p);
+        FS_CloseFile(p);
     }
     if (s == 0) {
         n = -1;
@@ -121,11 +121,11 @@ void *func_02048504(const char *a, s32 b) {
     u32 n;
 
     r = 0;
-    if (func_02004db0() == 0) {
+    if (FS_IsAvailable() == 0) {
         return 0;
     }
-    func_02004d80(&f);
-    s = func_02004a30(&f, (const u8 *) a);
+    FS_InitFile(&f);
+    s = FS_OpenFile(&f, (const u8 *) a);
     if (s != 0) {
         n = f.mUnk_20.p.mUnk_08 - f.mUnk_20.p.mUnk_04;
         r = func_02036b74(func_020364e0(func_020364e8()), n, b);
@@ -133,11 +133,11 @@ void *func_02048504(const char *a, s32 b) {
         if (r == 0) {
             s = 0;
         } else {
-            if (func_020048ac(&f, r, n) < 0) {
+            if (FS_ReadFile(&f, r, n) < 0) {
                 func_02036b30(func_020364e0(func_020364e8()), r);
                 s = 0;
             }
-            func_020049e8(&f);
+            FS_CloseFile(&f);
         }
     }
     if (s == 0) {

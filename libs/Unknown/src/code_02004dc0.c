@@ -75,23 +75,23 @@ u32 func_02005704(Unk020055f0 *dst, u32 sel, u32 idx, Unk02003a6c *owner, u8 *ba
     if (off >= size) {
         return 0;
     }
-    func_02004d80(&o);
-    if (func_02004afc(&o, owner, (u32) (base + off), (u32) (base + size), -1) == 0) {
+    FS_InitFile(&o);
+    if (FS_OpenFileDirect(&o, owner, (u32) (base + off), (u32) (base + size), -1) == 0) {
         return 0;
     }
-    if (func_020048ac(&o, dst, 0x20) != 0x20) {
-        func_020049e8(&o);
+    if (FS_ReadFile(&o, dst, 0x20) != 0x20) {
+        FS_CloseFile(&o);
         return 0;
     }
-    func_020049e8(&o);
+    FS_CloseFile(&o);
     dst->mUnk_20 = sel;
     func_02005814(&s, dst);
-    if (func_02004a80(&o, s) == 0) {
+    if (FS_OpenFileFast(&o, s) == 0) {
         return 0;
     }
     dst->mUnk_24 = o.mUnk_20.p.mUnk_04;
     dst->mUnk_28 = o.mUnk_20.p.mUnk_08 - o.mUnk_20.p.mUnk_04;
-    func_020049e8(&o);
+    FS_CloseFile(&o);
     return 1;
 }
 
@@ -113,14 +113,14 @@ u32 func_020055f0(Unk020055f0 *dst, u32 sel, u32 idx) {
         }
         func_0214d1fc(tab->mUnk_00 + idx * 32, dst, 0x20);
         dst->mUnk_20 = sel;
-        func_02004d80(&o);
+        FS_InitFile(&o);
         func_02005814(&s, dst);
-        if (func_02004a80(&o, s) == 0) {
+        if (FS_OpenFileFast(&o, s) == 0) {
             return 0;
         }
         dst->mUnk_24 = o.mUnk_20.p.mUnk_04;
         dst->mUnk_28 = o.mUnk_20.p.mUnk_08 - o.mUnk_20.p.mUnk_04;
-        func_020049e8(&o);
+        FS_CloseFile(&o);
         return 1;
     }
     x = (Unk02005704 *) 0x27ffe50;
@@ -132,17 +132,17 @@ u32 func_02005558(Unk020055f0 *rec, Unk02003024 *o) {
     Unk02005814 s;
     s32 n;
 
-    func_02004d80(o);
+    FS_InitFile(o);
     func_02005814(&s, rec);
-    if (func_02004a80(o, s) == 0) {
+    if (FS_OpenFileFast(o, s) == 0) {
         return 0;
     }
     n = func_02005880(rec);
     func_0200583c(rec);
-    if (n == func_020048bc(o, rec->mUnk_04, n)) {
+    if (n == FS_ReadFileAsync(o, rec->mUnk_04, n)) {
         return 1;
     }
-    func_020049e8(o);
+    FS_CloseFile(o);
     return 0;
 }
 
@@ -151,18 +151,18 @@ u32 func_020054b8(Unk020055f0 *rec) {
     Unk02003024 o;
     s32 n;
 
-    func_02004d80(&o);
+    FS_InitFile(&o);
     func_02005814(&s, rec);
-    if (func_02004a80(&o, s) == 0) {
+    if (FS_OpenFileFast(&o, s) == 0) {
         return 0;
     }
     n = func_02005880(rec);
     func_0200583c(rec);
-    if (n != func_020048ac(&o, rec->mUnk_04, n)) {
-        func_020049e8(&o);
+    if (n != FS_ReadFile(&o, rec->mUnk_04, n)) {
+        FS_CloseFile(&o);
         return 0;
     }
-    func_020049e8(&o);
+    FS_CloseFile(&o);
     return 1;
 }
 

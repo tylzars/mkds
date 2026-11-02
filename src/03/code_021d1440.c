@@ -31,15 +31,15 @@ void func_ov003_021d1654(void) {
     u32 f;
 
     data_ov003_021da2b0 = func_ov003_021d283c(0xe8, 4);
-    func_02004d80(&a);
-    if (func_02004a30(&a, data_ov003_021d7be0) == 0) {
+    FS_InitFile(&a);
+    if (FS_OpenFile(&a, data_ov003_021d7be0) == 0) {
         func_0200fd1c();
     }
     data_ov003_021da2b0->mUnk_e4 = func_0200cd28();
     e = a.mUnk_20.w.mUnk_04;
-    func_020048ac(&a, b, 8);
-    func_020048ac(&a, c, 8);
-    func_020049e8(&a);
+    FS_ReadFile(&a, b, 8);
+    FS_ReadFile(&a, c, 8);
+    FS_CloseFile(&a);
     FS_InitArchive(&data_ov003_021da2b0->mUnk_88);
     if (FS_RegisterArchiveName(&data_ov003_021da2b0->mUnk_88, data_ov003_021d67d8, 3) == 0) {
         func_0200fd1c();
@@ -55,11 +55,11 @@ void func_ov003_021d1654(void) {
     FS_LoadArchiveTables(&data_ov003_021da2b0->mUnk_88, (u32) data_ov003_021da2b0->mUnk_00, f);
     data_ov003_021da2b0->mUnk_84 = func_ov003_021d1d60(0x20, data_ov003_021da2b0->mUnk_04, 4);
     func_0200da28(d, data_ov003_021d7bf8, data_ov003_021d67d8);
-    func_020047ec((u8 *) d);
+    FS_ChangeDir((u8 *) d);
 }
 
 void func_ov003_021d15f4(void) {
-    func_020047ec(data_ov003_021d7bd8);
+    FS_ChangeDir(data_ov003_021d7bd8);
     ((u32(*)(Unk02003a6c *)) FS_UnloadArchiveTables)(&data_ov003_021da2b0->mUnk_88);
     FS_UnloadArchive(&data_ov003_021da2b0->mUnk_88);
     FS_ReleaseArchiveName(&data_ov003_021da2b0->mUnk_88);
@@ -106,8 +106,8 @@ void *func_ov003_021d14b8(const u8 *param_1, u32 *param_2, s32 param_3) {
     s32 e;
 
     func_ov003_021d1cd4(data_ov003_021da2b0->mUnk_84);
-    func_02004d80(&a);
-    if (func_02004a30(&a, param_1) == 0) {
+    FS_InitFile(&a);
+    if (FS_OpenFile(&a, param_1) == 0) {
         func_0200fd1c();
     }
     c = a.mUnk_20.w.mUnk_08 - a.mUnk_20.w.mUnk_04;
@@ -120,8 +120,8 @@ void *func_ov003_021d14b8(const u8 *param_1, u32 *param_2, s32 param_3) {
         e = param_3;
     }
     b = func_ov003_021d285c(c, e);
-    func_020048ac(&a, b, c);
-    func_020049e8(&a);
+    FS_ReadFile(&a, b, c);
+    FS_CloseFile(&a);
     if (e > 0) {
         return b;
     }

@@ -43,10 +43,10 @@ s32 func_0204f644(void) {
     }
     q = &data_0217aa00->mUnk_16a0[n].mUnk_34;
     if (((p->mUnk_0c & 0x10) ? 1 : 0) != 0) {
-        func_020049e8(p);
+        FS_CloseFile(p);
     }
-    func_02004d80(p);
-    if (func_02004a30(p, q) != 0) {
+    FS_InitFile(p);
+    if (FS_OpenFile(p, q) != 0) {
         q = data_0217aa00;
         v1 = p->mUnk_20.p.mUnk_08 - p->mUnk_20.p.mUnk_04;
         v2 = ((Unk0217aa00 *) q)->mUnk_16a0[n].mUnk_74;
@@ -54,7 +54,7 @@ s32 func_0204f644(void) {
             v2 = func_02036b74(data_0217aa00->mUnk_16a0[n].mUnk_80, v1, 0x20);
             *data_0217aa00->mUnk_16a0[n].mUnk_7c = v2;
         }
-        func_020048bc(p, v2, v1);
+        FS_ReadFileAsync(p, v2, v1);
         data_0217aa00->mUnk_1d08++;
     }
     return 0;

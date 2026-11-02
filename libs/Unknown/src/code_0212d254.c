@@ -179,10 +179,10 @@ s32 func_0212d27c(u32 a, void *dst, u32 n, u32 off) {
     if (n > left) {
         n = left;
     }
-    if (func_02004840(&d->mUnk_34, e->mUnk_00 + off, 0) == 0) {
+    if (FS_SeekFile(&d->mUnk_34, e->mUnk_00 + off, 0) == 0) {
         return -1;
     }
-    return func_020048ac(&d->mUnk_34, dst, n);
+    return FS_ReadFile(&d->mUnk_34, dst, n);
 }
 
 void *func_0212d254(u32 a) {

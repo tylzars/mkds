@@ -177,8 +177,8 @@ u32 func_ov003_021cf8ac(Unk021cf8ac *a) {
     if (a->mUnk_00 == 0) {
         q = 0;
     } else {
-        func_02004d80(&s);
-        if (func_02004a30(&s, a->mUnk_00) == 0) {
+        FS_InitFile(&s);
+        if (FS_OpenFile(&s, a->mUnk_00) == 0) {
             return r;
         }
         q = &s;
@@ -194,7 +194,7 @@ u32 func_ov003_021cf8ac(Unk021cf8ac *a) {
         }
     }
     if (q == &s) {
-        func_020049e8(&s);
+        FS_CloseFile(&s);
     }
     return r;
 }

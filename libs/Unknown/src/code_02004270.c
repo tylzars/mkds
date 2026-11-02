@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "Main/Unknown/code_0214d000.h"
 
-u32 func_02004c20(Unk02003024 *p, const u8 *path, void *out, void *flag) {
+u32 FileLookUpPath(Unk02003024 *p, const u8 *path, void *out, void *flag) {
     Unk02003024U loc;
     s32 i;
     Unk02003a6c *q;
@@ -59,10 +59,10 @@ u32 func_02004c20(Unk02003024 *p, const u8 *path, void *out, void *flag) {
         p->mUnk_40 = 0;
         p->mUnk_44 = out;
     }
-    return func_02004270(p, 4);
+    return FileQueueCommand(p, 4);
 }
 
-s32 func_02004b98(Unk02003024 *p, void *buf, s32 n, u32 flag) {
+s32 FileReadClamped(Unk02003024 *p, void *buf, s32 n, u32 flag) {
     s32 pos;
     s32 m;
 
@@ -80,9 +80,9 @@ s32 func_02004b98(Unk02003024 *p, void *buf, s32 n, u32 flag) {
     if (flag == 0) {
         p->mUnk_0c |= 4;
     }
-    func_02004270(p, 0);
+    FileQueueCommand(p, 0);
     if (flag == 0) {
-        if (func_02004918(p) != 0) {
+        if (FS_WaitAsync(p) != 0) {
             n = p->mUnk_2c - pos;
         } else {
             n = -1;
@@ -91,19 +91,19 @@ s32 func_02004b98(Unk02003024 *p, void *buf, s32 n, u32 flag) {
     return n;
 }
 
-u32 func_02004b54(Unk02005814 *out, const u8 *path) {
+u32 FS_ConvertPathToFileID(Unk02005814 *out, const u8 *path) {
     Unk02003024 o;
 
-    func_02004d80(&o);
-    return func_02004c20(&o, path, out, 0) != 0;
+    FS_InitFile(&o);
+    return FileLookUpPath(&o, path, out, 0) != 0;
 }
 
-u32 func_02004afc(Unk02003024 *p, Unk02003a6c *owner, u32 a, u32 b, u32 c) {
+u32 FS_OpenFileDirect(Unk02003024 *p, Unk02003a6c *owner, u32 a, u32 b, u32 c) {
     p->mUnk_08 = owner;
     p->mUnk_30.w.mUnk_08 = c;
     p->mUnk_30.w.mUnk_00 = a;
     p->mUnk_30.w.mUnk_04 = b;
-    if (func_02004270(p, 7) == 0) {
+    if (FileQueueCommand(p, 7) == 0) {
         return 0;
     }
     p->mUnk_0c |= 0x10;
@@ -111,13 +111,13 @@ u32 func_02004afc(Unk02003024 *p, Unk02003a6c *owner, u32 a, u32 b, u32 c) {
     return 1;
 }
 
-u32 func_02004a80(Unk02003024 *p, Unk02005814 s) {
+u32 FS_OpenFileFast(Unk02003024 *p, Unk02005814 s) {
     if (s.mUnk_00 == 0) {
         return 0;
     }
     p->mUnk_08 = s.mUnk_00;
     p->mUnk_30.d.mUnk_00 = s;
-    if (func_02004270(p, 6) == 0) {
+    if (FileQueueCommand(p, 6) == 0) {
         return 0;
     }
     p->mUnk_0c |= 0x10;
@@ -125,19 +125,19 @@ u32 func_02004a80(Unk02003024 *p, Unk02005814 s) {
     return 1;
 }
 
-u32 func_02004a30(Unk02003024 *p, const u8 *path) {
+u32 FS_OpenFile(Unk02003024 *p, const u8 *path) {
     Unk02005814 s;
 
-    if (func_02004b54(&s, path) != 0) {
-        if (func_02004a80(p, s) != 0) {
+    if (FS_ConvertPathToFileID(&s, path) != 0) {
+        if (FS_OpenFileFast(p, s) != 0) {
             return 1;
         }
     }
     return 0;
 }
 
-u32 func_020049e8(Unk02003024 *p) {
-    if (func_02004270(p, 8) == 0) {
+u32 FS_CloseFile(Unk02003024 *p) {
+    if (FileQueueCommand(p, 8) == 0) {
         return 0;
     }
     p->mUnk_08 = 0;
@@ -146,7 +146,7 @@ u32 func_020049e8(Unk02003024 *p) {
     return 1;
 }
 
-u32 func_02004918(Unk02003024 *p0) {
+u32 FS_WaitAsync(Unk02003024 *p0) {
     u32 r;
     u32 state;
 
@@ -167,12 +167,12 @@ u32 func_02004918(Unk02003024 *p0) {
     }
     func_0200fcb4(state);
     if (r) {
-        return func_0200442c(p0);
+        return FileRunCommandBlocking(p0);
     }
     return p0->mUnk_14 == 0;
 }
 
-void func_020048cc(Unk02003024 *p0) {
+void FS_CancelFile(Unk02003024 *p0) {
     u32 state;
 
     state = func_0200fca0();
@@ -183,15 +183,15 @@ void func_020048cc(Unk02003024 *p0) {
     func_0200fcb4(state);
 }
 
-s32 func_020048bc(Unk02003024 *p0, void *p1, s32 p2) {
-    return func_02004b98(p0, p1, p2, 1);
+s32 FS_ReadFileAsync(Unk02003024 *p0, void *p1, s32 p2) {
+    return FileReadClamped(p0, p1, p2, 1);
 }
 
-s32 func_020048ac(Unk02003024 *p0, void *p1, s32 p2) {
-    return func_02004b98(p0, p1, p2, 0);
+s32 FS_ReadFile(Unk02003024 *p0, void *p1, s32 p2) {
+    return FileReadClamped(p0, p1, p2, 0);
 }
 
-u32 func_02004840(Unk02003024 *p0, s32 p1, u32 p2) {
+u32 FS_SeekFile(Unk02003024 *p0, s32 p1, u32 p2) {
     switch (p2) {
         case 0:
             p1 += p0->mUnk_20.p.mUnk_04;
@@ -215,19 +215,19 @@ u32 func_02004840(Unk02003024 *p0, s32 p1, u32 p2) {
     return 1;
 }
 
-u32 func_020047ec(const u8 *p0) {
+u32 FS_ChangeDir(const u8 *p0) {
     Unk02003024U pos;
     Unk02003024 b;
 
-    func_02004d80(&b);
-    if (func_02004c20(&b, p0, 0, &pos) == 0) {
+    FS_InitFile(&b);
+    if (FileLookUpPath(&b, p0, 0, &pos) == 0) {
         return 0;
     }
     data_0216f344 = pos;
     return 1;
 }
 
-u32 func_02004788(const u8 *p0, s32 p1) {
+u32 FilePackLowercaseName(const u8 *p0, s32 p1) {
     u32 v;
     u32 x;
     int i;
@@ -245,22 +245,22 @@ u32 func_02004788(const u8 *p0, s32 p1) {
     return v;
 }
 
-s32 func_02004760(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
+s32 FileCopyFromArchiveMemory(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
     func_0214d1fc(p0->mUnk_28 + p2, p1, p3);
     return 0;
 }
 
-s32 func_02004734(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
+s32 FileCopyToArchiveMemory(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
     func_0214d1fc(p1, p0->mUnk_28 + p2, p3);
     return 0;
 }
 
-s32 func_02004710(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
+s32 FileCopyFromAddress(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
     func_0214d1fc((const void *) p2, p1, p3);
     return 0;
 }
 
-Unk02003024 *func_02004518(Unk02003a6c *p0) {
+Unk02003024 *FilePickNextCommand(Unk02003a6c *p0) {
     Unk02003024 b;
     Unk02003024 *p;
     Unk02003024 *n;
@@ -309,7 +309,7 @@ Unk02003024 *func_02004518(Unk02003a6c *p0) {
     if (p0->mUnk_1c & 0x10) {
         p0->mUnk_1c &= ~0x10;
         if (p0->mUnk_58 & 0x400) {
-            func_02004d80(&b);
+            FS_InitFile(&b);
             b.mUnk_08 = p0;
             p0->mUnk_54(&b, 10);
         }
@@ -323,7 +323,7 @@ Unk02003024 *func_02004518(Unk02003a6c *p0) {
     return 0;
 }
 
-void func_02004474(Unk02003024 *p0) {
+void FileRunQueueAsync(Unk02003024 *p0) {
     Unk02003a6c *a;
     u32 state;
 
@@ -344,22 +344,22 @@ void func_02004474(Unk02003024 *p0) {
         if (FileDispatchCommand(p0, p0->mUnk_10) == 6) {
             return;
         }
-        p0 = func_02004518(a);
+        p0 = FilePickNextCommand(a);
     } while (p0 != 0);
 }
 
-u32 func_0200442c(Unk02003024 *p0) {
+u32 FileRunCommandBlocking(Unk02003024 *p0) {
     Unk02003024 *p;
 
     FileFinishCommand(p0, FileDispatchCommand(p0, p0->mUnk_10));
-    p = func_02004518(p0->mUnk_08);
+    p = FilePickNextCommand(p0->mUnk_08);
     if (p != 0) {
-        func_02004474(p);
+        FileRunQueueAsync(p);
     }
     return p0->mUnk_14 == 0;
 }
 
-u32 func_02004270(Unk02003024 *p0, u32 p1) {
+u32 FileQueueCommand(Unk02003024 *p0, u32 p1) {
     Unk02003a6c *a;
     Unk02003024 *s;
     Unk02003024 *q;
@@ -406,7 +406,7 @@ u32 func_02004270(Unk02003024 *p0, u32 p1) {
         p0->mUnk_0c |= 0x40;
         if (((p0->mUnk_0c & 4) ? 1 : 0) == 0) {
             func_0200fcb4(state);
-            func_02004474(p0);
+            FileRunQueueAsync(p0);
             return 1;
         }
         func_0200fcb4(state);
@@ -420,5 +420,5 @@ u32 func_02004270(Unk02003024 *p0, u32 p1) {
         } while ((p0->mUnk_0c & 0x40) == 0);
         func_0200fcb4(state);
     }
-    return func_0200442c(p0);
+    return FileRunCommandBlocking(p0);
 }

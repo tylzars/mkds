@@ -5,7 +5,7 @@
 
 // First Unk02003a6c of the list FS_RegisterArchiveName builds through mUnk_04/mUnk_08 (FS_FindArchive searches it).
 extern Unk02003a6c *data_0216f340;
-// Set by FS_RegisterArchiveName, FS_ReleaseArchiveName and func_020047ec; read by func_02004c20.
+// Set by FS_RegisterArchiveName, FS_ReleaseArchiveName and FS_ChangeDir; read by FileLookUpPath.
 extern Unk02003024U data_0216f344;
 
 void FS_NotifyArchiveAsyncEnd(Unk02003a6c *p0, u32 p1);
