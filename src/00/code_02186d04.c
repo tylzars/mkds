@@ -229,14 +229,14 @@ void func_ov000_02186d7c(void *l) {
         func_0200ed34(&p->mUnk_948);
         if (c->mUnk_04 >= c->mUnk_08 - 1) {
             func_0200ecc4(&p->mUnk_948);
-            goto done;
+            break;
         }
         n = func_ov000_021adbac();
         if (n > 0) {
             x = func_ov000_021adf78((u32 *) &n);
             if (x == 0) {
                 func_0200ecc4(&p->mUnk_948);
-                goto done;
+                break;
             }
             r = c->mUnk_08 - 1 - c->mUnk_04;
             m = n;
@@ -265,17 +265,17 @@ void func_ov000_02186d7c(void *l) {
             if (n > m) {
                 func_ov000_021adf00(n);
                 func_0200ecc4(&p->mUnk_948);
-                goto done;
+                break;
             }
             func_ov000_021adf00(m);
         }
         if (n < 0) {
             func_0200ecc4(&p->mUnk_948);
-            goto done;
+            break;
         }
         if (p->mUnk_960 > 0 && n > 0 && p->mUnk_964 + p->mUnk_960 <= c->mUnk_04) {
             func_0200ecc4(&p->mUnk_948);
-            goto done;
+            break;
         }
         t = func_0200f5ac();
         if ((u64) d < (t - t0) * 64 / 0x82ea) {
@@ -296,7 +296,6 @@ void func_ov000_02186d7c(void *l) {
             goto fail;
         }
     }
-done:
     func_ov000_021ae094();
     func_ov000_021ae048();
     func_ov000_021ae258();

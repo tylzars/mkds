@@ -223,33 +223,31 @@ void func_02101d90(Unk02101c84 *p, s32 a) {
     row = &data_0215a164[i];
     do {
         k = *row;
-        if (k >= lim || k == b3) {
-            goto next;
-        }
-        e = &v1[k];
-        q = e->mUnk_1fc;
-        n = l = 1;
-        if (q->mUnk_180 < 4 && (q->mUnk_7c & 0x400020) == 0) {
-            n = 0;
-        }
-        if (n == 0 && (q->mUnk_4c & 0x10000800) == 0) {
-            l = 0;
-        }
-        if (l | ((q->mUnk_4c & 0x40) ? 1 : 0)) {
-            l = 0;
-        } else if (a != -1 && a == o->mUnk_68[k].mUnk_08.mUnk_04) {
-            l = 0;
-        } else {
-            l = 0;
-            if (e->mUnk_030.mUnk_00 != 0x13 && e->mUnk_030.mUnk_20 == 0) {
-                l = e->mUnk_030.mUnk_00 != 0x10;
+        if (k < lim && k != b3) {
+            e = &v1[k];
+            q = e->mUnk_1fc;
+            n = l = 1;
+            if (q->mUnk_180 < 4 && (q->mUnk_7c & 0x400020) == 0) {
+                n = 0;
+            }
+            if (n == 0 && (q->mUnk_4c & 0x10000800) == 0) {
+                l = 0;
+            }
+            if (l | ((q->mUnk_4c & 0x40) ? 1 : 0)) {
+                l = 0;
+            } else if (a != -1 && a == o->mUnk_68[k].mUnk_08.mUnk_04) {
+                l = 0;
+            } else {
+                l = 0;
+                if (e->mUnk_030.mUnk_00 != 0x13 && e->mUnk_030.mUnk_20 == 0) {
+                    l = e->mUnk_030.mUnk_00 != 0x10;
+                }
+            }
+            if (l != 0) {
+                p->mUnk_140 = k;
+                return;
             }
         }
-        if (l != 0) {
-            p->mUnk_140 = k;
-            return;
-        }
-    next:
         i++;
         row++;
     } while (i < end);

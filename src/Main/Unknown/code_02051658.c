@@ -186,41 +186,39 @@ void func_02052288(Unk0217aa00_24 *a, Unk0217aa00_42c *b, Unk0217aa00_24_50 *c) 
         return;
     }
     if ((a->mUnk_4b & 2) != 0) {
-        if (p->mUnk_1d00 == 2) {
-            goto end;
-        }
-        t = &a->mUnk_50;
-        if (t->mUnk_07 == 5) {
-            u = (void *) &t->mUnk_0e;
-            x = &u->mUnk_36;
-            v = -(k != 0);
-            func_0214d1fc(a, f, 0xc0);
-            f->mUnk_c0_42c = *b;
-            f->mUnk_dc_0 = 1;
-            f->mUnk_db = 0;
-            if (v >= 0) {
-                f->mUnk_da = v;
+        if (p->mUnk_1d00 != 2) {
+            t = &a->mUnk_50;
+            if (t->mUnk_07 == 5) {
+                u = (void *) &t->mUnk_0e;
+                x = &u->mUnk_36;
+                v = -(k != 0);
+                func_0214d1fc(a, f, 0xc0);
+                f->mUnk_c0_42c = *b;
+                f->mUnk_dc_0 = 1;
+                f->mUnk_db = 0;
+                if (v >= 0) {
+                    f->mUnk_da = v;
+                }
+                f->mUnk_dc_1 = 0;
+                f->mUnk_dc_5 = 1;
+                f->mUnk_dc_6 = 0;
+                func_0214d1fc(x->mUnk_02, f->mUnk_c6, 0x14);
+                data_0217aa00->mUnk_0438 = 0;
+            } else if (t->mUnk_07 == 9) {
+                if (f->mUnk_dc_0 != 0) {
+                    f->mUnk_da = t->mUnk_0a - 1;
+                }
+            } else if (f->mUnk_dc_0 != 0) {
+                f->mUnk_db = 0;
+            } else {
+                p = data_0217aa00;
+                *(Unk0217aa00_42c *) &p->mUnk_042c = *b;
+                p->mUnk_0438 = 0xf;
             }
-            f->mUnk_dc_1 = 0;
-            f->mUnk_dc_5 = 1;
-            f->mUnk_dc_6 = 0;
-            func_0214d1fc(x->mUnk_02, f->mUnk_c6, 0x14);
-            data_0217aa00->mUnk_0438 = 0;
-        } else if (t->mUnk_07 == 9) {
-            if (f->mUnk_dc_0 != 0) {
-                f->mUnk_da = t->mUnk_0a - 1;
-            }
-        } else if (f->mUnk_dc_0 != 0) {
-            f->mUnk_db = 0;
-        } else {
-            p = data_0217aa00;
-            *(Unk0217aa00_42c *) &p->mUnk_042c = *b;
-            p->mUnk_0438 = 0xf;
         }
     } else if (a->mUnk_4a == 0x1c) {
         func_020525a8(f, a, b, c, i);
     }
-end:
     s = &data_0217aa00->mUnk_00ac_view;
     s->mUnk_388 = 0;
     for (i = 0, e = s->mUnk_000; i < 4; i++, e++) {

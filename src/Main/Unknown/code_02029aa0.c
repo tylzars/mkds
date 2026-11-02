@@ -241,7 +241,7 @@ void func_02029aa0(Unk02029aa0 *a) {
                         }
                     }
                     if (y == 0) {
-                        goto end;
+                        break;
                     }
                 }
                 q = func_020b3f7c(data_usa_02174e00->mUnk_4c, 4);
@@ -319,7 +319,6 @@ void func_02029aa0(Unk02029aa0 *a) {
             }
             break;
     }
-end:
     func_02125928();
 }
 
