@@ -14,7 +14,7 @@
 #include "Main/Unknown/code_02122ae4.h"
 #include "Main/Unknown/code_02029890.h"
 
-void func_ov000_02184b68(u32 a) {
+void InitWiFiVSCourseSelectState(u32 a) {
     int v1;
     u32 v2;
     u32 v3;
@@ -39,7 +39,7 @@ void func_ov000_02184b4c(void) {
     return;
 }
 
-void func_ov000_02184ad0(void) {
+void AdvanceWiFiVSCourseSelectState(void) {
     s32 a;
     u8 b;
 
@@ -67,7 +67,7 @@ void func_ov000_02184ac8(void) {
     func_0202a820();
 }
 
-void func_ov000_02184aa4(void) {
-    Unk021b0cd4 callbacks = data_ov000_021b0e50;
+void RegisterWiFiVSCourseSelectCallbacks(void) {
+    Unk021b0cd4 callbacks = gWiFiVSCourseSelectCallbacks;
     SetWiFiStateCallbacks(&callbacks);
 }

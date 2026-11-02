@@ -7,7 +7,7 @@ struct Unk02021dc8;
 struct Unk020b4934;
 struct Unk020b4a44;
 
-// Object behind data_ov000_021b4c88; func_ov000_0218554c fills 0x34 to 0x48.
+// Object behind gWiFiAikotobaCheck; func_ov000_0218554c fills 0x34 to 0x48.
 typedef struct Unk021b4c88 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -32,20 +32,20 @@ typedef struct Unk021b4c88 {
 #include "00/code_02182fdc.h"
 #include "Main/Unknown/code_020472a8.h"
 
-extern Unk021b0cd4 data_ov000_021b0f18;
+extern Unk021b0cd4 gWiFiAikotobaCheckCallbacks;
 extern char data_ov000_021b0fc0[];
 extern char data_ov000_021b0fcc[];
-extern Unk021b4c88 *data_ov000_021b4c88;
+extern Unk021b4c88 *gWiFiAikotobaCheck;
 
-void func_ov000_02185344(void);
+void RegisterWiFiAikotobaCheckCallbacks(void);
 void func_ov000_02185368(void);
-void func_ov000_0218536c(void);
+void AdvanceWiFiAikotobaCheck(void);
 void func_ov000_021853c4(void);
 void func_ov000_02185418(void);
 void func_ov000_021854a8(void);
 void func_ov000_021854f8(void);
 void func_ov000_0218554c(void);
 void func_ov000_021855f8(void);
-void func_ov000_02185604(void *a);
+void InitWiFiAikotobaCheck(void *a);
 void func_ov000_021856a8(void);
 void func_ov000_02185788(void);

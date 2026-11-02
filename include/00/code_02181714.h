@@ -11,7 +11,7 @@ struct Unk02021dc8;
 struct Unk020b4934;
 struct Unk020b4a44;
 
-// Object behind data_ov000_021b4c6c; func_ov000_02181df8 fills 0x20 to 0x30.
+// Object behind gWiFiTopMenu; func_ov000_02181df8 fills 0x20 to 0x30.
 typedef struct Unk021b4c6c {
     /* 00 */ s32 mUnk_00;
     /* 04 */ u32 mUnk_04;
@@ -44,12 +44,12 @@ extern const u8 data_ov000_021b05c4[];
 extern const u8 data_ov000_021b05c8[];
 // Objects whose layout isn't known yet.
 extern s32 data_ov000_021b05cc[];
-extern Unk021b0cd4 data_ov000_021b0ae4;
-extern Unk021b4c6c *data_ov000_021b4c6c;
+extern Unk021b0cd4 gWiFiTopMenuCallbacks;
+extern Unk021b4c6c *gWiFiTopMenu;
 
-void func_ov000_02181714(void);
+void RegisterWiFiTopMenuCallbacks(void);
 void func_ov000_02181738(void);
-void func_ov000_02181758(void);
+void AdvanceWiFiTopMenu(void);
 void func_ov000_021817e8(void);
 void func_ov000_02181854(void);
 void func_ov000_02181904(void);
@@ -64,4 +64,4 @@ void func_ov000_02181dd0(void);
 s32 func_ov000_02181df0(void);
 void func_ov000_02181df8(void);
 void func_ov000_02181e8c(void);
-void func_ov000_02181e98(void *a);
+void InitWiFiTopMenu(void *a);

@@ -540,7 +540,7 @@ void func_ov000_02182150(void) {
     }
 }
 
-void func_ov000_02182084(void) {
+void AdvanceWiFiVSSetting(void) {
     gWiFiVSSetting->mUnk_00 = gWiFiVSSetting->mUnk_04;
     switch (gWiFiVSSetting->mUnk_00) {
         case 0:
@@ -610,7 +610,7 @@ void func_ov000_02181ff0(void) {
     *(vu32 *) 0x400101c = v & 0x1ff;
 }
 
-void func_ov000_02181fcc(void) {
-    Unk021b0cd4 callbacks = data_ov000_021b0ba0;
+void RegisterWiFiVSSettingCallbacks(void) {
+    Unk021b0cd4 callbacks = gWiFiVSSettingCallbacks;
     SetWiFiStateCallbacks(&callbacks);
 }

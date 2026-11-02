@@ -10,11 +10,11 @@ extern u8 data_ov000_021b05f8[][2];
 extern u8 data_ov000_021b05ec[];
 // Objects whose layout isn't known yet.
 extern s32 data_ov000_021b0600[];
-extern Unk021b0cd4 data_ov000_021b0ba0;
+extern Unk021b0cd4 gWiFiVSSettingCallbacks;
 
-void func_ov000_02181fcc(void);
+void RegisterWiFiVSSettingCallbacks(void);
 void func_ov000_02181ff0(void);
-void func_ov000_02182084(void);
+void AdvanceWiFiVSSetting(void);
 void func_ov000_02182150(void);
 void func_ov000_021821e0(void);
 void func_ov000_02182270(void);

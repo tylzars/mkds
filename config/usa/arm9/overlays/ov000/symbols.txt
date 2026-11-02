@@ -44,9 +44,9 @@ func_ov000_02181684 kind:function(thumb,size=0x1c) addr:0x02181650
 func_ov000_021816a0 kind:function(thumb,size=0x2) addr:0x0218166c
 func_ov000_021816a4 kind:function(thumb,size=0xc) addr:0x02181670
 func_ov000_021816b0 kind:function(thumb,size=0x64) addr:0x0218167c
-func_ov000_02181714 kind:function(thumb,size=0x24) addr:0x021816e0
+RegisterWiFiTopMenuCallbacks kind:function(thumb,size=0x24) addr:0x021816e0
 func_ov000_02181738 kind:function(thumb,size=0x20) addr:0x02181704
-func_ov000_02181758 kind:function(thumb,size=0x90) addr:0x02181724
+AdvanceWiFiTopMenu kind:function(thumb,size=0x90) addr:0x02181724
 func_ov000_021817e8 kind:function(thumb,size=0x6c) addr:0x021817b4
 func_ov000_02181854 kind:function(thumb,size=0xb0) addr:0x02181820
 func_ov000_02181904 kind:function(thumb,size=0x3c) addr:0x021818d0
@@ -60,10 +60,10 @@ func_ov000_02181dd0 kind:function(thumb,size=0x20) addr:0x02181d9c
 func_ov000_02181df0 kind:function(thumb,size=0x8) addr:0x02181dbc
 func_ov000_02181df8 kind:function(thumb,size=0x94) addr:0x02181dc4
 func_ov000_02181e8c kind:function(thumb,size=0xc) addr:0x02181e58
-func_ov000_02181e98 kind:function(thumb,size=0x134) addr:0x02181e64
-func_ov000_02181fcc kind:function(thumb,size=0x24) addr:0x02181f98
+InitWiFiTopMenu kind:function(thumb,size=0x134) addr:0x02181e64
+RegisterWiFiVSSettingCallbacks kind:function(thumb,size=0x24) addr:0x02181f98
 func_ov000_02181ff0 kind:function(thumb,size=0x94) addr:0x02181fbc
-func_ov000_02182084 kind:function(thumb,size=0xcc) addr:0x02182050
+AdvanceWiFiVSSetting kind:function(thumb,size=0xcc) addr:0x02182050
 func_ov000_02182150 kind:function(thumb,size=0x90) addr:0x0218211c
 func_ov000_021821e0 kind:function(thumb,size=0x90) addr:0x021821ac
 func_ov000_02182270 kind:function(thumb,size=0x140) addr:0x0218223c
@@ -106,27 +106,27 @@ func_ov000_02184354 kind:function(thumb,size=0x54) addr:0x02184320
 InitWiFiVSMatching kind:function(thumb,size=0x204) addr:0x02184374
 func_ov000_021845ac kind:function(thumb,size=0xc4) addr:0x02184578
 func_ov000_02184670 kind:function(thumb,size=0x258) addr:0x0218463c
-func_ov000_021848c8 kind:function(thumb,size=0x24) addr:0x02184894
+RegisterSelectCharacterCallbacks kind:function(thumb,size=0x24) addr:0x02184894
 func_ov000_021848ec kind:function(thumb,size=0x8) addr:0x021848b8
-func_ov000_021848f4 kind:function(thumb,size=0x3e) addr:0x021848c0
+AdvanceWiFiSelectCharacterState kind:function(thumb,size=0x3e) addr:0x021848c0
 func_ov000_02184934 kind:function(thumb,size=0x2) addr:0x02184900
 func_ov000_02184938 kind:function(thumb,size=0x18) addr:0x02184904
-func_ov000_02184950 kind:function(thumb,size=0x90) addr:0x0218491c
+InitWiFiSelectCharacterState kind:function(thumb,size=0x90) addr:0x0218491c
 func_ov000_021849e0 kind:function(thumb,size=0x24) addr:0x021849ac
 func_ov000_02184a04 kind:function(thumb,size=0x8) addr:0x021849d0
 func_ov000_02184a0c kind:function(thumb,size=0x42) addr:0x021849d8
 func_ov000_02184a50 kind:function(thumb,size=0x2) addr:0x02184a1c
 func_ov000_02184a54 kind:function(thumb,size=0x18) addr:0x02184a20
 func_ov000_02184a6c kind:function(thumb,size=0x38) addr:0x02184a38
-func_ov000_02184aa4 kind:function(thumb,size=0x24) addr:0x02184a70
+RegisterWiFiVSCourseSelectCallbacks kind:function(thumb,size=0x24) addr:0x02184a70
 func_ov000_02184ac8 kind:function(thumb,size=0x8) addr:0x02184a94
-func_ov000_02184ad0 kind:function(thumb,size=0x7c) addr:0x02184a9c
+AdvanceWiFiVSCourseSelectState kind:function(thumb,size=0x7c) addr:0x02184a9c
 func_ov000_02184b4c kind:function(thumb,size=0x2) addr:0x02184b18
 func_ov000_02184b50 kind:function(thumb,size=0x18) addr:0x02184b1c
-func_ov000_02184b68 kind:function(thumb,size=0x40) addr:0x02184b34
-func_ov000_02184ba8 kind:function(thumb,size=0x24) addr:0x02184b74
+InitWiFiVSCourseSelectState kind:function(thumb,size=0x40) addr:0x02184b34
+RegisterWiFiAikotobaCallbacks kind:function(thumb,size=0x24) addr:0x02184b74
 func_ov000_02184bcc kind:function(thumb,size=0x20) addr:0x02184b98
-func_ov000_02184bec kind:function(thumb,size=0x88) addr:0x02184bb8
+AdvanceWiFiAikotoba kind:function(thumb,size=0x88) addr:0x02184bb8
 func_ov000_02184c74 kind:function(thumb,size=0x6c) addr:0x02184c40
 func_ov000_02184ce0 kind:function(thumb,size=0x6c) addr:0x02184cac
 func_ov000_02184d4c kind:function(thumb,size=0x70) addr:0x02184d18
@@ -139,17 +139,17 @@ func_ov000_02185164 kind:function(thumb,size=0x20) addr:0x02185130
 func_ov000_02185184 kind:function(thumb,size=0x1c) addr:0x02185150
 func_ov000_021851a0 kind:function(thumb,size=0x90) addr:0x0218516c
 func_ov000_02185230 kind:function(thumb,size=0xc) addr:0x021851fc
-func_ov000_0218523c kind:function(thumb,size=0x108) addr:0x02185208
-func_ov000_02185344 kind:function(thumb,size=0x24) addr:0x02185310
+InitWiFiAikotoba kind:function(thumb,size=0x108) addr:0x02185208
+RegisterWiFiAikotobaCheckCallbacks kind:function(thumb,size=0x24) addr:0x02185310
 func_ov000_02185368 kind:function(thumb,size=0x2) addr:0x02185334
-func_ov000_0218536c kind:function(thumb,size=0x58) addr:0x02185338
+AdvanceWiFiAikotobaCheck kind:function(thumb,size=0x58) addr:0x02185338
 func_ov000_021853c4 kind:function(thumb,size=0x54) addr:0x02185390
 func_ov000_02185418 kind:function(thumb,size=0x90) addr:0x021853e4
 func_ov000_021854a8 kind:function(thumb,size=0x50) addr:0x02185474
 func_ov000_021854f8 kind:function(thumb,size=0x54) addr:0x021854c4
 func_ov000_0218554c kind:function(thumb,size=0xac) addr:0x02185518
 func_ov000_021855f8 kind:function(thumb,size=0xc) addr:0x021855c4
-func_ov000_02185604 kind:function(thumb,size=0xa4) addr:0x021855d0
+InitWiFiAikotobaCheck kind:function(thumb,size=0xa4) addr:0x021855d0
 func_ov000_021856a8 kind:function(thumb,size=0xe0) addr:0x02185674
 func_ov000_02185788 kind:function(thumb,size=0x30) addr:0x02185754
 func_ov000_021857b8 kind:function(thumb,size=0x24) addr:0x02185784
@@ -1518,7 +1518,7 @@ data_ov000_021b0a98 kind:data(any) addr:0x021b0a58
 data_ov000_021b0aa8 kind:data(any) addr:0x021b0a68
 @1104 kind:data(any) addr:0x021b0a8c local
 @1105 kind:data(any) addr:0x021b0a98 local
-data_ov000_021b0ae4 kind:data(any) addr:0x021b0aa4
+gWiFiTopMenuCallbacks kind:data(any) addr:0x021b0aa4
 data_ov000_021b0af4 kind:data(any) addr:0x021b0ab4
 data_ov000_021b0b0c kind:data(any) addr:0x021b0acc
 data_ov000_021b0b24 kind:data(any) addr:0x021b0ae4
@@ -1530,7 +1530,7 @@ data_usa_ov000_021b0b4c kind:data(any) addr:0x021b0b4c
 data_usa_ov000_021b0b50 kind:data(any) addr:0x021b0b50
 data_usa_ov000_021b0b54 kind:data(any) addr:0x021b0b54
 data_usa_ov000_021b0b58 kind:data(any) addr:0x021b0b58
-data_ov000_021b0ba0 kind:data(any) addr:0x021b0b60
+gWiFiVSSettingCallbacks kind:data(any) addr:0x021b0b60
 @2794 kind:data(any) addr:0x021b0b70 local
 @2795 kind:data(any) addr:0x021b0b8c local
 @2796 kind:data(any) addr:0x021b0ba4 local
@@ -1560,10 +1560,10 @@ data_usa_ov000_021b0da0 kind:data(any) addr:0x021b0da0
 data_usa_ov000_021b0dbc kind:data(any) addr:0x021b0dbc
 data_ov000_021b0e18 kind:data(any) addr:0x021b0dd8
 data_ov000_021b0e24 kind:data(any) addr:0x021b0de4
-data_ov000_021b0e30 kind:data(any) addr:0x021b0df0
+gSelectCharacterCallbacks kind:data(any) addr:0x021b0df0
 data_ov000_021b0e40 kind:data(any) addr:0x021b0e00
-data_ov000_021b0e50 kind:data(any) addr:0x021b0e10
-data_ov000_021b0e60 kind:data(any) addr:0x021b0e20
+gWiFiVSCourseSelectCallbacks kind:data(any) addr:0x021b0e10
+gWiFiAikotobaCallbacks kind:data(any) addr:0x021b0e20
 data_ov000_021b0e70 kind:data(any) addr:0x021b0e30
 data_ov000_021b0e84 kind:data(any) addr:0x021b0e44
 data_ov000_021b0e98 kind:data(any) addr:0x021b0e58
@@ -1573,7 +1573,7 @@ data_ov000_021b0ee8 kind:data(any) addr:0x021b0ea8
 data_ov000_021b0ef4 kind:data(any) addr:0x021b0eb4
 @3622 kind:data(any) addr:0x021b0ec0 local
 @3624 kind:data(any) addr:0x021b0ecc local
-data_ov000_021b0f18 kind:data(any) addr:0x021b0ed8
+gWiFiAikotobaCheckCallbacks kind:data(any) addr:0x021b0ed8
 data_ov000_021b0f28 kind:data(any) addr:0x021b0ee8
 data_ov000_021b0f44 kind:data(any) addr:0x021b0f04
 data_ov000_021b0f60 kind:data(any) addr:0x021b0f20
@@ -2320,14 +2320,14 @@ data_ov000_021b4c40 kind:data(any) addr:0x021b4c00
 data_ov000_021b4c60 kind:bss addr:0x021b4c20
 gWiFiStates kind:bss addr:0x021b4c24
 data_ov000_021b4c68 kind:bss addr:0x021b4c28
-data_ov000_021b4c6c kind:bss addr:0x021b4c2c
+gWiFiTopMenu kind:bss addr:0x021b4c2c
 gWiFiVSSetting kind:bss addr:0x021b4c30
 gWiFiVSMatching kind:bss addr:0x021b4c34
 data_ov000_021b4c78 kind:bss addr:0x021b4c38
 data_ov000_021b4c7c kind:bss addr:0x021b4c3c
 data_ov000_021b4c80 kind:bss addr:0x021b4c40
-data_ov000_021b4c84 kind:bss addr:0x021b4c44
-data_ov000_021b4c88 kind:bss addr:0x021b4c48
+gWiFiAikotoba kind:bss addr:0x021b4c44
+gWiFiAikotobaCheck kind:bss addr:0x021b4c48
 data_ov000_021b4c8c kind:bss addr:0x021b4c4c
 data_ov000_021b4c90 kind:bss addr:0x021b4c50
 data_ov000_021b4c94 kind:bss addr:0x021b4c54

@@ -11,7 +11,7 @@
 #include "Main/Unknown/code_02122734.h"
 #include "Main/Unknown/code_0212a910.h"
 
-void func_ov000_02184950(void *a) {
+void InitWiFiSelectCharacterState(void *a) {
     void *b;
     void *c;
     s32 i;
@@ -44,7 +44,7 @@ void func_ov000_02184934(void) {
     return;
 }
 
-void func_ov000_021848f4(void) {
+void AdvanceWiFiSelectCharacterState(void) {
     s32 a;
 
     a = func_02026120();
@@ -69,7 +69,7 @@ void func_ov000_021848ec(void) {
     return;
 }
 
-void func_ov000_021848c8(void) {
-    Unk021b0cd4 callbacks = data_ov000_021b0e30;
+void RegisterSelectCharacterCallbacks(void) {
+    Unk021b0cd4 callbacks = gSelectCharacterCallbacks;
     SetWiFiStateCallbacks(&callbacks);
 }

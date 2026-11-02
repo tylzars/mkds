@@ -121,58 +121,58 @@ void InitWiFiStates(void *heap, s32 b) {
         case 0:
             gWiFiStates->mUnk_10 = 10;
             gWiFiStates->mUnk_08 = 1;
-            func_ov000_02181714();
+            RegisterWiFiTopMenuCallbacks();
             func_021204d0();
             data_0217b488->mUnk_1c = 0;
             break;
         case 12:
             gWiFiStates->mUnk_10 = 13;
             gWiFiStates->mUnk_08 = 1;
-            func_ov000_02181714();
+            RegisterWiFiTopMenuCallbacks();
             break;
         case 2:
         case 10:
             switch (data_0217b488->mUnk_1c) {
                 case 0:
                     gWiFiStates->mUnk_08 = 1;
-                    func_ov000_02181714();
+                    RegisterWiFiTopMenuCallbacks();
                     break;
                 case 1:
                     q = &data_0217d384->mUnk_0008;
                     q->mUnk_10 = 2;
                     q->mUnk_12 = 1;
                     gWiFiStates->mUnk_08 = 2;
-                    func_ov000_02181fcc();
+                    RegisterWiFiVSSettingCallbacks();
                     break;
                 case 2:
                     func_02123a48(1);
                     gWiFiStates->mUnk_08 = 4;
-                    func_ov000_021848c8();
+                    RegisterSelectCharacterCallbacks();
                     break;
                 case 3:
                     func_02123a48(2);
                     func_020296f4();
                     gWiFiStates->mUnk_08 = 6;
-                    func_ov000_02184aa4();
+                    RegisterWiFiVSCourseSelectCallbacks();
                     break;
             }
             break;
         case 14:
             gWiFiStates->mUnk_10 = 11;
             gWiFiStates->mUnk_08 = 8;
-            func_ov000_02184ba8();
+            RegisterWiFiAikotobaCallbacks();
             break;
         case 8:
             switch (data_0217b488->mUnk_50) {
                 case 0:
                     gWiFiStates->mUnk_10 = 14;
                     gWiFiStates->mUnk_08 = 2;
-                    func_ov000_02181fcc();
+                    RegisterWiFiVSSettingCallbacks();
                     break;
                 case 1:
                     gWiFiStates->mUnk_10 = 14;
                     gWiFiStates->mUnk_08 = 8;
-                    func_ov000_02184ba8();
+                    RegisterWiFiAikotobaCallbacks();
                     break;
             }
             break;
@@ -207,31 +207,31 @@ void AdvanceWiFiStates(void) {
                 func_ov000_02180c04();
                 break;
             case 1:
-                func_ov000_02181714();
+                RegisterWiFiTopMenuCallbacks();
                 break;
             case 2:
-                func_ov000_02181fcc();
+                RegisterWiFiVSSettingCallbacks();
                 break;
             case 3:
                 RegisterWiFiVSMatchingCallbacks();
                 break;
             case 4:
-                func_ov000_021848c8();
+                RegisterSelectCharacterCallbacks();
                 break;
             case 5:
                 func_ov000_021849e0();
                 break;
             case 6:
-                func_ov000_02184aa4();
+                RegisterWiFiVSCourseSelectCallbacks();
                 break;
             case 7:
                 func_ov000_021857b8();
                 break;
             case 8:
-                func_ov000_02184ba8();
+                RegisterWiFiAikotobaCallbacks();
                 break;
             case 9:
-                func_ov000_02185344();
+                RegisterWiFiAikotobaCheckCallbacks();
                 break;
         }
         gWiFiStates->mUnk_10 = gWiFiStates->mUnk_08;
