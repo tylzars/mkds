@@ -39,24 +39,24 @@ extern Vec3 data_02155a48;
 extern Vec3 data_02155eb0;
 extern Vec3 data_02155ebc;
 
-// 12-byte entries; func_02088390 reads the string pointer at 0x00.
+// 12-byte entries; BuildEmblemNsbtxPath reads the string pointer at 0x00.
 typedef struct Unk02155cf4 {
     /* 00 */ const char *mUnk_00;
     /* 04 */ u8 mUnk_04[8];
 } Unk02155cf4;
 
-extern const Unk02155cf4 data_02155cf4[];
-extern const Unk02155cf4 data_02155cec[];
-extern const Unk02155cf4 data_02155cf0[];
+extern const Unk02155cf4 gCharacterEmblemNames[];
+extern const Unk02155cf4 gCharacterPNames[];
+extern const Unk02155cf4 gCharacterENames[];
 
-// 8-byte entries; func_020884bc and func_020885d0 read the string pointer at 0x00.
+// 8-byte entries; BuildKartShadowNsbmdPath and BuildKartNsbtxPath read the string pointer at 0x00.
 typedef struct Unk02155d88 {
     /* 00 */ const char *mUnk_00;
     /* 04 */ u8 mUnk_04[4];
 } Unk02155d88;
 
-extern const Unk02155d88 data_02155d88[];
-extern const Unk02155d88 data_02155d8c[];
+extern const Unk02155d88 gKartNames[];
+extern const Unk02155d88 gKartShadowNames[];
 
 // 12-byte entry: four bytes and two string pointers.
 typedef struct Unk02155ee8 {

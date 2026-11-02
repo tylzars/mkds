@@ -100,7 +100,7 @@ void func_02062b50(void) {
     u16 j;
 
     a = func_020364e0(func_020364e8());
-    func_02088888(0);
+    SetKartModelPathPrefix(0);
     data_0217aa54 = func_02036bec(a, 72);
     func_02062a0c();
     b = func_02148d24();

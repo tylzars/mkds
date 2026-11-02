@@ -314,7 +314,7 @@ void func_02078c58(void *param_1) {
     data_021759d0->mUnk_1c &= ~8;
     func_02077bc0(param_1);
     func_0208533c();
-    func_02088888(1);
+    SetKartModelPathPrefix(1);
     func_02078b48(param_1);
     func_020790e0(param_1, 1);
     j = 0;
@@ -351,7 +351,7 @@ void func_02078d64(void *param_1) {
     data_021759d0->mUnk_1c &= ~8;
     func_02077bc0(param_1);
     func_0208533c();
-    func_02088888(1);
+    SetKartModelPathPrefix(1);
     func_02078b48(param_1);
     func_020790e0(param_1, 0);
     LoadKartModelMenuFile(param_1, data_usa_02165738, (void **) &data_0217ad08->mUnk_018);

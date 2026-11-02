@@ -1411,8 +1411,8 @@ typedef struct Unk0217aed0 {
 } Unk0217aed0;
 
 extern Unk0217aed0 *data_0217aed0;
-extern const char *data_0217af24;
-extern char data_0217af28[];
+extern const char *gKartModelPathPrefix;
+extern char gKartModelPathBuffer[];
 
 // Entries of the 0x400-byte buffer behind member 0x04 of Unk0217aa04.
 typedef struct Unk0217aa04_04 {

@@ -35,15 +35,15 @@ void func_02077d68(void) {
         func_02012b30(p->mUnk_28);
     }
     e = (char *) &data_0217ad08->mUnk_1c8[c];
-    func_02048590(func_020887d8(b, 1), (u32) p->mUnk_04, (void **) &p->mUnk_08);
-    func_02048590(func_02088728(b, 1), (u32) p->mUnk_04, (void **) &p->mUnk_0c);
+    func_02048590(BuildCharacterNsbmdPath(b, 1), (u32) p->mUnk_04, (void **) &p->mUnk_08);
+    func_02048590(BuildCharacterNsbtxPath(b, 1), (u32) p->mUnk_04, (void **) &p->mUnk_0c);
     func_02048590(func_0207b8f4(b, 2), (u32) p->mUnk_04, (void **) &p->mUnk_14);
-    func_02048590(func_02088390(b), (u32) p->mUnk_04, (void **) &p->mUnk_10);
-    func_02048590(func_0208867c(c), (u32) p->mUnk_04, (void **) &p->mUnk_18);
-    func_02048590(func_020885d0(c), (u32) p->mUnk_04, (void **) &p->mUnk_1c);
-    func_02048590(func_020884bc(c), (u32) p->mUnk_04, (void **) &p->mUnk_28);
-    func_02048590(func_02088574(c, e), (u32) p->mUnk_04, (void **) &p->mUnk_20);
-    func_02048590(func_02088518(c, e), (u32) p->mUnk_04, (void **) &p->mUnk_24);
+    func_02048590(BuildEmblemNsbtxPath(b), (u32) p->mUnk_04, (void **) &p->mUnk_10);
+    func_02048590(BuildKartNsbmdPath(c), (u32) p->mUnk_04, (void **) &p->mUnk_18);
+    func_02048590(BuildKartNsbtxPath(c), (u32) p->mUnk_04, (void **) &p->mUnk_1c);
+    func_02048590(BuildKartShadowNsbmdPath(c), (u32) p->mUnk_04, (void **) &p->mUnk_28);
+    func_02048590(BuildTireNsbmdPath(c, e), (u32) p->mUnk_04, (void **) &p->mUnk_20);
+    func_02048590(BuildTireNsbtxPath(c, e), (u32) p->mUnk_04, (void **) &p->mUnk_24);
 }
 
 void func_02077c1c(void) {

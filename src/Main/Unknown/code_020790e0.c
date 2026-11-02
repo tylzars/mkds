@@ -65,7 +65,7 @@ void func_0207916c(void *a) {
 void func_02079220(Unk0206bcb0_590 *a, void *b) {
     void *v6;
     u8 *p;
-    v6 = func_02047950(func_020884bc((u16) a->mUnk_004));
+    v6 = func_02047950(BuildKartShadowNsbmdPath((u16) a->mUnk_004));
     a->mUnk_01c = func_02036bec(b, 0x74);
     func_0208526c(&a->mUnk_01c->mUnk_00.mUnk_5c, v6, v6);
     p = (u8 *) func_02013730((u32) v6);
@@ -77,8 +77,8 @@ void func_0207926c(Unk0206bcb0_590 *a, void *b) {
     void *v7;
     Unk0201290c *v4;
     Unk020136f0 *v8;
-    v7 = func_02047950(func_02088574(v6, a->mUnk_020->mUnk_00));
-    v8 = FindKartModelFile(func_02088518(v6, a->mUnk_020->mUnk_00));
+    v7 = func_02047950(BuildTireNsbmdPath(v6, a->mUnk_020->mUnk_00));
+    v8 = FindKartModelFile(BuildTireNsbtxPath(v6, a->mUnk_020->mUnk_00));
     a->mUnk_018 = func_02036bec(b, 0x6c);
     v4 = func_02084b2c(b, a->mUnk_018, v7, v8);
     func_020849c0(a->mUnk_018, 3);
@@ -194,8 +194,8 @@ void func_020794bc(Unk0206bcb0_590 *a, void *b, s32 c) {
     Unk020136f0 *t;
     Unk0201290c *r4;
     s32 i;
-    s = func_02047950(func_0208867c(v7));
-    t = FindKartModelFile(func_020885d0(v7));
+    s = func_02047950(BuildKartNsbmdPath(v7));
+    t = FindKartModelFile(BuildKartNsbtxPath(v7));
     a->mUnk_014 = func_02036bec(b, 0x6c);
     r4 = func_02084b2c(b, a->mUnk_014, s, t);
     func_020849c0(a->mUnk_014, 3);
@@ -217,8 +217,8 @@ void func_0207954c(Unk0206bcb0_590 *a, void *b, s32 c) {
     Unk0201290c *p;
     void *s;
     e8 = (u16) a->mUnk_000;
-    v7 = func_02047950(func_020887d8(e8, c));
-    v10 = FindKartModelFile(func_02088728(e8, c));
+    v7 = func_02047950(BuildCharacterNsbmdPath(e8, c));
+    v10 = FindKartModelFile(BuildCharacterNsbtxPath(e8, c));
     a->mUnk_010 = func_02036bec(b, 0x6c);
     p = func_02084b2c(b, a->mUnk_010, v7, v10);
     func_020849c0(a->mUnk_010, 3);
@@ -329,7 +329,7 @@ void func_020797d8(void *a, u32 b) {
     Unk0206bcb0_590 *e;
     Unk0206bcb0_590 *d;
     v4 = (u8 *) FindKartModelFile("kartoffsetdata.bin");
-    func_02088888(0);
+    SetKartModelPathPrefix(0);
     data_0217ad08 = 0;
     data_0217ad00 = func_02036bec(a, 0x144);
     data_0217ad00->mUnk_000 = func_02036bec(a, b * 0xb4);
@@ -337,7 +337,7 @@ void func_020797d8(void *a, u32 b) {
     data_0217ad00->mUnk_004 = data_0217ad00->mUnk_004 + (data_021759c0->mUnk_00 << 3) - 8;
     data_0217ad00->mUnk_010 = LoadKartAPaletteFromKartModelFile();
     data_0217ad00->mUnk_014 = 0;
-    data_0217ad00->mUnk_028 = func_02047950((const char *) func_020883e4());
+    data_0217ad00->mUnk_028 = func_02047950((const char *) BuildPFaceanimNsbtpPath());
     data_0217ad00->mUnk_008 = b;
     data_0217ad00->mUnk_00c = 0;
     func_0208af40(a, b);

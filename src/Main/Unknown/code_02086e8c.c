@@ -76,9 +76,9 @@ void func_02087000(void) {
         data_0217aed0->mUnk_164[i] = 0;
         if (data_021759c0->mUnk_68[i].mUnk_08.mUnk_24 == 0 || data_021759c0->mUnk_58 != 0) {
             if (data_021759c0->mUnk_58 != 0) {
-                s = func_02088338(data_021759c0->mUnk_68[i].mUnk_08.mUnk_04 == 1 ? 1 : 0);
+                s = BuildTeamEmblemNsbtxPath(data_021759c0->mUnk_68[i].mUnk_08.mUnk_04 == 1 ? 1 : 0);
             } else {
-                s = func_02088390((u16) data_021759c0->mUnk_68[i].mUnk_00);
+                s = BuildEmblemNsbtxPath((u16) data_021759c0->mUnk_68[i].mUnk_00);
             }
             p = func_020136f0(func_02047950(s));
             q = p + *(u32 *) (p + 0x38);

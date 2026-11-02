@@ -3161,19 +3161,19 @@ func_02088308 kind:function(arm,size=0xc) addr:0x02088308
 func_02088314 kind:function(arm,size=0xc) addr:0x02088314
 func_02088320 kind:function(arm,size=0xc) addr:0x02088320
 func_0208832c kind:function(arm,size=0xc) addr:0x0208832c
-func_02088338 kind:function(arm,size=0x58) addr:0x02088338
-func_02088390 kind:function(arm,size=0x54) addr:0x02088390
-func_020883e4 kind:function(arm,size=0x4c) addr:0x020883e4
-func_02088430 kind:function(arm,size=0x5c) addr:0x02088430
-func_0208848c kind:function(arm,size=0x30) addr:0x0208848c
-func_020884bc kind:function(arm,size=0x5c) addr:0x020884bc
-func_02088518 kind:function(arm,size=0x5c) addr:0x02088518
-func_02088574 kind:function(arm,size=0x5c) addr:0x02088574
-func_020885d0 kind:function(arm,size=0xac) addr:0x020885d0
-func_0208867c kind:function(arm,size=0xac) addr:0x0208867c
-func_02088728 kind:function(arm,size=0xb0) addr:0x02088728
-func_020887d8 kind:function(arm,size=0xb0) addr:0x020887d8
-func_02088888 kind:function(arm,size=0x2c) addr:0x02088888
+BuildTeamEmblemNsbtxPath kind:function(arm,size=0x58) addr:0x02088338
+BuildEmblemNsbtxPath kind:function(arm,size=0x54) addr:0x02088390
+BuildPFaceanimNsbtpPath kind:function(arm,size=0x4c) addr:0x020883e4
+BuildCharacterDirPath kind:function(arm,size=0x5c) addr:0x02088430
+LookupCharacterPOrEName kind:function(arm,size=0x30) addr:0x0208848c
+BuildKartShadowNsbmdPath kind:function(arm,size=0x5c) addr:0x020884bc
+BuildTireNsbtxPath kind:function(arm,size=0x5c) addr:0x02088518
+BuildTireNsbmdPath kind:function(arm,size=0x5c) addr:0x02088574
+BuildKartNsbtxPath kind:function(arm,size=0xac) addr:0x020885d0
+BuildKartNsbmdPath kind:function(arm,size=0xac) addr:0x0208867c
+BuildCharacterNsbtxPath kind:function(arm,size=0xb0) addr:0x02088728
+BuildCharacterNsbmdPath kind:function(arm,size=0xb0) addr:0x020887d8
+SetKartModelPathPrefix kind:function(arm,size=0x2c) addr:0x02088888
 func_020888b4 kind:function(arm,size=0x158) addr:0x020888b4
 func_02088a0c kind:function(arm,size=0x270) addr:0x02088a0c
 func_02088c7c kind:function(arm,size=0xb8) addr:0x02088c7c
@@ -8048,11 +8048,11 @@ data_usa_02155aac kind:data(any) addr:0x02155aac
 data_usa_02155acc kind:data(any) addr:0x02155acc
 data_02155ccc kind:data(any) addr:0x02155ccc
 data_02155cd8 kind:data(any) addr:0x02155cd8
-data_02155cec kind:data(any) addr:0x02155cec
-data_02155cf0 kind:data(any) addr:0x02155cf0
-data_02155cf4 kind:data(any) addr:0x02155cf4
-data_02155d88 kind:data(any) addr:0x02155d88
-data_02155d8c kind:data(any) addr:0x02155d8c
+gCharacterPNames kind:data(any) addr:0x02155cec
+gCharacterENames kind:data(any) addr:0x02155cf0
+gCharacterEmblemNames kind:data(any) addr:0x02155cf4
+gKartNames kind:data(any) addr:0x02155d88
+gKartShadowNames kind:data(any) addr:0x02155d8c
 data_02155eb0 kind:data(any) addr:0x02155eb0
 data_02155ebc kind:data(any) addr:0x02155ebc
 data_02155ec8 kind:data(any) addr:0x02155ec8
@@ -9682,8 +9682,8 @@ data_usa_02165ab4 kind:data(any) addr:0x02165ab4
 data_usa_02165ab8 kind:data(any) addr:0x02165ab8
 data_usa_02165abc kind:data(any) addr:0x02165abc
 data_usa_02165ac0 kind:data(any) addr:0x02165ac0
-data_02165ac4 kind:data(any) addr:0x02165ac4
-data_02165ac8 kind:data(any) addr:0x02165ac8
+gCharacterDirName kind:data(any) addr:0x02165ac4
+gKartDirName kind:data(any) addr:0x02165ac8
 data_usa_02165acc kind:data(any) addr:0x02165acc
 data_usa_02165ad4 kind:data(any) addr:0x02165ad4
 data_usa_02165adc kind:data(any) addr:0x02165adc
@@ -9796,15 +9796,15 @@ data_usa_02165e2c kind:data(any) addr:0x02165e2c
 data_usa_02165e34 kind:data(any) addr:0x02165e34
 data_usa_02165e3c kind:data(any) addr:0x02165e3c
 data_usa_02165e44 kind:data(any) addr:0x02165e44
-data_02165e4c kind:data(any) addr:0x02165e4c
+gTeamEmblemNames kind:data(any) addr:0x02165e4c
 data_usa_02165e54 kind:data(any) addr:0x02165e54
 data_usa_02165e5c kind:data(any) addr:0x02165e5c
 data_usa_02165e68 kind:data(any) addr:0x02165e68
 data_usa_02165e74 kind:data(any) addr:0x02165e74
-data_02165e80 kind:data(any) addr:0x02165e80
-data_02165eb4 kind:data(any) addr:0x02165eb4
-data_02165ed4 kind:data(any) addr:0x02165ed4
-data_02165ef0 kind:data(any) addr:0x02165ef0
+gCharacterSubDirNames kind:data(any) addr:0x02165e80
+gTeamEmblemNsbtxFormat kind:data(any) addr:0x02165eb4
+gEmblemNsbtxFormat kind:data(any) addr:0x02165ed4
+gCommonPFaceanimNsbtpFormat kind:data(any) addr:0x02165ef0
 @926 kind:data(any) addr:0x02165f0c local
 @935 kind:data(any) addr:0x02165f14 local
 @937 kind:data(any) addr:0x02165f2c local
@@ -9823,8 +9823,8 @@ data_02165ef0 kind:data(any) addr:0x02165ef0
 @983 kind:data(any) addr:0x02165fbc local
 @984 kind:data(any) addr:0x02165fc4 local
 @985 kind:data(any) addr:0x02165fcc local
-data_02165fd4 kind:data(any) addr:0x02165fd4
-data_02165fec kind:data(any) addr:0x02165fec
+gKartModelMenuPrefix kind:data(any) addr:0x02165fd4
+gKartModelSlashPrefix kind:data(any) addr:0x02165fec
 data_02165ff0 kind:data(any) addr:0x02165ff0
 data_0216600c kind:data(any) addr:0x0216600c
 data_02166028 kind:data(any) addr:0x02166028
@@ -11399,8 +11399,8 @@ data_0217aed8 kind:bss addr:0x0217aeb8
 data_0217aedc kind:bss addr:0x0217aebc
 data_0217aee0 kind:bss addr:0x0217aec0
 data_0217af20 kind:bss addr:0x0217af00
-data_0217af24 kind:bss addr:0x0217af04
-data_0217af28 kind:bss addr:0x0217af08
+gKartModelPathPrefix kind:bss addr:0x0217af04
+gKartModelPathBuffer kind:bss addr:0x0217af08
 data_0217b028 kind:bss addr:0x0217b008
 data_0217b02c kind:bss addr:0x0217b00c
 data_0217b030 kind:bss addr:0x0217b010
