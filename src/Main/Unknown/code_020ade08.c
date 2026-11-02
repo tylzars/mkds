@@ -51,15 +51,15 @@ void func_020adff0(u32 a, u16 *b, u32 c) {
             p = (u16 *) func_020ae178(func_020ae0c8(a), c);
             n = 20;
         } else {
-            func_0213edbc(w, func_020b3f7c(func_020b47cc(data_02168100), 0x72), 9);
+            wcsncpy(w, func_020b3f7c(func_020b47cc(data_02168100), 0x72), 9);
             func_0213ca64(v, 2, data_0216810c, func_020ae0ac(a));
-            func_0213ed60(w, v, 1);
+            wcsncat(w, v, 1);
             p = w;
             n = 10;
         }
     }
     if (p != 0) {
-        func_0213edbc(b, p, n);
+        wcsncpy(b, p, n);
     }
 }
 

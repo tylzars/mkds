@@ -50,7 +50,7 @@ void func_020b6c74(u32 a, u16 *b, u32 c) {
     if (p == 0) {
         return;
     }
-    func_0213edbc(b, p, n);
+    wcsncpy(b, p, n);
 }
 
 void func_020b6bd4(UnkPair020b502c *a, UnkPair020b502c *b, s32 c, s32 d, s16 e, s16 f) {

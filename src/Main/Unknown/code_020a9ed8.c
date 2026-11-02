@@ -98,7 +98,7 @@ u16 func_020aa650(u16 a) {
         return a;
     }
     for (i = 0, p = data_02167a04; i < 4; p++, i++) {
-        q = func_0213ecf8(*p, a);
+        q = wcschr(*p, a);
         if (q != 0) {
             n = q - data_02167a04[i];
             break;
@@ -118,21 +118,21 @@ u16 func_020aa650(u16 a) {
 }
 
 u32 func_020aa628(u16 a) {
-    if (func_0213ecf8(data_0217b24c[1], a) != 0) {
+    if (wcschr(data_0217b24c[1], a) != 0) {
         return 1;
     }
     return 0;
 }
 
 u32 func_020aa600(u16 a) {
-    if (func_0213ecf8(data_0217b244[1], a) != 0) {
+    if (wcschr(data_0217b244[1], a) != 0) {
         return 1;
     }
     return 0;
 }
 
 u32 func_020aa5d8(u16 a) {
-    if (func_0213ecf8(data_0217b23c[1], a) != 0) {
+    if (wcschr(data_0217b23c[1], a) != 0) {
         return 1;
     }
     return 0;
@@ -374,7 +374,7 @@ u16 func_020aa094(u16 **a, u16 b) {
     u16 r;
 
     for (i = 0; i < 2; i++) {
-        p = func_0213ecf8(a[i], b);
+        p = wcschr(a[i], b);
         if (p != 0) {
             r = a[1 - i][p - a[i]];
             if (r != 0x3000) {

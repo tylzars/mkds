@@ -2,7 +2,7 @@
 
 #include "code_0213c94c.h"
 
-u16 *func_0213c9c0(const u16 *s, int c, u32 n) {
+u16 *wmemchr(const u16 *s, int c, u32 n) {
     while (n != 0) {
         if (*s == c) {
             return (u16 *) s;

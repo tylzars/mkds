@@ -494,22 +494,22 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
             if (v < 0.0) {
                 r = a - 5;
                 if ((t >= 0x80 ? 0 : data_0215d384[t] & 0x200) != 0) {
-                    func_0213ee30(r, L"-INF");
+                    wcscpy(r, L"-INF");
                 } else {
-                    func_0213ee30(r, L"-inf");
+                    wcscpy(r, L"-inf");
                 }
             } else {
                 r = a - 4;
                 if ((t >= 0x80 ? 0 : data_0215d384[t] & 0x200) != 0) {
-                    func_0213ee30(r, L"INF");
+                    wcscpy(r, L"INF");
                 } else {
-                    func_0213ee30(r, L"inf");
+                    wcscpy(r, L"inf");
                 }
             }
             return r;
         case 'N':
             r = a - 4;
-            func_0213ee30(r, L"NaN");
+            wcscpy(r, L"NaN");
             return r;
     }
     h.mUnk_02 += h.mUnk_04 - 1;
@@ -635,7 +635,7 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
             break;
     }
     r = a - strlen(p) - 1;
-    func_02134bd4(r, p, strlen(p));
+    mbstowcs(r, p, strlen(p));
     return r;
 }
 
@@ -661,9 +661,9 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
 
     t = 0;
     while (*c != 0) {
-        q = func_0213ecf8(c, '%');
+        q = wcschr(c, '%');
         if (q == 0) {
-            n = func_0213ee50(c);
+            n = wcslen(c);
             t += n;
             if (n != 0 && a(b, c, n) == 0) {
                 return -1;
@@ -768,12 +768,12 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
                         }
                     } else if (s.mUnk_02 != 0) {
                         n = s.mUnk_0c;
-                        r = func_0213c9c0(p, 0, n);
+                        r = wmemchr(p, 0, n);
                         if (r != 0) {
                             n = r - p;
                         }
                     } else {
-                        n = func_0213ee50(p);
+                        n = wcslen(p);
                     }
                 } else {
                     d += 4;
@@ -796,7 +796,7 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
                     } else {
                         m = strlen(bp);
                     }
-                    n = func_02134bd4(buf, bp, m);
+                    n = mbstowcs(buf, bp, m);
                     if (n < 0) {
                         goto bad;
                     }
@@ -830,7 +830,7 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
                 } else {
                     d += 4;
                     g = *(int *) (d - 4);
-                    n = func_02134d08(p, &g, 1);
+                    n = mbtowc(p, &g, 1);
                 }
                 break;
             case '%':
@@ -841,7 +841,7 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
             case 0xffff:
             default:
             bad:
-                n = func_0213ee50(q);
+                n = wcslen(q);
                 t += n;
                 if (n != 0 && a(b, q, n) == 0) {
                     return -1;

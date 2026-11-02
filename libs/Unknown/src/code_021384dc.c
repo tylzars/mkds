@@ -383,7 +383,7 @@ int func_02138618(Unk02138618Func fn, void *a, const u8 *s, char *v) {
                     while (t.mUnk_04-- != 0 && (ch = fn(a, 0, 0)) != -1) {
                         chb = ch;
                         if (t.mUnk_02 == 10) {
-                            func_02134d08((u16 *) p, &chb, 1);
+                            mbtowc((u16 *) p, &chb, 1);
                             p += 1;
                         } else {
                             *p++ = chb;
@@ -435,7 +435,7 @@ int func_02138618(Unk02138618Func fn, void *a, const u8 *s, char *v) {
                             break;
                         }
                         if (t.mUnk_02 == 10) {
-                            func_02134d08((u16 *) p, &chb, 1);
+                            mbtowc((u16 *) p, &chb, 1);
                             p += 2;
                         } else {
                             *p++ = chb;

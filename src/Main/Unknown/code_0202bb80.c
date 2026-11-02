@@ -413,7 +413,7 @@ void func_0202c8dc(void) {
         func_0214cfe4(u[0], data_02174e3c->mUnk_04c[i].mUnk_14, 0x16);
         func_0214cffc(h, data_02174e3c->mUnk_04c[i].mUnk_14, 0x14);
         u[1] = i + 0x31 - data_02174e3c->mUnk_048;
-        func_0213ed60(data_02174e3c->mUnk_04c[i].mUnk_14, w, 1);
+        wcsncat(data_02174e3c->mUnk_04c[i].mUnk_14, w, 1);
     }
 }
 

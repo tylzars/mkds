@@ -11,7 +11,7 @@ void *func_0213ca94(void *p, const u16 *s, u32 n) {
     if (a->mUnk_08 + n > a->mUnk_04) {
         n = a->mUnk_04 - a->mUnk_08;
     }
-    r = func_0213c9e8(a->mUnk_00 + a->mUnk_08, s, n);
+    r = wmemcpy(a->mUnk_00 + a->mUnk_08, s, n);
     a->mUnk_08 += n;
     return r;
 }

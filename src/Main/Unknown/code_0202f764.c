@@ -108,7 +108,7 @@ void func_0202fd2c(void) {
                 if (v2 == 0 && data_02174e50->mUnk_58[i].mUnk_00 != 0) {
                     v5 = 1;
                     for (j = 0; j < 4; j++) {
-                        if (func_0213ed2c(v6.mUnk_00, func_0202f14c()->mUnk_04[j].mUnk_00, 0xb) == 0) {
+                        if (wcsncmp(v6.mUnk_00, func_0202f14c()->mUnk_04[j].mUnk_00, 0xb) == 0) {
                             v5 = 0;
                         }
                     }

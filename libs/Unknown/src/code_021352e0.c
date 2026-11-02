@@ -941,7 +941,7 @@ int func_021352e0(void *(*f)(void *, const u8 *, u32), void *a, const u8 *b, cha
                     if (t == 0) {
                         t = L"";
                     }
-                    if (func_02134b18(buf, t, sizeof(buf)) < 0) {
+                    if (wcstombs(buf, t, sizeof(buf)) < 0) {
                         goto bad;
                     }
                     p = buf;
