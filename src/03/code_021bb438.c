@@ -206,5 +206,5 @@ void func_ov003_021bb438(Unk021bbd70 *p, const u8 *q) {
     p->mUnk_00[1] += b;
     p->mUnk_00[2] += c;
     p->mUnk_00[3] += d;
-    func_ov003_021bb3a4((s8 *) x, 0, sizeof(x));
+    func_ov003_021bb3a4(x, 0, sizeof(x));
 }

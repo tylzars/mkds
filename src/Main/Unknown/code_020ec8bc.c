@@ -28,13 +28,13 @@
 #pragma optimize_for_size on
 
 void *func_020ed548(u8 *a) {
-    u8 buf[0x100];
+    char buf[0x100];
 
     if (a == 0) {
         return 0;
     }
-    snprintf((char *) buf, 0x100, (const char *) data_0216c604, a);
-    return FindMainRaceOrMainEffectFile((const char *) buf);
+    snprintf(buf, 0x100, data_0216c604, a);
+    return FindMainRaceOrMainEffectFile(buf);
 }
 
 Unk020e6488 *func_020ed4d0(u8 *a, u8 *b, u8 *c) {

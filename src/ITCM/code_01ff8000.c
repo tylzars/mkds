@@ -681,7 +681,7 @@ void func_01ff9048(u32 a, const void *b, u32 n) {
 
 void func_01ff9144(const void *a, u32 b) {
     if (b < 0x100 || data_0216f074[0] == 0xffffffff) {
-        func_01ff9048(*(u32 *) a, (const u8 *) a + 4, (b >> 2) - 1);
+        func_01ff9048(*(u32 *) a, a + 4, (b >> 2) - 1);
         return;
     }
     func_01ff9234();

@@ -7,9 +7,9 @@
 
 void SetKartModelPathPrefix(int value) {
     if (value) {
-        gKartModelPathPrefix = (const char *) gKartModelMenuPrefix;
+        gKartModelPathPrefix = gKartModelMenuPrefix;
     } else {
-        gKartModelPathPrefix = (const char *) gKartModelSlashPrefix;
+        gKartModelPathPrefix = gKartModelSlashPrefix;
     }
 }
 
@@ -85,7 +85,7 @@ char *BuildCharacterDirPath(s32 a) {
 }
 
 s8 *BuildPFaceanimNsbtpPath(void) {
-    snprintf((char *) &gKartModelPathBuffer, 0x100, (const char *) &gCommonPFaceanimNsbtpFormat,
+    snprintf((char *) &gKartModelPathBuffer, 0x100, gCommonPFaceanimNsbtpFormat,
              *(u32 *) &gKartModelPathPrefix, *(u32 *) &gCharacterDirName);
     return (s8 *) &gKartModelPathBuffer;
 }

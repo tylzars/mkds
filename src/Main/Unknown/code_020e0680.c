@@ -417,20 +417,20 @@ void func_020e20a8(Unk020e20a8 *a) {
     Unk020e1e98_12c **z;
     s32 n;
 
-    b = (u32) FindCourseMapObjFile((const char *) gCarANsbmdName);
-    c = (u32) FindCourseMapObjFile((const char *) gTruckANsbmdName);
+    b = (u32) FindCourseMapObjFile(gCarANsbmdName);
+    c = (u32) FindCourseMapObjFile(gTruckANsbmdName);
     a->mUnk_038 = data_021759c0->mUnk_08 != 4 && func_0203c5e4() == 0 && (u16) data_021759c0->mUnk_62 < 8;
     a->mUnk_03c = 0;
     func_020ea588(&gCarA, (void *) b, 0);
     func_020ea588(&gTruckA, (void *) c, 0);
-    func_020ea588(&gBusA, (void *) FindCourseMapObjFile((const char *) gBusANsbmdName), 0);
-    func_020ea588(&gCarTire, (void *) FindCourseMapObjFile((const char *) gCarTireNsbmdName), 0);
-    func_020ea55c(&gCarAShadow, (void *) FindCourseMapObjFile((const char *) gCarAShadowNsbmdName), 7);
-    func_020ea55c(&gTruckAShadow, (void *) FindCourseMapObjFile((const char *) gTruckAShadowNsbmdName), 7);
-    func_020ea55c(&gBusAShadow, (void *) FindCourseMapObjFile((const char *) gBusAShadowNsbmdName), 7);
-    func_020ea4bc(2, gCarA, &gCarANsbtp, (void *) b, (void *) FindCourseMapObjFile((const char *) gCarANsbtpName));
+    func_020ea588(&gBusA, (void *) FindCourseMapObjFile(gBusANsbmdName), 0);
+    func_020ea588(&gCarTire, (void *) FindCourseMapObjFile(gCarTireNsbmdName), 0);
+    func_020ea55c(&gCarAShadow, (void *) FindCourseMapObjFile(gCarAShadowNsbmdName), 7);
+    func_020ea55c(&gTruckAShadow, (void *) FindCourseMapObjFile(gTruckAShadowNsbmdName), 7);
+    func_020ea55c(&gBusAShadow, (void *) FindCourseMapObjFile(gBusAShadowNsbmdName), 7);
+    func_020ea4bc(2, gCarA, &gCarANsbtp, (void *) b, (void *) FindCourseMapObjFile(gCarANsbtpName));
     func_020ea4bc(2, gTruckA, &gTruckANsbtp, (void *) c,
-                  (void *) FindCourseMapObjFile((const char *) gTruckANsbtpName));
+                  (void *) FindCourseMapObjFile(gTruckANsbtpName));
     func_02084968(gCarA, 0x3f, 2, 0x294a);
     for (k1 = 0, y1 = ((Unk0217b7a0 *) gCarA)->mUnk_04; k1 < y1->mUnk_18; k1++) {
         func_020134b0(y1, k1, 7);

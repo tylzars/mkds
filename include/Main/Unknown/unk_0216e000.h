@@ -5,28 +5,28 @@
 #include "code_0212f1ac.h" // Unk0212f1f8
 
 // Objects whose layout isn't known yet.
-extern u8 data_0216e0a8[];
-extern u8 data_0216e0ac[];
-extern u8 data_0216e0b0[];
-extern u8 data_0216e0b4[];
-extern u8 data_0216e124[];
-extern u8 data_0216e128[];
-extern u8 data_0216e12c[];
-extern u8 data_0216e130[];
-extern u8 data_0216e134[];
-extern u8 data_0216e940[];
-extern u8 data_0216e958[];
-extern u8 data_0216e970[];
-extern u8 data_0216e988[];
-extern u8 data_0216e998[];
-extern u8 data_0216e9a8[];
-extern u8 data_0216e9b8[];
-extern u8 data_0216e9d0[];
-extern u8 data_0216e9e8[];
-extern u8 data_0216e9fc[];
-extern u8 data_0216ea14[];
-extern u8 data_0216ea30[];
-extern u8 data_0216ea4c[];
+extern const char *data_0216e0a8;
+extern const char *data_0216e0ac;
+extern const char *data_0216e0b0;
+extern const char *data_0216e0b4;
+extern const char *data_0216e124;
+extern const char *data_0216e128;
+extern const char *data_0216e12c;
+extern const char *data_0216e130;
+extern const char *data_0216e134;
+extern const char data_0216e940[];
+extern const char data_0216e958[];
+extern const char data_0216e970[];
+extern const char data_0216e988[];
+extern const char data_0216e998[];
+extern const char data_0216e9a8[];
+extern const char data_0216e9b8[];
+extern const char data_0216e9d0[];
+extern const char data_0216e9e8[];
+extern const char data_0216e9fc[];
+extern const char data_0216ea14[];
+extern const char data_0216ea30[];
+extern const char data_0216ea4c[];
 extern Unk0212f1f8 data_0216eaa4;
 
 // Walked by func_021343b0; fwrite compares its argument with entries 1 and 2; printf passes entry 1

@@ -310,9 +310,9 @@ void func_02047498(const void *a, s32 b) {
 
 void func_02047468(const void *a, u32 b) {
     u32 v1;
-    u8 v2[128];
+    char v2[128];
     v1 = func_02048440();
-    func_0200d9e0((char *) v2, 0x80, (const char *) gArchivePrefixFormat, a, v1);
+    func_0200d9e0(v2, 0x80, gArchivePrefixFormat, a, v1);
     func_02047498(v2, b);
 }
 

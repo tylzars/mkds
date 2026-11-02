@@ -42,13 +42,13 @@ void func_ov000_0218e15c(const void *h, void *l, s32 m, s32 n) {
     s8 f;
     switch (n) {
         case 1:
-            c = (const s8 *) data_ov000_021b07b0;
+            c = data_ov000_021b07b0;
             break;
         case 2:
-            c = (const s8 *) data_ov000_021b07b4;
+            c = data_ov000_021b07b4;
             break;
         default:
-            c = (const s8 *) data_ov000_021b07b8;
+            c = data_ov000_021b07b8;
             break;
     }
     while (d > 0) {

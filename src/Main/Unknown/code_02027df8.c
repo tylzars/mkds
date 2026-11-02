@@ -12,17 +12,17 @@ void func_02027df8(void) {
     v3 = 0;
     v4 = 0;
     v5[0] = 0;
-    v1 = func_02047a28((const char *) &data_02161e64);
+    v1 = func_02047a28(data_02161e64);
     LoadNcgrData(&v2, v1);
-    v1 = func_02047a28((const char *) &data_02161e7c);
+    v1 = func_02047a28(data_02161e7c);
     LoadNcgrData2(&v2, v1);
-    v1 = func_02047a28((const char *) &data_02161e94);
+    v1 = func_02047a28(data_02161e94);
     LoadNcerData(&v4, v1);
-    v1 = func_02047a28((const char *) &data_02161eac);
+    v1 = func_02047a28(data_02161eac);
     LoadNclrData(&v3, v1);
-    v1 = func_02047a28((const char *) &data_02161ec4);
+    v1 = func_02047a28(data_02161ec4);
     LoadNclrData(&v3, v1);
-    v1 = func_02047a28((const char *) &data_02161edc);
+    v1 = func_02047a28(data_02161edc);
     LoadNscrData(v5, v1);
 }
 

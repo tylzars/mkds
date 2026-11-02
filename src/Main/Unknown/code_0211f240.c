@@ -14,11 +14,11 @@ void func_0211f328(void) {
     v2 = 0;
     v3 = 0;
     v4[0] = 0;
-    v1 = FindSceneFile((const char *) ((*(u32 *) &data_0216e0a8)));
+    v1 = FindSceneFile(data_0216e0a8);
     LoadNcgrData(&v2, v1);
-    v1 = FindSceneFile((const char *) ((*(u32 *) &data_0216e0ac)));
+    v1 = FindSceneFile(data_0216e0ac);
     LoadNcerData(&v3, v1);
-    v1 = FindSceneFile((const char *) ((*(u32 *) &data_0216e0b4)));
+    v1 = FindSceneFile(data_0216e0b4);
     LoadNclrData(v4, v1);
 }
 
@@ -27,13 +27,13 @@ void func_0211f2b8(void *a) {
     void *v2;
     v1 = ((u32) func_02036bec(a, (u32) 0x10));
     *(int *) &data_0217d37c = v1;
-    v2 = FindSceneFile((const char *) ((*(u32 *) &data_0216e0a8)));
+    v2 = FindSceneFile(data_0216e0a8);
     LocateNcgr2(&data_0217d37c->mUnk_00, v2);
-    v2 = FindSceneFile((const char *) ((*(u32 *) &data_0216e0ac)));
+    v2 = FindSceneFile(data_0216e0ac);
     LocateNcer(&data_0217d37c->mUnk_04, v2);
-    v2 = FindSceneFile((const char *) ((*(u32 *) &data_0216e0b4)));
+    v2 = FindSceneFile(data_0216e0b4);
     LocateNclr(&data_0217d37c->mUnk_08, v2);
-    v2 = FindSceneFile((const char *) ((*(u32 *) &data_0216e0b0)));
+    v2 = FindSceneFile(data_0216e0b0);
     data_0217d37c->mUnk_0c = v2;
 }
 

@@ -67,24 +67,24 @@ void func_020e4184(Unk020e1dc0 *a) {
         if (m[e->mUnk_158] == 0) {
             switch (e->mUnk_158) {
                 case 0:
-                    func_020ea588(&gTestCylinder, (void *) FindCourseMapObjFile((const char *) gTestCylinderNsbmdName),
+                    func_020ea588(&gTestCylinder, (void *) FindCourseMapObjFile(gTestCylinderNsbmdName),
                                   0);
                     func_02084968(gTestCylinder, 0x3f, 2, 0x294a);
                     break;
                 case 1:
-                    func_020ea588(&gGearBlack, (void *) FindCourseMapObjFile((const char *) gGearBlackNsbmdName), 0);
+                    func_020ea588(&gGearBlack, (void *) FindCourseMapObjFile(gGearBlackNsbmdName), 0);
                     func_02084968(gGearBlack, 0x3f, 2, 0x294a);
                     break;
                 case 2:
-                    func_020ea588(&gGearWhite, (void *) FindCourseMapObjFile((const char *) gGearWhiteNsbmdName), 0);
+                    func_020ea588(&gGearWhite, (void *) FindCourseMapObjFile(gGearWhiteNsbmdName), 0);
                     func_02084968(gGearWhite, 0x3f, 2, 0x294a);
                     break;
                 case 3:
-                    func_020ea588(&gRotaryRoom, (void *) FindCourseMapObjFile((const char *) gRotaryRoomNsbmdName), 0);
+                    func_020ea588(&gRotaryRoom, (void *) FindCourseMapObjFile(gRotaryRoomNsbmdName), 0);
                     func_02084968(gRotaryRoom, 0x3f, 2, 0x294a);
                     break;
                 case 4:
-                    func_020ea588(&gRotaryBridge, (void *) FindCourseMapObjFile((const char *) gRotaryBridgeNsbmdName),
+                    func_020ea588(&gRotaryBridge, (void *) FindCourseMapObjFile(gRotaryBridgeNsbmdName),
                                   0);
                     func_02084968(gRotaryBridge, 0x3f, 2, 0x294a);
                     break;

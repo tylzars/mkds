@@ -52,7 +52,7 @@ s32 func_ov003_021bdd3c(void) {
     u8 *s;
     u8 *t;
     u32 i;
-    char o[0x20];
+    u8 o[0x20];
     Unk0200fb08 n;
     a = 0;
     j = 0;
@@ -171,7 +171,7 @@ s32 func_ov003_021bdd3c(void) {
             t[3] = s[3];
             t[4] = s[4];
             t[5] = s[5];
-            func_ov003_021bb29c((u8 *) o, (const s8 *) &data_ov003_021d8c5c);
+            func_ov003_021bb29c(o, (const s8 *) &data_ov003_021d8c5c);
             break;
         }
         memcpy(k, j, e);

@@ -14,10 +14,10 @@ extern UnkFunc *data_0216bfc0[];
 extern UnkFunc *data_0216bff8[];
 
 // Objects whose layout isn't known yet.
-extern u8 gKuriboNsbmdName[];
-extern u8 gKuriboNsbtpName[];
-extern u8 gEarthenPipe1NsbmdName[];
-extern u8 gEarthenPipe2NsbmdName[];
+extern const char gKuriboNsbmdName[];
+extern const char gKuriboNsbtpName[];
+extern const char gEarthenPipe1NsbmdName[];
+extern const char gEarthenPipe2NsbmdName[];
 
 extern u8 *data_0216b96c[][4];
 extern u8 *data_0216b9cc[][4];

@@ -84,15 +84,15 @@ void func_ov000_021855f8(void) {
 
 void func_ov000_0218554c(void) {
     void *v1;
-    v1 = FindSceneFile((const char *) &data_ov000_021b0f28);
+    v1 = FindSceneFile(data_ov000_021b0f28);
     gWiFiAikotobaCheck->mUnk_40 = v1;
-    v1 = FindSceneFile((const char *) &data_ov000_021b0f44);
+    v1 = FindSceneFile(data_ov000_021b0f44);
     gWiFiAikotobaCheck->mUnk_48 = v1;
-    v1 = FindSceneFile((const char *) &data_ov000_021b0f60);
+    v1 = FindSceneFile(data_ov000_021b0f60);
     LocateNcgr2(&gWiFiAikotobaCheck->mUnk_38, v1);
-    v1 = FindSceneFile((const char *) &data_ov000_021b0f80);
+    v1 = FindSceneFile(data_ov000_021b0f80);
     LocateNcer(&gWiFiAikotobaCheck->mUnk_34, v1);
-    v1 = FindSceneFile((const char *) &data_ov000_021b0fa0);
+    v1 = FindSceneFile(data_ov000_021b0fa0);
     LocateNclr(&gWiFiAikotobaCheck->mUnk_3c, v1);
     func_0214bf04(gWiFiAikotobaCheck->mUnk_38->mUnk_14, 0, (u32) gWiFiAikotobaCheck->mUnk_38->mUnk_10);
     func_0214c090(gWiFiAikotobaCheck->mUnk_3c->mUnk_0c, 0, (u32) 0x1a0);

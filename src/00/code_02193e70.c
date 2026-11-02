@@ -91,7 +91,7 @@ s32 func_ov000_02194590(Unk0218f960 *a, Unk02193f2cNode *b) {
             break;
         case 0x68:
             t = func_ov000_021907e8(a, b->mUnk_08, (Unk021906e4 *) &b->mUnk_18, (s32 *) &y, (u32 *) &z,
-                                    (const s8 *) data_ov000_021b3490);
+                                    data_ov000_021b3490);
             if (t != 0) {
                 return t;
             }
@@ -124,7 +124,7 @@ s32 func_ov000_02194590(Unk0218f960 *a, Unk02193f2cNode *b) {
     }
     if (b->mUnk_30 > 0) {
         t = func_ov000_021906e4(a, b->mUnk_08, (Unk021906e4 *) b->mUnk_28, (u32 *) &z, 1,
-                                (const s8 *) data_ov000_021b3490);
+                                data_ov000_021b3490);
         if (z != 0 || t != 0) {
             b->mUnk_00 = 0x6a;
         }
@@ -151,7 +151,7 @@ s32 func_ov000_021943f0(Unk0218f960 *a, Unk02193f2cNode *b) {
         func_0213442c(data_ov000_021b34a8, data_ov000_021b333c, 0, 0xc1);
     }
     t = func_ov000_021907e8(a, b->mUnk_08, (Unk021906e4 *) &b->mUnk_18, (s32 *) &x, (u32 *) &y,
-                            (const s8 *) data_ov000_021b3490);
+                            data_ov000_021b3490);
     if (t != 0) {
         return t;
     }
@@ -209,7 +209,7 @@ s32 func_ov000_02194370(Unk0218f960 *a, Unk02193f2cNode *b) {
     if (func_ov000_0218dc44(b->mUnk_38) != 0) {
         do {
             c = func_ov000_0218dbf8(b->mUnk_38, 0);
-            t = func_ov000_021906e4(a, b->mUnk_08, (Unk021906e4 *) c, (u32 *) &y, 0, (const s8 *) data_ov000_021b3490);
+            t = func_ov000_021906e4(a, b->mUnk_08, (Unk021906e4 *) c, (u32 *) &y, 0, data_ov000_021b3490);
             if (y != 0 || t != 0) {
                 b->mUnk_00 = 0x6a;
                 return 0;
@@ -237,7 +237,7 @@ s32 func_ov000_021941c4(Unk0218f960 *a, Unk02193f2cNode *b) {
     r = a->mUnk_00;
     if (b->mUnk_30 != 0) {
         t = func_ov000_021906e4(a, b->mUnk_08, (Unk021906e4 *) b->mUnk_28, (u32 *) &y, 1,
-                                (const s8 *) data_ov000_021b3490);
+                                data_ov000_021b3490);
         if (y != 0 || t != 0) {
             b->mUnk_00 = 0x6a;
             return 0;
@@ -253,7 +253,7 @@ s32 func_ov000_021941c4(Unk0218f960 *a, Unk02193f2cNode *b) {
         }
     }
     t = func_ov000_021907e8(a, b->mUnk_08, (Unk021906e4 *) &b->mUnk_18, (s32 *) &x, (u32 *) &y,
-                            (const s8 *) data_ov000_021b3490);
+                            data_ov000_021b3490);
     if (t != 0) {
         b->mUnk_00 = 0x6a;
         return 0;

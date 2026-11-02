@@ -128,7 +128,7 @@ typedef struct Unk02194cac_44 {
 
 extern u8 data_ov000_021b35f8[];
 extern u8 data_ov000_021b3628[];
-extern u8 data_ov000_021b3634[];
+extern s8 data_ov000_021b3634[];
 extern u8 data_ov000_021b3638[];
 extern u8 data_ov000_021b3664[];
 extern u8 data_ov000_021b3670[];

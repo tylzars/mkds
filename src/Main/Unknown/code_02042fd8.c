@@ -65,7 +65,7 @@ s32 func_02043078(u16 a) {
         t += func_02043078_inline(e->mUnk_00 + k)->mUnk_18;
     }
     for (m = 0; m < 3; m++) {
-        c = ((s8 *) e->mUnk_04)[m];
+        c = (e->mUnk_04)[m];
         if (c != -1 && c != 0) {
             s += func_02043078(c);
             n++;

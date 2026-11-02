@@ -56,14 +56,14 @@ s32 func_ov000_0218d574(void) {
     Unk0218ce14 v1;
     s32 v2;
     u32 v3;
-    u8 v4[0x40];
+    s8 v4[0x40];
     v2 = 8;
     if (data_ov000_021b4dac.mUnk_00 == -1) {
         data_ov000_021b4d28 = 1;
         return 1;
     }
     if (func_ov000_0218e668(data_ov000_021b4dac.mUnk_00) != 0 &&
-        func_ov000_0218d644((s8 *) v4, func_ov000_0218e438(data_ov000_021b4dac.mUnk_00, v4, 0x40, 0, (u8 *) &v1, &v2),
+        func_ov000_0218d644(v4, func_ov000_0218e438(data_ov000_021b4dac.mUnk_00, v4, 0x40, 0, (u8 *) &v1, &v2),
                             (u8 *) &v1, &v3) == 0) {
         func_ov000_0218e53c(data_ov000_021b4dac.mUnk_00);
         if ((v3 & 1) != 0) {

@@ -229,7 +229,7 @@ void func_ov000_0219a9e4(Unk0219b1d4 *a, Unk0219ade4 *b, Unk021a4654 *c) {
 
 static inline void func_ov000_0219aa64_inline(void *a, const void *b) {
     u8 *p = (u8 *) a;
-    const u8 *q = (const u8 *) b;
+    const u8 *q = b;
     p[0] = q[0];
     p[1] = q[1];
     p[2] = q[2];

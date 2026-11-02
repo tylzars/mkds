@@ -49,7 +49,7 @@ void func_ov000_0218b148(Unk0218af28 *e, s8 *v1) {
     while (a != 0) {
         b = func_ov000_0218b19c(0, 0x5c);
         if (b == 0) {
-            b = (s8 *) data_ov000_021b21c4;
+            b = data_ov000_021b21c4;
         }
         if (func_ov000_0218b1e0((u8 *) a) != 0) {
             func_ov000_0218b380(e, (u8 *) a, (u8 *) b);

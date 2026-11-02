@@ -23,7 +23,7 @@ int func_ov000_0219883c(void *a, Unk02197fe8 **b, int c, u32 d) {
 }
 
 int func_ov000_021987c8(Unk02197fe8 *a, void *b, int c, Unk02198778 *d) {
-    u8 e[0x24];
+    s8 e[0x24];
     func_ov000_0219a61c((const u8 **) &b, (s32 *) &c);
     if (c > 0) {
         a->mUnk_38.mUnk_00 = func_ov000_021a3690(c);
@@ -36,8 +36,8 @@ int func_ov000_021987c8(Unk02197fe8 *a, void *b, int c, Unk02198778 *d) {
     if (d != 0) {
         a->mUnk_28 = *d;
     }
-    func_ov000_02197be0((s8 *) e);
-    func_ov000_02197b34((s8 *) a->mUnk_68, (s8 *) e);
+    func_ov000_02197be0(e);
+    func_ov000_02197b34((s8 *) a->mUnk_68, e);
     func_ov000_02198f24((int) a, (u32) e);
     a->mUnk_0c = 0;
     return 0;

@@ -337,9 +337,9 @@ void func_ov001_0218cb14(Unk0218d87c *a) {
             if (data_021759c0->mUnk_08 == 4) {
                 func_ov001_02181b8c(obj);
             }
-            func_ov001_021870e4(a, obj, (const char *) data_ov001_021a7d0c, (const char *) data_ov001_021a7d1c,
-                                (const char *) data_ov001_021a7d2c);
-            func_ov001_021870b0(a, obj, (const char *) data_ov001_021a7d3c);
+            func_ov001_021870e4(a, obj, data_ov001_021a7d0c, data_ov001_021a7d1c,
+                                data_ov001_021a7d2c);
+            func_ov001_021870b0(a, obj, data_ov001_021a7d3c);
             func_ov001_0219b2e8(obj->mUnk_304, data_ov001_021a7d4c);
             func_ov001_0218875c(obj, (s32) (obj->mUnk_0a0->mUnk_008), (s32) (obj->mUnk_0a0->mUnk_00c),
                                 (s32) (obj->mUnk_0a0->mUnk_00c));
@@ -373,7 +373,7 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     if (data_021759c0->mUnk_08 == 4) {
         func_ov001_02181b8c(obj);
     }
-    func_ov001_021870e4(d, obj, (const char *) data_ov001_021a7cbc, 0, 0);
+    func_ov001_021870e4(d, obj, data_ov001_021a7cbc, 0, 0);
     func_ov001_0219b28c(obj->mUnk_304, a);
     func_ov001_0219b25c(obj->mUnk_304, c);
     obj->mUnk_0a8 = 1;
@@ -389,7 +389,7 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     if (data_021759c0->mUnk_08 == 4) {
         func_ov001_02181b8c(obj);
     }
-    func_ov001_021870e4(d, obj, (const char *) data_ov001_021a7cd0, 0, 0);
+    func_ov001_021870e4(d, obj, data_ov001_021a7cd0, 0, 0);
     func_ov001_0219b28c(obj->mUnk_304, b);
     func_ov001_0219b25c(obj->mUnk_304, c);
     obj->mUnk_0a8 = 2;
@@ -405,7 +405,7 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     if (data_021759c0->mUnk_08 == 4) {
         func_ov001_02181b8c(obj);
     }
-    func_ov001_021870e4(d, obj, (const char *) data_ov001_021a7ce4, 0, 0);
+    func_ov001_021870e4(d, obj, data_ov001_021a7ce4, 0, 0);
     func_ov001_0219b28c(obj->mUnk_304, a);
     func_ov001_0219b25c(obj->mUnk_304, c);
     obj->mUnk_0a8 = 3;
@@ -421,7 +421,7 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     if (data_021759c0->mUnk_08 == 4) {
         func_ov001_02181b8c(obj);
     }
-    func_ov001_021870e4(d, obj, (const char *) data_ov001_021a7cf8, 0, 0);
+    func_ov001_021870e4(d, obj, data_ov001_021a7cf8, 0, 0);
     func_ov001_0219b28c(obj->mUnk_304, b);
     func_ov001_0219b25c(obj->mUnk_304, c);
     obj->mUnk_0a8 = 4;

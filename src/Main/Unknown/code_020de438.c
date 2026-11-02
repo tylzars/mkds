@@ -44,9 +44,9 @@ u8 func_020de488(Unk020e43a8 *a, void *b, u8 *c, u8 *d) {
 
 void CreateEarthenPipe1AndEarthenPipe2(void) {
     u32 v1;
-    v1 = (u32) FindCourseMapObjFile((const char *) gEarthenPipe1NsbmdName);
+    v1 = (u32) FindCourseMapObjFile(gEarthenPipe1NsbmdName);
     func_020e6488((Unk020e6488 **) (((u32 *) &gEarthenPipe1)), (void *) v1, (u32) 0, (u32) 0);
-    v1 = (u32) FindCourseMapObjFile((const char *) gEarthenPipe2NsbmdName);
+    v1 = (u32) FindCourseMapObjFile(gEarthenPipe2NsbmdName);
     func_020e6488((Unk020e6488 **) (((u32 *) &gEarthenPipe2)), (void *) v1, (u32) 0, (u32) 0);
     func_020e6ab8((Unk020e6488 *) gEarthenPipe1);
     func_020e6ab8((Unk020e6488 *) gEarthenPipe2);

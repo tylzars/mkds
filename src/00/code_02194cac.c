@@ -66,7 +66,7 @@ s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b) {
         k = 0;
     }
     do {
-        r = func_ov000_021906e4(a, p->mUnk_004, (Unk021906e4 *) p->mUnk_018, &m, 1, (const s8 *) data_ov000_021b3634);
+        r = func_ov000_021906e4(a, p->mUnk_004, (Unk021906e4 *) p->mUnk_018, &m, 1, data_ov000_021b3634);
         if (r != 0) {
             return r;
         }
@@ -187,7 +187,7 @@ s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b) {
             }
         } else if (b->mUnk_14 == 4) {
             r = func_ov000_021907e8(a, p->mUnk_004, (Unk021906e4 *) &p->mUnk_008, (s32 *) &j, &m,
-                                    (const s8 *) data_ov000_021b3634);
+                                    data_ov000_021b3634);
             if (r != 0) {
                 if (r != 3) {
                     return r;

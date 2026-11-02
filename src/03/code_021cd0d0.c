@@ -81,7 +81,7 @@ int func_ov003_021cd0d0(int *a) {
     v1 = 0;
     v3 = *a;
     do {
-        v4 = memcmp((const u8 *) (v3 + 0x20), (const u8 *) data_ov003_021d6638, 6);
+        v4 = memcmp((const u8 *) (v3 + 0x20), data_ov003_021d6638, 6);
         if (v4 != 0) {
             v2 = v2 + 1;
         }

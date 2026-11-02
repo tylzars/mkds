@@ -231,9 +231,9 @@ void func_ov001_0218b35c(Unk0218d87c *a) {
             if (data_021759c0->mUnk_08 == 4) {
                 func_ov001_02181b8c(obj);
             }
-            func_ov001_021870e4((void *) a, obj, (const char *) ("kuriking.nsbmd"), (const char *) ("kuriking.nsbca"),
-                                (const char *) ("kuriking.prm"));
-            func_ov001_021870b0((void *) a, obj, (const char *) ("sh_circle.nsbmd"));
+            func_ov001_021870e4((void *) a, obj, ("kuriking.nsbmd"), ("kuriking.nsbca"),
+                                ("kuriking.prm"));
+            func_ov001_021870b0((void *) a, obj, ("sh_circle.nsbmd"));
             func_ov001_0219b31c(obj->mUnk_304, "kuriking.nsbta");
             func_ov001_0219b2e8(obj->mUnk_304, "kuriking.nsbtp");
             func_ov001_0219b380(obj->mUnk_304, "kuriking.nsbma");

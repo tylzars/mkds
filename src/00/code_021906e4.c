@@ -45,7 +45,7 @@ u32 func_ov000_02190aa8(Unk0218f960 *a, s32 b, const void *c, s32 d, s32 *e, s32
         *f = 0;
         *e = 0;
     } else if (h == 0) {
-        func_ov000_0219690c(a, (const u8 *) data_ov000_021b29f4, g);
+        func_ov000_0219690c(a, data_ov000_021b29f4, g);
         *f = 0;
         *e = 1;
     } else {

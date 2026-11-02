@@ -82,7 +82,7 @@ extern u8 data_ov000_021b1258[];
 extern u8 data_ov000_021b1348[];
 extern u8 data_ov000_021b135c[];
 extern u8 data_ov000_021b1368[];
-extern u8 data_ov000_021b1370[];
+extern const char data_ov000_021b1370[];
 extern u8 data_ov000_021b1374[];
 extern u32 data_ov000_021b4ca8;
 

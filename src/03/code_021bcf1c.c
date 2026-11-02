@@ -385,7 +385,7 @@ s32 func_ov003_021bd59c(u8 *p) {
                     s32 j;
                     k = data_ov003_021d9014 + (d - 0x206) * 0x28;
                     for (j = 0; j < e; j++) {
-                        k += func_ov003_021bb2d8((u8 *) k, *(s8 *) f);
+                        k += func_ov003_021bb2d8(k, *f);
                         f++;
                     }
                 } else {
@@ -408,8 +408,8 @@ s32 func_ov003_021bd59c(u8 *p) {
 s32 func_ov003_021bd768(u8 *a, void *b) {
     u8 c[6];
     u8 d[6];
-    char e[0x20];
-    char f[0x20];
+    u8 e[0x20];
+    u8 f[0x20];
     *(Unk021d6974 *) (a + 0xc) = data_ov003_021d6974;
     *(Unk021d8c54 *) c = data_ov003_021d8c5c;
     c[0] &= 0xfd;
@@ -423,8 +423,8 @@ s32 func_ov003_021bd768(u8 *a, void *b) {
         *(Unk021d8c54 *) (a + 6) = *(Unk021d8c54 *) d;
     }
     if (data_ov003_021d68b0 != 0) {
-        func_ov003_021bb29c((u8 *) e, (const s8 *) d);
-        func_ov003_021bb29c((u8 *) f, (const s8 *) c);
+        func_ov003_021bb29c(e, (const s8 *) d);
+        func_ov003_021bb29c(f, (const s8 *) c);
     }
     return 1;
 }

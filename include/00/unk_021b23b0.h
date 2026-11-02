@@ -27,7 +27,7 @@ extern u8 data_ov000_021b2518[];
 extern u8 data_ov000_021b2528[];
 extern u8 data_ov000_021b2620[];
 extern u8 data_ov000_021b2628[];
-extern u8 data_ov000_021b262c[];
+extern s8 data_ov000_021b262c[];
 extern u8 data_ov000_021b2630[];
 extern u8 data_ov000_021b265c[];
 extern u8 data_ov000_021b2664[];

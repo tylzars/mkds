@@ -157,7 +157,7 @@ void func_ov000_02196e50(s32 a, s32 b, s32 c, s32 d, const u8 *e, s32 f, UnkFunc
         memcpy(k + m, e, f);
         n = k;
     } else {
-        n = (s8 *) func_ov000_021a3690(l + 0x100);
+        n = func_ov000_021a3690(l + 0x100);
         memcpy(n, k, m);
         memcpy(n + m, e, f);
     }

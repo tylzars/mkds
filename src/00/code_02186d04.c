@@ -55,7 +55,7 @@ u32 func_ov000_0218735c(Unk02186d7c *p) {
     }
     n = strlen(strstr(p->mUnk_928.mUnk_00, data_ov000_021b1230) + 4);
     if (n != 0) {
-        func_0200d9e0(v1, 7, (const char *) data_ov000_021b1370, n);
+        func_0200d9e0(v1, 7, data_ov000_021b1370, n);
         if (func_ov000_02186bd4((Unk021868d0 *) p, data_ov000_021b1374, (const u8 *) v1) != 0) {
             return 1;
         }

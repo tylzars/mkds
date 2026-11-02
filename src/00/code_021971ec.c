@@ -65,7 +65,7 @@ s32 func_ov000_021972b4(void) {
 }
 
 s32 func_ov000_0219735c(const s8 *a, u32 b) {
-    s8 f[0x21];
+    u8 f[0x21];
     Unk021b3bdc c = data_ov000_021b3bdc;
     const s8 *d;
     s32 e;
@@ -78,7 +78,7 @@ s32 func_ov000_0219735c(const s8 *a, u32 b) {
     }
     e = func_ov000_021971c8((int) d, strlen((const u8 *) d));
     e = sprintf((u8 *) g, data_ov000_021b3e0c, e, data_ov000_021b4f84);
-    func_ov000_0218e0fc((const u8 *) g, e, (u8 *) f);
+    func_ov000_0218e0fc((const u8 *) g, e, f);
     data_ov000_021b3b30 = data_ov000_021b3b98;
     func_ov000_021971ec(c.mUnk_00, 0x2b);
     e = sprintf((u8 *) g, (const u8 *) c.mUnk_00, data_ov000_021b4e84, f, b);

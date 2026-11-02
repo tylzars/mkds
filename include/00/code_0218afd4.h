@@ -13,7 +13,7 @@ typedef struct Unk0218b010 {
 } Unk0218b010;
 
 extern u8 data_ov000_021b21bc[];
-extern u8 data_ov000_021b21c4[];
+extern s8 data_ov000_021b21c4[];
 extern Unk021b21ac data_ov000_021b21ac;
 extern s8 *data_ov000_021b4d14;
 

@@ -119,12 +119,12 @@ u32 func_ov000_0218f408(Unk0218f960 *a) {
     o = a->mUnk_00;
     do {
         func_ov000_02192d64(a, &o->mUnk_1f4);
-        r = func_ov000_021906e4(a, o->mUnk_1d4, &o->mUnk_1f4, &v2, 1, (const s8 *) data_ov000_021b262c);
+        r = func_ov000_021906e4(a, o->mUnk_1d4, &o->mUnk_1f4, &v2, 1, data_ov000_021b262c);
         if (r != 0) {
             return r;
         }
         r = func_ov000_021907e8(a, o->mUnk_1d4, (Unk021906e4 *) &o->mUnk_1dc, &v1, &v2,
-                                (const s8 *) data_ov000_021b262c);
+                                data_ov000_021b262c);
         if (r != 0) {
             if (r == 3) {
                 func_ov000_021965a0(a, 5, data_ov000_021b2630);

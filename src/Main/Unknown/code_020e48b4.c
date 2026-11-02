@@ -293,7 +293,7 @@ s32 func_020e48e0(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
 
 void CreatePukupuku(void) {
     u32 v1;
-    v1 = (u32) FindCourseMapObjFile((const char *) gPukupukuNsbmdName);
+    v1 = (u32) FindCourseMapObjFile(gPukupukuNsbmdName);
     func_020e6488((Unk020e6488 **) (((u32 *) &gPukupuku)), (void *) v1, (u32) 0, (u32) 0);
     func_020e6ab8((Unk020e6488 *) gPukupuku);
 }

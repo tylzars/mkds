@@ -93,7 +93,7 @@ void func_ov000_0219c79c(char *a, char *b, void (*c)(), s32 d) {
     *(u64 *) (v2 + 0x38) = v3;
     *(u32 *) (v2 + 0x34) = 1;
     v1 = data_ov000_021b565c;
-    v2 = func_ov000_0219c8dc(func_ov000_0218f15c(v1->mUnk_00, (s8 *) v1->mUnk_4c, (s8 *) v1->mUnk_14c, 1, 0, c, 0));
+    v2 = func_ov000_0219c8dc(func_ov000_0218f15c(v1->mUnk_00, v1->mUnk_4c, v1->mUnk_14c, 1, 0, c, 0));
     if (v2 == 0) {
         data_ov000_021b565c->mUnk_04 = d;
     }

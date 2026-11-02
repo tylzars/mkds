@@ -111,7 +111,7 @@ extern u8 data_ov003_021d776c[];
 extern u8 data_ov003_021d7780[];
 extern u8 data_ov003_021d7798[];
 extern u8 data_ov003_021d77b0[];
-extern u8 data_ov003_021d77c4[];
+extern const char data_ov003_021d77c4[];
 extern u8 *data_ov003_021d79a8[];
 extern u8 data_ov003_021d79d0[];
 extern u8 data_ov003_021d79f4[];

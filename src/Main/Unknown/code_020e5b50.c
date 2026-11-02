@@ -61,8 +61,8 @@ u8 func_020e5b88(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
 void CreateObPakkunSf(void) {
     u32 v1;
     u32 v2;
-    v1 = (u32) FindCourseMapObjFile((const char *) gObPakkunSfNsbmdName);
-    v2 = (u32) FindCourseMapObjFile((const char *) gObPakkunSfNsbtpName);
+    v1 = (u32) FindCourseMapObjFile(gObPakkunSfNsbmdName);
+    v2 = (u32) FindCourseMapObjFile(gObPakkunSfNsbtpName);
     func_020e6488((Unk020e6488 **) (((u32 *) &gObPakkunSf)), (void *) v1, v2, (u32) 0);
     func_020e6ab8((Unk020e6488 *) gObPakkunSf);
 }

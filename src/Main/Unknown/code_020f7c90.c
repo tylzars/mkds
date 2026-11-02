@@ -50,7 +50,7 @@ void func_020f7ec8(void) {
     s32 *q;
     enum { K1 } k;
 
-    p = (u8 *) FindMainRaceOrMainEffectFile((const char *) data_0216c680);
+    p = FindMainRaceOrMainEffectFile(data_0216c680);
     switch (data_021759c0->mUnk_08) {
         case 0:
         case 1:

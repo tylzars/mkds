@@ -57,7 +57,7 @@ void func_ov000_021a4940(Unk021a4a08 *a) {
             e = func_ov000_0218e438(a->mUnk_000, data_ov000_021b5e50, 0xff, d, b, &c);
             if (e != ~d) {
                 data_ov000_021b5e50[e] = d;
-                func_ov000_021a3c14((Unk021a3a18 *) a, (s8 *) data_ov000_021b5e50, e, b);
+                func_ov000_021a3c14((Unk021a3a18 *) a, data_ov000_021b5e50, e, b);
             }
         } while (func_ov000_0218e668(a->mUnk_000) != 0);
     }

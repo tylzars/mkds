@@ -145,7 +145,7 @@ void func_ov000_0219d708(u32 a, u32 *b) {
 
 u32 func_ov000_0219d6c4(u32 a, u32 *b, u32 c) {
     int v1;
-    v1 = strcmp((const u8 *) (b[2]), (const u8 *) &data_ov000_021b4078);
+    v1 = strcmp((const u8 *) (b[2]), data_ov000_021b4078);
     if (v1 == 0) {
         func_ov000_0218eff8((Unk0218f960 *) (a), *b, 0, 0, (Unk0218eff8Cb) func_ov000_0219cc94, 0);
         return 1;
@@ -385,7 +385,7 @@ s32 func_ov000_0219d14c(Unk02152490 *a, s32 b, s32 c) {
 
 u32 func_ov000_0219d128(u32 a) {
     u32 v1;
-    v1 = func_ov000_0218ee70(data_ov000_021b5664->mUnk_04, (u32) (a), (const u8 *) data_ov000_021b5664->mUnk_28);
+    v1 = func_ov000_0218ee70(data_ov000_021b5664->mUnk_04, (u32) (a), data_ov000_021b5664->mUnk_28);
     func_ov000_0219d034(v1);
     return v1;
 }

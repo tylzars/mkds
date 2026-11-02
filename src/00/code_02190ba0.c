@@ -40,7 +40,7 @@ void func_ov000_02190ff8(Unk0218f960 *a, s32 b) {
             func_ov000_02190b58(a, &c->mUnk_1f4, c->mUnk_198);
             func_ov000_02190b80(a, &c->mUnk_1f4, data_ov000_021b2b3c);
         }
-        func_ov000_021906e4(a, c->mUnk_1d4, &c->mUnk_1f4, &f, 1, (const s8 *) data_ov000_021b2b44);
+        func_ov000_021906e4(a, c->mUnk_1d4, &c->mUnk_1f4, &f, 1, data_ov000_021b2b44);
         if (c->mUnk_1d4 != -1) {
             func_ov000_0218e524(c->mUnk_1d4, 2);
             func_ov000_0218e53c(c->mUnk_1d4);

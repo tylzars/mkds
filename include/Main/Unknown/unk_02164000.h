@@ -48,7 +48,7 @@ extern const char data_02164668[];
 extern const char data_02164684[];
 
 // Objects whose layout isn't known yet.
-extern u8 data_02164770[];
+extern const char data_02164770[];
 extern u8 data_02164d28[];
 extern u8 data_02164dc8[];
 extern u32 gArchiveNames[];
@@ -70,7 +70,7 @@ extern u8 gMainRaceArchivePath[];
 extern u8 gMain2DArchivePath[];
 extern u8 gMain2DArchivePrefix[];
 extern u8 gMainEffectArchivePath[];
-extern u8 gArchivePrefixFormat[];
+extern const char gArchivePrefixFormat[];
 extern void *data_usa_02164718[];
 extern const char data_usa_02164754[];
 extern const char data_usa_0216478c[];

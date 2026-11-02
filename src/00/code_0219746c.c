@@ -3,14 +3,14 @@
 
 s8 *func_ov000_02197a9c(const u8 *a, const u8 *b, s8 *c) {
     u32 d;
-    s8 e[0x80];
+    u8 e[0x80];
     d = strlen(b);
     if (strlen(a) + d + 0x14 >= 0x80) {
         *(Unk021b3e44 *) c = data_ov000_021b3e44;
         return c;
     }
-    sprintf((u8 *) e, data_ov000_021b3e64, b, a);
-    func_ov000_0218e0fc((const u8 *) e, strlen((const u8 *) e), (u8 *) c);
+    sprintf(e, data_ov000_021b3e64, b, a);
+    func_ov000_0218e0fc(e, strlen(e), (u8 *) c);
     return c;
 }
 

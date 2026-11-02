@@ -1262,7 +1262,7 @@ void func_ov001_0218fcc4(Unk0218fa78 *a) {
         zero = 0;
         for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != 0; i++) {
             func_ov001_021870e4((void *) zero, obj, (const char *) zero, (const char *) zero,
-                                (const char *) data_ov001_021a7eb0);
+                                data_ov001_021a7eb0);
             if (data_021759c0->mUnk_08 == 4) {
                 func_ov001_02181b8c(obj);
             }
@@ -1340,9 +1340,9 @@ void func_ov001_0218fa78(Unk0218fa78 *a) {
             if (data_021759c0->mUnk_08 == 4) {
                 func_ov001_02181b8c(obj);
             }
-            func_ov001_021870e4(a, obj, (const char *) data_ov001_021a7e60, (const char *) data_ov001_021a7e70,
-                                (const char *) data_ov001_021a7e80);
-            func_ov001_021870b0(a, obj, (const char *) data_ov001_021a7e90);
+            func_ov001_021870e4(a, obj, data_ov001_021a7e60, data_ov001_021a7e70,
+                                data_ov001_021a7e80);
+            func_ov001_021870b0(a, obj, data_ov001_021a7e90);
             func_ov001_0219b2e8(obj->mUnk_304, data_ov001_021a7ea0);
             obj->mUnk_234 = 1;
             if (i == 0) {

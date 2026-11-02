@@ -39,24 +39,24 @@ void func_ov000_021a3a18(Unk021a3a18 *a, s32 b) {
     func_ov000_021a4480((u32) &k, 3, (u32) a->mUnk_84);
     for (i = 0; i < data_ov000_021b5df8; i++) {
         sprintf(t, data_ov000_021b4388, i);
-        func_ov000_021a471c((Unk021a471c *) &k, (const u8 *) t);
+        func_ov000_021a471c((Unk021a471c *) &k, t);
         func_ov000_021a471c((Unk021a471c *) &k, func_ov000_021a8c6c(((Unk021b5dfc *) data_ov000_021b5dfc)[i]));
     }
-    func_ov000_021a471c((Unk021a471c *) &k, (const u8 *) data_ov000_021b4394);
+    func_ov000_021a471c((Unk021a471c *) &k, data_ov000_021b4394);
     func_ov000_021a4760((Unk021a471c *) &k, a->mUnk_c0);
-    func_ov000_021a471c((Unk021a471c *) &k, (const u8 *) data_ov000_021b43a0);
+    func_ov000_021a471c((Unk021a471c *) &k, data_ov000_021b43a0);
     func_ov000_021a471c((Unk021a471c *) &k,
-                        a->mUnk_c8 != 0 ? (const u8 *) data_ov000_021b43a8 : (const u8 *) data_ov000_021b43ac);
+                        a->mUnk_c8 != 0 ? data_ov000_021b43a8 : data_ov000_021b43ac);
     if (b != 0) {
-        func_ov000_021a471c((Unk021a471c *) &k, (const u8 *) data_ov000_021b43b0);
+        func_ov000_021a471c((Unk021a471c *) &k, data_ov000_021b43b0);
         func_ov000_021a4760((Unk021a471c *) &k, b);
     }
-    func_ov000_021a471c((Unk021a471c *) &k, (const u8 *) data_ov000_021b43c0);
-    func_ov000_021a471c((Unk021a471c *) &k, (const u8 *) a->mUnk_04);
+    func_ov000_021a471c((Unk021a471c *) &k, data_ov000_021b43c0);
+    func_ov000_021a471c((Unk021a471c *) &k, a->mUnk_04);
     if (a->mUnk_a8 != 0) {
-        func_ov000_021a471c((Unk021a471c *) &k, (const u8 *) data_ov000_021b43cc);
+        func_ov000_021a471c((Unk021a471c *) &k, data_ov000_021b43cc);
         func_ov000_021a4760((Unk021a471c *) &k, a->mUnk_104);
-        func_ov000_021a471c((Unk021a471c *) &k, (const u8 *) data_ov000_021b43d8);
+        func_ov000_021a471c((Unk021a471c *) &k, data_ov000_021b43d8);
         func_ov000_021a4760((Unk021a471c *) &k, a->mUnk_108);
     }
     if (b != 2) {

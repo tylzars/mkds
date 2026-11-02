@@ -18,12 +18,12 @@ extern u8 data_02161790[];
 extern u8 data_02161794[];
 extern u8 data_02161798[];
 extern u8 data_0216179c[];
-extern u8 data_02161e64[];
-extern u8 data_02161e7c[];
-extern u8 data_02161e94[];
-extern u8 data_02161eac[];
-extern u8 data_02161ec4[];
-extern u8 data_02161edc[];
+extern const char data_02161e64[];
+extern const char data_02161e7c[];
+extern const char data_02161e94[];
+extern const char data_02161eac[];
+extern const char data_02161ec4[];
+extern const char data_02161edc[];
 
 extern u32 (*data_021619ec)(s32 a, s32 b, s32 c);
 extern u32 (*data_021619f4)(s32 a, s32 b, s32 c);
