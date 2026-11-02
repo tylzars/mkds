@@ -92,7 +92,7 @@ typedef struct Unk021a9b88 {
     /* 2c */ u8 *mUnk_2c;
 } Unk021a9b88;
 
-// Allocated by func_ov001_0219d2c0 and held in data_ov001_021a9bf8.
+// Allocated by InitSelectBattleStage and held in gSelectBattleStage.
 typedef struct Unk021a9bf8 {
     /* 0000 */ s32 mUnk_00;
     /* 0004 */ s32 mUnk_04;
@@ -162,7 +162,7 @@ extern u16 data_ov001_021a9ba0;
 extern Unk021a9b90 *data_ov001_021a9b90;
 extern Unk021a9bd0 *data_ov001_021a9bd0;
 extern Unk021a9bec *data_ov001_021a9bec;
-extern Unk021a9bf8 *data_ov001_021a9bf8;
+extern Unk021a9bf8 *gSelectBattleStage;
 // One pair of halfwords of the object behind data_ov001_021a9bfc.
 typedef struct Unk021a9bfc_18 {
     /* 00 */ s16 mUnk_00;

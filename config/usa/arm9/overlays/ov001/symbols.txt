@@ -931,7 +931,7 @@ func_ov001_0219c480 kind:function(thumb,size=0xc4) addr:0x0219c460
 func_ov001_0219c544 kind:function(thumb,size=0x1ac) addr:0x0219c524
 func_ov001_0219c6f0 kind:function(thumb,size=0x94) addr:0x0219c6d0
 func_ov001_0219c784 kind:function(thumb,size=0x88) addr:0x0219c764
-func_ov001_0219c80c kind:function(thumb,size=0xbc) addr:0x0219c7ec
+AdvanceSelectBattleStage kind:function(thumb,size=0xbc) addr:0x0219c7ec
 func_ov001_0219c8c8 kind:function(thumb,size=0x24) addr:0x0219c8a8
 func_ov001_0219c8ec kind:function(thumb,size=0x64) addr:0x0219c8cc
 func_ov001_0219c950 kind:function(thumb,size=0xdc) addr:0x0219c930
@@ -944,8 +944,8 @@ func_ov001_0219cdd4 kind:function(thumb,size=0xf0) addr:0x0219cdb4
 func_ov001_0219cec4 kind:function(thumb,size=0x9c) addr:0x0219cea4
 func_ov001_0219cf60 kind:function(thumb,size=0xdc) addr:0x0219cf40
 func_ov001_0219d03c kind:function(thumb,size=0x230) addr:0x0219d01c
-func_ov001_0219d26c kind:function(thumb,size=0x54) addr:0x0219d24c
-func_ov001_0219d2c0 kind:function(thumb,size=0x24c) addr:0x0219d2a0
+ReleaseSelectBattleStage kind:function(thumb,size=0x54) addr:0x0219d24c
+InitSelectBattleStage kind:function(thumb,size=0x24c) addr:0x0219d2a0
 func_ov001_0219d50c kind:function(thumb,size=0xd0) addr:0x0219d4ec
 func_ov001_0219d5dc kind:function(thumb,size=0x24) addr:0x0219d5bc
 func_ov001_0219d600 kind:function(thumb,size=0x20) addr:0x0219d5e0
@@ -1795,7 +1795,7 @@ data_ov001_021a9be8 kind:bss addr:0x021a9bc8
 data_ov001_021a9bec kind:bss addr:0x021a9bcc
 data_ov001_021a9bf0 kind:bss addr:0x021a9bd0
 data_ov001_021a9bf4 kind:bss addr:0x021a9bd4
-data_ov001_021a9bf8 kind:bss addr:0x021a9bd8
+gSelectBattleStage kind:bss addr:0x021a9bd8
 data_ov001_021a9bfc kind:bss addr:0x021a9bdc
 data_ov001_021a9c00 kind:bss addr:0x021a9be0 ambiguous
 data_usa_ov001_021ac7f4 kind:bss addr:0x021ac7f4 ambiguous

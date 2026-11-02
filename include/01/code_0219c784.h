@@ -40,7 +40,7 @@ extern const u8 data_ov001_021a6be8[6];
 extern const Unk021a6c04 data_ov001_021a6c04[];
 
 void func_ov001_0219c784(void);
-s32 func_ov001_0219c80c(void);
+s32 AdvanceSelectBattleStage(void);
 void func_ov001_0219c8c8(void);
 void func_ov001_0219c8ec(void);
 void func_ov001_0219c950(void);
@@ -53,5 +53,5 @@ void func_ov001_0219cdd4(void);
 void func_ov001_0219cec4(void);
 void func_ov001_0219cf60(void);
 void func_ov001_0219d03c(void);
-void func_ov001_0219d26c(void);
-void func_ov001_0219d2c0(void *c, s32 d, void *e, void *f);
+void ReleaseSelectBattleStage(void);
+void InitSelectBattleStage(void *c, s32 d, void *e, void *f);

@@ -10,7 +10,7 @@ void func_020cea60(void) {
     s32 t[6] = {0x2c, 0x2d, 0x2e, 0x2f, 0x2a, 0x2b};
     s32 a;
 
-    a = func_ov001_0219c80c();
+    a = AdvanceSelectBattleStage();
     switch (a) {
         case 0:
         case 1:

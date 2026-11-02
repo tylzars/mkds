@@ -114,7 +114,7 @@ void func_020cb6c0(void) {
             case 17:
                 v = (func_02029930()->mUnk_e4 == 0) ? UNK_020CB6C0_1 : UNK_020CB6C0_0;
                 p = data_0217b43c;
-                func_ov001_0219d2c0(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
+                InitSelectBattleStage(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
                 break;
             case 18:
                 func_ov001_0219f058(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
@@ -192,7 +192,7 @@ void func_020cb618(void) {
                 func_0203223c();
                 break;
             case 17:
-                func_ov001_0219d26c();
+                ReleaseSelectBattleStage();
                 break;
             case 18:
                 func_ov001_0219efec();

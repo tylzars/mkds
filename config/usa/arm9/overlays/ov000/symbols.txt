@@ -82,11 +82,11 @@ func_ov000_02182d74 kind:function(thumb,size=0x74) addr:0x02182d40
 func_ov000_02182de8 kind:function(thumb,size=0x30) addr:0x02182db4
 func_ov000_02182e18 kind:function(thumb,size=0x170) addr:0x02182de4
 func_ov000_02182f88 kind:function(thumb,size=0x54) addr:0x02182f54
-func_ov000_02182fdc kind:function(thumb,size=0x314) addr:0x02182fa8
+InitWiFiVSSetting kind:function(thumb,size=0x314) addr:0x02182fa8
 func_ov000_021832f0 kind:function(thumb,size=0x1c) addr:0x021832bc
-func_ov000_0218330c kind:function(thumb,size=0x24) addr:0x021832d8
+RegisterWiFiVSMatchingCallbacks kind:function(thumb,size=0x24) addr:0x021832d8
 func_ov000_02183330 kind:function(thumb,size=0x5c) addr:0x021832fc
-func_ov000_0218338c kind:function(thumb,size=0xb8) addr:0x02183358
+AdvanceWiFiVSMatching kind:function(thumb,size=0xb8) addr:0x02183358
 func_ov000_02183444 kind:function(thumb,size=0x6c) addr:0x02183410
 func_ov000_021834b0 kind:function(thumb,size=0x98) addr:0x0218347c
 func_ov000_02183548 kind:function(thumb,size=0x104) addr:0x02183514
@@ -103,7 +103,7 @@ func_ov000_0218401c kind:function(thumb,size=0xac) addr:0x02183fe8
 func_ov000_021840c8 kind:function(thumb,size=0x68) addr:0x02184094
 func_ov000_02184130 kind:function(thumb,size=0x224) addr:0x021840fc
 func_ov000_02184354 kind:function(thumb,size=0x54) addr:0x02184320
-func_ov000_021843a8 kind:function(thumb,size=0x204) addr:0x02184374
+InitWiFiVSMatching kind:function(thumb,size=0x204) addr:0x02184374
 func_ov000_021845ac kind:function(thumb,size=0xc4) addr:0x02184578
 func_ov000_02184670 kind:function(thumb,size=0x258) addr:0x0218463c
 func_ov000_021848c8 kind:function(thumb,size=0x24) addr:0x02184894
@@ -2321,8 +2321,8 @@ data_ov000_021b4c60 kind:bss addr:0x021b4c20
 data_ov000_021b4c64 kind:bss addr:0x021b4c24
 data_ov000_021b4c68 kind:bss addr:0x021b4c28
 data_ov000_021b4c6c kind:bss addr:0x021b4c2c
-data_ov000_021b4c70 kind:bss addr:0x021b4c30
-data_ov000_021b4c74 kind:bss addr:0x021b4c34
+gWiFiVSSetting kind:bss addr:0x021b4c30
+gWiFiVSMatching kind:bss addr:0x021b4c34
 data_ov000_021b4c78 kind:bss addr:0x021b4c38
 data_ov000_021b4c7c kind:bss addr:0x021b4c3c
 data_ov000_021b4c80 kind:bss addr:0x021b4c40

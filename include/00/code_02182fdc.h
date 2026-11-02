@@ -24,7 +24,7 @@
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c
 #include "code_02016468.h"
 
-// Allocated by func_ov000_02182fdc and held in data_ov000_021b4c70.
+// Allocated by InitWiFiVSSetting and held in gWiFiVSSetting.
 typedef struct Unk021b4c70 {
     /* 0000 */ s32 mUnk_00;
     /* 0004 */ s32 mUnk_04;
@@ -51,7 +51,7 @@ typedef struct Unk021b4c70 {
     /* 105c */ void *mUnk_105c;
 } Unk021b4c70;
 
-// Object behind data_ov000_021b4c74; mUnk_00 selects the handler run by func_ov000_0218338c.
+// Object behind gWiFiVSMatching; mUnk_00 selects the handler run by AdvanceWiFiVSMatching.
 typedef struct Unk021b4c74 {
     /* 0000 */ s32 mUnk_00;
     /* 0004 */ s32 mUnk_04;
@@ -90,7 +90,7 @@ typedef struct Unk021b4c74 {
     /* 1704 */ u8 pad_1704[8];
 } Unk021b4c74;
 
-// Four callbacks, passed to func_ov000_021806ec by func_ov000_0218330c.
+// Four callbacks, passed to func_ov000_021806ec by RegisterWiFiVSMatchingCallbacks.
 
 // 0xc-byte element of the array at member 0x20 of Unk0217b488.
 typedef struct Unk0217b488_20 {
@@ -296,16 +296,16 @@ extern u8 data_ov000_021b068c[3][5];
 extern s8 data_ov000_021b069c[30];
 extern u8 data_ov000_021b0ce4[30];
 extern u8 data_ov000_021b0d04[40];
-extern Unk021b4c70 *data_ov000_021b4c70;
-extern Unk021b4c74 *data_ov000_021b4c74;
+extern Unk021b4c70 *gWiFiVSSetting;
+extern Unk021b4c74 *gWiFiVSMatching;
 extern Unk0217b488 *data_0217b488;
 extern Unk0217d384 *data_0217d384;
 
-void func_ov000_02182fdc(void *heap);
+void InitWiFiVSSetting(void *heap);
 s32 func_ov000_021832f0(void);
-void func_ov000_0218330c(void);
+void RegisterWiFiVSMatchingCallbacks(void);
 void func_ov000_02183330(void);
-void func_ov000_0218338c(void);
+void AdvanceWiFiVSMatching(void);
 void func_ov000_02183444(void);
 void func_ov000_021834b0(s32 t);
 void func_ov000_02183548(void);
@@ -335,7 +335,7 @@ void func_02036f10(s16);
 #include "Main/Unknown/code_0212b928.h"
 
 void func_ov000_02184354(void);
-void func_ov000_021843a8(void *heap);
+void InitWiFiVSMatching(void *heap);
 
 #include "Main/Unknown/code_0202b604.h"
 #include "Main/Unknown/code_02120240.h"

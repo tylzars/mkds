@@ -213,7 +213,7 @@ void func_ov000_02180724(void) {
                 func_ov000_02181fcc();
                 break;
             case 3:
-                func_ov000_0218330c();
+                RegisterWiFiVSMatchingCallbacks();
                 break;
             case 4:
                 func_ov000_021848c8();
