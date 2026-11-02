@@ -76,32 +76,27 @@ void func_02093270(void *a, Unk02093270 *p) {
     }
 }
 
-// non-matching: 20 bytes longer than the original (0x18c against 0x178); the original keeps the constants 0, 1, 0x1000
-// and 4 in registers before the loop and the zero argument in a stack word.
 void func_02093484(Unk020e6fd4 *p) {
     s32 z;
     s32 i;
-    u16 f;
     Unk02093270 *e;
+    u16 f;
+    s32 n;
 
     if (p == 0) {
         return;
     }
     z = 0;
     f = data_usa_0215646c;
-    for (i = 0; i < p->mUnk_04; i++) {
-        e = p->mUnk_00[i];
-        if (e == 0) {
-            return;
-        }
+    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != 0; i++) {
         e->mUnk_00.mUnk_04.y = e->mUnk_00.mUnk_9c->mUnk_00.y - e->mUnk_00.mUnk_58.y;
         if (e->mUnk_00.mUnk_9c->mUnk_26 < 0) {
             e->mUnk_b0.mUnk_08 = 0xffff;
         } else {
             func_020d7da8(&e->mUnk_b0, e->mUnk_00.mUnk_9c, z);
-            e->mUnk_b0.mUnk_04 = (e->mUnk_00.mUnk_9c->mUnk_2e << 12) / 100;
-            e->mUnk_b0.mUnk_10 =
-                ((s64) e->mUnk_b0.mUnk_04 * e->mUnk_b0.mUnk_00->mUnk_00[e->mUnk_b0.mUnk_0c].mUnk_34) >> 12;
+            n = (e->mUnk_00.mUnk_9c->mUnk_2e << 12) / 100;
+            e->mUnk_b0.mUnk_04 = n;
+            e->mUnk_b0.mUnk_10 = ((s64) n * e->mUnk_b0.mUnk_00->mUnk_00[e->mUnk_b0.mUnk_0c].mUnk_34) >> 12;
         }
         if (e->mUnk_00.mUnk_9c->mUnk_28 == 0 && e->mUnk_00.mUnk_9c->mUnk_2a == 0 && e->mUnk_00.mUnk_9c->mUnk_2c == 0) {
             e->mUnk_a8 = 0x1000;
@@ -119,7 +114,6 @@ void func_02093484(Unk020e6fd4 *p) {
     }
 }
 
-// non-matching: 8 bytes longer than the original (0xfc against 0xf4); stack offsets of the three local arrays differ.
 void func_020935fc(void *a, Unk02093270 *p) {
     s32 s0;
     Vec3 s4;
@@ -132,13 +126,13 @@ void func_020935fc(void *a, Unk02093270 *p) {
     s0 = 0x1e;
     func_01ff9048(0x14, &s0, 1);
     func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mUnk_04), 0xc);
-    s4.x = 0;
     s4.y = p->mUnk_00.mUnk_58.y >> 4;
+    s4.x = 0;
     s4.z = 0;
     func_01ff9048(0x1c, &s4, 3);
     s10.x = p->mUnk_a8;
-    s10.y = p->mUnk_a8;
-    s10.z = p->mUnk_a8;
+    s10.y = s10.x;
+    s10.z = s10.x;
     func_01ff9048(0x1b, &s10, 3);
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
     func_0209b6c8(data_0217b0c8, p->mUnk_a4);

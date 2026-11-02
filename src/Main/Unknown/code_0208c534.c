@@ -135,11 +135,10 @@ void func_0208c884(Unk0208c5b8 *p, int v1) {
     p->mUnk_44 = 1;
 }
 
-// non-matching: same instructions as the original; in the sums two registers are swapped and the second group of loads
-// starts one instruction later
 void func_0208c930(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b) {
     u16 i;
     Unk0201ca6c *e;
+    s32 n;
 
     if (p->mUnk_40 == 0) {
         return;
@@ -159,18 +158,22 @@ void func_0208c930(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b) {
         return;
     }
     for (i = 0; i < 2; i++) {
+        p->mUnk_20[i]->mUnk_50 = a[i];
+        p->mUnk_28[i]->mUnk_50 = a[i];
         e = p->mUnk_20[i];
-        e->mUnk_50 = a[i];
+        n = b[i].x;
+        e->mUnk_28.x = n + e->mUnk_20->mUnk_00->mUnk_04.x;
+        n = b[i].y;
+        e->mUnk_28.y = n + e->mUnk_20->mUnk_00->mUnk_04.y;
+        n = b[i].z;
+        e->mUnk_28.z = n + e->mUnk_20->mUnk_00->mUnk_04.z;
         e = p->mUnk_28[i];
-        e->mUnk_50 = a[i];
-        e = p->mUnk_20[i];
-        e->mUnk_28.x = b[i].x + e->mUnk_20->mUnk_00->mUnk_04.x;
-        e->mUnk_28.y = b[i].y + e->mUnk_20->mUnk_00->mUnk_04.y;
-        e->mUnk_28.z = b[i].z + e->mUnk_20->mUnk_00->mUnk_04.z;
-        e = p->mUnk_28[i];
-        e->mUnk_28.x = b[i].x + e->mUnk_20->mUnk_00->mUnk_04.x;
-        e->mUnk_28.y = b[i].y + e->mUnk_20->mUnk_00->mUnk_04.y;
-        e->mUnk_28.z = b[i].z + e->mUnk_20->mUnk_00->mUnk_04.z;
+        n = b[i].x;
+        e->mUnk_28.x = n + e->mUnk_20->mUnk_00->mUnk_04.x;
+        n = b[i].y;
+        e->mUnk_28.y = n + e->mUnk_20->mUnk_00->mUnk_04.y;
+        n = b[i].z;
+        e->mUnk_28.z = n + e->mUnk_20->mUnk_00->mUnk_04.z;
     }
 }
 
@@ -363,25 +366,28 @@ void func_0208d02c(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b) {
     }
 }
 
-// non-matching: same instructions as the original; registers differ in the sums and in the copies from the first
-// argument
 void func_0208d0dc(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b) {
     u16 i;
     Unk0201ca6c *e;
+    s32 n;
 
     for (i = 0; i < 2; i++) {
+        p->mUnk_10[i]->mUnk_50 = a[i];
+        p->mUnk_18[i]->mUnk_50 = a[i];
         e = p->mUnk_10[i];
-        e->mUnk_50 = a[i];
+        n = b[i].x;
+        e->mUnk_28.x = n + e->mUnk_20->mUnk_00->mUnk_04.x;
+        n = b[i].y;
+        e->mUnk_28.y = n + e->mUnk_20->mUnk_00->mUnk_04.y;
+        n = b[i].z;
+        e->mUnk_28.z = n + e->mUnk_20->mUnk_00->mUnk_04.z;
         e = p->mUnk_18[i];
-        e->mUnk_50 = a[i];
-        e = p->mUnk_10[i];
-        e->mUnk_28.x = b[i].x + e->mUnk_20->mUnk_00->mUnk_04.x;
-        e->mUnk_28.y = b[i].y + e->mUnk_20->mUnk_00->mUnk_04.y;
-        e->mUnk_28.z = b[i].z + e->mUnk_20->mUnk_00->mUnk_04.z;
-        e = p->mUnk_18[i];
-        e->mUnk_28.x = b[i].x + e->mUnk_20->mUnk_00->mUnk_04.x;
-        e->mUnk_28.y = b[i].y + e->mUnk_20->mUnk_00->mUnk_04.y;
-        e->mUnk_28.z = b[i].z + e->mUnk_20->mUnk_00->mUnk_04.z;
+        n = b[i].x;
+        e->mUnk_28.x = n + e->mUnk_20->mUnk_00->mUnk_04.x;
+        n = b[i].y;
+        e->mUnk_28.y = n + e->mUnk_20->mUnk_00->mUnk_04.y;
+        n = b[i].z;
+        e->mUnk_28.z = n + e->mUnk_20->mUnk_00->mUnk_04.z;
     }
 }
 

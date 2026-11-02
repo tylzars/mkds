@@ -211,9 +211,6 @@ void func_020abcf4(s32 a, s32 b, s32 c) {
     func_020ab1a8(1, 2, 0x400);
 }
 
-// non-matching: 0x208 bytes, original 0x214; 217 lines differ; the original reloads the halfword at 0x46 of
-// data_0217b334 for the decrement in the first branch and uses other registers for the pointer copies; first: original
-// `ldr r0, [pc, #476]`, ours `ldr r0, [pc, #464]`
 void func_020abae0(void) {
     s32 i;
     Unk02175628Index v1;
@@ -233,7 +230,7 @@ void func_020abae0(void) {
         q = data_0217b334;
         if (q->mUnk_46 != 0) {
             if (q->mUnk_40[q->mUnk_46] == 0) {
-                q->mUnk_46 = q->mUnk_46 - 1;
+                q->mUnk_46--;
             }
             data_0217b334->mUnk_40[data_0217b334->mUnk_46] = 0;
             func_0212ecc0(&data_0217d068, 0, 0x1e3);
@@ -247,7 +244,7 @@ void func_020abae0(void) {
                 q->mUnk_40[q->mUnk_46] = func_020aa810();
                 data_0217b334->mUnk_40[data_0217b334->mUnk_46 + 1] = 0;
                 if (data_0217b334->mUnk_46 < data_0217b334->mUnk_4a - 1) {
-                    data_0217b334->mUnk_46 = data_0217b334->mUnk_46 + 1;
+                    data_0217b334->mUnk_46++;
                 }
                 func_0212ecc0(&data_0217d068, 0, 0x1e2);
             }

@@ -1,17 +1,19 @@
 #include "03/code_021bcadc.h"
 
-// non-matching: stack offsets of the spilled locals differ (frame 0x1ac against 0x1b4), the 64-bit product is computed
-// before the loop guard instead of after it with h's high word 0 instead of h >> 31, and the 8-byte copy loops end in
-// bgt/bhi instead of bne; size 0x1fc against 0x1f4
 int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
     u8 a[16];
     u64 b;
     u32 c[80];
     u32 d[2];
-    int i, h, f, g, e;
-    int k;
+    int i;
+    int h;
+    int f;
+    int g;
+    int e;
     s64 t;
-    u8 *p, *q;
+    u8 *p;
+    u8 *q;
+    enum { K0 } k;
 
     e = 1;
     d[0] = 0xa6a6a6a6;
@@ -33,19 +35,19 @@ int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
     memcpy(param_1, param_2 + 8, param_3 - 1);
     for (h = 5; h >= 0; h--) {
         for (i = f; i > 0; i--) {
-            t = (s64) f * h + i;
-            b = ((((u64) t & 0xff00000000000000ULL) >> 56) | (((u64) t & 0x00ff000000000000ULL) >> 40) |
-                 (((u64) t & 0x0000ff0000000000ULL) >> 24) | (((u64) t & 0x000000ff00000000ULL) >> 8) |
-                 (((u64) t & 0x00000000ff000000ULL) << 8) | (((u64) t & 0x0000000000ff0000ULL) << 24) |
-                 (((u64) t & 0x000000000000ff00ULL) << 40) | (((u64) t & 0x00000000000000ffULL) << 56));
+            t = (s64) f * (s32) h + (s32) i;
+            b = ((((u64) t & 0x00000000000000ffULL) << 56) | (((u64) t & 0x000000000000ff00ULL) << 40) |
+                 (((u64) t & 0x0000000000ff0000ULL) << 24) | (((u64) t & 0x00000000ff000000ULL) << 8) |
+                 (((u64) t & 0x000000ff00000000ULL) >> 8) | (((u64) t & 0x0000ff0000000000ULL) >> 24) |
+                 (((u64) t & 0x00ff000000000000ULL) >> 40) | (((u64) t & 0xff00000000000000ULL) >> 56));
             func_ov003_021bca90(a, (u8 *) &b, a);
             p = param_1 + (i - 1) * 8;
-            q = p;
             {
-                u8 *r = a + 8;
+                u8 *r = p;
+                q = a + 8;
                 k = 8;
                 do {
-                    *r++ = *q++;
+                    *q++ = *r++;
                 } while (--k != 0);
             }
             func_ov003_021bbd9c(c, g, a, a);
@@ -64,18 +66,23 @@ int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
     return e;
 }
 
-// non-matching: 8-byte copy loops end in bgt instead of bne (counter in a different register), stack offsets of the
-// locals differ (frame 0x1cc against 0x1d4), and the original computes f * h (h sign-extended) once after the inner
-// loop's guard; size 0x21c against 0x20c
+// non-matching: the original spills p (offset 0x2c) and gives r4 to a byte swap term, here p stays in r4 and that
+// term is spilled; size 0x210 against 0x20c. The (u32) cast keeps i * 8 recomputed each pass as
+// in the original, but is not proven to be the original spelling
 int func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
     u8 a[16];
     u64 b;
     u32 c[80];
     u32 d[2];
-    int i, h, f, g;
-    int k;
+    int i;
+    int h;
+    int f;
+    int g;
     s64 t;
-    u8 *p, *q, *r;
+    u8 *p;
+    u8 *q;
+    u8 *r;
+    enum { K0 } k;
 
     d[0] = 0xa6a6a6a6;
     d[1] = 0xa6a6a6a6;
@@ -96,19 +103,19 @@ int func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
     } while (--k != 0);
     for (h = 0; h < 6; h++) {
         for (i = 1; i <= f; i++) {
-            p = param_1 + i * 8;
-            q = p;
-            r = a + 8;
+            p = param_1 + (u32) i * 8;
+            r = p;
+            q = a + 8;
             k = 8;
             do {
-                *r++ = *q++;
+                *q++ = *r++;
             } while (--k != 0);
             func_ov003_021bc1c4(c, g, a, a);
-            t = (s64) f * h + i;
-            b = ((((u64) t & 0xff00000000000000ULL) >> 56) | (((u64) t & 0x00ff000000000000ULL) >> 40) |
-                 (((u64) t & 0x0000ff0000000000ULL) >> 24) | (((u64) t & 0x000000ff00000000ULL) >> 8) |
-                 (((u64) t & 0x00000000ff000000ULL) << 8) | (((u64) t & 0x0000000000ff0000ULL) << 24) |
-                 (((u64) t & 0x000000000000ff00ULL) << 40) | (((u64) t & 0x00000000000000ffULL) << 56));
+            t = (s64) f * (s32) h + (s32) i;
+            b = ((((u64) t & 0x00000000000000ffULL) << 56) | (((u64) t & 0x000000000000ff00ULL) << 40) |
+                 (((u64) t & 0x0000000000ff0000ULL) << 24) | (((u64) t & 0x00000000ff000000ULL) << 8) |
+                 (((u64) t & 0x000000ff00000000ULL) >> 8) | (((u64) t & 0x0000ff0000000000ULL) >> 24) |
+                 (((u64) t & 0x00ff000000000000ULL) >> 40) | (((u64) t & 0xff00000000000000ULL) >> 56));
             func_ov003_021bca90(a, (u8 *) &b, a);
             r = a + 8;
             k = 8;
