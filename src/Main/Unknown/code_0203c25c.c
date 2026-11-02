@@ -20,9 +20,8 @@ s32 func_0203c25c(u16 a) {
     return r != 0;
 }
 
-// non-matching: same instructions and order; only a and the entry pointer p trade registers (r5/r4 where the original
-// has r4/r5). The bitfield store repeats the subtraction instead of storing v on purpose: storing v costs 22 words.
 void func_0203c2e4(u16 a) {
+    u32 o;
     Unk0217561c_14 *p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + a * 0x8c);
     s32 f = 0;
     switch (p->mUnk_00) {
@@ -33,7 +32,6 @@ void func_0203c2e4(u16 a) {
             break;
     }
     if (f == 0) {
-        u32 o;
         u32 v;
         s32 i;
         o = p->mUnk_3c_0;

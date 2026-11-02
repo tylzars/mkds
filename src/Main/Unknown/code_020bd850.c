@@ -17,8 +17,6 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_027e0000.h"
 
-// non-matching: same size; 3 words at +0x22c: in the branch for e from 10 to 17 the original subtracts pa.mUnk_04
-// from pb.mUnk_04 after the first multiply, ours before it (sub r2, r2, r3 is two instructions earlier).
 void func_020be3e4(void) {
     Unk0217b3d8_00 t[9] = {{0x1b, 0xf},  {0x1b, 0xf},  {0x1b, 0x26}, {0x1b, 0x3d}, {0x1b, 0x54},
                            {0x1b, 0x6b}, {0x1b, 0x82}, {0x1b, 0x99}, {0x1b, 0xb0}};
@@ -64,13 +62,13 @@ void func_020be3e4(void) {
             if (e < 10) {
                 v3.mUnk_00 = v1.mUnk_00 + (e * 16) / 10;
                 v3.mUnk_04 = v1.mUnk_04;
-            } else if (e >= 0x12) {
-                v3.mUnk_00 = v1.mUnk_00 + 0x10 - ((e - 0x12) * 16) / 10;
-                v3.mUnk_04 = v2.mUnk_04;
-            } else {
+            } else if (e < 0x12) {
                 k = e - 10;
                 v3.mUnk_00 = v1.mUnk_00 + (v2.mUnk_00 - v1.mUnk_00) * k / 8 + 0x10;
                 v3.mUnk_04 = v1.mUnk_04 + (v2.mUnk_04 - v1.mUnk_04) * k / 8;
+            } else {
+                v3.mUnk_00 = v1.mUnk_00 + 0x10 - ((e - 0x12) * 16) / 10;
+                v3.mUnk_04 = v2.mUnk_04;
             }
         } else {
             v3.mUnk_00 = v1.mUnk_00 + e * (v2.mUnk_00 - v1.mUnk_00) / 0x1c;

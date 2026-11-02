@@ -44,8 +44,6 @@ s32 func_020ee528(Unk020eda5c *a) {
     return 0;
 }
 
-// non-matching: only the func_020f1048 argument block differs: the original loads the data_027e00cc address into r1
-// next to the 0xb400/0x4333 test and reads a->mUnk_000 before the table pointer; ours loads it into r0 after the store.
 void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     void (*f1)(void *);
     s32 t;
@@ -57,6 +55,7 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     Unk020f41c4_A *q;
     s32 i;
     u16 *r;
+    s32 u;
 
     k = b->mUnk_00;
     t = data_0217bc48[k].mUnk_14;
@@ -87,7 +86,8 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     a->mUnk_004 = k;
     a->mUnk_170 = 0;
     a->mUnk_0e8 = data_0217bc48[k].mUnk_08 == 8 ? 0xb400 : 0x4333;
-    func_020f1048(&data_027e00cc[a->mUnk_000], a->mUnk_020, a->mUnk_014, a->mUnk_010->mUnk_74, &a->mUnk_050);
+    u = *(vs32 *) &a->mUnk_000;
+    func_020f1048(&data_027e00cc[u], a->mUnk_020, a->mUnk_014, a->mUnk_010->mUnk_74, &a->mUnk_050);
     func_020ee528(a);
     if (f1 != 0) {
         f1(a);
