@@ -111,7 +111,7 @@ u32 func_02003f50(Unk02003a6c *p0) {
         if (p != 0) {
             do {
                 n = p->mUnk_04;
-                func_020031a0(p, 3);
+                FileFinishCommand(p, 3);
                 p = n;
             } while (n != 0);
         }
@@ -242,7 +242,7 @@ void func_02003be0(Unk02003a6c *p0, u32 p1) {
     if (p0->mUnk_1c & 0x100) {
         p = p0->mUnk_24;
         p0->mUnk_1c &= ~0x100;
-        func_020031a0(p, p1);
+        FileFinishCommand(p, p1);
         p = func_02004518(p0);
         if (p != 0) {
             func_02004474(p);

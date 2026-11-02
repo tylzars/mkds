@@ -278,7 +278,7 @@ Unk02003024 *func_02004518(Unk02003a6c *p0) {
                     if (p0->mUnk_24 == p) {
                         p0->mUnk_24 = n;
                     }
-                    func_020031a0(p, 3);
+                    FileFinishCommand(p, 3);
                     if (n == 0) {
                         n = p0->mUnk_24;
                     }
@@ -341,7 +341,7 @@ void func_02004474(Unk02003024 *p0) {
         }
         p0->mUnk_0c |= 8;
         func_0200fcb4(state);
-        if (func_02003024(p0, p0->mUnk_10) == 6) {
+        if (FileDispatchCommand(p0, p0->mUnk_10) == 6) {
             return;
         }
         p0 = func_02004518(a);
@@ -351,7 +351,7 @@ void func_02004474(Unk02003024 *p0) {
 u32 func_0200442c(Unk02003024 *p0) {
     Unk02003024 *p;
 
-    func_020031a0(p0, func_02003024(p0, p0->mUnk_10));
+    FileFinishCommand(p0, FileDispatchCommand(p0, p0->mUnk_10));
     p = func_02004518(p0->mUnk_08);
     if (p != 0) {
         func_02004474(p);
@@ -374,7 +374,7 @@ u32 func_02004270(Unk02003024 *p0, u32 p1) {
     p0->mUnk_0c |= 1;
     state = func_0200fca0();
     if (a->mUnk_1c & 0x80) {
-        func_020031a0(p0, 3);
+        FileFinishCommand(p0, 3);
         func_0200fcb4(state);
         return 0;
     }

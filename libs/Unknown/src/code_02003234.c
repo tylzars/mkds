@@ -4,7 +4,7 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "Main/Unknown/code_0214d000.h"
 
-s32 func_02003b7c(const u8 *a, const u8 *b, u32 c) {
+s32 FileCompareNamesNoCase(const u8 *a, const u8 *b, u32 c) {
     u32 i;
     u32 x;
     u32 y;
@@ -25,7 +25,7 @@ s32 func_02003b7c(const u8 *a, const u8 *b, u32 c) {
     return 0;
 }
 
-void func_02003ad8(Unk02003ad8 *a, void *b, u32 c) {
+void FileReadTableBytes(Unk02003ad8 *a, void *b, u32 c) {
     Unk02003a6c *o;
     s32 r;
     u32 s;
@@ -51,16 +51,16 @@ void func_02003ad8(Unk02003ad8 *a, void *b, u32 c) {
     a->mUnk_04 += c;
 }
 
-s32 func_02003aa4(Unk02003024 *a, u32 b) {
+s32 FileEnterDirectoryById(Unk02003024 *a, u32 b) {
     a->mUnk_0c |= 4;
     a->mUnk_30.h.mUnk_00 = a->mUnk_08;
     a->mUnk_30.w.mUnk_08 = 0;
     a->mUnk_30.h.mUnk_06 = 0;
     a->mUnk_30.h.mUnk_04 = b;
-    return func_02003024(a, 2);
+    return FileDispatchCommand(a, 2);
 }
 
-s32 func_02003a6c(Unk02003024 *a) {
+s32 FileReadViaArchive(Unk02003024 *a) {
     Unk02003a6c *o;
     void *buf;
     u32 pos;
@@ -74,7 +74,7 @@ s32 func_02003a6c(Unk02003024 *a) {
     return o->mUnk_48(o, buf, pos, n);
 }
 
-s32 func_02003a34(Unk02003024 *a) {
+s32 FileWriteViaArchive(Unk02003024 *a) {
     Unk02003a6c *o;
     void *buf;
     u32 pos;
@@ -88,7 +88,7 @@ s32 func_02003a34(Unk02003024 *a) {
     return o->mUnk_4c(o, buf, pos, n);
 }
 
-s32 func_0200399c(Unk02003024 *a) {
+s32 FileReadDirTableEntry(Unk02003024 *a) {
     Unk02003a6c *o;
     Unk02003024U *q;
     Unk0200399c v;
@@ -98,7 +98,7 @@ s32 func_0200399c(Unk02003024 *a) {
     q = &a->mUnk_30;
     c.mUnk_00 = o;
     c.mUnk_04 = o->mUnk_34 + q->h.mUnk_04 * 8;
-    func_02003ad8(&c, &v, 8);
+    FileReadTableBytes(&c, &v, 8);
     a->mUnk_20 = *q;
     if (q->h.mUnk_06 == 0 && q->h.mUnk_08 == 0) {
         a->mUnk_20.h.mUnk_06 = v.mUnk_04;
@@ -108,7 +108,7 @@ s32 func_0200399c(Unk02003024 *a) {
     return 0;
 }
 
-s32 func_0200388c(Unk02003024 *a) {
+s32 FileReadDirEntry(Unk02003024 *a) {
     Unk02003670 *e;
     u8 b;
     u16 h;
@@ -117,7 +117,7 @@ s32 func_0200388c(Unk02003024 *a) {
     e = a->mUnk_30.e.mUnk_00;
     c.mUnk_00 = a->mUnk_08;
     c.mUnk_04 = a->mUnk_20.w.mUnk_08;
-    func_02003ad8(&c, &b, 1);
+    FileReadTableBytes(&c, &b, 1);
     e->mUnk_10 = b & 0x7f;
     e->mUnk_0c = (b >> 7) & 1;
     if (e->mUnk_10 == 0) {
@@ -126,11 +126,11 @@ s32 func_0200388c(Unk02003024 *a) {
     if (a->mUnk_30.w.mUnk_04 != 0) {
         c.mUnk_04 += e->mUnk_10;
     } else {
-        func_02003ad8(&c, e->mUnk_14, e->mUnk_10);
+        FileReadTableBytes(&c, e->mUnk_14, e->mUnk_10);
         e->mUnk_14[e->mUnk_10] = 0;
     }
     if (e->mUnk_0c != 0) {
-        func_02003ad8(&c, &h, 2);
+        FileReadTableBytes(&c, &h, 2);
         e->mUnk_00.h.mUnk_00 = a->mUnk_08;
         e->mUnk_00.h.mUnk_04 = h & 0xfff;
         e->mUnk_00.h.mUnk_06 = 0;
@@ -154,7 +154,7 @@ static inline int func_02003670_inline(u32 c) {
     return r;
 }
 
-s32 func_02003670(Unk02003024 *a) {
+s32 FileWalkPath(Unk02003024 *a) {
     u32 f;
     Unk02003670 e;
     const u8 *p;
@@ -165,7 +165,7 @@ s32 func_02003670(Unk02003024 *a) {
 
     f = a->mUnk_40;
     p = a->mUnk_3c;
-    func_02003024(a, 2);
+    FileDispatchCommand(a, 2);
     c = *p;
     if (c != 0) {
         do {
@@ -184,7 +184,7 @@ s32 func_02003670(Unk02003024 *a) {
                 }
                 if ((n == 2) & (p[1] == 0x2e)) {
                     if (a->mUnk_20.h.mUnk_04 != 0) {
-                        func_02003aa4(a, a->mUnk_2c);
+                        FileEnterDirectoryById(a, a->mUnk_2c);
                     }
                     p += 2;
                     goto next;
@@ -196,14 +196,14 @@ s32 func_02003670(Unk02003024 *a) {
             a->mUnk_30.e.mUnk_00 = &e;
             a->mUnk_30.w.mUnk_04 = 0;
             do {
-                if (func_02003024(a, 3) != 0) {
+                if (FileDispatchCommand(a, 3) != 0) {
                     return 1;
                 }
-            } while (d != e.mUnk_0c || n != e.mUnk_10 || func_02003b7c(p, e.mUnk_14, n) != 0);
+            } while (d != e.mUnk_0c || n != e.mUnk_10 || FileCompareNamesNoCase(p, e.mUnk_14, n) != 0);
             if (d != 0) {
                 a->mUnk_30 = e.mUnk_00;
                 p += n;
-                func_02003024(a, 2);
+                FileDispatchCommand(a, 2);
             } else {
                 if (f != 0) {
                     return 1;
@@ -224,7 +224,7 @@ s32 func_02003670(Unk02003024 *a) {
     return 0;
 }
 
-s32 func_020032b0(Unk02003024 *a) {
+s32 FileBuildPathString(Unk02003024 *a) {
     Unk02003a6c *o;
     Unk02003670 e;
     Unk02003024 c;
@@ -256,19 +256,19 @@ s32 func_020032b0(Unk02003024 *a) {
             limit = 0;
             k = 0x10000;
             do {
-                func_02003aa4(&c, i);
+                FileEnterDirectoryById(&c, i);
                 if (i == 0) {
                     limit = c.mUnk_2c;
                 }
                 c.mUnk_30.e.mUnk_00 = &e;
                 c.mUnk_30.w.mUnk_04 = 1;
-                if (func_02003024(&c, 3) == 0) {
+                if (FileDispatchCommand(&c, 3) == 0) {
                     do {
                         if (e.mUnk_0c == 0 && e.mUnk_00.w.mUnk_04 == id) {
                             k = c.mUnk_20.h.mUnk_04;
                             break;
                         }
-                    } while (func_02003024(&c, 3) == 0);
+                    } while (FileDispatchCommand(&c, 3) == 0);
                 }
                 if (k != 0x10000) {
                     break;
@@ -296,18 +296,18 @@ s32 func_020032b0(Unk02003024 *a) {
         }
         t = k;
         if (t != 0) {
-            func_02003aa4(&c, t);
+            FileEnterDirectoryById(&c, t);
             do {
-                func_02003aa4(&c, c.mUnk_2c);
+                FileEnterDirectoryById(&c, c.mUnk_2c);
                 c.mUnk_30.e.mUnk_00 = &e;
                 c.mUnk_30.w.mUnk_04 = 1;
-                if (func_02003024(&c, 3) == 0) {
+                if (FileDispatchCommand(&c, 3) == 0) {
                     do {
                         if (e.mUnk_0c != 0 && e.mUnk_00.h.mUnk_04 == t) {
                             total += e.mUnk_10 + 1;
                             break;
                         }
-                    } while (func_02003024(&c, 3) == 0);
+                    } while (FileDispatchCommand(&c, 3) == 0);
                 }
                 t = c.mUnk_20.h.mUnk_04;
             } while (t != 0);
@@ -334,16 +334,16 @@ s32 func_020032b0(Unk02003024 *a) {
     func_0214d1fc(o, buf, n);
     off += n;
     func_0214d1fc(":/", buf + off, 2);
-    func_02003aa4(&c, k);
+    FileEnterDirectoryById(&c, k);
     if (id != 0x10000) {
         c.mUnk_30.e.mUnk_00 = &e;
         c.mUnk_30.w.mUnk_04 = 0;
-        if (func_02003024(&c, 3) == 0) {
+        if (FileDispatchCommand(&c, 3) == 0) {
             do {
                 if (e.mUnk_0c == 0 && e.mUnk_00.w.mUnk_04 == id) {
                     break;
                 }
-            } while (func_02003024(&c, 3) == 0);
+            } while (FileDispatchCommand(&c, 3) == 0);
         }
         n = e.mUnk_10 + 1;
         func_0214d1fc(e.mUnk_14, buf + len - n, n);
@@ -354,12 +354,12 @@ s32 func_020032b0(Unk02003024 *a) {
     }
     if (k != 0) {
         do {
-            func_02003aa4(&c, c.mUnk_2c);
+            FileEnterDirectoryById(&c, c.mUnk_2c);
             c.mUnk_30.e.mUnk_00 = &e;
             c.mUnk_30.w.mUnk_04 = 0;
             *(buf + len - 1) = 0x2f;
             len--;
-            if (func_02003024(&c, 3) == 0) {
+            if (FileDispatchCommand(&c, 3) == 0) {
                 do {
                     if (e.mUnk_0c != 0 && e.mUnk_00.h.mUnk_04 == k) {
                         n = e.mUnk_10;
@@ -367,7 +367,7 @@ s32 func_020032b0(Unk02003024 *a) {
                         len -= n;
                         break;
                     }
-                } while (func_02003024(&c, 3) == 0);
+                } while (FileDispatchCommand(&c, 3) == 0);
             }
             k = c.mUnk_20.h.mUnk_04;
         } while (k != 0);
@@ -375,7 +375,7 @@ s32 func_020032b0(Unk02003024 *a) {
     return 0;
 }
 
-s32 func_02003234(Unk02003024 *a) {
+s32 FileOpenFromTableEntry(Unk02003024 *a) {
     Unk02003a6c *o;
     u32 n;
     u32 off;
@@ -390,9 +390,9 @@ s32 func_02003234(Unk02003024 *a) {
     }
     c.mUnk_00 = o;
     c.mUnk_04 = o->mUnk_2c + off;
-    func_02003ad8(&c, &v, 8);
+    FileReadTableBytes(&c, &v, 8);
     a->mUnk_30.w.mUnk_00 = v.mUnk_00;
     a->mUnk_30.w.mUnk_04 = v.mUnk_04;
     a->mUnk_30.w.mUnk_08 = n;
-    return func_02003024(a, 7);
+    return FileDispatchCommand(a, 7);
 }

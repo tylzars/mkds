@@ -4,11 +4,11 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "Main/Unknown/code_0214d000.h"
 
-s32 func_02003204(Unk02003024 *a) {
+s32 FileCloseReturnOk(Unk02003024 *a) {
     return 0;
 }
 
-void func_020031a0(Unk02003024 *a, s32 b) {
+void FileFinishCommand(Unk02003024 *a, s32 b) {
     u32 s;
     Unk02003024 *p;
     Unk02003024 *q;
@@ -30,7 +30,7 @@ void func_020031a0(Unk02003024 *a, s32 b) {
     func_0200fcb4(s);
 }
 
-s32 func_02003024(Unk02003024 *a, u32 b) {
+s32 FileDispatchCommand(Unk02003024 *a, u32 b) {
     s32 r;
     Unk02003a6c *p;
     u32 m;
@@ -78,7 +78,7 @@ s32 func_02003024(Unk02003024 *a, u32 b) {
         a->mUnk_14 = r;
     } else {
         p->mUnk_1c &= ~0x100;
-        func_020031a0(a, r);
+        FileFinishCommand(a, r);
     }
     return r;
 }
