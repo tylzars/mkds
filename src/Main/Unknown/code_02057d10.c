@@ -8,7 +8,7 @@
 #include "Main/Unknown/unk_02165000.h"
 
 void func_02057e8c(void *a) {
-    while (1) {
+    for (;;) {
         if (data_0217aa0c->mUnk_f8 != 0) {
             void (*f)(void) = func_02057f8c(data_0217aa0c);
             if (f == 0) {

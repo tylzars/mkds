@@ -27,9 +27,6 @@ void func_ov003_021c7050(void) {
         } while (v3 < 3);
         v4 = v4 + 3;
         v1 = v1 + 1;
-        if (4 <= v1) {
-            func_ov003_021c71a0();
-            return;
-        }
-    } while (1);
+    } while (v1 < 4);
+    func_ov003_021c71a0();
 }

@@ -247,7 +247,7 @@ void func_ov000_021ae3a4(void) {
     u32 v1;
     Unk021ae3a4 *v2;
 
-    while (1) {
+    for (;;) {
         v2 = (Unk021ae3a4 *) func_ov000_021afdcc(&v1);
         if (v1 > 0x22) {
             switch ((u16) ((v2->mUnk_0c >> 8) | (v2->mUnk_0c << 8))) {
