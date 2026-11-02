@@ -2,15 +2,15 @@
 #include "00/code_021a8000.h"
 #include "00/code_021a6fb4.h"
 #include "00/code_021a7000.h"
-#include "00/code_021a8db8.h"
-#include "00/code_021a911c.h"
+#include "00/unk_021b6000.h"
+#include "00/code_021a8aa8.h"
 #include "00/code_021ae100.h"
 #include "00/code_021ae134.h"
 #include "00/code_021ae1e4.h"
 #include "00/code_021ae258.h"
 #include "00/unk_021b4000.h"
 #include "00/unk_021b5000.h"
-#include "code_0200e904.h"
+#include "code_0200e77c.h"
 #include "00/code_021a73d8.h"
 
 s32 func_ov000_021a740c(Unk021a7064 *param_1) {

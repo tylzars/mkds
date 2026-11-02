@@ -6,14 +6,16 @@
 #include "00/code_0219e000.h"
 #include "00/code_0219f000.h"
 #include "00/code_0219f9bc.h"
-#include "00/code_0219fb14.h"
 #include "00/code_021a0000.h"
-#include "00/code_021a1000.h"
-#include "00/code_021a1488.h"
-#include "00/code_021a1754.h"
-#include "00/code_021a3264.h"
 #include "00/unk_021b5000.h"
-#include "00/code_0219bab4.h"
+#include "00/code_0219f4c4.h"
+#include "00/code_021a1000.h"
+#include "00/code_021a3000.h"
+#include "00/unk_021b4000.h"
+#include "code_0200d118.h"
+#include "00/code_021a10b0.h"
+#include "00/code_021a3264.h"
+#include "00/code_0219b8bc.h"
 
 u32 func_ov000_0219eaf4(void) {
     Unk021b566c *p;

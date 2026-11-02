@@ -1,5 +1,11 @@
-#include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020e7388.h"
+
+#include "Main/Unknown/unk_0217b000.h"
+#include "Main/Unknown/code_020e73a0.h"
+
+Vec3 *func_020e73a0(u32 arg0) {
+    return (*(Vec3 ***) data_0217b86c)[arg0];
+}
 
 u16 func_020e7388(int arg0) {
     u32 value0 = (u32) arg0;

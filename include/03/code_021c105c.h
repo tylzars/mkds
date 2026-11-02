@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021c0d2c.h"
-#include "03/code_021d34e0.h"
+#include "03/unk_021da000.h"
+#include "03/code_021c0ca8.h"
+#include "03/code_021d3488.h"
 
 // Object behind data_ov003_021da160.
 typedef struct Unk021da160 {

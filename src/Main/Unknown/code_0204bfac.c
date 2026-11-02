@@ -2,8 +2,6 @@
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_0200f000.h"
 #include "Main/Unknown/code_02006954.h"
-#include "Main/Unknown/code_02006c2c.h"
-#include "Main/Unknown/code_02006f14.h"
 #include "Main/Unknown/code_02006380.h"
 #include "Main/Unknown/code_0200692c.h"
 #include "Main/Unknown/code_0204d28c.h"

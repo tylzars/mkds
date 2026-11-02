@@ -1,7 +1,6 @@
 #include "03/code_021bb438.h"
-#include "03/code_021bbd70.h"
-#include "03/code_021bb3a4.h"
-#include "03/code_021bb3d8.h"
+#include "03/code_021bbc94.h"
+#include "03/code_021bb03c.h"
 
 void func_ov003_021bb438(Unk021bbd70 *p, const u8 *q) {
     u32 a = p->mUnk_00[0];

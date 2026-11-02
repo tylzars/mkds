@@ -3,9 +3,9 @@
 #include "types.h"
 #include "00/code_02182fdc.h"
 #include "01/code_0218550c.h"
-#include "01/code_02185bb8.h"
-#include "01/code_021978b4.h"
-#include "01/code_0219f6a0.h"
+#include "01/code_02185ef4.h"
+#include "01/code_ov001_02197b34.h"
+#include "01/code_0219f8ec.h"
 #include "Main/Unknown/code_020cc000.h"
 #include "Main/Unknown/code_020ccc9c.h"
 #include "Main/Unknown/code_02148000.h"
@@ -16,8 +16,6 @@
 #include "Main/Unknown/code_02026000.h"
 #include "Main/Unknown/code_0209b000.h"
 
-void func_ov001_02185b7c(void);
-void func_ov001_02185b64(void);
 u16 func_ov001_02185b50(Unk02185bb8 *param_1);
 void func_ov001_02185b1c(void);
 void func_ov001_02185af0(void);
@@ -40,3 +38,9 @@ void func_ov001_02185828(void);
 void func_ov001_021857ec(void);
 void func_ov001_021857c0(u32 param_1, u32 param_2);
 void func_ov001_021857a4(u32 param_1);
+
+#include "01/code_02185b64.h"
+
+#include "01/code_021956dc.h"
+
+#include "01/code_0219eab4.h"

@@ -1,9 +1,8 @@
 #pragma once
 
 #include "03/code_021be610.h"
-#include "03/code_021d2060.h"
-#include "03/code_021c20c0.h"
-#include "03/code_021c20dc.h"
+#include "03/code_021d1fd0.h"
+#include "03/code_021c209c.h"
 #include "03/code_021c4ad4.h"
 #include "03/code_021d079c.h"
 #include "types.h"
@@ -11,11 +10,11 @@
 #include "03/code_021d1d88.h"
 #include "03/code_021d1da8.h"
 #include "code_02003024.h" // Unk02003a6c
-#include "03/code_021bf31c.h"
-#include "03/code_021c25b4.h"
+#include "03/code_021bf098.h"
+#include "03/code_021c2530.h"
 #include "03/code_021c25e0.h"
-#include "03/code_021d28b0.h"
-#include "03/code_021d34e0.h"
+#include "03/code_021d27d8.h"
+#include "03/code_021d3488.h"
 
 // Object behind data_ov003_021da214.
 typedef struct Unk021da214 {

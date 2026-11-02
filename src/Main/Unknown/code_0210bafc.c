@@ -3,6 +3,29 @@
 #include "Main/Unknown/unk_0215a000.h"
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/unk_0217c000.h"
+#include "Main/Unknown/code_0210bbec.h"
+
+u32 func_0210bc00(u32 arg0, u32 arg1, void *arg2) {
+    u32 value0 = arg0;
+    u32 value1 = arg1;
+    u32 value2 = (u32) arg2;
+    u32 value3;
+    value3 = (u32) &data_0217cd30;
+    value0 = (value3) + ((value0 << 5));
+    *(u32 *) ((value0) + ((value1 << 2))) = value2;
+    return value0;
+}
+
+u32 func_0210bbec(u32 arg0, u32 arg1, void *arg2) {
+    u32 value0 = arg0;
+    u32 value1 = arg1;
+    u32 value2 = (u32) arg2;
+    u32 value3;
+    value3 = (u32) &data_0217cd30;
+    value0 = (value3) + ((value0 << 5));
+    *(u32 *) ((value0) + ((value1 << 2))) = value2;
+    return value0;
+}
 
 u32 func_0210bb74(s32 a, s32 b, s32 c) {
     s32 p;

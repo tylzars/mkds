@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h"
-#include "Main/Unknown/code_0208001c.h"
+#include "Main/Unknown/code_0207ffa4.h"
 
 // Unk0208001c followed by a halfword at 0x1c and a byte at 0x1e.
 typedef struct Unk02080d34 {

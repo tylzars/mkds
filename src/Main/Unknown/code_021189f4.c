@@ -4,9 +4,9 @@
 #include "Main/Unknown/code_021189f4.h"
 
 #include "00/code_02182fdc.h"
-#include "Main/Unknown/code_0204799c.h"
+#include "Main/Unknown/code_020472a8.h"
 #include "code_02016468.h"
-#include "Main/Unknown/code_02029520.h"
+#include "Main/Unknown/code_02029440.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02056000.h"
 #include "Main/Unknown/code_0205f000.h"

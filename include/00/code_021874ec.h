@@ -4,9 +4,10 @@
 #include "code_0200e0ec.h" // Unk0200db5c
 #include "code_02151868.h"
 #include "00/code_02185984.h"
-#include "00/code_02186634.h"
+#include "00/unk_021b1000.h"
+#include "00/code_02188008.h"
+#include "00/code_02186628.h"
 #include "00/code_02186a9c.h"
-#include "00/code_021868a4.h"
 #include "00/code_02187490.h"
 
 // Object behind data_ov000_021b4cac.

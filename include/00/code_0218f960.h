@@ -75,4 +75,13 @@ typedef struct Unk0218f960 {
     /* 00 */ Unk0218f960_00 *mUnk_00;
 } Unk0218f960;
 
+typedef struct Unk0218fa98 {
+    /* 00 */ u8 pad_00[8];
+    /* 08 */ s32 *mUnk_08;
+} Unk0218fa98;
+
 u32 func_ov000_0218f960(Unk0218f960 *p, u32 b);
+s32 func_ov000_0218fa98(void *unused, Unk0218fa98 *object, s32 minimum);
+u32 func_ov000_0218faac(Unk0218f960 *a, u32 b);
+u32 func_ov000_0218fb3c(Unk0218f960 *a, s32 b, s32 c, const u8 *d);
+u32 func_ov000_0218fbe0(Unk0218f960 *a, s32 b, s32 c, const u8 *d);

@@ -10,3 +10,4 @@ typedef struct Unk02032ac4 {
 
 void func_02032ab0(void);
 void func_02032ac4(Unk02032ac4 *a);
+void func_02032f94(void *a, s32 b, s32 c);

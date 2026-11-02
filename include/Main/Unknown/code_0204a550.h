@@ -12,3 +12,4 @@ typedef struct Unk0204a598 {
 s32 func_0204a550(void *a);
 void func_0204a598(Unk0204a598 *a);
 void func_0204a5e8(void);
+unsigned int func_0204a5f4(unsigned int p0);

@@ -1,12 +1,10 @@
 #include "00/code_0218e3c4.h"
-#include "00/code_0218e56c.h"
-#include "00/code_021a8db8.h"
-#include "00/code_021a911c.h"
+#include "00/code_0218e49c.h"
+#include "00/code_021a740c.h"
+#include "00/unk_021b6000.h"
+#include "00/code_021a7000.h"
+#include "00/code_021a8aa8.h"
 #include "00/unk_021b5000.h"
-#include "00/code_021a9018.h"
-#include "00/code_021a9088.h"
-#include "00/code_021a90a0.h"
-#include "00/code_021a9104.h"
 #include "code_0214d018.h"
 
 #pragma opt_propagation off

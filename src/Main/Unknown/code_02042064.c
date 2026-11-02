@@ -1,11 +1,82 @@
 #include "Main/Unknown/code_02042064.h"
+#include "Main/Unknown/unk_021759c0.h"
+
 #include "Main/Unknown/code_02042fd8.h"
-#include "Main/Unknown/code_020422c4.h"
 #include "Main/Unknown/code_020429c8.h"
 #include "Main/Unknown/code_020431bc.h"
-#include "Main/Unknown/code_0204236c.h"
-#include "Main/Unknown/code_020478bc.h"
+#include "Main/Unknown/code_02047000.h"
+#include "Main/Unknown/code_0205e000.h"
+#include "Main/Unknown/unk_02164000.h"
+#include "Main/Unknown/code_020472a8.h"
 #include "code_02135014.h"
+#include "Main/Unknown/code_020364e0.h"
+#include "Main/Unknown/code_02036bec.h"
+
+#pragma thumb on
+
+Unk02175620_74 *func_020423fc(u32 param_1) {
+    return &data_02175620->mUnk_74[param_1];
+}
+
+#pragma thumb off
+
+#pragma thumb on
+void func_0204236c(void) {
+    void *h;
+    Unk02175620_74 *e;
+    Unk02175620_d8 **q;
+    u16 i;
+    u16 j;
+
+    h = func_020364e0(func_020364e8());
+    i = 0;
+    for (j = 0; j < 8; j++) {
+        data_02175620->mUnk_d8[j] = 0;
+    }
+    for (i = 0; i < data_02175620->mUnk_78; i++) {
+        e = func_020423fc(i);
+        if (e->mUnk_44 == 3) {
+            q = &data_02175620->mUnk_d8[(s16) e->mUnk_3c];
+            while (*q != 0) {
+                q = &(*q)->mUnk_04;
+            }
+            *q = func_02036bec(h, 8);
+            (*q)->mUnk_00 = e;
+            (*q)->mUnk_04 = 0;
+        }
+    }
+}
+#pragma thumb off
+
+#pragma thumb on
+
+void func_02042320(void) {
+    u16 count;
+    u16 i;
+    count = 0;
+    for (i = 0; i < data_02175620->mUnk_78; i++) {
+        if (func_020423fc(i)->mUnk_44 == 4) {
+            count++;
+        }
+    }
+    data_02175620->mUnk_102 = count;
+}
+
+void func_020422c4(void) {
+    u8 count;
+    u16 i;
+    count = 0;
+    if (data_021759c0->mUnk_08 == 4) {
+        for (i = 0; i < data_02175620->mUnk_78; i++) {
+            if (func_020423fc(i)->mUnk_44 == 2) {
+                count++;
+            }
+        }
+    }
+    data_02175620->mUnk_10f = count;
+}
+
+#pragma thumb off
 
 #pragma thumb on
 s32 func_02042280(void *a, ...) {

@@ -1,11 +1,8 @@
 #include "03/code_021b8b18.h"
-#include "03/code_021b7c5c.h"
-#include "03/code_021b8af4.h"
+#include "03/code_021b7bb4.h"
 #include "03/code_021b8748.h"
-#include "03/code_021b7da0.h"
 #include "03/code_021b807c.h"
 #include "03/code_021b7efc.h"
-#include "03/code_021b7c30.h"
 
 s32 func_ov003_021b8b18(Unk021b8760 *a, u8 *b) {
     Unk021b8760 *c;

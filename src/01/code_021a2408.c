@@ -1,5 +1,5 @@
 #include "01/code_021a2408.h"
-#include "01/code_02181124.h"
+#include "01/code_02180ce8.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_020ae5e4.h"
 #include "Main/Unknown/code_021108ac.h"
@@ -11,7 +11,6 @@
 #include "01/code_021a6000.h"
 #include "Main/Unknown/code_02077000.h"
 #include "Main/Unknown/code_020ca000.h"
-#include "Main/Unknown/code_0214a000.h"
 #include "Main/Unknown/unk_0217a000.h"
 
 void func_ov001_021a2408(void) {

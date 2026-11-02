@@ -52,3 +52,5 @@ s32 func_ov001_021850b4(Unk021ca41c_085c *param_1, s32 param_2, s32 param_3, s32
 Unk021a5a58 *func_ov001_02185160(Unk021ca41c_085c *param_1, s32 param_2);
 void func_ov001_0218516c(Unk021ca41c_085c *param_1, Unk0218516c *param_2);
 Unk021ca41c_085c *func_ov001_021852f8(const char *param_1, void *param_2, void *param_3);
+
+#include "01/code_021a6430.h"

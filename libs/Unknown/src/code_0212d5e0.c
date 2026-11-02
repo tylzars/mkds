@@ -1,10 +1,46 @@
 #include "code_0212d5e0.h"
+
 #include "code_02004270.h"
 #include "code_0212da38.h"
 #include "Main/Unknown/code_02004d80.h"
 #include "Main/Unknown/code_0212d214.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0217d000.h"
+#include "code_0212d968.h"
+#include "code_02020eb0.h"
+#include "Main/Unknown/code_0201750c.h"
+#include "Main/Unknown/code_02017000.h"
+#include "code_020172d0.h"
+#include "Main/Unknown/code_02018000.h"
+#include "Main/Unknown/code_02021000.h"
+#include "Main/Unknown/code_0212da1c.h"
+#include "code_02017f24.h"
+
+u32 func_0212d9dc(Unk0212d9dc *a, void *p) {
+    func_02017538(&a->mUnk_04, 12);
+    a->mUnk_00 = p;
+    return func_0212d98c(a) != 0;
+}
+
+u32 func_0212d98c(Unk0212d9dc *a) {
+    void *p;
+
+    p = func_0201808c(a->mUnk_00, 0x14, 4);
+    if (p == 0) {
+        return 0;
+    }
+    func_0212da1c(p);
+    func_020174a4(&a->mUnk_04, p);
+    return 1;
+}
+
+void func_0212d968(void) {
+    u32 v;
+
+    v = func_02021114();
+    func_020211e4(1);
+    func_02021154(v);
+}
 
 void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, void *p, u32 flag) {
     a->mUnk_8c = 0;

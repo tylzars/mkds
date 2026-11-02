@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020b9994.h"
+
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020b837c.h"
 #include "Main/Unknown/code_020b85dc.h"
@@ -8,13 +9,23 @@
 #include "Main/Unknown/code_020a2204.h"
 #include "Main/Unknown/code_020a10d4.h"
 #include "Main/Unknown/code_020a1000.h"
-#include "01/code_02181820.h"
+#include "01/code_0218155c.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/unk_02175628.h"
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/code_0204a000.h"
 #include "code_020222ec.h"
+#include "Main/Unknown/code_020ba50c.h"
+
+u32 func_020ba50c(void) {
+    u32 value0;
+    u32 value1;
+    value0 = (u32) &data_0217b3c8;
+    value1 = 0u;
+    *(u32 *) ((value0) + (0)) = value1;
+    return value0;
+}
 
 void func_020ba3ec(void) {
     s32 v;

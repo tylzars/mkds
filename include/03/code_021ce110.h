@@ -1,10 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021cdd48.h"
 #include "03/code_021ce0f0.h"
-#include "03/code_021d34e0.h"
 #include "03/unk_021da000.h"
+#include "03/code_021cdd28.h"
+#include "03/code_021d3488.h"
 
 // Entry of the table at offset 0x1300 of the object at data_ov003_021da280.
 typedef struct Unk021ce4d4_1300 {

@@ -1,5 +1,39 @@
 #include "Main/Unknown/code_020acaa4.h"
 
+#include "Main/Unknown/code_020acacc.h"
+#include "Main/Unknown/code_020acff4.h"
+#include "Main/Unknown/code_020adaf8.h"
+#include "Main/Unknown/code_020ae428.h"
+#include "Main/Unknown/unk_0217b000.h"
+#include "Main/Unknown/code_020acb00.h"
+
+#pragma thumb on
+u32 func_020acb00(u32 arg0) {
+    u32 value0 = arg0;
+    u32 value3;
+    value3 = (u32) &func_020ad230;
+    value0 = (u32) func_020ad230(value0);
+    return value0;
+}
+#pragma thumb off
+
+#pragma thumb on
+
+void func_020acad0(void) {
+    s32 n;
+
+    n = func_020adaf8();
+    data_0217b340->mUnk_60 = func_020ae488(n);
+    if (n >= 10) {
+        func_020adad0(3, 5);
+    }
+    func_020acff4();
+}
+
+void func_020acacc(void) {}
+
+#pragma thumb off
+
 void func_020acab8(u32 p0) {
     data_021759d0->mUnk_20 = p0;
 }

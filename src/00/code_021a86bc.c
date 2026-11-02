@@ -1,6 +1,109 @@
 #include "00/code_021a86bc.h"
+#include "00/code_021a6fa8.h"
+
 #include "00/code_021a8000.h"
-#include "00/code_021a8a5c.h"
+#include "00/code_021a88a8.h"
+#include "00/code_021a6d5c.h"
+#include "00/code_021a6fb4.h"
+#include "00/code_021a7bfc.h"
+#include "00/code_021b0014.h"
+#include "00/code_021b026c.h"
+#include "00/unk_021b6000.h"
+#include "00/code_021b0240.h"
+#include "00/unk_021b5000.h"
+#include "code_0200dc3c.h"
+#include "code_0200fc8c.h"
+
+s32 func_ov000_021a8830(void) {
+    if (data_ov000_021b63b4 == 0) {
+        if ((data_ov000_021b5fa0 & 3) == 1) {
+            if (func_0200fcf8() != 0x12) {
+                func_0200dc3c(10);
+            }
+        }
+    } else if (data_ov000_021b5f9c == 0) {
+        data_ov000_021b5f9c = data_ov000_021b63b4;
+    }
+    return data_ov000_021b63b4;
+}
+
+s32 func_ov000_021a87bc(void) {
+    s32 a;
+    s32 b;
+    if (data_ov000_021b5f9c == 0) {
+        data_ov000_021b5f9c = data_ov000_021b63b4;
+    }
+    a = func_ov000_021a86e8();
+    b = -0x1a;
+    if (a == b) {
+        do {
+            func_0200dc3c(100);
+        } while (func_ov000_021a86e8() == b);
+    }
+    a = func_ov000_021a70b0();
+    if (a >= 0) {
+        func_ov000_021b026c();
+        func_ov000_021b02b0(0);
+        if (data_ov000_021b5f94->mUnk_28 == 0) {
+            data_ov000_021b5f94->mUnk_1c(data_ov000_021b5fa8.mUnk_1c);
+        }
+        data_ov000_021b5f94 = 0;
+    }
+    return a;
+}
+
+s32 func_ov000_021a8740(void) {
+    Unk021a6fa8 *a;
+    Unk021a6fa8 *b;
+    u32 c;
+    for (;;) {
+        c = func_0200fca0();
+        a = data_ov000_021b6004;
+        if (a != 0) {
+            b = data_ov000_021b5fa4;
+            do {
+                if (a != b && (a->mUnk_70 & 0x10) == 0) {
+                    break;
+                }
+                a = a->mUnk_7c;
+            } while (a != 0);
+        }
+        func_0200fcb4(c);
+        if (a == 0) {
+            break;
+        }
+        func_ov000_021a8604((s32) a);
+    }
+    if (data_ov000_021b6004 == 0 || (data_ov000_021b6004 == data_ov000_021b5fa4 && data_ov000_021b6004->mUnk_7c == 0)) {
+        if (data_ov000_021b6008 == 0) {
+            return 0;
+        }
+    }
+    return -0x1a;
+}
+
+s32 func_ov000_021a86e8(void) {
+    s32 a;
+    func_ov000_021a8740();
+    if (data_ov000_021b5fa4 != 0) {
+        a = func_ov000_021a8740();
+        if (a == 0) {
+            func_ov000_021a8604((s32) data_ov000_021b5fa4);
+            if (func_ov000_021a86bc((int) data_ov000_021b5fa4) != 0) {
+                data_ov000_021b5fa4 = 0;
+            }
+            a = -0x1a;
+        }
+        func_ov000_021a8424();
+    } else {
+        if (func_ov000_021b02bc() != 0) {
+            a = 0;
+        } else {
+            a = -0x1a;
+        }
+    }
+    return a;
+}
 
 u32 func_ov000_021a86bc(int param_1) {
     int v1;

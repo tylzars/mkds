@@ -2,12 +2,11 @@
 #include "Main/Unknown/code_02040de0.h"
 #include "Main/Unknown/code_0207b000.h"
 #include "Main/Unknown/code_0207c000.h"
-#include "Main/Unknown/code_0207c448.h"
+#include "Main/Unknown/code_0207b960.h"
 #include "Main/Unknown/code_0207d000.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_0207e000.h"
 #include "Main/Unknown/code_0207e1d4.h"
-#include "Main/Unknown/code_0207e200.h"
 #include "Main/Unknown/code_0207f000.h"
 
 void func_0208c0f0(Unk020888b4 *p, s32 a) {

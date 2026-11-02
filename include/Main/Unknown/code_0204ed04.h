@@ -1,14 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0200692c.h"
-#include "Main/Unknown/code_02006380.h"
-#include "Main/Unknown/code_02006954.h"
-#include "Main/Unknown/code_0200e000.h"
-#include "Main/Unknown/code_02050320.h"
-#include "Main/Unknown/unk_02165000.h"
-#include "Main/Unknown/unk_0217a000.h"
-#include "code_0214d018.h"
 
 typedef struct Unk0204ed04 {
     /* 00 */ u8 mUnk_00[2];
@@ -22,3 +14,5 @@ typedef struct Unk0204ed04 {
 
 void func_0204ed04(Unk0204ed04 *a);
 void func_0204ed84(void);
+u32 func_0204ee30(void);
+u32 func_0204ee4c(u32 arg0, u32 arg1);

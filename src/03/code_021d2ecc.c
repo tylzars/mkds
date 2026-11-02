@@ -1,6 +1,35 @@
 #include "03/code_021d2ecc.h"
+#include "Main/Unknown/code_0214d000.h"
+
 #include "03/code_021d2fa0.h"
 #include "03/code_021d27d8.h"
+#include "03/code_021d1000.h"
+#include "03/unk_021da000.h"
+#include "03/code_021d3488.h"
+
+void func_ov003_021d2f78(void) {
+    func_ov003_021d34c0(1, data_ov003_021da2f0->mUnk_808);
+    func_ov003_021d2808(&data_ov003_021da2f0);
+}
+
+u32 func_ov003_021d2f44(int param_1, u32 param_2) {
+    u32 v1;
+    v1 = (u32) func_ov003_021d1cd4((Unk021d1d88 *) (data_ov003_021da2f0->mUnk_800[param_1]));
+    func_0214d02c((u32 *) ((u32 *) param_2), (u32 *) ((u32 *) v1), 8);
+    return v1;
+}
+
+void func_ov003_021d2f00(u32 *a) {
+    Unk021d2fa0 *b;
+    s32 c = 0;
+
+    *a = (*a & 0xc1fffcff) | 0x200;
+    b = data_ov003_021da2f0;
+    if ((u32) a >= (u32) b + 0x400) {
+        c = 1;
+    }
+    func_ov003_021d1d0c((Unk021d1d88 *) b->mUnk_800[c], a);
+}
 
 Unk021d1770_08 *func_ov003_021d2eec(int param_1, int param_2) {
     return (Unk021d1770_08 *) (&data_ov003_021da2f0->mUnk_000[param_1][param_2 * 8]);

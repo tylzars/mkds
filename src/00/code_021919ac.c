@@ -1,8 +1,8 @@
 #include "00/code_021919ac.h"
-#include "00/code_0218ee1c.h"
+#include "00/code_0218eb9c.h"
+#include "00/unk_021b4000.h"
 #include "00/code_0218e368.h"
 #include "00/code_0218e49c.h"
-#include "00/code_0218e554.h"
 #include "00/code_0218f15c.h"
 #include "00/code_0218f960.h"
 #include "00/code_02190000.h"
@@ -15,7 +15,6 @@
 #include "code_021384dc.h"
 #include "code_0213442c.h"
 #include "code_02133048.h"
-#include "00/code_0218e80c.h"
 
 void func_ov000_021920d8(s8 *p, s32 n) {
     s32 i;

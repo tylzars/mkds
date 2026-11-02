@@ -58,4 +58,18 @@ typedef struct Unk02174e58 {
     /* 150 */ void *mUnk_150;
 } Unk02174e58;
 
+// Object whose u16 at 4 func_02030b18 and func_02030ea4 set.
+typedef struct Unk02030b18 {
+    /* 00 */ u8 mUnk_00[4];
+    /* 04 */ u16 mUnk_04;
+} Unk02030b18;
+
+#include "Main/Unknown/unk_02174000.h"
+
 void func_02030a20(void);
+void func_02030ae8(void);
+s32 func_02030b18(Unk02030b18 *a);
+s32 func_02030ea4(Unk02030b18 *a);
+void func_02031208(void);
+u32 func_02031250(void);
+u32 func_02031268(void);

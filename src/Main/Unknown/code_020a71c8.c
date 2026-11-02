@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020a71c8.h"
+
 #include "Main/Unknown/code_0209bef0.h"
 #include "Main/Unknown/code_020a10f0.h"
 #include "Main/Unknown/code_020a49d4.h"
@@ -8,6 +9,11 @@
 #include "Main/Unknown/code_020d22e0.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_021000d0.h"
+#include "Main/Unknown/code_020a737c.h"
+
+void func_020a737c(void) {
+    func_0209bfa8(&func_020a7fc4, &func_020a7f18, 0, (u32) 1, (u16) 1);
+}
 
 u32 func_020a7358(void) {
     return func_0209bef0(func_020a7eb4, func_020a79c4, func_020a7eb0);

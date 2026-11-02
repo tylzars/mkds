@@ -1,8 +1,10 @@
 #include "00/code_0219218c.h"
-#include "00/code_0218ee1c.h"
+#include "00/code_0218eb9c.h"
 #include "00/code_0218f15c.h"
 #include "00/code_0218f960.h"
-#include "00/code_02190b80.h"
+#include "00/code_02190000.h"
+#include "code_02139f70.h"
+#include "00/code_021906e4.h"
 #include "00/code_0219210c.h"
 #include "00/code_02193000.h"
 #include "00/code_02194000.h"
@@ -12,7 +14,7 @@
 #include "code_02135014.h"
 #include "code_0213a460.h"
 #include "code_02133048.h"
-#include "00/code_0218e80c.h"
+#include "00/code_0218e49c.h"
 
 u32 func_ov000_0219218c(Unk0218f960 *p, Unk021919ac_node *n, Unk021919ac_f0 *a) {
     if (p->mUnk_00->mUnk_100 == 0) {

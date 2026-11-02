@@ -2,10 +2,6 @@
 
 #include "03/code_021b7ba0.h"
 #include "03/code_021b7ba8.h"
-#include "03/code_021b7c44.h"
-#include "03/code_021b7c94.h"
-
-#include "03/code_021b94ac.h"
 
 #include "types.h"
 #include "code_0214cfe4.h"
@@ -13,7 +9,7 @@
 #include "code_0200f7a0.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "code_0200dc3c.h"
-#include "code_0200e904.h" // Unk0200eb90
+#include "code_0200e77c.h"
 
 typedef struct Unk021b94c4 {
     /* 000 */ u16 mUnk_000;
@@ -149,9 +145,7 @@ extern Unk021d8a4c data_ov003_021d8a4c;
 extern Unk021ba778Src data_ov003_021d8ac0;
 
 void func_ov000_021a6894(void);
-#include "03/code_021b7ce4.h"
 s32 func_ov003_021b7cec(s32 id, Unk021b7cec *addr, u32 length);
-#include "03/code_021b7cf8.h"
 s32 func_ov003_021b7d1c(s32 count, Unk021b7ba0 *set, void *arg2, void *arg3, Unk021b7d1c *arg4);
 s32 func_ov003_021b7d68(s32 id, void *buffer, s32 length, s32 flags, Unk021b7cec *out, s32 *outLength);
 s32 func_ov003_021b7dc8(void);
@@ -179,8 +173,7 @@ void func_ov003_021ba734(Unk021ba734 *list, Unk021ba778Src *src, s32 count);
 void func_ov003_021ba744(Unk021ba1b0 *request, Unk021ba778Src *rec);
 void func_ov003_021ba778(Unk021ba778Src *src, Unk021ba778Dst *dst);
 
-#include "03/code_021b7cac.h"
-#include "03/code_021b7d84.h"
+#include "03/code_021b7bb4.h"
 #include "03/code_021b9078.h"
-#include "03/code_021b929c.h"
+#include "03/code_021b9278.h"
 #include "03/code_021ba818.h"

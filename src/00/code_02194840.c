@@ -1,5 +1,8 @@
 #include "00/code_02194840.h"
 #include "00/code_02194874.h"
+#include "00/code_0218d000.h"
+#include "00/unk_021b2000.h"
+#include "code_0213442c.h"
 #include "00/code_0218dd8c.h"
 
 s32 func_ov000_02194840(Unk0218f960 *a, void *b, void *c) {

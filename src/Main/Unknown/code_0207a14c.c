@@ -2,7 +2,7 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/unk_021759c0.h"
-#include "01/code_021816b4.h"
+#include "01/code_0218155c.h"
 
 void func_0207a2d4(s32 a) {
     if (data_usa_021658c0 < 0 || a < data_usa_021658c0) {

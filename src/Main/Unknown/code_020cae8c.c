@@ -3,8 +3,8 @@
 #include "Main/Unknown/code_020cc000.h"
 #include "Main/Unknown/code_020ccc9c.h"
 #include "Main/Unknown/code_02029000.h"
-#include "Main/Unknown/code_02029930.h"
-#include "01/code_02195a6c.h"
+#include "Main/Unknown/code_02029890.h"
+#include "01/code_021956dc.h"
 
 #pragma thumb on
 #pragma optimize_for_size on

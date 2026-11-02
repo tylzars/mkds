@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020b3f7c.h"
-#include "Main/Unknown/code_02125000.h"
-#include "Main/Unknown/unk_02174000.h"
 
 void func_020351c8(void);
+void func_02035228(s32 a);
+void func_02035280(s32 a);
+void func_020352fc(s32 a);
+void func_02035378(void);

@@ -1,4 +1,13 @@
 #include "Main/Unknown/code_02029890.h"
+#include "Main/Unknown/unk_021759c0.h"
+
+#pragma thumb on
+
+Unk02029930 *func_02029930(void) {
+    return data_02174e1c;
+}
+
+#pragma thumb off
 
 void func_0202991c(u32 p0) {
     data_021759c0->mUnk_1e8.mUnk_14 = p0;

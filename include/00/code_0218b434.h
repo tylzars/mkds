@@ -1,6 +1,57 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_021a3000.h"
+
+unsigned int func_ov000_0218b570(unsigned int p0, unsigned int p1, unsigned int p2, unsigned int p3, unsigned int p4,
+                                 unsigned int p5, unsigned int p6);
+
+#include "00/unk_021b4000.h"
+
+// Object of 0x638 bytes func_ov000_0218b668 allocates. func_ov000_0218acb0 passes 0x20 to func_ov000_0218e53c and
+// the addresses of 0x14 and 0x08 to func_ov000_0218ae5c.
+typedef struct Unk0218b668 {
+    /* 000 */ u8 mUnk_000[0x8];
+    /* 008 */ u32 mUnk_008;
+    /* 00c */ u8 mUnk_00c[0x4];
+    /* 010 */ s32 mUnk_010;
+    /* 014 */ u32 mUnk_014;
+    /* 018 */ u8 mUnk_018[0x8];
+    /* 020 */ u32 mUnk_020;
+    /* 024 */ u8 mUnk_024[0x1c];
+    /* 040 */ s32 mUnk_040;
+    /* 044 */ u8 mUnk_044[0x8];
+    /* 04c */ Unk021b4d24 mUnk_04c;
+    /* 620 */ u32 mUnk_620;
+    /* 624 */ u32 mUnk_624;
+    /* 628 */ u32 mUnk_628;
+    /* 62c */ u16 mUnk_62c;
+    /* 62e */ u8 mUnk_62e[2];
+    /* 630 */ UnkFunc *mUnk_630;
+    /* 634 */ u32 mUnk_634;
+} Unk0218b668;
+
+Unk0218b668 *func_ov000_0218b668(u32 param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6,
+                                 s32 param_7, UnkFunc *param_8, u32 param_9);
+
+struct Unk0218b668;
+
+// Declared here until the code that defines them is decompiled.
+
+#include "00/code_0218aea4.h"
+#include "00/code_0218acb0.h"
 
 void func_ov000_0218b434(u32 arg0);
+s32 func_ov000_0218b440(const u8 *const *first, const u8 *const *second);
+u32 func_ov000_0218b44c(Unk0218afac *entry, u32 modulus);
+u32 func_ov000_0218b458(int param_1);
+void func_ov000_0218b464(void *p0, unsigned int p1, void *p2, unsigned int p3);
+u32 func_ov000_0218b474(u32 arg0);
+u32 func_ov000_0218b480(u32 arg0, u32 arg1);
+void func_ov000_0218b48c(struct Unk0218b668 *p);
+void func_ov000_0218b4a4(struct Unk0218b668 *p);
+s32 func_ov000_0218b4bc(struct Unk0218b668 *p);
+void func_ov000_0218b4d4(struct Unk0218b668 *p, s32 a);
+s32 func_ov000_0218b4f8(Unk0218b668 *a, u32 b, s32 c, u32 d);
+s32 func_ov000_0218b530(Unk0218b668 *a, u32 b, s32 c, u8 *d, s32 e);
+s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const u8 *f, u32 g, u32 h);
+void func_ov000_0218b64c(Unk0218b668 *p);

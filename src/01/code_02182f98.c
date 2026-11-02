@@ -1,4 +1,5 @@
 #include "01/code_02182f98.h"
+
 #include "01/unk_021a6000.h"
 #include "01/unk_021a7000.h"
 #include "01/unk_021a9000.h"
@@ -7,18 +8,6 @@
 #include "Main/Unknown/code_020e5000.h"
 #include "Main/Unknown/code_0210b000.h"
 #include "Main/Unknown/code_0209bef0.h"
-
-void *func_ov001_021830e8(void) {
-    return (void *) func_0209bf1c(func_ov001_021831f0, func_ov001_02183138, func_ov001_02187098);
-}
-
-void *func_ov001_021830cc(void) {
-    return (void *) func_0209bf1c(func_ov001_02183158, func_ov001_02183138, func_ov001_02187098);
-}
-
-void *func_ov001_021830b4(void) {
-    return (void *) func_0209bf48(func_ov001_02183450, func_ov001_021832cc, 0);
-}
 
 void func_ov001_021830a8(void) {
     data_ov001_021a9b94 = 0;

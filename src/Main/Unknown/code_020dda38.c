@@ -1,14 +1,27 @@
 #include "Main/Unknown/code_020dda38.h"
+
 #include "Main/Unknown/code_020dda2c.h"
 #include "Main/Unknown/code_020d2000.h"
 #include "Main/Unknown/code_020d3000.h"
 #include "Main/Unknown/code_020e5d0c.h"
 #include "Main/Unknown/code_020e6a74.h"
 #include "Main/Unknown/code_020e6b58.h"
-#include "Main/Unknown/code_020478bc.h"
+#include "Main/Unknown/code_02047000.h"
+#include "Main/Unknown/code_0205e000.h"
+#include "Main/Unknown/unk_02164000.h"
+#include "Main/Unknown/code_020472a8.h"
 #include "Main/Unknown/code_02039860.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "Main/Unknown/code_020de204.h"
+
+u32 func_020de20c(u32 p0, u32 p1, u32 p2, u32 p3) {
+    return ((u32) * (const u8 *) ((u8 *) p3 + 0));
+}
+
+u32 func_020de204(u32 p0, u32 p1, u32 p2, u32 p3) {
+    return ((u32) * (const u8 *) ((u8 *) p3 + 0));
+}
 
 const u16 data_021583d4 = 1;
 

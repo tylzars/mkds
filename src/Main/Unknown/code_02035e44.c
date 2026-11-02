@@ -1,19 +1,17 @@
 #include "Main/Unknown/code_02035e44.h"
-#include "Main/Unknown/code_02035db4.h"
-#include "Main/Unknown/code_02035e30.h"
-#include "Main/Unknown/code_02035e38.h"
+#include "Main/Unknown/code_02035d18.h"
 #include "Main/Unknown/code_02036044.h"
 #include "Main/Unknown/code_0203606c.h"
 #include "Main/Unknown/code_020360e4.h"
 #include "Main/Unknown/code_02055730.h"
 #include "Main/Unknown/code_0205905c.h"
 #include "Main/Unknown/code_02058b38.h"
-#include "Main/Unknown/code_02058f20.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/code_02058efc.h"
 #include "Main/Unknown/code_0204aa04.h"
 #include "Main/Unknown/code_0205e2cc.h"
 #include "Main/Unknown/code_02133000.h"
 #include "Main/Unknown/unk_02174000.h"
-#include "Main/Unknown/unk_0217a000.h"
 
 u32 func_02035e44(void) {
     return data_0217aa00->mUnk_0457 != 0;

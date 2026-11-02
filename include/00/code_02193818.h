@@ -3,14 +3,37 @@
 #include "types.h"
 
 #include "00/code_0218f960.h"
-#include "00/code_02193634.h"
-#include "00/code_02192e04.h"
 #include "00/code_021947e4.h"
-#include "00/code_02190988.h"
+#include "00/code_02196914.h"
+#include "00/code_021965a0.h"
+#include "00/code_021a3690.h"
+#include "00/code_02196590.h"
+#include "00/unk_021b2000.h"
+#include "code_0213442c.h"
+#include "code_02135014.h"
+#include "code_02139f70.h"
+#include "code_02134d30.h"
+#include "code_0213a460.h"
+#include "00/code_021919ac.h"
+#include "00/code_02193818.h"
+#include "00/code_021948f8.h"
+#include "00/code_0218e0fc.h"
+#include "00/code_021967b4.h"
+#include "00/code_02191200.h"
+#include "00/code_02196240.h"
+#include "00/code_02193634.h"
 #include "00/code_02190ba0.h"
+#include "00/code_02192d64.h"
+#include "00/code_0218d000.h"
+#include "00/code_021a3000.h"
+#include "00/code_0218dc44.h"
+#include "00/code_0218e368.h"
+#include "00/code_02196000.h"
+#include "00/code_02190000.h"
+#include "00/code_021906e4.h"
 #include "00/code_0218db48.h"
 #include "00/code_0218e2dc.h"
-#include "00/code_0218e4b4.h"
+#include "00/code_0218e49c.h"
 
 // Payload at 0x04 of a Unk021937c0Node whose 0x00 is 3.
 typedef struct Unk02193858 {
@@ -70,7 +93,8 @@ typedef struct Unk02193d64 {
 
 void func_ov000_02193818(Unk0218f960 *param_1, Unk021937c0Node *param_2);
 void func_ov000_02193858(Unk0218f960 *param_1, Unk021937c0Node *param_2);
-u32 func_ov000_021938cc(Unk0218f960 *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6, int param_7);
+u32 func_ov000_021938cc(Unk0218f960 *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6,
+                        int param_7);
 s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2);
 s32 func_ov000_02193b88(Unk0218f960 *param_1, Unk02193f2cNode *param_2, const u8 *param_3, s32 param_4);
 u32 func_ov000_02193c20(Unk0218f960 *param_1, Unk02193f2cNode *param_2, u32 param_3, Unk02193c20 *param_4);

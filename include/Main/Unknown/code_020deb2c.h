@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02081f10.h"
+#include "Main/Unknown/code_02081000.h"
+#include "Main/Unknown/code_02081618.h"
 #include "Main/Unknown/code_0208b000.h"
 #include "Main/Unknown/code_020d2000.h"
 #include "Main/Unknown/code_020fa000.h"

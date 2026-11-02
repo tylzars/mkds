@@ -16,10 +16,10 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_0211ff74.h"
 #include "Main/Unknown/code_0212030c.h"
-#include "Main/Unknown/code_02061fec.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/code_02061f7c.h"
 #include "Main/Unknown/code_02120610.h"
 #include "Main/Unknown/code_0214d000.h"
-#include "Main/Unknown/unk_0217a000.h"
 #include "00/code_0219bb50.h"
 #include "code_0200f5ac.h"
 

@@ -1,6 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "03/unk_021da000.h"
 
+void func_ov003_021ce4d4();
 void func_ov003_021ce834(u32 param_1);
+u32 func_ov003_021ce848(void);
+u32 func_ov003_021ce8ec(void);
+u32 func_ov003_021ce920(void (*a)(u32));

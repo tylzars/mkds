@@ -1,10 +1,11 @@
 #pragma once
 
 #include "03/code_021ca008.h"
-#include "03/code_021ca6f4.h"
+#include "03/code_021ca56c.h"
 #include "03/code_021ca54c.h"
-#include "03/code_021ca9e8.h"
-#include "03/code_021caeb8.h"
+#include "03/unk_021d6000.h"
+#include "03/unk_021d7000.h"
+#include "03/code_021ca940.h"
 
 #include "types.h"
 

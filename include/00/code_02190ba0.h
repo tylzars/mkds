@@ -5,8 +5,7 @@
 #include "00/code_021947e4.h"
 #include "00/code_02194000.h"
 #include "00/code_02196000.h"
-#include "00/code_0218e524.h"
-#include "00/code_0218e53c.h"
+#include "00/code_0218e49c.h"
 #include "00/code_02196590.h"
 #include "00/code_02196914.h"
 #include "00/code_021965a0.h"
@@ -16,7 +15,8 @@
 #include "00/unk_021b2000.h"
 #include "code_0213442c.h"
 #include "code_02134d30.h"
-#include "00/code_02193f50.h"
+#include "00/code_0218e3c4.h"
+#include "00/code_02193e70.h"
 
 // Declared here until the code that defines them is decompiled.
 

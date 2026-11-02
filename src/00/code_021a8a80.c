@@ -1,5 +1,5 @@
 #include "00/code_021a8a80.h"
-#include "00/code_021a8ab8.h"
+#include "00/code_021a8aa8.h"
 #include "00/unk_021b6000.h"
 
 u32 func_ov000_021a8a80(s32 a) {

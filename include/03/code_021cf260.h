@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "03/unk_021da000.h"
 
 // One 0x1e-byte record of Unk021cf260.
 typedef struct Unk021cf260_0e {
@@ -25,4 +24,19 @@ struct Unk021cf260 {
     /* 1b144 */ void *mUnk_1b144;
 };
 
+#include "03/unk_021da000.h"
+#include "code_02142eac.h"
+#include "03/code_021b94b8.h"
+#include "Main/Unknown/code_02009000.h"
+#include "Main/Unknown/code_0200f000.h"
+#include "code_0200fd1c.h"
+#include "Main/Unknown/unk_0216f000.h"
+#include "Main/Unknown/code_02009adc.h"
+
 void *func_ov003_021cf260(u32 index);
+u32 func_ov003_021cf284(u32 a);
+u16 func_ov003_021cf32c(u32 a);
+u16 func_ov003_021cf360(void);
+void func_ov003_021cf36c(u16 param_1);
+void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c);
+void func_ov003_021cf598(void);

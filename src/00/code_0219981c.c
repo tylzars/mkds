@@ -1,5 +1,11 @@
 #include "00/code_0219981c.h"
 #include "00/code_0218d000.h"
+#include "00/code_021a3000.h"
+#include "00/unk_021b2000.h"
+#include "code_0213442c.h"
+#include "code_02134d30.h"
+#include "00/code_021a3678.h"
+#include "00/code_021a3690.h"
 #include "00/code_0218dc44.h"
 #include "00/code_02197b34.h"
 #include "00/code_02197ddc.h"
@@ -10,8 +16,9 @@
 #include "00/code_02199a00.h"
 #include "00/code_02199a0c.h"
 #include "00/code_0219a014.h"
-#include "00/code_0218da04.h"
-#include "00/code_0218daf8.h"
+#include "code_021382a8.h"
+#include "Main/Unknown/code_02133000.h"
+#include "00/code_0218d818.h"
 #include "00/code_02198ba8.h"
 
 u32 func_ov000_021998d8(Unk02197fe8 *a, s32 b, u32 c, const u8 *d, s32 e, s32 *f) {

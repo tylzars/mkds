@@ -1,18 +1,11 @@
 #include "01/code_021899e4.h"
+
 #include "01/unk_021a6000.h"
 #include "01/unk_021a9000.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "Main/Unknown/code_020b47b4.h"
 #include "00/code_02182fdc.h"
-
-void *func_ov001_02189dbc(void) {
-    return (void *) func_0209bf1c(func_ov001_02189e2c, func_ov001_02189e0c, func_ov001_02187098);
-}
-
-void *func_ov001_02189da4(void) {
-    return (void *) func_0209bf48(func_ov001_0218a120, func_ov001_0218a074, 0);
-}
 
 #pragma thumb off
 

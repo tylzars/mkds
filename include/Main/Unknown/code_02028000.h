@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02028ec0.h"
+#include "Main/Unknown/code_02028d9c.h"
 
 // Declared here until the code that defines them is decompiled.
 u32 func_020280dc(void);

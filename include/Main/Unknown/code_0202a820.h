@@ -35,3 +35,4 @@ typedef struct Unk02174e28 {
 } Unk02174e28;
 
 void func_0202a820(void);
+void func_0202a90c(void);

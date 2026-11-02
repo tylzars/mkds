@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "03/code_021be610.h"
-#include "03/code_021d2060.h"
+#include "03/code_021d1fd0.h"
 
 // Object behind data_ov003_021da1f4 (0x5c bytes).
 typedef struct Unk021c5c68State {
@@ -28,9 +28,23 @@ typedef struct Unk021c5c68State {
     /* 58 */ u8 mUnk_58;
     /* 59 */ u8 mUnk_59;
 } Unk021c5c68State;
-#include "03/code_021c5000.h"
-#include "03/code_021d1000.h"
-#include "03/unk_021da000.h"
-#include "Main/Unknown/code_02147000.h"
+
+#include "03/types_021d299c.h"
+
+extern Unk021d299c data_ov003_021d6390[];
 
 void func_ov003_021c5c68(void);
+void func_ov003_021c5cdc(void);
+void func_ov003_021c5e54(void);
+void func_ov003_021c5ea4(void);
+void func_ov003_021c5ec4(void);
+void func_ov003_021c5f9c(void);
+void func_ov003_021c6184(void);
+void func_ov003_021c6358(void);
+void func_ov003_021c6370(void);
+void func_ov003_021c6394(void);
+void func_ov003_021c63c4(void);
+void func_ov003_021c6e38(void);
+void func_ov003_021ca8e8(void);
+// Declared here until the code that defines them is decompiled.
+void func_ov003_021cce78(void);

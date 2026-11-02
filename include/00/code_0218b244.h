@@ -1,7 +1,0 @@
-#pragma once
-
-#include "types.h"
-
-u32 func_ov000_0218b244(int param_1);
-u32 func_ov000_0218b248(int param_1);
-u16 func_ov000_0218b25c(int param_1);

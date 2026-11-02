@@ -279,29 +279,6 @@ typedef struct Unk0217b034 {
 
 extern Unk0217b034 *data_0217b034;
 extern u32 data_0217b0d8;
-extern void *data_0217b118;
-extern void *data_0217b11c;
-extern void *data_0217b120;
-extern void *data_0217b124;
-extern void *data_0217b128;
-extern void *data_0217b12c;
-extern void *data_0217b130;
-extern void *data_0217b134;
-extern void *data_0217b138;
-extern void *data_0217b13c;
-extern void *data_0217b140;
-extern void *data_0217b144;
-extern void *data_0217b148;
-extern void *data_0217b14c;
-extern void *data_0217b150;
-extern void *data_0217b154;
-extern void *data_0217b158;
-extern void *data_0217b15c;
-extern void *data_0217b160;
-extern void *data_0217b164;
-extern void *data_0217b168;
-extern void *data_0217b16c;
-extern void *data_0217b170;
 extern void *data_0217b1a4;
 // 0x70-byte entries of Unk0217b1fc, one per index 0 to 7.
 typedef struct Unk0217b1fc_000 {

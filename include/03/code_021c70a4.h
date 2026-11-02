@@ -1,17 +1,18 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021bf43c.h"
-#include "03/code_021c20dc.h"
-#include "03/code_021c2120.h"
-#include "03/code_021c6ba0.h"
-#include "03/code_021cdc10.h"
-#include "03/code_021cef6c.h"
-#include "03/code_021cef80.h"
-#include "03/code_021ce000.h"
+#include "03/code_021bf4dc.h"
 #include "03/code_021d1fd0.h"
-#include "03/code_021d2060.h"
+#include "03/unk_021d5000.h"
 #include "03/unk_021da000.h"
+#include "03/code_021bf410.h"
+#include "03/code_021c209c.h"
+#include "03/code_021c0ca8.h"
+#include "code_0212df7c.h"
+#include "03/code_021cdbd0.h"
+#include "03/code_021c6a18.h"
+#include "03/code_021cef6c.h"
+#include "03/code_021ce000.h"
 
 // Object behind data_ov003_021da1fc.
 typedef struct Unk021da1fc {

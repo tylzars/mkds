@@ -1,11 +1,37 @@
 #pragma once
 
 #include "types.h"
-#include "code_0200dc3c.h"
+
+extern void (*data_ov000_021b6384)(void);
+
+// Thread entry functions (not lifted yet).
+
 #include "code_0200e0ec.h" // Unk0200db5c
-#include "00/code_021af550.h"
-#include "00/code_021b02bc.h"
-#include "00/code_021b04d4.h"
+
+// Object linked from Unk0200db5c.mUnk_a4.
+typedef struct Unk021b04f8 {
+    /* 00 */ Unk0200db5c *mUnk_00;
+    /* 04 */ u32 mUnk_04;
+    /* 08 */ u8 mUnk_08;
+} Unk021b04f8;
+
+#include "00/unk_021b6380.h"
+#include "00/unk_021b5000.h"
+
+extern u32 data_ov000_021b637c;
+extern u32 data_ov000_021b638c;
+extern u32 data_ov000_021b6390;
+extern u32 data_ov000_021b63b0;
+extern u32 data_ov000_021b63bc;
+extern Unk021b69dc data_ov000_021b69dc[8];
+extern u8 data_ov000_021b73a0[];
 
 void func_ov000_021b0240(s32 param_1);
 void func_ov000_021b026c(void);
+void func_ov000_021b02b0(UnkFunc *arg0);
+s32 func_ov000_021b02bc(void);
+void func_ov000_021b02fc(Unk021b5fa8 *param_1);
+s32 func_ov000_021b04cc(void);
+void func_ov000_021b04d0(void);
+void func_ov000_021b04d4(void);
+void func_ov000_021b04f8(u32 a);

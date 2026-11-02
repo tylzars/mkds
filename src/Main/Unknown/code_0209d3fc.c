@@ -1,10 +1,48 @@
 #include "Main/Unknown/code_0209d3fc.h"
+
 #include "ITCM/code_01ff9000.h"
-#include "Main/Unknown/code_02061808.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/code_02061654.h"
 #include "Main/Unknown/code_020e6b58.h"
 #include "Main/Unknown/code_0209b000.h"
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "Main/Unknown/code_0209d5e8.h"
+#include "Main/Unknown/code_0209d5ec.h"
+#include "Main/Unknown/code_020d3b10.h"
+#include "Main/Unknown/code_0209bf70.h"
+#include "Main/Unknown/code_0209d650.h"
+
+void func_0209d650(u32 arg0) {
+    u32 value0 = arg0;
+    u32 value1;
+    u32 value2;
+    u32 value4;
+    value4 = value0;
+    value1 = (u32) * (const u32 *) ((value4) + (156));
+    value0 = (value4) + (0xb8u);
+    value2 = 0u;
+    func_020d7da8((Unk020e0144 *) value0, (Unk020fa294 *) value1, (s32) value2);
+    value0 = 0x1aeu;
+    value2 = value4;
+    value1 = 0x1eu;
+    func_020ac588(value0, (int) value1, (void *) value2);
+    value0 = 0u;
+    *(u32 *) ((value4) + (16)) = value0;
+    *(u32 *) ((value4) + (20)) = value0;
+    *(u32 *) ((value4) + (24)) = value0;
+}
+
+void func_0209d5ec(void *a) {
+    data_usa_0217b16c = func_0209be84(a, data_usa_02167388);
+    func_0209be50(data_usa_0217b16c, data_usa_02167394);
+    data_usa_0217b168 = func_0209be84(a, data_usa_021673a0);
+    func_0209b940(data_usa_0217b16c, func_020d3c2c());
+}
+
+u32 func_0209d5e8(u32 p0) {
+    return p0;
+}
 
 void func_0209d3fc(void *a, Unk0209d3fc *b) {
     s32 s;

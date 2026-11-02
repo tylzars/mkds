@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "03/code_021b94b8.h"
-#include "03/code_021b8758.h"
+#include "03/code_021b8748.h"
 
 typedef struct Unk021b8c8c {
     /* 00 */ u8 pad_00[6];

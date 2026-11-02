@@ -1,3 +1,181 @@
+#include "code_0213442c.h"
+
+#pragma avoid_byte all
+
+#include "code_02134b18.h"
+#include "code_02139f70.h"
+
+int func_02134d08(u16 *dst, const u8 *src, u32 n) {
+    return data_0216eccc.mUnk_08->mUnk_00(dst, src, n);
+}
+
+int func_02134ccc(u16 *dst, const u8 *src, u32 n) {
+    if (src == 0) {
+        return 0;
+    }
+    if (n == 0) {
+        return -1;
+    }
+    if (dst != 0) {
+        *dst = *src;
+    }
+    if (*src == 0) {
+        return 0;
+    }
+    return 1;
+}
+
+int func_02134c94(u8 *dst, u16 c) {
+    if (dst == 0) {
+        return 0;
+    }
+    *dst = c;
+    return 1;
+}
+
+int func_02134c6c(u8 *dst, u16 c) {
+    return data_0216eccc.mUnk_08->mUnk_04(dst, c);
+}
+
+int func_02134bd4(u16 *dst, const u8 *src, u32 n) {
+    u32 i;
+    int len;
+    int r;
+
+    len = func_0213a434(src);
+    if (dst != 0) {
+        for (i = 0; i < n; i++) {
+            if (*src != 0) {
+                r = func_02134d08(dst, src, len);
+                dst++;
+                if (r > 0) {
+                    src += r;
+                    len -= r;
+                } else {
+                    return -1;
+                }
+            } else {
+                *dst = 0;
+                break;
+            }
+        }
+    } else {
+        i = 0;
+    }
+    return i;
+}
+
+int func_02134b18(u8 *dst, const u16 *src, u32 n) {
+    u32 len;
+    u32 i = 0;
+    u8 buf[4];
+    u8 *p;
+
+    if (dst == 0 || src == 0) {
+        return 0;
+    }
+    p = buf;
+    while (1) {
+        if (*src == 0) {
+            dst[i] = 0;
+            break;
+        }
+        len = func_02134c6c(p, *src++);
+        if (i + len > n) {
+            break;
+        }
+        func_0213a228(dst + i, p, len);
+        i += len;
+        if (i > n) {
+            break;
+        }
+    }
+    return i;
+}
+
+#pragma avoid_byte all
+
+#include "code_02134890.h"
+#include "code_02134398.h"
+#include "code_0213ee6c.h"
+#include "Main/Unknown/unk_0216e000.h"
+#include "Main/Unknown/unk_0216f000.h"
+#include "Main/Unknown/unk_0217e000.h"
+
+double func_02134ae8(double a, int n) {
+    int e;
+
+    a = func_021400ec(a, &e);
+    e += n;
+    return func_021401ac(a, e);
+}
+
+int func_021349c4(Unk0213c94c *a) {
+    if (a == 0) {
+        return func_021343b0();
+    }
+    if (a->mUnk_0d != 0 || a->mUnk_04_7 == 0) {
+        return -1;
+    }
+    if (a->mUnk_04_2 == 1) {
+        return 0;
+    }
+    if (a->mUnk_08_0 >= 3) {
+        a->mUnk_08_0 = 2;
+    }
+    if (a->mUnk_08_0 == 2) {
+        a->mUnk_28 = 0;
+    }
+    if (a->mUnk_08_0 != 1) {
+        a->mUnk_08_0 = 0;
+        return 0;
+    }
+    if (func_0213446c(a, 0) != 0) {
+        a->mUnk_0d = 1;
+        a->mUnk_28 = 0;
+        return -1;
+    }
+    a->mUnk_08_0 = 0;
+    a->mUnk_18 = 0;
+    a->mUnk_28 = 0;
+    return 0;
+}
+
+u32 func_02134890(const u8 *a, u32 b, u32 c, Unk0213c94c *d) {
+    int i;
+    u8 *p;
+    u32 r;
+
+    if (d == &data_0216eb7c[1]) {
+        i = 3;
+    } else if (d == &data_0216eb7c[2]) {
+        i = 4;
+    } else {
+        i = 5;
+    }
+    p = data_0217eadc[i];
+    if (func_0200ec08(p) == 0) {
+        data_0217ea94[i] = data_0216ff5c.mUnk_08->mUnk_6c;
+        data_0217eab8[i] = 1;
+    } else {
+        u32 v;
+
+        v = data_0217ea94[i];
+        if (v == data_0216ff5c.mUnk_08->mUnk_6c) {
+            data_0217eab8[i]++;
+        } else {
+            func_0200ed34(p);
+            data_0217ea94[i] = data_0216ff5c.mUnk_08->mUnk_6c;
+            data_0217eab8[i] = 1;
+        }
+    }
+    r = func_02134540(a, b, c, d);
+    if (--data_0217eab8[i] == 0) {
+        func_0200ecc4(p);
+    }
+    return r;
+}
+
 #pragma avoid_byte all
 
 #include "code_0213442c.h"
@@ -5,6 +183,7 @@
 #include "code_02134d30.h"
 #include "code_02135014.h"
 #include "code_0213c94c.h"
+#include "code_0200e77c.h"
 
 u32 func_02134540(const u8 *a, u32 b, u32 c, Unk0213c94c *d) {
     u32 n;

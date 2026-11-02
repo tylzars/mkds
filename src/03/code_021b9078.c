@@ -1,9 +1,4 @@
 #include "03/code_021b9078.h"
-#include "03/code_021b7c30.h"
-#include "03/code_021b7c44.h"
-#include "03/code_021b7c94.h"
-#include "03/code_021b7d84.h"
-#include "03/code_021b7da0.h"
 #include "03/code_021b7bb4.h"
 
 typedef struct Unk021b9078 {

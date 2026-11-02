@@ -1,20 +1,41 @@
 #include "Main/Unknown/code_020b33d8.h"
+
 #include "Main/Unknown/code_0203c000.h"
 #include "Main/Unknown/code_02061000.h"
 #include "Main/Unknown/code_02054000.h"
 #include "Main/Unknown/code_02089000.h"
-#include "Main/Unknown/code_020617d8.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/code_02061654.h"
 #include "Main/Unknown/code_02105ec0.h"
 #include "Main/Unknown/code_02108ea0.h"
 #include "Main/Unknown/code_0210dc7c.h"
 #include "Main/Unknown/code_020d3c7c.h"
-#include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_020b1de4.h"
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_0212c6ac.h"
 #include "code_0212df7c.h"
+#include "Main/Unknown/code_020b36c8.h"
+#include "Main/Unknown/code_020b36dc.h"
+#include "Main/Unknown/code_020364e0.h"
+#include "Main/Unknown/code_02036bec.h"
+
+void func_020b36dc(void) {
+    data_0217b358 = func_02036bec(func_020364e0(func_020364e8()), 0xc);
+    data_0217b358->mUnk_00 = 0;
+    data_0217b358->mUnk_04 = 0;
+    data_0217b358->mUnk_08 = 0;
+}
+
+u32 func_020b36c8(void) {
+    u32 value0;
+    u32 value1;
+    value0 = (u32) &data_0217b358;
+    value1 = 0u;
+    *(u32 *) ((value0) + (0)) = value1;
+    return value0;
+}
 
 void func_020b36a4(void) {
     data_0217b358->mUnk_00 = 0;

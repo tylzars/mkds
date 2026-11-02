@@ -3,12 +3,14 @@
 #include "types.h"
 #include "code_0200e0ec.h" // Unk0200db5c, Unk0200edc0
 #include "code_0200fd1c.h" // Unk0200fddc
-#include "00/code_021868a4.h"
-#include "00/code_021868d0.h"
 #include "00/unk_021b1000.h"
+#include "00/code_02186628.h"
 #include "code_02151868.h"
 #include "code_021519d4.h"
-#include "00/code_02187274.h"
+#include "00/code_02186a9c.h"
+#include "00/code_021acef8.h"
+#include "00/code_021adbac.h"
+#include "00/code_02186d04.h"
 #include "00/code_021a6abc.h"
 #include "00/code_0218a67c.h"
 

@@ -3,8 +3,9 @@
 #include "00/code_0218ab18.h"
 #include "00/code_0218aea4.h"
 #include "00/code_0218e3c4.h"
-#include "00/code_021a4868.h"
-#include "00/code_0218e644.h"
+#include "00/code_021a39d8.h"
+#include "00/code_021a4784.h"
+#include "00/code_0218e49c.h"
 #include "00/code_0218e8c4.h"
 
 void func_ov000_0218aa14(Unk0218a9bc *p, s32 q) {

@@ -6,8 +6,8 @@
 #include "ITCM/code_01ffd000.h"
 #include "ITCM/code_01ffdee4.h"
 #include "Main/Unknown/code_020364e0.h"
-#include "Main/Unknown/code_02061fec.h"
-#include "Main/Unknown/code_02062eb0.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/code_02061f7c.h"
 #include "Main/Unknown/code_02064000.h"
 #include "Main/Unknown/code_020641b8.h"
 #include "Main/Unknown/code_020646c0.h"
@@ -15,12 +15,11 @@
 #include "Main/Unknown/code_02066000.h"
 #include "Main/Unknown/code_02068000.h"
 #include "Main/Unknown/code_02070398.h"
-#include "Main/Unknown/code_02070f8c.h"
 #include "Main/Unknown/code_02071000.h"
 #include "Main/Unknown/code_02079bcc.h"
 #include "Main/Unknown/code_020ed5c0.h"
 #include "Main/Unknown/code_0207b000.h"
-#include "Main/Unknown/code_020839d8.h"
+#include "Main/Unknown/code_02081618.h"
 #include "Main/Unknown/code_0208ab98.h"
 #include "Main/Unknown/code_0208c188.h"
 #include "code_02147cd8.h"
@@ -28,7 +27,7 @@
 #include "Main/Unknown/unk_02154000.h"
 #include "Main/Unknown/code_02063b70.h"
 #include "Main/Unknown/code_02062ed8.h"
-#include "Main/Unknown/code_02071e28.h"
+#include "Main/Unknown/code_02071ddc.h"
 
 void func_020649ec(Unk0206bcb0 *a, void (**b)(Unk0206bcb0 *)) {
     u32 c;

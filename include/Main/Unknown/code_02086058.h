@@ -1,8 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02155000.h"
-#include "Main/Unknown/unk_0217a000.h"
 
 u16 *func_02086058(void);
 u16 func_0208606c(int param_1);
+int func_02086080(int arg0);

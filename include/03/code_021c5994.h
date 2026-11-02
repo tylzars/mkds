@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021d2060.h"
+#include "03/code_021d1fd0.h"
 
 // Declared here until the code that defines them is decompiled.
 void func_ov003_021d2094(void *param_1, s32 param_2, u32 param_3, u32 param_4, s32 param_5, u16 *param_6, s32 param_7);

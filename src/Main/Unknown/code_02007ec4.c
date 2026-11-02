@@ -2,7 +2,8 @@
 #include "Main/Unknown/code_0200b00c.h"
 #include "Main/Unknown/code_0200b018.h"
 #include "Main/Unknown/code_0200b02c.h"
-#include "Main/Unknown/code_02009958.h"
+#include "Main/Unknown/unk_0216f000.h"
+#include "Main/Unknown/code_02009928.h"
 #include "Main/Unknown/code_020091fc.h"
 
 #pragma thumb on

@@ -13,12 +13,10 @@
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020391d4.h"
-#include "Main/Unknown/code_0204799c.h"
-#include "Main/Unknown/code_020b4000.h"
+#include "Main/Unknown/code_020472a8.h"
 #include "Main/Unknown/code_020ae4c0.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "01/code_02181268.h"
-#include "01/code_02181124.h"
+#include "01/code_02180ce8.h"
 #include "03/code_021b94b8.h"
 
 void func_ov001_021a5140(void) {

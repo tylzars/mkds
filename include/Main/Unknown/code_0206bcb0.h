@@ -3,7 +3,8 @@
 #include "Main/Unknown/code_02074854.h"
 #include "Main/Unknown/code_0207a104.h"
 #include "Main/Unknown/code_02055730.h"
-#include "Main/Unknown/code_02086080.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/code_02086058.h"
 #include "Main/Unknown/code_0210a578.h"
 
 #include "types.h"

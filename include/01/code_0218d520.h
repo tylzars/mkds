@@ -32,3 +32,5 @@ void func_ov001_0218dabc(Unk02188950 *param_1);
 void func_ov001_0218dadc(Unk02188950 *param_1);
 void func_ov001_0218dba8(Unk02188950 *param_1);
 void func_ov001_0218dc20(Unk02188950 *param_1);
+
+#include "01/code_0219b540.h"

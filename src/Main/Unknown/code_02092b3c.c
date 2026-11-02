@@ -1,7 +1,10 @@
 #include "Main/Unknown/code_02092b3c.h"
+#include "Main/Unknown/code_020ac000.h"
+
 #include "Main/Unknown/code_0209219c.h"
 #include "Main/Unknown/code_02046000.h"
-#include "Main/Unknown/code_02061808.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/code_02061654.h"
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_0209bef0.h"
@@ -11,6 +14,18 @@
 #include "code_02147cd8.h"
 #include "code_02148538.h"
 #include "Main/Unknown/code_02045874.h"
+
+void func_02093190(u32 arg0) {
+    u32 value0 = arg0;
+    u32 value1;
+    u32 value2;
+    u32 value12;
+    value12 = (u32) &func_020ac588;
+    value2 = value0;
+    value0 = 0x19fu;
+    value1 = 8u;
+    func_020ac588(value0, (int) value1, (void *) value2);
+}
 
 static inline u32 func_02092b5c_inline(u32 n) {
     Unk020f41c4_B *b;

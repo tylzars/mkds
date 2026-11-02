@@ -1,6 +1,5 @@
 #include "03/code_021b7efc.h"
-#include "03/code_021b7e58.h"
-#include "03/code_021b7ed0.h"
+#include "03/code_021b7bb4.h"
 #include "03/code_021b94b8.h"
 
 void func_ov003_021b7efc(s32 a, s8 *b, s32 c, const s8 *d, s32 e) {

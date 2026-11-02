@@ -2,7 +2,7 @@
 #include "03/code_021bf8c0.h"
 #include "03/code_021c0a24.h"
 #include "03/code_021d1770.h"
-#include "03/code_021d34e0.h"
+#include "03/code_021d3488.h"
 #include "03/unk_021d5f00.h"
 #include "03/unk_021da000.h"
 

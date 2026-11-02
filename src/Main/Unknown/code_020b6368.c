@@ -3,8 +3,9 @@
 #include "Main/Unknown/code_020b4dc4.h"
 #include "Main/Unknown/code_020b4e5c.h"
 #include "Main/Unknown/code_020b502c.h"
-#include "Main/Unknown/code_02061808.h"
-#include "Main/Unknown/code_02074874.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/code_02061654.h"
+#include "Main/Unknown/code_02074854.h"
 #include "Main/Unknown/code_02102674.h"
 #include "code_02148538.h"
 

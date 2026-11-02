@@ -6,7 +6,6 @@
 #include "code_0200e0ec.h" // Unk0200db5c, Unk0200dce0
 #include "00/code_021b0014.h"
 #include "00/code_021afe5c.h"
-#include "00/code_021afe84.h"
 
 // Frame built by func_ov000_021afc5c.
 typedef struct Unk021afc5c {

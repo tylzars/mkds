@@ -1,65 +1,20 @@
 #include "03/code_021c2b28.h"
-#include "03/code_021d1c3c.h"
-#include "03/code_021bf2d0.h"
+
+#include "03/unk_021da000.h"
+#include "03/code_021d1c18.h"
 #include "03/code_021bf410.h"
-#include "03/code_021bf4d0.h"
-#include "03/code_021bf620.h"
+#include "03/code_021bf4dc.h"
 #include "03/code_021bf698.h"
-#include "03/code_021bf7f4.h"
 #include "03/code_021c209c.h"
-#include "03/code_021c20c0.h"
-#include "03/code_021c20d0.h"
-#include "03/code_021c2120.h"
-#include "03/code_021c250c.h"
-#include "03/code_021c2564.h"
-#include "03/code_021c25b4.h"
+#include "03/code_021c2530.h"
 #include "03/code_021c2afc.h"
-#include "03/code_021c3cc4.h"
 #include "03/code_021cb000.h"
-#include "03/code_021cdb90.h"
-#include "03/code_021cdc10.h"
+#include "Main/Unknown/code_0202041c.h"
+#include "Main/Unknown/code_02151718.h"
+#include "03/code_021cd4ac.h"
 #include "03/code_021d1000.h"
-#include "03/code_021d1f70.h"
 #include "03/code_021d254c.h"
-#include "03/code_021bf43c.h"
 #include "code_0214b824.h"
-
-void func_ov003_021c2d18(void) {
-    if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
-        func_ov003_021bf698();
-        func_ov003_021bf410();
-        func_ov003_021d1490(data_ov003_021da1a4);
-        func_ov003_021d272c(1, 1);
-        func_ov003_021d272c(0, 0x14);
-        switch (data_ov003_021da1a0) {
-            case 0:
-                func_ov003_021c2120(1, 0);
-                func_ov003_021c212c(func_ov003_021cb294);
-                break;
-            case 1:
-                func_ov003_021c2120(0, 0);
-                func_ov003_021c212c(func_ov003_021c3dd4);
-                break;
-        }
-    }
-}
-
-void func_ov003_021c2cc8(s32 a) {
-    if (a != 1 && a != 3) {
-        data_ov003_021da1a0 ^= 1;
-        func_ov003_021cdc10(8);
-        func_ov003_021bf6c8(data_ov003_021d6328[data_ov003_021da1a0 * 4], data_ov003_021d632c[data_ov003_021da1a0 * 4],
-                            data_ov003_021d632a[data_ov003_021da1a0 * 4], data_ov003_021d632e[data_ov003_021da1a0 * 4]);
-    }
-}
-
-void func_ov003_021c2c94(void) {
-    Unk021d6fd0 a;
-    u8 b;
-    a = data_ov003_021d6fd0;
-    b = a.mUnk_00[data_ov003_021da1a0];
-    func_ov003_021cc948(data_ov003_021da1a4, b, b);
-}
 
 void func_ov003_021c2b28(void) {
     func_ov003_021cdb90();

@@ -1,5 +1,5 @@
 #include "Main/Unknown/code_02025e34.h"
-#include "Main/Unknown/code_02029930.h"
+#include "Main/Unknown/code_02029890.h"
 
 #pragma thumb on
 s32 func_02025e60(s32 a) {

@@ -12,7 +12,7 @@
 #include "Main/Unknown/code_020c5db0.h"
 #include "Main/Unknown/code_020c7000.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "01/code_02195a6c.h"
+#include "01/code_021956dc.h"
 
 #pragma optimize_for_size on
 s32 func_020b2c24(void) {

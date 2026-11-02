@@ -6,7 +6,7 @@
 #include "code_0212c7a0.h" // Unk0212c7a0
 #include "code_0212c7f0.h" // Unk0212c8a4
 #include "code_0212c9d4.h" // Unk0212ccd4, Unk0212c9d4
-#include "code_0200e904.h" // Unk0200eb90
+#include "code_0200e77c.h"
 #include "code_0201ea58.h" // Unk0201ea30
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c
 #include "code_0212da38.h" // Unk02017328, Unk0212d9dc

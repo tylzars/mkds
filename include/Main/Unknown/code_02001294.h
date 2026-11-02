@@ -4,12 +4,12 @@
 #include "Main/Unknown/code_02001000.h"
 #include "Main/Unknown/code_02056d54.h"
 #include "Main/Unknown/code_021059e0.h"
-#include "Main/Unknown/code_0204799c.h"
+#include "Main/Unknown/code_020472a8.h"
 #include "Main/Unknown/code_02125ebc.h"
 #include "Main/Unknown/code_02125f6c.h"
 #include "Main/Unknown/code_02126248.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "01/code_02195a6c.h"
+#include "01/code_021956dc.h"
 
 extern const char data_usa_ov001_021a7680[];
 

@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "00/code_0219de4c.h"
-#include "00/code_0218ebe8.h"
+#include "00/code_0218eb9c.h"
 #include "00/code_0219e4e8.h"
 
 // Declared here until the code that defines them is decompiled.

@@ -1,6 +1,18 @@
 #include "Main/Unknown/code_0202a820.h"
+#include "Main/Unknown/code_02036000.h"
+
 #include "Main/Unknown/code_02025ebc.h"
 #include "code_02148950.h"
+
+#pragma thumb on
+
+void func_0202a90c(void) {
+    func_02036ab0((void *) (data_02174e28->mUnk_090));
+    *(int *) &data_02174e28 = 0;
+    return;
+}
+
+#pragma thumb off
 
 #pragma thumb on
 

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_021868d0.h"
 #include "00/unk_021b1000.h"
+#include "00/code_02186628.h"
 #include "00/code_02188008.h"
 
 // Declared here until the code that defines them is decompiled.

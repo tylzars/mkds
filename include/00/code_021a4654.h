@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0218e57c.h"
+#include "00/code_0218e49c.h"
 
 // Output buffer the string writers append to: bytes at mUnk_000, used length at mUnk_800.
 typedef struct Unk021a471c {

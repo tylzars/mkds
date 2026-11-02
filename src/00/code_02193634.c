@@ -1,9 +1,55 @@
 #include "00/code_02193634.h"
-#include "00/code_02192e04.h"
-#include "00/code_02196000.h"
+#include "00/code_021947e4.h"
+#include "00/code_02196914.h"
+#include "00/code_021965a0.h"
+#include "00/code_021a3690.h"
+#include "00/code_02196590.h"
 #include "00/unk_021b2000.h"
-#include "00/unk_021b3000.h"
 #include "code_0213442c.h"
+#include "code_02135014.h"
+#include "code_02139f70.h"
+#include "code_02134d30.h"
+#include "code_0213a460.h"
+#include "00/code_021919ac.h"
+#include "00/code_02193818.h"
+#include "00/code_021948f8.h"
+#include "00/code_0218e0fc.h"
+#include "00/code_021967b4.h"
+#include "00/code_02191200.h"
+#include "00/code_02196240.h"
+
+#include "00/code_02190ba0.h"
+#include "00/code_02192d64.h"
+#include "00/code_02196000.h"
+#include "00/unk_021b3000.h"
+
+s32 func_ov000_021937e8(Unk0218f960 *object, Unk021937c0Node **output, u32 key) {
+    Unk021937c0Node *node = object->mUnk_00->mUnk_424;
+    while (node != 0) {
+        if (node->mUnk_18 == key) {
+            if (output != 0) {
+                *output = node;
+            }
+            return 1;
+        }
+        node = node->mNext;
+    }
+    if (output != 0) {
+        *output = 0;
+    }
+    return 0;
+}
+
+s32 func_ov000_021937c0(Unk0218f960 *object) {
+    Unk021937c0Node *node = object->mUnk_00->mUnk_424;
+    while (node != 0) {
+        if (node->mUnk_08 != 0 && node->mUnk_00 != 3) {
+            return 1;
+        }
+        node = node->mNext;
+    }
+    return 0;
+}
 
 s32 func_ov000_02193748(Unk0218f960 *param_1, Unk021937c0Node *param_2, const u8 *param_3) {
     s32 a = 0;

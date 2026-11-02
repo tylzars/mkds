@@ -1,10 +1,67 @@
 #include "00/code_0218d818.h"
-#include "00/code_0218d000.h"
-#include "00/code_0218dc44.h"
-#include "00/code_0218da04.h"
+#include "code_02134d30.h"
 #include "00/unk_021b2000.h"
 #include "code_0213442c.h"
+#include "00/code_021a3678.h"
+#include "00/code_021a3690.h"
+#include "00/code_0218d000.h"
+#include "00/code_021a3000.h"
+#include "00/code_0218dc44.h"
+#include "Main/Unknown/code_02133000.h"
+
 #include "code_021382a8.h"
+
+void func_ov000_0218daf8(u32 *param_1, u32 param_2, int param_3) {
+    int v1;
+    u32 v2;
+    u8 v3[8];
+    if (param_3 == 0) {
+        func_0213442c(data_ov000_021b2308, data_ov000_021b22dc, 0, 0xb7);
+    }
+    v1 = (int) func_ov000_0218d818((void *) param_2, (u8 *) param_1[5], *param_1, param_1[2], (UnkCompare *) param_3,
+                                   (s32 *) (void *) (v3));
+    v2 = _s32_div_f(v1 - param_1[5], param_1[2]);
+    func_ov000_0218db48(param_1, (void *) (param_2), v2);
+    return;
+}
+
+void func_ov000_0218da9c(int *param_1, int param_2) {
+    s32 v1;
+    if (param_2 < 0 || param_2 >= *param_1) {
+        func_0213442c(data_ov000_021b22e8, data_ov000_021b22dc, 0, 0xc0);
+    }
+    v1 = *param_1 - 1;
+    if (param_2 < v1) {
+        func_02134df8(func_ov000_0218dbf8(param_1, param_2), func_ov000_0218dbf8(param_1, param_2 + 1),
+                      param_1[2] * (v1 - param_2));
+    }
+    *param_1 = *param_1 - 1;
+}
+
+void func_ov000_0218da5c(Unk0218dc94 *param_1, s32 param_2) {
+    if ((param_2 < 0) || (param_2 >= param_1->mUnk_00)) {
+        func_0213442c(data_ov000_021b22e8, data_ov000_021b22dc, 0, 0xca);
+    }
+    func_ov000_0218dd74(param_1, param_2);
+    func_ov000_0218da9c((int *) param_1, param_2);
+}
+
+void func_ov000_0218da1c(Unk0218dc94 *param_1, const void *param_2, s32 param_3) {
+    if ((param_3 < 0) || (param_3 >= param_1->mUnk_00)) {
+        func_0213442c(data_ov000_021b22e8, data_ov000_021b22dc, 0, 0xd3);
+    }
+    func_ov000_0218dd74(param_1, param_3);
+    func_ov000_0218dd18(param_1, param_2, param_3);
+}
+
+void func_ov000_0218da04(u32 p0, u32 p1) {
+    u32 v2 = ((p0) + (0x0u));
+    u32 v3 = ((p1) + (0x0u));
+    u32 v4 = ((u32) * (u32 *) ((v2) + (20)));
+    u32 v5 = ((u32) * (u32 *) ((v2) + (0)));
+    u32 v6 = ((u32) * (u32 *) ((v2) + (8)));
+    func_021382a8((u8 *) v4, v5, v6, (int (*)(void *, void *))(v3));
+}
 
 s32 func_ov000_0218d980(int *a, const void *b, UnkCompare *c, s32 d, s32 e) {
     s32 v1 = 1;

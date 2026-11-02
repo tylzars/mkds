@@ -1,15 +1,30 @@
 #include "Main/Unknown/code_020a6cb4.h"
+
 #include "Main/Unknown/code_020a1000.h"
 #include "Main/Unknown/code_020a1218.h"
 #include "Main/Unknown/code_020a49d4.h"
 #include "Main/Unknown/code_020ac524.h"
 #include "Main/Unknown/code_0209bef0.h"
-#include "Main/Unknown/code_02062eb0.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/code_02061f7c.h"
 #include "Main/Unknown/code_021000d0.h"
 #include "Main/Unknown/code_020d22c0.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_020f9c6c.h"
 #include "Main/Unknown/unk_021759c0.h"
+#include "Main/Unknown/code_020a7148.h"
+
+void func_020a7148(Unk020e71a0 *param_1) {
+    if (func_020d3bf8(0x6a) == 0) {
+        func_020ac588(0x6a, 0x14, param_1);
+        func_020ac588(0x70, data_021759c0->mUnk_3d0, param_1);
+        func_020a233c(func_020a72c8);
+        func_020a2328(func_020a7270);
+        func_020a2314(func_020a71c8);
+        return;
+    }
+    func_020d2398(param_1);
+}
 
 s32 func_020a6f94(Unk02100094 *a) {
     s32 i;

@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0210d740.h"
+
 #include "Main/Unknown/code_0210d73c.h"
 #include "Main/Unknown/code_0210dc60.h"
 #include "Main/Unknown/code_0212c668.h"
@@ -10,6 +11,43 @@
 #include "code_0212f1ac.h"
 #include "code_0212ba68.h"
 #include "code_0212c6ac.h"
+#include "Main/Unknown/code_0210d890.h"
+#include "Main/Unknown/code_0210d894.h"
+#include "Main/Unknown/unk_0217d068.h"
+#include "code_0212da38.h"
+#include "code_0212d5e0.h"
+#include "Main/Unknown/code_0210d960.h"
+
+void func_0210d990(u32 p0) {
+    data_0217d064 = p0;
+}
+
+u32 func_0210d980(void) {
+    return data_0217d064;
+}
+
+void func_0210d970(u32 p0) {
+    data_0216cb2c = p0;
+}
+
+u32 func_0210d960(void) {
+    return data_0216cb2c;
+}
+
+void func_0210d894(void *a, u32 b, const u8 *c) {
+    func_0212baa8();
+    data_0217d130 = func_0212dcc8(a, b);
+    data_0217d06c = func_0212db7c(data_0217d130, 0x1020, func_0210d890, 0, 0);
+    if (c != 0) {
+        func_0212d8e0(&data_0217d0a0, c, data_0217d130, 0);
+        data_0217d064 = 1;
+        func_0212edac(data_0217d130);
+    }
+    func_0212c6a0(&data_0217d068);
+    func_0210dc60(&data_0217d084, &data_0217d070, 0);
+}
+
+void func_0210d890(u32 p0) {}
 
 void func_0210d854(u32 a) {
     func_0212f730((void *) (((u32) data_0217d06c + 0x1f) & ~0x1f), 0x1000, a);

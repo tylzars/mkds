@@ -8,3 +8,5 @@
 #include "01/code_0218c790.h"
 
 // Declared here until the code that defines them is decompiled.
+
+#include "01/code_0218c7a0.h"

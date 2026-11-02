@@ -57,4 +57,3 @@ Unk0219b250 *func_ov001_0219b418(Unk0219b478 *p0, char *p1);
 Unk0219b250 *func_ov001_0219b478(Unk0219b478 *p0, char *p1);
 void *func_ov001_0219b4d8(char *p0);
 void *func_ov001_0219b510(void *p0, void *p1, void *p2, u32 p3, u16 p4, u16 p5, u16 p6);
-void func_ov001_0219b540(void);

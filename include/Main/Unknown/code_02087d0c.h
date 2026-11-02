@@ -2,7 +2,6 @@
 
 #include "types.h"
 #include "code_020109c4.h"
-#include "code_02010c84.h"
 
 // 0x38-byte object: a table of pointers at 0x1c (count at 0x18, current index at 0x1a) and a table of words at 0x20,
 // both with one entry per element.
@@ -27,6 +26,17 @@ typedef struct Unk02087d0c {
 } Unk02087d0c;
 
 extern s32 (*data_02155cd8[])(Unk02010b50 *a);
+
+typedef struct Unk020882fc_08 {
+    /* 00 */ u8 mUnk_00[4];
+    /* 04 */ u16 mUnk_04;
+} Unk020882fc_08;
+
+typedef struct Unk020882fc {
+    /* 00 */ u8 mUnk_00[8];
+    /* 08 */ Unk020882fc_08 *mUnk_08;
+} Unk020882fc;
+
 extern u32 data_0217af20;
 
 s32 func_02087d0c(void *a);
@@ -37,3 +47,8 @@ void func_02087f84(void *a, s32 b);
 void func_0208805c(void *a, void *b, void *c);
 void func_020881b0(void *a, s32 b, void *c, u32 d, void *e);
 void func_0208823c(u32 a, void *b, void *c, u32 d, void *e, void *f);
+unsigned int func_020882fc(Unk020882fc *p0);
+unsigned int func_02088308(Unk020882fc *p0);
+unsigned int func_02088314(Unk020882fc *p0);
+unsigned int func_02088320(Unk020882fc *p0);
+unsigned int func_0208832c(Unk020882fc *p0);

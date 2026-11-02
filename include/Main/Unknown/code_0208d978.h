@@ -4,7 +4,8 @@
 #include "code_02012b30.h" // Unk02012f58, Unk020136f0
 #include "Main/Unknown/code_020846c0.h"
 #include "Main/Unknown/code_02087d0c.h"
-#include "Main/Unknown/code_0208ec64.h"
+#include "Main/Unknown/code_02017000.h"
+#include "Main/Unknown/code_0208eb10.h"
 #include "Main/Unknown/unk_02166000.h"
 #include "Main/Unknown/unk_0217b000.h"
 

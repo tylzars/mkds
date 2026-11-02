@@ -1,26 +1,24 @@
 #include "00/code_02193818.h"
 #include "00/code_02190000.h"
-#include "00/code_02190968.h"
-#include "00/code_02190b80.h"
-#include "00/code_0218e80c.h"
-#include "00/code_02193f18.h"
+#include "code_02139f70.h"
+#include "00/code_021906e4.h"
+#include "00/code_0218e49c.h"
+#include "00/code_02193e70.h"
 #include "00/code_02194000.h"
 #include "00/code_021965a0.h"
 #include "00/code_02196590.h"
 #include "00/code_0218d000.h"
+#include "00/code_021a3000.h"
+#include "00/unk_021b2000.h"
+#include "code_0213442c.h"
 #include "00/code_0218dc44.h"
-#include "00/code_0218e524.h"
-#include "00/code_0218e53c.h"
-#include "00/code_0218e554.h"
+#include "00/unk_021b4000.h"
 #include "00/code_0218e368.h"
 #include "00/code_021a3668.h"
 #include "00/code_021a3690.h"
-#include "00/unk_021b2000.h"
 #include "00/unk_021b3000.h"
 #include "code_02134d30.h"
 #include "code_02135014.h"
-#include "code_02139f70.h"
-#include "code_0213442c.h"
 
 void func_ov000_02193818(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
     Unk0218f960_00 *a = param_1->mUnk_00;
@@ -64,7 +62,8 @@ void func_ov000_02193858(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
     func_ov000_021a3668(param_2);
 }
 
-u32 func_ov000_021938cc(Unk0218f960 *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6, int param_7) {
+u32 func_ov000_021938cc(Unk0218f960 *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6,
+                        int param_7) {
     Unk0218f960_00 *a = param_1->mUnk_00;
     Unk021937c0Node *b = func_ov000_021a3690(0x24);
 

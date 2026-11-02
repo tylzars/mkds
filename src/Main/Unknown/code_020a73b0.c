@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020a73b0.h"
+
 #include "Main/Unknown/code_0209b000.h"
 #include "ITCM/code_01ff9000.h"
 #include "Main/Unknown/code_020d4c28.h"
@@ -12,6 +13,11 @@
 #include "Main/Unknown/code_02146000.h"
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "Main/Unknown/code_020a7eb0.h"
+
+u32 func_020a7eb0(u32 p0) {
+    return p0;
+}
 
 void func_020a79c4(void *a, Unk020a7f18 *p) {
     s32 i;

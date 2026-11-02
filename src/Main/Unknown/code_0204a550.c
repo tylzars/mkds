@@ -1,7 +1,12 @@
 #include "Main/Unknown/code_0204a550.h"
+
 #include "Main/Unknown/code_020487fc.h"
 #include "Main/Unknown/unk_02165000.h"
 #include "01/code_021a2398.h"
+
+u32 func_0204a5f4(u32 p0) {
+    return p0;
+}
 
 void func_0204a5e8(void) {
     func_ov001_021a23c0();

@@ -13,7 +13,7 @@
 #include "Main/Unknown/unk_0216b000.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/unk_021759c0.h"
-#include "01/code_0218175c.h"
+#include "01/code_0218155c.h"
 #include "code_02147cd8.h"
 
 u32 func_020d6d34(s32 a, s32 b, s32 c, s32 d, s32 e) {

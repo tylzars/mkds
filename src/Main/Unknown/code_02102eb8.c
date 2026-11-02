@@ -10,7 +10,7 @@
 #include "Main/Unknown/code_020f8e3c.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_0203c5e4.h"
-#include "Main/Unknown/code_02074874.h"
+#include "Main/Unknown/code_02074854.h"
 
 void func_021031ac(Unk02102674 *p) {
     s32 i;

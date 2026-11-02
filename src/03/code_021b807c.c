@@ -2,8 +2,6 @@
 #include "03/code_021b7bb4.h"
 #include "03/code_021b7efc.h"
 #include "03/code_021b8050.h"
-#include "03/code_021b7d04.h"
-#include "03/code_021b7c30.h"
 
 u32 func_ov003_021b807c(Unk021b807c *p) {
     u8 *s;

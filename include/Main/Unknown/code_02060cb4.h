@@ -10,7 +10,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "00/code_02182fdc.h"
-#include "01/code_02195a6c.h"
+#include "01/code_021956dc.h"
 
 extern u32 data_021653e4;
 

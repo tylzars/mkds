@@ -1,4 +1,5 @@
 #include "01/code_0219b250.h"
+
 #include "01/unk_021a6000.h"
 #include "Main/Unknown/code_0207a000.h"
 #include "Main/Unknown/code_02084000.h"
@@ -12,11 +13,6 @@
 #include "Main/Unknown/code_02088000.h"
 #include "code_02135014.h"
 #include "Main/Unknown/code_0209b000.h"
-
-void func_ov001_0219b540(void) {
-    *(u32 *) 0x4000010 = (-data_ov001_021a9bf4->mUnk_58 << 16) & 0x1ff0000;
-    *(u32 *) 0x400101c = (-data_ov001_021a9bf4->mUnk_5c << 16) & 0x1ff0000;
-}
 
 void *func_ov001_0219b510(void *p0, void *p1, void *p2, u32 p3, u16 p4, u16 p5, u16 p6) {
     u8 *r = func_0209bfa8(p0, p1, p2, p3, p4);

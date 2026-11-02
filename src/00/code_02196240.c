@@ -1,5 +1,7 @@
 #include "00/code_02196240.h"
-#include "00/code_02190968.h"
+#include "00/code_02190000.h"
+#include "code_02139f70.h"
+#include "00/code_021906e4.h"
 #include "00/code_021965a0.h"
 #include "00/code_02196590.h"
 #include "00/code_021967b4.h"
@@ -9,10 +11,9 @@
 #include "code_02134d30.h"
 #include "code_02135014.h"
 #include "code_021384dc.h"
-#include "code_02139f70.h"
-#include "00/code_0218e554.h"
+#include "00/code_0218e49c.h"
+#include "00/unk_021b4000.h"
 #include "00/code_0218e368.h"
-#include "00/code_0218e80c.h"
 
 s32 func_ov000_02196240(Unk0218f960 *a, Unk02196240 **b, u32 c) {
     Unk02196240 *d;

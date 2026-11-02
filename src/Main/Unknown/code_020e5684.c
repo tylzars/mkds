@@ -9,6 +9,82 @@
 #include "Main/Unknown/code_02046be8.h"
 #include "Main/Unknown/code_020ea000.h"
 #include "Main/Unknown/code_020ea588.h"
+#include "Main/Unknown/code_020e57f4.h"
+#include "Main/Unknown/code_020e57fc.h"
+#include "Main/Unknown/code_020e5850.h"
+#include "Main/Unknown/code_020e5854.h"
+#include "Main/Unknown/code_020e58b8.h"
+#include "Main/Unknown/code_020e58c4.h"
+#include "Main/Unknown/code_020e58fc.h"
+#include "Main/Unknown/code_020e5900.h"
+#include "Main/Unknown/code_020e5950.h"
+
+void func_020e5950(Unk020e5950 *p0) {
+    p0->mUnk_c8 = (u32) 0x0u;
+}
+
+void func_020e5900(Unk020e43a8 *p) {
+    p->mUnk_c8 = p->mUnk_c8 + p->mUnk_cc;
+    p->mUnk_00.mUnk_7e = p->mUnk_00.mUnk_7e + (s16) (((s64) p->mUnk_c8 * p->mUnk_c6) >> 12);
+    if (p->mUnk_00.mUnk_80.mUnk_04 > *(u16 *) &p->mUnk_a0.mUnk_18.z) {
+        p->mUnk_00.mUnk_80.mUnk_10 = 1;
+        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+    }
+}
+
+u32 func_020e58fc(u32 p0) {
+    return p0;
+}
+
+void func_020e58c4(Unk020e43a8 *p) {
+    p->mUnk_00.mUnk_7e = p->mUnk_00.mUnk_7e + p->mUnk_c6;
+    if (*((u16 *) &p->mUnk_a0.mUnk_18.z + 1) == 0) {
+        return;
+    }
+    if (p->mUnk_00.mUnk_80.mUnk_04 > *((u16 *) &p->mUnk_a0.mUnk_18.z + 1)) {
+        p->mUnk_00.mUnk_80.mUnk_10 = 2;
+        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+    }
+}
+
+void func_020e58b8(Unk020e58b8 *p0) {
+    p0->mUnk_c8 = (u32) 0x4000u;
+}
+
+void func_020e5854(Unk020e43a8 *p) {
+    p->mUnk_c8 = p->mUnk_c8 - p->mUnk_cc;
+    p->mUnk_00.mUnk_7e = p->mUnk_00.mUnk_7e + (s16) (((s64) p->mUnk_c8 * p->mUnk_c6) >> 12);
+    if (p->mUnk_00.mUnk_80.mUnk_04 > *(u16 *) &p->mUnk_a0.mUnk_18.z) {
+        p->mUnk_c6 = -p->mUnk_c6;
+        p->mUnk_00.mUnk_80.mUnk_10 = 3;
+        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+    }
+}
+
+u32 func_020e5850(u32 p0) {
+    return p0;
+}
+
+void func_020e5830(Unk020e43a8 *p) {
+    if (p->mUnk_00.mUnk_80.mUnk_04 > p->mUnk_c4) {
+        p->mUnk_00.mUnk_80.mUnk_10 = 0;
+        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+    }
+}
+
+s32 func_020e57fc(Unk020e43a8 *p, Unk020e57fc *q, s32 param_3, u8 *param_4) {
+    u32 x;
+
+    x = q->mUnk_29c;
+    if (x == 1 || x == 3) {
+        p->mUnk_00.mUnk_78 |= data_021590e8;
+    }
+    return *param_4;
+}
+
+u32 func_020e57f4(u32 p0, u32 p1, u32 p2, u32 p3) {
+    return ((u32) * (const u8 *) ((u8 *) p3 + 0));
+}
 
 void func_020e57a0(Unk020e43a8 *p, Vec3 *param_2, s32 param_3, Vec3 *param_4) {
     Vec3 s;

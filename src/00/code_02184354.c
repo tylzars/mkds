@@ -1,8 +1,9 @@
 #include "00/code_02184354.h"
 #include "Main/Unknown/code_0210895c.h"
-#include "Main/Unknown/code_02029930.h"
+#include "Main/Unknown/code_02029890.h"
 #include "Main/Unknown/code_02148ca0.h"
-#include "00/code_02180650.h"
+#include "00/unk_021b4000.h"
+#include "00/code_02180608.h"
 #include "registers.h"
 
 void func_ov000_02184354(void) {

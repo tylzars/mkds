@@ -1,7 +1,11 @@
 #include "00/code_0219cfc0.h"
+#include "00/unk_021b5000.h"
 #include "00/code_0219c3e4.h"
-#include "00/code_0219c9c4.h"
-#include "00/code_0219d734.h"
+#include "00/code_0219c954.h"
+#include "00/code_0218eb9c.h"
+#include "00/code_0219c93c.h"
+#include "00/code_0219cc00.h"
+#include "00/code_0219d128.h"
 #include "Main/Unknown/code_02152000.h"
 
 #pragma opt_rebuildconditionals off

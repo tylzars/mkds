@@ -2,7 +2,11 @@
 
 #include "types.h"
 #include "00/code_0218a9bc.h"
-#include "00/code_0218b64c.h"
+#include "00/code_0218a000.h"
+#include "00/code_0218b000.h"
+#include "00/code_0218c000.h"
+#include "00/code_021a3000.h"
+#include "00/code_0218b434.h"
 #include "00/types_0218b928.h"
 #include "00/unk_021b4000.h"
 

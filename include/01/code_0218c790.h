@@ -4,5 +4,3 @@
 #include "01/code_02188950.h"
 
 u32 func_ov001_0218c790(Unk02188950 *param_1);
-void *func_ov001_0218c7a0(void);
-void *func_ov001_0218c7b8(void);

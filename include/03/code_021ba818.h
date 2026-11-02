@@ -2,7 +2,8 @@
 
 #include "types.h"
 #include "03/code_021b94b8.h"
-#include "00/code_021a5948.h"
+#include "00/unk_021b5000.h"
+#include "00/code_021a574c.h"
 
 typedef s32 Unk021ba818Func();
 

@@ -2,7 +2,8 @@
 
 #include "types.h"
 #include "00/code_02188000.h"
-#include "00/code_02188584.h"
+#include "00/unk_021b4000.h"
+#include "00/code_021884fc.h"
 #include "00/code_02189350.h"
 #include "00/code_02189440.h"
 #include "00/code_021892f4.h"

@@ -1,8 +1,18 @@
 #include "Main/Unknown/code_020ced10.h"
+
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/code_020b837c.h"
 #include "Main/Unknown/code_020c0000.h"
 #include "Main/Unknown/code_020c0d9c.h"
+#include "Main/Unknown/code_020cedf8.h"
+
+void func_020cedf8(void) {
+    u32 value0;
+    u32 value12;
+    value12 = (u32) &func_020c0b84;
+    value0 = (u32) &data_0217b484;
+    func_020c0b84((Unk0217b498 **) value0);
+}
 
 void func_020ced2c(void) {
     s32 i;

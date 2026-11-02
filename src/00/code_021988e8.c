@@ -1,10 +1,16 @@
 #include "00/code_021988e8.h"
-#include "00/code_0218dddc.h"
+#include "00/unk_021b2000.h"
+#include "code_0213442c.h"
+#include "00/code_021a3678.h"
+#include "00/code_021a3690.h"
+#include "00/code_0218dd8c.h"
+#include "00/code_0218d000.h"
+#include "00/code_021a3000.h"
 #include "00/code_0218dc44.h"
-#include "00/code_0218e8b4.h"
+#include "03/code_021b94b8.h"
+#include "00/code_0218e49c.h"
 #include "00/code_02198748.h"
 #include "00/code_02198a8c.h"
-#include "00/code_0218e8bc.h"
 
 void func_ov000_021988e8(Unk02197e8c *a) {
     func_ov000_0218dddc(a->mUnk_0c, (void (*)(void *, void *)) func_ov000_021988fc, 0);

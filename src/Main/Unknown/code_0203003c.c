@@ -4,7 +4,6 @@
 #include "Main/Unknown/unk_02163000.h"
 #include "Main/Unknown/unk_02174000.h"
 #include "Main/Unknown/code_0202f764.h"
-#include "Main/Unknown/code_0203038c.h"
 #include "Main/Unknown/code_0203033c.h"
 
 #pragma thumb on

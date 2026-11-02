@@ -7,13 +7,23 @@
 #include "ITCM/code_01ff9000.h"
 #include "ITCM/code_01ffc000.h"
 #include "ITCM/code_01ffd000.h"
-#include "Main/Unknown/code_0204799c.h"
+#include "Main/Unknown/code_020472a8.h"
 #include "Main/Unknown/code_0207a000.h"
 #include "Main/Unknown/code_02084000.h"
 #include "Main/Unknown/code_020d7000.h"
 #include "Main/Unknown/code_02146000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "Main/Unknown/code_020e55b4.h"
+
+void func_020e55b4(void) {
+    u32 value;
+    value = data_0217b814->mUnk_01c;
+    func_01ff9048(0x2b, &value, 1);
+    func_01ff9048(0x2a, &data_0217b814->mUnk_014, 1);
+    func_01ff9048(0x30, &data_0217b814->mUnk_004, 1);
+    func_01ff9048(0x31, &data_0217b814->mUnk_008, 1);
+}
 
 void func_020e54e4(void *param_1, void *param_2, u32 param_3, u32 param_4) {
     u32 a;

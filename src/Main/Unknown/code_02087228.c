@@ -4,7 +4,8 @@
 #include "Main/Unknown/code_02036000.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020364e0.h"
-#include "Main/Unknown/code_02062eb0.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/code_02061f7c.h"
 #include "Main/Unknown/code_02077000.h"
 #include "Main/Unknown/code_02079bcc.h"
 #include "Main/Unknown/code_02086e8c.h"
@@ -13,7 +14,6 @@
 #include "Main/Unknown/unk_02155000.h"
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_021759c0.h"
-#include "Main/Unknown/unk_0217a000.h"
 
 // non-matching: 2 instructions longer: the original pushes r4-r6 with no stack word, forms the two halfword values and
 // the first shifted copy before the loads of the table and keeps both values in registers; here only two registers are

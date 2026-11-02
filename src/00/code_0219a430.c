@@ -1,11 +1,16 @@
 #include "00/code_0219a430.h"
 #include "code_02134d30.h"
 #include "00/code_0218d000.h"
+#include "00/code_021a3000.h"
+#include "00/unk_021b2000.h"
+#include "code_0213442c.h"
 #include "00/code_0218dc44.h"
-#include "00/code_0218dddc.h"
+#include "00/code_021a3678.h"
+#include "00/code_021a3690.h"
+#include "00/code_0218dd8c.h"
+#include "00/unk_021b4000.h"
 #include "00/code_0218e368.h"
-#include "00/code_0218e554.h"
-#include "00/code_0218e53c.h"
+#include "00/code_0218e49c.h"
 #include "00/code_02197e8c.h"
 #include "00/code_021985ec.h"
 #include "00/code_021988e8.h"
@@ -15,7 +20,6 @@
 #include "00/code_0219a5e8.h"
 #include "00/code_0219a604.h"
 #include "00/code_021a3668.h"
-#include "00/code_021a3690.h"
 
 typedef struct Unk0219a430Addr {
     /* 0 */ u8 mUnk_00;

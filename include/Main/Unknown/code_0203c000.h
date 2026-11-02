@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0203c094.h"
+#include "Main/Unknown/code_0203c07c.h"
 
 // Declared here until the code that defines them is decompiled.
 void func_0203c2e4(u16 a);

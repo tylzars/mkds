@@ -1,5 +1,7 @@
 #include "00/code_021948f8.h"
-#include "00/code_02190b80.h"
+#include "00/code_02190000.h"
+#include "code_02139f70.h"
+#include "00/code_021906e4.h"
 #include "00/code_021965a0.h"
 #include "00/code_021967b4.h"
 #include "00/code_02194b9c.h"
@@ -9,6 +11,8 @@
 #include "00/code_021a3690.h"
 #include "code_0213442c.h"
 #include "00/code_02196000.h"
+#include "00/code_0218d000.h"
+#include "00/unk_021b2000.h"
 #include "00/code_0218dd8c.h"
 
 void func_ov000_021948f8(Unk0218f960 *a, Unk02194934 *b) {

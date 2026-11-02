@@ -1,11 +1,14 @@
 #include "03/code_021c5724.h"
-#include "03/code_021bf760.h"
+#include "03/unk_021d5000.h"
+#include "03/unk_021da000.h"
+#include "03/code_021bf698.h"
 #include "03/code_021c5994.h"
 #include "03/code_021c5c68.h"
-#include "03/code_021cce58.h"
-#include "03/code_021cdc10.h"
-#include "03/code_021d3544.h"
-#include "03/unk_021da000.h"
+#include "03/code_021ccd18.h"
+#include "code_0212df7c.h"
+#include "03/code_021cdbd0.h"
+#include "03/code_021d3000.h"
+#include "03/code_021d3488.h"
 
 // placeholder: the original keeps the byte at a stack offset between its load and the call; the volatile
 // local reproduces that.

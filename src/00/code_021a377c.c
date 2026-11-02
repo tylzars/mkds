@@ -1,6 +1,7 @@
 #include "00/code_021a377c.h"
 #include "00/code_02188000.h"
-#include "00/code_021a86e8.h"
+#include "00/code_021a6fa8.h"
+#include "00/code_021a86bc.h"
 
 s32 func_ov000_021a377c(void) {
     Unk021b5df4 *p = data_ov000_021b5df4;

@@ -1,9 +1,12 @@
 #include "03/code_021ce024.h"
-#include "03/code_021cdcf0.h"
-#include "03/code_021cdd48.h"
+#include "03/unk_021da000.h"
+#include "03/code_021cdcb8.h"
+#include "03/code_021ce0f0.h"
+#include "03/code_021cdd28.h"
 #include "03/code_021d1000.h"
 #include "03/code_021d1970.h"
-#include "03/code_021d3544.h"
+#include "03/code_021d3000.h"
+#include "03/code_021d3488.h"
 
 void func_ov003_021ce024(u32 a) {
     s32 i;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0200e904.h" // Unk0200edc0
+#include "code_0200e77c.h"
 
 // func_0214f51c calls mUnk_00 with mUnk_04 and follows mUnk_08; func_0214f54c, func_0214f598 and func_0214f5e0
 // link and unlink objects through mUnk_08.

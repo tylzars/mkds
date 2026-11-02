@@ -1,6 +1,5 @@
 #include "03/code_021d0680.h"
 #include "03/code_021d079c.h"
-#include "03/code_021d07b0.h"
 #include "03/code_021d0388.h"
 
 void func_ov003_021d0680(Unk021425e8 *event) {

@@ -2,6 +2,12 @@
 
 #include "types.h"
 #include "Main/Unknown/code_02036000.h"
-#include "Main/Unknown/unk_02174000.h"
 
 void func_020354fc(void);
+s32 func_0203551c(u16 *a);
+void func_020357dc(void *a, void *b, void *c);
+void func_02035a9c(void);
+void func_02035b0c(void);
+void func_02035b78(void);
+void func_02035c14(void);
+void func_02035c50(s32 a, s32 b, s32 c, s32 d);

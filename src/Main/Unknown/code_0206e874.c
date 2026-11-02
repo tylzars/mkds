@@ -1,8 +1,9 @@
 #include "Main/Unknown/code_0206e874.h"
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/code_02061f7c.h"
-#include "Main/Unknown/code_02070f8c.h"
-#include "Main/Unknown/code_02086080.h"
+#include "Main/Unknown/code_02070398.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/code_02086058.h"
 #include "Main/Unknown/code_020c4780.h"
 #include "Main/Unknown/code_020d24d8.h"
 #include "Main/Unknown/code_020d4104.h"
@@ -14,7 +15,6 @@
 #include "Main/Unknown/unk_02154000.h"
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/unk_02165000.h"
-#include "Main/Unknown/unk_0217a000.h"
 #include "code_02147cd8.h"
 
 static inline s32 func_0206e874_inline(Vec3 *v, Vec3 *n) {

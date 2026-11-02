@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021bf31c.h"
+#include "03/code_021bf098.h"
 #include "03/unk_021d8000.h"
 #include "00/code_021a5b3c.h"
 #include "00/code_021a669c.h"

@@ -1,10 +1,10 @@
 #include "03/code_021c06e0.h"
 #include "03/code_021bf8c0.h"
 #include "03/code_021c0680.h"
-#include "03/code_021cdc10.h"
+#include "code_0212df7c.h"
+#include "03/code_021cdbd0.h"
 #include "03/code_021d250c.h"
-#include "03/code_021d299c.h"
-#include "03/code_021d2a34.h"
+#include "03/code_021d2940.h"
 #include "03/unk_021d5f00.h"
 #include "03/unk_021da000.h"
 

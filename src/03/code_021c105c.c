@@ -2,13 +2,14 @@
 #include "03/code_021bf8c0.h"
 #include "03/code_021c0fd8.h"
 #include "03/code_021c0000.h"
-#include "03/code_021cdc10.h"
+#include "code_0212df7c.h"
+#include "03/code_021cdbd0.h"
 #include "03/code_021d1000.h"
 #include "03/code_021d1970.h"
-#include "03/code_021d2acc.h"
-#include "03/unk_021d6000.h"
 #include "03/unk_021da000.h"
-#include "03/code_021d1ffc.h"
+#include "03/code_021d2940.h"
+#include "03/unk_021d6000.h"
+#include "03/code_021d1fd0.h"
 
 // non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
 // call), size 0x3c against 0x4c

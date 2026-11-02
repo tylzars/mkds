@@ -1,9 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "01/code_02187098.h"
-#include "01/code_021874c4.h"
-#include "01/code_02187af4.h"
+#include "01/code_02185ef4.h"
+#include "01/code_02187bfc.h"
 #include "01/code_02187d14.h"
 #include "01/code_02188158.h"
 #include "01/code_02188950.h"
@@ -19,3 +18,5 @@
 void func_ov001_0218add0(Unk02188950 *param_1);
 void func_ov001_0218ae60(Unk02188950 *param_1);
 void func_ov001_0218aef4(Unk02188950 *param_1);
+
+#include "01/code_0218b2dc.h"

@@ -17,6 +17,148 @@
 #include "Main/Unknown/code_02103890.h"
 #include "code_0212c6ac.h"
 #include "code_0214a748.h"
+#include "Main/Unknown/code_02103598.h"
+#include "Main/Unknown/code_021035ac.h"
+#include "Main/Unknown/code_0206bcb0.h"
+#include "Main/Unknown/code_02103840.h"
+
+u32 func_02103840(u32 arg0) {
+    u32 value0 = arg0;
+    u32 value1;
+    u32 value2;
+    u32 compareLeft0;
+    u32 compareRight0;
+    u32 compareLeft1;
+    u32 compareRight1;
+    u32 compareLeft2;
+    u32 compareRight2;
+    value1 = (u32) &data_021759c0;
+    value1 = (u32) * (const u32 *) ((value1) + (0));
+    value1 = (u32) * (const s8 *) ((value1) + (98));
+    compareLeft0 = value0;
+    compareRight0 = value1;
+    if (compareLeft0 != compareRight0) {
+        return value0;
+    }
+    value0 = (u32) &data_0217c658;
+    value0 = (u32) * (const u32 *) ((value0) + (0));
+    compareLeft1 = value0;
+    compareRight1 = 0u;
+    if (compareLeft1 == compareRight1) {
+        return value0;
+    }
+    value1 = (u32) &data_0217c644;
+    value0 = (u32) &data_0217c650;
+    value2 = (u32) * (const u32 *) ((value1) + (0));
+    value1 = (u32) * (const u32 *) ((value0) + (0));
+    compareLeft2 = value1;
+    compareRight2 = value2;
+    if ((s32) compareLeft2 < (s32) compareRight2) {
+        *(u32 *) ((value0) + (0)) = value2;
+    }
+    return value0;
+}
+
+void func_0210366c(Unk021035ac *p) {
+    s32 i;
+    s32 a;
+    s32 b;
+    s32 vb;
+    s32 va;
+    s32 j;
+    s16(*q)[2] = p->mUnk_10;
+
+    for (i = 0; i < 4; i++) {
+        q[i][0] = 0;
+        q[i][1] = 0;
+    }
+    for (i = 0; i < 4; i++) {
+        a = p->mUnk_00[i][0];
+        b = p->mUnk_00[i][1];
+        if (a > 0) {
+            if (a > 0x4cd) {
+                va = (s32) (((s64) a * a) >> 12);
+            } else {
+                va = 0x171;
+            }
+        } else {
+            if (a < 0x4cd) {
+                va = -(s32) (((s64) a * a) >> 12);
+            } else {
+                va = -0x171;
+            }
+        }
+        if (b > 0) {
+            if (b > 0x4cd) {
+                vb = (s32) (((s64) b * b) >> 12);
+            } else {
+                vb = 0x171;
+            }
+        } else {
+            if (b < 0x4cd) {
+                vb = -(s32) (((s64) b * b) >> 12);
+            } else {
+                vb = -0x171;
+            }
+        }
+        for (j = 0; j < 4; j++) {
+            if (i == j) {
+                q[j][0] += (s32) (((s64) va * 12) >> 12);
+                q[j][1] += (s32) (((s64) vb * 12) >> 12);
+            } else {
+                q[j][0] += (s32) (((s64) va * 8) >> 12);
+                q[j][1] += (s32) (((s64) vb * 8) >> 12);
+            }
+        }
+    }
+    for (i = 0; i < 4; i++) {
+        if (q[i][1] < 0) {
+            q[i][1] = 0;
+        }
+    }
+    p->mUnk_28 = 1;
+}
+
+void func_021035ac(int b2) {
+    Unk021035ac *e;
+    s32 i;
+    s32 n;
+    s32 a;
+    s32 b;
+
+    if (b2 != data_021759c0->mUnk_62) {
+        return;
+    }
+    n = *(s32 *) data_0217c658;
+    if (n == 0) {
+        return;
+    }
+    a = *(s32 *) data_0217c644;
+    b = *(s32 *) data_0217c650;
+    if (b < a) {
+        *(s32 *) data_0217c650 = a;
+    }
+    i = 0;
+    if (n <= 0) {
+        return;
+    }
+    do {
+        e = &((Unk021035ac *) data_0217c654)[i];
+        if (e->mUnk_28 == 0 && e->mUnk_24 == (void *) func_0210465c) {
+            func_0210366c(e);
+        }
+        i++;
+    } while (i < *(s32 *) data_0217c658);
+}
+
+u32 func_02103598(void) {
+    u32 value0;
+    u32 value1;
+    value0 = (u32) &data_0217c664;
+    value1 = 0u;
+    *(u32 *) ((value0) + (0)) = value1;
+    return value0;
+}
 
 void func_02103554(const char *param_1) {
     u32 v;

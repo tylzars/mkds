@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_0209d694.h"
+
 #include "Main/Unknown/code_0208b498.h"
 #include "Main/Unknown/code_0208b6b0.h"
-#include "Main/Unknown/code_0208b748.h"
 #include "Main/Unknown/code_0209b000.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "Main/Unknown/code_0209dd40.h"
@@ -14,6 +14,73 @@
 #include "Main/Unknown/code_0210b760.h"
 #include "Main/Unknown/unk_0215d000.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_020d26f8.h"
+#include "Main/Unknown/unk_02156000.h"
+#include "Main/Unknown/code_0209decc.h"
+
+void func_0209decc(u32 p0) {
+    u32 v1 = ((u32) (&data_021565e4));
+    u32 v3 = ((u32) * (u16 *) ((p0) + (2)));
+    u32 v4 = ((u32) * (u16 *) ((v1) + (0)));
+    u32 v5 = ((v3) | (v4));
+    u32 v7;
+    u32 v9;
+    *(u16 *) ((p0) + (2)) = (u16) v5;
+    func_020d2398((void *) (p0));
+    func_020d28e0((Unk020e71a0 *) p0);
+}
+
+u8 func_0209ddec(Unk0209d694 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
+    u8 x;
+    u32 v;
+
+    x = *c;
+    v = *d;
+    if (x == 1 && a->mUnk_b8 <= 1) {
+        a->mUnk_00.mUnk_02 |= data_usa_021565d8;
+        a->mUnk_00.mUnk_02 |= data_usa_021565dc;
+        a->mUnk_b8 = 2;
+        a->mUnk_a0 = 0x168;
+        a->mUnk_00.mUnk_10.x = 0;
+        a->mUnk_00.mUnk_10.y = 0x3000;
+        a->mUnk_00.mUnk_10.z = 0;
+        a->mUnk_bc->mUnk_70 = 0x23;
+        a->mUnk_c0->mUnk_70 = 0x23;
+        a->mUnk_bc->mUnk_80 = 5;
+        a->mUnk_c0->mUnk_80 = 5;
+        if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
+            a->mUnk_00.mUnk_78 |= data_usa_021565e0;
+        }
+        func_020d26f8(&a->mUnk_00, b);
+    }
+    return v;
+}
+
+u8 func_0209dd44(Unk0209d694 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
+    u8 x;
+    u32 v;
+
+    x = *c;
+    v = *d;
+    if (x == 1 && a->mUnk_b8 <= 1) {
+        a->mUnk_00.mUnk_02 |= data_usa_021565d8;
+        a->mUnk_00.mUnk_02 |= data_usa_021565dc;
+        a->mUnk_b8 = 2;
+        a->mUnk_a0 = 0x168;
+        a->mUnk_00.mUnk_10.x = 0;
+        a->mUnk_00.mUnk_10.y = 0x3000;
+        a->mUnk_00.mUnk_10.z = 0;
+        a->mUnk_bc->mUnk_70 = 0x23;
+        a->mUnk_c0->mUnk_70 = 0x23;
+        a->mUnk_bc->mUnk_80 = 5;
+        a->mUnk_c0->mUnk_80 = 5;
+    }
+    return v;
+}
+
+u32 func_0209dd40(u32 p0) {
+    return p0;
+}
 
 static inline u32 func_0209d84c_inline(Unk020f41c4_B *b) {
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;

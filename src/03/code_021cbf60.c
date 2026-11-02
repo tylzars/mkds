@@ -1,11 +1,17 @@
 #include "03/code_021cbf60.h"
-#include "03/code_021bf43c.h"
-#include "03/code_021bf83c.h"
-#include "03/code_021c20dc.h"
-#include "03/code_021c2120.h"
+#include "03/code_021bf4dc.h"
+#include "03/code_021d1fd0.h"
+#include "03/unk_021d5000.h"
+#include "03/unk_021da000.h"
+#include "03/code_021bf410.h"
+#include "03/code_021bf000.h"
+#include "03/code_021b94b8.h"
+#include "03/code_021cd4ac.h"
+#include "03/code_021bf810.h"
+#include "03/code_021c209c.h"
 #include "03/code_021cbed0.h"
 #include "03/code_021cd000.h"
-#include "03/code_021cd27c.h"
+#include "03/code_021cd0d0.h"
 
 void func_ov003_021cbf60(void) {
     s32 a;

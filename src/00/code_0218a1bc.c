@@ -1,6 +1,7 @@
 #include "00/code_0218a1bc.h"
 #include "00/code_021898dc.h"
-#include "00/code_021a8e78.h"
+#include "00/code_021a8878.h"
+#include "00/code_021a8aa8.h"
 #include "code_0200f5ac.h"
 
 u32 func_ov000_0218a1bc(Unk02188ec0 *v1) {

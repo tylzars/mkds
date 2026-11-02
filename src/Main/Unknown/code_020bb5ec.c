@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020bb5ec.h"
+
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020b837c.h"
 #include "Main/Unknown/code_020b502c.h"
@@ -16,6 +17,16 @@
 #include "code_0212c6ac.h"
 #include "code_0212df7c.h"
 #include "code_020222ec.h"
+#include "Main/Unknown/code_020bc108.h"
+
+u32 func_020bc108(void) {
+    u32 value0;
+    u32 value1;
+    value0 = (u32) &data_0217b3d0;
+    value1 = 0u;
+    *(u32 *) ((value0) + (0)) = value1;
+    return value0;
+}
 
 void func_020bbbb4(void) {
     u8 a;

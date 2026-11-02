@@ -3,8 +3,8 @@
 #include "code_0200fd1c.h"
 #include "code_0214d018.h"
 #include "Main/Unknown/code_02009908.h"
-#include "Main/Unknown/code_0200991c.h"
-#include "Main/Unknown/code_0200c448.h"
+#include "Main/Unknown/unk_0216f000.h"
+#include "Main/Unknown/code_0200c3fc.h"
 #include "Main/Unknown/code_0200eddc.h"
 
 #pragma thumb on

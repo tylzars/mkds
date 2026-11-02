@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_0200e0ec.h"
-#include "code_0200e904.h"
+#include "code_0200e77c.h"
 
 struct Unk021a6fa8;
 struct Unk021a78a4;

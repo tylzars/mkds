@@ -1,4 +1,8 @@
 #include "00/code_021a1ae0.h"
+#include "00/code_021a1000.h"
+#include "00/code_021a4000.h"
+#include "00/unk_021b4000.h"
+#include "00/unk_021b5000.h"
 #include "00/code_021a10b0.h"
 #include "code_02139f70.h"
 #include "00/code_0219e4e8.h"

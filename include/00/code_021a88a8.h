@@ -12,5 +12,11 @@ typedef struct Unk021a88e4 {
     /* 50 */ u8 mUnk_50[0x14];
 } Unk021a88e4;
 
+#include "00/types_021a8ab8.h"
+
 s32 func_ov000_021a88a8(u32 a);
 s32 func_ov000_021a88e4(const u8 *a);
+u32 func_ov000_021a8960(int param_1);
+u32 func_ov000_021a8994(Unk021a6fa8 *a);
+u32 func_ov000_021a8a54(int param_1);
+s32 func_ov000_021a8a5c(Unk021a8ab8 *node);

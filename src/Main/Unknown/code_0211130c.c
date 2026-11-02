@@ -4,6 +4,49 @@
 #include "Main/Unknown/code_02111450.h"
 #include "Main/Unknown/code_021114cc.h"
 #include "Main/Unknown/unk_0217d000.h"
+#include "Main/Unknown/code_02111368.h"
+#include "Main/Unknown/code_021113ac.h"
+#include "Main/Unknown/code_020364e0.h"
+#include "Main/Unknown/code_02036bec.h"
+#include "Main/Unknown/code_021115b0.h"
+
+#pragma thumb on
+
+void func_021113ac(s16 *a) {
+    void *p;
+    p = func_020364e0(func_020364e8());
+    data_0217d33c = func_02036bec(p, 0x404);
+    data_0217d340 = func_02036bec(p, 0x404);
+    func_021115b0(p, *a);
+}
+
+#pragma thumb off
+
+#pragma thumb on
+void func_0211138c(void) {
+    u32 value0;
+    u32 value1;
+    func_02111584();
+    value1 = 0u;
+    value0 = (u32) &data_0217d33c;
+    *(u32 *) ((value0) + 0u) = value1;
+    value0 = (u32) &data_0217d340;
+    *(u32 *) ((value0) + 0u) = value1;
+}
+#pragma thumb off
+
+#pragma thumb on
+void func_02111368(void) {
+    u32 value0;
+    u32 value1;
+    func_021114b0();
+    value0 = (u32) &data_0217d33c;
+    value0 = (u32) * (const u32 *) ((value0) + 0u);
+    value1 = (u32) &data_0217d340;
+    value1 = (u32) * (const u32 *) ((value1) + 0u);
+    func_020ae5f0((void *) value0, (void *) value1);
+}
+#pragma thumb off
 
 #pragma thumb on
 

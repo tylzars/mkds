@@ -1,6 +1,6 @@
 #include "03/code_021cfa30.h"
 #include "03/code_021cf260.h"
-#include "03/code_021d07b0.h"
+#include "03/code_021d079c.h"
 
 void func_ov003_021cfa30(u8 *param_1) {
     data_ov003_021da288 = (Unk021cf260 *) param_1;

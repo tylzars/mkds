@@ -3,7 +3,7 @@
 #include "types.h"
 #include "code_02012b30.h" // Unk02012f58
 #include "code_0201c528.h" // Unk0201ca6c
-#include "01/code_0219b250.h" // Unk0219b250_Item
+#include "01/code_0219b250.h"
 
 // The 0x20 bytes at 0x08 of the object behind data_0217b200.
 typedef struct Unk0217b200_08 {
@@ -41,3 +41,5 @@ typedef struct Unk0217b200 {
 } Unk0217b200;
 
 extern Unk0217b200 *data_0217b200;
+
+#include "01/code_0219b540.h"

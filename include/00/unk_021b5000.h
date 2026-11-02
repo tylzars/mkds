@@ -12,7 +12,7 @@
 #include "code_02142eac.h" // Unk021438f0
 #include "code_0200f7a0.h"  // Unk0200fb08
 #include "00/code_021a6fa8.h"
-#include "code_0200e904.h"
+#include "code_0200e77c.h"
 
 // One element of the table at data_ov000_021b5dfc.
 typedef struct Unk021b5dfc {

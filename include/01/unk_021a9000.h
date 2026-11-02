@@ -5,9 +5,9 @@
 #include "01/code_0219b250.h"
 #include "01/code_0219853c.h"
 #include "01/code_02198854.h"
-#include "01/code_0219a950.h"
-#include "01/code_0219bb48.h"
-#include "01/code_02193b1c.h"
+#include "01/code_0219a050.h"
+#include "01/code_0219b540.h"
+#include "01/code_02193c5c.h"
 #include "00/code_02182fdc.h"
 #include "Main/Unknown/types_02180728.h" // Unk02180728
 

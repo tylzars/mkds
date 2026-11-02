@@ -1,9 +1,31 @@
 #include "Main/Unknown/code_02087d0c.h"
+#include "code_02010c84.h"
+
 #include "Main/Unknown/code_02087cd0.h"
 #include "Main/Unknown/code_02087000.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "code_02013740.h"
 #include "code_02013bdc.h"
+
+u32 func_0208832c(Unk020882fc *p0) {
+    return p0->mUnk_08->mUnk_04;
+}
+
+u32 func_02088320(Unk020882fc *p0) {
+    return p0->mUnk_08->mUnk_04;
+}
+
+u32 func_02088314(Unk020882fc *p0) {
+    return p0->mUnk_08->mUnk_04;
+}
+
+u32 func_02088308(Unk020882fc *p0) {
+    return p0->mUnk_08->mUnk_04;
+}
+
+u32 func_020882fc(Unk020882fc *p0) {
+    return p0->mUnk_08->mUnk_04;
+}
 
 void func_0208823c(u32 a, void *b, void *c, u32 d, void *e, void *f) {
     Unk02087d0c *p = b;

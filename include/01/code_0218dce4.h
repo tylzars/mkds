@@ -7,5 +7,3 @@ void func_ov001_0218dce4(Unk02188950 *param_1);
 void func_ov001_0218dd04(Unk02188950 *param_1);
 void func_ov001_0218dd50(Unk02188950 *param_1);
 void func_ov001_0218dd9c(Unk02188950 *param_1);
-void *func_ov001_0218ddb4(void);
-void *func_ov001_0218ddcc(void);

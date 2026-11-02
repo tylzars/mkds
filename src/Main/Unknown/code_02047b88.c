@@ -10,8 +10,6 @@
 #include "Main/Unknown/code_02036000.h"
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_0211d4a8.h"
-#include "Main/Unknown/code_02048350.h"
-#include "Main/Unknown/code_02048474.h"
 #include "Main/Unknown/code_02048284.h"
 #include "Main/Unknown/code_020483e4.h"
 #include "Main/Unknown/code_0214d564.h"

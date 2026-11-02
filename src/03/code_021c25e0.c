@@ -1,8 +1,72 @@
 #include "03/code_021c25e0.h"
-#include "03/code_021d0e90.h"
+#include "03/code_021d0a88.h"
+#include "03/code_021d1000.h"
+#include "03/code_021d3000.h"
+
 #include "03/code_021d27d8.h"
-#include "03/code_021d34c8.h"
+#include "03/code_021d3488.h"
 #include "code_0214cfe4.h"
+#include "03/code_021c209c.h"
+#include "03/code_021c2530.h"
+#include "03/code_021bf4dc.h"
+#include "03/code_021d1fd0.h"
+#include "03/unk_021d5000.h"
+#include "03/unk_021da000.h"
+#include "03/code_021bf410.h"
+#include "code_0200fd1c.h"
+
+void func_ov003_021c2840(u32 a) {
+    Unk021d6e24 b;
+    data_ov003_021da194 = func_ov003_021d285c(0x1e2a4, 0x20);
+    data_ov003_021da194->mUnk_1e298 = (void (*)(s32)) a;
+    data_ov003_021da194->mUnk_1e2a0 = 0;
+    data_ov003_021da194->mUnk_1e2a1 = 0;
+    b = data_ov003_021d6e24;
+    b.mUnk_04 = func_ov003_021c2530((int *) data_ov003_021da19c, 0xf);
+    b.mUnk_08 = func_ov003_021c2530((int *) data_ov003_021da19c, 0x10);
+    b.mUnk_18 = func_ov003_021c20d0() + 0x31;
+    func_ov003_021d1358((Unk021da2ac *) data_ov003_021da194, (Unk021d1358 *) &b);
+    if (func_ov003_021d11d4() == 0) {
+        func_0200fd1c();
+    }
+    data_ov003_021da194->mUnk_1e29c = func_ov003_021d3544(0, func_ov003_021c25e0, 0, 0x78);
+}
+
+void func_ov003_021c2824(void) {
+    func_ov003_021d3544((u32) 0, &func_ov003_021c27f8, 0, (u32) 0x78);
+}
+
+void func_ov003_021c27f8(u32 param_1) {
+    int v1;
+    v1 = func_ov003_021d1290();
+    if (v1 != 0) {
+        data_ov003_021da194->mUnk_1e2a1 = 1;
+        func_ov003_021d34c8(0, param_1);
+    }
+}
+
+u32 func_ov003_021c27e4(void) {
+    if (data_ov003_021da194 == 0) {
+        return 1;
+    }
+    return 0;
+}
+
+void func_ov003_021c27d0(void *param_1) {
+    *(u32 *) ((int) data_ov003_021da194 + 0x1e298) = (u32) param_1;
+}
+
+u32 func_ov003_021c27c8(void) {
+    u32 value0;
+    u32 value3;
+    value3 = (u32) &func_ov003_021d11a0;
+    value0 = (u32) func_ov003_021d11a0();
+    return value0;
+}
+
+u8 *func_ov003_021c27b4(void) {
+    return data_ov003_021da194->mUnk_1e280;
+}
 
 static inline void func_ov003_021c25e0_inline(const void *s, void *d, s32 n) {
     func_0214cffc(s, d, n);
