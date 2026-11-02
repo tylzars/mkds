@@ -277,25 +277,25 @@ void func_020100fc(Unk02010168 *a) {
     }
 }
 
-// non-matching: 0xe0 bytes against 0xf0. The original keeps two more addresses in registers across the call
-// (the block base plus 0x80, and that plus 0x74) and reads a halfword at offset 4 through the second.
 void func_0201000c(Unk0201000c *p) {
     u16 a;
     u8 *b;
-    u8 *c;
+    u8 *d;
+    u8 *e;
 
-    a = *(vu16 *) 0x4000006;
     b = (u8 *) 0x27ffc00;
-    c = b + 0x300;
+    d = b + 0x80;
+    e = (u8 *) ((u32) d + 0x74);
+    a = *(vu16 *) 0x4000006;
     p->mUnk_00 = func_0200f59c() | (a << 16);
-    p->mUnk_04 = (u32) data_02170254 ^ (*(u16 *) (b + 0xf8) << 16);
-    p->mUnk_08 = *(u32 *) (b + 0x3c) ^ (data_02170254 >> 32) ^ *(u32 *) (b + 0xf4);
+    p->mUnk_04 = (*(u16 *) (e + 4) << 16) ^ (u32) data_02170254;
+    p->mUnk_08 = *(u32 *) (b + 0x3c) ^ ((data_02170254 >> 32) ^ *(u32 *) e);
     p->mUnk_08 = p->mUnk_08 ^ *(vu32 *) 0x4000600;
     p->mUnk_0c = *(u32 *) (b + 0x1e8);
     p->mUnk_10 = *(u32 *) (b + 0x1ec);
-    p->mUnk_14 = *(u32 *) (b + 0x390) ^ (*(u16 *) (c + 0x94) << 16);
-    p->mUnk_18 = *(u16 *) (c + 0xac) | (*(u16 *) (c + 0xaa) << 16);
-    p->mUnk_1c = *(vu16 *) 0x4000130 | *(vu16 *) 0x27fffa8 | (*(u16 *) (c + 0x98) << 16);
+    p->mUnk_14 = *(u32 *) (b + 0x390) ^ (*(u16 *) (b + 0x394) << 16);
+    p->mUnk_18 = (*(u16 *) (b + 0x3aa) << 16) | *(u16 *) (b + 0x3ac);
+    p->mUnk_1c = *(vu16 *) 0x4000130 | *(vu16 *) 0x27fffa8 | (*(u16 *) (b + 0x398) << 16);
 }
 
 void func_0200ffd8(void) {
@@ -307,8 +307,6 @@ void func_0200ffd8(void) {
     }
 }
 
-// non-matching: same instructions as the original, different registers (the original keeps v in r10, the address of
-// data_02170284 in r4 and the table in r6).
 u32 func_0200ff04(u32 m, u16 v) {
     u32 s;
     u32 t;
@@ -327,15 +325,15 @@ u32 func_0200ff04(u32 m, u16 v) {
             return 0;
         }
     }
-    m &= 0x1ff;
+    t = m & 0x1ff;
     while (1) {
-        k = 31 - func_0200fe74(m);
+        k = 31 - func_0200fe74(t);
         if (k < 0) {
             break;
         }
-        data_02170284 |= 1 << k;
+        t &= ~(1 << k);
         data_02170288[k] = v;
-        m &= ~(1 << k);
+        data_02170284 |= 1 << k;
     }
     func_0200fcb4(s);
     return 1;
