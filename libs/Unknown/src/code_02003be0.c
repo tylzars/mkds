@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "Main/Unknown/code_0214d000.h"
 
-Unk02003a6c *func_020041e8(const u8 *p0, s32 p1) {
+Unk02003a6c *FS_FindArchive(const u8 *p0, s32 p1) {
     u32 name;
     u32 state;
     Unk02003a6c *p;
@@ -21,14 +21,14 @@ Unk02003a6c *func_020041e8(const u8 *p0, s32 p1) {
     return p;
 }
 
-u32 func_02004128(Unk02003a6c *p0, const u8 *p1, s32 p2) {
+u32 FS_RegisterArchiveName(Unk02003a6c *p0, const u8 *p1, s32 p2) {
     u32 ok;
     u32 state;
     Unk02003a6c *p;
 
     ok = 0;
     state = func_0200fca0();
-    if (func_020041e8(p1, p2) == 0) {
+    if (FS_FindArchive(p1, p2) == 0) {
         if (data_0216f340 == 0) {
             data_0216f340 = p0;
             data_0216f344.h.mUnk_00 = p0;
@@ -51,7 +51,7 @@ u32 func_02004128(Unk02003a6c *p0, const u8 *p1, s32 p2) {
     return ok;
 }
 
-void func_02004090(Unk02003a6c *p0) {
+void FS_ReleaseArchiveName(Unk02003a6c *p0) {
     u32 state;
 
     if (p0->mUnk_00 == 0) {
@@ -77,8 +77,8 @@ void func_02004090(Unk02003a6c *p0) {
     func_0200fcb4(state);
 }
 
-u32 func_02004018(Unk02003a6c *p0, u8 *p1, u32 p2, u32 p3, u32 p4, u32 p5, s32 (*p6)(Unk02003a6c *, void *, u32, u32),
-                  s32 (*p7)(Unk02003a6c *, void *, u32, u32)) {
+u32 FS_LoadArchive(Unk02003a6c *p0, u8 *p1, u32 p2, u32 p3, u32 p4, u32 p5, s32 (*p6)(Unk02003a6c *, void *, u32, u32),
+                   s32 (*p7)(Unk02003a6c *, void *, u32, u32)) {
     p0->mUnk_28 = p1;
     p0->mUnk_30 = p3;
     p0->mUnk_3c = p2;
@@ -94,10 +94,10 @@ u32 func_02004018(Unk02003a6c *p0, u8 *p1, u32 p2, u32 p3, u32 p4, u32 p5, s32 (
     return 1;
 }
 
-// non-matching: 'mov r0' and 'ldr r1' before the call to func_02003cfc are swapped (2 words); the load is the
+// non-matching: 'mov r0' and 'ldr r1' before the call to FS_SuspendArchive are swapped (2 words); the load is the
 // taller node in either schedule (before or after colouring), so the original's block has a dependence or
 // readiness difference that this source does not give
-u32 func_02003f50(Unk02003a6c *p0) {
+u32 FS_UnloadArchive(Unk02003a6c *p0) {
     u32 state;
     Unk02003024 *p;
     Unk02003024 *n;
@@ -105,7 +105,7 @@ u32 func_02003f50(Unk02003a6c *p0) {
 
     state = func_0200fca0();
     if (((p0->mUnk_1c & 2) ? 1 : 0) != 0) {
-        s = func_02003cfc(p0, p0->mUnk_1c);
+        s = FS_SuspendArchive(p0, p0->mUnk_1c);
         p0->mUnk_1c |= 0x80;
         p = p0->mUnk_24;
         if (p != 0) {
@@ -117,7 +117,7 @@ u32 func_02003f50(Unk02003a6c *p0) {
         }
         p0->mUnk_24 = 0;
         if (s != 0) {
-            func_02003c80(p0);
+            FS_ResumeArchive(p0);
         }
         p0->mUnk_28 = 0;
         p0->mUnk_2c = 0;
@@ -132,7 +132,7 @@ u32 func_02003f50(Unk02003a6c *p0) {
     return 1;
 }
 
-u32 func_02003e24(Unk02003a6c *p0, u32 p1, u32 p2) {
+u32 FS_LoadArchiveTables(Unk02003a6c *p0, u32 p1, u32 p2) {
     Unk02003024 b;
     u32 sz;
 
@@ -164,13 +164,13 @@ u32 func_02003e24(Unk02003a6c *p0, u32 p1, u32 p2) {
     return sz;
 }
 
-u32 func_02003d8c(Unk02003a6c *p0, u32 p1) {
+u32 FS_UnloadArchiveTables(Unk02003a6c *p0, u32 p1) {
     u32 r;
     u32 s;
 
     r = 0;
     if (((p0->mUnk_1c & 2) ? 1 : 0) != 0) {
-        s = func_02003cfc(p0, p1);
+        s = FS_SuspendArchive(p0, p1);
         if (((p0->mUnk_1c & 4) ? 1 : 0) != 0) {
             p0->mUnk_1c &= ~4;
             r = p0->mUnk_44;
@@ -180,13 +180,13 @@ u32 func_02003d8c(Unk02003a6c *p0, u32 p1) {
             p0->mUnk_50 = p0->mUnk_48;
         }
         if (s != 0) {
-            func_02003c80(p0);
+            FS_ResumeArchive(p0);
         }
     }
     return r;
 }
 
-u32 func_02003cfc(Unk02003a6c *p0, u32 p1) {
+u32 FS_SuspendArchive(Unk02003a6c *p0, u32 p1) {
     u32 state;
     u32 r;
 
@@ -206,7 +206,7 @@ u32 func_02003cfc(Unk02003a6c *p0, u32 p1) {
     return r;
 }
 
-u32 func_02003c80(Unk02003a6c *p0) {
+u32 FS_ResumeArchive(Unk02003a6c *p0) {
     Unk02003024 *p;
     u32 state;
     u32 r;
@@ -225,7 +225,7 @@ u32 func_02003c80(Unk02003a6c *p0) {
     return r;
 }
 
-void func_02003c60(Unk02003a6c *p0, s32 (*p1)(Unk02003024 *, u32), u32 p2) {
+void FS_SetArchiveProc(Unk02003a6c *p0, s32 (*p1)(Unk02003024 *, u32), u32 p2) {
     if (p2 == 0) {
         p1 = 0;
     } else if (p1 == 0) {
@@ -235,7 +235,7 @@ void func_02003c60(Unk02003a6c *p0, s32 (*p1)(Unk02003024 *, u32), u32 p2) {
     p0->mUnk_58 = p2;
 }
 
-void func_02003be0(Unk02003a6c *p0, u32 p1) {
+void FS_NotifyArchiveAsyncEnd(Unk02003a6c *p0, u32 p1) {
     u32 state;
     Unk02003024 *p;
 

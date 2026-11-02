@@ -1,6 +1,6 @@
 #include "code_02004238.h"
 
-void func_02004238(Unk02003a6c *arg0) {
+void FS_InitArchive(Unk02003a6c *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;

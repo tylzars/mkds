@@ -25,7 +25,7 @@ u32 func_02004c20(Unk02003024 *p, const u8 *path, void *out, void *flag) {
                 break;
             }
             if (path[i] == ':') {
-                q = func_020041e8(path, i);
+                q = FS_FindArchive(path, i);
                 if (q == 0) {
                     return 0;
                 }

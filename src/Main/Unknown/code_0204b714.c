@@ -218,7 +218,7 @@ void func_0204bb34(void *a) {
     u32 s2;
     s32 v1;
     u8 *q;
-    o = func_020041e8(data_usa_021651d0, 3);
+    o = FS_FindArchive(data_usa_021651d0, 3);
     g = (Unk02175ec0 *) &data_02175ec0;
     while (1) {
         s = func_0200fca0();

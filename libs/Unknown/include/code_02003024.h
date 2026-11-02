@@ -71,10 +71,10 @@ typedef struct Unk02003024 {
     /* 44 */ Unk02003024U *mUnk_44;
 } Unk02003024;
 
-// 0x5c-byte object (func_02004238 clears 0x5c bytes; data_0216f36c) at mUnk_08 of Unk02003024. Links at mUnk_04 and
-// mUnk_08 (func_02004128, func_02004090), flags at mUnk_1c, the list of Unk02003024 at mUnk_24; the addresses of
-// mUnk_0c and mUnk_14 go to func_0200df9c and func_0200e01c; mUnk_48 to mUnk_54 are called from FileDispatchCommand,
-// FileWriteViaArchive, FileReadViaArchive, FileReadTableBytes, func_02004270 and func_02004518.
+// 0x5c-byte object (FS_InitArchive clears 0x5c bytes; data_0216f36c) at mUnk_08 of Unk02003024. Links at mUnk_04 and
+// mUnk_08 (FS_RegisterArchiveName, FS_ReleaseArchiveName), flags at mUnk_1c, the list of Unk02003024 at mUnk_24; the
+// addresses of mUnk_0c and mUnk_14 go to func_0200df9c and func_0200e01c; mUnk_48 to mUnk_54 are called from
+// FileDispatchCommand, FileWriteViaArchive, FileReadViaArchive, FileReadTableBytes, func_02004270 and func_02004518.
 typedef struct Unk02003a6c {
     /* 00 */ u32 mUnk_00;
     /* 04 */ struct Unk02003a6c *mUnk_04;

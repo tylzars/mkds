@@ -272,7 +272,7 @@ void func_0204c320(Unk0204c320 *a) {
                     v9 = v7->mUnk_08;
                     data_02175ec0.mUnk_001c = 0;
                     v7->mUnk_2c = v7->mUnk_2c + v7->mUnk_30.w.mUnk_08;
-                    func_02003be0(v9, 0);
+                    FS_NotifyArchiveAsyncEnd(v9, 0);
                     return;
             }
             return;

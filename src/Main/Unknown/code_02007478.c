@@ -60,7 +60,7 @@ void func_02007478(Unk02007478 *a) {
     v2 = a->mUnk_14;
     func_02004d80(&v3);
     v4 = v1->mUnk_00;
-    if (func_02004afc(&v3, func_020041e8(v2->mUnk_10, v2->mUnk_14), v4, v4 + v1->mUnk_04, -1) != 0) {
+    if (func_02004afc(&v3, FS_FindArchive(v2->mUnk_10, v2->mUnk_14), v4, v4 + v1->mUnk_04, -1) != 0) {
         if (v1->mUnk_04 == func_020048ac(&v3, v1->mUnk_08, v1->mUnk_04)) {
             v1->mUnk_0c = 2;
         }

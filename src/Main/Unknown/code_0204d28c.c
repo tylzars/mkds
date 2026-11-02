@@ -140,17 +140,17 @@ u32 func_0204d610(u32 *a) {
     Unk02003a6c *p;
     s32 i;
 
-    p = func_020041e8(data_021651d4, 3);
-    func_02003f50(p);
-    func_02003c60(p, func_0204dab8, -1);
+    p = FS_FindArchive(data_021651d4, 3);
+    FS_UnloadArchive(p);
+    FS_SetArchiveProc(p, func_0204dab8, -1);
     r = *a++;
     for (i = 0; i < 4; i++) {
         t[i].mUnk_00 = (u8 *) (a + 1);
         t[i].mUnk_04 = *a;
         a = (u32 *) (t[i].mUnk_00 + ((t[i].mUnk_04 + 0x1f) & ~0x1f));
     }
-    func_02004018(p, 0, (u32) t[0].mUnk_00, t[0].mUnk_04, (u32) t[1].mUnk_00, t[1].mUnk_04, func_0204db48,
-                  func_0204db40);
+    FS_LoadArchive(p, 0, (u32) t[0].mUnk_00, t[0].mUnk_04, (u32) t[1].mUnk_00, t[1].mUnk_04, func_0204db48,
+                   func_0204db40);
     func_020050c0(0, t[2].mUnk_00, t[2].mUnk_04);
     func_020050c0(1, t[3].mUnk_00, t[3].mUnk_04);
     return r;
@@ -199,7 +199,7 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
         }
     }
     func_02004d80(&v1);
-    func_02004afc(&v1, func_020041e8(data_021651d8, 3), 0, 0x7fffffff, -1);
+    func_02004afc(&v1, FS_FindArchive(data_021651d8, 3), 0, 0x7fffffff, -1);
     if (v14 != 0) {
         v9 = 0;
         v10 = 0;

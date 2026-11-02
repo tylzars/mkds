@@ -89,7 +89,7 @@ void func_0204bcec(void) {
             if (g->mUnk_001c != 0) {
                 u = g->mUnk_001c->mUnk_08;
                 g->mUnk_001c = 0;
-                func_02003be0(u, 5);
+                FS_NotifyArchiveAsyncEnd(u, 5);
             }
             func_0204bcec_inline(&data_02175ec0, q->mUnk_0afc);
         } else {

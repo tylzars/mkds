@@ -51,7 +51,7 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
             v9 = func_02008570_inline((u8 *) 0x027ffe00);
             v12 = 1;
             func_02004d80(&v4);
-            func_02004afc(&v4, func_020041e8(data_usa_0216178c, 3), 0, v9 + 0x88, -1);
+            func_02004afc(&v4, FS_FindArchive(data_usa_0216178c, 3), 0, v9 + 0x88, -1);
             v1 = &v4;
             v7 = v4.mUnk_2c - v4.mUnk_20.w.mUnk_04;
             func_0214d1fc((const void *) 0x027ffe00, v2, 0x160);

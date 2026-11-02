@@ -328,7 +328,7 @@ void func_020050c0(u32 sel, u8 *data, u32 n) {
 }
 
 void func_020050b0(Unk02003a6c *p) {
-    func_02003be0(p, 0);
+    FS_NotifyArchiveAsyncEnd(p, 0);
 }
 
 s32 func_02005064(Unk02003a6c *p, void *buf, u32 off, u32 n) {
@@ -373,20 +373,20 @@ void func_02004e1c(u32 arg) {
     data_0216f364.mUnk_00 = 0;
     data_0216f364.mUnk_04 = 0;
     func_02146154();
-    func_02004238(&data_0216f36c);
-    func_02004128(&data_0216f36c, data_02161764, 3);
+    FS_InitArchive(&data_0216f36c);
+    FS_RegisterArchiveName(&data_0216f36c, data_02161764, 3);
     if (*(u16 *) 0x27ffc40 == 2) {
         data_0216f35c.mUnk_00 = (u8 *) -1;
         data_0216f35c.mUnk_04 = 0;
         data_0216f364.mUnk_00 = (u8 *) -1;
         data_0216f364.mUnk_04 = 0;
-        func_02003c60(&data_0216f36c, func_02004fbc, -1);
-        func_02004018(&data_0216f36c, 0, 0, 0, 0, 0, func_02004fc4, func_0200505c);
+        FS_SetArchiveProc(&data_0216f36c, func_02004fbc, -1);
+        FS_LoadArchive(&data_0216f36c, 0, 0, 0, 0, 0, func_02004fc4, func_0200505c);
         return;
     }
     x = 0x27ffe40;
     y = 0x27ffe48;
-    func_02003c60(&data_0216f36c, func_02004fcc, 0x602);
+    FS_SetArchiveProc(&data_0216f36c, func_02004fcc, 0x602);
     if (((Unk02005704 *) x)->mUnk_00 == (u8 *) -1) {
         return;
     }
@@ -399,12 +399,12 @@ void func_02004e1c(u32 arg) {
     if (((Unk02005704 *) y)->mUnk_00 == 0) {
         return;
     }
-    func_02004018(&data_0216f36c, 0, (u32) ((Unk02005704 *) y)->mUnk_00, ((Unk02005704 *) y)->mUnk_04,
-                  (u32) ((Unk02005704 *) x)->mUnk_00, ((Unk02005704 *) x)->mUnk_04, func_02005064, func_0200505c);
+    FS_LoadArchive(&data_0216f36c, 0, (u32) ((Unk02005704 *) y)->mUnk_00, ((Unk02005704 *) y)->mUnk_04,
+                   (u32) ((Unk02005704 *) x)->mUnk_00, ((Unk02005704 *) x)->mUnk_04, func_02005064, func_0200505c);
 }
 
 u32 func_02004dfc(u32 a, u32 b) {
-    return func_02003e24(&data_0216f36c, a, b);
+    return FS_LoadArchiveTables(&data_0216f36c, a, b);
 }
 
 void func_02004dc0(u32 arg) {
