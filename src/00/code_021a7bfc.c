@@ -217,7 +217,7 @@ s32 func_ov000_021a7f48(Unk021a7064 *param_1) {
     s32 h;
     if (func_ov000_021a7c4c_inline(b) == 0 || (b->mUnk_70 & 4) != 0) {
         if (a->mUnk_28 != 0) {
-            func_ov000_021ae290(a->mUnk_24, a->mUnk_26, (int) a->mUnk_28);
+            func_ov000_021ae290(a->mUnk_24, a->mUnk_26, (s32) a->mUnk_28);
         }
         if (func_ov000_021a7c4c_inline(b) != 0) {
             e = 0x36;

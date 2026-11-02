@@ -10,7 +10,7 @@
 
 void func_ov000_02198a8c(Unk02197e8c *a) {
     if (func_ov000_0219914c(a) != 0) {
-        if (func_ov000_0219a09c((int) a) != 0) {
+        if (func_ov000_0219a09c((s32) a) != 0) {
             func_ov000_0219a06c(a);
         }
     }
@@ -27,7 +27,7 @@ u32 func_ov000_02198ac4(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
 
 int func_ov000_02198ad8(Unk02197fe8 *a, u8 *b, int c, int d) {
     if (d != 0) {
-        return func_ov000_02198f80((int) a, (u32) b, c);
+        return func_ov000_02198f80((s32) a, (u32) b, c);
     }
     return func_ov000_02198c58(a, b, c);
 }

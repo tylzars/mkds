@@ -80,7 +80,7 @@ u8 func_ov000_0218af10(int a) {
 }
 
 u32 func_ov000_0218aefc(int a) {
-    if (a == (*(int *) &data_ov000_021b4d1c)) {
+    if (a == (*(s32 *) &data_ov000_021b4d1c)) {
         return 1;
     }
     return 0;
@@ -88,7 +88,7 @@ u32 func_ov000_0218aefc(int a) {
 
 void func_ov000_0218aedc(int *a, int b) {
     if (a[1] != 0) {
-        *(int *) (a[1] + 0x20) = b;
+        *(s32 *) (a[1] + 0x20) = b;
     }
     a[1] = b;
     *(u32 *) (b + 0x20) = 0;
@@ -100,7 +100,7 @@ void func_ov000_0218aedc(int *a, int b) {
 }
 
 void func_ov000_0218aec4(int *a, int b) {
-    *(int *) (b + 0x20) = *a;
+    *(s32 *) (b + 0x20) = *a;
     *a = b;
     if (a[1] == 0) {
         a[1] = b;
@@ -113,7 +113,7 @@ int func_ov000_0218aea4(int *a) {
     int v1;
     v1 = *a;
     if (v1 != 0) {
-        *a = *(int *) (v1 + 0x20);
+        *a = *(s32 *) (v1 + 0x20);
         if (*a == 0) {
             a[1] = 0;
         }

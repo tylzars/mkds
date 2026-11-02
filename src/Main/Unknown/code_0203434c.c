@@ -375,7 +375,7 @@ s32 func_02034370(Unk02034370 *a) {
 
 void func_0203434c(void) {
     func_02036ab0((void *) ((u32) data_02174e64->mUnk_1a4));
-    *(int *) &data_02174e64 = 0;
+    *&data_02174e64 = 0;
 }
 
 #pragma thumb off

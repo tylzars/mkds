@@ -71,14 +71,14 @@ void func_ov000_0218b010(Unk0218af28 *e, s8 *v1, s32 n) {
     s32 f;
     u16 w;
     while (*v1 != 0) {
-        f = func_ov000_0218d0c8((int) v1, n);
+        f = func_ov000_0218d0c8((s32) v1, n);
         if (f < 0) {
             return;
         }
         p = v1;
         v1 += f;
         n -= f;
-        f = func_ov000_0218d0c8((int) v1, n);
+        f = func_ov000_0218d0c8((s32) v1, n);
         if (f < 0) {
             return;
         }
@@ -101,7 +101,7 @@ void func_ov000_0218b010(Unk0218af28 *e, s8 *v1, s32 n) {
         s = v1;
         a = 0;
         while (*v1 != 0) {
-            f = func_ov000_0218d0c8((int) v1, n);
+            f = func_ov000_0218d0c8((s32) v1, n);
             if (f < 0 || f > 100) {
                 return;
             }
@@ -116,7 +116,7 @@ void func_ov000_0218b010(Unk0218af28 *e, s8 *v1, s32 n) {
             p = s;
             c = 0;
             while (c < a) {
-                d = func_ov000_0218d0c8((int) v1, n);
+                d = func_ov000_0218d0c8((s32) v1, n);
                 if (d < 0) {
                     return;
                 }

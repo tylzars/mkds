@@ -551,7 +551,7 @@ s32 func_ov000_0219b0ec(const u8 *a) {
 
 void func_ov000_0219b110(void) {
     if (data_ov000_021b52c4 != 0) {
-        func_ov000_0218dc48((int *) data_ov000_021b52c4);
+        func_ov000_0218dc48(data_ov000_021b52c4);
         data_ov000_021b52c4 = 0;
     }
 }
@@ -561,7 +561,7 @@ void func_ov000_0219b130(Unk0219b1d4 *a) {
 
     for (b = 0; b < func_ov000_0218dc44((u32 *) data_ov000_021b52c4); b++) {
         if (a == func_ov000_0218dbf8(data_ov000_021b52c4, b)) {
-            func_ov000_0218da9c((int *) data_ov000_021b52c4, b);
+            func_ov000_0218da9c(data_ov000_021b52c4, b);
             return;
         }
     }

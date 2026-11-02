@@ -18,7 +18,7 @@ void func_ov000_0218daf8(u32 *a, u32 b, int c) {
     if (c == 0) {
         func_0213442c(data_ov000_021b2308, data_ov000_021b22dc, 0, 0xb7);
     }
-    v1 = (int) func_ov000_0218d818((void *) b, (u8 *) a[5], *a, a[2], (UnkCompare *) c, (s32 *) (void *) (v3));
+    v1 = (s32) func_ov000_0218d818((void *) b, (u8 *) a[5], *a, a[2], (UnkCompare *) c, (void *) (v3));
     v2 = _s32_div_f(v1 - a[5], a[2]);
     func_ov000_0218db48(a, (void *) (b), v2);
     return;
@@ -41,7 +41,7 @@ void func_ov000_0218da5c(Unk0218dc94 *a, s32 b) {
         func_0213442c(data_ov000_021b22e8, data_ov000_021b22dc, 0, 0xca);
     }
     func_ov000_0218dd74(a, b);
-    func_ov000_0218da9c((int *) a, b);
+    func_ov000_0218da9c((s32 *) a, b);
 }
 
 void func_ov000_0218da1c(Unk0218dc94 *a, const void *b, s32 c) {

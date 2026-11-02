@@ -12,5 +12,5 @@ int func_020add50(u32 arg0, int arg1) {
     value1 = (u32) * (const u32 *) ((value1) + (8));
     value1 = (value1) + (8u);
     value0 = (value4) * (value0) + (value1);
-    return (int) value0;
+    return value0;
 }

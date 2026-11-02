@@ -7,11 +7,11 @@ void func_ov003_021c06b0(void) {
     } else {
         v1 = 2;
     }
-    func_ov003_021c00ec((int) v1);
+    func_ov003_021c00ec(v1);
     func_ov003_021cdc10((u32) 1);
 }
 
 void func_ov003_021c0680(void) {
-    func_ov003_021c00ec((int) (data_ov003_021da15c->mUnk_11d != 1));
+    func_ov003_021c00ec((data_ov003_021da15c->mUnk_11d != 1));
     func_ov003_021cdc10((u32) 1);
 }

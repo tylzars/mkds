@@ -32,21 +32,21 @@ u32 func_ov000_021aae44(Unk021a998c_0c *a) {
             h = (u32 *) a->mUnk_3d0;
             func_ov000_021ab7b4(h);
             func_ov000_021ab728(h, a->mUnk_434, a->mUnk_438 - a->mUnk_434);
-            func_ov000_021ab6d4((int) h, (u32) a->mUnk_43c);
+            func_ov000_021ab6d4((s32) h, (u32) a->mUnk_43c);
             a->mUnk_450 = 0x10;
             break;
         case 4:
             h = (u32 *) a->mUnk_31c;
             func_ov000_021abd2c(h);
             func_ov000_021abca0(h, a->mUnk_434, a->mUnk_438 - a->mUnk_434);
-            func_ov000_021abc4c((int) h, (u32) a->mUnk_43c);
+            func_ov000_021abc4c((s32) h, (u32) a->mUnk_43c);
             a->mUnk_450 = 0x14;
             break;
         default:
             f |= 3;
             return f;
     }
-    r = func_ov000_021ab548((int) a, (u32) a->mUnk_584);
+    r = func_ov000_021ab548((s32) a, (u32) a->mUnk_584);
     if (r == 0) {
         f |= 1;
         return f;

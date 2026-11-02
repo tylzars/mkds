@@ -317,7 +317,7 @@ void func_02129ea4(void) {
 
 void func_02129e78(void) {
     int v1;
-    v1 = (int) data_0217d400->mUnk_b4[data_0217d400->mUnk_04];
+    v1 = (s32) data_0217d400->mUnk_b4[data_0217d400->mUnk_04];
     func_02016468((u32) 0x1b, (u32) 0, (void *) (v1 + 0xc), (u32) (*(u32 *) (v1 + 8)));
 }
 
@@ -325,34 +325,34 @@ void func_02129cbc(void) {
     u32 v1;
     int v2;
     int v3[1];
-    v1 = ((int) FindSceneFile(data_0216e940));
+    v1 = ((s32) FindSceneFile(data_0216e940));
     data_0217d400->mUnk_a4[0] = (Unk0201ea30 *) v1;
-    v1 = ((int) FindSceneFile(data_0216e958));
+    v1 = ((s32) FindSceneFile(data_0216e958));
     data_0217d400->mUnk_9c[0] = (Unk0201ea30 *) v1;
-    v1 = ((int) FindSceneFile(data_0216e970));
+    v1 = ((s32) FindSceneFile(data_0216e970));
     data_0217d400->mUnk_ac[0] = (void *) v1;
-    v1 = ((int) FindSceneFile(data_0216e988));
+    v1 = ((s32) FindSceneFile(data_0216e988));
     data_0217d400->mUnk_a4[1] = (Unk0201ea30 *) v1;
-    v1 = ((int) FindSceneFile(data_0216e998));
+    v1 = ((s32) FindSceneFile(data_0216e998));
     data_0217d400->mUnk_9c[1] = (Unk0201ea30 *) v1;
-    v1 = ((int) FindSceneFile(data_0216e9a8));
+    v1 = ((s32) FindSceneFile(data_0216e9a8));
     data_0217d400->mUnk_ac[1] = (void *) v1;
-    v1 = ((int) FindSceneFile(data_0216e9b8));
+    v1 = ((s32) FindSceneFile(data_0216e9b8));
     LoadNcgrData2(&data_0217d400->mUnk_94, (void *) v1);
-    v1 = ((int) FindSceneFile(data_0216e9d0));
+    v1 = ((s32) FindSceneFile(data_0216e9d0));
     LoadNcerData(&data_0217d400->mUnk_90, (void *) v1);
-    v1 = ((int) FindSceneFile(data_0216e9e8));
+    v1 = ((s32) FindSceneFile(data_0216e9e8));
     LoadNclrData(&data_0217d400->mUnk_98, (void *) v1);
-    func_0200ee74((const void *) (data_0217d400->mUnk_94->mUnk_14), (int) (data_0217d400->mUnk_94->mUnk_10));
+    func_0200ee74(data_0217d400->mUnk_94->mUnk_14, data_0217d400->mUnk_94->mUnk_10);
     func_0214bf04((const void *) (data_0217d400->mUnk_94->mUnk_14), 0, (u32) (data_0217d400->mUnk_94->mUnk_10));
     func_0214bea4((const void *) (data_0217d400->mUnk_94->mUnk_14), 0, (u32) (data_0217d400->mUnk_94->mUnk_10));
-    func_0200ee74((const void *) (data_0217d400->mUnk_98->mUnk_0c), (int) (data_0217d400->mUnk_98->mUnk_08));
+    func_0200ee74(data_0217d400->mUnk_98->mUnk_0c, data_0217d400->mUnk_98->mUnk_08);
     func_0214c090((const void *) (data_0217d400->mUnk_98->mUnk_0c), 0, (u32) (((u32) 0x000001a0u)));
     func_0214c090((const void *) (&data_0217d400->mUnk_98->mUnk_0c[0xe0]), 0x1c0, (u32) 0x40);
     func_0214c028((const void *) (data_0217d400->mUnk_98->mUnk_0c), 0, (u32) (data_0217d400->mUnk_98->mUnk_08));
-    v1 = ((int) FindSceneFile(data_0216e9fc));
+    v1 = ((s32) FindSceneFile(data_0216e9fc));
     LoadNcgrData((Unk020b4934 **) (&v2), (void *) v1);
-    func_0200ee74((const void *) (*(u32 *) (v2 + 0x14)), (int) (*(u32 *) (v2 + 0x10)));
+    func_0200ee74((const void *) (*(u32 *) (v2 + 0x14)), (*(u32 *) (v2 + 0x10)));
     func_0214b824((const void *) (*(u32 *) (v2 + 0x14)), 0, (u32) (*(u32 *) (v2 + 0x10)));
     v1 = ((int) FindSceneFile(data_0216ea14));
     LoadNscrData((Unk020b47d8 **) &data_0217d400->mUnk_b4[0], (void *) v1);

@@ -542,7 +542,7 @@ int func_0206bcb0(Unk0206bcb0 *p, int a, int b) {
 
     x = s != 1 && s != 2;
     if (x == 0) {
-        if ((int) p->mUnk_366 * 0xffff - p->mUnk_368 > 0xffff || (p->mUnk_7c & 0x200)) {
+        if (p->mUnk_366 * 0xffff - p->mUnk_368 > 0xffff || (p->mUnk_7c & 0x200)) {
             return 0;
         }
     }

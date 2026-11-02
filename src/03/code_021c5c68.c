@@ -358,7 +358,7 @@ void func_ov003_021c5c68(void) {
     v3 = v1;
     if (v4 > 0) {
         do {
-            func_ov003_021c5b90((int) (v3), (int) (v2));
+            func_ov003_021c5b90(v3, v2);
             v2 = v2 + 1;
             v3 = v3 + 1;
         } while (v2 < v4);
@@ -366,7 +366,7 @@ void func_ov003_021c5c68(void) {
     v3 = 0;
     if (v4 > 0) {
         do {
-            func_ov003_021c5b34((int) (v1), (int) (v3));
+            func_ov003_021c5b34(v1, v3);
             v3 = v3 + 1;
             v1 = v1 + 1;
         } while (v3 < v4);

@@ -299,7 +299,7 @@ void func_02048050(int a, int b) {
             func_020482f0((u32) c, (u8 *) data_usa_021541a8[b].mUnk_00, data_021759c0->mUnk_08);
             break;
         case 12:
-            func_020482ac((int) c, (u8 *) data_usa_021541a8[b].mUnk_00, data_021759c0->mUnk_08);
+            func_020482ac((s32) c, (u8 *) data_usa_021541a8[b].mUnk_00, data_021759c0->mUnk_08);
             break;
         case 2:
         case 15:

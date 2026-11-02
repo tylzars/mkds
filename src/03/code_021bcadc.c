@@ -136,13 +136,13 @@ void func_ov003_021bcedc(void) {
     int a;
 
     a = func_ov003_021bcf1c();
-    *(int *) &data_ov003_021d8c48 = a;
+    *(s32 *) &data_ov003_021d8c48 = a;
     func_ov003_021be1fc();
     if (a == 1) {
-        *(int *) &data_ov003_021d8c08 = 6;
+        *(s32 *) &data_ov003_021d8c08 = 6;
     } else {
-        *(int *) &data_ov003_021d8c08 = 7;
+        *(s32 *) &data_ov003_021d8c08 = 7;
     }
-    *(int *) &data_ov003_021d68b8 = -1;
+    *(s32 *) &data_ov003_021d68b8 = -1;
     func_ov003_021bb03c();
 }

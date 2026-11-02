@@ -11,7 +11,7 @@ void func_ov000_021ae228(Unk021a998c *a) {
 
 void func_ov000_021ae214(Unk021a78a4Func a) {
     int v1;
-    v1 = *(int *) (*(int *) (((int) (u32) ((u8 *) &data_0216ff5c)) + 4) + 0xa4);
+    v1 = *(s32 *) (*(s32 *) ((((u8 *) &data_0216ff5c)) + 4) + 0xa4);
     if (v1 != 0) {
         *(Unk021a78a4Func *) (v1 + 0x38) = a;
     }

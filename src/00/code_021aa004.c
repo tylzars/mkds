@@ -15,6 +15,6 @@ u32 func_ov000_021aa004(int a, u32 b, u32 c) {
         func_ov000_021adf30(v2, (Unk021a998c *) c);
         a = a + v2;
         b = b - v2;
-    } while (0 < (int) b);
+    } while (0 < (s32) b);
     return 0;
 }

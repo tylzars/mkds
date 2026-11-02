@@ -55,7 +55,7 @@ void func_0210bfbc(Unk0210bfbc *p) {
             p->mUnk_18 = 3;
         }
         if (v != 3) {
-            func_0210bc8c((int) &data_0217d048[v], (int) p);
+            func_0210bc8c((s32) &data_0217d048[v], (s32) p);
             p->mUnk_18 = v;
         }
     }

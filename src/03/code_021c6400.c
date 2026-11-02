@@ -98,7 +98,7 @@ void func_ov003_021c6668(void) {
         data_ov003_021da1ec = 0;
         *(u16 *) &data_ov003_021da1f0 = 0;
     }
-    data_ov003_021da1f4->mUnk_51 = func_ov003_021cd0d0((int *) data_ov003_021da1f4);
+    data_ov003_021da1f4->mUnk_51 = func_ov003_021cd0d0((s32 *) data_ov003_021da1f4);
     func_ov003_021c6588();
     func_ov003_021bf854();
     func_ov003_021bf43c(0x80, -1, 0);

@@ -17,7 +17,7 @@ void func_ov000_0219c3b0(void) {
 }
 
 u32 func_ov000_0219c39c(void) {
-    if ((*(int *) &data_ov000_021b5650) != 0) {
+    if ((*(s32 *) &data_ov000_021b5650) != 0) {
         return 1;
     }
     return 0;

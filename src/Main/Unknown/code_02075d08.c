@@ -139,7 +139,7 @@ void func_020760ec(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
 
     data_usa_0217ac80 = 0;
     a->mUnk_258 = 0;
-    if (func_01ffdee4(&a->mUnk_024, (u32 *) &a->mUnk_134, 0, data_usa_021656c0, 2, -2, &v, &w, (int *) &x, &j, 0, 0, 0,
+    if (func_01ffdee4(&a->mUnk_024, (u32 *) &a->mUnk_134, 0, data_usa_021656c0, 2, -2, &v, &w, (s32 *) &x, &j, 0, 0, 0,
                       0) != 0 &&
         (j & 0xc00) == 0) {
         if (j & 0x214300) {

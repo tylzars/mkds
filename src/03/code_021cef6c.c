@@ -9,7 +9,7 @@ int func_ov003_021cef80(void) {
     value1 = (u32) * (const u32 *) ((value0) + 0u);
     value0 = 27u;
     value0 = (u32) * (const s8 *) ((value1) + (value0));
-    return (int) value0;
+    return value0;
 }
 
 u32 func_ov003_021cef6c(void) {

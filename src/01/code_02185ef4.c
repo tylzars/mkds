@@ -617,8 +617,8 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
     pos.y = b->mUnk_000.mUnk_04.y + 0x14000;
     pos.z = b->mUnk_000.mUnk_04.z;
     b->mUnk_2c8 = 0;
-    if (func_01ffdee4((int *) &pos, 0, 0, 0x14000, b->mUnk_2b8 == 1 ? 4 : 1, -2, (int *) &v44, (int *) &v50,
-                      (int *) &v5c, &b->mUnk_2c8, 0, 0, 0, 0)) {
+    if (func_01ffdee4(&pos, 0, 0, 0x14000, b->mUnk_2b8 == 1 ? 4 : 1, -2, &v44, &v50,
+                      (s32 *) &v5c, &b->mUnk_2c8, 0, 0, 0, 0)) {
         if (b->mUnk_2b8 == 2 || b->mUnk_2b8 == 3) {
             b->mUnk_000.mUnk_04.y += v44.y;
         } else {
@@ -675,9 +675,9 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
     b->mUnk_000.mUnk_7e = b->mUnk_184;
 
     if (b->mUnk_304 != 0) {
-        prev = func_0209b620((int) b->mUnk_304);
+        prev = func_0209b620((s32) b->mUnk_304);
         func_ov001_0219b250(b->mUnk_304);
-        cur = func_0209b620((int) b->mUnk_304);
+        cur = func_0209b620((s32) b->mUnk_304);
         if (b->mUnk_1d8 != 0) {
             if (prev < b->mUnk_1d8 && b->mUnk_1d8 <= cur) {
                 func_ov001_02188e94(b, &b->mUnk_1dc);
@@ -699,7 +699,7 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
                 b->mUnk_1ec(b);
             }
         }
-        if (!func_ov001_0219b240((int) b->mUnk_304)) {
+        if (!func_ov001_0219b240((s32) b->mUnk_304)) {
             func_ov001_02188e94(b, &b->mUnk_1d4);
         }
     }

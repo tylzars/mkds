@@ -109,7 +109,7 @@ void func_ov003_021cdd48(Unk021d34e0 *a) {
 }
 
 u32 func_ov003_021cdd28(void) {
-    if ((int) data_ov003_021da27c == 0) {
+    if (data_ov003_021da27c == 0) {
         return 1;
     }
     if (data_ov003_021da27c->mUnk_18 == 0) {

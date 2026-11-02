@@ -130,13 +130,13 @@ void func_021285b0(void) {
 
 void func_02128570(void) {
     int v1;
-    v1 = *(int *) &data_0217d3f8;
-    if (*(int *) (v1 + 0x814) != 0) {
+    v1 = *(s32 *) &data_0217d3f8;
+    if (*(s32 *) (v1 + 0x814) != 0) {
         *(u32 *) (v1 + 8) = 3;
         func_02128624(0);
         return;
     }
-    if (*(int *) (v1 + 0x818) != 0) {
+    if (*(s32 *) (v1 + 0x818) != 0) {
         *(u32 *) (v1 + 8) = 4;
     }
 }
@@ -294,7 +294,7 @@ int func_0212825c(int a) {
     if (10 <= a) {
         a = 9;
     }
-    return (int) *(s8 *) (((int) (u32) (data_0215d0c0)) + a);
+    return *(s8 *) ((data_0215d0c0) + a);
 }
 
 int func_02128244(int a) {
@@ -304,7 +304,7 @@ int func_02128244(int a) {
     if (10 <= a) {
         a = 9;
     }
-    return (int) *(s8 *) (((int) (u32) (data_0215d0cc)) + a);
+    return *(s8 *) ((data_0215d0cc) + a);
 }
 
 #pragma thumb off

@@ -24,7 +24,7 @@ u16 func_ov003_021cfed8(void) {
     }
     func_ov003_021d07b0(1);
     v2 = func_ov003_021cfe40((u32) (data_ov003_021da2a8->mUnk_60));
-    v1 = (int *) &data_ov003_021da2a8;
+    v1 = (s32 *) &data_ov003_021da2a8;
     data_ov003_021da2a8->mUnk_5c = v2;
     if ((UnkFunc *) (*(u32 *) &data_ov003_021da2a4) != (UnkFunc *) 0x0) {
         (*(UnkFunc *) (*(u32 *) &data_ov003_021da2a4))(((u32) 0x08000000u), (u32) &data_ov003_021d7ac8,

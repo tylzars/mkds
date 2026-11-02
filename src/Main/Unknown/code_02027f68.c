@@ -42,7 +42,7 @@ void func_0202808c(void) {
         func_0211f498();
     }
     func_02036ab0((void *) gSelectKart->mUnk_08c);
-    *(int *) &gSelectKart = 0;
+    *&gSelectKart = 0;
 }
 
 #pragma thumb off
@@ -80,7 +80,7 @@ void func_02028010(u32 a) {
 }
 
 void func_02027fd4(u32 a, u32 b, u32 c, u32 d) {
-    func_0214a40c((u32 *) ((u32 *) (u32) 0x04001050u), a, (int) b, c, (int) d);
+    func_0214a40c(((u32 *) 0x04001050u), a, b, c, d);
 }
 
 u32 func_02027fb8(u32 arg0) {

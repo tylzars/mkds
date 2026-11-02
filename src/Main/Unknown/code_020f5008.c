@@ -68,7 +68,7 @@ Unk020f5008 *func_020f4ee8(void) {
     if ((p->mUnk_000.mUnk_000.mUnk_74 & 0x180000) == 0) {
         p->mUnk_000.mUnk_000.mUnk_120 = 0;
     }
-    func_020f9c40((int) p);
+    func_020f9c40((s32) p);
     p->mUnk_134 = 0;
     p->mUnk_130 = 0;
     return p;

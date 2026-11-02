@@ -30,8 +30,8 @@ void func_02078ee0(u32 *a, int b) {
     *a = 0xffffffff;
     a[1] = 0xffffffff;
     a[2] = ((u32) 0x00001000u);
-    *(u16 *) ((int) a + 0x16) = (short) ((u32) 0x0000eaabu);
-    *(u16 *) (a + 5) = *(u16 *) ((int) a + 0x16);
+    *(u16 *) ((s32) a + 0x16) = (0x0000eaabu);
+    *(u16 *) (a + 5) = *(u16 *) ((s32) a + 0x16);
     *(u16 *) (a + 6) = 0;
     a[3] = 0;
     a[4] = 0xffffff88;

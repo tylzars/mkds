@@ -2,24 +2,24 @@
 
 u32 func_ov000_02199a0c(int a, int b, u32 c, u32 d) {
     int v1;
-    *(short *) (a + 0x66) = *(u16 *) (a + 0x66) + 1;
+    *(s16 *) (a + 0x66) = *(u16 *) (a + 0x66) + 1;
     if (b == 0) {
         v1 = func_ov000_02199dd0(a, c, d);
         if (v1 == 0) {
             return 0;
         }
     } else if (b == 1) {
-        v1 = func_ov000_02199d4c(a, c, (int) d);
+        v1 = func_ov000_02199d4c(a, c, d);
         if (v1 == 0) {
             return 0;
         }
     } else if (b == 2) {
-        v1 = func_ov000_02199c98(a, (int) c, (int) d);
+        v1 = func_ov000_02199c98(a, c, d);
         if (v1 == 0) {
             return 0;
         }
     } else if (b == 3) {
-        v1 = func_ov000_02199bb4((u32 *) ((u32 *) (u32) a), (int) c, (int) d);
+        v1 = func_ov000_02199bb4((u32 *) a, c, d);
         if (v1 == 0) {
             return 0;
         }

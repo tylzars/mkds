@@ -113,7 +113,7 @@ void func_ov003_021c7a0c(void) {
         c = 0;
     }
     d = func_ov003_021d2288(0, data_ov003_021d6408[func_ov003_021c20d0()]);
-    e = func_ov003_021c2530((int *) data_ov003_021da19c, c);
+    e = func_ov003_021c2530((s32 *) data_ov003_021da19c, c);
     swprintf(h, 8, data_ov003_021d73b0, -*(s32 *) data_ov003_021da200);
     f = data_ov003_021d641a[func_ov003_021c20d0() * 2];
     g = data_ov003_021d6418[func_ov003_021c20d0() * 2];

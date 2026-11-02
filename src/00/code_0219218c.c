@@ -20,7 +20,7 @@ u32 func_ov000_0219218c(Unk0218f960 *p, Unk021919ac_node *n, Unk021919ac_f0 *a) 
     if (p->mUnk_00->mUnk_100 == 0) {
         return 1;
     }
-    func_ov000_0219210c((int) n);
+    func_ov000_0219210c((s32) n);
     n->mUnk_0c = func_ov000_021a3690(0xf0);
     if (n->mUnk_0c != 0) {
         *n->mUnk_0c = *a;
@@ -68,7 +68,7 @@ u32 func_ov000_0219222c(Unk0218f960 *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
         m->mUnk_004 = a;
         w.mUnk_00 = (void (*)(void *, void *, u32)) d;
         w.mUnk_04 = e;
-        r = func_ov000_021938cc(p, 2, 0, (int *) &n, 1, d, e);
+        r = func_ov000_021938cc(p, 2, 0, (s32 *) &n, 1, d, e);
         if (r != 0) {
             return r;
         }
@@ -79,7 +79,7 @@ u32 func_ov000_0219222c(Unk0218f960 *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
         }
         func_ov000_02193818(p, (Unk021937c0Node *) n);
     } else {
-        r = func_ov000_021938cc(p, 2, 0, (int *) &n, c, d, e);
+        r = func_ov000_021938cc(p, 2, 0, (s32 *) &n, c, d, e);
         if (r != 0) {
             return r;
         }

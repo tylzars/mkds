@@ -31,14 +31,14 @@ u32 func_ov000_021935bc(u32 a, u32 b, u32 *c, u32 *d, u32 *e) {
     int v1;
     u32 v2;
     u32 v3;
-    v2 = (int) b >> 0x18 & 0xff;
-    v3 = (int) b >> 0x10 & 0xff;
+    v2 = (s32) b >> 0x18 & 0xff;
+    v3 = (s32) b >> 0x10 & 0xff;
     b = b & ((u32) 0x0000ffffu);
-    v1 = func_ov000_02193634((int) (v2), (int) (v3), (int) (b));
+    v1 = func_ov000_02193634((s32) (v2), (s32) (v3), (s32) (b));
     if (v1 == 0) {
         func_0213442c(data_ov000_021b323c, data_ov000_021b31f8, 0, 0xb7);
     }
-    v1 = func_ov000_02193634((int) (v2), (int) (v3), (int) (b));
+    v1 = func_ov000_02193634((s32) (v2), (s32) (v3), (s32) (b));
     if (v1 == 0) {
         func_ov000_02196590((u32 *) (u32) (a), data_ov000_021b3254);
         return 2;

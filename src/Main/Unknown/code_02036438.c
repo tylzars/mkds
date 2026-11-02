@@ -12,7 +12,7 @@ void func_02036438(void *heap) {
     Unk020b4a44 *v4;
     v1 = func_02036948(heap);
     v2 = ((u32) func_02036bec(v1, (u32) (((u32) 0x00000654u))));
-    *(int *) &data_02174e6c = v2;
+    *(s32 *) &data_02174e6c = v2;
     func_02036264((void *) v2, (u32) (((u32) 0x00000654u)));
     data_02174e6c->mUnk_650 = v1;
     func_020364a8(0, 0, 0x10, 0, 0);

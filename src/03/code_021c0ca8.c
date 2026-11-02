@@ -86,7 +86,7 @@ void func_ov003_021c0cbc(u8 a) {
 }
 
 u32 func_ov003_021c0ca8(void) {
-    if ((int) data_ov003_021da15c != 0) {
+    if (data_ov003_021da15c != 0) {
         return 1;
     }
     return 0;

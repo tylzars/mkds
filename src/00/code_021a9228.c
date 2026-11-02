@@ -149,7 +149,7 @@ s32 func_ov000_021a9494(Unk021a998c *a) {
         c->mUnk_000->mUnk_54 = a->mUnk_1c;
         c->mUnk_000->mUnk_58 = a->mUnk_18;
         func_ov000_021a9640(a);
-        func_ov000_021aa7b4((int *) c);
+        func_ov000_021aa7b4((s32 *) c);
         func_ov000_021aa5e0(c);
         func_ov000_021a998c(a);
         if (func_ov000_021a9610((u32) a) != 0) {

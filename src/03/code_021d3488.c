@@ -45,7 +45,7 @@ void func_ov003_021d35c0(void) {
         v2 = v2 + 0x3c;
         v1 = v1 + 1;
     } while (2 > v1);
-    func_ov003_021d2808((int *) &data_ov003_021da32c);
+    func_ov003_021d2808(&data_ov003_021da32c);
     return;
 }
 
@@ -114,14 +114,14 @@ void func_ov003_021d34c0(u32 arg0, u32 arg1) {
     u32 value1 = arg1;
     u32 value3;
     value3 = (u32) &func_ov003_021d3488;
-    func_ov003_021d3488((int) value0, (int) value1);
+    func_ov003_021d3488(value0, value1);
     return;
 }
 
 void func_ov003_021d3488(int a, int b) {
     if (*(u8 *) (b + 0x11) != 0) {
-        func_ov003_021d2808((int *) (u32) (b + 0xc));
+        func_ov003_021d2808((s32 *) (b + 0xc));
     }
-    func_ov003_021d2e90((u32) ((int *) (u32) b));
+    func_ov003_021d2e90((u32) (b));
     func_ov003_021d1d0c((Unk021d1d88 *) (data_ov003_021da32c[a].mUnk_00), (void *) b);
 }

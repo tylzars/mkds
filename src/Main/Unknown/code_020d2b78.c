@@ -21,7 +21,7 @@ void func_020d2d94(void) {
     v1 = 0;
     do {
         if (*v2 != 0) {
-            v3 = *(void ***) ((int) *v2 + 0x28);
+            v3 = *(void ***) ((s32) *v2 + 0x28);
             if (v3 != 0) {
                 *v3 = 0;
             }
@@ -114,11 +114,11 @@ u32 func_020d2c20(void) {
 
 u32 func_020d2be8(void) {
     int v1;
-    if ((int) data_0217b4d8 != 0) {
+    if (data_0217b4d8 != 0) {
         return data_0217b4d8->mUnk_04;
     }
-    v1 = *(int *) &data_0217b4e4;
-    if ((v1 != 0) && (*(int *) (v1 + 0x170) != 0)) {
+    v1 = *(s32 *) &data_0217b4e4;
+    if ((v1 != 0) && (*(s32 *) (v1 + 0x170) != 0)) {
         return *(u32 *) (v1 + 0x174);
     }
     return 0;
@@ -126,11 +126,11 @@ u32 func_020d2be8(void) {
 
 u32 func_020d2bb0(void) {
     int v1;
-    if ((int) data_0217b4d8 != 0) {
+    if (data_0217b4d8 != 0) {
         return data_0217b4d8->mUnk_08;
     }
-    v1 = *(int *) &data_0217b4e4;
-    if ((v1 != 0) && (*(int *) (v1 + 0x170) != 0)) {
+    v1 = *(s32 *) &data_0217b4e4;
+    if ((v1 != 0) && (*(s32 *) (v1 + 0x170) != 0)) {
         return *(u32 *) (v1 + 0x178);
     }
     return 0;
@@ -138,11 +138,11 @@ u32 func_020d2bb0(void) {
 
 u32 func_020d2b78(void) {
     int v1;
-    if ((int) data_0217b4d8 != 0) {
+    if (data_0217b4d8 != 0) {
         return data_0217b4d8->mUnk_0c;
     }
-    v1 = *(int *) &data_0217b4e4;
-    if ((v1 != 0) && (*(int *) (v1 + 0x170) != 0)) {
+    v1 = *(s32 *) &data_0217b4e4;
+    if ((v1 != 0) && (*(s32 *) (v1 + 0x170) != 0)) {
         return *(u32 *) (v1 + 0x17c);
     }
     return 0;

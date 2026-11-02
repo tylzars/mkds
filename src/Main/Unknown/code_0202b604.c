@@ -15,7 +15,7 @@
 
 void func_0202bb60(void) {
     func_02036ab0((void *) data_02174e3c->mUnk_03c);
-    *(int *) &data_02174e3c = 0;
+    *&data_02174e3c = 0;
 }
 
 #pragma thumb off
@@ -109,7 +109,7 @@ u32 func_0202b888(void) {
             v1 = v1 & *(u32 *) (v4 + v3 + 0x14);
             v3 = v3 + 0x18;
             v2 = v2 + 1;
-        } while (v2 < *(int *) (*(int *) &data_02174e3c + 0x48));
+        } while (v2 < *(s32 *) (*(s32 *) &data_02174e3c + 0x48));
     }
     return v1;
 }
@@ -188,7 +188,7 @@ void func_0202b6a0(int a, int b) {
         } else {
             v1 = 1;
         }
-        func_0202cc18(a, (int) v1);
+        func_0202cc18(a, v1);
     }
     data_02174e3c->mUnk_04c[a].mUnk_00 = b;
 }

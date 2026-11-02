@@ -23,7 +23,7 @@ void func_020954e4(u32 arg0) {
     value12 = (u32) &func_020ac588;
     value0 = 0x13bu;
     value1 = (u32) * (const s16 *) ((value1) + (42));
-    func_020ac588(value0, (int) value1, (void *) value2);
+    func_020ac588(value0, value1, (void *) value2);
 }
 
 static inline u32 func_02095228_inline(Unk020f41c4_B *b, u32 n) {

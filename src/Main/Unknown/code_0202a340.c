@@ -5,7 +5,7 @@
 void func_0202a340(s16 *a, int b) {
     Unk0217aa1c_144_00 *v1;
     v1 = &data_0217b488->mUnk_98[b];
-    func_02025cd0((short *) ((short *) (u32) a), (u32) (v1->mUnk_02), (u32) (v1->mUnk_03),
+    func_02025cd0(((s16 *) a), v1->mUnk_02, v1->mUnk_03,
                   (u32) (data_0217b488->mUnk_98[b].mUnk_00));
 }
 

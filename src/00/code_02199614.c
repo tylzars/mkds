@@ -36,7 +36,7 @@ u32 func_ov000_021996fc(Unk02197fe8 *a, u32 b, const u8 *c, s32 d) {
     }
     if (e == a->mUnk_66) {
         func_ov000_021997f8((u32) a);
-        if (func_ov000_02199a0c((int) a, b, (u32) (c + 7), d - 7) == 0) {
+        if (func_ov000_02199a0c((s32) a, b, (u32) (c + 7), d - 7) == 0) {
             return 0;
         }
         if (func_ov000_0219981c(a) != 0) {

@@ -29,7 +29,7 @@ void func_ov000_021a323c(void (*arg0)(u32, void *, u32)) {
 }
 
 void func_ov000_021a321c(u32 *a, u16 b, u32 c) {
-    strncpy((u8 *) ((u32 *) (u32) ((int) a + 6)), data_ov000_021b41f0, 2);
+    strncpy((u8 *) (((s32) a + 6)), data_ov000_021b41f0, 2);
     *(u16 *) (a + 1) = b;
     *a = c;
     return;

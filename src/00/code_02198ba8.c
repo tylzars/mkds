@@ -52,15 +52,15 @@ int func_ov000_02198c58(Unk02197fe8 *a, u8 *b, int c) {
         return 1;
     }
     d = c + 2;
-    if (func_ov000_02197e58((int) &a->mUnk_50) < d) {
+    if (func_ov000_02197e58((s32) &a->mUnk_50) < d) {
         return 1;
     }
     e = a->mUnk_50.mUnk_00 + a->mUnk_50.mUnk_08;
-    func_ov000_02197d84((int *) &a->mUnk_50, (u32) data_ov000_021b3fa4, 2);
-    func_ov000_02197d84((int *) &a->mUnk_50, (u32) b, c);
+    func_ov000_02197d84((s32 *) &a->mUnk_50, (u32) data_ov000_021b3fa4, 2);
+    func_ov000_02197d84((s32 *) &a->mUnk_50, (u32) b, c);
     if (func_ov000_02198714((u32 *) a, (u32) e, d) == 0) {
         return 0;
     }
-    func_ov000_02197d20((int *) &a->mUnk_50, -1, d);
+    func_ov000_02197d20((s32 *) &a->mUnk_50, -1, d);
     return 1;
 }

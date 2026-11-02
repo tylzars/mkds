@@ -73,7 +73,7 @@ void func_ov003_021cafa4(void) {
     u32 v2;
     int v3;
     v2 = 0;
-    v3 = ((int) ((u32) (&data_ov003_021d6508)));
+    v3 = (((u32) (&data_ov003_021d6508)));
     do {
         v1 = func_ov003_021d2a34((const Unk021d299c *) (u16 *) ((u16 *) (u32) (v3)));
         if (v1 != 0) {
@@ -342,7 +342,7 @@ void func_ov003_021cab4c(int a) {
 
 void func_ov003_021caae0(void) {
     s32 a = data_ov003_021da230[0] - 4;
-    func_ov003_021d1c3c(0, 0x32, (u8 *) func_ov003_021d1974((int) data_ov003_021da234->mUnk_10[a], 0));
+    func_ov003_021d1c3c(0, 0x32, func_ov003_021d1974((s32) data_ov003_021da234->mUnk_10[a], 0));
     func_ov003_021d17d4(data_ov003_021da234->mUnk_10[a], -1, data_ov003_021d64f0[a + 3].mUnk_00,
                         data_ov003_021d64f0[a + 3].mUnk_02);
     func_ov003_021d1790(data_ov003_021da234->mUnk_10[a], -1, 3);

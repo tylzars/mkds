@@ -16,7 +16,7 @@
 Unk021d1770 *func_ov003_021d1be4(u32 b, u32 c, s32 d) {
     Unk021d1770 *a = func_ov003_021d19e0(b, data_ov003_021da2b8[b][c].mUnk_00, d);
 
-    func_ov003_021d1c3c(b, c, (u8 *) func_ov003_021d1974((int) a, 0));
+    func_ov003_021d1c3c(b, c, func_ov003_021d1974((s32) a, 0));
     return a;
 }
 

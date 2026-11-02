@@ -260,8 +260,8 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
         }
         q->y = q->y + r->y;
     }
-    if (func_01ffdee4((int *) q, (u32 *) &p->mUnk_000.mUnk_000.mUnk_0e4, 0, p->mUnk_000.mUnk_000.mUnk_dc, 4,
-                      p->mUnk_000.mUnk_000.mUnk_da, (int *) &v28, (int *) &v34, (int *) &v40,
+    if (func_01ffdee4(q, (u32 *) &p->mUnk_000.mUnk_000.mUnk_0e4, 0, p->mUnk_000.mUnk_000.mUnk_dc, 4,
+                      p->mUnk_000.mUnk_000.mUnk_da, &v28, &v34, (s32 *) &v40,
                       &p->mUnk_000.mUnk_000.mUnk_fc, 0, 0, 0, 0) != 0) {
         if (p->mUnk_000.mUnk_158 != 0) {
             if (v28.y > 0) {

@@ -24,13 +24,13 @@ void func_ov003_021bf760(u32 c, u32 d, u32 e, u32 f) {
     a = data_ov003_021d5f4c + c * 2;
     b = i;
     for (; i < 2; i++) {
-        *(u32 *) (*(int *) &data_ov003_021da150 + b) = (u32) func_ov003_021d1be4(0, *a, 1);
-        func_ov003_021d1790(*(Unk021d1770 **) (*(int *) &data_ov003_021da150 + b), -1, 1);
+        *(u32 *) (*(s32 *) &data_ov003_021da150 + b) = (u32) func_ov003_021d1be4(0, *a, 1);
+        func_ov003_021d1790(*(Unk021d1770 **) (*(s32 *) &data_ov003_021da150 + b), -1, 1);
         a++;
         b += 4;
     }
-    func_ov003_021d17d4(*(Unk021d1770 **) *(int *) &data_ov003_021da150, -1, d, f);
-    func_ov003_021d17d4(*(Unk021d1770 **) (*(int *) &data_ov003_021da150 + 4), -1, e, f);
+    func_ov003_021d17d4(*(Unk021d1770 **) *(s32 *) &data_ov003_021da150, -1, d, f);
+    func_ov003_021d17d4(*(Unk021d1770 **) (*(s32 *) &data_ov003_021da150 + 4), -1, e, f);
 }
 
 void func_ov003_021bf6c8(u32 a, u32 b, u32 c, u32 d) {
@@ -44,16 +44,16 @@ void func_ov003_021bf6c8(u32 a, u32 b, u32 c, u32 d) {
     v3 = 0;
     do {
         v4 = (u32) func_ov003_021d1be4(0, v1, 1);
-        *(u32 *) ((*(int *) &data_ov003_021da150) + v3) = v4;
-        func_ov003_021d1790(*(Unk021d1770 **) ((*(int *) &data_ov003_021da150) + v3), 0xffffffff, 1);
+        *(u32 *) ((*(s32 *) &data_ov003_021da150) + v3) = v4;
+        func_ov003_021d1790(*(Unk021d1770 **) ((*(s32 *) &data_ov003_021da150) + v3), 0xffffffff, 1);
         v3 = v3 + 4;
         v2 = v2 + 1;
         v1 = v1 + 1;
     } while (v2 < 4);
-    func_ov003_021d17d4(*(Unk021d1770 **) (*(int *) &data_ov003_021da150), 0xffffffff, a, c);
-    func_ov003_021d17d4(*(Unk021d1770 **) ((*(int *) &data_ov003_021da150) + 4), 0xffffffff, b, c);
-    func_ov003_021d17d4(*(Unk021d1770 **) ((*(int *) &data_ov003_021da150) + 8), 0xffffffff, a, d);
-    func_ov003_021d17d4(*(Unk021d1770 **) ((*(int *) &data_ov003_021da150) + 0xc), 0xffffffff, b, d);
+    func_ov003_021d17d4(*(Unk021d1770 **) (*(s32 *) &data_ov003_021da150), 0xffffffff, a, c);
+    func_ov003_021d17d4(*(Unk021d1770 **) ((*(s32 *) &data_ov003_021da150) + 4), 0xffffffff, b, c);
+    func_ov003_021d17d4(*(Unk021d1770 **) ((*(s32 *) &data_ov003_021da150) + 8), 0xffffffff, a, d);
+    func_ov003_021d17d4(*(Unk021d1770 **) ((*(s32 *) &data_ov003_021da150) + 0xc), 0xffffffff, b, d);
     return;
 }
 
@@ -64,10 +64,10 @@ void func_ov003_021bf698(void) {
     v1 = 0;
     v2 = 0;
     do {
-        p = *(Unk021d1770 **) (*(int *) data_ov003_021da150 + v2);
+        p = *(Unk021d1770 **) (*(s32 *) data_ov003_021da150 + v2);
         if (0 != p) {
             func_ov003_021d197c(p);
-            *(u32 *) (*(int *) data_ov003_021da150 + v2) = 0;
+            *(u32 *) (*(s32 *) data_ov003_021da150 + v2) = 0;
         }
         v2 = v2 + 4;
         v1 = v1 + 1;

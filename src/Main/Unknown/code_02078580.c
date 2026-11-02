@@ -296,7 +296,7 @@ void func_02078b48(void *param_1) {
     func_02077a28(param_1);
     LoadKartModelMenuFile(param_1, data_usa_02165724, (void **) &data_0217ad08->mUnk_1c8);
     for (i = 0; i < 2; i = (u16) (i + 1)) {
-        func_02078f18(param_1, (int) &data_0217ad08->mUnk_058[i]);
+        func_02078f18(param_1, (s32) &data_0217ad08->mUnk_058[i]);
     }
     func_02078ee0((u32 *) &data_0217ad08->mUnk_024, 1);
     func_02047b6c(9);

@@ -39,7 +39,7 @@ void func_0211de40(void *a) {
     int v1;
     void *v2;
     v1 = ((u32) func_02036bec(a, (u32) 0xc));
-    *(int *) &data_0217d36c = v1;
+    *(s32 *) &data_0217d36c = v1;
     v2 = FindSceneFile(data_0216de54);
     LocateNcgr2((Unk020b4934 **) data_0217d36c, v2);
     v2 = FindSceneFile(data_0216de58);

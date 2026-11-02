@@ -5,5 +5,5 @@ u32 func_0203f2a0(void) {
 }
 
 u16 func_0203f280(void) {
-    return (short) data_0217561c->mUnk_474[0];
+    return data_0217561c->mUnk_474[0];
 }

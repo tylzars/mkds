@@ -16,7 +16,7 @@ void func_020ada94(void) {
 void func_020ada7c(int *a) {
     u32 v1;
     v1 = *(u32 *) a;
-    if ((int) v1 < 0x7fffffff) {
+    if ((s32) v1 < 0x7fffffff) {
         *a = v1 + 1;
     }
 }

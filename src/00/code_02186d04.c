@@ -93,7 +93,7 @@ void func_ov000_02187274(Unk02186d7c *p) {
 
 u32 func_ov000_02187230(int a) {
     func_0200ed34((void *) (a + 0xa28));
-    if (*(int *) (a + 0xa40) == 1) {
+    if (*(s32 *) (a + 0xa40) == 1) {
         func_0200ecc4((void *) (a + 0xa28));
         return 0;
     }
@@ -199,7 +199,7 @@ void func_ov000_02186d7c(void *l) {
             }
         }
         p->mUnk_928.mUnk_04 += n;
-        if (func_ov000_02187230((int) p) == 0) {
+        if (func_ov000_02187230((s32) p) == 0) {
             p->mUnk_24 = 7;
             goto fail;
         }
@@ -291,7 +291,7 @@ void func_ov000_02186d7c(void *l) {
             }
         }
         func_0200ecc4(&p->mUnk_948);
-        if (func_ov000_02187230((int) p) == 0) {
+        if (func_ov000_02187230((s32) p) == 0) {
             p->mUnk_24 = 7;
             goto fail;
         }

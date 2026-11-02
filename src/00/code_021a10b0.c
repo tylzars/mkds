@@ -26,14 +26,14 @@ void func_ov000_021a1798(u32 value) {
 u32 func_ov000_021a1754(int a, int b) {
     int v1;
     int v2;
-    v2 = *(int *) &data_ov000_021b566c;
+    v2 = *(s32 *) &data_ov000_021b566c;
     if (0 == v2) {
         return 0;
     }
     v1 = 0;
     if (0 < b) {
         do {
-            if (a == *(int *) (v2 + 0xf4)) {
+            if (a == *(s32 *) (v2 + 0xf4)) {
                 func_ov000_021a1620(v1, b);
                 return 1;
             }
@@ -191,7 +191,7 @@ void func_ov000_021a1430(void) {
 }
 
 u32 func_ov000_021a141c(void) {
-    if ((int) data_ov000_021b566c == 0) {
+    if (data_ov000_021b566c == 0) {
         return 1;
     }
     return 0;
@@ -281,7 +281,7 @@ void func_ov000_021a1140(s32 a) {
 void func_ov000_021a10b0(u8 a, u8 b, u32 c, u32 d) {
     int *v1;
     func_ov000_021a1140(0);
-    v1 = (int *) &data_ov000_021b566c;
+    v1 = (s32 *) &data_ov000_021b566c;
     data_ov000_021b566c->mUnk_15 = a;
     *(u8 *) (*v1 + 0x16) = b;
     *(u32 *) (*v1 + 0x44c) = c;

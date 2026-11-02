@@ -5,7 +5,7 @@ void func_02089d70(Unk0217b034_784 *a) {
     u32 *v1;
     u32 *v2;
     v1 = ((u32 *) 0x0400046cu);
-    reg_G3_POLYGON_ATTR = ((u32) 0x090000c0u) | (int) a->mUnk_02 << 0x10;
+    reg_G3_POLYGON_ATTR = (0x090000c0u) | a->mUnk_02 << 0x10;
     *v1 = 0x8c000;
     *v1 = 0x6e000;
     v2 = ((u32 *) 0x04000500u);

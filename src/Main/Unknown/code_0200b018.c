@@ -3,7 +3,7 @@
 #pragma thumb on
 
 u32 func_0200b018(void) {
-    if ((int) data_0216fde0 != 0) {
+    if (data_0216fde0 != 0) {
         return 1;
     }
     return 0;

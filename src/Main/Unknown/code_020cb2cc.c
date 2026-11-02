@@ -7,10 +7,10 @@
 void func_020cb2d4(void) {
     int v1;
     func_020cb340();
-    v1 = *(int *) &data_0217b43c;
+    v1 = *(s32 *) &data_0217b43c;
     func_02124c30((void *) (*(u32 *) (v1 + 0x940)), (void *) (*(u32 *) (v1 + 0x918)), NULL, (void *) (v1 + 0x108),
                   (void *) (*(u32 *) (v1 + 0x93c)));
-    v1 = *(int *) &data_0217b43c;
+    v1 = *(s32 *) &data_0217b43c;
     func_02124c30((void *) (*(u32 *) (v1 + 0x94c)), (void *) (*(u32 *) (v1 + 0x928)), NULL, (void *) (v1 + 0x50c),
                   (void *) (*(u32 *) (v1 + 0x948)));
 }

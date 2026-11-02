@@ -26,7 +26,7 @@ void func_0209d650(u32 arg0) {
     value0 = 0x1aeu;
     value2 = value4;
     value1 = 0x1eu;
-    func_020ac588(value0, (int) value1, (void *) value2);
+    func_020ac588(value0, value1, (void *) value2);
     value0 = 0u;
     *(u32 *) ((value4) + (16)) = value0;
     *(u32 *) ((value4) + (20)) = value0;

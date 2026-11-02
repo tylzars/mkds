@@ -10,7 +10,7 @@ void func_020d2774(Unk020e71a0 *arg0, u32 arg1) {
     value0 = (u32) * (const u32 *) ((value0) + (148));
     value2 = 0x7fu;
     value3 = 0u;
-    value0 = (u32) func_021090c4((void *) value0, (int) value1, (int) value2, (int) value3);
+    value0 = (u32) func_021090c4((void *) value0, value1, value2, value3);
 }
 
 void func_020d275c(Unk020e71a0 *arg0, u32 arg1) {
@@ -23,5 +23,5 @@ void func_020d275c(Unk020e71a0 *arg0, u32 arg1) {
     value0 = (u32) * (const u32 *) ((value0) + (148));
     value2 = 0x7fu;
     value3 = 0u;
-    func_02109078((Unk0210bfbc *) value0, (int) value1, (int) value2, (int) value3);
+    func_02109078((Unk0210bfbc *) value0, value1, value2, value3);
 }

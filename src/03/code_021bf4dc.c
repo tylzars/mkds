@@ -66,7 +66,7 @@ void func_ov003_021bf578(u32 c) {
     void *b;
 
     a = func_ov003_021d2288(0, 0);
-    b = (void *) func_ov003_021c2530((int *) data_ov003_021da19c, c);
+    b = (void *) func_ov003_021c2530((s32 *) data_ov003_021da19c, c);
     func_ov003_021d2070(a, data_ov003_021d5f0c[0], data_ov003_021d5f0c[1], data_ov003_021d5f0c[2],
                         data_ov003_021d5f0c[3], 2, func_ov003_021bf4dc(), b);
     func_ov003_021d1fd0(a);
@@ -77,7 +77,7 @@ void func_ov003_021bf4f4(u32 c, u32 d) {
     void *b;
 
     a = func_ov003_021d2288(0, 0);
-    b = (void *) func_ov003_021c2530((int *) data_ov003_021da19c, d);
+    b = (void *) func_ov003_021c2530((s32 *) data_ov003_021da19c, d);
     func_ov003_021d2070(a, data_ov003_021d5f14[0], data_ov003_021d5f14[1], data_ov003_021d5f14[2],
                         data_ov003_021d5f14[3], 2, func_ov003_021bf4dc(), b);
     func_ov003_021d214c((u32) a, data_ov003_021d5f34[func_ov003_021c20d0() * 2],

@@ -177,7 +177,7 @@ u32 func_ov001_02192e94(void) {
 }
 
 int func_ov001_02192e84(void) {
-    return (int) data_ov001_021a9bd0->mUnk_14;
+    return data_ov001_021a9bd0->mUnk_14;
 }
 
 void func_ov001_02192e78(u16 a) {

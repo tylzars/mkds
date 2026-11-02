@@ -15,7 +15,7 @@
 void func_02009c04(void) {
     u32 v1;
     v1 = ((s64) func_0200fca0());
-    if ((int) data_0216fdac->mUnk_1320 == 0) {
+    if (data_0216fdac->mUnk_1320 == 0) {
         func_0200fd1c();
     }
     func_02009c34();

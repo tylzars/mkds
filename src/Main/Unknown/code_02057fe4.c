@@ -483,10 +483,10 @@ void func_0205821c(void) {
 
 void func_020581f4(void) {
     int v1;
-    if ((int *) (int) data_0217aa00 == (int *) 0x0) {
+    if ((s32 *) data_0217aa00 == 0x0) {
         v1 = 0;
     } else {
-        v1 = *(int *) (int) data_0217aa00;
+        v1 = *(s32 *) data_0217aa00;
     }
     if (v1 == 1) {
         func_020518c8(1);

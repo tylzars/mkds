@@ -104,13 +104,13 @@ void func_ov000_0218b4d4(struct Unk0218b668 *p, s32 a) {
 }
 
 s32 func_ov000_0218b4bc(struct Unk0218b668 *p) {
-    func_ov000_0218a950((int) p);
+    func_ov000_0218a950((s32) p);
     return func_ov000_0218b8e4(&p->mUnk_04c);
 }
 
 void func_ov000_0218b4a4(struct Unk0218b668 *p) {
     func_ov000_0218c980(&p->mUnk_04c);
-    func_ov000_0218acd8((int) p);
+    func_ov000_0218acd8((s32) p);
 }
 
 void func_ov000_0218b48c(struct Unk0218b668 *p) {

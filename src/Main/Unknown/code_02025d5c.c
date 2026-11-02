@@ -4,7 +4,7 @@
 
 int func_02025d74(int a) {
     int v1;
-    v1 = ((int *) &data_021533fc)[a];
+    v1 = ((s32 *) &data_021533fc)[a];
     if (v1 != -1) {
         v1 = v1 + -0x1a;
     }
@@ -13,7 +13,7 @@ int func_02025d74(int a) {
 
 int func_02025d5c(int a) {
     int v1;
-    v1 = ((int *) &data_021533fc)[a];
+    v1 = ((s32 *) &data_021533fc)[a];
     if (v1 != -1) {
         v1 = v1 + 4;
     }

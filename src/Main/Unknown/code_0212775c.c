@@ -347,15 +347,15 @@ void func_02127a84(void) {
 void func_02127a38(void) {
     int *v1;
     int v2;
-    v1 = (int *) &data_0217d3f4;
-    v2 = *(int *) &data_0217d3f4;
-    if (*(int *) (0x28 + v2) != 0) {
+    v1 = (s32 *) &data_0217d3f4;
+    v2 = *(s32 *) &data_0217d3f4;
+    if (*(s32 *) (0x28 + v2) != 0) {
         *(u32 *) (v2 + 8) = 0;
         *(u32 *) (*v1 + 0x28) = 0;
         return;
     }
-    *(int *) (v2 + 0xc) = *(int *) (v2 + 0xc) + 1;
-    v2 = *(int *) (*v1 + 0xc);
+    *(s32 *) (v2 + 0xc) = *(s32 *) (v2 + 0xc) + 1;
+    v2 = *(s32 *) (*v1 + 0xc);
     if (15 <= v2) {
         *(u32 *) (*v1 + 0x1c) = 1;
         *(u32 *) (*v1 + 0xc) = 0xf;
@@ -475,7 +475,7 @@ s32 func_021277ac(void) {
 #pragma thumb on
 
 s32 func_02127794(void) {
-    if ((int) data_0217d3f4->mUnk_20 != 0) {
+    if (data_0217d3f4->mUnk_20 != 0) {
         return 0xffffffff;
     }
     return data_0217d3f4->mUnk_18;

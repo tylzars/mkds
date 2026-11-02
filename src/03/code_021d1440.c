@@ -86,7 +86,7 @@ s32 func_ov003_021d15a4(Unk02003024 *a, u32 b) {
 }
 
 u32 func_ov003_021d1574(int a, u32 b, int c, u32 d) {
-    func_021461d8((u32) (0xffffffff), (int) (c + *(int *) (a + 0x28)), (u32) (b), (u32) (d),
+    func_021461d8(0xffffffff, (c + *(s32 *) (a + 0x28)), b, d,
                   (UnkFunc *) (&func_ov003_021d1568), (u32) (a), 1);
     return 6;
 }

@@ -7,6 +7,6 @@ u32 func_ov000_02199a00(u32 arg0, u32 arg1) {
     value0 = (u32) * (const u16 *) ((value0) + 12u);
     value1 = (u32) * (const u16 *) ((value1) + 12u);
     value3 = (u32) &func_ov000_0219a014;
-    value0 = (u32) func_ov000_0219a014((int) value0, (int) value1);
+    value0 = func_ov000_0219a014(value0, value1);
     return value0;
 }

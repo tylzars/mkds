@@ -81,7 +81,7 @@ int func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
     func_02148504(&a->mUnk_22c, p, p);
     func_02148504(q, p, p);
     if (func_01ffdee4(&p->x, (u32 *) &a->mUnk_000.mUnk_000.mUnk_000.mUnk_0e4, 0, a->mUnk_000.mUnk_000.mUnk_000.mUnk_dc,
-                      4, a->mUnk_000.mUnk_000.mUnk_000.mUnk_da, (int *) &t, (int *) &u, (int *) &w,
+                      4, a->mUnk_000.mUnk_000.mUnk_000.mUnk_da, &t, &u, (s32 *) &w,
                       &a->mUnk_000.mUnk_000.mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL) != 0) {
         func_02148504(&t, p, p);
         if (a->mUnk_000.mUnk_000.mUnk_000.mUnk_fc & 0x1e34ef) {

@@ -121,10 +121,10 @@ s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c) {
     s = *v;
     r = 0;
     s.y = s.y + 0x1999;
-    if (func_01ffdee4((int *) &s, 0, 0, 0xa000, 8, -2, 0, (int *) &buf1, 0, 0, 0, 0, 0, 0) != 0) {
+    if (func_01ffdee4(&s, 0, 0, 0xa000, 8, -2, 0, &buf1, 0, 0, 0, 0, 0, 0) != 0) {
         r = 1;
         func_020d7b88((Vec3 *) &buf1, &buf2);
-        func_01ffccd0((int *) a, &buf2);
+        func_01ffccd0(a, &buf2);
         d = b / 10;
         ((Unk020e516c *) a)->mUnk_000 = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000 * d) >> 12);
         ((Unk020e516c *) a)->mUnk_004 = (s32) (((s64) ((Unk020e516c *) a)->mUnk_004 * d) >> 12);

@@ -30,13 +30,13 @@ s32 func_ov000_021aa1e0(Unk021a998c_0c *a, u8 *b) {
             func_ov000_021ab728(g, b, 1);
             func_ov000_021ab728(g, b + 3, 2);
             func_ov000_021ab728(g, b + 5, e);
-            func_ov000_021ab6d4((int) g, (u32) c);
+            func_ov000_021ab6d4((s32) g, (u32) c);
             func_ov000_021ab7b4(g);
             func_ov000_021ab728(g, a->mUnk_1a8, 0x10);
             func_0214d168(d, 0x5c, 0x30);
             func_ov000_021ab728(g, d, 0x30);
             func_ov000_021ab728(g, c, 0x10);
-            func_ov000_021ab6d4((int) g, (u32) c);
+            func_ov000_021ab6d4((s32) g, (u32) c);
             f = 0x10;
             break;
         case 5:
@@ -52,13 +52,13 @@ s32 func_ov000_021aa1e0(Unk021a998c_0c *a, u8 *b) {
             func_ov000_021abca0(g, b, 1);
             func_ov000_021abca0(g, b + 3, 2);
             func_ov000_021abca0(g, b + 5, e);
-            func_ov000_021abc4c((int) g, (u32) c);
+            func_ov000_021abc4c((s32) g, (u32) c);
             func_ov000_021abd2c(g);
             func_ov000_021abca0(g, a->mUnk_1a8, 0x14);
             func_0214d168(d, 0x5c, 0x28);
             func_ov000_021abca0(g, d, 0x28);
             func_ov000_021abca0(g, c, 0x14);
-            func_ov000_021abc4c((int) g, (u32) c);
+            func_ov000_021abc4c((s32) g, (u32) c);
             f = 0x14;
             break;
     }

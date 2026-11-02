@@ -4,7 +4,7 @@
 
 void func_020d7db4(Unk020e0144 *a, u16 b, int c) {
     a->mUnk_08 = b;
-    func_020d7e44((u32) a->mUnk_08, (int) &gCourseMap->mUnk_08[a->mUnk_08]);
+    func_020d7e44(a->mUnk_08, (s32) &gCourseMap->mUnk_08[a->mUnk_08]);
     a->mUnk_00 = &data_0217b670[a->mUnk_08];
     a->mUnk_04 = c;
     func_020d90a8(a, 0, 1);

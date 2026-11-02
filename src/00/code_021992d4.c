@@ -20,7 +20,7 @@ u32 func_ov000_021992d4(Unk02197e8c *a, u8 *b, s32 c, u32 d, u32 e) {
     s32 i;
     f = func_ov000_0219a5b0(a, d, e);
     if (a->mUnk_2c != 0) {
-        if (func_ov000_02197f28((int) a, (int) f, d, e, 0, (int) b, c, 0) == 0) {
+        if (func_ov000_02197f28((s32) a, (s32) f, d, e, 0, (s32) b, c, 0) == 0) {
             return 0;
         }
     }
@@ -128,7 +128,7 @@ u32 func_ov000_02199554(Unk02197fe8 *a) {
     if (a->mUnk_0c == 7) {
         return 1;
     }
-    if (func_ov000_02199fb0((int) a, 2, a->mUnk_0c == 6 ? K0 : K1) == 0) {
+    if (func_ov000_02199fb0((s32) a, 2, a->mUnk_0c == 6 ? K0 : K1) == 0) {
         return 0;
     }
     return 1;

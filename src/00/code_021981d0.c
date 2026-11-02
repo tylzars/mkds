@@ -43,7 +43,7 @@ int func_ov000_02198258(Unk02197fe8 *a, void *b, int c, int d) {
     }
     if (c == 0 || b == 0) {
         b = 0;
-        c = (int) b;
+        c = (s32) b;
     }
     a->mUnk_24++;
     a->mUnk_08->mUnk_1c++;
@@ -70,7 +70,7 @@ int func_ov000_021982f4(Unk02197fe8 *a, int b, void *c, int d) {
     }
     if (d == 0 || c == 0) {
         c = 0;
-        d = (int) c;
+        d = (s32) c;
     }
     a->mUnk_24++;
     a->mUnk_08->mUnk_1c++;

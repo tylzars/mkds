@@ -87,7 +87,7 @@ int func_02120220(int arg0) {
     value1 = (value0) * (value1) + (value2);
     value0 = (value1) + (0x400u);
     value0 = (u32) * (const s16 *) ((value0) + (62));
-    return (int) value0;
+    return value0;
 }
 
 void func_02120200(int arg0, s16 arg1) {

@@ -136,7 +136,7 @@ void func_ov003_021c8b94(void) {
     for (i = 0, j = a; i < 5; i++, j++) {
         func_ov003_021c8a60(j, i);
     }
-    func_ov003_021cc9c0((int) (data_ov003_021da214->mUnk_08 + data_ov003_021d6488[a]), 0, 0x1e, 0x13);
+    func_ov003_021cc9c0((s32) (data_ov003_021da214->mUnk_08 + data_ov003_021d6488[a]), 0, 0x1e, 0x13);
     for (i = 0; i < 5; i++, a++) {
         func_ov003_021c8974(a, i);
     }

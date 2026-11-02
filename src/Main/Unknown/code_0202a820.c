@@ -8,7 +8,7 @@
 
 void func_0202a90c(void) {
     func_02036ab0((void *) (gWiFiVSCourseSelect->mUnk_090));
-    *(int *) &gWiFiVSCourseSelect = 0;
+    *&gWiFiVSCourseSelect = 0;
     return;
 }
 

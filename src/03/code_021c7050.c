@@ -10,7 +10,7 @@ void func_ov003_021c7050(void) {
     v1 = 0;
     v4 = 0;
     do {
-        v2 = (int) data_ov003_021da1fc + 8 + v4;
+        v2 = (s32) data_ov003_021da1fc + 8 + v4;
         v3 = 0;
         do {
             v6 = *(s8 *) (v2 + v3);

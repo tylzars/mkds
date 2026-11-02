@@ -7,8 +7,8 @@ void func_ov000_0219a3f8(u32 *a) {
         return;
     }
     func_ov000_0218e53c(*a);
-    func_ov000_0218dfb4((int *) ((int *) (u32) (a[3])));
-    func_ov000_0218dc48((int *) ((int *) (u32) (a[4])));
+    func_ov000_0218dfb4((s32 *) (a[3]));
+    func_ov000_0218dc48((s32 *) (a[4]));
     func_ov000_021a3668((void *) ((u32) (a)));
     func_ov000_0218e8b4();
     return;

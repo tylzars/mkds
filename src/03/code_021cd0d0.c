@@ -77,7 +77,7 @@ int func_ov003_021cd0d0(int *a) {
     int v3;
     int v4;
     v2 = 0;
-    *a = (int) data_ov003_021da26c->mUnk_1300;
+    *a = (s32) data_ov003_021da26c->mUnk_1300;
     v1 = 0;
     v3 = *a;
     do {

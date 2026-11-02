@@ -18,8 +18,8 @@ void func_021049a4(void) {
             do {
                 v3 = *v4;
                 v5 = func_0210543c();
-                *(u32 *) ((int) v3 + 0x134) = v5;
-                *(int *) (*(int *) ((int) v3 + 0x134) + 0xfc) = (int) v3 + 0x13c;
+                *(u32 *) ((s32) v3 + 0x134) = v5;
+                *(s32 *) (*(s32 *) ((s32) v3 + 0x134) + 0xfc) = (s32) v3 + 0x13c;
                 v4 = v4 + 1;
                 v2 = v2 + 1;
             } while (v2 < v1);

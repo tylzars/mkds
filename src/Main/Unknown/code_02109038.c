@@ -11,5 +11,5 @@ void func_02109038(void *arg0, u32 arg1, void *arg2) {
     value3 = ~(0u);
     value1 = value2;
     *(u32 *) ((value0) + (64)) = value3;
-    func_0210c134((int) value0, value1);
+    func_0210c134(value0, value1);
 }

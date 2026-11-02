@@ -84,8 +84,8 @@ void func_020fa294(void) {
         e = &gCourseMap->mUnk_00[i];
         if (e->mUnk_24 == 0x6d) {
             k = e->mUnk_28;
-            if (func_01ffdee4((int *) e, (u32 *) 0, 0, 0xa000, 8, -2, (int *) 0, (int *) &m, (int *) 0, (u32 *) 0,
-                              (u32 *) 0, (int *) 0, (u16 *) 0, &v) == 0) {
+            if (func_01ffdee4(e, 0, 0, 0xa000, 8, -2, 0, &m, 0, 0,
+                              0, 0, 0, &v) == 0) {
                 m = data_02159cb0;
             }
             p = func_020fa3d0_inline(k, 8, e, &m);

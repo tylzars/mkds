@@ -202,7 +202,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
                     p->mUnk_44 &= ~0x2000;
                 }
             }
-            if (func_01ffdee4((int *) &v, (u32 *) &v6, 0, p->mUnk_1d0, 1, p->mUnk_2c8, (int *) &v5, 0, 0, &w, 0, 0, 0,
+            if (func_01ffdee4(&v, (u32 *) &v6, 0, p->mUnk_1d0, 1, p->mUnk_2c8, &v5, 0, 0, &w, 0, 0, 0,
                               0)) {
                 func_02148504(&v, &v5, &v);
             }

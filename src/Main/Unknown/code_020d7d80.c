@@ -8,7 +8,7 @@ void func_020d7d80(u32 *a) {
     int v3;
     int v4;
     int v5;
-    v1 = (int *) *a;
+    v1 = (s32 *) *a;
     v3 = v1[1];
     v2 = 0;
     if (0 < v3) {

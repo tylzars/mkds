@@ -11,7 +11,7 @@ void func_020ada2c(s32 a) {
     func_020ae6ac(&data_0217b340->mUnk_b0, &data_0217b340->mUnk_4b4);
     i = data_0217b340->mUnk_0c;
     data_0217b340->mUnk_14[i].mUnk_04(a);
-    func_020ada7c((int *) data_0217b340);
+    func_020ada7c((s32 *) data_0217b340);
     func_02125928();
     func_020ae630(&data_0217b340->mUnk_b0, &data_0217b340->mUnk_4b4);
 }

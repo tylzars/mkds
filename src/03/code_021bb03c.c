@@ -179,11 +179,11 @@ s32 func_ov003_021bb0b0(void) {
 u32 func_ov003_021bb070(u32 *a) {
     int v1;
     *a = *(u32 *) &data_ov003_021d8c08;
-    if ((*(int *) &data_ov003_021d68b8) == -1) {
+    if ((*(s32 *) &data_ov003_021d68b8) == -1) {
         a[1] = 0xffffffff;
     } else {
         v1 = func_ov003_021bb354();
-        a[1] = (*(int *) &data_ov003_021d68b8) - v1;
+        a[1] = (*(s32 *) &data_ov003_021d68b8) - v1;
     }
     a[2] = *(u32 *) &data_ov003_021d8c48;
     return 1;

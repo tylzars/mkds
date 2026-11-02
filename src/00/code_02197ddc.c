@@ -3,7 +3,7 @@
 
 u32 func_ov000_02197e60(int *a, int b) {
     int v1;
-    v1 = (int) func_ov000_021a3690((u32) (b));
+    v1 = (s32) func_ov000_021a3690(b);
     *a = v1;
     if (*a == 0) {
         return 0;
@@ -13,7 +13,7 @@ u32 func_ov000_02197e60(int *a, int b) {
 }
 
 int func_ov000_02197e58(int a) {
-    return *(int *) (a + 4) - *(int *) (a + 8);
+    return *(s32 *) (a + 4) - *(s32 *) (a + 8);
 }
 
 void func_ov000_02197e20(int *a, u8 b) {
@@ -34,7 +34,7 @@ void func_ov000_02197ddc(int *a, u32 b) {
     }
     v1 = a[2];
     a[2] = v1 + 1;
-    *(s8 *) (*a + v1) = (s8) ((int) b >> 8);
+    *(s8 *) (*a + v1) = (s32) b >> 8;
     v1 = a[2];
     a[2] = v1 + 1;
     *(s8 *) (*a + v1) = (s8) b;

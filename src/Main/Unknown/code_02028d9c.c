@@ -29,14 +29,14 @@ void func_02028e38(void) {
     short *v2;
     v1 = func_020280dc();
     if (v1 == 0) {
-        v2 = (short *) func_02078b04((int) gSelectKart->mUnk_0a8, (int) gSelectKart->mUnk_0a4);
+        v2 = func_02078b04(gSelectKart->mUnk_0a8, gSelectKart->mUnk_0a4);
         v3 = (Unk02174e14_00 *) &gSelectKart->mUnk_064;
-        func_02028ec0(10, (u32) 0x10, (int) *v2, v3);
-        func_02028ec0(9, (u32) 0xf, (int) v2[1], v3);
-        func_02028ec0(8, (u32) 0xe, (int) v2[2], v3);
-        func_02028ec0(7, (u32) 0xd, (int) v2[3], v3);
-        func_02028ec0(6, (u32) 0xc, (int) v2[4], v3);
-        func_02028ec0(5, (u32) 0xb, (int) v2[5], v3);
+        func_02028ec0(10, 0x10, *v2, v3);
+        func_02028ec0(9, 0xf, v2[1], v3);
+        func_02028ec0(8, 0xe, v2[2], v3);
+        func_02028ec0(7, 0xd, v2[3], v3);
+        func_02028ec0(6, 0xc, v2[4], v3);
+        func_02028ec0(5, 0xb, v2[5], v3);
     }
 }
 

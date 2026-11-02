@@ -22,7 +22,7 @@ u32 func_ov000_02189478(void) {
         return func_ov000_02189438();
     }
     if (v2 == 5) {
-        return func_ov000_02189420((int) (v1));
+        return func_ov000_02189420(v1);
     }
     return func_ov000_02189350((Unk02189350 *) v1);
 }

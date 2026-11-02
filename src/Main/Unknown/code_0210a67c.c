@@ -87,9 +87,9 @@ void func_0210b564(int a, int b, u32 c, u32 d, u32 e) {
             return;
         }
     }
-    v1 = func_0210bb74(b, (int) c, (int) d);
+    v1 = func_0210bb74(b, c, d);
     if (v1 != 0xffff) {
-        func_021090c4((void *) ((void *) a), (int) (v1), 0x7f, 0);
+        func_021090c4(((void *) a), v1, 0x7f, 0);
         return;
     }
 }

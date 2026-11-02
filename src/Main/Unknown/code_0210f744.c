@@ -201,7 +201,7 @@ s32 func_02110590(u32 arg0) {
 }
 
 u16 func_0211057c(int a) {
-    return *(u16 *) (((int) (u32) ((u8 *) &data_0216cba0)) + a * 2);
+    return *(u16 *) ((((u8 *) &data_0216cba0)) + a * 2);
 }
 
 void func_02110534(u32 a) {

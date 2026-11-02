@@ -464,7 +464,7 @@ Unk02193f2cNode *func_ov000_02193eac(Unk0218f960 *c, u32 d, u32 e) {
 int func_ov000_02193e70(Unk0218f960 *a, Unk02193f2cNode *b) {
     int v1;
     int v2[2];
-    v1 = func_ov000_021938cc(a, 2, 0, (int *) (v2), 0, 0, 0);
+    v1 = func_ov000_021938cc(a, 2, 0, v2, 0, 0, 0);
     if ((v1 == 0) && (v1 = func_ov000_02192330(a, (u32) (b->mUnk_0c), (u32) (*(u32 *) (v2[0] + 0x18))), v1 == 0)) {
         b->mUnk_00 = 0x65;
         v1 = 0;

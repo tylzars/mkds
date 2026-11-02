@@ -808,7 +808,7 @@ void func_02111584(void) {
     func_02111a98();
     func_0212abd0();
     func_02125da0();
-    *(int *) &data_0217d344 = 0;
+    *&data_0217d344 = 0;
 }
 
 #pragma thumb off

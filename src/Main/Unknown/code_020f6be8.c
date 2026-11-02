@@ -30,7 +30,7 @@ s32 func_020f7184(Unk020f41c4_A *a, s32 b, s32 c) {
             a->mUnk_78 |= data_02159b6c;
         } else {
             a->mUnk_78 |= data_02159b68;
-            func_020f9c40((int) a);
+            func_020f9c40((s32) a);
         }
         a->mUnk_120 = 0;
         return 1;
@@ -74,7 +74,7 @@ s32 func_020f7184(Unk020f41c4_A *a, s32 b, s32 c) {
         }
     }
     a->mUnk_74 |= 0x80001;
-    func_020f9c40((int) a);
+    func_020f9c40((s32) a);
     r = func_02039828(v, (Vec3 *) func_020e6b28());
     if (r > 1) {
         a->mUnk_108.x = 1;

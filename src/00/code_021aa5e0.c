@@ -42,12 +42,12 @@ void func_ov000_021aa5e0(Unk021a998c_0c *a) {
             func_ov000_021abca0(h, a->mUnk_000->mUnk_20, 0x30);
             func_ov000_021abca0(h, a->mUnk_028, 0x20);
             func_ov000_021abca0(h, a->mUnk_008, 0x20);
-            func_ov000_021abc4c((int) h, (u32) (c + 1));
+            func_ov000_021abc4c((s32) h, (u32) (c + 1));
             h = (u32 *) a->mUnk_3d0;
             func_ov000_021ab7b4(h);
             func_ov000_021ab728(h, a->mUnk_000->mUnk_20, 0x30);
             func_ov000_021ab728(h, c + 1, 0x14);
-            func_ov000_021ab6d4((int) h, (u32) (a->mUnk_048 + o));
+            func_ov000_021ab6d4((s32) h, (u32) (a->mUnk_048 + o));
             o += 0x10;
             i++;
         } while (o < n);

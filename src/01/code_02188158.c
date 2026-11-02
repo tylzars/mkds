@@ -26,7 +26,7 @@ int func_ov001_02188158(Unk02188950 *a, u32 b, u32 c) {
     v4 = 0;
     if (0 < v1) {
         do {
-            v2 = func_020fd7a4((int) (v4));
+            v2 = func_020fd7a4(v4);
             if ((v2 != 0) && (v3 = func_ov001_021881a8(a, (Vec3 *) (v2 + 0x50), (s32) (b), (s32) (c)), v3 != 0)) {
                 return v2;
             }

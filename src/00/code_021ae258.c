@@ -16,7 +16,7 @@ void func_ov000_021ae290(int a, u16 b, int c) {
     v2 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
     if (v2 != 0) {
         if (c == 0x7f000001) {
-            c = *(int *) &data_ov000_021b63b4;
+            c = *(s32 *) &data_ov000_021b63b4;
         }
         v2->mUnk_1a = b;
         v2->mUnk_18 = v2->mUnk_1a;
@@ -27,7 +27,7 @@ void func_ov000_021ae290(int a, u16 b, int c) {
             v2->mUnk_0a = v1;
             return;
         }
-        v2->mUnk_0a = (short) a;
+        v2->mUnk_0a = a;
     }
 }
 

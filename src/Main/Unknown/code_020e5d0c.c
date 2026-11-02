@@ -163,7 +163,7 @@ void func_020e61a8(u32 param_1, Unk020e5e24 *a) {
         }
     }
     func_020d7734(a->mUnk_a0, v, buf);
-    func_01ffccd0((int *) &a->mUnk_28, (void *) buf);
+    func_01ffccd0(&a->mUnk_28, buf);
     func_02147fd8(-a->mUnk_f8, &a->mUnk_28.mUnk_0c, &a->mUnk_bc, &a->mUnk_04);
     a->mUnk_ec.x = a->mUnk_04.x >> 4;
     a->mUnk_ec.y = a->mUnk_04.y >> 4;

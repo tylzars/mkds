@@ -55,8 +55,8 @@ void func_ov000_021a3910(void) {
 
 u32 func_ov000_021a38d8(void) {
     int *v1;
-    v1 = (int *) (u32) data_ov000_021b5df4;
-    if (v1 == (int *) 0x0) {
+    v1 = (s32 *) data_ov000_021b5df4;
+    if (v1 == 0x0) {
         return 0;
     }
     if (*v1 != 0) {
@@ -104,13 +104,13 @@ u32 func_ov000_021a3810(void) {
 
 void func_ov000_021a37dc(void) {
     int v1;
-    if ((int) data_ov000_021b5df4 != 0) {
+    if (data_ov000_021b5df4 != 0) {
         v1 = func_ov000_02188720();
         while (v1 == 0) {
             func_0200dc3c(10);
             v1 = func_ov000_02188720();
         }
-        *(int *) &data_ov000_021b5df4 = 0;
+        *(s32 *) &data_ov000_021b5df4 = 0;
     }
     return;
 }

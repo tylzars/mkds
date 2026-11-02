@@ -11,7 +11,7 @@ u32 func_02151830(u16 *a) {
     if (v1 == 0) {
         return 0;
     }
-    *(int *) &data_0218049c = (u32) *a * 8 - 0x400;
+    *(s32 *) &data_0218049c = *a * 8 - 0x400;
     return 1;
 }
 
@@ -31,7 +31,7 @@ u32 func_02151794(int a, int *b, u32 c) {
     int *v4;
     int v5;
     v2 = 0x100;
-    v3 = *(int *) &data_0218049c;
+    v3 = *(s32 *) &data_0218049c;
     v5 = 0;
     v4 = b;
     do {
@@ -61,7 +61,7 @@ u32 func_02151718(int a) {
     int v5;
     u16 v6;
     v4 = 0x100;
-    v2 = *(int *) &data_0218049c;
+    v2 = *(s32 *) &data_0218049c;
     v1 = 0;
     v3 = a;
     do {

@@ -33,7 +33,7 @@ void func_020f4884(Unk020f40dc *rec) {
     rec->mUnk_08 -= 1;
     k = data_0217bc48[rec->mUnk_00].mUnk_08;
     t = data_027e00cc[k].mUnk_1c;
-    data_027e00cc[(int) k].mUnk_1c = t - 1;
+    data_027e00cc[(s32) k].mUnk_1c = t - 1;
     if (rec->mUnk_08 == 0) {
         rec->mUnk_00 = 0x13;
         rec->mUnk_08 = 0;
@@ -61,7 +61,7 @@ void func_020f47e4(Unk020f40dc *rec, s32 kind) {
     rec->mUnk_12 = 0;
     k = data_0217bc48[kind].mUnk_08;
     t = data_027e00cc[k].mUnk_1c;
-    data_027e00cc[(int) k].mUnk_1c = t + rec->mUnk_08;
+    data_027e00cc[(s32) k].mUnk_1c = t + rec->mUnk_08;
 }
 
 void func_020f4754(Unk020f40dc *rec, s32 n) {
@@ -70,7 +70,7 @@ void func_020f4754(Unk020f40dc *rec, s32 n) {
 
     rec->mUnk_08 -= n;
     k = data_0217bc48[rec->mUnk_00].mUnk_08;
-    data_027e00cc[(int) k].mUnk_1c = data_027e00cc[k].mUnk_1c - n;
+    data_027e00cc[(s32) k].mUnk_1c = data_027e00cc[k].mUnk_1c - n;
     if (rec->mUnk_08 == 0) {
         rec->mUnk_00 = 0x13;
         rec->mUnk_08 = 0;
@@ -122,7 +122,7 @@ void func_020f45f0(Unk020f40dc *rec, s32 keep) {
         }
     } else if (keep == 0) {
         t = data_027e00cc[tab].mUnk_1c;
-        data_027e00cc[(int) tab].mUnk_1c = t - rec->mUnk_08;
+        data_027e00cc[(s32) tab].mUnk_1c = t - rec->mUnk_08;
     }
     rec->mUnk_00 = 0x13;
     rec->mUnk_08 = 0;
@@ -253,7 +253,7 @@ void func_020f40dc(Unk020f40dc *rec, s32 kind, s32 count) {
 void func_020f40a0(s32 idx, s32 amount) {
     int i = data_0217bc48[idx].mUnk_08;
 
-    data_027e00cc[(int) i].mUnk_1c = data_027e00cc[i].mUnk_1c - amount;
+    data_027e00cc[(s32) i].mUnk_1c = data_027e00cc[i].mUnk_1c - amount;
 }
 
 s32 func_020f4090(s32 idx) {

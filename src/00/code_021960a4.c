@@ -6,9 +6,9 @@ int func_ov000_021961e8(Unk0218f960 *a, u32 b, u32 c, u32 d, u32 e) {
     int v1;
     int v2;
     a->mUnk_00->mUnk_210 = a->mUnk_00->mUnk_210 + 1;
-    v1 = func_ov000_021938cc(a, 3, (int) b, (int *) (&v2), (int) c, (int) d, (int) e);
+    v1 = func_ov000_021938cc(a, 3, b, &v2, c, d, e);
     if (((v1 == 0) && (v1 = func_ov000_021962d4(a, (Unk021937c0Node *) v2), v1 == 0)) &&
-        ((*(int *) (v2 + 8) == 0 || (v1 = func_ov000_0218f2e8(a, (int) (*(u32 *) (v2 + 0x18))), v1 == 0)))) {
+        ((*(s32 *) (v2 + 8) == 0 || (v1 = func_ov000_0218f2e8(a, *(u32 *) (v2 + 0x18)), v1 == 0)))) {
         v1 = 0;
     }
     return v1;
@@ -51,11 +51,11 @@ int func_ov000_021960a4(Unk0218f960 *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, int g
         } else {
             func_ov000_02196914((u8 *) (v2[0] + 0xae), f, 0x1f);
         }
-        *(int *) (v2[0] + 0x130) = g;
+        *(s32 *) (v2[0] + 0x130) = g;
         if (h < 0) {
             h = 0;
         }
-        *(int *) (v2[0] + 0x134) = h;
+        *(s32 *) (v2[0] + 0x134) = h;
         v1 = func_ov000_021961e8(a, (u32) (v2[0]), l, m, n);
         if (v1 == 0) {
             v1 = 0;

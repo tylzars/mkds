@@ -12,7 +12,7 @@ void func_ov003_021ce024(u32 a) {
     s32 i;
     for (i = 0; i < 5; i += 2) {
         func_ov003_021d1c3c(1, data_ov003_021d6688[a][i],
-                            (u8 *) func_ov003_021d1974((int) data_ov003_021da27c->mUnk_00[i], 0));
+                            func_ov003_021d1974((s32) data_ov003_021da27c->mUnk_00[i], 0));
         func_ov003_021d1790(data_ov003_021da27c->mUnk_00[i], -1, 0);
         func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, data_ov003_021d66a8[i].mUnk_00,
                             data_ov003_021d66a8[i].mUnk_02);

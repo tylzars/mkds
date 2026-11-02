@@ -88,7 +88,7 @@ u32 func_ov000_021938cc(Unk0218f960 *param_1, int param_2, int param_3, int *par
     b->mUnk_0c.mUnk_04 = param_7;
     b->mNext = a->mUnk_424;
     a->mUnk_424 = b;
-    *param_4 = (int) b;
+    *param_4 = (s32) b;
     return 0;
 }
 

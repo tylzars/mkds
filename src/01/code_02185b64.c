@@ -77,7 +77,7 @@ void func_ov001_02185ca0(void *a, Unk02185bb8 *b) {
     func_01ff9048((u32) (0x1b), (void *) ((u32) &b->mUnk_000.mUnk_1c), 3);
     func_0209b688((void *) (gMissionGate), (u16) b->mUnk_000.mUnk_9c->mUnk_28);
     func_0209b734(gMissionGate, b->mUnk_0a8);
-    func_0209bb2c((void *) ((u32) a), (void *) ((int) gMissionGate), (void *) ((int) b));
+    func_0209bb2c(a, gMissionGate, b);
 }
 
 void func_ov001_02185c4c(Unk02185c4c *a) {

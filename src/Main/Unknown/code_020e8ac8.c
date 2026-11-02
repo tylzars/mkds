@@ -172,7 +172,7 @@ void func_020e9d10(void) {
         return;
     }
     if (data_0217b8b0 != 0) {
-        n = func_0203c8c0((int) data_0217b888);
+        n = func_0203c8c0(data_0217b888);
         if ((u32) data_0217b87c < (u32) n) {
             Vec3 v;
             data_0217b87c = n;
@@ -483,7 +483,7 @@ void func_020e8ac8(void) {
                         f = 1;
                     }
                 }
-                if (func_01ffdee4((int *) &data_0217b93c, p, 0, 0x12000, 4, -1, (int *) &t, 0, 0,
+                if (func_01ffdee4(&data_0217b93c, p, 0, 0x12000, 4, -1, &t, 0, 0,
                                   (u32 *) &data_0217b8fc, 0, 0, 0, 0) != 0) {
                     func_020e8ac8_inline(&lo, &t, &lo);
                     func_020e8ac8_inline_2(&hi, &t, &hi);
@@ -511,7 +511,7 @@ void func_020e8ac8(void) {
             data_0217b90c.x = data_0217b930.x + data_0217b870 * (s32) (((s64) data_0217b8c8->mUnk_a4.x * 0x5000) >> 12);
             data_0217b90c.z = data_0217b930.z + data_0217b870 * (s32) (((s64) data_0217b8c8->mUnk_a4.z * 0x5000) >> 12);
             data_0217b90c.y = data_0217b930.y;
-            if (func_01ffdee4((int *) &data_0217b90c, 0, 0, 0x18e66, 0x10, -1, 0, 0, (int *) &v, 0, 0, 0, 0, 0) != 0) {
+            if (func_01ffdee4(&data_0217b90c, 0, 0, 0x18e66, 0x10, -1, 0, 0, (s32 *) &v, 0, 0, 0, 0, 0) != 0) {
                 w = data_0217b8c8->mUnk_2a8;
                 if (w <= 0) {
                     w = -w;

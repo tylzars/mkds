@@ -52,7 +52,7 @@ void func_021025d8(Unk021025d8 *a) {
     func_02046be8(a->mUnk_12c, v1, 7, a);
     a->mUnk_140 = 8;
     a->mUnk_144 = 0;
-    func_020f9c40((int) a);
+    func_020f9c40((s32) a);
     a->mUnk_24c = 0;
     a->mUnk_250 = 0xffffffff;
     a->mUnk_254 = 0x12;

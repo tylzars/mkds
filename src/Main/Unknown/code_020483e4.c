@@ -184,8 +184,8 @@ u32 func_02048474(void) {
 
 u32 func_02048440(void) {
     u32 v1;
-    v1 = (int) data_0217aa00->mUnk_043c;
-    if ((data_021759d0->mUnk_00 == 2) && (((int *) (u32) data_021759d0)[1] == 1)) {
+    v1 = data_0217aa00->mUnk_043c;
+    if ((data_021759d0->mUnk_00 == 2) && (((s32 *) data_021759d0)[1] == 1)) {
         v1 = v1 + 5;
     }
     return ((u32 *) &data_02164dc8)[v1];

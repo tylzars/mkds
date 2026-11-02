@@ -223,7 +223,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
         w.y = b->mUnk_000.mUnk_04.y + (f ? 0xf000 : 0);
         w.z = b->mUnk_000.mUnk_04.z;
         u = w;
-        if (func_01ffdee4((int *) &u, 0, 0, 0xf000, 8, -2, out, (int *) &u, 0, &n, 0, 0, 0, 0) != 0) {
+        if (func_01ffdee4(&u, 0, 0, 0xf000, 8, -2, out, &u, 0, &n, 0, 0, 0, 0) != 0) {
             if (n & 0x1e34ef) {
                 func_020d7b88((Vec3 *) &u, &b->mUnk_0b4);
                 func_0208ab98(&b->mUnk_132, (u16) ((n & 0x3c000000) >> 26), 0x5000);

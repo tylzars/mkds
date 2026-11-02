@@ -25,9 +25,9 @@ void func_ov000_0218ac54(Unk0218a9bc *p, Unk0218af28 *e, s32 a, s32 b) {
         return;
     }
     if (a != 0) {
-        func_ov000_0218aec4((int *) &p->mUnk_14, (int) e);
+        func_ov000_0218aec4((s32 *) &p->mUnk_14, (s32) e);
     } else {
-        func_ov000_0218aedc((int *) &p->mUnk_14, (int) e);
+        func_ov000_0218aedc((s32 *) &p->mUnk_14, (s32) e);
     }
 }
 
@@ -41,7 +41,7 @@ void func_ov000_0218ab90(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
             a = 0;
             if (p->mUnk_40 > 0) {
                 do {
-                    b = func_ov000_0218d0c8((int) v1, n);
+                    b = func_ov000_0218d0c8((s32) v1, n);
                     if (b < 0) {
                         break;
                     }

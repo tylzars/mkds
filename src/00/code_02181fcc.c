@@ -74,7 +74,7 @@ void func_ov000_02182e18(void) {
 
 void func_ov000_02182de8(void) {
     u32 v1;
-    v1 = ((int) GetBmgEntry((void *) (gWiFiVSSetting->mWiFiMessages), 0));
+    v1 = ((s32) GetBmgEntry(gWiFiVSSetting->mWiFiMessages, 0));
     func_02126638((void *) v1, 0, 0, 1, 0, 0, 0);
 }
 

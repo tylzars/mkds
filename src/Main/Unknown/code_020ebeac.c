@@ -127,7 +127,7 @@ void func_020ec194(Unk020ec194 *a) {
     p->z = 0;
     a->mUnk_004 = a->mUnk_0b0;
     func_020d7a3c(&a->mUnk_0bc, a->mUnk_0c8, &v);
-    func_01ffccd0((int *) &a->mUnk_028, &v);
+    func_01ffccd0(&a->mUnk_028, &v);
 }
 
 void func_020ebef8(Unk020ebef8 *c, Vec3 *d) {

@@ -89,7 +89,7 @@ s32 func_ov000_021a86e8(void) {
         a = func_ov000_021a8740();
         if (a == 0) {
             func_ov000_021a8604((s32) data_ov000_021b5fa4);
-            if (func_ov000_021a86bc((int) data_ov000_021b5fa4) != 0) {
+            if (func_ov000_021a86bc((s32) data_ov000_021b5fa4) != 0) {
                 data_ov000_021b5fa4 = 0;
             }
             a = -0x1a;

@@ -19,7 +19,7 @@ s32 func_ov000_0218b2a8(Unk0218af28 *e, const u8 *v1, s32 d) {
     u8 *a;
     s32 c;
     if (strcmp(v1, data_ov000_021b21c8) == 0) {
-        return func_ov000_0218af9c((int) e);
+        return func_ov000_0218af9c((s32) e);
     }
     a = func_ov000_0218b30c(e, v1, 0);
     if (a == 0 || (c = *a, !((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 8)))) {

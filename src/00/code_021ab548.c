@@ -18,7 +18,7 @@ u32 func_ov000_021ab548(int a, u32 b) {
     u32 *v4;
     int v5;
     v2 = 0;
-    v1 = *(int *) (a + 0x7ec);
+    v1 = *(s32 *) (a + 0x7ec);
     if (0 < v1) {
         v4 = *(u32 **) (a + 0x7e8);
         v3 = v4;

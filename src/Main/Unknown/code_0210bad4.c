@@ -10,5 +10,5 @@ void func_0210bad4(u32 arg0, u32 arg1) {
     value12 = (u32) &func_02109078;
     value2 = 0x7fu;
     value3 = 0u;
-    func_02109078((Unk0210bfbc *) value0, (int) value1, (int) value2, (int) value3);
+    func_02109078((Unk0210bfbc *) value0, value1, value2, value3);
 }

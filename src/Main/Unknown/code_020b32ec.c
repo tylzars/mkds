@@ -28,18 +28,18 @@ void *func_020b32f8(void) {
     v1 = func_020b2d04();
     if (v1 == 0) {
         if (data_0217b354->mUnk_17c != 0) {
-            v2 = (int) data_0217b354->mUnk_17c->mUnk_0c;
+            v2 = (s32) data_0217b354->mUnk_17c->mUnk_0c;
         }
     } else if (v1 == 1) {
         if (data_0217b354->mUnk_180 != 0) {
-            v2 = (int) data_0217b354->mUnk_180->mUnk_0c;
+            v2 = (s32) data_0217b354->mUnk_180->mUnk_0c;
         }
     } else if (v1 == 2) {
         if (data_0217b354->mUnk_184 != 0) {
-            v2 = (int) data_0217b354->mUnk_184->mUnk_0c;
+            v2 = (s32) data_0217b354->mUnk_184->mUnk_0c;
         }
     } else if ((v1 == 3) && (data_0217b354->mUnk_188 != 0)) {
-        v2 = (int) data_0217b354->mUnk_188->mUnk_0c;
+        v2 = (s32) data_0217b354->mUnk_188->mUnk_0c;
     }
     return (void *) v2;
 }

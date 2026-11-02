@@ -26,7 +26,7 @@ void func_ov003_021c2a28(void) {
         func_ov003_021d1c90(0);
         func_ov003_021bf8b0();
         func_ov003_021bf7dc();
-        func_ov003_021c2544((int) data_ov003_021da19c);
+        func_ov003_021c2544((s32) data_ov003_021da19c);
         func_ov003_021c25a4();
         func_ov003_021cdb80();
         func_ov003_021c209c();

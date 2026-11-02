@@ -25,7 +25,7 @@ void func_0205982c(void *a) {
     void *v3;
     int *v4;
     v3 = func_02036b74(a, ((u32) 0x0000016cu), 0x20);
-    v4 = (int *) &data_0217aa00;
+    v4 = (s32 *) &data_0217aa00;
     data_0217aa00->mUnk_1624 = v3;
     v1 = 0;
     v2 = 0;

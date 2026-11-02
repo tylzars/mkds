@@ -7,7 +7,7 @@ u16 func_ov000_021988e4(void *a) {
 }
 
 int func_ov000_021988dc(int a) {
-    return *(int *) (a + 0x54) - *(int *) (a + 0x58);
+    return *(s32 *) (a + 0x54) - *(s32 *) (a + 0x58);
 }
 
 u32 func_ov000_021988d8(u32 *a) {

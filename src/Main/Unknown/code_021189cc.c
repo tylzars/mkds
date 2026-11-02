@@ -10,7 +10,7 @@ void func_021189cc(void) {
     v2 = 0;
     do {
         v3 = func_021189f4(v1);
-        *(u32 *) (*(int *) &data_0217d360 + v2 + 0x48) = v3;
+        *(u32 *) (*(s32 *) &data_0217d360 + v2 + 0x48) = v3;
         v2 = v2 + 4;
         v1 = v1 + 1;
     } while (v1 < 8);

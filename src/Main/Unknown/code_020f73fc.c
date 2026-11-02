@@ -193,7 +193,7 @@ void func_020f758c(Unk020f41c4_A *a) {
         func_020f0f70(&data_027e00cc[a->mUnk_44], a);
     } else {
         if (a->mUnk_d8 < 0xa) {
-            func_020f9c40((int) a);
+            func_020f9c40((s32) a);
         }
     }
 }

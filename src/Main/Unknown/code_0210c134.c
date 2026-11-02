@@ -14,5 +14,5 @@ void func_0210c134(int a, u32 b) {
     *(u32 *) (a + 0x18) = 3;
     func_0210bce0((u32 *) (u32) (a + 0x1c));
     func_0210bce0((u32 *) (u32) a);
-    func_0210bc8c((int) (((u32) (&data_0217d028))), a);
+    func_0210bc8c((((u32) (&data_0217d028))), a);
 }

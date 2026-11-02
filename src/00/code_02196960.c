@@ -27,7 +27,7 @@ int func_ov000_021971c8(int a, int b) {
     v1 = 0;
     if (0 < b) {
         do {
-            v2 = ((int) 0x9ccf9319u) * v2 + (int) *(s8 *) (a + v1);
+            v2 = (0x9ccf9319u) * v2 + *(s8 *) (a + v1);
             v1 = v1 + 1;
         } while (v1 < b);
     }
@@ -114,7 +114,7 @@ void func_ov000_02197020(s32 a, s32 b, s32 c, s32 d, s32 e, UnkFunc *f, s32 g) {
     h.mUnk_0c = d;
     h.mUnk_10 = e;
     if (data_ov000_021b4e5c == 0) {
-        data_ov000_021b4e5c = (int *) func_ov000_0218dc94(0x1c, 2, 0);
+        data_ov000_021b4e5c = func_ov000_0218dc94(0x1c, 2, 0);
     }
     func_ov000_0218dbc0(data_ov000_021b4e5c, &h);
 }

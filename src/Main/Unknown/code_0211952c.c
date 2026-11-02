@@ -175,7 +175,7 @@ void func_02119a90(void) {
     gSelectCup->mUnk_3c = 0;
     func_0212775c(0, (u32) 7);
     func_0212775c(1, (u32) 0x10);
-    func_0212775c((int) 0xffffffff, (u32) 0x10);
+    func_0212775c(0xffffffff, 0x10);
 }
 
 #pragma thumb off

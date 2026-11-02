@@ -155,7 +155,7 @@ s32 func_ov000_021a7680(Unk021a7064 *param_1) {
     c = 0;
     b = a->mUnk_64;
     func_0200ed34(&b->mUnk_00.mUnk_e0);
-    func_ov000_021ae290(param_1->mUnk_10, param_1->mUnk_12, (int) param_1->mUnk_14);
+    func_ov000_021ae290(param_1->mUnk_10, param_1->mUnk_12, (s32) param_1->mUnk_14);
     b->mUnk_f8 = 0;
     if (param_1->mUnk_0c == 0 || param_1->mUnk_0c == 4) {
         c = func_ov000_021ae134();

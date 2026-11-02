@@ -230,7 +230,7 @@ void func_02104a0c(Unk02104c68 *p) {
                 p->mUnk_000.mUnk_000.mUnk_d8 = v;
             }
             if (v < 0xa) {
-                func_020f9c40((int) p);
+                func_020f9c40((s32) p);
                 if (v == 0) {
                     func_020f0f70(&data_027e00cc[p->mUnk_000.mUnk_000.mUnk_44], &p->mUnk_000.mUnk_000);
                     return;

@@ -137,7 +137,7 @@ void func_ov000_0219d734(s32 a, s32 b) {
 }
 
 void func_ov000_0219d708(u32 a, u32 *b) {
-    if ((int) data_ov000_021b5664->mUnk_18 != 0) {
+    if (data_ov000_021b5664->mUnk_18 != 0) {
         func_ov000_0218eff8((Unk0218f960 *) (a), *b, 0, 0, (Unk0218eff8Cb) func_ov000_0219cd74, 0);
     }
     return;

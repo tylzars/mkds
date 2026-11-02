@@ -59,7 +59,7 @@ Unk0210bf24 *func_020719bc(Unk0210bfbc *p, u32 a) {
     value12 = (u32) &func_021090c4;
     value2 = 0x7fu;
     value3 = 0u;
-    return func_021090c4((Unk0210bfbc *) value0, (int) value1, (int) value2, (int) value3);
+    return func_021090c4((Unk0210bfbc *) value0, value1, value2, value3);
 }
 
 void func_020719a8(u32 arg0, u32 arg1) {
@@ -71,7 +71,7 @@ void func_020719a8(u32 arg0, u32 arg1) {
     value12 = (u32) &func_02109078;
     value2 = 0x7fu;
     value3 = 0u;
-    func_02109078((Unk0210bfbc *) value0, (int) value1, (int) value2, (int) value3);
+    func_02109078((Unk0210bfbc *) value0, value1, value2, value3);
 }
 
 void func_02071980(void *p, int b) {
@@ -80,7 +80,7 @@ void func_02071980(void *p, int b) {
 }
 
 void func_02071958(Unk0206bcb0 *p, s32 b) {
-    func_0210b564((int) p, b, p->mUnk_3e0, p->mUnk_3e4, p->mUnk_500);
+    func_0210b564((s32) p, b, p->mUnk_3e0, p->mUnk_3e4, p->mUnk_500);
 }
 
 void func_02071944(void *p, int v1) {
@@ -92,7 +92,7 @@ void func_02071944(void *p, int v1) {
     v6 = (u32) &func_021090c4;
     v4 = 0x7fu;
     v5 = 0u;
-    func_021090c4((Unk0210bfbc *) v2, (int) v3, (int) v4, (int) v5);
+    func_021090c4((Unk0210bfbc *) v2, v3, v4, v5);
     return;
 }
 

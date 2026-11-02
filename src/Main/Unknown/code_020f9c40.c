@@ -16,6 +16,6 @@ void func_020f9c40(int arg0) {
     if (compareLeft0 == compareRight0) {
         return;
     }
-    value0 = (u32) func_020d5344((int) value0);
+    value0 = func_020d5344(value0);
     *(u16 *) ((value4) + (218)) = (u16) value0;
 }

@@ -28,7 +28,7 @@ void func_ov003_021cdc4c(void) {
 
 void func_ov003_021cdc28(void) {
     func_ov003_021d34c8(0, data_ov003_021da274->mUnk_98);
-    func_ov003_021d2808((int *) &data_ov003_021da274);
+    func_ov003_021d2808(&data_ov003_021da274);
     return;
 }
 

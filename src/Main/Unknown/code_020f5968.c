@@ -52,7 +52,7 @@ void func_020f5cc4(u32 arg0, u32 arg1) {
     if ((u32) compareLeft0 == (u32) compareRight0) {
         return;
     }
-    func_020f1150((int) value0, (int) value1);
+    func_020f1150(value0, value1);
     value0 = (value4) + (0x200u);
     value1 = 4u;
     *(u16 *) ((value0) + (76)) = (u16) value1;

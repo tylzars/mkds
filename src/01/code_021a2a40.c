@@ -168,7 +168,7 @@ void func_ov001_021a2a40(void) {
         t -= 0x100000;
     }
     gEmblem->mUnk_10a8 = t;
-    func_020ae6ac((void *) ((int) gEmblem), (void *) ((int) gEmblem->mUnk_0404));
+    func_020ae6ac(gEmblem, gEmblem->mUnk_0404);
     func_ov001_0218516c(gEmblem->mEmblemMLld, (Unk0218516c *) gEmblem->mUnk_0000);
     switch (gEmblem->mUnk_1090) {
         case 0:
@@ -254,7 +254,7 @@ void func_ov001_021a2a40(void) {
             func_ov001_0218516c(gEmblem->mEmblemSLld, (Unk0218516c *) gEmblem->mUnk_0404);
             break;
     }
-    func_020ae630((void *) ((int) gEmblem), (void *) ((int) gEmblem->mUnk_0404));
+    func_020ae630(gEmblem, gEmblem->mUnk_0404);
     func_020783c8();
     func_020780b0();
     func_020ac390((void *) func_ov001_02181174(), gEmblem->mUnk_087c, func_ov001_02181268());

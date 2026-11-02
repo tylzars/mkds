@@ -3,7 +3,7 @@
 u16 func_ov001_02188220(Unk02188950 *a) {
     u32 v1;
     v1 = a->mUnk_0ac;
-    if ((int) v1 < 0) {
+    if ((s32) v1 < 0) {
         v1 = -v1;
     }
     return v1 & 0xffff;

@@ -9,7 +9,7 @@ int func_02086080(int arg0) {
     value1 = (u32) * (const u32 *) ((value1) + (0));
     value0 = (value1) + ((value0 << 2));
     value0 = (u32) * (const u32 *) ((value0) + (292));
-    return (int) value0;
+    return value0;
 }
 
 u16 func_0208606c(int a) {

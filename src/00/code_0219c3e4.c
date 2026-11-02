@@ -88,7 +88,7 @@ void func_ov000_0219c79c(char *a, char *b, void (*c)(), s32 d) {
     u64 v3;
     strcpy(data_ov000_021b565c->mUnk_4c, (const u8 *) a);
     strcpy(data_ov000_021b565c->mUnk_14c, (const u8 *) b);
-    v2 = *(int *) &data_ov000_021b565c;
+    v2 = *(s32 *) &data_ov000_021b565c;
     v3 = func_0200f5ac();
     *(u64 *) (v2 + 0x38) = v3;
     *(u32 *) (v2 + 0x34) = 1;
@@ -205,7 +205,7 @@ void func_ov000_0219c400(Unk0218f960 *a, Unk0219c400 *b, u32 f) {
 }
 
 u32 func_ov000_0219c3e4(void) {
-    if (((int) data_ov000_021b565c != 0) && (data_ov000_021b565c->mUnk_04 == 5)) {
+    if ((data_ov000_021b565c != 0) && (data_ov000_021b565c->mUnk_04 == 5)) {
         return 1;
     }
     return 0;

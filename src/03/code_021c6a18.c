@@ -270,5 +270,5 @@ void func_ov003_021c6a18(void) {
         func_ov003_021c20f8((u32) 0, (u32) 1);
         func_ov003_021c212c(func_ov003_021cbf60);
     }
-    func_ov003_021d2808((int *) &data_ov003_021da1f8);
+    func_ov003_021d2808(&data_ov003_021da1f8);
 }

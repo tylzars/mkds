@@ -36,5 +36,5 @@ void func_ov003_021c2544(int a) {
 }
 
 int func_ov003_021c2530(int *a, u32 b) {
-    return a[1] + *(int *) (*a + (b & ((u32) 0x0000ffffu)) * 4);
+    return a[1] + *(s32 *) (*a + (b & (0x0000ffffu)) * 4);
 }

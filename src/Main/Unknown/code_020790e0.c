@@ -351,7 +351,7 @@ void InitKartModels(void *a, u32 b) {
         func_02079a14(e);
         d[i].mUnk_000 = data_021759c0->mUnk_68[i].mUnk_00;
         e->mUnk_004 = data_021759c0->mUnk_68[i].mUnk_04;
-        func_02079988((int) e, e->mUnk_004);
+        func_02079988((s32) e, e->mUnk_004);
         e->mUnk_020 = func_02036bec(a, 0xe0);
         func_0214d1fc(v4 + e->mUnk_004 * 0xe0, e->mUnk_020, 0xe0);
         func_0208aea8(i, (u16) e->mUnk_004, (u16) d[i].mUnk_000);

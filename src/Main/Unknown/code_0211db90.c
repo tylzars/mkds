@@ -78,12 +78,12 @@ void func_0211db90(void) {
     LocateNclr((Unk020b4a44 **) &data_0217d368->mUnk_10, v1);
     func_02016468((u32) 0x14, (u32) 0, (void *) (*(u32 *) (v3 + 0x14)), (u32) (*(u32 *) (v3 + 0x10)));
     func_02016468((u32) 0x1b, (u32) 0, (void *) &data_0217d368->mUnk_20->mUnk_0c,
-                  (u32) (*(u32 *) ((int) data_0217d368->mUnk_20 + 8)));
+                  (*(u32 *) ((s32) data_0217d368->mUnk_20 + 8)));
     func_02016468((u32) 0x1b, (u32) (((u32) 0x00000800u)), data_0217d368->mUnk_24, (u32) (((u32) 0x00000800u)));
     func_02016468((u32) 0x1f, (u32) 0, (void *) (*(u32 *) (v4[0] + 0xc)), (u32) 0x80);
     func_02016468((u32) 0x23, (u32) 0, (void *) (*(u32 *) (v2 + 0x14)), (u32) (*(u32 *) (v2 + 0x10)));
-    func_02016468((u32) 0x1e, (u32) 0, (void *) (*(u32 *) ((int) data_0217d368->mUnk_10 + 0xc)),
-                  (u32) (*(u32 *) ((int) data_0217d368->mUnk_10 + 8)));
+    func_02016468(0x1e, 0, (void *) (*(u32 *) (data_0217d368->mUnk_10 + 0xc)),
+                  (*(u32 *) (data_0217d368->mUnk_10 + 8)));
 }
 
 #pragma thumb off

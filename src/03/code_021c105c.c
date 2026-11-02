@@ -81,7 +81,7 @@ void func_ov003_021c118c(Unk021d34e0 *param_1) {
     u32 a;
     s32 b;
     Unk021bf920 *p;
-    p = func_ov003_021d1974((int) data_ov003_021da160->mUnk_40[0], 0);
+    p = func_ov003_021d1974((s32) data_ov003_021da160->mUnk_40[0], 0);
     a = (p->mUnk_00 & 0x1ff0000) >> 16;
     b = p->mUnk_00 & 0xff;
     b = b + 0xc;
@@ -123,7 +123,7 @@ void func_ov003_021c1268(void) {
     } else {
         a = 0x45;
     }
-    func_ov003_021d1c3c(0, a, (u8 *) func_ov003_021d1974((int) data_ov003_021da160->mUnk_58, 0));
+    func_ov003_021d1c3c(0, a, func_ov003_021d1974((s32) data_ov003_021da160->mUnk_58, 0));
     func_ov003_021d1790(data_ov003_021da160->mUnk_58, -1, 2);
     func_ov003_021d17d4(data_ov003_021da160->mUnk_58, -1, data_ov003_021d629c[data_ov003_021da160->mUnk_63 * 2],
                         data_ov003_021d629e[data_ov003_021da160->mUnk_63 * 2]);

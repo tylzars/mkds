@@ -2,10 +2,10 @@
 
 void func_ov000_0218b3c8(void *a) {
     int v1;
-    if (((int) data_ov000_021b4d18 != 0) &&
-        (v1 = func_ov000_0218df5c((Unk0218e004 *) (int) data_ov000_021b4d18), v1 == 0)) {
-        func_ov000_0218dfb4((int *) ((int *) (u32) data_ov000_021b4d18));
-        *(int *) &data_ov000_021b4d18 = 0;
+    if ((data_ov000_021b4d18 != 0) &&
+        (v1 = func_ov000_0218df5c(data_ov000_021b4d18), v1 == 0)) {
+        func_ov000_0218dfb4(data_ov000_021b4d18);
+        *(s32 *) &data_ov000_021b4d18 = 0;
     }
     return;
 }
@@ -13,7 +13,7 @@ void func_ov000_0218b3c8(void *a) {
 void func_ov000_0218b3ac(int *a) {
     int v1;
     v1 = *a;
-    func_ov000_0218dfb4((int *) ((int *) (u32) (*(u32 *) (v1 + 0x18))));
+    func_ov000_0218dfb4((s32 *) (*(u32 *) (v1 + 0x18)));
     *(u32 *) (v1 + 0x18) = 0;
     func_ov000_021a3668((void *) (v1));
     return;

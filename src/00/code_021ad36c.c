@@ -10,7 +10,7 @@ u32 func_ov000_021ad36c(void) {
     v3 = 0;
     do {
         v1 = func_ov000_021ad6c0();
-        v2 = func_ov000_021ad3b8((u32) (v1), (int) (v3));
+        v2 = func_ov000_021ad3b8(v1, v3);
         if (v2 == 1) {
             break;
         }

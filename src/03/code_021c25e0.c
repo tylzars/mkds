@@ -22,8 +22,8 @@ void func_ov003_021c2840(u32 a) {
     data_ov003_021da194->mUnk_1e2a0 = 0;
     data_ov003_021da194->mUnk_1e2a1 = 0;
     b = data_ov003_021d6e24;
-    b.mUnk_04 = func_ov003_021c2530((int *) data_ov003_021da19c, 0xf);
-    b.mUnk_08 = func_ov003_021c2530((int *) data_ov003_021da19c, 0x10);
+    b.mUnk_04 = func_ov003_021c2530((s32 *) data_ov003_021da19c, 0xf);
+    b.mUnk_08 = func_ov003_021c2530((s32 *) data_ov003_021da19c, 0x10);
     b.mUnk_18 = func_ov003_021c20d0() + 0x31;
     func_ov003_021d1358((Unk021da2ac *) data_ov003_021da194, (Unk021d1358 *) &b);
     if (func_ov003_021d11d4() == 0) {

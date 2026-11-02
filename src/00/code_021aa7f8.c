@@ -121,10 +121,10 @@ void func_ov000_021aa7f8(u8 *a, const u8 *b, Unk021a998c_0c *c) {
     func_ov000_021abca0(e, c->mUnk_000->mUnk_20, 0x30);
     func_ov000_021abca0(e, c->mUnk_008, 0x20);
     func_ov000_021abca0(e, c->mUnk_028, 0x20);
-    func_ov000_021abc4c((int) e, (u32) d);
+    func_ov000_021abc4c((s32) e, (u32) d);
     e = (u32 *) c->mUnk_3d0;
     func_ov000_021ab7b4(e);
     func_ov000_021ab728(e, c->mUnk_000->mUnk_20, 0x30);
     func_ov000_021ab728(e, d, 0x14);
-    func_ov000_021ab6d4((int) e, (u32) a);
+    func_ov000_021ab6d4((s32) e, (u32) a);
 }

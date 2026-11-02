@@ -42,5 +42,5 @@ int func_020ae0ac(int arg0) {
     value2 = (u32) * (const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
     value0 = (u32) * (const s8 *) ((value1) + (134));
-    return (int) value0;
+    return value0;
 }

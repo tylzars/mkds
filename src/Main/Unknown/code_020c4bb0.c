@@ -15,7 +15,7 @@ u16 func_020c4bb0(void) {
     u16 *v1;
     int *v2;
     v1 = ((u16 *) 0x04000304u);
-    v2 = (int *) gRaceStartGp;
+    v2 = (s32 *) gRaceStartGp;
     *v2 = (*(u32 *) v2) + 1;
     return *v1;
 }

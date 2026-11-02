@@ -154,7 +154,7 @@ u32 func_ov000_02191cb0(Unk0218f960 *p, const u8 *a, const u8 *b, const u8 *c, c
     if (g != 0) {
         func_ov000_02196914(q->mUnk_2c2, g, 0x41);
     }
-    r = func_ov000_021938cc(p, 0, (int) q, (int *) &n, j, k, l);
+    r = func_ov000_021938cc(p, 0, (s32) q, (s32 *) &n, j, k, l);
     if (r != 0) {
         return r;
     }

@@ -9,5 +9,5 @@ void func_02092178(u32 arg0) {
     value2 = value0;
     value0 = 0x19fu;
     value1 = 0xau;
-    func_020ac588(value0, (int) value1, (void *) value2);
+    func_020ac588(value0, value1, (void *) value2);
 }
