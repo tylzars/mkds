@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_020c06c4.h"
 #include "code_02022030.h"
 
-// Object behind data_0217b3e8, 0x41c bytes, allocated by func_020c4bec.
+// Object behind gRaceStartGp, 0x41c bytes, allocated by InitRaceStartGp.
 typedef struct Unk0217b3e8 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ Unk020b4a44 *mUnk_04;
@@ -18,4 +18,4 @@ typedef struct Unk0217b3e8 {
 void func_020c525c(void);
 void func_020c4f08(Unk020c06c4 *a);
 void func_020c4e48(void);
-void func_020c4bec(void);
+void InitRaceStartGp(void);

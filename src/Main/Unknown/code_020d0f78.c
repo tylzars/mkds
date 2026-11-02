@@ -7,48 +7,49 @@
 
 #pragma thumb on
 void func_020d10fc(void) {
-    data_0217b4a4 = 0;
+    gCupPicture = 0;
 }
 
-void func_020d1080(void) {
+void LoadCupPictureNclr(void) {
     char buf[0x100];
     s32 i;
     s32 a;
     s32 b;
 
-    i = data_0217b4a4->mUnk_0c;
+    i = gCupPicture->mUnk_0c;
     a = data_0216aea8[i * 2];
     b = data_0216aeac[i * 2];
-    snprintf(buf, 0x100, "%s%s%02d%s", data_0216ae88, a == 0 ? data_0216ae78 : data_0216ae80, b, "_m_b.NCLR");
-    func_02048684(buf, data_0217b4a4->mUnk_10, 0x228);
-    LoadNclrData(&data_0217b4a4->mUnk_00, data_0217b4a4->mUnk_10);
+    snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, a == 0 ? gCupPictureNitro : gCupPictureRetro, b, "_m_b.NCLR");
+    func_02048684(buf, gCupPicture->mUnk_10, 0x228);
+    LoadNclrData(&gCupPicture->mUnk_00, gCupPicture->mUnk_10);
 }
 
-void func_020d0ffc(void) {
+void LoadCupPictureNcgr(void) {
     char buf[0x100];
     s32 i;
     s32 a;
     s32 b;
 
-    i = data_0217b4a4->mUnk_0c;
+    i = gCupPicture->mUnk_0c;
     a = data_0216aea8[i * 2];
     b = data_0216aeac[i * 2];
-    snprintf(buf, 0x100, "%s%s%02d%s", data_0216ae88, a == 0 ? data_0216ae78 : data_0216ae80, b, "_m_b.NCGR");
-    func_02048684(buf, data_0217b4a4->mUnk_238, 0xe00);
-    LoadNcgrData(&data_0217b4a4->mUnk_04, data_0217b4a4->mUnk_238);
+    snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, a == 0 ? gCupPictureNitro : gCupPictureRetro, b, "_m_b.NCGR");
+    func_02048684(buf, gCupPicture->mUnk_238, 0xe00);
+    LoadNcgrData(&gCupPicture->mUnk_04, gCupPicture->mUnk_238);
 }
 
-void func_020d0f78(void) {
+void LoadCupPictureNscr(void) {
     char buf[0x100];
     s32 i;
     s32 a;
     s32 b;
 
-    i = data_0217b4a4->mUnk_0c;
+    i = gCupPicture->mUnk_0c;
     a = data_0216aea8[i * 2];
     b = data_0216aeac[i * 2];
-    snprintf(buf, 0x100, "%s%s%02d%s", data_0216ae88, a == 0 ? data_0216ae78 : data_0216ae80, b, "_m_picture.NSCR");
-    func_02048684(buf, data_0217b4a4->mUnk_1038, 0x824);
-    LoadNscrData(&data_0217b4a4->mUnk_08, data_0217b4a4->mUnk_1038);
+    snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, a == 0 ? gCupPictureNitro : gCupPictureRetro, b,
+             "_m_picture.NSCR");
+    func_02048684(buf, gCupPicture->mUnk_1038, 0x824);
+    LoadNscrData(&gCupPicture->mUnk_08, gCupPicture->mUnk_1038);
 }
 #pragma thumb off

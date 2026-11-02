@@ -93,7 +93,7 @@ void func_020cbb10(void) {
     func_02047b6c(5);
     if (func_020cbad0() == 0) {
         func_0211e480(func_020cb99c());
-        func_020d1108();
+        InitCupPicture();
         LoadNclrData(&data_0217b43c->mUnk_910, FindSceneFileWrapper("common/single_play_select_mode_m_o.NCLR"));
         LoadNcgrData2(&data_0217b43c->mUnk_914, FindSceneFileWrapper("common/single_play_select_mode_m.nce.ncgr"));
         LoadNcerData(&data_0217b43c->mUnk_918, FindSceneFileWrapper("common/single_play_select_mode_m.nce.ncer"));

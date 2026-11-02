@@ -127,8 +127,8 @@ void func_020c4e48(void) {
     u32 v;
     u32 p;
 
-    func_0200ee74(&data_0217b3e8->mUnk_18, 0x400);
-    func_0214bfcc(&data_0217b3e8->mUnk_18, 0, 0x400);
+    func_0200ee74(&gRaceStartGp->mUnk_18, 0x400);
+    func_0214bfcc(&gRaceStartGp->mUnk_18, 0, 0x400);
     v = (*(vu16 *) 0x4000304 & 0x8000) >> 15;
     if (v != 0) {
         if (v == 1) {
@@ -141,7 +141,7 @@ void func_020c4e48(void) {
     }
 }
 
-void func_020c4bec(void) {
+void InitRaceStartGp(void) {
     Unk02021dc8 *v;
     u8 buf[0x20];
     Unk02180728 w;
@@ -149,22 +149,22 @@ void func_020c4bec(void) {
     s32 s;
     s32 i;
 
-    data_0217b3e8 = func_02036bec(func_020364e0(func_020364e8()), 0x41c);
+    gRaceStartGp = func_02036bec(func_020364e0(func_020364e8()), 0x41c);
     for (i = 0; i < 0x80; i++) {
-        Unk020c06c4_08 *e = &data_0217b3e8->mUnk_18.mUnk_000.mUnk_00[i];
+        Unk020c06c4_08 *e = &gRaceStartGp->mUnk_18.mUnk_000.mUnk_00[i];
         e->mUnk_0a = 3;
     }
-    data_0217b3e8->mUnk_00 = 0;
-    LoadNclrData(&data_0217b3e8->mUnk_04, FindSceneFileWrapper("race_start_gp_m_o.NCLR"));
-    LoadNcgrData2(&data_0217b3e8->mUnk_08, FindSceneFileWrapper("race_start_gp_m_o.NCGR"));
+    gRaceStartGp->mUnk_00 = 0;
+    LoadNclrData(&gRaceStartGp->mUnk_04, FindSceneFileWrapper("race_start_gp_m_o.NCLR"));
+    LoadNcgrData2(&gRaceStartGp->mUnk_08, FindSceneFileWrapper("race_start_gp_m_o.NCGR"));
     v = 0;
     LoadNcerData(&v, FindSceneFileWrapper("race_start_gp_m.NCER"));
     for (i = 0; i < 3; i++) {
-        data_0217b3e8->mUnk_0c[i] = func_02021f1c(v, (u16) i);
+        gRaceStartGp->mUnk_0c[i] = func_02021f1c(v, (u16) i);
     }
     r = func_020b403c(2);
     s = -1;
-    func_02023408(buf, data_0217b3e8->mUnk_08->mUnk_14, 0x20, 4, 4);
+    func_02023408(buf, gRaceStartGp->mUnk_08->mUnk_14, 0x20, 4, 4);
     w.mUnk_00 = buf;
     w.mUnk_04 = r;
     w.mUnk_08 = 1;
@@ -178,7 +178,7 @@ void func_020c4bec(void) {
     }
     func_02024340(&w, 0, 9, 0xe, 0x40a, func_020b3f7c(func_020b47cc("common.bmg"), s));
     func_02024340(&w, 0, 8, 0xe, 0x40a, func_020b3f7c(func_020b47cc("common.bmg"), s));
-    func_0200ee74(data_0217b3e8->mUnk_08->mUnk_14, data_0217b3e8->mUnk_08->mUnk_10);
-    func_0214c090(data_0217b3e8->mUnk_04->mUnk_0c, 0, data_0217b3e8->mUnk_04->mUnk_08);
-    func_0214bf04(data_0217b3e8->mUnk_08->mUnk_14, 0, data_0217b3e8->mUnk_08->mUnk_10);
+    func_0200ee74(gRaceStartGp->mUnk_08->mUnk_14, gRaceStartGp->mUnk_08->mUnk_10);
+    func_0214c090(gRaceStartGp->mUnk_04->mUnk_0c, 0, gRaceStartGp->mUnk_04->mUnk_08);
+    func_0214bf04(gRaceStartGp->mUnk_08->mUnk_14, 0, gRaceStartGp->mUnk_08->mUnk_10);
 }

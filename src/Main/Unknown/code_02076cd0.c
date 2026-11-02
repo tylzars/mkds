@@ -384,7 +384,7 @@ void func_02077998(void) {
 void func_02077a28(void *a) {
     void *v;
 
-    func_0207913c(a, data_usa_02165714, &v);
+    LoadKartModelMenuFile(a, data_usa_02165714, &v);
     LoadNclrData(&data_usa_0217ace4, v);
 }
 

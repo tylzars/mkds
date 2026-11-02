@@ -37,11 +37,11 @@ void func_020790e0(void *a, s32 b) {
     } else {
         data_0217ad08->mUnk_1e0 = 1;
     }
-    data_0217ad08->mUnk_1d0 = func_02079478(a);
+    data_0217ad08->mUnk_1d0 = LoadKartAPaletteFromKartModelMenu(a);
     data_0217ad08->mUnk_1cc = 0;
 }
 
-void func_0207913c(void *a, const void *b, void **c) {
+void LoadKartModelMenuFile(void *a, const void *b, void **c) {
     char d[0x100];
     snprintf(d, 0x100, "/data/KartModelMenu/%s", b);
     func_02048590(d, (u32) a, c);
@@ -174,15 +174,15 @@ void func_0207940c(Unk02084b2c *a, s32 b, void *c) {
     }
 }
 
-u16 *func_02079478(void *a) {
+u16 *LoadKartAPaletteFromKartModelMenu(void *a) {
     void *x;
     Unk020b4a44 *p;
-    func_0207913c(a, "kart/palette/kart_a.NCLR", &x);
+    LoadKartModelMenuFile(a, "kart/palette/kart_a.NCLR", &x);
     LoadNclrData(&p, x);
     return p->mUnk_0c;
 }
 
-u16 *func_0207949c(void) {
+u16 *LoadKartAPaletteFromKartModelFile(void) {
     Unk020b4a44 *p;
     LoadNclrData(&p, func_02047950("/kart/palette/kart_a.NCLR"));
     return p->mUnk_0c;
@@ -335,7 +335,7 @@ void func_020797d8(void *a, u32 b) {
     data_0217ad00->mUnk_000 = func_02036bec(a, b * 0xb4);
     data_0217ad00->mUnk_004 = func_02047950("kartcrsmat.bin");
     data_0217ad00->mUnk_004 = data_0217ad00->mUnk_004 + (data_021759c0->mUnk_00 << 3) - 8;
-    data_0217ad00->mUnk_010 = func_0207949c();
+    data_0217ad00->mUnk_010 = LoadKartAPaletteFromKartModelFile();
     data_0217ad00->mUnk_014 = 0;
     data_0217ad00->mUnk_028 = func_02047950((const char *) func_020883e4());
     data_0217ad00->mUnk_008 = b;

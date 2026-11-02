@@ -13,8 +13,8 @@ void *func_02079008(void *a, void *b) {
 void func_02078f9c(void *c) {
     void *a;
     void *b;
-    func_0207913c(c, data_usa_02165760, &a);
-    func_0207913c(c, data_usa_0216577c, &b);
+    LoadKartModelMenuFile(c, data_usa_02165760, &a);
+    LoadKartModelMenuFile(c, data_usa_0216577c, &b);
     data_0217ad08->mUnk_1cc = func_02036bec(c, 0x6c);
     func_02084d3c(data_0217ad08->mUnk_1cc, a, b);
     func_020849c0(data_0217ad08->mUnk_1cc, 2);

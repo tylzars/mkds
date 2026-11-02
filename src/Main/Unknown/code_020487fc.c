@@ -211,7 +211,7 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
     if (func_020487fc_inline2()) {
         data_0217aa00->mUnk_0454 |= 4;
     }
-    func_020b409c();
+    LoadFontAndPlayerCharacterData();
     func_02043b48();
     func_02146b04(func_0204a540);
     data_021759d0->mUnk_78 = 0;
@@ -342,7 +342,7 @@ end:
         func_02037a94();
     }
     func_02043b3c();
-    func_020b4048();
+    ClearFontAndPlayerCharacterTables();
     func_02039a1c();
     func_02105ec0();
     if (data_021759d0->mUnk_1c_1 && func_0204a340(a->mUnk_02, a->mUnk_04)) {

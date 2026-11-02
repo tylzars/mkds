@@ -16,7 +16,7 @@ void func_ov001_021932c8(void) {
     data_ov001_021a9bd0->mUnk_18.mUnk_0c = 0;
 }
 
-void func_ov001_02193144(void) {
+void LoadOptionData(void) {
     Unk02111684_v v;
     LoadNcgrData(&v.m4934, FindSceneFile("Option_top_menu_m_b.ncgr"));
     LoadNscrData(&v.m47d8, FindSceneFile("Option_top_menu_m.nscr"));
@@ -82,7 +82,7 @@ void func_ov001_02192fb8(void *heap, s16 a) {
     func_02125c2c();
     func_02125de0(heap, &arg);
     data_ov001_021a9bd0->mUnk_04 = func_020369fc(data_ov001_021a9bd0->mUnk_00);
-    func_ov001_02193144();
+    LoadOptionData();
     func_ov001_021932c8();
     data_ov001_021a9bd0->mUnk_14 = -1;
     switch (a) {

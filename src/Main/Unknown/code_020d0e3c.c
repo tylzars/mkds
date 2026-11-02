@@ -6,7 +6,7 @@
 
 #pragma thumb on
 s32 func_020d0ec4(void) {
-    if (data_0217b4a4 != 0 && func_020d0ee8() == 0) {
+    if (gCupPicture != 0 && func_020d0ee8() == 0) {
         return 1;
     }
     return 0;
@@ -14,21 +14,21 @@ s32 func_020d0ec4(void) {
 
 void *func_020d0ea0(void) {
     if (func_020d0ec4() != 0) {
-        return data_0217b4a4->mUnk_00->mUnk_0c;
+        return gCupPicture->mUnk_00->mUnk_0c;
     }
     return 0;
 }
 
 void *func_020d0e7c(void) {
     if (func_020d0ec4() != 0) {
-        return data_0217b4a4->mUnk_04->mUnk_14;
+        return gCupPicture->mUnk_04->mUnk_14;
     }
     return 0;
 }
 
 void *func_020d0e58(void) {
     if (func_020d0ec4() != 0) {
-        return &data_0217b4a4->mUnk_08->mUnk_0c;
+        return &gCupPicture->mUnk_08->mUnk_0c;
     }
     return 0;
 }

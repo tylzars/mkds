@@ -25,11 +25,11 @@ u32 func_020d0efc(int a) {
     if (data_0216aeac[a * 2] == 0) {
         r = 0;
     } else if (func_020d0ec4() != 0) {
-        if (data_0217b4a4->mUnk_0c != a) {
-            data_0217b4a4->mUnk_0c = a;
-            func_02057df0(func_020d1080);
-            func_02057df0(func_020d0ffc);
-            func_02057df0(func_020d0f78);
+        if (gCupPicture->mUnk_0c != a) {
+            gCupPicture->mUnk_0c = a;
+            func_02057df0(LoadCupPictureNclr);
+            func_02057df0(LoadCupPictureNcgr);
+            func_02057df0(LoadCupPictureNscr);
             func_020d0f60();
         }
     } else {

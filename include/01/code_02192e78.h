@@ -28,5 +28,5 @@ void func_ov001_02192ee4(void);
 void func_ov001_02192f8c(void);
 void func_ov001_02192fb8(void *heap, s16 a);
 void func_ov001_021930ac(void);
-void func_ov001_02193144(void);
+void LoadOptionData(void);
 void func_ov001_021932c8(void);

@@ -294,7 +294,7 @@ void func_02078b48(void *param_1) {
     data_0217ad08->mUnk_1ec = 0;
     data_0217ad08->mUnk_1e8 = data_0217ad08->mUnk_1ec;
     func_02077a28(param_1);
-    func_0207913c(param_1, data_usa_02165724, (void **) &data_0217ad08->mUnk_1c8);
+    LoadKartModelMenuFile(param_1, data_usa_02165724, (void **) &data_0217ad08->mUnk_1c8);
     for (i = 0; i < 2; i = (u16) (i + 1)) {
         func_02078f18(param_1, (int) &data_0217ad08->mUnk_058[i]);
     }
@@ -354,8 +354,8 @@ void func_02078d64(void *param_1) {
     func_02088888(1);
     func_02078b48(param_1);
     func_020790e0(param_1, 0);
-    func_0207913c(param_1, data_usa_02165738, (void **) &data_0217ad08->mUnk_018);
-    func_0207913c(param_1, data_usa_0216574c, (void **) &data_0217ad08->mUnk_01c);
+    LoadKartModelMenuFile(param_1, data_usa_02165738, (void **) &data_0217ad08->mUnk_018);
+    LoadKartModelMenuFile(param_1, data_usa_0216574c, (void **) &data_0217ad08->mUnk_01c);
     func_02078f9c(param_1);
     for (i = 0; i < 2; i = (u16) (i + 1)) {
         func_02077eb4(param_1, (u32 *) &data_0217ad08->mUnk_1f4[i]);

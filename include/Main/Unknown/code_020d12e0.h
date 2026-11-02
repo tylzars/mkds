@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_020d0280.h"
 #include "Main/Unknown/code_020b4000.h"
 
-// Object behind data_0217b4ac.
+// Object behind gEndingStaffRoll.
 typedef struct Unk0217b4ac {
     /* 000 */ s32 mUnk_00;
     /* 004 */ Unk020b4a44 *mUnk_04;

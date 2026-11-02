@@ -16,53 +16,53 @@
 #include "Main/Unknown/code_02037000.h"
 
 void func_020d159c(void) {
-    func_0200ee74(&data_0217b4ac->mUnk_10, 0x400);
-    func_0214bfcc(&data_0217b4ac->mUnk_10, 0, 0x400);
-    if (data_0217b4ac->mUnk_00 == 0x1a4) {
+    func_0200ee74(&gEndingStaffRoll->mUnk_10, 0x400);
+    func_0214bfcc(&gEndingStaffRoll->mUnk_10, 0, 0x400);
+    if (gEndingStaffRoll->mUnk_00 == 0x1a4) {
         func_02036fec(0x78, 1);
         return;
     }
-    if (data_0217b4ac->mUnk_00 != 0x77a) {
+    if (gEndingStaffRoll->mUnk_00 != 0x77a) {
         return;
     }
     func_020371a8(0x78, 1);
 }
 
-void func_020d1464(void) {
+void InitEndingStaffRoll(void) {
     s32 i;
     Unk02021dc8 *a;
     u32 *w;
 
-    data_0217b4ac = func_02036bec(func_020364e0(func_020364e8()), 0x414);
+    gEndingStaffRoll = func_02036bec(func_020364e0(func_020364e8()), 0x414);
     for (i = 0; i < 0x80; i++) {
-        w = (u32 *) &data_0217b4ac->mUnk_10.mUnk_000[i];
+        w = (u32 *) &gEndingStaffRoll->mUnk_10.mUnk_000[i];
         w[0] = (w[0] & ~0xc00) | 0xc00;
     }
-    data_0217b4ac->mUnk_00 = 0;
-    LoadNclrData(&data_0217b4ac->mUnk_04, FindSceneFileWrapper("ending_staffRoll_m_o_00.NCLR"));
-    LoadNcgrData2(&data_0217b4ac->mUnk_08, FindSceneFileWrapper("ending_staffRoll_m_00.nce.ncgr"));
+    gEndingStaffRoll->mUnk_00 = 0;
+    LoadNclrData(&gEndingStaffRoll->mUnk_04, FindSceneFileWrapper("ending_staffRoll_m_o_00.NCLR"));
+    LoadNcgrData2(&gEndingStaffRoll->mUnk_08, FindSceneFileWrapper("ending_staffRoll_m_00.nce.ncgr"));
     a = 0;
     LoadNcerData(&a, FindSceneFileWrapper("ending_staffRoll_m_00.nce.ncer"));
-    data_0217b4ac->mUnk_0c = (Unk020224e0_c *) func_02021f1c(a, 0);
-    func_0214c090(data_0217b4ac->mUnk_04->mUnk_0c, 0, data_0217b4ac->mUnk_04->mUnk_08);
-    func_0214bf04(data_0217b4ac->mUnk_08->mUnk_14, 0, data_0217b4ac->mUnk_08->mUnk_10);
+    gEndingStaffRoll->mUnk_0c = (Unk020224e0_c *) func_02021f1c(a, 0);
+    func_0214c090(gEndingStaffRoll->mUnk_04->mUnk_0c, 0, gEndingStaffRoll->mUnk_04->mUnk_08);
+    func_0214bf04(gEndingStaffRoll->mUnk_08->mUnk_14, 0, gEndingStaffRoll->mUnk_08->mUnk_10);
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffcfffef) | 0x10;
 }
 
 u32 func_020d1450(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217b4ac;
+    value0 = (u32) &gEndingStaffRoll;
     value1 = 0u;
     *(u32 *) ((value0) + (0)) = value1;
     return value0;
 }
 
 u16 func_020d13f8(void) {
-    if (data_0217b4ac->mUnk_00 < 0x7fffffff) {
-        data_0217b4ac->mUnk_00++;
+    if (gEndingStaffRoll->mUnk_00 < 0x7fffffff) {
+        gEndingStaffRoll->mUnk_00++;
     }
-    if (data_0217b4ac->mUnk_00 == 0x30c) {
+    if (gEndingStaffRoll->mUnk_00 == 0x30c) {
         func_0212b1a8();
     }
     return *(vu16 *) 0x4000304;
@@ -77,8 +77,8 @@ void func_020d12e0(void) {
     u32 *w;
     s32 q[2];
 
-    data_0217b4ac->mUnk_10.mUnk_400 = 0;
-    a = data_0217b4ac;
+    gEndingStaffRoll->mUnk_10.mUnk_400 = 0;
+    a = gEndingStaffRoll;
     if (a->mUnk_00 < 0x21c) {
         b = &a->mUnk_10;
         i = b->mUnk_400;
@@ -94,7 +94,7 @@ void func_020d12e0(void) {
             w += 2;
         }
     }
-    func_0200ee74(&data_0217b4ac->mUnk_10, 0x400);
-    func_0214cc04(3, &data_0217b4ac->mUnk_10.mUnk_000[data_0217b4ac->mUnk_10.mUnk_400], 0xc0,
-                  (0x80 - data_0217b4ac->mUnk_10.mUnk_400) << 3);
+    func_0200ee74(&gEndingStaffRoll->mUnk_10, 0x400);
+    func_0214cc04(3, &gEndingStaffRoll->mUnk_10.mUnk_000[gEndingStaffRoll->mUnk_10.mUnk_400], 0xc0,
+                  (0x80 - gEndingStaffRoll->mUnk_10.mUnk_400) << 3);
 }

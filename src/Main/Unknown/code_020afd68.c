@@ -311,14 +311,14 @@ void func_020b03bc(void) {
 
     v = data_021759c0->mUnk_00c;
     if (v == 3) {
-        func_020c4bec();
+        InitRaceStartGp();
         return;
     }
     if (v == 5) {
         return;
     }
     if (v == 6) {
-        func_020d1464();
+        InitEndingStaffRoll();
         func_0212b5ec(func_020364e0(func_020364e8()));
         return;
     }

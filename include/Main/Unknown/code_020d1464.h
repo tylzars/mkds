@@ -4,4 +4,4 @@
 #include "Main/Unknown/code_020d12e0.h"
 
 void func_020d159c(void);
-void func_020d1464(void);
+void InitEndingStaffRoll(void);

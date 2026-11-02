@@ -7,12 +7,12 @@
 #include "code_02016468.h"
 #include "registers.h"
 
-const char *data_0216e37c[1] = {"back_screen_s_b_00.nclr"};
-const char *data_0216e380[1] = {"back_screen_s_b_00.ncgr"};
-const char *data_0216e384[1] = {"back_screen_s_bg_00.nscr"};
-const char *data_0216e388[2] = {"back_screen_m_bg_00.nscr", "back_screen_m_bg_01.nscr"};
-const char *data_0216e390[2] = {"back_screen_m_b_00.ncgr", "back_screen_m_b_01.ncgr"};
-const char *data_0216e398[2] = {"back_screen_m_b_00.nclr", "back_screen_m_b_01.nclr"};
+const char *gBackScreenSNclrNames[1] = {"back_screen_s_b_00.nclr"};
+const char *gBackScreenSNcgrNames[1] = {"back_screen_s_b_00.ncgr"};
+const char *gBackScreenSNscrNames[1] = {"back_screen_s_bg_00.nscr"};
+const char *gBackScreenMNscrNames[2] = {"back_screen_m_bg_00.nscr", "back_screen_m_bg_01.nscr"};
+const char *gBackScreenMNcgrNames[2] = {"back_screen_m_b_00.ncgr", "back_screen_m_b_01.ncgr"};
+const char *gBackScreenMNclrNames[2] = {"back_screen_m_b_00.nclr", "back_screen_m_b_01.nclr"};
 
 #pragma thumb on
 
@@ -90,22 +90,22 @@ s32 func_02125960(s32 a) {
         p28 = p1c;
     } else {
         if (data_0215d038[x] != 0) {
-            LoadNcgrData(&p14, func_02047a28(data_0216e390[x]));
-            LoadNscrData(&p18, func_02047a28(data_0216e388[x]));
-            LoadNclrData(&p1c, func_02047a28(data_0216e398[x]));
+            LoadNcgrData(&p14, func_02047a28(gBackScreenMNcgrNames[x]));
+            LoadNscrData(&p18, func_02047a28(gBackScreenMNscrNames[x]));
+            LoadNclrData(&p1c, func_02047a28(gBackScreenMNclrNames[x]));
         } else {
-            LoadNcgrData(&p14, FindSceneFile(data_0216e390[x]));
-            LoadNscrData(&p18, FindSceneFile(data_0216e388[x]));
-            LoadNclrData(&p1c, FindSceneFile(data_0216e398[x]));
+            LoadNcgrData(&p14, FindSceneFile(gBackScreenMNcgrNames[x]));
+            LoadNscrData(&p18, FindSceneFile(gBackScreenMNscrNames[x]));
+            LoadNclrData(&p1c, FindSceneFile(gBackScreenMNclrNames[x]));
         }
         if (data_0215d038[y] != 0) {
-            LoadNcgrData(&p20, func_02047a28(data_0216e380[y]));
-            LoadNscrData(&p24, func_02047a28(data_0216e384[y]));
-            LoadNclrData(&p28, func_02047a28(data_0216e37c[y]));
+            LoadNcgrData(&p20, func_02047a28(gBackScreenSNcgrNames[y]));
+            LoadNscrData(&p24, func_02047a28(gBackScreenSNscrNames[y]));
+            LoadNclrData(&p28, func_02047a28(gBackScreenSNclrNames[y]));
         } else {
-            LoadNcgrData(&p20, FindSceneFile(data_0216e380[y]));
-            LoadNscrData(&p24, FindSceneFile(data_0216e384[y]));
-            LoadNclrData(&p28, FindSceneFile(data_0216e37c[y]));
+            LoadNcgrData(&p20, FindSceneFile(gBackScreenSNcgrNames[y]));
+            LoadNscrData(&p24, FindSceneFile(gBackScreenSNscrNames[y]));
+            LoadNclrData(&p28, FindSceneFile(gBackScreenSNclrNames[y]));
         }
     }
     func_02016468(7, 0, p14->mUnk_14, p14->mUnk_10);

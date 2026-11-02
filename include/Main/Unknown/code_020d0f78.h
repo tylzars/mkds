@@ -4,7 +4,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020b4000.h"
 
-// Object behind data_0217b4a4: three pointers that LoadNclrData, LoadNcgrData and LoadNscrData fill from
+// Object behind gCupPicture: three pointers that LoadNclrData, LoadNcgrData and LoadNscrData fill from
 // the three buffers at 0x10, 0x238 and 0x1038, then a word at 0xc.
 typedef struct Unk0217b4a4 {
     /* 0000 */ Unk020b4a44 *mUnk_00;
@@ -17,6 +17,6 @@ typedef struct Unk0217b4a4 {
 } Unk0217b4a4;
 
 void func_020d10fc(void);
-void func_020d1080(void);
-void func_020d0ffc(void);
-void func_020d0f78(void);
+void LoadCupPictureNclr(void);
+void LoadCupPictureNcgr(void);
+void LoadCupPictureNscr(void);

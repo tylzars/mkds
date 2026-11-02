@@ -23,14 +23,14 @@ extern u8 data_usa_02154fe8[];
 extern u8 *data_usa_0217acec;
 
 void func_020790e0(void *a, s32 b);
-void func_0207913c(void *a, const void *b, void **c);
+void LoadKartModelMenuFile(void *a, const void *b, void **c);
 void func_0207916c(void *a);
 void func_02079220(Unk0206bcb0_590 *a, void *b);
 void func_0207926c(Unk0206bcb0_590 *a, void *b);
 void func_020792c8(Unk0206bcb0_590 *a, s32 b);
 void func_0207940c(Unk02084b2c *a, s32 b, void *c);
-u16 *func_02079478(void *a);
-u16 *func_0207949c(void);
+u16 *LoadKartAPaletteFromKartModelMenu(void *a);
+u16 *LoadKartAPaletteFromKartModelFile(void);
 void func_020794bc(Unk0206bcb0_590 *a, void *b, s32 c);
 void func_0207954c(Unk0206bcb0_590 *a, void *b, s32 c);
 void func_02079678(void *a, s32 b);
