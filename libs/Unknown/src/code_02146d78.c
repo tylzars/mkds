@@ -12,9 +12,6 @@ void func_021470f8(const Unk02012f58 *a, Unk02012f58 *b, s32 c, s32 d, s32 e) {
     b->mUnk_18.z = (s32) (((s64) e * a->mUnk_18.z) >> 12);
 }
 
-// non-matching: 0x15c against 0x160, same instructions in other registers and order: the original does the xx part
-// before the xy shift, so t takes r1 and the x * x low word is reloaded at both uses; writing the first store right
-// after xx gives that order, but the registers still differ
 void func_02146f98(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
     s32 x;
     s32 y;
@@ -24,21 +21,27 @@ void func_02146f98(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
     s64 yy;
     s64 zz;
     s32 xy;
-    s32 xz;
+    u32 xz;
     s32 yz;
     s32 sx;
     s32 sy;
     s32 sz;
+    u32 e;
+    s32 f;
+    s32 g;
 
-    x = b->x;
-    y = b->y;
-    z = b->z;
-    t = 0x1000 - d;
+    e = b->x;
+    t = (s64) (0x1000 - d);
+    x = e;
+    g = b->y;
+    f = (s64) b->z;
+    y = g;
+    z = f;
     xx = (s64) t * ((s64) x * x);
+    a->mUnk_00.x = (s32) (xx >> 24) + d;
     xy = (s32) (((s64) t * x * y) >> 24);
     sx = (s32) (((s64) c * x) >> 12);
-    a->mUnk_00.x = (s32) (xx >> 24) + d;
-    yy = (s64) t * ((s64) y * y);
+    yy = t * ((s64) y * y);
     a->mUnk_0c.y = (s32) (yy >> 24) + d;
     zz = (s64) t * ((s64) z * z);
     a->mUnk_18.z = (s32) (zz >> 24) + d;

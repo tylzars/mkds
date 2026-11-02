@@ -527,7 +527,6 @@ void func_02023944(Unk02023374 *a, u32 b) {
     func_0214d05c(v, a->mUnk_00, n);
 }
 
-// non-matching: 95.5%, same instructions; the loop locals are in other registers
 void func_02023764(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
     s32 yy;
     s32 xe;
@@ -587,7 +586,7 @@ void func_02023764(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
                 xw = 8;
             }
             xw -= x1;
-            func_02024000(q, x1, y1, xw, yh, b, fmt);
+            func_02024000(q, x1, y1, xw, (s64) yh, b, fmt);
             q += bpt;
         }
         p += rowstep;
