@@ -15,11 +15,8 @@ void func_ov000_02184354(void) {
     data_ov000_021b4c74 = 0;
 }
 
-// non-matching: 0x1fc bytes against 0x204; the original spills p3 to a stack slot (0x20) and keeps the zeros in r4
-// and r6, ours keeps p3 in r7 and the zeros in r1 and r2
 void func_ov000_021843a8(void *a) {
     s32 i;
-    s32 j;
     s32 k;
     void *b;
     u8 *r;
@@ -27,6 +24,7 @@ void func_ov000_021843a8(void *a) {
     u8 *p2;
     u8 *p3;
     u8 *p4;
+    u8 c;
 
     func_02029930();
     data_ov000_021b4c74 = func_02036bec(a, 0x170c);
@@ -55,13 +53,14 @@ void func_ov000_021843a8(void *a) {
     p3 = &data_ov000_021b0670[0][0];
     p4 = data_ov000_021b066c;
     for (; i < 3; i++) {
-        for (j = 0; j < 5; j++) {
-            data_ov000_021b4c74->mUnk_10d4[r[j]].mUnk_00 = 0;
+        for (k = 0; k < 5; k++) {
+            data_ov000_021b4c74->mUnk_10d4[r[k]].mUnk_00 = 0;
         }
         data_ov000_021b4c74->mUnk_10d4[*p1].mUnk_00 = 1;
         data_ov000_021b4c74->mUnk_10d4[*p2 + data_ov000_021b4c74->mUnk_16f0->mUnk_06].mUnk_00 = 0;
         for (k = 0; k < 2; k++) {
-            data_ov000_021b4c74->mUnk_10d4[p3[k] + data_ov000_021b4c74->mUnk_16f0->mUnk_06].mUnk_00 = 0;
+            c = p3[k];
+            data_ov000_021b4c74->mUnk_10d4[c + data_ov000_021b4c74->mUnk_16f0->mUnk_06].mUnk_00 = 0;
         }
         data_ov000_021b4c74->mUnk_10d4[*p4].mUnk_00 = 1;
         r += 5;

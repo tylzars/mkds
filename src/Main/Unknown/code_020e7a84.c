@@ -86,9 +86,6 @@ void func_020e8790(void) {
     data_0217b894 = 0;
 }
 
-// non-matching: 6 words at +0x4: the first block's addresses and loads are coloured differently (original
-// data_0217b890 address r1, its value r3, &data_0217baf0 r2, data_0217b8b4 r1); the original loads data_0217b8b4
-// between p and p->mUnk_00c, ours before p
 void func_020e84b0(void) {
     Unk020e6514 *p;
     s32 n;
@@ -98,15 +95,19 @@ void func_020e84b0(void) {
     s32 c;
     s32 t;
     u32 *q;
+    s32 b;
+    enum { K0 } d;
 
     p = data_0217baf0[data_0217b890].mUnk_00;
+    d = p->mUnk_00c;
     n = data_0217b8b4;
-    a = (p->mUnk_00c << 4) >> 16;
+    a = ((u32) d << 4) >> 16;
     if (n > 0 && n < 0x10000) {
         i = (n >> 4) << 1;
         s = data_0215d4b4[i];
         c = data_0215d4b4[i + 1];
-        t = (s32) (((s64) data_0217b9a8.z * c) >> 12) - (s32) (((s64) data_0217b9a8.x * s) >> 12);
+        b = (s32) (((s64) data_0217b9a8.z * c) >> 12);
+        t = b - (s32) (((s64) data_0217b9a8.x * s) >> 12);
         data_0217b9c0.z = t;
         if (t > 0) {
             data_0217b9c0.z = t * 3;

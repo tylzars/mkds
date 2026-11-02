@@ -2,28 +2,29 @@
 #include "Main/Unknown/code_020b502c.h"
 #include "code_0214d018.h"
 
-// non-matching: the original (0x178 bytes, 0x1c stack bytes) keeps the address of the local pair in r5, the constants 0
-// and 4 in r6 and r4 and spills the entry offset and the constant 1 to stack offsets 0xc and 0x10; ours is 0x154 bytes
-// with 0x14 stack bytes and forms the address in the loop
 u16 func_0203c5f8(u16 a, u8 *b, u8 *c, u16 *d) {
     u16 r = 1;
+    u16 i;
     s32 f = 1;
-    u16 i = 1;
-    u32 v1 = a * 0x8c;
+    u32 v1;
     Unk0217aa1c_144_00 v2;
-    Unk0217aa1c_144_00 *p = &v2;
+    Unk0217aa1c_144_00 *q;
+    s32 k;
+    Unk0217aa1c_144_00 *p;
+    i = 1;
     if (gCourseMap->mUnk_018->mUnk_02 >= 1) {
+        v1 = a * 0x8c;
         do {
-            Unk0217aa1c_144_00 *q =
-                (Unk0217aa1c_144_00 *) ((u8 *) &data_0217561c->mUnk_14[0].mUnk_0c[0] + v1) + (i - 1);
+            q = (Unk0217aa1c_144_00 *) ((u8 *) &data_0217561c->mUnk_14[0].mUnk_0c[0] + v1) + (i - 1);
             if (f != 0) {
                 f = 0;
                 r = i;
                 v2 = *q;
             } else {
-                s32 k = 0;
-                if ((q->mUnk_02 * 60 + q->mUnk_03) * 1000 + q->mUnk_00 <=
-                    (v2.mUnk_02 * 60 + v2.mUnk_03) * 1000 + v2.mUnk_00) {
+                p = &v2;
+                k = 0;
+                if ((u32) ((q->mUnk_02 * 60 + q->mUnk_03) * 1000 + q->mUnk_00) <=
+                    (u32) ((v2.mUnk_02 * 60 + v2.mUnk_03) * 1000 + v2.mUnk_00)) {
                     k = 1;
                     if (q != p) {
                         func_0214d1fc(q, p, 4);
@@ -47,15 +48,13 @@ u16 func_0203c5f8(u16 a, u8 *b, u8 *c, u16 *d) {
     return r;
 }
 
-// non-matching: same instructions and order; registers differ (b - 1 in r4, the entry base in r5 and the element in lr
-// where the original has lr, r4 and r5)
 void func_0203c778(s32 a, u16 b, u8 *c, u8 *d, u16 *e) {
     s32 k = b - 1;
     Unk0217aa1c_144_00 *p = (Unk0217aa1c_144_00 *) ((u8 *) &data_0217561c->mUnk_14[0].mUnk_0c[0] + a * 0x8c);
     Unk0217aa1c_144_00 *q = &p[k];
     *c = q->mUnk_02;
     *d = q->mUnk_03;
-    *e = p[k].mUnk_00;
+    *e = q->mUnk_00;
 }
 
 void func_0203c7cc(s32 a, u8 *b, u8 *c, u16 *d) {

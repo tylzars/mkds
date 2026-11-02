@@ -74,8 +74,6 @@ void func_0205aa60(void) {
     }
 }
 
-// non-matching: 0xc4 bytes, original 0xc0; 35 lines differ; first: original `ldr r6, [pc, #172]`, ours `ldr r6, [pc,
-// #176]`
 void func_0205ab78(void) {
     u16 i;
     Unk0217aa14_324 *e;
@@ -88,11 +86,6 @@ void func_0205ab78(void) {
         switch (e->mUnk_08) {
             case 0:
                 break;
-            case 1:
-                if ((u32) e->mUnk_00 < (u32) data_0217aa14->mUnk_728) {
-                    e->mUnk_08 = 2;
-                }
-                break;
             case 2:
                 if ((u32) e->mUnk_00 + 30 < (u32) data_0217aa14->mUnk_728) {
                     e->mUnk_08 = 0;
@@ -101,6 +94,11 @@ void func_0205ab78(void) {
                     e->mUnk_0a = 0;
                     e->mUnk_0b = 0;
                     func_0214d168(e->mUnk_04, 0, 20);
+                }
+                break;
+            case 1:
+                if ((u32) e->mUnk_00 < (u32) data_0217aa14->mUnk_728) {
+                    e->mUnk_08 = 2;
                 }
                 break;
         }

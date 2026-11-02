@@ -262,8 +262,6 @@ void func_020fba6c(Unk020fc2e8 *param_1) {
     }
 }
 
-// non-matching: 0x26c vs 0x274 bytes. The selection of q is laid out as in func_020fbc18: the original reaches one
-// shared `mov r4, #0` with `beq` / `bne`, this build starts with `mov r4, #0` and predicates the two selections.
 void func_020fb7f8(Unk020fc2e8 *param_1) {
     Vec3 v;
     void *q;
@@ -328,9 +326,6 @@ void func_020fb770(Unk020fc2e8 *param_1) {
     param_1->mUnk_284 = 0x59a;
 }
 
-// non-matching: 0x14c vs 0x154 bytes. The original keeps param_1 in r4 (here r5); the selection
-// of q is laid out as in func_020fbc18 (one shared `mov rN, #0` reached by `beq` / `bne` in the
-// original, `mov r4, #0` first and predicated selections here).
 void func_020fb61c(Unk020fc2e8 *param_1) {
     Vec3 v;
     Vec3 *q;
@@ -752,9 +747,6 @@ void func_020fa8ac(void *a) {
     }
 }
 
-// non-matching: 0x118 vs 0x120 bytes. The original loads the base of the second table into r3
-// and the word it reads from the element into r2 (`ldr r3, [r2]; mla r1, r0, r1, r3; ldr r2,
-// [r1, #0x70]`); this build keeps the base in r2 and reads into r1.
 void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
     s32 v;
     s32 c;
@@ -768,20 +760,18 @@ void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
     }
     if (data_021759c0->mUnk_08 == 2) {
         c = 0;
-        if ((u32) v <= 3) {
-            if ((1 << v) & 0xd) {
-                c = 1;
-            }
+        if ((u32) v > 3) {
+        } else if ((1 << v) & 0xd) {
+            c = 1;
         }
-        func_020f87a8(&(data_027e00c8)[param_1], param_2, func_020a1cd8(param_1), c != 0, param_3);
+        func_020f87a8(&(data_027e00c8)[param_1], param_2, func_020a1cd8(param_1), c ? 1 : 0, param_3);
     } else {
         c = 0;
-        if ((u32) v <= 3) {
-            if ((1 << v) & 0xd) {
-                c = 1;
-            }
+        if ((u32) v > 3) {
+        } else if ((1 << v) & 0xd) {
+            c = 1;
         }
-        func_020f87a8(&(data_027e00c8)[param_1], param_2, func_0203c8dc(param_1), c != 0, param_3);
+        func_020f87a8(&(data_027e00c8)[param_1], param_2, func_0203c8dc(param_1), c ? 1 : 0, param_3);
     }
 }
 
@@ -790,12 +780,14 @@ static inline s32 func_020fa4c8_inline(Unk020f41c4_A *e, Unk0206bcb0 *a) {
     Vec3 c;
     s32 d1;
     s32 d2;
+    s32 r;
+    s32 x;
     s64 f;
 
     if (!(e->mUnk_74 & 0x8000)) {
         return 1;
     }
-    if ((u16) a->mUnk_74 != (u16) ((e->mUnk_78 & 0x8000) ? 8 : (u16) (e->mUnk_78 & ~0xff00))) {
+    if ((u16) a->mUnk_74 != (u16) (!(e->mUnk_78 & 0x8000) ? (u16) (e->mUnk_78 & ~0xff00) : 8)) {
         return 1;
     }
     if (e->mUnk_5c.x != 0 || e->mUnk_5c.y != 0 || e->mUnk_5c.z != 0 || a->mUnk_2a8 != 0) {
@@ -809,14 +801,13 @@ static inline s32 func_020fa4c8_inline(Unk020f41c4_A *e, Unk0206bcb0 *a) {
             return 1;
         }
     }
-    f = (s64) (e->mUnk_50.x - a->mUnk_1d8.x) * (e->mUnk_50.x - a->mUnk_1d8.x) +
-        (s64) (e->mUnk_50.y - a->mUnk_1d8.y) * (e->mUnk_50.y - a->mUnk_1d8.y) +
-        (s64) (e->mUnk_50.z - a->mUnk_1d8.z) * (e->mUnk_50.z - a->mUnk_1d8.z);
-    return f < (s64) e->mUnk_e0 * e->mUnk_e0 ? 1 : 0;
+    r = e->mUnk_e0;
+    x = e->mUnk_50.x - a->mUnk_1d8.x;
+    f = (s64) (e->mUnk_50.z - a->mUnk_1d8.z) * (e->mUnk_50.z - a->mUnk_1d8.z) +
+        ((s64) x * x + (s64) (e->mUnk_50.y - a->mUnk_1d8.y) * (e->mUnk_50.y - a->mUnk_1d8.y));
+    return f < (s64) r * r ? 1 : 0;
 }
 
-// non-matching: same size; 15 words differ: the three squared differences are loaded and summed in another order
-// (the original loads e->mUnk_50.x first), and the data_0217bc34 index mla has its operands in other registers
 s32 func_020fa4c8(Unk0206bcb0 *param_1) {
     s32 i;
     s32 n;
@@ -824,6 +815,7 @@ s32 func_020fa4c8(Unk0206bcb0 *param_1) {
     s32 v;
     s32 lim;
     Unk020f41c4_A *e;
+    enum { K0 } k;
 
     n = 0;
     fl = (param_1->mUnk_48 & 0x8000000) != 0;
@@ -850,7 +842,8 @@ s32 func_020fa4c8(Unk0206bcb0 *param_1) {
         if (e->mUnk_74 & 0x1000) {
             func_020eda5c(&(data_027e00c8)[(u16) (e->mUnk_78 & ~0xff00)].mUnk_058, e);
         }
-        if (data_0217bc34[e->mUnk_44].mUnk_88 != 0) {
+        k = e->mUnk_44;
+        if (data_0217bc34[k].mUnk_88 != 0) {
             if (func_020f9880(e) != 0) {
                 func_020f6be8(e, &param_1->mUnk_1b8, &param_1->mUnk_a4, &param_1->mUnk_05c);
                 func_020f6f10(e, 1, (u16) param_1->mUnk_74);
