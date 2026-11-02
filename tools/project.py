@@ -80,6 +80,11 @@ DECOMP_ME_COMPILER = DECOMP_ME_IDS.get(MWCC_VERSION)  # None: no decomp.me id (D
 # installed version (folders under tools/mwccarm/).
 PATH_COMPILERS = {
     "libs/": "1.2/base",  # verified: library code in main (docs/compiler.md, Libraries); sp2, sp2p3 identical
+    # verified: four ov000 files whose switches end in `add pc, r0` (docs/compiler.md, Game code)
+    "src/00/code_021a9aa0.c": "1.2/sp2p3",
+    "src/00/code_021aae44.c": "1.2/sp2p3",
+    "src/00/code_021ad754.c": "1.2/sp2p3",
+    "src/00/code_021ae984.c": "1.2/sp2p3",
 }
 # Flags from CC_FLAGS that sources under these paths must not get.
 PATH_DROP_FLAGS = {

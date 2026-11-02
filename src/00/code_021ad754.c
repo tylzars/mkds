@@ -47,8 +47,6 @@ u8 *func_ov000_021ad754(u8 *a, u8 b, u32 *c) {
     return a + 0x10d;
 }
 
-// non-matching: the switch jump table is dispatched with add r0, pc; bx r0 here and with add pc, r0 in the original;
-// nothing else differs
 void func_ov000_021ad898(void) {
     u32 a;
     u32 b;

@@ -113,8 +113,6 @@ u32 func_ov000_021aaf38(Unk021a998c_0c *a, Unk021aaf38 *b) {
     return r;
 }
 
-// non-matching: both jump-table dispatches end in add r0, pc; bx r0 where the original has add pc, r0; 0x3ae vs 0x3aa
-// bytes, the rest is identical
 s32 func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
     u8 *p;
     u32 t;

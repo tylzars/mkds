@@ -160,8 +160,8 @@ void func_ov000_021a9ca8(u8 *a, s32 n) {
     }
 }
 
-// non-matching: the record-type switch dispatch differs from +0x148: original reads the table with ldrh, lsls, asrs and
-// ends in `add pc, r0`, ours ends in `add r0, pc; bx r0` (2 bytes longer), the rest follows in the same order
+// non-matching: the original places the block that calls with (r4, r5) right after +0x188, r6 and r7 swap roles
+// after it, and the subtraction at +0x22a goes through r1; size 0x298 vs 0x29c
 u8 func_ov000_021a9d68(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
     u32 n;

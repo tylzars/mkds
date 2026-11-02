@@ -44,8 +44,6 @@ void func_ov000_021ae984(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
     }
 }
 
-// non-matching: the jump table dispatch is 2 bytes longer (ours: add r0, pc; bx r0 and the table read at +8; original:
-// add pc, r0 and the table at +6), all other instructions are the same
 void func_ov000_021aea34(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3) {
     Unk021a998c *a;
     u32 b;
