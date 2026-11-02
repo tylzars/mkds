@@ -67,7 +67,7 @@ extern u16 data_02159b74;
 extern u8 data_02159b78[];
 extern Vec3 data_02159ca0;
 extern u16 data_02159cac;
-extern u16 data_02159cbc;
+extern const u16 data_02159cbc;
 extern Vec3 data_02159cb0;
 extern Vec3 data_02159d84;
 extern u16 data_02159f18;

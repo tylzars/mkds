@@ -103,8 +103,8 @@ void func_02085e04(void) {
     }
 }
 
-// non-matching: 0x18 bytes shorter; the original keeps the constants 0, 1 and 0xd in registers across the second loop
-// and holds the counter of that loop on the stack.
+// non-matching: 4 bytes longer; the original loads e->mUnk_00 once before the inner loop, from data + j * 48 with
+// the 0x70 offset folded into the loads; here data + 0x70 is formed apart and the load stays in the loop.
 void func_02085d1c(void) {
     u16 i;
     u16 j;
@@ -118,8 +118,8 @@ void func_02085d1c(void) {
     }
     for (j = 0; (u32) j < data_021759c0->mUnk_3d0; j++) {
         if (data_021759c0->mUnk_58 != 0) {
-            e = &data_021759c0->mUnk_68[j].mUnk_08;
             for (k = 0; (u32) k < 2; k++) {
+                e = &data_021759c0->mUnk_68[j].mUnk_08;
                 f = 0;
                 if ((u32) e->mUnk_00 <= 3 && ((1 << e->mUnk_00) & 0xd)) {
                     f = 1;
@@ -142,49 +142,45 @@ void func_02085d1c(void) {
     }
 }
 
-// non-matching: 4 bytes longer; the zero used by the first loop and the maxima is held in a different register, and the
-// constant 0x114 is loaded inside the first loop.
 void func_02085bec(void) {
     u16 i0;
     s32 m0;
     s32 m1;
     s16 i;
     u16 k;
-    s32 f;
     s32 v;
+    s32 f;
     s32 v1;
+
     i0 = 0;
     m0 = 0;
     m1 = 0;
-    i = 0;
     for (; (u32) i0 < 2; i0++) {
         data_0217aebc->mUnk_114[i0] = 0;
     }
     data_0217aebc->mUnk_110 = 1;
     data_0217aebc->mUnk_11c = 0;
     if (data_021759c0->mUnk_08 == 0) {
-        {
-            for (; i < data_021759c0->mUnk_3d0; i++) {
-                k = i;
-                v = func_0205d3f0(k);
-                f = 0;
-                if ((u32) data_021759c0->mUnk_68[k].mUnk_08.mUnk_00 <= 3 &&
-                    ((1 << data_021759c0->mUnk_68[k].mUnk_08.mUnk_00) & 0xd)) {
-                    f = 1;
+        for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
+            k = i;
+            v = func_0205d3f0(k);
+            f = 0;
+            if ((u32) data_021759c0->mUnk_68[k].mUnk_08.mUnk_00 <= 3 &&
+                ((1 << data_021759c0->mUnk_68[k].mUnk_08.mUnk_00) & 0xd)) {
+                f = 1;
+            }
+            if (f != 0) {
+                if (v > m0) {
+                    m0 = v;
                 }
-                if (f != 0) {
-                    if (v > m0) {
-                        m0 = v;
-                    }
-                } else {
-                    if (v > m1) {
-                        m1 = v;
-                    }
-                    if (i == data_021759c0->mUnk_3d5[0]) {
-                        data_0217aebc->mUnk_114[0] = v;
-                    } else if (i == data_021759c0->mUnk_3d5[1]) {
-                        data_0217aebc->mUnk_114[1] = v;
-                    }
+            } else {
+                if (v > m1) {
+                    m1 = v;
+                }
+                if (i == data_021759c0->mUnk_3d5[0]) {
+                    data_0217aebc->mUnk_114[0] = v;
+                } else if (i == data_021759c0->mUnk_3d5[1]) {
+                    data_0217aebc->mUnk_114[1] = v;
                 }
             }
         }

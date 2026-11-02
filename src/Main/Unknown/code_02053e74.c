@@ -65,8 +65,8 @@ static inline s32 func_02054754_inline(Unk0217aa00_15c8 *e) {
 
 static inline s32 func_02054754_inline2(Unk0217aa00_15bc *q, Unk0217aa00_15c8 *e) {
     u8 mask = data_0217aa00->mUnk_0044.mUnk_43;
-    s32 ok = 0;
     u8 i;
+    s32 ok = 0;
     u16 m;
 
     for (i = 1; i < 8; i++) {
@@ -282,9 +282,6 @@ s32 func_02054938(void) {
     return r;
 }
 
-// non-matching: same size; register allocation only; 31 words differ; first: original `ldr r0, [pc, #320]`, ours `ldr
-// r1, [pc, #320]`. The original keeps e in r10, the inline's mask in r11 and its counter in r0; ours rotates them (e in
-// r0, mask in r10, counter in r11) because e is coloured first.
 s32 func_02054754(void) {
     s32 r;
     Unk0217aa00_15bc *q;
@@ -301,12 +298,10 @@ s32 func_02054754(void) {
         return 1;
     }
     if (q->mUnk_10[0] != 0) {
-        Unk0217aa00_15c8 *e;
         Unk0217aa00 *p;
 
-        e = q->mUnk_0c;
         p = data_0217aa00;
-        if (func_02054754_inline(e) != 0) {
+        if (func_02054754_inline(q->mUnk_0c) != 0) {
             if ((p->mUnk_0454 & 8) != 0) {
                 p->mUnk_0004 = 9;
             } else {
@@ -315,7 +310,7 @@ s32 func_02054754(void) {
             r = 1;
             data_0217aa00->mUnk_15f4 = 0;
         } else if (func_02053e74_inline() == 1) {
-            if (func_02054754_inline2(q, e) != 0) {
+            if (func_02054754_inline2(q, q->mUnk_0c) != 0) {
                 p->mUnk_008b |= 1;
             }
         }
@@ -445,14 +440,12 @@ void func_02054208(Unk0217aa00_15bc *a) {
     data_0217aa00->mUnk_0454 &= ~0x10;
 }
 
-// non-matching: same size; register allocation only; 14 words differ; first: original `ldr r3, [r1, #0x7c]`, ours
-// `ldr r2, [r1, #0x7c]`. In the loop over the four 0xe0-byte entries the original keeps the j * 0xe0 offset in r1 and
-// the inner counter in r3, ours the other way round.
 void func_02053fa8(void) {
     u8 *q;
     s32 i;
     s32 j;
     s32 k;
+    s32 l;
 
     for (i = 0; i < 7; i++) {
         data_0217aa00->mUnk_0044.mUnk_00[i].mUnk_06 = 0xffff;
@@ -477,8 +470,8 @@ void func_02053fa8(void) {
         data_0217aa00->mUnk_00ac[j].mUnk_dc_0 = 0;
         data_0217aa00->mUnk_00ac[j].mUnk_db = 0;
         q = data_0217aa00->mUnk_00ac[j].mUnk_c0;
-        for (i = 0; i < 6; i++) {
-            q[i] = 0;
+        for (k = 0; k < 6; k++) {
+            q[k] = 0;
         }
     }
     data_0217aa00->mUnk_0432 = 0xffff;
@@ -491,8 +484,8 @@ void func_02053fa8(void) {
     data_0217aa00->mUnk_043d = 0;
     data_0217aa00->mUnk_043b = 0;
     q = data_0217aa00->mUnk_00ac_view.mUnk_380;
-    for (i = 0; i < 6; i++) {
-        q[i] = 0;
+    for (l = 0; l < 6; l++) {
+        q[l] = 0;
     }
     data_0217aa00->mUnk_0457 = 0;
     data_0217aa00->mUnk_0458 = 0;

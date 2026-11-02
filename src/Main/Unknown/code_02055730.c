@@ -164,8 +164,11 @@ s32 func_02055afc(void) {
 
 static inline s32 func_02055b1c_inline(void) {
     s32 r = 0;
-    u32 t = 0;
-    if (data_0217aa00 != 0) {
+    u32 t;
+    if (data_0217aa00 == 0) {
+        t = 0;
+        r = 0;
+    } else {
         t = data_0217aa00->mUnk_0000;
     }
     if (t != 0 && data_0217aa00->mUnk_0004 != 13) {
@@ -174,9 +177,6 @@ static inline s32 func_02055b1c_inline(void) {
     return r;
 }
 
-// non-matching: same size; register allocation only; 2 lines differ; first: original `cmp r0, #0`, ours `mov r1, r2`.
-// The original compares r0 first and fills r1 with `moveq r1, r2` / `ldrne r1, [r0]`; ours copies r2 into r1 before the
-// compare.
 s32 func_02055b1c(void) {
     if (func_02055b1c_inline()) {
         if (func_0204ffbc() != 0) {
@@ -304,8 +304,9 @@ void func_02055f68(void) {
     }
 }
 
-// non-matching: same size; register allocation only; 14 words differ; first: original `mov r1, #0`, ours `mov r0, #0`.
-// In the inner loop the original keeps the counter in r8 and the 0x1ff mask in r9; ours uses r1 and r8.
+// non-matching: same size; register allocation only; 12 words differ; first: original `mov r1, #0`, ours `mov r0, #0`.
+// The hoisted 0 for the inner loop is in r1 in the original (ours r0), the inner counter in r8 (ours r1), the 0x1ff
+// mask in r9 (ours r8) and the and/address temps in sl/r0 (ours sb); the instruction order matches.
 void func_02055fc8(void) {
     Unk0217aa04_04 *v1;
     s32 m[4];
@@ -330,8 +331,7 @@ void func_02055fc8(void) {
     for (j = 0; j < 3; j++) {
         for (i = 0; i < 4; i++) {
             v1[n].mUnk_00 = (u8) (0x40 * j) | 0xc0000c00 | ((i * 0x40 & 0x1ff) << 16);
-            v1[n].mUnk_04_h = (0x100 * j + i * 8) | 0xf000;
-            n = 1 + n;
+            v1[n++].mUnk_04_h = (0x100 * j + i * 8) | 0xf000;
         }
     }
     func_0200ee74(v1, 0x400);

@@ -2,6 +2,13 @@
 
 #include "types.h"
 
+// The two words at data_021634a8.
+typedef struct Unk021634a8 {
+    /* 00 */ u32 mUnk_00[2];
+} Unk021634a8;
+
+extern Unk021634a8 data_021634a8;
+
 // Objects whose layout isn't known yet.
 extern u8 data_02163018[];
 extern u8 data_0216303c[];
@@ -38,7 +45,6 @@ extern u8 data_0216341c[];
 extern u8 data_02163444[];
 extern u8 data_02163460[];
 extern u8 data_02163484[];
-extern u32 data_021634a8[];
 extern const char data_021634c0[];
 extern const char data_021634cc[];
 extern const char data_021634ec[];

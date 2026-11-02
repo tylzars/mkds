@@ -8,27 +8,23 @@
 
 #pragma thumb on
 
-// non-matching: 81%, the original keeps the table pointer and the zero constants in stack words and loads the first
-// entry values in another order; size 4 bytes over
 void func_0203003c(s32 a) {
     Unk02174e50_24 *p;
-    Unk02153c58 *q;
-    u32 t[2];
+    Unk021634a8 t;
     s32 i;
     s32 j;
-    s32 k;
     s32 r4;
     s32 v;
     s32 w;
     s32 x;
     s32 y;
     s32 z;
+    Unk02153c58 *q;
 
     p = &data_02174e50->mUnk_24;
-    t[0] = data_021634a8[0];
-    t[1] = data_021634a8[1];
-    r4 = 0;
+    t = data_021634a8;
     i = 0;
+    r4 = 0;
     q = data_02153c58;
     do {
         v = 0;
@@ -45,7 +41,7 @@ void func_0203003c(s32 a) {
         p->mUnk_18[q->mUnk_00[0x18 / 2]].mUnk_00 = w;
         for (j = 1; j < 12; j++) {
             p->mUnk_18[q->mUnk_00[j]].mUnk_00 = v & x;
-            *(s32 *) ((u8 *) p->mUnk_18 + (q->mUnk_00[j + 12] << 6)) = w & x;
+            p->mUnk_18[(q->mUnk_00 + 12)[j]].mUnk_00 = w & x;
         }
         p->mUnk_18[q->mUnk_00[1]].mUnk_00 &= *(s32 *) ((u8 *) data_02174e50 + r4 + 0x5c);
         p->mUnk_18[q->mUnk_00[13]].mUnk_00 &= *(s32 *) ((u8 *) data_02174e50 + r4 + 0x5c);
@@ -61,16 +57,16 @@ void func_0203003c(s32 a) {
             y = 0;
         }
         p->mUnk_18[q->mUnk_00[14]].mUnk_00 &= y;
-        for (k = 0; k < 8; k++) {
-            if (k == *(s32 *) ((u8 *) data_02174e50 + r4 + 0x60)) {
+        for (j = 0; j < 8; j++) {
+            if (j == *(s32 *) (r4 + (s32) data_02174e50 + 0x60)) {
                 z = 1;
             } else {
                 z = 0;
             }
-            *(s32 *) ((u8 *) p->mUnk_18 + (q->mUnk_00[4 + k] << 6)) &= z;
-            *(s32 *) ((u8 *) p->mUnk_18 + (q->mUnk_00[16 + k] << 6)) &= z;
+            p->mUnk_18[(q->mUnk_00 + 4)[j]].mUnk_00 &= z;
+            p->mUnk_18[(q->mUnk_00 + 16)[j]].mUnk_00 &= z;
         }
-        func_02124100(q->mUnk_30, (u8) t[v], p->mUnk_14, p->mUnk_18, p->mUnk_0c);
+        func_02124100(q->mUnk_30, (u8) t.mUnk_00[v], p->mUnk_14, p->mUnk_18, p->mUnk_0c);
         r4 += 0xc;
         q = (Unk02153c58 *) ((u8 *) q + 0x32);
         i++;
@@ -87,7 +83,7 @@ void func_0203003c(s32 a) {
         w = 0;
     }
     p->mUnk_18[88].mUnk_00 = w;
-    func_02124100(4, (u8) t[v], p->mUnk_14, p->mUnk_18, p->mUnk_0c);
+    func_02124100(4, (u8) t.mUnk_00[v], p->mUnk_14, p->mUnk_18, p->mUnk_0c);
 }
 
 void func_02030200(void) {
@@ -136,7 +132,8 @@ s32 func_02030274(s32 a, s32 b) {
 }
 
 // non-matching: the then-arm ends with `b` to the shared epilogue in the original; here it gets its own copy of the
-// epilogue (add sp, pop, bx; 4 bytes over), all other instructions match
+// epilogue (add sp, pop, bx; 4 bytes over), all other instructions match. With optimize_for_size on it and
+// func_020302f0 match (the other four functions of this file then do not): likely a separate size-optimised unit
 void func_020302a0(void) {
     Unk02174e54 *o;
 

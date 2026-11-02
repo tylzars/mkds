@@ -51,47 +51,53 @@ void *func_020fa3d0(s32 param_1, u16 param_2, void *param_3, void *param_4) {
 
 #pragma thumb on
 
-// non-matching: 52 words differ from +0xa; the original keeps i at stack offset 0x28 and n at 0x2c, v at 0x40 and q
-// at 0x44 (here each pair is swapped), reads f after the n test and has e in r4 and k in r5 (here swapped)
+static inline Unk020f41c4_A *func_020fa3d0_inline(s32 param_1, u16 param_2, void *param_3, void *param_4) {
+    Unk020f41c4_A *p;
+    Unk027e00cc *e;
+
+    p = 0;
+    if (data_027e00cc[param_1].mUnk_20 - data_027e00cc[param_1].mUnk_1c <= 0) {
+        return 0;
+    }
+    func_020f1048(&data_027e00cc[param_1], 1, (Unk020f41c4_A **) &p, param_2, param_3);
+    e = &data_027e00cc[param_1];
+    e->mUnk_1c++;
+    func_020f0ea0(&data_027e00cc[p->mUnk_44], p);
+    func_020f98a0(p, param_3, param_4, 0, 0);
+    if (param_2 == 8) {
+        p->mUnk_78 |= data_02159cbc;
+    }
+    return p;
+}
+
 void func_020fa294(void) {
-    u32 n;
     u32 i;
-    u16 f;
-    s32 z1;
-    s32 z2;
-    s32 z3;
-    Unk020f41c4_A *q;
+    u32 n;
     u32 v;
+    Unk020f41c4_A *p;
     Vec3 m;
+    enum { K0 } k;
     Unk020fa294 *e;
-    s32 k;
 
     n = gCourseMap->mUnk_04;
-    f = data_02159cbc;
-    z1 = -2;
-    z2 = 0;
-    z3 = 0;
     for (i = 0; i < n; i++) {
         e = &gCourseMap->mUnk_00[i];
         if (e->mUnk_24 == 0x6d) {
             k = e->mUnk_28;
-            if (func_01ffdee4((int *) e, (u32 *) z2, z2, 0xa000, 8, z1, (int *) z2, (int *) &m, (int *) z2, (u32 *) z2,
-                              (u32 *) z2, (int *) z2, (u16 *) z2, &v) == 0) {
+            if (func_01ffdee4((int *) e, (u32 *) 0, 0, 0xa000, 8, -2, (int *) 0, (int *) &m, (int *) 0, (u32 *) 0,
+                              (u32 *) 0, (int *) 0, (u16 *) 0, &v) == 0) {
                 m = data_02159cb0;
             }
-            q = 0;
-            if (data_027e00cc[k].mUnk_20 - data_027e00cc[k].mUnk_1c > 0) {
-                func_020f1048(&data_027e00cc[k], 1, (Unk020f41c4_A **) &q, 8, (Vec3 *) e);
-                data_027e00cc[k].mUnk_1c++;
-                func_020f0ea0(&data_027e00cc[q->mUnk_44], q);
-                func_020f98a0(q, (Vec3 *) e, &m, (u16 *) z3, z3);
-                q->mUnk_78 |= f;
-            }
-            if (q != 0) {
-                if ((q->mUnk_74 & 0x180000) == 0) {
-                    q->mUnk_120 = data_0217bc34[q->mUnk_44].mUnk_28;
+            p = func_020fa3d0_inline(k, 8, e, &m);
+            if (p != 0) {
+                void (*t)(Unk020f41c4_A *);
+
+                k = p->mUnk_44;
+                t = data_0217bc34[k].mUnk_28;
+                if ((p->mUnk_74 & 0x180000) == 0) {
+                    p->mUnk_120 = t;
                 }
-                func_020f6a6c(q, &v);
+                func_020f6a6c(p, &v);
             }
         }
     }
@@ -250,25 +256,24 @@ s32 func_020f9dc8(Unk020f41c4_A *param_1) {
     return 0;
 }
 
-// non-matching: same size; 2 lines differ; first: original `mov r3, #0`, ours `umull r4, lr, ip, r2`
 s32 func_020f9ce8(Unk020f41c4_A *param_1) {
     Unk0217bc34 *e;
     enum { K0 } k;
     s32 m;
 
-    if (param_1->mUnk_100 == 0) {
-        return 0;
+    if (param_1->mUnk_100 != 0) {
+        k = param_1->mUnk_44;
+        param_1->mUnk_74 |= 0x40;
+        param_1->mUnk_68.y += (s32) (((s64) (param_1->mUnk_100 - param_1->mUnk_68.y) * 0x333) >> 12);
+        param_1->mUnk_68.x = param_1->mUnk_68.z * 2 - param_1->mUnk_68.y;
+        e = &data_0217bc34[k];
+        m = e->mUnk_6c;
+        param_1->mUnk_dc = (s32) (((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12);
+        param_1->mUnk_e0 = (s32) (((s64) param_1->mUnk_68.y * m) >> 12);
+        func_020d5148(param_1->mUnk_da, param_1->mUnk_e0 + 0xa000);
+        return 1;
     }
-    k = param_1->mUnk_44;
-    param_1->mUnk_74 |= 0x40;
-    param_1->mUnk_68.y += (s32) (((s64) (param_1->mUnk_100 - param_1->mUnk_68.y) * 0x333) >> 12);
-    param_1->mUnk_68.x = param_1->mUnk_68.z * 2 - param_1->mUnk_68.y;
-    e = &data_0217bc34[k];
-    m = e->mUnk_6c;
-    param_1->mUnk_dc = (s32) (((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12);
-    param_1->mUnk_e0 = (s32) (((s64) param_1->mUnk_68.y * m) >> 12);
-    func_020d5148(param_1->mUnk_da, param_1->mUnk_e0 + 0xa000);
-    return 1;
+    return 0;
 }
 
 void func_020f9ca8(void *param_1) {

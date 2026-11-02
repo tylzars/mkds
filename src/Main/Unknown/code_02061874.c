@@ -6,7 +6,6 @@
 #include "Main/Unknown/code_02061f7c.h"
 #include "Main/Unknown/code_02062ed8.h"
 
-// non-matching: same instructions except the registers of the first table loop.
 void func_02061c28(void) {
     u32 a[32];
     u16 i;
@@ -23,7 +22,7 @@ void func_02061c28(void) {
         m = gCourseMap->mUnk_018->mUnk_06;
         if (m == 0) {
             for (i = 0; i < 8; i++) {
-                data_0217aabc[i] = (i * 16) | ((i * 16 + 4) << 8) | ((i * 16 + 8) << 16) | ((i * 16 + 12) << 24);
+                data_0217aabc[i] = ((i * 4) << 2) | ((i * 16 + 4) << 8) | ((i * 16 + 8) << 16) | ((i * 16 + 12) << 24);
             }
         } else if (m == 1) {
             for (i = 0; i < 32; i++) {
@@ -65,15 +64,13 @@ void func_02061c28(void) {
     }
 }
 
-// non-matching: same size, 32 words differ: the original multiplies the data_0217aa8c elements as signed values
-// (element first, its asr inside the loop), ours zero-extends them with u as the first operand; at the start the
-// data_0217aa44 value and u are in r5/r4 here (original r4/r5).
 void func_02061944(s32 a, s32 b) {
     s32 t;
     s32 u;
     u32 j;
     u32 w;
     u16 i;
+    s32 e;
 
     if (gCourseMap->mUnk_018->mUnk_05 != 0 && b == 0) {
         t = (s32) (((s64) 57 * (a << 12) + 0x800) >> 12);
@@ -94,7 +91,8 @@ void func_02061944(s32 a, s32 b) {
             data_0217aa8c[2] = (w & 0xff0000) >> 16;
             data_0217aa8c[3] = (w & 0xff000000) >> 24;
             for (j = 0; j < 4; j++) {
-                data_0217aa8c[j] = (s32) (((s64) data_0217aa8c[j] * u + 0x800) >> 12) + data_0217aa44;
+                e = data_0217aa8c[j];
+                data_0217aa8c[j] = (s32) (((s64) e * (s32) u + 0x800) >> 12) + data_0217aa44;
             }
             data_0217aa9c[i] =
                 data_0217aa8c[0] | (data_0217aa8c[1] << 8) | (data_0217aa8c[2] << 16) | (data_0217aa8c[3] << 24);
