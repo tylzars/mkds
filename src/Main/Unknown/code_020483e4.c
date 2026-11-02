@@ -27,9 +27,9 @@ void func_020486d4(void *a) {
         data_021759c8->mUnk_00[i].mUnk_68 = 0;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        data_021759c8->mUnk_8c0 = func_02004dfc(0, 0);
+        data_021759c8->mUnk_8c0 = FS_TryLoadTable(0, 0);
         data_021759c8->mUnk_8c4 = func_02036bec(a, data_021759c8->mUnk_8c0);
-        func_02004dfc((u32) data_021759c8->mUnk_8c4, data_021759c8->mUnk_8c0);
+        FS_TryLoadTable((u32) data_021759c8->mUnk_8c4, data_021759c8->mUnk_8c0);
     }
     for (i = 0; i < 16; i++) {
         func_020487a0(i);

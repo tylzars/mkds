@@ -63,7 +63,7 @@ void func_020366bc(void) {
     *(vu16 *) 0x4000208 = 1;
     func_0200fc8c();
     func_02148a58(1);
-    func_02004dc0(-1);
+    FS_Init(-1);
     func_02039774();
     data_usa_02174e54 = func_02152b08(data_usa_02174e80);
     func_02039a1c();

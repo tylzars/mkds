@@ -29,14 +29,14 @@ u8 data_02161764[4] = "rom";
 void *data_02161768 = data_02152b80;
 u32 data_0216176c = 0x40;
 
-s32 func_02005880(Unk020055f0 *p) {
+s32 FileGetOverlayLoadSize(Unk020055f0 *p) {
     if (p->mUnk_1c.b[3] & 1) {
         return p->mUnk_1c.f.mUnk_00_0;
     }
     return p->mUnk_08;
 }
 
-void func_0200583c(Unk020055f0 *p) {
+void FS_ClearOverlayImage(Unk020055f0 *p) {
     u8 *b;
     s32 n;
     s32 a;
@@ -49,7 +49,7 @@ void func_0200583c(Unk020055f0 *p) {
     func_0214d168(b + n, 0, a - n);
 }
 
-void func_02005814(Unk02005814 *dst, Unk020055f0 *src) {
+void FS_GetOverlayFileID(Unk02005814 *dst, Unk020055f0 *src) {
     Unk02005814 tmp;
 
     tmp.mUnk_00 = &data_0216f36c;
@@ -57,7 +57,8 @@ void func_02005814(Unk02005814 *dst, Unk020055f0 *src) {
     *dst = tmp;
 }
 
-u32 func_02005704(Unk020055f0 *dst, u32 sel, u32 idx, Unk02003a6c *owner, u8 *base0, u32 size0, u8 *base1, u32 size1) {
+u32 FileReadOverlayEntry(Unk020055f0 *dst, u32 sel, u32 idx, Unk02003a6c *owner, u8 *base0, u32 size0, u8 *base1,
+                         u32 size1) {
     Unk02003024 o;
     Unk02005814 s;
     u32 off;
@@ -85,7 +86,7 @@ u32 func_02005704(Unk020055f0 *dst, u32 sel, u32 idx, Unk02003a6c *owner, u8 *ba
     }
     FS_CloseFile(&o);
     dst->mUnk_20 = sel;
-    func_02005814(&s, dst);
+    FS_GetOverlayFileID(&s, dst);
     if (FS_OpenFileFast(&o, s) == 0) {
         return 0;
     }
@@ -95,7 +96,7 @@ u32 func_02005704(Unk020055f0 *dst, u32 sel, u32 idx, Unk02003a6c *owner, u8 *ba
     return 1;
 }
 
-u32 func_020055f0(Unk020055f0 *dst, u32 sel, u32 idx) {
+u32 FS_LoadOverlayInfo(Unk020055f0 *dst, u32 sel, u32 idx) {
     Unk02003024 o;
     Unk02005814 s;
     Unk02005704 *tab;
@@ -114,7 +115,7 @@ u32 func_020055f0(Unk020055f0 *dst, u32 sel, u32 idx) {
         func_0214d1fc(tab->mUnk_00 + idx * 32, dst, 0x20);
         dst->mUnk_20 = sel;
         FS_InitFile(&o);
-        func_02005814(&s, dst);
+        FS_GetOverlayFileID(&s, dst);
         if (FS_OpenFileFast(&o, s) == 0) {
             return 0;
         }
@@ -125,20 +126,20 @@ u32 func_020055f0(Unk020055f0 *dst, u32 sel, u32 idx) {
     }
     x = (Unk02005704 *) 0x27ffe50;
     y = (Unk02005704 *) 0x27ffe58;
-    return func_02005704(dst, sel, idx, &data_0216f36c, x->mUnk_00, x->mUnk_04, y->mUnk_00, y->mUnk_04);
+    return FileReadOverlayEntry(dst, sel, idx, &data_0216f36c, x->mUnk_00, x->mUnk_04, y->mUnk_00, y->mUnk_04);
 }
 
-u32 func_02005558(Unk020055f0 *rec, Unk02003024 *o) {
+u32 FS_LoadOverlayImageAsync(Unk020055f0 *rec, Unk02003024 *o) {
     Unk02005814 s;
     s32 n;
 
     FS_InitFile(o);
-    func_02005814(&s, rec);
+    FS_GetOverlayFileID(&s, rec);
     if (FS_OpenFileFast(o, s) == 0) {
         return 0;
     }
-    n = func_02005880(rec);
-    func_0200583c(rec);
+    n = FileGetOverlayLoadSize(rec);
+    FS_ClearOverlayImage(rec);
     if (n == FS_ReadFileAsync(o, rec->mUnk_04, n)) {
         return 1;
     }
@@ -146,18 +147,18 @@ u32 func_02005558(Unk020055f0 *rec, Unk02003024 *o) {
     return 0;
 }
 
-u32 func_020054b8(Unk020055f0 *rec) {
+u32 FS_LoadOverlayImage(Unk020055f0 *rec) {
     Unk02005814 s;
     Unk02003024 o;
     s32 n;
 
     FS_InitFile(&o);
-    func_02005814(&s, rec);
+    FS_GetOverlayFileID(&s, rec);
     if (FS_OpenFileFast(&o, s) == 0) {
         return 0;
     }
-    n = func_02005880(rec);
-    func_0200583c(rec);
+    n = FileGetOverlayLoadSize(rec);
+    FS_ClearOverlayImage(rec);
     if (n != FS_ReadFile(&o, rec->mUnk_04, n)) {
         FS_CloseFile(&o);
         return 0;
@@ -166,7 +167,7 @@ u32 func_020054b8(Unk020055f0 *rec) {
     return 1;
 }
 
-u32 func_02005414(const u8 *expected, const u8 *data, u32 n) {
+u32 FileCheckHmac(const u8 *expected, const u8 *data, u32 n) {
     u8 d[0x14];
     u8 k[0x40];
     u32 i;
@@ -182,18 +183,18 @@ u32 func_02005414(const u8 *expected, const u8 *data, u32 n) {
     return i == 0x14;
 }
 
-void func_02005314(Unk020055f0 *rec) {
+void FS_StartOverlay(Unk020055f0 *rec) {
     u32 n;
     u32 ok;
     void (**p)(void);
     void (**end)(void);
 
-    n = func_02005880(rec);
+    n = FileGetOverlayLoadSize(rec);
     if (*(u16 *) 0x27ffc40 == 2) {
         ok = 0;
         if (rec->mUnk_1c.b[3] & 2) {
             if (rec->mUnk_00 < ((u8 *) &data_0216f340 - (u8 *) OverlaySignatures) / 20) {
-                ok = func_02005414(OverlaySignatures[rec->mUnk_00], rec->mUnk_04, n);
+                ok = FileCheckHmac(OverlaySignatures[rec->mUnk_00], rec->mUnk_04, n);
             }
         }
         if (ok == 0) {
@@ -219,7 +220,7 @@ void func_02005314(Unk020055f0 *rec) {
     } while (p < end);
 }
 
-void func_02005210(Unk020055f0 *rec) {
+void FS_EndOverlay(Unk020055f0 *rec) {
     Unk02005210 *prev;
     Unk02005210 *head;
     Unk02005210 *cur;
@@ -281,37 +282,37 @@ void func_02005210(Unk020055f0 *rec) {
     }
 }
 
-u32 func_020051f4(Unk020055f0 *rec) {
-    func_02005210(rec);
+u32 FS_UnloadOverlayImage(Unk020055f0 *rec) {
+    FS_EndOverlay(rec);
     return 1;
 }
 
-u32 func_02005198(u32 sel, u32 idx) {
+u32 FS_LoadOverlay(u32 sel, u32 idx) {
     Unk020055f0 rec;
 
-    if (func_020055f0(&rec, sel, idx) == 0 || func_020054b8(&rec) == 0) {
+    if (FS_LoadOverlayInfo(&rec, sel, idx) == 0 || FS_LoadOverlayImage(&rec) == 0) {
         return 0;
     }
-    func_02005314(&rec);
+    FS_StartOverlay(&rec);
     return 1;
 }
 
-u32 func_02005144(u32 sel, u32 idx) {
+u32 FS_UnloadOverlay(u32 sel, u32 idx) {
     Unk020055f0 rec;
 
-    if (func_020055f0(&rec, sel, idx) == 0 || func_020051f4(&rec) == 0) {
+    if (FS_LoadOverlayInfo(&rec, sel, idx) == 0 || FS_UnloadOverlayImage(&rec) == 0) {
         return 0;
     }
     return 1;
 }
 
-void func_020050c0(u32 sel, u8 *data, u32 n) {
+void FS_AttachOverlayTable(u32 sel, u8 *data, u32 n) {
     Unk02005704 *dst;
     u32 irq;
 
     if (data != 0 && sel == 0) {
         irq = func_02150dc8(1);
-        if (func_02005414(data_0216f2dc, data, n) == 0) {
+        if (FileCheckHmac(data_0216f2dc, data, n) == 0) {
             func_0200fd1c();
         }
         func_02150dc8(irq);
@@ -327,20 +328,20 @@ void func_020050c0(u32 sel, u8 *data, u32 n) {
     func_0200fcb4(irq);
 }
 
-void func_020050b0(Unk02003a6c *p) {
+void FileFinishCardRead(Unk02003a6c *p) {
     FS_NotifyArchiveAsyncEnd(p, 0);
 }
 
-s32 func_02005064(Unk02003a6c *p, void *buf, u32 off, u32 n) {
-    func_021461d8(data_0216f358, off, (u32) buf, n, func_020050b0, (u32) p, 1);
+s32 FileStartCardRead(Unk02003a6c *p, void *buf, u32 off, u32 n) {
+    func_021461d8(data_0216f358, off, (u32) buf, n, FileFinishCardRead, (u32) p, 1);
     return 6;
 }
 
-s32 func_0200505c(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
+s32 FileWriteFail(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
     return 1;
 }
 
-s32 func_02004fcc(Unk02003024 *p, u32 cmd) {
+s32 FileHandleRomLock(Unk02003024 *p, u32 cmd) {
     switch (cmd) {
         case 9:
             func_021457cc(data_0216f354);
@@ -355,15 +356,15 @@ s32 func_02004fcc(Unk02003024 *p, u32 cmd) {
     }
 }
 
-s32 func_02004fc4(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
+s32 FileReadFail(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
     return 1;
 }
 
-s32 func_02004fbc(Unk02003024 *p0, u32 p1) {
+s32 FileRejectAllCommands(Unk02003024 *p0, u32 p1) {
     return 4;
 }
 
-void func_02004e1c(u32 arg) {
+void FileInitRomArchive(u32 arg) {
     enum { K0 } x, y;
 
     data_0216f358 = arg;
@@ -380,13 +381,13 @@ void func_02004e1c(u32 arg) {
         data_0216f35c.mUnk_04 = 0;
         data_0216f364.mUnk_00 = (u8 *) -1;
         data_0216f364.mUnk_04 = 0;
-        FS_SetArchiveProc(&data_0216f36c, func_02004fbc, -1);
-        FS_LoadArchive(&data_0216f36c, 0, 0, 0, 0, 0, func_02004fc4, func_0200505c);
+        FS_SetArchiveProc(&data_0216f36c, FileRejectAllCommands, -1);
+        FS_LoadArchive(&data_0216f36c, 0, 0, 0, 0, 0, FileReadFail, FileWriteFail);
         return;
     }
     x = 0x27ffe40;
     y = 0x27ffe48;
-    FS_SetArchiveProc(&data_0216f36c, func_02004fcc, 0x602);
+    FS_SetArchiveProc(&data_0216f36c, FileHandleRomLock, 0x602);
     if (((Unk02005704 *) x)->mUnk_00 == (u8 *) -1) {
         return;
     }
@@ -400,17 +401,17 @@ void func_02004e1c(u32 arg) {
         return;
     }
     FS_LoadArchive(&data_0216f36c, 0, (u32) ((Unk02005704 *) y)->mUnk_00, ((Unk02005704 *) y)->mUnk_04,
-                   (u32) ((Unk02005704 *) x)->mUnk_00, ((Unk02005704 *) x)->mUnk_04, func_02005064, func_0200505c);
+                   (u32) ((Unk02005704 *) x)->mUnk_00, ((Unk02005704 *) x)->mUnk_04, FileStartCardRead, FileWriteFail);
 }
 
-u32 func_02004dfc(u32 a, u32 b) {
+u32 FS_TryLoadTable(u32 a, u32 b) {
     return FS_LoadArchiveTables(&data_0216f36c, a, b);
 }
 
-void func_02004dc0(u32 arg) {
+void FS_Init(u32 arg) {
     if (data_0216f350 != 0) {
         return;
     }
     data_0216f350 = 1;
-    func_02004e1c(arg);
+    FileInitRomArchive(arg);
 }

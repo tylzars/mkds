@@ -83,7 +83,7 @@ void func_ov003_021c2398(void) {
     }
     func_02148a58(0);
     func_02148904();
-    func_02004dc0(-1);
+    FS_Init(-1);
     func_0214eb88();
     func_0214e0f4();
     func_02148a10();

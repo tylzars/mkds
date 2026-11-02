@@ -35,7 +35,7 @@
 static inline void func_0205dee0_inline(void *c, void *e) {
     u8 d;
     u32 f;
-    if (func_02005198(0, (u32) e) != 0) {
+    if (FS_LoadOverlay(0, (u32) e) != 0) {
         func_0200cc74(1, 0);
         func_0200ca9c(1);
         reg_OS_IME;
@@ -50,7 +50,7 @@ static inline void func_0205dee0_inline(void *c, void *e) {
         }
         func_ov003_021c2494(c, f, 0x20);
         func_02036778();
-        func_02005144(0, (u32) e);
+        FS_UnloadOverlay(0, (u32) e);
     }
 }
 

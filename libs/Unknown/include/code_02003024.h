@@ -7,7 +7,7 @@ struct Unk02003024;
 struct Unk02003a6c;
 struct Unk02003670;
 
-// Pair stored by func_02005814 and FileWalkPath and read by FS_OpenFileFast: an Unk02003a6c and a number.
+// Pair stored by FS_GetOverlayFileID and FileWalkPath and read by FS_OpenFileFast: an Unk02003a6c and a number.
 typedef struct Unk02005814 {
     /* 00 */ struct Unk02003a6c *mUnk_00;
     /* 04 */ s32 mUnk_04;

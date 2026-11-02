@@ -151,8 +151,8 @@ u32 func_0204d610(u32 *a) {
     }
     FS_LoadArchive(p, 0, (u32) t[0].mUnk_00, t[0].mUnk_04, (u32) t[1].mUnk_00, t[1].mUnk_04, func_0204db48,
                    func_0204db40);
-    func_020050c0(0, t[2].mUnk_00, t[2].mUnk_04);
-    func_020050c0(1, t[3].mUnk_00, t[3].mUnk_04);
+    FS_AttachOverlayTable(0, t[2].mUnk_00, t[2].mUnk_04);
+    FS_AttachOverlayTable(1, t[3].mUnk_00, t[3].mUnk_04);
     return r;
 }
 

@@ -36,7 +36,7 @@ void func_02059c34(void) {
     if (data_0217aa10->mUnk_04 != 1 && data_0217aa10->mUnk_04 != 2) {
         return;
     }
-    if (func_02005144(0, data_0217aa10->mUnk_08[data_0217aa10->mUnk_00].mUnk_00) == 0) {
+    if (FS_UnloadOverlay(0, data_0217aa10->mUnk_08[data_0217aa10->mUnk_00].mUnk_00) == 0) {
         return;
     }
     data_0217aa10->mUnk_00 = 4;
@@ -69,7 +69,7 @@ s32 func_02059ce8(void) {
     if (v != 0) {
         return r;
     }
-    func_02005314(&p->mUnk_2c);
+    FS_StartOverlay(&p->mUnk_2c);
     FS_CloseFile(&data_0217aa10->mUnk_58);
     data_0217aa10->mUnk_04 = 2;
     return 1;
@@ -101,7 +101,7 @@ void func_02059e1c(void) {
             r = 1;
         } else if (v == 1) {
             if (((data_0217aa10->mUnk_58.mUnk_0c & 1) ? 1 : 0) == 0) {
-                func_02005314(&data_0217aa10->mUnk_2c);
+                FS_StartOverlay(&data_0217aa10->mUnk_2c);
                 FS_CloseFile(&data_0217aa10->mUnk_58);
                 data_0217aa10->mUnk_04 = 2;
                 r = 1;
@@ -123,9 +123,9 @@ void func_02059ea4(s32 a) {
     s = p->mUnk_04;
     switch (s) {
         case 0:
-            func_020055f0(&p->mUnk_2c, 0, p->mUnk_08[a].mUnk_00);
+            FS_LoadOverlayInfo(&p->mUnk_2c, 0, p->mUnk_08[a].mUnk_00);
             FS_InitFile(&data_0217aa10->mUnk_58);
-            func_02005558(&data_0217aa10->mUnk_2c, &data_0217aa10->mUnk_58);
+            FS_LoadOverlayImageAsync(&data_0217aa10->mUnk_2c, &data_0217aa10->mUnk_58);
             data_0217aa10->mUnk_04 = 1;
             data_0217aa10->mUnk_00 = a;
             break;
@@ -135,7 +135,7 @@ void func_02059ea4(s32 a) {
             switch (s) {
                 case 1:
                 case 2:
-                    if (func_02005144(0, p->mUnk_08[v].mUnk_00) != 0) {
+                    if (FS_UnloadOverlay(0, p->mUnk_08[v].mUnk_00) != 0) {
                         data_0217aa10->mUnk_00 = 4;
                         data_0217aa10->mUnk_04 = 0;
                         if (data_0217aa10->mUnk_a4 != 0) {
@@ -145,9 +145,9 @@ void func_02059ea4(s32 a) {
                     }
                     break;
             }
-            func_020055f0(&data_0217aa10->mUnk_2c, 0, data_0217aa10->mUnk_08[a].mUnk_00);
+            FS_LoadOverlayInfo(&data_0217aa10->mUnk_2c, 0, data_0217aa10->mUnk_08[a].mUnk_00);
             FS_InitFile(&data_0217aa10->mUnk_58);
-            func_02005558(&data_0217aa10->mUnk_2c, &data_0217aa10->mUnk_58);
+            FS_LoadOverlayImageAsync(&data_0217aa10->mUnk_2c, &data_0217aa10->mUnk_58);
             data_0217aa10->mUnk_04 = 1;
             data_0217aa10->mUnk_00 = a;
             break;
@@ -155,7 +155,7 @@ void func_02059ea4(s32 a) {
             switch (s) {
                 case 1:
                 case 2:
-                    if (func_02005144(0, p->mUnk_08[v].mUnk_00) != 0) {
+                    if (FS_UnloadOverlay(0, p->mUnk_08[v].mUnk_00) != 0) {
                         data_0217aa10->mUnk_00 = 4;
                         data_0217aa10->mUnk_04 = 0;
                         if (data_0217aa10->mUnk_a4 != 0) {
@@ -165,9 +165,9 @@ void func_02059ea4(s32 a) {
                     }
                     break;
             }
-            func_020055f0(&data_0217aa10->mUnk_2c, 0, data_0217aa10->mUnk_08[a].mUnk_00);
+            FS_LoadOverlayInfo(&data_0217aa10->mUnk_2c, 0, data_0217aa10->mUnk_08[a].mUnk_00);
             FS_InitFile(&data_0217aa10->mUnk_58);
-            func_02005558(&data_0217aa10->mUnk_2c, &data_0217aa10->mUnk_58);
+            FS_LoadOverlayImageAsync(&data_0217aa10->mUnk_2c, &data_0217aa10->mUnk_58);
             data_0217aa10->mUnk_04 = 1;
             data_0217aa10->mUnk_00 = a;
             break;
