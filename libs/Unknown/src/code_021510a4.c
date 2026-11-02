@@ -81,8 +81,48 @@ u32 func_02151620(const u8 *a) {
     return 0;
 }
 
-// non-matching: same instructions, but the stores of the constant zero words to the stack at the start come in a
-// different order (15 words differ, first at +0xac)
+static inline u32 func_02151288_inline(u32 f, u32 a, u32 b, u32 c, u32 d, u32 e, u32 g) {
+    if (func_0214d6e8(f, a, 0) < 0) {
+        return 0;
+    }
+    if (func_0214d6e8(f, b, 0) < 0) {
+        return 0;
+    }
+    if (func_0214d6e8(f, c, 0) < 0) {
+        return 0;
+    }
+    if (func_0214d6e8(f, d, 0) < 0) {
+        return 0;
+    }
+    if (func_0214d6e8(f, e, 0) < 0) {
+        return 0;
+    }
+    if (func_0214d6e8(f, g, 0) < 0) {
+        return 0;
+    }
+    return 1;
+}
+
+static inline u32 func_02151288_inline2(u32 f, u32 a, u32 b, u32 c) {
+    if (func_0214d6e8(f, a, 0) < 0) {
+        return 0;
+    }
+    if (func_0214d6e8(f, b, 0) < 0) {
+        return 0;
+    }
+    if (func_0214d6e8(f, c, 0) < 0) {
+        return 0;
+    }
+    return 1;
+}
+
+static inline u32 func_02151288_inline3(u32 f, u32 a) {
+    if (func_0214d6e8(f, a, 0) >= 0) {
+        return 1;
+    }
+    return 0;
+}
+
 u32 func_02151288(u32 a, u32 b, u16 c, u32 d) {
     u32 e;
     u32 f;
@@ -129,38 +169,10 @@ u32 func_02151288(u32 a, u32 b, u16 c, u32 d) {
             data_usa_02180478 = 0;
             switch (a) {
                 case 1:
-                    if (func_0214d6e8(f, l1, 0) < 0) {
-                        e = 0;
-                        break;
-                    }
-                    if (func_0214d6e8(f, b, 0) < 0) {
-                        e = 0;
-                        break;
-                    }
-                    if (func_0214d6e8(f, 0x20000, 0) < 0) {
-                        e = 0;
-                        break;
-                    }
-                    if (func_0214d6e8(f, l2, 0) < 0) {
-                        e = 0;
-                        break;
-                    }
-                    if (func_0214d6e8(f, l3, 0) < 0) {
-                        e = 0;
-                        break;
-                    }
-                    if (func_0214d6e8(f, l4, 0) < 0) {
-                        e = 0;
-                        break;
-                    }
-                    e = 1;
+                    e = func_02151288_inline(f, l1, b, 0x20000, l2, l3, l4);
                     break;
                 case 2:
-                    if (func_0214d6e8(f, 0x3002000, 0) >= 0) {
-                        e = 1;
-                    } else {
-                        e = 0;
-                    }
+                    e = func_02151288_inline3(f, 0x3002000);
                     break;
                 case 3:
                     if (func_0214d6e8(f, l5, 0) < 0) {
@@ -180,33 +192,13 @@ u32 func_02151288(u32 a, u32 b, u16 c, u32 d) {
                     break;
                 case 4:
                 case 5:
-                    if (func_0214d6e8(f, l7, 0) < 0) {
-                        e = 0;
-                        break;
-                    }
-                    if (func_0214d6e8(f, l8, 0) < 0) {
-                        e = 0;
-                        break;
-                    }
-                    if (func_0214d6e8(f, l9, 0) < 0) {
-                        e = 0;
-                        break;
-                    }
-                    e = 1;
+                    e = func_02151288_inline2(f, l7, l8, l9);
                     break;
                 case 6:
-                    if (func_0214d6e8(f, 0x3002d00, 0) >= 0) {
-                        e = 1;
-                    } else {
-                        e = 0;
-                    }
+                    e = func_02151288_inline3(f, 0x3002d00);
                     break;
                 case 7:
-                    if (func_0214d6e8(f, 0x3002100, 0) >= 0) {
-                        e = 1;
-                    } else {
-                        e = 0;
-                    }
+                    e = func_02151288_inline3(f, 0x3002100);
                     break;
             }
         } else if (data_usa_02180478 == 1) {

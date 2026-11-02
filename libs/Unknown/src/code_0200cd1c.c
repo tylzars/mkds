@@ -1,6 +1,7 @@
 #include "code_0200cd1c.h"
 
-// non-matching: the original loads the callee address into r1 and branches with bx r1; ours uses ip
+// non-matching: the original loads the callee address into r1 and branches with bx r1; ours uses ip. Every other ARM
+// tail call through a register in the game uses ip (117 of them), so the original is likely hand-written
 s32 func_0200cd1c(u32 a) {
     return func_0200ce80(a);
 }
@@ -35,8 +36,9 @@ cd28_clear:
 }
 // clang-format on
 
-// non-matching: the original keeps the shifted bit in its own register (mov, lsr, then orr); ours folds the shift into
-// the orr
+// non-matching: the original tests with pl/mi after cmp #0x60 (ours ge/lt) and keeps the shifted bit in its own
+// register (mov, lsr, then orr; ours folds the shift into the orr). No other compiled ARM function in the game has a
+// pl/mi test after a compare with a constant, so the original is likely hand-written like its neighbour
 void func_0200cd80(s32 a) {
     u32 *p;
     p = (u32 *) 0x027fffb0;

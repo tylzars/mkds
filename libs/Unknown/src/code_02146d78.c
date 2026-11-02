@@ -12,9 +12,9 @@ void func_021470f8(const Unk02012f58 *a, Unk02012f58 *b, s32 c, s32 d, s32 e) {
     b->mUnk_18.z = (s32) (((s64) e * a->mUnk_18.z) >> 12);
 }
 
-// non-matching: 0x15c against 0x160; the original stores the x * x low word to the stack, computes t into its
-// register r1 and reloads it twice; ours keeps t in r8 and reloads once; otherwise the same instructions in other
-// registers and order
+// non-matching: 0x15c against 0x160, same instructions in other registers and order: the original colours t r1,
+// the register the spilled x * x low word was just stored from, so that word is reloaded at both uses; ours colours
+// t r8 and forwards the stored register to the first use (one reload)
 void func_02146f98(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
     s32 x;
     s32 y;
