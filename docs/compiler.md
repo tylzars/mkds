@@ -8,7 +8,8 @@ to reproduce it; a setting with no exact match that breaks when it changes is un
 | Code | Compiler | Flags | Evidence |
 |---|---|---|---|
 | Game code (main + overlays) | 1.2 base (ARM: sp2 identical) | `-O4,p -inline on,noauto -char unsigned -str noreuse -proc arm946e -interworking` | exact matches below |
-| Library code (`libs/`) | 1.2 base (sp2, sp2p3 identical) | `-O4,p -inline on,noauto -char signed -str noreuse -proc arm946e -interworking` | below |
+| Library code (`libs/Unknown/`) | 1.2 base (sp2, sp2p3 identical) | `-O4,p -inline on,noauto -char signed -str noreuse -proc arm946e -interworking` | below |
+| C runtime (`libs/msl/`) | 1.2 base | as library code, with `-char unsigned` | below |
 
 ### Game code
 
@@ -60,7 +61,9 @@ runtime and its stubs, match on 1.2 base.
   (it updates a pointer argument's field through a computed address, `add rX, rB, #off`).
 - `-O4,p`: 0x0201ca6c needs it (`-O3,p` gives 0xd48 bytes, not 0xd2c); `-O4,s`, `-O3` and `-O2` break functions
   with loops or early returns.
-- `-char signed`: 0x0200d118 is 0x8c8 bytes with signed chars, 0x8b4 unsigned (the game uses unsigned).
+- `-char signed`: a library function that reads the same byte as `char` and as `s8` only matches with signed chars.
+- `-char unsigned` in `libs/msl/`: the string functions match with plain `char` only unsigned. The other library files
+  build the same objects with either setting.
 - `-inline on,noauto`: `auto` inlines 0x0201ec30's two helpers, `off` drops the static inline 0x02011c58 needs.
 - `-proc arm946e`: 0x0214843c needs `smulbb`/`smlabb`.
 - `-str noreuse`, `-enum int`: as the game code. One function, 0x0214177c, shares its literals the `reuse` way: it

@@ -88,7 +88,8 @@ PATH_COMPILERS = {
 }
 # Flags from CC_FLAGS that sources under these paths must not get.
 PATH_DROP_FLAGS = {
-    "libs/": ["-char unsigned"],  # verified: library code uses signed char (docs/compiler.md, Libraries)
+    "libs/": ["-char unsigned"],  # verified: libs/Unknown/src/code_0200d118.c matches with plain char only signed
+    "libs/msl/": [],  # verified: libs/msl/src/code_02139f70.c matches with plain char only unsigned
 }
 # Flags added for sources under these paths. A game with Thumb code: "src/": ["-thumb"], with an empty list for an
 # ARM-only folder or file. An ARM function inside a Thumb file can be written between `#pragma thumb off` and
@@ -98,6 +99,7 @@ PATH_DROP_FLAGS = {
 PATH_CPP_DIALECT = {}
 PATH_ADD_FLAGS = {
     "libs/": ["-char signed"],
+    "libs/msl/": [],
     # the overlays are Thumb game code (an ARM file in them gets a per-file entry with an empty list)
     "src/00/": ["-thumb"],
     "src/01/": ["-thumb"],
