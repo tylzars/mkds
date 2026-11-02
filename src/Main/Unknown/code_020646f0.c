@@ -27,7 +27,7 @@ void func_020646f0(Unk0206bcb0 *a, s32 b) {
             a->mUnk_80 = data_0216549c[a->mUnk_74];
         }
     } else {
-        c = data_02175620;
+        c = gCourseMap;
         if (c->mUnk_3c != 0) {
             n = &a->mUnk_80;
             if (n != 0) {

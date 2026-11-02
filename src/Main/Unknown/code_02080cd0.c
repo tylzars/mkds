@@ -110,7 +110,7 @@ s32 func_02080dbc(Unk0208001c *p, Vec3 *a) {
 }
 
 void func_02080d34(Unk02080d34 *p, u16 a) {
-    p->mUnk_00.mUnk_00 = data_02175620->mUnk_a4;
+    p->mUnk_00.mUnk_00 = gCourseMap->mUnk_a4;
     p->mUnk_00.mUnk_04 = p->mUnk_00.mUnk_00->mUnk_0c;
     p->mUnk_00.mUnk_08 = data_021557ec;
     func_021484d0(p->mUnk_00.mUnk_00->mUnk_18, p->mUnk_00.mUnk_04->mUnk_18, &p->mUnk_00.mUnk_08);

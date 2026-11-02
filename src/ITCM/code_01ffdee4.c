@@ -67,7 +67,7 @@ int func_01ffdee4(void *a, u32 *b, u32 c, int r, u32 fl, short e, void *f, void 
         ud.y = r * 2;
     }
     data_027e0060 = 0;
-    kp = &data_0217b614;
+    kp = &gCourseCollision;
     pa = *(Vec3 *) a;
     if (b != 0) {
         pb = *(Vec3 *) b;

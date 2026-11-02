@@ -480,7 +480,7 @@ void func_02072eb8(Unk0206bcb0 *p) {
     i = ((u16) ((s32) (((s64) c.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
     func_02146d44(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
     func_02146d78(&data_02154f70, m, &b);
-    if (data_021759c0->mUnk_08 != 2 && data_02175620->mUnk_60 != 0) {
+    if (data_021759c0->mUnk_08 != 2 && gCourseMap->mUnk_60 != 0) {
         e = &(data_027e00c8)[p->mUnk_74];
         e->mUnk_1f0.mUnk_00 = func_02040f78(p->mUnk_3c4);
         e->mUnk_1f0.mUnk_04 = 1;

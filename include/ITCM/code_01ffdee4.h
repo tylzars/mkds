@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // UnkVec16
 
-// Sixteen bytes; data_0217b614.mUnk_08 points to an array of these, which func_01ffdee4 indexes by halfwords.
+// Sixteen bytes; gCourseCollision.mUnk_08 points to an array of these, which func_01ffdee4 indexes by halfwords.
 typedef struct Unk0217b614_08 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ u16 mUnk_04;
@@ -14,7 +14,7 @@ typedef struct Unk0217b614_08 {
     /* 0e */ u16 mUnk_0e;
 } Unk0217b614_08;
 
-// Object at data_0217b614 (0x3c bytes): three tables, a tree of word offsets, three words, three masks and three
+// Object at gCourseCollision (0x3c bytes): three tables, a tree of word offsets, three words, three masks and three
 // shift counts.
 typedef struct Unk0217b614 {
     /* 00 */ Vec3 *mUnk_00;

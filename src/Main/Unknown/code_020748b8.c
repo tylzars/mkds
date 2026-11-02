@@ -8,7 +8,7 @@
 
 void func_020749a4(Unk02061808 *p, s32 a) {
     Unk020748b8_218 *q = p->mUnk_218;
-    u16 n = data_02175620->mUnk_08[q->mUnk_40].mUnk_02;
+    u16 n = gCourseMap->mUnk_08[q->mUnk_40].mUnk_02;
     Unk02042044 *e0;
     Unk02042044 *e1;
     Vec3 v;

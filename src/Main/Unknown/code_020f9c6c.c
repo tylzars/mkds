@@ -66,13 +66,13 @@ void func_020fa294(void) {
     Unk020fa294 *e;
     s32 k;
 
-    n = data_02175620->mUnk_04;
+    n = gCourseMap->mUnk_04;
     f = data_02159cbc;
     z1 = -2;
     z2 = 0;
     z3 = 0;
     for (i = 0; i < n; i++) {
-        e = &data_02175620->mUnk_00[i];
+        e = &gCourseMap->mUnk_00[i];
         if (e->mUnk_24 == 0x6d) {
             k = e->mUnk_28;
             if (func_01ffdee4((int *) e, (u32 *) z2, z2, 0xa000, 8, z1, (int *) z2, (int *) &m, (int *) z2, (u32 *) z2,

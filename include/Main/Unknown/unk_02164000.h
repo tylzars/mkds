@@ -51,7 +51,7 @@ extern const char data_02164684[];
 extern u8 data_02164770[];
 extern u8 data_02164d28[];
 extern u8 data_02164dc8[];
-extern u32 data_02164e04[];
+extern u32 gArchiveNames[];
 extern u8 data_02164e54[];
 extern u8 data_02164e70[];
 extern u8 data_02164e88[];

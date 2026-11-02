@@ -19,7 +19,7 @@ void func_02080908(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c) {
     s32 k;
     s32 m;
     s32 d;
-    Unk02175620_bc *v1 = data_02175620->mUnk_bc;
+    Unk02175620_bc *v1 = gCourseMap->mUnk_bc;
     Unk02175620_bc *v2[3] = {0, 0, 0};
     s32 v3[3];
     Vec3 v;
@@ -27,8 +27,8 @@ void func_02080908(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c) {
 
     v3[0] = v3[1] = v3[2] = 0xc8000;
     m = -0x1000;
-    for (i = 0; i < data_02175620->mUnk_88; i++) {
-        func_021484d0(&data_02175620->mUnk_84[i].mUnk_00, a, &v);
+    for (i = 0; i < gCourseMap->mUnk_88; i++) {
+        func_021484d0(&gCourseMap->mUnk_84[i].mUnk_00, a, &v);
         d = func_021482cc(&v);
         if (d < 0xc8000) {
             for (k = 0; k < 3; k++) {

@@ -220,13 +220,13 @@ void func_020d5d80(void *a, const char *b, const char *c) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020d5d6c(void *a) {
+void LoadRock(void *a) {
     func_020d5d80(a, "rock.nsbmd", "rock_shadow.nsbmd");
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_020d5d58(void *a) {
+void LoadRock2(void *a) {
     func_020d5d80(a, "rock2.nsbmd", "rock2_shadow.nsbmd");
 }
 #pragma thumb off
@@ -290,8 +290,8 @@ void func_020d5bac(Unk0217b614 *p, Unk0217b614 *a) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020d5b8c(void) {
-    func_020d5bac(&data_0217b614, func_02047974("course_collision.kcl"));
+void InitCourseCollision(void) {
+    func_020d5bac(&gCourseCollision, FindCourseFile("course_collision.kcl"));
 }
 #pragma thumb off
 

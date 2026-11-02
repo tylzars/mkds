@@ -47,7 +47,7 @@ void func_02075d08(s32 a) {
     if (s < 0) {
         return;
     }
-    q = (Unk020748b8_218 *) &data_02175620->mUnk_7c[(u16) s];
+    q = (Unk020748b8_218 *) &gCourseMap->mUnk_7c[(u16) s];
     p->mUnk_218 = q;
     p->mUnk_240 = 0;
     p->mUnk_068 = q->mUnk_32;
@@ -71,7 +71,7 @@ void func_02075eb8(void) {
     Unk020748b8_218 *q;
     Unk020f41c4_B *r;
 
-    q = (Unk020748b8_218 *) data_02175620->mUnk_cc;
+    q = (Unk020748b8_218 *) gCourseMap->mUnk_cc;
     if (q == 0) {
         return;
     }

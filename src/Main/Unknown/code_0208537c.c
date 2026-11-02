@@ -85,7 +85,7 @@ void func_0208552c(void) {
     s32 f;
     m = 1;
     for (i = 0; (u32) i < data_021759c0->mUnk_3d0; i++) {
-        w = data_02175620->mUnk_108;
+        w = gCourseMap->mUnk_108;
         x = func_0203c5c8(i);
         w = ((s64) x * w + 0x800) >> 12;
         v = func_0203c8dc(i);
@@ -203,7 +203,7 @@ u32 func_020853dc(void) {
 s32 func_020853a4(u32 a) {
     s32 m;
     s32 v;
-    m = data_02175620->mUnk_108;
+    m = gCourseMap->mUnk_108;
     v = func_0203c5c8(a);
     return ((s64) v * m + 0x800) >> 12;
 }

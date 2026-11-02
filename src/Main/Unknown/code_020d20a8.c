@@ -39,7 +39,7 @@ void *func_020d2210(const char *a) {
 void *func_020d21ec(const char *a) {
     char buf[0x100];
     snprintf(buf, 0x100, "MapObj/%s", a);
-    return func_02047974(buf);
+    return FindCourseFile(buf);
 }
 
 u32 func_020d2178(s32 c) {

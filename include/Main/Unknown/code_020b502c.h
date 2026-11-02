@@ -181,7 +181,7 @@ typedef struct Unk02175620_d8 {
     /* 04 */ struct Unk02175620_d8 *mUnk_04;
 } Unk02175620_d8;
 
-// Object behind the word at 0x3c of the object behind data_02175620: two vectors and the halfword at 0x1a.
+// Object behind the word at 0x3c of the object behind gCourseMap: two vectors and the halfword at 0x1a.
 typedef struct Unk02175620_3c {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ Vec3 mUnk_0c;
@@ -189,7 +189,7 @@ typedef struct Unk02175620_3c {
     /* 1a */ s16 mUnk_1a;
 } Unk02175620_3c;
 
-// Object behind data_02175620.
+// Object behind gCourseMap.
 typedef struct {
     /* 00 */ struct Unk020fa294 *mUnk_00;
     /* 04 */ u16 mUnk_04;
@@ -318,7 +318,7 @@ typedef struct {
 } Unk0217b3c0;
 
 extern Unk0217b3c0 *data_0217b3c0;
-extern Unk02175620 *data_02175620;
+extern Unk02175620 *gCourseMap;
 
 extern void func_0207a91c(Vec3 *dst, u8 idx);
 extern void func_0207a8f0(Vec3 *dst, s32 idx);

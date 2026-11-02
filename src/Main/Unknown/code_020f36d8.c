@@ -437,7 +437,7 @@ s32 func_020f3a58(Unk020f371c_Ref *in, Unk020f371c_Ref *out, Vec3 *pos) {
     dy = (v->y - pos->y) >> 12;
     dz = (v->z - pos->z) >> 12;
     start = dx * dx + dy * dy + dz * dz;
-    limit = data_02175620->mUnk_58;
+    limit = gCourseMap->mUnk_58;
     q = pos;
 
     cur = node;
@@ -579,5 +579,5 @@ u8 func_020f36d8(Unk020f36d8 *p) {
     if (t == 0) {
         return 0xff;
     }
-    return (t - data_02175620->mUnk_b0) / 40;
+    return (t - gCourseMap->mUnk_b0) / 40;
 }

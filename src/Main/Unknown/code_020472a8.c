@@ -34,173 +34,173 @@ void func_02047b6c(u16 arg0) {
 
 #pragma thumb on
 
-u32 func_02047b30(u32 a, const char *b) {
-    char v1[0x80];
+u32 FindArchiveFile(u32 archiveName, const char *path) {
+    char fullPath[0x80];
 
-    if (b[0] == '/') {
-        func_0200d9e0(v1, 0x80, data_02165048, a, b);
+    if (path[0] == '/') {
+        func_0200d9e0(fullPath, 0x80, data_02165048, archiveName, path);
     } else {
-        func_0200d9e0(v1, 0x80, data_02165050, a, b);
+        func_0200d9e0(fullPath, 0x80, data_02165050, archiveName, path);
     }
-    return func_020182c0((const u8 *) v1);
+    return func_020182c0((const u8 *) fullPath);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void *func_02047b08(const char *a) {
-    int v1;
-    v1 = func_02047b30(data_02164e04[0], a);
-    if (v1 == 0) {
-        v1 = func_02047b30(data_02164e04[18], a);
+void *func_02047b08(const char *path) {
+    int file;
+    file = FindArchiveFile(gArchiveNames[0], path);
+    if (file == 0) {
+        file = FindArchiveFile(gArchiveNames[18], path);
     }
-    return (void *) v1;
+    return (void *) file;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void *func_02047a28(const char *v1) {
-    u32 r;
+void *func_02047a28(const char *path) {
+    u32 file;
 
-    r = 0;
+    file = 0;
     if (data_021759c8->mUnk_7d8 != 0) {
-        r = func_02047b30(data_02164e04[17], v1);
+        file = FindArchiveFile(gArchiveNames[17], path);
     }
-    if (r == 0 && data_021759c8->mUnk_768 != 0) {
-        r = func_02047b30(data_02164e04[16], v1);
+    if (file == 0 && data_021759c8->mUnk_768 != 0) {
+        file = FindArchiveFile(gArchiveNames[16], path);
     }
-    if (r == 0 && data_021759c8->mUnk_6f8 != 0) {
-        r = func_02047b30(data_02164e04[15], v1);
+    if (file == 0 && data_021759c8->mUnk_6f8 != 0) {
+        file = FindArchiveFile(gArchiveNames[15], path);
     }
-    if (r == 0 && data_021759c8->mUnk_688 != 0) {
-        r = func_02047b30(data_02164e04[14], v1);
+    if (file == 0 && data_021759c8->mUnk_688 != 0) {
+        file = FindArchiveFile(gArchiveNames[14], path);
     }
-    if (r == 0 && data_021759c8->mUnk_8b8 != 0) {
-        r = func_02047b30(data_02164e04[19], v1);
+    if (file == 0 && data_021759c8->mUnk_8b8 != 0) {
+        file = FindArchiveFile(gArchiveNames[19], path);
     }
-    if (r == 0 && data_021759c8->mUnk_148 != 0) {
-        r = func_02047b30(data_02164e04[2], v1);
+    if (file == 0 && data_021759c8->mUnk_148 != 0) {
+        file = FindArchiveFile(gArchiveNames[2], path);
     }
-    if (r == 0 && data_021759c8->mUnk_d8 != 0) {
-        r = func_02047b30(data_02164e04[1], v1);
+    if (file == 0 && data_021759c8->mUnk_d8 != 0) {
+        file = FindArchiveFile(gArchiveNames[1], path);
     }
-    return (void *) r;
+    return (void *) file;
 }
 
-void *func_0204799c(const char *v1) {
-    u32 r;
+void *func_0204799c(const char *path) {
+    u32 file;
 
-    r = func_02047b30(data_02164e04[5], v1);
-    if (r == 0 && data_021759c8->mUnk_458 != 0) {
-        r = func_02047b30(data_02164e04[9], v1);
+    file = FindArchiveFile(gArchiveNames[5], path);
+    if (file == 0 && data_021759c8->mUnk_458 != 0) {
+        file = FindArchiveFile(gArchiveNames[9], path);
     }
     if (func_0205e0a0() == 2) {
-        if (r == 0 && data_021759c8->mUnk_538 != 0) {
-            r = func_02047b30(data_02164e04[11], v1);
+        if (file == 0 && data_021759c8->mUnk_538 != 0) {
+            file = FindArchiveFile(gArchiveNames[11], path);
         }
-        if (r == 0 && data_021759c8->mUnk_5a8 != 0) {
-            r = func_02047b30(data_02164e04[12], v1);
+        if (file == 0 && data_021759c8->mUnk_5a8 != 0) {
+            file = FindArchiveFile(gArchiveNames[12], path);
         }
     }
-    return (void *) r;
+    return (void *) file;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void *func_02047974(const char *a) {
-    int v1;
-    v1 = func_02047b30(data_02164e04[3], a);
-    if (v1 == 0) {
-        v1 = func_02047b30(data_02164e04[13], a);
+void *FindCourseFile(const char *path) {
+    int file;
+    file = FindArchiveFile(gArchiveNames[3], path);
+    if (file == 0) {
+        file = FindArchiveFile(gArchiveNames[13], path);
     }
-    return (void *) v1;
+    return (void *) file;
 }
 
-void *func_02047950(const char *a) {
+void *func_02047950(const char *path) {
     int v1;
     v1 = func_0205e0a0();
     if (v1 == 3) {
-        return func_020478bc(a);
+        return FindKartModelFile(path);
     }
-    return func_02047780(a);
+    return LoadKartModelFile(path);
 }
 
-void *func_020478bc(const char *a) {
+void *FindKartModelFile(const char *path) {
     int v1;
-    int v2;
-    v2 = 0;
+    int file;
+    file = 0;
     v1 = func_0205e0a0();
     if (((v1 == 1) || (v1 == 3)) || (v1 == 0xc)) {
-        v2 = func_02047b30(data_02164e04[10], a);
+        file = FindArchiveFile(gArchiveNames[10], path);
     } else {
         if (*(int *) ((*(int *) &data_021759c8) + 0x308) != 0) {
-            v2 = func_02047b30(data_02164e04[6], a);
+            file = FindArchiveFile(gArchiveNames[6], path);
         }
-        if ((v2 == 0) && (*(int *) ((*(int *) &data_021759c8) + 0x378) != 0)) {
-            v2 = func_02047b30(data_02164e04[7], a);
+        if ((file == 0) && (*(int *) ((*(int *) &data_021759c8) + 0x378) != 0)) {
+            file = FindArchiveFile(gArchiveNames[7], path);
         }
-        if ((v2 == 0) && (*(int *) ((*(int *) &data_021759c8) + 0x3e8) != 0)) {
-            v2 = func_02047b30(data_02164e04[8], a);
+        if ((file == 0) && (*(int *) ((*(int *) &data_021759c8) + 0x3e8) != 0)) {
+            file = FindArchiveFile(gArchiveNames[8], path);
         }
     }
-    return (void *) v2;
+    return (void *) file;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void *func_02047780(const char *a) {
-    void *r;
+void *LoadKartModelFile(const char *path) {
+    void *file;
     s32 b;
-    char c[0x80];
-    u32 d;
+    char fullPath[0x80];
+    u32 archiveName;
 
-    r = 0;
+    file = NULL;
     b = func_0205e0a0();
     if (b == 1 || b == 3 || b == 0xc) {
-        d = data_02164e04[10];
-        if (a[0] == '/') {
-            func_0200d9e0(c, 0x80, data_usa_02165008, d, a);
+        archiveName = gArchiveNames[10];
+        if (path[0] == '/') {
+            func_0200d9e0(fullPath, 0x80, data_usa_02165008, archiveName, path);
         } else {
-            func_0200d9e0(c, 0x80, data_usa_02165010, d, a);
+            func_0200d9e0(fullPath, 0x80, data_usa_02165010, archiveName, path);
         }
-        r = func_02048504(c, 8);
+        file = func_02048504(fullPath, 8);
     } else {
         if (data_021759c8->mUnk_00[6].mUnk_68 != 0) {
-            d = data_02164e04[6];
-            if (a[0] == '/') {
-                func_0200d9e0(c, 0x80, data_usa_02165018, d, a);
+            archiveName = gArchiveNames[6];
+            if (path[0] == '/') {
+                func_0200d9e0(fullPath, 0x80, data_usa_02165018, archiveName, path);
             } else {
-                func_0200d9e0(c, 0x80, data_usa_02165020, d, a);
+                func_0200d9e0(fullPath, 0x80, data_usa_02165020, archiveName, path);
             }
-            r = func_02048504(c, 8);
+            file = func_02048504(fullPath, 8);
         }
-        if (r == 0 && data_021759c8->mUnk_00[7].mUnk_68 != 0) {
-            d = data_02164e04[7];
-            if (a[0] == '/') {
-                func_0200d9e0(c, 0x80, data_usa_02165028, d, a);
+        if (file == NULL && data_021759c8->mUnk_00[7].mUnk_68 != 0) {
+            archiveName = gArchiveNames[7];
+            if (path[0] == '/') {
+                func_0200d9e0(fullPath, 0x80, data_usa_02165028, archiveName, path);
             } else {
-                func_0200d9e0(c, 0x80, data_usa_02165030, d, a);
+                func_0200d9e0(fullPath, 0x80, data_usa_02165030, archiveName, path);
             }
-            r = func_02048504(c, 8);
+            file = func_02048504(fullPath, 8);
         }
-        if (r == 0 && data_021759c8->mUnk_00[8].mUnk_68 != 0) {
-            d = data_02164e04[8];
-            if (a[0] == '/') {
-                func_0200d9e0(c, 0x80, data_usa_02165038, d, a);
+        if (file == NULL && data_021759c8->mUnk_00[8].mUnk_68 != 0) {
+            archiveName = gArchiveNames[8];
+            if (path[0] == '/') {
+                func_0200d9e0(fullPath, 0x80, data_usa_02165038, archiveName, path);
             } else {
-                func_0200d9e0(c, 0x80, data_usa_02165040, d, a);
+                func_0200d9e0(fullPath, 0x80, data_usa_02165040, archiveName, path);
             }
-            r = func_02048504(c, 8);
+            file = func_02048504(fullPath, 8);
         }
     }
-    return r;
+    return file;
 }
 
 #pragma thumb off

@@ -116,14 +116,14 @@ void func_02062b50(void) {
     func_02047728();
     func_020afd68();
     func_02047b6c(2);
-    func_02042064(a);
+    CreateCourseMap(a);
     func_0206331c(a);
     func_020476ec();
     func_02047b6c(7);
     func_0203d848(a);
     func_0205cd24(a);
     func_02047b6c(2);
-    func_020d5b8c();
+    InitCourseCollision();
     func_02047b6c(8);
     func_020d58c0();
     func_02047b6c(1);
@@ -360,7 +360,7 @@ void func_02062284(void) {
         reg_G3X_FOG_COLOR = data_0217aa28 | (data_0217aa68 << 16);
     } else if (data_0217aa54->mUnk_20 != data_0217aa54->mUnk_24) {
         if (data_0217aa54->mUnk_20 == 0) {
-            if (data_02175620->mUnk_018->mUnk_05 != 0) {
+            if (gCourseMap->mUnk_018->mUnk_05 != 0) {
                 func_0214a7ec(1, 0, data_0217aa80, data_0217aa48);
                 reg_G3X_FOG_COLOR = data_0217aa38 | (data_0217aa50 << 16);
                 func_0214a748(data_0217aabc);

@@ -19,8 +19,8 @@ void func_020f357c(void) {
     u32 n;
     u16 i;
 
-    n = data_02175620->mUnk_58;
-    e = data_02175620->mUnk_ac;
+    n = gCourseMap->mUnk_58;
+    e = gCourseMap->mUnk_ac;
     i = 0;
     for (i = 0; i < 4; i++) {
         data_0217bc38[i] = 0;
@@ -30,7 +30,7 @@ void func_020f357c(void) {
             data_0217bc38[e->mUnk_20] = (s32) e;
         }
     }
-    e = data_02175620->mUnk_ac;
+    e = gCourseMap->mUnk_ac;
     for (i = 0; i < n; i++, e++) {
         func_021484d0(e->mUnk_00[0]->mUnk_18, e->mUnk_18, &v);
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {

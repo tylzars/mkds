@@ -43,7 +43,7 @@ void func_020471b0(void *a) {
     data_021759c8->mUnk_8b8 = 0;
     p = func_02036b74(a, n, 0x20);
     func_020487e0(func_020cade8(), p, n);
-    func_02018344(&data_021759c8->mUnk_850, (const u8 *) data_02164e04[19], p);
+    func_02018344(&data_021759c8->mUnk_850, (const u8 *) gArchiveNames[19], p);
     data_021759c8->mUnk_8bc = p;
     data_021759c8->mUnk_8b8 = 1;
     func_020d1640(a);

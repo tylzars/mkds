@@ -25,11 +25,11 @@ Unk02175620_84 *func_020a0f0c(void) {
     a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
     v = (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 5) >> 32) + 1;
     w = data_0217b1fc->mUnk_3b8 + v;
-    if (w >= data_02175620->mUnk_88) {
+    if (w >= gCourseMap->mUnk_88) {
         w = 0;
     }
     data_0217b1fc->mUnk_3b8 = w;
-    return &data_02175620->mUnk_84[data_0217b1fc->mUnk_3b8];
+    return &gCourseMap->mUnk_84[data_0217b1fc->mUnk_3b8];
 }
 
 void func_020a0e00(void) {

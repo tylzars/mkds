@@ -822,7 +822,7 @@ void func_02107010(void) {
             data_0217c7b0 = 1;
         }
         if (data_021759c0->mUnk_08 != 2) {
-            func_02110534(data_02175620->mUnk_104);
+            func_02110534(gCourseMap->mUnk_104);
             data_0217c814.mUnk_14 = func_02044618();
         }
     } else {

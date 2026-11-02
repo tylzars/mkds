@@ -225,7 +225,7 @@ void func_020b57f8(Unk020b503c *out) {
 }
 
 Unk020b57e4 *func_020b57e4(void) {
-    return data_02175620->mUnk_2c;
+    return gCourseMap->mUnk_2c;
 }
 
 s32 func_020b57b4(s32 a, s64 k) {

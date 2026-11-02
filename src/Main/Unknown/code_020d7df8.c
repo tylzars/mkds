@@ -163,7 +163,7 @@ void func_020d7e44(u32 a, int m) {
 }
 
 void func_020d7df8(void) {
-    s32 n = data_02175620->mUnk_0c;
+    s32 n = gCourseMap->mUnk_0c;
     s32 i;
     if (n != 0) {
         data_0217b670 = func_02036bec(func_020364e0(func_020364e8()), n * 0xc);

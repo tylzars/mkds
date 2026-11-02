@@ -24,7 +24,7 @@ void func_0203f334(Unk0217561c_14 *a, s32 b) {
     u16 k;
     s16 t;
 
-    t = data_02175620->mUnk_44->mUnk_1c;
+    t = gCourseMap->mUnk_44->mUnk_1c;
     e = a->mUnk_0c;
     i = 0;
     if (a->mUnk_24 <= 1) {
@@ -162,7 +162,7 @@ s16 func_0203f7c0(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     s16 r;
     Unk02175620_4c *p;
 
-    t = data_02175620->mUnk_44[e].mUnk_1e;
+    t = gCourseMap->mUnk_44[e].mUnk_1e;
     if (func_0203fa60(a, b, c, d, e) != 0) {
         return e;
     }
@@ -170,13 +170,13 @@ s16 func_0203f7c0(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         return -1;
     }
     if (t != -1) {
-        p = &data_02175620->mUnk_4c[d];
+        p = &gCourseMap->mUnk_4c[d];
         r = -1;
         for (j = 0; j < 3; j++) {
             k = ((s8 *) &p->mUnk_07)[j];
             if (k != -1) {
                 x = func_0203f7c0(a, b, c, (u16) k,
-                                  data_02175620->mUnk_4c[(u16) k].mUnk_00 + data_02175620->mUnk_4c[(u16) k].mUnk_02 - 1,
+                                  gCourseMap->mUnk_4c[(u16) k].mUnk_00 + gCourseMap->mUnk_4c[(u16) k].mUnk_02 - 1,
                                   f - 1);
                 if (x != r) {
                     return x;
@@ -198,7 +198,7 @@ s16 func_0203f91c(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     s16 r;
     Unk02175620_4c *p;
 
-    t = data_02175620->mUnk_44[e].mUnk_1c;
+    t = gCourseMap->mUnk_44[e].mUnk_1c;
     if (func_0203fa60(a, b, c, d, e) != 0) {
         return e;
     }
@@ -206,12 +206,12 @@ s16 func_0203f91c(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         return -1;
     }
     if (t != -1) {
-        p = &data_02175620->mUnk_4c[d];
+        p = &gCourseMap->mUnk_4c[d];
         r = -1;
         for (j = 0; j < 3; j++) {
             k = ((s8 *) p->mUnk_04)[j];
             if (k != -1) {
-                x = func_0203f91c(a, b, c, (u16) k, data_02175620->mUnk_4c[(u16) k].mUnk_00, f - 1);
+                x = func_0203f91c(a, b, c, (u16) k, gCourseMap->mUnk_4c[(u16) k].mUnk_00, f - 1);
                 if (x != r) {
                     return x;
                 }
@@ -235,18 +235,18 @@ s32 func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
     w = e >> 5;
     m = 1 << (e & 0x1f);
     r = 0;
-    t = data_02175620->mUnk_44[e].mUnk_1c;
+    t = gCourseMap->mUnk_44[e].mUnk_1c;
     if ((a->mUnk_4c[w] & m) != 0) {
         return 0;
     }
     if (t != -1) {
-        p = &data_02175620->mUnk_4c[d];
+        p = &gCourseMap->mUnk_4c[d];
         for (j = 0; j < 3; j++) {
             k = ((s8 *) p->mUnk_04)[j];
             if (k != -1) {
-                *b = func_0203fcac(c, e, data_02175620->mUnk_4c[(u16) k].mUnk_00);
+                *b = func_0203fcac(c, e, gCourseMap->mUnk_4c[(u16) k].mUnk_00);
                 if (*b >= -2 && *b <= 0x1002) {
-                    if ((data_02175620->mUnk_44[e].mUnk_23 & 1) != 0) {
+                    if ((gCourseMap->mUnk_44[e].mUnk_23 & 1) != 0) {
                         if (data_021759c0->mUnk_08 == 5) {
                             *b = 0x1000 - (func_ov000_0219bb50() + 1) * 0x190;
                         } else {
@@ -261,7 +261,7 @@ s32 func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
     } else {
         *b = func_0203fcac(c, e, e + 1);
         if (*b >= -2 && *b <= 0x1002) {
-            if ((data_02175620->mUnk_44[e].mUnk_23 & 1) != 0) {
+            if ((gCourseMap->mUnk_44[e].mUnk_23 & 1) != 0) {
                 *b = 0x1000 - ((u32) (a->mUnk_3c << 28) >> 28) * 0x190;
             }
             if (*b < 0) {
@@ -284,8 +284,8 @@ s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
     s64 x;
     s64 y;
 
-    q = &data_02175620->mUnk_44[b];
-    r = &data_02175620->mUnk_44[c];
+    q = &gCourseMap->mUnk_44[b];
+    r = &gCourseMap->mUnk_44[c];
     if (func_0203fde0(a, q, r) == 0) {
         return -0x1000;
     }

@@ -184,7 +184,7 @@ void func_020af99c(void) {
     if (v == 5 || v == 6) {
         return;
     }
-    w = data_02175620->mUnk_018->mUnk_14 & 0x7fff;
+    w = gCourseMap->mUnk_018->mUnk_14 & 0x7fff;
     *(vu16 *) 0x05000000 = w;
     data_0217b350->mUnk_80c[0]->mUnk_0c[0] = w;
     func_0200ee74(data_0217b350->mUnk_80c[0]->mUnk_0c, data_0217b350->mUnk_80c[0]->mUnk_08);

@@ -11,21 +11,21 @@ u32 func_020ae3a4(s32 a, s32 b) {
     return data_02168024[a * 4 + b];
 }
 
-void func_020ae340(u32 a, u8 *b, u8 *c) {
-    u32 f;
-    s32 n;
-    s32 m;
-    u8 i;
-    u8 j;
+void FindMissionTableCell(u32 value, u8 *outRow, u8 *outColumn) {
+    u32 table;
+    s32 rowCount;
+    s32 columnCount;
+    u8 row;
+    u8 column;
 
-    f = (u32) func_02047a28("/missionTable.mtbl");
-    n = func_0203b6a4(f);
-    m = func_0203b69c(f);
-    for (i = 1; i <= n; i++) {
-        for (j = 1; j <= m; j++) {
-            if (a == func_0203b680(f, i, j)) {
-                *b = i;
-                *c = j;
+    table = (u32) func_02047a28("/missionTable.mtbl");
+    rowCount = func_0203b6a4(table);
+    columnCount = func_0203b69c(table);
+    for (row = 1; row <= rowCount; row++) {
+        for (column = 1; column <= columnCount; column++) {
+            if (value == func_0203b680(table, row, column)) {
+                *outRow = row;
+                *outColumn = column;
             }
         }
     }

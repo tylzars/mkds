@@ -411,7 +411,7 @@ void func_0207becc(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0207be40(Unk0207b960 *a, struct Unk020748b8_218 *b) {
-    Unk02175620_08 *e = &data_02175620->mUnk_08[b->mUnk_40];
+    Unk02175620_08 *e = &gCourseMap->mUnk_08[b->mUnk_40];
     u16 i;
 
     a->mUnk_30 = 0;
@@ -429,7 +429,7 @@ void func_0207be40(Unk0207b960 *a, struct Unk020748b8_218 *b) {
 void func_0207bd6c(Unk0207b960 *a, struct Unk020748b8_218 *b) {
     s16 j;
     s16 i;
-    Unk02175620_08 *e = &data_02175620->mUnk_08[b->mUnk_40];
+    Unk02175620_08 *e = &gCourseMap->mUnk_08[b->mUnk_40];
 
     a->mUnk_30 = 0;
     a->mUnk_34 = 0;
@@ -452,7 +452,7 @@ void func_0207bc9c(Vec3 *a, Unk0207b960 *b, struct Unk020748b8_218 *c, s32 d) {
     Unk02042044 *f;
     u16 i;
 
-    e = &data_02175620->mUnk_08[c->mUnk_40];
+    e = &gCourseMap->mUnk_08[c->mUnk_40];
     b->mUnk_30 += d;
     if (b->mUnk_30 > 0x1000) {
         b->mUnk_34++;

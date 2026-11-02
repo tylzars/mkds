@@ -52,28 +52,28 @@ Unk0206bcb0 *func_ov001_02188000(Unk02188950 *a, s32 b, s32 c) {
 }
 
 Unk02042044 *func_ov001_02187fc0(Unk02188950 *a) {
-    if (a->mUnk_148 < data_02175620->mUnk_0c) {
+    if (a->mUnk_148 < gCourseMap->mUnk_0c) {
         return func_02042044((u16) (a->mUnk_148), (u16) (a->mUnk_14c));
     }
     return 0;
 }
 
 s32 func_ov001_02187f7c(Unk02188950 *a) {
-    if (a->mUnk_148 < data_02175620->mUnk_0c) {
+    if (a->mUnk_148 < gCourseMap->mUnk_0c) {
         return func_02042044((u16) (a->mUnk_148), (u16) (a->mUnk_14c))->mUnk_0e;
     }
     return 0;
 }
 
 s32 func_ov001_02187f38(Unk02188950 *a) {
-    if (a->mUnk_148 < data_02175620->mUnk_0c) {
+    if (a->mUnk_148 < gCourseMap->mUnk_0c) {
         return func_02042044((u16) (a->mUnk_148), (u16) (a->mUnk_14c))->mUnk_10;
     }
     return 0;
 }
 
 Unk02042044 *func_ov001_02187ee8(Unk02188950 *a) {
-    Unk02175620 *g = data_02175620;
+    Unk02175620 *g = gCourseMap;
     s32 n;
 
     if (a->mUnk_148 < g->mUnk_0c) {
@@ -92,7 +92,7 @@ void func_ov001_02187eb0(Unk02188950 *b) {
     s32 a;
     s32 n;
 
-    g = data_02175620;
+    g = gCourseMap;
     a = b->mUnk_148;
     if (a < g->mUnk_0c) {
         e = &g->mUnk_08[(u16) a];

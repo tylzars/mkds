@@ -54,7 +54,7 @@ typedef struct Unk021759c0_000 {
     /* 07c */ Unk021759c0_7c mUnk_07c[17];
 } Unk021759c0_000;
 
-// The object behind data_02175620 from its first byte: the halfword at 0x60
+// The object behind gCourseMap from its first byte: the halfword at 0x60
 // and the word at 0xb0.
 typedef struct Unk02175620_060 {
     /* 000 */ u8 mUnk_000[0x60];

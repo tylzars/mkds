@@ -330,7 +330,7 @@ void func_02068494(Unk0206bcb0 *a, s32 b, s32 c) {
     i = a->mUnk_2a8;
     d.mUnk_04 = a->mUnk_80;
     if (b != 0) {
-        k = data_02175620;
+        k = gCourseMap;
         if (k->mUnk_3c == 0) {
             j = 0;
         } else {

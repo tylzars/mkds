@@ -81,7 +81,7 @@ void func_020d24d8(Unk020e71a0 *b, s32 c) {
         b->mUnk_6c = 0x270f000;
         return;
     }
-    a = data_02175620->mUnk_018->mUnk_20;
+    a = gCourseMap->mUnk_018->mUnk_20;
     if (a == 0) {
         return;
     }

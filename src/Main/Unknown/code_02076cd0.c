@@ -172,7 +172,7 @@ void func_0207729c(Unk02061808 *p) {
     p->mUnk_06c = 0x1555;
     p->mUnk_070 = 0x400;
     p->mUnk_08c = 0x640000;
-    p->mUnk_074 = data_02175620->mUnk_018->mUnk_24;
+    p->mUnk_074 = gCourseMap->mUnk_018->mUnk_24;
     if (p->mUnk_074 < 0x1000) {
         p->mUnk_074 = 0x640000;
     }
@@ -246,7 +246,7 @@ void func_020775e4(void) {
     data_usa_0217ac98 = func_02036bec(func_020364e0(func_020364e8()), 0x270);
     data_usa_0217ac84 = 0;
     func_0207729c(data_usa_0217ac98);
-    data_usa_0217ac98->mUnk_218 = data_02175620->mUnk_c4;
+    data_usa_0217ac98->mUnk_218 = gCourseMap->mUnk_c4;
     data_usa_0217ac98->mUnk_250 = 2;
     data_usa_0217ac98->mUnk_24c = 0;
     if (data_usa_0217ac98->mUnk_218 == 0) {
@@ -265,8 +265,8 @@ void func_0207767c(void) {
     data_usa_0217ac84 = func_02036bec(h, 0x270);
     func_0207729c(data_usa_0217ac98);
     func_0207729c(data_usa_0217ac84);
-    data_usa_0217ac98->mUnk_218 = data_02175620->mUnk_c4;
-    data_usa_0217ac84->mUnk_218 = data_02175620->mUnk_c8;
+    data_usa_0217ac98->mUnk_218 = gCourseMap->mUnk_c4;
+    data_usa_0217ac84->mUnk_218 = gCourseMap->mUnk_c8;
     data_usa_0217ac98->mUnk_250 = 2;
     data_usa_0217ac84->mUnk_250 = 2;
     if (data_usa_0217ac98->mUnk_218 == 0) {
@@ -282,7 +282,7 @@ void func_0207767c(void) {
 }
 
 void func_02077750(Unk02077750 *a, Unk020748b8_218 *b) {
-    Unk02175620_08 *v1 = &data_02175620->mUnk_08[b->mUnk_40];
+    Unk02175620_08 *v1 = &gCourseMap->mUnk_08[b->mUnk_40];
 
     a->mUnk_7c = b->mUnk_42;
     a->mUnk_7e = 2;
@@ -313,15 +313,15 @@ void func_020777ac(u32 a) {
     data_0217acbc->mUnk_24c = 0;
     data_0217acbc->mUnk_250 = 1;
     if (data_021759c0->mUnk_00c == 6) {
-        data_0217acbc->mUnk_218 = data_02175620->mUnk_7c;
+        data_0217acbc->mUnk_218 = gCourseMap->mUnk_7c;
     }
     if (data_021759c0->mUnk_08 == 2) {
-        data_0217acbc->mUnk_218 = data_02175620->mUnk_d0;
+        data_0217acbc->mUnk_218 = gCourseMap->mUnk_d0;
         if (data_0217acbc->mUnk_218 != 0) {
             n = 0;
             k = -1;
-            for (i = 0; i < data_02175620->mUnk_80; i++) {
-                if (data_02175620->mUnk_7c[i].mUnk_3e == 7) {
+            for (i = 0; i < gCourseMap->mUnk_80; i++) {
+                if (gCourseMap->mUnk_7c[i].mUnk_3e == 7) {
                     n++;
                 }
             }
@@ -329,9 +329,9 @@ void func_020777ac(u32 a) {
             data_0217acbc->mUnk_21c = func_02036bec(h, n * 0x88);
             e = data_0217acbc->mUnk_218;
             j = 0;
-            for (m = 0; m < data_02175620->mUnk_80; m++) {
+            for (m = 0; m < gCourseMap->mUnk_80; m++) {
                 if (k != -1) {
-                    e = &data_02175620->mUnk_7c[(u16) k];
+                    e = &gCourseMap->mUnk_7c[(u16) k];
                     if (e == data_0217acbc->mUnk_218) {
                         break;
                     }

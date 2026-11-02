@@ -118,7 +118,7 @@ void func_02047db8(void) {
     p = &data_021759c8->mUnk_8c8;
     e = &data_021759c8->mUnk_00[p->mUnk_8c];
     if (p->mUnk_84 != 0) {
-        if (func_02018344(&e->mUnk_00, (const u8 *) data_02164e04[p->mUnk_8c], p->mUnk_84) != 0) {
+        if (func_02018344(&e->mUnk_00, (const u8 *) gArchiveNames[p->mUnk_8c], p->mUnk_84) != 0) {
             e->mUnk_68 = 1;
             e->mUnk_6c = p->mUnk_84;
         }

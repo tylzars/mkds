@@ -137,7 +137,7 @@ void func_0208e570(void *a) {
     func_0208ddf4(a, 2, (void *) func_020d2be8(), (void *) func_020d2bb0(), (void *) func_020d2b78(), 0);
     func_0208ddf4(a, 4, (void *) func_020d2be8(), (void *) func_020d2bb0(), (void *) func_020d2b78(), 0);
     if (data_021759c0->mUnk_00 == 0x17) {
-        func_0208ddf4(a, 3, (void *) func_020d2be8(), func_02047974(data_021663a8), func_02047974(data_021663c0), 0);
+        func_0208ddf4(a, 3, (void *) func_020d2be8(), FindCourseFile(data_021663a8), FindCourseFile(data_021663c0), 0);
     }
     data_0217b080->mUnk_5c = 10;
 }
@@ -240,8 +240,8 @@ void func_0208e23c(void) {
 
     e = &data_02166210;
     if (func_020d2be8() != 0) {
-        x = func_02047974(data_02166268);
-        y = func_02047974(data_02166280);
+        x = FindCourseFile(data_02166268);
+        y = FindCourseFile(data_02166280);
         e->mUnk_00 = 1;
         if (x != 0) {
             e->mUnk_04 = 1;

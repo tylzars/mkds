@@ -36,8 +36,8 @@ void func_0208af40(void *a, u32 b) {
     data_0217b038 = func_02036bec(a, 0x14);
     data_0217b038->mUnk_00 = func_02036bec(a, b * 0x98);
     data_0217b038->mUnk_04 = func_02036bec(a, b * 8);
-    data_0217b038->mUnk_0c = (u8 *) func_020478bc(data_usa_021660c8);
-    data_0217b038->mUnk_10 = (u8 *) func_020478bc(data_usa_021660e0);
+    data_0217b038->mUnk_0c = (u8 *) FindKartModelFile(data_usa_021660c8);
+    data_0217b038->mUnk_10 = (u8 *) FindKartModelFile(data_usa_021660e0);
     data_0217b038->mUnk_08 = *(s32 *) (data_0217b038->mUnk_0c + 0x10);
 }
 

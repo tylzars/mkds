@@ -89,7 +89,7 @@ void func_0203d568(void) {
 
 void func_0203d848(void *a) {
     data_0217561c = func_02036bec(a, 0x524);
-    data_0217561c->mUnk_4d4 = func_02036bec(a, (data_02175620->mUnk_98 + 1) << 2);
+    data_0217561c->mUnk_4d4 = func_02036bec(a, (gCourseMap->mUnk_98 + 1) << 2);
     data_0217561c->mUnk_4dc = func_02047b08(data_usa_021647b8);
     data_0217561c->mUnk_4c8 = func_02047b08(data_usa_021647c8);
     func_0203d8fc(data_0217561c->mUnk_4c8);
@@ -165,7 +165,7 @@ void func_0203d9d4(void) {
             func_0203df74(&v, e);
             f = 0;
             if (func_0207a7fc(e->mUnk_3c_4) == 0) {
-                o = &data_02175620->mUnk_44[e->mUnk_32].mUnk_10;
+                o = &gCourseMap->mUnk_44[e->mUnk_32].mUnk_10;
                 t.mUnk_04 = w.z;
                 t.mUnk_00 = w.x;
                 if (func_02040d68(&t, o) < -1394) {
@@ -289,8 +289,8 @@ static inline u16 func_0203df74_inline(u16 a) {
     u16 v2;
     Unk02175620_4c *r;
 
-    for (i = 0; i < data_02175620->mUnk_50; i++) {
-        r = &data_02175620->mUnk_4c[i];
+    for (i = 0; i < gCourseMap->mUnk_50; i++) {
+        r = &gCourseMap->mUnk_4c[i];
         v1 = r->mUnk_00;
         v2 = v1 + r->mUnk_02;
         if (a >= v1 && a < v2) {
@@ -307,8 +307,8 @@ static inline s32 func_0203df74_b_inline(Unk0217561c_14 *b, s32 *v, Vec3 *a) {
     u16 hi;
     Unk02175620_4c *r;
 
-    for (i = 0; i < data_02175620->mUnk_50; i++) {
-        r = &data_02175620->mUnk_4c[i];
+    for (i = 0; i < gCourseMap->mUnk_50; i++) {
+        r = &gCourseMap->mUnk_4c[i];
         lo = r->mUnk_00;
         hi = lo + r->mUnk_02;
         for (k = lo; k < hi; k++) {
@@ -372,12 +372,12 @@ void func_0203df74(Vec3 *a, Unk0217561c_14 *b) {
         }
         d = func_0203df74_inline(p);
     }
-    r = &data_02175620->mUnk_4c[d];
+    r = &gCourseMap->mUnk_4c[d];
     w = func_0203df74_c_inline(r, p, v);
     k = 0;
     if (p != -1) {
-        if (data_02175620->mUnk_98 >= 1) {
-            k = data_0217561c->mUnk_4d4[data_02175620->mUnk_98 - 1];
+        if (gCourseMap->mUnk_98 >= 1) {
+            k = data_0217561c->mUnk_4d4[gCourseMap->mUnk_98 - 1];
         }
         if (w <= data_0217561c->mUnk_4d4[b->mUnk_34 + 1]) {
             func_0203e370(b, p);
@@ -397,21 +397,21 @@ void func_0203df74(Vec3 *a, Unk0217561c_14 *b) {
 void func_0203e370(Unk0217561c_14 *a, s32 b) {
     s16 c;
 
-    c = data_02175620->mUnk_44[a->mUnk_32].mUnk_20;
+    c = gCourseMap->mUnk_44[a->mUnk_32].mUnk_20;
     if (c != -1) {
         a->mUnk_36 = c;
         if (a->mUnk_34 + 1 >= c) {
             a->mUnk_34 = c;
         }
     }
-    if (b == 0 && a->mUnk_34 >= data_02175620->mUnk_98 - 1) {
+    if (b == 0 && a->mUnk_34 >= gCourseMap->mUnk_98 - 1) {
         func_0203e550(a);
-    } else if (a->mUnk_32 == 0 && b == data_02175620->mUnk_9a) {
+    } else if (a->mUnk_32 == 0 && b == gCourseMap->mUnk_9a) {
         if (a->mUnk_24 > -100) {
             a->mUnk_24 = a->mUnk_24 - 1;
         }
-        a->mUnk_36 = data_02175620->mUnk_98 - 1;
-        a->mUnk_34 = data_02175620->mUnk_98 - 1;
+        a->mUnk_36 = gCourseMap->mUnk_98 - 1;
+        a->mUnk_34 = gCourseMap->mUnk_98 - 1;
     }
     a->mUnk_32 = b;
     a->mUnk_38 = func_0203df74_inline(b);

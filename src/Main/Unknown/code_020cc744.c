@@ -73,7 +73,7 @@ void func_020cc744(void) {
         func_020cc9bc(func_02029930()->mUnk_f0);
         if (func_02029930()->mUnk_c8 == 4 && func_020cbad0() == 0) {
             i = func_02029930()->mUnk_104;
-            func_020ae340(func_02029930()->mUnk_f8[i].mUnk_06, &b[0], &b[1]);
+            FindMissionTableCell(func_02029930()->mUnk_f8[i].mUnk_06, &b[0], &b[1]);
             func_02044380(&func_02029930()->mUnk_f8[i], b[0], b[1]);
         }
     } else {

@@ -241,7 +241,7 @@ void func_02067488(Unk0206bcb0 *a) {
     if (func_02061fec() != 1) {
         return;
     }
-    if (data_02175620->mUnk_70 == 0 && data_02175620->mUnk_90 == 0) {
+    if (gCourseMap->mUnk_70 == 0 && gCourseMap->mUnk_90 == 0) {
         return;
     }
     func_0208c218(a->mUnk_310);
@@ -279,7 +279,7 @@ void func_02066fe0(Unk0206bcb0 *a) {
     }
     a->mUnk_7c = a->mUnk_7c | 0x1000;
     if ((a->mUnk_7c & 0x400) == 0) {
-        q = data_02175620;
+        q = gCourseMap;
         if ((q->mUnk_70 != 0 || q->mUnk_90 != 0) && func_0203c880(a->mUnk_74) != 0) {
             p = data_021759c0;
             i = a->mUnk_74;

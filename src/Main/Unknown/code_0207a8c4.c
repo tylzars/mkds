@@ -51,7 +51,7 @@ void func_0207abec(u32 a) {
     func_020845cc(a);
     data_0217ad24 = 0;
     if (data_021759c0->mUnk_08 == 4) {
-        if (data_02175620->mUnk_10f != 0) {
+        if (gCourseMap->mUnk_10f != 0) {
             data_0217ad24 = 1;
         }
     }

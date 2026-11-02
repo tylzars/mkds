@@ -11,7 +11,7 @@ void *func_0208adc8(void *a, u32 b) {
             break;
         }
     }
-    v = data_02175620->mUnk_018->mUnk_18[i];
+    v = gCourseMap->mUnk_018->mUnk_18[i];
     p->mUnk_00 = v;
     p->mUnk_0e = 1 << i;
     p->mUnk_02 = p->mUnk_00 & 0x1f;
@@ -33,7 +33,7 @@ void func_0208ad74(void *a, u32 b) {
             break;
         }
     }
-    p->mUnk_00 = data_02175620->mUnk_018->mUnk_18[i];
+    p->mUnk_00 = gCourseMap->mUnk_018->mUnk_18[i];
     p->mUnk_0e = 1 << i;
 }
 
@@ -50,7 +50,7 @@ void func_0208ab98(void *a, u16 b, s32 c) {
                 break;
             }
         }
-        v = data_02175620->mUnk_018->mUnk_18[i];
+        v = gCourseMap->mUnk_018->mUnk_18[i];
         p->mUnk_02 = p->mUnk_00 & 0x1f;
         p->mUnk_08 = (s16) (v & 0x1f) - p->mUnk_02;
         p->mUnk_04 = (p->mUnk_00 >> 5) & 0x1f;

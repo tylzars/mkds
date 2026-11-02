@@ -48,7 +48,7 @@ void func_020de130(void) {
 
     func_020e6488(&data_0217b6e8, func_020d21ec("wanwan_chain.nsbmd"), 0, 0);
     func_020e6ab8(data_0217b6e8);
-    v = func_02047974("MapObj/wanwan_kui.nsbmd");
+    v = FindCourseFile("MapObj/wanwan_kui.nsbmd");
     if (v != 0) {
         func_020e6488(&data_0217b6e4, v, 0, 0);
         func_020e6ab8(data_0217b6e4);

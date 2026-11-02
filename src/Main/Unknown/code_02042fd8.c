@@ -15,37 +15,37 @@ u16 func_020431a4(void **a) {
 }
 
 s32 func_02043170(void *a, ...) {
-    data_02175620->mUnk_04 = func_020431a4(&a);
-    if (data_02175620->mUnk_04 == 0) {
-        data_02175620->mUnk_00 = 0;
+    gCourseMap->mUnk_04 = func_020431a4(&a);
+    if (gCourseMap->mUnk_04 == 0) {
+        gCourseMap->mUnk_00 = 0;
     } else {
-        data_02175620->mUnk_00 = a;
+        gCourseMap->mUnk_00 = a;
     }
     return 1;
 }
 
 s32 func_0204313c(void *a, ...) {
-    data_02175620->mUnk_0c = func_020431a4(&a);
-    if (data_02175620->mUnk_0c == 0) {
-        data_02175620->mUnk_08 = 0;
+    gCourseMap->mUnk_0c = func_020431a4(&a);
+    if (gCourseMap->mUnk_0c == 0) {
+        gCourseMap->mUnk_08 = 0;
     } else {
-        data_02175620->mUnk_08 = a;
+        gCourseMap->mUnk_08 = a;
     }
     return 1;
 }
 
 s32 func_02043108(void *a, ...) {
-    data_02175620->mUnk_014 = func_020431a4(&a);
-    if (data_02175620->mUnk_014 == 0) {
-        data_02175620->mUnk_010 = 0;
+    gCourseMap->mUnk_014 = func_020431a4(&a);
+    if (gCourseMap->mUnk_014 == 0) {
+        gCourseMap->mUnk_010 = 0;
     } else {
-        data_02175620->mUnk_010 = (s32) a;
+        gCourseMap->mUnk_010 = (s32) a;
     }
     return 1;
 }
 
 static inline Unk02175620_44 *func_02043078_inline(u16 i) {
-    return &data_02175620->mUnk_44[i];
+    return &gCourseMap->mUnk_44[i];
 }
 
 s32 func_02043078(u16 a) {
@@ -57,7 +57,7 @@ s32 func_02043078(u16 a) {
     u16 m;
     s8 c;
 
-    e = data_02175620->mUnk_4c + a;
+    e = gCourseMap->mUnk_4c + a;
     s = 0;
     n = 0;
     t = 0;
@@ -83,12 +83,12 @@ void func_02043038(void) {
 
     a = 0;
     b = 0;
-    if (data_02175620->mUnk_020 <= 1) {
+    if (gCourseMap->mUnk_020 <= 1) {
         a = func_02043078(0);
         b = a / 15000;
     }
-    data_02175620->mUnk_104 = a;
-    data_02175620->mUnk_108 = b;
+    gCourseMap->mUnk_104 = a;
+    gCourseMap->mUnk_108 = b;
 }
 
 void func_02042fd8(void *a) {
@@ -100,15 +100,15 @@ void func_02042fd8(void *a) {
     u16 i;
     Unk02175620_08 *r;
 
-    g = data_02175620;
+    g = gCourseMap;
     n = g->mUnk_0c;
     z = n << 3;
     d = g->mUnk_010;
     if (z != 0) {
         t = func_02036bec(a, z);
-        data_02175620->mUnk_94 = t;
+        gCourseMap->mUnk_94 = t;
         for (i = 0; i < n; i++) {
-            r = data_02175620->mUnk_08 + i;
+            r = gCourseMap->mUnk_08 + i;
             t->mUnk_00 = r;
             t->mUnk_04 = (void *) d;
             d += r->mUnk_02 * 0x14;

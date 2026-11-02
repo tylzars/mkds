@@ -48,7 +48,7 @@ void func_0203ca38(void) {
             }
         }
     }
-    if (data_02175620->mUnk_44 != 0) {
+    if (gCourseMap->mUnk_44 != 0) {
         func_0203d9d4();
     } else {
         s32 t = 0;

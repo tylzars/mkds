@@ -314,7 +314,7 @@ void func_0205e2cc(void *a) {
     s32 v;
     s32 w;
     s32 y;
-    n = data_02175620->mUnk_78;
+    n = gCourseMap->mUnk_78;
     m = 0;
     data_0217aa24 = func_02036bec(a, 8);
     for (i = 0; i < n; i++) {

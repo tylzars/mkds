@@ -377,7 +377,7 @@ void func_020e230c(Unk0217b79c *a) {
         h = e->mUnk_000.mUnk_9c->mUnk_26;
         e->mUnk_0d4 = i;
         if ((b & (1 << h)) == 0) {
-            n2 = data_02175620->mUnk_08[h].mUnk_02;
+            n2 = gCourseMap->mUnk_08[h].mUnk_02;
             b |= 1 << h;
             for (j = 0; j < n2; j++) {
                 o = func_02042044(h, j);

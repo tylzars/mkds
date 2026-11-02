@@ -19,7 +19,7 @@ void *func_020b47c0(const char *arg0) {
 void *func_020b47b4(const char *arg0) {
     u32 value0 = (u32) arg0;
     u32 value12;
-    value12 = (u32) &func_02047974;
-    value0 = (u32) func_02047974((const char *) value0);
+    value12 = (u32) &FindCourseFile;
+    value0 = (u32) FindCourseFile((const char *) value0);
     return (void *) value0;
 }

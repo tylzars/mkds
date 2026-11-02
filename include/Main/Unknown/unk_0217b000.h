@@ -1028,7 +1028,7 @@ extern Vec3 data_0217b990;
 extern Vec3 data_0217b9a8;
 extern void *data_0217b5d0[16];
 extern s32 data_0217b610;
-extern Unk0217b614 data_0217b614;
+extern Unk0217b614 gCourseCollision;
 extern u32 data_0217bbe8;
 extern Vec3 data_0217bad0;
 extern Vec3 data_0217badc;

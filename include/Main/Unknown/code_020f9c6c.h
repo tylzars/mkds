@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_020f6be8.h"
 
-// Row of the array at 0x00 of the object behind data_02175620.
+// Row of the array at 0x00 of the object behind gCourseMap.
 typedef struct Unk020fa294 {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ Vec3 mUnk_0c;

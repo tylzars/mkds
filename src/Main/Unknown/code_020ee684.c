@@ -795,7 +795,7 @@ void func_020efbd4(Unk020ee684 *a, s32 n) {
     func_020f89b0(a, a);
     func_020f4b20(&a->mUnk_030, a);
     func_020ee684(&a->mUnk_058, a);
-    q = (Unk02175620_060 *) data_02175620;
+    q = (Unk02175620_060 *) gCourseMap;
     a->mUnk_1f0.mUnk_00 = q->mUnk_060 != 0 ? q->mUnk_0b0 : 0;
     a->mUnk_1f0.mUnk_04 = 1;
     a->mUnk_204 = 0;

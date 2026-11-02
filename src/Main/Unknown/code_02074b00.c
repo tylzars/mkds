@@ -198,7 +198,7 @@ static inline void func_02075424_inline(Unk02061808 *p) {
     if (p->mUnk_218->mUnk_48 == -1) {
         q = 0;
     } else {
-        q = data_02175620->mUnk_7c + (u16) p->mUnk_218->mUnk_48;
+        q = gCourseMap->mUnk_7c + (u16) p->mUnk_218->mUnk_48;
     }
     if (q == 0) {
         data_0217561c->mUnk_4d0 = 1;
@@ -281,7 +281,7 @@ void func_020757d8(void) {
     Unk020f41c4_B *b;
 
     p = data_0217acbc;
-    q = data_02175620->mUnk_d4;
+    q = gCourseMap->mUnk_d4;
 
     if (q == 0) {
         return;
@@ -399,7 +399,7 @@ s32 func_02075a94(Unk02061808 *p) {
     } else {
         Unk020f41c4_B *b;
 
-        q = data_02175620->mUnk_7c + (u16) i;
+        q = gCourseMap->mUnk_7c + (u16) i;
         if (i != p->mUnk_214) {
             p->mUnk_214 = i;
             if (p->mUnk_228 == 0) {

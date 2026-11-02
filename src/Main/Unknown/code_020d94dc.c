@@ -101,9 +101,9 @@ void func_020da384(Unk020da384 *a, void *b, UnkFunc *c) {
     a->mUnk_02 &= ~8;
     a->mUnk_66 = 0x1f;
     c();
-    data_0217b678->mUnk_174 = func_02047974("MapObj/water_efct.nsbmd");
-    data_0217b678->mUnk_178 = func_02047974("MapObj/water_efct.nsbca");
-    data_0217b678->mUnk_17c = func_02047974("MapObj/water_efct.nsbma");
+    data_0217b678->mUnk_174 = FindCourseFile("MapObj/water_efct.nsbmd");
+    data_0217b678->mUnk_178 = FindCourseFile("MapObj/water_efct.nsbca");
+    data_0217b678->mUnk_17c = FindCourseFile("MapObj/water_efct.nsbma");
 }
 
 void func_020d9f8c(Unk020d9cf4 *a) {
@@ -362,9 +362,9 @@ void func_020d98a4(Unk020da384 *a) {
     p = func_02036bec(func_020364e0(func_020364e8()), 0x10);
     data_0217b674 = p;
     p->mUnk_00 = a->mUnk_08;
-    data_0217b674->mUnk_04 = func_02047974("MapObj/water_efct.nsbmd");
-    data_0217b674->mUnk_08 = func_02047974("MapObj/water_efct.nsbca");
-    data_0217b674->mUnk_0c = func_02047974("MapObj/water_efct.nsbma");
+    data_0217b674->mUnk_04 = FindCourseFile("MapObj/water_efct.nsbmd");
+    data_0217b674->mUnk_08 = FindCourseFile("MapObj/water_efct.nsbca");
+    data_0217b674->mUnk_0c = FindCourseFile("MapObj/water_efct.nsbma");
     func_020d4970(data_0217b674);
 }
 
