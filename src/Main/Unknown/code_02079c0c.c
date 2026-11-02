@@ -72,7 +72,7 @@ s32 func_02079ce0(struct Unk0206bcb0_590 *a, s32 b) {
 }
 
 void func_02079c0c(struct Unk0206bcb0_590 *a) {
-    u16 *p = (u16 *) data_0217ad00->mUnk_004;
+    u16 *p = (u16 *) gKartModels->mUnk_004;
     u32 b;
     u32 c;
     u32 d;

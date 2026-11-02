@@ -276,7 +276,7 @@ s16 *func_02078b04(s32 param_1, s32 param_2) {
 
 void func_02078b48(void *param_1) {
     u32 i;
-    data_0217ad00 = 0;
+    gKartModels = 0;
     data_0217ad08 = func_02036bec(param_1, 0x26c);
     data_0217ad08->mUnk_264 = -1;
     data_0217ad08->mUnk_266 = 0;
@@ -337,7 +337,7 @@ void func_02078c58(void *param_1) {
     data_0217ad08->mUnk_020->mUnk_00 = 0;
     data_0217ad08->mUnk_020->mUnk_04 = 0;
     data_0217ad08->mUnk_020->mUnk_20 = data_0217ad08->mUnk_1c8;
-    func_02077d68();
+    LoadKartAndCharacterFiles();
     func_02077c1c();
     func_02078ee0((u32 *) &data_0217ad08->mUnk_024, 0);
     func_02047b6c(9);

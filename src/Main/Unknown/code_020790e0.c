@@ -47,22 +47,22 @@ void LoadKartModelMenuFile(void *a, const void *b, void **c) {
     func_02048590(d, (u32) a, c);
 }
 
-void func_0207916c(void *a) {
+void CreateKillerItem(void *a) {
     void *v4 = func_02047950("character/common/KillerItem.nsbmd");
     Unk020136f0 *v6 = FindKartModelFile("character/common/KillerItem.nsbtx");
     void *v7 = func_02047950("character/common/KillerItem_s.nsbmd");
     void *v8;
-    func_0207a14c(func_02084b2c(a, &data_0217ad00->mUnk_02c, v4, v6), 0);
-    func_020849c0(&data_0217ad00->mUnk_02c, 3);
+    func_0207a14c(func_02084b2c(a, &gKartModels->mUnk_02c, v4, v6), 0);
+    func_020849c0(&gKartModels->mUnk_02c, 3);
     v8 = func_02047950("character/common/KillerItem.nsbca");
-    func_0208823c(0, &data_0217ad00->mUnk_10c, &data_0217ad00->mUnk_02c, 1, a, v4);
-    func_0208805c(&data_0217ad00->mUnk_10c, v8, a);
-    func_02087f84(&data_0217ad00->mUnk_10c, 0);
-    func_0207afa8(&data_0217ad00->mUnk_098, v7, 3);
-    func_020638dc(&data_0217ad00->mUnk_02c);
+    func_0208823c(0, &gKartModels->mUnk_10c, &gKartModels->mUnk_02c, 1, a, v4);
+    func_0208805c(&gKartModels->mUnk_10c, v8, a);
+    func_02087f84(&gKartModels->mUnk_10c, 0);
+    func_0207afa8(&gKartModels->mUnk_098, v7, 3);
+    func_020638dc(&gKartModels->mUnk_02c);
 }
 
-void func_02079220(Unk0206bcb0_590 *a, void *b) {
+void CreateKartShadow(Unk0206bcb0_590 *a, void *b) {
     void *v6;
     u8 *p;
     v6 = func_02047950(BuildKartShadowNsbmdPath((u16) a->mUnk_004));
@@ -72,7 +72,7 @@ void func_02079220(Unk0206bcb0_590 *a, void *b) {
     func_0207b000(&a->mUnk_01c->mUnk_00, p + *(s32 *) (p + *(u16 *) (p + 0xe) + 0xc), 3);
 }
 
-void func_0207926c(Unk0206bcb0_590 *a, void *b) {
+void CreateTire(Unk0206bcb0_590 *a, void *b) {
     u16 v6 = (u16) a->mUnk_004;
     void *v7;
     Unk0201290c *v4;
@@ -188,7 +188,7 @@ u16 *LoadKartAPaletteFromKartModelFile(void) {
     return p->mUnk_0c;
 }
 
-void func_020794bc(Unk0206bcb0_590 *a, void *b, s32 c) {
+void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c) {
     u16 v7 = (u16) a->mUnk_004;
     void *s;
     Unk020136f0 *t;
@@ -203,12 +203,12 @@ void func_020794bc(Unk0206bcb0_590 *a, void *b, s32 c) {
     if (c != 0) {
         i = func_02013754((u8 *) r4 + r4->mUnk_08 + 4, data_usa_021550b8);
         func_02013468(r4, i, 0);
-        data_0217ad00->mUnk_00c = i;
+        gKartModels->mUnk_00c = i;
     }
-    func_0207940c(a->mUnk_014, a->mUnk_004, data_0217ad00->mUnk_010);
+    func_0207940c(a->mUnk_014, a->mUnk_004, gKartModels->mUnk_010);
 }
 
-void func_0207954c(Unk0206bcb0_590 *a, void *b, s32 c) {
+void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
     u16 i;
     u16 e8;
     s32 d;
@@ -229,7 +229,7 @@ void func_0207954c(Unk0206bcb0_590 *a, void *b, s32 c) {
         a->mUnk_008 = func_02036bec(b, 0x38);
         func_0208823c(0, a->mUnk_008, a->mUnk_010, 4, b, 0);
         do {
-            s = func_02047950(func_0207b8f4(e8, i));
+            s = func_02047950(BuildCharacterNsbcaPath(e8, i));
             if (s != 0) {
                 void *w = func_02013a4c(func_02013a30(s), 0);
                 func_020881b0(a->mUnk_008, i, w, func_0207b8dc(i), b);
@@ -249,7 +249,7 @@ void func_0207954c(Unk0206bcb0_590 *a, void *b, s32 c) {
     }
     a->mUnk_00c = func_02036bec(b, 0x38);
     func_0208823c(2, a->mUnk_00c, a->mUnk_010, 1, b, 0);
-    func_0208805c(a->mUnk_00c, data_0217ad00->mUnk_028, b);
+    func_0208805c(a->mUnk_00c, gKartModels->mUnk_028, b);
     func_02087f84(a->mUnk_00c, 0);
 }
 
@@ -278,13 +278,13 @@ void func_02079678(void *a, s32 b) {
         r = 0x15;
         s = 0x25;
     }
-    for (i = 0; i < data_0217ad00->mUnk_008; i++) {
+    for (i = 0; i < gKartModels->mUnk_008; i++) {
         if (b == 0) {
             g = 1;
         } else {
             g = i;
         }
-        e = &data_0217ad00->mUnk_000[i];
+        e = &gKartModels->mUnk_000[i];
         v4 = func_020799a0(i);
         if ((u16) e->mUnk_004 % 3 == 0) {
             v6 = 1;
@@ -297,11 +297,11 @@ void func_02079678(void *a, s32 b) {
             f = 0;
         }
         if (e->mUnk_000 >= p && e->mUnk_000 < q) {
-            func_0207954c(e, a, v4);
+            CreateCharacter(e, a, v4);
         }
         if (f == 0) {
             if ((v6 != 0 && b == 0) || (e->mUnk_004 >= r && e->mUnk_004 < s)) {
-                func_020794bc(e, a, v4);
+                CreateKart(e, a, v4);
             }
         }
         if (b != 0) {
@@ -316,14 +316,14 @@ void func_02079678(void *a, s32 b) {
                 } while (j < 4);
                 e->mUnk_054->mUnk_v[1].x = func_02147f34(-e->mUnk_054->mUnk_v[0].x * 2, e->mUnk_020->mUnk_10);
                 e->mUnk_054->mUnk_v[3].x = -e->mUnk_054->mUnk_v[2].x * 2;
-                func_0207926c(e, a);
+                CreateTire(e, a);
             }
-            func_02079220(e, a);
+            CreateKartShadow(e, a);
         }
     }
 }
 
-void func_020797d8(void *a, u32 b) {
+void InitKartModels(void *a, u32 b) {
     u8 *v4;
     u16 i;
     Unk0206bcb0_590 *e;
@@ -331,20 +331,20 @@ void func_020797d8(void *a, u32 b) {
     v4 = (u8 *) FindKartModelFile("kartoffsetdata.bin");
     SetKartModelPathPrefix(0);
     data_0217ad08 = 0;
-    data_0217ad00 = func_02036bec(a, 0x144);
-    data_0217ad00->mUnk_000 = func_02036bec(a, b * 0xb4);
-    data_0217ad00->mUnk_004 = func_02047950("kartcrsmat.bin");
-    data_0217ad00->mUnk_004 = data_0217ad00->mUnk_004 + (data_021759c0->mUnk_00 << 3) - 8;
-    data_0217ad00->mUnk_010 = LoadKartAPaletteFromKartModelFile();
-    data_0217ad00->mUnk_014 = 0;
-    data_0217ad00->mUnk_028 = func_02047950((const char *) BuildPFaceanimNsbtpPath());
-    data_0217ad00->mUnk_008 = b;
-    data_0217ad00->mUnk_00c = 0;
+    gKartModels = func_02036bec(a, 0x144);
+    gKartModels->mUnk_000 = func_02036bec(a, b * 0xb4);
+    gKartModels->mUnk_004 = func_02047950("kartcrsmat.bin");
+    gKartModels->mUnk_004 = gKartModels->mUnk_004 + (data_021759c0->mUnk_00 << 3) - 8;
+    gKartModels->mUnk_010 = LoadKartAPaletteFromKartModelFile();
+    gKartModels->mUnk_014 = 0;
+    gKartModels->mUnk_028 = func_02047950((const char *) BuildPFaceanimNsbtpPath());
+    gKartModels->mUnk_008 = b;
+    gKartModels->mUnk_00c = 0;
     func_0208af40(a, b);
     func_02085fd8();
-    func_0207916c(a);
-    for (i = 0; i < data_0217ad00->mUnk_008; i++) {
-        d = data_0217ad00->mUnk_000;
+    CreateKillerItem(a);
+    for (i = 0; i < gKartModels->mUnk_008; i++) {
+        d = gKartModels->mUnk_000;
         e = &d[i];
         func_02079a3c((u32 *) e);
         e->mUnk_0b0 = data_021759c0->mUnk_68[i].mUnk_08.mUnk_25;
@@ -359,14 +359,14 @@ void func_020797d8(void *a, u32 b) {
     func_02079678(a, 1);
     func_0204775c();
     func_02079678(a, 0);
-    for (i = 0; i < data_0217ad00->mUnk_008; i++) {
-        e = &data_0217ad00->mUnk_000[i];
+    for (i = 0; i < gKartModels->mUnk_008; i++) {
+        e = &gKartModels->mUnk_000[i];
         func_020792c8(e, func_020799a0(i));
     }
     {
         Unk020b4a44 *p;
         LoadNclrData(&p, func_02047950("/character/heyho/HH_color.NCLR"));
-        data_0217ad00->mUnk_014 = (Unk0217ad00_014 *) p->mUnk_0c;
+        gKartModels->mUnk_014 = (Unk0217ad00_014 *) p->mUnk_0c;
     }
 }
 

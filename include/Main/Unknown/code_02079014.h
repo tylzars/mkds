@@ -14,4 +14,4 @@ void func_02079038(void *a, Unk020136f0 *b, Unk020136f0 *c);
 void func_02079078(void *a, void *b, void *c, Unk020136f0 *d, Unk020136f0 *e, void *f);
 
 // Declared here until the code that defines them is decompiled.
-void func_020797d8(void *a, u32 b);
+void InitKartModels(void *a, u32 b);

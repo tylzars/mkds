@@ -22,4 +22,4 @@ void func_0207b708(struct Unk0206bcb0_590 *a, s32 b);
 void func_0207b734(Unk0206bcb0 *p);
 void func_0207b8c4(struct Unk0206bcb0_590 *a);
 u32 func_0207b8dc(int a);
-char *func_0207b8f4(u16 a, s32 b);
+char *BuildCharacterNsbcaPath(u16 a, s32 b);

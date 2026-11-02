@@ -8,7 +8,7 @@
 
 #pragma thumb on
 
-void func_02077d68(void) {
+void LoadKartAndCharacterFiles(void) {
     Unk0217ad08_1f4 *a;
     s32 b;
     Unk0217ad08_1f4 *p;
@@ -37,7 +37,7 @@ void func_02077d68(void) {
     e = (char *) &data_0217ad08->mUnk_1c8[c];
     func_02048590(BuildCharacterNsbmdPath(b, 1), (u32) p->mUnk_04, (void **) &p->mUnk_08);
     func_02048590(BuildCharacterNsbtxPath(b, 1), (u32) p->mUnk_04, (void **) &p->mUnk_0c);
-    func_02048590(func_0207b8f4(b, 2), (u32) p->mUnk_04, (void **) &p->mUnk_14);
+    func_02048590(BuildCharacterNsbcaPath(b, 2), (u32) p->mUnk_04, (void **) &p->mUnk_14);
     func_02048590(BuildEmblemNsbtxPath(b), (u32) p->mUnk_04, (void **) &p->mUnk_10);
     func_02048590(BuildKartNsbmdPath(c), (u32) p->mUnk_04, (void **) &p->mUnk_18);
     func_02048590(BuildKartNsbtxPath(c), (u32) p->mUnk_04, (void **) &p->mUnk_1c);

@@ -2783,7 +2783,7 @@ func_02077b1c kind:function(thumb,size=0x20) addr:0x02077b1c
 func_02077b3c kind:function(thumb,size=0x84) addr:0x02077b3c
 func_02077bc0 kind:function(thumb,size=0x5c) addr:0x02077bc0
 func_02077c1c kind:function(thumb,size=0x14c) addr:0x02077c1c
-func_02077d68 kind:function(thumb,size=0x14c) addr:0x02077d68
+LoadKartAndCharacterFiles kind:function(thumb,size=0x14c) addr:0x02077d68
 func_02077eb4 kind:function(thumb,size=0x4c) addr:0x02077eb4
 func_02077f00 kind:function(thumb,size=0xc) addr:0x02077f00
 func_02077f0c kind:function(thumb,size=0x3c) addr:0x02077f0c
@@ -2822,17 +2822,17 @@ func_02079038 kind:function(thumb,size=0x40) addr:0x02079038
 func_02079078 kind:function(thumb,size=0x68) addr:0x02079078
 func_020790e0 kind:function(thumb,size=0x5c) addr:0x020790e0
 LoadKartModelMenuFile kind:function(thumb,size=0x30) addr:0x0207913c
-func_0207916c kind:function(thumb,size=0xb4) addr:0x0207916c
-func_02079220 kind:function(thumb,size=0x4a) addr:0x02079220
-func_0207926c kind:function(thumb,size=0x5a) addr:0x0207926c
+CreateKillerItem kind:function(thumb,size=0xb4) addr:0x0207916c
+CreateKartShadow kind:function(thumb,size=0x4a) addr:0x02079220
+CreateTire kind:function(thumb,size=0x5a) addr:0x0207926c
 func_020792c8 kind:function(thumb,size=0x144) addr:0x020792c8
 func_0207940c kind:function(thumb,size=0x6c) addr:0x0207940c
 LoadKartAPaletteFromKartModelMenu kind:function(thumb,size=0x24) addr:0x02079478
 LoadKartAPaletteFromKartModelFile kind:function(thumb,size=0x20) addr:0x0207949c
-func_020794bc kind:function(thumb,size=0x90) addr:0x020794bc
-func_0207954c kind:function(thumb,size=0x12c) addr:0x0207954c
+CreateKart kind:function(thumb,size=0x90) addr:0x020794bc
+CreateCharacter kind:function(thumb,size=0x12c) addr:0x0207954c
 func_02079678 kind:function(thumb,size=0x160) addr:0x02079678
-func_020797d8 kind:function(thumb,size=0x1b0) addr:0x020797d8
+InitKartModels kind:function(thumb,size=0x1b0) addr:0x020797d8
 func_02079988 kind:function(thumb,size=0x16) addr:0x02079988
 func_020799a0 kind:function(thumb,size=0x64) addr:0x020799a0
 func_02079a04 kind:function(thumb,size=0xe) addr:0x02079a04
@@ -2906,7 +2906,7 @@ func_0207b708 kind:function(arm,size=0x2c) addr:0x0207b708
 func_0207b734 kind:function(arm,size=0x190) addr:0x0207b734
 func_0207b8c4 kind:function(arm,size=0x18) addr:0x0207b8c4
 func_0207b8dc kind:function(arm,size=0x18) addr:0x0207b8dc
-func_0207b8f4 kind:function(arm,size=0x6c) addr:0x0207b8f4
+BuildCharacterNsbcaPath kind:function(arm,size=0x6c) addr:0x0207b8f4
 func_0207b960 kind:function(arm,size=0x33c) addr:0x0207b960
 func_0207bc9c kind:function(arm,size=0xd0) addr:0x0207bc9c
 func_0207bd6c kind:function(arm,size=0xd4) addr:0x0207bd6c
@@ -9624,7 +9624,7 @@ data_usa_021658c4 kind:data(any) addr:0x021658c4
 data_usa_021658c8 kind:data(any) addr:0x021658c8
 data_usa_021658d0 kind:data(any) addr:0x021658d0
 data_usa_021658d8 kind:data(any) addr:0x021658d8
-data_usa_021658e0 kind:data(any) addr:0x021658e0
+gCharacterNsbcaFormat kind:data(any) addr:0x021658e0
 data_usa_021658f0 kind:data(any) addr:0x021658f0
 data_usa_021658f4 kind:data(any) addr:0x021658f4
 data_usa_021658f8 kind:data(any) addr:0x021658f8
@@ -9667,7 +9667,7 @@ data_021659ec kind:data(any) addr:0x021659ec
 data_02165a10 kind:data(any) addr:0x02165a10
 data_02165a34 kind:data(any) addr:0x02165a34
 data_02165a58 kind:data(any) addr:0x02165a58
-data_02165a7c kind:data(any) addr:0x02165a7c
+gEmblemSBNclrName kind:data(any) addr:0x02165a7c
 data_usa_02165a8c kind:data(any) addr:0x02165a8c
 data_usa_02165a90 kind:data(any) addr:0x02165a90
 data_usa_02165a94 kind:data(any) addr:0x02165a94
@@ -11345,7 +11345,7 @@ data_0217acb4 kind:bss addr:0x0217ac94
 data_usa_0217ac98 kind:bss addr:0x0217ac98
 data_0217acbc kind:bss addr:0x0217ac9c
 data_0217acc0 kind:bss addr:0x0217aca0
-data_0217ad00 kind:bss addr:0x0217ace0
+gKartModels kind:bss addr:0x0217ace0
 data_usa_0217ace4 kind:bss addr:0x0217ace4
 data_0217ad08 kind:bss addr:0x0217ace8
 data_usa_0217acec kind:bss addr:0x0217acec
@@ -11358,7 +11358,7 @@ data_0217ad24 kind:bss addr:0x0217ad04
 data_0217ad28 kind:bss addr:0x0217ad08
 data_0217ad2c kind:bss addr:0x0217ad0c
 data_0217ad30 kind:bss addr:0x0217ad10
-data_usa_0217ad14 kind:bss addr:0x0217ad14
+gCharacterNsbcaPathBuffer kind:bss addr:0x0217ad14
 data_0217ae34 kind:bss addr:0x0217ae14
 data_0217ae38 kind:bss addr:0x0217ae18
 data_0217ae3c kind:bss addr:0x0217ae1c

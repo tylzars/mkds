@@ -359,7 +359,7 @@ Inline getters and helpers:
 - Scale and component in each other's registers across repeated vector blocks: one pointer local, assigned right before
   each block, instead of several set up at the top (func_0208ecd8).
 - A pointer local `p = &a[i]` that disappears because `a[i].f` is also written elsewhere: write `p->f` so the pointer
-  stays a named local, then order the declarations (func_02077d68).
+  stays a named local, then order the declarations (LoadKartAndCharacterFiles).
 - A spilled value whose slot sits above the loop pointers but below another variable's: give it two assignments of its
   expression before its read (`c = expr; store c;` twice; one is optimised away) and mention it in the text before that
   other variable, which here is the `for (i = 0; ...)` after them (func_0211baec).

@@ -1136,7 +1136,7 @@ typedef struct Unk0217ad00_014 {
     /* 06 */ u8 mUnk_06[0x1a];
 } Unk0217ad00_014;
 
-// Object behind data_0217ad00 (0x144 bytes); the addresses of 0x2c, 0x98 and 0x10c are passed on as objects.
+// Object behind gKartModels (0x144 bytes); the addresses of 0x2c, 0x98 and 0x10c are passed on as objects.
 struct Unk0206bcb0_590;
 
 typedef struct Unk0217ad00 {
@@ -1154,7 +1154,7 @@ typedef struct Unk0217ad00 {
     /* 10c */ Unk02087d0c mUnk_10c;
 } Unk0217ad00;
 
-extern Unk0217ad00 *data_0217ad00;
+extern Unk0217ad00 *gKartModels;
 
 // Object behind member 0x08 of an Unk0217ad08_058 (0x38 bytes); only the words below are read.
 typedef struct Unk0217ad08_058_08 {
@@ -1264,7 +1264,7 @@ typedef struct Unk0217ad08 {
 
 extern Unk0217ad08 *data_0217ad08;
 extern u16 data_0217ad10;
-extern char data_usa_0217ad14[];
+extern char gCharacterNsbcaPathBuffer[];
 extern s32 data_0217ad24;
 extern u32 data_0217ad28;
 extern s32 data_0217ad2c;

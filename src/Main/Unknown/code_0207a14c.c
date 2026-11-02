@@ -39,7 +39,7 @@ void func_0207a14c(Unk0201290c *a, u32 b) {
     u32 f;
     switch (b) {
         case 0: {
-            u16 *p = (u16 *) data_0217ad00->mUnk_004;
+            u16 *p = (u16 *) gKartModels->mUnk_004;
             c = p[0];
             d = p[1];
             e = p[2];

@@ -21,7 +21,7 @@ typedef struct Unk02077750 {
 
 // Declared here until the code that defines them is decompiled.
 extern const char data_usa_02165714[];
-void func_02077d68(void);
+void LoadKartAndCharacterFiles(void);
 
 void func_02076cd0(Unk02061808 *p);
 void func_02076ed4(Unk02061808 *p);

@@ -110,7 +110,7 @@ void func_02062b50(void) {
     func_02077998();
     func_02047b6c(1);
     func_020875b4();
-    func_020797d8(a, data_021759c0->mUnk_3d0);
+    InitKartModels(a, data_021759c0->mUnk_3d0);
     func_0207800c();
     func_020872a4();
     func_02047728();

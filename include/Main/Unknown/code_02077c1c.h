@@ -9,7 +9,7 @@
 #include "Main/Unknown/code_020790e0.h"
 
 void func_02077c1c(void);
-void func_02077d68(void);
+void LoadKartAndCharacterFiles(void);
 
 // Declared here until the code that defines them is decompiled.
 #include "Main/Unknown/code_0207ae58.h"

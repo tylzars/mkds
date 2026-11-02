@@ -389,10 +389,10 @@ u32 func_0207b8dc(int a) {
     return data_usa_021551b4[a].mUnk_00;
 }
 
-char *func_0207b8f4(u16 a, s32 b) {
-    char *p = BuildCharacterDirPath(a);
-    const char *q = LookupCharacterPOrEName(a, 1);
+char *BuildCharacterNsbcaPath(u16 a, s32 b) {
+    char *dirPath = BuildCharacterDirPath(a);
+    const char *pName = LookupCharacterPOrEName(a, 1);
 
-    snprintf(data_usa_0217ad14, 0x100, data_usa_021658e0, p, q, data_usa_021551b0[b].mUnk_00);
-    return data_usa_0217ad14;
+    snprintf(gCharacterNsbcaPathBuffer, 0x100, gCharacterNsbcaFormat, dirPath, pName, data_usa_021551b0[b].mUnk_00);
+    return gCharacterNsbcaPathBuffer;
 }

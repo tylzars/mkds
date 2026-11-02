@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_02086098.h" // Unk02086098
 
 extern const char gArchiveColonFormat[];
-extern const char data_usa_021658e0[];
+extern const char gCharacterNsbcaFormat[];
 extern u16 data_usa_021656d8;
 extern u16 data_usa_021656dc;
 extern s32 data_usa_021656e0;
@@ -121,7 +121,7 @@ extern s32 data_021659c4;
 extern s32 data_021659c8;
 extern s32 data_021659cc;
 extern s32 data_021659d0;
-extern const char data_02165a7c[];
+extern const char gEmblemSBNclrName[];
 extern s32 data_usa_021654ec;
 extern s32 data_021654f4;
 // Three words.

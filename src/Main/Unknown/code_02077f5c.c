@@ -32,8 +32,8 @@ void func_02077f5c(void) {
 
 Unk0217ad00_014 *func_02077f7c(int param_1) {
     Unk0217ad00_014 *r = 0;
-    if (data_0217ad00->mUnk_014 != 0) {
-        r = data_0217ad00->mUnk_014 + data_0217ad00->mUnk_018[param_1];
+    if (gKartModels->mUnk_014 != 0) {
+        r = gKartModels->mUnk_014 + gKartModels->mUnk_018[param_1];
     }
     return r;
 }
@@ -63,11 +63,11 @@ void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, u8 *param_3) {
 
 void func_0207800c(void) {
     u32 i;
-    if (data_0217ad00->mUnk_014 != 0) {
+    if (gKartModels->mUnk_014 != 0) {
         func_02078078();
         for (i = 0; i < data_021759c0->mUnk_3d0; i = (u16) (i + 1)) {
-            if (data_0217ad00->mUnk_000[i].mUnk_000 == 0xc) {
-                func_02077f9c(i, &data_0217ad00->mUnk_000[i], (u8 *) func_02077f7c(i));
+            if (gKartModels->mUnk_000[i].mUnk_000 == 0xc) {
+                func_02077f9c(i, &gKartModels->mUnk_000[i], (u8 *) func_02077f7c(i));
             }
         }
     }
@@ -76,7 +76,7 @@ void func_0207800c(void) {
 void func_02078078(void) {
     u16 i;
     for (i = 0; i < 8; i++) {
-        data_0217ad00->mUnk_018[i] = data_0217b488->mUnk_10c[i];
+        gKartModels->mUnk_018[i] = data_0217b488->mUnk_10c[i];
     }
 }
 
