@@ -338,7 +338,7 @@ s32 func_ov000_0218ce14(Unk021b4d24 *p) {
     if (data_ov000_021b4d20 != 0) {
         strcpy((char *) v2, data_ov000_021b4d20);
     } else {
-        func_02135014(v2, data_ov000_021b2264, p->mUnk_00c, h);
+        sprintf(v2, data_ov000_021b2264, p->mUnk_00c, h);
     }
     v1.mUnk_01 = 2;
     v1.mUnk_02 = 0xee70;

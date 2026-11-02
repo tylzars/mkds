@@ -66,7 +66,7 @@ s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const u8 *d, const u8 *e,
     if (f != 0) {
         s = data_ov000_021b5e10[0];
         if (s == 0) {
-            func_02135014(p, data_ov000_021b4464, d);
+            sprintf(p, data_ov000_021b4464, d);
         }
         t = func_ov000_021a4654(s != 0 ? (u8 *) data_ov000_021b5e10 : p, 0x6cfc, &o->mUnk_0cc, 0);
     } else {

@@ -394,7 +394,7 @@ void func_ov003_021c876c(const u8 *param_1, int param_2) {
 
 void func_ov003_021c8718(const u8 *param_1, int param_2) {
     u16 a[16];
-    func_0213ca64(a, 0x10, data_ov003_021d7428, param_1[0], param_1[1], param_1[2], param_1[3]);
+    swprintf(a, 0x10, data_ov003_021d7428, param_1[0], param_1[1], param_1[2], param_1[3]);
     func_ov003_021d2094(data_ov003_021da214->mUnk_14, 0x5f, param_2 * 0x1d + 8, 2, 7, a, 1);
 }
 

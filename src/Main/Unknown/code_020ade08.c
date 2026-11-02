@@ -52,7 +52,7 @@ void func_020adff0(u32 a, u16 *b, u32 c) {
             n = 20;
         } else {
             wcsncpy(w, func_020b3f7c(func_020b47cc(data_02168100), 0x72), 9);
-            func_0213ca64(v, 2, data_0216810c, func_020ae0ac(a));
+            swprintf(v, 2, data_0216810c, func_020ae0ac(a));
             wcsncat(w, v, 1);
             p = w;
             n = 10;

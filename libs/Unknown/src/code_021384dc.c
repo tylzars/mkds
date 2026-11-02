@@ -538,7 +538,7 @@ int func_021385a0(void *a, int b, int c) {
     }
 }
 
-int func_02138540(const u8 *a, const u8 *b, char *c) {
+int vsscanf(const u8 *a, const u8 *b, char *c) {
     Unk0213a460 loc;
 
     loc.mUnk_00 = a;
@@ -549,11 +549,11 @@ int func_02138540(const u8 *a, const u8 *b, char *c) {
     return func_02138618(func_021385a0, &loc, b, c);
 }
 
-int func_02138510(const u8 *a, const u8 *b, ...) {
+int sscanf(const u8 *a, const u8 *b, ...) {
     char *ap;
 
     ap = (char *) (((u32) &b & ~3) + 4);
-    return func_02138540(a, b, ap);
+    return vsscanf(a, b, ap);
 }
 
 u32 func_021384dc(void) {

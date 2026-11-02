@@ -32,13 +32,13 @@ s32 func_020d2234(Unk020e71a0 *param_1, Unk020f41c4_A *param_2) {
 
 void *func_020d2210(const char *param_1) {
     char buf[0x100];
-    func_02135048(buf, 0x100, "MapObj/%s", param_1);
+    snprintf(buf, 0x100, "MapObj/%s", param_1);
     return func_02047b08(buf);
 }
 
 void *func_020d21ec(const char *param_1) {
     char buf[0x100];
-    func_02135048(buf, 0x100, "MapObj/%s", param_1);
+    snprintf(buf, 0x100, "MapObj/%s", param_1);
     return func_02047974(buf);
 }
 

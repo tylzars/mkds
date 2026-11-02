@@ -4,8 +4,8 @@
 
 typedef int (*Unk0213c94cFunc)(u32 a, u8 *b, u32 *c, u32 d);
 
-// 0x4c bytes. Bit fields of the words at 0x04 and 0x08 are read and written by func_0213c94c, func_02134540 and
-// func_021349c4; func_0213446c calls mUnk_40 with mUnk_00, mUnk_1c, &mUnk_28 and mUnk_48.
+// 0x4c bytes. Bit fields of the words at 0x04 and 0x08 are read and written by fwide, func_02134540 and
+// fflush; func_0213446c calls mUnk_40 with mUnk_00, mUnk_1c, &mUnk_28 and mUnk_48.
 typedef struct Unk0213c94c {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04_0 : 2;

@@ -16,11 +16,11 @@ void *func_0213ca94(void *p, const u16 *s, u32 n) {
     return r;
 }
 
-int func_0213ca64(u16 *buf, u32 n, const u16 *fmt, ...) {
-    return func_0213c9f8(buf, n, fmt, (char *) (((int) &fmt & ~3) + 4));
+int swprintf(u16 *buf, u32 n, const u16 *fmt, ...) {
+    return vswprintf(buf, n, fmt, (char *) (((int) &fmt & ~3) + 4));
 }
 
-int func_0213c9f8(u16 *buf, u32 n, const u16 *fmt, char *va) {
+int vswprintf(u16 *buf, u32 n, const u16 *fmt, char *va) {
     Unk0213c9f8 st;
     int r;
 

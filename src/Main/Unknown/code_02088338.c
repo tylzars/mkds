@@ -21,8 +21,8 @@ char *func_020887d8(u16 a, s32 b) {
     } else {
         p = data_02155cf0[a].mUnk_00;
     }
-    func_02135048(data_0217af28, 0x100, "%s%s%s", data_0217af24, data_02165ac4, data_02165e80[a]);
-    func_02135048(data_0217af28, 0x100, "%s%s.%s", data_0217af28, p, e);
+    snprintf(data_0217af28, 0x100, "%s%s%s", data_0217af24, data_02165ac4, data_02165e80[a]);
+    snprintf(data_0217af28, 0x100, "%s%s.%s", data_0217af28, p, e);
     return data_0217af28;
 }
 
@@ -34,40 +34,39 @@ char *func_02088728(u16 a, s32 b) {
     } else {
         p = data_02155cf0[a].mUnk_00;
     }
-    func_02135048(data_0217af28, 0x100, "%s%s%s", data_0217af24, data_02165ac4, data_02165e80[a]);
-    func_02135048(data_0217af28, 0x100, "%s%s.%s", data_0217af28, p, e);
+    snprintf(data_0217af28, 0x100, "%s%s%s", data_0217af24, data_02165ac4, data_02165e80[a]);
+    snprintf(data_0217af28, 0x100, "%s%s.%s", data_0217af28, p, e);
     return data_0217af28;
 }
 
 char *func_0208867c(u16 a) {
     const char *e = "nsbmd";
-    func_02135048(data_0217af28, 0x100, "%s%s%skart_%s.%s", data_0217af24, data_02165ac8,
-                  a % 3 == 0 ? "mario/" : data_02165e80[a / 3], data_02155d88[a].mUnk_00, e);
+    snprintf(data_0217af28, 0x100, "%s%s%skart_%s.%s", data_0217af24, data_02165ac8,
+             a % 3 == 0 ? "mario/" : data_02165e80[a / 3], data_02155d88[a].mUnk_00, e);
     return data_0217af28;
 }
 
 char *func_020885d0(u16 a) {
     const char *e = "nsbtx";
-    func_02135048(data_0217af28, 0x100, "%s%s%skart_%s.%s", data_0217af24, data_02165ac8,
-                  a % 3 == 0 ? "mario/" : data_02165e80[a / 3], data_02155d88[a].mUnk_00, e);
+    snprintf(data_0217af28, 0x100, "%s%s%skart_%s.%s", data_0217af24, data_02165ac8,
+             a % 3 == 0 ? "mario/" : data_02165e80[a / 3], data_02155d88[a].mUnk_00, e);
     return data_0217af28;
 }
 
 char *func_02088574(u16 a, const char *b) {
     const char *p = "nsbmd";
-    func_02135048(data_0217af28, 0x100, "%s%stire/%s.%s", data_0217af24, data_02165ac8, b, p);
+    snprintf(data_0217af28, 0x100, "%s%stire/%s.%s", data_0217af24, data_02165ac8, b, p);
     return data_0217af28;
 }
 
 char *func_02088518(u16 a, const char *b) {
     const char *p = "nsbtx";
-    func_02135048(data_0217af28, 0x100, "%s%stire/%s.%s", data_0217af24, data_02165ac8, b, p);
+    snprintf(data_0217af28, 0x100, "%s%stire/%s.%s", data_0217af24, data_02165ac8, b, p);
     return data_0217af28;
 }
 
 char *func_020884bc(u16 a) {
-    func_02135048(data_0217af28, 0x100, "%s%sshadow/sh_%s.nsbmd", data_0217af24, data_02165ac8,
-                  data_02155d8c[a].mUnk_00);
+    snprintf(data_0217af28, 0x100, "%s%sshadow/sh_%s.nsbmd", data_0217af24, data_02165ac8, data_02155d8c[a].mUnk_00);
     return data_0217af28;
 }
 
@@ -80,22 +79,22 @@ const char *func_0208848c(s32 a, s32 b) {
 }
 
 char *func_02088430(s32 a) {
-    func_02135048(data_0217af28, 0x100, "%s%s%s", data_0217af24, data_02165ac4, data_02165e80[a]);
+    snprintf(data_0217af28, 0x100, "%s%s%s", data_0217af24, data_02165ac4, data_02165e80[a]);
     return data_0217af28;
 }
 
 s8 *func_020883e4(void) {
-    func_02135048((char *) &data_0217af28, 0x100, (const char *) &data_02165ef0, *(u32 *) &data_0217af24,
-                  *(u32 *) &data_02165ac4);
+    snprintf((char *) &data_0217af28, 0x100, (const char *) &data_02165ef0, *(u32 *) &data_0217af24,
+             *(u32 *) &data_02165ac4);
     return (s8 *) &data_0217af28;
 }
 
 char *func_02088390(u16 a) {
-    func_02135048(data_0217af28, 0x100, data_02165ed4, data_0217af24, data_02155cf4[a].mUnk_00);
+    snprintf(data_0217af28, 0x100, data_02165ed4, data_0217af24, data_02155cf4[a].mUnk_00);
     return data_0217af28;
 }
 
 char *func_02088338(s32 a) {
-    func_02135048(data_0217af28, 0x100, data_02165eb4, data_0217af24, data_02165e4c[a == 0]);
+    snprintf(data_0217af28, 0x100, data_02165eb4, data_0217af24, data_02165e4c[a == 0]);
     return data_0217af28;
 }

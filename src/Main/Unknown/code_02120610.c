@@ -425,10 +425,10 @@ void func_02120d50(void) {
     }
     func_0214d168(data_0217d388, 0, 0x64);
     if (data_0217d384->mUnk_18ec[1].mUnk_00 == 1) {
-        func_02135014(data_0217d388, (const u8 *) "%s = '%s' and %s > %d and %s < %d", "kart_filter",
-                      "ds_mario_kart_product", "kart_elo", a, "kart_elo", b);
+        sprintf(data_0217d388, (const u8 *) "%s = '%s' and %s > %d and %s < %d", "kart_filter", "ds_mario_kart_product",
+                "kart_elo", a, "kart_elo", b);
     } else {
-        func_02135014(data_0217d388, (const u8 *) "%s = '%s'", "kart_filter", "ds_mario_kart_product");
+        sprintf(data_0217d388, (const u8 *) "%s = '%s'", "kart_filter", "ds_mario_kart_product");
     }
     switch (data_0217d384->mUnk_18ec[1].mUnk_00) {
         case 3:

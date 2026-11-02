@@ -95,7 +95,7 @@ void func_ov000_021a3fc8(Unk021a4a08 *a, Unk021a471c *b, s32 c) {
                 j = i;
                 if (f > 0) {
                     do {
-                        func_02135014(e, data_ov000_021b4404, k, j);
+                        sprintf(e, data_ov000_021b4404, k, j);
                         func_ov000_021a471c(b, e);
                         b->mUnk_000[b->mUnk_800 - 1] = 0x5c;
                         g = b->mUnk_800;

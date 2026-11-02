@@ -23,7 +23,7 @@ u32 func_ov000_02190b80(void *p0, void *p1, const void *p2) {
 u32 func_ov000_02190b58(void *a, void *b, u32 c) {
     u8 d[0x14];
 
-    func_02135014(d, data_ov000_021b29a0, c);
+    sprintf(d, data_ov000_021b29a0, c);
     return func_ov000_02190b80(a, b, d);
 }
 

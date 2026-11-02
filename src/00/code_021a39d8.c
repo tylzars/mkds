@@ -40,7 +40,7 @@ void func_ov000_021a3a18(Unk021a3a18 *a, s32 b) {
     k.mUnk_800 = 0;
     func_ov000_021a4480((u32) &k, 3, (u32) a->mUnk_84);
     for (i = 0; i < data_ov000_021b5df8; i++) {
-        func_02135014(t, data_ov000_021b4388, i);
+        sprintf(t, data_ov000_021b4388, i);
         func_ov000_021a471c((Unk021a471c *) &k, (const u8 *) t);
         func_ov000_021a471c((Unk021a471c *) &k, func_ov000_021a8c6c(((Unk021b5dfc *) data_ov000_021b5dfc)[i]));
     }

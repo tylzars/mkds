@@ -46,6 +46,6 @@ void func_02133e50(int a) {
         data_0217e984();
         data_0217e984 = 0;
     }
-    func_021349c4(0);
+    fflush(0);
     func_02142590();
 }

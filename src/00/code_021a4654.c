@@ -74,6 +74,6 @@ void func_ov000_021a471c(Unk021a471c *a, const u8 *b) {
 void func_ov000_021a4760(Unk021a471c *a, s32 b) {
     u8 c[0x18];
 
-    func_02135014(c, data_ov000_021b4428, b);
+    sprintf(c, data_ov000_021b4428, b);
     func_ov000_021a471c(a, c);
 }

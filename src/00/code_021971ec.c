@@ -77,11 +77,11 @@ s32 func_ov000_0219735c(const s8 *a, u32 b) {
         return 5;
     }
     e = func_ov000_021971c8((int) d, strlen((const u8 *) d));
-    e = func_02135014((u8 *) g, data_ov000_021b3e0c, e, data_ov000_021b4f84);
+    e = sprintf((u8 *) g, data_ov000_021b3e0c, e, data_ov000_021b4f84);
     func_ov000_0218e0fc((const u8 *) g, e, (u8 *) f);
     data_ov000_021b3b30 = data_ov000_021b3b98;
     func_ov000_021971ec(c.mUnk_00, 0x2b);
-    e = func_02135014((u8 *) g, (const u8 *) c.mUnk_00, data_ov000_021b4e84, f, b);
+    e = sprintf((u8 *) g, (const u8 *) c.mUnk_00, data_ov000_021b4e84, f, b);
     if (func_ov000_02197220(g, e) <= 0) {
         func_ov000_0218e53c(data_ov000_021b3b2c);
         return 3;

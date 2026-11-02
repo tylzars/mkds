@@ -29,8 +29,8 @@ extern u8 data_0216ea30[];
 extern u8 data_0216ea4c[];
 extern Unk0212f1f8 data_0216eaa4;
 
-// Walked by func_021343b0; func_02134890 compares its argument with entries 1 and 2; func_02135144 passes entry 1
-// to func_0213c94c and func_021352e0.
+// Walked by func_021343b0; fwrite compares its argument with entries 1 and 2; printf passes entry 1
+// to fwide and func_021352e0.
 extern Unk0213c94c data_0216eb7c[3];
 extern u32 data_0216eeb8;
 extern char data_0216e09c[];

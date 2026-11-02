@@ -100,7 +100,7 @@ void func_ov000_02196434(Unk0218f960 *a, Unk02193f2cNode *b, s32 c, const u8 *d,
     s32 v[3];
 
     if (func_ov000_021967b4(d, data_ov000_021b3994, s, 0x40) != 0) {
-        if (func_02138510(s, data_ov000_021b399c, &v[0], &v[1], &v[2]) == 3) {
+        if (sscanf(s, data_ov000_021b399c, &v[0], &v[1], &v[2]) == 3) {
             func_ov000_02196480(a, v, b, 2, 0);
         }
     }
@@ -117,7 +117,7 @@ s32 func_ov000_02196480(Unk0218f960 *a, s32 *b, Unk02193f2cNode *c, s32 d, const
     if (t != 0) {
         return t;
     }
-    func_02135014(f, data_ov000_021b39ac, 1, d);
+    sprintf(f, data_ov000_021b39ac, 1, d);
     t = func_ov000_02190968(a, (Unk02190988 *) c, f);
     if (t != 0) {
         return t;

@@ -390,6 +390,6 @@ char *func_0207b8f4(u16 a, s32 b) {
     char *p = func_02088430(a);
     const char *q = func_0208848c(a, 1);
 
-    func_02135048(data_usa_0217ad14, 0x100, data_usa_021658e0, p, q, data_usa_021551b0[b].mUnk_00);
+    snprintf(data_usa_0217ad14, 0x100, data_usa_021658e0, p, q, data_usa_021551b0[b].mUnk_00);
     return data_usa_0217ad14;
 }

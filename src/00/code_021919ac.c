@@ -197,10 +197,10 @@ u32 func_ov000_021919ac(Unk0218f960 *p, Unk021919ac_q *q) {
     } else if (o->mUnk_12f[0] != 0) {
         t = o->mUnk_12f;
     } else {
-        func_02135014(c, data_ov000_021b2c68, o->mUnk_110, o->mUnk_144);
+        sprintf(c, data_ov000_021b2c68, o->mUnk_110, o->mUnk_144);
         t = (s8 *) c;
     }
-    func_02135014(b, data_ov000_021b2c70, q->mUnk_0a1, data_ov000_021b2c80, t, q->mUnk_080, q, q->mUnk_0a1);
+    sprintf(b, data_ov000_021b2c70, q->mUnk_0a1, data_ov000_021b2c80, t, q->mUnk_080, q, q->mUnk_0a1);
     func_ov000_0218e0fc(b, strlen(b), a);
     if (o->mUnk_100 != 0) {
         func_ov000_0219488c(p, o->mUnk_110, o->mUnk_144, (void **) &h);

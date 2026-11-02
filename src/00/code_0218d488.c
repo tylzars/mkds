@@ -117,7 +117,7 @@ void func_ov000_0218d6e4(const u8 *a) {
     func_ov000_0218e8b8();
     c = data_ov000_021b4d2c[0];
     if (c == 0) {
-        func_02135014(v1, data_ov000_021b22b4, a);
+        sprintf(v1, data_ov000_021b22b4, a);
     }
     if (func_ov000_0218d7bc(c != 0 ? (u8 *) data_ov000_021b4d2c : v1, 0x6cfc, (Unk0218ce14 *) data_ov000_021b4db0) !=
         0) {

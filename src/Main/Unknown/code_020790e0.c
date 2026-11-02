@@ -43,7 +43,7 @@ void func_020790e0(void *a, s32 b) {
 
 void func_0207913c(void *a, const void *b, void **c) {
     char d[0x100];
-    func_02135048(d, 0x100, "/data/KartModelMenu/%s", b);
+    snprintf(d, 0x100, "/data/KartModelMenu/%s", b);
     func_02048590(d, (u32) a, c);
 }
 

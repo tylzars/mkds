@@ -91,7 +91,7 @@ void func_ov000_0218e130(const u8 *param_1, u8 *param_2) {
     a = 0;
     b = 0;
     for (; a < 16; a++) {
-        func_02135014(param_2 + b, data_ov000_021b23a4, param_1[a]);
+        sprintf(param_2 + b, data_ov000_021b23a4, param_1[a]);
         b += 2;
     }
 }

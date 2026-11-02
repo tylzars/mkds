@@ -22,7 +22,7 @@ void func_ov000_021a438c(Unk021a4a08 *a, const u8 *b) {
     u32 d;
     u16 e;
 
-    func_02138510(b, data_ov000_021b440c, &c, &d);
+    sscanf(b, data_ov000_021b440c, &c, &d);
     e = (u16) d;
     c = (c << 24 & 0xff000000) | ((c << 8 & 0xff0000) | ((c >> 24 & 0xff) | (c >> 8 & 0xff00)));
     if (c != 0 && e != 0) {

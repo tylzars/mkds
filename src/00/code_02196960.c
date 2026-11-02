@@ -36,7 +36,7 @@ int func_ov000_021971c8(int param_1, int param_2) {
 
 void func_ov000_02197190(u32 a, s8 *b) {
     s8 *c = b;
-    func_02135014((u8 *) b, data_ov000_021b3e04, a);
+    sprintf((u8 *) b, data_ov000_021b3e04, a);
     while (*c != 0) {
         *c = *c + 0x11 + (c - b);
         c++;
@@ -151,7 +151,7 @@ void func_ov000_02196e50(s32 a, s32 b, s32 c, s32 d, const u8 *e, s32 f, UnkFunc
         }
         return;
     }
-    m = func_02135014((u8 *) k, (const u8 *) j.mUnk_00, b, c, d, i, a, f);
+    m = sprintf((u8 *) k, (const u8 *) j.mUnk_00, b, c, d, i, a, f);
     l = m + f;
     if (l < 0x1e0) {
         memcpy(k + m, e, f);

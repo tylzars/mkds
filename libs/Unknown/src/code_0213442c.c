@@ -110,7 +110,7 @@ double func_02134ae8(double a, int n) {
     return func_021401ac(a, e);
 }
 
-int func_021349c4(Unk0213c94c *a) {
+int fflush(Unk0213c94c *a) {
     if (a == 0) {
         return func_021343b0();
     }
@@ -141,7 +141,7 @@ int func_021349c4(Unk0213c94c *a) {
     return 0;
 }
 
-u32 func_02134890(const u8 *a, u32 b, u32 c, Unk0213c94c *d) {
+u32 fwrite(const u8 *a, u32 b, u32 c, Unk0213c94c *d) {
     int i;
     u8 *p;
     u32 r;
@@ -195,8 +195,8 @@ u32 func_02134540(const u8 *a, u32 b, u32 c, Unk0213c94c *d) {
     u8 *s1;
     u32 s2;
 
-    if (func_0213c94c(d, 0) == 0) {
-        func_0213c94c(d, -1);
+    if (fwide(d, 0) == 0) {
+        fwide(d, -1);
     }
     n = b * c;
     if (n == 0 || d->mUnk_0d != 0 || d->mUnk_04_7 == 0) {
@@ -310,6 +310,6 @@ int func_0213446c(Unk0213c94c *a, u32 *b) {
 }
 
 void func_0213442c(const u8 *a, const u8 *b, const u8 *c, int d) {
-    func_02135144((const u8 *) "Assertion (%s) failed in \"%s\", function \"%s\", line %d\n", a, b, c, d);
+    printf((const u8 *) "Assertion (%s) failed in \"%s\", function \"%s\", line %d\n", a, b, c, d);
     func_02133fd8();
 }

@@ -19,7 +19,7 @@ void func_020d1080(void) {
     i = data_0217b4a4->mUnk_0c;
     a = data_0216aea8[i * 2];
     b = data_0216aeac[i * 2];
-    func_02135048(buf, 0x100, "%s%s%02d%s", data_0216ae88, a == 0 ? data_0216ae78 : data_0216ae80, b, "_m_b.NCLR");
+    snprintf(buf, 0x100, "%s%s%02d%s", data_0216ae88, a == 0 ? data_0216ae78 : data_0216ae80, b, "_m_b.NCLR");
     func_02048684(buf, data_0217b4a4->mUnk_10, 0x228);
     func_020b4a7c(&data_0217b4a4->mUnk_00, data_0217b4a4->mUnk_10);
 }
@@ -33,7 +33,7 @@ void func_020d0ffc(void) {
     i = data_0217b4a4->mUnk_0c;
     a = data_0216aea8[i * 2];
     b = data_0216aeac[i * 2];
-    func_02135048(buf, 0x100, "%s%s%02d%s", data_0216ae88, a == 0 ? data_0216ae78 : data_0216ae80, b, "_m_b.NCGR");
+    snprintf(buf, 0x100, "%s%s%02d%s", data_0216ae88, a == 0 ? data_0216ae78 : data_0216ae80, b, "_m_b.NCGR");
     func_02048684(buf, data_0217b4a4->mUnk_238, 0xe00);
     func_020b496c(&data_0217b4a4->mUnk_04, data_0217b4a4->mUnk_238);
 }
@@ -47,8 +47,7 @@ void func_020d0f78(void) {
     i = data_0217b4a4->mUnk_0c;
     a = data_0216aea8[i * 2];
     b = data_0216aeac[i * 2];
-    func_02135048(buf, 0x100, "%s%s%02d%s", data_0216ae88, a == 0 ? data_0216ae78 : data_0216ae80, b,
-                  "_m_picture.NSCR");
+    snprintf(buf, 0x100, "%s%s%02d%s", data_0216ae88, a == 0 ? data_0216ae78 : data_0216ae80, b, "_m_picture.NSCR");
     func_02048684(buf, data_0217b4a4->mUnk_1038, 0x824);
     func_020b4810(&data_0217b4a4->mUnk_08, data_0217b4a4->mUnk_1038);
 }

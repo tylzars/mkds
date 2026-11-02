@@ -72,14 +72,14 @@ void func_0208a69c(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16 d) {
     }
     for (i = 0; i < c->mUnk_00; i++) {
         h = &b->mUnk_00[i];
-        func_02135048(s, 0x80, "%s.nsbmd", c->mUnk_04[i]);
+        snprintf(s, 0x80, "%s.nsbmd", c->mUnk_04[i]);
         n = func_0204799c(s);
         func_02084c54(h, n);
     }
     for (j = 0; j < c->mUnk_01; j++) {
         e = &b->mUnk_00[j];
         g = &b->mUnk_04[j];
-        func_02135048(s, 0x80, "%s.nsbca", c->mUnk_04[j]);
+        snprintf(s, 0x80, "%s.nsbca", c->mUnk_04[j]);
         func_0208823c(0, g, e, 1, a, 0);
         func_0208805c(g, func_0204799c(s), a);
         func_02087f84(g, 0);
@@ -87,7 +87,7 @@ void func_0208a69c(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16 d) {
     for (l = 0; l < c->mUnk_02; l++) {
         p = &b->mUnk_00[l];
         q = &b->mUnk_08[l];
-        func_02135048(s, 0x80, "%s.nsbma", c->mUnk_04[l]);
+        snprintf(s, 0x80, "%s.nsbma", c->mUnk_04[l]);
         func_0208823c(4, q, p, 1, a, 0);
         func_0208805c(q, func_0204799c(s), a);
         func_02087f84(q, 0);
@@ -96,7 +96,7 @@ void func_0208a69c(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16 d) {
         g = b->mUnk_0c;
         func_0208823c(2, g, b->mUnk_00, c->mUnk_03, a, n);
         for (k = 0; k < c->mUnk_03; k++) {
-            func_02135048(s, 0x80, "%s.nsbtp", c->mUnk_04[k]);
+            snprintf(s, 0x80, "%s.nsbtp", c->mUnk_04[k]);
             func_020881b0(g, k, func_02013b00(func_02013ae4(func_0204799c(s)), 0), 0, a);
         }
         func_02087f84(g, 0);

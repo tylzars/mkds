@@ -223,7 +223,7 @@ s32 func_ov000_02193b88(Unk0218f960 *param_1, Unk02193f2cNode *param_2, const u8
     if (param_4 == -1) {
         param_4 = strlen(param_3);
     }
-    func_02135014(a, data_ov000_021b334c, param_4);
+    sprintf(a, data_ov000_021b334c, param_4);
     b = func_ov000_02190968(param_1, (Unk02190988 *) param_2, a);
     if (b != 0) {
         return b;
@@ -249,7 +249,7 @@ u32 func_ov000_02193c20(Unk0218f960 *param_1, Unk02193f2cNode *param_2, u32 para
     if (param_4 == 0) {
         func_0213442c(data_ov000_021b335c, data_ov000_021b333c, 0, 0x376);
     }
-    func_02135014(a, data_ov000_021b3368, param_3, c, b, d);
+    sprintf(a, data_ov000_021b3368, param_3, c, b, d);
     return func_ov000_02190968(param_1, (Unk02190988 *) param_2, a);
 }
 

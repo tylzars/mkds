@@ -33,7 +33,7 @@ void *func_020ed548(u8 *a) {
     if (a == 0) {
         return 0;
     }
-    func_02135048((char *) buf, 0x100, (const char *) data_0216c604, a);
+    snprintf((char *) buf, 0x100, (const char *) data_0216c604, a);
     return func_02047b08((const char *) buf);
 }
 

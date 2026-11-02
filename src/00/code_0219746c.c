@@ -9,7 +9,7 @@ s8 *func_ov000_02197a9c(const u8 *a, const u8 *b, s8 *c) {
         *(Unk021b3e44 *) c = data_ov000_021b3e44;
         return c;
     }
-    func_02135014((u8 *) e, data_ov000_021b3e64, b, a);
+    sprintf((u8 *) e, data_ov000_021b3e64, b, a);
     func_ov000_0218e0fc((const u8 *) e, strlen((const u8 *) e), (u8 *) c);
     return c;
 }
@@ -201,7 +201,7 @@ void func_ov000_02197594(s32 a, s32 b, s32 c, UnkFunc *d, s32 e) {
     s32 h;
     data_ov000_021b3b30 = data_ov000_021b3b98;
     func_ov000_021971ec(f.mUnk_00, 0x23);
-    h = func_02135014((u8 *) g, (const u8 *) f.mUnk_00, b, c, a);
+    h = sprintf((u8 *) g, (const u8 *) f.mUnk_00, b, c, a);
     func_ov000_02196f8c(g, h, a, d, e);
 }
 

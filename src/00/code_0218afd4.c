@@ -120,7 +120,7 @@ void func_ov000_0218b010(Unk0218af28 *e, s8 *v1, s32 n) {
                 if (d < 0) {
                     return;
                 }
-                func_02135014(t.mUnk_02, data_ov000_021b21bc, p, b);
+                sprintf(t.mUnk_02, data_ov000_021b21bc, p, b);
                 func_ov000_0218b380(e, t.mUnk_02, (u8 *) v1);
                 v1 += d;
                 n -= d;

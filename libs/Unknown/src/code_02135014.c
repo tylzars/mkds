@@ -11,7 +11,7 @@
 #include "Main/Unknown/unk_0217e000.h"
 
 void *func_021352a8(void *a, const u8 *b, u32 n) {
-    if (n != func_02134890(b, 1, n, a)) {
+    if (n != fwrite(b, 1, n, a)) {
         a = 0;
     }
     return a;
@@ -28,10 +28,10 @@ void *func_02135258(void *p, const u8 *b, u32 n) {
     return (void *) 1;
 }
 
-int func_02135144(const u8 *fmt, ...) {
+int printf(const u8 *fmt, ...) {
     int r;
 
-    if (func_0213c94c(&data_0216eb7c[1], -1) >= 0) {
+    if (fwide(&data_0216eb7c[1], -1) >= 0) {
         return -1;
     }
     if (func_0200ec08(data_0217eadc[3]) == 0) {
@@ -52,7 +52,7 @@ int func_02135144(const u8 *fmt, ...) {
     return r;
 }
 
-int func_02135078(u8 *buf, u32 n, const u8 *fmt, char *va) {
+int vsnprintf(u8 *buf, u32 n, const u8 *fmt, char *va) {
     Unk02135078 st;
     int r;
 
@@ -71,10 +71,10 @@ int func_02135078(u8 *buf, u32 n, const u8 *fmt, char *va) {
     return r;
 }
 
-int func_02135048(char *buf, u32 n, const char *fmt, ...) {
-    return func_02135078((u8 *) buf, n, (const u8 *) fmt, (char *) (((int) &fmt & ~3) + 4));
+int snprintf(char *buf, u32 n, const char *fmt, ...) {
+    return vsnprintf((u8 *) buf, n, (const u8 *) fmt, (char *) (((int) &fmt & ~3) + 4));
 }
 
-int func_02135014(u8 *buf, const u8 *fmt, ...) {
-    return func_02135078(buf, -1, fmt, (char *) (((int) &fmt & ~3) + 4));
+int sprintf(u8 *buf, const u8 *fmt, ...) {
+    return vsnprintf(buf, -1, fmt, (char *) (((int) &fmt & ~3) + 4));
 }

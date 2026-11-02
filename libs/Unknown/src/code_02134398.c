@@ -15,7 +15,7 @@ int func_021343b0(void) {
     p = data_0216eb7c;
     do {
         if (p->mUnk_04_7 != 0) {
-            if (func_021349c4(p) != 0) {
+            if (fflush(p) != 0) {
                 r = -1;
             }
         }

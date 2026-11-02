@@ -177,7 +177,7 @@ s32 func_ov000_021943f0(Unk0218f960 *a, Unk02193f2cNode *b) {
                 b->mUnk_00 = 0x6a;
                 return 0;
             }
-            func_02135014(c4, data_ov000_021b34f0, r->mUnk_177, r->mUnk_1a0, v);
+            sprintf(c4, data_ov000_021b34f0, r->mUnk_177, r->mUnk_1a0, v);
             func_ov000_0218e0fc(c4, strlen(c4), c3);
             if (strcmp(c2, c3) != 0) {
                 func_ov000_02190b80(a, b->mUnk_28, data_ov000_021b34f8);

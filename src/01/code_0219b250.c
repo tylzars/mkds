@@ -26,7 +26,7 @@ void *func_ov001_0219b510(void *p0, void *p1, void *p2, u32 p3, u16 p4, u16 p5, 
 void *func_ov001_0219b4d8(char *p0) {
     char buf[0x100];
     void *out = 0;
-    func_02135048((char *) buf, 0x100, "data/MissionRun/%s", (s8 *) p0);
+    snprintf((char *) buf, 0x100, "data/MissionRun/%s", (s8 *) p0);
     func_02048590(buf, (u32) func_020364e0(func_020364e8()), &out);
     return out;
 }
