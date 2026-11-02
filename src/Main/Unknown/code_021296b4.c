@@ -62,10 +62,10 @@ void func_0212a670(void) {
     s32 i;
     for (i = 0; i < 2; i++) {
         Unk0217d400 *p = data_0217d400;
-        func_0212426c(1, data_0215d0e4[i][0], data_0217d400->mUnk_ac[i], func_020b3f7c(p->mUnk_c0, 4), p->mUnk_9c[i],
+        func_0212426c(1, data_0215d0e4[i][0], data_0217d400->mUnk_ac[i], GetBmgEntry(p->mUnk_c0, 4), p->mUnk_9c[i],
                       p->mUnk_74[i][1]);
         p = data_0217d400;
-        func_0212426c(1, data_0215d0e4[i][1], data_0217d400->mUnk_ac[i], func_020b3f7c(p->mUnk_c0, 5), p->mUnk_9c[i],
+        func_0212426c(1, data_0215d0e4[i][1], data_0217d400->mUnk_ac[i], GetBmgEntry(p->mUnk_c0, 5), p->mUnk_9c[i],
                       p->mUnk_74[i][1]);
     }
 }
@@ -384,7 +384,7 @@ void func_02129c18(void) {
 void func_02129bdc(void) {
     if (func_02036c5c() != 0) {
         data_0217d400->mUnk_10 = 1;
-        func_02126638(func_020b3f7c(data_0217d400->mUnk_c0, 7), 0, 0, 0, 0, 0, 0);
+        func_02126638(GetBmgEntry(data_0217d400->mUnk_c0, 7), 0, 0, 0, 0, 0, 0);
     }
 }
 
@@ -489,17 +489,17 @@ void func_0212982c(void) {
             switch (func_02061104(&data_0217d400->mUnk_2c[2])) {
                 case 1:
                     data_0217d400->mUnk_10 = 4;
-                    func_021262f0(func_020b3f7c(data_0217d400->mUnk_c0, 0xa));
+                    func_021262f0(GetBmgEntry(data_0217d400->mUnk_c0, 0xa));
                     data_0217d400->mUnk_28 = 0;
                     return;
                 case 2:
                     data_0217d400->mUnk_10 = 4;
-                    func_021262f0(func_020b3f7c(data_0217d400->mUnk_c0, 0xb));
+                    func_021262f0(GetBmgEntry(data_0217d400->mUnk_c0, 0xb));
                     data_0217d400->mUnk_28 = 0;
                     return;
                 default:
                     data_0217d400->mUnk_10 = 6;
-                    func_02126638(func_020b3f7c(data_0217d400->mUnk_c0, 8), 0, 0, 0, 0, 0, 0);
+                    func_02126638(GetBmgEntry(data_0217d400->mUnk_c0, 8), 0, 0, 0, 0, 0, 0);
                     data_0217d400->mUnk_28 = 0;
                     data_0217d400->mUnk_04 = 1;
                     if (data_021759d0->mUnk_00 == 0) {
@@ -529,7 +529,7 @@ void func_021297cc(void) {
     p = data_0217d400;
     if (p->mUnk_28 >= 0x78) {
         p->mUnk_10 = 1;
-        func_02126638(func_020b3f7c(data_0217d400->mUnk_c0, 7), 0, 0, 0, 0, 0, 0);
+        func_02126638(GetBmgEntry(data_0217d400->mUnk_c0, 7), 0, 0, 0, 0, 0, 0);
         data_0217d400->mUnk_28 = 0;
     }
 }
@@ -537,7 +537,7 @@ void func_021297cc(void) {
 void func_02129788(void) {
     if (func_02036c5c() != 0) {
         data_0217d400->mUnk_10 = 6;
-        func_02126638(func_020b3f7c(data_0217d400->mUnk_c0, 0xf), 0, 0, 0, 0, 0, 0);
+        func_02126638(GetBmgEntry(data_0217d400->mUnk_c0, 0xf), 0, 0, 0, 0, 0, 0);
         data_0217d400->mUnk_2c[2].mUnk_10 = 1;
     }
 }

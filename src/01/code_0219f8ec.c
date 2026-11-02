@@ -325,10 +325,10 @@ void func_ov001_021a0774(void) {
     }
     d = data_ov001_021ca414;
     func_0212426c(0, 0, data_ov001_021ca414->mUnk_08,
-                  func_020b3f7c(d->mUnk_58, d->mUnk_50[func_0203b680((u32) (data_ov001_021ca414->mUnk_4c),
-                                                                     (u32) (func_02029608()), (u32) (d->mUnk_9e + 1)) -
-                                                       1]
-                                                .mUnk_0c),
+                  GetBmgEntry(d->mUnk_58, d->mUnk_50[func_0203b680((u32) (data_ov001_021ca414->mUnk_4c),
+                                                                   (u32) (func_02029608()), (u32) (d->mUnk_9e + 1)) -
+                                                     1]
+                                              .mUnk_0c),
                   d->mUnk_04, d->mUnk_40);
 }
 
@@ -447,8 +447,8 @@ void func_ov001_021a0428(void) {
 
     data_ov001_021ca414->mUnk_64 = 5;
     data_ov001_021ca414->mUnk_68 = 0;
-    v0 = func_020b3f7c(data_ov001_021ca414->mUnk_54, 4);
-    func_021277f8(v0, func_020b3f7c(data_ov001_021ca414->mUnk_54, 2), 0);
+    v0 = GetBmgEntry(data_ov001_021ca414->mUnk_54, 4);
+    func_021277f8(v0, GetBmgEntry(data_ov001_021ca414->mUnk_54, 2), 0);
     for (i = 0; i < 9; i++) {
         data_ov001_021ca414->mUnk_44[data_ov001_021a6e7c[i][0]].mUnk_00 = 0;
     }

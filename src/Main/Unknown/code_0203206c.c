@@ -169,8 +169,8 @@ s32 func_02032280(void) {
                     p = data_02163aec;
                     p1 = data_02163af0;
                     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-                        p = func_020b3f7c(data_02174e5c->mUnk_50, 0x14);
-                        p1 = func_020b3f7c(data_02174e5c->mUnk_50, 0x16);
+                        p = GetBmgEntry(data_02174e5c->mUnk_50, 0x14);
+                        p1 = GetBmgEntry(data_02174e5c->mUnk_50, 0x16);
                     }
                     func_021277f8(p, p1, 0);
                     data_02174e5c->mUnk_54 = 7;
@@ -322,7 +322,7 @@ void func_02032654(void *a, s32 b, void *c, void *d) {
             g = t;
             do {
                 k -= func_02025a00(0, data_02174e5c->mUnk_40, o, t, k);
-                func_0212426c(0, g->mUnk_00, o->mUnk_00[0].mUnk_14, func_020b3f7c(data_02174e5c->mUnk_50, g->mUnk_08),
+                func_0212426c(0, g->mUnk_00, o->mUnk_00[0].mUnk_14, GetBmgEntry(data_02174e5c->mUnk_50, g->mUnk_08),
                               o->mUnk_00[0].mUnk_0c, o->mUnk_00[0].mUnk_18);
                 t++;
                 g++;

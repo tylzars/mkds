@@ -103,7 +103,7 @@ void func_02118624(void) {
     for (i = 0; i < 4; i++) {
         p = data_0217d360;
         func_0212426c(j, data_0215c7d8[i], data_0217d360->mUnk_08,
-                      func_020b3f7c(p->mUnk_24, data_0215c91c[p->mUnk_44][i]), p->mUnk_04, p->mUnk_18);
+                      GetBmgEntry(p->mUnk_24, data_0215c91c[p->mUnk_44][i]), p->mUnk_04, p->mUnk_18);
     }
     for (j = 0, q = data_0215c83c; j < 8; q++, j++) {
         data_0217d360->mUnk_18[*q].mUnk_00 = 0;

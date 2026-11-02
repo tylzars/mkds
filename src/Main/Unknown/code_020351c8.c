@@ -12,7 +12,7 @@
 
 void func_02035378(void) {
     void *v1;
-    v1 = func_020b3f7c((void *) data_02174e64->mUnk_088, 1);
+    v1 = GetBmgEntry((void *) data_02174e64->mUnk_088, 1);
     func_0212658c(v1, (u32) 0, (u32) 0, (u32) 0, (u32) 0, (u32) 0, (u32) 0);
 }
 
@@ -121,9 +121,9 @@ void func_020351c8(void) {
     u32 v1;
     u32 v2;
     u32 v3;
-    v1 = ((int) func_020b3f7c((void *) data_02174e64->mUnk_088, 8));
-    v2 = ((int) func_020b3f7c((void *) data_02174e64->mUnk_084, 0));
-    v3 = ((int) func_020b3f7c((void *) data_02174e64->mUnk_084, 1));
+    v1 = ((int) GetBmgEntry((void *) data_02174e64->mUnk_088, 8));
+    v2 = ((int) GetBmgEntry((void *) data_02174e64->mUnk_084, 0));
+    v3 = ((int) GetBmgEntry((void *) data_02174e64->mUnk_084, 1));
     func_02125ed0(0, (u32) 5);
     func_02125fd4(v1, v2, v3, (u32) 0, (u32) 0, (u32) 1, (u32) 1, (u32) 0);
 }

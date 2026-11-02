@@ -131,10 +131,10 @@ void func_0211ed80(void) {
     n = 0;
     for (j = 0; j < 4; j++) {
         func_0212426c(n, data_0215cf0c[j], data_0217d378->mUnk_08,
-                      func_020b3f7c(data_0217d378->mUnk_24, data_0215cf4c[data_0215cf2c[func_0202968c()]][j]),
+                      GetBmgEntry(data_0217d378->mUnk_24, data_0215cf4c[data_0215cf2c[func_0202968c()]][j]),
                       data_0217d378->mUnk_04, data_0217d378->mUnk_18);
         func_0212426c(1, data_0215cf0c[j], data_0217d378->mUnk_14,
-                      func_020b3f7c(data_0217d378->mUnk_24, data_0215cf4c[data_0215cf2c[func_0202968c()]][j]),
+                      GetBmgEntry(data_0217d378->mUnk_24, data_0215cf4c[data_0215cf2c[func_0202968c()]][j]),
                       data_0217d378->mUnk_10, data_0217d378->mUnk_1c);
     }
     a = data_0215cf04[0];

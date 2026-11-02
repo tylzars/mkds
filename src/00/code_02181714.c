@@ -287,7 +287,7 @@ void func_ov000_0218198c(void) {
             if (data_ov000_021b4c6c->mUnk_10 == 8 && func_ov000_02181df0() == 0) {
                 data_ov000_021b4c6c->mUnk_04 = 8;
                 data_ov000_021b4c6c->mUnk_10 = -1;
-                func_021266e4(func_020b3f7c(data_ov000_021b4c6c->mUnk_38, 0x12));
+                func_021266e4(GetBmgEntry(data_ov000_021b4c6c->mUnk_38, 0x12));
                 data_ov000_021b4c6c->mUnk_0c = 0;
                 func_021281c8(0xe);
                 return;

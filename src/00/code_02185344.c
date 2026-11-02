@@ -75,7 +75,7 @@ void func_ov000_02185604(void *a) {
     data_ov000_021b4c88->mUnk_0c = 0x50;
     func_ov000_021854f8();
     func_ov000_021856a8();
-    func_02126638(func_020b3f7c(data_ov000_021b4c88->mUnk_4c, 0x11), 0, 1, 0, 0, 0, 0);
+    func_02126638(GetBmgEntry(data_ov000_021b4c88->mUnk_4c, 0x11), 0, 1, 0, 0, 0, 0);
 }
 
 void func_ov000_021855f8(void) {

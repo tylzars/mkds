@@ -172,7 +172,7 @@ void func_020b8624(void) {
             s0.mUnk_00 = buf0;
             s0.mUnk_04 = p;
             s0.mUnk_0c = 0;
-            func_02024340(&s0, 0x80, 0x38, 0xe, 0x412, func_020b3f7c(func_020b47cc("common.bmg"), 0x81));
+            func_02024340(&s0, 0x80, 0x38, 0xe, 0x412, GetBmgEntry(func_020b47cc("common.bmg"), 0x81));
             func_0200ee74(data_0217b3c4->mUnk_7dc[1].mUnk_04->mUnk_14, data_0217b3c4->mUnk_7dc[1].mUnk_04->mUnk_10);
             a2 = 0;
             LoadNcerData(&a2, FindSceneFileWrapper("race_ta_m.NCER"));
@@ -185,7 +185,7 @@ void func_020b8624(void) {
             s1.mUnk_00 = buf1;
             s1.mUnk_04 = p;
             s1.mUnk_0c = 0;
-            func_02024340(&s1, 0x80, 0x18, 0xe, 0x412, func_020b3f7c(func_020b47cc("common.bmg"), 0x6d));
+            func_02024340(&s1, 0x80, 0x18, 0xe, 0x412, GetBmgEntry(func_020b47cc("common.bmg"), 0x6d));
             func_0200ee74(data_0217b3c4->mUnk_7dc[2].mUnk_04->mUnk_14, data_0217b3c4->mUnk_7dc[2].mUnk_04->mUnk_10);
             func_020b46d0(data_0217b3c4->mUnk_7dc[2].mUnk_04->mUnk_14, 0, 0, 0x20, 4,
                           data_0217b3c4->mUnk_7dc[0].mUnk_04->mUnk_14, 0, 0);
@@ -216,12 +216,12 @@ void func_020b8624(void) {
                 s2.mUnk_0c = 0;
                 s2.mUnk_08 = n2;
                 func_02024340(&s2, 0, 9, 0xc, 0x40a,
-                              func_020b3f7c(func_020b47cc("common.bmg"), data_021759c0->mUnk_18 == 0 ? 0x54 : 0x55));
+                              GetBmgEntry(func_020b47cc("common.bmg"), data_021759c0->mUnk_18 == 0 ? 0x54 : 0x55));
                 func_02024340(&s2, 0, 8, 0xc, 0x40a,
-                              func_020b3f7c(func_020b47cc("common.bmg"), data_021759c0->mUnk_18 == 0 ? 0x54 : 0x55));
+                              GetBmgEntry(func_020b47cc("common.bmg"), data_021759c0->mUnk_18 == 0 ? 0x54 : 0x55));
                 s2.mUnk_08 = func_020b4b54();
-                func_02024340(&s2, 0, 0x19, 0xe, 0x40a, func_020b3f7c(func_020b47cc("common.bmg"), n));
-                func_02024340(&s2, 0, 0x18, 0xe, 0x40a, func_020b3f7c(func_020b47cc("common.bmg"), n));
+                func_02024340(&s2, 0, 0x19, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
+                func_02024340(&s2, 0, 0x18, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
                 func_0200ee74(data_0217b3c4->mUnk_7dc[10].mUnk_04->mUnk_14,
                               data_0217b3c4->mUnk_7dc[10].mUnk_04->mUnk_10);
                 func_0214cffc(data_0217b3c4->mUnk_7dc[10].mUnk_00->mUnk_0c, data_0217b3c4->mUnk_7dc[0].mUnk_00->mUnk_0c,
@@ -295,7 +295,7 @@ void func_020b8624(void) {
     s4.mUnk_04 = p;
     s4.mUnk_08 = 1;
     s4.mUnk_0c = 0;
-    func_02024340(&s4, 0x20, 0x38, 0xe, 0x40a, func_020b3f7c(func_020b47cc("common.bmg"), 0x79));
+    func_02024340(&s4, 0x20, 0x38, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), 0x79));
 
     p = func_020b403c(0);
     func_02023408(buf5, data_0217b3c4->mUnk_7dc[8].mUnk_04->mUnk_14, 0x20, 0xa, 4);

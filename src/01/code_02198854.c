@@ -39,7 +39,7 @@ void func_ov001_021997dc(void) {
                                 a[i][0], a[i][1], i, data_ov001_021a9be8->mUnk_5c, data_ov001_021a9be8->mUnk_74,
                                 data_ov001_021a9be8->mUnk_54, v0);
             func_0212426c(0, data_ov001_021a6a24[i], data_ov001_021a9be8->mUnk_80,
-                          func_020b3f7c(data_ov001_021a9be8->mUnk_88, c[i]), data_ov001_021a9be8->mUnk_74,
+                          GetBmgEntry(data_ov001_021a9be8->mUnk_88, c[i]), data_ov001_021a9be8->mUnk_74,
                           data_ov001_021a9be8->mUnk_54);
         }
     }
@@ -57,7 +57,7 @@ void func_ov001_021997dc(void) {
             v2 -= func_021243ac(data_ov001_021a9be8->mUnk_50, data_ov001_021a6a34[i], data_ov001_021a9be8->mUnk_84,
                                 b[i][0], b[i][1], data_ov001_021a6a30[i], data_ov001_021a9be8->mUnk_60,
                                 data_ov001_021a9be8->mUnk_78, data_ov001_021a9be8->mUnk_58, v2);
-            func_0212426c(1, data_ov001_021a6a34[i], data_ov001_021a9be8->mUnk_84, func_020b3f7c(v1, d[i]),
+            func_0212426c(1, data_ov001_021a6a34[i], data_ov001_021a9be8->mUnk_84, GetBmgEntry(v1, d[i]),
                           data_ov001_021a9be8->mUnk_78, data_ov001_021a9be8->mUnk_58);
         }
     }
@@ -410,8 +410,8 @@ void func_ov001_02198d8c(void) {
             data_ov001_021a9be8->mUnk_3c = 0;
             if (data_ov001_021a9be8->mUnk_1c != 0) {
                 func_02125ebc(0x21);
-                a = func_020b3f7c(data_ov001_021a9be8->mUnk_88, 0x10);
-                b = func_020b3f7c(data_ov001_021a9be8->mUnk_8c, 4);
+                a = GetBmgEntry(data_ov001_021a9be8->mUnk_88, 0x10);
+                b = GetBmgEntry(data_ov001_021a9be8->mUnk_8c, 4);
                 func_02126230(a, b);
                 data_ov001_021a9be8->mUnk_04 = 5;
                 data_ov001_021a9be8->mUnk_20 = 0;

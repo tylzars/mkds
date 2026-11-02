@@ -37,7 +37,7 @@ void func_02028f20(void) {
     Unk02174e50_24 *p;
     void *v;
     if (func_020280dc() == 0) {
-        v = func_020b3f7c(data_02174e18->mUnk_088, func_02025d98(data_02174e18->mUnk_0a8));
+        v = GetBmgEntry(data_02174e18->mUnk_088, func_02025d98(data_02174e18->mUnk_0a8));
         p = &data_02174e18->mUnk_064;
         for (i = 8; i >= 7; i--) {
             func_0212426c(1, data_usa_021537f4[i].mUnk_00, p->mUnk_14, v, p->mUnk_0c, p->mUnk_18);

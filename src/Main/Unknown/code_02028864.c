@@ -145,12 +145,12 @@ void func_02028864(void *a, s32 b, void *c, void *d) {
             n -= func_02025a00(1, data_02174e18->mUnk_08c, p, &data_usa_021537f4[i], n);
         }
         for (i = 0; i < 6; i++) {
-            w = func_020b3f7c(data_02174e18->mUnk_088, data_usa_021537f4[i].mUnk_08);
+            w = GetBmgEntry(data_02174e18->mUnk_088, data_usa_021537f4[i].mUnk_08);
             n = data_usa_021537f4[i].mUnk_00;
             func_0212426c(1, n, p->mUnk_14, w, p->mUnk_0c, p->mUnk_18);
             func_02124094(n, 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
         }
-        w = func_020b3f7c(func_02047a28(data_usa_02162120), data_usa_021537f4[6].mUnk_08);
+        w = GetBmgEntry(func_02047a28(data_usa_02162120), data_usa_021537f4[6].mUnk_08);
         i = data_usa_02153834[4];
         func_0212426c(1, i, p->mUnk_14, w, p->mUnk_0c, p->mUnk_18);
         func_02124100(i, 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);

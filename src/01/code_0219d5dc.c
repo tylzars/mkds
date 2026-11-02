@@ -30,7 +30,7 @@ void func_ov001_0219df70(void *a) {
     func_021243ac(a, 0, data_ov001_021a9bfc->mUnk_4c, 0xa0, 0xe, 9, data_ov001_021a9bfc->mUnk_38,
                   data_ov001_021a9bfc->mUnk_44, data_ov001_021a9bfc->mUnk_34, 0x4000);
     p = data_ov001_021a9bfc;
-    ptr = func_020b3f7c(p->mUnk_50, 8);
+    ptr = GetBmgEntry(p->mUnk_50, 8);
     func_0212426c(1, 0, data_ov001_021a9bfc->mUnk_4c, ptr, p->mUnk_44, p->mUnk_34);
     for (i = 0; i < 2; i++) {
         data_ov001_021a9bfc->mUnk_18[i].mUnk_00 = 250;
@@ -273,8 +273,8 @@ void func_ov001_0219d998(void) {
                 }
                 obj->mUnk_04 = 6;
                 func_02125ebc(0x21);
-                first = func_020b3f7c(data_ov001_021a9bfc->mUnk_50, arg);
-                func_02126230(first, func_020b3f7c(data_ov001_021a9bfc->mUnk_54, 4));
+                first = GetBmgEntry(data_ov001_021a9bfc->mUnk_50, arg);
+                func_02126230(first, GetBmgEntry(data_ov001_021a9bfc->mUnk_54, 4));
                 data_ov001_021a9bfc->mUnk_14 = 0;
             }
         }

@@ -403,7 +403,7 @@ void func_0202c884(s32 a, u16 *b) {
 }
 
 void func_0202c8dc(void) {
-    void *h = func_020b3f7c(func_020b47cc(data_usa_02162c58), 0x72);
+    void *h = GetBmgEntry(func_020b47cc(data_usa_02162c58), 0x72);
     u16 u[3];
     u16 *w = &u[1];
     s32 i;

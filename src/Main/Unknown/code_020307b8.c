@@ -52,7 +52,7 @@ void func_020307b8(void *a, void *b, void *c) {
         x = q->mUnk_00;
         n -= func_021243ac(data_02174e54->mUnk_3c, x, o->mUnk_14, q->mUnk_02, q->mUnk_04, q->mUnk_06, o->mUnk_08,
                            o->mUnk_0c, o->mUnk_18, n);
-        func_0212426c(1, x, o->mUnk_14, func_020b3f7c(data_02174e54->mUnk_24, q->mUnk_08), o->mUnk_0c, o->mUnk_18);
+        func_0212426c(1, x, o->mUnk_14, GetBmgEntry(data_02174e54->mUnk_24, q->mUnk_08), o->mUnk_0c, o->mUnk_18);
     }
     func_02016468(0x23, 0, o->mUnk_00->mUnk_14, o->mUnk_00->mUnk_10);
     func_02016468(0x1e, 0, o->mUnk_04->mUnk_0c, o->mUnk_04->mUnk_08);

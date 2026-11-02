@@ -21,8 +21,8 @@ void func_0204ea14(u32 a) {
     int v1;
     u32 v2;
     u32 v3;
-    v2 = ((int) func_020b3f7c((void *) a, 0));
-    v3 = ((int) func_020b3f7c((void *) a, 1));
+    v2 = ((int) GetBmgEntry((void *) a, 0));
+    v3 = ((int) GetBmgEntry((void *) a, 1));
     v1 = ((int) (u32) ((u8 *) &data_0215472c));
     *(u32 *) (((int) (u32) ((u8 *) &data_0215472c)) + 4) = v2;
     *(u32 *) (v1 + 8) = v3;

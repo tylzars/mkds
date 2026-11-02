@@ -223,7 +223,7 @@ void func_ov001_02194d78(void) {
     v = func_02124a68((u32) (1), (void *) (d->mUnk_04), (void *) (d->mUnk_08));
     func_0211ded0((u32) (d->mUnk_78), (void *) d->mUnk_04, (void *) d->mUnk_08, (u32) (1), (u16) (v), 0);
     d = data_ov001_021a9bd8;
-    p = func_020b3f7c(d->mUnk_58, data_ov001_021a6720[d->mUnk_78]);
+    p = GetBmgEntry(d->mUnk_58, data_ov001_021a6720[d->mUnk_78]);
     func_0212426c(0, 0, data_ov001_021a9bd8->mUnk_10, p, d->mUnk_08, d->mUnk_50);
     for (i = 0; i < 4; i++) {
         if (func_02060440(data_ov001_021a6740[data_ov001_021a9bd8->mUnk_78], data_ov001_021a6694[i]) != 0) {

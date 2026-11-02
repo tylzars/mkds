@@ -37,28 +37,28 @@ void *func_0212afac(void) {
     }
     v = data_0217d408->mUnk_0000;
     if (v == 4) {
-        return func_020b3f7c(a, 0x86);
+        return GetBmgEntry(a, 0x86);
     }
     if (v == 5) {
-        return func_020b3f7c(a, 0x87);
+        return GetBmgEntry(a, 0x87);
     }
     if (v == 6) {
-        return func_020b3f7c(a, 0x88);
+        return GetBmgEntry(a, 0x88);
     }
     if (v == 1) {
-        return func_020b3f7c(a, 0x83);
+        return GetBmgEntry(a, 0x83);
     }
     if (v == 2) {
-        return func_020b3f7c(a, 0x84);
+        return GetBmgEntry(a, 0x84);
     }
     if (v == 3) {
-        return func_020b3f7c(a, 0x85);
+        return GetBmgEntry(a, 0x85);
     }
     if (v == 0) {
         if (*(vu16 *) 0x27ffc40 == 2) {
-            return func_020b3f7c(func_020d1630()->mUnk_20, 0);
+            return GetBmgEntry(func_020d1630()->mUnk_20, 0);
         }
-        return func_020b3f7c(a, 0x82);
+        return GetBmgEntry(a, 0x82);
     }
     return 0;
 }

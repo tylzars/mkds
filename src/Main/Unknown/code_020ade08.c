@@ -51,7 +51,7 @@ void func_020adff0(u32 a, u16 *b, u32 c) {
             p = (u16 *) func_020ae178(func_020ae0c8(a), c);
             n = 20;
         } else {
-            wcsncpy(w, func_020b3f7c(func_020b47cc(data_02168100), 0x72), 9);
+            wcsncpy(w, GetBmgEntry(func_020b47cc(data_02168100), 0x72), 9);
             swprintf(v, 2, data_0216810c, func_020ae0ac(a));
             wcsncat(w, v, 1);
             p = w;

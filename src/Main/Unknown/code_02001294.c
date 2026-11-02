@@ -50,8 +50,8 @@ void func_02001878(void) {
 
 void func_02001830(void) {
     void *v1;
-    v1 = func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 125);
-    func_02126230(v1, func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 4));
+    v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 125);
+    func_02126230(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
 }
 
 void func_020017cc(void) {
@@ -71,7 +71,7 @@ void func_020017cc(void) {
 void func_02001770(void) {
     void *v1;
     func_02056e48();
-    v1 = func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 126);
+    v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 126);
     func_02126248((u32) v1, 1, 1, 1, 0, 1);
     data_usa_ov001_021a99c0->mUnk_34 = 0;
 }
@@ -108,8 +108,8 @@ void func_020016ac(void) {
 void func_0200165c(void) {
     void *v1;
     func_02125ebc(33);
-    v1 = func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 128);
-    func_02126230(v1, func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 4));
+    v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 128);
+    func_02126230(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
 }
 
 void func_020015f0(void) {
@@ -133,9 +133,9 @@ void func_02001598(void) {
     void *v3;
     void *v4;
     v1 = func_02047a28(data_usa_ov001_021a7680);
-    v2 = func_020b3f7c(v1, 124);
-    v3 = func_020b3f7c(v1, 0);
-    v4 = func_020b3f7c(v1, 1);
+    v2 = GetBmgEntry(v1, 124);
+    v3 = GetBmgEntry(v1, 0);
+    v4 = GetBmgEntry(v1, 1);
     func_0212611c(v2, v3, v4, 1);
 }
 
@@ -165,7 +165,7 @@ void func_0200148c(void) {
     if (data_usa_ov001_021a99c0->mUnk_2c_0 == 0) {
         return;
     }
-    v1 = func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 126);
+    v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 126);
     func_02126248((u32) v1, 1, 1, 1, 0, 1);
     data_usa_ov001_021a99c0->mUnk_34 = 0;
 }
@@ -221,8 +221,8 @@ void func_02001350(void) {
 void func_02001300(void) {
     void *v1;
     func_02125ebc(33);
-    v1 = func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 127);
-    func_02126230(v1, func_020b3f7c(data_usa_ov001_021a99c0->mUnk_38, 4));
+    v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 127);
+    func_02126230(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
 }
 
 void func_02001294(void) {

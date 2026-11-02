@@ -152,14 +152,14 @@ void func_02119ac4(void) {
         case 0:
         case 1:
         case 3:
-            func_021277f8(func_020b3f7c(d->mUnk_28, 4), func_020b3f7c(d->mUnk_28, 2), 0);
+            func_021277f8(GetBmgEntry(d->mUnk_28, 4), GetBmgEntry(d->mUnk_28, 2), 0);
             break;
         case 2:
-            func_021277f8(func_020b3f7c(d->mUnk_28, 4), func_020b3f7c(d->mUnk_28, 2), 0);
+            func_021277f8(GetBmgEntry(d->mUnk_28, 4), GetBmgEntry(d->mUnk_28, 2), 0);
             if (*(vu16 *) 0x027ffc40 == 2) {
-                func_0212513c(func_020b3f7c(data_0217d364->mUnk_2c,
-                                            data_0215cb3c[data_0215cadc[func_0202968c()]][data_0217d364->mUnk_50]),
-                              func_020b3f7c(data_0217d364->mUnk_28, 0x8b), buf, 0x200);
+                func_0212513c(GetBmgEntry(data_0217d364->mUnk_2c,
+                                          data_0215cb3c[data_0215cadc[func_0202968c()]][data_0217d364->mUnk_50]),
+                              GetBmgEntry(data_0217d364->mUnk_28, 0x8b), buf, 0x200);
                 func_02125ebc(0x23);
                 func_021266e4(buf);
             }

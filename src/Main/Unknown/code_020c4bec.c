@@ -176,8 +176,8 @@ void InitRaceStartGp(void) {
         s = (data_021759c0->mUnk_08 == 4 ? data_021759c0->mUnk_54 : s) + 0x55;
         w.mUnk_08 = func_020b4b54();
     }
-    func_02024340(&w, 0, 9, 0xe, 0x40a, func_020b3f7c(func_020b47cc("common.bmg"), s));
-    func_02024340(&w, 0, 8, 0xe, 0x40a, func_020b3f7c(func_020b47cc("common.bmg"), s));
+    func_02024340(&w, 0, 9, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
+    func_02024340(&w, 0, 8, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
     func_0200ee74(gRaceStartGp->mUnk_08->mUnk_14, gRaceStartGp->mUnk_08->mUnk_10);
     func_0214c090(gRaceStartGp->mUnk_04->mUnk_0c, 0, gRaceStartGp->mUnk_04->mUnk_08);
     func_0214bf04(gRaceStartGp->mUnk_08->mUnk_14, 0, gRaceStartGp->mUnk_08->mUnk_10);

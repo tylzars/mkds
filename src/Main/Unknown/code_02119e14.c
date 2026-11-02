@@ -349,13 +349,13 @@ void func_0211a100(void) {
         for (i = 0; i < 4; i++) {
             p = data_0217d364;
             func_0212426c(1, data_0215cab4[i], data_0217d364->mUnk_18,
-                          func_020b3f7c(data_0217d364->mUnk_28, data_0215cafc[data_0215cadc[func_0202968c()]][i]),
+                          GetBmgEntry(data_0217d364->mUnk_28, data_0215cafc[data_0215cadc[func_0202968c()]][i]),
                           p->mUnk_10, p->mUnk_20);
         }
         p = data_0217d364;
-        func_0212426c(0, 2, data_0217d364->mUnk_08, func_020b3f7c(p->mUnk_28, 0x73), p->mUnk_04, p->mUnk_1c);
+        func_0212426c(0, 2, data_0217d364->mUnk_08, GetBmgEntry(p->mUnk_28, 0x73), p->mUnk_04, p->mUnk_1c);
         p = data_0217d364;
-        func_0212426c(0, 4, data_0217d364->mUnk_08, func_020b3f7c(p->mUnk_28, 0x74), p->mUnk_04, p->mUnk_1c);
+        func_0212426c(0, 4, data_0217d364->mUnk_08, GetBmgEntry(p->mUnk_28, 0x74), p->mUnk_04, p->mUnk_1c);
         func_02124140(0, 0, data_0217d364->mUnk_08, data_0217d364->mUnk_1c, data_0217d364->mUnk_04);
         func_02124140(1, 0, data_0217d364->mUnk_08, data_0217d364->mUnk_1c, data_0217d364->mUnk_04);
         func_02124140(2, 0, data_0217d364->mUnk_08, data_0217d364->mUnk_1c, data_0217d364->mUnk_04);
@@ -398,11 +398,11 @@ void func_02119e88(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         p = data_0217d364;
         func_0212426c(0, 0, data_0217d364->mUnk_08,
-                      func_020b3f7c(data_0217d364->mUnk_28, data_0215cafc[data_0215cadc[func_0202968c()]][p->mUnk_50]),
+                      GetBmgEntry(data_0217d364->mUnk_28, data_0215cafc[data_0215cadc[func_0202968c()]][p->mUnk_50]),
                       p->mUnk_04, p->mUnk_1c);
         p = data_0217d364;
         func_0212426c(0, 1, data_0217d364->mUnk_08,
-                      func_020b3f7c(data_0217d364->mUnk_28, data_0215cafc[data_0215cadc[func_0202968c()]][p->mUnk_50]),
+                      GetBmgEntry(data_0217d364->mUnk_28, data_0215cafc[data_0215cadc[func_0202968c()]][p->mUnk_50]),
                       p->mUnk_04, p->mUnk_1c);
         if (func_02060228(data_0215cbec[data_0215cadc[func_0202968c()]][data_0217d364->mUnk_50], 0)) {
             func_02060134(data_0215cbec[data_0215cadc[func_0202968c()]][data_0217d364->mUnk_50], 0, &a);

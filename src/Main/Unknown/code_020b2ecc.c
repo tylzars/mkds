@@ -27,7 +27,7 @@ void *func_020b320c(s32 a, s32 b) {
     if (a != 0) {
         c[2] = 0x60;
     }
-    return func_020b3f7c(func_020b47cc("common.bmg"), c[b]);
+    return GetBmgEntry(func_020b47cc("common.bmg"), c[b]);
 }
 
 void func_020b31e4(void) {

@@ -48,7 +48,7 @@ void InitEmblemChoises(void) {
 
         for (i = 0; i < gEmblemChoises->mChoisesCount; i++) {
             func_020ca7e0(&gEmblemChoises->mUnk_50, 0x90, i * 16 + 9, 12, 0x412,
-                          func_020b3f7c(FindSceneFileWrapper("emblem.bmg"), bmgIndices[i]));
+                          GetBmgEntry(FindSceneFileWrapper("emblem.bmg"), bmgIndices[i]));
         }
     }
 }

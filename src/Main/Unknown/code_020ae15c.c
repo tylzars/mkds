@@ -62,7 +62,7 @@ void *func_020ae178(u32 a, u32 b) {
     } else {
         t = v[a];
     }
-    return func_020b3f7c(func_020b47cc(data_02168114), t);
+    return GetBmgEntry(func_020b47cc(gCommonBmgName), t);
 }
 
 #pragma thumb off

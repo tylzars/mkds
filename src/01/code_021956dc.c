@@ -192,7 +192,7 @@ void func_ov001_021972f4(void) {
     u16 cnt;
 
     p = data_ov001_021a9bdc;
-    func_0212426c(0, 0, data_ov001_021a9bdc->mUnk_10, func_020b3f7c(p->mUnk_40, data_ov001_021a6880[p->mUnk_6c]),
+    func_0212426c(0, 0, data_ov001_021a9bdc->mUnk_10, GetBmgEntry(p->mUnk_40, data_ov001_021a6880[p->mUnk_6c]),
                   p->mUnk_08, p->mUnk_38);
     for (i = 0; i < 5; i++) {
         if (func_02060228(data_ov001_021a6900[data_ov001_021a9bdc->mUnk_6c], data_ov001_021a6828[i])) {
@@ -384,10 +384,10 @@ void func_ov001_02196ecc(void) {
     buf[0] = 0;
     func_0214cfe4(buf[0], &buf[1], 0x200);
     p = data_ov001_021a9bdc;
-    a = func_020b3f7c(p->mUnk_44, data_ov001_021a6980[p->mUnk_6c]);
-    func_0212513c(a, func_020b3f7c(p->mUnk_48, 10), &buf[1], 0x200);
-    a = func_020b3f7c(data_ov001_021a9bdc->mUnk_40, 0);
-    b = func_020b3f7c(data_ov001_021a9bdc->mUnk_40, 1);
+    a = GetBmgEntry(p->mUnk_44, data_ov001_021a6980[p->mUnk_6c]);
+    func_0212513c(a, GetBmgEntry(p->mUnk_48, 10), &buf[1], 0x200);
+    a = GetBmgEntry(data_ov001_021a9bdc->mUnk_40, 0);
+    b = GetBmgEntry(data_ov001_021a9bdc->mUnk_40, 1);
     func_02125fd4((u32) &buf[1], (u32) a, (u32) b, 1, 0, 1, 1, 1);
 }
 
@@ -559,7 +559,7 @@ void func_ov001_02196960(void *heap) {
     func_021243ac(heap, 8, data_ov001_021a9bdc->mUnk_24, 0x98, 0x10, 0xd, data_ov001_021a9bdc->mUnk_18,
                   data_ov001_021a9bdc->mUnk_1c, data_ov001_021a9bdc->mUnk_3c, rem);
     p = data_ov001_021a9bdc;
-    func_0212426c(1, 8, data_ov001_021a9bdc->mUnk_24, func_020b3f7c(p->mUnk_48, 3), p->mUnk_1c, p->mUnk_3c);
+    func_0212426c(1, 8, data_ov001_021a9bdc->mUnk_24, GetBmgEntry(p->mUnk_48, 3), p->mUnk_1c, p->mUnk_3c);
     func_ov001_02197058();
 }
 

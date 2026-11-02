@@ -111,7 +111,7 @@ s32 func_02034370(Unk02034370 *a) {
         case 2:
             switch (func_02054c98(0, 0)) {
                 case 1:
-                    func_021262f0(func_020b3f7c(data_02174e64->mUnk_088, 0xf));
+                    func_021262f0(GetBmgEntry(data_02174e64->mUnk_088, 0xf));
                     func_0212d5e0(&data_0217c868);
                     func_0212ecc0(&data_0217d068, 0, 9);
                     func_0212d5e0(&data_0217d0a0);
@@ -138,7 +138,7 @@ s32 func_02034370(Unk02034370 *a) {
                                 s.mUnk_00[10] = 0;
                                 func_0212426c(1, data_02164254[i][0], q->mUnk_14, &s, q->mUnk_0c, q->mUnk_18);
                                 func_0212426c(1, data_02164254[j][0], q->mUnk_14,
-                                              func_020b3f7c(data_02174e64->mUnk_088, v), q->mUnk_0c, q->mUnk_18);
+                                              GetBmgEntry(data_02174e64->mUnk_088, v), q->mUnk_0c, q->mUnk_18);
                                 func_0214d0a8(&s, &data_02174e64->mUnk_09c[i].mUnk_00, 0x28);
                                 data_02174e64->mUnk_09c[i].mUnk_28 = 1;
                                 func_02025f14(&data_02174e64->mUnk_09c[i].mUnk_2c, 0);
@@ -273,10 +273,10 @@ s32 func_02034370(Unk02034370 *a) {
         case 8:
             if (func_0202da44(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_20) != 0) {
                 v = func_02025d74(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_20);
-                e = func_020b3f7c(data_02174e64->mUnk_088, 0x55);
-                f = func_020b3f7c(data_02174e64->mUnk_084, 0);
-                g = func_020b3f7c(data_02174e64->mUnk_084, 1);
-                func_0212513c(func_020b3f7c(data_02174e64->mUnk_088, v), e, h, 0x100);
+                e = GetBmgEntry(data_02174e64->mUnk_088, 0x55);
+                f = GetBmgEntry(data_02174e64->mUnk_084, 0);
+                g = GetBmgEntry(data_02174e64->mUnk_084, 1);
+                func_0212513c(GetBmgEntry(data_02174e64->mUnk_088, v), e, h, 0x100);
                 func_02125ed0(0, -1);
                 func_02125fd4((u32) h, (u32) f, (u32) g, 1, 0, 1, 1, 0);
                 data_02174e64->mUnk_094 = 9;
@@ -316,8 +316,8 @@ s32 func_02034370(Unk02034370 *a) {
             break;
         case 10:
             if (func_02125f88() != 0) {
-                e = func_020b3f7c(data_02174e64->mUnk_088, 0x54);
-                f = func_020b3f7c(data_02174e64->mUnk_084, 4);
+                e = GetBmgEntry(data_02174e64->mUnk_088, 0x54);
+                f = GetBmgEntry(data_02174e64->mUnk_084, 4);
                 func_02125ed0(0, 5);
                 func_02126230(e, f);
                 data_02174e64->mUnk_094 = 14;
@@ -325,8 +325,8 @@ s32 func_02034370(Unk02034370 *a) {
             break;
         case 11:
             if (func_02034370_inline_2() != 0) {
-                e = func_020b3f7c(data_02174e64->mUnk_088, 0x10);
-                f = func_020b3f7c(data_02174e64->mUnk_084, 4);
+                e = GetBmgEntry(data_02174e64->mUnk_088, 0x10);
+                f = GetBmgEntry(data_02174e64->mUnk_084, 4);
                 func_02125ed0(0, 5);
                 func_02126230(e, f);
                 data_02174e64->mUnk_094 = 14;

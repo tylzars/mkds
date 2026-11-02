@@ -36,8 +36,8 @@ void func_020353a4(void) {
     void *e;
     void *f;
 
-    e = func_020b3f7c(data_02174e64->mUnk_088, 0x11);
-    f = func_020b3f7c(data_02174e64->mUnk_084, 4);
+    e = GetBmgEntry(data_02174e64->mUnk_088, 0x11);
+    f = GetBmgEntry(data_02174e64->mUnk_084, 4);
     func_02125ed0(0, 5);
     func_02126230(e, f);
     data_02174e64->mUnk_090 = 0;

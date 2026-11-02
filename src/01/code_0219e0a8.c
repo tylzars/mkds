@@ -35,10 +35,10 @@ void func_ov001_0219e6ec(void *a) {
 
         switch (data_ov001_021ca400->mUnk_00c) {
             case 0:
-                result = func_020b3f7c(data_ov001_021ca400->mUnk_46c, 0x77);
+                result = GetBmgEntry(data_ov001_021ca400->mUnk_46c, 0x77);
                 break;
             case 1:
-                result = func_020b3f7c(data_ov001_021ca400->mUnk_46c, 0x78);
+                result = GetBmgEntry(data_ov001_021ca400->mUnk_46c, 0x78);
                 break;
         }
         func_021243ac(data_ov001_021ca400->mUnk_010, 0, data_ov001_021ca400->mUnk_034,

@@ -153,7 +153,7 @@ void func_ov001_0219ade8(void) {
 void func_ov001_0219adbc(void) {
     data_ov001_021a9bf0->mUnk_34 = 8;
     data_ov001_021a9bf0->mUnk_38 = 0;
-    func_021262f0(func_020b3f7c(data_ov001_021a9bf0->mUnk_20, 0x76));
+    func_021262f0(GetBmgEntry(data_ov001_021a9bf0->mUnk_20, 0x76));
 }
 
 void func_ov001_0219ad98(void) {
@@ -258,7 +258,7 @@ void func_ov001_0219a9a0(void *heap) {
     rem = 0x8000;
     rem -= func_021243ac(heap, 0, data_ov001_021a9bf0->mUnk_08, 0xaa, 0xe, 0, data_ov001_021a9bf0->mUnk_00,
                          data_ov001_021a9bf0->mUnk_04, data_ov001_021a9bf0->mUnk_18, rem);
-    func_0212426c(0, 0, data_ov001_021a9bf0->mUnk_08, func_020b3f7c(data_ov001_021a9bf0->mUnk_24, 9),
+    func_0212426c(0, 0, data_ov001_021a9bf0->mUnk_08, GetBmgEntry(data_ov001_021a9bf0->mUnk_24, 9),
                   data_ov001_021a9bf0->mUnk_04, data_ov001_021a9bf0->mUnk_18);
     x = 1;
     base = data_ov001_021a9bf0->mUnk_04->mUnk_06;
@@ -272,7 +272,7 @@ void func_ov001_0219a9a0(void *heap) {
     }
     for (i = 0; i < 3; i++) {
         func_0212426c(0, data_ov001_021a6ae4[0][i], data_ov001_021a9bf0->mUnk_08,
-                      func_020b3f7c(data_ov001_021a9bf0->mUnk_24, data_ov001_021a6abc[i]), data_ov001_021a9bf0->mUnk_04,
+                      GetBmgEntry(data_ov001_021a9bf0->mUnk_24, data_ov001_021a6abc[i]), data_ov001_021a9bf0->mUnk_04,
                       data_ov001_021a9bf0->mUnk_18);
     }
     pp = &data_0217aa08->mUnk_00;

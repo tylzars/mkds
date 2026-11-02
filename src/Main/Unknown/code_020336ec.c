@@ -136,7 +136,7 @@ void func_020338f8(void *a) {
             j++;
         } while (j < t->mUnk_14->mUnk_06);
     }
-    func_0212426c(0, 0, t->mUnk_14, func_020b3f7c(data_02174e60->mUnk_0c8, 0x7a), t->mUnk_0c, t->mUnk_18);
+    func_0212426c(0, 0, t->mUnk_14, GetBmgEntry(data_02174e60->mUnk_0c8, 0x7a), t->mUnk_0c, t->mUnk_18);
     for (m = 0; m < data_02174e60->mUnk_0d8; m++) {
         if (data_02174e60->mUnk_0e4[m].mUnk_00 == 0) {
             func_020338f8_inline(w, 0x16);

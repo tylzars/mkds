@@ -235,8 +235,8 @@ void func_02118148(void) {
 
     data_0217d360->mUnk_34 = 5;
     data_0217d360->mUnk_38 = 0;
-    a = func_020b3f7c(data_0217d360->mUnk_24, 4);
-    func_021277f8(a, func_020b3f7c(data_0217d360->mUnk_24, 2), 0);
+    a = GetBmgEntry(data_0217d360->mUnk_24, 4);
+    func_021277f8(a, GetBmgEntry(data_0217d360->mUnk_24, 2), 0);
 }
 
 #pragma thumb off
@@ -267,11 +267,11 @@ void func_02118088(void) {
     data_0217d360->mUnk_34 = 8;
     data_0217d360->mUnk_38 = 0;
     if (*(vu16 *) 0x027ffc40 == 2) {
-        a = func_020b3f7c(data_0217d360->mUnk_24, 0x5d);
-        func_021277f8(a, func_020b3f7c(data_0217d360->mUnk_24, 0x5f), 0);
+        a = GetBmgEntry(data_0217d360->mUnk_24, 0x5d);
+        func_021277f8(a, GetBmgEntry(data_0217d360->mUnk_24, 0x5f), 0);
     } else {
-        a = func_020b3f7c(data_0217d360->mUnk_28, 0x14);
-        func_021277f8(a, func_020b3f7c(data_0217d360->mUnk_28, 0x15), 0);
+        a = GetBmgEntry(data_0217d360->mUnk_28, 0x14);
+        func_021277f8(a, GetBmgEntry(data_0217d360->mUnk_28, 0x15), 0);
     }
 }
 

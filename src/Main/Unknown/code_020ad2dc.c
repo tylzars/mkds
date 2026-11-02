@@ -169,9 +169,9 @@ void func_020ad344(void) {
                        data_0217b340->mUnk_6c, data_0217b340->mUnk_68, d);
     func_021243ac((void *) func_020ada10(), 1, data_0217b340->mUnk_74, 0x55, 0xd, 0xe, data_0217b340->mUnk_a8,
                   data_0217b340->mUnk_6c, data_0217b340->mUnk_68, d);
-    func_0212426c(1, 0, data_0217b340->mUnk_74, func_020b3f7c(FindSceneFileWrapper(data_02167f9c), 1),
+    func_0212426c(1, 0, data_0217b340->mUnk_74, GetBmgEntry(FindSceneFileWrapper(data_02167f9c), 1),
                   data_0217b340->mUnk_6c, data_0217b340->mUnk_68);
-    func_0212426c(1, 1, data_0217b340->mUnk_74, func_020b3f7c(FindSceneFileWrapper(data_02167fa8), 0),
+    func_0212426c(1, 1, data_0217b340->mUnk_74, GetBmgEntry(FindSceneFileWrapper(data_02167fa8), 0),
                   data_0217b340->mUnk_6c, data_0217b340->mUnk_68);
     func_0214b720();
     func_0214b6a0(data_0217b340->mUnk_78->mUnk_0c, 0x4000, data_0217b340->mUnk_78->mUnk_08);

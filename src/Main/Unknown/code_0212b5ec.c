@@ -99,5 +99,5 @@ void func_0212b5ec(void *a) {
     q->mUnk_08 = v;
     q->mUnk_0c = 0;
     func_0214d168(data_0217d40c->mUnk_050, 0, 0x800);
-    data_0217d40c->mUnk_018 = func_020b3f7c(FindSceneFile(data_0216ea94), 0);
+    data_0217d40c->mUnk_018 = GetBmgEntry(FindSceneFile(data_0216ea94), 0);
 }

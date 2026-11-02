@@ -52,7 +52,7 @@ void func_020362dc(void *a) {
     data_02174e6c->mUnk_638 = func_020d1630()->mUnk_20;
     data_02174e6c->mUnk_000 = (u8 *) func_020d1630() + 0x14;
     b = func_02149fe0();
-    h = func_020b3f7c(data_02174e6c->mUnk_638, 1);
+    h = GetBmgEntry(data_02174e6c->mUnk_638, 1);
     func_02023408(data_02174e6c->mUnk_004, (u8 *) b + 0x400, 0x20, 4, 4);
     func_020362c4(&data_02174e6c->mUnk_024, data_02174e6c->mUnk_004, data_02174e6c->mUnk_000, 1, 4);
     func_0203629c(&data_02174e6c->mUnk_024, 0x80, 0, 3, 0x211, h);
