@@ -22,8 +22,6 @@ Unk020176c0 *func_02017dec(Unk020176c0 *a, u32 b, u16 c) {
     return a;
 }
 
-// non-matching: same size, 4 words differ: the halfword read from a->mUnk_10 for the last field is loaded into r4 and
-// reloaded fields use r2/r3 swapped; the original loads it into r3.
 void *func_02017c58(Unk020179d4 *a, Unk02017e70 *b, void *c, u32 d, u16 e) {
     Unk02017ef8 r1;
     Unk02017ef8 r2;
@@ -69,10 +67,10 @@ void *func_02017c58(Unk020179d4 *a, Unk02017e70 *b, void *c, u32 d, u16 e) {
         p->mUnk_02 |= ((u16) t & 0x7f) << 8;
     }
     {
-        u16 g = a->mUnk_10;
+        u8 g = a->mUnk_10;
 
         p->mUnk_02 &= ~0xff;
-        p->mUnk_02 |= g & 0xff;
+        p->mUnk_02 |= g;
     }
     func_02017ea0(&a->mUnk_08, p, a->mUnk_08.mUnk_04);
     return c;
@@ -323,27 +321,25 @@ u32 func_02017748(Unk020176c0 *a) {
     return n;
 }
 
-// non-matching: same size (0x88), 23 words differ: the original keeps v1 and the offset in r6 and r5 and the
-// q in r4; here they land in other registers.
 u32 func_020176c0(Unk020176c0 *a, u32 b) {
-    Unk02017e70 *p;
     u32 m;
     u32 b0;
     u32 off;
+    Unk02017e70 *p;
     u32 s;
     u32 e;
     u32 n;
     u32 l;
     u32 d;
 
+    m = func_02134420(b);
     b0 = 0;
     off = -1;
-    m = func_02134420(b);
     for (p = a->mUnk_24.mUnk_00.mUnk_00; p != 0; p = p->mUnk_0c) {
         {
             s = (u32) p + 0x10;
+            n = ((u32) (m - 1) + s) & ~(m - 1);
             e = p->mUnk_04 + s;
-            n = ((m - 1) + s) & ~(m - 1);
             if (n < e) {
                 l = e - n;
                 d = n - s;
