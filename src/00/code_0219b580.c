@@ -133,7 +133,7 @@ void func_ov000_0219b6c0(int a, u32 b) {
     } else {
         func_ov000_0219b8a8(0);
     }
-    v1 = *(UnkFunc **) ((int) data_ov000_021b54c8 + 0x5c);
+    v1 = data_ov000_021b54c8->mUnk_5c;
     if (v1 != (UnkFunc *) 0x0) {
         (*v1)(a, b, data_ov000_021b54c8->mUnk_60);
     }
@@ -142,7 +142,7 @@ void func_ov000_0219b6c0(int a, u32 b) {
 
 void func_ov000_0219b694(u32 a, u32 b) {
     func_ov000_0219b8a8((u32) (data_ov000_021b54c8->mUnk_28));
-    (**(UnkFunc **) ((int) data_ov000_021b54c8 + 100))(a, b, *(u32 *) ((int) data_ov000_021b54c8 + 0x68));
+    data_ov000_021b54c8->mUnk_64(a, b, data_ov000_021b54c8->mUnk_68);
     return;
 }
 

@@ -85,9 +85,9 @@ void func_ov000_021855f8(void) {
 void func_ov000_0218554c(void) {
     u32 v1;
     v1 = ((int) func_0204799c((const char *) &data_ov000_021b0f28));
-    *(u32 *) ((int) data_ov000_021b4c88 + 0x40) = v1;
+    data_ov000_021b4c88->mUnk_40 = (Unk0201ea30 *) v1;
     v1 = ((int) func_0204799c((const char *) &data_ov000_021b0f44));
-    *(u32 *) ((int) data_ov000_021b4c88 + 0x48) = v1;
+    data_ov000_021b4c88->mUnk_48 = (void *) v1;
     v1 = ((int) func_0204799c((const char *) &data_ov000_021b0f60));
     func_020b49bc(&data_ov000_021b4c88->mUnk_38, (void *) v1);
     v1 = ((int) func_0204799c((const char *) &data_ov000_021b0f80));

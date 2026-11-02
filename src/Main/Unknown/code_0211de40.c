@@ -45,7 +45,7 @@ void func_0211de40(void *a) {
     v2 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216de58))));
     func_020b48b4(&data_0217d36c->mUnk_04, (void *) v2);
     v2 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216de50))));
-    *(u32 *) ((int) data_0217d36c + 8) = v2;
+    data_0217d36c->mUnk_08 = (void *) v2;
 }
 
 #pragma thumb off

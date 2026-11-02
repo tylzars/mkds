@@ -66,7 +66,7 @@ void func_ov003_021c1cd8(void) {
 }
 
 void func_ov003_021c1cb0(void) {
-    func_ov003_021d197c(*(Unk021d1770 **) ((int) data_ov003_021da160 + 0x58));
+    func_ov003_021d197c(data_ov003_021da160->mUnk_58);
     func_ov003_021d34e0((Unk021d34e0 *) (data_ov003_021da160->mUnk_5c), func_ov003_021c118c);
     return;
 }

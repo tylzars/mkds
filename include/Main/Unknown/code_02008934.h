@@ -24,7 +24,9 @@ typedef struct Unk02008934 {
     /* 4bc */ u8 mUnk_4bc[4];
     /* 4c0 */ u8 mUnk_4c0[4];
     /* 4c4 */ u8 mUnk_4c4[6];
-    /* 4ca */ u8 mUnk_4ca[0xb6];
+    /* 4ca */ u8 mUnk_4ca[0x3e];
+    /* 508 */ u16 mUnk_508;
+    /* 50a */ u8 mUnk_50a[0x76];
     /* 580 */ u32 mUnk_580;
     /* 584 */ u32 mUnk_584;
     /* 588 */ u16 mUnk_588;

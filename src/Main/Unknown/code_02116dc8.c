@@ -34,7 +34,7 @@ void func_02116dd4(void *a, void *b, void *c, u32 d, u16 e, u32 f) {
     func_020b4a44((Unk020b4a44 **) ((int *) (u32) ((int) data_0217d354 + 8)), (void *) v3);
     v3 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216d4c8))));
     v1 = (int *) &data_0217d354;
-    *(u32 *) ((int) data_0217d354 + 0xc) = v3;
+    data_0217d354->mUnk_0c = (void *) v3;
     *(void **) (*v1 + 0x10) = b;
     *(void **) (*v1 + 0x14) = c;
     *(u32 *) (*v1 + 0x18) = d;

@@ -29,9 +29,9 @@ void func_0211f61c(void) {
     v1 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216e130))));
     func_020b4a44((Unk020b4a44 **) v3, (void *) v1);
     v1 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216e124))));
-    *(u32 *) ((int) data_0217d380 + 4) = v1;
+    data_0217d380->mUnk_04 = (Unk0201ea30 *) v1;
     v1 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216e12c))));
-    *(u32 *) ((int) data_0217d380 + 0xc) = v1;
+    data_0217d380->mUnk_0c = (void *) v1;
     func_02016468((u32) 0x23, (u32) 0, (void *) (*(u32 *) (v2 + 0x14)), (u32) (*(u32 *) (v2 + 0x10)));
     func_02016468((u32) 0x1e, (u32) 0, (void *) (*(u32 *) (v3[0] + 0xc)), (u32) (*(u32 *) (v3[0] + 8)));
 }

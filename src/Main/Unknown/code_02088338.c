@@ -7,9 +7,9 @@
 
 void func_02088888(int value) {
     if (value) {
-        *(void **) ((u32) (&data_0217af24)) = (void *) ((u32) (&data_02165fd4));
+        data_0217af24 = (const char *) data_02165fd4;
     } else {
-        *(void **) ((u32) (&data_0217af24)) = (void *) ((u32) (&data_02165fec));
+        data_0217af24 = (const char *) data_02165fec;
     }
 }
 

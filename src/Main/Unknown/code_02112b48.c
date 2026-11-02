@@ -90,11 +90,11 @@ void func_021144c0(void *a) {
     v1 = ((u32) func_02036bec(a, (u32) 0x10));
     *(int *) &data_0217d34c = v1;
     v2 = ((u32) func_02036bec(a, (u32) 0x78));
-    *(u32 *) ((int) data_0217d34c + 4) = v2;
+    data_0217d34c->mUnk_04 = (Unk0217d34c_04 *) v2;
     v2 = (u32) func_0205eda0(a);
-    *(u32 *) ((int) data_0217d34c + 8) = v2;
+    data_0217d34c->mUnk_08 = (void *) v2;
     v2 = ((int) func_0204799c((const char *) &data_0216d3e4));
-    *(u32 *) ((int) data_0217d34c + 0xc) = v2;
+    data_0217d34c->mUnk_0c = (void *) v2;
 }
 
 #pragma thumb off
@@ -263,13 +263,13 @@ void func_02113f34(void) {
     v1 = ((int) func_0204799c((const char *) data_0216d1f8));
     func_020b4a44((Unk020b4a44 **) (&v4), (void *) v1);
     v1 = ((int) func_0204799c((const char *) data_0216d1f4));
-    *(u32 *) ((int) data_0217d348 + 8) = v1;
+    data_0217d348->mUnk_08 = (Unk0201ea30 *) v1;
     v1 = ((int) func_0204799c((const char *) data_0216d22c));
-    *(u32 *) ((int) data_0217d348 + 0xc) = v1;
+    data_0217d348->mUnk_0c = (void *) v1;
     v1 = ((int) func_0204799c((const char *) data_0216d238));
-    *(u32 *) ((int) data_0217d348 + 0x18) = v1;
+    data_0217d348->mUnk_18 = (Unk0201ea30 *) v1;
     v1 = ((int) func_0204799c((const char *) data_0216d1fc));
-    *(u32 *) ((int) data_0217d348 + 0x1c) = v1;
+    data_0217d348->mUnk_1c = (void *) v1;
     v1 = ((int) func_0204799c((const char *) data_0216d208));
     func_020b49bc(&data_0217d348->mUnk_28, (void *) v1);
     v1 = ((int) func_0204799c((const char *) data_0216d210));
@@ -277,11 +277,11 @@ void func_02113f34(void) {
     v1 = ((int) func_0204799c((const char *) data_0216d218));
     func_020b4a44((Unk020b4a44 **) (&v8), (void *) v1);
     v1 = ((int) func_0204799c((const char *) data_0216d204));
-    *(u32 *) ((int) data_0217d348 + 0x30) = v1;
+    data_0217d348->mUnk_30 = (Unk0201ea30 *) v1;
     v1 = ((int) func_0204799c((const char *) data_0216d234));
-    *(u32 *) ((int) data_0217d348 + 0x34) = v1;
+    data_0217d348->mUnk_34 = (Unk0201ea30 *) v1;
     v1 = ((int) func_0204799c((const char *) data_0216d21c));
-    *(u32 *) ((int) data_0217d348 + 0x38) = v1;
+    data_0217d348->mUnk_38 = (void *) v1;
     v2 = ((u32) func_02077f00());
     v1 = ((int) func_0204799c((const char *) data_0216d220));
     func_020b4934((Unk020b4934 **) (&v5), (void *) v1);

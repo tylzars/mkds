@@ -48,7 +48,7 @@ void func_0211dfb4(u32 a) {
     v2 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216dec4))));
     func_020b4a44(&data_0217d370->mUnk_08, (void *) v2);
     v2 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216dec8))));
-    *(u32 *) ((int) data_0217d370 + 0xc) = v2;
+    data_0217d370->mUnk_0c = (void *) v2;
 }
 
 void func_0211df44(void *a) {
@@ -63,7 +63,7 @@ void func_0211df44(void *a) {
     v2 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216dee0))));
     func_020b4a44(&data_0217d370->mUnk_08, (void *) v2);
     v2 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216ded0))));
-    *(u32 *) ((int) data_0217d370 + 0xc) = v2;
+    data_0217d370->mUnk_0c = (void *) v2;
 }
 
 #pragma thumb off
