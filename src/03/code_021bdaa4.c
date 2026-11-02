@@ -3,8 +3,6 @@
 #include "03/code_021bd000.h"
 #include "code_02134d30.h"
 
-// non-matching: p is kept in r5 and advanced by 4 in the original (adds r5, r5, #4 before the two calls, return adds
-// r5, r6); ours addresses p + 4 from the unadvanced register, 6 words differ
 u8 *func_ov003_021bdaa4(u8 *p, u32 a, const void *b, u32 c) {
     u32 d;
     p[0] = 0;
@@ -14,14 +12,12 @@ u8 *func_ov003_021bdaa4(u8 *p, u32 a, const void *b, u32 c) {
     *(u16 *) p = func_ov003_021b7c44_inline(a);
     d = ((c + 0xb) & ~7) - 4;
     *(u16 *) (p + 2) = func_ov003_021b7c44_inline(c);
-    p += 4;
+    p = (u8 *) p + 4;
     memset(p, 0, d);
     memcpy(p, b, c);
     return p + d;
 }
 
-// non-matching: the original keeps the first argument in the stack (str r1, [sp, #4]) and p in r6, size in r7, with a
-// separate copy in r5; ours keeps the first argument in r7 without a spill, p in r5, size in r6, size 0xc0 against 0xc4
 s32 func_ov003_021bdb0c(u8 *p, u32 a, u8 *b, u32 c, const void *d) {
     u8 *e;
     u8 *f;
@@ -51,7 +47,8 @@ s32 func_ov003_021bdb0c(u8 *p, u32 a, u8 *b, u32 c, const void *d) {
     p[5] = 0;
     *(u16 *) p = func_ov003_021b7c44_inline(a);
     *(u16 *) (p + 2) = func_ov003_021b7c44_inline(c);
-    e = e + 6 + c;
+    e += 6;
+    e += c;
     for (f = p; f < e; f++) {
         g += *f;
     }

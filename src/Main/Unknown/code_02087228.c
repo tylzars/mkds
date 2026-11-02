@@ -15,26 +15,28 @@
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-// non-matching: 2 instructions longer: the original pushes r4-r6 with no stack word, forms the two halfword values and
-// the first shifted copy before the loads of the table and keeps both values in registers; here only two registers are
-// pushed, one stack word is reserved and the second value is formed after the first writes.
 void func_0208784c(s32 a, s32 b) {
-    u32 x;
-    u32 y;
-    x = (u16) ((b << 8) >> 16);
-    y = (u16) ((a << 8) >> 16);
+    u16 x;
+    u16 y;
+    u16 c;
+    x = (b << 8) >> 16;
+    y = (a << 8) >> 16;
     *(u32 *) 0x4000488 = 0x60006;
+    c = data_021659d4[2];
     *(u32 *) 0x400048c = data_021659d4[0] | data_021659d4[1] << 16;
-    *(u32 *) 0x400048c = data_021659d4[2];
+    *(u32 *) 0x400048c = c;
     *(u32 *) 0x4000488 = x << 16 | 6;
+    c = data_021659d4[5];
     *(u32 *) 0x400048c = data_021659d4[3] | data_021659d4[4] << 16;
-    *(u32 *) 0x400048c = data_021659d4[5];
+    *(u32 *) 0x400048c = c;
     *(u32 *) 0x4000488 = y | x << 16;
+    c = data_021659d4[8];
     *(u32 *) 0x400048c = data_021659d4[6] | data_021659d4[7] << 16;
-    *(u32 *) 0x400048c = data_021659d4[8];
+    *(u32 *) 0x400048c = c;
     *(u32 *) 0x4000488 = y | 0x60000;
+    c = data_021659d4[11];
     *(u32 *) 0x400048c = data_021659d4[9] | data_021659d4[10] << 16;
-    *(u32 *) 0x400048c = data_021659d4[11];
+    *(u32 *) 0x400048c = c;
 }
 
 #pragma thumb on

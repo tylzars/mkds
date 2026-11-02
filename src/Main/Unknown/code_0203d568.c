@@ -99,15 +99,13 @@ void func_0203d848(void *a) {
     func_020401ac();
 }
 
-// non-matching: the original forms the entry pointer (add ip, r0, #0x1c) after the loop guard, among the loads of
-// data_021759c0; here it is formed first, before the store of zero (same size, 0xd8)
 void func_0203d8fc(Unk0217561c_4c8 *a) {
     s32 i;
     Unk0217561c_4c8_1c *e;
 
     data_0217561c->mUnk_000[0].mUnk_0c = 0;
-    e = a->mUnk_1c;
     for (i = 0; i < a->mUnk_08; i++) {
+        e = &a->mUnk_1c[i];
         if (e->mUnk_00 == data_021759c0->mUnk_00) {
             switch (data_021759c0->mUnk_010) {
                 case 0:
@@ -122,13 +120,9 @@ void func_0203d8fc(Unk0217561c_4c8 *a) {
             }
             return;
         }
-        e++;
     }
 }
 
-// non-matching: the original keeps the unit count (data_021759c0->mUnk_3d0) in lr across the whole function; here it is
-// spilled to [sp] and every stack offset after it moves by 4, the registers of the two bounds of the sort loop differ
-// (0x5b0 bytes against 0x5a0)
 void func_0203d9d4(void) {
     Unk02040d24 t;
     s32 a[8];
@@ -143,16 +137,16 @@ void func_0203d9d4(void) {
     s32 f;
     Unk0217561c *p;
     Unk02040d24 *o;
-    u16 j;
     u16 m;
-    s32 n;
-    s32 y;
     s32 x;
+    s32 y;
+    s32 n;
     s32 h;
     s32 q;
     s32 r;
     s32 u;
     u16 g;
+    Unk0217561c_14 *s;
 
     for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
         e = &data_0217561c->mUnk_14[i];
@@ -166,8 +160,8 @@ void func_0203d9d4(void) {
             f = 0;
             if (func_0207a7fc(e->mUnk_3c_4) == 0) {
                 o = &gCourseMap->mUnk_44[e->mUnk_32].mUnk_10;
-                t.mUnk_04 = w.z;
                 t.mUnk_00 = w.x;
+                t.mUnk_04 = w.z;
                 if (func_02040d68(&t, o) < -1394) {
                     f = 1;
                 }
@@ -184,20 +178,17 @@ void func_0203d9d4(void) {
         p = data_0217561c;
         y = data_021759c0->mUnk_3d0 - p->mUnk_000[0].mUnk_10;
         x = p->mUnk_000[0].mUnk_0e;
-        for (j = 0; j < (u32) data_021759c0->mUnk_3d0; j++) {
-            h = p->mUnk_000[j].mUnk_50_0 - 1;
-            b[h] = a[j];
-            d[h] = j;
-            c[h] = p->mUnk_000[j].mUnk_38;
+        for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+            h = p->mUnk_000[i].mUnk_50_0 - 1;
+            b[h] = a[i];
+            d[h] = i;
+            c[h] = p->mUnk_000[(u32) i].mUnk_38;
         }
-        for (m = x + 1; m < y; m++) {
-            q = b[m];
-            u = d[m];
-            r = c[m];
-            for (n = m; n > x; n--) {
-                if (!(c[n - 1] < r) && !(r == c[n - 1] && b[n - 1] < q)) {
-                    break;
-                }
+        for (i = x + 1; i < y; i++) {
+            q = b[i];
+            u = d[i];
+            r = c[i];
+            for (n = i; n > x && (c[n - 1] < r || (r == c[n - 1] && b[n - 1] < q)); n--) {
                 c[n] = c[n - 1];
                 b[n] = b[n - 1];
                 d[n] = d[n - 1];
@@ -207,7 +198,7 @@ void func_0203d9d4(void) {
         }
         for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
             if (d[i] < 8) {
-                data_0217561c->mUnk_000[d[i]].mUnk_50_0 = i + 1;
+                data_0217561c->mUnk_14[d[i]].mUnk_3c_0 = i + 1;
             }
         }
         data_0217561c->mUnk_000[d[0]].mUnk_3c++;
@@ -240,17 +231,17 @@ void func_0203d9d4(void) {
     }
     data_0217561c->mUnk_4f0 = f;
     for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
-        e = &data_0217561c->mUnk_14[i];
+        s = &data_0217561c->mUnk_14[i];
         f = 0;
-        switch (e->mUnk_00) {
+        switch (s->mUnk_00) {
             case 1:
             case 2:
             case 3:
                 f = 1;
                 break;
         }
-        if (f == 0 && (e->mUnk_30 & 0x40) != 0) {
-            func_0203e9a0(e, 1);
+        if (f == 0 && (s->mUnk_30 & 0x40) != 0) {
+            func_0203e9a0(s, 1);
             if (func_0203ef58() != 0) {
                 switch (data_021759c0->mUnk_08) {
                     case 1:
@@ -269,13 +260,13 @@ void func_0203d9d4(void) {
                         break;
                 }
             }
-            e->mUnk_30 &= ~0x40;
+            s->mUnk_30 &= ~0x40;
         }
-        if ((e->mUnk_30 & 8) != 0) {
-            e->mUnk_30 &= ~8;
+        if ((s->mUnk_30 & 8) != 0) {
+            s->mUnk_30 &= ~8;
             if (data_021759c0->mUnk_08 != 4) {
-                func_0207a828(e->mUnk_3c_4);
-                if ((e->mUnk_30 & 1) != 0) {
+                func_0207a828(s->mUnk_3c_4);
+                if ((s->mUnk_30 & 1) != 0) {
                     func_02110cc8(0);
                 }
             }
@@ -300,7 +291,7 @@ static inline u16 func_0203df74_inline(u16 a) {
     return 0;
 }
 
-static inline s32 func_0203df74_b_inline(Unk0217561c_14 *b, s32 *v, Vec3 *a) {
+static inline s16 func_0203df74_b_inline(Unk0217561c_14 *b, s32 *v, Vec3 *a) {
     u16 i;
     u16 k;
     u16 lo;
@@ -313,7 +304,7 @@ static inline s32 func_0203df74_b_inline(Unk0217561c_14 *b, s32 *v, Vec3 *a) {
         hi = lo + r->mUnk_02;
         for (k = lo; k < hi; k++) {
             if (func_0203fa60(b, v, a, i, k) != 0) {
-                return (s16) k;
+                return k;
             }
         }
     }
@@ -330,17 +321,15 @@ static inline s32 func_0203df74_c_inline(Unk02175620_4c *r, u16 c, s32 v) {
     } else {
         x = func_02147f34(t + v, r->mUnk_02 << 12);
     }
-    x = x + (r->mUnk_0a << 12);
-    return (s32) (((s64) x * data_0217561c->mUnk_4e4 + 0x800) >> 12);
+    t = x + (r->mUnk_0a << 12);
+    return (s32) (((s64) t * data_0217561c->mUnk_4e4 + 0x800) >> 12);
 }
 
-// non-matching: the original keeps the halfword at 0x32 of the entry in r6 and the one at 0x38 in r5, here they are in
-// r5 and r6, and the registers that follow from it differ (sizes match, 0x3fc)
 void func_0203df74(Vec3 *a, Unk0217561c_14 *b) {
     s32 v;
-    u16 d;
     u16 c;
-    s32 p;
+    u16 d;
+    s16 p;
     s32 w;
     s32 k;
     Unk02175620_4c *r;
@@ -390,7 +379,7 @@ void func_0203df74(Vec3 *a, Unk0217561c_14 *b) {
     }
     b->mUnk_40 = v;
     b->mUnk_48 = w;
-    k = b->mUnk_48 + ((b->mUnk_24 - 1) << 12);
+    k = ((b->mUnk_24 - 1) << 12) + b->mUnk_48;
     b->mUnk_44 = (s32) (((s64) k * data_0217561c->mUnk_4e8 + 0x800) >> 12);
 }
 

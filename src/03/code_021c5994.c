@@ -90,22 +90,18 @@ void func_ov003_021c5b34(int param_0, int param_1) {
     }
 }
 
-// non-matching: size 0xe8 against 0xd8; the original keeps the scaled second parameter in r7 and runs the copy loops in
-// r2/r3, ours spills the scaled parameter to the stack and uses r5/r6/r7 for the loops.
 void func_ov003_021c5b90(int param_0, int param_1) {
     u16 a[17];
     int b;
     int c;
-    int d;
     int i;
-    int j;
     int n;
     c = param_0 * 0x2a;
     b = func_ov003_021d3254(data_ov003_021da1f4->mUnk_00 + c, 0x20);
-    d = param_1 * 0x1c;
+    param_1 *= 0x1c;
     if (param_0 < data_ov003_021da1f4->mUnk_51) {
         if (b <= 0x10) {
-            d += 6;
+            param_1 += 6;
         }
         func_0214d168(a, 0, 0x22);
         if (b <= 0x10) {
@@ -113,23 +109,18 @@ void func_ov003_021c5b90(int param_0, int param_1) {
         } else {
             n = 0x10;
         }
-        {
-            Unk021c5c68State *s = data_ov003_021da1f4;
-            for (i = 0; i < n; i++) {
-                a[i] = s->mUnk_00[c + i];
-            }
+        for (i = 0; i < n; i++) {
+            a[i] = (data_ov003_021da1f4->mUnk_00 + c)[i];
         }
-        func_ov003_021d2094(data_ov003_021da1f4->mUnk_0c, 0xa, d, 2, 0xa, a, 1);
+        func_ov003_021d2094(data_ov003_021da1f4->mUnk_0c, 0xa, param_1, 2, 0xa, a, 1);
         if (b > 0x10) {
             func_0214d168(a, 0, 0x22);
-            b -= 0x10;
-            {
-                Unk021c5c68State *s = data_ov003_021da1f4;
-                for (j = 0; j < b; j++) {
-                    a[j] = s->mUnk_00[c + 0x10 + j];
-                }
+            n = b - 0x10;
+            for (i = 0; i < n; i++) {
+                a[i] = (data_ov003_021da1f4->mUnk_00 + c)[i + 0x10];
             }
-            func_ov003_021d2094(data_ov003_021da1f4->mUnk_0c, 0xa, d + 0xc, 2, 0xa, a, 1);
+            param_1 += 0xc;
+            func_ov003_021d2094(data_ov003_021da1f4->mUnk_0c, 0xa, param_1, 2, 0xa, a, 1);
         }
     }
 }

@@ -304,15 +304,14 @@ void func_02055f68(void) {
     }
 }
 
-// non-matching: same size; register allocation only; 12 words differ; first: original `mov r1, #0`, ours `mov r0, #0`.
-// The hoisted 0 for the inner loop is in r1 in the original (ours r0), the inner counter in r8 (ours r1), the 0x1ff
-// mask in r9 (ours r8) and the and/address temps in sl/r0 (ours sb); the instruction order matches.
 void func_02055fc8(void) {
     Unk0217aa04_04 *v1;
     s32 m[4];
     s32 i;
+    s32 k;
     s32 j;
     s32 n;
+    Unk0217aa04_04 *p;
 
     v1 = data_0217aa04->mUnk_04;
     if (v1 == 0) {
@@ -329,9 +328,10 @@ void func_02055fc8(void) {
     }
     n = 0;
     for (j = 0; j < 3; j++) {
-        for (i = 0; i < 4; i++) {
-            v1[n].mUnk_00 = (u8) (0x40 * j) | 0xc0000c00 | ((i * 0x40 & 0x1ff) << 16);
-            v1[n++].mUnk_04_h = (0x100 * j + i * 8) | 0xf000;
+        for (k = 0; k < 4; k++) {
+            p = &v1[n++];
+            p->mUnk_00 = (u8) (0x40 * j) | 0xc0000c00 | ((k * 0x40 & 0x1ff) << 16);
+            p->mUnk_04_h = (0x100 * j + k * 8) | 0xf000;
         }
     }
     func_0200ee74(v1, 0x400);

@@ -199,8 +199,6 @@ void func_0200be00(void) {
     }
 }
 
-// non-matching: case 10 uses r2 for the pointer and r1 for the zero in the original, ours swaps them (5 words), and the
-// final branch loads the halfword before the data address in the original
 void func_0200be44(Unk021425e8 *a) {
     Unk0200bd34 v;
     Unk0200bd34 w;
@@ -224,7 +222,7 @@ void func_0200be44(Unk021425e8 *a) {
                 data_0216fdec->mUnk_20 = 0;
                 data_0216fdec->mUnk_1e = 0;
                 if (data_0216fdec->mUnk_00 != 0) {
-                    data_0216fdec->mUnk_00(20);
+                    data_0216fdec->mUnk_00(20, 0);
                 }
                 if (data_0216fdec->mUnk_00 != 0) {
                     data_0216fdec->mUnk_00(25, 0);

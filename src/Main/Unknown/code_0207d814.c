@@ -14,9 +14,9 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217a000.h"
 
-// non-matching: extra callee-saved r5 (b kept in r5, value temp in r4, zero in ip instead of lr, push {r4, r5, lr} +
-// sub sp, #4), size 0xe0 against 0xd0
 void func_0207d814(struct Unk02089a24 *a, struct Unk020888b4 *b) {
+    s32 t;
+
     a->mUnk_00 = b->mUnk_00->mUnk_2cc->mUnk_10;
     a->mUnk_04 = a->mUnk_00;
     a->mUnk_08 = 0;
@@ -30,9 +30,8 @@ void func_0207d814(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         return;
     }
     if (data_021759c0->mUnk_00c == 6) {
-        b->mUnk_00->mUnk_2a8 =
-            (s32) (((s64) b->mUnk_00->mUnk_2cc->mUnk_10 * func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00) + 0x800) >>
-                   12);
+        t = func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00);
+        b->mUnk_00->mUnk_2a8 = (s32) (((s64) b->mUnk_00->mUnk_2cc->mUnk_10 * t + 0x800) >> 12);
         b->mUnk_00->mUnk_cc = b->mUnk_00->mUnk_2a8;
         b->mUnk_00->mUnk_d0 = b->mUnk_00->mUnk_cc;
         return;
@@ -74,20 +73,18 @@ u16 func_0207d8e4(s32 a) {
     return p[i];
 }
 
-// non-matching: callee-saved registers assigned in another order (original: m r4, n r5, b r6, a r7, loop r8, r9, k r10,
-// c r11), the entry pointer in the loop is read at 0x104/0x108 instead of through add #0xe8; size 0x490 against 0x494
 void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
+    s32 n = a->mUnk_14;
+    u16 m = b->mUnk_04;
     u16 i;
     s32 f;
     s32 v;
     s32 d;
+    s32 *k = &a->mUnk_1c;
+    Unk0217aec0 *r = func_02085424();
     s32 e;
     s32 g;
-    u16 m = b->mUnk_04;
-    s32 n = a->mUnk_14;
-    Unk0217aec0 *r = func_02085424();
     const s32 *t;
-    s32 *k = &a->mUnk_1c;
 
     a->mUnk_18 = 0;
     f = 0;
@@ -113,13 +110,14 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
                         d = func_02085408(i);
                         if (d >= 0) {
                             Unk020888b4 *u = func_0207a974(d)->mUnk_310;
+                            Unk02089a24 *s = &u->mUnk_e8;
 
                             if (u->mUnk_154 != 0) {
-                                if (u->mUnk_e8.mUnk_1c == 2) {
+                                if (s->mUnk_1c == 2) {
                                     k[0] = 2;
                                     k[1] = k[0];
-                                    u->mUnk_e8.mUnk_20 = 1;
-                                    u->mUnk_e8.mUnk_1c = u->mUnk_e8.mUnk_20;
+                                    s->mUnk_20 = 1;
+                                    s->mUnk_1c = s->mUnk_20;
                                     break;
                                 }
                             }
@@ -135,7 +133,8 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
     } else {
         t = data_usa_0217ae34;
     }
-    k[2] = (s32) (((s64) t[n - 1] * r->mUnk_04) >> 12);
+    v = t[n - 1];
+    k[2] = (s32) (((s64) v * r->mUnk_04) >> 12);
     if (func_02085390() != 0) {
         n = r->mUnk_04;
         d = func_02085434();
@@ -147,7 +146,8 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
             } else {
                 t = data_usa_0217ae34;
             }
-            if (e > (s32) (((s64) t[func_0203c8dc((u16) d)] * n) >> 12)) {
+            v = t[func_0203c8dc((s32) (u16) d)];
+            if (e > (s32) (((s64) v * n) >> 12)) {
                 a->mUnk_10 = (s32) (((s64) a->mUnk_10 * 0xf85) >> 12);
                 a->mUnk_18 = 1;
             }

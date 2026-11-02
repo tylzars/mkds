@@ -92,8 +92,6 @@ u32 func_ov000_021938cc(Unk0218f960 *param_1, int param_2, int param_3, int *par
     return 0;
 }
 
-// non-matching: case 3's clearing loop keeps the pointer in r0 and shares its zero with the two stores after it; the
-// original copies e into r2 for the pointer, zeroes r0 and sets r0 to 0 again after the loop (size 0x230 against 0x234)
 s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
     Unk0218f960_00 *a = param_1->mUnk_00;
     Unk02190ed4Cb b;
@@ -102,8 +100,6 @@ s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
     Unk02193954_3 *e;
     Unk02193954_4 *f;
     s32 g;
-    enum { K0 } h;
-    u8 *q;
 
     if (param_1 == 0) {
         func_0213442c(data_ov000_021b32f0, data_ov000_021b32b0, 0, 0x22);
@@ -140,14 +136,7 @@ s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
                     func_ov000_02196590(param_1, data_ov000_021b32e0);
                     return 1;
                 }
-                ((u8 *) d)[0] = 0;
-                ((u8 *) d)[1] = 0;
-                ((u8 *) d)[2] = 0;
-                ((u8 *) d)[3] = 0;
-                ((u8 *) d)[4] = 0;
-                ((u8 *) d)[5] = 0;
-                ((u8 *) d)[6] = 0;
-                ((u8 *) d)[7] = 0;
+                memset(d, 0, 8);
                 d->mUnk_00 = param_2->mUnk_1c;
                 g = func_ov000_02190ed4(param_1, b, d, param_2, 0);
                 if (g != 0) {
@@ -173,12 +162,7 @@ s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
                     func_ov000_02196590(param_1, data_ov000_021b32e0);
                     return 1;
                 }
-                h = 0x10;
-                q = (u8 *) e;
-                do {
-                    *q++ = 0;
-                    h--;
-                } while (h != 0);
+                memset(e, 0, 0x10);
                 e->mUnk_00 = param_2->mUnk_1c;
                 e->mUnk_0c = 0;
                 g = func_ov000_02190ed4(param_1, b, e, param_2, 0);
@@ -192,10 +176,7 @@ s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
                     func_ov000_02196590(param_1, data_ov000_021b32e0);
                     return 1;
                 }
-                ((u8 *) f)[0] = 0;
-                ((u8 *) f)[1] = 0;
-                ((u8 *) f)[2] = 0;
-                ((u8 *) f)[3] = 0;
+                memset(f, 0, 4);
                 f->mUnk_00 = param_2->mUnk_1c;
                 g = func_ov000_02190ed4(param_1, b, f, param_2, 0);
                 if (g != 0) {

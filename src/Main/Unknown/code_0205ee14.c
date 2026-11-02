@@ -30,19 +30,17 @@ static inline s32 func_0205f218_inline(void) {
     return (p == 0 ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13;
 }
 
-// non-matching: the original keeps the bit counters in other registers (the outer index in r5 and the bit offset in r3
-// where this has them in r2 and ip, the inner count in ip and the accumulator in lr) and pushes sl as well, so the
-// frame is 0x10 bytes and the function 0x1e8 bytes; this is 0x1e4 bytes.
 u32 func_0205fe1c(u8 *a, Unk02056bc0 *b, s32 c) {
     u8 d[10] = {0};
     u32 e;
     s32 f;
     u32 g;
     u8 m;
+    s32 i;
     u16 k;
     u8 j;
-    s32 i;
     u32 n;
+    s32 h;
     u8 q;
     s32 x;
 
@@ -58,22 +56,22 @@ u32 func_0205fe1c(u8 *a, Unk02056bc0 *b, s32 c) {
     if (g >= 0x200) {
         return 0;
     }
-    *(u32 *) &d[0] = ((e & 0x3ffff) << 14) | ((f & 0x1f) << 9) | (g & 0x1ff);
+    e = ((e & 0x3ffff) << 14) | ((f & 0x1f) << 9);
+    *(u32 *) &d[0] = e | (g & 0x1ff);
     func_0214d1fc(&b->mUnk_04, &d[4], 4);
     *(u16 *) &d[8] = 0;
     func_0204b284(d, 10, 1);
     x = 0xc3;
-    for (i = 9; i >= 0; i--) {
-        d[i] ^= x;
-        x = d[i];
+    for (h = 9; h >= 0; h--) {
+        d[h] ^= x;
+        x = d[h];
     }
-    n = 0;
-    for (i = 0; i < 16; i++) {
+    for (i = 0, n = 0; i < 16; i++) {
         k = 0;
         for (j = 0; j < 5; j++) {
             q = n;
             m = q + j;
-            k = (u16) (k | ((d[(u8) (m / 8)] >> (7 - m % 8)) & 1)) << 1;
+            k = (u16) (k | ((d[(u8) (m / 8)] >> (u8) (7 - m % 8)) & 1)) << 1;
         }
         a[i] = data_usa_0215494c[(u8) (k / 2)];
         n += 5;
@@ -210,8 +208,13 @@ void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
     func_0205ee74(h, &e);
 }
 
-// non-matching: 4 words: the four stores of zero before the loop are in the order 4, 12, 8, 16 in the original, with
-// the `mov fp, #2` after the second one; this source gives 12, 8, 4, 16 with the mov after the first.
+static inline u32 func_0205f700_inline(u16 i, u32 a) {
+    if (func_0203c8dc(i) > a) {
+        return 0;
+    }
+    return 1;
+}
+
 void func_0205f700(void) {
     s32 v1;
     u32 t;
@@ -259,11 +262,7 @@ void func_0205f700(void) {
                 switch (data_021759c0->mUnk_1c) {
                     case 0:
                     case 2:
-                        if (func_0203c8dc(i) > a) {
-                            t = 0;
-                        } else {
-                            t = 1;
-                        }
+                        t = func_0205f700_inline(i, a);
                         break;
                     case 1:
                         if (c == func_0205d480()) {
@@ -277,11 +276,7 @@ void func_0205f700(void) {
                 }
             }
         } else {
-            if (func_0203c8dc(i) > a) {
-                t = 0;
-            } else {
-                t = 1;
-            }
+            t = func_0205f700_inline(i, a);
         }
         if ((data_0217aa00->mUnk_0457 & (1 << data_0217aa00->mUnk_1e8c[data_0217aa00->mUnk_1e8c[i]])) == 0) {
             func_0205fa00(i, v2, 0, t);
@@ -446,15 +441,16 @@ static inline u16 func_0205ef70_inline(u16 a) {
     s32 b;
     s32 c;
     s32 d;
+    Unk0217aa1c_00 *p;
 
     b = func_0205dc7c(a);
     c = func_0205db28();
     d = func_0205dc7c(b);
-    return data_0217aa1c->mUnk_000[c][d].mUnk_00;
+    p = &data_0217aa1c->mUnk_000[c][0];
+    p += d;
+    return p->mUnk_00;
 }
 
-// non-matching: the two halfword loads from the table behind data_0217aa1c take the row pointer and the offset in the
-// other order than the original ([r6, r3] and [r2, r1]; 2 words).
 void func_0205ef70(void) {
     u16 i;
     s32 c;

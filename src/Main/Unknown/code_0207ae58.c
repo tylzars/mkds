@@ -311,8 +311,6 @@ void func_0207b708(struct Unk0206bcb0_590 *a, s32 b) {
     *p->mUnk_1c[p->mUnk_1a] = p->mUnk_0c;
 }
 
-// non-matching: same size; 25 words differ: the original holds the word at 0x48 in r3 and c in r2 (temps in r0), ours
-// has them in r2 and r0, and the original forms `add r5, r6, #36` before the step selection
 void func_0207b734(Unk0206bcb0 *a) {
     s32 b;
     Unk0206bcb0_590 *q;
@@ -322,11 +320,11 @@ void func_0207b734(Unk0206bcb0 *a) {
     u32 v;
     Unk0206bcb0_590_08 *s;
 
-    b = (a->mUnk_44 & 8) != 0 ? 0x2000 : 0x1000;
     q = a->mUnk_590;
     p = (Unk0206bcb0_590_24 *) &q->mUnk_024;
     r = q->mUnk_008;
     c = p->mUnk_08;
+    b = (a->mUnk_44 & 8) != 0 ? 0x2000 : 0x1000;
     v = a->mUnk_48;
     if ((v & 8) != 0) {
         if (data_021759c0->mUnk_00c != 6) {

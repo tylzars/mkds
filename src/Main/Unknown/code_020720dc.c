@@ -241,23 +241,26 @@ void func_02072600(Unk0206bcb0 *p) {
     p->mUnk_386 = 0;
 }
 
-// non-matching: ours is 0x10c bytes, original 0x118; the original reloads the pointer at 0x2cc where ours reuses it, so
-// the literal offsets and 60 lines differ.
 void func_020726bc(Unk0206bcb0 *p) {
     s32 a;
     s32 b;
-    s32 i;
+    s16 i;
+    Unk0206cdd4_A *q;
+    s32 *r;
 
     p->mUnk_2cc = func_0208ae8c(p->mUnk_74);
     a = 0x1000;
     b = 0;
     if (func_02062eb0() == 0) {
-        if (data_021759c0->mUnk_010 == 0) {
-            a = 0xb33;
-            b = -0x28;
-        } else if (data_021759c0->mUnk_010 == 1) {
-            a = 0xd9a;
-            b = -0x14;
+        switch (data_021759c0->mUnk_010) {
+            case 0:
+                a = 0xb33;
+                b = -0x28;
+                break;
+            case 1:
+                a = 0xd9a;
+                b = -0x14;
+                break;
         }
     }
     p->mUnk_2cc->mUnk_10 = (s32) (((s64) p->mUnk_2cc->mUnk_10 * a) >> 12);
@@ -265,9 +268,12 @@ void func_020726bc(Unk0206bcb0 *p) {
     p->mUnk_3f4 = 0x1000 - p->mUnk_2cc->mUnk_68[4];
     p->mUnk_3f4 = func_02147f34(p->mUnk_3f4, p->mUnk_2cc->mUnk_00 << 1);
     p->mUnk_2d0 = func_0208ae74(p->mUnk_74);
+    q = p->mUnk_2cc;
+    r = p->mUnk_2d0;
     for (i = 0; i < 12; i++) {
-        if (p->mUnk_2cc->mUnk_68[i] < 0x1000) {
-            p->mUnk_2cc->mUnk_68[i] = (s32) (((s64) p->mUnk_2cc->mUnk_68[i] * *p->mUnk_2d0 + 0x800) >> 12);
+        a = q->mUnk_68[i];
+        if (a < 0x1000) {
+            q->mUnk_68[i] = (s32) (((s64) a * *r + 0x800) >> 12);
         }
     }
 }
@@ -369,7 +375,6 @@ void func_02072930(Unk0206bcb0 *p) {
     }
 }
 
-// non-matching: same size; register allocation only.
 void func_02072b94(Unk0206bcb0 *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c) {
     Unk0206bcb0_514 *q;
     Vec3 v;
@@ -451,8 +456,6 @@ s32 func_02072d84(Unk0206bcb0 *p, s32 *a) {
     return r;
 }
 
-// non-matching: ours is 0x41c bytes, original 0x420; the original saves one register fewer (r4-r8) and orders the
-// 64-bit angle and multiply sequences differently.
 void func_02072eb8(Unk0206bcb0 *p) {
     Vec3 a;
     Vec3 b;
@@ -464,25 +467,28 @@ void func_02072eb8(Unk0206bcb0 *p) {
     s32 y;
     s32 i;
     Unk020ee684 *e;
+    s64 l;
 
     if (p->mUnk_3c4 == -1) {
+        i = p->mUnk_74;
         if (data_021759c0->mUnk_08 == 2) {
-            p->mUnk_3c4 = func_02041170(0);
+            i = func_02041170(0);
         } else {
-            p->mUnk_3c4 = func_02041170(data_0217561c->mUnk_000[p->mUnk_74].mUnk_46);
+            i = func_02041170(data_0217561c->mUnk_000[i].mUnk_46);
         }
+        p->mUnk_3c4 = i;
     }
+    i = (u16) p->mUnk_3c4;
     if (data_021759c0->mUnk_08 == 2) {
-        r = func_02040fd8(p->mUnk_3c4, &a, &c);
+        r = func_02040fd8(i, &a, &c);
     } else {
-        r = func_020410a4(p->mUnk_3c4, &a, &c);
+        r = func_020410a4(i, &a, &c);
     }
     i = ((u16) ((s32) (((s64) c.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
     func_02146d44(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
     func_02146d78(&data_02154f70, m, &b);
     if (data_021759c0->mUnk_08 != 2 && gCourseMap->mUnk_60 != 0) {
-        e = &(data_027e00c8)[p->mUnk_74];
-        e->mUnk_1f0.mUnk_00 = func_02040f78(p->mUnk_3c4);
+        (e = &(data_027e00c8)[p->mUnk_74])->mUnk_1f0.mUnk_00 = func_02040f78((u16) p->mUnk_3c4);
         e->mUnk_1f0.mUnk_04 = 1;
     }
     if (data_021759c0->mUnk_08 != 1) {
@@ -493,19 +499,22 @@ void func_02072eb8(Unk0206bcb0 *p) {
         func_02147fd8((s32) (((s64) data_usa_02165504 * y) >> 12), &b, &a, &a);
         if (c.x != 0 && y != 0) {
             i = ((u16) ((s32) (((s64) c.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
-            a.y += (s32) (((s64) (s32) (((s64) data_0215d4b4[i * 2] * -y + 0x800) >> 12) * data_usa_02165504 + 0x800) >>
-                          12);
+            l = data_0215d4b4[i * 2];
+            i = (s32) ((l * -y + 0x800) >> 12);
+            a.y += (s32) (((s64) i * data_usa_02165504 + 0x800) >> 12);
         }
         if (c.z != 0 && x != 0) {
             i = ((u16) ((s32) (((s64) c.z * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
-            a.y += (s32) (((s64) (s32) (((s64) data_0215d4b4[i * 2] * x + 0x800) >> 12) * data_usa_02165504 + 0x800) >>
-                          12);
+            l = data_0215d4b4[i * 2];
+            i = (s32) ((l * x + 0x800) >> 12);
+            a.y += (s32) (((s64) i * data_usa_02165504 + 0x800) >> 12);
         }
     }
     a.y += 0x28000;
-    if (p->mUnk_48 & 0x800000) {
+    x = p->mUnk_48;
+    if (x & 0x800000) {
         func_02081f10(func_0208b7bc(0x71, &a), p->mUnk_74, 0x32);
-    } else if (p->mUnk_48 & 0x1000000) {
+    } else if (x & 0x1000000) {
         func_02081f10(func_0208b7bc(0x70, &a), p->mUnk_74, 0x32);
     }
     func_02072b94(p, &a, &b, r);

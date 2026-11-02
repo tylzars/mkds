@@ -145,7 +145,7 @@ typedef struct Unk02165608 {
 } Unk02165608;
 
 extern const Unk02165608 data_usa_02165608;
-extern const s32 data_usa_02165504;
+extern s32 data_usa_02165504;
 extern const s32 data_usa_02165500;
 extern const s16 data_usa_021654c0;
 

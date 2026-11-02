@@ -49,25 +49,24 @@ void func_02074978(Unk02061808 *p) {
     func_02076ed4(p);
 }
 
-// non-matching: registers only (22 words, same size): the original keeps q in ip and q->mUnk_18.x in r2 and puts
-// the x product in r4/lr; here q is in lr, mUnk_18.x in ip and the product in r2/r1, with the y/z registers shifted
 void func_020748b8(Unk02061808 *p) {
     Unk020748b8_218 *q = p->mUnk_218;
-    s32 a, b, c, d;
+    s32 a, b, c;
+    s32 d, e, f;
     s32 x, y, z;
-    s32 t;
+    s64 t;
 
     if (q->mUnk_44 != 0) {
         t = p->mUnk_244;
         a = q->mUnk_18.x;
         d = q->mUnk_24.x - a;
-        x = (s32) (((s64) d * t) >> 12);
+        x = (s32) ((d * t) >> 12);
         b = q->mUnk_18.y;
-        d = q->mUnk_24.y - b;
-        y = (s32) (((s64) d * t) >> 12);
+        e = q->mUnk_24.y - b;
+        y = (s32) ((e * t) >> 12);
         c = q->mUnk_18.z;
-        d = q->mUnk_24.z - c;
-        z = (s32) (((s64) d * t) >> 12);
+        f = q->mUnk_24.z - c;
+        z = (s32) ((f * t) >> 12);
         p->mUnk_018.x = a + x;
         p->mUnk_018.y = b + y;
         p->mUnk_018.z = c + z;

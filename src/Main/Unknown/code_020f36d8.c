@@ -471,9 +471,6 @@ s32 func_020f3a58(Unk020f371c_Ref *in, Unk020f371c_Ref *out, Vec3 *pos) {
     return 0;
 }
 
-// non-matching: 74 words differ (same size and frame): in both loops the original computes the dot product's four
-// differences in x, x, z, z order before the multiplies (ours does the z terms before the second x difference) and
-// keeps i, child and c in r7, r9 and r6 (ours r9, sl and r7; second loop sl, fp and r9 against fp, ip and sl)
 void func_020f371c(Unk020f371c_Ref *in, Unk020f371c_Ref *out, u32 idx, s32 flag) {
     Unk020f371c *node = in->mUnk_00;
     s32 side = in->mUnk_04;
@@ -485,8 +482,8 @@ void func_020f371c(Unk020f371c_Ref *in, Unk020f371c_Ref *out, u32 idx, s32 flag)
     s32 found;
     s32 best;
     Unk020f371c *best2;
-    s32 i;
     Vec3 *pos;
+    s32 i;
     Vec3 *c;
     Unk0206bcb0 *other;
     s32 d;
@@ -521,12 +518,12 @@ void func_020f371c(Unk020f371c_Ref *in, Unk020f371c_Ref *out, u32 idx, s32 flag)
                     child = side != 0 ? node->mUnk_00[i] : node->mUnk_0c[i];
                     if (child != 0) {
                         c = child->mUnk_18;
-                        if (((c->x - origin->x) >> 12) * ((pos->x - origin->x) >> 12) +
-                                ((pos->z - origin->z) >> 12) * ((c->z - origin->z) >> 12) >
-                            0) {
-                            d = ((c->x - pos->x) >> 12) * ((c->x - pos->x) >> 12) +
-                                ((c->y - pos->y) >> 12) * ((c->y - pos->y) >> 12) +
-                                ((c->z - pos->z) >> 12) * ((c->z - pos->z) >> 12);
+                        d = ((pos->x - origin->x) >> 12) * ((c->x - origin->x) >> 12);
+                        d += ((pos->z - origin->z) >> 12) * ((c->z - origin->z) >> 12);
+                        if (d > 0) {
+                            d = ((child->mUnk_18->x - pos->x) >> 12) * ((child->mUnk_18->x - pos->x) >> 12);
+                            d += ((child->mUnk_18->y - pos->y) >> 12) * ((child->mUnk_18->y - pos->y) >> 12);
+                            d += ((child->mUnk_18->z - pos->z) >> 12) * ((child->mUnk_18->z - pos->z) >> 12);
                             if (d < best) {
                                 best = d;
                                 cur = child;
@@ -546,12 +543,12 @@ void func_020f371c(Unk020f371c_Ref *in, Unk020f371c_Ref *out, u32 idx, s32 flag)
                 if (child != 0 && child != node) {
                     if (found != 0) {
                         c = child->mUnk_18;
-                        if (((c->x - origin->x) >> 12) * ((pos->x - origin->x) >> 12) +
-                                ((pos->z - origin->z) >> 12) * ((c->z - origin->z) >> 12) >
-                            0) {
-                            d = ((c->x - pos->x) >> 12) * ((c->x - pos->x) >> 12) +
-                                ((c->y - pos->y) >> 12) * ((c->y - pos->y) >> 12) +
-                                ((c->z - pos->z) >> 12) * ((c->z - pos->z) >> 12);
+                        d = ((pos->x - origin->x) >> 12) * ((c->x - origin->x) >> 12);
+                        d += ((pos->z - origin->z) >> 12) * ((c->z - origin->z) >> 12);
+                        if (d > 0) {
+                            d = ((child->mUnk_18->x - pos->x) >> 12) * ((child->mUnk_18->x - pos->x) >> 12);
+                            d += ((child->mUnk_18->y - pos->y) >> 12) * ((child->mUnk_18->y - pos->y) >> 12);
+                            d += ((child->mUnk_18->z - pos->z) >> 12) * ((child->mUnk_18->z - pos->z) >> 12);
                             if (d < best) {
                                 best = d;
                                 best2 = child;

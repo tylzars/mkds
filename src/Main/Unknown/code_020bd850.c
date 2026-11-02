@@ -130,9 +130,9 @@ void func_020be2f4(Unk020d029c *a) {
     p[3].mUnk_06 = e[3] >> 4;
 }
 
-// non-matching: same size; 33 lines differ; first: original `push {r4, r5, r6, r7, lr}`, ours `push {r4, r5, lr}`
 u32 func_020be15c(u16 a) {
     u32 r;
+    Unk0217b3d8 *d;
     Unk0217b3d8_fc *e;
     s32 v;
 
@@ -144,12 +144,12 @@ u32 func_020be15c(u16 a) {
         r = 0xc9;
     } else if (data_021759c0->mUnk_08 != 2 && func_0203c880(a) != 0) {
         r = 0x24;
-    } else if ((e = &data_0217b3d8->mUnk_0fc[a])->mUnk_00 != 0) {
-        v = e->mUnk_00 - 1;
+    } else if ((d = data_0217b3d8)->mUnk_0fc[a].mUnk_00 != 0) {
+        v = d->mUnk_0fc[a].mUnk_00 - 1;
         if (v % 12 < 6) {
             r = 0xc9;
-        } else if (e->mUnk_04 == 5) {
-            switch (e->mUnk_08) {
+        } else if ((e = (Unk0217b3d8_fc *) &d->mUnk_0fc[0].mUnk_04)[a].mUnk_00 == 5) {
+            switch (d->mUnk_0fc[a].mUnk_08) {
                 case 1:
                     r = 0x11;
                     break;
@@ -161,10 +161,10 @@ u32 func_020be15c(u16 a) {
                     break;
             }
         } else {
-            r = LookupRaceSNcerIndex(a, e->mUnk_04);
+            r = LookupRaceSNcerIndex(a, e[a].mUnk_00);
         }
-    } else if (data_0217b3d8->mUnk_040[a] != 0x13) {
-        r = LookupRaceSNcerIndex(a, data_0217b3d8->mUnk_040[a]);
+    } else if (d->mUnk_040[a] != 0x13) {
+        r = LookupRaceSNcerIndex(a, d->mUnk_040[a]);
     } else if (data_027e00c8[a].mUnk_000 == 1) {
         r = 0x16;
     } else {

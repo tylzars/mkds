@@ -9,6 +9,7 @@
 #include "code_0200f5ac.h"
 
 #pragma thumb on
+#pragma opt_rebuildconditionals off
 
 static inline u32 func_02058b38_inline(void) {
     if (data_0217aa00 == 0) {
@@ -100,8 +101,6 @@ void func_02058c74(void) {
     func_02056464(&data_0217aa00->mUnk_045c[v]);
 }
 
-// non-matching: 12 words in the inline chain after func_02046b40: the zero and the three flags of
-// func_02058cac_inline4/3/2 sit in r2, r1, r5 (original r3, r2, r1) and the loaded word in r3 (original r5).
 s32 func_02058cac(void) {
     s32 r;
     u16 v;

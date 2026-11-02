@@ -84,9 +84,6 @@ void func_020dd6c8(void *a, Unk020dc474 *p, void *b, u32 c) {
     func_020ea868(gWanwanRockShadow, &s, &p->mUnk_00.mUnk_1c, c);
 }
 
-// non-matching: the original keeps the constant 0 in r1 (stored to the words at 0x48 and 0x50 and passed as the zero
-// arguments) and copies it into r4 (mov r4, r1); this build uses r4 itself for the zeros and the registers of the code
-// after it differ (0x448 bytes vs 0x44c)
 void func_020dd27c(void *a, Unk020dc474 *p) {
     u32 f;
     Unk020d7b88 m;
@@ -114,12 +111,11 @@ void func_020dd27c(void *a, Unk020dc474 *p) {
     if (h == 0) {
         w.y = p->mUnk_ac + 0xd000 - v.y;
         if (w.y > 0) {
+            k = 1;
             w.x = 0;
             w.z = 0;
-            k = 1;
             if (p->mUnk_fc != 0) {
                 if (!(p->mUnk_00.mUnk_78 & 4)) {
-                    c.mUnk_00 = 0x1a1;
                     if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
                         y = 2;
                     } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
@@ -127,6 +123,7 @@ void func_020dd27c(void *a, Unk020dc474 *p) {
                     } else {
                         y = 4;
                     }
+                    c.mUnk_00 = 0x1a1;
                     c.mUnk_04 = &p->mUnk_00.mUnk_04;
                     c.mUnk_08 = y;
                     c.mUnk_0c = func_020d4ef4(&p->mUnk_00.mUnk_04);
@@ -139,7 +136,6 @@ void func_020dd27c(void *a, Unk020dc474 *p) {
             k = 1;
             if (p->mUnk_fc != 0) {
                 if (!(p->mUnk_00.mUnk_78 & 4)) {
-                    d.mUnk_00 = 0x1df;
                     if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
                         y = 2;
                     } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
@@ -147,6 +143,7 @@ void func_020dd27c(void *a, Unk020dc474 *p) {
                     } else {
                         y = 4;
                     }
+                    d.mUnk_00 = 0x1df;
                     d.mUnk_04 = &p->mUnk_00.mUnk_04;
                     d.mUnk_08 = y;
                     d.mUnk_0c = func_020d4ef4(&p->mUnk_00.mUnk_04);
@@ -171,19 +168,19 @@ void func_020dd27c(void *a, Unk020dc474 *p) {
                 x = p->mUnk_160[2]->x - p->mUnk_00.mUnk_04.x;
                 z = p->mUnk_160[2]->z - p->mUnk_00.mUnk_04.z;
             }
-            t = (s32) (((s64) p->mUnk_00.mUnk_10.x * x + (s64) p->mUnk_00.mUnk_10.z * z) >> 12);
-            t = (s32) (((s64) t << 9) >> 12);
+            t = (s32) (((s64) (s32) (((s64) p->mUnk_00.mUnk_10.x * x + (s64) p->mUnk_00.mUnk_10.z * z) >> 12) << 9) >>
+                       12);
             if (t > 0x3000) {
                 t = 0x3000;
             } else if (t < 0x2800) {
                 t = 0x2800;
             }
             p->mUnk_00.mUnk_10.y = t;
-        } else if (p->mUnk_e8 != 0xd000) {
-            p->mUnk_00.mUnk_10.y = 0;
-        } else {
+        } else if (p->mUnk_e8 == 0xd000) {
             p->mUnk_00.mUnk_10.y = 0x2000;
             p->mUnk_e8 += 0x1000;
+        } else {
+            p->mUnk_00.mUnk_10.y = 0;
         }
         if (h != 0) {
             if (f & 0x1e34ef) {
@@ -263,8 +260,6 @@ static inline s64 func_020dccc8_inline(const Vec3 *v) {
     return (s64) v->x * v->x + (s64) v->z * v->z;
 }
 
-// non-matching: same size; from +0xf8 (the second generator step) the loop counter update and the umull/mla sum are
-// scheduled differently and the registers follow (72 words)
 void func_020dccc8(Unk020dc474 *p) {
     Vec3 *q;
     Vec3 *c;
@@ -308,27 +303,28 @@ void func_020dccc8(Unk020dc474 *p) {
                 }
                 r = func_020d22d0();
                 d = v + 0x2d000;
-                j++;
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 i = (u16) (((r->mUnk_00 >> 32) * 0x10000) >> 32) >> 4;
+                j++;
                 q->x = p->mUnk_a0.x + (s32) (((s64) data_0215d4b4[i * 2] * d) >> 12);
                 q->z = p->mUnk_a0.z + (s32) (((s64) data_0215d4b4[i * 2 + 1] * d) >> 12);
                 if (j > 5) {
                     break;
                 }
                 c = p->mUnk_160[3];
-                zp = q->z - c->z;
                 xp = q->x - c->x;
-                if ((s64) zp * zp + (s64) xp * xp < 0x7e9000000LL) {
+                zp = q->z - c->z;
+                if ((s64) (s32) xp * xp + (s64) (s32) zp * zp < 0x7e9000000LL) {
                     continue;
                 }
                 g = (s32) (((s64) xp * dx + (s64) zp * dz) >> 12);
                 if (g < 0) {
+                    g = -g;
                     e = (s32) ((-(s64) xp * dz + (s64) zp * dx) >> 12);
                     if (e < 0) {
                         e = -e;
                     }
-                    if (-g >> 2 >= e) {
+                    if (g >> 2 >= e) {
                         continue;
                     }
                 }
@@ -345,9 +341,10 @@ void func_020dccc8(Unk020dc474 *p) {
         u = func_02061fa4();
         o = func_0207a974(u);
         if (func_0206c0e0(o) == 0) {
-            if ((s64) (o->mUnk_80.z - p->mUnk_a0.z) * (o->mUnk_80.z - p->mUnk_a0.z) +
-                    (s64) (o->mUnk_80.x - p->mUnk_a0.x) * (o->mUnk_80.x - p->mUnk_a0.x) <
-                (s64) p->mUnk_1dc * p->mUnk_1dc) {
+            e = p->mUnk_1dc;
+            if ((s64) (o->mUnk_80.x - p->mUnk_a0.x) * (o->mUnk_80.x - p->mUnk_a0.x) +
+                    (s64) (o->mUnk_80.z - p->mUnk_a0.z) * (o->mUnk_80.z - p->mUnk_a0.z) <
+                (s64) e * e) {
                 p->mUnk_1f0 = &func_0207a974(u)->mUnk_80;
                 p->mUnk_1f4 = &func_0207a974(u)->mUnk_a4;
                 p->mUnk_00.mUnk_80.mUnk_10 = 1;
@@ -394,9 +391,6 @@ void func_020dcc0c(Unk020dc474 *p) {
     func_0210b7a8(&a);
 }
 
-// non-matching: matches up to the call to func_020d7b34; for the test against t * t the original loads a.z, a.x,
-// then the words at 0x18 and 0x10 and multiplies the word at 0x18 by a.x first; this build loads the word at 0x10
-// earlier and uses other registers (21 words)
 void func_020dc7c0(Unk020dc474 *p) {
     Vec3 a;
     Vec3 b;
@@ -442,7 +436,8 @@ void func_020dc7c0(Unk020dc474 *p) {
     } else {
         func_020d7b34((u16) (((s64) func_02148538(a.x, a.z) * 0x28be60db9391LL + 0x80000000000LL) >> 44), &p->mUnk_d4);
     }
-    t = (s32) (((s64) p->mUnk_00.mUnk_10.x * a.z) >> 12) - (s32) (((s64) p->mUnk_00.mUnk_10.z * a.x) >> 12);
+    t = (s32) (((s64) p->mUnk_00.mUnk_10.x * a.z) >> 12);
+    t -= (s32) (((s64) p->mUnk_00.mUnk_10.z * a.x) >> 12);
     if (((s64) a.x * a.x + (s64) a.z * a.z) * 10 < (s64) t * t) {
         p->mUnk_00.mUnk_10.x >>= 1;
         p->mUnk_00.mUnk_10.z >>= 1;

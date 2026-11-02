@@ -103,39 +103,37 @@ void func_02085e04(void) {
     }
 }
 
-// non-matching: 4 bytes longer; the original loads e->mUnk_00 once before the inner loop, from data + j * 48 with
-// the 0x70 offset folded into the loads; here data + 0x70 is formed apart and the load stays in the loop.
 void func_02085d1c(void) {
-    u16 i;
     u16 j;
     u16 k;
     s32 f;
+    s32 g;
     Unk021759c0_70 *e;
     j = 0;
     data_0217aebc->mUnk_13c = j;
-    for (i = 0; (u32) i < 2; i++) {
-        data_0217aebc->mUnk_13e[i] = j;
+    for (k = 0; (u32) k < 2; k++) {
+        data_0217aebc->mUnk_13e[k] = j;
     }
     for (j = 0; (u32) j < data_021759c0->mUnk_3d0; j++) {
         if (data_021759c0->mUnk_58 != 0) {
             for (k = 0; (u32) k < 2; k++) {
-                e = &data_021759c0->mUnk_68[j].mUnk_08;
                 f = 0;
-                if ((u32) e->mUnk_00 <= 3 && ((1 << e->mUnk_00) & 0xd)) {
+                if ((u32) data_021759c0->mUnk_68[j].mUnk_08.mUnk_00 > 3) {
+                } else if ((1 << data_021759c0->mUnk_68[j].mUnk_08.mUnk_00) & 0xd) {
                     f = 1;
                 }
-                if (f != 0 && k == e->mUnk_04) {
+                if (f != 0 && k == data_021759c0->mUnk_68[j].mUnk_08.mUnk_04) {
                     data_0217aebc->mUnk_13e[k]++;
                     break;
                 }
             }
         } else {
-            f = 0;
+            g = 0;
             e = &data_021759c0->mUnk_68[j].mUnk_08;
             if ((u32) e->mUnk_00 <= 3 && ((1 << e->mUnk_00) & 0xd)) {
-                f = 1;
+                g = 1;
             }
-            if (f != 0) {
+            if (g != 0) {
                 data_0217aebc->mUnk_13c++;
             }
         }

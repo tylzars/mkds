@@ -102,8 +102,6 @@ void func_02095544(void *a, Unk02095544 *p) {
     }
 }
 
-// non-matching: 31.2%: the original enters the loop with a branch to the test and reads the list element inside the
-// loop condition; ours has a different loop shape
 void func_020957ec(Unk020e6fd4 *p) {
     s32 i;
     Unk02095544 *e;
@@ -111,11 +109,7 @@ void func_020957ec(Unk020e6fd4 *p) {
     if (p == 0) {
         return;
     }
-    for (i = 0; i < p->mUnk_04; i++) {
-        e = p->mUnk_00[i];
-        if (e == 0) {
-            return;
-        }
+    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != 0; i++) {
         func_02147fd8(0x320000, &e->mUnk_00.mUnk_28.mUnk_18, &e->mUnk_00.mUnk_9c->mUnk_00, &e->mUnk_a4);
     }
 }
@@ -253,8 +247,6 @@ void func_02095a3c(void *a, Unk02095a3c *p) {
     }
 }
 
-// non-matching: 45.8%: the original enters the loop with a branch to the test and reads the list element inside the
-// loop condition; the division by 100 is also scheduled differently
 void func_02095d1c(Unk020e6fd4 *p) {
     s32 i;
     Unk02095a3c *e;
@@ -262,11 +254,7 @@ void func_02095d1c(Unk020e6fd4 *p) {
     if (p == 0) {
         return;
     }
-    for (i = 0; i < p->mUnk_04; i++) {
-        e = p->mUnk_00[i];
-        if (e == 0) {
-            return;
-        }
+    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != 0; i++) {
         e->mUnk_a8 = (e->mUnk_00.mUnk_9c->mUnk_28 << 12) / 100;
         func_020e516c(&e->mUnk_dc, &e->mUnk_00.mUnk_04, 0x54666, 14);
     }

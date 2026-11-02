@@ -92,8 +92,6 @@ void func_ov000_021a1b2c(Unk0219887c *param_1, s32 param_2) {
     func_ov000_0219f544(1);
 }
 
-// non-matching: original keeps param_3 in r7 and spills param_4 ([sp, #0]) and a data pointer loaded before the strtol
-// call ([sp, #4], used for the f4 compare); ours holds p in r7 and spills param_3/param_4 (0x194 bytes against 0x198)
 void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 param_4, s32 param_5, u8 *param_6) {
     Unk021b566c *p;
     Unk021b5550 *e;
@@ -112,10 +110,10 @@ void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 par
         func_ov000_021a1a38(6, -87100);
         return;
     }
-    p = data_ov000_021b566c;
-    j = p->mUnk_0d;
-    if (param_3 != p->mUnk_1f8[j] || param_4 != p->mUnk_278[j]) {
-        if (*param_6 != 0 && p->mUnk_f4[j] == strtoul(param_6, 0, 10)) {
+    if (param_3 != data_ov000_021b566c->mUnk_1f8[data_ov000_021b566c->mUnk_0d] ||
+        param_4 != data_ov000_021b566c->mUnk_278[data_ov000_021b566c->mUnk_0d]) {
+        j = data_ov000_021b566c->mUnk_0d;
+        if (*param_6 != 0 && (p = *(Unk021b566c **) &data_ov000_021b566c, p->mUnk_f4[j] == strtoul(param_6, 0, 10))) {
             data_ov000_021b566c->mUnk_1f8[j] = param_3;
             data_ov000_021b566c->mUnk_278[data_ov000_021b566c->mUnk_0d] = param_4;
         } else {
@@ -149,8 +147,6 @@ void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 par
     func_ov000_0219f544(2);
 }
 
-// non-matching: original keeps the tail `cmp r5, #254; bne; movs r0, #0` and a second `movs r0, #0` return (0xb4 bytes)
-// and holds the first byte in r5; ours folds the identical returns into one (0xa4 bytes) and uses r1
 u32 func_ov000_021a1e40(u32 param_1, u32 param_2, u16 param_3, u8 *param_4, u32 param_5) {
     Unk021a1e40 a;
     volatile u32 v; // placeholder: value passed through a stack offset
@@ -171,19 +167,20 @@ u32 func_ov000_021a1e40(u32 param_1, u32 param_2, u16 param_3, u8 *param_4, u32 
     } else if (memcmp(param_4, data_ov000_021b400c, 6) == 0) {
         func_ov000_0219a7e4(param_4, param_5, &a);
     } else {
-        if (c == 0xfe) {
-            return 0;
+        switch (c) {
+            case 0xfe:
+                return 0;
+            default:
+                return 0;
         }
-        return 0;
     }
     return 1;
 }
 
-// non-matching: original computes `muls r1, r0 (3000); adds r5, r1, r0` for the two timeouts, ours folds to `adds r5,
-// r0, #1; muls r5, r0` (0x56c bytes against 0x574, branch targets and jump table words shift)
 void func_ov000_021a1ef4(s32 param_1) {
     Unk021b566c *p;
     u32 n;
+    void *q;
     if (data_ov000_021b566c == 0) {
         return;
     }
@@ -209,7 +206,8 @@ void func_ov000_021a1ef4(s32 param_1) {
                 if ((func_0200f5ac() - p->mUnk_1c0) * 64 / 0x82ea > p->mUnk_1bc) {
                     p->mUnk_1bc = 0;
                     p = data_ov000_021b566c;
-                    if (p->mUnk_15 == 3) {
+                    param_1 = p->mUnk_15;
+                    if (param_1 == 3) {
                         p->mUnk_1a2++;
                         p = data_ov000_021b566c;
                         if (p->mUnk_1a2 > 5) {
@@ -219,14 +217,14 @@ void func_ov000_021a1ef4(s32 param_1) {
                         if (func_ov000_0219fee4(func_ov000_0219fdc8(p->mUnk_f4[0], 0)) != 0) {
                             return;
                         }
-                    } else if (func_ov000_0219fb48(p->mUnk_15) == 0) {
+                    } else if (func_ov000_0219fb48(param_1) == 0) {
                         return;
                     }
                 }
             }
             p = data_ov000_021b566c;
             if (p->mUnk_1b0 != 0) {
-                n = p->mUnk_0d * 3000 + 3000;
+                n = (u32) (p->mUnk_0d * 3000) + 3000;
                 if ((func_0200f5ac() - p->mUnk_1b4) * 64 / 0x82ea >= n) {
                     if (func_ov000_0219fee4(func_ov000_0219fdc8(p->mUnk_f4[0], 0)) != 0) {
                         return;
@@ -237,9 +235,9 @@ void func_ov000_021a1ef4(s32 param_1) {
         case 2:
         case 3:
         case 5:
-            if (p->mUnk_e8 > 0) {
+            if ((s32) p->mUnk_e8 > 0) {
                 if (p->mUnk_198 == 3) {
-                    n = p->mUnk_0d * 3000 + 3000;
+                    n = (u32) (p->mUnk_0d * 3000) + 3000;
                 } else if (p->mUnk_e8 == 1) {
                     n = 1000;
                 } else {
@@ -297,7 +295,7 @@ void func_ov000_021a1ef4(s32 param_1) {
                         func_ov000_021a1ac0();
                         p = data_ov000_021b566c;
                         if (p->mUnk_15 == 2) {
-                            if (func_ov000_0219f9bc(p->mUnk_f4[p->mUnk_0d + 1]) == 0) {
+                            if (func_ov000_0219f9bc(p->mUnk_f4[p->mUnk_0d]) == 0) {
                                 return;
                             }
                         } else {
@@ -325,20 +323,20 @@ void func_ov000_021a1ef4(s32 param_1) {
     if (data_ov000_021b566c->mUnk_10 != 0) {
         func_ov000_021a49a0(data_ov000_021b566c->mUnk_10);
         p = data_ov000_021b566c;
-        if ((*(s32 *) ((u8 *) p->mUnk_10 + 0xb4) == 0 && (p->mUnk_15 == 0 || p->mUnk_15 == 1) &&
+        q = p->mUnk_10;
+        if ((*(s32 *) ((u8 *) q + 0xb4) == 0 && (p->mUnk_15 == 0 || p->mUnk_15 == 1) &&
              (p->mUnk_198 == 1 || p->mUnk_198 == 2 || p->mUnk_198 == 3 || p->mUnk_198 == 4 || p->mUnk_198 == 6 ||
               p->mUnk_198 == 11)) ||
             (p->mUnk_15 == 2 && p->mUnk_198 == 11)) {
-            func_ov000_021a4818(p->mUnk_10);
+            func_ov000_021a4818(q);
         }
     }
     func_ov000_0219aaec();
     if (data_ov000_021b566c->mUnk_04 != 0) {
         func_ov000_02198a8c(*data_ov000_021b566c->mUnk_04);
     }
-    p = data_ov000_021b566c;
-    if (p->mUnk_198 == 18) {
-        if (func_ov000_021a350c() - p->mUnk_1e0 > 3000) {
+    if (data_ov000_021b566c->mUnk_198 == 18) {
+        if (func_ov000_021a350c() - data_ov000_021b566c->mUnk_1e0 > 3000) {
             if (func_ov000_0219f184() != 0) {
                 return;
             }
