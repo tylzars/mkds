@@ -82,7 +82,7 @@ void func_020d20a8(void) {
         data_0217b4b4->mUnk_04 = 0;
     }
     func_020b4cec(data_0217b4b4->mUnk_08, 0x1000);
-    data_0217b4b4->mUnk_18 = 0;
+    data_0217b4b4->mUnk_18 = NULL;
     data_0217b4b4->mUnk_1c = 0;
     data_0217b4b4->mUnk_20 = 0;
     data_0217b4b4->mUnk_24 = 0;

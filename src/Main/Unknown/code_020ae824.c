@@ -59,7 +59,7 @@ void func_020ae824(void) {
                   : (func_0203c880(func_020b4d9c()) != 0 && data_0217b350->mUnk_8dc == 0)) == 0) {
         func_020ba63c((Unk020d029c *) data_0217b350->mUnk_004);
         func_020bc208((Unk020d029c *) data_0217b350->mUnk_004);
-        func_020d1fd4((Unk020d029c *) data_0217b350->mUnk_004);
+        DrawRaceMNumberPair((Unk020d029c *) data_0217b350->mUnk_004);
         func_020d06b8((Unk020d029c *) data_0217b350->mUnk_004);
         func_020c4f08((Unk020c06c4 *) data_0217b350->mUnk_004);
         func_020b9dfc((Unk020d029c *) data_0217b350->mUnk_004);

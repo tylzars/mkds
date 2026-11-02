@@ -10,7 +10,7 @@
 #include "Main/Unknown/code_020b3000.h"
 #include "Main/Unknown/code_020b4000.h"
 
-void func_020d1fd4(Unk020d029c *param_1) {
+void DrawRaceMNumberPair(Unk020d029c *param_1) {
     s32 a;
 
     a = func_020b33f4();
@@ -28,10 +28,10 @@ void func_020d1fd4(Unk020d029c *param_1) {
         return;
     }
     if (data_0217b4b4->mUnk_04 >= 10) {
-        func_020d1a98(param_1);
+        DrawRaceMNumberPairTwoDigit(param_1);
         return;
     }
-    func_020d18d4(param_1);
+    DrawRaceMNumberPairOneDigit(param_1);
 }
 
 void func_020d1de8(Unk020d029c *param_1, s32 param_2) {
@@ -42,7 +42,7 @@ void func_020d1de8(Unk020d029c *param_1, s32 param_2) {
 
     if (param_2 < 0) {
         data_0217b4b4->mUnk_24 = 0;
-        data_0217b4b4->mUnk_18 = 0;
+        data_0217b4b4->mUnk_18 = NULL;
         data_0217b4b4->mUnk_1c = 0;
         data_0217b4b4->mUnk_20 = 0;
         return;
@@ -70,21 +70,21 @@ void func_020d1de8(Unk020d029c *param_1, s32 param_2) {
     }
     if (param_2 < 0x78) {
         data_0217b4b4->mUnk_24 = 0;
-        data_0217b4b4->mUnk_18 = 0;
+        data_0217b4b4->mUnk_18 = NULL;
         data_0217b4b4->mUnk_1c = 0x1000;
         data_0217b4b4->mUnk_20 = 0;
         return;
     }
     data_0217b4b4->mUnk_24 = func_020ae4c0(1, 0, 0x80, param_2 - 0x78, 0x14);
-    data_0217b4b4->mUnk_18 = 0;
+    data_0217b4b4->mUnk_18 = NULL;
     data_0217b4b4->mUnk_1c = 0x1000;
     data_0217b4b4->mUnk_20 = 0;
 }
 
-void func_020d1a98(Unk020d029c *param_1) {
+void DrawRaceMNumberPairTwoDigit(Unk020d029c *param_1) {
     s32 t[5] = {175, 190, 203, 216, 231};
     Unk020224e0_c *c;
-    s32 *p = 0;
+    s32 *p = NULL;
     u16 a;
     s32 q0[2];
     s32 q1[2];
@@ -127,7 +127,7 @@ void func_020d1a98(Unk020d029c *param_1) {
     param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q4, a, 1);
 }
 
-void func_020d18d4(Unk020d029c *param_1) {
+void DrawRaceMNumberPairOneDigit(Unk020d029c *param_1) {
     s32 t[3] = {205, 218, 231};
     Unk020224e0_c *c;
     s32 *p;
@@ -156,7 +156,7 @@ void func_020d18d4(Unk020d029c *param_1) {
     param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q2, a, 1);
 }
 
-void func_020d1640(void *param_1) {
+void CreateSearchIconMBChildAndMultiDownload(void *param_1) {
     data_0217b4b0 = func_02036bec(param_1, 0x2c);
     data_0217b4b0->mUnk_00 = func_02047a28("search_icon_00.bncl");
     data_0217b4b0->mUnk_04 = func_02047a28("search_icon_layout_00.bncl");

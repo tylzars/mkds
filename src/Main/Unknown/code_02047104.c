@@ -46,7 +46,7 @@ void func_020471b0(void *a) {
     func_02018344(&data_021759c8->mUnk_850, (const u8 *) gArchiveNames[19], p);
     data_021759c8->mUnk_8bc = p;
     data_021759c8->mUnk_8b8 = 1;
-    func_020d1640(a);
+    CreateSearchIconMBChildAndMultiDownload(a);
 }
 
 void func_02047220(void *a, u32 b) {

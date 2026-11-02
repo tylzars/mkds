@@ -338,7 +338,7 @@ Inline getters and helpers:
   return (s64) v1 * v1 + (s64) v2 * v2;` matched func_020919e8; z first did not.
 - Reused locals whose later values take registers in the wrong order, where swapping the first statements breaks the
   load order: a dead initializer on the variable that must come first, `s32 *p = 0;` (the only spelling that matched;
-  func_020d1a98).
+  DrawRaceMNumberPairTwoDigit).
 - A later loop that reuses an earlier loop's counter or pointer locals can come out with its registers rotated or
   swapped: give each loop its own named local (func_0208552c, func_020b41e8, func_02042a10). The same holds for a reused
   local whose second use takes its register after the loop counter: give that value its own local (func_0203b6ac).
