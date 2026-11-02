@@ -66,35 +66,36 @@ void func_020938c0(void) {
     o->mUnk_3c = -0x64000;
 }
 
-// non-matching: 75.9%: branch layout and register use differ from the original (the original tests the state with
-// compare-and-branch pairs and keeps the halfword flags update in predicated instructions)
 void func_02093910(void *a, Unk02093910 *p) {
-    if ((func_0207a780() & p->mUnk_00.mUnk_74) == 0) {
-        p->mUnk_00.mUnk_02 &= ~2;
-    } else {
+    if ((func_0207a780() & p->mUnk_00.mUnk_74) != 0) {
         p->mUnk_00.mUnk_02 |= data_021564a8;
+    } else {
+        p->mUnk_00.mUnk_02 &= ~2;
     }
-    if (p->mUnk_a4 == 0) {
-        if (p->mUnk_a0-- <= 0) {
-            func_020d2398(&p->mUnk_00);
-            return;
-        }
-        if ((p->mUnk_00.mUnk_02 & 2) == 0 && (p->mUnk_00.mUnk_78 & 8) != 0) {
-            func_0210b7ec(p->mUnk_a8, p->mUnk_00.mUnk_78 & ~0xc000001f);
-        } else {
-            func_0210b7ec(p->mUnk_a8, func_020d4ef4(&p->mUnk_00.mUnk_04));
-        }
-        func_02148504(&p->mUnk_00.mUnk_04, &p->mUnk_00.mUnk_10, &p->mUnk_00.mUnk_04);
-        if (p->mUnk_a0 < 0x24e) {
-            func_020d275c(&p->mUnk_00, 0x17d);
-        }
-    } else if (p->mUnk_a4 == 1) {
-        if (p->mUnk_a0-- <= 0) {
-            func_020d2398(&p->mUnk_00);
-            return;
-        }
-        p->mUnk_00.mUnk_10.y -= 0x400;
-        func_02148504(&p->mUnk_00.mUnk_04, &p->mUnk_00.mUnk_10, &p->mUnk_00.mUnk_04);
+    switch (p->mUnk_a4) {
+        case 0:
+            if (p->mUnk_a0-- > 0) {
+                if ((p->mUnk_00.mUnk_02 & 2) == 0 && (p->mUnk_00.mUnk_78 & 8) != 0) {
+                    func_0210b7ec(p->mUnk_a8, p->mUnk_00.mUnk_78 & ~0xc000001f);
+                } else {
+                    func_0210b7ec(p->mUnk_a8, func_020d4ef4(&p->mUnk_00.mUnk_04));
+                }
+                func_02148504(&p->mUnk_00.mUnk_04, &p->mUnk_00.mUnk_10, &p->mUnk_00.mUnk_04);
+                if (p->mUnk_a0 < 0x24e) {
+                    func_020d275c(&p->mUnk_00, 0x17d);
+                }
+            } else {
+                func_020d2398(&p->mUnk_00);
+            }
+            break;
+        case 1:
+            if (p->mUnk_a0-- > 0) {
+                p->mUnk_00.mUnk_10.y -= 0x400;
+                func_02148504(&p->mUnk_00.mUnk_04, &p->mUnk_00.mUnk_10, &p->mUnk_00.mUnk_04);
+            } else {
+                func_020d2398(&p->mUnk_00);
+            }
+            break;
     }
 }
 
@@ -208,8 +209,6 @@ void func_02093cf4(void *a, Unk02093cf4 *p) {
     }
 }
 
-// non-matching: 14.9%: the original enters the loop with a branch to the test and reads the list element inside the
-// loop condition (return when it is zero); ours has a different loop shape
 void func_02093eac(Unk020e6fd4 *p) {
     s32 i;
     Unk02093cf4 *e;
@@ -217,11 +216,7 @@ void func_02093eac(Unk020e6fd4 *p) {
     if (p == 0) {
         return;
     }
-    for (i = 0; i < p->mUnk_04; i++) {
-        e = p->mUnk_00[i];
-        if (e == 0) {
-            return;
-        }
+    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != 0; i++) {
         e->mUnk_a0 = 0;
     }
 }

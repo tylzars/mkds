@@ -50,20 +50,19 @@ u32 func_0204b084(u32 *p, u32 n, u32 a) {
     return 1;
 }
 
-// non-matching: ours keeps the first word in [sp, #8] and loads the four table words in another order (the original
-// loads the word into r1 right after the modulo and spills the second table word); size 0xcc against 0xd4
 void func_0204b138(u32 *p, u32 n) {
     u16 i;
     u16 j;
     u16 k;
     u16 l;
     u32 *e;
+    u32 m;
     j = 0;
     l = 0;
     k = 0;
     i = (func_0200f5ac() >> 16) % 0x1d;
-    i = func_0204b20c(
-        (data_usa_02154694[i] + (data_usa_02154648[0] + (data_usa_021545d8[0] + data_usa_02154604[0]))) ^ *p, *p);
+    m = data_usa_02154694[i] + (data_usa_02154648[0] + (data_usa_021545d8[0] + data_usa_02154604[0]));
+    i = func_0204b20c(m ^ *p, *p);
     e = (u32 *) ((u8 *) p + n);
     do {
         *p ^= data_usa_02154694[i] + (data_usa_02154648[j] + (data_usa_021545d8[k] + data_usa_02154604[l]));
@@ -134,15 +133,14 @@ void func_0204b284(u8 *p, u32 n, u32 a) {
     e[3] = c;
 }
 
-// non-matching: original has an extra movs r1, r3 before storing the inner counter's zero at [sp, #12] (+2 bytes)
 u16 func_0204b2cc(u8 *p, u32 n) {
     u16 v1;
     u16 i;
     u16 v2;
     u8 b;
     s32 k;
-    v1 = 0;
     i = 0;
+    v1 = 0;
     if (i < n) {
         do {
             b = *p;

@@ -12,12 +12,10 @@ s32 func_02042990(void *a, ...) {
     return 1;
 }
 
-// non-matching: registers: the original keeps the count in r5 and the heap in r4 (swapped here), and holds the table
-// pointer in r1 inside the second loop
 s32 func_02042894(void *a, ...) {
-    void *h;
     s32 i;
     s32 m;
+    void *h;
     s32 n;
     s32 k;
     u16 t;
@@ -35,16 +33,15 @@ s32 func_02042894(void *a, ...) {
         }
     } else if (gCourseMap->mUnk_028 != 0) {
         m = 0;
-        p = gCourseMap->mUnk_024;
-        for (i = 0; i < gCourseMap->mUnk_028; i++) {
+        for (k = 0; k < gCourseMap->mUnk_028; k++) {
+            p = &gCourseMap->mUnk_024[k];
             if (p->mUnk_1c > m) {
                 m = p->mUnk_1c;
             }
-            p++;
         }
         gCourseMap->mUnk_f8 = func_02036bec(h, (m + 1) * 2);
-        for (k = 0; k < m + 1; k++) {
-            gCourseMap->mUnk_f8[k] = 0xffff;
+        for (i = 0; i < m + 1; i++) {
+            gCourseMap->mUnk_f8[i] = 0xffff;
         }
         for (i = 0; i < gCourseMap->mUnk_028; i++) {
             gCourseMap->mUnk_f8[gCourseMap->mUnk_024[i].mUnk_1c] = i;
@@ -121,10 +118,8 @@ s32 func_02042708(void *a, ...) {
     return r;
 }
 
-// non-matching: the original loads zero into r0 before the loads and uses it for the stores and the return value; here
-// the zero is loaded after the comparison
 s32 func_020426ac(void *a, ...) {
-    s32 r = 0;
+    enum { K0 } r = 0;
 
     if (gCourseMap->mUnk_10c < 0x24) {
         gCourseMap->mUnk_40 = r;

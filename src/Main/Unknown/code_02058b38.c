@@ -61,12 +61,11 @@ void func_02058b74(void) {
     }
 }
 
-// non-matching: the original has one more instruction: `bics r0, r1` right after `movs r1, #0`, before the load of
-// Unk027ffc40 mUnk_00; the rest is the same, one instruction later.
 void func_02058ba4(void) {
     u64 v;
 
     v = (u32) func_0200f5ac() << 8;
+    v = (u32) v & ~(u32) (v >> 32);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         v = v * 0x5d588b656c078965ull + 0x269ec3;
         data_0217aa00->mUnk_1608.mUnk_18 = (u16) (((v >> 32) * 0xb4) >> 32) + 0x78;
@@ -101,10 +100,8 @@ void func_02058c74(void) {
     func_02056464(&data_0217aa00->mUnk_045c[v]);
 }
 
-// non-matching: ours is 4 bytes shorter; first difference at +0x36: original `ldr r1, [pc, #196]` (member 0x432
-// offset), ours `ldr r2, [pc, #192]`. The original keeps the halfword in r2 and reloads the first word of the object
-// before the compare with 2; ours holds the halfword in r3 and reuses the first load. In the second chain of conditions
-// the original keeps the flags in r1, r2 and r3 and the loaded value in r5.
+// non-matching: 12 words in the inline chain after func_02046b40: the zero and the three flags of
+// func_02058cac_inline4/3/2 sit in r2, r1, r5 (original r3, r2, r1) and the loaded word in r3 (original r5).
 s32 func_02058cac(void) {
     s32 r;
     u16 v;
@@ -113,7 +110,7 @@ s32 func_02058cac(void) {
     if (!func_02058cac_inline2()) {
         return 1;
     }
-    v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+    v = ((const Unk0217aa00 *) data_0217aa00)->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
     if (v == 0xffff && func_02058b38_inline() == 2) {
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
             func_02050e60(0);

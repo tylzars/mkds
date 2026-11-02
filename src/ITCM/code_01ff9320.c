@@ -4,18 +4,17 @@
 
 #pragma opt_arithtransformation off
 
-// non-matching: same instructions and stores, but the constants are held in other registers (this one loads 0x1000
-// into r3, 3 into r2, 2 into r1 and 0 into r0; the original keeps 0 in r1, 3 in r3, 2 in r2 and 0x1000 in r0), and
-// the 64-bit products are compiled in a different order.
+// non-matching: 2 words: the table address 0x1ff9300 is loaded into ip (original r0). The original reads a table
+// symbol at 0x01ff9300 (an extern array matches); the config has no symbol or relocation for it yet.
 void func_01ff9320(Unk0201290c_1c *p) {
     Unk01ff9320_buf b;
+    enum { K0 = 0x1ff9300 } t = K0;
 
     if (p->mUnk_00 & 8) {
         b.mUnk_00 = 0x101610;
     } else {
         b.mUnk_00 = 0x101810;
     }
-    b.mUnk_08[15] = 0x1000;
     b.mUnk_04 = 3;
     b.mUnk_48 = 2;
     b.mUnk_08[14] = 0;
@@ -27,7 +26,8 @@ void func_01ff9320(Unk0201290c_1c *p) {
     b.mUnk_08[6] = 0;
     b.mUnk_08[3] = 0;
     b.mUnk_08[2] = 0;
-    ((Unk01ff9320_Fn *) 0x1ff9300)[p->mUnk_00 & 7](b.mUnk_08, p);
+    b.mUnk_08[15] = 0x1000;
+    ((Unk01ff9320_Fn *) t)[p->mUnk_00 & 7](b.mUnk_08, p);
     if (p->mUnk_30 != 0x1000) {
         b.mUnk_08[0] = ((s64) p->mUnk_30 * b.mUnk_08[0]) >> 12;
         b.mUnk_08[1] = ((s64) p->mUnk_30 * b.mUnk_08[1]) >> 12;
@@ -38,7 +38,7 @@ void func_01ff9320(Unk0201290c_1c *p) {
         b.mUnk_08[5] = ((s64) p->mUnk_34 * b.mUnk_08[5]) >> 12;
         b.mUnk_08[13] = ((s64) p->mUnk_34 * b.mUnk_08[13]) >> 12;
     }
-    func_01ff9048(b.mUnk_00, &b.mUnk_04, 0x12);
+    func_01ff9048(b.mUnk_00, (u32 *) &b + 1, 0x12);
 }
 
 void func_01ff946c(s32 *o) {

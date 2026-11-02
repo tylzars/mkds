@@ -22,7 +22,7 @@ void func_0205a92c(void) {
             for (j = 0; j < 16; j++) {
                 p = data_0217aa14;
                 e = &p->mUnk_3e4[j][i];
-                f = &p->mUnk_6e4[j * 4] + i;
+                f = &p->mUnk_6e4[j][i];
                 if (e->mUnk_09 == 15) {
                     *f = 0;
                 } else if (*f == 0) {
@@ -154,7 +154,6 @@ s32 func_0205ad44(void) {
     return 0;
 }
 
-// non-matching: 0x118 bytes, original 0x104; 70 lines differ; first: original `mov sl, #0`, ours `mov r9, #0`
 void func_0205ad88(void) {
     s32 i;
     s32 j;
@@ -169,7 +168,7 @@ void func_0205ad88(void) {
             e->mUnk_0a = 0;
             e->mUnk_0b = 0;
             func_0214d168(e->mUnk_04, 0, 20);
-            data_0217aa14->mUnk_6e4[i * 4 + j] = 0;
+            data_0217aa14->mUnk_6e4[i][j] = 0;
         }
         e = &data_0217aa14->mUnk_324[i];
         e->mUnk_08 = 0;

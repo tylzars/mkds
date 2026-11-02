@@ -356,19 +356,16 @@ reset:
 done:;
 }
 
-// non-matching: same size; at +0x48..+0x74 the original keeps the field read-modify-write contiguous between the two
-// copies (sub/add into r4, store, then the stm); here the field load is hoisted above the first copy and the
-// sub/add/store sink after the stm
 void func_020e9658(void) {
     s32 r;
     s64 sq;
     Vec3 *v;
 
     data_0217ba88 = data_0217ba58;
-    func_021484d0(&data_0217b954, &data_0217badc, &data_0217b9b4);
-    data_0217badc = data_0217b954;
+    func_021484d0(&data_0217b954, &data_0217bab8.mUnk_24, &data_0217b9b4);
+    data_0217bab8.mUnk_24 = data_0217b954;
     data_0217bab8.mUnk_24.y = data_0217bab8.mUnk_24.y + (data_0217b8c8->mUnk_a4.y - data_0217b8c8->mUnk_2b8);
-    data_0217bac4 = data_02159494;
+    data_0217bab8.mUnk_0c = data_02159494;
 
     if (func_0203c5e4() != 0) {
         v = &data_0217b8c8->mUnk_50;
@@ -376,22 +373,22 @@ void func_020e9658(void) {
         data_0217bab8.mUnk_18.y = -v->y;
         data_0217bab8.mUnk_18.z = -v->z;
     } else {
-        data_0217bad0 = ((Unk02012f58 *) func_020e6b38())->mUnk_18;
+        data_0217bab8.mUnk_18 = ((Unk02012f58 *) func_020e6b38())->mUnk_18;
     }
-    func_020397a8(&data_0217bac4, &data_0217bad0, &data_0217bad0);
+    func_020397a8(&data_0217bab8.mUnk_0c, &data_0217bab8.mUnk_18, &data_0217bab8.mUnk_18);
     sq = (s64) data_0217bab8.mUnk_18.x * data_0217bab8.mUnk_18.x +
          (s64) data_0217bab8.mUnk_18.y * data_0217bab8.mUnk_18.y +
          (s64) data_0217bab8.mUnk_18.z * data_0217bab8.mUnk_18.z;
     r = 0;
     if (sq >= 0x10) {
-        r = func_02039860(&data_0217bad0, &data_0217bad0);
+        r = func_02039860(&data_0217bab8.mUnk_18, &data_0217bab8.mUnk_18);
     }
     if (r != 0) {
-        data_0217bab8.mUnk_00 = data_0217bad0;
+        data_0217bab8.mUnk_00 = data_0217bab8.mUnk_18;
     }
-    func_020397a8(&data_0217bab8.mUnk_00, &data_0217bac4, &data_0217bad0);
+    func_020397a8(&data_0217bab8.mUnk_00, &data_0217bab8.mUnk_0c, &data_0217bab8.mUnk_18);
     func_02146d0c(&data_0217bab8, &data_0217ba58);
-    func_02146d78(&data_0217badc, (const s32 *) &data_0217ba58, &data_0217ba7c);
+    func_02146d78(&data_0217bab8.mUnk_24, (const s32 *) &data_0217ba58, &data_0217ba7c);
     data_0217ba58.mUnk_24.x = -data_0217ba58.mUnk_24.x;
     data_0217ba58.mUnk_24.y = -data_0217ba58.mUnk_24.y;
     data_0217ba58.mUnk_24.z = -data_0217ba58.mUnk_24.z;
