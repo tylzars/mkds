@@ -2,19 +2,17 @@
 #include "Main/Unknown/code_020431e4.h"
 #include "Main/Unknown/unk_02175000.h"
 
-// non-matching: instructions identical; only registers differ: the original keeps the element size in r4 (here ip), the
-// byte in r2 (lr), the loop counter in lr (ip), the mask in r3 (r2) and the bit selector in ip (r3).
 u32 func_02039230(void) {
-    u32 a = data_usa_021755a0.mUnk_14;
-    u32 b;
+    u32 a;
     u32 c;
     u32 d;
+    s32 b;
     u16 e;
     u16 f;
-    if (data_usa_021755a0.mUnk_08 + a > data_usa_021755a0.mUnk_04) {
+    if (data_usa_021755a0.mUnk_08 + data_usa_021755a0.mUnk_14 > data_usa_021755a0.mUnk_04) {
         return 0;
     }
-    if (a == 1) {
+    if (data_usa_021755a0.mUnk_14 == 1) {
         b = *data_usa_021755a0.mUnk_08;
         c = 1;
         f = data_usa_021755a0.mUnk_18;
@@ -39,16 +37,14 @@ u32 func_02039230(void) {
     return a;
 }
 
-// non-matching: instructions identical; only registers differ: the original addresses data_usa_021755a0 through r1 and
-// keeps the element size in ip, the position in lr, the end in r2 and the sum in r3 (here r2, lr, r1, r3 and ip), and
-// the mask in r3 (lr).
 void func_020392c8(u32 a) {
     u32 b = data_usa_021755a0.mUnk_14;
-    u8 *c = data_usa_021755a0.mUnk_08;
     u32 d;
     u32 e;
+    u8 *c = data_usa_021755a0.mUnk_08;
     u16 f;
     u16 g;
+    u32 h;
     if (c + b > data_usa_021755a0.mUnk_04) {
         return;
     }
@@ -56,12 +52,12 @@ void func_020392c8(u32 a) {
         f = data_usa_021755a0.mUnk_18;
         d = 1;
         e = 1;
-        b = 0;
+        h = 0;
         for (; d < 0x10000; d <<= 1) {
             g = d;
             if (g & f) {
                 if (g & a) {
-                    b |= e;
+                    h |= e;
                 }
                 e = (e << 1) & 0xff;
                 if (e == 0) {
@@ -69,7 +65,7 @@ void func_020392c8(u32 a) {
                 }
             }
         }
-        *c = b;
+        *c = h;
     } else {
         *(u16 *) c = a;
     }

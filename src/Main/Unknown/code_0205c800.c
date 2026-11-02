@@ -137,31 +137,28 @@ void func_0205c98c(void) {
     }
 }
 
-// non-matching: 0x114 bytes, original 0x108; 68 lines differ; first: original `mov r4, #0`, ours `mov r1, #0`
 void func_0205cbe4(void) {
     u8 i;
-    Unk0217aa14_014 *e;
+    s32 *e;
+    Unk0217aa14 *b;
 
-    for (i = 0; i < 4;) {
-        e = &data_0217aa14->mUnk_014[i];
-        e->mUnk_04 = 0;
-        e->mUnk_08 = 0;
-        e->mUnk_0c = 0;
-        e->mUnk_10 = 0;
-        e->mUnk_14 = 0;
-        e->mUnk_18 = 0;
-        e->mUnk_1c = 0;
-        e->mUnk_20 = 0;
-        e->mUnk_24 = 0;
-        e = &data_0217aa14->mUnk_014[i];
-        i++;
-        e->mUnk_28 = 0;
-        e->mUnk_2c = 0;
-        e->mUnk_34 = 0;
-        e = &data_0217aa14->mUnk_014[i - 1];
-        e->mUnk_35 = 0;
-        e = &data_0217aa14->mUnk_014[i - 1];
-        e->mUnk_36 = 0;
+    for (i = 0; i < 4; i++) {
+        e = &data_0217aa14->mUnk_014[i].mUnk_04;
+        e[0] = 0;
+        e[1] = 0;
+        e[2] = 0;
+        e[3] = 0;
+        e[4] = 0;
+        e[5] = 0;
+        e[6] = 0;
+        e[7] = 0;
+        e[8] = 0;
+        b = data_0217aa14;
+        b->mUnk_014[i].mUnk_28 = 0;
+        b->mUnk_014[i].mUnk_2c = 0;
+        b->mUnk_014[i].mUnk_34 = 0;
+        data_0217aa14->mUnk_014[i].mUnk_35 = 0;
+        data_0217aa14->mUnk_014[i].mUnk_36 = 0;
     }
     data_0217aa14->mUnk_0f8 = 0;
     data_0217aa14->mUnk_0fb = 0;
@@ -174,8 +171,6 @@ void func_0205cbe4(void) {
     data_0217aa14->mUnk_75c &= ~0x10;
 }
 
-// non-matching: 0x40 bytes, original 0x38; 16 lines differ; first: original `ldr r0, [pc, #44]`, ours `ldr r0, [pc,
-// #48]`
 void func_0205ccec(void) {
     Unk0217aa14 *p;
 
@@ -183,8 +178,11 @@ void func_0205ccec(void) {
     if (p == 0) {
         return;
     }
-    if (p->mUnk_00e == 4 || p->mUnk_00e == 5) {
-        p->mUnk_728++;
+    switch (p->mUnk_00e) {
+        case 4:
+        case 5:
+            p->mUnk_728++;
+            break;
     }
 }
 

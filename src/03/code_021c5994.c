@@ -77,18 +77,16 @@ void func_ov003_021c5aa4(void) {
     data_ov003_021da1f4->mUnk_56 = 1;
 }
 
-// non-matching: same instructions except register allocation and order; the original shifts the second parameter in
-// place, keeps the 0xfffffc00 mask in r3 for both halfword updates and holds the address of data_ov003_021da1f4 in r4.
 void func_ov003_021c5b34(int param_0, int param_1) {
     Unk021da104_04 *p;
     int m;
     if (param_0 < data_ov003_021da1f4->mUnk_51) {
         p = data_ov003_021da1f4->mUnk_10[param_1];
         m = param_0 * 0x2a;
-        p->mUnk_04 = (p->mUnk_04 & 0xfc00) | data_ov003_021da1f4->mUnk_42[data_ov003_021da1f4->mUnk_00[m + 0x28]];
+        p->mUnk_04 = (p->mUnk_04 & ~0x3ff) | data_ov003_021da1f4->mUnk_42[*(data_ov003_021da1f4->mUnk_00 + m + 0x28)];
         p = data_ov003_021da1f4->mUnk_24[param_1];
         p->mUnk_04 =
-            (p->mUnk_04 & 0xfc00) | data_ov003_021da1f4->mUnk_48[*(u16 *) (data_ov003_021da1f4->mUnk_00 + m + 0x26)];
+            (p->mUnk_04 & ~0x3ff) | data_ov003_021da1f4->mUnk_48[*(u16 *) (data_ov003_021da1f4->mUnk_00 + m + 0x26)];
     }
 }
 

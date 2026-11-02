@@ -31,16 +31,14 @@ s8 *func_ov000_02197b34(s8 *a, const s8 *b) {
     return a;
 }
 
-// non-matching: frame is 0x2c bytes against 0x24, 0xd0 bytes against 0xc0; the pointer into the buffer is stepped
-// each pass instead of added to the index, and two of the temporaries are kept on the stack instead of registers
 s8 *func_ov000_02197be0(s8 *a) {
     s32 b[9];
     u32 c;
+    u32 h;
     u32 d;
     s32 f;
     s32 e;
     u32 g;
-    u32 h;
     u8 *i;
     if (a == 0) {
         func_0213442c(data_ov000_021b3e90, data_ov000_021b3e98, 0, 0x2b);
@@ -79,25 +77,23 @@ s8 *func_ov000_02197be0(s8 *a) {
         d ^= h;
         e = d;
         e ^= g;
-        i = (u8 *) a + f;
+        i = (u8 *) &a[f];
         a[f] = (s32) rand() % 0x5d + 0x21;
         if ((e != 0 && (*i & b[6]) == 0) || (e == 0 && (*i & b[7]) == 1)) {
-            *i = *i + 1;
+            (*i)++;
         }
         f++;
     } while (f < 0x20);
     return a;
 }
 
-// non-matching: same instructions and stack words as the original but the locals sit in other registers (r4/r3/r2
-// where the original has r2/r1/r0) and the pointer argument is kept in r5; 0x86 bytes against 0x80
 s32 func_ov000_02197ca0(const s8 *a) {
     s32 b[8];
+    u32 h;
+    u32 g;
     s32 e;
     s32 f;
     u32 c;
-    u32 h;
-    u32 g;
     u32 d;
     e = 0;
     f = 1;
@@ -124,13 +120,12 @@ s32 func_ov000_02197ca0(const s8 *a) {
             h = b[4];
         }
         e ^= (f ^ d) & b[5];
-        e = b[0] ^ e;
-        e ^= h;
+        d = b[0];
+        d ^= e;
+        d ^= h;
+        e = d;
         e ^= g;
-        if (e != 0 && ((u8) a[f] & b[6]) == 0) {
-            return 0;
-        }
-        if (e == 0 && ((u8) a[f] & b[7]) == 1) {
+        if ((e != 0 && ((u8) a[f] & b[6]) == 0) || (e == 0 && ((u8) a[f] & b[7]) == 1)) {
             return 0;
         }
         f++;
