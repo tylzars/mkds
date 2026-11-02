@@ -92,7 +92,7 @@ void func_020b9dfc(Unk020d029c *p) {
                     n = data_0217b3c8->mUnk_00_h[1];
                     k = data_0217b3c8->mUnk_00_h[0];
                     for (; i < n; i++) {
-                        t = func_020b8424(10);
+                        t = GetRaceBattleMNcerEntry(10);
                         b[0] = (0xfe - i * 0xe) << 12;
                         b[1] = 0xc000;
                         p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, b, 0, 1);
@@ -103,7 +103,7 @@ void func_020b9dfc(Unk020d029c *p) {
                     if (k >= 6) {
                         return;
                     }
-                    t = func_020b8424(10);
+                    t = GetRaceBattleMNcerEntry(10);
                     c[0] = (0xfe - i * 0xe) << 12;
                     c[1] = 0xc000;
                     p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, c, 0, 1);
@@ -113,15 +113,15 @@ void func_020b9dfc(Unk020d029c *p) {
                         return;
                     }
                     n = data_0217b3c8->mUnk_00_h[0];
-                    t = func_020b8424(0xb);
+                    t = GetRaceBattleMNcerEntry(0xb);
                     d[0] = 0xcd000;
                     d[1] = 0xf000;
                     p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, d, 0, 1);
-                    t = func_020b8424(n / 10);
+                    t = GetRaceBattleMNcerEntry(n / 10);
                     e[0] = 0xe1000;
                     e[1] = 0x10000;
                     p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, e, 0, 1);
-                    t = func_020b8424(n % 10);
+                    t = GetRaceBattleMNcerEntry(n % 10);
                     f[0] = 0xf0000;
                     f[1] = 0x10000;
                     p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, f, 0, 1);
@@ -133,7 +133,7 @@ void func_020b9dfc(Unk020d029c *p) {
                 if ((func_0207a974(func_020b4d9c())->mUnk_7c & 0x402000) == 0) {
                     return;
                 }
-                t = func_020b8424(0xc);
+                t = GetRaceBattleMNcerEntry(0xc);
                 a[0] = 0x80000;
                 a[1] = 0x60000;
                 p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, a, 0, 1);
@@ -147,7 +147,7 @@ void func_020b9dfc(Unk020d029c *p) {
                 return;
             }
             data_0217b3c8->mUnk_08 = 0;
-            t = func_020b843c(0xd);
+            t = GetRaceTaMNcerEntry(0xd);
             l = p->mUnk_400;
             g[0] = 0x80000;
             g[1] = 0x60000;
@@ -157,13 +157,13 @@ void func_020b9dfc(Unk020d029c *p) {
                 ((u32 *) q)[0] = (((u32 *) q)[0] & ~0xc00) | 0x800;
                 ((u32 *) q)[1] = (((u32 *) q)[1] & ~0xc00) | 0x400;
             }
-            t = func_020b843c(0xd);
+            t = GetRaceTaMNcerEntry(0xd);
             h[0] = 0x80000;
             h[1] = 0x60000;
             p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, h, 0, 1);
             break;
         default:
-            t = func_020b85dc(data_0217b3c8->mUnk_00);
+            t = GetRaceMNcerEntry(data_0217b3c8->mUnk_00);
             j[0] = 0x18000;
             j[1] = 0xa8000;
             p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, j, 0, 1);
@@ -195,41 +195,41 @@ void func_020b9994(Unk020d029c *p) {
     if (m > n) {
         m = n;
     }
-    t = func_020b840c(0x15);
+    t = GetRaceMrMNcerEntry(0x15);
     a[0] = 0xc000;
     a[1] = 0xb0000;
     p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, a, 0, 1);
     if (data_0217b3c8->mUnk_04 >= 10) {
-        t = func_020b840c(m / 10);
+        t = GetRaceMrMNcerEntry(m / 10);
         b[0] = 0x1b000;
         b[1] = 0xb4000;
         p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, b, 0, 1);
-        t = func_020b840c(m % 10);
+        t = GetRaceMrMNcerEntry(m % 10);
         c[0] = 0x2e000;
         c[1] = 0xb4000;
         p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, c, 0, 1);
-        t = func_020b840c(10);
+        t = GetRaceMrMNcerEntry(10);
         d[0] = 0x42000;
         d[1] = 0xb4000;
         p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, d, 0, 1);
-        t = func_020b840c(n / 10 + 0xb);
+        t = GetRaceMrMNcerEntry(n / 10 + 0xb);
         e[0] = 0x4d000;
         e[1] = 0xb4000;
         p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, e, 0, 1);
-        t = func_020b840c(n % 10 + 0xb);
+        t = GetRaceMrMNcerEntry(n % 10 + 0xb);
         f[0] = 0x5b000;
         f[1] = 0xb4000;
         p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, f, 0, 1);
     } else {
-        t = func_020b840c(m % 10);
+        t = GetRaceMrMNcerEntry(m % 10);
         g[0] = 0x1b000;
         g[1] = 0xb4000;
         p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, g, 0, 1);
-        t = func_020b840c(10);
+        t = GetRaceMrMNcerEntry(10);
         h[0] = 0x2f000;
         h[1] = 0xb4000;
         p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, h, 0, 1);
-        t = func_020b840c(n % 10 + 0xb);
+        t = GetRaceMrMNcerEntry(n % 10 + 0xb);
         i[0] = 0x3a000;
         i[1] = 0xb4000;
         p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, 0, i, 0, 1);

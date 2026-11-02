@@ -28,13 +28,13 @@ void func_020c80cc(void) {
             w = p->mUnk_000.mUnk_7e;
             switch (t) {
                 case 0x19a:
-                    data_0217b420->mUnk_10[n].mUnk_08 = func_020b83dc(p->mUnk_130 + 0x95);
+                    data_0217b420->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(p->mUnk_130 + 0x95);
                     break;
                 case 0x195:
-                    data_0217b420->mUnk_10[n].mUnk_08 = func_020b83dc(0x93);
+                    data_0217b420->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0x93);
                     break;
                 case 0x19c:
-                    data_0217b420->mUnk_10[n].mUnk_08 = func_020b83dc(0x94);
+                    data_0217b420->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0x94);
                     break;
             }
             data_0217b420->mUnk_10[n].mUnk_0c = func_020b4e70((Vec3 *) &v) != 0 ? 2 : 3;

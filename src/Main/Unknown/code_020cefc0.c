@@ -45,7 +45,7 @@ void func_020cefdc(void) {
         if (func_020fd528((Unk0206bcb0 *) e) != 0) {
             p = func_020fd308((Unk020fdae8 *) e, &x, &y);
             if (func_020b5ae8(p, &data_0217b48c->mUnk_10[n].mUnk_00, v, 1, 1) != 0) {
-                data_0217b48c->mUnk_10[n].mUnk_08 = func_020b83dc(0x63);
+                data_0217b48c->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0x63);
                 data_0217b48c->mUnk_10[n].mUnk_0c = func_020b4e70(p) != 0 ? 2 : 3;
                 data_0217b48c->mUnk_10[n].mUnk_10 = x;
                 data_0217b48c->mUnk_10[n].mUnk_0e = x >= 0x16 ? 1 : 0;
@@ -65,7 +65,7 @@ void func_020cefdc(void) {
         if (func_020fadcc((Unk020fc2e8 *) e2) != 0) {
             p2 = func_020fad9c((Unk020fc2e8 *) e2, &x2, &y2);
             if (func_020b5ae8(p2, &data_0217b48c->mUnk_10[n].mUnk_00, v, 1, 1) != 0) {
-                data_0217b48c->mUnk_10[n].mUnk_08 = func_020b83dc(0x64);
+                data_0217b48c->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0x64);
                 data_0217b48c->mUnk_10[n].mUnk_0c = func_020b4e70(p2) != 0 ? 2 : 3;
                 data_0217b48c->mUnk_10[n].mUnk_10 = x2;
                 data_0217b48c->mUnk_10[n].mUnk_0e = x2 >= 0x16 ? 1 : 0;

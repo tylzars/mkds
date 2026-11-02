@@ -56,7 +56,7 @@ void func_020ca074(void) {
         {
             s32 v3[10] = {0x4c, 0x4d, 0x4b, 0x4f, 0x50, 0x56, 0x55, 0x54, 0x4e, 0x57};
 
-            c = func_020b83dc(v3[k]);
+            c = GetRaceSNcerEntry(v3[k]);
         }
         for (j = 0; j < v2; j++) {
             p = v1[j];
@@ -222,28 +222,28 @@ void func_020c97c0(void) {
                             if (func_020b5ae8(&w, &data_0217b428->mUnk_190->mUnk_10[m].mUnk_00, b, 0, 1) != 0) {
                                 switch (o->mUnk_44) {
                                     case 0:
-                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = func_020b83dc(0x4c);
+                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = GetRaceSNcerEntry(0x4c);
                                         break;
                                     case 1:
-                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = func_020b83dc(0x4d);
+                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = GetRaceSNcerEntry(0x4d);
                                         break;
                                     case 2:
-                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = func_020b83dc(0x4b);
+                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = GetRaceSNcerEntry(0x4b);
                                         break;
                                     case 5:
-                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = func_020b83dc(0x56);
+                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = GetRaceSNcerEntry(0x56);
                                         break;
                                     case 9:
-                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = func_020b83dc(0x55);
+                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = GetRaceSNcerEntry(0x55);
                                         break;
                                     case 7:
-                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = func_020b83dc(0x54);
+                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = GetRaceSNcerEntry(0x54);
                                         break;
                                     case 8:
-                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = func_020b83dc(0x4e);
+                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = GetRaceSNcerEntry(0x4e);
                                         break;
                                     default:
-                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = func_020b83dc(0x4c);
+                                        data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = GetRaceSNcerEntry(0x4c);
                                         break;
                                 }
                                 data_0217b428->mUnk_190->mUnk_10[m].mUnk_0c = func_020b4e70(&w) != 0 ? 2 : 3;
@@ -325,7 +325,7 @@ static inline void func_020c8dbc_inline3(Unk020c06c4 *p, s32 i, s32 h) {
         x = (u16) (((h + 12 - j * 4) << 16) / 64) >> 4;
         v3 = (s16) data_0215d4b4[x * 2 + 1] * 11 >> 12;
         v4 = (s16) data_0215d4b4[x * 2] * 11 >> 12;
-        c = func_020b83dc(h % 12 < 6 ? 93 + j * 2 : 94 + j * 2);
+        c = GetRaceSNcerEntry(h % 12 < 6 ? 93 + j * 2 : 94 + j * 2);
         func_020c8dbc_inline2(p, c, data_0217b428->mUnk_060[i].mUnk_00 + v3, data_0217b428->mUnk_060[i].mUnk_04 + v4);
     }
 }
@@ -357,9 +357,9 @@ void func_020c8dbc(Unk020c06c4 *p) {
                             v1 = func_020ae5c4(p);
                             func_020b4bf8(r0, data_0217b428->mUnk_0a0[i].y, data_0217b428->mUnk_100[i]);
                             if (func_0207a8a4((u16) i) == 3) {
-                                c = func_020b83dc(0x10);
+                                c = GetRaceSNcerEntry(0x10);
                             } else {
-                                c = func_020b83dc(i);
+                                c = GetRaceSNcerEntry(i);
                             }
                             func_020c8dbc_inline(p, c, r0, data_0217b428->mUnk_060[i].mUnk_00,
                                                  data_0217b428->mUnk_060[i].mUnk_04, v1, f != 0 ? 1 : -1, -1);
@@ -369,9 +369,9 @@ void func_020c8dbc(Unk020c06c4 *p) {
                             p->mUnk_000.mUnk_20[v1].mUnk_1e = r0[3] >> 4;
                         } else {
                             if (func_0207a8a4((u16) i) == 3) {
-                                c = func_020b83dc(0x10);
+                                c = GetRaceSNcerEntry(0x10);
                             } else {
-                                c = func_020b83dc(i);
+                                c = GetRaceSNcerEntry(i);
                             }
                             func_020c8dbc_inline(p, c, 0, data_0217b428->mUnk_060[i].mUnk_00,
                                                  data_0217b428->mUnk_060[i].mUnk_04, 0, f != 0 ? 1 : -1, -1);
@@ -404,9 +404,9 @@ void func_020c8dbc(Unk020c06c4 *p) {
                             }
                             func_020b4bf8(r1, data_0217b428->mUnk_0a0[i].y, v5);
                             if (func_0207a8a4((u16) i) == 3) {
-                                c = func_020b83dc(0x10);
+                                c = GetRaceSNcerEntry(0x10);
                             } else {
-                                c = func_020b83dc(i);
+                                c = GetRaceSNcerEntry(i);
                             }
                             func_020c8dbc_inline(p, c, r1, v6, v7, n, b != 0 ? 1 : -1, g);
                             p->mUnk_000.mUnk_20[n].mUnk_06 = r1[0] >> 4;
@@ -415,9 +415,9 @@ void func_020c8dbc(Unk020c06c4 *p) {
                             p->mUnk_000.mUnk_20[n].mUnk_1e = r1[3] >> 4;
                         } else {
                             if (func_0207a8a4((u16) i) == 3) {
-                                c = func_020b83dc(0x10);
+                                c = GetRaceSNcerEntry(0x10);
                             } else {
-                                c = func_020b83dc(i);
+                                c = GetRaceSNcerEntry(i);
                             }
                             func_020c8dbc_inline(p, c, 0, v6, v7, 0, b != 0 ? 1 : -1, g);
                         }

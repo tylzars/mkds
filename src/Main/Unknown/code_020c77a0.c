@@ -23,10 +23,10 @@ void func_020c783c(void) {
         if (func_020b5f68(&data_0217b408->mUnk_0c[i]) != 0) {
             p = data_0217b408->mUnk_00[i];
             if (func_020b5ae8(&p->mUnk_04, &data_0217b408->mUnk_10[n].mUnk_00, a, 0, 0) != 0) {
-                data_0217b408->mUnk_10[n].mUnk_08 = func_020b83dc(0xaf);
+                data_0217b408->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0xaf);
                 data_0217b408->mUnk_10[n].mUnk_0c = 1;
                 data_0217b408->mUnk_10[n + 1].mUnk_00 = data_0217b408->mUnk_10[(u32) n].mUnk_00;
-                data_0217b408->mUnk_10[n + 1].mUnk_08 = func_020b83dc(0xb0);
+                data_0217b408->mUnk_10[n + 1].mUnk_08 = GetRaceSNcerEntry(0xb0);
                 data_0217b408->mUnk_10[n + 1].mUnk_0c = 2;
                 n += 2;
                 t = func_020db4c4((Unk020db2b8 *) p) * 16 >> 12;

@@ -17,7 +17,7 @@ void func_020c7fbc(void) {
     a = func_020c0db0();
     for (i = 0; i < data_0217b41c->mUnk_08; i++) {
         if (func_020b5ae8(&data_0217b41c->mUnk_00[i]->mUnk_04, &data_0217b41c->mUnk_10[n].mUnk_00, a, 1, 0) != 0) {
-            data_0217b41c->mUnk_10[n].mUnk_08 = func_020b83dc(0x25);
+            data_0217b41c->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0x25);
             data_0217b41c->mUnk_10[n].mUnk_0c = 2;
             n++;
         }

@@ -36,7 +36,7 @@ void func_ov001_02189c10(void) {
                 } else {
                     arg = (obj->mUnk_02 & 0x400) ? 0xc7 : 0xc5;
                 }
-                data_ov001_021a9bc4->mUnk_10[count].mUnk_08 = func_020b83dc(arg);
+                data_ov001_021a9bc4->mUnk_10[count].mUnk_08 = GetRaceSNcerEntry(arg);
                 data_ov001_021a9bc4->mUnk_10[count].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
                 data_ov001_021a9bc4->mUnk_10[count].mUnk_0e = obj->mUnk_02 & 0x20;
                 data_ov001_021a9bc4->mUnk_10[count].mUnk_10 = obj->mUnk_7e;
@@ -77,14 +77,14 @@ void func_ov001_021899e4(void) {
             pos = &obj->mUnk_04;
             if (func_020b5ae8(pos, &data_ov001_021a9bc0->mUnk_10[count].mUnk_00, var, 1, 1)) {
                 row = func_ov001_0218b2d4((Unk02188950 *) obj);
-                dst = func_020b85f0(6)->mUnk_00->mUnk_0c;
+                dst = GetRaceNclrNcgr(6)->mUnk_00->mUnk_0c;
                 res = 0;
                 LocateNclr((Unk020b4a44 **) (&res), (void *) (FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR")));
                 for (k = 0; k < 16; k++) {
                     dst[0x50 + k] = res->mUnk_0c[(row + 2) * 16 + k];
                 }
-                func_0200ee74(func_020b85f0(6)->mUnk_00->mUnk_0c, func_020b85f0(6)->mUnk_00->mUnk_08);
-                data_ov001_021a9bc0->mUnk_10[count].mUnk_08 = func_020b83dc(0xc5);
+                func_0200ee74(GetRaceNclrNcgr(6)->mUnk_00->mUnk_0c, GetRaceNclrNcgr(6)->mUnk_00->mUnk_08);
+                data_ov001_021a9bc0->mUnk_10[count].mUnk_08 = GetRaceSNcerEntry(0xc5);
                 data_ov001_021a9bc0->mUnk_10[count].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
                 data_ov001_021a9bc0->mUnk_10[count].mUnk_0e = obj->mUnk_02 & 0x20;
                 data_ov001_021a9bc0->mUnk_10[count].mUnk_10 = obj->mUnk_7e;

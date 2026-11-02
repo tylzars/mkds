@@ -16,7 +16,7 @@
 #include "Main/Unknown/unk_0217d000.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-// Values of the first argument func_020bc208 passes to func_020b843c.
+// Values of the first argument func_020bc208 passes to GetRaceTaMNcerEntry.
 typedef enum { UNK_020B843C_ARG_0, UNK_020B843C_ARG_1 } Unk020b843c_Arg;
 
 void func_020bc958(void) {
@@ -111,25 +111,25 @@ void func_020bc208(Unk020d029c *a) {
     if (data_021759c0->mUnk_08 == 2) {
         return;
     }
-    c = func_020b85dc(0x20);
+    c = GetRaceMNcerEntry(0x20);
     q1[0] = t[0] << 12;
     q1[1] = t[1] << 12;
     a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q1, 0, 1);
     if (data_0217b3d4->mUnk_10 != 0) {
-        c = func_020b85dc(data_0217b3d4->mUnk_00 + 0x21);
+        c = GetRaceMNcerEntry(data_0217b3d4->mUnk_00 + 0x21);
         q2[0] = t[0] << 12;
         q2[1] = t[1] << 12;
         a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q2, 0, 1);
     }
     switch (data_0217b3d4->mUnk_08) {
         case 2:
-            c = func_020b85dc(0x26);
+            c = GetRaceMNcerEntry(0x26);
             q3[0] = t[0] << 12;
             q3[1] = t[1] << 12;
             a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q3, 0, 1);
             break;
         case 4:
-            c = func_020b85dc(0x27);
+            c = GetRaceMNcerEntry(0x27);
             q4[0] = t[0] << 12;
             q4[1] = t[1] << 12;
             a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q4, 0, 1);
@@ -159,45 +159,45 @@ void func_020bc208(Unk020d029c *a) {
         s32 b[10] = {0x57, 0x61, 0x6a, 0x72, 0x7c, 0x85, 0x8e, 0x98, 0xa1, 0xaa};
 
         func_020b19b4(&p, &r);
-        c = func_020b843c(*p != 0 ? UNK_020B843C_ARG_0 : UNK_020B843C_ARG_1);
+        c = GetRaceTaMNcerEntry(*p != 0 ? UNK_020B843C_ARG_0 : UNK_020B843C_ARG_1);
         q5[0] = b[0] << 12;
         q5[1] = 0x58000;
         a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q5, 0, 1);
         if (r->mUnk_00 != 0) {
-            c = func_020b843c(r->mUnk_00 + 2);
+            c = GetRaceTaMNcerEntry(r->mUnk_00 + 2);
             q6[0] = b[1] << 12;
             q6[1] = 0x58000;
             a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q6, 0, 1);
         }
-        c = func_020b843c(r->mUnk_04 + 2);
+        c = GetRaceTaMNcerEntry(r->mUnk_04 + 2);
         q7[0] = b[2] << 12;
         q7[1] = 0x58000;
         a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q7, 0, 1);
-        c = func_020b843c(0xc);
+        c = GetRaceTaMNcerEntry(0xc);
         q8[0] = b[3] << 12;
         q8[1] = 0x58000;
         a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q8, 0, 1);
-        c = func_020b843c(r->mUnk_08 + 2);
+        c = GetRaceTaMNcerEntry(r->mUnk_08 + 2);
         q9[0] = b[4] << 12;
         q9[1] = 0x58000;
         a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q9, 0, 1);
-        c = func_020b843c(r->mUnk_0c + 2);
+        c = GetRaceTaMNcerEntry(r->mUnk_0c + 2);
         q10[0] = b[5] << 12;
         q10[1] = 0x58000;
         a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q10, 0, 1);
-        c = func_020b843c(0xc);
+        c = GetRaceTaMNcerEntry(0xc);
         q11[0] = b[6] << 12;
         q11[1] = 0x58000;
         a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q11, 0, 1);
-        c = func_020b843c(r->mUnk_10 + 2);
+        c = GetRaceTaMNcerEntry(r->mUnk_10 + 2);
         q12[0] = b[7] << 12;
         q12[1] = 0x58000;
         a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q12, 0, 1);
-        c = func_020b843c(r->mUnk_14 + 2);
+        c = GetRaceTaMNcerEntry(r->mUnk_14 + 2);
         q13[0] = b[8] << 12;
         q13[1] = 0x58000;
         a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q13, 0, 1);
-        c = func_020b843c(r->mUnk_18 + 2);
+        c = GetRaceTaMNcerEntry(r->mUnk_18 + 2);
         q14[0] = b[9] << 12;
         q14[1] = 0x58000;
         a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q14, 0, 1);

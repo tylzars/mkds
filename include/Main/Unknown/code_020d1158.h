@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_020d0280.h"
 
-// The two values func_020d1198 passes to func_020b837c.
+// The two values func_020d1198 passes to GetRaceStartBattleMNcerEntry.
 enum {
     VALUE_0 = 0,
     VALUE_1 = 1,

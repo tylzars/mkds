@@ -7,11 +7,11 @@ void func_020d1198(Unk020d029c *a) {
     s32 q[2][2];
 
     *(vu32 *) 0x4000000 = *(vu32 *) 0x4000000 & ~0xe000;
-    c = func_020b837c(data_021759c0->mUnk_18 == 0 ? VALUE_0 : VALUE_1);
+    c = GetRaceStartBattleMNcerEntry(data_021759c0->mUnk_18 == 0 ? VALUE_0 : VALUE_1);
     q[0][0] = 0x80000;
     q[0][1] = 0x60000;
     a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q[0], 0, 1);
-    c = func_020b837c(2);
+    c = GetRaceStartBattleMNcerEntry(2);
     q[1][0] = 0x80000;
     q[1][1] = 0x60000;
     a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q[1], 0, 1);

@@ -42,7 +42,7 @@ void func_ov001_02189880(void) {
         }
         pos = &elem->mUnk_04;
         if (func_020b5ae8(pos, &data_ov001_021a9bbc->mUnk_10[count].mUnk_00, unk, 1, 1)) {
-            data_ov001_021a9bbc->mUnk_10[count].mUnk_08 = func_020b83dc(0xc5);
+            data_ov001_021a9bbc->mUnk_10[count].mUnk_08 = GetRaceSNcerEntry(0xc5);
             data_ov001_021a9bbc->mUnk_10[count].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
             data_ov001_021a9bbc->mUnk_10[count].mUnk_0e = elem->mUnk_02 & 0x20;
             data_ov001_021a9bbc->mUnk_10[count].mUnk_10 = elem->mUnk_7e;
@@ -80,7 +80,7 @@ void func_ov001_02189718(void) {
         }
         pos = &elem->mUnk_04;
         if (func_020b5ae8(pos, &data_ov001_021a9bb8->mUnk_10[count].mUnk_00, unk, 1, 1)) {
-            data_ov001_021a9bb8->mUnk_10[count].mUnk_08 = func_020b83dc(0xc5);
+            data_ov001_021a9bb8->mUnk_10[count].mUnk_08 = GetRaceSNcerEntry(0xc5);
             data_ov001_021a9bb8->mUnk_10[count].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
             data_ov001_021a9bb8->mUnk_10[count].mUnk_0e = elem->mUnk_02 & 0x20;
             data_ov001_021a9bb8->mUnk_10[count].mUnk_10 = elem->mUnk_7e;
@@ -115,7 +115,7 @@ void func_ov001_021895b8(void) {
         elem = data_ov001_021a9bb4->mUnk_00[i];
         pos = &elem->mUnk_04;
         if (func_020b5ae8(pos, &data_ov001_021a9bb4->mUnk_10[count].mUnk_00, unk, 1, 1)) {
-            data_ov001_021a9bb4->mUnk_10[count].mUnk_08 = func_020b83dc(0x5b);
+            data_ov001_021a9bb4->mUnk_10[count].mUnk_08 = GetRaceSNcerEntry(0x5b);
             data_ov001_021a9bb4->mUnk_10[count].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
             data_ov001_021a9bb4->mUnk_10[count].mUnk_0e = 0;
             data_ov001_021a9bb4->mUnk_10[count].mUnk_10 = elem->mUnk_7e;
@@ -151,7 +151,7 @@ void func_ov001_02189444(void) {
         pos = &elem->mUnk_04;
         if (func_020b5ae8(pos, &data_ov001_021a9bb0->mUnk_10[count].mUnk_00, unk, 1, 1)) {
             data_ov001_021a9bb0->mUnk_10[count].mUnk_08 =
-                func_020b83dc(func_ov001_02185b50((Unk02185bb8 *) elem) ? 0x5a : 0x59);
+                GetRaceSNcerEntry(func_ov001_02185b50((Unk02185bb8 *) elem) ? 0x5a : 0x59);
             data_ov001_021a9bb0->mUnk_10[count].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
             data_ov001_021a9bb0->mUnk_10[count].mUnk_0e = 0;
             data_ov001_021a9bb0->mUnk_10[count].mUnk_10 = elem->mUnk_7e;
@@ -190,7 +190,7 @@ void func_ov001_021892c8(void) {
         pos = &elem->mUnk_04;
         if (func_020b5ae8(pos, &data_ov001_021a9bac->mUnk_10[count].mUnk_00, unk, 1, 1)) {
             data_ov001_021a9bac->mUnk_10[count].mUnk_08 =
-                func_020b83dc(func_ov001_0218c790((Unk02188950 *) elem) >= 2 ? 0xc6 : 0xc5);
+                GetRaceSNcerEntry(func_ov001_0218c790((Unk02188950 *) elem) >= 2 ? 0xc6 : 0xc5);
             data_ov001_021a9bac->mUnk_10[count].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
             data_ov001_021a9bac->mUnk_10[count].mUnk_0e = elem->mUnk_02 & 0x20;
             data_ov001_021a9bac->mUnk_10[count].mUnk_10 = elem->mUnk_7e;

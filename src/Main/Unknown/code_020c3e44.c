@@ -117,7 +117,7 @@ void func_020c3e44(Unk020c06c4 *a) {
                     if (data_0217b3e4->mUnk_790[i].mUnk_34[j] < 0x28) {
                         if (func_020b5ae8(&data_0217b3e4->mUnk_790[i].mUnk_04[j], &o1, s, 1, 1) != 0) {
                             m = data_0217b3e4->mUnk_790[i].mUnk_28[j];
-                            q = func_020b83dc(0x4f);
+                            q = GetRaceSNcerEntry(0x4f);
                             n = a->mUnk_400;
                             w1[0] = o1.mUnk_00 << 12;
                             w1[1] = o1.mUnk_04 << 12;
@@ -141,13 +141,13 @@ void func_020c3e44(Unk020c06c4 *a) {
                             r = 0;
                             break;
                         case 1:
-                            r = func_020b83dc(0x51);
+                            r = GetRaceSNcerEntry(0x51);
                             break;
                         case 2:
-                            r = func_020b83dc(0x52);
+                            r = GetRaceSNcerEntry(0x52);
                             break;
                         case 3:
-                            r = func_020b83dc(0x53);
+                            r = GetRaceSNcerEntry(0x53);
                             break;
                     }
                     if (r != 0) {

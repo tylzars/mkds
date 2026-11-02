@@ -30,7 +30,7 @@ void func_ov001_02189160(void) {
         if (!(el->mUnk_02 & 1)) {
             pos = &el->mUnk_04;
             if (func_020b5ae8(pos, &data_ov001_021a9ba8->mUnk_10[n].mUnk_00, v, 1, 1) != 0) {
-                data_ov001_021a9ba8->mUnk_10[n].mUnk_08 = func_020b83dc(0xc5);
+                data_ov001_021a9ba8->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0xc5);
                 data_ov001_021a9ba8->mUnk_10[n].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
                 data_ov001_021a9ba8->mUnk_10[n].mUnk_0e = el->mUnk_02 & 0x20;
                 data_ov001_021a9ba8->mUnk_10[n].mUnk_10 = el->mUnk_7e;
@@ -65,7 +65,7 @@ void func_ov001_02188ff8(void) {
         if (!(el->mUnk_02 & 1)) {
             pos = &el->mUnk_04;
             if (func_020b5ae8(pos, &data_ov001_021a9ba4->mUnk_10[n].mUnk_00, v, 1, 1) != 0) {
-                data_ov001_021a9ba4->mUnk_10[n].mUnk_08 = func_020b83dc(0xc5);
+                data_ov001_021a9ba4->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0xc5);
                 data_ov001_021a9ba4->mUnk_10[n].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
                 data_ov001_021a9ba4->mUnk_10[n].mUnk_0e = el->mUnk_02 & 0x20;
                 data_ov001_021a9ba4->mUnk_10[n].mUnk_10 = el->mUnk_7e;

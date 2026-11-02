@@ -96,48 +96,48 @@ void func_020c6adc(Unk020c06c4 *a, s32 b, s32 c, Unk02056bc0 *d) {
         w.mUnk_00 = w.mUnk_04 = w.mUnk_08 = w.mUnk_0c = w.mUnk_10 = w.mUnk_14 = w.mUnk_18 = 0xb;
     }
     if (w.mUnk_00 != 0) {
-        p = func_020b8394(w.mUnk_00 + 0xe);
+        p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00 + 0xe);
         e0[0] = (b + v[0]) << 12;
         e0[1] = c << 12;
         k = a->mUnk_400;
         a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, 0, e0, 0, 1);
     }
-    p = func_020b8394(w.mUnk_04 + 0xe);
+    p = GetRaceNewRecordTaSNcerEntry(w.mUnk_04 + 0xe);
     e1[0] = (b + v[1]) << 12;
     e1[1] = c << 12;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, 0, e1, 0, 1);
-    p = func_020b8394(0x18);
+    p = GetRaceNewRecordTaSNcerEntry(0x18);
     e2[0] = (b + v[2]) << 12;
     e2[1] = c << 12;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, 0, e2, 0, 1);
-    p = func_020b8394(w.mUnk_08 + 0xe);
+    p = GetRaceNewRecordTaSNcerEntry(w.mUnk_08 + 0xe);
     e3[0] = (b + v[3]) << 12;
     e3[1] = c << 12;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, 0, e3, 0, 1);
-    p = func_020b8394(w.mUnk_0c + 0xe);
+    p = GetRaceNewRecordTaSNcerEntry(w.mUnk_0c + 0xe);
     e4[0] = (b + v[4]) << 12;
     e4[1] = c << 12;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, 0, e4, 0, 1);
-    p = func_020b8394(0x18);
+    p = GetRaceNewRecordTaSNcerEntry(0x18);
     e5[0] = (b + v[5]) << 12;
     e5[1] = c << 12;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, 0, e5, 0, 1);
-    p = func_020b8394(w.mUnk_10 + 0xe);
+    p = GetRaceNewRecordTaSNcerEntry(w.mUnk_10 + 0xe);
     e6[0] = (b + v[6]) << 12;
     e6[1] = c << 12;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, 0, e6, 0, 1);
-    p = func_020b8394(w.mUnk_14 + 0xe);
+    p = GetRaceNewRecordTaSNcerEntry(w.mUnk_14 + 0xe);
     e7[0] = (b + v[7]) << 12;
     e7[1] = c << 12;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, 0, e7, 0, 1);
-    p = func_020b8394(w.mUnk_18 + 0xe);
+    p = GetRaceNewRecordTaSNcerEntry(w.mUnk_18 + 0xe);
     e8[0] = (b + v[8]) << 12;
     e8[1] = c << 12;
     k = a->mUnk_400;
@@ -172,12 +172,12 @@ void func_020c692c(Unk020c06c4 *a, s32 b, s32 c, s32 d) {
         f = 1;
     }
     if (l.mUnk_18 != 0) {
-        p = func_020b8394(b + 7);
+        p = GetRaceNewRecordTaSNcerEntry(b + 7);
         e0[0] = (c + 0x32) << 12;
         e0[1] = d << 12;
         k = a->mUnk_400;
         a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, 0, e0, 0, 1);
-        p = func_020b8394(b + 0x1a);
+        p = GetRaceNewRecordTaSNcerEntry(b + 0x1a);
         e1[0] = (c + 0x3d) << 12;
         e1[1] = d << 12;
         k = a->mUnk_400;
@@ -199,13 +199,13 @@ void func_020c676c(Unk020c06c4 *a) {
     s32 x;
     void *p;
 
-    p = func_020b8394(0);
+    p = GetRaceNewRecordTaSNcerEntry(0);
     e0[0] = (data_0217b3f4->mUnk_e0 + 0x80) << 12;
     e0[1] = 0xc000;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, 0, e0, 0, 1);
     for (i = 0; i < 5; i++) {
-        p = func_020b8394(i + 1);
+        p = GetRaceNewRecordTaSNcerEntry(i + 1);
         x = i * 0x18 + 0x28;
         e1[0] = data_0217b3f4->mUnk_e0 << 12;
         e1[1] = (i * 0x18 + 0x28) << 12;
@@ -213,7 +213,7 @@ void func_020c676c(Unk020c06c4 *a) {
         a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, 0, e1, 0, 1);
         func_020c692c(a, i, data_0217b3f4->mUnk_e0, x);
     }
-    p = func_020b8394(6);
+    p = GetRaceNewRecordTaSNcerEntry(6);
     e2[0] = data_0217b3f4->mUnk_e0 << 12;
     e2[1] = 0x9f000;
     k = a->mUnk_400;

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020b846c(u32 a);
+u32 LookupRaceMNcerIndex(u32 a);

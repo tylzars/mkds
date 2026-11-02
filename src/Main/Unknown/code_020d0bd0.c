@@ -29,7 +29,7 @@ void func_020d0cd8(void) {
         if (func_020b5ae8(p, (UnkPair020b502c *) &data_0217b4a0->mUnk_10[n], a, 1, 1) == 0) {
             continue;
         }
-        data_0217b4a0->mUnk_10[n].mUnk_08 = func_020b83dc(v != 0 ? 0xa5 : 0xa6);
+        data_0217b4a0->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(v != 0 ? 0xa5 : 0xa6);
         data_0217b4a0->mUnk_10[n].mUnk_0c = 1;
         data_0217b4a0->mUnk_10[n].mUnk_0e = 0;
         data_0217b4a0->mUnk_10[n].mUnk_10 = e->mUnk_7e;

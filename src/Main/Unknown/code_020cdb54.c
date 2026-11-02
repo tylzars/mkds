@@ -20,7 +20,7 @@ void func_020cdb8c(void) {
         v = &e->mUnk_04;
         if ((e->mUnk_02 & 2) == 0) {
             if (func_020b5ae8(v, &data_0217b464->mUnk_10[a].mUnk_00, n, 0, 1) != 0) {
-                data_0217b464->mUnk_10[a].mUnk_08 = func_020b83dc(0xa3);
+                data_0217b464->mUnk_10[a].mUnk_08 = GetRaceSNcerEntry(0xa3);
                 data_0217b464->mUnk_10[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
                 a++;
             }

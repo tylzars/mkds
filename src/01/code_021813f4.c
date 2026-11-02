@@ -51,7 +51,7 @@ void func_ov001_02181410(void) {
         if ((e->mUnk_02 & 1) == 0) {
             pos = &e->mUnk_04;
             if (func_020b5ae8(pos, &data_ov001_021a9b8c->mUnk_10[count].mUnk_00, v, 1, 1)) {
-                data_ov001_021a9b8c->mUnk_10[count].mUnk_08 = func_020b83dc(0x58);
+                data_ov001_021a9b8c->mUnk_10[count].mUnk_08 = GetRaceSNcerEntry(0x58);
                 data_ov001_021a9b8c->mUnk_10[count].mUnk_0c = func_020b4e70(pos) != 0 ? 2 : 3;
                 count++;
             }

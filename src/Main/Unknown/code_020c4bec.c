@@ -62,22 +62,22 @@ void func_020c4f08(Unk020c06c4 *a) {
     if (data_021759d0->mUnk_20 != 0) {
         if (func_020b1d20() == 0) {
             if (data_021759c0->mUnk_08 == 5) {
-                p = func_020b85dc(data_0217b3ec->mUnk_04 + 0x28);
+                p = GetRaceMNcerEntry(data_0217b3ec->mUnk_04 + 0x28);
             } else {
-                p = func_020b85dc(data_0217b3ec->mUnk_00 + 0x28);
+                p = GetRaceMNcerEntry(data_0217b3ec->mUnk_00 + 0x28);
             }
         } else {
             if (data_021759c0->mUnk_08 == 5) {
-                p = func_020b8454(data_0217b3ec->mUnk_04 + 0x3c);
+                p = GetRaceGoalMNcerEntry(data_0217b3ec->mUnk_04 + 0x3c);
             } else {
-                p = func_020b8454(data_0217b3ec->mUnk_00 + 0x3c);
+                p = GetRaceGoalMNcerEntry(data_0217b3ec->mUnk_00 + 0x3c);
             }
         }
         if (data_021759c0->mUnk_08 == 5 && data_0217b3ec->mUnk_10 != 0 && data_0217b3ec->mUnk_08 < 0x69) {
             if (func_020b1d20() != 0) {
-                q = func_020b8454(0x42);
+                q = GetRaceGoalMNcerEntry(0x42);
             } else {
-                q = func_020b85dc(0x2c);
+                q = GetRaceMNcerEntry(0x2c);
             }
         }
     }

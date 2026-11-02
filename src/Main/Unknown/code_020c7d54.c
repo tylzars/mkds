@@ -25,15 +25,15 @@ void func_020c7d8c(void) {
                 v = p->mUnk_04.y - p->mUnk_a8;
                 if (v >= -0x9000) {
                     w = v > 0 ? 1 : 0;
-                    data_0217b418->mUnk_10[n].mUnk_08 = func_020b83dc(w != 0 ? 0xa7 : 0xa8);
+                    data_0217b418->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(w != 0 ? 0xa7 : 0xa8);
                     data_0217b418->mUnk_10[n].mUnk_0c = w != 0 ? 1 : 2;
                     data_0217b418->mUnk_10[n + 1].mUnk_00 = data_0217b418->mUnk_10[n].mUnk_00;
-                    data_0217b418->mUnk_10[n + 1].mUnk_08 = func_020b83dc(0xa9);
+                    data_0217b418->mUnk_10[n + 1].mUnk_08 = GetRaceSNcerEntry(0xa9);
                     data_0217b418->mUnk_10[n + 1].mUnk_0c = 2;
                     n += 2;
                     data_0217b418->mUnk_10[n - 2].mUnk_00.mUnk_04 -= v >> 14;
                 } else {
-                    data_0217b418->mUnk_10[n].mUnk_08 = func_020b83dc(0xa9);
+                    data_0217b418->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0xa9);
                     data_0217b418->mUnk_10[n].mUnk_0c = 2;
                     n++;
                 }

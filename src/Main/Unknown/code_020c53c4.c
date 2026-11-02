@@ -132,7 +132,7 @@ void func_020c5804(Unk020c06c4 *a) {
         case 3:
         case 5:
             y = func_020ae4c0(1, 0x40, 0, data_0217b3f0->mUnk_04, 0x14);
-            c = func_020b8454(data_0217b3f0->mUnk_08);
+            c = GetRaceGoalMNcerEntry(data_0217b3f0->mUnk_08);
             e[0] = 0x18000;
             e[1] = (y + 0xa8) << 12;
             k = a->mUnk_400;
@@ -156,31 +156,31 @@ void func_020c55b0(Unk020c06c4 *a) {
     void *c;
 
     y = func_020ae4c0(1, 0x40, 0, data_0217b3f0->mUnk_04, 0x14);
-    c = func_020b8454(data_0217b3f0->mUnk_08);
+    c = GetRaceGoalMNcerEntry(data_0217b3f0->mUnk_08);
     e0[0] = 0x18000;
     e0[1] = (y + 0xa8) << 12;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, 0, e0, 0, 1);
 
-    c = func_020b8454(data_0217b3f0->mUnk_0c + 8);
+    c = GetRaceGoalMNcerEntry(data_0217b3f0->mUnk_0c + 8);
     e1[0] = 0x48000;
     e1[1] = (y + 0xb0) << 12;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, 0, e1, 0, 1);
 
-    c = func_020b8454(func_020b4b98(data_0217b3f0->mUnk_0c) != 0 ? 0x13 : 0x14);
+    c = GetRaceGoalMNcerEntry(func_020b4b98(data_0217b3f0->mUnk_0c) != 0 ? 0x13 : 0x14);
     e2[0] = 0x48000;
     e2[1] = (y + 0xb0) << 12;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, 0, e2, 0, 1);
 
-    c = func_020b8454(0x40);
+    c = GetRaceGoalMNcerEntry(0x40);
     e3[0] = 0xda000;
     e3[1] = (y + 0xa6) << 12;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, 0, e3, 0, 1);
 
-    c = func_020b8454(0x41);
+    c = GetRaceGoalMNcerEntry(0x41);
     e4[0] = 0xda000;
     e4[1] = (y + 0xa6) << 12;
     k = a->mUnk_400;
@@ -236,7 +236,7 @@ void func_020c541c(Unk020c06c4 *a) {
     if (data_0217b3f0->mUnk_18 >= 8) {
         return;
     }
-    c = func_020b83f4(v);
+    c = GetRaceGoalMrMNcerEntry(v);
     e[0] = (y + 0x80) << 12;
     e[1] = 0x60000;
     k = a->mUnk_400;
