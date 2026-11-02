@@ -13,4 +13,4 @@ typedef struct Unk021abca0 {
     /* 1c */ u8 mUnk_1c[0x40];
 } Unk021abca0;
 
-void func_ov000_021abca0(void *param_1, const u8 *b, u32 c);
+void func_ov000_021abca0(void *f, const u8 *b, u32 c);

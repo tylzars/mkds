@@ -37,32 +37,32 @@ void func_02048350(char *a) {
 
 #pragma thumb on
 
-void func_02048324(u32 param_1) {
+void func_02048324(u32 a) {
     u32 v1;
     v1 = func_02048474();
-    func_0200d9e0((char *) param_1, 0x80, (const char *) data_021650bc, v1, (u32) &data_021650d8);
+    func_0200d9e0((char *) a, 0x80, (const char *) data_021650bc, v1, (u32) &data_021650d8);
 }
 
-void func_020482f0(u32 param_1, u8 *param_2, int param_3) {
-    if (*param_2 != 0) {
-        func_0200d9e0((char *) param_1, 0x80, (const char *) data_021650a0, param_2, ((u32 *) &data_02164d28)[param_3],
+void func_020482f0(u32 a, u8 *b, int c) {
+    if (*b != 0) {
+        func_0200d9e0((char *) a, 0x80, (const char *) data_021650a0, b, ((u32 *) &data_02164d28)[c],
                       (u32) &data_021650b4);
     }
 }
 
-void func_020482ac(int param_1, u8 *param_2, int param_3) {
+void func_020482ac(int a, u8 *b, int c) {
     u32 v1;
-    if (*param_2 != 0) {
+    if (*b != 0) {
         v1 = func_02048474();
-        func_0200d9e0((char *) param_1, 0x80, (const char *) data_02165080, param_2, ((u32 *) &data_02164d28)[param_3],
-                      v1, (u32) &data_02165098);
+        func_0200d9e0((char *) a, 0x80, (const char *) data_02165080, b, ((u32 *) &data_02164d28)[c], v1,
+                      (u32) &data_02165098);
     }
 }
 
-void func_02048284(u32 param_1, u32 param_2) {
+void func_02048284(u32 a, u32 b) {
     u32 v1;
     v1 = func_02048474();
-    func_0200d9e0((char *) param_2, 0x80, (const char *) data_02165074, param_1, v1);
+    func_0200d9e0((char *) b, 0x80, (const char *) data_02165074, a, v1);
 }
 
 #pragma thumb off

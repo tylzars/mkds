@@ -39,8 +39,8 @@ void func_ov001_02181b8c(Unk02188950 *a) {
     data_ov001_021a9b90->mUnk_44++;
 }
 
-Unk02188950 *func_ov001_02181b68(int param_1) {
-    return data_ov001_021a9b90->mUnk_48[param_1 - data_021759c0->mUnk_3d0];
+Unk02188950 *func_ov001_02181b68(int a) {
+    return data_ov001_021a9b90->mUnk_48[a - data_021759c0->mUnk_3d0];
 }
 
 u8 func_ov001_02181b54(void) {
@@ -183,11 +183,11 @@ void func_ov001_02181860(void) {
     }
 }
 
-void func_ov001_02181844(u16 param_1, u16 param_2, u16 param_3, u16 param_4) {
-    data_ov001_021a9b90->mUnk_10 = param_1;
-    data_ov001_021a9b90->mUnk_12 = param_2;
-    data_ov001_021a9b90->mUnk_14 = param_3;
-    data_ov001_021a9b90->mUnk_16 = param_4;
+void func_ov001_02181844(u16 a, u16 b, u16 c, u16 d) {
+    data_ov001_021a9b90->mUnk_10 = a;
+    data_ov001_021a9b90->mUnk_12 = b;
+    data_ov001_021a9b90->mUnk_14 = c;
+    data_ov001_021a9b90->mUnk_16 = d;
 }
 
 u32 func_ov001_02181838(void) {
@@ -220,16 +220,16 @@ void func_ov001_021817e0(void) {
     }
 }
 
-void func_ov001_0218175c(s32 param_1) {
+void func_ov001_0218175c(s32 b) {
     Unk021759c0 *p = data_021759c0;
     u32 m = p->mUnk_2f;
     if (m == 3 || m == 7 || m == 0) {
         u32 a = p->mUnk_3c;
-        if (a == 0 && p->mUnk_3e == 0 && p->mUnk_40 == 0 && p->mUnk_42 == 0 && param_1 > 400 && param_1 < 500) {
+        if (a == 0 && p->mUnk_3e == 0 && p->mUnk_40 == 0 && p->mUnk_42 == 0 && b > 400 && b < 500) {
             func_ov001_02181aa0();
             return;
         }
-        if (param_1 == a || param_1 == p->mUnk_3e || param_1 == p->mUnk_40 || param_1 == p->mUnk_42) {
+        if (b == a || b == p->mUnk_3e || b == p->mUnk_40 || b == p->mUnk_42) {
             func_ov001_02181aa0();
         }
     }
@@ -282,22 +282,22 @@ void func_ov001_02181690(UnkFunc *p0) {
     data_ov001_021a9b90->mUnk_20 = p0;
 }
 
-void func_ov001_02181678(u32 param_1) {
+void func_ov001_02181678(u32 a) {
     Unk021a9b90 *p = data_ov001_021a9b90;
     u16 lim = p->mUnk_04;
-    if (param_1 >= lim) {
-        param_1 = lim;
+    if (a >= lim) {
+        a = lim;
     }
-    p->mUnk_0a += param_1;
+    p->mUnk_0a += a;
 }
 
-void func_ov001_02181660(u16 param_1) {
+void func_ov001_02181660(u16 a) {
     Unk021a9b90 *p = data_ov001_021a9b90;
     u16 lim = p->mUnk_04;
-    if (param_1 >= lim) {
-        param_1 = lim;
+    if (a >= lim) {
+        a = lim;
     }
-    p->mUnk_0c += param_1;
+    p->mUnk_0c += a;
 }
 
 void func_ov001_02181630(short a) {

@@ -1,9 +1,9 @@
 #include "00/code_021a73d8.h"
 
-s32 func_ov000_021a73d8(Unk021b49b8 *param_1) {
+s32 func_ov000_021a73d8(Unk021b49b8 *a) {
     Unk021a6fa8 *v1;
     Unk021a7064 *v2;
-    v1 = func_ov000_021a732c(param_1);
+    v1 = func_ov000_021a732c(a);
     if (v1 == 0) {
         return -0x31;
     }

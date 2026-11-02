@@ -10,32 +10,30 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020f9c6c.h"
 
-void func_ov001_02192e10(Unk02188950 *param_1) {
+void func_ov001_02192e10(Unk02188950 *a) {
     s32 m[9];
-    func_020d2450(param_1);
-    param_1->mUnk_000.mUnk_7e =
-        (u16) (((s64) param_1->mUnk_000.mUnk_9c->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
-    func_02146d44(m, data_0215d4b4[(param_1->mUnk_000.mUnk_7e >> 4) * 2],
-                  data_0215d4b4[(param_1->mUnk_000.mUnk_7e >> 4) * 2 + 1]);
-    func_02146dfc(m, &param_1->mUnk_000.mUnk_28.mUnk_00.x, &param_1->mUnk_000.mUnk_28.mUnk_00.x);
+    func_020d2450(a);
+    a->mUnk_000.mUnk_7e = (u16) (((s64) a->mUnk_000.mUnk_9c->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
+    func_02146d44(m, data_0215d4b4[(a->mUnk_000.mUnk_7e >> 4) * 2], data_0215d4b4[(a->mUnk_000.mUnk_7e >> 4) * 2 + 1]);
+    func_02146dfc(m, &a->mUnk_000.mUnk_28.mUnk_00.x, &a->mUnk_000.mUnk_28.mUnk_00.x);
 }
 
-void func_ov001_02192dd4(Unk0219b478 *param_1) {
-    data_ov001_021a9bcc = func_ov001_0219b478(param_1, "StopSign.nsbmd");
+void func_ov001_02192dd4(Unk0219b478 *a) {
+    data_ov001_021a9bcc = func_ov001_0219b478(a, "StopSign.nsbmd");
     func_0209b940(data_ov001_021a9bcc, 0x3f);
     func_0209ba08(data_ov001_021a9bcc, 2);
     func_020849a0(data_ov001_021a9bcc->mUnk_10, 0x294a);
 }
 
-void func_ov001_02192d7c(void *param_1, Unk02192d7c *param_2) {
+void func_ov001_02192d7c(void *a, Unk02192d7c *b) {
     s32 v = 0x1e;
     func_01ff9048(0x14, &v, 1);
-    param_2->mUnk_4c = param_2->mUnk_04 >> 4;
-    param_2->mUnk_50 = param_2->mUnk_08 >> 4;
-    param_2->mUnk_54 = param_2->mUnk_0c >> 4;
-    func_01ff9048(0x19, param_2->mUnk_28, 0xc);
-    func_01ff9048(0x1b, param_2->mUnk_1c, 3);
-    func_0209bb2c(param_1, data_ov001_021a9bcc, param_2);
+    b->mUnk_4c = b->mUnk_04 >> 4;
+    b->mUnk_50 = b->mUnk_08 >> 4;
+    b->mUnk_54 = b->mUnk_0c >> 4;
+    func_01ff9048(0x19, b->mUnk_28, 0xc);
+    func_01ff9048(0x1b, b->mUnk_1c, 3);
+    func_0209bb2c(a, data_ov001_021a9bcc, b);
 }
 
 void func_ov001_02192d60(void) {

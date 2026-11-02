@@ -22,7 +22,7 @@ typedef struct Unk02174e6c {
 
 void func_02035d18(void);
 void func_02035d20(void);
-void func_02035d48(u32 param_1, int param_2);
+void func_02035d48(u32 a, int b);
 void func_02035d74(int arg0);
 void func_02035d90(void);
 s32 func_02035db4(u32 a);

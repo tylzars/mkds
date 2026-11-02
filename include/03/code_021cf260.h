@@ -37,6 +37,6 @@ void *func_ov003_021cf260(u32 index);
 u32 func_ov003_021cf284(u32 a);
 u16 func_ov003_021cf32c(u32 a);
 u16 func_ov003_021cf360(void);
-void func_ov003_021cf36c(u16 param_1);
+void func_ov003_021cf36c(u16 a);
 void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c);
 void func_ov003_021cf598(void);

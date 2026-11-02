@@ -51,44 +51,44 @@ s32 func_ov000_021937c0(Unk0218f960 *object) {
     return 0;
 }
 
-s32 func_ov000_02193748(Unk0218f960 *param_1, Unk021937c0Node *param_2, const u8 *param_3) {
+s32 func_ov000_02193748(Unk0218f960 *c, Unk021937c0Node *d, const u8 *e) {
     s32 a = 0;
-    u32 b = param_2->mUnk_00;
+    u32 b = d->mUnk_00;
 
     switch (b) {
         case 0:
-            a = func_ov000_02191284(param_1, param_2, param_3);
+            a = func_ov000_02191284(c, d, e);
             break;
         case 1:
-            a = func_ov000_02194a0c(param_1, param_2, param_3);
+            a = func_ov000_02194a0c(c, d, e);
             break;
         case 2:
-            a = func_ov000_02192e04(param_1, param_2, param_3);
+            a = func_ov000_02192e04(c, d, e);
             break;
         case 4:
-            a = func_ov000_021964e4(param_1, param_2, param_3);
+            a = func_ov000_021964e4(c, d, e);
             break;
         default:
-            func_ov000_0219690c(param_1, data_ov000_021b3264, b);
+            func_ov000_0219690c(c, data_ov000_021b3264, b);
             func_0213442c(data_ov000_021b32ac, data_ov000_021b32b0, 0, 0x146);
             break;
     }
     if (a != 0) {
-        param_2->mUnk_1c = a;
+        d->mUnk_1c = a;
     }
     return a;
 }
 
-u32 func_ov000_02193634(int param_1, int param_2, int param_3) {
-    if (param_1 == 0 && param_2 == 0 && param_3 == 0) {
+u32 func_ov000_02193634(int a, int b, int c) {
+    if (a == 0 && b == 0 && c == 0) {
         return 1;
     }
-    if (param_1 < 0 || param_2 < 0 || param_3 < 0) {
+    if (a < 0 || b < 0 || c < 0) {
         return 0;
     }
-    switch (param_2) {
+    switch (b) {
         case 0:
-            if (param_1 != 0) {
+            if (a != 0) {
                 return 0;
             }
             break;
@@ -99,7 +99,7 @@ u32 func_ov000_02193634(int param_1, int param_2, int param_3) {
         case 8:
         case 10:
         case 12:
-            if (param_1 > 0x1f) {
+            if (a > 0x1f) {
                 return 0;
             }
             break;
@@ -107,33 +107,33 @@ u32 func_ov000_02193634(int param_1, int param_2, int param_3) {
         case 6:
         case 9:
         case 11:
-            if (param_1 > 0x1e) {
+            if (a > 0x1e) {
                 return 0;
             }
             break;
         case 2:
-            if ((param_3 % 4 == 0 && param_3 % 100 != 0) || param_3 % 400 == 0) {
-                if (param_1 > 0x1d) {
+            if ((c % 4 == 0 && c % 100 != 0) || c % 400 == 0) {
+                if (a > 0x1d) {
                     return 0;
                 }
-            } else if (param_1 > 0x1c) {
+            } else if (a > 0x1c) {
                 return 0;
             }
             break;
         default:
             return 0;
     }
-    if (param_3 < 0x76c) {
+    if (c < 0x76c) {
         return 0;
     }
-    if (param_3 > 0x81f) {
+    if (c > 0x81f) {
         return 0;
     }
-    if (param_3 == 0x81f) {
-        if (param_2 > 6) {
+    if (c == 0x81f) {
+        if (b > 6) {
             return 0;
         }
-        if (param_2 == 6 && param_1 > 6) {
+        if (b == 6 && a > 6) {
             return 0;
         }
     }

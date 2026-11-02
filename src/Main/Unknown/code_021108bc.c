@@ -137,7 +137,7 @@ s32 func_02110e58(void) {
     return a;
 }
 
-void func_02110cc8(s32 param_0) {
+void func_02110cc8(s32 d) {
     s32 a;
     s32 b;
     u32 c;

@@ -161,22 +161,22 @@ void func_ov001_02181048(void) {
                   data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
 }
 
-u32 func_ov001_02181020(u32 param_1, u32 param_2, u32 param_3) {
+u32 func_ov001_02181020(u32 a, u32 b, u32 c) {
     u8 *v1;
     u32 v2;
     v2 = 0;
-    v1 = func_ov001_02181200(param_1, param_2);
-    if ((v1 != (u8 *) 0x0) && (*v1 != param_3)) {
+    v1 = func_ov001_02181200(a, b);
+    if ((v1 != (u8 *) 0x0) && (*v1 != c)) {
         v2 = 1;
         func_ov001_021811c8();
-        *v1 = (u8) param_3;
+        *v1 = (u8) c;
     }
     return v2;
 }
 
-u8 func_ov001_02181004(s32 param_1, s32 param_2) {
+u8 func_ov001_02181004(s32 a, s32 b) {
     u8 *v1;
-    v1 = func_ov001_02181200(param_1, param_2);
+    v1 = func_ov001_02181200(a, b);
     if (v1 != (u8 *) 0x0) {
         return *v1;
     }

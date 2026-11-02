@@ -4,17 +4,17 @@
 
 #pragma thumb on
 
-void func_0202cc44(s32 param_1, s32 param_2) {
-    data_02174e3c->mUnk_04c[param_1].mUnk_04.mUnk_00 = 10;
-    data_02174e3c->mUnk_04c[param_1].mUnk_04.mUnk_0c = param_2;
-    data_02174e3c->mUnk_04c[param_1].mUnk_04.mUnk_04 = data_02174e3c->mUnk_04c[param_1].mUnk_04.mUnk_0c;
-    data_02174e3c->mUnk_04c[param_1].mUnk_04.mUnk_08 = data_02174e3c->mUnk_04c[param_1].mUnk_04.mUnk_04;
+void func_0202cc44(s32 a, s32 b) {
+    data_02174e3c->mUnk_04c[a].mUnk_04.mUnk_00 = 10;
+    data_02174e3c->mUnk_04c[a].mUnk_04.mUnk_0c = b;
+    data_02174e3c->mUnk_04c[a].mUnk_04.mUnk_04 = data_02174e3c->mUnk_04c[a].mUnk_04.mUnk_0c;
+    data_02174e3c->mUnk_04c[a].mUnk_04.mUnk_08 = data_02174e3c->mUnk_04c[a].mUnk_04.mUnk_04;
 }
 
-void func_0202cc18(s32 param_1, s32 param_2) {
+void func_0202cc18(s32 a, s32 b) {
     Unk02174e3c_4c_04 *entry;
-    entry = &data_02174e3c->mUnk_04c[param_1].mUnk_04;
-    entry->mUnk_04 = param_2;
+    entry = &data_02174e3c->mUnk_04c[a].mUnk_04;
+    entry->mUnk_04 = b;
     if (entry->mUnk_04 == entry->mUnk_08) {
         entry->mUnk_08 = entry->mUnk_0c;
         entry->mUnk_0c = entry->mUnk_04;

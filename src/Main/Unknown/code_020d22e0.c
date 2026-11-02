@@ -5,29 +5,29 @@
 #include "Main/Unknown/unk_02156000.h"
 #include "Main/Unknown/code_020d5000.h"
 
-void func_020d2398(Unk020e71a0 *param_1) {
-    param_1->mUnk_02 &= ~0xf000;
-    param_1->mUnk_02 |= (param_1->mUnk_02 & 0xf) << 12;
-    param_1->mUnk_02 |= data_021568b4;
-    param_1->mUnk_02 |= data_021568b8;
-    param_1->mUnk_02 |= data_021568bc;
-    param_1->mUnk_02 |= data_021568c0;
-    if (param_1->mUnk_64 != -1) {
-        func_020d5114(param_1->mUnk_64);
+void func_020d2398(Unk020e71a0 *a) {
+    a->mUnk_02 &= ~0xf000;
+    a->mUnk_02 |= (a->mUnk_02 & 0xf) << 12;
+    a->mUnk_02 |= data_021568b4;
+    a->mUnk_02 |= data_021568b8;
+    a->mUnk_02 |= data_021568bc;
+    a->mUnk_02 |= data_021568c0;
+    if (a->mUnk_64 != -1) {
+        func_020d5114(a->mUnk_64);
     }
-    param_1->mUnk_02 |= data_021568c4;
+    a->mUnk_02 |= data_021568c4;
 }
 
-void func_020d233c(Unk020e71a0 *param_1) {
-    param_1->mUnk_02 &= ~0xf;
-    param_1->mUnk_02 |= (param_1->mUnk_02 & 0xf000) >> 12;
-    if (!(param_1->mUnk_02 & 2)) {
-        param_1->mUnk_66 = 0x1f;
+void func_020d233c(Unk020e71a0 *a) {
+    a->mUnk_02 &= ~0xf;
+    a->mUnk_02 |= (a->mUnk_02 & 0xf000) >> 12;
+    if (!(a->mUnk_02 & 2)) {
+        a->mUnk_66 = 0x1f;
     }
-    if (param_1->mUnk_64 != -1) {
-        func_020d50ec(param_1->mUnk_64);
+    if (a->mUnk_64 != -1) {
+        func_020d50ec(a->mUnk_64);
     }
-    param_1->mUnk_02 &= ~0x100;
+    a->mUnk_02 &= ~0x100;
 }
 
 void func_020d22e0(void) {

@@ -7,5 +7,5 @@
 #include "Main/Unknown/code_0204b6cc.h"
 #include "Main/Unknown/code_02057000.h"
 
-void func_02057764(void *param_1);
-void func_020577b4(void *param_1);
+void func_02057764(void *a);
+void func_020577b4(void *a);

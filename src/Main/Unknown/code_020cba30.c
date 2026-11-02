@@ -8,10 +8,10 @@ void func_020cbaa8(u32 p0) {
     data_0217b488->mUnk_10 = p0;
 }
 
-void func_020cba6c(u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
-    func_0214a40c((u32 *) ((u32 *) (u32) 0x04000050u), param_1, (int) param_2, param_3, (int) param_4);
+void func_020cba6c(u32 a, u32 b, u32 c, u32 d) {
+    func_0214a40c((u32 *) ((u32 *) (u32) 0x04000050u), a, (int) b, c, (int) d);
 }
 
-void func_020cba30(u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
-    func_0214a40c((u32 *) ((u32 *) (u32) 0x04001050u), param_1, (int) param_2, param_3, (int) param_4);
+void func_020cba30(u32 a, u32 b, u32 c, u32 d) {
+    func_0214a40c((u32 *) ((u32 *) (u32) 0x04001050u), a, (int) b, c, (int) d);
 }

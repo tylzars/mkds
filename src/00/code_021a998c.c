@@ -2,10 +2,10 @@
 #include "00/code_021aa054.h"
 #include "00/code_021adbac.h"
 
-void func_ov000_021a998c(Unk021a998c *param_1) {
+void func_ov000_021a998c(Unk021a998c *a) {
     u8 *msg;
     Unk021a998c_0c *obj;
-    obj = param_1->mUnk_0c;
+    obj = a->mUnk_0c;
     msg = data_ov000_021b63a4(0x83);
     if (msg == 0) {
         obj->mUnk_429 = 9;
@@ -35,6 +35,6 @@ void func_ov000_021a998c(Unk021a998c *param_1) {
     func_0214d1fc(obj->mUnk_31c, obj->mUnk_2c0, 0x5c);
     func_ov000_021abca0(obj->mUnk_2c0, msg + 0xb, 0x28);
     func_ov000_021ab728(obj->mUnk_378, msg + 0xb, 0x28);
-    func_ov000_021adcec(msg, func_ov000_021aa054(obj, msg + 6) + 6, 0, 0, param_1);
+    func_ov000_021adcec(msg, func_ov000_021aa054(obj, msg + 6) + 6, 0, 0, a);
     data_ov000_021b63ac(msg);
 }

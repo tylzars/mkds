@@ -15,8 +15,8 @@
 #include "Main/Unknown/code_020d22c0.h"
 #include "Main/Unknown/code_020fd000.h"
 
-void func_ov001_0218add0(Unk02188950 *param_1);
-void func_ov001_0218ae60(Unk02188950 *param_1);
-void func_ov001_0218aef4(Unk02188950 *param_1);
+void func_ov001_0218add0(Unk02188950 *a);
+void func_ov001_0218ae60(Unk02188950 *a);
+void func_ov001_0218aef4(Unk02188950 *a);
 
 #include "01/code_0218b2dc.h"

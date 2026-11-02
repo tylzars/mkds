@@ -428,7 +428,7 @@ void func_0210823c(void) {
     data_0217c794 = 0;
 }
 
-void func_021074ac(s32 param_1) {
+void func_021074ac(s32 e) {
     s32 c;
     s32 a;
     s32 v;
@@ -1562,12 +1562,12 @@ void func_021059e0(void) {
     func_0210d5c0(&data_0217d070);
 }
 
-void func_02105980(int param_1, u32 param_2) {
+void func_02105980(int a, u32 b) {
     if ((*(u32 *) &data_0217c784) - 1 <= 1) {
-        func_0212c6f0((Unk0212c400 **) &data_0217c83c, param_2);
+        func_0212c6f0((Unk0212c400 **) &data_0217c83c, b);
     }
-    if (param_1 == 3) {
-        func_0212c6f0(&data_0217d07c, param_2);
+    if (a == 3) {
+        func_0212c6f0(&data_0217d07c, b);
         return;
     }
 }
@@ -1715,9 +1715,9 @@ void func_021055b0(s32 a) {
     data_0217c7a0++;
 }
 
-void func_02105584(u32 param_1, u32 param_2) {
-    func_0212c6f0((Unk0212c400 **) &data_0217c83c, param_2);
-    func_0212c6f0((Unk0212c400 **) &data_0217c840, param_2);
+void func_02105584(u32 a, u32 b) {
+    func_0212c6f0((Unk0212c400 **) &data_0217c83c, b);
+    func_0212c6f0((Unk0212c400 **) &data_0217c840, b);
 }
 
 void func_02105550(void) {

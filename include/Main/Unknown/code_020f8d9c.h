@@ -5,4 +5,4 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_02109000.h"
 
-void func_020f8d9c(int param_1, u32 param_2, int param_3);
+void func_020f8d9c(int a, u32 b, int c);

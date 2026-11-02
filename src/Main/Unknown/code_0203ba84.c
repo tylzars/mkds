@@ -7,7 +7,7 @@
 
 #pragma thumb on
 
-void func_0203bc64(u8 *param_1) {
+void func_0203bc64(u8 *b) {
     Unk0203ba84 *a;
     Unk020f41c4_B l;
     u32 f;
@@ -25,7 +25,7 @@ void func_0203bc64(u8 *param_1) {
     u64 t1;
     u64 t2;
 
-    a = (Unk0203ba84 *) param_1;
+    a = (Unk0203ba84 *) b;
     f = a->mUnk_00;
     c = 0;
     if ((data_0217aa00 == 0 ? 0 : data_0217aa00->mUnk_0000) != 0 && data_0217aa00->mUnk_0004 != 0xd) {
@@ -92,7 +92,7 @@ void func_0203bc64(u8 *param_1) {
     }
 }
 
-void func_0203ba84(u8 *param_1) {
+void func_0203ba84(u8 *b) {
     Unk0203ba84 *a;
     Unk020f41c4_B l;
     u16 m;
@@ -112,7 +112,7 @@ void func_0203ba84(u8 *param_1) {
     u64 t1;
     u64 t2;
 
-    a = (Unk0203ba84 *) param_1;
+    a = (Unk0203ba84 *) b;
     m = 0;
     f = a->mUnk_01;
     c = 0;

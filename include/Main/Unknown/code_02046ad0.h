@@ -23,5 +23,5 @@ unsigned int func_02046ad0(unsigned int p0);
 unsigned int func_02046ad4(unsigned int p0);
 void func_02046ad8(void);
 void func_02046ae4(void);
-void func_02046b40(void *param_1);
-void func_02046bcc(void *param_1, u16 param_2);
+void func_02046b40(void *b);
+void func_02046bcc(void *b, u16 c);

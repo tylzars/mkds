@@ -6,10 +6,10 @@
 #include "03/unk_021d6000.h"
 #include "03/code_021d2940.h"
 
-void func_ov003_021ccc08(int param_1) {
+void func_ov003_021ccc08(int a) {
     u8 v1;
-    data_ov003_021da268->mUnk_1c = (s8) param_1;
-    if (param_1 == 2) {
+    data_ov003_021da268->mUnk_1c = (s8) a;
+    if (a == 2) {
         v1 = 4;
     } else {
         v1 = 6;
@@ -64,7 +64,7 @@ int func_ov003_021ccb50(void) {
     return 0;
 }
 
-int func_ov003_021ccb1c(int param_1) {
+int func_ov003_021ccb1c(int a) {
     int v1;
     int v2;
     u8 v3[8];
@@ -80,25 +80,25 @@ int func_ov003_021ccb1c(int param_1) {
     return 0;
 }
 
-void func_ov003_021cca9c(s32 param_1, u16 *param_2) {
-    param_2[0] = data_ov003_021da268->mX;
-    param_2[2] = param_2[0] + 0xc;
-    switch (param_1) {
+void func_ov003_021cca9c(s32 a, u16 *b) {
+    b[0] = data_ov003_021da268->mX;
+    b[2] = b[0] + 0xc;
+    switch (a) {
         case 1:
-            param_2[1] = data_ov003_021da268->mY + data_ov003_021da268->mOffset;
-            param_2[3] = param_2[1] + data_ov003_021d6630[data_ov003_021da268->mUnk_1b];
+            b[1] = data_ov003_021da268->mY + data_ov003_021da268->mOffset;
+            b[3] = b[1] + data_ov003_021d6630[data_ov003_021da268->mUnk_1b];
             break;
         case 2:
-            param_2[1] = data_ov003_021da268->mY - 0xd;
-            param_2[3] = data_ov003_021da268->mY;
+            b[1] = data_ov003_021da268->mY - 0xd;
+            b[3] = data_ov003_021da268->mY;
             break;
         case 3:
-            param_2[1] = data_ov003_021da268->mY + data_ov003_021da268->mUnk_19;
-            param_2[3] = param_2[1] + 0xd;
+            b[1] = data_ov003_021da268->mY + data_ov003_021da268->mUnk_19;
+            b[3] = b[1] + 0xd;
             break;
         case 4:
-            param_2[1] = data_ov003_021da268->mY;
-            param_2[3] = param_2[1] + data_ov003_021da268->mUnk_19;
+            b[1] = data_ov003_021da268->mY;
+            b[3] = b[1] + data_ov003_021da268->mUnk_19;
             break;
     }
 }

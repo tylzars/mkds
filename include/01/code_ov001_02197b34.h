@@ -11,7 +11,7 @@ void func_ov001_02197f54(void);
 void func_ov001_02197f6c(void);
 void func_ov001_02198014(void);
 void func_ov001_021980e0(void);
-void func_ov001_02198100(void *param_1, void *param_2, s32 param_3);
+void func_ov001_02198100(void *a, void *b, s32 c);
 void func_ov001_02198264(s32 a);
 void func_ov001_0219829c(s32 a);
 void func_ov001_021982d4(void);

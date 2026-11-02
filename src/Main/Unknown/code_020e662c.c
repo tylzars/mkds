@@ -64,27 +64,27 @@ s32 func_020e6d34(Vec3 *v, Unk02012f58 *h) {
     return func_02039860(&h->mUnk_00, &h->mUnk_00);
 }
 
-Unk02012f58 *func_020e6cf8(Vec3 *param_1) {
+Unk02012f58 *func_020e6cf8(Vec3 *a) {
     Unk02012f58 *p;
     Vec3 *q;
 
     p = data_0217b848;
     q = &p->mUnk_24;
-    q->x = param_1->x >> 4;
-    q->y = param_1->y >> 4;
-    q->z = param_1->z >> 4;
+    q->x = a->x >> 4;
+    q->y = a->y >> 4;
+    q->z = a->z >> 4;
     return data_0217b848;
 }
 
-Unk02012f58 *func_020e6cbc(Vec3 *param_1) {
+Unk02012f58 *func_020e6cbc(Vec3 *a) {
     Unk02012f58 *p;
     Vec3 *q;
 
     p = data_0217b860;
     q = &p->mUnk_24;
-    q->x = param_1->x >> 4;
-    q->y = param_1->y >> 4;
-    q->z = param_1->z >> 4;
+    q->x = a->x >> 4;
+    q->y = a->y >> 4;
+    q->z = a->z >> 4;
     return data_0217b860;
 }
 
@@ -107,39 +107,39 @@ void func_020e6c0c(void) {
     data_0217b860->mUnk_0c.y = 0x1000;
 }
 
-Unk02012f58 *func_020e6bd0(Vec3 *param_1) {
+Unk02012f58 *func_020e6bd0(Vec3 *a) {
     Unk02012f58 *p;
     Vec3 *q;
 
     p = data_0217b84c;
     q = &p->mUnk_24;
-    q->x = param_1->x >> 4;
-    q->y = param_1->y >> 4;
-    q->z = param_1->z >> 4;
+    q->x = a->x >> 4;
+    q->y = a->y >> 4;
+    q->z = a->z >> 4;
     return data_0217b84c;
 }
 
-Unk02012f58 *func_020e6b94(Vec3 *param_1) {
+Unk02012f58 *func_020e6b94(Vec3 *a) {
     Unk02012f58 *p;
     Vec3 *q;
 
     p = data_0217b85c;
     q = &p->mUnk_24;
-    q->x = param_1->x >> 4;
-    q->y = param_1->y >> 4;
-    q->z = param_1->z >> 4;
+    q->x = a->x >> 4;
+    q->y = a->y >> 4;
+    q->z = a->z >> 4;
     return data_0217b85c;
 }
 
-Unk02012f58 *func_020e6b58(Vec3 *param_1) {
+Unk02012f58 *func_020e6b58(Vec3 *a) {
     Unk02012f58 *p;
     Vec3 *q;
 
     p = data_0217b844;
     q = &p->mUnk_24;
-    q->x = param_1->x >> 4;
-    q->y = param_1->y >> 4;
-    q->z = param_1->z >> 4;
+    q->x = a->x >> 4;
+    q->y = a->y >> 4;
+    q->z = a->z >> 4;
     return data_0217b844;
 }
 

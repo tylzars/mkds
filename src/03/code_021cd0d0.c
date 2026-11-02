@@ -71,15 +71,15 @@ u32 func_ov003_021cd118(void) {
     return 1;
 }
 
-int func_ov003_021cd0d0(int *param_1) {
+int func_ov003_021cd0d0(int *a) {
     int v1;
     int v2;
     int v3;
     int v4;
     v2 = 0;
-    *param_1 = (int) data_ov003_021da26c->mUnk_1300;
+    *a = (int) data_ov003_021da26c->mUnk_1300;
     v1 = 0;
-    v3 = *param_1;
+    v3 = *a;
     do {
         v4 = memcmp((const u8 *) (v3 + 0x20), (const u8 *) data_ov003_021d6638, 6);
         if (v4 != 0) {

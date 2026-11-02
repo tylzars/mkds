@@ -42,6 +42,6 @@ void func_020caae8(u32 a, u32 b, u32 c, u32 d, s32 e) {
     func_0214a390((u16 *) 0x4001050, a, b, c, d, e);
 }
 
-void func_020caaac(u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
-    func_0214a40c((u32 *) ((u32 *) (u32) 0x04001050u), param_1, (int) param_2, param_3, (int) param_4);
+void func_020caaac(u32 a, u32 b, u32 c, u32 d) {
+    func_0214a40c((u32 *) ((u32 *) (u32) 0x04001050u), a, (int) b, c, (int) d);
 }

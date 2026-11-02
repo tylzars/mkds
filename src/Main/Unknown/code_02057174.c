@@ -2,14 +2,14 @@
 
 #pragma thumb on
 
-void func_0205721c(u32 param_1) {
+void func_0205721c(u32 a) {
     func_020572e8();
     func_020572cc();
     func_020572b0();
     func_02057294();
     func_02057260();
     func_02057244();
-    func_02057304(param_1);
+    func_02057304(a);
 }
 
 void func_02057174(void) {

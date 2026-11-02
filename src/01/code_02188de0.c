@@ -3,17 +3,17 @@
 #include "01/unk_021a9000.h"
 #include "Main/Unknown/code_020a3000.h"
 
-void func_ov001_02188de0(Unk02188950 *param_1, s32 param_2, s32 param_3, Vec3 *param_4, UnkFunc *param_5) {
+void func_ov001_02188de0(Unk02188950 *a, s32 b, s32 c, Vec3 *d, UnkFunc *e) {
     UnkFunc *cb;
 
-    param_1->mUnk_1f8 = param_2;
-    param_1->mUnk_1fc = param_3;
-    if (param_4 != 0) {
-        param_1->mUnk_200 = *param_4;
+    a->mUnk_1f8 = b;
+    a->mUnk_1fc = c;
+    if (d != 0) {
+        a->mUnk_200 = *d;
     }
-    cb = param_5;
+    cb = e;
     if (cb == 0) {
         cb = func_ov001_02188e88;
     }
-    param_1->mUnk_20c = cb;
+    a->mUnk_20c = cb;
 }

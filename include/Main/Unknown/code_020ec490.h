@@ -17,4 +17,4 @@ typedef struct Unk020ec490 {
     /* ae */ u16 mUnk_ae;
 } Unk020ec490;
 
-void func_020ec490(Unk020ec490 *param_1);
+void func_020ec490(Unk020ec490 *a);

@@ -5,7 +5,7 @@
 
 extern Unk021da26c_1648 data_ov003_021d6640;
 
-int func_ov003_021cd0d0(int *param_1);
+int func_ov003_021cd0d0(int *a);
 u32 func_ov003_021cd118(void);
 u32 func_ov003_021cd190(void);
 u32 func_ov003_021cd1c4(void);

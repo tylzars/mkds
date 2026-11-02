@@ -23,7 +23,7 @@ typedef struct Unk02159c3c {
 
 extern Unk02159c3c data_02159c3c[];
 
-void func_020f80c0(Unk0217bc6c *param_1, s32 param_2);
+void func_020f80c0(Unk0217bc6c *a, s32 b);
 void func_020f7ec8(void);
-u8 func_020f7ea8(void *param_1, void *param_2);
-void func_020f7c90(Unk020f41c4_A *param_1, Vec3 *param_2, Vec3 *param_3);
+u8 func_020f7ea8(void *a, void *b);
+void func_020f7c90(Unk020f41c4_A *a, Vec3 *b, Vec3 *c);

@@ -11,6 +11,6 @@ typedef struct Unk021a31e8 {
 
 s32 func_ov000_021a31d4(s32 value);
 u16 func_ov000_021a31e8(const void *a);
-void func_ov000_021a321c(u32 *param_1, u16 param_2, u32 param_3);
+void func_ov000_021a321c(u32 *a, u16 b, u32 c);
 void func_ov000_021a323c(void (*arg0)(u32, void *, u32));
 void func_ov000_021a3250(u32 (*arg0)(void));

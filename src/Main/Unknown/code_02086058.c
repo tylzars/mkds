@@ -12,8 +12,8 @@ int func_02086080(int arg0) {
     return (int) value0;
 }
 
-u16 func_0208606c(int param_1) {
-    return data_02155a64[param_1];
+u16 func_0208606c(int a) {
+    return data_02155a64[a];
 }
 
 u16 *func_02086058(void) {

@@ -204,9 +204,9 @@ void func_ov003_021cc5a8(void) {
     }
 }
 
-void func_ov003_021cc4ec(u32 param_1) {
+void func_ov003_021cc4ec(u32 a) {
     if (data_ov003_021da258 == 0) {
-        switch (param_1) {
+        switch (a) {
             case 0:
                 data_ov003_021da258 = 3;
                 func_ov003_021cdbd0();

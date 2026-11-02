@@ -38,8 +38,8 @@ void func_020d0cd8(void) {
     data_0217b4a0->mUnk_04 = n;
 }
 
-void func_020d0cbc(void *param_1) {
-    func_020c092c(param_1, data_0217b4a0, 1);
+void func_020d0cbc(void *a) {
+    func_020c092c(a, data_0217b4a0, 1);
 }
 
 void func_020d0bd0(void) {

@@ -70,4 +70,4 @@ s32 func_02096df0(Unk02096a04 *p, const Vec3 *a, s32 b, Vec3 *c);
 u32 func_02096f54(Unk02096a04 *p, Unk0206bcb0 *a, u8 *b, u8 *c);
 u32 func_0209702c(Unk02096a04 *p, Unk0206bcb0 *a, u8 *b, u8 *c);
 void func_02097520(Unk02097520 *p0);
-u32 func_0209753c(u32 param_1);
+u32 func_0209753c(u32 a);

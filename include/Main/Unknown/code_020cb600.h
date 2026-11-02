@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020cb600(int *param_1);
+void func_020cb600(int *a);

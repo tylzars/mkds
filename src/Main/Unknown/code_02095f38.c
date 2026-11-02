@@ -21,9 +21,9 @@
 #include "code_02147cd8.h"
 #include "01/code_0218155c.h"
 
-u32 func_0209753c(u32 param_1) {
+u32 func_0209753c(u32 a) {
     Unk0209753c *v1;
-    v1 = func_0209bc5c(func_02100138(0x1a9), param_1);
+    v1 = func_0209bc5c(func_02100138(0x1a9), a);
     v1->mUnk_ebc = 0xaa;
     return 1;
 }

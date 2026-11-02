@@ -78,4 +78,4 @@ Unk020e5080 *func_020e5080(void);
 Unk020e5024 *func_020e5024(void);
 Unk020e4fc8 *func_020e4fc8(void);
 void func_020e4fb0(void);
-void func_020e4ea8(u32 param_1, Unk020e43a8 *p, u32 param_3, u16 param_4);
+void func_020e4ea8(u32 a, Unk020e43a8 *p, u32 b, u16 c);

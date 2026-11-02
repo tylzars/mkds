@@ -74,15 +74,15 @@ void func_0209a6dc(void *a) {
     func_0209bbd0(a, data_0217b150);
 }
 
-void func_0209a668(u32 param_1, int param_2) {
+void func_0209a668(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b150, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b150, b);
 }
 
 void *func_0209a644(void) {
@@ -98,15 +98,15 @@ void func_0209a5f8(void *a) {
     func_0209bbd0(a, data_0217b140);
 }
 
-void func_0209a584(u32 param_1, int param_2) {
+void func_0209a584(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b140, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b140, b);
 }
 
 void *func_0209a560(void) {
@@ -122,15 +122,15 @@ void func_0209a514(void *a) {
     func_0209bbd0(a, data_0217b16c);
 }
 
-void func_0209a4a0(u32 param_1, int param_2) {
+void func_0209a4a0(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b16c, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b16c, b);
 }
 
 void *func_0209a47c(void) {
@@ -146,15 +146,15 @@ void func_0209a430(void *a) {
     func_0209bbd0(a, data_0217b14c);
 }
 
-void func_0209a3bc(u32 param_1, int param_2) {
+void func_0209a3bc(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b14c, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b14c, b);
 }
 
 void *func_0209a398(void) {
@@ -170,15 +170,15 @@ void func_0209a34c(void *a) {
     func_0209bbd0(a, data_0217b15c);
 }
 
-void func_0209a2d8(u32 param_1, int param_2) {
+void func_0209a2d8(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b15c, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b15c, b);
 }
 
 void *func_0209a2b4(void) {
@@ -194,15 +194,15 @@ void func_0209a268(void *a) {
     func_0209bbd0(a, data_0217b170);
 }
 
-void func_0209a1f4(u32 param_1, int param_2) {
+void func_0209a1f4(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b170, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b170, b);
 }
 
 void *func_0209a1d0(void) {
@@ -218,15 +218,15 @@ void func_0209a184(void *a) {
     func_0209bbd0(a, data_0217b11c);
 }
 
-void func_0209a110(u32 param_1, int param_2) {
+void func_0209a110(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b11c, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b11c, b);
 }
 
 void *func_0209a0ec(void) {
@@ -242,15 +242,15 @@ void func_0209a0a0(void *a) {
     func_0209bbd0(a, data_0217b144);
 }
 
-void func_0209a02c(u32 param_1, int param_2) {
+void func_0209a02c(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b144, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b144, b);
 }
 
 void *func_0209a008(void) {
@@ -266,15 +266,15 @@ void func_02099fbc(void *a) {
     func_0209bbd0(a, data_0217b118);
 }
 
-void func_02099f48(u32 param_1, int param_2) {
+void func_02099f48(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b118, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b118, b);
 }
 
 void *func_02099f24(void) {
@@ -290,15 +290,15 @@ void func_02099ed8(void *a) {
     func_0209bbd0(a, data_0217b124);
 }
 
-void func_02099e64(u32 param_1, int param_2) {
+void func_02099e64(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b124, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b124, b);
 }
 
 void func_02099e40(void) {
@@ -314,15 +314,15 @@ void func_02099df4(void *a) {
     func_0209bbd0(a, data_0217b134);
 }
 
-void func_02099d80(u32 param_1, int param_2) {
+void func_02099d80(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b134, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b134, b);
 }
 
 void func_02099d5c(void) {
@@ -338,15 +338,15 @@ void func_02099d10(void *a) {
     func_0209bbd0(a, data_0217b168);
 }
 
-void func_02099c9c(u32 param_1, int param_2) {
+void func_02099c9c(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b168, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b168, b);
 }
 
 void func_02099c78(void) {
@@ -362,15 +362,15 @@ void func_02099c2c(void *a) {
     func_0209bbd0(a, data_0217b154);
 }
 
-void func_02099bb8(u32 param_1, int param_2) {
+void func_02099bb8(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b154, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b154, b);
 }
 
 void func_02099b94(void) {
@@ -386,15 +386,15 @@ void func_02099b48(void *a) {
     func_0209bbd0(a, data_0217b130);
 }
 
-void func_02099ad4(u32 param_1, int param_2) {
+void func_02099ad4(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b130, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b130, b);
 }
 
 void func_02099ab0(void) {
@@ -410,15 +410,15 @@ void func_02099a64(void *a) {
     func_0209bbd0(a, data_0217b12c);
 }
 
-void func_020999f0(u32 param_1, int param_2) {
+void func_020999f0(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b12c, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b12c, b);
 }
 
 void func_020999cc(void) {
@@ -434,15 +434,15 @@ void func_02099980(void *a) {
     func_0209bbd0(a, data_0217b148);
 }
 
-void func_0209990c(u32 param_1, int param_2) {
+void func_0209990c(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b148, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b148, b);
 }
 
 void func_020998e8(void) {
@@ -458,15 +458,15 @@ void func_0209989c(void *a) {
     func_0209bbd0(a, data_0217b128);
 }
 
-void func_02099828(u32 param_1, int param_2) {
+void func_02099828(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b128, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b128, b);
 }
 
 void func_02099804(void) {
@@ -482,15 +482,15 @@ void func_020997b8(void *a) {
     func_0209bbd0(a, data_0217b120);
 }
 
-void func_02099744(u32 param_1, int param_2) {
+void func_02099744(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b120, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b120, b);
 }
 
 void func_02099720(void) {
@@ -506,15 +506,15 @@ void func_020996d4(void *a) {
     func_0209bbd0(a, data_0217b13c);
 }
 
-void func_02099660(u32 param_1, int param_2) {
+void func_02099660(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b13c, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b13c, b);
 }
 
 void func_0209963c(void) {
@@ -530,15 +530,15 @@ void func_020995f0(void *a) {
     func_0209bbd0(a, data_0217b158);
 }
 
-void func_0209957c(u32 param_1, int param_2) {
+void func_0209957c(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b158, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b158, b);
 }
 
 void func_02099558(void) {
@@ -554,15 +554,15 @@ void func_0209950c(void *a) {
     func_0209bbd0(a, data_0217b138);
 }
 
-void func_02099498(u32 param_1, int param_2) {
+void func_02099498(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b138, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b138, b);
 }
 
 void func_02099474(void) {
@@ -578,15 +578,15 @@ void func_02099428(void *a) {
     func_0209bbd0(a, data_0217b164);
 }
 
-void func_020993b4(u32 param_1, int param_2) {
+void func_020993b4(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b164, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b164, b);
 }
 
 void func_02099390(void) {
@@ -602,15 +602,15 @@ void func_02099344(void *a) {
     func_0209bbd0(a, data_0217b160);
 }
 
-void func_020992d0(u32 param_1, int param_2) {
+void func_020992d0(u32 a, int b) {
     u32 v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (param_2 + 4));
+    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048((u32) 0x19, (void *) v1, 0xc);
-    func_01ff9048((u32) 0x1b, (void *) (param_2 + 0x1c), 3);
-    func_0209ba88(param_1, data_0217b160, param_2);
+    func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
+    func_0209ba88(a, data_0217b160, b);
 }
 
 void func_020992ac(void) {

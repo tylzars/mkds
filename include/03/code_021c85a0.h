@@ -26,17 +26,17 @@ typedef struct Unk021c8a60 {
 } Unk021c8a60;
 
 // Declared here until the code that defines them is decompiled.
-void func_ov003_021d2094(void *param_1, s32 param_2, u32 param_3, u32 param_4, s32 param_5, u16 *param_6, s32 param_7);
+void func_ov003_021d2094(void *e, s32 f, u32 g, u32 h, s32 l, u16 *m, s32 n);
 void func_ov003_021cce78(void);
 void func_ov003_021c6e38(void);
 void func_ov003_021c7748(void);
 
 void func_ov003_021c85a0(void);
-void func_ov003_021c8718(const u8 *param_1, int param_2);
-void func_ov003_021c876c(const u8 *param_1, int param_2);
-void func_ov003_021c8838(int param_1, int param_2, int param_3);
-u32 func_ov003_021c8904(u32 param_1);
-void func_ov003_021c8974(u32 param_1, int param_2);
-void func_ov003_021c8a60(u32 param_1, int param_2);
+void func_ov003_021c8718(const u8 *b, int c);
+void func_ov003_021c876c(const u8 *g, int h);
+void func_ov003_021c8838(int d, int e, int f);
+u32 func_ov003_021c8904(u32 a);
+void func_ov003_021c8974(u32 a, int b);
+void func_ov003_021c8a60(u32 a, int b);
 void func_ov003_021c8b94(void);
 void func_ov003_021c8c14(void);

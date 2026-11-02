@@ -40,19 +40,19 @@ void func_020486d4(void *a) {
     FS_InitFile(&data_021759c8->mUnk_968);
 }
 
-int func_02048684(const char *param_1, void *param_2, u32 param_3) {
+int func_02048684(const char *a, void *b, u32 c) {
     Unk02003024 f;
     u32 r;
     u32 n;
 
     FS_InitFile(&f);
-    r = FS_OpenFile(&f, (const u8 *) param_1);
+    r = FS_OpenFile(&f, (const u8 *) a);
     if (r != 0) {
         n = f.mUnk_20.p.mUnk_08 - f.mUnk_20.p.mUnk_04;
-        if (param_3 != 0 && n > param_3) {
+        if (c != 0 && n > c) {
             r = 0;
         } else {
-            if (FS_ReadFile(&f, param_2, n) < 0) {
+            if (FS_ReadFile(&f, b, n) < 0) {
                 r = 0;
             }
             FS_CloseFile(&f);
@@ -78,7 +78,7 @@ u32 func_0204863c(void *a, void *b, u32 c) {
     return r;
 }
 
-u32 func_02048590(char *param_1, u32 param_2, void **param_3) {
+u32 func_02048590(char *a, u32 b, void **c) {
     u32 s;
     Unk02003024 *p;
     u32 n;
@@ -91,25 +91,25 @@ u32 func_02048590(char *param_1, u32 param_2, void **param_3) {
     if (((p->mUnk_0c & 0x10) ? 1 : 0) != 0) {
         FS_CloseFile(p);
     }
-    s = FS_OpenFile(p, (const u8 *) param_1);
+    s = FS_OpenFile(p, (const u8 *) a);
     if (s != 0) {
         n = p->mUnk_20.p.mUnk_08 - p->mUnk_20.p.mUnk_04;
-        t = func_02036bec((void *) param_2, n);
-        *param_3 = t;
+        t = func_02036bec((void *) b, n);
+        *c = t;
         if (t == 0) {
             s = 0;
         }
         if (s != 0) {
             if (FS_ReadFile(p, t, n) < 0) {
                 s = 0;
-                func_02036b30((void *) param_2, t);
+                func_02036b30((void *) b, t);
             }
         }
         FS_CloseFile(p);
     }
     if (s == 0) {
         n = -1;
-        *param_3 = 0;
+        *c = 0;
     }
     return n;
 }
@@ -191,17 +191,17 @@ u32 func_02048440(void) {
     return ((u32 *) &data_02164dc8)[v1];
 }
 
-void func_0204840c(u32 param_1, u8 *param_2) {
+void func_0204840c(u32 a, u8 *b) {
     u32 v1;
-    if (*param_2 != 0) {
+    if (*b != 0) {
         v1 = func_02048474();
-        func_0200d9e0((char *) param_1, 0x80, (const char *) data_02165148, param_2, v1, (u32) &data_0216515c);
+        func_0200d9e0((char *) a, 0x80, (const char *) data_02165148, b, v1, (u32) &data_0216515c);
     }
 }
 
-void func_020483e4(u32 param_1, u8 *param_2) {
-    if (*param_2 != 0) {
-        func_0200d9e0((char *) param_1, 0x80, (const char *) data_0216512c, param_2, (u32) &data_02165140);
+void func_020483e4(u32 a, u8 *b) {
+    if (*b != 0) {
+        func_0200d9e0((char *) a, 0x80, (const char *) data_0216512c, b, (u32) &data_02165140);
     }
 }
 

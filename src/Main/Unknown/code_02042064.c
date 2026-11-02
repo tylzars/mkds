@@ -14,8 +14,8 @@
 
 #pragma thumb on
 
-Unk02175620_74 *func_020423fc(u32 param_1) {
-    return &data_02175620->mUnk_74[param_1];
+Unk02175620_74 *func_020423fc(u32 a) {
+    return &data_02175620->mUnk_74[a];
 }
 
 #pragma thumb off

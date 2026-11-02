@@ -10,6 +10,6 @@
 #include "Main/Unknown/unk_0216d000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-void func_0211de40(void *param_1);
+void func_0211de40(void *a);
 void func_0211de98(void);
-void func_0211ded0(u32 param_1, void *param_2, void *param_3, u32 param_4, u16 param_5, s32 param_6);
+void func_0211ded0(u32 a, void *b, void *c, u32 d, u16 e, s32 f);

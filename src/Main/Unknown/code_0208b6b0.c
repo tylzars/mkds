@@ -129,11 +129,11 @@ void func_0208b8c8(void) {
     }
 }
 
-void func_0208b870(Unk02012f58 *param_1) {
-    func_02018674(data_0217b044, param_1);
-    func_02018674(data_0217b04c, param_1);
+void func_0208b870(Unk02012f58 *a) {
+    func_02018674(data_0217b044, a);
+    func_02018674(data_0217b04c, a);
     if (data_0217b03c != 0) {
-        func_02018674(data_0217b03c, param_1);
+        func_02018674(data_0217b03c, a);
     }
 }
 
@@ -166,19 +166,19 @@ void func_0208b748(u32 a, const Vec3 *b, void *c, void (*d)()) {
     func_02018578(p, e, &v, (s32) c, (void (*)(Unk0201ca6c *, s32)) d);
 }
 
-void func_0208b710(Unk0201ca6c *param_1) {
+void func_0208b710(Unk0201ca6c *a) {
     u32 v1;
     u8 v2[8];
     v1 = (*(UnkWordFunc *) (u32) data_0217b050)(v2, 0);
-    func_020184e4((Unk020184e4 *) v1, param_1);
+    func_020184e4((Unk020184e4 *) v1, a);
 }
 
-void func_0208b6d0(Unk0201ca6c **param_1) {
+void func_0208b6d0(Unk0201ca6c **a) {
     u32 v1;
     u8 v2[8];
     v1 = (*(UnkWordFunc *) (u32) data_0217b050)(v2, 0);
-    func_020184e4((Unk020184e4 *) v1, *param_1);
-    *param_1 = 0;
+    func_020184e4((Unk020184e4 *) v1, *a);
+    *a = 0;
 }
 
 void func_0208b6b0(void **p0) {

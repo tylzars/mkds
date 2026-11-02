@@ -8,7 +8,7 @@ extern u16 data_ov003_021d6418[];
 extern u16 data_ov003_021d641a[];
 extern u16 data_ov003_021d73b0[];
 
-void func_ov003_021c7844(u32 param_1);
+void func_ov003_021c7844(u32 a);
 void func_ov003_021c7850(void);
 void func_ov003_021c78d8(void);
 void func_ov003_021c7914(void);
@@ -21,4 +21,4 @@ void func_ov003_021c79b4(void);
 void func_ov003_021c79e4(void);
 void func_ov003_021c7a0c(void);
 // Declared here until the code that defines it is decompiled.
-void func_ov003_021d2094(void *param_1, s32 param_2, u32 param_3, u32 param_4, s32 param_5, u16 *param_6, s32 param_7);
+void func_ov003_021d2094(void *e, s32 f, u32 g, u32 h, s32 l, u16 *m, s32 n);

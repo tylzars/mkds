@@ -4,4 +4,4 @@
 #include "Main/Unknown/code_02048000.h"
 #include "Main/Unknown/unk_0217a000.h"
 
-Unk0217aa08_14 *func_02056284(u32 param_1);
+Unk0217aa08_14 *func_02056284(u32 a);

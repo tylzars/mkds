@@ -7,5 +7,5 @@
 #include "code_0200dc3c.h"
 #include "Main/Unknown/unk_0216f000.h"
 
-void func_ov000_021ae214(Unk021a78a4Func param_1);
-void func_ov000_021ae228(Unk021a998c *param_1);
+void func_ov000_021ae214(Unk021a78a4Func a);
+void func_ov000_021ae228(Unk021a998c *a);

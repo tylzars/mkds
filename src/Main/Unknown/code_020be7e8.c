@@ -7,8 +7,8 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020be930.h"
 
-void func_020be930(int param_1) {
-    data_0217b3d8->mUnk_0fc[param_1].mUnk_00 = 0;
+void func_020be930(int a) {
+    data_0217b3d8->mUnk_0fc[a].mUnk_00 = 0;
 }
 
 void func_020be8e4(s32 i, s32 a, s32 b) {

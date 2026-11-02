@@ -2,18 +2,18 @@
 
 #pragma thumb on
 
-int func_02025d74(int param_1) {
+int func_02025d74(int a) {
     int v1;
-    v1 = ((int *) &data_021533fc)[param_1];
+    v1 = ((int *) &data_021533fc)[a];
     if (v1 != -1) {
         v1 = v1 + -0x1a;
     }
     return v1;
 }
 
-int func_02025d5c(int param_1) {
+int func_02025d5c(int a) {
     int v1;
-    v1 = ((int *) &data_021533fc)[param_1];
+    v1 = ((int *) &data_021533fc)[a];
     if (v1 != -1) {
         v1 = v1 + 4;
     }

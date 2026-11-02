@@ -18,15 +18,15 @@
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_020472a8.h"
 
-void func_ov001_02192e78(u16 param_1);
+void func_ov001_02192e78(u16 a);
 int func_ov001_02192e84(void);
 u32 func_ov001_02192e94(void);
-void func_ov001_02192ea0(u32 param_1);
-void func_ov001_02192eac(UnkFunc **param_1);
+void func_ov001_02192ea0(u32 a);
+void func_ov001_02192eac(UnkFunc **a);
 void func_ov001_02192ec4(void);
 void func_ov001_02192ee4(void);
 void func_ov001_02192f8c(void);
-void func_ov001_02192fb8(void *heap, s16 param_2);
+void func_ov001_02192fb8(void *heap, s16 a);
 void func_ov001_021930ac(void);
 void func_ov001_02193144(void);
 void func_ov001_021932c8(void);

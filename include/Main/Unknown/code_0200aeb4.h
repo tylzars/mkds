@@ -7,4 +7,4 @@
 #include "Main/Unknown/code_0200b018.h"
 #include "Main/Unknown/unk_0216f000.h"
 
-void func_0200aeb4(void *param_1);
+void func_0200aeb4(void *a);

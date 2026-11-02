@@ -12,5 +12,5 @@ typedef struct Unk0203ba84 {
     /* 44 */ struct Unk0205fd2c *mUnk_44;
 } Unk0203ba84;
 
-void func_0203ba84(u8 *param_1);
-void func_0203bc64(u8 *param_1);
+void func_0203ba84(u8 *b);
+void func_0203bc64(u8 *b);

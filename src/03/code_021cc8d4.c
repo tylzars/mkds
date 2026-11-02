@@ -9,10 +9,10 @@
 #include "03/code_021d27d8.h"
 #include "code_0214d018.h"
 
-void func_ov003_021cca30(const void *param_1) {
+void func_ov003_021cca30(const void *b) {
     Unk021da25c *a = func_ov003_021d283c(0x608, 4);
     data_ov003_021da25c = a;
-    func_0214d0a8(param_1, a->mUnk_004, 0x600);
+    func_0214d0a8(b, a->mUnk_004, 0x600);
     data_ov003_021da25c->mUnk_000 = func_ov003_021d3544(1, func_ov003_021cc97c, 0, 0x78);
 }
 
@@ -25,18 +25,18 @@ void func_ov003_021cc9fc(void) {
     data_ov003_021da25c->mUnk_604 = 1;
 }
 
-void func_ov003_021cc9c0(int param_1, int param_2, int param_3, int param_4) {
+void func_ov003_021cc9c0(int a, int b, int c, int d) {
     int v1;
     int v2;
-    v1 = (int) data_ov003_021da25c + 4 + param_2 * 2;
+    v1 = (int) data_ov003_021da25c + 4 + b * 2;
     v2 = 0;
-    if (param_4 > 0) {
+    if (d > 0) {
         do {
-            func_0214cffc((const void *) param_1, (void *) v1, (u32) (param_3 << 1));
+            func_0214cffc((const void *) a, (void *) v1, (u32) (c << 1));
             v2 = v2 + 1;
-            param_1 = param_1 + 0x40;
+            a = a + 0x40;
             v1 = v1 + 0x40;
-        } while (v2 < param_4);
+        } while (v2 < d);
     }
 }
 
@@ -48,24 +48,24 @@ void func_ov003_021cc97c(void) {
     }
 }
 
-void func_ov003_021cc948(u8 *param_1, u32 param_2, u32 param_3) {
-    ((u8 **) data_ov003_021da260)[0] = param_1 + (param_2 << 5);
-    ((u8 **) data_ov003_021da260)[1] = (u8 *) 0x5000000 + (param_3 << 5);
+void func_ov003_021cc948(u8 *a, u32 b, u32 c) {
+    ((u8 **) data_ov003_021da260)[0] = a + (b << 5);
+    ((u8 **) data_ov003_021da260)[1] = (u8 *) 0x5000000 + (c << 5);
     func_ov003_021d3544(1, func_ov003_021cc924, 0, 0x78);
 }
 
-void func_ov003_021cc924(u32 param_1) {
+void func_ov003_021cc924(u32 a) {
     func_0214cffc(((const void **) data_ov003_021da260)[0], ((void **) data_ov003_021da260)[1], 0x20);
-    func_ov003_021d34c8(1, param_1);
+    func_ov003_021d34c8(1, a);
 }
 
-void func_ov003_021cc900(u32 param_1) {
-    *(u32 *) &data_ov003_021da260 = param_1;
+void func_ov003_021cc900(u32 a) {
+    *(u32 *) &data_ov003_021da260 = a;
     func_ov003_021d3544((u32) 1, &func_ov003_021cc8d4, 0, (u32) 0x78);
 }
 
-void func_ov003_021cc8d4(u32 param_1) {
+void func_ov003_021cc8d4(u32 a) {
     func_0214cffc((const void *) ((*(u32 *) &data_ov003_021da260)), (void *) (((u32) 0x05000000u)),
                   (u32) (((u32) 0x00000200u)));
-    func_ov003_021d34c8(1, param_1);
+    func_ov003_021d34c8(1, a);
 }

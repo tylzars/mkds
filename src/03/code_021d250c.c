@@ -1,23 +1,23 @@
 #include "03/code_021d250c.h"
 
-void func_ov003_021d2544(u16 param_1, u16 param_2, u16 *param_3) {
-    *param_3 = param_1;
-    param_3[1] = param_2;
+void func_ov003_021d2544(u16 a, u16 b, u16 *c) {
+    *c = a;
+    c[1] = b;
     return;
 }
 
-void func_ov003_021d2530(s32 param_1, s32 param_2, s32 param_3, s32 param_4, u16 *param_5) {
-    *param_5 = param_1;
-    param_5[1] = param_2;
-    param_5[2] = param_3;
-    param_5[3] = param_4;
+void func_ov003_021d2530(s32 a, s32 b, s32 c, s32 d, u16 *e) {
+    *e = a;
+    e[1] = b;
+    e[2] = c;
+    e[3] = d;
     return;
 }
 
-void func_ov003_021d250c(u16 *param_1, u16 *param_2, short *param_3) {
-    *param_3 = *param_1;
-    param_3[1] = param_1[1];
-    param_3[2] = *param_1 + *param_2;
-    param_3[3] = param_1[1] + param_2[1];
+void func_ov003_021d250c(u16 *a, u16 *b, short *c) {
+    *c = *a;
+    c[1] = a[1];
+    c[2] = *a + *b;
+    c[3] = a[1] + b[1];
     return;
 }

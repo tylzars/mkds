@@ -12,4 +12,4 @@ typedef struct Unk021ab728 {
     /* 18 */ u8 mUnk_18[0x40];
 } Unk021ab728;
 
-void func_ov000_021ab728(void *param_1, const u8 *b, u32 c);
+void func_ov000_021ab728(void *f, const u8 *b, u32 c);

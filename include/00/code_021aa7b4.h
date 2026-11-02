@@ -5,4 +5,4 @@
 #include "00/unk_021b4000.h"
 #include "03/code_021b94b8.h"
 
-void func_ov000_021aa7b4(int *param_1);
+void func_ov000_021aa7b4(int *a);

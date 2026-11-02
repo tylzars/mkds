@@ -4,8 +4,8 @@
 #include "Main/Unknown/code_0208b000.h"
 #include "Main/Unknown/code_020f6be8.h"
 
-void func_020f8ddc(void *param_1) {
-    Unk020f41c4_A *p = param_1;
+void func_020f8ddc(void *a) {
+    Unk020f41c4_A *p = a;
 
     if (p == 0) {
         return;

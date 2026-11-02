@@ -29,8 +29,8 @@ void func_020d0150(void) {
     data_0217b498->mUnk_04 = n;
 }
 
-void func_020d0134(void *param_1) {
-    func_020c06c4(param_1, data_0217b498, 1);
+void func_020d0134(void *a) {
+    func_020c06c4(a, data_0217b498, 1);
 }
 
 s32 func_020d011c(void) {

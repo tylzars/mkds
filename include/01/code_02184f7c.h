@@ -37,20 +37,20 @@ typedef struct Unk0218516c {
     /* 402 */ u16 mUnk_402;
 } Unk0218516c;
 
-void func_ov001_02184f7c(Unk02188950 *param_1);
-void func_ov001_02184f8c(Unk02188950 *param_1);
-void func_ov001_02184f9c(Unk021a5a58 *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5);
-s32 func_ov001_02184fb0(Unk021a5a58 *param_1);
-void func_ov001_02184fb4(Unk021a5a58 *param_1, s32 param_2);
-s32 func_ov001_02184fb8(Unk021a5a58 *param_1);
-s32 func_ov001_02184fc8(Unk021a5a58 *param_1);
-void func_ov001_02184fd8(Unk021a5a58 *param_1, s32 param_2, s32 param_3);
-s32 func_ov001_02184ff8(Unk021a5a58 *param_1);
-void func_ov001_02185018(Unk021a5a58 *param_1, s32 param_2);
-void func_ov001_021850a4(Unk021a5a58 *param_1, s32 (*param_2)(Unk021a5a58 *));
-s32 func_ov001_021850b4(Unk021ca41c_085c *param_1, s32 param_2, s32 param_3, s32 param_4);
-Unk021a5a58 *func_ov001_02185160(Unk021ca41c_085c *param_1, s32 param_2);
-void func_ov001_0218516c(Unk021ca41c_085c *param_1, Unk0218516c *param_2);
-Unk021ca41c_085c *func_ov001_021852f8(const char *param_1, void *param_2, void *param_3);
+void func_ov001_02184f7c(Unk02188950 *a);
+void func_ov001_02184f8c(Unk02188950 *a);
+void func_ov001_02184f9c(Unk021a5a58 *a, s32 b, s32 c, s32 d, s32 e);
+s32 func_ov001_02184fb0(Unk021a5a58 *a);
+void func_ov001_02184fb4(Unk021a5a58 *a, s32 b);
+s32 func_ov001_02184fb8(Unk021a5a58 *a);
+s32 func_ov001_02184fc8(Unk021a5a58 *a);
+void func_ov001_02184fd8(Unk021a5a58 *a, s32 b, s32 c);
+s32 func_ov001_02184ff8(Unk021a5a58 *a);
+void func_ov001_02185018(Unk021a5a58 *a, s32 b);
+void func_ov001_021850a4(Unk021a5a58 *a, s32 (*b)(Unk021a5a58 *));
+s32 func_ov001_021850b4(Unk021ca41c_085c *a, s32 b, s32 c, s32 d);
+Unk021a5a58 *func_ov001_02185160(Unk021ca41c_085c *a, s32 b);
+void func_ov001_0218516c(Unk021ca41c_085c *a, Unk0218516c *b);
+Unk021ca41c_085c *func_ov001_021852f8(const char *a, void *b, void *c);
 
 #include "01/code_021a6430.h"

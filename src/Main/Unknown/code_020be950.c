@@ -105,11 +105,11 @@ s32 func_020c0ba8(Unk0217b498 **a, s32 b) {
     return 1;
 }
 
-void func_020c0b84(Unk0217b498 **param_1) {
-    (*param_1)->mUnk_00 = 0;
-    (*param_1)->mUnk_0c = 0;
-    (*param_1)->mUnk_10 = 0;
-    *param_1 = 0;
+void func_020c0b84(Unk0217b498 **a) {
+    (*a)->mUnk_00 = 0;
+    (*a)->mUnk_0c = 0;
+    (*a)->mUnk_10 = 0;
+    *a = 0;
 }
 
 void func_020c092c(Unk020c06c4 *a, Unk0217b498 *b, s32 c) {
@@ -879,18 +879,18 @@ void func_020be9d4(void) {
     }
 }
 
-void func_020be950(void *param_1) {
+void func_020be950(void *a) {
     s32 i;
 
     switch (func_020b1dbc()) {
         case 0:
-            func_020c8dbc(param_1);
+            func_020c8dbc(a);
             break;
         case 1:
         case 2:
         case 3:
             for (i = 0; i < data_0217b3dc->mUnk_00c; i++) {
-                data_0217b3dc->mUnk_198[i](param_1);
+                data_0217b3dc->mUnk_198[i](a);
             }
             break;
     }

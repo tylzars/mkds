@@ -17,5 +17,5 @@ typedef struct Unk021c1fc8 {
 } Unk021c1fc8;
 
 u32 func_ov003_021c1f34(void);
-void func_ov003_021c1f84(int param_1);
+void func_ov003_021c1f84(int a);
 void func_ov003_021c1fc8(void);

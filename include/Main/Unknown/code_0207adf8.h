@@ -13,4 +13,4 @@ typedef struct Unk0207adf8 {
     /* 72 */ u8 mUnk_72[2];
 } Unk0207adf8;
 
-void func_0207adf8(Unk0207adf8 *param_1, u32 param_2, u32 param_3);
+void func_0207adf8(Unk0207adf8 *a, u32 b, u32 c);

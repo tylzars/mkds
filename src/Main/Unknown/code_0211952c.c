@@ -213,7 +213,7 @@ void func_021199f8(void) {
     }
 }
 
-void func_02119770(void *param_1, void *param_2, void *param_3, s32 param_4) {
+void func_02119770(void *b, void *c, void *d, s32 e) {
     void *a;
     s32 x;
     s32 i;
@@ -223,18 +223,18 @@ void func_02119770(void *param_1, void *param_2, void *param_3, s32 param_4) {
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x9004;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8300;
-    a = func_02036948(param_1);
+    a = func_02036948(b);
     data_0217d364 = func_02036bec(a, 0x70);
     data_0217d364->mUnk_30 = a;
     data_0217d364->mUnk_34 = 0;
     data_0217d364->mUnk_50 = data_0215cb7c[func_020296e4()];
     data_0217d364->mUnk_54 = 1;
     data_0217d364->mUnk_58 = 0;
-    data_0217d364->mUnk_40 = param_4;
+    data_0217d364->mUnk_40 = e;
     data_0217d364->mUnk_5c = data_0217d364->mUnk_50;
     data_0217d364->mUnk_60 = 0;
-    data_0217d364->mUnk_64 = param_2;
-    data_0217d364->mUnk_68 = param_3;
+    data_0217d364->mUnk_64 = c;
+    data_0217d364->mUnk_68 = d;
     data_0217d364->mUnk_6c = 0;
     func_0211a3bc();
     data_0217d364->mUnk_28 = func_02047a28("common.bmg");

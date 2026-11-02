@@ -55,7 +55,7 @@ void func_ov001_0219f6e0(void) {
     func_02016468(0x1e, 0, v2->mUnk_0c, v2->mUnk_08);
 }
 
-s32 func_ov001_0219f6a0(s16 param_1) {
+s32 func_ov001_0219f6a0(s16 a) {
     s32 i;
     s32 result;
     s32 out;
@@ -63,7 +63,7 @@ s32 func_ov001_0219f6a0(s16 param_1) {
 
     result = 8;
     i = 0;
-    next = param_1 + 1;
+    next = a + 1;
 
     for (; i < 9; i++) {
         if (func_0205fd78(next, (u8) (i + 1), &out)) {
@@ -77,8 +77,8 @@ s32 func_ov001_0219f6a0(s16 param_1) {
     return result;
 }
 
-u32 func_ov001_0219f688(int param_1) {
-    if (data_ov001_021ca410->mUnk_4a >= param_1) {
+u32 func_ov001_0219f688(int a) {
+    if (data_ov001_021ca410->mUnk_4a >= a) {
         return 1;
     }
     return 0;
@@ -261,20 +261,20 @@ void func_ov001_0219f198(void) {
     }
 }
 
-void func_ov001_0219f058(void *param_1, void *param_2, void *param_3) {
+void func_ov001_0219f058(void *a, void *b, void *c) {
     s32 i;
     s32 remaining;
 
     *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & 0x43) | 0x9004;
     {
-        void *heap = func_02036948(param_1);
+        void *heap = func_02036948(a);
 
         data_ov001_021ca410 = func_02036bec(heap, 0x5c);
         data_ov001_021ca410->mUnk_18 = heap;
     }
     data_ov001_021ca410->mUnk_1c = 0;
-    data_ov001_021ca410->mUnk_50 = param_2;
-    data_ov001_021ca410->mUnk_54 = param_3;
+    data_ov001_021ca410->mUnk_50 = b;
+    data_ov001_021ca410->mUnk_54 = c;
     data_ov001_021ca410->mUnk_58 = 0;
     for (i = 0; i < 7; i++) {
         data_ov001_021ca410->mUnk_28[i] = 0;

@@ -16,7 +16,7 @@
 #include "03/code_021d1f70.h"
 #include "03/unk_021da000.h"
 
-void func_ov003_021c3e8c(int param_1);
+void func_ov003_021c3e8c(int a);
 void func_ov003_021c3ef0(void);
 void func_ov003_021c3f64(void);
 void func_ov003_021c3f84(void);

@@ -86,27 +86,27 @@ void func_020ab94c(s32 a, s32 b) {
 
 #pragma thumb on
 
-void func_020ab910(u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
+void func_020ab910(u32 a, u32 b, u32 c, u32 d) {
     Unk0217b334 **v1;
     Unk0217b334 *v2;
     v1 = &data_0217b334;
-    data_0217b334->mUnk_58 = param_1;
-    (*v1)->mUnk_5c = param_2;
-    (*v1)->mUnk_60 = param_3;
-    (*v1)->mUnk_64 = param_4;
+    data_0217b334->mUnk_58 = a;
+    (*v1)->mUnk_5c = b;
+    (*v1)->mUnk_60 = c;
+    (*v1)->mUnk_64 = d;
     v2 = *v1;
     func_020a9efc((u32) (v2->mUnk_50 + v2->mUnk_58), (u32) (v2->mUnk_54 + v2->mUnk_5c),
                   (u32) (v2->mUnk_50 + v2->mUnk_60), (u32) (v2->mUnk_54 + v2->mUnk_64));
 }
 
-void func_020ab8d4(u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
+void func_020ab8d4(u32 a, u32 b, u32 c, u32 d) {
     Unk0217b334 **v1;
     Unk0217b334 *v2;
     v1 = &data_0217b334;
-    data_0217b334->mUnk_68 = param_1;
-    (*v1)->mUnk_6c = param_2;
-    (*v1)->mUnk_70 = param_3;
-    (*v1)->mUnk_74 = param_4;
+    data_0217b334->mUnk_68 = a;
+    (*v1)->mUnk_6c = b;
+    (*v1)->mUnk_70 = c;
+    (*v1)->mUnk_74 = d;
     v2 = *v1;
     func_020a9ed8((u32) (v2->mUnk_50 + v2->mUnk_68), (u32) (v2->mUnk_54 + v2->mUnk_6c),
                   (u32) (v2->mUnk_50 + v2->mUnk_70), (u32) (v2->mUnk_54 + v2->mUnk_74));
@@ -128,33 +128,33 @@ u32 func_020ab8c4(void) {
 
 #pragma thumb on
 
-void func_020ab848(s32 *param_1, s32 *param_2, s32 *param_3, s32 *param_4) {
+void func_020ab848(s32 *a, s32 *b, s32 *c, s32 *d) {
     s32 value;
-    func_020ab11c(param_1, param_2, param_3, param_4);
-    *param_1 = *param_1 - data_0217b334->mUnk_50;
-    *param_2 = *param_2 - data_0217b334->mUnk_54;
-    *param_3 = *param_3 - data_0217b334->mUnk_50;
-    *param_4 = *param_4 - data_0217b334->mUnk_54;
-    value = *param_1;
+    func_020ab11c(a, b, c, d);
+    *a = *a - data_0217b334->mUnk_50;
+    *b = *b - data_0217b334->mUnk_54;
+    *c = *c - data_0217b334->mUnk_50;
+    *d = *d - data_0217b334->mUnk_54;
+    value = *a;
     if (value < 0) {
         value += 0x100;
     }
-    *param_1 = value;
-    value = *param_2;
+    *a = value;
+    value = *b;
     if (value < 0) {
         value += 0x100;
     }
-    *param_2 = value;
-    value = *param_3;
+    *b = value;
+    value = *c;
     if (value < 0) {
         value += 0x100;
     }
-    *param_3 = value;
-    value = *param_4;
+    *c = value;
+    value = *d;
     if (value < 0) {
         value += 0x100;
     }
-    *param_4 = value;
+    *d = value;
 }
 
 #pragma thumb off

@@ -21,7 +21,7 @@ u32 func_ov000_021a6aa0(Unk021b5f54Func arg0) {
     return value0;
 }
 
-s32 func_ov000_021a6974(const void *param_1, const void *param_2, s32 param_3) {
+s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
     u32 a;
     Unk021b5f50 *b;
     s32 c;
@@ -43,8 +43,8 @@ s32 func_ov000_021a6974(const void *param_1, const void *param_2, s32 param_3) {
         func_0200fcb4(a);
         return -4;
     }
-    func_0214d1fc(param_2, b->mUnk_0f00, param_3);
-    c = func_02144438(func_ov000_021a6944, param_1, b->mUnk_0f00, (u16) param_3);
+    func_0214d1fc(e, b->mUnk_0f00, f);
+    c = func_02144438(func_ov000_021a6944, d, b->mUnk_0f00, (u16) f);
     switch (c) {
         case 0:
         case 1:
@@ -69,15 +69,15 @@ s32 func_ov000_021a6974(const void *param_1, const void *param_2, s32 param_3) {
                 case 0:
                     func_0200ecc4(&data_ov000_021b5f54.mUnk_0c);
                     func_0200fcb4(a);
-                    return param_3;
+                    return f;
             }
     }
 }
 
-void func_ov000_021a6944(Unk021425e8 *param_1) {
-    if (param_1->mUnk_00 == 0x12) {
-        data_ov000_021b5f54.mUnk_24 = param_1->mUnk_02;
-        if (param_1->mUnk_02 == 0) {
+void func_ov000_021a6944(Unk021425e8 *a) {
+    if (a->mUnk_00 == 0x12) {
+        data_ov000_021b5f54.mUnk_24 = a->mUnk_02;
+        if (a->mUnk_02 == 0) {
             func_ov000_021a57a8();
         }
         func_0200df9c(&data_ov000_021b5f54.mUnk_04);

@@ -92,8 +92,8 @@ void func_020365f0(void) {
     func_020394cc();
 }
 
-void func_020365bc(u32 param_1) {
-    func_02036588(&data_02174e88, param_1);
+void func_020365bc(u32 a) {
+    func_02036588(&data_02174e88, a);
     func_020364f8(&data_02174e88, 0xbeef);
 }
 

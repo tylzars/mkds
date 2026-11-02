@@ -6,6 +6,5 @@
 #include "00/code_02196914.h"
 #include "00/unk_021b3000.h"
 
-int func_ov000_021960a4(Unk0218f960 *param_1, s8 *param_2, s8 *param_3, s8 *param_4, s8 *param_5, s8 *param_6,
-                        int param_7, int param_8, u32 param_9, u32 param_10, u32 param_11);
-int func_ov000_021961e8(Unk0218f960 *param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5);
+int func_ov000_021960a4(Unk0218f960 *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, int g, int h, u32 l, u32 m, u32 n);
+int func_ov000_021961e8(Unk0218f960 *a, u32 b, u32 c, u32 d, u32 e);

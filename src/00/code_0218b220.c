@@ -1,7 +1,7 @@
 #include "00/code_0218b220.h"
 
-u32 func_ov000_0218b27c(u32 *param_1) {
-    return *param_1;
+u32 func_ov000_0218b27c(u32 *a) {
+    return *a;
 }
 
 u32 func_ov000_0218b260(u32 arg0) {
@@ -21,19 +21,19 @@ u32 func_ov000_0218b260(u32 arg0) {
     return value0;
 }
 
-u16 func_ov000_0218b25c(int param_1) {
-    return *(u16 *) (param_1 + 4);
+u16 func_ov000_0218b25c(int a) {
+    return *(u16 *) (a + 4);
 }
 
-u32 func_ov000_0218b248(int param_1) {
-    if ((*(u8 *) (param_1 + 0x15) & 2) == 2) {
+u32 func_ov000_0218b248(int a) {
+    if ((*(u8 *) (a + 0x15) & 2) == 2) {
         return 1;
     }
     return 0;
 }
 
-u32 func_ov000_0218b244(int param_1) {
-    return *(u32 *) (param_1 + 8);
+u32 func_ov000_0218b244(int a) {
+    return *(u32 *) (a + 8);
 }
 
 u32 func_ov000_0218b228(u32 arg0) {
@@ -53,11 +53,11 @@ u32 func_ov000_0218b228(u32 arg0) {
     return value0;
 }
 
-void func_ov000_0218b224(int param_1, u32 param_2) {
-    *(u32 *) (param_1 + 0x20) = param_2;
+void func_ov000_0218b224(int a, u32 b) {
+    *(u32 *) (a + 0x20) = b;
     return;
 }
 
-u32 func_ov000_0218b220(int param_1) {
-    return *(u32 *) (param_1 + 0x20);
+u32 func_ov000_0218b220(int a) {
+    return *(u32 *) (a + 0x20);
 }

@@ -26,6 +26,6 @@ typedef struct Unk021d2fa0 {
 
 void func_ov003_021d2fa0(void);
 void func_ov003_021d2fdc(void);
-void func_ov003_021d305c(u32 param_1);
+void func_ov003_021d305c(u32 c);
 Unk021d309c *func_ov003_021d309c(u32 a, s32 b, s32 c, u32 *d);
 void func_ov003_021d31b0(void);

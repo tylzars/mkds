@@ -31,9 +31,9 @@ typedef struct Unk021a9bc8 {
 
 extern Unk021a9bc8 *data_ov001_021a9bc8;
 
-int func_ov001_021928c8(int param_1);
-u16 func_ov001_02192a04(u16 param_1);
-u16 func_ov001_02192a14(u16 param_1);
+int func_ov001_021928c8(int a);
+u16 func_ov001_02192a04(u16 a);
+u16 func_ov001_02192a14(u16 a);
 u32 func_ov001_02192a24(void);
 u32 func_ov001_02192a30(void);
 u32 func_ov001_02192a3c(void);

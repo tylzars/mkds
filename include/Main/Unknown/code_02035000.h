@@ -6,6 +6,6 @@
 #include "types.h"
 
 // Declared here until the code that defines them is decompiled.
-void func_02035d48(u32 param_1, int param_2);
+void func_02035d48(u32 a, int b);
 #include "Main/Unknown/code_02034bf4.h"
 #include "Main/Unknown/code_020353a4.h"

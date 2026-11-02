@@ -47,8 +47,8 @@ void func_ov001_02189c10(void) {
     data_ov001_021a9bc4->mUnk_04 = count;
 }
 
-void func_ov001_02189bf4(void *param_1) {
-    func_020c092c(param_1, data_ov001_021a9bc4, 0);
+void func_ov001_02189bf4(void *a) {
+    func_020c092c(a, data_ov001_021a9bc4, 0);
 }
 
 s32 func_ov001_02189bd8(void) {

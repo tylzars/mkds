@@ -106,11 +106,11 @@ void func_ov001_021a0e34(void) {
     }
 }
 
-void func_ov001_021a0e08(s32 param_1, u16 *param_2) {
-    func_02124fac(func_02029608(), param_2);
-    param_2[1] = 0x2d;
-    func_02124fac(param_1 + 1, param_2 + 2);
-    param_2[3] = 0;
+void func_ov001_021a0e08(s32 a, u16 *b) {
+    func_02124fac(func_02029608(), b);
+    b[1] = 0x2d;
+    func_02124fac(a + 1, b + 2);
+    b[3] = 0;
 }
 
 void func_ov001_021a0b3c(void) {
@@ -479,7 +479,7 @@ void func_ov001_021a03a0(void) {
     }
 }
 
-void func_ov001_021a0190(s32 param_1, s32 param_2, s32 param_3) {
+void func_ov001_021a0190(s32 a, s32 b, s32 c) {
     s32 i;
     void *heap;
     s32 rem;
@@ -489,7 +489,7 @@ void func_ov001_021a0190(s32 param_1, s32 param_2, s32 param_3) {
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 1;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0xd204;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x9004;
-    heap = func_02036948((void *) param_1);
+    heap = func_02036948((void *) a);
     data_ov001_021ca414 = func_02036bec(heap, 0xc0);
     data_ov001_021ca414->mUnk_5c = heap;
     data_ov001_021ca414->mUnk_60 = 0;
@@ -497,8 +497,8 @@ void func_ov001_021a0190(s32 param_1, s32 param_2, s32 param_3) {
     data_ov001_021ca414->mUnk_9c = 0;
     data_ov001_021ca414->mUnk_ac = 0;
     data_ov001_021ca414->mUnk_a4 = 0;
-    data_ov001_021ca414->mUnk_b4 = (void *) param_2;
-    data_ov001_021ca414->mUnk_b8 = (void *) param_3;
+    data_ov001_021ca414->mUnk_b4 = (void *) b;
+    data_ov001_021ca414->mUnk_b8 = (void *) c;
     data_ov001_021ca414->mUnk_bc = 0;
     for (i = 0; i < 9; i++) {
         data_ov001_021ca414->mUnk_6c[i] = 0;

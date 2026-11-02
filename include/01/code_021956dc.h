@@ -160,6 +160,6 @@ s32 func_ov001_02197210(void);
 void func_ov001_02197274(void);
 void func_ov001_021972b4(void);
 void func_ov001_021972f4(void);
-void func_ov001_0219750c(u16 param_1);
-void func_ov001_021975f4(u16 param_1);
+void func_ov001_0219750c(u16 a);
+void func_ov001_021975f4(u16 a);
 void func_ov001_021978b4(void);

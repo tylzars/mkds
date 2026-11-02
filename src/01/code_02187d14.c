@@ -13,27 +13,27 @@
 #include "Main/Unknown/code_020f4000.h"
 #include "Main/Unknown/code_020fd000.h"
 
-void func_ov001_02187e48(Unk02188950 *param_1, s32 param_2) {
+void func_ov001_02187e48(Unk02188950 *a, s32 b) {
     s32 v;
     s32 n;
 
-    v = param_1->mUnk_000.mUnk_9c->mUnk_26;
-    n = param_1->mUnk_148 + 1;
-    if (n >= v + param_2) {
+    v = a->mUnk_000.mUnk_9c->mUnk_26;
+    n = a->mUnk_148 + 1;
+    if (n >= v + b) {
         n = v;
     }
-    param_1->mUnk_148 = (u16) n;
-    param_1->mUnk_14c = 0;
+    a->mUnk_148 = (u16) n;
+    a->mUnk_14c = 0;
 }
 
-void *func_ov001_02187e00(u16 param_1) {
+void *func_ov001_02187e00(u16 a) {
     Unk020ac524 *p;
 
     p = func_020ac524(0xc9);
     if (p != 0) {
         func_020de9ec((u32) p);
-        p->mUnk_f2 = param_1;
-        p->mUnk_f4 = param_1;
+        p->mUnk_f2 = a;
+        p->mUnk_f4 = a;
         p->mUnk_ac = 1;
         return func_020fd338(p, 0xa000);
     }
@@ -51,15 +51,15 @@ void *func_ov001_02187dd4(void) {
     return 0;
 }
 
-void func_ov001_02187d14(Unk02187d14 *param_1) {
+void func_ov001_02187d14(Unk02187d14 *c) {
     Unk02012f58 a;
     Unk02012f58 b;
     Vec3 v;
     Unk02188950 *p;
     Unk02061808 *q;
 
-    p = param_1->mUnk_04->mUnk_2c;
-    if (param_1->mUnk_00->mUnk_01 == p->mUnk_2e4) {
+    p = c->mUnk_04->mUnk_2c;
+    if (c->mUnk_00->mUnk_01 == p->mUnk_2e4) {
         q = func_02061808();
         func_02012f58(&a, 0);
         func_0214755c(&q->mUnk_030, &b);

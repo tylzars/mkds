@@ -195,7 +195,7 @@ void func_ov003_021cb948(void) {
     }
 }
 
-void func_ov003_021cb8f0(u32 param_1) {
+void func_ov003_021cb8f0(u32 b) {
     s32 a = func_ov000_021887cc();
     if (a != 0) {
         func_ov003_021bf9b8();
@@ -208,7 +208,7 @@ void func_ov003_021cb8f0(u32 param_1) {
             func_ov003_021cdc10(0x12);
         }
         func_ov003_021c212c(func_ov003_021cb9e8);
-        func_ov003_021d34c8(0, param_1);
+        func_ov003_021d34c8(0, b);
     }
 }
 

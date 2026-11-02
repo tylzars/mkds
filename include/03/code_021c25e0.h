@@ -28,9 +28,9 @@ extern Unk021da194 *data_ov003_021da194;
 void func_ov003_021c25e0(u32 a);
 u8 *func_ov003_021c27b4(void);
 u32 func_ov003_021c27c8(void);
-void func_ov003_021c27d0(void *param_1);
+void func_ov003_021c27d0(void *a);
 u32 func_ov003_021c27e4(void);
-void func_ov003_021c27f8(u32 param_1);
+void func_ov003_021c27f8(u32 a);
 void func_ov003_021c2824(void);
 void func_ov003_021c2840(u32 a);
 // Not decompiled yet.

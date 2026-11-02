@@ -41,4 +41,4 @@ typedef struct Unk021a998c {
     /* 60 */ u32 mUnk_60;
 } Unk021a998c;
 
-void func_ov000_021a998c(Unk021a998c *param_1);
+void func_ov000_021a998c(Unk021a998c *a);

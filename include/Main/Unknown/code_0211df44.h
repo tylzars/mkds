@@ -8,7 +8,7 @@
 #include "Main/Unknown/unk_0216d000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-void func_0211df44(void *param_1);
-void func_0211dfb4(u32 param_1);
+void func_0211df44(void *a);
+void func_0211dfb4(u32 a);
 void func_0211e024(void);
 void func_0211e074(void);

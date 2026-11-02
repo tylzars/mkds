@@ -18,7 +18,7 @@ s32 func_ov000_0219bbac(s32 a);
 s32 func_ov000_0219bbfc(void);
 void func_ov000_0219bc78(void *a, u32 b, u32 c, u32 d, void *e, u32 f, u32 g, u32 h);
 void func_ov000_0219bd90(u32 a, void *b, void *c, u32 d, void *e, u32 f);
-void func_ov000_0219bea8(u32 param_1, u32 param_2, void (*param_3)(s32 param_1), u32 param_4);
+void func_ov000_0219bea8(u32 a, u32 b, void (*c)(s32 a), u32 d);
 void func_ov000_0219bf10(void);
 void func_ov000_0219c0c4(void);
 u32 func_ov000_0219c0c8(void);

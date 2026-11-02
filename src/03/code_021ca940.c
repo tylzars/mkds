@@ -246,16 +246,16 @@ void func_ov003_021caca8(void) {
     }
 }
 
-void func_ov003_021cab4c(int param_1) {
+void func_ov003_021cab4c(int a) {
     u32 b = 1;
     switch (data_ov003_021da230[0]) {
         case 0:
             data_ov003_021da234->mUnk_1c = 0;
-            if (param_1 == 0) {
+            if (a == 0) {
                 data_ov003_021da230[0] = 2;
-            } else if (param_1 == 2) {
+            } else if (a == 2) {
                 data_ov003_021da230[0] = 1;
-            } else if (param_1 == 1) {
+            } else if (a == 1) {
                 data_ov003_021da230[0] = 3;
             } else {
                 data_ov003_021da230[0] = 4;
@@ -263,11 +263,11 @@ void func_ov003_021cab4c(int param_1) {
             break;
         case 1:
             data_ov003_021da234->mUnk_1c = 1;
-            if (param_1 == 0) {
+            if (a == 0) {
                 data_ov003_021da230[0] = 0;
-            } else if (param_1 == 2) {
+            } else if (a == 2) {
                 data_ov003_021da230[0] = 2;
-            } else if (param_1 == 1) {
+            } else if (a == 1) {
                 data_ov003_021da230[0] = 3;
             } else {
                 data_ov003_021da230[0] = 5;
@@ -275,11 +275,11 @@ void func_ov003_021cab4c(int param_1) {
             break;
         case 2:
             data_ov003_021da234->mUnk_1c = 2;
-            if (param_1 == 0) {
+            if (a == 0) {
                 data_ov003_021da230[0] = 1;
-            } else if (param_1 == 2) {
+            } else if (a == 2) {
                 data_ov003_021da230[0] = 0;
-            } else if (param_1 == 1) {
+            } else if (a == 1) {
                 data_ov003_021da230[0] = 3;
             } else {
                 data_ov003_021da230[0] = 6;
@@ -288,9 +288,9 @@ void func_ov003_021cab4c(int param_1) {
         case 3: {
             u8 c = data_ov003_021da234->mUnk_1c;
             s32 d = c + 4;
-            if (param_1 == 1) {
+            if (a == 1) {
                 data_ov003_021da230[0] = d;
-            } else if (param_1 == 3) {
+            } else if (a == 3) {
                 data_ov003_021da230[0] = c;
             } else {
                 b = 0;
@@ -299,11 +299,11 @@ void func_ov003_021cab4c(int param_1) {
         }
         case 4:
             data_ov003_021da234->mUnk_1c = 0;
-            if (param_1 == 0) {
+            if (a == 0) {
                 data_ov003_021da230[0] = 6;
-            } else if (param_1 == 2) {
+            } else if (a == 2) {
                 data_ov003_021da230[0] = 5;
-            } else if (param_1 == 1) {
+            } else if (a == 1) {
                 data_ov003_021da230[0] = 0;
             } else {
                 data_ov003_021da230[0] = 3;
@@ -311,11 +311,11 @@ void func_ov003_021cab4c(int param_1) {
             break;
         case 5:
             data_ov003_021da234->mUnk_1c = 1;
-            if (param_1 == 0) {
+            if (a == 0) {
                 data_ov003_021da230[0] = 4;
-            } else if (param_1 == 2) {
+            } else if (a == 2) {
                 data_ov003_021da230[0] = 6;
-            } else if (param_1 == 1) {
+            } else if (a == 1) {
                 data_ov003_021da230[0] = 1;
             } else {
                 data_ov003_021da230[0] = 3;
@@ -323,11 +323,11 @@ void func_ov003_021cab4c(int param_1) {
             break;
         case 6:
             data_ov003_021da234->mUnk_1c = 2;
-            if (param_1 == 0) {
+            if (a == 0) {
                 data_ov003_021da230[0] = 5;
-            } else if (param_1 == 2) {
+            } else if (a == 2) {
                 data_ov003_021da230[0] = 4;
-            } else if (param_1 == 1) {
+            } else if (a == 1) {
                 data_ov003_021da230[0] = 2;
             } else {
                 data_ov003_021da230[0] = 3;

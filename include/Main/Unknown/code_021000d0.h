@@ -32,5 +32,5 @@ typedef struct Unk021000d0 {
     /* 30 */ Unk020e6fd4 *mUnk_30;
 } Unk021000d0;
 
-void *func_02100138(u32 param_1);
-void *func_021000d0(u32 param_1);
+void *func_02100138(u32 a);
+void *func_021000d0(u32 a);

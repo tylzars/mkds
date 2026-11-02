@@ -6,8 +6,8 @@ void func_0210f114(Unk0210f090 *p) {
     func_0214f1b0();
 }
 
-void func_0210f0f4(int param_1) {
-    func_0214f264((Unk0214f2a8 *) (param_1 + 0x400));
+void func_0210f0f4(int a) {
+    func_0214f264((Unk0214f2a8 *) (a + 0x400));
     func_0202041c();
 }
 

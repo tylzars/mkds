@@ -86,8 +86,8 @@ void func_ov000_021afe84(const void *a, const void *b, u8 *c, u32 d, void *e, u3
     data_ov000_021b6394 = m;
 }
 
-void func_ov000_021afe5c(void *param_1, void *param_2, void *param_3, u16 param_4) {
-    func_ov000_021afe84(param_1, param_2, param_3, param_4, 0, 0);
+void func_ov000_021afe5c(void *a, void *b, void *c, u16 d) {
+    func_ov000_021afe84(a, b, c, d, 0, 0);
     if (data_ov000_021b63c0 != 0) {
         func_0200df68(data_ov000_021b63c0);
     }

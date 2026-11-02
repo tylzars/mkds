@@ -294,7 +294,7 @@ s32 func_ov000_0218c468(Unk021b4d24 *a, u8 *b, s32 c) {
     return r;
 }
 
-void func_ov000_0218c45c(Unk021b4d24 *param_1, u8 *param_2) {
-    param_1->mUnk_4ac = param_2;
+void func_ov000_0218c45c(Unk021b4d24 *a, u8 *b) {
+    a->mUnk_4ac = b;
     return;
 }

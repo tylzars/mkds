@@ -7,4 +7,4 @@
 #include "Main/Unknown/unk_0216d000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-void func_021144c0(void *param_1);
+void func_021144c0(void *a);

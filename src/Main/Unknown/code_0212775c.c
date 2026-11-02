@@ -101,7 +101,7 @@ u32 func_0212802c(void) {
 
 #pragma thumb on
 
-s32 func_02127f14(s32 param_1) {
+s32 func_02127f14(s32 d) {
     Unk020b4934 *a;
     Unk020b47d8 *b;
     Unk020b4a44 *c;
@@ -115,11 +115,11 @@ s32 func_02127f14(s32 param_1) {
     func_020b4934(&a, func_02047a28(data_0216e840));
     func_020b47d8(&b, func_02047a28(data_0216e858));
     func_020b4a44(&c, func_02047a28(data_0216e874));
-    param_1 = param_1 - a->mUnk_10;
-    s = param_1 >> 5;
+    d = d - a->mUnk_10;
+    s = d >> 5;
     data_0217d3f4->mUnk_89c = s;
     func_0200ee74(a->mUnk_14, a->mUnk_10);
-    func_0214ba94(a->mUnk_14, param_1, a->mUnk_10);
+    func_0214ba94(a->mUnk_14, d, a->mUnk_10);
     for (i = 0; i < 32; i++) {
         for (j = 0; j < 32; j++) {
             *(data_0217d3f4->mUnk_2c + i * 32 + j) = s + *((u16 *) b->mUnk_0c + i * 32 + j);
@@ -134,7 +134,7 @@ s32 func_02127f14(s32 param_1) {
     data_0217d3f4->mUnk_830 = data_0217d3f4->mUnk_89c + (y + (x + 3));
     func_0200ee74(c->mUnk_0c, 0x1c0);
     func_0214c0f8(c->mUnk_0c + 0xe0, 0x1c0, 0x40);
-    return param_1;
+    return d;
 }
 
 void func_02127e30(void) {
@@ -425,19 +425,19 @@ void func_021278c8(void) {
     data_0217d3f4->mUnk_24 = 1;
 }
 
-void func_021277f8(void *param_1, void *param_2, s32 param_3) {
+void func_021277f8(void *a, void *b, s32 c) {
     Unk0217d3f0_2098 *p;
 
     p = &data_0217d3f4->mUnk_834[0];
     p->mUnk_18(p, 5);
     p = &data_0217d3f4->mUnk_834[1];
     p->mUnk_18(p, 5);
-    func_0212583c(&data_0217d3f4->mUnk_874[0], 0x28, 0, 0xd8, 0x10, 0xc, 0x480, 1, param_1);
-    func_0212583c(&data_0217d3f4->mUnk_874[1], 0x28, 0, 0xd8, 0x10, 0xc, 0x480, 1, param_2);
+    func_0212583c(&data_0217d3f4->mUnk_874[0], 0x28, 0, 0xd8, 0x10, 0xc, 0x480, 1, a);
+    func_0212583c(&data_0217d3f4->mUnk_874[1], 0x28, 0, 0xd8, 0x10, 0xc, 0x480, 1, b);
     func_021281b4();
     data_0217d3f4->mUnk_8a0 = 1;
     func_021278c8();
-    if (param_3 == 0) {
+    if (c == 0) {
         data_0217d3f4->mUnk_18 = 0;
     } else {
         data_0217d3f4->mUnk_18 = 1;
@@ -487,12 +487,12 @@ u32 func_02127788(void) {
     return data_0217d3f4->mUnk_1c;
 }
 
-void func_0212775c(int param_1, u32 param_2) {
-    if (param_1 == -1) {
-        data_0217d3f4->mUnk_8b0 = param_2;
+void func_0212775c(int a, u32 b) {
+    if (a == -1) {
+        data_0217d3f4->mUnk_8b0 = b;
         return;
     }
-    data_0217d3f4->mUnk_8a8[param_1] = param_2;
+    data_0217d3f4->mUnk_8a8[a] = b;
 }
 
 #pragma thumb off

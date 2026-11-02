@@ -70,8 +70,8 @@ void func_ov003_021d15f4(void) {
     func_ov003_021d2808(&data_ov003_021da2b0);
 }
 
-s32 func_ov003_021d15a4(Unk02003024 *param_1, u32 param_2) {
-    switch (param_2) {
+s32 func_ov003_021d15a4(Unk02003024 *a, u32 b) {
+    switch (b) {
         case 9:
             func_021457cc(data_ov003_021da2b0->mUnk_e4);
             return 0;
@@ -85,9 +85,9 @@ s32 func_ov003_021d15a4(Unk02003024 *param_1, u32 param_2) {
     }
 }
 
-u32 func_ov003_021d1574(int param_1, u32 param_2, int param_3, u32 param_4) {
-    func_021461d8((u32) (0xffffffff), (int) (param_3 + *(int *) (param_1 + 0x28)), (u32) (param_2), (u32) (param_4),
-                  (UnkFunc *) (&func_ov003_021d1568), (u32) (param_1), 1);
+u32 func_ov003_021d1574(int a, u32 b, int c, u32 d) {
+    func_021461d8((u32) (0xffffffff), (int) (c + *(int *) (a + 0x28)), (u32) (b), (u32) (d),
+                  (UnkFunc *) (&func_ov003_021d1568), (u32) (a), 1);
     return 6;
 }
 
@@ -99,7 +99,7 @@ s32 func_ov003_021d1564(void) {
     return 1;
 }
 
-void *func_ov003_021d14b8(const u8 *param_1, u32 *param_2, s32 param_3) {
+void *func_ov003_021d14b8(const u8 *f, u32 *g, s32 h) {
     Unk02003024 a;
     void *b;
     u32 c;
@@ -107,17 +107,17 @@ void *func_ov003_021d14b8(const u8 *param_1, u32 *param_2, s32 param_3) {
 
     func_ov003_021d1cd4(data_ov003_021da2b0->mUnk_84);
     FS_InitFile(&a);
-    if (FS_OpenFile(&a, param_1) == 0) {
+    if (FS_OpenFile(&a, f) == 0) {
         func_0200fd1c();
     }
     c = a.mUnk_20.w.mUnk_08 - a.mUnk_20.w.mUnk_04;
-    if (param_2 != 0) {
-        *param_2 = c;
+    if (g != 0) {
+        *g = c;
     }
-    if (func_ov003_021d1440(param_1, data_ov003_021d7bd4, 2) != 0) {
+    if (func_ov003_021d1440(f, data_ov003_021d7bd4, 2) != 0) {
         e = -4;
     } else {
-        e = param_3;
+        e = h;
     }
     b = func_ov003_021d285c(c, e);
     FS_ReadFile(&a, b, c);
@@ -126,11 +126,11 @@ void *func_ov003_021d14b8(const u8 *param_1, u32 *param_2, s32 param_3) {
         return b;
     }
     c = *(u32 *) b >> 8;
-    if (param_2 != 0) {
-        *param_2 = c;
+    if (g != 0) {
+        *g = c;
     }
     {
-        void *d = func_ov003_021d285c(c, param_3);
+        void *d = func_ov003_021d285c(c, h);
 
         func_0214d344(b, d);
         func_ov003_021d2808(&b);
@@ -138,19 +138,19 @@ void *func_ov003_021d14b8(const u8 *param_1, u32 *param_2, s32 param_3) {
     }
 }
 
-void func_ov003_021d1490(void *param_1, ...) {
-    func_ov003_021d2808(&param_1);
-    func_ov003_021d1d0c(data_ov003_021da2b0->mUnk_84, param_1);
+void func_ov003_021d1490(void *a, ...) {
+    func_ov003_021d2808(&a);
+    func_ov003_021d1d0c(data_ov003_021da2b0->mUnk_84, a);
 }
 
-u32 func_ov003_021d1440(const u8 *param_1, const u8 *param_2, s32 param_3) {
-    s32 a = strlen(param_1);
-    s32 b = strlen(param_2);
+u32 func_ov003_021d1440(const u8 *c, const u8 *d, s32 e) {
+    s32 a = strlen(c);
+    s32 b = strlen(d);
 
-    if (a < param_3 || b < param_3) {
+    if (a < e || b < e) {
         return 0;
     }
-    if (memcmp(param_1 + (a - param_3), param_2 + (b - param_3), param_3) == 0) {
+    if (memcmp(c + (a - e), d + (b - e), e) == 0) {
         return 1;
     }
     return 0;

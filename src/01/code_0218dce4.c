@@ -12,31 +12,31 @@
 #include "01/unk_021a7000.h"
 #include "Main/Unknown/code_0209bef0.h"
 
-void func_ov001_0218dd9c(Unk02188950 *param_1) {
-    param_1->mUnk_2e0 = 0;
-    func_ov001_021881f4(param_1, (UnkFunc *) func_ov001_0218dd9c);
+void func_ov001_0218dd9c(Unk02188950 *a) {
+    a->mUnk_2e0 = 0;
+    func_ov001_021881f4(a, (UnkFunc *) func_ov001_0218dd9c);
 }
 
-void func_ov001_0218dd50(Unk02188950 *param_1) {
-    if (func_ov001_02188220(param_1) >= 2) {
-        func_020d2774(&param_1->mUnk_000, (u32) (0x248));
-    } else if (func_ov001_02188220(param_1) >= 1) {
-        func_020d2774(&param_1->mUnk_000, (u32) (0x249));
+void func_ov001_0218dd50(Unk02188950 *a) {
+    if (func_ov001_02188220(a) >= 2) {
+        func_020d2774(&a->mUnk_000, (u32) (0x248));
+    } else if (func_ov001_02188220(a) >= 1) {
+        func_020d2774(&a->mUnk_000, (u32) (0x249));
     } else {
-        func_020d2774(&param_1->mUnk_000, (u32) (0x24a));
+        func_020d2774(&a->mUnk_000, (u32) (0x24a));
     }
 }
 
-void func_ov001_0218dd04(Unk02188950 *param_1) {
-    if (func_ov001_02188220(param_1) >= 2) {
-        func_020d2774(&param_1->mUnk_000, (u32) (0x248));
-    } else if (func_ov001_02188220(param_1) >= 1) {
-        func_020d2774(&param_1->mUnk_000, (u32) (0x249));
+void func_ov001_0218dd04(Unk02188950 *a) {
+    if (func_ov001_02188220(a) >= 2) {
+        func_020d2774(&a->mUnk_000, (u32) (0x248));
+    } else if (func_ov001_02188220(a) >= 1) {
+        func_020d2774(&a->mUnk_000, (u32) (0x249));
     } else {
-        func_020d2774(&param_1->mUnk_000, (u32) (0x24a));
+        func_020d2774(&a->mUnk_000, (u32) (0x24a));
     }
 }
 
-void func_ov001_0218dce4(Unk02188950 *param_1) {
-    func_ov001_02188e48(param_1, 0xc, func_ov001_0218dd50, 0x20, func_ov001_0218dd04);
+void func_ov001_0218dce4(Unk02188950 *a) {
+    func_ov001_02188e48(a, 0xc, func_ov001_0218dd50, 0x20, func_ov001_0218dd04);
 }

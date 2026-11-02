@@ -8,8 +8,8 @@ typedef struct Unk0219887c {
 } Unk0219887c;
 
 u8 *func_ov000_0219887c(Unk0219887c *object);
-void func_ov000_021988a4(Unk0219887c *param_1, void *param_2);
-void func_ov000_021988d4(int param_1, u32 param_2);
-u32 func_ov000_021988d8(u32 *param_1);
-int func_ov000_021988dc(int param_1);
-u16 func_ov000_021988e4(void *param_1);
+void func_ov000_021988a4(Unk0219887c *a, void *b);
+void func_ov000_021988d4(int a, u32 b);
+u32 func_ov000_021988d8(u32 *a);
+int func_ov000_021988dc(int a);
+u16 func_ov000_021988e4(void *a);

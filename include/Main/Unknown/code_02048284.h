@@ -18,9 +18,9 @@ extern const char data_usa_0216510c[];
 extern const char data_usa_02165110[];
 extern const char data_usa_02165124[];
 
-void func_02048284(u32 param_1, u32 param_2);
-void func_020482ac(int param_1, u8 *param_2, int param_3);
-void func_020482f0(u32 param_1, u8 *param_2, int param_3);
-void func_02048324(u32 param_1);
+void func_02048284(u32 a, u32 b);
+void func_020482ac(int a, u8 *b, int c);
+void func_020482f0(u32 a, u8 *b, int c);
+void func_02048324(u32 a);
 void func_02048350(char *a);
 void func_020483a0(char *a);

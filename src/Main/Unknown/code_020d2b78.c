@@ -48,11 +48,11 @@ void func_020d2d94(void) {
 
 #pragma thumb on
 
-s32 func_020d2c2c(Vec3 *param_1, Vec3 *param_2, s32 param_3, s16 param_4, s32 param_5, Vec3 *param_6) {
+s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
     s32 a;
     s32 i;
     a = 0;
-    func_01ffd900(param_4, 0x2000);
+    func_01ffd900(e, 0x2000);
     i = 0;
     if (data_0217b5a8 != 0) {
         Vec3 v;
@@ -73,8 +73,8 @@ s32 func_020d2c2c(Vec3 *param_1, Vec3 *param_2, s32 param_3, s16 param_4, s32 pa
         q = &data_0217b4f0->mUnk_18c;
         for (; i < data_0217b5a8; i++) {
             p = data_0217b5c4[i];
-            if (func_020d3e34(param_1, param_3, p, &v) != 0) {
-                if (!(p->mUnk_02 & 0x40) && func_020d6968(param_5, p) != 0) {
+            if (func_020d3e34(b, d, p, &v) != 0) {
+                if (!(p->mUnk_02 & 0x40) && func_020d6968(f, p) != 0) {
                     t = v.x;
                     mn.x = ((const Vec3 *) &v)->x < mn.x ? t : mn.x;
                     mn.y = v.y < mn.y ? v.y : mn.y;
@@ -83,22 +83,22 @@ s32 func_020d2c2c(Vec3 *param_1, Vec3 *param_2, s32 param_3, s16 param_4, s32 pa
                     mx.y = v.y > mx.y ? v.y : mx.y;
                     mx.z = v.z > mx.z ? v.z : mx.z;
                 }
-                q->mUnk_50 = *param_1;
-                q->mUnk_5c = *param_2;
-                q->mUnk_44 = param_5;
+                q->mUnk_50 = *b;
+                q->mUnk_5c = *c;
+                q->mUnk_44 = f;
                 r = func_020d6a54(q, p, 0);
                 if (r > a) {
                     a = r;
                 }
             }
         }
-        if (a != 0 && param_6 != 0) {
-            param_6->x = mx.x + mn.x;
-            param_6->y = mx.y + mn.y;
-            if (param_6->y < 0) {
-                param_6->y = 0;
+        if (a != 0 && g != 0) {
+            g->x = mx.x + mn.x;
+            g->y = mx.y + mn.y;
+            if (g->y < 0) {
+                g->y = 0;
             }
-            param_6->z = mx.z + mn.z;
+            g->z = mx.z + mn.z;
         }
     }
     return a;

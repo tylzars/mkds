@@ -52,13 +52,13 @@ typedef struct Unk021cd5e0_arg {
 
 extern u8 data_ov003_021d6684[];
 
-void func_ov003_021cd4ac(int param_1);
+void func_ov003_021cd4ac(int a);
 u32 func_ov003_021cd4dc(void);
 void func_ov003_021cd4e8(int arg0);
 void func_ov003_021cd5e0(const Unk021cd5e0_arg *a);
 void func_ov003_021cd6d0(void);
 void func_ov003_021cd790(s32 a);
-u8 func_ov003_021cd844(int param_1);
+u8 func_ov003_021cd844(int a);
 void func_ov003_021cd858(unsigned int p0);
 void func_ov003_021cd888(unsigned int p0);
 void func_ov003_021cd8b8(unsigned int p0);
@@ -71,9 +71,9 @@ void func_ov003_021cd994(const char *input);
 void func_ov003_021cd9ac(const char *input);
 void func_ov003_021cd9c4(const char *input);
 void func_ov003_021cd9dc(const u8 *a);
-void func_ov003_021cdb14(const u8 *param_1);
-void func_ov003_021cdb44(u32 param_1);
-void func_ov003_021cdb58(u32 param_1);
+void func_ov003_021cdb14(const u8 *a);
+void func_ov003_021cdb44(u32 a);
+void func_ov003_021cdb58(u32 a);
 int func_ov003_021cdb6c(void);
 void func_ov003_021cdb80(void);
 void func_ov003_021cdb90(void);

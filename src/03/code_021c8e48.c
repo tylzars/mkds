@@ -16,12 +16,12 @@
 #include "code_02133048.h"
 #include "code_02147cd8.h"
 
-void func_ov003_021c9058(u32 param_1) {
+void func_ov003_021c9058(u32 a) {
     int v1;
     v1 = func_ov003_021cdb6c();
-    if (*(u8 *) (v1 + 0xf6) != param_1) {
-        data_ov003_021da214->mUnk_43 = (s8) param_1;
-        func_ov003_021cdb44(param_1);
+    if (*(u8 *) (v1 + 0xf6) != a) {
+        data_ov003_021da214->mUnk_43 = (s8) a;
+        func_ov003_021cdb44(a);
         func_ov003_021c8b94();
     }
     return;

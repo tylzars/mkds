@@ -3,4 +3,4 @@
 #include "types.h"
 #include "code_02139f70.h"
 
-u32 func_ov000_021948bc(u32 param_1, int param_2, u32 *param_3);
+u32 func_ov000_021948bc(u32 a, int b, u32 *c);

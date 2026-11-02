@@ -6,9 +6,9 @@
 #include "00/code_021abd2c.h"
 #include "00/code_021ac3e4.h"
 
-s32 func_ov000_021aa054(void *param_1, u8 *param_2) {
-    Unk021a998c_0c *a = param_1;
-    u8 *b = param_2;
+s32 func_ov000_021aa054(void *g, u8 *h) {
+    Unk021a998c_0c *a = g;
+    u8 *b = h;
     s32 c = (b[3] << 8) + b[4];
     u8 *d = b + 5 + c;
     u8 e[0x30];

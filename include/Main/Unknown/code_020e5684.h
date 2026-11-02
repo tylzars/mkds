@@ -15,6 +15,6 @@ typedef struct Unk020e5684 {
     /* 30 */ s16 mUnk_30;
 } Unk020e5684;
 
-void func_020e57a0(Unk020e43a8 *p, Vec3 *param_2, s32 param_3, Vec3 *param_4);
+void func_020e57a0(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c);
 void func_020e576c(void);
 void func_020e5684(Unk020e43a8 *p, Unk020e5684 *q);

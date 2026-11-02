@@ -6,21 +6,21 @@
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/unk_02154000.h"
 
-void func_02046bcc(void *param_1, u16 param_2) {
+void func_02046bcc(void *b, u16 c) {
     Unk02046b40 *a;
 
-    a = param_1;
+    a = b;
     a->mUnk_04 = 0;
     a->mUnk_12 = 1;
-    a->mUnk_0e = param_2;
-    a->mUnk_10 = param_2;
+    a->mUnk_0e = c;
+    a->mUnk_10 = c;
 }
 
-void func_02046b40(void *param_1) {
+void func_02046b40(void *b) {
     Unk02046b40 *a;
     Unk02046b40_00 *e;
 
-    a = param_1;
+    a = b;
     if (a->mUnk_12 != 0) {
         a->mUnk_04 = 0;
         a->mUnk_12 = 0;

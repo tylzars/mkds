@@ -5,12 +5,12 @@
 #include "Main/Unknown/code_02105000.h"
 #include "Main/Unknown/code_02037000.h"
 
-void func_ov001_0219e6ec(void *param_1) {
+void func_ov001_0219e6ec(void *a) {
     void *result;
 
-    data_ov001_021ca400 = func_02036bec(param_1, 0x470);
-    data_ov001_021ca400->mUnk_010 = param_1;
-    data_ov001_021ca400->mUnk_01c = func_021250b0(param_1);
+    data_ov001_021ca400 = func_02036bec(a, 0x470);
+    data_ov001_021ca400->mUnk_010 = a;
+    data_ov001_021ca400->mUnk_01c = func_021250b0(a);
     data_ov001_021ca400->mUnk_014 = -1;
     data_ov001_021ca400->mUnk_000 = 0;
     data_ov001_021ca400->mUnk_004 = data_ov001_021ca400->mUnk_000;

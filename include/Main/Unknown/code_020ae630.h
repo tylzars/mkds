@@ -18,6 +18,6 @@ typedef struct Unk020ae630 {
     /* 402 */ u16 mUnk_402;
 } Unk020ae630;
 
-void func_020ae630(void *param_1, void *param_2);
-void func_020ae6ac(void *param_1, void *param_2);
-void func_020ae6d4(void *param_1, void *param_2);
+void func_020ae630(void *c, void *d);
+void func_020ae6ac(void *c, void *d);
+void func_020ae6d4(void *c, void *d);

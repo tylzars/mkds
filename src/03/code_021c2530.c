@@ -29,12 +29,12 @@ Unk021c250c *func_ov003_021c2564(void *a) {
     return b;
 }
 
-void func_ov003_021c2544(int param_1) {
-    func_ov003_021d1490(*(void **) (param_1 + 8));
-    func_ov003_021d1d0c(data_ov003_021da190->mUnk_60, (void *) (param_1));
+void func_ov003_021c2544(int a) {
+    func_ov003_021d1490(*(void **) (a + 8));
+    func_ov003_021d1d0c(data_ov003_021da190->mUnk_60, (void *) (a));
     return;
 }
 
-int func_ov003_021c2530(int *param_1, u32 param_2) {
-    return param_1[1] + *(int *) (*param_1 + (param_2 & ((u32) 0x0000ffffu)) * 4);
+int func_ov003_021c2530(int *a, u32 b) {
+    return a[1] + *(int *) (*a + (b & ((u32) 0x0000ffffu)) * 4);
 }

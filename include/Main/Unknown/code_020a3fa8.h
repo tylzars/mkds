@@ -24,4 +24,4 @@ typedef struct Unk020a3fa8 {
     /* 264 */ s32 mUnk_264[8][8];
 } Unk020a3fa8;
 
-void func_020a3fa8(void *param_1, Unk020a3fa8 *param_2);
+void func_020a3fa8(void *b, Unk020a3fa8 *c);

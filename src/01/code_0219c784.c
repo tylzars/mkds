@@ -29,12 +29,12 @@ const Unk021a6c04 data_ov001_021a6c04[] = {
 };
 Unk021a9bf8 *data_ov001_021a9bf8;
 
-void func_ov001_0219d2c0(void *param_1, s32 param_2, void *param_3, void *param_4) {
+void func_ov001_0219d2c0(void *c, s32 d, void *e, void *f) {
     s32 i, j;
     void *heap;
     void *p;
 
-    heap = func_020369fc(param_1);
+    heap = func_020369fc(c);
     data_ov001_021a9bf8 = func_02036bec(heap, 0x1088);
     data_ov001_021a9bf8->mUnk_1030 = heap;
     data_ov001_021a9bf8->mUnk_00 = 0;
@@ -52,9 +52,9 @@ void func_ov001_0219d2c0(void *param_1, s32 param_2, void *param_3, void *param_
     for (i = 0; i < 6; i++) {
         func_02124a98(data_ov001_021a6bf0[i][0], 1, data_ov001_021a9bf8->mUnk_1040, data_ov001_021a9bf8->mUnk_1054[1]);
     }
-    data_ov001_021a9bf8->mUnk_1078 = param_3;
-    data_ov001_021a9bf8->mUnk_107c = param_4;
-    func_020ae6d4(param_3, param_4);
+    data_ov001_021a9bf8->mUnk_1078 = e;
+    data_ov001_021a9bf8->mUnk_107c = f;
+    func_020ae6d4(e, f);
     for (i = 0; i < 2; i++) {
         func_02124ed0(data_ov001_021a9bf8->mUnk_1030, data_ov001_021a9bf8->mUnk_1054[i],
                       data_ov001_021a9bf8->mUnk_1064[i], &data_ov001_021a9bf8->mUnk_1034[i]);
@@ -73,7 +73,7 @@ void func_ov001_0219d2c0(void *param_1, s32 param_2, void *param_3, void *param_
         s32 rem = 0x8000;
 
         p = func_020b3f7c(data_ov001_021a9bf8->mUnk_1080, 6);
-        if (param_2 == 0) {
+        if (d == 0) {
             p = func_020b3f7c(data_ov001_021a9bf8->mUnk_1080, 7);
         }
         for (i = 0; i < 2; i++) {
@@ -83,7 +83,7 @@ void func_ov001_0219d2c0(void *param_1, s32 param_2, void *param_3, void *param_
             func_0212426c(0, a[i], data_ov001_021a9bf8->mUnk_1064[0], p, data_ov001_021a9bf8->mUnk_1054[0],
                           data_ov001_021a9bf8->mUnk_1034[0]);
         }
-        if (param_2 == 1) {
+        if (d == 1) {
             data_ov001_021a9bf8->mUnk_1034[0][5].mUnk_00 = 0;
         } else {
             data_ov001_021a9bf8->mUnk_1034[0][6].mUnk_00 = 0;

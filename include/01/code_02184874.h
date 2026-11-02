@@ -13,4 +13,4 @@
 #include "Main/Unknown/code_020d2000.h"
 #include "Main/Unknown/code_020f36d8.h"
 
-void func_ov001_02184874(Unk02188950 *param_1, Unk0206bcb0 *param_2);
+void func_ov001_02184874(Unk02188950 *d, Unk0206bcb0 *e);

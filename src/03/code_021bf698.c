@@ -14,14 +14,14 @@ void func_ov003_021bf7dc(void) {
     func_ov003_021d2808(&data_ov003_021da150);
 }
 
-void func_ov003_021bf760(u32 param_0, u32 param_1, u32 param_2, u32 param_3) {
+void func_ov003_021bf760(u32 c, u32 d, u32 e, u32 f) {
     s32 i;
     u8 *a;
     s32 b;
 
     func_ov003_021bf698();
     i = 0;
-    a = data_ov003_021d5f4c + param_0 * 2;
+    a = data_ov003_021d5f4c + c * 2;
     b = i;
     for (; i < 2; i++) {
         *(u32 *) (*(int *) &data_ov003_021da150 + b) = (u32) func_ov003_021d1be4(0, *a, 1);
@@ -29,11 +29,11 @@ void func_ov003_021bf760(u32 param_0, u32 param_1, u32 param_2, u32 param_3) {
         a++;
         b += 4;
     }
-    func_ov003_021d17d4(*(Unk021d1770 **) *(int *) &data_ov003_021da150, -1, param_1, param_3);
-    func_ov003_021d17d4(*(Unk021d1770 **) (*(int *) &data_ov003_021da150 + 4), -1, param_2, param_3);
+    func_ov003_021d17d4(*(Unk021d1770 **) *(int *) &data_ov003_021da150, -1, d, f);
+    func_ov003_021d17d4(*(Unk021d1770 **) (*(int *) &data_ov003_021da150 + 4), -1, e, f);
 }
 
-void func_ov003_021bf6c8(u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
+void func_ov003_021bf6c8(u32 a, u32 b, u32 c, u32 d) {
     int v1;
     int v2;
     int v3;
@@ -50,10 +50,10 @@ void func_ov003_021bf6c8(u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
         v2 = v2 + 1;
         v1 = v1 + 1;
     } while (v2 < 4);
-    func_ov003_021d17d4(*(Unk021d1770 **) (*(int *) &data_ov003_021da150), 0xffffffff, param_1, param_3);
-    func_ov003_021d17d4(*(Unk021d1770 **) ((*(int *) &data_ov003_021da150) + 4), 0xffffffff, param_2, param_3);
-    func_ov003_021d17d4(*(Unk021d1770 **) ((*(int *) &data_ov003_021da150) + 8), 0xffffffff, param_1, param_4);
-    func_ov003_021d17d4(*(Unk021d1770 **) ((*(int *) &data_ov003_021da150) + 0xc), 0xffffffff, param_2, param_4);
+    func_ov003_021d17d4(*(Unk021d1770 **) (*(int *) &data_ov003_021da150), 0xffffffff, a, c);
+    func_ov003_021d17d4(*(Unk021d1770 **) ((*(int *) &data_ov003_021da150) + 4), 0xffffffff, b, c);
+    func_ov003_021d17d4(*(Unk021d1770 **) ((*(int *) &data_ov003_021da150) + 8), 0xffffffff, a, d);
+    func_ov003_021d17d4(*(Unk021d1770 **) ((*(int *) &data_ov003_021da150) + 0xc), 0xffffffff, b, d);
     return;
 }
 

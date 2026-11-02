@@ -160,16 +160,16 @@ u32 func_02103598(void) {
     return value0;
 }
 
-void func_02103554(const char *param_1) {
+void func_02103554(const char *a) {
     u32 v;
 
-    func_020e6488((Unk020e6488 **) &v, func_020d21ec(param_1), 0, 0);
+    func_020e6488((Unk020e6488 **) &v, func_020d21ec(a), 0, 0);
     func_020e6ab8((Unk020e6488 *) v);
     func_0210340c((Unk0210340c *) data_0217c664, (Unk020e6488 *) v);
 }
 
-void func_02103544(u32 param_1, u32 param_2) {
-    func_02103900(param_1, param_2, 1);
+void func_02103544(u32 a, u32 b) {
+    func_02103900(a, b, 1);
 }
 
 #pragma thumb on

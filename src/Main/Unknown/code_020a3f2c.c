@@ -17,7 +17,7 @@
 #include "Main/Unknown/code_020f9c6c.h"
 #include "Main/Unknown/code_02074854.h"
 
-void func_020a3fa8(void *param_1, Unk020a3fa8 *param_2) {
+void func_020a3fa8(void *b, Unk020a3fa8 *c) {
     Unk020a2fe4 *o;
     s32 i;
     s32 j;
@@ -32,18 +32,18 @@ void func_020a3fa8(void *param_1, Unk020a3fa8 *param_2) {
     Vec3 *q;
 
     n = data_021759c0->mUnk_3d0;
-    if (param_2->mUnk_0a0 > 0) {
-        param_2->mUnk_0a0--;
-        if (param_2->mUnk_0a0 > 0) {
+    if (c->mUnk_0a0 > 0) {
+        c->mUnk_0a0--;
+        if (c->mUnk_0a0 > 0) {
             return;
         }
         for (i = 0; i < n; i++) {
-            Unk020a3fa8_a4 *e = &param_2->mUnk_0a4[i];
+            Unk020a3fa8_a4 *e = &c->mUnk_0a4[i];
             func_0207a974((u16) i);
             e->mUnk_34 = 1;
-            if (param_2->mUnk_000.mUnk_9c->mUnk_28 != 0 || param_2->mUnk_000.mUnk_9c->mUnk_2a != 0) {
-                e->mUnk_04 = param_2->mUnk_000.mUnk_9c->mUnk_28;
-                func_020a10ac(i, param_2->mUnk_000.mUnk_9c->mUnk_28 + param_2->mUnk_000.mUnk_9c->mUnk_2a);
+            if (c->mUnk_000.mUnk_9c->mUnk_28 != 0 || c->mUnk_000.mUnk_9c->mUnk_2a != 0) {
+                e->mUnk_04 = c->mUnk_000.mUnk_9c->mUnk_28;
+                func_020a10ac(i, c->mUnk_000.mUnk_9c->mUnk_28 + c->mUnk_000.mUnk_9c->mUnk_2a);
             } else {
                 e->mUnk_04 = 1;
                 func_020a10ac(i, 5);
@@ -53,7 +53,7 @@ void func_020a3fa8(void *param_1, Unk020a3fa8 *param_2) {
     }
     for (i = 0; i < n; i++) {
         Unk0206bcb0 *p;
-        Unk020a3fa8_a4 *e = &param_2->mUnk_0a4[i];
+        Unk020a3fa8_a4 *e = &c->mUnk_0a4[i];
         func_020748a8();
         p = func_0207a974((u16) i);
         v.x = p->mUnk_80.x;
@@ -185,7 +185,7 @@ void func_020a3fa8(void *param_1, Unk020a3fa8 *param_2) {
             m = func_020a1154(i) + (func_020a2204(i) != 0 ? 1 : 0);
             for (j = 0; j < m; j++) {
                 Unk020a2fe4 *o = e->mUnk_10[j];
-                a = e->mUnk_08 + param_2->mUnk_264[m - 1][j];
+                a = e->mUnk_08 + c->mUnk_264[m - 1][j];
                 if (a != 0) {
                     q = &p->mUnk_150;
                     t.x = (s32) (((s64) q->x * a) >> 12);

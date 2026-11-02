@@ -79,9 +79,9 @@ typedef struct Unk020e516c {
     /* 030 */ u16 mUnk_030;
 } Unk020e516c;
 
-void func_020e5348(u32 param_1, u32 param_2);
-void func_020e5370(void *param_1, void *param_2, u32 param_3, u32 param_4);
-void func_020e53ac(Unk020e516c *p, void *param_2, u32 param_3, u32 param_4);
-void func_020e54e4(void *param_1, void *param_2, u32 param_3, u32 param_4);
-s32 func_020e516c(void *param_1, Vec3 *v, s32 param_3, u32 param_4);
+void func_020e5348(u32 a, u32 b);
+void func_020e5370(void *a, void *b, u32 c, u32 d);
+void func_020e53ac(Unk020e516c *p, void *d, u32 e, u32 f);
+void func_020e54e4(void *d, void *e, u32 f, u32 g);
+s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c);
 void func_020e52bc(void);

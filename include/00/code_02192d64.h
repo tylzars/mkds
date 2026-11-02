@@ -74,9 +74,9 @@ typedef struct Unk0219338c {
 #include "00/code_021906e4.h"
 #include "00/code_0218f960.h"
 
-u32 func_ov000_02192d64(Unk0218f960 *param_1, Unk021906e4 *param_2);
-s32 func_ov000_02192e04(Unk0218f960 *param_1, Unk021937c0Node *param_2, const u8 *param_3);
-void func_ov000_0219338c(Unk02192e04 *param_1, Unk0219338c *param_2);
-u32 func_ov000_021935bc(u32 param_1, u32 param_2, u32 *param_3, u32 *param_4, u32 *param_5);
+u32 func_ov000_02192d64(Unk0218f960 *a, Unk021906e4 *b);
+s32 func_ov000_02192e04(Unk0218f960 *r, Unk021937c0Node *s, const u8 *t);
+void func_ov000_0219338c(Unk02192e04 *a, Unk0219338c *b);
+u32 func_ov000_021935bc(u32 a, u32 b, u32 *c, u32 *d, u32 *e);
 // Declared here until the code that defines them is decompiled.
 s32 func_ov000_02196870(Unk0218f960 *param_1, const u8 *param_2, s32 param_3);

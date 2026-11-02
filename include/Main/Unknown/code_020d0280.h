@@ -22,6 +22,6 @@ typedef struct Unk020d029c {
 } Unk020d029c;
 
 void func_020d0a18(void);
-void func_020d06b8(Unk020d029c *param_1);
-void func_020d029c(Unk020d029c *param_1, s32 param_2, s32 param_3, Unk020ae7c4 *param_4, s32 param_5);
+void func_020d06b8(Unk020d029c *a);
+void func_020d029c(Unk020d029c *a, s32 b, s32 d, Unk020ae7c4 *e, s32 f);
 s32 func_020d0280(void);

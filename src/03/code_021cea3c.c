@@ -13,7 +13,7 @@
 #include "code_0214a348.h"
 #include "registers.h"
 
-void func_ov003_021ceaf8(Unk021d34e0 *param_1) {
+void func_ov003_021ceaf8(Unk021d34e0 *a) {
     u32 w;
     s32 h;
 
@@ -22,10 +22,10 @@ void func_ov003_021ceaf8(Unk021d34e0 *param_1) {
     func_ov003_021cec50(h);
     if (h >= 192) {
         if (data_ov003_021da284->mUnk_1e != 0) {
-            func_ov003_021d34e0(param_1, func_ov003_021ceab8);
+            func_ov003_021d34e0(a, func_ov003_021ceab8);
             return;
         }
-        func_ov003_021d34e0(param_1, func_ov003_021cea3c);
+        func_ov003_021d34e0(a, func_ov003_021cea3c);
     }
 }
 

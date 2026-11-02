@@ -56,7 +56,7 @@ extern const u8 data_ov000_021b3c48[];
 extern u32 data_ov000_021b3b34;
 
 s32 func_ov000_0219746c(void);
-void func_ov000_02197558(u32 param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6, u32 param_7);
+void func_ov000_02197558(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g);
 void func_ov000_02197594(s32 a, s32 b, s32 c, UnkFunc *d, s32 e);
 s8 *func_ov000_021975f4(s8 *a);
 void func_ov000_02197634(void);

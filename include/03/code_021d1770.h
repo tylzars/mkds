@@ -19,4 +19,4 @@ typedef struct Unk021d1770 {
     /* 0c */ u8 mUnk_0c;
 } Unk021d1770;
 
-void func_ov003_021d1770(Unk021d1770 *param_1, int param_2, u32 *param_3, s32 *param_4);
+void func_ov003_021d1770(Unk021d1770 *a, int b, u32 *c, s32 *d);

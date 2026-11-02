@@ -6,7 +6,7 @@
 #include "00/code_021a8aa8.h"
 #include "00/code_0218e49c.h"
 
-u32 func_ov000_0218e3b8(s32 param_1, s32 param_2, s32 param_3, void *param_4, s32 param_5) {
+u32 func_ov000_0218e3b8(s32 a, s32 b, s32 c, void *d, s32 e) {
     u32 value0;
     u32 value1;
     u32 value3;
@@ -34,16 +34,16 @@ s32 func_ov000_0218e394(u32 p0, void *p1, u32 *p2) {
     return v11;
 }
 
-u32 func_ov000_0218e374(u32 param_1) {
+u32 func_ov000_0218e374(u32 a) {
     int v1;
     u32 v2[1];
-    v1 = func_ov000_021a8c1c(param_1, (u32 *) v2);
+    v1 = func_ov000_021a8c1c(a, (u32 *) v2);
     if (v1 == 0) {
         return 0xffffffff;
     }
     return v2[0];
 }
 
-u32 func_ov000_0218e368(s32 param_1) {
+u32 func_ov000_0218e368(s32 a) {
     return *(u32 *) &data_ov000_021b4e08;
 }

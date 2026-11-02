@@ -9,8 +9,8 @@
 
 #pragma optimize_for_size on
 
-u16 func_ov001_02185b50(Unk02185bb8 *param_1) {
-    return param_1->mUnk_0a8 != 0;
+u16 func_ov001_02185b50(Unk02185bb8 *a) {
+    return a->mUnk_0a8 != 0;
 }
 
 void func_ov001_02185b1c(void) {
@@ -35,14 +35,14 @@ void func_ov001_02185af0(void) {
 }
 
 #pragma thumb off
-void func_ov001_02185ad8(u32 param_1) {
+void func_ov001_02185ad8(u32 a) {
     vu32 *r = (vu32 *) 0x4000000;
-    *r = (*r & ~0x1f00) | (param_1 << 8);
+    *r = (*r & ~0x1f00) | (a << 8);
 }
 
-void func_ov001_02185abc(u32 param_1) {
+void func_ov001_02185abc(u32 a) {
     vu32 *r = (vu32 *) 0x4001000;
-    *r = (*r & ~0x1f00) | (param_1 << 8);
+    *r = (*r & ~0x1f00) | (a << 8);
 }
 #pragma thumb on
 
@@ -78,8 +78,8 @@ void func_ov001_02185a28(void) {
 }
 
 #pragma thumb off
-void func_ov001_02185a14(s32 param_1) {
-    data_0217b488->mUnk_0c = param_1;
+void func_ov001_02185a14(s32 a) {
+    data_0217b488->mUnk_0c = a;
 }
 #pragma thumb on
 
@@ -155,12 +155,12 @@ void func_ov001_021858c8(void) {
 }
 
 #pragma thumb off
-void func_ov001_021858b4(s32 param_1) {
-    data_0217b488->mUnk_08 = param_1;
+void func_ov001_021858b4(s32 a) {
+    data_0217b488->mUnk_08 = a;
 }
 
-void func_ov001_021858a0(s32 param_1) {
-    data_0217b488->mUnk_04 = param_1;
+void func_ov001_021858a0(s32 a) {
+    data_0217b488->mUnk_04 = a;
 }
 #pragma thumb on
 
@@ -206,12 +206,12 @@ void func_ov001_021857ec(void) {
 }
 
 #pragma thumb off
-void func_ov001_021857c0(u32 param_1, u32 param_2) {
-    *(vu32 *) 0x4000014 = (param_1 & 0x1ff) | ((param_2 << 16) & 0x1ff0000);
+void func_ov001_021857c0(u32 a, u32 b) {
+    *(vu32 *) 0x4000014 = (a & 0x1ff) | ((b << 16) & 0x1ff0000);
 }
 
-void func_ov001_021857a4(u32 param_1) {
+void func_ov001_021857a4(u32 a) {
     vu16 *r = (vu16 *) 0x400000a;
-    *r = (*r & ~3) | param_1;
+    *r = (*r & ~3) | a;
 }
 #pragma thumb on

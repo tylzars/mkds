@@ -18,15 +18,15 @@ u32 func_020d0f60(void) {
 }
 
 #pragma thumb on
-u32 func_020d0efc(int param_1) {
+u32 func_020d0efc(int a) {
     u32 r;
 
     r = 1;
-    if (data_0216aeac[param_1 * 2] == 0) {
+    if (data_0216aeac[a * 2] == 0) {
         r = 0;
     } else if (func_020d0ec4() != 0) {
-        if (data_0217b4a4->mUnk_0c != param_1) {
-            data_0217b4a4->mUnk_0c = param_1;
+        if (data_0217b4a4->mUnk_0c != a) {
+            data_0217b4a4->mUnk_0c = a;
             func_02057df0(func_020d1080);
             func_02057df0(func_020d0ffc);
             func_02057df0(func_020d0f78);

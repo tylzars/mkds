@@ -41,6 +41,6 @@ void func_ov003_021c2f68(void);
 void func_ov003_021c2f98(void);
 void func_ov003_021c2fd4(void);
 void func_ov003_021c3078(void);
-void func_ov003_021cc948(u8 *param_1, u32 param_2, u32 param_3);
+void func_ov003_021cc948(u8 *a, u32 b, u32 c);
 // Not decompiled yet.
 void func_ov003_021cdcf0(u32 a);

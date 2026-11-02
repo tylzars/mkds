@@ -230,13 +230,13 @@ void func_ov000_0219bf10(void) {
     }
 }
 
-void func_ov000_0219bea8(u32 param_1, u32 param_2, void (*param_3)(s32 param_1), u32 param_4) {
+void func_ov000_0219bea8(u32 a, u32 b, void (*c)(s32 a), u32 d) {
     if (func_ov000_0219c39c() == 0) {
         if (data_ov000_021b54c8->mUnk_24 == 0) {
-            data_ov000_021b54c8->mUnk_5c = param_3;
-            data_ov000_021b54c8->mUnk_60 = param_4;
-            data_ov000_021b54c8->mUnk_84.mUnk_10 = param_1;
-            data_ov000_021b54c8->mUnk_84.mUnk_14 = param_2;
+            data_ov000_021b54c8->mUnk_5c = c;
+            data_ov000_021b54c8->mUnk_60 = d;
+            data_ov000_021b54c8->mUnk_84.mUnk_10 = a;
+            data_ov000_021b54c8->mUnk_84.mUnk_14 = b;
             if (func_ov000_021a3810() != 4) {
                 func_ov000_0219c990(2, -60010);
                 return;

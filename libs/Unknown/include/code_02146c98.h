@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 *func_02146c98(s32 *param_1);
+u32 *func_02146c98(s32 *a);

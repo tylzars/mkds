@@ -10,20 +10,20 @@
 #include "Main/Unknown/code_0209b000.h"
 #include "Main/Unknown/code_02110000.h"
 
-s32 func_ov001_0218c5d4(Unk02188950 *param_1) {
-    func_ov001_02188968(param_1, &func_ov001_02187fc0(param_1)->mUnk_00);
-    func_ov001_02188d8c(param_1, &func_ov001_02187fc0(param_1)->mUnk_00);
+s32 func_ov001_0218c5d4(Unk02188950 *a) {
+    func_ov001_02188968(a, &func_ov001_02187fc0(a)->mUnk_00);
+    func_ov001_02188d8c(a, &func_ov001_02187fc0(a)->mUnk_00);
     return 0;
 }
 
-s32 func_ov001_0218c5ac(Unk02188950 *param_1) {
-    func_ov001_02188968(param_1, &func_ov001_02187fc0(param_1)->mUnk_00);
-    func_ov001_02188d8c(param_1, &func_ov001_02187fc0(param_1)->mUnk_00);
+s32 func_ov001_0218c5ac(Unk02188950 *a) {
+    func_ov001_02188968(a, &func_ov001_02187fc0(a)->mUnk_00);
+    func_ov001_02188d8c(a, &func_ov001_02187fc0(a)->mUnk_00);
     return 0;
 }
 
-s32 func_ov001_0218c584(Unk02188950 *param_1) {
-    func_ov001_02188980(param_1, &func_ov001_02187fc0(param_1)->mUnk_00);
-    func_ov001_02188d8c(param_1, &func_ov001_02187fc0(param_1)->mUnk_00);
+s32 func_ov001_0218c584(Unk02188950 *a) {
+    func_ov001_02188980(a, &func_ov001_02187fc0(a)->mUnk_00);
+    func_ov001_02188d8c(a, &func_ov001_02187fc0(a)->mUnk_00);
     return 0;
 }

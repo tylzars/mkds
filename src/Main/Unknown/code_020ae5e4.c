@@ -2,14 +2,14 @@
 
 #pragma thumb on
 
-void func_020ae5f0(void *param_1, void *param_2) {
-    if (param_1 != 0) {
-        func_0200ee74((param_1), (int) 0x00000400u);
-        func_0214bfcc((const void *) param_1, 0, (u32) 0x00000400u);
+void func_020ae5f0(void *a, void *b) {
+    if (a != 0) {
+        func_0200ee74((a), (int) 0x00000400u);
+        func_0214bfcc((const void *) a, 0, (u32) 0x00000400u);
     }
-    if (param_2 != 0) {
-        func_0200ee74((param_2), (int) 0x00000400u);
-        func_0214bf64((const void *) param_2, 0, (u32) 0x00000400u);
+    if (b != 0) {
+        func_0200ee74((b), (int) 0x00000400u);
+        func_0214bf64((const void *) b, 0, (u32) 0x00000400u);
     }
 }
 

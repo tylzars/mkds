@@ -39,8 +39,8 @@ void func_020a2328(void (*p0)(u16 a)) {
     *(u32 *) ((u8 *) (u32) (((u32) data_0217b1fc)) + 908) = (u32) p0;
 }
 
-void func_020a2314(void (*param_1)(void)) {
-    data_0217b1fc->mUnk_390 = param_1;
+void func_020a2314(void (*a)(void)) {
+    data_0217b1fc->mUnk_390 = a;
 }
 
 void func_020a2300(u32 p0) {
@@ -57,8 +57,8 @@ void func_020a22ac(u16 a) {
     data_0217b1fc->mUnk_000[a].mUnk_64 = 10;
 }
 
-void func_020a228c(int param_1) {
-    *(u32 *) (param_1 * 0x70 + (u32) data_0217b1fc + 100) = 0xffffffff;
+void func_020a228c(int a) {
+    *(u32 *) (a * 0x70 + (u32) data_0217b1fc + 100) = 0xffffffff;
 }
 
 s32 func_020a2264(u16 a) {

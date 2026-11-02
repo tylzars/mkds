@@ -3,13 +3,13 @@
 
 #pragma thumb on
 
-void func_020b2e64(u32 param_1) {
+void func_020b2e64(u32 a) {
     int v1;
     int v2;
     v1 = func_020b2ec0();
     v2 = func_020b29c4();
     if (v2 != 0) {
-        func_020b2f88((int) param_1);
+        func_020b2f88((int) a);
     }
     v2 = func_020b2ec0();
     if ((v1 == 0) && (v2 != 0)) {

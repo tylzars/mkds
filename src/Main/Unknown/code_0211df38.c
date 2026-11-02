@@ -36,10 +36,10 @@ void func_0211e024(void) {
     func_020b4a7c(v4, v1);
 }
 
-void func_0211dfb4(u32 param_1) {
+void func_0211dfb4(u32 a) {
     int v1;
     u32 v2;
-    v1 = ((u32) func_02036bec((void *) param_1, (u32) 0x10));
+    v1 = ((u32) func_02036bec((void *) a, (u32) 0x10));
     *(int *) &data_0217d370 = v1;
     v2 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216ded4))));
     func_020b49bc(&data_0217d370->mUnk_00, (void *) v2);
@@ -51,10 +51,10 @@ void func_0211dfb4(u32 param_1) {
     *(u32 *) ((int) data_0217d370 + 0xc) = v2;
 }
 
-void func_0211df44(void *param_1) {
+void func_0211df44(void *a) {
     int v1;
     u32 v2;
-    v1 = ((u32) func_02036bec(param_1, (u32) 0x10));
+    v1 = ((u32) func_02036bec(a, (u32) 0x10));
     *(int *) &data_0217d370 = v1;
     v2 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216dedc))));
     func_020b49bc(&data_0217d370->mUnk_00, (void *) v2);

@@ -5,4 +5,4 @@
 #include "00/code_02182fdc.h"
 #include "Main/Unknown/code_020b8624.h"
 
-Unk0217b3c4_7dc *func_020b85f0(u32 param_1);
+Unk0217b3c4_7dc *func_020b85f0(u32 a);

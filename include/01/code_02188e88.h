@@ -7,15 +7,15 @@
 extern Unk0217b498 *data_ov001_021a9ba4;
 extern Unk0217b498 *data_ov001_021a9ba8;
 
-void func_ov001_02188e88(Unk02188950 *param_1);
-void func_ov001_02188e94(Unk02188950 *param_1, void (**param_2)());
-u32 func_ov001_02188eac(Unk02188950 *param_1, s32 param_2, Vec3 *param_3, s32 param_4);
-u32 func_ov001_02188f04(Unk02188950 *param_1, Vec3 *param_2, s32 param_3);
-void func_ov001_02188fdc(void *param_1);
+void func_ov001_02188e88(Unk02188950 *a);
+void func_ov001_02188e94(Unk02188950 *a, void (**b)());
+u32 func_ov001_02188eac(Unk02188950 *a, s32 b, Vec3 *c, s32 d);
+u32 func_ov001_02188f04(Unk02188950 *a, Vec3 *b, s32 c);
+void func_ov001_02188fdc(void *a);
 void func_ov001_02188ff8(void);
 void func_ov001_02189114(void);
 s32 func_ov001_02189128(void);
-void func_ov001_02189144(void *param_1);
+void func_ov001_02189144(void *a);
 void func_ov001_02189160(void);
 void func_ov001_0218927c(void);
 s32 func_ov001_02189290(void);

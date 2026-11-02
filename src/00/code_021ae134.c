@@ -23,24 +23,24 @@ void func_ov000_021ae1e4(void) {
     }
 }
 
-u32 func_ov000_021ae16c(Unk021a998c *param_1) {
+u32 func_ov000_021ae16c(Unk021a998c *b) {
     u32 a;
     u32 i;
     u32 s;
 
     a = func_ov000_021ae314();
     for (i = 0; i < 3; i++) {
-        param_1->mUnk_28 = a;
-        param_1->mUnk_08 = 2;
-        param_1->mUnk_10 = func_0200f5ac() >> 16;
-        func_ov000_021aefc0(param_1, 2, 24);
+        b->mUnk_28 = a;
+        b->mUnk_08 = 2;
+        b->mUnk_10 = func_0200f5ac() >> 16;
+        func_ov000_021aefc0(b, 2, 24);
         s = func_0200fca0();
         if (data_ov000_021b63b4 != 0) {
-            param_1->mUnk_04 = 1;
+            b->mUnk_04 = 1;
             func_0200e01c(0);
         }
         func_0200fcb4(s);
-        if (param_1->mUnk_08 == 4) {
+        if (b->mUnk_08 == 4) {
             return 0;
         }
         if (data_ov000_021b63b4 == 0) {

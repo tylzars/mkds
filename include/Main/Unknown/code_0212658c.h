@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_02126638(void *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s32 param_6, s32 param_7);
-void func_0212658c(void *param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6, u32 param_7);
+void func_02126638(void *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g);
+void func_0212658c(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g);

@@ -77,12 +77,12 @@ u8 func_ov003_021c0ce4(void) {
     return data_ov003_021da15c->mUnk_11c;
 }
 
-void func_ov003_021c0cd0(u8 param_1) {
-    data_ov003_021da15c->mUnk_123 = param_1;
+void func_ov003_021c0cd0(u8 a) {
+    data_ov003_021da15c->mUnk_123 = a;
 }
 
-void func_ov003_021c0cbc(u8 param_1) {
-    data_ov003_021da15c->mUnk_124 = param_1;
+void func_ov003_021c0cbc(u8 a) {
+    data_ov003_021da15c->mUnk_124 = a;
 }
 
 u32 func_ov003_021c0ca8(void) {

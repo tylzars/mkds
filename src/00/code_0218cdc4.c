@@ -37,12 +37,12 @@
 #include "00/code_0218d488.h"
 #include "00/code_02193818.h"
 
-s32 func_ov000_0218d430(u32 *param_1, u32 *param_2) {
+s32 func_ov000_0218d430(u32 *c, u32 *d) {
     u8 *a;
     u8 *b;
     s32 result;
-    a = func_ov000_0218b30c((Unk0218af28 *) *param_1, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
-    b = func_ov000_0218b30c((Unk0218af28 *) *param_2, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
+    a = func_ov000_0218b30c((Unk0218af28 *) *c, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
+    b = func_ov000_0218b30c((Unk0218af28 *) *d, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
     result = strcmp(a, b);
     if (data_ov000_021b4d24->mUnk_49c == 0) {
         result = -result;
@@ -93,16 +93,16 @@ void func_ov000_0218d340(Unk021b4d24 *p, u32 a) {
     p->mUnk_488(p, 0, a, p->mUnk_494);
 }
 
-int func_ov000_0218d300(u32 param_1, int param_2) {
+int func_ov000_0218d300(u32 a, int b) {
     int v1;
     int *v2;
     int v3;
-    v1 = func_ov000_0218dc44((u32 *) ((u32 *) (u32) (*(u32 *) (param_1 + 4))));
+    v1 = func_ov000_0218dc44((u32 *) ((u32 *) (u32) (*(u32 *) (a + 4))));
     v3 = 0;
     if (0 < v1) {
         do {
-            v2 = (int *) func_ov000_0218dbf8((int *) ((int *) (u32) (*(u32 *) (param_1 + 4))), (int) (v3));
-            if (param_2 == *v2) {
+            v2 = (int *) func_ov000_0218dbf8((int *) ((int *) (u32) (*(u32 *) (a + 4))), (int) (v3));
+            if (b == *v2) {
                 return v3;
             }
             v3 = v3 + 1;
@@ -111,20 +111,20 @@ int func_ov000_0218d300(u32 param_1, int param_2) {
     return -1;
 }
 
-int func_ov000_0218d2a8(int param_1, int param_2, int param_3) {
+int func_ov000_0218d2a8(int a, int b, int c) {
     u32 v1;
     int v2;
     int v3;
     u32 *v4;
     int v5;
-    v5 = func_ov000_0218dc44((u32 *) ((u32 *) (u32) (*(u32 *) (4 + param_1))));
+    v5 = func_ov000_0218dc44((u32 *) ((u32 *) (u32) (*(u32 *) (4 + a))));
     v2 = 0;
     if (0 < v5) {
         do {
-            v4 = (u32 *) func_ov000_0218dbf8((int *) ((int *) (u32) (*(u32 *) (param_1 + 4))), (int) (v2));
+            v4 = (u32 *) func_ov000_0218dbf8((int *) ((int *) (u32) (*(u32 *) (a + 4))), (int) (v2));
             v1 = *v4;
             v3 = func_ov000_0218b27c((u32 *) ((u32 *) (u32) (v1)));
-            if ((param_2 == v3) && (v3 = func_ov000_0218b25c((int) (v1)), param_3 == v3)) {
+            if ((b == v3) && (v3 = func_ov000_0218b25c((int) (v1)), c == v3)) {
                 return v2;
             }
             v2 = v2 + 1;
@@ -181,21 +181,21 @@ void func_ov000_0218d1dc(Unk021b4d24 *p) {
     }
 }
 
-void func_ov000_0218d1a0(u32 param_1) {
+void func_ov000_0218d1a0(u32 a) {
     int v1;
     u32 *v2;
     int v3;
-    v1 = func_ov000_0218dc44((u32 *) ((u32 *) (u32) (*(u32 *) (param_1 + 4))));
+    v1 = func_ov000_0218dc44((u32 *) ((u32 *) (u32) (*(u32 *) (a + 4))));
     v3 = 0;
     if (0 < v1) {
         do {
-            v2 = (u32 *) func_ov000_0218dbf8((int *) ((int *) (u32) (*(u32 *) (param_1 + 4))), v3);
-            func_ov000_0218d278((Unk021b4d24 *) param_1, (u32) (*v2));
+            v2 = (u32 *) func_ov000_0218dbf8((int *) ((int *) (u32) (*(u32 *) (a + 4))), v3);
+            func_ov000_0218d278((Unk021b4d24 *) a, (u32) (*v2));
             v3 = v3 + 1;
         } while (v3 < v1);
     }
-    func_ov000_0218d8b4((int *) (*(u32 *) (param_1 + 4)));
-    func_ov000_0218d1dc((Unk021b4d24 *) param_1);
+    func_ov000_0218d8b4((int *) (*(u32 *) (a + 4)));
+    func_ov000_0218d1dc((Unk021b4d24 *) a);
 }
 
 void func_ov000_0218d180(u32 p0) {
@@ -238,16 +238,16 @@ void func_ov000_0218d0e4(Unk021b4d24 *p, u32 v1) {
     }
 }
 
-int func_ov000_0218d0c8(int param_1, int param_2) {
+int func_ov000_0218d0c8(int a, int b) {
     int v1;
     v1 = 0;
-    if (0 < param_2) {
+    if (0 < b) {
         do {
-            if (*(s8 *) (param_1 + v1) == 0) {
+            if (*(s8 *) (a + v1) == 0) {
                 return v1 + 1;
             }
             v1 = v1 + 1;
-        } while (v1 < param_2);
+        } while (v1 < b);
     }
     return -1;
 }
@@ -375,9 +375,9 @@ void func_ov000_0218cdd8(u8 **a, const u8 *b, s32 *c) {
     *a = *a + n;
 }
 
-void func_ov000_0218cdc4(u8 **param_1, u8 param_2, s32 *param_3) {
-    **param_1 = param_2;
-    *param_3 = *param_3 + 1;
-    *param_1 = *param_1 + 1;
+void func_ov000_0218cdc4(u8 **a, u8 b, s32 *c) {
+    **a = b;
+    *c = *c + 1;
+    *a = *a + 1;
     return;
 }

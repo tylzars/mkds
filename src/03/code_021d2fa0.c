@@ -82,16 +82,16 @@ Unk021d309c *func_ov003_021d309c(u32 a, s32 b, s32 c, u32 *d) {
     return e;
 }
 
-void func_ov003_021d305c(u32 param_1) {
+void func_ov003_021d305c(u32 c) {
     Unk021d31b0 *a;
     s32 b = 0;
 
-    func_ov003_021d2e90(param_1);
+    func_ov003_021d2e90(c);
     a = data_ov003_021da2f4;
-    if (param_1 >= (u32) a + 0x1a0) {
+    if (c >= (u32) a + 0x1a0) {
         b = 1;
     }
-    func_ov003_021d1d0c((Unk021d1d88 *) a[b].mUnk_19c, (void *) param_1);
+    func_ov003_021d1d0c((Unk021d1d88 *) a[b].mUnk_19c, (void *) c);
 }
 
 void func_ov003_021d2fdc(void) {

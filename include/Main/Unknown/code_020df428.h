@@ -6,4 +6,4 @@
 #include "Main/Unknown/code_020de000.h"
 #include "Main/Unknown/unk_02158000.h"
 
-void func_020df428(int param_1, int param_2);
+void func_020df428(int a, int b);

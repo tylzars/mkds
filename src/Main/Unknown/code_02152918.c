@@ -2,8 +2,8 @@
 
 #pragma thumb on
 
-void func_02152918(u32 param_1, u32 param_2, u32 param_3) {
-    func_0200d9e0((char *) param_3, 0xd, (const char *) data_0216f2d4, param_1, param_2);
+void func_02152918(u32 a, u32 b, u32 c) {
+    func_0200d9e0((char *) c, 0xd, (const char *) data_0216f2d4, a, b);
 }
 
 #pragma thumb off

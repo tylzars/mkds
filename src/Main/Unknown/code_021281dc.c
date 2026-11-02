@@ -287,24 +287,24 @@ s32 func_02128274(void) {
 
 #pragma thumb on
 
-int func_0212825c(int param_1) {
-    if (param_1 < 0) {
-        param_1 = 0;
+int func_0212825c(int a) {
+    if (a < 0) {
+        a = 0;
     }
-    if (10 <= param_1) {
-        param_1 = 9;
+    if (10 <= a) {
+        a = 9;
     }
-    return (int) *(s8 *) (((int) (u32) ((u8 *) &data_0215d0c0)) + param_1);
+    return (int) *(s8 *) (((int) (u32) ((u8 *) &data_0215d0c0)) + a);
 }
 
-int func_02128244(int param_1) {
-    if (param_1 < 0) {
-        param_1 = 0;
+int func_02128244(int a) {
+    if (a < 0) {
+        a = 0;
     }
-    if (10 <= param_1) {
-        param_1 = 9;
+    if (10 <= a) {
+        a = 9;
     }
-    return (int) *(s8 *) (((int) (u32) ((u8 *) &data_0215d0cc)) + param_1);
+    return (int) *(s8 *) (((int) (u32) ((u8 *) &data_0215d0cc)) + a);
 }
 
 #pragma thumb off

@@ -10,19 +10,19 @@
 #include "Main/Unknown/code_020e337c.h"
 #include "Main/Unknown/code_020e5c6c.h"
 
-void func_020e5c6c(u32 param_1, Unk020e43a8 *param_2, u32 param_3, u16 param_4) {
+void func_020e5c6c(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
     Unk02012f58 *v1;
-    data_0217b830->mUnk_18 = (short) ((int) (*(u16 *) &param_2->mUnk_a0.mUnk_18.x & 0x10) >> 4);
-    if (param_2->mUnk_00.mUnk_80.mUnk_0e == 0) {
-        v1 = func_020e6cbc(&param_2->mUnk_00.mUnk_04);
-        func_020e67c4(data_0217b830, v1, &param_2->mUnk_00.mUnk_1c, 0, param_4);
+    data_0217b830->mUnk_18 = (short) ((int) (*(u16 *) &b->mUnk_a0.mUnk_18.x & 0x10) >> 4);
+    if (b->mUnk_00.mUnk_80.mUnk_0e == 0) {
+        v1 = func_020e6cbc(&b->mUnk_00.mUnk_04);
+        func_020e67c4(data_0217b830, v1, &b->mUnk_00.mUnk_1c, 0, d);
         return;
     }
-    v1 = func_020e6cbc(&param_2->mUnk_00.mUnk_04);
-    func_020e66e4(data_0217b830, v1, *(u16 *) &param_2->mUnk_a0.mUnk_0c.x, &param_2->mUnk_00.mUnk_1c, 0, param_4);
+    v1 = func_020e6cbc(&b->mUnk_00.mUnk_04);
+    func_020e66e4(data_0217b830, v1, *(u16 *) &b->mUnk_a0.mUnk_0c.x, &b->mUnk_00.mUnk_1c, 0, d);
 }
 
-void func_020e5bd4(u32 param_1, Unk020e43a8 *p) {
+void func_020e5bd4(u32 a, Unk020e43a8 *p) {
     Unk0210b7a8 s;
     s32 n;
 
@@ -44,16 +44,16 @@ void func_020e5bd4(u32 param_1, Unk020e43a8 *p) {
     func_02046b40(&p->mUnk_00.mUnk_80);
 }
 
-u8 func_020e5ba0(Unk020e43a8 *p, void *param_2, u8 *param_3, u8 *param_4) {
-    if (func_020ec450(p, param_2, param_3) != 0) {
-        func_020d26f8(&p->mUnk_00, param_2);
+u8 func_020e5ba0(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
+    if (func_020ec450(p, a, b) != 0) {
+        func_020d26f8(&p->mUnk_00, a);
     }
-    return *param_4;
+    return *c;
 }
 
-u8 func_020e5b88(Unk020e43a8 *p, void *param_2, u8 *param_3, u8 *param_4) {
-    func_020ec41c(p, param_2, param_3);
-    return *param_4;
+u8 func_020e5b88(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
+    func_020ec41c(p, a, b);
+    return *c;
 }
 
 #pragma thumb on

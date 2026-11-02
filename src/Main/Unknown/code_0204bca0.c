@@ -12,12 +12,12 @@
 #include "code_0200fc8c.h"
 #include "Main/Unknown/code_0204b000.h"
 
-void func_0204bf48(int param_1, u32 param_2, u32 param_3, void *param_4, void *param_5, u32 param_6) {
-    if (param_1 != 0) {
-        func_0204c090(param_2, (u32) param_4, (u32) param_5, param_6, param_3, 0, 1);
+void func_0204bf48(int a, u32 b, u32 c, void *d, void *e, u32 f) {
+    if (a != 0) {
+        func_0204c090(b, (u32) d, (u32) e, f, c, 0, 1);
         return;
     }
-    func_0204bfac(param_2, (u32) param_4, (u32) param_5, param_6);
+    func_0204bfac(b, (u32) d, (u32) e, f);
 }
 
 static inline void func_0204bcec_inline(Unk02175ec0 *a, void *p) {

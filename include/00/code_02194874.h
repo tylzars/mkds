@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_ov000_02194874(u32 param_1, u32 *param_2);
+void func_ov000_02194874(u32 a, u32 *b);

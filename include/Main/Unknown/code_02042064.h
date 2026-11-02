@@ -20,4 +20,4 @@ s32 func_02042280(void *a, ...);
 void func_020422c4(void);
 void func_02042320(void);
 void func_0204236c(void);
-Unk02175620_74 *func_020423fc(u32 param_1);
+Unk02175620_74 *func_020423fc(u32 a);

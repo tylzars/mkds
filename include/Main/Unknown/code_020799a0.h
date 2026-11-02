@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020799a0(s32 param_1);
+u32 func_020799a0(s32 e);

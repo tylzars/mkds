@@ -5,4 +5,4 @@
 #include "ITCM/code_01ffd000.h"
 #include "Main/Unknown/code_020d7000.h"
 
-void func_020d2450(void *param_1);
+void func_020d2450(void *a);

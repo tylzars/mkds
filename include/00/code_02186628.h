@@ -50,14 +50,14 @@ typedef struct Unk021868d0 {
     /* a20 */ u8 mUnk_a20[0x1040];
 } Unk021868d0;
 
-void func_ov000_02186628(const void *param_1);
+void func_ov000_02186628(const void *a);
 s32 func_ov000_02186634(Unk021868a4Entry *a, s32 b, const u8 *c, char *d, s32 e);
 s32 func_ov000_02186674(Unk021868a4Entry *a, s32 b, const u8 *c, char *d, s32 e);
 void *func_ov000_021866b8(Unk021868a4Entry *a, s32 b, const u8 *c);
 s32 func_ov000_021866fc(Unk021868a4Entry *a, s32 b, s32 c, const u8 *d);
 s32 func_ov000_021868a4(Unk021868a4 *list, void *first, void *second);
 s32 func_ov000_021868d0(Unk021868d0 *a, const u8 *b);
-u32 func_ov000_02186998(Unk021868d0 *param_1, Unk02186998 *param_2, int param_3);
+u32 func_ov000_02186998(Unk021868d0 *a, Unk02186998 *b, int c);
 void func_ov000_02186a10(Unk021868d0 *a, Unk02186998 *b);
-u32 func_ov000_02186a38(Unk021868d0 *param_1, Unk02186998 *param_2, int param_3);
+u32 func_ov000_02186a38(Unk021868d0 *a, Unk02186998 *b, int c);
 u32 func_ov000_02186a84(u32 value);

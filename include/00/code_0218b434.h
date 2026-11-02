@@ -30,8 +30,7 @@ typedef struct Unk0218b668 {
     /* 634 */ u32 mUnk_634;
 } Unk0218b668;
 
-Unk0218b668 *func_ov000_0218b668(u32 param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6,
-                                 s32 param_7, UnkFunc *param_8, u32 param_9);
+Unk0218b668 *func_ov000_0218b668(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, s32 g, UnkFunc *h, u32 l);
 
 struct Unk0218b668;
 
@@ -43,7 +42,7 @@ struct Unk0218b668;
 void func_ov000_0218b434(u32 arg0);
 s32 func_ov000_0218b440(const u8 *const *first, const u8 *const *second);
 u32 func_ov000_0218b44c(Unk0218afac *entry, u32 modulus);
-u32 func_ov000_0218b458(int param_1);
+u32 func_ov000_0218b458(int a);
 void func_ov000_0218b464(void *p0, unsigned int p1, void *p2, unsigned int p3);
 u32 func_ov000_0218b474(u32 arg0);
 u32 func_ov000_0218b480(u32 arg0, u32 arg1);

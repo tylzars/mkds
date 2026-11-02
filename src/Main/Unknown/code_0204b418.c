@@ -2,9 +2,9 @@
 
 #pragma thumb on
 
-void func_0204b430(u32 param_1, u32 param_2, u32 *param_3, u32 param_4, void (*param_5)(u32, u32), s32 param_6) {
-    data_021759d4->mUnk_18 = param_2;
-    func_0204b458(param_1, param_3, param_4, (void (*)(u32 *, u32)) param_5, 1, param_6);
+void func_0204b430(u32 a, u32 b, u32 *c, u32 d, void (*e)(u32, u32), s32 f) {
+    data_021759d4->mUnk_18 = b;
+    func_0204b458(a, c, d, (void (*)(u32 *, u32)) e, 1, f);
 }
 
 void func_0204b418(u32 p0, void *p1, u32 p2, u32 p3) {

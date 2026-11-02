@@ -93,7 +93,7 @@ void func_ov001_0219b874(void);
 void func_ov001_0219b9dc(void);
 void func_ov001_0219ba3c(void);
 void func_ov001_0219baf4(void);
-void func_ov001_0219bb48(u32 param_1, u32 param_2, u32 param_3);
+void func_ov001_0219bb48(u32 a, u32 b, u32 c);
 void func_ov001_0219be5c(void);
 void func_ov001_0219bfc0(void);
 void func_ov001_0219bff4(void);

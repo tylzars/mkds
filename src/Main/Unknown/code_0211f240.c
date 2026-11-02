@@ -22,10 +22,10 @@ void func_0211f328(void) {
     func_020b4a7c(v4, v1);
 }
 
-void func_0211f2b8(void *param_1) {
+void func_0211f2b8(void *a) {
     int v1;
     u32 v2;
-    v1 = ((u32) func_02036bec(param_1, (u32) 0x10));
+    v1 = ((u32) func_02036bec(a, (u32) 0x10));
     *(int *) &data_0217d37c = v1;
     v2 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216e0a8))));
     func_020b49bc(&data_0217d37c->mUnk_00, (void *) v2);
@@ -49,19 +49,19 @@ void func_0211f2ac(void) {
 
 #pragma thumb on
 
-void func_0211f244(int param_1, int param_2, void *param_3, void *param_4, u32 param_5, u16 param_6, int param_7) {
+void func_0211f244(int a, int b, void *c, void *d, u32 e, u16 f, int g) {
     u32 v1;
     u32 *v2;
     v1 = 0xe;
-    if ((param_7 != 0) && (param_7 == 1)) {
+    if ((g != 0) && (g == 1)) {
         v1 = 0x1e;
     }
     v2 = (u32 *) (int) data_0217d37c;
-    func_02124748((u32) (*(u16 *) (((u32) ((u8 *) &data_0215d014)) + param_1 * 2)), (void *) (v2[1]), (void *) (*v2),
-                  (void *) (v2[3]), param_7, param_5, param_3, param_4);
+    func_02124748((u32) (*(u16 *) (((u32) ((u8 *) &data_0215d014)) + a * 2)), (void *) (v2[1]), (void *) (*v2),
+                  (void *) (v2[3]), g, e, c, d);
     ((u32) func_02016468(
-        v1, (u32) ((u32) param_6 << 5),
-        (void *) (*(int *) ((int) data_0217d37c->mUnk_08 + 0xc) + (u32) ((u16 *) &data_0215d00c)[param_2] * 0x20),
+        v1, (u32) ((u32) f << 5),
+        (void *) (*(int *) ((int) data_0217d37c->mUnk_08 + 0xc) + (u32) ((u16 *) &data_0215d00c)[b] * 0x20),
         (u32) 0x20));
 }
 

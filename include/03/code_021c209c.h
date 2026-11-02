@@ -14,13 +14,13 @@ extern Unk021da178 data_ov003_021da178;
 extern s32 data_ov003_021da180[4];
 
 void func_ov003_021c209c(void);
-u32 func_ov003_021c20a8(u32 param_1);
+u32 func_ov003_021c20a8(u32 a);
 u32 func_ov003_021c20c0(void);
 u8 func_ov003_021c20d0(void);
 void func_ov003_021c20dc(s32 *first, s32 *second);
 void func_ov003_021c20f8(u32 arg0, u32 arg1);
 void func_ov003_021c2104(s32 *first, s32 *second);
-void func_ov003_021c2120(u32 param_1, u32 param_2);
+void func_ov003_021c2120(u32 a, u32 b);
 void func_ov003_021c212c(void (*callback)(void));
 void func_ov003_021c2138(void);
 void func_ov003_021c2188(void);

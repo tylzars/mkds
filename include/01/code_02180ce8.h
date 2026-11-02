@@ -14,8 +14,8 @@ typedef struct Unk02180ce8 {
 
 s32 func_ov001_02180ce8(s32 p0, s32 p1, s32 p2);
 s32 func_ov001_02180eec(s32 p0, s32 p1, s32 p2, s32 p3, s32 p4);
-u8 func_ov001_02181004(s32 param_1, s32 param_2);
-u32 func_ov001_02181020(u32 param_1, u32 param_2, u32 param_3);
+u8 func_ov001_02181004(s32 a, s32 b);
+u32 func_ov001_02181020(u32 a, u32 b, u32 c);
 void func_ov001_02181048(void);
 unsigned int func_ov001_02181070(void);
 void func_ov001_0218107c(void);

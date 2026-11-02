@@ -19,18 +19,18 @@
 
 #pragma thumb on
 
-void func_0205982c(void *param_1) {
+void func_0205982c(void *a) {
     int v1;
     int v2;
     u32 v3;
     int *v4;
-    v3 = (u32) func_02036b74(param_1, ((u32) 0x0000016cu), 0x20);
+    v3 = (u32) func_02036b74(a, ((u32) 0x0000016cu), 0x20);
     v4 = (int *) &data_0217aa00;
     *(u32 *) ((int) data_0217aa00 + ((u32) 0x00001624u)) = v3;
     v1 = 0;
     v2 = 0;
     do {
-        v3 = ((u32) func_02036bec(param_1, (u32) 0x12));
+        v3 = ((u32) func_02036bec(a, (u32) 0x12));
         *(u32 *) (*v4 + v2 + 0x162c) = v3;
         v2 = v2 + 4;
         v1 = v1 + 1;
@@ -204,15 +204,15 @@ u32 func_0205955c(void) {
 
 #pragma thumb on
 
-void func_0205950c(void *param_1, void *param_2) {
+void func_0205950c(void *a, void *b) {
     Unk0217aa00_1608 *part;
     data_0217aa00->mUnk_1e34 = 0;
     data_0217aa00->mUnk_1e44 &= ~2;
     part = &data_0217aa00->mUnk_1608;
     part->mUnk_10 = 0x10;
     part->mUnk_12 = 1;
-    data_0217aa00->mUnk_1650 = param_1;
-    data_0217aa00->mUnk_1654 = param_2;
+    data_0217aa00->mUnk_1650 = a;
+    data_0217aa00->mUnk_1654 = b;
 }
 
 #pragma thumb off

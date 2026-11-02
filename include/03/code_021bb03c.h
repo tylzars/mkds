@@ -7,8 +7,8 @@
 #include "code_02134d30.h"
 
 void func_ov003_021bb03c(void);
-u32 func_ov003_021bb058(Unk021d8dc8 *param_1);
-u32 func_ov003_021bb070(u32 *param_1);
+u32 func_ov003_021bb058(Unk021d8dc8 *a);
+u32 func_ov003_021bb070(u32 *a);
 s32 func_ov003_021bb0b0(void);
 s32 func_ov003_021bb168(u32 a, s32 b, UnkFunc *c, UnkWordFunc *d, UnkFunc *e, u32 f);
 s32 func_ov003_021bb29c(u8 *a, const s8 *b);

@@ -20,11 +20,11 @@ void func_02116e70(void) {
     func_020b4a7c(v4, v1);
 }
 
-void func_02116dd4(void *param_1, void *param_2, void *param_3, u32 param_4, u16 param_5, u32 param_6) {
+void func_02116dd4(void *a, void *b, void *c, u32 d, u16 e, u32 f) {
     int *v1;
     int v2;
     u32 v3;
-    v2 = ((u32) func_02036bec(param_1, (u32) 0x2c));
+    v2 = ((u32) func_02036bec(a, (u32) 0x2c));
     *(int *) &data_0217d354 = v2;
     v3 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216d4c4))));
     func_020b48b4(&data_0217d354->mUnk_00, (void *) v3);
@@ -35,11 +35,11 @@ void func_02116dd4(void *param_1, void *param_2, void *param_3, u32 param_4, u16
     v3 = ((int) func_0204799c((const char *) ((*(u32 *) &data_0216d4c8))));
     v1 = (int *) &data_0217d354;
     *(u32 *) ((int) data_0217d354 + 0xc) = v3;
-    *(void **) (*v1 + 0x10) = param_2;
-    *(void **) (*v1 + 0x14) = param_3;
-    *(u32 *) (*v1 + 0x18) = param_4;
-    *(u16 *) (*v1 + 0x1c) = param_5;
-    *(u32 *) (*v1 + 0x20) = param_6;
+    *(void **) (*v1 + 0x10) = b;
+    *(void **) (*v1 + 0x14) = c;
+    *(u32 *) (*v1 + 0x18) = d;
+    *(u16 *) (*v1 + 0x1c) = e;
+    *(u32 *) (*v1 + 0x20) = f;
     *(u16 *) (*v1 + 0x24) = 2;
     *(u32 *) (*v1 + 0x28) = 3;
 }

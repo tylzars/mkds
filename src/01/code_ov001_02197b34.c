@@ -111,17 +111,17 @@ void func_ov001_02198264(s32 a) {
     func_02124a20(data_ov001_021a6a18[a], 0xf, data_ov001_021a9be0->mUnk_00, data_ov001_021a9be0->mUnk_04);
 }
 
-void func_ov001_02198100(void *param_1, void *param_2, s32 param_3) {
+void func_ov001_02198100(void *a, void *b, s32 c) {
     void *heap;
     s32 i;
 
     *(u16 *) 0x4000008 = (*(u16 *) 0x4000008 & 0x43) | 0x9004;
-    heap = func_02036948(param_1);
+    heap = func_02036948(a);
     data_ov001_021a9be0 = func_02036bec(heap, 0x38);
     data_ov001_021a9be0->mUnk_14 = heap;
     data_ov001_021a9be0->mUnk_18 = 0;
-    data_ov001_021a9be0->mUnk_2c = param_2;
-    data_ov001_021a9be0->mUnk_30 = param_3;
+    data_ov001_021a9be0->mUnk_2c = b;
+    data_ov001_021a9be0->mUnk_30 = c;
     data_ov001_021a9be0->mUnk_34 = 0;
     func_ov001_02198368();
     if (func_020cccb4() == 0x1f) {

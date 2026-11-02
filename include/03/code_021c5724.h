@@ -3,7 +3,7 @@
 #include "types.h"
 
 // Declared here until the code that defines them is decompiled.
-void func_ov003_021cc948(u8 *param_1, u32 param_2, u32 param_3);
+void func_ov003_021cc948(u8 *a, u32 b, u32 c);
 
 extern u8 data_ov003_021d7228[];
 extern u16 data_ov003_021d63b8[];

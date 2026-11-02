@@ -6,4 +6,4 @@
 
 struct Unk021a998c;
 
-void func_ov000_021ae0c4(Unk021a998c *param_1);
+void func_ov000_021ae0c4(Unk021a998c *a);

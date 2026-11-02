@@ -23,16 +23,15 @@
 
 #pragma thumb on
 
-void func_020df428(int param_1, int param_2) {
-    func_020de6a8((Unk020de6a8 *) param_1, (Unk020de6a8_1 *) param_2);
-    if (*(int *) (param_1 + 0xf8) != 0) {
-        *(u16 *) (param_1 + 0x110) = (short) ((u32) 0x0000ffffu);
+void func_020df428(int a, int b) {
+    func_020de6a8((Unk020de6a8 *) a, (Unk020de6a8_1 *) b);
+    if (*(int *) (a + 0xf8) != 0) {
+        *(u16 *) (a + 0x110) = (short) ((u32) 0x0000ffffu);
         return;
     }
-    func_020d7d4c((Unk020d84e4 *) (param_1 + 0x108), (Unk020fa294 *) param_2, *(u32 *) &data_02158908,
-                  (int) *(short *) (param_2 + 0x28));
-    func_020d859c((Unk020d84e4 *) (param_1 + 0x108), *(u16 *) (param_2 + 0x30), 1);
-    func_020d8c74((Unk020e0144 *) (param_1 + 0x108), (Vec3 *) (param_1 + 4));
+    func_020d7d4c((Unk020d84e4 *) (a + 0x108), (Unk020fa294 *) b, *(u32 *) &data_02158908, (int) *(short *) (b + 0x28));
+    func_020d859c((Unk020d84e4 *) (a + 0x108), *(u16 *) (b + 0x30), 1);
+    func_020d8c74((Unk020e0144 *) (a + 0x108), (Vec3 *) (a + 4));
 }
 
 #pragma thumb off
@@ -300,28 +299,28 @@ void func_020debec(void *a, Unk020de6a8 *b) {
     }
 }
 
-void func_020deb2c(Vec3 *param_1, void *param_2, u32 param_3, int param_4, u32 param_5) {
+void func_020deb2c(Vec3 *a, void *b, u32 c, int d, u32 e) {
     void *v1;
     u32 v2;
-    v2 = (u32) * (u16 *) ((u32) param_2 + 0x74);
-    if (param_4 == 0) {
+    v2 = (u32) * (u16 *) ((u32) b + 0x74);
+    if (d == 0) {
         if (v2 == (int) data_021759c0->mUnk_62) {
-            v1 = func_0208b7bc((u32) 0x2d, (const Vec3 *) param_1);
+            v1 = func_0208b7bc((u32) 0x2d, (const Vec3 *) a);
             if (v1 != 0) {
                 func_02081f10(v1, v2, (u32) 0x1e);
             }
-            v1 = func_0208b7bc((u32) 0x2e, (const Vec3 *) param_1);
+            v1 = func_0208b7bc((u32) 0x2e, (const Vec3 *) a);
             if (v1 != 0) {
                 func_02081f10(v1, v2, (u32) 0x1e);
             }
         }
-        v1 = func_0208b7bc((u32) 0x2f, (const Vec3 *) param_1);
+        v1 = func_0208b7bc((u32) 0x2f, (const Vec3 *) a);
         if (v1 != 0) {
             func_02081f10(v1, v2, (u32) 0x1e);
         }
     }
-    func_020d26ec(param_2, 0xd4);
-    func_020fa78c(v2, param_3, param_5);
+    func_020d26ec(b, 0xd4);
+    func_020fa78c(v2, c, e);
 }
 
 u8 func_020dea50(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d) {

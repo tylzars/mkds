@@ -191,9 +191,9 @@ void func_ov003_021c4e14(void) {
     return;
 }
 
-void func_ov003_021c4dd4(int param_1) {
+void func_ov003_021c4dd4(int a) {
     func_ov003_021cdbd0();
-    if (param_1 == 0) {
+    if (a == 0) {
         data_ov003_021da1d8 = 1;
         func_ov003_021cdc10(0x10);
     } else {

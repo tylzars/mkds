@@ -128,19 +128,19 @@ void func_02110720(u32 a, u32 b) {
     data_0217d2a4.mUnk_70 = n;
 }
 
-void func_021106a8(s32 param_1, s32 param_2) {
+void func_021106a8(s32 a, s32 b) {
     u16 id;
     u32 mode;
     mode = 3;
-    if (param_1 == 0xc) {
-        if (param_2 == 0) {
+    if (a == 0xc) {
+        if (b == 0) {
             id = 0x47;
         } else {
             id = 0x48;
         }
         mode = 0;
     } else {
-        id = param_2 + param_1 * 2;
+        id = b + a * 2;
     }
     func_0212ecc0(&data_0217d068, mode, id);
     if (data_0217d068 != 0) {
@@ -200,8 +200,8 @@ s32 func_02110590(u32 arg0) {
     return (s32) value0;
 }
 
-u16 func_0211057c(int param_1) {
-    return *(u16 *) (((int) (u32) ((u8 *) &data_0216cba0)) + param_1 * 2);
+u16 func_0211057c(int a) {
+    return *(u16 *) (((int) (u32) ((u8 *) &data_0216cba0)) + a * 2);
 }
 
 void func_02110534(u32 a) {

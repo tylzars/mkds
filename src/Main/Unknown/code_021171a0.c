@@ -67,10 +67,10 @@ void func_0211732c(void) {
 
 #pragma thumb on
 
-void func_021172a8(void *param_1) {
+void func_021172a8(void *a) {
     int i;
 
-    data_0217d35c = func_02036bec(param_1, 0x18);
+    data_0217d35c = func_02036bec(a, 0x18);
     func_020b49bc(&data_0217d35c->mUnk_00, func_0204799c(data_0216d534));
     func_020b48b4(&data_0217d35c->mUnk_04, func_0204799c(data_0216d538));
     for (i = 0; i < 3; i++) {

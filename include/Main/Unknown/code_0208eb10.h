@@ -27,4 +27,4 @@ typedef struct Unk0208ec64 {
 
 void func_0208eb10(unsigned int p0);
 Unk0208ec64 *func_0208eb1c(s32 a);
-s32 func_0208ec64(u32 param_1);
+s32 func_0208ec64(u32 a);

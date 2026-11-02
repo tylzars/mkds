@@ -21,7 +21,7 @@ extern char data_usa_021628e4[];
 
 void func_0202b604(void);
 void func_0202b618(s32 a);
-void func_0202b6a0(int param_1, int param_2);
+void func_0202b6a0(int a, int b);
 void func_0202b6f0(s32 a);
 void func_0202b7c0(s32 a);
 u32 func_0202b888(void);

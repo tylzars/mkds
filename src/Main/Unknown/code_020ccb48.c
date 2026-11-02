@@ -50,6 +50,6 @@ void func_020ccb78(void) {
 
 #pragma thumb off
 
-void func_020ccb48(u32 param_1) {
-    func_020468b0((int) param_1, (u32) 0xffffffff, (u32) 0xffffffff, 4, (u32) 0xffffffff, 3);
+void func_020ccb48(u32 a) {
+    func_020468b0((int) a, (u32) 0xffffffff, (u32) 0xffffffff, 4, (u32) 0xffffffff, 3);
 }

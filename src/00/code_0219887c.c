@@ -2,28 +2,28 @@
 #include "00/unk_021b3000.h"
 #include "code_0213442c.h"
 
-u16 func_ov000_021988e4(void *param_1) {
-    return *(u16 *) ((u8 *) param_1 + 8);
+u16 func_ov000_021988e4(void *a) {
+    return *(u16 *) ((u8 *) a + 8);
 }
 
-int func_ov000_021988dc(int param_1) {
-    return *(int *) (param_1 + 0x54) - *(int *) (param_1 + 0x58);
+int func_ov000_021988dc(int a) {
+    return *(int *) (a + 0x54) - *(int *) (a + 0x58);
 }
 
-u32 func_ov000_021988d8(u32 *param_1) {
-    return *param_1;
+u32 func_ov000_021988d8(u32 *a) {
+    return *a;
 }
 
-void func_ov000_021988d4(int param_1, u32 param_2) {
-    *(u32 *) (param_1 + 0x30) = param_2;
+void func_ov000_021988d4(int a, u32 b) {
+    *(u32 *) (a + 0x30) = b;
     return;
 }
 
-void func_ov000_021988a4(Unk0219887c *param_1, void *param_2) {
-    if (param_1 == 0) {
+void func_ov000_021988a4(Unk0219887c *a, void *b) {
+    if (a == 0) {
         func_0213442c(data_ov000_021b3f8c, data_ov000_021b3f98, 0, 0x19c);
     }
-    param_1->mUnk_40 = param_2;
+    a->mUnk_40 = b;
     return;
 }
 

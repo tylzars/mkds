@@ -6,7 +6,7 @@ void func_ov003_021cc410(void);
 void func_ov003_021cc464(void);
 void func_ov003_021cc4a8(void);
 void func_ov003_021cc4c4(void);
-void func_ov003_021cc4ec(u32 param_1);
+void func_ov003_021cc4ec(u32 a);
 void func_ov003_021cc5a8(void);
 void func_ov003_021cc658(void);
 void func_ov003_021cc6a4(void);

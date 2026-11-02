@@ -205,9 +205,8 @@ void func_ov000_02197594(s32 a, s32 b, s32 c, UnkFunc *d, s32 e) {
     func_ov000_02196f8c(g, h, a, d, e);
 }
 
-void func_ov000_02197558(u32 param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6, u32 param_7) {
-    func_ov000_02196e50(param_1, param_2, param_3, param_4, (const u8 *) param_5, strlen((const u8 *) param_5) + 1,
-                        (UnkFunc *) param_6, param_7, 1);
+void func_ov000_02197558(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
+    func_ov000_02196e50(a, b, c, d, (const u8 *) e, strlen((const u8 *) e) + 1, (UnkFunc *) f, g, 1);
 }
 
 s32 func_ov000_0219746c(void) {

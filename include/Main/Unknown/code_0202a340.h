@@ -4,4 +4,4 @@
 #include "00/code_02182fdc.h"
 #include "Main/Unknown/code_02025000.h"
 
-void func_0202a340(s16 *param_1, int param_2);
+void func_0202a340(s16 *a, int b);

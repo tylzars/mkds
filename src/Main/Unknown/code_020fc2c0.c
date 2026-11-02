@@ -1,6 +1,6 @@
 #include "Main/Unknown/code_020fc2c0.h"
 
-void func_020fc2c0(int param_1) {
-    func_02046b40((void *) (param_1 + 0x2e8));
-    func_020f9320((u32) param_1, (u32) 0x3c000400u);
+void func_020fc2c0(int a) {
+    func_02046b40((void *) (a + 0x2e8));
+    func_020f9320((u32) a, (u32) 0x3c000400u);
 }

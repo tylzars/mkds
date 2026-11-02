@@ -141,17 +141,17 @@ void func_0211d4a8(void) {
 
 #pragma thumb on
 
-u16 func_0211d478(s32 param_1) {
+u16 func_0211d478(s32 a) {
     Unk0217d368 *p;
     p = data_0217d368;
     if (p->mUnk_68[1] == 0) {
-        return p->mUnk_ac[param_1];
+        return p->mUnk_ac[a];
     }
-    return p->mUnk_ac[param_1] + p->mUnk_b0[param_1];
+    return p->mUnk_ac[a] + p->mUnk_b0[a];
 }
 
-u32 func_0211d44c(s32 param_1) {
-    if (func_0211d478(data_0217d368->mUnk_8c[param_1]) != 1) {
+u32 func_0211d44c(s32 a) {
+    if (func_0211d478(data_0217d368->mUnk_8c[a]) != 1) {
         return 1;
     }
     return 0;
@@ -170,10 +170,10 @@ void func_0211d428(u16 a, u32 b) {
 
 #pragma thumb on
 
-u32 func_0211d40c(u16 param_1) {
+u32 func_0211d40c(u16 a) {
     u32 v1;
     v1 = func_0211d650();
-    if (v1 > param_1) {
+    if (v1 > a) {
         return 1;
     }
     return 0;

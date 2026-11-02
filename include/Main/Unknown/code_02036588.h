@@ -11,5 +11,5 @@ typedef struct Unk02036590 {
     /* 10 */ struct Unk02036590 *mUnk_10;
 } Unk02036590;
 
-void func_02036588(Unk02036590 *param_1, u32 param_2);
-void func_02036590(Unk02036590 *param_1, u32 param_2);
+void func_02036588(Unk02036590 *a, u32 b);
+void func_02036590(Unk02036590 *a, u32 b);

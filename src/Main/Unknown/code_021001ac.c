@@ -42,27 +42,27 @@ void func_02102668(Unk02102668 *p0) {
     p0->mUnk_170 = 0x1u;
 }
 
-void func_021025d8(Unk021025d8 *param_1) {
+void func_021025d8(Unk021025d8 *a) {
     UnkFunc *const *v1;
-    param_1->mUnk_154 = 0x13;
-    param_1->mUnk_158 = 0;
+    a->mUnk_154 = 0x13;
+    a->mUnk_158 = 0;
     v1 = (UnkFunc *const *) data_0216c77c;
-    param_1->mUnk_15c = 0;
-    param_1->mUnk_160 = 0xe;
-    func_02046be8(param_1->mUnk_12c, v1, 7, param_1);
-    param_1->mUnk_140 = 8;
-    param_1->mUnk_144 = 0;
-    func_020f9c40((int) param_1);
-    param_1->mUnk_24c = 0;
-    param_1->mUnk_250 = 0xffffffff;
-    param_1->mUnk_254 = 0x12;
-    param_1->mUnk_258 = 0xffffffff;
-    param_1->mUnk_25c = 0x12;
-    param_1->mUnk_260 = 0xffffffff;
-    param_1->mUnk_264 = 0xffffffff;
-    param_1->mUnk_268 = 0;
-    param_1->mUnk_26c = 0;
-    param_1->mUnk_270 = 0;
+    a->mUnk_15c = 0;
+    a->mUnk_160 = 0xe;
+    func_02046be8(a->mUnk_12c, v1, 7, a);
+    a->mUnk_140 = 8;
+    a->mUnk_144 = 0;
+    func_020f9c40((int) a);
+    a->mUnk_24c = 0;
+    a->mUnk_250 = 0xffffffff;
+    a->mUnk_254 = 0x12;
+    a->mUnk_258 = 0xffffffff;
+    a->mUnk_25c = 0x12;
+    a->mUnk_260 = 0xffffffff;
+    a->mUnk_264 = 0xffffffff;
+    a->mUnk_268 = 0;
+    a->mUnk_26c = 0;
+    a->mUnk_270 = 0;
 }
 
 static inline u32 func_02101f7c_inline_2(Unk020f41c4_B *b, u32 n) {
@@ -1051,7 +1051,7 @@ void func_021003e8(Unk02101c84 *p, u32 sel, s32 v1) {
     }
 }
 
-void func_021001ac(Unk02101c84 *p, s32 param_2, Unk020e6488 *q) {
+void func_021001ac(Unk02101c84 *p, s32 c, Unk020e6488 *q) {
     s32 a;
     s32 n;
     s32 b;

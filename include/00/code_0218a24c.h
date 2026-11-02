@@ -9,4 +9,4 @@
 #include "00/code_0218a000.h"
 #include "00/unk_021b5000.h"
 
-u32 func_ov000_0218a24c(Unk02188ec0 *param_1);
+u32 func_ov000_0218a24c(Unk02188ec0 *a);

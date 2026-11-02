@@ -6,7 +6,7 @@
 u32 func_02027f68(u32 arg0, u32 arg1);
 u32 func_02027f90(u32 arg0, u32 arg1);
 u32 func_02027fb8(u32 arg0);
-void func_02027fd4(u32 param_1, u32 param_2, u32 param_3, u32 param_4);
+void func_02027fd4(u32 a, u32 b, u32 c, u32 d);
 void func_02028010(u32 a);
 void func_0202802c(u32 a, u32 b);
 u32 func_02028058(u32 arg0);

@@ -6,4 +6,4 @@
 
 struct Unk0217aa00_24;
 
-u32 func_0200b1b0(u32 param_1, struct Unk0217aa00_24 *param_2);
+u32 func_0200b1b0(u32 a, struct Unk0217aa00_24 *b);

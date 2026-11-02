@@ -95,12 +95,12 @@ u16 func_ov000_021a58dc(u16 a) {
     return (a + i) % 13 + 1;
 }
 
-void func_ov000_021a58a4(u32 param_1, const void *param_2, u32 param_3, u32 param_4) {
+void func_ov000_021a58a4(u32 b, const void *c, u32 d, u32 e) {
     s16 a;
 
     a = data_ov000_021b5f50->mUnk_2280;
     data_ov000_021b5f50->mUnk_2280 = 0;
-    func_ov000_021a586c(a, param_1, param_2, param_3, param_4);
+    func_ov000_021a586c(a, b, c, d, e);
 }
 
 void func_ov000_021a586c(s16 a, u32 b, void *c, u32 d, u32 e) {

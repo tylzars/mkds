@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ada7c(int *param_1);
+void func_020ada7c(int *a);

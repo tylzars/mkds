@@ -15,16 +15,16 @@ typedef struct Unk021da108 {
     /* 19 */ u8 mUnk_19;
 } Unk021da108;
 
-void func_ov003_021bf098(int param_1);
+void func_ov003_021bf098(int a);
 void func_ov003_021bf0d8(void);
-void func_ov003_021bf1d8(Unk021d34e0 *param_0);
-void func_ov003_021bf20c(Unk021d34e0 *param_0);
-void func_ov003_021bf258(s32 param_0);
+void func_ov003_021bf1d8(Unk021d34e0 *b);
+void func_ov003_021bf20c(Unk021d34e0 *c);
+void func_ov003_021bf258(s32 b);
 void func_ov003_021bf2d0(void);
 void func_ov003_021bf2e0(void);
 u32 func_ov003_021bf2f0(void);
-void func_ov003_021bf310(s8 param_1);
+void func_ov003_021bf310(s8 a);
 void func_ov003_021bf31c(s32 value);
 int func_ov003_021bf334(void);
 void func_ov003_021bf344(void);
-void func_ov003_021bf364(u32 param_0);
+void func_ov003_021bf364(u32 c);

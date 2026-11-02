@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02079988(int param_1, u32 param_2);
+void func_02079988(int a, u32 b);

@@ -20,16 +20,16 @@
 #include "code_021382a8.h"
 #include "00/code_0218d818.h"
 
-int func_ov000_021971c8(int param_1, int param_2) {
+int func_ov000_021971c8(int a, int b) {
     int v1;
     int v2;
     v2 = 0;
     v1 = 0;
-    if (0 < param_2) {
+    if (0 < b) {
         do {
-            v2 = ((int) 0x9ccf9319u) * v2 + (int) *(s8 *) (param_1 + v1);
+            v2 = ((int) 0x9ccf9319u) * v2 + (int) *(s8 *) (a + v1);
             v1 = v1 + 1;
-        } while (v1 < param_2);
+        } while (v1 < b);
     }
     return v2;
 }
@@ -219,10 +219,10 @@ s32 func_ov000_02196d84(s32 a, s32 b, s32 c) {
     return -1;
 }
 
-void func_ov000_02196d0c(u8 *param_1, s32 param_2) {
-    s32 a = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3df0));
-    s32 b = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3dc4));
-    const s8 *c = func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3df8);
+void func_ov000_02196d0c(u8 *f, s32 g) {
+    s32 a = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3df0));
+    s32 b = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dc4));
+    const s8 *c = func_ov000_021970e4((const s8 *) f, data_ov000_021b3df8);
     s32 d = func_ov000_02196d84(0, b, 0);
     if (d != -1) {
         Unk02196d84 *e = func_ov000_0218dbf8(data_ov000_021b4e5c, d);
@@ -231,14 +231,14 @@ void func_ov000_02196d0c(u8 *param_1, s32 param_2) {
     }
 }
 
-void func_ov000_02196ca4(u8 *param_1, s32 param_2) {
+void func_ov000_02196ca4(u8 *c, s32 d) {
     s32 a;
     s32 b;
     s32 t;
     Unk021969d8Entry *p;
 
-    a = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3de8));
-    b = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3dc4));
+    a = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) c, data_ov000_021b3de8));
+    b = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) c, data_ov000_021b3dc4));
     t = func_ov000_02196d84(3, b, 0);
     if (t != -1) {
         p = func_ov000_0218dbf8(data_ov000_021b4e5c, t);
@@ -247,7 +247,7 @@ void func_ov000_02196ca4(u8 *param_1, s32 param_2) {
     }
 }
 
-void func_ov000_02196c00(u8 *param_1, s32 param_2) {
+void func_ov000_02196c00(u8 *f, s32 g) {
     s32 a;
     s32 b;
     s32 c;
@@ -257,14 +257,14 @@ void func_ov000_02196c00(u8 *param_1, s32 param_2) {
     u8 *q;
     const u8 *s;
 
-    a = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3dcc));
-    b = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3dc4));
-    c = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3dc0));
-    d = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3dc8));
+    a = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dcc));
+    b = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dc4));
+    c = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dc0));
+    d = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dc8));
     t = func_ov000_02196d84(1, b, c);
     if (t != -1) {
-        e = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3dd4));
-        q = strstr(param_1, data_ov000_021b3ddc);
+        e = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dd4));
+        q = strstr(f, data_ov000_021b3ddc);
         if (q == 0) {
             e = 0;
             s = (const u8 *) data_ov000_021b3de4;
@@ -275,43 +275,43 @@ void func_ov000_02196c00(u8 *param_1, s32 param_2) {
     }
 }
 
-void func_ov000_02196b90(u8 *param_1, s32 param_2) {
+void func_ov000_02196b90(u8 *e, s32 f) {
     s32 a;
     s32 b;
     s32 c;
     s32 d;
     s32 t;
 
-    a = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3db8));
-    b = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3dc0));
-    c = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3dc4));
-    d = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) param_1, data_ov000_021b3dc8));
+    a = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) e, data_ov000_021b3db8));
+    b = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) e, data_ov000_021b3dc0));
+    c = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) e, data_ov000_021b3dc4));
+    d = func_0213bf90((const u8 *) func_ov000_021970e4((const s8 *) e, data_ov000_021b3dc8));
     t = func_ov000_02196d84(2, c, b);
     if (t != -1) {
         func_ov000_021969d8(t, a, d, 0, 0);
     }
 }
 
-void func_ov000_02196ae0(u8 *param_1, s32 param_2) {
-    param_1[param_2] = 0;
-    if (strncmp(param_1, data_ov000_021b3d88, 8) == 0) {
-        func_ov000_02196d0c(param_1, param_2);
+void func_ov000_02196ae0(u8 *a, s32 b) {
+    a[b] = 0;
+    if (strncmp(a, data_ov000_021b3d88, 8) == 0) {
+        func_ov000_02196d0c(a, b);
         return;
     }
-    if (strncmp(param_1, data_ov000_021b3d94, 9) == 0) {
-        func_ov000_02196ca4(param_1, param_2);
+    if (strncmp(a, data_ov000_021b3d94, 9) == 0) {
+        func_ov000_02196ca4(a, b);
         return;
     }
-    if (strncmp(param_1, data_ov000_021b3d94, 9) == 0) {
-        func_ov000_02196ca4(param_1, param_2);
+    if (strncmp(a, data_ov000_021b3d94, 9) == 0) {
+        func_ov000_02196ca4(a, b);
         return;
     }
-    if (strncmp(param_1, data_ov000_021b3da0, 8) == 0) {
-        func_ov000_02196c00(param_1, param_2);
+    if (strncmp(a, data_ov000_021b3da0, 8) == 0) {
+        func_ov000_02196c00(a, b);
         return;
     }
-    if (strncmp(param_1, data_ov000_021b3dac, 8) == 0) {
-        func_ov000_02196b90(param_1, param_2);
+    if (strncmp(a, data_ov000_021b3dac, 8) == 0) {
+        func_ov000_02196b90(a, b);
     }
 }
 

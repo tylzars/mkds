@@ -2,10 +2,10 @@
 
 #pragma thumb on
 
-int func_02008908(int param_1, u32 param_2, u32 param_3) {
-    func_0200ee74((const void *) param_3, (int) (param_1 + 0x1fU & 0xffffffe0));
+int func_02008908(int a, u32 b, u32 c) {
+    func_0200ee74((const void *) c, (int) (a + 0x1fU & 0xffffffe0));
     func_0200ee98();
-    return func_020099d8((void *) param_3, param_1, param_2);
+    return func_020099d8((void *) c, a, b);
 }
 
 #pragma thumb off

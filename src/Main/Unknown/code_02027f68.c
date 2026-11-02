@@ -79,8 +79,8 @@ void func_02028010(u32 a) {
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | a;
 }
 
-void func_02027fd4(u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
-    func_0214a40c((u32 *) ((u32 *) (u32) 0x04001050u), param_1, (int) param_2, param_3, (int) param_4);
+void func_02027fd4(u32 a, u32 b, u32 c, u32 d) {
+    func_0214a40c((u32 *) ((u32 *) (u32) 0x04001050u), a, (int) b, c, (int) d);
 }
 
 u32 func_02027fb8(u32 arg0) {

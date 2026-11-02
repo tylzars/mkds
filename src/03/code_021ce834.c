@@ -80,6 +80,6 @@ u32 func_ov003_021ce848(void) {
     return 1;
 }
 
-void func_ov003_021ce834(u32 param_1) {
-    *(u32 *) ((int) data_ov003_021da280 + 0x1370) = param_1;
+void func_ov003_021ce834(u32 a) {
+    *(u32 *) ((int) data_ov003_021da280 + 0x1370) = a;
 }

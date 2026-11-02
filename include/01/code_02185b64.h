@@ -17,12 +17,12 @@ extern Unk0219b250 *data_ov001_021a9b9c;
 void func_ov001_02185b64(void);
 void func_ov001_02185b7c(void);
 void func_ov001_02185b98(void);
-void func_ov001_02185bb8(void *param_1, Unk02185bb8 *param_2);
-void func_ov001_02185c4c(Unk02185c4c *param_1);
-void func_ov001_02185ca0(void *param_1, Unk02185bb8 *param_2);
+void func_ov001_02185bb8(void *a, Unk02185bb8 *b);
+void func_ov001_02185c4c(Unk02185c4c *a);
+void func_ov001_02185ca0(void *a, Unk02185bb8 *b);
 void func_ov001_02185d18(void);
-void func_ov001_02185d1c(void *param_1);
-u32 func_ov001_02185d74(Unk02185bb8 *param_1, Unk02185d74 *param_2, u8 *param_3, u8 *param_4);
-void func_ov001_02185dd0(Unk02185bb8 *param_1);
+void func_ov001_02185d1c(void *a);
+u32 func_ov001_02185d74(Unk02185bb8 *c, Unk02185d74 *d, u8 *e, u8 *f);
+void func_ov001_02185dd0(Unk02185bb8 *a);
 
 #include "01/code_0219b540.h"

@@ -62,7 +62,7 @@ void func_ov001_021930ac(void) {
     func_0214d05c(b, d2, 0x1000);
 }
 
-void func_ov001_02192fb8(void *heap, s16 param_2) {
+void func_ov001_02192fb8(void *heap, s16 a) {
     Unk02125de0Arg arg;
     data_ov001_021a9bd0 = func_02036bec(heap, 0x2c);
     data_ov001_021a9bd0->mUnk_00 = heap;
@@ -85,7 +85,7 @@ void func_ov001_02192fb8(void *heap, s16 param_2) {
     func_ov001_02193144();
     func_ov001_021932c8();
     data_ov001_021a9bd0->mUnk_14 = -1;
-    switch (param_2) {
+    switch (a) {
         case 0:
             data_ov001_021a9bd0->mUnk_10 = 4;
             data_ov001_021a9bd0->mUnk_08 = 0;
@@ -163,12 +163,12 @@ void func_ov001_02192ec4(void) {
     return;
 }
 
-void func_ov001_02192eac(UnkFunc **param_1) {
-    data_ov001_021a9bd0->mUnk_18 = *(Unk021a9bd0_18 *) param_1;
+void func_ov001_02192eac(UnkFunc **a) {
+    data_ov001_021a9bd0->mUnk_18 = *(Unk021a9bd0_18 *) a;
 }
 
-void func_ov001_02192ea0(u32 param_1) {
-    data_ov001_021a9bd0->mUnk_0c = param_1;
+void func_ov001_02192ea0(u32 a) {
+    data_ov001_021a9bd0->mUnk_0c = a;
     return;
 }
 
@@ -180,7 +180,7 @@ int func_ov001_02192e84(void) {
     return (int) data_ov001_021a9bd0->mUnk_14;
 }
 
-void func_ov001_02192e78(u16 param_1) {
-    data_ov001_021a9bd0->mUnk_14 = param_1;
+void func_ov001_02192e78(u16 a) {
+    data_ov001_021a9bd0->mUnk_14 = a;
     return;
 }

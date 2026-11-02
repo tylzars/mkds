@@ -25,22 +25,22 @@
 #include "Main/Unknown/unk_0216f000.h"
 #include "Main/Unknown/code_02009adc.h"
 
-void func_ov003_021d1358(Unk021da2ac *param_1, Unk021d1358 *param_2) {
-    data_ov003_021da2ac = param_1;
-    func_ov003_021cfa30(param_1->mUnk_b00);
+void func_ov003_021d1358(Unk021da2ac *a, Unk021d1358 *b) {
+    data_ov003_021da2ac = a;
+    func_ov003_021cfa30(a->mUnk_b00);
     data_ov003_021da2ac->mUnk_648 = 0;
     data_ov003_021da2ac->mUnk_64a = 0;
     data_ov003_021da2ac->mUnk_a90 = 1;
     data_ov003_021da2ac->mUnk_a91 = 1;
     data_ov003_021da2ac->mUnk_a9c = 0;
     func_ov003_021d0a18();
-    data_ov003_021da2ac->mUnk_ab4 = param_2->mUnk_00;
-    data_ov003_021da2ac->mUnk_ab8 = param_2->mUnk_04;
-    data_ov003_021da2ac->mUnk_abc = param_2->mUnk_08;
-    data_ov003_021da2ac->mUnk_ac0 = param_2->mUnk_0c;
-    data_ov003_021da2ac->mUnk_ac4 = param_2->mUnk_10;
-    data_ov003_021da2ac->mUnk_ac8 = param_2->mUnk_14;
-    data_ov003_021da2ac->mUnk_a92 = param_2->mUnk_18;
+    data_ov003_021da2ac->mUnk_ab4 = b->mUnk_00;
+    data_ov003_021da2ac->mUnk_ab8 = b->mUnk_04;
+    data_ov003_021da2ac->mUnk_abc = b->mUnk_08;
+    data_ov003_021da2ac->mUnk_ac0 = b->mUnk_0c;
+    data_ov003_021da2ac->mUnk_ac4 = b->mUnk_10;
+    data_ov003_021da2ac->mUnk_ac8 = b->mUnk_14;
+    data_ov003_021da2ac->mUnk_a92 = b->mUnk_18;
     data_ov003_021da2ac->mUnk_acc = 2;
     func_0200f5ac();
     func_02151804((u32) data_ov003_021da2ac->mUnk_64c);
@@ -241,12 +241,12 @@ void func_ov003_021d0ee0(void) {
     }
 }
 
-void func_ov003_021d0e9c(u8 *param_1, u8 *param_2) {
-    *param_1 = data_ov003_021da2ac->mUnk_a90;
+void func_ov003_021d0e9c(u8 *a, u8 *b) {
+    *a = data_ov003_021da2ac->mUnk_a90;
     if (data_ov003_021da2ac->mUnk_a90 != data_ov003_021da2ac->mUnk_a91) {
-        *param_2 = 1;
+        *b = 1;
     } else {
-        *param_2 = 0;
+        *b = 0;
     }
     data_ov003_021da2ac->mUnk_a91 = data_ov003_021da2ac->mUnk_a90;
 }

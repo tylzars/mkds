@@ -16,17 +16,16 @@
 
 #pragma thumb off
 
-void func_ov001_02185778(int param_1) {
-    if (param_1 != 0) {
+void func_ov001_02185778(int a) {
+    if (a != 0) {
         reg_G2_BG1CNT |= 0x40;
     } else {
         reg_G2_BG1CNT &= ~0x40;
     }
 }
 
-void func_ov001_02185740(u32 param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5) {
-    reg_G2_BG1CNT =
-        (reg_G2_BG1CNT & 0x43) | (param_1 << 14) | (param_2 << 7) | (param_3 << 8) | (param_4 << 2) | (param_5 << 13);
+void func_ov001_02185740(u32 a, u32 b, u32 c, u32 d, u32 e) {
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | (a << 14) | (b << 7) | (c << 8) | (d << 2) | (e << 13);
 }
 
 #pragma thumb on
@@ -58,12 +57,12 @@ void func_ov001_021856c0(void) {
 
 #pragma thumb off
 
-void func_ov001_021856a8(u32 param_1) {
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (param_1 << 8);
+void func_ov001_021856a8(u32 a) {
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (a << 8);
 }
 
-void func_ov001_0218568c(u32 param_1) {
-    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (param_1 << 8);
+void func_ov001_0218568c(u32 a) {
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (a << 8);
 }
 
 #pragma thumb on

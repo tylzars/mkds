@@ -49,11 +49,11 @@ u32 func_02047b30(u32 a, const char *b) {
 
 #pragma thumb on
 
-void *func_02047b08(const char *param_1) {
+void *func_02047b08(const char *a) {
     int v1;
-    v1 = func_02047b30(data_02164e04[0], param_1);
+    v1 = func_02047b30(data_02164e04[0], a);
     if (v1 == 0) {
-        v1 = func_02047b30(data_02164e04[18], param_1);
+        v1 = func_02047b30(data_02164e04[18], a);
     }
     return (void *) v1;
 }
@@ -112,40 +112,40 @@ void *func_0204799c(const char *v1) {
 
 #pragma thumb on
 
-void *func_02047974(const char *param_1) {
+void *func_02047974(const char *a) {
     int v1;
-    v1 = func_02047b30(data_02164e04[3], param_1);
+    v1 = func_02047b30(data_02164e04[3], a);
     if (v1 == 0) {
-        v1 = func_02047b30(data_02164e04[13], param_1);
+        v1 = func_02047b30(data_02164e04[13], a);
     }
     return (void *) v1;
 }
 
-void *func_02047950(const char *param_1) {
+void *func_02047950(const char *a) {
     int v1;
     v1 = func_0205e0a0();
     if (v1 == 3) {
-        return func_020478bc(param_1);
+        return func_020478bc(a);
     }
-    return func_02047780(param_1);
+    return func_02047780(a);
 }
 
-void *func_020478bc(const char *param_1) {
+void *func_020478bc(const char *a) {
     int v1;
     int v2;
     v2 = 0;
     v1 = func_0205e0a0();
     if (((v1 == 1) || (v1 == 3)) || (v1 == 0xc)) {
-        v2 = func_02047b30(data_02164e04[10], param_1);
+        v2 = func_02047b30(data_02164e04[10], a);
     } else {
         if (*(int *) ((*(int *) &data_021759c8) + 0x308) != 0) {
-            v2 = func_02047b30(data_02164e04[6], param_1);
+            v2 = func_02047b30(data_02164e04[6], a);
         }
         if ((v2 == 0) && (*(int *) ((*(int *) &data_021759c8) + 0x378) != 0)) {
-            v2 = func_02047b30(data_02164e04[7], param_1);
+            v2 = func_02047b30(data_02164e04[7], a);
         }
         if ((v2 == 0) && (*(int *) ((*(int *) &data_021759c8) + 0x3e8) != 0)) {
-            v2 = func_02047b30(data_02164e04[8], param_1);
+            v2 = func_02047b30(data_02164e04[8], a);
         }
     }
     return (void *) v2;
@@ -269,22 +269,22 @@ void func_02047634(void *a, s32 b, s32 c, u32 d, u32 e) {
 
 #pragma thumb on
 
-void func_02047544(Unk02017f24 *param_1, Unk02017f24 *param_2, Unk02017f24 *param_3) {
-    func_02047634(param_3, 2, 0x3c, (u32) 0, (u32) 1);
-    func_02047634(param_3, 3, 0x32, (u32) 0, (u32) 1);
-    func_02047634(param_3, 4, 5, (u32) 0, (u32) 1);
-    func_02047634(param_3, 5, 5, (u32) 0, (u32) 1);
-    func_02047634(param_3, 0, 0x14, (u32) 0, (u32) 1);
-    func_02047634(param_3, 1, 0x14, (u32) 0, (u32) 1);
-    func_02047634(param_3, 0xe, 0x46, (u32) 0, (u32) 1);
-    func_02047634(param_3, 0xf, 0x46, (u32) 0, (u32) 1);
-    func_02047634(param_2, 6, 200, (u32) 1, (u32) 1);
-    func_02047634(param_2, 7, 200, (u32) 0, (u32) 1);
-    func_02047634(param_1, 8, 0x46, (u32) 1, (u32) 0);
-    func_02047634(param_1, 0xd, 0x1e, (u32) 0, (u32) 0);
-    data_021759c8->mUnk_a78 = param_1;
-    data_021759c8->mUnk_a7c = param_2;
-    data_021759c8->mUnk_a80 = param_3;
+void func_02047544(Unk02017f24 *a, Unk02017f24 *b, Unk02017f24 *c) {
+    func_02047634(c, 2, 0x3c, (u32) 0, (u32) 1);
+    func_02047634(c, 3, 0x32, (u32) 0, (u32) 1);
+    func_02047634(c, 4, 5, (u32) 0, (u32) 1);
+    func_02047634(c, 5, 5, (u32) 0, (u32) 1);
+    func_02047634(c, 0, 0x14, (u32) 0, (u32) 1);
+    func_02047634(c, 1, 0x14, (u32) 0, (u32) 1);
+    func_02047634(c, 0xe, 0x46, (u32) 0, (u32) 1);
+    func_02047634(c, 0xf, 0x46, (u32) 0, (u32) 1);
+    func_02047634(b, 6, 200, (u32) 1, (u32) 1);
+    func_02047634(b, 7, 200, (u32) 0, (u32) 1);
+    func_02047634(a, 8, 0x46, (u32) 1, (u32) 0);
+    func_02047634(a, 0xd, 0x1e, (u32) 0, (u32) 0);
+    data_021759c8->mUnk_a78 = a;
+    data_021759c8->mUnk_a7c = b;
+    data_021759c8->mUnk_a80 = c;
 }
 
 void func_020474e4(void) {
@@ -308,12 +308,12 @@ void func_02047498(const void *a, s32 b) {
 
 #pragma thumb on
 
-void func_02047468(const void *param_1, u32 param_2) {
+void func_02047468(const void *a, u32 b) {
     u32 v1;
     u8 v2[128];
     v1 = func_02048440();
-    func_0200d9e0((char *) v2, 0x80, (const char *) data_02164ffc, param_1, v1);
-    func_02047498(v2, param_2);
+    func_0200d9e0((char *) v2, 0x80, (const char *) data_02164ffc, a, v1);
+    func_02047498(v2, b);
 }
 
 void func_020473e4(void) {

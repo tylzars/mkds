@@ -9,14 +9,14 @@
 #include "code_02142eac.h"
 #include "code_0200fc8c.h"
 
-void func_ov000_021a6c08(u8 param_1) {
+void func_ov000_021a6c08(u8 c) {
     u8 a;
     u8 b;
 
-    if (param_1 & 2) {
-        a = (param_1 >> 2) & 0xff;
+    if (c & 2) {
+        a = (c >> 2) & 0xff;
     } else {
-        a = (param_1 >> 2) + 25;
+        a = (c >> 2) + 25;
     }
     b = data_ov000_021b5f80;
     data_ov000_021b5f84[b % 16] = a;
@@ -37,11 +37,11 @@ void func_ov000_021a6bdc(void) {
     }
 }
 
-void func_ov000_021a6bb4(Unk021a6bb4 *param_1) {
+void func_ov000_021a6bb4(Unk021a6bb4 *b) {
     Unk021b5f54Func a = data_ov000_021b5f54.mUnk_28;
 
     if (a != 0) {
-        a(param_1->mUnk_1e, param_1->mUnk_18, param_1->mUnk_2c, param_1->mUnk_06);
+        a(b->mUnk_1e, b->mUnk_18, b->mUnk_2c, b->mUnk_06);
     }
 }
 
@@ -72,7 +72,7 @@ u8 *func_ov000_021a6b10(void) {
     return a;
 }
 
-u8 *func_ov000_021a6abc(u16 *param_1) {
+u8 *func_ov000_021a6abc(u16 *e) {
     u8 *a = 0;
     u16 b = 0;
     Unk021b5f50 *c;
@@ -85,8 +85,8 @@ u8 *func_ov000_021a6abc(u16 *param_1) {
         b = c->mUnk_214a;
     }
     func_0200fcb4(d);
-    if (param_1 != 0) {
-        *param_1 = b;
+    if (e != 0) {
+        *e = b;
     }
     return a;
 }

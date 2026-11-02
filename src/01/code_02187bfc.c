@@ -10,21 +10,21 @@
 #include "Main/Unknown/code_020fd000.h"
 #include "Main/Unknown/code_02147000.h"
 
-void func_ov001_02187bfc(Unk02188950 *param_1, Vec3 *param_2, s32 param_3) {
+void func_ov001_02187bfc(Unk02188950 *a, Vec3 *b, s32 c) {
     Vec3 zero;
     s32 *z;
 
-    if (param_1->mUnk_300 != 0) {
-        if (((Unk02188950_300 *) param_1->mUnk_300)->mUnk_54 < 0x64000) {
-            func_020fd494(&param_1->mUnk_300);
-        } else if (param_2 != 0) {
-            func_020fd540(&param_1->mUnk_300, param_2, param_3);
+    if (a->mUnk_300 != 0) {
+        if (((Unk02188950_300 *) a->mUnk_300)->mUnk_54 < 0x64000) {
+            func_020fd494(&a->mUnk_300);
+        } else if (b != 0) {
+            func_020fd540(&a->mUnk_300, b, c);
         } else {
             z = (s32 *) &zero;
             z[0] = 0;
             z[1] = 0;
             z[2] = 0;
-            func_020fd540(&param_1->mUnk_300, &zero, param_3);
+            func_020fd540(&a->mUnk_300, &zero, c);
         }
     }
 }

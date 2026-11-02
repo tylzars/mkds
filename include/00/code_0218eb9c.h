@@ -44,14 +44,14 @@ typedef void (*Unk0218f0a8Cb)(Unk0218f960 *a, Unk0218f0a8Arg *b, u32 c);
 
 #include "00/code_02194000.h"
 
-u32 func_ov000_0218eb9c(Unk0218f960 *param_1, u32 param_2);
+u32 func_ov000_0218eb9c(Unk0218f960 *a, u32 b);
 u32 func_ov000_0218ebe8(Unk0218f960 *a, u32 b, s32 *c);
 u32 func_ov000_0218ec44(Unk0218f960 *a, s32 b, Unk0218ec44 *c);
 s32 func_ov000_0218ed44(Unk0218f960 *object, s32 *output);
-u32 func_ov000_0218ed74(Unk0218f960 *param_1, int param_2);
+u32 func_ov000_0218ed74(Unk0218f960 *b, int c);
 u32 func_ov000_0218ee1c(Unk0218f960 *a, u32 b);
 u32 func_ov000_0218ee70(Unk0218f960 *a, u32 b, const u8 *c);
 u32 func_ov000_0218efa8(Unk0218f960 *a, s32 b, const s8 *c);
 u32 func_ov000_0218eff8(Unk0218f960 *a, u32 b, s32 c, u32 d, Unk0218eff8Cb e, u32 f);
 u32 func_ov000_0218f0a8(Unk0218f960 *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, s32 g, u32 h, Unk0218f0a8Cb i, u32 j);
-void func_ov000_0218f130(Unk0218f960 *param_1);
+void func_ov000_0218f130(Unk0218f960 *a);

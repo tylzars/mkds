@@ -135,16 +135,16 @@ void func_ov003_021d0158(Unk021425e8 *event) {
     }
 }
 
-void func_ov003_021d0134(int param_1) {
-    if (*(u16 *) (param_1 + 2) != 0) {
+void func_ov003_021d0134(int a) {
+    if (*(u16 *) (a + 2) != 0) {
         func_ov003_021d07b0((u32) 10);
         return;
     }
     func_ov003_021d07b0((u32) 0);
 }
 
-void func_ov003_021d0128(u32 param_1) {
-    data_ov003_021da2a8->mUnk_08 = param_1;
+void func_ov003_021d0128(u32 a) {
+    data_ov003_021da2a8->mUnk_08 = a;
 }
 
 u16 func_ov003_021d0118(void) {

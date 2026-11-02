@@ -13,13 +13,13 @@ typedef struct Unk0218e004 {
     /* 10 */ s32 (*mUnk_10)(void *, void *);
 } Unk0218e004;
 
-Unk0218e004 *func_ov000_0218e004(s32 param_1, s32 param_2, s32 param_3, s32 (*param_4)(void *, s32),
-                                 s32 (*param_5)(void *, void *), void (*param_6)(void *));
+Unk0218e004 *func_ov000_0218e004(s32 c, s32 d, s32 e, s32 (*f)(void *, s32), s32 (*g)(void *, void *),
+                                 void (*h)(void *));
 
-int func_ov000_0218dd8c(int *param_1, int param_2, u32 param_3);
-void func_ov000_0218dddc(Unk0218e004 *param_1, void (*param_2)(void *, void *), void *param_3);
-void *func_ov000_0218de28(Unk0218e004 *param_1, void *param_2);
-s32 func_ov000_0218de8c(Unk0218e004 *param_1, void *param_2);
-void func_ov000_0218def0(Unk0218e004 *param_1, void *param_2);
-s32 func_ov000_0218df5c(Unk0218e004 *param_1);
-void func_ov000_0218dfb4(void *param_1);
+int func_ov000_0218dd8c(int *a, int b, u32 c);
+void func_ov000_0218dddc(Unk0218e004 *b, void (*c)(void *, void *), void *d);
+void *func_ov000_0218de28(Unk0218e004 *c, void *d);
+s32 func_ov000_0218de8c(Unk0218e004 *c, void *d);
+void func_ov000_0218def0(Unk0218e004 *c, void *d);
+s32 func_ov000_0218df5c(Unk0218e004 *c);
+void func_ov000_0218dfb4(void *c);

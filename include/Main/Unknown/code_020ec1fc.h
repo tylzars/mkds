@@ -60,9 +60,9 @@ extern const Unk021594e4 data_021594e4;
 extern const Unk0215950c data_0215950c;
 extern const Unk02159538 data_02159538;
 
-void func_020ec1fc(void *param_1, Unk020e43a8 *param_2, void *param_3, u32 param_4);
+void func_020ec1fc(void *a, Unk020e43a8 *b, void *c, u32 d);
 Unk021594e4 *func_020ec314(void);
 Unk0215950c *func_020ec370(void);
 Unk02159538 *func_020ec3cc(void);
-s32 func_020ec41c(Unk020e43a8 *param_1, void *param_2, u8 *param_3);
-s32 func_020ec450(Unk020e43a8 *param_1, void *param_2, u8 *param_3);
+s32 func_020ec41c(Unk020e43a8 *a, void *b, u8 *c);
+s32 func_020ec450(Unk020e43a8 *a, void *b, u8 *c);

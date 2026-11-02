@@ -26,11 +26,11 @@ extern u32 data_ov000_021b63bc;
 extern Unk021b69dc data_ov000_021b69dc[8];
 extern u8 data_ov000_021b73a0[];
 
-void func_ov000_021b0240(s32 param_1);
+void func_ov000_021b0240(s32 a);
 void func_ov000_021b026c(void);
 void func_ov000_021b02b0(UnkFunc *arg0);
 s32 func_ov000_021b02bc(void);
-void func_ov000_021b02fc(Unk021b5fa8 *param_1);
+void func_ov000_021b02fc(Unk021b5fa8 *a);
 s32 func_ov000_021b04cc(void);
 void func_ov000_021b04d0(void);
 void func_ov000_021b04d4(void);

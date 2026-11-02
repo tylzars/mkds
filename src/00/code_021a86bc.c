@@ -105,10 +105,9 @@ s32 func_ov000_021a86e8(void) {
     return a;
 }
 
-u32 func_ov000_021a86bc(int param_1) {
+u32 func_ov000_021a86bc(int a) {
     int v1;
-    if (((0 <= param_1) && (v1 = func_ov000_021a8a80(), v1 != 0)) &&
-        (v1 = func_ov000_021a8a5c((Unk021a8ab8 *) param_1), v1 == 0)) {
+    if (((0 <= a) && (v1 = func_ov000_021a8a80(), v1 != 0)) && (v1 = func_ov000_021a8a5c((Unk021a8ab8 *) a), v1 == 0)) {
         return 1;
     }
     return 0;

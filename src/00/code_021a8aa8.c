@@ -108,9 +108,9 @@ Unk021a8f84 *func_ov000_021a8f84(const u8 *a) {
     return &data_ov000_021b6020;
 }
 
-u32 func_ov000_021a8f0c(u32 param_1, u32 param_2) {
-    Unk021a6fa8 *a = (Unk021a6fa8 *) param_1;
-    Unk021a8e18 *b = (Unk021a8e18 *) param_2;
+u32 func_ov000_021a8f0c(u32 f, u32 g) {
+    Unk021a6fa8 *a = (Unk021a6fa8 *) f;
+    Unk021a8e18 *b = (Unk021a8e18 *) g;
     u32 c;
     u32 d;
     u16 e;
@@ -192,7 +192,7 @@ s32 func_ov000_021a8e70(s32 descriptor) {
     return func_ov000_021a75f8(descriptor);
 }
 
-s32 func_ov000_021a8e18(Unk021a6fa8 *a, Unk021a8e18 *b, s32 param_3) {
+s32 func_ov000_021a8e18(Unk021a6fa8 *a, Unk021a8e18 *b, s32 f) {
     u16 c;
     u32 d;
     s32 e = func_ov000_021a7534(a, &c, &d);
@@ -234,15 +234,15 @@ void *func_ov000_021a8db8(u32 a) {
     return c;
 }
 
-void func_ov000_021a8d98(int param_1) {
-    if (param_1 != 0) {
-        (*(UnkFunc *) (*(u32 *) &data_ov000_021b6010))(0, (u32 *) (param_1 + -4), *(u32 *) (param_1 + -4));
+void func_ov000_021a8d98(int a) {
+    if (a != 0) {
+        (*(UnkFunc *) (*(u32 *) &data_ov000_021b6010))(0, (u32 *) (a + -4), *(u32 *) (a + -4));
     }
     return;
 }
 
-s32 func_ov000_021a8c94(void *param_1) {
-    Unk021a8c94 *a = param_1;
+s32 func_ov000_021a8c94(void *b) {
+    Unk021a8c94 *a = b;
     data_ov000_021b6040.mUnk_00 = a->mUnk_0c == 1 ? 1 : 0;
     data_ov000_021b6040.mUnk_04 =
         ((a->mUnk_10 << 24) & 0xff000000) |
@@ -278,12 +278,12 @@ u8 *func_ov000_021a8c6c(Unk021b5dfc a) {
     return data_ov000_021b6030;
 }
 
-u32 func_ov000_021a8c1c(u32 param_1, u32 *param_2) {
-    u32 a = func_ov000_021a88a8(param_1);
+u32 func_ov000_021a8c1c(u32 b, u32 *c) {
+    u32 a = func_ov000_021a88a8(b);
     if (a == 0) {
         return 0;
     }
-    *param_2 = ((a << 24) & 0xff000000) | (((a << 8) & 0xff0000) | (((a >> 24) & 0xff) | ((a >> 8) & 0xff00)));
+    *c = ((a << 24) & 0xff000000) | (((a << 8) & 0xff0000) | (((a >> 24) & 0xff) | ((a >> 8) & 0xff00)));
     return 1;
 }
 
@@ -301,11 +301,11 @@ char *func_ov000_021a8bc0(s32 a, const void *b, char *c, u32 d) {
     return c;
 }
 
-void func_ov000_021a8bb0(u32 param_1, u8 *param_2) {
-    *param_2 = (s8) (param_1 >> 0x18);
-    param_2[1] = (s8) (param_1 >> 0x10);
-    param_2[2] = (s8) (param_1 >> 8);
-    param_2[3] = (s8) param_1;
+void func_ov000_021a8bb0(u32 a, u8 *b) {
+    *b = (s8) (a >> 0x18);
+    b[1] = (s8) (a >> 0x10);
+    b[2] = (s8) (a >> 8);
+    b[3] = (s8) a;
     return;
 }
 

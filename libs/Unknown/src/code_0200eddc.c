@@ -62,7 +62,7 @@ loop:
 }
 
 // Not compiled code: C has no way to write a coprocessor 15 register (mcr).
-asm void func_0200ee74(const void *param_1, int param_2) {
+asm void func_0200ee74(const void *a, int b) {
     mov ip, #0x0
     add r1, r1, r0
     bic r0, r0, #0x1f

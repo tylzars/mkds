@@ -302,7 +302,7 @@ void func_02118024(void) {
     data_0217d360->mUnk_38 = 0;
 }
 
-void func_02117e24(void *param_1, void *param_2, void *param_3, s32 param_4) {
+void func_02117e24(void *a, void *b, void *c, s32 d) {
     s32 rem;
     int i;
 
@@ -311,18 +311,18 @@ void func_02117e24(void *param_1, void *param_2, void *param_3, s32 param_4) {
     if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1800;
     }
-    param_1 = func_02036948(param_1);
-    data_0217d360 = func_02036bec(param_1, 0x8c);
-    data_0217d360->mUnk_2c = param_1;
+    a = func_02036948(a);
+    data_0217d360 = func_02036bec(a, 0x8c);
+    data_0217d360->mUnk_2c = a;
     data_0217d360->mUnk_30 = 0;
     data_0217d360->mUnk_44 = data_0215c8fc[func_0202968c()];
     data_0217d360->mUnk_68 = 1;
     data_0217d360->mUnk_6c = 0;
-    data_0217d360->mUnk_3c = param_4;
+    data_0217d360->mUnk_3c = d;
     data_0217d360->mUnk_70 = data_0217d360->mUnk_44;
     data_0217d360->mUnk_7c = 0;
-    data_0217d360->mUnk_80 = param_2;
-    data_0217d360->mUnk_84 = param_3;
+    data_0217d360->mUnk_80 = b;
+    data_0217d360->mUnk_84 = c;
     data_0217d360->mUnk_88 = 0;
     func_02118400();
     func_021189cc();

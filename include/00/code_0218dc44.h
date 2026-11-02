@@ -12,9 +12,9 @@ typedef struct Unk0218dc94 {
     /* 14 */ u8 *mUnk_14;
 } Unk0218dc94;
 
-s32 func_ov000_0218dc44(void *param_1);
-void func_ov000_0218dc48(void *param_1);
-void *func_ov000_0218dc94(s32 param_1, s32 param_2, void (*param_3)(void *));
-void func_ov000_0218dd18(Unk0218dc94 *param_1, const void *param_2, s32 param_3);
-void func_ov000_0218dd38(Unk0218dc94 *param_1);
-void func_ov000_0218dd74(void *param_1, s32 param_2);
+s32 func_ov000_0218dc44(void *b);
+void func_ov000_0218dc48(void *c);
+void *func_ov000_0218dc94(s32 b, s32 c, void (*d)(void *));
+void func_ov000_0218dd18(Unk0218dc94 *a, const void *b, s32 c);
+void func_ov000_0218dd38(Unk0218dc94 *a);
+void func_ov000_0218dd74(void *b, s32 c);

@@ -22,16 +22,16 @@ u8 func_02091828(Unk020912a0 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
     return r;
 }
 
-u8 func_020917d0(int param_1, u32 param_2, u8 *param_3, u8 *param_4) {
+u8 func_020917d0(int a, u32 b, u8 *c, u8 *d) {
     u8 v1;
-    v1 = *param_4;
-    if (*param_3 == 1) {
-        *(u32 *) (param_1 + 0xb8) = ((u32) 0x0000f333u);
-        *(u32 *) (param_1 + 0xbc) = 0x8000;
-        *(u32 *) (param_1 + 0xb0) = 0;
-        *(u32 *) (param_1 + 0xb4) = 0;
-        *(u16 *) (param_1 + 2) = *(u16 *) (param_1 + 2) | (*(u16 *) &data_02156458);
-        *(u32 *) (param_1 + 200) = 1;
+    v1 = *d;
+    if (*c == 1) {
+        *(u32 *) (a + 0xb8) = ((u32) 0x0000f333u);
+        *(u32 *) (a + 0xbc) = 0x8000;
+        *(u32 *) (a + 0xb0) = 0;
+        *(u32 *) (a + 0xb4) = 0;
+        *(u16 *) (a + 2) = *(u16 *) (a + 2) | (*(u16 *) &data_02156458);
+        *(u32 *) (a + 200) = 1;
     }
     return v1;
 }

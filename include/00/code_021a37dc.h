@@ -19,4 +19,4 @@ void func_ov000_021a3884(void);
 u32 func_ov000_021a38d8(void);
 void func_ov000_021a3910(void);
 void func_ov000_021a397c(s32 a);
-void func_ov000_021a39c4(void *param_1);
+void func_ov000_021a39c4(void *a);

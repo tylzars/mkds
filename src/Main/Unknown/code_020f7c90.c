@@ -17,19 +17,19 @@
 
 #pragma thumb on
 
-void func_020f80c0(Unk0217bc6c *param_1, s32 param_2) {
+void func_020f80c0(Unk0217bc6c *a, s32 b) {
     u16(*tab)[0x12];
     s32 i;
     s32 j;
     u16 v;
     u16 *e;
 
-    e = (u16 *) &data_02159c3c[param_2 - 1];
-    tab = param_1->mUnk_04;
-    if (param_2 == 8) {
+    e = (u16 *) &data_02159c3c[b - 1];
+    tab = a->mUnk_04;
+    if (b == 8) {
         return;
     }
-    for (i = 0; i < param_2; i++) {
+    for (i = 0; i < b; i++) {
         v = (u16) (e[i] - 1);
         for (j = 0; j < 0x12; j++) {
             tab[i][j] = tab[v][j];
@@ -133,46 +133,45 @@ void func_020f7ec8(void) {
 
 #pragma thumb off
 
-u8 func_020f7ea8(void *param_1, void *param_2) {
-    Unk020f41c4_A *p = param_1;
-    Unk020f41c4_A *q = param_2;
+u8 func_020f7ea8(void *a, void *b) {
+    Unk020f41c4_A *p = a;
+    Unk020f41c4_A *q = b;
 
     return (data_02159b78 + p->mUnk_44 * 0xe)[q->mUnk_44];
 }
 
-void func_020f7c90(Unk020f41c4_A *param_1, Vec3 *param_2, Vec3 *param_3) {
+void func_020f7c90(Unk020f41c4_A *a, Vec3 *b, Vec3 *c) {
     Unk020f41c4_B *q;
     s64 d;
     s32 i;
 
-    if (param_1->mUnk_74 & 0x2000000) {
-        if ((s64) param_3->x * param_3->x + (s64) param_3->y * param_3->y + (s64) param_3->z * param_3->z >= 0x10) {
-            func_02039860(param_3, param_3);
+    if (a->mUnk_74 & 0x2000000) {
+        if ((s64) c->x * c->x + (s64) c->y * c->y + (s64) c->z * c->z >= 0x10) {
+            func_02039860(c, c);
         }
-        if (func_02039828(param_3, &param_1->mUnk_108) > 0x800) {
-            param_1->mUnk_5c.z = (s32) (((s64) param_3->z * 0x14cd) >> 12);
-            param_1->mUnk_5c.x = (s32) (((s64) param_3->x * 0x14cd) >> 12);
+        if (func_02039828(c, &a->mUnk_108) > 0x800) {
+            a->mUnk_5c.z = (s32) (((s64) c->z * 0x14cd) >> 12);
+            a->mUnk_5c.x = (s32) (((s64) c->x * 0x14cd) >> 12);
         }
     }
-    d = (s64) (param_1->mUnk_50.x - param_2->x) * (param_1->mUnk_50.x - param_2->x) +
-        (s64) (param_1->mUnk_50.y - param_2->y) * (param_1->mUnk_50.y - param_2->y) +
-        (s64) (param_1->mUnk_50.z - param_2->z) * (param_1->mUnk_50.z - param_2->z);
-    if (d >= (s64) param_1->mUnk_e0 * param_1->mUnk_e0) {
+    d = (s64) (a->mUnk_50.x - b->x) * (a->mUnk_50.x - b->x) + (s64) (a->mUnk_50.y - b->y) * (a->mUnk_50.y - b->y) +
+        (s64) (a->mUnk_50.z - b->z) * (a->mUnk_50.z - b->z);
+    if (d >= (s64) a->mUnk_e0 * a->mUnk_e0) {
         return;
     }
-    param_1->mUnk_74 |= 0x4000000;
-    if (param_1->mUnk_74 & 0x2000000) {
+    a->mUnk_74 |= 0x4000000;
+    if (a->mUnk_74 & 0x2000000) {
         return;
     }
-    if (func_02039828(&param_1->mUnk_5c, param_3) >= 0) {
+    if (func_02039828(&a->mUnk_5c, c) >= 0) {
         return;
     }
     q = &data_0217561c->mUnk_47c;
     q->mUnk_00 = q->mUnk_08 * q->mUnk_00 + q->mUnk_10;
     i = (u16) ((((u64) (u32) (q->mUnk_00 >> 32) * 0x10000) >> 32)) >> 4;
-    param_1->mUnk_108.z = data_0215d4b4[i * 2 + 1];
-    param_1->mUnk_108.x = data_0215d4b4[i * 2];
-    param_1->mUnk_5c.z = (s32) (((s64) param_1->mUnk_108.z * 0x14cd) >> 12);
-    param_1->mUnk_5c.x = (s32) (((s64) param_1->mUnk_108.x * 0x14cd) >> 12);
-    param_1->mUnk_74 |= 0x2000000;
+    a->mUnk_108.z = data_0215d4b4[i * 2 + 1];
+    a->mUnk_108.x = data_0215d4b4[i * 2];
+    a->mUnk_5c.z = (s32) (((s64) a->mUnk_108.z * 0x14cd) >> 12);
+    a->mUnk_5c.x = (s32) (((s64) a->mUnk_108.x * 0x14cd) >> 12);
+    a->mUnk_74 |= 0x2000000;
 }

@@ -147,9 +147,8 @@ void func_ov000_0219cc30(u32 a, u32 b, u32 c) {
     func_ov000_0219cc00(data_ov000_021b5664->mUnk_24, 3, (u32) s, 0x80000001);
 }
 
-void func_ov000_0219cc00(u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
+void func_ov000_0219cc00(u32 a, u32 b, u32 c, u32 d) {
     func_ov000_0219cb30();
-    func_ov000_02197558((u32) (0), (u32) (param_1), (u32) (param_2), (u32) (0), (u32) (param_3),
-                        (u32) &func_ov000_0219cb64, (u32) (param_4));
+    func_ov000_02197558((u32) (0), (u32) (a), (u32) (b), (u32) (0), (u32) (c), (u32) &func_ov000_0219cb64, (u32) (d));
     return;
 }

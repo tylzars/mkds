@@ -4,4 +4,4 @@
 #include "00/code_021ad000.h"
 #include "00/code_021ae258.h"
 
-u32 func_ov000_021acfd8(const char *param_1, int param_2, u32 param_3);
+u32 func_ov000_021acfd8(const char *a, int b, u32 c);

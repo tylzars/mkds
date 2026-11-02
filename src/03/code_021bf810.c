@@ -17,10 +17,10 @@ void func_ov003_021bf8b0(void) {
     func_ov003_021d2808(&data_ov003_021da154);
 }
 
-void func_ov003_021bf86c(int param_1) {
+void func_ov003_021bf86c(int b) {
     void *a;
 
-    a = func_ov003_021d14b8(func_ov003_021bf650(data_ov003_021d6b60[param_1]), 0, 4);
+    a = func_ov003_021d14b8(func_ov003_021bf650(data_ov003_021d6b60[b]), 0, 4);
     func_0214d0a8(a, data_ov003_021da154, 0xc0);
     func_ov003_021d1490(a);
     func_ov003_021d3544(1, func_ov003_021bf810, 0, 0x78);
@@ -46,8 +46,8 @@ void func_ov003_021bf83c(void) {
     return;
 }
 
-void func_ov003_021bf810(u32 param_0) {
+void func_ov003_021bf810(u32 a) {
     func_0200ee74(data_ov003_021da154, 0xc0);
     func_0214bd6c(data_ov003_021da154, 0, 0xc0);
-    func_ov003_021d34c8(1, param_0);
+    func_ov003_021d34c8(1, a);
 }

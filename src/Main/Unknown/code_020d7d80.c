@@ -2,13 +2,13 @@
 
 #pragma thumb on
 
-void func_020d7d80(u32 *param_1) {
+void func_020d7d80(u32 *a) {
     int *v1;
     int v2;
     int v3;
     int v4;
     int v5;
-    v1 = (int *) *param_1;
+    v1 = (int *) *a;
     v3 = v1[1];
     v2 = 0;
     if (0 < v3) {

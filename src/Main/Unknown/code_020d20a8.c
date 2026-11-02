@@ -11,12 +11,12 @@
 #include "Main/Unknown/code_020d6000.h"
 #include "Main/Unknown/code_020b4000.h"
 
-s32 func_020d2234(Unk020e71a0 *param_1, Unk020f41c4_A *param_2) {
+s32 func_020d2234(Unk020e71a0 *d, Unk020f41c4_A *e) {
     s32 a;
     s32 c;
     s32 b;
-    a = param_1->mUnk_00;
-    b = param_2->mUnk_44;
+    a = d->mUnk_00;
+    b = e->mUnk_44;
     c = 0;
     while (a >= 100) {
         a -= 100;
@@ -30,39 +30,39 @@ s32 func_020d2234(Unk020e71a0 *param_1, Unk020f41c4_A *param_2) {
 
 #pragma thumb on
 
-void *func_020d2210(const char *param_1) {
+void *func_020d2210(const char *a) {
     char buf[0x100];
-    snprintf(buf, 0x100, "MapObj/%s", param_1);
+    snprintf(buf, 0x100, "MapObj/%s", a);
     return func_02047b08(buf);
 }
 
-void *func_020d21ec(const char *param_1) {
+void *func_020d21ec(const char *a) {
     char buf[0x100];
-    snprintf(buf, 0x100, "MapObj/%s", param_1);
+    snprintf(buf, 0x100, "MapObj/%s", a);
     return func_02047974(buf);
 }
 
-u32 func_020d2178(s32 param_1) {
+u32 func_020d2178(s32 c) {
     u32 a;
     s32 b;
     a = 0;
-    if (param_1 >= 1000) {
-        b = param_1 / 1000;
+    if (c >= 1000) {
+        b = c / 1000;
         a |= 1 << b;
-        param_1 = (s16) (param_1 - b * 1000);
+        c = (s16) (c - b * 1000);
     }
-    if (param_1 >= 100) {
-        b = param_1 / 100;
+    if (c >= 100) {
+        b = c / 100;
         a |= 1 << b;
-        param_1 = (s16) (param_1 - b * 100);
+        c = (s16) (c - b * 100);
     }
-    if (param_1 >= 10) {
-        b = param_1 / 10;
+    if (c >= 10) {
+        b = c / 10;
         a |= 1 << b;
-        param_1 = (s16) (param_1 - b * 10);
+        c = (s16) (c - b * 10);
     }
-    if (param_1 >= 1) {
-        a |= 1 << param_1;
+    if (c >= 1) {
+        a |= 1 << c;
     }
     return a;
 }

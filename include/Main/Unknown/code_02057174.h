@@ -10,4 +10,4 @@
 #include "Main/Unknown/unk_0217a000.h"
 
 void func_02057174(void);
-void func_0205721c(u32 param_1);
+void func_0205721c(u32 a);

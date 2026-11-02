@@ -6,5 +6,5 @@
 #include "code_0214f1b0.h"
 
 void func_0210f0d8(Unk0210f090 *p);
-void func_0210f0f4(int param_1);
+void func_0210f0f4(int a);
 void func_0210f114(Unk0210f090 *p);

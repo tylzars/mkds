@@ -20,7 +20,7 @@
 #include "Main/Unknown/code_02056d40.h"
 #include "Main/Unknown/code_02125f54.h"
 
-void func_ov001_021987d4(void *heap, s16 param_2) {
+void func_ov001_021987d4(void *heap, s16 a) {
     Unk02125de0Arg arg;
 
     data_ov001_021a9be4 = func_02036bec(heap, 0x18);
@@ -38,7 +38,7 @@ void func_ov001_021987d4(void *heap, s16 param_2) {
     arg.mUnk_24 = 0;
     func_02125c2c();
     func_02125de0(heap, &arg);
-    data_ov001_021a9be4->mUnk_0c = param_2;
+    data_ov001_021a9be4->mUnk_0c = a;
     data_ov001_021a9be4->mUnk_0e = -1;
     data_ov001_021a9be4->mUnk_00 = 0;
     data_ov001_021a9be4->mUnk_04 = data_ov001_021a9be4->mUnk_00;

@@ -8,11 +8,11 @@
 #include "01/unk_021a7000.h"
 #include "Main/Unknown/code_020fd000.h"
 
-void func_ov001_0218a41c(Unk02188950 *param_1) {
-    if (func_ov001_02188220(param_1) >= 2) {
-        func_ov001_0218a444(param_1);
+void func_ov001_0218a41c(Unk02188950 *a) {
+    if (func_ov001_02188220(a) >= 2) {
+        func_ov001_0218a444(a);
     } else {
-        func_ov001_0218a4d0(param_1);
+        func_ov001_0218a4d0(a);
     }
-    func_ov001_02188260(param_1);
+    func_ov001_02188260(a);
 }

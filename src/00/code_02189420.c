@@ -4,8 +4,8 @@ u32 func_ov000_02189438(void) {
     return 0xfffffffa;
 }
 
-u32 func_ov000_02189420(int param_1) {
-    if (*(u8 *) (param_1 + 0xb) == 0) {
+u32 func_ov000_02189420(int a) {
+    if (*(u8 *) (a + 0xb) == 0) {
         return ((u32) 0xffff3c4du);
     }
     return ((u32) 0xffff3865u);

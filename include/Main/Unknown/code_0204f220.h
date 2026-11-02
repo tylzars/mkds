@@ -3,4 +3,4 @@
 #include "types.h"
 #include "Main/Unknown/unk_0217a000.h"
 
-void func_0204f220(u32 *param_1, int param_2);
+void func_0204f220(u32 *a, int b);

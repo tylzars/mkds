@@ -3,7 +3,7 @@
 #include "types.h"
 #include "00/unk_021b4000.h"
 
-void func_ov000_0218c45c(Unk021b4d24 *param_1, u8 *param_2);
+void func_ov000_0218c45c(Unk021b4d24 *a, u8 *b);
 s32 func_ov000_0218c468(Unk021b4d24 *a, u8 *b, s32 c);
 s32 func_ov000_0218c550(Unk021b4d24 *a, void *b, u8 *c, s32 d, s32 e);
 void func_ov000_0218c744(Unk021b4d24 *a, u8 *b, s32 c, u8 *d, u16 *e);

@@ -34,8 +34,7 @@ typedef struct Unk021d1fd0 {
     /* 795 */ u8 mUnk_795;
 } Unk021d1fd0;
 
-void func_ov003_021d2070(Unk021d2188 *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, u32 param_6,
-                         u32 param_7, void *param_8);
+void func_ov003_021d2070(Unk021d2188 *a, s32 b, s32 c, s32 d, s32 e, u32 f, u32 g, void *h);
 
 #include "03/code_021d2fa0.h"
 
@@ -68,15 +67,15 @@ typedef struct Unk021d2490 {
 #include "code_02022aa8.h"
 
 void func_ov003_021d1fd0(void *object);
-void func_ov003_021d1ffc(Unk021d1ffc *param_1, s32 param_2, s32 param_3, Unk021d1770 *param_4, s32 param_5);
+void func_ov003_021d1ffc(Unk021d1ffc *b, s32 c, s32 d, Unk021d1770 *e, s32 f);
 void func_ov003_021d2060(Unk021d2188 *object, u32 value);
-void func_ov003_021d2094(void *param_1, s32 param_2, u32 param_3, u32 param_4, s32 param_5, u16 *param_6, s32 param_7);
-void func_ov003_021d211c(void *param_1, u32 param_2, u32 param_3, u32 param_4, u16 param_5, int param_6);
+void func_ov003_021d2094(void *e, s32 f, u32 g, u32 h, s32 l, u16 *m, s32 n);
+void func_ov003_021d211c(void *a, u32 b, u32 c, u32 d, u16 e, int f);
 void func_ov003_021d2168(u32 index);
-void func_ov003_021d2188(Unk021d2188 *param_1);
-void func_ov003_021d21f8(u32 param_1, u8 *param_2);
-Unk021d2188 *func_ov003_021d2288(u32 param_1, u32 param_2);
-void func_ov003_021d2388(int param_1);
+void func_ov003_021d2188(Unk021d2188 *d);
+void func_ov003_021d21f8(u32 c, u8 *d);
+Unk021d2188 *func_ov003_021d2288(u32 g, u32 h);
+void func_ov003_021d2388(int a);
 Unk021d23b0 *func_ov003_021d23b0(u32 a, u16 b, u16 c, s32 d, u32 *e, s32 f);
 void func_ov003_021d244c(void);
 void func_ov003_021d2490(void);

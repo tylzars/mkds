@@ -8,5 +8,5 @@
 #include "Main/Unknown/unk_0216e000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-void func_0211f2b8(void *param_1);
+void func_0211f2b8(void *a);
 void func_0211f328(void);

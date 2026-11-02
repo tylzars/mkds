@@ -29,11 +29,11 @@ void func_0200c430(u32 arg0) {
 
 #pragma thumb on
 
-void func_0200c3fc(s32 param_1) {
+void func_0200c3fc(s32 a) {
     s32 i;
 
     if (data_0216fdf4 != 0) {
-        i = param_1 - 1;
+        i = a - 1;
         func_0214d168(&data_0216fdf4->mUnk_000[i * 0x20], 0, 0x1e);
         data_0216fdf4->mUnk_1e0[i] = 0;
     }

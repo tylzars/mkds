@@ -15,9 +15,9 @@ void func_ov003_021d1f88(void) {
     func_ov003_021d2808(&data_ov003_021da2c0);
 }
 
-u8 func_ov003_021d1f70(int param_1) {
+u8 func_ov003_021d1f70(int a) {
     Unk021d1da8 *v1;
-    if (param_1 == 1) {
+    if (a == 1) {
         v1 = data_ov003_021da2c0;
     } else {
         v1 = data_ov003_021da2c0 + 1;

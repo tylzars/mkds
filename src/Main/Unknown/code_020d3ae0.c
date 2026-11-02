@@ -673,7 +673,7 @@ Vec3 *func_020d4104(int arg0) {
     return (Vec3 *) value0;
 }
 
-s32 func_020d3e34(Vec3 *param_1, s32 param_2, Unk020e71a0 *param_3, Vec3 *param_4) {
+s32 func_020d3e34(Vec3 *a, s32 b, Unk020e71a0 *c, Vec3 *d) {
     s32 t;
     s32 u;
     s32 dx;
@@ -681,22 +681,22 @@ s32 func_020d3e34(Vec3 *param_1, s32 param_2, Unk020e71a0 *param_3, Vec3 *param_
     s32 dz;
     s32 r;
     s32 n;
-    if (param_3->mUnk_02 & 1) {
+    if (c->mUnk_02 & 1) {
         return 0;
     }
-    switch (param_3->mUnk_98->mUnk_08) {
+    switch (c->mUnk_98->mUnk_08) {
         case 1:
-            t = param_2 + param_3->mUnk_58.x;
+            t = b + c->mUnk_58.x;
             n = -t;
-            dz = param_1->z - param_3->mUnk_04.z;
+            dz = a->z - c->mUnk_04.z;
             if (dz > t || dz < n) {
                 r = 0;
             } else {
-                dx = param_1->x - param_3->mUnk_04.x;
+                dx = a->x - c->mUnk_04.x;
                 if (dx > t || dx < n) {
                     r = 0;
                 } else {
-                    dy = param_1->y - param_3->mUnk_04.y;
+                    dy = a->y - c->mUnk_04.y;
                     if (dy > t || dy < n) {
                         r = 0;
                     } else {
@@ -707,21 +707,21 @@ s32 func_020d3e34(Vec3 *param_1, s32 param_2, Unk020e71a0 *param_3, Vec3 *param_
             if (r == 0) {
                 return 0;
             }
-            func_020eb3f0(param_1, &param_3->mUnk_04, t, param_4);
+            func_020eb3f0(a, &c->mUnk_04, t, d);
             return 1;
         case 2:
-            t = param_2 + param_3->mUnk_58.x;
-            u = param_2 + param_3->mUnk_58.y;
+            t = b + c->mUnk_58.x;
+            u = b + c->mUnk_58.y;
             n = -t;
-            dz = param_1->z - param_3->mUnk_04.z;
+            dz = a->z - c->mUnk_04.z;
             if (dz > t || dz < n) {
                 r = 0;
             } else {
-                dx = param_1->x - param_3->mUnk_04.x;
+                dx = a->x - c->mUnk_04.x;
                 if (dx > t || dx < n) {
                     r = 0;
                 } else {
-                    dy = param_1->y - param_3->mUnk_04.y;
+                    dy = a->y - c->mUnk_04.y;
                     if (dy > u || dy < -u) {
                         r = 0;
                     } else {
@@ -732,19 +732,18 @@ s32 func_020d3e34(Vec3 *param_1, s32 param_2, Unk020e71a0 *param_3, Vec3 *param_
             if (r == 0) {
                 return 0;
             }
-            func_020eb2a0(param_1, &param_3->mUnk_04, t, u, param_4);
+            func_020eb2a0(a, &c->mUnk_04, t, u, d);
             return 1;
         case 3:
-            return func_020ead80(param_1, &param_3->mUnk_04, &param_3->mUnk_28.mUnk_00, param_3->mUnk_58.x,
-                                 param_3->mUnk_58.y, param_3->mUnk_58.y, param_2, param_4) != 0;
+            return func_020ead80(a, &c->mUnk_04, &c->mUnk_28.mUnk_00, c->mUnk_58.x, c->mUnk_58.y, c->mUnk_58.y, b, d) !=
+                   0;
         case 4:
-            return func_020eafc4(param_1, &param_3->mUnk_04, &param_3->mUnk_28.mUnk_00, &param_3->mUnk_58,
-                                 &param_3->mUnk_58, param_2, param_4) != 0;
+            return func_020eafc4(a, &c->mUnk_04, &c->mUnk_28.mUnk_00, &c->mUnk_58, &c->mUnk_58, b, d) != 0;
         case 0:
             return 0;
         case 5:
-            if (param_3->mUnk_98->mUnk_18 != 0) {
-                return param_3->mUnk_98->mUnk_18(param_3, param_1, param_2, param_4) != 0;
+            if (c->mUnk_98->mUnk_18 != 0) {
+                return c->mUnk_98->mUnk_18(c, a, b, d) != 0;
             }
             return 0;
         default:
@@ -756,8 +755,8 @@ s32 func_020d3e18(void) {
     return data_0217b4e4 != 0;
 }
 
-s32 func_020d3df4(s32 param_1) {
-    return data_0217b4e4 != 0 ? param_1 - data_0217b4e4->mUnk_04 : 0x270f000;
+s32 func_020d3df4(s32 a) {
+    return data_0217b4e4 != 0 ? a - data_0217b4e4->mUnk_04 : 0x270f000;
 }
 
 s32 func_020d3dd8(void) {
@@ -792,18 +791,18 @@ u32 func_020d3d94(void) {
     return value0;
 }
 
-s32 func_020d3d48(s32 param_1) {
+s32 func_020d3d48(s32 a) {
     if (data_0217b4e4 != 0 && data_0217b4e4->mUnk_170 != 0) {
-        return param_1 - data_0217b4e4->mUnk_04;
+        return a - data_0217b4e4->mUnk_04;
     }
-    return data_0217b4d8 != 0 ? param_1 - data_0217b4d8->mUnk_00 : 0x270f000;
+    return data_0217b4d8 != 0 ? a - data_0217b4d8->mUnk_00 : 0x270f000;
 }
 
-s32 func_020d3d10(s32 param_1) {
+s32 func_020d3d10(s32 b) {
     s32 a;
     a = 0;
     if (data_0217b4d8 != 0) {
-        if (param_1 - data_0217b4d8->mUnk_00 < -0x32000) {
+        if (b - data_0217b4d8->mUnk_00 < -0x32000) {
             a = 1;
         }
     }
@@ -824,8 +823,8 @@ void func_020d3cc8(void) {
     }
 }
 
-s32 func_020d3c94(Unk020e71a0 *param_1, s32 param_2, Vec3 *param_3) {
-    return func_020d2c2c(&param_1->mUnk_04, &param_1->mUnk_10, param_1->mUnk_58.x, param_1->mUnk_64, param_2, param_3);
+s32 func_020d3c94(Unk020e71a0 *a, s32 b, Vec3 *c) {
+    return func_020d2c2c(&a->mUnk_04, &a->mUnk_10, a->mUnk_58.x, a->mUnk_64, b, c);
 }
 
 u32 func_020d3c7c(void) {
@@ -852,13 +851,13 @@ u16 func_020d3c2c(void) {
 
 #pragma thumb on
 
-u16 func_020d3bf8(u32 param_1) {
+u16 func_020d3bf8(u32 b) {
     s32 i;
     u16 a;
     a = 0;
     i = 0;
     for (; i < data_0217b4f0->mUnk_004; i++) {
-        if (param_1 == data_0217b4f0->mUnk_000[i]->mUnk_00) {
+        if (b == data_0217b4f0->mUnk_000[i]->mUnk_00) {
             a++;
         }
     }
@@ -915,16 +914,16 @@ void func_020d3b10(void) {
 
 #pragma thumb on
 
-void func_020d3ae0(s32 param_1, Unk020e71a0 *param_2) {
+void func_020d3ae0(s32 a, Unk020e71a0 *b) {
     int v1;
     u32 v2;
     v1 = 0x2710;
-    if (0x2710 <= param_1) {
-        param_2->mUnk_02 = param_2->mUnk_02 | (*(u16 *) &data_021568e8);
-        param_1 = (param_1 - v1) * 0x10000 >> 0x10;
+    if (0x2710 <= a) {
+        b->mUnk_02 = b->mUnk_02 | (*(u16 *) &data_021568e8);
+        a = (a - v1) * 0x10000 >> 0x10;
     }
-    v2 = func_020d2178((u32) param_1);
-    param_2->mUnk_74 = v2;
+    v2 = func_020d2178((u32) a);
+    b->mUnk_74 = v2;
 }
 
 #pragma thumb off

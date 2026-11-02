@@ -34,7 +34,7 @@ void func_020cd1c0(void) {
     data_0217b448->mUnk_04 = a;
 }
 
-void func_020ccf88(Unk020c06c4 *param_1) {
+void func_020ccf88(Unk020c06c4 *a) {
     s32 i;
     s32 c;
     u16 d;
@@ -66,23 +66,22 @@ void func_020ccf88(Unk020c06c4 *param_1) {
                     func_020b4cb0(v1, (u16) (d + (0x4000 - data_0217b448->mUnk_10[i].mUnk_10)));
                 }
             }
-            k = func_020ae5c4(param_1);
-            param_1->mUnk_000.mUnk_20[k].mUnk_06 = v1[0] >> 4;
-            param_1->mUnk_000.mUnk_20[k].mUnk_0e = v1[1] >> 4;
-            param_1->mUnk_000.mUnk_20[k].mUnk_16 = v1[2] >> 4;
-            param_1->mUnk_000.mUnk_20[k].mUnk_1e = v1[3] >> 4;
-            w = param_1->mUnk_400;
+            k = func_020ae5c4(a);
+            a->mUnk_000.mUnk_20[k].mUnk_06 = v1[0] >> 4;
+            a->mUnk_000.mUnk_20[k].mUnk_0e = v1[1] >> 4;
+            a->mUnk_000.mUnk_20[k].mUnk_16 = v1[2] >> 4;
+            a->mUnk_000.mUnk_20[k].mUnk_1e = v1[3] >> 4;
+            w = a->mUnk_400;
             x = &data_0217b448->mUnk_10[i];
             x0 = x->mUnk_00.mUnk_00;
             x8 = x->mUnk_08;
             x4 = x->mUnk_00.mUnk_04;
             z[0] = x0 << 12;
             z[1] = x4 << 12;
-            param_1->mUnk_400 +=
-                func_020224e0((Unk020224e0_o *) &param_1->mUnk_000.mUnk_00[w], 0x80 - w, x8, v1, z, k, 1);
-            for (; w < param_1->mUnk_400; w++) {
+            a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[w], 0x80 - w, x8, v1, z, k, 1);
+            for (; w < a->mUnk_400; w++) {
                 if (h != -1) {
-                    param_1->mUnk_000.mUnk_00[w].mUnk_0e = h;
+                    a->mUnk_000.mUnk_00[w].mUnk_0e = h;
                 }
             }
         }

@@ -12,4 +12,4 @@ void func_ov000_02184ac8(void);
 void func_ov000_02184ad0(void);
 void func_ov000_02184b4c(void);
 void func_ov000_02184b50(void);
-void func_ov000_02184b68(u32 param_1);
+void func_ov000_02184b68(u32 a);

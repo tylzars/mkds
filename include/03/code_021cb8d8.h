@@ -4,7 +4,7 @@
 
 void func_ov003_021cb8d8(void *unused, void *block);
 u32 func_ov003_021cb8e4(u32 arg0, u32 arg1);
-void func_ov003_021cb8f0(u32 param_1);
+void func_ov003_021cb8f0(u32 b);
 void func_ov003_021cb948(void);
 void func_ov003_021cb9c8(void);
 void func_ov003_021cb9e8(void);

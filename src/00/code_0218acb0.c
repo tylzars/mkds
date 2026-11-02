@@ -6,14 +6,14 @@
 #include "00/code_0218b434.h"
 #include "00/code_0218e49c.h"
 
-void func_ov000_0218acf0(int param_1, u32 param_2) {
-    *(u32 *) (param_1 + 0x28) = param_2;
+void func_ov000_0218acf0(int a, u32 b) {
+    *(u32 *) (a + 0x28) = b;
     return;
 }
 
-void func_ov000_0218acd8(int param_1) {
-    func_ov000_0218ae5c((u32 *) ((u32 *) (u32) (param_1 + 0x14)));
-    func_ov000_0218ae5c((u32 *) ((u32 *) (u32) (param_1 + 8)));
+void func_ov000_0218acd8(int a) {
+    func_ov000_0218ae5c((u32 *) ((u32 *) (u32) (a + 0x14)));
+    func_ov000_0218ae5c((u32 *) ((u32 *) (u32) (a + 8)));
     return;
 }
 

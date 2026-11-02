@@ -176,21 +176,21 @@ s32 func_ov003_021bb0b0(void) {
     return -10;
 }
 
-u32 func_ov003_021bb070(u32 *param_1) {
+u32 func_ov003_021bb070(u32 *a) {
     int v1;
-    *param_1 = *(u32 *) &data_ov003_021d8c08;
+    *a = *(u32 *) &data_ov003_021d8c08;
     if ((*(int *) &data_ov003_021d68b8) == -1) {
-        param_1[1] = 0xffffffff;
+        a[1] = 0xffffffff;
     } else {
         v1 = func_ov003_021bb354();
-        param_1[1] = (*(int *) &data_ov003_021d68b8) - v1;
+        a[1] = (*(int *) &data_ov003_021d68b8) - v1;
     }
-    param_1[2] = *(u32 *) &data_ov003_021d8c48;
+    a[2] = *(u32 *) &data_ov003_021d8c48;
     return 1;
 }
 
-u32 func_ov003_021bb058(Unk021d8dc8 *param_1) {
-    memcpy((u32 *) ((u32 *) (u32) (param_1)), (const void *) &data_ov003_021d8dc8, 0xe8);
+u32 func_ov003_021bb058(Unk021d8dc8 *a) {
+    memcpy((u32 *) ((u32 *) (u32) (a)), (const void *) &data_ov003_021d8dc8, 0xe8);
     return 1;
 }
 

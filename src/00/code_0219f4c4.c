@@ -26,9 +26,9 @@
 #include "00/code_021a0958.h"
 #include "00/code_021a17bc.h"
 
-u32 func_ov000_0219fb14(u32 param_1) {
+u32 func_ov000_0219fb14(u32 a) {
     u32 result;
-    result = func_ov000_021a0ae8(5, param_1, data_ov000_021b566c->mUnk_24[0], data_ov000_021b566c->mUnk_a4[0], 0, 0);
+    result = func_ov000_021a0ae8(5, a, data_ov000_021b566c->mUnk_24[0], data_ov000_021b566c->mUnk_a4[0], 0, 0);
     data_ov000_021b566c->mUnk_1ec = 0;
     return result;
 }
@@ -278,22 +278,22 @@ void func_ov000_0219f544(s32 a) {
     }
 }
 
-u32 func_ov000_0219f4c4(u32 *param_1, u32 param_2) {
+u32 func_ov000_0219f4c4(u32 *a, u32 b) {
     Unk021b566c *p;
     u32 i;
     p = data_ov000_021b566c;
     if (p->mUnk_19e != 0 && p->mUnk_198 == 4) {
         return 1;
     }
-    for (i = 0; i < param_2; i++) {
-        if (func_ov000_0218eb9c(p->mUnk_00, *param_1) == 0) {
+    for (i = 0; i < b; i++) {
+        if (func_ov000_0218eb9c(p->mUnk_00, *a) == 0) {
             return 0;
         }
         p = data_ov000_021b566c;
         if (p->mUnk_19e != 0 && p->mUnk_198 == 1) {
             return 1;
         }
-        param_1++;
+        a++;
     }
     return 1;
 }

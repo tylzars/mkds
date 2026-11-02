@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ea514(u32 param_1, void *param_2, void *param_3, void *param_4, void *param_5);
+void func_020ea514(u32 a, void *b, void *c, void *d, void *e);

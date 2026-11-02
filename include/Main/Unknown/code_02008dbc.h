@@ -5,4 +5,4 @@
 #include "code_0214cfe4.h"
 #include "Main/Unknown/unk_0216f000.h"
 
-void func_02008dbc(u8 *param_1, int param_2);
+void func_02008dbc(u8 *a, int b);

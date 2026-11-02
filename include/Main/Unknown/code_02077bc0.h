@@ -5,4 +5,4 @@
 #include "code_02016d34.h"
 #include "Main/Unknown/code_02036bec.h"
 
-void func_02077bc0(void *param_1);
+void func_02077bc0(void *a);

@@ -84,14 +84,14 @@ void func_02114504(s32 a, u16 b) {
 
 #pragma thumb on
 
-void func_021144c0(void *param_1) {
+void func_021144c0(void *a) {
     int v1;
     u32 v2;
-    v1 = ((u32) func_02036bec(param_1, (u32) 0x10));
+    v1 = ((u32) func_02036bec(a, (u32) 0x10));
     *(int *) &data_0217d34c = v1;
-    v2 = ((u32) func_02036bec(param_1, (u32) 0x78));
+    v2 = ((u32) func_02036bec(a, (u32) 0x78));
     *(u32 *) ((int) data_0217d34c + 4) = v2;
-    v2 = (u32) func_0205eda0(param_1);
+    v2 = (u32) func_0205eda0(a);
     *(u32 *) ((int) data_0217d34c + 8) = v2;
     v2 = ((int) func_0204799c((const char *) &data_0216d3e4));
     *(u32 *) ((int) data_0217d34c + 0xc) = v2;
@@ -319,12 +319,12 @@ u16 func_02113f1c(void) {
 
 #pragma thumb on
 
-u32 func_02113ef0(int param_1) {
+u32 func_02113ef0(int a) {
     int v1;
     int v2;
     v1 = func_02113f1c();
     v2 = func_021143b4();
-    if (v2 > v1 + param_1) {
+    if (v2 > v1 + a) {
         return 1;
     }
     return 0;

@@ -11,9 +11,9 @@
 #include "code_0214177c.h"
 #include "00/code_0218afd4.h"
 
-void func_ov000_0218afb8(u32 *param_1) {
-    func_ov000_0218d0e4((u32) (0), (u32) (*param_1));
-    func_ov000_0218d0e4((u32) (0), (u32) (param_1[1]));
+void func_ov000_0218afb8(u32 *a) {
+    func_ov000_0218d0e4((u32) (0), (u32) (*a));
+    func_ov000_0218d0e4((u32) (0), (u32) (a[1]));
     return;
 }
 
@@ -25,8 +25,8 @@ s32 func_ov000_0218afa0(const u8 *const *first, const u8 *const *second) {
     return func_02142368(*first, *second);
 }
 
-u32 func_ov000_0218af9c(int param_1) {
-    return *(u32 *) (param_1 + 0x1c);
+u32 func_ov000_0218af9c(int a) {
+    return *(u32 *) (a + 0x1c);
 }
 
 Unk0218af28 *func_ov000_0218af28(Unk021b4d24 *a, u32 b, u16 c) {
@@ -54,70 +54,70 @@ Unk0218af28 *func_ov000_0218af28(Unk021b4d24 *a, u32 b, u16 c) {
     return p;
 }
 
-void func_ov000_0218af24(int param_1, s32 param_2) {
-    *(u8 *) (param_1 + 0x15) = param_2;
+void func_ov000_0218af24(int a, s32 b) {
+    *(u8 *) (a + 0x15) = b;
     return;
 }
 
-void func_ov000_0218af1c(int param_1, u32 param_2, u16 param_3) {
-    *(u32 *) (param_1 + 8) = param_2;
-    *(u16 *) (param_1 + 0xc) = param_3;
+void func_ov000_0218af1c(int a, u32 b, u16 c) {
+    *(u32 *) (a + 8) = b;
+    *(u16 *) (a + 0xc) = c;
     return;
 }
 
-void func_ov000_0218af18(int param_1, u32 param_2) {
-    *(u32 *) (param_1 + 0x10) = param_2;
+void func_ov000_0218af18(int a, u32 b) {
+    *(u32 *) (a + 0x10) = b;
     return;
 }
 
-void func_ov000_0218af14(int param_1, u8 param_2) {
-    *(u8 *) (param_1 + 0x14) = param_2;
+void func_ov000_0218af14(int a, u8 b) {
+    *(u8 *) (a + 0x14) = b;
     return;
 }
 
-u8 func_ov000_0218af10(int param_1) {
-    return *(u8 *) (param_1 + 0x14);
+u8 func_ov000_0218af10(int a) {
+    return *(u8 *) (a + 0x14);
 }
 
-u32 func_ov000_0218aefc(int param_1) {
-    if (param_1 == (*(int *) &data_ov000_021b4d1c)) {
+u32 func_ov000_0218aefc(int a) {
+    if (a == (*(int *) &data_ov000_021b4d1c)) {
         return 1;
     }
     return 0;
 }
 
-void func_ov000_0218aedc(int *param_1, int param_2) {
-    if (param_1[1] != 0) {
-        *(int *) (param_1[1] + 0x20) = param_2;
+void func_ov000_0218aedc(int *a, int b) {
+    if (a[1] != 0) {
+        *(int *) (a[1] + 0x20) = b;
     }
-    param_1[1] = param_2;
-    *(u32 *) (param_2 + 0x20) = 0;
-    if (*param_1 == 0) {
-        *param_1 = param_2;
+    a[1] = b;
+    *(u32 *) (b + 0x20) = 0;
+    if (*a == 0) {
+        *a = b;
     }
-    param_1[2] = param_1[2] + 1;
+    a[2] = a[2] + 1;
     return;
 }
 
-void func_ov000_0218aec4(int *param_1, int param_2) {
-    *(int *) (param_2 + 0x20) = *param_1;
-    *param_1 = param_2;
-    if (param_1[1] == 0) {
-        param_1[1] = param_2;
+void func_ov000_0218aec4(int *a, int b) {
+    *(int *) (b + 0x20) = *a;
+    *a = b;
+    if (a[1] == 0) {
+        a[1] = b;
     }
-    param_1[2] = param_1[2] + 1;
+    a[2] = a[2] + 1;
     return;
 }
 
-int func_ov000_0218aea4(int *param_1) {
+int func_ov000_0218aea4(int *a) {
     int v1;
-    v1 = *param_1;
+    v1 = *a;
     if (v1 != 0) {
-        *param_1 = *(int *) (v1 + 0x20);
-        if (*param_1 == 0) {
-            param_1[1] = 0;
+        *a = *(int *) (v1 + 0x20);
+        if (*a == 0) {
+            a[1] = 0;
         }
-        param_1[2] = param_1[2] + -1;
+        a[2] = a[2] + -1;
     }
     return v1;
 }

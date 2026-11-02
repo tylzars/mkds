@@ -200,16 +200,16 @@ u32 func_ov001_02192a24(void) {
     return data_ov001_021a9bc8->mUnk_28;
 }
 
-u16 func_ov001_02192a14(u16 param_1) {
-    return data_021758e8[0x10] & param_1;
+u16 func_ov001_02192a14(u16 a) {
+    return data_021758e8[0x10] & a;
 }
 
-u16 func_ov001_02192a04(u16 param_1) {
-    return data_021758e8[0x11] & param_1;
+u16 func_ov001_02192a04(u16 a) {
+    return data_021758e8[0x11] & a;
 }
 
-int func_ov001_021928c8(int param_1) {
-    switch (param_1) {
+int func_ov001_021928c8(int a) {
+    switch (a) {
         case 0x20:
             return data_ov001_021a9bc8->mUnk_2c == 1 || data_ov001_021a9bc8->mUnk_2c == 0xf;
         case 0x10:

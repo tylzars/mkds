@@ -19,7 +19,7 @@ void func_ov000_021a5794(void *a);
 void func_ov000_021a57a8(void);
 void func_ov000_021a57fc(u32 a);
 void func_ov000_021a586c(s16 a, u32 b, void *c, u32 d, u32 e);
-void func_ov000_021a58a4(u32 param_1, const void *param_2, u32 param_3, u32 param_4);
+void func_ov000_021a58a4(u32 b, const void *c, u32 d, u32 e);
 u16 func_ov000_021a58dc(u16 a);
 void func_ov000_021a5930(void);
 void func_ov000_021a5948(const void *a, const u8 *b, u32 c);

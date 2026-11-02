@@ -52,4 +52,4 @@ void func_ov001_0219de18(void);
 s32 func_ov001_0219de38(void);
 void func_ov001_0219de58(void);
 void func_ov001_0219df64(void);
-void func_ov001_0219df70(void *param_1);
+void func_ov001_0219df70(void *a);

@@ -72,8 +72,8 @@ void func_02035d74(int arg0) {
     *(u32 *) ((value2) + (0)) = value0;
 }
 
-void func_02035d48(u32 param_1, int param_2) {
-    *(u32 *) 0x0400101c = (param_1 & 0x1ff) | ((param_2 << 16) & 0x01ff0000);
+void func_02035d48(u32 a, int b) {
+    *(u32 *) 0x0400101c = (a & 0x1ff) | ((b << 16) & 0x01ff0000);
 }
 
 #pragma thumb on

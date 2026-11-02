@@ -6,9 +6,9 @@
 
 #pragma thumb on
 
-void func_020ae6d4(void *param_1, void *param_2) {
-    Unk020ae630 *a = param_1;
-    Unk020ae630 *b = param_2;
+void func_020ae6d4(void *c, void *d) {
+    Unk020ae630 *a = c;
+    Unk020ae630 *b = d;
 
     if (a != 0) {
         a->mUnk_400 = 0;
@@ -22,9 +22,9 @@ void func_020ae6d4(void *param_1, void *param_2) {
     }
 }
 
-void func_020ae6ac(void *param_1, void *param_2) {
-    Unk020ae630 *a = param_1;
-    Unk020ae630 *b = param_2;
+void func_020ae6ac(void *c, void *d) {
+    Unk020ae630 *a = c;
+    Unk020ae630 *b = d;
 
     if (a != 0) {
         a->mUnk_400 = 0;
@@ -36,9 +36,9 @@ void func_020ae6ac(void *param_1, void *param_2) {
     }
 }
 
-void func_020ae630(void *param_1, void *param_2) {
-    Unk020ae630 *a = param_1;
-    Unk020ae630 *b = param_2;
+void func_020ae630(void *c, void *d) {
+    Unk020ae630 *a = c;
+    Unk020ae630 *b = d;
     u16 n;
     s32 i;
 

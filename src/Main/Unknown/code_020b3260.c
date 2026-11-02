@@ -2,14 +2,14 @@
 
 #pragma thumb on
 
-u32 func_020b3260(int param_1) {
-    if (param_1 < 0) {
+u32 func_020b3260(int a) {
+    if (a < 0) {
         return 0;
     }
-    if (param_1 < 2) {
+    if (a < 2) {
         return 0x1000;
     }
-    return param_1 << 0xb;
+    return a << 0xb;
 }
 
 #pragma thumb off

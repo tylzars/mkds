@@ -308,7 +308,7 @@ void func_ov001_0219be5c(void) {
     func_02124140(4, 0, data_ov001_021a9bf4->mUnk_08, data_ov001_021a9bf4->mUnk_30, data_ov001_021a9bf4->mUnk_04);
 }
 
-void func_ov001_0219bb48(u32 param_1, u32 param_2, u32 param_3) {
+void func_ov001_0219bb48(u32 a, u32 b, u32 c) {
     void *heap;
     s32 rem;
     s32 i;
@@ -316,13 +316,13 @@ void func_ov001_0219bb48(u32 param_1, u32 param_2, u32 param_3) {
     reg_G2S_DB_BG0CNT = reg_G2S_DB_BG0CNT & ~3;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8300;
-    heap = func_02036948((void *) param_1);
+    heap = func_02036948((void *) a);
     data_ov001_021a9bf4 = func_02036bec(heap, 0x70);
     data_ov001_021a9bf4->mUnk_44 = heap;
     data_ov001_021a9bf4->mUnk_48 = 0;
     data_ov001_021a9bf4->mUnk_60 = 0;
-    data_ov001_021a9bf4->mUnk_64 = param_2;
-    data_ov001_021a9bf4->mUnk_68 = param_3;
+    data_ov001_021a9bf4->mUnk_64 = b;
+    data_ov001_021a9bf4->mUnk_68 = c;
     data_ov001_021a9bf4->mUnk_6c = 0;
     func_ov001_0219c544();
     func_02117224(data_ov001_021a9bf4->mUnk_44);

@@ -53,4 +53,4 @@ extern Unk021da2a8 *data_ov003_021da2a8;
 
 void func_ov003_021d079c(s32 value);
 void func_ov003_021d07b0(u32 value);
-void func_ov003_021d0810(Unk021da2a8 *param_1);
+void func_ov003_021d0810(Unk021da2a8 *a);

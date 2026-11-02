@@ -14,8 +14,8 @@
 
 #pragma thumb off
 
-void func_ov001_021899c8(void *param_1) {
-    func_020c092c(param_1, data_ov001_021a9bc0, 0);
+void func_ov001_021899c8(void *a) {
+    func_020c092c(a, data_ov001_021a9bc0, 0);
 }
 
 s32 func_ov001_021899b0(void) {
@@ -52,8 +52,8 @@ void func_ov001_02189880(void) {
     data_ov001_021a9bbc->mUnk_04 = count;
 }
 
-void func_ov001_02189864(void *param_1) {
-    func_020c092c(param_1, data_ov001_021a9bbc, 0);
+void func_ov001_02189864(void *a) {
+    func_020c092c(a, data_ov001_021a9bbc, 0);
 }
 
 s32 func_ov001_02189848(void) {
@@ -90,8 +90,8 @@ void func_ov001_02189718(void) {
     data_ov001_021a9bb8->mUnk_04 = count;
 }
 
-void func_ov001_021896fc(void *param_1) {
-    func_020c092c(param_1, data_ov001_021a9bb8, 0);
+void func_ov001_021896fc(void *a) {
+    func_020c092c(a, data_ov001_021a9bb8, 0);
 }
 
 s32 func_ov001_021896e0(void) {
@@ -125,8 +125,8 @@ void func_ov001_021895b8(void) {
     data_ov001_021a9bb4->mUnk_04 = count;
 }
 
-void func_ov001_0218959c(void *param_1) {
-    func_020c092c(param_1, data_ov001_021a9bb4, 1);
+void func_ov001_0218959c(void *a) {
+    func_020c092c(a, data_ov001_021a9bb4, 1);
 }
 
 s32 func_ov001_02189584(void) {
@@ -161,8 +161,8 @@ void func_ov001_02189444(void) {
     data_ov001_021a9bb0->mUnk_04 = count;
 }
 
-void func_ov001_02189428(void *param_1) {
-    func_020c092c(param_1, data_ov001_021a9bb0, 1);
+void func_ov001_02189428(void *a) {
+    func_020c092c(a, data_ov001_021a9bb0, 1);
 }
 
 s32 func_ov001_02189410(void) {
@@ -200,8 +200,8 @@ void func_ov001_021892c8(void) {
     data_ov001_021a9bac->mUnk_04 = count;
 }
 
-void func_ov001_021892ac(void *param_1) {
-    func_020c092c(param_1, data_ov001_021a9bac, 0);
+void func_ov001_021892ac(void *a) {
+    func_020c092c(a, data_ov001_021a9bac, 0);
 }
 
 #pragma thumb on

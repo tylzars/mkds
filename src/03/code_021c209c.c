@@ -177,11 +177,11 @@ void func_ov003_021c212c(void (*callback)(void)) {
     data_ov003_021da17c = callback;
 }
 
-void func_ov003_021c2120(u32 param_1, u32 param_2) {
+void func_ov003_021c2120(u32 a, u32 b) {
     u32 *v1;
     v1 = (u32 *) &data_ov003_021da180;
-    *(u32 *) &data_ov003_021da180 = param_1;
-    v1[1] = param_2;
+    *(u32 *) &data_ov003_021da180 = a;
+    v1[1] = b;
     return;
 }
 
@@ -221,8 +221,8 @@ u32 func_ov003_021c20c0(void) {
     return data_ov003_021da178.mUnk_00;
 }
 
-u32 func_ov003_021c20a8(u32 param_1) {
-    if (((*(u32 *) &data_ov003_021da178) >> 4 & param_1) != 0) {
+u32 func_ov003_021c20a8(u32 a) {
+    if (((*(u32 *) &data_ov003_021da178) >> 4 & a) != 0) {
         return 1;
     }
     return 0;

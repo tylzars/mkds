@@ -2,10 +2,10 @@
 #include "03/code_021d27d8.h"
 #include "03/code_021d2ecc.h"
 
-void func_ov003_021c0fd8(u32 param_1) {
+void func_ov003_021c0fd8(u32 a) {
     int v1;
     int v2;
-    func_ov003_021d34c8(0, param_1);
+    func_ov003_021d34c8(0, a);
     v1 = 0;
     v2 = 0;
     do {

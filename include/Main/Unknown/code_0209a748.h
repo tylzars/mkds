@@ -41,7 +41,7 @@ typedef struct Unk0209af98 {
 void *func_0209a748(void);
 void *func_0209a768(void);
 void func_0209a78c(void);
-void func_0209a7dc(void *param_1, Unk0209a7dc *param_2);
+void func_0209a7dc(void *a, Unk0209a7dc *b);
 s32 func_0209af64(s32 a, s32 b);
 s16 func_0209af80(s32 a);
 void func_0209af98(Unk0209af98 *p);

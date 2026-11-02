@@ -21,8 +21,8 @@
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_020a1728.h"
 
-void func_020a1728(int param_1) {
-    *(u32 *) (param_1 * 0x70 + (u32) data_0217b1fc + 8) = 0;
+void func_020a1728(int a) {
+    *(u32 *) (a * 0x70 + (u32) data_0217b1fc + 8) = 0;
 }
 
 static inline u16 func_020a12b8_inline(s32 i) {
@@ -194,10 +194,10 @@ u32 func_020a1238(void) {
     return ((u32) data_0217b1fc->mUnk_3a0);
 }
 
-void func_020a1218(short param_1) {
+void func_020a1218(short a) {
     Unk0217b1fc *v1;
     v1 = data_0217b1fc;
-    v1->mUnk_3a0 = v1->mUnk_3a0 + param_1;
+    v1->mUnk_3a0 = v1->mUnk_3a0 + a;
 }
 
 u16 func_020a119c(void) {

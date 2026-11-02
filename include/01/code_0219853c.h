@@ -37,4 +37,4 @@ void func_ov001_02198624(void);
 void func_ov001_021986e8(void);
 void func_ov001_02198768(void);
 void func_ov001_021987bc(void);
-void func_ov001_021987d4(void *heap, s16 param_2);
+void func_ov001_021987d4(void *heap, s16 a);

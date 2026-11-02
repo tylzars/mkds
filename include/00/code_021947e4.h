@@ -25,4 +25,4 @@ typedef struct Unk02194934 {
     /* 18 */ void *mUnk_18;
 } Unk02194934;
 
-u32 func_ov000_021947e4(Unk02194934 *param_1);
+u32 func_ov000_021947e4(Unk02194934 *a);

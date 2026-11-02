@@ -325,14 +325,14 @@ s32 func_02006c2c(s32 a, s32 b) {
 
 #pragma thumb on
 
-void func_02006c0c(u32 param_1, const u8 *param_2, int param_3) {
-    if (0 < param_3) {
-        func_02005dac(func_020070b8(), param_1, param_2, param_3);
+void func_02006c0c(u32 a, const u8 *b, int c) {
+    if (0 < c) {
+        func_02005dac(func_020070b8(), a, b, c);
     }
 }
 
-void func_02006bec(const u8 *param_1, u32 param_2) {
-    func_02005dac(func_020070b8(), 0, param_1, param_2);
+void func_02006bec(const u8 *a, u32 b) {
+    func_02005dac(func_020070b8(), 0, a, b);
 }
 
 #pragma thumb off

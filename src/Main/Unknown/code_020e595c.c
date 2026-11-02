@@ -49,14 +49,14 @@ Unk020e59e4 *func_020e59e4(void) {
     return data_0217b81c;
 }
 
-void func_020e5990(u32 param_1, Unk020e43a8 *p, u32 param_3, u32 param_4) {
+void func_020e5990(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
     p->mUnk_00.mUnk_28.mUnk_24.x = p->mUnk_00.mUnk_04.x >> 4;
     p->mUnk_00.mUnk_28.mUnk_24.y = p->mUnk_00.mUnk_04.y >> 4;
     p->mUnk_00.mUnk_28.mUnk_24.z = p->mUnk_00.mUnk_04.z >> 4;
-    func_020ea8a8(data_0217b820, &p->mUnk_00.mUnk_28, &p->mUnk_00.mUnk_1c, param_4);
+    func_020ea8a8(data_0217b820, &p->mUnk_00.mUnk_28, &p->mUnk_00.mUnk_1c, c);
 }
 
-void func_020e595c(u32 param_1, Unk020e43a8 *p) {
+void func_020e595c(u32 a, Unk020e43a8 *p) {
     func_02046b40(&p->mUnk_00.mUnk_80);
     func_020d77e0(&p->mUnk_a0.mUnk_0c.y, p->mUnk_00.mUnk_7e, &p->mUnk_a0);
     func_01ffccd0((int *) &p->mUnk_00.mUnk_28, &p->mUnk_a0);

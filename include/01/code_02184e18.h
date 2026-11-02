@@ -7,9 +7,9 @@
 #include "01/code_02188e24.h"
 #include "Main/Unknown/code_020d2000.h"
 
-void func_ov001_02184e18(u16 *param_1);
-void func_ov001_02184e6c(Unk02188950 *param_1);
-void func_ov001_02184e8c(Unk02188950 *param_1);
-void func_ov001_02184ec8(Unk02188950 *param_1);
-void func_ov001_02184f04(Unk02188950 *param_1);
-void func_ov001_02184f40(Unk02188950 *param_1);
+void func_ov001_02184e18(u16 *a);
+void func_ov001_02184e6c(Unk02188950 *a);
+void func_ov001_02184e8c(Unk02188950 *a);
+void func_ov001_02184ec8(Unk02188950 *a);
+void func_ov001_02184f04(Unk02188950 *a);
+void func_ov001_02184f40(Unk02188950 *a);

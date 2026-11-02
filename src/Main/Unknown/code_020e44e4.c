@@ -19,7 +19,7 @@
 
 #pragma thumb on
 
-void func_020e47c8(Unk020e43a8 *p, Vec3 *param_2) {
+void func_020e47c8(Unk020e43a8 *p, Vec3 *a) {
     func_02046be8(&p->mUnk_00.mUnk_80, (UnkFunc *const *) data_0216c1ec, 4, p);
     p->mUnk_00.mUnk_04.y = p->mUnk_00.mUnk_04.y + (s32) (((s64) p->mUnk_00.mUnk_1c.y * 0xa000) >> 12);
     p->mUnk_a0.mUnk_18 = p->mUnk_00.mUnk_04;
@@ -30,8 +30,8 @@ void func_020e47c8(Unk020e43a8 *p, Vec3 *param_2) {
     func_020ec854(p, p->mUnk_00.mUnk_04.y - 0x1e000, 0x400, 0x400, 0x4000, 0x1800);
     p->mUnk_00.mUnk_80.mUnk_10 = 0;
     p->mUnk_00.mUnk_80.mUnk_12 = 1;
-    func_020e516c((Unk020e516c *) &p->mUnk_c8, param_2, (s32) (((s64) p->mUnk_00.mUnk_1c.x * 0x12000) >> 12), 0xd);
-    p->mUnk_f4.z = param_2->y;
+    func_020e516c((Unk020e516c *) &p->mUnk_c8, a, (s32) (((s64) p->mUnk_00.mUnk_1c.x * 0x12000) >> 12), 0xd);
+    p->mUnk_f4.z = a->y;
     {
         s32 *q = &p->mUnk_d4;
         p->mUnk_104 = -func_02147f34(q[0], q[1]);
@@ -81,7 +81,7 @@ Unk020e4610 *func_020e4610(void) {
     return data_0217b7dc;
 }
 
-void func_020e44e4(u32 param_1, Unk020e43a8 *p) {
+void func_020e44e4(u32 a, Unk020e43a8 *p) {
     s32 old;
     s32 d;
     old = p->mUnk_00.mUnk_7e;

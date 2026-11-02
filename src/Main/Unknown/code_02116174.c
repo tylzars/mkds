@@ -82,12 +82,12 @@ u16 func_02116870(void) {
 
 #pragma thumb on
 
-u32 func_02116844(int param_1) {
+u32 func_02116844(int a) {
     int v1;
     int v2;
     v1 = func_02116870();
     v2 = func_021143b4();
-    if (v2 > v1 + param_1) {
+    if (v2 > v1 + a) {
         return 1;
     }
     return 0;

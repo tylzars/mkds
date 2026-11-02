@@ -13,10 +13,10 @@ void func_020ada94(void) {
 
 #pragma thumb off
 
-void func_020ada7c(int *param_1) {
+void func_020ada7c(int *a) {
     u32 v1;
-    v1 = *(u32 *) param_1;
+    v1 = *(u32 *) a;
     if ((int) v1 < 0x7fffffff) {
-        *param_1 = v1 + 1;
+        *a = v1 + 1;
     }
 }

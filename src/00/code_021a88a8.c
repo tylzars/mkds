@@ -24,8 +24,8 @@ s32 func_ov000_021a8a5c(Unk021a8ab8 *node) {
     return 0;
 }
 
-u32 func_ov000_021a8a54(int param_1) {
-    return param_1 + 3U & 0xfffffffc;
+u32 func_ov000_021a8a54(int a) {
+    return a + 3U & 0xfffffffc;
 }
 
 // the original reloads the halfword at 0x70 for every test; a volatile view of the object is the only spelling found
@@ -66,20 +66,20 @@ u32 func_ov000_021a8994(Unk021a6fa8 *a) {
     return b;
 }
 
-u32 func_ov000_021a8960(int param_1) {
+u32 func_ov000_021a8960(int a) {
     u32 v1;
     int v2;
     s8 v3;
-    v2 = *(int *) (param_1 + 100);
+    v2 = *(int *) (a + 100);
     v1 = 0;
     if (v2 != 0) {
-        v3 = *(s8 *) (param_1 + 0x73);
+        v3 = *(s8 *) (a + 0x73);
         if (v3 == 1) {
             if (*(int *) (v2 + 0x104) != 0) {
                 v1 = (u32) * (u16 *) (*(int *) (v2 + 0x104) + 4);
             }
         } else if ((v3 == 0) || (v3 == 4)) {
-            v1 = *(int *) (param_1 + 0x44) - *(int *) (v2 + 0xf8);
+            v1 = *(int *) (a + 0x44) - *(int *) (v2 + 0xf8);
         }
     }
     return v1;

@@ -6,4 +6,4 @@
 #include "Main/Unknown/code_020e6000.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_0209f5cc(u32 param_1, int param_2);
+void func_0209f5cc(u32 a, int b);

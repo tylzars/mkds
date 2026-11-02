@@ -219,7 +219,7 @@ void func_ov003_021c7850(void) {
     return;
 }
 
-void func_ov003_021c7844(u32 param_1) {
-    *(u32 *) &data_ov003_021da200 = param_1;
+void func_ov003_021c7844(u32 a) {
+    *(u32 *) &data_ov003_021da200 = a;
     return;
 }

@@ -5,7 +5,7 @@
 #include "00/unk_021b3000.h"
 #include "code_0213442c.h"
 
-void func_ov000_02197ddc(int *param_1, u32 param_2);
-void func_ov000_02197e20(int *param_1, u8 param_2);
-int func_ov000_02197e58(int param_1);
-u32 func_ov000_02197e60(int *param_1, int param_2);
+void func_ov000_02197ddc(int *a, u32 b);
+void func_ov000_02197e20(int *a, u8 b);
+int func_ov000_02197e58(int a);
+u32 func_ov000_02197e60(int *a, int b);

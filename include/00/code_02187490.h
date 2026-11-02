@@ -27,4 +27,4 @@ typedef struct Unk02187490 {
     /* 1200 */ u8 mUnk_1200[0x1000];
 } Unk02187490;
 
-void func_ov000_02187490(u32 param_0);
+void func_ov000_02187490(u32 a);

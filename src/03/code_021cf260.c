@@ -121,8 +121,8 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
     }
 }
 
-void func_ov003_021cf36c(u16 param_1) {
-    *(u16 *) (*(u32 *) &data_ov003_021da288) = param_1;
+void func_ov003_021cf36c(u16 a) {
+    *(u16 *) (*(u32 *) &data_ov003_021da288) = a;
     return;
 }
 

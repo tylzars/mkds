@@ -10,24 +10,24 @@ void func_ov000_021ae2d8(void) {
     }
 }
 
-void func_ov000_021ae290(int param_1, u16 param_2, int param_3) {
+void func_ov000_021ae290(int a, u16 b, int c) {
     u16 v1;
     Unk021a998c *v2;
     v2 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
     if (v2 != 0) {
-        if (param_3 == 0x7f000001) {
-            param_3 = *(int *) &data_ov000_021b63b4;
+        if (c == 0x7f000001) {
+            c = *(int *) &data_ov000_021b63b4;
         }
-        v2->mUnk_1a = param_2;
+        v2->mUnk_1a = b;
         v2->mUnk_18 = v2->mUnk_1a;
-        v2->mUnk_20 = param_3;
+        v2->mUnk_20 = c;
         v2->mUnk_1c = v2->mUnk_20;
-        if (param_1 == 0) {
+        if (a == 0) {
             v1 = func_ov000_021ae340();
             v2->mUnk_0a = v1;
             return;
         }
-        v2->mUnk_0a = (short) param_1;
+        v2->mUnk_0a = (short) a;
     }
 }
 

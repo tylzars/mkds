@@ -13,17 +13,17 @@ u32 func_ov000_02186a84(u32 value) {
     return value;
 }
 
-u32 func_ov000_02186a38(Unk021868d0 *param_1, Unk02186998 *param_2, int param_3) {
-    if (param_3 == 0) {
+u32 func_ov000_02186a38(Unk021868d0 *a, Unk02186998 *b, int c) {
+    if (c == 0) {
         return 0;
     }
-    param_2->mUnk_00 = param_1->mUnk_014(data_ov000_021b1280, param_3);
-    if (param_2->mUnk_00 == 0) {
+    b->mUnk_00 = a->mUnk_014(data_ov000_021b1280, c);
+    if (b->mUnk_00 == 0) {
         return 0;
     }
-    param_2->mUnk_04 = param_2->mUnk_00;
-    param_2->mUnk_0c = param_3;
-    param_2->mUnk_08 = param_2->mUnk_00 + param_2->mUnk_0c;
+    b->mUnk_04 = b->mUnk_00;
+    b->mUnk_0c = c;
+    b->mUnk_08 = b->mUnk_00 + b->mUnk_0c;
     return 1;
 }
 
@@ -34,24 +34,24 @@ void func_ov000_02186a10(Unk021868d0 *a, Unk02186998 *b) {
     func_0214d168(b, 0, 0x10);
 }
 
-u32 func_ov000_02186998(Unk021868d0 *param_1, Unk02186998 *param_2, int param_3) {
+u32 func_ov000_02186998(Unk021868d0 *a, Unk02186998 *b, int c) {
     char *v1;
-    if (param_3 <= 0) {
+    if (c <= 0) {
         return 0;
     }
-    v1 = param_1->mUnk_014(0, param_2->mUnk_0c + param_3);
+    v1 = a->mUnk_014(0, b->mUnk_0c + c);
     if (v1 == 0) {
         return 0;
     }
-    func_0214d1fc(param_2->mUnk_00, v1, param_2->mUnk_0c);
-    param_1->mUnk_018(0, param_2->mUnk_00, 0);
+    func_0214d1fc(b->mUnk_00, v1, b->mUnk_0c);
+    a->mUnk_018(0, b->mUnk_00, 0);
     if (v1 == 0) {
         return 0;
     }
-    param_2->mUnk_04 = param_2->mUnk_04 + (v1 - param_2->mUnk_00);
-    param_2->mUnk_0c = param_2->mUnk_0c + param_3;
-    param_2->mUnk_00 = v1;
-    param_2->mUnk_08 = v1 + param_2->mUnk_0c;
+    b->mUnk_04 = b->mUnk_04 + (v1 - b->mUnk_00);
+    b->mUnk_0c = b->mUnk_0c + c;
+    b->mUnk_00 = v1;
+    b->mUnk_08 = v1 + b->mUnk_0c;
     return 1;
 }
 
@@ -214,7 +214,7 @@ s32 func_ov000_02186634(Unk021868a4Entry *a, s32 b, const u8 *c, char *d, s32 e)
     return 1;
 }
 
-void func_ov000_02186628(const void *param_1) {
-    *(const void **) &data_ov000_021b1040 = param_1;
+void func_ov000_02186628(const void *a) {
+    *(const void **) &data_ov000_021b1040 = a;
     return;
 }

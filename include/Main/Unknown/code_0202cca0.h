@@ -5,4 +5,4 @@
 #include "Main/Unknown/code_02110000.h"
 
 unsigned int func_0202cca0(void);
-void func_0202cca4(int param_1, int param_2);
+void func_0202cca4(int a, int b);

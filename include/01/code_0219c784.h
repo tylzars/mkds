@@ -54,4 +54,4 @@ void func_ov001_0219cec4(void);
 void func_ov001_0219cf60(void);
 void func_ov001_0219d03c(void);
 void func_ov001_0219d26c(void);
-void func_ov001_0219d2c0(void *param_1, s32 param_2, void *param_3, void *param_4);
+void func_ov001_0219d2c0(void *c, s32 d, void *e, void *f);

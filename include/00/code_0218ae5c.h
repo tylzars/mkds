@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_ov000_0218ae5c(u32 *param_1);
+void func_ov000_0218ae5c(u32 *a);

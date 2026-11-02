@@ -75,18 +75,18 @@ u8 func_ov003_021c1ca0(void) {
     return data_ov003_021da160->mUnk_60;
 }
 
-void func_ov003_021c1c90(u8 param_1) {
-    data_ov003_021da160->mUnk_66 = param_1;
+void func_ov003_021c1c90(u8 a) {
+    data_ov003_021da160->mUnk_66 = a;
     return;
 }
 
-void func_ov003_021c1c80(u8 param_1) {
-    data_ov003_021da160->mUnk_67 = param_1;
+void func_ov003_021c1c80(u8 a) {
+    data_ov003_021da160->mUnk_67 = a;
     return;
 }
 
-void func_ov003_021c1c70(u8 param_1) {
-    data_ov003_021da160->mUnk_68 = param_1;
+void func_ov003_021c1c70(u8 a) {
+    data_ov003_021da160->mUnk_68 = a;
     return;
 }
 

@@ -22,7 +22,7 @@ void func_ov001_021a1674(void);
 void func_ov001_021a16e4(void);
 void func_ov001_021a1820(void);
 void func_ov001_021a1838(void);
-void func_ov001_021a1858(s32 param_1, void *param_2, void *param_3);
+void func_ov001_021a1858(s32 a, void *b, void *c);
 void func_ov001_021a1964(void);
 void func_ov001_021a1978(void);
 void func_ov001_021a19ac(void);

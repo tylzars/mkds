@@ -22,12 +22,12 @@
 #include "00/code_0219a044.h"
 #include "00/code_0218e8c4.h"
 
-u32 func_ov000_0219922c(int param_1, u32 param_2, u32 param_3) {
+u32 func_ov000_0219922c(int a, u32 b, u32 c) {
     int v1;
     int v2;
-    v1 = (int) func_ov000_0219a5b0((Unk02197e8c *) param_1, param_2, param_3);
-    if (*(int *) (param_1 + 0x2c) != 0) {
-        v2 = func_ov000_02197f28((int) (param_1), (int) (v1), (u32) (param_2), (u32) (param_3), 1, 0, 0, 0);
+    v1 = (int) func_ov000_0219a5b0((Unk02197e8c *) a, b, c);
+    if (*(int *) (a + 0x2c) != 0) {
+        v2 = func_ov000_02197f28((int) (a), (int) (v1), (u32) (b), (u32) (c), 1, 0, 0, 0);
         if (v2 == 0) {
             return 0;
         }

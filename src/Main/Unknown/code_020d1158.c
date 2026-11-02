@@ -2,7 +2,7 @@
 #include "Main/Unknown/code_020b837c.h"
 #include "code_020222ec.h"
 
-void func_020d1198(Unk020d029c *param_1) {
+void func_020d1198(Unk020d029c *a) {
     Unk020224e0_c *c;
     s32 q[2][2];
 
@@ -10,13 +10,11 @@ void func_020d1198(Unk020d029c *param_1) {
     c = func_020b837c(data_021759c0->mUnk_18 == 0 ? VALUE_0 : VALUE_1);
     q[0][0] = 0x80000;
     q[0][1] = 0x60000;
-    param_1->mUnk_400 +=
-        func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, 0, q[0], 0, 1);
+    a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q[0], 0, 1);
     c = func_020b837c(2);
     q[1][0] = 0x80000;
     q[1][1] = 0x60000;
-    param_1->mUnk_400 +=
-        func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, 0, q[1], 0, 1);
+    a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, 0, q[1], 0, 1);
 }
 
 u16 *func_020d118c(void) {

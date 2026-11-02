@@ -16,28 +16,28 @@
 #include "Main/Unknown/code_02026000.h"
 #include "Main/Unknown/code_0209b000.h"
 
-u16 func_ov001_02185b50(Unk02185bb8 *param_1);
+u16 func_ov001_02185b50(Unk02185bb8 *a);
 void func_ov001_02185b1c(void);
 void func_ov001_02185af0(void);
-void func_ov001_02185ad8(u32 param_1);
-void func_ov001_02185abc(u32 param_1);
+void func_ov001_02185ad8(u32 a);
+void func_ov001_02185abc(u32 a);
 void func_ov001_02185a88(void);
 void func_ov001_02185a5c(void);
 void func_ov001_02185a28(void);
-void func_ov001_02185a14(s32 param_1);
+void func_ov001_02185a14(s32 a);
 void func_ov001_021859b8(void);
 void func_ov001_02185980(void);
 void func_ov001_02185954(void);
 void func_ov001_02185928(void);
 void func_ov001_021858fc(void);
 void func_ov001_021858c8(void);
-void func_ov001_021858b4(s32 param_1);
-void func_ov001_021858a0(s32 param_1);
+void func_ov001_021858b4(s32 a);
+void func_ov001_021858a0(s32 a);
 void func_ov001_0218585c(void);
 void func_ov001_02185828(void);
 void func_ov001_021857ec(void);
-void func_ov001_021857c0(u32 param_1, u32 param_2);
-void func_ov001_021857a4(u32 param_1);
+void func_ov001_021857c0(u32 a, u32 b);
+void func_ov001_021857a4(u32 a);
 
 #include "01/code_02185b64.h"
 

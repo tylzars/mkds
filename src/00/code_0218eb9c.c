@@ -25,10 +25,10 @@
 #include "00/code_0219218c.h"
 #include "00/code_021960a4.h"
 
-void func_ov000_0218f130(Unk0218f960 *param_1) {
-    if (param_1 != 0 && param_1->mUnk_00 != 0 && param_1->mUnk_00->mUnk_108 == 0) {
-        func_ov000_02190ff8(param_1, 1);
-        func_ov000_0218f654(param_1);
+void func_ov000_0218f130(Unk0218f960 *a) {
+    if (a != 0 && a->mUnk_00 != 0 && a->mUnk_00->mUnk_108 == 0) {
+        func_ov000_02190ff8(a, 1);
+        func_ov000_0218f654(a);
     }
     return;
 }
@@ -141,22 +141,22 @@ u32 func_ov000_0218ee1c(Unk0218f960 *a, u32 b) {
     return func_ov000_0218faac(a, b);
 }
 
-u32 func_ov000_0218ed74(Unk0218f960 *param_1, int param_2) {
+u32 func_ov000_0218ed74(Unk0218f960 *b, int c) {
     int v1;
     int v2;
     Unk0218f960_00 *a;
     int v3;
-    if ((param_1 == 0) || (a = param_1->mUnk_00, a == 0)) {
+    if ((b == 0) || (a = b->mUnk_00, a == 0)) {
         return 2;
     }
     if (a->mUnk_108 != 0) {
         return 0;
     }
     if (a->mUnk_1d8 == 4) {
-        func_ov000_02196590(param_1, data_ov000_021b23e8);
+        func_ov000_02196590(b, data_ov000_021b23e8);
         return 2;
     }
-    v1 = func_ov000_02194934(param_1, param_2, (Unk02194934 **) &v3);
+    v1 = func_ov000_02194934(b, c, (Unk02194934 **) &v3);
     if (v1 == 0) {
         return 0;
     }
@@ -166,7 +166,7 @@ u32 func_ov000_0218ed74(Unk0218f960 *param_1, int param_2) {
         *(u32 *) (v3 + 0x10) = 0;
         v2 = func_ov000_021947e4((Unk02194934 *) v3);
         if (v2 != 0) {
-            func_ov000_021948f8(param_1, (Unk02194934 *) v3);
+            func_ov000_021948f8(b, (Unk02194934 *) v3);
         }
     }
     return 0;
@@ -254,16 +254,16 @@ u32 func_ov000_0218ebe8(Unk0218f960 *a, u32 b, s32 *c) {
     return 0;
 }
 
-u32 func_ov000_0218eb9c(Unk0218f960 *param_1, u32 param_2) {
+u32 func_ov000_0218eb9c(Unk0218f960 *a, u32 b) {
     int v1;
     int v2[1];
-    if ((param_1 == 0) || (param_1->mUnk_00 == 0)) {
+    if ((a == 0) || (a->mUnk_00 == 0)) {
         return 0;
     }
-    if (param_1->mUnk_00->mUnk_108 != 0) {
+    if (a->mUnk_00->mUnk_108 != 0) {
         return 0;
     }
-    v1 = func_ov000_02194934(param_1, param_2, (Unk02194934 **) v2);
+    v1 = func_ov000_02194934(a, b, (Unk02194934 **) v2);
     if ((v1 != 0) && (*(int *) (v2[0] + 8) != 0)) {
         return 1;
     }

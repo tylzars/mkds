@@ -14,26 +14,26 @@ void func_ov003_021b7ed0(const s8 *key, u8 *buffer, s32 size) {
     }
 }
 
-void func_ov003_021b7e94(u8 *param_1, u32 param_2, u8 *param_3) {
+void func_ov003_021b7e94(u8 *a, u32 b, u8 *c) {
     int v1;
-    v1 = _s32_div_f(param_2, 2);
-    func_ov003_021b7d90((void *) param_3, (const void *) (param_1 + v1), v1);
-    func_ov003_021b7d90((void *) (param_3 + v1), (const void *) param_1, v1);
-    func_ov003_021b7d90((void *) param_1, (const void *) param_3, param_2);
+    v1 = _s32_div_f(b, 2);
+    func_ov003_021b7d90((void *) c, (const void *) (a + v1), v1);
+    func_ov003_021b7d90((void *) (c + v1), (const void *) a, v1);
+    func_ov003_021b7d90((void *) a, (const void *) c, b);
     return;
 }
 
-u32 func_ov003_021b7e70(u32 param_1, int param_2) {
+u32 func_ov003_021b7e70(u32 a, int b) {
     u32 v1;
-    if (0 < param_2) {
-        v1 = (*(UnkWordFunc *) (*(u32 *) &data_ov003_021d8a0c))(param_2);
+    if (0 < b) {
+        v1 = (*(UnkWordFunc *) (*(u32 *) &data_ov003_021d8a0c))(b);
         return v1;
     }
     return 0;
 }
 
-void func_ov003_021b7e58(u32 param_1, u32 param_2) {
-    (*(UnkFunc *) (*(u32 *) &data_ov003_021d8a18))(param_2);
+void func_ov003_021b7e58(u32 a, u32 b) {
+    (*(UnkFunc *) (*(u32 *) &data_ov003_021d8a18))(b);
     return;
 }
 

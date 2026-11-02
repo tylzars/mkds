@@ -1,23 +1,23 @@
 #include "00/code_0219210c.h"
 
-void func_ov000_0219210c(int param_1) {
-    if (*(u32 **) (param_1 + 0xc) != (u32 *) 0x0) {
-        func_ov000_021a3668((void *) (**(u32 **) (param_1 + 0xc)));
-        **(u32 **) (param_1 + 0xc) = 0;
-        func_ov000_021a3668((void *) (*(u32 *) (*(int *) (param_1 + 0xc) + 4)));
-        *(u32 *) (*(int *) (param_1 + 0xc) + 4) = 0;
-        func_ov000_021a3668((void *) (*(u32 *) (*(int *) (param_1 + 0xc) + 8)));
-        *(u32 *) (*(int *) (param_1 + 0xc) + 8) = 0;
-        func_ov000_021a3668((void *) (*(u32 *) (*(int *) (param_1 + 0xc) + 0xc)));
-        *(u32 *) (*(int *) (param_1 + 0xc) + 0xc) = 0;
-        func_ov000_021a3668((void *) (*(u32 *) (*(int *) (param_1 + 0xc) + 0x10)));
-        *(u32 *) (*(int *) (param_1 + 0xc) + 0x10) = 0;
-        func_ov000_021a3668((void *) (*(u32 *) (*(int *) (param_1 + 0xc) + 0x14)));
-        *(u32 *) (*(int *) (param_1 + 0xc) + 0x14) = 0;
-        func_ov000_021a3668((void *) (*(u32 *) (*(int *) (param_1 + 0xc) + 200)));
-        *(u32 *) (*(int *) (param_1 + 0xc) + 200) = 0;
-        func_ov000_021a3668((void *) (*(u32 *) (param_1 + 0xc)));
-        *(u32 *) (param_1 + 0xc) = 0;
+void func_ov000_0219210c(int a) {
+    if (*(u32 **) (a + 0xc) != (u32 *) 0x0) {
+        func_ov000_021a3668((void *) (**(u32 **) (a + 0xc)));
+        **(u32 **) (a + 0xc) = 0;
+        func_ov000_021a3668((void *) (*(u32 *) (*(int *) (a + 0xc) + 4)));
+        *(u32 *) (*(int *) (a + 0xc) + 4) = 0;
+        func_ov000_021a3668((void *) (*(u32 *) (*(int *) (a + 0xc) + 8)));
+        *(u32 *) (*(int *) (a + 0xc) + 8) = 0;
+        func_ov000_021a3668((void *) (*(u32 *) (*(int *) (a + 0xc) + 0xc)));
+        *(u32 *) (*(int *) (a + 0xc) + 0xc) = 0;
+        func_ov000_021a3668((void *) (*(u32 *) (*(int *) (a + 0xc) + 0x10)));
+        *(u32 *) (*(int *) (a + 0xc) + 0x10) = 0;
+        func_ov000_021a3668((void *) (*(u32 *) (*(int *) (a + 0xc) + 0x14)));
+        *(u32 *) (*(int *) (a + 0xc) + 0x14) = 0;
+        func_ov000_021a3668((void *) (*(u32 *) (*(int *) (a + 0xc) + 200)));
+        *(u32 *) (*(int *) (a + 0xc) + 200) = 0;
+        func_ov000_021a3668((void *) (*(u32 *) (a + 0xc)));
+        *(u32 *) (a + 0xc) = 0;
     }
     return;
 }

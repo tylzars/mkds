@@ -1,32 +1,32 @@
 #include "03/code_021d254c.h"
 
-void func_ov003_021d2784(int param_1, u32 param_2) {
+void func_ov003_021d2784(int c, u32 d) {
     vu32 *a;
     u32 b;
 
-    if (param_1 == 1) {
+    if (c == 1) {
         a = (vu32 *) 0x4001000;
         b = (*a & 0x1f00) >> 8;
-        *a = (*a & 0xffffe0ff) | ((param_2 | b) << 8);
+        *a = (*a & 0xffffe0ff) | ((d | b) << 8);
     } else {
         a = (vu32 *) 0x4000000;
         b = (*a & 0x1f00) >> 8;
-        *a = (*a & 0xffffe0ff) | ((param_2 | b) << 8);
+        *a = (*a & 0xffffe0ff) | ((d | b) << 8);
     }
 }
 
-void func_ov003_021d272c(int param_1, u32 param_2) {
+void func_ov003_021d272c(int c, u32 d) {
     vu32 *a;
     u32 b;
 
-    if (param_1 == 1) {
+    if (c == 1) {
         a = (vu32 *) 0x4001000;
         b = (*a & 0x1f00) >> 8;
-        *a = (*a & 0xffffe0ff) | ((~param_2 & b) << 8);
+        *a = (*a & 0xffffe0ff) | ((~d & b) << 8);
     } else {
         a = (vu32 *) 0x4000000;
         b = (*a & 0x1f00) >> 8;
-        *a = (*a & 0xffffe0ff) | ((~param_2 & b) << 8);
+        *a = (*a & 0xffffe0ff) | ((~d & b) << 8);
     }
 }
 

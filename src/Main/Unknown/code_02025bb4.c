@@ -10,37 +10,37 @@ void func_02025c94(int id, int x, int y, void *graphics) {
     entry[1] = (entry[1] & 0xfffff000U) | (y & 0xfff);
 }
 
-void func_02025c6c(u32 param_1, u32 param_2, Unk0201ea30 *param_3) {
+void func_02025c6c(u32 a, u32 b, Unk0201ea30 *c) {
     u16 *v1;
     u16 *v2;
-    v1 = (u16 *) func_0201ea30(param_3, (int) param_1);
-    v2 = (u16 *) func_0201ea30(param_3, (int) param_2);
+    v1 = (u16 *) func_0201ea30(c, (int) a);
+    v2 = (u16 *) func_0201ea30(c, (int) b);
     *v1 = *v2;
     v1[1] = v2[1];
 }
 
-void func_02025c48(u32 param_1, u32 param_2, Unk0201ea30 *param_3) {
+void func_02025c48(u32 a, u32 b, Unk0201ea30 *c) {
     int v1;
     int v2;
-    v1 = (int) func_0201ea30(param_3, (int) param_1);
-    v2 = (int) func_0201ea30(param_3, (int) param_2);
+    v1 = (int) func_0201ea30(c, (int) a);
+    v2 = (int) func_0201ea30(c, (int) b);
     *(u32 *) (v1 + 4) = *(u32 *) (v2 + 4);
 }
 
-void func_02025c1c(u32 param_1, int param_2, u32 param_3) {
+void func_02025c1c(u32 a, int b, u32 c) {
     short *v1;
-    v1 = (short *) func_0201ea30((Unk0201ea30 *) param_3, (int) param_1);
-    *(u32 *) (param_2 + 8) = 1;
-    *(short *) (param_2 + 0xc) = (short) (((int) *v1 << 0x14) >> 0x14);
-    *(short *) (param_2 + 0xe) = (short) (((int) v1[1] << 0x14) >> 0x14);
+    v1 = (short *) func_0201ea30((Unk0201ea30 *) c, (int) a);
+    *(u32 *) (b + 8) = 1;
+    *(short *) (b + 0xc) = (short) (((int) *v1 << 0x14) >> 0x14);
+    *(short *) (b + 0xe) = (short) (((int) v1[1] << 0x14) >> 0x14);
 }
 
-void func_02025bf0(u32 param_1, int param_2, u32 param_3) {
+void func_02025bf0(u32 a, int b, u32 c) {
     short *v1;
-    v1 = (short *) func_0201ea58((Unk0201ea30 *) param_3, (int) param_1);
-    *(u32 *) (param_2 + 8) = 1;
-    *(short *) (param_2 + 0xc) = (short) (((int) *v1 << 0x14) >> 0x14);
-    *(short *) (param_2 + 0xe) = (short) (((int) v1[1] << 0x14) >> 0x14);
+    v1 = (short *) func_0201ea58((Unk0201ea30 *) c, (int) a);
+    *(u32 *) (b + 8) = 1;
+    *(short *) (b + 0xc) = (short) (((int) *v1 << 0x14) >> 0x14);
+    *(short *) (b + 0xe) = (short) (((int) v1[1] << 0x14) >> 0x14);
 }
 
 void func_02025bb4(int id, int x, int y, void *graphics) {

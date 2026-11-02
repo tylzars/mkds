@@ -13,5 +13,5 @@ typedef struct Unk0202a658 {
 
 void func_0202a5a0(void);
 void func_0202a5d8(void);
-void func_0202a604(u32 param_1);
+void func_0202a604(u32 a);
 void func_0202a658(void *a);

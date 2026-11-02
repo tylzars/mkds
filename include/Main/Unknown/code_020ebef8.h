@@ -41,5 +41,5 @@ typedef struct Unk020ec194 {
     /* 0c8 */ u16 mUnk_0c8;
 } Unk020ec194;
 
-void func_020ebef8(Unk020ebef8 *param_1, Vec3 *param_2);
-void func_020ec194(Unk020ec194 *param_1);
+void func_020ebef8(Unk020ebef8 *c, Vec3 *d);
+void func_020ec194(Unk020ec194 *a);

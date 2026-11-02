@@ -63,9 +63,9 @@ u32 func_02030688(u32 a, u32 b) {
     return func_020306a4(&data_02175628[a], b);
 }
 
-void func_02030654(u32 param_1) {
+void func_02030654(u32 a) {
     func_0212d5e0((Unk0212d5f8 *) (((u32) (&data_0217c868))));
-    func_0203063c(param_1, (u32) 0);
+    func_0203063c(a, (u32) 0);
     func_0212d5e0((Unk0212d5f8 *) (((u32) (&data_0217d0a0))));
 }
 

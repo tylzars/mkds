@@ -1,9 +1,9 @@
 #include "00/code_021ae958.h"
 
-void func_ov000_021ae958(const Unk021ae3f0 *param_1, const Unk021ae87c *param_2) {
+void func_ov000_021ae958(const Unk021ae3f0 *a, const Unk021ae87c *b) {
     Unk021a998c *p;
 
-    p = func_ov000_021af090(param_1, param_2);
+    p = func_ov000_021af090(a, b);
     if (p != 0) {
         func_0200dd94();
         p->mUnk_08 = 0;

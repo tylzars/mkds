@@ -34,14 +34,14 @@ u32 func_ov000_0219b844(const u8 *values, s32 count) {
     return mask;
 }
 
-int func_ov000_0219b77c(int param_1) {
+int func_ov000_0219b77c(int c) {
     s32 a;
     s32 b;
 
-    if (param_1 == 0) {
+    if (c == 0) {
         return 0;
     }
-    switch (param_1) {
+    switch (c) {
         case 1:
             a = 0xb;
             b = -1;
@@ -80,7 +80,7 @@ int func_ov000_0219b77c(int param_1) {
             break;
     }
     func_ov000_0219d734(a, b);
-    return param_1;
+    return c;
 }
 
 u32 func_ov000_0219b704(u32 a) {
@@ -124,10 +124,10 @@ u32 func_ov000_0219b704(u32 a) {
     return a;
 }
 
-void func_ov000_0219b6c0(int param_1, u32 param_2) {
+void func_ov000_0219b6c0(int a, u32 b) {
     UnkFunc *v1;
-    if (param_1 == 0) {
-        data_ov000_021b54c8->mUnk_30 = param_2;
+    if (a == 0) {
+        data_ov000_021b54c8->mUnk_30 = b;
         func_ov000_0219b8a8(3);
         func_ov000_0219d5bc();
     } else {
@@ -135,14 +135,14 @@ void func_ov000_0219b6c0(int param_1, u32 param_2) {
     }
     v1 = *(UnkFunc **) ((int) data_ov000_021b54c8 + 0x5c);
     if (v1 != (UnkFunc *) 0x0) {
-        (*v1)(param_1, param_2, data_ov000_021b54c8->mUnk_60);
+        (*v1)(a, b, data_ov000_021b54c8->mUnk_60);
     }
     return;
 }
 
-void func_ov000_0219b694(u32 param_1, u32 param_2) {
+void func_ov000_0219b694(u32 a, u32 b) {
     func_ov000_0219b8a8((u32) (data_ov000_021b54c8->mUnk_28));
-    (**(UnkFunc **) ((int) data_ov000_021b54c8 + 100))(param_1, param_2, *(u32 *) ((int) data_ov000_021b54c8 + 0x68));
+    (**(UnkFunc **) ((int) data_ov000_021b54c8 + 100))(a, b, *(u32 *) ((int) data_ov000_021b54c8 + 0x68));
     return;
 }
 
@@ -176,8 +176,8 @@ void func_ov000_0219b5a8(u32 a, u32 b, u32 c, u32 d, u32 e) {
     }
 }
 
-void func_ov000_0219b580(u32 param_1, int param_2) {
-    if ((*(int *) (param_2 + 4) != 0x603) && (*(int *) (param_2 + 4) != 0x901)) {
+void func_ov000_0219b580(u32 a, int b) {
+    if ((*(int *) (b + 4) != 0x603) && (*(int *) (b + 4) != 0x901)) {
         func_ov000_0219b77c(3);
     }
 }

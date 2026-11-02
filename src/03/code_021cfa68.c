@@ -12,8 +12,8 @@
 #include "code_0200fd1c.h"
 #include "code_02142eac.h"
 
-int func_ov003_021cff38(Unk021425e8Func param_1, u16 param_2) {
-    return func_0214544c(param_1, (u16) (3), (u16) (0x11), (u16) (param_2), (u16) (0x1e));
+int func_ov003_021cff38(Unk021425e8Func a, u16 b) {
+    return func_0214544c(a, (u16) (3), (u16) (0x11), (u16) (b), (u16) (0x1e));
 }
 
 u16 func_ov003_021cfed8(void) {
@@ -33,7 +33,7 @@ u16 func_ov003_021cfed8(void) {
     return data_ov003_021da2a8->mUnk_5c;
 }
 
-int func_ov003_021cfe40(u16 param_1) {
+int func_ov003_021cfe40(u16 c) {
     s16 a;
     s16 i;
     u16 b;
@@ -43,7 +43,7 @@ int func_ov003_021cfe40(u16 param_1) {
     a = 0;
     b = 0;
     for (i = 0; i < 16; i++) {
-        if ((param_1 & (1 << i)) != 0) {
+        if ((c & (1 << i)) != 0) {
             a = i + 1;
             b++;
         }
@@ -52,13 +52,13 @@ int func_ov003_021cfe40(u16 param_1) {
         data_ov003_021da2a8->mUnk_58 = data_ov003_021da2a8->mUnk_58 * 0x10dcd + 0x3039;
         n = (b * (data_ov003_021da2a8->mUnk_58 & 0xff)) >> 8;
         for (j = 0; j < 16; j++) {
-            if ((param_1 & 1) != 0) {
+            if ((c & 1) != 0) {
                 if (n == 0) {
                     return (s16) (j + 1);
                 }
                 n--;
             }
-            param_1 = param_1 >> 1;
+            c = c >> 1;
         }
         return 0;
     }
@@ -100,9 +100,9 @@ s32 func_ov003_021cfd88(void) {
     return 1;
 }
 
-void func_ov003_021cfd44(Unk021425e8 *param_1) {
-    if (param_1->mUnk_02 != 0) {
-        func_ov003_021d079c(param_1->mUnk_02);
+void func_ov003_021cfd44(Unk021425e8 *a) {
+    if (a->mUnk_02 != 0) {
+        func_ov003_021d079c(a->mUnk_02);
         func_ov003_021d07b0(10);
     } else {
         s32 r = func_021435e8(func_ov003_021cfdc8);
@@ -115,7 +115,7 @@ void func_ov003_021cfd44(Unk021425e8 *param_1) {
     }
 }
 
-s32 func_ov003_021cfc4c(u32 param_1, u16 param_2, u16 param_3) {
+s32 func_ov003_021cfc4c(u32 a, u16 b, u16 c) {
     if (data_ov003_021da2a8->mUnk_40 != 1) {
         func_0200fd1c();
     }
@@ -127,10 +127,10 @@ s32 func_ov003_021cfc4c(u32 param_1, u16 param_2, u16 param_3) {
     if (data_ov003_021da2a4 != 0) {
         data_ov003_021da2a4(0x08000000, data_ov003_021d7a94, data_ov003_021da2a8->mUnk_12a0);
     }
-    data_ov003_021da2a8->mUnk_44 = param_1;
+    data_ov003_021da2a8->mUnk_44 = a;
     func_ov003_021d07b0(3);
-    data_ov003_021da2a8->mUnk_0c = param_2;
-    data_ov003_021da2a8->mUnk_32 = param_3;
+    data_ov003_021da2a8->mUnk_0c = b;
+    data_ov003_021da2a8->mUnk_32 = c;
     data_ov003_021da2a8->mUnk_18 = func_02143134();
     data_ov003_021da2a8->mUnk_34 = 0xd0;
     data_ov003_021da2a8->mUnk_36 = 0x44;
@@ -138,27 +138,27 @@ s32 func_ov003_021cfc4c(u32 param_1, u16 param_2, u16 param_3) {
     data_ov003_021da2a8->mUnk_16 = 0;
     data_ov003_021da2a8->mUnk_12 = 0;
     data_ov003_021da2a8->mUnk_0e = 1;
-    data_ov003_021da2a8->mUnk_14 = param_1 == 2 ? 1 : 0;
-    if (param_1 == 0 || param_1 == 2 || param_1 == 4) {
+    data_ov003_021da2a8->mUnk_14 = a == 2 ? 1 : 0;
+    if (a == 0 || a == 2 || a == 4) {
         return func_ov003_021d0760();
     }
     if (data_ov003_021da2a4 != 0) {
-        data_ov003_021da2a4(0x08000000, data_ov003_021d7aac, param_1);
+        data_ov003_021da2a4(0x08000000, data_ov003_021d7aac, a);
     }
     return 0;
 }
 
-void func_ov003_021cfc40(u32 param_1) {
-    *(u32 *) ((int) data_ov003_021da2a8 + 0x4c) = param_1;
+void func_ov003_021cfc40(u32 a) {
+    *(u32 *) ((int) data_ov003_021da2a8 + 0x4c) = a;
     return;
 }
 
-u8 *func_ov003_021cfc1c(u32 param_1) {
-    return func_0214461c(&data_ov003_021da2a8->mUnk_13e0, &data_ov003_021da2a8->mUnk_1c00, param_1);
+u8 *func_ov003_021cfc1c(u32 a) {
+    return func_0214461c(&data_ov003_021da2a8->mUnk_13e0, &data_ov003_021da2a8->mUnk_1c00, a);
 }
 
-s32 func_ov003_021cfb98(void *param_1) {
-    s32 r = func_02144c6c(&data_ov003_021da2a8->mUnk_13e0, param_1, &data_ov003_021da2a8->mUnk_1c00);
+s32 func_ov003_021cfb98(void *a) {
+    s32 r = func_02144c6c(&data_ov003_021da2a8->mUnk_13e0, a, &data_ov003_021da2a8->mUnk_1c00);
     if (r == 7) {
         if (data_ov003_021da2a4 != 0) {
             data_ov003_021da2a4(0x08000000, data_ov003_021d7a18);

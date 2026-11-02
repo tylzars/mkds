@@ -33,23 +33,23 @@
 void *func_ov001_02189da4(void);
 void *func_ov001_02189dbc(void);
 void func_ov001_02189dd8(void);
-void func_ov001_02189e0c(u32 param_1, u32 param_2);
-void func_ov001_02189e2c(Unk0218d87c *param_1);
-void func_ov001_02189ed8(Unk02188950 *param_1, Unk0206bcb0 *param_2);
-void func_ov001_02189fe0(Unk02188950 *param_1, Unk0206bcb0 *param_2);
-void func_ov001_0218a028(Unk0206c1ac *param_1);
-void func_ov001_0218a034(Unk02188950 *param_1);
-void func_ov001_0218a074(u32 param_1, Unk02188950 *param_2);
-void func_ov001_0218a120(Unk0218d87c *param_1);
-void func_ov001_0218a19c(Unk02188950 *param_1);
-void func_ov001_0218a1d0(int param_1);
-void func_ov001_0218a20c(Unk02188950 *param_1);
-void func_ov001_0218a250(Unk02188950 *param_1);
-void func_ov001_0218a290(int param_1);
-u32 func_ov001_0218a2b8(Unk02188950 *param_1);
+void func_ov001_02189e0c(u32 a, u32 b);
+void func_ov001_02189e2c(Unk0218d87c *a);
+void func_ov001_02189ed8(Unk02188950 *a, Unk0206bcb0 *b);
+void func_ov001_02189fe0(Unk02188950 *a, Unk0206bcb0 *b);
+void func_ov001_0218a028(Unk0206c1ac *a);
+void func_ov001_0218a034(Unk02188950 *a);
+void func_ov001_0218a074(u32 a, Unk02188950 *b);
+void func_ov001_0218a120(Unk0218d87c *a);
+void func_ov001_0218a19c(Unk02188950 *a);
+void func_ov001_0218a1d0(int a);
+void func_ov001_0218a20c(Unk02188950 *a);
+void func_ov001_0218a250(Unk02188950 *a);
+void func_ov001_0218a290(int a);
+u32 func_ov001_0218a2b8(Unk02188950 *a);
 void func_ov001_0218a2d4(void);
-void func_ov001_0218a2dc(Unk02188950 *param_1);
-void func_ov001_0218a30c(Unk02188950 *param_1);
+void func_ov001_0218a2dc(Unk02188950 *a);
+void func_ov001_0218a30c(Unk02188950 *a);
 
 #include "01/code_0218b2dc.h"
 

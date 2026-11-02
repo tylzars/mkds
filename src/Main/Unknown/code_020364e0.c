@@ -29,6 +29,6 @@ void *func_020364e8(void) {
     return data_02174e70;
 }
 
-void *func_020364e0(void *param_1) {
-    return *(void **) ((u8 *) param_1 + 12);
+void *func_020364e0(void *a) {
+    return *(void **) ((u8 *) a + 12);
 }

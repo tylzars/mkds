@@ -232,16 +232,16 @@ u32 func_ov000_02191284(Unk0218f960 *a, Unk021937c0Node *b, const u8 *c) {
     return 0;
 }
 
-int func_ov000_02191200(Unk0218f960 *param_1) {
+int func_ov000_02191200(Unk0218f960 *a) {
     int v1;
     Unk0218f960_00 *v2;
     int v3;
-    v2 = param_1->mUnk_00;
-    v1 = func_ov000_02196714(param_1, v2->mUnk_1d4, (u32 *) (&v3));
+    v2 = a->mUnk_00;
+    v1 = func_ov000_02196714(a, v2->mUnk_1d4, (u32 *) (&v3));
     if (v1 == 0) {
         if (v3 == 4) {
-            func_ov000_021965a0(param_1, 0x107u, data_ov000_021b2b48);
-            func_ov000_02190f4c(param_1, 4, 1);
+            func_ov000_021965a0(a, 0x107u, data_ov000_021b2b48);
+            func_ov000_02190f4c(a, 4, 1);
             return 4;
         }
         if (v3 == 0) {

@@ -4,13 +4,13 @@
 #include "00/code_02198a8c.h"
 #include "00/code_02197e8c.h"
 
-u32 func_ov000_02199fb0(int param_1, u32 param_2, u32 param_3) {
-    Unk02197fe8 *a = (Unk02197fe8 *) param_1;
+u32 func_ov000_02199fb0(int c, u32 d, u32 e) {
+    Unk02197fe8 *a = (Unk02197fe8 *) c;
     s32 b = a->mUnk_0c;
     if (b < 5) {
         if (a->mUnk_10 != 0) {
             func_ov000_02198514(a);
-            if (func_ov000_021982f4(a, param_2, 0, 0) == 0) {
+            if (func_ov000_021982f4(a, d, 0, 0) == 0) {
                 return 0;
             }
         } else {
@@ -21,7 +21,7 @@ u32 func_ov000_02199fb0(int param_1, u32 param_2, u32 param_3) {
         }
     } else if (b != 7) {
         func_ov000_02198514(a);
-        if (func_ov000_021981d0(a, (void *) param_3) == 0) {
+        if (func_ov000_021981d0(a, (void *) e) == 0) {
             return 0;
         }
     }
