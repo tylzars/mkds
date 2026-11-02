@@ -76,7 +76,7 @@ void func_0212b09c(void) {
 #pragma thumb on
 
 void *func_0212b090(void) {
-    return (void *) ((((u32) data_0217d408)) + (0x44u));
+    return data_0217d408->mUnk_0044;
 }
 
 #pragma thumb off

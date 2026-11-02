@@ -156,7 +156,7 @@ u32 func_020e6b28(void) {
 }
 
 u32 func_020e6b14(void) {
-    return ((((u32) data_0217b848)) + (0x18u));
+    return (u32) &data_0217b848->mUnk_18;
 }
 
 void func_020e6ab8(Unk020e6488 *p0) {

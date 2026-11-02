@@ -137,9 +137,8 @@ u32 func_ov000_0218b474(u32 arg0) {
     return value0;
 }
 
-void func_ov000_0218b464(void *p0, u32 p1, void *p2, u32 p3) {
-    u32 v2 = (((u32) p0) + (0x4cu));
-    func_ov000_0218d374((Unk021b4d24 *) v2, (s32) p1, (u32) p2, p3);
+void func_ov000_0218b464(Unk0218b668 *p0, u32 p1, void *p2, u32 p3) {
+    func_ov000_0218d374(&p0->mUnk_04c, (s32) p1, (u32) p2, p3);
 }
 
 u32 func_ov000_0218b458(int a) {

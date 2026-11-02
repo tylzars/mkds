@@ -42,7 +42,7 @@ void func_ov003_021cdb44(u32 a) {
 }
 
 void func_ov003_021cdb14(const u8 *a) {
-    func_0214d1fc((const void *) ((u16 *) (u32) a), (void *) ((u32 *) (u32) ((int) data_ov003_021da270 + 0x440)),
+    func_0214d1fc(a, data_ov003_021da270->mUnk_400.mUnk_00.mUnk_40,
                   (u32) 0x20);
     data_ov003_021da270->mUnk_400.mUnk_00.mUnk_e7 = 0;
 }

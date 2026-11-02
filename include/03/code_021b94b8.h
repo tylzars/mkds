@@ -24,6 +24,7 @@ typedef struct Unk021b94c4 {
     /* 10e */ s16 mUnk_10e;
     /* 110 */ u8 mUnk_110[6];
     /* 116 */ u8 mUnk_116;
+    /* 117 */ u8 mUnk_117;
 } Unk021b94c4;
 
 typedef struct Unk021d7c6c {

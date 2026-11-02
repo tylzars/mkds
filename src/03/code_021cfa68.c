@@ -149,7 +149,7 @@ s32 func_ov003_021cfc4c(u32 a, u16 b, u16 c) {
 }
 
 void func_ov003_021cfc40(u32 a) {
-    *(u32 *) ((int) data_ov003_021da2a8 + 0x4c) = a;
+    data_ov003_021da2a8->mUnk_4c = (s32 (*)(Unk021425e8 *)) a;
     return;
 }
 

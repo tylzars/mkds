@@ -83,18 +83,17 @@ void func_ov000_0219c80c(char *a, char *b) {
 }
 
 void func_ov000_0219c79c(char *a, char *b, void (*c)(), s32 d) {
-    u32 *v1;
+    Unk021b565c *v1;
     u32 v2;
     u64 v3;
-    strcpy((char *) ((u32 *) (u32) ((int) data_ov000_021b565c + 0x4c)), (const u8 *) a);
-    strcpy((char *) ((u32 *) (u32) ((int) data_ov000_021b565c + 0x14c)), (const u8 *) b);
+    strcpy(data_ov000_021b565c->mUnk_4c, (const u8 *) a);
+    strcpy(data_ov000_021b565c->mUnk_14c, (const u8 *) b);
     v2 = *(int *) &data_ov000_021b565c;
     v3 = func_0200f5ac();
     *(u64 *) (v2 + 0x38) = v3;
     *(u32 *) (v2 + 0x34) = 1;
-    v1 = (u32 *) (int) data_ov000_021b565c;
-    v2 = func_ov000_0219c8dc(func_ov000_0218f15c((int *) (u32) (*v1), (s8 *) (void *) (v1 + 0x13),
-                                                 (s8 *) (u32) ((int) v1 + 0x14c), 1, 0, c, 0));
+    v1 = data_ov000_021b565c;
+    v2 = func_ov000_0219c8dc(func_ov000_0218f15c(v1->mUnk_00, (s8 *) v1->mUnk_4c, (s8 *) v1->mUnk_14c, 1, 0, c, 0));
     if (v2 == 0) {
         data_ov000_021b565c->mUnk_04 = d;
     }

@@ -96,9 +96,9 @@ void *func_02017b90(Unk020176c0 *a, u32 b, u32 c) {
     if (q != 0) {
         m = c - 1;
         do {
-            a0 = (m + ((u32) q + 0x10)) & ~m;
+            a0 = (m + ((u32) (q + 1))) & ~m;
             v0 = q->mUnk_04;
-            if (v0 >= b + (a0 - ((u32) q + 0x10)) && v1 > v0) {
+            if (v0 >= b + (a0 - ((u32) (q + 1))) && v1 > v0) {
                 b0 = q;
                 v1 = v0;
                 bestaddr = a0;
@@ -142,8 +142,8 @@ void *func_02017acc(Unk020176c0 *a, u32 b, u32 c) {
             u32 t = q->mUnk_04;
 
             v0 = t;
-            a0 = (v0 + ((u32) q + 0x10) - b) & m;
-            g0 = a0 - ((u32) q + 0x10);
+            a0 = (v0 + ((u32) (q + 1)) - b) & m;
+            g0 = a0 - ((u32) (q + 1));
             if (g0 >= 0 && v1 > v0) {
                 b0 = q;
                 v1 = (u32) v0;
@@ -178,7 +178,7 @@ u32 func_020179d4(Unk020179d4 *a, Unk02017ef8 *b) {
                 q = p;
             } else {
                 if ((u32) p == b->mUnk_04) {
-                    r.mUnk_04 = p->mUnk_04 + ((u32) p + 0x10);
+                    r.mUnk_04 = p->mUnk_04 + ((u32) (p + 1));
                     func_02017ed0(&a->mUnk_00, p);
                 }
                 break;
@@ -187,7 +187,7 @@ u32 func_020179d4(Unk020179d4 *a, Unk02017ef8 *b) {
         } while (p != 0);
     }
     if (q != 0) {
-        u32 s = q->mUnk_04 + ((u32) q + 0x10);
+        u32 s = q->mUnk_04 + ((u32) (q + 1));
 
         if (s == b->mUnk_00) {
             r.mUnk_00 = (u32) q;
@@ -249,7 +249,7 @@ u32 func_020177b0(Unk020176c0 *a, void *b, u32 c) {
     }
     if (c > sz) {
         r = p->mUnk_00.mUnk_00;
-        t = sz + ((u32) q + 0x10);
+        t = sz + ((u32) (q + 1));
         if (r != 0) {
             do {
                 if ((u32) r == t) {
@@ -284,7 +284,7 @@ u32 func_020177b0(Unk020176c0 *a, void *b, u32 c) {
         }
     } else {
         r2.mUnk_00 = c + (u32) b;
-        r2.mUnk_04 = q->mUnk_04 + ((u32) q + 0x10);
+        r2.mUnk_04 = q->mUnk_04 + ((u32) (q + 1));
         q->mUnk_04 = c;
         if (func_020179d4(&a->mUnk_24, &r2) == 0) {
             q->mUnk_04 = sz;
@@ -337,7 +337,7 @@ u32 func_020176c0(Unk020176c0 *a, u32 b) {
     off = -1;
     for (p = a->mUnk_24.mUnk_00.mUnk_00; p != 0; p = p->mUnk_0c) {
         {
-            s = (u32) p + 0x10;
+            s = (u32) (p + 1);
             n = ((u32) (m - 1) + s) & ~(m - 1);
             e = p->mUnk_04 + s;
             if (n < e) {

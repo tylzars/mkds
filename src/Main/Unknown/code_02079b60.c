@@ -1,13 +1,13 @@
 #include "Main/Unknown/code_02079b60.h"
 
 void *func_02079b88(void) {
-    return (void *) ((((u32) gKartModels)) + (0x2cu));
+    return &gKartModels->mUnk_02c;
 }
 
 void *func_02079b74(void) {
-    return (void *) ((((u32) gKartModels)) + (0x98u));
+    return &gKartModels->mUnk_098;
 }
 
 void *func_02079b60(void) {
-    return (void *) ((((u32) gKartModels)) + (0x10cu));
+    return &gKartModels->mUnk_10c;
 }

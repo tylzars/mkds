@@ -53,7 +53,7 @@ u32 func_ov003_021c27e4(void) {
 }
 
 void func_ov003_021c27d0(void *a) {
-    *(u32 *) ((int) data_ov003_021da194 + 0x1e298) = (u32) a;
+    data_ov003_021da194->mUnk_1e298 = (void (*)(s32)) a;
 }
 
 u32 func_ov003_021c27c8(void) {

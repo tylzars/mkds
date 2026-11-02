@@ -355,9 +355,9 @@ void func_02129cbc(void) {
     func_0200ee74((const void *) (*(u32 *) (v2 + 0x14)), (int) (*(u32 *) (v2 + 0x10)));
     func_0214b824((const void *) (*(u32 *) (v2 + 0x14)), 0, (u32) (*(u32 *) (v2 + 0x10)));
     v1 = ((int) FindSceneFile((const char *) &data_0216ea14));
-    LoadNscrData((Unk020b47d8 **) ((int *) (u32) ((int) data_0217d400 + 0xb4)), (void *) v1);
+    LoadNscrData((Unk020b47d8 **) &data_0217d400->mUnk_b4[0], (void *) v1);
     v1 = ((int) FindSceneFile((const char *) &data_0216ea30));
-    LoadNscrData((Unk020b47d8 **) ((int *) (u32) ((int) data_0217d400 + 0xb8)), (void *) v1);
+    LoadNscrData((Unk020b47d8 **) &data_0217d400->mUnk_b4[1], (void *) v1);
     v1 = ((int) FindSceneFile((const char *) &data_0216ea4c));
     LoadNclrData((Unk020b4a44 **) v3, (void *) v1);
     func_0200ee74((const void *) (*(u32 *) (v3[0] + 0xc)), 0x80);

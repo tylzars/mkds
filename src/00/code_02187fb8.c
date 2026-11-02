@@ -7,7 +7,7 @@ void func_ov000_02187fb8(void) {
         }
         func_ov000_02186474();
         if (data_ov000_021b4cb0->mUnk_11c.mUnk_6c != 0) {
-            func_0200e084((Unk0200db5c *) ((int) data_ov000_021b4cb0 + 0x11c));
+            func_0200e084(&data_ov000_021b4cb0->mUnk_11c);
         }
         data_ov000_021b4cb0->mUnk_04 = 0xfffffff9;
     }

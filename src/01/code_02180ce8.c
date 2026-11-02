@@ -95,7 +95,7 @@ u32 func_ov001_02181194(void) {
 }
 
 u32 func_ov001_02181180(void) {
-    return ((((((u32) data_ov001_021a9b88->mUnk_00)) * (((((u32) data_ov001_021a9b88->mUnk_00)) + (0x0u))))) + (0x40u));
+    return (u32) data_ov001_021a9b88->mUnk_00 * (u32) data_ov001_021a9b88->mUnk_00 + 0x40;
 }
 
 u32 func_ov001_02181174(void) {

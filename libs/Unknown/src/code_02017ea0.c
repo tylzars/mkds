@@ -2,7 +2,7 @@
 
 void func_02017ef8(Unk02017ef8 *a, Unk02017e70 *b) {
     a->mUnk_00 = (u32) b - (u16) ((b->mUnk_02 >> 8) & 0x7f);
-    a->mUnk_04 = b->mUnk_04 + ((u32) b + 0x10);
+    a->mUnk_04 = b->mUnk_04 + (u32) (b + 1);
 }
 
 Unk02017e70 *func_02017ed0(Unk02017ea0 *a, Unk02017e70 *b) {

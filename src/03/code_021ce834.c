@@ -81,5 +81,5 @@ u32 func_ov003_021ce848(void) {
 }
 
 void func_ov003_021ce834(u32 a) {
-    *(u32 *) ((int) data_ov003_021da280 + 0x1370) = a;
+    data_ov003_021da280->mUnk_1370 = (void (*)(u32)) a;
 }
