@@ -30,7 +30,7 @@ int func_ov000_021987c8(Unk02197fe8 *a, void *b, int c, Unk02198778 *d) {
         if (a->mUnk_38.mUnk_00 == 0) {
             return 1;
         }
-        func_02134eb8(a->mUnk_38.mUnk_00, b, c);
+        memcpy(a->mUnk_38.mUnk_00, b, c);
         a->mUnk_38.mUnk_04 = c;
     }
     if (d != 0) {

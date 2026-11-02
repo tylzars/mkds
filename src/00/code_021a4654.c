@@ -22,7 +22,7 @@ s32 func_ov000_021a4654(const u8 *a, u32 b, Unk021a4654 *c, Unk021a8f84 **d) {
         c->mUnk_04 = func_ov000_0218e374((u32) a);
     }
     if (c->mUnk_04 == -1) {
-        if (func_0213a074(a, data_ov000_021b4418) != 0) {
+        if (strcmp(a, data_ov000_021b4418) != 0) {
             e = func_ov000_021a8f84(a);
             if (e == 0) {
                 return 0;
@@ -59,13 +59,13 @@ void func_ov000_021a471c(Unk021a471c *a, const u8 *b) {
     s32 c;
     s32 d;
 
-    c = func_0213a434(b) + 1;
+    c = strlen(b) + 1;
     d = 0x800 - a->mUnk_800;
     if (c > d) {
         c = d;
     }
     if (c != 0) {
-        func_02134eb8(&a->mUnk_000[a->mUnk_800], b, c);
+        memcpy(&a->mUnk_000[a->mUnk_800], b, c);
         a->mUnk_800 += c;
         a->mUnk_000[a->mUnk_800 - 1] = 0;
     }

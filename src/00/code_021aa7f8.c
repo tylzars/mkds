@@ -117,7 +117,7 @@ void func_ov000_021aa7f8(u8 *a, const u8 *b, Unk021a998c_0c *c) {
     u32 *e;
     e = (u32 *) c->mUnk_31c;
     func_ov000_021abd2c(e);
-    func_ov000_021abca0(e, b, func_0213a434(b));
+    func_ov000_021abca0(e, b, strlen(b));
     func_ov000_021abca0(e, c->mUnk_000->mUnk_20, 0x30);
     func_ov000_021abca0(e, c->mUnk_008, 0x20);
     func_ov000_021abca0(e, c->mUnk_028, 0x20);

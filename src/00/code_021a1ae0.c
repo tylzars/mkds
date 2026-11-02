@@ -168,7 +168,7 @@ u32 func_ov000_021a1e40(u32 param_1, u32 param_2, u16 param_3, u8 *param_4, u32 
         if (data_ov000_021b566c->mUnk_10 != 0) {
             func_ov000_021a3c14((Unk021a3a18 *) data_ov000_021b566c->mUnk_10, (s8 *) param_4, param_5, &a);
         }
-    } else if (func_02134d30(param_4, data_ov000_021b400c, 6) == 0) {
+    } else if (memcmp(param_4, data_ov000_021b400c, 6) == 0) {
         func_ov000_0219a7e4(param_4, param_5, &a);
     } else {
         if (c == 0xfe) {
@@ -402,7 +402,7 @@ void func_ov000_021a260c(u32 param_1, const void *param_2, u32 param_3, u32 para
     }
     if (param_2 != 0) {
         n = func_ov000_021a0ed8(v1, -1, 0x20, 3);
-        n = 0x100 - n - func_0213a434(data_ov000_021b41e8);
+        n = 0x100 - n - strlen(data_ov000_021b41e8);
         data_ov000_021b5674 = func_ov000_021a372c(4, n);
         if (data_ov000_021b5674 == 0) {
             func_ov000_021a1a38(11, -80001);

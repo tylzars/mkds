@@ -88,7 +88,7 @@ s32 func_ov000_02194a0c(Unk0218f960 *a, Unk021937c0Node *b, const u8 *c) {
     if (func_ov000_02196870(a, c, 1) != 0) {
         return 4;
     }
-    if (func_0213a038(c, data_ov000_021b3564, 5) != 0) {
+    if (strncmp(c, data_ov000_021b3564, 5) != 0) {
         func_ov000_021965a0(a, 1, data_ov000_021b356c);
         func_ov000_02190f4c(a, 3, 1);
         return 3;

@@ -206,7 +206,7 @@ s32 func_ov003_021bd338(void) {
     u8 *e;
     u8 *f;
     a = 1;
-    func_0213a2d0((char *) data_ov003_021d8dc8.mUnk_00, data_ov003_021d8fb0.mUnk_00);
+    strcpy((char *) data_ov003_021d8dc8.mUnk_00, data_ov003_021d8fb0.mUnk_00);
     switch (data_ov003_021d8fb0.mUnk_2c) {
         case 0:
             data_ov003_021d8dc8.mUnk_20 = 0;
@@ -222,9 +222,9 @@ s32 func_ov003_021bd338(void) {
             e = data_ov003_021d9014;
             f = data_ov003_021d8dc8.mUnk_28[0];
             for (; b < 4; b++) {
-                func_02134eb8(d, e, 0x20);
+                memcpy(d, e, 0x20);
                 c[0x20] = 0;
-                switch (func_0213a434(d)) {
+                switch (strlen(d)) {
                     case 0:
                         break;
                     case 5:
@@ -340,7 +340,7 @@ s32 func_ov003_021bd59c(u8 *p) {
         switch (d) {
             case 0x201:
                 __clear(&data_ov003_021d8fb0, 0x20);
-                func_02134eb8(&data_ov003_021d8fb0, f, e);
+                memcpy(&data_ov003_021d8fb0, f, e);
                 b = 1;
                 break;
             case 0x202:
@@ -379,7 +379,7 @@ s32 func_ov003_021bd59c(u8 *p) {
             case 0x207:
             case 0x208:
             case 0x209:
-                func_02134de0(data_ov003_021d9014 + (d - 0x206) * 0x28, 0, 0x20);
+                memset(data_ov003_021d9014 + (d - 0x206) * 0x28, 0, 0x20);
                 if (data_ov003_021d8fb0.mUnk_5c == 1) {
                     u8 *k;
                     s32 j;
@@ -389,12 +389,12 @@ s32 func_ov003_021bd59c(u8 *p) {
                         f++;
                     }
                 } else {
-                    func_02134eb8(data_ov003_021d9014 + (d - 0x206) * 0x28, f, e);
+                    memcpy(data_ov003_021d9014 + (d - 0x206) * 0x28, f, e);
                 }
                 break;
             case 0x20a:
                 __clear(&data_ov003_021d90ac, 0x48);
-                func_02134eb8(&data_ov003_021d90ac, f, e);
+                memcpy(&data_ov003_021d90ac, f, e);
                 break;
         }
         f = func_ov003_021bdc08(&a, c, &d, &e);
@@ -415,7 +415,7 @@ s32 func_ov003_021bd768(u8 *a, void *b) {
     c[0] &= 0xfd;
     func_ov003_021bd884(d);
     data_ov003_021d8c54 = *(Unk021d8c54 *) d;
-    if (func_02134d30(c, d, 6) <= 0) {
+    if (memcmp(c, d, 6) <= 0) {
         *(Unk021d8c54 *) a = *(Unk021d8c54 *) d;
         *(Unk021d8c54 *) (a + 6) = *(Unk021d8c54 *) c;
     } else {

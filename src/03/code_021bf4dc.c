@@ -17,7 +17,7 @@
 u8 *func_ov003_021bf650(const u8 *param_0) {
     u32 a;
 
-    func_0213a228(data_ov003_021da110, param_0, 0x3f);
+    strncpy(data_ov003_021da110, param_0, 0x3f);
     if (param_0[5] == 0x78) {
         return data_ov003_021da110;
     }

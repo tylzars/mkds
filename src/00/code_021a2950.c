@@ -51,12 +51,12 @@ u32 func_ov000_021a2b9c(u32 a, u8 *b, void *c) {
     if (*(void **) &data_ov000_021b569c[i * 12] != 0) {
         func_ov000_021a3704(4, *(u32 *) &data_ov000_021b569c[i * 12], 0);
     }
-    *(void **) &data_ov000_021b569c[i * 12] = func_ov000_021a372c(4, func_0213a434(b) + 1);
+    *(void **) &data_ov000_021b569c[i * 12] = func_ov000_021a372c(4, strlen(b) + 1);
     if (*(void **) &data_ov000_021b569c[i * 12] == 0) {
         func_ov000_021a1a38(0xb, 0xfffec77f);
         return 0;
     }
-    func_0213a2d0(*(char **) &data_ov000_021b569c[i * 12], b);
+    strcpy(*(char **) &data_ov000_021b569c[i * 12], b);
     *(void **) &data_ov000_021b56a0[i * 12] = c;
     func_ov000_021a4b84(a, b);
     return a;
@@ -84,12 +84,12 @@ u32 func_ov000_021a2ad0(u32 a, u8 *b, void *c) {
     if (*(void **) &data_ov000_021b569c[i * 12] != 0) {
         func_ov000_021a3704(4, *(u32 *) &data_ov000_021b569c[i * 12], 0);
     }
-    *(void **) &data_ov000_021b569c[i * 12] = func_ov000_021a372c(4, func_0213a434(b) + 1);
+    *(void **) &data_ov000_021b569c[i * 12] = func_ov000_021a372c(4, strlen(b) + 1);
     if (*(void **) &data_ov000_021b569c[i * 12] == 0) {
         func_ov000_021a1a38(0xb, 0xfffec77f);
         return 0;
     }
-    func_0213a2d0(*(char **) &data_ov000_021b569c[i * 12], b);
+    strcpy(*(char **) &data_ov000_021b569c[i * 12], b);
     *(void **) &data_ov000_021b56a0[i * 12] = c;
     func_ov000_021a4b84(a, b);
     return a;

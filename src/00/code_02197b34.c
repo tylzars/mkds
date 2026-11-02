@@ -9,7 +9,7 @@ s8 *func_ov000_02197b34(s8 *a, const s8 *b) {
     s32 f;
     s32 g;
     s32 i;
-    c = func_0213a434((const u8 *) data_ov000_021b3e6c);
+    c = strlen((const u8 *) data_ov000_021b3e6c);
     d = func_ov000_02197ca0(b);
     e = 0;
     f = 0;
@@ -148,19 +148,19 @@ void func_ov000_02197d20(int *a, int b, int c) {
     if (c > a[2] - b) {
         func_0213442c(data_ov000_021b3ec8, data_ov000_021b3ebc, 0, 0x50);
     }
-    func_02134df8((u8 *) a[0] + b, (u8 *) a[0] + b + c, a[2] - b - c);
+    memmove((u8 *) a[0] + b, (u8 *) a[0] + b + c, a[2] - b - c);
     a[2] = a[2] - c;
 }
 
 void func_ov000_02197d84(int *a, u32 b, int c) {
     if (b != 0 && c != 0) {
         if (c == -1) {
-            c = func_0213a434((const u8 *) b);
+            c = strlen((const u8 *) b);
         }
         if (a[2] + c > a[1]) {
             func_0213442c(data_ov000_021b3eec, data_ov000_021b3ebc, 0, 0x40);
         }
-        func_02134eb8((void *) (a[0] + a[2]), (const void *) b, c);
+        memcpy((void *) (a[0] + a[2]), (const void *) b, c);
         a[2] = a[2] + c;
     }
 }

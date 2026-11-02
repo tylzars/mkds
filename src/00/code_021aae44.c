@@ -105,7 +105,7 @@ u32 func_ov000_021aaf38(Unk021a998c_0c *a, Unk021aaf38 *b) {
             } while (i < b->mUnk_04);
         }
         if (i + 1 >= b->mUnk_04 || ((u8 *) d)[i] != 0 || ((u8 *) d)[i + 1] != 0x30 ||
-            func_02134d30(a->mUnk_43c, (u8 *) d + b->mUnk_04 - a->mUnk_450, a->mUnk_450) != 0) {
+            memcmp(a->mUnk_43c, (u8 *) d + b->mUnk_04 - a->mUnk_450, a->mUnk_450) != 0) {
             r = 2;
         }
     }
@@ -195,7 +195,7 @@ s32 func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
             q = p;
             do {
                 s = *v2;
-                if (func_02134d30(q, s, func_0213a434(s)) == 0) {
+                if (memcmp(q, s, strlen(s)) == 0) {
                     switch (i) {
                         case 1:
                         case 2:

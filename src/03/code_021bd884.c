@@ -93,7 +93,7 @@ s32 func_ov003_021bd938(const u8 *p, u32 a, u8 *b, const void *c) {
         func_ov003_021bcadc(b, f, e, c, 0x10);
         e -= 8;
     } else {
-        func_02134eb8(b, f, e);
+        memcpy(b, f, e);
     }
     return e;
 }

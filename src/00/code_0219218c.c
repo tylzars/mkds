@@ -201,7 +201,7 @@ u32 func_ov000_021923b4(Unk0218f960 *p, s32 a, const s8 *b) {
             }
             break;
         case 0x709:
-            if (func_0213a434((const u8 *) b) != 2) {
+            if (strlen((const u8 *) b) != 2) {
                 func_ov000_02196590(p, data_ov000_021b3028);
                 return 2;
             }

@@ -62,7 +62,7 @@ s32 func_ov000_021aa1e0(Unk021a998c_0c *a, u8 *b) {
             f = 0x14;
             break;
     }
-    if (func_02134d30(b + 5 + e, c, f) != 0) {
+    if (memcmp(b + 5 + e, c, f) != 0) {
         a->mUnk_429 = 9;
     }
     func_ov000_021aa398(a->mUnk_2b8, 8);

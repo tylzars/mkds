@@ -2,7 +2,7 @@
 
 u32 func_ov000_0218a658(u32 param_1) {
     int v1;
-    v1 = func_02134d30((const u8 *) (param_1), (const u8 *) &data_ov000_021b2168, 8);
+    v1 = memcmp((const u8 *) (param_1), (const u8 *) &data_ov000_021b2168, 8);
     if (v1 == 0) {
         return 1;
     }

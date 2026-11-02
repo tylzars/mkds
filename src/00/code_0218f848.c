@@ -20,7 +20,7 @@ u32 func_ov000_0218f848(Unk0218f960 *a, s32 b, s32 c) {
     if (p.mUnk_00 == 0) {
         return 1;
     }
-    func_02134de0(p.mUnk_00, 0, 0x490);
+    memset(p.mUnk_00, 0, 0x490);
     p.mUnk_00->mUnk_000[0] = 0;
     p.mUnk_00->mUnk_418 = 0;
     p.mUnk_00->mUnk_100 = 1;

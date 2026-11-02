@@ -18,7 +18,7 @@ void func_ov000_0218db48(void *param_1, void *param_2, s32 param_3) {
     a->mUnk_00 = a->mUnk_00 + 1;
     b = a->mUnk_00 - 1;
     if (param_3 < b) {
-        func_02134df8(func_ov000_0218dbf8(a, param_3 + 1), func_ov000_0218dbf8(a, param_3), a->mUnk_08 * (b - param_3));
+        memmove(func_ov000_0218dbf8(a, param_3 + 1), func_ov000_0218dbf8(a, param_3), a->mUnk_08 * (b - param_3));
     }
     func_ov000_0218dd18(a, param_2, param_3);
 }

@@ -61,7 +61,7 @@ void *func_ov003_021bb328(s32 a, s32 b) {
     s32 c = a * b;
     void *d = (void *) data_ov003_021d8bd4(c);
     if (d != 0) {
-        func_02134de0(d, 0, c);
+        memset(d, 0, c);
     }
     return d;
 }
@@ -190,7 +190,7 @@ u32 func_ov003_021bb070(u32 *param_1) {
 }
 
 u32 func_ov003_021bb058(Unk021d8dc8 *param_1) {
-    func_02134eb8((u32 *) ((u32 *) (u32) (param_1)), (const void *) &data_ov003_021d8dc8, 0xe8);
+    memcpy((u32 *) ((u32 *) (u32) (param_1)), (const void *) &data_ov003_021d8dc8, 0xe8);
     return 1;
 }
 

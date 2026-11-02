@@ -144,7 +144,7 @@ void func_ov000_021ac650(u16 *a, u16 *b, u16 *c, s32 d, s32 e, u16 *f, u16 *g, u
     func_0214d168(h + e, 0, k);
     func_ov000_021acbf8(i, h, f, d);
     func_ov000_021ace14(a, a, i, d);
-    func_02134df8(a, a + e, k);
+    memmove(a, a + e, k);
     func_0214d168(a + d - e, 0, l);
     m = func_ov000_021acc8c(a, f, d);
     switch (m) {
@@ -256,7 +256,7 @@ void func_ov000_021ac900(u16 *a, u16 *b, u16 *c, u16 *d, s32 e, u16 *f) {
             }
             p = h + j;
             while (k < e) {
-                func_02134df8(g + 1, g, (e * 2 - 1) * 2);
+                memmove(g + 1, g, (e * 2 - 1) * 2);
                 n = ((u64) p[0] << 48) + ((u64) p[-1] << 32) + ((u64) p[-2] << 16) + (u64) p[-3];
                 l = n / m;
                 if (l > 0xffff) {

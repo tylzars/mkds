@@ -131,7 +131,7 @@ void func_ov003_021ce4d4(u32 a) {
         g = 0;
         f = 0;
         for (i = 0; i < 0x10; i++) {
-            if (func_02134d30(o->mUnk_1300[i].mUnk_00, data_ov003_021d66bc, 6) != 0) {
+            if (memcmp(o->mUnk_1300[i].mUnk_00, data_ov003_021d66bc, 6) != 0) {
                 if (o->mUnk_1300[i].mUnk_06 != 0) {
                     f = 1;
                 } else {

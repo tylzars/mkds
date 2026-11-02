@@ -32,14 +32,14 @@ void func_ov003_021ce5b8(Unk021ce5b8 *a) {
             Unk021ce5b8_10 *e;
 
             e = a->mUnk_10[i];
-            if (func_02134d30(e->mUnk_0c, data_ov003_021d66c4, 8) != 0) {
+            if (memcmp(e->mUnk_0c, data_ov003_021d66c4, 8) != 0) {
                 continue;
             }
             if ((e->mUnk_15 & 1) == 0) {
                 continue;
             }
             for (j = 0, p = q->mUnk_1300[0].mUnk_00; j < 16; j++) {
-                if (func_02134d30(e->mUnk_04, p, 6) == 0) {
+                if (memcmp(e->mUnk_04, p, 6) == 0) {
                     if (q->mUnk_1300[j].mUnk_06 != 0) {
                         break;
                     }
@@ -69,14 +69,14 @@ void func_ov003_021ce6ac(Unk021ce5b8 *a) {
 
         e = a->mUnk_10[i];
         func_0200ee3c(e, 0xc0);
-        if (func_02134d30(e->mUnk_0c, data_ov003_021d66c4, 8) != 0) {
+        if (memcmp(e->mUnk_0c, data_ov003_021d66c4, 8) != 0) {
             continue;
         }
         j = 0;
         d = data_ov003_021da280;
         p = d->mUnk_1300[0].mUnk_00;
         for (; j < 16; j++) {
-            if (func_02134d30(e->mUnk_04, p, 6) == 0) {
+            if (memcmp(e->mUnk_04, p, 6) == 0) {
                 if (d->mUnk_1300[j].mUnk_06 != 0) {
                     goto next;
                 }
@@ -93,7 +93,7 @@ void func_ov003_021ce6ac(Unk021ce5b8 *a) {
         k = 0;
         q = d->mUnk_1300[0].mUnk_00;
         for (; k < 16; k++) {
-            if (func_02134d30(q, data_ov003_021d66bc, 6) == 0) {
+            if (memcmp(q, data_ov003_021d66bc, 6) == 0) {
                 func_0214d1fc(e->mUnk_04, d->mUnk_1300[k].mUnk_00, 6);
                 data_ov003_021da280->mUnk_1300[k].mUnk_06 = (e->mUnk_15 & 1) ? 1 : 0;
                 goto next;

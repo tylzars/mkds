@@ -95,13 +95,13 @@ s32 func_ov000_02194590(Unk0218f960 *a, Unk02193f2cNode *b) {
             if (t != 0) {
                 return t;
             }
-            w = func_02139f70(b->mUnk_18, data_ov000_021b34c8);
+            w = strstr(b->mUnk_18, data_ov000_021b34c8);
             if (w == 0) {
                 break;
             }
             *w = 0;
             q = b->mUnk_18;
-            if (func_0213a038(q, data_ov000_021b34f8, 7) == 0) {
+            if (strncmp(q, data_ov000_021b34f8, 7) == 0) {
                 b->mUnk_14 = b->mUnk_14 + 1;
                 if (b->mUnk_14 > 1) {
                     func_ov000_02196590(a, data_ov000_021b3508);
@@ -111,7 +111,7 @@ s32 func_ov000_02194590(Unk0218f960 *a, Unk02193f2cNode *b) {
                 if (t != 0) {
                     return t;
                 }
-            } else if (func_0213a038(q, data_ov000_021b3500, 6) != 0) {
+            } else if (strncmp(q, data_ov000_021b3500, 6) != 0) {
                 func_ov000_02196590(a, data_ov000_021b352c);
                 return 3;
             }
@@ -159,11 +159,11 @@ s32 func_ov000_021943f0(Unk0218f960 *a, Unk02193f2cNode *b) {
         b->mUnk_00 = 0x6a;
         return 0;
     }
-    p = func_02139f70(b->mUnk_18, data_ov000_021b34c8);
+    p = strstr(b->mUnk_18, data_ov000_021b34c8);
     if (p != 0) {
         *p = 0;
         q = b->mUnk_18;
-        if (func_0213a038(q, data_ov000_021b34d0, 6) == 0) {
+        if (strncmp(q, data_ov000_021b34d0, 6) == 0) {
             if (func_ov000_021967b4(q, data_ov000_021b34d8, c0, 0x10) == 0) {
                 b->mUnk_00 = 0x6a;
                 return 0;
@@ -178,8 +178,8 @@ s32 func_ov000_021943f0(Unk0218f960 *a, Unk02193f2cNode *b) {
                 return 0;
             }
             func_02135014(c4, data_ov000_021b34f0, r->mUnk_177, r->mUnk_1a0, v);
-            func_ov000_0218e0fc(c4, func_0213a434(c4), c3);
-            if (func_0213a074(c2, c3) != 0) {
+            func_ov000_0218e0fc(c4, strlen(c4), c3);
+            if (strcmp(c2, c3) != 0) {
                 func_ov000_02190b80(a, b->mUnk_28, data_ov000_021b34f8);
                 func_ov000_02190b80(a, b->mUnk_28, data_ov000_021b34c8);
                 b->mUnk_00 = 0x6a;
@@ -449,7 +449,7 @@ Unk02193f2cNode *func_ov000_02193eac(Unk0218f960 *param_1, u32 param_2, u32 para
     if (b == 0) {
         return 0;
     }
-    func_02134de0(b, 0, 0x40);
+    memset(b, 0, 0x40);
     b->mUnk_00 = 0x64;
     b->mUnk_04 = param_3;
     b->mUnk_08 = -1;

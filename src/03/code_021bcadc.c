@@ -30,7 +30,7 @@ int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
     do {
         *p++ = *q++;
     } while (--k != 0);
-    func_02134eb8(param_1, param_2 + 8, param_3 - 1);
+    memcpy(param_1, param_2 + 8, param_3 - 1);
     for (h = 5; h >= 0; h--) {
         for (i = f; i > 0; i--) {
             t = (s64) f * h + i;
@@ -58,7 +58,7 @@ int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
             }
         }
     }
-    if (func_02134d30((u8 *) d, a, 8) != 0) {
+    if (memcmp((u8 *) d, a, 8) != 0) {
         e = 0;
     }
     return e;
@@ -86,7 +86,7 @@ int func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
         return 0;
     }
     g = func_ov003_021bc7a8(c, param_4, param_5 << 3);
-    func_02134eb8(param_1 + 8, param_2, param_3);
+    memcpy(param_1 + 8, param_2, param_3);
     p = a;
     q = (u8 *) d;
     k = 8;

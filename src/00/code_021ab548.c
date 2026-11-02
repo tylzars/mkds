@@ -23,7 +23,7 @@ u32 func_ov000_021ab548(int param_1, u32 param_2) {
         v4 = *(u32 **) (param_1 + 0x7e8);
         v3 = v4;
         do {
-            v5 = func_0213a074((const u8 *) (*(u32 *) *v3), (const u8 *) param_2);
+            v5 = strcmp((const u8 *) (*(u32 *) *v3), (const u8 *) param_2);
             if (v5 == 0) {
                 return v4[v2];
             }

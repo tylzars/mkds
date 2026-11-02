@@ -32,8 +32,8 @@ void func_ov000_0218da9c(int *param_1, int param_2) {
     }
     v1 = *param_1 - 1;
     if (param_2 < v1) {
-        func_02134df8(func_ov000_0218dbf8(param_1, param_2), func_ov000_0218dbf8(param_1, param_2 + 1),
-                      param_1[2] * (v1 - param_2));
+        memmove(func_ov000_0218dbf8(param_1, param_2), func_ov000_0218dbf8(param_1, param_2 + 1),
+                param_1[2] * (v1 - param_2));
     }
     *param_1 = *param_1 - 1;
 }

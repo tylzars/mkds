@@ -43,7 +43,7 @@ s32 func_ov000_0218d430(u32 *param_1, u32 *param_2) {
     s32 result;
     a = func_ov000_0218b30c((Unk0218af28 *) *param_1, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
     b = func_ov000_0218b30c((Unk0218af28 *) *param_2, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
-    result = func_0213a074(a, b);
+    result = strcmp(a, b);
     if (data_ov000_021b4d24->mUnk_49c == 0) {
         result = -result;
     }
@@ -269,9 +269,9 @@ void func_ov000_0218cfb8(Unk021b4d24 *p, const u8 *a, const u8 *b, const u8 *c, 
         p->mUnk_000 = 1;
         func_ov000_0218d180((u32) p);
         func_ov000_0218b3f4(p);
-        func_0213a2d0((char *) p->mUnk_00c, a);
-        func_0213a2d0((char *) p->mUnk_030, b);
-        func_0213a2d0((char *) p->mUnk_054, c);
+        strcpy((char *) p->mUnk_00c, a);
+        strcpy((char *) p->mUnk_030, b);
+        strcpy((char *) p->mUnk_054, c);
         p->mUnk_488 = f;
         p->mUnk_48c = 0;
         if (f == 0) {
@@ -302,11 +302,11 @@ void func_ov000_0218cf30(Unk021b4d24 *p) {
     u8 *q;
     if (n > 0) {
         s = data_ov000_021b21ec;
-        if ((u32) n > func_0213a434(s)) {
+        if ((u32) n > strlen(s)) {
             q = p->mUnk_07c;
             t = data_ov000_021b21ec;
-            if (func_0213a038(q, t, func_0213a434(t)) == 0) {
-                func_ov000_0218c45c(p, q + func_0213a434(s));
+            if (strncmp(q, t, strlen(t)) == 0) {
+                func_ov000_0218c45c(p, q + strlen(s));
                 p->mUnk_488(p, 5, *(u32 *) data_ov000_021b4d1c, p->mUnk_494);
             }
         }
@@ -336,7 +336,7 @@ s32 func_ov000_0218ce14(Unk021b4d24 *p) {
     Unk021a8f84 *e;
     h = func_ov000_0218cef4((s8 *) p->mUnk_00c, 0x14);
     if (data_ov000_021b4d20 != 0) {
-        func_0213a2d0((char *) v2, data_ov000_021b4d20);
+        strcpy((char *) v2, data_ov000_021b4d20);
     } else {
         func_02135014(v2, data_ov000_021b2264, p->mUnk_00c, h);
     }
@@ -369,8 +369,8 @@ void func_ov000_0218cdd8(u8 **a, const u8 *b, s32 *c) {
     if (b == 0) {
         b = data_ov000_021b2260;
     }
-    n = func_0213a434(b) + 1;
-    func_02134eb8(*a, b, n);
+    n = strlen(b) + 1;
+    memcpy(*a, b, n);
     *c = *c + n;
     *a = *a + n;
 }

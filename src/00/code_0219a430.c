@@ -67,7 +67,7 @@ u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
     if (f == 0) {
         return 1;
     }
-    func_02134de0(f, 0, 0x44);
+    memset(f, 0, 0x44);
     f->mUnk_00 = -1;
     f->mUnk_3c = d;
     f->mUnk_38 = c;

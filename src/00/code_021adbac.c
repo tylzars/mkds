@@ -35,7 +35,7 @@ s32 func_ov000_021adbf4(const u8 *a, s32 b) {
         if (s->mUnk_60 != 0) {
             r = func_ov000_021adc64(s->mUnk_5c, s->mUnk_60, a, b);
             if (r < s->mUnk_60) {
-                func_02134df8(s->mUnk_5c, s->mUnk_5c + r, s->mUnk_60 - r);
+                memmove(s->mUnk_5c, s->mUnk_5c + r, s->mUnk_60 - r);
                 s->mUnk_60 -= r;
                 return 0;
             }
@@ -222,7 +222,7 @@ void func_ov000_021adf30(u32 a, Unk021a998c *b) {
         e = b->mUnk_40;
         d -= a;
         b->mUnk_44 = d;
-        func_02134df8(e, e + a, d);
+        memmove(e, e + a, d);
     }
     func_0200fcb4(c);
     if (b->mUnk_08 != 0xa && b->mUnk_08 != 0xb && b->mUnk_44 == 0) {

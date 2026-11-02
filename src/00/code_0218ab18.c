@@ -65,7 +65,7 @@ void func_ov000_0218ab90(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
 
 void func_ov000_0218ab18(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
     s32 a;
-    if (func_02139f70((u8 *) v1, data_ov000_021b2180) != 0) {
+    if (strstr((u8 *) v1, data_ov000_021b2180) != 0) {
         a = 1;
     } else {
         a = 0;

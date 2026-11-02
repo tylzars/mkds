@@ -144,13 +144,13 @@ void func_ov003_021d1490(void *param_1, ...) {
 }
 
 u32 func_ov003_021d1440(const u8 *param_1, const u8 *param_2, s32 param_3) {
-    s32 a = func_0213a434(param_1);
-    s32 b = func_0213a434(param_2);
+    s32 a = strlen(param_1);
+    s32 b = strlen(param_2);
 
     if (a < param_3 || b < param_3) {
         return 0;
     }
-    if (func_02134d30(param_1 + (a - param_3), param_2 + (b - param_3), param_3) == 0) {
+    if (memcmp(param_1 + (a - param_3), param_2 + (b - param_3), param_3) == 0) {
         return 1;
     }
     return 0;

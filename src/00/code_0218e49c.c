@@ -38,9 +38,9 @@ void *func_ov000_0218e880(u8 *a) {
     if (a == 0) {
         return 0;
     }
-    b = func_ov000_021a3690(func_0213a434(a) + 1);
+    b = func_ov000_021a3690(strlen(a) + 1);
     if (b != 0) {
-        func_0213a2d0(b, a);
+        strcpy(b, a);
     }
     return b;
 }

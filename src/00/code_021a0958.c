@@ -272,7 +272,7 @@ s32 func_ov000_021a09d0(struct Unk0218f960 *a, u32 b, u32 c, const u8 *d) {
     e = g + i;
     g[i] = 0;
     if (d != 0) {
-        n = func_0213a434(d);
+        n = strlen(d);
         func_0214d1fc(d, e, n);
         e[n] = 0;
     }
@@ -285,15 +285,15 @@ s32 func_ov000_021a0958(u8 *a, const u8 *b, s32 c) {
     s32 i;
     s32 n;
 
-    e = func_02139ffc(b, 0);
+    e = strchr(b, 0);
     for (i = 0; i < c; i++) {
-        p = func_02139ffc(b, 0x2f);
+        p = strchr(b, 0x2f);
         if (p == 0) {
             return -1;
         }
         b = p + 1;
     }
-    p = func_02139ffc(b, 0x2f);
+    p = strchr(b, 0x2f);
     if (p == 0) {
         p = e;
     }

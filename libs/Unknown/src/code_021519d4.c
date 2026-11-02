@@ -202,7 +202,7 @@ u32 func_02151a64(const u8 *a) {
     if (func_02151698(a + 0x40) == 0) {
         return 0;
     }
-    if (func_02134d30(a + 0xc0, data_usa_0216172c, 4) != 0) {
+    if (memcmp(a + 0xc0, data_usa_0216172c, 4) != 0) {
         if (func_02151620(a + 0xc4) == 0) {
             return 0;
         }
@@ -214,7 +214,7 @@ u32 func_02151a64(const u8 *a) {
             return 0;
         }
     }
-    if (func_02134d30(a + 0xc8, data_usa_0216172c, 4) != 0) {
+    if (memcmp(a + 0xc8, data_usa_0216172c, 4) != 0) {
         if (func_02151620(a + 0xc8) == 0 && func_02151620(a + 0xcc) == 0) {
             return 0;
         }

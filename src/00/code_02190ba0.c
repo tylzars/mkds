@@ -311,7 +311,7 @@ u32 func_ov000_02190ba0(void *a, Unk021906e4 *b, const void *c, s32 d) {
             return 1;
         }
     }
-    func_02134eb8(e + g, c, d);
+    memcpy(e + g, c, d);
     e[g + d] = 0;
     b->mUnk_08 += d;
     b->mUnk_04 = f;

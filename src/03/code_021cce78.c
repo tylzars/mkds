@@ -43,7 +43,7 @@ void func_ov003_021ccf30(Unk021ccf30 *a) {
             j = 0;
             e = v1;
             for (; j < 0x14; j++) {
-                if (func_02134d30(p->mUnk_04, e->mUnk_20, 6) == 0) {
+                if (memcmp(p->mUnk_04, e->mUnk_20, 6) == 0) {
                     break;
                 }
                 e++;
@@ -52,7 +52,7 @@ void func_ov003_021ccf30(Unk021ccf30 *a) {
                 j = 0;
                 e = v1;
                 for (; j < 0x14; j++) {
-                    if (func_02134d30(e->mUnk_20, data_ov003_021d6638, 6) == 0) {
+                    if (memcmp(e->mUnk_20, data_ov003_021d6638, 6) == 0) {
                         break;
                     }
                     e++;
@@ -81,7 +81,7 @@ void func_ov003_021ccf30(Unk021ccf30 *a) {
                         break;
                     }
                     if (v2.mUnk_04[k].mUnk_00 == 0xdd && v2.mUnk_04[k].mUnk_01 >= 4 &&
-                        func_02134d30(v2.mUnk_04[k].mUnk_04, data_ov003_021d6634, 4) == 0) {
+                        memcmp(v2.mUnk_04[k].mUnk_04, data_ov003_021d6634, 4) == 0) {
                         q->mUnk_28 = 2;
                         break;
                     }

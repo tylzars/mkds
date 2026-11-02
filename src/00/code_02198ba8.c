@@ -45,7 +45,7 @@ int func_ov000_02198c08(Unk02197fe8 *a) {
 int func_ov000_02198c58(Unk02197fe8 *a, u8 *b, int c) {
     int d;
     u8 *e;
-    if (c < 2 || func_02134d30(b, data_ov000_021b3fa4, 2) != 0) {
+    if (c < 2 || memcmp(b, data_ov000_021b3fa4, 2) != 0) {
         if (func_ov000_02198714((u32 *) a, (u32) b, c) == 0) {
             return 0;
         }

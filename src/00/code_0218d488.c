@@ -92,13 +92,13 @@ s32 func_ov000_0218d644(const s8 *a, s32 b, u8 *c, u32 *d) {
     if (b < 7) {
         return 1;
     }
-    if (func_02134d30(c + 4, data_ov000_021b4db4, 4) != 0) {
+    if (memcmp(c + 4, data_ov000_021b4db4, 4) != 0) {
         return 1;
     }
     if (*(u16 *) (c + 2) != data_ov000_021b4dac.mUnk_06) {
         return 1;
     }
-    if (func_02134d30((const u8 *) a, data_ov000_021b22b0, 3) != 0) {
+    if (memcmp((const u8 *) a, data_ov000_021b22b0, 3) != 0) {
         return 1;
     }
     v = (a[3] << 24) & 0xff000000;
@@ -112,7 +112,7 @@ s32 func_ov000_0218d644(const s8 *a, s32 b, u8 *c, u32 *d) {
 void func_ov000_0218d6e4(const u8 *a) {
     u8 v1[0x40];
     s8 c;
-    func_0213a2d0((char *) data_ov000_021b4d6c, a);
+    strcpy((char *) data_ov000_021b4d6c, a);
     data_ov000_021b4dac.mUnk_00 = -1;
     func_ov000_0218e8b8();
     c = data_ov000_021b4d2c[0];
@@ -125,8 +125,8 @@ void func_ov000_0218d6e4(const u8 *a) {
         if (data_ov000_021b4dac.mUnk_00 != -1) {
             u32 n;
             data_ov000_021b4dac.mUnk_0c = 9;
-            n = func_0213a434(a);
-            func_02134eb8(data_ov000_021b4dbd, a, n + 1);
+            n = strlen(a);
+            memcpy(data_ov000_021b4dbd, a, n + 1);
             data_ov000_021b4dac.mUnk_4c = n + 6;
             func_ov000_0218d788();
             data_ov000_021b4dac.mUnk_54 = 0;

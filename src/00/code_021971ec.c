@@ -20,7 +20,7 @@ s32 func_ov000_02197220(s8 *a, s32 b) {
     s32 d;
     data_ov000_021b3b30 = data_ov000_021b3b88;
     func_ov000_021971ec(a, b);
-    func_0213a2d0((char *) (a + b), data_ov000_021b3b4c);
+    strcpy((char *) (a + b), data_ov000_021b3b4c);
     if (b + 7 > 0) {
         do {
             d = func_ov000_0218e420(data_ov000_021b3b2c, a + c, b + 7 - c, 0);
@@ -76,7 +76,7 @@ s32 func_ov000_0219735c(const s8 *a, u32 b) {
         func_ov000_0218e53c(data_ov000_021b3b2c);
         return 5;
     }
-    e = func_ov000_021971c8((int) d, func_0213a434((const u8 *) d));
+    e = func_ov000_021971c8((int) d, strlen((const u8 *) d));
     e = func_02135014((u8 *) g, data_ov000_021b3e0c, e, data_ov000_021b4f84);
     func_ov000_0218e0fc((const u8 *) g, e, (u8 *) f);
     data_ov000_021b3b30 = data_ov000_021b3b98;

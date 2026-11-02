@@ -16,7 +16,7 @@ typedef struct Unk021352e0 {
     /* 0c */ s32 mUnk_0c;
 } Unk021352e0;
 
-// Strings passed to func_0213a2d0 by func_02135c80 and func_02136850.
+// Strings passed to strcpy by func_02135c80 and func_02136850.
 extern u8 data_0216ee80[];
 extern u8 data_0216ee88[];
 extern u8 data_0216ee90[];
@@ -25,7 +25,7 @@ extern u8 data_0216ee98[];
 extern u8 data_0216eea0[];
 extern u8 data_0216eea8[];
 extern u8 data_0216eeac[];
-// String passed to func_0213a2d0 by func_02136850.
+// String passed to strcpy by func_02136850.
 extern u8 data_0216eeb0[];
 
 int func_021352e0(void *(*f)(void *, const u8 *, u32), void *a, const u8 *b, char *c);

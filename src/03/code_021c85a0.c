@@ -172,7 +172,7 @@ void func_ov003_021c8a60(u32 param_1, int param_2) {
                 x = _s32_div_f(x, 2);
             }
             func_0214d168(y, 0, 0x21);
-            func_02134de0(y, 0x2a, x);
+            memset(y, 0x2a, x);
             func_ov003_021c876c(y, param_2);
             return;
         case 3:

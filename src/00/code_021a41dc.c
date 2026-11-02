@@ -10,10 +10,10 @@ void func_ov000_021a4418(Unk021a4a08 *a, Unk021a471c *b, const u8 *c, s32 d) {
     u8 e[0x44];
 
     if (d >= 1 && d <= 0x41 && ((s8 *) c)[d - 1] == 0) {
-        func_0213a2d0((char *) e, c);
-        func_ov000_021a44a0(a->mUnk_044, func_0213a434(a->mUnk_044), e, d - 1);
+        strcpy((char *) e, c);
+        func_ov000_021a44a0(a->mUnk_044, strlen(a->mUnk_044), e, d - 1);
         func_ov000_021a4578(e, d - 1, &b->mUnk_000[b->mUnk_800]);
-        b->mUnk_800 += func_0213a434(&b->mUnk_000[b->mUnk_800]) + 1;
+        b->mUnk_800 += strlen(&b->mUnk_000[b->mUnk_800]) + 1;
     }
 }
 

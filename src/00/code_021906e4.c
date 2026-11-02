@@ -17,7 +17,7 @@
 #include "code_02139f70.h"
 
 u32 func_ov000_02190b80(void *p0, void *p1, const void *p2) {
-    return func_ov000_02190ba0(p0, p1, p2, func_0213a434(p2));
+    return func_ov000_02190ba0(p0, p1, p2, strlen(p2));
 }
 
 u32 func_ov000_02190b58(void *a, void *b, u32 c) {
@@ -110,7 +110,7 @@ u32 func_ov000_02190988(Unk0218f960 *a, Unk02190988 *b, const u8 *c, s32 d) {
 }
 
 u32 func_ov000_02190968(Unk0218f960 *p0, Unk02190988 *p1, const u8 *p2) {
-    u32 v6 = func_0213a434(p2);
+    u32 v6 = strlen(p2);
     return func_ov000_02190988(p0, p1, p2, v6);
 }
 
@@ -215,7 +215,7 @@ u32 func_ov000_021906e4(Unk0218f960 *a, s32 b, Unk021906e4 *c, u32 *d, s32 e, co
     } while (n != 0 && l != 0);
     if (e != 0) {
         if (m > 0) {
-            func_02134df8(i, i + m, l + 1);
+            memmove(i, i + m, l + 1);
             j -= m;
         }
     } else {

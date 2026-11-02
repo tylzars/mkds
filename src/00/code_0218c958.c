@@ -88,10 +88,10 @@ s32 func_ov000_0218ca58(Unk021b4d24 *p, const u8 *a, const u8 *b, u32 c, u32 d) 
     if (b == 0) {
         b = data_ov000_021b2260;
     }
-    if (func_0213a434(a) > 0x100) {
+    if (strlen(a) > 0x100) {
         return 6;
     }
-    if (func_0213a434(b) > 0x100) {
+    if (strlen(b) > 0x100) {
         return 6;
     }
     r = func_ov000_0218ce14(p);

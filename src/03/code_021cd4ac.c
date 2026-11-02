@@ -173,13 +173,12 @@ void func_ov003_021cd790(s32 a) {
     Unk021cd5e0_entry *q = &o->mUnk_000[a].mUnk_00;
     o->mUnk_400.mUnk_00 = *q;
     o->mUnk_400.mUnk_f4 = a;
-    if (func_02134d30(q->mUnk_c0, data_ov003_021d6684, 4) != 0) {
+    if (memcmp(q->mUnk_c0, data_ov003_021d6684, 4) != 0) {
         data_ov003_021da270->mUnk_400.mUnk_f5 = 0;
     } else {
         data_ov003_021da270->mUnk_400.mUnk_f5 = 1;
     }
-    if (func_02134d30(q->mUnk_c8, data_ov003_021d6684, 4) != 0 ||
-        func_02134d30(q->mUnk_c8 + 4, data_ov003_021d6684, 4) != 0) {
+    if (memcmp(q->mUnk_c8, data_ov003_021d6684, 4) != 0 || memcmp(q->mUnk_c8 + 4, data_ov003_021d6684, 4) != 0) {
         data_ov003_021da270->mUnk_400.mUnk_f6 = 0;
     } else {
         data_ov003_021da270->mUnk_400.mUnk_f6 = 1;

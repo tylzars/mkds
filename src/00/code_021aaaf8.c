@@ -45,7 +45,7 @@ void func_ov000_021aab74(Unk021a998c_0c *a, u8 *b) {
     n = b[0x22];
     c = b + 0x23;
     s = a->mUnk_000;
-    if (s != 0 && n == 0x20 && func_02134d30(s->mUnk_00, c, 0x20) == 0) {
+    if (s != 0 && n == 0x20 && memcmp(s->mUnk_00, c, 0x20) == 0) {
         a->mUnk_004 = 1;
     } else {
         if (s != 0) {

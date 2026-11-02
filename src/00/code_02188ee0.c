@@ -36,7 +36,7 @@ u8 func_ov000_02188ee0(Unk02188ec0 *v1) {
         }
         for (i = 0; i < v1->mUnk_d10; i++) {
             if (b->mUnk_0a == v1->mUnk_300[i].mUnk_03 &&
-                func_0213a038(b->mUnk_0c, v1->mUnk_300[i].mUnk_04, b->mUnk_0a) == 0) {
+                strncmp(b->mUnk_0c, v1->mUnk_300[i].mUnk_04, b->mUnk_0a) == 0) {
                 if (n == 0) {
                     r = v1->mUnk_300[i].mUnk_01;
                 } else {

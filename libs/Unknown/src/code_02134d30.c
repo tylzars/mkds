@@ -44,7 +44,7 @@ void func_02134f18(u8 *p, int c, u32 n) {
     }
 }
 
-void *func_02134eb8(void *dst, const void *src, u32 n) {
+void *memcpy(void *dst, const void *src, u32 n) {
     u8 *p = dst;
     const u8 *s = src;
 
@@ -54,7 +54,7 @@ void *func_02134eb8(void *dst, const void *src, u32 n) {
     return dst;
 }
 
-void *func_02134df8(void *a, const void *b, u32 n) {
+void *memmove(void *a, const void *b, u32 n) {
     if (b >= a) {
         u8 *d;
         const u8 *s;
@@ -73,12 +73,12 @@ void *func_02134df8(void *a, const void *b, u32 n) {
     return a;
 }
 
-void *func_02134de0(void *p, int c, u32 n) {
+void *memset(void *p, int c, u32 n) {
     func_02134f18(p, c, n);
     return p;
 }
 
-void *func_02134db0(const u8 *p, int c, u32 n) {
+void *memchr(const u8 *p, int c, u32 n) {
     u8 ch = c;
 
     for (; n != 0; n--) {
@@ -101,7 +101,7 @@ void *func_02134d80(const void *a, int v, u32 n) {
     return 0;
 }
 
-int func_02134d30(const u8 *a, const u8 *b, u32 n) {
+int memcmp(const u8 *a, const u8 *b, u32 n) {
     for (; n != 0; n--) {
         if (*a++ != *b++) {
             return a[-1] < b[-1] ? -1 : 1;

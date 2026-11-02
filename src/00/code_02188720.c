@@ -254,7 +254,7 @@ s32 func_ov000_02188bc0(Unk02188408Entry0xc0 *p, s32 n, Unk02188408Entry24 *t) {
         h = p->mUnk_0a;
         do {
             if ((u8) h == t->mUnk_03) {
-                if (func_0213a038(p->mUnk_0c, t->mUnk_04, h) == 0) {
+                if (strncmp(p->mUnk_0c, t->mUnk_04, h) == 0) {
                     return t->mUnk_01;
                 }
             }

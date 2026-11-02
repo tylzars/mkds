@@ -290,7 +290,7 @@ u32 func_0215119c(const u8 *a, u32 b, u32 c, const u8 *d) {
     if (func_0215122c(b, c, (void *) d) == 0) {
         return 0;
     }
-    if (func_02134d30(a, d, c) == 0) {
+    if (memcmp(a, d, c) == 0) {
         return 1;
     }
     return 0;

@@ -7,7 +7,7 @@ double func_0213a450(const u8 *s) {
     return func_0213a460(s, 0);
 }
 
-u32 func_0213a434(const u8 *s) {
+u32 strlen(const u8 *s) {
     u32 n = -1;
     u32 c;
 
@@ -18,7 +18,7 @@ u32 func_0213a434(const u8 *s) {
     return n;
 }
 
-char *func_0213a2d0(char *dst, const u8 *src) {
+char *strcpy(char *dst, const u8 *src) {
     u8 *p;
     u32 a;
     u32 b;
@@ -75,7 +75,7 @@ char *func_0213a2d0(char *dst, const u8 *src) {
     return dst;
 }
 
-u8 *func_0213a228(u8 *dst, const u8 *src, u32 n) {
+u8 *strncpy(u8 *dst, const u8 *src, u32 n) {
     u8 *p;
 
     p = dst;
@@ -90,7 +90,7 @@ u8 *func_0213a228(u8 *dst, const u8 *src, u32 n) {
     return dst;
 }
 
-char *func_0213a1c0(char *dst, const u8 *src) {
+char *strcat(char *dst, const u8 *src) {
     u8 *p;
     u8 *q;
 
@@ -105,7 +105,7 @@ char *func_0213a1c0(char *dst, const u8 *src) {
     return dst;
 }
 
-int func_0213a074(const u8 *a, const u8 *b) {
+int strcmp(const u8 *a, const u8 *b) {
     u32 c;
     u32 d;
     u32 x;
@@ -183,7 +183,7 @@ slow:
     return 0;
 }
 
-int func_0213a038(const u8 *a, const u8 *b, u32 n) {
+int strncmp(const u8 *a, const u8 *b, u32 n) {
     u32 c;
     u32 d;
 
@@ -202,7 +202,7 @@ int func_0213a038(const u8 *a, const u8 *b, u32 n) {
     return 0;
 }
 
-const u8 *func_02139ffc(const u8 *s, int c) {
+const u8 *strchr(const u8 *s, int c) {
     u32 d;
     const u8 *p;
 
@@ -223,7 +223,7 @@ const u8 *func_02139ffc(const u8 *s, int c) {
     return p - 1;
 }
 
-u8 *func_02139f70(const u8 *a, const u8 *b) {
+u8 *strstr(const u8 *a, const u8 *b) {
     u32 d;
     const u8 *p;
     u32 c;

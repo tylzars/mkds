@@ -42,7 +42,7 @@ int func_02134bd4(u16 *dst, const u8 *src, u32 n) {
     int len;
     int r;
 
-    len = func_0213a434(src);
+    len = strlen(src);
     if (dst != 0) {
         for (i = 0; i < n; i++) {
             if (*src != 0) {
@@ -84,7 +84,7 @@ int func_02134b18(u8 *dst, const u16 *src, u32 n) {
         if (i + len > n) {
             break;
         }
-        func_0213a228(dst + i, p, len);
+        strncpy(dst + i, p, len);
         i += len;
         if (i > n) {
             break;
@@ -237,7 +237,7 @@ u32 func_02134540(const u8 *a, u32 b, u32 c, Unk0213c94c *d) {
                 }
             }
             if (l != 0) {
-                func_02134eb8(d->mUnk_24, a, l);
+                memcpy(d->mUnk_24, a, l);
                 a += l;
                 n -= l;
                 d->mUnk_24 += l;

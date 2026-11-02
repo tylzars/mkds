@@ -140,7 +140,7 @@ s32 func_ov000_02192e04(Unk0218f960 *param_1, Unk021937c0Node *param_2, const u8
     if (func_ov000_02196870(param_1, param_3, 1) != 0) {
         return 4;
     }
-    if (func_0213a038(param_3, data_ov000_021b31b0, 4) != 0) {
+    if (strncmp(param_3, data_ov000_021b31b0, 4) != 0) {
         func_ov000_021965a0(param_1, 1, data_ov000_021b31b8);
         func_ov000_02190f4c(param_1, 3, 1);
         return 3;

@@ -82,7 +82,7 @@ u32 func_ov000_0218e974(Unk0218f960 *a, s32 b, const u8 *c, const u8 *d) {
             g++;
         } while (*g != 0);
     }
-    if (b == o->mUnk_214 && func_0213a074(e, o->mUnk_218) == 0 && func_0213a074(f, o->mUnk_318) == 0) {
+    if (b == o->mUnk_214 && strcmp(e, o->mUnk_218) == 0 && strcmp(f, o->mUnk_318) == 0) {
         return 0;
     }
     o->mUnk_214 = b;

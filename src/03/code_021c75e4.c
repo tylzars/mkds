@@ -40,7 +40,7 @@ void func_ov003_021c7748(void) {
     func_ov003_021c20dc(&c, 0);
     a.mUnk_00[c](data_ov003_021da1fc->mUnk_08);
     d = data_ov003_021da1fc;
-    if (func_02134d30(d->mUnk_08, data_ov003_021d73ac, 3) != 0) {
+    if (memcmp(d->mUnk_08, data_ov003_021d73ac, 3) != 0) {
         d->mUnk_14 = 3;
     } else {
         func_0214d168(d->mUnk_08, 0, 0xc);

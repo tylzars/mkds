@@ -81,15 +81,15 @@ void func_ov000_0219c1e4(void *a, void *b, s32 c, const char *d, const char *e, 
     func_ov000_021a2870(&data_ov000_021b54c8->mUnk_33c, &data_ov000_021b54c8->mUnk_1c, &data_ov000_021b54c8->mUnk_00,
                         &data_ov000_021b54c8->mUnk_04, data_ov000_021b4e84, data_ov000_021b4f84, h, i);
     func_ov000_021a31a4(&data_ov000_021b54c8->mUnk_7a0);
-    if (func_0213a434((const u8 *) d) < 0x100) {
-        n = func_0213a434((const u8 *) d);
+    if (strlen((const u8 *) d) < 0x100) {
+        n = strlen((const u8 *) d);
     } else {
         n = 0xff;
     }
     func_0214d1fc(d, data_ov000_021b4e84, n);
     data_ov000_021b4e84[n] = 0;
-    if (func_0213a434((const u8 *) e) < 0x100) {
-        m = func_0213a434((const u8 *) e);
+    if (strlen((const u8 *) e) < 0x100) {
+        m = strlen((const u8 *) e);
     } else {
         m = 0xff;
     }
@@ -258,8 +258,8 @@ s32 func_ov000_0219bdec(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32
     if (a == 0 || *a == 0) {
         n = 0;
     } else {
-        if (func_0213a434((const u8 *) a) < 0x20) {
-            n = func_0213a434((const u8 *) a);
+        if (strlen((const u8 *) a) < 0x20) {
+            n = strlen((const u8 *) a);
         } else {
             n = 0x1f;
         }

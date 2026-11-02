@@ -12,7 +12,7 @@ Unk021ab5e4 *func_ov000_021ab684(const u8 *a) {
     i = 0;
     e = data_ov000_021b61f4;
     for (; i < 4; i++) {
-        if (e->mUnk_5a != 0 && func_02134d30(e->mUnk_00, a, 0x20) == 0) {
+        if (e->mUnk_5a != 0 && memcmp(e->mUnk_00, a, 0x20) == 0) {
             e->mUnk_50 = func_0200f5ac() >> 16;
             return e;
         }

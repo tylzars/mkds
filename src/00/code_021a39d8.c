@@ -130,7 +130,7 @@ void func_ov000_021a3c14(Unk021a3a18 *a, s8 *b, s32 c, void *d) {
                             c = 0x20;
                         }
                         k.mUnk_000[0] = 5;
-                        func_02134eb8(&k.mUnk_000[k.mUnk_800], p6, c);
+                        memcpy(&k.mUnk_000[k.mUnk_800], p6, c);
                         k.mUnk_800 += c;
                         break;
                     case 4:

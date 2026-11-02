@@ -40,7 +40,7 @@ u32 func_ov000_0219a28c(Unk02197e8c *a, Unk02197fe8 **b, u32 c, u32 d) {
     }
     e = func_ov000_0219a3e8();
     if (e != 0) {
-        func_02134de0(e, 0, 0xa0);
+        memset(e, 0, 0xa0);
         e->mUnk_00 = c;
         e->mUnk_04 = d;
         e->mUnk_08 = a;

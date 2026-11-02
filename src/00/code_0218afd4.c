@@ -13,7 +13,7 @@ u32 func_ov000_0218b1e0(const u8 *s) {
     t = data_ov000_021b21ac;
     p = t.mUnk_00;
     for (i = 0; i < 2; i++) {
-        if (func_0213a074(s, *p) == 0) {
+        if (strcmp(s, *p) == 0) {
             return 0;
         }
         p++;
@@ -124,7 +124,7 @@ void func_ov000_0218b010(Unk0218af28 *e, s8 *v1, s32 n) {
                 func_ov000_0218b380(e, t.mUnk_02, (u8 *) v1);
                 v1 += d;
                 n -= d;
-                p += func_0213a434((u8 *) p) + 1;
+                p += strlen((u8 *) p) + 1;
                 c++;
             }
             b++;

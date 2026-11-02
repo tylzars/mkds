@@ -634,8 +634,8 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
             }
             break;
     }
-    r = a - func_0213a434(p) - 1;
-    func_02134bd4(r, p, func_0213a434(p));
+    r = a - strlen(p) - 1;
+    func_02134bd4(r, p, strlen(p));
     return r;
 }
 
@@ -789,12 +789,12 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
                         }
                     } else if (s.mUnk_02 != 0) {
                         m = s.mUnk_0c;
-                        bq = func_02134db0(bp, 0, m);
+                        bq = memchr(bp, 0, m);
                         if (bq != 0) {
                             m = bq - bp;
                         }
                     } else {
-                        m = func_0213a434(bp);
+                        m = strlen(bp);
                     }
                     n = func_02134bd4(buf, bp, m);
                     if (n < 0) {

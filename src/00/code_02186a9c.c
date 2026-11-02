@@ -14,7 +14,7 @@ s32 func_ov000_02186a9c(Unk021868d0 *a, const u8 *b) {
     s32 e;
     s32 f;
     c = &a->mUnk_928;
-    d = func_0213a434(b);
+    d = strlen(b);
     e = c->mUnk_08 - c->mUnk_04;
     if (d > e) {
         if (func_ov000_02186998(a, c, d - e + 1) == 0) {
@@ -44,8 +44,8 @@ s32 func_ov000_02186b0c(Unk021868d0 *a, const u8 *b, const void *c, s32 d) {
     }
     a->mUnk_924 = a->mUnk_924 + 1;
     g = func_ov000_021882f8(c, d, 0, 0);
-    h = func_0213a434((const u8 *) f);
-    i = g + (h - 2 + func_0213a434(b));
+    h = strlen((const u8 *) f);
+    i = g + (h - 2 + strlen(b));
     j = e->mUnk_08 - e->mUnk_04;
     if (i > j) {
         if (func_ov000_02186998(a, e, i - j + 1) == 0) {
@@ -71,19 +71,19 @@ s32 func_ov000_02186bd4(Unk021868d0 *a, const u8 *b, const u8 *c) {
     s8 h;
     s32 i;
     d = &a->mUnk_928;
-    e = func_0213a434(c);
-    f = func_0213a434((const u8 *) data_ov000_021b12a0);
-    e = e + (f - 4 + func_0213a434(b));
+    e = strlen(c);
+    f = strlen((const u8 *) data_ov000_021b12a0);
+    e = e + (f - 4 + strlen(b));
     i = d->mUnk_08 - d->mUnk_04;
     if (e + 1 > i) {
         if (func_ov000_02186998(a, d, e - i + 1) == 0) {
             return 1;
         }
     }
-    p = (s8 *) func_02139f70((const u8 *) d->mUnk_00, data_ov000_021b1230);
+    p = (s8 *) strstr((const u8 *) d->mUnk_00, data_ov000_021b1230);
     g = (char *) p + 2;
     h = p[2];
-    func_02134df8(g + e, g, func_0213a434((const u8 *) g) + 1);
+    memmove(g + e, g, strlen((const u8 *) g) + 1);
     i = func_0200d9e0(g, e + 1, data_ov000_021b12a0, b, c);
     g[i] = h;
     d->mUnk_04 = d->mUnk_04 + e;
@@ -101,9 +101,9 @@ s32 func_ov000_02186c74(Unk021868d0 *a) {
     } else {
         c = data_ov000_021b1300;
     }
-    d = func_0213a434(a->mUnk_0a8);
-    e = func_0213a434((const u8 *) c);
-    f = d + (e - 4 + func_0213a434(a->mUnk_0ac));
+    d = strlen(a->mUnk_0a8);
+    e = strlen((const u8 *) c);
+    f = d + (e - 4 + strlen(a->mUnk_0ac));
     if (func_ov000_02186a38(a, &a->mUnk_928, f + 0x400) != 1) {
         return 1;
     }

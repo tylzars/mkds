@@ -123,7 +123,7 @@ s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
                     func_ov000_02196590(param_1, data_ov000_021b32e0);
                     return 1;
                 }
-                func_02134de0(c, 0, 0x20);
+                memset(c, 0, 0x20);
                 c->mUnk_00 = param_2->mUnk_1c;
                 if (a->mUnk_418 == 0x201) {
                     c->mUnk_04 = a->mUnk_1a0;
@@ -160,7 +160,7 @@ s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
                     func_ov000_02196590(param_1, data_ov000_021b32e0);
                     return 1;
                 }
-                func_02134de0(c, 0, 0x204);
+                memset(c, 0, 0x204);
                 c->mUnk_00 = param_2->mUnk_1c;
                 g = func_ov000_02190ed4(param_1, b, c, param_2, 0);
                 if (g != 0) {
@@ -221,7 +221,7 @@ s32 func_ov000_02193b88(Unk0218f960 *param_1, Unk02193f2cNode *param_2, const u8
         param_3 = data_ov000_021b3348;
     }
     if (param_4 == -1) {
-        param_4 = func_0213a434(param_3);
+        param_4 = strlen(param_3);
     }
     func_02135014(a, data_ov000_021b334c, param_4);
     b = func_ov000_02190968(param_1, (Unk02190988 *) param_2, a);
@@ -263,7 +263,7 @@ s32 func_ov000_02193c74(Unk0218f960 *param_1, Unk02193f2cNode *param_2, u32 para
     if (param_4 == 0) {
         func_0213442c(data_ov000_021b337c, data_ov000_021b333c, 0, 0x341);
     }
-    b = func_0213a434(param_4);
+    b = strlen(param_4);
     {
         Unk02193c74 a = {0};
         a.mUnk_10 = param_3;

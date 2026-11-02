@@ -196,7 +196,7 @@ u32 func_ov000_0218ec44(Unk0218f960 *a, s32 b, Unk0218ec44 *c) {
         return 2;
     }
     if (o->mUnk_108 != 0) {
-        func_02134de0(c, 0, 0x210);
+        memset(c, 0, 0x210);
         return 0;
     }
     if (c == 0) {

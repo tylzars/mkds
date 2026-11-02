@@ -25,8 +25,8 @@ s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const u8 *d, const u8 *e,
         o = *a;
     }
     func_021384cc(func_ov000_0218e8c4());
-    func_0213a2d0((char *) o->mUnk_004, d);
-    func_0213a2d0((char *) o->mUnk_044, e);
+    strcpy((char *) o->mUnk_004, d);
+    strcpy((char *) o->mUnk_044, e);
     o->mUnk_0c0 = c;
     r = 0;
     o->mUnk_0ac = 0;

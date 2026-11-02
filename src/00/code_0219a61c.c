@@ -7,6 +7,6 @@ void func_ov000_0219a61c(const u8 **a, s32 *b) {
         *a = data_ov000_021b3fc8;
         *b = 0;
     } else if (*b == -1) {
-        *b = func_0213a434(*a) + 1;
+        *b = strlen(*a) + 1;
     }
 }

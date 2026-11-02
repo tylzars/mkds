@@ -3,7 +3,7 @@
 
 Input: lines `<address> <Name>` (e.g. `0x02012345 GX_SetGraphicsMode`), for functions of the main module now
 written in C. For each one whose symbols.txt entry is a placeholder (`func_<addr>`, or its mangled form in C++ code):
-  - every declaration of `func_<addr>` in src/ and include/ takes the real name, keeping that file's own parameter
+  - every declaration of `func_<addr>` in src/, include/ and libs/ takes the real name, keeping that file's own parameter
     and return types (so callers compile exactly as before); in C++ files it becomes `extern "C"`;
   - every other use of `func_<addr>` is renamed;
   - the symbols.txt entry is renamed.
@@ -31,7 +31,7 @@ def main():
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--symbols", default=str(SYMS), help="symbols.txt of the module (default: main)")
     ap.add_argument("--sources-only", action="store_true",
-                    help="input lines are `<address> <old symbol> <new name>`; only src/ and include/ change")
+                    help="input lines are `<address> <old symbol> <new name>`; only src/, include/ and libs/ change")
     a = ap.parse_args()
     pairs = [ln.split() for ln in Path(a.names).read_text().splitlines() if ln.strip()]
     symfile = Path(a.symbols)
@@ -62,7 +62,7 @@ def main():
             continue
         renames[m.group(0)] = name
         syms[i] = name + syms[i][len(old):]
-    files = [p for d in ("src", "include") for p in (ROOT / d).rglob("*") if p.suffix in (".cpp", ".hpp", ".h", ".c")]
+    files = [p for d in ("src", "include", "libs") for p in (ROOT / d).rglob("*") if p.suffix in (".cpp", ".hpp", ".h", ".c")]
     changed = 0
     for p in files:
         text = p.read_text()

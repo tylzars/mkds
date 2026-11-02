@@ -181,7 +181,7 @@ void func_02047f7c(s32 a, const u8 *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
     s32 h;
 
     p = &data_021759c8->mUnk_8c8;
-    func_0213a228(p->mUnk_00, b, 0x80);
+    strncpy(p->mUnk_00, b, 0x80);
     p->mUnk_8c = a;
     p->mUnk_80 = c;
     p->mUnk_84 = d;
@@ -315,7 +315,7 @@ void func_02048050(int a, int b) {
         case 14:
         case 16:
         case 18:
-            func_0213a228(c, (const u8 *) data_usa_021543e0[(s32) a].mUnk_00, 0x80);
+            strncpy(c, (const u8 *) data_usa_021543e0[(s32) a].mUnk_00, 0x80);
             break;
     }
     if (c[0] != 0) {

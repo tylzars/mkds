@@ -23,7 +23,7 @@ s32 func_ov000_02196240(Unk0218f960 *a, Unk02196240 **b, u32 c) {
         func_ov000_02196590(a, data_ov000_021b35f8);
         return 1;
     }
-    func_02134de0(d, 0, 0x144);
+    memset(d, 0, 0x144);
     d->mUnk_000 = c;
     d->mUnk_004 = -1;
     d->mUnk_008 = 0;
@@ -137,7 +137,7 @@ s32 func_ov000_021964e4(Unk0218f960 *a, Unk021937c0Node *b, const u8 *c) {
     if (func_ov000_02196870(a, c, 1) != 0) {
         return 4;
     }
-    if (func_0213a038(c, data_ov000_021b39c4, 4) != 0) {
+    if (strncmp(c, data_ov000_021b39c4, 4) != 0) {
         func_ov000_021965a0(a, 1, data_ov000_021b39cc);
         func_ov000_02190f4c(a, 3, 1);
         return 3;

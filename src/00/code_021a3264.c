@@ -129,45 +129,45 @@ s32 func_ov000_021a3530(const u8 *a, u8 *b, const u8 *c, int d) {
     if (b == 0) {
         return -1;
     }
-    p = func_02139ffc(c, d);
+    p = strchr(c, d);
     if (p == 0) {
         return -1;
     }
     k = K1;
     while (1) {
-        if (func_0213a038(p + 1, a, func_0213a434(a)) == 0 && d == *(s8 *) (func_0213a434(a) + p + k)) {
+        if (strncmp(p + 1, a, strlen(a)) == 0 && d == *(s8 *) (strlen(a) + p + k)) {
             break;
         }
-        q = func_02139ffc(p + 1, d);
+        q = strchr(p + 1, d);
         if (q == 0) {
             return -1;
         }
-        p = func_02139ffc(q + 1, d);
+        p = strchr(q + 1, d);
         if (p == 0) {
             return -1;
         }
     }
-    p = func_02139ffc(p + 1, d);
+    p = strchr(p + 1, d);
     if (p == 0) {
         return -1;
     }
-    q = func_02139ffc(p + 1, d);
+    q = strchr(p + 1, d);
     if (q != 0) {
         n = q - (p + 1);
     } else {
-        n = func_0213a434(p + 1);
+        n = strlen(p + 1);
     }
-    func_0213a228(b, p + 1, n);
+    strncpy(b, p + 1, n);
     b[n] = 0;
     return n;
 }
 
 u32 func_ov000_021a360c(void *param_1, void *param_2, void *param_3, u32 param_4) {
-    func_ov000_021a363c(param_1, param_2, func_02139ffc(param_3, 0), param_4);
-    return func_0213a434(param_3);
+    func_ov000_021a363c(param_1, param_2, strchr(param_3, 0), param_4);
+    return strlen(param_3);
 }
 
 u32 func_ov000_021a363c(void *param_1, void *param_2, void *param_3, u32 param_4) {
     func_0200d9e0(param_3, 0x1000, data_ov000_021b41f4, param_4, param_1, param_4, param_2);
-    return func_0213a434(param_3);
+    return strlen(param_3);
 }

@@ -18,7 +18,7 @@ double func_ov000_0218b280(Unk0218af28 *e, const u8 *v1, double d) {
 s32 func_ov000_0218b2a8(Unk0218af28 *e, const u8 *v1, s32 d) {
     u8 *a;
     s32 c;
-    if (func_0213a074(v1, data_ov000_021b21c8) == 0) {
+    if (strcmp(v1, data_ov000_021b21c8) == 0) {
         return func_ov000_0218af9c((int) e);
     }
     a = func_ov000_0218b30c(e, v1, 0);

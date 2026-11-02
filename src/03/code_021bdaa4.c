@@ -15,8 +15,8 @@ u8 *func_ov003_021bdaa4(u8 *p, u32 a, const void *b, u32 c) {
     d = ((c + 0xb) & ~7) - 4;
     *(u16 *) (p + 2) = func_ov003_021b7c44_inline(c);
     p += 4;
-    func_02134de0(p, 0, d);
-    func_02134eb8(p, b, c);
+    memset(p, 0, d);
+    memcpy(p, b, c);
     return p + d;
 }
 
@@ -41,7 +41,7 @@ s32 func_ov003_021bdb0c(u8 *p, u32 a, u8 *b, u32 c, const void *d) {
         func_ov003_021bccd0(p + 6, b, c, d, 0x10);
         c += 8;
     } else {
-        func_02134eb8(p + 6, b, c);
+        memcpy(p + 6, b, c);
     }
     p[0] = 0;
     p[1] = 0;

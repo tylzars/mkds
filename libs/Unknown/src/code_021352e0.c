@@ -436,23 +436,23 @@ u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
     func_02140c28(&a, x, &r);
     if (0.0 == func_021400c8(x)) {
         p = (char *) buf - 6;
-        func_0213a2d0(p, data_0216eeb0);
+        strcpy(p, data_0216eeb0);
         return (u8 *) p;
     }
     if (r.mUnk_05[0] == 'I') {
         if (r.mUnk_00 != 0) {
             p = (char *) buf - 5;
             if (c == 'A') {
-                func_0213a2d0(p, data_0216ee80);
+                strcpy(p, data_0216ee80);
             } else {
-                func_0213a2d0(p, data_0216ee88);
+                strcpy(p, data_0216ee88);
             }
         } else {
             p = (char *) buf - 4;
             if (c == 'A') {
-                func_0213a2d0(p, data_0216ee90);
+                strcpy(p, data_0216ee90);
             } else {
-                func_0213a2d0(p, data_0216ee94);
+                strcpy(p, data_0216ee94);
             }
         }
         return (u8 *) p;
@@ -461,16 +461,16 @@ u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
         if (r.mUnk_00 != 0) {
             p = (char *) buf - 5;
             if (c == 'A') {
-                func_0213a2d0(p, data_0216ee98);
+                strcpy(p, data_0216ee98);
             } else {
-                func_0213a2d0(p, data_0216eea0);
+                strcpy(p, data_0216eea0);
             }
         } else {
             p = (char *) buf - 4;
             if (c == 'A') {
-                func_0213a2d0(p, data_0216eea8);
+                strcpy(p, data_0216eea8);
             } else {
-                func_0213a2d0(p, data_0216eeac);
+                strcpy(p, data_0216eeac);
             }
         }
         return (u8 *) p;
@@ -633,16 +633,16 @@ u8 *func_02135c80(double v, u8 *buf, Unk021352e0 f) {
             if (v < 0.0) {
                 p = (char *) buf - 5;
                 if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x200)) {
-                    func_0213a2d0(p, data_0216ee80);
+                    strcpy(p, data_0216ee80);
                 } else {
-                    func_0213a2d0(p, data_0216ee88);
+                    strcpy(p, data_0216ee88);
                 }
             } else {
                 p = (char *) buf - 4;
                 if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x200)) {
-                    func_0213a2d0(p, data_0216ee90);
+                    strcpy(p, data_0216ee90);
                 } else {
-                    func_0213a2d0(p, data_0216ee94);
+                    strcpy(p, data_0216ee94);
                 }
             }
             return (u8 *) p;
@@ -651,16 +651,16 @@ u8 *func_02135c80(double v, u8 *buf, Unk021352e0 f) {
             if (d.mUnk_00) {
                 p = (char *) buf - 5;
                 if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x200)) {
-                    func_0213a2d0(p, data_0216ee98);
+                    strcpy(p, data_0216ee98);
                 } else {
-                    func_0213a2d0(p, data_0216eea0);
+                    strcpy(p, data_0216eea0);
                 }
             } else {
                 p = (char *) buf - 4;
                 if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x200)) {
-                    func_0213a2d0(p, data_0216eea8);
+                    strcpy(p, data_0216eea8);
                 } else {
-                    func_0213a2d0(p, data_0216eeac);
+                    strcpy(p, data_0216eeac);
                 }
             }
             return (u8 *) p;
@@ -819,9 +819,9 @@ int func_021352e0(void *(*f)(void *, const u8 *, u32), void *a, const u8 *b, cha
     g = ' ';
     k = 0;
     while (*b != 0) {
-        s = func_02139ffc(b, '%');
+        s = strchr(b, '%');
         if (s == 0) {
-            n = func_0213a434(b);
+            n = strlen(b);
             k += n;
             if (n != 0 && f(a, b, n) == 0) {
                 return -1;
@@ -958,12 +958,12 @@ int func_021352e0(void *(*f)(void *, const u8 *, u32), void *a, const u8 *b, cha
                     }
                 } else if (e.mUnk_02 != 0) {
                     m = e.mUnk_0c;
-                    q = func_02134db0(p, 0, m);
+                    q = memchr(p, 0, m);
                     if (q != 0) {
                         m = q - p;
                     }
                 } else {
-                    m = func_0213a434(p);
+                    m = strlen(p);
                 }
                 break;
             case 'n':
@@ -996,7 +996,7 @@ int func_021352e0(void *(*f)(void *, const u8 *, u32), void *a, const u8 *b, cha
             case 0xff:
             default:
             bad:
-                n = func_0213a434(s);
+                n = strlen(s);
                 k += n;
                 if (n != 0 && f(a, s, n) == 0) {
                     return -1;

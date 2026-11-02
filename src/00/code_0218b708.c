@@ -186,7 +186,7 @@ s32 func_ov000_0218c15c(Unk021b4d24 *a) {
         return 0;
     }
     if (n != 0) {
-        func_02134df8(a->mUnk_07c, p, n);
+        memmove(a->mUnk_07c, p, n);
     }
     a->mUnk_080 = n;
     return 0;
@@ -457,7 +457,7 @@ s32 func_ov000_0218bc08(Unk021b4d24 *a) {
             func_0213442c(data_ov000_021b2200, data_ov000_021b2218, 0, 0x5b4);
         }
         if (a->mUnk_080 != 0 && a->mUnk_07c != 0) {
-            func_02134df8(a->mUnk_07c, a->mUnk_07c + c, a->mUnk_080);
+            memmove(a->mUnk_07c, a->mUnk_07c + c, a->mUnk_080);
         }
         if (b != 0) {
             break;

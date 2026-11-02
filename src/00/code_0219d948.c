@@ -41,7 +41,7 @@ u8 func_ov000_0219d9ec(void *a, u8 *b, u8 *c, char *d) {
             }
         }
         if (d != 0) {
-            func_0213a2d0(d, (const u8 *) f.mUnk_108);
+            strcpy(d, (const u8 *) f.mUnk_108);
         }
         return f.mUnk_004;
     }

@@ -205,7 +205,7 @@ s32 func_ov000_02188408(void) {
     for (j = 0, n = s->mUnk_d12; j < n; j++) {
         if (j != i) {
             if (s->mUnk_444[j].mUnk_01 < 6) {
-                if (func_0213a038(k, s->mUnk_470[j].mUnk_04, s->mUnk_470[j].mUnk_0a) == 0) {
+                if (strncmp(k, s->mUnk_470[j].mUnk_04, s->mUnk_470[j].mUnk_0a) == 0) {
                     return 2;
                 }
             }

@@ -23,7 +23,7 @@ void *func_02135258(void *p, const u8 *b, u32 n) {
     if (a->mUnk_08 + n > a->mUnk_04) {
         n = a->mUnk_04 - a->mUnk_08;
     }
-    func_02134eb8(a->mUnk_00 + a->mUnk_08, b, n);
+    memcpy(a->mUnk_00 + a->mUnk_08, b, n);
     a->mUnk_08 += n;
     return (void *) 1;
 }

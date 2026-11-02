@@ -29,7 +29,7 @@ void func_ov000_021a323c(void (*arg0)(u32, void *, u32)) {
 }
 
 void func_ov000_021a321c(u32 *param_1, u16 param_2, u32 param_3) {
-    func_0213a228((u8 *) ((u32 *) (u32) ((int) param_1 + 6)), (const u8 *) &data_ov000_021b41f0, 2);
+    strncpy((u8 *) ((u32 *) (u32) ((int) param_1 + 6)), (const u8 *) &data_ov000_021b41f0, 2);
     *(u16 *) (param_1 + 1) = param_2;
     *param_1 = param_3;
     return;
@@ -38,7 +38,7 @@ void func_ov000_021a321c(u32 *param_1, u16 param_2, u32 param_3) {
 u16 func_ov000_021a31e8(const void *a) {
     Unk021a31e8 t;
     func_0214d1fc(a, &t, 8);
-    if (func_02134d30(t.mUnk_06, data_ov000_021b41f0, 2) == 0) {
+    if (memcmp(t.mUnk_06, data_ov000_021b41f0, 2) == 0) {
         return t.mUnk_04;
     }
     return 0;
