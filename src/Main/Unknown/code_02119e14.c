@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02119e14.h"
+#include "registers.h"
 #include "Main/Unknown/code_0211e4e8.h"
 #include "Main/Unknown/code_0211b23c.h"
 #include "Main/Unknown/code_0211ac88.h"
@@ -219,7 +220,7 @@ s32 func_0211a7bc(void) {
 }
 
 void func_0211a794(void) {
-    ((Unk0400101c *) 0x0400101c)->mUnk_00 = (-data_0217d368->mUnk_5c << 16) & 0x1ff0000;
+    reg_G2S_DB_BG3OFS = (-data_0217d368->mUnk_5c << 16) & 0x1ff0000;
     func_0202ba14();
 }
 

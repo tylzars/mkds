@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02061f7c.h"
+#include "registers.h"
 #include "Main/Unknown/unk_0217a000.h"
 
 #include "Main/Unknown/code_0203ca20.h"
@@ -169,7 +170,7 @@ void func_02062b50(void) {
     func_0208f0f8(a);
     func_02047b6c(9);
     *(u16 *) 0x05000000 = 0xff00;
-    *(u16 *) 0x04000060 = *(u16 *) 0x04000060 & 0xffffcffd;
+    reg_G3X_DISP3DCNT = reg_G3X_DISP3DCNT & 0xffffcffd;
     func_0214a730(data_0217aadc);
     for (i = 0; i < 8; i++) {
         data_0217aadc[i] = data_02154970[i];
@@ -356,19 +357,19 @@ void func_02062284(void) {
     if (data_0217aa4c != 0) {
         func_0214a7ec(1, 0, data_0217aa80, data_0217aa70);
         func_0214a748(data_0217aa9c);
-        *(u32 *) 0x04000358 = data_0217aa28 | (data_0217aa68 << 16);
+        reg_G3X_FOG_COLOR = data_0217aa28 | (data_0217aa68 << 16);
     } else if (data_0217aa54->mUnk_20 != data_0217aa54->mUnk_24) {
         if (data_0217aa54->mUnk_20 == 0) {
             if (data_02175620->mUnk_018->mUnk_05 != 0) {
                 func_0214a7ec(1, 0, data_0217aa80, data_0217aa48);
-                *(u32 *) 0x04000358 = data_0217aa38 | (data_0217aa50 << 16);
+                reg_G3X_FOG_COLOR = data_0217aa38 | (data_0217aa50 << 16);
                 func_0214a748(data_0217aabc);
             } else {
                 func_0214a7ec(0, 0, 5, 0);
             }
         } else {
             func_0214a7ec(1, 0, data_0217aa80, 0);
-            *(u32 *) 0x04000358 = data_0217aa30 | (data_0217aa60 << 16);
+            reg_G3X_FOG_COLOR = data_0217aa30 | (data_0217aa60 << 16);
             func_0214a748(data_0217aa9c);
         }
     }

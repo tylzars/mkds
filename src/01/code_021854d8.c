@@ -1,4 +1,5 @@
 #include "01/code_021854d8.h"
+#include "registers.h"
 
 #pragma thumb off
 
@@ -8,7 +9,7 @@ void func_ov001_021854f4(int a) {
 }
 
 void func_ov001_021854d8(int a) {
-    *((u32 *) 0x04001000u) = (*(u32 *) ((u32) ((u32 *) 0x04001000u))) & 0xffffe0ff | a << 8;
+    reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffffe0ff | a << 8;
     return;
 }
 

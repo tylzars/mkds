@@ -21,7 +21,7 @@ void func_0214b048(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
     func_02147dec(d - c);
     if (h != 0) {
         reg_G3_MTX_MODE = 0;
-        p = (vu32 *) 0x04000458;
+        p = &reg_G3_MTX_LOAD_4x4;
     }
     if (i != 0) {
         i->mUnk_04 = 0;
@@ -115,7 +115,7 @@ void func_0214ad4c(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
     func_02147dec(d - c);
     if (h != 0) {
         reg_G3_MTX_MODE = 0;
-        p = (vu32 *) 0x04000458;
+        p = &reg_G3_MTX_LOAD_4x4;
     }
     if (i != 0) {
         i->mUnk_04 = 0;
@@ -214,7 +214,7 @@ void func_0214abb4(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, Unk02012f
     func_021483a0(&v0, &v1, &v2);
     if (d != 0) {
         reg_G3_MTX_MODE = 2;
-        p = (vu32 *) 0x0400045c;
+        p = &reg_G3_MTX_LOAD_4x3;
         *p = v1.x;
         *p = v2.x;
         *p = v0.x;

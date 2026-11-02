@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02035d18.h"
+#include "registers.h"
 #include "Main/Unknown/code_02035000.h"
 #include "Main/Unknown/code_02036000.h"
 #include "Main/Unknown/code_02108c1c.h"
@@ -73,7 +74,7 @@ void func_02035d74(int arg0) {
 }
 
 void func_02035d48(u32 a, int b) {
-    *(u32 *) 0x0400101c = (a & 0x1ff) | ((b << 16) & 0x01ff0000);
+    reg_G2S_DB_BG3OFS = (a & 0x1ff) | ((b << 16) & 0x01ff0000);
 }
 
 #pragma thumb on

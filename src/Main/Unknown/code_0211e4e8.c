@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0211e4e8.h"
+#include "registers.h"
 
 #include "Main/Unknown/unk_0215c000.h"
 #include "Main/Unknown/unk_0216d000.h"
@@ -237,10 +238,10 @@ void func_0211e958(void *a, void *b, void *c) {
     s32 i;
     s32 m;
 
-    ((Unk04000008 *) 0x04000008)->mUnk_00 = (((Unk04000008 *) 0x04000008)->mUnk_00 & ~3) | 1;
-    ((Unk0400100e *) 0x0400100e)->mUnk_00 = (((Unk0400100e *) 0x0400100e)->mUnk_00 & ~3) | 1;
-    ((Unk04000008 *) 0x04000008)->mUnk_00 = (((Unk04000008 *) 0x04000008)->mUnk_00 & 0x43) | 0x9004;
-    ((Unk0400100e *) 0x0400100e)->mUnk_00 = (((Unk0400100e *) 0x0400100e)->mUnk_00 & 0x43) | 0x8300;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 1;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x9004;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8300;
     p = func_02036948(a);
     data_0217d378 = func_02036bec(p, 0x54);
     data_0217d378->mUnk_28 = p;
@@ -433,8 +434,8 @@ s32 func_0211e51c(void) {
 }
 
 void func_0211e4e8(void) {
-    ((Unk04000010 *) 0x04000010)->mUnk_00 = (-data_0217d378->mUnk_3c << 16) & 0x1ff0000;
-    ((Unk0400101c *) 0x0400101c)->mUnk_00 = (-data_0217d378->mUnk_40 << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (-data_0217d378->mUnk_3c << 16) & 0x1ff0000;
+    reg_G2S_DB_BG3OFS = (-data_0217d378->mUnk_40 << 16) & 0x1ff0000;
 }
 
 #pragma thumb off

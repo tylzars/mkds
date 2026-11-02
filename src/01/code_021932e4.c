@@ -1,4 +1,5 @@
 #include "01/code_021932e4.h"
+#include "registers.h"
 
 #include "01/code_02195000.h"
 #include "01/unk_021a6000.h"
@@ -386,7 +387,7 @@ void func_ov001_02193344(void) {
 
 void func_ov001_02193308(void) {
     func_0214a40c((u32 *) ((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
-    *((u32 *) 0x04000010u) = data_ov001_021a9bd4->mUnk_18 << 0x10 & ((u32) 0x01ff0000u);
+    reg_G2_BG0OFS = data_ov001_021a9bd4->mUnk_18 << 0x10 & ((u32) 0x01ff0000u);
     return;
 }
 

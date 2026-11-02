@@ -60,7 +60,7 @@ s32 func_021482cc(const Vec3 *a) {
     s += (s64) a->y * a->y;
     s += (s64) a->z * a->z;
     reg_CP_SQRTCNT = 1;
-    *(vu64 *) 0x040002B8 = s << 2;
+    reg_CP_SQRT_PARAM = s << 2;
     while (reg_CP_SQRTCNT & 0x8000) {
     }
     return ((s32) * (vu32 *) 0x040002B4 + 1) >> 1;
@@ -78,10 +78,10 @@ void func_0214818c(const Vec3 *a, Vec3 *b) {
     reg_CP_DIV_NUMER = 0x0100000000000000ULL;
     reg_CP_DIV_DENOM = s;
     reg_CP_SQRTCNT = 1;
-    *(vu64 *) 0x040002B8 = s << 2;
+    reg_CP_SQRT_PARAM = s << 2;
     while (reg_CP_SQRTCNT & 0x8000) {
     }
-    r = *(vu32 *) 0x040002B4;
+    r = reg_CP_SQRT_RESULT;
     while (reg_CP_DIVCNT & 0x8000) {
     }
     t = *(vs64 *) 0x040002A0 * r;
@@ -102,10 +102,10 @@ void func_02148038(const Unk02148038 *a, Unk02148038 *b) {
     reg_CP_DIV_NUMER = 0x0100000000000000ULL;
     reg_CP_DIV_DENOM = s;
     reg_CP_SQRTCNT = 1;
-    *(vu64 *) 0x040002B8 = s << 2;
+    reg_CP_SQRT_PARAM = s << 2;
     while (reg_CP_SQRTCNT & 0x8000) {
     }
-    r = *(vu32 *) 0x040002B4;
+    r = reg_CP_SQRT_RESULT;
     while (reg_CP_DIVCNT & 0x8000) {
     }
     t = *(vs64 *) 0x040002A0 * r;
@@ -133,7 +133,7 @@ s32 func_02147f50(const Vec3 *a, const Vec3 *b) {
     z = a->z - b->z;
     d += (s64) z * z;
     reg_CP_SQRTCNT = 1;
-    *(vu64 *) 0x040002B8 = d << 2;
+    reg_CP_SQRT_PARAM = d << 2;
     while (reg_CP_SQRTCNT & 0x8000) {
     }
     return ((s32) * (vu32 *) 0x040002B4 + 1) >> 1;
@@ -159,7 +159,7 @@ s64 func_02147edc(s32 a) {
 u32 func_02147e8c(s32 a) {
     if (a > 0) {
         reg_CP_SQRTCNT = 1;
-        *(vu64 *) 0x040002B8 = (u64) a << 32;
+        reg_CP_SQRT_PARAM = (u64) a << 32;
         return func_02147dc0();
     }
     return 0;
@@ -186,7 +186,7 @@ void func_02147dec(s32 a) {
 u32 func_02147dc0(void) {
     while (reg_CP_SQRTCNT & 0x8000) {
     }
-    return (*(vu32 *) 0x040002B4 + 0x200) >> 10;
+    return (reg_CP_SQRT_RESULT + 0x200) >> 10;
 }
 
 void func_02147d88(s32 a, s32 b) {

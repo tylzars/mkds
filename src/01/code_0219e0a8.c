@@ -1,4 +1,5 @@
 #include "01/code_0219e0a8.h"
+#include "registers.h"
 #include "01/code_0219e000.h"
 #include "01/code_0219f000.h"
 #include "01/unk_021a6000.h"
@@ -76,7 +77,7 @@ void func_ov001_0219e5d4(int i) {
 }
 
 void func_ov001_0219e5a0(void) {
-    *((u16 *) 0x04000008u) = *((u16 *) 0x04000008u) & 0x43 | (u16) 0x00001f80u;
+    reg_G2_BG0CNT = reg_G2_BG0CNT & 0x43 | (u16) 0x00001f80u;
     func_ov001_0219e5d4(1);
     data_ov001_021ca400->mUnk_018 = 1;
     return;

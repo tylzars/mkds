@@ -1145,7 +1145,7 @@ void func_0211b2cc(void *a, s32 b, void *c, s32 d) {
     s32 n;
     s32 e;
     Unk0217d368 *p;
-    ((Unk0400100e *) 0x0400100e)->mUnk_00 = (((Unk0400100e *) 0x0400100e)->mUnk_00 & 0x43) | 0x8200;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8200;
     h = func_02036948(a);
     data_0217d368 = func_02036bec(h, 0xbc);
     data_0217d368->mUnk_28 = h;
