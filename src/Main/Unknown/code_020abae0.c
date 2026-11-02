@@ -31,9 +31,6 @@ void func_020ac284(u8 *v1, u8 *v2, s32 n) {
     }
 }
 
-// non-matching: 0x44 bytes, original 0x4c; 28 lines differ; the original keeps the result in r0 from the start, has its
-// own return for the first condition and loads the halfword table pointer twice (r4, then r2); first: original `movs
-// r0, #0`, ours `movs r2, #0`
 s32 func_020ac238(void) {
     s32 r;
     Unk0217b334 *d;
@@ -45,11 +42,12 @@ s32 func_020ac238(void) {
     i = d->mUnk_46;
     j = d->mUnk_4a - 1;
     if (i == j && d->mUnk_40[i] >= 0x20) {
-        return i;
-    }
-    j = i - 1;
-    if (j >= 0 && d->mUnk_40[j] >= 0x20) {
-        r = j;
+        r = i;
+    } else {
+        j = i - 1;
+        if (j >= 0 && d->mUnk_40[j] >= 0x20) {
+            r = j;
+        }
     }
     return r;
 }

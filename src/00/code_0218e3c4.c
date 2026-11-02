@@ -14,12 +14,9 @@ s32 func_ov000_0218e3c4(s32 param_1, s32 param_2, s32 param_3, void *param_4, s3
     return func_ov000_0218e56c(0, -1);
 }
 
-// non-matching: the byte copy loop has its source in r5 and its destination in r6, swapped here (same instructions
-// otherwise)
 s32 func_ov000_0218e3e4(s32 param_1, void *param_2, s32 param_3, s32 param_4, void *param_5, s32 param_6) {
     Unk0218e3c4 b;
-    Unk0218e3c4 *a = param_5;
-    b = *a;
+    __memcpy(&b, param_5, sizeof(b));
     b.mUnk_00 = param_6;
     return func_ov000_0218e56c(func_ov000_021a9018(param_1, param_2, param_3, param_4, &b), -1);
 }

@@ -34,11 +34,6 @@ typedef struct Unk021a4480 {
     /* 800 */ s32 mUnk_800;
 } Unk021a4480;
 
-// Four bytes, moved one at a time.
-typedef struct Unk021a3c14 {
-    /* 0 */ u8 mUnk_00[4];
-} Unk021a3c14;
-
 void func_ov000_021a39d8(Unk021b5df4 *a, u16 b, u32 c, u32 d);
 void func_ov000_021a3a18(Unk021a3a18 *a, s32 b);
 void func_ov000_021a3bbc(Unk021a3a18 *a);

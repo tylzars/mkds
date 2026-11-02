@@ -18,15 +18,16 @@
 #include "Main/Unknown/unk_02174000.h"
 #include "code_02016468.h"
 
+#pragma optimize_for_size on
+
 #pragma thumb on
 
-// non-matching: same size; 100 lines differ; first: original `sub sp, #28`, ours `sub sp, #36`
 void func_020307b8(void *a, void *b, void *c) {
     void *h;
     Unk02174e54 *o;
     Unk02153d2c *q;
-    u32 n;
     s32 i;
+    u32 n;
     s32 x;
 
     h = func_02036948(a);
@@ -74,12 +75,12 @@ void func_02030930(void *a, u32 b, u32 c) {
 
 #pragma thumb on
 
-// non-matching: 0x80 bytes, original 0x84; 61 lines differ; first: original `ldr r0, [pc, #112]`, ours `ldr r0, [pc,
-// #108]`
+// non-matching: 2 words: the original loads both words of data_02163614 before it stores t[0]; ours stores t[0]
+// between the loads (a pointer local, const or volatile reads and the swapped order do not change it)
 void func_02030954(s32 a) {
-    Unk02174e54 *o;
     u32 t[2];
     s32 i;
+    Unk02174e54 *o;
     s32 v;
     s32 w;
     s32 z1;
@@ -109,12 +110,10 @@ void func_02030954(s32 a) {
     }
 }
 
-// non-matching: 0x3c bytes, original 0x38; 20 lines differ; first: original `ldr r0, [pc, #48]`, ours `ldr r0, [pc,
-// #52]`
 void func_020309d8(void) {
     Unk02174e54 *o;
-    s32 n;
     s32 i;
+    s32 n;
 
     o = data_02174e54;
     n = func_02030a18((u32) o->mUnk_0c) + func_02030a10((u32) o->mUnk_14);

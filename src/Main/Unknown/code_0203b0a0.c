@@ -22,20 +22,20 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-s32 func_0203b0a0(const u8 *a, const u8 *b) {
-    if (a[0] < b[0]) {
+s32 func_0203b0a0(const Unk0203b0a0 *a, const Unk0203b0a0 *b) {
+    if (a->mUnk_00 < b->mUnk_00) {
         return 1;
     }
-    if (a[0] > b[0]) {
+    if (a->mUnk_00 > b->mUnk_00) {
         return 0;
     }
-    if (a[1] < b[1]) {
+    if (a->mUnk_01 < b->mUnk_01) {
         return 1;
     }
-    if (a[1] > b[1]) {
+    if (a->mUnk_01 > b->mUnk_01) {
         return 0;
     }
-    return a[2] < b[2];
+    return a->mUnk_02 < b->mUnk_02;
 }
 
 void func_0203b0f8(void *a) {

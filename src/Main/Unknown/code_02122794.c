@@ -68,7 +68,7 @@ u32 func_021227f8(u32 a) {
     return data_0217d384->mUnk_1f55 & (1 << a);
 }
 
-u32 func_02122794(s32 a) {
+u32 func_02122794(u8 a) {
     s8 i;
     for (i = 0; i < 4; i++) {
         if (a == data_0217d384->mUnk_1f4e[i]) {

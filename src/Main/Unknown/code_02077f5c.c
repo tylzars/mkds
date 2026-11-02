@@ -104,8 +104,6 @@ void func_020780f4(void) {
     }
 }
 
-// non-matching: same size; 6 words differ in the last key test: the original loads the key word into r1 and the
-// 0x400 / 2 masks into r0 (here the other way round)
 void func_02078158(void) {
     Unk0217ad08_024 *q = &data_0217ad08->mUnk_024;
     s32 a = 0;
@@ -202,12 +200,16 @@ void func_02078158(void) {
         } else {
             v = 0;
         }
-    } else if ((u16) (k & 2) != 0) {
-        q->mUnk_08 -= 0x7b;
-        if (q->mUnk_08 < 0x800) {
-            q->mUnk_08 = 0x800;
-        } else {
-            v = 1;
+    } else {
+        v1 = UNK_02175628_INDEX_8;
+        k = data_02175628[v1].mUnk_02;
+        if ((u16) (k & 2) != 0) {
+            q->mUnk_08 -= 0x7b;
+            if (q->mUnk_08 < 0x800) {
+                q->mUnk_08 = 0x800;
+            } else {
+                v = 1;
+            }
         }
     }
     q->mUnk_1a = q->mUnk_18;

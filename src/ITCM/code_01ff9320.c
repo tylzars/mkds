@@ -50,8 +50,6 @@ void func_01ff946c(s32 *o) {
     o[13] = 0;
 }
 
-// non-matching: registers only, 9 words (same size): the original keeps the zero in ip and the halfword in r3, and
-// computes the lsl / rsb #0 / add #0x2000 chain in r1; this source gives r3, r1 and r2.
 void func_01ff9490(s32 *o, const Unk0201290c_1c *v1) {
     s32 t;
 
@@ -60,7 +58,7 @@ void func_01ff9490(s32 *o, const Unk0201290c_1c *v1) {
     o[1] = 0;
     o[12] = 0;
     t = -(v1->mUnk_18[1] << 1);
-    o[13] = ((t + 0x2000) * v1->mUnk_2e) << 3;
+    o[13] = (v1->mUnk_2e * (t + 0x2000)) << 3;
     o[4] = 0;
 }
 

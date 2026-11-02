@@ -112,15 +112,25 @@ void func_0210cc3c(Unk0210bfbc *p) {
     }
 }
 
-// non-matching: the parameter is in sl here and r5 in the original and the loop pointer in r9 and r4; the load of
-// st.mUnk_1c is scheduled after the func_0212d580 call here and before it in the original.
+static inline s32 func_0210ca4c_inline(u32 k, u8 a, u16 b) {
+    s32 n = k + (func_0212d580(a, b)->mUnk_04 - 0x40);
+    if (n > 0) {
+        if (n >= 0x7f) {
+            n = 0x7f;
+        }
+        return n;
+    }
+    return 0;
+}
+
 u32 func_0210ca4c(Unk0210bfbc *p) {
     Unk0210bcf4 st;
     s32 n;
     Unk0210bf24 *a;
 
+    n = p->mUnk_28;
     st.mUnk_00 = p;
-    st.mUnk_04 = p->mUnk_28;
+    st.mUnk_04 = n;
     st.mUnk_20 = 0;
     st.mUnk_14 = 0;
     st.mUnk_1c = 0;
@@ -142,27 +152,13 @@ u32 func_0210ca4c(Unk0210bfbc *p) {
     for (a = p->mUnk_0c.mUnk_00; a != 0; a = func_0201733c(&p->mUnk_0c, a)) {
         n = -1;
         if (a->mUnk_19 & 2) {
-            n = st.mUnk_1c + (func_0212d580(a->mUnk_18, a->mUnk_16)->mUnk_04 - 0x40);
-            if (n > 0) {
-                if (n >= 0x7f) {
-                    n = 0x7f;
-                }
-            } else {
-                n = 0;
-            }
+            n = func_0210ca4c_inline(st.mUnk_1c, a->mUnk_18, a->mUnk_16);
             p->mUnk_2c(p, a, n);
             a->mUnk_19 &= ~2;
         }
         if (a->mUnk_00 != 0) {
             if (n == -1) {
-                n = st.mUnk_1c + (func_0212d580(a->mUnk_18, a->mUnk_16)->mUnk_04 - 0x40);
-                if (n > 0) {
-                    if (n >= 0x7f) {
-                        n = 0x7f;
-                    }
-                } else {
-                    n = 0;
-                }
+                n = func_0210ca4c_inline(st.mUnk_1c, a->mUnk_18, a->mUnk_16);
             }
             func_0212c678((Unk0212c400 **) a, st.mUnk_14);
             func_0212c5f4((Unk0212c400 **) a, n);

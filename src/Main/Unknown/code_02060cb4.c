@@ -125,11 +125,9 @@ s32 func_0206105c(const void *a) {
     return c;
 }
 
-// non-matching: the original sets the address of the first 3-byte stack array (r11) before that of the second (r4);
-// this sets them in the other order (2 words differ).
 s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
-    u8 h[3];
-    u8 j[3];
+    Unk0203b0a0 h;
+    Unk0203b0a0 j;
     Unk0217aa08_20_04 k;
     s32 g[3];
     s32 m;
@@ -174,18 +172,16 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     }
     q = -1;
     if (m == -1) {
-        h[0] = 100;
-        h[1] = 12;
-        h[2] = 31;
+        h.mUnk_00 = 100;
+        h.mUnk_01 = 12;
+        h.mUnk_02 = 31;
         for (i = 0; i < 60; i = (s8) (i + 1)) {
             func_0205ee14((u8) i, &k);
-            j[0] = k.mUnk_0c_0;
-            j[1] = k.mUnk_0c_7;
-            j[2] = k.mUnk_0c_11;
-            if (k.mUnk_22_0 == 1 && k.mUnk_22_3 == 0 && func_0203b0a0(j, h) != 0) {
-                h[0] = j[0];
-                h[1] = j[1];
-                h[2] = j[2];
+            j.mUnk_00 = k.mUnk_0c_0;
+            j.mUnk_01 = k.mUnk_0c_7;
+            j.mUnk_02 = k.mUnk_0c_11;
+            if (k.mUnk_22_0 == 1 && k.mUnk_22_3 == 0 && func_0203b0a0(&j, &h) != 0) {
+                h = j;
                 q = i;
             }
         }

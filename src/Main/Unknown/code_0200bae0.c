@@ -162,22 +162,22 @@ void func_0200bd7c(void) {
     }
 }
 
-// non-matching: same size; original keeps the address of data_0216fdec in r3 and the halfwords in r1/r2, ours loads it
-// into r1 and uses r3 for a halfword
 void func_0200bdb4(Unk021425e8 *a) {
     Unk0200bd34 v;
-    Unk0216fdec *p = data_0216fdec;
-    p->mUnk_1c = 0;
-    if (a->mUnk_02 != 0) {
-        p = data_0216fdec;
+    u16 b;
+    data_0216fdec->mUnk_1c = 0;
+    b = a->mUnk_02;
+    if (b != 0) {
+        u16 c = a->mUnk_00;
+        Unk0216fdec *p = data_0216fdec;
         if (p->mUnk_00 != 0) {
-            v.mUnk_00 = a->mUnk_00;
-            v.mUnk_02 = a->mUnk_02;
+            v.mUnk_00 = c;
+            v.mUnk_02 = b;
             p->mUnk_00(0x100, &v);
         }
     } else {
         if (data_0216fdec->mUnk_00 != 0) {
-            data_0216fdec->mUnk_00(15);
+            data_0216fdec->mUnk_00(15, 0);
         }
     }
 }

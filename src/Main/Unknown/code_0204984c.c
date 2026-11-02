@@ -368,9 +368,6 @@ void func_02049f60(void) {
     }
 }
 
-// non-matching: registers and the two stores of 12 or 0 to mUnk_120 at the end of the loop: the original keeps the
-// data_021755a0 test in r8 and the loop result in r9 (this source gives r9 and r8) and branches (bne) over a plain
-// store of 12 and a plain store of 0, this source predicates them (ldreq/ldrne, strbeq/strbne): 8 bytes shorter.
 void func_0204a1a8(void *a) {
     s32 d;
     s32 b;
@@ -413,11 +410,7 @@ void func_0204a1a8(void *a) {
             if (c != 0) {
                 func_02037a40();
             }
-            if (b == 0) {
-                d = func_02054f58() == 1;
-            } else {
-                d = 1;
-            }
+            d = b == 0 ? func_02054f58() == 1 : 1;
             func_0210823c();
             VBlankIntrWait();
             if (c != 0) {
@@ -436,10 +429,13 @@ void func_0204a1a8(void *a) {
                 func_020373ec();
             }
         } while (d == -1);
-        if (d == 1) {
-            data_021759cc->mUnk_120 = 12;
-        } else {
-            data_021759cc->mUnk_120 = 0;
+        switch (d) {
+            case 1:
+                data_021759cc->mUnk_120 = 12;
+                break;
+            default:
+                data_021759cc->mUnk_120 = 0;
+                break;
         }
     }
 }

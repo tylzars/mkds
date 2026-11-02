@@ -1,5 +1,6 @@
 #include "Main/Unknown/code_02008570.h"
 #include "Main/Unknown/code_02008000.h"
+#include "Main/Unknown/code_02000a58.h"
 
 #pragma thumb on
 
@@ -11,10 +12,6 @@ static inline u32 func_02008570_inline(u8 *a) {
     return b;
 }
 
-// non-matching: registers: the original keeps param_1, param_2 and the read pointer in r7, r6, r5 and holds 0x160
-// in r4 for the add, the read size and the compare (here r5, r7, r6, 0x160 reloaded after the call); it also loads
-// v1->mUnk_08 once before the length loop and reuses it for the copy (holding it in a local or an inline helper
-// changes which locals are spilled), and reads v6[1] again in the body of the table loop.
 int func_02008570(u8 *param_1, int param_2, u32 param_3) {
     Unk02003024 *v1;
     u8 *v2;
@@ -26,10 +23,11 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
     u32 v7;
     Unk0200adfc *v5;
     u32 *v6;
-    u32 v8;
+    s32 v8;
     u32 v9;
     s32 v10;
     u32 v14[4];
+    s8 *p;
     v1 = (Unk02003024 *) param_1;
     v2 = (u8 *) param_2;
     v11 = 0;
@@ -43,7 +41,7 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
         v13 -= 0x160;
         if (v1 != 0) {
             v7 = v1->mUnk_2c - v1->mUnk_20.w.mUnk_04;
-            if ((s32) FS_ReadFile(v1, v3, 0x160) < 0x160) {
+            if ((s32) FS_ReadFile(v1, v2, 0x160) < 0x160) {
                 v13 = 0;
             }
             v9 = func_02008570_inline(v2);
@@ -71,11 +69,12 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
             v3 += 0x70;
             v13 -= 0x70;
             func_0200ae60(v5, 0, 0x160, (u32) v2, 3);
+            p = (s8 *) v1->mUnk_08;
             v10 = 0;
-            while (v10 < 3 && ((s8 *) v1->mUnk_08)[v10] != 0) {
+            while (v10 < 3 && p[v10] != 0) {
                 v10++;
             }
-            func_0214d1fc(v1->mUnk_08, v5->mUnk_10, v10);
+            func_0214d1fc(p, v5->mUnk_10, v10);
             v5->mUnk_14 = v10;
         } else {
             v13 = 0;
@@ -125,11 +124,13 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
                 v14[2] = *(u32 *) ((u8 *) v5 + 0x48) - *(u32 *) (v2 + 0x20);
                 v14[3] = param_3;
                 func_0200850c(v14, 0x4000, 0x8000, 1);
-                while (v6[1] != 0) {
+                while (((s32 *) v6)[1] != 0) {
                     func_0200850c(v14, v6[0], v6[0] + v6[1], 0);
                     v6 += 2;
                 }
-                *(u32 *) (*(u32 *) ((u8 *) v5 + 0x48) + (0x02000a58 - *(u32 *) (v2 + 0x28))) = 0xe12fff1e;
+                v3 = (u8 *) *(u32 *) ((u8 *) v5 + 0x48);
+                v3 += (u32) AutoloadCallback - *(u32 *) (v2 + 0x28);
+                *(u32 *) v3 = 0xe12fff1e;
             }
         }
         if (v11 != 0) {

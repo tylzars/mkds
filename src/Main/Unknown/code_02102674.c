@@ -18,10 +18,6 @@
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036bec.h"
 
-// non-matching: registers only. In the two pairs of accumulations (0x148/0x14c, 0x180/0x184.x) the factor is in r3
-// now as in the original, but 0x148 / 0x180 is loaded after the target and kept in r6 / r5 (the original loads it
-// first into r2), so the rest of each pair has other registers; the umull block after the first pair also has other
-// registers.
 void func_0210298c(Unk02102674 *p) {
     Unk0206bcb0 *q;
     Unk020748a8 *s;
@@ -33,6 +29,7 @@ void func_0210298c(Unk02102674 *p) {
     Vec3 w;
     s32 m;
     s32 n;
+    s32 f;
 
     q = p->mUnk_12c;
     s = func_020748a8();
@@ -89,15 +86,12 @@ void func_0210298c(Unk02102674 *p) {
     }
     p->mUnk_16c = p->mUnk_16c - 1;
     if (p->mUnk_16c > 0) {
+        f = p->mUnk_164;
         m = p->mUnk_154 - p->mUnk_148;
         n = p->mUnk_158 - p->mUnk_14c;
-        m = (s32) (((s64) p->mUnk_164 * m) >> 12);
-        n = (s32) (((s64) p->mUnk_164 * n) >> 12);
-        p->mUnk_148 += m;
-        p->mUnk_14c += n;
+        p->mUnk_148 += (s32) (((s64) f * m) >> 12);
+        p->mUnk_14c += (s32) (((s64) f * n) >> 12);
     } else {
-        s32 f;
-
         f = p->mUnk_168;
         p->mUnk_148 = (s32) (((s64) p->mUnk_148 * f) >> 12);
         p->mUnk_14c = (s32) (((s64) p->mUnk_14c * f) >> 12);
@@ -119,10 +113,9 @@ void func_0210298c(Unk02102674 *p) {
             }
         }
     }
-    v = (s32) (((s64) v * 0xccd) >> 12);
     p->mUnk_13c.x += p->mUnk_148;
     p->mUnk_13c.y += p->mUnk_14c;
-    v = (s32) (((s64) (p->mUnk_148 - v) * 0x19a) >> 12);
+    v = (s32) (((s64) (p->mUnk_148 - (s32) (((s64) v * 0xccd) >> 12)) * 0x19a) >> 12);
     if (v > 0x19a) {
         v = 0x19a;
     } else if (v < -0x19a) {
@@ -135,12 +128,11 @@ void func_0210298c(Unk02102674 *p) {
     } else if (p->mUnk_19c < -0x266) {
         p->mUnk_19c = -0x266;
     }
+    f = p->mUnk_184.z;
     m = p->mUnk_174 - p->mUnk_180;
     n = p->mUnk_178 - p->mUnk_184.x;
-    m = (s32) (((s64) p->mUnk_184.z * m) >> 12);
-    n = (s32) (((s64) p->mUnk_184.z * n) >> 12);
-    p->mUnk_180 += m;
-    p->mUnk_184.x += n;
+    p->mUnk_180 += (s32) (((s64) f * m) >> 12);
+    p->mUnk_184.x += (s32) (((s64) f * n) >> 12);
     w = p->mUnk_13c;
     v = (s32) (((s64) p->mUnk_19c * 0x800) >> 12);
     w.x -= (s32) (((s64) v * w.x) >> 12);

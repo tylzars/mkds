@@ -31,8 +31,6 @@ void func_ov000_021a39d8(Unk021b5df4 *a, u16 b, u32 c, u32 d) {
     }
 }
 
-// non-matching: the buffer address is kept in r4 after the loop and passed from it (original: add r0, sp, #0x28 before
-// every call); size 0x1a8 against 0x1a4
 void func_ov000_021a3a18(Unk021a3a18 *a, s32 b) {
     Unk021a4480 k;
     u8 t[0x14];
@@ -82,9 +80,6 @@ void func_ov000_021a3bbc(Unk021a3a18 *a) {
     a->mUnk_b0 = func_ov000_0218e8c4();
 }
 
-// non-matching: 95.9: in the case that stores the four bytes after the length, the original keeps the length address in
-// r5 and rebuilds the address of the shared stack word (add r0, sp, #16); here it is the other way round; size 0x24c
-// against 0x248
 void func_ov000_021a3c14(Unk021a3a18 *a, s8 *b, s32 c, void *d) {
     Unk021a4480 k;
     s32 t;
@@ -158,9 +153,9 @@ void func_ov000_021a3c14(Unk021a3a18 *a, s8 *b, s32 c, void *d) {
                             return;
                         }
                         k.mUnk_000[0] = 7;
-                        *(Unk021a3c14 *) &k.mUnk_000[k.mUnk_800] = *(Unk021a3c14 *) p6;
+                        __memcpy(&k.mUnk_000[k.mUnk_800], p6, 4);
                         k.mUnk_800 += 4;
-                        *(Unk021a3c14 *) &i = *(Unk021a3c14 *) p6;
+                        __memcpy(&i, p6, 4);
                         if (func_ov000_021a3e5c((int) a, i) == 0) {
                             func_ov000_021a3eb0(a, (u8 *) (p6 + 4), c - 4);
                         }

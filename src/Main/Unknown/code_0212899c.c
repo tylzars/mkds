@@ -399,22 +399,13 @@ void func_02128c40(void) {
     }
 }
 
-// non-matching: register allocation of the loop (original: i in r2, n in r4, &data_0217d400 hoisted in r5 and
-// data_0215d14c in r7; compiled: i in r3, n in r4, &data_0217d400 in r7) and the code is 8 bytes shorter (0x64 vs 0x6c)
 void func_02128bd4(void) {
     s32 i;
-    s32 n;
-    s32 v;
-    Unk0217d400 *p;
-    i = 0;
-    n = data_0217d400->mUnk_04;
-    for (; i < data_0215d0e0[n]; i++) {
-        data_0217d400->mUnk_74[n][1][data_0215d14c[n][i]].mUnk_00 = 0;
-        n = data_0217d400->mUnk_04;
+    for (i = 0; i < data_0215d0e0[data_0217d400->mUnk_04]; i++) {
+        data_0217d400->mUnk_74[data_0217d400->mUnk_04][1][data_0215d14c[data_0217d400->mUnk_04][i]].mUnk_00 = 0;
     }
-    p = data_0217d400;
-    v = func_020ab748();
-    p->mUnk_74[n][1][data_0215d14c[n][v]].mUnk_00 = 1;
+    data_0217d400->mUnk_74[data_0217d400->mUnk_04][1][data_0215d14c[data_0217d400->mUnk_04][func_020ab748()]].mUnk_00 =
+        1;
 }
 
 void func_02128b54(void) {

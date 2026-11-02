@@ -298,8 +298,8 @@ void func_0202b100(void) {
     n = p->mUnk_0c->mUnk_06;
     for (i = 0; i < data_02174e28->mUnk_0b8; i++) {
         func_02025edc(&data_02174e28->mUnk_0fc[i]);
-        if (func_02122734((u8) i) >= 0) {
-            v = func_02121e24((u8) func_02122734((s32) (u8) i));
+        if (func_02122734(i) >= 0) {
+            v = func_02121e24((u8) func_02122734(i));
         } else {
             v = 0;
         }

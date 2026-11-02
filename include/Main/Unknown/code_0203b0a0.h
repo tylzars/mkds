@@ -4,7 +4,14 @@
 #include "00/code_02182fdc.h"
 #include "Main/Unknown/code_02056b30.h"
 
-s32 func_0203b0a0(const u8 *a, const u8 *b);
+// 0x03-byte argument of func_0203b0a0.
+typedef struct Unk0203b0a0 {
+    /* 00 */ u8 mUnk_00;
+    /* 01 */ u8 mUnk_01;
+    /* 02 */ u8 mUnk_02;
+} Unk0203b0a0;
+
+s32 func_0203b0a0(const Unk0203b0a0 *a, const Unk0203b0a0 *b);
 void func_0203b0f8(void *a);
 void func_0203b194(void *a);
 void func_0203b1c8(void *a);

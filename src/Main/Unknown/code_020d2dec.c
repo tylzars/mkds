@@ -37,33 +37,37 @@
 
 #pragma thumb on
 
-// non-matching: compiled code is longer by 0x24 bytes; the loop over the table keeps its two spilled temporaries (table
-// pointer and zero) at swapped stack offsets and the object set-up part differs in register choice and statement order;
-// the original converts each of the five fields to an integer once after the +/-0.5f arms (5 `_ffix` calls, ours 10)
+static inline Unk0217b4d4 *func_020d34e4_inline(u16 f) {
+    s32 j;
+    for (j = 0; j < 1000; j++) {
+        if (f == data_0217b4d4[j].mUnk_00) {
+            return &data_0217b4d4[j];
+        }
+    }
+    return 0;
+}
+
 Unk020e71a0 *func_020d34e4(u32 param_1, Unk020fa294 *param_2, Unk020e71a0 *param_3) {
     s32 i;
     s32 j;
     Unk0216b288 *row;
-    Unk0216b288 *rr;
     Unk021000d0 *a;
     Unk021000d0 *o;
     Unk020e71a0_98 *c;
     Unk0217b4d4 *t;
     Unk020e71a0 *p;
-    u32 f;
     s32 v;
     u32 m;
-    row = data_0216b288;
-    for (i = 0; i < data_0217b4ec; i++, row++) {
+    for (i = 0; i < data_0217b4ec; i++) {
         {
+            row = &data_0216b288[i];
             if (param_1 != row->mUnk_00) {
                 continue;
             }
             a = row->mUnk_04;
             if (a->mUnk_00 == 0) {
-                rr = data_0216b288;
-                for (j = 0; j < data_0217b4ec; j++, rr++) {
-                    o = rr->mUnk_04;
+                for (j = 0; j < data_0217b4ec; j++) {
+                    o = data_0216b288[j].mUnk_04;
                     if (o == 0) {
                         continue;
                     }
@@ -121,51 +125,22 @@ Unk020e71a0 *func_020d34e4(u32 param_1, Unk020fa294 *param_2, Unk020e71a0 *param
                         }
                     }
                 }
-                f = (u16) row->mUnk_00;
-                t = data_0217b4d4;
-                for (j = 0; j < 1000; j++, t++) {
-                    if (f == t->mUnk_00) {
-                        break;
-                    }
-                }
-                if (j >= 1000) {
-                    t = 0;
-                }
+                t = func_020d34e4_inline(row->mUnk_00);
                 if (t->mUnk_02 != 0) {
                     a->mUnk_20->mUnk_34 = t->mUnk_02 >= 2 ? 1 : 0;
                     v = t->mUnk_04;
-                    if (v != 0) {
-                        a->mUnk_20->mUnk_2c = (s32) ((float) (v << 12) + 0.5f);
-                    } else {
-                        a->mUnk_20->mUnk_2c = (s32) ((float) (v << 12) - 0.5f);
-                    }
+                    a->mUnk_20->mUnk_2c = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
                     v = t->mUnk_06;
-                    if (v != 0) {
-                        a->mUnk_20->mUnk_30 = (s32) ((float) (v << 12) + 0.5f);
-                    } else {
-                        a->mUnk_20->mUnk_30 = (s32) ((float) (v << 12) - 0.5f);
-                    }
+                    a->mUnk_20->mUnk_30 = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
                 }
                 if (t->mUnk_08 != 0) {
                     a->mUnk_20->mUnk_08 = t->mUnk_08;
                     v = t->mUnk_0a;
-                    if (v != 0) {
-                        a->mUnk_20->mUnk_0c = (s32) ((float) (v << 12) + 0.5f);
-                    } else {
-                        a->mUnk_20->mUnk_0c = (s32) ((float) (v << 12) - 0.5f);
-                    }
+                    a->mUnk_20->mUnk_0c = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
                     v = t->mUnk_0c;
-                    if (v != 0) {
-                        a->mUnk_20->mUnk_10 = (s32) ((float) (v << 12) + 0.5f);
-                    } else {
-                        a->mUnk_20->mUnk_10 = (s32) ((float) (v << 12) - 0.5f);
-                    }
+                    a->mUnk_20->mUnk_10 = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
                     v = t->mUnk_0e;
-                    if (v != 0) {
-                        a->mUnk_20->mUnk_14 = (s32) ((float) (v << 12) + 0.5f);
-                    } else {
-                        a->mUnk_20->mUnk_14 = (s32) ((float) (v << 12) - 0.5f);
-                    }
+                    a->mUnk_20->mUnk_14 = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
                 }
                 if (a->mUnk_24 == 0 && a->mUnk_10 != 0) {
                     a->mUnk_24 = a->mUnk_10();
@@ -283,7 +258,9 @@ Unk020e71a0 *func_020d34e4(u32 param_1, Unk020fa294 *param_2, Unk020e71a0 *param
                 }
                 p->mUnk_64 = func_020d555c(&p->mUnk_04, func_020d252c(p), m, p);
             }
-            data_0217b4f0->mUnk_000[data_0217b4f0->mUnk_004++] = p;
+            j = data_0217b4f0->mUnk_004;
+            data_0217b4f0->mUnk_004 = j + 1;
+            data_0217b4f0->mUnk_000[j] = p;
             if (data_0217b4f0->mUnk_004 >= 0x100) {
                 data_0217b4f0->mUnk_004 = 0xff;
             }
@@ -301,9 +278,6 @@ Unk020e71a0 *func_020d34c4(Unk020fa294 *param_1, s32 param_2) {
     return func_020d34e4(param_2, param_1, 0);
 }
 
-// non-matching: register allocation only: in the counting loop over data_0217b4f0->mUnk_008 the index and the walking
-// pointer take r0/r1 the other way round, and in the pass over the mUnk_30 values the flag and the data_0217b4f0 value
-// take r0/r1 the other way round
 void func_020d2e6c(void) {
     void *h;
     s32 i;
@@ -315,6 +289,7 @@ void func_020d2e6c(void) {
     s32 s1;
     s32 s2;
     s32 k;
+    s32 t;
     s32 g;
     u32 v;
     Unk0216b288 *row;
@@ -414,6 +389,7 @@ void func_020d2e6c(void) {
         w[1] = data_0216b288[i].mUnk_04->mUnk_28;
         w[2] = data_0216b288[i].mUnk_04->mUnk_2c;
         for (j = 0; j < 3; j++) {
+            s32 g;
             if (w[j] == 0) {
                 continue;
             }
@@ -465,8 +441,8 @@ void func_020d2e6c(void) {
     c2 = 0;
     s1 = 0;
     s2 = 0;
-    for (i = 0; i < n; i++) {
-        x = data_0217b4f0->mUnk_008[i];
+    for (t = 0; t < n; t++) {
+        x = data_0217b4f0->mUnk_008[t];
         if (x->mUnk_20 != 0) {
             if (x->mUnk_18 == 1) {
                 c1++;

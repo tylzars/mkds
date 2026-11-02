@@ -64,8 +64,6 @@ void func_0205ec14(Unk0205ec14 *a, u8 b) {
     a->mUnk_00 = c;
 }
 
-// non-matching: 6 instructions differ: in the second loop the constant 1 and the pointer to the byte at 4 of the object
-// are in each other's registers (r6 and r5 in the original).
 void func_0205e900(void) {
     u8 i;
     u16 j;
@@ -76,7 +74,6 @@ void func_0205e900(void) {
     s32 v1;
     s32 v2;
     u16 k;
-    u8 *q;
     s32 m;
     s32 f = 0;
     s32 t;
@@ -123,14 +120,13 @@ void func_0205e900(void) {
                 func_0205746c(i, &data_0217aa08->mUnk_00->mUnk_2c[2], 2);
                 f = 1;
             }
-            q = (u8 *) r + 4;
             v1 = i * 5;
             v2 = (i + 1) * 5;
             for (k = 0; k < 8; k++) {
                 t = d[k];
                 if (t >= v1 && t < v2) {
                     x = t % 5;
-                    *q = *q | (1 << x);
+                    r->mUnk_004 |= 1 << x;
                     func_0214d1fc((u8 *) &data_0217aa00->mUnk_045c[k] + 0x14, r->mUnk_008[x], 0x200);
                 }
             }
