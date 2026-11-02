@@ -59,10 +59,9 @@ void func_0211f244(int a, int b, void *c, void *d, u32 e, u16 f, int g) {
     v2 = (u32 *) (int) data_0217d37c;
     func_02124748((u32) (*(u16 *) (((u32) ((u8 *) &data_0215d014)) + a * 2)), (void *) (v2[1]), (void *) (*v2),
                   (void *) (v2[3]), g, e, c, d);
-    ((u32) func_02016468(
-        v1, (u32) ((u32) f << 5),
-        (void *) (*(int *) ((int) data_0217d37c->mUnk_08 + 0xc) + (u32) ((u16 *) &data_0215d00c)[b] * 0x20),
-        (u32) 0x20));
+    func_02016468(v1, (u32) ((u32) f << 5),
+                  (void *) (*(int *) ((int) data_0217d37c->mUnk_08 + 0xc) + (u32) ((u16 *) &data_0215d00c)[b] * 0x20),
+                  (u32) 0x20);
 }
 
 void func_0211f240(void) {}

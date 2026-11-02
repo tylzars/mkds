@@ -318,7 +318,7 @@ void func_02129ea4(void) {
 void func_02129e78(void) {
     int v1;
     v1 = *(int *) ((int) data_0217d400 + data_0217d400->mUnk_04 * 4 + 0xb4);
-    ((u32) func_02016468((u32) 0x1b, (u32) 0, (void *) (v1 + 0xc), (u32) (*(u32 *) (v1 + 8))));
+    func_02016468((u32) 0x1b, (u32) 0, (void *) (v1 + 0xc), (u32) (*(u32 *) (v1 + 8)));
 }
 
 void func_02129cbc(void) {

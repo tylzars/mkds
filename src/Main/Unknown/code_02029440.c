@@ -75,11 +75,11 @@ void func_020295c0(u32 p0) {
 }
 
 void func_020295b0(void) {
-    *(u32 *) ((int) data_02174e1c + 0xd8) = 1;
+    data_02174e1c->mUnk_d8 = 1;
 }
 
 void func_020295a0(void) {
-    *(u32 *) ((int) data_02174e1c + 0xd8) = 0;
+    data_02174e1c->mUnk_d8 = 0;
 }
 
 void func_02029590(u32 p0) {
@@ -107,11 +107,11 @@ void func_02029540(u32 p0) {
 }
 
 void func_02029530(void) {
-    *(u32 *) ((int) data_02174e1c + 0xdc) = 1;
+    data_02174e1c->mUnk_dc = 1;
 }
 
 void func_02029520(void) {
-    *(u32 *) ((int) data_02174e1c + 0xdc) = 0;
+    data_02174e1c->mUnk_dc = 0;
 }
 
 #pragma thumb off

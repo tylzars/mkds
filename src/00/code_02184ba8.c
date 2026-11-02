@@ -82,9 +82,9 @@ void func_ov000_021851a0(void) {
     v1 = ((int) func_0204799c((const char *) &data_ov000_021b0ed0));
     func_020b4a44(&data_ov000_021b4c84->mUnk_28, (void *) (v1));
     func_0214bea4((const void *) (*(u32 *) ((int) data_ov000_021b4c84->mUnk_24 + 0x14)), 0,
-                  (u32) (*(u32 *) ((int) data_ov000_021b4c84->mUnk_24 + 0x10)));
+                  (u32) (data_ov000_021b4c84->mUnk_24->mUnk_10));
     func_0214c028((const void *) (*(u32 *) ((int) data_ov000_021b4c84->mUnk_28 + 0xc)), 0,
-                  (u32) (*(u32 *) ((int) data_ov000_021b4c84->mUnk_28 + 8)));
+                  (u32) (data_ov000_021b4c84->mUnk_28->mUnk_08));
     return;
 }
 

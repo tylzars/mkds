@@ -36,7 +36,7 @@ void func_ov003_021c1fc8(void) {
 }
 
 void func_ov003_021c1f84(int a) {
-    ((u32) func_ov003_021ba560());
+    func_ov003_021ba560();
     if (((a != 0) && (data_ov003_021da168->mUnk_116 == 0)) && ((*(u8 *) &data_ov003_021da164) == 1)) {
         func_ov003_021cd4e8((int) data_ov003_021da168 + 0x117);
     }

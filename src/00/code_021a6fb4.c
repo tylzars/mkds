@@ -133,7 +133,7 @@ Unk021a7064 *func_ov000_021a7064(Unk021a7064Func b, Unk021a6fa8 *c, s32 d) {
 
 void func_ov000_021a7048(Unk021a7064 *a) {
     if (a != 0) {
-        ((u32) func_0200eae8(&data_ov000_021b5fdc, (void *) (a), 0));
+        func_0200eae8(&data_ov000_021b5fdc, (void *) (a), 0);
     }
     return;
 }
