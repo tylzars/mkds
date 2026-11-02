@@ -24,7 +24,7 @@ void InitWiFiVSCourseSelectState(u32 a) {
     func_ov000_02184b4c();
     v2 = ((u32) func_ov000_021804f4());
     v3 = ((int) func_ov000_021804e0());
-    func_0202ab2c((u32) (a), (u32) (v2), (u32) (v3));
+    InitWiFiVSCourseSelect((u32) (a), (u32) (v2), (u32) (v3));
     func_0212a910(1, 1);
     return;
 }
@@ -43,7 +43,7 @@ void AdvanceWiFiVSCourseSelectState(void) {
     s32 a;
     u8 b;
 
-    a = func_0202a92c();
+    a = AdvanceWiFiVSCourseSelect();
     if (func_ov000_021806c4() == -1 && (a == 1 || a == 2)) {
         if (func_02122ae4() != 0) {
             RequestWiFiState(7);

@@ -4,7 +4,7 @@
 #include "Main/Unknown/unk_02174000.h"
 #include "Main/Unknown/code_020d22c0.h"
 
-// Object behind data_02174e28, 0x158 bytes (func_0202ab2c allocates it).
+// Object behind gWiFiVSCourseSelect, 0x158 bytes (InitWiFiVSCourseSelect allocates it).
 typedef struct Unk02174e28 {
     /* 000 */ Unk02174e60_00 mUnk_000[2];
     /* 048 */ Unk02174e14_00 mUnk_048;

@@ -17,21 +17,21 @@ void func_020260e4(void) {
             func_0211f498();
         }
     }
-    func_02036ab0(data_02174e14->mUnk_05c);
-    data_02174e14 = 0;
+    func_02036ab0(gSelectCharacter->mUnk_05c);
+    gSelectCharacter = 0;
 }
 
 void func_02026058(void) {
     u32 a = 0x18;
 
     func_0214a40c((u32 *) 0x4001050, 0, 0x3f, 6, 10);
-    if (!(data_02174e14->mUnk_06c == 9 && data_02174e14->mUnk_08c == 2)) {
+    if (!(gSelectCharacter->mUnk_06c == 9 && gSelectCharacter->mUnk_08c == 2)) {
         a |= 1;
     }
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (a << 8);
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | 0x1600;
     *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 1;
-    if (data_02174e14->mUnk_128 != 0) {
+    if (gSelectCharacter->mUnk_128 != 0) {
         func_0202ba14();
     }
 }

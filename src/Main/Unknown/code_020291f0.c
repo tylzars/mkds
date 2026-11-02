@@ -29,14 +29,14 @@ u32 func_02029210(Unk02175628_48 *a) {
 void func_02029248(void) {
     Unk02174e18 *d;
     s32 i;
-    i = data_02174e18->mUnk_09c - 1;
+    i = gSelectKart->mUnk_09c - 1;
     if (i < 0) {
         i = 0x23;
     }
-    while (d = data_02174e18, i != d->mUnk_09c) {
+    while (d = gSelectKart, i != d->mUnk_09c) {
         if (func_0205fd2c(d->mUnk_098, d->mUnk_0a4, func_02025e28(i)) != 0) {
-            data_02174e18->mUnk_09c = i;
-            data_02174e18->mUnk_0a8 = func_02025e28(data_02174e18->mUnk_09c);
+            gSelectKart->mUnk_09c = i;
+            gSelectKart->mUnk_0a8 = func_02025e28(gSelectKart->mUnk_09c);
         } else {
             i--;
             if (i < 0) {
@@ -50,14 +50,14 @@ void func_02029248(void) {
 void func_020292bc(void) {
     Unk02174e18 *d;
     s32 i;
-    i = data_02174e18->mUnk_09c + 1;
+    i = gSelectKart->mUnk_09c + 1;
     if (i >= 0x24) {
         i = 0;
     }
-    while (d = data_02174e18, i != d->mUnk_09c) {
+    while (d = gSelectKart, i != d->mUnk_09c) {
         if (func_0205fd2c(d->mUnk_098, d->mUnk_0a4, func_02025e28(i)) != 0) {
-            data_02174e18->mUnk_09c = i;
-            data_02174e18->mUnk_0a8 = func_02025e28(data_02174e18->mUnk_09c);
+            gSelectKart->mUnk_09c = i;
+            gSelectKart->mUnk_0a8 = func_02025e28(gSelectKart->mUnk_09c);
         } else {
             i++;
             if (i >= 0x24) {
@@ -74,10 +74,10 @@ void func_02029330(void) {
     Unk02174e18 *d;
     Unk02174e50_24 *p;
     if (func_020280dc() == 0) {
-        d = data_02174e18;
+        d = gSelectKart;
         a = func_02025da4(d->mUnk_098, d->mUnk_0a4, d->mUnk_0a8);
-        b = func_02025df4(data_02174e18->mUnk_098, data_02174e18->mUnk_0a4);
-        d = data_02174e18;
+        b = func_02025df4(gSelectKart->mUnk_098, gSelectKart->mUnk_0a4);
+        d = gSelectKart;
         if (d->mUnk_104 != 0) {
             func_0202b554(a, b);
         } else {
@@ -97,7 +97,7 @@ void func_02029330(void) {
 }
 
 void func_0202941c(s32 a) {
-    if (data_02174e18->mUnk_104 != 0) {
+    if (gSelectKart->mUnk_104 != 0) {
         func_0202b7c0(a);
     }
 }

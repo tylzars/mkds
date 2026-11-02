@@ -29,8 +29,8 @@ void func_02028e38(void) {
     short *v2;
     v1 = func_020280dc();
     if (v1 == 0) {
-        v2 = (short *) func_02078b04((int) data_02174e18->mUnk_0a8, (int) data_02174e18->mUnk_0a4);
-        v3 = (Unk02174e14_00 *) &data_02174e18->mUnk_064;
+        v2 = (short *) func_02078b04((int) gSelectKart->mUnk_0a8, (int) gSelectKart->mUnk_0a4);
+        v3 = (Unk02174e14_00 *) &gSelectKart->mUnk_064;
         func_02028ec0(10, (u32) 0x10, (int) *v2, v3);
         func_02028ec0(9, (u32) 0xf, (int) v2[1], v3);
         func_02028ec0(8, (u32) 0xe, (int) v2[2], v3);

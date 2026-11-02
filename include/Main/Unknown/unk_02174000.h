@@ -50,7 +50,7 @@ typedef struct Unk02029930 {
 
 extern Unk02029930 *data_02174e1c;
 
-// 0x118-byte object that data_02174e18 points to.
+// 0x118-byte object that gSelectKart points to.
 typedef struct Unk02174e18 {
     /* 000 */ u8 mUnk_000[0x24];
     /* 024 */ Unk02174e50_24 mUnk_024;
@@ -75,7 +75,7 @@ typedef struct Unk02174e18 {
     /* 0ec */ Unk02025ebc mUnk_0ec;
     /* 0fc */ s32 mUnk_0fc;
     /* 100 */ s32 mUnk_100;
-    /* 104 */ s32 mUnk_104;
+    /* 104 */ BOOL mUnk_104;
     /* 108 */ s32 mUnk_108;
     /* 10c */ s32 mUnk_10c;
     /* 110 */ s32 mUnk_110;
@@ -83,7 +83,7 @@ typedef struct Unk02174e18 {
     /* 116 */ u8 mUnk_116[2];
 } Unk02174e18;
 
-extern Unk02174e18 *data_02174e18;
+extern Unk02174e18 *gSelectKart;
 
 // Four words at 0x04 of Unk02174e3c_4c.
 typedef struct Unk02174e3c_4c_04 {
@@ -102,7 +102,7 @@ typedef struct Unk02174e3c_4c {
 
 extern Unk02036590 data_02174e88;
 
-// 0x1c-byte part of Unk02174e14, at 0x00, 0x1c and 0x38; func_02026910 has two on the stack, one filled by
+// 0x1c-byte part of Unk02174e14, at 0x00, 0x1c and 0x38; InitSelectCharacter has two on the stack, one filled by
 // func_02025b84. Unk02174e60 has four from 0x48.
 typedef struct Unk02174e14_00 {
     /* 00 */ void *mUnk_00;
@@ -115,7 +115,7 @@ typedef struct Unk02174e14_00 {
 } Unk02174e14_00;
 
 // Object behind data_02174e3c.
-// Object behind data_02174e14.
+// Object behind gSelectCharacter.
 typedef struct Unk02174e14 {
     /* 000 */ Unk02174e14_00 mUnk_000;
     /* 01c */ Unk02174e14_00 mUnk_01c;
@@ -144,10 +144,10 @@ typedef struct Unk02174e14 {
     /* 0f8 */ Unk02025ebc mUnk_0f8;
     /* 108 */ Unk02025ebc mUnk_108;
     /* 118 */ Unk02025ebc mUnk_118;
-    /* 128 */ s32 mUnk_128;
+    /* 128 */ BOOL mUnk_128;
 } Unk02174e14;
 
-extern Unk02174e14 *data_02174e14;
+extern Unk02174e14 *gSelectCharacter;
 
 // Object behind data_02174e3c, 0x258 bytes (func_0202c65c allocates it).
 typedef struct Unk02174e3c {
@@ -256,7 +256,7 @@ extern Unk02174e64 *data_02174e64;
 
 // Objects whose layout isn't known yet.
 extern struct Unk0202a658 *data_02174e24;
-extern struct Unk02174e28 *data_02174e28;
+extern struct Unk02174e28 *gWiFiVSCourseSelect;
 // 0x20 bytes, then the word at 0x44 the code addresses 0xc past.
 typedef struct Unk02174e40_24 {
     /* 00 */ u8 mUnk_00[0x20];

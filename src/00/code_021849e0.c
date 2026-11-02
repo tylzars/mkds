@@ -17,7 +17,7 @@ void func_ov000_02184a6c(void *a) {
     func_ov000_02184a50();
     b = func_ov000_021804f4();
     c = func_ov000_021804e0();
-    func_02028864(a, 2, b, c);
+    InitSelectKart(a, 2, b, c);
 }
 
 void func_ov000_02184a54(void) {
@@ -33,7 +33,7 @@ void func_ov000_02184a50(void) {
 void func_ov000_02184a0c(void) {
     s32 a;
 
-    a = func_02028130();
+    a = AdvanceSelectKart();
     if (a == 1 || a == 2) {
         if (func_02122ae4() != 0) {
             RequestWiFiState(7);

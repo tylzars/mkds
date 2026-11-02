@@ -26,7 +26,7 @@ void InitWiFiSelectCharacterState(void *a) {
     }
     b = func_ov000_021804f4();
     c = func_ov000_021804e0();
-    func_02026910(a, 2, b, c);
+    InitSelectCharacter(a, 2, b, c);
     func_0212a910(1, 1);
     data_0217b488->mUnk_6c = 0;
     for (i = 0; i < 4; i++) {
@@ -47,7 +47,7 @@ void func_ov000_02184934(void) {
 void AdvanceWiFiSelectCharacterState(void) {
     s32 a;
 
-    a = func_02026120();
+    a = AdvanceSelectCharacter();
     if (a == 1 || a == 3) {
         if (func_02122ae4() != 0) {
             RequestWiFiState(7);

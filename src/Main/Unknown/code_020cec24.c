@@ -5,7 +5,7 @@
 #pragma optimize_for_size on
 #pragma thumb on
 void func_020cec24(void) {
-    switch (func_02026120()) {
+    switch (AdvanceSelectCharacter()) {
         case 1:
         case 3:
             func_020ccc74(0x10, 0x1f);

@@ -44,14 +44,14 @@ void func_020cb6c0(void) {
             case 21:
                 v = (func_020cae54() == 0) ? UNK_020CB6C0_0 : UNK_020CB6C0_1;
                 p = data_0217b43c;
-                func_02026910(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
+                InitSelectCharacter(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
                 break;
             case 6:
             case 9:
             case 22:
                 v = (func_020cae54() == 0) ? UNK_020CB6C0_0 : UNK_020CB6C0_1;
                 p = data_0217b43c;
-                func_02028864(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
+                InitSelectKart(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
                 break;
             case 7:
                 func_02117e24(func_020cb99c(), p->mUnk_108, p->mUnk_50c, 0);

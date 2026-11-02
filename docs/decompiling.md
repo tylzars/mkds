@@ -320,7 +320,7 @@ Reused variables and own locals:
 - A flag the original registers after a shared-expression temporary must be its variable's first or only value:
   write its earlier use with another local (func_02066fe0).
 - A table entry loaded once and kept in a callee-saved register across two calls is a reused dead variable:
-  `n = tbl[i].f; f1(n); f2(n);` with `n` from an earlier loop (func_02028864).
+  `n = tbl[i].f; f1(n); f2(n);` with `n` from an earlier loop (InitSelectKart).
 - A value the original forms itself is not a named local: `while (*(vu8 *) &d->mUnk_1b80 != 2) {}` instead of
   `q = &d->mUnk_1b80; while (*q != 2) {}` (func_ov003_021ce848).
 - Where the original gives a local its register only after a shared expression, drop the local and write the
@@ -807,7 +807,7 @@ Expression shapes:
 - `_ffltu` where the ROM calls `_fflt`: the converted value is signed (`s32 x` instead of `u32 x`, or a `u16` field
   promoted to `int`). The probe masks the call name, so check relocations (func_020a269c).
 - A 64-bit call result added to a 32-bit value widens the sum: `s = (a << 16) + func_0200f5ac();` builds a 64-bit add
-  too early. Narrow the call: `(a << 16) + (u32) func_0200f5ac()` (func_0202ab2c). The opposite shows as `adds` with
+  too early. Narrow the call: `(a << 16) + (u32) func_0200f5ac()` (InitWiFiVSCourseSelect). The opposite shows as `adds` with
   the high word dropped: the sum is of `u64` locals and the result truncated (func_020401ac).
 - Where the narrowing sits shows what was narrowed. `lsl #1` then `lsl #16; lsr #16` (ROM) against one `lsl #17;
   lsr #16`: `v1 = f(...) * 2; g(..., (u16) v1);` (func_02009828). `lsl #4; lsr #16` for a `u16` argument is how
@@ -841,7 +841,7 @@ Expression shapes:
 ### 1.9 Calls, Parameters and Frames
 
 - Spilled parameters take the lowest stack slots in parameter order; spilled named locals go above them in
-  declaration order (func_02028130 needed `e` before `x` before `q`); a spilled compiler temporary (e.g. a merged
+  declaration order (AdvanceSelectKart needed `e` before `x` before `q`); a spilled compiler temporary (e.g. a merged
   repeated global read) sits just above the parameters. A local that won't take its slot may need to be a repeated
   expression or its own variable (1.1).
 - Stack-parameter copies are emitted at entry in parameter order (`-proc generic` shows it). A local with two
@@ -874,7 +874,7 @@ Expression shapes:
   (func_020401ac). In a product, `(s64) X * b` becomes `b * X`; give X a local (`c = (s32) ((s64) *a * data >> 12);`,
   func_01ffb930).
 - A call that must come before a comparison: `p->mUnk_14 = d->mUnk_100 == 1;` after `func_02029930()`; `? 1 : 0` or
-  a temp is evaluated before the call (func_02028130).
+  a temp is evaluated before the call (AdvanceSelectKart).
 - Memory locals (those whose address is used) go in the frame in size groups, smallest first: 1 byte, 2 bytes, 3 to
   8 bytes, 9 to 64 bytes, over 64; within a group in declaration order. A struct the decompiler made from adjacent
   stack bytes that sits wrong against a smaller local is separate locals (`s8 d; s16 g; s16 h; u8 k[8];`,

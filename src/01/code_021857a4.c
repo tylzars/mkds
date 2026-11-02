@@ -114,7 +114,7 @@ void func_ov001_02185980(void) {
 }
 
 void func_ov001_02185954(void) {
-    switch (func_02026120()) {
+    switch (AdvanceSelectCharacter()) {
         case 1:
             func_020ccc74(0x16, 0x1f);
             break;
@@ -134,7 +134,7 @@ void func_ov001_02185928(void) {
 }
 
 void func_ov001_021858fc(void) {
-    switch (func_02028130()) {
+    switch (AdvanceSelectKart()) {
         case 1:
             func_020ccc74(0x17, 0x1f);
             break;

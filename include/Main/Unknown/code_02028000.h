@@ -5,5 +5,5 @@
 
 // Declared here until the code that defines them is decompiled.
 u32 func_020280dc(void);
-int func_02028130(void);
-void func_02028864(void *a, s32 b, void *c, void *d);
+int AdvanceSelectKart(void);
+void InitSelectKart(void *a, s32 b, void *c, void *d);
