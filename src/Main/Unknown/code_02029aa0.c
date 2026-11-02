@@ -88,7 +88,7 @@ void func_02029dcc(void *a, void *b, void *c) {
     func_02125c2c();
     func_02125de0(a, &s);
     func_02025854(0, &t1, data_usa_02162150, data_usa_02162164, data_usa_02162178, 1, FindSceneFile);
-    func_020b4810(&t1.mUnk_14[3], FindSceneFile(data_usa_0216218c));
+    LoadNscrData(&t1.mUnk_14[3], FindSceneFile(data_usa_0216218c));
     func_02016468(0xb, 0, &t1.mUnk_14[3]->mUnk_0c, t1.mUnk_14[3]->mUnk_08);
     n = func_02148cb8();
     q = &data_usa_02174e00->mUnk_00[0];

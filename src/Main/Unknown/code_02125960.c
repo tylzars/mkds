@@ -20,26 +20,26 @@ void func_02125c2c(void) {
     Unk02111684_v p;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        func_020b496c(&p.m4934, FindSceneFile("txt_system_b_00.ncgr"));
-        func_020b4810(&p.m47d8, FindSceneFile("txt_system_bg_00.nscr"));
-        func_020b4a7c(&p.m4a44, FindSceneFile("txt_system_b_00.nclr"));
+        LoadNcgrData(&p.m4934, FindSceneFile("txt_system_b_00.ncgr"));
+        LoadNscrData(&p.m47d8, FindSceneFile("txt_system_bg_00.nscr"));
+        LoadNclrData(&p.m4a44, FindSceneFile("txt_system_b_00.nclr"));
     } else {
-        func_020b496c(&p.m4934, func_02047a28("txt_system_b_00.ncgr"));
-        func_020b496c(&p.m4934, func_02047a28("txt_system_b_01.ncgr"));
-        func_020b4810(&p.m47d8, func_02047a28("txt_system_bg_00.nscr"));
-        func_020b4810(&p.m47d8, func_02047a28("txt_system_bg_00_2.nscr"));
-        func_020b4810(&p.m47d8, func_02047a28("txt_system_bg_01.nscr"));
-        func_020b4810(&p.m47d8, func_02047a28("txt_system_bg_01_2.nscr"));
-        func_020b4810(&p.m47d8, func_02047a28("txt_system_bg_02.nscr"));
-        func_020b4810(&p.m47d8, func_02047a28("txt_system_bg_02_2.nscr"));
-        func_020b4810(&p.m47d8, func_02047a28("txt_system_bg_02_3.nscr"));
-        func_020b4a7c(&p.m4a44, func_02047a28("txt_system_b_00.nclr"));
-        func_020b496c(&p.m4934, func_02047a28("select_choises_s_b.ncgr"));
-        func_020b4810(&p.m47d8, func_02047a28("select_choises_s_bg.nscr"));
-        func_020b4a7c(&p.m4a44, func_02047a28("select_choises_s_b.nclr"));
-        func_020b496c(&p.m4934, func_02047a28("select_return_s_b_00.ncgr"));
-        func_020b4810(&p.m47d8, func_02047a28("select_return_s_bg_00.nscr"));
-        func_020b4a7c(&p.m4a44, func_02047a28("select_return_s_b_00.nclr"));
+        LoadNcgrData(&p.m4934, func_02047a28("txt_system_b_00.ncgr"));
+        LoadNcgrData(&p.m4934, func_02047a28("txt_system_b_01.ncgr"));
+        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_00.nscr"));
+        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_00_2.nscr"));
+        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_01.nscr"));
+        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_01_2.nscr"));
+        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_02.nscr"));
+        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_02_2.nscr"));
+        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_02_3.nscr"));
+        LoadNclrData(&p.m4a44, func_02047a28("txt_system_b_00.nclr"));
+        LoadNcgrData(&p.m4934, func_02047a28("select_choises_s_b.ncgr"));
+        LoadNscrData(&p.m47d8, func_02047a28("select_choises_s_bg.nscr"));
+        LoadNclrData(&p.m4a44, func_02047a28("select_choises_s_b.nclr"));
+        LoadNcgrData(&p.m4934, func_02047a28("select_return_s_b_00.ncgr"));
+        LoadNscrData(&p.m47d8, func_02047a28("select_return_s_bg_00.nscr"));
+        LoadNclrData(&p.m4a44, func_02047a28("select_return_s_b_00.nclr"));
     }
 }
 
@@ -82,30 +82,30 @@ s32 func_02125960(s32 a) {
     k8 = data_0215d030[y] << 5;
     kc = (0xc - data_0215d030[y]) << 5;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        func_020b4934(&p14, FindSceneFile("common/select_race_rule_s_b.NCGR"));
-        func_020b4810(&p18, FindSceneFile("common/select_race_rule_download_bg_m.NSCR"));
-        func_020b4a44(&p1c, FindSceneFile("common/select_race_rule_s_b.NCLR"));
+        LocateNcgr(&p14, FindSceneFile("common/select_race_rule_s_b.NCGR"));
+        LoadNscrData(&p18, FindSceneFile("common/select_race_rule_download_bg_m.NSCR"));
+        LocateNclr(&p1c, FindSceneFile("common/select_race_rule_s_b.NCLR"));
         p20 = p14;
-        func_020b4810(&p24, FindSceneFile("common/select_race_rule_download_bg_s.NSCR"));
+        LoadNscrData(&p24, FindSceneFile("common/select_race_rule_download_bg_s.NSCR"));
         p28 = p1c;
     } else {
         if (data_0215d038[x] != 0) {
-            func_020b496c(&p14, func_02047a28(data_0216e390[x]));
-            func_020b4810(&p18, func_02047a28(data_0216e388[x]));
-            func_020b4a7c(&p1c, func_02047a28(data_0216e398[x]));
+            LoadNcgrData(&p14, func_02047a28(data_0216e390[x]));
+            LoadNscrData(&p18, func_02047a28(data_0216e388[x]));
+            LoadNclrData(&p1c, func_02047a28(data_0216e398[x]));
         } else {
-            func_020b496c(&p14, FindSceneFile(data_0216e390[x]));
-            func_020b4810(&p18, FindSceneFile(data_0216e388[x]));
-            func_020b4a7c(&p1c, FindSceneFile(data_0216e398[x]));
+            LoadNcgrData(&p14, FindSceneFile(data_0216e390[x]));
+            LoadNscrData(&p18, FindSceneFile(data_0216e388[x]));
+            LoadNclrData(&p1c, FindSceneFile(data_0216e398[x]));
         }
         if (data_0215d038[y] != 0) {
-            func_020b496c(&p20, func_02047a28(data_0216e380[y]));
-            func_020b4810(&p24, func_02047a28(data_0216e384[y]));
-            func_020b4a7c(&p28, func_02047a28(data_0216e37c[y]));
+            LoadNcgrData(&p20, func_02047a28(data_0216e380[y]));
+            LoadNscrData(&p24, func_02047a28(data_0216e384[y]));
+            LoadNclrData(&p28, func_02047a28(data_0216e37c[y]));
         } else {
-            func_020b496c(&p20, FindSceneFile(data_0216e380[y]));
-            func_020b4810(&p24, FindSceneFile(data_0216e384[y]));
-            func_020b4a7c(&p28, FindSceneFile(data_0216e37c[y]));
+            LoadNcgrData(&p20, FindSceneFile(data_0216e380[y]));
+            LoadNscrData(&p24, FindSceneFile(data_0216e384[y]));
+            LoadNclrData(&p28, FindSceneFile(data_0216e37c[y]));
         }
     }
     func_02016468(7, 0, p14->mUnk_14, p14->mUnk_10);

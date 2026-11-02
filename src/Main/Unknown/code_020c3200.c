@@ -212,14 +212,14 @@ void func_020c3200(void) {
     data_0217b3e0->mUnk_20d8 = 0;
     data_0217b3e0->mUnk_20dc = 0;
     data_0217b3e0->mUnk_20e0 = -0x20;
-    func_020b4a7c(&data_0217b3e0->mUnk_00b8, func_020b47c0("race_goal_s_b.NCLR"));
-    func_020b496c(&data_0217b3e0->mUnk_00bc, func_020b47c0("race_goal_s_b.NCGR"));
-    func_020b4810(&data_0217b3e0->mUnk_00c0[0], func_020b47c0("race_goal_s_bg.NSCR"));
-    func_020b4810(&data_0217b3e0->mUnk_00c0[1], func_020b47c0("race_goal_s_space1.NSCR"));
-    func_020b4810(&data_0217b3e0->mUnk_00c0[2], func_020b47c0("race_goal_s_space2.NSCR"));
-    func_020b4810(&data_0217b3e0->mUnk_00c0[3], func_020b47c0("race_goal_s_team_bg.NSCR"));
-    func_020b4810(&data_0217b3e0->mUnk_00c0[4], func_020b47c0("race_goal_s_teamB.NSCR"));
-    func_020b4810(&data_0217b3e0->mUnk_00c0[5], func_020b47c0("race_goal_s_teamR.NSCR"));
+    LoadNclrData(&data_0217b3e0->mUnk_00b8, FindSceneFileWrapper("race_goal_s_b.NCLR"));
+    LoadNcgrData(&data_0217b3e0->mUnk_00bc, FindSceneFileWrapper("race_goal_s_b.NCGR"));
+    LoadNscrData(&data_0217b3e0->mUnk_00c0[0], FindSceneFileWrapper("race_goal_s_bg.NSCR"));
+    LoadNscrData(&data_0217b3e0->mUnk_00c0[1], FindSceneFileWrapper("race_goal_s_space1.NSCR"));
+    LoadNscrData(&data_0217b3e0->mUnk_00c0[2], FindSceneFileWrapper("race_goal_s_space2.NSCR"));
+    LoadNscrData(&data_0217b3e0->mUnk_00c0[3], FindSceneFileWrapper("race_goal_s_team_bg.NSCR"));
+    LoadNscrData(&data_0217b3e0->mUnk_00c0[4], FindSceneFileWrapper("race_goal_s_teamB.NSCR"));
+    LoadNscrData(&data_0217b3e0->mUnk_00c0[5], FindSceneFileWrapper("race_goal_s_teamR.NSCR"));
     for (i = 0; i < 0x800; i++) {
         data_0217b3e0->mUnk_00d8[0][i] = data_0217b3e0->mUnk_00c0[1]->mUnk_0c[i];
         data_0217b3e0->mUnk_00d8[1][i] = data_0217b3e0->mUnk_00c0[2]->mUnk_0c[i];

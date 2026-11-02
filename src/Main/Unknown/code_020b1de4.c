@@ -149,10 +149,10 @@ void func_020b1df0(void) {
             "choises_s_4.NSCR", "choises_s_5.NSCR", "choises_s_6.NSCR",
         };
 
-        func_020b4a7c(&data_0217b354->mUnk_16c, func_020b47c0("choises_s_b.NCLR"));
-        func_020b496c(&data_0217b354->mUnk_170, func_020b47c0("choises_s_b.NCGR"));
+        LoadNclrData(&data_0217b354->mUnk_16c, FindSceneFileWrapper("choises_s_b.NCLR"));
+        LoadNcgrData(&data_0217b354->mUnk_170, FindSceneFileWrapper("choises_s_b.NCGR"));
         for (i = 0; i < 6; i++) {
-            func_020b4810(&data_0217b354->mUnk_18c[i], func_020b47c0(t[i]));
+            LoadNscrData(&data_0217b354->mUnk_18c[i], FindSceneFileWrapper(t[i]));
         }
         data_0217b354->mUnk_17c = data_0217b354->mUnk_18c[data_0217b354->mUnk_038[0].mUnk_18 - 1];
         data_0217b354->mUnk_180 = data_0217b354->mUnk_18c[data_0217b354->mUnk_038[1].mUnk_18 - 1];

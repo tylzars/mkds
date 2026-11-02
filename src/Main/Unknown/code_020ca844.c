@@ -9,18 +9,18 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void func_020ca844(void) {
-    data_0217b438->mUnk_24++;
-    if (data_0217b438->mUnk_24 >= 0x32) {
-        data_0217b438->mUnk_24 = 0;
+    gEmblemChoises->mUnk_24++;
+    if (gEmblemChoises->mUnk_24 >= 0x32) {
+        gEmblemChoises->mUnk_24 = 0;
     }
-    if (data_0217b438->mUnk_14 == 0 && data_0217b438->mUnk_18 == 0 && data_0217b438->mUnk_00 != 0 &&
-        data_0217b438->mUnk_04 != 0) {
+    if (gEmblemChoises->mUnk_14 == 0 && gEmblemChoises->mUnk_18 == 0 && gEmblemChoises->mUnk_00 != 0 &&
+        gEmblemChoises->mUnk_04 != 0) {
         if (func_020cacc0()) {
-            data_0217b438->mUnk_14 = 1;
+            gEmblemChoises->mUnk_14 = 1;
         } else if (func_020ca9ac(func_020ca9dc(), 1)) {
-            data_0217b438->mUnk_14 = 1;
-            data_0217b438->mUnk_10 = 1;
-            switch (data_0217b438->mUnk_20) {
+            gEmblemChoises->mUnk_14 = 1;
+            gEmblemChoises->mUnk_10 = 1;
+            switch (gEmblemChoises->mUnk_20) {
                 case 0:
                     func_020ca984(0x10);
                     break;
@@ -32,7 +32,7 @@ void func_020ca844(void) {
                     break;
             }
         } else if (func_020ca9ac(func_020ca9dc(), 10)) {
-            data_0217b438->mUnk_18 = 1;
+            gEmblemChoises->mUnk_18 = 1;
             func_020ca984(0x10);
         }
         if (func_020ca9ac(func_020ca9dc(), 0x40)) {
@@ -41,25 +41,25 @@ void func_020ca844(void) {
             func_020cadac(1);
         }
     }
-    if (data_0217b438->mUnk_14 != 0) {
-        data_0217b438->mUnk_14++;
-        if (data_0217b438->mUnk_14 > 0xf) {
-            if (data_0217b438->mUnk_00 != 0) {
-                data_0217b438->mUnk_1c = data_0217b438->mUnk_20;
-                data_0217b438->mUnk_14 = 0;
+    if (gEmblemChoises->mUnk_14 != 0) {
+        gEmblemChoises->mUnk_14++;
+        if (gEmblemChoises->mUnk_14 > 0xf) {
+            if (gEmblemChoises->mUnk_00 != 0) {
+                gEmblemChoises->mUnk_1c = gEmblemChoises->mUnk_20;
+                gEmblemChoises->mUnk_14 = 0;
             }
-            data_0217b438->mUnk_14 = 0;
-            data_0217b438->mUnk_10 = 0;
+            gEmblemChoises->mUnk_14 = 0;
+            gEmblemChoises->mUnk_10 = 0;
         }
     }
-    if (data_0217b438->mUnk_18 != 0) {
-        data_0217b438->mUnk_18++;
-        if (data_0217b438->mUnk_18 > 4) {
-            if (data_0217b438->mUnk_00 != 0) {
-                data_0217b438->mUnk_1c = -2;
-                data_0217b438->mUnk_14 = 0;
+    if (gEmblemChoises->mUnk_18 != 0) {
+        gEmblemChoises->mUnk_18++;
+        if (gEmblemChoises->mUnk_18 > 4) {
+            if (gEmblemChoises->mUnk_00 != 0) {
+                gEmblemChoises->mUnk_1c = -2;
+                gEmblemChoises->mUnk_14 = 0;
             }
-            data_0217b438->mUnk_18 = 0;
+            gEmblemChoises->mUnk_18 = 0;
         }
     }
 }

@@ -10,7 +10,7 @@
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_020b47d8.h"
 
-// Three pointers filled in by func_020b4a7c, func_020b49f4 and func_020b4810.
+// Three pointers filled in by LoadNclrData, LoadNcgrData2 and LoadNscrData.
 typedef struct Unk02001d30 {
     /* 00 */ Unk020b4a44 *mUnk_00;
     /* 04 */ Unk020b4934 *mUnk_04;

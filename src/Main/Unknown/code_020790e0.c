@@ -178,13 +178,13 @@ u16 *func_02079478(void *a) {
     void *x;
     Unk020b4a44 *p;
     func_0207913c(a, "kart/palette/kart_a.NCLR", &x);
-    func_020b4a7c(&p, x);
+    LoadNclrData(&p, x);
     return p->mUnk_0c;
 }
 
 u16 *func_0207949c(void) {
     Unk020b4a44 *p;
-    func_020b4a7c(&p, func_02047950("/kart/palette/kart_a.NCLR"));
+    LoadNclrData(&p, func_02047950("/kart/palette/kart_a.NCLR"));
     return p->mUnk_0c;
 }
 
@@ -365,7 +365,7 @@ void func_020797d8(void *a, u32 b) {
     }
     {
         Unk020b4a44 *p;
-        func_020b4a7c(&p, func_02047950("/character/heyho/HH_color.NCLR"));
+        LoadNclrData(&p, func_02047950("/character/heyho/HH_color.NCLR"));
         data_0217ad00->mUnk_014 = (Unk0217ad00_014 *) p->mUnk_0c;
     }
 }

@@ -94,16 +94,16 @@ void func_020cbb10(void) {
     if (func_020cbad0() == 0) {
         func_0211e480(func_020cb99c());
         func_020d1108();
-        func_020b4a7c(&data_0217b43c->mUnk_910, func_020b47c0("common/single_play_select_mode_m_o.NCLR"));
-        func_020b49f4(&data_0217b43c->mUnk_914, func_020b47c0("common/single_play_select_mode_m.nce.ncgr"));
-        func_020b48ec(&data_0217b43c->mUnk_918, func_020b47c0("common/single_play_select_mode_m.nce.ncer"));
-        data_0217b43c->mUnk_940 = func_020b47c0("common/single_play_select_mode_m.bncl");
+        LoadNclrData(&data_0217b43c->mUnk_910, FindSceneFileWrapper("common/single_play_select_mode_m_o.NCLR"));
+        LoadNcgrData2(&data_0217b43c->mUnk_914, FindSceneFileWrapper("common/single_play_select_mode_m.nce.ncgr"));
+        LoadNcerData(&data_0217b43c->mUnk_918, FindSceneFileWrapper("common/single_play_select_mode_m.nce.ncer"));
+        data_0217b43c->mUnk_940 = FindSceneFileWrapper("common/single_play_select_mode_m.bncl");
         data_0217b43c->mUnk_944 = 0;
-        func_020b4a7c(&data_0217b43c->mUnk_920, func_020b47c0("common/single_play_select_mode_s_o.NCLR"));
-        func_020b49f4(&data_0217b43c->mUnk_924, func_020b47c0("common/single_play_select_mode_s.nce.ncgr"));
-        func_020b48ec(&data_0217b43c->mUnk_928, func_020b47c0("common/single_play_select_mode_s.nce.ncer"));
-        data_0217b43c->mUnk_94c = func_020b47c0("common/single_play_select_mode_s.bncl");
-        data_0217b43c->mUnk_950 = func_020b47c0("common/single_play_select_mode_s.bnbl");
+        LoadNclrData(&data_0217b43c->mUnk_920, FindSceneFileWrapper("common/single_play_select_mode_s_o.NCLR"));
+        LoadNcgrData2(&data_0217b43c->mUnk_924, FindSceneFileWrapper("common/single_play_select_mode_s.nce.ncgr"));
+        LoadNcerData(&data_0217b43c->mUnk_928, FindSceneFileWrapper("common/single_play_select_mode_s.nce.ncer"));
+        data_0217b43c->mUnk_94c = FindSceneFileWrapper("common/single_play_select_mode_s.bncl");
+        data_0217b43c->mUnk_950 = FindSceneFileWrapper("common/single_play_select_mode_s.bnbl");
         p = data_0217b43c;
         func_02124ed0(func_020cb99c(), p->mUnk_940, 0, &p->mUnk_93c);
         p = data_0217b43c;

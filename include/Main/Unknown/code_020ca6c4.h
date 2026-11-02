@@ -6,4 +6,4 @@
 
 void func_020ca808(Unk02180728 *a, void *b, void *c, s32 d, s32 e);
 u32 func_020ca7e0(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f);
-void func_020ca6c4(void);
+void InitEmblemChoises(void);

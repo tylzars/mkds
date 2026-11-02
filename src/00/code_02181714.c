@@ -86,11 +86,11 @@ void func_ov000_02181df8(void) {
     v1 = FindSceneFile((const char *) &data_ov000_021b0b0c);
     data_ov000_021b4c6c->mUnk_30 = v1;
     v1 = FindSceneFile((const char *) &data_ov000_021b0b24);
-    func_020b49bc(&data_ov000_021b4c6c->mUnk_24, v1);
+    LocateNcgr2(&data_ov000_021b4c6c->mUnk_24, v1);
     v1 = FindSceneFile((const char *) &data_ov000_021b0b40);
-    func_020b48b4(&data_ov000_021b4c6c->mUnk_20, v1);
+    LocateNcer(&data_ov000_021b4c6c->mUnk_20, v1);
     v1 = FindSceneFile((const char *) &data_ov000_021b0b5c);
-    func_020b4a44(&data_ov000_021b4c6c->mUnk_28, v1);
+    LocateNclr(&data_ov000_021b4c6c->mUnk_28, v1);
     func_02016468(0x23, 0, (void *) (data_ov000_021b4c6c->mUnk_24->mUnk_14),
                   (u32) (data_ov000_021b4c6c->mUnk_24->mUnk_10));
     func_02016468(0x1e, 0, (void *) (data_ov000_021b4c6c->mUnk_28->mUnk_0c),

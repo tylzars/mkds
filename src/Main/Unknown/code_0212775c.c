@@ -112,9 +112,9 @@ s32 func_02127f14(s32 d) {
     s32 y;
     Unk0215d064 *e;
 
-    func_020b4934(&a, func_02047a28(data_0216e840));
-    func_020b47d8(&b, func_02047a28(data_0216e858));
-    func_020b4a44(&c, func_02047a28(data_0216e874));
+    LocateNcgr(&a, func_02047a28(data_0216e840));
+    LocateNscr(&b, func_02047a28(data_0216e858));
+    LocateNclr(&c, func_02047a28(data_0216e874));
     d = d - a->mUnk_10;
     s = d >> 5;
     data_0217d3f4->mUnk_89c = s;

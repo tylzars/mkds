@@ -26,14 +26,14 @@ void func_02117388(void) {
     v5 = 0;
     v6[0] = 0;
     v1 = FindSceneFile((const char *) data_0216d534);
-    func_020b496c(&v4, v1);
+    LoadNcgrData(&v4, v1);
     v1 = FindSceneFile((const char *) data_0216d538);
-    func_020b48ec(&v5, v1);
+    LoadNcerData(&v5, v1);
     v2 = 0;
     v3 = (u32 *) &data_0216d53c;
     do {
         v1 = FindSceneFile((const char *) (*v3));
-        func_020b4a7c(v6, v1);
+        LoadNclrData(v6, v1);
         v3 = v3 + 1;
         v2 = v2 + 1;
     } while (v2 < 3);
@@ -50,14 +50,14 @@ void func_0211732c(void) {
     v5 = 0;
     v6[0] = 0;
     v1 = FindSceneFile((const char *) data_0216d524);
-    func_020b496c(&v4, v1);
+    LoadNcgrData(&v4, v1);
     v1 = FindSceneFile((const char *) data_0216d528);
-    func_020b48ec(&v5, v1);
+    LoadNcerData(&v5, v1);
     v2 = 0;
     v3 = (u32 *) &data_0216d548;
     do {
         v1 = FindSceneFile((const char *) (*v3));
-        func_020b4a7c(v6, v1);
+        LoadNclrData(v6, v1);
         v3 = v3 + 1;
         v2 = v2 + 1;
     } while (v2 < 3);
@@ -71,10 +71,10 @@ void func_021172a8(void *a) {
     int i;
 
     data_0217d35c = func_02036bec(a, 0x18);
-    func_020b49bc(&data_0217d35c->mUnk_00, FindSceneFile(data_0216d534));
-    func_020b48b4(&data_0217d35c->mUnk_04, FindSceneFile(data_0216d538));
+    LocateNcgr2(&data_0217d35c->mUnk_00, FindSceneFile(data_0216d534));
+    LocateNcer(&data_0217d35c->mUnk_04, FindSceneFile(data_0216d538));
     for (i = 0; i < 3; i++) {
-        func_020b4a44(&data_0217d35c->mUnk_08[i], FindSceneFile(data_0216d53c[i]));
+        LocateNclr(&data_0217d35c->mUnk_08[i], FindSceneFile(data_0216d53c[i]));
     }
     data_0217d35c->mUnk_14 = FindSceneFile(data_0216d52c);
 }
@@ -87,10 +87,10 @@ void func_02117224(void *heap) {
     s32 i;
 
     data_0217d35c = func_02036bec(heap, 0x18);
-    func_020b49bc(&data_0217d35c->mUnk_00, FindSceneFile(data_0216d524));
-    func_020b48b4(&data_0217d35c->mUnk_04, FindSceneFile(data_0216d528));
+    LocateNcgr2(&data_0217d35c->mUnk_00, FindSceneFile(data_0216d524));
+    LocateNcer(&data_0217d35c->mUnk_04, FindSceneFile(data_0216d528));
     for (i = 0; i < 3; i++) {
-        func_020b4a44(&data_0217d35c->mUnk_08[i], FindSceneFile(data_0216d548[i]));
+        LocateNclr(&data_0217d35c->mUnk_08[i], FindSceneFile(data_0216d548[i]));
     }
     data_0217d35c->mUnk_14 = FindSceneFile(data_0216d530);
 }

@@ -6,7 +6,7 @@
 
 #pragma thumb on
 void func_020ca688(u32 a) {
-    data_0217b438->mUnk_00 = a;
+    gEmblemChoises->mUnk_00 = a;
     func_020cac9c();
 }
 #pragma thumb off

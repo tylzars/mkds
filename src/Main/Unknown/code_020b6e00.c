@@ -113,53 +113,53 @@ void func_020b8624(void) {
         data_0217b3c4->mUnk_7d0[i] = 0;
     }
 
-    func_020b4a7c(&data_0217b3c4->mUnk_7dc[0].mUnk_00, func_020b47c0("race_m_o.NCLR"));
-    func_020b4a7c(&data_0217b3c4->mUnk_7dc[1].mUnk_00, func_020b47c0("race_goal_m_o.NCLR"));
+    LoadNclrData(&data_0217b3c4->mUnk_7dc[0].mUnk_00, FindSceneFileWrapper("race_m_o.NCLR"));
+    LoadNclrData(&data_0217b3c4->mUnk_7dc[1].mUnk_00, FindSceneFileWrapper("race_goal_m_o.NCLR"));
     switch (data_021759c0->mUnk_08) {
         case 1:
             data_0217b3c4->mUnk_7dc[2].mUnk_00 = data_0217b3c4->mUnk_7dc[0].mUnk_00;
             break;
         case 2:
-            func_020b4a7c(&data_0217b3c4->mUnk_7dc[3].mUnk_00, func_020b47c0("race_battle_m_o.NCLR"));
+            LoadNclrData(&data_0217b3c4->mUnk_7dc[3].mUnk_00, FindSceneFileWrapper("race_battle_m_o.NCLR"));
             if (data_021759c0->mUnk_00c == 4) {
-                func_020b4a7c(&data_0217b3c4->mUnk_7dc[10].mUnk_00, func_020b47c0("race_start_battle_m_o.NCLR"));
+                LoadNclrData(&data_0217b3c4->mUnk_7dc[10].mUnk_00, FindSceneFileWrapper("race_start_battle_m_o.NCLR"));
             }
             break;
         case 4:
-            func_020b4a7c(&data_0217b3c4->mUnk_7dc[4].mUnk_00, func_020b47c0("race_mr_m_o.NCLR"));
-            func_020b4a7c(&data_0217b3c4->mUnk_7dc[5].mUnk_00, func_020b47c0("race_goal_mr_m_o.NCLR"));
+            LoadNclrData(&data_0217b3c4->mUnk_7dc[4].mUnk_00, FindSceneFileWrapper("race_mr_m_o.NCLR"));
+            LoadNclrData(&data_0217b3c4->mUnk_7dc[5].mUnk_00, FindSceneFileWrapper("race_goal_mr_m_o.NCLR"));
             break;
         case 5:
             break;
     }
 
-    func_020b49f4(&data_0217b3c4->mUnk_7dc[0].mUnk_04, func_020b47c0("race_m_o.NCGR"));
-    func_020b49f4(&data_0217b3c4->mUnk_7dc[1].mUnk_04, func_020b47c0("race_goal_m_o.NCGR"));
+    LoadNcgrData2(&data_0217b3c4->mUnk_7dc[0].mUnk_04, FindSceneFileWrapper("race_m_o.NCGR"));
+    LoadNcgrData2(&data_0217b3c4->mUnk_7dc[1].mUnk_04, FindSceneFileWrapper("race_goal_m_o.NCGR"));
     switch (data_021759c0->mUnk_08) {
         case 1:
-            func_020b49f4(&data_0217b3c4->mUnk_7dc[2].mUnk_04, func_020b47c0("race_ta_m_o.NCGR"));
+            LoadNcgrData2(&data_0217b3c4->mUnk_7dc[2].mUnk_04, FindSceneFileWrapper("race_ta_m_o.NCGR"));
             break;
         case 2:
-            func_020b49f4(&data_0217b3c4->mUnk_7dc[3].mUnk_04, func_020b47c0("race_battle_m_o.NCGR"));
+            LoadNcgrData2(&data_0217b3c4->mUnk_7dc[3].mUnk_04, FindSceneFileWrapper("race_battle_m_o.NCGR"));
             if (data_021759c0->mUnk_00c == 4) {
-                func_020b49f4(&data_0217b3c4->mUnk_7dc[10].mUnk_04, func_020b47c0("race_start_battle_m_o.NCGR"));
+                LoadNcgrData2(&data_0217b3c4->mUnk_7dc[10].mUnk_04, FindSceneFileWrapper("race_start_battle_m_o.NCGR"));
             }
             break;
         case 4:
-            func_020b49f4(&data_0217b3c4->mUnk_7dc[4].mUnk_04, func_020b47c0("race_mr_m_o.NCGR"));
-            func_020b49f4(&data_0217b3c4->mUnk_7dc[5].mUnk_04, func_020b47c0("race_goal_mr_m_o.NCGR"));
+            LoadNcgrData2(&data_0217b3c4->mUnk_7dc[4].mUnk_04, FindSceneFileWrapper("race_mr_m_o.NCGR"));
+            LoadNcgrData2(&data_0217b3c4->mUnk_7dc[5].mUnk_04, FindSceneFileWrapper("race_goal_mr_m_o.NCGR"));
             break;
         case 5:
             break;
     }
 
     a0 = 0;
-    func_020b48ec(&a0, func_020b47c0("race_m.NCER"));
+    LoadNcerData(&a0, FindSceneFileWrapper("race_m.NCER"));
     for (i = 0; i < 0x38; i++) {
         data_0217b3c4->mUnk_000[i] = func_02021f1c(a0, i);
     }
     a1 = 0;
-    func_020b48ec(&a1, func_020b47c0("race_goal_m.NCER"));
+    LoadNcerData(&a1, FindSceneFileWrapper("race_goal_m.NCER"));
     for (i = 0; i < 0x44; i++) {
         data_0217b3c4->mUnk_0e0[i] = func_02021f1c(a1, i);
     }
@@ -175,7 +175,7 @@ void func_020b8624(void) {
             func_02024340(&s0, 0x80, 0x38, 0xe, 0x412, func_020b3f7c(func_020b47cc("common.bmg"), 0x81));
             func_0200ee74(data_0217b3c4->mUnk_7dc[1].mUnk_04->mUnk_14, data_0217b3c4->mUnk_7dc[1].mUnk_04->mUnk_10);
             a2 = 0;
-            func_020b48ec(&a2, func_020b47c0("race_ta_m.NCER"));
+            LoadNcerData(&a2, FindSceneFileWrapper("race_ta_m.NCER"));
             for (i = 0; i < 0xf; i++) {
                 data_0217b3c4->mUnk_1f0[i] = func_02021f1c(a2, i);
             }
@@ -193,7 +193,7 @@ void func_020b8624(void) {
         case 2:
             if (data_021759c0->mUnk_00c != 4) {
                 a3 = 0;
-                func_020b48ec(&a3, func_020b47c0("race_battle_m.NCER"));
+                LoadNcerData(&a3, FindSceneFileWrapper("race_battle_m.NCER"));
                 for (i = 0; i < 0xd; i++) {
                     data_0217b3c4->mUnk_22c[i] = func_02021f1c(a3, i);
                 }
@@ -203,7 +203,7 @@ void func_020b8624(void) {
                               data_0217b3c4->mUnk_7dc[0].mUnk_04->mUnk_14, 0, 0);
             } else {
                 a4 = 0;
-                func_020b48ec(&a4, func_020b47c0("race_start_battle_m.NCER"));
+                LoadNcerData(&a4, FindSceneFileWrapper("race_start_battle_m.NCER"));
                 for (i = 0; i < 3; i++) {
                     data_0217b3c4->mUnk_7d0[i] = func_02021f1c(a4, i);
                 }
@@ -232,7 +232,7 @@ void func_020b8624(void) {
             break;
         case 4:
             a5 = 0;
-            func_020b48ec(&a5, func_020b47c0("race_mr_m.NCER"));
+            LoadNcerData(&a5, FindSceneFileWrapper("race_mr_m.NCER"));
             for (i = 0; i < 0x16; i++) {
                 data_0217b3c4->mUnk_260[i] = func_02021f1c(a5, i);
             }
@@ -241,7 +241,7 @@ void func_020b8624(void) {
             func_020b46d0(data_0217b3c4->mUnk_7dc[4].mUnk_04->mUnk_14, 0, 0, 0x20, 4,
                           data_0217b3c4->mUnk_7dc[0].mUnk_04->mUnk_14, 0, 0);
             a6 = 0;
-            func_020b48ec(&a6, func_020b47c0("race_goal_mr_m.NCER"));
+            LoadNcerData(&a6, FindSceneFileWrapper("race_goal_mr_m.NCER"));
             for (i = 0; i < 8; i++) {
                 data_0217b3c4->mUnk_2b8[i] = func_02021f1c(a6, i);
             }
@@ -252,28 +252,28 @@ void func_020b8624(void) {
             break;
         case 5:
             a7 = 0;
-            func_020b49f4(&a7, func_020b47c0("race_icon_txt.NCGR"));
+            LoadNcgrData2(&a7, FindSceneFileWrapper("race_icon_txt.NCGR"));
             q = a7->mUnk_14;
             func_020b46d0(q, 0, 0, 8, 2, data_0217b3c4->mUnk_7dc[0].mUnk_04->mUnk_14, 0x18, 0xe);
             func_020b46d0(q, 0, 0, 8, 2, data_0217b3c4->mUnk_7dc[1].mUnk_04->mUnk_14, 0x18, 0xe);
             break;
     }
 
-    func_020b4a7c(&data_0217b3c4->mUnk_7dc[6].mUnk_00, func_020b47c0("race_s_o.NCLR"));
-    func_020b4a7c(&data_0217b3c4->mUnk_7dc[7].mUnk_00, func_020b47c0("race_goal_s_o.NCLR"));
-    func_020b4a7c(&data_0217b3c4->mUnk_7dc[8].mUnk_00, func_020b47c0("race_goal_team_s_o.NCLR"));
+    LoadNclrData(&data_0217b3c4->mUnk_7dc[6].mUnk_00, FindSceneFileWrapper("race_s_o.NCLR"));
+    LoadNclrData(&data_0217b3c4->mUnk_7dc[7].mUnk_00, FindSceneFileWrapper("race_goal_s_o.NCLR"));
+    LoadNclrData(&data_0217b3c4->mUnk_7dc[8].mUnk_00, FindSceneFileWrapper("race_goal_team_s_o.NCLR"));
     if (data_021759c0->mUnk_58 != 0) {
         a8 = 0;
         m = data_021759c0->mUnk_68[func_020b4d9c()].mUnk_08.mUnk_04 == 0 ? 0x13 : 0x23;
-        func_020b4a7c(&a8, func_020b47c0("race_own_character_s_o.NCLR"));
+        LoadNclrData(&a8, FindSceneFileWrapper("race_own_character_s_o.NCLR"));
         func_0200ee74(data_0217b3c4->mUnk_7dc[6].mUnk_00->mUnk_0c, 0x200);
         for (j = 0; j < 4; j++) {
             data_0217b3c4->mUnk_7dc[6].mUnk_00->mUnk_0c[j + 0xb3] = a8->mUnk_0c[m + j];
         }
     }
-    func_020b49f4(&data_0217b3c4->mUnk_7dc[6].mUnk_04, func_020b47c0("race_s_o.NCGR"));
-    func_020b49f4(&data_0217b3c4->mUnk_7dc[7].mUnk_04, func_020b47c0("race_goal_s_o.NCGR"));
-    func_020b49f4(&data_0217b3c4->mUnk_7dc[8].mUnk_04, func_020b47c0("race_goal_team_s_o.NCGR"));
+    LoadNcgrData2(&data_0217b3c4->mUnk_7dc[6].mUnk_04, FindSceneFileWrapper("race_s_o.NCGR"));
+    LoadNcgrData2(&data_0217b3c4->mUnk_7dc[7].mUnk_04, FindSceneFileWrapper("race_goal_s_o.NCGR"));
+    LoadNcgrData2(&data_0217b3c4->mUnk_7dc[8].mUnk_04, FindSceneFileWrapper("race_goal_team_s_o.NCGR"));
 
     p = func_020b403c(0);
     func_02023408(buf3, data_0217b3c4->mUnk_7dc[7].mUnk_04->mUnk_14, 0x20, 0x10, 4);
@@ -329,17 +329,17 @@ void func_020b8624(void) {
     }
 
     a9 = 0;
-    func_020b48ec(&a9, func_020b47c0("race_s.NCER"));
+    LoadNcerData(&a9, FindSceneFileWrapper("race_s.NCER"));
     for (i = 0; i < 0xc9; i++) {
         data_0217b3c4->mUnk_2d8[i] = func_02021f1c(a9, i);
     }
     a10 = 0;
-    func_020b48ec(&a10, func_020b47c0("race_goal_s.NCER"));
+    LoadNcerData(&a10, FindSceneFileWrapper("race_goal_s.NCER"));
     for (i = 0; i < 0x2c; i++) {
         data_0217b3c4->mUnk_5fc[i] = func_02021f1c(a10, i);
     }
     a11 = 0;
-    func_020b48ec(&a11, func_020b47c0("race_goal_team_s.NCER"));
+    LoadNcerData(&a11, FindSceneFileWrapper("race_goal_team_s.NCER"));
     for (i = 0; i < 0x28; i++) {
         data_0217b3c4->mUnk_6ac[i] = func_02021f1c(a11, i);
     }
@@ -347,8 +347,8 @@ void func_020b8624(void) {
     if (data_021759c0->mUnk_08 != 1) {
         return;
     }
-    func_020b4a7c(&data_0217b3c4->mUnk_7dc[9].mUnk_00, func_020b47c0("race_new_record_ta_s_o.NCLR"));
-    func_020b49f4(&data_0217b3c4->mUnk_7dc[9].mUnk_04, func_020b47c0("race_new_record_ta_s_o.NCGR"));
+    LoadNclrData(&data_0217b3c4->mUnk_7dc[9].mUnk_00, FindSceneFileWrapper("race_new_record_ta_s_o.NCLR"));
+    LoadNcgrData2(&data_0217b3c4->mUnk_7dc[9].mUnk_04, FindSceneFileWrapper("race_new_record_ta_s_o.NCGR"));
     p = func_020b403c(0);
     func_02023408(buf6, data_0217b3c4->mUnk_7dc[9].mUnk_04->mUnk_14, 0x20, 0x10, 4);
     s6.mUnk_00 = buf6;
@@ -363,7 +363,7 @@ void func_020b8624(void) {
         func_02024340(&s6, x3, y3, 0xe, 0x40a, w6);
     }
     a12 = 0;
-    func_020b48ec(&a12, func_020b47c0("race_new_record_ta_s.NCER"));
+    LoadNcerData(&a12, FindSceneFileWrapper("race_new_record_ta_s.NCER"));
     for (i = 0; i < 0x21; i++) {
         data_0217b3c4->mUnk_74c[i] = func_02021f1c(a12, i);
     }
@@ -709,13 +709,13 @@ void func_020b7a80(u16 *a, void *b) {
     Unk020b4a44 *v7;
     s32 i;
 
-    func_020b49f4(&o, func_020b47c0("race_transfer_map_mr_s_o.NCGR"));
+    LoadNcgrData2(&o, FindSceneFileWrapper("race_transfer_map_mr_s_o.NCGR"));
     p = o->mUnk_14;
     switch (data_021759c0->mUnk_2e) {
         case 0x9:
             func_020b46d0(p, 0x0, 0, 4, 4, b, 0, 12);
             v1 = 0;
-            func_020b4a7c(&v1, func_020b47c0("race_transfer_map_mr_s_o.NCLR"));
+            LoadNclrData(&v1, FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR"));
             for (i = 0; i < 16; i++) {
                 a[0x50 + i] = v1->mUnk_0c[0x0 + i];
             }
@@ -723,7 +723,7 @@ void func_020b7a80(u16 *a, void *b) {
         case 0x32:
             func_020b46d0(p, 0x4, 0, 8, 4, b, 0, 12);
             v2 = 0;
-            func_020b4a7c(&v2, func_020b47c0("race_transfer_map_mr_s_o.NCLR"));
+            LoadNclrData(&v2, FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR"));
             for (i = 0; i < 16; i++) {
                 a[0x50 + i] = v2->mUnk_0c[0x10 + i];
             }
@@ -731,7 +731,7 @@ void func_020b7a80(u16 *a, void *b) {
         case 0x15:
             func_020b46d0(p, 0xc, 0, 4, 4, b, 0, 12);
             v3 = 0;
-            func_020b4a7c(&v3, func_020b47c0("race_transfer_map_mr_s_o.NCLR"));
+            LoadNclrData(&v3, FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR"));
             for (i = 0; i < 16; i++) {
                 a[0x50 + i] = v3->mUnk_0c[0x20 + i];
             }
@@ -739,7 +739,7 @@ void func_020b7a80(u16 *a, void *b) {
         case 0x33:
             func_020b46d0(p, 0x10, 0, 4, 4, b, 0, 12);
             v4 = 0;
-            func_020b4a7c(&v4, func_020b47c0("race_transfer_map_mr_s_o.NCLR"));
+            LoadNclrData(&v4, FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR"));
             for (i = 0; i < 16; i++) {
                 a[0x50 + i] = v4->mUnk_0c[0x50 + i];
             }
@@ -747,7 +747,7 @@ void func_020b7a80(u16 *a, void *b) {
         case 0x11:
             func_020b46d0(p, 0x14, 0, 4, 4, b, 0, 12);
             v5 = 0;
-            func_020b4a7c(&v5, func_020b47c0("race_transfer_map_mr_s_o.NCLR"));
+            LoadNclrData(&v5, FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR"));
             for (i = 0; i < 16; i++) {
                 a[0x50 + i] = v5->mUnk_0c[0x60 + i];
             }
@@ -755,7 +755,7 @@ void func_020b7a80(u16 *a, void *b) {
         case 0xa:
             func_020b46d0(p, 0x18, 0, 4, 4, b, 0, 12);
             v6 = 0;
-            func_020b4a7c(&v6, func_020b47c0("race_transfer_map_mr_s_o.NCLR"));
+            LoadNclrData(&v6, FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR"));
             for (i = 0; i < 16; i++) {
                 a[0x50 + i] = v6->mUnk_0c[0x70 + i];
             }
@@ -763,7 +763,7 @@ void func_020b7a80(u16 *a, void *b) {
         case 0x31:
             func_020b46d0(p, 0x0, 4, 8, 4, b, 0, 12);
             v7 = 0;
-            func_020b4a7c(&v7, func_020b47c0("race_transfer_map_mr_s_o.NCLR"));
+            LoadNclrData(&v7, FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR"));
             for (i = 0; i < 16; i++) {
                 a[0x50 + i] = v7->mUnk_0c[0x80 + i];
             }
@@ -797,7 +797,7 @@ void func_020b6e00(u16 *a, void *b) {
     s32 n;
     Unk020b6e00 *r;
 
-    func_020b49f4(&o, func_020b47c0("race_transfer_s_o.NCGR"));
+    LoadNcgrData2(&o, FindSceneFileWrapper("race_transfer_s_o.NCGR"));
     p = o->mUnk_14;
     for (i = 0; i < (s32) data_021759c0->mUnk_3d0; i++) {
         func_020b7fd8(i, &x, &y);
@@ -833,13 +833,13 @@ void func_020b6e00(u16 *a, void *b) {
         func_020b46d0(func_0212b090(), (k % 4) << 3, ((u32) k >> 2) << 1, 7, 2, b, t[k][0], t[k][1]);
     }
     func_0212b09c();
-    func_020b49f4(&o, func_020b47c0("race_transfer_map_s_o.NCGR"));
+    LoadNcgrData2(&o, FindSceneFileWrapper("race_transfer_map_s_o.NCGR"));
     p = o->mUnk_14;
     if (data_021759c0->mUnk_08 == 2) {
         func_020b46d0(p, 0x14, 6, 0xc, 4, b, 0, 8);
         func_020b46d0(p, 0x14, 0xa, 0xb, 4, b, 0, 0xc);
         q1 = 0;
-        func_020b4a7c(&q1, func_020b47c0("race_transfer_map_s_o.NCLR"));
+        LoadNclrData(&q1, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
         for (n = 0; n < 16; n++) {
             a[0x40 + n] = q1->mUnk_0c[0xd0 + n];
         }
@@ -850,7 +850,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 46:
                 func_020b46d0(p, 0x0, 0, 4, 2, b, 0, 8);
                 q2 = 0;
-                func_020b4a7c(&q2, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q2, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q2->mUnk_0c[n];
                 }
@@ -860,7 +860,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 35:
                 func_020b46d0(p, 0x4, 0, 5, 2, b, 0, 8);
                 q3 = 0;
-                func_020b4a7c(&q3, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q3, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q3->mUnk_0c[0x10 + n];
                 }
@@ -868,7 +868,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 27:
                 func_020b46d0(p, 0x9, 0, 6, 2, b, 0, 8);
                 q4 = 0;
-                func_020b4a7c(&q4, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q4, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q4->mUnk_0c[0x20 + n];
                 }
@@ -876,7 +876,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 36:
                 func_020b46d0(p, 0xf, 0, 3, 2, b, 0, 8);
                 q5 = 0;
-                func_020b4a7c(&q5, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q5, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q5->mUnk_0c[0x30 + n];
                 }
@@ -888,7 +888,7 @@ void func_020b6e00(u16 *a, void *b) {
                     func_020b45b0(p, 0, 2, 8, 8, b, 0, 8);
                 }
                 q6 = 0;
-                func_020b4a7c(&q6, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q6, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q6->mUnk_0c[0x40 + n];
                 }
@@ -897,7 +897,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 38:
                 func_020b46d0(p, 0x14, 0, 8, 4, b, 0, 8);
                 q7 = 0;
-                func_020b4a7c(&q7, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q7, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q7->mUnk_0c[0x50 + n];
                 }
@@ -906,7 +906,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 30:
                 func_020b46d0(p, 0x1d, 0, 3, 2, b, 0, 8);
                 q8 = 0;
-                func_020b4a7c(&q8, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q8, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q8->mUnk_0c[0x60 + n];
                 }
@@ -914,7 +914,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 17:
                 func_020b46d0(p, 0xc, 4, 8, 4, b, 0, 8);
                 q9 = 0;
-                func_020b4a7c(&q9, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q9, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q9->mUnk_0c[0x70 + n];
                 }
@@ -925,7 +925,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 39:
                 func_020b46d0(p, 0xc, 2, 8, 2, b, 0, 8);
                 q10 = 0;
-                func_020b4a7c(&q10, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q10, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q10->mUnk_0c[0x80 + n];
                 }
@@ -936,7 +936,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 26:
                 func_020b46d0(p, 0x13, 4, 12, 4, b, 0, 8);
                 q11 = 0;
-                func_020b4a7c(&q11, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q11, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q11->mUnk_0c[0x90 + n];
                 }
@@ -944,7 +944,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 34:
                 func_020b46d0(p, 0x8, 10, 8, 4, b, 0, 8);
                 q12 = 0;
-                func_020b4a7c(&q12, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q12, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q12->mUnk_0c[0x80 + n];
                 }
@@ -953,7 +953,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 32:
                 func_020b46d0(p, 0xc, 8, 8, 2, b, 0, 8);
                 q13 = 0;
-                func_020b4a7c(&q13, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q13, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q13->mUnk_0c[0xa0 + n];
                 }
@@ -961,7 +961,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 29:
                 func_020b46d0(p, 0x12, 10, 2, 2, b, 0, 8);
                 q14 = 0;
-                func_020b4a7c(&q14, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q14, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q14->mUnk_0c[0xb0 + n];
                 }
@@ -969,7 +969,7 @@ void func_020b6e00(u16 *a, void *b) {
             case 23:
                 func_020b46d0(p, 0x0, 10, 8, 6, b, 0, 8);
                 q15 = 0;
-                func_020b4a7c(&q15, func_020b47c0("race_transfer_map_s_o.NCLR"));
+                LoadNclrData(&q15, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
                 for (n = 0; n < 16; n++) {
                     a[0x40 + n] = q15->mUnk_0c[0xe0 + n];
                 }

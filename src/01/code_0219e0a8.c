@@ -85,33 +85,33 @@ void func_ov001_0219e5a0(void) {
 
 void func_ov001_0219e38c(void) {
 #ifdef version_EUR
-    func_020b496c(&data_ov001_021ca400->mUnk_038[0], FindSceneFile("logo_end_marioKart_m_b_02.ncgr"));
-    func_020b4810(&data_ov001_021ca400->mUnk_040[0], FindSceneFile("logo_end_marioKart_m_bg_02.nscr"));
+    LoadNcgrData(&data_ov001_021ca400->mUnk_038[0], FindSceneFile("logo_end_marioKart_m_b_02.ncgr"));
+    LoadNscrData(&data_ov001_021ca400->mUnk_040[0], FindSceneFile("logo_end_marioKart_m_bg_02.nscr"));
 #else
-    func_020b496c(&data_ov001_021ca400->mUnk_038[0], FindSceneFile("logo_end_marioKart_m_b_01.ncgr"));
-    func_020b4810(&data_ov001_021ca400->mUnk_040[0], FindSceneFile("logo_end_marioKart_m_bg_01.nscr"));
+    LoadNcgrData(&data_ov001_021ca400->mUnk_038[0], FindSceneFile("logo_end_marioKart_m_b_01.ncgr"));
+    LoadNscrData(&data_ov001_021ca400->mUnk_040[0], FindSceneFile("logo_end_marioKart_m_bg_01.nscr"));
 #endif
-    func_020b4a7c(&data_ov001_021ca400->mUnk_048[0], FindSceneFile("logo_end_marioKart_m_b.nclr"));
+    LoadNclrData(&data_ov001_021ca400->mUnk_048[0], FindSceneFile("logo_end_marioKart_m_b.nclr"));
     switch (data_ov001_021ca400->mUnk_00c) {
         case 0:
-            func_020b496c(&data_ov001_021ca400->mUnk_038[1], FindSceneFile("thanksYou_m_b_00.ncgr"));
-            func_020b4810(&data_ov001_021ca400->mUnk_040[1], FindSceneFile("thanksYou_m_bg_00.nscr"));
-            func_020b4a7c(&data_ov001_021ca400->mUnk_048[1], FindSceneFile("thanksYou_m_b_00.nclr"));
+            LoadNcgrData(&data_ov001_021ca400->mUnk_038[1], FindSceneFile("thanksYou_m_b_00.ncgr"));
+            LoadNscrData(&data_ov001_021ca400->mUnk_040[1], FindSceneFile("thanksYou_m_bg_00.nscr"));
+            LoadNclrData(&data_ov001_021ca400->mUnk_048[1], FindSceneFile("thanksYou_m_b_00.nclr"));
             break;
         case 1:
-            func_020b496c(&data_ov001_021ca400->mUnk_038[1], FindSceneFile("thanksYou_m_b_01_2.ncgr"));
-            func_020b4810(&data_ov001_021ca400->mUnk_040[1], FindSceneFile("thanksYou_m_bg_01_2.nscr"));
-            func_020b4a7c(&data_ov001_021ca400->mUnk_048[1], FindSceneFile("thanksYou_m_b_01.nclr"));
+            LoadNcgrData(&data_ov001_021ca400->mUnk_038[1], FindSceneFile("thanksYou_m_b_01_2.ncgr"));
+            LoadNscrData(&data_ov001_021ca400->mUnk_040[1], FindSceneFile("thanksYou_m_bg_01_2.nscr"));
+            LoadNclrData(&data_ov001_021ca400->mUnk_048[1], FindSceneFile("thanksYou_m_b_01.nclr"));
             break;
     }
-    func_020b496c(&data_ov001_021ca400->mUnk_050[0], FindSceneFile("end_allRightsReserved_s_b.ncgr"));
-    func_020b4810(&data_ov001_021ca400->mUnk_058[0], FindSceneFile("end_allRightsReserved_s_bg.nscr"));
-    func_020b4a7c(&data_ov001_021ca400->mUnk_060[0], FindSceneFile("end_allRightsReserved_s_b.nclr"));
-    func_020b496c(&data_ov001_021ca400->mUnk_050[1], FindSceneFile("logo_end_Nintendo_s_b.ncgr"));
-    func_020b4810(&data_ov001_021ca400->mUnk_058[1], FindSceneFile("logo_end_Nintendo_s_bg.nscr"));
-    func_020b4a7c(&data_ov001_021ca400->mUnk_060[1], FindSceneFile("logo_end_Nintendo_s_b.nclr"));
-    func_020b48ec(&data_ov001_021ca400->mUnk_024, FindSceneFile("thanksYou_m.nce.ncer"));
-    func_020b4a7c(&data_ov001_021ca400->mUnk_02c, FindSceneFile("thanksYou_m_o_00.nclr"));
+    LoadNcgrData(&data_ov001_021ca400->mUnk_050[0], FindSceneFile("end_allRightsReserved_s_b.ncgr"));
+    LoadNscrData(&data_ov001_021ca400->mUnk_058[0], FindSceneFile("end_allRightsReserved_s_bg.nscr"));
+    LoadNclrData(&data_ov001_021ca400->mUnk_060[0], FindSceneFile("end_allRightsReserved_s_b.nclr"));
+    LoadNcgrData(&data_ov001_021ca400->mUnk_050[1], FindSceneFile("logo_end_Nintendo_s_b.ncgr"));
+    LoadNscrData(&data_ov001_021ca400->mUnk_058[1], FindSceneFile("logo_end_Nintendo_s_bg.nscr"));
+    LoadNclrData(&data_ov001_021ca400->mUnk_060[1], FindSceneFile("logo_end_Nintendo_s_b.nclr"));
+    LoadNcerData(&data_ov001_021ca400->mUnk_024, FindSceneFile("thanksYou_m.nce.ncer"));
+    LoadNclrData(&data_ov001_021ca400->mUnk_02c, FindSceneFile("thanksYou_m_o_00.nclr"));
     switch (data_ov001_021ca400->mUnk_00c) {
         case 0:
             data_ov001_021ca400->mUnk_030 = FindSceneFile("ending_thanks_00.bncl");

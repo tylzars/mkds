@@ -136,7 +136,7 @@ s32 func_020b4acc(void) {
     }
 }
 
-void func_020b4a7c(Unk020b4a44 **v1, void *a) {
+void LoadNclrData(Unk020b4a44 **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a != 0) {
@@ -149,7 +149,7 @@ void func_020b4a7c(Unk020b4a44 **v1, void *a) {
     func_0200ee74((*v1)->mUnk_0c, (*v1)->mUnk_08);
 }
 
-void func_020b4a44(Unk020b4a44 **v1, void *a) {
+void LocateNclr(Unk020b4a44 **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a == 0) {
@@ -161,7 +161,7 @@ void func_020b4a44(Unk020b4a44 **v1, void *a) {
     }
 }
 
-void func_020b49f4(Unk020b4934 **v1, void *a) {
+void LoadNcgrData2(Unk020b4934 **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a != 0) {
@@ -174,7 +174,7 @@ void func_020b49f4(Unk020b4934 **v1, void *a) {
     func_0200ee74((*v1)->mUnk_14, (*v1)->mUnk_10);
 }
 
-void func_020b49bc(Unk020b4934 **v1, void *a) {
+void LocateNcgr2(Unk020b4934 **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a == 0) {
@@ -186,7 +186,7 @@ void func_020b49bc(Unk020b4934 **v1, void *a) {
     }
 }
 
-void func_020b496c(Unk020b4934 **v1, void *a) {
+void LoadNcgrData(Unk020b4934 **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a != 0) {
@@ -199,7 +199,7 @@ void func_020b496c(Unk020b4934 **v1, void *a) {
     func_0200ee74((*v1)->mUnk_14, (*v1)->mUnk_10);
 }
 
-void func_020b4934(Unk020b4934 **v1, void *a) {
+void LocateNcgr(Unk020b4934 **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a == 0) {
@@ -211,7 +211,7 @@ void func_020b4934(Unk020b4934 **v1, void *a) {
     }
 }
 
-void func_020b48ec(Unk02021dc8 **v1, void *a) {
+void LoadNcerData(Unk02021dc8 **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a == 0) {
@@ -225,7 +225,7 @@ void func_020b48ec(Unk02021dc8 **v1, void *a) {
     func_02021e8c(*v1);
 }
 
-void func_020b48b4(Unk02021dc8 **v1, void *a) {
+void LocateNcer(Unk02021dc8 **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a == 0) {
@@ -237,7 +237,7 @@ void func_020b48b4(Unk02021dc8 **v1, void *a) {
     }
 }
 
-void func_020b486c(Unk02021dc8 **v1, void *a) {
+void LoadNanrData(Unk02021dc8 **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a == 0) {
@@ -251,7 +251,7 @@ void func_020b486c(Unk02021dc8 **v1, void *a) {
     func_02021dc8(*v1);
 }
 
-void func_020b4810(Unk020b47d8 **v1, void *a) {
+void LoadNscrData(Unk020b47d8 **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a != 0) {
@@ -264,7 +264,7 @@ void func_020b4810(Unk020b47d8 **v1, void *a) {
     func_0200ee74((*v1)->mUnk_0c, (*v1)->mUnk_08);
 }
 
-void func_020b47d8(Unk020b47d8 **v1, void *a) {
+void LocateNscr(Unk020b47d8 **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a == 0) {

@@ -41,16 +41,16 @@ void func_02025f90(void) {
     Unk020b4a44 *b = 0;
     Unk02021dc8 *c = 0;
 
-    func_020b49f4(&a, func_02047a28(data_usa_02161b3c));
-    func_020b48ec(&c, func_02047a28(data_usa_02161b5c));
-    func_020b4a7c(&b, func_02047a28(data_usa_02161b7c));
-    func_020b49f4(&a, func_02047a28(data_usa_02161b9c));
-    func_020b48ec(&c, func_02047a28(data_usa_02161bb8));
-    func_020b4a7c(&b, func_02047a28(data_usa_02161bd4));
-    func_020b49f4(&a, func_02047a28(data_usa_02161bf0));
-    func_020b48ec(&c, func_02047a28(data_usa_02161c14));
-    func_020b49f4(&a, func_02047a28(data_usa_02161c38));
-    func_020b48ec(&c, func_02047a28(data_usa_02161c60));
+    LoadNcgrData2(&a, func_02047a28(data_usa_02161b3c));
+    LoadNcerData(&c, func_02047a28(data_usa_02161b5c));
+    LoadNclrData(&b, func_02047a28(data_usa_02161b7c));
+    LoadNcgrData2(&a, func_02047a28(data_usa_02161b9c));
+    LoadNcerData(&c, func_02047a28(data_usa_02161bb8));
+    LoadNclrData(&b, func_02047a28(data_usa_02161bd4));
+    LoadNcgrData2(&a, func_02047a28(data_usa_02161bf0));
+    LoadNcerData(&c, func_02047a28(data_usa_02161c14));
+    LoadNcgrData2(&a, func_02047a28(data_usa_02161c38));
+    LoadNcerData(&c, func_02047a28(data_usa_02161c60));
 }
 
 void func_02025f80(Unk02025ebc *a, s32 b, s32 c, s16 d, s32 e) {

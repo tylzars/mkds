@@ -4,7 +4,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020b4000.h"
 
-// Object behind data_0217b4a4: three pointers that func_020b4a7c, func_020b496c and func_020b4810 fill from
+// Object behind data_0217b4a4: three pointers that LoadNclrData, LoadNcgrData and LoadNscrData fill from
 // the three buffers at 0x10, 0x238 and 0x1038, then a word at 0xc.
 typedef struct Unk0217b4a4 {
     /* 0000 */ Unk020b4a44 *mUnk_00;

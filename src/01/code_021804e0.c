@@ -185,7 +185,7 @@ void func_ov001_02180610(void) {
         func_ov001_02180728(&data_ov001_021a99e4->mUnk_0078[i], data_ov001_021a99e4->mUnk_0018[i],
                             data_ov001_021a99e4->mUnk_000c[i], 0, 0);
     }
-    func_020ca6c4();
+    InitEmblemChoises();
 }
 
 void func_ov001_021805f4(void) {

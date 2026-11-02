@@ -164,20 +164,20 @@ s32 func_0212717c(s32 d) {
     Unk020b4a44 *c;
 
     if (*(vu16 *) 0x27ffc40 == 2) {
-        func_020b4934(&a, FindSceneFile(data_0216e708));
-        func_020b47d8(&data_0217d3f0->mUnk_225c[0], FindSceneFile(data_0216e720));
-        func_020b4a44(&c, FindSceneFile(data_0216e738));
+        LocateNcgr(&a, FindSceneFile(data_0216e708));
+        LocateNscr(&data_0217d3f0->mUnk_225c[0], FindSceneFile(data_0216e720));
+        LocateNclr(&c, FindSceneFile(data_0216e738));
     } else {
-        func_020b4934(&a, func_02047a28(data_0216e750));
-        func_020b4934(&b, func_02047a28(data_0216e768));
-        func_020b47d8(&data_0217d3f0->mUnk_225c[0], func_02047a28(data_0216e780));
-        func_020b47d8(&data_0217d3f0->mUnk_225c[1], func_02047a28(data_0216e798));
-        func_020b47d8(&data_0217d3f0->mUnk_225c[2], func_02047a28(data_0216e7b0));
-        func_020b47d8(&data_0217d3f0->mUnk_225c[3], func_02047a28(data_0216e7c8));
-        func_020b47d8(&data_0217d3f0->mUnk_225c[4], func_02047a28(data_0216e7e0));
-        func_020b47d8(&data_0217d3f0->mUnk_225c[5], func_02047a28(data_0216e7f8));
-        func_020b47d8(&data_0217d3f0->mUnk_225c[6], func_02047a28(data_0216e810));
-        func_020b4a44(&c, func_02047a28(data_0216e828));
+        LocateNcgr(&a, func_02047a28(data_0216e750));
+        LocateNcgr(&b, func_02047a28(data_0216e768));
+        LocateNscr(&data_0217d3f0->mUnk_225c[0], func_02047a28(data_0216e780));
+        LocateNscr(&data_0217d3f0->mUnk_225c[1], func_02047a28(data_0216e798));
+        LocateNscr(&data_0217d3f0->mUnk_225c[2], func_02047a28(data_0216e7b0));
+        LocateNscr(&data_0217d3f0->mUnk_225c[3], func_02047a28(data_0216e7c8));
+        LocateNscr(&data_0217d3f0->mUnk_225c[4], func_02047a28(data_0216e7e0));
+        LocateNscr(&data_0217d3f0->mUnk_225c[5], func_02047a28(data_0216e7f8));
+        LocateNscr(&data_0217d3f0->mUnk_225c[6], func_02047a28(data_0216e810));
+        LocateNclr(&c, func_02047a28(data_0216e828));
     }
     data_0217d3f0->mUnk_2220[0] = 0;
     func_0200ee74(a->mUnk_14, a->mUnk_10);

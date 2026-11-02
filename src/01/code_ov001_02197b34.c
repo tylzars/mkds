@@ -30,12 +30,12 @@ void func_ov001_021984ac(void) {
     Unk020b4a44 *e = 0;
     Unk020b47d8 *f = 0;
 
-    func_020b496c(&d, FindSceneFile(data_ov001_021a835c));
-    func_020b4a7c(&e, FindSceneFile(data_ov001_021a8360));
-    func_020b4810(&f, FindSceneFile(data_ov001_021a8354));
-    func_020b49f4(&a, FindSceneFile(data_ov001_021a8350));
-    func_020b48ec(&b, FindSceneFile(data_ov001_021a834c));
-    func_020b4a7c(&c, FindSceneFile(data_ov001_021a8364));
+    LoadNcgrData(&d, FindSceneFile(data_ov001_021a835c));
+    LoadNclrData(&e, FindSceneFile(data_ov001_021a8360));
+    LoadNscrData(&f, FindSceneFile(data_ov001_021a8354));
+    LoadNcgrData2(&a, FindSceneFile(data_ov001_021a8350));
+    LoadNcerData(&b, FindSceneFile(data_ov001_021a834c));
+    LoadNclrData(&c, FindSceneFile(data_ov001_021a8364));
 }
 
 void func_ov001_02198384(void) {
@@ -45,15 +45,15 @@ void func_ov001_02198384(void) {
     Unk020b4a44 *d = 0;
     Unk020b47d8 *e = 0;
 
-    func_020b4934(&c, FindSceneFile(data_ov001_021a835c));
-    func_020b4a44(&d, FindSceneFile(data_ov001_021a8360));
-    func_020b47d8(&e, FindSceneFile(data_ov001_021a8354));
+    LocateNcgr(&c, FindSceneFile(data_ov001_021a835c));
+    LocateNclr(&d, FindSceneFile(data_ov001_021a8360));
+    LocateNscr(&e, FindSceneFile(data_ov001_021a8354));
     data_ov001_021a9be0->mUnk_10 = func_02036bec(data_ov001_021a9be0->mUnk_14, 0x800);
     data_ov001_021a9be0->mUnk_04 = FindSceneFile(data_ov001_021a8358);
     data_ov001_021a9be0->mUnk_08 = FindSceneFile(data_ov001_021a8348);
-    func_020b49bc(&a, FindSceneFile(data_ov001_021a8350));
-    func_020b48b4(&data_ov001_021a9be0->mUnk_00, FindSceneFile(data_ov001_021a834c));
-    func_020b4a44(&b, FindSceneFile(data_ov001_021a8364));
+    LocateNcgr2(&a, FindSceneFile(data_ov001_021a8350));
+    LocateNcer(&data_ov001_021a9be0->mUnk_00, FindSceneFile(data_ov001_021a834c));
+    LocateNclr(&b, FindSceneFile(data_ov001_021a8364));
     func_02016468(4, 0, c->mUnk_14, c->mUnk_10);
     func_02016468(0xf, 0, d->mUnk_0c, 0x20);
     func_02016468(8, 0, &e->mUnk_0c, e->mUnk_08);

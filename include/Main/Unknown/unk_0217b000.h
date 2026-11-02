@@ -146,7 +146,7 @@ typedef struct Unk0217b4f8 {
     /* 54 */ s32 mUnk_54;
 } Unk0217b4f8;
 
-// Object behind data_0217b438, 0x6c bytes (func_020ca6c4 allocates it); func_020ca9e4 calls the function at 0x0c.
+// Object behind gEmblemChoises, 0x6c bytes (InitEmblemChoises allocates it); func_020ca9e4 calls the function at 0x0c.
 typedef struct Unk0217b438 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -519,7 +519,7 @@ typedef struct Unk0217b350_858 {
 } Unk0217b350_858;
 
 // Object behind data_0217b350, 0x914 bytes allocated by func_020b03bc (words from 0x828 to 0x910 read and written by
-// func_020aeb7c). The pointers at 0x80c to 0x824 are written through func_020b4a7c, func_020b496c and func_020b4810.
+// func_020aeb7c). The pointers at 0x80c to 0x824 are written through LoadNclrData, LoadNcgrData and LoadNscrData.
 typedef struct Unk0217b350 {
     /* 000 */ s32 mUnk_000;
     /* 004 */ u8 mUnk_004[0x400];
@@ -632,7 +632,7 @@ extern struct Unk0217b3e8 *data_0217b3e8;
 extern struct Unk0217b3f0 *data_0217b3f0;
 extern struct Unk0217b3f4 *data_0217b3f4;
 extern s32 data_0217b3f8;
-extern Unk0217b438 *data_0217b438;
+extern Unk0217b438 *gEmblemChoises;
 extern struct Unk0217b43c *data_0217b43c;
 extern struct Unk0217b4a4 *data_0217b4a4;
 extern struct Unk0217b4b0 *data_0217b4b0;

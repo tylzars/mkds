@@ -5,10 +5,10 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_02021db0.h" // Unk02021dc8
 
-// Objects stored through the first parameter: Unk020b47d8 by func_020b47d8 and func_020b4810, Unk020b4934 by
-// func_020b4934, func_020b496c, func_020b49bc and func_020b49f4, Unk020b4a44 by func_020b4a44 and func_020b4a7c,
-// Unk02021dc8 by func_020b486c, func_020b48b4 and func_020b48ec (func_020b486c passes it to func_02021dc8,
-// func_020b48ec to func_02021e8c; func_020b48b4 looks up the same block tag as func_020b48ec).
+// Objects stored through the first parameter: Unk020b47d8 by LocateNscr and LoadNscrData, Unk020b4934 by
+// LocateNcgr, LoadNcgrData, LocateNcgr2 and LoadNcgrData2, Unk020b4a44 by LocateNclr and LoadNclrData,
+// Unk02021dc8 by LoadNanrData, LocateNcer and LoadNcerData (LoadNanrData passes it to func_02021dc8,
+// LoadNcerData to func_02021e8c; LocateNcer looks up the same block tag as LoadNcerData).
 typedef struct Unk020b4934 {
     /* 0000 */ u16 mUnk_00;
     /* 0002 */ u16 mUnk_02;

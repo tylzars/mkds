@@ -87,7 +87,7 @@ void func_02087000(void) {
             data_0217aed0->mUnk_164[i] = q;
         } else {
             r = (void *) data_021759c0->mUnk_68[i].mUnk_08.mUnk_1c;
-            func_020b4a7c(&o, func_02047950(data_02165a7c));
+            LoadNclrData(&o, func_02047950(data_02165a7c));
             q = (u8 *) o->mUnk_0c;
             data_0217aed0->mUnk_144[i] = r;
             data_0217aed0->mUnk_164[i] = q;

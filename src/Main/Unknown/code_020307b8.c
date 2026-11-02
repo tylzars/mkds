@@ -40,9 +40,9 @@ void func_020307b8(void *a, void *b, void *c) {
     data_02174e54->mUnk_38 = -0xc0;
     n = func_02148ca0();
     o = data_02174e54;
-    func_020b49bc(&o->mUnk_00, FindSceneFile(data_02163638));
-    func_020b48b4(&o->mUnk_08, FindSceneFile(data_02163654));
-    func_020b4a44(&o->mUnk_04, FindSceneFile(data_02163670));
+    LocateNcgr2(&o->mUnk_00, FindSceneFile(data_02163638));
+    LocateNcer(&o->mUnk_08, FindSceneFile(data_02163654));
+    LocateNclr(&o->mUnk_04, FindSceneFile(data_02163670));
     o->mUnk_0c = FindSceneFile(data_0216368c);
     o->mUnk_10 = FindSceneFile(data_021636a4);
     o->mUnk_14 = FindSceneFile(data_021636bc);

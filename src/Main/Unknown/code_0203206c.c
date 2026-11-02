@@ -39,17 +39,17 @@ void func_0203206c(void) {
     Unk020b47d8 *d;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_020b496c(&a, FindSceneFile(data_021639b8));
-        func_020b49f4(&a, FindSceneFile(data_021639d4));
-        func_020b48ec(&c, FindSceneFile(data_021639f4));
-        func_020b4a7c(&b, FindSceneFile(data_02163a14));
-        func_020b4a7c(&b, FindSceneFile(data_02163a30));
-        func_020b4810(&d, FindSceneFile(data_02163a4c));
-        func_020b4810(&d, FindSceneFile(data_02163a6c));
+        LoadNcgrData(&a, FindSceneFile(data_021639b8));
+        LoadNcgrData2(&a, FindSceneFile(data_021639d4));
+        LoadNcerData(&c, FindSceneFile(data_021639f4));
+        LoadNclrData(&b, FindSceneFile(data_02163a14));
+        LoadNclrData(&b, FindSceneFile(data_02163a30));
+        LoadNscrData(&d, FindSceneFile(data_02163a4c));
+        LoadNscrData(&d, FindSceneFile(data_02163a6c));
     }
-    func_020b49f4(&a, FindSceneFile(data_02163a90));
-    func_020b48ec(&c, FindSceneFile(data_02163ab0));
-    func_020b4a7c(&b, FindSceneFile(data_02163ad0));
+    LoadNcgrData2(&a, FindSceneFile(data_02163a90));
+    LoadNcerData(&c, FindSceneFile(data_02163ab0));
+    LoadNclrData(&b, FindSceneFile(data_02163ad0));
 }
 
 void func_02032138(void) {

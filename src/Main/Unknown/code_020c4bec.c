@@ -155,10 +155,10 @@ void func_020c4bec(void) {
         e->mUnk_0a = 3;
     }
     data_0217b3e8->mUnk_00 = 0;
-    func_020b4a7c(&data_0217b3e8->mUnk_04, func_020b47c0("race_start_gp_m_o.NCLR"));
-    func_020b49f4(&data_0217b3e8->mUnk_08, func_020b47c0("race_start_gp_m_o.NCGR"));
+    LoadNclrData(&data_0217b3e8->mUnk_04, FindSceneFileWrapper("race_start_gp_m_o.NCLR"));
+    LoadNcgrData2(&data_0217b3e8->mUnk_08, FindSceneFileWrapper("race_start_gp_m_o.NCGR"));
     v = 0;
-    func_020b48ec(&v, func_020b47c0("race_start_gp_m.NCER"));
+    LoadNcerData(&v, FindSceneFileWrapper("race_start_gp_m.NCER"));
     for (i = 0; i < 3; i++) {
         data_0217b3e8->mUnk_0c[i] = func_02021f1c(v, (u16) i);
     }

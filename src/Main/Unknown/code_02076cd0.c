@@ -385,7 +385,7 @@ void func_02077a28(void *a) {
     void *v;
 
     func_0207913c(a, data_usa_02165714, &v);
-    func_020b4a7c(&data_usa_0217ace4, v);
+    LoadNclrData(&data_usa_0217ace4, v);
 }
 
 u16 func_02077a4c(void) {

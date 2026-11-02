@@ -6,6 +6,6 @@
 #include "Main/Unknown/unk_02164000.h"
 #include "Main/Unknown/code_020472a8.h"
 
-void *func_020b47b4(const char *arg0);
-void *func_020b47c0(const char *arg0);
+void *FindCourseFileWrapper(const char *arg0);
+void *FindSceneFileWrapper(const char *arg0);
 void *func_020b47cc(const char *arg0);

@@ -79,7 +79,7 @@ void func_ov001_021899e4(void) {
                 row = func_ov001_0218b2d4((Unk02188950 *) obj);
                 dst = func_020b85f0(6)->mUnk_00->mUnk_0c;
                 res = 0;
-                func_020b4a44((Unk020b4a44 **) (&res), (void *) (func_020b47c0("race_transfer_map_mr_s_o.NCLR")));
+                LocateNclr((Unk020b4a44 **) (&res), (void *) (FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR")));
                 for (k = 0; k < 16; k++) {
                     dst[0x50 + k] = res->mUnk_0c[(row + 2) * 16 + k];
                 }

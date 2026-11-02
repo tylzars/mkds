@@ -71,9 +71,9 @@ s32 func_021286a0(s32 a) {
     s32 i;
     s32 j;
     s32 k;
-    func_020b4934(&x, func_02047a28("select_return_s_b_00.ncgr"));
-    func_020b47d8(&y, func_02047a28("select_return_s_bg_00.nscr"));
-    func_020b4a44(&z, func_02047a28("select_return_s_b_00.nclr"));
+    LocateNcgr(&x, func_02047a28("select_return_s_b_00.ncgr"));
+    LocateNscr(&y, func_02047a28("select_return_s_bg_00.nscr"));
+    LocateNclr(&z, func_02047a28("select_return_s_b_00.nclr"));
     a -= x->mUnk_10;
     func_0200ee74(x->mUnk_14, x->mUnk_10);
     func_0214b8f4(x->mUnk_14, a, x->mUnk_10);

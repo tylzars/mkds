@@ -15,7 +15,7 @@ typedef struct Unk021ca41c_085c {
     /* 14 */ s32 mUnk_14;
 } Unk021ca41c_085c;
 
-// Object behind data_ov001_021ca41c, allocated by func_ov001_021a5140.
+// Object behind gEmblem, allocated by InitEmblem.
 typedef struct Unk021ca41c {
     /* 0000 */ u8 mUnk_0000[0x404];
     /* 0404 */ u8 mUnk_0404[0x404];
@@ -94,6 +94,6 @@ typedef struct Unk020391d4 {
     /* 26 */ u16 mUnk_26;
 } Unk020391d4;
 
-extern Unk021ca41c *data_ov001_021ca41c;
+extern Unk021ca41c *gEmblem;
 
-void func_ov001_021a5140(void);
+void InitEmblem(void);

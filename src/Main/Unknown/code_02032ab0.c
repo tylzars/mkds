@@ -176,7 +176,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
     t = &data_02174e60->mUnk_000[0];
     func_02025884(t, data_02153f80[data_02174e60->mUnk_0dc][0], data_02153f84[data_02174e60->mUnk_0dc][0],
                   data_02153f8c[data_02174e60->mUnk_0dc][0], 3, FindSceneFile);
-    func_020b4810(&t->mUnk_14[2], FindSceneFile(data_02153f88[data_02174e60->mUnk_0dc][0]));
+    LoadNscrData(&t->mUnk_14[2], FindSceneFile(data_02153f88[data_02174e60->mUnk_0dc][0]));
     func_0214b88c(t->mUnk_00[3]->mUnk_14, 0, t->mUnk_00[3]->mUnk_10);
     func_0214c160(t->mUnk_10->mUnk_0c, 0, 0x140);
     func_0214bc9c(t->mUnk_14[2]->mUnk_0c, 0, t->mUnk_14[2]->mUnk_08);

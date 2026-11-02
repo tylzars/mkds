@@ -54,15 +54,15 @@ void func_ov001_0219de58(void) {
     Unk020b47d8 *b;
     Unk020b4a44 *c;
 
-    func_020b4934(&a, FindSceneFile((const char *) data_ov001_021a8ce0));
-    func_020b47d8(&b, FindSceneFile((const char *) data_ov001_021a8cfc));
-    func_020b4a44(&c, FindSceneFile((const char *) data_ov001_021a8d14));
+    LocateNcgr(&a, FindSceneFile((const char *) data_ov001_021a8ce0));
+    LocateNscr(&b, FindSceneFile((const char *) data_ov001_021a8cfc));
+    LocateNclr(&c, FindSceneFile((const char *) data_ov001_021a8d14));
     data_ov001_021a9bfc->mUnk_44 = FindSceneFile((const char *) data_ov001_021a8d30);
     data_ov001_021a9bfc->mUnk_48 = FindSceneFile((const char *) data_ov001_021a8d4c);
     data_ov001_021a9bfc->mUnk_4c = FindSceneFile((const char *) data_ov001_021a8d68);
-    func_020b49bc(&data_ov001_021a9bfc->mUnk_3c, FindSceneFile((const char *) data_ov001_021a8d84));
-    func_020b48b4(&data_ov001_021a9bfc->mUnk_38, FindSceneFile((const char *) data_ov001_021a8da4));
-    func_020b4a44(&data_ov001_021a9bfc->mUnk_40, FindSceneFile((const char *) data_ov001_021a8dc4));
+    LocateNcgr2(&data_ov001_021a9bfc->mUnk_3c, FindSceneFile((const char *) data_ov001_021a8d84));
+    LocateNcer(&data_ov001_021a9bfc->mUnk_38, FindSceneFile((const char *) data_ov001_021a8da4));
+    LocateNclr(&data_ov001_021a9bfc->mUnk_40, FindSceneFile((const char *) data_ov001_021a8dc4));
     func_02016468(4, 0, a->mUnk_14, a->mUnk_10);
     func_02016468(8, 0, b->mUnk_0c, b->mUnk_08);
     func_02016468(0xf, 0, c->mUnk_0c, 0x100);

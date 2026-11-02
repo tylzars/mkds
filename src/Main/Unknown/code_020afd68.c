@@ -400,14 +400,14 @@ void func_020b03bc(void) {
     data_0217b350->mUnk_910 = data_021759c0->mUnk_08 == 4 ? func_020adc04() : 0;
     func_0214cc04(3, data_0217b350->mUnk_004, 0xc0, 0x400);
     func_0214cc04(3, data_0217b350->mUnk_408, 0xc0, 0x400);
-    func_020b4a7c(&data_0217b350->mUnk_80c[0], func_020b47c0("race_m_b.NCLR"));
-    func_020b496c(&data_0217b350->mUnk_814[0], func_020b47c0("race_m_b.NCGR"));
-    func_020b4810(&data_0217b350->mUnk_81c[0], func_020b47c0("race_m_pause.NSCR"));
-    func_020b4810(&data_0217b350->mUnk_81c[1], func_020b47c0("race_m_goal.NSCR"));
+    LoadNclrData(&data_0217b350->mUnk_80c[0], FindSceneFileWrapper("race_m_b.NCLR"));
+    LoadNcgrData(&data_0217b350->mUnk_814[0], FindSceneFileWrapper("race_m_b.NCGR"));
+    LoadNscrData(&data_0217b350->mUnk_81c[0], FindSceneFileWrapper("race_m_pause.NSCR"));
+    LoadNscrData(&data_0217b350->mUnk_81c[1], FindSceneFileWrapper("race_m_goal.NSCR"));
     if (data_021759c0->mUnk_08 == 1) {
-        func_020b4a7c(&data_0217b350->mUnk_80c[1], func_020b47c0("race_new_record_ta_s_b.NCLR"));
-        func_020b496c(&data_0217b350->mUnk_814[1], func_020b47c0("race_new_record_ta_s_b.NCGR"));
-        func_020b4810(&data_0217b350->mUnk_81c[2], func_020b47c0("race_new_record_ta_s_bg.NSCR"));
+        LoadNclrData(&data_0217b350->mUnk_80c[1], FindSceneFileWrapper("race_new_record_ta_s_b.NCLR"));
+        LoadNcgrData(&data_0217b350->mUnk_814[1], FindSceneFileWrapper("race_new_record_ta_s_b.NCGR"));
+        LoadNscrData(&data_0217b350->mUnk_81c[2], FindSceneFileWrapper("race_new_record_ta_s_bg.NSCR"));
         func_0200ee74(((Unk020b4934 *) data_0217b350->mUnk_81c[0])->mUnk_14,
                       ((Unk020b4934 *) data_0217b350->mUnk_81c[0])->mUnk_10);
         func_0200ee74(data_0217b350->mUnk_81c[2]->mUnk_0c, data_0217b350->mUnk_81c[2]->mUnk_08);
@@ -493,49 +493,49 @@ void func_020afd68(void) {
 
     if (func_02047250()) {
         if (v1) {
-            func_020b4a7c(&a[0], func_020b47b4("Map2D/global.NCLR"));
-            func_020b4a7c(&a[1], func_020b47b4("Map2D/global2.NCLR"));
+            LoadNclrData(&a[0], FindCourseFileWrapper("Map2D/global.NCLR"));
+            LoadNclrData(&a[1], FindCourseFileWrapper("Map2D/global2.NCLR"));
         }
-        func_020b4a7c(&a[2], func_020b47b4("Map2D/local.NCLR"));
+        LoadNclrData(&a[2], FindCourseFileWrapper("Map2D/local.NCLR"));
     } else {
         if (v1) {
-            func_020b4a44(&a[0], func_020b47b4("Map2D/global.NCLR"));
-            func_020b4a44(&a[1], func_020b47b4("Map2D/global.NCLR"));
+            LocateNclr(&a[0], FindCourseFileWrapper("Map2D/global.NCLR"));
+            LocateNclr(&a[1], FindCourseFileWrapper("Map2D/global.NCLR"));
         }
-        func_020b4a44(&a[2], func_020b47b4("Map2D/local.NCLR"));
+        LocateNclr(&a[2], FindCourseFileWrapper("Map2D/local.NCLR"));
     }
 
     if (func_02047250()) {
         if (v1) {
-            func_020b496c(&b[0], func_020b47b4("Map2D/global.NCGR"));
-            func_020b496c(&b[1], func_020b47b4("Map2D/global2.NCGR"));
+            LoadNcgrData(&b[0], FindCourseFileWrapper("Map2D/global.NCGR"));
+            LoadNcgrData(&b[1], FindCourseFileWrapper("Map2D/global2.NCGR"));
         }
-        func_020b496c(&b[2], func_020b47b4("Map2D/local.NCGR"));
+        LoadNcgrData(&b[2], FindCourseFileWrapper("Map2D/local.NCGR"));
     } else {
         if (v1) {
-            func_020b4934(&b[0], func_020b47b4("Map2D/global.NCGR"));
-            func_020b4934(&b[1], func_020b47b4("Map2D/global2.NCGR"));
+            LocateNcgr(&b[0], FindCourseFileWrapper("Map2D/global.NCGR"));
+            LocateNcgr(&b[1], FindCourseFileWrapper("Map2D/global2.NCGR"));
         }
-        func_020b4934(&b[2], func_020b47b4("Map2D/local.NCGR"));
+        LocateNcgr(&b[2], FindCourseFileWrapper("Map2D/local.NCGR"));
     }
 
     if (func_02047250()) {
         if (v1) {
-            func_020b4810(&c[0], func_020b47b4("Map2D/global1.NSCR"));
-            func_020b4810(&c[1], func_020b47b4("Map2D/global2.NSCR"));
+            LoadNscrData(&c[0], FindCourseFileWrapper("Map2D/global1.NSCR"));
+            LoadNscrData(&c[1], FindCourseFileWrapper("Map2D/global2.NSCR"));
         }
-        func_020b4810(&c[2], func_020b47b4("Map2D/local2.NSCR"));
+        LoadNscrData(&c[2], FindCourseFileWrapper("Map2D/local2.NSCR"));
         if (func_020b64e8()) {
-            func_020b4810(&c[3], func_020b47b4("Map2D/local3.NSCR"));
+            LoadNscrData(&c[3], FindCourseFileWrapper("Map2D/local3.NSCR"));
         }
     } else {
         if (v1) {
-            func_020b47d8(&c[0], func_020b47b4("Map2D/global1.NSCR"));
-            func_020b47d8(&c[1], func_020b47b4("Map2D/global2.NSCR"));
+            LocateNscr(&c[0], FindCourseFileWrapper("Map2D/global1.NSCR"));
+            LocateNscr(&c[1], FindCourseFileWrapper("Map2D/global2.NSCR"));
         }
-        func_020b47d8(&c[2], func_020b47b4("Map2D/local2.NSCR"));
+        LocateNscr(&c[2], FindCourseFileWrapper("Map2D/local2.NSCR"));
         if (func_020b64e8()) {
-            func_020b47d8(&c[3], func_020b47b4("Map2D/local3.NSCR"));
+            LocateNscr(&c[3], FindCourseFileWrapper("Map2D/local3.NSCR"));
         }
     }
 

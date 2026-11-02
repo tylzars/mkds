@@ -160,9 +160,9 @@ void func_020d1640(void *param_1) {
     data_0217b4b0 = func_02036bec(param_1, 0x2c);
     data_0217b4b0->mUnk_00 = func_02047a28("search_icon_00.bncl");
     data_0217b4b0->mUnk_04 = func_02047a28("search_icon_layout_00.bncl");
-    func_020b49f4(&data_0217b4b0->mUnk_08, func_02047a28("search_icon_00.nce.ncgr"));
-    func_020b48ec(&data_0217b4b0->mUnk_0c, func_02047a28("search_icon_00.nce.ncer"));
-    func_020b4a7c(&data_0217b4b0->mUnk_10, func_02047a28("search_icon_00_o.nclr"));
+    LoadNcgrData2(&data_0217b4b0->mUnk_08, func_02047a28("search_icon_00.nce.ncgr"));
+    LoadNcerData(&data_0217b4b0->mUnk_0c, func_02047a28("search_icon_00.nce.ncer"));
+    LoadNclrData(&data_0217b4b0->mUnk_10, func_02047a28("search_icon_00_o.nclr"));
     switch (data_021759d0->mUnk_04) {
         default:
             func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_us.NFTR"));
@@ -197,6 +197,6 @@ void func_020d1640(void *param_1) {
             data_0217b4b0->mUnk_20 = func_02047a28("MBChild_es.bmg");
             break;
     }
-    func_020b496c(&data_0217b4b0->mUnk_24, func_02047a28("multi_download_00_b.NCGR"));
-    func_020b4a7c(&data_0217b4b0->mUnk_28, func_02047a28("multi_download_00_b.NCLR"));
+    LoadNcgrData(&data_0217b4b0->mUnk_24, func_02047a28("multi_download_00_b.NCGR"));
+    LoadNclrData(&data_0217b4b0->mUnk_28, func_02047a28("multi_download_00_b.NCLR"));
 }

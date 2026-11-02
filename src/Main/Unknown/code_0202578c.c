@@ -64,13 +64,13 @@ void func_02025854(u32 a, void *b, const char *c, const char *d, const char *e, 
 void func_02025884(void *a, const char *b, const char *c, const char *d, s32 e, void *(*f)(const char *) ) {
     Unk02174e60_00 *p = a;
     if (b) {
-        func_020b496c(&p->mUnk_00[e], f(b));
+        LoadNcgrData(&p->mUnk_00[e], f(b));
     }
     if (c) {
-        func_020b4a7c(&p->mUnk_10, f(c));
+        LoadNclrData(&p->mUnk_10, f(c));
     }
     if (d) {
-        func_020b4810(&p->mUnk_14[e], f(d));
+        LoadNscrData(&p->mUnk_14[e], f(d));
     }
 }
 
@@ -82,13 +82,13 @@ void func_020258d4(u32 a, void *b, const char *c, const char *d, const char *e, 
 void func_02025904(void *a, const char *b, const char *c, const char *d, s32 e, void *(*f)(const char *) ) {
     Unk02174e60_00 *p = a;
     if (b) {
-        func_020b4934(&p->mUnk_00[e], f(b));
+        LocateNcgr(&p->mUnk_00[e], f(b));
     }
     if (c) {
-        func_020b4a44(&p->mUnk_10, f(c));
+        LocateNclr(&p->mUnk_10, f(c));
     }
     if (d) {
-        func_020b47d8(&p->mUnk_14[e], f(d));
+        LocateNscr(&p->mUnk_14[e], f(d));
     }
 }
 
@@ -172,13 +172,13 @@ void func_02025abc(void *a, const char *b, const char *c, const char *d, const c
                    void *(*h)(const char *) ) {
     Unk02174e14_00 *p = a;
     if (b) {
-        func_020b49f4((Unk020b4934 **) &p->mUnk_00, h(b));
+        LoadNcgrData2((Unk020b4934 **) &p->mUnk_00, h(b));
     }
     if (c) {
-        func_020b48ec((Unk02021dc8 **) &p->mUnk_08, h(c));
+        LoadNcerData((Unk02021dc8 **) &p->mUnk_08, h(c));
     }
     if (d) {
-        func_020b4a7c((Unk020b4a44 **) &p->mUnk_04, h(d));
+        LoadNclrData((Unk020b4a44 **) &p->mUnk_04, h(d));
     }
     if (e) {
         p->mUnk_0c = h(e);
@@ -195,13 +195,13 @@ void func_02025b20(void *a, const char *b, const char *c, const char *d, const c
                    void *(*h)(const char *) ) {
     Unk02174e14_00 *p = a;
     if (b) {
-        func_020b49bc((Unk020b4934 **) &p->mUnk_00, h(b));
+        LocateNcgr2((Unk020b4934 **) &p->mUnk_00, h(b));
     }
     if (c) {
-        func_020b48b4((Unk02021dc8 **) &p->mUnk_08, h(c));
+        LocateNcer((Unk02021dc8 **) &p->mUnk_08, h(c));
     }
     if (d) {
-        func_020b4a44((Unk020b4a44 **) &p->mUnk_04, h(d));
+        LocateNclr((Unk020b4a44 **) &p->mUnk_04, h(d));
     }
     if (e) {
         p->mUnk_0c = h(e);

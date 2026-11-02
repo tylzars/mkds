@@ -1119,7 +1119,7 @@ func_ov001_021a4b28 kind:function(thumb,size=0x78) addr:0x021a4b08
 func_ov001_021a4ba0 kind:function(thumb,size=0x170) addr:0x021a4b80
 func_ov001_021a4d10 kind:function(thumb,size=0x290) addr:0x021a4cf0
 func_ov001_021a4fa0 kind:function(thumb,size=0x1a0) addr:0x021a4f80
-func_ov001_021a5140 kind:function(thumb,size=0x88c) addr:0x021a5120
+InitEmblem kind:function(thumb,size=0x88c) addr:0x021a5120
 func_ov001_021a59cc kind:function(thumb,size=0x74) addr:0x021a59ac
 func_ov001_021a5a40 kind:function(thumb,size=0x18) addr:0x021a5a20
 func_ov001_021a5a58 kind:function(thumb,size=0x58) addr:0x021a5a38
@@ -1812,6 +1812,6 @@ data_ov001_021ca40c kind:bss addr:0x021ca3ec
 data_ov001_021ca410 kind:bss addr:0x021ca3f0
 data_ov001_021ca414 kind:bss addr:0x021ca3f4
 data_ov001_021ca418 kind:bss addr:0x021ca3f8
-data_ov001_021ca41c kind:bss addr:0x021ca3fc
+gEmblem kind:bss addr:0x021ca3fc
 data_ov001_021ca420 kind:bss addr:0x021ca400
 data_ov001_021ca424 kind:bss addr:0x021ca404

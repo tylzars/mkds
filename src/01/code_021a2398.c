@@ -11,13 +11,13 @@
 #include "Main/Unknown/code_020ac000.h"
 
 void func_ov001_021a23f4(void) {
-    func_ov001_021a5140();
+    InitEmblem();
     func_ov001_021a401c();
 }
 
 s32 func_ov001_021a23c8(void) {
     func_ov001_021a2a40();
-    if (data_ov001_021ca41c->mUnk_1090 == 0xc) {
+    if (gEmblem->mUnk_1090 == 0xc) {
         return 1;
     }
     return 0;
@@ -28,9 +28,9 @@ void func_ov001_021a23c0(void) {
 }
 
 u16 *func_ov001_021a23ac(void) {
-    return data_ov001_021ca41c->mUnk_0830->mUnk_0c;
+    return gEmblem->mUnk_0830->mUnk_0c;
 }
 
 u8 *func_ov001_021a2398(void) {
-    return data_ov001_021ca41c->mUnk_087c;
+    return gEmblem->mUnk_087c;
 }

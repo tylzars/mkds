@@ -43,7 +43,7 @@ typedef struct Unk0217d358 {
 struct Unk020b4a44;
 
 // Object behind data_0217d35c: 0x18 bytes allocated by func_021172a8; members 0x0, 0x4 and 0x8 + 4 * i are filled
-// through func_020b49bc, func_020b48b4 and func_020b4a44.
+// through LocateNcgr2, LocateNcer and LocateNclr.
 typedef struct Unk0217d35c {
     /* 00 */ struct Unk020b4934 *mUnk_00;
     /* 04 */ struct Unk02021dc8 *mUnk_04;

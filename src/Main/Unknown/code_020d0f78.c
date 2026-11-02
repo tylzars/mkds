@@ -21,7 +21,7 @@ void func_020d1080(void) {
     b = data_0216aeac[i * 2];
     snprintf(buf, 0x100, "%s%s%02d%s", data_0216ae88, a == 0 ? data_0216ae78 : data_0216ae80, b, "_m_b.NCLR");
     func_02048684(buf, data_0217b4a4->mUnk_10, 0x228);
-    func_020b4a7c(&data_0217b4a4->mUnk_00, data_0217b4a4->mUnk_10);
+    LoadNclrData(&data_0217b4a4->mUnk_00, data_0217b4a4->mUnk_10);
 }
 
 void func_020d0ffc(void) {
@@ -35,7 +35,7 @@ void func_020d0ffc(void) {
     b = data_0216aeac[i * 2];
     snprintf(buf, 0x100, "%s%s%02d%s", data_0216ae88, a == 0 ? data_0216ae78 : data_0216ae80, b, "_m_b.NCGR");
     func_02048684(buf, data_0217b4a4->mUnk_238, 0xe00);
-    func_020b496c(&data_0217b4a4->mUnk_04, data_0217b4a4->mUnk_238);
+    LoadNcgrData(&data_0217b4a4->mUnk_04, data_0217b4a4->mUnk_238);
 }
 
 void func_020d0f78(void) {
@@ -49,6 +49,6 @@ void func_020d0f78(void) {
     b = data_0216aeac[i * 2];
     snprintf(buf, 0x100, "%s%s%02d%s", data_0216ae88, a == 0 ? data_0216ae78 : data_0216ae80, b, "_m_picture.NSCR");
     func_02048684(buf, data_0217b4a4->mUnk_1038, 0x824);
-    func_020b4810(&data_0217b4a4->mUnk_08, data_0217b4a4->mUnk_1038);
+    LoadNscrData(&data_0217b4a4->mUnk_08, data_0217b4a4->mUnk_1038);
 }
 #pragma thumb off
