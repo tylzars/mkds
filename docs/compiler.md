@@ -52,7 +52,7 @@ what it shows and the command that reruns it on every installed build
 ### Libraries
 
 Library code in main is 0x02003024-0x0200589c, 0x0200c46c-0x020249b8 and 0x0212b9ec-0x0215109c: nothing in them
-calls game code, and each reads its own data. 1123 functions in `libs/Unknown`, from all of it except the soft-float
+calls game code, and each reads its own data. 1123 functions in `libs/`, from all of it except the soft-float
 runtime and its stubs, match on 1.2 base.
 
 - Build: base, sp2 and sp2p3 differ only in Thumb switch tables and one cast-twin index idiom (over every file in

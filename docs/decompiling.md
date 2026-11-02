@@ -9,7 +9,7 @@ the CodeWarrior mwccarm 1.2 base compiler; flags and evidence are in `compiler.m
 
 - `src/Main/Unknown/` holds the main binary's code and `src/ITCM/` the code that runs from ITCM, one file per unit,
   named `code_<address>.c`.
-  `src/00/`, `src/01/`, `src/03/` hold overlays 0, 1 and 3. `libs/*/src/` holds library code (so far `libs/Unknown/`).
+  `src/00/`, `src/01/`, `src/03/` hold overlays 0, 1 and 3. `libs/*/src/` holds library code (`libs/msl/` for the C runtime, `libs/Unknown/` for the rest).
   `include/` mirrors `src/` (`include/01/code_0218254c.h` for `src/01/code_0218254c.c`); a library's headers are in
   `libs/<name>/include/`. Hand-written assembly units are `.s` files next to the C ones (`libs/Unknown/src/`).
 - `config/usa/arm9/` is the `dsd` configuration of the main module: `symbols.txt`, `relocs.txt`, `delinks.txt` (the
@@ -129,7 +129,7 @@ Run these from the repository root after `python3 tools/configure.py` (the ones 
 - The main module's units are ARM by default. A Thumb function there sits after `#pragma thumb on`, an ARM one in a
   Thumb file between `#pragma thumb off` and `#pragma thumb on` (`src/Main/Unknown/code_020ae730.c`).
 - `#pragma optimize_for_size on` goes after the includes of a unit compiled for size (1.00, 1.6).
-  `#pragma avoid_byte all` is on a few library files (`libs/Unknown/src/code_0214177c.c`).
+  `#pragma avoid_byte all` is on a few library files (`libs/msl/src/code_0214177c.c`).
 - Adding per-file flags to `PATH_ADD_FLAGS` changes the build for that file only; probe with
   `--unit <source path>` so the probe uses the same flags.
 
