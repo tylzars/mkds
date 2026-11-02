@@ -115,8 +115,8 @@ void func_020b0b8c(void) {
     if (data_0217b350->mUnk_840 != 0) {
         func_0214ba94(func_020b3374()->mUnk_14, 0, 0x3000);
         data_0217b350->mUnk_840 = 0;
-        func_0214c090(GetRaceNclrNcgr(1)->mUnk_00->mUnk_0c, 0, GetRaceNclrNcgr(1)->mUnk_00->mUnk_08);
-        func_0214bf04(GetRaceNclrNcgr(1)->mUnk_04->mUnk_14, 0, 0x4000);
+        func_0214c090(GetRaceNclrNcgr(1)->mNclr->mUnk_0c, 0, GetRaceNclrNcgr(1)->mNclr->mUnk_08);
+        func_0214bf04(GetRaceNclrNcgr(1)->mNcgr->mUnk_14, 0, 0x4000);
         data_0217b350->mUnk_848 = 1;
         data_0217b350->mUnk_844 = 1;
         reg_GX_DISPCNT &= ~0xe000;
@@ -179,8 +179,8 @@ void func_020b0b8c(void) {
                 func_020b17a4();
                 func_0214c0f8(func_020c3e2c(0)->mUnk_00->mUnk_0c, 0, func_020c3e2c(0)->mUnk_00->mUnk_08);
                 func_0214b9c4(func_020c3e2c(0)->mUnk_04->mUnk_14, 0, func_020c3e2c(0)->mUnk_04->mUnk_10);
-                func_0214c028(GetRaceNclrNcgr(7)->mUnk_00->mUnk_0c, 0, 0x80);
-                func_0214bea4(GetRaceNclrNcgr(7)->mUnk_04->mUnk_14, 0, 0x4000);
+                func_0214c028(GetRaceNclrNcgr(7)->mNclr->mUnk_0c, 0, 0x80);
+                func_0214bea4(GetRaceNclrNcgr(7)->mNcgr->mUnk_14, 0, 0x4000);
                 func_0214ba94(func_020b3374()->mUnk_14, 0, 0x3000);
                 func_0214bdd4(func_020b32f8(), 0, 0x600);
                 break;
@@ -198,7 +198,7 @@ void func_020b0b8c(void) {
         case 2:
         case 3:
             if (data_021759c0->mUnk_08 == 4) {
-                func_0214c028(GetRaceNclrNcgr(6)->mUnk_00->mUnk_0c, 0, GetRaceNclrNcgr(6)->mUnk_00->mUnk_08);
+                func_0214c028(GetRaceNclrNcgr(6)->mNclr->mUnk_0c, 0, GetRaceNclrNcgr(6)->mNclr->mUnk_08);
             }
             func_0214a428((u32 *) 0x04001020, data_0217b350->mUnk_858[0].mUnk_00, data_0217b350->mUnk_858[0].mUnk_10,
                           data_0217b350->mUnk_858[0].mUnk_14, data_0217b350->mUnk_858[0].mUnk_18,
@@ -249,9 +249,9 @@ void func_020b0b8c(void) {
                 func_0214bd04(func_020c3e14(3)->mUnk_0c, 0, func_020c3e14(3)->mUnk_08);
                 func_0214bc34(func_020c3e14(4)->mUnk_0c, 0, func_020c3e14(4)->mUnk_08);
                 func_0214bb64(func_020c3e14(5)->mUnk_0c, 0, func_020c3e14(5)->mUnk_08);
-                func_0214c028(GetRaceNclrNcgr(8)->mUnk_00->mUnk_0c, 0, 0x20);
-                func_0214c028(GetRaceNclrNcgr(8)->mUnk_00->mUnk_0c + 0xc0, 0x180, 0x80);
-                func_0214bea4(GetRaceNclrNcgr(8)->mUnk_04->mUnk_14, 0, 0x4000);
+                func_0214c028(GetRaceNclrNcgr(8)->mNclr->mUnk_0c, 0, 0x20);
+                func_0214c028(GetRaceNclrNcgr(8)->mNclr->mUnk_0c + 0xc0, 0x180, 0x80);
+                func_0214bea4(GetRaceNclrNcgr(8)->mNcgr->mUnk_14, 0, 0x4000);
                 data_0217b350->mUnk_830 = 0;
             }
             if (w < 0x100) {
@@ -270,9 +270,9 @@ void func_020b0b8c(void) {
                 func_0214c0f8(data_0217b350->mUnk_80c[1]->mUnk_0c, 0, 0x20);
                 func_0214b9c4(data_0217b350->mUnk_814[1]->mUnk_14, 0, data_0217b350->mUnk_814[1]->mUnk_10);
                 func_0214bd04(data_0217b350->mUnk_81c[2]->mUnk_0c, 0, data_0217b350->mUnk_81c[2]->mUnk_08);
-                func_0214c028(GetRaceNclrNcgr(9)->mUnk_00->mUnk_0c, 0, 0xa0);
-                func_0214c028(GetRaceNclrNcgr(9)->mUnk_00->mUnk_0c + 0xb0, 0x160, 0xa0);
-                func_0214bea4(GetRaceNclrNcgr(9)->mUnk_04->mUnk_14, 0, 0x4000);
+                func_0214c028(GetRaceNclrNcgr(9)->mNclr->mUnk_0c, 0, 0xa0);
+                func_0214c028(GetRaceNclrNcgr(9)->mNclr->mUnk_0c + 0xb0, 0x160, 0xa0);
+                func_0214bea4(GetRaceNclrNcgr(9)->mNcgr->mUnk_14, 0, 0x4000);
                 data_0217b350->mUnk_834 = 0;
             }
             break;
@@ -424,23 +424,23 @@ void func_020b03bc(void) {
     }
     func_0214a40c((u32 *) 0x04001050, 0, 0x3f, 6, 10);
     if (data_021759c0->mUnk_08 == 0) {
-        func_020b6dc4(GetRaceNclrNcgr(1)->mUnk_00->mUnk_0c, GetRaceNclrNcgr(1)->mUnk_04->mUnk_14);
-        func_0200ee74(GetRaceNclrNcgr(1)->mUnk_00->mUnk_0c, GetRaceNclrNcgr(1)->mUnk_00->mUnk_08);
-        func_0200ee74(GetRaceNclrNcgr(1)->mUnk_04->mUnk_14, GetRaceNclrNcgr(1)->mUnk_04->mUnk_10);
+        func_020b6dc4(GetRaceNclrNcgr(1)->mNclr->mUnk_0c, GetRaceNclrNcgr(1)->mNcgr->mUnk_14);
+        func_0200ee74(GetRaceNclrNcgr(1)->mNclr->mUnk_0c, GetRaceNclrNcgr(1)->mNclr->mUnk_08);
+        func_0200ee74(GetRaceNclrNcgr(1)->mNcgr->mUnk_14, GetRaceNclrNcgr(1)->mNcgr->mUnk_10);
     }
-    func_020b6d98(GetRaceNclrNcgr(6)->mUnk_00->mUnk_0c, GetRaceNclrNcgr(6)->mUnk_04->mUnk_14);
-    func_0200ee74(GetRaceNclrNcgr(6)->mUnk_00->mUnk_0c, GetRaceNclrNcgr(6)->mUnk_00->mUnk_08);
-    func_0200ee74(GetRaceNclrNcgr(6)->mUnk_04->mUnk_14, GetRaceNclrNcgr(6)->mUnk_04->mUnk_10);
-    func_020b46d0(GetRaceNclrNcgr(6)->mUnk_04->mUnk_14, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(7)->mUnk_04->mUnk_14, 0x10,
+    func_020b6d98(GetRaceNclrNcgr(6)->mNclr->mUnk_0c, GetRaceNclrNcgr(6)->mNcgr->mUnk_14);
+    func_0200ee74(GetRaceNclrNcgr(6)->mNclr->mUnk_0c, GetRaceNclrNcgr(6)->mNclr->mUnk_08);
+    func_0200ee74(GetRaceNclrNcgr(6)->mNcgr->mUnk_14, GetRaceNclrNcgr(6)->mNcgr->mUnk_10);
+    func_020b46d0(GetRaceNclrNcgr(6)->mNcgr->mUnk_14, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(7)->mNcgr->mUnk_14, 0x10,
                   0);
-    func_0200ee74(GetRaceNclrNcgr(7)->mUnk_04->mUnk_14, GetRaceNclrNcgr(7)->mUnk_04->mUnk_10);
-    func_020b46d0(GetRaceNclrNcgr(6)->mUnk_04->mUnk_14, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(8)->mUnk_04->mUnk_14, 0x10,
+    func_0200ee74(GetRaceNclrNcgr(7)->mNcgr->mUnk_14, GetRaceNclrNcgr(7)->mNcgr->mUnk_10);
+    func_020b46d0(GetRaceNclrNcgr(6)->mNcgr->mUnk_14, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(8)->mNcgr->mUnk_14, 0x10,
                   0);
-    func_0200ee74(GetRaceNclrNcgr(8)->mUnk_04->mUnk_14, GetRaceNclrNcgr(8)->mUnk_04->mUnk_10);
+    func_0200ee74(GetRaceNclrNcgr(8)->mNcgr->mUnk_14, GetRaceNclrNcgr(8)->mNcgr->mUnk_10);
     if (data_021759c0->mUnk_08 == 1) {
-        func_020b46d0(GetRaceNclrNcgr(6)->mUnk_04->mUnk_14, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(9)->mUnk_04->mUnk_14,
+        func_020b46d0(GetRaceNclrNcgr(6)->mNcgr->mUnk_14, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(9)->mNcgr->mUnk_14,
                       0x10, 0);
-        func_0200ee74(GetRaceNclrNcgr(9)->mUnk_04->mUnk_14, GetRaceNclrNcgr(9)->mUnk_04->mUnk_10);
+        func_0200ee74(GetRaceNclrNcgr(9)->mNcgr->mUnk_14, GetRaceNclrNcgr(9)->mNcgr->mUnk_10);
     }
     func_020b36a4();
     func_020b3adc();

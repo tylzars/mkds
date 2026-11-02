@@ -31,15 +31,15 @@ typedef struct Unk0217b354 {
     /* 0a8 */ void *mUnk_0a8;
     /* 0ac */ u8 mUnk_0ac[4][0x20];
     /* 12c */ Unk02180728 mUnk_12c[4];
-    /* 16c */ Unk020b4a44 *mUnk_16c;
-    /* 170 */ Unk020b4934 *mUnk_170;
+    /* 16c */ Unk020b4a44 *mChoisesSBNclr;
+    /* 170 */ Unk020b4934 *mChoisesSBNcgr;
     /* 174 */ u16 *mUnk_174;
     /* 178 */ u16 *mUnk_178;
     /* 17c */ Unk020b47d8 *mUnk_17c;
     /* 180 */ Unk020b47d8 *mUnk_180;
     /* 184 */ Unk020b47d8 *mUnk_184;
     /* 188 */ Unk020b47d8 *mUnk_188;
-    /* 18c */ Unk020b47d8 *mUnk_18c[6];
+    /* 18c */ Unk020b47d8 *mChoisesSNscrs[6];
 } Unk0217b354;
 
 void func_020b24cc(Unk02180728 *a, void *b, void *c, s32 d, s32 e);

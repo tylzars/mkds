@@ -155,8 +155,8 @@ void InitRaceStartGp(void) {
         e->mUnk_0a = 3;
     }
     gRaceStartGp->mUnk_00 = 0;
-    LoadNclrData(&gRaceStartGp->mUnk_04, FindSceneFileWrapper("race_start_gp_m_o.NCLR"));
-    LoadNcgrData2(&gRaceStartGp->mUnk_08, FindSceneFileWrapper("race_start_gp_m_o.NCGR"));
+    LoadNclrData(&gRaceStartGp->mRaceStartGpMONclr, FindSceneFileWrapper("race_start_gp_m_o.NCLR"));
+    LoadNcgrData2(&gRaceStartGp->mRaceStartGpMONcgr, FindSceneFileWrapper("race_start_gp_m_o.NCGR"));
     v = 0;
     LoadNcerData(&v, FindSceneFileWrapper("race_start_gp_m.NCER"));
     for (i = 0; i < 3; i++) {
@@ -164,7 +164,7 @@ void InitRaceStartGp(void) {
     }
     r = func_020b403c(2);
     s = -1;
-    func_02023408(buf, gRaceStartGp->mUnk_08->mUnk_14, 0x20, 4, 4);
+    func_02023408(buf, gRaceStartGp->mRaceStartGpMONcgr->mUnk_14, 0x20, 4, 4);
     w.mUnk_00 = buf;
     w.mUnk_04 = r;
     w.mUnk_08 = 1;
@@ -178,7 +178,7 @@ void InitRaceStartGp(void) {
     }
     func_02024340(&w, 0, 9, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
     func_02024340(&w, 0, 8, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
-    func_0200ee74(gRaceStartGp->mUnk_08->mUnk_14, gRaceStartGp->mUnk_08->mUnk_10);
-    func_0214c090(gRaceStartGp->mUnk_04->mUnk_0c, 0, gRaceStartGp->mUnk_04->mUnk_08);
-    func_0214bf04(gRaceStartGp->mUnk_08->mUnk_14, 0, gRaceStartGp->mUnk_08->mUnk_10);
+    func_0200ee74(gRaceStartGp->mRaceStartGpMONcgr->mUnk_14, gRaceStartGp->mRaceStartGpMONcgr->mUnk_10);
+    func_0214c090(gRaceStartGp->mRaceStartGpMONclr->mUnk_0c, 0, gRaceStartGp->mRaceStartGpMONclr->mUnk_08);
+    func_0214bf04(gRaceStartGp->mRaceStartGpMONcgr->mUnk_14, 0, gRaceStartGp->mRaceStartGpMONcgr->mUnk_10);
 }

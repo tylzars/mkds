@@ -618,9 +618,9 @@ typedef struct Unk0217b3e0 {
     /* 00ac */ void *mUnk_00ac;
     /* 00b0 */ s32 mUnk_00b0;
     /* 00b4 */ s32 mUnk_00b4;
-    /* 00b8 */ struct Unk020b4a44 *mUnk_00b8;
-    /* 00bc */ struct Unk020b4934 *mUnk_00bc;
-    /* 00c0 */ struct Unk020b47d8 *mUnk_00c0[6];
+    /* 00b8 */ struct Unk020b4a44 *mRaceGoalSBNclr;
+    /* 00bc */ struct Unk020b4934 *mRaceGoalSBNcgr;
+    /* 00c0 */ struct Unk020b47d8 *mRaceGoalSNscrs[6];
     /* 00d8 */ u16 mUnk_00d8[2][0x800];
     /* 20d8 */ s32 mUnk_20d8;
     /* 20dc */ s32 mUnk_20dc;

@@ -16,12 +16,12 @@ void LoadCupPictureNclr(void) {
     s32 a;
     s32 b;
 
-    i = gCupPicture->mUnk_0c;
+    i = gCupPicture->mCupPictureIndex;
     a = data_0216aea8[i * 2];
     b = data_0216aeac[i * 2];
     snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, a == 0 ? gCupPictureNitro : gCupPictureRetro, b, "_m_b.NCLR");
-    func_02048684(buf, gCupPicture->mUnk_10, 0x228);
-    LoadNclrData(&gCupPicture->mUnk_00, gCupPicture->mUnk_10);
+    func_02048684(buf, gCupPicture->mCupPictureNclrFile, 0x228);
+    LoadNclrData(&gCupPicture->mCupPictureNclr, gCupPicture->mCupPictureNclrFile);
 }
 
 void LoadCupPictureNcgr(void) {
@@ -30,12 +30,12 @@ void LoadCupPictureNcgr(void) {
     s32 a;
     s32 b;
 
-    i = gCupPicture->mUnk_0c;
+    i = gCupPicture->mCupPictureIndex;
     a = data_0216aea8[i * 2];
     b = data_0216aeac[i * 2];
     snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, a == 0 ? gCupPictureNitro : gCupPictureRetro, b, "_m_b.NCGR");
-    func_02048684(buf, gCupPicture->mUnk_238, 0xe00);
-    LoadNcgrData(&gCupPicture->mUnk_04, gCupPicture->mUnk_238);
+    func_02048684(buf, gCupPicture->mCupPictureNcgrFile, 0xe00);
+    LoadNcgrData(&gCupPicture->mCupPictureNcgr, gCupPicture->mCupPictureNcgrFile);
 }
 
 void LoadCupPictureNscr(void) {
@@ -44,12 +44,12 @@ void LoadCupPictureNscr(void) {
     s32 a;
     s32 b;
 
-    i = gCupPicture->mUnk_0c;
+    i = gCupPicture->mCupPictureIndex;
     a = data_0216aea8[i * 2];
     b = data_0216aeac[i * 2];
     snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, a == 0 ? gCupPictureNitro : gCupPictureRetro, b,
              "_m_picture.NSCR");
-    func_02048684(buf, gCupPicture->mUnk_1038, 0x824);
-    LoadNscrData(&gCupPicture->mUnk_08, gCupPicture->mUnk_1038);
+    func_02048684(buf, gCupPicture->mCupPictureNscrFile, 0x824);
+    LoadNscrData(&gCupPicture->mCupPictureNscr, gCupPicture->mCupPictureNscrFile);
 }
 #pragma thumb off

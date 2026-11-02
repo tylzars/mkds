@@ -39,13 +39,13 @@ void InitEndingStaffRoll(void) {
         w[0] = (w[0] & ~0xc00) | 0xc00;
     }
     gEndingStaffRoll->mUnk_00 = 0;
-    LoadNclrData(&gEndingStaffRoll->mUnk_04, FindSceneFileWrapper("ending_staffRoll_m_o_00.NCLR"));
-    LoadNcgrData2(&gEndingStaffRoll->mUnk_08, FindSceneFileWrapper("ending_staffRoll_m_00.nce.ncgr"));
+    LoadNclrData(&gEndingStaffRoll->mEndingStaffRollMO00Nclr, FindSceneFileWrapper("ending_staffRoll_m_o_00.NCLR"));
+    LoadNcgrData2(&gEndingStaffRoll->mEndingStaffRollM00Ncgr, FindSceneFileWrapper("ending_staffRoll_m_00.nce.ncgr"));
     a = 0;
     LoadNcerData(&a, FindSceneFileWrapper("ending_staffRoll_m_00.nce.ncer"));
     gEndingStaffRoll->mUnk_0c = (Unk020224e0_c *) func_02021f1c(a, 0);
-    func_0214c090(gEndingStaffRoll->mUnk_04->mUnk_0c, 0, gEndingStaffRoll->mUnk_04->mUnk_08);
-    func_0214bf04(gEndingStaffRoll->mUnk_08->mUnk_14, 0, gEndingStaffRoll->mUnk_08->mUnk_10);
+    func_0214c090(gEndingStaffRoll->mEndingStaffRollMO00Nclr->mUnk_0c, 0, gEndingStaffRoll->mEndingStaffRollMO00Nclr->mUnk_08);
+    func_0214bf04(gEndingStaffRoll->mEndingStaffRollM00Ncgr->mUnk_14, 0, gEndingStaffRoll->mEndingStaffRollM00Ncgr->mUnk_10);
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffcfffef) | 0x10;
 }
 

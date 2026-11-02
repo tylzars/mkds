@@ -191,8 +191,8 @@ void func_020af99c(void) {
     func_0214c160(data_0217b350->mUnk_80c[0]->mUnk_0c, 0, data_0217b350->mUnk_80c[0]->mUnk_08);
     func_0214b95c(data_0217b350->mUnk_814[0]->mUnk_14, 0, data_0217b350->mUnk_814[0]->mUnk_10);
     func_0214bc9c(data_0217b350->mUnk_81c[0]->mUnk_0c, 0, data_0217b350->mUnk_81c[0]->mUnk_08);
-    func_0214c090(GetRaceNclrNcgr(0)->mUnk_00->mUnk_0c, 0, GetRaceNclrNcgr(0)->mUnk_00->mUnk_08);
-    func_0214bf04(GetRaceNclrNcgr(0)->mUnk_04->mUnk_14, 0, 0x4000);
+    func_0214c090(GetRaceNclrNcgr(0)->mNclr->mUnk_0c, 0, GetRaceNclrNcgr(0)->mNclr->mUnk_08);
+    func_0214bf04(GetRaceNclrNcgr(0)->mNcgr->mUnk_14, 0, 0x4000);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0xe000) | 0xe000;
     w = reg_G2_WININ;
     reg_G2_WININ = (u32) ((w & ~0x3f) | 0x1f) | 0x20;
@@ -205,8 +205,8 @@ void func_020af99c(void) {
     reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f) | 0xf) | 0x20;
     reg_GXS_DB_DISPCNT &= ~0xe000;
     func_02148934(5);
-    func_0214c028(GetRaceNclrNcgr(6)->mUnk_00->mUnk_0c, 0, GetRaceNclrNcgr(6)->mUnk_00->mUnk_08);
-    func_0214bea4(GetRaceNclrNcgr(6)->mUnk_04->mUnk_14, 0, 0x4000);
+    func_0214c028(GetRaceNclrNcgr(6)->mNclr->mUnk_0c, 0, GetRaceNclrNcgr(6)->mNclr->mUnk_08);
+    func_0214bea4(GetRaceNclrNcgr(6)->mNcgr->mUnk_14, 0, 0x4000);
     func_020b17a4();
     func_0214bd04(func_020c3e14(0)->mUnk_0c, 0, func_020c3e14(0)->mUnk_08);
     func_0214bc34(func_020c3e14(1)->mUnk_0c, 0, func_020c3e14(1)->mUnk_08);

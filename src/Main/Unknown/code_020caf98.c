@@ -42,7 +42,7 @@ void func_020caf98(s32 a) {
         } else if (func_020cb11c(v)) {
             b = func_020cb0f4(v);
             v = func_020cb0cc(v);
-            c = func_020291c4(b, v, data_0217b43c->mUnk_950);
+            c = func_020291c4(b, v, data_0217b43c->mSinglePlaySelectModeSBnbl);
             p = data_0217b43c;
             o = p->mUnk_930;
             if (c != -1) {

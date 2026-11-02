@@ -14,21 +14,21 @@ s32 func_020d0ec4(void) {
 
 void *func_020d0ea0(void) {
     if (func_020d0ec4() != 0) {
-        return gCupPicture->mUnk_00->mUnk_0c;
+        return gCupPicture->mCupPictureNclr->mUnk_0c;
     }
     return 0;
 }
 
 void *func_020d0e7c(void) {
     if (func_020d0ec4() != 0) {
-        return gCupPicture->mUnk_04->mUnk_14;
+        return gCupPicture->mCupPictureNcgr->mUnk_14;
     }
     return 0;
 }
 
 void *func_020d0e58(void) {
     if (func_020d0ec4() != 0) {
-        return &gCupPicture->mUnk_08->mUnk_0c;
+        return &gCupPicture->mCupPictureNscr->mUnk_0c;
     }
     return 0;
 }

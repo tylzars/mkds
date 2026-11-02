@@ -41,20 +41,20 @@ typedef struct Unk021b4c70 {
     /* 0038 */ u8 mUnk_38[0x1000];
     /* 1038 */ void *mUnk_1038;
     /* 103c */ Unk02124b1c *mUnk_103c;
-    /* 1040 */ Unk02021dc8 *mUnk_1040;
-    /* 1044 */ Unk020b4934 *mUnk_1044;
-    /* 1048 */ Unk020b4a44 *mUnk_1048;
-    /* 104c */ Unk0201ea30 *mUnk_104c;
-    /* 1050 */ Unk0201ea30 *mUnk_1050;
-    /* 1054 */ void *mUnk_1054;
-    /* 1058 */ void *mUnk_1058;
-    /* 105c */ void *mUnk_105c;
+    /* 1040 */ Unk02021dc8 *mWiFiVSSettingSNcer;
+    /* 1044 */ Unk020b4934 *mWiFiVSSettingSNcgr;
+    /* 1048 */ Unk020b4a44 *mWiFiVSSettingSONclr;
+    /* 104c */ Unk0201ea30 *mWiFiVSSettingBncl;
+    /* 1050 */ Unk0201ea30 *mWiFiVSSettingBnbl;
+    /* 1054 */ void *mWiFiVSSettingBnll;
+    /* 1058 */ void *mWiFiMessages;
+    /* 105c */ void *mCommonMessages;
 } Unk021b4c70;
 
 // Object behind gWiFiVSMatching; mUnk_00 selects the handler run by AdvanceWiFiVSMatching.
 typedef struct Unk021b4c74 {
-    /* 0000 */ s32 mUnk_00;
-    /* 0004 */ s32 mUnk_04;
+    /* 0000 */ s32 mState;
+    /* 0004 */ s32 mNextState;
     /* 0008 */ s32 mUnk_08;
     /* 000c */ s32 mUnk_0c;
     /* 0010 */ s16 mUnk_10;
@@ -79,14 +79,14 @@ typedef struct Unk021b4c74 {
     /* 10d4 */ Unk02124b1c *mUnk_10d4;
     /* 10d8 */ u8 mUnk_10d8[3][0x200];
     /* 16d8 */ s32 mUnk_16d8[3];
-    /* 16e4 */ struct Unk02021dc8 *mUnk_16e4;
-    /* 16e8 */ Unk020b4934 *mUnk_16e8;
-    /* 16ec */ Unk020b4a44 *mUnk_16ec;
-    /* 16f0 */ Unk0201ea30 *mUnk_16f0;
-    /* 16f4 */ void *mUnk_16f4;
-    /* 16f8 */ void *mUnk_16f8;
-    /* 16fc */ void *mUnk_16fc;
-    /* 1700 */ void *mUnk_1700;
+    /* 16e4 */ struct Unk02021dc8 *mWiFiVSMatchingSNcer;
+    /* 16e8 */ Unk020b4934 *mWiFiVSMatchingSNcgr;
+    /* 16ec */ Unk020b4a44 *mWiFiVSMatchingSONclr;
+    /* 16f0 */ Unk0201ea30 *mWiFiVSMatchingBncl;
+    /* 16f4 */ void *mWiFiVSMatchingBnbl;
+    /* 16f8 */ void *mWiFiVSMatchingBnll;
+    /* 16fc */ void *mWiFiMessages;
+    /* 1700 */ void *mCommonMessages;
     /* 1704 */ u8 pad_1704[8];
 } Unk021b4c74;
 

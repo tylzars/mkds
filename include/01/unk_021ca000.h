@@ -5,29 +5,29 @@
 
 // Object behind data_ov001_021ca400.
 typedef struct Unk021ca400 {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ s32 mUnk_004;
+    /* 000 */ s32 mState;
+    /* 004 */ s32 mNextState;
     /* 008 */ s32 mUnk_008;
-    /* 00c */ s32 mUnk_00c;
-    /* 010 */ void *mUnk_010;
+    /* 00c */ s32 mKind;
+    /* 010 */ void *mHeap;
     /* 014 */ s16 mUnk_014;
     /* 016 */ u8 mUnk_016[0x2];
-    /* 018 */ s32 mUnk_018;
+    /* 018 */ BOOL mUnk_018;
     /* 01c */ void *mUnk_01c;
     /* 020 */ Unk02124b1c *mUnk_020;
-    /* 024 */ struct Unk02021dc8 *mUnk_024;
+    /* 024 */ struct Unk02021dc8 *mThanksYouMNcer;
     /* 028 */ u8 mUnk_028[0x4];
-    /* 02c */ Unk020b4a44 *mUnk_02c;
-    /* 030 */ void *mUnk_030;
-    /* 034 */ void *mUnk_034;
-    /* 038 */ Unk020b4934 *mUnk_038[2];
-    /* 040 */ Unk020b47d8 *mUnk_040[2];
-    /* 048 */ Unk020b4a44 *mUnk_048[2];
-    /* 050 */ Unk020b4934 *mUnk_050[2];
-    /* 058 */ Unk020b47d8 *mUnk_058[2];
-    /* 060 */ Unk020b4a44 *mUnk_060[2];
+    /* 02c */ Unk020b4a44 *mThanksYouMO00Nclr;
+    /* 030 */ void *mEndingThanksBncl;
+    /* 034 */ void *mEndingThanksBnll;
+    /* 038 */ Unk020b4934 *mLogoEndMarioKartMBAndThanksYouMBNcgrs[2];
+    /* 040 */ Unk020b47d8 *mLogoEndMarioKartMBgAndThanksYouMBgNscrs[2];
+    /* 048 */ Unk020b4a44 *mLogoEndMarioKartMBAndThanksYouMBNclrs[2];
+    /* 050 */ Unk020b4934 *mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[2];
+    /* 058 */ Unk020b47d8 *mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[2];
+    /* 060 */ Unk020b4a44 *mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[2];
     /* 068 */ u8 mUnk_068[0x404];
-    /* 46c */ void *mUnk_46c;
+    /* 46c */ void *mCommonMessages;
 } Unk021ca400;
 
 // Objects whose layout isn't known yet.

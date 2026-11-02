@@ -25,8 +25,8 @@ u32 func_020d0efc(int a) {
     if (data_0216aeac[a * 2] == 0) {
         r = 0;
     } else if (func_020d0ec4() != 0) {
-        if (gCupPicture->mUnk_0c != a) {
-            gCupPicture->mUnk_0c = a;
+        if (gCupPicture->mCupPictureIndex != a) {
+            gCupPicture->mCupPictureIndex = a;
             func_02057df0(LoadCupPictureNclr);
             func_02057df0(LoadCupPictureNcgr);
             func_02057df0(LoadCupPictureNscr);

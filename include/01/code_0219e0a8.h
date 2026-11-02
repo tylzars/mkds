@@ -37,4 +37,4 @@ void func_ov001_0219e5a0(void);
 void func_ov001_0219e5d4(int param_1);
 void func_ov001_0219e660(void);
 void func_ov001_0219e6e0(void);
-void func_ov001_0219e6ec(void *a);
+void func_ov001_0219e6ec(void *heap);

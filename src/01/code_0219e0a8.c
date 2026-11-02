@@ -6,46 +6,46 @@
 #include "Main/Unknown/code_02105000.h"
 #include "Main/Unknown/code_02037000.h"
 
-void func_ov001_0219e6ec(void *a) {
+void func_ov001_0219e6ec(void *heap) {
     void *result;
 
-    data_ov001_021ca400 = func_02036bec(a, 0x470);
-    data_ov001_021ca400->mUnk_010 = a;
-    data_ov001_021ca400->mUnk_01c = func_021250b0(a);
+    data_ov001_021ca400 = func_02036bec(heap, 0x470);
+    data_ov001_021ca400->mHeap = heap;
+    data_ov001_021ca400->mUnk_01c = func_021250b0(heap);
     data_ov001_021ca400->mUnk_014 = -1;
-    data_ov001_021ca400->mUnk_000 = 0;
-    data_ov001_021ca400->mUnk_004 = data_ov001_021ca400->mUnk_000;
+    data_ov001_021ca400->mState = 0;
+    data_ov001_021ca400->mNextState = data_ov001_021ca400->mState;
     data_ov001_021ca400->mUnk_008 = 0;
     if (data_021759c0->mUnk_00 == 0x36) {
-        data_ov001_021ca400->mUnk_00c = 1;
+        data_ov001_021ca400->mKind = 1;
     } else {
-        data_ov001_021ca400->mUnk_00c = 0;
+        data_ov001_021ca400->mKind = 0;
     }
-    data_ov001_021ca400->mUnk_018 = 0;
-    data_ov001_021ca400->mUnk_46c = func_02047a28("common.bmg");
+    data_ov001_021ca400->mUnk_018 = FALSE;
+    data_ov001_021ca400->mCommonMessages = func_02047a28("common.bmg");
     func_ov001_0219e660();
     func_ov001_0219e38c();
     func_020ae6d4(data_ov001_021ca400->mUnk_068, 0);
-    func_02124ed0(data_ov001_021ca400->mUnk_010, data_ov001_021ca400->mUnk_030, data_ov001_021ca400->mUnk_034,
+    func_02124ed0(data_ov001_021ca400->mHeap, data_ov001_021ca400->mEndingThanksBncl, data_ov001_021ca400->mEndingThanksBnll,
                   &data_ov001_021ca400->mUnk_020);
-    result = 0;
+    result = NULL;
     data_ov001_021ca400->mUnk_020->mUnk_00 = 0;
     {
         u16 table[2][2] = {{200, 24}, {200, 24}};
 
-        switch (data_ov001_021ca400->mUnk_00c) {
+        switch (data_ov001_021ca400->mKind) {
             case 0:
-                result = GetBmgEntry(data_ov001_021ca400->mUnk_46c, 0x77);
+                result = GetBmgEntry(data_ov001_021ca400->mCommonMessages, 0x77);
                 break;
             case 1:
-                result = GetBmgEntry(data_ov001_021ca400->mUnk_46c, 0x78);
+                result = GetBmgEntry(data_ov001_021ca400->mCommonMessages, 0x78);
                 break;
         }
-        func_021243ac(data_ov001_021ca400->mUnk_010, 0, data_ov001_021ca400->mUnk_034,
-                      table[data_ov001_021ca400->mUnk_00c][0], table[data_ov001_021ca400->mUnk_00c][1], 0,
-                      data_ov001_021ca400->mUnk_024, data_ov001_021ca400->mUnk_030, data_ov001_021ca400->mUnk_020,
+        func_021243ac(data_ov001_021ca400->mHeap, 0, data_ov001_021ca400->mEndingThanksBnll,
+                      table[data_ov001_021ca400->mKind][0], table[data_ov001_021ca400->mKind][1], 0,
+                      data_ov001_021ca400->mThanksYouMNcer, data_ov001_021ca400->mEndingThanksBncl, data_ov001_021ca400->mUnk_020,
                       0x8000);
-        func_0212426c(0, 0, data_ov001_021ca400->mUnk_034, result, data_ov001_021ca400->mUnk_030,
+        func_0212426c(0, 0, data_ov001_021ca400->mEndingThanksBnll, result, data_ov001_021ca400->mEndingThanksBncl,
                       data_ov001_021ca400->mUnk_020);
     }
 }
@@ -68,18 +68,18 @@ void func_ov001_0219e660(void) {
 }
 
 void func_ov001_0219e5d4(int i) {
-    func_02016468(4, 0, data_ov001_021ca400->mUnk_038[i]->mUnk_14, data_ov001_021ca400->mUnk_038[i]->mUnk_10);
-    func_02016468(8, 0, data_ov001_021ca400->mUnk_040[i]->mUnk_0c, data_ov001_021ca400->mUnk_040[i]->mUnk_08);
-    func_02016468(0xf, 0, data_ov001_021ca400->mUnk_048[i]->mUnk_0c, data_ov001_021ca400->mUnk_048[i]->mUnk_08);
-    func_02016468(0x14, 0, data_ov001_021ca400->mUnk_050[i]->mUnk_14, data_ov001_021ca400->mUnk_050[i]->mUnk_10);
-    func_02016468(0x18, 0, data_ov001_021ca400->mUnk_058[i]->mUnk_0c, data_ov001_021ca400->mUnk_058[i]->mUnk_08);
-    func_02016468(0x1f, 0, data_ov001_021ca400->mUnk_060[i]->mUnk_0c, data_ov001_021ca400->mUnk_060[i]->mUnk_08);
+    func_02016468(4, 0, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mUnk_14, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mUnk_10);
+    func_02016468(8, 0, data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mUnk_0c, data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mUnk_08);
+    func_02016468(0xf, 0, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mUnk_0c, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mUnk_08);
+    func_02016468(0x14, 0, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mUnk_14, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mUnk_10);
+    func_02016468(0x18, 0, data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mUnk_0c, data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mUnk_08);
+    func_02016468(0x1f, 0, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mUnk_0c, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mUnk_08);
 }
 
 void func_ov001_0219e5a0(void) {
     reg_G2_BG0CNT = reg_G2_BG0CNT & 0x43 | (u16) 0x00001f80u;
     func_ov001_0219e5d4(1);
-    data_ov001_021ca400->mUnk_018 = 1;
+    data_ov001_021ca400->mUnk_018 = TRUE;
     return;
 }
 
@@ -88,38 +88,38 @@ void func_ov001_0219e38c(void) {
     LoadNcgrData(&data_ov001_021ca400->mUnk_038[0], FindSceneFile("logo_end_marioKart_m_b_02.ncgr"));
     LoadNscrData(&data_ov001_021ca400->mUnk_040[0], FindSceneFile("logo_end_marioKart_m_bg_02.nscr"));
 #else
-    LoadNcgrData(&data_ov001_021ca400->mUnk_038[0], FindSceneFile("logo_end_marioKart_m_b_01.ncgr"));
-    LoadNscrData(&data_ov001_021ca400->mUnk_040[0], FindSceneFile("logo_end_marioKart_m_bg_01.nscr"));
+    LoadNcgrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[0], FindSceneFile("logo_end_marioKart_m_b_01.ncgr"));
+    LoadNscrData(&data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[0], FindSceneFile("logo_end_marioKart_m_bg_01.nscr"));
 #endif
-    LoadNclrData(&data_ov001_021ca400->mUnk_048[0], FindSceneFile("logo_end_marioKart_m_b.nclr"));
-    switch (data_ov001_021ca400->mUnk_00c) {
+    LoadNclrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[0], FindSceneFile("logo_end_marioKart_m_b.nclr"));
+    switch (data_ov001_021ca400->mKind) {
         case 0:
-            LoadNcgrData(&data_ov001_021ca400->mUnk_038[1], FindSceneFile("thanksYou_m_b_00.ncgr"));
-            LoadNscrData(&data_ov001_021ca400->mUnk_040[1], FindSceneFile("thanksYou_m_bg_00.nscr"));
-            LoadNclrData(&data_ov001_021ca400->mUnk_048[1], FindSceneFile("thanksYou_m_b_00.nclr"));
+            LoadNcgrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[1], FindSceneFile("thanksYou_m_b_00.ncgr"));
+            LoadNscrData(&data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[1], FindSceneFile("thanksYou_m_bg_00.nscr"));
+            LoadNclrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[1], FindSceneFile("thanksYou_m_b_00.nclr"));
             break;
         case 1:
-            LoadNcgrData(&data_ov001_021ca400->mUnk_038[1], FindSceneFile("thanksYou_m_b_01_2.ncgr"));
-            LoadNscrData(&data_ov001_021ca400->mUnk_040[1], FindSceneFile("thanksYou_m_bg_01_2.nscr"));
-            LoadNclrData(&data_ov001_021ca400->mUnk_048[1], FindSceneFile("thanksYou_m_b_01.nclr"));
+            LoadNcgrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[1], FindSceneFile("thanksYou_m_b_01_2.ncgr"));
+            LoadNscrData(&data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[1], FindSceneFile("thanksYou_m_bg_01_2.nscr"));
+            LoadNclrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[1], FindSceneFile("thanksYou_m_b_01.nclr"));
             break;
     }
-    LoadNcgrData(&data_ov001_021ca400->mUnk_050[0], FindSceneFile("end_allRightsReserved_s_b.ncgr"));
-    LoadNscrData(&data_ov001_021ca400->mUnk_058[0], FindSceneFile("end_allRightsReserved_s_bg.nscr"));
-    LoadNclrData(&data_ov001_021ca400->mUnk_060[0], FindSceneFile("end_allRightsReserved_s_b.nclr"));
-    LoadNcgrData(&data_ov001_021ca400->mUnk_050[1], FindSceneFile("logo_end_Nintendo_s_b.ncgr"));
-    LoadNscrData(&data_ov001_021ca400->mUnk_058[1], FindSceneFile("logo_end_Nintendo_s_bg.nscr"));
-    LoadNclrData(&data_ov001_021ca400->mUnk_060[1], FindSceneFile("logo_end_Nintendo_s_b.nclr"));
-    LoadNcerData(&data_ov001_021ca400->mUnk_024, FindSceneFile("thanksYou_m.nce.ncer"));
-    LoadNclrData(&data_ov001_021ca400->mUnk_02c, FindSceneFile("thanksYou_m_o_00.nclr"));
-    switch (data_ov001_021ca400->mUnk_00c) {
+    LoadNcgrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[0], FindSceneFile("end_allRightsReserved_s_b.ncgr"));
+    LoadNscrData(&data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[0], FindSceneFile("end_allRightsReserved_s_bg.nscr"));
+    LoadNclrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[0], FindSceneFile("end_allRightsReserved_s_b.nclr"));
+    LoadNcgrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[1], FindSceneFile("logo_end_Nintendo_s_b.ncgr"));
+    LoadNscrData(&data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[1], FindSceneFile("logo_end_Nintendo_s_bg.nscr"));
+    LoadNclrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[1], FindSceneFile("logo_end_Nintendo_s_b.nclr"));
+    LoadNcerData(&data_ov001_021ca400->mThanksYouMNcer, FindSceneFile("thanksYou_m.nce.ncer"));
+    LoadNclrData(&data_ov001_021ca400->mThanksYouMO00Nclr, FindSceneFile("thanksYou_m_o_00.nclr"));
+    switch (data_ov001_021ca400->mKind) {
         case 0:
-            data_ov001_021ca400->mUnk_030 = FindSceneFile("ending_thanks_00.bncl");
-            data_ov001_021ca400->mUnk_034 = FindSceneFile("ending_thanks_00.bnll");
+            data_ov001_021ca400->mEndingThanksBncl = FindSceneFile("ending_thanks_00.bncl");
+            data_ov001_021ca400->mEndingThanksBnll = FindSceneFile("ending_thanks_00.bnll");
             break;
         case 1:
-            data_ov001_021ca400->mUnk_030 = FindSceneFile("ending_thanks_01.bncl");
-            data_ov001_021ca400->mUnk_034 = FindSceneFile("ending_thanks_01.bnll");
+            data_ov001_021ca400->mEndingThanksBncl = FindSceneFile("ending_thanks_01.bncl");
+            data_ov001_021ca400->mEndingThanksBnll = FindSceneFile("ending_thanks_01.bnll");
             break;
     }
     if (data_0217b488->mUnk_70 != 0) {
@@ -127,24 +127,24 @@ void func_ov001_0219e38c(void) {
     } else {
         func_ov001_0219e5d4(0);
     }
-    func_02016468(0xe, 0, data_ov001_021ca400->mUnk_02c->mUnk_0c, data_ov001_021ca400->mUnk_02c->mUnk_08);
+    func_02016468(0xe, 0, data_ov001_021ca400->mThanksYouMO00Nclr->mUnk_0c, data_ov001_021ca400->mThanksYouMO00Nclr->mUnk_08);
 }
 
 void func_ov001_0219e34c(void) {
     if (func_02036c5c() != 0) {
         if (data_0217b488->mUnk_70 != 0) {
-            data_ov001_021ca400->mUnk_004 = 5;
+            data_ov001_021ca400->mNextState = 5;
             data_0217b488->mUnk_70 = 0;
             return;
         }
-        data_ov001_021ca400->mUnk_004 = 1;
+        data_ov001_021ca400->mNextState = 1;
     }
 }
 
 void func_ov001_0219e310(void) {
     data_ov001_021ca400->mUnk_008++;
-    if (data_ov001_021ca400->mUnk_008 > data_ov001_021a6c50[data_ov001_021ca400->mUnk_000]) {
-        data_ov001_021ca400->mUnk_004 = 2;
+    if (data_ov001_021ca400->mUnk_008 > data_ov001_021a6c50[data_ov001_021ca400->mState]) {
+        data_ov001_021ca400->mNextState = 2;
         data_ov001_021ca400->mUnk_008 = 0;
         func_02036f10((s16) (data_ov001_021a6c50[2]));
     }
@@ -154,7 +154,7 @@ void func_ov001_0219e2f0(void) {
     int v1;
     v1 = func_02036d08();
     if (v1 != 0) {
-        data_ov001_021ca400->mUnk_004 = 3;
+        data_ov001_021ca400->mNextState = 3;
     }
     return;
 }
@@ -165,7 +165,7 @@ void func_ov001_0219e2b4(void) {
     data_ov001_021ca400->mUnk_008++;
     p = data_ov001_021ca400;
     if (p->mUnk_008 > data_ov001_021a6c50[3]) {
-        p->mUnk_004 = 4;
+        p->mNextState = 4;
         data_ov001_021ca400->mUnk_008 = 0;
         func_020370d4(data_ov001_021a6c50[4]);
         func_ov001_0219e5a0();
@@ -176,7 +176,7 @@ void func_ov001_0219e294(void) {
     int v1;
     v1 = func_02036c5c();
     if (v1 != 0) {
-        data_ov001_021ca400->mUnk_004 = 5;
+        data_ov001_021ca400->mNextState = 5;
     }
     return;
 }
@@ -189,8 +189,8 @@ void func_ov001_0219e1f8(void) {
     u16 x;
 
     data_ov001_021ca400->mUnk_008++;
-    if (data_ov001_021ca400->mUnk_008 > data_ov001_021a6c50[data_ov001_021ca400->mUnk_000]) {
-        data_ov001_021ca400->mUnk_008 = data_ov001_021a6c50[data_ov001_021ca400->mUnk_000];
+    if (data_ov001_021ca400->mUnk_008 > data_ov001_021a6c50[data_ov001_021ca400->mState]) {
+        data_ov001_021ca400->mUnk_008 = data_ov001_021a6c50[data_ov001_021ca400->mState];
         flags = data_02175628[idx].mUnk_00 & 0xc0f;
         if (flags == 0) {
             a = 0;
@@ -206,7 +206,7 @@ void func_ov001_0219e1f8(void) {
                 return;
             }
         }
-        data_ov001_021ca400->mUnk_004 = 6;
+        data_ov001_021ca400->mNextState = 6;
         data_ov001_021ca400->mUnk_008 = 0;
         func_02036f10((s16) (data_ov001_021a6c50[6]));
     }
@@ -214,7 +214,7 @@ void func_ov001_0219e1f8(void) {
 
 void func_ov001_0219e1d4(void) {
     if (func_02036d08() != 0) {
-        data_ov001_021ca400->mUnk_004 = 7;
+        data_ov001_021ca400->mNextState = 7;
         data_ov001_021ca400->mUnk_008 = 0;
     }
 }
@@ -227,9 +227,9 @@ void func_ov001_0219e1b0(void) {
 }
 
 void func_ov001_0219e118(void) {
-    data_ov001_021ca400->mUnk_000 = data_ov001_021ca400->mUnk_004;
-    func_020ae6ac((void *) (data_ov001_021ca400->mUnk_068), (void *) (0));
-    switch (data_ov001_021ca400->mUnk_000) {
+    data_ov001_021ca400->mState = data_ov001_021ca400->mNextState;
+    func_020ae6ac((void *) (data_ov001_021ca400->mUnk_068), NULL);
+    switch (data_ov001_021ca400->mState) {
         case 0:
             func_ov001_0219e34c();
             break;
@@ -255,9 +255,9 @@ void func_ov001_0219e118(void) {
             func_ov001_0219e1b0();
             break;
     }
-    func_02124c30(data_ov001_021ca400->mUnk_030, data_ov001_021ca400->mUnk_024, data_ov001_021ca400->mUnk_034,
+    func_02124c30(data_ov001_021ca400->mEndingThanksBncl, data_ov001_021ca400->mThanksYouMNcer, data_ov001_021ca400->mEndingThanksBnll,
                   data_ov001_021ca400->mUnk_068, data_ov001_021ca400->mUnk_020);
-    func_020ae630((void *) (data_ov001_021ca400->mUnk_068), (void *) (0));
+    func_020ae630((void *) (data_ov001_021ca400->mUnk_068), NULL);
 }
 
 void func_ov001_0219e0d4(void) {
@@ -267,7 +267,7 @@ void func_ov001_0219e0d4(void) {
         bits = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
         *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | ((bits | 0x10) << 8);
     }
-    func_020ae5f0((void *) (data_ov001_021ca400->mUnk_068), (void *) (0));
+    func_020ae5f0((void *) (data_ov001_021ca400->mUnk_068), NULL);
 }
 
 void func_ov001_0219e0c4(void) {

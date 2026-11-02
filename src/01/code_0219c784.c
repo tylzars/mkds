@@ -37,26 +37,26 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
     heap = func_020369fc(c);
     gSelectBattleStage = func_02036bec(heap, 0x1088);
     gSelectBattleStage->mUnk_1030 = heap;
-    gSelectBattleStage->mUnk_00 = 0;
-    gSelectBattleStage->mUnk_04 = 0;
+    gSelectBattleStage->mState = 0;
+    gSelectBattleStage->mNextState = 0;
     gSelectBattleStage->mUnk_08 = 0;
     gSelectBattleStage->mUnk_0c = 0;
     gSelectBattleStage->mUnk_10 = 0;
     gSelectBattleStage->mUnk_1c = 0;
     gSelectBattleStage->mUnk_20 = 1;
     gSelectBattleStage->mUnk_24 = -4;
-    gSelectBattleStage->mUnk_1080 = FindSceneFile("menu.bmg");
-    gSelectBattleStage->mUnk_1084 = func_02047a28("common.bmg");
+    gSelectBattleStage->mMenuMessages = FindSceneFile("menu.bmg");
+    gSelectBattleStage->mCommonMessages = func_02047a28("common.bmg");
     func_ov001_0219d03c();
     func_ov001_0219cf60();
     for (i = 0; i < 6; i++) {
-        func_02124a98(data_ov001_021a6bf0[i][0], 1, gSelectBattleStage->mUnk_1040, gSelectBattleStage->mUnk_1054[1]);
+        func_02124a98(data_ov001_021a6bf0[i][0], 1, gSelectBattleStage->mSelectBattleStageSNcer, gSelectBattleStage->mSelectBattleStageBncls[1]);
     }
     gSelectBattleStage->mUnk_1078 = e;
     gSelectBattleStage->mUnk_107c = f;
     func_020ae6d4(e, f);
     for (i = 0; i < 2; i++) {
-        func_02124ed0(gSelectBattleStage->mUnk_1030, gSelectBattleStage->mUnk_1054[i], gSelectBattleStage->mUnk_1064[i],
+        func_02124ed0(gSelectBattleStage->mUnk_1030, gSelectBattleStage->mSelectBattleStageBncls[i], gSelectBattleStage->mSelectBattleStageBnlls[i],
                       &gSelectBattleStage->mUnk_1034[i]);
     }
     gSelectBattleStage->mUnk_1034[0][0].mUnk_06 = -0xa0;
@@ -72,15 +72,15 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
         u8 b[2] = {5, 6};
         s32 rem = 0x8000;
 
-        p = GetBmgEntry(gSelectBattleStage->mUnk_1080, 6);
+        p = GetBmgEntry(gSelectBattleStage->mMenuMessages, 6);
         if (d == 0) {
-            p = GetBmgEntry(gSelectBattleStage->mUnk_1080, 7);
+            p = GetBmgEntry(gSelectBattleStage->mMenuMessages, 7);
         }
         for (i = 0; i < 2; i++) {
-            rem -= func_021243ac(gSelectBattleStage->mUnk_1030, a[i], gSelectBattleStage->mUnk_1064[0], 0xa8, 13, b[i],
-                                 gSelectBattleStage->mUnk_103c, gSelectBattleStage->mUnk_1054[0],
+            rem -= func_021243ac(gSelectBattleStage->mUnk_1030, a[i], gSelectBattleStage->mSelectBattleStageBnlls[0], 0xa8, 13, b[i],
+                                 gSelectBattleStage->mSelectBattleStageMNcer, gSelectBattleStage->mSelectBattleStageBncls[0],
                                  gSelectBattleStage->mUnk_1034[0], rem);
-            func_0212426c(0, a[i], gSelectBattleStage->mUnk_1064[0], p, gSelectBattleStage->mUnk_1054[0],
+            func_0212426c(0, a[i], gSelectBattleStage->mSelectBattleStageBnlls[0], p, gSelectBattleStage->mSelectBattleStageBncls[0],
                           gSelectBattleStage->mUnk_1034[0]);
         }
         if (d == 1) {
@@ -108,31 +108,31 @@ void func_ov001_0219d03c(void) {
     Unk020b4a44 *d;
 
     LocateNcgr(&a, FindSceneFile("mg/select_battle_stage_m_b.ncgr"));
-    LocateNscr(&gSelectBattleStage->mUnk_106c[0], FindSceneFile("mg/select_battle_stage_m_00.nscr"));
-    LocateNscr(&gSelectBattleStage->mUnk_106c[1], FindSceneFile("mg/select_battle_stage_m_01.nscr"));
-    LocateNscr(&gSelectBattleStage->mUnk_106c[2], FindSceneFile("mg/select_battle_stage_m_02.nscr"));
+    LocateNscr(&gSelectBattleStage->mSelectBattleStageMNscrs[0], FindSceneFile("mg/select_battle_stage_m_00.nscr"));
+    LocateNscr(&gSelectBattleStage->mSelectBattleStageMNscrs[1], FindSceneFile("mg/select_battle_stage_m_01.nscr"));
+    LocateNscr(&gSelectBattleStage->mSelectBattleStageMNscrs[2], FindSceneFile("mg/select_battle_stage_m_02.nscr"));
     LocateNclr(&b, FindSceneFile("mg/select_battle_stage_m_b.nclr"));
-    gSelectBattleStage->mUnk_1054[0] = FindSceneFile("mg/select_battle_stage_m.bncl");
-    gSelectBattleStage->mUnk_105c[0] = NULL;
-    gSelectBattleStage->mUnk_1064[0] = FindSceneFile("mg/select_battle_stage_m.bnll");
-    gSelectBattleStage->mUnk_1054[1] = FindSceneFile("mg/select_battle_stage_s.bncl");
-    gSelectBattleStage->mUnk_105c[1] = FindSceneFile("mg/select_battle_stage_s.bnbl");
-    gSelectBattleStage->mUnk_1064[1] = NULL;
-    LocateNcgr2(&gSelectBattleStage->mUnk_1044, FindSceneFile("mg/select_battle_stage_m.nce.ncgr"));
-    LocateNcer(&gSelectBattleStage->mUnk_103c, FindSceneFile("mg/select_battle_stage_m.nce.ncer"));
+    gSelectBattleStage->mSelectBattleStageBncls[0] = FindSceneFile("mg/select_battle_stage_m.bncl");
+    gSelectBattleStage->mSelectBattleStageBnbls[0] = NULL;
+    gSelectBattleStage->mSelectBattleStageBnlls[0] = FindSceneFile("mg/select_battle_stage_m.bnll");
+    gSelectBattleStage->mSelectBattleStageBncls[1] = FindSceneFile("mg/select_battle_stage_s.bncl");
+    gSelectBattleStage->mSelectBattleStageBnbls[1] = FindSceneFile("mg/select_battle_stage_s.bnbl");
+    gSelectBattleStage->mSelectBattleStageBnlls[1] = NULL;
+    LocateNcgr2(&gSelectBattleStage->mSelectBattleStageMNcgr, FindSceneFile("mg/select_battle_stage_m.nce.ncgr"));
+    LocateNcer(&gSelectBattleStage->mSelectBattleStageMNcer, FindSceneFile("mg/select_battle_stage_m.nce.ncer"));
     LocateNclr(&c, FindSceneFile("mg/select_battle_stage_m_o.nclr"));
-    LocateNcgr2(&gSelectBattleStage->mUnk_1048, FindSceneFile("mg/select_battle_stage_s.nce.ncgr"));
-    LocateNcer(&gSelectBattleStage->mUnk_1040, FindSceneFile("mg/select_battle_stage_s.nce.ncer"));
+    LocateNcgr2(&gSelectBattleStage->mSelectBattleStageSNcgr, FindSceneFile("mg/select_battle_stage_s.nce.ncgr"));
+    LocateNcer(&gSelectBattleStage->mSelectBattleStageSNcer, FindSceneFile("mg/select_battle_stage_s.nce.ncer"));
     LocateNclr(&d, FindSceneFile("mg/select_battle_stage_s_o.nclr"));
     z = 0;
     func_0214cfe4(z, gSelectBattleStage->mUnk_30, 0x1000);
     func_02016468(6, 0, a->mUnk_14, a->mUnk_10);
     func_02016468(10, 0, gSelectBattleStage->mUnk_30, 0x1000);
     func_02016468(15, 0, b->mUnk_0c, 0x180);
-    func_02016468(19, 0, gSelectBattleStage->mUnk_1044->mUnk_14, gSelectBattleStage->mUnk_1044->mUnk_10);
+    func_02016468(19, 0, gSelectBattleStage->mSelectBattleStageMNcgr->mUnk_14, gSelectBattleStage->mSelectBattleStageMNcgr->mUnk_10);
     func_02016468(14, 0, c->mUnk_0c, 0x1a0);
     func_02016468(14, 0x1c0, c->mUnk_0c + 0xe0, 0x40);
-    func_02016468(35, 0, gSelectBattleStage->mUnk_1048->mUnk_14, gSelectBattleStage->mUnk_1048->mUnk_10);
+    func_02016468(35, 0, gSelectBattleStage->mSelectBattleStageSNcgr->mUnk_14, gSelectBattleStage->mSelectBattleStageSNcgr->mUnk_10);
     func_02016468(30, 0, d->mUnk_0c, d->mUnk_08);
 }
 
@@ -148,7 +148,7 @@ void func_ov001_0219cf60(void) {
                              data_ov001_021a6c04[gSelectBattleStage->mUnk_08].mUnk_00;
              x++) {
             (gSelectBattleStage->mUnk_30[data_ov001_021a6bcc[1] + y] + data_ov001_021a6bcc[0])[x] =
-                *((u16 *) gSelectBattleStage->mUnk_106c[src]->mUnk_0c + x +
+                *((u16 *) gSelectBattleStage->mSelectBattleStageMNscrs[src]->mUnk_0c + x +
                   data_ov001_021a6c04[gSelectBattleStage->mUnk_08].mUnk_00 +
                   (data_ov001_021a6c04[gSelectBattleStage->mUnk_08].mUnk_02 + y) * 32);
         }
@@ -158,7 +158,7 @@ void func_ov001_0219cf60(void) {
 
 void func_ov001_0219cec4(void) {
     s32 i;
-    u16 x = gSelectBattleStage->mUnk_1054[0]->mUnk_06;
+    u16 x = gSelectBattleStage->mSelectBattleStageBncls[0]->mUnk_06;
 
     for (i = 0; i < 1; i++) {
         gSelectBattleStage->mUnk_1034[0][data_ov001_021a6bc4[i]].mUnk_06 = -gSelectBattleStage->mUnk_14;
@@ -180,9 +180,9 @@ void func_ov001_0219cdd4(void) {
 
     gSelectBattleStage->mUnk_0c++;
     if (gSelectBattleStage->mUnk_0c > 20) {
-        gSelectBattleStage->mUnk_04 = 1;
+        gSelectBattleStage->mNextState = 1;
         gSelectBattleStage->mUnk_0c = 0;
-        gSelectBattleStage->mUnk_04 = 1;
+        gSelectBattleStage->mNextState = 1;
         func_02128374();
     } else if (gSelectBattleStage->mUnk_0c > 10) {
         for (i = 0; i < 6; i++) {
@@ -207,7 +207,7 @@ void func_ov001_0219cdb4(void) {
     int v1;
     v1 = func_02128294();
     if (v1 != 0) {
-        gSelectBattleStage->mUnk_04 = 2;
+        gSelectBattleStage->mNextState = 2;
     }
     return;
 }
@@ -231,7 +231,7 @@ void func_ov001_0219cba0(void) {
         b = 1;
     }
     if (b != 0) {
-        res = func_0201ea84(gSelectBattleStage->mUnk_105c[1], data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+        res = func_0201ea84(gSelectBattleStage->mSelectBattleStageBnbls[1], data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
     }
     for (i = 0; i < 6; i++) {
         if (res == data_ov001_021a6be8[i]) {
@@ -253,12 +253,12 @@ void func_ov001_0219cba0(void) {
         }
     }
     if (data_0217b488->mUnk_08 == 2) {
-        gSelectBattleStage->mUnk_04 = 4;
+        gSelectBattleStage->mNextState = 4;
         func_02128310(0);
         gSelectBattleStage->mUnk_2c = 0;
         return;
     }
-    gSelectBattleStage->mUnk_04 = 6;
+    gSelectBattleStage->mNextState = 6;
     gSelectBattleStage->mUnk_28 = -3;
     if (data_021759d0->mUnk_20 == 0) {
         func_02128310(0);
@@ -278,7 +278,7 @@ next:
             gSelectBattleStage->mUnk_20 = 0;
         }
         gSelectBattleStage->mUnk_28 = gSelectBattleStage->mUnk_08;
-        gSelectBattleStage->mUnk_04 = 3;
+        gSelectBattleStage->mNextState = 3;
         gSelectBattleStage->mUnk_10 = 6;
         func_02105ac0(5);
         return;
@@ -312,9 +312,9 @@ void func_ov001_0219caf4(void) {
         gSelectBattleStage->mUnk_1034[1][data_ov001_021a6bf0[gSelectBattleStage->mUnk_08][i]].mUnk_04 = v;
     }
     if (gSelectBattleStage->mUnk_0c >= 10) {
-        gSelectBattleStage->mUnk_04 = 5;
+        gSelectBattleStage->mNextState = 5;
         gSelectBattleStage->mUnk_0c = 0;
-        func_021277f8(GetBmgEntry(gSelectBattleStage->mUnk_1084, 4), GetBmgEntry(gSelectBattleStage->mUnk_1084, 2), 0);
+        func_021277f8(GetBmgEntry(gSelectBattleStage->mCommonMessages, 4), GetBmgEntry(gSelectBattleStage->mCommonMessages, 2), 0);
         func_0212775c(0, 7);
         func_0212775c(1, 0x10);
     } else if (gSelectBattleStage->mUnk_0c >= 5) {
@@ -325,11 +325,11 @@ void func_ov001_0219caf4(void) {
 void func_ov001_0219ca94(void) {
     if (func_02128294() != 0) {
         gSelectBattleStage->mUnk_28 = -2;
-        func_021277f8(GetBmgEntry(gSelectBattleStage->mUnk_1080, 0x14),
-                      GetBmgEntry(gSelectBattleStage->mUnk_1080, 0x15), 0);
+        func_021277f8(GetBmgEntry(gSelectBattleStage->mMenuMessages, 0x14),
+                      GetBmgEntry(gSelectBattleStage->mMenuMessages, 0x15), 0);
         func_0212775c(0, 5);
         func_0212775c(1, 0xc);
-        gSelectBattleStage->mUnk_04 = 5;
+        gSelectBattleStage->mNextState = 5;
     }
 }
 
@@ -337,17 +337,17 @@ void func_ov001_0219ca2c(void) {
     if (func_02127788() != 0) {
         if (gSelectBattleStage->mUnk_28 == -2 || gSelectBattleStage->mUnk_28 == -1) {
             if (func_02127794() == 1) {
-                gSelectBattleStage->mUnk_04 = 6;
+                gSelectBattleStage->mNextState = 6;
             } else {
-                gSelectBattleStage->mUnk_04 = 2;
+                gSelectBattleStage->mNextState = 2;
             }
         } else {
             if (func_02127794() == 0) {
-                gSelectBattleStage->mUnk_04 = 6;
+                gSelectBattleStage->mNextState = 6;
                 func_021282c8();
                 gSelectBattleStage->mUnk_2c = 1;
             } else {
-                gSelectBattleStage->mUnk_04 = 2;
+                gSelectBattleStage->mNextState = 2;
             }
         }
         func_021277e4();
@@ -404,8 +404,8 @@ void func_ov001_0219c8c8(void) {
 s32 AdvanceSelectBattleStage(void) {
     s32 i;
 
-    gSelectBattleStage->mUnk_00 = gSelectBattleStage->mUnk_04;
-    switch (gSelectBattleStage->mUnk_00) {
+    gSelectBattleStage->mState = gSelectBattleStage->mNextState;
+    switch (gSelectBattleStage->mState) {
         case 0:
             func_ov001_0219cdd4();
             break;
@@ -433,8 +433,8 @@ s32 AdvanceSelectBattleStage(void) {
     func_ov001_0219cec4();
     func_ov001_0219cf60();
     for (i = 0; i < 2; i++) {
-        func_02124c30(gSelectBattleStage->mUnk_1054[i], (&gSelectBattleStage->mUnk_103c)[i],
-                      gSelectBattleStage->mUnk_1064[i], (&gSelectBattleStage->mUnk_1078)[i],
+        func_02124c30(gSelectBattleStage->mSelectBattleStageBncls[i], (&gSelectBattleStage->mSelectBattleStageMNcer)[i],
+                      gSelectBattleStage->mSelectBattleStageBnlls[i], (&gSelectBattleStage->mUnk_1078)[i],
                       gSelectBattleStage->mUnk_1034[i]);
     }
     return gSelectBattleStage->mUnk_24;

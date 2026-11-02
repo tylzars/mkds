@@ -11,11 +11,11 @@ void LocateBmgSections(Unk020b3fb0 *bmg) {
     u32 section;
     u32 tag;
 
-    p = (u32) &bmg->mUnk_20;
-    for (i = 0; i < bmg->mUnk_0c; i++) {
+    p = (u32) &bmg->mFirstSection;
+    for (i = 0; i < bmg->mSectionCount; i++) {
         section = p;
-        p = p + ((Unk020b3fb0_20 *) p)->mUnk_04;
-        tag = func_020ae1d0(((Unk020b3fb0_20 *) section)->mUnk_00);
+        p = p + ((Unk020b3fb0_20 *) p)->mNextOffset;
+        tag = func_020ae1d0(((Unk020b3fb0_20 *) section)->mTag);
         switch (tag) {
             case 0x494e4631:
                 data_0217b360 = (Unk0217b340 *) section;
@@ -29,6 +29,6 @@ void LocateBmgSections(Unk020b3fb0 *bmg) {
 
 void *GetBmgEntry(Unk020b3fb0 *bmg, s32 index) {
     LocateBmgSections(bmg);
-    return &data_0217b364->mUnk_08[data_0217b360->mUnk_10[index % 0x10000]];
+    return &data_0217b364->mBody[data_0217b360->mEntryOffsets[index % 0x10000]];
 }
 #pragma thumb off

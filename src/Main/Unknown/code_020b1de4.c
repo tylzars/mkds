@@ -149,15 +149,15 @@ void func_020b1df0(void) {
             "choises_s_4.NSCR", "choises_s_5.NSCR", "choises_s_6.NSCR",
         };
 
-        LoadNclrData(&data_0217b354->mUnk_16c, FindSceneFileWrapper("choises_s_b.NCLR"));
-        LoadNcgrData(&data_0217b354->mUnk_170, FindSceneFileWrapper("choises_s_b.NCGR"));
+        LoadNclrData(&data_0217b354->mChoisesSBNclr, FindSceneFileWrapper("choises_s_b.NCLR"));
+        LoadNcgrData(&data_0217b354->mChoisesSBNcgr, FindSceneFileWrapper("choises_s_b.NCGR"));
         for (i = 0; i < 6; i++) {
-            LoadNscrData(&data_0217b354->mUnk_18c[i], FindSceneFileWrapper(t[i]));
+            LoadNscrData(&data_0217b354->mChoisesSNscrs[i], FindSceneFileWrapper(t[i]));
         }
-        data_0217b354->mUnk_17c = data_0217b354->mUnk_18c[data_0217b354->mUnk_038[0].mUnk_18 - 1];
-        data_0217b354->mUnk_180 = data_0217b354->mUnk_18c[data_0217b354->mUnk_038[1].mUnk_18 - 1];
-        data_0217b354->mUnk_184 = data_0217b354->mUnk_18c[data_0217b354->mUnk_038[2].mUnk_18 - 1];
-        data_0217b354->mUnk_188 = data_0217b354->mUnk_18c[data_0217b354->mUnk_038[3].mUnk_18 - 1];
+        data_0217b354->mUnk_17c = data_0217b354->mChoisesSNscrs[data_0217b354->mUnk_038[0].mUnk_18 - 1];
+        data_0217b354->mUnk_180 = data_0217b354->mChoisesSNscrs[data_0217b354->mUnk_038[1].mUnk_18 - 1];
+        data_0217b354->mUnk_184 = data_0217b354->mChoisesSNscrs[data_0217b354->mUnk_038[2].mUnk_18 - 1];
+        data_0217b354->mUnk_188 = data_0217b354->mChoisesSNscrs[data_0217b354->mUnk_038[3].mUnk_18 - 1];
         data_0217b354->mUnk_174 = func_02036bec(func_020b2540(), func_020b3260(data_0217b354->mUnk_038[1].mUnk_18));
         switch (func_020b252c()) {
             case 2:
@@ -210,8 +210,8 @@ void func_020b1df0(void) {
                           func_020b320c(2, data_0217b354->mUnk_038[2].mUnk_00[i]));
         }
     } else {
-        data_0217b354->mUnk_16c = 0;
-        data_0217b354->mUnk_170 = 0;
+        data_0217b354->mChoisesSBNclr = 0;
+        data_0217b354->mChoisesSBNcgr = 0;
         data_0217b354->mUnk_174 = 0;
         data_0217b354->mUnk_178 = 0;
         data_0217b354->mUnk_17c = 0;

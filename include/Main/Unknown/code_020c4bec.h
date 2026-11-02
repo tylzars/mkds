@@ -9,8 +9,8 @@
 // Object behind gRaceStartGp, 0x41c bytes, allocated by InitRaceStartGp.
 typedef struct Unk0217b3e8 {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ Unk020b4a44 *mUnk_04;
-    /* 08 */ Unk020b4934 *mUnk_08;
+    /* 04 */ Unk020b4a44 *mRaceStartGpMONclr;
+    /* 08 */ Unk020b4934 *mRaceStartGpMONcgr;
     /* 0c */ Unk02021e40 *mUnk_0c[3];
     /* 18 */ Unk020c06c4 mUnk_18;
 } Unk0217b3e8;

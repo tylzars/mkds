@@ -94,8 +94,8 @@ typedef struct Unk021a9b88 {
 
 // Allocated by InitSelectBattleStage and held in gSelectBattleStage.
 typedef struct Unk021a9bf8 {
-    /* 0000 */ s32 mUnk_00;
-    /* 0004 */ s32 mUnk_04;
+    /* 0000 */ s32 mState;
+    /* 0004 */ s32 mNextState;
     /* 0008 */ s32 mUnk_08;
     /* 000c */ s32 mUnk_0c;
     /* 0010 */ s32 mUnk_10;
@@ -109,19 +109,19 @@ typedef struct Unk021a9bf8 {
     /* 0030 */ u16 mUnk_30[64][32];
     /* 1030 */ void *mUnk_1030;
     /* 1034 */ Unk02124b1c *mUnk_1034[2];
-    /* 103c */ struct Unk02021dc8 *mUnk_103c;
-    /* 1040 */ struct Unk02021dc8 *mUnk_1040;
-    /* 1044 */ Unk020b4934 *mUnk_1044;
-    /* 1048 */ Unk020b4934 *mUnk_1048;
+    /* 103c */ struct Unk02021dc8 *mSelectBattleStageMNcer;
+    /* 1040 */ struct Unk02021dc8 *mSelectBattleStageSNcer;
+    /* 1044 */ Unk020b4934 *mSelectBattleStageMNcgr;
+    /* 1048 */ Unk020b4934 *mSelectBattleStageSNcgr;
     /* 104c */ u8 pad_104c[8];
-    /* 1054 */ Unk0201ea30 *mUnk_1054[2];
-    /* 105c */ void *mUnk_105c[2];
-    /* 1064 */ void *mUnk_1064[2];
-    /* 106c */ Unk020b47d8 *mUnk_106c[3];
+    /* 1054 */ Unk0201ea30 *mSelectBattleStageBncls[2];
+    /* 105c */ void *mSelectBattleStageBnbls[2];
+    /* 1064 */ void *mSelectBattleStageBnlls[2];
+    /* 106c */ Unk020b47d8 *mSelectBattleStageMNscrs[3];
     /* 1078 */ void *mUnk_1078;
     /* 107c */ void *mUnk_107c;
-    /* 1080 */ void *mUnk_1080;
-    /* 1084 */ void *mUnk_1084;
+    /* 1080 */ void *mMenuMessages;
+    /* 1084 */ void *mCommonMessages;
 } Unk021a9bf8;
 
 // Object that func_ov001_02180610 allocates and data_ov001_021a99e4 points to.
