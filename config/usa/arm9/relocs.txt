@@ -35136,8 +35136,6 @@ from:0x02132e18 kind:arm_call to:0x02134238 module:main
 from:0x02132e34 kind:arm_call to:0x021340d4 module:main
 from:0x02132e70 kind:arm_call to:0x0213327c module:main
 from:0x02132ed4 kind:arm_call to:0x02133068 module:main
-from:0x0213378c kind:arm_branch to:0x02133620 module:main
-from:0x02133798 kind:arm_branch to:0x02133620 module:main
 from:0x021337a0 kind:arm_call to:0x02142578 module:main
 from:0x02133820 kind:arm_call to:0x02142578 module:main
 from:0x02133918 kind:arm_call to:0x02142578 module:main

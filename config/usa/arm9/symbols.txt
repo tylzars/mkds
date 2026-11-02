@@ -7064,10 +7064,11 @@ _ddiv kind:function(arm,size=0x180,unknown) addr:0x021334a0
 func_02133620 kind:function(arm,size=0x10) addr:0x02133620
 func_02133630 kind:function(arm,size=0x38,unknown) addr:0x02133630
 func_02133668 kind:function(arm,size=0x14) addr:0x02133668
-func_021336d4 kind:function(thumb,size=0x4) addr:0x021336d4
+data_0213367c kind:data(any) addr:0x0213367c
 func_0213377c kind:function(arm,size=0x14) addr:0x0213377c
 func_02133790 kind:function(arm,size=0xc) addr:0x02133790
-func_0213379c kind:function(arm,size=0x60c) addr:0x0213379c
+func_0213379c kind:function(arm,size=0x5f4) addr:0x0213379c
+data_02133d90 kind:data(any) addr:0x02133d90
 func_02133da8 kind:function(arm,size=0x34) addr:0x02133da8
 func_02133ddc kind:function(arm,size=0x28) addr:0x02133ddc
 func_02133e04 kind:function(arm,size=0x4c) addr:0x02133e04
