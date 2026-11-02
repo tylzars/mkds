@@ -295,8 +295,6 @@ void func_020fec30(void) {
     } while (v2 != 0xff);
 }
 
-// non-matching: same size; 6 words differ in the func_020f0758 call: the original loads p->mUnk_14 into r2 before the
-// pool load, keeps data_027e00cc in r0 and 68 in ip (mla r0, r2, ip, r0); ours mla r0, r1, r0, r2
 void func_020feb44(void) {
     u32 v1;
     u32 v2;
@@ -324,7 +322,8 @@ void func_020feb44(void) {
             }
             p = &data_0217c200[v2];
             if (p->mUnk_1c == 0 || (u32) (p->mUnk_1c + 0x100) >= v1) {
-                func_020f0758(data_027e00cc + p->mUnk_14, p->mUnk_18, 0, (u8 *) p, p->mUnk_1c);
+                u32 k = *(vu32 *) &p->mUnk_14;
+                func_020f0758(data_027e00cc + k, p->mUnk_18, 0, (u8 *) p, p->mUnk_1c);
             }
         } else {
             v3 = v2;

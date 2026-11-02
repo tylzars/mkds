@@ -21,11 +21,8 @@
 
 #pragma thumb on
 
-// non-matching: 0x278 bytes, original 0x274; 266 lines differ; first: original `ldr r1, [pc, #516]`, ours `ldr r1, [pc,
-// #520]`
 void func_02034bf4(void *a, void *b, void *c) {
     void *h;
-    Unk02174e64 *p;
     Unk02174e14_00 *s;
     u32 n;
     s32 i;
@@ -45,9 +42,8 @@ void func_02034bf4(void *a, void *b, void *c) {
     data_02174e64->mUnk_088 = FindSceneFile(data_021642a0);
     func_0204f240(data_02174e64->mUnk_1a4, 2);
     data_02174e64->mUnk_080 = -1;
-    p = data_02174e64;
-    for (i = 0, j = 0; i < 4; i++, j += 0x3c) {
-        func_02025f80((Unk02025ebc *) ((u8 *) p->mUnk_09c + 0x2c + j), 3, 10, 0x100, 0);
+    for (i = 0; i < 4; i++) {
+        func_02025f80(&data_02174e64->mUnk_09c[i].mUnk_2c, 3, 10, 0x100, 0);
     }
     func_020258d4(0, data_02174e64, data_021642ac, data_021642cc, data_021642ec, 0, FindSceneFile);
     s = &data_02174e64->mUnk_02c[0];
@@ -56,16 +52,17 @@ void func_02034bf4(void *a, void *b, void *c) {
     z = 0;
     func_02025a50(0, data_02174e64->mUnk_1a4, s);
     i = 0;
-    if (s->mUnk_14->mUnk_06 > 0) {
+    if (i < s->mUnk_14->mUnk_06) {
         t = (s16 *) data_02154034;
-        for (; i < s->mUnk_14->mUnk_06; i++) {
+        do {
             n -= func_02025a00(z, data_02174e64->mUnk_1a4, s, t, n);
             t += 4;
-        }
+            i++;
+        } while (i < s->mUnk_14->mUnk_06);
     }
-    m = s->mUnk_0c->mUnk_06 + s->mUnk_14->mUnk_06;
-    for (j = 0; j < m; j++) {
-        s->mUnk_18[j].mUnk_00 = 0;
+    j = s->mUnk_0c->mUnk_06 + s->mUnk_14->mUnk_06;
+    for (i = 0; i < j; i++) {
+        s->mUnk_18[i].mUnk_00 = 0;
     }
     s = &data_02174e64->mUnk_02c[1];
     n = func_02148ca0();
@@ -75,16 +72,16 @@ void func_02034bf4(void *a, void *b, void *c) {
     func_02025a50(1, data_02174e64->mUnk_1a4, s);
     m = s->mUnk_0c->mUnk_06;
     i = 0;
-    if (s->mUnk_14->mUnk_06 > 0) {
+    if (i < s->mUnk_14->mUnk_06) {
         t = (s16 *) data_02164254;
-        for (; i < s->mUnk_14->mUnk_06; i++) {
+        do {
             if (t[3] < 0) {
-                t[3] = m + k;
-                k++;
+                t[3] = m + k++;
             }
-            n -= func_02025a00(1, data_02174e64->mUnk_1a4, s, t, n);
+            n -= func_02025a00(1, data_02174e64->mUnk_1a4, s, data_02164254[i], n);
             t += 4;
-        }
+            i++;
+        } while (i < s->mUnk_14->mUnk_06);
     }
     for (j = 0; j < m; j++) {
         func_021249a8(j, 3, s->mUnk_08, s->mUnk_0c);
@@ -184,33 +181,26 @@ void func_02034fec(void) {
     }
 }
 
-// non-matching: same size; 73 lines differ; first: original `ldrh r6, [r0, #6]`, ours `ldrh r0, [r0, #6]`
 void func_02035060(void) {
     Unk02174e14_00 *s;
-    s16 *t;
     s32 m;
     s32 i;
-    s32 o;
     s16 c;
     s16 v;
 
     s = &data_02174e64->mUnk_02c[1];
     m = s->mUnk_0c->mUnk_06;
-    t = (s16 *) data_02164254;
-    o = 0;
     for (i = 0; i < 4; i++) {
-        func_02025edc((Unk02025ebc *) ((u8 *) data_02174e64->mUnk_09c + 0x2c + o));
-        c = func_02025ebc((Unk02025ebc *) ((u8 *) data_02174e64->mUnk_09c + 0x2c + o));
+        func_02025edc(&data_02174e64->mUnk_09c[i].mUnk_2c);
+        c = func_02025ebc(&data_02174e64->mUnk_09c[i].mUnk_2c);
         s->mUnk_18[m + data_02164254[i + 4][0]].mUnk_04 = c;
-        v = s->mUnk_18[m + data_02164254[i + 4][0]].mUnk_04;
-        s->mUnk_18[m + t[0]].mUnk_04 = v;
-        v = s->mUnk_18[m + t[0]].mUnk_04;
-        s->mUnk_18[t[3]].mUnk_04 = v;
+        v = s->mUnk_18[m + ((const s16(*)[4]) data_02164254)[i + 4][0]].mUnk_04;
+        s->mUnk_18[m + data_02164254[i][0]].mUnk_04 = v;
+        v = s->mUnk_18[m + data_02164254[i][0]].mUnk_04;
+        s->mUnk_18[data_02164254[i][3]].mUnk_04 = v;
         if (data_02174e64->mUnk_080 == i) {
             s->mUnk_18[4].mUnk_04 = c;
         }
-        o += 0x3c;
-        t += 4;
     }
 }
 

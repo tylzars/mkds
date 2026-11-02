@@ -28,9 +28,6 @@
 
 #pragma thumb on
 
-// non-matching: n * 4 is computed before the func_020364e8 and func_020364e0 calls, and the 0xc00f0000 mask and the
-// zero store are emitted before the loop pre-test; the original computes n * 4 after the two calls and puts the mask
-// and the store after cmp/bls (5 words differ, first +0x58).
 void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
     Unk020e52bc_4 *a;
     Unk020e52bc_8 *b;
@@ -40,6 +37,8 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
     Unk020e6514_8 x;
     u16 n;
     u16 i;
+    void *t;
+    enum { K0 } k;
 
     a = param_1->mUnk_004;
     b = (Unk020e52bc_8 *) &a->mUnk_000[a->mUnk_008];
@@ -57,17 +56,24 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
         x.mUnk_00 = d->mUnk_014;
         n = (u16) (func_02087d0c(param_2) >> 12);
         p->mUnk_1a = n;
-        p->mUnk_1c = func_02036bec(func_020364e0(func_020364e8()), n * 4);
-        p->mUnk_20 = func_02036bec(func_020364e0(func_020364e8()), n * 4);
-        x.mUnk_00 &= 0xc00f0000;
-        x.mUnk_04 = 0;
-        for (i = 0; i < n; i++) {
-            param_2->mUnk_00c = i << 12;
-            param_2->mUnk_1c[param_2->mUnk_1a]->mUnk_00 = param_2->mUnk_00c;
-            func_02015b9c(&x.mUnk_08, param_2->mUnk_1c[0], x.mUnk_04);
-            p->mUnk_1c[i] = x.mUnk_08.mUnk_10 & 0x3ff0ffff;
-            p->mUnk_1c[i] |= x.mUnk_00;
-            p->mUnk_20[i] = x.mUnk_08.mUnk_14;
+        t = func_020364e0(func_020364e8());
+        p->mUnk_1c = func_02036bec(t, n * 4);
+        t = func_020364e0(func_020364e8());
+        p->mUnk_20 = func_02036bec(t, n * 4);
+        i = 0;
+        if (i < n) {
+            k = 0xc00f0000;
+            x.mUnk_00 &= k;
+            x.mUnk_04 = 0;
+            do {
+                param_2->mUnk_00c = i << 12;
+                param_2->mUnk_1c[param_2->mUnk_1a]->mUnk_00 = param_2->mUnk_00c;
+                func_02015b9c(&x.mUnk_08, param_2->mUnk_1c[0], x.mUnk_04);
+                p->mUnk_1c[i] = x.mUnk_08.mUnk_10 & 0x3ff0ffff;
+                p->mUnk_1c[i] |= x.mUnk_00;
+                p->mUnk_20[i] = x.mUnk_08.mUnk_14;
+                i++;
+            } while (i < n);
         }
     } else {
         p->mUnk_1a = 1;
@@ -166,13 +172,11 @@ void func_020e61a8(u32 param_1, Unk020e5e24 *a) {
     a->mUnk_b0 = a->mUnk_04;
 }
 
-// non-matching: register assignment at the top; the original holds a in r6, c in r4, out in r5 and t in r0, the
-// compiled code a in r4, c in r5, out in r6 and t in r3.
+// non-matching: c and out trade registers, the original c in r4 and out in r5, ours c in r5 and out in r4 (21 words)
 s32 func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
     Vec3 v;
     s32 r;
     s32 t;
-    s32 t2;
     s64 sq;
 
     func_021484d0(b, &a->mUnk_04, &v);
@@ -183,25 +187,25 @@ s32 func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
             return 0;
         }
     } else {
-        t = -(a->mUnk_108 + c + r);
+        t = -(a->mUnk_108 + c) - r;
         if (t > 0) {
             return 0;
         }
     }
-    t2 = c + a->mUnk_104;
-    sq = (s64) v.y * v.y;
-    sq += (s64) v.x * v.x;
+    c += a->mUnk_104;
+    sq = (s64) v.x * v.x;
+    sq += (s64) v.y * v.y;
     sq += (s64) v.z * v.z;
-    if (sq >= (s64) t2 * t2) {
+    if (sq < (s64) c * c) {
+        *(volatile u16 *) 0x40002b0 = 1;
+        *(volatile s64 *) 0x40002b8 = sq;
+        while (*(volatile u16 *) 0x40002b0 & 0x8000) {
+        }
+        c = c - *(volatile u32 *) 0x40002b4;
+    } else {
         return 0;
     }
-    *(volatile u16 *) 0x40002b0 = 1;
-    *(volatile u32 *) 0x40002b8 = (u32) sq;
-    *(volatile u32 *) 0x40002bc = (u32) (sq >> 32);
-    while (*(volatile u16 *) 0x40002b0 & 0x8000) {
-    }
-    t2 = t2 - *(volatile u32 *) 0x40002b4;
-    if ((t > 0 ? t : -t) < t2) {
+    if ((t > 0 ? t : -t) < c) {
         out->x = (s32) (((s64) a->mUnk_28.mUnk_18.x * t) >> 12);
         out->y = (s32) (((s64) a->mUnk_28.mUnk_18.y * t) >> 12);
         out->z = (s32) (((s64) a->mUnk_28.mUnk_18.z * t) >> 12);
@@ -210,15 +214,13 @@ s32 func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
         if (v.y < 0) {
             v.y = 0;
         }
-        sq = (s64) v.y * v.y;
-        sq += (s64) v.x * v.x;
-        sq += (s64) v.z * v.z;
+        sq = (s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z;
         if (sq >= 16) {
             func_02039860(&v, &v);
         }
-        out->x = (s32) (((s64) v.x * t2) >> 12);
-        out->y = (s32) (((s64) v.y * t2) >> 12);
-        out->z = (s32) (((s64) v.z * t2) >> 12);
+        out->x = (s32) (((s64) v.x * c) >> 12);
+        out->y = (s32) (((s64) v.y * c) >> 12);
+        out->z = (s32) (((s64) v.z * c) >> 12);
         a->mUnk_10c = 1;
     }
     return 1;

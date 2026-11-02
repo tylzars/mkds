@@ -206,8 +206,10 @@ void func_0207b354(Unk0206bcb0 *p) {
     q->mUnk_10 += 0x96;
 }
 
-// non-matching: same size; 1 word differs: the mUnk_68 compare is `cmp r0, r2` (b's word first) in the original,
-// ours `cmp r2, r0`
+static inline s32 func_0207b44c_inline(u32 i) {
+    return *(vs32 *) &data_021759c0->mUnk_68[i].mUnk_08.mUnk_04;
+}
+
 void func_0207b44c(Unk0206bcb0 *a) {
     u32 f;
     u16 b;
@@ -238,8 +240,7 @@ void func_0207b44c(Unk0206bcb0 *a) {
     if (m != 2 && data_021759c0->mUnk_1c == 1) {
         b = (u16) data_0217561c->mUnk_474[0];
         if (data_021759c0->mUnk_58 != 0) {
-            enum { K0 } g = a->mUnk_74;
-            if (data_021759c0->mUnk_68[g].mUnk_08.mUnk_04 != data_021759c0->mUnk_68[b].mUnk_08.mUnk_04) {
+            if (func_0207b44c_inline(b) != func_0207b44c_inline(a->mUnk_74)) {
                 f = 2;
             } else {
                 f = 0;

@@ -1,7 +1,5 @@
 #include "00/code_021a9640.h"
 
-// non-matching: 15 words differ from +0x18c; the halfword copy loop keeps its counter and source pointer in r1 and r0
-// (original r3 and r2) and ours computes the pointer before the loop test, the original after it; size equal
 void func_ov000_021a9640(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
     s32 b;
@@ -14,7 +12,7 @@ void func_ov000_021a9640(Unk021a998c *a) {
     u8 *j;
     s32 m;
     u8 *p;
-    u16 *q;
+    u8 *k;
     c->mUnk_000->mUnk_20[0] = 3;
     c->mUnk_000->mUnk_20[1] = 0;
     func_ov000_021a9ca8(&c->mUnk_000->mUnk_20[2], 0x2e);
@@ -72,28 +70,26 @@ void func_ov000_021a9640(Unk021a998c *a) {
         *p = f[b / 2];
         p += 1;
     }
-    for (m = b / 2 - 1, q = f + m; m >= 0; m--, q--) {
-        *p = *q >> 8;
-        p[1] = *q;
+    for (m = b / 2 - 1; m >= 0; m--) {
+        *p = f[m] >> 8;
+        k = p + 1;
         p += 2;
+        *k = f[m];
     }
     func_ov000_021adcec(j, b + 9, 0, 0, a);
-    func_ov000_021ab728(c->mUnk_378, j + 5, b + 4);
+    func_ov000_021ab728(c->mUnk_378, j + 5, (u32) b + 4);
     func_ov000_021abca0(c->mUnk_2c0, j + 5, b + 4);
     data_ov000_021b63ac(j);
     data_ov000_021b63ac(f);
     data_ov000_021b63ac(e);
 }
 
-// non-matching: 3 instructions differ at +0xcc; the length minus 4 is computed in r0 (original r1, then shifted into
-// r0), size equal
 void func_ov000_021a9868(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
     u8 *b;
     u8 *d;
     u8 *e;
     u32 f;
-    s32 t;
     s32 g;
     u32 i;
     u16 *h;
@@ -145,10 +141,9 @@ void func_ov000_021a9868(Unk021a998c *a) {
     b[3] = g >> 8;
     b[4] = g;
     b[5] = 1;
-    t = g - 4;
-    b[6] = t >> 16;
-    b[7] = t >> 8;
-    b[8] = t;
+    b[6] = (g - 4) >> 16;
+    b[7] = (g - 4) >> 8;
+    b[8] = g - 4;
     func_ov000_021adcec(b, g + 5, 0, 0, a);
     func_ov000_021ab728(c->mUnk_378, b + 5, g);
     func_ov000_021abca0(c->mUnk_2c0, b + 5, g);

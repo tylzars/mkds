@@ -44,21 +44,23 @@ s32 func_020ee528(Unk020eda5c *a) {
     return 0;
 }
 
-// non-matching: the first parameter is allocated r5 and the function pointer at 0x18 of data_0217bc48 r10; the original
-// has them in r10 and r6. The stack is 8 bytes instead of 4.
+// non-matching: only the func_020f1048 argument block differs: the original loads the data_027e00cc address into r1
+// next to the 0xb400/0x4333 test and reads a->mUnk_000 before the table pointer; ours loads it into r0 after the store.
 void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
-    s32 k;
-    s32 t;
     void (*f1)(void *);
+    s32 t;
+    s32 k;
     void (*f2)(void *, void *);
     s32 s;
+    Unk020f41c4_A **v;
     s32 n;
-    s32 i;
     Unk020f41c4_A *q;
+    s32 i;
+    u16 *r;
 
     k = b->mUnk_00;
-    s = data_021759c0->mUnk_08 == 5;
     t = data_0217bc48[k].mUnk_14;
+    s = data_021759c0->mUnk_08 == 5;
     if (b->mUnk_0c != 0) {
         if (b->mUnk_10 > b->mUnk_12) {
             return;
@@ -98,14 +100,16 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     if (a->mUnk_170 != 0) {
         func_020f81b8((u32) a->mUnk_00c, a->mUnk_004);
     }
+    v = a->mUnk_014;
+    r = &a->mUnk_010->mUnk_590->mUnk_040;
     n = a->mUnk_020;
     for (i = 0; i < n; i++) {
-        q = a->mUnk_014[i];
+        q = v[i];
         q->mUnk_11c = 0;
         q->mUnk_0e4 = q->mUnk_50;
         q->mUnk_5c = a->mUnk_05c;
         func_020f9f08(q, a->mUnk_084.x, a->mUnk_084.y);
-        q->mUnk_90 = &a->mUnk_010->mUnk_590->mUnk_040;
+        q->mUnk_90 = r;
         q->mUnk_74 |= 0x1000;
     }
 }
@@ -346,8 +350,6 @@ void func_020edad8(Unk020eda5c *p) {
     }
 }
 
-// non-matching: the original copies the second parameter to r2 and uses r1 as the loop counter; the compiled code keeps
-// the parameter in r1 and the counter in r2 (0x78 bytes against 0x7c).
 void func_020eda5c(Unk020eda5c *p, Unk020f41c4_A *q) {
     s32 n;
     Unk020f41c4_A *e;
@@ -357,7 +359,7 @@ void func_020eda5c(Unk020eda5c *p, Unk020f41c4_A *q) {
     n = p->mUnk_020;
     for (i = 0; i < n; i++) {
         if (p->mUnk_014[i] == e) {
-            ((void (*)(void *))((void **) data_0216c60c)[p->mUnk_008])(p);
+            ((void (*)(void *, s32, Unk020f41c4_A *))((void **) data_0216c60c)[p->mUnk_008])(p, i, e);
             if (p->mUnk_020 != 0) {
                 return;
             }

@@ -175,15 +175,16 @@ void func_0207f2e4(Unk020888b4 *p) {
     }
 }
 
-// non-matching: one instruction: the original compares the loaded 0x74 words as "cmp r1, r2" (word of a, word of b,
-// with b loaded first), ours compares "cmp r2, r1"
+static inline s32 func_0207f554_inline2(u32 i) {
+    return *(vs32 *) &data_021759c0->mUnk_68[i].mUnk_08.mUnk_04;
+}
+
 s32 func_0207f554(u32 a, u32 b) {
     s32 r = 0;
     s32 v;
     s32 t;
 
-    if (data_021759c0->mUnk_58 == 0 ||
-        data_021759c0->mUnk_68[b].mUnk_08.mUnk_04 != data_021759c0->mUnk_68[a].mUnk_08.mUnk_04) {
+    if (data_021759c0->mUnk_58 == 0 || data_021759c0->mUnk_68[a].mUnk_08.mUnk_04 != func_0207f554_inline2(b)) {
         t = 0;
         v = data_021759c0->mUnk_68[b].mUnk_08.mUnk_00;
         if ((u32) v <= 3) {

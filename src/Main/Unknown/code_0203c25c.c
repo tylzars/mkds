@@ -20,8 +20,8 @@ s32 func_0203c25c(u16 a) {
     return r != 0;
 }
 
-// non-matching: same instructions and order; registers differ (a in r5 and the entry pointer in r4 where the original
-// has r4 and r5; the stack-free temporaries in r1/r2/r3 are rotated)
+// non-matching: same instructions and order; only a and the entry pointer p trade registers (r5/r4 where the original
+// has r4/r5). The bitfield store repeats the subtraction instead of storing v on purpose: storing v costs 22 words.
 void func_0203c2e4(u16 a) {
     Unk0217561c_14 *p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + a * 0x8c);
     s32 f = 0;
@@ -33,12 +33,12 @@ void func_0203c2e4(u16 a) {
             break;
     }
     if (f == 0) {
-        u16 v;
         u32 o;
+        u32 v;
         s32 i;
         o = p->mUnk_3c_0;
-        v = data_021759c0->mUnk_3d0 - data_0217561c->mUnk_000[0].mUnk_10;
-        p->mUnk_3c_0 = v;
+        v = (u16) (data_021759c0->mUnk_3d0 - data_0217561c->mUnk_000[0].mUnk_10);
+        p->mUnk_3c_0 = data_021759c0->mUnk_3d0 - data_0217561c->mUnk_000[0].mUnk_10;
         for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
             Unk0217561c_14 *q = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + i * 0x8c);
             if (i != a) {
@@ -76,9 +76,6 @@ void func_0203c2e4(u16 a) {
     }
 }
 
-// non-matching: same control flow; the data_021759c0 pointer is in ip and the result in r3 where the original has r3
-// and ip, and the table address is formed as (r + 1) * 8 plus a - 1 with a register-offset load instead of adding the
-// row start and loading at offset 8
 u16 func_0203c4d0(u8 a) {
     u16 r = 0;
     Unk0217561c_4dc *t = data_0217561c->mUnk_4dc;
@@ -86,26 +83,27 @@ u16 func_0203c4d0(u8 a) {
         switch (data_021759c0->mUnk_08) {
             case 0:
                 break;
-            case 3:
-                r = 1;
+            case 3: {
+                u16 k = 1;
                 if (data_021759c0->mUnk_58 != 0) {
                     if (data_021759c0->mUnk_3d0 > 3) {
                         if (data_021759c0->mUnk_3d2[0] <= 1 || data_021759c0->mUnk_3d2[1] <= 1) {
-                            r = 8;
+                            k = 8;
                         } else {
-                            r = 0xf;
+                            k = 0xf;
                         }
                     } else {
-                        r = 8;
+                        k = 8;
                     }
                 }
-                r = r + 8 - data_021759c0->mUnk_3d0;
+                r = k + 8 - data_021759c0->mUnk_3d0;
                 break;
+            }
             case 5:
                 r = 9 - data_021759c0->mUnk_3d0;
                 break;
         }
-        r = t[r + 1].mUnk_00[a - 1];
+        r = (t + r + 1)->mUnk_00[a - 1];
     }
     return r;
 }
