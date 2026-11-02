@@ -301,8 +301,6 @@ done:
     s->mUnk_00 += n;
 }
 
-// non-matching: size 0x70 against 0x78; the original has push {r4, r5, lr} and a 4-byte frame, table header in r5, and
-// loads the script pointer into r3 before the table halfword (mla r2, lr, r3, r2); this one pushes r6 as well.
 void func_01ff85d0(Unk02170500 *s, u32 a) {
     u32 f;
     Unk02170500_d4 *b;
@@ -313,8 +311,8 @@ void func_01ff85d0(Unk02170500 *s, u32 a) {
     f = s->mUnk_08;
     if (!(f & 0x200) && (f & 1) && !(f & 2)) {
         b = (Unk02170500_d4 *) s->mUnk_dc;
-        t = (u8 *) b + b->mUnk_06;
         v1 = s->mUnk_00[1];
+        t = (u8 *) b + b->mUnk_06;
         e = (u8 *) b + *(u32 *) (t + *(u16 *) t * v1 + 4);
         data_usa_0216188c[*(u16 *) e](s, a, e, v1);
     }
@@ -338,14 +336,13 @@ void func_01ff8648(Unk02170500 *s, u32 a, Unk0201290c_0c *c) {
     }
 }
 
-// non-matching: the table lookup differs in registers; the original keeps the entry-offset-table size in lr and the
-// table offset in r2 (mla r2, lr, r3, r2 after add r2, r5, r2), this one has them swapped and mla r2, r3, r2, r5.
 void func_01ff86b4(Unk02170500 *s, u32 a) {
     u32 f;
     u8 *h;
     u8 *e;
     u32 v1;
     u8 *t;
+    s32 b;
 
     f = s->mUnk_08;
     if (!(f & 0x200)) {
@@ -353,16 +350,14 @@ void func_01ff86b4(Unk02170500 *s, u32 a) {
         if ((f & 1) || !(f & 8) || v1 != s->mUnk_ad) {
             h = s->mUnk_d8;
             t = h + 4;
-            e = h + *(u32 *) (t + *(u16 *) (h + 0xa) + v1 * *(u16 *) (t + *(u16 *) (h + 0xa)) + 4);
+            b = *(u16 *) (t + *(u16 *) (h + 0xa));
+            e = h + *(u32 *) (t + *(u16 *) (h + 0xa) + b * v1 + 4);
             data_usa_0216187c[*(u16 *) e](s, a, e, v1);
         }
     }
     s->mUnk_00 += 2;
 }
 
-// non-matching: size 0x3c8 against 0x3d0; the original does not predicate the else arms of the first two bit tests
-// (bne over them) and, in the second arm of the entry choice, orders the loads and mla differently (add lr, lsr ip,
-// ldr r8 before the mla), the same instructions otherwise.
 void func_01ff8738(Unk02170500 *s, u32 a, const u8 *e, u32 b) {
     u32 w;
     u32 m;
@@ -375,6 +370,7 @@ void func_01ff8738(Unk02170500 *s, u32 a, const u8 *e, u32 b) {
     u32 x;
     u32 y;
     u32 v2[8];
+    s32 c;
 
     s->mUnk_ad = b;
     s->mUnk_08 |= 8;
@@ -403,16 +399,17 @@ void func_01ff8738(Unk02170500 *s, u32 a, const u8 *e, u32 b) {
     if (v1 != 0) {
         s->mUnk_bc[b >> 5] |= 1 << (b & 0x1f);
         o = s->mUnk_04->mUnk_38 + b;
-    } else if (a != 0x40) {
-        o = &s->mUnk_f4;
-    } else {
+    } else if (a == 0x40) {
         s->mUnk_bc[b >> 5] |= 1 << (b & 0x1f);
         o = data_usa_021704e4 + b;
+    } else {
+        o = &s->mUnk_f4;
     }
     o->mUnk_00 = 0;
     h = s->mUnk_d8;
     t = h + 4;
-    if (*(u16 *) (h + *(u32 *) (t + *(u16 *) (h + 0xa) + *(u16 *) (t + *(u16 *) (h + 0xa)) * b + 4) + 0x1e) & 0x20) {
+    c = *(u16 *) (t + *(u16 *) (h + 0xa));
+    if (*(u16 *) (h + *(u32 *) (t + *(u16 *) (h + 0xa) + c * b + 4) + 0x1e) & 0x20) {
         o->mUnk_00 |= 0x20;
     }
     k = *(u16 *) (e + 0x1e);
@@ -427,25 +424,25 @@ void func_01ff8738(Unk02170500 *s, u32 a, const u8 *e, u32 b) {
     k = *(u16 *) (e + 0x1e);
     if (k & 1) {
         d = (u32 *) (e + 0x2c);
-        if (k & 2) {
-            o->mUnk_00 |= 1;
-        } else {
+        if (!(k & 2)) {
             o->mUnk_18[0] = d[0];
             o->mUnk_18[1] = d[1];
             d += 2;
-        }
-        if (*(u16 *) (e + 0x1e) & 4) {
-            o->mUnk_00 |= 2;
         } else {
+            o->mUnk_00 |= 1;
+        }
+        if (!(*(u16 *) (e + 0x1e) & 4)) {
             o->mUnk_20[0] = ((s16 *) d)[0];
             o->mUnk_20[1] = ((s16 *) d)[1];
             d = (u32 *) ((s16 *) d + 2);
-        }
-        if (*(u16 *) (e + 0x1e) & 8) {
-            o->mUnk_00 |= 4;
         } else {
+            o->mUnk_00 |= 2;
+        }
+        if (!(*(u16 *) (e + 0x1e) & 8)) {
             o->mUnk_24[0] = d[0];
             o->mUnk_24[1] = d[1];
+        } else {
+            o->mUnk_00 |= 4;
         }
         o->mUnk_00 |= 8;
     }

@@ -67,14 +67,12 @@ void func_02043a34(void) {
     func_02043a34_inline();
 }
 
-// non-matching: same size; the original tests the argument and runs the clearing arm with eq-predicated instructions,
-// here the arms are predicated the other way round.
 void func_02043a9c(u32 a) {
-    if (a == 0) {
+    if (a != 0) {
+        data_02175624->mUnk_04 |= 4;
+    } else {
         data_02175624->mUnk_04 &= ~4;
-        return;
     }
-    data_02175624->mUnk_04 |= 4;
 }
 
 void func_02043ad4(void) {
@@ -157,21 +155,22 @@ void func_02043d10(void *a) {
     func_02043a34_inline();
 }
 
-// non-matching: 0x8c bytes against 0x88; the original keeps the table pointer in a register and uses one register less
-// (push {r4, lr}).
+static inline Unk021759c0 *func_02043f28_inline(void) {
+    return data_021759c0;
+}
+
 void func_02043f28(u32 a) {
-    u32 r;
     u16 i;
     Unk021759c0 *q;
+    u32 r;
 
     r = 0;
     i = 0;
-    q = data_021759c0;
-    for (; i < q->mUnk_3d0; i++) {
-        if (a == 0) {
-            r |= data_021540ec[q->mUnk_250[i].mUnk_00];
-        } else {
+    for (; i < (u32) (q = func_02043f28_inline())->mUnk_3d0; i++) {
+        if (a != 0) {
             r |= data_021540ec[q->mUnk_68[i].mUnk_00];
+        } else {
+            r |= data_021540ec[q->mUnk_250[i].mUnk_00];
         }
     }
     func_021087f4(r);

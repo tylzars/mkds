@@ -359,9 +359,6 @@ void func_ov003_021c0050(int param_1, int param_2) {
     func_ov003_021d1890(data_ov003_021da15c->mUnk_0fc[param_1 - 0x33], -1, 0, data_ov003_021d5f64[param_2]);
 }
 
-// non-matching: size 0x64 against 0x68. The original indexes the constant halfword table with a counter stepping by 12
-// (shift and add per use); the compiled code steps a pointer by 48 instead, and the registers of the counters and
-// parameter differ.
 void func_ov003_021c00ec(int param_1) {
     s32 a;
     s32 b;
@@ -370,10 +367,14 @@ void func_ov003_021c00ec(int param_1) {
     a = 0;
     b = 0;
     data_ov003_021da15c->mUnk_11d = param_1;
-    j = 0;
-    for (i = 0; i < 4; i++) {
-        func_ov003_021c0154(param_1, i, data_ov003_021d5fb0[j][1]);
-        j += 12;
+    i = 0;
+    if (i < 4) {
+        j = 0;
+        do {
+            func_ov003_021c0154(param_1, i, data_ov003_021d5fb0[j][1]);
+            j = (s32) (j + 12);
+            i++;
+        } while (i < 4);
     }
     if (param_1 == 2) {
         a = 1;

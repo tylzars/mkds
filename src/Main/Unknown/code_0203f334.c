@@ -62,15 +62,13 @@ void func_0203f334(Unk0217561c_14 *a, s32 b) {
     a->mUnk_2c = (q->mUnk_02 * 60 + q->mUnk_03) * 1000 + q->mUnk_00;
 }
 
-// non-matching: 9 words differ; same instructions, the three sums are formed in other registers (original: r4 for the
-// first sum, ip for the second, r3 for the third)
 void func_0203f544(const Unk0217aa1c_144_00 *a, const Unk0217aa1c_144_00 *b, Unk0217aa1c_144_00 *c) {
     s16 y;
     s16 x;
     s16 z;
 
-    x = a->mUnk_00 + b->mUnk_00;
     y = a->mUnk_02 + b->mUnk_02;
+    x = a->mUnk_00 + b->mUnk_00;
     z = a->mUnk_03 + b->mUnk_03;
     if (x > 999) {
         x -= 1000;
@@ -90,8 +88,6 @@ void func_0203f544(const Unk0217aa1c_144_00 *a, const Unk0217aa1c_144_00 *b, Unk
     c->mUnk_00 = x;
 }
 
-// non-matching: size 0x1d8 against 0x1d0; same instruction sequence but different registers (original keeps the
-// argument in r6 and saves r10 for the 64-bit product with 0x44 in r5/lr)
 void func_0203f5f0(u8 *a, u8 *b, u16 *c, s32 d, u32 e) {
     Unk0217561c *p;
     s8 m;
@@ -117,9 +113,9 @@ void func_0203f5f0(u8 *a, u8 *b, u16 *c, s32 d, u32 e) {
     t = e << 12;
     q = t / 60;
     w = q >> 12;
-    f = (q & 0xfff) * 1000 >> 12;
     m = w / 60;
     s = w % 60;
+    f = (q & 0xfff) * 1000 >> 12;
     if (d != 0) {
         x = (s64) 0x44 * d + 0x800 >> 12;
         f += x * 1000 >> 12;
@@ -222,7 +218,6 @@ s16 func_0203f91c(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     return func_0203f91c(a, b, c, d, e + 1, f - 1);
 }
 
-// non-matching: 1 word differs; the test of the bit word is ands r1, r7, r1 in the original and ands r1, r1, r7 here
 s32 func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
     s32 r;
     u32 m;
@@ -231,12 +226,14 @@ s32 func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
     s32 j;
     s8 k;
     Unk02175620_4c *p;
+    s32 f;
 
     w = e >> 5;
     m = 1 << (e & 0x1f);
     r = 0;
     t = gCourseMap->mUnk_44[e].mUnk_1c;
-    if ((a->mUnk_4c[w] & m) != 0) {
+    f = a->mUnk_4c[w];
+    if ((f & m) != 0) {
         return 0;
     }
     if (t != -1) {
@@ -304,10 +301,9 @@ s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
     return func_02147f34((s32) x, (s32) y);
 }
 
-// non-matching: size 0xe0 against 0xf4; the original also stores the first and third words of the first argument to a
-// 12-byte stack frame (never read back), saves r9 and keeps 0x800 in r5 with 0 in r0
 s32 func_0203fde0(const Vec3 *a, const Unk02175620_44 *b, const Unk02175620_44 *c) {
-    UnkPair020b502c p;
+    volatile UnkPair020b502c p;
+    s32 d;
 
     p.mUnk_00 = a->x;
     p.mUnk_04 = a->z;
@@ -316,8 +312,9 @@ s32 func_0203fde0(const Vec3 *a, const Unk02175620_44 *b, const Unk02175620_44 *
         0) {
         return 0;
     }
+    d = (c->mUnk_08 - b->mUnk_08) >> 4;
     if ((s32) (((s64) ((c->mUnk_0c - b->mUnk_0c) >> 4) * ((a->x - b->mUnk_08) >> 4) + 0x800) >> 12) -
-            (s32) (((s64) ((c->mUnk_08 - b->mUnk_08) >> 4) * ((a->z - b->mUnk_0c) >> 4) + 0x800) >> 12) >=
+            (s32) (((s64) d * ((a->z - b->mUnk_0c) >> 4) + 0x800) >> 12) >=
         0) {
         return 1;
     }

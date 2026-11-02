@@ -94,13 +94,16 @@ u32 func_02007ff0(u32 a, u32 b, u32 c) {
     }
 }
 
-// non-matching: same size; 49 lines differ; first: original `adds r5, r3, #0`, ours `ldrh r1, [r0, #18]`
+static inline struct Unk0216fdac *func_0200806c_inline(void) {
+    return data_0216fdac;
+}
+
 s32 func_0200806c(Unk020072c0_buf *a, void *b, u16 c, void *d) {
-    Unk0200806c_b *v1;
+    u32 v4;
     Unk020082b4 *v2;
     Unk020082b4_0c *v3;
+    Unk0200806c_b *v1;
     s8 i;
-    u32 v4;
     v1 = b;
     v2 = d;
     if (c >= v1->mUnk_0c[3]) {
@@ -114,7 +117,7 @@ s32 func_0200806c(Unk020072c0_buf *a, void *b, u16 c, void *d) {
     if (i < 0) {
         return 0;
     }
-    v4 = (c - v1->mUnk_0c[i]) * data_0216fdac->mUnk_1318;
+    v4 = (c - v1->mUnk_0c[i]) * func_0200806c_inline()->mUnk_1318;
     v3 = &v2->mUnk_0c[i];
     a->mUnk_04 = v3->mUnk_08 - v4;
     if (a->mUnk_04 > data_0216fdac->mUnk_1318) {
