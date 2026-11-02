@@ -14,7 +14,7 @@ typedef struct Unk02139400 {
     /* 08 */ u8 mUnk_08[32];
 } Unk02139400;
 
-u32 func_021384dc(void);
+u32 rand(void);
 int sscanf(const u8 *a, const u8 *b, ...);
 int vsscanf(const u8 *a, const u8 *b, char *c);
 int func_021385a0(void *a, int b, int c);

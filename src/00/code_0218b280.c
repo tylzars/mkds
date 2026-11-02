@@ -10,7 +10,7 @@ double func_ov000_0218b280(Unk0218af28 *e, const u8 *v1, double d) {
     u8 *a;
     a = func_ov000_0218b30c(e, v1, 0);
     if (a != 0) {
-        d = func_0213a450(a);
+        d = atof(a);
     }
     return d;
 }

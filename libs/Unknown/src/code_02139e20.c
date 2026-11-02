@@ -6,7 +6,7 @@
 #include "Main/Unknown/unk_0216f000.h"
 #include "Main/Unknown/unk_0217e000.h"
 
-int func_02139e20(int a) {
+int raise(int a) {
     Unk02139e20Func f;
 
     if (a < 1 || a > 7) {
@@ -34,7 +34,7 @@ int func_02139e20(int a) {
         return 0;
     }
     if (f == 0) {
-        func_02133f84(0);
+        exit(0);
     }
     f(a);
     return 0;

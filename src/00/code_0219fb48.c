@@ -242,8 +242,8 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
         e = func_ov000_021a3530(data_ov000_021b411c, g + 2, h.mUnk_008, 0x2f);
         z = func_ov000_021a3530(data_ov000_021b4120, g, h.mUnk_008, 0x2f);
         if (t > 0 && e > 0 && z > 0) {
-            if (func_0213c074(x, 0, 10) == 3) {
-                if (data_ov000_021b566c->mUnk_16 == func_0213c074(g + 2, 0, 10)) {
+            if (strtoul(x, 0, 10) == 3) {
+                if (data_ov000_021b566c->mUnk_16 == strtoul(g + 2, 0, 10)) {
                     return func_ov000_0219fdc8(n, a);
                 }
             }

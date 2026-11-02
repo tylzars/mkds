@@ -15,7 +15,7 @@ s8 *func_ov000_02197b34(s8 *a, const s8 *b) {
     f = 0;
     do {
         if (d == 0 || e == 0 || e == 0xd) {
-            a[e] = (s32) func_021384dc() % 0x5d + 0x21;
+            a[e] = (s32) rand() % 0x5d + 0x21;
         } else {
             if (e == 1 || e == 0xe) {
                 g = b[e];
@@ -45,8 +45,8 @@ s8 *func_ov000_02197be0(s8 *a) {
     if (a == 0) {
         func_0213442c(data_ov000_021b3e90, data_ov000_021b3e98, 0, 0x2b);
     }
-    func_021384cc(func_ov000_0218e8c4());
-    a[0] = (s32) func_021384dc() % 0x5d + 0x21;
+    srand(func_ov000_0218e8c4());
+    a[0] = (s32) rand() % 0x5d + 0x21;
     e = 0;
     f = 1;
     b[1] = e;
@@ -80,7 +80,7 @@ s8 *func_ov000_02197be0(s8 *a) {
         e = d;
         e ^= g;
         i = (u8 *) a + f;
-        a[f] = (s32) func_021384dc() % 0x5d + 0x21;
+        a[f] = (s32) rand() % 0x5d + 0x21;
         if ((e != 0 && (*i & b[6]) == 0) || (e == 0 && (*i & b[7]) == 1)) {
             *i = *i + 1;
         }

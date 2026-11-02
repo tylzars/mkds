@@ -290,7 +290,7 @@ void func_ov000_0218cfb8(Unk021b4d24 *p, const u8 *a, const u8 *b, const u8 *c, 
         p->mUnk_4b8 = d;
         func_ov000_0218c45c(p, data_ov000_021b2260);
         p->mUnk_5cc = 0;
-        func_021384cc(func_ov000_0218e8c4());
+        srand(func_ov000_0218e8c4());
         func_ov000_0218e8b8();
     }
 }

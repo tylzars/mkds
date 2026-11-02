@@ -197,12 +197,12 @@ s32 func_ov000_02192e04(Unk0218f960 *param_1, Unk021937c0Node *param_2, const u8
         if (func_ov000_021967b4(param_3, data_ov000_021b3204, d, 0x40) == 0) {
             k.mUnk_2c = 0;
         } else {
-            k.mUnk_2c = func_0213a450(d);
+            k.mUnk_2c = atof(d);
         }
         if (func_ov000_021967b4(param_3, data_ov000_021b320c, d, 0x40) == 0) {
             k.mUnk_30 = 0;
         } else {
-            k.mUnk_30 = func_0213a450(d);
+            k.mUnk_30 = atof(d);
         }
         if (func_ov000_021967b4(param_3, data_ov000_021b3214, k.mUnk_34, 0x80) == 0) {
             k.mUnk_34[0] = 0;

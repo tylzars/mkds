@@ -165,7 +165,7 @@ void func_ov000_0219b4b4(u32 a, Unk0219b4b4 *b, u32 g) {
             e = strchr(d, 0x76) - d;
             strncpy(c, d, e);
             if (e <= 10) {
-                if (func_0213c074(c, 0, 10) == 3) {
+                if (strtoul(c, 0, 10) == 3) {
                     d += e + 1;
                     if (memcmp(d, data_ov000_021b4060, strlen(data_ov000_021b4060)) == 0) {
                         f = data_ov000_021b54c8;

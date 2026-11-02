@@ -10,4 +10,4 @@ char *strcat(char *dst, const u8 *src);
 u8 *strncpy(u8 *dst, const u8 *src, u32 n);
 char *strcpy(char *dst, const u8 *src);
 u32 strlen(const u8 *s);
-double func_0213a450(const u8 *s);
+double atof(const u8 *s);

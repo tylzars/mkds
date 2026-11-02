@@ -8,13 +8,13 @@
 #include "Main/Unknown/unk_0216f000.h"
 #include "Main/Unknown/unk_0217e000.h"
 
-void func_02133fd8(void) {
-    func_02139e20(1);
+void abort(void) {
+    raise(1);
     data_0217e990 = 1;
-    func_02133f84(1);
+    exit(1);
 }
 
-void func_02133f84(int a) {
+void exit(int a) {
     if (data_0217e990 == 0) {
         func_021424e8();
         if (data_0217e988 != 0) {

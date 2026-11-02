@@ -20,14 +20,14 @@ u8 func_ov000_0219d9ec(void *a, u8 *b, u8 *c, char *d) {
         if (f.mUnk_004 == 6) {
             if (b != 0) {
                 if (func_ov000_021a3530(data_ov000_021b40b0, e, f.mUnk_008, 0x2f) > 0) {
-                    *b = func_0213c074(e, 0, 10);
+                    *b = strtoul(e, 0, 10);
                 } else {
                     *b = 0;
                 }
             }
             if (c != 0) {
                 if (func_ov000_021a3530(data_ov000_021b40b4, e, f.mUnk_008, 0x2f) > 0) {
-                    *c = func_0213c074(e, 0, 10);
+                    *c = strtoul(e, 0, 10);
                 } else {
                     *c = 0;
                 }

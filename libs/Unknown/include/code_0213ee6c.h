@@ -21,7 +21,7 @@ typedef struct Unk02140c28 {
 
 // Read as a float by func_0214049c.
 extern float data_0216ec98;
-// Read as a float by func_0213ee6c and func_02134398.
+// Read as a float by func_0213ee6c and nan.
 extern float data_0216ec9c;
 
 // Two doubles each, indexed 0/1 by func_0213ee6c.
@@ -34,11 +34,11 @@ extern double data_0216ef30[];
 extern u8 data_0216ef70[];
 
 double func_0213ee6c(double a, double b);
-double func_021400a0(double a, double b);
-double func_021400c8(double a);
-double func_021400ec(double a, int *e);
-double func_021401ac(double a, int n);
-double func_02140490(double a, double b);
+double copysign(double a, double b);
+double fabs(double a);
+double frexp(double a, int *e);
+double ldexp(double a, int n);
+double pow(double a, double b);
 double func_0214049c(const Unk02136638 *d);
 void func_02140c28(Unk02140c28 *a, double v, Unk02136638 *b);
 void func_02140d74(Unk02136638 *out, double a);

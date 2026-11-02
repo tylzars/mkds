@@ -434,7 +434,7 @@ u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
     a.mUnk_00 = 0;
     a.mUnk_02 = 0x20;
     func_02140c28(&a, x, &r);
-    if (0.0 == func_021400c8(x)) {
+    if (0.0 == fabs(x)) {
         p = (char *) buf - 6;
         strcpy(p, data_0216eeb0);
         return (u8 *) p;

@@ -105,9 +105,9 @@ int wcstombs(u8 *dst, const u16 *src, u32 n) {
 double func_02134ae8(double a, int n) {
     int e;
 
-    a = func_021400ec(a, &e);
+    a = frexp(a, &e);
     e += n;
-    return func_021401ac(a, e);
+    return ldexp(a, e);
 }
 
 int fflush(Unk0213c94c *a) {
@@ -311,5 +311,5 @@ int func_0213446c(Unk0213c94c *a, u32 *b) {
 
 void func_0213442c(const u8 *a, const u8 *b, const u8 *c, int d) {
     printf((const u8 *) "Assertion (%s) failed in \"%s\", function \"%s\", line %d\n", a, b, c, d);
-    func_02133fd8();
+    abort();
 }

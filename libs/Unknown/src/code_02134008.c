@@ -34,7 +34,7 @@ Unk02134008 func_0213428c(Unk02134008 a, Unk02134008 b, u32 c) {
             break;
     }
     if (fn == 0) {
-        func_02139e20(2);
+        raise(2);
     }
     return fn(a, b, c);
 }

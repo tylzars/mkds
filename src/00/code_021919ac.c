@@ -20,7 +20,7 @@ void func_ov000_021920d8(s8 *p, s32 n) {
     s32 i;
 
     for (i = 0; i < n; i++) {
-        p[i] = data_ov000_021b2f18[func_021384dc() % 0x3e];
+        p[i] = data_ov000_021b2f18[rand() % 0x3e];
     }
     p[i] = 0;
 }

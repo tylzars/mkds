@@ -3,8 +3,8 @@
 #include "code_02139f70.h"
 #include "code_0213a460.h"
 
-double func_0213a450(const u8 *s) {
-    return func_0213a460(s, 0);
+double atof(const u8 *s) {
+    return strtod(s, 0);
 }
 
 u32 strlen(const u8 *s) {

@@ -556,7 +556,7 @@ int sscanf(const u8 *a, const u8 *b, ...) {
     return vsscanf(a, b, ap);
 }
 
-u32 func_021384dc(void) {
+u32 rand(void) {
     data_0216eeb8 = data_0216eeb8 * 0x41c64e6d + 0x3039;
     return (data_0216eeb8 >> 16) & 0x7fff;
 }

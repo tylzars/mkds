@@ -24,6 +24,6 @@ int func_021343b0(void) {
     return r;
 }
 
-double func_02134398(const u8 *a) {
+double nan(const u8 *a) {
     return data_0216ec9c;
 }

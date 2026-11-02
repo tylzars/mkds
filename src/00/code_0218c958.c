@@ -178,7 +178,7 @@ void func_ov000_0218ccbc(Unk021b4d24 *p) {
     s32 t;
     s32 s;
     s32 i;
-    p->mUnk_074[0] = (s32) func_021384dc() % 0x5d + 0x21;
+    p->mUnk_074[0] = (s32) rand() % 0x5d + 0x21;
     s = 0;
     i = 1;
     v2 = 0;
@@ -192,7 +192,7 @@ void func_ov000_0218ccbc(Unk021b4d24 *p) {
     for (; i < 8; i++) {
         s = ((p->mUnk_074[0] & v6) ^ (s ^ (t = i, t ^= p->mUnk_074[i - 1], t &= v5, t))) ^
             ((p->mUnk_074[0] < 0x4f) ? v3 : v4) ^ ((p->mUnk_074[i - 1] < p->mUnk_074[0]) ? v1 : v2);
-        p->mUnk_074[i] = (s32) func_021384dc() % 0x5d + 0x21;
+        p->mUnk_074[i] = (s32) rand() % 0x5d + 0x21;
         if ((s != 0 && (p->mUnk_074[i] & v7) != 0) || (s == 0 && (p->mUnk_074[i] & v8) == 1)) {
             p->mUnk_074[i] = p->mUnk_074[i] + 1;
         }

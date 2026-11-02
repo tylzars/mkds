@@ -20,7 +20,7 @@ void func_ov000_021a1ae0(u32 param_1, u32 param_2, u8 *param_3) {
         if (func_ov000_021a0958(v2, param_3 + 1, i) == -1) {
             break;
         }
-        *q = func_0213c074(v2, e, 10);
+        *q = strtoul(v2, e, 10);
         q++;
         i++;
     } while (i < 0x80);
@@ -115,7 +115,7 @@ void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 par
     p = data_ov000_021b566c;
     j = p->mUnk_0d;
     if (param_3 != p->mUnk_1f8[j] || param_4 != p->mUnk_278[j]) {
-        if (*param_6 != 0 && p->mUnk_f4[j] == func_0213c074(param_6, 0, 10)) {
+        if (*param_6 != 0 && p->mUnk_f4[j] == strtoul(param_6, 0, 10)) {
             data_ov000_021b566c->mUnk_1f8[j] = param_3;
             data_ov000_021b566c->mUnk_278[data_ov000_021b566c->mUnk_0d] = param_4;
         } else {

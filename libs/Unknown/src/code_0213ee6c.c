@@ -292,7 +292,7 @@ void func_02140d74(Unk02136638 *out, double v) {
     if (sign) {
         v = 0.0 - v;
     }
-    m = func_021400ec(v, &e);
+    m = frexp(v, &e);
     y3 = m;
     w = (u32 *) &y3;
     if (w[0]) {
@@ -302,7 +302,7 @@ void func_02140d74(Unk02136638 *out, double v) {
     }
     s = 0x35 - n;
     func_0214177c(&big_b, e - s);
-    func_02141f14(&big_a, (u64) func_021401ac(m, s));
+    func_02141f14(&big_a, (u64) ldexp(m, s));
     func_02141c98(out, &big_a, &big_b);
     out->mUnk_00 = sign;
 }
@@ -358,13 +358,13 @@ double func_0214049c(const Unk02136638 *d) {
     Unk02136638 f;
 
     if (d->mUnk_04 == 0) {
-        return func_021400a0(0.0, d->mUnk_00 == 0 ? 1.0 : -1.0);
+        return copysign(0.0, d->mUnk_00 == 0 ? 1.0 : -1.0);
     }
     switch (d->mUnk_05[0]) {
         case '0':
-            return func_021400a0(0.0, d->mUnk_00 == 0 ? 1.0 : -1.0);
+            return copysign(0.0, d->mUnk_00 == 0 ? 1.0 : -1.0);
         case 'I':
-            return func_021400a0(data_0216ec98, d->mUnk_00 == 0 ? 1.0 : -1.0);
+            return copysign(data_0216ec98, d->mUnk_00 == 0 ? 1.0 : -1.0);
         case 'N':
             pr = (u64 *) &r;
             *pr = 0x7ff0000000000000ULL;
@@ -382,7 +382,7 @@ double func_0214049c(const Unk02136638 *d) {
     m = e.mUnk_02;
     func_02141b5c(&g, data_0216ef70, 0x134);
     if (func_02141538(&g, &e)) {
-        return func_021400a0(data_0216ec98, d->mUnk_00 == 0 ? 1.0 : -1.0);
+        return copysign(data_0216ec98, d->mUnk_00 == 0 ? 1.0 : -1.0);
     }
     p = e.mUnk_05;
     x = *p++;
@@ -407,11 +407,11 @@ double func_0214049c(const Unk02136638 *d) {
         m -= n;
     }
     if (m < 0) {
-        x = x / func_02140490(5.0, -m);
+        x = x / pow(5.0, -m);
     } else {
-        x = x * func_02140490(5.0, m);
+        x = x * pow(5.0, m);
     }
-    x = func_021401ac(x, m);
+    x = ldexp(x, m);
     u1.d = x;
     switch (u1.w[1] & 0x7ff00000) {
         case 0x7ff00000:
@@ -505,7 +505,7 @@ done:
     return x;
 }
 
-double func_02140490(double a, double b) {
+double pow(double a, double b) {
     return func_0213ee6c(a, b);
 }
 
@@ -530,7 +530,7 @@ static inline int func_021401ac_inline(double d) {
 }
 
 // Adds n to the exponent field of x, scaling with multiplications by constants when it leaves the normal range.
-double func_021401ac(double x, int n) {
+double ldexp(double x, int n) {
     int h;
     int l;
     int k;
@@ -557,7 +557,7 @@ double func_021401ac(double x, int n) {
     }
     k += n;
     if (k > 0x7fe) {
-        return 1e300 * func_021400a0(1e300, x);
+        return 1e300 * copysign(1e300, x);
     }
     if (k > 0) {
         *((int *) &x + 1) = (h & 0x800fffff) | (k << 20);
@@ -565,9 +565,9 @@ double func_021401ac(double x, int n) {
     }
     if (k <= -54) {
         if (n > 50000) {
-            return 1e300 * func_021400a0(1e300, x);
+            return 1e300 * copysign(1e300, x);
         }
-        return 1e-300 * func_021400a0(1e-300, x);
+        return 1e-300 * copysign(1e-300, x);
     }
     k += 54;
     *((int *) &x + 1) = (h & 0x800fffff) | (k << 20);
@@ -576,7 +576,7 @@ double func_021401ac(double x, int n) {
 
 // Splits a into a fraction with an exponent field of 0x3fe and the exponent count stored to *e (0 and a unchanged
 // when a is zero or has an all-ones exponent field).
-double func_021400ec(double a, int *e) {
+double frexp(double a, int *e) {
     int m;
     int h;
     int l;
@@ -600,13 +600,13 @@ double func_021400ec(double a, int *e) {
 }
 
 // Clears the sign bit of a.
-double func_021400c8(double a) {
+double fabs(double a) {
     *((u32 *) &a + 1) &= 0x7fffffff;
     return a;
 }
 
 // a with the sign bit of b.
-double func_021400a0(double a, double b) {
+double copysign(double a, double b) {
     *((u32 *) &a + 1) = (*((u32 *) &a + 1) & 0x7fffffff) | (*((u32 *) &b + 1) & 0x80000000);
     return a;
 }
@@ -682,7 +682,7 @@ double func_0213ee6c(double a, double b) {
     }
 
     d = a;
-    c = func_021400c8(d);
+    c = fabs(d);
     if (la == 0) {
         if (ia == 0x7ff00000 || ia == 0 || ia == 0x3ff00000) {
             z = c;

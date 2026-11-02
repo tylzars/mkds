@@ -47,7 +47,7 @@ u32 func_ov000_0218f848(Unk0218f960 *a, s32 b, s32 c) {
         return r;
     }
     func_ov000_0218e8b8();
-    func_021384cc(func_ov000_0218e8c4());
+    srand(func_ov000_0218e8c4());
     a->mUnk_00 = p.mUnk_00;
     return 0;
 }

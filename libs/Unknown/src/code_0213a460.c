@@ -229,7 +229,7 @@ u64 func_0213c110(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int 
     return acc;
 }
 
-u32 func_0213c074(const u8 *s, const u8 **end, int base) {
+u32 strtoul(const u8 *s, const u8 **end, int base) {
     int n;
     int neg;
     int ovf;
@@ -252,7 +252,7 @@ u32 func_0213c074(const u8 *s, const u8 **end, int base) {
     return v;
 }
 
-long func_0213bfa4(const u8 *s, const u8 **end, int base) {
+long strtol(const u8 *s, const u8 **end, int base) {
     int n;
     int neg;
     int ovf;
@@ -277,7 +277,7 @@ long func_0213bfa4(const u8 *s, const u8 **end, int base) {
 }
 
 long func_0213bf90(const u8 *s) {
-    return func_0213bfa4(s, 0, 10);
+    return strtol(s, 0, 10);
 }
 
 /* f is called as f(p, 0, 0) for each next value and as f(p, c, 1) with a value already read. */
@@ -402,9 +402,9 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
                     }
                     buf[j] = 0;
                     if (m) {
-                        x = -func_02134398(buf);
+                        x = -nan(buf);
                     } else {
-                        x = func_02134398(buf);
+                        x = nan(buf);
                     }
                     *q = w + i + j + sg;
                     return x;
@@ -785,7 +785,7 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
     }
 }
 
-double func_0213a460(const u8 *s, const u8 **end) {
+double strtod(const u8 *s, const u8 **end) {
     int n;
     int ovf;
     Unk0213a460 st;
@@ -798,7 +798,7 @@ double func_0213a460(const u8 *s, const u8 **end) {
     if (end != 0) {
         *end = s + n;
     }
-    a = func_021400c8(v);
+    a = fabs(v);
     if (ovf != 0 || (v != 0.0 && (a < 2.2250738585072014e-308 || a > 1.7976931348623157e308))) {
         data_0217ee90 = 0x22;
     }

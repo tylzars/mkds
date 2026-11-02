@@ -3,4 +3,4 @@
 #include "types.h"
 #include "Main/Unknown/unk_0216e000.h"
 
-void func_021384cc(u32 arg0);
+void srand(u32 arg0);

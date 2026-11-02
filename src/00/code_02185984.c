@@ -157,7 +157,7 @@ s32 func_ov000_02185d54(void) {
         data_ov000_021b4c90->mUnk_008 = 0x4e85;
         return 0xd;
     }
-    b = func_0213bfa4((const u8 *) data_ov000_021b4c90->mUnk_00c, &c, 10);
+    b = strtol((const u8 *) data_ov000_021b4c90->mUnk_00c, &c, 10);
     d = data_ov000_021b4c90;
     if (c != (const u8 *) d->mUnk_00c + strlen((const u8 *) d->mUnk_00c)) {
         d->mUnk_008 = 0x4e85;

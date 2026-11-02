@@ -20,10 +20,10 @@ extern const double data_0216eca0;
 // Used by three functions of this file, by func_0213ee6c (which stores 33 there) and by overlay 0.
 extern int data_0217ee90;
 
-double func_0213a460(const u8 *s, const u8 **end);
+double strtod(const u8 *s, const u8 **end);
 long func_0213bf90(const u8 *s);
-long func_0213bfa4(const u8 *s, const u8 **end, int base);
-u32 func_0213c074(const u8 *s, const u8 **end, int base);
+long strtol(const u8 *s, const u8 **end, int base);
+u32 strtoul(const u8 *s, const u8 **end, int base);
 double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r);
 u64 func_0213c110(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int *s);
 u32 func_0213c560(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int *s);

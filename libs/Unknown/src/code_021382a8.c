@@ -19,7 +19,7 @@ static inline void func_021382a8_inline(u8 *a, u8 *b, u32 size) {
     }
 }
 
-void func_021382a8(u8 *base, u32 n, u32 size, int (*cmp)(void *, void *)) {
+void qsort(u8 *base, u32 n, u32 size, int (*cmp)(void *, void *)) {
     u32 l;
     u8 *lo;
     u8 *hi;

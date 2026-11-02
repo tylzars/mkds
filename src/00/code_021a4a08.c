@@ -24,7 +24,7 @@ s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const u8 *d, const u8 *e,
         *a = func_ov000_021a3690(0x110);
         o = *a;
     }
-    func_021384cc(func_ov000_0218e8c4());
+    srand(func_ov000_0218e8c4());
     strcpy((char *) o->mUnk_004, d);
     strcpy((char *) o->mUnk_044, e);
     o->mUnk_0c0 = c;
@@ -51,7 +51,7 @@ s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const u8 *d, const u8 *e,
     o->mUnk_0a8 = 0;
     o->mUnk_0b4 = 0;
     do {
-        o->mUnk_084[r] = (s32) func_021384dc() % 0xff;
+        o->mUnk_084[r] = (s32) rand() % 0xff;
         r++;
     } while (r < 4);
     r = 0;
