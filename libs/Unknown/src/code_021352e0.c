@@ -306,30 +306,27 @@ u8 *func_02137358(unsigned long v, u8 *end, Unk021352e0 spec) {
     return p;
 }
 
-// non-matching: base is held as low r11 / high r8 (original low r8, high r11), and the locals at [sp+0x10] and
-// [sp+0x14] (mUnk_03 copy, mUnk_08 copy) are in swapped slots; the instruction sequence is otherwise the same
 u8 *func_02136f14(u64 v, u8 *end, Unk021352e0 spec) {
     int neg;
     int w;
     int flag;
-    int wid;
+    u32 wid;
     int alt;
     u64 base;
     u8 *p;
     int count;
     int ch;
     int d;
-    int c;
 
-    p = end;
     w = spec.mUnk_0c;
     alt = spec.mUnk_03;
     ch = spec.mUnk_05;
-    flag = spec.mUnk_01;
     wid = spec.mUnk_08;
+    flag = spec.mUnk_01;
+    p = end;
     neg = 0;
+    *--p = 0;
     count = neg;
-    *--p = neg;
     if (v == 0 && w == 0 && (alt == 0 || ch != 'o')) {
         return p;
     }
@@ -343,30 +340,30 @@ u8 *func_02136f14(u64 v, u8 *end, Unk021352e0 spec) {
             }
             break;
         case 'o':
-            flag = 0;
             base = 8;
+            flag = 0;
             break;
         case 'u':
-            flag = 0;
             base = 10;
+            flag = 0;
             break;
         case 'x':
         case 'X':
-            flag = 0;
             base = 16;
+            flag = 0;
             break;
     }
     do {
         d = (int) (v % base);
         v = v / base;
         if (d < 10) {
-            c = d + '0';
+            d += '0';
         } else if (ch == 'x') {
-            c = d + 'a' - 10;
+            d += 'a' - 10;
         } else {
-            c = d + 'A' - 10;
+            d += 'A' - 10;
         }
-        *--p = c;
+        *--p = d;
         count++;
     } while (v != 0);
     if (base == 8 && alt != 0 && *p != '0') {
@@ -403,9 +400,6 @@ u8 *func_02136f14(u64 v, u8 *end, Unk021352e0 spec) {
     return p;
 }
 
-// non-matching: 23 words. (1) the exponent ((x[0] << 25 | x[1] << 17) >> 21 & 0x7ff) is computed after the copy of b
-// into the argument area (original: before it, kept in r7, then add r0, r7, #-1023 at the call); (2) the final digit
-// gets r3 instead of the register of the shifted byte (r8) at the four assignments and the store's and.
 u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
     int n;
     u8 c;
@@ -422,7 +416,6 @@ u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
     u8 d;
     int j;
     int k;
-    u8 v;
 
     n = e.mUnk_0c;
     c = e.mUnk_05;
@@ -489,7 +482,11 @@ u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
         w[i] = w[7 - i];
         w[7 - i] = t;
     }
-    p = (char *) func_02137358((((u32) (((u8 *) &x)[0] << 25 | ((u8 *) &x)[1] << 17) >> 21) & 0x7ff) - 1023, buf, b);
+    k = ((u8 *) &x)[0] << 25;
+    k |= ((u8 *) &x)[1] << 17;
+    k = ((u32) k >> 21) & 0x7ff;
+    j = k - 1023;
+    p = (char *) func_02137358(j, buf, b);
     if (c == 'a') {
         *--p = 'p';
     } else {
@@ -503,13 +500,13 @@ u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
             if ((k & ~7) != ((k - 4) & ~7)) {
                 d = d | ((q[(k >> 3) - 1] << 8) >> (7 - (k & 7)));
             }
-            v = d & 15;
-            if (v < 10) {
-                d = v + '0';
+            d &= 15;
+            if (d < 10) {
+                d += '0';
             } else if (c == 'a') {
-                d = v + 'a' - 10;
+                d += 'a' - 10;
             } else {
-                d = v + 'A' - 10;
+                d += 'A' - 10;
             }
         } else {
             d = '0';
@@ -593,8 +590,6 @@ void func_02136638(Unk02136638 *a, int k) {
     a->mUnk_04 = k;
 }
 
-// non-matching: in the 'f'/'F' case the count i gets r0 and the pointer t r8; the original has them the other
-// way round (14 instructions at +0x6d4..+0x8a4, register numbers only)
 u8 *func_02135c80(double v, u8 *buf, Unk021352e0 f) {
     Unk02140c28 m;
     Unk02136638 d;
@@ -609,6 +604,7 @@ u8 *func_02135c80(double v, u8 *buf, Unk021352e0 f) {
     int y;
     int n;
     int i;
+    int j;
     int k;
     int c;
 
@@ -724,9 +720,9 @@ u8 *func_02135c80(double v, u8 *buf, Unk021352e0 f) {
                     *--p = '0';
                 }
             }
-            q = d.mUnk_05 + d.mUnk_04;
+            t = d.mUnk_05 + d.mUnk_04;
             for (i = d.mUnk_04 - 1; i != 0; i--) {
-                *--p = *--q;
+                *--p = *--t;
             }
             if (b != 0 || h) {
                 *--p = '.';
@@ -756,11 +752,11 @@ u8 *func_02135c80(double v, u8 *buf, Unk021352e0 f) {
                     k = 0;
                 }
             }
-            i = x + 1;
-            if (i < 0) {
-                i = 0;
+            j = x + 1;
+            if (j < 0) {
+                j = 0;
             }
-            if (i + k > 0x1fd) {
+            if (j + k > 0x1fd) {
                 return 0;
             }
             t = d.mUnk_05 + d.mUnk_04;
@@ -776,11 +772,11 @@ u8 *func_02135c80(double v, u8 *buf, Unk021352e0 f) {
             if (b != 0 || h) {
                 *--p = '.';
             }
-            if (i != 0) {
-                for (c = 0; c < i - d.mUnk_04; c++) {
+            if (j != 0) {
+                for (c = 0; c < j - d.mUnk_04; c++) {
                     *--p = '0';
                 }
-                for (; c < i; c++) {
+                for (; c < j; c++) {
                     *--p = *--t;
                 }
             } else {

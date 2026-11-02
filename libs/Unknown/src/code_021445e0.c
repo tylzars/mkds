@@ -18,10 +18,8 @@ int func_021453b4(Unk021450ec *p) {
     return func_02145030(p);
 }
 
-// non-matching: parameters n, mask, k are in r8, r7, r6 and the Unk02142988 pointer and mUnk_184 in r4, r5 in the
-// original; ours has them in r6, r5, r4 and r7, r8 (36 instructions differ, 4 bytes larger) Fills in the object p
-// (0x820 bytes) for n and stores func_02144a50 (func_02144920 when mUnk_184 is not 0) for it; returns 6 for bad
-// arguments.
+// Fills in the object p (0x820 bytes) for n and stores func_02144a50 (func_02144920 when mUnk_184 is not 0) for it;
+// returns 6 for bad arguments.
 int func_021450ec(Unk021450ec *p, u32 n, u32 mask, u32 k, u32 flag) {
     u32 w;
     u32 u5;
@@ -64,8 +62,8 @@ int func_021450ec(Unk021450ec *p, u32 n, u32 mask, u32 k, u32 flag) {
     p->mUnk_810 = k;
     p->mUnk_816 = n;
     p->mUnk_80e = 0;
-    v = mask | (1 << u5);
     p->mUnk_818 = flag != 0;
+    v = mask | (1 << u5);
     p->mUnk_80e = v;
     c = func_0202056c(v);
     p->mUnk_812 = c;
@@ -124,9 +122,8 @@ int func_02145030(Unk021450ec *p) {
     return 0;
 }
 
-// non-matching: the Unk02142988 pointer and the 5 stored in mUnk_81c share r4 and the u16 index and mUnk_184 share r5;
-// ours puts the 5 in r5 and the u16 index in r4 (24 instructions differ, same size) Returns 1 when mUnk_81c is 5 and 3
-// when it is neither 1 nor 4; otherwise takes the next block into b, passes a to func_02144814 and returns 0.
+// Returns 1 when mUnk_81c is 5 and 3 when it is neither 1 nor 4; otherwise takes the next block into b, passes a to
+// func_02144814 and returns 0.
 int func_02144c6c(Unk021450ec *p, void *a, void *b) {
     int f2;
     int r;
@@ -134,12 +131,10 @@ int func_02144c6c(Unk021450ec *p, void *a, void *b) {
     u32 w;
     u32 st;
     int f1;
-    int ret;
     u32 u5;
     int t;
     int rr;
     u16 k;
-    u32 fl;
     u8 *e7;
 
     q = func_02142aa8()->mUnk_004;
@@ -175,7 +170,7 @@ int func_02144c6c(Unk021450ec *p, void *a, void *b) {
             return 3;
         }
     }
-    ret = 5;
+    r = 5;
     if (u5 == 0) {
         f1 = 0;
         f2 = 0;
@@ -189,7 +184,7 @@ int func_02144c6c(Unk021450ec *p, void *a, void *b) {
                 p->mUnk_80a = (p->mUnk_80a + 1) & 3;
             } else if (rr != 0) {
                 if (rr != 2) {
-                    p->mUnk_81c = ret;
+                    p->mUnk_81c = r;
                     return 1;
                 }
             }
@@ -200,7 +195,7 @@ int func_02144c6c(Unk021450ec *p, void *a, void *b) {
             p->mUnk_81a = p->mUnk_800[p->mUnk_80c];
             p->mUnk_80c = (p->mUnk_80c + 1) & 3;
             f1 = 1;
-            ret = 0;
+            r = 0;
             if (p->mUnk_818 == 0 && w != 0 && p->mUnk_000[p->mUnk_808].mUnk_00 == 1) {
                 f2 = f1;
             } else {
@@ -220,15 +215,14 @@ int func_02144c6c(Unk021450ec *p, void *a, void *b) {
             p->mUnk_81c = 1;
             t = 1;
         } else if (p->mUnk_80c != p->mUnk_808) {
-            fl = p->mUnk_000[p->mUnk_80c].mUnk_00;
-            if ((fl & 1) == 0) {
-                p->mUnk_000[p->mUnk_80c].mUnk_00 = fl | 1;
+            if ((p->mUnk_000[p->mUnk_80c].mUnk_00 & 1) == 0) {
+                p->mUnk_000[p->mUnk_80c].mUnk_00 |= 1;
             } else {
                 func_0214cffc(&p->mUnk_000[p->mUnk_80c], b, 0x200);
                 p->mUnk_81a = p->mUnk_800[p->mUnk_80c];
                 p->mUnk_80c = (p->mUnk_80c + 1) & 3;
                 t = 1;
-                ret = 0;
+                r = 0;
             }
         }
         if (t != 0) {
@@ -239,12 +233,12 @@ int func_02144c6c(Unk021450ec *p, void *a, void *b) {
             if (rr != 2) {
                 if (rr != 0) {
                     p->mUnk_81c = 5;
-                    ret = 1;
+                    r = 1;
                 }
             }
         }
     }
-    return ret;
+    return r;
 }
 
 // Passed to func_02144048; accepts only objects that func_02144a50 or func_02144920 are stored for and records the
@@ -291,17 +285,16 @@ void func_02144b64(Unk02144920 *a) {
     p->mUnk_81c = 5;
 }
 
-// non-matching: original keeps mUnk_12 in r5 and the constant 1 in r6 across the func_0200fca0 call (push
-// {r4,r5,r6,lr}, no sub sp, 0x114 bytes); ours is push {r4,r5,lr} with sub sp (0x130 bytes) Function stored in mUnk_0c4
-// by func_021450ec; messages 7, 9 and 0x15 pass the object to func_02144688 (9 clears bit mUnk_12 first, 0x15 calls
-// func_02144814).
+// Function stored in mUnk_0c4 by func_021450ec; messages 7, 9 and 0x15 pass the object to func_02144688 (9 clears bit
+// mUnk_12 first, 0x15 calls func_02144814).
 void func_02144a50(Unk02144920 *a) {
     Unk021450ec *p;
     u32 s;
+    enum { K0 } d;
     u32 t;
     u32 n;
     u32 m;
-    u32 k;
+    u16 k;
 
     p = a->mUnk_1c;
     if (p == 0) {
@@ -318,9 +311,10 @@ void func_02144a50(Unk02144920 *a) {
                 return;
             case 9:
                 t = a->mUnk_12;
+                d = 1;
                 s = func_0200fca0();
                 n = p->mUnk_808;
-                m = ~(1 << t);
+                m = ~(d << t);
                 p->mUnk_000[n].mUnk_00 &= m;
                 if (p->mUnk_818 == 1) {
                     k = (n + 1) & 3;

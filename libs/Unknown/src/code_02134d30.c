@@ -73,7 +73,7 @@ void *memmove(void *a, const void *b, u32 n) {
     return a;
 }
 
-void *memset(void *p, int c, u32 n) {
+void *memset(void *p, int c, size_t n) {
     func_02134f18(p, c, n);
     return p;
 }
