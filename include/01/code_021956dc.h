@@ -17,8 +17,7 @@
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_02060004.h"
 
-// Object behind data_ov001_021a9bdc.
-typedef struct Unk021a9bdc {
+typedef struct RecordTAtt {
     /* 00 */ Unk020b4934 *mUnk_00;
     /* 04 */ struct Unk02021dc8 *mUnk_04;
     /* 08 */ Unk0201ea30 *mUnk_08;
@@ -56,7 +55,7 @@ typedef struct Unk021a9bdc {
     /* 88 */ s32 mUnk_88;
     /* 8c */ s32 mUnk_8c;
     /* 90 */ s32 mUnk_90;
-} Unk021a9bdc;
+} RecordTAtt;
 
 // Object behind data_021759d4.
 typedef struct Unk021759d4 {
@@ -110,12 +109,12 @@ extern u16 data_ov001_021a6804[];
 extern u16 data_ov001_021a6810[];
 extern u16 data_ov001_021a681c[];
 extern s32 data_ov001_021a6900[];
-extern Unk021a9bdc *data_ov001_021a9bdc;
+extern RecordTAtt *gRecordTAtt;
 
-void func_ov001_021956dc(void);
+void RegisterRecordTAttCallbacks(void);
 void func_ov001_02195704(void);
 void func_ov001_0219574c(void);
-void func_ov001_021957a8(void);
+void AdvanceRecordTAtt(void);
 void func_ov001_02195894(void);
 void func_ov001_021959c0(void);
 void func_ov001_021959d8(void);
@@ -135,7 +134,7 @@ void func_ov001_02196514(void);
 void func_ov001_02196724(void);
 void func_ov001_021968bc(void);
 void func_ov001_02196904(void);
-void func_ov001_02196960(void *heap);
+void InitRecordTAtt(void *heap);
 s32 func_ov001_02196c4c(void);
 void func_ov001_02196cd0(void);
 void func_ov001_02196d78(void);

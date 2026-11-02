@@ -15,5 +15,5 @@ void func_021132e4(void);
 void func_021132b4(void);
 void func_02113298(void);
 void func_02113174(void);
-void func_02112bb4(void *a);
+void InitRecordVS(void *a);
 void func_02112b48(void);

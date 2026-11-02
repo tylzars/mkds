@@ -176,7 +176,7 @@ typedef struct Unk0217d32c {
     /* 0c */ u32 mUnk_0c;
 } Unk0217d32c;
 
-// Object behind data_0217d348.
+// Object behind gRecordVS.
 typedef struct Unk0217d348 {
     /* 00 */ struct Unk020b4934 *mUnk_00;
     /* 04 */ struct Unk02021dc8 *mUnk_04;
@@ -251,7 +251,7 @@ typedef struct Unk0217d360 {
     /* 88 */ s32 mUnk_88;
 } Unk0217d360;
 
-// Object behind data_0217d364.
+// Object behind gSelectCup.
 typedef struct Unk0217d364 {
     /* 00 */ struct Unk02021dc8 *mUnk_00;
     /* 04 */ Unk0201ea30 *mUnk_04;
@@ -739,10 +739,10 @@ extern Unk0212c400 *data_0217d07c;
 extern Unk0217d084 data_0217d084;
 extern struct Unk0212d5f8 data_0217d0a0;
 extern Unk0217d32c data_0217d32c;
-extern Unk0217d348 *data_0217d348;
+extern Unk0217d348 *gRecordVS;
 extern Unk0217d34c *data_0217d34c;
 extern Unk0217d360 *data_0217d360;
-extern Unk0217d364 *data_0217d364;
+extern Unk0217d364 *gSelectCup;
 extern u32 data_0217d1bc;
 extern u8 data_0217d1c0[];
 extern u8 data_0217d1c4[];

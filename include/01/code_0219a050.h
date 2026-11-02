@@ -3,8 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk0201ea30
 
-// Overlay state, allocated by the setup function below.
-typedef struct Unk021a9bf0 {
+typedef struct RecordTopMenu {
     /* 0x00 */ struct Unk02021dc8 *mUnk_00;
     /* 0x04 */ Unk0201ea30 *mUnk_04;
     /* 0x08 */ void *mUnk_08;
@@ -23,7 +22,7 @@ typedef struct Unk021a9bf0 {
     /* 0x3c */ s32 mUnk_3c;
     /* 0x40 */ s32 mUnk_40;
     /* 0x44 */ s32 mUnk_44;
-} Unk021a9bf0;
+} RecordTopMenu;
 
 #include "01/unk_021a6000.h"
 #include "Main/Unknown/code_020ae4c0.h"
@@ -39,12 +38,12 @@ typedef struct Unk021a9bf0 {
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/code_020472a8.h"
 
-extern Unk021a9bf0 *data_ov001_021a9bf0;
+extern RecordTopMenu *gRecordTopMenu;
 
-void func_ov001_0219a050(void);
+void RegisterRecordTopMenuCallbacks(void);
 void func_ov001_0219a078(void);
 void func_ov001_0219a0c0(void);
-void func_ov001_0219a0e8(void);
+void AdvanceRecordTopMenu(void);
 void func_ov001_0219a1a4(void);
 void func_ov001_0219a240(void);
 void func_ov001_0219a258(void);
@@ -58,7 +57,7 @@ void func_ov001_0219a77c(void);
 void func_ov001_0219a80c(void);
 void func_ov001_0219a938(void);
 void func_ov001_0219a950(void);
-void func_ov001_0219a9a0(void *heap);
+void InitRecordTopMenu(void *heap);
 void func_ov001_0219ac98(void);
 void func_ov001_0219ad10(void);
 void func_ov001_0219ad3c(void);

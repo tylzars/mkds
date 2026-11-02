@@ -3,25 +3,25 @@
 #include "types.h"
 
 // Objects whose layout isn't known yet.
-extern const char *data_0216d1f4;
-extern const char *data_0216d1f8;
-extern const char *data_0216d1fc;
-extern const char *data_0216d200;
-extern const char *data_0216d204;
-extern const char *data_0216d208;
-extern const char *data_0216d20c;
-extern const char *data_0216d210;
-extern const char *data_0216d214;
-extern const char *data_0216d218;
-extern const char *data_0216d21c;
-extern const char *data_0216d220;
-extern const char *data_0216d224;
-extern const char *data_0216d228;
-extern const char *data_0216d22c;
-extern const char *data_0216d230;
-extern const char *data_0216d234;
-extern const char *data_0216d238;
-extern char data_0216d3e4[];
+extern const char *gRecordVSMBnclName;
+extern const char *gRecordVSMONclrName;
+extern const char *gRecordVSMTransientBnllName;
+extern const char *gRecordVSMNcerName;
+extern const char *gRecordVSSBnclName;
+extern const char *gRecordVSSNcgrName;
+extern const char *gRecordVSMNcgrName;
+extern const char *gRecordVSSNcerName;
+extern const char *gRecordVSM03NscrName;
+extern const char *gRecordVSSONclrName;
+extern const char *gRecordVSSBnllName;
+extern const char *gRecordVSMBNcgrName;
+extern const char *gRecordVSMBNclrName;
+extern const char *gRecordVSM02NscrName;
+extern const char *gRecordVSMBnllName;
+extern const char *gRecordVSMNscrName;
+extern const char *gRecordVSSBnblName;
+extern const char *gRecordVSMTransientBnclName;
+extern char gEmblem2BinName[];
 extern u8 data_0216d3f0[];
 extern const char *data_0216d3f4;
 extern u8 data_0216d3f8[];

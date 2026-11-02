@@ -58,7 +58,7 @@ typedef struct Unk021243ac {
 } Unk021243ac;
 
 // 0x40-byte element of the tables func_02124ed0 allocates and func_02124efc sets up: behind Unk021b4c74::mUnk_10d4,
-// members 0x14, 0x24 and 0x3c of Unk0217d350, and the tables of the objects behind data_0217d348 to data_0217d380
+// members 0x14, 0x24 and 0x3c of Unk0217d350, and the tables of the objects behind gRecordVS to data_0217d380
 // and of several overlay globals.
 typedef struct Unk02124b1c {
     /* 00 */ s32 mUnk_00;
