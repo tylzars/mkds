@@ -46,7 +46,7 @@ void func_ov000_02184ad0(void) {
     a = func_0202a92c();
     if (func_ov000_021806c4() == -1 && (a == 1 || a == 2)) {
         if (func_02122ae4() != 0) {
-            func_ov000_021806e0(7);
+            RequestWiFiState(7);
             return;
         }
         b = data_0217d384->mUnk_1f52;
@@ -69,5 +69,5 @@ void func_ov000_02184ac8(void) {
 
 void func_ov000_02184aa4(void) {
     Unk021b0cd4 callbacks = data_ov000_021b0e50;
-    func_ov000_021806ec(&callbacks);
+    SetWiFiStateCallbacks(&callbacks);
 }

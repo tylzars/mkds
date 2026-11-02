@@ -402,11 +402,11 @@ void func_ov000_02183674(void) {
     }
     if (func_02125f88() != 0 && func_02128294() != 0 && gWiFiVSMatching->mUnk_08 >= 10) {
         if (gWiFiVSMatching->mUnk_40 != 0) {
-            func_ov000_021806e0(gWiFiVSMatching->mUnk_20);
+            RequestWiFiState(gWiFiVSMatching->mUnk_20);
             return;
         }
         if (func_0212137c() != 0) {
-            func_ov000_021806e0(gWiFiVSMatching->mUnk_20);
+            RequestWiFiState(gWiFiVSMatching->mUnk_20);
         }
     }
 }
@@ -414,7 +414,7 @@ void func_ov000_02183674(void) {
 void func_ov000_0218364c(void) {
     if (func_02036d08() != 0) {
         if (func_02125f88() != 0) {
-            func_ov000_021806e0(gWiFiVSMatching->mUnk_20);
+            RequestWiFiState(gWiFiVSMatching->mUnk_20);
         }
     }
 }
@@ -534,7 +534,7 @@ void func_ov000_02183330(void) {
 void RegisterWiFiVSMatchingCallbacks(void) {
     Unk021b0cd4 x = {InitWiFiVSMatching, func_ov000_02184354, AdvanceWiFiVSMatching, func_ov000_02183330};
 
-    func_ov000_021806ec(&x);
+    SetWiFiStateCallbacks(&x);
 }
 
 s32 func_ov000_021832f0(void) {
@@ -597,7 +597,7 @@ void InitWiFiVSSetting(void *heap) {
                 if (i == 2) {
                     t = GetBmgEntry(gWiFiVSSetting->mCommonMessages, data_ov000_021b0628[i][k]);
                 } else if (i == 1) {
-                    t = GetBmgEntry(gWiFiVSSetting->mWiFiMessages, func_ov000_02180668(gWiFiVSSetting->mUnk_0c));
+                    t = GetBmgEntry(gWiFiVSSetting->mWiFiMessages, LookupWiFiVSSettingMessageIndex(gWiFiVSSetting->mUnk_0c));
                 } else {
                     t = GetBmgEntry(gWiFiVSSetting->mWiFiMessages, data_ov000_021b0628[i][k]);
                 }

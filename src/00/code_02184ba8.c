@@ -36,7 +36,7 @@ void func_ov000_0218523c(void *a) {
     data_ov000_021b4c84->mUnk_00 = 0;
     data_ov000_021b4c84->mUnk_04 = 0;
     data_ov000_021b4c84->mUnk_10 = -1;
-    b = func_ov000_021806d4();
+    b = GetWiFiPrevState();
     switch (b) {
         case 1:
         case 11:
@@ -267,7 +267,7 @@ void func_ov000_02184dbc(void) {
             return;
         }
         if (func_ov000_021806c4() == -1) {
-            func_ov000_021806e0(data_ov000_021b4c84->mUnk_10);
+            RequestWiFiState(data_ov000_021b4c84->mUnk_10);
         }
     }
 }
@@ -363,5 +363,5 @@ void func_ov000_02184bcc(void) {
 
 void func_ov000_02184ba8(void) {
     Unk021b0cd4 callbacks = data_ov000_021b0e60;
-    func_ov000_021806ec(&callbacks);
+    SetWiFiStateCallbacks(&callbacks);
 }

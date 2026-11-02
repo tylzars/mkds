@@ -95,7 +95,7 @@ void func_ov000_02180cdc(void) {
 next:
     if (func_02125f88() != 0 && func_02128294() != 0) {
         data_ov000_021b4c68->mUnk_0c = 1;
-        func_ov000_021806e0(data_ov000_021b4c68->mUnk_0c);
+        RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
     }
 }
 
@@ -131,7 +131,7 @@ void func_ov000_02180e58(void) {
     s32 v;
     if (func_02125f88() != 0) {
         if (func_ov000_02180e58_inline() == 0) {
-            func_ov000_021806e0(data_ov000_021b4c68->mUnk_0c);
+            RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
             return;
         }
     }
@@ -184,7 +184,7 @@ void func_ov000_02180f80(void) {
             return;
         }
         data_ov000_021b4c68->mUnk_0c = 1;
-        func_ov000_021806e0(data_ov000_021b4c68->mUnk_0c);
+        RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
     }
 }
 
@@ -210,7 +210,7 @@ void func_ov000_02180ffc(void) {
         }
         if (func_ov000_02180e58_inline() == 0) {
             data_ov000_021b4c68->mUnk_0c = 2;
-            func_ov000_021806e0(data_ov000_021b4c68->mUnk_0c);
+            RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
         }
     }
 }
@@ -245,7 +245,7 @@ void func_ov000_021810dc(void) {
             return;
         }
         data_ov000_021b4c68->mUnk_0c = 1;
-        func_ov000_021806e0(data_ov000_021b4c68->mUnk_0c);
+        RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
     }
 }
 
@@ -278,7 +278,7 @@ void func_ov000_021811ec(void) {
             return;
         }
         data_ov000_021b4c68->mUnk_0c = 1;
-        func_ov000_021806e0(data_ov000_021b4c68->mUnk_0c);
+        RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
     }
 }
 
@@ -324,7 +324,7 @@ void func_ov000_0218134c(void) {
             return;
         }
         data_ov000_021b4c68->mUnk_0c = 1;
-        func_ov000_021806e0(data_ov000_021b4c68->mUnk_0c);
+        RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
     }
 }
 

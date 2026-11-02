@@ -47,11 +47,11 @@
 #include "Main/Unknown/code_0205e000.h"
 #include "Main/Unknown/code_020472a8.h"
 
-void func_ov000_02180be8(void) {
-    data_ov000_021b4c64->mUnk_1c.mUnk_00 = 0;
-    data_ov000_021b4c64->mUnk_1c.mUnk_04 = 0;
-    data_ov000_021b4c64->mUnk_1c.mUnk_08 = 0;
-    data_ov000_021b4c64->mUnk_1c.mUnk_0c = 0;
+void ClearWiFiStateCallbacks(void) {
+    gWiFiStates->mUnk_1c.mUnk_00 = NULL;
+    gWiFiStates->mUnk_1c.mUnk_04 = NULL;
+    gWiFiStates->mUnk_1c.mUnk_08 = NULL;
+    gWiFiStates->mUnk_1c.mUnk_0c = NULL;
 }
 
 void func_ov000_02180a54(void) {
@@ -83,15 +83,15 @@ void func_ov000_02180a54(void) {
     func_0202b8d8();
 }
 
-void func_ov000_02180844(void *a, s32 b) {
+void InitWiFiStates(void *heap, s32 b) {
     Unk02125de0Arg c;
     Unk0217d384_08 *q;
-    data_ov000_021b4c64 = func_02036bec(a, 0x3c);
-    data_ov000_021b4c64->mUnk_00 = a;
-    data_ov000_021b4c64->mUnk_14 = 0;
-    func_02029a70(a);
-    data_ov000_021b4c64->mUnk_2c = func_02125028(a);
-    func_0212abdc(a, func_ov000_021804f4());
+    gWiFiStates = func_02036bec(heap, 0x3c);
+    gWiFiStates->mUnk_00 = heap;
+    gWiFiStates->mUnk_14 = 0;
+    func_02029a70(heap);
+    gWiFiStates->mUnk_2c = func_02125028(heap);
+    func_0212abdc(heap, func_ov000_021804f4());
     c.mUnk_00 = 1;
     c.mUnk_04 = func_020b403c(1);
     c.mUnk_08 = 0;
@@ -103,106 +103,106 @@ void func_ov000_02180844(void *a, s32 b) {
     c.mUnk_20 = 1;
     c.mUnk_24 = 1;
     func_02125c2c();
-    func_02125de0(a, &c);
+    func_02125de0(heap, &c);
     func_ov000_02180a54();
-    func_0202c65c(a, func_ov000_021804f4());
+    func_0202c65c(heap, func_ov000_021804f4());
     func_02078d64(func_020364e0(func_020364e8()));
     func_02078a9c(-1);
     func_02078a34(-1);
     func_020476ac();
-    data_ov000_021b4c64->mUnk_04 = func_020369fc(a);
-    func_ov000_02180be8();
-    data_ov000_021b4c64->mUnk_18 = -1;
+    gWiFiStates->mUnk_04 = func_020369fc(heap);
+    ClearWiFiStateCallbacks();
+    gWiFiStates->mUnk_18 = -1;
     if (data_0217b488->mUnk_58 != 0) {
         b = 0;
         data_0217b488->mUnk_58 = 0;
     }
     switch (b) {
         case 0:
-            data_ov000_021b4c64->mUnk_10 = 10;
-            data_ov000_021b4c64->mUnk_08 = 1;
+            gWiFiStates->mUnk_10 = 10;
+            gWiFiStates->mUnk_08 = 1;
             func_ov000_02181714();
             func_021204d0();
             data_0217b488->mUnk_1c = 0;
             break;
         case 12:
-            data_ov000_021b4c64->mUnk_10 = 13;
-            data_ov000_021b4c64->mUnk_08 = 1;
+            gWiFiStates->mUnk_10 = 13;
+            gWiFiStates->mUnk_08 = 1;
             func_ov000_02181714();
             break;
         case 2:
         case 10:
             switch (data_0217b488->mUnk_1c) {
                 case 0:
-                    data_ov000_021b4c64->mUnk_08 = 1;
+                    gWiFiStates->mUnk_08 = 1;
                     func_ov000_02181714();
                     break;
                 case 1:
                     q = &data_0217d384->mUnk_0008;
                     q->mUnk_10 = 2;
                     q->mUnk_12 = 1;
-                    data_ov000_021b4c64->mUnk_08 = 2;
+                    gWiFiStates->mUnk_08 = 2;
                     func_ov000_02181fcc();
                     break;
                 case 2:
                     func_02123a48(1);
-                    data_ov000_021b4c64->mUnk_08 = 4;
+                    gWiFiStates->mUnk_08 = 4;
                     func_ov000_021848c8();
                     break;
                 case 3:
                     func_02123a48(2);
                     func_020296f4();
-                    data_ov000_021b4c64->mUnk_08 = 6;
+                    gWiFiStates->mUnk_08 = 6;
                     func_ov000_02184aa4();
                     break;
             }
             break;
         case 14:
-            data_ov000_021b4c64->mUnk_10 = 11;
-            data_ov000_021b4c64->mUnk_08 = 8;
+            gWiFiStates->mUnk_10 = 11;
+            gWiFiStates->mUnk_08 = 8;
             func_ov000_02184ba8();
             break;
         case 8:
             switch (data_0217b488->mUnk_50) {
                 case 0:
-                    data_ov000_021b4c64->mUnk_10 = 14;
-                    data_ov000_021b4c64->mUnk_08 = 2;
+                    gWiFiStates->mUnk_10 = 14;
+                    gWiFiStates->mUnk_08 = 2;
                     func_ov000_02181fcc();
                     break;
                 case 1:
-                    data_ov000_021b4c64->mUnk_10 = 14;
-                    data_ov000_021b4c64->mUnk_08 = 8;
+                    gWiFiStates->mUnk_10 = 14;
+                    gWiFiStates->mUnk_08 = 8;
                     func_ov000_02184ba8();
                     break;
             }
             break;
     }
-    data_ov000_021b4c64->mUnk_0c = -1;
-    data_ov000_021b4c64->mUnk_1c.mUnk_00(data_ov000_021b4c64->mUnk_04);
+    gWiFiStates->mUnk_0c = -1;
+    gWiFiStates->mUnk_1c.mUnk_00(gWiFiStates->mUnk_04);
     data_0217b488->mUnk_78 = 1;
 }
 
 void func_ov000_02180814(void) {
-    if (data_ov000_021b4c64->mUnk_1c.mUnk_04 != 0) {
-        data_ov000_021b4c64->mUnk_1c.mUnk_04();
+    if (gWiFiStates->mUnk_1c.mUnk_04 != NULL) {
+        gWiFiStates->mUnk_1c.mUnk_04();
     }
-    func_ov000_02180be8();
+    ClearWiFiStateCallbacks();
     func_0202bb60();
     func_0212abd0();
     func_02125da0();
-    data_ov000_021b4c64 = 0;
+    gWiFiStates = NULL;
 }
 
-void func_ov000_02180724(void) {
-    if (data_ov000_021b4c64->mUnk_1c.mUnk_08 != 0) {
-        data_ov000_021b4c64->mUnk_1c.mUnk_08();
+void AdvanceWiFiStates(void) {
+    if (gWiFiStates->mUnk_1c.mUnk_08 != NULL) {
+        gWiFiStates->mUnk_1c.mUnk_08();
     }
-    if (data_ov000_021b4c64->mUnk_0c != -1) {
-        data_ov000_021b4c64->mUnk_1c.mUnk_04();
-        func_ov000_02180be8();
-        func_02036ab0(data_ov000_021b4c64->mUnk_04);
-        data_ov000_021b4c64->mUnk_04 = func_020369fc(data_ov000_021b4c64->mUnk_00);
-        switch (data_ov000_021b4c64->mUnk_0c) {
+    if (gWiFiStates->mUnk_0c != -1) {
+        gWiFiStates->mUnk_1c.mUnk_04();
+        ClearWiFiStateCallbacks();
+        func_02036ab0(gWiFiStates->mUnk_04);
+        gWiFiStates->mUnk_04 = func_020369fc(gWiFiStates->mUnk_00);
+        switch (gWiFiStates->mUnk_0c) {
             case 0:
                 func_ov000_02180c04();
                 break;
@@ -234,77 +234,77 @@ void func_ov000_02180724(void) {
                 func_ov000_02185344();
                 break;
         }
-        data_ov000_021b4c64->mUnk_10 = data_ov000_021b4c64->mUnk_08;
-        data_ov000_021b4c64->mUnk_08 = data_ov000_021b4c64->mUnk_0c;
-        data_ov000_021b4c64->mUnk_0c = -1;
-        if (data_ov000_021b4c64->mUnk_1c.mUnk_00 != 0) {
-            data_ov000_021b4c64->mUnk_1c.mUnk_00(data_ov000_021b4c64->mUnk_04);
+        gWiFiStates->mUnk_10 = gWiFiStates->mUnk_08;
+        gWiFiStates->mUnk_08 = gWiFiStates->mUnk_0c;
+        gWiFiStates->mUnk_0c = -1;
+        if (gWiFiStates->mUnk_1c.mUnk_00 != NULL) {
+            gWiFiStates->mUnk_1c.mUnk_00(gWiFiStates->mUnk_04);
         }
     }
     func_02125928();
     func_0212a920();
-    data_ov000_021b4c64->mUnk_14++;
-    if (data_ov000_021b4c64->mUnk_14 > 0) {
-        data_ov000_021b4c64->mUnk_14 = 0;
+    gWiFiStates->mUnk_14++;
+    if (gWiFiStates->mUnk_14 > 0) {
+        gWiFiStates->mUnk_14 = 0;
     }
 }
 
 void func_ov000_02180704(void) {
-    if (data_ov000_021b4c64->mUnk_1c.mUnk_0c != 0) {
-        data_ov000_021b4c64->mUnk_1c.mUnk_0c();
+    if (gWiFiStates->mUnk_1c.mUnk_0c != NULL) {
+        gWiFiStates->mUnk_1c.mUnk_0c();
     }
     func_021258f0();
     return;
 }
 
-void func_ov000_021806ec(const Unk021b0cd4 *callbacks) {
-    data_ov000_021b4c64->mUnk_1c = *callbacks;
+void SetWiFiStateCallbacks(const Unk021b0cd4 *callbacks) {
+    gWiFiStates->mUnk_1c = *callbacks;
 }
 
-void func_ov000_021806e0(s32 arg0) {
-    u32 value0 = (u32) arg0;
+void RequestWiFiState(s32 nextState) {
+    u32 value0 = (u32) nextState;
     u32 value1;
-    value1 = (u32) &data_ov000_021b4c64;
+    value1 = (u32) &gWiFiStates;
     value1 = (u32) * (const u32 *) ((value1) + 0u);
     *(u32 *) ((value1) + 12u) = value0;
     return;
 }
 
-s32 func_ov000_021806d4(void) {
-    return data_ov000_021b4c64->mUnk_10;
+s32 GetWiFiPrevState(void) {
+    return gWiFiStates->mUnk_10;
 }
 
 u32 func_ov000_021806c4(void) {
-    return ((u32) data_ov000_021b4c64->mUnk_18);
+    return ((u32) gWiFiStates->mUnk_18);
 }
 
 void func_ov000_021806b8(u32 p0) {
-    data_ov000_021b4c64->mUnk_18 = (u16) p0;
+    gWiFiStates->mUnk_18 = (u16) p0;
 }
 
 u32 func_ov000_021806a0(void) {
-    if (0 <= data_ov000_021b4c64->mUnk_14) {
-        return 1;
+    if (0 <= gWiFiStates->mUnk_14) {
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
-u32 func_ov000_02180668(u32 a) {
-    u32 b[4] = {2, 3, 4, 5};
-    return b[a];
+u32 LookupWiFiVSSettingMessageIndex(u32 settingIndex) {
+    u32 messageIndices[4] = {2, 3, 4, 5};
+    return messageIndices[settingIndex];
 }
 
-u32 func_ov000_0218065c(void) {
-    return data_ov000_021b4c64->mUnk_30;
+u32 GetWiFiVSSettingIndex(void) {
+    return gWiFiStates->mUnk_30;
 }
 
-void func_ov000_02180650(u32 p0) {
-    data_ov000_021b4c64->mUnk_30 = p0;
+void SetWiFiVSSettingIndex(u32 settingIndex) {
+    gWiFiStates->mUnk_30 = settingIndex;
 }
 
 s32 func_ov000_02180644(void) {
     u32 value0;
-    value0 = (u32) &data_ov000_021b4c64;
+    value0 = (u32) &gWiFiStates;
     value0 = (u32) * (const u32 *) ((value0) + 0u);
     value0 = (u32) * (const u32 *) ((value0) + 52u);
     return (s32) value0;
@@ -313,19 +313,19 @@ s32 func_ov000_02180644(void) {
 void func_ov000_02180638(s32 arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
-    value1 = (u32) &data_ov000_021b4c64;
+    value1 = (u32) &gWiFiStates;
     value1 = (u32) * (const u32 *) ((value1) + 0u);
     *(u32 *) ((value1) + 52u) = value0;
     return;
 }
 
-s32 func_ov000_02180608(void) {
-    s32 valid = 1;
-    if (data_ov000_021b4c64 != 0 && data_ov000_021b4c64->mUnk_08 == 0) {
-        valid = 0;
+BOOL func_ov000_02180608(void) {
+    BOOL valid = TRUE;
+    if (gWiFiStates != NULL && gWiFiStates->mUnk_08 == 0) {
+        valid = FALSE;
     }
-    if (data_0217d384->mUnk_0008.mUnk_0e == 0 && valid != 0) {
-        return 1;
+    if (data_0217d384->mUnk_0008.mUnk_0e == 0 && valid != FALSE) {
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }

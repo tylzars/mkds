@@ -13,7 +13,7 @@ void func_ov000_021805cc(s16 *a) {
     void *b;
     b = func_020364e0(func_020364e8());
     data_ov000_021b4c60 = func_02036bec(b, 0x808);
-    func_ov000_02180844(b, *a);
+    InitWiFiStates(b, *a);
 }
 
 void func_ov000_021805b4(void) {
@@ -29,7 +29,7 @@ void func_ov000_0218058c(void) {
 
 void func_ov000_02180534(Unk020487fc *a) {
     func_020ae6ac(data_ov000_021b4c60, data_ov000_021b4c60 + 0x404);
-    func_ov000_02180724();
+    AdvanceWiFiStates();
     func_020ae630(data_ov000_021b4c60, data_ov000_021b4c60 + 0x404);
     if (a != 0) {
         if (func_ov000_021806c4() != -1) {

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-s32 func_ov000_02180600(void);
+BOOL func_ov000_02180600(void);

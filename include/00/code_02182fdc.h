@@ -90,7 +90,7 @@ typedef struct Unk021b4c74 {
     /* 1704 */ u8 pad_1704[8];
 } Unk021b4c74;
 
-// Four callbacks, passed to func_ov000_021806ec by RegisterWiFiVSMatchingCallbacks.
+// Four callbacks, passed to SetWiFiStateCallbacks by RegisterWiFiVSMatchingCallbacks.
 
 // 0xc-byte element of the array at member 0x20 of Unk0217b488.
 typedef struct Unk0217b488_20 {

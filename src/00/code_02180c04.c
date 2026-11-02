@@ -16,5 +16,5 @@ u32 func_ov000_02180c28(void) {
 
 void func_ov000_02180c04(void) {
     Unk021b0cd4 callbacks = data_ov000_021b0a98;
-    func_ov000_021806ec(&callbacks);
+    SetWiFiStateCallbacks(&callbacks);
 }

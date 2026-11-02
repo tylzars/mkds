@@ -164,7 +164,7 @@ void func_ov000_02184670(void) {
     {
         u8 a[2] = {0xa0, 0x10};
 
-        q = func_ov000_02180668(func_ov000_0218065c());
+        q = LookupWiFiVSSettingMessageIndex(GetWiFiVSSettingIndex());
         func_021243ac(gWiFiVSMatching->mUnk_d0, 0xc, gWiFiVSMatching->mWiFiVSMatchingBnll, a[0], a[1],
                       gWiFiVSMatching->mWiFiVSMatchingBncl->mUnk_06, gWiFiVSMatching->mWiFiVSMatchingSNcer, gWiFiVSMatching->mWiFiVSMatchingBncl,
                       gWiFiVSMatching->mUnk_10d4, n);

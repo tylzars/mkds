@@ -27,22 +27,22 @@ typedef struct Unk021b4c64 {
 
 #include "Main/Unknown/code_021258f0.h"
 
-extern Unk021b4c64 *data_ov000_021b4c64;
+extern Unk021b4c64 *gWiFiStates;
 
-s32 func_ov000_02180608(void);
+BOOL func_ov000_02180608(void);
 void func_ov000_02180638(s32 arg0);
 s32 func_ov000_02180644(void);
-void func_ov000_02180650(unsigned int p0);
-unsigned int func_ov000_0218065c(void);
-u32 func_ov000_02180668(u32 a);
+void SetWiFiVSSettingIndex(unsigned int settingIndex);
+unsigned int GetWiFiVSSettingIndex(void);
+u32 LookupWiFiVSSettingMessageIndex(u32 settingIndex);
 u32 func_ov000_021806a0(void);
 void func_ov000_021806b8(unsigned int p0);
 unsigned int func_ov000_021806c4(void);
-s32 func_ov000_021806d4(void);
-void func_ov000_021806e0(s32 arg0);
-void func_ov000_021806ec(const Unk021b0cd4 *callbacks);
+s32 GetWiFiPrevState(void);
+void RequestWiFiState(s32 nextState);
+void SetWiFiStateCallbacks(const Unk021b0cd4 *callbacks);
 void func_ov000_02180704(void);
-void func_ov000_02180724(void);
-void func_ov000_02180844(void *a, s32 b);
+void AdvanceWiFiStates(void);
+void InitWiFiStates(void *heap, s32 b);
 void func_ov000_02180a54(void);
-void func_ov000_02180be8(void);
+void ClearWiFiStateCallbacks(void);
