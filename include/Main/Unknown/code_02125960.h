@@ -9,6 +9,6 @@ extern const char *gBackScreenMNscrNames[2];
 extern const char *gBackScreenMNcgrNames[2];
 extern const char *gBackScreenMNclrNames[2];
 
-void func_02125c2c(void);
+void LoadTxtSystemAndSelectChoisesAndSelectReturnData(void);
 void func_02125ba4(void);
 s32 func_02125960(s32 a);

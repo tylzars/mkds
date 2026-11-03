@@ -420,8 +420,8 @@ typedef struct Unk0217d3ec {
     /* 000 */ s32 mUnk_00;
     /* 004 */ s32 mUnk_04;
     /* 008 */ s32 mUnk_08;
-    /* 00c */ s32 mUnk_0c;
-    /* 010 */ u16 mUnk_10[0x400];
+    /* 00c */ s32 mBackScreenKind;
+    /* 010 */ u16 mBackScreenSNscrCopy[0x400];
     /* 810 */ s32 mUnk_810;
 } Unk0217d3ec;
 
@@ -514,18 +514,18 @@ typedef struct Unk0217d3f4 {
     /* 8b0 */ s32 mUnk_8b0;
 } Unk0217d3f4;
 
-// Object behind data_0217d3f8: 0x828 bytes allocated by func_021287cc.
+// Object behind gSelectReturn: 0x828 bytes allocated by InitSelectReturn.
 typedef struct Unk0217d3f8 {
     /* 000 */ s32 mUnk_00;
-    /* 004 */ s32 mUnk_04;
+    /* 004 */ s32 mState;
     /* 008 */ s32 mUnk_08;
     /* 00c */ s32 mUnk_0c;
     /* 010 */ u16 mUnk_10[0x400];
-    /* 810 */ s32 mUnk_810;
-    /* 814 */ s32 mUnk_814;
-    /* 818 */ s32 mUnk_818;
-    /* 81c */ s32 mUnk_81c;
-    /* 820 */ s32 mUnk_820;
+    /* 810 */ s32 mState1Requested;
+    /* 814 */ s32 mState3Requested;
+    /* 818 */ s32 mState4Requested;
+    /* 81c */ s32 mBg2Offset;
+    /* 820 */ s32 mDisplayBitOn;
     /* 824 */ s32 mUnk_824;
 } Unk0217d3f8;
 
@@ -688,7 +688,7 @@ extern u8 gKartFilterString[0x64];
 extern Unk0217d3ec *data_0217d3ec;
 extern Unk0217d3f0 *data_0217d3f0;
 extern Unk0217d3f4 *data_0217d3f4;
-extern Unk0217d3f8 *data_0217d3f8;
+extern Unk0217d3f8 *gSelectReturn;
 extern Unk0217d3fc *data_0217d3fc;
 extern Unk0217d400 *data_0217d400;
 extern Unk0217d408 *data_0217d408;

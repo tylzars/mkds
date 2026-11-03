@@ -88,7 +88,7 @@ int AdvanceSelectKart(void) {
             break;
         case 2:
             if (func_02028774(t) != 0) {
-                x = func_02128210(func_0202874c(t), func_02028724(t));
+                x = IsSelectReturnState2NoState3Or4RequestAndInRect(func_0202874c(t), func_02028724(t));
             }
             if (func_020286f4(t, 1) != 0 || gSelectKart->mUnk_110 == 2 || func_02028f84() != 0) {
                 gSelectKart->mUnk_090 = 0;

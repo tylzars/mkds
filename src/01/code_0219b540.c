@@ -462,7 +462,8 @@ void func_ov001_0219b874(void) {
         if (c == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
             d = TRUE;
         }
-        if (d == FALSE || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
+        if (d == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
+                                                                          data_02175628[idx].mUnk_4a) == 0) {
             goto next;
         }
     }
@@ -628,7 +629,7 @@ int func_ov001_0219b574(void) {
         switch (data_ov001_021a9bf4->mUnk_6c) {
             case 1:
                 if (data_ov001_021a9bf4->mUnk_50 >= 10) {
-                    if (func_02128274() != 0) {
+                    if (IsSelectReturnState0NoState1Request() != 0) {
                         return 1;
                     }
                 }

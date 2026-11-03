@@ -50,7 +50,7 @@ void func_02001ba0(void *a) {
     v1.mUnk_20 = 0;
     v1.mUnk_24 = 0;
     v1.mUnk_0c = 1;
-    func_02125c2c();
+    LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(a, &v1);
 }
 

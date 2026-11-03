@@ -357,7 +357,7 @@ void func_02117e24(void *a, void *b, void *c, s32 d) {
     func_021181fc();
     func_02036820(data_0217d360->mUnk_2c);
     if (data_021759d0->mUnk_20 == 2) {
-        func_021281fc();
+        ClearSelectReturnDisplayBitOn();
     }
 }
 
@@ -450,7 +450,7 @@ void func_02117bf8(void) {
 
 void func_02117be0(void) {
     int v1;
-    v1 = func_02128294();
+    v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
         func_021181b8();
     }
@@ -504,7 +504,7 @@ void func_021178b0(void) {
     if (b == 0) {
         goto L2;
     }
-    if (func_02128210(data_02175670[n].mUnk_00, data_02175672[n].mUnk_00) == 0) {
+    if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[n].mUnk_00, data_02175672[n].mUnk_00) == 0) {
         goto L2;
     }
 L1:

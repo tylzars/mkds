@@ -19,7 +19,7 @@ void func_ov001_02193b28(void *heap) {
     data_ov001_021a9bd4->mUnk_1c = heap;
     data_ov001_021a9bd4->mUnk_00 = 0;
     data_ov001_021a9bd4->mUnk_04 = 0;
-    switch (func_ov001_02192e94()) {
+    switch (GetOptionPrevState()) {
         case 1:
         case 4:
             data_ov001_021a9bd4->mUnk_08 = 0;
@@ -32,7 +32,7 @@ void func_ov001_02193b28(void *heap) {
     data_ov001_021a9bd4->mUnk_14 = 1;
     data_ov001_021a9bd4->mUnk_38 = FindSceneFile(data_ov001_021a8254);
     data_ov001_021a9bd4->mUnk_3c = func_02047a28(data_ov001_021a8260);
-    if (func_ov001_02192e94() == 1) {
+    if (GetOptionPrevState() == 1) {
         data_ov001_021a9bd4->mUnk_18 = 0x32;
     } else {
         data_ov001_021a9bd4->mUnk_18 = 0;
@@ -104,7 +104,7 @@ void func_ov001_02193944(void) {
             }
         }
     }
-    if (func_ov001_02192e94() == 1 && data_ov001_021a9bd4->mUnk_08 != 2) {
+    if (GetOptionPrevState() == 1 && data_ov001_021a9bd4->mUnk_08 != 2) {
         data_ov001_021a9bd4->mUnk_18 = func_020ae4c0(1, 50, 0, data_ov001_021a9bd4->mUnk_0c, 10);
     }
     if (data_ov001_021a9bd4->mUnk_0c >= 10) {
@@ -116,7 +116,7 @@ void func_ov001_02193944(void) {
 
 void func_ov001_02193924(void) {
     int v1;
-    v1 = func_02128294();
+    v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
         data_ov001_021a9bd4->mUnk_04 = 3;
     }
@@ -151,7 +151,8 @@ void func_ov001_02193774(void) {
         if (a2 == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
             b2 = TRUE;
         }
-        if (b2 != FALSE && func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) != 0) {
+        if (b2 != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
+                                                                           data_02175628[idx].mUnk_4a) != 0) {
             goto leave;
         }
     } else {
@@ -246,7 +247,8 @@ void func_ov001_021935f8(void) {
     if (data_ov001_021a9bd4->mUnk_10 == 1) {
         data_ov001_021a9bd4->mUnk_18 = func_020ae4c0(1, 0, 50, data_ov001_021a9bd4->mUnk_0c, 10);
     }
-    if (data_ov001_021a9bd4->mUnk_0c >= 10 && (data_ov001_021a9bd4->mUnk_08 != 2 || func_02128274() != 0) &&
+    if (data_ov001_021a9bd4->mUnk_0c >= 10 &&
+        (data_ov001_021a9bd4->mUnk_08 != 2 || IsSelectReturnState0NoState1Request() != 0) &&
         func_ov001_02192e84() == -1) {
         if (data_ov001_021a9bd4->mUnk_08 == 2) {
             data_ov001_021a9bd4->mUnk_04 = 6;
@@ -254,7 +256,7 @@ void func_ov001_021935f8(void) {
             func_0212611c(GetBmgEntry(data_ov001_021a9bd4->mUnk_38, 3), GetBmgEntry(data_ov001_021a9bd4->mUnk_3c, 0),
                           GetBmgEntry(data_ov001_021a9bd4->mUnk_3c, 1), 1);
         } else {
-            func_ov001_02192ea0(data_ov001_021a9bd4->mUnk_10);
+            RequestOptionState(data_ov001_021a9bd4->mUnk_10);
         }
     }
 }
@@ -390,7 +392,7 @@ void func_ov001_02193308(void) {
 }
 
 void func_ov001_021932e4(void) {
-    Unk021a9bd0_18 callbacks = data_ov001_021a8170;
+    OptionStateCallbacks callbacks = data_ov001_021a8170;
 
-    func_ov001_02192eac((UnkFunc **) &callbacks);
+    SetOptionStateCallbacks((UnkFunc **) &callbacks);
 }

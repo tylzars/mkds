@@ -269,7 +269,7 @@ s32 func_0203551c(u16 *a) {
         f = TRUE;
     }
     if (f != FALSE) {
-        z = func_02128210(data_02175670[k].mUnk_00, data_02175672[k].mUnk_00);
+        z = IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[k].mUnk_00, data_02175672[k].mUnk_00);
     }
     p = data_02174e68;
     switch (p->mUnk_8c) {

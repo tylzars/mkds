@@ -209,7 +209,7 @@ s32 func_0211a7bc(void) {
     p = data_0217d368;
     if (p->mUnk_30 == 8) {
         if (p->mUnk_b8 == 1 && (p->mUnk_2c == 3 || p->mUnk_68[2] == 1)) {
-            if (p->mUnk_38 >= 10 && func_02128274() != 0) {
+            if (p->mUnk_38 >= 10 && IsSelectReturnState0NoState1Request() != 0) {
                 return data_0217d368->mUnk_b8;
             }
         } else if (p->mUnk_38 >= 10) {
@@ -380,12 +380,10 @@ void func_0211a07c(void) {
         for (i = 0; i < 4; i++) {
             if (gSelectCup->mUnk_50 == i && gSelectCup->mUnk_54 != 0) {
                 gSelectCup->mUnk_20[data_0215caa4[i]].mUnk_00 = 1;
-                func_02124100(data_0215cab4[i], 0xe, gSelectCup->mUnk_18, gSelectCup->mUnk_20,
-                              gSelectCup->mUnk_10);
+                func_02124100(data_0215cab4[i], 0xe, gSelectCup->mUnk_18, gSelectCup->mUnk_20, gSelectCup->mUnk_10);
             } else {
                 gSelectCup->mUnk_20[data_0215caa4[i]].mUnk_00 = 0;
-                func_02124100(data_0215cab4[i], 0xf, gSelectCup->mUnk_18, gSelectCup->mUnk_20,
-                              gSelectCup->mUnk_10);
+                func_02124100(data_0215cab4[i], 0xf, gSelectCup->mUnk_18, gSelectCup->mUnk_20, gSelectCup->mUnk_10);
             }
         }
     }

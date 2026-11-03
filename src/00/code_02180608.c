@@ -102,7 +102,7 @@ void InitWiFiStates(void *heap, s32 b) {
     c.mUnk_1c = 1;
     c.mUnk_20 = 1;
     c.mUnk_24 = 1;
-    func_02125c2c();
+    LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(heap, &c);
     func_ov000_02180a54();
     func_0202c65c(heap, func_ov000_021804f4());

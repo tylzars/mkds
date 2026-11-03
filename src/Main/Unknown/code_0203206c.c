@@ -146,7 +146,7 @@ s32 func_02032280(void) {
             if (f != FALSE) {
                 d = data_02175628[v1].mUnk_48;
                 g = data_02175628[v1].mUnk_4a;
-                c = func_02128210(d, g);
+                c = IsSelectReturnState2NoState3Or4RequestAndInRect(d, g);
                 d = func_0201ea84(q->mUnk_10, d, g);
             }
             if ((u16) (data_02175628[v1].mUnk_00 & 1) != 0) {
@@ -312,7 +312,8 @@ void func_02032654(void *a, s32 b, void *c, void *d) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         k = func_02148cb8();
         o = data_02174e5c;
-        func_02025b20(o, data_02163b38, data_02163b58, data_02163b78, data_02163b94, data_02163bb0, NULL, FindSceneFile);
+        func_02025b20(o, data_02163b38, data_02163b58, data_02163b78, data_02163b94, data_02163bb0, NULL,
+                      FindSceneFile);
         func_02025a50(0, data_02174e5c->mUnk_40, o);
         n = o->mUnk_00[0].mUnk_0c->mUnk_06;
         m = o->mUnk_00[0].mUnk_14->mUnk_06;

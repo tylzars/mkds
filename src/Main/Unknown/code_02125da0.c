@@ -33,10 +33,10 @@ void func_02125de0(void *a, void *b) {
     }
     if (((Unk02125de0Arg *) b)->mUnk_1c != 0) {
         data_0217d3ec->mUnk_08 = 1;
-        data_0217d3ec->mUnk_810 = func_021287cc(a, data_0217d3ec->mUnk_810);
+        data_0217d3ec->mUnk_810 = InitSelectReturn(a, data_0217d3ec->mUnk_810);
     }
     if (((Unk02125de0Arg *) b)->mUnk_20 != 0) {
-        data_0217d3ec->mUnk_0c = ((Unk02125de0Arg *) b)->mUnk_24;
+        data_0217d3ec->mBackScreenKind = ((Unk02125de0Arg *) b)->mUnk_24;
         func_02125ba4();
         data_0217d3ec->mUnk_810 = func_02125960(data_0217d3ec->mUnk_810);
     }

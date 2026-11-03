@@ -201,7 +201,7 @@ void func_020ad344(void) {
     s.mUnk_1c = 0;
     s.mUnk_20 = 0;
     s.mUnk_24 = 0;
-    func_02125c2c();
+    LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0((void *) func_020ada10(), &s);
     data_0217b340->mUnk_8b8 = func_0203bedc((void *) func_020ada10());
     func_020acab8(0);

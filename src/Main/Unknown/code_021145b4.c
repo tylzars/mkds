@@ -378,7 +378,7 @@ void func_0211553c(void) {
         data_0217d350->mUnk_3c[n + data_0215c4b8[i]].mUnk_04 = v;
     }
     if (data_0217d350->mUnk_5c >= 0xa) {
-        if (func_02128294() != 0) {
+        if (IsSelectReturnState2NoState3Or4Request() != 0) {
             func_02115e0c();
         }
     }
@@ -415,7 +415,7 @@ void func_02115204(void) {
     if ((u16) (data_02175628[i].mUnk_00 & 2) != 0 ||
         ((n = !(data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) &&
               (data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0)) &&
-         func_02128210(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) != 0)) {
+         IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) != 0)) {
         if (func_0211606c() != 0) {
             return;
         }
@@ -637,7 +637,7 @@ void func_02114cb0(void) {
         data_0217d350->mUnk_3c[n + data_0215c4b8[i]].mUnk_04 = v;
     }
     if (data_0217d350->mUnk_5c > 0xa) {
-        if (func_02128274() != 0) {
+        if (IsSelectReturnState0NoState1Request() != 0) {
             func_02115d08();
         }
     }
@@ -773,7 +773,7 @@ void func_0211489c(void) {
         data_0217d350->mUnk_3c[z + data_0215c4b8[i]].mUnk_04 = a;
     }
     if (data_0217d350->mUnk_5c > 10) {
-        if (func_02128294()) {
+        if (IsSelectReturnState2NoState3Or4Request()) {
             func_02115e0c();
         }
     }

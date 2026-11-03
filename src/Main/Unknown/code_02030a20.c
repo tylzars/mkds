@@ -145,7 +145,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
             if (b1 != 0) {
                 x = data_02175670[k].mUnk_00;
                 y = data_02175672[k].mUnk_00;
-                z = func_02128210(x, y);
+                z = IsSelectReturnState2NoState3Or4RequestAndInRect(x, y);
                 m = func_0201ea84(p->mUnk_10, x, y);
             }
             if ((u16) (data_02175628[k].mUnk_00 & 1) != 0 || m == 0) {
@@ -294,7 +294,7 @@ s32 func_02030b18(Unk02030b18 *a) {
                 b1 = 1;
             }
             if (b1 != 0) {
-                v = func_02128210(data_02175670[k].mUnk_00, data_02175672[k].mUnk_00);
+                v = IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[k].mUnk_00, data_02175672[k].mUnk_00);
             }
             y = data_02174e58->mUnk_90;
             if (y == 0) {

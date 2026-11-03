@@ -370,7 +370,7 @@ void func_ov001_021a1674(void) {
 
 void func_ov001_021a165c(void) {
     int v1;
-    v1 = func_02128294();
+    v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
         func_ov001_021a19ac();
     }
@@ -411,7 +411,8 @@ void func_ov001_021a13d8(void) {
         if (a2 == 0 && data_02175628[idx].mUnk_54 == 0 && w != 0) {
             b2 = TRUE;
         }
-        if (b2 == FALSE || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
+        if (b2 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
+                                                                           data_02175628[idx].mUnk_4a) == 0) {
             goto next;
         }
     }

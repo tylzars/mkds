@@ -360,7 +360,7 @@ void func_02119544(void) {
 
 void func_0211952c(void) {
     int v1;
-    v1 = func_02128294();
+    v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
         func_02119bdc();
     }

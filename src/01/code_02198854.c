@@ -268,7 +268,8 @@ void func_ov001_02198ec0(void) {
         if (d == FALSE && data_02175628[idx].mUnk_54 == 0 && v != 0) {
             c = TRUE;
         }
-        if (c != FALSE && func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) != 0) {
+        if (c != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
+                                                                          data_02175628[idx].mUnk_4a) != 0) {
         L1:
             data_ov001_021a9be8->mUnk_04 = 4;
             data_ov001_021a9be8->mUnk_34 = 0;
@@ -406,7 +407,7 @@ void func_ov001_02198d8c(void) {
     }
     data_ov001_021a9be8->mUnk_26[2].mUnk_02 = -func_02128244(data_ov001_021a9be8->mUnk_20);
     if (data_ov001_021a9be8->mUnk_20 >= 10) {
-        if (data_ov001_021a9be8->mUnk_20 >= 10 && func_02128294() != 0) {
+        if (data_ov001_021a9be8->mUnk_20 >= 10 && IsSelectReturnState2NoState3Or4Request() != 0) {
             data_ov001_021a9be8->mUnk_3c = 0;
             if (data_ov001_021a9be8->mUnk_1c != 0) {
                 func_02125ebc(0x21);
@@ -417,7 +418,7 @@ void func_ov001_02198d8c(void) {
                 data_ov001_021a9be8->mUnk_20 = 0;
                 func_021282c8();
             } else {
-                func_ov001_02192ea0(data_ov001_021a9be8->mUnk_34);
+                RequestOptionState(data_ov001_021a9be8->mUnk_34);
             }
         }
     }
@@ -442,8 +443,8 @@ void func_ov001_02198d20(void) {
             func_02128374();
         }
     }
-    if (func_02125f88() != 0 && func_02128294() != 0) {
-        func_ov001_02192ea0(data_ov001_021a9be8->mUnk_34);
+    if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
+        RequestOptionState(data_ov001_021a9be8->mUnk_34);
     }
 }
 
@@ -597,5 +598,5 @@ void func_ov001_02198878(void) {
 void func_ov001_02198854(void) {
     UnkFunc *table[4] = {func_ov001_02199640, func_ov001_021995f8, func_ov001_02198918, func_ov001_02198878};
 
-    func_ov001_02192eac((UnkFunc **) (table));
+    SetOptionStateCallbacks((UnkFunc **) (table));
 }

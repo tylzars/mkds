@@ -47,8 +47,8 @@ void func_ov000_021856a8(void) {
     }
     for (i = 0; i < 12; i++) {
         n -= func_021243ac(gWiFiAikotobaCheck->mUnk_2c, data_ov000_021b06dc[i], gWiFiAikotobaCheck->mUnk_48, 8, 0x10,
-                           a[i], gWiFiAikotobaCheck->mUnk_34, gWiFiAikotobaCheck->mUnk_40,
-                           gWiFiAikotobaCheck->mUnk_30, n);
+                           a[i], gWiFiAikotobaCheck->mUnk_34, gWiFiAikotobaCheck->mUnk_40, gWiFiAikotobaCheck->mUnk_30,
+                           n);
         z[0] = 0;
         z[1] = 0;
         z[0] = gWiFiAikotobaCheck->mUnk_0e[i];
@@ -136,7 +136,8 @@ void func_ov000_02185418(void) {
         if (b == FALSE && data_02175628[i].mUnk_54 == 0 && c != 0) {
             a = TRUE;
         }
-        if (a == FALSE || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (a == FALSE ||
+            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
             return;
         }
     }
@@ -149,7 +150,7 @@ void func_ov000_02185418(void) {
 void func_ov000_021853c4(void) {
     gWiFiAikotobaCheck->mUnk_08 = gWiFiAikotobaCheck->mUnk_08 + 1;
     gWiFiAikotobaCheck->mUnk_0c = func_020ae4c0(1, 0, 0x50, gWiFiAikotobaCheck->mUnk_08, 15);
-    if (gWiFiAikotobaCheck->mUnk_08 >= 15 && func_02125f88() != 0 && func_02128294() != 0) {
+    if (gWiFiAikotobaCheck->mUnk_08 >= 15 && func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         RequestWiFiState(gWiFiAikotobaCheck->mUnk_28);
     }
 }

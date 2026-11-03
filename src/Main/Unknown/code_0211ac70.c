@@ -1457,7 +1457,7 @@ void func_0211afd0(void) {
     switch (data_0217d368->mUnk_2c) {
         case 0:
         case 1:
-            if (data_0217d368->mUnk_38 >= 10 && func_02128294() != 0) {
+            if (data_0217d368->mUnk_38 >= 10 && IsSelectReturnState2NoState3Or4Request() != 0) {
                 func_0211ba98();
                 return;
             }
@@ -1516,7 +1516,8 @@ void func_0211acec(void) {
         if (b == FALSE && data_0217567c[i].mUnk_00 == 0 && x != 0) {
             c = TRUE;
         }
-        if (c == FALSE || func_02128210(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
+        if (c == FALSE ||
+            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
             goto chain;
         }
     }

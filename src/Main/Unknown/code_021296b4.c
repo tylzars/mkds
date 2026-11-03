@@ -168,7 +168,7 @@ void func_0212a1e0(void *a, s32 b) {
     } else {
         c.mUnk_24 = 0;
     }
-    func_02125c2c();
+    LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(a, &c);
     func_02129c18();
     func_02129cbc();

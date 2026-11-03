@@ -9,11 +9,11 @@
 #include "code_0214a2f4.h"
 #include "registers.h"
 
-void func_ov001_021932c8(void) {
-    data_ov001_021a9bd0->mUnk_18.mUnk_00 = NULL;
-    data_ov001_021a9bd0->mUnk_18.mUnk_04 = NULL;
-    data_ov001_021a9bd0->mUnk_18.mUnk_08 = NULL;
-    data_ov001_021a9bd0->mUnk_18.mUnk_0c = NULL;
+void ClearOptionStateCallbacks(void) {
+    gOptionStates->mCallbacks.mInit = NULL;
+    gOptionStates->mCallbacks.mRelease = NULL;
+    gOptionStates->mCallbacks.mAdvance = NULL;
+    gOptionStates->mCallbacks.mUnk_0c = NULL;
 }
 
 void LoadOptionData(void) {
@@ -62,11 +62,11 @@ void func_ov001_021930ac(void) {
     func_0214d05c(b, d2, 0x1000);
 }
 
-void func_ov001_02192fb8(void *heap, s16 a) {
+void InitOptionStates(void *heap, s16 a) {
     Unk02125de0Arg arg;
-    data_ov001_021a9bd0 = func_02036bec(heap, 0x2c);
-    data_ov001_021a9bd0->mUnk_00 = heap;
-    data_ov001_021a9bd0->mUnk_28 = func_021250b0(heap);
+    gOptionStates = func_02036bec(heap, 0x2c);
+    gOptionStates->mHeap = heap;
+    gOptionStates->mUnk_28 = func_021250b0(heap);
     func_ov001_021930ac();
     func_0212abdc(heap, func_ov001_0219e920());
     arg.mUnk_00 = 1;
@@ -79,58 +79,58 @@ void func_ov001_02192fb8(void *heap, s16 a) {
     arg.mUnk_1c = 1;
     arg.mUnk_20 = 1;
     arg.mUnk_24 = 0;
-    func_02125c2c();
+    LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(heap, &arg);
-    data_ov001_021a9bd0->mUnk_04 = func_020369fc(data_ov001_021a9bd0->mUnk_00);
+    gOptionStates->mStateHeap = func_020369fc(gOptionStates->mHeap);
     LoadOptionData();
-    func_ov001_021932c8();
-    data_ov001_021a9bd0->mUnk_14 = -1;
+    ClearOptionStateCallbacks();
+    gOptionStates->mUnk_14 = -1;
     switch (a) {
         case 0:
-            data_ov001_021a9bd0->mUnk_10 = 4;
-            data_ov001_021a9bd0->mUnk_08 = 0;
+            gOptionStates->mPrevState = 4;
+            gOptionStates->mState = 0;
             func_ov001_021932e4();
             break;
         case 14:
-            data_ov001_021a9bd0->mUnk_10 = 5;
-            data_ov001_021a9bd0->mUnk_08 = 2;
+            gOptionStates->mPrevState = 5;
+            gOptionStates->mState = 2;
             func_ov001_02199964();
             break;
         case 3:
-            data_ov001_021a9bd0->mUnk_10 = 6;
+            gOptionStates->mPrevState = 6;
             if (data_0217b488->mUnk_18 == 0) {
-                data_ov001_021a9bd0->mUnk_08 = 2;
+                gOptionStates->mState = 2;
                 func_ov001_02199964();
             } else {
-                data_ov001_021a9bd0->mUnk_08 = 3;
+                gOptionStates->mState = 3;
                 func_ov001_0219d5dc();
             }
             break;
     }
-    data_ov001_021a9bd0->mUnk_0c = -1;
-    data_ov001_021a9bd0->mUnk_18.mUnk_00(data_ov001_021a9bd0->mUnk_04);
+    gOptionStates->mNextState = -1;
+    gOptionStates->mCallbacks.mInit(gOptionStates->mStateHeap);
 }
 
 void func_ov001_02192f8c(void) {
-    if (data_ov001_021a9bd0->mUnk_18.mUnk_04 != NULL) {
-        data_ov001_021a9bd0->mUnk_18.mUnk_04();
+    if (gOptionStates->mCallbacks.mRelease != NULL) {
+        gOptionStates->mCallbacks.mRelease();
     }
-    func_ov001_021932c8();
+    ClearOptionStateCallbacks();
     func_0212abd0();
     func_02125da0();
-    data_ov001_021a9bd0 = NULL;
+    gOptionStates = NULL;
 }
 
-void func_ov001_02192ee4(void) {
-    if (data_ov001_021a9bd0->mUnk_18.mUnk_08 != NULL) {
-        data_ov001_021a9bd0->mUnk_18.mUnk_08();
+void AdvanceOptionStates(void) {
+    if (gOptionStates->mCallbacks.mAdvance != NULL) {
+        gOptionStates->mCallbacks.mAdvance();
     }
-    if (data_ov001_021a9bd0->mUnk_0c != -1) {
-        data_ov001_021a9bd0->mUnk_18.mUnk_04();
-        func_ov001_021932c8();
-        func_02036ab0((void *) data_ov001_021a9bd0->mUnk_04);
-        data_ov001_021a9bd0->mUnk_04 = func_020369fc(data_ov001_021a9bd0->mUnk_00);
-        switch (data_ov001_021a9bd0->mUnk_0c) {
+    if (gOptionStates->mNextState != -1) {
+        gOptionStates->mCallbacks.mRelease();
+        ClearOptionStateCallbacks();
+        func_02036ab0((void *) gOptionStates->mStateHeap);
+        gOptionStates->mStateHeap = func_020369fc(gOptionStates->mHeap);
+        switch (gOptionStates->mNextState) {
             case 0:
                 func_ov001_021932e4();
                 break;
@@ -144,11 +144,11 @@ void func_ov001_02192ee4(void) {
                 func_ov001_0219d5dc();
                 break;
         }
-        data_ov001_021a9bd0->mUnk_10 = data_ov001_021a9bd0->mUnk_08;
-        data_ov001_021a9bd0->mUnk_08 = data_ov001_021a9bd0->mUnk_0c;
-        data_ov001_021a9bd0->mUnk_0c = -1;
-        if (data_ov001_021a9bd0->mUnk_18.mUnk_00 != NULL) {
-            data_ov001_021a9bd0->mUnk_18.mUnk_00(data_ov001_021a9bd0->mUnk_04);
+        gOptionStates->mPrevState = gOptionStates->mState;
+        gOptionStates->mState = gOptionStates->mNextState;
+        gOptionStates->mNextState = -1;
+        if (gOptionStates->mCallbacks.mInit != NULL) {
+            gOptionStates->mCallbacks.mInit(gOptionStates->mStateHeap);
         }
     }
     func_02125928();
@@ -156,31 +156,31 @@ void func_ov001_02192ee4(void) {
 }
 
 void func_ov001_02192ec4(void) {
-    if (data_ov001_021a9bd0->mUnk_18.mUnk_0c != NULL) {
-        (*data_ov001_021a9bd0->mUnk_18.mUnk_0c)();
+    if (gOptionStates->mCallbacks.mUnk_0c != NULL) {
+        (*gOptionStates->mCallbacks.mUnk_0c)();
     }
     func_021258f0();
     return;
 }
 
-void func_ov001_02192eac(UnkFunc **a) {
-    data_ov001_021a9bd0->mUnk_18 = *(Unk021a9bd0_18 *) a;
+void SetOptionStateCallbacks(UnkFunc **a) {
+    gOptionStates->mCallbacks = *(OptionStateCallbacks *) a;
 }
 
-void func_ov001_02192ea0(u32 a) {
-    data_ov001_021a9bd0->mUnk_0c = a;
+void RequestOptionState(u32 a) {
+    gOptionStates->mNextState = a;
     return;
 }
 
-u32 func_ov001_02192e94(void) {
-    return (u32) data_ov001_021a9bd0->mUnk_10;
+u32 GetOptionPrevState(void) {
+    return (u32) gOptionStates->mPrevState;
 }
 
 int func_ov001_02192e84(void) {
-    return data_ov001_021a9bd0->mUnk_14;
+    return gOptionStates->mUnk_14;
 }
 
 void func_ov001_02192e78(u16 a) {
-    data_ov001_021a9bd0->mUnk_14 = a;
+    gOptionStates->mUnk_14 = a;
     return;
 }

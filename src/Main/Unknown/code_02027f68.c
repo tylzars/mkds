@@ -33,7 +33,7 @@ u32 func_020280dc(void) {
 void func_0202808c(void) {
     int v1;
     if ((gSelectKart->mUnk_100 == 1) && (v1 = ((u32) func_0202811c()), v1 == 2)) {
-        func_021281fc();
+        ClearSelectReturnDisplayBitOn();
     }
     v1 = func_020280dc();
     if (v1 == 0) {

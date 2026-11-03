@@ -194,11 +194,14 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     }
     p = gSelectCharacter;
     if (p->mUnk_128 == FALSE) {
-        func_02025b20(&p->mUnk_000, gSelectCharacterGpMNcgrName, gSelectCharacterGpMNcerName, gSelectCharacterGpMONclrName, gSelectCharacterGpMBnclName, NULL, NULL, func_02047a28);
+        func_02025b20(&p->mUnk_000, gSelectCharacterGpMNcgrName, gSelectCharacterGpMNcerName,
+                      gSelectCharacterGpMONclrName, gSelectCharacterGpMBnclName, NULL, NULL, func_02047a28);
         func_02025a50(0, gSelectCharacter->mUnk_05c, &p->mUnk_000);
-        func_02025b20(&v, gSelectCharacterGpTitleMNcgrName, gSelectCharacterGpTitleMNcerName, NULL, gSelectCharacterGpTitleMBnclName, NULL, NULL, func_02047a28);
+        func_02025b20(&v, gSelectCharacterGpTitleMNcgrName, gSelectCharacterGpTitleMNcerName, NULL,
+                      gSelectCharacterGpTitleMBnclName, NULL, NULL, func_02047a28);
         func_02124748(0, v.mUnk_08, v.mUnk_00, v.mUnk_0c, 0, 0, p->mUnk_000.mUnk_08, p->mUnk_000.mUnk_0c);
-        func_02025b20(&gSelectCharacter->mUnk_038, gSelectCharacterGpNameMNcgrName, gSelectCharacterGpNameMNcerName, NULL, gSelectCharacterGpNameMBnclName, NULL, NULL, func_02047a28);
+        func_02025b20(&gSelectCharacter->mUnk_038, gSelectCharacterGpNameMNcgrName, gSelectCharacterGpNameMNcerName,
+                      NULL, gSelectCharacterGpNameMBnclName, NULL, NULL, func_02047a28);
         p->mUnk_000.mUnk_18[9].mUnk_00 = 0;
         p->mUnk_000.mUnk_18[8].mUnk_00 = p->mUnk_000.mUnk_18[9].mUnk_00;
         p->mUnk_000.mUnk_18[7].mUnk_00 = p->mUnk_000.mUnk_18[8].mUnk_00;
@@ -208,7 +211,8 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         s = &gSelectCharacter->mUnk_01c;
-        func_02025b20(s, gSelectCharacterSNcgrName, gSelectCharacterSNcerName, gSelectCharacterSONclrName, gSelectCharacterSBnclName, NULL, gSelectCharacterSBnblName, func_02047a28);
+        func_02025b20(s, gSelectCharacterSNcgrName, gSelectCharacterSNcerName, gSelectCharacterSONclrName,
+                      gSelectCharacterSBnclName, NULL, gSelectCharacterSBnblName, func_02047a28);
         func_02025a50(1, gSelectCharacter->mUnk_05c, s);
         s->mUnk_18[24].mUnk_00 = 0;
         for (i = 0; i < 12; i++) {
@@ -440,7 +444,8 @@ int AdvanceSelectCharacter(void) {
                     func_021106a8(func_02025eb0(gSelectCharacter->mUnk_0f0), 0);
                     gSelectCharacter->mUnk_068 = 0;
                     gSelectCharacter->mUnk_06c = 5;
-                } else if (gSelectCharacter->mUnk_080 == 0 && func_02128210(x, y) != 0) {
+                } else if (gSelectCharacter->mUnk_080 == 0 &&
+                           IsSelectReturnState2NoState3Or4RequestAndInRect(x, y) != 0) {
                     func_020273c0();
                 }
             } else if (func_020270d0() != 0) {
@@ -569,7 +574,8 @@ int AdvanceSelectCharacter(void) {
             }
             break;
         case 6:
-            if ((g->mUnk_080 == 1 && func_0202b888() != 0) || (gSelectCharacter->mUnk_080 == 2 && func_02121d0c() != 0)) {
+            if ((g->mUnk_080 == 1 && func_0202b888() != 0) ||
+                (gSelectCharacter->mUnk_080 == 2 && func_02121d0c() != 0)) {
                 if (gSelectCharacter->mUnk_080 == 2) {
                     func_021219cc();
                 }

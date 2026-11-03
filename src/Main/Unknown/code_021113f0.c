@@ -136,7 +136,7 @@ void func_021128cc(void) {
 
 void func_021128b4(void) {
     int v1;
-    v1 = func_02128294();
+    v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
         func_0211346c();
     }
@@ -203,7 +203,8 @@ void func_0211256c(void) {
         if (f == FALSE && data_0217567c[i].mUnk_00 == 0 && x != 0) {
             g = TRUE;
         }
-        if (g == FALSE || func_02128210(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
+        if (g == FALSE ||
+            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
             goto l1;
         }
     }
@@ -775,7 +776,7 @@ void func_021115b0(void *a, s16 b) {
     v.mUnk_1c = 1;
     v.mUnk_20 = 1;
     v.mUnk_24 = 0;
-    func_02125c2c();
+    LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(a, &v);
     func_021144c0(data_0217d344->mUnk_00);
     func_021143f4();

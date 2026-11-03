@@ -232,8 +232,8 @@ void func_0202d210(void *a, void *b, void *c) {
     func_020258d4(0, data_02174e40, data_usa_02162d1c, data_usa_02162d3c, data_usa_02162d5c, 0, FindSceneFile);
     p = &data_02174e40->mUnk_050[0];
     n = func_02148cb8();
-    func_02025b20(p, data_usa_02162d7c, data_usa_02162da0, data_usa_02162dc4, data_usa_02162de4, data_usa_02162e04, NULL,
-                  FindSceneFile);
+    func_02025b20(p, data_usa_02162d7c, data_usa_02162da0, data_usa_02162dc4, data_usa_02162de4, data_usa_02162e04,
+                  NULL, FindSceneFile);
     func_02025a50(0, data_02174e40->mUnk_0dc, p);
     for (i = 0; i < p->mUnk_14->mUnk_06; i++) {
         n -= func_02025a00(0, data_02174e40->mUnk_0dc, p, data_usa_02153bec[i], n);
@@ -315,7 +315,7 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
         b = 1;
     }
     if (b != 0) {
-        c = func_02128210(data_02175628[e].mUnk_48, data_02175628[e].mUnk_4a);
+        c = IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[e].mUnk_48, data_02175628[e].mUnk_4a);
     }
     switch (data_02174e40->mUnk_0b0) {
         case 0:

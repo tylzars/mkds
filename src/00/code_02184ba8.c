@@ -81,10 +81,8 @@ void func_ov000_021851a0(void) {
     LocateNcer(&gWiFiAikotoba->mUnk_20, v1);
     v1 = FindSceneFile(data_ov000_021b0ed0);
     LocateNclr(&gWiFiAikotoba->mUnk_28, v1);
-    func_0214bea4((const void *) gWiFiAikotoba->mUnk_24->mUnk_14, 0,
-                  (u32) (gWiFiAikotoba->mUnk_24->mUnk_10));
-    func_0214c028((const void *) gWiFiAikotoba->mUnk_28->mUnk_0c, 0,
-                  (u32) (gWiFiAikotoba->mUnk_28->mUnk_08));
+    func_0214bea4((const void *) gWiFiAikotoba->mUnk_24->mUnk_14, 0, (u32) (gWiFiAikotoba->mUnk_24->mUnk_10));
+    func_0214c028((const void *) gWiFiAikotoba->mUnk_28->mUnk_0c, 0, (u32) (gWiFiAikotoba->mUnk_28->mUnk_08));
     return;
 }
 
@@ -131,7 +129,7 @@ void func_ov000_021850d0(void) {
 
 void func_ov000_021850b0(void) {
     int v1;
-    v1 = func_02128294();
+    v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
         gWiFiAikotoba->mUnk_04 = 3;
     }
@@ -170,7 +168,8 @@ void func_ov000_02184f1c(void) {
         if (c == FALSE && data_02175628[i].mUnk_54 == 0 && d != 0) {
             b = TRUE;
         }
-        if (b == FALSE || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (b == FALSE ||
+            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
             goto next;
         }
     }
@@ -276,7 +275,7 @@ void func_ov000_02184d4c(void) {
     void *a;
     void *b;
 
-    if (func_02125f88() != 0 && func_02128274() != 0) {
+    if (func_02125f88() != 0 && IsSelectReturnState0NoState1Request() != 0) {
         gWiFiAikotoba->mUnk_04 = 7;
         a = GetBmgEntry(gWiFiAikotoba->mUnk_38, 0x10);
         b = GetBmgEntry(gWiFiAikotoba->mUnk_3c, 0);

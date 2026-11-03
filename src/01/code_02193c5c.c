@@ -541,7 +541,8 @@ void func_ov001_021942f8(void) {
         if (y3 == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
             x3 = TRUE;
         }
-        if (x3 == FALSE || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
+        if (x3 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
+                                                                           data_02175628[idx].mUnk_4a) == 0) {
             goto next;
         }
     }

@@ -120,7 +120,7 @@ s32 func_020303e8(void) {
             if (func_02030708(i) != 0) {
                 b = func_020306e0(i);
                 c = func_020306b8(i);
-                a = func_02128210(b, c);
+                a = IsSelectReturnState2NoState3Or4RequestAndInRect(b, c);
                 b = func_020291c4(b, c, o->mUnk_10);
             }
             if (func_02030688(i, 1) != 0) {

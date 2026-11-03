@@ -111,7 +111,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
     v.mUnk_1c = 0;
     v.mUnk_20 = 0;
     v.mUnk_24 = 0;
-    func_02125c2c();
+    LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(a, &v);
     func_020629a4();
     data_02174e60->mUnk_0c8 = func_02047a28(data_0216416c);

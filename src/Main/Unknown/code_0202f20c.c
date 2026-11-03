@@ -69,7 +69,7 @@ void func_0202f2b4(void *a) {
         v1.mUnk_1c = 1;
         v1.mUnk_20 = func_0202f498() == 0;
         v1.mUnk_24 = 0;
-        func_02125c2c();
+        LoadTxtSystemAndSelectChoisesAndSelectReturnData();
         func_02125de0(a, &v1);
     }
     func_0212abdc(a, data_02174e4c);

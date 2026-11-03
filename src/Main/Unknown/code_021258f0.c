@@ -10,7 +10,7 @@ void func_02125928(void) {
         func_021279a0();
     }
     if (data_0217d3ec->mUnk_08 != 0) {
-        func_02128458();
+        AdvanceSelectReturn();
     }
 }
 
@@ -22,7 +22,7 @@ void func_021258f0(void) {
         func_021278f4();
     }
     if (data_0217d3ec->mUnk_08 != 0) {
-        func_021283bc();
+        WriteSelectReturnRegisters();
     }
 }
 

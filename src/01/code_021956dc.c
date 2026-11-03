@@ -97,31 +97,27 @@ void func_ov001_021975f4(u16 a) {
         index = data_ov001_021a6850[0][0];
         gRecordTAtt->mUnk_38[index].mUnk_00 = 1;
         tile = data_ov001_021a6864[result];
-        func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 0,
-                      index, gRecordTAtt->mUnk_04, gRecordTAtt->mUnk_08);
+        func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 0, index,
+                      gRecordTAtt->mUnk_04, gRecordTAtt->mUnk_08);
         palette = (u8 *) ((Unk020b4a44 *) gRecordTAtt->mUnk_30)->mUnk_0c;
         func_02016468(0xe, data_ov001_021a683c[0] << 5,
-                      palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5),
-                      0x20);
+                      palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], value);
         slot = data_ov001_021a6850[0][1];
         gRecordTAtt->mUnk_38[slot].mUnk_00 = 1;
-        func_021171a0(result, gRecordTAtt->mUnk_04, gRecordTAtt->mUnk_08, slot, data_ov001_021a683c[5],
-                      0);
+        func_021171a0(result, gRecordTAtt->mUnk_04, gRecordTAtt->mUnk_08, slot, data_ov001_021a683c[5], 0);
         cnt = gRecordTAtt->mUnk_08->mUnk_06;
         func_02060134(data_ov001_021a6900[gRecordTAtt->mUnk_6c], value, &time);
         func_02116b8c(&time, str);
         pal = data_ov001_021a67d4[0];
         gRecordTAtt->mUnk_38[cnt + pal].mUnk_00 = 1;
-        func_02124224(0, pal, gRecordTAtt->mUnk_10, str, gRecordTAtt->mUnk_08,
-                      gRecordTAtt->mUnk_38, 7);
+        func_02124224(0, pal, gRecordTAtt->mUnk_10, str, gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38, 7);
         func_020600d0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], value, name);
         func_0214d168(str, 0, 0x20);
         func_0214cffc(name, str, 0x14);
         pal = data_ov001_021a6810[0];
         gRecordTAtt->mUnk_38[cnt + pal].mUnk_00 = 1;
-        func_0212426c(0, pal, gRecordTAtt->mUnk_10, str, gRecordTAtt->mUnk_08,
-                      gRecordTAtt->mUnk_38);
+        func_0212426c(0, pal, gRecordTAtt->mUnk_10, str, gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38);
     } else {
         u16 cnt;
 
@@ -130,31 +126,27 @@ void func_ov001_021975f4(u16 a) {
         index = data_ov001_021a6850[a][0];
         gRecordTAtt->mUnk_3c[index].mUnk_00 = 1;
         tile = data_ov001_021a6864[result];
-        func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 1,
-                      index, gRecordTAtt->mUnk_18, gRecordTAtt->mUnk_1c);
+        func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 1, index,
+                      gRecordTAtt->mUnk_18, gRecordTAtt->mUnk_1c);
         palette = (u8 *) ((Unk020b4a44 *) gRecordTAtt->mUnk_30)->mUnk_0c;
         func_02016468(0x1e, data_ov001_021a683c[a] << 5,
-                      palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5),
-                      0x20);
+                      palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], value);
         slot = data_ov001_021a6852[a][0];
         gRecordTAtt->mUnk_3c[slot].mUnk_00 = 1;
-        func_021171a0(result, gRecordTAtt->mUnk_18, gRecordTAtt->mUnk_1c, slot, data_ov001_021a6846[a],
-                      1);
+        func_021171a0(result, gRecordTAtt->mUnk_18, gRecordTAtt->mUnk_1c, slot, data_ov001_021a6846[a], 1);
         cnt = gRecordTAtt->mUnk_1c->mUnk_06;
         func_02060134(data_ov001_021a6900[gRecordTAtt->mUnk_6c], value, &time);
         func_02116b8c(&time, str);
         pal = data_ov001_021a67d4[a];
         gRecordTAtt->mUnk_3c[cnt + pal].mUnk_00 = 1;
-        func_02124224(1, pal, gRecordTAtt->mUnk_24, str, gRecordTAtt->mUnk_1c,
-                      gRecordTAtt->mUnk_3c, 7);
+        func_02124224(1, pal, gRecordTAtt->mUnk_24, str, gRecordTAtt->mUnk_1c, gRecordTAtt->mUnk_3c, 7);
         func_020600d0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], value, name);
         func_0214d168(str, 0, 0x20);
         func_0214cffc(name, str, 0x14);
         pal = data_ov001_021a6810[a];
         gRecordTAtt->mUnk_3c[cnt + pal].mUnk_00 = 1;
-        func_0212426c(1, pal, gRecordTAtt->mUnk_24, str, gRecordTAtt->mUnk_1c,
-                      gRecordTAtt->mUnk_3c);
+        func_0212426c(1, pal, gRecordTAtt->mUnk_24, str, gRecordTAtt->mUnk_1c, gRecordTAtt->mUnk_3c);
     }
 }
 
@@ -166,16 +158,16 @@ void func_ov001_0219750c(u16 a) {
         gRecordTAtt->mUnk_38[data_ov001_021a6850[0][1]].mUnk_00 = 0;
         cnt = gRecordTAtt->mUnk_08->mUnk_06;
         gRecordTAtt->mUnk_38[cnt + data_ov001_021a67d4[0]].mUnk_00 = 1;
-        func_02124224(0, data_ov001_021a67d4[0], gRecordTAtt->mUnk_10, L"--:--:---",
-                      gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38, 7);
+        func_02124224(0, data_ov001_021a67d4[0], gRecordTAtt->mUnk_10, L"--:--:---", gRecordTAtt->mUnk_08,
+                      gRecordTAtt->mUnk_38, 7);
         gRecordTAtt->mUnk_38[cnt + data_ov001_021a6810[0]].mUnk_00 = 0;
     } else {
         gRecordTAtt->mUnk_3c[data_ov001_021a6850[a][0]].mUnk_00 = 0;
         gRecordTAtt->mUnk_3c[data_ov001_021a6852[a][0]].mUnk_00 = 0;
         cnt = gRecordTAtt->mUnk_1c->mUnk_06;
         gRecordTAtt->mUnk_3c[cnt + data_ov001_021a67d4[a]].mUnk_00 = 1;
-        func_02124224(1, data_ov001_021a67d4[a], gRecordTAtt->mUnk_24, L"--:--:---",
-                      gRecordTAtt->mUnk_1c, gRecordTAtt->mUnk_3c, 7);
+        func_02124224(1, data_ov001_021a67d4[a], gRecordTAtt->mUnk_24, L"--:--:---", gRecordTAtt->mUnk_1c,
+                      gRecordTAtt->mUnk_3c, 7);
         gRecordTAtt->mUnk_3c[cnt + data_ov001_021a6810[a]].mUnk_00 = 0;
     }
 }
@@ -192,8 +184,8 @@ void func_ov001_021972f4(void) {
     u16 cnt;
 
     p = gRecordTAtt;
-    func_0212426c(0, 0, gRecordTAtt->mUnk_10, GetBmgEntry(p->mUnk_40, data_ov001_021a6880[p->mUnk_6c]),
-                  p->mUnk_08, p->mUnk_38);
+    func_0212426c(0, 0, gRecordTAtt->mUnk_10, GetBmgEntry(p->mUnk_40, data_ov001_021a6880[p->mUnk_6c]), p->mUnk_08,
+                  p->mUnk_38);
     for (i = 0; i < 5; i++) {
         if (func_02060228(data_ov001_021a6900[gRecordTAtt->mUnk_6c], data_ov001_021a6828[i])) {
             func_ov001_021975f4(i);
@@ -210,31 +202,28 @@ void func_ov001_021972f4(void) {
                       (void *) (gRecordTAtt->mUnk_34), 0, (u32) (5), (void *) (gRecordTAtt->mUnk_04),
                       (void *) (gRecordTAtt->mUnk_08));
         palette = (u8 *) ((Unk020b4a44 *) gRecordTAtt->mUnk_30)->mUnk_0c;
-        func_02016468(0xe, 0x80,
-                      palette + (func_02124a68((u32) (tile), (void *) (gRecordTAtt->mUnk_2c),
-                                               (void *) (gRecordTAtt->mUnk_34))
-                                 << 5),
-                      0x20);
+        func_02016468(
+            0xe, 0x80,
+            palette +
+                (func_02124a68((u32) (tile), (void *) (gRecordTAtt->mUnk_2c), (void *) (gRecordTAtt->mUnk_34)) << 5),
+            0x20);
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], 5);
         gRecordTAtt->mUnk_38[6].mUnk_00 = 1;
         func_021171a0(result, gRecordTAtt->mUnk_04, gRecordTAtt->mUnk_08, 6, 6, 0);
         func_02060134(data_ov001_021a6900[gRecordTAtt->mUnk_6c], 5, &time);
         func_02116b8c(&time, str);
         gRecordTAtt->mUnk_38[cnt + 2].mUnk_00 = 1;
-        func_02124224(0, 2, gRecordTAtt->mUnk_10, str, gRecordTAtt->mUnk_08,
-                      gRecordTAtt->mUnk_38, 7);
+        func_02124224(0, 2, gRecordTAtt->mUnk_10, str, gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38, 7);
         func_020600d0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], 5, name);
         func_0214d168(str, 0, 0x20);
         func_0214cffc(name, str, 0x14);
         gRecordTAtt->mUnk_38[cnt + 4].mUnk_00 = 1;
-        func_0212426c(0, 4, gRecordTAtt->mUnk_10, str, gRecordTAtt->mUnk_08,
-                      gRecordTAtt->mUnk_38);
+        func_0212426c(0, 4, gRecordTAtt->mUnk_10, str, gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38);
     } else {
         gRecordTAtt->mUnk_38[5].mUnk_00 = 0;
         gRecordTAtt->mUnk_38[6].mUnk_00 = 0;
         gRecordTAtt->mUnk_38[cnt + 2].mUnk_00 = 1;
-        func_02124224(0, 2, gRecordTAtt->mUnk_10, L"--:--:---", gRecordTAtt->mUnk_08,
-                      gRecordTAtt->mUnk_38, 7);
+        func_02124224(0, 2, gRecordTAtt->mUnk_10, L"--:--:---", gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38, 7);
         gRecordTAtt->mUnk_38[cnt + 4].mUnk_00 = 0;
     }
 }
@@ -489,8 +478,7 @@ BOOL func_ov001_02196c4c(void) {
         if (data_ov001_021a681c[0] == (data_ov001_021a681c[0] | m)) {
             gRecordTAtt->mUnk_80 = 1;
             gRecordTAtt->mUnk_84 = 0;
-        } else if (data_ov001_021a681c[gRecordTAtt->mUnk_80] ==
-                   (data_ov001_021a681c[gRecordTAtt->mUnk_80] | m)) {
+        } else if (data_ov001_021a681c[gRecordTAtt->mUnk_80] == (data_ov001_021a681c[gRecordTAtt->mUnk_80] | m)) {
             gRecordTAtt->mUnk_80++;
             gRecordTAtt->mUnk_84 = 0;
             if (gRecordTAtt->mUnk_80 >= 6) {
@@ -537,16 +525,16 @@ void InitRecordTAtt(void *heap) {
     gRecordTAtt->mUnk_44 = FindSceneFile("ghost.bmg");
     gRecordTAtt->mUnk_48 = FindSceneFile("record.bmg");
     rem = 0x8000;
-    rem -= func_021243ac(heap, 0, gRecordTAtt->mUnk_10, 0xc8, 0x10, 0, gRecordTAtt->mUnk_04,
-                         gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38, rem);
-    rem -= func_021243ac(heap, 1, gRecordTAtt->mUnk_10, 0x46, 0x10, 1, gRecordTAtt->mUnk_04,
-                         gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38, rem);
-    rem -= func_021243ac(heap, 2, gRecordTAtt->mUnk_10, 0x46, 0x10, 2, gRecordTAtt->mUnk_04,
-                         gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38, rem);
-    rem -= func_021243ac(heap, 3, gRecordTAtt->mUnk_10, 0x7c, 0x10, 3, gRecordTAtt->mUnk_04,
-                         gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38, rem);
-    rem -= func_021243ac(heap, 4, gRecordTAtt->mUnk_10, 0x64, 0x10, 4, gRecordTAtt->mUnk_04,
-                         gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38, rem);
+    rem -= func_021243ac(heap, 0, gRecordTAtt->mUnk_10, 0xc8, 0x10, 0, gRecordTAtt->mUnk_04, gRecordTAtt->mUnk_08,
+                         gRecordTAtt->mUnk_38, rem);
+    rem -= func_021243ac(heap, 1, gRecordTAtt->mUnk_10, 0x46, 0x10, 1, gRecordTAtt->mUnk_04, gRecordTAtt->mUnk_08,
+                         gRecordTAtt->mUnk_38, rem);
+    rem -= func_021243ac(heap, 2, gRecordTAtt->mUnk_10, 0x46, 0x10, 2, gRecordTAtt->mUnk_04, gRecordTAtt->mUnk_08,
+                         gRecordTAtt->mUnk_38, rem);
+    rem -= func_021243ac(heap, 3, gRecordTAtt->mUnk_10, 0x7c, 0x10, 3, gRecordTAtt->mUnk_04, gRecordTAtt->mUnk_08,
+                         gRecordTAtt->mUnk_38, rem);
+    rem -= func_021243ac(heap, 4, gRecordTAtt->mUnk_10, 0x64, 0x10, 4, gRecordTAtt->mUnk_04, gRecordTAtt->mUnk_08,
+                         gRecordTAtt->mUnk_38, rem);
     rem = func_02148ca0();
     for (k = 1; k < 5; k++) {
         rem -= func_021243ac(heap, data_ov001_021a67d4[k], gRecordTAtt->mUnk_24, data_ov001_021a67c8[k],
@@ -556,8 +544,8 @@ void InitRecordTAtt(void *heap) {
                              data_ov001_021a67ec[k], k + 5, gRecordTAtt->mUnk_18, gRecordTAtt->mUnk_1c,
                              gRecordTAtt->mUnk_3c, rem);
     }
-    func_021243ac(heap, 8, gRecordTAtt->mUnk_24, 0x98, 0x10, 0xd, gRecordTAtt->mUnk_18,
-                  gRecordTAtt->mUnk_1c, gRecordTAtt->mUnk_3c, rem);
+    func_021243ac(heap, 8, gRecordTAtt->mUnk_24, 0x98, 0x10, 0xd, gRecordTAtt->mUnk_18, gRecordTAtt->mUnk_1c,
+                  gRecordTAtt->mUnk_3c, rem);
     p = gRecordTAtt;
     func_0212426c(1, 8, gRecordTAtt->mUnk_24, GetBmgEntry(p->mUnk_48, 3), p->mUnk_1c, p->mUnk_3c);
     func_ov001_02197058();
@@ -681,7 +669,8 @@ void func_ov001_02196514(void) {
         if (y == FALSE && data_02175628[idx].mUnk_54 == 0 && v != 0) {
             x = TRUE;
         }
-        if (x == FALSE || func_02128210(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) == 0) {
+        if (x == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
+                                                                          data_02175628[idx].mUnk_4a) == 0) {
             goto other;
         }
     }
@@ -911,7 +900,7 @@ void func_ov001_02195eb8(void) {
         }
     }
     if (gRecordTAtt->mUnk_58 > 10) {
-        if (func_02128274() != 0) {
+        if (IsSelectReturnState0NoState1Request() != 0) {
             func_ov001_02196ecc();
         }
     }
@@ -1015,7 +1004,7 @@ void func_ov001_02195ba4(void) {
         }
     }
     if (gRecordTAtt->mUnk_58 > 10) {
-        if (func_02128294() != 0) {
+        if (IsSelectReturnState2NoState3Or4Request() != 0) {
             func_ov001_02197024();
         }
     }
@@ -1082,7 +1071,8 @@ void func_ov001_021959d8(void) {
         if (b == FALSE && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
             f = 1;
         }
-        if (f == 0 || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (f == 0 ||
+            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
             return;
         }
     }

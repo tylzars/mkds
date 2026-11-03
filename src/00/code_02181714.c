@@ -91,10 +91,8 @@ void func_ov000_02181df8(void) {
     LocateNcer(&gWiFiTopMenu->mUnk_20, v1);
     v1 = FindSceneFile(data_ov000_021b0b5c);
     LocateNclr(&gWiFiTopMenu->mUnk_28, v1);
-    func_02016468(0x23, 0, (void *) (gWiFiTopMenu->mUnk_24->mUnk_14),
-                  (u32) (gWiFiTopMenu->mUnk_24->mUnk_10));
-    func_02016468(0x1e, 0, (void *) (gWiFiTopMenu->mUnk_28->mUnk_0c),
-                  (u32) (gWiFiTopMenu->mUnk_28->mUnk_08));
+    func_02016468(0x23, 0, (void *) (gWiFiTopMenu->mUnk_24->mUnk_14), (u32) (gWiFiTopMenu->mUnk_24->mUnk_10));
+    func_02016468(0x1e, 0, (void *) (gWiFiTopMenu->mUnk_28->mUnk_0c), (u32) (gWiFiTopMenu->mUnk_28->mUnk_08));
     return;
 }
 
@@ -135,7 +133,7 @@ void func_ov000_02181d44(void) {
 
 void func_ov000_02181d20(void) {
     int v1;
-    v1 = func_02128294();
+    v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
         gWiFiTopMenu->mUnk_04 = 3;
         func_021281c8(0xf);
@@ -171,7 +169,8 @@ void func_ov000_02181b4c(void) {
         if (v7 == 0 && data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0) {
             v6 = TRUE;
         }
-        if (v6 == FALSE || func_02128210(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
+        if (v6 == FALSE ||
+            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
             goto next;
         }
     }
@@ -280,7 +279,8 @@ void func_ov000_0218198c(void) {
         }
     }
     if (gWiFiTopMenu->mUnk_0c >= 10) {
-        if ((gWiFiTopMenu->mUnk_10 == 10 || gWiFiTopMenu->mUnk_10 == 13) && func_02128274() == 0) {
+        if ((gWiFiTopMenu->mUnk_10 == 10 || gWiFiTopMenu->mUnk_10 == 13) &&
+            IsSelectReturnState0NoState1Request() == 0) {
             return;
         }
         if (func_ov000_021806c4() == -1) {
@@ -336,7 +336,7 @@ void func_ov000_02181854(void) {
     if (func_02125f6c() != 0) {
         func_0212ecc0(&data_0217d068, 0, 0x15);
     }
-    if (func_02125fa4() != 0 && func_02128294() != 0) {
+    if (func_02125fa4() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
             a = b = FALSE;
             v = data_02175628[i].mUnk_4c;
@@ -346,7 +346,8 @@ void func_ov000_02181854(void) {
             if (a == 0 && data_02175628[i].mUnk_54 == 0 && v != 0) {
                 b = TRUE;
             }
-            if (b == FALSE || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+            if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
+                                                                              data_02175628[i].mUnk_4a) == 0) {
                 return;
             }
         }

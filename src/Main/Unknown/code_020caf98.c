@@ -52,7 +52,7 @@ void func_020caf98(s32 a) {
                 data_0217b43c->mUnk_930 = c;
                 func_020ccc74(3, 0x1f);
                 func_020cb1cc(5);
-            } else if (func_02128210(b, v)) {
+            } else if (IsSelectReturnState2NoState3Or4RequestAndInRect(b, v)) {
                 func_020ccc74(2, 0x1b);
                 func_02128310(1);
             }

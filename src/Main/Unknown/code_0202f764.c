@@ -240,7 +240,7 @@ s32 func_0202f764(Unk0202f764 *a) {
             if (v5 != FALSE) {
                 x = data_02175628[v2].mUnk_48;
                 y = data_02175628[v2].mUnk_4a;
-                v3 = func_02128210(x, y);
+                v3 = IsSelectReturnState2NoState3Or4RequestAndInRect(x, y);
                 v4 = func_0201ea84(q->mUnk_10, x, y);
             }
             v = data_02175628[v2].mUnk_00;

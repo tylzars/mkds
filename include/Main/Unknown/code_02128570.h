@@ -4,4 +4,4 @@
 #include "Main/Unknown/code_02128000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-void func_02128570(void);
+void AdvanceSelectReturnState2(void);

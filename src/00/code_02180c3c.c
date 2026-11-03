@@ -74,7 +74,7 @@ void func_ov000_02180cdc(void) {
     s32 a;
     BOOL b;
     u32 v;
-    if (func_02125fa4() != 0 && func_02128294() != 0) {
+    if (func_02125fa4() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
             a = b = FALSE;
             v = data_02175628[i].mUnk_4c;
@@ -84,7 +84,8 @@ void func_ov000_02180cdc(void) {
             if (a == 0 && data_02175628[i].mUnk_54 == 0 && v != 0) {
                 b = TRUE;
             }
-            if (b == FALSE || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+            if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
+                                                                              data_02175628[i].mUnk_4a) == 0) {
                 goto next;
             }
         }
@@ -93,7 +94,7 @@ void func_ov000_02180cdc(void) {
         return;
     }
 next:
-    if (func_02125f88() != 0 && func_02128294() != 0) {
+    if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         data_ov000_021b4c68->mUnk_0c = 1;
         RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
     }

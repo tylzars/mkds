@@ -36,7 +36,7 @@ void func_ov001_021987d4(void *heap, s16 a) {
     arg.mUnk_1c = 1;
     arg.mUnk_20 = 1;
     arg.mUnk_24 = 0;
-    func_02125c2c();
+    LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(heap, &arg);
     data_ov001_021a9be4->mUnk_0c = a;
     data_ov001_021a9be4->mUnk_0e = -1;

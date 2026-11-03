@@ -119,12 +119,14 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         g = gSelectKart;
         if (g->mUnk_104 == FALSE) {
             p = &g->mUnk_048;
-            func_02025b20(p, gSelectCharacterGpMNcgrName2, gSelectCharacterGpMNcerName2, gSelectCharacterGpMONclrName2, gSelectCharacterGpMBnclName2, NULL, NULL,
-                          func_02047a28);
+            func_02025b20(p, gSelectCharacterGpMNcgrName2, gSelectCharacterGpMNcerName2, gSelectCharacterGpMONclrName2,
+                          gSelectCharacterGpMBnclName2, NULL, NULL, func_02047a28);
             func_02025a50(0, gSelectKart->mUnk_08c, p);
-            func_02025b20(&e, gSelectCharacterGpTitleMNcgrName2, gSelectCharacterGpTitleMNcerName2, NULL, gSelectCharacterGpTitleMBnclName2, NULL, NULL, func_02047a28);
+            func_02025b20(&e, gSelectCharacterGpTitleMNcgrName2, gSelectCharacterGpTitleMNcerName2, NULL,
+                          gSelectCharacterGpTitleMBnclName2, NULL, NULL, func_02047a28);
             func_02124748(1, e.mUnk_08, (void *) e.mUnk_00, e.mUnk_0c, 0, 0, p->mUnk_08, p->mUnk_0c);
-            func_02025b20(&f, gSelectCharacterGpNameMNcgrName2, gSelectCharacterGpNameMNcerName2, NULL, gSelectCharacterGpNameMBnclName2, NULL, NULL, func_02047a28);
+            func_02025b20(&f, gSelectCharacterGpNameMNcgrName2, gSelectCharacterGpNameMNcerName2, NULL,
+                          gSelectCharacterGpNameMBnclName2, NULL, NULL, func_02047a28);
             func_02124748(data_usa_021537dc[gSelectKart->mUnk_0a4], f.mUnk_08, (void *) f.mUnk_00, f.mUnk_0c, 0, 2,
                           p->mUnk_08, p->mUnk_0c);
             func_02124748(data_usa_021537dc[gSelectKart->mUnk_0a4], f.mUnk_08, (void *) f.mUnk_00, f.mUnk_0c, 0, 1,
@@ -138,8 +140,8 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     if (func_020280dc() == 0) {
         n = func_02148ca0();
         p = &gSelectKart->mUnk_064;
-        func_02025b20(p, gSelectKartSNcgrName, gSelectKartSNcerName, gSelectKartSONclrName, gSelectKartSBnclName, gSelectKartSBnllName,
-                      gSelectKartSBnblName, func_02047a28);
+        func_02025b20(p, gSelectKartSNcgrName, gSelectKartSNcerName, gSelectKartSONclrName, gSelectKartSBnclName,
+                      gSelectKartSBnllName, gSelectKartSBnblName, func_02047a28);
         func_02025a50(1, gSelectKart->mUnk_08c, p);
         for (i = 0; i < 9; i++) {
             n -= func_02025a00(1, gSelectKart->mUnk_08c, p, &data_usa_021537f4[i], n);
@@ -168,7 +170,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         func_02128374();
     }
     if (func_0202811c() == 2) {
-        func_021281dc();
+        SetSelectReturnDisplayBitOn();
     }
     if (gSelectKart->mUnk_0fc == 0) {
         func_02117060();

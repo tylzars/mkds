@@ -114,7 +114,7 @@ void func_ov001_0219dd94(void) {
 
 void func_ov001_0219dd74(void) {
     int v1;
-    v1 = func_02128294();
+    v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
         data_ov001_021a9bfc->mUnk_04 = 3;
     }
@@ -153,7 +153,8 @@ void func_ov001_0219dadc(void) {
     if (cond1 == FALSE && data_02175628[index].mUnk_54 == 0 && value != 0) {
         cond2 = TRUE;
     }
-    if (cond2 != FALSE && func_02128210(data_02175628[index].mUnk_48, data_02175628[index].mUnk_4a) != 0) {
+    if (cond2 != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[index].mUnk_48,
+                                                                          data_02175628[index].mUnk_4a) != 0) {
     next:
         data_ov001_021a9bfc->mUnk_04 = 5;
         data_ov001_021a9bfc->mUnk_20 = 2;
@@ -257,14 +258,15 @@ void func_ov001_0219d998(void) {
         }
     }
     if (data_ov001_021a9bfc->mUnk_14 >= 10) {
-        if (data_ov001_021a9bfc->mUnk_14 >= 10 && (func_02128294() != 0 || func_02128274() != 0)) {
+        if (data_ov001_021a9bfc->mUnk_14 >= 10 &&
+            (IsSelectReturnState2NoState3Or4Request() != 0 || IsSelectReturnState0NoState1Request() != 0)) {
             if (func_ov001_02192e84() == -1) {
                 Unk021a9bfc *obj = data_ov001_021a9bfc;
                 s32 arg;
                 void *first;
 
                 if (obj->mUnk_0c == obj->mUnk_10) {
-                    func_ov001_02192ea0(obj->mUnk_20);
+                    RequestOptionState(obj->mUnk_20);
                     return;
                 }
                 arg = 9;
@@ -301,7 +303,7 @@ void func_ov001_0219d934(void) {
         }
     }
     if (func_02125f88() != 0) {
-        func_ov001_02192ea0(data_ov001_021a9bfc->mUnk_20);
+        RequestOptionState(data_ov001_021a9bfc->mUnk_20);
     }
 }
 
@@ -430,5 +432,5 @@ void func_ov001_0219d600(void) {
 void func_ov001_0219d5dc(void) {
     Unk021a8cd0 local = data_ov001_021a8cd0;
 
-    func_ov001_02192eac((UnkFunc **) (local.mUnk_00));
+    SetOptionStateCallbacks((UnkFunc **) (local.mUnk_00));
 }

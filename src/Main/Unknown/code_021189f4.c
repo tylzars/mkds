@@ -70,7 +70,8 @@ void func_02119340(void) {
         a = func_0201ea84(gSelectCup->mUnk_14, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00 + 0x20);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) != 0 ||
-        (func_02119340_inline(i) != 0 && func_02128210(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) != 0)) {
+        (func_02119340_inline(i) != 0 &&
+         IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) != 0)) {
         if (func_02119dfc() == 0) {
             if (*(vu16 *) 0x027ffc40 == 2) {
                 func_021281c8(-1);

@@ -11,15 +11,15 @@
 #include "00/code_02182fdc.h"
 #include "Main/Unknown/types_02180728.h" // Unk02180728
 
-// Four callbacks; the first receives Unk021a9bd0::mUnk_04.
-typedef struct Unk021a9bd0_18 {
-    /* 00 */ void (*mUnk_00)(void *);
-    /* 04 */ UnkFunc *mUnk_04;
-    /* 08 */ UnkFunc *mUnk_08;
+// Four callbacks; the first receives OptionStates::mUnk_04.
+typedef struct OptionStateCallbacks {
+    /* 00 */ void (*mInit)(void *);
+    /* 04 */ UnkFunc *mRelease;
+    /* 08 */ UnkFunc *mAdvance;
     /* 0c */ UnkFunc *mUnk_0c;
-} Unk021a9bd0_18;
+} OptionStateCallbacks;
 
-extern const Unk021a9bd0_18 data_ov001_021a8170;
+extern const OptionStateCallbacks data_ov001_021a8170;
 
 // Object behind data_ov001_021a9bec.
 typedef struct Unk021a9bec {
@@ -38,18 +38,18 @@ typedef struct Unk021a9bec {
     /* 30 */ void *mUnk_30;
 } Unk021a9bec;
 
-// Allocated by func_ov001_02192fb8 and held in data_ov001_021a9bd0.
-typedef struct Unk021a9bd0 {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ void *mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
+// Allocated by InitOptionStates and held in gOptionStates.
+typedef struct OptionStates {
+    /* 00 */ void *mHeap;
+    /* 04 */ void *mStateHeap;
+    /* 08 */ s32 mState;
+    /* 0c */ s32 mNextState;
+    /* 10 */ s32 mPrevState;
     /* 14 */ s16 mUnk_14;
     /* 16 */ u8 mUnk_16[2];
-    /* 18 */ Unk021a9bd0_18 mUnk_18;
+    /* 18 */ OptionStateCallbacks mCallbacks;
     /* 28 */ void *mUnk_28;
-} Unk021a9bd0;
+} OptionStates;
 
 // Object behind data_ov001_021a9b90.
 typedef struct Unk021a9b90 {
@@ -96,19 +96,19 @@ typedef struct Unk021a9b88 {
 typedef struct Unk021a9bf8 {
     /* 0000 */ s32 mState;
     /* 0004 */ s32 mNextState;
-    /* 0008 */ s32 mUnk_08;
-    /* 000c */ s32 mUnk_0c;
+    /* 0008 */ s32 mIndex;
+    /* 000c */ s32 mStateFrames;
     /* 0010 */ s32 mUnk_10;
     /* 0014 */ s32 mUnk_14;
     /* 0018 */ s32 mUnk_18;
     /* 001c */ s32 mUnk_1c;
     /* 0020 */ s32 mUnk_20;
-    /* 0024 */ s32 mUnk_24;
-    /* 0028 */ s32 mUnk_28;
+    /* 0024 */ s32 mResult;
+    /* 0028 */ s32 mPendingResult;
     /* 002c */ s32 mUnk_2c;
-    /* 0030 */ u16 mUnk_30[64][32];
-    /* 1030 */ void *mUnk_1030;
-    /* 1034 */ Unk02124b1c *mUnk_1034[2];
+    /* 0030 */ u16 mSelectBattleStageMNscrCopy[64][32];
+    /* 1030 */ void *mHeap;
+    /* 1034 */ Unk02124b1c *mSelectBattleStageTables[2];
     /* 103c */ struct Unk02021dc8 *mSelectBattleStageMNcer;
     /* 1040 */ struct Unk02021dc8 *mSelectBattleStageSNcer;
     /* 1044 */ Unk020b4934 *mSelectBattleStageMNcgr;
@@ -160,7 +160,7 @@ extern Unk021a99e4 *data_ov001_021a99e4;
 extern Unk021a9b88 *data_ov001_021a9b88;
 extern u16 data_ov001_021a9ba0;
 extern Unk021a9b90 *data_ov001_021a9b90;
-extern Unk021a9bd0 *data_ov001_021a9bd0;
+extern OptionStates *gOptionStates;
 extern Unk021a9bec *data_ov001_021a9bec;
 extern Unk021a9bf8 *gSelectBattleStage;
 // One pair of halfwords of the object behind data_ov001_021a9bfc.

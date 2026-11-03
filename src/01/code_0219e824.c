@@ -36,7 +36,7 @@ void func_ov001_0219e9e0(s16 *a) {
 
     heap = (void *) func_020364e0(func_020364e8());
     data_ov001_021ca408 = func_02036bec(heap, 0x808);
-    func_ov001_02192fb8((void *) (heap), (s16) (*a));
+    InitOptionStates((void *) (heap), (s16) (*a));
 }
 
 void func_ov001_0219e9c8(void) {
@@ -51,7 +51,7 @@ void func_ov001_0219e9a4(void) {
 
 void func_ov001_0219e960(s16 *a) {
     func_020ae6ac(data_ov001_021ca408, data_ov001_021ca408 + 0x404);
-    func_ov001_02192ee4();
+    AdvanceOptionStates();
     func_020ae630(data_ov001_021ca408, data_ov001_021ca408 + 0x404);
     if (a != NULL && func_ov001_02192e84() != -1) {
         a[2] = func_ov001_02192e84();

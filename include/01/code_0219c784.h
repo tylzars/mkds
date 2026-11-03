@@ -2,14 +2,14 @@
 
 #include "types.h"
 
-typedef struct Unk021a6c04 {
-    /* 00 */ u8 mUnk_00;
-    /* 01 */ u8 mUnk_01;
-    /* 02 */ u8 mUnk_02;
-    /* 03 */ u8 mUnk_03;
-} Unk021a6c04;
+typedef struct SelectBattleStageNscrRect {
+    /* 00 */ u8 mFirstColumn;
+    /* 01 */ u8 mLastColumn;
+    /* 02 */ u8 mFirstRow;
+    /* 03 */ u8 mLastRow;
+} SelectBattleStageNscrRect;
 
-extern const u8 data_ov001_021a6bf0[6][3];
+extern const u8 gSelectBattleStageSTableIndices[6][3];
 
 #include "00/code_02182fdc.h"
 #include "01/code_021956dc.h"
@@ -31,13 +31,13 @@ extern const u8 data_ov001_021a6bf0[6][3];
 
 extern const u8 data_ov001_021a6bc4[];
 extern const u8 data_ov001_021a6bc8[];
-extern const u8 data_ov001_021a6bcc[];
+extern const u8 gSelectBattleStageMNscrCopyDestination[];
 extern const u8 data_ov001_021a6bd0[];
 extern const u8 data_ov001_021a6bd4[];
 extern const s8 data_ov001_021a6bd8[];
-extern const u8 data_ov001_021a6be0[];
+extern const u8 gSelectBattleStageMNscrIndices[];
 extern const u8 data_ov001_021a6be8[6];
-extern const Unk021a6c04 data_ov001_021a6c04[];
+extern const SelectBattleStageNscrRect gSelectBattleStageNscrRects[];
 
 void func_ov001_0219c784(void);
 s32 AdvanceSelectBattleStage(void);
@@ -52,6 +52,6 @@ void func_ov001_0219cdb4(void);
 void func_ov001_0219cdd4(void);
 void func_ov001_0219cec4(void);
 void func_ov001_0219cf60(void);
-void func_ov001_0219d03c(void);
+void LocateAndQueueSelectBattleStage(void);
 void ReleaseSelectBattleStage(void);
 void InitSelectBattleStage(void *c, s32 d, void *e, void *f);

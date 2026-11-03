@@ -94,14 +94,20 @@ void func_020cbb10(void) {
     if (func_020cbad0() == 0) {
         func_0211e480(func_020cb99c());
         InitCupPicture();
-        LoadNclrData(&data_0217b43c->mSinglePlaySelectModeMONclr, FindSceneFileWrapper("common/single_play_select_mode_m_o.NCLR"));
-        LoadNcgrData2(&data_0217b43c->mSinglePlaySelectModeMNcgr, FindSceneFileWrapper("common/single_play_select_mode_m.nce.ncgr"));
-        LoadNcerData(&data_0217b43c->mSinglePlaySelectModeMNcer, FindSceneFileWrapper("common/single_play_select_mode_m.nce.ncer"));
+        LoadNclrData(&data_0217b43c->mSinglePlaySelectModeMONclr,
+                     FindSceneFileWrapper("common/single_play_select_mode_m_o.NCLR"));
+        LoadNcgrData2(&data_0217b43c->mSinglePlaySelectModeMNcgr,
+                      FindSceneFileWrapper("common/single_play_select_mode_m.nce.ncgr"));
+        LoadNcerData(&data_0217b43c->mSinglePlaySelectModeMNcer,
+                     FindSceneFileWrapper("common/single_play_select_mode_m.nce.ncer"));
         data_0217b43c->mSinglePlaySelectModeMBncl = FindSceneFileWrapper("common/single_play_select_mode_m.bncl");
         data_0217b43c->mUnk_944 = 0;
-        LoadNclrData(&data_0217b43c->mSinglePlaySelectModeSONclr, FindSceneFileWrapper("common/single_play_select_mode_s_o.NCLR"));
-        LoadNcgrData2(&data_0217b43c->mSinglePlaySelectModeSNcgr, FindSceneFileWrapper("common/single_play_select_mode_s.nce.ncgr"));
-        LoadNcerData(&data_0217b43c->mSinglePlaySelectModeSNcer, FindSceneFileWrapper("common/single_play_select_mode_s.nce.ncer"));
+        LoadNclrData(&data_0217b43c->mSinglePlaySelectModeSONclr,
+                     FindSceneFileWrapper("common/single_play_select_mode_s_o.NCLR"));
+        LoadNcgrData2(&data_0217b43c->mSinglePlaySelectModeSNcgr,
+                      FindSceneFileWrapper("common/single_play_select_mode_s.nce.ncgr"));
+        LoadNcerData(&data_0217b43c->mSinglePlaySelectModeSNcer,
+                     FindSceneFileWrapper("common/single_play_select_mode_s.nce.ncer"));
         data_0217b43c->mSinglePlaySelectModeSBncl = FindSceneFileWrapper("common/single_play_select_mode_s.bncl");
         data_0217b43c->mSinglePlaySelectModeSBnbl = FindSceneFileWrapper("common/single_play_select_mode_s.bnbl");
         p = data_0217b43c;
@@ -153,10 +159,10 @@ void func_020cbb10(void) {
     s.mUnk_1c = 1;
     s.mUnk_20 = 1;
     s.mUnk_24 = 0;
-    func_02125c2c();
+    LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(func_020cb99c(), &s);
     if (func_020cae54() == 2) {
-        func_021281fc();
+        ClearSelectReturnDisplayBitOn();
     }
     func_0212abdc(func_020cb99c(), data_0217b43c->mUnk_108);
     switch (func_020cc120()) {

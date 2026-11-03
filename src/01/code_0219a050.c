@@ -258,15 +258,15 @@ void InitRecordTopMenu(void *heap) {
     rem = 0x8000;
     rem -= func_021243ac(heap, 0, gRecordTopMenu->mUnk_08, 0xaa, 0xe, 0, gRecordTopMenu->mUnk_00,
                          gRecordTopMenu->mUnk_04, gRecordTopMenu->mUnk_18, rem);
-    func_0212426c(0, 0, gRecordTopMenu->mUnk_08, GetBmgEntry(gRecordTopMenu->mUnk_24, 9),
-                  gRecordTopMenu->mUnk_04, gRecordTopMenu->mUnk_18);
+    func_0212426c(0, 0, gRecordTopMenu->mUnk_08, GetBmgEntry(gRecordTopMenu->mUnk_24, 9), gRecordTopMenu->mUnk_04,
+                  gRecordTopMenu->mUnk_18);
     x = 1;
     base = gRecordTopMenu->mUnk_04->mUnk_06;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            rem -= func_021243ac(heap, data_ov001_021a6ae4[i][j], gRecordTopMenu->mUnk_08,
-                                 data_ov001_021a6af8[i][j], data_ov001_021a6b0c[i][j], x, gRecordTopMenu->mUnk_00,
-                                 gRecordTopMenu->mUnk_04, gRecordTopMenu->mUnk_18, rem);
+            rem -= func_021243ac(heap, data_ov001_021a6ae4[i][j], gRecordTopMenu->mUnk_08, data_ov001_021a6af8[i][j],
+                                 data_ov001_021a6b0c[i][j], x, gRecordTopMenu->mUnk_00, gRecordTopMenu->mUnk_04,
+                                 gRecordTopMenu->mUnk_18, rem);
             x = base + data_ov001_021a6ae4[i][j];
         }
     }
@@ -374,7 +374,7 @@ void func_ov001_0219a77c(void) {
 
 void func_ov001_0219a764(void) {
     int v1;
-    v1 = func_02128294();
+    v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
         func_ov001_0219ae30();
     }
@@ -414,7 +414,8 @@ void func_ov001_0219a5bc(void) {
         if (a2 == FALSE && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
             b2 = TRUE;
         }
-        if (b2 == FALSE || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (b2 == FALSE ||
+            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
             goto skip;
         }
     }
@@ -560,7 +561,8 @@ void func_ov001_0219a258(void) {
         if (a == FALSE && data_02175628[i].mUnk_54 == 0 && v != 0) {
             b = TRUE;
         }
-        if (b == FALSE || func_02128210(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (b == FALSE ||
+            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
             return;
         }
     }
