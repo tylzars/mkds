@@ -140,7 +140,7 @@ void func_ov000_02194b4c(Unk02194934 *a) {
         func_ov000_021a3668(a->mUnk_08);
         a->mUnk_08 = NULL;
     }
-    func_ov000_0219210c((s32) a);
+    func_ov000_0219210c((Unk021919ac_node *) a);
     func_ov000_021a3668(a->mUnk_10);
     a->mUnk_10 = NULL;
     func_ov000_021a3668(a->mUnk_18);
