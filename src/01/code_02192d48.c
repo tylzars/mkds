@@ -29,7 +29,7 @@ void LoadStopSign(Unk0219b478 *a) {
     func_020849a0(gStopSign->mUnk_10, 0x294a);
 }
 
-void func_ov001_02192d7c(void *a, Unk02192d7c *b) {
+void func_ov001_02192d7c(void *a, StopSignObject *b) {
     s32 v = 0x1e;
     func_01ff9048(0x14, &v, 1);
     b->mUnk_4c = b->mUnk_04 >> 4;

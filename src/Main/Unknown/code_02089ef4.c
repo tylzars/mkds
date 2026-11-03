@@ -13,6 +13,6 @@ void func_02089ef4(s32 a) {
     }
     data_0217b034->mUnk_740 = 0;
     if (data_0217b034->mUnk_73c == 1 || data_0217b034->mUnk_73c == 3) {
-        data_0217b034->mUnk_742 = func_02087d0c(data_0217b034->mUnk_000[8]->mUnk_04[0]) >> 12;
+        data_0217b034->mUnk_742 = func_02087d0c(data_0217b034->mUnk_000[8]->mNsbcaNsbmaNsbtp[0]) >> 12;
     }
 }

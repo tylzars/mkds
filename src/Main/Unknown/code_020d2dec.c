@@ -43,11 +43,11 @@
 
 #pragma thumb on
 
-static inline Unk0217b4d4 *func_020d34e4_inline(u16 f) {
+static inline GrpconfTblRow *func_020d34e4_inline(u16 f) {
     s32 j;
     for (j = 0; j < 1000; j++) {
-        if (f == data_0217b4d4[j].mUnk_00) {
-            return &data_0217b4d4[j];
+        if (f == gGrpconfTbl[j].mUnk_00) {
+            return &gGrpconfTbl[j];
         }
     }
     return NULL;
@@ -60,7 +60,7 @@ Unk020e71a0 *func_020d34e4(u32 param_1, Unk020fa294 *param_2, Unk020e71a0 *param
     Unk021000d0 *a;
     Unk021000d0 *o;
     Unk020e71a0_98 *c;
-    Unk0217b4d4 *t;
+    GrpconfTblRow *t;
     Unk020e71a0 *p;
     s32 v;
     u32 m;
@@ -344,7 +344,7 @@ void func_020d2e6c(void) {
         }
         data_0217b4ec++;
     } while (data_0217b4ec < 0x85);
-    data_0217b4d4 = FindMainRaceOrMainEffectFile("MapObj/grpconf.tbl");
+    gGrpconfTbl = FindMainRaceOrMainEffectFile("MapObj/grpconf.tbl");
     v = 1;
     if (data_021759c0->mUnk_08 != 1 && data_021759c0->mUnk_08 != 5) {
         v = 0;

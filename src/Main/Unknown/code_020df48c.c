@@ -20,17 +20,17 @@
 
 #pragma thumb on
 void CreateMkdEfBubble(void) {
-    void *r;
+    void *nsbmd;
 
-    r = FindCourseMapObjFile("mkd_ef_bubble.nsbmd");
-    func_020ea588(&gMkdEfBubble, r, NULL);
+    nsbmd = FindCourseMapObjFile("mkd_ef_bubble.nsbmd");
+    func_020ea588(&gMkdEfBubble, nsbmd, NULL);
     func_02084968(gMkdEfBubble, 0x3f, 2, 0x294a);
     gMkdEfBubbleNsbta = func_02036bec(func_020364e0(func_020364e8()), 0x38);
-    func_020ea514(1, gMkdEfBubble, gMkdEfBubbleNsbta, r, FindCourseMapObjFile("mkd_ef_bubble.nsbta"));
+    func_020ea514(1, gMkdEfBubble, gMkdEfBubbleNsbta, nsbmd, FindCourseMapObjFile("mkd_ef_bubble.nsbta"));
     func_02087cfc(gMkdEfBubbleNsbta, 0, 1);
 }
 
-void func_020df6c8(Unk020df6c8 *a, Unk020fa294 *b) {
+void func_020df6c8(MkdEfBubbleObject *a, Unk020fa294 *b) {
     func_02046be8(&a->mUnk_00.mUnk_80, data_0216bfc0, 2, a);
     a->mUnk_a0 = b->mUnk_28;
     a->mUnk_ac = a->mUnk_00.mUnk_04.y;

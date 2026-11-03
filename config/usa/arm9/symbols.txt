@@ -3201,7 +3201,7 @@ func_02089fa0 kind:function(arm,size=0x278) addr:0x02089fa0
 func_0208a218 kind:function(arm,size=0x104) addr:0x0208a218
 func_0208a31c kind:function(arm,size=0x144) addr:0x0208a31c
 func_0208a460 kind:function(arm,size=0x23c) addr:0x0208a460
-func_0208a69c kind:function(arm,size=0x394) addr:0x0208a69c
+InitNsbmdNsbcaNsbmaNsbtp kind:function(arm,size=0x394) addr:0x0208a69c
 func_0208aa30 kind:function(arm,size=0xd0) addr:0x0208aa30
 func_0208ab00 kind:function(arm,size=0x4c) addr:0x0208ab00
 func_0208ab4c kind:function(arm,size=0x4c) addr:0x0208ab4c
@@ -8059,12 +8059,12 @@ data_02155ebc kind:data(any) addr:0x02155ebc
 data_02155ec8 kind:data(any) addr:0x02155ec8
 data_02155ecc kind:data(any) addr:0x02155ecc
 data_02155ed0 kind:data(any) addr:0x02155ed0
-data_02155ee8 kind:data(any) addr:0x02155ee8
-data_02155f0c kind:data(any) addr:0x02155f0c
-data_02155f18 kind:data(any) addr:0x02155f18
-data_02155f24 kind:data(any) addr:0x02155f24
-data_02155f30 kind:data(any) addr:0x02155f30
-data_02155f3c kind:data(any) addr:0x02155f3c
+gCountStartStems kind:data(any) addr:0x02155ee8
+gGoalStems kind:data(any) addr:0x02155f0c
+gWinStems kind:data(any) addr:0x02155f18
+gLoseStems kind:data(any) addr:0x02155f24
+gCompleteStems kind:data(any) addr:0x02155f30
+gFailedStems kind:data(any) addr:0x02155f3c
 data_usa_02155f48 kind:data(any) addr:0x02155f48
 data_usa_02155f78 kind:data(any) addr:0x02155f78
 data_usa_02155fc0 kind:data(any) addr:0x02155fc0
@@ -11630,7 +11630,7 @@ data_0217b4c4 kind:bss addr:0x0217b4a4
 data_0217b4c8 kind:bss addr:0x0217b4a8
 data_0217b4cc kind:bss addr:0x0217b4ac
 data_0217b4d0 kind:bss addr:0x0217b4b0
-data_0217b4d4 kind:bss addr:0x0217b4b4
+gGrpconfTbl kind:bss addr:0x0217b4b4
 data_0217b4d8 kind:bss addr:0x0217b4b8
 data_0217b4dc kind:bss addr:0x0217b4bc
 data_0217b4e0 kind:bss addr:0x0217b4c0

@@ -3,7 +3,7 @@
 #include "types.h"
 #include "ITCM/code_01ff9000.h"
 
-typedef struct Unk02192d7c {
+typedef struct StopSignObject {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
@@ -14,7 +14,7 @@ typedef struct Unk02192d7c {
     /* 4c */ s32 mUnk_4c;
     /* 50 */ s32 mUnk_50;
     /* 54 */ s32 mUnk_54;
-} Unk02192d7c;
+} StopSignObject;
 
 #include "01/code_021928c8.h"
 #include "01/code_0218f9d4.h"
@@ -28,7 +28,7 @@ typedef struct Unk02192d7c {
 
 void *func_ov001_02192d48(void);
 void func_ov001_02192d60(void);
-void func_ov001_02192d7c(void *a, Unk02192d7c *b);
+void func_ov001_02192d7c(void *a, StopSignObject *b);
 void LoadStopSign(Unk0219b478 *a);
 void func_ov001_02192e10(Unk02188950 *a);
 

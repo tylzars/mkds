@@ -43,7 +43,7 @@ void func_020ac9b0(void *a) {
     func_0209bbd0(a, gShineBalloon);
 }
 
-void func_020ac890(void *a, Unk020ac5e4 *b) {
+void func_020ac890(void *a, ShineBalloonObject *b) {
     s32 s0;
     Vec3 v1;
     Vec3 v2;
@@ -79,51 +79,51 @@ void func_020ac890(void *a, Unk020ac5e4 *b) {
     func_0209bb2c(a, gShineBalloon, b);
 }
 
-void func_020ac6a8(void *a, Unk020ac5e4 *b) {
-    switch (b->mUnk_b0) {
+void func_020ac6a8(void *a, ShineBalloonObject *b) {
+    switch (b->mState) {
         case 0:
             if (func_020a1154(b->mUnk_ac->mUnk_74) == 0) {
                 return;
             }
-            b->mUnk_a8 = 0x1e;
+            b->mTimer = 0x1e;
             b->mUnk_a4 = 0x19;
-            b->mUnk_b0 = 1;
+            b->mState = 1;
             b->mUnk_00.mUnk_02 &= ~2;
             b->mUnk_00.mUnk_02 &= ~8;
             b->mUnk_00.mUnk_66 = 0x1f;
             break;
         case 1:
-            if (b->mUnk_a8-- > 0) {
+            if (b->mTimer-- > 0) {
                 return;
             }
-            b->mUnk_a8 = 0;
+            b->mTimer = 0;
             b->mUnk_a0 += b->mUnk_a4;
             b->mUnk_a4 -= 4;
             if (b->mUnk_a4 < 0) {
                 if (b->mUnk_a0 <= 0x4a) {
                     b->mUnk_a0 = 0x4a;
-                    b->mUnk_b0 = 2;
+                    b->mState = 2;
                 }
             }
             b->mUnk_00.mUnk_04 = b->mUnk_ac->mUnk_80;
             break;
         case 2:
             if (func_020a1154(b->mUnk_ac->mUnk_74) == 0) {
-                b->mUnk_a8 = 0x1e;
+                b->mTimer = 0x1e;
                 b->mUnk_a4 = 8;
-                b->mUnk_b0 = 3;
+                b->mState = 3;
             }
             b->mUnk_00.mUnk_04 = b->mUnk_ac->mUnk_80;
             break;
         case 3:
-            if (b->mUnk_a8-- <= 0) {
-                b->mUnk_a8 = 0;
+            if (b->mTimer-- <= 0) {
+                b->mTimer = 0;
                 b->mUnk_a0 += b->mUnk_a4;
                 b->mUnk_a4 -= 4;
                 if (b->mUnk_a4 < 0) {
                     if (b->mUnk_a0 <= 0) {
                         b->mUnk_a0 = 0;
-                        b->mUnk_b0 = 0;
+                        b->mState = 0;
                         b->mUnk_00.mUnk_02 |= data_02156838;
                         b->mUnk_00.mUnk_02 |= data_0215683c;
                     }
@@ -147,7 +147,7 @@ void *func_020ac63c(void) {
 }
 
 void func_020ac5e4(Unk0206bcb0 *a) {
-    Unk020ac5e4 *o;
+    ShineBalloonObject *o;
 
     o = func_0209bbfc(func_02100138(0x70));
     if (o == NULL) {
@@ -162,8 +162,8 @@ void func_020ac5e4(Unk0206bcb0 *a) {
     o->mUnk_ac = a;
     o->mUnk_a0 = 0;
     o->mUnk_a4 = 0;
-    o->mUnk_a8 = 0;
-    o->mUnk_b0 = 0;
+    o->mTimer = 0;
+    o->mState = 0;
 }
 
 void func_020ac588(u32 a, s32 b, void *c) {
