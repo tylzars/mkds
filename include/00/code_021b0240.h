@@ -6,7 +6,7 @@ extern void (*data_ov000_021b6384)(void);
 
 // Thread entry functions (not lifted yet).
 
-#include "code_0200e0ec.h" // Unk0200db5c
+#include "code_0200db4c.h"
 
 typedef struct Unk021b69dc Unk021b69dc;
 typedef struct Unk021b5fa8 Unk021b5fa8;

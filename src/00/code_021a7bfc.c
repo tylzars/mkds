@@ -17,8 +17,7 @@
 #include "00/code_02186d04.h"
 #include "00/code_021ae000.h"
 #include "00/unk_021b5000.h"
-#include "code_0200dc3c.h"
-#include "code_0200db5c.h"
+#include "code_0200db4c.h"
 #include "code_0200fc8c.h"
 #include "code_0214d018.h"
 

@@ -9,7 +9,7 @@
 #include "00/code_021a8878.h"
 #include "00/code_021afe5c.h"
 #include "00/code_021b0014.h"
-#include "code_0200dc3c.h"
+#include "code_0200db4c.h"
 #include "00/code_021af550.h"
 #include "code_0214d018.h"
 #include "00/unk_021b6000.h"
@@ -22,7 +22,6 @@
 #include "Main/Unknown/code_02000b44.h"
 #include "code_02133048.h"
 #include "code_0200fc8c.h"
-#include "code_0200db5c.h"
 
 void func_ov000_021a6d6c(void) {
     Unk021b5f94 *a = data_ov000_021b5f94;

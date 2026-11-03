@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0200e0ec.h" // Unk0200db5c
+#include "code_0200db4c.h"
 
 extern u8 data_ov000_021b4c40[8];
 extern u8 data_ov000_021b6364;

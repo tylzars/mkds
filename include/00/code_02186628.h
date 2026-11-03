@@ -15,7 +15,7 @@ typedef struct Unk021868a4 {
     /* 08 */ s32 mCount;
 } Unk021868a4;
 
-#include "code_0200e0ec.h" // Unk0200db5c
+#include "code_0200db4c.h"
 
 // Growing buffer: mUnk_00 is its start, mUnk_04 the write position, mUnk_08 the end and mUnk_0c the size.
 typedef struct Unk02186998 {

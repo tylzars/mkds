@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0200e0ec.h" // Unk0200db5c, Unk0200df9c
+#include "code_0200db4c.h"
 
 // 0x40 bytes at data_0217fa00; func_021458c4 clears it, func_02145b54 fills mUnk_04 and mUnk_18 to mUnk_3c.
 typedef struct Unk021458b4 {

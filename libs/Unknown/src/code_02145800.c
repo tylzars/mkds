@@ -2,7 +2,7 @@
 #include "code_02145800.h"
 #include "Main/Unknown/code_0200f000.h"
 #include "Main/Unknown/unk_0217f000.h"
-#include "code_0200dc3c.h"
+#include "code_0200db4c.h"
 #include "code_021458c4.h"
 
 // Waits until bit 2 of mUnk_114 is clear; returns 1 when the word at mUnk_00 is 0.

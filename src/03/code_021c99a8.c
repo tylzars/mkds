@@ -30,7 +30,7 @@
 #include "03/code_021cdbd0.h"
 #include "03/code_021d1fd0.h"
 #include "03/code_021d254c.h"
-#include "code_0200dc3c.h"
+#include "code_0200db4c.h"
 
 void func_ov003_021c9c5c(void) {
     *(u8 *) &data_ov003_021da218 = 0;
