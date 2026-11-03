@@ -347,16 +347,16 @@ s32 func_ov000_0219bbfc(void) {
 }
 
 s32 func_ov000_0219bbac(s32 a) {
-    u32 p;
+    void *p;
     if (data_ov000_021b54c8 == NULL || func_ov000_0219c39c() != 0 ||
         (data_ov000_021b54c8->mUnk_24 != 5 && data_ov000_021b54c8->mUnk_24 != 6)) {
         return -1;
     }
     p = func_ov000_0219b9d4(a);
-    if (p == 0) {
+    if (p == NULL) {
         return -2;
     }
-    func_ov000_02198908((void *) p);
+    func_ov000_02198908(p);
     return 0;
 }
 

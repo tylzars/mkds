@@ -1,5 +1,6 @@
 #include "00/code_02197b34.h"
 #include "00/code_0218e8c4.h"
+#include "00/code_02197e8c.h"
 #include "00/unk_021b3000.h"
 #include "code_02134420.h"
 #include "code_0213442c.h"
@@ -139,29 +140,29 @@ BOOL func_ov000_02197ca0(const s8 *a) {
     return TRUE;
 }
 
-void func_ov000_02197d20(int *a, int b, int c) {
+void func_ov000_02197d20(Unk02197fe8Buf *a, int b, int c) {
     if (b == -1) {
-        b = a[2] - c;
+        b = a->mUnk_08 - c;
     }
-    if (b > a[2]) {
+    if (b > a->mUnk_08) {
         func_0213442c(data_ov000_021b3ea4, data_ov000_021b3ebc, NULL, 0x4f);
     }
-    if (c > a[2] - b) {
+    if (c > a->mUnk_08 - b) {
         func_0213442c(data_ov000_021b3ec8, data_ov000_021b3ebc, NULL, 0x50);
     }
-    memmove((u8 *) a[0] + b, (u8 *) a[0] + b + c, a[2] - b - c);
-    a[2] = a[2] - c;
+    memmove(a->mUnk_00 + b, a->mUnk_00 + b + c, a->mUnk_08 - b - c);
+    a->mUnk_08 = a->mUnk_08 - c;
 }
 
-void func_ov000_02197d84(int *a, const u8 *b, int c) {
+void func_ov000_02197d84(Unk02197fe8Buf *a, const u8 *b, int c) {
     if (b != NULL && c != 0) {
         if (c == -1) {
             c = strlen(b);
         }
-        if (a[2] + c > a[1]) {
+        if (a->mUnk_08 + c > a->mUnk_04) {
             func_0213442c(data_ov000_021b3eec, data_ov000_021b3ebc, NULL, 0x40);
         }
-        memcpy((void *) (a[0] + a[2]), b, c);
-        a[2] = a[2] + c;
+        memcpy(a->mUnk_00 + a->mUnk_08, b, c);
+        a->mUnk_08 = a->mUnk_08 + c;
     }
 }

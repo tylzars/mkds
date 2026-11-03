@@ -63,20 +63,20 @@ s32 func_ov000_0219ba20(void) {
     return r;
 }
 
-u32 func_ov000_0219b9d4(u32 a) {
+void *func_ov000_0219b9d4(u32 a) {
     s32 i;
     void **p;
     if (data_ov000_021b54c8 == NULL) {
-        return 0;
+        return NULL;
     }
     i = 0;
     p = data_ov000_021b54d0;
     for (; i < 32; p++, i++) {
         if (*p != NULL && a == func_ov000_0219887c(*p)[1]) {
-            return (u32) data_ov000_021b54d0[i];
+            return data_ov000_021b54d0[i];
         }
     }
-    return 0;
+    return NULL;
 }
 
 u8 func_ov000_0219b9c4(Unk0219887c *object) {
@@ -118,8 +118,7 @@ void **func_ov000_0219b8fc(u32 a, s32 b) {
     if (c >= b) {
         return NULL;
     }
-    return func_ov000_0219b958(
-        func_ov000_0219b9b4((Unk0219887c *) func_ov000_0219b9d4(data_ov000_021b54c8->mUnk_33c.mUnk_2b8[c])));
+    return func_ov000_0219b958(func_ov000_0219b9b4(func_ov000_0219b9d4(data_ov000_021b54c8->mUnk_33c.mUnk_2b8[c])));
 }
 
 Unk021b5550 *func_ov000_0219b8f0(s32 index) {

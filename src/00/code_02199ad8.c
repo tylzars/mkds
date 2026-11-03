@@ -60,7 +60,7 @@ u32 func_ov000_02199ec8(Unk02197fe8 *a, u32 b) {
         f = func_ov000_0218dbf8(a->mUnk_60, d);
         f->mUnk_00 -= e;
     }
-    func_ov000_02197d20((s32 *) &a->mUnk_50, 0, e);
+    func_ov000_02197d20(&a->mUnk_50, 0, e);
     return 1;
 }
 

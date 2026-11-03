@@ -1,4 +1,5 @@
 #include "00/code_0219887c.h"
+#include "00/code_02197e8c.h"
 #include "00/unk_021b3000.h"
 #include "code_0213442c.h"
 
@@ -6,8 +7,8 @@ u16 func_ov000_021988e4(void *a) {
     return *(u16 *) ((u8 *) a + 8);
 }
 
-int func_ov000_021988dc(int a) {
-    return *(s32 *) (a + 0x54) - *(s32 *) (a + 0x58);
+int func_ov000_021988dc(Unk02197fe8 *a) {
+    return a->mUnk_50.mUnk_04 - a->mUnk_50.mUnk_08;
 }
 
 u32 func_ov000_021988d8(u32 *a) {

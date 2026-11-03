@@ -22,7 +22,7 @@ void func_ov000_0219b964(void);
 s32 func_ov000_0219b998(void);
 u32 func_ov000_0219b9b4(Unk0219887c *object);
 u8 func_ov000_0219b9c4(Unk0219887c *object);
-u32 func_ov000_0219b9d4(u32 a);
+void *func_ov000_0219b9d4(u32 a);
 s32 func_ov000_0219ba20(void);
 u32 func_ov000_0219bab4(void);
 s32 func_ov000_0219bac8(u32 a);

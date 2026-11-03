@@ -110,7 +110,7 @@ u32 func_ov000_021990f8(Unk02197fe8 *a, u16 b, s32 c) {
 }
 
 BOOL func_ov000_0219903c(Unk02197fe8 *a, u32 b, int c, int *d) {
-    if (func_ov000_02197e58((s32) &a->mUnk_50) < c) {
+    if (func_ov000_02197e58(&a->mUnk_50) < c) {
         if (func_ov000_02199f80((u32) a) == 0) {
             return FALSE;
         }
@@ -124,7 +124,7 @@ BOOL func_ov000_0219903c(Unk02197fe8 *a, u32 b, int c, int *d) {
         *d = 1;
         return TRUE;
     }
-    func_ov000_02197d84((s32 *) &a->mUnk_50, data_ov000_021b3fa4, 2);
+    func_ov000_02197d84(&a->mUnk_50, data_ov000_021b3fa4, 2);
     func_ov000_02197e20(&a->mUnk_50, b);
     func_ov000_02197ddc(&a->mUnk_50, a->mUnk_64++);
     func_ov000_02197ddc(&a->mUnk_50, a->mUnk_66);

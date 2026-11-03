@@ -16,4 +16,4 @@ void func_ov000_0218da04(unsigned int p0, unsigned int p1);
 void func_ov000_0218da1c(Unk0218dc94 *a, const void *b, s32 c);
 void func_ov000_0218da5c(Unk0218dc94 *a, s32 b);
 void func_ov000_0218da9c(Unk0218dc94 *a, int b);
-void func_ov000_0218daf8(Unk0218dc94 *a, const void *b, int c);
+void func_ov000_0218daf8(Unk0218dc94 *a, void *b, UnkCompare *c);

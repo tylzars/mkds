@@ -55,15 +55,15 @@ BOOL func_ov000_02198c58(Unk02197fe8 *a, u8 *b, int c) {
         return TRUE;
     }
     d = c + 2;
-    if (func_ov000_02197e58((s32) &a->mUnk_50) < d) {
+    if (func_ov000_02197e58(&a->mUnk_50) < d) {
         return TRUE;
     }
     e = a->mUnk_50.mUnk_00 + a->mUnk_50.mUnk_08;
-    func_ov000_02197d84((s32 *) &a->mUnk_50, data_ov000_021b3fa4, 2);
-    func_ov000_02197d84((s32 *) &a->mUnk_50, b, c);
+    func_ov000_02197d84(&a->mUnk_50, data_ov000_021b3fa4, 2);
+    func_ov000_02197d84(&a->mUnk_50, b, c);
     if (func_ov000_02198714((u32 *) a, (u32) e, d) == 0) {
         return FALSE;
     }
-    func_ov000_02197d20((s32 *) &a->mUnk_50, -1, d);
+    func_ov000_02197d20(&a->mUnk_50, -1, d);
     return TRUE;
 }

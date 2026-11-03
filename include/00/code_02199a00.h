@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_ov000_02199a00(u32 arg0, u32 arg1);
+s32 func_ov000_02199a00(const void *arg0, const void *arg1);

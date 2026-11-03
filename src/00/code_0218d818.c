@@ -13,14 +13,14 @@
 
 #include "code_021382a8.h"
 
-void func_ov000_0218daf8(Unk0218dc94 *a, const void *b, int c) {
+void func_ov000_0218daf8(Unk0218dc94 *a, void *b, UnkCompare *c) {
     u8 *v1;
     u32 v2;
     s32 v3[2];
-    if (c == 0) {
+    if (c == NULL) {
         func_0213442c(data_ov000_021b2308, data_ov000_021b22dc, NULL, 0xb7);
     }
-    v1 = func_ov000_0218d818(b, a->mUnk_14, a->mUnk_00, a->mUnk_08, (UnkCompare *) c, v3);
+    v1 = func_ov000_0218d818(b, a->mUnk_14, a->mUnk_00, a->mUnk_08, c, v3);
     v2 = _s32_div_f(v1 - a->mUnk_14, a->mUnk_08);
     func_ov000_0218db48(a, b, v2);
     return;
