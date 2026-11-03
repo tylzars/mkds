@@ -11402,8 +11402,8 @@ data_0217aee0 kind:bss addr:0x0217aec0
 data_0217af20 kind:bss addr:0x0217af00
 gKartModelPathPrefix kind:bss addr:0x0217af04
 gKartModelPathBuffer kind:bss addr:0x0217af08
-data_0217b028 kind:bss addr:0x0217b008
-data_0217b02c kind:bss addr:0x0217b00c
+gSearchStartIndex kind:bss addr:0x0217b008
+gEntryYDifferenceLimit kind:bss addr:0x0217b00c
 data_0217b030 kind:bss addr:0x0217b010
 data_0217b034 kind:bss addr:0x0217b014
 data_0217b038 kind:bss addr:0x0217b018

@@ -183,8 +183,8 @@ typedef struct GrpconfTblRow {
 extern void *gHole;
 extern void *gCover;
 extern void *gPoo;
-extern u16 data_0217b028;
-extern s32 data_0217b02c;
+extern u16 gSearchStartIndex;
+extern s32 gEntryYDifferenceLimit;
 extern Unk02165ff0 *data_0217b030;
 
 // Objects whose layout isn't known yet.

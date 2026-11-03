@@ -18,8 +18,8 @@
 
 void func_0207e594(struct Unk020888b4 *p, struct Unk0206bcb0 *q, s32 a) {
     p->mUnk_00 = q;
-    p->mUnk_04 = q->mIndex;
-    p->mUnk_06 = p->mUnk_04 % 4;
+    p->mIndex = q->mIndex;
+    p->mUnk_06 = p->mIndex % 4;
     p->mUnk_88 = 0x1000;
     if (data_021759c0->mUnk_00c == 5) {
         p->mUnk_8c = 0;
@@ -27,7 +27,7 @@ void func_0207e594(struct Unk020888b4 *p, struct Unk0206bcb0 *q, s32 a) {
         p->mUnk_8c = 0x1000;
     }
     p->mUnk_9c = (s32) (((s64) p->mUnk_00->mUnk_2cc->mUnk_10 * 0x99a + 0x800) >> 12);
-    func_02080d34(&p->mUnk_08, p->mUnk_04);
+    func_02080d34(&p->mUnk_08, p->mIndex);
     func_0207f9cc(p, 0);
     p->mUnk_cc = 1;
 }
@@ -57,7 +57,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
         t = &q->mUnk_138;
     }
     r = s->mUnk_14;
-    func_0207a948(&a, p->mUnk_04);
+    func_0207a948(&a, p->mIndex);
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == 0) {
         func_0204360c(p->mUnk_00->mUnk_78, 1);
@@ -69,12 +69,12 @@ void func_0207e4a4(struct Unk020888b4 *p) {
 
 void func_0207e400(struct Unk020888b4 *p, struct Unk0206bcb0 *q, s32 a) {
     p->mUnk_00 = q;
-    p->mUnk_04 = q->mIndex;
-    p->mUnk_06 = p->mUnk_04 % 4;
+    p->mIndex = q->mIndex;
+    p->mUnk_06 = p->mIndex % 4;
     p->mUnk_88 = 0x1000;
     p->mUnk_8c = 0;
     p->mUnk_9c = (s32) (((s64) p->mUnk_00->mUnk_2cc->mUnk_10 * 0x99a + 0x800) >> 12);
-    func_02080d34(&p->mUnk_08, p->mUnk_04);
+    func_02080d34(&p->mUnk_08, p->mIndex);
     func_0207f9cc(p, 0);
     p->mUnk_cc = 1;
 }
@@ -93,7 +93,7 @@ void func_0207e35c(struct Unk020888b4 *p) {
         t = &q->mUnk_138;
     }
     r = s->mUnk_14;
-    func_0207a948(&a, p->mUnk_04);
+    func_0207a948(&a, p->mIndex);
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == 0) {
         func_0204360c(p->mUnk_00->mUnk_78, 1);

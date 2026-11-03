@@ -66,7 +66,7 @@ void func_0208fdcc(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0208fd8c(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    enum { K0 } k = (data_027e00c8)[b->mUnk_04].mUnk_058.mUnk_000;
+    enum { K0 } k = (data_027e00c8)[b->mIndex].mUnk_058.mUnk_000;
     Unk0208fd8c_08 *t = &data_0217b0a4[k];
 
     a->mUnk_08 = t;

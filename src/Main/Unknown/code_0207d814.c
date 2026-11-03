@@ -76,7 +76,7 @@ u16 func_0207d8e4(s32 a) {
 
 void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
     s32 n = a->mUnk_14;
-    u16 m = b->mUnk_04;
+    u16 m = b->mIndex;
     u16 i;
     BOOL f;
     s32 v;
@@ -140,9 +140,9 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
         n = r->mUnk_04;
         d = func_02085434();
         if (d >= 0) {
-            e = func_020853a4(b->mUnk_04);
+            e = func_020853a4(b->mIndex);
             e -= func_020853a4((u16) d);
-            if (func_0203c880(b->mUnk_04) != 0) {
+            if (func_0203c880(b->mIndex) != 0) {
                 t = data_usa_021658f4;
             } else {
                 t = data_usa_0217ae34;
@@ -212,20 +212,20 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     s32 s;
     Unk0206bcb0 *q;
 
-    if (b->mUnk_04 == func_02061f90()) {
+    if (b->mIndex == func_02061f90()) {
         a->mUnk_08 = 0;
         a->mUnk_18 = 0;
         f = FALSE;
-        v = data_021759c0->mUnk_68[b->mUnk_04].mUnk_08.mUnk_00;
+        v = data_021759c0->mUnk_68[b->mIndex].mUnk_08.mUnk_00;
         if ((u32) v <= 3) {
             if ((1 << v) & 0xd) {
                 f = TRUE;
             }
         }
         if (f != FALSE) {
-            a->mUnk_14 = func_0203c8dc(b->mUnk_04);
+            a->mUnk_14 = func_0203c8dc(b->mIndex);
         } else {
-            a->mUnk_14 = func_020854c0(b->mUnk_04);
+            a->mUnk_14 = func_020854c0(b->mIndex);
         }
         a->mUnk_08 = func_02085424()->mUnk_00;
         if (func_02085390() != 0) {
@@ -284,7 +284,7 @@ void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     Unk0217aebc_128 *r;
     Unk020888b4 *u;
 
-    v = data_021759c0->mUnk_68[b->mUnk_04].mUnk_08.mUnk_00;
+    v = data_021759c0->mUnk_68[b->mIndex].mUnk_08.mUnk_00;
     if ((u32) v <= 3) {
         if ((1 << v) & 0xd) {
             f = TRUE;
@@ -297,8 +297,8 @@ void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     r = func_0208537c();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     r4 = (s16) (u16) (r->mUnk_00 >> 52);
-    r5 = func_020853f0(b->mUnk_04);
-    u = func_0207a974(b->mUnk_04)->mUnk_310;
+    r5 = func_020853f0(b->mIndex);
+    u = func_0207a974(b->mIndex)->mUnk_310;
     if (u->mUnk_154 != 0) {
         r5 = r6;
     }

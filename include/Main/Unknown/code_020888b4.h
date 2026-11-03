@@ -9,8 +9,8 @@
 // Entry of the list func_020888b4 searches: a halfword at 0x02 (bit 0 tested) and a vector at 0x04.
 typedef struct Unk020888b4_d0 {
     /* 00 */ u8 mUnk_00[2];
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ Vec3 mUnk_04;
+    /* 02 */ u16 mFlags;
+    /* 04 */ Vec3 mPos;
 } Unk020888b4_d0;
 
 // Object of 0x34 bytes at 0xe8 of the object Unk020888b4 starts: func_02089a24 writes the words at 0x28 and 0x2c and
@@ -47,7 +47,7 @@ typedef struct Unk02089b4c {
 // Unk02089b4c at 0x140 and a word at 0x154.
 typedef struct Unk020888b4 {
     /* 00 */ Unk0206bcb0 *mUnk_00;
-    /* 04 */ u16 mUnk_04;
+    /* 04 */ u16 mIndex;
     /* 06 */ u16 mUnk_06;
     /* 08 */ Unk02080d34 mUnk_08;
     /* 28 */ Unk0208001c mUnk_28;
@@ -87,7 +87,7 @@ typedef struct Unk020888b4 {
     /* ca */ u16 mUnk_ca;
     /* cc */ s32 mUnk_cc;
     /* d0 */ Unk020888b4_d0 *mUnk_d0;
-    /* d4 */ s16 mUnk_d4;
+    /* d4 */ s16 mEntrySearchStartIndex;
     /* d6 */ u8 mUnk_d6[2];
     /* d8 */ s32 mUnk_d8;
     /* dc */ Vec3 mUnk_dc;

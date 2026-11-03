@@ -35,7 +35,7 @@ void func_0207cb74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (a->mUnk_04 == NULL) {
         return;
     }
-    n = a->mUnk_04->mUnk_0a;
+    n = a->mUnk_04->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -43,7 +43,7 @@ void func_0207cb74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_00 = a->mUnk_04->mUnk_08 + (u16) v;
+    a->mUnk_00 = a->mUnk_04->mTimerBase + (u16) v;
 }
 
 void func_0207cc74(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -69,7 +69,7 @@ void func_0207cc74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (a->mUnk_08 == NULL) {
         return;
     }
-    n = a->mUnk_08->mUnk_0a;
+    n = a->mUnk_08->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -77,7 +77,7 @@ void func_0207cc74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
+    a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
 }
 
 void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -86,7 +86,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 n;
     u32 v;
 
-    k = func_0203c8dc(b->mUnk_04);
+    k = func_0203c8dc(b->mIndex);
     if (k == 1) {
         func_0204360c(b->mUnk_00->mUnk_78, 0x600);
         a->mUnk_18 = 1;
@@ -95,7 +95,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         if (a->mUnk_08 == NULL) {
             return;
         }
-        n = a->mUnk_08->mUnk_0a;
+        n = a->mUnk_08->mTimerRandomLimit;
         r = func_0208537c();
         if (n == 0) {
             v = 0;
@@ -103,7 +103,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
         }
-        a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
+        a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
         return;
     } else if ((u32) k >= 2 && k <= data_021759c0->mKartCount - 1) {
         switch (a->mUnk_04->mUnk_04) {
@@ -113,7 +113,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 if (a->mUnk_08 == NULL) {
                     return;
                 }
-                n = a->mUnk_08->mUnk_0a;
+                n = a->mUnk_08->mTimerRandomLimit;
                 r = func_0208537c();
                 if (n == 0) {
                     v = 0;
@@ -121,7 +121,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                     v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
                 }
-                a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
+                a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
                 return;
             case 1:
                 func_0204360c(b->mUnk_00->mUnk_78, 0x600);
@@ -131,7 +131,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 if (a->mUnk_08 == NULL) {
                     return;
                 }
-                n = a->mUnk_08->mUnk_0a;
+                n = a->mUnk_08->mTimerRandomLimit;
                 r = func_0208537c();
                 if (n == 0) {
                     v = 0;
@@ -139,7 +139,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                     v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
                 }
-                a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
+                a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
                 return;
             case 2:
                 func_0204360c(b->mUnk_00->mUnk_78, 0x600);
@@ -149,7 +149,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 if (a->mUnk_08 == NULL) {
                     return;
                 }
-                n = a->mUnk_08->mUnk_0a;
+                n = a->mUnk_08->mTimerRandomLimit;
                 r = func_0208537c();
                 if (n == 0) {
                     v = 0;
@@ -157,7 +157,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                     v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
                 }
-                a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
+                a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
                 return;
             default:
                 return;
@@ -170,7 +170,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         if (a->mUnk_08 == NULL) {
             return;
         }
-        n = a->mUnk_08->mUnk_0a;
+        n = a->mUnk_08->mTimerRandomLimit;
         r = func_0208537c();
         if (n == 0) {
             v = 0;
@@ -178,7 +178,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
         }
-        a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
+        a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
         return;
     }
 }
@@ -196,7 +196,7 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
             if (a->mUnk_08 == NULL) {
                 return;
             }
-            n = a->mUnk_08->mUnk_0a;
+            n = a->mUnk_08->mTimerRandomLimit;
             r = func_0208537c();
             if (n == 0) {
                 v = 0;
@@ -204,7 +204,7 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
             }
-            a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
+            a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
             return;
         } else {
             func_0204360c(b->mUnk_00->mUnk_78, 0x600);
@@ -214,7 +214,7 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
             if (a->mUnk_08 == NULL) {
                 return;
             }
-            n = a->mUnk_08->mUnk_0a;
+            n = a->mUnk_08->mTimerRandomLimit;
             r = func_0208537c();
             if (n == 0) {
                 v = 0;
@@ -222,7 +222,7 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
             }
-            a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
+            a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
             return;
         }
     } else {
@@ -264,7 +264,7 @@ void func_0207d3ec(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 n;
 
     d = data_021759c0;
-    n = b->mUnk_04;
+    n = b->mIndex;
     if ((d->mUnk_68[n].mUnk_08.mUnk_14 & 1) != 0) {
         if (a->mUnk_20 <= 0x400) {
             a->mUnk_10 = 1;
@@ -291,7 +291,7 @@ void func_0207d474(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 n;
 
     d = data_021759c0;
-    n = b->mUnk_04;
+    n = b->mIndex;
     if ((d->mUnk_68[n].mUnk_08.mUnk_14 & 1) != 0) {
         if (a->mUnk_20 <= 0xc00) {
             a->mUnk_10 = 1;
@@ -320,7 +320,7 @@ void func_0207d4cc(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (a->mUnk_08 == NULL) {
         return;
     }
-    n = a->mUnk_08->mUnk_0a;
+    n = a->mUnk_08->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -328,7 +328,7 @@ void func_0207d4cc(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
+    a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
 }
 
 void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -351,7 +351,7 @@ void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (a->mUnk_08 == NULL) {
         return;
     }
-    n = a->mUnk_08->mUnk_0a;
+    n = a->mUnk_08->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -359,7 +359,7 @@ void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
+    a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
 }
 
 void func_0207d6a4(struct Unk02089a24 *a, struct Unk020888b4 *b) {
@@ -368,7 +368,7 @@ void func_0207d6a4(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     s32 v;
     s32 x;
 
-    if (func_02061f90() == b->mUnk_04) {
+    if (func_02061f90() == b->mIndex) {
         a->mUnk_08 = 0;
         v = b->mUnk_00->mUnk_cc;
         if (v > 0xa000) {

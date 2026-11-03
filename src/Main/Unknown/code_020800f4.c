@@ -53,7 +53,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
         n0 = 0;
         if (d != NULL) {
             k = 0;
-            func_021484d0(&d->mUnk_04, &func_0207a974(c)->mUnk_80, &v);
+            func_021484d0(&d->mPos, &func_0207a974(c)->mUnk_80, &v);
             if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
                 func_02039860(&v, &v);
             }

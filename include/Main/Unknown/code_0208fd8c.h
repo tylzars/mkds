@@ -10,8 +10,8 @@ struct Unk020888b4;
 typedef struct Unk0208fd8c_08 {
     /* 00 */ void (*mUnk_00)(struct Unk0208fd8c *a, struct Unk020888b4 *b);
     /* 04 */ s32 mUnk_04;
-    /* 08 */ u16 mUnk_08;
-    /* 0a */ u16 mUnk_0a;
+    /* 08 */ u16 mTimerBase;
+    /* 0a */ u16 mTimerRandomLimit;
 } Unk0208fd8c_08;
 
 // Object of 0x24 bytes at 0x11c of the object Unk020888b4 starts: pointers to entries of the tables at data_0217ae38
