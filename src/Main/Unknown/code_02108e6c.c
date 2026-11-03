@@ -15,8 +15,8 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "Main/Unknown/unk_0217d068.h"
-#include "code_0212c6ac.h"
-#include "code_0212d5e0.h"
+#include "code_0212bcac.h"
+#include "code_0212d254.h"
 #include "code_0212df7c.h"
 
 void func_02108edc(s32 a, s32 b) {

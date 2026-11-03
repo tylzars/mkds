@@ -66,6 +66,8 @@ typedef struct Unk0212d5f8 {
     /* 8c */ Unk0212d38c *mUnk_8c;
 } Unk0212d5f8;
 
+typedef struct Unk0212d5f8 Unk0212d5f8;
+
 void *func_0212d254(u32 a);
 s32 func_0212d27c(u32 a, void *dst, u32 n, u32 off);
 u32 func_0212d300(u32 a);
@@ -76,3 +78,8 @@ void *func_0212d454(s32 a);
 u32 *func_0212d4b8(s32 a);
 void *func_0212d51c(s32 a);
 Unk0212d580 *func_0212d580(s32 a, s32 b);
+struct Unk0212d5f8 *func_0212d5d0(void);
+Unk0212d5f8 *func_0212d5e0(Unk0212d5f8 *a);
+void func_0212d5f8(Unk0212d5f8 *a, void *buf);
+u32 func_0212d6c4(Unk0212d5f8 *a, void *p, u32 flag);
+void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, void *p, u32 flag);

@@ -12,8 +12,7 @@
 #include "Main/Unknown/code_0210d000.h"
 #include "Main/Unknown/code_02108e6c.h"
 #include "Main/Unknown/code_021059e0.h"
-#include "code_0212c478.h"
-#include "code_0212c6ac.h"
+#include "code_0212bcac.h"
 #include "code_0212df7c.h"
 
 void func_02111024(void) {

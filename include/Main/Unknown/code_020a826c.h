@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7a8
-#include "code_0212c478.h" // Unk0212c400
+#include "code_0212bcac.h"
 
 // 0x28-byte part at 0xa0 and 0xc8 of Unk020a826c: the four words at 0x00 go to func_0210b734 or func_0210b760 with
 // the value at 0x1c, 0x0c holds func_020d4ef4's result for the vector at 0x10, 0x24 is set to 0, 1 or 2

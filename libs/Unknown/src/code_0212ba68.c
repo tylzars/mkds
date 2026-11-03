@@ -5,12 +5,11 @@
 #include "code_0212b9ec.h"
 #include "code_0212bcac.h"
 #include "code_0212c9d4.h"
-#include "code_0212ee8c.h"
+#include "code_0212ee54.h"
 #include "code_0214f4a4.h"
 #include "code_0201ec30.h"
 #include "Main/Unknown/code_02021000.h"
 #include "code_0212bb50.h"
-#include "code_0212d0ec.h"
 
 Unk0214f4bc data_0217d42c;
 Unk0214f4bc data_0217d420;

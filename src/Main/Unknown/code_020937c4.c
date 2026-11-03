@@ -31,7 +31,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_02146cbc.h"
 #include "code_02147cd8.h"
-#include "code_0212c6ac.h"
+#include "code_0212bcac.h"
 
 void func_020937c4(Vec3 *a, Vec3 *b, u16 c) {
     Unk020937c4 *o;

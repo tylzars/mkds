@@ -3,7 +3,7 @@
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/code_0210b000.h"
 #include "Main/Unknown/code_0210e000.h"
-#include "code_0212c668.h"
+#include "code_0212bcac.h"
 #include "Main/Unknown/code_0210bcf4.h"
 #include "Main/Unknown/code_0210bc14.h"
 #include "Main/Unknown/code_0210cfe8.h"
@@ -11,8 +11,6 @@
 #include "Main/Unknown/code_0210e328.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "code_020172d0.h"
-#include "code_0212c478.h"
-#include "code_0212c6ac.h"
 #include "code_0212d254.h"
 
 #pragma opt_loop_invariants off

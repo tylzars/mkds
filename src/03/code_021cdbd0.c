@@ -1,10 +1,8 @@
 #include "03/code_021cdbd0.h"
-#include "code_0212c668.h"
+#include "code_0212bcac.h"
 #include "03/code_021d3000.h"
 
-#include "code_0212c6ac.h"
 #include "03/unk_021da000.h"
-#include "code_0212c478.h"
 #include "03/code_021d27d8.h"
 #include "03/code_021d1440.h"
 #include "03/unk_021d5000.h"
@@ -12,7 +10,7 @@
 #include "03/code_021cdbc8.h"
 #include "03/code_021d3488.h"
 #include "code_0212ba68.h"
-#include "code_0212d5e0.h"
+#include "code_0212d254.h"
 #include "code_0212df7c.h"
 
 void func_ov003_021cdc4c(void) {

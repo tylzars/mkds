@@ -29,7 +29,7 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "code_02147cd8.h"
-#include "code_0212c6ac.h"
+#include "code_0212bcac.h"
 #include "code_0212df7c.h"
 
 u16 data_0215a584 = 0x2000;

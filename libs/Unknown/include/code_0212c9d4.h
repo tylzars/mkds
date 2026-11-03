@@ -35,10 +35,14 @@ typedef struct Unk0212c9d4 {
     /* 10 */ u8 *mUnk_10;
 } Unk0212c9d4;
 
+s32 func_0212ccd4(u32 a, u8 *b, u8 *c, u32 d, u32 e, u32 f, u32 g, u32 h, s32 i, u32 j, u32 k, u32 l, u32 m, UnkFunc *n,
+                  void *o);
+
 void func_0212c9d4(Unk0212ccd4 *p);
 void func_0212cad8(void);
 void func_0212cb78(void);
 void func_0212cbd8(void);
-s32 func_0212ccd4(u32 a, u8 *b, u8 *c, u32 d, u32 e, u32 f, u32 g, u32 h, s32 i, u32 j, u32 k, u32 l, u32 m, UnkFunc *n,
-                  void *o);
 void func_0212d03c(void);
+u32 func_0212d0ec(void);
+void func_0212d10c(void);
+s32 func_0212d154(u8 *a, u32 b, u32 c, u32 d, u32 e, UnkFunc *f, void *g);

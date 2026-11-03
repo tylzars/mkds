@@ -2,8 +2,7 @@
 #include "Main/Unknown/code_0210d120.h"
 #include "Main/Unknown/code_0210d960.h"
 #include "Main/Unknown/unk_0217d000.h"
-#include "code_0212c478.h"
-#include "code_0212c6ac.h"
+#include "code_0212bcac.h"
 
 void func_0210d9a0(Unk0217d084 *a, u32 b) {
     u32 v;

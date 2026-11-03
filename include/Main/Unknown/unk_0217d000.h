@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-#include "code_0212c478.h" // Unk0212c400
+#include "code_0212bcac.h"
 #include "code_0212c7a0.h" // Unk0212c7a0
 #include "code_0212c7f0.h" // Unk0212c8a4
 #include "code_0212c9d4.h" // Unk0212ccd4, Unk0212c9d4
@@ -700,9 +700,6 @@ extern s32 data_0217d320;
 extern s32 data_0217d324;
 extern s32 data_0217d328;
 extern Unk0217d40c *data_0217d40c;
-extern u32 data_0217d438;
-extern u32 data_0217d43c;
-extern u32 data_0217d440;
 extern u32 data_0217dda8;
 extern Unk0212ccd4 data_0217ddd0;
 extern Unk0212c400 data_0217d45c[16];

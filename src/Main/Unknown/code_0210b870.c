@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_02109000.h"
 #include "Main/Unknown/code_0210bad4.h"
 #include "Main/Unknown/unk_0217c000.h"
-#include "code_0212c478.h"
+#include "code_0212bcac.h"
 
 void func_0210ba78(void *p0, s32 b) {
     Unk0206bcb0 *p;

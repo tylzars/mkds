@@ -1,10 +1,9 @@
 #include "code_0212bcac.h"
+
 #include "code_020172d0.h"
 #include "code_020207ec.h"
 #include "code_02020eb0.h"
 #include "code_02021764.h"
-#include "code_0212c688.h"
-#include "code_0212c6ac.h"
 #include "code_0212c7a0.h"
 #include "code_0212da38.h"
 #include "code_0212f788.h"
@@ -15,6 +14,200 @@
 #include "code_0212f864.h"
 #include "Main/Unknown/unk_02152000.h"
 #include "Main/Unknown/unk_0217d000.h"
+
+s32 func_0212c700(u32 a, Unk0212d9dc *b, u32 c) {
+    Unk0212c700 *p;
+    Unk0212d9dc *q;
+
+    p = func_0212db7c(b, c + 0x14, func_0212bd10, 0, 0);
+    if (p == 0) {
+        return 0;
+    }
+    p->mUnk_0c = 0;
+    p->mUnk_10 = a;
+    p->mUnk_08 = 0;
+    q = func_0212dcc8(p->mUnk_14, c);
+    if (q == 0) {
+        return 0;
+    }
+    p->mUnk_08 = q;
+    func_020174a4(&data_0217d89c[a].mUnk_0c, p);
+    return 1;
+}
+
+u32 func_0212c6f0(Unk0212c400 **a, u32 b) {
+    func_0212c018(*a, b);
+}
+
+void func_0212c6ac(u32 a) {
+    s32 i;
+    Unk0212c400 *p;
+
+    for (i = 0, p = data_0217d45c; i < 16; i++) {
+        if (p->mUnk_2c != 0) {
+            func_0212c018(p, a);
+        }
+        p++;
+    }
+}
+
+void func_0212c6a0(Unk0212c400 **arg0) {
+    u32 value0 = (u32) arg0;
+    u32 value1;
+    value1 = 0u;
+    *(u32 *) ((value0) + (0)) = value1;
+}
+
+void func_0212c688(Unk0212c400 **a) {
+    Unk0212c400 *p = *a;
+
+    if (p != 0) {
+        p->mUnk_00 = 0;
+        *a = 0;
+    }
+}
+
+Unk0212c400 *func_0212c678(Unk0212c400 **arg0, u32 arg1) {
+    u32 value0 = (u32) arg0;
+    u32 value1 = arg1;
+    u32 compareLeft0;
+    u32 compareRight0;
+    value0 = (u32) * (const u32 *) ((value0) + (0));
+    compareLeft0 = value0;
+    compareRight0 = 0u;
+    if (compareLeft0 != compareRight0) {
+        *(u8 *) ((value0) + (65)) = (u8) value1;
+    }
+    return (Unk0212c400 *) value0;
+}
+
+u32 func_0212c668(Unk0212c400 **arg0, u32 arg1) {
+    u32 value0 = (u32) arg0;
+    u32 value1 = arg1;
+    u32 compareLeft0;
+    u32 compareRight0;
+    value0 = (u32) * (const u32 *) ((value0) + (0));
+    compareLeft0 = value0;
+    compareRight0 = 0u;
+    if (compareLeft0 != compareRight0) {
+        *(u8 *) ((value0) + (64)) = (u8) value1;
+    }
+    return value0;
+}
+
+void func_0212c620(Unk0212c400 **a, s32 b, s32 c) {
+    Unk0212c400 *p = *a;
+
+    if (p == 0) {
+        return;
+    }
+    if (p->mUnk_2c == 2) {
+        return;
+    }
+    func_0212f834(&p->mUnk_1c, b << 8, c);
+}
+
+void func_0212c5f4(Unk0212c400 **a, u32 b) {
+    if (*a == 0) {
+        return;
+    }
+    func_0212bcac(*a, b);
+}
+
+void func_0212c5c4(Unk0212c400 **a, u32 b) {
+    Unk0212c400 *p = *a;
+
+    if (p == 0) {
+        return;
+    }
+    func_02020d68(p->mUnk_3c, b);
+}
+
+void func_0212c594(Unk0212c400 **a, u32 b, u32 c) {
+    Unk0212c400 *p = *a;
+
+    if (p == 0) {
+        return;
+    }
+    func_02020af8(p->mUnk_3c, b, c);
+}
+
+void func_0212c554(Unk0212c400 **a, u32 b, u32 c) {
+    Unk0212c400 *p = *a;
+
+    if (p == 0) {
+        return;
+    }
+    func_02020d0c(p->mUnk_3c, b, data_02152ce4[c]);
+}
+
+void func_0212c524(Unk0212c400 **a, u32 b, u32 c) {
+    Unk0212c400 *p = *a;
+
+    if (p == 0) {
+        return;
+    }
+    func_02020ce4(p->mUnk_3c, b, c);
+}
+
+u32 func_0212c4f4(Unk0212c400 **a, u32 b, u32 c) {
+    Unk0212c400 *p = *a;
+
+    if (p == 0) {
+        return (u32) p;
+    }
+    func_02020cbc(p->mUnk_3c, b, c);
+}
+
+void func_0212c4c4(Unk0212c400 **a, u32 b, u32 c) {
+    Unk0212c400 *p = *a;
+
+    if (p == 0) {
+        return;
+    }
+    func_02020c94(p->mUnk_3c, b, c);
+}
+
+void func_0212c494(Unk0212c400 **a, u32 b) {
+    Unk0212c400 *p = *a;
+
+    if (p == 0) {
+        return;
+    }
+    func_02020d98(p->mUnk_3c, b);
+}
+
+void func_0212c478(Unk0212c400 **a, u32 b) {
+    Unk0212c400 *p = *a;
+
+    if (p != 0) {
+        p->mUnk_34 = 1;
+        (*a)->mUnk_38 = b;
+    }
+}
+
+u32 func_0212c450(Unk0212c400 **arg0, u32 arg1, u32 arg2) {
+    u32 value0 = (u32) arg0;
+    u32 value1 = arg1;
+    u32 value2 = arg2;
+    u32 value3;
+    u32 value12;
+    u32 compareLeft0;
+    u32 compareRight0;
+    value12 = (u32) * (const u32 *) ((value0) + (0));
+    compareLeft0 = value12;
+    compareRight0 = 0u;
+    if (compareLeft0 == compareRight0) {
+        return value0;
+    }
+    value3 = 2u;
+    *(u16 *) ((value12) + (52)) = (u16) value3;
+    value3 = (u32) * (const u32 *) ((value0) + (0));
+    *(u16 *) ((value3) + (56)) = (u16) value1;
+    value0 = (u32) * (const u32 *) ((value0) + (0));
+    *(u16 *) ((value0) + (58)) = (u16) value2;
+    return value0;
+}
 
 Unk02017328 data_0217d450;
 Unk02017328 data_0217d444;

@@ -10,7 +10,7 @@
 #include "Main/Unknown/code_021108bc.h"
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_021759c0.h"
-#include "code_0212c6ac.h"
+#include "code_0212bcac.h"
 
 static inline void func_020a826c_inline(Unk020a826c_a0 *q) {
     s32 v;
