@@ -61,7 +61,7 @@ u32 func_020a58b4(void) {
 
 void func_020a5848(void) {
     s32 i;
-    Unk020e71a0 *o;
+    MapObject *o;
     Unk020e6fd4 *l;
 
     l = func_02100138(0x6a);
@@ -69,7 +69,7 @@ void func_020a5848(void) {
         return;
     }
     for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
-        if ((o->mUnk_02 & 0x100) == 0) {
+        if ((o->mFlags & 0x100) == 0) {
             func_020d2398(o);
         }
     }
@@ -83,9 +83,9 @@ void func_020a5744(Vec3 *a, s32 b, s32 c) {
         return;
     }
     if (c != 0) {
-        p->mUnk_00.mUnk_04.x = a->x;
-        p->mUnk_00.mUnk_04.y = a->y + 0x32000;
-        p->mUnk_00.mUnk_04.z = a->z;
+        p->mUnk_00.mPos.x = a->x;
+        p->mUnk_00.mPos.y = a->y + 0x32000;
+        p->mUnk_00.mPos.z = a->z;
         p->mUnk_00.mUnk_10.x = 0;
         p->mUnk_00.mUnk_10.y = 0x2800;
         p->mUnk_00.mUnk_10.z = 0;
@@ -93,9 +93,9 @@ void func_020a5744(Vec3 *a, s32 b, s32 c) {
         p->mUnk_a4 = a->y + 0x14000;
         p->mUnk_e0 = 0;
     } else {
-        p->mUnk_00.mUnk_04.x = a->x;
-        p->mUnk_00.mUnk_04.y = a->y + 0x14000;
-        p->mUnk_00.mUnk_04.z = a->z;
+        p->mUnk_00.mPos.x = a->x;
+        p->mUnk_00.mPos.y = a->y + 0x14000;
+        p->mUnk_00.mPos.z = a->z;
         p->mUnk_00.mUnk_10.x = 0;
         p->mUnk_00.mUnk_10.y = 0;
         p->mUnk_00.mUnk_10.z = 0;
@@ -106,8 +106,8 @@ void func_020a5744(Vec3 *a, s32 b, s32 c) {
     p->mUnk_a8 = 0;
     p->mUnk_c0 = 0;
     p->mUnk_c4 = b;
-    p->mUnk_00.mUnk_02 &= ~1;
-    p->mUnk_00.mUnk_02 &= ~0x20;
+    p->mUnk_00.mFlags &= ~1;
+    p->mUnk_00.mFlags &= ~0x20;
     func_020a1218(1);
     func_0210b98c(p->mUnk_00.mUnk_94, 0x138);
 }
@@ -122,11 +122,11 @@ void func_020a5608(Unk0206bcb0 *a, Unk0206bcb0 *b) {
     if (p == NULL) {
         return;
     }
-    p->mUnk_00.mUnk_02 = p->mUnk_00.mUnk_02 | data_021567a0;
-    p->mUnk_00.mUnk_02 &= ~0x20;
-    p->mUnk_00.mUnk_04.x = a->mUnk_80.x;
-    p->mUnk_00.mUnk_04.y = a->mUnk_80.y;
-    p->mUnk_00.mUnk_04.z = a->mUnk_80.z;
+    p->mUnk_00.mFlags = p->mUnk_00.mFlags | data_021567a0;
+    p->mUnk_00.mFlags &= ~0x20;
+    p->mUnk_00.mPos.x = a->mUnk_80.x;
+    p->mUnk_00.mPos.y = a->mUnk_80.y;
+    p->mUnk_00.mPos.z = a->mUnk_80.z;
     p->mUnk_00.mUnk_10.x = 0;
     p->mUnk_00.mUnk_10.y = 0x1000;
     p->mUnk_00.mUnk_10.z = 0;
@@ -182,9 +182,9 @@ BOOL func_020a5268(u16 a, u16 b) {
                 v.x = o->mUnk_80.x;
                 v.y = o->mUnk_80.y + func_020a23a0(o) - 0xf666;
                 v.z = o->mUnk_80.z;
-                l->mUnk_00.mUnk_02 &= ~4;
-                l->mUnk_00.mUnk_02 &= ~2;
-                l->mUnk_00.mUnk_02 &= ~8;
+                l->mUnk_00.mFlags &= ~4;
+                l->mUnk_00.mFlags &= ~2;
+                l->mUnk_00.mFlags &= ~8;
                 l->mUnk_00.mUnk_66 = 0x1f;
                 func_020a2ebc(l, &v);
             }
@@ -330,9 +330,9 @@ BOOL func_020a4d94(u16 a, u16 b) {
             v.x = o->mUnk_80.x;
             v.y = o->mUnk_80.y + func_020a23a0(o) - 0xf666;
             v.z = o->mUnk_80.z;
-            l->mUnk_00.mUnk_02 &= ~4;
-            l->mUnk_00.mUnk_02 &= ~2;
-            l->mUnk_00.mUnk_02 &= ~8;
+            l->mUnk_00.mFlags &= ~4;
+            l->mUnk_00.mFlags &= ~2;
+            l->mUnk_00.mFlags &= ~8;
             l->mUnk_00.mUnk_66 = 0x1f;
             func_020a2ebc(l, &v);
         }
@@ -400,9 +400,9 @@ void func_020a4b70(u16 a, Vec3 *b) {
     }
     do {
         p = e->mUnk_10[i];
-        p->mUnk_00.mUnk_04.x += b->x;
-        p->mUnk_00.mUnk_04.y += b->y;
-        p->mUnk_00.mUnk_04.z += b->z;
+        p->mUnk_00.mPos.x += b->x;
+        p->mUnk_00.mPos.y += b->y;
+        p->mUnk_00.mPos.z += b->z;
         i++;
     } while (i < n);
 }
@@ -426,8 +426,8 @@ void func_020a49d4(Unk020a3fa8 *a) {
         }
         for (i = 0; i < n; i++) {
             p = &a->mUnk_0a4[i];
-            if (a->mUnk_000.mUnk_9c->mUnk_2c != 0) {
-                p->mUnk_30 = a->mUnk_000.mUnk_9c->mUnk_2c;
+            if (a->mUnk_000.mCourseMapRow->mUnk_2c != 0) {
+                p->mUnk_30 = a->mUnk_000.mCourseMapRow->mUnk_2c;
             } else {
                 switch (data_021759c0->mUnk_68[(u16) i].mUnk_08.mTeamIndex) {
                     case 0:

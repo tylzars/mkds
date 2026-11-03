@@ -82,7 +82,7 @@ s32 func_020e0448(Unk020e0448 *a) {
     s64 c;
     s64 d;
 
-    if (b->mUnk_138 != 0 && b->mUnk_000.mUnk_00 == 0xcb) {
+    if (b->mUnk_138 != 0 && b->mUnk_000.mKind == 0xcb) {
         c = (s64) a->mUnk_04.x * a->mUnk_04.x + (s64) a->mUnk_04.z * a->mUnk_04.z;
         d = (s64) b->mUnk_154 * b->mUnk_154;
         return c >= d;

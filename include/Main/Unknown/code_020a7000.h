@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 
 // 0x48-byte entries from 0xb0 of Unk020a7f18; func_020a8098 writes the first mUnk_1d0 of them.
@@ -25,10 +25,10 @@ typedef struct Unk020a7f18_0b0 {
 } Unk020a7f18_0b0;
 
 // Object passed to func_020a7f18 and func_020a7fc4 as their first argument and on to func_020a8098: the shared
-// Unk020e71a0 part, words at 0xa0 to 0xac, four 0x48-byte entries with their count at 0x1d0, a word at 0x1d4, an
+// MapObject part, words at 0xa0 to 0xac, four 0x48-byte entries with their count at 0x1d0, a word at 0x1d4, an
 // Unk020e0144 at 0x1d8 and a word at 0x1fc.
 typedef struct Unk020a7f18 {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ s32 mUnk_0a0;
     /* 0a4 */ s32 mUnk_0a4;
     /* 0a8 */ s32 mUnk_0a8;

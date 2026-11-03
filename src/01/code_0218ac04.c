@@ -40,5 +40,5 @@ void func_ov001_0218ac04(Unk02188950 *a) {
     func_ov001_02188db8(a, func_ov001_0218ae60);
     func_ov001_02188e24(a, a->mUnk_0a0->mUnk_1bc, func_ov001_0218acb4);
     func_020d2774(&a->mUnk_000, (u32) (0x239));
-    a->mUnk_000.mUnk_02 |= data_ov001_021a6594;
+    a->mUnk_000.mFlags |= data_ov001_021a6594;
 }

@@ -59,16 +59,15 @@
 
 void func_020e2f0c(Unk020e1e98 *a, struct Unk020fa294 *b) {
     func_02046be8(&a->mUnk_000.mUnk_80, (UnkFunc *const *) data_0216c0e8, 8, a);
-    a->mUnk_0a8 = a->mUnk_000.mUnk_04.y;
-    a->mUnk_0ac = a->mUnk_000.mUnk_04.y - 0x12000;
-    a->mUnk_0b0 = a->mUnk_000.mUnk_04.y - 0x18000;
+    a->mUnk_0a8 = a->mUnk_000.mPos.y;
+    a->mUnk_0ac = a->mUnk_000.mPos.y - 0x12000;
+    a->mUnk_0b0 = a->mUnk_000.mPos.y - 0x18000;
     a->mUnk_0a4 = b->mUnk_28;
     a->mUnk_0a0 = b->mUnk_2a;
     a->mUnk_000.mUnk_80.mUnk_10 = 0;
     a->mUnk_000.mUnk_80.mUnk_12 = 1;
-    func_020e516c(&a->mUnk_0b4.mUnk_08, &a->mUnk_000.mUnk_04, (s32) (((s64) a->mUnk_000.mUnk_1c.x * 0x1b000) >> 12),
-                  0x1e);
-    a->mUnk_000.mUnk_02 |= data_02158b7c;
+    func_020e516c(&a->mUnk_0b4.mUnk_08, &a->mUnk_000.mPos, (s32) (((s64) a->mUnk_000.mUnk_1c.x * 0x1b000) >> 12), 0x1e);
+    a->mUnk_000.mFlags |= data_02158b7c;
 }
 
 #pragma thumb off
@@ -142,8 +141,8 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
     s32 y;
 
     if (a->mUnk_03c != 0) {
-        t = func_02039828(&b->mUnk_000.mUnk_28.mUnk_00[2], &a->mUnk_02c);
-        v = b->mUnk_000.mUnk_9c->mUnk_2e;
+        t = func_02039828(&b->mUnk_000.mMatrix.mUnk_00[2], &a->mUnk_02c);
+        v = b->mUnk_000.mCourseMapRow->mUnk_2e;
         w = b->mUnk_0d8.mUnk_1c->mUnk_12;
         if (v == 0) {
             t = -t;
@@ -155,23 +154,23 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
     f = (s32) (b->mUnk_000.mUnk_78 & 0x3FFFFFE0) > 0x77A10 && func_0203c5e4() == 0;
     if (!f) {
         if (b->mUnk_128 != 0) {
-            m = b->mUnk_0fe > 0xF ? &b->mUnk_144 : &b->mUnk_000.mUnk_04;
-            b->mUnk_000.mUnk_28.mUnk_00[3].x = m->x >> 4;
-            b->mUnk_000.mUnk_28.mUnk_00[3].y = m->y >> 4;
-            b->mUnk_000.mUnk_28.mUnk_00[3].z = m->z >> 4;
-            func_020ea868((void *) b->mUnk_128, &b->mUnk_000.mUnk_28, &b->mUnk_000.mUnk_1c, d);
+            m = b->mUnk_0fe > 0xF ? &b->mUnk_144 : &b->mUnk_000.mPos;
+            b->mUnk_000.mMatrix.mUnk_00[3].x = m->x >> 4;
+            b->mUnk_000.mMatrix.mUnk_00[3].y = m->y >> 4;
+            b->mUnk_000.mMatrix.mUnk_00[3].z = m->z >> 4;
+            func_020ea868((void *) b->mUnk_128, &b->mUnk_000.mMatrix, &b->mUnk_000.mUnk_1c, d);
         }
     }
-    b->mUnk_000.mUnk_28.mUnk_00[3].x = b->mUnk_000.mUnk_04.x >> 4;
-    b->mUnk_000.mUnk_28.mUnk_00[3].y = b->mUnk_000.mUnk_04.y >> 4;
-    b->mUnk_000.mUnk_28.mUnk_00[3].z = b->mUnk_000.mUnk_04.z >> 4;
+    b->mUnk_000.mMatrix.mUnk_00[3].x = b->mUnk_000.mPos.x >> 4;
+    b->mUnk_000.mMatrix.mUnk_00[3].y = b->mUnk_000.mPos.y >> 4;
+    b->mUnk_000.mMatrix.mUnk_00[3].z = b->mUnk_000.mPos.z >> 4;
     r = b->mUnk_12c;
     if (r != NULL) {
         r->mUnk_0c = b->mUnk_130 << 12;
         *r->mUnk_1c[r->mUnk_1a] = r->mUnk_0c;
     }
     func_0208ab4c(&b->mUnk_132);
-    func_020ea8a8((void *) b->mUnk_124, &b->mUnk_000.mUnk_28, &b->mUnk_000.mUnk_1c, d);
+    func_020ea8a8((void *) b->mUnk_124, &b->mUnk_000.mMatrix, &b->mUnk_000.mUnk_1c, d);
     if (f) {
         return;
     }
@@ -217,32 +216,32 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
     } else {
         f = 0;
     }
-    v = b->mUnk_000.mUnk_04;
+    v = b->mUnk_000.mPos;
     func_020d8cc8(&b->mUnk_0d8);
     if (!f) {
-        func_020d8bc0(&b->mUnk_0d8, &b->mUnk_000.mUnk_04);
-        func_021484d0(&b->mUnk_000.mUnk_04, &v, &b->mUnk_000.mUnk_10);
+        func_020d8bc0(&b->mUnk_0d8, &b->mUnk_000.mPos);
+        func_021484d0(&b->mUnk_000.mPos, &v, &b->mUnk_000.mUnk_10);
     } else {
         func_020d8bc0(&b->mUnk_0d8, &b->mUnk_144);
-        b->mUnk_000.mUnk_04.x = b->mUnk_144.x;
+        b->mUnk_000.mPos.x = b->mUnk_144.x;
         b->mUnk_000.mUnk_10.y -= 0x59a;
-        b->mUnk_000.mUnk_04.y = b->mUnk_000.mUnk_04.y + b->mUnk_000.mUnk_10.y;
-        b->mUnk_000.mUnk_04.z = b->mUnk_144.z;
-        b->mUnk_000.mUnk_10.x = b->mUnk_000.mUnk_04.x - v.x;
-        b->mUnk_000.mUnk_10.z = b->mUnk_000.mUnk_04.z - v.z;
+        b->mUnk_000.mPos.y = b->mUnk_000.mPos.y + b->mUnk_000.mUnk_10.y;
+        b->mUnk_000.mPos.z = b->mUnk_144.z;
+        b->mUnk_000.mUnk_10.x = b->mUnk_000.mPos.x - v.x;
+        b->mUnk_000.mUnk_10.z = b->mUnk_000.mPos.z - v.z;
     }
     if (f || (b->mUnk_0d4 & 7) == func_02061f90()) {
-        w.x = b->mUnk_000.mUnk_04.x;
-        w.y = b->mUnk_000.mUnk_04.y + (f ? 0xf000 : 0);
-        w.z = b->mUnk_000.mUnk_04.z;
+        w.x = b->mUnk_000.mPos.x;
+        w.y = b->mUnk_000.mPos.y + (f ? 0xf000 : 0);
+        w.z = b->mUnk_000.mPos.z;
         u = w;
         if (func_01ffdee4(&u, NULL, 0, 0xf000, 8, -2, out, &u, NULL, &n, NULL, NULL, NULL, NULL) != 0) {
             if (n & 0x1e34ef) {
                 func_020d7b88((Vec3 *) &u, &b->mUnk_0b4);
                 func_0208ab98(&b->mUnk_132, (u16) ((n & 0x3c000000) >> 26), 0x5000);
                 if (b->mUnk_0fe != 0 && b->mUnk_000.mUnk_10.y < 0) {
-                    if (b->mUnk_000.mUnk_02 & 1) {
-                        b->mUnk_000.mUnk_02 &= ~1;
+                    if (b->mUnk_000.mFlags & 1) {
+                        b->mUnk_000.mFlags &= ~1;
                         b->mUnk_000.mUnk_10.y =
                             -(s32) (((s64) b->mUnk_000.mUnk_10.y * (0x733 + ((b->mUnk_114.y - 0x14000) >> 9))) >> 12);
                         b->mUnk_0c4 = -b->mUnk_0c4;
@@ -259,7 +258,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
                 }
             }
             if ((n & 0x214300) && f) {
-                b->mUnk_000.mUnk_04.y = b->mUnk_000.mUnk_04.y + out[1];
+                b->mUnk_000.mPos.y = b->mUnk_000.mPos.y + out[1];
                 b->mUnk_000.mUnk_10.y = 0;
             }
         }
@@ -299,13 +298,13 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
         func_020d79b0(p, b->mUnk_000.mUnk_7e, &m);
     }
     func_020d759c(&b->mUnk_0a4, &m, &b->mUnk_0a4, b->mUnk_152);
-    func_01ffccd0(&b->mUnk_000.mUnk_28.mUnk_00[0].x, &b->mUnk_0a4);
+    func_01ffccd0(&b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_0a4);
     b->mUnk_10c += 0x600;
     if (b->mUnk_000.mUnk_78 & 8) {
         func_0210b7ec(b->mUnk_158, b->mUnk_000.mUnk_78 & 0x3FFFFFE0);
     }
     func_020d275c(&b->mUnk_000, b->mUnk_15c);
-    if (b->mUnk_000.mUnk_04.y < 0) {
+    if (b->mUnk_000.mPos.y < 0) {
         func_020e1e98(b);
     }
 }
@@ -316,14 +315,14 @@ void func_020e24d0(Unk020e1e98 *a, Vec3 *b) {
     s32 e;
     s32 f;
 
-    c = a->mUnk_000.mUnk_04;
+    c = a->mUnk_000.mPos;
     func_021484d0(&c, b, &c);
-    d = func_02039828(&a->mUnk_000.mUnk_28.mUnk_00[0], &c);
-    e = func_02039828(&a->mUnk_000.mUnk_28.mUnk_00[2], &c);
-    c.x = (d > 0 ? a->mUnk_000.mUnk_28.mUnk_00[0].x : -a->mUnk_000.mUnk_28.mUnk_00[0].x) * 2;
-    c.x += e > 0 ? a->mUnk_000.mUnk_28.mUnk_00[2].x : -a->mUnk_000.mUnk_28.mUnk_00[2].x;
-    c.z = (d > 0 ? a->mUnk_000.mUnk_28.mUnk_00[0].z : -a->mUnk_000.mUnk_28.mUnk_00[0].z) * 2;
-    c.z += e > 0 ? a->mUnk_000.mUnk_28.mUnk_00[2].z : -a->mUnk_000.mUnk_28.mUnk_00[2].z;
+    d = func_02039828(&a->mUnk_000.mMatrix.mUnk_00[0], &c);
+    e = func_02039828(&a->mUnk_000.mMatrix.mUnk_00[2], &c);
+    c.x = (d > 0 ? a->mUnk_000.mMatrix.mUnk_00[0].x : -a->mUnk_000.mMatrix.mUnk_00[0].x) * 2;
+    c.x += e > 0 ? a->mUnk_000.mMatrix.mUnk_00[2].x : -a->mUnk_000.mMatrix.mUnk_00[2].x;
+    c.z = (d > 0 ? a->mUnk_000.mMatrix.mUnk_00[0].z : -a->mUnk_000.mMatrix.mUnk_00[0].z) * 2;
+    c.z += e > 0 ? a->mUnk_000.mMatrix.mUnk_00[2].z : -a->mUnk_000.mMatrix.mUnk_00[2].z;
     c.y = ((a->mUnk_114.y - 0x14000) >> 4) + 0x2000;
     if ((s64) c.x * c.x + (s64) c.y * c.y + (s64) c.z * c.z >= 0x10) {
         func_02039860(&c, &c);
@@ -336,7 +335,7 @@ void func_020e24d0(Unk020e1e98 *a, Vec3 *b) {
         f = a->mUnk_000.mUnk_10.y;
     }
     a->mUnk_000.mUnk_10.y = f + 0x7000;
-    a->mUnk_000.mUnk_02 |= *(const u16 *) data_02158a50;
+    a->mUnk_000.mFlags |= *(const u16 *) data_02158a50;
     a->mUnk_0fe = 0x14;
 }
 
@@ -366,7 +365,7 @@ void func_020e2400(Unk020e1e98 *a, Vec3 *b, s32 c, Vec3 *d) {
     f.x = a->mUnk_114.x;
     f.y = 0;
     f.z = a->mUnk_120;
-    func_020eafc4(b, &a->mUnk_000.mUnk_04, &a->mUnk_000.mUnk_28.mUnk_00[0], &e, &f, c, d);
+    func_020eafc4(b, &a->mUnk_000.mPos, &a->mUnk_000.mMatrix.mUnk_00[0], &e, &f, c, d);
 }
 
 #pragma thumb on
@@ -392,7 +391,7 @@ void func_020e230c(Unk0217b79c *a) {
     z = 0;
     for (i = 0; i < n; i++) {
         e = *p;
-        h = e->mUnk_000.mUnk_9c->mUnk_26;
+        h = e->mUnk_000.mCourseMapRow->mUnk_26;
         e->mUnk_0d4 = i;
         if ((b & (1 << h)) == 0) {
             n2 = gCourseMap->mUnk_08[h].mUnk_02;
@@ -503,8 +502,8 @@ void func_020e1f54(Unk020e1e98 *a, struct Unk020fa294 *b, Unk020e1e98_154 *c) {
 
 void func_020e1e98(Unk020e1e98 *a) {
     func_020d90a8(&a->mUnk_0d8, a->mUnk_0fc, 1);
-    func_020d8b18(&a->mUnk_0d8, &a->mUnk_000.mUnk_04, &a->mUnk_000.mUnk_10);
-    a->mUnk_000.mUnk_04.y = a->mUnk_0a0;
+    func_020d8b18(&a->mUnk_0d8, &a->mUnk_000.mPos, &a->mUnk_000.mUnk_10);
+    a->mUnk_000.mPos.y = a->mUnk_0a0;
     a->mUnk_000.mUnk_10.y = 0;
     a->mUnk_0b4 = *(const Unk020e1e98_0b4 *) data_0216c044;
     func_020d79b0(
@@ -512,7 +511,7 @@ void func_020e1e98(Unk020e1e98 *a) {
         (u16) (((s64) func_02148538(a->mUnk_000.mUnk_10.x, a->mUnk_000.mUnk_10.z) * 0x28be60db9391 + 0x80000000000) >>
                44),
         &a->mUnk_0a4);
-    func_01ffccd0(&a->mUnk_000.mUnk_28.mUnk_00[0].x, &a->mUnk_0a4);
+    func_01ffccd0(&a->mUnk_000.mMatrix.mUnk_00[0].x, &a->mUnk_0a4);
     a->mUnk_0fe = 0;
     a->mUnk_152 = a->mUnk_150;
     a->mUnk_10c = 0;
@@ -528,17 +527,17 @@ void func_020e1e38(Unk020e1dc0 *a, void *b, void (*c)(Unk020e3ef4 *, void *, u32
     for (i = 0; i < n; i++) {
         Unk020e3ef4 *e = a->mUnk_00[i];
 
-        if ((e->mUnk_000.mUnk_02 & 0x12) == 0 && e->mUnk_000.mUnk_66 != 0) {
+        if ((e->mUnk_000.mFlags & 0x12) == 0 && e->mUnk_000.mUnk_66 != 0) {
             c(e, b, e->mUnk_000.mUnk_66);
         }
     }
 }
 
 void func_020e1dec(Unk020e3ef4 *a, void *b, u32 c) {
-    a->mUnk_000.mUnk_28.mUnk_00[3].x = a->mUnk_000.mUnk_04.x >> 4;
-    a->mUnk_000.mUnk_28.mUnk_00[3].y = a->mUnk_000.mUnk_04.y >> 4;
-    a->mUnk_000.mUnk_28.mUnk_00[3].z = a->mUnk_000.mUnk_04.z >> 4;
-    func_020ea8a8(a->mUnk_140, &a->mUnk_000.mUnk_28, &a->mUnk_000.mUnk_1c.x, c);
+    a->mUnk_000.mMatrix.mUnk_00[3].x = a->mUnk_000.mPos.x >> 4;
+    a->mUnk_000.mMatrix.mUnk_00[3].y = a->mUnk_000.mPos.y >> 4;
+    a->mUnk_000.mMatrix.mUnk_00[3].z = a->mUnk_000.mPos.z >> 4;
+    func_020ea8a8(a->mUnk_140, &a->mUnk_000.mMatrix, &a->mUnk_000.mUnk_1c.x, c);
 }
 
 void func_020e1dc0(Unk020e1dc0 *a, void *b) {

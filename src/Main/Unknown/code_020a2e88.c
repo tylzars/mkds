@@ -8,9 +8,9 @@ void func_020a2ebc(Unk020a2fe4 *a, Vec3 *b) {
     if (b == NULL) {
         return;
     }
-    a->mUnk_00.mUnk_04.x = b->x;
-    a->mUnk_00.mUnk_04.y = b->y + 0xf666;
-    a->mUnk_00.mUnk_04.z = b->z;
+    a->mUnk_00.mPos.x = b->x;
+    a->mUnk_00.mPos.y = b->y + 0xf666;
+    a->mUnk_00.mPos.z = b->z;
 }
 
 void func_020a2e88(Unk020a2fe4 *a, Vec3 *b, Vec3 *c) {

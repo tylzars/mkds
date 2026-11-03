@@ -79,7 +79,7 @@ void func_020952dc(Unk02094e8c *a, s32 b, s32 c, s32 d, s32 e) {
                 f = (float) (d << 12) - 0.5f;
             }
             z = 0;
-            y = a->mUnk_00.mUnk_04.y;
+            y = a->mUnk_00.mPos.y;
             x = 0;
             r = func_02091f6c(func_0209520c(), (s32) f);
             q = func_020951b4(func_0209520c());
@@ -147,12 +147,12 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
     o->mUnk_a0 = t - 1;
     if (t <= 0) {
         o->mUnk_a0 = 0xf;
-        c = o->mUnk_00.mUnk_9c->mUnk_28;
+        c = o->mUnk_00.mCourseMapRow->mUnk_28;
         g = func_0207a974((u16) data_021759c0->mUnk_62);
         e = c << 12;
         q2 = &g->mUnk_80;
-        v1 = q2->x - o->mUnk_00.mUnk_04.x;
-        v2 = q2->z - o->mUnk_00.mUnk_04.z;
+        v1 = q2->x - o->mUnk_00.mPos.x;
+        v2 = q2->z - o->mUnk_00.mPos.z;
         if ((s64) v1 * v1 + (s64) v2 * v2 < (s64) e * e) {
             o->mUnk_a4 = 1;
         } else {
@@ -163,15 +163,15 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
         case 0:
             k = FALSE;
             if (func_02061818() == 2) {
-                for (i = 0; i < o->mUnk_00.mUnk_9c->mUnk_2a; i++) {
-                    if (o->mUnk_00.mUnk_9c->mUnk_28 > 0) {
-                        f = 0.5f + (float) (o->mUnk_00.mUnk_9c->mUnk_28 << 12);
+                for (i = 0; i < o->mUnk_00.mCourseMapRow->mUnk_2a; i++) {
+                    if (o->mUnk_00.mCourseMapRow->mUnk_28 > 0) {
+                        f = 0.5f + (float) (o->mUnk_00.mCourseMapRow->mUnk_28 << 12);
                     } else {
-                        f = (float) (o->mUnk_00.mUnk_9c->mUnk_28 << 12) - 0.5f;
+                        f = (float) (o->mUnk_00.mCourseMapRow->mUnk_28 << 12) - 0.5f;
                     }
-                    z = o->mUnk_00.mUnk_04.z;
-                    y = o->mUnk_00.mUnk_04.y;
-                    x = o->mUnk_00.mUnk_04.x;
+                    z = o->mUnk_00.mPos.z;
+                    y = o->mUnk_00.mPos.y;
+                    x = o->mUnk_00.mPos.x;
                     r = func_02091f6c(func_0209520c(), (s32) f);
                     q = func_020951b4(func_0209520c());
                     v.x = x + func_0209518c(r, func_0209519c(q));

@@ -1,13 +1,13 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 
-// Object of the list func_02100138(0x6c), set up by func_020a2fe4: the shared Unk020e71a0 part, then the value
+// Object of the list func_02100138(0x6c), set up by func_020a2fe4: the shared MapObject part, then the value
 // passed to func_020a2fe4 at 0xa8, two Vec3s at 0xb0 and 0xbc, words up to 0xe4, a Vec3 at 0xe8 and words up to 0xfc;
 // the pointer array at 0xf8 has the count at 0xf4.
 typedef struct Unk020a2fe4 {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mUnk_a8;

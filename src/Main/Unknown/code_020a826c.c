@@ -57,7 +57,7 @@ void func_020a826c(void *a, Unk020a826c *p) {
             func_020a826c_inline(&p->mUnk_0a0);
             break;
         case 2:
-            func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mUnk_04);
+            func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mPos);
             if (data_021759c0->mUnk_00c == 0 && func_0203c25c((u16) data_021759c0->mUnk_62) != 0 &&
                 p->mUnk_0a0.mUnk_24 == 0 && p->mUnk_0a0.mUnk_20 != 0) {
                 v = func_02110c40();
@@ -68,7 +68,7 @@ void func_020a826c(void *a, Unk020a826c *p) {
             func_020a826c_inline(&p->mUnk_0a0);
             break;
         case 3:
-            func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mUnk_04);
+            func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mPos);
             if (func_0203c880((u16) data_021759c0->mUnk_62) != 0) {
                 func_020d2398(&p->mUnk_000);
             } else if (p->mUnk_0a0.mUnk_20 == 0) {

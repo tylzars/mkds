@@ -4,9 +4,9 @@
 #include "Main/Unknown/code_020d22c0.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
-// Object of 0xb0 bytes: the Unk020e71a0 it starts with, then a halfword and three words.
+// Object of 0xb0 bytes: the MapObject it starts with, then a halfword and three words.
 typedef struct Unk020919e8 {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ u16 mUnk_a0;
     /* a2 */ u8 mUnk_a2[2];
     /* a4 */ s32 mUnk_a4;

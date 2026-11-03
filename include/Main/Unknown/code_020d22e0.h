@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-typedef struct Unk020e71a0 Unk020e71a0;
+typedef struct MapObject MapObject;
 
-void func_020d2398(Unk020e71a0 *a);
-void func_020d233c(Unk020e71a0 *a);
+void func_020d2398(MapObject *a);
+void func_020d233c(MapObject *a);
 void func_020d22e0(void);

@@ -2,13 +2,13 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0, Unk020e6fd4
+#include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
 #include "code_0201c528.h" // Unk0201ca6c
 #include "code_02012b30.h" // Unk02012f58
 
 // Object up to 0xed4 bytes plus a table of words from 0xed4.
 typedef struct Unk020975ec {
-    /* 000 */ Unk020e71a0 mUnk_00;
+    /* 000 */ MapObject mUnk_00;
     /* 0a0 */ s32 mUnk_a0;
     /* 0a4 */ s32 mUnk_a4;
     /* 0a8 */ Unk02012f58 mUnk_a8[30];

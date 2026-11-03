@@ -4,12 +4,12 @@
 #include "Main/Unknown/code_0209905c.h" // Unk0209905c
 #include "Main/Unknown/code_0209bc74.h" // Unk0209bc74
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0, Unk020e6fd4
+#include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
 
 // Object up to 0x200 bytes: the shared part, a counter at 0xa4 that cycles between 0xac and 0xb0, a state at 0xb4,
 // seven Unk020e0144 from 0xb8, then a count and an index at 0x1b8 and 0x1ba and seven values at 0x1bc.
 typedef struct Pakkun {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ u16 mUnk_0a0;
     /* 0a2 */ u8 mUnk_0a2[2];
     /* 0a4 */ s32 mUnk_0a4;

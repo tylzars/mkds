@@ -33,7 +33,7 @@ typedef struct Unk020e0144 {
     /* 20 */ struct Unk02042044 *mUnk_20;
 } Unk020e0144;
 
-// Sub-object at 0x80 of Unk020e005c and Unk020e71a0: func_02046be8 stores its second, fourth and third arguments at
+// Sub-object at 0x80 of Unk020e005c and MapObject: func_02046be8 stores its second, fourth and third arguments at
 // 0x00, 0x08 and 0x0c and zeroes 0x04, 0x0e and 0x10.
 typedef struct Unk020e005c_080 {
     /* 00 */ UnkFunc *const *mUnk_00;

@@ -94,7 +94,7 @@ void func_020e57a0(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c) {
     s.x = p->mUnk_00.mUnk_58.x;
     s.y = y;
     s.z = 0;
-    func_020eafc4(a, &p->mUnk_00.mUnk_04, &p->mUnk_00.mUnk_28.mUnk_00[0], &p->mUnk_00.mUnk_58, &s, b, c);
+    func_020eafc4(a, &p->mUnk_00.mPos, &p->mUnk_00.mMatrix.mUnk_00[0], &p->mUnk_00.mUnk_58, &s, b, c);
 }
 
 #pragma thumb on
@@ -125,7 +125,7 @@ void func_020e5684(Unk020e43a8 *p, Unk020e5684 *q) {
     p->mUnk_c8 = 0;
     p->mUnk_00.mUnk_80.mUnk_10 = 0;
     p->mUnk_00.mUnk_80.mUnk_12 = 1;
-    p->mUnk_00.mUnk_02 |= data_021590b0;
+    p->mUnk_00.mFlags |= data_021590b0;
 }
 
 #pragma thumb off

@@ -21,7 +21,7 @@ void func_ov001_02187e48(Unk02188950 *a, s32 b) {
     s32 v;
     s32 n;
 
-    v = a->mUnk_000.mUnk_9c->mUnk_26;
+    v = a->mUnk_000.mCourseMapRow->mUnk_26;
     n = a->mUnk_148 + 1;
     if (n >= v + b) {
         n = v;

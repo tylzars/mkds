@@ -5,9 +5,9 @@
 
 // Object passed to the per-frame functions func_ov001_02185bb8 and func_ov001_02185ca0.
 typedef struct MissionGateObject {
-    /* 000 */ Unk020e71a0 mUnk_000;
-    /* 0a0 */ Unk020e71a0 *mUnk_0a0;
-    /* 0a4 */ Unk020e71a0 *mUnk_0a4;
+    /* 000 */ MapObject mUnk_000;
+    /* 0a0 */ MapObject *mUnk_0a0;
+    /* 0a4 */ MapObject *mUnk_0a4;
     /* 0a8 */ u16 mUnk_0a8;
     /* 0aa */ u8 mUnk_0aa[0x2];
     /* 0ac */ s32 mState;

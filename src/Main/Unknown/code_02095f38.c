@@ -74,9 +74,9 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
                             t = 4;
                         }
                         s.mUnk_00 = 0x16e;
-                        s.mUnk_04 = &p->mUnk_00.mUnk_04;
+                        s.mUnk_04 = &p->mUnk_00.mPos;
                         s.mUnk_08 = t;
-                        s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mUnk_04);
+                        s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
                         func_0210b7a8(&s);
                     }
                 }
@@ -85,7 +85,7 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
             }
             if (g == 1 && (v1 == 4 || (v1 == 5 && p->mUnk_a0 > 0x7800) || v1 == 1)) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if ((p->mUnk_00.mUnk_02 & 0x800) == 0 || a->mIndex == data_021759c0->mUnk_62) {
+                if ((p->mUnk_00.mFlags & 0x800) == 0 || a->mIndex == data_021759c0->mUnk_62) {
                     p->mUnk_104 = 1;
                     p->mUnk_b4 = p->mUnk_a0;
                     p->mUnk_b8 = p->mUnk_a4;
@@ -105,17 +105,17 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
                     p->mUnk_100 = 0x100;
                     func_020d26f8(&p->mUnk_00, a);
                     if (data_021759c0->mUnk_08 == 4) {
-                        v.x = (p->mUnk_00.mUnk_04.x + a->mUnk_80.x) >> 1;
-                        v.y = (p->mUnk_00.mUnk_04.y + a->mUnk_80.y) >> 1;
-                        v.z = (p->mUnk_00.mUnk_04.z + a->mUnk_80.z) >> 1;
+                        v.x = (p->mUnk_00.mPos.x + a->mUnk_80.x) >> 1;
+                        v.y = (p->mUnk_00.mPos.y + a->mUnk_80.y) >> 1;
+                        v.z = (p->mUnk_00.mPos.z + a->mUnk_80.z) >> 1;
                         func_0208b7bc(0x442, &v);
                         func_0208b7bc(0x443, &v);
                         if (data_021759c0->mUnk_08 == 4) {
-                            func_ov001_0218175c(p->mUnk_00.mUnk_00);
+                            func_ov001_0218175c(p->mUnk_00.mKind);
                         }
                     }
                 }
-                if ((p->mUnk_00.mUnk_02 & 0x800) == 0) {
+                if ((p->mUnk_00.mFlags & 0x800) == 0) {
                     if (p->mState == 1) {
                         p->mState = 6;
                     } else if (p->mState == 4) {
@@ -129,7 +129,7 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
             }
             if (v1 == 1) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if ((p->mUnk_00.mUnk_02 & 0x800) == 0 || a->mIndex == data_021759c0->mUnk_62) {
+                if ((p->mUnk_00.mFlags & 0x800) == 0 || a->mIndex == data_021759c0->mUnk_62) {
                     p->mUnk_104 = 1;
                     p->mUnk_b4 = p->mUnk_a0;
                     p->mUnk_b8 = p->mUnk_a4;
@@ -157,13 +157,13 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
                             t = 4;
                         }
                         s2.mUnk_00 = 0x16f;
-                        s2.mUnk_04 = &p->mUnk_00.mUnk_04;
+                        s2.mUnk_04 = &p->mUnk_00.mPos;
                         s2.mUnk_08 = t;
-                        s2.mUnk_0c = func_020d4ef4(&p->mUnk_00.mUnk_04);
+                        s2.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
                         func_0210b7a8(&s2);
                     }
                 }
-                if ((p->mUnk_00.mUnk_02 & 0x800) == 0) {
+                if ((p->mUnk_00.mFlags & 0x800) == 0) {
                     p->mState = 6;
                 }
                 p->mUnk_00.mUnk_10.x = (s32) (((s64) a->mUnk_a4.x * -0x4cd) >> 12);
@@ -209,7 +209,7 @@ u32 func_02096f54(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
         p->mUnk_fc = 0x800;
         p->mUnk_100 = 0x100;
         p->mUnk_00.mUnk_78 = p->mUnk_00.mUnk_78 | data_021564b8;
-        if ((p->mUnk_00.mUnk_02 & 0x800) == 0) {
+        if ((p->mUnk_00.mFlags & 0x800) == 0) {
             p->mState = 7;
         }
     }
@@ -219,7 +219,7 @@ u32 func_02096f54(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
 BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c) {
     Vec3 s;
     s32 d;
-    func_021484d0(a, &p->mUnk_00.mUnk_04, &s);
+    func_021484d0(a, &p->mUnk_00.mPos, &s);
     if (s.y >= p->mUnk_a0 + b) {
         return FALSE;
     }
@@ -280,7 +280,7 @@ void func_02096a04(void *a, CoverPooHole *p) {
     f0[0] = 0;
     f0[2] = 0;
     func_01ff9048(0x1c, f0, 3);
-    func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mUnk_04), 12);
+    func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 12);
     func_0209bbd0(a, gHole);
     func_0209bb2c(a, gHole, p);
     w1 = 1;
@@ -312,7 +312,7 @@ void func_02096a04(void *a, CoverPooHole *p) {
             f2[2] = 0;
             func_01ff9048(0x1c, f2, 3);
         }
-        func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mUnk_04), 12);
+        func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 12);
         func_0209bbd0(a, gPoo);
         func_0209bb2c(a, gPoo, p);
         w2 = 1;
@@ -331,7 +331,7 @@ void func_02096a04(void *a, CoverPooHole *p) {
             r = -r;
         }
         t = p->mUnk_b4 + r;
-        func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mUnk_04), 12);
+        func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 12);
         f3[1] = t >> 4;
         f3[0] = 0;
         f3[2] = 0;
@@ -347,7 +347,7 @@ void func_02096a04(void *a, CoverPooHole *p) {
         f4[1] = t;
         f4[2] = 0;
         func_01ff9048(0x1c, f4, 3);
-        func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mUnk_04), 12);
+        func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 12);
     }
     func_0209bbd0(a, gCover);
     func_0209bb2c(a, gCover, p);
@@ -364,7 +364,8 @@ void func_020968f4(Unk020968f4 *p) {
         o->mUnk_a8 = 0x1000;
         v1 = func_020d22d0();
         v1->mUnk_00 = (s64) v1->mUnk_08 * (s64) v1->mUnk_00 + v1->mUnk_10;
-        o->mTimer = (u16) (o->mUnk_00.mUnk_9c->mUnk_28 + (u16) (((u64) (u32) (v1->mUnk_00 >> 32) * 60) >> 32) - 30);
+        o->mTimer =
+            (u16) (o->mUnk_00.mCourseMapRow->mUnk_28 + (u16) (((u64) (u32) (v1->mUnk_00 >> 32) * 60) >> 32) - 30);
         if (data_021759c0->mUnk_08 == 4) {
             o->mState = 3;
             o->mUnk_a0 = 0x2000;
@@ -408,9 +409,9 @@ static inline void func_02095fec_inline_2(CoverPooHole *p, s32 n) {
         v = 4;
     }
     s.mUnk_00 = n;
-    s.mUnk_04 = &p->mUnk_00.mUnk_04;
+    s.mUnk_04 = &p->mUnk_00.mPos;
     s.mUnk_08 = v;
-    s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mUnk_04);
+    s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
     func_0210b7a8(&s);
 }
 
@@ -584,7 +585,7 @@ void func_02095fec(void *a, CoverPooHole *p) {
                 p->mUnk_a4 = p->mUnk_a0 - 0xf000;
                 return;
             }
-            p->mTimer = (u16) (p->mUnk_00.mUnk_9c->mUnk_28 + func_02095fec_inline(60) - 30);
+            p->mTimer = (u16) (p->mUnk_00.mCourseMapRow->mUnk_28 + func_02095fec_inline(60) - 30);
             if (data_021759c0->mUnk_08 == 4) {
                 p->mState = 3;
                 p->mUnk_a0 = 0x2000;

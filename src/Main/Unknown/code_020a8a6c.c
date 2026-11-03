@@ -36,7 +36,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
             switch (data_021759c0->mCourseId) {
                 case 0x14:
                     p->mUnk_0f0 = 4;
-                    q = p->mUnk_000.mUnk_9c;
+                    q = p->mUnk_000.mCourseMapRow;
                     z1 = q->mUnk_00.z + (-0x4a6000);
                     y1 = q->mUnk_00.y;
                     x1 = q->mUnk_00.x + (-0x2c6000);
@@ -47,7 +47,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0a0.mUnk_10.x = x1;
                     p->mUnk_0a0.mUnk_10.y = y1;
                     p->mUnk_0a0.mUnk_10.z = z1;
-                    q = p->mUnk_000.mUnk_9c;
+                    q = p->mUnk_000.mCourseMapRow;
                     z2 = q->mUnk_00.z + 0x726000;
                     y2 = q->mUnk_00.y;
                     x2 = q->mUnk_00.x + (-0x7ee000);
@@ -61,7 +61,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     break;
                 case 0x16:
                     p->mUnk_0f0 = 5;
-                    q = p->mUnk_000.mUnk_9c;
+                    q = p->mUnk_000.mCourseMapRow;
                     z3 = q->mUnk_00.z;
                     y3 = q->mUnk_00.y;
                     x3 = q->mUnk_00.x;
@@ -79,11 +79,11 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0a0.mUnk_10.x = x3;
                     p->mUnk_0a0.mUnk_10.y = y3;
                     p->mUnk_0a0.mUnk_10.z = z3;
-                    func_02147fd8((s32) (((s64) p->mUnk_000.mUnk_1c.z * 0x5000) >> 12), &p->mUnk_000.mUnk_28.mUnk_00[2],
+                    func_02147fd8((s32) (((s64) p->mUnk_000.mUnk_1c.z * 0x5000) >> 12), &p->mUnk_000.mMatrix.mUnk_00[2],
                                   &p->mUnk_0a0.mUnk_10, &p->mUnk_0a0.mUnk_10);
                     break;
                 default:
-                    if ((p->mUnk_000.mUnk_02 & 0x100) == 0) {
+                    if ((p->mUnk_000.mFlags & 0x100) == 0) {
                         func_020d2398(&p->mUnk_000);
                     }
                     break;
@@ -106,7 +106,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0c8.mUnk_10.x = 0;
                     p->mUnk_0c8.mUnk_10.y = 0;
                     p->mUnk_0c8.mUnk_10.z = 0;
-                    func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mUnk_04);
+                    func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mPos);
                     break;
                 case 0x19:
                     p->mUnk_0f0 = 1;
@@ -124,11 +124,11 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0c8.mUnk_10.x = 0;
                     p->mUnk_0c8.mUnk_10.y = 0;
                     p->mUnk_0c8.mUnk_10.z = 0;
-                    func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mUnk_04);
+                    func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mPos);
                     break;
                 case 0x16:
                     p->mUnk_0f0 = 6;
-                    q = p->mUnk_000.mUnk_9c;
+                    q = p->mUnk_000.mCourseMapRow;
                     z4 = q->mUnk_00.z;
                     y4 = q->mUnk_00.y;
                     x4 = q->mUnk_00.x;
@@ -139,9 +139,9 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0a0.mUnk_10.x = x4;
                     p->mUnk_0a0.mUnk_10.y = y4;
                     p->mUnk_0a0.mUnk_10.z = z4;
-                    func_02147fd8((s32) (((s64) p->mUnk_000.mUnk_1c.z * 0x5000) >> 12), &p->mUnk_000.mUnk_28.mUnk_00[2],
+                    func_02147fd8((s32) (((s64) p->mUnk_000.mUnk_1c.z * 0x5000) >> 12), &p->mUnk_000.mMatrix.mUnk_00[2],
                                   &p->mUnk_0a0.mUnk_10, &p->mUnk_0a0.mUnk_10);
-                    q = p->mUnk_000.mUnk_9c;
+                    q = p->mUnk_000.mCourseMapRow;
                     z5 = q->mUnk_00.z;
                     y5 = q->mUnk_00.y;
                     x5 = q->mUnk_00.x;
@@ -153,10 +153,10 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0c8.mUnk_10.y = y5;
                     p->mUnk_0c8.mUnk_10.z = z5;
                     func_02147fd8((s32) (((s64) p->mUnk_000.mUnk_1c.z * -0x5000) >> 12),
-                                  &p->mUnk_000.mUnk_28.mUnk_00[2], &p->mUnk_0c8.mUnk_10, &p->mUnk_0c8.mUnk_10);
+                                  &p->mUnk_000.mMatrix.mUnk_00[2], &p->mUnk_0c8.mUnk_10, &p->mUnk_0c8.mUnk_10);
                     break;
                 default:
-                    if ((p->mUnk_000.mUnk_02 & 0x100) == 0) {
+                    if ((p->mUnk_000.mFlags & 0x100) == 0) {
                         func_020d2398(&p->mUnk_000);
                     }
                     break;

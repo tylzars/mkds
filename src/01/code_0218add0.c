@@ -26,17 +26,17 @@ void func_ov001_0218aef4(Unk02188950 *a) {
         Vec3 vel = {0, 0, 0};
         angle += 0x5555;
         idx = ((u16) angle >> 4) * 2;
-        pos.x = a->mUnk_000.mUnk_04.x + (s32) (((s64) a->mUnk_0a0->mUnk_1e4 * data_0215d4b4[idx]) >> 12);
-        pos.y = a->mUnk_000.mUnk_04.y;
-        pos.z = a->mUnk_000.mUnk_04.z + (s32) (((s64) a->mUnk_0a0->mUnk_1e4 * data_0215d4b4[idx + 1]) >> 12);
+        pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mUnk_0a0->mUnk_1e4 * data_0215d4b4[idx]) >> 12);
+        pos.y = a->mUnk_000.mPos.y;
+        pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mUnk_0a0->mUnk_1e4 * data_0215d4b4[idx + 1]) >> 12);
         func_ov001_02187b94(func_020fd428(), &pos, &vel, a->mUnk_0a0->mUnk_1e8);
     }
     {
         Vec3 pos2;
         Vec3 vel2 = {0, 0, 0};
-        pos2.x = a->mUnk_000.mUnk_04.x;
-        pos2.y = a->mUnk_000.mUnk_04.y;
-        pos2.z = a->mUnk_000.mUnk_04.z;
+        pos2.x = a->mUnk_000.mPos.x;
+        pos2.y = a->mUnk_000.mPos.y;
+        pos2.z = a->mUnk_000.mPos.z;
         func_ov001_02187b94(func_ov001_02187e00(9), &pos2, &vel2, a->mUnk_0a0->mUnk_1ec);
     }
     func_ov001_02188cec(a, 0);
@@ -50,7 +50,7 @@ void func_ov001_0218ae60(Unk02188950 *a) {
     func_ov001_02187518(a, (u32) (0), (u32) (0), (u32) (0), (u32) (0x411), (u32) (0));
     func_ov001_02187518(a, (u32) (0), (u32) (0), (u32) (0), (u32) (0x412), (u32) (0));
     func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
-    a->mUnk_000.mUnk_02 &= ~0x20;
+    a->mUnk_000.mFlags &= ~0x20;
     func_ov001_02188200(a, NULL);
 }
 

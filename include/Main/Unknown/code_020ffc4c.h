@@ -5,7 +5,7 @@
 
 // Object of func_020ffb1c and the functions of this file: 0xc0 bytes.
 typedef struct Unk020ffb1c {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ u16 mUnk_a0;
     /* a2 */ u16 mUnk_a2;
     /* a4 */ u16 mUnk_a4;

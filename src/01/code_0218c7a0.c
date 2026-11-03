@@ -71,8 +71,8 @@ void func_ov001_0218d2c4(Unk02188950 *a) {
         }
     }
     local = data_ov001_021a7c08;
-    local.mUnk_04 = &a->mUnk_000.mUnk_04;
-    local.mUnk_0c = func_020d4ef4(&a->mUnk_000.mUnk_04);
+    local.mUnk_04 = &a->mUnk_000.mPos;
+    local.mUnk_0c = func_020d4ef4(&a->mUnk_000.mPos);
     func_0210b734(&local, func_02108e7c());
 }
 
@@ -274,22 +274,22 @@ void func_ov001_0218cdb8(Unk02188950 *e) {
     Unk02188950 *c;
     Unk02188950 *d;
 
-    a = (Unk02188950 *) func_020d34d4(&e->mUnk_000, 0x1fe);
-    b = (Unk02188950 *) func_020d34d4(&e->mUnk_000, 0x1fe);
-    c = (Unk02188950 *) func_020d34d4(&e->mUnk_000, 0x1fe);
-    d = (Unk02188950 *) func_020d34d4(&e->mUnk_000, 0x1fe);
+    a = (Unk02188950 *) CreateMapObjectFromObject(&e->mUnk_000, 0x1fe);
+    b = (Unk02188950 *) CreateMapObjectFromObject(&e->mUnk_000, 0x1fe);
+    c = (Unk02188950 *) CreateMapObjectFromObject(&e->mUnk_000, 0x1fe);
+    d = (Unk02188950 *) CreateMapObjectFromObject(&e->mUnk_000, 0x1fe);
     a->mUnk_0a4 = (struct Unk0218dabc *) e;
     b->mUnk_0a4 = (struct Unk0218dabc *) a;
     c->mUnk_0a4 = (struct Unk0218dabc *) b;
     d->mUnk_0a4 = (struct Unk0218dabc *) c;
     e->mUnk_000.mUnk_94 = func_02036bec((void *) func_020364e0(func_020364e8()), 0x44);
-    func_02109110((Unk0210bfbc *) (e->mUnk_000.mUnk_94), (u32) (0xd), (Vec3 *) (&e->mUnk_000.mUnk_04));
+    func_02109110((Unk0210bfbc *) (e->mUnk_000.mUnk_94), (u32) (0xd), (Vec3 *) (&e->mUnk_000.mPos));
     e->mUnk_000.mUnk_70 = data_0217cbec[0x1d];
 }
 
 void func_ov001_0218cd80(Unk02188950 *a) {
     a->mUnk_000.mUnk_94 = func_02036bec((void *) func_020364e0(func_020364e8()), 0x44);
-    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xd), (Vec3 *) (&a->mUnk_000.mUnk_04));
+    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xd), (Vec3 *) (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cbec[0x1d];
 }
 
@@ -302,7 +302,7 @@ void func_ov001_0218cbdc(Unk02188950 *a, Unk02188950_a0 *b) {
             a->mUnk_2d8 = 0xc;
         } else {
             r4 = a->mUnk_1a8;
-            diff = (u16) (func_02148714(b->mUnk_080 - a->mUnk_000.mUnk_04.x, b->mUnk_088 - a->mUnk_000.mUnk_04.z) - r4);
+            diff = (u16) (func_02148714(b->mUnk_080 - a->mUnk_000.mPos.x, b->mUnk_088 - a->mUnk_000.mPos.z) - r4);
             if (diff > 0x8000) {
                 diff -= 0x10000;
             }

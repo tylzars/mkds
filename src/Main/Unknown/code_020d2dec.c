@@ -53,21 +53,21 @@ static inline GrpconfTblRow *func_020d34e4_inline(u16 f) {
     return NULL;
 }
 
-Unk020e71a0 *func_020d34e4(u32 param_1, Unk020fa294 *param_2, Unk020e71a0 *param_3) {
+MapObject *CreateMapObject(u32 kind, Unk020fa294 *courseRow, MapObject *source) {
     s32 i;
     s32 j;
     Unk0216b288 *row;
     Unk021000d0 *a;
     Unk021000d0 *o;
-    Unk020e71a0_98 *c;
+    MapObjectKindData *kindData;
     GrpconfTblRow *t;
-    Unk020e71a0 *p;
+    MapObject *object;
     s32 v;
     u32 m;
     for (i = 0; i < data_0217b4ec; i++) {
         {
             row = &data_0216b288[i];
-            if (param_1 != row->mUnk_00) {
+            if (kind != row->mUnk_00) {
                 continue;
             }
             a = row->mUnk_04;
@@ -164,125 +164,125 @@ Unk020e71a0 *func_020d34e4(u32 param_1, Unk020fa294 *param_2, Unk020e71a0 *param
             if (a == NULL) {
                 continue;
             }
-            c = a->mUnk_20;
-            p = func_02036bec(func_020364e0(func_020364e8()), a->mUnk_04);
+            kindData = a->mUnk_20;
+            object = func_02036bec(func_020364e0(func_020364e8()), a->mUnk_04);
             a->mUnk_00++;
-            if (param_2 != NULL) {
-                p->mUnk_9c = param_2;
-            } else if (param_3 != NULL) {
-                p->mUnk_9c = param_3->mUnk_9c;
+            if (courseRow != NULL) {
+                object->mCourseMapRow = courseRow;
+            } else if (source != NULL) {
+                object->mCourseMapRow = source->mCourseMapRow;
             }
-            p->mUnk_00 = param_1;
-            p->mUnk_02 = 0;
+            object->mKind = kind;
+            object->mFlags = 0;
             if (data_0217b4e0 != 0) {
-                p->mUnk_02 |= data_021568c8;
+                object->mFlags |= data_021568c8;
             }
-            p->mUnk_64 = -1;
-            if (param_2 != NULL) {
-                p->mUnk_04.x = param_2->mUnk_00.x;
-                p->mUnk_04.y = param_2->mUnk_00.y;
-                p->mUnk_04.z = param_2->mUnk_00.z;
-            } else if (param_3 != NULL) {
-                p->mUnk_04.x = param_3->mUnk_04.x;
-                p->mUnk_04.y = param_3->mUnk_04.y;
-                p->mUnk_04.z = param_3->mUnk_04.z;
+            object->mUnk_64 = -1;
+            if (courseRow != NULL) {
+                object->mPos.x = courseRow->mUnk_00.x;
+                object->mPos.y = courseRow->mUnk_00.y;
+                object->mPos.z = courseRow->mUnk_00.z;
+            } else if (source != NULL) {
+                object->mPos.x = source->mPos.x;
+                object->mPos.y = source->mPos.y;
+                object->mPos.z = source->mPos.z;
             }
-            if (c->mUnk_20 == 0 || c->mUnk_20 == 2) {
-                p->mUnk_10.x = 0;
-                p->mUnk_10.y = 0;
-                p->mUnk_10.z = 0;
+            if (kindData->mUnk_20 == 0 || kindData->mUnk_20 == 2) {
+                object->mUnk_10.x = 0;
+                object->mUnk_10.y = 0;
+                object->mUnk_10.z = 0;
             } else {
-                p->mUnk_10.x = 0x270f000;
-                p->mUnk_10.y = 0x270f000;
-                p->mUnk_10.z = 0x270f000;
+                object->mUnk_10.x = 0x270f000;
+                object->mUnk_10.y = 0x270f000;
+                object->mUnk_10.z = 0x270f000;
             }
-            if (param_2 != NULL) {
-                p->mUnk_7e = (u16) (((s64) param_2->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
-                func_020d6df0(&param_2->mUnk_0c, (s32 *) &p->mUnk_28);
-            } else if (param_3 != NULL) {
-                p->mUnk_7e = param_3->mUnk_7e;
-                p->mUnk_28 = param_3->mUnk_28;
+            if (courseRow != NULL) {
+                object->mUnk_7e = (u16) (((s64) courseRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
+                func_020d6df0(&courseRow->mUnk_0c, (s32 *) &object->mMatrix);
+            } else if (source != NULL) {
+                object->mUnk_7e = source->mUnk_7e;
+                object->mMatrix = source->mMatrix;
             }
-            p->mUnk_98 = c;
-            if (param_2 != NULL) {
-                func_020d29cc(p, &param_2->mUnk_18);
+            object->mKindData = kindData;
+            if (courseRow != NULL) {
+                func_020d29cc(object, &courseRow->mUnk_18);
             } else {
-                func_020d29cc(p, &param_3->mUnk_1c);
+                func_020d29cc(object, &source->mUnk_1c);
             }
-            func_020d24d8(p, c->mUnk_30);
-            p->mUnk_7c = c->mUnk_34;
-            if (c->mUnk_08 != 0) {
-                p->mUnk_02 &= ~1;
+            func_020d24d8(object, kindData->mUnk_30);
+            object->mUnk_7c = kindData->mUnk_34;
+            if (kindData->mUnk_08 != 0) {
+                object->mFlags &= ~1;
             } else {
-                p->mUnk_02 |= data_021568cc;
+                object->mFlags |= data_021568cc;
             }
-            if (c->mUnk_1c != 0) {
-                p->mUnk_02 &= ~0x40;
+            if (kindData->mUnk_1c != 0) {
+                object->mFlags &= ~0x40;
             } else {
-                p->mUnk_02 |= data_021568d0;
+                object->mFlags |= data_021568d0;
             }
             if ((a->mUnk_24[0] != NULL && a->mUnk_24[0]->mUnk_10 != NULL) ||
                 (a->mUnk_24[1] != NULL && a->mUnk_24[1]->mUnk_10 != NULL) ||
                 (a->mUnk_24[2] != NULL && a->mUnk_24[2]->mUnk_10 != NULL)) {
-                p->mUnk_02 &= ~2;
-                p->mUnk_02 &= ~8;
-                p->mUnk_66 = 0x1f;
+                object->mFlags &= ~2;
+                object->mFlags &= ~8;
+                object->mUnk_66 = 0x1f;
             } else {
-                p->mUnk_02 |= data_021568d4;
-                p->mUnk_02 |= data_021568d8;
+                object->mFlags |= data_021568d4;
+                object->mFlags |= data_021568d8;
             }
-            if (param_3 != NULL) {
-                p->mUnk_74 = param_3->mUnk_74;
-                p->mUnk_02 |= param_3->mUnk_02 & 0x80;
-            } else if (param_2 != NULL) {
-                if (param_2->mUnk_36 != 0) {
-                    func_020d3ae0(param_2->mUnk_36, p);
+            if (source != NULL) {
+                object->mUnk_74 = source->mUnk_74;
+                object->mFlags |= source->mFlags & 0x80;
+            } else if (courseRow != NULL) {
+                if (courseRow->mUnk_36 != 0) {
+                    func_020d3ae0(courseRow->mUnk_36, object);
                 }
             }
             if (a->mUnk_24[3] != NULL && a->mUnk_24[3]->mUnk_10 != NULL) {
-                p->mUnk_02 &= ~4;
+                object->mFlags &= ~4;
             } else {
-                p->mUnk_02 |= data_021568dc;
+                object->mFlags |= data_021568dc;
             }
-            p->mUnk_70 = data_0217ca6c[2].mUnk_20;
-            if (param_2 != NULL) {
+            object->mUnk_70 = data_0217ca6c[2].mUnk_20;
+            if (courseRow != NULL) {
                 if (a->mUnk_08 != NULL) {
-                    a->mUnk_08(p, param_2, data_0216b288[i].mUnk_08);
+                    a->mUnk_08(object, courseRow, data_0216b288[i].mUnk_08);
                 }
-            } else if (param_3 != NULL) {
+            } else if (source != NULL) {
                 if (a->mUnk_08 != NULL) {
-                    a->mUnk_08(p, NULL, param_3);
+                    a->mUnk_08(object, NULL, source);
                 }
             }
-            if (c->mUnk_08 != 0) {
+            if (kindData->mUnk_08 != 0) {
                 m = 0x2000;
-                if (c->mUnk_20 == 0) {
+                if (kindData->mUnk_20 == 0) {
                     m |= data_021568e0;
                 }
-                if (func_020dff70(p->mUnk_00) != 0 || func_020e4320(p->mUnk_00) != 0 ||
-                    func_020e3af0(p->mUnk_00) != 0 || func_020ffabc(p->mUnk_00) != 0) {
+                if (func_020dff70(object->mKind) != 0 || func_020e4320(object->mKind) != 0 ||
+                    func_020e3af0(object->mKind) != 0 || func_020ffabc(object->mKind) != 0) {
                     m |= data_021568e4;
                 }
-                p->mUnk_64 = func_020d555c(&p->mUnk_04, func_020d252c(p), m, p);
+                object->mUnk_64 = func_020d555c(&object->mPos, func_020d252c(object), m, object);
             }
-            j = data_0217b4f0->mUnk_004;
-            data_0217b4f0->mUnk_004 = j + 1;
-            data_0217b4f0->mUnk_000[j] = p;
-            if (data_0217b4f0->mUnk_004 >= 0x100) {
-                data_0217b4f0->mUnk_004 = 0xff;
+            j = data_0217b4f0->mMapObjectCount;
+            data_0217b4f0->mMapObjectCount = j + 1;
+            data_0217b4f0->mMapObjects[j] = object;
+            if (data_0217b4f0->mMapObjectCount >= 0x100) {
+                data_0217b4f0->mMapObjectCount = 0xff;
             }
-            return p;
+            return object;
         }
     }
     return NULL;
 }
 
-Unk020e71a0 *func_020d34d4(Unk020e71a0 *param_1, s32 param_2) {
-    return func_020d34e4(param_2, NULL, param_1);
+MapObject *CreateMapObjectFromObject(MapObject *source, s32 kind) {
+    return CreateMapObject(kind, NULL, source);
 }
 
-Unk020e71a0 *func_020d34c4(Unk020fa294 *param_1, s32 param_2) {
-    return func_020d34e4(param_2, param_1, NULL);
+MapObject *CreateMapObjectFromCourseMapRow(Unk020fa294 *courseRow, s32 kind) {
+    return CreateMapObject(kind, courseRow, NULL);
 }
 
 void func_020d2e6c(void) {
@@ -302,7 +302,7 @@ void func_020d2e6c(void) {
     Unk0216b288 *row;
     Unk021000d0 *d;
     Unk020fa294 *e;
-    Unk020e71a0 *o;
+    MapObject *o;
     Unk020e6fd4 *w[3];
     Unk020e6fd4 *x;
     Unk020e6fd4 **y;
@@ -314,10 +314,10 @@ void func_020d2e6c(void) {
     data_0217b4c8 = data_0217b4c0 + 1;
     n = gCourseMap->mUnk_04;
     data_0217b4f0 = func_02036bec(h, 0x2bc);
-    data_0217b4f0->mUnk_000 = func_02036bec(h, 0x400);
+    data_0217b4f0->mMapObjects = func_02036bec(h, 0x400);
     data_0217b4e8 = func_02036bec(h, 0x80);
     data_0217b4dc = func_02036bec(h, 0x180);
-    data_0217b4f0->mUnk_004 = 0;
+    data_0217b4f0->mMapObjectCount = 0;
     data_0217b4f0->mUnk_130 = 0;
     data_0217b4f0->mUnk_178 = 0;
     v = 0;
@@ -372,7 +372,7 @@ void func_020d2e6c(void) {
         if (data_021759c0->mUnk_08 == 1 && (e->mUnk_38 & 1) == 0) {
             continue;
         }
-        func_020d34e4(e->mUnk_24, e, NULL);
+        CreateMapObject(e->mUnk_24, e, NULL);
         data_0217b4f0->mUnk_17c |= func_020dff70(e->mUnk_24);
         data_0217b4f0->mUnk_180 |= func_020e4320(e->mUnk_24);
         data_0217b4f0->mUnk_184 |= func_020e3af0(e->mUnk_24);
@@ -419,10 +419,10 @@ void func_020d2e6c(void) {
     for (i = 0; i < data_0217b4f0->mUnk_128; i++) {
         func_020d49f0(data_0217b4f0->mUnk_008[i]);
     }
-    for (i = 0; i < data_0217b4f0->mUnk_004; i++) {
-        o = data_0217b4f0->mUnk_000[i];
+    for (i = 0; i < data_0217b4f0->mMapObjectCount; i++) {
+        o = data_0217b4f0->mMapObjects[i];
         for (j = 0; j < data_0217b4ec; j++) {
-            if (o->mUnk_00 == data_0216b288[j].mUnk_00) {
+            if (o->mKind == data_0216b288[j].mUnk_00) {
                 w[0] = data_0216b288[j].mUnk_04->mUnk_24[0];
                 w[1] = data_0216b288[j].mUnk_04->mUnk_24[1];
                 w[2] = data_0216b288[j].mUnk_04->mUnk_24[2];
@@ -511,10 +511,10 @@ void func_020d2e6c(void) {
     for (i = 0; i < data_0217b4f0->mUnk_174; i++) {
         func_020e6f9c(data_0217b4f0->mUnk_134[i]);
     }
-    for (i = 0; i < data_0217b4f0->mUnk_004; i++) {
-        o = data_0217b4f0->mUnk_000[i];
+    for (i = 0; i < data_0217b4f0->mMapObjectCount; i++) {
+        o = data_0217b4f0->mMapObjects[i];
         for (j = 0; j < data_0217b4ec; j++) {
-            if (o->mUnk_00 == data_0216b288[j].mUnk_00 && data_0216b288[j].mUnk_04->mUnk_24[3] != NULL) {
+            if (o->mKind == data_0216b288[j].mUnk_00 && data_0216b288[j].mUnk_04->mUnk_24[3] != NULL) {
                 func_020e6f58(data_0216b288[j].mUnk_04->mUnk_24[3], o);
             }
         }

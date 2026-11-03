@@ -3,9 +3,9 @@
 #include "types.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
-// Object of 0xb0 bytes: the Unk020e71a0 it starts with, then four words.
+// Object of 0xb0 bytes: the MapObject it starts with, then four words.
 typedef struct Unk02094e8c {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mUnk_a8;

@@ -224,21 +224,21 @@ void func_020a066c(Unk020a066c *p) {
     for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
         if (data_021759c0->mCourseId == 0x12) {
             o->mUnk_a8 = 0xa28;
-            o->mUnk_ac = o->mUnk_00.mUnk_04.x + 0x73a000;
-            o->mUnk_b0 = o->mUnk_00.mUnk_04.y;
-            o->mUnk_b4 = o->mUnk_00.mUnk_04.z - 0x1400000;
+            o->mUnk_ac = o->mUnk_00.mPos.x + 0x73a000;
+            o->mUnk_b0 = o->mUnk_00.mPos.y;
+            o->mUnk_b4 = o->mUnk_00.mPos.z - 0x1400000;
             o->mUnk_b8 = 1;
         } else if (data_021759c0->mCourseId == 0x1f) {
             o->mUnk_a8 = 0x546;
-            o->mUnk_ac = o->mUnk_00.mUnk_04.x + 0x28a000;
-            o->mUnk_b0 = o->mUnk_00.mUnk_04.y;
-            o->mUnk_b4 = o->mUnk_00.mUnk_04.z - 0x32000;
+            o->mUnk_ac = o->mUnk_00.mPos.x + 0x28a000;
+            o->mUnk_b0 = o->mUnk_00.mPos.y;
+            o->mUnk_b4 = o->mUnk_00.mPos.z - 0x32000;
             o->mUnk_b8 = 0;
         } else {
             o->mUnk_a8 = 0xa28;
-            o->mUnk_ac = o->mUnk_00.mUnk_04.x;
-            o->mUnk_b0 = o->mUnk_00.mUnk_04.y;
-            o->mUnk_b4 = o->mUnk_00.mUnk_04.z;
+            o->mUnk_ac = o->mUnk_00.mPos.x;
+            o->mUnk_b0 = o->mUnk_00.mPos.y;
+            o->mUnk_b4 = o->mUnk_00.mPos.z;
             o->mUnk_b8 = 0;
         }
         a = &data_0217561c->mUnk_498;

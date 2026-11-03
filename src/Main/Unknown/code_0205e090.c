@@ -39,7 +39,7 @@ s32 func_0205e1c4(void) {
         n = func_020d4130(&p->mUnk_00, e->mUnk_04, p->mUnk_3c);
         c = 0;
         for (j = 0; j < n; j++) {
-            if (func_02041944(&func_020d411c(j)->mUnk_04, p) != 0) {
+            if (func_02041944(&func_020d411c(j)->mPos, p) != 0) {
                 c = c + 1;
             }
         }

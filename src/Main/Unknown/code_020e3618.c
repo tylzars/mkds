@@ -44,9 +44,9 @@ void func_020e3a7c(void) {
 }
 
 void func_020e38a0(Unk020e38a0 *a, struct Unk020fa294 *b) {
-    a->mUnk_0e8 = a->mUnk_000.mUnk_04;
-    a->mUnk_0a0 = *(Unk020e38a0_28 *) &a->mUnk_000.mUnk_28;
-    a->mUnk_0c4 = *(Unk020e38a0_28 *) &a->mUnk_000.mUnk_28;
+    a->mUnk_0e8 = a->mUnk_000.mPos;
+    a->mUnk_0a0 = *(Unk020e38a0_28 *) &a->mUnk_000.mMatrix;
+    a->mUnk_0c4 = *(Unk020e38a0_28 *) &a->mUnk_000.mMatrix;
     a->mUnk_124.x = 0;
     a->mUnk_124.y = 0;
     a->mUnk_124.z = 0;
@@ -72,9 +72,9 @@ void func_020e38a0(Unk020e38a0 *a, struct Unk020fa294 *b) {
     a->mUnk_120 = 0x800;
     a->mUnk_134 = 0;
     a->mUnk_138 = 0;
-    a->mUnk_000.mUnk_02 |= data_02158c88;
-    a->mUnk_000.mUnk_02 &= ~2;
-    a->mUnk_000.mUnk_02 &= ~8;
+    a->mUnk_000.mFlags |= data_02158c88;
+    a->mUnk_000.mFlags &= ~2;
+    a->mUnk_000.mFlags &= ~8;
     a->mUnk_000.mUnk_66 = 0x1f;
     if (b->mUnk_0c.y < 0) {
         func_020d278c(&a->mUnk_000);
@@ -131,7 +131,7 @@ void func_020e3618(s32 a, Unk020e1e98 *b, s32 c, u16 d) {
     switch (b->mUnk_000.mUnk_80.mUnk_0e) {
         case 4:
             gChoropu->mUnk_18 = 1;
-            p = func_020e6cf8(&b->mUnk_000.mUnk_04);
+            p = func_020e6cf8(&b->mUnk_000.mPos);
             func_020e67c4(gChoropu, p, &b->mUnk_000.mUnk_1c, 0, d);
             break;
         case 5:
@@ -139,12 +139,12 @@ void func_020e3618(s32 a, Unk020e1e98 *b, s32 c, u16 d) {
         case 6:
         case 7:
             gChoropu->mUnk_18 = 1;
-            p = func_020e6cf8(&b->mUnk_000.mUnk_04);
+            p = func_020e6cf8(&b->mUnk_000.mPos);
             func_020e66e4(gChoropu, p, b->mUnk_0b4.mUnk_04, &b->mUnk_000.mUnk_1c, 0, d);
             break;
         default:
             gChoropu->mUnk_18 = 0;
-            p = func_020e6cf8(&b->mUnk_000.mUnk_04);
+            p = func_020e6cf8(&b->mUnk_000.mPos);
             func_020e67c4(gChoropu, p, &b->mUnk_000.mUnk_1c, 0, d);
     }
 }

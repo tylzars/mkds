@@ -222,7 +222,7 @@ void func_020edf10(Unk020eda5c *p) {
                 }
                 func_020ee160(q, e);
             } else if ((data_0217b5bc[i] & 0x2000) != 0) {
-                Unk020e71a0 *e = data_0217b5c4[i];
+                MapObject *e = data_0217b5c4[i];
                 if (func_020d2234(e, q) == 0) {
                     continue;
                 }

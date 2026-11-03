@@ -6,8 +6,8 @@
 #include "Main/Unknown/code_02081120.h"
 #include "Main/Unknown/code_020ed5c0.h"
 
-int func_02067ec4(Unk0206bcb0 *p, s32 *a, Unk020e71a0 *c) {
-    if (p->mUnk_2a4 > 0x3000 || (c->mUnk_02 & 0x200)) {
+int func_02067ec4(Unk0206bcb0 *p, s32 *a, MapObject *c) {
+    if (p->mUnk_2a4 > 0x3000 || (c->mFlags & 0x200)) {
         if (func_0206bcb0(p, 1, 0)) {
             if (p->mKartModelsEntry->mUnk_058 == 0) {
                 func_0208b7bc(0xc, &p->mUnk_80);
@@ -25,8 +25,8 @@ int func_02067ec4(Unk0206bcb0 *p, s32 *a, Unk020e71a0 *c) {
     return 0xb;
 }
 
-int func_02067e10(Unk0206bcb0 *p, s32 *a, Unk020e71a0 *c) {
-    if (p->mUnk_2a4 > 0x3000 || (c->mUnk_02 & 0x200)) {
+int func_02067e10(Unk0206bcb0 *p, s32 *a, MapObject *c) {
+    if (p->mUnk_2a4 > 0x3000 || (c->mFlags & 0x200)) {
         if (func_0206bcb0(p, 2, 0)) {
             if (p->mKartModelsEntry->mUnk_058 == 0) {
                 func_0208b7bc(0xc, &p->mUnk_80);
@@ -44,8 +44,8 @@ int func_02067e10(Unk0206bcb0 *p, s32 *a, Unk020e71a0 *c) {
     return 0xb;
 }
 
-int func_02067d88(Unk0206bcb0 *p, s32 *a, Unk020e71a0 *c) {
-    if (p->mUnk_2a4 > 0x3000 || (c->mUnk_02 & 0x200)) {
+int func_02067d88(Unk0206bcb0 *p, s32 *a, MapObject *c) {
+    if (p->mUnk_2a4 > 0x3000 || (c->mFlags & 0x200)) {
         if (func_0206bcb0(p, 2, 0)) {
             if (p->mUnk_7c & 1) {
                 func_0207a6b0()->mUnk_14++;

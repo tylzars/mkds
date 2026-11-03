@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7a8
 #include "code_0212c478.h" // Unk0212c400
 
@@ -16,10 +16,10 @@ typedef struct Unk020a826c_a0 {
     /* 24 */ s32 mUnk_24;
 } Unk020a826c_a0;
 
-// Object of func_020a826c: the shared Unk020e71a0 part, two Unk020a826c_a0 and a value at 0xf0 (0 to 6) that
+// Object of func_020a826c: the shared MapObject part, two Unk020a826c_a0 and a value at 0xf0 (0 to 6) that
 // selects what func_020a826c does.
 typedef struct Unk020a826c {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ Unk020a826c_a0 mUnk_0a0;
     /* 0c8 */ Unk020a826c_a0 mUnk_0c8;
     /* 0f0 */ s32 mUnk_0f0;

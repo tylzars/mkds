@@ -28,7 +28,7 @@ typedef struct Unk0217b654 {
 
 // Object of func_020d655c: the shared part, and a word at 0x118.
 typedef struct Unk020d655c {
-    /* 000 */ Unk020e71a0 mUnk_00;
+    /* 000 */ MapObject mUnk_00;
     /* 0a0 */ u8 mUnk_a0[0x78];
     /* 118 */ s32 mUnk_118;
 } Unk020d655c;
@@ -47,8 +47,8 @@ Unk0217b650 *func_020d67f0(void);
 Unk0217b650 *func_020d6850(void);
 Unk02156adc *func_020d68b0(void);
 s32 func_020d6910(s32 a, void *b);
-s32 func_020d6968(s32 a, Unk020e71a0 *b);
-s32 func_020d69e4(s32 a, Unk020e71a0 *b);
-s32 func_020d6a54(Unk020f41c4_A *a, Unk020e71a0 *b, s32 *c);
-s32 func_020d6be0(Unk0206bcb0 *a, Unk020e71a0 *b);
+s32 func_020d6968(s32 a, MapObject *b);
+s32 func_020d69e4(s32 a, MapObject *b);
+s32 func_020d6a54(Unk020f41c4_A *a, MapObject *b, s32 *c);
+s32 func_020d6be0(Unk0206bcb0 *a, MapObject *b);
 u32 func_020d6d34(s32 a, s32 b, s32 c, s32 d, s32 e);

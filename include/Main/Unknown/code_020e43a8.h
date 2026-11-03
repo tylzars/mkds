@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Three vectors, 0x24 bytes.
 typedef struct Unk020e43a8_28 {
@@ -15,7 +15,7 @@ typedef struct Unk020e43a8_28 {
 // Object passed to func_020e43a8 and the functions after it, and to func_020ec1fc and
 // func_020ec41c to func_020ec854; the words from 0xa0 to 0xc8 are read two ways.
 typedef struct Unk020e43a8 {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ union {
         struct {
             /* a0 */ Unk020e43a8_28 mUnk_a0;

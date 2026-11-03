@@ -1,12 +1,12 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_02100094.h" // Unk02100094
 
-// Object of the list func_02100138(0x6b): the shared Unk020e71a0 part, then three words.
+// Object of the list func_02100138(0x6b): the shared MapObject part, then three words.
 typedef struct Unk020a6cb4 {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mUnk_a8;

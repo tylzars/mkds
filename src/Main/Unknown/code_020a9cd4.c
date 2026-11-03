@@ -54,9 +54,9 @@ void func_020a9e04(Unk020a9268 *p) {
 
     func_020d29cc(&p->mUnk_000, &v);
     p->mUnk_000.mUnk_94 = func_02036bec(func_020364e0(func_020364e8()), 0x44);
-    func_02109110(&p->mUnk_000.mUnk_94->mUnk_00, 10, &p->mUnk_000.mUnk_04);
+    func_02109110(&p->mUnk_000.mUnk_94->mUnk_00, 10, &p->mUnk_000.mPos);
     p->mUnk_000.mUnk_70 = data_0217ca6c[10].mUnk_20;
-    p->mUnk_128 = func_020d2178(p->mUnk_000.mUnk_9c->mUnk_34);
+    p->mUnk_128 = func_020d2178(p->mUnk_000.mCourseMapRow->mUnk_34);
 }
 
 u32 func_020a9de4(Unk020a9224 *p, void *a, u8 *b, u8 *c) {
@@ -86,7 +86,7 @@ void func_020a9cd4(void *a, Unk020a9268 *p) {
 
     v = 0x1e;
     func_01ff9048(0x14, &v, 1);
-    func_01ff9048(0x19, func_020e6cf8(&p->mUnk_000.mUnk_04), 0xc);
+    func_01ff9048(0x19, func_020e6cf8(&p->mUnk_000.mPos), 0xc);
     if (p->mUnk_0a0 != 0) {
         i = (u16) p->mUnk_0a0 >> 4;
         func_02146d60((s32 *) v1, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);

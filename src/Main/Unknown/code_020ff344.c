@@ -68,7 +68,7 @@ BOOL func_020ffabc(u32 a) {
 #pragma thumb on
 
 void func_020ff97c(Unk020ff97c *e) {
-    e->mUnk_a0 = *(Unk02146dfc *) &e->mUnk_00.mUnk_28;
+    e->mUnk_a0 = *(Unk02146dfc *) &e->mUnk_00.mMatrix;
     e->mUnk_124 = 0;
     e->mUnk_128 = 0;
     e->mUnk_12c = 0;
@@ -82,15 +82,15 @@ void func_020ff97c(Unk020ff97c *e) {
     e->mUnk_118 = 0;
     e->mUnk_11c = 0;
     e->mUnk_120 = 0x800;
-    e->mUnk_e8 = e->mUnk_00.mUnk_04;
+    e->mUnk_e8 = e->mUnk_00.mPos;
     e->mUnk_00.mUnk_10.x = 0;
     e->mUnk_00.mUnk_10.y = 0;
     e->mUnk_00.mUnk_10.z = 0;
-    func_02147fd8(-e->mUnk_104, &e->mUnk_00.mUnk_28.mUnk_00[1], &e->mUnk_00.mUnk_04, &e->mUnk_f4);
+    func_02147fd8(-e->mUnk_104, &e->mUnk_00.mMatrix.mUnk_00[1], &e->mUnk_00.mPos, &e->mUnk_f4);
     e->mUnk_134 = 0;
     e->mUnk_138 = 0;
     e->mUnk_13c = 1;
-    e->mUnk_00.mUnk_02 |= data_0215a030;
+    e->mUnk_00.mFlags |= data_0215a030;
 }
 
 #pragma thumb off

@@ -168,7 +168,7 @@ typedef struct Unk0217b438 {
     /* 68 */ struct Unk020b47d8 *mChoisesS3Nscr;
 } Unk0217b438;
 
-// 16-byte rows of the table behind gGrpconfTbl (func_020d34e4 reads the halfwords).
+// 16-byte rows of the table behind gGrpconfTbl (CreateMapObject reads the halfwords).
 typedef struct GrpconfTblRow {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
@@ -837,7 +837,7 @@ extern u16 data_0217b4c8;
 extern u16 data_0217b4cc;
 extern u16 data_0217b4d0;
 extern GrpconfTblRow *gGrpconfTbl;
-extern Unk020e71a0 **data_0217b4e8;
+extern MapObject **data_0217b4e8;
 extern u8 data_0217b7c4[];
 extern u8 data_0217b86c[];
 extern Unk020e6488 *data_0217bbfc[];

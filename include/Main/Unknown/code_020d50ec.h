@@ -35,9 +35,9 @@ typedef struct Unk020d5a68 {
     /* 04 */ s32 mUnk_04;
 } Unk020d5a68;
 
-// Element object of func_020d5bf0: Unk020e71a0 and the words and halfword used after it.
+// Element object of func_020d5bf0: MapObject and the words and halfword used after it.
 typedef struct Unk020d5bf0 {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ s32 mUnk_0a0;
     /* 0a4 */ Unk020d84e4 mUnk_0a4;
     /* 0dc */ s32 mUnk_0dc;

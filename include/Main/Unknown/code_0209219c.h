@@ -1,11 +1,11 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 
-// Object of 0xd8 bytes: the Unk020e71a0 it starts with, a vector at 0xa0 and words and halfwords up to 0xd4.
+// Object of 0xd8 bytes: the MapObject it starts with, a vector at 0xa0 and words and halfwords up to 0xd4.
 typedef struct Unk0209219c {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ Vec3 mUnk_a0;
     /* ac */ u16 mUnk_ac;
     /* ae */ u8 mUnk_ae[2];

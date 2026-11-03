@@ -482,9 +482,9 @@ void func_020e8ac8(void) {
             if (data_0217b8bc != 0 || data_0217b8f0 != 0) {
                 func_020d5180(&data_0217b93c, 0x12000, 0x2000);
                 for (i = 0; i < data_0217b5a8; i++) {
-                    Unk020e71a0 *q = data_0217b5c4[i];
+                    MapObject *q = data_0217b5c4[i];
 
-                    if ((q->mUnk_02 & 0x40) == 0 && func_020d3e34(&data_0217b93c, 0x12000, q, &t) != 0) {
+                    if ((q->mFlags & 0x40) == 0 && func_020d3e34(&data_0217b93c, 0x12000, q, &t) != 0) {
                         func_020e8ac8_inline(&lo, &t, &lo);
                         func_020e8ac8_inline_2(&hi, &t, &hi);
                         f = TRUE;

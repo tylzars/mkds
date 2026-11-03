@@ -27,7 +27,7 @@ void func_020e730c(void) {
 
         e = (Unk020e730c *) ((Unk020e6fd4 *) data_0217b864)->mUnk_00[i];
         k = e->mUnk_a0;
-        (*(Vec3 ***) data_0217b86c)[k] = &e->mUnk_00.mUnk_04;
+        (*(Vec3 ***) data_0217b86c)[k] = &e->mUnk_00.mPos;
         data_0217b868[k] = e->mUnk_a2;
     }
 }
@@ -48,13 +48,13 @@ void func_020e72cc(Unk020e730c *p, struct Unk020fa294 *q) {
 }
 #pragma thumb off
 
-void func_020e71a0(Unk020e71a0 *p) {
+void func_020e71a0(MapObject *p) {
     Unk020e71a0_94 *q;
     BOOL a;
     BOOL b;
 
     q = p->mUnk_94;
-    if ((p->mUnk_02 & 2) == 0) {
+    if ((p->mFlags & 2) == 0) {
         q->mUnk_00.mUnk_40 = p->mUnk_78 & ~0xc000001f;
         a = (func_020d4ddc(p) == 0);
         b = (q->mUnk_00.mUnk_34 & 1) != 0;
@@ -76,7 +76,7 @@ void func_020e71a0(Unk020e71a0 *p) {
     } else {
         s32 v;
 
-        v = func_020d4ef4(&p->mUnk_04);
+        v = func_020d4ef4(&p->mPos);
         q->mUnk_00.mUnk_40 = v;
         if (func_020d4d60(p, v) != 0) {
             p->mUnk_78 |= data_02159310;
@@ -90,9 +90,9 @@ void func_020e71a0(Unk020e71a0 *p) {
 }
 
 void func_020e705c(Unk020e6fd4 *p) {
-    Unk020e71a0 *e;
+    MapObject *e;
     Vec3 t;
-    void (*cb)(void *p, Unk020e71a0 *e);
+    void (*cb)(void *p, MapObject *e);
     s32 n;
     void **arr;
 
@@ -115,10 +115,10 @@ void func_020e705c(Unk020e6fd4 *p) {
 
         for (i = 0; i < n; i++) {
             e = arr[i];
-            if ((e->mUnk_02 & 4) == 0) {
-                t = e->mUnk_04;
+            if ((e->mFlags & 4) == 0) {
+                t = e->mPos;
                 cb(p, e);
-                func_021484d0(&e->mUnk_04, &t, &e->mUnk_10);
+                func_021484d0(&e->mPos, &t, &e->mUnk_10);
                 if (e->mUnk_94 != NULL) {
                     func_020e71a0(e);
                 }
@@ -131,7 +131,7 @@ void func_020e705c(Unk020e6fd4 *p) {
 
         for (i = 0; i < n; i++) {
             e = arr[i];
-            if ((e->mUnk_02 & 4) == 0) {
+            if ((e->mFlags & 4) == 0) {
                 cb(p, e);
                 if (e->mUnk_94 != NULL) {
                     func_020e71a0(e);
@@ -142,12 +142,12 @@ void func_020e705c(Unk020e6fd4 *p) {
 }
 
 void func_020e6fd4(Unk020e6fd4 *p) {
-    Unk020e71a0 *e;
+    MapObject *e;
     u8 buf[2];
     s32 i;
     s32 n;
     void **arr;
-    s32 (*cb)(Unk020e71a0 *, void *, void *, void *);
+    s32 (*cb)(MapObject *, void *, void *, void *);
 
     n = p->mUnk_04;
     cb = p->mUnk_1c;
@@ -159,7 +159,7 @@ void func_020e6fd4(Unk020e6fd4 *p) {
     }
     for (i = 0; i < n; i++) {
         e = arr[i];
-        if ((e->mUnk_02 & 0x88) == 0) {
+        if ((e->mFlags & 0x88) == 0) {
             cb(e, NULL, &buf[0], &buf[1]);
         }
     }

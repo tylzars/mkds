@@ -1,12 +1,12 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Object reached through func_02100138(0x6a), set up by func_020a5744 and updated by func_020a5958: the shared
-// Unk020e71a0 part, then words up to 0xe8. func_020a5958 switches on the word at 0xe0 (0 to 6).
+// MapObject part, then words up to 0xe8. func_020a5958 switches on the word at 0xe0 (0 to 6).
 typedef struct Unk020a5958 {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mUnk_a8;

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // First argument of func_020ebef8.
 typedef struct Unk020ebef8 {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ Vec3 mUnk_0a0;
     /* 0ac */ u16 mUnk_0ac;
     /* 0ae */ u16 mUnk_0ae;

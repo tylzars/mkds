@@ -42,8 +42,8 @@ void func_ov001_0218dc20(Unk02188950 *a) {
             break;
     }
     idx = (ang >> 4) * 2;
-    a->mUnk_000.mUnk_04.x = r7->mUnk_004 + (s32) (((s64) r5 * data_0215d4b4[idx]) >> 12);
-    a->mUnk_000.mUnk_04.z = a->mUnk_0a4->mUnk_00c + (s32) (((s64) r5 * data_0215d4b4[idx + 1]) >> 12);
+    a->mUnk_000.mPos.x = r7->mUnk_004 + (s32) (((s64) r5 * data_0215d4b4[idx]) >> 12);
+    a->mUnk_000.mPos.z = a->mUnk_0a4->mUnk_00c + (s32) (((s64) r5 * data_0215d4b4[idx + 1]) >> 12);
 }
 
 void func_ov001_0218dba8(Unk02188950 *a) {
@@ -88,9 +88,9 @@ void func_ov001_0218dadc(Unk02188950 *a) {
             break;
     }
     idx = (ang >> 4) * 2;
-    a->mUnk_000.mUnk_04.x = r7->mUnk_004 + (s32) (((s64) r5 * data_0215d4b4[idx]) >> 12);
-    a->mUnk_000.mUnk_04.y = a->mUnk_0a4->mUnk_008;
-    a->mUnk_000.mUnk_04.z = a->mUnk_0a4->mUnk_00c + (s32) (((s64) r5 * data_0215d4b4[idx + 1]) >> 12);
+    a->mUnk_000.mPos.x = r7->mUnk_004 + (s32) (((s64) r5 * data_0215d4b4[idx]) >> 12);
+    a->mUnk_000.mPos.y = a->mUnk_0a4->mUnk_008;
+    a->mUnk_000.mPos.z = a->mUnk_0a4->mUnk_00c + (s32) (((s64) r5 * data_0215d4b4[idx + 1]) >> 12);
 }
 
 void func_ov001_0218dabc(Unk02188950 *a) {

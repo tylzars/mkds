@@ -3,10 +3,10 @@
 #include "types.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
-// Object of func_021052fc (func_0210543c allocates them): the shared Unk020e71a0 part, then counters that run and
+// Object of func_021052fc (func_0210543c allocates them): the shared MapObject part, then counters that run and
 // wrap and whose three fixed-point words follow the vector at mUnk_fc.
 typedef struct Unk021052fc {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ u16 mUnk_a0;
     /* a2 */ u16 mUnk_a2;
     /* a4 */ u16 mUnk_a4;

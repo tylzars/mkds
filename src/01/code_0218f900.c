@@ -27,5 +27,5 @@ void func_ov001_0218f900(Unk02188950 *a) {
     func_ov001_021875c0(a, 0, 0, 0, 0x41c, 0);
     func_ov001_021875c0(a, 0, 0, 0, 0x41d, 0);
     func_020d2774(&a->mUnk_000, (u32) (0x22e));
-    a->mUnk_000.mUnk_02 &= ~1;
+    a->mUnk_000.mFlags &= ~1;
 }

@@ -57,9 +57,9 @@ void func_0209f338(void *a, Unk0209f1c8 *b) {
                 t = 4;
             }
             s1.mUnk_00 = 0x11a;
-            s1.mUnk_04 = &b->mUnk_00.mUnk_04;
+            s1.mUnk_04 = &b->mUnk_00.mPos;
             s1.mUnk_08 = t;
-            s1.mUnk_0c = func_020d4ef4(&b->mUnk_00.mUnk_04);
+            s1.mUnk_0c = func_020d4ef4(&b->mUnk_00.mPos);
             func_0210b7a8(&s1);
         }
     } else if (b->mUnk_a0 == 0x46 || b->mUnk_a0 == 0xaf) {
@@ -72,9 +72,9 @@ void func_0209f338(void *a, Unk0209f1c8 *b) {
                 t = 4;
             }
             s2.mUnk_00 = 0x11b;
-            s2.mUnk_04 = &b->mUnk_00.mUnk_04;
+            s2.mUnk_04 = &b->mUnk_00.mPos;
             s2.mUnk_08 = t;
-            s2.mUnk_0c = func_020d4ef4(&b->mUnk_00.mUnk_04);
+            s2.mUnk_0c = func_020d4ef4(&b->mUnk_00.mPos);
             func_0210b7a8(&s2);
         }
     } else if (b->mUnk_a0 == 0xfa) {
@@ -87,9 +87,9 @@ void func_0209f338(void *a, Unk0209f1c8 *b) {
                 t = 4;
             }
             s3.mUnk_00 = 0x119;
-            s3.mUnk_04 = &b->mUnk_00.mUnk_04;
+            s3.mUnk_04 = &b->mUnk_00.mPos;
             s3.mUnk_08 = t;
-            s3.mUnk_0c = func_020d4ef4(&b->mUnk_00.mUnk_04);
+            s3.mUnk_0c = func_020d4ef4(&b->mUnk_00.mPos);
             func_0210b7a8(&s3);
         }
     }
@@ -123,10 +123,10 @@ void func_0209f1c8(void *a, Unk0209f1c8 *b) {
 
     l = 0x1e;
     func_01ff9048(0x14, &l, 1);
-    b->mUnk_00.mUnk_28.mUnk_00[3].x = b->mUnk_00.mUnk_04.x >> 4;
-    b->mUnk_00.mUnk_28.mUnk_00[3].y = b->mUnk_00.mUnk_04.y >> 4;
-    b->mUnk_00.mUnk_28.mUnk_00[3].z = b->mUnk_00.mUnk_04.z >> 4;
-    func_01ff9048(0x19, &b->mUnk_00.mUnk_28, 0xc);
+    b->mUnk_00.mMatrix.mUnk_00[3].x = b->mUnk_00.mPos.x >> 4;
+    b->mUnk_00.mMatrix.mUnk_00[3].y = b->mUnk_00.mPos.y >> 4;
+    b->mUnk_00.mMatrix.mUnk_00[3].z = b->mUnk_00.mPos.z >> 4;
+    func_01ff9048(0x19, &b->mUnk_00.mMatrix, 0xc);
     if (b->mUnk_00.mUnk_7e != 0) {
         i = b->mUnk_00.mUnk_7e >> 4;
         func_02146d44(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);

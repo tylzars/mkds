@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_02042044.h"
 #include "code_02012b30.h" // Unk02012f58
 #include "Main/Unknown/code_020d8cac.h"
@@ -96,7 +96,7 @@ typedef struct Unk020da414 {
 
 // Object of at least 0x108 bytes.
 typedef struct Unk020da494 {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ Unk020d7b88 mUnk_a4;
     /* b4 */ Unk020d7b88 mUnk_b4;

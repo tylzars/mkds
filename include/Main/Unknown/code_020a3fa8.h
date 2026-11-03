@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020a2e4c.h" // Unk020a2fe4
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // 0x38-byte entries from 0xa4 of Unk020a3fa8; func_020a3fa8 walks the first data_021759c0->mUnk_3d0 of them.
 typedef struct Unk020a3fa8_a4 {
@@ -16,9 +16,9 @@ typedef struct Unk020a3fa8_a4 {
     /* 34 */ s32 mUnk_34;
 } Unk020a3fa8_a4;
 
-// Object passed to func_020a3fa8 as its second argument: a Unk020e71a0 at 0x00.
+// Object passed to func_020a3fa8 as its second argument: a MapObject at 0x00.
 typedef struct Unk020a3fa8 {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ s32 mUnk_0a0;
     /* 0a4 */ Unk020a3fa8_a4 mUnk_0a4[8];
     /* 264 */ s32 mUnk_264[8][8];

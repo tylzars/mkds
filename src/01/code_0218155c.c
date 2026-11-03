@@ -270,7 +270,7 @@ BOOL func_ov001_021816b4(void) {
     list = func_02100138(0x6c);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (e = list->mUnk_00[i]) != NULL; i++) {
-            if ((e->mUnk_00.mUnk_02 & 0x100) == 0) {
+            if ((e->mUnk_00.mFlags & 0x100) == 0) {
                 return TRUE;
             }
         }

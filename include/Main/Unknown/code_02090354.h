@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_02080b1c.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Value at 0x00 (halfword), 0x02 and 0x03 (bytes) combined by func_020908d0.
 typedef struct Unk020908d0 {
@@ -11,9 +11,9 @@ typedef struct Unk020908d0 {
     /* 03 */ u8 mUnk_03;
 } Unk020908d0;
 
-// An Unk020e71a0 at 0x00 followed by words from 0xa0 to 0xc8.
+// An MapObject at 0x00 followed by words from 0xa0 to 0xc8.
 typedef struct Unk020912a0 {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mUnk_a8;

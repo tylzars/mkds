@@ -20,11 +20,11 @@ void func_020e5c6c(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
     Unk02012f58 *v1;
     gObPakkunSf->mUnk_18 = ((*(u16 *) &b->mUnk_a0.mUnk_18.x & 0x10) >> 4);
     if (b->mUnk_00.mUnk_80.mUnk_0e == 0) {
-        v1 = func_020e6cbc(&b->mUnk_00.mUnk_04);
+        v1 = func_020e6cbc(&b->mUnk_00.mPos);
         func_020e67c4(gObPakkunSf, v1, &b->mUnk_00.mUnk_1c, 0, d);
         return;
     }
-    v1 = func_020e6cbc(&b->mUnk_00.mUnk_04);
+    v1 = func_020e6cbc(&b->mUnk_00.mPos);
     func_020e66e4(gObPakkunSf, v1, *(u16 *) &b->mUnk_a0.mUnk_0c.x, &b->mUnk_00.mUnk_1c, 0, d);
 }
 
@@ -42,9 +42,9 @@ void func_020e5bd4(u32 a, Unk020e43a8 *p) {
             n = 4;
         }
         s.mUnk_00 = 0x163;
-        s.mUnk_04 = &p->mUnk_00.mUnk_04;
+        s.mUnk_04 = &p->mUnk_00.mPos;
         s.mUnk_08 = n;
-        s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mUnk_04);
+        s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
         func_0210b7a8(&s);
     }
     func_02046b40(&p->mUnk_00.mUnk_80);

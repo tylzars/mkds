@@ -381,10 +381,10 @@ typedef struct Unk0206bcb0 {
     /* 41c */ Vec3 mUnk_41c;
     /* 428 */ Vec3 mUnk_428;
     /* 434 */ s32 mUnk_434;
-    /* 438 */ struct Unk020e71a0 *mUnk_438[2];
+    /* 438 */ struct MapObject *mUnk_438[2];
     /* 440 */ u16 mUnk_440[2];
     /* 444 */ s32 mUnk_444[2];
-    /* 44c */ struct Unk020e71a0 *mUnk_44c;
+    /* 44c */ struct MapObject *mUnk_44c;
     /* 450 */ Unk0206bcb0_A mUnk_450;
     /* 488 */ u32 mUnk_488;
     /* 48c */ s32 (*mUnk_48c)(void *);

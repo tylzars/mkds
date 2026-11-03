@@ -36,14 +36,14 @@ void func_ov001_0218b034(Unk02188950 *a) {
         angle += 0x5555;
         if (func_ov001_02188220(a) == 0) {
             idx = ((u16) angle >> 4) * 2;
-            pos.x = a->mUnk_000.mUnk_04.x + (s32) (((s64) a->mUnk_0a0->mUnk_14c * data_0215d4b4[idx]) >> 12);
-            pos.y = a->mUnk_000.mUnk_04.y + a->mUnk_0a0->mUnk_150;
-            pos.z = a->mUnk_000.mUnk_04.z + (s32) (((s64) a->mUnk_0a0->mUnk_14c * data_0215d4b4[idx + 1]) >> 12);
+            pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mUnk_0a0->mUnk_14c * data_0215d4b4[idx]) >> 12);
+            pos.y = a->mUnk_000.mPos.y + a->mUnk_0a0->mUnk_150;
+            pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mUnk_0a0->mUnk_14c * data_0215d4b4[idx + 1]) >> 12);
         } else {
             idx = ((u16) angle >> 4) * 2;
-            pos.x = a->mUnk_000.mUnk_04.x + (s32) (((s64) a->mUnk_0a0->mUnk_154 * data_0215d4b4[idx]) >> 12);
-            pos.y = a->mUnk_000.mUnk_04.y + a->mUnk_0a0->mUnk_158;
-            pos.z = a->mUnk_000.mUnk_04.z + (s32) (((s64) a->mUnk_0a0->mUnk_154 * data_0215d4b4[idx + 1]) >> 12);
+            pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mUnk_0a0->mUnk_154 * data_0215d4b4[idx]) >> 12);
+            pos.y = a->mUnk_000.mPos.y + a->mUnk_0a0->mUnk_158;
+            pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mUnk_0a0->mUnk_154 * data_0215d4b4[idx + 1]) >> 12);
         }
         if (i == 0) {
             func_ov001_02187b94(func_020fd428(), &pos, &vel, a->mUnk_0a0->mUnk_15c);

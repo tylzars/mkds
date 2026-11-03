@@ -17,9 +17,9 @@
 void func_ov001_02192e10(Unk02188950 *a) {
     s32 m[9];
     func_020d2450(a);
-    a->mUnk_000.mUnk_7e = (u16) (((s64) a->mUnk_000.mUnk_9c->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
+    a->mUnk_000.mUnk_7e = (u16) (((s64) a->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
     func_02146d44(m, data_0215d4b4[(a->mUnk_000.mUnk_7e >> 4) * 2], data_0215d4b4[(a->mUnk_000.mUnk_7e >> 4) * 2 + 1]);
-    func_02146dfc(m, &a->mUnk_000.mUnk_28.mUnk_00[0].x, &a->mUnk_000.mUnk_28.mUnk_00[0].x);
+    func_02146dfc(m, &a->mUnk_000.mMatrix.mUnk_00[0].x, &a->mUnk_000.mMatrix.mUnk_00[0].x);
 }
 
 void LoadStopSign(Unk0219b478 *a) {

@@ -61,7 +61,7 @@ s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
         Vec3 mn;
         Vec3 mx;
         Unk020f41c4_A *q;
-        Unk020e71a0 *p;
+        MapObject *p;
         s32 r;
         s32 t;
         {
@@ -76,7 +76,7 @@ s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
         for (; i < data_0217b5a8; i++) {
             p = data_0217b5c4[i];
             if (func_020d3e34(b, d, p, &v) != 0) {
-                if (!(p->mUnk_02 & 0x40) && func_020d6968(f, p) != 0) {
+                if (!(p->mFlags & 0x40) && func_020d6968(f, p) != 0) {
                     t = v.x;
                     mn.x = ((const Vec3 *) &v)->x < mn.x ? t : mn.x;
                     mn.y = v.y < mn.y ? v.y : mn.y;

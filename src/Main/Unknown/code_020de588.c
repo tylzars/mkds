@@ -61,8 +61,8 @@ void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b) {
     Vec3 v;
     BOOL v1;
 
-    a->mUnk_000.mUnk_04.y += 0xc000;
-    a->mUnk_0fc = &a->mUnk_000.mUnk_04;
+    a->mUnk_000.mPos.y += 0xc000;
+    a->mUnk_0fc = &a->mUnk_000.mPos;
     r = func_020d22d0();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     a->mUnk_0a0 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 0x12c) >> 32);
@@ -71,7 +71,7 @@ void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b) {
     a->mUnk_0a2 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 0x82) >> 32);
     a->mUnk_0a4 = 0x80;
     if (b != NULL) {
-        if (a->mUnk_000.mUnk_00 == 0xc9 && b->mUnk_26 >= 0) {
+        if (a->mUnk_000.mKind == 0xc9 && b->mUnk_26 >= 0) {
             v1 = TRUE;
         } else {
             v1 = FALSE;
@@ -108,7 +108,7 @@ void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b) {
     }
     if (b != NULL) {
         if (func_020e512c(&b->mUnk_00) != 0) {
-            a->mUnk_000.mUnk_02 |= data_02158568;
+            a->mUnk_000.mFlags |= data_02158568;
         }
     }
     a->mUnk_000.mUnk_78 |= data_0215856c;

@@ -45,9 +45,9 @@ void func_020da494(Unk020da494 *a, Unk020fa294 *b) {
         a->mUnk_f8 = b->mUnk_28 * 0xb4 / 100;
         a->mUnk_fc = b->mUnk_2a == 0;
         func_02046be8(&a->mUnk_00.mUnk_80, data_0216be68, 6, a);
-        func_020d90a8(&a->mUnk_cc, a->mUnk_00.mUnk_9c->mUnk_2e, 1);
-        func_020d8b88(&a->mUnk_cc, &a->mUnk_00.mUnk_04);
-        a->mUnk_00.mUnk_04.y = a->mUnk_a0;
+        func_020d90a8(&a->mUnk_cc, a->mUnk_00.mCourseMapRow->mUnk_2e, 1);
+        func_020d8b88(&a->mUnk_cc, &a->mUnk_00.mPos);
+        a->mUnk_00.mPos.y = a->mUnk_a0;
         q = &a->mUnk_00.mUnk_10;
         q->x = 0;
         q->y = 0;

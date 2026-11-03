@@ -27,10 +27,10 @@ void func_020a018c(void *a, Unk020a018c *p) {
     w.x = 0;
     w.z = 0;
     func_01ff9048(0x1c, &w, 3);
-    p->mUnk_00.mUnk_28.mUnk_00[3].x = p->mUnk_00.mUnk_04.x >> 4;
-    p->mUnk_00.mUnk_28.mUnk_00[3].y = p->mUnk_00.mUnk_04.y >> 4;
-    p->mUnk_00.mUnk_28.mUnk_00[3].z = p->mUnk_00.mUnk_04.z >> 4;
-    func_01ff9048(0x19, &p->mUnk_00.mUnk_28, 0xc);
+    p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
+    p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
+    p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
+    func_01ff9048(0x19, &p->mUnk_00.mMatrix, 0xc);
     if (p->mUnk_00.mUnk_7e != 0) {
         func_02146d44(q, data_0215d4b4[((p->mUnk_00.mUnk_7e >> 4) << 1)],
                       data_0215d4b4[((p->mUnk_00.mUnk_7e >> 4) << 1) + 1]);
@@ -51,21 +51,21 @@ void func_020a0064(Unk020a0064 *p) {
     }
     z = FALSE;
     for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
-        func_020d7da8(&o->mUnk_c8, o->mUnk_00.mUnk_9c, z);
-        o->mUnk_a4 = (o->mUnk_00.mUnk_9c->mUnk_28 * 0x5000L) / 100;
+        func_020d7da8(&o->mUnk_c8, o->mUnk_00.mCourseMapRow, z);
+        o->mUnk_a4 = (o->mUnk_00.mCourseMapRow->mUnk_28 * 0x5000L) / 100;
         v = o->mUnk_a4;
         o->mUnk_c8.mUnk_04 = v;
         o->mUnk_c8.mUnk_10 = ((s64) v * o->mUnk_c8.mUnk_00->mUnk_00[o->mUnk_c8.mUnk_0c].mUnk_34) >> 12;
-        o->mUnk_a0 = o->mUnk_00.mUnk_04.y;
-        func_020d8bf8(&o->mUnk_c8, &o->mUnk_00.mUnk_04, &o->mUnk_00.mUnk_10);
-        o->mUnk_a0 = o->mUnk_a0 - o->mUnk_00.mUnk_04.y;
+        o->mUnk_a0 = o->mUnk_00.mPos.y;
+        func_020d8bf8(&o->mUnk_c8, &o->mUnk_00.mPos, &o->mUnk_00.mUnk_10);
+        o->mUnk_a0 = o->mUnk_a0 - o->mUnk_00.mPos.y;
         o->mUnk_a8 = 0;
         o->mUnk_b4 = 0;
         o->mUnk_b8 = 0x50000;
         o->mUnk_bc = 0;
         o->mUnk_c0 = 0xb6;
         o->mUnk_c4 = 0;
-        if (o->mUnk_00.mUnk_9c->mUnk_2a != 0) {
+        if (o->mUnk_00.mCourseMapRow->mUnk_2a != 0) {
             o->mUnk_ec = 0;
         } else {
             o->mUnk_ec = 2;

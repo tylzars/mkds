@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0, Unk020e6fd4
+#include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
 
 // Element of 0x10 bytes: a position, then two halfwords.
 typedef struct Unk0209df84_c4 {
@@ -14,7 +14,7 @@ typedef struct Unk0209df84_c4 {
 // Object of func_0209df84: after the shared part, the counts at 0xa0 and 0xa2, a grid of elements from 0xc4 (rows of
 // 0x140 bytes, 0xa0 rows of 0xa2 elements) and the words from 0x19c4.
 typedef struct Unk0209df84 {
-    /* 0000 */ Unk020e71a0 mUnk_00;
+    /* 0000 */ MapObject mUnk_00;
     /* 00a0 */ u16 mUnk_a0;
     /* 00a2 */ u16 mUnk_a2;
     /* 00a4 */ u16 mUnk_a4;

@@ -24,9 +24,9 @@ void func_020c80cc(void) {
     a = func_020c0db0();
     for (i = 0; i < data_0217b420->mUnk_08; i++) {
         p = (Unk020e1e98 *) data_0217b420->mUnk_00[i];
-        v = &p->mUnk_000.mUnk_04;
-        if (func_020b5ae8(&p->mUnk_000.mUnk_04, &data_0217b420->mUnk_10[n].mUnk_00, a, 1, 1) != 0) {
-            t = p->mUnk_000.mUnk_00;
+        v = &p->mUnk_000.mPos;
+        if (func_020b5ae8(&p->mUnk_000.mPos, &data_0217b420->mUnk_10[n].mUnk_00, a, 1, 1) != 0) {
+            t = p->mUnk_000.mKind;
             w = p->mUnk_000.mUnk_7e;
             switch (t) {
                 case 0x19a:

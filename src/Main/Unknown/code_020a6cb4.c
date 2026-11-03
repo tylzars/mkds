@@ -16,7 +16,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_020a7148.h"
 
-void func_020a7148(Unk020e71a0 *a) {
+void func_020a7148(MapObject *a) {
     if (func_020d3bf8(0x6a) == 0) {
         func_020ac588(0x6a, 0x14, a);
         func_020ac588(0x70, data_021759c0->mKartCount, a);
@@ -78,7 +78,7 @@ BOOL func_020a6f94(Unk02100094 *a) {
             for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != NULL; i++) {
                 if (e->mUnk_a0 == 0 && e->mUnk_a4 == 0) {
                     if (k-- == 0) {
-                        func_020a5744(&e->mUnk_00.mUnk_04, i, 1);
+                        func_020a5744(&e->mUnk_00.mPos, i, 1);
                         e->mUnk_a0 = 1;
                         return TRUE;
                     }
@@ -118,11 +118,11 @@ void func_020a6e70(Unk02100094 *a) {
     }
     for (j = 0; j < a->mUnk_04 && (e = a->mUnk_00[j]) != NULL; j++) {
         e->mUnk_a4 = 1;
-        if (e->mUnk_00.mUnk_9c->mUnk_28 != 0) {
+        if (e->mUnk_00.mCourseMapRow->mUnk_28 != 0) {
             n = data_021759c0->mKartCount;
             v = func_020a1238();
             if (v + func_020a119c() < n + 1) {
-                func_020a5744(&e->mUnk_00.mUnk_04, j, func_02062ec4());
+                func_020a5744(&e->mUnk_00.mPos, j, func_02062ec4());
                 e->mUnk_a0 = 1;
             }
         }

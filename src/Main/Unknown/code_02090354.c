@@ -525,7 +525,7 @@ void func_020912a0(void *a, Unk020912a0 *b) {
             if (b->mUnk_bc < -0x6000) {
                 b->mUnk_bc = -0x6000;
             }
-            if (b->mUnk_00.mUnk_9c->mUnk_28 > 0) {
+            if (b->mUnk_00.mCourseMapRow->mUnk_28 > 0) {
                 if (b->mUnk_b8 < 0) {
                     func_020d2398(&b->mUnk_00);
                 }
@@ -543,9 +543,9 @@ void func_020912a0(void *a, Unk020912a0 *b) {
                         }
                     }
                     s.mUnk_00 = 0x162;
-                    s.mUnk_04 = &b->mUnk_00.mUnk_04;
+                    s.mUnk_04 = &b->mUnk_00.mPos;
                     s.mUnk_08 = t;
-                    s.mUnk_0c = func_020d4ef4(&b->mUnk_00.mUnk_04);
+                    s.mUnk_0c = func_020d4ef4(&b->mUnk_00.mPos);
                     func_0210b7a8(&s);
                 }
             }
@@ -574,7 +574,7 @@ void func_020912a0(void *a, Unk020912a0 *b) {
                 if (b->mUnk_b4 >= 0x1000) {
                     b->mUnk_ac = 0;
                     b->mUnk_b4 = 0x1000;
-                    b->mUnk_00.mUnk_02 = b->mUnk_00.mUnk_02 & ~1;
+                    b->mUnk_00.mFlags = b->mUnk_00.mFlags & ~1;
                     b->mUnk_c8 = 0;
                 }
             }
@@ -623,7 +623,7 @@ void func_020915c0(void *a, Unk020912a0 *b) {
     s32 v;
     c = 0x1e;
     func_01ff9048(0x14, &c, 1);
-    func_01ff9048(0x19, func_020e6cbc(&b->mUnk_00.mUnk_04), 0xc);
+    func_01ff9048(0x19, func_020e6cbc(&b->mUnk_00.mPos), 0xc);
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
     v = b->mUnk_b4;
     d[0] = v;
@@ -650,7 +650,7 @@ void func_020916a0(void *a, Unk020912a0 *b) {
     s32 s[3];
     c = 0x1e;
     func_01ff9048(0x14, &c, 1);
-    func_01ff9048(0x19, func_020e6cbc(&b->mUnk_00.mUnk_04), 0xc);
+    func_01ff9048(0x19, func_020e6cbc(&b->mUnk_00.mPos), 0xc);
     s[1] = b->mUnk_b8 >> 4;
     s[0] = 0;
     s[2] = 0;

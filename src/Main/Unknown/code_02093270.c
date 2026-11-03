@@ -24,10 +24,10 @@ void func_02093270(void *a, Unk02093270 *p) {
     switch (p->mUnk_ac) {
         case 0:
             p->mUnk_a0++;
-            if (p->mUnk_a0 >= p->mUnk_00.mUnk_9c->mUnk_2a) {
+            if (p->mUnk_a0 >= p->mUnk_00.mCourseMapRow->mUnk_2a) {
                 p->mUnk_a0 = 0;
                 p->mUnk_ac = 1;
-                p->mUnk_00.mUnk_02 &= ~1;
+                p->mUnk_00.mFlags &= ~1;
             }
             break;
         case 1:
@@ -36,11 +36,11 @@ void func_02093270(void *a, Unk02093270 *p) {
                 p->mUnk_a8 = 0x1000;
                 p->mUnk_ac = 2;
             }
-            p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mUnk_98->mUnk_10 * p->mUnk_a8) >> 12;
+            p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mKindData->mUnk_10 * p->mUnk_a8) >> 12;
             break;
         case 2:
             p->mUnk_a0++;
-            if (p->mUnk_a0 >= p->mUnk_00.mUnk_9c->mUnk_28) {
+            if (p->mUnk_a0 >= p->mUnk_00.mCourseMapRow->mUnk_28) {
                 p->mUnk_a0 = 0;
                 p->mUnk_ac = 3;
             }
@@ -51,9 +51,9 @@ void func_02093270(void *a, Unk02093270 *p) {
             if (p->mUnk_a8 <= 0) {
                 p->mUnk_a8 = 0;
                 p->mUnk_ac = 0;
-                p->mUnk_00.mUnk_02 |= data_usa_0215646c;
+                p->mUnk_00.mFlags |= data_usa_0215646c;
             }
-            p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mUnk_98->mUnk_10 * p->mUnk_a8) >> 12;
+            p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mKindData->mUnk_10 * p->mUnk_a8) >> 12;
             break;
         case 4:
             func_020d275c(&p->mUnk_00, 0x170);
@@ -66,10 +66,10 @@ void func_02093270(void *a, Unk02093270 *p) {
     }
     if (p->mUnk_b0.mUnk_08 != 0xffff) {
         func_020d8cc8(&p->mUnk_b0);
-        func_020d8a5c(&p->mUnk_b0, &p->mUnk_00.mUnk_04);
-        p->mUnk_00.mUnk_04.y = p->mUnk_00.mUnk_04.y - p->mUnk_00.mUnk_58.y;
+        func_020d8a5c(&p->mUnk_b0, &p->mUnk_00.mPos);
+        p->mUnk_00.mPos.y = p->mUnk_00.mPos.y - p->mUnk_00.mUnk_58.y;
     } else {
-        p->mUnk_00.mUnk_04.y = p->mUnk_00.mUnk_9c->mUnk_00.y - p->mUnk_00.mUnk_58.y;
+        p->mUnk_00.mPos.y = p->mUnk_00.mCourseMapRow->mUnk_00.y - p->mUnk_00.mUnk_58.y;
     }
     c = data_021759c0->mKartCount;
     for (i = 0; i < c; i++) {
@@ -92,25 +92,26 @@ void func_02093484(Unk020e6fd4 *p) {
     z = FALSE;
     f = data_usa_0215646c;
     for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
-        e->mUnk_00.mUnk_04.y = e->mUnk_00.mUnk_9c->mUnk_00.y - e->mUnk_00.mUnk_58.y;
-        if (e->mUnk_00.mUnk_9c->mUnk_26 < 0) {
+        e->mUnk_00.mPos.y = e->mUnk_00.mCourseMapRow->mUnk_00.y - e->mUnk_00.mUnk_58.y;
+        if (e->mUnk_00.mCourseMapRow->mUnk_26 < 0) {
             e->mUnk_b0.mUnk_08 = 0xffff;
         } else {
-            func_020d7da8(&e->mUnk_b0, e->mUnk_00.mUnk_9c, z);
-            n = (e->mUnk_00.mUnk_9c->mUnk_2e << 12) / 100;
+            func_020d7da8(&e->mUnk_b0, e->mUnk_00.mCourseMapRow, z);
+            n = (e->mUnk_00.mCourseMapRow->mUnk_2e << 12) / 100;
             e->mUnk_b0.mUnk_04 = n;
             e->mUnk_b0.mUnk_10 = ((s64) n * e->mUnk_b0.mUnk_00->mUnk_00[e->mUnk_b0.mUnk_0c].mUnk_34) >> 12;
         }
-        if (e->mUnk_00.mUnk_9c->mUnk_28 == 0 && e->mUnk_00.mUnk_9c->mUnk_2a == 0 && e->mUnk_00.mUnk_9c->mUnk_2c == 0) {
+        if (e->mUnk_00.mCourseMapRow->mUnk_28 == 0 && e->mUnk_00.mCourseMapRow->mUnk_2a == 0 &&
+            e->mUnk_00.mCourseMapRow->mUnk_2c == 0) {
             e->mUnk_a8 = 0x1000;
             e->mUnk_ac = 4;
-            e->mUnk_00.mUnk_02 &= ~1;
+            e->mUnk_00.mFlags &= ~1;
         } else {
             e->mUnk_a0++;
-            if (e->mUnk_a0 >= e->mUnk_00.mUnk_9c->mUnk_2c) {
+            if (e->mUnk_a0 >= e->mUnk_00.mCourseMapRow->mUnk_2c) {
                 e->mUnk_a0 = 0;
                 e->mUnk_ac = 1;
-                e->mUnk_00.mUnk_02 |= f;
+                e->mUnk_00.mFlags |= f;
                 e->mUnk_00.mUnk_58.y = 0;
             }
         }
@@ -128,7 +129,7 @@ void func_020935fc(void *a, Unk02093270 *p) {
     func_0209b940(gMkdEfBurner, func_020d3c44());
     s0 = 0x1e;
     func_01ff9048(0x14, &s0, 1);
-    func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mUnk_04), 0xc);
+    func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 0xc);
     s4.y = p->mUnk_00.mUnk_58.y >> 4;
     s4.x = 0;
     s4.z = 0;

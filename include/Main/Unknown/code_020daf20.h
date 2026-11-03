@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_020d94dc.h"
 #include "Main/Unknown/code_020e005c.h"
@@ -13,7 +13,7 @@
 
 // Object with the Unk020e0144 base at 0xc8 and its own fields from 0xec.
 typedef struct Dossun {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mState;
     /* a4 */ s32 mTimer;
     /* a8 */ s32 mUnk_a8;

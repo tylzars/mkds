@@ -11,9 +11,9 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_02024000.h"
 
-void func_020d2668(Unk020e71a0 *b, Unk0210bfbc *c, s32 d, s32 e) {
+void func_020d2668(MapObject *b, Unk0210bfbc *c, s32 d, s32 e) {
     s32 a;
-    a = b->mUnk_98->mUnk_24;
+    a = b->mKindData->mUnk_24;
     if (a == -1) {
         return;
     }
@@ -41,13 +41,13 @@ void func_020d2600(s32 c, Vec3 *d, s32 e) {
     func_0210b7a8(&b);
 }
 
-void func_020d2584(Unk020e71a0 *b, s32 c) {
+void func_020d2584(MapObject *b, s32 c) {
     s32 a;
     b->mUnk_58.y = (s64) c * b->mUnk_1c.y >> 12;
     if (b->mUnk_64 < 0) {
         return;
     }
-    switch (b->mUnk_98->mUnk_08) {
+    switch (b->mKindData->mUnk_08) {
         case 3:
         case 4:
         case 5:
@@ -63,8 +63,8 @@ void func_020d2584(Unk020e71a0 *b, s32 c) {
     func_020d5148(b->mUnk_64, a);
 }
 
-s32 func_020d252c(Unk020e71a0 *a) {
-    switch (a->mUnk_98->mUnk_08) {
+s32 func_020d252c(MapObject *a) {
+    switch (a->mKindData->mUnk_08) {
         case 3:
         case 4:
         case 5:
@@ -77,7 +77,7 @@ s32 func_020d252c(Unk020e71a0 *a) {
     }
 }
 
-void func_020d24d8(Unk020e71a0 *b, s32 c) {
+void func_020d24d8(MapObject *b, s32 c) {
     s32 a;
     b->mUnk_6c = c;
     if (data_021759c0->mUnk_00c == 3) {

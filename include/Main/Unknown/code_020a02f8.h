@@ -1,12 +1,12 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_020b502c.h" // Unk02175620_84
 
-// Object with the Unk020e71a0 base at 0x00 (func_020a0318, func_020a066c, func_020a089c).
+// Object with the MapObject base at 0x00 (func_020a0318, func_020a066c, func_020a089c).
 typedef struct Unk020a0318 {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mUnk_a8;

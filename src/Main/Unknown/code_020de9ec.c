@@ -38,7 +38,7 @@ void func_020df428(Unk020de6a8 *a, Unk020de6a8_1 *b) {
     }
     func_020d7d4c(&a->mUnk_108, (Unk020fa294 *) b, *&data_02158908, b->mUnk_28);
     func_020d859c(&a->mUnk_108, b->mUnk_30, 1);
-    func_020d8c74(&a->mUnk_108.mUnk_00, &a->mUnk_000.mUnk_04);
+    func_020d8c74(&a->mUnk_108.mUnk_00, &a->mUnk_000.mPos);
 }
 
 #pragma thumb off
@@ -302,7 +302,7 @@ void func_020debec(void *a, Unk020de6a8 *b) {
     }
     b->mUnk_0a4 = n + 1;
     if (n > 0x60) {
-        b->mUnk_000.mUnk_02 = b->mUnk_000.mUnk_02 & ~1;
+        b->mUnk_000.mFlags = b->mUnk_000.mFlags & ~1;
     }
 }
 
@@ -340,7 +340,7 @@ u8 func_020dea50(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d) {
     }
     n = FALSE;
     a->mUnk_0a4 = 0;
-    a->mUnk_000.mUnk_02 |= data_021585a4;
+    a->mUnk_000.mFlags |= data_021585a4;
     m = a->mUnk_000.mUnk_78 & 3;
     v = data_021759c0->mUnk_68[b->mUnk_74].mUnk_08.mUnk_00;
     if ((u32) v <= 3) {
@@ -348,8 +348,8 @@ u8 func_020dea50(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d) {
             n = TRUE;
         }
     }
-    func_020deb2c(&a->mUnk_000.mUnk_04, b, n != FALSE ? a->mUnk_0f2 : a->mUnk_0f4, m, a->mUnk_0ac);
-    if (a->mUnk_0f8 != 0 || a->mUnk_000.mUnk_9c->mUnk_32 != 0) {
+    func_020deb2c(&a->mUnk_000.mPos, b, n != FALSE ? a->mUnk_0f2 : a->mUnk_0f4, m, a->mUnk_0ac);
+    if (a->mUnk_0f8 != 0 || a->mUnk_000.mCourseMapRow->mUnk_32 != 0) {
         a->mUnk_0a4 = 0x80;
         func_020d2398(&a->mUnk_000);
     }
@@ -363,7 +363,7 @@ u32 func_020de9f8(Unk020de6a8 *a) {
     if (a->mUnk_0a8 == 0) {
         return 0;
     }
-    return func_020d8828(&a->mUnk_108.mUnk_00, &a->mUnk_000.mUnk_04);
+    return func_020d8828(&a->mUnk_108.mUnk_00, &a->mUnk_000.mPos);
 }
 
 void func_020de9ec(u32 p0) {

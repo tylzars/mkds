@@ -18,7 +18,7 @@ typedef struct Unk02094000_bc {
 
 // Object returned by func_0209bbfc for func_02100138(0x13b), filled by func_02094000.
 typedef struct Unk02094000 {
-    /* 000 */ Unk020e71a0 mUnk_00;
+    /* 000 */ MapObject mUnk_00;
     /* 0a0 */ Vec3 mUnk_a0;
     /* 0ac */ u16 mUnk_ac;
     /* 0ae */ u16 mUnk_ae;

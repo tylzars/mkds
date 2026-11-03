@@ -20,7 +20,7 @@ typedef struct Unk0209a7dc_b0 {
 
 // Object of func_0209a7dc, one state per value of mUnk_114.
 typedef struct Unk0209a7dc {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ u16 mUnk_0a0;
     /* 0a2 */ u16 mUnk_0a2;
     /* 0a4 */ s32 mUnk_0a4;

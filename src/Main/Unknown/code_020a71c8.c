@@ -46,13 +46,13 @@ void func_020a7270(u16 a) {
 
 void func_020a71c8(void) {
     s32 i;
-    Unk020e71a0 *o;
+    MapObject *o;
     Unk020e6fd4 *l;
 
     l = func_02100138(0x6b);
     if (l != NULL) {
         for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
-            if ((o->mUnk_02 & 0x100) == 0) {
+            if ((o->mFlags & 0x100) == 0) {
                 func_020d2398(o);
             }
         }
@@ -60,7 +60,7 @@ void func_020a71c8(void) {
     l = func_02100138(0x70);
     if (l != NULL) {
         for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
-            if ((o->mUnk_02 & 0x100) == 0) {
+            if ((o->mFlags & 0x100) == 0) {
                 func_020d2398(o);
             }
         }

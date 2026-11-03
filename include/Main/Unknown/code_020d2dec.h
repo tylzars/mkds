@@ -2,12 +2,12 @@
 
 #include "types.h"
 
-typedef struct Unk020e71a0 Unk020e71a0;
+typedef struct MapObject MapObject;
 typedef struct Unk020fa294 Unk020fa294;
 
-Unk020e71a0 *func_020d34e4(u32 param_1, Unk020fa294 *param_2, Unk020e71a0 *param_3);
-Unk020e71a0 *func_020d34d4(Unk020e71a0 *param_1, s32 param_2);
-Unk020e71a0 *func_020d34c4(Unk020fa294 *param_1, s32 param_2);
+MapObject *CreateMapObject(u32 kind, Unk020fa294 *courseRow, MapObject *source);
+MapObject *CreateMapObjectFromObject(MapObject *source, s32 kind);
+MapObject *CreateMapObjectFromCourseMapRow(Unk020fa294 *courseRow, s32 kind);
 void func_020d2e6c(void);
 void func_020d2e24(void);
 void func_020d2dec(void);

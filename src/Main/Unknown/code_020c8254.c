@@ -34,9 +34,9 @@ void func_020c8bdc(void) {
     for (i = 0; i < data_0217b424->mUnk_08; i++) {
         p = data_0217b424->mUnk_00[i];
         s = p->mUnk_000.mUnk_58.z;
-        v = &p->mUnk_000.mUnk_04;
-        x = (s64) p->mUnk_000.mUnk_28.mUnk_00[2].x * s >> 12;
-        y = (s64) p->mUnk_000.mUnk_28.mUnk_00[2].z * s >> 12;
+        v = &p->mUnk_000.mPos;
+        x = (s64) p->mUnk_000.mMatrix.mUnk_00[2].x * s >> 12;
+        y = (s64) p->mUnk_000.mMatrix.mUnk_00[2].z * s >> 12;
         if (data_021759c0->mUnk_57 != 0) {
             data_0217b424->mUnk_0c[i] = func_02148714(-y, x) + 0x8000;
         } else {

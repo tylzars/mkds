@@ -26,15 +26,15 @@ BOOL func_020ec7e8(Unk020e43a8 *param_1) {
         param_1->mUnk_0ac = param_1->mUnk_0ac - param_1->mUnk_0ae;
     }
     param_1->mUnk_00.mUnk_10.y = param_1->mUnk_00.mUnk_10.y - param_1->mUnk_0a4;
-    func_02148504(&param_1->mUnk_00.mUnk_04, &param_1->mUnk_00.mUnk_10, &param_1->mUnk_00.mUnk_04);
-    return param_1->mUnk_00.mUnk_04.y < param_1->mUnk_0a0;
+    func_02148504(&param_1->mUnk_00.mPos, &param_1->mUnk_00.mUnk_10, &param_1->mUnk_00.mPos);
+    return param_1->mUnk_00.mPos.y < param_1->mUnk_0a0;
 }
 
 void func_020ec6e4(Unk020e43a8 *param_1, Unk020ec6e4 *param_2) {
     Vec3 v;
     s32 s;
 
-    func_021484d0(&param_1->mUnk_00.mUnk_04, &param_2->mUnk_080, &v);
+    func_021484d0(&param_1->mUnk_00.mPos, &param_2->mUnk_080, &v);
     if ((s64) v.z * param_2->mUnk_0a4 - (s64) v.x * param_2->mUnk_0ac < 0) {
         s32 x = param_2->mUnk_050.x;
         s32 z = param_2->mUnk_050.z;
@@ -65,9 +65,9 @@ void func_020ec538(Unk020e43a8 *param_1, const Unk020ec6e4 *param_2) {
     Vec3 b;
     s32 s;
 
-    a = param_2 ? param_2->mUnk_050 : param_1->mUnk_00.mUnk_04;
+    a = param_2 ? param_2->mUnk_050 : param_1->mUnk_00.mPos;
     b = param_2 ? param_2->mUnk_05c : data_02159594;
-    func_021484d0(&param_1->mUnk_00.mUnk_04, &a, &out);
+    func_021484d0(&param_1->mUnk_00.mPos, &a, &out);
     if ((s64) out.z * b.x - (s64) out.x * b.z < 0) {
         if (func_020d6f78(&b, &out) == 0) {
             out = data_0215957c;

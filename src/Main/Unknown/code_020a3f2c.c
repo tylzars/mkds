@@ -43,9 +43,9 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
             Unk020a3fa8_a4 *e = &c->mUnk_0a4[i];
             func_0207a974((u16) i);
             e->mUnk_34 = 1;
-            if (c->mUnk_000.mUnk_9c->mUnk_28 != 0 || c->mUnk_000.mUnk_9c->mUnk_2a != 0) {
-                e->mUnk_04 = c->mUnk_000.mUnk_9c->mUnk_28;
-                func_020a10ac(i, c->mUnk_000.mUnk_9c->mUnk_28 + c->mUnk_000.mUnk_9c->mUnk_2a);
+            if (c->mUnk_000.mCourseMapRow->mUnk_28 != 0 || c->mUnk_000.mCourseMapRow->mUnk_2a != 0) {
+                e->mUnk_04 = c->mUnk_000.mCourseMapRow->mUnk_28;
+                func_020a10ac(i, c->mUnk_000.mCourseMapRow->mUnk_28 + c->mUnk_000.mCourseMapRow->mUnk_2a);
             } else {
                 e->mUnk_04 = 1;
                 func_020a10ac(i, 5);
@@ -205,9 +205,9 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
                 func_020a2e88(o, &v, &p->mUnk_a4);
                 func_020a2e58(o, i);
                 func_020a2e4c(o, 1, NULL);
-                o->mUnk_00.mUnk_02 &= ~4;
-                o->mUnk_00.mUnk_02 &= ~2;
-                o->mUnk_00.mUnk_02 &= ~8;
+                o->mUnk_00.mFlags &= ~4;
+                o->mUnk_00.mFlags &= ~2;
+                o->mUnk_00.mFlags &= ~8;
                 o->mUnk_00.mUnk_66 = 0x1f;
             }
         } else {
@@ -218,15 +218,15 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
                 func_020a2e58(o, i);
                 if (j == 0) {
                     func_020a2e4c(o, m, e->mUnk_10);
-                    o->mUnk_00.mUnk_02 &= ~4;
-                    o->mUnk_00.mUnk_02 &= ~2;
-                    o->mUnk_00.mUnk_02 &= ~8;
+                    o->mUnk_00.mFlags &= ~4;
+                    o->mUnk_00.mFlags &= ~2;
+                    o->mUnk_00.mFlags &= ~8;
                     o->mUnk_00.mUnk_66 = 0x1f;
                 } else {
                     func_020a2e4c(o, 0, NULL);
-                    o->mUnk_00.mUnk_02 |= data_02156794;
-                    o->mUnk_00.mUnk_02 |= data_02156798;
-                    o->mUnk_00.mUnk_02 |= data_0215679c;
+                    o->mUnk_00.mFlags |= data_02156794;
+                    o->mUnk_00.mFlags |= data_02156798;
+                    o->mUnk_00.mFlags |= data_0215679c;
                 }
             }
         }

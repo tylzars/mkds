@@ -51,9 +51,9 @@ void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
     if (p == NULL) {
         return;
     }
-    p->mUnk_00.mUnk_02 |= data_usa_02156460;
-    p->mUnk_00.mUnk_02 |= data_usa_02156464;
-    p->mUnk_00.mUnk_02 |= data_usa_02156468;
+    p->mUnk_00.mFlags |= data_usa_02156460;
+    p->mUnk_00.mFlags |= data_usa_02156464;
+    p->mUnk_00.mFlags |= data_usa_02156468;
     p->mUnk_bc = e;
     p->mUnk_c0 = f;
     r = func_020d22d0();
@@ -65,7 +65,7 @@ void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
     n = (a << 12) >> 16;
     w = func_0209219c_inline(n);
     p->mUnk_b8 = a + w;
-    p->mUnk_00.mUnk_04 = *b;
+    p->mUnk_00.mPos = *b;
     p->mUnk_a0 = *c;
     p->mUnk_d4 = 0;
     p->mUnk_d0 = 0;

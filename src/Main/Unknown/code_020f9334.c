@@ -205,21 +205,21 @@ void func_020f944c(void *param_1, void *param_2) {
     Vec3 a;
     Vec3 t;
     s32 b;
-    Unk020e71a0 *q;
+    MapObject *q;
     Unk020f41c4_A *p = param_1;
-    Unk020e71a0 *r = param_2;
+    MapObject *r = param_2;
 
     if (func_020d3e34(&p->mUnk_50, p->mUnk_e0, r, &a) == 0) {
         return;
     }
-    if ((r->mUnk_02 & 0x40) == 0 && (p->mUnk_74 & 0x80000) == 0 && func_020d6968(p->mUnk_44, r) != 0) {
+    if ((r->mFlags & 0x40) == 0 && (p->mUnk_74 & 0x80000) == 0 && func_020d6968(p->mUnk_44, r) != 0) {
         func_02148504(&p->mUnk_50, &a, &p->mUnk_50);
     }
     switch (func_020d6a54(p, r, &b)) {
         case 1:
-            t.x = r->mUnk_04.x;
+            t.x = r->mPos.x;
             t.y = p->mUnk_50.y;
-            t.z = r->mUnk_04.z;
+            t.z = r->mPos.z;
             a = t;
             if (b == 1 || (r->mUnk_78 & 0x80000000) != 0) {
                 r->mUnk_78 &= ~0x80000000;
@@ -239,7 +239,7 @@ void func_020f944c(void *param_1, void *param_2) {
                 r->mUnk_78 &= ~0x80000000;
                 q = NULL;
             }
-            func_020f77f8(p, 2, &r->mUnk_04, &r->mUnk_10, q);
+            func_020f77f8(p, 2, &r->mPos, &r->mUnk_10, q);
             return;
     }
 }

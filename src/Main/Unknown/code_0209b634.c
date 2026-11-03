@@ -14,12 +14,12 @@
 
 void *func_0209bbfc(void *b) {
     Unk020e6fd4 *a = b;
-    Unk020e71a0 *e;
+    MapObject *e;
     s32 i;
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != NULL; i++) {
-            if ((e->mUnk_02 & 0x100) != 0) {
+            if ((e->mFlags & 0x100) != 0) {
                 func_020d233c(e);
                 return e;
             }
@@ -39,7 +39,7 @@ void func_0209bbd0(void *a, void *b) {
 
 void func_0209bb2c(void *a, void *b, void *d) {
     Unk0209bc74 *o = b;
-    Unk020e71a0 *c = d;
+    MapObject *c = d;
 
     func_01ff9048(0x1b, o, 3);
     if (o->mUnk_0c != NULL) {
@@ -63,11 +63,11 @@ void func_0209bb2c(void *a, void *b, void *d) {
 
 void func_0209ba88(u32 a, Unk0209bc74 *b, int d) {
     Unk0209bc74 *o = b;
-    Unk020e71a0 *c = (Unk020e71a0 *) d;
+    MapObject *c = (MapObject *) d;
 
     func_01ff9048(0x1b, o, 3);
     if (o->mUnk_0c != NULL) {
-        func_020ea5b0(o->mUnk_0c, c->mUnk_66, &c->mUnk_04);
+        func_020ea5b0(o->mUnk_0c, c->mUnk_66, &c->mPos);
     }
     if (o->mUnk_10 == NULL && o->mUnk_14 == NULL) {
         return;
@@ -91,7 +91,7 @@ void func_0209ba58(void *a, void *b, void *c) {
     if (o->mUnk_10 == NULL) {
         return;
     }
-    func_020ea740(o->mUnk_10, ((Unk020e71a0 *) c)->mUnk_66);
+    func_020ea740(o->mUnk_10, ((MapObject *) c)->mUnk_66);
 }
 
 void func_0209ba08(void *a, u32 b) {

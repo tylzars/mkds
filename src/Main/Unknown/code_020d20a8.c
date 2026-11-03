@@ -13,11 +13,11 @@
 #include "Main/Unknown/code_020d6000.h"
 #include "Main/Unknown/code_020b4000.h"
 
-BOOL func_020d2234(Unk020e71a0 *d, Unk020f41c4_A *e) {
+BOOL func_020d2234(MapObject *d, Unk020f41c4_A *e) {
     s32 a;
     s32 c;
     s32 b;
-    a = d->mUnk_00;
+    a = d->mKind;
     b = e->mUnk_44;
     c = 0;
     while (a >= 100) {

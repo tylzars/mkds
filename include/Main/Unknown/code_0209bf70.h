@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "Main/Unknown/code_02042044.h" // Unk02042044
 #include "Main/Unknown/code_02100094.h" // Unk02100094
@@ -27,7 +27,7 @@ typedef struct Unk0209bf70 {
 
 // Object of the list func_02100138(0x1a8), created by func_0209bfe0 and moved by func_0209c220.
 typedef struct Unk0209c220 {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ u16 mUnk_0a0;
     /* 0a2 */ u8 mUnk_0a2[2];
     /* 0a4 */ s32 mUnk_0a4;
@@ -58,7 +58,7 @@ typedef struct Unk0209c220 {
 
 // Object of func_0209cf34 and func_0209d394.
 typedef struct Unk0209cf34 {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ u32 mUnk_0a0;
     /* 0a4 */ u16 mUnk_0a4;
     /* 0a6 */ u8 mUnk_0a6[2];

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Object behind func_ov001_02188c90 and the per-state functions around func_ov001_021900ac.
 typedef struct Unk02188950_a0 {
@@ -198,7 +198,7 @@ typedef struct Unk02188950_300 {
 
 // Layout provisional: functions on objects that share this prefix use different types at 0xa0 and 0xa8.
 typedef struct Unk02188950 {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ Unk02188950_a0 *mUnk_0a0;
     /* 0a4 */ struct Unk0218dabc *mUnk_0a4;
     /* 0a8 */ s32 mUnk_0a8;

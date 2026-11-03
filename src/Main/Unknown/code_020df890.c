@@ -164,7 +164,7 @@ void func_020dfafc(void *a, MkdEfBubbleObject *b, void *c, s32 d) {
     }
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
-    func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mUnk_04), 0xc);
+    func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mPos), 0xc);
     if (b->mUnk_a8 != 0) {
         n = b->mUnk_a8 >> 4;
         func_02146d60(m, data_0215d4b4[n * 2], data_0215d4b4[n * 2 + 1]);
@@ -172,7 +172,7 @@ void func_020dfafc(void *a, MkdEfBubbleObject *b, void *c, s32 d) {
     }
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
     func_020ea7cc(gMkdEfBubble, d);
-    v = b->mUnk_00.mUnk_04.y - b->mUnk_ac;
+    v = b->mUnk_00.mPos.y - b->mUnk_ac;
     if (v > 0x10000) {
         v = 0x1000 - ((v - 0x10000) >> 8);
         b->mUnk_b0.mUnk_030 = 0xd;
@@ -199,15 +199,15 @@ void func_020dfa50(void *a, MkdEfBubbleObject *b) {
     if (b->mUnk_f0 != 0) {
         return;
     }
-    if ((b->mUnk_00.mUnk_02 & 0x12) != 0) {
+    if ((b->mUnk_00.mFlags & 0x12) != 0) {
         b->mUnk_e8->mUnk_24 |= 8;
         b->mUnk_ec->mUnk_24 |= 8;
         return;
     }
     b->mUnk_e8->mUnk_24 &= ~8;
     b->mUnk_ec->mUnk_24 &= ~8;
-    func_0208b5b0(b->mUnk_e8, &b->mUnk_00.mUnk_04);
-    func_0208b5b0(b->mUnk_ec, &b->mUnk_00.mUnk_04);
+    func_0208b5b0(b->mUnk_e8, &b->mUnk_00.mPos);
+    func_0208b5b0(b->mUnk_ec, &b->mUnk_00.mPos);
 }
 
 void func_020df938(MkdEfBubbleObject *a) {
@@ -216,10 +216,10 @@ void func_020df938(MkdEfBubbleObject *a) {
     BOOL v;
 
     a->mUnk_a8 = 0;
-    a->mUnk_00.mUnk_04.y = a->mUnk_a4;
+    a->mUnk_00.mPos.y = a->mUnk_a4;
     a->mUnk_00.mUnk_10.y = 0x4b33;
-    a->mUnk_00.mUnk_02 &= ~2;
-    a->mUnk_00.mUnk_02 &= ~8;
+    a->mUnk_00.mFlags &= ~2;
+    a->mUnk_00.mFlags &= ~8;
     a->mUnk_00.mUnk_66 = 0x1f;
     if ((a->mUnk_00.mUnk_78 & 4) == 0) {
         if (a->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
@@ -230,17 +230,17 @@ void func_020df938(MkdEfBubbleObject *a) {
             n = 4;
         }
         s.mUnk_00 = 0x18c;
-        s.mUnk_04 = &a->mUnk_00.mUnk_04;
+        s.mUnk_04 = &a->mUnk_00.mPos;
         s.mUnk_08 = n;
-        s.mUnk_0c = func_020d4ef4(&a->mUnk_00.mUnk_04);
+        s.mUnk_0c = func_020d4ef4(&a->mUnk_00.mPos);
         func_0210b7a8(&s);
     }
     a->mUnk_e4 = 0;
     if (a->mUnk_e8 == NULL) {
-        a->mUnk_e8 = func_0208b7bc(0x45, &a->mUnk_00.mUnk_04);
+        a->mUnk_e8 = func_0208b7bc(0x45, &a->mUnk_00.mPos);
     }
     if (a->mUnk_ec == NULL) {
-        a->mUnk_ec = func_0208b7bc(0x46, &a->mUnk_00.mUnk_04);
+        a->mUnk_ec = func_0208b7bc(0x46, &a->mUnk_00.mPos);
     }
     if (a->mUnk_e8 == NULL || a->mUnk_ec == NULL) {
         v = TRUE;
@@ -262,8 +262,8 @@ void func_020df890(MkdEfBubbleObject *a) {
     if (a->mUnk_00.mUnk_10.y < -0x3000) {
         a->mUnk_00.mUnk_10.y = -0x3000;
     }
-    a->mUnk_00.mUnk_04.y += a->mUnk_00.mUnk_10.y;
-    if (a->mUnk_00.mUnk_04.y < a->mUnk_a4) {
+    a->mUnk_00.mPos.y += a->mUnk_00.mUnk_10.y;
+    if (a->mUnk_00.mPos.y < a->mUnk_a4) {
         a->mUnk_00.mUnk_80.mUnk_10 = 1;
         a->mUnk_00.mUnk_80.mUnk_12 = 1;
     }

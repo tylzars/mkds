@@ -129,9 +129,9 @@ void func_ov001_0218c0a4(Unk02188950 *a) {
         Vec3 pos;
         Vec3 vel = {0, 0, 0};
 
-        pos.x = a->mUnk_000.mUnk_04.x + (((s64) radius * data_0215d4b4[((u16) angle >> 4) * 2]) >> 12);
-        pos.y = a->mUnk_000.mUnk_04.y + a->mUnk_0a0->mUnk_194;
-        pos.z = a->mUnk_000.mUnk_04.z + (((s64) radius * data_0215d4b4[((u16) angle >> 4) * 2 + 1]) >> 12);
+        pos.x = a->mUnk_000.mPos.x + (((s64) radius * data_0215d4b4[((u16) angle >> 4) * 2]) >> 12);
+        pos.y = a->mUnk_000.mPos.y + a->mUnk_0a0->mUnk_194;
+        pos.z = a->mUnk_000.mPos.z + (((s64) radius * data_0215d4b4[((u16) angle >> 4) * 2 + 1]) >> 12);
         vel.x = ((s64) a->mUnk_0a0->mUnk_1a0 * data_0215d4b4[((u16) angle >> 4) * 2]) >> 12;
         vel.y = a->mUnk_0a0->mUnk_19c;
         vel.z = ((s64) a->mUnk_0a0->mUnk_1a0 * data_0215d4b4[((u16) angle >> 4) * 2 + 1]) >> 12;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_020e005c.h"
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
@@ -104,7 +104,7 @@ typedef struct Unk020e1e98_0b4 {
 
 // 0x164 bytes.
 typedef struct Unk020e1e98 {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ s32 mUnk_0a0;
     /* 0a4 */ s32 mUnk_0a4;
     /* 0a8 */ s32 mUnk_0a8;
@@ -149,7 +149,7 @@ typedef struct Unk0217b79c {
 
 // Object func_020e3ef4 fills.
 typedef struct Unk020e3ef4 {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ Unk020e38a0_28 mUnk_0a0;
     /* 0c4 */ Unk020e38a0_28 mUnk_0c4;
     /* 0e8 */ Vec3 mUnk_0e8;
@@ -210,7 +210,7 @@ s32 func_020e1d10(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *e, Unk020e
 void func_020e1a80(s32 a, s32 b, s32 c, u32 d, u16 e, u16 *f, s32 v, Unk020e005c *w, Vec3 *g, Vec3 *h, Unk020e0764 *i,
                    Unk020e0764 *j, Vec3 *k, Vec3 *l, u16 *m);
 BOOL func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 i, s32 j, Unk020e005c *w, Vec3 *l,
-                  Vec3 *m, Vec3 *n, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, Vec3 *r, u16 *s);
+                   Vec3 *m, Vec3 *n, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, Vec3 *r, u16 *s);
 s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
                   u16 *s);
 s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,

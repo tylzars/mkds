@@ -6,11 +6,12 @@
 #include "Main/Unknown/code_020e6fd4.h"
 #include "Main/Unknown/code_020f36d8.h"
 
-// Object behind data_0217b4f0, allocated 0x2bc bytes long: the Unk020e71a0 objects at 0x000 (count at 0x004),
+// Object behind data_0217b4f0, allocated 0x2bc bytes long: the MapObject objects at 0x000 (count at 0x004),
 // Unk020e6fd4 pointer arrays at 0x008, 0x068, 0x0c8 and 0x134 and a Unk020f41c4_A at 0x18c.
 typedef struct Unk0217b4f0 {
-    /* 000 */ Unk020e71a0 **mUnk_000;
-    /* 004 */ vu16 mUnk_004;
+    /* 000 */ MapObject **mMapObjects;
+    // Pinned at 0xff when the 0x100-pointer array is full.
+    /* 004 */ vu16 mMapObjectCount;
     /* 006 */ u8 mUnk_006[2];
     /* 008 */ Unk020e6fd4 *mUnk_008[24];
     /* 068 */ Unk020e6fd4 *mUnk_068[24];

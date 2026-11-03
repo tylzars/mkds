@@ -9,9 +9,9 @@
 #include "Main/Unknown/code_020f9c6c.h"
 #include "Main/Unknown/code_020a826c.h" // Unk020a826c_a0
 
-// Object of 0x134 bytes: the shared Unk020e71a0 part, a Unk020e0144 at 0xc4 and a Unk020e516c at 0xe8.
+// Object of 0x134 bytes: the shared MapObject part, a Unk020e0144 at 0xc4 and a Unk020e516c at 0xe8.
 typedef struct Unk020a9268 {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ s32 mUnk_0a0;
     /* 0a4 */ s32 mUnk_0a4;
     /* 0a8 */ s32 mUnk_0a8;

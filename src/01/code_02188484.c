@@ -47,9 +47,9 @@ void func_ov001_0218875c(Unk02188950 *a, s32 b, s32 c, s32 d) {
     a->mUnk_260 = a->mUnk_26c = d;
     a->mUnk_264 = a->mUnk_270 = c;
     a->mUnk_278 = 0;
-    a->mUnk_238.x = a->mUnk_000.mUnk_04.x + a->mUnk_244;
-    a->mUnk_238.y = a->mUnk_000.mUnk_04.y + a->mUnk_248;
-    a->mUnk_238.z = a->mUnk_000.mUnk_04.z + a->mUnk_24c;
+    a->mUnk_238.x = a->mUnk_000.mPos.x + a->mUnk_244;
+    a->mUnk_238.y = a->mUnk_000.mPos.y + a->mUnk_248;
+    a->mUnk_238.z = a->mUnk_000.mPos.z + a->mUnk_24c;
 }
 
 void func_ov001_021886f8(Unk02188950 *a, u32 b, u32 c, u32 d, int e, u32 f) {
@@ -72,7 +72,7 @@ void func_ov001_02188644(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 
     int *v1;
     int *v2;
     a->mUnk_27c = 0;
-    if ((a->mUnk_000.mUnk_02 & ((u32) 0x00000400u)) != 0) {
+    if ((a->mUnk_000.mFlags & ((u32) 0x00000400u)) != 0) {
         b = -b;
     }
     v2 = &a->mUnk_28c;
@@ -99,7 +99,7 @@ void func_ov001_02188644(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 
 
 void func_ov001_021885d4(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 l) {
     a->mUnk_27c = 0;
-    if ((a->mUnk_000.mUnk_02 & ((u32) 0x00000400u)) != 0) {
+    if ((a->mUnk_000.mFlags & ((u32) 0x00000400u)) != 0) {
         b = -b;
     }
     a->mUnk_28c = b;
@@ -119,7 +119,7 @@ void func_ov001_021884f0(Unk02188950 *a, int b, int c, int d, u32 e, u32 f, u32 
     int *v4;
     int *v5;
     a->mUnk_234 = 1;
-    if ((a->mUnk_000.mUnk_02 & ((u32) 0x00000400u)) != 0) {
+    if ((a->mUnk_000.mFlags & ((u32) 0x00000400u)) != 0) {
         b = -b;
     }
     v2 = &a->mUnk_250;
@@ -145,14 +145,14 @@ void func_ov001_021884f0(Unk02188950 *a, int b, int c, int d, u32 e, u32 f, u32 
     *v5 = g;
     a->mUnk_264 = *v5;
     a->mUnk_278 = 0;
-    a->mUnk_238.x = a->mUnk_000.mUnk_04.x + *v1;
-    a->mUnk_238.y = a->mUnk_000.mUnk_04.y + *v2;
-    a->mUnk_238.z = a->mUnk_000.mUnk_04.z + *v3;
+    a->mUnk_238.x = a->mUnk_000.mPos.x + *v1;
+    a->mUnk_238.y = a->mUnk_000.mPos.y + *v2;
+    a->mUnk_238.z = a->mUnk_000.mPos.z + *v3;
 }
 
 void func_ov001_02188484(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 l) {
     a->mUnk_234 = 1;
-    if ((a->mUnk_000.mUnk_02 & ((u32) 0x00000400u)) != 0) {
+    if ((a->mUnk_000.mFlags & ((u32) 0x00000400u)) != 0) {
         b = -b;
     }
     a->mUnk_250 = b;

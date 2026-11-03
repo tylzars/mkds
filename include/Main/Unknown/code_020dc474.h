@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_020d849c.h"
 #include "Main/Unknown/code_020d6dc0.h"
 
@@ -14,7 +14,7 @@ typedef struct Unk020dc474_1d8 {
 // Object of func_020dc474, func_020dc608 and the functions after it up to func_020dd860: vectors at 0x04, 0x10 and
 // 0xa0, ring of four vector pointers at 0x160, words at 0xe8, 0xec, 0xf0 and 0x1fc.
 typedef struct Unk020dc474 {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ Vec3 mUnk_a0;
     /* ac */ s32 mUnk_ac;
     /* b0 */ s32 mUnk_b0;

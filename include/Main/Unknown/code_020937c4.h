@@ -1,21 +1,21 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0, Unk020e6fd4
+#include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
 
 // Object of func_020937c4: after the shared part, a counter at 0xa0 and a word at 0xa4.
 typedef struct Unk020937c4 {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
 } Unk020937c4;
 
 // Object of func_02093910: after the shared part, a counter at 0xa0, a state at 0xa4 and an object at 0xa8.
 typedef struct Unk02093910 {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ Unk0210b7ec *mUnk_a8;
@@ -23,7 +23,7 @@ typedef struct Unk02093910 {
 
 // Object of func_02093cf4: after the shared part, a counter at 0xa0, a state at 0xa8 and an Unk020e0144 at 0xac.
 typedef struct Unk02093cf4 {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ u8 mUnk_a4[4];
     /* a8 */ s32 mUnk_a8;

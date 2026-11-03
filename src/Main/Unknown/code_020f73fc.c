@@ -18,7 +18,7 @@
 #include "Main/Unknown/code_020f9c40.h"
 #include "code_02147cd8.h"
 
-void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, Unk020e71a0 *e) {
+void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
     Unk020f41c4_A *p = a;
     Vec3 v;
     Vec3 v2;
@@ -31,7 +31,7 @@ void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, Unk020e71a0 *e) {
     if (p->mUnk_74 & 0x80000) {
         return;
     }
-    i = e ? e->mUnk_98->mUnk_28 : -1;
+    i = e ? e->mKindData->mUnk_28 : -1;
     switch (b) {
         case 1:
             if (p->mUnk_74 & 0x1000) {

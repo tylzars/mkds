@@ -39,12 +39,12 @@ void func_ov001_02184874(Unk02188950 *d, Unk0206bcb0 *e) {
             {
                 Vec3 b;
 
-                func_021484d0(&d->mUnk_000.mUnk_04, &e->mUnk_1b8, &b);
+                func_021484d0(&d->mUnk_000.mPos, &e->mUnk_1b8, &b);
                 if ((s64) b.z * b.z + ((s64) b.x * b.x + (s64) b.y * b.y) >= 0x10) {
                     func_02039860(&b, &b);
                 }
                 func_02147fd8(e->mUnk_1d0, &b, &e->mUnk_1b8, &b);
-                if (d->mUnk_000.mUnk_00 == 0x1f5) {
+                if (d->mUnk_000.mKind == 0x1f5) {
                     d->mUnk_000.mUnk_78 |= data_ov001_021a657c;
                     func_02109060(&d->mUnk_000.mUnk_94->mUnk_00, 0x214);
                     func_020d2774(&d->mUnk_000, (u32) (0x211));
@@ -53,7 +53,7 @@ void func_ov001_02184874(Unk02188950 *d, Unk0206bcb0 *e) {
                     func_0208b7bc(0x3ea, &b);
                     func_ov001_02187518(d, 0x99a, 0, 0x75c, 0x3f3, 0);
                     func_ov001_02187518(d, -0x99a, 0, 0x75c, 0x3f3, 0);
-                } else if (d->mUnk_000.mUnk_00 == 0x1f6) {
+                } else if (d->mUnk_000.mKind == 0x1f6) {
                     d->mUnk_000.mUnk_78 |= data_ov001_021a657c;
                     func_02109060(&d->mUnk_000.mUnk_94->mUnk_00, 0x245);
                     func_020d2774(&d->mUnk_000, (u32) (0x23f));

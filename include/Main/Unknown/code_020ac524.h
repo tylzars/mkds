@@ -2,12 +2,12 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 
-// Object of the list func_02100138(0x70): the shared Unk020e71a0 part, then the words and the pointer func_020ac5e4
+// Object of the list func_02100138(0x70): the shared MapObject part, then the words and the pointer func_020ac5e4
 // sets.
 typedef struct ShineBalloonObject {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mTimer;

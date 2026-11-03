@@ -33,16 +33,16 @@ void CreateMkdEfBubble(void) {
 void func_020df6c8(MkdEfBubbleObject *a, Unk020fa294 *b) {
     func_02046be8(&a->mUnk_00.mUnk_80, data_0216bfc0, 2, a);
     a->mUnk_a0 = b->mUnk_28;
-    a->mUnk_ac = a->mUnk_00.mUnk_04.y;
-    a->mUnk_a4 = a->mUnk_00.mUnk_04.y - 0x10000;
+    a->mUnk_ac = a->mUnk_00.mPos.y;
+    a->mUnk_a4 = a->mUnk_00.mPos.y - 0x10000;
     a->mUnk_00.mUnk_10.x = 0;
     a->mUnk_00.mUnk_10.y = 0;
     a->mUnk_00.mUnk_10.z = 0;
     a->mUnk_a8 = 0;
     a->mUnk_00.mUnk_80.mUnk_10 = 0;
     a->mUnk_00.mUnk_80.mUnk_12 = 1;
-    func_020e516c(&a->mUnk_b0, &a->mUnk_00.mUnk_04, (s32) (((s64) a->mUnk_00.mUnk_1c.x * 0x18000) >> 12), 0xd);
-    a->mUnk_00.mUnk_02 |= data_02158740;
+    func_020e516c(&a->mUnk_b0, &a->mUnk_00.mPos, (s32) (((s64) a->mUnk_00.mUnk_1c.x * 0x18000) >> 12), 0xd);
+    a->mUnk_00.mFlags |= data_02158740;
 }
 #pragma thumb off
 
@@ -80,17 +80,17 @@ void func_020df48c(void *a, Unk020de6a8 *b) {
                 func_020d859c(&b->mUnk_108, 0, 1);
             }
         }
-        func_020d8c74(&b->mUnk_108.mUnk_00, &b->mUnk_000.mUnk_04);
+        func_020d8c74(&b->mUnk_108.mUnk_00, &b->mUnk_000.mPos);
         if (b->mUnk_108.mUnk_00.mUnk_1c->mUnk_0d != 0 && b->mUnk_108.mUnk_00.mUnk_20->mUnk_0d != 0) {
-            b->mUnk_000.mUnk_02 |= data_021586d4;
+            b->mUnk_000.mFlags |= data_021586d4;
         } else {
-            b->mUnk_000.mUnk_02 &= ~0x20;
+            b->mUnk_000.mFlags &= ~0x20;
         }
-        b->mUnk_000.mUnk_04.y += data_0217b754;
-        b->mUnk_000.mUnk_04.y += 0x10000;
+        b->mUnk_000.mPos.y += data_0217b754;
+        b->mUnk_000.mPos.y += 0x10000;
     }
     if (b->mUnk_0b0 == 0) {
-        func_020e5668(&b->mUnk_0b4, &b->mUnk_000.mUnk_04);
+        func_020e5668(&b->mUnk_0b4, &b->mUnk_000.mPos);
     }
     func_020debec(a, b);
 }

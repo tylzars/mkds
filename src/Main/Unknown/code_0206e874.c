@@ -26,9 +26,9 @@ static inline s32 func_0206e874_inline(Vec3 *v, Vec3 *n) {
 }
 
 void func_0206e874(Unk0206bcb0 *p) {
-    Unk020e71a0 *v1[2] = {0};
+    MapObject *v1[2] = {0};
     s32 i;
-    Unk020e71a0 *e;
+    MapObject *e;
     Vec3 t;
     Vec3 v;
     Vec3 w;
@@ -67,7 +67,7 @@ void func_0206e874(Unk0206bcb0 *p) {
                     v4 = FALSE;
                     e = func_020d411c(i);
                     h = func_020d6be0(p, e);
-                    r = ((s32(*)(Unk0206bcb0 *, s32 *, Unk020e71a0 *)) data_0217ac18[h])(p, &v2, e);
+                    r = ((s32(*)(Unk0206bcb0 *, s32 *, MapObject *)) data_0217ac18[h])(p, &v2, e);
                     if (r != 0) {
                         v = z;
                         u = &e->mUnk_10;
@@ -75,7 +75,7 @@ void func_0206e874(Unk0206bcb0 *p) {
                         d = func_0206e874_inline(q, &v);
                         if (d != 0) {
                             if (v2 != 2) {
-                                ((void (*)(Unk0206bcb0 *, Vec3 *, Unk020e71a0 *)) data_0217ac54[h])(p, &v, e);
+                                ((void (*)(Unk0206bcb0 *, Vec3 *, MapObject *)) data_0217ac54[h])(p, &v, e);
                             }
                             if (r & 8) {
                                 func_0206f04c(p, &v, (p->mUnk_44 & 0x40) ? 1 : 0, 0x1000, -1, -1, v2);
@@ -124,7 +124,7 @@ void func_0206e874(Unk0206bcb0 *p) {
                             v3 = TRUE;
                         }
                     }
-                    g = e->mUnk_02 & 0x200;
+                    g = e->mFlags & 0x200;
                     if (g != 0) {
                         m = 0x1000;
                     } else {

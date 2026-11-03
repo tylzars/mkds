@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_020e0680.h"
 
 // Block of eleven words.
@@ -11,7 +11,7 @@ typedef struct Unk020e039c {
 
 // Object func_020e38a0 fills.
 typedef struct Unk020e38a0 {
-    /* 000 */ Unk020e71a0 mUnk_000;
+    /* 000 */ MapObject mUnk_000;
     /* 0a0 */ Unk020e38a0_28 mUnk_0a0;
     /* 0c4 */ Unk020e38a0_28 mUnk_0c4;
     /* 0e8 */ Vec3 mUnk_0e8;

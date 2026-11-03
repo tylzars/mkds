@@ -93,9 +93,9 @@ u32 func_ov001_02188f04(Unk02188950 *a, Vec3 *b, s32 c) {
     float f2;
 
     if (b != NULL) {
-        func_021484d0(b, &a->mUnk_000.mUnk_04, &local);
-        dx = a->mUnk_000.mUnk_04.x - b->x;
-        dz = a->mUnk_000.mUnk_04.z - b->z;
+        func_021484d0(b, &a->mUnk_000.mPos, &local);
+        dx = a->mUnk_000.mPos.x - b->x;
+        dz = a->mUnk_000.mPos.z - b->z;
         if (c > 0) {
             f1 = 0.5f + (float) (c << 12);
         } else {
@@ -118,7 +118,7 @@ u32 func_ov001_02188eac(Unk02188950 *a, s32 b, Vec3 *c, s32 d) {
     s32 v;
 
     if (c != NULL) {
-        v = (u16) (func_02148714(c->x - a->mUnk_000.mUnk_04.x, c->z - a->mUnk_000.mUnk_04.z) - b);
+        v = (u16) (func_02148714(c->x - a->mUnk_000.mPos.x, c->z - a->mUnk_000.mPos.z) - b);
         if (v > 0x8000) {
             v -= 0x10000;
         }

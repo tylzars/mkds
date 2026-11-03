@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
+#include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_020de214.h"
 #include "Main/Unknown/code_020de588.h"
 #include "Main/Unknown/code_020e516c.h"
@@ -15,7 +15,7 @@ typedef struct Unk020df6c8_e8 {
 
 // Object of at least 0xf4 bytes made by func_020df6c8.
 typedef struct MkdEfBubbleObject {
-    /* 00 */ Unk020e71a0 mUnk_00;
+    /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ u16 mUnk_a8;

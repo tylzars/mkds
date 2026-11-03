@@ -43,7 +43,7 @@ void func_020a79c4(void *a, Unk020a7f18 *p) {
     switch (p->mUnk_1fc) {
         case 0:
         case 1:
-            func_01ff9048(0x19, func_020e6cf8(&p->mUnk_000.mUnk_04), 12);
+            func_01ff9048(0x19, func_020e6cf8(&p->mUnk_000.mPos), 12);
             f0[0] = 0;
             f0[1] = 0xa00;
             f0[2] = 0;
@@ -78,7 +78,7 @@ void func_020a79c4(void *a, Unk020a7f18 *p) {
                 f2[2] = 0;
                 func_01ff9048(0x1c, f2, 3);
                 func_01ff9048(0x19, func_020e6cf8(&p->mUnk_0b0[i].mUnk_00), 12);
-                if ((p->mUnk_000.mUnk_02 & 0x12) == 0 && p->mUnk_0b0[i].mUnk_3c != 0) {
+                if ((p->mUnk_000.mFlags & 0x12) == 0 && p->mUnk_0b0[i].mUnk_3c != 0) {
                     k = ((u16) p->mUnk_0b0[i].mUnk_3c >> 4) * 2;
                     func_02146d60(m1, data_0215d4b4[k], data_0215d4b4[k + 1]);
                     func_01ff9048(0x1a, m1, 9);
@@ -103,7 +103,7 @@ void func_020a79c4(void *a, Unk020a7f18 *p) {
             for (i = 0; i < p->mUnk_1d0; i++) {
                 w2 = 0x1e;
                 func_01ff9048(0x14, &w2, 1);
-                func_01ff9048(0x19, func_020e6cf8(&p->mUnk_000.mUnk_04), 12);
+                func_01ff9048(0x19, func_020e6cf8(&p->mUnk_000.mPos), 12);
                 f3[2] = 0x80;
                 f3[0] = 0;
                 f3[1] = (i * 0x14000 + 0xa000) >> 4;
@@ -136,7 +136,7 @@ void func_020a78c8(Unk020e6fd4 *l) {
         return;
     }
     for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
-        o->mUnk_1d4 = (o->mUnk_000.mUnk_9c->mUnk_28 << 12) / 100;
+        o->mUnk_1d4 = (o->mUnk_000.mCourseMapRow->mUnk_28 << 12) / 100;
         o->mUnk_1d0 = 4;
         for (j = 0; j < o->mUnk_1d0; j++) {
             o->mUnk_0b0[j].mUnk_1c = 0;
@@ -179,9 +179,9 @@ void func_020a73b0(void *a, Unk020a7f18 *p) {
             p->mUnk_0a0 = 0;
         }
         if (p->mUnk_1d8.mUnk_00->mUnk_08 != 0) {
-            func_020d8bf8(&p->mUnk_1d8, &p->mUnk_000.mUnk_04, &p->mUnk_000.mUnk_10);
+            func_020d8bf8(&p->mUnk_1d8, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
         } else {
-            func_020d8918(&p->mUnk_1d8, &p->mUnk_000.mUnk_04, &p->mUnk_000.mUnk_10);
+            func_020d8918(&p->mUnk_1d8, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
         }
     } else {
         p->mUnk_1d8.mUnk_04 = 0;
@@ -192,7 +192,7 @@ void func_020a73b0(void *a, Unk020a7f18 *p) {
     }
     switch (p->mUnk_1fc) {
         case 0:
-            if ((p->mUnk_000.mUnk_02 & 0x12) != 0) {
+            if ((p->mUnk_000.mFlags & 0x12) != 0) {
                 return;
             }
             for (i = 0; i < p->mUnk_1d0; i++) {
@@ -257,9 +257,9 @@ void func_020a73b0(void *a, Unk020a7f18 *p) {
                 return;
             }
             s.mUnk_00 = 0x194;
-            s.mUnk_04 = &p->mUnk_000.mUnk_04;
+            s.mUnk_04 = &p->mUnk_000.mPos;
             s.mUnk_08 = 2;
-            s.mUnk_0c = func_020d4ef4(&p->mUnk_000.mUnk_04);
+            s.mUnk_0c = func_020d4ef4(&p->mUnk_000.mPos);
             func_0210b7a8(&s);
             p->mUnk_0ac = 0x14;
             break;
@@ -272,12 +272,12 @@ void func_020a73b0(void *a, Unk020a7f18 *p) {
                     p->mUnk_0b0[j].mUnk_0c.y = p->mUnk_0b0[j].mUnk_0c.y - 0x400;
                 }
             }
-            if ((p->mUnk_000.mUnk_02 & 0x12) == 0) {
+            if ((p->mUnk_000.mFlags & 0x12) == 0) {
                 for (m = 0; m < p->mUnk_1d0; m++) {
                     p->mUnk_0b0[m].mUnk_3c = p->mUnk_0b0[m].mUnk_3c + p->mUnk_0b0[m].mUnk_40;
                 }
             }
-            if (p->mUnk_000.mUnk_9c->mUnk_2a != 0) {
+            if (p->mUnk_000.mCourseMapRow->mUnk_2a != 0) {
                 return;
             }
             if (p->mUnk_0a8-- > 0) {
@@ -291,8 +291,8 @@ void func_020a73b0(void *a, Unk020a7f18 *p) {
             }
             p->mUnk_1d0 = 1;
             p->mUnk_1fc = 3;
-            p->mUnk_000.mUnk_02 = p->mUnk_000.mUnk_02 & ~1;
-            p->mUnk_000.mUnk_02 = p->mUnk_000.mUnk_02 & ~8;
+            p->mUnk_000.mFlags = p->mUnk_000.mFlags & ~1;
+            p->mUnk_000.mFlags = p->mUnk_000.mFlags & ~8;
             break;
         case 3:
             p->mUnk_0b0[p->mUnk_1d0 - 1].mUnk_18 = p->mUnk_0b0[p->mUnk_1d0 - 1].mUnk_18 + 0xcd;

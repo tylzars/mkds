@@ -12,7 +12,7 @@ void func_021053d8(u32 arg0) {
 }
 
 void func_02105338(Unk021052fc *p, s32 a, Vec3 *v) {
-    p->mUnk_00.mUnk_04 = *p->mUnk_fc;
+    p->mUnk_00.mPos = *p->mUnk_fc;
     if (a < 1) {
         a = 1;
     }
