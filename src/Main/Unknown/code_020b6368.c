@@ -62,9 +62,6 @@ s32 func_020b6430(void) {
     return r;
 }
 
-// non-matching: the load of data_0217b3c0 is scheduled before the two instructions of the remainder (rsb, add ror)
-// instead of after them; the original's order is what this block gets when it is scheduled again after register
-// colouring (3 words differ at +0x5c)
 u16 func_020b6368(void) {
     u16 r = 0;
     Unk020748a8 *p;
@@ -81,11 +78,13 @@ u16 func_020b6368(void) {
             r = (0x14000 - a) % 0x10000;
             data_0217b3c0->mUnk_8c = 0;
             break;
+        case 2:
+            r = 0;
+            break;
         case 3:
             a = func_020b5250(func_020b57e4()->mUnk_10);
             r = (a << 16) / 360 + 0x8000;
             break;
-        case 2:
         default:
             break;
     }

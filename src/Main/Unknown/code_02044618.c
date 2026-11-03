@@ -287,21 +287,18 @@ s32 func_02044e9c(s32 a, s32 b) {
     return r;
 }
 
-// non-matching: same size; the original keeps the second loop index in r0, the 0x30-step offset in r1 and the counter
-// in r2 (here the offset in r0, the index in r1) and holds the global's address in r1 (here r2).
 void func_02044fc0(void) {
-    s8 i;
     u8 n;
     s8 j;
 
     n = 0;
-    for (i = 0; i < 2; i++) {
-        data_021759c0->mUnk_3d5[i] = -1;
+    for (j = 0; j < 2; j++) {
+        data_021759c0->mUnk_3d5[j] = -1;
     }
     for (j = 0; j < data_021759c0->mUnk_3d0; j++) {
         if ((data_021759c0->mUnk_68[(u16) j].mUnk_08.mUnk_14 & 1) != 0) {
-            n++;
             data_021759c0->mUnk_3d5[(u8) data_021759c0->mUnk_68[j].mUnk_08.mUnk_08] = j;
+            n++;
         }
     }
     data_021759c0->mUnk_3d4 = n;

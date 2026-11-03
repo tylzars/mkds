@@ -24,8 +24,6 @@ void func_0203e74c(u16 param_1) {
     func_0203e788(param_1, 0);
 }
 
-// non-matching: 0x21c bytes, original 0x218; only the argument of func_020a16d0 differs: ours narrows a (lsl/lsr #16)
-// for the u16 parameter, the original passes a as is (an s32 prototype matches, but func_020a16d0 itself is u16)
 void func_0203e788(s32 a, s32 b) {
     Unk0206bcb0 *q;
     Unk0217aa1c_144_00 t;
@@ -70,7 +68,7 @@ void func_0203e788(s32 a, s32 b) {
             e->mUnk_30 |= 0x20;
             data_0217561c->mUnk_4fc = 0;
             if (data_021759c0->mUnk_08 == 4) {
-                func_020a16d0(a);
+                ((void (*)(s32)) func_020a16d0)(a);
             }
         }
     }

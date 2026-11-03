@@ -166,8 +166,6 @@ void func_ov000_021a9ca8(u8 *a, s32 n) {
     }
 }
 
-// non-matching: the original places the block that calls with (r4, r5) right after +0x188, r6 and r7 swap roles
-// after it, and the subtraction at +0x22a goes through r1; size 0x298 vs 0x29c
 u8 func_ov000_021a9d68(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
     u32 n;
@@ -176,8 +174,7 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
     u8 *r;
     u8 v1;
     u8 v2;
-    u32 s;
-    u32 v3;
+    s32 v3;
     do {
         p = (u8 *) func_ov000_021adfc8(&n, a);
         if (n == 0) {
@@ -244,6 +241,9 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
                                 func_ov000_021aa9ec(c, r);
                             }
                             break;
+                        case 0x10:
+                            func_ov000_021aa5b0((s32 *) c, (u32) r);
+                            break;
                         case 2:
                             func_ov000_021aab74(c, r);
                             break;
@@ -253,9 +253,6 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
                         case 0xe:
                             c->mUnk_429 = 4;
                             break;
-                        case 0x10:
-                            func_ov000_021aa5b0((s32 *) c, (u32) r);
-                            break;
                         case 0x14:
                             func_ov000_021aa3b8((s32) c, (s32) r);
                             break;
@@ -263,11 +260,10 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
                             c->mUnk_429 = 9;
                             break;
                     }
-                    s = v3 + 4;
-                    func_ov000_021abca0(c->mUnk_2c0, r - 4, s);
-                    func_ov000_021ab728(c->mUnk_378, r - 4, s);
+                    func_ov000_021abca0(c->mUnk_2c0, r - 4, (u32) (v3 + 4));
+                    func_ov000_021ab728(c->mUnk_378, r - 4, (u32) (v3 + 4));
                     r += v3;
-                    n -= s;
+                    n -= (u32) (v3 + 4);
                     if (n == 0) {
                         break;
                     }
