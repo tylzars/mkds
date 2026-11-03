@@ -202,7 +202,7 @@ void func_0210b234(Unk0206bcb0 *a, s32 b, s32 c, s32 d, s32 f) {
     if (e == 0xffff) {
         return;
     }
-    if (data_021759c0->mUnk_00 == 0x1d) {
+    if (data_021759c0->mCourseId == 0x1d) {
         e = 0x1b6;
     }
     func_021090c4(&a->mUnk_00, e, 0x7f, 0);

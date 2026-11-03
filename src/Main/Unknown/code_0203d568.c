@@ -46,7 +46,7 @@ static inline void func_0203d568_b_inline(void) {
 
     if (data_021759c0->mUnk_00c == 0 && func_0205e090() != 10 &&
         (func_0205e090() != 6 || data_0217b488->mUnk_74 != 2) && func_0203d568_inline(data_0217aa00) != 0) {
-        for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+        for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
             if (data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 == 0 &&
                 (data_0217aa00->mUnk_15f6 & (1 << data_0217aa00->mUnk_1e8c[i])) == 0) {
                 func_0204451c(i);
@@ -87,7 +87,7 @@ void func_0203d568(void) {
             func_0203d568_b_inline();
             break;
     }
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         k = data_021759c0->mUnk_68[i].mUnk_08.mUnk_0c;
         func_0204a928(&data_02175628[k].mUnk_28);
     }
@@ -112,7 +112,7 @@ void func_0203d8fc(Unk0217561c_4c8 *a) {
     data_0217561c->mUnk_000[0].mUnk_0c = 0;
     for (i = 0; i < a->mUnk_08; i++) {
         e = &a->mUnk_1c[i];
-        if (e->mUnk_00 == data_021759c0->mUnk_00) {
+        if (e->mUnk_00 == data_021759c0->mCourseId) {
             switch (data_021759c0->mUnk_010) {
                 case 0:
                     data_0217561c->mUnk_000[0].mUnk_0c = e->mUnk_02;
@@ -154,7 +154,7 @@ void func_0203d9d4(void) {
     u16 g;
     Unk0217561c_14 *s;
 
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         e = &data_0217561c->mUnk_14[i];
         if (e->mUnk_00 != 4 && data_021759c0->mUnk_00c != 6) {
             for (k = 0; k < 16; k++) {
@@ -180,11 +180,11 @@ void func_0203d9d4(void) {
             a[i] = e->mUnk_44;
         }
     }
-    if ((u32) data_021759c0->mUnk_3d0 > 1) {
+    if ((u32) data_021759c0->mKartCount > 1) {
         p = data_0217561c;
-        y = data_021759c0->mUnk_3d0 - p->mUnk_000[0].mUnk_10;
+        y = data_021759c0->mKartCount - p->mUnk_000[0].mUnk_10;
         x = p->mUnk_000[0].mUnk_0e;
-        for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+        for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
             h = p->mUnk_000[i].mUnk_50_0 - 1;
             b[h] = a[i];
             d[h] = i;
@@ -202,13 +202,13 @@ void func_0203d9d4(void) {
             b[n] = q;
             d[n] = u;
         }
-        for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+        for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
             if (d[i] < 8) {
                 data_0217561c->mUnk_14[d[i]].mUnk_3c_0 = i + 1;
             }
         }
         data_0217561c->mUnk_000[d[0]].mUnk_3c++;
-        for (g = 0; g < (u32) data_021759c0->mUnk_3d0; g++) {
+        for (g = 0; g < (u32) data_021759c0->mKartCount; g++) {
             data_0217561c->mUnk_474[g] = d[g];
         }
         for (; g < 8; g++) {
@@ -236,7 +236,7 @@ void func_0203d9d4(void) {
             break;
     }
     data_0217561c->mUnk_4f0 = f;
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         s = &data_0217561c->mUnk_14[i];
         f = FALSE;
         switch (s->mUnk_00) {
@@ -419,7 +419,7 @@ void func_0203e4c4(u32 a, u32 b) {
     e = &data_0217561c->mUnk_14[a];
     c = b != 0 ? 1 : 2;
     e->mUnk_3c = (e->mUnk_3c & ~0x300) | ((c & 3) << 8);
-    if (data_0217561c->mUnk_000[0].mUnk_0e + data_0217561c->mUnk_000[0].mUnk_10 >= data_021759c0->mUnk_3d0) {
+    if (data_0217561c->mUnk_000[0].mUnk_0e + data_0217561c->mUnk_000[0].mUnk_10 >= data_021759c0->mKartCount) {
         func_0203d21c();
     }
 }

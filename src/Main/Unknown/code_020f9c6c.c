@@ -123,7 +123,7 @@ void func_020fa13c(void) {
     func_020f1a24();
     func_020f73a4();
     func_020f357c();
-    v = data_021759c0->mUnk_3d0;
+    v = data_021759c0->mKartCount;
     data_027e00c4 = v;
     (void *) data_027e00c8 = func_02036bec(b, v * 0x210);
     for (i = 0; i < data_027e00c4; i++) {

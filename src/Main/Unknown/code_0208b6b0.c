@@ -57,7 +57,7 @@ void func_0208b934(void *a) {
             c = data_0217aa10->mUnk_a4;
             e = 0x96;
         }
-        if (d->mUnk_00 == 0x34) {
+        if (d->mCourseId == 0x34) {
             e = 0x12c;
             f = 0x32;
         }
@@ -95,13 +95,13 @@ void func_0208b934(void *a) {
         data_0217b03c->mUnk_38_24 = 1;
     }
     func_0208d758(a);
-    if (data_021759c0->mUnk_00 != 0x1d) {
+    if (data_021759c0->mCourseId != 0x1d) {
         data_0217b044->mUnk_3c = 0x8000;
     } else {
         data_0217b044->mUnk_3c = 0;
     }
     func_02082aec();
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0x22:
             w = data_usa_021660fc;
             data_0217b048 = func_02036bec(c, 0x64);

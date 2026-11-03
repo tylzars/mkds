@@ -288,7 +288,7 @@ void func_020695c4(Unk0206bcb0 *p) {
     s->mUnk_24 = 0;
     func_0209086c(&s->mUnk_2c, p->mUnk_74);
     p->mUnk_4c |= 0x10000000;
-    k = data_021759c0->mUnk_3d0;
+    k = data_021759c0->mKartCount;
     s->mUnk_28 = func_0203c8dc(p->mUnk_74) - w.mUnk_00[k - 1];
     if (s->mUnk_28 <= 0) {
         s->mUnk_28 = 1;
@@ -526,7 +526,7 @@ void func_02069e10(Unk0206bcb0 *p) {
         }
         return;
     }
-    for (; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (; i < (u32) data_021759c0->mKartCount; i++) {
         if (i != p->mUnk_74) {
             func_0206a624(func_0207a974(i));
         }

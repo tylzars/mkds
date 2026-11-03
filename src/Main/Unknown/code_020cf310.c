@@ -20,7 +20,7 @@ void func_020cfca4(void) {
     s32 i;
     s32 j;
 
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0xf:
             for (i = 0; i < 9; i++) {
                 for (j = 0; j < 3; j++) {
@@ -81,7 +81,7 @@ void func_020cf340(Unk020cf340 *a) {
     u32 x;
     float f;
 
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0xf:
             v = func_02062ed8();
             for (i = 0; i < 3; i++) {

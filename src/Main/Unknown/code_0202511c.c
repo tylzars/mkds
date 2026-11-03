@@ -23,7 +23,7 @@ u32 func_0202511c(s32 a, void *c) {
                 case 0:
                 case 2:
                     q = data_021759c0->mUnk_08;
-                    r = func_0202553c(data_021759c0->mUnk_00, b);
+                    r = func_0202553c(data_021759c0->mCourseId, b);
                     f = TRUE;
                     if (q == 4) {
                         p = &data_021759c0->mUnk_28_view;
@@ -79,7 +79,7 @@ u32 func_0202511c(s32 a, void *c) {
                     r = 0x33;
                     break;
                 case 3:
-                    switch (data_021759c0->mUnk_00) {
+                    switch (data_021759c0->mCourseId) {
                         case 0xe:
                         case 0x14:
                         case 0x19:
@@ -100,7 +100,7 @@ u32 func_0202511c(s32 a, void *c) {
                     } else {
                         *b = data_0215316c[r];
                         f = TRUE;
-                        func_0202553c(data_021759c0->mUnk_00, &v1);
+                        func_0202553c(data_021759c0->mCourseId, &v1);
                         b->mUnk_00[2] = v1.mUnk_00[2];
                     }
                     break;

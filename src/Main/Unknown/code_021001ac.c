@@ -104,7 +104,7 @@ static inline s32 func_02101f7c_inline(Unk020ee684 *v1, Unk021759c0 *o, s32 a, u
     }
     if (l | ((q->mUnk_4c & 0x40) ? 1 : 0)) {
         v2 = FALSE;
-    } else if (a != -1 && a == o->mUnk_68[k].mUnk_08.mUnk_04) {
+    } else if (a != -1 && a == o->mUnk_68[k].mUnk_08.mTeamIndex) {
         v2 = FALSE;
     } else {
         v2 = FALSE;
@@ -134,7 +134,7 @@ void func_02101f7c(Unk02101c84 *p, s32 a) {
     Unk020ee684 *v1;
     Unk021759c0 *o;
 
-    lim = data_021759c0->mUnk_3d0;
+    lim = data_021759c0->mKartCount;
     s = c = 0;
     t = data_0215a154;
     j = n = func_0203c8dc((u16) ((p->mUnk_000.mUnk_78 & 0x8000) == 0 ? (u16) (p->mUnk_000.mUnk_78 & ~0xff00) : 8));
@@ -227,7 +227,7 @@ void func_02101d90(Unk02101c84 *p, s32 a) {
     o = data_021759c0;
     i = (u16) (((u64) (u32) (b->mUnk_00 >> 32) * 8) >> 32);
     end = i + 8;
-    lim = o->mUnk_3d0;
+    lim = o->mKartCount;
     b3 = (u16) ((p->mUnk_000.mUnk_78 & 0x8000) == 0 ? (u16) (p->mUnk_000.mUnk_78 & ~0xff00) : 8);
     if (i >= end) {
         return;
@@ -248,7 +248,7 @@ void func_02101d90(Unk02101c84 *p, s32 a) {
             }
             if (l | ((q->mUnk_4c & 0x40) ? 1 : 0)) {
                 l = 0;
-            } else if (a != -1 && a == o->mUnk_68[k].mUnk_08.mUnk_04) {
+            } else if (a != -1 && a == o->mUnk_68[k].mUnk_08.mTeamIndex) {
                 l = 0;
             } else {
                 l = 0;
@@ -574,13 +574,13 @@ void func_02101178(Unk02101c84 *p) {
     if (!(p->mUnk_000.mUnk_74 & 0x8000000)) {
         o = data_021759c0;
         f = (o->mUnk_08 == 2) ? func_02101d90 : func_02101f7c;
-        if (o->mUnk_58 != 0) {
+        if (o->mUseTeams != 0) {
             if ((p->mUnk_000.mUnk_78 & 0x8000) == 0) {
                 i = (u16) (p->mUnk_000.mUnk_78 & ~0xff00);
             } else {
                 i = 8;
             }
-            f(p, o->mUnk_68[(u16) i].mUnk_08.mUnk_04);
+            f(p, o->mUnk_68[(u16) i].mUnk_08.mTeamIndex);
             if (p->mUnk_140 == 8) {
                 f(p, -1);
             }

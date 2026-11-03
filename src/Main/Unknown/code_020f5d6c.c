@@ -405,7 +405,7 @@ s32 func_020f5d6c(Unk020eda5c *a, Unk020f5d6c *b) {
             } else {
                 n = (u16) (func_0203c8dc(x) - 1);
                 if (n < 1) {
-                    n = data_021759c0->mUnk_3d0;
+                    n = data_021759c0->mKartCount;
                 }
                 v = (u16) data_0217561c->mUnk_474[(u8) n - 1];
             }

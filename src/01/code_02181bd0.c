@@ -443,7 +443,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             }
             if (b->mUnk_000.mUnk_9c->mUnk_2a != 0) {
                 radius = b->mUnk_000.mUnk_9c->mUnk_2a;
-                for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
+                for (i = 0; i < data_021759c0->mKartCount; i++) {
                     v = &func_0207a974((u16) i)->mUnk_80;
                     dx = v->x - b->mUnk_000.mUnk_04.x;
                     dz = v->z - b->mUnk_000.mUnk_04.z;

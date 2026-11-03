@@ -293,7 +293,7 @@ void func_020710b0(Unk0206bcb0 *p, s32 b) {
         return;
     }
     func_02073f90();
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0x13:
             func_02089d14(0);
             d = func_021090c4((Unk0210bfbc *) p, 0x15c, 0x7f, 0);
@@ -489,7 +489,7 @@ void func_020708a4(Unk0206bcb0 *p) {
         func_01ffa11c(p, &p->mUnk_244);
         p->mUnk_48 &= ~0x40000;
         p->mUnk_3e8 = (s16) ((s32) (((s64) b.x * 0x4000) >> 12) >> 12) + 0x32;
-        if ((p->mUnk_7c & 1) && data_021759c0->mUnk_00 == 0x13) {
+        if ((p->mUnk_7c & 1) && data_021759c0->mCourseId == 0x13) {
             func_0212c6f0(func_02108e6c(7), 0x14);
         }
     } else {

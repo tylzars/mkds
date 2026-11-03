@@ -35,7 +35,7 @@ u32 func_021054d0(void) {
     if (a != 4) {
         return r;
     }
-    a = a == 4 ? data_021759c0->mUnk_55 : -1;
+    a = a == 4 ? data_021759c0->mMissionTableColumn : -1;
     if (a == 9) {
         r = 1;
     }

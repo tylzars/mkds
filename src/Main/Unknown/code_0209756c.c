@@ -142,7 +142,7 @@ void func_020975ec(void *a, Unk020975ec *p) {
         p->mUnk_ec6 = 0;
         p->mUnk_ed0->mUnk_24.mUnk_00_1 = 1;
     }
-    n = data_021759c0->mUnk_3d0;
+    n = data_021759c0->mKartCount;
     for (i = 0; i < n; i++) {
         if (p->mUnk_ed4[i] > 0) {
             p->mUnk_ed4[i] = p->mUnk_ed4[i] - 1;

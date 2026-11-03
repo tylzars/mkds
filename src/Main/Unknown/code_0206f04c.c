@@ -454,7 +454,7 @@ void func_0206ff50(Unk0206bcb0 *p, u32 a) {
             c = func_02041170(data_0217561c->mUnk_000[k].mUnk_46);
         }
         p->mUnk_3c4 = c;
-        if ((p->mUnk_7c & 1) && data_021759c0->mUnk_00 == 0x1d && (data_0217c780 & 1)) {
+        if ((p->mUnk_7c & 1) && data_021759c0->mCourseId == 0x1d && (data_0217c780 & 1)) {
             d = (Unk0212c400 **) func_0210e128((void *) func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (d[0] != NULL) {

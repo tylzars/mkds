@@ -173,7 +173,7 @@ s8 func_020b2f38(void) {
     Unk021759c0 *d = data_021759c0;
 
     if (d->mUnk_08 == 4) {
-        return d->mUnk_54;
+        return d->mMissionTableRow;
     }
     return -1;
 }
@@ -182,7 +182,7 @@ s8 func_020b2f18(void) {
     Unk021759c0 *d = data_021759c0;
 
     if (d->mUnk_08 == 4) {
-        return d->mUnk_55;
+        return d->mMissionTableColumn;
     }
     return -1;
 }

@@ -38,12 +38,12 @@ void func_02073630(void) {
     i = 0;
     a = data_0217ac18;
     b = data_0217ac54;
-    if (d->mUnk_00 == 0x1d || d->mUnk_00 == 0x28) {
+    if (d->mCourseId == 0x1d || d->mCourseId == 0x28) {
         data_0217ac14 = func_01ffa380;
     }
     data_0217ac10 = 0;
     if (d->mUnk_08 == 2) {
-        switch (d->mUnk_00) {
+        switch (d->mCourseId) {
             case 0x2a:
             case 0x2b:
                 data_0217ac10 = 1;

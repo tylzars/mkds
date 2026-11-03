@@ -239,7 +239,7 @@ void func_02048050(int a, int b) {
     switch (a) {
         case 3:
         case 13:
-            func_02048498((char *) c, data_021759c0->mUnk_00, a != 3);
+            func_02048498((char *) c, data_021759c0->mCourseId, a != 3);
             break;
         case 5:
             switch (b) {

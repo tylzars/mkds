@@ -105,7 +105,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         }
         a->mUnk_02 = a->mUnk_08->mUnk_08 + (u16) v;
         return;
-    } else if ((u32) k >= 2 && k <= data_021759c0->mUnk_3d0 - 1) {
+    } else if ((u32) k >= 2 && k <= data_021759c0->mKartCount - 1) {
         switch (a->mUnk_04->mUnk_04) {
             case 0:
                 func_0204360c(b->mUnk_00->mUnk_78, 0x600);

@@ -116,7 +116,7 @@ void func_020bab54(void) {
         if (func_020bab54_inline(i)->mUnk_00c >= 9) {
             if (data_021759c0->mUnk_00c != 2) {
                 k = 0x40;
-                if (data_021759c0->mUnk_00 == 0x21) {
+                if (data_021759c0->mCourseId == 0x21) {
                     k = 0x1c6;
                 }
                 if ((data_0217c780 & 1) != 0) {
@@ -135,7 +135,7 @@ void func_020bab54(void) {
         } else {
             if (data_021759c0->mUnk_00c != 2) {
                 k = 0x3f;
-                if (data_021759c0->mUnk_00 == 0x21) {
+                if (data_021759c0->mCourseId == 0x21) {
                     k = 0x1c5;
                 }
                 if ((data_0217c780 & 1) != 0) {
@@ -157,7 +157,7 @@ void func_020bab54(void) {
     if (data_0217b3cc->mUnk_14 == 0 && data_0217b3cc->mUnk_10 != 0 && data_021759c0->mUnk_00c != 2) {
         r2 = (Unk0212c400 **) func_02108e88();
         k2 = 0x3e;
-        if (data_021759c0->mUnk_00 == 0x21) {
+        if (data_021759c0->mCourseId == 0x21) {
             k2 = 0x1c4;
         }
         if ((data_0217c780 & 1) != 0) {
@@ -289,9 +289,9 @@ void func_020ba63c(Unk020d029c *p) {
 
     x = data_0217b3cc->mUnk_00;
     y = data_0217b3cc->mUnk_08;
-    r = GetRaceMNcerEntry(data_021759c0->mUnk_58 == 0                                    ? 8
-                          : data_021759c0->mUnk_68[func_020b4d9c()].mUnk_08.mUnk_04 == 0 ? 9
-                                                                                         : 10);
+    r = GetRaceMNcerEntry(data_021759c0->mUseTeams == 0                                     ? 8
+                          : data_021759c0->mUnk_68[func_020b4d9c()].mUnk_08.mTeamIndex == 0 ? 9
+                                                                                            : 10);
     if (data_021759c0->mUnk_00c == 4) {
         return;
     }

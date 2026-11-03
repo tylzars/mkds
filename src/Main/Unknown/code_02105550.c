@@ -472,7 +472,7 @@ void func_021074ac(s32 e) {
         }
     }
     if (b != FALSE) {
-        switch (data_021759c0->mUnk_00) {
+        switch (data_021759c0->mCourseId) {
             case 0x1f:
                 v = v + 0x17;
                 break;
@@ -509,7 +509,7 @@ void func_021074ac(s32 e) {
     func_021103c0();
     switch (a) {
         case 2:
-            v = data_021759c0->mUnk_00;
+            v = data_021759c0->mCourseId;
             switch (v) {
                 case 0x1c:
                     func_0210f868(0, 1);
@@ -813,7 +813,7 @@ void func_02107010(void) {
             }
         }
         if (v == 0xffff) {
-            switch (data_021759c0->mUnk_00) {
+            switch (data_021759c0->mCourseId) {
                 case 0x13:
                     v = 0x1d2;
                     break;
@@ -902,7 +902,7 @@ void func_02106efc(void) {
     if (data_0217c7b0 != 0) {
         func_0212c6f0((Unk0212c400 **) &data_0217c854, 0x14);
     }
-    if (data_021759c0->mUnk_00 != 0x22) {
+    if (data_021759c0->mCourseId != 0x22) {
         return;
     }
     for (i = 7; i < 12; i++) {
@@ -1012,7 +1012,7 @@ void func_02106ab8(void) {
         func_0210d614(&data_0217d070, 0x3e, NULL);
         data_0217c814.mUnk_16 = 1;
     }
-    if (data_021759c0->mUnk_00 != 0x22) {
+    if (data_021759c0->mCourseId != 0x22) {
         return;
     }
     if (b != FALSE) {
@@ -1066,7 +1066,7 @@ void func_0210689c(u32 a) {
         data_0217c814.mUnk_18 = a;
         return;
     }
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0x22:
             if (data_0217c814.mUnk_10 != 0) {
                 v = 0x1c2;
@@ -1164,13 +1164,13 @@ void func_02106580(void) {
         v = &data_0217d07c;
         if (func_0210f858() != 0) {
             func_0210f780(v);
-            if (data_021759c0->mUnk_00 == 0x1c) {
+            if (data_021759c0->mCourseId == 0x1c) {
                 if (func_0210f75c(0) != 0 || func_0210f75c(1) != 0) {
                     func_0210f35c(0, 0x1a9);
                 }
             }
         }
-        if (data_021759c0->mUnk_00 == 0x20) {
+        if (data_021759c0->mCourseId == 0x20) {
             func_0210f230(0, 0x16b);
         }
         if (data_0217c814.mUnk_1c != -1) {
@@ -1211,7 +1211,7 @@ void func_021062a8(void) {
     Unk0212c400 **p;
 
     v = 0xffff;
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0x22:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x1bc;

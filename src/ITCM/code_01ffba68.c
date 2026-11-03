@@ -475,7 +475,7 @@ s32 func_01ffc92c(Unk0206bcb0 *p) {
         if (p->mUnk_7c & 1) {
             func_0210689c((u8) (a - 1));
         }
-        if (a < p->mUnk_3d8 && a < data_021759c0->mUnk_3d0) {
+        if (a < p->mUnk_3d8 && a < data_021759c0->mKartCount) {
             c = data_0217561c->mUnk_474[(u8) (a + 1) - 1];
             if (c >= 0) {
                 o = func_0207a974((u16) c);

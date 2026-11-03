@@ -119,7 +119,7 @@ void func_020d9f8c(Unk020d9cf4 *a) {
     s32 k;
     h = func_02108e6c(10);
     if (a->mUnk_170 != 0) {
-        if (data_021759c0->mUnk_00 != 0x1f) {
+        if (data_021759c0->mCourseId != 0x1f) {
             v = 0x7f000;
         } else {
             v = func_020a02c8();

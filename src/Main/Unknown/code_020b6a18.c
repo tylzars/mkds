@@ -39,7 +39,7 @@ void func_020b6c74(u32 a, u16 *b, u32 c) {
             }
         }
     } else {
-        if (func_02056bc0(data_021759c0->mUnk_00, a - 1, &t) != 0) {
+        if (func_02056bc0(data_021759c0->mCourseId, a - 1, &t) != 0) {
             p = t.mUnk_04;
             if (c != 0) {
                 n = 10;

@@ -124,7 +124,7 @@ void func_020a9268(void *a, Unk020a9268 *p) {
                 return;
             }
             w = p->mUnk_0ac;
-            for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
+            for (i = 0; i < data_021759c0->mKartCount; i++) {
                 if (func_0203c8c0((u16) i) >= w) {
                     f = TRUE;
                     goto found;
@@ -340,7 +340,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
     s32 m;
 
     r = func_02061808();
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0x14:
             if (func_0203c25c(data_021759c0->mUnk_62) != 0 || func_02062ec4() != 0) {
                 k = 0x898000;

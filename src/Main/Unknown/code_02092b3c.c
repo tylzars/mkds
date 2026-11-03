@@ -74,7 +74,7 @@ static inline BOOL func_02092b5c_inline_3(Unk020919e8 *p, s32 k) {
     s32 d;
     Unk0206bcb0 *o;
 
-    for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < data_021759c0->mKartCount; i++) {
         f = FALSE;
         if ((u32) data_021759c0->mUnk_68[(u16) i].mUnk_08.mUnk_00 <= 3 &&
             ((1 << data_021759c0->mUnk_68[(u16) i].mUnk_08.mUnk_00) & 0xd)) {

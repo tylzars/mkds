@@ -19,7 +19,7 @@ extern const u32 data_usa_021540d4[];
 extern const u32 data_usa_02154108[];
 
 BOOL func_02045874(void) {
-    data_0217b488->mUnk_5c[data_021759c0->mUnk_60] = data_021759c0->mUnk_00;
+    data_0217b488->mUnk_5c[data_021759c0->mUnk_60] = data_021759c0->mCourseId;
     data_021759c0->mUnk_1e8.mUnk_60++;
     return data_021759c0->mUnk_1e8.mUnk_60 <= 4;
 }
@@ -45,7 +45,7 @@ s32 func_02045920(void) {
     r = TRUE;
     data_021759c0->mUnk_1e8.mUnk_60++;
     if (data_021759c0->mUnk_3d4 > 1) {
-        for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
+        for (i = 0; i < data_021759c0->mKartCount; i++) {
             x = data_021759c0->mUnk_68[i].mUnk_08.mUnk_08;
             v = 3;
             if (x != 0) {
@@ -58,17 +58,17 @@ s32 func_02045920(void) {
             data_021759c0->mUnk_250[i].mUnk_08.mUnk_08 = v;
         }
     }
-    switch (data_021759c0->mUnk_020) {
+    switch (data_021759c0->mCourseListMode) {
         case 0:
             r = FALSE;
             break;
         case 1:
         case 2:
-            data_021759c0->mUnk_3e0++;
-            if (data_021759c0->mUnk_3dc[data_021759c0->mUnk_3e0] == 0) {
-                data_021759c0->mUnk_3e0 = 0;
+            data_021759c0->mCourseListIndex++;
+            if (data_021759c0->mCourseList[data_021759c0->mCourseListIndex] == 0) {
+                data_021759c0->mCourseListIndex = 0;
             }
-            data_021759c0->mUnk_1e8.mUnk_00 = data_021759c0->mUnk_3dc[data_021759c0->mUnk_3e0];
+            data_021759c0->mUnk_1e8.mCourseId = data_021759c0->mCourseList[data_021759c0->mCourseListIndex];
             break;
     }
     return r;
@@ -80,22 +80,22 @@ void func_02045a2c(s32 a) {
     s32 x;
     s32 y;
     if (a != 0) {
-        data_021759c0->mUnk_1e8.mUnk_00 = 0x36;
+        data_021759c0->mUnk_1e8.mCourseId = 0x36;
     } else {
-        data_021759c0->mUnk_1e8.mUnk_00 = 0x35;
+        data_021759c0->mUnk_1e8.mCourseId = 0x35;
     }
     data_021759c0->mUnk_1e8.mUnk_0c = 6;
     data_021759c0->mUnk_1e8.mUnk_10 = 1;
     data_021759c0->mUnk_1e8.mUnk_63 = 0;
     for (i = 0; i < 8; i++) {
-        for (j = 0; j < data_021759c0->mUnk_3d0; j++) {
+        for (j = 0; j < data_021759c0->mKartCount; j++) {
             if (func_0205d4e8((u16) j) == i + 1) {
                 break;
             }
         }
         if (data_021759c0->mUnk_08 == 4) {
-            if ((data_021759c0->mUnk_08 == 4 ? data_021759c0->mUnk_54 : -1) == 6 &&
-                (data_021759c0->mUnk_08 == 4 ? data_021759c0->mUnk_55 : -1) == 9) {
+            if ((data_021759c0->mUnk_08 == 4 ? data_021759c0->mMissionTableRow : -1) == 6 &&
+                (data_021759c0->mUnk_08 == 4 ? data_021759c0->mMissionTableColumn : -1) == 9) {
                 if (i == 0) {
                     x = 7;
                     y = 0x15;
@@ -137,7 +137,7 @@ BOOL func_02045bd4(void) {
     t = data_021759c0->mUnk_62;
     data_0217b488->mUnk_7c = func_0205d4e8((u16) t) - 1;
     data_0217b488->mUnk_80 = func_0205d190();
-    data_0217b488->mUnk_90 = data_021759c0->mUnk_68[(u8) t].mUnk_00;
+    data_0217b488->mUnk_90 = data_021759c0->mUnk_68[(u8) t].mCharacterIndex;
     data_0217b488->mUnk_84 = data_021759c0->mUnk_004;
     data_0217b488->mUnk_88 = data_021759c0->mUnk_010;
     data_0217b488->mUnk_8c = data_021759c0->mUnk_57;
@@ -145,7 +145,7 @@ BOOL func_02045bd4(void) {
     b = func_0205db28();
     e = &data_0217aa1c->mUnk_000[b][func_0205dc7c(c)];
     data_0217b488->mUnk_a8 = e->mUnk_00;
-    data_0217b488->mUnk_94 = data_021759c0->mUnk_68[(u8) t].mUnk_04;
+    data_0217b488->mUnk_94 = data_021759c0->mUnk_68[(u8) t].mKartIndex;
     for (i = 0; i < 4; i++) {
         Unk0217aa1c_144_00 d;
         func_0205d7c8(&d, (u16) data_021759c0->mUnk_62, i);
@@ -154,23 +154,24 @@ BOOL func_02045bd4(void) {
     if ((u32) func_0205d4e8((u16) data_021759c0->mUnk_62) > 3) {
         return FALSE;
     }
-    data_021759c0->mUnk_1e8.mUnk_00 = 0x34;
+    data_021759c0->mUnk_1e8.mCourseId = 0x34;
     data_021759c0->mUnk_1e8.mUnk_0c = 5;
     for (i = 0; i < 3; i++) {
-        for (j = 0; j < data_021759c0->mUnk_3d0; j++) {
+        for (j = 0; j < data_021759c0->mKartCount; j++) {
             if (func_0205d4e8((u16) j) == i + 1) {
                 break;
             }
         }
-        func_020468b0(i, data_021759c0->mUnk_68[(u16) j].mUnk_00, data_021759c0->mUnk_68[(u16) j].mUnk_04, 1, -1, 3);
+        func_020468b0(i, data_021759c0->mUnk_68[(u16) j].mCharacterIndex, data_021759c0->mUnk_68[(u16) j].mKartIndex, 1,
+                      -1, 3);
     }
     for (; i < 8; i++) {
         func_020468b0(i, i, i * 3, 4, -1, 3);
     }
     for (i = 0; i < 8; i++) {
         n = func_0205d4e8(i) - 1;
-        data_0217b488->mUnk_cc[n] = data_021759c0->mUnk_68[i].mUnk_04;
-        data_0217b488->mUnk_ac[n] = data_021759c0->mUnk_68[i].mUnk_00;
+        data_0217b488->mUnk_cc[n] = data_021759c0->mUnk_68[i].mKartIndex;
+        data_0217b488->mUnk_ac[n] = data_021759c0->mUnk_68[i].mCharacterIndex;
     }
     data_021759c0->mUnk_1e8.mUnk_63 = func_0205d4e8((u16) data_021759c0->mUnk_62) - 1;
     return TRUE;
@@ -185,7 +186,7 @@ void func_02045ed0(void) {
             func_0205db50();
             data_021759c0->mUnk_1e8.mUnk_60 = 1;
             data_021759c0->mUnk_1e8.mUnk_0c = 3;
-            data_021759c0->mUnk_1e8.mUnk_00 =
+            data_021759c0->mUnk_1e8.mCourseId =
                 data_02154128[data_021759c0->mUnk_1e8.mUnk_04][data_021759c0->mUnk_1e8.mUnk_60 - 1];
             break;
         case 3:
@@ -209,7 +210,7 @@ void func_02045ed0(void) {
             break;
         case 4:
             func_0205db50();
-            if (data_021759c0->mUnk_1e8.mUnk_55 == 9) {
+            if (data_021759c0->mUnk_1e8.mMissionTableColumn == 9) {
                 data_021759c0->mUnk_1e8.mUnk_0c = 3;
             } else {
                 data_021759c0->mUnk_1e8.mUnk_0c = 0;
@@ -242,7 +243,7 @@ void func_02046024(s32 a) {
     u32 n;
     f = 0;
     func_0205db50();
-    data_021759c0->mUnk_3e0 = 0;
+    data_021759c0->mCourseListIndex = 0;
     data_021759c0->mUnk_1e8.mUnk_60 = 1;
     if (a != 0) {
         data_021759c0->mUnk_1e8.mUnk_0c = 0;
@@ -252,7 +253,7 @@ void func_02046024(s32 a) {
         data_021759c0->mUnk_1e8.mUnk_0c = 4;
     }
     for (i = 0; i < 0x21; i++) {
-        data_021759c0->mUnk_3dc[i] = 0;
+        data_021759c0->mCourseList[i] = 0;
     }
     switch (data_021759d0->mUnk_20) {
         case 1:
@@ -260,7 +261,7 @@ void func_02046024(s32 a) {
             f = (data_0217aa00->mUnk_0454 & 0x40) != 0;
             break;
     }
-    switch (data_021759c0->mUnk_1e8.mUnk_20) {
+    switch (data_021759c0->mUnk_1e8.mCourseListMode) {
         case 1:
             if (a != 0) {
                 u8 p;
@@ -270,7 +271,7 @@ void func_02046024(s32 a) {
                 s32 c;
                 m = f != 0 ? 2 : 8;
                 t = f != 0 ? data_usa_021540c0 : data_usa_02154108;
-                e = data_021759c0->mUnk_1e8.mUnk_00;
+                e = data_021759c0->mUnk_1e8.mCourseId;
                 n = m * 4;
                 for (f = 0; f < n; f++) {
                     p = f / 4;
@@ -282,7 +283,7 @@ void func_02046024(s32 a) {
                 c = 0;
                 for (f = 0; f < n; f++) {
                     if (func_02046648(t[p]) != 0) {
-                        data_021759c0->mUnk_3dc[c] = data_02154128[t[p]][q];
+                        data_021759c0->mCourseList[c] = data_02154128[t[p]][q];
                         c = (u8) (c + 1);
                     }
                     q = q + 1;
@@ -301,7 +302,7 @@ void func_02046024(s32 a) {
                 n = f != 0 ? 3 : 6;
                 s = 0;
                 t = f != 0 ? data_usa_021540c8 : data_usa_021540d4;
-                e = data_021759c0->mUnk_1e8.mUnk_00;
+                e = data_021759c0->mUnk_1e8.mCourseId;
                 for (i = 0; i < n; i++) {
                     s = i;
                     if (e == t[i]) {
@@ -309,7 +310,7 @@ void func_02046024(s32 a) {
                     }
                 }
                 for (i = 0; i < n; i++) {
-                    data_021759c0->mUnk_3dc[i] = t[s];
+                    data_021759c0->mCourseList[i] = t[s];
                     s++;
                     if (s >= n) {
                         s = 0;
@@ -339,7 +340,7 @@ void func_02046024(s32 a) {
                     p = k / 4;
                     q = k % 4;
                     if (func_02046648(t[p]) != 0) {
-                        data_021759c0->mUnk_3dc[c] = data_02154128[t[p]][q];
+                        data_021759c0->mCourseList[c] = data_02154128[t[p]][q];
                         c = (u8) (c + 1);
                     }
                 }
@@ -347,12 +348,12 @@ void func_02046024(s32 a) {
                 for (z = 0; z < h; z++) {
                     w = func_02046524(g, (vu16) (c - 1));
                     x = z % c;
-                    y = data_021759c0->mUnk_3dc[x];
+                    y = data_021759c0->mCourseList[x];
                     if (w >= x) {
                         w = w + 1;
                     }
-                    data_021759c0->mUnk_3dc[x] = data_021759c0->mUnk_3dc[w];
-                    data_021759c0->mUnk_3dc[w] = y;
+                    data_021759c0->mCourseList[x] = data_021759c0->mCourseList[w];
+                    data_021759c0->mCourseList[w] = y;
                 }
             } else {
                 s32 k;
@@ -361,7 +362,7 @@ void func_02046024(s32 a) {
                 n = f != 0 ? 3 : 6;
                 t = f != 0 ? data_usa_021540c8 : data_usa_021540d4;
                 for (k = 0; k < n; k++) {
-                    data_021759c0->mUnk_3dc[k] = t[k];
+                    data_021759c0->mCourseList[k] = t[k];
                 }
                 k = 0;
                 if (k < n) {
@@ -370,16 +371,16 @@ void func_02046024(s32 a) {
                         u8 w;
                         u8 y;
                         w = func_02046524_inline(g, m);
-                        y = data_021759c0->mUnk_3dc[k];
+                        y = data_021759c0->mCourseList[k];
                         if (w >= k) {
                             w = w + 1;
                         }
-                        data_021759c0->mUnk_3dc[k] = data_021759c0->mUnk_3dc[w];
-                        data_021759c0->mUnk_3dc[w] = y;
+                        data_021759c0->mCourseList[k] = data_021759c0->mCourseList[w];
+                        data_021759c0->mCourseList[w] = y;
                     }
                 }
             }
-            data_021759c0->mUnk_1e8.mUnk_00 = data_021759c0->mUnk_3dc[0];
+            data_021759c0->mUnk_1e8.mCourseId = data_021759c0->mCourseList[0];
             break;
     }
 }

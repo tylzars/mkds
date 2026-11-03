@@ -205,7 +205,7 @@ void func_020f53d0(Unk020f5d6c *a) {
                 n = func_0203c8dc((u32) x);
                 i = (u16) (n - 1);
                 if (i < 1) {
-                    i = (u16) data_021759c0->mUnk_3d0;
+                    i = (u16) data_021759c0->mKartCount;
                 }
                 v = (u16) data_0217561c->mUnk_474[(i & 0xff) - 1];
             }

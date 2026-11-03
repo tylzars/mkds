@@ -94,8 +94,8 @@ void func_020f7ec8(void) {
             p = (u8 *) func_020f813c((u32) p);
             p = func_020f8148(&data_0217bc74, p);
             if (data_021759c0->mUnk_014 == 0) {
-                func_020f80c0(&data_0217bc6c, data_021759c0->mUnk_3d0);
-                func_020f80c0(&data_0217bc64, data_021759c0->mUnk_3d0);
+                func_020f80c0(&data_0217bc6c, data_021759c0->mKartCount);
+                func_020f80c0(&data_0217bc64, data_021759c0->mKartCount);
             }
             break;
         case 5:
@@ -107,8 +107,8 @@ void func_020f7ec8(void) {
             p = func_020f8148(&data_0217bc64, p);
             p = func_020f8148(&data_0217bc74, p);
             if (data_021759c0->mUnk_014 == 0) {
-                func_020f80c0(&data_0217bc6c, data_021759c0->mUnk_3d0);
-                func_020f80c0(&data_0217bc64, data_021759c0->mUnk_3d0);
+                func_020f80c0(&data_0217bc6c, data_021759c0->mKartCount);
+                func_020f80c0(&data_0217bc64, data_021759c0->mKartCount);
             }
             break;
     }

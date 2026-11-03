@@ -206,7 +206,7 @@ void func_0203aacc(void) {
                 t = 0x1a;
             }
         } else {
-            if (p->mUnk_00 == 0x36) {
+            if (p->mCourseId == 0x36) {
                 t = 0x19;
             }
         }
@@ -258,7 +258,7 @@ u32 func_0203a908(u32 a) {
             t = 0x1a;
         }
     } else {
-        if (data_021759c0->mUnk_00 == 0x36) {
+        if (data_021759c0->mCourseId == 0x36) {
             t = 0x19;
         }
     }

@@ -95,15 +95,15 @@ u8 func_0205d27c(u32 a) {
     }
     if (m == 0 || m == 3 || m == 5) {
         if (i < 0) {
-            r = p->mUnk_3d0 - a;
+            r = p->mKartCount - a;
         } else {
             r = data_0217aa1c->mUnk_000[i][(u8) a].mUnk_03;
         }
     } else {
-        r = p->mUnk_3d0 - a;
+        r = p->mKartCount - a;
     }
     if (r == 0) {
-        r = p->mUnk_3d0 - a;
+        r = p->mKartCount - a;
     }
     return r;
 }
@@ -201,8 +201,8 @@ void func_0205d558(s32 a) {
             r = 99;
         }
         e->mUnk_02 = r;
-        for (k = 0; k < (u32) data_021759c0->mUnk_3d0; k++) {
-            if (j == data_021759c0->mUnk_68[k].mUnk_08.mUnk_04) {
+        for (k = 0; k < (u32) data_021759c0->mKartCount; k++) {
+            if (j == data_021759c0->mUnk_68[k].mUnk_08.mTeamIndex) {
                 n = n + data_0217aa1c->mUnk_000[(u8) ((data_021759c0->mUnk_60 - 1) % 4)][(u8) (s32) (u8) k].mUnk_00;
             }
         }

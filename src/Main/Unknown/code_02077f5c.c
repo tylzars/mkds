@@ -68,7 +68,7 @@ void func_0207800c(void) {
     u32 i;
     if (gKartModels->mUnk_014 != NULL) {
         func_02078078();
-        for (i = 0; i < data_021759c0->mUnk_3d0; i = (u16) (i + 1)) {
+        for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
             if (gKartModels->mUnk_000[i].mUnk_000 == 0xc) {
                 func_02077f9c(i, &gKartModels->mUnk_000[i], (u8 *) func_02077f7c(i));
             }

@@ -117,7 +117,7 @@ void func_0209df84(void *a, Unk0209df84 *b) {
         n = n - b->mUnk_a8;
     }
     b->mUnk_b2 = b->mUnk_b2 - b->mUnk_b0;
-    for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < data_021759c0->mKartCount; i++) {
         if (b->mUnk_19c4[i] > 0) {
             b->mUnk_19c4[i] = b->mUnk_19c4[i] - 1;
         }

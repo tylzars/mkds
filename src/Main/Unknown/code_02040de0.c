@@ -53,8 +53,8 @@ void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
     k = (s64) -r.mUnk_00[0].y * d;
     l = (s64) -r.mUnk_00[2].y * e;
     n = (s64) -r.mUnk_00[2].z * e;
-    a->x =
-        q->mUnk_00.x + (s32) (((s64) -r.mUnk_00[0].x * d + 0x800) >> 12) + (s32) (((s64) -r.mUnk_00[2].x * e + 0x800) >> 12);
+    a->x = q->mUnk_00.x + (s32) (((s64) -r.mUnk_00[0].x * d + 0x800) >> 12) +
+           (s32) (((s64) -r.mUnk_00[2].x * e + 0x800) >> 12);
     a->y = q->mUnk_00.y + (s32) ((k + 0x800) >> 12) + (s32) ((l + 0x800) >> 12);
     a->z = q->mUnk_00.z + (s32) ((h + 0x800) >> 12) + (s32) ((n + 0x800) >> 12);
     b->x = q->mUnk_0c.x;
@@ -64,7 +64,7 @@ void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
 
 // non-matching: register allocation and branch layout of the switch differ (59 words), same operations
 void func_02041bb0(Vec3 *a, Vec3 *b, s32 c) {
-    u16 i = (u16) (data_021759c0->mUnk_3d0 - 1);
+    u16 i = (u16) (data_021759c0->mKartCount - 1);
     u16 j = (u16) (func_0205d27c(c) - 1);
     s32 k;
     s32 l;
@@ -83,7 +83,7 @@ void func_02041bb0(Vec3 *a, Vec3 *b, s32 c) {
             func_02041dc8(a, b, 0, 0x800, 0);
             break;
         case 4:
-            if (data_021759c0->mUnk_3d0 <= 1) {
+            if (data_021759c0->mKartCount <= 1) {
                 func_02041dc8(a, b, 0, 0x800, 0);
             } else {
                 func_02041dc8(a, b, c, (1 - c * 2) * 0x14000 + 0x800, 0);

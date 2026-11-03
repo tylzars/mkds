@@ -375,7 +375,7 @@ void func_02077998(void) {
     data_usa_0217ac90 = data_usa_02154fa0[i][0];
     data_usa_0217ac7c = data_usa_02154fa4[i][0];
     data_usa_0217ac78 = data_usa_02154fa8[i][0];
-    if (data_021759c0->mUnk_00 == 0x13) {
+    if (data_021759c0->mCourseId == 0x13) {
         data_usa_021656b4 = 0xa000;
     } else {
         data_usa_021656b4 = 0x5000;

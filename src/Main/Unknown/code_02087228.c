@@ -68,8 +68,8 @@ void func_020875b4(void) {
     if (func_02062eb0() != 0) {
         data_0217aed0->mUnk_020 = 0;
     } else if (f == FALSE) {
-        data_0217aed0->mUnk_020 = data_021759c0->mUnk_3d0 - 1;
-        for (i = 0; (u32) i < data_021759c0->mUnk_3d0; i++) {
+        data_0217aed0->mUnk_020 = data_021759c0->mKartCount - 1;
+        for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
             if (data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 == 2 && data_021759c0->mUnk_68[i].mUnk_08.mUnk_10 == 0) {
                 data_0217aed0->mUnk_020 = data_0217aed0->mUnk_020 - 1;
             }
@@ -90,7 +90,7 @@ void func_020875b4(void) {
     }
     data_0217aed8 = &data_02155a48;
     func_02087000();
-    for (i = 0; (u32) i < data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
         data_0217aed0->mUnk_024[i] = i;
         data_0217aed0->mUnk_044[i] = i;
         data_0217aed0->mUnk_094[i] = i;
@@ -106,7 +106,7 @@ void func_020875b4(void) {
     }
     if (data_0217aed0->mUnk_020 > 0) {
         j = 0;
-        for (i = 0; (u32) i < data_021759c0->mUnk_3d0; i++) {
+        for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
             t = FALSE;
             if (f == FALSE) {
                 if (i != data_021759c0->mUnk_62) {
@@ -224,8 +224,8 @@ u16 func_020873e4(int a) {
     if (data_021759c0->mUnk_08 == 5) {
         return data_02155a2c[data_021759c0->mUnk_68[a].mUnk_08.mUnk_25];
     }
-    if (data_021759c0->mUnk_58 != 0) {
-        return data_02155a28[data_021759c0->mUnk_68[a].mUnk_08.mUnk_04];
+    if (data_021759c0->mUseTeams != 0) {
+        return data_02155a28[data_021759c0->mUnk_68[a].mUnk_08.mTeamIndex];
     }
     if (func_02079bf0(a)->mUnk_000 == 0xc) {
         return func_02077f7c(a)->mUnk_04;
@@ -281,8 +281,8 @@ void func_02087228(Unk02086098 *a, u16 b) {
     q = data_0217aed0->mUnk_144[b];
     func_0214d1fc(data_0217aed0->mUnk_164[b], p, a->mUnk_08);
     v = 0x7fff;
-    if (data_021759c0->mUnk_58 != 0) {
-        v = data_02155a28[data_021759c0->mUnk_68[b].mUnk_08.mUnk_04];
+    if (data_021759c0->mUseTeams != 0) {
+        v = data_02155a28[data_021759c0->mUnk_68[b].mUnk_08.mTeamIndex];
     }
     *p = v;
     func_0200ee74(p, a->mUnk_08);

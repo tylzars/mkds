@@ -158,14 +158,14 @@ void func_020c97c0(void) {
     s32 y;
 
     a = func_020c0db0();
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         data_0217b428->mUnk_000[i] = 0;
         data_0217b428->mUnk_130[i] = i;
         v1[i] = func_0203c8dc(i & 0xff);
     }
     switch (func_020b1dbc()) {
         case 0:
-            for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+            for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
                 func_020b6078(i, &data_0217b428->mUnk_060[i]);
                 x = data_0217b428->mUnk_060[i].mUnk_00;
                 y = data_0217b428->mUnk_060[i].mUnk_04;
@@ -191,7 +191,7 @@ void func_020c97c0(void) {
         case 2:
         case 3:
             data_0217b428->mUnk_190->mUnk_04 = 0;
-            for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+            for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
                 func_0207a948(&v, i & 0xff);
                 func_020b5dcc(i, &data_0217b428->mUnk_060[i], a);
                 x = data_0217b428->mUnk_060[i].mUnk_00;
@@ -262,7 +262,7 @@ void func_020c97c0(void) {
             }
             break;
     }
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         if (func_0207a8a4(i) == 1) {
             data_0217b428->mUnk_170[i]++;
         } else {
@@ -274,7 +274,7 @@ void func_020c97c0(void) {
             data_0217b428->mUnk_020[i] = 0;
         }
     }
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         if (data_0217b428->mUnk_040[i] == 0) {
             v1[i] -= 0x20;
         }
@@ -285,7 +285,7 @@ void func_020c97c0(void) {
     if (data_021759c0->mUnk_08 == 1) {
         return;
     }
-    func_020ae770(data_0217b428->mUnk_130, v1, data_021759c0->mUnk_3d0);
+    func_020ae770(data_0217b428->mUnk_130, v1, data_021759c0->mKartCount);
 }
 
 static inline void func_020c8dbc_inline(Unk020c06c4 *p, Unk020224e0_c *c, s32 *r, s32 x, s32 y, u16 v, s32 s, s32 g) {
@@ -353,7 +353,7 @@ void func_020c8dbc(Unk020c06c4 *p) {
 
     switch (func_020b1dbc()) {
         case 0:
-            for (k = 0; k < data_021759c0->mUnk_3d0; k++) {
+            for (k = 0; k < data_021759c0->mKartCount; k++) {
                 i = data_0217b428->mUnk_130[k];
                 if (data_0217b428->mUnk_000[i] != 0) {
                     f = data_0217b428->mUnk_040[i];
@@ -392,7 +392,7 @@ void func_020c8dbc(Unk020c06c4 *p) {
         case 2:
         case 3:
             a = func_020c0dc4();
-            for (k = 0; k < data_021759c0->mUnk_3d0; k++) {
+            for (k = 0; k < data_021759c0->mKartCount; k++) {
                 i = data_0217b428->mUnk_130[k];
                 g = data_0217b428->mUnk_150[i];
                 if (data_0217b428->mUnk_000[i] != 0 && a <= g) {

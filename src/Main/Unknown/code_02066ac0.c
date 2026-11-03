@@ -138,7 +138,7 @@ s32 func_020678d4(Unk0206bcb0 *a) {
 
 s32 func_02067834(Unk0206bcb0 *a) {
     if (a->mUnk_3dc != 8 || (a->mUnk_44 & 0x80000000) != 0) {
-        if (data_021759c0->mUnk_00 == 0xc || data_021759c0->mUnk_00 == 0x28) {
+        if (data_021759c0->mCourseId == 0xc || data_021759c0->mCourseId == 0x28) {
             func_021090c4(&a->mUnk_00, 0x15e, 0x7f, 0);
         }
     }
@@ -350,7 +350,7 @@ void func_02066fe0(Unk0206bcb0 *a) {
         p = data_021759c0;
         if (p->mUnk_08 != 0 && p->mUnk_08 != 1 &&
             ((p->mUnk_1c == 1 && data_0217561c->mUnk_000[a->mUnk_74].mUnk_14 != 1) ||
-             ((i = p->mUnk_3d0) > 1 && (c = func_0203c8dc(a->mUnk_74), c == i)))) {
+             ((i = p->mKartCount) > 1 && (c = func_0203c8dc(a->mUnk_74), c == i)))) {
             func_02075cf0();
         } else {
             func_02075eb8();

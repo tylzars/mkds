@@ -27,8 +27,9 @@ void func_020c5ce0(void) {
     data_0217b3f0->mUnk_0c = 0;
     data_0217b3f0->mUnk_10 = 0;
     if (data_021759c0->mUnk_08 == 4) {
-        if (func_0205fd78(data_021759c0->mUnk_08 == 4 ? data_021759c0->mUnk_54 : -1,
-                          data_021759c0->mUnk_08 == 4 ? data_021759c0->mUnk_55 : -1, &data_0217b3f0->mUnk_14) == 0) {
+        if (func_0205fd78(data_021759c0->mUnk_08 == 4 ? data_021759c0->mMissionTableRow : -1,
+                          data_021759c0->mUnk_08 == 4 ? data_021759c0->mMissionTableColumn : -1,
+                          &data_0217b3f0->mUnk_14) == 0) {
             data_0217b3f0->mUnk_14 = 9;
         }
     } else {

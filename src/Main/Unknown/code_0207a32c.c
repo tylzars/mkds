@@ -69,7 +69,7 @@ void func_0207a32c(void) {
                 d[1] = -1;
             }
         }
-        if (n < data_021759c0->mUnk_3d0) {
+        if (n < data_021759c0->mKartCount) {
             j = func_02085408((u16) (n + 1));
             if (j >= 0) {
                 p = &data_0217ad18[j];

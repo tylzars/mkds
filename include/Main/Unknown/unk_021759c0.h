@@ -16,7 +16,7 @@ typedef struct Unk020565e4 {
 // The 0x28 bytes from 0x08 of each Unk021759c0_68 entry (code keeps pointers to them).
 typedef struct Unk021759c0_70 {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 04 */ s32 mTeamIndex;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
@@ -24,7 +24,7 @@ typedef struct Unk021759c0_70 {
     /* 16 */ s8 mUnk_16;
     /* 17 */ u8 mUnk_17;
     /* 18 */ void *mUnk_18;
-    /* 1c */ void *mUnk_1c;
+    /* 1c */ void *mEmblemData;
     /* 20 */ s32 mUnk_20;
     /* 24 */ u8 mUnk_24;
     /* 25 */ u8 mUnk_25;
@@ -34,14 +34,14 @@ typedef struct Unk021759c0_70 {
 
 // 0x30-byte entries at 0x68 and 0x250 of the object behind data_021759c0.
 typedef struct Unk021759c0_68 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 00 */ s32 mCharacterIndex;
+    /* 04 */ s32 mKartIndex;
     /* 08 */ Unk021759c0_70 mUnk_08;
 } Unk021759c0_68;
 
 // The 0x68 bytes at 0x1e8 of the object behind data_021759c0.
 typedef struct Unk021759c0_1e8 {
-    /* 00 */ s32 mUnk_00;
+    /* 00 */ s32 mCourseId;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
@@ -49,14 +49,14 @@ typedef struct Unk021759c0_1e8 {
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
-    /* 20 */ s32 mUnk_20;
+    /* 20 */ s32 mCourseListMode;
     /* 24 */ s32 mUnk_24;
-    /* 28 */ Unk02029930_f8 mUnk_28;
-    /* 54 */ s8 mUnk_54;
-    /* 55 */ s8 mUnk_55;
+    /* 28 */ Unk02029930_f8 mMissionFileRow;
+    /* 54 */ s8 mMissionTableRow;
+    /* 55 */ s8 mMissionTableColumn;
     /* 56 */ u8 mUnk_56[0x1];
     /* 57 */ s8 mUnk_57;
-    /* 58 */ u8 mUnk_58;
+    /* 58 */ u8 mUseTeams;
     /* 59 */ u8 mUnk_59[0x3];
     /* 5c */ s32 mUnk_5c;
     /* 60 */ u16 mUnk_60;
@@ -80,7 +80,7 @@ typedef struct Unk021759c0_28 {
 
 // Object behind data_021759c0.
 typedef struct Unk021759c0 {
-    /* 00 */ s32 mUnk_00;
+    /* 00 */ s32 mCourseId;
     /* 004 */ s32 mUnk_004;
     /* 08 */ s32 mUnk_08;
     /* 00c */ u32 mUnk_00c;
@@ -88,7 +88,7 @@ typedef struct Unk021759c0 {
     /* 014 */ s32 mUnk_014;
     /* 018 */ s32 mUnk_18;
     /* 01c */ s32 mUnk_1c;
-    /* 020 */ s32 mUnk_020;
+    /* 020 */ s32 mCourseListMode;
     /* 024 */ u8 mUnk_024[0x4];
     union {
         Unk021759c0_28 mUnk_28_view;
@@ -111,12 +111,12 @@ typedef struct Unk021759c0 {
     /* 42 */ u16 mUnk_42;
     /* 044 */ u16 mUnk_044;
     /* 046 */ u8 mUnk_046[0x2];
-    /* 048 */ char mUnk_048[0xc];
-    /* 54 */ s8 mUnk_54;
-    /* 55 */ s8 mUnk_55;
+    /* 048 */ char mMissionRunStem[0xc];
+    /* 54 */ s8 mMissionTableRow;
+    /* 55 */ s8 mMissionTableColumn;
     /* 056 */ u8 mUnk_056[0x1];
     /* 57 */ s8 mUnk_57;
-    /* 58 */ s8 mUnk_58;
+    /* 58 */ s8 mUseTeams;
     /* 059 */ u8 mUnk_059[0x3];
     /* 05c */ s32 mUnk_05c;
     /* 60 */ u16 mUnk_60;
@@ -127,15 +127,15 @@ typedef struct Unk021759c0 {
     /* 68 */ Unk021759c0_68 mUnk_68[8];
     /* 1e8 */ Unk021759c0_1e8 mUnk_1e8;
     /* 250 */ Unk021759c0_68 mUnk_250[8];
-    /* 3d0 */ u8 mUnk_3d0;
+    /* 3d0 */ u8 mKartCount;
     /* 3d1 */ u8 mUnk_3d1;
-    /* 3d2 */ u8 mUnk_3d2[2];
+    /* 3d2 */ u8 mTeamKartCounts[2];
     /* 3d4 */ u8 mUnk_3d4;
     /* 3d5 */ s8 mUnk_3d5[3];
     /* 3d8 */ u16 mUnk_3d8;
     /* 3da */ u8 mUnk_3da[0x2];
-    /* 3dc */ u8 *mUnk_3dc;
-    /* 3e0 */ u8 mUnk_3e0;
+    /* 3dc */ u8 *mCourseList;
+    /* 3e0 */ u8 mCourseListIndex;
     /* 3e1 */ u8 mUnk_3e1;
     /* 3e2 */ u16 mUnk_3e2;
     /* 3e4 */ u8 mUnk_3e4;

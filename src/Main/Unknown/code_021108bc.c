@@ -61,7 +61,7 @@ s32 func_02110fb8(s32 a) {
     if (a == 1) {
         b = 9;
     } else {
-        switch (data_021759c0->mUnk_3d0) {
+        switch (data_021759c0->mKartCount) {
             case 4:
             case 5:
                 if (a < 3) {
@@ -171,7 +171,7 @@ void func_02110cc8(s32 d) {
     func_0210d614(&data_0217d070, c, NULL);
     data_0217d324 = 1;
     data_0217d328 = 1;
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0x22:
             switch (b) {
                 case 0:
@@ -218,7 +218,7 @@ s32 func_02110c40(void) {
     s32 b;
     b = func_02110e58();
     a = -1;
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0x14:
             switch (b) {
                 case 0:

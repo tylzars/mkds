@@ -73,7 +73,7 @@ void func_0206302c(void) {
     data_usa_0217aafc.mUnk_e4 = 0;
     data_usa_0217aafc.mUnk_ec = 0;
     data_usa_0217aafc.mUnk_f0 = 0;
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0x12:
         case 0x1b:
         case 0x2d:
@@ -110,7 +110,7 @@ void func_0206302c(void) {
 void func_020631b0(void) {
     UnkVec16 a;
 
-    if (data_021759c0->mUnk_00 != 0x20) {
+    if (data_021759c0->mCourseId != 0x20) {
         return;
     }
     a = data_usa_021653fc;
@@ -171,7 +171,7 @@ void func_0206331c(void *a) {
     func_0206331c_inline(1, data_usa_0217ab3c, data_usa_0217aafc.mUnk_00, a, b, d, &data_usa_0217aafc.mUnk_58);
     func_020849c0(data_usa_0217aafc.mUnk_00, 8);
     func_02012ffc(e, 1);
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0xc:
             f = func_02013754((u8 *) e + e->mUnk_08 + 4, data_usa_02154a00);
             if (f >= 0) {

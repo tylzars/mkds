@@ -33,7 +33,7 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
     Vec3 t2;
     Vec3 *q;
 
-    n = data_021759c0->mUnk_3d0;
+    n = data_021759c0->mKartCount;
     if (c->mUnk_0a0 > 0) {
         c->mUnk_0a0--;
         if (c->mUnk_0a0 > 0) {

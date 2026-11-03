@@ -78,14 +78,14 @@ s32 func_020adc04(void) {
 
 s32 func_020adbe4(void) {
     if (data_021759c0->mUnk_08 == 4) {
-        return data_021759c0->mUnk_54;
+        return data_021759c0->mMissionTableRow;
     }
     return -1;
 }
 
 s32 func_020adbc4(void) {
     if (data_021759c0->mUnk_08 == 4) {
-        return data_021759c0->mUnk_55;
+        return data_021759c0->mMissionTableColumn;
     }
     return -1;
 }

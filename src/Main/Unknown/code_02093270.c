@@ -71,7 +71,7 @@ void func_02093270(void *a, Unk02093270 *p) {
     } else {
         p->mUnk_00.mUnk_04.y = p->mUnk_00.mUnk_9c->mUnk_00.y - p->mUnk_00.mUnk_58.y;
     }
-    c = data_021759c0->mUnk_3d0;
+    c = data_021759c0->mKartCount;
     for (i = 0; i < c; i++) {
         if (p->mUnk_d4[i] > 0) {
             p->mUnk_d4[i]--;

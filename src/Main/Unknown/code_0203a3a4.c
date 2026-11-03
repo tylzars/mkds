@@ -91,7 +91,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
                             data_0217b488->mUnk_74 = 1;
                         }
                     } else {
-                        if (data_021759c0->mUnk_020 == 0) {
+                        if (data_021759c0->mCourseListMode == 0) {
                             data_0217b488->mUnk_08 = 2;
                         }
                         if (data_021759d0->mUnk_1c_2 == 0) {
@@ -120,7 +120,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
                             data_0217b488->mUnk_74 = 1;
                         }
                     } else {
-                        if (data_021759c0->mUnk_020 == 0) {
+                        if (data_021759c0->mCourseListMode == 0) {
                             data_0217b488->mUnk_08 = 2;
                         }
                         if (data_021759d0->mUnk_1c_2 == 0) {
@@ -248,5 +248,5 @@ void func_0203a3b8(u32 p0) {
 }
 
 u32 func_0203a3a4(void) {
-    return ((u32) data_021759c0->mUnk_00);
+    return ((u32) data_021759c0->mCourseId);
 }

@@ -56,7 +56,7 @@ void func_020b3cd8(void) {
     if (d->mUnk_08 == 4) {
         return;
     }
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
             f = FALSE;
             if ((u32) data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 <= 3) {
@@ -84,13 +84,13 @@ void func_020b3cd8(void) {
             a[i] = (v << 4) + (g << 3) + 8 - func_0203c8dc(i);
         }
     }
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         b[i] = i;
         a[i] = a[i] * n;
     }
-    func_020ae770(b, a, data_021759c0->mUnk_3d0);
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
-        for (j = 0; j < (u32) data_021759c0->mUnk_3d0; j++) {
+    func_020ae770(b, a, data_021759c0->mKartCount);
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+        for (j = 0; j < (u32) data_021759c0->mKartCount; j++) {
             if (i == b[j]) {
                 func_0205d76c(i, j + 1);
                 break;
@@ -115,7 +115,7 @@ void func_020b3b58(void) {
     u16 i;
     Unk0217aa1c_144_00 *q;
 
-    if (d->mUnk_58 == 0) {
+    if (d->mUseTeams == 0) {
         return;
     }
     if (d->mUnk_1c == 1 || d->mUnk_08 == 2) {
@@ -142,12 +142,12 @@ void func_020b3b58(void) {
         func_0205d6d0(1);
         return;
     }
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         if (func_0203c8dc(i) == 1) {
             break;
         }
     }
-    func_0205d6d0(data_021759c0->mUnk_68[i].mUnk_08.mUnk_04);
+    func_0205d6d0(data_021759c0->mUnk_68[i].mUnk_08.mTeamIndex);
 }
 
 void func_020b3b08(void) {

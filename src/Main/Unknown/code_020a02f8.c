@@ -46,8 +46,8 @@ void func_020a0e00(void) {
         e->mUnk_18 = -2;
         e->mUnk_44 = (u16) i;
         e->mUnk_48 = (u16) i;
-        if (i < data_021759c0->mUnk_3d0) {
-            switch (data_021759c0->mUnk_68[(u16) i].mUnk_08.mUnk_04) {
+        if (i < data_021759c0->mKartCount) {
+            switch (data_021759c0->mUnk_68[(u16) i].mUnk_08.mTeamIndex) {
                 case 0:
                     e->mUnk_46 = 1;
                     break;
@@ -65,7 +65,7 @@ void func_020a0e00(void) {
             e->mUnk_08 = 2;
             e->mUnk_4c = -1;
             e->mUnk_50 = 0;
-            e->mUnk_46 = data_021759c0->mUnk_3d0;
+            e->mUnk_46 = data_021759c0->mKartCount;
         }
     }
     data_0217b1fc->mUnk_3b4 = -1;
@@ -88,7 +88,7 @@ void func_020a08ec(void) {
     s32 n;
     Unk0217b1fc_000 *e = data_0217b1fc->mUnk_000;
 
-    n = data_021759c0->mUnk_3d0;
+    n = data_021759c0->mKartCount;
     if (data_0217b1fc->mUnk_3b4 >= 0) {
         if (data_0217b1fc->mUnk_3a8 > 0) {
             data_0217b1fc->mUnk_3a8 = data_0217b1fc->mUnk_3a8 - 1;
@@ -202,7 +202,7 @@ void func_020a08ec(void) {
 void func_020a089c(Unk020a0318 *p) {
     s32 v;
 
-    v = data_021759c0->mUnk_00;
+    v = data_021759c0->mCourseId;
     if (v == 0x12) {
         p->mUnk_bc = 0x121;
     } else if (v == 0x1f) {
@@ -222,13 +222,13 @@ void func_020a066c(Unk020a066c *p) {
         return;
     }
     for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
-        if (data_021759c0->mUnk_00 == 0x12) {
+        if (data_021759c0->mCourseId == 0x12) {
             o->mUnk_a8 = 0xa28;
             o->mUnk_ac = o->mUnk_00.mUnk_04.x + 0x73a000;
             o->mUnk_b0 = o->mUnk_00.mUnk_04.y;
             o->mUnk_b4 = o->mUnk_00.mUnk_04.z - 0x1400000;
             o->mUnk_b8 = 1;
-        } else if (data_021759c0->mUnk_00 == 0x1f) {
+        } else if (data_021759c0->mCourseId == 0x1f) {
             o->mUnk_a8 = 0x546;
             o->mUnk_ac = o->mUnk_00.mUnk_04.x + 0x28a000;
             o->mUnk_b0 = o->mUnk_00.mUnk_04.y;

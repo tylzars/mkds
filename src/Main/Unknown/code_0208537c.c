@@ -17,9 +17,9 @@ void func_020858ac(u32 a) {
     if (f == FALSE) {
         return;
     }
-    if (p->mUnk_58 != 0) {
+    if (p->mUseTeams != 0) {
         for (j = 0; j < 2; j++) {
-            if (j == p->mUnk_68[a].mUnk_08.mUnk_04) {
+            if (j == p->mUnk_68[a].mUnk_08.mTeamIndex) {
                 if (data_0217aebc->mUnk_13e[j] > 0) {
                     data_0217aebc->mUnk_13e[j]--;
                 }
@@ -37,9 +37,9 @@ s16 func_02085824(u32 a) {
     s16 r;
     u16 j;
     r = 0;
-    if (data_021759c0->mUnk_58 != 0) {
+    if (data_021759c0->mUseTeams != 0) {
         for (j = 0; (u32) j < 2; j++) {
-            if (j != data_021759c0->mUnk_68[a].mUnk_08.mUnk_04) {
+            if (j != data_021759c0->mUnk_68[a].mUnk_08.mTeamIndex) {
                 r = r + data_0217aebc->mUnk_13e[j];
             }
         }
@@ -58,7 +58,7 @@ void func_02085778(void) {
     }
     func_0208552c();
     m = 1;
-    for (i = 0; (u32) i < data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
         v = func_0203c8dc(i);
         if (data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 != 1) {
             if (v == 1) {
@@ -84,7 +84,7 @@ void func_0208552c(void) {
     u16 q;
     BOOL f;
     m = 1;
-    for (i = 0; (u32) i < data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
         w = gCourseMap->mUnk_108;
         x = func_0203c5c8(i);
         w = ((s64) x * w + 0x800) >> 12;
@@ -114,7 +114,7 @@ void func_0208552c(void) {
         }
     }
     n = 0;
-    for (k = 0; k < data_021759c0->mUnk_3d0; k++) {
+    for (k = 0; k < data_021759c0->mKartCount; k++) {
         x = data_0217aebc->mUnk_020[k];
         if (x >= 0) {
             q = x;
@@ -128,7 +128,7 @@ void func_0208552c(void) {
         return;
     }
     n = 0;
-    for (k = 0; k < data_021759c0->mUnk_3d0; k++) {
+    for (k = 0; k < data_021759c0->mKartCount; k++) {
         y = data_0217aebc->mUnk_020[k];
         if (y >= 0) {
             q = y;
@@ -149,7 +149,7 @@ s32 func_020854c0(u16 a) {
     s32 r;
     u16 i;
     r = -1;
-    for (i = 0; (u32) i < data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
         if (a == (u16) data_0217aebc->mUnk_040[i]) {
             r = i + 1;
             break;

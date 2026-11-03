@@ -2,5 +2,5 @@
 #include "Main/Unknown/unk_021759c0.h"
 
 u32 func_0203f320(void) {
-    return ((u32) data_021759c0->mUnk_3d0);
+    return ((u32) data_021759c0->mKartCount);
 }

@@ -40,7 +40,7 @@ void func_ov001_02181b8c(Unk02188950 *a) {
     u8 n;
     u16 k;
 
-    n = data_021759c0->mUnk_3d0;
+    n = data_021759c0->mKartCount;
     k = data_ov001_021a9b90->mUnk_44 + n;
     data_ov001_021a9b90->mUnk_48[k - n] = a;
     func_020a1728(k);
@@ -48,15 +48,15 @@ void func_ov001_02181b8c(Unk02188950 *a) {
 }
 
 Unk02188950 *func_ov001_02181b68(int a) {
-    return data_ov001_021a9b90->mUnk_48[a - data_021759c0->mUnk_3d0];
+    return data_ov001_021a9b90->mUnk_48[a - data_021759c0->mKartCount];
 }
 
 u8 func_ov001_02181b54(void) {
-    return data_021759c0->mUnk_3d0;
+    return data_021759c0->mKartCount;
 }
 
 u16 func_ov001_02181b30(void) {
-    return data_ov001_021a9b90->mUnk_44 + data_021759c0->mUnk_3d0 - 1;
+    return data_ov001_021a9b90->mUnk_44 + data_021759c0->mKartCount - 1;
 }
 
 void func_ov001_02181aa0(void) {

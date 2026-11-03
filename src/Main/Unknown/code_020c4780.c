@@ -62,11 +62,11 @@ void func_020c4780(void) {
     }
     data_0217b3e4 = func_02036bec(func_020364e0(func_020364e8()), 0x910);
     data_0217b3e4->mUnk_000 = 1;
-    for (a = 0; a < data_021759c0->mUnk_3d0; a++) {
+    for (a = 0; a < data_021759c0->mKartCount; a++) {
         data_0217b3e4->mUnk_004[a] = 1;
     }
     data_0217b3e4->mUnk_00c = 0;
-    for (a = 0; a < data_021759c0->mUnk_3d0; a++) {
+    for (a = 0; a < data_021759c0->mKartCount; a++) {
         u16 w = (u32) func_020b6338(a);
         func_0207a91c(&v, a);
         for (j = 0; j < 0x28; j++) {
@@ -77,7 +77,7 @@ void func_020c4780(void) {
         }
     }
     a = 0;
-    if (a < data_021759c0->mUnk_3d0) {
+    if (a < data_021759c0->mKartCount) {
         Vec3 z = data_02156880;
         do {
             data_0217b3e4->mUnk_790[a].mUnk_00 = 0;
@@ -87,7 +87,7 @@ void func_020c4780(void) {
                 data_0217b3e4->mUnk_790[a].mUnk_28[j] = 3;
             }
             a++;
-        } while (a < data_021759c0->mUnk_3d0);
+        } while (a < data_021759c0->mKartCount);
     }
     for (a = 0; a < 16; a++) {
         s32 s = data_0215d4b4[((u16) (a * 0x10000 / 16) >> 4) * 2];

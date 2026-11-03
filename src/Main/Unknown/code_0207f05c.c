@@ -27,7 +27,7 @@ static inline BOOL func_0207f600_inline(s32 a) {
 }
 
 static inline s32 func_0207f554_inline2(u32 i) {
-    return *(vs32 *) &data_021759c0->mUnk_68[i].mUnk_08.mUnk_04;
+    return *(vs32 *) &data_021759c0->mUnk_68[i].mUnk_08.mTeamIndex;
 }
 
 static inline s32 func_0207f554_inline(u32 a, u32 b) {
@@ -35,7 +35,7 @@ static inline s32 func_0207f554_inline(u32 a, u32 b) {
     s32 v;
     BOOL t;
 
-    if (data_021759c0->mUnk_58 == 0 || data_021759c0->mUnk_68[a].mUnk_08.mUnk_04 != func_0207f554_inline2(b)) {
+    if (data_021759c0->mUseTeams == 0 || data_021759c0->mUnk_68[a].mUnk_08.mTeamIndex != func_0207f554_inline2(b)) {
         t = FALSE;
         v = data_021759c0->mUnk_68[b].mUnk_08.mUnk_00;
         if ((u32) v <= 3) {
@@ -168,7 +168,7 @@ void func_0207f2e4(Unk020888b4 *p) {
     if (d != FALSE) {
         return;
     }
-    if (a >= data_021759c0->mUnk_3d0) {
+    if (a >= data_021759c0->mKartCount) {
         return;
     }
     c = data_0217561c->mUnk_474[(u8) (a + 1) - 1];
@@ -186,7 +186,7 @@ s32 func_0207f554(u32 a, u32 b) {
     s32 v;
     BOOL t;
 
-    if (data_021759c0->mUnk_58 == 0 || data_021759c0->mUnk_68[a].mUnk_08.mUnk_04 != func_0207f554_inline2(b)) {
+    if (data_021759c0->mUseTeams == 0 || data_021759c0->mUnk_68[a].mUnk_08.mTeamIndex != func_0207f554_inline2(b)) {
         t = FALSE;
         v = data_021759c0->mUnk_68[b].mUnk_08.mUnk_00;
         if ((u32) v <= 3) {

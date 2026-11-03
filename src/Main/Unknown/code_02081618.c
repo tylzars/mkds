@@ -779,7 +779,7 @@ void func_02082aec(void) {
     data_0217ae9c = func_02147f34(0x1000, (s32) (((s64) x * 0x779a + 0x800) >> 12));
     data_0217ae88 = NULL;
     data_0217ae78 = NULL;
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0x25: {
             Unk0201ca6c *p;
 
@@ -1057,7 +1057,7 @@ void func_02082034(Unk0201ca6c *p, s32 a) {
 void func_02081f30(void) {
     Unk0201ca6c *p;
 
-    switch (data_021759c0->mUnk_00) {
+    switch (data_021759c0->mCourseId) {
         case 0x25:
             if (data_0217ae78 != NULL) {
                 func_0208b710(data_0217ae78);

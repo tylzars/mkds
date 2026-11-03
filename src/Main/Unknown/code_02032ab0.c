@@ -126,7 +126,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
     switch (data_02174e60->mUnk_0e0) {
         case 0:
             data_02174e60->mUnk_0d0 = 0;
-            data_02174e60->mUnk_0d8 = data_021759c0->mUnk_3d0;
+            data_02174e60->mUnk_0d8 = data_021759c0->mKartCount;
             data_02174e60->mUnk_150 = 2;
             break;
         case 1:
@@ -134,7 +134,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
             func_0212775c(1, 0xf);
             data_02174e60->mUnk_0d0 =
                 data_0217aa00->mUnk_1e52[(u16) (data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0)].mUnk_00;
-            data_02174e60->mUnk_0d8 = data_021759c0->mUnk_3d0;
+            data_02174e60->mUnk_0d8 = data_021759c0->mKartCount;
             data_02174e60->mUnk_150 = 0;
             break;
         case 3:
@@ -146,7 +146,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
             break;
     }
     func_02033e6c();
-    if (data_021759c0->mUnk_58 != 0) {
+    if (data_021759c0->mUseTeams != 0) {
         j = 0;
         k = 0;
         switch (data_021759c0->mUnk_1c) {
@@ -163,10 +163,10 @@ void func_02032f94(void *a, s32 b, s32 c) {
             data_02174e60->mUnk_0d4 = data_02174e60->mUnk_0d8;
             data_02174e60->mUnk_0dc = 2;
         } else if (j > k) {
-            data_02174e60->mUnk_0d4 = data_021759c0->mUnk_3d2[0];
+            data_02174e60->mUnk_0d4 = data_021759c0->mTeamKartCounts[0];
             data_02174e60->mUnk_0dc = 3;
         } else if (k > j) {
-            data_02174e60->mUnk_0d4 = data_021759c0->mUnk_3d2[1];
+            data_02174e60->mUnk_0d4 = data_021759c0->mTeamKartCounts[1];
             data_02174e60->mUnk_0dc = 4;
         }
     } else if (func_02033e24() != 0) {
@@ -263,14 +263,14 @@ void func_02032f94(void *a, s32 b, s32 c) {
     }
     switch (data_02174e60->mUnk_0dc) {
         case 3:
-            if (data_021759c0->mUnk_68[(u16) data_02174e60->mUnk_0d0].mUnk_08.mUnk_04 == 0) {
+            if (data_021759c0->mUnk_68[(u16) data_02174e60->mUnk_0d0].mUnk_08.mTeamIndex == 0) {
                 k = 0;
             } else {
                 k = 7;
             }
             break;
         case 4:
-            if (data_021759c0->mUnk_68[(u16) data_02174e60->mUnk_0d0].mUnk_08.mUnk_04 == 1) {
+            if (data_021759c0->mUnk_68[(u16) data_02174e60->mUnk_0d0].mUnk_08.mTeamIndex == 1) {
                 k = 0;
             } else {
                 k = 7;

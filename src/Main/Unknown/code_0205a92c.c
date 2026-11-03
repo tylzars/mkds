@@ -200,7 +200,7 @@ void func_0205ae8c(u32 a) {
         return;
     }
     j = 0;
-    for (j = 0; j < (s32) data_021759c0->mUnk_3d0; j++) {
+    for (j = 0; j < (s32) data_021759c0->mKartCount; j++) {
         if (j != a) {
             t = g->mUnk_00[j];
             m = p->mUnk_104[t].mUnk_86_1;

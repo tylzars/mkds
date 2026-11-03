@@ -42,7 +42,7 @@ u32 func_020cc6f0(u32 arg0) {
 }
 
 u32 func_020cc6dc(void) {
-    return ((u32) data_021759c0->mUnk_58);
+    return ((u32) data_021759c0->mUseTeams);
 }
 
 u32 func_020cc6c0(u32 arg0) {
@@ -78,7 +78,7 @@ u32 func_020cc67c(void) {
 }
 
 u32 func_020cc668(void) {
-    return ((u32) data_021759c0->mUnk_3d0);
+    return ((u32) data_021759c0->mKartCount);
 }
 
 u32 func_020cc654(void) {
@@ -86,7 +86,7 @@ u32 func_020cc654(void) {
 }
 
 u32 func_020cc640(void) {
-    return ((u32) data_021759c0->mUnk_00);
+    return ((u32) data_021759c0->mCourseId);
 }
 
 u32 func_020cc62c(void) {

@@ -89,7 +89,7 @@ void func_020c28dc(Unk020c06c4 *a) {
             }
             break;
     }
-    for (i = 0; (u32) i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; (u32) i < (u32) data_021759c0->mKartCount; i++) {
         k = gRaceGoalS->mUnk_0040[i];
         v = gRaceGoalS->mUnk_0020[k];
         p = v / 100;
@@ -135,8 +135,8 @@ void func_020c28dc(Unk020c06c4 *a) {
                 a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m,
                                              NULL, e4, 0, 1);
             }
-            if (data_021759c0->mUnk_58 != 0) {
-                x = data_021759c0->mUnk_68[(u16) k].mUnk_08.mUnk_04 == 0 ? 0x1f : 0x20;
+            if (data_021759c0->mUseTeams != 0) {
+                x = data_021759c0->mUnk_68[(u16) k].mUnk_08.mTeamIndex == 0 ? 0x1f : 0x20;
                 m = GetRaceGoalSNcerEntry(x);
                 e5[0] = (d + 0xec) << 12;
                 e5[1] = t[i] << 12;
@@ -201,9 +201,9 @@ void func_020c2570(Unk020c06c4 *a, u32 b, s32 c, s32 d) {
     a->mUnk_400 +=
         func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m, NULL, e1, 0, 1);
     if (b == func_020b4d9c()) {
-        s = data_021759c0->mUnk_68[b].mUnk_08.mUnk_04 == 0 ? 0x1e : 0x1f;
+        s = data_021759c0->mUnk_68[b].mUnk_08.mTeamIndex == 0 ? 0x1e : 0x1f;
     } else {
-        s = data_021759c0->mUnk_68[b].mUnk_08.mUnk_04 == 0 ? 0x1c : 0x1d;
+        s = data_021759c0->mUnk_68[b].mUnk_08.mTeamIndex == 0 ? 0x1c : 0x1d;
     }
     m = GetRaceGoalTeamSNcerEntry(s);
     e2[0] = c << 12;
@@ -297,8 +297,8 @@ void func_020c214c(Unk020c06c4 *a) {
     for (i = 0; i < 2; i++) {
         c[i] = 0;
     }
-    for (i = 0; (u32) i < (u32) data_021759c0->mUnk_3d0; i++) {
-        k = data_021759c0->mUnk_68[i].mUnk_08.mUnk_04;
+    for (i = 0; (u32) i < (u32) data_021759c0->mKartCount; i++) {
+        k = data_021759c0->mUnk_68[i].mUnk_08.mTeamIndex;
         func_020c2570(a, i, t1[k] + (k == 0 ? -d : d), c[k] * 0x17 + 0x11);
         c[k]++;
     }

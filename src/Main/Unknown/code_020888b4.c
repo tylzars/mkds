@@ -157,7 +157,7 @@ void func_02089974(void) {
         }
     } else {
         data_0217b02c = 0x190000;
-        if (t->mUnk_00 == 0x2b) {
+        if (t->mCourseId == 0x2b) {
             data_0217b02c = 0x28000;
         }
     }
@@ -383,7 +383,7 @@ void func_02088e44(Unk020888b4 *p) {
     if (p->mUnk_b0 == NULL) {
         p->mUnk_5c = &p->mUnk_44;
         k = data_0217b028;
-        for (n = 0; n < (u32) data_021759c0->mUnk_3d0; n++) {
+        for (n = 0; n < (u32) data_021759c0->mKartCount; n++) {
             if (func_0207f554(p->mUnk_04, k) != 0) {
                 o = func_0207a974(k);
                 v3 = &p->mUnk_00->mUnk_80;
@@ -396,7 +396,7 @@ void func_02088e44(Unk020888b4 *p) {
                     }
                 }
                 if (c != 0) {
-                    v2 = data_021759c0->mUnk_3d0;
+                    v2 = data_021759c0->mKartCount;
                     data_0217b028++;
                     if (data_0217b028 >= v2) {
                         data_0217b028 = 0;
@@ -405,7 +405,7 @@ void func_02088e44(Unk020888b4 *p) {
                 }
             }
             k++;
-            if (k >= (u32) data_021759c0->mUnk_3d0) {
+            if (k >= (u32) data_021759c0->mKartCount) {
                 k = 0;
             }
         }

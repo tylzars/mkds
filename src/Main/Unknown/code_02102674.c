@@ -43,7 +43,7 @@ void func_0210298c(Unk02102674 *p) {
         func_021031f4(p);
     }
     if (a2 == 0x8f) {
-        b = data_021759c0->mUnk_3d0;
+        b = data_021759c0->mKartCount;
         for (i = 0; i < b; i++) {
             if (p->mUnk_130[i] == 0) {
                 continue;

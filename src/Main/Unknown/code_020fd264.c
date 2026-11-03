@@ -201,7 +201,7 @@ void func_020fde18(Unk020fdae8 *e) {
     s32 z;
 
     v1 = (u16) func_02061f90();
-    if (v1 >= data_021759c0->mUnk_3d0) {
+    if (v1 >= data_021759c0->mKartCount) {
         return;
     }
     v2 = (e->mUnk_000.mUnk_000.mUnk_78 & 0x8000) == 0 ? (u16) (e->mUnk_000.mUnk_000.mUnk_78 & ~0xff00) : 8;

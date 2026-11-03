@@ -115,7 +115,7 @@ void func_02062b50(void) {
     func_02077998();
     func_02047b6c(1);
     func_020875b4();
-    InitKartModels(a, data_021759c0->mUnk_3d0);
+    InitKartModels(a, data_021759c0->mKartCount);
     func_0207800c();
     func_020872a4();
     func_02047728();
@@ -134,7 +134,7 @@ void func_02062b50(void) {
     func_02047b6c(1);
     func_0208aa30(a);
     func_02085e04();
-    func_0207abec(data_021759c0->mUnk_3d0);
+    func_0207abec(data_021759c0->mKartCount);
     func_02077944();
     func_020777ac(data_021759c0->mUnk_063);
     if (data_0217aa54->mUnk_28 != 0) {
@@ -346,7 +346,7 @@ void func_02062464(void) {
     }
     data_0217aa54->mUnk_0c = data_0217aa54->mUnk_04 & 7;
     data_0217aa54->mUnk_10 = data_0217aa54->mUnk_04 & 1;
-    data_0217aa54->mUnk_14 = (u32) data_0217aa54->mUnk_04 % data_021759c0->mUnk_3d0;
+    data_0217aa54->mUnk_14 = (u32) data_0217aa54->mUnk_04 % data_021759c0->mKartCount;
     func_0214a730(&data_0217aadc[data_0217aa54->mUnk_18]);
     data_0217aa54->mUnk_1c++;
     if ((u32) data_0217aa54->mUnk_1c > data_021653ec) {

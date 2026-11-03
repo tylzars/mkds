@@ -406,7 +406,7 @@ void func_020aeb7c(void) {
         return;
     }
     if (data_021759c0->mUnk_08 == 4) {
-        v = (data_021759c0->mUnk_08 == 4 ? data_021759c0->mUnk_55 : -1) == 9;
+        v = (data_021759c0->mUnk_08 == 4 ? data_021759c0->mMissionTableColumn : -1) == 9;
     } else {
         v = 0;
     }

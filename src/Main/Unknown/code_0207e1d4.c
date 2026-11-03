@@ -122,7 +122,7 @@ void func_0207e268(void) {
             break;
     }
     data_usa_021658f0 = 3;
-    d = data_021759c0->mUnk_3d0 - data_021759c0->mUnk_3d1;
+    d = data_021759c0->mKartCount - data_021759c0->mUnk_3d1;
     if (d > 1) {
         if (d <= 3) {
             data_usa_021658f0 = d - 1;

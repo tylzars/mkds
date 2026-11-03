@@ -93,7 +93,7 @@ void func_020ed2f8(void) {
     data_0217bbfc[12] = func_020ed4d0(data_0216c5bc, NULL, data_0216c5d0);
     data_0217bbfc[13] = func_020ed4d0(data_0216c5e4, NULL, data_0216c5f4);
     data_0217bbfc[8] = data_0217bbfc[7];
-    f = (data_021759c0->mUnk_00 == 0x1d);
+    f = (data_021759c0->mCourseId == 0x1d);
     i = 0;
     while (i < 0xe) {
         p = &data_0217bc34[i];

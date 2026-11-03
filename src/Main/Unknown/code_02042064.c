@@ -142,7 +142,7 @@ void CreateCourseMap(void *a) {
             if (data_021759c0->mUnk_00c == 6) {
                 header = FindCourseFile("/course_map.nkm");
             } else {
-                snprintf(path, 0x100, "/MissionRun/%s_tool.nkm", data_021759c0->mUnk_048);
+                snprintf(path, 0x100, "/MissionRun/%s_tool.nkm", data_021759c0->mMissionRunStem);
                 header = FindCourseFile(path);
             }
             break;

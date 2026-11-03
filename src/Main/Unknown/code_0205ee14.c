@@ -249,12 +249,12 @@ void func_0205f700(void) {
     }
     func_0203bfec(v2);
     a = func_0203c8dc((u16) data_021759c0->mUnk_62);
-    if (data_021759c0->mUnk_58 != 0) {
-        c = data_021759c0->mUnk_68[(u16) data_021759c0->mUnk_62].mUnk_08.mUnk_04;
+    if (data_021759c0->mUseTeams != 0) {
+        c = data_021759c0->mUnk_68[(u16) data_021759c0->mUnk_62].mUnk_08.mTeamIndex;
     }
     d = data_0217aa08->mUnk_00->mUnk_34[0];
     e = data_0217aa08->mUnk_00->mUnk_34[1];
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         if (i == data_021759c0->mUnk_62) {
             continue;
         }
@@ -262,8 +262,8 @@ void func_0205f700(void) {
         if (r == 1 || r == 4 || r == 2) {
             continue;
         }
-        if (data_021759c0->mUnk_58 != 0) {
-            if (c == data_021759c0->mUnk_68[i].mUnk_08.mUnk_04) {
+        if (data_021759c0->mUseTeams != 0) {
+            if (c == data_021759c0->mUnk_68[i].mUnk_08.mTeamIndex) {
                 t = 2;
             } else {
                 switch (data_021759c0->mUnk_1c) {
@@ -334,7 +334,7 @@ void func_0205f498(void) {
     func_0203bfec(v2);
     a = data_0217aa08->mUnk_00->mUnk_34[2];
     b = data_0217aa08->mUnk_00->mUnk_34[3];
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         if (i == data_021759c0->mUnk_62) {
             continue;
         }
@@ -402,7 +402,7 @@ void func_0205f218(void) {
     func_0203c8dc((u16) data_021759c0->mUnk_62);
     a = data_0217aa08->mUnk_00->mUnk_34[2];
     b = data_0217aa08->mUnk_00->mUnk_34[3];
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         if (i == data_021759c0->mUnk_62) {
             continue;
         }
@@ -493,13 +493,13 @@ void func_0205ef70(void) {
             b -= m;
         }
     }
-    if ((s16) (g - data_021759c0->mUnk_3d0) > 0) {
-        a += (s16) (g - data_021759c0->mUnk_3d0);
+    if ((s16) (g - data_021759c0->mKartCount) > 0) {
+        a += (s16) (g - data_021759c0->mKartCount);
         if (a > data_usa_021653e0) {
             a = data_usa_021653e0;
         }
     }
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         t = 2;
         if (i != data_021759c0->mUnk_62) {
             if (c < func_0205d4e8(i)) {

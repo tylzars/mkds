@@ -335,7 +335,7 @@ void InitKartModels(void *a, u32 b) {
     gKartModels = func_02036bec(a, 0x144);
     gKartModels->mUnk_000 = func_02036bec(a, b * 0xb4);
     gKartModels->mUnk_004 = func_02047950("kartcrsmat.bin");
-    gKartModels->mUnk_004 = gKartModels->mUnk_004 + (data_021759c0->mUnk_00 << 3) - 8;
+    gKartModels->mUnk_004 = gKartModels->mUnk_004 + (data_021759c0->mCourseId << 3) - 8;
     gKartModels->mUnk_010 = LoadKartAPaletteFromKartModelFile();
     gKartModels->mUnk_014 = NULL;
     gKartModels->mUnk_028 = func_02047950((const char *) BuildPFaceanimNsbtpPath());
@@ -350,8 +350,8 @@ void InitKartModels(void *a, u32 b) {
         func_02079a3c((u32 *) e);
         e->mUnk_0b0 = data_021759c0->mUnk_68[i].mUnk_08.mUnk_25;
         func_02079a14(e);
-        d[i].mUnk_000 = data_021759c0->mUnk_68[i].mUnk_00;
-        e->mUnk_004 = data_021759c0->mUnk_68[i].mUnk_04;
+        d[i].mUnk_000 = data_021759c0->mUnk_68[i].mCharacterIndex;
+        e->mUnk_004 = data_021759c0->mUnk_68[i].mKartIndex;
         func_02079988((s32) e, e->mUnk_004);
         e->mUnk_020 = func_02036bec(a, 0xe0);
         func_0214d1fc(v4 + e->mUnk_004 * 0xe0, e->mUnk_020, 0xe0);

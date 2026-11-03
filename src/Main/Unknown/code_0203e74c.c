@@ -150,7 +150,7 @@ void func_0203eb38(void) {
     u8 *r;
     Unk0217aa1c_144_00 *t;
     u32 h;
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         s = ((Unk0217561c_000 *) ((u8 *) data_0217561c + i * 0x8c))->mUnk_14;
         f = FALSE;
         switch (s) {
@@ -199,7 +199,7 @@ void func_0203eb38(void) {
             }
         }
     }
-    data_0217561c->mUnk_000[0].mUnk_0e = data_021759c0->mUnk_3d0;
+    data_0217561c->mUnk_000[0].mUnk_0e = data_021759c0->mKartCount;
 }
 
 void func_0203ecf0(void) {
@@ -213,7 +213,7 @@ void func_0203ecf0(void) {
     u32 h;
     u = FALSE;
     v = FALSE;
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         s = ((Unk0217561c_000 *) ((u8 *) data_0217561c + i * 0x8c))->mUnk_14;
         f = FALSE;
         switch (s) {
@@ -242,7 +242,7 @@ void func_0203ecf0(void) {
             func_0203e9a0(p, v);
         }
     }
-    data_0217561c->mUnk_000[0].mUnk_0e = data_021759c0->mUnk_3d0;
+    data_0217561c->mUnk_000[0].mUnk_0e = data_021759c0->mKartCount;
 }
 
 void func_0203ee28(void) {
@@ -256,7 +256,7 @@ void func_0203ee28(void) {
     u32 h;
     u = FALSE;
     v = FALSE;
-    for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         s = ((Unk0217561c_000 *) ((u8 *) data_0217561c + i * 0x8c))->mUnk_14;
         f = FALSE;
         switch (s) {
@@ -284,7 +284,7 @@ void func_0203ee28(void) {
             func_0203e9a0(p, v);
         }
     }
-    data_0217561c->mUnk_000[0].mUnk_0e = data_021759c0->mUnk_3d0;
+    data_0217561c->mUnk_000[0].mUnk_0e = data_021759c0->mKartCount;
 }
 
 // non-matching: 0x314 bytes, original 0x328; the original keeps zero constants in r0/r8 and loads data_0217561c after
@@ -301,7 +301,7 @@ s32 func_0203ef58(void) {
     switch (o->mUnk_08) {
         case 0:
             r = TRUE;
-            for (i = 0; i < (u32) o->mUnk_3d0; i++) {
+            for (i = 0; i < (u32) o->mKartCount; i++) {
                 s = o->mUnk_68[i].mUnk_08.mUnk_00;
                 f = 0;
                 if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {
@@ -350,7 +350,7 @@ s32 func_0203ef58(void) {
             } else {
                 q = data_0217561c;
                 s = q->mUnk_000[(u16) v].mUnk_14;
-                f = data_021759c0->mUnk_3d0 - q->mUnk_000[0].mUnk_10;
+                f = data_021759c0->mKartCount - q->mUnk_000[0].mUnk_10;
                 if (f <= 1) {
                     r = FALSE;
                 } else {
@@ -363,9 +363,9 @@ s32 func_0203ef58(void) {
                             break;
                     }
                     if (f != 0) {
-                        r = q->mUnk_000[0].mUnk_0e + q->mUnk_000[0].mUnk_10 >= data_021759c0->mUnk_3d0;
+                        r = q->mUnk_000[0].mUnk_0e + q->mUnk_000[0].mUnk_10 >= data_021759c0->mKartCount;
                     } else {
-                        r = q->mUnk_000[0].mUnk_0e + q->mUnk_000[0].mUnk_10 >= data_021759c0->mUnk_3d0 - 1;
+                        r = q->mUnk_000[0].mUnk_0e + q->mUnk_000[0].mUnk_10 >= data_021759c0->mKartCount - 1;
                     }
                 }
             }
@@ -382,7 +382,7 @@ s32 func_0203ef58(void) {
             break;
         case 2:
             r = TRUE;
-            for (i = 0; i < (u32) o->mUnk_3d0; i++) {
+            for (i = 0; i < (u32) o->mKartCount; i++) {
                 s = o->mUnk_68[i].mUnk_08.mUnk_00;
                 f = 0;
                 if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {

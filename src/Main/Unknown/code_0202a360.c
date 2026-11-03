@@ -30,7 +30,7 @@ u32 func_0202a360(void) {
     Unk0217aa1c_00 *p;
 
     d = data_021759c0;
-    n = d->mUnk_3d0;
+    n = d->mKartCount;
     if (d->mUnk_08 == 0) {
         if (data_0217b488->mUnk_7c < 3) {
             return 0;
@@ -54,7 +54,7 @@ u32 func_0202a360(void) {
             v = (u16) func_02122778(func_ov000_0219bb50());
             break;
     }
-    if (data_021759c0->mUnk_58 != 0) {
+    if (data_021759c0->mUseTeams != 0) {
         v = v * 0x30;
         r6 = *(s32 *) ((u8 *) data_021759c0 + v + 0x74);
         switch (data_021759c0->mUnk_1c) {

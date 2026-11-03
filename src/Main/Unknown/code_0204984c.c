@@ -505,8 +505,8 @@ s32 func_0204a428(s32 a, s32 *b) {
             break;
         case 2:
             if (data_021759c0->mUnk_00c == 6) {
-                if (data_021759c0->mUnk_00 != 0x35) {
-                    if (data_021759c0->mUnk_00 == 0x36) {
+                if (data_021759c0->mCourseId != 0x35) {
+                    if (data_021759c0->mCourseId == 0x36) {
                         *b = 0x46;
                     }
                 } else {

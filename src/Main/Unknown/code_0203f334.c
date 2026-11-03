@@ -390,7 +390,7 @@ void func_0203fed4(void) {
             t = 1;
         }
         p->mUnk_000[0].mUnk_00 = e;
-        for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
+        for (i = 0; i < data_021759c0->mKartCount; i++) {
             if ((u32) data_0217561c->mUnk_000[i].mUnk_18 <= 0x57e40) {
                 data_0217561c->mUnk_000[i].mUnk_18++;
             }

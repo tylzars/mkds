@@ -69,7 +69,7 @@ void func_020c5940(void) {
         case 3:
         case 5:
             data_0217b3f0->mUnk_08 = func_0203c8dc(func_020b4d9c()) - 1;
-            for (i = 0; i < (u32) data_021759c0->mUnk_3d0; i++) {
+            for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
                 if (func_0203c8dc(i) == 1) {
                     break;
                 }

@@ -174,10 +174,10 @@ void InitRaceStartGp(void) {
     w.mUnk_08 = 1;
     w.mUnk_0c = 0;
     if (data_021759c0->mUnk_08 == 0) {
-        s = func_02025d8c(data_021759c0->mUnk_00);
+        s = func_02025d8c(data_021759c0->mCourseId);
         w.mUnk_08 = func_020b4b10();
     } else if (data_021759c0->mUnk_08 == 4) {
-        s = (data_021759c0->mUnk_08 == 4 ? data_021759c0->mUnk_54 : s) + 0x55;
+        s = (data_021759c0->mUnk_08 == 4 ? data_021759c0->mMissionTableRow : s) + 0x55;
         w.mUnk_08 = func_020b4b54();
     }
     func_02024340(&w, 0, 9, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));

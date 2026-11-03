@@ -18,7 +18,7 @@ void func_02029908(u32 p0) {
 }
 
 void func_020298f4(u32 p0) {
-    data_021759c0->mUnk_1e8.mUnk_00 = p0;
+    data_021759c0->mUnk_1e8.mCourseId = p0;
 }
 
 void func_020298e0(u32 p0) {
@@ -30,7 +30,7 @@ void func_020298cc(u32 p0) {
 }
 
 void func_020298b8(u32 p0) {
-    data_021759c0->mUnk_1e8.mUnk_58 = (u8) p0;
+    data_021759c0->mUnk_1e8.mUseTeams = (u8) p0;
 }
 
 void func_020298a4(u32 p0) {
@@ -38,5 +38,5 @@ void func_020298a4(u32 p0) {
 }
 
 void func_02029890(u32 p0) {
-    data_021759c0->mUnk_1e8.mUnk_20 = p0;
+    data_021759c0->mUnk_1e8.mCourseListMode = p0;
 }

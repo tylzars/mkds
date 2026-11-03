@@ -36,9 +36,9 @@ void func_0203c2e4(u16 a) {
         u32 v;
         s32 i;
         o = p->mUnk_3c_0;
-        v = (u16) (data_021759c0->mUnk_3d0 - data_0217561c->mUnk_000[0].mUnk_10);
-        p->mUnk_3c_0 = data_021759c0->mUnk_3d0 - data_0217561c->mUnk_000[0].mUnk_10;
-        for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
+        v = (u16) (data_021759c0->mKartCount - data_0217561c->mUnk_000[0].mUnk_10);
+        p->mUnk_3c_0 = data_021759c0->mKartCount - data_0217561c->mUnk_000[0].mUnk_10;
+        for (i = 0; i < data_021759c0->mKartCount; i++) {
             Unk0217561c_14 *q = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + i * 0x8c);
             if (i != a) {
                 u32 m = q->mUnk_3c_0;
@@ -84,9 +84,9 @@ u16 func_0203c4d0(u8 a) {
                 break;
             case 3: {
                 u16 k = 1;
-                if (data_021759c0->mUnk_58 != 0) {
-                    if (data_021759c0->mUnk_3d0 > 3) {
-                        if (data_021759c0->mUnk_3d2[0] <= 1 || data_021759c0->mUnk_3d2[1] <= 1) {
+                if (data_021759c0->mUseTeams != 0) {
+                    if (data_021759c0->mKartCount > 3) {
+                        if (data_021759c0->mTeamKartCounts[0] <= 1 || data_021759c0->mTeamKartCounts[1] <= 1) {
                             k = 8;
                         } else {
                             k = 0xf;
@@ -95,11 +95,11 @@ u16 func_0203c4d0(u8 a) {
                         k = 8;
                     }
                 }
-                r = k + 8 - data_021759c0->mUnk_3d0;
+                r = k + 8 - data_021759c0->mKartCount;
                 break;
             }
             case 5:
-                r = 9 - data_021759c0->mUnk_3d0;
+                r = 9 - data_021759c0->mKartCount;
                 break;
         }
         r = (t + r + 1)->mUnk_00[a - 1];

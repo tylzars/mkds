@@ -36,7 +36,7 @@ void func_020fc94c(Unk020fc2e8 *p) {
         p->mUnk_276 = data_0217561c->mUnk_474[(p->mUnk_274 & 0xff) - 1];
     } else {
         p->mUnk_276 = data_0217561c->mUnk_474[(p->mUnk_274 & 0xff) - 1];
-        while (func_0203c880(p->mUnk_276) != 0 && (u32) p->mUnk_274 < (u32) data_021759c0->mUnk_3d0) {
+        while (func_0203c880(p->mUnk_276) != 0 && (u32) p->mUnk_274 < (u32) data_021759c0->mKartCount) {
             p->mUnk_274++;
             p->mUnk_276 = data_0217561c->mUnk_474[(p->mUnk_274 & 0xff) - 1];
         }

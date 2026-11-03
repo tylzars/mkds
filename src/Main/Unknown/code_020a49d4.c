@@ -418,7 +418,7 @@ void func_020a49d4(Unk020a3fa8 *a) {
 
     if (func_020d3bf8(0x6c) == 0) {
         d = data_021759c0;
-        n = d->mUnk_3d0;
+        n = d->mKartCount;
         if (d->mUnk_08 == 2) {
             func_020ac588(0x6c, 0x20, a);
         } else {
@@ -429,7 +429,7 @@ void func_020a49d4(Unk020a3fa8 *a) {
             if (a->mUnk_000.mUnk_9c->mUnk_2c != 0) {
                 p->mUnk_30 = a->mUnk_000.mUnk_9c->mUnk_2c;
             } else {
-                switch (data_021759c0->mUnk_68[(u16) i].mUnk_08.mUnk_04) {
+                switch (data_021759c0->mUnk_68[(u16) i].mUnk_08.mTeamIndex) {
                     case 0:
                         p->mUnk_30 = 1;
                         break;

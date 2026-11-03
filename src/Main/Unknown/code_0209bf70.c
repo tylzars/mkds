@@ -239,7 +239,7 @@ void func_0209c220(Unk02100094 *a, Unk0209c220 *p) {
     } else {
         p->mUnk_000.mUnk_1c.x = p->mUnk_0b4;
     }
-    n = data_021759c0->mUnk_3d0;
+    n = data_021759c0->mKartCount;
     for (i = 0; i < n; i++) {
         if (p->mUnk_120[i] > 0) {
             p->mUnk_120[i] -= 1;
@@ -507,7 +507,7 @@ void func_0209cf10(void) {
 static inline BOOL func_0209cf34_inline(void) {
     s32 i;
 
-    for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < data_021759c0->mKartCount; i++) {
         if ((s32) func_0203c8c0((u16) i) >= 2) {
             return TRUE;
         }
@@ -522,7 +522,7 @@ static inline BOOL func_0209cf34_inline_b(Unk0209cf34 *p) {
     s32 x;
     s32 z;
 
-    for (i = 0; i < data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; i < data_021759c0->mKartCount; i++) {
         k = func_0207a974((u16) i);
         q = &k->mUnk_80;
         x = q->x - p->mUnk_000.mUnk_04.x;

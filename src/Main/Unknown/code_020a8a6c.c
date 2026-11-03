@@ -33,7 +33,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
     }
     for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
         if (func_02062ec4() != 0) {
-            switch (data_021759c0->mUnk_00) {
+            switch (data_021759c0->mCourseId) {
                 case 0x14:
                     p->mUnk_0f0 = 4;
                     q = p->mUnk_000.mUnk_9c;
@@ -89,7 +89,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     break;
             }
         } else {
-            switch (data_021759c0->mUnk_00) {
+            switch (data_021759c0->mCourseId) {
                 case 0x14:
                     p->mUnk_0f0 = 1;
                     p->mUnk_0a0.mUnk_00.mUnk_00 = 0x108;
@@ -152,8 +152,8 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0c8.mUnk_10.x = x5;
                     p->mUnk_0c8.mUnk_10.y = y5;
                     p->mUnk_0c8.mUnk_10.z = z5;
-                    func_02147fd8((s32) (((s64) p->mUnk_000.mUnk_1c.z * -0x5000) >> 12), &p->mUnk_000.mUnk_28.mUnk_00[2],
-                                  &p->mUnk_0c8.mUnk_10, &p->mUnk_0c8.mUnk_10);
+                    func_02147fd8((s32) (((s64) p->mUnk_000.mUnk_1c.z * -0x5000) >> 12),
+                                  &p->mUnk_000.mUnk_28.mUnk_00[2], &p->mUnk_0c8.mUnk_10, &p->mUnk_0c8.mUnk_10);
                     break;
                 default:
                     if ((p->mUnk_000.mUnk_02 & 0x100) == 0) {

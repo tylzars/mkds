@@ -76,11 +76,11 @@ void func_02056750(s32 a, u16 b) {
     p->mUnk_04_16 = t[0];
     p->mUnk_04_23 = t[1];
     p->mUnk_04_27 = t[2];
-    w = data_021759c0->mUnk_68[b].mUnk_00;
+    w = data_021759c0->mUnk_68[b].mCharacterIndex;
     p->mUnk_04_0 = (u8) w;
-    w = data_021759c0->mUnk_68[b].mUnk_04;
+    w = data_021759c0->mUnk_68[b].mKartIndex;
     p->mUnk_04_4 = (u8) w;
-    w = data_021759c0->mUnk_00;
+    w = data_021759c0->mCourseId;
     p->mUnk_04_10 = (u8) w;
     p->mUnk_08_0 = 1;
     p->mUnk_08_1 = 0;

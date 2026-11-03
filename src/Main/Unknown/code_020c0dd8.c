@@ -39,7 +39,7 @@ void func_020c1060(void) {
     x2 = FALSE;
     x3 = 0;
     {
-        for (i = 0; (u32) i < (u32) data_021759c0->mUnk_3d0; i++) {
+        for (i = 0; (u32) i < (u32) data_021759c0->mKartCount; i++) {
             if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
                 v = x0;
                 if ((u32) data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 <= 3 &&
@@ -70,14 +70,14 @@ void func_020c1060(void) {
             }
         }
     }
-    for (i = 0; (u32) i < (u32) data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; (u32) i < (u32) data_021759c0->mKartCount; i++) {
         gRaceGoalS->mUnk_0040[i] = i;
         a[i] = a[i] * neg;
     }
-    func_020ae770(gRaceGoalS->mUnk_0040, a, data_021759c0->mUnk_3d0);
-    for (k = 0; (u32) k < (u32) data_021759c0->mUnk_3d0; k++) {
+    func_020ae770(gRaceGoalS->mUnk_0040, a, data_021759c0->mKartCount);
+    for (k = 0; (u32) k < (u32) data_021759c0->mKartCount; k++) {
         {
-            for (j = 0; (u32) j < (u32) data_021759c0->mUnk_3d0; j++) {
+            for (j = 0; (u32) j < (u32) data_021759c0->mKartCount; j++) {
                 if (k == gRaceGoalS->mUnk_0040[j]) {
                     m = j;
                     func_0205d76c(k, (j + 1) & 0xff);
@@ -85,7 +85,7 @@ void func_020c1060(void) {
                     break;
                 }
             }
-            for (i = 0; (u32) i < (u32) data_021759c0->mUnk_3d0; i++) {
+            for (i = 0; (u32) i < (u32) data_021759c0->mKartCount; i++) {
                 if (k == gRaceGoalS->mUnk_0060[i]) {
                     n = i;
                     break;
@@ -149,7 +149,7 @@ void func_020c0dd8(void) {
     s32 b;
 
     if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
-        if (data_021759c0->mUnk_58 != 0) {
+        if (data_021759c0->mUseTeams != 0) {
             a = func_020c0dd8_inline(0)->mUnk_02;
             b = func_020c0dd8_inline(1)->mUnk_02;
             if (a <= b) {

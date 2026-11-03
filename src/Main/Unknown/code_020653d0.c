@@ -256,7 +256,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
                 p->mUnk_514->mUnk_2c ^= 0x4000;
             }
         } else {
-            for (; i < (u32) data_021759c0->mUnk_3d0; i++) {
+            for (; i < (u32) data_021759c0->mKartCount; i++) {
                 if (i != p->mUnk_74) {
                     func_0206a624(func_0207a974(i));
                 }

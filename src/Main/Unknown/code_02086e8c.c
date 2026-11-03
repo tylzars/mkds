@@ -74,14 +74,14 @@ void func_02087000(void) {
     char *s;
     u8 *q;
     u8 *r;
-    for (i = 0; (u32) i < data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
         data_0217aed0->mUnk_144[i] = NULL;
         data_0217aed0->mUnk_164[i] = NULL;
-        if (data_021759c0->mUnk_68[i].mUnk_08.mUnk_24 == 0 || data_021759c0->mUnk_58 != 0) {
-            if (data_021759c0->mUnk_58 != 0) {
-                s = BuildTeamEmblemNsbtxPath(data_021759c0->mUnk_68[i].mUnk_08.mUnk_04 == 1 ? 1 : 0);
+        if (data_021759c0->mUnk_68[i].mUnk_08.mUnk_24 == 0 || data_021759c0->mUseTeams != 0) {
+            if (data_021759c0->mUseTeams != 0) {
+                s = BuildTeamEmblemNsbtxPath(data_021759c0->mUnk_68[i].mUnk_08.mTeamIndex == 1 ? 1 : 0);
             } else {
-                s = BuildEmblemNsbtxPath((u16) data_021759c0->mUnk_68[i].mUnk_00);
+                s = BuildEmblemNsbtxPath((u16) data_021759c0->mUnk_68[i].mCharacterIndex);
             }
             p = func_020136f0(func_02047950(s));
             q = p + *(u32 *) (p + 0x38);
@@ -89,7 +89,7 @@ void func_02087000(void) {
             data_0217aed0->mUnk_144[i] = r;
             data_0217aed0->mUnk_164[i] = q;
         } else {
-            r = (void *) data_021759c0->mUnk_68[i].mUnk_08.mUnk_1c;
+            r = (void *) data_021759c0->mUnk_68[i].mUnk_08.mEmblemData;
             LoadNclrData(&o, func_02047950(gEmblemSBNclrName));
             q = (u8 *) o->mUnk_0c;
             data_0217aed0->mUnk_144[i] = r;
@@ -100,7 +100,7 @@ void func_02087000(void) {
 
 void func_02086fac(void) {
     u16 i;
-    for (i = 0; (u32) i < data_021759c0->mUnk_3d0; i++) {
+    for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
         func_02086f24(i, data_0217aed0->mUnk_144[i], data_0217aed0->mUnk_164[i]);
     }
 }
