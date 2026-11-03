@@ -43,10 +43,9 @@ void func_02048324(u32 a) {
     func_0200d9e0((char *) a, 0x80, data_021650bc, v1, (u32) &data_021650d8);
 }
 
-void func_020482f0(u32 a, u8 *b, int c) {
+void func_020482f0(u32 a, const char *b, int c) {
     if (*b != 0) {
-        func_0200d9e0((char *) a, 0x80, data_021650a0, b, ((u32 *) &data_02164d28)[c],
-                      (u32) &data_021650b4);
+        func_0200d9e0((char *) a, 0x80, data_021650a0, b, ((u32 *) &data_02164d28)[c], (u32) &data_021650b4);
     }
 }
 
@@ -54,8 +53,7 @@ void func_020482ac(int a, u8 *b, int c) {
     u32 v1;
     if (*b != 0) {
         v1 = func_02048474();
-        func_0200d9e0((char *) a, 0x80, data_02165080, b, ((u32 *) &data_02164d28)[c], v1,
-                      (u32) &data_02165098);
+        func_0200d9e0((char *) a, 0x80, data_02165080, b, ((u32 *) &data_02164d28)[c], v1, (u32) &data_02165098);
     }
 }
 

@@ -6,7 +6,7 @@ typedef struct Unk0206bcb0 Unk0206bcb0;
 
 // Objects whose layout isn't known yet.
 extern const u8 data_usa_0215470c[];
-extern u8 data_0215472c[];
+extern void *data_0215472c[];
 extern u8 data_02154768[];
 extern const u8 data_usa_02154064[];
 extern const u8 data_02154788[];

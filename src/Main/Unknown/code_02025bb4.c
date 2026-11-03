@@ -27,17 +27,17 @@ void func_02025c48(u32 a, u32 b, Unk0201ea30 *c) {
     *(u32 *) (v1 + 4) = *(u32 *) (v2 + 4);
 }
 
-void func_02025c1c(u32 a, int b, u32 c) {
+void func_02025c1c(u32 a, int b, void *c) {
     short *v1;
-    v1 = func_0201ea30((Unk0201ea30 *) c, a);
+    v1 = func_0201ea30(c, a);
     *(u32 *) (b + 8) = 1;
     *(s16 *) (b + 0xc) = ((*v1 << 0x14) >> 0x14);
     *(s16 *) (b + 0xe) = ((v1[1] << 0x14) >> 0x14);
 }
 
-void func_02025bf0(u32 a, int b, u32 c) {
+void func_02025bf0(u32 a, int b, void *c) {
     short *v1;
-    v1 = func_0201ea58((Unk0201ea30 *) c, a);
+    v1 = func_0201ea58(c, a);
     *(u32 *) (b + 8) = 1;
     *(s16 *) (b + 0xc) = ((*v1 << 0x14) >> 0x14);
     *(s16 *) (b + 0xe) = ((v1[1] << 0x14) >> 0x14);

@@ -4,9 +4,9 @@
 
 // Objects whose layout isn't known yet.
 extern const u32 data_usa_02155018[];
-extern u8 data_02155048[];
-extern u8 data_02155098[];
-extern u8 data_021550a8[];
+extern u32 data_02155048[];
+extern u32 data_02155098[];
+extern u32 data_021550a8[];
 extern const u32 data_usa_02155068[];
 extern const Vec3 data_usa_02155188;
 struct Vec4;

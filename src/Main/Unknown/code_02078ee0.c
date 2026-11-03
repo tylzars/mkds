@@ -28,22 +28,22 @@ void func_02078f18(void *a, int b) {
     *(u32 *) (b + 8) = v1;
 }
 
-void func_02078ee0(u32 *a, int b) {
+void func_02078ee0(Unk0217ad08_024 *a, int b) {
     u32 v1;
     v1 = 0;
-    *a = 0xffffffff;
-    a[1] = 0xffffffff;
-    a[2] = ((u32) 0x00001000u);
-    *(u16 *) ((s32) a + 0x16) = (0x0000eaabu);
-    *(u16 *) (a + 5) = *(u16 *) ((s32) a + 0x16);
-    *(u16 *) (a + 6) = 0;
-    a[3] = 0;
-    a[4] = 0xffffff88;
+    a->mUnk_00 = 0xffffffff;
+    a->mUnk_04 = 0xffffffff;
+    a->mUnk_08 = 0x1000;
+    a->mUnk_16 = 0xeaab;
+    a->mUnk_14 = a->mUnk_16;
+    a->mUnk_18 = 0;
+    a->mUnk_0c = 0;
+    a->mUnk_10 = 0xffffff88;
     if (b != 0) {
         v1 = 0xffffff06;
     }
-    a[0xb] = v1;
-    a[0xc] = 0;
+    a->mUnk_2c = v1;
+    a->mUnk_30 = 0;
 }
 
 #pragma thumb off

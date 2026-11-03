@@ -204,7 +204,13 @@ typedef struct Unk021759c8 {
             /* d8 */ s32 mUnk_d8;
             /* 0dc */ u8 mUnk_0dc[0x6c];
             /* 148 */ s32 mUnk_148;
-            /* 14c */ u8 mUnk_14c[0x30c];
+            /* 14c */ u8 mUnk_14c[0x1bc];
+            /* 308 */ s32 mUnk_308;
+            /* 30c */ u8 mUnk_30c[0x6c];
+            /* 378 */ s32 mUnk_378;
+            /* 37c */ u8 mUnk_37c[0x6c];
+            /* 3e8 */ s32 mUnk_3e8;
+            /* 3ec */ u8 mUnk_3ec[0x6c];
             /* 458 */ s32 mUnk_458;
             /* 45c */ u8 mUnk_45c[0xdc];
             /* 538 */ s32 mUnk_538;

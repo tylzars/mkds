@@ -139,13 +139,13 @@ void *FindKartModelFile(const char *path) {
     if (((v1 == 1) || (v1 == 3)) || (v1 == 0xc)) {
         file = FindArchiveFile(gArchiveNames[10], path);
     } else {
-        if (*(s32 *) ((u8 *) data_021759c8 + 0x308) != 0) {
+        if (data_021759c8->mUnk_308 != 0) {
             file = FindArchiveFile(gArchiveNames[6], path);
         }
-        if ((file == 0) && (*(s32 *) ((u8 *) data_021759c8 + 0x378) != 0)) {
+        if ((file == 0) && (data_021759c8->mUnk_378 != 0)) {
             file = FindArchiveFile(gArchiveNames[7], path);
         }
-        if ((file == 0) && (*(s32 *) ((u8 *) data_021759c8 + 0x3e8) != 0)) {
+        if ((file == 0) && (data_021759c8->mUnk_3e8 != 0)) {
             file = FindArchiveFile(gArchiveNames[8], path);
         }
     }

@@ -229,12 +229,12 @@ void func_020357dc(void *a, void *b, void *c) {
         y = t[0];
         z = data_02164470[j + 7][0];
         g = s->mUnk_18;
-        func_02025c1c(x, (int) ((u8 *) g + (x << 6)), (u32) s->mUnk_0c);
-        func_02025bf0(y, (int) ((u8 *) g + (y << 6) + (m << 6)), (u32) s->mUnk_14);
-        func_02025bf0(z, (int) ((u8 *) g + (z << 6) + (m << 6)), (u32) s->mUnk_14);
+        func_02025c1c(x, (int) ((u8 *) g + (x << 6)), s->mUnk_0c);
+        func_02025bf0(y, (int) ((u8 *) g + (y << 6) + (m << 6)), s->mUnk_14);
+        func_02025bf0(z, (int) ((u8 *) g + (z << 6) + (m << 6)), s->mUnk_14);
         t += 4;
     }
-    func_02025c1c(7, (int) ((u8 *) s->mUnk_18 + 0x1c0), (u32) s->mUnk_0c);
+    func_02025c1c(7, (int) ((u8 *) s->mUnk_18 + 0x1c0), s->mUnk_0c);
     w[0] = 0;
     w[1] = m;
     w[2] = m + 7;

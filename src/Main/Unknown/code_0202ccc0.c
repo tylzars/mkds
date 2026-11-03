@@ -54,7 +54,7 @@
 
 void func_0202d868(s32 a, s32 b, s32 c, s32 d) {
     Unk0202de00_g t;
-    u16 s[10];
+    s16 s[10];
     Unk02174e14_00 *p;
     s32 i;
     s32 j;
@@ -64,7 +64,7 @@ void func_0202d868(s32 a, s32 b, s32 c, s32 d) {
         func_0212426c(1, b, p->mUnk_14, GetBmgEntry(data_02174e40->mUnk_0ac, func_02025d74(func_0202db04(c))),
                       p->mUnk_0c, p->mUnk_18);
         func_0202dcf4(c, &t);
-        func_02025cd0((short *) s, t.mUnk_02, t.mUnk_03, t.mUnk_00);
+        func_02025cd0(s, t.mUnk_02, t.mUnk_03, t.mUnk_00);
         func_02124224(1, b + 7, p->mUnk_14, s, p->mUnk_0c, p->mUnk_18, 7);
         j = func_0202dd80(c) == 0;
         p->mUnk_18[b].mUnk_00 = j;
@@ -269,10 +269,10 @@ void func_0202d210(void *a, void *b, void *c) {
         j = data_usa_02162c74[i][3];
         k = data_usa_02162c74[i][0];
         u = q->mUnk_18;
-        func_02025c1c(j, (int) &u[j], (u32) q->mUnk_0c);
-        func_02025bf0(k, (int) (u + w + k), (u32) q->mUnk_14);
+        func_02025c1c(j, (int) &u[j], q->mUnk_0c);
+        func_02025bf0(k, (int) (u + w + k), q->mUnk_14);
     }
-    func_02025c1c(0xe, (int) ((u8 *) q->mUnk_18 + 0x380), (u32) q->mUnk_0c);
+    func_02025c1c(0xe, (int) ((u8 *) q->mUnk_18 + 0x380), q->mUnk_0c);
     if (func_0202ddc4() != 0) {
         Unk02174e40_24 *s = &data_02174e40->mUnk_024;
         r[0] = 0;

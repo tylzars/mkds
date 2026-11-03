@@ -227,7 +227,7 @@ void func_020ad344(void) {
 
 void func_020ad32c(void) {
     func_02125da0();
-    *(u32 *) &data_0217b340 = 0;
+    data_0217b340 = NULL;
 }
 
 #pragma thumb off

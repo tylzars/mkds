@@ -21,7 +21,7 @@ static inline u32 func_02008570_inline(u8 *a) {
     return b;
 }
 
-int func_02008570(u8 *param_1, int param_2, u32 param_3) {
+int func_02008570(u8 *param_1, void *param_2, u32 param_3) {
     Unk02003024 *v1;
     u8 *v2;
     u8 *v3;
@@ -38,7 +38,7 @@ int func_02008570(u8 *param_1, int param_2, u32 param_3) {
     u32 v14[4];
     s8 *p;
     v1 = (Unk02003024 *) param_1;
-    v2 = (u8 *) param_2;
+    v2 = param_2;
     v11 = FALSE;
     if (param_3 >= 0x164) {
         v12 = FALSE;

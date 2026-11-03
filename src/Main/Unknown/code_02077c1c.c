@@ -77,7 +77,7 @@ void func_02077c1c(void) {
                 return;
             }
             func_02079038(q->mUnk_14, p->mUnk_18, p->mUnk_1c);
-            func_0207851c((s32) data_0217ad08->mUnk_020);
+            func_0207851c(data_0217ad08->mUnk_020);
             func_0207940c(q->mUnk_14, q->mUnk_04, data_0217ad08->mUnk_1d0);
             func_020792c8((struct Unk0206bcb0_590 *) q, 1);
             p->mUnk_2c = 0;
