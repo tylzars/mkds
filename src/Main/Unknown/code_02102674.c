@@ -162,10 +162,10 @@ void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t) {
         d = -d;
     }
     d = 0x1000 - (s32) (((s64) d * 0xa4) >> 12);
-    s.mUnk_0c.x = (s32) (((s64) s.mUnk_0c.x * d) >> 12);
-    s.mUnk_0c.y = (s32) (((s64) s.mUnk_0c.y * d) >> 12);
-    s.mUnk_0c.z = (s32) (((s64) s.mUnk_0c.z * d) >> 12);
-    func_02147fd8(p->mUnk_19c, &s.mUnk_00, &s.mUnk_0c, &s.mUnk_0c);
+    s.mUnk_00[1].x = (s32) (((s64) s.mUnk_00[1].x * d) >> 12);
+    s.mUnk_00[1].y = (s32) (((s64) s.mUnk_00[1].y * d) >> 12);
+    s.mUnk_00[1].z = (s32) (((s64) s.mUnk_00[1].z * d) >> 12);
+    func_02147fd8(p->mUnk_19c, &s.mUnk_00[0], &s.mUnk_00[1], &s.mUnk_00[1]);
     w.x = (s32) (((s64) p->mUnk_180 * p->mUnk_000.mUnk_68.x) >> 12);
     w.y = (s32) (((s64) p->mUnk_184.x * p->mUnk_000.mUnk_68.y) >> 12);
     w.z = p->mUnk_000.mUnk_68.z;

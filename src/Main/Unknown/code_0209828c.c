@@ -277,9 +277,9 @@ void func_02098b68(void *a, Unk020983c4 *p) {
     s32 t;
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
-    p->mUnk_000.mUnk_28.mUnk_24.x = p->mUnk_000.mUnk_04.x >> 4;
-    p->mUnk_000.mUnk_28.mUnk_24.y = p->mUnk_000.mUnk_04.y >> 4;
-    p->mUnk_000.mUnk_28.mUnk_24.z = p->mUnk_000.mUnk_04.z >> 4;
+    p->mUnk_000.mUnk_28.mUnk_00[3].x = p->mUnk_000.mUnk_04.x >> 4;
+    p->mUnk_000.mUnk_28.mUnk_00[3].y = p->mUnk_000.mUnk_04.y >> 4;
+    p->mUnk_000.mUnk_28.mUnk_00[3].z = p->mUnk_000.mUnk_04.z >> 4;
     func_01ff9048(0x19, &p->mUnk_000.mUnk_28, 12);
     f[1] = p->mUnk_1f8 >> 4;
     f[0] = 0;

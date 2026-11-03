@@ -207,24 +207,24 @@ void func_020d9e60(Unk020d9cf4 *a, struct Unk02012f58 *b) {
     }
     if (a->mUnk_54 != 0) {
         if (a->mUnk_60 != NULL) {
-            a->mUnk_140.mUnk_24.x = a->mUnk_00 >> 4;
-            a->mUnk_140.mUnk_24.y = a->mUnk_04 >> 4;
-            a->mUnk_140.mUnk_24.z = a->mUnk_08 >> 4;
+            a->mUnk_140.mUnk_00[3].x = a->mUnk_00 >> 4;
+            a->mUnk_140.mUnk_00[3].y = a->mUnk_04 >> 4;
+            a->mUnk_140.mUnk_00[3].z = a->mUnk_08 >> 4;
             func_020849f8(&a->mUnk_68, &a->mUnk_140, NULL);
         }
-        a->mUnk_140.mUnk_24.x = a->mUnk_0c >> 4;
-        a->mUnk_140.mUnk_24.y = a->mUnk_10 >> 4;
-        a->mUnk_140.mUnk_24.z = a->mUnk_14 >> 4;
+        a->mUnk_140.mUnk_00[3].x = a->mUnk_0c >> 4;
+        a->mUnk_140.mUnk_00[3].y = a->mUnk_10 >> 4;
+        a->mUnk_140.mUnk_00[3].z = a->mUnk_14 >> 4;
         func_020849f8(&a->mUnk_d4, &a->mUnk_140, NULL);
     } else {
-        a->mUnk_140.mUnk_24.x = a->mUnk_0c >> 4;
-        a->mUnk_140.mUnk_24.y = a->mUnk_10 >> 4;
-        a->mUnk_140.mUnk_24.z = a->mUnk_14 >> 4;
+        a->mUnk_140.mUnk_00[3].x = a->mUnk_0c >> 4;
+        a->mUnk_140.mUnk_00[3].y = a->mUnk_10 >> 4;
+        a->mUnk_140.mUnk_00[3].z = a->mUnk_14 >> 4;
         func_020849f8(&a->mUnk_d4, &a->mUnk_140, NULL);
         if (a->mUnk_60 != NULL) {
-            a->mUnk_140.mUnk_24.x = a->mUnk_00 >> 4;
-            a->mUnk_140.mUnk_24.y = a->mUnk_04 >> 4;
-            a->mUnk_140.mUnk_24.z = a->mUnk_08 >> 4;
+            a->mUnk_140.mUnk_00[3].x = a->mUnk_00 >> 4;
+            a->mUnk_140.mUnk_00[3].y = a->mUnk_04 >> 4;
+            a->mUnk_140.mUnk_00[3].z = a->mUnk_08 >> 4;
             func_020849f8(&a->mUnk_68, &a->mUnk_140, NULL);
         }
     }

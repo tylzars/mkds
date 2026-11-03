@@ -225,7 +225,7 @@ void func_0209d694(Vec3 *a, Vec3 *b) {
     p->mUnk_a0 = 0x1c2;
     p->mUnk_a8 = *a;
     p->mUnk_00.mUnk_04 = p->mUnk_a8;
-    p->mUnk_00.mUnk_28.mUnk_18 = *b;
+    p->mUnk_00.mUnk_28.mUnk_00[2] = *b;
     p->mUnk_00.mUnk_10.x = ((s64) b->x * 0x2000) >> 12;
     p->mUnk_00.mUnk_10.y = ((s64) b->y * 0x2000) >> 12;
     p->mUnk_00.mUnk_10.z = ((s64) b->z * 0x2000) >> 12;

@@ -31,7 +31,7 @@ void func_020de184(Unk020de000 *o) {
     Vec3 w;
 
     p = o->mUnk_a0;
-    func_02147fd8(-p->mUnk_f0, &p->mUnk_00.mUnk_28.mUnk_18, &p->mUnk_00.mUnk_04, &w);
+    func_02147fd8(-p->mUnk_f0, &p->mUnk_00.mUnk_28.mUnk_00[2], &p->mUnk_00.mUnk_04, &w);
     v = p->mUnk_a0;
     v.y -= p->mUnk_f0 >> 1;
     func_020dd8b0(&o->mUnk_a4, &v, &w);

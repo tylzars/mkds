@@ -65,8 +65,8 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
                   data_0215d4b4[(((u16) (data_usa_021656dc + param_2->mUnk_1a)) >> 4) * 2 + 1]);
     func_02146dfc(m1, m2, m1);
     if (param_1->mUnk_20 != NULL) {
-        func_02146ce0(m1, &m3.mUnk_00.x);
-        m3.mUnk_24 = t;
+        func_02146ce0(m1, &m3.mUnk_00[0].x);
+        m3.mUnk_00[3] = t;
         func_02147914(&m3, &m3, v.x, v.y, v.z);
     } else {
         func_021471bc(&m3);

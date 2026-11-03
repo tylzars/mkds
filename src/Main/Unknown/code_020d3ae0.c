@@ -735,10 +735,10 @@ BOOL func_020d3e34(Vec3 *a, s32 b, Unk020e71a0 *c, Vec3 *d) {
             func_020eb2a0(a, &c->mUnk_04, t, u, d);
             return TRUE;
         case 3:
-            return func_020ead80(a, &c->mUnk_04, &c->mUnk_28.mUnk_00, c->mUnk_58.x, c->mUnk_58.y, c->mUnk_58.y, b, d) !=
+            return func_020ead80(a, &c->mUnk_04, &c->mUnk_28.mUnk_00[0], c->mUnk_58.x, c->mUnk_58.y, c->mUnk_58.y, b, d) !=
                    0;
         case 4:
-            return func_020eafc4(a, &c->mUnk_04, &c->mUnk_28.mUnk_00, &c->mUnk_58, &c->mUnk_58, b, d) != 0;
+            return func_020eafc4(a, &c->mUnk_04, &c->mUnk_28.mUnk_00[0], &c->mUnk_58, &c->mUnk_58, b, d) != 0;
         case 0:
             return FALSE;
         case 5:

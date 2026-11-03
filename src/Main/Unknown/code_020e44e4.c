@@ -93,14 +93,14 @@ void func_020e44e4(u32 a, Unk020e43a8 *p) {
     if (d < -0x8000) {
         d += 0x10000;
     }
-    p->mUnk_124 = (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_0c.x * d) >> 12);
-    p->mUnk_128 = (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_0c.y * d) >> 12);
-    p->mUnk_12c = (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_0c.z * d) >> 12);
+    p->mUnk_124 = (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_00[1].x * d) >> 12);
+    p->mUnk_128 = (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_00[1].y * d) >> 12);
+    p->mUnk_12c = (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_00[1].z * d) >> 12);
     p->mUnk_a0 = *(Unk020e43a8_28 *) &p->mUnk_00.mUnk_28;
     func_02146d44((s32 *) &p->mUnk_00.mUnk_28, data_0215d4b4[(p->mUnk_00.mUnk_7e >> 4) * 2],
                   data_0215d4b4[(p->mUnk_00.mUnk_7e >> 4) * 2 + 1]);
     func_02146dfc((const s32 *) &p->mUnk_00.mUnk_28, (const s32 *) &p->mUnk_c4, (s32 *) &p->mUnk_00.mUnk_28);
-    func_02147fd8(-p->mUnk_104, &p->mUnk_00.mUnk_28.mUnk_0c, &p->mUnk_00.mUnk_04, &p->mUnk_f4);
+    func_02147fd8(-p->mUnk_104, &p->mUnk_00.mUnk_28.mUnk_00[1], &p->mUnk_00.mUnk_04, &p->mUnk_f4);
     if (p->mUnk_00.mUnk_80.mUnk_0e == 3) {
         return;
     }

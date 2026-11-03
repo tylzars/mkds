@@ -9,9 +9,7 @@
 // number of entries of the first table at 0x10.
 typedef struct Unk0208a69c {
     /* 00 */ Unk02084b2c *mUnk_00;
-    /* 04 */ Unk02087d0c *mUnk_04;
-    /* 08 */ Unk02087d0c *mUnk_08;
-    /* 0c */ Unk02087d0c *mUnk_0c;
+    /* 04 */ Unk02087d0c *mUnk_04[3];
     /* 10 */ u16 mUnk_10;
 } Unk0208a69c;
 

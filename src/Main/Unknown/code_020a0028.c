@@ -24,9 +24,9 @@ void func_020a018c(void *a, Unk020a018c *p) {
     w.x = 0;
     w.z = 0;
     func_01ff9048(0x1c, &w, 3);
-    p->mUnk_00.mUnk_28.mUnk_24.x = p->mUnk_00.mUnk_04.x >> 4;
-    p->mUnk_00.mUnk_28.mUnk_24.y = p->mUnk_00.mUnk_04.y >> 4;
-    p->mUnk_00.mUnk_28.mUnk_24.z = p->mUnk_00.mUnk_04.z >> 4;
+    p->mUnk_00.mUnk_28.mUnk_00[3].x = p->mUnk_00.mUnk_04.x >> 4;
+    p->mUnk_00.mUnk_28.mUnk_00[3].y = p->mUnk_00.mUnk_04.y >> 4;
+    p->mUnk_00.mUnk_28.mUnk_00[3].z = p->mUnk_00.mUnk_04.z >> 4;
     func_01ff9048(0x19, &p->mUnk_00.mUnk_28, 0xc);
     if (p->mUnk_00.mUnk_7e != 0) {
         func_02146d44(q, data_0215d4b4[((p->mUnk_00.mUnk_7e >> 4) << 1)],

@@ -550,9 +550,9 @@ void func_020faed0(Unk020fc2e8 *param_1, s32 param_2, s32 param_3) {
         Vec3 *pv;
 
         pv = param_1->mUnk_000.mUnk_d0;
-        param_1->mUnk_000.mUnk_94.mUnk_24.x = pv->x >> 4;
-        param_1->mUnk_000.mUnk_94.mUnk_24.y = pv->y >> 4;
-        param_1->mUnk_000.mUnk_94.mUnk_24.z = pv->z >> 4;
+        param_1->mUnk_000.mUnk_94.mUnk_00[3].x = pv->x >> 4;
+        param_1->mUnk_000.mUnk_94.mUnk_00[3].y = pv->y >> 4;
+        param_1->mUnk_000.mUnk_94.mUnk_00[3].z = pv->z >> 4;
         q = &param_1->mUnk_000.mUnk_94;
     }
     func_020ea8a8(data_0217bd38, q, &v, 0x1f);

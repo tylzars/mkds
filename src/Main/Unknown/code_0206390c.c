@@ -14,18 +14,18 @@ void func_02063b30(const Unk0206bcb0 *a, Vec3 *b) {
     const Unk02012f58 *c;
 
     c = (const Unk02012f58 *) ((u8 *) a + 0x120);
-    b->x = c->mUnk_0c.x;
-    b->y = c->mUnk_0c.y;
-    b->z = c->mUnk_0c.z;
+    b->x = c->mUnk_00[1].x;
+    b->y = c->mUnk_00[1].y;
+    b->z = c->mUnk_00[1].z;
 }
 
 void func_02063b10(const Unk0206bcb0 *a, Vec3 *b) {
     const Unk02012f58 *c;
 
     c = (const Unk02012f58 *) ((u8 *) a + 0x120);
-    b->x = c->mUnk_18.x;
-    b->y = c->mUnk_18.y;
-    b->z = c->mUnk_18.z;
+    b->x = c->mUnk_00[2].x;
+    b->y = c->mUnk_00[2].y;
+    b->z = c->mUnk_00[2].z;
 }
 
 void func_02063ad0(Unk0206bcb0 *a) {
@@ -78,7 +78,7 @@ void func_0206390c(Unk0206390c *a) {
     func_0214755c(i, &e);
     func_0214733c(&d, &e, &d);
     func_02146dfc((const s32 *) c, (const s32 *) &e, (s32 *) c);
-    f = d.mUnk_24;
+    f = d.mUnk_00[3];
     g = c[2];
     j = func_0207a974(b);
     h = (s32) ((s64) j->mUnk_4c8 * -0xd000 + 0x800 >> 12) >> 4;

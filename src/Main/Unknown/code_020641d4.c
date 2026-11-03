@@ -49,11 +49,11 @@ void func_020641f0(Unk0206bcb0 *a) {
         m.x = (s64) q->x * -0x5000 >> 12;
         m.y = (s64) q->y * -0x5000 >> 12;
         m.z = (s64) q->z * -0x5000 >> 12;
-        d.mUnk_24 = m;
+        d.mUnk_00[3] = m;
         m.x = -m.x;
         m.y = -m.y;
         m.z = -m.z;
-        e.mUnk_24 = m;
+        e.mUnk_00[3] = m;
         func_0214733c(&a->mUnk_120_m, &d, p);
         func_0214733c(p, &f, p);
         func_0214733c(p, &e, p);
@@ -62,9 +62,9 @@ void func_020641f0(Unk0206bcb0 *a) {
             func_02147250(&g, data_0215d4b4[i], data_0215d4b4[i + 1]);
             func_0214733c(p, &g, p);
         }
-        p->mUnk_24.x = p->mUnk_24.x + a->mUnk_508->x;
-        p->mUnk_24.y = p->mUnk_24.y + a->mUnk_508->y;
-        p->mUnk_24.z = p->mUnk_24.z + a->mUnk_508->z;
+        p->mUnk_00[3].x = p->mUnk_00[3].x + a->mUnk_508->x;
+        p->mUnk_00[3].y = p->mUnk_00[3].y + a->mUnk_508->y;
+        p->mUnk_00[3].z = p->mUnk_00[3].z + a->mUnk_508->z;
     } else if ((n & 0x20) != 0) {
         i = (a->mUnk_364 >> 4) * 2;
         func_02147250(&h, data_0215d4b4[i], data_0215d4b4[i + 1]);

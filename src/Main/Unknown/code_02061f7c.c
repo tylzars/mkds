@@ -403,12 +403,12 @@ void func_02062078(void) {
     p = data_0217aa6c;
     func_02010fac(0, data_0217aa54->mUnk_40, data_0217aa54->mUnk_42, data_0217aa54->mUnk_44);
     func_02010f98(0, 0x7fff);
-    a.x = p->mUnk_030.mUnk_00.y;
-    a.y = p->mUnk_030.mUnk_0c.y;
-    a.z = p->mUnk_030.mUnk_18.y;
-    b.x = -p->mUnk_030.mUnk_00.z;
-    b.y = -p->mUnk_030.mUnk_0c.z;
-    b.z = -p->mUnk_030.mUnk_18.z;
+    a.x = p->mUnk_030.mUnk_00[0].y;
+    a.y = p->mUnk_030.mUnk_00[1].y;
+    a.z = p->mUnk_030.mUnk_00[2].y;
+    b.x = -p->mUnk_030.mUnk_00[0].z;
+    b.y = -p->mUnk_030.mUnk_00[1].z;
+    b.z = -p->mUnk_030.mUnk_00[2].z;
     func_021484d0(&b, &a, &c);
     if ((s64) c.x * c.x + (s64) c.y * c.y + (s64) c.z * c.z >= 16) {
         func_02039860(&c, &c);

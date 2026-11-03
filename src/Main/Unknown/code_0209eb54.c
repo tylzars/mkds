@@ -25,9 +25,9 @@ void func_0209efb4(void *a, Unk0209ec80 *b) {
 
     s = 0x1e;
     func_01ff9048(0x14, &s, 1);
-    b->mUnk_00.mUnk_28.mUnk_24.x = b->mUnk_00.mUnk_04.x >> 4;
-    b->mUnk_00.mUnk_28.mUnk_24.y = b->mUnk_00.mUnk_04.y >> 4;
-    b->mUnk_00.mUnk_28.mUnk_24.z = b->mUnk_00.mUnk_04.z >> 4;
+    b->mUnk_00.mUnk_28.mUnk_00[3].x = b->mUnk_00.mUnk_04.x >> 4;
+    b->mUnk_00.mUnk_28.mUnk_00[3].y = b->mUnk_00.mUnk_04.y >> 4;
+    b->mUnk_00.mUnk_28.mUnk_00[3].z = b->mUnk_00.mUnk_04.z >> 4;
     func_01ff9048(0x19, &b->mUnk_00.mUnk_28, 0xc);
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
     switch (b->mUnk_a4) {

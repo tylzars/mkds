@@ -92,9 +92,9 @@ void func_020ec1fc(void *a, Unk020e43a8 *b, void *c, u32 d) {
     Vec3 v;
 
     h = b->mUnk_00.mUnk_80.mUnk_0e;
-    b->mUnk_00.mUnk_28.mUnk_24.x = b->mUnk_00.mUnk_04.x >> 4;
-    b->mUnk_00.mUnk_28.mUnk_24.y = b->mUnk_00.mUnk_04.y >> 4;
-    b->mUnk_00.mUnk_28.mUnk_24.z = b->mUnk_00.mUnk_04.z >> 4;
+    b->mUnk_00.mUnk_28.mUnk_00[3].x = b->mUnk_00.mUnk_04.x >> 4;
+    b->mUnk_00.mUnk_28.mUnk_00[3].y = b->mUnk_00.mUnk_04.y >> 4;
+    b->mUnk_00.mUnk_28.mUnk_00[3].z = b->mUnk_00.mUnk_04.z >> 4;
     func_020ea8a8(gWoodbox1, &b->mUnk_00.mUnk_28, &b->mUnk_00.mUnk_1c, d);
     if (h == 0) {
         return;

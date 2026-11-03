@@ -71,9 +71,9 @@ void func_020920a0(void *a, Unk020919e8 *p) {
     func_0209b77c(gKanoke64, p->mUnk_a0);
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
-    p->mUnk_00.mUnk_28.mUnk_24.x = p->mUnk_00.mUnk_04.x >> 4;
-    p->mUnk_00.mUnk_28.mUnk_24.y = p->mUnk_00.mUnk_04.y >> 4;
-    p->mUnk_00.mUnk_28.mUnk_24.z = p->mUnk_00.mUnk_04.z >> 4;
+    p->mUnk_00.mUnk_28.mUnk_00[3].x = p->mUnk_00.mUnk_04.x >> 4;
+    p->mUnk_00.mUnk_28.mUnk_00[3].y = p->mUnk_00.mUnk_04.y >> 4;
+    p->mUnk_00.mUnk_28.mUnk_00[3].z = p->mUnk_00.mUnk_04.z >> 4;
     func_01ff9048(0x19, &p->mUnk_00.mUnk_28, 0xc);
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
     func_0209bb2c(a, gKanoke64, p);

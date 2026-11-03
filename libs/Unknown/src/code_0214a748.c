@@ -234,18 +234,18 @@ void func_0214abb4(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, Unk02012f
         *p = z;
     }
     if (out != 0) {
-        out->mUnk_00.x = v1.x;
-        out->mUnk_00.y = v2.x;
-        out->mUnk_00.z = v0.x;
-        out->mUnk_0c.x = v1.y;
-        out->mUnk_0c.y = v2.y;
-        out->mUnk_0c.z = v0.y;
-        out->mUnk_18.x = v1.z;
-        out->mUnk_18.y = v2.z;
-        out->mUnk_18.z = v0.z;
-        out->mUnk_24.x = x;
-        out->mUnk_24.y = y;
-        out->mUnk_24.z = z;
+        out->mUnk_00[0].x = v1.x;
+        out->mUnk_00[0].y = v2.x;
+        out->mUnk_00[0].z = v0.x;
+        out->mUnk_00[1].x = v1.y;
+        out->mUnk_00[1].y = v2.y;
+        out->mUnk_00[1].z = v0.y;
+        out->mUnk_00[2].x = v1.z;
+        out->mUnk_00[2].y = v2.z;
+        out->mUnk_00[2].z = v0.z;
+        out->mUnk_00[3].x = x;
+        out->mUnk_00[3].y = y;
+        out->mUnk_00[3].z = z;
     }
 }
 

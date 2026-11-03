@@ -66,9 +66,9 @@ void func_020646f0(Unk0206bcb0 *a, s32 b) {
     a->mUnk_174.y = a->mUnk_98.y;
     a->mUnk_174.z = a->mUnk_98.z;
     m = &a->mUnk_120_m;
-    a->mUnk_278.x = m->mUnk_18.x;
-    a->mUnk_278.y = m->mUnk_18.y;
-    a->mUnk_278.z = m->mUnk_18.z;
+    a->mUnk_278.x = m->mUnk_00[2].x;
+    a->mUnk_278.y = m->mUnk_00[2].y;
+    a->mUnk_278.z = m->mUnk_00[2].z;
     a->mUnk_50 = a->mUnk_278;
     a->mUnk_1b4 = &a->mUnk_150_m;
     i = a->mUnk_590->mUnk_008;

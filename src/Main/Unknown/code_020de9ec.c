@@ -111,21 +111,21 @@ void func_020df07c(void *a, Unk020de6a8 *b, void *c, u16 d) {
     } else {
         t = &data_0217b704[b->mUnk_0a0];
         e = t->mUnk_00;
-        q.mUnk_00.x = e;
+        q.mUnk_00[0].x = e;
         g = t->mUnk_04;
-        q.mUnk_00.y = g;
-        q.mUnk_00.z = 0;
+        q.mUnk_00[0].y = g;
+        q.mUnk_00[0].z = 0;
         h = -t->mUnk_10;
-        q.mUnk_0c.x = h;
-        q.mUnk_0c.y = t->mUnk_08;
-        q.mUnk_0c.z = g;
-        q.mUnk_18.x = t->mUnk_0c;
-        q.mUnk_18.y = h;
-        q.mUnk_18.z = e;
+        q.mUnk_00[1].x = h;
+        q.mUnk_00[1].y = t->mUnk_08;
+        q.mUnk_00[1].z = g;
+        q.mUnk_00[2].x = t->mUnk_0c;
+        q.mUnk_00[2].y = h;
+        q.mUnk_00[2].z = e;
         w = b->mUnk_0fc;
-        q.mUnk_24.x = w->x >> 4;
-        q.mUnk_24.y = w->y >> 4;
-        q.mUnk_24.z = w->z >> 4;
+        q.mUnk_00[3].x = w->x >> 4;
+        q.mUnk_00[3].y = w->y >> 4;
+        q.mUnk_00[3].z = w->z >> 4;
         y = b->mUnk_0f0;
         p = data_0217b71c;
         p->mUnk_14 = p->mUnk_14 & 0xc0ffffff;
@@ -174,20 +174,20 @@ void func_020def00(void *a, Unk020de6a8 *b, void *c, u16 d) {
     }
     t = &data_0217b708[b->mUnk_0a2];
     e = t->mUnk_00;
-    q.mUnk_00.x = e;
-    q.mUnk_00.y = 0;
+    q.mUnk_00[0].x = e;
+    q.mUnk_00[0].y = 0;
     f = -t->mUnk_04;
-    q.mUnk_00.z = f;
-    q.mUnk_0c.x = 0;
-    q.mUnk_0c.y = 0x1000;
-    q.mUnk_0c.z = 0;
-    q.mUnk_18.x = -f;
-    q.mUnk_18.y = 0;
-    q.mUnk_18.z = e;
+    q.mUnk_00[0].z = f;
+    q.mUnk_00[1].x = 0;
+    q.mUnk_00[1].y = 0x1000;
+    q.mUnk_00[1].z = 0;
+    q.mUnk_00[2].x = -f;
+    q.mUnk_00[2].y = 0;
+    q.mUnk_00[2].z = e;
     w = b->mUnk_0fc;
-    q.mUnk_24.x = w->x >> 4;
-    q.mUnk_24.y = w->y >> 4;
-    q.mUnk_24.z = w->z >> 4;
+    q.mUnk_00[3].x = w->x >> 4;
+    q.mUnk_00[3].y = w->y >> 4;
+    q.mUnk_00[3].z = w->z >> 4;
     p = data_0217b710;
     x = b->mUnk_0ec;
     p->mUnk_14 &= 0xffe0ffff;
@@ -257,9 +257,9 @@ void func_020dec4c(void *a, Unk020de6a8 *b, u32 c, u32 d) {
     }
     if (b->mUnk_0a8 != 0) {
         p = b->mUnk_0fc;
-        data_0217b720.mUnk_24.x = p->x >> 4;
-        data_0217b720.mUnk_24.y = p->y >> 4;
-        data_0217b720.mUnk_24.z = p->z >> 4;
+        data_0217b720.mUnk_00[3].x = p->x >> 4;
+        data_0217b720.mUnk_00[3].y = p->y >> 4;
+        data_0217b720.mUnk_00[3].z = p->z >> 4;
         func_020e5370(&data_0217b760, &data_0217b720, (u16) n, d);
         return;
     }
@@ -270,9 +270,9 @@ void func_020dec4c(void *a, Unk020de6a8 *b, u32 c, u32 d) {
         q = func_020e6b58(b->mUnk_0fc);
     } else {
         p = b->mUnk_0fc;
-        data_0217b720.mUnk_24.x = p->x >> 4;
-        data_0217b720.mUnk_24.y = p->y >> 4;
-        data_0217b720.mUnk_24.z = p->z >> 4;
+        data_0217b720.mUnk_00[3].x = p->x >> 4;
+        data_0217b720.mUnk_00[3].y = p->y >> 4;
+        data_0217b720.mUnk_00[3].z = p->z >> 4;
         q = &data_0217b720;
     }
     func_020e5370(&v, q, (u16) n, d);

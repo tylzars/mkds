@@ -191,9 +191,9 @@ void func_020d5dd0(Unk020d5bf0 *p) {
     p->mUnk_104 = z;
     p->mUnk_000.mUnk_04.y = p->mUnk_0a0;
     p->mUnk_000.mUnk_10.y = 0x8000;
-    p->mUnk_000.mUnk_28.mUnk_00 = data_021569d8;
-    p->mUnk_000.mUnk_28.mUnk_0c = data_021569e4;
-    p->mUnk_000.mUnk_28.mUnk_18 = data_021569f0;
+    p->mUnk_000.mUnk_28.mUnk_00[0] = data_021569d8;
+    p->mUnk_000.mUnk_28.mUnk_00[1] = data_021569e4;
+    p->mUnk_000.mUnk_28.mUnk_00[2] = data_021569f0;
     r = p->mUnk_10c;
     u = (r * 0x1e000) >> 12;
     func_02147d88(0x1000, u);

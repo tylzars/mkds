@@ -205,26 +205,26 @@ void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d) {
     Unk0217b650_2c *p;
     s32 r;
     if (func_020b2ec0() == 0) {
-        v2 = b->mUnk_00.mUnk_28.mUnk_00;
-        v3 = b->mUnk_00.mUnk_28.mUnk_0c;
+        v2 = b->mUnk_00.mUnk_28.mUnk_00[0];
+        v3 = b->mUnk_00.mUnk_28.mUnk_00[1];
         v0.x = (s32) (((s64) b->mUnk_00.mUnk_10.z * (s64) b->mUnk_118) >> 12);
         v0.z = -(s32) (((s64) b->mUnk_00.mUnk_10.x * (s64) b->mUnk_118) >> 12);
         v0.y = 0;
         func_020397a8(&v0, &v2, &v1);
         func_02148504(&v2, &v1, &v2);
-        func_02039860(&v2, &b->mUnk_00.mUnk_28.mUnk_00);
+        func_02039860(&v2, &b->mUnk_00.mUnk_28.mUnk_00[0]);
         func_020397a8(&v0, &v3, &v1);
         func_02148504(&v3, &v1, &v3);
-        r = func_0214848c(&b->mUnk_00.mUnk_28.mUnk_00, &v3);
-        v3.x = v3.x - (s32) (((s64) b->mUnk_00.mUnk_28.mUnk_00.x * (s64) r) >> 12);
-        v3.y = v3.y - (s32) (((s64) b->mUnk_00.mUnk_28.mUnk_00.y * (s64) r) >> 12);
-        v3.z = v3.z - (s32) (((s64) b->mUnk_00.mUnk_28.mUnk_00.z * (s64) r) >> 12);
-        func_02039860(&v3, &b->mUnk_00.mUnk_28.mUnk_0c);
-        func_020397a8(&b->mUnk_00.mUnk_28.mUnk_00, &b->mUnk_00.mUnk_28.mUnk_0c, &b->mUnk_00.mUnk_28.mUnk_18);
+        r = func_0214848c(&b->mUnk_00.mUnk_28.mUnk_00[0], &v3);
+        v3.x = v3.x - (s32) (((s64) b->mUnk_00.mUnk_28.mUnk_00[0].x * (s64) r) >> 12);
+        v3.y = v3.y - (s32) (((s64) b->mUnk_00.mUnk_28.mUnk_00[0].y * (s64) r) >> 12);
+        v3.z = v3.z - (s32) (((s64) b->mUnk_00.mUnk_28.mUnk_00[0].z * (s64) r) >> 12);
+        func_02039860(&v3, &b->mUnk_00.mUnk_28.mUnk_00[1]);
+        func_020397a8(&b->mUnk_00.mUnk_28.mUnk_00[0], &b->mUnk_00.mUnk_28.mUnk_00[1], &b->mUnk_00.mUnk_28.mUnk_00[2]);
     }
-    b->mUnk_00.mUnk_28.mUnk_24.x = b->mUnk_00.mUnk_04.x >> 4;
-    b->mUnk_00.mUnk_28.mUnk_24.y = b->mUnk_00.mUnk_04.y >> 4;
-    b->mUnk_00.mUnk_28.mUnk_24.z = b->mUnk_00.mUnk_04.z >> 4;
+    b->mUnk_00.mUnk_28.mUnk_00[3].x = b->mUnk_00.mUnk_04.x >> 4;
+    b->mUnk_00.mUnk_28.mUnk_00[3].y = b->mUnk_00.mUnk_04.y >> 4;
+    b->mUnk_00.mUnk_28.mUnk_00[3].z = b->mUnk_00.mUnk_04.z >> 4;
     func_020ea8a8(data_0217b65c, &b->mUnk_00.mUnk_28, &b->mUnk_00.mUnk_1c, d);
     p = &data_0217b650->mUnk_2c;
     p->mUnk_24.x = b->mUnk_00.mUnk_04.x >> 4;

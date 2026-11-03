@@ -663,9 +663,9 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
             func_ov001_02187074(b->mUnk_160, b->mUnk_164, b->mUnk_000.mUnk_1c.x);
     }
     if (b->mUnk_234 == 1) {
-        func_02146d44(&b->mUnk_000.mUnk_28.mUnk_00.x, data_0215d4b4[((u16) b->mUnk_184 >> 4) * 2],
+        func_02146d44(&b->mUnk_000.mUnk_28.mUnk_00[0].x, data_0215d4b4[((u16) b->mUnk_184 >> 4) * 2],
                       data_0215d4b4[((u16) b->mUnk_184 >> 4) * 2 + 1]);
-        func_02146d78((Vec3 *) &b->mUnk_244, &b->mUnk_000.mUnk_28.mUnk_00.x, &b->mUnk_238);
+        func_02146d78((Vec3 *) &b->mUnk_244, &b->mUnk_000.mUnk_28.mUnk_00[0].x, &b->mUnk_238);
         func_02148504(&b->mUnk_238, &b->mUnk_000.mUnk_04, &b->mUnk_238);
     } else {
         b->mUnk_238.x = b->mUnk_000.mUnk_04.x + b->mUnk_244;
@@ -876,10 +876,10 @@ s32 func_ov001_021860cc(Unk02188950 *a, Vec3 *b, s32 c, Vec3 *d) {
             }
             return 0;
         case 2:
-            return func_020ead80(b, &a->mUnk_238, &a->mUnk_000.mUnk_28.mUnk_00, a->mUnk_25c, a->mUnk_260, a->mUnk_260,
+            return func_020ead80(b, &a->mUnk_238, &a->mUnk_000.mUnk_28.mUnk_00[0], a->mUnk_25c, a->mUnk_260, a->mUnk_260,
                                  c, d);
         case 1:
-            return func_020eafc4(b, &a->mUnk_238, &a->mUnk_000.mUnk_28.mUnk_00, (Vec3 *) &a->mUnk_25c,
+            return func_020eafc4(b, &a->mUnk_238, &a->mUnk_000.mUnk_28.mUnk_00[0], (Vec3 *) &a->mUnk_25c,
                                  (Vec3 *) &a->mUnk_25c, c, d);
         default:
             return 0;

@@ -73,14 +73,14 @@ void func_020dd6c8(void *a, Unk020dc474 *p, void *b, u32 c) {
             p->mUnk_00.mUnk_04.z += p->mUnk_00.mUnk_10.z;
         }
     }
-    p->mUnk_00.mUnk_28.mUnk_24.x = p->mUnk_00.mUnk_04.x >> 4;
-    p->mUnk_00.mUnk_28.mUnk_24.y = p->mUnk_00.mUnk_04.y >> 4;
-    p->mUnk_00.mUnk_28.mUnk_24.z = p->mUnk_00.mUnk_04.z >> 4;
+    p->mUnk_00.mUnk_28.mUnk_00[3].x = p->mUnk_00.mUnk_04.x >> 4;
+    p->mUnk_00.mUnk_28.mUnk_00[3].y = p->mUnk_00.mUnk_04.y >> 4;
+    p->mUnk_00.mUnk_28.mUnk_00[3].z = p->mUnk_00.mUnk_04.z >> 4;
     func_020ea8a8(gWanwan, &p->mUnk_00.mUnk_28, &p->mUnk_00.mUnk_1c, c);
     func_01ffccd0(&s, &p->mUnk_d4);
-    s.mUnk_24.x = p->mUnk_00.mUnk_04.x >> 4;
-    s.mUnk_24.y = p->mUnk_00.mUnk_04.y >> 4;
-    s.mUnk_24.z = p->mUnk_00.mUnk_04.z >> 4;
+    s.mUnk_00[3].x = p->mUnk_00.mUnk_04.x >> 4;
+    s.mUnk_00[3].y = p->mUnk_00.mUnk_04.y >> 4;
+    s.mUnk_00[3].z = p->mUnk_00.mUnk_04.z >> 4;
     func_020ea868(gWanwanRockShadow, &s, &p->mUnk_00.mUnk_1c, c);
 }
 
@@ -247,11 +247,11 @@ void func_020dd0d8(Unk020dc474 *p) {
     p->mUnk_160[0] = NULL;
     *p->mUnk_160[1] = p->mUnk_00.mUnk_04;
     *p->mUnk_160[2] = *p->mUnk_160[1];
-    p->mUnk_160[2]->x += (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_18.x * p->mUnk_f0) >> 12);
-    p->mUnk_160[2]->z += (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_18.z * p->mUnk_f0) >> 12);
+    p->mUnk_160[2]->x += (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_00[2].x * p->mUnk_f0) >> 12);
+    p->mUnk_160[2]->z += (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_00[2].z * p->mUnk_f0) >> 12);
     *p->mUnk_160[3] = *p->mUnk_160[2];
-    p->mUnk_160[3]->x += (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_00.x * p->mUnk_f0) >> 12);
-    p->mUnk_160[3]->z += (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_00.z * p->mUnk_f0) >> 12);
+    p->mUnk_160[3]->x += (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_00[0].x * p->mUnk_f0) >> 12);
+    p->mUnk_160[3]->z += (s32) (((s64) p->mUnk_00.mUnk_28.mUnk_00[0].z * p->mUnk_f0) >> 12);
     func_020d7d18(&p->mUnk_100, 1, p->mUnk_160, 0x1000);
     p->mUnk_160[0] = q;
 }

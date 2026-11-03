@@ -49,12 +49,12 @@ void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
     func_0214726c((s32 *) &m3, data_0215d4b4[(z >> 4) * 2], data_0215d4b4[(z >> 4) * 2 + 1]);
     func_0214733c(&m1, &m3, &r);
     func_0214733c(&m2, &r, &r);
-    h = (s64) -r.mUnk_00.z * d;
-    k = (s64) -r.mUnk_00.y * d;
-    l = (s64) -r.mUnk_18.y * e;
-    n = (s64) -r.mUnk_18.z * e;
+    h = (s64) -r.mUnk_00[0].z * d;
+    k = (s64) -r.mUnk_00[0].y * d;
+    l = (s64) -r.mUnk_00[2].y * e;
+    n = (s64) -r.mUnk_00[2].z * e;
     a->x =
-        q->mUnk_00.x + (s32) (((s64) -r.mUnk_00.x * d + 0x800) >> 12) + (s32) (((s64) -r.mUnk_18.x * e + 0x800) >> 12);
+        q->mUnk_00.x + (s32) (((s64) -r.mUnk_00[0].x * d + 0x800) >> 12) + (s32) (((s64) -r.mUnk_00[2].x * e + 0x800) >> 12);
     a->y = q->mUnk_00.y + (s32) ((k + 0x800) >> 12) + (s32) ((l + 0x800) >> 12);
     a->z = q->mUnk_00.z + (s32) ((h + 0x800) >> 12) + (s32) ((n + 0x800) >> 12);
     b->x = q->mUnk_0c.x;

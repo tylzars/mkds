@@ -54,7 +54,7 @@ BOOL func_020d7c84(Unk020d849c *p, s32 a, Vec3 **b) {
 void func_020d7bec(Unk02012f58 *a) {
     s32 t;
     s32 i;
-    t = func_02148538(a->mUnk_00.z, a->mUnk_18.z);
+    t = func_02148538(a->mUnk_00[0].z, a->mUnk_00[2].z);
     t = (((s64) t * 0x28BE60DB9391LL) + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
     data_0217b660.mUnk_00 = 0;

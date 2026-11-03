@@ -22,7 +22,7 @@ void func_ov001_02185dd0(Unk02185bb8 *a) {
     a->mUnk_000.mUnk_7e = (s32) (((s64) a->mUnk_000.mUnk_9c->mUnk_0c.y * 0xB60B60B60BLL + 0x80000000000LL) >> 44);
     func_02146d44(mtx, data_0215d4b4[(a->mUnk_000.mUnk_7e >> 4) * 2],
                   data_0215d4b4[(a->mUnk_000.mUnk_7e >> 4) * 2 + 1]);
-    func_02146dfc(mtx, &a->mUnk_000.mUnk_28.mUnk_00.x, &a->mUnk_000.mUnk_28.mUnk_00.x);
+    func_02146dfc(mtx, &a->mUnk_000.mUnk_28.mUnk_00[0].x, &a->mUnk_000.mUnk_28.mUnk_00[0].x);
     r4 = (s32) (((s64) a->mUnk_000.mUnk_1c.x * 0xA000LL) >> 12);
     r6 = (s32) (((s64) a->mUnk_000.mUnk_1c.y * 0xF000LL) >> 12);
     saved = a->mUnk_000.mUnk_9c->mUnk_28;
@@ -30,9 +30,9 @@ void func_ov001_02185dd0(Unk02185bb8 *a) {
     a->mUnk_0a0 = func_020d34d4(&a->mUnk_000, 0x66);
     a->mUnk_0a4 = func_020d34d4(&a->mUnk_000, 0x66);
     a->mUnk_000.mUnk_9c->mUnk_28 = saved;
-    func_02147fd8(-(a->mUnk_000.mUnk_58.x + r4), &a->mUnk_000.mUnk_28.mUnk_00, &a->mUnk_000.mUnk_04,
+    func_02147fd8(-(a->mUnk_000.mUnk_58.x + r4), &a->mUnk_000.mUnk_28.mUnk_00[0], &a->mUnk_000.mUnk_04,
                   &a->mUnk_0a0->mUnk_04);
-    func_02147fd8(a->mUnk_000.mUnk_58.x + r4, &a->mUnk_000.mUnk_28.mUnk_00, &a->mUnk_000.mUnk_04,
+    func_02147fd8(a->mUnk_000.mUnk_58.x + r4, &a->mUnk_000.mUnk_28.mUnk_00[0], &a->mUnk_000.mUnk_04,
                   &a->mUnk_0a4->mUnk_04);
     func_020d2950(a->mUnk_0a0, r4);
     func_020d2950(a->mUnk_0a4, r4);
@@ -70,9 +70,9 @@ void func_ov001_02185ca0(void *a, Unk02185bb8 *b) {
 
     buf = 0x1e;
     func_01ff9048((u32) (0x14), (void *) ((u32) &buf), 1);
-    b->mUnk_000.mUnk_28.mUnk_24.x = b->mUnk_000.mUnk_04.x >> 4;
-    b->mUnk_000.mUnk_28.mUnk_24.y = b->mUnk_000.mUnk_04.y >> 4;
-    b->mUnk_000.mUnk_28.mUnk_24.z = b->mUnk_000.mUnk_04.z >> 4;
+    b->mUnk_000.mUnk_28.mUnk_00[3].x = b->mUnk_000.mUnk_04.x >> 4;
+    b->mUnk_000.mUnk_28.mUnk_00[3].y = b->mUnk_000.mUnk_04.y >> 4;
+    b->mUnk_000.mUnk_28.mUnk_00[3].z = b->mUnk_000.mUnk_04.z >> 4;
     func_01ff9048((u32) (0x19), (void *) ((u32) &b->mUnk_000.mUnk_28), 0xc);
     func_01ff9048((u32) (0x1b), (void *) ((u32) &b->mUnk_000.mUnk_1c), 3);
     func_0209b688((void *) (gMissionGate), (u16) b->mUnk_000.mUnk_9c->mUnk_28);

@@ -1,15 +1,15 @@
 #include "code_02146d78.h"
 
 void func_021470f8(const Unk02012f58 *a, Unk02012f58 *b, s32 c, s32 d, s32 e) {
-    b->mUnk_00.x = (s32) (((s64) c * a->mUnk_00.x) >> 12);
-    b->mUnk_00.y = (s32) (((s64) c * a->mUnk_00.y) >> 12);
-    b->mUnk_00.z = (s32) (((s64) c * a->mUnk_00.z) >> 12);
-    b->mUnk_0c.x = (s32) (((s64) d * a->mUnk_0c.x) >> 12);
-    b->mUnk_0c.y = (s32) (((s64) d * a->mUnk_0c.y) >> 12);
-    b->mUnk_0c.z = (s32) (((s64) d * a->mUnk_0c.z) >> 12);
-    b->mUnk_18.x = (s32) (((s64) e * a->mUnk_18.x) >> 12);
-    b->mUnk_18.y = (s32) (((s64) e * a->mUnk_18.y) >> 12);
-    b->mUnk_18.z = (s32) (((s64) e * a->mUnk_18.z) >> 12);
+    b->mUnk_00[0].x = (s32) (((s64) c * a->mUnk_00[0].x) >> 12);
+    b->mUnk_00[0].y = (s32) (((s64) c * a->mUnk_00[0].y) >> 12);
+    b->mUnk_00[0].z = (s32) (((s64) c * a->mUnk_00[0].z) >> 12);
+    b->mUnk_00[1].x = (s32) (((s64) d * a->mUnk_00[1].x) >> 12);
+    b->mUnk_00[1].y = (s32) (((s64) d * a->mUnk_00[1].y) >> 12);
+    b->mUnk_00[1].z = (s32) (((s64) d * a->mUnk_00[1].z) >> 12);
+    b->mUnk_00[2].x = (s32) (((s64) e * a->mUnk_00[2].x) >> 12);
+    b->mUnk_00[2].y = (s32) (((s64) e * a->mUnk_00[2].y) >> 12);
+    b->mUnk_00[2].z = (s32) (((s64) e * a->mUnk_00[2].z) >> 12);
 }
 
 void func_02146f98(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
@@ -38,23 +38,23 @@ void func_02146f98(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
     y = g;
     z = f;
     xx = (s64) t * ((s64) x * x);
-    a->mUnk_00.x = (s32) (xx >> 24) + d;
+    a->mUnk_00[0].x = (s32) (xx >> 24) + d;
     xy = (s32) (((s64) t * x * y) >> 24);
     sx = (s32) (((s64) c * x) >> 12);
     yy = t * ((s64) y * y);
-    a->mUnk_0c.y = (s32) (yy >> 24) + d;
+    a->mUnk_00[1].y = (s32) (yy >> 24) + d;
     zz = (s64) t * ((s64) z * z);
-    a->mUnk_18.z = (s32) (zz >> 24) + d;
+    a->mUnk_00[2].z = (s32) (zz >> 24) + d;
     sy = (s32) (((s64) c * y) >> 12);
     sz = (s32) (((s64) c * z) >> 12);
-    a->mUnk_00.y = xy + sz;
-    a->mUnk_0c.x = xy - sz;
+    a->mUnk_00[0].y = xy + sz;
+    a->mUnk_00[1].x = xy - sz;
     xz = (s32) (((s64) t * x * z) >> 24);
-    a->mUnk_00.z = xz - sy;
-    a->mUnk_18.x = xz + sy;
+    a->mUnk_00[0].z = xz - sy;
+    a->mUnk_00[2].x = xz + sy;
     yz = (s32) (((s64) t * y * z) >> 24);
-    a->mUnk_0c.z = yz + sx;
-    a->mUnk_18.y = yz - sx;
+    a->mUnk_00[1].z = yz + sx;
+    a->mUnk_00[2].y = yz - sx;
 }
 
 void func_02146dfc(const s32 *a, const s32 *b, s32 *c) {

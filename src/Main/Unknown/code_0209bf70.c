@@ -276,9 +276,9 @@ void func_0209c5b8(Unk02100094 *a, Unk0209c220 *p) {
 
     v[0] = 0x1e;
     func_01ff9048(0x14, &v[0], 1);
-    p->mUnk_000.mUnk_28.mUnk_24.x = p->mUnk_000.mUnk_04.x >> 4;
-    p->mUnk_000.mUnk_28.mUnk_24.y = p->mUnk_000.mUnk_04.y >> 4;
-    p->mUnk_000.mUnk_28.mUnk_24.z = p->mUnk_000.mUnk_04.z >> 4;
+    p->mUnk_000.mUnk_28.mUnk_00[3].x = p->mUnk_000.mUnk_04.x >> 4;
+    p->mUnk_000.mUnk_28.mUnk_00[3].y = p->mUnk_000.mUnk_04.y >> 4;
+    p->mUnk_000.mUnk_28.mUnk_00[3].z = p->mUnk_000.mUnk_04.z >> 4;
     func_01ff9048(0x19, &p->mUnk_000.mUnk_28, 0xc);
     if (p->mUnk_11c == 1) {
         x = p->mUnk_0bc;
@@ -299,9 +299,9 @@ void func_0209c678(Unk02100094 *a, Unk0209c220 *p) {
 
     v[0] = 0x1e;
     func_01ff9048(0x14, &v[0], 1);
-    p->mUnk_000.mUnk_28.mUnk_24.x = p->mUnk_000.mUnk_04.x >> 4;
-    p->mUnk_000.mUnk_28.mUnk_24.y = p->mUnk_000.mUnk_04.y >> 4;
-    p->mUnk_000.mUnk_28.mUnk_24.z = p->mUnk_000.mUnk_04.z >> 4;
+    p->mUnk_000.mUnk_28.mUnk_00[3].x = p->mUnk_000.mUnk_04.x >> 4;
+    p->mUnk_000.mUnk_28.mUnk_00[3].y = p->mUnk_000.mUnk_04.y >> 4;
+    p->mUnk_000.mUnk_28.mUnk_00[3].z = p->mUnk_000.mUnk_04.z >> 4;
     func_01ff9048(0x19, &p->mUnk_000.mUnk_28, 0xc);
     if (p->mUnk_11c == 1) {
         x = p->mUnk_0bc;
@@ -332,9 +332,9 @@ void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p) {
 
     v[0] = 0x1e;
     func_01ff9048(0x14, &v[0], 1);
-    p->mUnk_000.mUnk_28.mUnk_24.x = p->mUnk_000.mUnk_04.x >> 4;
-    p->mUnk_000.mUnk_28.mUnk_24.y = p->mUnk_000.mUnk_04.y >> 4;
-    p->mUnk_000.mUnk_28.mUnk_24.z = p->mUnk_000.mUnk_04.z >> 4;
+    p->mUnk_000.mUnk_28.mUnk_00[3].x = p->mUnk_000.mUnk_04.x >> 4;
+    p->mUnk_000.mUnk_28.mUnk_00[3].y = p->mUnk_000.mUnk_04.y >> 4;
+    p->mUnk_000.mUnk_28.mUnk_00[3].z = p->mUnk_000.mUnk_04.z >> 4;
     func_01ff9048(0x19, &p->mUnk_000.mUnk_28, 0xc);
     if (p->mUnk_11c == 1) {
         x = p->mUnk_0bc;
@@ -356,10 +356,10 @@ void CreateBound(void *a) {
 
 BOOL func_0209c8b0(Unk0209c220 *p, Vec3 *a, s32 b, Vec3 *c) {
     if ((p->mUnk_000.mUnk_02 & 0x800) == 0 && p->mUnk_11c == 1) {
-        p->mUnk_0a4 = func_020ead80(a, &p->mUnk_000.mUnk_04, &p->mUnk_000.mUnk_28.mUnk_00,
+        p->mUnk_0a4 = func_020ead80(a, &p->mUnk_000.mUnk_04, &p->mUnk_000.mUnk_28.mUnk_00[0],
                                     ((s64) p->mUnk_000.mUnk_58.x * p->mUnk_0bc) >> 12, p->mUnk_000.mUnk_58.y, 0, b, c);
     } else {
-        p->mUnk_0a4 = func_020ead80(a, &p->mUnk_000.mUnk_04, &p->mUnk_000.mUnk_28.mUnk_00, p->mUnk_000.mUnk_58.x,
+        p->mUnk_0a4 = func_020ead80(a, &p->mUnk_000.mUnk_04, &p->mUnk_000.mUnk_28.mUnk_00[0], p->mUnk_000.mUnk_58.x,
                                     p->mUnk_000.mUnk_58.y, 0, b, c);
     }
     return p->mUnk_0a4 != 0;
@@ -410,10 +410,10 @@ s32 func_0209c9fc(Unk0209c220 *p, Unk0206bcb0 *k, u8 *b, u8 *c) {
             v1.x = v2.x - v0.x;
             v1.y = v2.y - v0.y;
             v1.z = v2.z - v0.z;
-            t = func_0214848c(&p->mUnk_000.mUnk_28.mUnk_0c, &v1);
-            v0.x = ((s64) p->mUnk_000.mUnk_28.mUnk_0c.x * t) >> 12;
-            v0.y = ((s64) p->mUnk_000.mUnk_28.mUnk_0c.y * t) >> 12;
-            v0.z = ((s64) p->mUnk_000.mUnk_28.mUnk_0c.z * t) >> 12;
+            t = func_0214848c(&p->mUnk_000.mUnk_28.mUnk_00[1], &v1);
+            v0.x = ((s64) p->mUnk_000.mUnk_28.mUnk_00[1].x * t) >> 12;
+            v0.y = ((s64) p->mUnk_000.mUnk_28.mUnk_00[1].y * t) >> 12;
+            v0.z = ((s64) p->mUnk_000.mUnk_28.mUnk_00[1].z * t) >> 12;
             v1.x -= v0.x;
             v1.y -= v0.y;
             v1.z -= v0.z;
@@ -428,7 +428,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Unk0206bcb0 *k, u8 *b, u8 *c) {
                 p->mUnk_000.mUnk_10.y = ((s64) v1.y * 0xc000) >> 12;
                 p->mUnk_000.mUnk_10.z = ((s64) v1.z * 0xc000) >> 12;
             }
-            func_021484d0(&v0, &p->mUnk_000.mUnk_28.mUnk_0c, &v0);
+            func_021484d0(&v0, &p->mUnk_000.mUnk_28.mUnk_00[1], &v0);
             func_02147fd8(0x19a, &v0, &p->mUnk_000.mUnk_10, &p->mUnk_000.mUnk_10);
             p->mUnk_120[k->mUnk_74] = 0x1f;
             if (data_021759c0->mUnk_08 == 2) {

@@ -248,14 +248,14 @@ void func_020e3bc0(s32 a, Unk020e38a0 *b) {
     if (d < -0x8000) {
         d += 0x10000;
     }
-    b->mUnk_124.x = (s32) (((s64) b->mUnk_000.mUnk_28.mUnk_00.x * d) >> 12);
-    b->mUnk_124.y = (s32) (((s64) b->mUnk_000.mUnk_28.mUnk_00.y * d) >> 12);
-    b->mUnk_124.z = (s32) (((s64) b->mUnk_000.mUnk_28.mUnk_00.z * d) >> 12);
+    b->mUnk_124.x = (s32) (((s64) b->mUnk_000.mUnk_28.mUnk_00[0].x * d) >> 12);
+    b->mUnk_124.y = (s32) (((s64) b->mUnk_000.mUnk_28.mUnk_00[0].y * d) >> 12);
+    b->mUnk_124.z = (s32) (((s64) b->mUnk_000.mUnk_28.mUnk_00[0].z * d) >> 12);
     b->mUnk_14a = y;
     b->mUnk_0a0 = *(Unk020e38a0_28 *) &b->mUnk_000.mUnk_28;
     func_02146d28((s32 *) &b->mUnk_000.mUnk_28, data_0215d4b4[(y >> 4) * 2], data_0215d4b4[(y >> 4) * 2 + 1]);
     func_02146dfc((const s32 *) &b->mUnk_000.mUnk_28, (const s32 *) &b->mUnk_0c4, (s32 *) &b->mUnk_000.mUnk_28);
-    func_02147fd8(-b->mUnk_104, &b->mUnk_000.mUnk_28.mUnk_0c, &b->mUnk_000.mUnk_04, &b->mUnk_0f4);
+    func_02147fd8(-b->mUnk_104, &b->mUnk_000.mUnk_28.mUnk_00[1], &b->mUnk_000.mUnk_04, &b->mUnk_0f4);
     if (b->mUnk_150 != 0) {
         b->mUnk_150--;
         return;
@@ -282,9 +282,9 @@ void func_020e3bc0(s32 a, Unk020e38a0 *b) {
 void func_020e3b4c(Unk020e3ef4 *a, void *b, u32 c) {
     Unk020e1e98_12c *p;
 
-    a->mUnk_000.mUnk_28.mUnk_24.x = a->mUnk_000.mUnk_04.x >> 4;
-    a->mUnk_000.mUnk_28.mUnk_24.y = a->mUnk_000.mUnk_04.y >> 4;
-    a->mUnk_000.mUnk_28.mUnk_24.z = a->mUnk_000.mUnk_04.z >> 4;
+    a->mUnk_000.mUnk_28.mUnk_00[3].x = a->mUnk_000.mUnk_04.x >> 4;
+    a->mUnk_000.mUnk_28.mUnk_00[3].y = a->mUnk_000.mUnk_04.y >> 4;
+    a->mUnk_000.mUnk_28.mUnk_00[3].z = a->mUnk_000.mUnk_04.z >> 4;
     p = (Unk020e1e98_12c *) gBridgeNsbca;
     p->mUnk_0c = a->mUnk_154;
     *p->mUnk_1c[p->mUnk_1a] = p->mUnk_0c;
