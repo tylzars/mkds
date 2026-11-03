@@ -129,7 +129,6 @@ void func_02086a04(void) {
     }
 }
 
-// non-matching: 2 instructions differ: the original loads 1 into r11 before -1 into r5 (here -1 first).
 void func_0208677c(void) {
     Vec3 v;
     s32 i;
@@ -144,7 +143,8 @@ void func_0208677c(void) {
         data_0217aed8 = &data_02155a48;
     }
     func_02086a04();
-    for (i = 0; i < data_0217aed0->mUnk_020; i++) {
+    i = 0;
+    while (i < data_0217aed0->mUnk_020) {
         p = data_0217aed0->mUnk_0c4[i];
         m = func_0207a974(p->mUnk_0c);
         w = m->mUnk_508;
@@ -154,11 +154,11 @@ void func_0208677c(void) {
         if (x > 0) {
             if (data_0217aed0->mUnk_124[p->mUnk_0c] < 0x9c400 || func_02061818() == 3) {
                 x -= 0x14000;
+                p->mUnk_20 = 1;
+                p->mUnk_14 = 1;
                 if (x < 0) {
                     x = 0;
                 }
-                p->mUnk_20 = 1;
-                p->mUnk_14 = 1;
                 r = (s32) (((s64) x * 0x44 + 0x800) >> 12);
             } else {
                 p->mUnk_20 = -1;
@@ -193,6 +193,7 @@ void func_0208677c(void) {
         p->mUnk_00.x = v.x >> 4;
         p->mUnk_00.y = v.y >> 4;
         p->mUnk_00.z = v.z >> 4;
+        i += 1;
     }
     func_020866b4();
     func_020865ec();
@@ -323,9 +324,10 @@ void func_02086250(Unk02012f58 *a) {
     }
 }
 
-// non-matching: 26 instructions differ: the original loads the stack arguments at 0x5c, 0x48 and 0x54 before its first
-// multiply and sets up the zero after it, and keeps the rounding constant 0x800 and the zero in other registers; here
-// the zero is set up before the multiply.
+static inline s32 func_02086098_inline(Unk02086250 *b) {
+    return ((u16) b->mUnk_0c + 11) << 24;
+}
+
 void func_02086098(Unk02086098 *a, Unk02086250 *b, Unk02012f58 *c, s32 d, s32 e, s16 f, s32 g, s32 h, s32 i, s32 j,
                    UnkFunc *k) {
     Unk02012f58 m;
@@ -343,7 +345,7 @@ void func_02086098(Unk02086098 *a, Unk02086250 *b, Unk02012f58 *c, s32 d, s32 e,
     if (b->mUnk_10 == 1) {
         m.mUnk_00[3].x = g + ((s32) (((s64) i * d + 0x800) >> 12) + 0x1e000);
     }
-    m.mUnk_00[3].y = h + (s32) (((s64) j * e + 0x800) >> 12) + 0x5000;
+    m.mUnk_00[3].y = 0x5000 + h + (s32) (((s64) j * e + 0x800) >> 12);
     m.mUnk_00[3].z = 0;
     x = a->mUnk_1c;
     y = a->mUnk_20;
@@ -356,7 +358,7 @@ void func_02086098(Unk02086098 *a, Unk02086250 *b, Unk02012f58 *c, s32 d, s32 e,
     m.mUnk_00[2].z = 0;
     m.mUnk_00[2].y = 0;
     m.mUnk_00[2].x = 0;
-    *(u32 *) 0x40004a4 = (((u16) b->mUnk_0c + 11) << 24 | 0xc0) | (f << 16);
+    *(u32 *) 0x40004a4 = (func_02086098_inline(b) | 0xc0) | (f << 16);
     *(u32 *) 0x4000440 = 2;
     func_0214a514(&m);
     *(u32 *) 0x4000500 = 1;

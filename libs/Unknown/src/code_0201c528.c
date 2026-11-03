@@ -689,40 +689,55 @@ void func_0201ca6c(Unk0201ca6c *p, Unk0201e494 *l0) {
     }
 }
 
-// non-matching: the original keeps the address of mUnk_38 of the entry from func_0201e448 in a stack slot and holds the
-// table pointer and that entry in r6 and r7 (swapped here); this build is 8 bytes shorter (0x318 vs 0x320)
+static inline s32 func_0201c74c_inline(s32 k0, Unk0201e3c8 *a) {
+    return (s32) (((s64) a->mUnk_14.z * (s64) k0 + 0x800) >> 12);
+}
+
+static inline s32 func_0201c74c_inline2(s32 k0, Unk0201e3c8 *a) {
+    return (s32) (((s64) a->mUnk_14.y * (s64) k0 + 0x800) >> 12);
+}
+
+static inline s32 func_0201c74c_inline3(s32 k0, Unk0201e3c8 *a) {
+    return (s32) (((s64) a->mUnk_14.x * (s64) k0 + 0x800) >> 12);
+}
+
+static inline s32 func_0201c74c_inline4(Unk0201ca6c_20_14 *e) {
+    return e->mUnk_09 + 1;
+}
+
 void func_0201c74c(Unk0201e3c8 *a, Unk0201ca6c *p, Unk0201e494 *l0) {
-    Unk0201ca6c_20_14 *e;
-    Unk0201e3c8 *n;
     s32 k0;
+    Unk0201e3c8 *n;
     s32 i;
+    Unk0201ca6c_20_14 *e;
     Vec3 *d;
+    u32 b;
 
     e = p->mUnk_20->mUnk_14;
     k0 = (s32) (((s64) (e->mUnk_08 << 12) * 16 + 0x800) >> 12);
     for (i = 0; i < e->mUnk_0c; i++) {
         {
             n = func_0201e448(l0);
-            if (n == 0) {
+            if (n == NULL) {
                 return;
             }
             func_0201e494(&p->mUnk_14, n);
             d = &n->mUnk_38;
             n->mUnk_08 = a->mUnk_08;
-            n->mUnk_14.x = (s32) (((s64) a->mUnk_14.x * (s64) k0 + 0x800) >> 12) +
+            n->mUnk_14.x = func_0201c74c_inline3(k0, a) +
                            ((e->mUnk_02 * (s32) ((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) -
                              (e->mUnk_02 << 8)) >>
                             8);
-            n->mUnk_14.y = (s32) (((s64) a->mUnk_14.y * (s64) k0 + 0x800) >> 12) +
+            n->mUnk_14.y = func_0201c74c_inline2(k0, a) +
                            ((e->mUnk_02 * (s32) ((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) -
                              (e->mUnk_02 << 8)) >>
                             8);
-            n->mUnk_14.z = (s32) (((s64) a->mUnk_14.z * (s64) k0 + 0x800) >> 12) +
+            n->mUnk_14.z = func_0201c74c_inline(k0, a) +
                            ((e->mUnk_02 * (s32) ((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) -
                              (e->mUnk_02 << 8)) >>
                             8);
             *d = a->mUnk_38;
-            n->mUnk_30 = (((a->mUnk_30 * a->mUnk_34) >> 12) * (e->mUnk_09 + 1)) >> 6;
+            n->mUnk_30 = (((a->mUnk_30 * a->mUnk_34) >> 12) * func_0201c74c_inline4(e)) >> 6;
             n->mUnk_34 = 0x1000;
             if (e->mUnk_00_6) {
                 n->mUnk_36 = e->mUnk_0a;
@@ -736,49 +751,41 @@ void func_0201c74c(Unk0201e3c8 *a, Unk0201ca6c *p, Unk0201e494 *l0) {
                     n->mUnk_20 = a->mUnk_20;
                     n->mUnk_22 = a->mUnk_22;
                     break;
-                case 1:
-                    n->mUnk_20 = a->mUnk_20;
-                    n->mUnk_22 = 0;
-                    break;
                 case 0:
                     n->mUnk_20 = 0;
+                    n->mUnk_22 = 0;
+                    break;
+                case 1:
+                    n->mUnk_20 = a->mUnk_20;
                     n->mUnk_22 = 0;
                     break;
             }
             n->mUnk_24 = e->mUnk_06;
             n->mUnk_26 = 0;
             n->mUnk_2c = e->mUnk_0f;
-            n->mUnk_28 = 0xffff / (a->mUnk_24 >> 1);
+            b = a->mUnk_24;
+            n->mUnk_28 = 0xffff / (s32) (b >> 1);
             n->mUnk_2a = 0xffff / a->mUnk_24;
             n->mUnk_2d = 0;
         }
     }
 }
 
-// non-matching: same instruction sequence; the temporaries sit in different registers (34 words differ)
 void func_0201c690(u32 a, u32 b, s32 c, s32 d) {
-    u32 e;
     u32 f;
-    s32 p;
-    s32 q;
-    s32 r;
     s32 s;
 
-    e = (a << 8) >> 16;
-    f = (b << 8) >> 16;
     reg_G3_BEGIN_VTXS = 1;
-    p = ((s16) (d + 0x1000) >> 6) & 0x3ff;
-    q = ((s16) (c - 0x1000) >> 6) & 0x3ff;
-    r = ((s16) (c + 0x1000) >> 6) & 0x3ff;
     s = ((s16) (d - 0x1000) >> 6) & 0x3ff;
     reg_G3_TEXCOORD = 0;
-    reg_G3_VTX_10 = q | (p << 10);
-    reg_G3_TEXCOORD = e;
-    reg_G3_VTX_10 = r | (p << 10);
-    reg_G3_TEXCOORD = e | (f << 16);
-    reg_G3_VTX_10 = r | (s << 10);
+    reg_G3_VTX_10 = (((s16) (c - 0x1000) >> 6) & 0x3ff) | ((((s16) (d + 0x1000) >> 6) & 0x3ff) << 10);
+    reg_G3_TEXCOORD = (a << 8) >> 16;
+    f = (b << 8) >> 16;
+    reg_G3_VTX_10 = (((s16) (c + 0x1000) >> 6) & 0x3ff) | ((((s16) (d + 0x1000) >> 6) & 0x3ff) << 10);
+    reg_G3_TEXCOORD = ((a << 8) >> 16) | (f << 16);
+    reg_G3_VTX_10 = (((s16) (c + 0x1000) >> 6) & 0x3ff) | (s << 10);
     reg_G3_TEXCOORD = f << 16;
-    reg_G3_VTX_10 = q | (s << 10);
+    reg_G3_VTX_10 = (((s16) (c - 0x1000) >> 6) & 0x3ff) | (s << 10);
     reg_G3_END_VTXS = 0;
 }
 

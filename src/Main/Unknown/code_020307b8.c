@@ -77,8 +77,6 @@ void func_02030930(void *a, u32 b, u32 c) {
 
 #pragma thumb on
 
-// non-matching: 2 words: the original loads both words of data_02163614 before it stores t[0]; ours stores t[0]
-// between the loads (a pointer local, const or volatile reads and the swapped order do not change it)
 void func_02030954(s32 a) {
     u32 t[2];
     s32 i;
@@ -88,10 +86,14 @@ void func_02030954(s32 a) {
     BOOL z1;
     BOOL z2;
     u16 *q;
+    u32 c;
+    u32 d;
 
     o = data_02174e54;
-    t[0] = data_02163614[0];
-    t[1] = data_02163614[1];
+    c = *(volatile u32 *) &data_02163614[0];
+    d = *(volatile u32 *) &data_02163614[1];
+    t[0] = c;
+    t[1] = d;
     z1 = FALSE;
     z2 = FALSE;
     for (i = 0; i < 2; i++) {

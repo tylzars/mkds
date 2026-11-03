@@ -157,16 +157,16 @@ s32 func_0205d480(void) {
     return r;
 }
 
-// non-matching: same instructions; the original loads the table pointer first and the index byte after, with the row
-// base in r1 and the index in r2, here the registers are swapped (5 words).
 s32 func_0205d4e8(u32 a) {
     s32 m;
     Unk0217aa1c_00 *v1;
+    Unk0217aa1c_00 *b;
 
     m = data_021759c0->mUnk_08;
     if (m == 0 || m == 3 || m == 5) {
         v1 = data_0217aa1c->mUnk_000[(u8) ((data_021759c0->mUnk_60 - 1) % 4)];
-        return v1[(u8) a].mUnk_02;
+        b = &v1[(u8) a];
+        return b->mUnk_02;
     }
     return 0;
 }
@@ -253,9 +253,6 @@ void func_0205d818(u32 a, Unk0217aa1c_144_00 *b) {
     t->mUnk_00 = b->mUnk_00;
 }
 
-// non-matching: same instructions; the original keeps the value read at 0x8 in r4 and the signed index in lr, here ip
-// and r4, and stores the u16 at offset 0 through the row base plus the byte offset (strh [r4, lr]), here through the
-// element pointer.
 void func_0205d88c(u32 a, s32 b) {
     Unk021759c0 *p;
     s8 i;
@@ -281,10 +278,10 @@ void func_0205d88c(u32 a, s32 b) {
     e = &data_0217aa1c->mUnk_000[(u8) t][(u8) a];
     e->mUnk_04 = 0;
     e->mUnk_03 = 1;
+    e->mUnk_00 = 0;
     if (b != 0) {
         c = c + 1;
     }
-    e->mUnk_00 = 0;
     if (c > 99) {
         c = 99;
     }

@@ -166,19 +166,17 @@ void func_02146600(void) {
     }
 }
 
-// non-matching: two flags are in r1 and r3 in the original and in r3 and r1 in ours (6 instructions differ, same size)
 // Returns 1 and sends the command for mUnk_1c when mUnk_20 and mUnk_24 pass the checks; returns 0 otherwise.
 int func_021464a4(Unk02146154 *p) {
+    u32 v;
+    int t;
     Unk021458c4 *d;
     u32 addr;
     u32 len;
     int r;
     int b;
     int c;
-    u32 v;
     u32 end;
-    int a;
-    int t;
     u32 s;
     u32 rem;
 
@@ -189,12 +187,17 @@ int func_021464a4(Unk02146154 *p) {
     addr = d->mUnk_20;
     len = d->mUnk_24;
     if ((addr & 3) == 0 && d->mUnk_28 <= 3) {
+        int a;
         v = func_0200f328();
         end = addr + len;
         t = 1;
         a = 0;
         if (end > 0x01ff8000) {
-            a = addr < 0x02000000;
+            if (addr < 0x02000000) {
+                a = 1;
+            } else {
+                a = 0;
+            }
         }
         if (a == 0) {
             if (v >= end || v + 0x4000 <= addr) {
@@ -373,8 +376,7 @@ UnkFunc *func_0214613c(void) {
     return (UnkFunc *) func_021463a4;
 }
 
-// non-matching: three calls take the address of mUnk_120 as `add r0, sl, #288` in the original and `mov r0, r5` in ours
-// (4 instructions differ) Runs the transfer described by mUnk_1c to mUnk_34 in blocks of at most 0x100 bytes, then
+// Runs the transfer described by mUnk_1c to mUnk_34 in blocks of at most 0x100 bytes, then
 // calls mUnk_38 with mUnk_3c.
 void func_02145f80(Unk021458c4 *p) {
     u32 a;
@@ -409,7 +411,7 @@ void func_02145f80(Unk021458c4 *p) {
             func_0214d1fc((void *) p->mUnk_1c, p->mUnk_120, n);
             func_0200ee74(p->mUnk_120, n);
             func_0200ee98();
-            p->mUnk_00->mUnk_0c = (u32) p->mUnk_120;
+            p->mUnk_00->mUnk_0c = (s32) p->mUnk_120;
             p->mUnk_00->mUnk_10 = p->mUnk_20;
         }
         if (func_02146868(p, a, c) == 0) {

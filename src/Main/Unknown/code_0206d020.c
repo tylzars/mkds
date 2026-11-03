@@ -30,28 +30,39 @@
 #include "Main/Unknown/unk_02154000.h"
 #include "code_02147cd8.h"
 
-// non-matching: +0xa4/+0xa8 the original has moveq r0, #0 before movne r0, #1 (ours the reverse order); same size
 void func_0206d020(Unk0206bcb0 *p, int a, int b) {
+    s32 c;
+    u32 d;
+    s16 e;
+    enum { K0 } f;
     if (p->mUnk_180 != 0) {
         return;
     }
-    if (p->mUnk_48 & 0x1000) {
+    d = p->mUnk_48 & 0x1000;
+    if (d) {
         return;
     }
     if (p->mUnk_4c & 0x10000000) {
         return;
     }
     p->mUnk_48 |= 0x20;
-    if (b > p->mUnk_238) {
+    e = p->mUnk_238;
+    if (b > e) {
         p->mUnk_238 = b;
     }
     if (a != 1 && a != 3) {
         p->mUnk_48 |= 0x20000000;
     }
     func_0210a53c(p);
-    p->mUnk_48 &= ~0x8000;
+    c = ~0x8000;
+    p->mUnk_48 &= c;
     if (p->mUnk_7c & 0x1) {
-        func_02084034(a != 0, p);
+        if (!a) {
+            f = 0;
+        } else {
+            f = 1;
+        }
+        func_02084034(f, p);
         func_02074874(0x1770);
         func_02055c80(5);
         if (a != 3) {

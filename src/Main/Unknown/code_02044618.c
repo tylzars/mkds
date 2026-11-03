@@ -47,15 +47,19 @@ void func_0204465c(void) {
     }
 }
 
-// non-matching: 0x25c bytes, original 0x260; the original keeps the object pointer in r1 and the switch value in r0
-// (here r0 and r1 the other way round), counts the loops in r10/r9/r8 (here sl/r8/r9) and reloads the address constant
-// once more before the last stores.
+static inline void func_020446e0_inline(s32 f, u32 e, s32 d, u32 c, u32 b, s32 a) {
+    func_020468b0(a, b, c, d, e, f);
+}
+
 void func_020446e0(void) {
     u8 i;
-    s8 j;
     u32 k;
     u8 m;
     u8 n;
+    Unk021759c0_1e8 *a;
+    s32 b;
+    u8 c;
+    s32 d;
 
     switch (data_021759c0->mUnk_1e8.mUnk_08) {
         case 0:
@@ -69,14 +73,16 @@ void func_020446e0(void) {
             } else if ((u32) (data_021759c0->mUnk_1e8.mUnk_00 - 0x35) <= 1) {
                 data_021759c0->mUnk_1e8.mUnk_0c = 6;
                 data_021759c0->mUnk_1e8.mUnk_10 = 1;
-                for (i = 0; i < 8; i++) {
+                for (c = 0; c < 8; c++) {
+                    s8 j;
                     for (j = 0; j < data_021759c0->mUnk_3d0; j++) {
-                        if (i + 1 == func_0205d4e8((u16) j)) {
+                        if (c + 1 == func_0205d4e8((u16) j)) {
                             break;
                         }
                     }
+                    d = c * 3;
                     if (data_021759c0->mUnk_1e8.mUnk_00 != 0x36) {
-                        func_020468b0(i, i, i * 3, 1, -1, 3);
+                        func_020446e0_inline(3, -1, 1, d, c, c);
                     }
                 }
                 data_021759c0->mUnk_1e8.mUnk_63 = 0;
@@ -84,7 +90,8 @@ void func_020446e0(void) {
                 for (k = 0; k < 32; k++) {
                     m = (s32) k / 4;
                     n = (s32) k % 4;
-                    if (data_021759c0->mUnk_1e8.mUnk_00 == data_02154128[m][n]) {
+                    b = data_02154128[m][n];
+                    if (data_021759c0->mUnk_1e8.mUnk_00 == b) {
                         break;
                     }
                     if (k == 31) {
@@ -92,7 +99,8 @@ void func_020446e0(void) {
                         n = 3;
                     }
                 }
-                data_021759c0->mUnk_1e8.mUnk_60 = n + 1;
+                data_021759c0->mUnk_1e8.mUnk_60 = (u8) (n + 1);
+                a = &data_021759c0->mUnk_1e8;
                 data_021759c0->mUnk_1e8.mUnk_0c = 3;
                 data_021759c0->mUnk_1e8.mUnk_04 = m;
             }

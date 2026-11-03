@@ -548,9 +548,6 @@ void func_0204ce60(void) {
     p->mUnk_0004 = data_02175ec0.mUnk_0008 == 0;
 }
 
-// non-matching: size matches (0x160); 24 words differ: in the original the three stores to the stack object come after
-// the sum of the word at 0xb00 and the word at 0x2c is loaded and computed, ours stores each part as soon as it is
-// built
 void func_0204cf5c(Unk02003024 *a) {
     Unk02175ec0_msg v1;
     s32 v2;
@@ -560,6 +557,7 @@ void func_0204cf5c(Unk02003024 *a) {
     Unk0204bfac *s;
     void *v6;
     u32 v7;
+    s32 b;
 
     v2 = a->mUnk_30.p.mUnk_08;
     s = (Unk0204bfac *) &data_usa_021762e0;
@@ -584,10 +582,11 @@ void func_0204cf5c(Unk02003024 *a) {
         s->mUnk_080[0] = s->mUnk_afc;
     }
     data_02175ec0.mUnk_001c = a;
-    v1.mUnk_00_0 = 0;
-    v1.mUnk_00_8 = a->mUnk_30.p.mUnk_08;
-    v1.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
+    b = *(volatile s32 *) &a->mUnk_30.p.mUnk_08;
     v1.mUnk_04 = s->mUnk_b00 + a->mUnk_2c;
+    v1.mUnk_00_0 = 0;
+    v1.mUnk_00_8 = b;
+    v1.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
     v1.mUnk_08 = data_02175ec0.mUnk_0028;
     if (func_02006d3c(1, &v1, 9, func_0204d5bc) != 0) {
         return;

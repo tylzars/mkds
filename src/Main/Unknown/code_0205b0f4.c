@@ -38,14 +38,12 @@ u32 func_0205bba8(void) {
     return 9;
 }
 
-// non-matching: the register of the data pointer (r4) and of the byte read from 0x749 in the value-5 arm (r3) are
-// swapped (r3 and r4 here); nothing else differs (7 words).
 void func_0205ba60(void) {
     Unk0217aa14 *p;
     u8 a;
     u8 b;
     u8 i;
-    u32 v1;
+    enum { K0 } v1;
 
     a = 0;
     b = 0;

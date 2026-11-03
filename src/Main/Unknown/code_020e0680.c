@@ -197,10 +197,12 @@ static inline s64 func_020e2630_inline(const Vec3 *v) {
     return (s64) v->x * v->x + (s64) v->z * v->z;
 }
 
-// non-matching: the flag value and the byte pointer sit in r5/r4 instead of r4/r5, and `mov r1, #0` is one place
-// later in the first product (19 words)
+static inline s16 func_020e2630_inline2(Unk020e1e98 *b) {
+    return b->mUnk_0fe;
+}
+
 void func_020e2630(u32 a, Unk020e1e98 *b) {
-    BOOL f;
+    enum { K0 } f;
     void *p;
     u32 n;
     Unk020e1e98_0b4 m;
@@ -210,9 +212,10 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
     Vec3 w;
 
     if (b->mUnk_0fe > 0xf) {
-        f = TRUE;
+        f = 1;
+        f = (s32) f;
     } else {
-        f = FALSE;
+        f = 0;
     }
     v = b->mUnk_000.mUnk_04;
     func_020d8cc8(&b->mUnk_0d8);
@@ -261,23 +264,28 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
             }
         }
     }
-    if (f) {
-        if (b->mUnk_000.mUnk_10.y >= 0) {
-            p = &b->mUnk_0c4;
-        } else {
-            b->mUnk_152 = (u16) (((s64) (-b->mUnk_000.mUnk_10.y) * 0xc) >> 12);
-            p = &b->mUnk_0b4;
-        }
-    } else {
-        if (b->mUnk_0fe != 0) {
-            b->mUnk_0fe--;
-            if (b->mUnk_0fe == 0) {
-                b->mUnk_152 = b->mUnk_150;
-            } else {
+    switch (f) {
+        default:
+            if (b->mUnk_000.mUnk_10.y < 0) {
+                b->mUnk_152 = (u16) (((s64) (-b->mUnk_000.mUnk_10.y) * 0xc) >> 12);
                 p = &b->mUnk_0b4;
+            } else {
+                p = &b->mUnk_0c4;
             }
-        }
+            break;
+
+        case 0:
+            if (func_020e2630_inline2(b) != 0) {
+                b->mUnk_0fe--;
+                if (b->mUnk_0fe == 0) {
+                    b->mUnk_152 = b->mUnk_150;
+                } else {
+                    p = &b->mUnk_0b4;
+                }
+            }
+            break;
     }
+
     if (func_020e2630_inline(&b->mUnk_000.mUnk_10) < 0x10) {
         m = b->mUnk_0b4;
     } else {

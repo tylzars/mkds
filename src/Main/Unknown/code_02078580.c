@@ -220,8 +220,6 @@ void func_020789f4(void) {
     }
 }
 
-// non-matching: size 0x6c against 0x68; the original keeps r4 to r7 live (the global pointer, the -1, the old word, the
-// 0x1f4 entry) without the stack word we reserve, and addresses the 0x58 entry as base plus index with offset 4
 void func_02078a34(s32 param_1) {
     Unk0217ad08 *d = data_0217ad08;
     Unk0217ad08_024 *q = &d->mUnk_024;
@@ -229,10 +227,12 @@ void func_02078a34(s32 param_1) {
     s32 a = q->mUnk_04;
     s32 c = -1;
     Unk0217ad08_058 *e;
+    Unk0217ad08_058 *b;
     if (param_1 == c) {
         e = d->mUnk_058;
+        b = &e[d->mUnk_264];
         q->mUnk_04 = param_1;
-        e[d->mUnk_264].mUnk_04 = c;
+        b->mUnk_04 = c;
         return;
     }
     if (t->mUnk_2c == 0 && a != param_1 && param_1 <= 0x25) {
@@ -241,7 +241,6 @@ void func_02078a34(s32 param_1) {
     }
 }
 
-// non-matching: size 0x6c against 0x68, the same register and stack-word difference as func_02078a34
 void func_02078a9c(s32 param_1) {
     Unk0217ad08 *d = data_0217ad08;
     Unk0217ad08_024 *q = &d->mUnk_024;
@@ -249,10 +248,12 @@ void func_02078a9c(s32 param_1) {
     s32 a = q->mUnk_00;
     s32 c = -1;
     Unk0217ad08_058 *e;
+    Unk0217ad08_058 *b;
     if (param_1 == c) {
         e = d->mUnk_058;
+        b = &e[d->mUnk_264];
         q->mUnk_00 = param_1;
-        e[d->mUnk_264].mUnk_00 = c;
+        b->mUnk_00 = c;
         return;
     }
     if (t->mUnk_2c == 0 && a != param_1 && param_1 <= 0xd) {
@@ -305,11 +306,9 @@ void func_02078b48(void *param_1) {
     func_02047b6c(9);
 }
 
-// non-matching: size 0x108 against 0x10c; the original tests the first loop (i < 0x24) once before entering it
-// (cmp r4, #0x24; bge), we enter it directly because the start value is known
 void func_02078c58(void *param_1) {
     u32 i;
-    s32 j;
+    enum { K0 } j;
     s32 a;
     func_02047b6c(1);
     func_02062860();

@@ -242,8 +242,6 @@ void func_ov000_0219ef68(s32 a, u16 b) {
     data_ov000_021b566c->mUnk_1d0 = func_ov000_021a350c();
 }
 
-// non-matching: the original keeps the object pointer on the stack and steps a pointer into the bytes at offset 0x2b8
-// (0xe8 bytes against 0xe0); ours indexes
 u32 func_ov000_0219f00c(u32 a) {
     u32 d[32];
     u32 e[32];
@@ -255,9 +253,10 @@ u32 func_ov000_0219f00c(u32 a) {
     Unk021b566c *p;
     m = 0;
     k = 0;
+    n = 1;
     p = data_ov000_021b566c;
-    for (n = 1; n <= p->mUnk_0d; n++) {
-        b = 1 << p->mUnk_2b8[n];
+    for (; n <= p->mUnk_0d; n++) {
+        b = 1 << data_ov000_021b566c->mUnk_2b8[n];
         if ((a & b) != 0) {
             e[k] = p->mUnk_f4[n];
             k++;
@@ -386,7 +385,6 @@ u32 func_ov000_0219f2e4(void) {
     return r;
 }
 
-// non-matching: the value read from the object at offset 0x1f4 and the byte at offset 0x15 swap registers (r0 and r1)
 void func_ov000_0219f344(void) {
     Unk021b566c *p;
     BOOL a;
@@ -408,7 +406,7 @@ void func_ov000_0219f344(void) {
         } else {
             b = FALSE;
         }
-        data_ov000_021b566c->mUnk_44c(0, 1, b, a, func_ov000_0219d5e4(p->mUnk_1f4), p->mUnk_450);
+        data_ov000_021b566c->mUnk_44c(0, 1, b, a, func_ov000_0219d5e4(c), p->mUnk_450);
         data_ov000_021b566c->mUnk_1a1 = 0;
     }
 }

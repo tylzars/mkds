@@ -64,7 +64,6 @@ void func_01ffd190(const Vec3 *a, s32 b, Vec4 *c) {
     c->w = data_0215d4b4[i * 2 + 1];
 }
 
-// non-matching: mla operand order at +0x2f4 (mla r0, r5, r0, r1 against mla r1, r0, r5, r1), same size
 void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
     Unk0206bcb0 *q = p->mUnk_00;
     Vec3 v0;
@@ -85,8 +84,6 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
     s32 g;
     BOOL r;
     Vec3 *u;
-    s32 s;
-    s32 t;
     Unk0206bcb0 *o;
     if (q->mUnk_180 != 0) {
         return;
@@ -133,10 +130,11 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
         v7.y = a->y - (s32) (((s64) v6.y * d) >> 12);
         v7.z = a->z - (s32) (((s64) v6.z * d) >> 12);
         func_020397a8(b, &v7, &v4);
-        g = func_02039828(&v6, &v4) > 0 ? 1 : -1;
-        s = (s32) (((s64) p->mUnk_70 * 0xB60B60B60BLL + 0x80000000LL) >> 32);
-        t = (s32) (((s64) e * 0xa4) >> 12);
-        q->mUnk_236 += g * ((s32) (((s64) s * t) >> 12) >> 12);
+        q->mUnk_236 += (g = func_02039828(&v6, &v4) > 0 ? 1 : -1) *
+                       ((s32) (((s64) ((s32) (((s64) p->mUnk_70 * 0xB60B60B60BLL + 0x80000000LL) >> 32)) *
+                                (s32) (((s64) e * 0xa4) >> 12)) >>
+                               12) >>
+                        12);
         r = TRUE;
     }
     if ((q->mUnk_4c & 0x8000000) && p->mUnk_70 < 0x46000 && (q->mUnk_44 & 0x10) && !(q->mUnk_48 & 0x8020) &&
@@ -196,18 +194,19 @@ s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     return r;
 }
 
-// non-matching: original has a 4-byte stack local and r7 (push r4-r7, sub sp 4), loads a->z and a->x up front; ours
-// push r4-r6, no stack local, size 0x16c against 0x188
 s32 func_01ffd778(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     s32 r;
     s32 x;
     s32 y;
     s32 z;
     s32 q;
+    s32 f;
+    s32 g;
     c = (c + b) >> 12;
     z = (a->z - data_0217b4f8.mUnk_08.z) >> 12;
     x = (a->x - data_0217b4f8.mUnk_08.x) >> 12;
-    q = z * z + x * x;
+    f = x * x;
+    q = z * z + f;
     r = q & ~0xc000001f;
     if (q > d) {
         r |= data_021568f4;
@@ -219,20 +218,21 @@ s32 func_01ffd778(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
         r |= data_usa_021568f8;
     }
     y = (a->y - data_0217b4f8.mUnk_08.y) >> 12;
-    if (y * data_0217b4f8.mUnk_14.y + x * data_0217b4f8.mUnk_14.x + z * data_0217b4f8.mUnk_14.z <
+    if (x * data_0217b4f8.mUnk_14.x + y * data_0217b4f8.mUnk_14.y + z * data_0217b4f8.mUnk_14.z <
         data_0217b4f8.mUnk_00 - b) {
         return r | 2;
     }
-    if (y * data_0217b4f8.mUnk_20.y + x * data_0217b4f8.mUnk_20.x + z * data_0217b4f8.mUnk_20.z > b) {
+    if (x * data_0217b4f8.mUnk_20.x + y * data_0217b4f8.mUnk_20.y + z * data_0217b4f8.mUnk_20.z > b) {
         return r | 2;
     }
-    if (y * data_0217b4f8.mUnk_2c.y + x * data_0217b4f8.mUnk_2c.x + z * data_0217b4f8.mUnk_2c.z > b) {
+    if (x * data_0217b4f8.mUnk_2c.x + y * data_0217b4f8.mUnk_2c.y + z * data_0217b4f8.mUnk_2c.z > b) {
         return r | 2;
     }
-    if (y * data_0217b4f8.mUnk_38.y + x * data_0217b4f8.mUnk_38.x + z * data_0217b4f8.mUnk_38.z > b) {
+    if (x * data_0217b4f8.mUnk_38.x + y * data_0217b4f8.mUnk_38.y + z * data_0217b4f8.mUnk_38.z > b) {
         return r | 2;
     }
-    if (y * data_0217b4f8.mUnk_44.y + x * data_0217b4f8.mUnk_44.x + z * data_0217b4f8.mUnk_44.z > b) {
+    g = x * data_0217b4f8.mUnk_44.x;
+    if (z * data_0217b4f8.mUnk_44.z + (y * data_0217b4f8.mUnk_44.y + g) > b) {
         r |= 2;
     }
     return r;

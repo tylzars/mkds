@@ -88,8 +88,6 @@ void CreateTire(Unk0206bcb0_590 *a, void *b) {
     func_0207a14c(v4, 0);
 }
 
-// non-matching: same instructions, but the second table index is kept in r3 and the entries come out in r2/r3/r0/r1
-// instead of r1/r2/r3/r0 in the second lookup; 9 words differ, same size
 void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
     u8 *c;
     u32 k;
@@ -141,8 +139,8 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
                 m = 0x10;
             }
             q = p + *(s32 *) (p + 8);
-            t = q + 4 + *(u16 *) (q + 0xa);
-            e = q + *(s32 *) (t + *(u16 *) t * j + 4);
+            t = q + 4;
+            e = q + *(s32 *) ((t = t + *(u16 *) (q + 0xa)) + *(u16 *) t * j + 4);
             f = q + *(s32 *) (t + *(u16 *) t * i + 4);
             g = (u8 *) (*(u16 *) (f + 0x1c) << 4);
             func_0214c48c();

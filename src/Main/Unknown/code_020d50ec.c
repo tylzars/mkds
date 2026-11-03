@@ -26,8 +26,6 @@
 #include "Main/Unknown/unk_02156000.h"
 #include "Main/Unknown/code_020d8654.h"
 
-// non-matching: 73 words differ from +0x10: the original keeps the multiplier in r0 and the word at 0x78 in r3 and
-// orders the table loads and the products differently
 void func_020d634c(Unk020d5bf0 *p, s32 b) {
     Unk020d634c u;
     Unk020d634c w;
@@ -35,6 +33,14 @@ void func_020d634c(Unk020d5bf0 *p, s32 b) {
     u32 fl;
     s32 k;
     s32 j;
+    s32 a;
+    s16 c;
+    s16 d;
+    s32 e;
+    s32 f;
+    s16 g;
+    s16 h;
+    s32 i;
 
     fl = p->mUnk_000.mUnk_78;
     y = p->mUnk_000.mUnk_1c.y;
@@ -47,14 +53,22 @@ void func_020d634c(Unk020d5bf0 *p, s32 b) {
                 k = 3;
                 j = 2;
             }
-            u.mUnk_00 = data_02156960[j] + (s32) (((s64) data_02156960[k] * y) >> 12);
-            u.mUnk_04 = data_02156940[j] + (s32) (((s64) data_02156940[k] * y) >> 12);
-            w.mUnk_00 = data_02156950[j] + (s32) (((s64) data_02156950[k] * y) >> 12);
-            u.mUnk_06 = data_02156948[j] + (s32) (((s64) data_02156948[k] * y) >> 12);
-            u.mUnk_08 = data_02156920[j] + (s32) (((s64) data_02156920[k] * y) >> 12);
-            w.mUnk_04 = data_02156928[j] + (s32) (((s64) data_02156928[k] * y) >> 12);
-            w.mUnk_06 = data_02156930[j] + (s32) (((s64) data_02156930[k] * y) >> 12);
-            w.mUnk_08 = data_02156938[j] + (s32) (((s64) data_02156938[k] * y) >> 12);
+            a = data_02156960[k];
+            d = data_02156938[k];
+            c = data_02156930[k];
+            g = data_02156928[k];
+            h = data_02156948[k];
+            u.mUnk_00 = data_02156960[j] + (s32) (((s64) a * y) >> 12);
+            i = data_02156940[k];
+            u.mUnk_04 = data_02156940[j] + (s32) (((s64) i * y) >> 12);
+            e = data_02156950[k];
+            u.mUnk_06 = data_02156948[j] + (s32) (((s64) h * y) >> 12);
+            w.mUnk_00 = data_02156950[j] + (s32) (((s64) e * y) >> 12);
+            f = data_02156920[k];
+            u.mUnk_08 = data_02156920[j] + (s32) (((s64) f * y) >> 12);
+            w.mUnk_04 = data_02156928[j] + (s32) (((s64) g * y) >> 12);
+            w.mUnk_06 = data_02156930[j] + (s32) (((s64) c * y) >> 12);
+            w.mUnk_08 = data_02156938[j] + (s32) (((s64) d * y) >> 12);
             if (p->mUnk_000.mUnk_00 == 0x192) {
                 func_0208b748(0x54, &p->mUnk_000.mUnk_04, &u, func_020d6538);
                 func_0208b748(0x57, &p->mUnk_000.mUnk_04, &w, func_020d6538);

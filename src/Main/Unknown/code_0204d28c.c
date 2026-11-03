@@ -15,8 +15,6 @@
 #include "code_0200eddc.h"
 #include "code_0200fc8c.h"
 
-// non-matching: second message block (0x27c-0x2d8): the original loads data_02175ec0.mUnk_0028 and v3->mUnk_04
-// before the mUnk_00_0 insert and builds the word in r3/r6, ours schedules them later in r0-r2
 void func_0204d28c(void) {
     Unk02175ec0_msg v1;
     Unk02175ec0_msg v2;
@@ -31,6 +29,7 @@ void func_0204d28c(void) {
     s32 g;
     Unk02175ec0 *q = &data_02175ec0;
     Unk02175ec0_440s *p = (Unk02175ec0_440s *) ((u32) q + 0x440);
+    s32 a;
 
     if (q->mUnk_0000 == 0) {
         return;
@@ -111,8 +110,9 @@ void func_0204d28c(void) {
             p->mUnk_46dc = p->mUnk_46dc & ~v4;
             break;
     }
+    a = *(volatile s32 *) &v3->mUnk_04;
     v2.mUnk_00_0 = (u8) v3->mUnk_00_0;
-    v2.mUnk_04 = v3->mUnk_04;
+    v2.mUnk_04 = a;
     v2.mUnk_00_8 = 1;
     v2.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
     v2.mUnk_08 = data_02175ec0.mUnk_0028;

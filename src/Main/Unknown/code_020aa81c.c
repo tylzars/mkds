@@ -27,8 +27,6 @@ void func_020ab028(s32 a) {
     }
 }
 
-// non-matching: the original stores the zero start of the running offset (sp+4) after the loop guard; here it is
-// stored before the guard (1 instruction moved).
 void func_020aafa8(Unk0217b278 *a) {
     s32 w;
     s32 h;
@@ -42,12 +40,21 @@ void func_020aafa8(Unk0217b278 *a) {
     w = a->mUnk_2c->mUnk_04->mUnk_00;
     n = h * w;
     func_0214cfe4(n, data_0217b254.mUnk_0c, data_0217b254.mUnk_14 * (data_0217b254.mUnk_10 * 2));
-    for (i = 0, v1 = 0, j0 = FALSE; i < w; i++) {
-        for (j = j0; j < h; j++) {
-            data_0217b254.mUnk_0c[j + i * data_0217b254.mUnk_14 / 2] =
-                (data_0217b254.mUnk_18 << 12) | (j + (data_0217b254.mUnk_1c + v1));
-        }
-        v1 += h;
+    i = 0;
+    v1 = 0;
+    v1 = (u32) v1;
+    j0 = FALSE;
+    if (i < w) {
+        v1 = 0;
+        v1 = (u32) v1;
+        do {
+            for (j = j0; j < h; j++) {
+                data_0217b254.mUnk_0c[j + i * data_0217b254.mUnk_14 / 2] =
+                    (data_0217b254.mUnk_18 << 12) | (j + (data_0217b254.mUnk_1c + v1));
+            }
+            v1 += h;
+            i++;
+        } while (i < w);
     }
 }
 

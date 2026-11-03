@@ -114,8 +114,6 @@ s32 func_020905a8(Unk020905a8 *a) {
     return r;
 }
 
-// non-matching: same instructions, but the compiler keeps the 64-bit product in fewer registers (no r6, one stack word
-// more)
 void func_02090638(Unk020905a8 *a) {
     Unk0206bcb0 *p;
     s32 v;
@@ -124,6 +122,7 @@ void func_02090638(Unk020905a8 *a) {
     u16 w;
     s32 d;
     s32 e;
+    s32 b;
     p = func_0207a974(a->mUnk_24);
     v = a->mUnk_20;
     if ((p->mUnk_44 & 0x10) != 0) {
@@ -132,7 +131,8 @@ void func_02090638(Unk020905a8 *a) {
         s = 0x52;
     }
     w = p->mUnk_236 + (s16) (((s64) v * 0xb6 + 0x800) >> 12);
-    m = data_0217562a[p->mUnk_78].mUnk_00;
+    b = *(volatile s32 *) &p->mUnk_78;
+    m = data_0217562a[b].mUnk_00;
     if ((u16) (m & 0x20) != 0) {
         p->mUnk_236 = p->mUnk_236 + 0xa0;
     } else if ((u16) (m & 0x10) != 0) {
@@ -140,9 +140,7 @@ void func_02090638(Unk020905a8 *a) {
     }
     d = w - p->mUnk_236;
     e = d;
-    if (e < 0) {
-        e = -e;
-    }
+    e = (e < 0) ? -e : e;
     if (e > 0x7fff) {
         if (d > 0) {
             d = -(0xffff - d);

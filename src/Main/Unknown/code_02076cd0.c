@@ -296,8 +296,6 @@ void func_02077750(Unk02077750 *a, Unk020748b8_218 *b) {
     }
 }
 
-// non-matching: same size; second loop only: the output index and the loop counter are in r7 and r4 in the original,
-// r4 and r7 here (6 words)
 void func_020777ac(u32 a) {
     void *h = func_020364e0(func_020364e8());
     u16 i;
@@ -329,8 +327,9 @@ void func_020777ac(u32 a) {
             data_usa_0217ac70 = n;
             data_0217acbc->mUnk_21c = func_02036bec(h, n * 0x88);
             e = data_0217acbc->mUnk_218;
+            m = 0;
             j = 0;
-            for (m = 0; m < gCourseMap->mUnk_80; m++) {
+            for (; m < gCourseMap->mUnk_80; m++) {
                 if (k != -1) {
                     e = &gCourseMap->mUnk_7c[(u16) k];
                     if (e == data_0217acbc->mUnk_218) {
@@ -360,8 +359,6 @@ void func_02077944(void) {
     func_02077060(data_0217ac94);
 }
 
-// non-matching: same size; the original keeps the zero stored to data_0217acac in r1 and uses it as the index start,
-// with the data_021759c0 pointer in r0 and the index in r1 (here the index is in r0 and the pointer in r1; 12 words)
 void func_02077998(void) {
     u32 i;
 
@@ -370,8 +367,11 @@ void func_02077998(void) {
     i = data_0217acac = 0;
     if (data_021759c0->mUnk_08 == 4) {
         i = data_021759c0->mUnk_036;
+        i = (u16) i;
+    } else {
+        i = (u16) i;
+        i = (u16) i;
     }
-    i = (u16) i;
     data_usa_0217ac90 = data_usa_02154fa0[i][0];
     data_usa_0217ac7c = data_usa_02154fa4[i][0];
     data_usa_0217ac78 = data_usa_02154fa8[i][0];
@@ -397,11 +397,9 @@ u16 func_02077a5c(void) {
     return data_0217ad08->mUnk_004 + 1;
 }
 
-// non-matching: 0xa8 bytes against 0xac; the original tests the loop bound (cmp r5, #8) before the first iteration,
-// ours drops the test because the counter starts at 0
 u32 func_02077a70(s32 *a, u32 b) {
     u32 n;
-    s32 i;
+    enum { K0 } i;
 
     *a = (s32) _s32_div_f((u16) b, 3);
     if (*a >= 8) {

@@ -96,25 +96,22 @@ void func_02075eb8(void) {
     data_0217aca8 = 1;
 }
 
-// non-matching: 0x100 bytes against 0x10c: the original keeps the constant, the value of the third argument's second
-// word and the flag word in r7, r6 and r3 and pushes r4-r7 (ours r4-r6) with the same instructions otherwise
 void func_02075fe0(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
-    u32 d = b->mUnk_48;
     s32 e = -0x2d000;
-    s32 h;
-    u32 k = d & 0x10000;
-    s32 f = 0x11f;
+    s32 j;
     s32 g = 0;
+    s32 f = 0x11f;
+    u32 d = b->mUnk_48;
+    s32 h;
 
-    if (k) {
+    if (d & 0x10000) {
         e = -0x3c000;
     }
     if (b->mUnk_3e8 > 0) {
         f = 0x52;
     }
-    if ((b->mUnk_44 & 0x10) || k) {
-        h = c->y;
-        if (h > 0) {
+    if ((b->mUnk_44 & 0x10) || (d & 0x10000)) {
+        if ((h = c->y) > 0) {
             g = (s32) (((s64) h * e) >> 12);
         } else if (h + 0x4cd < 0) {
             g = (s32) (((s64) h * -0xf000) >> 12);
@@ -124,7 +121,8 @@ void func_02075fe0(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
         a->mUnk_168 = a->mUnk_168 + (s32) (((s64) -a->mUnk_168 * f + 0x800) >> 12);
         return;
     }
-    a->mUnk_168 = a->mUnk_168 + (s32) (((s64) (g - a->mUnk_168) * f + 0x800) >> 12);
+    j = g - a->mUnk_168;
+    a->mUnk_168 = a->mUnk_168 + (s32) (((s64) j * f + 0x800) >> 12);
 }
 
 void func_020760ec(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {

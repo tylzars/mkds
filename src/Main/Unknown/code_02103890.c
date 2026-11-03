@@ -38,9 +38,6 @@ void func_02104970(void) {
 
 #pragma thumb off
 
-// non-matching: registers in the else loop only: the constants 5, 7, 3, 2 sit in r3, r12, r1, r2 instead of
-// r2, r3, r0, r1, q[i][0] in r0 instead of r12, and the address and product temporaries in r0, r9, r10 instead of
-// r7, r9, r10, r12. 28 words differ, sizes equal.
 void func_0210465c(Unk021035ac *p) {
     s16(*q)[2];
     s32 d;
@@ -49,6 +46,7 @@ void func_0210465c(Unk021035ac *p) {
     u32 *r;
     s16 x;
     s16 y;
+    s32 b;
 
     q = p->mUnk_10;
     d = *(s32 *) data_0217c650 - *(s32 *) data_0217c648;
@@ -91,21 +89,27 @@ void func_0210465c(Unk021035ac *p) {
             }
         }
     } else {
-        for (i = 0; i < 4; i++) {
-            x = q[i][0];
-            y = q[i][1];
-            if (y < 0) {
-                k = y * y > x * x ? 7 : 5;
-                if (i == p->mUnk_30) {
-                    k += (k << 1) + ((k * d) >> 9);
+        i = 0;
+        if (i < 4) {
+            do {
+                x = q[i][0];
+                y = q[i][1];
+                if (y < 0) {
+                    k = y * y > x * x ? 7 : 5;
+                    if (i == p->mUnk_30) {
+                        k += (k << 1) + ((k * d) >> 9);
+                    }
+                } else {
+                    k = y * y > x * x ? 2 : 3;
                 }
-            } else {
-                k = y * y > x * x ? 2 : 3;
-            }
-            p->mUnk_00[i][1] = p->mUnk_00[i][1] - (k + ((k * d) >> 8));
-            if (p->mUnk_00[i][1] < -0x3ccd) {
-                p->mUnk_00[i][1] = -0x3ccd;
-            }
+                b = k;
+                b += (k * d) >> 8;
+                p->mUnk_00[i][1] = p->mUnk_00[i][1] - b;
+                if (p->mUnk_00[i][1] < -0x3ccd) {
+                    p->mUnk_00[i][1] = -0x3ccd;
+                }
+                i++;
+            } while (i < 4);
         }
     }
     p->mUnk_2c = p->mUnk_2c - 1;

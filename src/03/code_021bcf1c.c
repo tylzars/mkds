@@ -196,8 +196,6 @@ s32 func_ov003_021bcf1c(void) {
     return a;
 }
 
-// non-matching: the two 0x40-byte struct copies (cases 2 and 3) use r4 as source and r3 as destination (ldmia r4!,
-// stmia r3!); the original has the destination in r4 and the source in r3 (ldmia r3!, stmia r4!), 4 words differ
 s32 func_ov003_021bd338(void) {
     s32 a;
     s32 b;
@@ -261,11 +259,11 @@ s32 func_ov003_021bd338(void) {
             break;
         case 2:
             data_ov003_021d8dc8.mUnk_20 = 4;
-            data_ov003_021d8dc8.mUnk_a8 = data_ov003_021d90ac.mUnk_00;
+            __memcpy(&data_ov003_021d8dc8.mUnk_a8, &data_ov003_021d90ac.mUnk_00, sizeof(data_ov003_021d8dc8.mUnk_a8));
             break;
         case 3:
             data_ov003_021d8dc8.mUnk_20 = 5;
-            data_ov003_021d8dc8.mUnk_a8 = data_ov003_021d90ac.mUnk_00;
+            __memcpy(&data_ov003_021d8dc8.mUnk_a8, &data_ov003_021d90ac.mUnk_00, sizeof(data_ov003_021d8dc8.mUnk_a8));
             break;
         default:
             a = -7;
@@ -322,9 +320,6 @@ BOOL func_ov003_021bd4cc(u8 *a, const s8 *b, s32 c) {
     return TRUE;
 }
 
-// non-matching: the parse pointer is in r4 and the walk pointer in r5 (original: r5 and r4), and the two four-entry
-// loops (0x203, 0x204) use other registers for value, counter and pointer than the original (r1/r3/r2 and r2/r1/r3), 24
-// words differ
 s32 func_ov003_021bd59c(u8 *p) {
     u8 *c;
     BOOL b;
@@ -332,6 +327,7 @@ s32 func_ov003_021bd59c(u8 *p) {
     u32 d;
     s32 e;
     u8 *f;
+    u8 *l;
     a = p + 8;
     b = FALSE;
     c = a + func_ov003_021b7c44_inline(*(u16 *) p);
@@ -347,7 +343,7 @@ s32 func_ov003_021bd59c(u8 *p) {
                 data_ov003_021d8fb0.mUnk_2c = func_ov003_021b7c44_inline(*(u16 *) f);
                 break;
             case 0x203: {
-                u32 g;
+                s32 g;
                 s32 h;
                 u8 *i;
                 g = func_ov003_021b7c44_inline(*(u16 *) f);
@@ -362,13 +358,12 @@ s32 func_ov003_021bd59c(u8 *p) {
             case 0x204: {
                 u32 g;
                 s32 h;
-                u8 *i;
                 g = func_ov003_021b7c44_inline(*(u16 *) f);
                 h = 0;
-                i = data_ov003_021d8eb0;
+                l = data_ov003_021d8eb0;
                 for (; h < 4; h++) {
-                    *(u32 *) (i + 0x160) = g;
-                    i += 0x28;
+                    *(u32 *) (l + 0x160) = g;
+                    l += 0x28;
                 }
                 break;
             }
@@ -385,8 +380,7 @@ s32 func_ov003_021bd59c(u8 *p) {
                     s32 j;
                     k = data_ov003_021d9014 + (d - 0x206) * 0x28;
                     for (j = 0; j < e; j++) {
-                        k += func_ov003_021bb2d8(k, *f);
-                        f++;
+                        k += func_ov003_021bb2d8(k, *f++);
                     }
                 } else {
                     memcpy(data_ov003_021d9014 + (d - 0x206) * 0x28, f, e);
@@ -402,25 +396,22 @@ s32 func_ov003_021bd59c(u8 *p) {
     return b;
 }
 
-// non-matching: the original computes the destination address first (adds r2, r4, #12) and reads the six-byte local
-// through a pointer built as sp + 4 + 2; ours loads the source first and addresses the locals from sp, size 0x10c
-// against 0x11c
 s32 func_ov003_021bd768(u8 *a, void *b) {
     u8 c[6];
     u8 d[6];
     u8 e[0x20];
     u8 f[0x20];
-    *(Unk021d6974 *) (a + 0xc) = data_ov003_021d6974;
-    *(Unk021d8c54 *) c = data_ov003_021d8c5c;
+    __memcpy(a + 0xc, &data_ov003_021d6974, sizeof(Unk021d6974));
+    __memcpy(c, &data_ov003_021d8c5c, sizeof(Unk021d8c54));
     c[0] &= 0xfd;
     func_ov003_021bd884(d);
-    data_ov003_021d8c54 = *(Unk021d8c54 *) d;
+    __memcpy(&data_ov003_021d8c54, d, sizeof(Unk021d8c54));
     if (memcmp(c, d, 6) <= 0) {
-        *(Unk021d8c54 *) a = *(Unk021d8c54 *) d;
-        *(Unk021d8c54 *) (a + 6) = *(Unk021d8c54 *) c;
+        __memcpy(a, d, sizeof(Unk021d8c54));
+        __memcpy(a + 6, c, sizeof(Unk021d8c54));
     } else {
-        *(Unk021d8c54 *) a = *(Unk021d8c54 *) c;
-        *(Unk021d8c54 *) (a + 6) = *(Unk021d8c54 *) d;
+        __memcpy(a, c, sizeof(Unk021d8c54));
+        __memcpy(a + 6, d, sizeof(Unk021d8c54));
     }
     if (data_ov003_021d68b0 != 0) {
         func_ov003_021bb29c(e, (const s8 *) d);

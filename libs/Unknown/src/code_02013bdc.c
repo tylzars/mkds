@@ -318,8 +318,6 @@ void func_02015788(Unk02015788 *a, Unk02015788_s *b, u32 c) {
     a->mUnk_00 |= 8;
 }
 
-// non-matching: same size; in the 3:1 arm the two halfword loads are issued in the other order, so the
-// multiply-accumulate operands swap.
 u16 func_020155d8(const void *a, u32 b, u32 c) {
     u32 x;
     u32 d;
@@ -361,8 +359,8 @@ u16 func_020155d8(const void *a, u32 b, u32 c) {
                 d = c + 1;
             }
             x = h[c];
-            y = h[d];
-            return ((x & 0x7c1f) * 3 + (y & 0x7c1f)) >> 2 & 0x7c1f | ((x & 0x3e0) * 3 + (y & 0x3e0)) >> 2 & 0x3e0;
+            return ((x & 0x7c1f) * 3 + ((u32) h[d] & 0x7c1f)) >> 2 & 0x7c1f |
+                   ((x & 0x3e0) * 3 + ((u32) h[d] & 0x3e0)) >> 2 & 0x3e0;
         }
         k = c >> 2;
         goto half;
@@ -801,18 +799,16 @@ single:
     }
 }
 
-// non-matching: same instructions; the fraction, multiplier and shift live in r1/r2/r3 where the original has r5/r2/r1,
-// and the flag test writes lr instead of r3.
 void func_02014954(s32 *out, s32 a, const u32 *p, Unk02014c5c *obj) {
     u32 n;
     const u8 *tab;
     s32 q;
     s32 y;
-    s32 x;
     s32 sh;
     u32 w;
     s32 m;
     u32 i;
+    s32 x;
 
     i = a >> 12;
     tab = (const u8 *) obj + p[1];
@@ -826,15 +822,15 @@ void func_02014954(s32 *out, s32 a, const u32 *p, Unk02014c5c *obj) {
             }
         }
         if (obj->mUnk_08 & 2) {
-            q = a & 0xfff;
+            sh = a & 0xfff;
             if (w & 0x20000000) {
                 x = ((const s16 *) tab)[i];
-                y = ((const s16 *) tab)[0];
+                q = ((const s16 *) tab)[0];
             } else {
                 x = ((const s32 *) tab)[i];
-                y = ((const s32 *) tab)[0];
+                q = ((const s32 *) tab)[0];
             }
-            *out = x + ((q * (y - x)) >> 12);
+            *out = x + ((sh * (q - x)) >> 12);
         } else {
             if (w & 0x20000000) {
                 *out = ((const s16 *) tab)[i];

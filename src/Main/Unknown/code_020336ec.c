@@ -21,29 +21,29 @@ static inline void func_020338f8_inline(void *p, s32 n) {
 
 #pragma thumb on
 
-// non-matching: 0x158 bytes, original 0x154; the original reads the count at 0xd4 into one register and the loop
-// counter in another through the table loops (ours keeps the table entry in a stack word), and its two stack words for
-// the pair of constants are swapped
 void func_020336ec(void *a) {
     Unk02174e60 *o;
     Unk02174e14_00 *t;
     s32 x;
     s32 c;
     s32 d;
-    BOOL e;
     s32 f;
     s32 n;
     s32 i;
+    BOOL e;
     s32 j;
     s32 k;
     s32 m;
 
     o = data_02174e60;
     t = &o->mUnk_048[0];
-    if (o->mUnk_0dc != 3) {
-        x = 1;
-    } else {
-        x = 0;
+    switch (o->mUnk_0dc) {
+        case 3:
+            x = 0;
+            break;
+        default:
+            x = 1;
+            break;
     }
     n = 0;
     c = o->mUnk_0d4;
@@ -60,9 +60,13 @@ void func_020336ec(void *a) {
     for (i = 0; i < 0x38; i++) {
         t->mUnk_18[i].mUnk_00 = 0;
     }
-    for (j = data_usa_02153eb0[data_02174e60->mUnk_0d4 - 1];
-         j < data_usa_02153eb0[data_02174e60->mUnk_0d4 - 1] + data_02174e60->mUnk_0d4 * 2; j++) {
-        t->mUnk_18[j].mUnk_00 = 1;
+    j = data_usa_02153eb0[data_02174e60->mUnk_0d4 - 1];
+    j = (u32) j;
+    if (j < data_usa_02153eb0[data_02174e60->mUnk_0d4 - 1] + data_02174e60->mUnk_0d4 * 2) {
+        do {
+            t->mUnk_18[j].mUnk_00 = 1;
+            j++;
+        } while (j < data_usa_02153eb0[data_02174e60->mUnk_0d4 - 1] + data_02174e60->mUnk_0d4 * 2);
     }
     if (data_02174e60->mUnk_0dc == 3) {
         for (k = data_usa_02153eb0[data_02174e60->mUnk_0d4 - 1];
@@ -109,18 +113,17 @@ void func_02033840(void *a) {
     }
 }
 
-// non-matching: same size (0x114), 16 words differ; the original compares the halfword count with ble (ours beq) and
-// keeps the remaining size in r7 and the loop counter in r6, ours the opposite; its last loop is laid out with the
-// constant 0 loaded first
 void func_020338f8(void *a) {
     Unk02174e14_00 *t;
-    u32 r;
     s32 n;
     s32 j;
     s32 m;
     s32 h;
+    u32 r;
     u8 *p;
     u16 w[11];
+    s32 b;
+    Unk02124b1c *c;
 
     t = &data_02174e60->mUnk_048[0];
     r = func_02148cb8();
@@ -129,7 +132,8 @@ void func_020338f8(void *a) {
     data_02174e60->mUnk_0cc = 8;
     data_02174e60->mUnk_0ce = 0x12;
     j = 0;
-    if (t->mUnk_14->mUnk_06 > 0) {
+    b = t->mUnk_14->mUnk_06;
+    if (b > 0) {
         p = data_usa_02153ec0;
         do {
             r -= func_02025a00(n, a, t, p, r);
@@ -147,9 +151,11 @@ void func_020338f8(void *a) {
         }
     }
     while (n < 7) {
-        n++;
+        n = n + 1;
         t->mUnk_18[n].mUnk_00 = 0;
-        t->mUnk_18[h + n].mUnk_00 = 0;
+        n = (u32) n;
+        c = &t->mUnk_18[n + h];
+        c->mUnk_00 = 0;
     }
 }
 
@@ -179,8 +185,6 @@ void func_02033a0c(void *a) {
     func_02033ab8(0, data_02174e60->mUnk_0d0, 0, 1);
 }
 
-// non-matching: same size (0xc8), 5 words differ from +0x7c; the original loads the word at 0x10c of data_0217b488
-// before the member at 0xc of the entry, ours after it
 void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
     Unk02174e14_00 *q;
     Unk02174e14_00 *s;
@@ -188,6 +192,7 @@ void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
     Unk020b4a44 *u;
     u8 *p;
     u8 v;
+    u32 e;
 
     s = &data_02174e60->mUnk_048[a];
     if (d == 1) {
@@ -204,7 +209,8 @@ void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
             u = (Unk020b4a44 *) data_02174e60->mUnk_0c4;
         }
         v = func_02124a68(c, s->mUnk_08, s->mUnk_0c);
-        p = data_0217b488->mUnk_10c[b] * 0x20 + (u8 *) u->mUnk_0c;
+        e = data_0217b488->mUnk_10c[b];
+        p = e * 0x20 + (u8 *) u->mUnk_0c;
         if (a == 0) {
             func_02016468(0xe, v << 5, p, 0x20);
         } else {

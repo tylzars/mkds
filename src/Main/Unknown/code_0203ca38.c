@@ -16,8 +16,10 @@
 #include "Main/Unknown/code_020b3f64.h"
 #include "Main/Unknown/code_021108bc.h"
 
-// non-matching: same instructions; in the loop that stores the halfword at 0x50 of each entry the original keeps the
-// table base in r2, the offset in r1, the loaded halfword in r8 and the byte in r3 (ours r8, r3, r1, r9)
+static inline s32 func_0203ca38_inline(u32 i) {
+    return func_020a1250(i) + 1;
+}
+
 void func_0203ca38(void) {
     u32 i;
     func_0203fed4();
@@ -69,7 +71,7 @@ void func_0203ca38(void) {
     if (data_021759c0->mUnk_08 == 2) {
         for (i = 0; i < data_021759c0->mUnk_3d0; i = (u16) (i + 1)) {
             u16 *q;
-            u8 v = func_020a1250(i) + 1;
+            u8 v = func_0203ca38_inline(i);
             q = (u16 *) ((u8 *) &data_0217561c->mUnk_000[0].mUnk_50 + i * 0x8c);
             *q = (*q & ~0xf) | (v & 0xf);
         }
@@ -114,14 +116,15 @@ void func_0203cd04(u16 a) {
     func_0203e788(a, 4);
 }
 
-// non-matching: same control flow; the original (0x2a0 bytes) loads the halfword index into r2 before the multiply (mul
-// r4, r2, r0 after the constant) and keeps the data_021759c0 pointer in r3, the flag in ip and the counter value in r3
-// / r2 differently; ours is 0x298 bytes
+static inline u16 func_0203cd14_inline(s32 v) {
+    return (u16) v;
+}
+
 void func_0203cd14(void) {
     BOOL g = FALSE;
     s32 k = 2;
     Unk021759c0 *d = data_021759c0;
-    s8 v = d->mUnk_62;
+    s32 v = d->mUnk_62;
     u16 w;
     u32 v1;
     Unk0217561c_14 *p;
@@ -147,7 +150,7 @@ void func_0203cd14(void) {
                 return;
             }
             func_020688a0(func_0207a974((u16) v));
-            func_0207a828((u16) v);
+            func_0207a828(func_0203cd14_inline(v));
             func_020b3f64();
             func_02110cc8(0);
             if (data_021759c0->mUnk_08 == 4) {
