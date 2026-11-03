@@ -24,12 +24,12 @@
 #include "Main/Unknown/code_020472a8.h"
 
 void func_ov001_021984ac(void) {
-    Unk020b4934 *a = NULL;
+    Ncgr *a = NULL;
     Unk02021dc8 *b = NULL;
-    Unk020b4a44 *c = NULL;
-    Unk020b4934 *d = NULL;
-    Unk020b4a44 *e = NULL;
-    Unk020b47d8 *f = NULL;
+    Nclr *c = NULL;
+    Ncgr *d = NULL;
+    Nclr *e = NULL;
+    Nscr *f = NULL;
 
     LoadNcgrData(&d, FindSceneFile(data_ov001_021a835c));
     LoadNclrData(&e, FindSceneFile(data_ov001_021a8360));
@@ -40,11 +40,11 @@ void func_ov001_021984ac(void) {
 }
 
 void func_ov001_02198384(void) {
-    Unk020b4934 *a = NULL;
-    Unk020b4a44 *b = NULL;
-    Unk020b4934 *c = NULL;
-    Unk020b4a44 *d = NULL;
-    Unk020b47d8 *e = NULL;
+    Ncgr *a = NULL;
+    Nclr *b = NULL;
+    Ncgr *c = NULL;
+    Nclr *d = NULL;
+    Nscr *e = NULL;
 
     LocateNcgr(&c, FindSceneFile(data_ov001_021a835c));
     LocateNclr(&d, FindSceneFile(data_ov001_021a8360));
@@ -55,12 +55,12 @@ void func_ov001_02198384(void) {
     LocateNcgr2(&a, FindSceneFile(data_ov001_021a8350));
     LocateNcer(&data_ov001_021a9be0->mUnk_00, FindSceneFile(data_ov001_021a834c));
     LocateNclr(&b, FindSceneFile(data_ov001_021a8364));
-    func_02016468(4, 0, c->mUnk_14, c->mUnk_10);
-    func_02016468(0xf, 0, d->mUnk_0c, 0x20);
-    func_02016468(8, 0, &e->mUnk_0c, e->mUnk_08);
+    func_02016468(4, 0, c->mData, c->mDataSize);
+    func_02016468(0xf, 0, d->mData, 0x20);
+    func_02016468(8, 0, &e->mData, e->mDataSize);
     func_02016468(8, 0x800, data_ov001_021a9be0->mUnk_10, 0x800);
-    func_02016468(0x23, 0, a->mUnk_14, a->mUnk_10);
-    func_02016468(0x1e, 0, b->mUnk_0c, b->mUnk_08);
+    func_02016468(0x23, 0, a->mData, a->mDataSize);
+    func_02016468(0x1e, 0, b->mData, b->mDataSize);
 }
 
 void func_ov001_02198368(void) {

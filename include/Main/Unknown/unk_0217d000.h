@@ -41,22 +41,22 @@ typedef struct Unk0217d358 {
     /* 00 */ u8 *mUnk_00;
 } Unk0217d358;
 
-struct Unk020b4a44;
+struct Nclr;
 
 // Object behind data_0217d35c: 0x18 bytes allocated by func_021172a8; members 0x0, 0x4 and 0x8 + 4 * i are filled
 // through LocateNcgr2, LocateNcer and LocateNclr.
 typedef struct Unk0217d35c {
-    /* 00 */ struct Unk020b4934 *mUnk_00;
+    /* 00 */ struct Ncgr *mUnk_00;
     /* 04 */ struct Unk02021dc8 *mUnk_04;
-    /* 08 */ struct Unk020b4a44 *mUnk_08[3];
+    /* 08 */ struct Nclr *mUnk_08[3];
     /* 14 */ void *mUnk_14;
 } Unk0217d35c;
 
 struct Unk0212d5f8;
 struct Unk0212ef48;
-struct Unk020b4934;
-struct Unk020b4a44;
-struct Unk020b47d8;
+struct Ncgr;
+struct Nclr;
+struct Nscr;
 
 // Object behind data_0217d354; the object at its member 0x8 has 0xc added to it.
 typedef struct Unk0217d354_08 {
@@ -97,7 +97,7 @@ typedef struct Unk0217d350 {
     /* 1c */ void *mUnk_1c;
     /* 20 */ Unk0217d350_10 *mUnk_20;
     /* 24 */ Unk02124b1c *mUnk_24;
-    /* 28 */ struct Unk020b4934 *mUnk_28;
+    /* 28 */ struct Ncgr *mUnk_28;
     /* 2c */ struct Unk02021dc8 *mUnk_2c;
     /* 30 */ Unk0201ea30 *mUnk_30;
     /* 34 */ void *mUnk_34;
@@ -140,9 +140,9 @@ typedef struct Unk0217d36c {
 
 // Object behind data_0217d370 (0x10 bytes); func_0211dfb4 and func_0211df44 allocate and fill it.
 typedef struct Unk0217d370 {
-    /* 00 */ struct Unk020b4934 *mUnk_00;
+    /* 00 */ struct Ncgr *mUnk_00;
     /* 04 */ struct Unk02021dc8 *mUnk_04;
-    /* 08 */ struct Unk020b4a44 *mUnk_08;
+    /* 08 */ struct Nclr *mUnk_08;
     /* 0c */ void *mUnk_0c;
 } Unk0217d370;
 
@@ -179,17 +179,17 @@ typedef struct Unk0217d32c {
 
 // Object behind gRecordVS.
 typedef struct Unk0217d348 {
-    /* 00 */ struct Unk020b4934 *mUnk_00;
+    /* 00 */ struct Ncgr *mUnk_00;
     /* 04 */ struct Unk02021dc8 *mUnk_04;
     /* 08 */ Unk0201ea30 *mUnk_08;
     /* 0c */ void *mUnk_0c;
-    /* 10 */ struct Unk020b47d8 *mUnk_10;
+    /* 10 */ struct Nscr *mUnk_10;
     /* 14 */ Unk02124b1c *mUnk_14;
     /* 18 */ Unk0201ea30 *mUnk_18;
     /* 1c */ void *mUnk_1c;
-    /* 20 */ struct Unk020b47d8 *mUnk_20;
+    /* 20 */ struct Nscr *mUnk_20;
     /* 24 */ Unk02124b1c *mUnk_24;
-    /* 28 */ struct Unk020b4934 *mUnk_28;
+    /* 28 */ struct Ncgr *mUnk_28;
     /* 2c */ struct Unk02021dc8 *mUnk_2c;
     /* 30 */ Unk0201ea30 *mUnk_30;
     /* 34 */ Unk0201ea30 *mUnk_34;
@@ -332,9 +332,9 @@ typedef struct Unk0217d368 {
 
 // Object behind data_0217d37c (0x10 bytes), allocated by func_0211f2b8.
 typedef struct Unk0217d37c {
-    /* 00 */ struct Unk020b4934 *mUnk_00;
+    /* 00 */ struct Ncgr *mUnk_00;
     /* 04 */ struct Unk02021dc8 *mUnk_04;
-    /* 08 */ struct Unk020b4a44 *mUnk_08;
+    /* 08 */ struct Nclr *mUnk_08;
     /* 0c */ void *mUnk_0c;
 } Unk0217d37c;
 
@@ -487,7 +487,7 @@ typedef struct Unk0217d3f0 {
     /* 2250 */ s32 mUnk_2250;
     /* 2254 */ s32 mUnk_2254;
     /* 2258 */ s32 mUnk_2258;
-    /* 225c */ struct Unk020b47d8 *mUnk_225c[7];
+    /* 225c */ struct Nscr *mUnk_225c[7];
 } Unk0217d3f0;
 
 // Object behind data_0217d3f4.
@@ -583,8 +583,8 @@ typedef struct Unk0217d400 {
     /* 86 */ s16 mUnk_86[2][2];
     /* 8e */ u8 mUnk_8e[2];
     /* 90 */ struct Unk02021dc8 *mUnk_90;
-    /* 94 */ struct Unk020b4934 *mUnk_94;
-    /* 98 */ struct Unk020b4a44 *mUnk_98;
+    /* 94 */ struct Ncgr *mUnk_94;
+    /* 98 */ struct Nclr *mUnk_98;
     /* 9c */ Unk0201ea30 *mUnk_9c[2];
     /* a4 */ Unk0201ea30 *mUnk_a4[2];
     /* ac */ void *mUnk_ac[2];
@@ -593,7 +593,7 @@ typedef struct Unk0217d400 {
     /* c0 */ void *mUnk_c0;
 } Unk0217d400;
 
-// Elements of 0x20 bytes at member 0x14 of Unk020b4934.
+// Elements of 0x20 bytes at member 0x14 of Ncgr.
 typedef struct Unk0217d404_bc {
     /* 00 */ u8 mUnk_00[0x20];
 } Unk0217d404_bc;

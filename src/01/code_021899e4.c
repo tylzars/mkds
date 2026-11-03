@@ -77,7 +77,7 @@ void func_ov001_021899e4(void) {
     s32 k;
     Unk0217b498_00 *obj;
     u16 *dst;
-    Unk020b4a44 *nclr;
+    Nclr *nclr;
     Vec3 *pos;
 
     var = func_020c0db0();
@@ -87,13 +87,13 @@ void func_ov001_021899e4(void) {
             pos = &obj->mUnk_04;
             if (func_020b5ae8(pos, &data_ov001_021a9bc0->mUnk_10[count].mUnk_00, var, 1, 1)) {
                 row = func_ov001_0218b2d4((Unk02188950 *) obj);
-                dst = GetRaceNclrNcgr(6)->mNclr->mUnk_0c;
+                dst = GetRaceNclrNcgr(6)->mNclr->mData;
                 nclr = NULL;
-                LocateNclr((Unk020b4a44 **) (&nclr), (void *) (FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR")));
+                LocateNclr((Nclr **) (&nclr), (void *) (FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR")));
                 for (k = 0; k < 16; k++) {
-                    dst[0x50 + k] = nclr->mUnk_0c[(row + 2) * 16 + k];
+                    dst[0x50 + k] = nclr->mData[(row + 2) * 16 + k];
                 }
-                func_0200ee74(GetRaceNclrNcgr(6)->mNclr->mUnk_0c, GetRaceNclrNcgr(6)->mNclr->mUnk_08);
+                func_0200ee74(GetRaceNclrNcgr(6)->mNclr->mData, GetRaceNclrNcgr(6)->mNclr->mDataSize);
                 data_ov001_021a9bc0->mUnk_10[count].mUnk_08 = GetRaceSNcerEntry(0xc5);
                 data_ov001_021a9bc0->mUnk_10[count].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
                 data_ov001_021a9bc0->mUnk_10[count].mUnk_0e = obj->mUnk_02 & 0x20;

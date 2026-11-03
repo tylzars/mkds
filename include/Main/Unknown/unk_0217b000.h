@@ -24,9 +24,9 @@ struct Unk020f41c4_B;
 struct Unk0217b4f0;
 struct Unk020d9cf4;
 struct Unk0217b43c;
-struct Unk020b47d8;
-struct Unk020b4934;
-struct Unk020b4a44;
+struct Nscr;
+struct Ncgr;
+struct Nclr;
 struct Unk02022aa8;
 struct Unk020a3fa8_a4;
 
@@ -163,9 +163,9 @@ typedef struct Unk0217b438 {
     /* 2c */ void *mUnk_2c;
     /* 30 */ Unk0217d3f0_2098 mUnk_30;
     /* 50 */ Unk02180728 mUnk_50;
-    /* 60 */ struct Unk020b4a44 *mChoisesSBNclr;
-    /* 64 */ struct Unk020b4934 *mChoisesSBNcgr;
-    /* 68 */ struct Unk020b47d8 *mChoisesS3Nscr;
+    /* 60 */ struct Nclr *mChoisesSBNclr;
+    /* 64 */ struct Ncgr *mChoisesSBNcgr;
+    /* 68 */ struct Nscr *mChoisesS3Nscr;
 } Unk0217b438;
 
 // 16-byte rows of the table behind gGrpconfTbl (CreateMapObject reads the halfwords).
@@ -340,14 +340,14 @@ typedef struct Unk0217b278_10 {
     /* 06 */ u16 mUnk_06;
 } Unk0217b278_10;
 
-struct Unk020b4934;
+struct Ncgr;
 struct Unk0217b278;
 
 // Set up by func_020aa028 (at 0x1c of Unk0217b278, which mUnk_2c then points to); mUnk_08 is called with the
 // Unk0217b278 (func_020ab45c is one).
 typedef struct Unk0217b278_1c {
     /* 00 */ Unk0217b278_10 *mUnk_00;
-    /* 04 */ struct Unk020b4934 *mUnk_04;
+    /* 04 */ struct Ncgr *mUnk_04;
     /* 08 */ void (*mUnk_08)(struct Unk0217b278 *);
     /* 0c */ u16 mUnk_0c;
     /* 0e */ u16 mUnk_0e;
@@ -434,8 +434,8 @@ typedef struct Unk0217b334 {
     /* 04 */ void *mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
-    /* 10 */ struct Unk020b4934 *mUnk_10[5];
-    /* 24 */ struct Unk020b4934 *mUnk_24;
+    /* 10 */ struct Ncgr *mUnk_10[5];
+    /* 24 */ struct Ncgr *mUnk_24;
     /* 28 */ void *mUnk_28[6];
     /* 40 */ u16 *mUnk_40;
     /* 44 */ u16 mUnk_44;
@@ -487,16 +487,16 @@ typedef struct Unk020ad344 {
     /* 06c */ struct Unk0201ea30 *mUnk_6c;
     /* 070 */ void *mUnk_70;
     /* 074 */ struct Unk0201ea30 *mUnk_74;
-    /* 078 */ struct Unk020b4a44 *mUnk_78;
-    /* 07c */ struct Unk020b4934 *mUnk_7c;
-    /* 080 */ struct Unk020b4a44 *mUnk_80;
-    /* 084 */ struct Unk020b4934 *mUnk_84;
-    /* 088 */ struct Unk020b47d8 *mUnk_88;
-    /* 08c */ struct Unk020b47d8 *mUnk_8c;
-    /* 090 */ struct Unk020b47d8 *mUnk_90;
+    /* 078 */ struct Nclr *mUnk_78;
+    /* 07c */ struct Ncgr *mUnk_7c;
+    /* 080 */ struct Nclr *mUnk_80;
+    /* 084 */ struct Ncgr *mUnk_84;
+    /* 088 */ struct Nscr *mUnk_88;
+    /* 08c */ struct Nscr *mUnk_8c;
+    /* 090 */ struct Nscr *mUnk_90;
     /* 094 */ u8 pad_94[0xc];
-    /* 0a0 */ struct Unk020b4a44 *mUnk_a0;
-    /* 0a4 */ struct Unk020b4934 *mUnk_a4;
+    /* 0a0 */ struct Nclr *mUnk_a0;
+    /* 0a4 */ struct Ncgr *mUnk_a4;
     /* 0a8 */ struct Unk02021dc8 *mUnk_a8;
     /* 0ac */ u8 pad_ac[4];
     /* 0b0 */ Unk020ae630 mUnk_b0;
@@ -527,9 +527,9 @@ typedef struct Unk0217b350 {
     /* 408 */ u8 mUnk_408[0x400];
     /* 808 */ u16 mUnk_808;
     /* 80a */ u16 mUnk_80a;
-    /* 80c */ struct Unk020b4a44 *mNclrs[2];
-    /* 814 */ struct Unk020b4934 *mNcgrs[2];
-    /* 81c */ struct Unk020b47d8 *mNscrs[3];
+    /* 80c */ struct Nclr *mNclrs[2];
+    /* 814 */ struct Ncgr *mNcgrs[2];
+    /* 81c */ struct Nscr *mNscrs[3];
     /* 828 */ s32 mUnk_828;
     /* 82c */ s32 mUnk_82c;
     /* 830 */ s32 mUnk_830;
@@ -617,9 +617,9 @@ typedef struct RaceGoalS {
     /* 00ac */ void *mUnk_00ac;
     /* 00b0 */ s32 mUnk_00b0;
     /* 00b4 */ s32 mUnk_00b4;
-    /* 00b8 */ struct Unk020b4a44 *mRaceGoalSBNclr;
-    /* 00bc */ struct Unk020b4934 *mRaceGoalSBNcgr;
-    /* 00c0 */ struct Unk020b47d8 *mRaceGoalSNscrs[6];
+    /* 00b8 */ struct Nclr *mRaceGoalSBNclr;
+    /* 00bc */ struct Ncgr *mRaceGoalSBNcgr;
+    /* 00c0 */ struct Nscr *mRaceGoalSNscrs[6];
     /* 00d8 */ u16 mRaceGoalSSpaceNscrCopies[2][0x800];
     /* 20d8 */ s32 mOffsetState;
     /* 20dc */ s32 mOffsetStateFrames;
@@ -867,19 +867,19 @@ typedef struct Unk0217b254 {
 extern Unk0217b254 data_0217b254;
 struct Unk0217b340;
 struct Unk0217b344;
-struct Unk020b4a44;
+struct Nclr;
 struct Unk02021dc8;
 extern struct Unk0217b340 *data_0217b360;
 extern struct Unk0217b344 *data_0217b364;
-extern struct Unk020b4a44 *gPlayerCharacterNclr[2];
-extern struct Unk020b4a44 *gPlayerCharacterLNclr;
-extern struct Unk020b4934 *gPlayerCharacterNcgr[2];
-extern struct Unk020b4934 *gPlayerCharacterLNcgr;
+extern struct Nclr *gPlayerCharacterNclr[2];
+extern struct Nclr *gPlayerCharacterLNclr;
+extern struct Ncgr *gPlayerCharacterNcgr[2];
+extern struct Ncgr *gPlayerCharacterLNcgr;
 extern struct Unk02021dc8 *gPlayerCharacterNcer[2];
 extern struct Unk02021dc8 *gPlayerCharacterLNcer;
 extern void *gPlayerCharacterBncl[2];
-extern struct Unk020b4a44 *gPlayerCharacterShyguyNclr[2];
-extern struct Unk020b4a44 *gPlayerCharacterLShyguyNclr;
+extern struct Nclr *gPlayerCharacterShyguyNclr[2];
+extern struct Nclr *gPlayerCharacterLShyguyNclr;
 extern struct Unk02022aa8 *gFontTable[3];
 extern struct Unk02022aa8 gLCFontS;
 extern struct Unk02022aa8 gLCFontM;

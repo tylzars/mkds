@@ -59,10 +59,10 @@ void func_0202ba14(void) {
 }
 
 void func_0202b8d8(void) {
-    Unk020b4934 *a;
-    Unk020b4a44 *b;
+    Ncgr *a;
+    Nclr *b;
     Unk02021dc8 *c;
-    Unk020b47d8 *d;
+    Nscr *d;
 
     if (*(vu16 *) 0x27ffc40 == 2) {
         LoadNcgrData(&a, FindSceneFile(data_usa_021626d0));

@@ -3,8 +3,8 @@
 #include "types.h"
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c
 
-typedef struct Unk020b4934 Unk020b4934;
-typedef struct Unk020b4a44 Unk020b4a44;
+typedef struct Ncgr Ncgr;
+typedef struct Nclr Nclr;
 typedef struct Unk02021dc8 Unk02021dc8;
 
 // Elements of the table at member 0x14 of Unk0217b43c.
@@ -24,12 +24,12 @@ typedef struct Unk0217b43c {
     /* 104 */ s32 mUnk_104;
     /* 108 */ u8 mUnk_108[0x404];
     /* 50c */ u8 mUnk_50c[0x404];
-    /* 910 */ Unk020b4a44 *mSinglePlaySelectModeMONclr;
-    /* 914 */ Unk020b4934 *mSinglePlaySelectModeMNcgr;
+    /* 910 */ Nclr *mSinglePlaySelectModeMONclr;
+    /* 914 */ Ncgr *mSinglePlaySelectModeMNcgr;
     /* 918 */ Unk02021dc8 *mSinglePlaySelectModeMNcer;
     /* 91c */ u8 mUnk_91c[4];
-    /* 920 */ Unk020b4a44 *mSinglePlaySelectModeSONclr;
-    /* 924 */ Unk020b4934 *mSinglePlaySelectModeSNcgr;
+    /* 920 */ Nclr *mSinglePlaySelectModeSONclr;
+    /* 924 */ Ncgr *mSinglePlaySelectModeSNcgr;
     /* 928 */ Unk02021dc8 *mSinglePlaySelectModeSNcer;
     /* 92c */ u8 mUnk_92c[4];
     /* 930 */ s32 mUnk_930;

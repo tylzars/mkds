@@ -26,27 +26,27 @@ void ClearOptionStateCallbacks(void) {
 
 void LoadOptionData(void) {
     Unk02111684_v v;
-    LoadNcgrData(&v.m4934, FindSceneFile("Option_top_menu_m_b.ncgr"));
-    LoadNscrData(&v.m47d8, FindSceneFile("Option_top_menu_m.nscr"));
-    LoadNclrData(&v.m4a44, FindSceneFile("Option_top_menu_m_b.nclr"));
-    LoadNcgrData(&v.m4934, FindSceneFile("Option_select_menu_m_b.ncgr"));
-    LoadNscrData(&v.m47d8, FindSceneFile("Option_select_menu_m.nscr"));
-    LoadNclrData(&v.m4a44, FindSceneFile("Option_select_menu_m_b.nclr"));
-    LoadNcgrData2(&v.m4934, FindSceneFile("Option_top_menu_s.nce.ncgr"));
-    LoadNcerData(&v.m21dc8, FindSceneFile("Option_top_menu_s.nce.ncer"));
-    LoadNclrData(&v.m4a44, FindSceneFile("Option_top_menu_s_o.nclr"));
-    LoadNcgrData2(&v.m4934, FindSceneFile("Option_hensyu_menu_s.nce.ncgr"));
-    LoadNcerData(&v.m21dc8, FindSceneFile("Option_hensyu_menu_s.nce.ncer"));
-    LoadNclrData(&v.m4a44, FindSceneFile("Option_hensyu_menu_s_o.nclr"));
-    LoadNcgrData2(&v.m4934, FindSceneFile("Option_select_menu_m.nce.ncgr"));
-    LoadNcerData(&v.m21dc8, FindSceneFile("Option_select_menu_m.nce.ncer"));
-    LoadNclrData(&v.m4a44, FindSceneFile("Option_select_menu_m_o.nclr"));
-    LoadNcgrData2(&v.m4934, FindSceneFile("Option_select_menu_s.nce.ncgr"));
-    LoadNcerData(&v.m21dc8, FindSceneFile("Option_select_menu_s.nce.ncer"));
-    LoadNclrData(&v.m4a44, FindSceneFile("Option_select_menu_s_o.nclr"));
-    LoadNcgrData2(&v.m4934, FindSceneFile("Option_embrem_select_s.nce.ncgr"));
-    LoadNcerData(&v.m21dc8, FindSceneFile("Option_embrem_select_s.nce.ncer"));
-    LoadNclrData(&v.m4a44, FindSceneFile("Option_embrem_select_s_o.nclr"));
+    LoadNcgrData(&v.mNcgr, FindSceneFile("Option_top_menu_m_b.ncgr"));
+    LoadNscrData(&v.mNscr, FindSceneFile("Option_top_menu_m.nscr"));
+    LoadNclrData(&v.mNclr, FindSceneFile("Option_top_menu_m_b.nclr"));
+    LoadNcgrData(&v.mNcgr, FindSceneFile("Option_select_menu_m_b.ncgr"));
+    LoadNscrData(&v.mNscr, FindSceneFile("Option_select_menu_m.nscr"));
+    LoadNclrData(&v.mNclr, FindSceneFile("Option_select_menu_m_b.nclr"));
+    LoadNcgrData2(&v.mNcgr, FindSceneFile("Option_top_menu_s.nce.ncgr"));
+    LoadNcerData(&v.mNcer, FindSceneFile("Option_top_menu_s.nce.ncer"));
+    LoadNclrData(&v.mNclr, FindSceneFile("Option_top_menu_s_o.nclr"));
+    LoadNcgrData2(&v.mNcgr, FindSceneFile("Option_hensyu_menu_s.nce.ncgr"));
+    LoadNcerData(&v.mNcer, FindSceneFile("Option_hensyu_menu_s.nce.ncer"));
+    LoadNclrData(&v.mNclr, FindSceneFile("Option_hensyu_menu_s_o.nclr"));
+    LoadNcgrData2(&v.mNcgr, FindSceneFile("Option_select_menu_m.nce.ncgr"));
+    LoadNcerData(&v.mNcer, FindSceneFile("Option_select_menu_m.nce.ncer"));
+    LoadNclrData(&v.mNclr, FindSceneFile("Option_select_menu_m_o.nclr"));
+    LoadNcgrData2(&v.mNcgr, FindSceneFile("Option_select_menu_s.nce.ncgr"));
+    LoadNcerData(&v.mNcer, FindSceneFile("Option_select_menu_s.nce.ncer"));
+    LoadNclrData(&v.mNclr, FindSceneFile("Option_select_menu_s_o.nclr"));
+    LoadNcgrData2(&v.mNcgr, FindSceneFile("Option_embrem_select_s.nce.ncgr"));
+    LoadNcerData(&v.mNcer, FindSceneFile("Option_embrem_select_s.nce.ncer"));
+    LoadNclrData(&v.mNclr, FindSceneFile("Option_embrem_select_s_o.nclr"));
 }
 
 void func_ov001_021930ac(void) {

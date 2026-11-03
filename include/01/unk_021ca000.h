@@ -17,15 +17,15 @@ typedef struct Unk021ca400 {
     /* 020 */ Unk02124b1c *mUnk_020;
     /* 024 */ struct Unk02021dc8 *mThanksYouMNcer;
     /* 028 */ u8 mUnk_028[0x4];
-    /* 02c */ Unk020b4a44 *mThanksYouMO00Nclr;
+    /* 02c */ Nclr *mThanksYouMO00Nclr;
     /* 030 */ void *mEndingThanksBncl;
     /* 034 */ void *mEndingThanksBnll;
-    /* 038 */ Unk020b4934 *mLogoEndMarioKartMBAndThanksYouMBNcgrs[2];
-    /* 040 */ Unk020b47d8 *mLogoEndMarioKartMBgAndThanksYouMBgNscrs[2];
-    /* 048 */ Unk020b4a44 *mLogoEndMarioKartMBAndThanksYouMBNclrs[2];
-    /* 050 */ Unk020b4934 *mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[2];
-    /* 058 */ Unk020b47d8 *mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[2];
-    /* 060 */ Unk020b4a44 *mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[2];
+    /* 038 */ Ncgr *mLogoEndMarioKartMBAndThanksYouMBNcgrs[2];
+    /* 040 */ Nscr *mLogoEndMarioKartMBgAndThanksYouMBgNscrs[2];
+    /* 048 */ Nclr *mLogoEndMarioKartMBAndThanksYouMBNclrs[2];
+    /* 050 */ Ncgr *mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[2];
+    /* 058 */ Nscr *mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[2];
+    /* 060 */ Nclr *mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[2];
     /* 068 */ u8 mUnk_068[0x404];
     /* 46c */ void *mCommonMessages;
 } Unk021ca400;
@@ -160,7 +160,7 @@ typedef struct Unk021ca424_08 {
 
 // Object behind data_ov001_021ca424.
 typedef struct Unk021ca424 {
-    /* 00 */ Unk020b4934 *mUnk_00;
+    /* 00 */ Ncgr *mUnk_00;
     /* 04 */ struct Unk02021dc8 *mUnk_04;
     /* 08 */ Unk021ca424_08 *mUnk_08;
     /* 0c */ void *mUnk_0c;

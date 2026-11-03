@@ -139,9 +139,9 @@ void func_02025954(u32 a, void *b, u32 c) {
                 break;
         }
     }
-    func_02016468(r0, 0, p->mUnk_00[c]->mUnk_14, p->mUnk_00[c]->mUnk_10);
-    func_02016468(r7, 0, p->mUnk_10->mUnk_0c, 0x140);
-    func_02016468(r5, 0, &p->mUnk_14[c]->mUnk_0c, p->mUnk_14[c]->mUnk_08);
+    func_02016468(r0, 0, p->mUnk_00[c]->mData, p->mUnk_00[c]->mDataSize);
+    func_02016468(r7, 0, p->mUnk_10->mData, 0x140);
+    func_02016468(r5, 0, &p->mUnk_14[c]->mData, p->mUnk_14[c]->mDataSize);
 }
 
 s32 func_02025a00(u32 a, void *b, void *c, void *d, s32 e) {
@@ -160,26 +160,26 @@ void func_02025a50(u32 a, void *b, void *c) {
     func_02124ed0(b, p->mUnk_0c, p->mUnk_14, &p->mUnk_18);
     if (a == 0) {
         r = 0x13;
-        func_02016468(0xe, 0, ((Unk020b4a44 *) p->mUnk_04)->mUnk_0c, 0x1a0);
-        func_02016468(0xe, 0x1c0, (u8 *) ((Unk020b4a44 *) p->mUnk_04)->mUnk_0c + 0x1c0, 0x40);
+        func_02016468(0xe, 0, ((Nclr *) p->mUnk_04)->mData, 0x1a0);
+        func_02016468(0xe, 0x1c0, (u8 *) ((Nclr *) p->mUnk_04)->mData + 0x1c0, 0x40);
     } else {
         r = 0x23;
-        func_02016468(0x1e, 0, ((Unk020b4a44 *) p->mUnk_04)->mUnk_0c, ((Unk020b4a44 *) p->mUnk_04)->mUnk_08);
+        func_02016468(0x1e, 0, ((Nclr *) p->mUnk_04)->mData, ((Nclr *) p->mUnk_04)->mDataSize);
     }
-    func_02016468(r, 0, ((Unk020b4934 *) p->mUnk_00)->mUnk_14, ((Unk020b4934 *) p->mUnk_00)->mUnk_10);
+    func_02016468(r, 0, ((Ncgr *) p->mUnk_00)->mData, ((Ncgr *) p->mUnk_00)->mDataSize);
 }
 
 void func_02025abc(void *a, const char *b, const char *c, const char *d, const char *e, const char *f, const char *g,
                    void *(*h)(const char *) ) {
     Unk02174e14_00 *p = a;
     if (b) {
-        LoadNcgrData2((Unk020b4934 **) &p->mUnk_00, h(b));
+        LoadNcgrData2((Ncgr **) &p->mUnk_00, h(b));
     }
     if (c) {
         LoadNcerData((Unk02021dc8 **) &p->mUnk_08, h(c));
     }
     if (d) {
-        LoadNclrData((Unk020b4a44 **) &p->mUnk_04, h(d));
+        LoadNclrData((Nclr **) &p->mUnk_04, h(d));
     }
     if (e) {
         p->mUnk_0c = h(e);
@@ -196,13 +196,13 @@ void func_02025b20(void *a, const char *b, const char *c, const char *d, const c
                    void *(*h)(const char *) ) {
     Unk02174e14_00 *p = a;
     if (b) {
-        LocateNcgr2((Unk020b4934 **) &p->mUnk_00, h(b));
+        LocateNcgr2((Ncgr **) &p->mUnk_00, h(b));
     }
     if (c) {
         LocateNcer((Unk02021dc8 **) &p->mUnk_08, h(c));
     }
     if (d) {
-        LocateNclr((Unk020b4a44 **) &p->mUnk_04, h(d));
+        LocateNclr((Nclr **) &p->mUnk_04, h(d));
     }
     if (e) {
         p->mUnk_0c = h(e);

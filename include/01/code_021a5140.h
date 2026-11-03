@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-typedef struct Unk020b4934 Unk020b4934;
-typedef struct Unk020b47d8 Unk020b47d8;
-typedef struct Unk020b4a44 Unk020b4a44;
+typedef struct Ncgr Ncgr;
+typedef struct Nscr Nscr;
+typedef struct Nclr Nclr;
 
 // Object behind the pointer at 0x85c of Unk021ca41c.
 typedef struct Unk021ca41c_085c {
@@ -21,32 +21,32 @@ typedef struct Unk021ca41c_085c {
 typedef struct Unk021ca41c {
     /* 0000 */ u8 mUnk_0000[0x404];
     /* 0404 */ u8 mUnk_0404[0x404];
-    /* 0808 */ Unk020b4a44 *mEmblemMONclr;
-    /* 080c */ Unk020b4a44 *mEmblemMBNclr;
-    /* 0810 */ Unk020b4934 *mEmblemMONcgr;
-    /* 0814 */ Unk020b4934 *mEmblemMBNcgr;
-    /* 0818 */ Unk020b47d8 *mEmblemMNscr;
-    /* 081c */ Unk020b47d8 *mEmblemMBgNscr;
+    /* 0808 */ Nclr *mEmblemMONclr;
+    /* 080c */ Nclr *mEmblemMBNclr;
+    /* 0810 */ Ncgr *mEmblemMONcgr;
+    /* 0814 */ Ncgr *mEmblemMBNcgr;
+    /* 0818 */ Nscr *mEmblemMNscr;
+    /* 081c */ Nscr *mEmblemMBgNscr;
     /* 0820 */ struct Unk02021dc8 *mEmblemMNcer;
     /* 0824 */ struct Unk02021dc8 *mEmblemMNanr;
     /* 0828 */ void *mEmblemMLld;
-    /* 082c */ Unk020b4a44 *mEmblemSONclr;
-    /* 0830 */ Unk020b4a44 *mEmblemSBNclr;
-    /* 0834 */ Unk020b4934 *mEmblemSONcgr;
-    /* 0838 */ Unk020b4934 *mEmblemSBNcgr;
-    /* 083c */ Unk020b4934 *mEmblemTemplateBNcgr;
-    /* 0840 */ Unk020b47d8 *mEmblemSToolNscr;
-    /* 0844 */ Unk020b47d8 *mEmblemSBgNscr;
-    /* 0848 */ Unk020b47d8 *mEmblemSTemplateFrameNscr;
-    /* 084c */ Unk020b47d8 *mEmblemSTemplateDarkNscr;
+    /* 082c */ Nclr *mEmblemSONclr;
+    /* 0830 */ Nclr *mEmblemSBNclr;
+    /* 0834 */ Ncgr *mEmblemSONcgr;
+    /* 0838 */ Ncgr *mEmblemSBNcgr;
+    /* 083c */ Ncgr *mEmblemTemplateBNcgr;
+    /* 0840 */ Nscr *mEmblemSToolNscr;
+    /* 0844 */ Nscr *mEmblemSBgNscr;
+    /* 0848 */ Nscr *mEmblemSTemplateFrameNscr;
+    /* 084c */ Nscr *mEmblemSTemplateDarkNscr;
     /* 0850 */ struct Unk02021dc8 *mEmblemSNcer;
     /* 0854 */ struct Unk02021dc8 *mEmblemSNanr;
     /* 0858 */ void *mEmblemSLld;
     /* 085c */ Unk021ca41c_085c *mEmblemTemplateSLld;
-    /* 0860 */ Unk020b4934 *mEmblemCameraSONcgr;
-    /* 0864 */ Unk020b4934 *mEmblemCameraSBNcgr;
-    /* 0868 */ Unk020b47d8 *mEmblemCameraSDSNscr;
-    /* 086c */ Unk020b47d8 *mEmblemCameraSBgNscr;
+    /* 0860 */ Ncgr *mEmblemCameraSONcgr;
+    /* 0864 */ Ncgr *mEmblemCameraSBNcgr;
+    /* 0868 */ Nscr *mEmblemCameraSDSNscr;
+    /* 086c */ Nscr *mEmblemCameraSBgNscr;
     /* 0870 */ struct Unk02021dc8 *mEmblemCameraSNcer;
     /* 0874 */ struct Unk02021dc8 *mEmblemCameraSNanr;
     /* 0878 */ void *mEmblemCameraSLld;

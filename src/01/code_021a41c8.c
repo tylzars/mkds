@@ -184,7 +184,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                 case 0x1f:
                     if (gEmblem->mUnk_108c == NULL) {
                         n = (s32) (func_ov001_02181268() * func_ov001_02181268()) / 2;
-                        p = (u8 *) gEmblem->mEmblemTemplateBNcgr->mUnk_14 + (a - 3) * n;
+                        p = (u8 *) gEmblem->mEmblemTemplateBNcgr->mData + (a - 3) * n;
                         buf[0] = 0;
                         buf[1] = (func_ov001_021a63b4() == 1) ? 2 : 1;
                         buf[2] = func_ov001_021a63b4();

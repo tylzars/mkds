@@ -39,15 +39,15 @@
 #include "Main/Unknown/code_020472a8.h"
 
 void func_ov001_021978b4(void) {
-    Unk020b4a44 *l0 = NULL;
-    Unk020b4934 *l4 = NULL;
-    Unk020b4a44 *l8 = NULL;
-    Unk020b47d8 *lc = NULL;
-    Unk020b47d8 *l10 = NULL;
-    Unk020b4a44 *l14 = NULL;
-    Unk020b4934 *l18 = NULL;
-    Unk020b4a44 *l1c = NULL;
-    Unk020b47d8 *l20 = NULL;
+    Nclr *l0 = NULL;
+    Ncgr *l4 = NULL;
+    Nclr *l8 = NULL;
+    Nscr *lc = NULL;
+    Nscr *l10 = NULL;
+    Nclr *l14 = NULL;
+    Ncgr *l18 = NULL;
+    Nclr *l1c = NULL;
+    Nscr *l20 = NULL;
     u16 *p;
 
     LocateNcgr2(&gRecordTAtt->mUnk_00, FindSceneFile(gRecordTAttMNcgrName));
@@ -72,19 +72,19 @@ void func_ov001_021978b4(void) {
     LocateNcgr(&l18, FindSceneFile(gRecordTAttSBNcgrName));
     LocateNclr(&l1c, FindSceneFile(gRecordTAttSBNclrName));
     LocateNscr(&l20, FindSceneFile(gRecordTAttSNscrName));
-    p = l0->mUnk_0c;
-    func_02016468(0x13, 0, gRecordTAtt->mUnk_00->mUnk_14, gRecordTAtt->mUnk_00->mUnk_10);
-    func_02016468(0xe, 0, l0->mUnk_0c, 0x1a0);
+    p = l0->mData;
+    func_02016468(0x13, 0, gRecordTAtt->mUnk_00->mData, gRecordTAtt->mUnk_00->mDataSize);
+    func_02016468(0xe, 0, l0->mData, 0x1a0);
     func_02016468(0xe, 0x1c0, (u8 *) p + 0x1c0, 0x40);
-    func_02016468(0x23, 0, gRecordTAtt->mUnk_14->mUnk_14, gRecordTAtt->mUnk_14->mUnk_10);
-    func_02016468(0x1e, 0, l14->mUnk_0c, l14->mUnk_08);
-    func_02016468(4, 0, l4->mUnk_14, l4->mUnk_10);
-    func_02016468(8, 0, lc->mUnk_0c, lc->mUnk_08);
-    func_02016468(9, 0, l10->mUnk_0c, l10->mUnk_08);
-    func_02016468(0xf, 0, l8->mUnk_0c, 0x40);
-    func_02016468(0x17, 0, l18->mUnk_14, l18->mUnk_10);
-    func_02016468(0x1f, 0, l1c->mUnk_0c, 0x40);
-    func_02016468(0x1b, 0, l20->mUnk_0c, l20->mUnk_08);
+    func_02016468(0x23, 0, gRecordTAtt->mUnk_14->mData, gRecordTAtt->mUnk_14->mDataSize);
+    func_02016468(0x1e, 0, l14->mData, l14->mDataSize);
+    func_02016468(4, 0, l4->mData, l4->mDataSize);
+    func_02016468(8, 0, lc->mData, lc->mDataSize);
+    func_02016468(9, 0, l10->mData, l10->mDataSize);
+    func_02016468(0xf, 0, l8->mData, 0x40);
+    func_02016468(0x17, 0, l18->mData, l18->mDataSize);
+    func_02016468(0x1f, 0, l1c->mData, 0x40);
+    func_02016468(0x1b, 0, l20->mData, l20->mDataSize);
 }
 
 void func_ov001_021975f4(u16 a) {
@@ -109,7 +109,7 @@ void func_ov001_021975f4(u16 a) {
         tile = data_ov001_021a6864[result];
         func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 0, index,
                       gRecordTAtt->mUnk_04, gRecordTAtt->mUnk_08);
-        palette = (u8 *) ((Unk020b4a44 *) gRecordTAtt->mUnk_30)->mUnk_0c;
+        palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
         func_02016468(0xe, data_ov001_021a683c[0] << 5,
                       palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], value);
@@ -138,7 +138,7 @@ void func_ov001_021975f4(u16 a) {
         tile = data_ov001_021a6864[result];
         func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 1, index,
                       gRecordTAtt->mUnk_18, gRecordTAtt->mUnk_1c);
-        palette = (u8 *) ((Unk020b4a44 *) gRecordTAtt->mUnk_30)->mUnk_0c;
+        palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
         func_02016468(0x1e, data_ov001_021a683c[a] << 5,
                       palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], value);
@@ -211,7 +211,7 @@ void func_ov001_021972f4(void) {
         func_02124748((u32) (tile), (void *) (gRecordTAtt->mUnk_2c), (void *) (gRecordTAtt->mUnk_28),
                       (void *) (gRecordTAtt->mUnk_34), 0, (u32) (5), (void *) (gRecordTAtt->mUnk_04),
                       (void *) (gRecordTAtt->mUnk_08));
-        palette = (u8 *) ((Unk020b4a44 *) gRecordTAtt->mUnk_30)->mUnk_0c;
+        palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
         func_02016468(
             0xe, 0x80,
             palette +

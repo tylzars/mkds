@@ -72,18 +72,18 @@ void func_ov001_0219e660(void) {
 }
 
 void func_ov001_0219e5d4(int i) {
-    func_02016468(4, 0, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mUnk_14,
-                  data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mUnk_10);
-    func_02016468(8, 0, data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mUnk_0c,
-                  data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mUnk_08);
-    func_02016468(0xf, 0, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mUnk_0c,
-                  data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mUnk_08);
-    func_02016468(0x14, 0, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mUnk_14,
-                  data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mUnk_10);
-    func_02016468(0x18, 0, data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mUnk_0c,
-                  data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mUnk_08);
-    func_02016468(0x1f, 0, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mUnk_0c,
-                  data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mUnk_08);
+    func_02016468(4, 0, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mData,
+                  data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mDataSize);
+    func_02016468(8, 0, data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mData,
+                  data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mDataSize);
+    func_02016468(0xf, 0, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mData,
+                  data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mDataSize);
+    func_02016468(0x14, 0, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mData,
+                  data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mDataSize);
+    func_02016468(0x18, 0, data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mData,
+                  data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mDataSize);
+    func_02016468(0x1f, 0, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mData,
+                  data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mDataSize);
 }
 
 void func_ov001_0219e5a0(void) {
@@ -152,8 +152,8 @@ void func_ov001_0219e38c(void) {
     } else {
         func_ov001_0219e5d4(0);
     }
-    func_02016468(0xe, 0, data_ov001_021ca400->mThanksYouMO00Nclr->mUnk_0c,
-                  data_ov001_021ca400->mThanksYouMO00Nclr->mUnk_08);
+    func_02016468(0xe, 0, data_ov001_021ca400->mThanksYouMO00Nclr->mData,
+                  data_ov001_021ca400->mThanksYouMO00Nclr->mDataSize);
 }
 
 void func_ov001_0219e34c(void) {

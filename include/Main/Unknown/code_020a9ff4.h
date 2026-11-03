@@ -2,10 +2,10 @@
 
 #include "types.h"
 #include "Main/Unknown/unk_0217b000.h"
-#include "Main/Unknown/code_020b4000.h" // Unk020b4934
+#include "Main/Unknown/code_020b4000.h" // Ncgr
 
-void func_020a9ff4(Unk0217b278_10 *a, Unk020b4934 *b, u32 c);
-void func_020aa028(Unk0217b278_10 *a, Unk020b4934 *b, void (*c)(Unk0217b278 *), s32 d, u32 e, u16 *f);
+void func_020a9ff4(Unk0217b278_10 *a, Ncgr *b, u32 c);
+void func_020aa028(Unk0217b278_10 *a, Ncgr *b, void (*c)(Unk0217b278 *), s32 d, u32 e, u16 *f);
 u16 func_020aa094(u16 **a, u16 b);
 Unk0217b278_10 *func_020aa0ec(u32 a, Unk0217b278_10 *b, Unk0217b278_10 *c);
 void func_020aa300(Unk0217b278 *a);

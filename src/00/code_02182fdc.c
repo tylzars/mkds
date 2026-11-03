@@ -6,9 +6,9 @@
 #include "Main/Unknown/code_02125f6c.h"
 
 void func_ov000_02184130(void) {
-    Unk020b4934 *chr;
-    Unk020b47d8 *scrn;
-    Unk020b4a44 *pltt;
+    Ncgr *chr;
+    Nscr *scrn;
+    Nclr *pltt;
     vu16 zero;
     u16 c;
     s32 i;
@@ -25,22 +25,22 @@ void func_ov000_02184130(void) {
     (reg_G2S_DB_BG3CNT) = ((reg_G2S_DB_BG3CNT) & 0x43) | 0x4400;
     zero = 0;
     func_0214cfe4(zero, gWiFiVSMatching->mUnk_d4, 0x1000);
-    func_0214cffc(scrn->mUnk_0c, gWiFiVSMatching->mUnk_d4, 0x800);
-    func_02016468(0x17, 0, chr->mUnk_14, chr->mUnk_10);
+    func_0214cffc(scrn->mData, gWiFiVSMatching->mUnk_d4, 0x800);
+    func_02016468(0x17, 0, chr->mData, chr->mDataSize);
     func_02016468(0x1b, 0, gWiFiVSMatching->mUnk_d4, 0x1000);
-    func_02016468(0x1f, 0, pltt->mUnk_0c, 0x80);
-    func_02016468(0x23, 0, gWiFiVSMatching->mWiFiVSMatchingSNcgr->mUnk_14,
-                  gWiFiVSMatching->mWiFiVSMatchingSNcgr->mUnk_10);
-    func_02016468(0x1e, 0, gWiFiVSMatching->mWiFiVSMatchingSONclr->mUnk_0c,
-                  gWiFiVSMatching->mWiFiVSMatchingSONclr->mUnk_08);
+    func_02016468(0x1f, 0, pltt->mData, 0x80);
+    func_02016468(0x23, 0, gWiFiVSMatching->mWiFiVSMatchingSNcgr->mData,
+                  gWiFiVSMatching->mWiFiVSMatchingSNcgr->mDataSize);
+    func_02016468(0x1e, 0, gWiFiVSMatching->mWiFiVSMatchingSONclr->mData,
+                  gWiFiVSMatching->mWiFiVSMatchingSONclr->mDataSize);
     for (i = 0; i < 5; i++) {
-        c = (gWiFiVSMatching->mWiFiVSMatchingSONclr->mUnk_0c + 0x60 + data_ov000_021b0658[0])[i];
+        c = (gWiFiVSMatching->mWiFiVSMatchingSONclr->mData + 0x60 + data_ov000_021b0658[0])[i];
         gWiFiVSMatching->mUnk_58[i][0] = c & 0x1f;
         gWiFiVSMatching->mUnk_58[i][1] = (c & 0x3e0) >> 5;
         gWiFiVSMatching->mUnk_58[i][2] = (c & 0x7c00) >> 10;
     }
     for (i = 0; i < 5; i++) {
-        c = (gWiFiVSMatching->mWiFiVSMatchingSONclr->mUnk_0c + 0x60 + data_ov000_021b0658[1])[i];
+        c = (gWiFiVSMatching->mWiFiVSMatchingSONclr->mData + 0x60 + data_ov000_021b0658[1])[i];
         gWiFiVSMatching->mUnk_94[i][0] = c & 0x1f;
         gWiFiVSMatching->mUnk_94[i][1] = (c & 0x3e0) >> 5;
         gWiFiVSMatching->mUnk_94[i][2] = (c & 0x7c00) >> 10;
@@ -250,7 +250,7 @@ void func_ov000_02183a0c(void) {
     u16 x = (t << 16) / 0x14;
     s32 y = ((0x13 - t) * 0xf33) / 0x14 + 0xcd;
     s32 i;
-    Unk020b4a44 *q;
+    Nclr *q;
 
     for (i = 0; i < 3; i++) {
         func_02124b1c(&gWiFiVSMatching->mUnk_10d4[data_ov000_021b0668[i]], x, y);
@@ -270,7 +270,7 @@ void func_ov000_02183a0c(void) {
                                                 gWiFiVSMatching->mWiFiVSMatchingBncl)
                                       << 5,
                                   gWiFiVSMatching->mUnk_10d8[i], 0x200);
-                    func_02016468(0x1e, (i + 3) << 5, q->mUnk_0c, 0x20);
+                    func_02016468(0x1e, (i + 3) << 5, q->mData, 0x20);
                 }
                 gWiFiVSMatching->mUnk_10d4[data_ov000_021b0660[i] + gWiFiVSMatching->mWiFiVSMatchingBncl->mUnk_06]
                     .mUnk_00 = 0;

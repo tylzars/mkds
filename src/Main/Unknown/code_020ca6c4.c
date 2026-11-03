@@ -41,7 +41,7 @@ void InitEmblemChoises(void) {
     LoadNcgrData(&gEmblemChoises->mChoisesSBNcgr, FindSceneFileWrapper("choises_s_b.NCGR"));
     LoadNscrData(&gEmblemChoises->mChoisesS3Nscr, FindSceneFileWrapper("choises_s_3.NSCR"));
     gEmblemChoises->mUnk_2c = func_020b403c(2);
-    func_02023408(&gEmblemChoises->mUnk_30, gEmblemChoises->mChoisesSBNcgr->mUnk_14, 0x20, 0xc, 4);
+    func_02023408(&gEmblemChoises->mUnk_30, gEmblemChoises->mChoisesSBNcgr->mData, 0x20, 0xc, 4);
     p = gEmblemChoises;
     func_020ca808(&p->mUnk_50, &p->mUnk_30, p->mUnk_2c, func_020b4acc(), 0);
     {

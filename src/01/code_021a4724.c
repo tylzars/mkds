@@ -28,20 +28,20 @@ void func_ov001_021a4fa0(void) {
     reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x400;
     reg_G2_BG2CNT = (reg_G2_BG2CNT & ~3) | 3;
     reg_G2_BG2CNT = (reg_G2_BG2CNT & 0x43) | 0x600;
-    func_0200ee74(gEmblem->mEmblemMONclr->mUnk_0c, gEmblem->mEmblemMONclr->mUnk_08);
-    func_0214c090((const void *) gEmblem->mEmblemMONclr->mUnk_0c, 0, gEmblem->mEmblemMONclr->mUnk_08);
-    func_0200ee74((const void *) gEmblem->mEmblemMONcgr->mUnk_14, gEmblem->mEmblemMONcgr->mUnk_10);
-    func_0214bf04((const void *) (gEmblem->mEmblemMONcgr->mUnk_14), 0, gEmblem->mEmblemMONcgr->mUnk_10);
-    func_0200ee74(gEmblem->mEmblemMBNclr->mUnk_0c, gEmblem->mEmblemMBNclr->mUnk_08);
-    func_0214c160((const void *) gEmblem->mEmblemMBNclr->mUnk_0c, 0, gEmblem->mEmblemMBNclr->mUnk_08);
-    func_0200ee74((const void *) gEmblem->mEmblemMBNcgr->mUnk_14, gEmblem->mEmblemMBNcgr->mUnk_10);
-    func_0214ba2c((const void *) (gEmblem->mEmblemMBNcgr->mUnk_14), 0, gEmblem->mEmblemMBNcgr->mUnk_10);
+    func_0200ee74(gEmblem->mEmblemMONclr->mData, gEmblem->mEmblemMONclr->mDataSize);
+    func_0214c090((const void *) gEmblem->mEmblemMONclr->mData, 0, gEmblem->mEmblemMONclr->mDataSize);
+    func_0200ee74((const void *) gEmblem->mEmblemMONcgr->mData, gEmblem->mEmblemMONcgr->mDataSize);
+    func_0214bf04((const void *) (gEmblem->mEmblemMONcgr->mData), 0, gEmblem->mEmblemMONcgr->mDataSize);
+    func_0200ee74(gEmblem->mEmblemMBNclr->mData, gEmblem->mEmblemMBNclr->mDataSize);
+    func_0214c160((const void *) gEmblem->mEmblemMBNclr->mData, 0, gEmblem->mEmblemMBNclr->mDataSize);
+    func_0200ee74((const void *) gEmblem->mEmblemMBNcgr->mData, gEmblem->mEmblemMBNcgr->mDataSize);
+    func_0214ba2c((const void *) (gEmblem->mEmblemMBNcgr->mData), 0, gEmblem->mEmblemMBNcgr->mDataSize);
     func_0200ee74(gEmblem->mUnk_0a7c, 0x200);
     func_0214b95c((const void *) gEmblem->mUnk_0a7c, 0, 0x200);
-    func_0200ee74(gEmblem->mEmblemMNscr->mUnk_0c, gEmblem->mEmblemMNscr->mUnk_08);
-    func_0214bd6c((const void *) gEmblem->mEmblemMNscr->mUnk_0c, 0, gEmblem->mEmblemMNscr->mUnk_08);
-    func_0200ee74(gEmblem->mEmblemMBgNscr->mUnk_0c, gEmblem->mEmblemMBgNscr->mUnk_08);
-    func_0214bc9c((const void *) gEmblem->mEmblemMBgNscr->mUnk_0c, 0, gEmblem->mEmblemMBgNscr->mUnk_08);
+    func_0200ee74(gEmblem->mEmblemMNscr->mData, gEmblem->mEmblemMNscr->mDataSize);
+    func_0214bd6c((const void *) gEmblem->mEmblemMNscr->mData, 0, gEmblem->mEmblemMNscr->mDataSize);
+    func_0200ee74(gEmblem->mEmblemMBgNscr->mData, gEmblem->mEmblemMBgNscr->mDataSize);
+    func_0214bc9c((const void *) gEmblem->mEmblemMBgNscr->mData, 0, gEmblem->mEmblemMBgNscr->mDataSize);
     reg_G2_BG1OFS = 0;
     reg_G2_BG2OFS = 0;
 }
@@ -60,27 +60,27 @@ void func_ov001_021a4d10(void) {
     reg_G2S_DB_BG1OFS = 0;
     reg_G2S_DB_BG2OFS = 0;
     func_0214a428((u32 *) 0x04001030, data_ov001_021a6fd8, 16, 16, -0x70, -0x40);
-    func_0200ee74(gEmblem->mEmblemSONclr->mUnk_0c, gEmblem->mEmblemSONclr->mUnk_08);
-    func_0214c028((const void *) gEmblem->mEmblemSONclr->mUnk_0c, 0, gEmblem->mEmblemSONclr->mUnk_08);
-    func_0200ee74((const void *) gEmblem->mEmblemSONcgr->mUnk_14, gEmblem->mEmblemSONcgr->mUnk_10);
-    func_0214bea4((const void *) (gEmblem->mEmblemSONcgr->mUnk_14), 0, gEmblem->mEmblemSONcgr->mUnk_10);
-    func_0200ee74(gEmblem->mEmblemSBNclr->mUnk_0c, gEmblem->mEmblemSBNclr->mUnk_08);
-    func_0214c0f8((const void *) gEmblem->mEmblemSBNclr->mUnk_0c, 0, gEmblem->mEmblemSBNclr->mUnk_08);
-    func_0200ee74((const void *) gEmblem->mEmblemSBNcgr->mUnk_14, gEmblem->mEmblemSBNcgr->mUnk_10);
-    func_0214b9c4((const void *) (gEmblem->mEmblemSBNcgr->mUnk_14), 0, gEmblem->mEmblemSBNcgr->mUnk_10);
+    func_0200ee74(gEmblem->mEmblemSONclr->mData, gEmblem->mEmblemSONclr->mDataSize);
+    func_0214c028((const void *) gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
+    func_0200ee74((const void *) gEmblem->mEmblemSONcgr->mData, gEmblem->mEmblemSONcgr->mDataSize);
+    func_0214bea4((const void *) (gEmblem->mEmblemSONcgr->mData), 0, gEmblem->mEmblemSONcgr->mDataSize);
+    func_0200ee74(gEmblem->mEmblemSBNclr->mData, gEmblem->mEmblemSBNclr->mDataSize);
+    func_0214c0f8((const void *) gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
+    func_0200ee74((const void *) gEmblem->mEmblemSBNcgr->mData, gEmblem->mEmblemSBNcgr->mDataSize);
+    func_0214b9c4((const void *) (gEmblem->mEmblemSBNcgr->mData), 0, gEmblem->mEmblemSBNcgr->mDataSize);
     func_0200ee74((const void *) func_ov001_02181174(), func_ov001_02181180());
     func_0214b824((const void *) (func_ov001_02181174()), func_ov001_02181194(), func_ov001_02181180());
-    func_0200ee74(gEmblem->mEmblemSTemplateFrameNscr->mUnk_0c, gEmblem->mEmblemSTemplateFrameNscr->mUnk_08);
-    func_0214bdd4((const void *) gEmblem->mEmblemSTemplateFrameNscr->mUnk_0c, 0,
-                  gEmblem->mEmblemSTemplateFrameNscr->mUnk_08);
-    func_0200ee74(gEmblem->mEmblemSToolNscr->mUnk_0c, gEmblem->mEmblemSToolNscr->mUnk_08);
-    func_0214bd04((const void *) gEmblem->mEmblemSToolNscr->mUnk_0c, 0, gEmblem->mEmblemSToolNscr->mUnk_08);
-    func_0200ee74(gEmblem->mEmblemSBgNscr->mUnk_0c, gEmblem->mEmblemSBgNscr->mUnk_08);
-    func_0214bc34((const void *) gEmblem->mEmblemSBgNscr->mUnk_0c, 0, gEmblem->mEmblemSBgNscr->mUnk_08);
+    func_0200ee74(gEmblem->mEmblemSTemplateFrameNscr->mData, gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
+    func_0214bdd4((const void *) gEmblem->mEmblemSTemplateFrameNscr->mData, 0,
+                  gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
+    func_0200ee74(gEmblem->mEmblemSToolNscr->mData, gEmblem->mEmblemSToolNscr->mDataSize);
+    func_0214bd04((const void *) gEmblem->mEmblemSToolNscr->mData, 0, gEmblem->mEmblemSToolNscr->mDataSize);
+    func_0200ee74(gEmblem->mEmblemSBgNscr->mData, gEmblem->mEmblemSBgNscr->mDataSize);
+    func_0214bc34((const void *) gEmblem->mEmblemSBgNscr->mData, 0, gEmblem->mEmblemSBgNscr->mDataSize);
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x1010;
-    func_0200ee74(gEmblem->mEmblemSTemplateDarkNscr->mUnk_0c, gEmblem->mEmblemSTemplateDarkNscr->mUnk_08);
-    func_0214bb64((const void *) gEmblem->mEmblemSTemplateDarkNscr->mUnk_0c, 0,
-                  gEmblem->mEmblemSTemplateDarkNscr->mUnk_08);
+    func_0200ee74(gEmblem->mEmblemSTemplateDarkNscr->mData, gEmblem->mEmblemSTemplateDarkNscr->mDataSize);
+    func_0214bb64((const void *) gEmblem->mEmblemSTemplateDarkNscr->mData, 0,
+                  gEmblem->mEmblemSTemplateDarkNscr->mDataSize);
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x1218;
     func_0200ee74((const void *) func_ov001_021811bc(), func_ov001_02181198());
     func_0214bb64((const void *) (func_ov001_021811bc()), func_ov001_021811b8(), func_ov001_02181198());
@@ -96,18 +96,18 @@ void func_ov001_021a4ba0(void) {
     reg_G2S_DB_BG1OFS = 0;
     reg_G2S_DB_BG2OFS = 0;
     reg_G2S_DB_BG3OFS = 0;
-    func_0200ee74(gEmblem->mEmblemSONclr->mUnk_0c, gEmblem->mEmblemSONclr->mUnk_08);
-    func_0214c028((const void *) gEmblem->mEmblemSONclr->mUnk_0c, 0, gEmblem->mEmblemSONclr->mUnk_08);
-    func_0200ee74((const void *) gEmblem->mEmblemCameraSONcgr->mUnk_14, gEmblem->mEmblemCameraSONcgr->mUnk_10);
-    func_0214bea4((const void *) (gEmblem->mEmblemCameraSONcgr->mUnk_14), 0, gEmblem->mEmblemCameraSONcgr->mUnk_10);
-    func_0200ee74(gEmblem->mEmblemSBNclr->mUnk_0c, gEmblem->mEmblemSBNclr->mUnk_08);
-    func_0214c0f8((const void *) gEmblem->mEmblemSBNclr->mUnk_0c, 0, gEmblem->mEmblemSBNclr->mUnk_08);
-    func_0200ee74((const void *) gEmblem->mEmblemCameraSBNcgr->mUnk_14, gEmblem->mEmblemCameraSBNcgr->mUnk_10);
-    func_0214b9c4((const void *) (gEmblem->mEmblemCameraSBNcgr->mUnk_14), 0, gEmblem->mEmblemCameraSBNcgr->mUnk_10);
-    func_0200ee74(gEmblem->mEmblemCameraSDSNscr->mUnk_0c, gEmblem->mEmblemCameraSDSNscr->mUnk_08);
-    func_0214bd04((const void *) gEmblem->mEmblemCameraSDSNscr->mUnk_0c, 0, gEmblem->mEmblemCameraSDSNscr->mUnk_08);
-    func_0200ee74(gEmblem->mEmblemCameraSBgNscr->mUnk_0c, gEmblem->mEmblemCameraSBgNscr->mUnk_08);
-    func_0214bc34((const void *) gEmblem->mEmblemCameraSBgNscr->mUnk_0c, 0, gEmblem->mEmblemCameraSBgNscr->mUnk_08);
+    func_0200ee74(gEmblem->mEmblemSONclr->mData, gEmblem->mEmblemSONclr->mDataSize);
+    func_0214c028((const void *) gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
+    func_0200ee74((const void *) gEmblem->mEmblemCameraSONcgr->mData, gEmblem->mEmblemCameraSONcgr->mDataSize);
+    func_0214bea4((const void *) (gEmblem->mEmblemCameraSONcgr->mData), 0, gEmblem->mEmblemCameraSONcgr->mDataSize);
+    func_0200ee74(gEmblem->mEmblemSBNclr->mData, gEmblem->mEmblemSBNclr->mDataSize);
+    func_0214c0f8((const void *) gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
+    func_0200ee74((const void *) gEmblem->mEmblemCameraSBNcgr->mData, gEmblem->mEmblemCameraSBNcgr->mDataSize);
+    func_0214b9c4((const void *) (gEmblem->mEmblemCameraSBNcgr->mData), 0, gEmblem->mEmblemCameraSBNcgr->mDataSize);
+    func_0200ee74(gEmblem->mEmblemCameraSDSNscr->mData, gEmblem->mEmblemCameraSDSNscr->mDataSize);
+    func_0214bd04((const void *) gEmblem->mEmblemCameraSDSNscr->mData, 0, gEmblem->mEmblemCameraSDSNscr->mDataSize);
+    func_0200ee74(gEmblem->mEmblemCameraSBgNscr->mData, gEmblem->mEmblemCameraSBgNscr->mDataSize);
+    func_0214bc34((const void *) gEmblem->mEmblemCameraSBgNscr->mData, 0, gEmblem->mEmblemCameraSBgNscr->mDataSize);
 }
 
 void func_ov001_021a4b28(void) {

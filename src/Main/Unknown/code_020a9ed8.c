@@ -287,7 +287,7 @@ Unk0217b278_10 *func_020aa0ec(u32 a, Unk0217b278_10 *b, Unk0217b278_10 *c) {
     u16 r;
     Unk0217b278_10 *q;
     Unk0217b278_10 *e;
-    Unk020b4934 *g;
+    Ncgr *g;
 
     if (data_0217b278.mUnk_4c != NULL) {
         r = data_0217b278.mUnk_4c(func_020ab2a4(b), a);
@@ -386,7 +386,7 @@ u16 func_020aa094(u16 **a, u16 b) {
     return b;
 }
 
-void func_020aa028(Unk0217b278_10 *a, Unk020b4934 *b, void (*c)(Unk0217b278 *), s32 d, u32 e, u16 *f) {
+void func_020aa028(Unk0217b278_10 *a, Ncgr *b, void (*c)(Unk0217b278 *), s32 d, u32 e, u16 *f) {
     u32 x;
     u32 y;
 
@@ -408,7 +408,7 @@ void func_020aa028(Unk0217b278_10 *a, Unk020b4934 *b, void (*c)(Unk0217b278 *), 
     func_020aa300(&data_0217b278);
 }
 
-void func_020a9ff4(Unk0217b278_10 *a, Unk020b4934 *b, u32 c) {
+void func_020a9ff4(Unk0217b278_10 *a, Ncgr *b, u32 c) {
     data_0217b2b8[0] = 4;
     data_0217b2b8[1] = 0;
     func_020aa028(a, b, func_020ab3ec, 9, c, data_0217b338);
@@ -418,7 +418,7 @@ void func_020a9ff4(Unk0217b278_10 *a, Unk020b4934 *b, u32 c) {
 
 #pragma thumb on
 
-void func_020a9fc4(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
+void func_020a9fc4(Unk0217b278_10 *a, struct Ncgr *b, u32 c) {
     u16 *v1;
     v1 = (u16 *) &data_0217b2b8;
     *(u16 *) &data_0217b2b8 = 0;
@@ -426,7 +426,7 @@ void func_020a9fc4(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
     func_020aa028(a, b, func_020ab45c, 6, c, data_0217b318);
 }
 
-void func_020a9f98(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
+void func_020a9f98(Unk0217b278_10 *a, struct Ncgr *b, u32 c) {
     u16 *v1;
     v1 = (u16 *) &data_0217b2b8;
     *(u16 *) &data_0217b2b8 = 0;
@@ -434,7 +434,7 @@ void func_020a9f98(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
     func_020aa028(a, b, NULL, 4, c, data_0217b328);
 }
 
-void func_020a9f6c(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
+void func_020a9f6c(Unk0217b278_10 *a, struct Ncgr *b, u32 c) {
     u16 *v1;
     v1 = (u16 *) &data_0217b2b8;
     *(u16 *) &data_0217b2b8 = 0;
@@ -442,7 +442,7 @@ void func_020a9f6c(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
     func_020aa028(a, b, NULL, 4, c, data_0217b32c);
 }
 
-void func_020a9f40(Unk0217b278_10 *a, struct Unk020b4934 *b, u32 c) {
+void func_020a9f40(Unk0217b278_10 *a, struct Ncgr *b, u32 c) {
     u16 *v1;
     v1 = (u16 *) &data_0217b2b8;
     *(u16 *) &data_0217b2b8 = 0;

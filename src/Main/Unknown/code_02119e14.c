@@ -231,12 +231,12 @@ void func_0211a794(void) {
 }
 
 void func_0211a6bc(void) {
-    Unk020b4934 *a = NULL;
+    Ncgr *a = NULL;
     Unk02021dc8 *b = NULL;
-    Unk020b4a44 *c = NULL;
-    Unk020b4934 *d = NULL;
-    Unk020b47d8 *e = NULL;
-    Unk020b4a44 *f = NULL;
+    Nclr *c = NULL;
+    Ncgr *d = NULL;
+    Nscr *e = NULL;
+    Nclr *f = NULL;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         LoadNcgrData(&d, FindSceneFile(data_0216d894));
         LoadNclrData(&f, FindSceneFile(data_0216d88c));
@@ -251,16 +251,16 @@ void func_0211a6bc(void) {
 }
 
 void func_0211a3bc(void) {
-    Unk020b4934 *a = NULL;
-    Unk020b4a44 *b = NULL;
-    Unk020b4934 *c = NULL;
-    Unk020b4a44 *d = NULL;
-    Unk020b4934 *e = NULL;
-    Unk020b47d8 *f = NULL;
-    Unk020b4a44 *g = NULL;
-    Unk020b4934 *h = NULL;
-    Unk020b47d8 *i = NULL;
-    Unk020b4a44 *j = NULL;
+    Ncgr *a = NULL;
+    Nclr *b = NULL;
+    Ncgr *c = NULL;
+    Nclr *d = NULL;
+    Ncgr *e = NULL;
+    Nscr *f = NULL;
+    Nclr *g = NULL;
+    Ncgr *h = NULL;
+    Nscr *i = NULL;
+    Nclr *j = NULL;
     u16 *p;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         gSelectCup->mUnk_14 = FindSceneFile(data_0216d864);
@@ -295,22 +295,22 @@ void func_0211a3bc(void) {
     LocateNcgr2(&c, FindSceneFile(data_0216d898));
     LocateNcer(&gSelectCup->mUnk_0c, FindSceneFile(data_0216d8a8));
     LocateNclr(&d, FindSceneFile(data_0216d85c));
-    p = b->mUnk_0c;
-    func_02016468(4, 0, e->mUnk_14, e->mUnk_10);
-    func_02016468(0xf, 0, g->mUnk_0c, 0x140);
-    func_02016468(8, 0, f->mUnk_0c, f->mUnk_08);
+    p = b->mData;
+    func_02016468(4, 0, e->mData, e->mDataSize);
+    func_02016468(0xf, 0, g->mData, 0x140);
+    func_02016468(8, 0, f->mData, f->mDataSize);
     func_02016468(8, 0x800, gSelectCup->mUnk_24, 0x800);
     if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
-        func_02016468(0x17, 0, h->mUnk_14, h->mUnk_10);
-        func_02016468(0x1f, 0, j->mUnk_0c, 0x140);
-        func_02016468(0x1b, 0, i->mUnk_0c, i->mUnk_08);
+        func_02016468(0x17, 0, h->mData, h->mDataSize);
+        func_02016468(0x1f, 0, j->mData, 0x140);
+        func_02016468(0x1b, 0, i->mData, i->mDataSize);
         func_02016468(0x1b, 0x800, gSelectCup->mUnk_24, 0x800);
     }
-    func_02016468(0x13, 0, a->mUnk_14, a->mUnk_10);
-    func_02016468(0xe, 0, b->mUnk_0c, 0x1a0);
+    func_02016468(0x13, 0, a->mData, a->mDataSize);
+    func_02016468(0xe, 0, b->mData, 0x1a0);
     func_02016468(0xe, 0x1c0, p + 0xe0, 0x40);
-    func_02016468(0x23, 0, c->mUnk_14, c->mUnk_10);
-    func_02016468(0x1e, 0, d->mUnk_0c, d->mUnk_08);
+    func_02016468(0x23, 0, c->mData, c->mDataSize);
+    func_02016468(0x1e, 0, d->mData, d->mDataSize);
 }
 
 void func_0211a100(void) {

@@ -181,17 +181,17 @@ void func_020ad344(void) {
     func_0212426c(1, 1, data_0217b340->mUnk_74, GetBmgEntry(FindSceneFileWrapper(data_02167fa8), 0),
                   data_0217b340->mUnk_6c, data_0217b340->mUnk_68);
     func_0214b720();
-    func_0214b6a0(data_0217b340->mUnk_78->mUnk_0c, 0x4000, data_0217b340->mUnk_78->mUnk_08);
-    func_0214b6a0(data_0217b340->mUnk_78->mUnk_0c, 0x6000, data_0217b340->mUnk_78->mUnk_08);
+    func_0214b6a0(data_0217b340->mUnk_78->mData, 0x4000, data_0217b340->mUnk_78->mDataSize);
+    func_0214b6a0(data_0217b340->mUnk_78->mData, 0x6000, data_0217b340->mUnk_78->mDataSize);
     func_0214b63c();
-    func_0214b95c(data_0217b340->mUnk_7c->mUnk_14, 0, data_0217b340->mUnk_7c->mUnk_10);
-    func_0214bc9c(data_0217b340->mUnk_88->mUnk_0c, 0, 0x800);
-    func_0214bbcc(data_0217b340->mUnk_8c->mUnk_0c, 0, 0x800);
-    func_0214c0f8(data_0217b340->mUnk_80->mUnk_0c, 0, data_0217b340->mUnk_80->mUnk_08);
-    func_0214b824(data_0217b340->mUnk_84->mUnk_14, 0, data_0217b340->mUnk_84->mUnk_10);
-    func_0214bb64(data_0217b340->mUnk_90->mUnk_0c, 0, 0x800);
-    func_0214c028(data_0217b340->mUnk_a0->mUnk_0c, 0, data_0217b340->mUnk_a0->mUnk_08);
-    func_0214bea4(data_0217b340->mUnk_a4->mUnk_14, 0, data_0217b340->mUnk_a4->mUnk_10);
+    func_0214b95c(data_0217b340->mUnk_7c->mData, 0, data_0217b340->mUnk_7c->mDataSize);
+    func_0214bc9c(data_0217b340->mUnk_88->mData, 0, 0x800);
+    func_0214bbcc(data_0217b340->mUnk_8c->mData, 0, 0x800);
+    func_0214c0f8(data_0217b340->mUnk_80->mData, 0, data_0217b340->mUnk_80->mDataSize);
+    func_0214b824(data_0217b340->mUnk_84->mData, 0, data_0217b340->mUnk_84->mDataSize);
+    func_0214bb64(data_0217b340->mUnk_90->mData, 0, 0x800);
+    func_0214c028(data_0217b340->mUnk_a0->mData, 0, data_0217b340->mUnk_a0->mDataSize);
+    func_0214bea4(data_0217b340->mUnk_a4->mData, 0, data_0217b340->mUnk_a4->mDataSize);
     func_020ad904(0x10);
     func_020ad8e0(0x10);
     func_020ad2f0(4, 8, 0, 0x10);

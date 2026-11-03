@@ -20,9 +20,9 @@ void func_02117388(void) {
     void *v1;
     int v2;
     const char **v3;
-    Unk020b4934 *v4;
+    Ncgr *v4;
     Unk02021dc8 *v5;
-    Unk020b4a44 *v6[2];
+    Nclr *v6[2];
     v4 = NULL;
     v5 = NULL;
     v6[0] = NULL;
@@ -44,9 +44,9 @@ void func_0211732c(void) {
     void *v1;
     int v2;
     const char **v3;
-    Unk020b4934 *v4;
+    Ncgr *v4;
     Unk02021dc8 *v5;
-    Unk020b4a44 *v6[2];
+    Nclr *v6[2];
     v4 = NULL;
     v5 = NULL;
     v6[0] = NULL;
@@ -124,7 +124,7 @@ void func_021171a0(s32 a, void *b, void *c, u32 d, u16 e, s32 f) {
     }
     func_02124748(data_0215c60c[a].mUnk_00, data_0217d35c->mUnk_04, data_0217d35c->mUnk_00, data_0217d35c->mUnk_14, f,
                   d, b, c);
-    func_02016468(n, e * 32, data_0217d35c->mUnk_08[data_0215c60c[a].mUnk_04]->mUnk_0c + data_0215c60c[a].mUnk_08 * 16,
+    func_02016468(n, e * 32, data_0217d35c->mUnk_08[data_0215c60c[a].mUnk_04]->mData + data_0215c60c[a].mUnk_08 * 16,
                   0x20);
 }
 

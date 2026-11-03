@@ -189,7 +189,7 @@ void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
     Unk02174e14_00 *q;
     Unk02174e14_00 *s;
     s32 r;
-    Unk020b4a44 *u;
+    Nclr *u;
     u8 *p;
     u8 v;
     u32 e;
@@ -204,13 +204,13 @@ void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
     func_0212463c(r, q->mUnk_08, q->mUnk_00, q->mUnk_04, q->mUnk_0c, a, c, s->mUnk_08, s->mUnk_0c);
     if (r == 0xc) {
         if (d == 1) {
-            u = (Unk020b4a44 *) data_02174e60->mUnk_0c0;
+            u = (Nclr *) data_02174e60->mUnk_0c0;
         } else {
-            u = (Unk020b4a44 *) data_02174e60->mUnk_0c4;
+            u = (Nclr *) data_02174e60->mUnk_0c4;
         }
         v = func_02124a68(c, s->mUnk_08, s->mUnk_0c);
         e = data_0217b488->mUnk_10c[b];
-        p = e * 0x20 + (u8 *) u->mUnk_0c;
+        p = e * 0x20 + (u8 *) u->mData;
         if (a == 0) {
             func_02016468(0xe, v << 5, p, 0x20);
         } else {

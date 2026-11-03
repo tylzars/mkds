@@ -7,8 +7,8 @@ extern u8 data_ov000_021b06d0[2][4];
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c
 
 struct Unk02021dc8;
-struct Unk020b4934;
-struct Unk020b4a44;
+struct Ncgr;
+struct Nclr;
 
 // Object behind gWiFiAikotoba; func_ov000_021851a0 fills 0x20 to 0x30.
 typedef struct Unk021b4c84 {
@@ -21,8 +21,8 @@ typedef struct Unk021b4c84 {
     /* 18 */ void *mUnk_18;
     /* 1c */ Unk02124b1c *mUnk_1c;
     /* 20 */ struct Unk02021dc8 *mUnk_20;
-    /* 24 */ struct Unk020b4934 *mUnk_24;
-    /* 28 */ struct Unk020b4a44 *mUnk_28;
+    /* 24 */ struct Ncgr *mUnk_24;
+    /* 28 */ struct Nclr *mUnk_28;
     /* 2c */ void *mUnk_2c;
     /* 30 */ void *mUnk_30;
     /* 34 */ u8 pad_34[4];

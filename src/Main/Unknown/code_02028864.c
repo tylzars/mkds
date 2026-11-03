@@ -159,7 +159,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         i = data_usa_02153834[4];
         func_0212426c(1, i, p->mUnk_14, w, p->mUnk_0c, p->mUnk_18);
         func_02124100(i, 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
-        func_0212b928(gSelectKart->mUnk_08c, (Unk020b4a44 *) p->mUnk_04, 1);
+        func_0212b928(gSelectKart->mUnk_08c, (Nclr *) p->mUnk_04, 1);
         p->mUnk_18[2].mUnk_00 = 0;
         p->mUnk_18[3].mUnk_00 = p->mUnk_18[2].mUnk_00;
     } else {

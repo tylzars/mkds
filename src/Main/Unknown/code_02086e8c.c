@@ -69,7 +69,7 @@ void func_020870ec(void *a, u16 b) {
 
 void func_02087000(void) {
     u16 i;
-    Unk020b4a44 *o;
+    Nclr *o;
     u8 *p;
     char *s;
     u8 *q;
@@ -91,7 +91,7 @@ void func_02087000(void) {
         } else {
             r = (void *) data_021759c0->mUnk_68[i].mUnk_08.mEmblemData;
             LoadNclrData(&o, func_02047950(gEmblemSBNclrName));
-            q = (u8 *) o->mUnk_0c;
+            q = (u8 *) o->mData;
             data_0217aed0->mUnk_144[i] = r;
             data_0217aed0->mUnk_164[i] = q;
         }

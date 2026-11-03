@@ -67,27 +67,27 @@ void InitSelectReturnDisplay(void) {
 }
 
 s32 func_021286a0(s32 a) {
-    Unk020b4934 *ncgr;
-    Unk020b47d8 *nscr;
-    Unk020b4a44 *nclr;
+    Ncgr *ncgr;
+    Nscr *nscr;
+    Nclr *nclr;
     s32 i;
     s32 j;
     s32 k;
     LocateNcgr(&ncgr, func_02047a28("select_return_s_b_00.ncgr"));
     LocateNscr(&nscr, func_02047a28("select_return_s_bg_00.nscr"));
     LocateNclr(&nclr, func_02047a28("select_return_s_b_00.nclr"));
-    a -= ncgr->mUnk_10;
-    func_0200ee74(ncgr->mUnk_14, ncgr->mUnk_10);
-    func_0214b8f4(ncgr->mUnk_14, a, ncgr->mUnk_10);
+    a -= ncgr->mDataSize;
+    func_0200ee74(ncgr->mData, ncgr->mDataSize);
+    func_0214b8f4(ncgr->mData, a, ncgr->mDataSize);
     for (i = 0; i < 0x20; i++) {
         for (j = 0; j < 0x20; j++) {
-            *(gSelectReturn->mUnk_10 + i * 0x20 + j) = (a >> 5) + *((u16 *) nscr->mUnk_0c + i * 0x20 + j);
+            *(gSelectReturn->mUnk_10 + i * 0x20 + j) = (a >> 5) + *((u16 *) nscr->mData + i * 0x20 + j);
         }
     }
-    func_0200ee74(gSelectReturn->mUnk_10, nscr->mUnk_08);
-    func_0214bc34(gSelectReturn->mUnk_10, 0, nscr->mUnk_08);
-    func_0200ee74(nclr->mUnk_0c, 0x180);
-    func_0214c0f8(nclr->mUnk_0c + 0xc0, 0x180, 0x40);
+    func_0200ee74(gSelectReturn->mUnk_10, nscr->mDataSize);
+    func_0214bc34(gSelectReturn->mUnk_10, 0, nscr->mDataSize);
+    func_0200ee74(nclr->mData, 0x180);
+    func_0214c0f8(nclr->mData + 0xc0, 0x180, 0x40);
     return a;
 }
 

@@ -33,10 +33,10 @@ typedef struct Unk021a9be8 {
     /* 58 */ Unk02124b1c *mUnk_58;
     /* 5c */ struct Unk02021dc8 *mUnk_5c;
     /* 60 */ struct Unk02021dc8 *mUnk_60;
-    /* 64 */ Unk020b4934 *mUnk_64;
-    /* 68 */ Unk020b4934 *mUnk_68;
-    /* 6c */ Unk020b4a44 *mUnk_6c;
-    /* 70 */ Unk020b4a44 *mUnk_70;
+    /* 64 */ Ncgr *mUnk_64;
+    /* 68 */ Ncgr *mUnk_68;
+    /* 6c */ Nclr *mUnk_6c;
+    /* 70 */ Nclr *mUnk_70;
     /* 74 */ Unk0201ea30 *mUnk_74;
     /* 78 */ Unk0201ea30 *mUnk_78;
     /* 7c */ void *mUnk_7c;

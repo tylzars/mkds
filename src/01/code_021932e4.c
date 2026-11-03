@@ -70,9 +70,9 @@ void func_ov001_02193b1c(void) {
 }
 
 void func_ov001_02193a20(void) {
-    Unk020b4934 *a;
-    Unk020b47d8 *b;
-    Unk020b4a44 *c;
+    Ncgr *a;
+    Nscr *b;
+    Nclr *c;
 
     LocateNcgr(&a, FindSceneFile(data_ov001_021a8180));
     LocateNscr(&b, FindSceneFile(data_ov001_021a819c));
@@ -82,11 +82,11 @@ void func_ov001_02193a20(void) {
     LocateNcgr2(&data_ov001_021a9bd4->mUnk_28, FindSceneFile(data_ov001_021a8200));
     LocateNcer(&data_ov001_021a9bd4->mUnk_24, FindSceneFile(data_ov001_021a821c));
     LocateNclr(&data_ov001_021a9bd4->mUnk_2c, FindSceneFile(data_ov001_021a8238));
-    func_02016468(4, 0, a->mUnk_14, a->mUnk_10);
-    func_02016468(8, 0, b->mUnk_0c, b->mUnk_08);
-    func_02016468(15, 0, c->mUnk_0c, 0x100);
-    func_02016468(0x23, 0, data_ov001_021a9bd4->mUnk_28->mUnk_14, data_ov001_021a9bd4->mUnk_28->mUnk_10);
-    func_02016468(0x1e, 0, data_ov001_021a9bd4->mUnk_2c->mUnk_0c, data_ov001_021a9bd4->mUnk_2c->mUnk_08);
+    func_02016468(4, 0, a->mData, a->mDataSize);
+    func_02016468(8, 0, b->mData, b->mDataSize);
+    func_02016468(15, 0, c->mData, 0x100);
+    func_02016468(0x23, 0, data_ov001_021a9bd4->mUnk_28->mData, data_ov001_021a9bd4->mUnk_28->mDataSize);
+    func_02016468(0x1e, 0, data_ov001_021a9bd4->mUnk_2c->mData, data_ov001_021a9bd4->mUnk_2c->mDataSize);
 }
 
 void func_ov001_02193a00(void) {

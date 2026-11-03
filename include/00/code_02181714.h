@@ -8,8 +8,8 @@ extern u8 data_ov000_021b05d8[][5];
 #include "Main/Unknown/code_02124094.h"
 
 struct Unk02021dc8;
-struct Unk020b4934;
-struct Unk020b4a44;
+struct Ncgr;
+struct Nclr;
 
 // Object behind gWiFiTopMenu; func_ov000_02181df8 fills 0x20 to 0x30.
 typedef struct Unk021b4c6c {
@@ -22,8 +22,8 @@ typedef struct Unk021b4c6c {
     /* 18 */ s32 mUnk_18;
     /* 1c */ Unk02124b1c *mUnk_1c;
     /* 20 */ struct Unk02021dc8 *mUnk_20;
-    /* 24 */ struct Unk020b4934 *mUnk_24;
-    /* 28 */ struct Unk020b4a44 *mUnk_28;
+    /* 24 */ struct Ncgr *mUnk_24;
+    /* 28 */ struct Nclr *mUnk_28;
     /* 2c */ void *mUnk_2c;
     /* 30 */ Unk0201ea30 *mUnk_30;
     /* 34 */ u8 pad_34[4];

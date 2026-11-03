@@ -15,8 +15,8 @@ typedef struct Unk021a9bd4 {
     /* 1c */ void *mUnk_1c;
     /* 20 */ Unk02124b1c *mUnk_20;
     /* 24 */ struct Unk02021dc8 *mUnk_24;
-    /* 28 */ Unk020b4934 *mUnk_28;
-    /* 2c */ Unk020b4a44 *mUnk_2c;
+    /* 28 */ Ncgr *mUnk_28;
+    /* 2c */ Nclr *mUnk_2c;
     /* 30 */ void *mUnk_30;
     /* 34 */ void *mUnk_34;
     /* 38 */ void *mUnk_38;
@@ -36,25 +36,25 @@ typedef struct Unk021a9bd8_40 {
 
 // Object behind gRecordGpx.
 typedef struct RecordGpx {
-    /* 00 */ Unk020b4934 *mRecordGpxMNcgr;
+    /* 00 */ Ncgr *mRecordGpxMNcgr;
     /* 04 */ struct Unk02021dc8 *mRecordGpxMNcer;
     /* 08 */ Unk0201ea30 *mRecordGpxMBncl;
     /* 0c */ u8 mUnk_0c[4];
     /* 10 */ Unk0201ea30 *mRecordGpxMBnll;
-    /* 14 */ Unk020b4934 *mRecordGpxSNcgr;
+    /* 14 */ Ncgr *mRecordGpxSNcgr;
     /* 18 */ struct Unk02021dc8 *mRecordGpxSNcer;
     /* 1c */ Unk0201ea30 *mRecordGpxSBncl;
     /* 20 */ void *mRecordGpxSBnbl;
     /* 24 */ Unk0201ea30 *mRecordGpxSBnll;
-    /* 28 */ Unk020b4934 *mRecordTrophyONcgr;
+    /* 28 */ Ncgr *mRecordTrophyONcgr;
     /* 2c */ struct Unk02021dc8 *mRecordTrophyONcer;
-    /* 30 */ Unk020b4a44 *mRecordTrophySONclr;
+    /* 30 */ Nclr *mRecordTrophySONclr;
     /* 34 */ void *mRecordTrophySOBncl;
     /* 38 */ void *mPlayerCharacterMNcgr;
     /* 3c */ void *mPlayerCharacterMNcer;
     /* 40 */ Unk021a9bd8_40 *mPlayerCharacterMONclr;
     /* 44 */ void *mPlayerCharacterMBncl;
-    /* 48 */ Unk020b47d8 *mRecordGpxSNscr;
+    /* 48 */ Nscr *mRecordGpxSNscr;
     /* 4c */ void *mUnk_4c;
     /* 50 */ Unk02124b1c *mRecordGpxMTable;
     /* 54 */ Unk02124b1c *mRecordGpxSTable;

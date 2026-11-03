@@ -28,9 +28,9 @@ void func_0212abd0(void) {
 #pragma thumb on
 void func_0212aaa4(void) {
     s32 i;
-    Unk020b4934 *c;
+    Ncgr *c;
     Unk02021dc8 *d;
-    Unk020b4a44 *e;
+    Nclr *e;
     void *a;
     Unk0201ea30 *b;
     Unk0217b4b0 *x;
@@ -44,7 +44,7 @@ void func_0212aaa4(void) {
     e = x->mUnk_10;
     for (i = 0; i < 5; i++) {
         for (j = 0; j < data_0215d168[i]; j++) {
-            data_0217d404->mUnk_0bc[i][j] = (Unk0217d404_bc *) c->mUnk_14 + func_0212497c(data_0215d170[i][j], d, a);
+            data_0217d404->mUnk_0bc[i][j] = (Unk0217d404_bc *) c->mData + func_0212497c(data_0215d170[i][j], d, a);
         }
     }
     for (i = 0; i < 2; i++) {
@@ -55,7 +55,7 @@ void func_0212aaa4(void) {
     for (i = 0; i < 2; i++) {
         func_02016468(0x13, (0x400 - (i + 1) * 4) << 5, data_0217d404->mUnk_03c, 0x80);
     }
-    func_02016468(0xe, 0x1a0, e->mUnk_0c + 0xd0, 0x20);
+    func_02016468(0xe, 0x1a0, e->mData + 0xd0, 0x20);
 }
 
 void func_0212a99c(void) {

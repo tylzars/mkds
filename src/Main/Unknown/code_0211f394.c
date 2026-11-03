@@ -29,9 +29,9 @@ void func_0211f61c(void) {
     v1 = FindSceneFile(data_0216e128);
     LocateNcer(&data_0217d380->mUnk_00, v1);
     v1 = FindSceneFile(data_0216e134);
-    LocateNcgr2((Unk020b4934 **) (&v2), v1);
+    LocateNcgr2((Ncgr **) (&v2), v1);
     v1 = FindSceneFile(data_0216e130);
-    LocateNclr((Unk020b4a44 **) v3, v1);
+    LocateNclr((Nclr **) v3, v1);
     v1 = FindSceneFile(data_0216e124);
     data_0217d380->mUnk_04 = v1;
     v1 = FindSceneFile(data_0216e12c);

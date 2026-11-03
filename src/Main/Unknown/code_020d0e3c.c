@@ -17,21 +17,21 @@ BOOL func_020d0ec4(void) {
 
 void *func_020d0ea0(void) {
     if (func_020d0ec4() != FALSE) {
-        return gCupPicture->mCupPictureNclr->mUnk_0c;
+        return gCupPicture->mCupPictureNclr->mData;
     }
     return NULL;
 }
 
 void *func_020d0e7c(void) {
     if (func_020d0ec4() != FALSE) {
-        return gCupPicture->mCupPictureNcgr->mUnk_14;
+        return gCupPicture->mCupPictureNcgr->mData;
     }
     return NULL;
 }
 
 void *func_020d0e58(void) {
     if (func_020d0ec4() != FALSE) {
-        return &gCupPicture->mCupPictureNscr->mUnk_0c;
+        return &gCupPicture->mCupPictureNscr->mData;
     }
     return NULL;
 }

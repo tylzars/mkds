@@ -35,13 +35,13 @@
 #include "Main/Unknown/code_020472a8.h"
 
 void func_ov001_0219b000(void) {
-    Unk020b4934 *a;
-    Unk020b4a44 *b;
-    Unk020b4934 *c;
-    Unk020b4a44 *d;
-    Unk020b4934 *e;
-    Unk020b4a44 *f;
-    Unk020b47d8 *g;
+    Ncgr *a;
+    Nclr *b;
+    Ncgr *c;
+    Nclr *d;
+    Ncgr *e;
+    Nclr *f;
+    Nscr *g;
     u16 *q;
 
     a = NULL;
@@ -65,16 +65,16 @@ void func_ov001_0219b000(void) {
     LocateNcgr2(&c, FindSceneFile(gRecordTopMenuSNcgrName));
     LocateNcer(&gRecordTopMenu->mUnk_0c, FindSceneFile(gRecordTopMenuSNcerName));
     LocateNclr(&d, FindSceneFile(gRecordTopMenuSONclrName));
-    q = b->mUnk_0c;
-    func_02016468(4, 0, e->mUnk_14, e->mUnk_10);
-    func_02016468(15, 0, f->mUnk_0c, 0x60);
-    func_02016468(8, 0, g->mUnk_0c, g->mUnk_08);
+    q = b->mData;
+    func_02016468(4, 0, e->mData, e->mDataSize);
+    func_02016468(15, 0, f->mData, 0x60);
+    func_02016468(8, 0, g->mData, g->mDataSize);
     func_02016468(8, 0x800, gRecordTopMenu->mUnk_28, 0x800);
-    func_02016468(0x13, 0, a->mUnk_14, a->mUnk_10);
-    func_02016468(14, 0, b->mUnk_0c, 0x1a0);
+    func_02016468(0x13, 0, a->mData, a->mDataSize);
+    func_02016468(14, 0, b->mData, 0x1a0);
     func_02016468(14, 0x1c0, q + 0xe0, 0x40);
-    func_02016468(0x23, 0, c->mUnk_14, c->mUnk_10);
-    func_02016468(0x1e, 0, d->mUnk_0c, d->mUnk_08);
+    func_02016468(0x23, 0, c->mData, c->mDataSize);
+    func_02016468(0x1e, 0, d->mData, d->mDataSize);
 }
 
 void func_ov001_0219afc8(s32 a) {

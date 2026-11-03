@@ -44,8 +44,8 @@ typedef struct Unk021b4c70 {
     /* 1038 */ void *mHeap;
     /* 103c */ Unk02124b1c *mUnk_103c;
     /* 1040 */ Unk02021dc8 *mWiFiVSSettingSNcer;
-    /* 1044 */ Unk020b4934 *mWiFiVSSettingSNcgr;
-    /* 1048 */ Unk020b4a44 *mWiFiVSSettingSONclr;
+    /* 1044 */ Ncgr *mWiFiVSSettingSNcgr;
+    /* 1048 */ Nclr *mWiFiVSSettingSONclr;
     /* 104c */ Unk0201ea30 *mWiFiVSSettingBncl;
     /* 1050 */ Unk0201ea30 *mWiFiVSSettingBnbl;
     /* 1054 */ void *mWiFiVSSettingBnll;
@@ -82,8 +82,8 @@ typedef struct Unk021b4c74 {
     /* 10d8 */ u8 mUnk_10d8[3][0x200];
     /* 16d8 */ s32 mUnk_16d8[3];
     /* 16e4 */ struct Unk02021dc8 *mWiFiVSMatchingSNcer;
-    /* 16e8 */ Unk020b4934 *mWiFiVSMatchingSNcgr;
-    /* 16ec */ Unk020b4a44 *mWiFiVSMatchingSONclr;
+    /* 16e8 */ Ncgr *mWiFiVSMatchingSNcgr;
+    /* 16ec */ Nclr *mWiFiVSMatchingSONclr;
     /* 16f0 */ Unk0201ea30 *mWiFiVSMatchingBncl;
     /* 16f4 */ void *mWiFiVSMatchingBnbl;
     /* 16f8 */ void *mWiFiVSMatchingBnll;

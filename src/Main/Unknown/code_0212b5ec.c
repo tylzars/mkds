@@ -67,7 +67,7 @@ void func_0212b7d8(void) {
 void func_0212b5ec(void *a) {
     s32 i;
     s32 v;
-    Unk020b4a44 *p;
+    Nclr *p;
     Unk0217d40c *d;
     Unk02180728 *q;
     void *t;
@@ -91,7 +91,7 @@ void func_0212b5ec(void *a) {
         ((u16 *) func_0214a2f4())[i] = i | 0xf000;
     }
     LoadNclrData(&p, FindSceneFile(data_0216ea78));
-    func_02016468(0x1f, 0x1e0, p->mUnk_0c + 0xf0, 0x20);
+    func_02016468(0x1f, 0x1e0, p->mData + 0xf0, 0x20);
     func_02023408(data_0217d40c->mUnk_020, data_0217d40c->mUnk_050, 0x20, 2, 4);
     v = data_0217d40c->mUnk_01c;
     t = func_020b403c(2);

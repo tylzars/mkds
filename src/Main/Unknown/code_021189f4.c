@@ -366,15 +366,15 @@ void func_02118e30(void) {
 }
 
 void func_02118d44(void) {
-    Unk020b4934 *a = NULL;
+    Ncgr *a = NULL;
     Unk02021dc8 *b = NULL;
-    Unk020b4a44 *c = NULL;
-    Unk020b4934 *d = NULL;
+    Nclr *c = NULL;
+    Ncgr *d = NULL;
     Unk02021dc8 *e = NULL;
-    Unk020b4a44 *f = NULL;
-    Unk020b4934 *g = NULL;
-    Unk020b47d8 *h = NULL;
-    Unk020b4a44 *i = NULL;
+    Nclr *f = NULL;
+    Ncgr *g = NULL;
+    Nscr *h = NULL;
+    Nclr *i = NULL;
 
     if (*(vu16 *) 0x027ffc40 != 2) {
         LoadNcgrData(&g, FindSceneFile(data_0216d690));
@@ -393,13 +393,13 @@ void func_02118d44(void) {
 }
 
 void func_02118b48(void) {
-    Unk020b4934 *a = NULL;
-    Unk020b4a44 *b = NULL;
-    Unk020b4934 *c = NULL;
-    Unk020b4a44 *d = NULL;
-    Unk020b4934 *e = NULL;
-    Unk020b47d8 *f = NULL;
-    Unk020b4a44 *g = NULL;
+    Ncgr *a = NULL;
+    Nclr *b = NULL;
+    Ncgr *c = NULL;
+    Nclr *d = NULL;
+    Ncgr *e = NULL;
+    Nscr *f = NULL;
+    Nclr *g = NULL;
     u16 *p;
 
     if (*(vu16 *) 0x027ffc40 == 2) {
@@ -420,18 +420,18 @@ void func_02118b48(void) {
     LocateNcgr2(&c, FindSceneFile(data_0216d69c));
     LocateNcer(&data_0217d360->mSelectCupSNcer, FindSceneFile(data_0216d6b4));
     LocateNclr(&d, FindSceneFile(data_0216d68c));
-    p = b->mUnk_0c;
+    p = b->mData;
     if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
-        func_02016468(4, 0, e->mUnk_14, e->mUnk_10);
-        func_02016468(0xf, 0, g->mUnk_0c, 0x100);
-        func_02016468(8, 0, &f->mUnk_0c, f->mUnk_08);
+        func_02016468(4, 0, e->mData, e->mDataSize);
+        func_02016468(0xf, 0, g->mData, 0x100);
+        func_02016468(8, 0, &f->mData, f->mDataSize);
         func_02016468(8, 0x800, data_0217d360->mUnk_20, 0x800);
     }
-    func_02016468(0x13, 0, a->mUnk_14, a->mUnk_10);
-    func_02016468(0xe, 0, b->mUnk_0c, 0x1a0);
+    func_02016468(0x13, 0, a->mData, a->mDataSize);
+    func_02016468(0xe, 0, b->mData, 0x1a0);
     func_02016468(0xe, 0x1c0, p + 0xe0, 0x40);
-    func_02016468(0x23, 0, c->mUnk_14, c->mUnk_10);
-    func_02016468(0x1e, 0, d->mUnk_0c, d->mUnk_08);
+    func_02016468(0x23, 0, c->mData, c->mDataSize);
+    func_02016468(0x1e, 0, d->mData, d->mDataSize);
 }
 
 u32 func_021189f4(u32 a) {

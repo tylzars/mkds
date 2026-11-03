@@ -36,16 +36,16 @@
 #pragma thumb on
 
 void func_0211efec(void) {
-    Unk020b4934 *a;
-    Unk020b4a44 *b;
-    Unk020b4934 *c;
-    Unk020b4a44 *d;
-    Unk020b4934 *e;
-    Unk020b47d8 *f;
-    Unk020b4a44 *g;
-    Unk020b4934 *h;
-    Unk020b47d8 *i;
-    Unk020b4a44 *j;
+    Ncgr *a;
+    Nclr *b;
+    Ncgr *c;
+    Nclr *d;
+    Ncgr *e;
+    Nscr *f;
+    Nclr *g;
+    Ncgr *h;
+    Nscr *i;
+    Nclr *j;
     u16 *v;
 
     a = NULL;
@@ -78,24 +78,24 @@ void func_0211efec(void) {
     LocateNcgr2(&c, FindSceneFile(data_0216df9c));
     LocateNcer(&data_0217d378->mUnk_0c, FindSceneFile(data_0216dfa0));
     LocateNclr(&d, FindSceneFile(data_0216dfa8));
-    v = b->mUnk_0c;
+    v = b->mData;
     if (!(func_020cccb4() == 0x17 || func_020cccb4() == 0xb)) {
-        func_02016468(4, 0, e->mUnk_14, e->mUnk_10);
-        func_02016468(0xf, 0, g->mUnk_0c, 0x140);
-        func_02016468(8, 0, f->mUnk_0c, f->mUnk_08);
+        func_02016468(4, 0, e->mData, e->mDataSize);
+        func_02016468(0xf, 0, g->mData, 0x140);
+        func_02016468(8, 0, f->mData, f->mDataSize);
         func_02016468(8, 0x800, data_0217d378->mUnk_20, 0x800);
     }
     if (!(func_020cccb4() == 0x19 || func_020cccb4() == 0xd)) {
-        func_02016468(0x17, 0, h->mUnk_14, h->mUnk_10);
-        func_02016468(0x1f, 0, j->mUnk_0c, 0x140);
-        func_02016468(0x1b, 0, i->mUnk_0c, i->mUnk_08);
+        func_02016468(0x17, 0, h->mData, h->mDataSize);
+        func_02016468(0x1f, 0, j->mData, 0x140);
+        func_02016468(0x1b, 0, i->mData, i->mDataSize);
         func_02016468(0x1b, 0x800, data_0217d378->mUnk_20, 0x800);
     }
-    func_02016468(0x13, 0, a->mUnk_14, a->mUnk_10);
-    func_02016468(0xe, 0, b->mUnk_0c, 0x1a0);
+    func_02016468(0x13, 0, a->mData, a->mDataSize);
+    func_02016468(0xe, 0, b->mData, 0x1a0);
     func_02016468(0xe, 0x1c0, v + 0xe0, 0x40);
-    func_02016468(0x23, 0, c->mUnk_14, c->mUnk_10);
-    func_02016468(0x1e, 0, d->mUnk_0c, d->mUnk_08);
+    func_02016468(0x23, 0, c->mData, c->mDataSize);
+    func_02016468(0x1e, 0, d->mData, d->mDataSize);
 }
 
 void func_0211ed80(void) {

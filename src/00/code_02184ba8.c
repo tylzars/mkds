@@ -83,8 +83,8 @@ void func_ov000_021851a0(void) {
     LocateNcer(&gWiFiAikotoba->mUnk_20, v1);
     v1 = FindSceneFile(data_ov000_021b0ed0);
     LocateNclr(&gWiFiAikotoba->mUnk_28, v1);
-    func_0214bea4((const void *) gWiFiAikotoba->mUnk_24->mUnk_14, 0, (u32) (gWiFiAikotoba->mUnk_24->mUnk_10));
-    func_0214c028((const void *) gWiFiAikotoba->mUnk_28->mUnk_0c, 0, (u32) (gWiFiAikotoba->mUnk_28->mUnk_08));
+    func_0214bea4((const void *) gWiFiAikotoba->mUnk_24->mData, 0, (u32) (gWiFiAikotoba->mUnk_24->mDataSize));
+    func_0214c028((const void *) gWiFiAikotoba->mUnk_28->mData, 0, (u32) (gWiFiAikotoba->mUnk_28->mDataSize));
     return;
 }
 

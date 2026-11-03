@@ -81,8 +81,8 @@ static inline u16 *func_020b41e8_inline(u16 *p, s32 r, s32 k) {
 
 void func_020b41e8(s32 a, s32 b, s32 c, s32 d, s32 e) {
     Unk021759c0 *p = data_021759c0;
-    Unk020b4a44 *o1;
-    Unk020b4934 *o2;
+    Nclr *o1;
+    Ncgr *o2;
     u16 *s3;
     u16 *s;
     u16 *k;
@@ -98,12 +98,12 @@ void func_020b41e8(s32 a, s32 b, s32 c, s32 d, s32 e) {
     i = p->mUnk_00c == 1 ? p->mUnk_063 : p->mUnk_62;
     n = p->mUnk_68[i].mCharacterIndex;
     if (n == 12) {
-        o1 = (Unk020b4a44 *) func_020b4024(1);
+        o1 = (Nclr *) func_020b4024(1);
     } else {
         o1 = func_020b4030(1);
     }
     o2 = func_020b4018(1);
-    k = o1->mUnk_0c;
+    k = o1->mData;
     if (n == 12) {
         m = data_0217b488
                 ->mUnk_10c[(u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mUnk_62)];
@@ -113,17 +113,17 @@ void func_020b41e8(s32 a, s32 b, s32 c, s32 d, s32 e) {
     for (x = 0; x < 16; x++) {
         ((u16 *) a)[b * 16 + x] = k[m * 16 + x];
     }
-    s = o2->mUnk_14;
+    s = o2->mData;
     for (j = 0; j < 16; j++) {
         func_0214cffc(s + (n * 25 + j) * 16, func_020b41e8_inline((u16 *) c, d + e * 32, j), 0x20);
     }
-    s3 = o2->mUnk_14;
+    s3 = o2->mData;
     for (y = 0; y < 4; y++) {
         func_0214cffc(s3 + (n * 25 + 16 + y) * 16, (u16 *) c + (d + 4 + e * 32) * 16 + y * 512, 0x20);
     }
-    q = o2->mUnk_14;
+    q = o2->mData;
     for (w = 0; w < 4; w++) {
         func_0214cffc(q + (n * 25 + 20 + w) * 16, func_020b41e8_inline((u16 *) c, d + (e + 4) * 32, w), 0x20);
     }
-    func_0214cffc(o2->mUnk_14 + (n * 25 + 24) * 16, (u16 *) c + (d + 4 + (e + 4) * 32) * 16, 0x20);
+    func_0214cffc(o2->mData + (n * 25 + 24) * 16, (u16 *) c + (d + 4 + (e + 4) * 32) * 16, 0x20);
 }

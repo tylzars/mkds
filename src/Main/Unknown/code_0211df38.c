@@ -10,9 +10,9 @@
 
 void func_0211e074(void) {
     void *v1;
-    Unk020b4934 *v2;
+    Ncgr *v2;
     Unk02021dc8 *v3;
-    Unk020b4a44 *v4[1];
+    Nclr *v4[1];
     v2 = NULL;
     v3 = NULL;
     v4[0] = NULL;
@@ -26,9 +26,9 @@ void func_0211e074(void) {
 
 void func_0211e024(void) {
     void *v1;
-    Unk020b4934 *v2;
+    Ncgr *v2;
     Unk02021dc8 *v3;
-    Unk020b4a44 *v4[1];
+    Nclr *v4[1];
     v2 = NULL;
     v3 = NULL;
     v4[0] = NULL;

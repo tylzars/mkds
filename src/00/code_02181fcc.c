@@ -47,9 +47,9 @@ void func_ov000_02182f88(void) {
 }
 
 void func_ov000_02182e18(void) {
-    Unk020b4934 *v1;
-    Unk020b47d8 *v2;
-    Unk020b4a44 *v3;
+    Ncgr *v1;
+    Nscr *v2;
+    Nclr *v3;
     vu16 v4;
 
     LocateNcgr(&v1, FindSceneFile("WiFi_VS_setting_s_b.ncgr"));
@@ -64,13 +64,13 @@ void func_ov000_02182e18(void) {
     *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x4400;
     v4 = 0;
     func_0214cfe4(v4, gWiFiVSSetting->mNscrCopy, 0x1000);
-    func_0214cffc(v2->mUnk_0c, gWiFiVSSetting->mNscrCopy, 0x800);
-    func_02016468(0x17, 0, v1->mUnk_14, v1->mUnk_10);
+    func_0214cffc(v2->mData, gWiFiVSSetting->mNscrCopy, 0x800);
+    func_02016468(0x17, 0, v1->mData, v1->mDataSize);
     func_02016468(0x1b, 0, gWiFiVSSetting->mNscrCopy, 0x1000);
-    func_02016468(0x1f, 0, v3->mUnk_0c, 0x80);
-    func_02016468(0x23, 0, gWiFiVSSetting->mWiFiVSSettingSNcgr->mUnk_14, gWiFiVSSetting->mWiFiVSSettingSNcgr->mUnk_10);
-    func_02016468(0x1e, 0, gWiFiVSSetting->mWiFiVSSettingSONclr->mUnk_0c,
-                  gWiFiVSSetting->mWiFiVSSettingSONclr->mUnk_08);
+    func_02016468(0x1f, 0, v3->mData, 0x80);
+    func_02016468(0x23, 0, gWiFiVSSetting->mWiFiVSSettingSNcgr->mData, gWiFiVSSetting->mWiFiVSSettingSNcgr->mDataSize);
+    func_02016468(0x1e, 0, gWiFiVSSetting->mWiFiVSSettingSONclr->mData,
+                  gWiFiVSSetting->mWiFiVSSettingSONclr->mDataSize);
 }
 
 void func_ov000_02182de8(void) {

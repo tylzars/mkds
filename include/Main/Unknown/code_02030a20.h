@@ -9,7 +9,7 @@
 // 0x1c-byte elements from 0x24 of Unk02174e58; the buffer at 0x18 holds 0x40-byte elements.
 typedef struct Unk02174e58_24 {
     /* 00 */ u8 mUnk_00[4];
-    /* 04 */ Unk020b4a44 *mUnk_04;
+    /* 04 */ Nclr *mUnk_04;
     /* 08 */ void *mUnk_08;
     /* 0c */ Unk0201ea30 *mUnk_0c;
     /* 10 */ Unk0201ea30 *mUnk_10;

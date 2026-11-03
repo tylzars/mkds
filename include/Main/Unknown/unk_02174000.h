@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_02025ebc.h" // Unk02025ebc
 #include "Main/Unknown/code_02036588.h" // Unk02036590
 #include "Main/Unknown/unk_02153000.h" // Unk021535b4
-#include "Main/Unknown/code_020b4000.h" // Unk020b4934, Unk020b47d8, Unk020b4a44
+#include "Main/Unknown/code_020b4000.h" // Ncgr, Nscr, Nclr
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk0201ea30
 #include "Main/Unknown/code_020b3f7c.h" // Unk020b3fb0
 #include "Main/Unknown/code_0202f764.h" // Unk02174e50_24
@@ -168,9 +168,9 @@ extern Unk02174e3c *data_02174e3c;
 
 // 0x24-byte part of Unk02174e60, at 0x00 and 0x24, filled by func_02025884.
 typedef struct Unk02174e60_00 {
-    /* 00 */ Unk020b4934 *mUnk_00[4];
-    /* 10 */ Unk020b4a44 *mUnk_10;
-    /* 14 */ Unk020b47d8 *mUnk_14[4];
+    /* 00 */ Ncgr *mUnk_00[4];
+    /* 10 */ Nclr *mUnk_10;
+    /* 14 */ Nscr *mUnk_14[4];
 } Unk02174e60_00;
 
 // 0xc-byte entries from 0xe4 of Unk02174e60.

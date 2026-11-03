@@ -1,13 +1,13 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020b4000.h" // Unk020b4934, Unk020b4a44
+#include "Main/Unknown/code_020b4000.h" // Ncgr, Nclr
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk0201ea30
 
 // Object behind data_02174e54, 0x40 bytes.
 typedef struct Unk02174e54 {
-    /* 00 */ Unk020b4934 *mUnk_00;
-    /* 04 */ Unk020b4a44 *mUnk_04;
+    /* 00 */ Ncgr *mUnk_00;
+    /* 04 */ Nclr *mUnk_04;
     /* 08 */ struct Unk02021dc8 *mUnk_08;
     /* 0c */ Unk0201ea30 *mUnk_0c;
     /* 10 */ void *mUnk_10;

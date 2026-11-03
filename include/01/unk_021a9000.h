@@ -32,8 +32,8 @@ typedef struct Unk021a9bec {
     /* 18 */ void *mUnk_18;
     /* 1c */ Unk02124b1c *mUnk_1c;
     /* 20 */ struct Unk02021dc8 *mUnk_20;
-    /* 24 */ Unk020b4934 *mUnk_24;
-    /* 28 */ Unk020b4a44 *mUnk_28;
+    /* 24 */ Ncgr *mUnk_24;
+    /* 28 */ Nclr *mUnk_28;
     /* 2c */ void *mUnk_2c;
     /* 30 */ void *mUnk_30;
 } Unk021a9bec;
@@ -107,13 +107,13 @@ typedef struct Unk021a9bf8 {
     /* 1034 */ Unk02124b1c *mSelectBattleStageTables[2];
     /* 103c */ struct Unk02021dc8 *mSelectBattleStageMNcer;
     /* 1040 */ struct Unk02021dc8 *mSelectBattleStageSNcer;
-    /* 1044 */ Unk020b4934 *mSelectBattleStageMNcgr;
-    /* 1048 */ Unk020b4934 *mSelectBattleStageSNcgr;
+    /* 1044 */ Ncgr *mSelectBattleStageMNcgr;
+    /* 1048 */ Ncgr *mSelectBattleStageSNcgr;
     /* 104c */ u8 pad_104c[8];
     /* 1054 */ Unk0201ea30 *mSelectBattleStageBncls[2];
     /* 105c */ void *mSelectBattleStageBnbls[2];
     /* 1064 */ void *mSelectBattleStageBnlls[2];
-    /* 106c */ Unk020b47d8 *mSelectBattleStageMNscrs[3];
+    /* 106c */ Nscr *mSelectBattleStageMNscrs[3];
     /* 1078 */ void *mUnk_1078;
     /* 107c */ void *mUnk_107c;
     /* 1080 */ void *mMenuMessages;
@@ -182,8 +182,8 @@ typedef struct OptionEmbremSelect {
     /* 30 */ void *mUnk_30;
     /* 34 */ Unk02124b1c *mOptionEmbremSelectSTable;
     /* 38 */ struct Unk02021dc8 *mOptionEmbremSelectSNcer;
-    /* 3c */ Unk020b4934 *mOptionEmbremSelectSNcgr;
-    /* 40 */ Unk020b4a44 *mOptionEmbremSelectSONclr;
+    /* 3c */ Ncgr *mOptionEmbremSelectSNcgr;
+    /* 40 */ Nclr *mOptionEmbremSelectSONclr;
     /* 44 */ Unk0201ea30 *mOptionEmbremSelectSBncl;
     /* 48 */ void *mOptionEmbremSelectSBnbl;
     /* 4c */ void *mOptionEmbremSelectSBnll;

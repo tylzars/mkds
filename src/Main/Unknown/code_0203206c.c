@@ -36,10 +36,10 @@
 #pragma thumb on
 
 void func_0203206c(void) {
-    Unk020b4934 *a;
-    Unk020b4a44 *b;
+    Ncgr *a;
+    Nclr *b;
     Unk02021dc8 *c;
-    Unk020b47d8 *d;
+    Nscr *d;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         LoadNcgrData(&a, FindSceneFile(data_021639b8));

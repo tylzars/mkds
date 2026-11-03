@@ -38,8 +38,8 @@ void func_02026058(void) {
 }
 
 void func_02025f90(void) {
-    Unk020b4934 *a = NULL;
-    Unk020b4a44 *b = NULL;
+    Ncgr *a = NULL;
+    Nclr *b = NULL;
     Unk02021dc8 *c = NULL;
 
     LoadNcgrData2(&a, func_02047a28(data_usa_02161b3c));

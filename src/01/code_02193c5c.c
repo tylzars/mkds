@@ -33,13 +33,13 @@
 #include "Main/Unknown/code_0205f000.h"
 
 void func_ov001_021953d0(void) {
-    Unk020b4a44 *l0 = NULL;
-    Unk020b4934 *l4 = NULL;
-    Unk020b4a44 *l8 = NULL;
-    Unk020b47d8 *lc = NULL;
-    Unk020b4a44 *l10 = NULL;
-    Unk020b4934 *l14 = NULL;
-    Unk020b4a44 *l18 = NULL;
+    Nclr *l0 = NULL;
+    Ncgr *l4 = NULL;
+    Nclr *l8 = NULL;
+    Nscr *lc = NULL;
+    Nclr *l10 = NULL;
+    Ncgr *l14 = NULL;
+    Nclr *l18 = NULL;
     u16 *x;
 
     LocateNcgr2(&gRecordGpx->mRecordGpxMNcgr, FindSceneFile(gRecordGpxMNcgrName));
@@ -67,19 +67,19 @@ void func_ov001_021953d0(void) {
     LocateNcgr(&l14, FindSceneFile(gRecordGpxSBNcgrName));
     LocateNclr(&l18, FindSceneFile(gRecordGpxSBNclrName));
     LocateNscr(&gRecordGpx->mRecordGpxSNscr, FindSceneFile(gRecordGpxSNscrName));
-    x = l0->mUnk_0c;
-    func_02016468(0x13, 0, gRecordGpx->mRecordGpxMNcgr->mUnk_14, gRecordGpx->mRecordGpxMNcgr->mUnk_10);
-    func_02016468(0xe, 0, l0->mUnk_0c, 0x1a0);
+    x = l0->mData;
+    func_02016468(0x13, 0, gRecordGpx->mRecordGpxMNcgr->mData, gRecordGpx->mRecordGpxMNcgr->mDataSize);
+    func_02016468(0xe, 0, l0->mData, 0x1a0);
     func_02016468(0xe, 0x1c0, (u8 *) x + 0x1c0, 0x40);
-    func_02016468(0x23, 0, gRecordGpx->mRecordGpxSNcgr->mUnk_14, gRecordGpx->mRecordGpxSNcgr->mUnk_10);
-    func_02016468(0x1e, 0, l10->mUnk_0c, l10->mUnk_08);
-    func_02016468(4, 0, l4->mUnk_14, l4->mUnk_10);
-    func_02016468(0xf, 0, l8->mUnk_0c, 0x40);
-    func_02016468(8, 0, lc->mUnk_0c, lc->mUnk_08);
-    func_02016468(0x17, 0, l14->mUnk_14, l14->mUnk_10);
-    func_02016468(0x1f, 0, l18->mUnk_0c, 0x40);
-    func_02016468(0x1b, 0, gRecordGpx->mRecordGpxSNscr->mUnk_0c, gRecordGpx->mRecordGpxSNscr->mUnk_08);
-    x = gRecordGpx->mRecordTrophySONclr->mUnk_0c;
+    func_02016468(0x23, 0, gRecordGpx->mRecordGpxSNcgr->mData, gRecordGpx->mRecordGpxSNcgr->mDataSize);
+    func_02016468(0x1e, 0, l10->mData, l10->mDataSize);
+    func_02016468(4, 0, l4->mData, l4->mDataSize);
+    func_02016468(0xf, 0, l8->mData, 0x40);
+    func_02016468(8, 0, lc->mData, lc->mDataSize);
+    func_02016468(0x17, 0, l14->mData, l14->mDataSize);
+    func_02016468(0x1f, 0, l18->mData, 0x40);
+    func_02016468(0x1b, 0, gRecordGpx->mRecordGpxSNscr->mData, gRecordGpx->mRecordGpxSNscr->mDataSize);
+    x = gRecordGpx->mRecordTrophySONclr->mData;
     func_02016468(0x1e, data_ov001_021a6604[0] << 5, (u8 *) x + (data_ov001_021a660c[0] << 5), 0x20);
     func_02016468(0x1e, data_ov001_021a6604[1] << 5, (u8 *) x + (data_ov001_021a660c[1] << 5), 0x20);
     func_02016468(0x1e, data_ov001_021a6604[2] << 5, (u8 *) x + (data_ov001_021a660c[2] << 5), 0x20);

@@ -31,15 +31,15 @@ typedef struct ChoisesS {
     /* 0a8 */ void *mUnk_0a8;
     /* 0ac */ u8 mUnk_0ac[4][0x20];
     /* 12c */ Unk02180728 mUnk_12c[4];
-    /* 16c */ Unk020b4a44 *mChoisesSBNclr;
-    /* 170 */ Unk020b4934 *mChoisesSBNcgr;
+    /* 16c */ Nclr *mChoisesSBNclr;
+    /* 170 */ Ncgr *mChoisesSBNcgr;
     /* 174 */ u16 *mUnk_174;
     /* 178 */ u16 *mUnk_178;
-    /* 17c */ Unk020b47d8 *mList0Nscr;
-    /* 180 */ Unk020b47d8 *mList1Nscr;
-    /* 184 */ Unk020b47d8 *mList2Nscr;
-    /* 188 */ Unk020b47d8 *mList3Nscr;
-    /* 18c */ Unk020b47d8 *mChoisesSNscrs[6];
+    /* 17c */ Nscr *mList0Nscr;
+    /* 180 */ Nscr *mList1Nscr;
+    /* 184 */ Nscr *mList2Nscr;
+    /* 188 */ Nscr *mList3Nscr;
+    /* 18c */ Nscr *mChoisesSNscrs[6];
 } ChoisesS;
 
 void func_020b24cc(Unk02180728 *a, void *b, void *c, s32 d, s32 e);

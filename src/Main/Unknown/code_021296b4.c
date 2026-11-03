@@ -339,8 +339,8 @@ void func_02129e78(void) {
 
 void func_02129cbc(void) {
     void *v1;
-    Unk020b4934 *v2;
-    Unk020b4a44 *v3;
+    Ncgr *v2;
+    Nclr *v3;
     v1 = FindSceneFile(data_0216e940);
     data_0217d400->mUnk_a4[0] = v1;
     v1 = FindSceneFile(data_0216e958);
@@ -359,25 +359,25 @@ void func_02129cbc(void) {
     LoadNcerData(&data_0217d400->mUnk_90, v1);
     v1 = FindSceneFile(data_0216e9e8);
     LoadNclrData(&data_0217d400->mUnk_98, v1);
-    func_0200ee74(data_0217d400->mUnk_94->mUnk_14, data_0217d400->mUnk_94->mUnk_10);
-    func_0214bf04((const void *) (data_0217d400->mUnk_94->mUnk_14), 0, (u32) (data_0217d400->mUnk_94->mUnk_10));
-    func_0214bea4((const void *) (data_0217d400->mUnk_94->mUnk_14), 0, (u32) (data_0217d400->mUnk_94->mUnk_10));
-    func_0200ee74(data_0217d400->mUnk_98->mUnk_0c, data_0217d400->mUnk_98->mUnk_08);
-    func_0214c090((const void *) (data_0217d400->mUnk_98->mUnk_0c), 0, (u32) (((u32) 0x000001a0u)));
-    func_0214c090((const void *) (&data_0217d400->mUnk_98->mUnk_0c[0xe0]), 0x1c0, (u32) 0x40);
-    func_0214c028((const void *) (data_0217d400->mUnk_98->mUnk_0c), 0, (u32) (data_0217d400->mUnk_98->mUnk_08));
+    func_0200ee74(data_0217d400->mUnk_94->mData, data_0217d400->mUnk_94->mDataSize);
+    func_0214bf04((const void *) (data_0217d400->mUnk_94->mData), 0, (u32) (data_0217d400->mUnk_94->mDataSize));
+    func_0214bea4((const void *) (data_0217d400->mUnk_94->mData), 0, (u32) (data_0217d400->mUnk_94->mDataSize));
+    func_0200ee74(data_0217d400->mUnk_98->mData, data_0217d400->mUnk_98->mDataSize);
+    func_0214c090((const void *) (data_0217d400->mUnk_98->mData), 0, (u32) (((u32) 0x000001a0u)));
+    func_0214c090((const void *) (&data_0217d400->mUnk_98->mData[0xe0]), 0x1c0, (u32) 0x40);
+    func_0214c028((const void *) (data_0217d400->mUnk_98->mData), 0, (u32) (data_0217d400->mUnk_98->mDataSize));
     v1 = FindSceneFile(data_0216e9fc);
     LoadNcgrData(&v2, v1);
-    func_0200ee74(v2->mUnk_14, v2->mUnk_10);
-    func_0214b824(v2->mUnk_14, 0, v2->mUnk_10);
+    func_0200ee74(v2->mData, v2->mDataSize);
+    func_0214b824(v2->mData, 0, v2->mDataSize);
     v1 = FindSceneFile(data_0216ea14);
-    LoadNscrData((Unk020b47d8 **) &data_0217d400->mUnk_b4[0], v1);
+    LoadNscrData((Nscr **) &data_0217d400->mUnk_b4[0], v1);
     v1 = FindSceneFile(data_0216ea30);
-    LoadNscrData((Unk020b47d8 **) &data_0217d400->mUnk_b4[1], v1);
+    LoadNscrData((Nscr **) &data_0217d400->mUnk_b4[1], v1);
     v1 = FindSceneFile(data_0216ea4c);
     LoadNclrData(&v3, v1);
-    func_0200ee74(v3->mUnk_0c, 0x80);
-    func_0214c0f8(v3->mUnk_0c, 0, (u32) 0x80);
+    func_0200ee74(v3->mData, 0x80);
+    func_0214c0f8(v3->mData, 0, (u32) 0x80);
 }
 
 #pragma thumb off

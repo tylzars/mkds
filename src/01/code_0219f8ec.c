@@ -37,16 +37,16 @@
 #include "Main/Unknown/code_020472a8.h"
 
 void func_ov001_021a10b8(void) {
-    Unk020b4934 *a = NULL;
+    Ncgr *a = NULL;
     Unk02021dc8 *b = NULL;
-    Unk020b4a44 *c = NULL;
-    Unk020b4934 *d = NULL;
+    Nclr *c = NULL;
+    Ncgr *d = NULL;
     Unk02021dc8 *e = NULL;
-    Unk020b4a44 *f = NULL;
-    Unk020b4934 *g = NULL;
-    Unk020b47d8 *h = NULL;
-    Unk020b47d8 *i = NULL;
-    Unk020b4a44 *j = NULL;
+    Nclr *f = NULL;
+    Ncgr *g = NULL;
+    Nscr *h = NULL;
+    Nscr *i = NULL;
+    Nclr *j = NULL;
 
     LoadNcgrData(&g, FindSceneFile(data_ov001_021a92bc));
     LoadNclrData(&j, FindSceneFile(data_ov001_021a92a8));
@@ -62,13 +62,13 @@ void func_ov001_021a10b8(void) {
 }
 
 void func_ov001_021a0e7c(void) {
-    Unk020b4934 *a = NULL;
-    Unk020b4a44 *b = NULL;
-    Unk020b4934 *c = NULL;
-    Unk020b4934 *d = NULL;
-    Unk020b47d8 *e = NULL;
-    Unk020b47d8 *f = NULL;
-    Unk020b4a44 *g = NULL;
+    Ncgr *a = NULL;
+    Nclr *b = NULL;
+    Ncgr *c = NULL;
+    Ncgr *d = NULL;
+    Nscr *e = NULL;
+    Nscr *f = NULL;
+    Nclr *g = NULL;
     u16 *p;
 
     LocateNcgr(&d, FindSceneFile(data_ov001_021a92bc));
@@ -86,20 +86,20 @@ void func_ov001_021a0e7c(void) {
     data_ov001_021ca414->mUnk_18 = FindSceneFile(data_ov001_021a9280);
     LocateNcgr2(&c, FindSceneFile(data_ov001_021a92b0));
     LocateNcer(&data_ov001_021ca414->mUnk_0c, FindSceneFile(data_ov001_021a9284));
-    LocateNclr((Unk020b4a44 **) &data_ov001_021ca414->mUnk_1c, FindSceneFile(data_ov001_021a927c));
-    p = b->mUnk_0c;
-    func_02016468(4, 0, d->mUnk_14, d->mUnk_10);
-    func_02016468(0xf, 0, g->mUnk_0c, 0x40);
-    func_02016468(8, 0, e->mUnk_0c, e->mUnk_08);
+    LocateNclr((Nclr **) &data_ov001_021ca414->mUnk_1c, FindSceneFile(data_ov001_021a927c));
+    p = b->mData;
+    func_02016468(4, 0, d->mData, d->mDataSize);
+    func_02016468(0xf, 0, g->mData, 0x40);
+    func_02016468(8, 0, e->mData, e->mDataSize);
     func_02016468(8, 0x800, data_ov001_021ca414->mUnk_48, 0x800);
     func_02016468(8, 0x1000, data_ov001_021ca414->mUnk_48, 0x800);
     func_02016468(8, 0x1800, data_ov001_021ca414->mUnk_48, 0x800);
-    func_02016468(9, 0, f->mUnk_0c, f->mUnk_08);
+    func_02016468(9, 0, f->mData, f->mDataSize);
     func_02016468(9, 0x800, data_ov001_021ca414->mUnk_48, 0x800);
-    func_02016468(0x13, 0, a->mUnk_14, a->mUnk_10);
-    func_02016468(0xe, 0, b->mUnk_0c, 0x1a0);
+    func_02016468(0x13, 0, a->mData, a->mDataSize);
+    func_02016468(0xe, 0, b->mData, 0x1a0);
     func_02016468(0xe, 0x1c0, p + 0xe0, 0x40);
-    func_02016468(0x23, 0, c->mUnk_14, c->mUnk_10);
+    func_02016468(0x23, 0, c->mData, c->mDataSize);
     func_02016468(0x1e, 0, data_ov001_021ca414->mUnk_1c->mUnk_0c, data_ov001_021ca414->mUnk_1c->mUnk_08);
 }
 

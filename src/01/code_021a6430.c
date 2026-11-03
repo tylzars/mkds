@@ -18,9 +18,9 @@
 
 void func_ov001_021a651c(void) {
     void *v1;
-    Unk020b4934 *v2;
+    Ncgr *v2;
     Unk02021dc8 *v3;
-    Unk020b4a44 *v4[1];
+    Nclr *v4[1];
     v2 = NULL;
     v3 = NULL;
     v4[0] = NULL;
@@ -37,7 +37,7 @@ void func_ov001_021a64ac(void *a) {
     data_ov001_021ca424 = func_02036bec(a, 0x10);
     LocateNcgr2(&data_ov001_021ca424->mUnk_00, FindSceneFile(data_ov001_021a993c));
     LocateNcer(&data_ov001_021ca424->mUnk_04, FindSceneFile(data_ov001_021a9938));
-    LocateNclr((Unk020b4a44 **) &data_ov001_021ca424->mUnk_08, FindSceneFile(data_ov001_021a9944));
+    LocateNclr((Nclr **) &data_ov001_021ca424->mUnk_08, FindSceneFile(data_ov001_021a9944));
     data_ov001_021ca424->mUnk_0c = FindSceneFile(data_ov001_021a9940);
 }
 

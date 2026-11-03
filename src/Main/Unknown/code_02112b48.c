@@ -265,7 +265,7 @@ void func_02113f34(void) {
     v1 = FindSceneFile(gRecordVSMNcerName);
     LocateNcer(&gRecordVS->mUnk_04, v1);
     v1 = FindSceneFile(gRecordVSMONclrName);
-    LocateNclr((Unk020b4a44 **) (&v4), v1);
+    LocateNclr((Nclr **) (&v4), v1);
     v1 = FindSceneFile(gRecordVSMBnclName);
     gRecordVS->mUnk_08 = v1;
     v1 = FindSceneFile(gRecordVSMBnllName);
@@ -279,7 +279,7 @@ void func_02113f34(void) {
     v1 = FindSceneFile(gRecordVSSNcerName);
     LocateNcer(&gRecordVS->mUnk_2c, v1);
     v1 = FindSceneFile(gRecordVSSONclrName);
-    LocateNclr((Unk020b4a44 **) (&v8), v1);
+    LocateNclr((Nclr **) (&v8), v1);
     v1 = FindSceneFile(gRecordVSSBnclName);
     gRecordVS->mUnk_30 = v1;
     v1 = FindSceneFile(gRecordVSSBnblName);
@@ -288,20 +288,20 @@ void func_02113f34(void) {
     gRecordVS->mUnk_38 = v1;
     v2 = ((u32) func_02077f00());
     v1 = FindSceneFile(gRecordVSMBNcgrName);
-    LocateNcgr((Unk020b4934 **) (&v5), v1);
+    LocateNcgr((Ncgr **) (&v5), v1);
     v1 = FindSceneFile(gRecordVSMNscrName);
-    LocateNscr((Unk020b47d8 **) (&v6), v1);
+    LocateNscr((Nscr **) (&v6), v1);
     v1 = FindSceneFile(gRecordVSM02NscrName);
     LocateNscr(&gRecordVS->mUnk_10, v1);
     v1 = FindSceneFile(gRecordVSM03NscrName);
     LocateNscr(&gRecordVS->mUnk_20, v1);
     v1 = FindSceneFile(gRecordVSMBNclrName);
-    LocateNclr((Unk020b4a44 **) (&v7), v1);
+    LocateNclr((Nclr **) (&v7), v1);
     v3 = *(s32 *) (v4 + 0xc);
-    func_02016468((u32) 0x13, (u32) 0, (void *) (gRecordVS->mUnk_00->mUnk_14), (u32) (gRecordVS->mUnk_00->mUnk_10));
+    func_02016468((u32) 0x13, (u32) 0, (void *) (gRecordVS->mUnk_00->mData), (u32) (gRecordVS->mUnk_00->mDataSize));
     func_02016468((u32) 0xe, (u32) 0, (void *) (*(u32 *) (v4 + 0xc)), (u32) (((u32) 0x000001a0u)));
     func_02016468((u32) 0xe, (u32) 0x1c0, (void *) (v3 + 0x1c0), (u32) 0x40);
-    func_02016468((u32) 0x23, (u32) 0, (void *) (gRecordVS->mUnk_28->mUnk_14), (u32) (gRecordVS->mUnk_28->mUnk_10));
+    func_02016468((u32) 0x23, (u32) 0, (void *) (gRecordVS->mUnk_28->mData), (u32) (gRecordVS->mUnk_28->mDataSize));
     func_02016468((u32) 0x1e, (u32) 0, (void *) (*(u32 *) (v8 + 0xc)), (u32) (*(u32 *) (v8 + 8)));
     func_02016468((u32) 4, (u32) 0, (void *) (*(u32 *) (v5 + 0x14)), (u32) (*(u32 *) (v5 + 0x10)));
     func_02016468((u32) 8, (u32) 0, (void *) (v6 + 0xc), (u32) (*(u32 *) (v6 + 8)));
@@ -379,10 +379,10 @@ void func_02113a3c(void) {
     a = func_02113f1c();
     if (func_02114158(a + gRecordVS->mUnk_74, s)) {
         gRecordVS->mUnk_40 = 1;
-        func_02016468(9, 0, &gRecordVS->mUnk_20->mUnk_0c, gRecordVS->mUnk_20->mUnk_08);
+        func_02016468(9, 0, &gRecordVS->mUnk_20->mData, gRecordVS->mUnk_20->mDataSize);
     } else {
         gRecordVS->mUnk_40 = 0;
-        func_02016468(9, 0, &gRecordVS->mUnk_10->mUnk_0c, gRecordVS->mUnk_10->mUnk_08);
+        func_02016468(9, 0, &gRecordVS->mUnk_10->mData, gRecordVS->mUnk_10->mDataSize);
     }
     switch (gRecordVS->mUnk_40) {
         case 0:

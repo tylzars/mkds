@@ -3,15 +3,15 @@
 #include "types.h"
 
 typedef struct Unk020b3fb0 Unk020b3fb0;
-typedef struct Unk020b4934 Unk020b4934;
-typedef struct Unk020b47d8 Unk020b47d8;
-typedef struct Unk020b4a44 Unk020b4a44;
+typedef struct Ncgr Ncgr;
+typedef struct Nscr Nscr;
+typedef struct Nclr Nclr;
 
 // Three pointers filled in by LoadNclrData, LoadNcgrData2 and LoadNscrData.
 typedef struct Unk02001d30 {
-    /* 00 */ Unk020b4a44 *mUnk_00;
-    /* 04 */ Unk020b4934 *mUnk_04;
-    /* 08 */ Unk020b47d8 *mUnk_08;
+    /* 00 */ Nclr *mUnk_00;
+    /* 04 */ Ncgr *mUnk_04;
+    /* 08 */ Nscr *mUnk_08;
 } Unk02001d30;
 
 // The part of Unk021a99c0 from 0x18: a halfword at 0x0e and the halfwords at 0x10 and 0x12.

@@ -106,9 +106,9 @@ u32 func_0212802c(void) {
 #pragma thumb on
 
 s32 func_02127f14(s32 d) {
-    Unk020b4934 *a;
-    Unk020b47d8 *b;
-    Unk020b4a44 *c;
+    Ncgr *a;
+    Nscr *b;
+    Nclr *c;
     s32 s;
     s32 i;
     s32 j;
@@ -119,25 +119,25 @@ s32 func_02127f14(s32 d) {
     LocateNcgr(&a, func_02047a28(data_0216e840));
     LocateNscr(&b, func_02047a28(data_0216e858));
     LocateNclr(&c, func_02047a28(data_0216e874));
-    d = d - a->mUnk_10;
+    d = d - a->mDataSize;
     s = d >> 5;
     data_0217d3f4->mUnk_89c = s;
-    func_0200ee74(a->mUnk_14, a->mUnk_10);
-    func_0214ba94(a->mUnk_14, d, a->mUnk_10);
+    func_0200ee74(a->mData, a->mDataSize);
+    func_0214ba94(a->mData, d, a->mDataSize);
     for (i = 0; i < 32; i++) {
         for (j = 0; j < 32; j++) {
-            *(data_0217d3f4->mUnk_2c + i * 32 + j) = s + *((u16 *) b->mUnk_0c + i * 32 + j);
+            *(data_0217d3f4->mUnk_2c + i * 32 + j) = s + *((u16 *) b->mData + i * 32 + j);
         }
     }
-    func_0200ee74(data_0217d3f4->mUnk_2c, b->mUnk_08);
-    func_0214bdd4(data_0217d3f4->mUnk_2c, 0, b->mUnk_08);
+    func_0200ee74(data_0217d3f4->mUnk_2c, b->mDataSize);
+    func_0214bdd4(data_0217d3f4->mUnk_2c, 0, b->mDataSize);
     e = &data_0215d0a0;
     y = e->mUnk_02 * 32;
     x = e->mUnk_00;
     data_0217d3f4->mUnk_82c = data_0217d3f4->mUnk_89c + (x + y);
     data_0217d3f4->mUnk_830 = data_0217d3f4->mUnk_89c + (y + (x + 3));
-    func_0200ee74(c->mUnk_0c, 0x1c0);
-    func_0214c0f8(c->mUnk_0c + 0xe0, 0x1c0, 0x40);
+    func_0200ee74(c->mData, 0x1c0);
+    func_0214c0f8(c->mData + 0xe0, 0x1c0, 0x40);
     return d;
 }
 

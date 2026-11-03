@@ -39,15 +39,15 @@
 #include "Main/Unknown/code_02029440.h"
 
 void func_ov001_021a1f60(void) {
-    Unk020b4934 *l0 = NULL;
+    Ncgr *l0 = NULL;
     Unk02021dc8 *l1 = NULL;
-    Unk020b4a44 *l2 = NULL;
-    Unk020b4934 *l3 = NULL;
+    Nclr *l2 = NULL;
+    Ncgr *l3 = NULL;
     Unk02021dc8 *l4 = NULL;
-    Unk020b4a44 *l5 = NULL;
-    Unk020b4934 *l6 = NULL;
-    Unk020b47d8 *l7 = NULL;
-    Unk020b4a44 *l8 = NULL;
+    Nclr *l5 = NULL;
+    Ncgr *l6 = NULL;
+    Nscr *l7 = NULL;
+    Nclr *l8 = NULL;
 
     LoadNcgrData(&l6, FindSceneFile(data_ov001_021a94ec));
     LoadNclrData(&l8, FindSceneFile(data_ov001_021a9508));
@@ -61,13 +61,13 @@ void func_ov001_021a1f60(void) {
 }
 
 void func_ov001_021a1d78(void) {
-    Unk020b4934 *a = NULL;
-    Unk020b4a44 *b = NULL;
-    Unk020b4934 *c = NULL;
-    Unk020b4a44 *d = NULL;
-    Unk020b4934 *e = NULL;
-    Unk020b47d8 *f = NULL;
-    Unk020b4a44 *g = NULL;
+    Ncgr *a = NULL;
+    Nclr *b = NULL;
+    Ncgr *c = NULL;
+    Nclr *d = NULL;
+    Ncgr *e = NULL;
+    Nscr *f = NULL;
+    Nclr *g = NULL;
     u16 *h;
 
     LocateNcgr(&e, FindSceneFile(data_ov001_021a94ec));
@@ -88,16 +88,16 @@ void func_ov001_021a1d78(void) {
         data_ov001_021ca418->mUnk_0c = FindSceneFile(data_ov001_021a9500);
         data_ov001_021ca418->mUnk_10 = FindSceneFile(data_ov001_021a94e0);
     }
-    h = b->mUnk_0c;
-    func_02016468(4, 0, e->mUnk_14, e->mUnk_10);
-    func_02016468(0xf, 0, g->mUnk_0c, 0x100);
-    func_02016468(8, 0, f->mUnk_0c, f->mUnk_08);
+    h = b->mData;
+    func_02016468(4, 0, e->mData, e->mDataSize);
+    func_02016468(0xf, 0, g->mData, 0x100);
+    func_02016468(8, 0, f->mData, f->mDataSize);
     func_02016468(8, 0x800, data_ov001_021ca418->mUnk_1c, 0x800);
-    func_02016468(0x13, 0, a->mUnk_14, a->mUnk_10);
-    func_02016468(0xe, 0, b->mUnk_0c, 0x1a0);
+    func_02016468(0x13, 0, a->mData, a->mDataSize);
+    func_02016468(0xe, 0, b->mData, 0x1a0);
     func_02016468(0xe, 0x1c0, (u8 *) h + 0x1c0, 0x40);
-    func_02016468(0x23, 0, c->mUnk_14, c->mUnk_10);
-    func_02016468(0x1e, 0, d->mUnk_0c, d->mUnk_08);
+    func_02016468(0x23, 0, c->mData, c->mDataSize);
+    func_02016468(0x1e, 0, d->mData, d->mDataSize);
 }
 
 void func_ov001_021a1cb0(void) {

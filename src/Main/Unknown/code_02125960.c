@@ -20,26 +20,26 @@ void LoadTxtSystemAndSelectChoisesAndSelectReturnData(void) {
     Unk02111684_v p;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        LoadNcgrData(&p.m4934, FindSceneFile("txt_system_b_00.ncgr"));
-        LoadNscrData(&p.m47d8, FindSceneFile("txt_system_bg_00.nscr"));
-        LoadNclrData(&p.m4a44, FindSceneFile("txt_system_b_00.nclr"));
+        LoadNcgrData(&p.mNcgr, FindSceneFile("txt_system_b_00.ncgr"));
+        LoadNscrData(&p.mNscr, FindSceneFile("txt_system_bg_00.nscr"));
+        LoadNclrData(&p.mNclr, FindSceneFile("txt_system_b_00.nclr"));
     } else {
-        LoadNcgrData(&p.m4934, func_02047a28("txt_system_b_00.ncgr"));
-        LoadNcgrData(&p.m4934, func_02047a28("txt_system_b_01.ncgr"));
-        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_00.nscr"));
-        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_00_2.nscr"));
-        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_01.nscr"));
-        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_01_2.nscr"));
-        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_02.nscr"));
-        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_02_2.nscr"));
-        LoadNscrData(&p.m47d8, func_02047a28("txt_system_bg_02_3.nscr"));
-        LoadNclrData(&p.m4a44, func_02047a28("txt_system_b_00.nclr"));
-        LoadNcgrData(&p.m4934, func_02047a28("select_choises_s_b.ncgr"));
-        LoadNscrData(&p.m47d8, func_02047a28("select_choises_s_bg.nscr"));
-        LoadNclrData(&p.m4a44, func_02047a28("select_choises_s_b.nclr"));
-        LoadNcgrData(&p.m4934, func_02047a28("select_return_s_b_00.ncgr"));
-        LoadNscrData(&p.m47d8, func_02047a28("select_return_s_bg_00.nscr"));
-        LoadNclrData(&p.m4a44, func_02047a28("select_return_s_b_00.nclr"));
+        LoadNcgrData(&p.mNcgr, func_02047a28("txt_system_b_00.ncgr"));
+        LoadNcgrData(&p.mNcgr, func_02047a28("txt_system_b_01.ncgr"));
+        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_00.nscr"));
+        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_00_2.nscr"));
+        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_01.nscr"));
+        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_01_2.nscr"));
+        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_02.nscr"));
+        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_02_2.nscr"));
+        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_02_3.nscr"));
+        LoadNclrData(&p.mNclr, func_02047a28("txt_system_b_00.nclr"));
+        LoadNcgrData(&p.mNcgr, func_02047a28("select_choises_s_b.ncgr"));
+        LoadNscrData(&p.mNscr, func_02047a28("select_choises_s_bg.nscr"));
+        LoadNclrData(&p.mNclr, func_02047a28("select_choises_s_b.nclr"));
+        LoadNcgrData(&p.mNcgr, func_02047a28("select_return_s_b_00.ncgr"));
+        LoadNscrData(&p.mNscr, func_02047a28("select_return_s_bg_00.nscr"));
+        LoadNclrData(&p.mNclr, func_02047a28("select_return_s_b_00.nclr"));
     }
 }
 
@@ -61,12 +61,12 @@ s32 func_02125960(s32 a) {
     s32 i;
     s32 nclrSOffset;
     s32 nclrSSize;
-    Unk020b4934 *ncgrM;
-    Unk020b47d8 *nscrM;
-    Unk020b4a44 *nclrM;
-    Unk020b4934 *ncgrS;
-    Unk020b47d8 *nscrS;
-    Unk020b4a44 *nclrS;
+    Ncgr *ncgrM;
+    Nscr *nscrM;
+    Nclr *nclrM;
+    Ncgr *ncgrS;
+    Nscr *nscrS;
+    Nclr *nclrS;
     s32 kind;
     u8 indexM;
     u8 indexS;
@@ -108,18 +108,18 @@ s32 func_02125960(s32 a) {
             LoadNclrData(&nclrS, FindSceneFile(gBackScreenSNclrNames[indexS]));
         }
     }
-    func_02016468(7, 0, ncgrM->mUnk_14, ncgrM->mUnk_10);
-    func_02016468(0xb, 0, nscrM->mUnk_0c, nscrM->mUnk_08);
-    func_02016468(0xf, nclrMOffset, (void *) ((u32) nclrM->mUnk_0c + nclrMOffset), nclrMSize);
-    a -= ncgrS->mUnk_10;
-    func_02016468(0x15, a, ncgrS->mUnk_14, ncgrS->mUnk_10);
+    func_02016468(7, 0, ncgrM->mData, ncgrM->mDataSize);
+    func_02016468(0xb, 0, nscrM->mData, nscrM->mDataSize);
+    func_02016468(0xf, nclrMOffset, (void *) ((u32) nclrM->mData + nclrMOffset), nclrMSize);
+    a -= ncgrS->mDataSize;
+    func_02016468(0x15, a, ncgrS->mData, ncgrS->mDataSize);
     for (i = 0; i < 0x20; i++) {
         for (j = 0; j < 0x20; j++) {
-            *(data_0217d3ec->mBackScreenSNscrCopy + i * 0x20 + j) = (a >> 5) + *((u16 *) nscrS->mUnk_0c + i * 0x20 + j);
+            *(data_0217d3ec->mBackScreenSNscrCopy + i * 0x20 + j) = (a >> 5) + *((u16 *) nscrS->mData + i * 0x20 + j);
         }
     }
-    func_02016468(0x19, 0, data_0217d3ec->mBackScreenSNscrCopy, nscrS->mUnk_08);
-    func_02016468(0x1f, nclrSOffset, (void *) ((u32) nclrS->mUnk_0c + nclrSOffset), nclrSSize);
+    func_02016468(0x19, 0, data_0217d3ec->mBackScreenSNscrCopy, nscrS->mDataSize);
+    func_02016468(0x1f, nclrSOffset, (void *) ((u32) nclrS->mData + nclrSOffset), nclrSSize);
     return a;
 }
 

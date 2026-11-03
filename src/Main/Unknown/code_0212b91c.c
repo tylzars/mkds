@@ -9,7 +9,7 @@
 #include "code_0214d018.h"
 
 #pragma thumb on
-void func_0212b928(void *a, Unk020b4a44 *b, u32 c) {
+void func_0212b928(void *a, Nclr *b, u32 c) {
     s32 i;
     s32 v;
     data_0217d410 = func_02036bec(a, 0x90);
@@ -17,7 +17,7 @@ void func_0212b928(void *a, Unk020b4a44 *b, u32 c) {
     data_0217d410->mUnk_04 = 0;
     data_0217d410->mUnk_08 = c;
     data_0217d410->mUnk_8c = 1;
-    func_0214d1fc(b->mUnk_0c + c * 0x10, data_0217d410->mUnk_0a, 0x20);
+    func_0214d1fc(b->mData + c * 0x10, data_0217d410->mUnk_0a, 0x20);
     for (i = 0; i < 4; i++) {
         v = data_0217d410->mUnk_14[i];
         data_0217d410->mUnk_2c[i].mUnk_00 = v & 0x1f;

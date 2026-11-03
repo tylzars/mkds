@@ -168,7 +168,7 @@ void InitRaceStartGp(void) {
     }
     r = func_020b403c(2);
     s = -1;
-    func_02023408(buf, gRaceStartGp->mRaceStartGpMONcgr->mUnk_14, 0x20, 4, 4);
+    func_02023408(buf, gRaceStartGp->mRaceStartGpMONcgr->mData, 0x20, 4, 4);
     w.mUnk_00 = buf;
     w.mUnk_04 = r;
     w.mUnk_08 = 1;
@@ -182,7 +182,7 @@ void InitRaceStartGp(void) {
     }
     func_02024340(&w, 0, 9, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
     func_02024340(&w, 0, 8, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
-    func_0200ee74(gRaceStartGp->mRaceStartGpMONcgr->mUnk_14, gRaceStartGp->mRaceStartGpMONcgr->mUnk_10);
-    func_0214c090(gRaceStartGp->mRaceStartGpMONclr->mUnk_0c, 0, gRaceStartGp->mRaceStartGpMONclr->mUnk_08);
-    func_0214bf04(gRaceStartGp->mRaceStartGpMONcgr->mUnk_14, 0, gRaceStartGp->mRaceStartGpMONcgr->mUnk_10);
+    func_0200ee74(gRaceStartGp->mRaceStartGpMONcgr->mData, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
+    func_0214c090(gRaceStartGp->mRaceStartGpMONclr->mData, 0, gRaceStartGp->mRaceStartGpMONclr->mDataSize);
+    func_0214bf04(gRaceStartGp->mRaceStartGpMONcgr->mData, 0, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
 }

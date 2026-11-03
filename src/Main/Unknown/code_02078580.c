@@ -364,7 +364,7 @@ void func_02078d64(void *param_1) {
     }
     if (data_0217aa08->mUnk_04->mUnk_004 != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
         data_0217ad08->mUnk_1e8 = data_0217aa08->mUnk_04->mUnk_008;
-        data_0217ad08->mUnk_1ec = func_02077f00()->mUnk_0c;
+        data_0217ad08->mUnk_1ec = func_02077f00()->mData;
     }
     func_02047b6c(9);
 }

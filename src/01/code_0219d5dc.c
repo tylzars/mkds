@@ -58,9 +58,9 @@ void func_ov001_0219df64(void) {
 }
 
 void func_ov001_0219de58(void) {
-    Unk020b4934 *a;
-    Unk020b47d8 *b;
-    Unk020b4a44 *c;
+    Ncgr *a;
+    Nscr *b;
+    Nclr *c;
 
     LocateNcgr(&a, FindSceneFile(gOptionTopMenuMBNcgrName));
     LocateNscr(&b, FindSceneFile(gOptionTopMenuMNscrName));
@@ -71,13 +71,13 @@ void func_ov001_0219de58(void) {
     LocateNcgr2(&gOptionEmbremSelect->mOptionEmbremSelectSNcgr, FindSceneFile(gOptionEmbremSelectSNcgrName));
     LocateNcer(&gOptionEmbremSelect->mOptionEmbremSelectSNcer, FindSceneFile(gOptionEmbremSelectSNcerName));
     LocateNclr(&gOptionEmbremSelect->mOptionEmbremSelectSONclr, FindSceneFile(gOptionEmbremSelectSONclrName));
-    func_02016468(4, 0, a->mUnk_14, a->mUnk_10);
-    func_02016468(8, 0, b->mUnk_0c, b->mUnk_08);
-    func_02016468(0xf, 0, c->mUnk_0c, 0x100);
-    func_02016468(0x23, 0, gOptionEmbremSelect->mOptionEmbremSelectSNcgr->mUnk_14,
-                  gOptionEmbremSelect->mOptionEmbremSelectSNcgr->mUnk_10);
-    func_02016468(0x1e, 0, gOptionEmbremSelect->mOptionEmbremSelectSONclr->mUnk_0c,
-                  gOptionEmbremSelect->mOptionEmbremSelectSONclr->mUnk_08);
+    func_02016468(4, 0, a->mData, a->mDataSize);
+    func_02016468(8, 0, b->mData, b->mDataSize);
+    func_02016468(0xf, 0, c->mData, 0x100);
+    func_02016468(0x23, 0, gOptionEmbremSelect->mOptionEmbremSelectSNcgr->mData,
+                  gOptionEmbremSelect->mOptionEmbremSelectSNcgr->mDataSize);
+    func_02016468(0x1e, 0, gOptionEmbremSelect->mOptionEmbremSelectSONclr->mData,
+                  gOptionEmbremSelect->mOptionEmbremSelectSONclr->mDataSize);
 }
 
 BOOL func_ov001_0219de38(void) {

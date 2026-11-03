@@ -172,7 +172,7 @@ void InitChoisesS(void) {
                 break;
         }
         gChoisesS->mUnk_0a8 = func_020b403c(2);
-        func_02023408(gChoisesS->mUnk_0ac[0], func_020b3374()->mUnk_14, 0x20, 0xc, 4);
+        func_02023408(gChoisesS->mUnk_0ac[0], func_020b3374()->mData, 0x20, 0xc, 4);
         p = gChoisesS;
         func_020b24cc(&p->mUnk_12c[0], p->mUnk_0ac[0], p->mUnk_0a8, func_020b4acc(), 0);
         func_02023408(gChoisesS->mUnk_0ac[1], gChoisesS->mUnk_174, 0x20, 0xc, 4);
@@ -180,7 +180,7 @@ void InitChoisesS(void) {
         func_020b24cc(&p->mUnk_12c[1], p->mUnk_0ac[1], p->mUnk_0a8, func_020b4acc(), 0);
         n = func_020b3260(gChoisesS->mLists[1].mValueCount) >> 1;
         for (i = 0; i < n; i++) {
-            gChoisesS->mUnk_174[i] = func_020b3374()->mUnk_14[i];
+            gChoisesS->mUnk_174[i] = func_020b3374()->mData[i];
         }
         if (gChoisesS->mUnk_178 != NULL) {
             func_02023408(gChoisesS->mUnk_0ac[2], gChoisesS->mUnk_178, 0x20, 0xc, 4);
@@ -188,10 +188,10 @@ void InitChoisesS(void) {
             func_020b24cc(&p->mUnk_12c[2], p->mUnk_0ac[2], p->mUnk_0a8, func_020b4acc(), 0);
             n = func_020b3260(gChoisesS->mLists[2].mValueCount) >> 1;
             for (i = 0; i < n; i++) {
-                gChoisesS->mUnk_178[i] = func_020b3374()->mUnk_14[i];
+                gChoisesS->mUnk_178[i] = func_020b3374()->mData[i];
             }
         }
-        func_02023408(gChoisesS->mUnk_0ac[3], func_020b3374()->mUnk_14, 0x20, 0xc, 4);
+        func_02023408(gChoisesS->mUnk_0ac[3], func_020b3374()->mData, 0x20, 0xc, 4);
         p = gChoisesS;
         func_020b24cc(&p->mUnk_12c[3], p->mUnk_0ac[3], p->mUnk_0a8, func_020b4acc(), 0);
         if (func_020b24e4() != 2) {

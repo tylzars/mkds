@@ -177,16 +177,16 @@ void func_0207940c(Unk02084b2c *a, s32 b, void *c) {
 
 u16 *LoadKartAPaletteFromKartModelMenu(void *a) {
     void *x;
-    Unk020b4a44 *p;
+    Nclr *p;
     LoadKartModelMenuFile(a, "kart/palette/kart_a.NCLR", &x);
     LoadNclrData(&p, x);
-    return p->mUnk_0c;
+    return p->mData;
 }
 
 u16 *LoadKartAPaletteFromKartModelFile(void) {
-    Unk020b4a44 *p;
+    Nclr *p;
     LoadNclrData(&p, func_02047950("/kart/palette/kart_a.NCLR"));
-    return p->mUnk_0c;
+    return p->mData;
 }
 
 void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c) {
@@ -365,9 +365,9 @@ void InitKartModels(void *a, u32 b) {
         func_020792c8(e, func_020799a0(i));
     }
     {
-        Unk020b4a44 *p;
+        Nclr *p;
         LoadNclrData(&p, func_02047950("/character/heyho/HH_color.NCLR"));
-        gKartModels->mUnk_014 = (Unk0217ad00_014 *) p->mUnk_0c;
+        gKartModels->mUnk_014 = (Unk0217ad00_014 *) p->mData;
     }
 }
 

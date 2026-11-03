@@ -32,7 +32,7 @@ typedef struct SelectGhost {
     /* 10 */ Unk0201ea30 *mSelectGhostSBncl;
     /* 14 */ void *mSelectGhostSBnbl;
     /* 18 */ void *mSelectGhostSBnll;
-    /* 1c */ Unk020b4a44 *mSelectGhostSONclr;
+    /* 1c */ Nclr *mSelectGhostSONclr;
     /* 20 */ void *mPlayerCharacterMNcgr;
     /* 24 */ void *mPlayerCharacterMNcer;
     /* 28 */ Unk021a9bf4Block *mPlayerCharacterMONclr;

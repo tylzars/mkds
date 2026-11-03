@@ -47,10 +47,10 @@ void InitEndingStaffRoll(void) {
     a = NULL;
     LoadNcerData(&a, FindSceneFileWrapper("ending_staffRoll_m_00.nce.ncer"));
     gEndingStaffRoll->mUnk_0c = (Unk020224e0_c *) func_02021f1c(a, 0);
-    func_0214c090(gEndingStaffRoll->mEndingStaffRollMO00Nclr->mUnk_0c, 0,
-                  gEndingStaffRoll->mEndingStaffRollMO00Nclr->mUnk_08);
-    func_0214bf04(gEndingStaffRoll->mEndingStaffRollM00Ncgr->mUnk_14, 0,
-                  gEndingStaffRoll->mEndingStaffRollM00Ncgr->mUnk_10);
+    func_0214c090(gEndingStaffRoll->mEndingStaffRollMO00Nclr->mData, 0,
+                  gEndingStaffRoll->mEndingStaffRollMO00Nclr->mDataSize);
+    func_0214bf04(gEndingStaffRoll->mEndingStaffRollM00Ncgr->mData, 0,
+                  gEndingStaffRoll->mEndingStaffRollM00Ncgr->mDataSize);
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffcfffef) | 0x10;
 }
 

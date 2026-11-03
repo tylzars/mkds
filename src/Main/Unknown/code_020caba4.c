@@ -93,7 +93,7 @@ void func_020cac18(void) {
     s32 i;
 
     n = gEmblemChoises->mChoisesCount;
-    v = gEmblemChoises->mChoisesS3Nscr->mUnk_0c;
+    v = gEmblemChoises->mChoisesS3Nscr->mData;
     if (v != NULL) {
         for (i = 0; i < n; i++) {
             func_020cac68(v, 2, 13 - n * 2 + i * 4);
@@ -110,7 +110,7 @@ void func_020caba4(s32 a) {
 
     p = gEmblemChoises;
     n = p->mChoisesCount;
-    v = p->mChoisesS3Nscr->mUnk_0c;
+    v = p->mChoisesS3Nscr->mData;
     if (v != NULL) {
         if (p->mUnk_10 == 0 || p->mUnk_14 >= 5) {
             c = 13 - n * 2 + a * 4;

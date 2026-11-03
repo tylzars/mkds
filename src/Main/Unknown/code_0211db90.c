@@ -10,12 +10,12 @@
 
 void func_0211dd44(void) {
     void *v1;
-    Unk020b4934 *v2;
+    Ncgr *v2;
     Unk02021dc8 *v3;
-    Unk020b4a44 *v4;
-    Unk020b4934 *v5;
-    Unk020b47d8 *v6;
-    Unk020b4a44 *v7[1];
+    Nclr *v4;
+    Ncgr *v5;
+    Nscr *v6;
+    Nclr *v7[1];
     v2 = NULL;
     v3 = NULL;
     v4 = NULL;
@@ -43,9 +43,9 @@ void func_0211dd44(void) {
 
 void func_0211db90(void) {
     void *v1;
-    Unk020b4934 *v2;
-    Unk020b4934 *v3;
-    Unk020b4a44 *v4;
+    Ncgr *v2;
+    Ncgr *v3;
+    Nclr *v4;
     v2 = NULL;
     v3 = NULL;
     v4 = NULL;
@@ -53,7 +53,7 @@ void func_0211db90(void) {
         v1 = FindSceneFile(data_0216dc08);
         LocateNcgr(&v3, v1);
         v1 = FindSceneFile(data_0216dbdc);
-        LocateNscr((Unk020b47d8 **) &data_0217d368->mUnk_20, v1);
+        LocateNscr((Nscr **) &data_0217d368->mUnk_20, v1);
         v1 = FindSceneFile(data_0216dbe0);
         data_0217d368->mUnk_04 = v1;
         v1 = FindSceneFile(data_0216dc00);
@@ -64,7 +64,7 @@ void func_0211db90(void) {
         v1 = FindSceneFile(data_0216dbe4);
         LocateNcgr(&v3, v1);
         v1 = FindSceneFile(data_0216dbf0);
-        LocateNscr((Unk020b47d8 **) &data_0217d368->mUnk_20, v1);
+        LocateNscr((Nscr **) &data_0217d368->mUnk_20, v1);
         v1 = FindSceneFile(data_0216dbf4);
         data_0217d368->mUnk_04 = v1;
         v1 = FindSceneFile(data_0216dbd4);
@@ -81,13 +81,13 @@ void func_0211db90(void) {
     v1 = FindSceneFile(data_0216dc04);
     LocateNcer(&data_0217d368->mUnk_00, v1);
     v1 = FindSceneFile(data_0216dbec);
-    LocateNclr((Unk020b4a44 **) &data_0217d368->mUnk_10, v1);
-    func_02016468((u32) 0x14, (u32) 0, v3->mUnk_14, v3->mUnk_10);
+    LocateNclr((Nclr **) &data_0217d368->mUnk_10, v1);
+    func_02016468((u32) 0x14, (u32) 0, v3->mData, v3->mDataSize);
     func_02016468((u32) 0x1b, (u32) 0, (void *) &data_0217d368->mUnk_20->mUnk_0c,
                   (*(u32 *) ((s32) data_0217d368->mUnk_20 + 8)));
     func_02016468((u32) 0x1b, (u32) (((u32) 0x00000800u)), data_0217d368->mUnk_24, (u32) (((u32) 0x00000800u)));
-    func_02016468((u32) 0x1f, (u32) 0, v4->mUnk_0c, (u32) 0x80);
-    func_02016468((u32) 0x23, (u32) 0, v2->mUnk_14, v2->mUnk_10);
+    func_02016468((u32) 0x1f, (u32) 0, v4->mData, (u32) 0x80);
+    func_02016468((u32) 0x23, (u32) 0, v2->mData, v2->mDataSize);
     func_02016468(0x1e, 0, (void *) (*(u32 *) (data_0217d368->mUnk_10 + 0xc)), (*(u32 *) (data_0217d368->mUnk_10 + 8)));
 }
 

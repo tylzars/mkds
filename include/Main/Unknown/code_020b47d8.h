@@ -1,21 +1,21 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020b4000.h" // Unk020b47d8, Unk020b4934, Unk020b4a44
+#include "Main/Unknown/code_020b4000.h" // Nscr, Ncgr, Nclr
 #include "code_02021db0.h" // Unk02021dc8
 #include "code_02021f9c.h" // Unk02021f9c
 
-void LocateNscr(Unk020b47d8 **out, void *a);
-void LoadNscrData(Unk020b47d8 **out, void *a);
+void LocateNscr(Nscr **out, void *a);
+void LoadNscrData(Nscr **out, void *a);
 void LoadNanrData(Unk02021dc8 **out, void *a);
 void LocateNcer(Unk02021dc8 **out, void *a);
 void LoadNcerData(Unk02021dc8 **out, void *a);
-void LocateNcgr(Unk020b4934 **out, void *a);
-void LoadNcgrData(Unk020b4934 **out, void *a);
-void LocateNcgr2(Unk020b4934 **out, void *a);
-void LoadNcgrData2(Unk020b4934 **out, void *a);
-void LocateNclr(Unk020b4a44 **out, void *a);
-void LoadNclrData(Unk020b4a44 **out, void *a);
+void LocateNcgr(Ncgr **out, void *a);
+void LoadNcgrData(Ncgr **out, void *a);
+void LocateNcgr2(Ncgr **out, void *a);
+void LoadNcgrData2(Ncgr **out, void *a);
+void LocateNclr(Nclr **out, void *a);
+void LoadNclrData(Nclr **out, void *a);
 BOOL func_020b4acc(void);
 s32 func_020b4b10(void);
 BOOL func_020b4b54(void);

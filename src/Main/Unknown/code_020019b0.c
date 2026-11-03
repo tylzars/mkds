@@ -20,25 +20,25 @@
 
 void func_02001d30(Unk02001d30 *a, s32 b, const char *c, const char *d, const char *e) {
     LoadNclrData(&a->mUnk_00, FindSceneFile(c));
-    func_0200ee58(a->mUnk_00->mUnk_0c, a->mUnk_00->mUnk_08);
+    func_0200ee58(a->mUnk_00->mData, a->mUnk_00->mDataSize);
     if (b != 0) {
-        func_0214c160(a->mUnk_00->mUnk_0c, 0, a->mUnk_00->mUnk_08);
+        func_0214c160(a->mUnk_00->mData, 0, a->mUnk_00->mDataSize);
     } else {
-        func_0214c0f8(a->mUnk_00->mUnk_0c, 0, a->mUnk_00->mUnk_08);
+        func_0214c0f8(a->mUnk_00->mData, 0, a->mUnk_00->mDataSize);
     }
     LoadNcgrData2(&a->mUnk_04, FindSceneFile(d));
-    func_0200ee58(a->mUnk_04->mUnk_14, a->mUnk_04->mUnk_10);
+    func_0200ee58(a->mUnk_04->mData, a->mUnk_04->mDataSize);
     if (b != 0) {
-        func_0214ba2c(a->mUnk_04->mUnk_14, 0, a->mUnk_04->mUnk_10);
+        func_0214ba2c(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
     } else {
-        func_0214b9c4(a->mUnk_04->mUnk_14, 0, a->mUnk_04->mUnk_10);
+        func_0214b9c4(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
     }
     LoadNscrData(&a->mUnk_08, FindSceneFile(e));
-    func_0200ee58(a->mUnk_08->mUnk_0c, a->mUnk_08->mUnk_08);
+    func_0200ee58(a->mUnk_08->mData, a->mUnk_08->mDataSize);
     if (b != 0) {
-        func_0214bd6c(a->mUnk_08->mUnk_0c, 0, a->mUnk_08->mUnk_08);
+        func_0214bd6c(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
     } else {
-        func_0214bd04(a->mUnk_08->mUnk_0c, 0, a->mUnk_08->mUnk_08);
+        func_0214bd04(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
     }
 }
 

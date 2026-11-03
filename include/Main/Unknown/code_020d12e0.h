@@ -8,8 +8,8 @@
 // Object behind gEndingStaffRoll.
 typedef struct Unk0217b4ac {
     /* 000 */ s32 mUnk_00;
-    /* 004 */ Unk020b4a44 *mEndingStaffRollMO00Nclr;
-    /* 008 */ Unk020b4934 *mEndingStaffRollM00Ncgr;
+    /* 004 */ Nclr *mEndingStaffRollMO00Nclr;
+    /* 008 */ Ncgr *mEndingStaffRollM00Ncgr;
     /* 00c */ Unk020224e0_c *mUnk_0c;
     /* 010 */ Unk020d029c mUnk_10;
 } Unk0217b4ac;

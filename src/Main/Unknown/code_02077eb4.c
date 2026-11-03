@@ -36,7 +36,7 @@ void func_02077f0c(u16 *a, int b, u32 c) {
 
 #pragma thumb on
 
-Unk020b4a44 *func_02077f00(void) {
+Nclr *func_02077f00(void) {
     return data_usa_0217ace4;
 }
 

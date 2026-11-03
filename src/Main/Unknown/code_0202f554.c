@@ -7,10 +7,10 @@
 
 void func_0202f554(void) {
     void *v1;
-    Unk020b4934 *v2;
-    Unk020b4a44 *v3;
+    Ncgr *v2;
+    Nclr *v3;
     Unk02021dc8 *v4;
-    Unk020b47d8 *v5[1];
+    Nscr *v5[1];
     v2 = NULL;
     v3 = NULL;
     v4 = NULL;

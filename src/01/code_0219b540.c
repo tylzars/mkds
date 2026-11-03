@@ -47,12 +47,12 @@
 #include "Main/Unknown/code_0211732c.h"
 
 void LoadSelectGhostAndKartIconData(void) {
-    Unk020b4934 *p3 = NULL;
+    Ncgr *p3 = NULL;
     Unk02021dc8 *p4 = NULL;
-    Unk020b4a44 *p5 = NULL;
-    Unk020b4934 *p0 = NULL;
-    Unk020b4a44 *p2 = NULL;
-    Unk020b47d8 *p1 = NULL;
+    Nclr *p5 = NULL;
+    Ncgr *p0 = NULL;
+    Nclr *p2 = NULL;
+    Nscr *p1 = NULL;
 
     LoadNcgrData(&p0, FindSceneFile(gSelectGhostSBNcgrName));
     LoadNscrData(&p1, FindSceneFile(gSelectGhostSNscrName));
@@ -64,10 +64,10 @@ void LoadSelectGhostAndKartIconData(void) {
 }
 
 void func_ov001_0219c544(void) {
-    Unk020b4934 *a;
-    Unk020b4934 *b;
-    Unk020b4a44 *c;
-    Unk020b47d8 *d;
+    Ncgr *a;
+    Ncgr *b;
+    Nclr *c;
+    Nscr *d;
 
     a = NULL;
     b = NULL;
@@ -90,12 +90,12 @@ void func_ov001_0219c544(void) {
     gSelectGhost->mPlayerCharacterMNcer = func_020b400c(0);
     gSelectGhost->mPlayerCharacterMONclr = func_020b4030(0);
     gSelectGhost->mPlayerCharacterMBncl = func_020b4000(0);
-    func_02016468(0x17, 0, b->mUnk_14, b->mUnk_10);
-    func_02016468(0x1f, 0, c->mUnk_0c, 0x20);
-    func_02016468(0x1b, 0, d->mUnk_0c, d->mUnk_08);
+    func_02016468(0x17, 0, b->mData, b->mDataSize);
+    func_02016468(0x1f, 0, c->mData, 0x20);
+    func_02016468(0x1b, 0, d->mData, d->mDataSize);
     func_02016468(0x1b, 0x800, gSelectGhost->mUnk_40, 0x800);
-    func_02016468(0x23, 0, a->mUnk_14, a->mUnk_10);
-    func_02016468(0x1e, 0, gSelectGhost->mSelectGhostSONclr->mUnk_0c, gSelectGhost->mSelectGhostSONclr->mUnk_08);
+    func_02016468(0x23, 0, a->mData, a->mDataSize);
+    func_02016468(0x1e, 0, gSelectGhost->mSelectGhostSONclr->mData, gSelectGhost->mSelectGhostSONclr->mDataSize);
 }
 
 void func_ov001_0219c480(void) {

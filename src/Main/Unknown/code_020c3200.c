@@ -34,24 +34,24 @@ void func_020c3b6c(s32 a, s32 b) {
             w = t[a].mUnk_04 - x + 1;
             y = u.mUnk_00;
             h = u.mUnk_04 - y + 1;
-            func_020b4520(gRaceGoalS->mRaceGoalSSpaceNscrCopies[v], y, x, h, w, gRaceGoalS->mRaceGoalSNscrs[m]->mUnk_0c,
+            func_020b4520(gRaceGoalS->mRaceGoalSSpaceNscrCopies[v], y, x, h, w, gRaceGoalS->mRaceGoalSNscrs[m]->mData,
                           y, x);
-            func_020b44a4(gRaceGoalS->mRaceGoalSNscrs[m]->mUnk_0c, y, x, h, w, 9);
+            func_020b44a4(gRaceGoalS->mRaceGoalSNscrs[m]->mData, y, x, h, w, 9);
             break;
         case 1:
             x = t[a].mUnk_00;
             w = t[a].mUnk_04 - x + 1;
             y = u.mUnk_00;
             h = u.mUnk_04 - y + 1;
-            func_020b4520(gRaceGoalS->mRaceGoalSSpaceNscrCopies[v], y, x, h, w, gRaceGoalS->mRaceGoalSNscrs[m]->mUnk_0c,
+            func_020b4520(gRaceGoalS->mRaceGoalSSpaceNscrCopies[v], y, x, h, w, gRaceGoalS->mRaceGoalSNscrs[m]->mData,
                           y, x);
-            func_020b44a4(gRaceGoalS->mRaceGoalSNscrs[m]->mUnk_0c, y, x, h, w, 8);
+            func_020b44a4(gRaceGoalS->mRaceGoalSNscrs[m]->mData, y, x, h, w, 8);
             break;
         case 2:
             x = t[a].mUnk_00;
             w = t[a].mUnk_04 - x + 1;
             h = u.mUnk_04 - u.mUnk_00 + 1;
-            func_020b4428(gRaceGoalS->mRaceGoalSNscrs[m]->mUnk_0c, u.mUnk_00, x, h, w, 0);
+            func_020b4428(gRaceGoalS->mRaceGoalSNscrs[m]->mData, u.mUnk_00, x, h, w, 0);
             break;
     }
 }
@@ -226,7 +226,7 @@ void InitRaceGoalS(void) {
     LoadNscrData(&gRaceGoalS->mRaceGoalSNscrs[4], FindSceneFileWrapper("race_goal_s_teamB.NSCR"));
     LoadNscrData(&gRaceGoalS->mRaceGoalSNscrs[5], FindSceneFileWrapper("race_goal_s_teamR.NSCR"));
     for (i = 0; i < 0x800; i++) {
-        gRaceGoalS->mRaceGoalSSpaceNscrCopies[0][i] = gRaceGoalS->mRaceGoalSNscrs[1]->mUnk_0c[i];
-        gRaceGoalS->mRaceGoalSSpaceNscrCopies[1][i] = gRaceGoalS->mRaceGoalSNscrs[2]->mUnk_0c[i];
+        gRaceGoalS->mRaceGoalSSpaceNscrCopies[0][i] = gRaceGoalS->mRaceGoalSNscrs[1]->mData[i];
+        gRaceGoalS->mRaceGoalSSpaceNscrCopies[1][i] = gRaceGoalS->mRaceGoalSNscrs[2]->mData[i];
     }
 }

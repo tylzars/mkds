@@ -1,13 +1,13 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02182fdc.h" // Unk020b4a44, Unk020b4934
+#include "00/code_02182fdc.h" // Nclr, Ncgr
 #include "code_02021db0.h" // Unk02021e40
 
 // 16-byte element of the table at 0x7dc of an Unk0217b3c4.
 typedef struct Unk0217b3c4_7dc {
-    /* 00 */ Unk020b4a44 *mNclr;
-    /* 04 */ Unk020b4934 *mNcgr;
+    /* 00 */ Nclr *mNclr;
+    /* 04 */ Ncgr *mNcgr;
     /* 08 */ u8 mUnk_08[8];
 } Unk0217b3c4_7dc;
 
