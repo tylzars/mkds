@@ -31,7 +31,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_02147cd8.h"
 #include "code_02012b30.h"
-#include "code_02010fac.h"
+#include "code_02010c84.h"
 #include "code_020109c4.h"
 
 #pragma thumb off

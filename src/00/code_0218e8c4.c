@@ -17,7 +17,6 @@
 #include "00/code_02196914.h"
 #include "00/unk_021b23b0.h"
 #include "code_0200f5ac.h"
-#include "code_0200f6e4.h"
 
 u32 func_ov000_0218eb44(Unk0218f960 *a, u32 b) {
     Unk0218f960_00 *o;

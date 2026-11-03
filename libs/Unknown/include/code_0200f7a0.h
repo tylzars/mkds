@@ -21,8 +21,13 @@ typedef struct Unk02170260 {
     /* 04 */ Unk0200fb08 *mUnk_04;
 } Unk02170260;
 
+#include "code_0200fc1c.h"
+
 void func_0200f7a0(void);
 void func_0200f8b8(Unk0200fb08 *a);
 void func_0200f950(Unk0200fb08 *a, u64 n, void (*f)(void *), void *p);
 void func_0200f9c8(Unk0200fb08 *a, u64 n);
 void func_0200fb08(Unk0200fb08 *a);
+u32 func_0200fb18(void);
+void func_0200fb28(void);
+void func_0200fb80(Unk0200fb08 *n);

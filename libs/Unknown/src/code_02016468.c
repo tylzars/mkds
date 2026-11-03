@@ -1,10 +1,26 @@
 #include "code_02016468.h"
+
 #include "code_02016574.h"
 #include "code_020165d8.h"
-#include "code_02016844.h"
+#include "code_02016638.h"
 #include "code_020165b8.h"
 #include "Main/Unknown/unk_02173000.h"
-#include "code_02016638.h"
+#include "code_0201661c.h"
+
+Unk02016468 data_02173220;
+
+void func_02016554(void *arg0, u32 arg1) {
+    u32 value0 = (u32) arg0;
+    u32 value1 = arg1;
+    u32 value2;
+    u32 value12;
+    value2 = (u32) &data_02173220;
+    value12 = (u32) &func_0201661c;
+    *(u32 *) ((value2) + (0)) = value0;
+    value0 = value2;
+    *(u32 *) ((value2) + (4)) = value1;
+    func_0201661c(value0);
+}
 
 void func_020164e8(void) {
     Unk02016468 *p;

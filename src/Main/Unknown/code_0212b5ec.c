@@ -3,7 +3,7 @@
 #include "Main/Unknown/unk_0217d000.h"
 #include "Main/Unknown/unk_0216e000.h"
 #include "Main/Unknown/code_02036bec.h"
-#include "code_02016554.h"
+#include "code_02016468.h"
 #include "code_02023374.h"
 #include "code_0214a034.h"
 #include "code_0214a2f4.h"
@@ -12,7 +12,6 @@
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_020b3f7c.h"
 #include "Main/Unknown/code_02023000.h"
-#include "code_02016468.h"
 #include "code_0214d018.h"
 
 #pragma thumb on
