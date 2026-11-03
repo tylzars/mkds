@@ -281,13 +281,15 @@ void func_0203d078(void) {
     }
 }
 
-// non-matching: same control flow and instructions but 0x348 bytes against 0x34c; the data_021759c0 pointer is held in
-// r7 where the original keeps it in r1 for the first loop head, and r4/r5/r6/sl/fp are rotated
+// non-matching: registers only, in the first loop of case 2: the counter b is in r2 (original r0) and the
+// data_0217561c base and the 0x3d0 count byte are in r0 (original r2)
 void func_0203d21c(void) {
+    u32 b;
     s32 v = -1;
-    BOOL f = FALSE;
     Unk021759c0 *d = data_021759c0;
     s32 m = d->mUnk_08;
+    u32 a;
+    BOOL f = FALSE;
     switch (m) {
         case 2:
         case 3:
@@ -300,30 +302,29 @@ void func_0203d21c(void) {
         case 0:
         case 3:
         case 5: {
-            u32 i;
-            for (i = 0; i < d->mUnk_3d0; i = (u16) (i + 1)) {
+            for (a = 0; a < d->mUnk_3d0; a = (u16) (a + 1)) {
                 u32 t;
                 u8 w;
                 u32 z = 0;
                 if (d->mUnk_08 == 5) {
-                    t = data_0217aa14->mUnk_104[data_0217aa18->mUnk_00[i & 0xff]].mUnk_86_1;
+                    t = data_0217aa14->mUnk_104[data_0217aa18->mUnk_00[a & 0xff]].mUnk_86_1;
                 } else {
-                    t = data_0217561c->mUnk_14[i].mUnk_3c_0;
+                    t = data_0217561c->mUnk_14[a].mUnk_3c_0;
                 }
                 w = t;
-                if (data_0217561c->mUnk_000[i].mUnk_14 != 4) {
+                if (data_0217561c->mUnk_000[a].mUnk_14 != 4) {
                     z = func_0203c4d0(w);
                 }
-                func_0205d9d4(i, w, z);
-                func_0205d818(i, &data_0217561c->mUnk_14[i].mUnk_0c[5]);
+                func_0205d9d4(a, w, z);
+                func_0205d818(a, &data_0217561c->mUnk_14[a].mUnk_0c[5]);
                 if (data_021759c0->mUnk_08 == 5) {
-                    if (data_0217561c->mUnk_000[i].mUnk_14 == 4) {
-                        func_0205d974(i);
+                    if (data_0217561c->mUnk_000[a].mUnk_14 == 4) {
+                        func_0205d974(a);
                     }
                 }
                 if (f != FALSE) {
                     if (w == 1) {
-                        v = data_021759c0->mUnk_68[i].mUnk_08.mUnk_04;
+                        v = data_021759c0->mUnk_68[a].mUnk_08.mUnk_04;
                     }
                 }
                 d = data_021759c0;
@@ -331,40 +332,40 @@ void func_0203d21c(void) {
             break;
         }
         case 2: {
-            u32 i;
             s32 e;
             if (f != FALSE) {
-                for (i = 0; i < d->mUnk_3d0; i = (u16) (i + 1)) {
-                    if (data_0217561c->mUnk_000[i].mUnk_14 == 1) {
+                for (b = 0; b < d->mUnk_3d0; b = (u16) (b + 1)) {
+                    if (data_0217561c->mUnk_000[b].mUnk_14 == 1) {
                         if (f != FALSE) {
                             if (v == -1) {
-                                v = d->mUnk_68[i].mUnk_08.mUnk_04;
+                                d = data_021759c0;
+                                v = d->mUnk_68[b].mUnk_08.mUnk_04;
                             }
                         }
                     }
                 }
             }
-            for (i = 0; i < data_021759c0->mUnk_3d0; i = (u16) (i + 1)) {
-                data_0217561c->mUnk_000[i].mUnk_44 |= 2;
-                if (data_0217561c->mUnk_000[i].mUnk_14 == 1) {
+            for (a = 0; a < data_021759c0->mUnk_3d0; a = (u16) (a + 1)) {
+                data_0217561c->mUnk_000[a].mUnk_44 |= 2;
+                if (data_0217561c->mUnk_000[a].mUnk_14 == 1) {
                     if (f != FALSE) {
-                        e = v == data_021759c0->mUnk_68[i].mUnk_08.mUnk_04 ? 1 : 0;
+                        e = v == data_021759c0->mUnk_68[a].mUnk_08.mUnk_04 ? 1 : 0;
                     } else {
                         e = 1;
                     }
-                    func_0205d88c(i, 1);
+                    func_0205d88c(a, 1);
                 } else {
                     if (f != FALSE) {
-                        e = v == data_021759c0->mUnk_68[i].mUnk_08.mUnk_04 ? 1 : 0;
+                        e = v == data_021759c0->mUnk_68[a].mUnk_08.mUnk_04 ? 1 : 0;
                     } else {
                         e = 0;
                     }
-                    func_0205d88c(i, 0);
-                    if (data_0217561c->mUnk_000[i].mUnk_14 == 0) {
-                        data_0217561c->mUnk_000[i].mUnk_14 = 2;
+                    func_0205d88c(a, 0);
+                    if (data_0217561c->mUnk_000[a].mUnk_14 == 0) {
+                        data_0217561c->mUnk_000[a].mUnk_14 = 2;
                     }
                 }
-                func_02068640(func_0207a974(i), e);
+                func_02068640(func_0207a974(a), e);
             }
             func_02110cc8(0);
             break;

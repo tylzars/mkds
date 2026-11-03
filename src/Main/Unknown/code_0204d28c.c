@@ -172,7 +172,7 @@ typedef struct Unk0204d6f4_hdr {
     u32 mUnk_5c;
 } Unk0204d6f4_hdr;
 
-// non-matching: the inner loop's w and q trade r5/r7, and the v8 flag and v18 trade stack slots (sp+12/sp+16)
+// non-matching: the inner loop's w and q trade r5/r7 (the original keeps w in r5, q in r7)
 void func_0204d6f4(Unk02003024 *a, s32 b) {
     Unk0204d6f4_hdr v2;
     Unk02003024 v1;
@@ -181,7 +181,7 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
     u32 *v4[4];
     u32 *v6;
     u32 v7;
-    u32 v8;
+    enum { K0 } v8;
     u32 v9;
     u32 v10;
     Unk0204d6f4_hdr *v5;
@@ -195,6 +195,7 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
     v7 = 0;
     v14 = a == NULL;
     v8 = 0;
+    v8 = (s32) v8;
     if (v14 == FALSE) {
         if (b != 0) {
             v8 = 1;

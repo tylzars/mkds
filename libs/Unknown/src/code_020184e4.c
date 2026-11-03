@@ -1202,18 +1202,17 @@ Unk020184e4 *func_02018d94(void *(*a)(u32 a), u16 b, u16 c, s32 d, u16 e, u16 f)
     return p;
 }
 
-// non-matching: 12 words, registers only: the byte offset of the first loop is in r4 (original r6) and the
-// first two flag bits in r6 and r5 (original r5 and r4).
+// non-matching: registers only: the byte offset of the first loop is in r4 (original r6) and f1 in r6 (original r4)
 void func_02018a1c(Unk020184e4 *a, Unk02018a1c *b) {
     s32 i;
     s32 off;
     Unk0201ca6c_20 *e;
     Unk0201ca6c_20_00_00 flags;
     Unk0201ca6c_20_18 *g;
+    s32 f1;
     Unk020184e4_2c *h;
     Unk020184e4_2c_00 *d;
     s32 f0;
-    s32 f1;
     s32 f2;
     s32 f3;
     s32 f4;
@@ -1259,8 +1258,8 @@ void func_02018a1c(Unk020184e4 *a, Unk02018a1c *b) {
         } else {
             e->mUnk_14 = 0;
         }
-        f0 = flags.mUnk_00_24;
         f1 = flags.mUnk_00_25;
+        f0 = flags.mUnk_00_24;
         f2 = flags.mUnk_00_26;
         f3 = flags.mUnk_00_27;
         f4 = flags.mUnk_00_28;

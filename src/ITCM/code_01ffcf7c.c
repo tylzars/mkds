@@ -160,12 +160,15 @@ end:
     }
 }
 
-// non-matching: second half reloads the data_0217b4f8 base per use (ldr r4 base, y computed in r3) where the original
-// keeps one base in r3 and y in r2; size 0x12c against 0x130
+static inline s32 func_01ffd648_inline(Unk0217b4f8 *g) {
+    return g->mUnk_20.y;
+}
+
 s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     Vec3 v;
     s32 r;
     s32 q;
+    s32 h;
     c = (c + b) >> 12;
     func_021484d0(a, &data_0217b4f8.mUnk_08, &v);
     v.x = (a->x - data_0217b4f8.mUnk_08.x) >> 12;
@@ -182,10 +185,12 @@ s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
         r |= data_usa_021568f8;
     }
     v.y = (a->y - data_0217b4f8.mUnk_08.y) >> 12;
-    if (v.y * data_0217b4f8.mUnk_20.y + v.x * data_0217b4f8.mUnk_20.x + v.z * data_0217b4f8.mUnk_20.z > b) {
+    h = ((const Vec3 *) &v)->x;
+    if (v.y * func_01ffd648_inline(&data_0217b4f8) + v.x * data_0217b4f8.mUnk_20.x + v.z * data_0217b4f8.mUnk_20.z >
+        b) {
         return r | 2;
     }
-    if (v.y * data_0217b4f8.mUnk_2c.y + v.x * data_0217b4f8.mUnk_2c.x + v.z * data_0217b4f8.mUnk_2c.z > b) {
+    if (h * data_0217b4f8.mUnk_2c.x + v.y * data_0217b4f8.mUnk_2c.y + v.z * data_0217b4f8.mUnk_2c.z > b) {
         r |= 2;
     }
     return r;

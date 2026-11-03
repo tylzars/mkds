@@ -24,13 +24,16 @@ static inline BOOL func_0207f600_inline(s32 a) {
     return (func_0207a974(a)->mUnk_7c & 0x402020) == 0;
 }
 
+static inline s32 func_0207f554_inline2(u32 i) {
+    return *(vs32 *) &data_021759c0->mUnk_68[i].mUnk_08.mUnk_04;
+}
+
 static inline s32 func_0207f554_inline(u32 a, u32 b) {
     BOOL r = FALSE;
     s32 v;
     BOOL t;
 
-    if (data_021759c0->mUnk_58 == 0 ||
-        data_021759c0->mUnk_68[b].mUnk_08.mUnk_04 != data_021759c0->mUnk_68[a].mUnk_08.mUnk_04) {
+    if (data_021759c0->mUnk_58 == 0 || data_021759c0->mUnk_68[a].mUnk_08.mUnk_04 != func_0207f554_inline2(b)) {
         t = FALSE;
         v = data_021759c0->mUnk_68[b].mUnk_08.mUnk_00;
         if ((u32) v <= 3) {
@@ -129,18 +132,17 @@ void func_0207f05c(Unk020888b4 *p) {
     p->mUnk_74 = p->mUnk_74 >> 1;
 }
 
-// non-matching: same size and instruction order, registers differ: the original keeps p in r5, a in r4, b in r7, the
-// flag d in r9 and the first inline result in r8 (ours: p r4, a r5, b r9, d r8, result r7), and the compare of the two
-// 0x74 words in the inline body is "cmp a, b" with b loaded first
 void func_0207f2e4(Unk020888b4 *p) {
+    u32 a;
+    BOOL d;
     s32 c;
     s32 b;
-    BOOL d;
-    u32 a;
+    u32 e;
 
     p->mUnk_b0 = NULL;
     p->mUnk_b4 = 0;
-    a = p->mUnk_04;
+    e = p->mUnk_04;
+    a = e;
     if (a != func_02061f90()) {
         return;
     }
@@ -154,6 +156,7 @@ void func_0207f2e4(Unk020888b4 *p) {
     b = data_0217561c->mUnk_474[(u8) (a - 1) - 1];
     d = FALSE;
     if (b >= 0) {
+        b = data_0217561c->mUnk_474[(u8) (a - 1) - 1];
         if (func_0207f554_inline(p->mUnk_04, (u16) b) != 0) {
             p->mUnk_b0 = func_0207a974(b);
             d = TRUE;
@@ -170,13 +173,10 @@ void func_0207f2e4(Unk020888b4 *p) {
     if (c < 0) {
         return;
     }
+    c = data_0217561c->mUnk_474[(u8) (a + 1) - 1];
     if (func_0207f554_inline(p->mUnk_04, (u16) c) != 0) {
         p->mUnk_b0 = func_0207a974(c);
     }
-}
-
-static inline s32 func_0207f554_inline2(u32 i) {
-    return *(vs32 *) &data_021759c0->mUnk_68[i].mUnk_08.mUnk_04;
 }
 
 s32 func_0207f554(u32 a, u32 b) {

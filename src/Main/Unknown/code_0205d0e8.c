@@ -170,9 +170,6 @@ s32 func_0205d4e8(u32 a) {
     return 0;
 }
 
-// non-matching: the original computes the entry pointer from the row base plus the counter on each pass and keeps one
-// stack word, here the compiler steps one pointer through the entries and keeps two stack words; the inner counter test
-// is unsigned in the original (4 bytes shorter).
 void func_0205d558(s32 a) {
     s32 j;
     u16 k, n;
@@ -184,7 +181,7 @@ void func_0205d558(s32 a) {
     for (j = 0; j < 2; j++) {
         n = 0;
         v1 = &data_0217aa1c->mUnk_144[(u8) ((data_021759c0->mUnk_60 - 1) % 4)];
-        e = &v1->mUnk_00[j];
+        e = &v1->mUnk_00[(s32) j];
         i = (u8) ((data_021759c0->mUnk_60 - 1) % 4) - 1;
         if (data_021759c0->mUnk_08 == 2 || data_021759c0->mUnk_08 == 3 || data_021759c0->mUnk_08 == 5) {
             if (i < 0) {
@@ -205,7 +202,7 @@ void func_0205d558(s32 a) {
         e->mUnk_02 = r;
         for (k = 0; k < (u32) data_021759c0->mUnk_3d0; k++) {
             if (j == data_021759c0->mUnk_68[k].mUnk_08.mUnk_04) {
-                n = n + data_0217aa1c->mUnk_000[(u8) ((data_021759c0->mUnk_60 - 1) % 4)][(u8) k].mUnk_00;
+                n = n + data_0217aa1c->mUnk_000[(u8) ((data_021759c0->mUnk_60 - 1) % 4)][(u8) (s32) (u8) k].mUnk_00;
             }
         }
         if (n > 9999) {

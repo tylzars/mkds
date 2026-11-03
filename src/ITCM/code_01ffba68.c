@@ -252,18 +252,17 @@ s32 func_01ffc158(Unk0206bcb0 *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
     return 1;
 }
 
-// non-matching: 0x30 halfword kept in r5 and the zero constant shared in r4 (original r4, lr and ip); size 0x288
-// against 0x284
 s32 func_01ffc27c(Unk0206bcb0 *p, s32 a) {
     s32 x = p->mUnk_2cc->mUnk_30;
     BOOL d = FALSE;
     s32 r = 0;
-    s16 b = 1;
+    enum { K1 } b = 1;
     s32 t;
     s32 v;
     u32 f;
     u16 w;
     enum { K0 } k;
+    u32 c;
 
     if (p->mUnk_4c & 0x30000000) {
         return 0;
@@ -309,18 +308,18 @@ s32 func_01ffc27c(Unk0206bcb0 *p, s32 a) {
         }
         d = TRUE;
     }
-    f = p->mUnk_44;
-    k = p->mUnk_78;
-    if (((f & 0x100) && (u16) (data_02175628[k].mUnk_02 & 2)) || ((f & 0x100) && !(f & 0xa))) {
+    c = p->mUnk_44;
+    f = c;
+    if (((f & 0x100) && (u16) (data_02175628[k = p->mUnk_78].mUnk_02 & 2)) || ((f & 0x100) && !(f & 0xa))) {
         b = -1;
-        x = (s16) (x * b);
+        x = (s16) ((s16) x * (s16) b);
     }
     k = p->mUnk_78;
     w = data_02175628[k].mUnk_02;
     if ((u16) (w & 0x20)) {
-        r = func_01ffc158(p, x, b, 1, d, 8);
+        r = ((s32(*)(Unk0206bcb0 *, s32, s32, s32, s32, u32)) func_01ffc158)(p, x, b, 1, d, 8);
     } else if ((u16) (w & 0x10)) {
-        r = func_01ffc158(p, x, b, -1, d, 0x10);
+        r = ((s32(*)(Unk0206bcb0 *, s32, s32, s32, s32, u32)) func_01ffc158)(p, x, b, -1, d, 0x10);
     }
     return r;
 }
