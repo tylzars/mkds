@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "code_0200e77c.h"
 #include "code_0214d5b8.h"
-#include "code_02021784.h"
+#include "code_02021764.h"
 
 Unk020207ec *data_021732c8;
 u32 data_021732cc;

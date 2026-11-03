@@ -2,7 +2,6 @@
 
 #include "types.h"
 #include "code_020219e8.h" // Unk02021a5c
-#include "code_02021f9c.h" // Unk02021f9c
 
 // 3 bytes: func_02022bbc adds the first two, or reads the third.
 typedef struct Unk02022c80 {
@@ -72,6 +71,10 @@ typedef struct Unk02022b10 {
     /* 04 */ s32 mUnk_04;
 } Unk02022b10;
 
+#include "Main/Unknown/code_02124094.h" // Unk02022eb0
+
+#include "code_02021f9c.h" // Unk02021f9c
+
 void func_02022aa8(Unk02022b10 *a, Unk02022aa8 *b, s32 c, s32 d, u8 *e);
 s32 func_02022b44(Unk02022aa8 *a, s32 b, u8 *c);
 s32 func_02022bbc(Unk02022aa8 *a, s32 b, u8 *c, u8 **d);
@@ -80,3 +83,7 @@ u32 func_02022ce4(Unk02022aa8 *a, u32 b);
 void func_02022d44(Unk02022aa8 *a, Unk02021f9c *b);
 void func_02022d88(Unk02022aa8 *a, Unk02021f9c *b);
 u32 func_02022dd8(Unk02022dd8 *a, u32 b);
+u32 func_020231e4(u32 a, u32 b);
+void func_02023244(u16 *a, s32 b, s32 c, s32 d, s32 e, u32 f);
+void func_020232b0(u16 *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, u32 h);
+u32 func_02024168(const u8 *a);
