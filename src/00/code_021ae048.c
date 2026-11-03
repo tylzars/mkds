@@ -25,7 +25,7 @@ void func_ov000_021ae048(void) {
     s = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
     if (s != NULL) {
         t = func_0200f5ac() >> 16;
-        while (data_ov000_021b6388() != 0 && s->mUnk_08 != 0 && (s32) (func_0200f5ac() >> 16) - t < 0x27) {
+        while (data_ov000_021b6388() != 0 && s->mState != 0 && (s32) (func_0200f5ac() >> 16) - t < 0x27) {
             func_ov000_021b04d4();
         }
     }

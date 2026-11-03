@@ -137,15 +137,15 @@ void func_ov000_021ad898(void) {
         if (f != NULL) {
             do {
                 g = *(Unk021a998c **) f->mUnk_a4;
-                if (g != NULL && g->mUnk_00 != NULL) {
-                    if (g->mUnk_08 == 3 && (s32) (c - g->mUnk_10) > 0x27) {
-                        g->mUnk_08 = 1;
+                if (g != NULL && g->mThread != NULL) {
+                    if (g->mState == 3 && (s32) (c - g->mStateStartTime) > 0x27) {
+                        g->mState = 1;
                         g->mUnk_18 = g->mUnk_1a;
                         g->mUnk_1c = g->mUnk_20;
-                    } else if (g->mUnk_08 == 2 && (s32) (c - g->mUnk_10) > 0x27 && g->mUnk_04 == 1) {
-                        g->mUnk_08 = 0;
+                    } else if (g->mState == 2 && (s32) (c - g->mStateStartTime) > 0x27 && g->mUnk_04 == 1) {
+                        g->mState = 0;
                         g->mUnk_04 = 0;
-                        func_0200df68(g->mUnk_00);
+                        func_0200df68(g->mThread);
                     }
                 }
                 f = f->mUnk_68;

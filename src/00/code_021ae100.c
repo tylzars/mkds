@@ -5,7 +5,7 @@
 u32 func_ov000_021ae100(u16 *a, u32 *b) {
     Unk021a998c *v1;
     v1 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
-    if ((v1 != NULL) && ((v1->mUnk_08 == 4 || (v1->mUnk_08 == '\n')))) {
+    if ((v1 != NULL) && ((v1->mState == 4 || (v1->mState == '\n')))) {
         if (a != NULL) {
             *a = v1->mUnk_18;
         }

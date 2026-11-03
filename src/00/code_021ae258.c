@@ -8,8 +8,8 @@ void func_ov000_021ae2d8(void) {
     Unk021a998c *v1;
     v1 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
     if (v1 != NULL) {
-        v1->mUnk_08 = 10;
-        v1->mUnk_44 = 0;
+        v1->mState = 10;
+        v1->mReceiveBufferLength = 0;
     }
 }
 
@@ -38,11 +38,11 @@ void func_ov000_021ae270(void) {
     Unk021a998c *v1;
     v1 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
     if (v1 != NULL) {
-        v1->mUnk_00 = data_0216ff5c.mUnk_04;
-        v1->mUnk_08 = 0;
-        v1->mUnk_44 = 0;
+        v1->mThread = data_0216ff5c.mUnk_04;
+        v1->mState = 0;
+        v1->mReceiveBufferLength = 0;
         v1->mUnk_60 = 0;
-        v1->mUnk_38 = NULL;
+        v1->mReceiveCallback = NULL;
     }
 }
 
@@ -50,6 +50,6 @@ void func_ov000_021ae258(void) {
     Unk021a998c *v1;
     v1 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
     if (v1 != NULL) {
-        v1->mUnk_00 = NULL;
+        v1->mThread = NULL;
     }
 }

@@ -111,10 +111,10 @@ void func_ov000_021af2a0(Unk021ae3f0 *c, Unk021af1e4 *d, u32 e) {
 
     for (a = data_0216ff5c.mUnk_08; a != NULL; a = a->mUnk_68) {
         b = *(Unk021a998c **) a->mUnk_a4;
-        if (b == NULL || b->mUnk_00 == NULL || b->mUnk_08 != 0xb || (u16) (u32) b->mUnk_00 != d->mUnk_04) {
+        if (b == NULL || b->mThread == NULL || b->mState != 0xb || (u16) (u32) b->mThread != d->mUnk_04) {
             continue;
         }
-        if (b->mUnk_0a != d->mUnk_06 || b->mUnk_44 != 0) {
+        if (b->mUnk_0a != d->mUnk_06 || b->mReceiveBufferLength != 0) {
             continue;
         }
         if (b->mUnk_1c != (u32) (((u16) ((c->mUnk_0c >> 8) | (c->mUnk_0c << 8)) << 16) |
@@ -122,15 +122,15 @@ void func_ov000_021af2a0(Unk021ae3f0 *c, Unk021af1e4 *d, u32 e) {
             continue;
         }
         e -= 8;
-        if (e > b->mUnk_3c) {
-            b->mUnk_44 = b->mUnk_3c;
+        if (e > b->mReceiveBufferSize) {
+            b->mReceiveBufferLength = b->mReceiveBufferSize;
         } else {
-            b->mUnk_44 = e;
+            b->mReceiveBufferLength = e;
         }
-        func_0214d1fc((u8 *) d + 8, b->mUnk_40, b->mUnk_44);
+        func_0214d1fc((u8 *) d + 8, b->mReceiveBuffer, b->mReceiveBufferLength);
         if (b->mUnk_04 == 3) {
             b->mUnk_04 = 0;
-            func_0200df68(b->mUnk_00);
+            func_0200df68(b->mThread);
             return;
         }
         return;
@@ -170,7 +170,7 @@ Unk021a998c *func_ov000_021af15c(const Unk021ae3f0 *c, const Unk021ae87c *d) {
 
     for (a = data_0216ff5c.mUnk_08; a != NULL; a = a->mUnk_68) {
         b = *(Unk021a998c **) a->mUnk_a4;
-        if (b == NULL || b->mUnk_00 == NULL || b->mUnk_08 != 1 ||
+        if (b == NULL || b->mThread == NULL || b->mState != 1 ||
             b->mUnk_0a != (u16) ((d->mUnk_02 >> 8) | (d->mUnk_02 << 8))) {
             continue;
         }
@@ -192,7 +192,7 @@ u32 func_ov000_021af0dc(const Unk021ae3f0 *e, const Unk021ae87c *f, const Unk021
     u32 b = 0;
     u32 d = 0;
 
-    if (g->mUnk_08 != 0xa && g->mUnk_08 != 0xb) {
+    if (g->mState != 0xa && g->mState != 0xb) {
         d = 1;
     }
     if (d != 0) {
@@ -221,7 +221,7 @@ Unk021a998c *func_ov000_021af090(const Unk021ae3f0 *c, const Unk021ae87c *d) {
     a = data_0216ff5c.mUnk_08;
     while (a != NULL) {
         b = *(Unk021a998c **) a->mUnk_a4;
-        if (b != NULL && b->mUnk_00 != NULL && func_ov000_021af0dc(c, d, b) != 0) {
+        if (b != NULL && b->mThread != NULL && func_ov000_021af0dc(c, d, b) != 0) {
             return b;
         }
         a = a->mUnk_68;

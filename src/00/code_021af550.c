@@ -16,13 +16,13 @@ void func_ov000_021af550(u8 *a, u32 b, Unk021a998c *c, u32 d, u16 e) {
     u32 h;
     u16 i;
 
-    if (c->mUnk_08 == 0) {
+    if (c->mState == 0) {
         return;
     }
     if (data_0216ff5c.mUnk_04 == &data_ov000_021b661c) {
         f = data_ov000_021b641a;
     } else {
-        f = c->mUnk_4c + 0x22;
+        f = c->mSendBuffer + 0x22;
     }
     if (d & 2) {
         g = 0x18;
@@ -43,7 +43,8 @@ void func_ov000_021af550(u8 *a, u32 b, Unk021a998c *c, u32 d, u16 e) {
     *(u16 *) (f + 0xa) = ((u16) c->mUnk_24 >> 8) | ((u16) c->mUnk_24 << 8);
     f[0xc] = (g >> 2) << 4;
     f[0xd] = d;
-    *(u16 *) (f + 0xe) = ((u16) (c->mUnk_3c - c->mUnk_44) >> 8) | ((u16) (c->mUnk_3c - c->mUnk_44) << 8);
+    *(u16 *) (f + 0xe) = ((u16) (c->mReceiveBufferSize - c->mReceiveBufferLength) >> 8) |
+                         ((u16) (c->mReceiveBufferSize - c->mReceiveBufferLength) << 8);
     *(u16 *) (f + 0x10) = 0;
     *(u16 *) (f + 0x12) = (e >> 8) | (e << 8);
     if (d & 2) {
@@ -70,7 +71,7 @@ void func_ov000_021af70c(u8 *a, u32 b, Unk021a998c *c) {
     u32 e;
     u16 f;
 
-    g = c->mUnk_4c;
+    g = c->mSendBuffer;
     d = g + 0x22;
     *(u16 *) (d - 0xc) = ((u16) (data_ov000_021b63b4 >> 16) >> 8) | ((u16) (data_ov000_021b63b4 >> 16) << 8);
     *(u16 *) (d - 0xa) = ((u16) data_ov000_021b63b4 >> 8) | ((u16) data_ov000_021b63b4 << 8);
@@ -97,7 +98,7 @@ void func_ov000_021af7e4(u8 *a, u32 b, Unk021a998c *c) {
     u8 *g;
     u8 *d;
 
-    g = c->mUnk_4c;
+    g = c->mSendBuffer;
     d = g + 0x22;
     *(u16 *) (g + 0x22) = 8;
     *(u16 *) (d + 4) = (u16) (u32) data_0216ff5c.mUnk_04;

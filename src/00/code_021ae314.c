@@ -57,7 +57,7 @@ void func_ov000_021ae724(Unk021ae3f0 *a, Unk021ae724 *b, u32 c) {
     }
     for (t = data_0216ff5c.mUnk_08; t != NULL; t = t->mUnk_68) {
         s = *(Unk021a998c **) t->mUnk_a4;
-        if (s == NULL || s->mUnk_00 == NULL || s->mUnk_08 != 0xa ||
+        if (s == NULL || s->mThread == NULL || s->mState != 0xa ||
             s->mUnk_0a != (u16) ((b->mUnk_02 >> 8) | (b->mUnk_02 << 8))) {
             continue;
         }
@@ -76,23 +76,23 @@ void func_ov000_021ae724(Unk021ae3f0 *a, Unk021ae724 *b, u32 c) {
                                 (u16) ((a->mUnk_0e >> 8) | (a->mUnk_0e << 8)));
             s->mUnk_18 = (u16) ((b->mUnk_00 >> 8) | (b->mUnk_00 << 8));
         }
-        if (s->mUnk_44 != 0) {
+        if (s->mReceiveBufferLength != 0) {
             return;
         }
         c -= 8;
-        if (c > s->mUnk_3c) {
-            s->mUnk_44 = s->mUnk_3c;
+        if (c > s->mReceiveBufferSize) {
+            s->mReceiveBufferLength = s->mReceiveBufferSize;
         } else {
-            s->mUnk_44 = c;
+            s->mReceiveBufferLength = c;
         }
-        func_0214d1fc((u8 *) b + 8, s->mUnk_40, s->mUnk_44);
+        func_0214d1fc((u8 *) b + 8, s->mReceiveBuffer, s->mReceiveBufferLength);
         if (s->mUnk_04 == 3) {
             s->mUnk_04 = 0;
-            func_0200df68(s->mUnk_00);
+            func_0200df68(s->mThread);
             return;
         }
-        if (s->mUnk_38 != NULL && s->mUnk_38(s->mUnk_40, s->mUnk_44, s) != 0) {
-            s->mUnk_44 = 0;
+        if (s->mReceiveCallback != NULL && s->mReceiveCallback(s->mReceiveBuffer, s->mReceiveBufferLength, s) != 0) {
+            s->mReceiveBufferLength = 0;
         }
         return;
     }
@@ -276,7 +276,7 @@ u16 func_ov000_021ae340(void) {
         }
         for (t = data_0216ff5c.mUnk_08; t != NULL; t = t->mUnk_68) {
             s = *(Unk021a998c **) t->mUnk_a4;
-            if (s != NULL && s->mUnk_00 != NULL && s->mUnk_0a == data_ov000_021b6374) {
+            if (s != NULL && s->mThread != NULL && s->mUnk_0a == data_ov000_021b6374) {
                 v1 = 1;
                 break;
             }

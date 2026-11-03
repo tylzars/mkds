@@ -18,9 +18,9 @@ s32 func_ov000_021adbac(void) {
         if (s->mUnk_09 != 0) {
             r = func_ov000_021a9358(s);
         } else {
-            r = s->mUnk_44;
+            r = s->mReceiveBufferLength;
         }
-        if (r == 0 && s->mUnk_08 != 4 && (u8) (s->mUnk_08 + 0xf6) > 1) {
+        if (r == 0 && s->mState != 4 && (u8) (s->mState + 0xf6) > 1) {
             return -1;
         }
         return r;
@@ -57,7 +57,7 @@ s32 func_ov000_021adc64(const u8 *a, s32 b, const u8 *c, s32 d) {
 
     s = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
     if (s != NULL) {
-        t = s->mUnk_08;
+        t = s->mState;
         if (t == 0xa) {
             if (b != 0) {
                 func_ov000_021af70c((u8 *) a, b, s);
@@ -100,14 +100,13 @@ s32 func_ov000_021adcec(const u8 *a, u32 b, const u8 *c, s32 d, void *e) {
     s->mUnk_34 = 0;
     g = FALSE;
     j = func_0200f5ac() >> 16;
-    while (data_ov000_021b6388() != 0 && b != 0 && s->mUnk_08 == 4 &&
-           (s32) ((u32) (func_0200f5ac() >> 16) - j) < 0x9f) {
+    while (data_ov000_021b6388() != 0 && b != 0 && s->mState == 4 && (s32) ((u32) (func_0200f5ac() >> 16) - j) < 0x9f) {
         h = s->mUnk_28;
         func_ov000_021ade40(a, b, c, d, s, g);
         k = func_0200f5ac() >> 16;
         do {
             func_ov000_021b04d4();
-        } while (data_ov000_021b6388() != 0 && s->mUnk_08 == 4 && s->mUnk_28 != s->mUnk_30 &&
+        } while (data_ov000_021b6388() != 0 && s->mState == 4 && s->mUnk_28 != s->mUnk_30 &&
                  (s32) ((u32) (func_0200f5ac() >> 16) - k) < 0xf && (g == FALSE || s->mUnk_2c == 0));
         i = s->mUnk_30 - h;
         f += i;
@@ -115,7 +114,7 @@ s32 func_ov000_021adcec(const u8 *a, u32 b, const u8 *c, s32 d, void *e) {
             j = func_0200f5ac() >> 16;
         }
         s->mUnk_28 = s->mUnk_30;
-        if (s->mUnk_08 == 4 && s->mUnk_2c == 0 && i == 0) {
+        if (s->mState == 4 && s->mUnk_2c == 0 && i == 0) {
             if (g == FALSE) {
                 k = func_0200f5ac() >> 16;
                 while (data_ov000_021b6388() != 0 && (s32) ((u32) (func_0200f5ac() >> 16) - k) < 0xf) {
@@ -165,7 +164,7 @@ s32 func_ov000_021ade6c(const u8 *a, s32 b, Unk021a998c *c, s32 d) {
     }
     g = c->mUnk_34;
     h = g * 2 + 4;
-    while (b != 0 && c->mUnk_08 == 4) {
+    while (b != 0 && c->mState == 4) {
         f = c->mUnk_2e;
         if (f >= e) {
             f = e;
@@ -217,18 +216,18 @@ void func_ov000_021adf30(u32 a, Unk021a998c *b) {
     u8 *f;
 
     c = func_0200fca0();
-    d = b->mUnk_44;
+    d = b->mReceiveBufferLength;
     if (a >= d) {
-        b->mUnk_44 = 0;
+        b->mReceiveBufferLength = 0;
     } else {
-        e = b->mUnk_40;
+        e = b->mReceiveBuffer;
         f = e;
         f += a;
-        b->mUnk_44 = (d -= a);
+        b->mReceiveBufferLength = (d -= a);
         memmove(e, &(*f), d);
     }
     func_0200fcb4(c);
-    if (b->mUnk_08 != 0xa && b->mUnk_08 != 0xb && b->mUnk_44 == 0) {
+    if (b->mState != 0xa && b->mState != 0xb && b->mReceiveBufferLength == 0) {
         func_ov000_021aefb4(b, 0x1b);
     }
 }
@@ -238,7 +237,7 @@ u8 *func_ov000_021adf78(u32 *a) {
 
     s = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
     if (s != NULL) {
-        if ((u8) (s->mUnk_08 + 0xf6) <= 1) {
+        if ((u8) (s->mState + 0xf6) <= 1) {
             return func_ov000_021ae01c(a, s);
         }
         if (s->mUnk_09 != 0) {
@@ -251,17 +250,17 @@ u8 *func_ov000_021adf78(u32 *a) {
 }
 
 u8 *func_ov000_021adfc8(u32 *a, Unk021a998c *b) {
-    if (b->mUnk_44 == 0 && b->mUnk_08 == 4) {
-        while (b->mUnk_44 == 0 && b->mUnk_08 == 4) {
+    if (b->mReceiveBufferLength == 0 && b->mState == 4) {
+        while (b->mReceiveBufferLength == 0 && b->mState == 4) {
             b->mUnk_04 = 2;
             func_0200e01c(NULL);
         }
     } else {
         func_0200dd94();
     }
-    *a = b->mUnk_44;
+    *a = b->mReceiveBufferLength;
     if (*a != 0) {
-        return b->mUnk_40;
+        return b->mReceiveBuffer;
     }
     return NULL;
 }

@@ -4,12 +4,12 @@
 
 u8 *func_ov000_021ae01c(u32 *a, Unk021a998c *b) {
     u32 v1;
-    v1 = b->mUnk_44;
+    v1 = b->mReceiveBufferLength;
     while (v1 == 0) {
         b->mUnk_04 = 3;
         func_0200e01c((Unk0200df9c *) (0));
-        v1 = b->mUnk_44;
+        v1 = b->mReceiveBufferLength;
     }
     *a = v1;
-    return b->mUnk_40;
+    return b->mReceiveBuffer;
 }

@@ -87,7 +87,7 @@ s32 func_ov000_021a9280(u8 *a, u32 b, u8 *c, u32 d, Unk021a998c *e) {
 s32 func_ov000_021a9358(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
     if (c->mUnk_7f8 == NULL) {
-        if (a->mUnk_44 == 0) {
+        if (a->mReceiveBufferLength == 0) {
             return 0;
         }
         func_ov000_021a9d68(a);
@@ -120,7 +120,7 @@ u8 *func_ov000_021a93e0(s32 *a, Unk021a998c *b) {
 
 s32 func_ov000_021a943c(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
-    if (a->mUnk_08 != 4 && func_ov000_021ae16c(a) != 0) {
+    if (a->mState != 4 && func_ov000_021ae16c(a) != 0) {
         return 1;
     }
     c->mUnk_429 = 0;

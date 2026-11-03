@@ -33,8 +33,8 @@ u32 func_ov000_021ae16c(Unk021a998c *b) {
     a = func_ov000_021ae314();
     for (i = 0; i < 3; i++) {
         b->mUnk_28 = a;
-        b->mUnk_08 = 2;
-        b->mUnk_10 = func_0200f5ac() >> 16;
+        b->mState = 2;
+        b->mStateStartTime = func_0200f5ac() >> 16;
         func_ov000_021aefc0(b, 2, 24);
         s = func_0200fca0();
         if (data_ov000_021b63b4 != 0) {
@@ -42,7 +42,7 @@ u32 func_ov000_021ae16c(Unk021a998c *b) {
             func_0200e01c(NULL);
         }
         func_0200fcb4(s);
-        if (b->mUnk_08 == 4) {
+        if (b->mState == 4) {
             return 0;
         }
         if (data_ov000_021b63b4 == 0) {
