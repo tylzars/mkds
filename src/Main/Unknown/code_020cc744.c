@@ -37,7 +37,7 @@ void func_020cc744(void) {
         }
         func_020cca9c(func_02029930()->mUnk_c0);
         if (func_02029930()->mUnk_c8 != 2 && func_02029930()->mUnk_c8 != 3) {
-            func_02029930()->mUnk_dc = 0;
+            func_02029930()->mUseTeams = 0;
         }
         switch (func_02029930()->mUnk_c8) {
             case 0:
@@ -55,9 +55,9 @@ void func_020cc744(void) {
         func_020cca88(func_02029930()->mUnk_c8);
         func_020cca74(func_02029930()->mUnk_cc);
         if (func_02029930()->mUnk_c8 == 0) {
-            func_02029930()->mUnk_d0 = func_020ae3a4(func_02029930()->mUnk_cc, 0);
+            func_02029930()->mCourseId = func_020ae3a4(func_02029930()->mUnk_cc, 0);
         }
-        func_020cca60(func_02029930()->mUnk_d0);
+        func_020cca60(func_02029930()->mCourseId);
         if (func_02029930()->mUnk_c8 == 1) {
             func_02029930()->mUnk_d4 = 2;
         } else if (func_02029930()->mUnk_c8 == 2) {
@@ -71,18 +71,18 @@ void func_020cc744(void) {
         func_020cca38(func_02029930()->mUnk_d8);
         func_020cca24(func_02029930()->mUnk_e0);
         func_020cca10(func_02029930()->mUnk_e4);
-        func_020cc9fc(func_02029930()->mUnk_dc);
+        func_020cc9fc(func_02029930()->mUseTeams);
         func_020cc9e4(func_02029930()->mUnk_e8);
         func_020cc9d0(func_02029930()->mUnk_ec);
-        func_020cc9bc(func_02029930()->mUnk_f0);
+        func_020cc9bc(func_02029930()->mCourseListMode);
         if (func_02029930()->mUnk_c8 == 4 && func_020cbad0() == 0) {
-            i = func_02029930()->mUnk_104;
-            FindMissionTableCell(func_02029930()->mUnk_f8[i].mUnk_06, &b[0], &b[1]);
-            func_02044380(&func_02029930()->mUnk_f8[i], b[0], b[1]);
+            i = func_02029930()->mMissionFileRowIndex;
+            FindMissionTableCell(func_02029930()->mMissionFileRows[i].mMissionTableValue, &b[0], &b[1]);
+            func_02044380(&func_02029930()->mMissionFileRows[i], b[0], b[1]);
         }
     } else {
         func_020cca74(func_02029930()->mUnk_cc);
-        func_020cca60(func_02029930()->mUnk_d0);
+        func_020cca60(func_02029930()->mCourseId);
     }
     if (func_02029930()->mUnk_c8 == 0) {
         func_020cc9a8(0);

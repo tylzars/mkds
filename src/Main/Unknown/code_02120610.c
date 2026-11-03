@@ -24,10 +24,10 @@ void func_02121dec(u32 a) {
 }
 
 s32 func_02121d94(void) {
-    if (func_02029930()->mUnk_d0 == 0) {
+    if (func_02029930()->mCourseId == 0) {
         return data_0217d384->mUnk_1e10[func_ov000_0219bb50()].mUnk_38;
     }
-    return func_02029930()->mUnk_d0;
+    return func_02029930()->mCourseId;
 }
 
 BOOL func_02121d48(void) {
@@ -124,7 +124,7 @@ void func_02121af4(void) {
         }
     }
     w = c[(u16) v];
-    func_02029930()->mUnk_d0 = w;
+    func_02029930()->mCourseId = w;
 }
 
 void func_021219cc(void) {
@@ -150,7 +150,7 @@ void func_021219cc(void) {
 
                 d = data_0217d384;
                 x = d->mUnk_1f4e[i];
-                func_02029930()->mUnk_00[x].mUnk_00 = d->mUnk_1e10[i].mUnk_30;
+                func_02029930()->mUnk_00[x].mCharacterIndex = d->mUnk_1e10[i].mUnk_30;
             }
             {
                 Unk0217d384 *d;
@@ -158,7 +158,7 @@ void func_021219cc(void) {
 
                 d = data_0217d384;
                 x = d->mUnk_1f4e[i];
-                func_02029930()->mUnk_00[x].mUnk_04 = d->mUnk_1e10[i].mUnk_34;
+                func_02029930()->mUnk_00[x].mKartIndex = d->mUnk_1e10[i].mUnk_34;
             }
         }
     }

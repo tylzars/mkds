@@ -265,19 +265,20 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
         gSelectCharacter->mUnk_090[i].mUnk_00 = -1;
     }
     for (j = 0; j < gSelectCharacter->mUnk_07c; j++) {
-        if (gSelectCharacter->mUnk_090[j].mUnk_00 == func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mUnk_00) {
+        if (gSelectCharacter->mUnk_090[j].mUnk_00 ==
+            func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mCharacterIndex) {
             gSelectCharacter->mUnk_060 = j;
         }
     }
     gSelectCharacter->mUnk_064 = gSelectCharacter->mUnk_060;
     p = gSelectCharacter;
-    p->mUnk_0f0 = func_02029930()->mUnk_00[p->mUnk_078].mUnk_00;
+    p->mUnk_0f0 = func_02029930()->mUnk_00[p->mUnk_078].mCharacterIndex;
     if (gSelectCharacter->mUnk_0f0 == -1) {
         gSelectCharacter->mUnk_0f0 = 0;
     }
     gSelectCharacter->mUnk_0f4 = func_02025e60(gSelectCharacter->mUnk_0f0);
-    func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mUnk_00 = -1;
-    func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mUnk_04 = -1;
+    func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mCharacterIndex = -1;
+    func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mKartIndex = -1;
     func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mUnk_14 = 0;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         s = &gSelectCharacter->mUnk_01c;
@@ -534,8 +535,8 @@ int AdvanceSelectCharacter(void) {
                 p = gSelectCharacter;
                 switch (p->mUnk_080) {
                     case 0:
-                        func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mUnk_00 = p->mUnk_0f0;
-                        func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mUnk_04 = gSelectCharacter->mUnk_0f4;
+                        func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mCharacterIndex = p->mUnk_0f0;
+                        func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mKartIndex = gSelectCharacter->mUnk_0f4;
                         func_02116fb0();
                         if (func_02029930()->mUnk_c8 == 2) {
                             func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mUnk_14 = 1;
@@ -619,8 +620,8 @@ int AdvanceSelectCharacter(void) {
             if (p->mUnk_068 < 10) {
                 p->mUnk_070 = ((10 - p->mUnk_068) << 12) / 10;
             } else {
-                func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mUnk_00 = p->mUnk_0f0;
-                func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mUnk_04 = gSelectCharacter->mUnk_0f4;
+                func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mCharacterIndex = p->mUnk_0f0;
+                func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mKartIndex = gSelectCharacter->mUnk_0f4;
                 gSelectCharacter->mUnk_06c = 9;
             }
             gSelectCharacter->mUnk_074 += 0x1000;

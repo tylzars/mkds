@@ -106,16 +106,16 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         gSelectKart->mUnk_098 = func_02056444(gSelectKart->mUnk_08c);
     }
     g = gSelectKart;
-    g->mUnk_0a4 = func_02029930()->mUnk_00[g->mUnk_0a0].mUnk_00;
+    g->mUnk_0a4 = func_02029930()->mUnk_00[g->mUnk_0a0].mCharacterIndex;
     g = gSelectKart;
-    g->mUnk_0a8 = func_02029930()->mUnk_00[g->mUnk_0a0].mUnk_04;
+    g->mUnk_0a8 = func_02029930()->mUnk_00[g->mUnk_0a0].mKartIndex;
     if (gSelectKart->mUnk_0a4 == -1) {
         gSelectKart->mUnk_0a4 = 0;
     }
     if (gSelectKart->mUnk_0a8 == -1) {
         gSelectKart->mUnk_0a8 = 0;
     }
-    func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mUnk_04 = -1;
+    func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mKartIndex = -1;
     func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mUnk_14 = 0;
     gSelectKart->mUnk_09c = func_02025e34(gSelectKart->mUnk_0a8);
     if (func_020280dc() == 0) {

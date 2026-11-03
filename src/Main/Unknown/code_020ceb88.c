@@ -10,10 +10,10 @@ void func_020ceb88(void) {
     switch (func_0211a7bc()) {
         case 1:
             if (func_020cebe4() != 0) {
-                func_02029930()->mUnk_f0 = 2;
+                func_02029930()->mCourseListMode = 2;
             }
-            if (func_02029930()->mUnk_f0 == 2) {
-                func_02029930()->mUnk_d0 = 0x2c;
+            if (func_02029930()->mCourseListMode == 2) {
+                func_02029930()->mCourseId = 0x2c;
                 func_020ccc74(0x1d, 0x1f);
             } else {
                 func_020ccc74(0x11, 0x1f);

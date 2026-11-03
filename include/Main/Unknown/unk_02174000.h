@@ -13,10 +13,10 @@
 
 // 0x18-byte elements of the table at member 0 of Unk02029930.
 typedef struct Unk02029930_00 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 00 */ s32 mCharacterIndex;
+    /* 04 */ s32 mKartIndex;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+    /* 0c */ s32 mTeamIndex;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
 } Unk02029930_00;
@@ -25,25 +25,26 @@ typedef struct Unk02029930_00 {
 typedef struct Unk02029930 {
     /* 00 */ Unk02029930_00 mUnk_00[8];
     /* c0 */ s32 mUnk_c0;
-    /* c4 */ s32 mUnk_c4;
+    /* c4 */ s32 mKartCount;
     /* c8 */ s32 mUnk_c8;
     /* cc */ s32 mUnk_cc;
-    /* d0 */ s32 mUnk_d0;
+    /* d0 */ s32 mCourseId;
     /* d4 */ s32 mUnk_d4;
     /* d8 */ s32 mUnk_d8;
-    /* dc */ s32 mUnk_dc;
+    /* dc */ s32 mUseTeams;
     /* e0 */ s32 mUnk_e0;
     /* e4 */ s32 mUnk_e4;
     /* e8 */ u16 mUnk_e8;
     /* ea */ u8 mUnk_ea[2];
     /* ec */ s32 mUnk_ec;
-    /* f0 */ s32 mUnk_f0;
-    /* f4 */ u8 *mUnk_f4;
-    /* f8 */ Unk02029930_f8 *mUnk_f8;
-    /* fc */ s8 mUnk_fc;
-    /* fd */ s8 mUnk_fd;
+    /* f0 */ s32 mCourseListMode;
+    /* f4 */ u8 *mMissionFile;
+    /* f8 */ Unk02029930_f8 *mMissionFileRows;
+    /* fc */ s8 mMissionTableRow;
+    /* fd */ s8 mMissionTableColumn;
     /* fe */ u8 mUnk_fe[6];
-    /* 104 */ u16 mUnk_104;
+    // Set by func_02029468 from the mission table cell value minus 1: a 0-based position in mMissionFileRows.
+    /* 104 */ u16 mMissionFileRowIndex;
     /* 106 */ u8 mUnk_106[2];
     /* 108 */ s32 mUnk_108;
 } Unk02029930;

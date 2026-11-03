@@ -17,8 +17,8 @@ void func_020296f4(void) {
     for (i = 0; i < 4; i++) {
         if (func_021227f8(i) != 0) {
             j = func_02122778(i);
-            data_02174e1c->mUnk_00[j].mUnk_00 = data_0217b488->mUnk_20[i].mUnk_00;
-            data_02174e1c->mUnk_00[j].mUnk_04 = data_0217b488->mUnk_20[i].mUnk_04;
+            data_02174e1c->mUnk_00[j].mCharacterIndex = data_0217b488->mUnk_20[i].mUnk_00;
+            data_02174e1c->mUnk_00[j].mKartIndex = data_0217b488->mUnk_20[i].mUnk_04;
             data_02174e1c->mUnk_00[j].mUnk_08 = data_0217b488->mUnk_20[i].mUnk_08;
         }
     }
@@ -30,8 +30,8 @@ void func_02029758(void) {
     for (i = 0; i < 4; i++) {
         if (func_02122794(i) != 0) {
             j = func_02122734(i);
-            data_0217b488->mUnk_20[j].mUnk_00 = data_02174e1c->mUnk_00[i].mUnk_00;
-            data_0217b488->mUnk_20[j].mUnk_04 = data_02174e1c->mUnk_00[i].mUnk_04;
+            data_0217b488->mUnk_20[j].mUnk_00 = data_02174e1c->mUnk_00[i].mCharacterIndex;
+            data_0217b488->mUnk_20[j].mUnk_04 = data_02174e1c->mUnk_00[i].mKartIndex;
             data_0217b488->mUnk_20[j].mUnk_08 = data_02174e1c->mUnk_00[i].mUnk_08;
         }
     }
@@ -45,7 +45,7 @@ void func_020297bc(void) {
     func_0202991c(0);
     for (b = 0; b < 4; b++) {
         if (func_02122794((u8) b) != 0) {
-            func_020468b0(a, data_02174e1c->mUnk_00[b].mUnk_00, data_02174e1c->mUnk_00[b].mUnk_04,
+            func_020468b0(a, data_02174e1c->mUnk_00[b].mCharacterIndex, data_02174e1c->mUnk_00[b].mKartIndex,
                           data_02174e1c->mUnk_00[b].mUnk_08, -1, 3);
             a++;
         }
@@ -54,7 +54,7 @@ void func_020297bc(void) {
         func_020468b0(a, -1, -1, 4, -1, 3);
     }
     func_02029908(5);
-    func_020298f4(data_02174e1c->mUnk_d0);
+    func_020298f4(data_02174e1c->mCourseId);
     func_020298e0(1);
     func_020298cc(0);
     func_020298b8(0);

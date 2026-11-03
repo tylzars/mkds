@@ -4,15 +4,15 @@
 #pragma thumb on
 
 u32 func_020296e4(void) {
-    return ((u32) data_02174e1c->mUnk_d0);
+    return ((u32) data_02174e1c->mCourseId);
 }
 
 u32 func_020296d4(u16 p0) {
-    return ((u32) data_02174e1c->mUnk_00[p0].mUnk_00);
+    return ((u32) data_02174e1c->mUnk_00[p0].mCharacterIndex);
 }
 
 u32 func_020296c0(u16 p0) {
-    return ((u32) data_02174e1c->mUnk_00[p0].mUnk_04);
+    return ((u32) data_02174e1c->mUnk_00[p0].mKartIndex);
 }
 
 u32 func_020296ac(u16 p0) {
@@ -36,7 +36,7 @@ u32 func_0202966c(void) {
 }
 
 u32 func_0202965c(void) {
-    return ((u32) data_02174e1c->mUnk_f0);
+    return ((u32) data_02174e1c->mCourseListMode);
 }
 
 u32 func_0202964c(void) {
@@ -48,19 +48,19 @@ u32 func_0202963c(void) {
 }
 
 u32 func_0202962c(void) {
-    return ((u32) data_02174e1c->mUnk_dc);
+    return ((u32) data_02174e1c->mUseTeams);
 }
 
 u32 func_02029618(u16 p0) {
-    return ((u32) data_02174e1c->mUnk_00[p0].mUnk_0c);
+    return ((u32) data_02174e1c->mUnk_00[p0].mTeamIndex);
 }
 
 u32 func_02029608(void) {
-    return ((u32) data_02174e1c->mUnk_fc);
+    return ((u32) data_02174e1c->mMissionTableRow);
 }
 
 u32 func_020295f8(void) {
-    return ((u32) data_02174e1c->mUnk_fd);
+    return ((u32) data_02174e1c->mMissionTableColumn);
 }
 
 u32 func_020295e4(void) {
@@ -88,7 +88,7 @@ void func_02029590(u32 p0) {
 }
 
 void func_02029580(u32 p0) {
-    data_02174e1c->mUnk_d0 = p0;
+    data_02174e1c->mCourseId = p0;
 }
 
 void func_02029570(u32 p0) {
@@ -96,7 +96,7 @@ void func_02029570(u32 p0) {
 }
 
 void func_02029560(u32 p0) {
-    data_02174e1c->mUnk_f0 = p0;
+    data_02174e1c->mCourseListMode = p0;
 }
 
 void func_02029550(u16 p0) {
@@ -108,11 +108,11 @@ void func_02029540(u32 p0) {
 }
 
 void func_02029530(void) {
-    data_02174e1c->mUnk_dc = 1;
+    data_02174e1c->mUseTeams = 1;
 }
 
 void func_02029520(void) {
-    data_02174e1c->mUnk_dc = 0;
+    data_02174e1c->mUseTeams = 0;
 }
 
 #pragma thumb off
@@ -120,15 +120,15 @@ void func_02029520(void) {
 #pragma thumb on
 
 void func_0202950c(u16 a, u32 b) {
-    data_02174e1c->mUnk_00[a].mUnk_0c = b;
+    data_02174e1c->mUnk_00[a].mTeamIndex = b;
 }
 
 void func_020294fc(u16 a, u32 b) {
-    data_02174e1c->mUnk_00[a].mUnk_00 = b;
+    data_02174e1c->mUnk_00[a].mCharacterIndex = b;
 }
 
 void func_020294e8(u16 a, u32 b) {
-    data_02174e1c->mUnk_00[a].mUnk_04 = b;
+    data_02174e1c->mUnk_00[a].mKartIndex = b;
 }
 
 void func_020294d4(u16 a, u32 b) {
@@ -152,15 +152,15 @@ void func_0202949c(u32 p0) {
 }
 
 void func_0202948c(u32 p0) {
-    data_02174e1c->mUnk_fc = (u8) p0;
+    data_02174e1c->mMissionTableRow = (u8) p0;
 }
 
 void func_0202947c(u32 p0) {
-    data_02174e1c->mUnk_fd = (u8) p0;
+    data_02174e1c->mMissionTableColumn = (u8) p0;
 }
 
 void func_02029468(u32 p0) {
-    data_02174e1c->mUnk_104 = (u16) p0;
+    data_02174e1c->mMissionFileRowIndex = (u16) p0;
 }
 
 void func_02029454(u32 p0) {

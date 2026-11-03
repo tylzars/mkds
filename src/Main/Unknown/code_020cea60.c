@@ -18,7 +18,7 @@ void func_020cea60(void) {
         case 3:
         case 4:
         case 5:
-            func_02029930()->mUnk_d0 = t[a];
+            func_02029930()->mCourseId = t[a];
             func_020ccc74(0x1d, 0x1f);
             break;
         case -3:

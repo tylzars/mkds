@@ -277,7 +277,7 @@ void func_02044380(Unk02029930_f8 *a, u32 b, u32 c) {
     data_021759c0->mUnk_1e8.mMissionTableRow = b;
     data_021759c0->mUnk_1e8.mMissionTableColumn = c;
     data_021759c0->mUnk_1e8.mUnk_08 = 4;
-    data_021759c0->mUnk_1e8.mCourseId = a->mUnk_08;
+    data_021759c0->mUnk_1e8.mCourseId = a->mCourseId;
     data_021759c0->mUnk_1e8.mUnk_57 = (a->mUnk_1c & 0x10) != 0 ? 1 : 0;
     data_021759c0->mUnk_1e8.mUseTeams = 0;
     data_021759c0->mUnk_1e8.mUnk_1c = 0;
@@ -285,9 +285,9 @@ void func_02044380(Unk02029930_f8 *a, u32 b, u32 c) {
     data_021759c0->mUnk_1e8.mUnk_18 = 0;
     data_021759c0->mUnk_3d8 = 0;
     data_021759c0->mUnk_1e8.mUnk_10 = a->mUnk_09;
-    func_020468b0(0, a->mUnk_0a, a->mUnk_0b, 0, -1, 3);
-    if (a->mUnk_1e != 0xff && a->mUnk_1f != 0xff) {
-        func_020468b0(1, a->mUnk_1e, a->mUnk_1f, 1, -1, 3);
+    func_020468b0(0, a->mCharacterIndex0, a->mKartIndex0, 0, -1, 3);
+    if (a->mCharacterIndex1 != 0xff && a->mKartIndex1 != 0xff) {
+        func_020468b0(1, a->mCharacterIndex1, a->mKartIndex1, 1, -1, 3);
         data_021759c0->mUnk_1e8.mUnk_14 = 2;
     } else {
         func_020468b0(1, -1, -1, 4, -1, 3);

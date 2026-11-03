@@ -14,8 +14,8 @@ void func_020ccab0(void) {
         if (func_02029930()->mUnk_c0 == 0 && func_02029930()->mUnk_00[i].mUnk_08 == 1) {
             func_020ccb48(i);
         } else {
-            a = func_02029930()->mUnk_dc != 0 ? func_02029930()->mUnk_00[i].mUnk_0c : -1;
-            func_020468b0(i, func_02029930()->mUnk_00[i].mUnk_00, func_02029930()->mUnk_00[i].mUnk_04,
+            a = func_02029930()->mUseTeams != 0 ? func_02029930()->mUnk_00[i].mTeamIndex : -1;
+            func_020468b0(i, func_02029930()->mUnk_00[i].mCharacterIndex, func_02029930()->mUnk_00[i].mKartIndex,
                           func_02029930()->mUnk_00[i].mUnk_08, a, func_02029930()->mUnk_00[i].mUnk_10);
         }
     }

@@ -38,9 +38,9 @@ void func_02123a48(u32 a) {
                     data_0217d384->mUnk_021c[i].mUnk_23c = data_0217aa08->mUnk_00->mUnk_34[5];
                     func_02029930()->mUnk_00[i].mUnk_08 = 0;
                 }
-                func_02029930()->mUnk_00[i].mUnk_00 = -1;
-                func_02029930()->mUnk_00[i].mUnk_04 = -1;
-                func_02029930()->mUnk_d0 = 0;
+                func_02029930()->mUnk_00[i].mCharacterIndex = -1;
+                func_02029930()->mUnk_00[i].mKartIndex = -1;
+                func_02029930()->mCourseId = 0;
                 data_0217d384->mUnk_1e10[i].mUnk_30 = -1;
                 data_0217d384->mUnk_1e10[i].mUnk_34 = -1;
                 data_0217d384->mUnk_1e10[i].mUnk_38 = 0;
@@ -75,7 +75,7 @@ void func_02123a48(u32 a) {
                 if (i != func_ov000_0219bb50() && (data_0217d384->mUnk_1f55 & (1 << i)) != 0) {
                     func_ov000_021a3264(i, &data_0217d384->mUnk_1d00[i], 0x44);
                 }
-                func_02029930()->mUnk_d0 = 0;
+                func_02029930()->mCourseId = 0;
                 data_0217d384->mUnk_1e10[i].mUnk_38 = 0;
                 data_0217d384->mUnk_1d00[i].mUnk_38 = 0;
             }
@@ -102,9 +102,9 @@ void func_02123a48(u32 a) {
                 data_0217d384->mUnk_1980 = 0;
                 data_0217d384->mUnk_19aa = 0;
                 data_0217d384->mUnk_19ab = 0;
-                func_02029930()->mUnk_00[i].mUnk_00 = -1;
-                func_02029930()->mUnk_00[i].mUnk_04 = -1;
-                func_02029930()->mUnk_d0 = 0;
+                func_02029930()->mUnk_00[i].mCharacterIndex = -1;
+                func_02029930()->mUnk_00[i].mKartIndex = -1;
+                func_02029930()->mCourseId = 0;
                 data_0217d384->mUnk_1e10[i].mUnk_30 = -1;
                 data_0217d384->mUnk_1e10[i].mUnk_34 = -1;
                 data_0217d384->mUnk_1e10[i].mUnk_38 = 0;
@@ -468,7 +468,7 @@ void func_02122d74(void) {
         data_0217d384->mUnk_1e10[c].mUnk_0c[i] = data_0217d384->mUnk_1e10[i].mUnk_30;
     }
     c = func_ov000_0219bb50();
-    data_0217d384->mUnk_1e10[c].mUnk_2c = func_02029930()->mUnk_d0;
+    data_0217d384->mUnk_1e10[c].mUnk_2c = func_02029930()->mCourseId;
     data_0217d384->mUnk_1950 = 9;
     data_0217d384->mUnk_1980 = 0;
 }

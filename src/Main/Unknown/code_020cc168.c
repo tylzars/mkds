@@ -38,20 +38,20 @@ void func_020cc3e8(void) {
     u16 i;
 
     for (i = 0; i < 8; i++) {
-        func_02029930()->mUnk_00[i].mUnk_00 = func_020cc728(i);
-        func_02029930()->mUnk_00[i].mUnk_04 = func_020cc70c(i);
+        func_02029930()->mUnk_00[i].mCharacterIndex = func_020cc728(i);
+        func_02029930()->mUnk_00[i].mKartIndex = func_020cc70c(i);
         func_02029930()->mUnk_00[i].mUnk_08 = func_020cc6f0(i);
         if (func_020cc6dc() != 0) {
-            func_02029930()->mUnk_00[i].mUnk_0c = func_020cc6c0(i);
+            func_02029930()->mUnk_00[i].mTeamIndex = func_020cc6c0(i);
         } else {
-            func_02029930()->mUnk_00[i].mUnk_0c = -1;
+            func_02029930()->mUnk_00[i].mTeamIndex = -1;
         }
         func_02029930()->mUnk_00[i].mUnk_10 = func_020cc6a4(i);
         func_02029930()->mUnk_00[i].mUnk_14 = 0;
     }
     func_02029930()->mUnk_cc = func_020cc690();
     func_02029930()->mUnk_c0 = func_020cc67c();
-    func_02029930()->mUnk_c4 = func_020cc668();
+    func_02029930()->mKartCount = func_020cc668();
     if (func_020cae54() != 0) {
         u32 v;
 
@@ -72,20 +72,20 @@ void func_020cc3e8(void) {
         func_02029930()->mUnk_c8 = func_020cc654();
     }
     if (func_020cae38() != 0) {
-        func_02029930()->mUnk_d0 = 10;
+        func_02029930()->mCourseId = 10;
     } else {
-        func_02029930()->mUnk_d0 = func_020cc640();
+        func_02029930()->mCourseId = func_020cc640();
     }
     func_02029930()->mUnk_d4 = func_020cc62c();
     func_02029930()->mUnk_d8 = func_020cc618();
-    func_02029930()->mUnk_dc = func_020cc6dc();
+    func_02029930()->mUseTeams = func_020cc6dc();
     func_02029930()->mUnk_e4 = func_020cc604();
     func_02029930()->mUnk_e4 = func_020cc604();
     func_02029930()->mUnk_e8 = func_020cc5ec();
     func_02029930()->mUnk_ec = func_020cc5d8();
     if (func_020cc654() == 4) {
-        func_02029930()->mUnk_fc = func_020cc5b8();
-        func_02029930()->mUnk_fd = func_020cc598();
+        func_02029930()->mMissionTableRow = func_020cc5b8();
+        func_02029930()->mMissionTableColumn = func_020cc598();
     }
 }
 

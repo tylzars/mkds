@@ -156,7 +156,7 @@ int AdvanceSelectKart(void) {
             if (d->mUnk_090 >= 5) {
                 switch (d->mUnk_0fc) {
                     case 0:
-                        func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mUnk_04 = d->mUnk_0a8;
+                        func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mKartIndex = d->mUnk_0a8;
                         func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mUnk_14 = 1;
                         func_02116ef8();
                         gSelectKart->mUnk_094 = 6;
