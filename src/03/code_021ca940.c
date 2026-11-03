@@ -81,17 +81,18 @@ void func_ov003_021cafa4(void) {
     int v1;
     u32 v2;
     int v3;
+    u8 *v4;
     v2 = 0;
-    v3 = (((u32) (&data_ov003_021d6508)));
+    v4 = data_ov003_021d6508;
     do {
-        v1 = func_ov003_021d2a34((const Unk021d299c *) (u16 *) ((u16 *) (u32) (v3)));
+        v1 = func_ov003_021d2a34((const Unk021d299c *) v4);
         if (v1 != 0) {
             func_ov003_021bf31c((u8) (1));
             *(u8 *) &data_ov003_021da230 = (s8) v2;
             func_ov003_021caca8();
             return;
         }
-        v3 = v3 + 8;
+        v4 = v4 + 8;
         v2 = v2 + 1;
     } while (v2 < 7);
     v3 = func_ov003_021d2b04(1);

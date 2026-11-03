@@ -14,10 +14,10 @@ void func_ov003_021d2f78(void) {
     func_ov003_021d2808(&data_ov003_021da2f0);
 }
 
-u32 func_ov003_021d2f44(int a, u32 b) {
-    u32 v1;
-    v1 = (u32) func_ov003_021d1cd4((Unk021d1d88 *) (data_ov003_021da2f0->mUnk_800[a]));
-    func_0214d02c((u32 *) ((u32 *) b), (u32 *) ((u32 *) v1), 8);
+u8 *func_ov003_021d2f44(int a, u8 *b) {
+    u8 *v1;
+    v1 = func_ov003_021d1cd4(data_ov003_021da2f0->mUnk_800[a]);
+    func_0214d02c(b, v1, 8);
     return v1;
 }
 

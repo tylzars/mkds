@@ -36,9 +36,9 @@ void func_ov003_021d1c3c(u32 f, u32 g, u8 *h) {
 }
 
 void *func_ov003_021d1c18(u32 a, u32 b) {
-    u32 v1;
+    u8 *v1;
     u8 v2[8];
-    v1 = func_ov003_021d2f44(a, ((u32) (v2)));
-    func_ov003_021d1c3c(a, b, (u8 *) (v1));
-    return (void *) v1;
+    v1 = func_ov003_021d2f44(a, v2);
+    func_ov003_021d1c3c(a, b, v1);
+    return v1;
 }

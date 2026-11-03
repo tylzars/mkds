@@ -27,7 +27,7 @@ u32 func_02151804(u32 a) {
     return 0;
 }
 
-u32 func_02151794(int a, int *b, u32 c) {
+u32 func_02151794(int a, int *b, void *c) {
     int v1;
     int v2;
     int v3;
@@ -41,7 +41,7 @@ u32 func_02151794(int a, int *b, u32 c) {
         if (*v4 != 0) {
             do {
                 func_021511d8(v3, v2, (void *) a);
-                v1 = func_0215119c((const u8 *) a, v3, v2, (const u8 *) c);
+                v1 = func_0215119c((const u8 *) a, v3, v2, c);
             } while (v1 == 0);
         }
         v4 = v4 + 1;

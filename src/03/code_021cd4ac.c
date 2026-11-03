@@ -18,10 +18,10 @@
 #include "code_020205b0.h"
 
 void func_ov003_021cdb90(void) {
-    int v1;
-    v1 = (u32) func_ov003_021d285c((u32) (((u32) 0x000006f8u)), (u32) 0x20);
-    *(s32 *) &data_ov003_021da270 = v1;
-    func_02020720((u16 *) (v1 + 0x4f8), (u32) (((u32) 0x0000a001u)));
+    Unk021cd5e0 *v1;
+    v1 = func_ov003_021d285c(0x6f8, 0x20);
+    data_ov003_021da270 = v1;
+    func_02020720(&v1->mUnk_400.mUnk_f8, 0xa001);
     func_02151804((u32) data_ov003_021da270);
 }
 
@@ -42,8 +42,7 @@ void func_ov003_021cdb44(u32 a) {
 }
 
 void func_ov003_021cdb14(const u8 *a) {
-    func_0214d1fc(a, data_ov003_021da270->mUnk_400.mUnk_00.mUnk_40,
-                  (u32) 0x20);
+    func_0214d1fc(a, data_ov003_021da270->mUnk_400.mUnk_00.mUnk_40, (u32) 0x20);
     data_ov003_021da270->mUnk_400.mUnk_00.mUnk_e7 = 0;
 }
 

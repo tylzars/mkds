@@ -539,8 +539,8 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
                 b->mUnk_000.mUnk_10.y = ((s64) b->mUnk_000.mUnk_10.y * 0x1400) >> 12;
                 b->mUnk_000.mUnk_10.z = ((s64) b->mUnk_000.mUnk_10.z * 0x1400) >> 12;
             }
-            if (func_01ffdee4(&pos, NULL, 0, b->mUnk_000.mUnk_58.x, 1, b->mUnk_000.mUnk_64, &delta, &out1,
-                              (s32 *) &out2, &flags, NULL, NULL, NULL, NULL) != 0) {
+            if (func_01ffdee4(&pos, NULL, 0, b->mUnk_000.mUnk_58.x, 1, b->mUnk_000.mUnk_64, &delta, &out1, &out2,
+                              &flags, NULL, NULL, NULL, NULL) != 0) {
                 func_02148504(&b->mUnk_000.mUnk_04, &delta, &b->mUnk_000.mUnk_04);
                 if (flags & 0x214300) {
                     func_020eaa14(&b->mUnk_000.mUnk_10, &out2, 0x1000, 0x1000, 0xc00, &b->mUnk_000.mUnk_10);

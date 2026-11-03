@@ -67,7 +67,7 @@ void func_ov003_021cd338(s32 param_1) {
         }
     }
     e = func_ov003_021d285c(0x100, 0x20);
-    func_02151794((s32) data_ov003_021da270, d, (u32) e);
+    func_02151794((s32) data_ov003_021da270, d, e);
     func_ov003_021d2808(&e);
 }
 

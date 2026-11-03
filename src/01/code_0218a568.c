@@ -39,22 +39,22 @@ void func_ov001_0218ab04(Unk02188950 *a) {
 
 void func_ov001_0218aaac(Unk02188950 *a) {
     func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d30(a, (s32) (a->mUnk_0a0->mUnk_140), (s32) (a->mUnk_0a0->mUnk_144), (UnkFunc *) (0));
+    func_ov001_02188d30(a, a->mUnk_0a0->mUnk_140, a->mUnk_0a0->mUnk_144, NULL);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
-    func_ov001_02188e74(a, (s32) (a->mUnk_0a0->mUnk_148), func_ov001_0218b034);
+    func_ov001_02188e74(a, a->mUnk_0a0->mUnk_148, func_ov001_0218b034);
 }
 
 void func_ov001_0218aa34(Unk02188950 *a) {
     void *b;
 
-    if (func_ov001_02187c4c((s32) a) == 0) {
+    if (func_ov001_02187c4c(a) == 0) {
         b = func_020fd428();
         if (b != NULL) {
             func_ov001_02187c60(a, (void *) (b));
         }
     }
-    if (func_ov001_02187c4c((s32) a) != 0) {
+    if (func_ov001_02187c4c(a) != 0) {
         func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
         func_ov001_02188d30(a, (s32) (a->mUnk_0a0->mUnk_0d4), (s32) (a->mUnk_0a0->mUnk_0d8), (UnkFunc *) (0));
         func_ov001_02188cec(a, 0);
@@ -72,7 +72,7 @@ void func_ov001_0218a970(Unk02188950 *b) {
         func_ov001_02188d64(b, (s32) (b->mUnk_0a0->mUnk_104), (s32) (b->mUnk_0a0->mUnk_108));
         func_ov001_02188c48(b, b->mUnk_0a0->mUnk_0bc, b->mUnk_0a0->mUnk_0bc);
         func_ov001_02188998(b, (Vec3 *) (a + 0x80));
-        func_ov001_02188cec(b, (s32) (b->mUnk_0a0->mUnk_0b8));
+        func_ov001_02188cec(b, b->mUnk_0a0->mUnk_0b8);
         func_ov001_02188de0(b, (s32) (b->mUnk_0a0->mUnk_0cc), (s32) (b->mUnk_0a0->mUnk_0d0), (Vec3 *) (a + 0x80),
                             (UnkFunc *) &func_ov001_0218aa34);
         func_ov001_02188e24(b, (s32) (b->mUnk_0a0->mUnk_0c8), (UnkFunc *) (0));
@@ -83,7 +83,7 @@ void func_ov001_0218a970(Unk02188950 *b) {
 }
 
 void func_ov001_0218a910(Unk02188950 *a) {
-    if (func_ov001_02187c4c((s32) a) != 0) {
+    if (func_ov001_02187c4c(a) != 0) {
         func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
         func_ov001_02188d30(a, (s32) (a->mUnk_0a0->mUnk_0d4), (s32) (a->mUnk_0a0->mUnk_0d8), (UnkFunc *) (0));
         func_ov001_02188cec(a, 0);

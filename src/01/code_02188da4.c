@@ -9,7 +9,7 @@ void func_ov001_02188dcc(Unk02188950 *a, UnkFunc *b) {
     return;
 }
 
-void func_ov001_02188db8(Unk02188950 *a, UnkFunc *b) {
+void func_ov001_02188db8(Unk02188950 *a, void (*b)(Unk02188950 *)) {
     if (b == NULL) {
         b = (UnkFunc *) func_ov001_02188e88;
     }

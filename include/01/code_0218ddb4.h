@@ -55,4 +55,4 @@ s32 func_ov001_0218f634(Unk02188950 *a);
 s32 func_ov001_0218f688(Unk02188950 *a);
 void func_ov001_0218f6d8(Unk02188950 *a);
 void func_ov001_0218f724(Unk02188950 *b);
-void func_ov001_0218f850(int a);
+void func_ov001_0218f850(Unk02188950 *a);

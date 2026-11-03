@@ -4,7 +4,9 @@
 
 // Object at Unk0219b250::mUnk_1c and mUnk_20 (a 0x38-byte allocation).
 typedef struct Unk0219b250_Item {
-    /* 00 */ u8 mUnk_00[8];
+    /* 00 */ u8 mUnk_00[2];
+    /* 02 */ u16 mUnk_02;
+    /* 04 */ u8 mUnk_04[4];
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ u8 mUnk_10[0xa];

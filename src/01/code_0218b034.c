@@ -13,7 +13,7 @@
 void func_ov001_0218b1d8(Unk02188950 *a) {
     Vec3 vec;
 
-    if (func_ov001_02187c4c((s32) a)) {
+    if (func_ov001_02187c4c(a)) {
         vec.x = (s32) (((s64) a->mUnk_0a0->mUnk_134 * data_0215d4b4[((u16) a->mUnk_1a8 >> 4) * 2]) >> 12);
         vec.y = a->mUnk_0a0->mUnk_138;
         vec.z = (s32) (((s64) a->mUnk_0a0->mUnk_134 * data_0215d4b4[((u16) a->mUnk_1a8 >> 4) * 2 + 1]) >> 12);
