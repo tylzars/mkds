@@ -11010,8 +11010,8 @@ data_usa_0216ece4 kind:data(any) addr:0x0216ece4
 data_usa_0216ed04 kind:data(any) addr:0x0216ed04
 data_usa_0216ed5c kind:data(any) addr:0x0216ed5c
 data_usa_0216edd0 kind:data(any) addr:0x0216edd0
-data_usa_0216ee58 kind:data(any) addr:0x0216ee58
-data_usa_0216ee5c kind:data(any) addr:0x0216ee5c
+@1085 kind:data(any) addr:0x0216ee58 local
+@1086 kind:data(any) addr:0x0216ee5c local
 data_0216ee80 kind:data(any) addr:0x0216ee60
 data_0216ee88 kind:data(any) addr:0x0216ee68
 data_0216ee90 kind:data(any) addr:0x0216ee70
