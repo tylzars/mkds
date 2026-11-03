@@ -4,8 +4,8 @@
 
 void func_ov000_02187fb8(void) {
     if (data_ov000_021b4cb0 != NULL) {
-        if (data_ov000_021b4cac != NULL) {
-            func_ov000_02187274(data_ov000_021b4cac);
+        if (gHttp != NULL) {
+            func_ov000_02187274(gHttp);
         }
         func_ov000_02186474();
         if (data_ov000_021b4cb0->mUnk_11c.mUnk_6c != 0) {

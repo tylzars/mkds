@@ -13,49 +13,49 @@ u32 func_ov000_02186a84(u32 value) {
     return value;
 }
 
-u32 func_ov000_02186a38(Unk021868d0 *a, Unk02186998 *b, int c) {
+u32 InitHttpBuffer(Http *a, HttpBuffer *b, int c) {
     if (c == 0) {
         return 0;
     }
-    b->mUnk_00 = a->mUnk_014(data_ov000_021b1280, c);
-    if (b->mUnk_00 == NULL) {
+    b->mStart = a->mAllocate(data_ov000_021b1280, c);
+    if (b->mStart == NULL) {
         return 0;
     }
-    b->mUnk_04 = b->mUnk_00;
-    b->mUnk_0c = c;
-    b->mUnk_08 = b->mUnk_00 + b->mUnk_0c;
+    b->mCursor = b->mStart;
+    b->mSize = c;
+    b->mEnd = b->mStart + b->mSize;
     return 1;
 }
 
-void func_ov000_02186a10(Unk021868d0 *a, Unk02186998 *b) {
-    if (b->mUnk_00 != NULL) {
-        a->mUnk_018(data_ov000_021b1280, b->mUnk_00, 0);
+void FreeHttpBuffer(Http *a, HttpBuffer *b) {
+    if (b->mStart != NULL) {
+        a->mFree(data_ov000_021b1280, b->mStart, 0);
     }
     func_0214d168(b, 0, 0x10);
 }
 
-u32 func_ov000_02186998(Unk021868d0 *a, Unk02186998 *b, int c) {
+u32 GrowHttpBuffer(Http *a, HttpBuffer *b, int c) {
     char *v1;
     if (c <= 0) {
         return 0;
     }
-    v1 = a->mUnk_014(NULL, b->mUnk_0c + c);
+    v1 = a->mAllocate(NULL, b->mSize + c);
     if (v1 == NULL) {
         return 0;
     }
-    func_0214d1fc(b->mUnk_00, v1, b->mUnk_0c);
-    a->mUnk_018(NULL, b->mUnk_00, 0);
+    func_0214d1fc(b->mStart, v1, b->mSize);
+    a->mFree(NULL, b->mStart, 0);
     if (v1 == NULL) {
         return 0;
     }
-    b->mUnk_04 = b->mUnk_04 + (v1 - b->mUnk_00);
-    b->mUnk_0c = b->mUnk_0c + c;
-    b->mUnk_00 = v1;
-    b->mUnk_08 = v1 + b->mUnk_0c;
+    b->mCursor = b->mCursor + (v1 - b->mStart);
+    b->mSize = b->mSize + c;
+    b->mStart = v1;
+    b->mEnd = v1 + b->mSize;
     return 1;
 }
 
-BOOL func_ov000_021868d0(Unk021868d0 *a, const u8 *b) {
+BOOL func_ov000_021868d0(Http *a, const u8 *b) {
     u8 *p;
     if (strlen(b) >= 0x80) {
         return FALSE;
@@ -66,22 +66,22 @@ BOOL func_ov000_021868d0(Unk021868d0 *a, const u8 *b) {
     }
     p = (u8 *) strstr(a->mUnk_028, data_ov000_021b1268);
     if (p != NULL) {
-        a->mUnk_0a8 = a->mUnk_028 + 7;
-        a->mUnk_0b0 = 0;
+        a->mHost = a->mUnk_028 + 7;
+        a->mUseHttps = 0;
     } else {
         p = (u8 *) strstr(a->mUnk_028, data_ov000_021b1270);
         if (p == NULL) {
             return FALSE;
         }
-        a->mUnk_0a8 = p + 8;
-        a->mUnk_0b0 = 1;
+        a->mHost = p + 8;
+        a->mUseHttps = 1;
     }
-    p = (u8 *) strstr(a->mUnk_0a8, data_ov000_021b127c);
+    p = (u8 *) strstr(a->mHost, data_ov000_021b127c);
     if (p == NULL) {
-        a->mUnk_0ac = NULL;
+        a->mPath = NULL;
     } else {
         *p = 0;
-        a->mUnk_0ac = p + 1;
+        a->mPath = p + 1;
     }
     return TRUE;
 }

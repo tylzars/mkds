@@ -10,14 +10,14 @@
 #include "00/code_02186a9c.h"
 #include "00/code_02187490.h"
 
-// Object behind data_ov000_021b4cac.
+// Object behind gHttp.
 typedef struct Unk021b4cac {
     /* 000 */ u8 mUnk_000[0x24];
-    /* 024 */ s32 mUnk_024;
+    /* 024 */ s32 mResult;
     /* 028 */ u8 mUnk_028[0x910];
     /* 938 */ u32 mUnk_938;
     /* 93c */ u8 mUnk_93c[0x2c];
-    /* 968 */ u8 mUnk_968[0x6c];
+    /* 968 */ u8 mThread[0x6c];
     /* 9d4 */ s32 mUnk_9d4;
 } Unk021b4cac;
 

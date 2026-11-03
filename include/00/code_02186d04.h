@@ -3,15 +3,15 @@
 #include "types.h"
 #include "code_0200db4c.h"
 
-typedef struct Unk021868d0 Unk021868d0;
+typedef struct Http Http;
 typedef struct Unk0200edc0 Unk0200edc0;
 
 // Block of four words: mUnk_00 is the first byte, mUnk_04 the cursor, mUnk_08 the end, mUnk_0c the size.
 typedef struct Unk02186d7cBuf {
-    /* 00 */ u8 *mUnk_00;
-    /* 04 */ u8 *mUnk_04;
-    /* 08 */ u8 *mUnk_08;
-    /* 0c */ u32 mUnk_0c;
+    /* 00 */ u8 *mStart;
+    /* 04 */ u8 *mCursor;
+    /* 08 */ u8 *mEnd;
+    /* 0c */ u32 mSize;
 } Unk02186d7cBuf;
 
 // Object at p + 0x118 of an Unk02186d7c.
@@ -51,22 +51,22 @@ typedef struct Unk021873d4 {
 typedef struct Unk02186d7c {
     /* 000 */ u8 mUnk_00;
     /* 004 */ Unk021873d4 mUnk_04;
-    /* 024 */ s32 mUnk_24;
+    /* 024 */ s32 mResult;
     /* 028 */ u8 pad_028[0x80];
-    /* 0a8 */ u32 mUnk_a8;
+    /* 0a8 */ u32 mHost;
     /* 0ac */ u8 pad_0ac[4];
-    /* 0b0 */ s32 mUnk_b0;
+    /* 0b0 */ s32 mUseHttps;
     /* 0b4 */ Unk02186d7cB4 mUnk_b4;
     /* 118 */ Unk02186d7c118 mUnk_118;
-    /* 91c */ void *mUnk_91c;
-    /* 920 */ void *mUnk_920;
+    /* 91c */ void *mLowReceiveBuffer;
+    /* 920 */ void *mLowSendBuffer;
     /* 924 */ u8 pad_924[4];
-    /* 928 */ Unk02186d7cBuf mUnk_928;
-    /* 938 */ Unk02186d7cBuf mUnk_938;
+    /* 928 */ Unk02186d7cBuf mSendBuffer;
+    /* 938 */ Unk02186d7cBuf mReceiveBuffer;
     /* 948 */ Unk0200edc0 mUnk_948;
-    /* 960 */ s32 mUnk_960;
-    /* 964 */ const u8 *mUnk_964;
-    /* 968 */ Unk0200db5c mUnk_968;
+    /* 960 */ s32 mContentLength;
+    /* 964 */ const u8 *mBodyStart;
+    /* 968 */ Unk0200db5c mThread;
     /* a20 */ u8 pad_a20[8];
     /* a28 */ Unk0200edc0 mUnk_a28;
     /* a40 */ s32 mUnk_a40;
@@ -84,7 +84,7 @@ extern const char data_ov000_021b1370[];
 extern u8 data_ov000_021b1374[];
 extern u32 data_ov000_021b4ca8;
 
-void func_ov000_02186d04(Unk021868d0 *a);
+void ReleaseHttp(Http *a);
 void func_ov000_02186d7c(void *l);
 u32 func_ov000_02187230(Unk02186d7c *a);
 void func_ov000_02187274(Unk02186d7c *p);

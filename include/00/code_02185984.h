@@ -38,7 +38,7 @@ typedef struct Unk02185984 {
     /* 1c9 */ u8 pad_1c9[3];
     /* 1cc */ Unk02186560 mUnk_1cc;
     /* 1f8 */ Unk021868a4Entry mUnk_1f8[0x20];
-    /* 2f8 */ Unk021868d0 *mUnk_2f8;
+    /* 2f8 */ Http *mUnk_2f8;
     /* 2fc */ Unk0200db5c mUnk_2fc;
     /* 3b4 */ u8 pad_3b4[8];
     /* 3bc */ Unk0200edc0 mUnk_3bc;
@@ -71,7 +71,7 @@ extern Unk021b4c94 data_ov000_021b4c94;
 // Declared here until the code that defines them is decompiled.
 void func_ov000_02185954(s32 a);
 
-u32 func_ov000_02185984(Unk021868d0 *a, const u8 *b, const u8 *c, Unk021868a4Entry *d, s32 e, s32 f);
+u32 func_ov000_02185984(Http *a, const u8 *b, const u8 *c, Unk021868a4Entry *d, s32 e, s32 f);
 s32 func_ov000_02185d54(void);
 s32 func_ov000_02185ef4(void);
 void func_ov000_021860ac(void *param_1);
@@ -82,4 +82,4 @@ void func_ov000_02186404(void);
 void func_ov000_02186430(void);
 void func_ov000_02186474(void);
 void func_ov000_021864e0(void);
-s32 func_ov000_02186560(Unk02186560 *a, Unk021868d0 *b);
+s32 func_ov000_02186560(Unk02186560 *a, Http *b);

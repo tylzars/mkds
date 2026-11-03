@@ -27,36 +27,36 @@
 
 s32 func_ov000_021873d4(Unk02186d7c *p, const Unk021873d4 *q) {
     func_0214d168(p, 0, 0x1a60);
-    p->mUnk_960 = -1;
+    p->mContentLength = -1;
     p->mUnk_04 = *q;
-    p->mUnk_91c = p->mUnk_04.mUnk_10(data_ov000_021b1320, 0xb68);
-    if (p->mUnk_91c == NULL) {
-        p->mUnk_24 = 1;
+    p->mLowReceiveBuffer = p->mUnk_04.mUnk_10(data_ov000_021b1320, 0xb68);
+    if (p->mLowReceiveBuffer == NULL) {
+        p->mResult = 1;
         return 1;
     }
-    p->mUnk_920 = p->mUnk_04.mUnk_10(data_ov000_021b1334, 0x5ea);
-    if (p->mUnk_920 == NULL) {
-        p->mUnk_24 = 1;
+    p->mLowSendBuffer = p->mUnk_04.mUnk_10(data_ov000_021b1334, 0x5ea);
+    if (p->mLowSendBuffer == NULL) {
+        p->mResult = 1;
         return 1;
     }
-    func_ov000_021868d0((Unk021868d0 *) p, (const u8 *) q->mUnk_00);
-    p->mUnk_24 = func_ov000_02186c74((Unk021868d0 *) p);
-    if (p->mUnk_24 == 0) {
+    func_ov000_021868d0((Http *) p, (const u8 *) q->mUnk_00);
+    p->mResult = func_ov000_02186c74((Http *) p);
+    if (p->mResult == 0) {
         p->mUnk_00 = 0xff;
     }
-    return p->mUnk_24;
+    return p->mResult;
 }
 
 u32 func_ov000_0218735c(Unk02186d7c *p) {
     char v1[8];
     u32 n;
-    if (func_ov000_02186bd4((Unk021868d0 *) p, data_ov000_021b135c, data_ov000_021b1368) != 0) {
+    if (func_ov000_02186bd4((Http *) p, data_ov000_021b135c, data_ov000_021b1368) != 0) {
         return 1;
     }
-    n = strlen(strstr(p->mUnk_928.mUnk_00, data_ov000_021b1230) + 4);
+    n = strlen(strstr(p->mSendBuffer.mStart, data_ov000_021b1230) + 4);
     if (n != 0) {
         func_0200d9e0(v1, 7, data_ov000_021b1370, n);
-        if (func_ov000_02186bd4((Unk021868d0 *) p, data_ov000_021b1374, (const u8 *) v1) != 0) {
+        if (func_ov000_02186bd4((Http *) p, data_ov000_021b1374, (const u8 *) v1) != 0) {
             return 1;
         }
     }
@@ -74,9 +74,9 @@ void func_ov000_021872bc(Unk02186d7c *p) {
     } else {
         data_ov000_021b4ca8 = 0;
     }
-    if (p->mUnk_968.mUnk_6c == 0 || func_0200e070(&p->mUnk_968) != 0) {
-        func_0200e28c(&p->mUnk_968, func_ov000_02186d7c, p, p->mUnk_1a60, 0x1000, n - 1);
-        func_0200df68(&p->mUnk_968);
+    if (p->mThread.mUnk_6c == 0 || func_0200e070(&p->mThread) != 0) {
+        func_0200e28c(&p->mThread, func_ov000_02186d7c, p, p->mUnk_1a60, 0x1000, n - 1);
+        func_0200df68(&p->mThread);
     }
 }
 
@@ -85,8 +85,8 @@ void func_ov000_02187274(Unk02186d7c *p) {
         func_0200ed34(&p->mUnk_a28);
         p->mUnk_a40 = 1;
         func_0200ecc4(&p->mUnk_a28);
-        if (p->mUnk_968.mUnk_6c != 0) {
-            func_0200e084(&p->mUnk_968);
+        if (p->mThread.mUnk_6c != 0) {
+            func_0200e084(&p->mThread);
         }
     }
 }
@@ -127,27 +127,27 @@ void func_ov000_02186d7c(void *l) {
     f = 0;
     a = &p->mUnk_b4;
     b = &p->mUnk_118;
-    c = &p->mUnk_938;
+    c = &p->mReceiveBuffer;
     d = p->mUnk_04.mUnk_1c;
     if (d <= 0) {
         d = 60000;
     }
     func_0214d168(a, 0, 0x64);
     a->mUnk_3c = 0xb68;
-    a->mUnk_40 = p->mUnk_91c;
+    a->mUnk_40 = p->mLowReceiveBuffer;
     a->mUnk_48 = 0x5ea;
-    a->mUnk_4c = p->mUnk_920;
+    a->mUnk_4c = p->mLowSendBuffer;
     func_ov000_021ae304((void *) a);
-    g = func_ov000_021acef8((const char *) p->mUnk_a8);
+    g = func_ov000_021acef8((const char *) p->mHost);
     if (g == 0) {
-        p->mUnk_24 = 2;
+        p->mResult = 2;
         return;
     }
     func_ov000_021ae270();
-    if (p->mUnk_b0 == 1) {
+    if (p->mUseHttps == 1) {
         func_0214d168(b, 0, 0x804);
         b->mUnk_7e4 = func_ov000_02186a84;
-        b->mUnk_7d4 = p->mUnk_a8;
+        b->mUnk_7d4 = p->mHost;
         a->mUnk_0c = b;
         func_ov000_021ab594((u32) data_ov000_021b1204, 0xb);
         func_ov000_021a9200(1);
@@ -157,77 +157,77 @@ void func_ov000_02186d7c(void *l) {
     }
     func_ov000_021ae290(0, h, g);
     t0 = func_0200f5ac();
-    if (p->mUnk_b0 == 1) {
+    if (p->mUseHttps == 1) {
         func_0201000c(&v1);
         func_ov000_021a9c5c(&v1, 0x20);
         t1 = t0;
     }
     if (func_ov000_021ae134() != 0) {
-        p->mUnk_24 = 3;
+        p->mResult = 3;
         func_ov000_021ae258();
         func_ov000_021ae2f4();
         return;
     }
-    p->mUnk_928.mUnk_04 = p->mUnk_928.mUnk_00;
-    s = p->mUnk_928.mUnk_00;
-    p->mUnk_928.mUnk_08 = s + strlen(s);
-    while (p->mUnk_928.mUnk_04 < p->mUnk_928.mUnk_08) {
+    p->mSendBuffer.mCursor = p->mSendBuffer.mStart;
+    s = p->mSendBuffer.mStart;
+    p->mSendBuffer.mEnd = s + strlen(s);
+    while (p->mSendBuffer.mCursor < p->mSendBuffer.mEnd) {
         if (data_ov000_021b63b4 == 0) {
-            p->mUnk_24 = 5;
+            p->mResult = 5;
             goto fail;
         }
-        n = p->mUnk_928.mUnk_08 - p->mUnk_928.mUnk_04;
+        n = p->mSendBuffer.mEnd - p->mSendBuffer.mCursor;
         if (n > 0x238) {
             n = 0x238;
         }
-        n = func_ov000_021adbf4(p->mUnk_928.mUnk_04, n);
+        n = func_ov000_021adbf4(p->mSendBuffer.mCursor, n);
         if (n <= 0) {
-            p->mUnk_24 = 5;
+            p->mResult = 5;
             goto fail;
         }
         func_ov000_021adb80();
         t = func_0200f5ac();
         if ((u64) d < (t - t0) * 64 / 0x82ea) {
-            p->mUnk_24 = 4;
+            p->mResult = 4;
             goto fail;
         }
-        if (p->mUnk_b0 == 1) {
+        if (p->mUseHttps == 1) {
             if (1000 < (t - t1) * 64 / 0x82ea) {
                 func_0201000c(&v1);
                 func_ov000_021a9c5c(&v1, 0x20);
                 t1 = t;
             }
         }
-        p->mUnk_928.mUnk_04 += n;
+        p->mSendBuffer.mCursor += n;
         if (func_ov000_02187230(p) == 0) {
-            p->mUnk_24 = 7;
+            p->mResult = 7;
             goto fail;
         }
     }
-    func_ov000_02186a10((Unk021868d0 *) p, (Unk02186998 *) &p->mUnk_928);
+    FreeHttpBuffer((Http *) p, (HttpBuffer *) &p->mSendBuffer);
     func_0200ed34(&p->mUnk_948);
     if (p->mUnk_04.mUnk_08 == NULL) {
-        if (func_ov000_02186a38((Unk021868d0 *) p, (Unk02186998 *) &p->mUnk_938, p->mUnk_04.mUnk_0c) == 0) {
-            p->mUnk_24 = 1;
+        if (InitHttpBuffer((Http *) p, (HttpBuffer *) &p->mReceiveBuffer, p->mUnk_04.mUnk_0c) == 0) {
+            p->mResult = 1;
             func_0200ecc4(&p->mUnk_948);
             goto fail;
         }
     } else {
-        p->mUnk_938.mUnk_00 = p->mUnk_04.mUnk_08;
-        p->mUnk_938.mUnk_04 = p->mUnk_938.mUnk_00;
-        p->mUnk_938.mUnk_08 = p->mUnk_938.mUnk_00 + p->mUnk_04.mUnk_0c;
-        p->mUnk_938.mUnk_0c = p->mUnk_04.mUnk_0c;
+        p->mReceiveBuffer.mStart = p->mUnk_04.mUnk_08;
+        p->mReceiveBuffer.mCursor = p->mReceiveBuffer.mStart;
+        p->mReceiveBuffer.mEnd = p->mReceiveBuffer.mStart + p->mUnk_04.mUnk_0c;
+        p->mReceiveBuffer.mSize = p->mUnk_04.mUnk_0c;
     }
-    c->mUnk_04 = c->mUnk_00;
-    c->mUnk_08 = c->mUnk_00 + c->mUnk_0c;
+    c->mCursor = c->mStart;
+    c->mEnd = c->mStart + c->mSize;
     func_0200ecc4(&p->mUnk_948);
     while (1) {
         if (data_ov000_021b63b4 == 0) {
-            p->mUnk_24 = 5;
+            p->mResult = 5;
             goto fail;
         }
         func_0200ed34(&p->mUnk_948);
-        if (c->mUnk_04 >= c->mUnk_08 - 1) {
+        if (c->mCursor >= c->mEnd - 1) {
             func_0200ecc4(&p->mUnk_948);
             break;
         }
@@ -238,26 +238,26 @@ void func_ov000_02186d7c(void *l) {
                 func_0200ecc4(&p->mUnk_948);
                 break;
             }
-            r = c->mUnk_08 - 1 - c->mUnk_04;
+            r = c->mEnd - 1 - c->mCursor;
             m = n;
             if ((s32) m >= r) {
                 m = r;
             }
-            func_0214d1fc(x, c->mUnk_04, m);
-            c->mUnk_04 += m;
-            *c->mUnk_04 = 0;
+            func_0214d1fc(x, c->mCursor, m);
+            c->mCursor += m;
+            *c->mCursor = 0;
             if (f != 1) {
-                s = c->mUnk_00;
+                s = c->mStart;
                 if (strstr(s, data_ov000_021b1230) != NULL) {
                     f = 1;
-                    p->mUnk_964 = strstr(s, data_ov000_021b1230) + 4;
-                    y = strstr(c->mUnk_00, data_ov000_021b1348);
+                    p->mBodyStart = strstr(s, data_ov000_021b1230) + 4;
+                    y = strstr(c->mStart, data_ov000_021b1348);
                     if (y != NULL) {
                         y = y + strlen(data_ov000_021b1348);
                         q = (s8 *) strstr(y, data_ov000_021b1258);
                         e = *q;
                         *q = 0;
-                        p->mUnk_960 = func_0213bf90(y);
+                        p->mContentLength = func_0213bf90(y);
                         *q = e;
                     }
                 }
@@ -273,17 +273,17 @@ void func_ov000_02186d7c(void *l) {
             func_0200ecc4(&p->mUnk_948);
             break;
         }
-        if (p->mUnk_960 > 0 && n > 0 && p->mUnk_964 + p->mUnk_960 <= c->mUnk_04) {
+        if (p->mContentLength > 0 && n > 0 && p->mBodyStart + p->mContentLength <= c->mCursor) {
             func_0200ecc4(&p->mUnk_948);
             break;
         }
         t = func_0200f5ac();
         if ((u64) d < (t - t0) * 64 / 0x82ea) {
-            p->mUnk_24 = 6;
+            p->mResult = 6;
             func_0200ecc4(&p->mUnk_948);
             goto fail;
         }
-        if (p->mUnk_b0 == 1) {
+        if (p->mUseHttps == 1) {
             if (1000 < (t - t1) * 64 / 0x82ea) {
                 func_0201000c(&v1);
                 func_ov000_021a9c5c(&v1, 0x20);
@@ -292,7 +292,7 @@ void func_ov000_02186d7c(void *l) {
         }
         func_0200ecc4(&p->mUnk_948);
         if (func_ov000_02187230(p) == 0) {
-            p->mUnk_24 = 7;
+            p->mResult = 7;
             goto fail;
         }
     }
@@ -300,7 +300,7 @@ void func_ov000_02186d7c(void *l) {
     func_ov000_021ae048();
     func_ov000_021ae258();
     func_ov000_021ae2f4();
-    p->mUnk_24 = 8;
+    p->mResult = 8;
     return;
 fail:
     func_ov000_021ae094();
@@ -309,19 +309,19 @@ fail:
     func_ov000_021ae2f4();
 }
 
-void func_ov000_02186d04(Unk021868d0 *a) {
+void ReleaseHttp(Http *a) {
     if (a != NULL) {
-        if (a->mUnk_00c == 0) {
-            func_ov000_02186a10(a, &a->mUnk_938);
+        if (a->mGivenReceiveBuffer == 0) {
+            FreeHttpBuffer(a, &a->mReceiveBuffer);
         }
-        func_ov000_02186a10(a, &a->mUnk_928);
-        if (a->mUnk_91c != NULL) {
-            a->mUnk_018(data_ov000_021b1320, a->mUnk_91c, 0);
-            a->mUnk_91c = NULL;
+        FreeHttpBuffer(a, &a->mSendBuffer);
+        if (a->mLowReceiveBuffer != NULL) {
+            a->mFree(data_ov000_021b1320, a->mLowReceiveBuffer, 0);
+            a->mLowReceiveBuffer = NULL;
         }
-        if (a->mUnk_920 != NULL) {
-            a->mUnk_018(data_ov000_021b1334, a->mUnk_920, 0);
-            a->mUnk_920 = NULL;
+        if (a->mLowSendBuffer != NULL) {
+            a->mFree(data_ov000_021b1334, a->mLowSendBuffer, 0);
+            a->mLowSendBuffer = NULL;
         }
         func_0214d168(a, 0, 0x1a60);
     }

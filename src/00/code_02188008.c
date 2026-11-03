@@ -21,10 +21,10 @@ void func_ov000_02188008(void) {
 }
 
 void func_ov000_02188068(void) {
-    if (data_ov000_021b4cac != NULL) {
-        func_ov000_02186d04((Unk021868d0 *) data_ov000_021b4cac);
-        data_ov000_021b4cb0->mUnk_108.mUnk_04(data_ov000_021b1474, data_ov000_021b4cac, 0);
-        data_ov000_021b4cac = NULL;
+    if (gHttp != NULL) {
+        ReleaseHttp((Http *) gHttp);
+        data_ov000_021b4cb0->mUnk_108.mUnk_04(data_ov000_021b1474, gHttp, 0);
+        gHttp = NULL;
     }
     func_ov000_02186430();
     if (data_ov000_021b4cb0 != NULL) {
@@ -52,11 +52,11 @@ u32 func_ov000_02188114(Unk02188114 *p) {
     func_0214d168(data_ov000_021b4cb0, 0, 0x1200);
     data_ov000_021b4cb0->mUnk_04 = -99999;
     data_ov000_021b4cb0->mUnk_108 = *p;
-    if (data_ov000_021b4cac != NULL) {
+    if (gHttp != NULL) {
         return 4;
     }
-    data_ov000_021b4cac = data_ov000_021b4cb0->mUnk_108.mUnk_00(data_ov000_021b1474, 0x1a60);
-    if (data_ov000_021b4cac == NULL) {
+    gHttp = data_ov000_021b4cb0->mUnk_108.mUnk_00(data_ov000_021b1474, 0x1a60);
+    if (gHttp == NULL) {
         return 4;
     }
     func_0200edc0(&data_ov000_021b4cb0->mUnk_1dc);
