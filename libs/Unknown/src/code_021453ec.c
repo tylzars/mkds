@@ -3,9 +3,6 @@
 #include "code_021445e0.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "code_0214259c.h"
-#include "code_02142ab8.h"
-#include "code_02142aa8.h"
-#include "code_02142c0c.h"
 #include "code_0214cfe4.h"
 
 u8 data_0217f960[0x80];

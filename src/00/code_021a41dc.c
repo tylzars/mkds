@@ -3,7 +3,7 @@
 #include "00/code_021a4654.h"
 #include "00/code_021a4b84.h"
 #include "00/unk_021b4000.h"
-#include "code_021384dc.h"
+#include "code_021384cc.h"
 #include "code_02139f70.h"
 
 void func_ov000_021a4418(Unk021a4a08 *a, Unk021a471c *b, const char *c, s32 d) {
