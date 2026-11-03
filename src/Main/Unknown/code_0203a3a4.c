@@ -192,7 +192,7 @@ u32 func_0203a4cc(void) {
 
 u16 func_0203a4a8(u32 a, u32 b) {
     u32 v;
-    v = data_02175628[a].mUnk_02;
+    v = data_02175628[a].mBits;
     return v & b;
 }
 
@@ -215,8 +215,8 @@ u32 func_0203a440(u32 a) {
     u16 x;
     r = 1;
     f = 0;
-    x = data_02175628[a].mUnk_4c;
-    if (x == 0 && data_02175628[a].mUnk_58 < 5) {
+    x = data_02175628[a].mHasPair;
+    if (x == 0 && data_02175628[a].mNoPairCount < 5) {
         f = 1;
     }
     if (f == 0 && x == 0) {
@@ -234,10 +234,10 @@ u32 func_0203a3cc(u32 a) {
     u32 f;
     r = 0;
     f = 0;
-    if (data_02175628[a].mUnk_4c == 0 && data_02175628[a].mUnk_58 < 5) {
+    if (data_02175628[a].mHasPair == 0 && data_02175628[a].mNoPairCount < 5) {
         f = 1;
     }
-    if (f == 0 && data_02175628[a].mUnk_54 == 0 && data_02175628[a].mUnk_4c != 0) {
+    if (f == 0 && data_02175628[a].mPrevHasPair == 0 && data_02175628[a].mHasPair != 0) {
         r = 1;
     }
     return r;

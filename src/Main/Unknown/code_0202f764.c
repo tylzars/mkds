@@ -236,11 +236,11 @@ s32 func_0202f764(Unk0202f764 *a) {
             v4 = -1;
             v5 = FALSE;
             v6 = FALSE;
-            v = data_02175628[v2].mUnk_4c;
-            if (v == 0 && data_02175628[v2].mUnk_58 < 5) {
+            v = data_02175628[v2].mHasPair;
+            if (v == 0 && data_02175628[v2].mNoPairCount < 5) {
                 v6 = TRUE;
             }
-            if (v6 == FALSE && data_02175628[v2].mUnk_54 == 0 && v != 0) {
+            if (v6 == FALSE && data_02175628[v2].mPrevHasPair == 0 && v != 0) {
                 v5 = TRUE;
             }
             if (v5 != FALSE) {

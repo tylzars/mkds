@@ -516,10 +516,10 @@ void AdvanceRecordGpxState2(void) {
     AdvanceRecordGpxOffsetTimers();
     x1 = TRUE;
     y1 = FALSE;
-    if (data_02175628[idx].mUnk_4c == 0 && data_02175628[idx].mUnk_58 < 5) {
+    if (data_02175628[idx].mHasPair == 0 && data_02175628[idx].mNoPairCount < 5) {
         y1 = TRUE;
     }
-    if (y1 == FALSE && data_02175628[idx].mUnk_4c == 0) {
+    if (y1 == FALSE && data_02175628[idx].mHasPair == 0) {
         x1 = FALSE;
     }
     if (x1 != FALSE) {
@@ -527,10 +527,10 @@ void AdvanceRecordGpxState2(void) {
     }
     x2 = FALSE;
     y2 = FALSE;
-    if (data_02175628[idx].mUnk_4c == 0 && data_02175628[idx].mUnk_58 < 5) {
+    if (data_02175628[idx].mHasPair == 0 && data_02175628[idx].mNoPairCount < 5) {
         y2 = TRUE;
     }
-    if (y2 == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
+    if (y2 == FALSE && data_02175628[idx].mPrevHasPair == 0 && data_02175628[idx].mHasPair != 0) {
         x2 = TRUE;
     }
     if (x2 != FALSE) {
@@ -545,10 +545,10 @@ void AdvanceRecordGpxState2(void) {
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
         x3 = FALSE;
         y3 = FALSE;
-        if (data_02175628[idx].mUnk_4c == 0 && data_02175628[idx].mUnk_58 < 5) {
+        if (data_02175628[idx].mHasPair == 0 && data_02175628[idx].mNoPairCount < 5) {
             y3 = TRUE;
         }
-        if (y3 == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
+        if (y3 == FALSE && data_02175628[idx].mPrevHasPair == 0 && data_02175628[idx].mHasPair != 0) {
             x3 = TRUE;
         }
         if (x3 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
@@ -562,7 +562,7 @@ void AdvanceRecordGpxState2(void) {
     return;
 next:
     if ((a == 0 && gRecordGpx->mUnk_88 != 0) || (b == 0 && gRecordGpx->mUnk_88 == 0) ||
-        (u16) (data_02175628[idx].mUnk_02 & 0x20) != 0) {
+        (u16) (data_02175628[idx].mBits & 0x20) != 0) {
         gRecordGpx->mUnk_7c = 1;
         gRecordGpx->mOffsetTimers[0] = 6;
         gRecordGpx->mUnk_88 = 1;
@@ -571,7 +571,7 @@ next:
         return;
     }
     if ((a == 1 && gRecordGpx->mUnk_8c != 0) || (b == 1 && gRecordGpx->mUnk_8c == 0) ||
-        (u16) (data_02175628[idx].mUnk_02 & 0x10) != 0) {
+        (u16) (data_02175628[idx].mBits & 0x10) != 0) {
         gRecordGpx->mUnk_7c = 0;
         gRecordGpx->mOffsetTimers[1] = 6;
         gRecordGpx->mUnk_8c = 1;

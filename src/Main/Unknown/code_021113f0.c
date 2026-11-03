@@ -230,7 +230,7 @@ void func_0211256c(void) {
     return;
 l1:
     if ((a == 10 && gRecordVS->mUnk_88 != 0) || (b == 10 && gRecordVS->mUnk_88 == 0) ||
-        (u16) (data_0217562a[i].mUnk_00 & 0x20) != 0) {
+        (u16) (data_0217562a[i].mBits & 0x20) != 0) {
         if (func_02113790() != 0) {
             return;
         }
@@ -245,7 +245,7 @@ l1:
         return;
     }
     if ((a == 11 && gRecordVS->mUnk_8c != 0) || (b == 11 && gRecordVS->mUnk_8c == 0) ||
-        (u16) (data_0217562a[i].mUnk_00 & 0x10) != 0) {
+        (u16) (data_0217562a[i].mBits & 0x10) != 0) {
         if (func_02113790() != 0) {
             return;
         }

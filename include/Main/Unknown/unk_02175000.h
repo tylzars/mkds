@@ -156,7 +156,7 @@ typedef struct Unk02175624 {
 extern Unk02175624 *data_02175624;
 // 0x5c-byte entries; func_020708a4 writes the halfword at 0x00 of entry Unk0206bcb0::mUnk_78.
 typedef struct Unk0217566a {
-    /* 00 */ u16 mUnk_00;
+    /* 00 */ u16 mBitMask;
     /* 02 */ u8 mUnk_02[0x5a];
 } Unk0217566a;
 

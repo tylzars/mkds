@@ -139,11 +139,11 @@ s32 func_02032280(void) {
             c = 0;
             f = FALSE;
             e = FALSE;
-            t = data_02175628[v1].mUnk_4c;
-            if (t == 0 && data_02175628[v1].mUnk_58 < 5) {
+            t = data_02175628[v1].mHasPair;
+            if (t == 0 && data_02175628[v1].mNoPairCount < 5) {
                 e = TRUE;
             }
-            if (e == FALSE && data_02175628[v1].mUnk_54 == 0 && t != 0) {
+            if (e == FALSE && data_02175628[v1].mPrevHasPair == 0 && t != 0) {
                 f = TRUE;
             }
             if (f != FALSE) {

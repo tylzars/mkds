@@ -541,7 +541,7 @@ void func_020732d8(Unk0206bcb0 *p) {
     enum { K0 } k;
 
     k = p->mUnk_78;
-    data_0217566a[k].mUnk_00 = 0xff7;
+    data_0217566a[k].mBitMask = 0xff7;
     if (p->mUnk_7c & 0x20) {
         func_02068b98(p);
         return;

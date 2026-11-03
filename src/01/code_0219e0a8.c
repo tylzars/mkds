@@ -221,11 +221,11 @@ void func_ov001_0219e1f8(void) {
         if (flags == 0) {
             a = FALSE;
             b = FALSE;
-            x = data_02175628[idx].mUnk_4c;
-            if (x == 0 && data_02175628[idx].mUnk_58 < 5) {
+            x = data_02175628[idx].mHasPair;
+            if (x == 0 && data_02175628[idx].mNoPairCount < 5) {
                 b = TRUE;
             }
-            if (b == FALSE && data_02175628[idx].mUnk_54 == 0 && x != 0) {
+            if (b == FALSE && data_02175628[idx].mPrevHasPair == 0 && x != 0) {
                 a = TRUE;
             }
             if (a == FALSE) {

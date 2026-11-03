@@ -341,11 +341,11 @@ void func_ov000_02181854(void) {
     if (func_02125fa4() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
             a = b = FALSE;
-            v = data_02175628[i].mUnk_4c;
-            if (v == 0 && data_02175628[i].mUnk_58 < 5) {
+            v = data_02175628[i].mHasPair;
+            if (v == 0 && data_02175628[i].mNoPairCount < 5) {
                 a = 1;
             }
-            if (a == 0 && data_02175628[i].mUnk_54 == 0 && v != 0) {
+            if (a == 0 && data_02175628[i].mPrevHasPair == 0 && v != 0) {
                 b = TRUE;
             }
             if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,

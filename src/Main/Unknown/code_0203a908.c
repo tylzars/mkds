@@ -40,8 +40,8 @@ static inline u32 func_0203a908_inline(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
     u32 b = 1;
     u32 c = 0;
-    u16 x = data_02175628[i].mUnk_4c;
-    if (x == 0 && data_02175628[i].mUnk_58 < 5) {
+    u16 x = data_02175628[i].mHasPair;
+    if (x == 0 && data_02175628[i].mNoPairCount < 5) {
         c = 1;
     }
     if (c == 0 && x == 0) {
@@ -265,7 +265,7 @@ u32 func_0203a908(u32 a) {
     r = 0;
     if (func_02056dec(t) != 0 && a > 0xb4) {
         Unk02175628Index i = UNK_02175628_INDEX_8;
-        if ((u16) (data_02175628[i].mUnk_02 & 0xc0f) != 0 || func_0203a908_inline() != 0) {
+        if ((u16) (data_02175628[i].mBits & 0xc0f) != 0 || func_0203a908_inline() != 0) {
             r = 1;
         }
     }

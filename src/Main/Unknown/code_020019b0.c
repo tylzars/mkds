@@ -129,7 +129,7 @@ void func_020019b0(void) {
         v2->mUnk_12 = 1;
     }
     v1 = func_020435bc();
-    if ((data_02175628[v1].mUnk_02 & 0xf03) != 0xf03) {
+    if ((data_02175628[v1].mBits & 0xf03) != 0xf03) {
         return;
     }
     data_usa_ov001_021a99c0->mUnk_2c_0 = 1;

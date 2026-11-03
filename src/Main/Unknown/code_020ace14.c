@@ -6,7 +6,7 @@
 
 u32 func_020ace8c(Unk02175628_48 *a) {
     if (func_020acebc((u32) a) == 0) {
-        if (a->mUnk_10 < 5) {
+        if (a->mNoPairCount < 5) {
             return 1;
         }
     }
@@ -14,7 +14,7 @@ u32 func_020ace8c(Unk02175628_48 *a) {
 }
 
 u32 func_020ace68(Unk02175628_48 *a) {
-    if (a->mUnk_0c == 0 && a->mUnk_04 != 0) {
+    if (a->mPrevHasPair == 0 && a->mHasPair != 0) {
         return 1;
     }
     return 0;

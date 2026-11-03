@@ -34,21 +34,21 @@ void func_020431e4(void) {
         p = &data_02175628[(u32) i];
         func_02039728(p);
         func_02039520(p, 0xff3, 0x1e, 0xa);
-        p->mUnk_3c = 0;
-        p->mUnk_40 = 0;
+        p->mSourceKind = 0;
+        p->mRequestedBits = 0;
         p->mUnk_44 = 0;
-        p->mUnk_42 = 0x2fff;
+        p->mBitMask = 0x2fff;
         func_0204a9e4((u32) &p->mUnk_28);
         func_020470c4((u32) &p->mUnk_48);
     }
-    data_02175628[8].mUnk_3c = 5;
-    data_02175628[9].mUnk_3c = 6;
+    data_02175628[8].mSourceKind = 5;
+    data_02175628[9].mSourceKind = 6;
     data_02175624->mUnk_08 = 0;
     data_02175624->mUnk_0c = 0;
     p = data_02175628;
     for (k = 0; k < 10; k++) {
         func_02039728(p);
-        p->mUnk_40 = 0;
+        p->mRequestedBits = 0;
         func_02039520(p, 0xff3, 0x1e, 0xa);
         p++;
     }
@@ -64,21 +64,21 @@ void func_020431e4(void) {
         if (t != FALSE) {
             if (j == q->mUnk_62) {
                 if (func_020431e4_inline(z) != 0) {
-                    data_02175628[w].mUnk_3c = 4;
+                    data_02175628[w].mSourceKind = 4;
                 } else if (q->mUnk_00c == 2) {
-                    data_02175628[w].mUnk_3c = 1;
+                    data_02175628[w].mSourceKind = 1;
                 } else {
-                    data_02175628[w].mUnk_3c = 2;
+                    data_02175628[w].mSourceKind = 2;
                 }
             } else if (s == 2) {
-                data_02175628[w].mUnk_3c = 1;
+                data_02175628[w].mSourceKind = 1;
             } else if (q->mUnk_08 == 5) {
-                data_02175628[w].mUnk_3c = 7;
+                data_02175628[w].mSourceKind = 7;
             } else {
-                data_02175628[w].mUnk_3c = 4;
+                data_02175628[w].mSourceKind = 4;
             }
         } else if (s == 1) {
-            data_02175628[w].mUnk_3c = 3;
+            data_02175628[w].mSourceKind = 3;
         }
     }
 }
@@ -93,10 +93,10 @@ void func_02043410(void) {
         p = &data_02175628[i];
         func_02039728(p);
         func_02039520(p, 0xff3, 0x1e, 0xa);
-        p->mUnk_3c = 0;
-        p->mUnk_40 = 0;
+        p->mSourceKind = 0;
+        p->mRequestedBits = 0;
         p->mUnk_44 = 0;
-        p->mUnk_42 = 0x2fff;
+        p->mBitMask = 0x2fff;
         func_0204a9e4((u32) &p->mUnk_28);
         func_020470c4((u32) &p->mUnk_48);
     }
@@ -104,7 +104,7 @@ void func_02043410(void) {
     if (func_020431e4_inline(z) != 0) {
         for (j = 0; j < 8; j++) {
             if (z->mUnk_15f6 & (1 << z->mUnk_1e8c[j])) {
-                data_02175628[j].mUnk_3c = 4;
+                data_02175628[j].mSourceKind = 4;
             }
         }
     }

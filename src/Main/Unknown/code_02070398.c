@@ -474,7 +474,7 @@ void func_020708a4(Unk0206bcb0 *p) {
         }
     }
 
-    data_0217566a[p->mUnk_78].mUnk_00 = 0xe04;
+    data_0217566a[p->mUnk_78].mBitMask = 0xe04;
     func_020397a8(&data_02154f7c, &e, &f);
     func_021484d0(&p->mUnk_80, &a, &g);
     g.y = 0;

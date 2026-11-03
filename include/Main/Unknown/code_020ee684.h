@@ -36,7 +36,7 @@ typedef struct Unk020ee684 {
 
 // Element of the table behind data_0217562a.
 typedef struct Unk0217562a {
-    /* 00 */ u16 mUnk_00;
+    /* 00 */ u16 mBits;
     /* 02 */ u8 mUnk_02[0x5a];
 } Unk0217562a;
 

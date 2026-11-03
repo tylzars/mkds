@@ -312,11 +312,11 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
     func_02025edc(&data_02174e40->mUnk_0cc);
     b = c;
     a = b;
-    x = data_02175628[e].mUnk_4c;
-    if (x == 0 && data_02175628[e].mUnk_58 < 5) {
+    x = data_02175628[e].mHasPair;
+    if (x == 0 && data_02175628[e].mNoPairCount < 5) {
         a = 1;
     }
-    if (a == 0 && data_02175628[e].mUnk_54 == 0 && x != 0) {
+    if (a == 0 && data_02175628[e].mPrevHasPair == 0 && x != 0) {
         b = 1;
     }
     if (b != 0) {

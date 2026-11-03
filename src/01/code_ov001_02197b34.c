@@ -214,10 +214,10 @@ void func_ov001_02197d58(void) {
     BOOL flag4;
     s32 flag3;
 
-    if (data_02175628[i].mUnk_4c == 0 && data_02175628[i].mUnk_58 < 5) {
+    if (data_02175628[i].mHasPair == 0 && data_02175628[i].mNoPairCount < 5) {
         flag1 = TRUE;
     }
-    if (flag1 == FALSE && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
+    if (flag1 == FALSE && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
         flag2 = TRUE;
     }
     if (flag2 != FALSE) {
@@ -227,10 +227,10 @@ void func_ov001_02197d58(void) {
     bits = e->mUnk_00 & 2;
     if ((u16) bits == 0) {
         flag3 = flag4 = FALSE;
-        if (data_02175628[i].mUnk_4c == 0 && data_02175628[i].mUnk_58 < 5) {
+        if (data_02175628[i].mHasPair == 0 && data_02175628[i].mNoPairCount < 5) {
             flag3 = 1;
         }
-        if (flag3 == 0 && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
+        if (flag3 == 0 && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
             flag4 = TRUE;
         }
         if (flag4 == FALSE ||

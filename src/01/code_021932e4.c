@@ -142,10 +142,10 @@ void func_ov001_02193774(void) {
     s32 old;
     s32 flagB;
 
-    if (data_02175628[idx].mUnk_4c == 0 && data_02175628[idx].mUnk_58 < 5) {
+    if (data_02175628[idx].mHasPair == 0 && data_02175628[idx].mNoPairCount < 5) {
         a = TRUE;
     }
-    if (a == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
+    if (a == FALSE && data_02175628[idx].mPrevHasPair == 0 && data_02175628[idx].mHasPair != 0) {
         b = TRUE;
     }
     if (b != FALSE) {
@@ -155,10 +155,10 @@ void func_ov001_02193774(void) {
     if (flagA == 0) {
         BOOL b2 = FALSE;
         BOOL a2 = FALSE;
-        if (data_02175628[idx].mUnk_4c == 0 && data_02175628[idx].mUnk_58 < 5) {
+        if (data_02175628[idx].mHasPair == 0 && data_02175628[idx].mNoPairCount < 5) {
             a2 = TRUE;
         }
-        if (a2 == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
+        if (a2 == FALSE && data_02175628[idx].mPrevHasPair == 0 && data_02175628[idx].mHasPair != 0) {
             b2 = TRUE;
         }
         if (b2 != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,

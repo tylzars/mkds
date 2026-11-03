@@ -293,7 +293,7 @@ void func_02066fe0(Unk0206bcb0 *a) {
             if (c != 0) {
                 c = a->mUnk_7c;
                 if ((c & 6) == 0 && (c & 8) == 0) {
-                    data_02175664[a->mUnk_78].mUnk_00 = 3;
+                    data_02175664[a->mUnk_78].mSourceKind = 3;
                     if (data_0217561c->mUnk_000[a->mIndex].mUnk_14 == 1) {
                         func_0208c260(a->mUnk_310, a->mIndex);
                         a->mUnk_7c = a->mUnk_7c | 2;

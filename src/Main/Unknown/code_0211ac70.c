@@ -892,11 +892,11 @@ void func_0211bf94(void) {
             c = FALSE;
             b = FALSE;
             p = &data_02175628[n];
-            y = p->mUnk_4c;
-            if (y == 0 && p->mUnk_58 < 5) {
+            y = p->mHasPair;
+            if (y == 0 && p->mNoPairCount < 5) {
                 b = TRUE;
             }
-            if (b == FALSE && p->mUnk_54 == 0 && y != 0) {
+            if (b == FALSE && p->mPrevHasPair == 0 && y != 0) {
                 c = TRUE;
             }
             if (c != FALSE) {

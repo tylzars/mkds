@@ -3,14 +3,14 @@
 
 void func_02039728(Unk02175628 *p0) {
     p0->mUnk_00 = (u16) 0x0u;
-    p0->mUnk_02 = (u16) 0x0u;
-    p0->mUnk_04 = (u16) 0x0u;
-    p0->mUnk_06 = (u16) 0x0u;
-    p0->mUnk_08 = (u16) 0x0u;
-    p0->mUnk_0a = (u16) 0x0u;
-    p0->mUnk_0c = (u16) 0x0u;
-    p0->mUnk_0e = (u16) 0x14u;
-    p0->mUnk_10 = (u16) 0x8u;
+    p0->mBits = (u16) 0x0u;
+    p0->mClearedBits = (u16) 0x0u;
+    p0->mRepeatBits = (u16) 0x0u;
+    p0->mRepeatState = (u16) 0x0u;
+    p0->mRepeatCallCount = (u16) 0x0u;
+    p0->mRepeatMask = (u16) 0x0u;
+    p0->mRepeatDelayLimit = (u16) 0x14u;
+    p0->mRepeatIntervalLimit = (u16) 0x8u;
     p0->mUnk_12 = (u16) 0x0u;
     p0->mUnk_14 = (u16) 0x0u;
     *(u32 *) ((u8 *) p0 + 24) = (u32) 0x0u;
@@ -21,9 +21,9 @@ void func_02039728(Unk02175628 *p0) {
 
 void func_02039708(Unk02175628 *p0) {
     p0->mUnk_00 = (u16) 0x0u;
-    p0->mUnk_02 = (u16) 0x0u;
-    p0->mUnk_04 = (u16) 0x0u;
-    p0->mUnk_06 = (u16) 0x0u;
-    p0->mUnk_08 = (u16) 0x0u;
-    p0->mUnk_0a = (u16) 0x0u;
+    p0->mBits = (u16) 0x0u;
+    p0->mClearedBits = (u16) 0x0u;
+    p0->mRepeatBits = (u16) 0x0u;
+    p0->mRepeatState = (u16) 0x0u;
+    p0->mRepeatCallCount = (u16) 0x0u;
 }

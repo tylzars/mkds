@@ -139,11 +139,11 @@ void AdvanceOptionEmbremSelectState3(void) {
     u16 value;
     u16 flags;
 
-    value = data_02175628[index].mUnk_4c;
-    if (value == 0 && data_02175628[index].mUnk_58 < 5) {
+    value = data_02175628[index].mHasPair;
+    if (value == 0 && data_02175628[index].mNoPairCount < 5) {
         cond1 = TRUE;
     }
-    if (cond1 == FALSE && data_02175628[index].mUnk_54 == 0 && value != 0) {
+    if (cond1 == FALSE && data_02175628[index].mPrevHasPair == 0 && value != 0) {
         cond2 = TRUE;
     }
     if (cond2 != FALSE) {
@@ -156,11 +156,11 @@ void AdvanceOptionEmbremSelectState3(void) {
     }
     cond2 = FALSE;
     cond1 = FALSE;
-    value = data_02175628[index].mUnk_4c;
-    if (value == 0 && data_02175628[index].mUnk_58 < 5) {
+    value = data_02175628[index].mHasPair;
+    if (value == 0 && data_02175628[index].mNoPairCount < 5) {
         cond1 = TRUE;
     }
-    if (cond1 == FALSE && data_02175628[index].mUnk_54 == 0 && value != 0) {
+    if (cond1 == FALSE && data_02175628[index].mPrevHasPair == 0 && value != 0) {
         cond2 = TRUE;
     }
     if (cond2 != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[index].mUnk_48,

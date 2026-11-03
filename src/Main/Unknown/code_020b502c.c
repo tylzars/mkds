@@ -264,7 +264,7 @@ void func_020b5658(Unk020b503c *out) {
 }
 
 u16 func_020b5644(Unk02175628 *p, s32 mask) {
-    return p->mUnk_02 & mask;
+    return p->mBits & mask;
 }
 
 u16 func_020b5628(s32 idx, s32 mask) {

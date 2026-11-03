@@ -621,12 +621,12 @@ BOOL func_020f0154(Unk020ee684 *p) {
         p->mUnk_1ec |= data_021595c0;
     }
     i = p->mUnk_200;
-    v = data_0217562a[i].mUnk_00 & 0x40;
+    v = data_0217562a[i].mBits & 0x40;
     if (v != 0) {
         p->mUnk_1ec |= data_021595c4;
     }
     i = p->mUnk_200;
-    v = data_0217562a[i].mUnk_00 & 0x80;
+    v = data_0217562a[i].mBits & 0x80;
     if (v != 0) {
         p->mUnk_1ec |= data_021595c8;
     }
@@ -958,11 +958,11 @@ void func_020ef4a0(Unk020eda5c *a) {
     if (a->mUnk_170 != NULL) {
         c->mUnk_014 = 0x13;
         i = c->mUnk_200;
-        if ((u16) (data_0217562a[i].mUnk_00 & 0x40) != 0) {
+        if ((u16) (data_0217562a[i].mBits & 0x40) != 0) {
             c->mUnk_1ec |= data_021595a0;
         }
         i = c->mUnk_200;
-        if ((u16) (data_0217562a[i].mUnk_00 & 0x80) != 0) {
+        if ((u16) (data_0217562a[i].mBits & 0x80) != 0) {
             c->mUnk_1ec |= data_021595a4;
         }
         func_020efa60(a, 1);

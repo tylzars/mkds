@@ -470,10 +470,10 @@ void AdvanceSelectGhostState2(void) {
     idx = UNK_02175628_INDEX_8;
     b = FALSE;
     a = FALSE;
-    if (data_02175628[idx].mUnk_4c == 0 && data_02175628[idx].mUnk_58 < 5) {
+    if (data_02175628[idx].mHasPair == 0 && data_02175628[idx].mNoPairCount < 5) {
         a = TRUE;
     }
-    if (a == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
+    if (a == FALSE && data_02175628[idx].mPrevHasPair == 0 && data_02175628[idx].mHasPair != 0) {
         b = TRUE;
     }
     if (b != FALSE) {
@@ -482,10 +482,10 @@ void AdvanceSelectGhostState2(void) {
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
         d = FALSE;
         c = FALSE;
-        if (data_02175628[idx].mUnk_4c == 0 && data_02175628[idx].mUnk_58 < 5) {
+        if (data_02175628[idx].mHasPair == 0 && data_02175628[idx].mNoPairCount < 5) {
             c = TRUE;
         }
-        if (c == FALSE && data_02175628[idx].mUnk_54 == 0 && data_02175628[idx].mUnk_4c != 0) {
+        if (c == FALSE && data_02175628[idx].mPrevHasPair == 0 && data_02175628[idx].mHasPair != 0) {
             d = TRUE;
         }
         if (d == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,

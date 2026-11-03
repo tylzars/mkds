@@ -25,7 +25,7 @@ void func_01fff694(Unk020ee684 *p) {
     u32 g;
     f = p->mUnk_1ec;
     g = f & 0x1000;
-    t = data_0217562a[p->mUnk_200].mUnk_00 & 0x600;
+    t = data_0217562a[p->mUnk_200].mBits & 0x600;
     q = p->mUnk_1fc;
     p->mUnk_1ec &= ~0xf200;
     if (t) {

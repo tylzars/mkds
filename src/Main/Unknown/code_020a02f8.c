@@ -123,11 +123,11 @@ void func_020a08ec(void) {
             }
             e->mUnk_64 = v;
             data_0217b1fc->mUnk_000[i].mUnk_68 = -(data_0217b1fc->mUnk_000[i].mUnk_68 <= 0);
-            if (func_01ffc67c(o) != 0 || (u16) (data_02175628[o->mUnk_78].mUnk_02 & 3) != 0) {
+            if (func_01ffc67c(o) != 0 || (u16) (data_02175628[o->mUnk_78].mBits & 3) != 0) {
                 data_0217b1fc->mUnk_000[i].mUnk_68 = -1;
                 data_0217b1fc->mUnk_000[i].mUnk_64 = -1;
             } else if (func_02061fec() == 1) {
-                if ((u16) (data_02175628[(u32) o->mUnk_78].mUnk_02 & 4) != 0) {
+                if ((u16) (data_02175628[(u32) o->mUnk_78].mBits & 4) != 0) {
                     data_0217b1fc->mUnk_000[i].mUnk_68 = 1;
                 } else if (data_02175628[o->mUnk_78].mUnk_5a != 0) {
                     data_0217b1fc->mUnk_000[i].mUnk_64 = 10;

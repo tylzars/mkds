@@ -287,7 +287,7 @@ s32 func_01ffc27c(Unk0206bcb0 *p, s32 a) {
         }
         p->mUnk_236 = p->mUnk_236 - t;
         k = p->mUnk_78;
-        w = data_02175628[k].mUnk_02;
+        w = data_02175628[k].mBits;
         if ((u16) (w & 0x20)) {
             p->mUnk_48 |= 8;
         } else if ((u16) (w & 0x10)) {
@@ -297,7 +297,7 @@ s32 func_01ffc27c(Unk0206bcb0 *p, s32 a) {
     }
     if (!(f & 0x10)) {
         k = p->mUnk_78;
-        w = data_02175628[k].mUnk_02;
+        w = data_02175628[k].mBits;
         if ((u16) (w & 0x40)) {
             p->mUnk_234 += 0x96;
             if (p->mUnk_234 > 0x157c) {
@@ -313,12 +313,12 @@ s32 func_01ffc27c(Unk0206bcb0 *p, s32 a) {
     }
     c = p->mUnk_44;
     f = c;
-    if (((f & 0x100) && (u16) (data_02175628[k = p->mUnk_78].mUnk_02 & 2)) || ((f & 0x100) && !(f & 0xa))) {
+    if (((f & 0x100) && (u16) (data_02175628[k = p->mUnk_78].mBits & 2)) || ((f & 0x100) && !(f & 0xa))) {
         b = -1;
         x = (s16) ((s16) x * (s16) b);
     }
     k = p->mUnk_78;
-    w = data_02175628[k].mUnk_02;
+    w = data_02175628[k].mBits;
     if ((u16) (w & 0x20)) {
         r = ((s32(*)(Unk0206bcb0 *, s32, s32, s32, s32, u32)) func_01ffc158)(p, x, b, 1, d, 8);
     } else if ((u16) (w & 0x10)) {
@@ -346,7 +346,7 @@ void func_01ffc558(Unk0206bcb0 *p) {
         return;
     }
     k = p->mUnk_78;
-    data_02175628[k].mUnk_42 = 0xff6;
+    data_02175628[k].mBitMask = 0xff6;
 }
 
 void func_01ffc5a0(Unk0206bcb0 *p) {
@@ -359,11 +359,11 @@ void func_01ffc5a0(Unk0206bcb0 *p) {
     p->mUnk_44 &= ~0x40500;
     q = (u32 *) &p->mUnk_48;
     k = p->mUnk_78;
-    if ((u16) (data_02175628[k].mUnk_02 & 1)) {
+    if ((u16) (data_02175628[k].mBits & 1)) {
         *q |= 2;
     }
     k = p->mUnk_78;
-    if ((u16) (data_02175628[k].mUnk_02 & 2)) {
+    if ((u16) (data_02175628[k].mBits & 2)) {
         r = (u32 *) &p->mUnk_48;
         p->mUnk_48 |= 4;
         f = p->mUnk_48;
@@ -400,18 +400,18 @@ void func_01ffc6c0(Unk0206bcb0 *p) {
         a = 0;
         if (func_01ffc67c(p) != FALSE) {
             k = p->mUnk_78;
-            data_02175628[k].mUnk_42 = 0xe04;
+            data_02175628[k].mBitMask = 0xe04;
             if (p->mUnk_4c & 0x10000000) {
                 k = p->mUnk_78;
-                data_02175628[k].mUnk_42 = 0xe34;
+                data_02175628[k].mBitMask = 0xe34;
             }
             if (p->mUnk_48 & 0x2000000) {
                 k = p->mUnk_78;
-                data_02175628[k].mUnk_42 = 0xe05;
+                data_02175628[k].mBitMask = 0xe05;
             }
         } else {
             k = p->mUnk_78;
-            data_02175628[k].mUnk_42 = 0xff7;
+            data_02175628[k].mBitMask = 0xff7;
             func_01ffc558(p);
         }
         func_01ffc5a0(p);
@@ -438,7 +438,7 @@ void func_01ffc6c0(Unk0206bcb0 *p) {
     func_01ffc558(p);
     func_01ffc5a0(p);
     k = p->mUnk_78;
-    a = data_02175628[k].mUnk_02;
+    a = data_02175628[k].mBits;
     if ((u16) (a & 0x20)) {
         p->mUnk_48 |= 8;
     } else if ((u16) (a & 0x10)) {

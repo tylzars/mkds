@@ -400,10 +400,10 @@ void func_ov001_0219a5bc(void) {
     sel = -1;
     i = UNK_02175628_INDEX_8;
     a = FALSE;
-    if (data_02175628[i].mUnk_4c == 0 && data_02175628[i].mUnk_58 < 5) {
+    if (data_02175628[i].mHasPair == 0 && data_02175628[i].mNoPairCount < 5) {
         a = TRUE;
     }
-    if (a == FALSE && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
+    if (a == FALSE && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
         b = TRUE;
     }
     if (b != FALSE) {
@@ -413,10 +413,10 @@ void func_ov001_0219a5bc(void) {
     if (flags == 0) {
         b2 = FALSE;
         a2 = FALSE;
-        if (data_02175628[i].mUnk_4c == 0 && data_02175628[i].mUnk_58 < 5) {
+        if (data_02175628[i].mHasPair == 0 && data_02175628[i].mNoPairCount < 5) {
             a2 = TRUE;
         }
-        if (a2 == FALSE && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
+        if (a2 == FALSE && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
             b2 = TRUE;
         }
         if (b2 == FALSE ||
@@ -559,11 +559,11 @@ void func_ov001_0219a258(void) {
     if (flags == 0) {
         b = FALSE;
         a = FALSE;
-        v = data_02175628[i].mUnk_4c;
-        if (v == 0 && data_02175628[i].mUnk_58 < 5) {
+        v = data_02175628[i].mHasPair;
+        if (v == 0 && data_02175628[i].mNoPairCount < 5) {
             a = TRUE;
         }
-        if (a == FALSE && data_02175628[i].mUnk_54 == 0 && v != 0) {
+        if (a == FALSE && data_02175628[i].mPrevHasPair == 0 && v != 0) {
             b = TRUE;
         }
         if (b == FALSE ||

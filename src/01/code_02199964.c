@@ -131,11 +131,11 @@ void func_ov001_02199bb0(void) {
     r = -1;
     b = FALSE;
     a = FALSE;
-    v = data_02175628[i].mUnk_4c;
-    if (v == 0 && data_02175628[i].mUnk_58 < 5) {
+    v = data_02175628[i].mHasPair;
+    if (v == 0 && data_02175628[i].mNoPairCount < 5) {
         a = TRUE;
     }
-    if (a == FALSE && data_02175628[i].mUnk_54 == 0 && v != 0) {
+    if (a == FALSE && data_02175628[i].mPrevHasPair == 0 && v != 0) {
         b = TRUE;
     }
     if (b != FALSE) {
@@ -144,11 +144,11 @@ void func_ov001_02199bb0(void) {
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
         b = FALSE;
         a = FALSE;
-        v = data_02175628[i].mUnk_4c;
-        if (v == 0 && data_02175628[i].mUnk_58 < 5) {
+        v = data_02175628[i].mHasPair;
+        if (v == 0 && data_02175628[i].mNoPairCount < 5) {
             a = TRUE;
         }
-        if (a == FALSE && data_02175628[i].mUnk_54 == 0 && v != 0) {
+        if (a == FALSE && data_02175628[i].mPrevHasPair == 0 && v != 0) {
             b = TRUE;
         }
         if (b != FALSE &&

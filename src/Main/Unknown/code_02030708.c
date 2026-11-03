@@ -5,14 +5,14 @@
 #pragma optimize_for_size on
 
 u32 func_02030780(Unk02175628_48 *a) {
-    if (func_020307b0((u32) a) == 0 && a->mUnk_10 < 5) {
+    if (func_020307b0((u32) a) == 0 && a->mNoPairCount < 5) {
         return 1;
     }
     return 0;
 }
 
 u32 func_0203075c(Unk02175628_48 *a) {
-    if (a->mUnk_0c == 0 && a->mUnk_04 != 0) {
+    if (a->mPrevHasPair == 0 && a->mHasPair != 0) {
         return 1;
     }
     return 0;

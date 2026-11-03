@@ -9,7 +9,7 @@ u16 func_020ae428(u32 a, u32 b) {
 }
 
 u16 func_020ae444(Unk02175628 *a, u32 b) {
-    return a->mUnk_06 & b;
+    return a->mRepeatBits & b;
 }
 
 u16 func_020ae458(u32 a, u32 b) {

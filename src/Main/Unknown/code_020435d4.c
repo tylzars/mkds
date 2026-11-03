@@ -29,8 +29,8 @@ void func_020435d4(u32 a) {
 }
 
 void func_0204360c(s32 a, u32 b) {
-    if (data_02175628[a].mUnk_3c == 3 || data_02175628[a].mUnk_3c == 7) {
-        data_02175628[a].mUnk_40 |= b;
+    if (data_02175628[a].mSourceKind == 3 || data_02175628[a].mSourceKind == 7) {
+        data_02175628[a].mRequestedBits |= b;
     }
 }
 
@@ -72,7 +72,7 @@ void func_02043648(void) {
         p = &data_02175628[i];
         w = data_02175624->mUnk_04;
         if (!(w & 8)) {
-            s = p->mUnk_3c;
+            s = p->mSourceKind;
             if (f == 0) {
                 f = p->mUnk_44;
             }
@@ -115,9 +115,9 @@ void func_02043648(void) {
                         q = TRUE;
                     } else {
                         o = 0;
-                        m = p->mUnk_40;
+                        m = p->mRequestedBits;
                         n = 0xffff;
-                        p->mUnk_40 = o;
+                        p->mRequestedBits = o;
                     }
                     break;
                 case 5:
@@ -158,7 +158,7 @@ void func_02043648(void) {
                     break;
             }
         }
-        t = m & p->mUnk_42;
+        t = m & p->mBitMask;
         if (q == FALSE) {
             func_02039530(t, p);
         }

@@ -13,7 +13,7 @@
 #pragma optimize_for_size on
 
 u16 func_0202ec98(Unk02175628 *a, u32 b) {
-    return a->mUnk_02 & b;
+    return a->mBits & b;
 }
 
 u16 func_0202ec7c(u32 a, u32 b) {

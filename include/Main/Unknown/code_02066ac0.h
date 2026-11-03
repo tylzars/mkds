@@ -14,7 +14,7 @@ typedef struct Unk02066ac0 {
 
 // Table of 0x5c-byte entries; the code writes the word at 0x00.
 typedef struct Unk02175664 {
-    /* 00 */ s32 mUnk_00;
+    /* 00 */ s32 mSourceKind;
     /* 04 */ u8 mUnk_04[0x58];
 } Unk02175664;
 

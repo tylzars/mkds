@@ -52,7 +52,7 @@ void func_0205bc08(void) {
     func_0205be0c();
     if (func_0203c880(*(u8 *) &data_0217aa18->mUnk_06[func_ov000_0219bb50()]) == 0 &&
         (data_0217aa14->mUnk_75c & 0x200) == 0) {
-        if (data_0217562a[func_020435bc()].mUnk_00 == 0) {
+        if (data_0217562a[func_020435bc()].mBits == 0) {
             data_0217aa14->mUnk_738 = data_0217aa14->mUnk_738 + 1;
             if (data_0217aa14->mUnk_738 > 0x708) {
                 data_0217aa14->mUnk_75c = data_0217aa14->mUnk_75c | 0x200;

@@ -17,7 +17,7 @@ u32 func_0202f0c8(Unk02175628_48 *a) {
 }
 
 u32 func_0202f0fc(Unk02175628_48 *a) {
-    if (a->mUnk_0c == 0 && a->mUnk_04 != 0) {
+    if (a->mPrevHasPair == 0 && a->mHasPair != 0) {
         return 1;
     }
     return 0;

@@ -113,14 +113,14 @@ void func_0203940c(void) {
 
 void func_02039478(void) {
     data_021755dc.mUnk_00 = 0;
-    data_021755dc.mUnk_02 = 0;
-    data_021755dc.mUnk_04 = 0;
-    data_021755dc.mUnk_06 = 0;
-    data_021755dc.mUnk_08 = 0;
-    data_021755dc.mUnk_0a = 0;
-    data_021755dc.mUnk_0c = 0;
-    data_021755dc.mUnk_0e = 0x14;
-    data_021755dc.mUnk_10 = 8;
+    data_021755dc.mBits = 0;
+    data_021755dc.mClearedBits = 0;
+    data_021755dc.mRepeatBits = 0;
+    data_021755dc.mRepeatState = 0;
+    data_021755dc.mRepeatCallCount = 0;
+    data_021755dc.mRepeatMask = 0;
+    data_021755dc.mRepeatDelayLimit = 0x14;
+    data_021755dc.mRepeatIntervalLimit = 8;
     data_021755dc.mUnk_12 = 0;
     data_021755dc.mUnk_14 = 0;
     data_021755dc.mUnk_18 = 0;
@@ -130,14 +130,14 @@ void func_02039478(void) {
 
 void func_020394cc(void) {
     data_021755dc.mUnk_00 = 0;
-    data_021755dc.mUnk_02 = 0;
-    data_021755dc.mUnk_04 = 0;
-    data_021755dc.mUnk_06 = 0;
-    data_021755dc.mUnk_08 = 0;
-    data_021755dc.mUnk_0a = 0;
-    data_021755dc.mUnk_0c = 0;
-    data_021755dc.mUnk_0e = 0x14;
-    data_021755dc.mUnk_10 = 8;
+    data_021755dc.mBits = 0;
+    data_021755dc.mClearedBits = 0;
+    data_021755dc.mRepeatBits = 0;
+    data_021755dc.mRepeatState = 0;
+    data_021755dc.mRepeatCallCount = 0;
+    data_021755dc.mRepeatMask = 0;
+    data_021755dc.mRepeatDelayLimit = 0x14;
+    data_021755dc.mRepeatIntervalLimit = 8;
     data_021755dc.mUnk_12 = 0;
     data_021755dc.mUnk_14 = 0;
     data_021755dc.mUnk_18 = 0;

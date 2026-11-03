@@ -130,11 +130,11 @@ void func_ov000_02185418(void) {
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
         a = FALSE;
         b = FALSE;
-        c = data_02175628[i].mUnk_4c;
-        if (c == 0 && data_02175628[i].mUnk_58 < 5) {
+        c = data_02175628[i].mHasPair;
+        if (c == 0 && data_02175628[i].mNoPairCount < 5) {
             b = TRUE;
         }
-        if (b == FALSE && data_02175628[i].mUnk_54 == 0 && c != 0) {
+        if (b == FALSE && data_02175628[i].mPrevHasPair == 0 && c != 0) {
             a = TRUE;
         }
         if (a == FALSE ||

@@ -627,11 +627,11 @@ void func_ov001_0219fc70(void) {
     func_ov001_021a0620();
     flag_b = FALSE;
     flag_a = FALSE;
-    value = data_02175628[slot].mUnk_4c;
-    if (value == 0 && data_02175628[slot].mUnk_58 < 5) {
+    value = data_02175628[slot].mHasPair;
+    if (value == 0 && data_02175628[slot].mNoPairCount < 5) {
         flag_a = TRUE;
     }
-    if (flag_a == FALSE && data_02175628[slot].mUnk_54 == 0 && value != 0) {
+    if (flag_a == FALSE && data_02175628[slot].mPrevHasPair == 0 && value != 0) {
         flag_b = TRUE;
     }
     if (flag_b) {
@@ -640,11 +640,11 @@ void func_ov001_0219fc70(void) {
     if ((u16) (data_02175628[slot].mUnk_00 & 2) == 0) {
         flag_b = FALSE;
         flag_a = FALSE;
-        value = data_02175628[slot].mUnk_4c;
-        if (value == 0 && data_02175628[slot].mUnk_58 < 5) {
+        value = data_02175628[slot].mHasPair;
+        if (value == 0 && data_02175628[slot].mNoPairCount < 5) {
             flag_a = TRUE;
         }
-        if (flag_a == FALSE && data_02175628[slot].mUnk_54 == 0 && value != 0) {
+        if (flag_a == FALSE && data_02175628[slot].mPrevHasPair == 0 && value != 0) {
             flag_b = TRUE;
         }
         if (!flag_b || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[slot].mUnk_48,

@@ -132,7 +132,7 @@ void func_02090638(Unk020905a8 *a) {
     }
     w = p->mUnk_236 + (s16) (((s64) v * 0xb6 + 0x800) >> 12);
     b = *(volatile s32 *) &p->mUnk_78;
-    m = data_0217562a[b].mUnk_00;
+    m = data_0217562a[b].mBits;
     if ((u16) (m & 0x20) != 0) {
         p->mUnk_236 = p->mUnk_236 + 0xa0;
     } else if ((u16) (m & 0x10) != 0) {

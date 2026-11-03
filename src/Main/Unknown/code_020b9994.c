@@ -145,7 +145,7 @@ void func_020b9dfc(Unk020d029c *p) {
             }
             break;
         case 1:
-            if (data_02175628[0].mUnk_3c != 2) {
+            if (data_02175628[0].mSourceKind != 2) {
                 return;
             }
             if (func_0204a650(&data_02175650[0]) == 0) {

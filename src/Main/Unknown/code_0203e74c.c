@@ -105,7 +105,7 @@ void func_0203e9a0(Unk0217561c_14 *a, s32 b) {
     } else {
         a->mUnk_00 = 3;
     }
-    switch (data_02175628[c].mUnk_3c) {
+    switch (data_02175628[c].mSourceKind) {
         case 2:
             func_0204a928(&data_02175628[c].mUnk_28);
             break;

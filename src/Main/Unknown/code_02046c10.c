@@ -53,10 +53,10 @@ void func_02046ca8(Unk02175628_48 *a, s32 b, s32 c) {
         }
         *(Unk0214e334_b *) &a->mUnk_08 = *(Unk0214e334_b *) a;
         *(Unk0214e334_b *) a = d;
-        if (a->mUnk_04 != 0) {
-            a->mUnk_10 = 0;
-        } else if (a->mUnk_10 <= 5) {
-            a->mUnk_10++;
+        if (a->mHasPair != 0) {
+            a->mNoPairCount = 0;
+        } else if (a->mNoPairCount <= 5) {
+            a->mNoPairCount++;
         }
     }
     if (data_021759c4->mUnk_30_1) {

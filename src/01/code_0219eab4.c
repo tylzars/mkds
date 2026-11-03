@@ -385,10 +385,10 @@ void func_ov001_0219ec38(void) {
     func_021059e0();
     f2 = FALSE;
     f1 = FALSE;
-    if (data_02175628[i].mUnk_4c == 0 && data_02175628[i].mUnk_58 < 5) {
+    if (data_02175628[i].mHasPair == 0 && data_02175628[i].mNoPairCount < 5) {
         f1 = TRUE;
     }
-    if (f1 == FALSE && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
+    if (f1 == FALSE && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
         f2 = TRUE;
     }
     if (f2 != FALSE) {
@@ -397,10 +397,10 @@ void func_ov001_0219ec38(void) {
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
         BOOL g2 = FALSE;
         BOOL g1 = FALSE;
-        if (data_02175628[i].mUnk_4c == 0 && data_02175628[i].mUnk_58 < 5) {
+        if (data_02175628[i].mHasPair == 0 && data_02175628[i].mNoPairCount < 5) {
             g1 = TRUE;
         }
-        if (g1 == FALSE && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
+        if (g1 == FALSE && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
             g2 = TRUE;
         }
         if (g2 == FALSE ||

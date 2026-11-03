@@ -430,7 +430,7 @@ void func_02115204(void) {
         return;
     }
     if ((v == 5 && data_0217d350->mUnk_98 != 0) || (w == 5 && data_0217d350->mUnk_98 == 0) ||
-        (u16) (data_0217562a[i].mUnk_00 & 0x20) != 0) {
+        (u16) (data_0217562a[i].mBits & 0x20) != 0) {
         if (func_0211606c() != 0) {
             return;
         }
@@ -445,7 +445,7 @@ void func_02115204(void) {
         return;
     }
     if ((v == 6 && data_0217d350->mUnk_9c != 0) || (w == 6 && data_0217d350->mUnk_9c == 0) ||
-        (u16) (data_0217562a[i].mUnk_00 & 0x10) != 0) {
+        (u16) (data_0217562a[i].mBits & 0x10) != 0) {
         if (func_0211606c() != 0) {
             return;
         }

@@ -641,8 +641,8 @@ void func_ov001_02196514(void) {
     func_ov001_02196cd0();
     x = TRUE;
     y = FALSE;
-    v = data_02175628[idx].mUnk_4c;
-    if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
+    v = data_02175628[idx].mHasPair;
+    if (v == 0 && data_02175628[idx].mNoPairCount < 5) {
         y = TRUE;
     }
     if (y == FALSE && v == 0) {
@@ -653,11 +653,11 @@ void func_ov001_02196514(void) {
     }
     x = FALSE;
     y = FALSE;
-    v = data_02175628[idx].mUnk_4c;
-    if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
+    v = data_02175628[idx].mHasPair;
+    if (v == 0 && data_02175628[idx].mNoPairCount < 5) {
         y = TRUE;
     }
-    if (y == FALSE && data_02175628[idx].mUnk_54 == 0 && v != 0) {
+    if (y == FALSE && data_02175628[idx].mPrevHasPair == 0 && v != 0) {
         x = TRUE;
     }
     if (x != FALSE) {
@@ -672,11 +672,11 @@ void func_ov001_02196514(void) {
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
         x = FALSE;
         y = FALSE;
-        v = data_02175628[idx].mUnk_4c;
-        if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
+        v = data_02175628[idx].mHasPair;
+        if (v == 0 && data_02175628[idx].mNoPairCount < 5) {
             y = TRUE;
         }
-        if (y == FALSE && data_02175628[idx].mUnk_54 == 0 && v != 0) {
+        if (y == FALSE && data_02175628[idx].mPrevHasPair == 0 && v != 0) {
             x = TRUE;
         }
         if (x == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
@@ -692,14 +692,14 @@ other:
     if (b == 2 || (u16) (data_02175628[idx].mUnk_00 & 0x400) != 0) {
         func_ov001_02196f80();
     } else if ((a == 0 && gRecordTAtt->mUnk_88 != 0) || (b == 0 && gRecordTAtt->mUnk_88 == 0) ||
-               (u16) (data_02175628[idx].mUnk_02 & 0x20) != 0) {
+               (u16) (data_02175628[idx].mBits & 0x20) != 0) {
         gRecordTAtt->mUnk_70 = 1;
         gRecordTAtt->mUnk_78[0] = 6;
         gRecordTAtt->mUnk_88 = 1;
         func_ov001_02197010();
         func_0212ecc0(&data_0217d068, 0, 2);
     } else if ((a == 1 && gRecordTAtt->mUnk_8c != 0) || (b == 1 && gRecordTAtt->mUnk_8c == 0) ||
-               (u16) (data_02175628[idx].mUnk_02 & 0x10) != 0) {
+               (u16) (data_02175628[idx].mBits & 0x10) != 0) {
         gRecordTAtt->mUnk_70 = 0;
         gRecordTAtt->mUnk_78[1] = 6;
         gRecordTAtt->mUnk_8c = 1;
@@ -1075,10 +1075,10 @@ void func_ov001_021959d8(void) {
     if (f == 0) {
         f = 0;
         b = FALSE;
-        if (data_02175628[i].mUnk_4c == 0 && data_02175628[i].mUnk_58 < 5) {
+        if (data_02175628[i].mHasPair == 0 && data_02175628[i].mNoPairCount < 5) {
             b = TRUE;
         }
-        if (b == FALSE && data_02175628[i].mUnk_54 == 0 && data_02175628[i].mUnk_4c != 0) {
+        if (b == FALSE && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
             f = 1;
         }
         if (f == 0 ||

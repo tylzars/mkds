@@ -395,11 +395,11 @@ void func_ov001_021a13d8(void) {
 
     func_ov001_021a1b08();
     a1 = b1 = FALSE;
-    v = data_02175628[idx].mUnk_4c;
-    if (v == 0 && data_02175628[idx].mUnk_58 < 5) {
+    v = data_02175628[idx].mHasPair;
+    if (v == 0 && data_02175628[idx].mNoPairCount < 5) {
         a1 = 1;
     }
-    if (a1 == 0 && data_02175628[idx].mUnk_54 == 0 && v != 0) {
+    if (a1 == 0 && data_02175628[idx].mPrevHasPair == 0 && v != 0) {
         b1 = TRUE;
     }
     if (b1 != FALSE) {
@@ -407,11 +407,11 @@ void func_ov001_021a13d8(void) {
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
         a2 = b2 = FALSE;
-        w = data_02175628[idx].mUnk_4c;
-        if (w == 0 && data_02175628[idx].mUnk_58 < 5) {
+        w = data_02175628[idx].mHasPair;
+        if (w == 0 && data_02175628[idx].mNoPairCount < 5) {
             a2 = 1;
         }
-        if (a2 == 0 && data_02175628[idx].mUnk_54 == 0 && w != 0) {
+        if (a2 == 0 && data_02175628[idx].mPrevHasPair == 0 && w != 0) {
             b2 = TRUE;
         }
         if (b2 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,

@@ -143,7 +143,7 @@ void func_0206c5e4(Unk0206bcb0 *p) {
     }
     if (p->mUnk_380 >= 5 && !(f & 0x1a)) {
         k = p->mUnk_78;
-        if ((u16) (data_02175628[k].mUnk_02 & 0x100)) {
+        if ((u16) (data_02175628[k].mBits & 0x100)) {
             if (f & 1) {
                 goto recheck;
             }
@@ -177,7 +177,7 @@ recheck:
     g = p->mUnk_2c4;
     if (!(f & 8) && (f & 0x10)) {
         if ((f & 3) && p->mUnk_2a4 > (s32) (((s64) p->mUnk_2cc->mUnk_10 * 0x8cd) >> 12) && g != 0 &&
-            (u16) (data_02175628[k = p->mUnk_78].mUnk_02 & 0x100)) {
+            (u16) (data_02175628[k = p->mUnk_78].mBits & 0x100)) {
             p->mUnk_44 |= 8;
             p->mUnk_2fc = 1;
             if (p->mUnk_2c4 > 0) {
@@ -200,7 +200,7 @@ recheck:
     f = p->mUnk_44;
     if (f & 8) {
         k = p->mUnk_78;
-        if (!((u16) (data_02175628[k].mUnk_02 & 0x100) && (p->mUnk_48 & 2) && p->mUnk_2a4 >= p->mUnk_2cc->mUnk_10 / 2 &&
+        if (!((u16) (data_02175628[k].mBits & 0x100) && (p->mUnk_48 & 2) && p->mUnk_2a4 >= p->mUnk_2cc->mUnk_10 / 2 &&
               !(f & 0x2000c0))) {
             if (!(f & 0x10)) {
                 p->mUnk_44 |= 0x8000;
@@ -313,7 +313,7 @@ int func_0206c494(Unk0206bcb0 *p) {
         result = TRUE;
         pending = FALSE;
         k = p->mUnk_78;
-        bits = data_02175628[k].mUnk_02;
+        bits = data_02175628[k].mBits;
         if ((u16) (bits & 0x20)) {
             dir = TRUE;
             p->mUnk_2c4 = -1;

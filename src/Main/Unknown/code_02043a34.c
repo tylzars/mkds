@@ -47,21 +47,21 @@ static inline void func_02043c14_inline(void) {
         p = &data_02175628[(u32) i];
         func_02039728(p);
         func_02039520(p, 0xff3, 0x1e, 0xa);
-        p->mUnk_3c = 0;
-        p->mUnk_40 = 0;
+        p->mSourceKind = 0;
+        p->mRequestedBits = 0;
         p->mUnk_44 = 0;
-        p->mUnk_42 = 0x2fff;
+        p->mBitMask = 0x2fff;
         func_0204a9e4((u32) &p->mUnk_28);
         func_020470c4((u32) &p->mUnk_48);
     }
-    data_02175628[8].mUnk_3c = 5;
-    data_02175628[9].mUnk_3c = 6;
+    data_02175628[8].mSourceKind = 5;
+    data_02175628[9].mSourceKind = 6;
     data_02175624->mUnk_08 = 0;
     data_02175624->mUnk_0c = 0;
     q = data_02175628;
     for (k = 0; k < 10; k++) {
         func_02039728(q);
-        q->mUnk_40 = 0;
+        q->mRequestedBits = 0;
         func_02039520(q, 0xff3, 0x1e, 0xa);
         q++;
     }
@@ -112,7 +112,7 @@ void func_02043b48(void) {
     p = data_02175628;
     for (i = 0; i < 10; i++) {
         func_02039728(p);
-        p->mUnk_40 = 0;
+        p->mRequestedBits = 0;
         func_02039520(p, 0xff3, 0x1e, 0xa);
         p++;
     }

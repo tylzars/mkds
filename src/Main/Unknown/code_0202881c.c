@@ -13,5 +13,5 @@ void func_02028824(u8 a) {
 }
 
 u32 func_0202881c(Unk02175628_48 *a) {
-    return a->mUnk_04;
+    return a->mHasPair;
 }

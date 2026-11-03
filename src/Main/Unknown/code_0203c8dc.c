@@ -26,8 +26,8 @@ void func_0203c98c(void) {
     func_02043544(1);
     for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
         Unk02175628 *e = &data_02175628[data_021759c0->mUnk_68[i].mUnk_08.mUnk_0c];
-        if (e->mUnk_3c != 1) {
-            if (e->mUnk_3c == 2) {
+        if (e->mSourceKind != 1) {
+            if (e->mSourceKind == 2) {
                 func_0204a978((Unk02175650 *) &e->mUnk_28);
             }
         } else {

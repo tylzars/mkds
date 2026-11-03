@@ -165,7 +165,7 @@ void func_02078158(void) {
     d = b;
     func_02108e6c(2);
     v1 = UNK_02175628_INDEX_8;
-    k = data_02175628[v1].mUnk_02;
+    k = data_02175628[v1].mBits;
     if ((u16) (k & 0x10) != 0) {
         q->mUnk_16 += 0x1c2;
         b = TRUE;
@@ -174,7 +174,7 @@ void func_02078158(void) {
         b = TRUE;
     }
     v1 = UNK_02175628_INDEX_8;
-    k = data_02175628[v1].mUnk_02;
+    k = data_02175628[v1].mBits;
     if ((u16) (k & 0x80) != 0) {
         q->mUnk_18 += 0x1c2;
         if (q->mUnk_18 > 0x1b58) {
@@ -195,7 +195,7 @@ void func_02078158(void) {
     }
     func_02108e6c(1);
     v1 = UNK_02175628_INDEX_8;
-    k = data_02175628[v1].mUnk_02;
+    k = data_02175628[v1].mBits;
     if ((u16) (k & 0x400) != 0) {
         q->mUnk_08 += 0x7b;
         if (q->mUnk_08 > data_usa_021656e0) {
@@ -205,7 +205,7 @@ void func_02078158(void) {
         }
     } else {
         v1 = UNK_02175628_INDEX_8;
-        k = data_02175628[v1].mUnk_02;
+        k = data_02175628[v1].mBits;
         if ((u16) (k & 2) != 0) {
             q->mUnk_08 -= 0x7b;
             if (q->mUnk_08 < 0x800) {
