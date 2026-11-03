@@ -368,7 +368,7 @@ s32 func_0205465c(void) {
 }
 
 void func_020545e8(void *a) {
-    data_0217aa00 = func_02036b74(a, 0x1f00, 0x20);
+    data_0217aa00 = HeapAllocAligned(a, 0x1f00, 0x20);
     data_0217aa00->mUnk_0000 = 0;
     data_0217aa00->mUnk_0004 = 0;
     data_0217aa00->mUnk_0008 = 9;
@@ -379,27 +379,27 @@ void func_020545e8(void *a) {
 }
 
 void func_02054368(void *a) {
-    data_0217aa00->mUnk_0014 = func_02036b74(a, 0xf00, 0x20);
-    data_0217aa00->mUnk_0018 = func_02036b74(a, 0x40, 0x20);
-    data_0217aa00->mUnk_001c = func_02036b74(a, 0x20, 0x20);
-    data_0217aa00->mUnk_0024 = func_02036b74(a, 0xc0, 0x20);
-    data_0217aa00->mUnk_0028 = func_02036b74(a, 0xc0, 0x20);
-    data_0217aa00->mUnk_0020 = func_02036b74(a, 0x44, 0x20);
-    data_0217aa00->mUnk_002c = func_02036b74(a, 0x400, 0x20);
+    data_0217aa00->mUnk_0014 = HeapAllocAligned(a, 0xf00, 0x20);
+    data_0217aa00->mUnk_0018 = HeapAllocAligned(a, 0x40, 0x20);
+    data_0217aa00->mUnk_001c = HeapAllocAligned(a, 0x20, 0x20);
+    data_0217aa00->mUnk_0024 = HeapAllocAligned(a, 0xc0, 0x20);
+    data_0217aa00->mUnk_0028 = HeapAllocAligned(a, 0xc0, 0x20);
+    data_0217aa00->mUnk_0020 = HeapAllocAligned(a, 0x44, 0x20);
+    data_0217aa00->mUnk_002c = HeapAllocAligned(a, 0x400, 0x20);
     data_0217aa00->mUnk_0030 = 0x1c0;
-    data_0217aa00->mUnk_0034 = (u32) func_02036b74(a, data_0217aa00->mUnk_0030, 0x20);
+    data_0217aa00->mUnk_0034 = (u32) HeapAllocAligned(a, data_0217aa00->mUnk_0030, 0x20);
     data_0217aa00->mUnk_0038 = 0x400;
-    data_0217aa00->mUnk_003c = (u32) func_02036b74(a, data_0217aa00->mUnk_0038, 0x20);
-    data_0217aa00->mUnk_15bc = func_02036b74(a, 0x820, 0x20);
-    data_0217aa00->mUnk_15c0 = func_02036b74(a, 0x200, 0x20);
-    data_0217aa00->mUnk_15c4 = func_02036b74(a, 8, 0x20);
-    data_0217aa00->mUnk_15c8 = func_02036b74(a, 0x40, 0x20);
-    data_0217aa00->mUnk_0040 = func_02036b74(a, 0x18, 0x20);
+    data_0217aa00->mUnk_003c = (u32) HeapAllocAligned(a, data_0217aa00->mUnk_0038, 0x20);
+    data_0217aa00->mUnk_15bc = HeapAllocAligned(a, 0x820, 0x20);
+    data_0217aa00->mUnk_15c0 = HeapAllocAligned(a, 0x200, 0x20);
+    data_0217aa00->mUnk_15c4 = HeapAllocAligned(a, 8, 0x20);
+    data_0217aa00->mUnk_15c8 = HeapAllocAligned(a, 0x40, 0x20);
+    data_0217aa00->mUnk_0040 = HeapAllocAligned(a, 0x18, 0x20);
     data_0217aa00->mUnk_1664 = 0;
     data_0217aa00->mUnk_165c = 0;
     data_0217aa00->mUnk_1658 = 0;
-    data_0217aa00->mUnk_0044.mUnk_38 = func_02036b74(a, 0x1c, 0x20);
-    data_0217aa00->mUnk_1d04 = func_02017988(func_02036bec(a, 0x7800), 0x7800, 1);
+    data_0217aa00->mUnk_0044.mUnk_38 = HeapAllocAligned(a, 0x1c, 0x20);
+    data_0217aa00->mHeap = ExpHeapCreate(HeapAlloc(a, 0x7800), 0x7800, 1);
     data_0217aa00->mUnk_1e24 = 0;
     data_0217aa00->mUnk_1e2c = 0;
     data_0217aa00->mUnk_1e20 = 0;

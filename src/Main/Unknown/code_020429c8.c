@@ -69,7 +69,7 @@ void func_02042e0c(void *a) {
     g = gCourseMap;
     d = g->mUnk_5c;
     q = &g->mUnk_ac;
-    g->mUnk_ac = func_02036bec(a, g->mUnk_58 * 0x28);
+    g->mUnk_ac = HeapAlloc(a, g->mUnk_58 * 0x28);
     q[1] = g->mUnk_ac + d->mUnk_00;
     for (i = 0; i < gCourseMap->mUnk_58; i++) {
         e = q[0] + i;
@@ -148,7 +148,7 @@ void func_02042c3c(void *a) {
     g = gCourseMap;
     d = g->mUnk_6c;
     q = &g->mUnk_a0;
-    g->mUnk_a0 = func_02036bec(a, g->mUnk_68 * 0x28);
+    g->mUnk_a0 = HeapAlloc(a, g->mUnk_68 * 0x28);
     q[1] = g->mUnk_a0 + d->mUnk_00;
     for (i = 0; i < gCourseMap->mUnk_68; i++) {
         e = q[0] + i;
@@ -194,7 +194,7 @@ void func_02042a10(void *a) {
     g = gCourseMap;
     r = g->mUnk_8c;
     q = &g->mUnk_b8;
-    g->mUnk_b8 = func_02036bec(a, g->mUnk_88 * 0x30);
+    g->mUnk_b8 = HeapAlloc(a, g->mUnk_88 * 0x30);
     q[1] = g->mUnk_b8;
     q[2] = g->mUnk_b8 + gCourseMap->mUnk_88;
     for (i = 0; i < gCourseMap->mUnk_88; i++) {

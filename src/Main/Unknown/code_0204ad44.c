@@ -83,8 +83,8 @@ void func_0204af70(void *a) {
 
     b = func_0200f168(4);
     c = func_0200f17c(4);
-    data_021759d0 = func_02036bec(a, 0x7c);
-    data_021759d0->mUnk_24 = func_020180e0((void *) b, c - b, 1);
+    data_021759d0 = HeapAlloc(a, 0x7c);
+    data_021759d0->mHeap = FrmHeapCreate((void *) b, c - b, 1);
     func_0204ad44();
 }
 

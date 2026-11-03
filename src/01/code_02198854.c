@@ -73,7 +73,7 @@ void func_ov001_021997dc(void) {
 void func_ov001_02199640(void *a) {
     s32 i;
 
-    data_ov001_021a9be8 = func_02036bec(a, 0x90);
+    data_ov001_021a9be8 = HeapAlloc(a, 0x90);
     data_ov001_021a9be8->mUnk_50 = a;
     data_ov001_021a9be8->mUnk_00 = 0;
     data_ov001_021a9be8->mUnk_04 = 0;

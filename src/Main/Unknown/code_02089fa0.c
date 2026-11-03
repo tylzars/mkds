@@ -27,7 +27,7 @@
 void func_0208aa30(void *a) {
     Unk0217b034_784 *p;
 
-    data_0217b034 = func_02036bec(a, 0x79c);
+    data_0217b034 = HeapAlloc(a, 0x79c);
     func_0208a460(a);
     data_0217b034->mUnk_73c = 9;
     reg_G3_MTX_MODE = 0;
@@ -59,19 +59,19 @@ void InitNsbmdNsbcaNsbmaNsbtp(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16
     b->mNsbcaNsbmaNsbtp[0] = b->mNsbcaNsbmaNsbtp[1] = b->mNsbcaNsbmaNsbtp[2] = NULL;
     f = FALSE;
     if (c->mNsbmdCount != 0) {
-        b->mNsbmds = func_02036bec(a, c->mNsbmdCount * 0x6c);
+        b->mNsbmds = HeapAlloc(a, c->mNsbmdCount * 0x6c);
     }
     if (c->mNsbcaCount != 0) {
-        b->mNsbcaNsbmaNsbtp[0] = func_02036bec(a, c->mNsbcaCount * 0x38);
+        b->mNsbcaNsbmaNsbtp[0] = HeapAlloc(a, c->mNsbcaCount * 0x38);
     }
     if (c->mNsbmaCount != 0) {
-        b->mNsbcaNsbmaNsbtp[1] = func_02036bec(a, c->mNsbmaCount * 0x38);
+        b->mNsbcaNsbmaNsbtp[1] = HeapAlloc(a, c->mNsbmaCount * 0x38);
     }
     if (c->mNsbmdCount == 1 && c->mNsbtpCount > 1) {
-        b->mNsbcaNsbmaNsbtp[2] = func_02036bec(a, 0x38);
+        b->mNsbcaNsbmaNsbtp[2] = HeapAlloc(a, 0x38);
         f = TRUE;
     } else if (c->mNsbtpCount != 0) {
-        b->mNsbcaNsbmaNsbtp[2] = func_02036bec(a, c->mNsbtpCount * 0x38);
+        b->mNsbcaNsbmaNsbtp[2] = HeapAlloc(a, c->mNsbtpCount * 0x38);
     }
     for (i = 0; i < c->mNsbmdCount; i++) {
         h = &b->mNsbmds[i];
@@ -119,7 +119,7 @@ void func_0208a460(void *a) {
     }
     for (i = 0; i <= 2; i++) {
         if (i == 2) {
-            data_0217b034->mUnk_000[i] = func_02036bec(a, 0x14);
+            data_0217b034->mUnk_000[i] = HeapAlloc(a, 0x14);
             p = data_0217b034->mUnk_000[0];
             q = data_0217b034->mUnk_000[2];
             q->mNsbmds = p->mNsbmds;
@@ -128,22 +128,22 @@ void func_0208a460(void *a) {
             q->mNsbcaNsbmaNsbtp[2] = p->mNsbcaNsbmaNsbtp[2];
             q->mNsbmdCount = p->mNsbmdCount;
         } else {
-            data_0217b034->mUnk_000[i] = func_02036bec(a, 0x14);
+            data_0217b034->mUnk_000[i] = HeapAlloc(a, 0x14);
             InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[i], &gCountStartStems[(u32) i], i);
         }
     }
     if (data_021759c0->mUnk_08 == 2 || data_021759c0->mUnk_1c == 1) {
-        data_0217b034->mUnk_000[4] = func_02036bec(a, 0x14);
+        data_0217b034->mUnk_000[4] = HeapAlloc(a, 0x14);
         InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[4], &gWinStems, 4);
-        data_0217b034->mUnk_000[5] = func_02036bec(a, 0x14);
+        data_0217b034->mUnk_000[5] = HeapAlloc(a, 0x14);
         InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[5], &gLoseStems, 5);
     } else if (data_021759c0->mUnk_08 == 4) {
-        data_0217b034->mUnk_000[6] = func_02036bec(a, 0x14);
+        data_0217b034->mUnk_000[6] = HeapAlloc(a, 0x14);
         InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[6], &gCompleteStems, 6);
-        data_0217b034->mUnk_000[7] = func_02036bec(a, 0x14);
+        data_0217b034->mUnk_000[7] = HeapAlloc(a, 0x14);
         InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[7], &gFailedStems, 7);
     } else {
-        data_0217b034->mUnk_000[3] = func_02036bec(a, 0x14);
+        data_0217b034->mUnk_000[3] = HeapAlloc(a, 0x14);
         InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[3], &gGoalStems, 3);
     }
 }

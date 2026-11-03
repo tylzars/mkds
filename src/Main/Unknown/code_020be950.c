@@ -113,7 +113,7 @@ BOOL func_020c0c2c(Unk0217b498 **a, s32 b) {
             return FALSE;
         }
     }
-    *a = func_02036bec(func_020364e0(func_020364e8()), 0x14);
+    *a = HeapAlloc(GetHeap(func_020364e8()), 0x14);
     if (t != FALSE) {
         (*a)->mUnk_00 = (Unk0217b498_00 **) func_0210008c(p);
     } else {
@@ -121,7 +121,7 @@ BOOL func_020c0c2c(Unk0217b498 **a, s32 b) {
     }
     (*a)->mUnk_04 = 0;
     (*a)->mUnk_08 = n;
-    (*a)->mUnk_0c = func_02036bec(func_020364e0(func_020364e8()), n * 8);
+    (*a)->mUnk_0c = HeapAlloc(GetHeap(func_020364e8()), n * 8);
     for (i = 0; i < n; i++) {
         func_020b5fe4(&(*a)->mUnk_00[i]->mUnk_04, &(*a)->mUnk_0c[i]);
     }
@@ -133,10 +133,10 @@ BOOL func_020c0ba8(Unk0217b498 **a, s32 b) {
     if (b == 0) {
         return FALSE;
     }
-    *a = func_02036bec(func_020364e0(func_020364e8()), 0x14);
+    *a = HeapAlloc(GetHeap(func_020364e8()), 0x14);
     (*a)->mUnk_04 = 0;
     (*a)->mUnk_08 = b;
-    (*a)->mUnk_0c = func_02036bec(func_020364e0(func_020364e8()), b * 8);
+    (*a)->mUnk_0c = HeapAlloc(GetHeap(func_020364e8()), b * 8);
     (*a)->mUnk_10 = func_020ae730(b, 0x14);
     return TRUE;
 }
@@ -267,7 +267,7 @@ void func_020c06c4(Unk020c06c4 *a, Unk0217b498 *b, s32 c) {
 }
 
 void func_020beb9c(void) {
-    data_0217b3dc = func_02036bec(func_020364e0(func_020364e8()), 0x25c);
+    data_0217b3dc = HeapAlloc(GetHeap(func_020364e8()), 0x25c);
     data_0217b3dc->mUnk_000 = 0;
     data_0217b3dc->mUnk_004 = 0;
     data_0217b3dc->mUnk_008 = 0;

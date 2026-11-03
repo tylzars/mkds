@@ -128,11 +128,11 @@ void func_02038de4(Unk021755a0 *a, void *b) {
 }
 
 void *func_02038d88(void *a, void *b) {
-    Unk021755a0 *p = func_02036bec(a, 0xdc);
+    Unk021755a0 *p = HeapAlloc(a, 0xdc);
     Unk021755a0_6c *q;
     func_02038de4(p, b);
     if (p->mUnk_0a == 1) {
-        q = func_02036bec(a, 8);
+        q = HeapAlloc(a, 8);
         q->mUnk_00 = 0x5000;
         q->mUnk_02 = 1;
         q->mUnk_03 = 1;

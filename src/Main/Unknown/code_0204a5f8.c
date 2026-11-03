@@ -102,7 +102,7 @@ BOOL func_0204a620(Unk02175650 *a) {
 }
 
 void func_0204a5f8(void) {
-    func_020364e0(func_020364e8());
+    GetHeap(func_020364e8());
     func_020399a8();
     func_02043c14();
     func_ov001_021a23f4();

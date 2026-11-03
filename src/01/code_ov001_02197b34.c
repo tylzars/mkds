@@ -49,7 +49,7 @@ void func_ov001_02198384(void) {
     LocateNcgr(&c, FindSceneFile(data_ov001_021a835c));
     LocateNclr(&d, FindSceneFile(data_ov001_021a8360));
     LocateNscr(&e, FindSceneFile(data_ov001_021a8354));
-    data_ov001_021a9be0->mUnk_10 = func_02036bec(data_ov001_021a9be0->mUnk_14, 0x800);
+    data_ov001_021a9be0->mUnk_10 = HeapAlloc(data_ov001_021a9be0->mHeap, 0x800);
     data_ov001_021a9be0->mUnk_04 = FindSceneFile(data_ov001_021a8358);
     data_ov001_021a9be0->mUnk_08 = FindSceneFile(data_ov001_021a8348);
     LocateNcgr2(&a, FindSceneFile(data_ov001_021a8350));
@@ -117,9 +117,9 @@ void func_ov001_02198100(void *a, void *b, s32 c) {
     s32 i;
 
     *(u16 *) 0x4000008 = (*(u16 *) 0x4000008 & 0x43) | 0x9004;
-    heap = func_02036948(a);
-    data_ov001_021a9be0 = func_02036bec(heap, 0x38);
-    data_ov001_021a9be0->mUnk_14 = heap;
+    heap = CreateFrmHeapFromMaxFree(a);
+    data_ov001_021a9be0 = HeapAlloc(heap, 0x38);
+    data_ov001_021a9be0->mHeap = heap;
     data_ov001_021a9be0->mUnk_18 = 0;
     data_ov001_021a9be0->mUnk_2c = b;
     data_ov001_021a9be0->mUnk_30 = c;
@@ -139,7 +139,7 @@ void func_ov001_02198100(void *a, void *b, s32 c) {
         func_02124a98(data_ov001_021a6a10[i], 1, data_ov001_021a9be0->mUnk_00, data_ov001_021a9be0->mUnk_04);
     }
     func_020ae6d4(data_ov001_021a9be0->mUnk_2c, (void *) data_ov001_021a9be0->mUnk_30);
-    func_02124ed0(data_ov001_021a9be0->mUnk_14, data_ov001_021a9be0->mUnk_04, NULL, &data_ov001_021a9be0->mUnk_0c);
+    func_02124ed0(data_ov001_021a9be0->mHeap, data_ov001_021a9be0->mUnk_04, NULL, &data_ov001_021a9be0->mUnk_0c);
     for (i = 0; i < 3; i++) {
         data_ov001_021a9be0->mUnk_0c[data_ov001_021a6a08[i]].mUnk_04 = 0xe0;
         data_ov001_021a9be0->mUnk_0c[data_ov001_021a6a10[i]].mUnk_04 = 0xe0;
@@ -150,11 +150,11 @@ void func_ov001_02198100(void *a, void *b, s32 c) {
     data_ov001_021a9be0->mUnk_0c[12].mUnk_04 = 0xe0;
     data_ov001_021a9be0->mUnk_0c[13].mUnk_04 = 0xe0;
     func_ov001_0219829c(data_ov001_021a9be0->mUnk_28);
-    func_02036820(data_ov001_021a9be0->mUnk_14);
+    FrmHeapShrinkInParent(data_ov001_021a9be0->mHeap);
 }
 
 void func_ov001_021980e0(void) {
-    func_02036ab0(data_ov001_021a9be0->mUnk_14);
+    HeapDestroy(data_ov001_021a9be0->mHeap);
     data_ov001_021a9be0 = NULL;
 }
 

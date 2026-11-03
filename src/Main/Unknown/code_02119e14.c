@@ -278,7 +278,7 @@ void func_0211a3bc(void) {
     LocateNcgr(&h, FindSceneFile(data_0216d874));
     LocateNclr(&j, FindSceneFile(data_0216d854));
     LocateNscr(&i, FindSceneFile(data_0216d858));
-    gSelectCup->mUnk_24 = func_02036bec(gSelectCup->mUnk_30, 0x800);
+    gSelectCup->mUnk_24 = HeapAlloc(gSelectCup->mHeap, 0x800);
     if (gSelectCup->mUnk_40 == 0) {
         gSelectCup->mUnk_04 = FindSceneFile(data_0216d880);
         gSelectCup->mUnk_08 = FindSceneFile(data_0216d89c);

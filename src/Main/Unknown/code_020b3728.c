@@ -151,7 +151,7 @@ void func_020b3b58(void) {
 }
 
 void func_020b3b08(void) {
-    data_0217b35c = func_02036bec(func_020364e0(func_020364e8()), 0x10);
+    data_0217b35c = HeapAlloc(GetHeap(func_020364e8()), 0x10);
     data_0217b35c->mUnk_00 = 0;
     data_0217b35c->mUnk_04 = 0;
     data_0217b35c->mUnk_08 = 0;

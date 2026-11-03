@@ -163,7 +163,7 @@ s32 func_020d6910(s32 a, void *b) {
 }
 
 Unk02156adc *func_020d68b0(void) {
-    Unk02156adc *p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    Unk02156adc *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     *p = data_02156adc;
     p->mUnk_38 = 0x3e8000;
     p->mUnk_3c = -0x3e8000;
@@ -171,7 +171,7 @@ Unk02156adc *func_020d68b0(void) {
 }
 
 Unk0217b650 *func_020d6850(void) {
-    Unk0217b650 *p = func_02036bec(func_020364e0(func_020364e8()), 0x5c);
+    Unk0217b650 *p = HeapAlloc(GetHeap(func_020364e8()), 0x5c);
     data_0217b650 = p;
     *p = data_02156a80;
     func_020d49d8(&data_0217b650);
@@ -179,7 +179,7 @@ Unk0217b650 *func_020d6850(void) {
 }
 
 Unk0217b650 *func_020d67f0(void) {
-    Unk0217b650 *p = func_02036bec(func_020364e0(func_020364e8()), 0x5c);
+    Unk0217b650 *p = HeapAlloc(GetHeap(func_020364e8()), 0x5c);
     data_0217b650 = p;
     *p = data_02156a24;
     func_020d49d8(&data_0217b650);
@@ -187,7 +187,7 @@ Unk0217b650 *func_020d67f0(void) {
 }
 
 Unk0217b654 *func_020d6794(void) {
-    Unk0217b654 *p = func_02036bec(func_020364e0(func_020364e8()), 0x28);
+    Unk0217b654 *p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b654 = p;
     *p = data_021569fc;
     func_020e6f50(&data_0217b654);

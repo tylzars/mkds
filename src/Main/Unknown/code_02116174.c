@@ -52,7 +52,7 @@ void func_02116888(void) {
     v2 = FindSceneFile(data_0216d3f8);
     v1 = (&(*(s32 *) &data_0217d350));
     data_0217d350->mUnk_38 = v2;
-    v2 = func_02036bec((void *) (*(u32 *) (*v1 + 0x50)), (u32) (((u32) 0x00000800u)));
+    v2 = HeapAlloc((void *) (*(u32 *) (*v1 + 0x50)), (u32) (((u32) 0x00000800u)));
     data_0217d350->mUnk_4c = v2;
     v2 = FindSceneFile(data_0216d3f4);
     LocateNcgr((Ncgr **) (&v4), v2);

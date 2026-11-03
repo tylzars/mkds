@@ -41,7 +41,7 @@ void func_02085e04(void) {
     u16 i;
     BOOL z;
     s32 m;
-    data_0217aebc = func_02036bec(func_020364e0(func_020364e8()), 0x144);
+    data_0217aebc = HeapAlloc(GetHeap(func_020364e8()), 0x144);
     z = FALSE;
     m = -1;
     for (i = 0; (u32) i < 8; i++) {

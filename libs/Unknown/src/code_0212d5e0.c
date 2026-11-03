@@ -26,7 +26,7 @@ u32 func_0212d9dc(Unk0212d9dc *a, void *p) {
 u32 func_0212d98c(Unk0212d9dc *a) {
     void *p;
 
-    p = func_0201808c(a->mUnk_00, 0x14, 4);
+    p = FrmHeapAlloc(a->mUnk_00, 0x14, 4);
     if (p == 0) {
         return 0;
     }

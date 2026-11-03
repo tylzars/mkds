@@ -47,8 +47,8 @@ Nclr *func_02077f00(void) {
 void func_02077eb4(void *a, u32 *b) {
     u32 v1;
     u32 v2;
-    v1 = ((u32) func_02036bec(a, (u32) (((u32) 0x0000f000u))));
-    v2 = (u32) func_02017988((void *) ((void *) v1), (u32) ((u32) (((u32) 0x0000f000u))), (u32) 0);
+    v1 = ((u32) HeapAlloc(a, (u32) (((u32) 0x0000f000u))));
+    v2 = (u32) ExpHeapCreate((void *) ((void *) v1), (u32) ((u32) (((u32) 0x0000f000u))), (u32) 0);
     b[1] = v2;
     *b = v1;
     b[4] = 0;

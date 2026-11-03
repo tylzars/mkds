@@ -173,7 +173,7 @@ void func_ov001_0218a074(u32 a, Unk02188950 *b) {
 
 void func_ov001_0218a034(Unk02188950 *a) {
     func_020ac588((u32) (0xc9), 0xa, (void *) a);
-    a->mUnk_000.mUnk_94 = func_02036bec((void *) func_020364e0(func_020364e8()), 0x44);
+    a->mUnk_000.mUnk_94 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x44);
     func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xc), (Vec3 *) (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cbec[0x50 / 4];
 }

@@ -106,7 +106,7 @@ void func_0208e570(void *a) {
     if (data_021759c0->mUnk_08 == 4) {
         a = data_0217aa10->mUnk_a4;
     }
-    data_0217b080 = func_02036bec(a, 0x60);
+    data_0217b080 = HeapAlloc(a, 0x60);
     func_02017538(&data_0217b080->mUnk_00, 0);
     for (i = 0; i < 5; i++) {
         func_02017538(&data_0217b080->mUnk_0c[i], 0);
@@ -276,24 +276,24 @@ void func_0208e098(void *a) {
         if (g->mUnk_00 == 0) {
             continue;
         }
-        data_0217b080->mUnk_48[i] = func_02036bec(a, g->mUnk_00 << 2);
+        data_0217b080->mUnk_48[i] = HeapAlloc(a, g->mUnk_00 << 2);
         for (j = 0; j < g->mUnk_00; j++) {
-            p = func_02036bec(a, g->mUnk_18);
+            p = HeapAlloc(a, g->mUnk_18);
             data_0217b080->mUnk_48[i][j] = p;
             if (g->mUnk_04 == 0) {
                 p->mUnk_90[0] = NULL;
             } else {
-                p->mUnk_90[0] = func_02036bec(a, 0x38);
+                p->mUnk_90[0] = HeapAlloc(a, 0x38);
             }
             if (g->mUnk_08 == 0) {
                 p->mUnk_90[1] = NULL;
             } else {
-                p->mUnk_90[1] = func_02036bec(a, 0x38);
+                p->mUnk_90[1] = HeapAlloc(a, 0x38);
             }
             if (g->mUnk_0c == 0) {
                 p->mUnk_90[2] = NULL;
             } else {
-                p->mUnk_90[2] = func_02036bec(a, 0x38);
+                p->mUnk_90[2] = HeapAlloc(a, 0x38);
             }
             p->mUnk_8c = i;
             p->mUnk_80 = g->mUnk_10;

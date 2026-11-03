@@ -21,7 +21,7 @@ typedef struct Unk02174e54 {
     /* 30 */ s32 mUnk_30;
     /* 34 */ s32 mUnk_34;
     /* 38 */ s32 mUnk_38;
-    /* 3c */ void *mUnk_3c;
+    /* 3c */ void *mHeap;
 } Unk02174e54;
 
 void func_0203003c(s32 a);

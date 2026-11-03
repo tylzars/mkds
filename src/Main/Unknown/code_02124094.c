@@ -310,7 +310,7 @@ s32 func_021243ac(void *a, s32 b, void *c, s32 d, s32 e, s32 f, void *g, void *h
     void *t;
     n2 = ((Unk0201ea30 *) h)->mUnk_06;
     ((Unk02124b1c *) i)[f].mUnk_38 = b;
-    q = func_02036bec(a, 0x48);
+    q = HeapAlloc(a, 0x48);
     ((Unk02124b1c *) i)[n2 + b].mUnk_3c = q;
     p = func_0201ea58(c, b);
     w = ((d - 1) >> 3) + 1;
@@ -318,7 +318,7 @@ s32 func_021243ac(void *a, s32 b, void *c, s32 d, s32 e, s32 f, void *g, void *h
     y = w * x;
     q->mUnk_20.mUnk_14 = y << 5;
     q->mUnk_20.mUnk_18 = ((j - 0x100) >> 5) - y;
-    q->mUnk_20.mUnk_10 = func_02036bec(a, q->mUnk_20.mUnk_14);
+    q->mUnk_20.mUnk_10 = HeapAlloc(a, q->mUnk_20.mUnk_14);
     func_02023374(q, q->mUnk_20.mUnk_10, w, x, 4);
     q->mUnk_18(q, 0);
     sb = p->mUnk_05;
@@ -357,7 +357,7 @@ s32 func_021243ac(void *a, s32 b, void *c, s32 d, s32 e, s32 f, void *g, void *h
             break;
     }
     z = func_02022eb0(buf, w, x, m, n, 0, q->mUnk_20.mUnk_18, 0);
-    r = func_02036bec(a, z * 6 + 0x10);
+    r = HeapAlloc(a, z * 6 + 0x10);
     r->mUnk_00 = z;
     r->mUnk_02 = 0;
     r->mUnk_04 = (Unk02124a68_04 *) (r + 1);

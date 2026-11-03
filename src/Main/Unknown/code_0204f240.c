@@ -57,15 +57,15 @@ void func_0204f408(void) {
 void func_0204f33c(void *a) {
     s32 i;
     data_0217aa00->mUnk_1e28 = 0x1c0;
-    data_0217aa00->mUnk_1e20 = func_02036b74(a, data_0217aa00->mUnk_1e28, 0x20);
+    data_0217aa00->mUnk_1e20 = HeapAllocAligned(a, data_0217aa00->mUnk_1e28, 0x20);
     data_0217aa00->mUnk_1e2c = 0x400;
-    data_0217aa00->mUnk_1e24 = func_02036b74(a, data_0217aa00->mUnk_1e2c, 0x20);
+    data_0217aa00->mUnk_1e24 = HeapAllocAligned(a, data_0217aa00->mUnk_1e2c, 0x20);
     for (i = 0; i < 8; i++) {
-        data_0217aa00->mUnk_1da0[i] = func_02036b74(a, 0x28, 0x20);
-        data_0217aa00->mUnk_1de0[i] = func_02036b74(a, 4, 0x20);
+        data_0217aa00->mUnk_1da0[i] = HeapAllocAligned(a, 0x28, 0x20);
+        data_0217aa00->mUnk_1de0[i] = HeapAllocAligned(a, 4, 0x20);
     }
-    data_0217aa00->mUnk_1e30 = (s32) func_02036b74(a, 0x192, 0x20);
-    data_0217aa00->mUnk_1e48 = func_02036b74(a, 0x20, 0x20);
+    data_0217aa00->mUnk_1e30 = (s32) HeapAllocAligned(a, 0x192, 0x20);
+    data_0217aa00->mUnk_1e48 = HeapAllocAligned(a, 0x20, 0x20);
 }
 
 void func_0204f240(void *a, s32 b) {
@@ -94,7 +94,7 @@ void func_0204f240(void *a, s32 b) {
         func_0204f33c(a);
         func_0204ee64();
     } else if (b == 1) {
-        data_0217aa00->mUnk_1d58 = func_02036b74(a, 0x4b000, 0x20);
+        data_0217aa00->mUnk_1d58 = HeapAllocAligned(a, 0x4b000, 0x20);
     }
 }
 

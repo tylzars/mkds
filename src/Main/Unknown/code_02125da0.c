@@ -19,7 +19,7 @@
 void func_02125de0(void *a, void *b) {
     Unk021274ec t;
 
-    data_0217d3ec = func_02036bec(a, 0x814);
+    data_0217d3ec = HeapAlloc(a, 0x814);
     data_0217d3ec->mUnk_810 = 0x5800;
     data_0217d3ec->mUnk_00 = 0;
     data_0217d3ec->mUnk_04 = 0;

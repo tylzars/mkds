@@ -33,8 +33,8 @@ void (*func_02057f8c(Unk0217aa0c *a))(void) {
 void func_02057ed8(void *a) {
     Unk0217aa0c *p;
     s32 i;
-    data_0217aa0c = func_02036bec(a, 0xfc);
-    data_0217aa0c->mUnk_f4 = func_02036b74(a, 0x800, 0x20);
+    data_0217aa0c = HeapAlloc(a, 0xfc);
+    data_0217aa0c->mUnk_f4 = HeapAllocAligned(a, 0x800, 0x20);
     func_0200e28c(&data_0217aa0c->mUnk_2c, func_02057e8c, NULL, (u8 *) data_0217aa0c->mUnk_f4 + 0x800, 0x800, 0x11);
     func_0200df68(&data_0217aa0c->mUnk_2c);
     data_0217aa0c->mUnk_f8 = 0;

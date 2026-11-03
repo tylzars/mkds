@@ -166,7 +166,7 @@ void func_0212a1e0(void *a, s32 b) {
     Unk0212a1e0 c;
     s32 i;
     s32 j;
-    data_0217d400 = func_02036bec(a, 0xc4);
+    data_0217d400 = HeapAlloc(a, 0xc4);
     data_0217d400->mUnk_00 = a;
     data_0217d400->mUnk_bc = func_021250b0(a);
     func_0212abdc(a, func_02128898());

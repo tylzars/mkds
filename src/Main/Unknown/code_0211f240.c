@@ -31,7 +31,7 @@ void func_0211f328(void) {
 void func_0211f2b8(void *a) {
     int v1;
     void *v2;
-    v1 = ((u32) func_02036bec(a, (u32) 0x10));
+    v1 = ((u32) HeapAlloc(a, (u32) 0x10));
     *(s32 *) &data_0217d37c = v1;
     v2 = FindSceneFile(data_0216e0a8);
     LocateNcgr2(&data_0217d37c->mUnk_00, v2);

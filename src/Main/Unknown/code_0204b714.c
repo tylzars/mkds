@@ -184,10 +184,10 @@ void func_0204b9ac(void) {
 }
 
 void func_0204ba2c(void *a) {
-    data_021759d4 = func_02036bec(a, 0x70);
+    data_021759d4 = HeapAlloc(a, 0x70);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        data_021759d4->mUnk_60 = func_02036b74(a, 0x2c00, 0x20);
-        data_021759d4->mUnk_64 = func_02036b74(a, 1, 0x20);
+        data_021759d4->mUnk_60 = HeapAllocAligned(a, 0x2c00, 0x20);
+        data_021759d4->mUnk_64 = HeapAllocAligned(a, 1, 0x20);
     }
     data_021759d4->mUnk_0c = 0;
 }

@@ -104,9 +104,9 @@ void func_02062b50(void) {
     s16 i;
     u16 j;
 
-    a = func_020364e0(func_020364e8());
+    a = GetHeap(func_020364e8());
     SetKartModelPathPrefix(0);
-    data_0217aa54 = func_02036bec(a, 72);
+    data_0217aa54 = HeapAlloc(a, 72);
     func_02062a0c();
     b = func_02148d24();
     func_020161b4((u16) (((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1)), 1);
@@ -244,7 +244,7 @@ void func_02062860(void) {
     func_02010f74(0x5294, 0x5294, 0);
     func_02010f50(0, 0, 1);
     func_02010f24(15, 0, 2, 0, 31, 0);
-    data_0217aa74 = func_02036bec(data_021759d0->mUnk_24, 772);
+    data_0217aa74 = HeapAlloc(data_021759d0->mHeap, 772);
     func_01ff92e0(data_0217aa74);
 }
 

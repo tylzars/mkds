@@ -45,7 +45,7 @@ void func_0202808c(void) {
     } else {
         func_0211f498();
     }
-    func_02036ab0((void *) gSelectKart->mUnk_08c);
+    HeapDestroy((void *) gSelectKart->mHeap);
     *&gSelectKart = NULL;
 }
 

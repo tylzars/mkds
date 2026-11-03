@@ -54,7 +54,7 @@ void func_ov001_0219b000(void) {
     LocateNcgr(&e, FindSceneFile(gRecordTopMenuMBNcgrName));
     LocateNclr(&f, FindSceneFile(gRecordTopMenuMBNclrName));
     LocateNscr(&g, FindSceneFile(gRecordTopMenuMNscrName));
-    gRecordTopMenu->mUnk_28 = func_02036bec(gRecordTopMenu->mUnk_2c, 0x800);
+    gRecordTopMenu->mUnk_28 = HeapAlloc(gRecordTopMenu->mHeap, 0x800);
     gRecordTopMenu->mUnk_04 = FindSceneFile(gRecordTopMenuMBnclName);
     gRecordTopMenu->mUnk_08 = FindSceneFile(gRecordTopMenuMBnllName);
     LocateNcgr2(&a, FindSceneFile(gRecordTopMenuMNcgrName));
@@ -232,8 +232,8 @@ void InitRecordTopMenu(void *heap) {
     *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 1;
     *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & 0x43) | 0x8800;
     *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & 0x43) | 0x1018;
-    gRecordTopMenu = func_02036bec(heap, 0x48);
-    gRecordTopMenu->mUnk_2c = heap;
+    gRecordTopMenu = HeapAlloc(heap, 0x48);
+    gRecordTopMenu->mHeap = heap;
     gRecordTopMenu->mUnk_30 = 0;
     switch (func_0211147c()) {
         case 1:

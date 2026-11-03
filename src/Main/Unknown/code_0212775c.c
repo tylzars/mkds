@@ -32,7 +32,7 @@ s32 func_02128058(void *a, s32 b, s32 c) {
     Unk0217d3f0_2098 *q;
     Unk0217d3f0_2178 *e;
     u32 t;
-    data_0217d3f4 = func_02036bec(a, 0x8b4);
+    data_0217d3f4 = HeapAlloc(a, 0x8b4);
     if (*(vu16 *) 0x27ffc40 != 2) {
         func_0212802c();
         c = func_02127f14(c);
@@ -44,7 +44,7 @@ s32 func_02128058(void *a, s32 b, s32 c) {
         *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (t << 8);
     }
     for (i = 0; i < 2; i++) {
-        data_0217d3f4->mUnk_894[i] = func_02036bec(a, 0x800);
+        data_0217d3f4->mUnk_894[i] = HeapAlloc(a, 0x800);
         func_02023408(&data_0217d3f4->mUnk_834[i], data_0217d3f4->mUnk_894[i], 0x20, 2, 4);
         q = &data_0217d3f4->mUnk_834[i];
         q->mUnk_18(q, 0);

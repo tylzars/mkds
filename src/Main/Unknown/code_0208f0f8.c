@@ -58,9 +58,9 @@ void func_0208f0f8(void *a) {
     if (data_021759c0->mUnk_08 == 4) {
         a = data_0217aa10->mUnk_a4;
     }
-    data_0217b08c = func_02036bec(a, 0x38);
-    e = func_02036bec(a, n * 0x30);
-    f = func_02036bec(a, m * 0x1c);
+    data_0217b08c = HeapAlloc(a, 0x38);
+    e = HeapAlloc(a, n * 0x30);
+    f = HeapAlloc(a, m * 0x1c);
     func_02017538(&data_0217b08c->mUnk_00[0], 0);
     func_02017538(&data_0217b08c->mUnk_00[1], 0);
     func_02017538(&data_0217b08c->mUnk_00[2], 0);

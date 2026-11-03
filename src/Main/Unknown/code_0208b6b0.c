@@ -29,10 +29,10 @@ u32 func_0208bd04(u32 arg0) {
     u32 value2;
     u32 value12;
     value2 = (u32) &data_0217b040;
-    value12 = (u32) &func_02036bec;
+    value12 = (u32) &HeapAlloc;
     value1 = value0;
     value0 = (u32) * (const u32 *) ((value2) + (0));
-    value0 = (u32) func_02036bec((void *) value0, value1);
+    value0 = (u32) HeapAlloc((void *) value0, value1);
     return value0;
 }
 
@@ -104,7 +104,7 @@ void func_0208b934(void *a) {
     switch (data_021759c0->mCourseId) {
         case 0x22:
             w = data_usa_021660fc;
-            data_0217b048 = func_02036bec(c, 0x64);
+            data_0217b048 = HeapAlloc(c, 0x64);
             for (j = 0; j < 6; j++) {
                 data_0217b048->mUnk_48[j] = NULL;
                 func_021484d0(&data_usa_02155f78[j], &w, &v);

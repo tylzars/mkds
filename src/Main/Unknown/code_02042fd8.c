@@ -107,7 +107,7 @@ void func_02042fd8(void *a) {
     z = n << 3;
     d = g->mUnk_010;
     if (z != 0) {
-        t = func_02036bec(a, z);
+        t = HeapAlloc(a, z);
         gCourseMap->mUnk_94 = t;
         for (i = 0; i < n; i++) {
             r = gCourseMap->mUnk_08 + i;

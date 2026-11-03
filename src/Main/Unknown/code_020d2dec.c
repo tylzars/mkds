@@ -165,7 +165,7 @@ MapObject *CreateMapObject(u32 kind, Unk020fa294 *courseRow, MapObject *source) 
                 continue;
             }
             kindData = a->mUnk_20;
-            object = func_02036bec(func_020364e0(func_020364e8()), a->mUnk_04);
+            object = HeapAlloc(GetHeap(func_020364e8()), a->mUnk_04);
             a->mUnk_00++;
             if (courseRow != NULL) {
                 object->mCourseMapRow = courseRow;
@@ -307,16 +307,16 @@ void func_020d2e6c(void) {
     Unk020e6fd4 *x;
     Unk020e6fd4 **y;
     Unk0217b4f0 *q;
-    h = func_020364e0(func_020364e8());
+    h = GetHeap(func_020364e8());
     func_020d22e0();
     data_0217b4cc = func_02061788();
     data_0217b4c0 = data_0217b4cc + 9;
     data_0217b4c8 = data_0217b4c0 + 1;
     n = gCourseMap->mUnk_04;
-    data_0217b4f0 = func_02036bec(h, 0x2bc);
-    data_0217b4f0->mMapObjects = func_02036bec(h, 0x400);
-    data_0217b4e8 = func_02036bec(h, 0x80);
-    data_0217b4dc = func_02036bec(h, 0x180);
+    data_0217b4f0 = HeapAlloc(h, 0x2bc);
+    data_0217b4f0->mMapObjects = HeapAlloc(h, 0x400);
+    data_0217b4e8 = HeapAlloc(h, 0x80);
+    data_0217b4dc = HeapAlloc(h, 0x180);
     data_0217b4f0->mMapObjectCount = 0;
     data_0217b4f0->mUnk_130 = 0;
     data_0217b4f0->mUnk_178 = 0;

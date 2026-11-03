@@ -12,8 +12,8 @@ typedef struct Unk0217d344_18 {
 } Unk0217d344_18;
 
 typedef struct Unk0217d344 {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ void *mUnk_04;
+    /* 00 */ void *mHeap;
+    /* 04 */ void *mStateHeap;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;

@@ -383,7 +383,7 @@ s32 func_02030b18(Unk02030b18 *a) {
 void func_02030ae8(void) {
     func_02125ee8(0, 0);
     func_0212b91c();
-    func_02036ab0((void *) (data_02174e58->mUnk_150));
+    HeapDestroy((void *) (data_02174e58->mHeap));
     *&data_02174e58 = NULL;
 }
 

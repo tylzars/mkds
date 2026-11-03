@@ -27,7 +27,7 @@
 void func_ov001_021987d4(void *heap, s16 a) {
     Unk02125de0Arg arg;
 
-    data_ov001_021a9be4 = func_02036bec(heap, 0x18);
+    data_ov001_021a9be4 = HeapAlloc(heap, 0x18);
     data_ov001_021a9be4->mUnk_08 = heap;
     data_ov001_021a9be4->mUnk_10 = func_021250b0(heap);
     arg.mUnk_00 = 1;

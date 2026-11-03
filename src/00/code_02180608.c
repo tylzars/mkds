@@ -87,7 +87,7 @@ void func_ov000_02180a54(void) {
 void InitWiFiStates(void *heap, s32 b) {
     Unk02125de0Arg c;
     Unk0217d384_08 *q;
-    gWiFiStates = func_02036bec(heap, 0x3c);
+    gWiFiStates = HeapAlloc(heap, 0x3c);
     gWiFiStates->mUnk_00 = heap;
     gWiFiStates->mUnk_14 = 0;
     func_02029a70(heap);
@@ -107,11 +107,11 @@ void InitWiFiStates(void *heap, s32 b) {
     func_02125de0(heap, &c);
     func_ov000_02180a54();
     func_0202c65c(heap, func_ov000_021804f4());
-    func_02078d64(func_020364e0(func_020364e8()));
+    func_02078d64(GetHeap(func_020364e8()));
     func_02078a9c(-1);
     func_02078a34(-1);
     func_020476ac();
-    gWiFiStates->mUnk_04 = func_020369fc(heap);
+    gWiFiStates->mUnk_04 = CreateExpHeapFromMaxFree(heap);
     ClearWiFiStateCallbacks();
     gWiFiStates->mUnk_18 = -1;
     if (data_0217b488->mUnk_58 != 0) {
@@ -201,8 +201,8 @@ void AdvanceWiFiStates(void) {
     if (gWiFiStates->mUnk_0c != -1) {
         gWiFiStates->mUnk_1c.mUnk_04();
         ClearWiFiStateCallbacks();
-        func_02036ab0(gWiFiStates->mUnk_04);
-        gWiFiStates->mUnk_04 = func_020369fc(gWiFiStates->mUnk_00);
+        HeapDestroy(gWiFiStates->mUnk_04);
+        gWiFiStates->mUnk_04 = CreateExpHeapFromMaxFree(gWiFiStates->mUnk_00);
         switch (gWiFiStates->mUnk_0c) {
             case 0:
                 func_ov000_02180c04();

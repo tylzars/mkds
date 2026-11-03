@@ -60,7 +60,7 @@ void func_020c4780(void) {
     if (data_021759c0->mUnk_08 != 1) {
         return;
     }
-    data_0217b3e4 = func_02036bec(func_020364e0(func_020364e8()), 0x910);
+    data_0217b3e4 = HeapAlloc(GetHeap(func_020364e8()), 0x910);
     data_0217b3e4->mUnk_000 = 1;
     for (a = 0; a < data_021759c0->mKartCount; a++) {
         data_0217b3e4->mUnk_004[a] = 1;

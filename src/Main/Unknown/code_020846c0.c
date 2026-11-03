@@ -276,7 +276,7 @@ Unk0201290c *func_02084b2c(void *a, Unk02084b2c *b, Unk020136f0 *c, Unk020136f0 
     q = b->mUnk_04;
     if (m != NULL) {
         v4 = m->mUnk_14;
-        e->mUnk_0c = func_02036bec(a, v4);
+        e->mUnk_0c = HeapAlloc(a, v4);
         func_0214d1fc(m, e->mUnk_0c, v4);
     }
     return q;
@@ -386,10 +386,10 @@ void func_020846c0(void *a) {
     u16 j;
 
     n = data_021759c0->mKartCount;
-    data_0217ae8c = func_02036bec(a, n * 2);
-    data_0217ae7c = func_02036bec(a, n * 12);
-    data_0217ae94 = func_02036bec(a, n * 4);
-    data_0217ae74 = func_02036bec(a, n * 4);
+    data_0217ae8c = HeapAlloc(a, n * 2);
+    data_0217ae7c = HeapAlloc(a, n * 12);
+    data_0217ae94 = HeapAlloc(a, n * 4);
+    data_0217ae74 = HeapAlloc(a, n * 4);
     for (i = 0; i < n; i++) {
         for (j = 0; j < 3; j++) {
             data_0217ae7c[i].mUnk_00[j] = NULL;

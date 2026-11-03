@@ -63,26 +63,26 @@ void func_0205dee0(void) {
     void *b;
     void *c;
     void *a;
-    a = func_020364e0(func_020364e8());
+    a = GetHeap(func_020364e8());
     func_02057d9c();
     if (data_021759d4->mUnk_0c != 0) {
         func_02145d38();
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2 && data_0217aa20->mUnk_0c != NULL) {
         func_02108720();
-        func_02036b30(a, data_0217aa20->mUnk_0c);
+        HeapFree(a, data_0217aa20->mUnk_0c);
         data_0217aa20->mUnk_0c = NULL;
     }
     func_02108ed8();
-    b = func_020369fc(a);
-    c = func_02036b74(b, 0x40000, 0x20);
+    b = CreateExpHeapFromMaxFree(a);
+    c = HeapAllocAligned(b, 0x40000, 0x20);
     func_0205dee0_inline(c, (void *) SDK_OVERLAY_OV003_ID);
-    func_02036ab0(b);
+    HeapDestroy(b);
     func_02148908((u16 *) 0x400006c, 0x10);
     func_02148908((u16 *) 0x400106c, 0x10);
     func_02039044();
     func_02108ec4();
-    a = func_02036bec(a, func_021087d4(1));
+    a = HeapAlloc(a, func_021087d4(1));
     func_02108598(1, (u32) a);
     data_0217aa20->mUnk_0c = a;
 }
@@ -125,10 +125,10 @@ s32 func_0205dd38(s16 *a) {
                 break;
         }
     }
-    h = func_020364e0(func_020364e8());
+    h = GetHeap(func_020364e8());
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2 && data_0217aa20->mUnk_0c != NULL) {
         func_02108720();
-        func_02036b30(h, data_0217aa20->mUnk_0c);
+        HeapFree(h, data_0217aa20->mUnk_0c);
         data_0217aa20->mUnk_0c = NULL;
     }
     switch (data_0217aa20->mUnk_00) {

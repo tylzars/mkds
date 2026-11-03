@@ -153,7 +153,7 @@ void func_02043d10(void *a) {
             p++;
         }
     }
-    data_02175624 = func_02036bec(a, 0x10);
+    data_02175624 = HeapAlloc(a, 0x10);
     func_02043c14_inline();
     func_02043a34_inline();
     func_02043a34_inline();

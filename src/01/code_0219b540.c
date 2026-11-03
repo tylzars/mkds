@@ -76,7 +76,7 @@ void func_ov001_0219c544(void) {
     LocateNcgr(&b, FindSceneFile(gSelectGhostSBNcgrName));
     LocateNscr(&d, FindSceneFile(gSelectGhostSNscrName));
     LocateNclr(&c, FindSceneFile(gSelectGhostSBNclrName));
-    gSelectGhost->mUnk_40 = func_02036bec(gSelectGhost->mHeap, 0x800);
+    gSelectGhost->mUnk_40 = HeapAlloc(gSelectGhost->mHeap, 0x800);
     gSelectGhost->mSelectCupCourseTaMBncl = FindSceneFile(gSelectCupCourseTaMBnclName);
     gSelectGhost->mSelectCupCourseTaMBnll = FindSceneFile(gSelectCupCourseTaMBnllName);
     LocateNcer(&gSelectGhost->mSelectCupCourseMNcer, FindSceneFile(gSelectCupCourseMNcerName));
@@ -333,8 +333,8 @@ void InitSelectGhost(u32 a, u32 b, u32 c) {
     reg_G2S_DB_BG0CNT = reg_G2S_DB_BG0CNT & ~3;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8300;
-    heap = func_02036948((void *) a);
-    gSelectGhost = func_02036bec(heap, 0x70);
+    heap = CreateFrmHeapFromMaxFree((void *) a);
+    gSelectGhost = HeapAlloc(heap, 0x70);
     gSelectGhost->mHeap = heap;
     gSelectGhost->mState = 0;
     gSelectGhost->mIndex = 0;
@@ -401,7 +401,7 @@ void InitSelectGhost(u32 a, u32 b, u32 c) {
         }
     }
     func_ov001_0219c0bc();
-    func_02036820((void *) (gSelectGhost->mHeap));
+    FrmHeapShrinkInParent((void *) (gSelectGhost->mHeap));
 }
 
 void func_ov001_0219baf4(void) {
@@ -412,7 +412,7 @@ void func_ov001_0219baf4(void) {
     func_0211de34();
     func_0211df38();
     func_02117218();
-    func_02036ab0(gSelectGhost->mHeap);
+    HeapDestroy(gSelectGhost->mHeap);
     gSelectGhost = NULL;
 }
 

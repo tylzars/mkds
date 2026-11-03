@@ -267,7 +267,7 @@ typedef struct Unk0217d364 {
     /* 24 */ void *mUnk_24;
     /* 28 */ void *mUnk_28;
     /* 2c */ void *mUnk_2c;
-    /* 30 */ void *mUnk_30;
+    /* 30 */ void *mHeap;
     /* 34 */ s32 mUnk_34;
     /* 38 */ s32 mUnk_38;
     /* 3c */ s32 mUnk_3c;
@@ -304,7 +304,7 @@ typedef struct Unk0217d368 {
     /* 1c */ void *mUnk_1c;
     /* 20 */ Unk0217d368_20 *mUnk_20;
     /* 24 */ void *mUnk_24;
-    /* 28 */ void *mUnk_28;
+    /* 28 */ void *mHeap;
     /* 2c */ s32 mUnk_2c;
     /* 30 */ s32 mUnk_30;
     /* 34 */ s32 mUnk_34;
@@ -390,7 +390,7 @@ typedef struct Unk0217d378 {
     /* 1c */ Unk02124b1c *mUnk_1c;
     /* 20 */ void *mUnk_20;
     /* 24 */ void *mUnk_24;
-    /* 28 */ void *mUnk_28;
+    /* 28 */ void *mHeap;
     /* 2c */ s32 mUnk_2c;
     /* 30 */ s32 mUnk_30;
     /* 34 */ s32 mUnk_34;

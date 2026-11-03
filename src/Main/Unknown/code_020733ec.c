@@ -123,7 +123,7 @@ void func_020733ec(Unk0206bcb0 *p) {
     Vec3 *v;
     u16 i;
 
-    h = func_020364e0(func_020364e8());
+    h = GetHeap(func_020364e8());
     p->mUnk_230 = func_02071568;
     func_020726bc(p);
     func_02071e28(p);
@@ -132,7 +132,7 @@ void func_020733ec(Unk0206bcb0 *p) {
     }
     func_02071c18(p);
     func_020e0650((u32 *) &p->mUnk_208);
-    p->mUnk_310 = func_02036bec(h, 0x158);
+    p->mUnk_310 = HeapAlloc(h, 0x158);
     if (gCourseMap->mUnk_70 != 0 || gCourseMap->mUnk_90 != 0) {
         if (data_021759c0->mUnk_68[p->mIndex].mUnk_08.mUnk_00 == 1) {
             p->mUnk_7c |= 2;
@@ -166,7 +166,7 @@ void func_020733ec(Unk0206bcb0 *p) {
     p->mUnk_1d0 = p->mUnk_2cc->mUnk_00;
     func_020719d0(p);
     if (data_021759c0->mUnk_08 == 5) {
-        p->mUnk_514 = func_02036bec(h, 0xb8);
+        p->mUnk_514 = HeapAlloc(h, 0xb8);
         func_02071fb8(p, h);
     }
     if (func_02062eb0() != 0) {

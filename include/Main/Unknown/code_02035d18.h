@@ -15,7 +15,7 @@ typedef struct Unk02174e6c {
     /* 640 */ s32 mUnk_640;
     /* 644 */ u8 mUnk_644[8];
     /* 64c */ s32 mUnk_64c;
-    /* 650 */ void *mUnk_650;
+    /* 650 */ void *mHeap;
 } Unk02174e6c;
 
 void func_02035d18(void);

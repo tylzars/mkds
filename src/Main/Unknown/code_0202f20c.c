@@ -56,7 +56,7 @@ void func_0202f2b4(void *a) {
     Unk02180774 *b;
     Unk02125de0 v1;
 
-    data_02174e4c = func_02036b74(a, 0x874, 0x20);
+    data_02174e4c = HeapAllocAligned(a, 0x874, 0x20);
     func_0202f51c(data_02174e4c, 0x874);
     b = func_02038d88(a, data_02154818);
     func_0202f4e0(b, 0, 0, 0, 0, 0xc, 0, 0);
@@ -98,7 +98,7 @@ void func_0202f2b4(void *a) {
     }
     data_02174e4c->mUnk_814 = data_02174e4c->mUnk_810;
     data_02174e4c->mUnk_80c = data_02163260[data_02174e4c->mUnk_810];
-    data_02174e4c->mUnk_808 = func_020369fc(a);
+    data_02174e4c->mUnk_808 = CreateExpHeapFromMaxFree(a);
     if (func_0202f19c() == 0) {
         func_0202f554();
     }

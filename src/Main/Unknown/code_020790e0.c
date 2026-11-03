@@ -69,7 +69,7 @@ void CreateKartShadow(Unk0206bcb0_590 *a, void *b) {
     void *v6;
     u8 *p;
     v6 = func_02047950(BuildKartShadowNsbmdPath((u16) a->mUnk_004));
-    a->mUnk_01c = func_02036bec(b, 0x74);
+    a->mUnk_01c = HeapAlloc(b, 0x74);
     func_0208526c(&a->mUnk_01c->mUnk_00.mUnk_5c, v6, v6);
     p = (u8 *) func_02013730((u32) v6);
     func_0207b000(&a->mUnk_01c->mUnk_00, p + *(s32 *) (p + *(u16 *) (p + 0xe) + 0xc), 3);
@@ -82,7 +82,7 @@ void CreateTire(Unk0206bcb0_590 *a, void *b) {
     Unk020136f0 *v8;
     v7 = func_02047950(BuildTireNsbmdPath(v6, a->mUnk_020->mUnk_00));
     v8 = FindKartModelFile(BuildTireNsbtxPath(v6, a->mUnk_020->mUnk_00));
-    a->mUnk_010[2] = func_02036bec(b, 0x6c);
+    a->mUnk_010[2] = HeapAlloc(b, 0x6c);
     v4 = func_02084b2c(b, a->mUnk_010[2], v7, v8);
     func_020849c0(a->mUnk_010[2], 3);
     func_0207a14c(v4, 0);
@@ -197,7 +197,7 @@ void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c) {
     s32 i;
     s = func_02047950(BuildKartNsbmdPath(v7));
     t = FindKartModelFile(BuildKartNsbtxPath(v7));
-    a->mUnk_010[1] = func_02036bec(b, 0x6c);
+    a->mUnk_010[1] = HeapAlloc(b, 0x6c);
     r4 = func_02084b2c(b, a->mUnk_010[1], s, t);
     func_020849c0(a->mUnk_010[1], 3);
     func_0207a14c(r4, 0);
@@ -220,14 +220,14 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
     e8 = (u16) a->mUnk_000;
     v7 = func_02047950(BuildCharacterNsbmdPath(e8, c));
     v10 = FindKartModelFile(BuildCharacterNsbtxPath(e8, c));
-    a->mUnk_010[0] = func_02036bec(b, 0x6c);
+    a->mUnk_010[0] = HeapAlloc(b, 0x6c);
     p = func_02084b2c(b, a->mUnk_010[0], v7, v10);
     func_020849c0(a->mUnk_010[0], 3);
     func_0207a14c(p, 0);
     if (c != 0) {
         i = 0;
         d = FALSE;
-        a->mUnk_008 = func_02036bec(b, 0x38);
+        a->mUnk_008 = HeapAlloc(b, 0x38);
         func_0208823c(0, a->mUnk_008, a->mUnk_010[0], 4, b, NULL);
         do {
             s = func_02047950(BuildCharacterNsbcaPath(e8, i));
@@ -248,7 +248,7 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
             a->mUnk_008->mUnk_18 = 0;
         }
     }
-    a->mUnk_00c = func_02036bec(b, 0x38);
+    a->mUnk_00c = HeapAlloc(b, 0x38);
     func_0208823c(2, a->mUnk_00c, a->mUnk_010[0], 1, b, NULL);
     func_0208805c(a->mUnk_00c, gKartModels->mUnk_028, b);
     func_02087f84(a->mUnk_00c, 0);
@@ -308,7 +308,7 @@ void func_02079678(void *a, s32 b) {
         if (b != 0) {
             if (v4 != 0) {
                 j = 0;
-                e->mUnk_054 = func_02036bec(a, 0x30);
+                e->mUnk_054 = HeapAlloc(a, 0x30);
                 do {
                     e->mUnk_054->mUnk_v[j].x = e->mUnk_020->mUnk_14[j].x >> 4;
                     e->mUnk_054->mUnk_v[j].y = e->mUnk_020->mUnk_14[j].y >> 4;
@@ -332,8 +332,8 @@ void InitKartModels(void *a, u32 b) {
     v4 = (u8 *) FindKartModelFile("kartoffsetdata.bin");
     SetKartModelPathPrefix(0);
     data_0217ad08 = NULL;
-    gKartModels = func_02036bec(a, 0x144);
-    gKartModels->mUnk_000 = func_02036bec(a, b * 0xb4);
+    gKartModels = HeapAlloc(a, 0x144);
+    gKartModels->mUnk_000 = HeapAlloc(a, b * 0xb4);
     gKartModels->mUnk_004 = func_02047950("kartcrsmat.bin");
     gKartModels->mUnk_004 = gKartModels->mUnk_004 + (data_021759c0->mCourseId << 3) - 8;
     gKartModels->mUnk_010 = LoadKartAPaletteFromKartModelFile();
@@ -353,7 +353,7 @@ void InitKartModels(void *a, u32 b) {
         d[i].mUnk_000 = data_021759c0->mUnk_68[i].mCharacterIndex;
         e->mUnk_004 = data_021759c0->mUnk_68[i].mKartIndex;
         func_02079988((s32) e, e->mUnk_004);
-        e->mUnk_020 = func_02036bec(a, 0xe0);
+        e->mUnk_020 = HeapAlloc(a, 0xe0);
         func_0214d1fc(v4 + e->mUnk_004 * 0xe0, e->mUnk_020, 0xe0);
         func_0208aea8(i, (u16) e->mUnk_004, (u16) d[i].mUnk_000);
     }

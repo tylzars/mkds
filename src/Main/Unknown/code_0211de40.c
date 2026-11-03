@@ -44,7 +44,7 @@ void func_0211de98(void) {
 void func_0211de40(void *a) {
     int v1;
     void *v2;
-    v1 = ((u32) func_02036bec(a, (u32) 0xc));
+    v1 = ((u32) HeapAlloc(a, (u32) 0xc));
     *(s32 *) &data_0217d36c = v1;
     v2 = FindSceneFile(data_0216de54);
     LocateNcgr2((Ncgr **) data_0217d36c, v2);

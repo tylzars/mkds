@@ -224,7 +224,7 @@ void func_02115728(void *a) {
     *(volatile u16 *) 0x400100e = (*(volatile u16 *) 0x400100e & ~3) | 1;
     *(volatile u16 *) 0x400100a = (*(volatile u16 *) 0x400100a & 0x43) | 0x1018;
     *(volatile u16 *) 0x400100e = (*(volatile u16 *) 0x400100e & 0x43) | 0x9810;
-    data_0217d350 = func_02036bec(a, 0xa4);
+    data_0217d350 = HeapAlloc(a, 0xa4);
     data_0217d350->mUnk_50 = a;
     data_0217d350->mUnk_54 = 3;
     data_0217d350->mUnk_76 = func_02111418();
@@ -310,8 +310,8 @@ void func_02115728(void *a) {
         func_02124140(data_0215c4b8[i], p4, data_0217d350->mUnk_38, data_0217d350->mUnk_3c, data_0217d350->mUnk_30);
     }
     func_02124140(5, 0, data_0217d350->mUnk_38, data_0217d350->mUnk_3c, data_0217d350->mUnk_30);
-    data_0217d350->mUnk_88 = func_02036bec(a, 0x201);
-    data_0217d350->mUnk_8c = func_02036bec(a, 0x200);
+    data_0217d350->mUnk_88 = HeapAlloc(a, 0x201);
+    data_0217d350->mUnk_8c = HeapAlloc(a, 0x200);
     func_02115e74();
 }
 

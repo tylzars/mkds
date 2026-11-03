@@ -86,7 +86,7 @@ void func_020e38a0(Unk020e38a0 *a, struct Unk020fa294 *b) {
 void *func_020e3850(void) {
     Unk020e03f8 *p;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     *p = *(const Unk020e03f8 *) data_02158c3c;
     return p;
 }
@@ -94,7 +94,7 @@ void *func_020e3850(void) {
 void *func_020e37f4(void) {
     void *p;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     data_0217b7bc = p;
     *(Unk020e039c *) p = *(const Unk020e039c *) data_02158c10;
     func_020d49d8(&data_0217b7bc);
@@ -104,7 +104,7 @@ void *func_020e37f4(void) {
 void *func_020e3798(void) {
     void *p;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     data_0217b7c0 = p;
     *(Unk020e039c *) p = *(const Unk020e039c *) data_02158be4;
     func_020d49d8(&data_0217b7c0);
@@ -114,7 +114,7 @@ void *func_020e3798(void) {
 void *func_020e373c(void) {
     void *p;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x28);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b7b4 = p;
     *(Unk020e0340 *) p = *(const Unk020e0340 *) data_02158bbc;
     func_020e6f50(&data_0217b7b4);

@@ -137,7 +137,7 @@ void func_020a269c(s32 a, u32 b) {
     s32 x;
     Unk0219b250_Item *s;
 
-    data_0217b200 = func_02036bec(func_020364e0(func_020364e8()), 0x124);
+    data_0217b200 = HeapAlloc(GetHeap(func_020364e8()), 0x124);
     data_0217b200->mUnk_002 = b;
     data_0217b200->mUnk_000 = a;
     if (a < 9 && b < 3) {
@@ -160,9 +160,9 @@ void func_020a269c(s32 a, u32 b) {
         } else {
             func_02084958(&data_0217b200->mUnk_028, 2);
         }
-        v3 = func_020364e0(func_020364e8());
+        v3 = GetHeap(func_020364e8());
         func_0208823c(2, &data_0217b200->mUnk_094, &data_0217b200->mUnk_028, 1, v3, v1);
-        func_0208805c(&data_0217b200->mUnk_094, v2, func_020364e0(func_020364e8()));
+        func_0208805c(&data_0217b200->mUnk_094, v2, GetHeap(func_020364e8()));
         func_02087f84(&data_0217b200->mUnk_094, 0);
         x = data_0217b200->mUnk_002;
         if (x != 0) {
@@ -173,7 +173,7 @@ void func_020a269c(s32 a, u32 b) {
         s = &data_0217b200->mUnk_094;
         s->mUnk_0c = (s32) f;
         *s->mUnk_1c[s->mUnk_1a] = s->mUnk_0c;
-        func_0208b934(func_020364e0(func_020364e8()));
+        func_0208b934(GetHeap(func_020364e8()));
         if (b == 0) {
             Vec3 w0 = {0, 0, 0};
 

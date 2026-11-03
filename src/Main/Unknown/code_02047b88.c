@@ -106,11 +106,11 @@ void func_02047cf0(int a) {
             }
         }
         if (b != FALSE) {
-            func_02036b30(func_020364e0(func_020364e8()), data_021759c8->mUnk_00[a].mData);
+            HeapFree(GetHeap(func_020364e8()), data_021759c8->mUnk_00[a].mData);
         }
         data_021759c8->mUnk_00[a].mLoaded = 0;
         data_021759c8->mUnk_00[a].mData = 0;
-        func_02017748(func_020364e0(func_020364e8()));
+        ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
     }
 }
 
@@ -135,13 +135,13 @@ void func_02047e0c(void) {
     p = &data_021759c8->mUnk_8c8;
     n = *p->mUnk_80 >> 8;
     if (p->mUnk_90 != 0) {
-        p->mUnk_84 = func_02036b74(func_020364e0(func_020364e8()), n, -0x20);
+        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, -0x20);
     } else {
-        p->mUnk_84 = func_02036b74(func_020364e0(func_020364e8()), n, 0x20);
+        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
     }
     func_0214d344(p->mUnk_80, p->mUnk_84);
     func_0200ee58(p->mUnk_84, n);
-    func_02017748(func_020364e0(func_020364e8()));
+    ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
 }
 
 void func_02047e94(void) {
@@ -164,9 +164,9 @@ void func_02047e94(void) {
         return;
     }
     if (p->mUnk_90 != 0) {
-        p->mUnk_84 = func_02036b74(func_020364e0(func_020364e8()), n, -0x20);
+        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, -0x20);
     } else {
-        p->mUnk_84 = func_02036b74(func_020364e0(func_020364e8()), n, 0x20);
+        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
     }
     func_0214d564((u32) b, (u32) p->mUnk_84, (u32) p->mUnk_88);
     do {
@@ -176,7 +176,7 @@ void func_02047e94(void) {
         }
     } while (func_0214d464(b, (const u8 *) p->mUnk_88, r) != 0);
     func_0200ee58(p->mUnk_84, n);
-    func_02017748(func_020364e0(func_020364e8()));
+    ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
 }
 
 void func_02047f7c(s32 a, const u8 *b, u32 *c, void *d, s32 e, s32 f, s32 g) {

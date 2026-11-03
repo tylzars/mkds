@@ -55,8 +55,8 @@ void func_020ffb1c(Unk020ffb1c *a, struct Unk020fa294 *b) {
 Unk02100004 *func_020ffacc(void) {
     Unk02100004 *p;
 
-    p = func_020364e0(func_020364e8());
-    p = func_02036bec(p, 0x40);
+    p = GetHeap(func_020364e8());
+    p = HeapAlloc(p, 0x40);
     *p = data_0215a068;
     return p;
 }

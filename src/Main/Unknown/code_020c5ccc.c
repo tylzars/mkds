@@ -20,7 +20,7 @@ u32 func_020c5db0(void) {
 }
 
 void func_020c5ce0(void) {
-    data_0217b3f0 = func_02036bec(func_020364e0(func_020364e8()), 0x1c);
+    data_0217b3f0 = HeapAlloc(GetHeap(func_020364e8()), 0x1c);
     data_0217b3f0->mUnk_00 = 1;
     data_0217b3f0->mUnk_04 = 0;
     data_0217b3f0->mUnk_08 = 0;

@@ -32,7 +32,7 @@ u32 func_0204aa04(u32 arg0, u32 arg1) {
     value4 = value0;
     value0 = value1;
     value1 = 0xdccu;
-    value0 = (u32) func_02036bec((void *) value0, value1);
+    value0 = (u32) HeapAlloc((void *) value0, value1);
     *(u32 *) ((value4) + (0)) = value0;
     return value0;
 }

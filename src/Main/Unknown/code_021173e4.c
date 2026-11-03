@@ -319,8 +319,8 @@ void func_02117e24(void *a, void *b, void *c, s32 d) {
     if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1800;
     }
-    a = func_02036948(a);
-    data_0217d360 = func_02036bec(a, 0x8c);
+    a = CreateFrmHeapFromMaxFree(a);
+    data_0217d360 = HeapAlloc(a, 0x8c);
     data_0217d360->mHeap = a;
     data_0217d360->mState = 0;
     data_0217d360->mIndex = data_0215c8fc[func_0202968c()];
@@ -364,7 +364,7 @@ void func_02117e24(void *a, void *b, void *c, s32 d) {
     func_021188dc();
     func_02118624();
     func_021181fc();
-    func_02036820(data_0217d360->mHeap);
+    FrmHeapShrinkInParent(data_0217d360->mHeap);
     if (data_021759d0->mUnk_20 == 2) {
         ClearSelectReturnDisplayBitOn();
     }
@@ -381,7 +381,7 @@ void func_02117db0(void) {
     } else {
         func_0211f498();
     }
-    func_02036ab0(data_0217d360->mHeap);
+    HeapDestroy(data_0217d360->mHeap);
     data_0217d360 = NULL;
 }
 

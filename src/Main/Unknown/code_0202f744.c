@@ -5,7 +5,7 @@
 #pragma thumb on
 
 void func_0202f744(void) {
-    func_02036ab0((void *) data_02174e50->mUnk_a4);
+    HeapDestroy((void *) data_02174e50->mHeap);
     *&data_02174e50 = NULL;
 }
 

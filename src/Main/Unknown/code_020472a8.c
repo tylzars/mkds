@@ -26,7 +26,7 @@ void func_02047b6c(u16 arg0) {
     u32 value4;
     value4 = (value0) + (0u);
     value0 = (u32) func_020364e8();
-    value0 = (u32) func_020364e0((void *) value0);
+    value0 = (u32) GetHeap((void *) value0);
     value1 = (value4 << 16);
     value1 = (value1 >> 16);
     value0 = (u32) func_020176b0(value0, value1);
@@ -319,7 +319,7 @@ void func_02047468(const void *a, u32 b) {
 
 void func_020473e4(void) {
     func_0204f5e4();
-    func_0201804c((void *) data_021759c8->mUnk_a80, (u32) 3);
+    FrmHeapFree((void *) data_021759c8->mUnk_a80, (u32) 3);
     func_02047498(gKartModelMainAArchivePath, 0xb);
     func_02047498(gKartModelMainBArchivePath, 0xc);
     func_02047498(gMenuDLArchivePath2, 0);
@@ -332,7 +332,7 @@ void func_020473e4(void) {
 
 void func_020473a8(void) {
     func_0204f5e4();
-    func_0201804c((void *) data_021759c8->mUnk_a80, (u32) 3);
+    FrmHeapFree((void *) data_021759c8->mUnk_a80, (u32) 3);
     func_02047498(gMenuDLArchivePath, 0);
     func_02047468(gMenuDLArchivePrefix, (u32) 1);
 }
@@ -344,7 +344,7 @@ void func_020473a8(void) {
 void func_020472e4(void *a, void *b) {
     char c[128];
     func_0204f5e4();
-    func_0201804c(data_021759c8->mUnk_a80, 3);
+    FrmHeapFree(data_021759c8->mUnk_a80, 3);
     func_02047498(gRaceArchivePath, 2);
     func_02047468(gRaceArchivePrefix, 3);
     if (b == (void *) 3) {
@@ -355,7 +355,7 @@ void func_020472e4(void *a, void *b) {
         func_02047468(gRaceMgArchivePrefix, 5);
     }
     data_021759c8->mUnk_a74 = b;
-    func_0201804c(data_021759c8->mUnk_a7c, 3);
+    FrmHeapFree(data_021759c8->mUnk_a7c, 3);
     func_02048498(c, (s32) a, 0);
     func_02047498(c, 6);
     func_02048498(c, (s32) a, 1);
@@ -369,7 +369,7 @@ void func_020472e4(void *a, void *b) {
 
 void func_020472a8(void) {
     func_0204f5e4();
-    func_0201804c((void *) ((u32) data_021759c8->mUnk_a80), (u32) 3);
+    FrmHeapFree((void *) ((u32) data_021759c8->mUnk_a80), (u32) 3);
     func_02047498(gResultDLArchivePath, 0xe);
     func_02047468(gResultDLArchivePrefix, (u32) 0xf);
 }

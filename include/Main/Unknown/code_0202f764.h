@@ -41,7 +41,7 @@ typedef struct Unk02174e50 {
     /* 98 */ s32 mUnk_98;
     /* 9c */ s32 mUnk_9c;
     /* a0 */ Unk020b3fb0 *mUnk_a0;
-    /* a4 */ void *mUnk_a4;
+    /* a4 */ void *mHeap;
 } Unk02174e50;
 
 // Argument of func_0202f764: a halfword at 4.

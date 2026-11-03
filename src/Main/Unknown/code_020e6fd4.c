@@ -20,8 +20,8 @@ void func_020e730c(void) {
     s32 i;
 
     n = ((Unk020e6fd4 *) data_0217b864)->mUnk_04;
-    *(void **) data_0217b86c = func_02036bec(func_020364e0(func_020364e8()), n * 4);
-    data_0217b868 = func_02036bec(func_020364e0(func_020364e8()), n * 2);
+    *(void **) data_0217b86c = HeapAlloc(GetHeap(func_020364e8()), n * 4);
+    data_0217b868 = HeapAlloc(GetHeap(func_020364e8()), n * 2);
     for (i = 0; i < ((Unk020e6fd4 *) data_0217b864)->mUnk_04; i++) {
         s32 k;
 

@@ -16,7 +16,7 @@ void InitOptionEmbremSelect(void *a) {
     OptionEmbremSelect *p;
     void *ptr;
 
-    gOptionEmbremSelect = func_02036bec(a, 0x58);
+    gOptionEmbremSelect = HeapAlloc(a, 0x58);
     gOptionEmbremSelect->mUnk_30 = a;
     gOptionEmbremSelect->mState = 0;
     gOptionEmbremSelect->mNextState = 0;

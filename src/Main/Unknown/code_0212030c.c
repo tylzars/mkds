@@ -51,7 +51,7 @@ u32 func_021205e8(void) {
 void func_021205ac(void *a) {
     Unk0217d384_08 *p;
 
-    data_0217d384 = func_02036b74(a, 0x1f58, 0x20);
+    data_0217d384 = HeapAllocAligned(a, 0x1f58, 0x20);
     func_02046be8(&data_0217d384->mUnk_0008, data_0216e21c, 8, NULL);
     p = &data_0217d384->mUnk_0008;
     p->mNextState = 0;
@@ -59,8 +59,8 @@ void func_021205ac(void *a) {
 }
 
 void func_0212055c(void *a) {
-    data_0217d384->mHeapBuffer = func_02036b74(a, 0x3e800, 0x20);
-    data_0217d384->mHeap = func_02017988(data_0217d384->mHeapBuffer, 0x3e800, 1);
+    data_0217d384->mHeapBuffer = HeapAllocAligned(a, 0x3e800, 0x20);
+    data_0217d384->mHeap = ExpHeapCreate(data_0217d384->mHeapBuffer, 0x3e800, 1);
     data_0217d384->mHeapCreated = 1;
     func_ov000_021a3744(func_0211fffc, func_0211ffb0);
 }
@@ -69,8 +69,8 @@ void func_02120514(void) {
     Unk0217d384_08 *p;
 
     if (data_0217d384->mHeap != NULL) {
-        func_0201797c(data_0217d384->mHeap);
-        func_02036b30(func_020364e0(func_020364e8()), data_0217d384->mHeapBuffer);
+        ExpHeapDestroy(data_0217d384->mHeap);
+        HeapFree(GetHeap(func_020364e8()), data_0217d384->mHeapBuffer);
     }
     data_0217d384->mHeapCreated = 0;
     p = &data_0217d384->mUnk_0008;

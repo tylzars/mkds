@@ -13,7 +13,7 @@ void func_ov000_02184a6c(void *a) {
     void *b;
     void *c;
 
-    data_ov000_021b4c7c = func_02036bec(a, 4);
+    data_ov000_021b4c7c = HeapAlloc(a, 4);
     data_ov000_021b4c7c->mUnk_00 = a;
     func_ov000_02184a50();
     b = func_ov000_021804f4();

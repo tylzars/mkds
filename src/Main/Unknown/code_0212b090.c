@@ -17,7 +17,7 @@
 void func_0212b158(void *a) {
     Unk0217d408 *p;
     Unk02180728 *q;
-    p = func_02036bec(a, 0x1a44);
+    p = HeapAlloc(a, 0x1a44);
     data_0217d408 = p;
     func_02023408(p->mUnk_0014, p->mUnk_0044, 0x20, 5, 4);
     p = data_0217d408;

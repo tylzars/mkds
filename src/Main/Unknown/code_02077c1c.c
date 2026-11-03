@@ -28,8 +28,8 @@ void LoadKartAndCharacterFiles(void) {
     b = data_0217ad08->mUnk_020->mUnk_00;
     c = data_0217ad08->mUnk_020->mUnk_04;
     p->mUnk_30 = 0;
-    func_0201797c(&p->mUnk_04->mUnk_00);
-    p->mUnk_04 = func_02017988(p->mUnk_00, 0xf000, 0);
+    ExpHeapDestroy(&p->mUnk_04->mUnk_00);
+    p->mUnk_04 = ExpHeapCreate(p->mUnk_00, 0xf000, 0);
     if (b != -1 && p->mUnk_08 != NULL) {
         func_02012b30(p->mUnk_08);
         func_02012b30(p->mUnk_0c);

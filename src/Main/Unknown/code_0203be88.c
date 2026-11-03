@@ -42,7 +42,7 @@ void func_0203bec0(u8 *a) {
 u8 *func_0203bedc(void *a) {
     Unk0203ba84 *p;
     void *t;
-    p = func_02036bec(a, 0x48);
+    p = HeapAlloc(a, 0x48);
     t = func_02056444(a);
     p->mUnk_44 = t;
     func_0203bec0((u8 *) p);

@@ -29,7 +29,7 @@
 #pragma opt_rebuildconditionals off
 
 Unk0205ec14 *func_0205eda0(void *a) {
-    Unk0205ec14 *p = func_02036bec(a, 0xb04);
+    Unk0205ec14 *p = HeapAlloc(a, 0xb04);
     if (p != NULL) {
         p->mUnk_00 = -1;
     }
@@ -279,7 +279,7 @@ u8 func_0205e548(void) {
 #pragma thumb on
 
 void func_0205e530(void) {
-    func_0202dfd4(func_020364e0(func_020364e8()));
+    func_0202dfd4(GetHeap(func_020364e8()));
 }
 
 void func_0205e528(void) {
@@ -321,14 +321,14 @@ void func_0205e2cc(void *a) {
     s32 y;
     n = gCourseMap->mUnk_78;
     m = 0;
-    data_0217aa24 = func_02036bec(a, 8);
+    data_0217aa24 = HeapAlloc(a, 8);
     for (i = 0; i < n; i++) {
         if (func_020423fc(i)->mUnk_44 == 5) {
             m = m + 1;
         }
     }
     if (m != 0) {
-        data_0217aa24->mUnk_00 = func_02036bec(a, m * 0xc);
+        data_0217aa24->mUnk_00 = HeapAlloc(a, m * 0xc);
     }
     k = 0;
     data_0217aa24->mUnk_04 = m;

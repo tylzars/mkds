@@ -116,7 +116,7 @@ void func_020f4b8c(void) {
     Unk0217bc48 *p;
     s32 i;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x1f8);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x1f8);
     data_0217bc48 = p;
     p[0] = data_02159918;
     p[1] = data_02159838;

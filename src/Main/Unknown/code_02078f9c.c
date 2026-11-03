@@ -17,7 +17,7 @@ void func_02078f9c(void *c) {
     void *b;
     LoadKartModelMenuFile(c, data_usa_02165760, &a);
     LoadKartModelMenuFile(c, data_usa_0216577c, &b);
-    data_0217ad08->mUnk_1cc = func_02036bec(c, 0x6c);
+    data_0217ad08->mUnk_1cc = HeapAlloc(c, 0x6c);
     func_02084d3c(data_0217ad08->mUnk_1cc, a, b);
     func_020849c0(data_0217ad08->mUnk_1cc, 2);
     func_02012ffc(data_0217ad08->mUnk_1cc->mUnk_04, 1);

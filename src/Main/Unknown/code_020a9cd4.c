@@ -53,7 +53,7 @@ void func_020a9e04(Unk020a9268 *p) {
     Vec3 v = data_02167974;
 
     func_020d29cc(&p->mUnk_000, &v);
-    p->mUnk_000.mUnk_94 = func_02036bec(func_020364e0(func_020364e8()), 0x44);
+    p->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     func_02109110(&p->mUnk_000.mUnk_94->mUnk_00, 10, &p->mUnk_000.mPos);
     p->mUnk_000.mUnk_70 = data_0217ca6c[10].mUnk_20;
     p->mUnk_128 = func_020d2178(p->mUnk_000.mCourseMapRow->mUnk_34);

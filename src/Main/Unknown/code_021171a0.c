@@ -71,7 +71,7 @@ void func_0211732c(void) {
 void func_021172a8(void *a) {
     int i;
 
-    data_0217d35c = func_02036bec(a, 0x18);
+    data_0217d35c = HeapAlloc(a, 0x18);
     LocateNcgr2(&data_0217d35c->mUnk_00, FindSceneFile(data_0216d534));
     LocateNcer(&data_0217d35c->mUnk_04, FindSceneFile(data_0216d538));
     for (i = 0; i < 3; i++) {
@@ -87,7 +87,7 @@ void func_021172a8(void *a) {
 void func_02117224(void *heap) {
     s32 i;
 
-    data_0217d35c = func_02036bec(heap, 0x18);
+    data_0217d35c = HeapAlloc(heap, 0x18);
     LocateNcgr2(&data_0217d35c->mUnk_00, FindSceneFile(data_0216d524));
     LocateNcer(&data_0217d35c->mUnk_04, FindSceneFile(data_0216d528));
     for (i = 0; i < 3; i++) {

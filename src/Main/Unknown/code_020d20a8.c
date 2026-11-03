@@ -73,7 +73,7 @@ u32 func_020d2178(s32 c) {
 
 void func_020d20a8(void) {
     Unk0217b4b4 *p;
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x28);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b4b4 = p;
     p->mUnk_00 = data_021759c0->mUnk_60;
     if (data_021759c0->mUnk_08 == 5) {

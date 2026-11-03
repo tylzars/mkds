@@ -248,7 +248,7 @@ void func_020c541c(Unk020c06c4 *a) {
 }
 
 void func_020c53c4(void) {
-    data_0217b3ec = func_02036bec(func_020364e0(func_020364e8()), 0x14);
+    data_0217b3ec = HeapAlloc(GetHeap(func_020364e8()), 0x14);
     data_0217b3ec->mUnk_00 = 0;
     data_0217b3ec->mUnk_04 = 0;
     data_0217b3ec->mUnk_08 = 0;

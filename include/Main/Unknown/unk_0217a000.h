@@ -698,7 +698,7 @@ typedef struct Unk0217aa00 {
         struct {
             /* 16a0 */ Unk0217aa00_16a0 mUnk_16a0[12];
             /* 1d00 */ s32 mUnk_1d00;
-            /* 1d04 */ void *mUnk_1d04;
+            /* 1d04 */ void *mHeap;
             /* 1d08 */ u16 mUnk_1d08;
             /* 1d0a */ u16 mUnk_1d0a;
             /* 1d0c */ Unk02003024 mUnk_1d0c;
@@ -779,7 +779,7 @@ typedef struct Unk0217aa10_08 {
 struct Unk02017584;
 
 // Object behind data_0217aa10; func_0212034c reads the word at 0. The objects at 0x2c and 0x58 are passed to
-// FS_StartOverlay and FS_InitFile, the pointer at 0xa4 to func_0201797c.
+// FS_StartOverlay and FS_InitFile, the pointer at 0xa4 to ExpHeapDestroy.
 typedef struct Unk0217aa10 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;

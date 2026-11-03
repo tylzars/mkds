@@ -72,7 +72,7 @@ void func_ov001_021930ac(void) {
 
 void InitOptionStates(void *heap, s16 a) {
     Unk02125de0Arg arg;
-    gOptionStates = func_02036bec(heap, 0x2c);
+    gOptionStates = HeapAlloc(heap, 0x2c);
     gOptionStates->mHeap = heap;
     gOptionStates->mUnk_28 = func_021250b0(heap);
     func_ov001_021930ac();
@@ -89,7 +89,7 @@ void InitOptionStates(void *heap, s16 a) {
     arg.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(heap, &arg);
-    gOptionStates->mStateHeap = func_020369fc(gOptionStates->mHeap);
+    gOptionStates->mStateHeap = CreateExpHeapFromMaxFree(gOptionStates->mHeap);
     LoadOptionData();
     ClearOptionStateCallbacks();
     gOptionStates->mUnk_14 = -1;
@@ -136,8 +136,8 @@ void AdvanceOptionStates(void) {
     if (gOptionStates->mNextState != -1) {
         gOptionStates->mCallbacks.mRelease();
         ClearOptionStateCallbacks();
-        func_02036ab0((void *) gOptionStates->mStateHeap);
-        gOptionStates->mStateHeap = func_020369fc(gOptionStates->mHeap);
+        HeapDestroy((void *) gOptionStates->mStateHeap);
+        gOptionStates->mStateHeap = CreateExpHeapFromMaxFree(gOptionStates->mHeap);
         switch (gOptionStates->mNextState) {
             case 0:
                 func_ov001_021932e4();

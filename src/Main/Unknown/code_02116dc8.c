@@ -28,7 +28,7 @@ void func_02116dd4(void *a, void *b, void *c, u32 d, u16 e, u32 f) {
     int *v1;
     int v2;
     void *v3;
-    v2 = ((u32) func_02036bec(a, (u32) 0x2c));
+    v2 = ((u32) HeapAlloc(a, (u32) 0x2c));
     *(s32 *) &data_0217d354 = v2;
     v3 = FindSceneFile(data_0216d4c4);
     LocateNcer(&data_0217d354->mUnk_00, v3);

@@ -30,11 +30,11 @@ void func_0207ad88(Unk0207adf8 *a, u32 b, u32 c) {
 
 void func_0207abec(u32 a) {
     u16 i;
-    void *h = func_020364e0(func_020364e8());
+    void *h = GetHeap(func_020364e8());
     Unk0206cdd4_B *q;
-    data_0217ad18 = func_02036bec(h, a * 0x5a8);
+    data_0217ad18 = HeapAlloc(h, a * 0x5a8);
     data_usa_0217acf4 = a;
-    q = func_02036bec(h, 0x1c);
+    q = HeapAlloc(h, 0x1c);
     data_usa_0217acfc = q;
     data_0217ad10 = 0;
     data_0217ad20 = 0;

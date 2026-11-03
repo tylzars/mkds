@@ -36,15 +36,15 @@ void func_02034bf4(void *a, void *b, void *c) {
     s16 *t;
     BOOL z;
 
-    h = func_02036948(a);
-    data_02174e64 = func_02036bec(h, 0x1a8);
+    h = CreateFrmHeapFromMaxFree(a);
+    data_02174e64 = HeapAlloc(h, 0x1a8);
     func_0214d05c_inline(data_02174e64, 0x1a8);
-    data_02174e64->mUnk_1a4 = h;
+    data_02174e64->mHeap = h;
     data_02174e64->mUnk_024[0] = b;
     data_02174e64->mUnk_024[1] = c;
     data_02174e64->mUnk_084 = func_02047a28(data_02164294);
     data_02174e64->mUnk_088 = FindSceneFile(data_021642a0);
-    func_0204f240(data_02174e64->mUnk_1a4, 2);
+    func_0204f240(data_02174e64->mHeap, 2);
     data_02174e64->mUnk_080 = -1;
     for (i = 0; i < 4; i++) {
         func_02025f80(&data_02174e64->mUnk_09c[i].mUnk_2c, 3, 10, 0x100, 0);
@@ -54,12 +54,12 @@ void func_02034bf4(void *a, void *b, void *c) {
     n = func_02148cb8();
     func_02025b20(s, data_02164308, data_02164328, data_02164348, data_02164368, data_02164384, NULL, FindSceneFile);
     z = FALSE;
-    func_02025a50(0, data_02174e64->mUnk_1a4, s);
+    func_02025a50(0, data_02174e64->mHeap, s);
     i = 0;
     if (i < s->mUnk_14->mUnk_06) {
         t = (s16 *) data_02154034;
         do {
-            n -= func_02025a00(z, data_02174e64->mUnk_1a4, s, t, n);
+            n -= func_02025a00(z, data_02174e64->mHeap, s, t, n);
             t += 4;
             i++;
         } while (i < s->mUnk_14->mUnk_06);
@@ -73,7 +73,7 @@ void func_02034bf4(void *a, void *b, void *c) {
     k = 0;
     func_02025b20(s, data_021643a0, data_021643c0, data_021643e0, data_02164400, data_02164420, data_02164440,
                   FindSceneFile);
-    func_02025a50(1, data_02174e64->mUnk_1a4, s);
+    func_02025a50(1, data_02174e64->mHeap, s);
     m = s->mUnk_0c->mUnk_06;
     i = 0;
     if (i < s->mUnk_14->mUnk_06) {
@@ -82,7 +82,7 @@ void func_02034bf4(void *a, void *b, void *c) {
             if (t[3] < 0) {
                 t[3] = m + k++;
             }
-            n -= func_02025a00(1, data_02174e64->mUnk_1a4, s, data_02164254[i], n);
+            n -= func_02025a00(1, data_02174e64->mHeap, s, data_02164254[i], n);
             t += 4;
             i++;
         } while (i < s->mUnk_14->mUnk_06);
@@ -94,7 +94,7 @@ void func_02034bf4(void *a, void *b, void *c) {
     func_02025b84(0, &data_02174e64->mUnk_064);
     func_02025f80(&data_02174e64->mUnk_194, 3, 10, -0xc0, 0);
     func_021281c8(0xf);
-    func_02036820(data_02174e64->mUnk_1a4);
+    FrmHeapShrinkInParent(data_02174e64->mHeap);
 }
 
 BOOL func_02034e68(Unk02174e64_9c_00 *a, Unk02174e64_9c_00 *b) {

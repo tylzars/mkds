@@ -8,7 +8,7 @@
 #pragma thumb on
 
 void func_020ea55c(void **a, void *b, u32 c) {
-    *a = func_02036bec(func_020364e0(func_020364e8()), 0x74);
+    *a = HeapAlloc(GetHeap(func_020364e8()), 0x74);
     func_0207afa8(*a, b, (u8) c);
 }
 

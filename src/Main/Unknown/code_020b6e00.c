@@ -82,7 +82,7 @@ void func_020b8624(void) {
     s32 c;
     void *q;
 
-    data_0217b3c4 = func_02036bec(func_020364e0(func_020364e8()), 0x88c);
+    data_0217b3c4 = HeapAlloc(GetHeap(func_020364e8()), 0x88c);
     for (i = 0; i < 0x38; i++) {
         data_0217b3c4->mRaceMNcerEntries[i] = NULL;
     }

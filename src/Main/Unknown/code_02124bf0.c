@@ -18,7 +18,7 @@ void func_02124ed0(void *a, Unk0201ea30 *b, Unk0201ea30 *c, Unk02124b1c **d) {
     if (c != NULL) {
         n = n + c->mUnk_06;
     }
-    *d = func_02036bec(a, n << 6);
+    *d = HeapAlloc(a, n << 6);
     func_02124efc(*d, n);
 }
 

@@ -75,7 +75,7 @@ void func_0211f4b0(void *a, void *b) {
     u16 n;
     u32 v;
 
-    data_0217d380 = func_02036bec(a, 0x28);
+    data_0217d380 = HeapAlloc(a, 0x28);
     data_0217d380->mUnk_1c = 1;
     data_0217d380->mUnk_18 = b;
     func_0211f61c();

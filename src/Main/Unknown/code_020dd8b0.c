@@ -14,10 +14,10 @@ void func_020dd950(Unk020dd950 *d, Vec3 *a, Vec3 *b, s32 c, s32 n, s32 e, Vec3 *
 
     d->mUnk_00 = c;
     d->mUnk_20 = n;
-    h = func_020364e0(func_020364e8());
-    d->mUnk_44 = func_02036bec(h, n * 12);
-    h = func_020364e0(func_020364e8());
-    d->mUnk_48 = func_02036bec(h, n * 12);
+    h = GetHeap(func_020364e8());
+    d->mUnk_44 = HeapAlloc(h, n * 12);
+    h = GetHeap(func_020364e8());
+    d->mUnk_48 = HeapAlloc(h, n * 12);
     d->mUnk_34 = *f;
     d->mUnk_40 = (s32) (((s64) e * f->y) >> 12);
     k = n - 1;

@@ -17,11 +17,11 @@
 void func_0202e530(void *a, s32 b, const void *c, u16 d, u16 e, s32 f, Unk02124b1c *g, void *h, const void *i, s32 j,
                    s32 k, s32 l, s32 m, void (*n)(int a, int b, int c, int d)) {
     s32 i0;
-    data_02174e48 = func_02036bec(a, 0x674);
+    data_02174e48 = HeapAlloc(a, 0x674);
     func_0202e68c(data_02174e48, 0x674);
     data_02174e48->mUnk_000 = b;
     b = b * 2;
-    data_02174e48->mUnk_004 = func_02036b74(a, b, 0x20);
+    data_02174e48->mUnk_004 = HeapAllocAligned(a, b, 0x20);
     func_0202e680(c, data_02174e48->mUnk_004, b);
     func_0202e680(i, data_02174e48->mUnk_058, 0x600);
     data_02174e48->mUnk_02c = d;

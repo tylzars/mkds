@@ -17,7 +17,7 @@ void func_020f1b10(void) {
     s32 m;
     u32 v;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x930);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x930);
     data_0217bc34 = p;
     p[0] = data_02159934;
     p[1] = data_02159854;

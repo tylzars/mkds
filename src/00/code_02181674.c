@@ -12,7 +12,7 @@
 #include "Main/Unknown/code_020472a8.h"
 
 void func_ov000_021816b0(void *heap) {
-    data_ov000_021b4c68 = func_02036bec(heap, 0x40);
+    data_ov000_021b4c68 = HeapAlloc(heap, 0x40);
     data_ov000_021b4c68->mHeap = heap;
     data_ov000_021b4c68->mState = 0;
     data_ov000_021b4c68->mNextState = 0;

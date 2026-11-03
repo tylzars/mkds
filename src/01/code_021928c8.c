@@ -15,7 +15,7 @@
 #include "Main/Unknown/code_0209bef0.h"
 
 void func_ov001_02192d28(void) {
-    data_ov001_021a9bc8 = func_02036bec((void *) func_020364e0(func_020364e8()), 0x54);
+    data_ov001_021a9bc8 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x54);
 }
 
 void func_ov001_02192a78(void) {

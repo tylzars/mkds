@@ -160,16 +160,16 @@ u16 func_020abff4(s32 a, u16 b) {
 void func_020abcf4(s32 a, s32 b, s32 c) {
     Unk0217b334 *p;
 
-    data_0217b334 = func_02036bec(func_020364e0(func_020364e8()), 0x78);
+    data_0217b334 = HeapAlloc(GetHeap(func_020364e8()), 0x78);
     data_0217b334->mUnk_44 = c;
     data_0217b334->mUnk_4a = c;
     data_0217b334->mUnk_46 = 0;
     data_0217b334->mUnk_48 = 0;
-    data_0217b334->mUnk_40 = func_02036bec(func_020364e0(func_020364e8()), (c + 1) * 2);
+    data_0217b334->mUnk_40 = HeapAlloc(GetHeap(func_020364e8()), (c + 1) * 2);
     data_0217b334->mUnk_0c = b * (a * 2);
-    data_0217b334->mUnk_04 = func_02036bec(func_020364e0(func_020364e8()), data_0217b334->mUnk_0c);
+    data_0217b334->mUnk_04 = HeapAlloc(GetHeap(func_020364e8()), data_0217b334->mUnk_0c);
     data_0217b334->mUnk_08 = 0x4020;
-    data_0217b334->mUnk_00 = func_02036b74(func_020364e0(func_020364e8()), data_0217b334->mUnk_08, 0x20);
+    data_0217b334->mUnk_00 = HeapAllocAligned(GetHeap(func_020364e8()), data_0217b334->mUnk_08, 0x20);
     p = data_0217b334;
     func_020ab088(func_020b403c(0), p->mUnk_00, p->mUnk_04, a, b, 0);
     func_020ab064(func_020abff4);

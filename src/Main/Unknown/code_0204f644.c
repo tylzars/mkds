@@ -14,7 +14,7 @@ void func_0204f770(void) {
     u32 v1 = *data_0217aa00->mUnk_16a0[m].mUnk_74 >> 8;
     void *v2 = data_0217aa00->mUnk_16a0[m].mUnk_78;
     if (v2 == NULL) {
-        v2 = func_02036b74(data_0217aa00->mUnk_16a0[m].mUnk_80, v1, 0x20);
+        v2 = HeapAllocAligned(data_0217aa00->mUnk_16a0[m].mUnk_80, v1, 0x20);
         *data_0217aa00->mUnk_16a0[m].mUnk_7c = v2;
     }
     func_0214d344(data_0217aa00->mUnk_16a0[m].mUnk_74, v2);
@@ -52,7 +52,7 @@ BOOL func_0204f644(void) {
         v1 = p->mUnk_20.p.mUnk_08 - p->mUnk_20.p.mUnk_04;
         v2 = ((Unk0217aa00 *) q)->mUnk_16a0[n].mUnk_74;
         if (v2 == NULL) {
-            v2 = func_02036b74(data_0217aa00->mUnk_16a0[n].mUnk_80, v1, 0x20);
+            v2 = HeapAllocAligned(data_0217aa00->mUnk_16a0[n].mUnk_80, v1, 0x20);
             *data_0217aa00->mUnk_16a0[n].mUnk_7c = v2;
         }
         FS_ReadFileAsync(p, v2, v1);

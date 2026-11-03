@@ -11,8 +11,8 @@
 
 void func_ov000_021805cc(s16 *a) {
     void *b;
-    b = func_020364e0(func_020364e8());
-    data_ov000_021b4c60 = func_02036bec(b, 0x808);
+    b = GetHeap(func_020364e8());
+    data_ov000_021b4c60 = HeapAlloc(b, 0x808);
     InitWiFiStates(b, *a);
 }
 

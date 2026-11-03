@@ -577,20 +577,20 @@ Unk0212d9dc *func_0212dcc8(void *base, u32 size) {
     if (n < 16) {
         return 0;
     }
-    p = func_020180e0(a + 1, n - 16, 0);
+    p = FrmHeapCreate(a + 1, n - 16, 0);
     if (p == 0) {
         return 0;
     }
     if (func_0212d9dc(a, p) != 0) {
         return a;
     }
-    func_020180d4(p);
+    FrmHeapDestroy(p);
     return 0;
 }
 
 void func_0212dcac(Unk0212d9dc *a) {
     func_0212dbec(a);
-    func_020180d4(a->mUnk_00);
+    FrmHeapDestroy(a->mUnk_00);
 }
 
 void func_0212dbec(Unk0212d9dc *a) {
@@ -609,7 +609,7 @@ void func_0212dbec(Unk0212d9dc *a) {
         }
         func_02017354(&a->mUnk_04, e);
     }
-    func_0201804c(a->mUnk_00, 3);
+    FrmHeapFree(a->mUnk_00, 3);
     if (flag != 0) {
         func_0212d968();
     }
@@ -620,7 +620,7 @@ void *func_0212db7c(Unk0212d9dc *a, u32 size, UnkFunc *f, void *p, u32 v) {
     Unk0212db7c *n;
     Unk02017328 *e;
 
-    n = func_0201808c(a->mUnk_00, ((size + 31) & ~31) + 32, 32);
+    n = FrmHeapAlloc(a->mUnk_00, ((size + 31) & ~31) + 32, 32);
     if (n == 0) {
         return 0;
     }
@@ -634,13 +634,13 @@ void *func_0212db7c(Unk0212d9dc *a, u32 size, UnkFunc *f, void *p, u32 v) {
 }
 
 s32 func_0212db24(Unk0212d9dc *a) {
-    if (func_02017fb4(a->mUnk_00, a->mUnk_04.mUnk_08) == 0) {
+    if (FrmHeapSaveFrontBack(a->mUnk_00, a->mUnk_04.mUnk_08) == 0) {
         return -1;
     }
     if (func_0212d98c(a) != 0) {
         return a->mUnk_04.mUnk_08 - 1;
     }
-    func_02017f58(a->mUnk_00, 0);
+    FrmHeapRestoreFrontBack(a->mUnk_00, 0);
     return -1;
 }
 
@@ -667,10 +667,10 @@ void func_0212da38(Unk0212d9dc *a, s32 n) {
             func_02017354(&a->mUnk_04, e);
         } while (n < a->mUnk_04.mUnk_08);
     }
-    func_02017f58(a->mUnk_00, n);
+    FrmHeapRestoreFrontBack(a->mUnk_00, n);
     if (flag != 0) {
         func_0212d968();
     }
-    func_02017fb4(a->mUnk_00, a->mUnk_04.mUnk_08);
+    FrmHeapSaveFrontBack(a->mUnk_00, a->mUnk_04.mUnk_08);
     func_0212d98c(a);
 }

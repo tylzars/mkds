@@ -9,7 +9,7 @@
 void func_020bb530(void) {
     Unk0217b3cc *p;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     data_0217b3cc = p;
     p->mUnk_00 = 0;
     data_0217b3cc->mUnk_04 = 0;

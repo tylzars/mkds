@@ -12,7 +12,7 @@ typedef struct Unk02174e28 {
     /* 080 */ void *mUnk_080[2];
     /* 088 */ void *mUnk_088;
     /* 08c */ void *mUnk_08c;
-    /* 090 */ void *mUnk_090;
+    /* 090 */ void *mHeap;
     /* 094 */ Unk020f41c4_B mUnk_094;
     /* 0ac */ s32 mUnk_0ac;
     /* 0b0 */ s32 mUnk_0b0;

@@ -213,8 +213,8 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
     func_02047b6c(0);
     func_02047ba0(a->mUnk_02);
     func_02047b6c(9);
-    func_020364e0(func_020364e8());
-    func_02016554(func_02036bec(func_020364e0(func_020364e8()), 0x800), 0x80);
+    GetHeap(func_020364e8());
+    func_02016554(HeapAlloc(GetHeap(func_020364e8()), 0x800), 0x80);
     if (func_0204a428(a->mUnk_02, &n)) {
         func_0204acd0(n);
     }

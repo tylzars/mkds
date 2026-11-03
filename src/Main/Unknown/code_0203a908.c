@@ -123,7 +123,7 @@ void func_0203abdc(void) {
     s32 x;
     Unk0217d384 *q;
     BOOL f;
-    p = func_020364e0(func_020364e8());
+    p = GetHeap(func_020364e8());
     func_02059dc8();
     if (data_021759c0->mUnk_00c == 3 || data_021759c0->mUnk_00c == 5) {
         func_020399a8();
@@ -172,7 +172,7 @@ void func_0203abdc(void) {
         }
     } else {
         if (data_021759c0->mUnk_18 == 0) {
-            func_02046fb4(func_020364e0(func_020364e8()));
+            func_02046fb4(GetHeap(func_020364e8()));
         }
     }
 }

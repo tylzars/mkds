@@ -19,7 +19,7 @@ void func_ov001_02199f44(void *heap) {
     s32 i;
     s32 j;
     void *a;
-    data_ov001_021a9bec = func_02036bec(heap, 0x34);
+    data_ov001_021a9bec = HeapAlloc(heap, 0x34);
     data_ov001_021a9bec->mUnk_18 = heap;
     data_ov001_021a9bec->mUnk_00 = 0;
     data_ov001_021a9bec->mUnk_04 = 0;

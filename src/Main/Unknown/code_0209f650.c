@@ -182,7 +182,7 @@ void func_0209fc78(MapObject *p) {
 
     i = p->mCourseMapRow->mUnk_28;
     if (data_usa_0217b18c[i] == NULL) {
-        data_usa_0217b18c[i] = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+        data_usa_0217b18c[i] = HeapAlloc(GetHeap(func_020364e8()), 0x40);
         *data_usa_0217b18c[i] = *data_usa_0217b18c[0];
     }
     switch (i) {

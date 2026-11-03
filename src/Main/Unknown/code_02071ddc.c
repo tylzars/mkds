@@ -44,7 +44,7 @@ void func_02071fb8(Unk0206bcb0 *p, void *a) {
     q->mUnk_b4 = 0;
     func_02017538(&q->mUnk_80, 0);
     func_02017538(&q->mUnk_8c, 0);
-    b = func_02036bec(a, 0x438);
+    b = HeapAlloc(a, 0x438);
     for (i = 0; i < 0x1e; i++) {
         func_020174a4(&q->mUnk_8c, b + i * 0x24);
     }

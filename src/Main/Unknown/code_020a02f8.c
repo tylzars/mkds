@@ -39,7 +39,7 @@ void func_020a0e00(void) {
     s32 i;
     Unk0217b1fc_000 *e;
 
-    data_0217b1fc = func_02036bec(func_020364e0(func_020364e8()), 0x3c0);
+    data_0217b1fc = HeapAlloc(GetHeap(func_020364e8()), 0x3c0);
     for (i = 0; i < 8; i++) {
         e = &data_0217b1fc->mUnk_000[i];
         e->mUnk_1c = -2;

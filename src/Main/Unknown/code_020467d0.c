@@ -86,8 +86,8 @@ void func_02046968(s32 a) {
 }
 
 void func_02046a3c(void *a) {
-    data_021759c0 = func_02036bec(a, 0x400);
-    data_021759c0->mCourseList = func_02036bec(a, 0x21);
+    data_021759c0 = HeapAlloc(a, 0x400);
+    data_021759c0->mCourseList = HeapAlloc(a, 0x21);
     func_0205d0bc(a);
     func_0205dc54(a);
 }

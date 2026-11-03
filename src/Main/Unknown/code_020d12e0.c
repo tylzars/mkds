@@ -36,7 +36,7 @@ void InitEndingStaffRoll(void) {
     Unk02021dc8 *a;
     u32 *w;
 
-    gEndingStaffRoll = func_02036bec(func_020364e0(func_020364e8()), 0x414);
+    gEndingStaffRoll = HeapAlloc(GetHeap(func_020364e8()), 0x414);
     for (i = 0; i < 0x80; i++) {
         w = (u32 *) &gEndingStaffRoll->mUnk_10.mUnk_000[i];
         w[0] = (w[0] & ~0xc00) | 0xc00;

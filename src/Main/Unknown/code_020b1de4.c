@@ -36,7 +36,7 @@ void InitChoisesS(void) {
     u32 n;
     s32 i;
 
-    gChoisesS = func_02036bec(func_020b2540(), 0x1a4);
+    gChoisesS = HeapAlloc(func_020b2540(), 0x1a4);
     gChoisesS->mUnk_000 = 0;
     gChoisesS->mUnk_004 = 0;
     gChoisesS->mUnk_008 = 0;
@@ -163,12 +163,12 @@ void InitChoisesS(void) {
         gChoisesS->mList1Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[1].mValueCount - 1];
         gChoisesS->mList2Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[2].mValueCount - 1];
         gChoisesS->mList3Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[3].mValueCount - 1];
-        gChoisesS->mUnk_174 = func_02036bec(func_020b2540(), func_020b3260(gChoisesS->mLists[1].mValueCount));
+        gChoisesS->mUnk_174 = HeapAlloc(func_020b2540(), func_020b3260(gChoisesS->mLists[1].mValueCount));
         switch (func_020b252c()) {
             case 2:
             case 3:
             case 4:
-                gChoisesS->mUnk_178 = func_02036bec(func_020b2540(), func_020b3260(gChoisesS->mLists[2].mValueCount));
+                gChoisesS->mUnk_178 = HeapAlloc(func_020b2540(), func_020b3260(gChoisesS->mLists[2].mValueCount));
                 break;
         }
         gChoisesS->mUnk_0a8 = func_020b403c(2);

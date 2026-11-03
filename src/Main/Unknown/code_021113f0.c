@@ -769,8 +769,8 @@ void func_02111684(void) {
 
 void func_021115b0(void *a, s16 b) {
     Unk02125de0Arg v;
-    data_0217d344 = func_02036bec(a, 0x34);
-    data_0217d344->mUnk_00 = a;
+    data_0217d344 = HeapAlloc(a, 0x34);
+    data_0217d344->mHeap = a;
     data_0217d344->mUnk_30 = 0;
     data_0217d344->mUnk_32 = 0;
     func_021250b0(a);
@@ -786,9 +786,9 @@ void func_021115b0(void *a, s16 b) {
     v.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(a, &v);
-    func_021144c0(data_0217d344->mUnk_00);
+    func_021144c0(data_0217d344->mHeap);
     func_021143f4();
-    data_0217d344->mUnk_04 = func_020369fc(data_0217d344->mUnk_00);
+    data_0217d344->mStateHeap = CreateExpHeapFromMaxFree(data_0217d344->mHeap);
     func_02111684();
     func_02111a98();
     data_0217d344->mUnk_14 = b;
@@ -804,7 +804,7 @@ void func_021115b0(void *a, s16 b) {
         data_0217d344->mUnk_08 = 0;
         RegisterRecordTopMenuCallbacks();
     }
-    data_0217d344->mUnk_18.mUnk_00(data_0217d344->mUnk_04);
+    data_0217d344->mUnk_18.mUnk_00(data_0217d344->mStateHeap);
 }
 
 #pragma thumb off
@@ -828,8 +828,8 @@ void func_021114cc(void) {
     if (data_0217d344->mUnk_0c != -1) {
         data_0217d344->mUnk_18.mUnk_04();
         func_02111a98();
-        func_02036ab0(data_0217d344->mUnk_04);
-        data_0217d344->mUnk_04 = func_020369fc(data_0217d344->mUnk_00);
+        HeapDestroy(data_0217d344->mStateHeap);
+        data_0217d344->mStateHeap = CreateExpHeapFromMaxFree(data_0217d344->mHeap);
         switch (data_0217d344->mUnk_0c) {
             case 0:
                 if (data_0217d344->mUnk_08 == 3) {
@@ -854,7 +854,7 @@ void func_021114cc(void) {
         data_0217d344->mUnk_08 = data_0217d344->mUnk_0c;
         data_0217d344->mUnk_0c = -1;
         data_0217d344->mUnk_2c = 2;
-        data_0217d344->mUnk_18.mUnk_00(data_0217d344->mUnk_04);
+        data_0217d344->mUnk_18.mUnk_00(data_0217d344->mStateHeap);
     }
     data_0217d344->mUnk_18.mUnk_08();
     func_02125928();

@@ -13,7 +13,7 @@
 void func_ov001_0219e6ec(void *heap) {
     void *result;
 
-    data_ov001_021ca400 = func_02036bec(heap, 0x470);
+    data_ov001_021ca400 = HeapAlloc(heap, 0x470);
     data_ov001_021ca400->mHeap = heap;
     data_ov001_021ca400->mUnk_01c = func_021250b0(heap);
     data_ov001_021ca400->mUnk_014 = -1;

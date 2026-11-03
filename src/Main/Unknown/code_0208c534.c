@@ -558,7 +558,7 @@ void func_0208d758(void *a) {
     u16 j;
     Unk0208c5b8 *e;
 
-    data_0217b078 = func_02036bec(a, data_021759c0->mKartCount * 0x88);
+    data_0217b078 = HeapAlloc(a, data_021759c0->mKartCount * 0x88);
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         e = &data_0217b078[i];
         e->mUnk_60 = i;

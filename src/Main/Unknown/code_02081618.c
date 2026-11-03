@@ -45,7 +45,7 @@ void func_020845cc(u32 a) {
     u16 j;
 
     i = 0;
-    data_0217ae84 = func_02036bec(func_020364e0(func_020364e8()), a * 0x58);
+    data_0217ae84 = HeapAlloc(GetHeap(func_020364e8()), a * 0x58);
     data_0217ae70 = a;
     for (; i < a; i++) {
         e = &data_0217ae84[i];

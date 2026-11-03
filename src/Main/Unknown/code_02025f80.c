@@ -18,7 +18,7 @@ void func_020260e4(void) {
             func_0211f498();
         }
     }
-    func_02036ab0(gSelectCharacter->mUnk_05c);
+    HeapDestroy(gSelectCharacter->mHeap);
     gSelectCharacter = NULL;
 }
 

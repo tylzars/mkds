@@ -281,7 +281,7 @@ s16 *func_02078b04(s32 param_1, s32 param_2) {
 void func_02078b48(void *param_1) {
     u32 i;
     gKartModels = NULL;
-    data_0217ad08 = func_02036bec(param_1, 0x26c);
+    data_0217ad08 = HeapAlloc(param_1, 0x26c);
     data_0217ad08->mUnk_264 = -1;
     data_0217ad08->mUnk_266 = 0;
     data_0217ad08->mUnk_020 = &data_0217ad08->mUnk_058[data_0217ad08->mUnk_266];

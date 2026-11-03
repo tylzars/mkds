@@ -229,9 +229,9 @@ void InitSelectCup(void *b, void *c, void *d, s32 e) {
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x9004;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8300;
-    a = func_02036948(b);
-    gSelectCup = func_02036bec(a, 0x70);
-    gSelectCup->mUnk_30 = a;
+    a = CreateFrmHeapFromMaxFree(b);
+    gSelectCup = HeapAlloc(a, 0x70);
+    gSelectCup->mHeap = a;
     gSelectCup->mUnk_34 = 0;
     gSelectCup->mUnk_50 = data_0215cb7c[func_020296e4()];
     gSelectCup->mUnk_54 = 1;
@@ -245,38 +245,38 @@ void InitSelectCup(void *b, void *c, void *d, s32 e) {
     func_0211a3bc();
     gSelectCup->mUnk_28 = func_02047a28("common.bmg");
     if (*(vu16 *) 0x027ffc40 != 2) {
-        func_02124ed0(gSelectCup->mUnk_30, gSelectCup->mUnk_04, gSelectCup->mUnk_08, &gSelectCup->mUnk_1c);
-        func_02124ed0(gSelectCup->mUnk_30, gSelectCup->mUnk_10, gSelectCup->mUnk_18, &gSelectCup->mUnk_20);
+        func_02124ed0(gSelectCup->mHeap, gSelectCup->mUnk_04, gSelectCup->mUnk_08, &gSelectCup->mUnk_1c);
+        func_02124ed0(gSelectCup->mHeap, gSelectCup->mUnk_10, gSelectCup->mUnk_18, &gSelectCup->mUnk_20);
         x = 0x8000;
-        x -= func_021243ac(gSelectCup->mUnk_30, 0, gSelectCup->mUnk_08, 0xb4, 0xd, 0, gSelectCup->mUnk_00,
+        x -= func_021243ac(gSelectCup->mHeap, 0, gSelectCup->mUnk_08, 0xb4, 0xd, 0, gSelectCup->mUnk_00,
                            gSelectCup->mUnk_04, gSelectCup->mUnk_1c, x);
-        x -= func_021243ac(gSelectCup->mUnk_30, 1, gSelectCup->mUnk_08, 0xb4, 0xd, 1, gSelectCup->mUnk_00,
+        x -= func_021243ac(gSelectCup->mHeap, 1, gSelectCup->mUnk_08, 0xb4, 0xd, 1, gSelectCup->mUnk_00,
                            gSelectCup->mUnk_04, gSelectCup->mUnk_1c, x);
-        x -= func_021243ac(gSelectCup->mUnk_30, 2, gSelectCup->mUnk_08, 0x96, 0xd, 2, gSelectCup->mUnk_00,
+        x -= func_021243ac(gSelectCup->mHeap, 2, gSelectCup->mUnk_08, 0x96, 0xd, 2, gSelectCup->mUnk_00,
                            gSelectCup->mUnk_04, gSelectCup->mUnk_1c, x);
-        x -= func_021243ac(gSelectCup->mUnk_30, 3, gSelectCup->mUnk_08, 0x50, 0xd, 3, gSelectCup->mUnk_00,
+        x -= func_021243ac(gSelectCup->mHeap, 3, gSelectCup->mUnk_08, 0x50, 0xd, 3, gSelectCup->mUnk_00,
                            gSelectCup->mUnk_04, gSelectCup->mUnk_1c, x);
-        x -= func_021243ac(gSelectCup->mUnk_30, 4, gSelectCup->mUnk_08, 0x96, 0xd, 4, gSelectCup->mUnk_00,
+        x -= func_021243ac(gSelectCup->mHeap, 4, gSelectCup->mUnk_08, 0x96, 0xd, 4, gSelectCup->mUnk_00,
                            gSelectCup->mUnk_04, gSelectCup->mUnk_1c, x);
-        func_021243ac(gSelectCup->mUnk_30, 5, gSelectCup->mUnk_08, 0x50, 0xd, 5, gSelectCup->mUnk_00,
-                      gSelectCup->mUnk_04, gSelectCup->mUnk_1c, x);
+        func_021243ac(gSelectCup->mHeap, 5, gSelectCup->mUnk_08, 0x50, 0xd, 5, gSelectCup->mUnk_00, gSelectCup->mUnk_04,
+                      gSelectCup->mUnk_1c, x);
         v = func_02148ca0();
         for (i = 0; i < 4; i++) {
-            v -= func_021243ac(gSelectCup->mUnk_30, data_0215cab4[i], gSelectCup->mUnk_18, data_0215cabc[i],
+            v -= func_021243ac(gSelectCup->mHeap, data_0215cab4[i], gSelectCup->mUnk_18, data_0215cabc[i],
                                data_0215cac4[i], data_0215caa4[i], gSelectCup->mUnk_0c, gSelectCup->mUnk_10,
                                gSelectCup->mUnk_20, v);
         }
-        func_0211de40(gSelectCup->mUnk_30);
-        func_0211df44(gSelectCup->mUnk_30);
+        func_0211de40(gSelectCup->mHeap);
+        func_0211df44(gSelectCup->mHeap);
     } else {
         gSelectCup->mUnk_2c = FindSceneFile("ghost.bmg");
-        func_0211f4b0(gSelectCup->mUnk_30, gSelectCup->mUnk_68);
+        func_0211f4b0(gSelectCup->mHeap, gSelectCup->mUnk_68);
         func_0211f380();
     }
     func_0211a100();
     func_02119e88();
     func_02119c20();
-    func_02036820(gSelectCup->mUnk_30);
+    FrmHeapShrinkInParent(gSelectCup->mHeap);
 }
 
 void func_021196f4(void) {
@@ -295,7 +295,7 @@ void func_021196f4(void) {
     } else {
         func_0211f498();
     }
-    func_02036ab0(gSelectCup->mUnk_30);
+    HeapDestroy(gSelectCup->mHeap);
     gSelectCup = NULL;
 }
 #pragma thumb off

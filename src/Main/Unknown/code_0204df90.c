@@ -418,15 +418,15 @@ void func_0204e928(void *a, u32 b, u32 c) {
         r = 0xc000;
     }
     data_0217aa00->mUnk_1660 = r;
-    data_0217aa00->mUnk_165c = func_02036b74(a, data_0217aa00->mUnk_1660, 0x20);
+    data_0217aa00->mUnk_165c = HeapAllocAligned(a, data_0217aa00->mUnk_1660, 0x20);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         data_0217aa00->mUnk_168c = func_02008880(NULL);
         if (data_0217aa00->mUnk_168c > 0x80000) {
             data_0217aa00->mUnk_168c = 0x80000;
         }
-        data_0217aa00->mUnk_1658 = func_02036b74(a, data_0217aa00->mUnk_168c, 0x20);
+        data_0217aa00->mUnk_1658 = HeapAllocAligned(a, data_0217aa00->mUnk_168c, 0x20);
         func_0204ea14(c);
-        data_0217aa00->mUnk_1668 = func_02036b74(a, 0x4c0, 0x20);
+        data_0217aa00->mUnk_1668 = HeapAllocAligned(a, 0x4c0, 0x20);
     } else {
         data_0217aa00->mUnk_168c = 0;
         data_0217aa00->mUnk_1658 = 0;

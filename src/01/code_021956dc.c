@@ -515,7 +515,7 @@ void InitRecordTAtt(void *heap) {
     (reg_G2_BG1CNT) = ((reg_G2_BG1CNT) & 0x43) | 0xcc00;
     (reg_G2S_DB_BG1CNT) = ((reg_G2S_DB_BG1CNT) & 0x43) | 0x1018;
     (reg_G2S_DB_BG3CNT) = ((reg_G2S_DB_BG3CNT) & 0x43) | 0x5810;
-    gRecordTAtt = func_02036bec(heap, 0x94);
+    gRecordTAtt = HeapAlloc(heap, 0x94);
     gRecordTAtt->mUnk_4c = heap;
     gRecordTAtt->mUnk_50 = 0;
     gRecordTAtt->mUnk_6c = 0;

@@ -61,7 +61,7 @@ u32 func_0203c0bc(void) {
 }
 
 void func_0203c094(void) {
-    func_020364e0(func_020364e8());
+    GetHeap(func_020364e8());
     func_02039a1c();
     func_020ad344();
     func_02043c14();

@@ -409,7 +409,7 @@ void func_02118b48(void) {
     LocateNcgr(&e, FindSceneFile(data_0216d690));
     LocateNclr(&g, FindSceneFile(data_0216d6b8));
     LocateNscr(&f, FindSceneFile(data_0216d6bc));
-    data_0217d360->mUnk_20 = func_02036bec(data_0217d360->mHeap, 0x800);
+    data_0217d360->mUnk_20 = HeapAlloc(data_0217d360->mHeap, 0x800);
     data_0217d360->mSelectCupMBncl = FindSceneFile(data_0216d698);
     data_0217d360->mSelectCupMBnll = FindSceneFile(data_0216d6a8);
     LocateNcgr2(&a, FindSceneFile(data_0216d6ac));

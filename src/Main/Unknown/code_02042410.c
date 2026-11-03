@@ -23,12 +23,12 @@ s32 func_02042894(void *a, ...) {
     u16 t;
     Unk02175620_24 *p;
 
-    h = func_020364e0(func_020364e8());
+    h = GetHeap(func_020364e8());
     gCourseMap->mUnk_028 = func_020431a4(&a);
     gCourseMap->mUnk_024 = a;
     if (data_021759c0->mUnk_08 == 2) {
         n = gCourseMap->mUnk_028;
-        gCourseMap->mUnk_f8 = func_02036bec(h, n * 2);
+        gCourseMap->mUnk_f8 = HeapAlloc(h, n * 2);
         gCourseMap->mUnk_100 = 0;
         for (i = 0; i < n; i++) {
             gCourseMap->mUnk_f8[i] = i;
@@ -41,7 +41,7 @@ s32 func_02042894(void *a, ...) {
                 m = p->mUnk_1c;
             }
         }
-        gCourseMap->mUnk_f8 = func_02036bec(h, (m + 1) * 2);
+        gCourseMap->mUnk_f8 = HeapAlloc(h, (m + 1) * 2);
         for (i = 0; i < m + 1; i++) {
             gCourseMap->mUnk_f8[i] = 0xffff;
         }
@@ -99,7 +99,7 @@ void func_0204274c(void) {
         gCourseMap->mUnk_fc = NULL;
         return;
     }
-    gCourseMap->mUnk_fc = func_02036bec(func_020364e0(func_020364e8()), n * 2);
+    gCourseMap->mUnk_fc = HeapAlloc(GetHeap(func_020364e8()), n * 2);
     for (i = 0; i < n; i++) {
         gCourseMap->mUnk_fc[gCourseMap->mUnk_34[i].mUnk_1a] = i;
     }

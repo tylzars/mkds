@@ -14,7 +14,7 @@ void func_0204b03c(void) {
         func_02059ea4(0);
         func_02059e1c();
     }
-    func_0202f2b4(func_020364e0(func_020364e8()));
+    func_0202f2b4(GetHeap(func_020364e8()));
 }
 
 #pragma thumb on

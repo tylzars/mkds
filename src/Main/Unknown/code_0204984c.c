@@ -193,8 +193,8 @@ static inline void func_02049c3c_inline2(Unk0214f4bc *p, void (*f)(void *)) {
 }
 
 void func_02049c3c(void *a) {
-    data_021759cc = func_02036bec(a, 0x124);
-    data_021759cc->mUnk_000 = func_02036b74(a, 0x400, 0x20);
+    data_021759cc = HeapAlloc(a, 0x124);
+    data_021759cc->mUnk_000 = HeapAllocAligned(a, 0x400, 0x20);
     data_021759cc->mUnk_10c = 6;
     data_021759cc->mUnk_110 = 0;
     data_021759cc->mUnk_118 = -1;

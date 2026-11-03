@@ -56,13 +56,13 @@ void func_020875b4(void) {
     Unk02086250 *q;
     s32 w;
     BOOL k;
-    v1 = func_020364e0(func_020364e8());
+    v1 = GetHeap(func_020364e8());
     if (data_021759c0->mUnk_08 == 0) {
         f = TRUE;
     } else {
         f = FALSE;
     }
-    data_0217aed0 = func_02036bec(v1, 0x194);
+    data_0217aed0 = HeapAlloc(v1, 0x194);
     data_0217aed0->mUnk_184 = 0;
     data_0217aed0->mUnk_188 = NULL;
     if (func_02062eb0() != 0) {
@@ -126,7 +126,7 @@ void func_020875b4(void) {
                 }
             }
             if (t != FALSE) {
-                data_0217aed0->mUnk_000[i] = func_02036bec(v1, 0x28);
+                data_0217aed0->mUnk_000[i] = HeapAlloc(v1, 0x28);
                 q = data_0217aed0->mUnk_000[i];
                 func_02087508(q, i, v1);
                 data_0217aed0->mUnk_0c4[j] = q;
@@ -141,7 +141,7 @@ void func_020875b4(void) {
 }
 
 void func_02087508(Unk02086250 *a, u16 b, void *c) {
-    a->mUnk_1c = func_02036bec(c, 0x90);
+    a->mUnk_1c = HeapAlloc(c, 0x90);
     a->mUnk_00 = data_02155ccc;
     a->mUnk_0c = b;
     a->mUnk_1c->mUnk_00[0] = data_021659ec;
@@ -240,13 +240,13 @@ void func_020872a4(void) {
     Unk02086250_1c *q;
     Unk02086098 *e1;
     Unk02086098 *e3;
-    v1 = func_020364e0(func_020364e8());
+    v1 = GetHeap(func_020364e8());
     func_02086fac();
     data_0217aedc = 0;
-    data_0217aed4 = func_02036b74(v1, 0x20, -4);
-    data_0217aec4 = func_02036b74(v1, 0x100, -4);
-    data_0217aec8 = func_02036b74(v1, 8, -4);
-    data_0217aecc = func_02036b74(v1, 0x200, -4);
+    data_0217aed4 = HeapAllocAligned(v1, 0x20, -4);
+    data_0217aec4 = HeapAllocAligned(v1, 0x100, -4);
+    data_0217aec8 = HeapAllocAligned(v1, 8, -4);
+    data_0217aecc = HeapAllocAligned(v1, 0x200, -4);
     for (i = 0; i < data_0217aed0->mUnk_020; i++) {
         p = data_0217aed0->mUnk_0c4[i];
         q = p->mUnk_1c;
@@ -267,10 +267,10 @@ void func_020872a4(void) {
             func_02086e8c(e3);
         }
     }
-    func_02036b30(v1, data_0217aecc);
-    func_02036b30(v1, data_0217aec8);
-    func_02036b30(v1, data_0217aec4);
-    func_02036b30(v1, data_0217aed4);
+    HeapFree(v1, data_0217aecc);
+    HeapFree(v1, data_0217aec8);
+    HeapFree(v1, data_0217aec4);
+    HeapFree(v1, data_0217aed4);
 }
 
 void func_02087228(Unk02086098 *a, u16 b) {

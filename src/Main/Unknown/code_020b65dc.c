@@ -19,7 +19,7 @@ void func_020b65f0(void) {
     UnkPair020b502c e;
     UnkPair020b502c f;
 
-    data_0217b3c0 = func_02036bec(func_020b6800(), 0x9c);
+    data_0217b3c0 = HeapAlloc(func_020b6800(), 0x9c);
     data_0217b3c0->mUnk_00.mUnk_00 = 0;
     data_0217b3c0->mUnk_00.mUnk_04 = 0;
     data_0217b3c0->mUnk_10.mUnk_00 = 0;

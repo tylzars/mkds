@@ -218,9 +218,9 @@ void *func_02052fa4(u32 a, u32 b, void *c) {
     r = NULL;
     v1 = func_0200fca0();
     if (c != NULL) {
-        func_02036b30(data_0217aa00->mUnk_1d04, c);
+        HeapFree(data_0217aa00->mHeap, c);
     } else {
-        r = func_02036b74(data_0217aa00->mUnk_1d04, b, -0x20);
+        r = HeapAllocAligned(data_0217aa00->mHeap, b, -0x20);
     }
     func_0200fcb4(v1);
     return r;

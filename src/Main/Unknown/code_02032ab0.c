@@ -93,7 +93,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
     Unk02125de0 v;
     s32 f[8];
 
-    data_02174e60 = func_02036bec(a, 0x154);
+    data_02174e60 = HeapAlloc(a, 0x154);
     func_0214d05c_inline(data_02174e60, 0x154);
     data_02174e60->mUnk_0b8[0] = b;
     data_02174e60->mUnk_0b8[1] = c;

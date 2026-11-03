@@ -16,15 +16,15 @@ void func_02078f18(void *a, int b) {
     func_02079a3c((u32 *) ((u32 *) (u32) b));
     *(u32 *) (b + 0xb0) = (u32) data_021759d0->mUnk_00;
     *(u32 *) (b + 0xb4) = 0;
-    v1 = ((u32) func_02036bec(a, (u32) 0x6c));
+    v1 = ((u32) HeapAlloc(a, (u32) 0x6c));
     *(u32 *) (b + 0x10) = v1;
-    v1 = ((u32) func_02036bec(a, (u32) 0x6c));
+    v1 = ((u32) HeapAlloc(a, (u32) 0x6c));
     *(u32 *) (b + 0x14) = v1;
-    v1 = ((u32) func_02036bec(a, (u32) 0x6c));
+    v1 = ((u32) HeapAlloc(a, (u32) 0x6c));
     *(u32 *) (b + 0x18) = v1;
-    v1 = ((u32) func_02036bec(a, (u32) 0x74));
+    v1 = ((u32) HeapAlloc(a, (u32) 0x74));
     *(u32 *) (b + 0x1c) = v1;
-    v1 = ((u32) func_02036bec(a, (u32) 0x38));
+    v1 = ((u32) HeapAlloc(a, (u32) 0x38));
     *(u32 *) (b + 8) = v1;
 }
 

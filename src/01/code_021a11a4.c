@@ -73,7 +73,7 @@ void func_ov001_021a1d78(void) {
     LocateNcgr(&e, FindSceneFile(data_ov001_021a94ec));
     LocateNclr(&g, FindSceneFile(data_ov001_021a9508));
     LocateNscr(&f, FindSceneFile(data_ov001_021a94f0));
-    data_ov001_021ca418->mUnk_1c = func_02036bec(data_ov001_021ca418->mUnk_20, 0x800);
+    data_ov001_021ca418->mUnk_1c = HeapAlloc(data_ov001_021ca418->mHeap, 0x800);
     data_ov001_021ca418->mUnk_04 = FindSceneFile(data_ov001_021a9504);
     LocateNcgr2(&a, FindSceneFile(data_ov001_021a94dc));
     LocateNcer(&data_ov001_021ca418->mUnk_00, FindSceneFile(data_ov001_021a94e4));
@@ -273,10 +273,10 @@ void func_ov001_021a1858(s32 a, void *b, void *c) {
     *bg1 = (*bg1 & 0x43) | 0x9204;
     *(vu32 *) 0x4000010 = 0xc00000;
     *(vu32 *) 0x4000014 = 0xc00000;
-    heap = func_02036948((void *) a);
-    p = func_02036bec(heap, 0x50);
+    heap = CreateFrmHeapFromMaxFree((void *) a);
+    p = HeapAlloc(heap, 0x50);
     data_ov001_021ca418 = p;
-    p->mUnk_20 = heap;
+    p->mHeap = heap;
     data_ov001_021ca418->mUnk_24 = 0;
     data_ov001_021ca418->mUnk_3c = 0;
     data_ov001_021ca418->mUnk_38 = 1;
@@ -291,16 +291,16 @@ void func_ov001_021a1858(s32 a, void *b, void *c) {
     data_ov001_021ca418->mUnk_40 = data_ov001_021ca418->mUnk_34;
     func_ov001_021a1d78();
     func_020ae6d4(data_ov001_021ca418->mUnk_44, data_ov001_021ca418->mUnk_48);
-    func_02124ed0(data_ov001_021ca418->mUnk_20, data_ov001_021ca418->mUnk_04, NULL, &data_ov001_021ca418->mUnk_14);
-    func_02124ed0(data_ov001_021ca418->mUnk_20, data_ov001_021ca418->mUnk_0c, NULL, &data_ov001_021ca418->mUnk_18);
+    func_02124ed0(data_ov001_021ca418->mHeap, data_ov001_021ca418->mUnk_04, NULL, &data_ov001_021ca418->mUnk_14);
+    func_02124ed0(data_ov001_021ca418->mHeap, data_ov001_021ca418->mUnk_0c, NULL, &data_ov001_021ca418->mUnk_18);
     func_ov001_021a1cb0();
     func_ov001_021a1bf8();
     func_ov001_021a1a04();
-    func_02036820((void *) data_ov001_021ca418->mUnk_20);
+    FrmHeapShrinkInParent((void *) data_ov001_021ca418->mHeap);
 }
 
 void func_ov001_021a1838(void) {
-    func_02036ab0((void *) data_ov001_021ca418->mUnk_20);
+    HeapDestroy((void *) data_ov001_021ca418->mHeap);
     data_ov001_021ca418 = NULL;
 }
 

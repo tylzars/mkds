@@ -385,16 +385,16 @@ void func_020d58c0(void) {
     s16 i;
     s16 j;
 
-    h = func_020364e0(func_020364e8());
+    h = GetHeap(func_020364e8());
     data_0217b5b0 = 0;
     data_0217b5ac = 0;
-    data_0217b5b4 = func_02036bec(h, 0x400);
-    data_0217b5c0 = func_02036bec(h, 0x400);
-    data_0217b5b8 = func_02036bec(h, 0x1c00);
-    data_0217b5c8 = func_02036bec(h, 0x200);
-    data_0217b5cc = func_02036bec(h, 0x100);
-    data_0217b5bc = func_02036bec(h, 0x100);
-    data_0217b5c4 = func_02036bec(h, 0x200);
+    data_0217b5b4 = HeapAlloc(h, 0x400);
+    data_0217b5c0 = HeapAlloc(h, 0x400);
+    data_0217b5b8 = HeapAlloc(h, 0x1c00);
+    data_0217b5c8 = HeapAlloc(h, 0x200);
+    data_0217b5cc = HeapAlloc(h, 0x100);
+    data_0217b5bc = HeapAlloc(h, 0x100);
+    data_0217b5c4 = HeapAlloc(h, 0x200);
     i = 0;
     do {
         data_0217b5c8[i] = i + 1;

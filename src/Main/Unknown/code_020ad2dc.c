@@ -45,7 +45,7 @@
 u32 func_020ada10(void) {
     u32 value0;
     value0 = (u32) func_020364e8();
-    value0 = (u32) func_020364e0((void *) value0);
+    value0 = (u32) GetHeap((void *) value0);
     return value0;
 }
 
@@ -130,7 +130,7 @@ void func_020ad344(void) {
     Unk02125de0 s;
 
     r = func_02090940();
-    data_0217b340 = func_02036bec((void *) func_020ada10(), 0x8bc);
+    data_0217b340 = HeapAlloc((void *) func_020ada10(), 0x8bc);
     data_0217b340->mUnk_00 = 0;
     data_0217b340->mUnk_04 = 1;
     data_0217b340->mUnk_08 = 0;

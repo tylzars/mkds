@@ -201,12 +201,12 @@ void func_0205cd24(void *a) {
     if (data_021759c0->mUnk_08 != 5) {
         return;
     }
-    data_0217aa14 = func_02036bec(a, 0x760);
-    data_0217aa14->mUnk_754 = func_02036b74(a, 0x6c, 0x20);
+    data_0217aa14 = HeapAlloc(a, 0x760);
+    data_0217aa14->mUnk_754 = HeapAllocAligned(a, 0x6c, 0x20);
     for (i = 0; i < 16; i++) {
-        data_0217aa14->mUnk_324[i].mUnk_04 = func_02036b74(a, 20, 32);
+        data_0217aa14->mUnk_324[i].mUnk_04 = HeapAllocAligned(a, 20, 32);
         for (j = 0; j < 4; j++) {
-            data_0217aa14->mUnk_3e4[i][j].mUnk_04 = func_02036b74(a, 20, 32);
+            data_0217aa14->mUnk_3e4[i][j].mUnk_04 = HeapAllocAligned(a, 20, 32);
         }
     }
     data_0217aa14->mUnk_0fc = data_0217aa18->mUnk_04;

@@ -33,7 +33,7 @@ void InitWiFiAikotoba(void *a) {
     u32 b;
     void *c;
 
-    gWiFiAikotoba = func_02036bec(a, 0x40);
+    gWiFiAikotoba = HeapAlloc(a, 0x40);
     gWiFiAikotoba->mUnk_18 = a;
     gWiFiAikotoba->mUnk_00 = 0;
     gWiFiAikotoba->mUnk_04 = 0;

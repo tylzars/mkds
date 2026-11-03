@@ -75,7 +75,7 @@ Vec3 *func_020d8654(Unk020fa294 *a) {
     s32 t;
     k = a->mUnk_26;
     n = gCourseMap->mUnk_08[k].mUnk_02;
-    p = func_02036bec(func_020364e0(func_020364e8()), n * 12);
+    p = HeapAlloc(GetHeap(func_020364e8()), n * 12);
     for (i = 0; i < n; i++) {
         if (i == n - 1) {
             if (*(u8 *) ((u32) gCourseMap->mUnk_08 + k * 4 + 1) == 0) {

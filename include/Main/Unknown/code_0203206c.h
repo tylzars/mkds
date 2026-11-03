@@ -15,7 +15,7 @@ typedef struct Unk02174e5c {
     /* 00 */ Unk02174e14_00 mUnk_00[2];
     /* 38 */ void *mUnk_38;
     /* 3c */ void *mUnk_3c;
-    /* 40 */ void *mUnk_40;
+    /* 40 */ void *mHeap;
     /* 44 */ s32 mUnk_44;
     /* 48 */ s32 mUnk_48;
     /* 4c */ Unk02174e5c_4c *mUnk_4c;

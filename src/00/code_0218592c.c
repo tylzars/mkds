@@ -12,7 +12,7 @@ void func_ov000_02185954(s32 a) {
 }
 
 void func_ov000_0218592c(void *a) {
-    data_ov000_021b4c8c = func_02036bec(a, 8);
+    data_ov000_021b4c8c = HeapAlloc(a, 8);
     data_ov000_021b4c8c->mUnk_00 = 0;
     data_ov000_021b4c8c->mUnk_04 = 0;
     func_02036f10(0x1e);

@@ -39,8 +39,8 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
     void *heap;
     void *p;
 
-    heap = func_020369fc(c);
-    gSelectBattleStage = func_02036bec(heap, 0x1088);
+    heap = CreateExpHeapFromMaxFree(c);
+    gSelectBattleStage = HeapAlloc(heap, 0x1088);
     gSelectBattleStage->mHeap = heap;
     gSelectBattleStage->mState = 0;
     gSelectBattleStage->mNextState = 0;
@@ -104,7 +104,7 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
 void ReleaseSelectBattleStage(void) {
     *(vu16 *) 0x400000c = (u16) ((*(vu16 *) 0x400000c & 0x43) | 0x1e10);
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & ~0x1f00) | 0x1800;
-    func_02036ab0(gSelectBattleStage->mHeap);
+    HeapDestroy(gSelectBattleStage->mHeap);
     gSelectBattleStage = NULL;
 }
 

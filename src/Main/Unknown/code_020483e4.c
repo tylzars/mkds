@@ -23,14 +23,14 @@
 void func_020486d4(void *a) {
     s32 i;
 
-    data_021759c8 = func_02036bec(a, 0xa84);
-    data_021759c8->mUnk_8c8.mUnk_88 = func_02036b74(a, 0x400, 0x20);
+    data_021759c8 = HeapAlloc(a, 0xa84);
+    data_021759c8->mUnk_8c8.mUnk_88 = HeapAllocAligned(a, 0x400, 0x20);
     for (i = 0; i < 20; i++) {
         data_021759c8->mUnk_00[i].mLoaded = 0;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         data_021759c8->mUnk_8c0 = FS_TryLoadTable(0, 0);
-        data_021759c8->mUnk_8c4 = func_02036bec(a, data_021759c8->mUnk_8c0);
+        data_021759c8->mUnk_8c4 = HeapAlloc(a, data_021759c8->mUnk_8c0);
         FS_TryLoadTable((u32) data_021759c8->mUnk_8c4, data_021759c8->mUnk_8c0);
     }
     for (i = 0; i < 16; i++) {
@@ -96,7 +96,7 @@ u32 func_02048590(char *a, u32 b, void **c) {
     s = FS_OpenFile(p, (const u8 *) a);
     if (s != 0) {
         n = p->mUnk_20.p.mUnk_08 - p->mUnk_20.p.mUnk_04;
-        t = func_02036bec((void *) b, n);
+        t = HeapAlloc((void *) b, n);
         *c = t;
         if (t == NULL) {
             s = 0;
@@ -104,7 +104,7 @@ u32 func_02048590(char *a, u32 b, void **c) {
         if (s != 0) {
             if (FS_ReadFile(p, t, n) < 0) {
                 s = 0;
-                func_02036b30((void *) b, t);
+                HeapFree((void *) b, t);
             }
         }
         FS_CloseFile(p);
@@ -130,13 +130,13 @@ void *func_02048504(const char *a, s32 b) {
     s = FS_OpenFile(&f, (const u8 *) a);
     if (s != 0) {
         n = f.mUnk_20.p.mUnk_08 - f.mUnk_20.p.mUnk_04;
-        r = func_02036b74(func_020364e0(func_020364e8()), n, b);
+        r = HeapAllocAligned(GetHeap(func_020364e8()), n, b);
         func_0200ee58(r, n);
         if (r == NULL) {
             s = 0;
         } else {
             if (FS_ReadFile(&f, r, n) < 0) {
-                func_02036b30(func_020364e0(func_020364e8()), r);
+                HeapFree(GetHeap(func_020364e8()), r);
                 s = 0;
             }
             FS_CloseFile(&f);

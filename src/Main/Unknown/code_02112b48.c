@@ -91,9 +91,9 @@ void func_02114504(s32 a, u16 b) {
 void func_021144c0(void *a) {
     int v1;
     void *v2;
-    v1 = ((u32) func_02036bec(a, (u32) 0x10));
+    v1 = ((u32) HeapAlloc(a, (u32) 0x10));
     *(s32 *) &data_0217d34c = v1;
-    v2 = func_02036bec(a, (u32) 0x78);
+    v2 = HeapAlloc(a, (u32) 0x78);
     data_0217d34c->mUnk_04 = v2;
     v2 = func_0205eda0(a);
     data_0217d34c->mUnk_08 = v2;
@@ -789,7 +789,7 @@ void InitRecordVS(void *a) {
     reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0xc800;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0xcc00;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0x1018;
-    gRecordVS = func_02036bec(a, 0x94);
+    gRecordVS = HeapAlloc(a, 0x94);
     gRecordVS->mUnk_48 = a;
     gRecordVS->mUnk_6a = func_02111418();
     gRecordVS->mUnk_68 = func_02111408();
@@ -863,8 +863,8 @@ void InitRecordVS(void *a) {
     func_02124a98(0x18, 0, gRecordVS->mUnk_2c, gRecordVS->mUnk_30);
     func_02124a98(0x19, 0, gRecordVS->mUnk_2c, gRecordVS->mUnk_30);
     func_02124140(5, 0, gRecordVS->mUnk_38, gRecordVS->mUnk_3c, gRecordVS->mUnk_30);
-    gRecordVS->mUnk_78 = func_02036bec(a, 0x201);
-    gRecordVS->mUnk_7c = func_02036bec(a, 0x200);
+    gRecordVS->mUnk_78 = HeapAlloc(a, 0x201);
+    gRecordVS->mUnk_7c = HeapAlloc(a, 0x200);
     if (func_0211147c() == 4) {
         if (func_021143b4() != 0) {
             gRecordVS->mUnk_4c = 11;

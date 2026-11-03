@@ -26,7 +26,7 @@ u32 func_020ca7e0(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f) {
 void InitEmblemChoises(void) {
     Unk0217b438 *p;
 
-    gEmblemChoises = func_02036bec(func_020ca820(), 0x6c);
+    gEmblemChoises = HeapAlloc(func_020ca820(), 0x6c);
     gEmblemChoises->mUnk_00 = 0;
     gEmblemChoises->mUnk_04 = 1;
     gEmblemChoises->mUnk_08 = 0;

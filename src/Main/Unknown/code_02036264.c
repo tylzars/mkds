@@ -78,7 +78,7 @@ void func_020362dc(void *a) {
     func_0200ee58(data_02174e6c->mUnk_034, 0x600);
     func_0214bd04(data_02174e6c->mUnk_034, 0, 0x600);
     func_02036258();
-    func_02036820(data_02174e6c->mUnk_650);
+    FrmHeapShrinkInParent(data_02174e6c->mHeap);
 }
 
 #pragma thumb off

@@ -153,10 +153,10 @@ void func_0202fbc8(void *a, void *b, void *c) {
     Unk02153c1c *v3;
     void *v4;
 
-    v1 = func_02036948(a);
-    data_02174e50 = func_02036bec(v1, 0xa8);
+    v1 = CreateFrmHeapFromMaxFree(a);
+    data_02174e50 = HeapAlloc(v1, 0xa8);
     func_0214d05c_inline(data_02174e50, 0xa8);
-    data_02174e50->mUnk_a4 = v1;
+    data_02174e50->mHeap = v1;
     data_02174e50->mUnk_40 = b;
     data_02174e50->mUnk_44 = c;
     data_02174e50->mUnk_a0 = FindSceneFile(data_021634c0);
@@ -167,9 +167,9 @@ void func_0202fbc8(void *a, void *b, void *c) {
     q = &data_02174e50->mUnk_24;
     func_02025b20(q, data_02163530, data_02163558, data_02163580, data_021635a4, data_021635c8, data_021635ec,
                   FindSceneFile);
-    func_02025a50(1, data_02174e50->mUnk_a4, q);
+    func_02025a50(1, data_02174e50->mHeap, q);
     for (i = 0, v3 = data_02153c1c; i < 5; v3++, i++) {
-        v2 -= func_02025a00(1, data_02174e50->mUnk_a4, q, v3, v2);
+        v2 -= func_02025a00(1, data_02174e50->mHeap, q, v3, v2);
         if (data_02153c1c[i].mUnk_08 < 0) {
             v4 = data_02163610;
         } else {
@@ -180,7 +180,7 @@ void func_0202fbc8(void *a, void *b, void *c) {
     func_0203003c(1);
     func_021281c8(0xf);
     data_021759d0->mUnk_20 = 2;
-    func_02036820(data_02174e50->mUnk_a4);
+    FrmHeapShrinkInParent(data_02174e50->mHeap);
 }
 
 s32 func_0202f764(Unk0202f764 *a) {

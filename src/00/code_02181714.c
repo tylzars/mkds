@@ -40,7 +40,7 @@ void InitWiFiTopMenu(void *heap) {
     s32 j;
     s32 k;
 
-    gWiFiTopMenu = func_02036bec(heap, 0x40);
+    gWiFiTopMenu = HeapAlloc(heap, 0x40);
     gWiFiTopMenu->mHeap = heap;
     gWiFiTopMenu->mUnk_00 = 0;
     gWiFiTopMenu->mUnk_04 = 0;

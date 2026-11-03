@@ -43,7 +43,7 @@ u32 func_021054d0(void) {
 }
 
 Unk0215a680 *func_02105480(void) {
-    Unk0215a680 *p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    Unk0215a680 *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     *p = data_0215a680;
     return p;
 }

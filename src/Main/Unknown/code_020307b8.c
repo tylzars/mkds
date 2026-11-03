@@ -32,10 +32,10 @@ void func_020307b8(void *a, void *b, void *c) {
     u32 n;
     s32 x;
 
-    h = func_02036948(a);
-    data_02174e54 = func_02036bec(h, 0x40);
+    h = CreateFrmHeapFromMaxFree(a);
+    data_02174e54 = HeapAlloc(h, 0x40);
     func_0203091c(data_02174e54, 0x40);
-    data_02174e54->mUnk_3c = h;
+    data_02174e54->mHeap = h;
     data_02174e54->mUnk_1c = b;
     data_02174e54->mUnk_20 = c;
     data_02174e54->mUnk_24 = FindSceneFile(data_0216362c);
@@ -48,11 +48,11 @@ void func_020307b8(void *a, void *b, void *c) {
     o->mUnk_0c = FindSceneFile(data_0216368c);
     o->mUnk_10 = FindSceneFile(data_021636a4);
     o->mUnk_14 = FindSceneFile(data_021636bc);
-    func_02124ed0(data_02174e54->mUnk_3c, o->mUnk_0c, o->mUnk_14, &o->mUnk_18);
+    func_02124ed0(data_02174e54->mHeap, o->mUnk_0c, o->mUnk_14, &o->mUnk_18);
     for (i = 0; i < 2; i++) {
         q = &data_02153d2c[i];
         x = q->mUnk_00;
-        n -= func_021243ac(data_02174e54->mUnk_3c, x, o->mUnk_14, q->mUnk_02, q->mUnk_04, q->mUnk_06, o->mUnk_08,
+        n -= func_021243ac(data_02174e54->mHeap, x, o->mUnk_14, q->mUnk_02, q->mUnk_04, q->mUnk_06, o->mUnk_08,
                            o->mUnk_0c, o->mUnk_18, n);
         func_0212426c(1, x, o->mUnk_14, GetBmgEntry(data_02174e54->mUnk_24, q->mUnk_08), o->mUnk_0c, o->mUnk_18);
     }
@@ -61,7 +61,7 @@ void func_020307b8(void *a, void *b, void *c) {
     func_02030954(1);
     func_021281c8(0xe);
     func_0204f804();
-    func_02036820(data_02174e54->mUnk_3c);
+    FrmHeapShrinkInParent(data_02174e54->mHeap);
 }
 
 #pragma thumb off

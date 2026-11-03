@@ -160,7 +160,7 @@ void DrawRaceMNumberPairOneDigit(Unk020d029c *param_1) {
 }
 
 void CreateSearchIconMBChildAndMultiDownload(void *param_1) {
-    data_0217b4b0 = func_02036bec(param_1, 0x2c);
+    data_0217b4b0 = HeapAlloc(param_1, 0x2c);
     data_0217b4b0->mUnk_00 = func_02047a28("search_icon_00.bncl");
     data_0217b4b0->mUnk_04 = func_02047a28("search_icon_layout_00.bncl");
     LoadNcgrData2(&data_0217b4b0->mUnk_08, func_02047a28("search_icon_00.nce.ncgr"));

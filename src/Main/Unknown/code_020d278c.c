@@ -102,7 +102,7 @@ void func_020d2950(MapObject *b, s32 c) {
 }
 
 void func_020d28e0(MapObject *a) {
-    a->mUnk_94 = func_02036bec(func_020364e0(func_020364e8()), 0x44);
+    a->mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     func_02109110(&a->mUnk_94->mUnk_00, 2, &a->mPos);
     a->mUnk_70 = data_0217ca6c[2].mUnk_20;
     func_0210cf9c(&a->mUnk_94->mUnk_00, 0);
@@ -112,7 +112,7 @@ void func_020d28e0(MapObject *a) {
 }
 
 Unk0210b7ec *func_020d286c(MapObject *a) {
-    a->mUnk_94 = func_02036bec(func_020364e0(func_020364e8()), 0x60);
+    a->mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x60);
     func_02109110(&a->mUnk_94->mUnk_00, 2, &a->mPos);
     a->mUnk_70 = data_0217ca6c[2].mUnk_20;
     func_0210cf9c(&a->mUnk_94->mUnk_00, 0);
@@ -123,7 +123,7 @@ Unk0210b7ec *func_020d286c(MapObject *a) {
 }
 
 void func_020d27fc(MapObject *a) {
-    a->mUnk_94 = func_02036bec(func_020364e0(func_020364e8()), 0x44);
+    a->mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     func_02109110(&a->mUnk_94->mUnk_00, 3, &a->mPos);
     a->mUnk_70 = data_0217ca6c[3].mUnk_20;
     func_0210cf9c(&a->mUnk_94->mUnk_00, 0);
@@ -133,7 +133,7 @@ void func_020d27fc(MapObject *a) {
 }
 
 void func_020d278c(MapObject *a) {
-    a->mUnk_94 = func_02036bec(func_020364e0(func_020364e8()), 0x44);
+    a->mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     func_02109110(&a->mUnk_94->mUnk_00, 4, &a->mPos);
     a->mUnk_70 = data_0217ca6c[4].mUnk_20;
     func_0210cf9c(&a->mUnk_94->mUnk_00, 0);

@@ -94,8 +94,8 @@ void func_0203d568(void) {
 }
 
 void func_0203d848(void *a) {
-    data_0217561c = func_02036bec(a, 0x524);
-    data_0217561c->mUnk_4d4 = func_02036bec(a, (gCourseMap->mUnk_98 + 1) << 2);
+    data_0217561c = HeapAlloc(a, 0x524);
+    data_0217561c->mUnk_4d4 = HeapAlloc(a, (gCourseMap->mUnk_98 + 1) << 2);
     data_0217561c->mUnk_4dc = FindMainRaceOrMainEffectFile(data_usa_021647b8);
     data_0217561c->mUnk_4c8 = FindMainRaceOrMainEffectFile(data_usa_021647c8);
     func_0203d8fc(data_0217561c->mUnk_4c8);

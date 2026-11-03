@@ -27,7 +27,7 @@
 #pragma thumb on
 
 void func_0211e480(void *a) {
-    data_0217d374 = func_02036bec(a, 0x14);
+    data_0217d374 = HeapAlloc(a, 0x14);
     data_0217d374->mUnk_00 = (u8 *) func_02061644((u32) a);
     func_02061540(data_0217d374->mUnk_00);
     func_02057d9c();

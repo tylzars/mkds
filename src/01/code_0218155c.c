@@ -107,7 +107,7 @@ void func_ov001_021819f4(void) {
     Unk0206bcb0 *c;
     Unk021a9b90 *o;
 
-    data_ov001_021a9b90 = func_02036bec((void *) func_020364e0(func_020364e8()), 0x68);
+    data_ov001_021a9b90 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x68);
     c = func_0207a974((u16) data_021759c0->mUnk_62);
     o = data_ov001_021a9b90;
     o->mUnk_34 = c->mUnk_80;

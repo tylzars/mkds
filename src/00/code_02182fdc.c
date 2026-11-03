@@ -557,7 +557,7 @@ BOOL func_ov000_021832f0(void) {
 void InitWiFiVSSetting(void *heap) {
     s32 i;
 
-    gWiFiVSSetting = func_02036bec(heap, 0x1060);
+    gWiFiVSSetting = HeapAlloc(heap, 0x1060);
     gWiFiVSSetting->mHeap = heap;
     gWiFiVSSetting->mState = 0;
     gWiFiVSSetting->mNextState = 0;

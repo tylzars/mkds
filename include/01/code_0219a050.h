@@ -15,7 +15,7 @@ typedef struct RecordTopMenu {
     /* 0x20 */ void *mUnk_20;
     /* 0x24 */ void *mUnk_24;
     /* 0x28 */ void *mUnk_28;
-    /* 0x2c */ void *mUnk_2c;
+    /* 0x2c */ void *mHeap;
     /* 0x30 */ s32 mUnk_30;
     /* 0x34 */ s32 mUnk_34;
     /* 0x38 */ s32 mUnk_38;

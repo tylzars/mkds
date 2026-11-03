@@ -29,7 +29,7 @@ void func_0204236c(void) {
     u16 i;
     u16 j;
 
-    h = func_020364e0(func_020364e8());
+    h = GetHeap(func_020364e8());
     i = 0;
     for (j = 0; j < 8; j++) {
         gCourseMap->mUnk_d8[j] = NULL;
@@ -41,7 +41,7 @@ void func_0204236c(void) {
             while (*q != NULL) {
                 q = &(*q)->mUnk_04;
             }
-            *q = func_02036bec(h, 8);
+            *q = HeapAlloc(h, 8);
             (*q)->mUnk_00 = e;
             (*q)->mUnk_04 = NULL;
         }

@@ -163,7 +163,7 @@ void func_020e7460(void) {
     s32 n;
     s32 k;
 
-    h = func_020364e0(func_020364e8());
+    h = GetHeap(func_020364e8());
     if (data_021759c0->mUnk_00c == 6) {
         return;
     }
@@ -173,11 +173,11 @@ void func_020e7460(void) {
     func_020e64b8(&data_0217ba00, FindSceneFile(data_0216c394), NULL, 0);
     func_020e6ab8(&data_0217ba00);
     data_0217ba00.mUnk_14 |= 0xc0;
-    data_0217b8a4 = func_02036bec(h, 0x78);
-    data_0217b8a8 = func_02036bec(h, 0x78);
-    data_0217b8a0 = func_02036bec(h, 0x78);
-    data_0217b8e0 = func_02036bec(h, 0x78);
-    data_0217b904 = func_02036bec(h, 0x78);
+    data_0217b8a4 = HeapAlloc(h, 0x78);
+    data_0217b8a8 = HeapAlloc(h, 0x78);
+    data_0217b8a0 = HeapAlloc(h, 0x78);
+    data_0217b8e0 = HeapAlloc(h, 0x78);
+    data_0217b904 = HeapAlloc(h, 0x78);
     for (i = 0, x = 0; i < 0x3c; i++) {
         data_0217b8a4[i] = (u16) (((s64) data_0215d4b4[(x >> 4) * 2] * 0x4c) >> 12);
         k = (u16) (((u64) (s64) data_0215d4b4[((u16) (x + 0xa218) >> 4) * 2] * 0xb60b60b60b + 0x80000000000) >> 44) >>
@@ -192,7 +192,7 @@ void func_020e7460(void) {
     n = 2;
     for (j = n, s = data_0216c324, q = data_0217bb08; j < 4; j++) {
         if (s->mUnk_00 != NULL) {
-            q->mUnk_00 = func_02036bec(h, 0x6c);
+            q->mUnk_00 = HeapAlloc(h, 0x6c);
             p = FindSceneFile(s->mUnk_00);
             func_02084e28(q->mUnk_00, p);
             func_02084968(q->mUnk_00, 0x3f, n, 0x294a);
@@ -201,14 +201,14 @@ void func_020e7460(void) {
             q->mUnk_00 = NULL;
         }
         if (s->mUnk_04 != NULL) {
-            q->mUnk_04 = func_02036bec(h, 0x38);
+            q->mUnk_04 = HeapAlloc(h, 0x38);
             func_020ea514(0, q->mUnk_00, q->mUnk_04, p, FindSceneFile(s->mUnk_04));
             func_02087cfc(q->mUnk_04, 0, 1);
         } else {
             q->mUnk_04 = NULL;
         }
         if (s->mUnk_08 != NULL) {
-            q->mUnk_08 = func_02036bec(h, 0x38);
+            q->mUnk_08 = HeapAlloc(h, 0x38);
             func_020ea514(4, q->mUnk_00, q->mUnk_08, p, FindSceneFile(s->mUnk_08));
             func_02087cfc(q->mUnk_08, 0, 1);
         } else {
@@ -229,7 +229,7 @@ void func_020e7460(void) {
 Unk020e7410 *func_020e7410(void) {
     Unk020e7410 *p;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     *p = *(Unk020e7410 *) data_02159370;
     return p;
 }
@@ -237,7 +237,7 @@ Unk020e7410 *func_020e7410(void) {
 Unk020e6fd4 *func_020e73b4(void) {
     Unk020e6fd4 *p;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x28);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b864 = p;
     *p = *(Unk020e6fd4 *) data_02159348;
     func_020e6f50(&data_0217b864);

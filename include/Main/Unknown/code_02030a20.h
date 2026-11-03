@@ -52,7 +52,7 @@ typedef struct Unk02174e58 {
     /* 144 */ s32 mUnk_144;
     /* 148 */ s32 mUnk_148;
     /* 14c */ s32 mUnk_14c;
-    /* 150 */ void *mUnk_150;
+    /* 150 */ void *mHeap;
 } Unk02174e58;
 
 // Object whose u16 at 4 func_02030b18 and func_02030ea4 set.

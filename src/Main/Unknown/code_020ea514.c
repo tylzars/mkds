@@ -10,9 +10,9 @@
 void func_020ea514(u32 a, void *b, void *c, void *d, void *e) {
     void *p;
 
-    p = func_020364e0(func_020364e8());
+    p = GetHeap(func_020364e8());
     func_0208823c(a, c, b, 1, p, d);
-    func_0208805c(c, e, func_020364e0(func_020364e8()));
+    func_0208805c(c, e, GetHeap(func_020364e8()));
     func_02087f84(c, 0);
 }
 

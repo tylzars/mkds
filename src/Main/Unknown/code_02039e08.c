@@ -228,21 +228,21 @@ u32 func_02039eec(Unk020487fc *a) {
 u32 func_02039e08(Unk020176c0 *a, void **b, void **c, void **d, void **e, void **f) {
     u32 r;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        *b = func_02036854(a, 0x19000);
+        *b = CreateFrmHeapFromBack(a, 0x19000);
     } else {
-        *b = func_02036854(a, 0x1b800);
+        *b = CreateFrmHeapFromBack(a, 0x1b800);
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         *d = NULL;
         *e = NULL;
         *f = NULL;
     } else {
-        *d = func_020368e0(a, 0x19000);
-        *e = func_020368e0(a, 0x4b000);
-        *f = func_020368e0(a, 0x1b800);
+        *d = CreateFrmHeapFromFront(a, 0x19000);
+        *e = CreateFrmHeapFromFront(a, 0x4b000);
+        *f = CreateFrmHeapFromFront(a, 0x1b800);
     }
     r = func_021087c4(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 ? 2 : 0);
-    *c = func_02036bec(a, r);
-    func_02017748(a);
+    *c = HeapAlloc(a, r);
+    ExpHeapGetTotalFreeSize(a);
     return r;
 }

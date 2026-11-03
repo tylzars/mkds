@@ -92,7 +92,7 @@ void func_0203223c(void) {
             func_020cee5c();
         }
     }
-    func_02036ab0(data_02174e5c->mUnk_40);
+    HeapDestroy(data_02174e5c->mHeap);
     data_02174e5c = NULL;
 }
 
@@ -283,10 +283,10 @@ void func_02032654(void *a, s32 b, void *c, void *d) {
     Unk02153e20 *t;
     Unk02153e20 *g;
 
-    h = func_02036948(a);
-    data_02174e5c = func_02036bec(h, 0x6c);
+    h = CreateFrmHeapFromMaxFree(a);
+    data_02174e5c = HeapAlloc(h, 0x6c);
     func_0214d05c_inline(data_02174e5c, 0x6c);
-    data_02174e5c->mUnk_40 = h;
+    data_02174e5c->mHeap = h;
     data_02174e5c->mUnk_68 = b;
     data_02174e5c->mUnk_38 = c;
     data_02174e5c->mUnk_3c = d;
@@ -317,7 +317,7 @@ void func_02032654(void *a, s32 b, void *c, void *d) {
         o = data_02174e5c;
         func_02025b20(o, data_02163b38, data_02163b58, data_02163b78, data_02163b94, data_02163bb0, NULL,
                       FindSceneFile);
-        func_02025a50(0, data_02174e5c->mUnk_40, o);
+        func_02025a50(0, data_02174e5c->mHeap, o);
         n = o->mUnk_00[0].mUnk_0c->mUnk_06;
         m = o->mUnk_00[0].mUnk_14->mUnk_06;
         i = 0;
@@ -325,7 +325,7 @@ void func_02032654(void *a, s32 b, void *c, void *d) {
             t = data_02153e20;
             g = t;
             do {
-                k -= func_02025a00(0, data_02174e5c->mUnk_40, o, t, k);
+                k -= func_02025a00(0, data_02174e5c->mHeap, o, t, k);
                 func_0212426c(0, g->mUnk_00, o->mUnk_00[0].mUnk_14, GetBmgEntry(data_02174e5c->mUnk_50, g->mUnk_08),
                               o->mUnk_00[0].mUnk_0c, o->mUnk_00[0].mUnk_18);
                 t++;
@@ -347,7 +347,7 @@ void func_02032654(void *a, s32 b, void *c, void *d) {
     q = &data_02174e5c->mUnk_00[1];
     func_02025b20(q, data_02163bcc, data_02163bec, data_02163c0c, data_02153e08[data_02174e5c->mUnk_68].mUnk_00, NULL,
                   data_02153e0c[data_02174e5c->mUnk_68].mUnk_00, FindSceneFile);
-    func_02025a50(1, data_02174e5c->mUnk_40, q);
+    func_02025a50(1, data_02174e5c->mHeap, q);
     func_020328c8(0);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_021281c8(-1);
@@ -360,7 +360,7 @@ void func_02032654(void *a, s32 b, void *c, void *d) {
         func_0212775c(1, 0xf);
     }
     data_0217b488->mUnk_08 = 0;
-    func_02036820(data_02174e5c->mUnk_40);
+    FrmHeapShrinkInParent(data_02174e5c->mHeap);
 }
 
 void func_020328c8(s32 a) {

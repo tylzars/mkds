@@ -67,7 +67,7 @@ void func_0211efec(void) {
     LocateNcgr(&h, FindSceneFile(data_0216dfb0));
     LocateNclr(&j, FindSceneFile(data_0216dfac));
     LocateNscr(&i, FindSceneFile(data_0216df98));
-    data_0217d378->mUnk_20 = func_02036bec(data_0217d378->mUnk_28, 0x800);
+    data_0217d378->mUnk_20 = HeapAlloc(data_0217d378->mHeap, 0x800);
     data_0217d378->mUnk_04 = FindSceneFile(data_0216df94);
     data_0217d378->mUnk_08 = FindSceneFile(data_0216dfa4);
     LocateNcgr2(&a, FindSceneFile(data_0216df9c));
@@ -248,9 +248,9 @@ void func_0211e958(void *a, void *b, void *c) {
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x9004;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8300;
-    p = func_02036948(a);
-    data_0217d378 = func_02036bec(p, 0x54);
-    data_0217d378->mUnk_28 = p;
+    p = CreateFrmHeapFromMaxFree(a);
+    data_0217d378 = HeapAlloc(p, 0x54);
+    data_0217d378->mHeap = p;
     data_0217d378->mUnk_38 = 0;
     data_0217d378->mUnk_48 = b;
     data_0217d378->mUnk_4c = c;
@@ -263,23 +263,23 @@ void func_0211e958(void *a, void *b, void *c) {
     func_0211efec();
     data_0217d378->mUnk_24 = func_02047a28(data_0216e09c);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_02124ed0(data_0217d378->mUnk_28, data_0217d378->mUnk_04, data_0217d378->mUnk_08, &data_0217d378->mUnk_18);
-        func_02124ed0(data_0217d378->mUnk_28, data_0217d378->mUnk_10, data_0217d378->mUnk_14, &data_0217d378->mUnk_1c);
+        func_02124ed0(data_0217d378->mHeap, data_0217d378->mUnk_04, data_0217d378->mUnk_08, &data_0217d378->mUnk_18);
+        func_02124ed0(data_0217d378->mHeap, data_0217d378->mUnk_10, data_0217d378->mUnk_14, &data_0217d378->mUnk_1c);
         m = 0x8000;
         for (i = 0; i < 4; i++) {
-            m -= func_021243ac(data_0217d378->mUnk_28, data_0215cf0c[i], data_0217d378->mUnk_08, data_0215cef4[i],
+            m -= func_021243ac(data_0217d378->mHeap, data_0215cf0c[i], data_0217d378->mUnk_08, data_0215cef4[i],
                                data_0215cf14[i], data_0215cf04[i], data_0217d378->mUnk_00, data_0217d378->mUnk_04,
                                data_0217d378->mUnk_18, m);
         }
         i = func_02148ca0();
         for (m = 0; m < 4; m++) {
-            i -= func_021243ac(data_0217d378->mUnk_28, data_0215cf0c[m], data_0217d378->mUnk_14, data_0215cef4[m],
+            i -= func_021243ac(data_0217d378->mHeap, data_0215cf0c[m], data_0217d378->mUnk_14, data_0215cef4[m],
                                data_0215cf14[m], data_0215cf04[m], data_0217d378->mUnk_0c, data_0217d378->mUnk_10,
                                data_0217d378->mUnk_1c, i);
         }
-        func_0211de40(data_0217d378->mUnk_28);
+        func_0211de40(data_0217d378->mHeap);
     } else {
-        func_0211f4b0(data_0217d378->mUnk_28, data_0217d378->mUnk_4c);
+        func_0211f4b0(data_0217d378->mHeap, data_0217d378->mUnk_4c);
         func_0211f380();
     }
     func_0211ed80();
@@ -288,7 +288,7 @@ void func_0211e958(void *a, void *b, void *c) {
     } else {
         func_0211ec54();
     }
-    func_02036820(data_0217d378->mUnk_28);
+    FrmHeapShrinkInParent(data_0217d378->mHeap);
 }
 
 void func_0211e924(void) {
@@ -297,7 +297,7 @@ void func_0211e924(void) {
     } else {
         func_0211f498();
     }
-    func_02036ab0(data_0217d378->mUnk_28);
+    HeapDestroy(data_0217d378->mHeap);
     data_0217d378 = NULL;
 }
 

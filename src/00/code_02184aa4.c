@@ -19,7 +19,7 @@ void InitWiFiVSCourseSelectState(u32 a) {
     int v1;
     void *v2;
     void *v3;
-    v1 = ((u32) func_02036bec((void *) (a), 8));
+    v1 = ((u32) HeapAlloc((void *) (a), 8));
     *(s32 *) &data_ov000_021b4c80 = v1;
     *(u32 *) (v1 + 4) = a;
     func_ov000_02184b4c();

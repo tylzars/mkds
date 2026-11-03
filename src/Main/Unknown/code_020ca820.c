@@ -13,6 +13,6 @@ void func_020ca83c(void) {
 void *func_020ca820(void) {
     u32 value0;
     value0 = (u32) func_020364e8();
-    value0 = (u32) func_020364e0((void *) value0);
+    value0 = (u32) GetHeap((void *) value0);
     return (void *) value0;
 }

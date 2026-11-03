@@ -8,9 +8,9 @@ void func_020e0650(u32 *arg0) {
     u32 value4;
     value4 = value0;
     value0 = (u32) func_020364e8();
-    value0 = (u32) func_020364e0((void *) value0);
+    value0 = (u32) GetHeap((void *) value0);
     value1 = 0x1cu;
-    value0 = (u32) func_02036bec((void *) value0, value1);
+    value0 = (u32) HeapAlloc((void *) value0, value1);
     *(u32 *) ((value4) + (0)) = value0;
     value0 = (u32) * (const u32 *) ((value4) + (0));
     value1 = 0u;

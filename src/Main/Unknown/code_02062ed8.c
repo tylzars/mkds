@@ -163,7 +163,7 @@ void func_0206331c(void *a) {
 
     b = FindCourseFile(data_usa_02165404);
     c = FindCourseFile(data_usa_02165418);
-    data_usa_0217aafc.mUnk_00 = func_02036bec(a, 0x6c);
+    data_usa_0217aafc.mUnk_00 = HeapAlloc(a, 0x6c);
     e = func_02084b2c(a, data_usa_0217aafc.mUnk_00, (Unk020136f0 *) b, (Unk020136f0 *) c);
     d = FindCourseFile(data_usa_0216542c);
     func_0206331c_inline(2, data_usa_0217ab04, data_usa_0217aafc.mUnk_00, a, b, d, &data_usa_0217aafc.mUnk_20);
@@ -194,7 +194,7 @@ void func_0206331c(void *a) {
     b = FindCourseFile(data_usa_02165454);
     c = FindCourseFile(data_usa_0216546c);
     if (b != NULL) {
-        data_usa_0217aafc.mUnk_04 = func_02036bec(a, 0x6c);
+        data_usa_0217aafc.mUnk_04 = HeapAlloc(a, 0x6c);
         func_02084b2c(a, data_usa_0217aafc.mUnk_04, (Unk020136f0 *) b, (Unk020136f0 *) c);
         func_020849c0(data_usa_0217aafc.mUnk_04, 8);
         d = FindCourseFile(data_usa_02165484);

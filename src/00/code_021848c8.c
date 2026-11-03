@@ -17,7 +17,7 @@ void InitWiFiSelectCharacterState(void *a) {
     void *c;
     s32 i;
 
-    data_ov000_021b4c78 = func_02036bec(a, 4);
+    data_ov000_021b4c78 = HeapAlloc(a, 4);
     data_ov000_021b4c78->mUnk_00 = a;
     func_ov000_02184934();
     if (GetWiFiPrevState() != 5) {

@@ -210,7 +210,7 @@ void func_020bc208(Unk020d029c *a) {
 void func_020bc11c(void) {
     s32 i;
 
-    data_0217b3d0 = func_02036bec(func_020364e0(func_020364e8()), 0x38);
+    data_0217b3d0 = HeapAlloc(GetHeap(func_020364e8()), 0x38);
     data_0217b3d0->mUnk_00.mUnk_00[0] = 0;
     data_0217b3d0->mUnk_00.mUnk_00[1] = 0;
     data_0217b3d0->mUnk_00.mUnk_00[2] = 0;

@@ -48,7 +48,7 @@ void func_020c6fac(void) {
     if (data_021759c0->mUnk_08 != 1) {
         return;
     }
-    data_0217b3f4 = func_02036bec(func_020364e0(func_020364e8()), 0xe8);
+    data_0217b3f4 = HeapAlloc(GetHeap(func_020364e8()), 0xe8);
     data_0217b3f4->mUnk_00 = func_020c610c;
     data_0217b3f4->mUnk_04 = 0;
     data_0217b3f4->mUnk_08 = 0;

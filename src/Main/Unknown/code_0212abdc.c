@@ -143,7 +143,7 @@ void func_0212abdc(void *a, void *b) {
     s32 i;
     Unk0217d404 *p;
     Unk0217d3fc_00_00 *q;
-    data_0217d404 = func_02036bec(a, 0x11c);
+    data_0217d404 = HeapAlloc(a, 0x11c);
     data_0217d404->mUnk_038 = b;
     func_0214d168(data_0217d404->mUnk_03c, 0, 0x20);
     data_0217d404->mUnk_024 = 0;

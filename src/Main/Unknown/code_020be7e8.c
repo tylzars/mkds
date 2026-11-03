@@ -21,7 +21,7 @@ void func_020be8e4(s32 i, s32 a, s32 b) {
 void func_020be7fc(void) {
     u8 i;
 
-    data_0217b3d8 = func_02036bec(func_020364e0(func_020364e8()), 0x15c);
+    data_0217b3d8 = HeapAlloc(GetHeap(func_020364e8()), 0x15c);
     for (i = 0; i < (s32) data_021759c0->mKartCount; i++) {
         data_0217b3d8->mUnk_080[i] = 1;
         data_0217b3d8->mUnk_060[i] = data_0217b3d8->mUnk_080[i];

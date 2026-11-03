@@ -61,7 +61,7 @@ void func_ov000_021856a8(void) {
 void InitWiFiAikotobaCheck(void *a) {
     void *b;
 
-    gWiFiAikotobaCheck = func_02036bec(a, 0x54);
+    gWiFiAikotobaCheck = HeapAlloc(a, 0x54);
     gWiFiAikotobaCheck->mUnk_2c = a;
     gWiFiAikotobaCheck->mUnk_00 = 0;
     gWiFiAikotobaCheck->mUnk_04 = 0;

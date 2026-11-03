@@ -26,7 +26,7 @@ typedef struct Unk0216c324 {
 extern Unk0216c324 data_0216c324[];
 
 // 0x10-byte rows of the table at data_0217bae8: the second loop of func_020e7460
-// writes three objects allocated through func_02036bec into the rows from
+// writes three objects allocated through HeapAlloc into the rows from
 // data_0217bb08 on, and the word at 0x0c of the first two rows receives the
 // object func_020e6488 creates. func_020e9810 reads the words at 0x0c through
 // data_0217baf4.

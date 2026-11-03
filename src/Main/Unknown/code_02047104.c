@@ -15,7 +15,7 @@
 #include "code_0214e6e4.h"
 
 void func_02047104(void *a) {
-    data_021759c4 = func_02036bec(a, 0x40);
+    data_021759c4 = HeapAlloc(a, 0x40);
     data_021759c4->mUnk_30_0 = 0;
     data_021759c4->mUnk_30_1 = 0;
     data_021759c4->mUnk_30_2 = 0;
@@ -42,7 +42,7 @@ void func_020471b0(void *a) {
 
     n = *func_020cade8() >> 8;
     data_021759c8->mUnk_8b8 = 0;
-    p = func_02036b74(a, n, 0x20);
+    p = HeapAllocAligned(a, n, 0x20);
     func_020487e0(func_020cade8(), p, n);
     func_02018344(&data_021759c8->mUnk_850, (const u8 *) gArchiveNames[19], p);
     data_021759c8->mUnk_8bc = p;
@@ -54,7 +54,7 @@ void func_02047220(void *a, u32 b) {
     void *p;
 
     p = data_021759c8->mUnk_84c;
-    func_020177b0(func_020364e0(func_020364e8()), p, b + ((u32) a - (u32) p));
+    ExpHeapResizeBlock(GetHeap(func_020364e8()), p, b + ((u32) a - (u32) p));
 }
 
 s32 func_02047250(void) {

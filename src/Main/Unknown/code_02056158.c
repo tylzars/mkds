@@ -9,9 +9,9 @@
 #include "Main/Unknown/unk_0217a000.h"
 
 void func_02056158(void *a) {
-    data_0217aa04 = func_02036bec(a, 0x10);
+    data_0217aa04 = HeapAlloc(a, 0x10);
     if (data_021759c0->mUnk_00c == 3 || data_021759c0->mUnk_00c == 5) {
-        data_0217aa04->mUnk_04 = func_02036b74(a, 0x400, 0x20);
+        data_0217aa04->mUnk_04 = HeapAllocAligned(a, 0x400, 0x20);
     } else {
         data_0217aa04->mUnk_04 = NULL;
     }

@@ -134,10 +134,10 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     Unk02174e14_00 v;
     Unk02174e14_00 w;
 
-    h = func_02036948(a);
-    gSelectCharacter = func_02036bec(h, 0x12c);
+    h = CreateFrmHeapFromMaxFree(a);
+    gSelectCharacter = HeapAlloc(h, 0x12c);
     func_0214d05c_inline(gSelectCharacter, 0x12c);
-    gSelectCharacter->mUnk_05c = h;
+    gSelectCharacter->mHeap = h;
     gSelectCharacter->mUnk_080 = b;
     switch (func_02029930()->mUnk_108) {
         case 0:
@@ -202,7 +202,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     if (p->mUnk_128 == FALSE) {
         func_02025b20(&p->mUnk_000, gSelectCharacterGpMNcgrName, gSelectCharacterGpMNcerName,
                       gSelectCharacterGpMONclrName, gSelectCharacterGpMBnclName, NULL, NULL, func_02047a28);
-        func_02025a50(0, gSelectCharacter->mUnk_05c, &p->mUnk_000);
+        func_02025a50(0, gSelectCharacter->mHeap, &p->mUnk_000);
         func_02025b20(&v, gSelectCharacterGpTitleMNcgrName, gSelectCharacterGpTitleMNcerName, NULL,
                       gSelectCharacterGpTitleMBnclName, NULL, NULL, func_02047a28);
         func_02124748(0, v.mUnk_08, v.mUnk_00, v.mUnk_0c, 0, 0, p->mUnk_000.mUnk_08, p->mUnk_000.mUnk_0c);
@@ -219,7 +219,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
         s = &gSelectCharacter->mUnk_01c;
         func_02025b20(s, gSelectCharacterSNcgrName, gSelectCharacterSNcerName, gSelectCharacterSONclrName,
                       gSelectCharacterSBnclName, NULL, gSelectCharacterSBnblName, func_02047a28);
-        func_02025a50(1, gSelectCharacter->mUnk_05c, s);
+        func_02025a50(1, gSelectCharacter->mHeap, s);
         s->mUnk_18[24].mUnk_00 = 0;
         for (i = 0; i < 12; i++) {
             s->mUnk_18[data_usa_02153554[i].mUnk_04].mUnk_10 = 1;
@@ -234,7 +234,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
         s->mUnk_18[25].mUnk_34 = 0;
         s->mUnk_18[24].mUnk_34 = s->mUnk_18[25].mUnk_34;
     } else if (func_02029930()->mUnk_c8 == 2) {
-        func_0211f4b0(gSelectCharacter->mUnk_05c, gSelectCharacter->mUnk_058);
+        func_0211f4b0(gSelectCharacter->mHeap, gSelectCharacter->mUnk_058);
         func_0211f394();
     }
     gSelectCharacter->mUnk_07c = 8;
@@ -344,7 +344,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_02077f48(0);
     }
-    func_02036820(gSelectCharacter->mUnk_05c);
+    FrmHeapShrinkInParent(gSelectCharacter->mHeap);
 }
 
 #pragma thumb off

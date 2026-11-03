@@ -120,7 +120,7 @@ void func_020ca058(Unk020c06c4 *a) {
 s32 func_020c9fb8(void) {
     s32 i;
 
-    data_0217b428 = func_02036bec(func_020364e0(func_020364e8()), 0x194);
+    data_0217b428 = HeapAlloc(GetHeap(func_020364e8()), 0x194);
     func_020c0ba8(&data_0217b428->mUnk_190, 0x18);
     for (i = 0; i < 8; i++) {
         data_0217b428->mUnk_000[i] = 0;
@@ -449,7 +449,7 @@ BOOL func_020c8d30(void) {
     if (n == 0) {
         return FALSE;
     }
-    data_0217b424 = func_02036bec(func_020364e0(func_020364e8()), 0x44);
+    data_0217b424 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     data_0217b424->mUnk_00 = (Unk020e1e98 **) func_02100084(a);
     data_0217b424->mUnk_04 = n;
     data_0217b424->mUnk_08 = n;

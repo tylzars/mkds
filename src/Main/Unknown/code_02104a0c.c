@@ -55,7 +55,7 @@ void func_02105214(void) {
             data_0217c724 = 3;
             break;
     }
-    data_0217c72c = func_02036bec(func_020364e0(func_020364e8()), data_0217c724 * 4);
+    data_0217c72c = HeapAlloc(GetHeap(func_020364e8()), data_0217c724 * 4);
     buf = data_0215a6cc;
     data_0217c730.mUnk_00 = buf;
     data_0217c73c = buf;

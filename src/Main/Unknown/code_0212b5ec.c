@@ -71,11 +71,11 @@ void func_0212b5ec(void *a) {
     Unk0217d40c *d;
     Unk02180728 *q;
     void *t;
-    data_0217d40c = func_02036bec(a, 0x85c);
+    data_0217d40c = HeapAlloc(a, 0x85c);
     data_0217d40c->mUnk_858 = a;
     data_0217d40c->mUnk_000 = 0;
     data_0217d40c->mUnk_004 = 0;
-    func_02016554(func_02036bec(a, 0xa0), 0xa);
+    func_02016554(HeapAlloc(a, 0xa0), 0xa);
     data_0217d40c->mUnk_008 = 0;
     data_0217d40c->mUnk_010 = 0;
     data_0217d40c->mUnk_014 = -1;

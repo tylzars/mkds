@@ -25,16 +25,16 @@ void func_ov001_02181274(s32 p0, s32 p1, s32 p2) {
     s32 i;
     void *heap;
 
-    heap = func_020364e0(func_020364e8());
-    data_ov001_021a9b88 = func_02036b74(heap, 0x30, 0x20);
+    heap = GetHeap(func_020364e8());
+    data_ov001_021a9b88 = HeapAllocAligned(heap, 0x30, 0x20);
     data_ov001_021a9b88->mUnk_00 = p0;
     data_ov001_021a9b88->mUnk_04 = p1;
     data_ov001_021a9b88->mUnk_08 = p2;
-    heap = func_020364e0(func_020364e8());
-    data_ov001_021a9b88->mUnk_18 = (u16 *) func_02036b74(heap, data_ov001_021a9b88->mUnk_08 * 2, 0x20);
-    heap = func_020364e0(func_020364e8());
+    heap = GetHeap(func_020364e8());
+    data_ov001_021a9b88->mUnk_18 = (u16 *) HeapAllocAligned(heap, data_ov001_021a9b88->mUnk_08 * 2, 0x20);
+    heap = GetHeap(func_020364e8());
     data_ov001_021a9b88->mUnk_1c[0] =
-        (u8 *) func_02036b74(heap, data_ov001_021a9b88->mUnk_04 / 8 * (data_ov001_021a9b88->mUnk_04 / 8), 0x20);
+        (u8 *) HeapAllocAligned(heap, data_ov001_021a9b88->mUnk_04 / 8 * (data_ov001_021a9b88->mUnk_04 / 8), 0x20);
     func_0214d168(data_ov001_021a9b88->mUnk_1c[0], data_ov001_021a9b88->mUnk_00 / 8 * data_ov001_021a9b88->mUnk_00 / 8,
                   data_ov001_021a9b88->mUnk_04 / 8 * (data_ov001_021a9b88->mUnk_04 / 8));
     for (i = 0; i < data_ov001_021a9b88->mUnk_00 / 8; i++) {
@@ -43,18 +43,18 @@ void func_ov001_02181274(s32 p0, s32 p1, s32 p2) {
                 j + i * data_ov001_021a9b88->mUnk_00 / 8;
         }
     }
-    heap = func_020364e0(func_020364e8());
+    heap = GetHeap(func_020364e8());
     data_ov001_021a9b88->mUnk_1c[1] =
-        (u8 *) func_02036b74(heap, data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00 + 0x40, 0x20);
-    heap = func_020364e0(func_020364e8());
+        (u8 *) HeapAllocAligned(heap, data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00 + 0x40, 0x20);
+    heap = GetHeap(func_020364e8());
     data_ov001_021a9b88->mUnk_1c[2] =
-        (u8 *) func_02036b74(heap, data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00 + 0x40, 0x20);
-    heap = func_020364e0(func_020364e8());
+        (u8 *) HeapAllocAligned(heap, data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00 + 0x40, 0x20);
+    heap = GetHeap(func_020364e8());
     data_ov001_021a9b88->mUnk_1c[3] =
-        (u8 *) func_02036b74(heap, data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00, 0x20);
-    heap = func_020364e0(func_020364e8());
+        (u8 *) HeapAllocAligned(heap, data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00, 0x20);
+    heap = GetHeap(func_020364e8());
     data_ov001_021a9b88->mUnk_1c[4] =
-        (u8 *) func_02036b74(heap, data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00 * 2, 0x20);
+        (u8 *) HeapAllocAligned(heap, data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00 * 2, 0x20);
 }
 
 u32 func_ov001_02181268(void) {

@@ -279,13 +279,13 @@ void func_ov001_0218cdb8(Unk02188950 *e) {
     b->mUnk_0a4 = (struct Unk0218dabc *) a;
     c->mUnk_0a4 = (struct Unk0218dabc *) b;
     d->mUnk_0a4 = (struct Unk0218dabc *) c;
-    e->mUnk_000.mUnk_94 = func_02036bec((void *) func_020364e0(func_020364e8()), 0x44);
+    e->mUnk_000.mUnk_94 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x44);
     func_02109110((Unk0210bfbc *) (e->mUnk_000.mUnk_94), (u32) (0xd), (Vec3 *) (&e->mUnk_000.mPos));
     e->mUnk_000.mUnk_70 = data_0217cbec[0x1d];
 }
 
 void func_ov001_0218cd80(Unk02188950 *a) {
-    a->mUnk_000.mUnk_94 = func_02036bec((void *) func_020364e0(func_020364e8()), 0x44);
+    a->mUnk_000.mUnk_94 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x44);
     func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xd), (Vec3 *) (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cbec[0x1d];
 }

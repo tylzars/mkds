@@ -90,7 +90,7 @@ void func_020da494(Unk020da494 *a, Unk020fa294 *b) {
 
 Unk020da414 *func_020da414(void) {
     Unk020da414 *p;
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     {
         Unk020da414 v = {0};
         *p = v;
@@ -235,7 +235,7 @@ void func_020d9e60(Unk020d9cf4 *a, struct Unk02012f58 *b) {
 
 Unk020d9de0 *func_020d9de0(void) {
     Unk020d9de0 *p;
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     {
         Unk020d9de0 v = {0};
         *p = v;
@@ -278,7 +278,7 @@ void func_020d9cf4(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i
 }
 
 void CreateMiniStage3Water(void) {
-    gWater = func_02036bec(func_020364e0(func_020364e8()), 0x180);
+    gWater = HeapAlloc(GetHeap(func_020364e8()), 0x180);
     func_020d9cf4(0xe8000, 0xc5000, 0x50000, 0x32000, 0x3c000, 0x7fff, 0x3fff, 0x1f4, 0x12c, 0x12c, 1, 5, 0xa, 0xa, 1);
     gWater->mUnk_60 = FindCourseMapObjFile("mini_stage3_waterA.nsbmd");
     gWater->mUnk_64 = FindCourseMapObjFile("mini_stage3_waterC.nsbmd");
@@ -286,7 +286,7 @@ void CreateMiniStage3Water(void) {
 }
 
 void CreateBeachWater(void) {
-    gWater = func_02036bec(func_020364e0(func_020364e8()), 0x180);
+    gWater = HeapAlloc(GetHeap(func_020364e8()), 0x180);
     func_020d9cf4(0x78000, 0x62000, 0x50000, 0x43000, 0x3c000, 0x7fff, 0x3fff, 0x1f4, 0x96, 0x96, 1, 6, 0xa, 0xa, 1);
     gWater->mUnk_60 = FindCourseMapObjFile("beach_waterA.nsbmd");
     gWater->mUnk_64 = FindCourseMapObjFile("beach_waterC.nsbmd");
@@ -294,7 +294,7 @@ void CreateBeachWater(void) {
 }
 
 void CreateTownWater(void) {
-    gWater = func_02036bec(func_020364e0(func_020364e8()), 0x180);
+    gWater = HeapAlloc(GetHeap(func_020364e8()), 0x180);
     func_020d9cf4(0, 0, 0x29000, 0x1e000, 0xb000, 0x4e20, 0x3fff, 0x12c, 0x78, 0x1e, 1, 0xd, 0x19, 0x10, 0);
     gWater->mUnk_60 = FindCourseMapObjFile("town_waterA.nsbmd");
     gWater->mUnk_64 = FindCourseMapObjFile("town_waterC.nsbmd");
@@ -302,7 +302,7 @@ void CreateTownWater(void) {
 }
 
 void CreateYoshiWater(void) {
-    gWater = func_02036bec(func_020364e0(func_020364e8()), 0x180);
+    gWater = HeapAlloc(GetHeap(func_020364e8()), 0x180);
     func_020d9cf4(0, 0, 0xc8000, 0x55000, 0x3c000, 0x7fff, 0x3fff, 0x1c2, 0x78, 0x1e, 1, 0xa, 0x17, 0x10, 0);
     gWater->mUnk_60 = NULL;
     gWater->mUnk_64 = FindCourseMapObjFile("yoshi_waterC.nsbmd");
@@ -310,7 +310,7 @@ void CreateYoshiWater(void) {
 }
 
 void CreateHyudoroWater(void) {
-    gWater = func_02036bec(func_020364e0(func_020364e8()), 0x180);
+    gWater = HeapAlloc(GetHeap(func_020364e8()), 0x180);
     func_020d9cf4(0, 0, 0x63000, 0x4d000, 0x1e000, 0x7fff, 0x3fff, 0x1c2, 0x78, 0x1e, 1, 0xf, 0x19, 0x10, 0);
     gWater->mUnk_60 = FindCourseMapObjFile("hyudoro_waterA.nsbmd");
     gWater->mUnk_64 = FindCourseMapObjFile("hyudoro_waterC.nsbmd");
@@ -362,7 +362,7 @@ void func_020d9900(Unk020d9cf4 *a) {
 
 void CreateWaterEfct(Unk020da384 *a) {
     Unk020d98a4 *p;
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x10);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x10);
     gWaterEfct = p;
     p->mUnk_00 = a->mUnk_08;
     gWaterEfct->mUnk_04 = FindCourseFile("MapObj/water_efct.nsbmd");

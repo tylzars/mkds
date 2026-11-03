@@ -244,7 +244,7 @@ void func_0207729c(Unk02061808 *p) {
 #pragma thumb on
 
 void func_020775e4(void) {
-    data_usa_0217ac98 = func_02036bec(func_020364e0(func_020364e8()), 0x270);
+    data_usa_0217ac98 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
     data_usa_0217ac84 = NULL;
     func_0207729c(data_usa_0217ac98);
     data_usa_0217ac98->mUnk_218 = gCourseMap->mUnk_c4;
@@ -260,10 +260,10 @@ void func_020775e4(void) {
 }
 
 void func_0207767c(void) {
-    void *h = func_020364e0(func_020364e8());
+    void *h = GetHeap(func_020364e8());
 
-    data_usa_0217ac98 = func_02036bec(h, 0x270);
-    data_usa_0217ac84 = func_02036bec(h, 0x270);
+    data_usa_0217ac98 = HeapAlloc(h, 0x270);
+    data_usa_0217ac84 = HeapAlloc(h, 0x270);
     func_0207729c(data_usa_0217ac98);
     func_0207729c(data_usa_0217ac84);
     data_usa_0217ac98->mUnk_218 = gCourseMap->mUnk_c4;
@@ -297,7 +297,7 @@ void func_02077750(Unk02077750 *a, Unk020748b8_218 *b) {
 }
 
 void func_020777ac(u32 a) {
-    void *h = func_020364e0(func_020364e8());
+    void *h = GetHeap(func_020364e8());
     u16 i;
     u16 n;
     Unk020748b8_218 *e;
@@ -305,7 +305,7 @@ void func_020777ac(u32 a) {
     u16 j;
     s32 k;
 
-    data_0217acbc = func_02036bec(h, 0x270);
+    data_0217acbc = HeapAlloc(h, 0x270);
     func_0207729c(data_0217acbc);
     data_0217acbc->mUnk_210 = a;
     data_0217acbc->mUnk_218 = NULL;
@@ -325,7 +325,7 @@ void func_020777ac(u32 a) {
                 }
             }
             data_usa_0217ac70 = n;
-            data_0217acbc->mUnk_21c = func_02036bec(h, n * 0x88);
+            data_0217acbc->mUnk_21c = HeapAlloc(h, n * 0x88);
             e = data_0217acbc->mUnk_218;
             m = 0;
             j = 0;
@@ -353,7 +353,7 @@ void func_020777ac(u32 a) {
 void func_02077944(void) {
     Unk0206bcb0 *a = func_0207a974(data_021759c0->mUnk_62);
 
-    data_0217ac94 = func_02036bec(func_020364e0(func_020364e8()), 0x270);
+    data_0217ac94 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
     func_02076a5c();
     func_02063b10(a, &data_0217ac94->mUnk_260);
     func_02077060(data_0217ac94);

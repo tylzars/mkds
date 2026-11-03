@@ -34,7 +34,7 @@ void func_ov001_021a651c(void) {
 }
 
 void func_ov001_021a64ac(void *a) {
-    data_ov001_021ca424 = func_02036bec(a, 0x10);
+    data_ov001_021ca424 = HeapAlloc(a, 0x10);
     LocateNcgr2(&data_ov001_021ca424->mUnk_00, FindSceneFile(data_ov001_021a993c));
     LocateNcer(&data_ov001_021ca424->mUnk_04, FindSceneFile(data_ov001_021a9938));
     LocateNclr((Nclr **) &data_ov001_021ca424->mUnk_08, FindSceneFile(data_ov001_021a9944));

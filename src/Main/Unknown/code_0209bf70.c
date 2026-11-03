@@ -62,8 +62,8 @@ u32 func_0209bf8c(void) {
 void *func_0209bfa8(void *param_1, void *param_2, void *param_3, u32 param_4, u16 param_5) {
     Unk0209bf70 *o;
 
-    func_020364e0(func_020364e8());
-    o = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    GetHeap(func_020364e8());
+    o = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     o->mUnk_00 = (u32) param_1;
     o->mUnk_04 = (u32) param_2;
     o->mUnk_20 = param_4;

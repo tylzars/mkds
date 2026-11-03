@@ -11,9 +11,9 @@
 #include "01/unk_021ca000.h"
 
 void func_ov001_0219ea8c(void) {
-    void *heap = func_020364e0(func_020364e8());
+    void *heap = GetHeap(func_020364e8());
 
-    data_ov001_021ca40c = func_02036bec(heap, 4);
+    data_ov001_021ca40c = HeapAlloc(heap, 4);
     func_ov001_0219e6ec(heap);
 }
 

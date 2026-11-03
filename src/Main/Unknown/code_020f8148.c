@@ -17,7 +17,7 @@ u8 *func_020f8148(Unk0217bc6c *param_1, u8 *param_2) {
     a = *param_2++;
     b = *param_2++;
     param_1->mUnk_00 = a;
-    param_1->mUnk_04 = func_02036bec(func_020364e0(func_020364e8()), (a + 1) * 0x24);
+    param_1->mUnk_04 = HeapAlloc(GetHeap(func_020364e8()), (a + 1) * 0x24);
     tab = param_1->mUnk_04;
     for (i = 0; i < b; i++) {
         for (j = 0; j < a; j++) {

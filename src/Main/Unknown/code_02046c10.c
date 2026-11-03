@@ -127,7 +127,7 @@ void func_02046fb4(void *a) {
     if (data_021759c4->mUnk_30_1 != 0) {
         return;
     }
-    data_021759c4->mUnk_3c = func_02036b74(a, 0x420, 0x20);
+    data_021759c4->mUnk_3c = HeapAllocAligned(a, 0x420, 0x20);
     func_0210f130(data_021759c4->mUnk_3c);
     func_0210f0f4((s32) data_021759c4->mUnk_3c);
     data_021759c4->mUnk_30_1 = 1;

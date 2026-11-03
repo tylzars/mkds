@@ -375,7 +375,7 @@ void func_020ba520(void) {
     Unk0217b3c8 *q;
     s32 v;
 
-    q = func_02036bec(func_020364e0(func_020364e8()), 0xc);
+    q = HeapAlloc(GetHeap(func_020364e8()), 0xc);
     data_0217b3c8 = q;
     v = data_021759c0->mUnk_08;
     switch (v) {

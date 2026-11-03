@@ -75,7 +75,7 @@ void func_ov001_021a0e7c(void) {
     LocateNclr(&g, FindSceneFile(data_ov001_021a92a8));
     LocateNscr(&e, FindSceneFile(data_ov001_021a928c));
     LocateNscr(&f, FindSceneFile(data_ov001_021a92c0));
-    data_ov001_021ca414->mUnk_48 = func_02036bec(data_ov001_021ca414->mUnk_5c, 0x800);
+    data_ov001_021ca414->mUnk_48 = HeapAlloc(data_ov001_021ca414->mHeap, 0x800);
     data_ov001_021ca414->mUnk_04 = FindSceneFile(data_ov001_021a929c);
     data_ov001_021ca414->mUnk_08 = FindSceneFile(data_ov001_021a92ac);
     LocateNcgr2(&a, FindSceneFile(data_ov001_021a9278));
@@ -496,9 +496,9 @@ void func_ov001_021a0190(s32 a, s32 b, s32 c) {
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 1;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0xd204;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x9004;
-    heap = func_02036948((void *) a);
-    data_ov001_021ca414 = func_02036bec(heap, 0xc0);
-    data_ov001_021ca414->mUnk_5c = heap;
+    heap = CreateFrmHeapFromMaxFree((void *) a);
+    data_ov001_021ca414 = HeapAlloc(heap, 0xc0);
+    data_ov001_021ca414->mHeap = heap;
     data_ov001_021ca414->mUnk_60 = 0;
     data_ov001_021ca414->mUnk_9e = func_020295f8() - 1;
     data_ov001_021ca414->mUnk_9c = 0;
@@ -513,34 +513,34 @@ void func_ov001_021a0190(s32 a, s32 b, s32 c) {
     func_ov001_021a0e34();
     func_ov001_021a0e7c();
     func_020ae6d4(data_ov001_021ca414->mUnk_b4, data_ov001_021ca414->mUnk_b8);
-    func_02124ed0(data_ov001_021ca414->mUnk_5c, data_ov001_021ca414->mUnk_04, data_ov001_021ca414->mUnk_08,
+    func_02124ed0(data_ov001_021ca414->mHeap, data_ov001_021ca414->mUnk_04, data_ov001_021ca414->mUnk_08,
                   &data_ov001_021ca414->mUnk_40);
-    func_02124ed0(data_ov001_021ca414->mUnk_5c, data_ov001_021ca414->mUnk_10, data_ov001_021ca414->mUnk_18,
+    func_02124ed0(data_ov001_021ca414->mHeap, data_ov001_021ca414->mUnk_10, data_ov001_021ca414->mUnk_18,
                   &data_ov001_021ca414->mUnk_44);
     data_ov001_021ca414->mUnk_54 = func_02047a28(data_ov001_021a94a4);
     data_ov001_021ca414->mUnk_58 = FindSceneFile(data_ov001_021a94b0);
     data_ov001_021ca414->mUnk_4c = func_02047a28(data_ov001_021a94bc);
     data_ov001_021ca414->mUnk_50 = (Unk021ca414_50 *) ((u8 *) FindSceneFile(data_ov001_021a94d0) + 8);
-    func_021243ac(data_ov001_021ca414->mUnk_5c, 0, data_ov001_021ca414->mUnk_08, 0xd2, 0x46, 0,
+    func_021243ac(data_ov001_021ca414->mHeap, 0, data_ov001_021ca414->mUnk_08, 0xd2, 0x46, 0,
                   data_ov001_021ca414->mUnk_00, data_ov001_021ca414->mUnk_04, data_ov001_021ca414->mUnk_40, 0x8000);
     rem = func_02148ca0();
     for (i = 0; i < 9; i++) {
-        rem -= func_021243ac(data_ov001_021ca414->mUnk_5c, data_ov001_021a6e10[i][0], data_ov001_021ca414->mUnk_18,
+        rem -= func_021243ac(data_ov001_021ca414->mHeap, data_ov001_021a6e10[i][0], data_ov001_021ca414->mUnk_18,
                              data_ov001_021a6e34[i][0], data_ov001_021a6e58[i][0], data_ov001_021a6e7c[i][5],
                              data_ov001_021ca414->mUnk_0c, data_ov001_021ca414->mUnk_10, data_ov001_021ca414->mUnk_44,
                              rem);
         base = data_ov001_021a6e10[i][0];
-        rem -= func_021243ac(data_ov001_021ca414->mUnk_5c, data_ov001_021a6e10[i][1], data_ov001_021ca414->mUnk_18,
+        rem -= func_021243ac(data_ov001_021ca414->mHeap, data_ov001_021a6e10[i][1], data_ov001_021ca414->mUnk_18,
                              data_ov001_021a6e34[i][1], data_ov001_021a6e58[i][1],
                              base + data_ov001_021ca414->mUnk_10->mUnk_06, data_ov001_021ca414->mUnk_0c,
                              data_ov001_021ca414->mUnk_10, data_ov001_021ca414->mUnk_44, rem);
     }
-    func_ov001_021a64ac(data_ov001_021ca414->mUnk_5c);
+    func_ov001_021a64ac(data_ov001_021ca414->mHeap);
     func_ov001_021a0b3c();
     data_ov001_021ca414->mUnk_b0 = data_ov001_021ca414->mUnk_9e;
     func_ov001_021a0774();
     func_ov001_021a04f0();
-    func_02036820(data_ov001_021ca414->mUnk_5c);
+    FrmHeapShrinkInParent(data_ov001_021ca414->mHeap);
 }
 
 void func_ov001_021a0140(void) {
@@ -553,7 +553,7 @@ void func_ov001_021a0140(void) {
             break;
     }
     func_ov001_021a64a0();
-    func_02036ab0(data_ov001_021ca414->mUnk_5c);
+    HeapDestroy(data_ov001_021ca414->mHeap);
     data_ov001_021ca414 = NULL;
 }
 

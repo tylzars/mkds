@@ -173,7 +173,7 @@ void InitRaceGoalS(void) {
     s32 l;
     s32 e;
 
-    gRaceGoalS = func_02036bec(func_020364e0(func_020364e8()), 0x20e4);
+    gRaceGoalS = HeapAlloc(GetHeap(func_020364e8()), 0x20e4);
     for (i = 0; i < 8; i++) {
         gRaceGoalS->mUnk_0000[i] = 1;
         gRaceGoalS->mUnk_0020[i] = 0;

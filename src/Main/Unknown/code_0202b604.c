@@ -15,7 +15,7 @@
 #pragma thumb on
 
 void func_0202bb60(void) {
-    func_02036ab0((void *) data_02174e3c->mUnk_03c);
+    HeapDestroy((void *) data_02174e3c->mHeap);
     *&data_02174e3c = NULL;
 }
 

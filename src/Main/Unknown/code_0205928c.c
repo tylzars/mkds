@@ -30,13 +30,13 @@ void func_0205982c(void *a) {
     int v2;
     void *v3;
     int *v4;
-    v3 = func_02036b74(a, ((u32) 0x0000016cu), 0x20);
+    v3 = HeapAllocAligned(a, ((u32) 0x0000016cu), 0x20);
     v4 = (s32 *) &data_0217aa00;
     data_0217aa00->mUnk_1624 = v3;
     v1 = 0;
     v2 = 0;
     do {
-        v3 = func_02036bec(a, (u32) 0x12);
+        v3 = HeapAlloc(a, (u32) 0x12);
         *(void **) (*v4 + v2 + 0x162c) = v3;
         v2 = v2 + 4;
         v1 = v1 + 1;

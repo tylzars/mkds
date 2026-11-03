@@ -225,23 +225,23 @@ void func_0202d210(void *a, void *b, void *c) {
     s32 n;
     s32 w;
     s32 m;
-    h = func_02036948(a);
-    data_02174e40 = func_02036bec(h, 0xe0);
+    h = CreateFrmHeapFromMaxFree(a);
+    data_02174e40 = HeapAlloc(h, 0xe0);
     func_0214d05c_inline(data_02174e40, 0xe0);
-    data_02174e40->mUnk_0dc = h;
+    data_02174e40->mHeap = h;
     data_02174e40->mUnk_048[0] = b;
     data_02174e40->mUnk_048[1] = c;
     data_02174e40->mUnk_0a8 = func_02047a28(data_usa_02162d04);
     data_02174e40->mUnk_0ac = FindSceneFile(data_usa_02162d10);
-    func_0204f240(data_02174e40->mUnk_0dc, 2);
+    func_0204f240(data_02174e40->mHeap, 2);
     func_020258d4(0, data_02174e40, data_usa_02162d1c, data_usa_02162d3c, data_usa_02162d5c, 0, FindSceneFile);
     p = &data_02174e40->mUnk_050[0];
     n = func_02148cb8();
     func_02025b20(p, data_usa_02162d7c, data_usa_02162da0, data_usa_02162dc4, data_usa_02162de4, data_usa_02162e04,
                   NULL, FindSceneFile);
-    func_02025a50(0, data_02174e40->mUnk_0dc, p);
+    func_02025a50(0, data_02174e40->mHeap, p);
     for (i = 0; i < p->mUnk_14->mUnk_06; i++) {
-        n -= func_02025a00(0, data_02174e40->mUnk_0dc, p, data_usa_02153bec[i], n);
+        n -= func_02025a00(0, data_02174e40->mHeap, p, data_usa_02153bec[i], n);
     }
     func_020258d4(1, &data_02174e40->mUnk_024, data_usa_02162e24, data_usa_02162e44, data_usa_02162e64, 3,
                   FindSceneFile);
@@ -250,13 +250,13 @@ void func_0202d210(void *a, void *b, void *c) {
     m = 0;
     func_02025b20(q, data_usa_02162e84, data_usa_02162ea8, data_usa_02162ecc, data_usa_02162eec, data_usa_02162f0c,
                   data_usa_02162f2c, FindSceneFile);
-    func_02025a50(1, data_02174e40->mUnk_0dc, q);
+    func_02025a50(1, data_02174e40->mHeap, q);
     w = q->mUnk_0c->mUnk_06;
     for (i = 0; i < q->mUnk_14->mUnk_06; i++) {
         if (data_usa_02162c74[i][3] < 0) {
             data_usa_02162c74[i][3] = w + m++;
         }
-        n -= func_02025a00(1, data_02174e40->mUnk_0dc, q, (s16(*)[4]) data_usa_02162c74 + i, n);
+        n -= func_02025a00(1, data_02174e40->mHeap, q, (s16(*)[4]) data_usa_02162c74 + i, n);
     }
     func_0202d720();
     for (i = 0; i < 0xf; i++) {
@@ -279,7 +279,7 @@ void func_0202d210(void *a, void *b, void *c) {
         r[1] = 7;
         r[2] = w;
         r[3] = w + 7;
-        func_0202e530(data_02174e40->mUnk_0dc, 4, r, 0xe, 0xf, 0x7c, q->mUnk_18, q->mUnk_10, s->mUnk_20 + 0xc, 0, 1, 2,
+        func_0202e530(data_02174e40->mHeap, 4, r, 0xe, 0xf, 0x7c, q->mUnk_18, q->mUnk_10, s->mUnk_20 + 0xc, 0, 1, 2,
                       func_0202ddc4(), func_0202d868);
     } else {
         for (i = 0; i < w; i++) {
@@ -294,7 +294,7 @@ void func_0202d210(void *a, void *b, void *c) {
     func_021281c8(0xf);
     func_0204f804();
     data_02174e40->mUnk_0b0 = 1;
-    func_02036820(data_02174e40->mUnk_0dc);
+    FrmHeapShrinkInParent(data_02174e40->mHeap);
 }
 
 s32 func_0202cdf4(Unk0202cdf4 *p) {
@@ -497,7 +497,7 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
 #pragma thumb on
 
 void func_0202cdd4(void) {
-    func_02036ab0((void *) data_02174e40->mUnk_0dc);
+    HeapDestroy((void *) data_02174e40->mHeap);
     *(int *) &data_02174e40 = 0;
 }
 

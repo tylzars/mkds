@@ -400,7 +400,7 @@ void InitRecordGpx(void *heap) {
     *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & 0x43) | 0x8800;
     *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & 0x43) | 0x1018;
     *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x5810;
-    gRecordGpx = func_02036bec(heap, 0x94);
+    gRecordGpx = HeapAlloc(heap, 0x94);
     gRecordGpx->mUnk_5c = heap;
     gRecordGpx->mState = 0;
     gRecordGpx->mIndex = 0;
@@ -439,7 +439,7 @@ void InitRecordGpx(void *heap) {
     if (acc == 0) {
         gRecordGpx->mUnk_74 = 16;
     }
-    gRecordGpx->mUnk_4c = func_02036bec(heap, 0x134);
+    gRecordGpx->mUnk_4c = HeapAlloc(heap, 0x134);
     zero = 0;
     func_0214cfe4(zero, gRecordGpx->mUnk_4c, 0x134);
     func_ov001_02194a50();

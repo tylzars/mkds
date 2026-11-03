@@ -57,34 +57,34 @@ void func_020df3f8(void) {
 Unk020de390 *func_020df3a8(void) {
     Unk020de390 *p;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     *p = data_02158654;
     return p;
 }
 
 Unk020de334 *func_020df34c(void) {
-    data_0217b70c = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
+    data_0217b70c = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     *data_0217b70c = data_02158628;
     func_020d49d8(&data_0217b70c);
     return data_0217b70c;
 }
 
 Unk020de334 *func_020df2f0(void) {
-    data_0217b700 = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
+    data_0217b700 = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     *data_0217b700 = data_021585fc;
     func_020d49d8(&data_0217b700);
     return data_0217b700;
 }
 
 Unk020de334 *func_020df294(void) {
-    data_0217b714 = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
+    data_0217b714 = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     *data_0217b714 = data_021585d0;
     func_020d49d8(&data_0217b714);
     return data_0217b714;
 }
 
 Unk020de2d8 *func_020df238(void) {
-    data_0217b718 = func_02036bec(func_020364e0(func_020364e8()), 0x28);
+    data_0217b718 = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     *data_0217b718 = data_021585a8;
     func_020e6f50(&data_0217b718);
     return data_0217b718;

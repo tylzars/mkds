@@ -153,7 +153,7 @@ void InitRaceStartGp(void) {
     s32 s;
     s32 i;
 
-    gRaceStartGp = func_02036bec(func_020364e0(func_020364e8()), 0x41c);
+    gRaceStartGp = HeapAlloc(GetHeap(func_020364e8()), 0x41c);
     for (i = 0; i < 0x80; i++) {
         Unk020c06c4_08 *e = &gRaceStartGp->mUnk_18.mUnk_000.mUnk_00[i];
         e->mUnk_0a = 3;

@@ -113,7 +113,7 @@ void func_020fa13c(void) {
     Unk020f40dc *p;
     u8 v;
 
-    b = func_020364e0(func_020364e8());
+    b = GetHeap(func_020364e8());
     a = 0;
     func_020f7ec8();
     func_020f82e8(1);
@@ -125,11 +125,11 @@ void func_020fa13c(void) {
     func_020f357c();
     v = data_021759c0->mKartCount;
     data_027e00c4 = v;
-    (void *) data_027e00c8 = func_02036bec(b, v * 0x210);
+    (void *) data_027e00c8 = HeapAlloc(b, v * 0x210);
     for (i = 0; i < data_027e00c4; i++) {
         func_020efbd4(&(data_027e00c8)[i], (u16) i);
     }
-    data_027e00cc = func_02036bec(b, 0x3b8);
+    data_027e00cc = HeapAlloc(b, 0x3b8);
     for (j = 0; j < 0xe; j++) {
         func_020f02c0(&data_027e00cc[j], j, &a);
     }
@@ -152,7 +152,7 @@ void func_020fa13c(void) {
             }
         }
     }
-    data_0217bd30 = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    data_0217bd30 = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     func_020fa294();
     func_02102674();
     func_02103468();

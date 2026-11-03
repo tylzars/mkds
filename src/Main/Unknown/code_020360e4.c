@@ -63,7 +63,7 @@ void func_02036108(void *a) {
     if (func_02035e44() != 0) {
         func_02036258();
     }
-    func_02036820(data_02174e6c->mUnk_650);
+    FrmHeapShrinkInParent(data_02174e6c->mHeap);
 }
 
 #pragma thumb off

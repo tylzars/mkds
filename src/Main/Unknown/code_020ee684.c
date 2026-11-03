@@ -568,12 +568,12 @@ void func_020f02c0(Unk027e00cc *q, s32 a, s32 *b) {
     s32 k;
     s32 i;
 
-    v = func_020364e0(func_020364e8());
+    v = GetHeap(func_020364e8());
     k = *b;
     n = data_0217bc34[a].mUnk_0c;
     s = data_0217bc34[a].mUnk_00;
     q->mUnk_00 = a;
-    q->mUnk_04 = n != 0 ? (Unk020f41c4_A **) func_02036bec(v, n * 4) : 0;
+    q->mUnk_04 = n != 0 ? (Unk020f41c4_A **) HeapAlloc(v, n * 4) : 0;
     q->mUnk_08 = n;
     q->mUnk_0c = data_0217bc34[a].mUnk_10;
     q->mUnk_10 = 0;
@@ -582,7 +582,7 @@ void func_020f02c0(Unk027e00cc *q, s32 a, s32 *b) {
     q->mUnk_1c = 0;
     q->mUnk_20 = data_0217bc34[a].mUnk_04;
     for (i = 0; i < n; i++) {
-        q->mUnk_04[i] = func_02036bec(v, s);
+        q->mUnk_04[i] = HeapAlloc(v, s);
         func_020f8d9c((s32) q->mUnk_04[i], k, a);
         k++;
         q->mUnk_04[i]->mUnk_4c = i;

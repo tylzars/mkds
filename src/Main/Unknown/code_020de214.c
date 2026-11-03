@@ -23,20 +23,20 @@ void func_020de3e0(Unk020e43a8 *a) {
 Unk020de390 *func_020de390(void) {
     Unk020de390 *p;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     *p = data_02158460;
     return p;
 }
 
 Unk020de334 *func_020de334(void) {
-    data_0217b6dc = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
+    data_0217b6dc = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     *data_0217b6dc = data_02158434;
     func_020d49d8(&data_0217b6dc);
     return data_0217b6dc;
 }
 
 Unk020de2d8 *func_020de2d8(void) {
-    data_0217b6e0 = func_02036bec(func_020364e0(func_020364e8()), 0x28);
+    data_0217b6e0 = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     *data_0217b6e0 = data_0215840c;
     func_020e6f50(&data_0217b6e0);
     return data_0217b6e0;

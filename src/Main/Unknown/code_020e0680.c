@@ -73,28 +73,28 @@ void func_020e2f0c(Unk020e1e98 *a, struct Unk020fa294 *b) {
 #pragma thumb off
 
 void *func_020e2ebc(void) {
-    void *p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    void *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
 
     *(Unk020e03f8 *) p = *(const Unk020e03f8 *) data_02158b3c;
     return p;
 }
 
 void *func_020e2e6c(void) {
-    void *p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    void *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
 
     *(Unk020e03f8 *) p = *(const Unk020e03f8 *) data_02158afc;
     return p;
 }
 
 void *func_020e2e1c(void) {
-    void *p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    void *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
 
     *(Unk020e03f8 *) p = *(const Unk020e03f8 *) data_02158abc;
     return p;
 }
 
 void *func_020e2db8(void) {
-    void *p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    void *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
 
     data_0217b79c = p;
     *(Unk020e03f8 *) p = *(const Unk020e03f8 *) data_02158a7c;
@@ -103,7 +103,7 @@ void *func_020e2db8(void) {
 }
 
 void *func_020e2d5c(void) {
-    void *p = func_02036bec(func_020364e0(func_020364e8()), 0x28);
+    void *p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
 
     data_0217b7a4 = p;
     *(Unk020e0340 *) p = *(const Unk020e0340 *) data_02158a54;

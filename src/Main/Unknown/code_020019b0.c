@@ -45,7 +45,7 @@ void func_02001d30(Unk02001d30 *a, s32 b, const char *c, const char *d, const ch
 void func_02001ba0(void *a) {
     Unk02125de0Arg v1;
     u8 *v2;
-    data_usa_ov001_021a99c0 = func_02036bec(a, 60);
+    data_usa_ov001_021a99c0 = HeapAlloc(a, 60);
     v2 = func_02038d88(a, data_usa_021547c8);
     func_02038d28(v2 + 0x28, 1, 0, 0, 0, 0, 1, 0);
     func_02038d28(v2 + 0x70, 1, 0, 0, 0, 0, 2, 0);

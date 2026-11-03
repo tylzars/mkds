@@ -179,7 +179,7 @@ void func_02103468(void) {
     Unk020e6488 *q;
     s32 i;
 
-    data_0217c654 = func_02036bec(func_020364e0(func_020364e8()), 0xd0);
+    data_0217c654 = HeapAlloc(GetHeap(func_020364e8()), 0xd0);
     data_0217c638 = 0xffff;
     *(u32 *) data_0217c658 = 0;
     data_0217c64c = 0;

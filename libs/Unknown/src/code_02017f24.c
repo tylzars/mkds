@@ -3,29 +3,29 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "00/code_02188720.h"
 
-Unk02017f24 *func_02018270(Unk02017f24 *a, u32 b, u16 c) {
+Unk02017f24 *FrmHeapInit(Unk02017f24 *a, u32 b, u16 c) {
     Unk02018174 *p;
 
     p = &a->mUnk_24;
-    func_02017584(&a->mUnk_00, 0x46524d48, (u32) (p + 1), b, c);
-    a->mUnk_24.mUnk_00 = a->mUnk_00.mUnk_18;
-    p->mUnk_04 = a->mUnk_00.mUnk_1c;
-    p->mUnk_08 = 0;
+    HeapInitAndLink(&a->mUnk_00, 0x46524d48, (u32) (p + 1), b, c);
+    a->mUnk_24.mFrontAddr = a->mUnk_00.mRangeStart;
+    p->mBackAddr = a->mUnk_00.mRangeEnd;
+    p->mSavedList = 0;
     return a;
 }
 
-void *func_020181f0(Unk02018174 *a, u32 b, u32 c) {
+void *FrmHeapAllocFront(Unk02018174 *a, u32 b, u32 c) {
     u32 m;
     u32 s;
     u32 e;
     u32 lo;
     u32 n;
 
-    lo = a->mUnk_00;
+    lo = a->mFrontAddr;
     m = c - 1;
     s = (m + lo) & ~m;
     e = b + s;
-    if (e > a->mUnk_04) {
+    if (e > a->mBackAddr) {
         return 0;
     }
     n = e - lo;
@@ -37,20 +37,20 @@ void *func_020181f0(Unk02018174 *a, u32 b, u32 c) {
             func_0214d018(z, (void *) lo, n);
         }
     }
-    a->mUnk_00 = e;
+    a->mFrontAddr = e;
     return (void *) s;
 }
 
-u32 func_02018174(Unk02018174 *a, u32 b, u32 c) {
+u32 FrmHeapAllocBack(Unk02018174 *a, u32 b, u32 c) {
     u32 m;
     u32 hi;
     u32 s;
     u32 n;
 
-    hi = a->mUnk_04;
+    hi = a->mBackAddr;
     m = c - 1;
     s = (hi - b) & ~m;
-    if (s < a->mUnk_00) {
+    if (s < a->mFrontAddr) {
         return 0;
     }
     n = hi - s;
@@ -62,34 +62,34 @@ u32 func_02018174(Unk02018174 *a, u32 b, u32 c) {
             func_0214d018(z, (void *) s, n);
         }
     }
-    a->mUnk_04 = s;
+    a->mBackAddr = s;
     return s;
 }
 
-void func_0201815c(Unk02017f24 *a) {
+void FrmHeapFreeFront(Unk02017f24 *a) {
     Unk02018174 *p;
 
     p = &a->mUnk_24;
-    p->mUnk_00 = a->mUnk_00.mUnk_18;
-    p->mUnk_08 = 0;
+    p->mFrontAddr = a->mUnk_00.mRangeStart;
+    p->mSavedList = 0;
 }
 
-void func_0201812c(Unk02017f24 *a) {
+void FrmHeapFreeBack(Unk02017f24 *a) {
     Unk02017f58 *n;
     Unk02018174 *p;
 
     p = &a->mUnk_24;
-    n = p->mUnk_08;
+    n = p->mSavedList;
     if (n != 0) {
         do {
-            n->mUnk_08 = a->mUnk_00.mUnk_1c;
-            n = n->mUnk_0c;
+            n->mBackAddr = a->mUnk_00.mRangeEnd;
+            n = n->mNext;
         } while (n != 0);
     }
-    p->mUnk_04 = a->mUnk_00.mUnk_1c;
+    p->mBackAddr = a->mUnk_00.mRangeEnd;
 }
 
-Unk02017f24 *func_020180e0(void *a, u32 b, u16 c) {
+Unk02017f24 *FrmHeapCreate(void *a, u32 b, u16 c) {
     u32 e;
 
     e = (b + (u32) a) & ~3;
@@ -97,14 +97,14 @@ Unk02017f24 *func_020180e0(void *a, u32 b, u16 c) {
     if ((u32) a > e || e - (u32) a < 0x30) {
         return 0;
     }
-    return func_02018270(a, e, c);
+    return FrmHeapInit(a, e, c);
 }
 
-void func_020180d4(Unk02017584 *a) {
-    func_02017568(a);
+void FrmHeapDestroy(Unk02017584 *a) {
+    HeapUnlink(a);
 }
 
-void *func_0201808c(Unk02017f24 *a, u32 b, s32 c) {
+void *FrmHeapAlloc(Unk02017f24 *a, u32 b, s32 c) {
     Unk02018174 *p;
 
     p = &a->mUnk_24;
@@ -113,21 +113,21 @@ void *func_0201808c(Unk02017f24 *a, u32 b, s32 c) {
     }
     b = (b + 3) & ~3;
     if (c >= 0) {
-        return func_020181f0(p, b, c);
+        return FrmHeapAllocFront(p, b, c);
     }
-    return (void *) func_02018174(p, b, -c);
+    return (void *) FrmHeapAllocBack(p, b, -c);
 }
 
-void func_0201804c(Unk02017f24 *a, u32 b) {
+void FrmHeapFree(Unk02017f24 *a, u32 b) {
     if (b & 1) {
-        func_0201815c(a);
+        FrmHeapFreeFront(a);
     }
     if (b & 2) {
-        func_0201812c(a);
+        FrmHeapFreeBack(a);
     }
 }
 
-u32 func_0201800c(Unk02017f24 *a, u32 b) {
+u32 FrmHeapGetMaxAllocSize(Unk02017f24 *a, u32 b) {
     u32 n;
     u32 s;
     u32 t;
@@ -135,64 +135,64 @@ u32 func_0201800c(Unk02017f24 *a, u32 b) {
 
     n = func_02134420(b);
     p = &a->mUnk_24;
-    t = p->mUnk_04;
-    s = ((n - 1) + p->mUnk_00) & ~(n - 1);
+    t = p->mBackAddr;
+    s = ((n - 1) + p->mFrontAddr) & ~(n - 1);
     if (s > t) {
         return 0;
     }
     return t - s;
 }
 
-u32 func_02017fb4(Unk02017f24 *a, u32 b) {
+u32 FrmHeapSaveFrontBack(Unk02017f24 *a, u32 b) {
     u32 lo;
     Unk02017f58 *n;
     Unk02018174 *p;
 
     p = &a->mUnk_24;
-    lo = a->mUnk_24.mUnk_00;
-    n = func_020181f0(p, 0x10, 4);
+    lo = a->mUnk_24.mFrontAddr;
+    n = FrmHeapAllocFront(p, 0x10, 4);
     if (n == 0) {
         return 0;
     }
-    n->mUnk_00 = b;
-    n->mUnk_04 = lo;
-    n->mUnk_08 = p->mUnk_04;
-    n->mUnk_0c = p->mUnk_08;
-    p->mUnk_08 = n;
+    n->mKey = b;
+    n->mFrontAddr = lo;
+    n->mBackAddr = p->mBackAddr;
+    n->mNext = p->mSavedList;
+    p->mSavedList = n;
     return 1;
 }
 
-u32 func_02017f58(Unk02017f24 *a, u32 b) {
+u32 FrmHeapRestoreFrontBack(Unk02017f24 *a, u32 b) {
     Unk02017f58 *n;
     Unk02018174 *p;
 
     p = &a->mUnk_24;
-    n = p->mUnk_08;
+    n = p->mSavedList;
     if (b != 0 && n != 0) {
         do {
-            if (n->mUnk_00 == b) {
+            if (n->mKey == b) {
                 break;
             }
-            n = n->mUnk_0c;
+            n = n->mNext;
         } while (n != 0);
     }
     if (n == 0) {
         return 0;
     }
-    p->mUnk_00 = n->mUnk_04;
-    p->mUnk_04 = n->mUnk_08;
-    p->mUnk_08 = n->mUnk_0c;
+    p->mFrontAddr = n->mFrontAddr;
+    p->mBackAddr = n->mBackAddr;
+    p->mSavedList = n->mNext;
     return 1;
 }
 
-u32 func_02017f24(Unk02017f24 *a) {
+u32 FrmHeapShrink(Unk02017f24 *a) {
     Unk02018174 *p;
 
     p = &a->mUnk_24;
-    if (a->mUnk_00.mUnk_1c - p->mUnk_04 != 0) {
+    if (a->mUnk_00.mRangeEnd - p->mBackAddr != 0) {
         return 0;
     }
-    a->mUnk_00.mUnk_1c = p->mUnk_00;
-    p->mUnk_04 = a->mUnk_00.mUnk_1c;
-    return a->mUnk_00.mUnk_1c - (u32) a;
+    a->mUnk_00.mRangeEnd = p->mFrontAddr;
+    p->mBackAddr = a->mUnk_00.mRangeEnd;
+    return a->mUnk_00.mRangeEnd - (u32) a;
 }

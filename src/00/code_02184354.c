@@ -28,7 +28,7 @@ void InitWiFiVSMatching(void *a) {
     u8 c;
 
     func_02029930();
-    gWiFiVSMatching = func_02036bec(a, 0x170c);
+    gWiFiVSMatching = HeapAlloc(a, 0x170c);
     gWiFiVSMatching->mUnk_d0 = a;
     gWiFiVSMatching->mState = 0;
     gWiFiVSMatching->mNextState = 0;

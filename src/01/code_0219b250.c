@@ -32,17 +32,17 @@ void *func_ov001_0219b4d8(char *p0) {
     char buf[0x100];
     void *out = NULL;
     snprintf(buf, 0x100, "data/MissionRun/%s", p0);
-    func_02048590(buf, (u32) func_020364e0(func_020364e8()), &out);
+    func_02048590(buf, (u32) GetHeap(func_020364e8()), &out);
     return out;
 }
 
 Unk0219b250 *func_ov001_0219b478(Unk0219b478 *p0, char *p1) {
-    Unk0219b250 *o = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x2c));
+    Unk0219b250 *o = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x2c));
     if (p0 != NULL) {
         p0->mUnk_18 = 1;
     }
     o->mUnk_18 = func_ov001_0219b4d8((p1));
-    o->mUnk_10 = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x6c));
+    o->mUnk_10 = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x6c));
     func_02084e28(o->mUnk_10, o->mUnk_18);
     func_0209b8ac(o, 0);
     o->mUnk_00 = data_ov001_021a6b2c;
@@ -50,12 +50,12 @@ Unk0219b250 *func_ov001_0219b478(Unk0219b478 *p0, char *p1) {
 }
 
 Unk0219b250 *func_ov001_0219b418(Unk0219b478 *p0, char *p1) {
-    Unk0219b250 *o = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x2c));
+    Unk0219b250 *o = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x2c));
     void *r = func_ov001_0219b4d8((p1));
     if (p0 != NULL) {
         p0->mUnk_18 = 1;
     }
-    o->mUnk_14 = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x74));
+    o->mUnk_14 = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x74));
     func_0207afa8(o->mUnk_14, r, 0x3f);
     func_0209b8ac(o, 0);
     o->mUnk_00 = data_ov001_021a6b20;
@@ -65,46 +65,46 @@ Unk0219b250 *func_ov001_0219b418(Unk0219b478 *p0, char *p1) {
 void func_ov001_0219b3b4(Unk0219b250 *p0, char *p1) {
     void *r = func_ov001_0219b4d8((p1));
     u8 v;
-    p0->mUnk_1c = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x38));
+    p0->mUnk_1c = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x38));
     v = ((u8 *) func_02013a30(r))[9];
-    func_0208823c(0, p0->mUnk_1c, p0->mUnk_10, v, func_020364e0(func_020364e8()), p0->mUnk_18);
-    func_0208805c(p0->mUnk_1c, r, func_020364e0(func_020364e8()));
+    func_0208823c(0, p0->mUnk_1c, p0->mUnk_10, v, GetHeap(func_020364e8()), p0->mUnk_18);
+    func_0208805c(p0->mUnk_1c, r, GetHeap(func_020364e8()));
     func_02087f84(p0->mUnk_1c, 0);
 }
 
 void func_ov001_0219b380(Unk0219b250 *p0, char *p1) {
     void *r = func_ov001_0219b4d8((p1));
-    p0->mUnk_24 = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x38));
+    p0->mUnk_24 = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x38));
     func_020ea514((u32) (4), (void *) (p0->mUnk_10), (void *) (p0->mUnk_24), (void *) (p0->mUnk_18), (void *) (r));
 }
 
 void func_ov001_0219b31c(Unk0219b250 *p0, char *p1) {
     void *r = func_ov001_0219b4d8((p1));
     u8 v;
-    p0->mUnk_28 = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x38));
+    p0->mUnk_28 = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x38));
     v = ((u8 *) func_02013aa8(r))[9];
-    func_0208823c(1, p0->mUnk_28, p0->mUnk_10, v, func_020364e0(func_020364e8()), p0->mUnk_18);
-    func_0208805c(p0->mUnk_28, r, func_020364e0(func_020364e8()));
+    func_0208823c(1, p0->mUnk_28, p0->mUnk_10, v, GetHeap(func_020364e8()), p0->mUnk_18);
+    func_0208805c(p0->mUnk_28, r, GetHeap(func_020364e8()));
     func_02087f84(p0->mUnk_28, 0);
 }
 
 void func_ov001_0219b2e8(Unk0219b250 *p0, char *p1) {
     void *r = func_ov001_0219b4d8((p1));
-    p0->mUnk_20 = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x38));
+    p0->mUnk_20 = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x38));
     func_020ea514((u32) (2), (void *) (p0->mUnk_10), (void *) (p0->mUnk_20), (void *) (p0->mUnk_18), (void *) (r));
 }
 
 void func_ov001_0219b28c(Unk0219b250 *p0, void *p1) {
     u8 v;
-    p0->mUnk_1c = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x38));
+    p0->mUnk_1c = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x38));
     v = ((u8 *) func_02013a30(p1))[9];
-    func_0208823c(0, p0->mUnk_1c, p0->mUnk_10, v, func_020364e0(func_020364e8()), p0->mUnk_18);
-    func_0208805c(p0->mUnk_1c, p1, func_020364e0(func_020364e8()));
+    func_0208823c(0, p0->mUnk_1c, p0->mUnk_10, v, GetHeap(func_020364e8()), p0->mUnk_18);
+    func_0208805c(p0->mUnk_1c, p1, GetHeap(func_020364e8()));
     func_02087f84(p0->mUnk_1c, 0);
 }
 
 void func_ov001_0219b25c(Unk0219b250 *p0, void *p1) {
-    p0->mUnk_20 = func_02036bec((void *) func_020364e0(func_020364e8()), (u32) (0x38));
+    p0->mUnk_20 = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x38));
     func_020ea514((u32) (2), (void *) (p0->mUnk_10), (void *) (p0->mUnk_20), (void *) (p0->mUnk_18), (void *) (p1));
 }
 

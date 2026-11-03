@@ -27,7 +27,7 @@ typedef struct Unk021759d0 {
         };
     };
     /* 20 */ s32 mUnk_20;
-    /* 24 */ Unk02017f24 *mUnk_24;
+    /* 24 */ Unk02017f24 *mHeap;
     /* 28 */ s16 mUnk_28;
     /* 2a */ u8 mUnk_2a[0x14];
     /* 3e */ u16 mUnk_3e;

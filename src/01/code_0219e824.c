@@ -35,8 +35,8 @@ int func_ov001_0219ea14(void *a) {
 void func_ov001_0219e9e0(s16 *a) {
     void *heap;
 
-    heap = (void *) func_020364e0(func_020364e8());
-    data_ov001_021ca408 = func_02036bec(heap, 0x808);
+    heap = (void *) GetHeap(func_020364e8());
+    data_ov001_021ca408 = HeapAlloc(heap, 0x808);
     InitOptionStates((void *) (heap), (s16) (*a));
 }
 
@@ -77,8 +77,8 @@ u8 *func_ov001_0219e90c(void) {
 void func_ov001_0219e8d8(s16 *a) {
     void *heap;
 
-    heap = (void *) func_020364e0(func_020364e8());
-    data_ov001_021ca404 = func_02036bec(heap, 0x808);
+    heap = (void *) GetHeap(func_020364e8());
+    data_ov001_021ca404 = HeapAlloc(heap, 0x808);
     func_ov001_021987d4(heap, *a);
 }
 

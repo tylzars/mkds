@@ -131,7 +131,7 @@ void func_020d7e44(u32 a, int m) {
     if (p->mUnk_08 == 0) {
         p->mUnk_04 = p->mUnk_04 - 1;
     }
-    p->mUnk_00 = func_02036bec(func_020364e0(func_020364e8()), p->mUnk_04 * 0x54);
+    p->mUnk_00 = HeapAlloc(GetHeap(func_020364e8()), p->mUnk_04 * 0x54);
     if (n == 2) {
         func_020d80e4(p->mUnk_00, 0, 1, NULL, &func_02042044(a, 0)->mUnk_00, &func_02042044(a, 1)->mUnk_00, NULL);
         if (p->mUnk_08 != 0) {
@@ -168,7 +168,7 @@ void func_020d7df8(void) {
     s32 n = gCourseMap->mUnk_0c;
     s32 i;
     if (n != 0) {
-        data_0217b670 = func_02036bec(func_020364e0(func_020364e8()), n * 0xc);
+        data_0217b670 = HeapAlloc(GetHeap(func_020364e8()), n * 0xc);
     }
     for (i = 0; i < n; i++) {
         data_0217b670[i].mUnk_00 = NULL;

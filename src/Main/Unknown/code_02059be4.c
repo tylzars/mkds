@@ -20,7 +20,7 @@
 #include "code_02017f24.h"
 
 void func_02059be4(void) {
-    func_0202a658(func_020364e0(func_020364e8()));
+    func_0202a658(GetHeap(func_020364e8()));
 }
 
 u32 func_02059c04(struct Unk021000d0 *a) {
@@ -45,7 +45,7 @@ void func_02059c34(void) {
     data_0217aa10->mUnk_00 = 4;
     data_0217aa10->mUnk_04 = 0;
     if (data_0217aa10->mUnk_a4 != NULL) {
-        func_0201797c(data_0217aa10->mUnk_a4);
+        ExpHeapDestroy(data_0217aa10->mUnk_a4);
         data_0217aa10->mUnk_a4 = NULL;
     }
 }
@@ -82,7 +82,7 @@ void func_02059d80(void) {
     if (data_0217aa10->mUnk_a4 == NULL) {
         return;
     }
-    func_0201797c(data_0217aa10->mUnk_a4);
+    ExpHeapDestroy(data_0217aa10->mUnk_a4);
     data_0217aa10->mUnk_a4 = NULL;
 }
 
@@ -90,7 +90,7 @@ void func_02059dc8(void) {
     if (data_0217aa10->mUnk_00 != 1) {
         return;
     }
-    data_0217aa10->mUnk_a4 = func_02017988(data_ov002_021a9c00, 0x20800, 1);
+    data_0217aa10->mUnk_a4 = ExpHeapCreate(data_ov002_021a9c00, 0x20800, 1);
 }
 
 void func_02059e1c(void) {
@@ -142,7 +142,7 @@ void func_02059ea4(s32 a) {
                         data_0217aa10->mUnk_00 = 4;
                         data_0217aa10->mUnk_04 = 0;
                         if (data_0217aa10->mUnk_a4 != NULL) {
-                            func_0201797c(data_0217aa10->mUnk_a4);
+                            ExpHeapDestroy(data_0217aa10->mUnk_a4);
                             data_0217aa10->mUnk_a4 = NULL;
                         }
                     }
@@ -162,7 +162,7 @@ void func_02059ea4(s32 a) {
                         data_0217aa10->mUnk_00 = 4;
                         data_0217aa10->mUnk_04 = 0;
                         if (data_0217aa10->mUnk_a4 != NULL) {
-                            func_0201797c(data_0217aa10->mUnk_a4);
+                            ExpHeapDestroy(data_0217aa10->mUnk_a4);
                             data_0217aa10->mUnk_a4 = NULL;
                         }
                     }
@@ -183,7 +183,7 @@ void func_0205a0e4(void) {
 }
 
 void func_0205a108(void) {
-    data_0217aa10->mUnk_a0 = func_020180e0(data_ov002_02180500, 0x50000, 0);
+    data_0217aa10->mUnk_a0 = FrmHeapCreate(data_ov002_02180500, 0x50000, 0);
 }
 
 static inline void func_0205a140_inline(s32 i, s32 a, u32 b, u32 c) {
@@ -202,7 +202,7 @@ static inline void func_0205a140_inline(s32 i, s32 a, u32 b, u32 c) {
 }
 
 void func_0205a140(void *a) {
-    data_0217aa10 = func_02036bec(a, 0xb0);
+    data_0217aa10 = HeapAlloc(a, 0xb0);
     data_0217aa10->mUnk_a8 = -1;
     data_0217aa10->mUnk_ac = 0;
     func_0205a140_inline(0, (s32) SDK_OVERLAY_OV000_ID, (u32) OV000_TEXT_START, (u32) OV000_BSS_END);

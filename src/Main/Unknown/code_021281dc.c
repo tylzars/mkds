@@ -24,7 +24,7 @@
 #pragma thumb on
 s32 InitSelectReturn(void *heap, s32 b) {
     u32 t;
-    gSelectReturn = func_02036bec(heap, 0x828);
+    gSelectReturn = HeapAlloc(heap, 0x828);
     if (*(vu16 *) 0x27ffc40 != 2) {
         InitSelectReturnDisplay();
         b = func_021286a0(b);

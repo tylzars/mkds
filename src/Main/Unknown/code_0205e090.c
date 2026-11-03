@@ -56,7 +56,7 @@ s32 func_0205e1c4(void) {
 }
 
 void func_0205e180(void *a) {
-    data_0217aa20 = func_02036bec(a, 0x10);
+    data_0217aa20 = HeapAlloc(a, 0x10);
     data_0217aa20->mUnk_00 = 0;
     data_0217aa20->mUnk_04 = 3;
     data_0217aa20->mUnk_0c = NULL;
@@ -65,7 +65,7 @@ void func_0205e180(void *a) {
 void func_0205e0b0(void) {
     void *h;
     s32 m;
-    h = func_020364e0(func_020364e8());
+    h = GetHeap(func_020364e8());
     switch (data_0217aa20->mUnk_00) {
         case 0:
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
@@ -87,7 +87,7 @@ void func_0205e0b0(void) {
     if (m == 2) {
         return;
     }
-    h = func_02036bec(h, func_021087d4(m));
+    h = HeapAlloc(h, func_021087d4(m));
     func_02108598(m, (u32) h);
     data_0217aa20->mUnk_0c = h;
 }

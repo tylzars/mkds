@@ -67,7 +67,7 @@ void func_020cbb10(void) {
     Unk02125de0 s;
     Unk02180774 *r;
 
-    data_0217b43c = func_02036bec(func_020cb99c(), 0x960);
+    data_0217b43c = HeapAlloc(func_020cb99c(), 0x960);
     func_02029a70(func_020cb99c());
     r = func_02038d88(func_020cb99c(), data_0215688c);
     func_020cc330(r, 1, 0, 0, 0, 0xd, 2, 0);

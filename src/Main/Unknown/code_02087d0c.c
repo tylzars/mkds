@@ -38,8 +38,8 @@ void func_0208823c(u32 a, void *b, void *c, u32 d, void *e, void *f) {
     if (d != 0) {
         i = 0;
         if (e != NULL) {
-            p->mUnk_1c = func_02036bec(e, d * 4);
-            p->mUnk_20 = func_02036bec(e, d * 4);
+            p->mUnk_1c = HeapAlloc(e, d * 4);
+            p->mUnk_20 = HeapAlloc(e, d * 4);
             for (; i < d; i++) {
                 p->mUnk_1c[i] = NULL;
                 p->mUnk_20[i] = 0;
@@ -66,7 +66,7 @@ void func_020881b0(void *a, s32 b, void *c, u32 d, void *e) {
         p->mUnk_20[b] = d;
     } else {
         data_0217af20 = func_02010d98(c, p->mUnk_14->mUnk_04);
-        x = func_02036bec(e, data_0217af20);
+        x = HeapAlloc(e, data_0217af20);
         p->mUnk_1c[b] = x;
         p->mUnk_20[b] = d;
     }
@@ -99,7 +99,7 @@ void func_0208805c(void *a, void *b, void *c) {
         }
         if (c != NULL) {
             data_0217af20 = func_02010d98(v, p->mUnk_14->mUnk_04);
-            x = func_02036bec(c, data_0217af20);
+            x = HeapAlloc(c, data_0217af20);
             p->mUnk_1c[i] = x;
             p->mUnk_20[i] = 0;
         } else {

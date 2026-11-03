@@ -144,10 +144,10 @@ void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
     Unk02124b1c *e;
     u16 w[2];
 
-    h = func_02036948((void *) param_1);
-    gWiFiVSCourseSelect = func_02036bec(h, 0x158);
+    h = CreateFrmHeapFromMaxFree((void *) param_1);
+    gWiFiVSCourseSelect = HeapAlloc(h, 0x158);
     func_0214d05c_inline(gWiFiVSCourseSelect, 0x158);
-    gWiFiVSCourseSelect->mUnk_090 = h;
+    gWiFiVSCourseSelect->mHeap = h;
     gWiFiVSCourseSelect->mUnk_080[0] = param_2;
     gWiFiVSCourseSelect->mUnk_080[1] = param_3;
     gWiFiVSCourseSelect->mUnk_088 = func_02047a28(gCommonBmgName3);
@@ -176,13 +176,13 @@ void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
     k = func_02148cb8();
     func_02025b20(p, gWiFiVSCourseSelectMNcgrName, gWiFiVSCourseSelectMNcerName, gWiFiVSCourseSelectMONclrName,
                   gWiFiVSCourseSelectMBnclName, gWiFiVSCourseSelectMBnllName, NULL, FindSceneFile);
-    func_02025a50(0, gWiFiVSCourseSelect->mUnk_090, p);
+    func_02025a50(0, gWiFiVSCourseSelect->mHeap, p);
     n = p->mUnk_0c->mUnk_06;
     for (i = 0; i < n; i++) {
         func_021249a8(i, 1, p->mUnk_08, p->mUnk_0c);
     }
     for (i = 0; i < p->mUnk_14->mUnk_06; i++) {
-        k -= func_02025a00(0, gWiFiVSCourseSelect->mUnk_090, p, &data_usa_021539f4[i], k);
+        k -= func_02025a00(0, gWiFiVSCourseSelect->mHeap, p, &data_usa_021539f4[i], k);
     }
     for (i = gWiFiVSCourseSelect->mUnk_0b8; i < 4; i++) {
         p->mUnk_18[data_usa_021539d8[i]].mUnk_00 = 0;
@@ -200,13 +200,13 @@ void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
     func_02025b20(t, gWiFiVSCourseSelectSNcgrName, gWiFiVSCourseSelectSNcerName, gWiFiVSCourseSelectSONclrName,
                   gWiFiVSCourseSelectSBnclName, gWiFiVSCourseSelectSBnllName, gWiFiVSCourseSelectSBnblName,
                   FindSceneFile);
-    func_02025a50(1, gWiFiVSCourseSelect->mUnk_090, t);
+    func_02025a50(1, gWiFiVSCourseSelect->mHeap, t);
     m = t->mUnk_0c->mUnk_06;
     for (j = 0; j < m; j++) {
         func_021249a8(j, 1, t->mUnk_08, t->mUnk_0c);
     }
     for (j = 0; j < t->mUnk_14->mUnk_06; j++) {
-        k -= func_02025a00(1, gWiFiVSCourseSelect->mUnk_090, t, &data_usa_02153a14[j], k);
+        k -= func_02025a00(1, gWiFiVSCourseSelect->mHeap, t, &data_usa_02153a14[j], k);
     }
     for (j = 0; j < m; j++) {
         func_021249a8(j, 2, t->mUnk_08, t->mUnk_0c);
@@ -221,9 +221,9 @@ void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
     func_02025c1c(7, t->mUnk_18 + 7, t->mUnk_0c);
     w[0] = 0;
     w[1] = m;
-    func_0202e530(gWiFiVSCourseSelect->mUnk_090, 2, w, 7, 8, 0x7c, t->mUnk_18, t->mUnk_10,
+    func_0202e530(gWiFiVSCourseSelect->mHeap, 2, w, 7, 8, 0x7c, t->mUnk_18, t->mUnk_10,
                   (u8 *) gWiFiVSCourseSelect->mUnk_000[1].mUnk_14[3] + 0xc, 5, 6, 0, 0x15, func_0202b4bc);
-    func_02036820(gWiFiVSCourseSelect->mUnk_090);
+    FrmHeapShrinkInParent(gWiFiVSCourseSelect->mHeap);
 }
 
 s32 func_0202af60(void) {

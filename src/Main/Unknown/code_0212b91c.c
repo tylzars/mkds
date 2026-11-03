@@ -12,7 +12,7 @@
 void func_0212b928(void *a, Nclr *b, u32 c) {
     s32 i;
     s32 v;
-    data_0217d410 = func_02036bec(a, 0x90);
+    data_0217d410 = HeapAlloc(a, 0x90);
     data_0217d410->mUnk_00 = 0;
     data_0217d410->mUnk_04 = 0;
     data_0217d410->mUnk_08 = c;

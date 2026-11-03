@@ -60,7 +60,7 @@ void func_02029dcc(void *a, void *b, void *c) {
     Unk02153918 *p;
 
     k = 0;
-    data_usa_02174e00 = func_02036bec(a, 0x60);
+    data_usa_02174e00 = HeapAlloc(a, 0x60);
     func_0214d05c_inline(data_usa_02174e00, 0x60);
     data_usa_02174e00->mUnk_38[0] = b;
     data_usa_02174e00->mUnk_38[1] = c;

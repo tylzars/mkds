@@ -7,7 +7,7 @@
 
 void func_020cefa0(u32 a) {
     u32 v1;
-    v1 = ((u32) func_02036bec((void *) a, (u32) (((u32) 0x00000130u))));
+    v1 = ((u32) HeapAlloc((void *) a, (u32) (((u32) 0x00000130u))));
     *(u32 *) &data_0217b488 = v1;
     func_020cef1c();
 }

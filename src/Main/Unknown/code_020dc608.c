@@ -44,7 +44,7 @@ const Unk020dd7a8 data_02158334 = {{0}, func_020dd27c, {0}, 0};
 Unk020dd860 *func_020dd860(void) {
     Unk020dd860 *p;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     *p = data_02158388;
     return p;
 }
@@ -52,7 +52,7 @@ Unk020dd860 *func_020dd860(void) {
 Unk020dd804 *func_020dd804(void) {
     Unk020dd804 *p;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     data_0217b6d8 = p;
     *p = data_0215835c;
     func_020d49d8(&data_0217b6d8);
@@ -62,7 +62,7 @@ Unk020dd804 *func_020dd804(void) {
 Unk020dd7a8 *func_020dd7a8(void) {
     Unk020dd7a8 *p;
 
-    p = func_02036bec(func_020364e0(func_020364e8()), 0x28);
+    p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b6d4 = p;
     *p = data_02158334;
     func_020e6f50(&data_0217b6d4);
