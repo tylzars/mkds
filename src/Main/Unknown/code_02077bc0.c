@@ -2,6 +2,7 @@
 #include "Main/Unknown/code_02077bc0.h"
 #include "code_020169a4.h"
 #include "code_02016d34.h"
+#include "code_020170e4.h"
 #include "code_020172d0.h"
 
 #pragma thumb on

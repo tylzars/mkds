@@ -1,11 +1,66 @@
-#include "code_0200eddc.h"
 #include "code_0201ec30.h"
-#include "code_02020430.h"
+
+#include "code_0200eddc.h"
 #include "Main/Unknown/unk_02173000.h"
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "code_020204b4.h"
 #include "code_0214f1a0.h"
+
+u8 data_02161ad8 = 1;
+
+u8 data_02173288;
+s32 data_021732a8;
+s32 data_0217328c;
+s32 data_021732a4;
+Unk02173290 *data_02173290;
+s32 data_02173294;
+s32 data_02173298;
+u8 data_021732a0[4];
+s32 data_0217329c;
+
+s32 func_02020498(s32 a) {
+    if (a > 0x7f && a <= 0xfe) {
+        return a - 0x7f;
+    }
+    return 0x7f - a;
+}
+
+void func_02020430(Unk02173290 *a) {
+    s32 i;
+
+    data_02173290 = a;
+    data_02173294 = 1;
+    data_02173288 = 0;
+    data_02173298 = 0;
+    for (i = 0; i < 4; i++) {
+        data_021732a0[i] = 0;
+    }
+}
+
+void func_0202041c(void) {
+    u32 value0;
+    u32 value1;
+    value0 = (u32) &data_02173294;
+    value1 = 1u;
+    *(u32 *) ((value0) + (0)) = value1;
+}
+
+void func_020203e4(void) {
+    if (data_02173294 == 0) {
+        return;
+    }
+    data_02173294 = 0;
+    data_02173288 = 0;
+    data_02173298 = 0;
+}
+
+void func_020203d4(u32 arg0) {
+    u32 value0 = arg0;
+    u32 value1;
+    value1 = (u32) &data_02161ad8;
+    *(u8 *) ((value1) + (0)) = (u8) value0;
+}
 
 u8 func_0201ec30(void) {
     u8 *p;

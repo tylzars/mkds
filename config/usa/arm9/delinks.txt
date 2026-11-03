@@ -639,8 +639,13 @@ libs/Unknown/src/code_02016d28.c:
 // provisional: file name and boundaries
 libs/Unknown/src/code_02016d34.c:
     complete
-    .text       start:0x02016d34 end:0x020172d0
+    .text       start:0x02016d34 end:0x020170e4
     .data       start:0x02161a90 end:0x02161ac0
+
+// provisional: file name and boundaries
+libs/Unknown/src/code_020170e4.c:
+    complete
+    .text       start:0x020170e4 end:0x020172d0
 
 // provisional: file name and boundaries
 libs/Unknown/src/code_020172d0.c:
@@ -718,27 +723,9 @@ libs/Unknown/src/code_0201ea58.c:
 // provisional: file name and boundaries
 libs/Unknown/src/code_0201ec30.c:
     complete
-    .text       start:0x0201ec30 end:0x020203d4
-
-// provisional: file name and boundaries
-libs/Unknown/src/code_020203d4.c:
-    complete
-    .text       start:0x020203d4 end:0x020203e4
-
-// provisional: file name and boundaries
-libs/Unknown/src/code_020203e4.c:
-    complete
-    .text       start:0x020203e4 end:0x0202041c
-
-// provisional: file name and boundaries
-libs/Unknown/src/code_0202041c.c:
-    complete
-    .text       start:0x0202041c end:0x02020430
-
-// provisional: file name and boundaries
-libs/Unknown/src/code_02020430.c:
-    complete
-    .text       start:0x02020430 end:0x020204b4
+    .text       start:0x0201ec30 end:0x020204b4
+    .data       start:0x02161ad8 end:0x02161adc
+    .bss        start:0x02173268 end:0x0217328c
 
 // provisional: file name and boundaries
 libs/Unknown/src/code_020204b4.c:
@@ -768,13 +755,8 @@ libs/Unknown/src/code_020207ec.c:
 // provisional: file name and boundaries
 libs/Unknown/src/code_02020e3c.c:
     complete
-    .text       start:0x02020e3c end:0x02020e64
-
-// provisional: file name and boundaries
-libs/Unknown/src/code_02020e64.c:
-    complete
-    .text       start:0x02020e64 end:0x02020eb0
-    .bss        start:0x0217328c end:0x02173290
+    .text       start:0x02020e3c end:0x02020eb0
+    .bss        start:0x0217328c end:0x021732a8
 
 // provisional: file name and boundaries
 libs/Unknown/src/code_02020eb0.c:
