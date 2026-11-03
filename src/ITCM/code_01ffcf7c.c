@@ -85,7 +85,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
     BOOL r;
     Vec3 *u;
     Unk0206bcb0 *o;
-    if (q->mUnk_180 != 0) {
+    if (q->mState != 0) {
         return;
     }
     if (q->mUnk_44 & 2) {

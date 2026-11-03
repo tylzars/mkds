@@ -57,7 +57,7 @@ void func_0207abec(u32 a) {
         }
     }
     for (i = 0; i < a; i++) {
-        data_0217ad18[i].mUnk_74 = i;
+        data_0217ad18[i].mIndex = i;
         data_0217ad18[i].mUnk_78 = data_021759c0->mUnk_68[i].mUnk_08.mUnk_0c;
         func_020649ec(&data_0217ad18[i], data_usa_021655e4);
     }
@@ -98,7 +98,7 @@ void func_0207aa7c(void) {
 void func_0207a9f4(void) {
     s32 i = 0;
     u16 *p = func_02086058();
-    (data_0217ad18[data_021759c0->mUnk_62].mUnk_590)->mUnk_060 = 1;
+    (data_0217ad18[data_021759c0->mUnk_62].mKartModelsEntry)->mUnk_060 = 1;
     for (; i < data_usa_0217acf4; i++) {
         func_02063cc4(&data_0217ad18[*p]);
         p++;

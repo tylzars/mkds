@@ -24,7 +24,7 @@ s32 func_0207a218(void) {
     s32 m = data_021759c0->mUnk_08;
     if (m == 4) {
         Unk0206bcb0 *p = &data_0217ad18[data_021759c0->mUnk_62];
-        if (p->mUnk_180 != 0 || (p->mUnk_48 & 0x2000840) != 0 || (p->mUnk_44 & 0x10) == 0 ||
+        if (p->mState != 0 || (p->mUnk_48 & 0x2000840) != 0 || (p->mUnk_44 & 0x10) == 0 ||
             (m != 4 ? 0 : func_ov001_021816b4()) != 0) {
             r = FALSE;
         }

@@ -11,7 +11,7 @@ void func_0207a5f0(s32 a) {
     Unk0206bcb0 *p = data_0217ad18;
     Unk0206bcb0_590 *s;
     for (i = 0; i < data_usa_0217acf4; i++) {
-        s = p->mUnk_590;
+        s = p->mKartModelsEntry;
         func_02013044(s->mUnk_010[1]->mUnk_04, a);
         func_02013044(s->mUnk_010[0]->mUnk_04, a);
         if (s->mUnk_010[2] != NULL) {
@@ -27,7 +27,7 @@ s32 func_0207a5c4(s32 a) {
 
 BOOL func_0207a574(void) {
     Unk0206bcb0 *p = &data_0217ad18[data_021759c0->mUnk_62];
-    if (p->mUnk_180 != 0 || (p->mUnk_48 & 0x4000000) != 0) {
+    if (p->mState != 0 || (p->mUnk_48 & 0x4000000) != 0) {
         return TRUE;
     }
     return FALSE;
@@ -58,14 +58,14 @@ void func_0207a32c(void) {
     if (n == 1) {
         d[1] = func_02085408(2);
         if (d[1] >= 0) {
-            if ((data_0217ad18[d[1]].mUnk_590)->mUnk_060 != 0) {
+            if ((data_0217ad18[d[1]].mKartModelsEntry)->mUnk_060 != 0) {
                 d[1] = -1;
             }
         }
     } else {
         d[1] = func_02085408((u16) (n - 1));
         if (d[1] >= 0) {
-            if ((data_0217ad18[d[1]].mUnk_590)->mUnk_060 != 0) {
+            if ((data_0217ad18[d[1]].mKartModelsEntry)->mUnk_060 != 0) {
                 d[1] = -1;
             }
         }

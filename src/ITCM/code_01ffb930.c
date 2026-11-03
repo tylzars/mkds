@@ -3,7 +3,7 @@
 #include "Main/Unknown/unk_02165000.h"
 
 void func_01ffb9e0(Unk0206bcb0 *p) {
-    if ((p->mUnk_44 & 0x400) || p->mUnk_180 != 0) {
+    if ((p->mUnk_44 & 0x400) || p->mState != 0) {
         p->mUnk_2a8 = (s64) p->mUnk_2a8 * p->mUnk_2cc->mUnk_2c >> 12;
     }
     if (!(p->mUnk_48 & 0x2000)) {
@@ -21,7 +21,7 @@ void func_01ffb930(s32 *a, Unk0206bcb0 *p) {
     u32 f;
     s32 c;
 
-    if (p->mUnk_180 != 0) {
+    if (p->mState != 0) {
         return;
     }
     f = p->mUnk_44;

@@ -46,7 +46,7 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
     u32 v2 = *b;
     Vec3 v;
     s32 t;
-    u8 m = 1 << a->mUnk_74;
+    u8 m = 1 << a->mIndex;
     Unk0210b7a8 s;
     u8 v3 = *c;
     Unk0210b7a8 s2;
@@ -64,7 +64,7 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
             v1 = p->mState;
             if (v1 == 0 || v1 == 3) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if (data_021759c0->mUnk_68[a->mUnk_74].mUnk_08.mUnk_00 != 2) {
+                if (data_021759c0->mUnk_68[a->mIndex].mUnk_08.mUnk_00 != 2) {
                     if ((p->mUnk_00.mUnk_78 & 4) == 0) {
                         if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
                             t = 2;
@@ -85,7 +85,7 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
             }
             if (g == 1 && (v1 == 4 || (v1 == 5 && p->mUnk_a0 > 0x7800) || v1 == 1)) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if ((p->mUnk_00.mUnk_02 & 0x800) == 0 || a->mUnk_74 == data_021759c0->mUnk_62) {
+                if ((p->mUnk_00.mUnk_02 & 0x800) == 0 || a->mIndex == data_021759c0->mUnk_62) {
                     p->mUnk_104 = 1;
                     p->mUnk_b4 = p->mUnk_a0;
                     p->mUnk_b8 = p->mUnk_a4;
@@ -129,7 +129,7 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
             }
             if (v1 == 1) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if ((p->mUnk_00.mUnk_02 & 0x800) == 0 || a->mUnk_74 == data_021759c0->mUnk_62) {
+                if ((p->mUnk_00.mUnk_02 & 0x800) == 0 || a->mIndex == data_021759c0->mUnk_62) {
                     p->mUnk_104 = 1;
                     p->mUnk_b4 = p->mUnk_a0;
                     p->mUnk_b8 = p->mUnk_a4;

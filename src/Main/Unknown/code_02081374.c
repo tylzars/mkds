@@ -58,7 +58,7 @@ void func_02081374(Unk0201ca6c *p, s32 a) {
             return;
         }
     }
-    e = &data_0217ae84[q->mUnk_74];
+    e = &data_0217ae84[q->mIndex];
     if (p == e->mUnk_28) {
         p->mUnk_24.mUnk_00_0 = 1;
         e->mUnk_28 = NULL;

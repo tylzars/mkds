@@ -296,7 +296,7 @@ u32 func_020980ec(Unk020975ec *p, Unk0206bcb0 *q, void *b, u8 *c) {
         s = 0;
     }
     if (s != 0) {
-        if (p->mUnk_ed4[q->mUnk_74] != 0) {
+        if (p->mUnk_ed4[q->mIndex] != 0) {
             p->mUnk_00.mUnk_10.x = 0;
             p->mUnk_00.mUnk_10.y = 0;
             p->mUnk_00.mUnk_10.z = 0;

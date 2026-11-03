@@ -607,7 +607,7 @@ BOOL func_020f0154(Unk020ee684 *p) {
     if (func_02061fec() == 0) {
         return FALSE;
     }
-    if (b->mUnk_180 != 0) {
+    if (b->mState != 0) {
         return FALSE;
     }
     if ((b->mUnk_4c & 0x20000000) != 0) {
@@ -766,7 +766,7 @@ void func_020efd1c(Unk020ee684 *p, Unk020f41c4_A *a) {
     } else {
         v = &data_021595d8;
     }
-    func_020f98a0(a, &b->mUnk_98, v, &b->mUnk_590->mUnk_040, func_0206c0a8(b));
+    func_020f98a0(a, &b->mUnk_98, v, &b->mKartModelsEntry->mUnk_040, func_0206c0a8(b));
     if ((b->mUnk_48 & 1) != 0) {
         a->mUnk_74 |= 0x40000000;
     }
@@ -1258,7 +1258,7 @@ void func_020ee748(Unk020eda5c *a) {
     c = a->mUnk_00c;
     n = a->mUnk_020;
     d = (u16) (((u32) (a->mUnk_068 * 0x1e)) >> 12);
-    if (a->mUnk_010->mUnk_180 != 0) {
+    if (a->mUnk_010->mState != 0) {
         a->mUnk_176 = 0;
     } else {
         if (a->mUnk_176 < 0x578) {

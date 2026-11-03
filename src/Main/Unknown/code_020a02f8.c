@@ -137,7 +137,7 @@ void func_020a08ec(void) {
                 b = TRUE;
                 f = o->mUnk_48;
                 a = (f & 0x200) != 0;
-                if (o->mUnk_180 == 0 && (f & 0x4000000) == 0) {
+                if (o->mState == 0 && (f & 0x4000000) == 0) {
                     b = FALSE;
                 }
                 if (e->mUnk_04 == 0 && a != FALSE && (o->mUnk_4c & 0x400000) == 0) {

@@ -35,7 +35,7 @@ void func_0206d020(Unk0206bcb0 *p, int a, int b) {
     u32 d;
     s16 e;
     enum { K0 } f;
-    if (p->mUnk_180 != 0) {
+    if (p->mState != 0) {
         return;
     }
     d = p->mUnk_48 & 0x1000;
@@ -123,7 +123,7 @@ void func_0206d18c(Unk0206bcb0 *p) {
             break;
         case 2:
             r = func_0206bcb0(p, 1, r);
-            if (r != 0 && p->mUnk_590->mUnk_058 == 0) {
+            if (r != 0 && p->mKartModelsEntry->mUnk_058 == 0) {
                 func_0208b7bc(0xc, &p->mUnk_80);
                 func_0208b7bc(0xd, &p->mUnk_80);
                 func_0208b7bc(0xe, &p->mUnk_80);
@@ -134,7 +134,7 @@ void func_0206d18c(Unk0206bcb0 *p) {
             p->mUnk_48 |= 0x100000;
             p->mUnk_538.mUnk_00 = 0x5a;
             if (data_021759c0->mUnk_08 == 2) {
-                func_020a1ddc(p->mUnk_74);
+                func_020a1ddc(p->mIndex);
             }
             break;
         case 4:
@@ -157,7 +157,7 @@ void func_0206d18c(Unk0206bcb0 *p) {
         case 6:
             i = r;
             func_02061874();
-            func_02082e4c(p->mUnk_74);
+            func_02082e4c(p->mIndex);
             t = p->mUnk_7c & 0x200;
             if (t) {
                 if (t) {
@@ -165,7 +165,7 @@ void func_0206d18c(Unk0206bcb0 *p) {
                 }
             } else {
                 while (i < data_021759c0->mKartCount) {
-                    if (i != p->mUnk_74) {
+                    if (i != p->mIndex) {
                         func_0206a624(func_0207a974(i));
                     }
                     i = (u16) (i + 1);
@@ -177,10 +177,10 @@ void func_0206d18c(Unk0206bcb0 *p) {
             break;
     }
     if (r != 0 && data_021759c0->mUnk_08 == 4) {
-        func_0207a70c(p->mUnk_74);
+        func_0207a70c(p->mIndex);
     }
     if (data_021759c0->mUnk_08 == 2) {
-        func_020a1e40(p->mUnk_74, e);
+        func_020a1e40(p->mIndex, e);
     }
     if (func_020f9880(e) == 0) {
         return;
@@ -188,7 +188,7 @@ void func_0206d18c(Unk0206bcb0 *p) {
     if (p->mUnk_4c & 0x10000040) {
         u32 m;
         u8 b = e->mUnk_128;
-        m = (1 << p->mUnk_74) & 0xff;
+        m = (1 << p->mIndex) & 0xff;
         if (b & m) {
             return;
         }
@@ -201,7 +201,7 @@ void func_0206d18c(Unk0206bcb0 *p) {
         return;
     }
     q = func_0207a974(i);
-    if (q->mUnk_74 != p->mUnk_74 && r != 0) {
+    if (q->mIndex != p->mIndex && r != 0) {
         if (data_021759c0->mUnk_08 != 4) {
             func_0207a70c(i);
         }
@@ -230,8 +230,8 @@ void func_0206d578(Unk0206bcb0 *p) {
     v1 = FALSE;
     func_01ffc064(&p->mUnk_1f0, p->mUnk_510, 0x400, p);
     func_02147fd8((s32) (((s64) p->mUnk_1d0 * -0x4000) >> 12), &p->mUnk_50, &p->mUnk_1f0, &p->mUnk_1f0);
-    if (p->mUnk_74 == func_02061f90() && !(p->mUnk_4c & 0x10002000)) {
-        if (p->mUnk_2a4 > 0x4000 && p->mUnk_180 == 0) {
+    if (p->mIndex == func_02061f90() && !(p->mUnk_4c & 0x10002000)) {
+        if (p->mUnk_2a4 > 0x4000 && p->mState == 0) {
             for (i = 0; i < data_0217b5a8; i++) {
                 q = data_0217b5c4[i];
                 if (q->mUnk_2a4 >= 0x2000 && (data_0217b5bc[i] & 0x800) && q != p && !(q->mUnk_7c & 0x402000)) {
@@ -373,7 +373,7 @@ void func_0206d7c8(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v, s32 c, Vec3 *v
     if (v10.y < 0) {
         v2 = v2 * v5;
     }
-    if (q->mUnk_590->mUnk_058 != 0) {
+    if (q->mKartModelsEntry->mUnk_058 != 0) {
         return;
     }
     t = q->mUnk_2a8;
@@ -411,7 +411,7 @@ static inline s32 func_0206dbf8_inline(Unk0206bcb0 *q) {
     if (f & 0x400000) {
         c = FALSE;
     } else if (q->mUnk_7c & 0x200) {
-        if (q->mUnk_180 == 0 && !(q->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
+        if (q->mState == 0 && !(q->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
             c = TRUE;
         } else {
             c = FALSE;
@@ -420,7 +420,7 @@ static inline s32 func_0206dbf8_inline(Unk0206bcb0 *q) {
         t = TRUE;
         if (!(f & 0x10000040) && !(q->mUnk_48 & 0x1800)) {
             u = FALSE;
-            if (q->mUnk_180 != 0 && q->mUnk_180 != 1 && q->mUnk_180 != 2) {
+            if (q->mState != 0 && q->mState != 1 && q->mState != 2) {
                 u = TRUE;
             }
             if (u == FALSE) {
@@ -463,7 +463,7 @@ BOOL func_0206dbf8(Unk0206bcb0 *p, Unk0206bcb0 *q) {
     if (w == 0) {
         return TRUE;
     }
-    switch (q->mUnk_74) {
+    switch (q->mIndex) {
         case 0:
             if (w) {
                 p->mUnk_514->mUnk_2c ^= 0x400000;
@@ -506,7 +506,7 @@ BOOL func_0206de18(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v) {
     if (w == 0) {
         return TRUE;
     }
-    switch (q->mUnk_74) {
+    switch (q->mIndex) {
         case 0:
             if (w) {
                 p->mUnk_514->mUnk_2c ^= 0x200;

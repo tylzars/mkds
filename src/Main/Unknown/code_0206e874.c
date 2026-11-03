@@ -200,7 +200,7 @@ void func_0206edac(Unk0206bcb0 *p, Vec3 *a) {
     if (p->mUnk_4dc <= 0) {
         k = (p->mUnk_7c & 1) ? 3 : 2;
         x = data_usa_0216ca38[2];
-        c = func_02086080(p->mUnk_74);
+        c = func_02086080(p->mIndex);
         func_0210ddf4(&data_0217d26c + k, c + x, (void (*)(void *, int)) func_02071958, p, 2);
         func_02071318(p, 0);
     }
@@ -209,12 +209,12 @@ void func_0206edac(Unk0206bcb0 *p, Vec3 *a) {
         p->mUnk_4c &= ~0x800;
         p->mUnk_48 &= ~0x2000000;
         p->mUnk_40c = func_02061fb8();
-        func_020c4a04(p->mUnk_74);
+        func_020c4a04(p->mIndex);
         return;
     }
     if ((!(p->mUnk_4c & 0x10000000) && p->mUnk_a4.y < 0 &&
          (p->mUnk_380 > 0x19 || p->mUnk_2ac - p->mUnk_80.y > 0x1e000)) ||
-        p->mUnk_180 == 6) {
+        p->mState == 6) {
         s = func_0214848c(a, &p->mUnk_a4);
         v.x = ((s64) a->x * s) >> 12;
         v.y = ((s64) a->y * s) >> 12;
@@ -230,7 +230,7 @@ void func_0206edac(Unk0206bcb0 *p, Vec3 *a) {
                 p->mUnk_260 = m;
             }
             f = p->mUnk_7c;
-            if ((f & 0x10) && p->mUnk_590->mUnk_058 == 0) {
+            if ((f & 0x10) && p->mKartModelsEntry->mUnk_058 == 0) {
                 if ((f & 1) || !(f & 0x402000)) {
                     func_0208b748(0x4e, &p->mUnk_80, p, func_0206c2b4);
                 }

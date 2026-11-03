@@ -85,7 +85,7 @@ void func_0206dfd0(Unk0206bcb0 *p) {
             continue;
         }
         q = data_0217b5c4[i];
-        if (p->mUnk_2b0 & (1 << q->mUnk_74)) {
+        if (p->mUnk_2b0 & (1 << q->mIndex)) {
             continue;
         }
         if (q->mUnk_7c & 0x402020) {
@@ -95,8 +95,8 @@ void func_0206dfd0(Unk0206bcb0 *p) {
             continue;
         }
         r = p->mUnk_1d0 + q->mUnk_1d0;
-        q->mUnk_2b0 |= 1 << p->mUnk_74;
-        p->mUnk_2b0 |= 1 << q->mUnk_74;
+        q->mUnk_2b0 |= 1 << p->mIndex;
+        p->mUnk_2b0 |= 1 << q->mIndex;
         if (func_0206dfd0_inline(p, q, r) == FALSE) {
             continue;
         }
@@ -158,7 +158,7 @@ void func_0206dfd0(Unk0206bcb0 *p) {
                 q->mUnk_2a8 += func_0214848c(&q->mUnk_50, &g);
             }
             if (data_021759c0->mUnk_08 == 2) {
-                k = func_020a1ee4(p->mUnk_74, q->mUnk_74);
+                k = func_020a1ee4(p->mIndex, q->mIndex);
             }
             w = p->mUnk_4c;
             if (w & 0x10000000) {
@@ -223,7 +223,7 @@ void func_0206dfd0(Unk0206bcb0 *p) {
         }
         p->mUnk_44 |= 0x20;
         q->mUnk_44 |= 0x20;
-        p->mUnk_2b2 |= 1 << q->mUnk_74;
-        q->mUnk_2b2 |= 1 << p->mUnk_74;
+        p->mUnk_2b2 |= 1 << q->mIndex;
+        q->mUnk_2b2 |= 1 << p->mIndex;
     }
 }

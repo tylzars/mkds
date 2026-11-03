@@ -35,7 +35,7 @@
 s32 func_020a23a0(Unk0206bcb0 *a) {
     Unk0206bcb0_590 *p;
 
-    p = a->mUnk_590;
+    p = a->mKartModelsEntry;
     return data_02156600[p->mUnk_000] + p->mUnk_020->mUnk_48[p->mUnk_000].x;
 }
 

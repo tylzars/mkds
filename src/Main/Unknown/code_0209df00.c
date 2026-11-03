@@ -279,13 +279,13 @@ u8 func_0209ea10(Unk0209df84 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
     u8 v;
 
     v = *d;
-    if (a->mUnk_19c4[b->mUnk_74] == 0) {
+    if (a->mUnk_19c4[b->mIndex] == 0) {
         if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
             a->mUnk_00.mUnk_78 |= data_usa_021565e8;
         }
         func_020d26f8(&a->mUnk_00, b);
     }
-    a->mUnk_19c4[b->mUnk_74] = 0xb;
+    a->mUnk_19c4[b->mIndex] = 0xb;
     return v;
 }
 

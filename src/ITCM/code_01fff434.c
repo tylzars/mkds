@@ -58,7 +58,7 @@ void func_01fff694(Unk020ee684 *p) {
     }
     if (b->mUnk_00 != 0x13) {
         if ((p->mUnk_1ec & 0x242) == 0x242 && b->mUnk_00 != 0x13 && b->mUnk_20 == 0 && (p->mUnk_1ec & 0x200) &&
-            q->mUnk_180 == 0) {
+            q->mState == 0) {
             func_020ee2e4(a, b);
         }
         func_020f4884(b);

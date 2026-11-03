@@ -24,9 +24,9 @@ void func_020646f0(Unk0206bcb0 *a, s32 b) {
     Vec3 *n;
 
     if (b == 0) {
-        func_02041bb0(&a->mUnk_80, &d, a->mUnk_74);
+        func_02041bb0(&a->mUnk_80, &d, a->mIndex);
         if (data_021759c0->mUnk_00c == 5) {
-            a->mUnk_80 = data_0216549c[a->mUnk_74];
+            a->mUnk_80 = data_0216549c[a->mIndex];
         }
     } else {
         c = gCourseMap;
@@ -74,11 +74,11 @@ void func_020646f0(Unk0206bcb0 *a, s32 b) {
     a->mUnk_278.z = m->mUnk_00[2].z;
     a->mUnk_50 = a->mUnk_278;
     a->mUnk_1b4 = &a->mUnk_150_m;
-    i = a->mUnk_590->mUnk_008;
+    i = a->mKartModelsEntry->mUnk_008;
     if (i == NULL) {
         return;
     }
     if (i->mUnk_18 != 0) {
-        i->mUnk_0c = a->mUnk_590->mUnk_02c;
+        i->mUnk_0c = a->mKartModelsEntry->mUnk_02c;
     }
 }

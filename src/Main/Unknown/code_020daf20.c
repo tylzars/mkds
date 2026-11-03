@@ -394,7 +394,7 @@ u32 func_020db548(Dossun *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
     s64 n;
     q = &p->mUnk_c8;
     if (*b == 1) {
-        if ((p->mUnk_c0 & (1 << a->mUnk_74)) == 0 || p->mUnk_bc + 0xf < func_02061fb8()) {
+        if ((p->mUnk_c0 & (1 << a->mIndex)) == 0 || p->mUnk_bc + 0xf < func_02061fb8()) {
             func_021484d0(&a->mUnk_1b8, &p->mUnk_00.mUnk_04, &s0);
             func_021484d0(&q->mUnk_20->mUnk_00, &p->mUnk_00.mUnk_04, &s1);
             s1.y += p->mUnk_f8;
@@ -415,7 +415,7 @@ u32 func_020db548(Dossun *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
                 p->mUnk_b8 = -p->mUnk_b8;
             }
             func_020d26f8(&p->mUnk_00, a);
-            p->mUnk_c0 |= 1 << a->mUnk_74;
+            p->mUnk_c0 |= 1 << a->mIndex;
             p->mUnk_bc = func_02061fb8();
         }
     }

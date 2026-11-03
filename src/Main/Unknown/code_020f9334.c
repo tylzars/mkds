@@ -137,7 +137,7 @@ BOOL func_020f97e0(Unk020f41c4_A *param_1, Unk0206bcb0 *param_2) {
     s32 n;
 
     if (param_1->mUnk_da == -1 ||
-        param_2->mUnk_74 == (u16) ((param_1->mUnk_78 & 0x4000) != 0 ? (u16) (param_1->mUnk_78 & ~0xff00) : 8)) {
+        param_2->mIndex == (u16) ((param_1->mUnk_78 & 0x4000) != 0 ? (u16) (param_1->mUnk_78 & ~0xff00) : 8)) {
         return FALSE;
     }
     n = param_2->mUnk_1d0 + param_1->mUnk_e0;

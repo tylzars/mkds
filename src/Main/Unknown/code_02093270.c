@@ -157,9 +157,9 @@ u8 func_02093754(Unk02093270 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
     u8 v;
 
     v = *d;
-    if (a->mUnk_d4[b->mUnk_74] == 0 && func_020d26f8(&a->mUnk_00, b) != 0) {
+    if (a->mUnk_d4[b->mIndex] == 0 && func_020d26f8(&a->mUnk_00, b) != 0) {
         a->mUnk_00.mUnk_78 |= data_usa_02156470;
-        a->mUnk_d4[b->mUnk_74] = 0x1f;
+        a->mUnk_d4[b->mIndex] = 0x1f;
     }
     return v;
 }

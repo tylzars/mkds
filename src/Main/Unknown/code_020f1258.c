@@ -155,7 +155,7 @@ int func_020f1258(int a0, int i, s32 c, u32 b) {
             }
         }
     }
-    if ((p->mUnk_7c & 0x402020) || (p->mUnk_4c & 0x800) || (n != 1 && p->mUnk_180 != 0)) {
+    if ((p->mUnk_7c & 0x402020) || (p->mUnk_4c & 0x800) || (n != 1 && p->mState != 0)) {
         return 0;
     }
     func_0207a948(&v, i);

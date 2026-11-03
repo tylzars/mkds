@@ -32,7 +32,7 @@ Unk0208ec64 *func_0208eb1c(s32 a) {
         p = func_020172d8(&data_0217b08c->mUnk_00[1], 0);
         if (p != NULL) {
             o = func_0207a974(a);
-            t = o->mUnk_590;
+            t = o->mKartModelsEntry;
             v = ((Vec3 *) &t->mUnk_020->mUnk_44)[t->mUnk_000];
             p->mUnk_14 = (u32) &o->mUnk_80;
             p->mUnk_18 = 0;

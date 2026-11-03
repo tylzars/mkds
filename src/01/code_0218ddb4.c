@@ -667,7 +667,7 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
         if (b->mUnk_0a8 != 0) {
             if (func_ov001_021871f8(b, 5) != 0) {
                 p = func_0207a974((u16) data_021759c0->mUnk_62);
-                if (p->mUnk_180 == 0 && (p->mUnk_48 & 0x200) == 0 &&
+                if (p->mState == 0 && (p->mUnk_48 & 0x200) == 0 &&
                     func_ov001_02188104(b, 0, b->mUnk_0a0->mUnk_184) != NULL &&
                     func_ov001_02188000(b, 0, b->mUnk_0a0->mUnk_180) != NULL &&
                     func_ov001_02188104(b, b->mUnk_0a0->mUnk_188, 0) != NULL) {

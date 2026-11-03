@@ -146,7 +146,7 @@ static inline u32 func_020f41c4_inline(Unk020f41c4_B *r, u32 c) {
 
 void func_020f41c4(Unk020f40dc *rec) {
     Unk0206bcb0 *owner = rec->mUnk_04->mUnk_1fc;
-    Unk020f41c4_C *halves = (Unk020f41c4_C *) ((u8 *) owner->mUnk_590 + 0x40);
+    Unk020f41c4_C *halves = (Unk020f41c4_C *) ((u8 *) owner->mKartModelsEntry + 0x40);
     Vec3 *dir = &owner->mUnk_168;
     Vec3 *axis = &owner->mUnk_150;
     s32 i;
@@ -182,7 +182,7 @@ void func_020f41c4(Unk020f40dc *rec) {
     count = rec->mUnk_08;
     va = (s32) (((s64) radius * data_0215d4b4[angle * 2]) >> 12);
     vb = (s32) (((s64) radius * data_0215d4b4[angle * 2 + 1]) >> 12);
-    func_020f1048(&data_027e00cc[tab], count, rec->mUnk_14, owner->mUnk_74, &owner->mUnk_98);
+    func_020f1048(&data_027e00cc[tab], count, rec->mUnk_14, owner->mIndex, &owner->mUnk_98);
     i = 0;
     if (i < count) {
         row = &data_0215961c[count - 1];

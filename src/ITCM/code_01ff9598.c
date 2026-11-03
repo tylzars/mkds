@@ -197,14 +197,14 @@ void func_01ff9b70(Unk0206bcb0 *p) {
     u32 f;
 
     if (p->mUnk_4c & 0x8000) {
-        a = func_0208c5b8(p->mUnk_74);
-        b = func_020846a8(p->mUnk_74);
+        a = func_0208c5b8(p->mIndex);
+        b = func_020846a8(p->mIndex);
         func_0208cb8c(a, p);
         func_0208d4c4(a, p);
         func_0208c930(a, (Unk02148038 *) ((u8 *) b + 0x4c), (Vec3 *) ((u8 *) b + 0x34));
         func_0208c6dc(a, (Unk02148038 *) ((u8 *) b + 0x4c), (Vec3 *) ((u8 *) b + 0x34));
     } else {
-        func_0208c534(func_0208c5b8(p->mUnk_74));
+        func_0208c534(func_0208c5b8(p->mIndex));
     }
     p->mUnk_3b0 = p->mUnk_a4;
     f = p->mUnk_44;
@@ -422,7 +422,7 @@ BOOL func_01ffa1f8(Unk0206bcb0 *p) {
     if (p->mUnk_80.y < 0) {
         if (!(p->mUnk_7c & 0x400) && !(p->mUnk_48 & 0x800)) {
             p->mUnk_48 = p->mUnk_48 | 0x800;
-            i = p->mUnk_74;
+            i = p->mIndex;
             if (data_021759c0->mUnk_08 == 2) {
                 r = func_02041170(0);
             } else {

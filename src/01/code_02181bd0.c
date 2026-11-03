@@ -497,7 +497,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             if (b->mUnk_0ac-- <= 0) {
                 func_020d2398((void *) ((u32) b));
             } else if (b->mUnk_0ac == 3) {
-                func_02081f10(func_0208b7bc(0x3f4, &e->mUnk_80), e->mUnk_74, 0x18);
+                func_02081f10(func_0208b7bc(0x3f4, &e->mUnk_80), e->mIndex, 0x18);
             }
             if (b->mUnk_0fc != NULL) {
                 func_0208b5b0(b->mUnk_0fc, &b->mUnk_000.mUnk_04);

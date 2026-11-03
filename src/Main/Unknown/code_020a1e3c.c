@@ -205,7 +205,7 @@ void func_020a1e40(s32 a, Unk020f41c4_A *p) {
     if (data_0217b1fc->mUnk_3b4 >= 0) {
         return;
     }
-    if (func_0207a974(a)->mUnk_180 == 0) {
+    if (func_0207a974(a)->mState == 0) {
         return;
     }
     if (p->mUnk_44 != 0 && p->mUnk_44 != 1 && p->mUnk_44 != 9) {

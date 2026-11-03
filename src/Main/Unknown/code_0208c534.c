@@ -237,7 +237,7 @@ void func_0208cb8c(Unk0208c5b8 *p, Unk0206bcb0 *q) {
     if (p->mUnk_38 == 0) {
         return;
     }
-    e = func_020846a8(q->mUnk_74);
+    e = func_020846a8(q->mIndex);
     p->mUnk_84(p, e->mUnk_4c, e->mUnk_34);
     if ((q->mUnk_44 & 0x10) == 0) {
         p->mUnk_6c(p);
@@ -500,7 +500,7 @@ void func_0208d4c4(Unk0208c5b8 *p, Unk0206bcb0 *q) {
     if (p->mUnk_3c == 0) {
         return;
     }
-    e = func_020846a8(q->mUnk_74);
+    e = func_020846a8(q->mIndex);
     for (i = 0; i < 2; i++) {
         a.x = (s32) (((s64) q->mUnk_3b0.x * 0xb33) >> 12);
         a.y = (s32) (((s64) q->mUnk_3b0.y * 0xb33) >> 12);

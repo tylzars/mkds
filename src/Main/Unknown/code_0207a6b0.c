@@ -10,7 +10,7 @@ void func_0207a70c(s32 a) {
 }
 
 void func_0207a6c0(Unk0206bcb0 *a) {
-    if (a->mUnk_74 != data_021759c0->mUnk_62) {
+    if (a->mIndex != data_021759c0->mUnk_62) {
         return;
     }
     if (a->mUnk_4c & 0x40) {

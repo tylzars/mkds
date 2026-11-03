@@ -249,7 +249,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
     if (((p->mUnk_514->mUnk_30 & 0x4000) != 0) != ((f & 0x4000) != 0)) {
         i = 0;
         func_02061874();
-        func_02082e4c(p->mUnk_74);
+        func_02082e4c(p->mIndex);
         e = p->mUnk_7c & 0x200;
         if (e) {
             if (e) {
@@ -257,7 +257,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
             }
         } else {
             for (; i < (u32) data_021759c0->mKartCount; i++) {
-                if (i != p->mUnk_74) {
+                if (i != p->mIndex) {
                     func_0206a624(func_0207a974(i));
                 }
             }
@@ -277,10 +277,10 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
     }
     if (((p->mUnk_514->mUnk_30 & 0x40) != 0) != ((f & 0x40) != 0)) {
         if (p->mUnk_7c & 0x200) {
-            if ((p->mUnk_4c & 0x10000040) || p->mUnk_180 == 4) {
+            if ((p->mUnk_4c & 0x10000040) || p->mState == 4) {
                 goto l1;
             }
-        } else if (p->mUnk_180 == 5) {
+        } else if (p->mState == 5) {
             goto l1;
         }
         func_021090c4(&p->mUnk_00, 0xe8, 0x7f, 0);
@@ -291,10 +291,10 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
         }
     } else if (((p->mUnk_514->mUnk_30 & 0x20) != 0) != ((f & 0x20) != 0)) {
         if (p->mUnk_7c & 0x200) {
-            if ((p->mUnk_4c & 0x10000040) || p->mUnk_180 == 4) {
+            if ((p->mUnk_4c & 0x10000040) || p->mState == 4) {
                 goto l2;
             }
-        } else if (p->mUnk_180 == 4) {
+        } else if (p->mState == 4) {
             goto l2;
         }
         func_0206add0(p, &q->mUnk_98, 0);
@@ -313,15 +313,15 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
         if (p->mUnk_4c & 0x2000) {
             func_0207b0d0(p);
         }
-        func_02079f70(p->mUnk_590, 0, 0x1084, 0);
+        func_02079f70(p->mKartModelsEntry, 0, 0x1084, 0);
         if (p->mUnk_7c & 0x10) {
             func_0207b054(p, 1, 0);
-            func_0207b708(p->mUnk_590, 1);
+            func_0207b708(p->mKartModelsEntry, 1);
         }
         if (!(p->mUnk_48 & 0x840)) {
             func_0210af40(p, p->mUnk_3cc, 0);
         }
-        func_021038f0(p->mUnk_74, 0);
+        func_021038f0(p->mIndex, 0);
     }
     if (c) {
         o = func_0207a974((u16) ((f & 0x60000000) >> 29));
@@ -331,17 +331,17 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
     }
     o = func_0207a974(data_021759c0->mUnk_62);
     e = 0;
-    if (((p->mUnk_514->mUnk_30 & 0x400000) != 0) != ((f & 0x400000) != 0) && o->mUnk_74 == 0) {
+    if (((p->mUnk_514->mUnk_30 & 0x400000) != 0) != ((f & 0x400000) != 0) && o->mIndex == 0) {
         Vec3 t;
 
-        s = p->mUnk_74;
+        s = p->mIndex;
         t = data_02154f88;
         o2 = func_0207a974(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mUnk_180 == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l3;
             }
-        } else if (o->mUnk_180 == 4) {
+        } else if (o->mState == 4) {
             goto l3;
         }
         func_020653d0_inline(o, o2, &t);
@@ -350,17 +350,17 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
     l3:
         e = 1;
     }
-    if (((p->mUnk_514->mUnk_30 & 0x800000) != 0) != ((f & 0x800000) != 0) && o->mUnk_74 == 1) {
+    if (((p->mUnk_514->mUnk_30 & 0x800000) != 0) != ((f & 0x800000) != 0) && o->mIndex == 1) {
         Vec3 t;
 
-        s = p->mUnk_74;
+        s = p->mIndex;
         t = data_02154f88;
         o2 = func_0207a974(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mUnk_180 == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l4;
             }
-        } else if (o->mUnk_180 == 4) {
+        } else if (o->mState == 4) {
             goto l4;
         }
         func_020653d0_inline(o, o2, &t);
@@ -369,17 +369,17 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
     l4:
         e = 1;
     }
-    if (((p->mUnk_514->mUnk_30 & 0x1000000) != 0) != ((f & 0x1000000) != 0) && o->mUnk_74 == 2) {
+    if (((p->mUnk_514->mUnk_30 & 0x1000000) != 0) != ((f & 0x1000000) != 0) && o->mIndex == 2) {
         Vec3 t;
 
-        s = p->mUnk_74;
+        s = p->mIndex;
         t = data_02154f88;
         o2 = func_0207a974(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mUnk_180 == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l5;
             }
-        } else if (o->mUnk_180 == 4) {
+        } else if (o->mState == 4) {
             goto l5;
         }
         func_020653d0_inline(o, o2, &t);
@@ -388,17 +388,17 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
     l5:
         e = 1;
     }
-    if (((p->mUnk_514->mUnk_30 & 0x2000000) != 0) != ((f & 0x2000000) != 0) && o->mUnk_74 == 3) {
+    if (((p->mUnk_514->mUnk_30 & 0x2000000) != 0) != ((f & 0x2000000) != 0) && o->mIndex == 3) {
         Vec3 t;
 
-        s = p->mUnk_74;
+        s = p->mIndex;
         t = data_02154f88;
         o2 = func_0207a974(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mUnk_180 == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l6;
             }
-        } else if (o->mUnk_180 == 4) {
+        } else if (o->mState == 4) {
             goto l6;
         }
         func_020653d0_inline(o, o2, &t);
@@ -410,17 +410,17 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
     if (e) {
         goto l0;
     }
-    if (((p->mUnk_514->mUnk_30 & 0x200) != 0) != ((f & 0x200) != 0) && o->mUnk_74 == 0) {
+    if (((p->mUnk_514->mUnk_30 & 0x200) != 0) != ((f & 0x200) != 0) && o->mIndex == 0) {
         Vec3 t;
 
-        s = p->mUnk_74;
+        s = p->mIndex;
         t = data_02154f88;
         o2 = func_0207a974(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mUnk_180 == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l7;
             }
-        } else if (o->mUnk_180 == 4) {
+        } else if (o->mState == 4) {
             goto l7;
         }
         func_021484d0((Vec3 *) &o->mUnk_1d8, (Vec3 *) &o2->mUnk_1d8, &t);
@@ -431,17 +431,17 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
         func_0206add0(o, &t, 0);
     l7:
     }
-    if (((p->mUnk_514->mUnk_30 & 0x400) != 0) != ((f & 0x400) != 0) && o->mUnk_74 == 1) {
+    if (((p->mUnk_514->mUnk_30 & 0x400) != 0) != ((f & 0x400) != 0) && o->mIndex == 1) {
         Vec3 t;
 
-        s = p->mUnk_74;
+        s = p->mIndex;
         t = data_02154f88;
         o2 = func_0207a974(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mUnk_180 == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l8;
             }
-        } else if (o->mUnk_180 == 4) {
+        } else if (o->mState == 4) {
             goto l8;
         }
         func_021484d0((Vec3 *) &o->mUnk_1d8, (Vec3 *) &o2->mUnk_1d8, &t);
@@ -452,17 +452,17 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
         func_0206add0(o, &t, 0);
     l8:
     }
-    if (((p->mUnk_514->mUnk_30 & 0x800) != 0) != ((f & 0x800) != 0) && o->mUnk_74 == 2) {
+    if (((p->mUnk_514->mUnk_30 & 0x800) != 0) != ((f & 0x800) != 0) && o->mIndex == 2) {
         Vec3 t;
 
-        s = p->mUnk_74;
+        s = p->mIndex;
         t = data_02154f88;
         o2 = func_0207a974(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mUnk_180 == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l9;
             }
-        } else if (o->mUnk_180 == 4) {
+        } else if (o->mState == 4) {
             goto l9;
         }
         func_021484d0((Vec3 *) &o->mUnk_1d8, (Vec3 *) &o2->mUnk_1d8, &t);
@@ -473,17 +473,17 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
         func_0206add0(o, &t, 0);
     l9:
     }
-    if (((p->mUnk_514->mUnk_30 & 0x1000) != 0) != ((f & 0x1000) != 0) && o->mUnk_74 == 3) {
+    if (((p->mUnk_514->mUnk_30 & 0x1000) != 0) != ((f & 0x1000) != 0) && o->mIndex == 3) {
         Vec3 t;
 
-        s = p->mUnk_74;
+        s = p->mIndex;
         t = data_02154f88;
         o2 = func_0207a974(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mUnk_180 == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l10;
             }
-        } else if (o->mUnk_180 == 4) {
+        } else if (o->mState == 4) {
             goto l10;
         }
         func_021484d0((Vec3 *) &o->mUnk_1d8, (Vec3 *) &o2->mUnk_1d8, &t);

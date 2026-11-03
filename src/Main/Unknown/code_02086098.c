@@ -41,20 +41,20 @@ void func_02086a04(void) {
         data_0217aed0->mUnk_0e4[i] = 0;
         p = func_0207a974(i);
         k = p->mUnk_1d0 * 3;
-        s = p->mUnk_590;
+        s = p->mKartModelsEntry;
         func_021484d0(p->mUnk_508, &q->mUnk_08, &v30);
         d = func_0214848c(&v30, &q->mUnk_14);
         data_0217aed0->mUnk_104[i] = d + k;
-        data_0217aed0->mUnk_074[p->mUnk_74] = data_0217aed0->mUnk_024[p->mUnk_74] + data_0217aed0->mUnk_034[p->mUnk_74];
-        data_0217aed0->mUnk_054[data_0217aed0->mUnk_074[p->mUnk_74]] = d;
+        data_0217aed0->mUnk_074[p->mIndex] = data_0217aed0->mUnk_024[p->mIndex] + data_0217aed0->mUnk_034[p->mIndex];
+        data_0217aed0->mUnk_054[data_0217aed0->mUnk_074[p->mIndex]] = d;
         func_021484d0(p->mUnk_508, &q->mUnk_08, &v24);
         v24.x = v24.x >> 12;
         v24.y = v24.y >> 12;
         v24.z = v24.z >> 12;
         e = v24.x * v24.x + v24.y * v24.y + v24.z * v24.z;
         data_0217aed0->mUnk_124[i] = e;
-        data_0217aed0->mUnk_0a4[(u16) (data_0217aed0->mUnk_024[p->mUnk_74] + data_0217aed0->mUnk_084[p->mUnk_74])] = e;
-        if (p->mUnk_74 != data_021759c0->mUnk_62) {
+        data_0217aed0->mUnk_0a4[(u16) (data_0217aed0->mUnk_024[p->mIndex] + data_0217aed0->mUnk_084[p->mIndex])] = e;
+        if (p->mIndex != data_021759c0->mUnk_62) {
             a = TRUE;
             if (e > data_0217ca6c[0].mUnk_20) {
                 a = FALSE;

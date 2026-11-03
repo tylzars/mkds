@@ -31,12 +31,12 @@ void func_0206ceb4(s32 *out, Unk0206bcb0 *p) {
     *out = 0x1000;
     if (p->mUnk_7c & 0x1) {
         id = (p->mUnk_48 & 0x8000) ? 0xa0 : 0x9e;
-        func_0210ddf4(&data_0217d26c, func_02086080(p->mUnk_74), func_020718c8, p, id);
+        func_0210ddf4(&data_0217d26c, func_02086080(p->mIndex), func_020718c8, p, id);
     }
     if (!(p->mUnk_48 & 0x20000000)) {
         return;
     }
-    func_021035ac(p->mUnk_74);
+    func_021035ac(p->mIndex);
     flags = p->mUnk_4c;
     if (flags & 0x20000) {
         return;
@@ -53,7 +53,7 @@ void func_0206ceb4(s32 *out, Unk0206bcb0 *p) {
     a = func_0207a134();
     b = func_0207a11c();
     c = func_0207a104();
-    func_02079f70(p->mUnk_590, a, b, c);
+    func_02079f70(p->mKartModelsEntry, a, b, c);
 }
 
 void func_0206cdd4(Unk0206bcb0 *p) {
@@ -78,7 +78,7 @@ void func_0206cdd4(Unk0206bcb0 *p) {
     p->mUnk_302 = 0;
     p->mUnk_300 = p->mUnk_302;
     p->mUnk_30c = 0;
-    func_0208c534(func_0208c5b8(p->mUnk_74));
+    func_0208c534(func_0208c5b8(p->mIndex));
 }
 
 void func_0206cc60(Unk0206bcb0 *p, int arg) {
@@ -188,7 +188,7 @@ recheck:
                 p->mUnk_308 = &p->mUnk_300;
             }
             if (p->mUnk_4c & 0x8000) {
-                t = func_0208c5b8(p->mUnk_74);
+                t = func_0208c5b8(p->mIndex);
                 func_0208ccf0(t);
                 func_0208d6b0(t);
             }
@@ -223,7 +223,7 @@ recheck:
             p->mUnk_302 = 0;
             p->mUnk_300 = p->mUnk_302;
             p->mUnk_30c = 0;
-            func_0208c534(func_0208c5b8(p->mUnk_74));
+            func_0208c534(func_0208c5b8(p->mIndex));
         } else if (f & 0x10) {
             func_0206cc60(p, 0);
         }
@@ -275,7 +275,7 @@ recheck:
         return;
     }
     if (p->mUnk_7c & 0x1) {
-        id = func_02086080(p->mUnk_74);
+        id = func_02086080(p->mIndex);
         func_0210ddf4(&data_0217d284, id + func_0210a578(), func_02071944, p, 0xcf);
     }
     p->mUnk_44 |= 0x806;
@@ -324,8 +324,8 @@ int func_0206c494(Unk0206bcb0 *p) {
             delta = -500;
         }
         if (p->mUnk_44 & 0x10) {
-            if (func_0208c5b8(p->mUnk_74)->mUnk_3c == 0 && (p->mUnk_4c & 0x8000)) {
-                t = func_0208c5b8(p->mUnk_74);
+            if (func_0208c5b8(p->mIndex)->mUnk_3c == 0 && (p->mUnk_4c & 0x8000)) {
+                t = func_0208c5b8(p->mIndex);
                 func_0208ccf0(t);
                 func_0208d6b0(t);
             }
@@ -339,7 +339,7 @@ int func_0206c494(Unk0206bcb0 *p) {
         func_0210b4e0(p, dir, p->mUnk_3e0, p->mUnk_3e4);
     }
     if (pending) {
-        func_0208d650(func_0208c5b8(p->mUnk_74));
+        func_0208d650(func_0208c5b8(p->mIndex));
     }
     return result;
 }
@@ -426,7 +426,7 @@ void func_0206c11c(Unk0206bcb0 *p) {
 }
 
 BOOL func_0206c0e0(Unk0206bcb0 *p) {
-    if ((p->mUnk_7c & 0x402020) || (p->mUnk_4c & 0x800) || p->mUnk_180 != 0) {
+    if ((p->mUnk_7c & 0x402020) || (p->mUnk_4c & 0x800) || p->mState != 0) {
         return TRUE;
     }
     return FALSE;
@@ -459,14 +459,14 @@ void func_0206bf88(Unk0206bcb0 *p, int mode) {
         func_02055c5c();
     }
     func_02068a64(p, 1, 0);
-    p->mUnk_180 = mode;
+    p->mState = mode;
     p->mUnk_44 &= 0xfffff7f4;
     p->mUnk_2c4 = 0;
     p->mUnk_2fc = 0;
     p->mUnk_302 = 0;
     p->mUnk_300 = p->mUnk_302;
     p->mUnk_30c = 0;
-    func_0208c534(func_0208c5b8(p->mUnk_74));
+    func_0208c534(func_0208c5b8(p->mIndex));
     if (p->mUnk_4c & 0x2000) {
         p->mUnk_4c &= ~0x2000;
         p->mUnk_d8 = 0x1000;
@@ -487,7 +487,7 @@ BOOL func_0206be54(Unk0206bcb0 *p, int a) {
     if (f & 0x400000) {
         ok = FALSE;
     } else if (p->mUnk_7c & 0x200) {
-        if (p->mUnk_180 == 0 && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
+        if (p->mState == 0 && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
             ok = TRUE;
         } else {
             ok = FALSE;
@@ -498,7 +498,7 @@ BOOL func_0206be54(Unk0206bcb0 *p, int a) {
             case 2:
                 res = TRUE;
                 if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
-                    v = p->mUnk_180;
+                    v = p->mState;
                     t = FALSE;
                     if (v != 0 && v != 1 && v != 2) {
                         t = TRUE;
@@ -512,7 +512,7 @@ BOOL func_0206be54(Unk0206bcb0 *p, int a) {
             default:
                 res = TRUE;
                 if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
-                    v = p->mUnk_180;
+                    v = p->mState;
                     t = FALSE;
                     if (v != 0 && v != 1 && v != 2) {
                         t = TRUE;
@@ -533,7 +533,7 @@ BOOL func_0206be54(Unk0206bcb0 *p, int a) {
 }
 
 BOOL func_0206bcb0(Unk0206bcb0 *p, int a, int b) {
-    int s = p->mUnk_180;
+    int s = p->mState;
     BOOL x;
     BOOL ok;
     BOOL res;
@@ -551,7 +551,7 @@ BOOL func_0206bcb0(Unk0206bcb0 *p, int a, int b) {
     if (f & 0x400000) {
         ok = FALSE;
     } else if (p->mUnk_7c & 0x200) {
-        if (p->mUnk_180 == 0 && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
+        if (p->mState == 0 && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
             ok = TRUE;
         } else {
             ok = FALSE;
@@ -559,7 +559,7 @@ BOOL func_0206bcb0(Unk0206bcb0 *p, int a, int b) {
     } else {
         res = TRUE;
         if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
-            v = p->mUnk_180;
+            v = p->mState;
             t = FALSE;
             if (v != 0 && s != 1 && s != 2) {
                 t = TRUE;

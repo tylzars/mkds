@@ -67,7 +67,7 @@ void func_020e7760(void) {
     data_0217b888 = data_021759c0->mUnk_62;
     q = func_0207a974(data_0217b888);
     data_0217b8c8 = q;
-    data_0217b8c0 = &q->mUnk_590->mUnk_040;
+    data_0217b8c0 = &q->mKartModelsEntry->mUnk_040;
     data_0217b9c0.x = 0;
     data_0217b9c0.y = 0;
     data_0217b9c0.z = 0;

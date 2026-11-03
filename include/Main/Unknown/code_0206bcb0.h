@@ -180,7 +180,7 @@ typedef struct Unk0206bcb0 {
     /* 50 */ Vec3 mUnk_50;
     /* 05c */ Vec3 mUnk_05c;
     /* 68 */ Vec3 mUnk_68;
-    /* 74 */ u16 mUnk_74;
+    /* 74 */ u16 mIndex;
     /* 76 */ u8 mUnk_76[0x2];
     /* 78 */ s32 mUnk_78;
     /* 7c */ vu32 mUnk_7c;
@@ -234,7 +234,7 @@ typedef struct Unk0206bcb0 {
         };
         Unk02012f58 mUnk_150_m;
     };
-    /* 180 */ vs32 mUnk_180;
+    /* 180 */ vs32 mState;
     /* 184 */ Unk02012f58 mUnk_184_m;
     /* 1b4 */ Unk02012f58 *mUnk_1b4;
     /* 1b8 */ Vec3 mUnk_1b8;
@@ -422,7 +422,7 @@ typedef struct Unk0206bcb0 {
     /* 528 */ u8 mUnk_528[0xc];
     /* 534 */ Vec3 *mUnk_534;
     /* 538 */ Unk0206ceb4 mUnk_538;
-    /* 590 */ struct Unk0206bcb0_590 *mUnk_590;
+    /* 590 */ struct Unk0206bcb0_590 *mKartModelsEntry;
     /* 594 */ s32 mUnk_594;
     /* 598 */ s16 mUnk_598;
     /* 59a */ u8 mUnk_59a[2];

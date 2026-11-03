@@ -82,7 +82,7 @@ void func_0208bd44(Unk020888b4 *p, s32 a) {
     func_0207d814(&p->mUnk_e8, p);
     p->mUnk_e8.mUnk_2c = 0;
     p->mUnk_e8.mUnk_30 = 0;
-    if (q->mUnk_74 != data_021759c0->mUnk_62) {
+    if (q->mIndex != data_021759c0->mUnk_62) {
         q->mUnk_7c |= 0x40;
     }
 }

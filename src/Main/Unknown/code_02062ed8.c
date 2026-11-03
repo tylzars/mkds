@@ -243,7 +243,7 @@ void func_020637c4(Unk0206bcb0 *a) {
 
 void func_020637e0(Unk0206bcb0 *a) {
     if (func_0207a870() != 0) {
-        func_0203c1a8(&a->mUnk_80, a->mUnk_74);
+        func_0203c1a8(&a->mUnk_80, a->mIndex);
     }
     if ((a->mUnk_4c & 0x1000) != 0) {
         func_0206d138(a);
@@ -254,7 +254,7 @@ void func_020637e0(Unk0206bcb0 *a) {
 
 void func_02063830(Unk0206bcb0 *a) {
     if (func_0207a870() != 0) {
-        func_0203c1a8(&a->mUnk_80, a->mUnk_74);
+        func_0203c1a8(&a->mUnk_80, a->mIndex);
     }
     if ((a->mUnk_4c & 0x1000) != 0) {
         func_0206d138(a);

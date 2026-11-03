@@ -15,7 +15,7 @@
 void func_ov001_02184874(Unk02188950 *d, Unk0206bcb0 *e) {
     s32 scale;
 
-    if ((func_0207a974(e->mUnk_74)->mUnk_48 & 0x20) && e->mUnk_238 > 0) {
+    if ((func_0207a974(e->mIndex)->mUnk_48 & 0x20) && e->mUnk_238 > 0) {
         if (func_ov001_021871f8(d, 8)) {
             if (d->mUnk_0a0->mUnk_1dc > 0 || d->mUnk_0a0->mUnk_1e0 > 0) {
                 Vec3 a = {0, 0, 0};

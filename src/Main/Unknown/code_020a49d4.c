@@ -130,8 +130,8 @@ void func_020a5608(Unk0206bcb0 *a, Unk0206bcb0 *b) {
     p->mUnk_00.mUnk_10.x = 0;
     p->mUnk_00.mUnk_10.y = 0x1000;
     p->mUnk_00.mUnk_10.z = 0;
-    p->mUnk_c8 = a->mUnk_74;
-    p->mUnk_ca = b->mUnk_74;
+    p->mUnk_c8 = a->mIndex;
+    p->mUnk_ca = b->mIndex;
     p->mUnk_a0 = 0;
     p->mUnk_a4 = 0;
     p->mUnk_a8 = 0;
@@ -146,9 +146,9 @@ void func_020a5608(Unk0206bcb0 *a, Unk0206bcb0 *b) {
     p->mUnk_dc = 0;
     p->mUnk_c4 = -1;
     func_020a1218(1);
-    r = a->mUnk_74 == data_021759c0->mUnk_62 ? 1 : 0;
+    r = a->mIndex == data_021759c0->mUnk_62 ? 1 : 0;
     c = func_020a1180();
-    n = func_020a1154(a->mUnk_74);
+    n = func_020a1154(a->mIndex);
     func_0210b98c(p->mUnk_00.mUnk_94, func_02024974(1, r, c, n));
 }
 
@@ -218,8 +218,8 @@ BOOL func_020a5268(u16 a, u16 b) {
             if (func_020a1154(b) >= 2 && func_020a2204(b) != 0) {
                 e->mUnk_34 = 4;
             }
-            func_02081f10(func_0208b7bc(0x7a, &o->mUnk_80), o->mUnk_74, 0x20);
-            func_02081f10(func_0208b7bc(0x7b, &o->mUnk_80), o->mUnk_74, 0x20);
+            func_02081f10(func_0208b7bc(0x7a, &o->mUnk_80), o->mIndex, 0x20);
+            func_02081f10(func_0208b7bc(0x7b, &o->mUnk_80), o->mIndex, 0x20);
             func_020d26ec(func_0207a974(b), 0x14f);
             if (func_020a1154(a) == 0) {
                 func_020a16d0(a);

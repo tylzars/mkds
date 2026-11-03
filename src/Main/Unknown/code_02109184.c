@@ -313,7 +313,7 @@ s32 func_021092b0(Unk0210bcf4 *p) {
     k = (Unk0206bcb0 *) p->mUnk_00;
     v = 0;
     if (k != NULL) {
-        if (k != NULL && k->mUnk_00.mUnk_3c == 0 && k->mUnk_74 != data_021759c0->mUnk_62) {
+        if (k != NULL && k->mUnk_00.mUnk_3c == 0 && k->mIndex != data_021759c0->mUnk_62) {
             e = &data_0217c8f8;
         } else {
             e = &data_0217ca6c[k->mUnk_00.mUnk_3c];

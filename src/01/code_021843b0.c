@@ -26,7 +26,7 @@ void func_ov001_021843b0(Unk02188950 *a, Unk0206bcb0 *b) {
     Vec3 vec2;
     Vec3 vec3;
 
-    if ((func_0207a974(b->mUnk_74)->mUnk_48 & 0x20) && b->mUnk_238 > 0) {
+    if ((func_0207a974(b->mIndex)->mUnk_48 & 0x20) && b->mUnk_238 > 0) {
         if (func_ov001_021871f8(a, 8)) {
             if (a->mUnk_0a0->mUnk_1a8 > 0 || a->mUnk_0a0->mUnk_1ac > 0) {
                 vec1.x = (s32) (((s64) -a->mUnk_0a0->mUnk_1ac * data_0215d4b4[((u16) a->mUnk_1a8 >> 4) * 2]) >> 12);

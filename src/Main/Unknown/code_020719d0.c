@@ -41,7 +41,7 @@ void func_020719d0(Unk0206bcb0 *p) {
     q->mUnk_30 = 0;
     q->mUnk_34 = -1;
     q->mUnk_38 = -1;
-    switch (p->mUnk_590->mUnk_004 / 3) {
+    switch (p->mKartModelsEntry->mUnk_004 / 3) {
         case 0:
             k = 4;
             break;
@@ -83,7 +83,7 @@ void func_020719d0(Unk0206bcb0 *p) {
             break;
     }
     q->mUnk_68 = k;
-    i = func_0202578c(p->mUnk_590->mUnk_004);
+    i = func_0202578c(p->mKartModelsEntry->mUnk_004);
     m = i * 0x1c;
     a = *(s32 *) (data_02161ae8 + m);
     b = *(s32 *) (data_02161aec + m);
@@ -100,10 +100,10 @@ void func_020719d0(Unk0206bcb0 *p) {
     t.mUnk_14 = e;
     t.mUnk_18 = f;
     t.mUnk_1c = g;
-    if (p->mUnk_74 != data_021759c0->mUnk_62) {
+    if (p->mIndex != data_021759c0->mUnk_62) {
         b = c;
     }
-    if (p->mUnk_74 != data_021759c0->mUnk_62) {
+    if (p->mIndex != data_021759c0->mUnk_62) {
         a = c;
     }
     t.mUnk_20 = b;
@@ -115,7 +115,7 @@ void func_02071c18(Unk0206bcb0 *p) {
     func_02109110(&p->mUnk_00, 0, p->mUnk_508);
     func_0210a5a8(p, (Unk0210a5a8 *) &p->mUnk_450);
     func_020719d0(p);
-    switch (p->mUnk_590->mUnk_000) {
+    switch (p->mKartModelsEntry->mUnk_000) {
         case 0:
             p->mUnk_3cc = 4;
             break;
@@ -156,7 +156,7 @@ void func_02071c18(Unk0206bcb0 *p) {
             p->mUnk_3cc = 12;
             break;
     }
-    p->mUnk_3d0 = p->mUnk_590->mUnk_004 % 3;
+    p->mUnk_3d0 = p->mKartModelsEntry->mUnk_004 % 3;
     if (p->mUnk_7c & 1) {
         if (!(p->mUnk_00.mUnk_34 & 1)) {
             func_0210cfbc(&p->mUnk_00, 2, 1);

@@ -387,7 +387,7 @@ void func_ov001_021832cc(u32 b, Unk02188950 *d) {
                     a = d->mUnk_0a0;
                     c = func_ov001_02188000(d, a->mUnk_140, a->mUnk_144);
                     if (c != NULL) {
-                        if ((func_0207a974(c->mUnk_74)->mUnk_48 & 0x100000) != 0 && c->mUnk_238 > 0) {
+                        if ((func_0207a974(c->mIndex)->mUnk_48 & 0x100000) != 0 && c->mUnk_238 > 0) {
                             func_ov001_02183dec(d);
                         }
                     }

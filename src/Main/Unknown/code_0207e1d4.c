@@ -18,7 +18,7 @@
 
 void func_0207e594(struct Unk020888b4 *p, struct Unk0206bcb0 *q, s32 a) {
     p->mUnk_00 = q;
-    p->mUnk_04 = q->mUnk_74;
+    p->mUnk_04 = q->mIndex;
     p->mUnk_06 = p->mUnk_04 % 4;
     p->mUnk_88 = 0x1000;
     if (data_021759c0->mUnk_00c == 5) {
@@ -59,7 +59,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
     r = s->mUnk_14;
     func_0207a948(&a, p->mUnk_04);
     func_0207f6f0(p, s, q, r, &a, t);
-    if (q->mUnk_180 == 0) {
+    if (q->mState == 0) {
         func_0204360c(p->mUnk_00->mUnk_78, 1);
         func_021484d0(&p->mUnk_44, &a, &b);
         func_01ffd224(p, &b, t);
@@ -69,7 +69,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
 
 void func_0207e400(struct Unk020888b4 *p, struct Unk0206bcb0 *q, s32 a) {
     p->mUnk_00 = q;
-    p->mUnk_04 = q->mUnk_74;
+    p->mUnk_04 = q->mIndex;
     p->mUnk_06 = p->mUnk_04 % 4;
     p->mUnk_88 = 0x1000;
     p->mUnk_8c = 0;
@@ -95,7 +95,7 @@ void func_0207e35c(struct Unk020888b4 *p) {
     r = s->mUnk_14;
     func_0207a948(&a, p->mUnk_04);
     func_0207f6f0(p, s, q, r, &a, t);
-    if (q->mUnk_180 == 0) {
+    if (q->mState == 0) {
         func_0204360c(p->mUnk_00->mUnk_78, 1);
         func_021484d0(&p->mUnk_44, &a, &b);
         func_01ffd224(p, &b, t);

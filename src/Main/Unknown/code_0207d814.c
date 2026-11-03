@@ -263,7 +263,7 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         a->mUnk_04 = t;
     }
     q = b->mUnk_00;
-    if (q->mUnk_180 != 0) {
+    if (q->mState != 0) {
         return;
     }
     if (q->mUnk_4c & 0x10000000) {

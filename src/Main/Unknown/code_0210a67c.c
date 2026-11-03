@@ -151,7 +151,7 @@ void func_0210b2a8(Unk0206bcb0 *a, s32 b, s32 c, s32 d, u32 e) {
     }
     if (e != 0) {
         w = 0;
-        h = a->mUnk_74 == data_021759c0->mUnk_62;
+        h = a->mIndex == data_021759c0->mUnk_62;
         if (e > 0x11170) {
             w = 0x384;
             if (h != FALSE) {
@@ -173,7 +173,7 @@ void func_0210b2a8(Unk0206bcb0 *a, s32 b, s32 c, s32 d, u32 e) {
             case 0xffd0:
             case 0xffd1:
                 m = i & 1;
-                j = func_0203c5ac(a->mUnk_74);
+                j = func_0203c5ac(a->mIndex);
                 k = j - p->mUnk_28;
                 if (k < 0) {
                     k = -k;
@@ -267,7 +267,7 @@ void func_0210af40(Unk0206bcb0 *a, s32 b, s32 c) {
             return;
         }
         e = 0x7f;
-        f = a->mUnk_74 == data_021759c0->mUnk_62;
+        f = a->mIndex == data_021759c0->mUnk_62;
         if (c == 5) {
             e = 0x7f;
         } else if (c == 3) {
@@ -367,7 +367,7 @@ void func_0210ad58(Unk0206bcb0 *a, s32 b) {
     if (q->mUnk_64 != 0) {
         return;
     }
-    if (a->mUnk_74 == data_021759c0->mUnk_62) {
+    if (a->mIndex == data_021759c0->mUnk_62) {
         func_0210abf4(a, b, 1, 0x6e);
         q->mUnk_6c = 0;
         return;
@@ -460,7 +460,7 @@ void func_0210aa14(Unk0206bcb0 *a, Unk0210bf24 *b, s32 c) {
     d = b->mUnk_18;
     e = b->mUnk_16;
     f = -1;
-    if (a->mUnk_74 == data_021759c0->mUnk_62) {
+    if (a->mIndex == data_021759c0->mUnk_62) {
         p = func_0212d580(d, e);
         g = p->mUnk_05;
         if (g == 2) {
@@ -474,7 +474,7 @@ void func_0210aa14(Unk0206bcb0 *a, Unk0210bf24 *b, s32 c) {
         }
     }
     if ((b->mUnk_19 & 0x20) && (b->mUnk_19 & 0x40)) {
-        g = func_02079b40(a->mUnk_74) + 0x2d;
+        g = func_02079b40(a->mIndex) + 0x2d;
         func_0212ec04(&b->mUnk_00, f, g, c, d, e);
         if (b == NULL) {
             return;
@@ -501,7 +501,7 @@ void func_0210a880(Unk0206bcb0 *a, Unk0210bf24 *b, s32 c) {
     if (b->mUnk_18 != 2) {
         f = a->mUnk_500;
         w = 0;
-        g = a->mUnk_74 == data_021759c0->mUnk_62;
+        g = a->mIndex == data_021759c0->mUnk_62;
         if (f > 0x11170) {
             w = 0x384;
             if (g != FALSE) {

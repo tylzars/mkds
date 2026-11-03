@@ -96,7 +96,7 @@ static inline s32 func_02101f7c_inline(Unk020ee684 *v1, Unk021759c0 *o, s32 a, u
     v2 = TRUE;
     e = &v1[k];
     q = e->mUnk_1fc;
-    if (q->mUnk_180 < 4 && (q->mUnk_7c & 0x400020) == 0) {
+    if (q->mState < 4 && (q->mUnk_7c & 0x400020) == 0) {
         v2 = FALSE;
     }
     if (v2 == FALSE && (q->mUnk_4c & 0x10000800) == 0) {
@@ -240,7 +240,7 @@ void func_02101d90(Unk02101c84 *p, s32 a) {
             e = &v1[k];
             q = e->mUnk_1fc;
             n = l = 1;
-            if (q->mUnk_180 < 4 && (q->mUnk_7c & 0x400020) == 0) {
+            if (q->mState < 4 && (q->mUnk_7c & 0x400020) == 0) {
                 n = 0;
             }
             if (n == 0 && (q->mUnk_4c & 0x10000800) == 0) {
@@ -320,7 +320,7 @@ void func_02101964(Unk02101c84 *p, s32 a) {
     g = (s32 *) func_02061808();
     v = &p->mUnk_000.mUnk_50;
     k = m = TRUE;
-    if (q->mUnk_180 < 4 && (q->mUnk_7c & 0x400020) == 0) {
+    if (q->mState < 4 && (q->mUnk_7c & 0x400020) == 0) {
         k = 0;
     }
     if (k == 0 && (q->mUnk_4c & 0x10000800) == 0) {
@@ -631,7 +631,7 @@ s32 func_02101014(Unk02101c84 *p) {
         return 0xf;
     }
     a = b = 1;
-    if (q->mUnk_180 < 4 && (q->mUnk_7c & 0x400020) == 0) {
+    if (q->mState < 4 && (q->mUnk_7c & 0x400020) == 0) {
         a = 0;
     }
     if (a == 0 && (q->mUnk_4c & 0x10000800) == 0) {

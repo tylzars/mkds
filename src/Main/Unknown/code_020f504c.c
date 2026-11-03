@@ -139,7 +139,7 @@ void func_020f5614(void *a0, s32 b, void *c0) {
         return;
     }
     k = o->mUnk_1fc;
-    if (n != *(u16 *) &k->mUnk_74) {
+    if (n != *(u16 *) &k->mIndex) {
         return;
     }
     f = c->mUnk_74;

@@ -94,7 +94,7 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     a->mUnk_170 = NULL;
     a->mUnk_0e8 = data_0217bc48[k].mUnk_08 == 8 ? 0xb400 : 0x4333;
     u = *(vs32 *) &a->mUnk_000;
-    func_020f1048(&data_027e00cc[u], a->mUnk_020, a->mUnk_014, a->mUnk_010->mUnk_74, &a->mUnk_050);
+    func_020f1048(&data_027e00cc[u], a->mUnk_020, a->mUnk_014, a->mUnk_010->mIndex, &a->mUnk_050);
     func_020ee528(a);
     if (f1 != NULL) {
         f1(a);
@@ -108,7 +108,7 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
         func_020f81b8((u32) a->mUnk_00c, a->mUnk_004);
     }
     v = a->mUnk_014;
-    r = &a->mUnk_010->mUnk_590->mUnk_040;
+    r = &a->mUnk_010->mKartModelsEntry->mUnk_040;
     n = a->mUnk_020;
     for (i = 0; i < n; i++) {
         q = v[i];
