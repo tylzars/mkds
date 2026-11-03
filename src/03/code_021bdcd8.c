@@ -33,9 +33,8 @@ s32 func_ov003_021bdd1c(s32 v1, const Unk021bdcd8 *v2, const u8 *param_2, const 
 }
 
 // non-matching: 98.5: size 0x2e8 against 0x2ec. The original keeps a second loop counter that nothing reads (g and h
-// both incremented in their stack slots, one slot more), and steps three pointers (name, record, the six-byte value)
-// where this has four (mUnk_2e uses its own g pointer; indexing it with h gives three, but g still goes: the second
-// constant propagation folds g = 0 into the pointer starts and the dead-store pass then drops g).
+// both incremented in their stack slots) and steps three pointers (name, record, the six-byte value) where this has
+// four (mUnk_2e uses its own g pointer; indexing it with h gives three, but g still goes: dead-store pass drops g).
 s32 func_ov003_021bdd3c(void) {
     s32 a;
     s32 b;

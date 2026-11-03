@@ -103,7 +103,7 @@ void func_ov000_021a9c5c(void *a, u32 n) {
     c = func_0200fca0();
     func_ov000_021abca0(b, data_ov000_021b6184, 0x14);
     func_ov000_021abca0(b, a, n);
-    func_ov000_021abc4c((int) b, (u32) data_ov000_021b6184);
+    func_ov000_021abc4c((s32) b, (u32) data_ov000_021b6184);
     func_0200fcb4(c);
     data_ov000_021b617c = 1;
 }
@@ -189,7 +189,7 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
                 c->mUnk_429 = 9;
                 return c->mUnk_429;
             }
-            if (func_ov000_021aa004((int) q, n, (u32) a) == 0 && q[0] == 1) {
+            if (func_ov000_021aa004((s32) q, n, (u32) a) == 0 && q[0] == 1) {
                 func_ov000_021aaa58(c, q + 1);
             } else {
                 c->mUnk_429 = 9;
@@ -207,7 +207,7 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
             c->mUnk_429 = 9;
             return c->mUnk_429;
         }
-        if (func_ov000_021aa004((int) q, n, (u32) a) != 0) {
+        if (func_ov000_021aa004((s32) q, n, (u32) a) != 0) {
             data_ov000_021b63ac(q);
             c->mUnk_429 = 9;
             return c->mUnk_429;
@@ -248,10 +248,10 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
                             c->mUnk_429 = 4;
                             break;
                         case 0x10:
-                            func_ov000_021aa5b0((int *) c, (u32) r);
+                            func_ov000_021aa5b0((s32 *) c, (u32) r);
                             break;
                         case 0x14:
-                            func_ov000_021aa3b8((int) c, (int) r);
+                            func_ov000_021aa3b8((s32) c, (s32) r);
                             break;
                         default:
                             c->mUnk_429 = 9;

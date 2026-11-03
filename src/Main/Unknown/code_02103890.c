@@ -360,11 +360,9 @@ void func_02103db0(s32 v1, volatile s32 param_2, s32 param_3) {
     e->mUnk_28 = 0;
 }
 
-// non-matching: 0x4c4 bytes against 0x4b0. The random scalings are written `((u64) ... * 0x1000) >> 32` (the
-// original's `lsl`/`orr` form; `>> 20` gives `lsr`/`orr`), which also puts the two s16 values at sp+0x8/0xa and m at
-// sp+0x4 as in the original. Left: the original reads the low word of a->mUnk_00 once for the scaling and the next
-// random step (here it is read again after the halfword store), and the product temporaries of the u64
-// multiply-add blocks are in other registers.
+// non-matching: 0x4c4 bytes against 0x4b0. The scalings are `((u64) ... * 0x1000) >> 32` (`>> 20` gives lsr/orr, the
+// original has lsl/orr). Left: the original reads the low word of a->mUnk_00 once for the scaling and the next random
+// step (here again after the halfword store), and the u64 multiply-add temporaries are in other registers.
 void func_02103900(s32 v1, s32 n, s32 v2) {
     volatile s16 a8;
     volatile s16 a10;

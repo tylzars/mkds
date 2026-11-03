@@ -306,9 +306,8 @@ void func_020757d8(void) {
 }
 
 // non-matching: 0x18c bytes against 0x194: the original keeps mUnk_32, mUnk_34 and mUnk_240 in r7, r6 and r5 (push of
-// r4-r7 and a stack offset of 4), loads all four halfwords and mUnk_240 before the two subtractions and the two
-// multiplies, and reads mUnk_3c once more after the stores; the same interpolation in func_02074b00 differs the same
-// way
+// r4-r7, stack offset 4), loads all four halfwords and mUnk_240 before the two subtractions and multiplies, and reads
+// mUnk_3c once more after the stores; the same interpolation in func_02074b00 differs the same way
 void func_02075900(Unk02061808 *p) {
     switch (p->mUnk_218->mUnk_3e) {
         case 0:

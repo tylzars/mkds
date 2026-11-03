@@ -156,10 +156,8 @@ void func_01ff81b4(Unk02170500 *s, u32 a) {
 }
 
 // non-matching: same size; the original keeps the halfword at +2 of the pair in the stack word at sp+0 and the one at
-// +0 in r11 (this one swaps them, so the stack word is at sp+4 and the sp+0 store/load differ), loads the table
-// halfword into r0 and the entry size into r1 and computes mla r0, r1, r4, r0 (this one has r1/r0 swapped, mla r0, r4,
-// r0, r1), and stores the first table value after loading the second table address (store order of the two
-// constant-word loads).
+// +0 in r11 (swapped here, so the stack word is at sp+4); the mla is `mla r0, r1, r4, r0` there, `mla r0, r4, r0, r1`
+// here; the first table value is stored after the second table address is loaded (constant-word load order)
 void func_01ff8220(Unk02170500 *s, u32 a) {
     u32 w;
     s32 b1;

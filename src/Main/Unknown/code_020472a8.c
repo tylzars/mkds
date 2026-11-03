@@ -138,13 +138,13 @@ void *FindKartModelFile(const char *path) {
     if (((v1 == 1) || (v1 == 3)) || (v1 == 0xc)) {
         file = FindArchiveFile(gArchiveNames[10], path);
     } else {
-        if (*(int *) ((*(int *) &data_021759c8) + 0x308) != 0) {
+        if (*(s32 *) ((u8 *) data_021759c8 + 0x308) != 0) {
             file = FindArchiveFile(gArchiveNames[6], path);
         }
-        if ((file == 0) && (*(int *) ((*(int *) &data_021759c8) + 0x378) != 0)) {
+        if ((file == 0) && (*(s32 *) ((u8 *) data_021759c8 + 0x378) != 0)) {
             file = FindArchiveFile(gArchiveNames[7], path);
         }
-        if ((file == 0) && (*(int *) ((*(int *) &data_021759c8) + 0x3e8) != 0)) {
+        if ((file == 0) && (*(s32 *) ((u8 *) data_021759c8 + 0x3e8) != 0)) {
             file = FindArchiveFile(gArchiveNames[8], path);
         }
     }
@@ -244,10 +244,10 @@ void func_020476ac(void) {
     v1 = func_0205e0a0();
     func_02047cf0(10);
     func_02047b6c((u16) 0);
-    func_02048050(1, (int) v1);
-    func_02048050(5, (int) v1);
-    func_02048050(0xe, (int) v1);
-    func_02048050(0x10, (int) v1);
+    func_02048050(1, v1);
+    func_02048050(5, v1);
+    func_02048050(0xe, v1);
+    func_02048050(0x10, v1);
     func_02047b6c((u16) 9);
 }
 

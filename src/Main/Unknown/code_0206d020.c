@@ -257,10 +257,9 @@ void func_0206d578(Unk0206bcb0 *p) {
     }
 }
 
-// non-matching: same size (0x430); register and scheduling differences only: the product (a * t >> 12) * scale keeps
-// the first product in r2 (original r1) with scale in r5/r4 swapped (+0xd0 to +0xdc), and the three products of
-// q->mUnk_244 with dot are ordered x, z, y in different registers from +0x2d8, with the 0xaab/0x800 rounding product
-// placed after them
+// non-matching: same size (0x430); registers and scheduling only: the first product of (a * t >> 12) * scale sits in r2
+// (original r1) with scale in r5/r4 swapped, and the three q->mUnk_244 products with dot are ordered x, z, y in other
+// registers from +0x2d8, with the 0xaab/0x800 rounding product placed after them
 void func_0206d7c8(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v, s32 c, Vec3 *v1) {
     s32 a;
     s32 b;

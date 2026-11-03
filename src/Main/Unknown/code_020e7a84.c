@@ -20,10 +20,9 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-// non-matching: same instructions and data references. The data_0217b878 store comes after the products here, so its
-// zero register is reused after the call and the zero stores there take other registers and order; the original
-// stores it right after data_0217b9c0.z (writing it before the `if` fixes that part but scores lower). Then
-// data_0217b9a8.z stays in r5 where the original keeps it in lr, so the umull pair is lr/ip here and r5/r4 there.
+// non-matching: same instructions and data references. The data_0217b878 store comes after the products here (zero reg
+// reused after the call; the original stores it right after data_0217b9c0.z, but writing it before the `if` scores
+// lower) and data_0217b9a8.z stays in r5 where the original keeps it in lr, so the umull pair is lr/ip there
 void func_020e8790(void) {
     Unk020e6514 *p;
     s32 t;

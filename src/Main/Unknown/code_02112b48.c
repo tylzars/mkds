@@ -88,7 +88,7 @@ void func_021144c0(void *a) {
     int v1;
     void *v2;
     v1 = ((u32) func_02036bec(a, (u32) 0x10));
-    *(int *) &data_0217d34c = v1;
+    *(s32 *) &data_0217d34c = v1;
     v2 = func_02036bec(a, (u32) 0x78);
     data_0217d34c->mUnk_04 = v2;
     v2 = func_0205eda0(a);
@@ -293,7 +293,7 @@ void func_02113f34(void) {
     LocateNscr(&gRecordVS->mUnk_20, v1);
     v1 = FindSceneFile(gRecordVSMBNclrName);
     LocateNclr((Unk020b4a44 **) (&v7), v1);
-    v3 = *(int *) (v4 + 0xc);
+    v3 = *(s32 *) (v4 + 0xc);
     func_02016468((u32) 0x13, (u32) 0, (void *) (gRecordVS->mUnk_00->mUnk_14),
                   (u32) (gRecordVS->mUnk_00->mUnk_10));
     func_02016468((u32) 0xe, (u32) 0, (void *) (*(u32 *) (v4 + 0xc)), (u32) (((u32) 0x000001a0u)));
@@ -508,7 +508,7 @@ void func_02113940(void) {
     if (gRecordVS->mUnk_68 != v2) {
         func_0212ecc0((const void *) (((u32) ((u8 *) &data_0217d068))), (u32) 0, (u32) 0);
     }
-    gRecordVS->mUnk_68 = (short) v2;
+    gRecordVS->mUnk_68 = v2;
 }
 
 void func_021138e4(void) {
@@ -529,7 +529,7 @@ void func_021138e4(void) {
     if (gRecordVS->mUnk_68 != v4) {
         func_0212ecc0((const void *) &data_0217d068, (u32) 0, (u32) 0);
     }
-    gRecordVS->mUnk_68 = (short) v4;
+    gRecordVS->mUnk_68 = v4;
 }
 
 #pragma thumb off

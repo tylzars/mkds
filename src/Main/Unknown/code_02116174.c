@@ -47,7 +47,7 @@ void func_02116888(void) {
     v2 = FindSceneFile(data_0216d3fc);
     data_0217d350->mUnk_34 = v2;
     v2 = FindSceneFile(data_0216d3f8);
-    v1 = (&(*(int *) &data_0217d350));
+    v1 = (&(*(s32 *) &data_0217d350));
     data_0217d350->mUnk_38 = v2;
     v2 = func_02036bec((void *) (*(u32 *) (*v1 + 0x50)), (u32) (((u32) 0x00000800u)));
     data_0217d350->mUnk_4c = v2;
@@ -284,7 +284,7 @@ void func_021161d0(void) {
     if (data_0217d350->mUnk_74 != v2) {
         func_0212ecc0((const void *) (((u32) ((u8 *) &data_0217d068))), (u32) 0, (u32) 0);
     }
-    data_0217d350->mUnk_74 = (short) v2;
+    data_0217d350->mUnk_74 = v2;
 }
 
 void func_02116174(void) {
@@ -305,7 +305,7 @@ void func_02116174(void) {
     if (data_0217d350->mUnk_74 != v4) {
         func_0212ecc0((const void *) &data_0217d068, (u32) 0, (u32) 0);
     }
-    data_0217d350->mUnk_74 = (short) v4;
+    data_0217d350->mUnk_74 = v4;
 }
 
 #pragma thumb off
