@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk02197e8c Unk02197e8c;
+typedef struct Gt2Socket Gt2Socket;
 
-void func_ov000_0219a044(Unk02197e8c *a);
-void func_ov000_0219a06c(Unk02197e8c *a);
+void func_ov000_0219a044(Gt2Socket *a);
+void func_ov000_0219a06c(Gt2Socket *a);

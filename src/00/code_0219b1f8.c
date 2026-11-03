@@ -44,7 +44,7 @@ Unk0219b1d4 *func_ov000_0219b1f8(u32 a) {
 }
 
 void func_ov000_0219b240(u32 *a) {
-    data_ov000_021b54cc = func_ov000_0218e368(func_ov000_021988d8(a));
+    data_ov000_021b54cc = func_ov000_0218e368(GetSocketDescriptor(a));
     func_ov000_0219c384(0xb, -0x17aeb);
     data_ov000_021b54c8->mUnk_00 = NULL;
 }

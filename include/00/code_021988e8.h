@@ -4,7 +4,7 @@
 #include "00/code_02197e8c.h"
 #include "00/code_021981d0.h"
 
-void func_ov000_021988e8(Unk02197e8c *a);
+void func_ov000_021988e8(Gt2Socket *a);
 void func_ov000_021988fc(Gt2Connection **a);
 void func_ov000_02198908(Gt2Connection *a);
 void func_ov000_02198914(Gt2Connection *a, u8 *b, int c, int d);

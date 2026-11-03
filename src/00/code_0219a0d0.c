@@ -35,9 +35,9 @@ typedef struct Unk0219a110Addr {
     /* 4 */ u32 mUnk_04;
 } Unk0219a110Addr;
 
-u32 func_ov000_0219a28c(Unk02197e8c *a, Gt2Connection **b, u32 c, u32 d) {
+u32 CreateConnection(Gt2Socket *a, Gt2Connection **b, u32 c, u32 d) {
     Gt2Connection *e = NULL;
-    if (func_ov000_0219a5b0(a, c, d) != NULL) {
+    if (FindConnection(a, c, d) != NULL) {
         return 5;
     }
     e = func_ov000_0219a3e8();
@@ -50,7 +50,7 @@ u32 func_ov000_0219a28c(Unk02197e8c *a, Gt2Connection **b, u32 c, u32 d) {
         e->mLastSendTime = e->mCreateTime;
         e->mUnk_64 = 0;
         e->mUnk_66 = 0;
-        if (InitBuffer(&e->mUnk_44, a->mUnk_3c) != 0 && InitBuffer(&e->mSendBuffer, a->mUnk_38) != 0) {
+        if (InitBuffer(&e->mUnk_44, a->mUnk_3c) != 0 && InitBuffer(&e->mSendBuffer, a->mSendBufferSize) != 0) {
             e->mUnk_5c = (void *) func_ov000_0218dc94(0x10, 0x40, NULL);
             if (e->mUnk_5c != NULL) {
                 e->mUnk_60 = (void *) func_ov000_0218dc94(0x10, 0x40, NULL);
@@ -59,8 +59,8 @@ u32 func_ov000_0219a28c(Unk02197e8c *a, Gt2Connection **b, u32 c, u32 d) {
                     if (e->mUnk_98 != NULL) {
                         e->mUnk_9c = (void *) func_ov000_0218dc94(4, 2, NULL);
                         if (e->mUnk_9c != NULL) {
-                            func_ov000_0218def0(a->mUnk_0c, &e);
-                            *b = func_ov000_0219a5b0(a, c, d);
+                            func_ov000_0218def0(a->mConnections, &e);
+                            *b = FindConnection(a, c, d);
                             if (*b != NULL) {
                                 return 0;
                             }
@@ -95,24 +95,24 @@ void func_ov000_0219a220(Gt2Connection *a) {
     s32 c;
     if (a->mUnk_14 == 0 && a->mUnk_24 == 0) {
         if (a->mUnk_0c == 7) {
-            b = func_ov000_0218dc44(a->mSocket->mUnk_10);
+            b = func_ov000_0218dc44(a->mSocket->mConnectionsToFree);
             for (c = 0; c < b; c++) {
-                if (a == *(Gt2Connection **) func_ov000_0218dbf8(a->mSocket->mUnk_10, c)) {
-                    func_ov000_0218da5c(a->mSocket->mUnk_10, c);
+                if (a == *(Gt2Connection **) func_ov000_0218dbf8(a->mSocket->mConnectionsToFree, c)) {
+                    func_ov000_0218da5c(a->mSocket->mConnectionsToFree, c);
                     return;
                 }
             }
         } else {
-            func_ov000_0218de8c(a->mSocket->mUnk_0c, &a);
+            func_ov000_0218de8c(a->mSocket->mConnections, &a);
         }
     }
 }
 
 u32 func_ov000_0219a110(u32 *c, u32 d, int f, u32 g, u32 h) {
-    Unk02197e8c *a = (Unk02197e8c *) c;
+    Gt2Socket *a = (Gt2Socket *) c;
     s32 e;
     func_ov000_0219a61c((const u8 **) &g, (s32 *) &h);
-    if (func_ov000_0218e644(a->mUnk_00) == 0) {
+    if (func_ov000_0218e644(a->mDescriptor) == 0) {
         return 1;
     }
     {
@@ -121,8 +121,8 @@ u32 func_ov000_0219a110(u32 *c, u32 d, int f, u32 g, u32 h) {
         p->mUnk_01 = 2;
         p->mUnk_04 = d;
         p->mUnk_02 = ((f >> 8) & 0xff) | ((f << 8) & 0xff00);
-        if (func_ov000_0218e3e4(a->mUnk_00, (void *) g, h, 0, &b, 8) == -1) {
-            e = func_ov000_0218e368(a->mUnk_00);
+        if (func_ov000_0218e3e4(a->mDescriptor, (void *) g, h, 0, &b, 8) == -1) {
+            e = func_ov000_0218e368(a->mDescriptor);
             if (e == -15) {
                 if (func_ov000_0219922c(a, d, f) == 0) {
                     return 0;
@@ -133,8 +133,8 @@ u32 func_ov000_0219a110(u32 *c, u32 d, int f, u32 g, u32 h) {
                 func_ov000_0219a044(a);
                 return 0;
             }
-        } else if (a->mUnk_28 != NULL) {
-            if (func_ov000_02197f28(a, (s32) func_ov000_0219a5b0(a, d, f), d, f, 0, g, h, 1) == 0) {
+        } else if (a->mSentCallback != NULL) {
+            if (func_ov000_02197f28(a, (s32) FindConnection(a, d, f), d, f, 0, g, h, 1) == 0) {
                 return 0;
             }
         }

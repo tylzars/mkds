@@ -53,13 +53,13 @@ s32 func_ov000_0219ba20(void) {
     }
     v = (u16) (func_ov000_021a3448(0x4000) + 0xc000);
     p = data_ov000_021b54c8;
-    r = func_ov000_02198ac4((Unk02197e8c **) data_ov000_021b54c8, (const u8 *) func_ov000_0219a760(0, v, 0), p->mUnk_14,
+    r = func_ov000_02198ac4((Gt2Socket **) data_ov000_021b54c8, (const u8 *) func_ov000_0219a760(0, v, 0), p->mUnk_14,
                             p->mUnk_18, (u32) func_ov000_0219b240);
     if (func_ov000_0219b704(r) != 0) {
         return r;
     }
     func_ov000_02198a84(data_ov000_021b54c8->mUnk_00, func_ov000_021a1ca8);
-    func_ov000_021988d4((s32) data_ov000_021b54c8->mUnk_00, (u32) func_ov000_021a1e40);
+    SetUnmatchedDataCallback((s32) data_ov000_021b54c8->mUnk_00, (u32) func_ov000_021a1e40);
     return r;
 }
 

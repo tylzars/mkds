@@ -7,7 +7,7 @@
 #include "code_02134d30.h"
 
 int func_ov000_0219885c(void *a, Gt2Connection **b, int c, u32 d) {
-    int r = func_ov000_0219a28c(a, b, c, d);
+    int r = CreateConnection(a, b, c, d);
     if (r != 0) {
         return r;
     }
@@ -17,7 +17,7 @@ int func_ov000_0219885c(void *a, Gt2Connection **b, int c, u32 d) {
 }
 
 int func_ov000_0219883c(void *a, Gt2Connection **b, int c, u32 d) {
-    int r = func_ov000_0219a28c(a, b, c, d);
+    int r = CreateConnection(a, b, c, d);
     if (r != 0) {
         return r;
     }

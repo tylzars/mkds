@@ -898,7 +898,7 @@ Expression shapes:
   its own local with an initializer, `u16 v[4] = {0};`; a `{0}` on the whole struct gives word stores
   (func_ov003_021c0d2c).
 - A struct cleared through `add rN, sp, #off` with the address reused for the next call: `u32 *p = (u32 *) &g; p[0] = 0;
-  p[1] = 0;` (func_ov000_0219a430).
+  p[1] = 0;` (CreateSocket).
 - A zero vector built through `add rN, sp` then `ldmia` from the same address, using the 0 from another register: `{
   Vec3 z = {0, 0, 0}; m = z; }` blocks (func_020d2c2c, like func_020d41e0).
 - Spill slots in the wrong order: the declaration order of the spilled locals sets it (func_021243ac).

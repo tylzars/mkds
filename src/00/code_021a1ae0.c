@@ -457,9 +457,9 @@ u32 func_ov000_021a2768(u32 param_1) {
     i = 0;
     do {
         p = data_ov000_021b566c;
-        r = func_ov000_021a4a08((Unk021a4a08 **) &data_ov000_021b566c->mUnk_10, func_ov000_021988d8(*p->mUnk_04),
-                                func_ov000_021988e4(*p->mUnk_04), (const u8 *) p->mUnk_2dc, (const u8 *) p->mUnk_2e0, 1,
-                                1, (Unk021a4a08Func88) func_ov000_0219dee0, (Unk021a4a08Func8c) func_ov000_0219dedc,
+        r = func_ov000_021a4a08((Unk021a4a08 **) &data_ov000_021b566c->mUnk_10, GetSocketDescriptor(*p->mUnk_04),
+                                GetSocketPort(*p->mUnk_04), (const u8 *) p->mUnk_2dc, (const u8 *) p->mUnk_2e0, 1, 1,
+                                (Unk021a4a08Func88) func_ov000_0219dee0, (Unk021a4a08Func8c) func_ov000_0219dedc,
                                 (Unk021a4a08Func8c) func_ov000_0219ded8, (Unk021a4a08Func94) func_ov000_0219de68,
                                 (Unk021a4a08Func98) func_ov000_0219de64, (Unk021a4a08Func9c) func_ov000_0219de5c, NULL);
         if (r == 0) {

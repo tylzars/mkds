@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk02197e8c Unk02197e8c;
+typedef struct Gt2Socket Gt2Socket;
 typedef struct Gt2Connection Gt2Connection;
 
 typedef struct Unk021990f8Entry {
@@ -15,5 +15,5 @@ typedef struct Unk021990f8Entry {
 
 BOOL func_ov000_0219903c(Gt2Connection *a, u32 b, int c, int *d);
 u32 func_ov000_021990f8(Gt2Connection *a, u16 b, s32 c);
-u32 func_ov000_0219914c(Unk02197e8c *a);
-u32 func_ov000_0219922c(Unk02197e8c *a, u32 b, u32 c);
+u32 func_ov000_0219914c(Gt2Socket *a);
+u32 func_ov000_0219922c(Gt2Socket *a, u32 b, u32 c);

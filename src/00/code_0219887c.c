@@ -3,7 +3,7 @@
 #include "00/unk_021b3000.h"
 #include "code_0213442c.h"
 
-u16 func_ov000_021988e4(void *a) {
+u16 GetSocketPort(void *a) {
     return *(u16 *) ((u8 *) a + 8);
 }
 
@@ -11,11 +11,11 @@ int func_ov000_021988dc(Gt2Connection *a) {
     return a->mSendBuffer.mSize - a->mSendBuffer.mLength;
 }
 
-u32 func_ov000_021988d8(u32 *a) {
+u32 GetSocketDescriptor(u32 *a) {
     return *a;
 }
 
-void func_ov000_021988d4(int a, u32 b) {
+void SetUnmatchedDataCallback(int a, u32 b) {
     *(u32 *) (a + 0x30) = b;
     return;
 }

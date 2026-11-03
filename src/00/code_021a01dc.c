@@ -200,7 +200,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             s.mUnk_02 = ((y >> 8) & 0xff) | ((y << 8) & 0xff00);
             data_ov000_021b566c->mUnk_18c[0] = 1;
             p = data_ov000_021b566c;
-            func_ov000_0219db18(0, func_ov000_021988d8(*p->mUnk_04), (s32) &s, p->mUnk_18c);
+            func_ov000_0219db18(0, GetSocketDescriptor(*p->mUnk_04), (s32) &s, p->mUnk_18c);
             data_ov000_021b566c->mUnk_184 = 0;
             break;
         case 7:

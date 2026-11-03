@@ -16,13 +16,13 @@
 #include "00/code_0219a430.h"
 #include "00/unk_021b3000.h"
 
-u32 func_ov000_021992d4(Unk02197e8c *a, u8 *b, s32 c, u32 d, u32 e) {
+u32 func_ov000_021992d4(Gt2Socket *a, u8 *b, s32 c, u32 d, u32 e) {
     Gt2Connection *f;
     Gt2Connection *k;
     s32 g;
     BOOL h;
     s32 i;
-    f = func_ov000_0219a5b0(a, d, e);
+    f = FindConnection(a, d, e);
     if (a->mUnk_2c != NULL) {
         if (func_ov000_02197f28(a, (s32) f, d, e, 0, (s32) b, c, 0) == 0) {
             return 0;
@@ -34,7 +34,7 @@ u32 func_ov000_021992d4(Unk02197e8c *a, u8 *b, s32 c, u32 d, u32 e) {
         h = FALSE;
     }
     if (f == NULL) {
-        if (func_ov000_02197e8c(a, d, e, b, c, &g) == 0) {
+        if (CallUnmatchedDataCallback(a, d, e, b, c, &g) == 0) {
             return 0;
         }
         if (g != 0) {
@@ -48,7 +48,7 @@ u32 func_ov000_021992d4(Unk02197e8c *a, u8 *b, s32 c, u32 d, u32 e) {
             }
             return 1;
         } else {
-            if (a->mUnk_20 == NULL) {
+            if (a->mIncomingConnectionCallback == NULL) {
                 return 1;
             }
             i = func_ov000_0219883c(a, &f, d, e);

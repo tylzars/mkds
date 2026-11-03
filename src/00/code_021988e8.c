@@ -14,8 +14,8 @@
 #include "00/code_02198748.h"
 #include "00/code_02198a8c.h"
 
-void func_ov000_021988e8(Unk02197e8c *a) {
-    func_ov000_0218dddc(a->mUnk_0c, (void (*)(void *, void *)) func_ov000_021988fc, NULL);
+void func_ov000_021988e8(Gt2Socket *a) {
+    func_ov000_0218dddc(a->mConnections, (void (*)(void *, void *)) func_ov000_021988fc, NULL);
 }
 
 void func_ov000_021988fc(Gt2Connection **a) {

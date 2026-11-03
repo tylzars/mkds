@@ -179,7 +179,7 @@ u32 func_ov000_02199bb4(u32 *b, int c, int d) {
         }
         return 0;
     }
-    if (a->mSocket->mUnk_20 == NULL) {
+    if (a->mSocket->mIncomingConnectionCallback == NULL) {
         if (func_ov000_02198b8c(a) == 0) {
             return 0;
         }
@@ -187,8 +187,8 @@ u32 func_ov000_02199bb4(u32 *b, int c, int d) {
         return 1;
     }
     a->mUnk_0c = 4;
-    if (func_ov000_02198394(a->mSocket, a, a->mAddress, a->mPort, func_ov000_0218e8c4() - a->mUnk_8c, c + 0x20,
-                            d - 0x20) != 0) {
+    if (CallIncomingConnectionCallback(a->mSocket, a, a->mAddress, a->mPort, func_ov000_0218e8c4() - a->mUnk_8c,
+                                       c + 0x20, d - 0x20) != 0) {
         return 1;
     }
     return 0;

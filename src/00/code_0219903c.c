@@ -26,10 +26,10 @@
 #include "00/code_0219a044.h"
 #include "00/code_0218e8c4.h"
 
-u32 func_ov000_0219922c(Unk02197e8c *a, u32 b, u32 c) {
+u32 func_ov000_0219922c(Gt2Socket *a, u32 b, u32 c) {
     int v1;
     int v2;
-    v1 = (s32) func_ov000_0219a5b0(a, b, c);
+    v1 = (s32) FindConnection(a, b, c);
     if (a->mUnk_2c != NULL) {
         v2 = func_ov000_02197f28(a, v1, b, c, 1, 0, 0, 0);
         if (v2 == 0) {
@@ -64,17 +64,17 @@ typedef struct Unk0219914cHeader {
     /* 4 */ u32 mUnk_04;
 } Unk0219914cHeader;
 
-u32 func_ov000_0219914c(Unk02197e8c *a) {
+u32 func_ov000_0219914c(Gt2Socket *a) {
     Unk0219914cHeader h;
     u8 v1[0x5dc];
     s32 n;
     s32 r;
     u32 e;
-    while (func_ov000_0218e668(a->mUnk_00) != 0) {
+    while (func_ov000_0218e668(a->mDescriptor) != 0) {
         n = 8;
-        r = func_ov000_0218e438(a->mUnk_00, v1, 0x5dc, 0, (u8 *) &h, &n);
+        r = func_ov000_0218e438(a->mDescriptor, v1, 0x5dc, 0, (u8 *) &h, &n);
         if (r == -1) {
-            e = func_ov000_0218e368(a->mUnk_00);
+            e = func_ov000_0218e368(a->mDescriptor);
             if (e == -15) {
                 if (func_ov000_0219922c(a, h.mUnk_04,
                                         (u16) (((h.mUnk_02 >> 8) & 0xff) | ((h.mUnk_02 << 8) & 0xff00))) == 0) {

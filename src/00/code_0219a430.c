@@ -32,22 +32,22 @@ void func_ov000_0219a5dc(Gt2Connection **a) {
     func_ov000_021984b4(*a);
 }
 
-Gt2Connection *func_ov000_0219a5b0(Unk02197e8c *a, u32 b, u32 c) {
+Gt2Connection *FindConnection(Gt2Socket *a, u32 b, u32 c) {
     Gt2Connection d;
     Gt2Connection *e;
     void *f;
     d.mAddress = b;
     d.mPort = c;
     e = &d;
-    f = func_ov000_0218de28(a->mUnk_0c, &e);
+    f = func_ov000_0218de28(a->mConnections, &e);
     if (f != NULL) {
         return *(Gt2Connection **) f;
     }
     return NULL;
 }
 
-u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
-    Unk02197e8c *f;
+u32 CreateSocket(Gt2Socket **a, const u8 *b, u32 c, u32 d, u32 e) {
+    Gt2Socket *f;
     u16 i;
     Unk0219a430Addr g;
     u32 h;
@@ -68,26 +68,26 @@ u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
         return 1;
     }
     memset(f, 0, 0x44);
-    f->mUnk_00 = -1;
+    f->mDescriptor = -1;
     f->mUnk_3c = d;
-    f->mUnk_38 = c;
-    f->mUnk_24 = (void (*)(Unk02197e8c *)) e;
-    f->mUnk_0c = func_ov000_0218e004(4, 0x20, 2, (s32(*)(void *, s32)) & func_ov000_0219a604,
-                                     (s32(*)(void *, void *)) & func_ov000_0219a5e8, NULL);
-    if (f->mUnk_0c == NULL) {
+    f->mSendBufferSize = c;
+    f->mUnk_24 = (void (*)(Gt2Socket *)) e;
+    f->mConnections = func_ov000_0218e004(4, 0x20, 2, (s32(*)(void *, s32)) & func_ov000_0219a604,
+                                          (s32(*)(void *, void *)) & func_ov000_0219a5e8, NULL);
+    if (f->mConnections == NULL) {
         func_ov000_021a3668(f);
         return 1;
     }
-    f->mUnk_10 = (void *) func_ov000_0218dc94(4, 4, (void (*)(void *)) & func_ov000_0219a5dc);
-    if (f->mUnk_10 == NULL) {
-        func_ov000_0218dfb4(f->mUnk_0c);
+    f->mConnectionsToFree = (void *) func_ov000_0218dc94(4, 4, (void (*)(void *)) & func_ov000_0219a5dc);
+    if (f->mConnectionsToFree == NULL) {
+        func_ov000_0218dfb4(f->mConnections);
         func_ov000_021a3668(f);
         return 1;
     }
-    f->mUnk_00 = func_ov000_0218e554(2, 2, 0);
-    if (f->mUnk_00 == -1) {
-        func_ov000_0218dfb4(f->mUnk_0c);
-        func_ov000_0218dc48(f->mUnk_10);
+    f->mDescriptor = func_ov000_0218e554(2, 2, 0);
+    if (f->mDescriptor == -1) {
+        func_ov000_0218dfb4(f->mConnections);
+        func_ov000_0218dc48(f->mConnectionsToFree);
         func_ov000_021a3668(f);
         return 3;
     }
@@ -97,17 +97,17 @@ u32 func_ov000_0219a430(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {
     g.mUnk_01 = 2;
     g.mUnk_04 = h;
     g.mUnk_02 = ((i >> 8) & 0xff) | ((i << 8) & 0xff00);
-    if (func_ov000_0218e4e4(f->mUnk_00, &g, 8) == -1) {
-        func_ov000_0218e53c(f->mUnk_00);
-        func_ov000_0218dfb4(f->mUnk_0c);
-        func_ov000_0218dc48(f->mUnk_10);
+    if (func_ov000_0218e4e4(f->mDescriptor, &g, 8) == -1) {
+        func_ov000_0218e53c(f->mDescriptor);
+        func_ov000_0218dfb4(f->mConnections);
+        func_ov000_0218dc48(f->mConnectionsToFree);
         func_ov000_021a3668(f);
         return 3;
     }
     j = 8;
-    func_ov000_0218e394(f->mUnk_00, &g, (u32 *) &j);
-    f->mUnk_04 = g.mUnk_04;
-    f->mUnk_08 = ((g.mUnk_02 >> 8) & 0xff) | ((g.mUnk_02 << 8) & 0xff00);
+    func_ov000_0218e394(f->mDescriptor, &g, (u32 *) &j);
+    f->mAddress = g.mUnk_04;
+    f->mPort = ((g.mUnk_02 >> 8) & 0xff) | ((g.mUnk_02 << 8) & 0xff00);
     *a = f;
     return 0;
 }

@@ -14,12 +14,12 @@ BOOL func_ov000_02198148(Gt2Connection *a, s32 b) {
         return TRUE;
     }
     a->mUnk_24++;
-    a->mSocket->mUnk_1c++;
+    a->mSocket->mRunningCallbackCount++;
     a->mCallbacks.mElapsedTimeCallback(a, b);
     a->mUnk_24--;
-    a->mSocket->mUnk_1c--;
-    if (a->mSocket->mUnk_14 != 0 && a->mSocket->mUnk_1c == 0) {
-        func_ov000_0219a3f8(a->mSocket);
+    a->mSocket->mRunningCallbackCount--;
+    if (a->mSocket->mDeletePending != 0 && a->mSocket->mRunningCallbackCount == 0) {
+        DeleteSocket(a->mSocket);
         return FALSE;
     }
     return TRUE;
@@ -42,12 +42,12 @@ BOOL func_ov000_02198098(Gt2Connection *a, s32 b, s32 c, void *d, s32 e) {
         d = NULL;
     }
     a->mUnk_24++;
-    a->mSocket->mUnk_1c++;
+    a->mSocket->mRunningCallbackCount++;
     f->mUnk_00(a, b, c, d, e);
     a->mUnk_24--;
-    a->mSocket->mUnk_1c--;
-    if (a->mSocket->mUnk_14 != 0 && a->mSocket->mUnk_1c == 0) {
-        func_ov000_0219a3f8(a->mSocket);
+    a->mSocket->mRunningCallbackCount--;
+    if (a->mSocket->mDeletePending != 0 && a->mSocket->mRunningCallbackCount == 0) {
+        DeleteSocket(a->mSocket);
         return FALSE;
     }
     return TRUE;
@@ -70,18 +70,18 @@ BOOL func_ov000_02197fe8(Gt2Connection *a, s32 b, void *c, s32 d, s32 e) {
         d = 0;
     }
     a->mUnk_24++;
-    a->mSocket->mUnk_1c++;
+    a->mSocket->mRunningCallbackCount++;
     f->mUnk_00(a, b, c, d, e);
     a->mUnk_24--;
-    a->mSocket->mUnk_1c--;
-    if (a->mSocket->mUnk_14 != 0 && a->mSocket->mUnk_1c == 0) {
-        func_ov000_0219a3f8(a->mSocket);
+    a->mSocket->mRunningCallbackCount--;
+    if (a->mSocket->mDeletePending != 0 && a->mSocket->mRunningCallbackCount == 0) {
+        DeleteSocket(a->mSocket);
         return FALSE;
     }
     return TRUE;
 }
 
-u32 func_ov000_02197f28(Unk02197e8c *a, int e, u32 f, u32 g, u32 h, int l, int m, int n) {
+u32 func_ov000_02197f28(Gt2Socket *a, int e, u32 f, u32 g, u32 h, int l, int m, int n) {
     Gt2Connection *b = (Gt2Connection *) e;
     UnkWordFunc *c;
     if (a == NULL) {
@@ -91,7 +91,7 @@ u32 func_ov000_02197f28(Unk02197e8c *a, int e, u32 f, u32 g, u32 h, int l, int m
         return 1;
     }
     if (n != 0) {
-        c = a->mUnk_28;
+        c = a->mSentCallback;
     } else {
         c = a->mUnk_2c;
     }
@@ -102,23 +102,23 @@ u32 func_ov000_02197f28(Unk02197e8c *a, int e, u32 f, u32 g, u32 h, int l, int m
         l = 0;
         m = 0;
     }
-    a->mUnk_1c++;
+    a->mRunningCallbackCount++;
     if (b != NULL) {
         b->mUnk_24++;
     }
     c(a, b, f, g, h, l, m);
-    a->mUnk_1c--;
+    a->mRunningCallbackCount--;
     if (b != NULL) {
         b->mUnk_24--;
     }
-    if (a->mUnk_14 != 0 && a->mUnk_1c == 0) {
-        func_ov000_0219a3f8(a);
+    if (a->mDeletePending != 0 && a->mRunningCallbackCount == 0) {
+        DeleteSocket(a);
         return 0;
     }
     return 1;
 }
 
-BOOL func_ov000_02197e8c(Unk02197e8c *a, s32 b, s32 c, void *d, s32 e, s32 *f) {
+BOOL CallUnmatchedDataCallback(Gt2Socket *a, s32 b, s32 c, void *d, s32 e, s32 *f) {
     *f = 0;
     if (a == NULL) {
         func_0213442c(data_ov000_021b3f50, data_ov000_021b3f58, NULL, 0x197);
@@ -126,18 +126,18 @@ BOOL func_ov000_02197e8c(Unk02197e8c *a, s32 b, s32 c, void *d, s32 e, s32 *f) {
     if (a == NULL) {
         return TRUE;
     }
-    if (a->mUnk_30 == NULL) {
+    if (a->mUnmatchedDataCallback == NULL) {
         return TRUE;
     }
     if (e == 0 || d == NULL) {
         d = NULL;
         e = 0;
     }
-    a->mUnk_1c++;
-    *f = a->mUnk_30(a, b, c, d, e);
-    a->mUnk_1c--;
-    if (a->mUnk_14 != 0 && a->mUnk_1c == 0) {
-        func_ov000_0219a3f8(a);
+    a->mRunningCallbackCount++;
+    *f = a->mUnmatchedDataCallback(a, b, c, d, e);
+    a->mRunningCallbackCount--;
+    if (a->mDeletePending != 0 && a->mRunningCallbackCount == 0) {
+        DeleteSocket(a);
         return FALSE;
     }
     return TRUE;

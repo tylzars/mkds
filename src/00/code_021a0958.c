@@ -143,7 +143,7 @@ u32 func_ov000_021a0cac(s32 a, s32 b, u32 c) {
             data_ov000_021b566c->mUnk_194 = b;
         } else {
             t[0] = func_ov000_021a8ed4();
-            t[1] = func_ov000_021988e4(*data_ov000_021b566c->mUnk_04);
+            t[1] = GetSocketPort(*data_ov000_021b566c->mUnk_04);
             r = func_ov000_021a0ae8(6, data_ov000_021b566c->mUnk_f4[k], func_ov000_0218b27c((u32 *) c),
                                     func_ov000_0218b260(c), t, 2);
             data_ov000_021b566c->mUnk_3b5 = 0;
@@ -167,7 +167,7 @@ u32 func_ov000_021a0cac(s32 a, s32 b, u32 c) {
     if (x != FALSE) {
         v2 = func_ov000_021a0c30((Unk021a0c30 *) data_ov000_021b566c->mUnk_18c);
     } else {
-        func_ov000_0219db18(0, func_ov000_021988d8(*data_ov000_021b566c->mUnk_04), 0, data_ov000_021b566c->mUnk_18c);
+        func_ov000_0219db18(0, GetSocketDescriptor(*data_ov000_021b566c->mUnk_04), 0, data_ov000_021b566c->mUnk_18c);
         data_ov000_021b566c->mUnk_184 = 0;
     }
     return v2;
@@ -184,7 +184,7 @@ u32 func_ov000_021a0c30(Unk021a0c30 *a) {
         }
     }
     for (i = 0; i < 5; i++) {
-        r = func_ov000_0219ac7c(func_ov000_021988d8(*data_ov000_021b566c->mUnk_04), a->mUnk_08, a->mUnk_00,
+        r = func_ov000_0219ac7c(GetSocketDescriptor(*data_ov000_021b566c->mUnk_04), a->mUnk_08, a->mUnk_00,
                                 (void (*)(s32, void *)) func_ov000_0219dd48,
                                 (void (*)(s32, s32, void *, void *)) func_ov000_0219db18, a);
         if (r == 0 || r != 3) {
