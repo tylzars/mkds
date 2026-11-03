@@ -1,5 +1,6 @@
 #include "Main/Unknown/code_020d3c94.h"
 #include "Main/Unknown/code_0210a67c.h"
+#include "Main/Unknown/code_0210bcf4.h"
 
 #include "Main/Unknown/code_020d3000.h"
 #include "Main/Unknown/code_021059e0.h"
@@ -74,24 +75,24 @@ void func_0210b610(void) {
     data_0217ccb4 = (s32) (d >> 12) >> 12;
 }
 
-void func_0210b564(int a, int b, u32 c, u32 d, u32 e) {
+void func_0210b564(Unk0210bfbc *a, int b, u32 c, u32 d, u32 e) {
     int v1;
-    if ((*(u16 *) (a + 0x34) & 1) == 0) {
+    if ((a->mUnk_34 & 1) == 0) {
         return;
     }
     if (b == 2) {
         if (((u32) 0x00009c40u) < e) {
-            func_021090c4((void *) ((void *) a), 0x70, 0x7f, 0);
+            func_021090c4(a, 0x70, 0x7f, 0);
             return;
         }
         if (e != 0) {
-            func_021090c4((void *) ((void *) a), 0x6f, 0x7f, 0);
+            func_021090c4(a, 0x6f, 0x7f, 0);
             return;
         }
     }
     v1 = func_0210bb74(b, c, d);
     if (v1 != 0xffff) {
-        func_021090c4(((void *) a), v1, 0x7f, 0);
+        func_021090c4(a, v1, 0x7f, 0);
         return;
     }
 }

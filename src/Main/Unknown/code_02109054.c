@@ -2,7 +2,7 @@
 #include "Main/Unknown/code_0210c1b0.h"
 #include "Main/Unknown/unk_0217c000.h"
 
-Unk0210bf24 *func_021090c4(Unk0210bfbc *p, u32 a, u32 b, s32 c) {
+Unk0210bf24 *func_021090c4(Unk0210bfbc *p, u32 a, u32 b, s16 c) {
     if (!(data_0217c780 & 1)) {
         return NULL;
     }

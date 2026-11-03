@@ -332,33 +332,33 @@ void func_02129ea4(void) {
 #pragma thumb on
 
 void func_02129e78(void) {
-    int v1;
-    v1 = (s32) data_0217d400->mUnk_b4[data_0217d400->mUnk_04];
-    func_02016468((u32) 0x1b, (u32) 0, (void *) (v1 + 0xc), (u32) (*(u32 *) (v1 + 8)));
+    u8 *v1;
+    v1 = data_0217d400->mUnk_b4[data_0217d400->mUnk_04];
+    func_02016468((u32) 0x1b, (u32) 0, v1 + 0xc, (u32) (*(u32 *) (v1 + 8)));
 }
 
 void func_02129cbc(void) {
-    u32 v1;
-    int v2;
-    int v3[1];
-    v1 = ((s32) FindSceneFile(data_0216e940));
-    data_0217d400->mUnk_a4[0] = (Unk0201ea30 *) v1;
-    v1 = ((s32) FindSceneFile(data_0216e958));
-    data_0217d400->mUnk_9c[0] = (Unk0201ea30 *) v1;
-    v1 = ((s32) FindSceneFile(data_0216e970));
-    data_0217d400->mUnk_ac[0] = (void *) v1;
-    v1 = ((s32) FindSceneFile(data_0216e988));
-    data_0217d400->mUnk_a4[1] = (Unk0201ea30 *) v1;
-    v1 = ((s32) FindSceneFile(data_0216e998));
-    data_0217d400->mUnk_9c[1] = (Unk0201ea30 *) v1;
-    v1 = ((s32) FindSceneFile(data_0216e9a8));
-    data_0217d400->mUnk_ac[1] = (void *) v1;
-    v1 = ((s32) FindSceneFile(data_0216e9b8));
-    LoadNcgrData2(&data_0217d400->mUnk_94, (void *) v1);
-    v1 = ((s32) FindSceneFile(data_0216e9d0));
-    LoadNcerData(&data_0217d400->mUnk_90, (void *) v1);
-    v1 = ((s32) FindSceneFile(data_0216e9e8));
-    LoadNclrData(&data_0217d400->mUnk_98, (void *) v1);
+    void *v1;
+    Unk020b4934 *v2;
+    Unk020b4a44 *v3;
+    v1 = FindSceneFile(data_0216e940);
+    data_0217d400->mUnk_a4[0] = v1;
+    v1 = FindSceneFile(data_0216e958);
+    data_0217d400->mUnk_9c[0] = v1;
+    v1 = FindSceneFile(data_0216e970);
+    data_0217d400->mUnk_ac[0] = v1;
+    v1 = FindSceneFile(data_0216e988);
+    data_0217d400->mUnk_a4[1] = v1;
+    v1 = FindSceneFile(data_0216e998);
+    data_0217d400->mUnk_9c[1] = v1;
+    v1 = FindSceneFile(data_0216e9a8);
+    data_0217d400->mUnk_ac[1] = v1;
+    v1 = FindSceneFile(data_0216e9b8);
+    LoadNcgrData2(&data_0217d400->mUnk_94, v1);
+    v1 = FindSceneFile(data_0216e9d0);
+    LoadNcerData(&data_0217d400->mUnk_90, v1);
+    v1 = FindSceneFile(data_0216e9e8);
+    LoadNclrData(&data_0217d400->mUnk_98, v1);
     func_0200ee74(data_0217d400->mUnk_94->mUnk_14, data_0217d400->mUnk_94->mUnk_10);
     func_0214bf04((const void *) (data_0217d400->mUnk_94->mUnk_14), 0, (u32) (data_0217d400->mUnk_94->mUnk_10));
     func_0214bea4((const void *) (data_0217d400->mUnk_94->mUnk_14), 0, (u32) (data_0217d400->mUnk_94->mUnk_10));
@@ -366,18 +366,18 @@ void func_02129cbc(void) {
     func_0214c090((const void *) (data_0217d400->mUnk_98->mUnk_0c), 0, (u32) (((u32) 0x000001a0u)));
     func_0214c090((const void *) (&data_0217d400->mUnk_98->mUnk_0c[0xe0]), 0x1c0, (u32) 0x40);
     func_0214c028((const void *) (data_0217d400->mUnk_98->mUnk_0c), 0, (u32) (data_0217d400->mUnk_98->mUnk_08));
-    v1 = ((s32) FindSceneFile(data_0216e9fc));
-    LoadNcgrData((Unk020b4934 **) (&v2), (void *) v1);
-    func_0200ee74((const void *) (*(u32 *) (v2 + 0x14)), (*(u32 *) (v2 + 0x10)));
-    func_0214b824((const void *) (*(u32 *) (v2 + 0x14)), 0, (u32) (*(u32 *) (v2 + 0x10)));
-    v1 = ((int) FindSceneFile(data_0216ea14));
-    LoadNscrData((Unk020b47d8 **) &data_0217d400->mUnk_b4[0], (void *) v1);
-    v1 = ((int) FindSceneFile(data_0216ea30));
-    LoadNscrData((Unk020b47d8 **) &data_0217d400->mUnk_b4[1], (void *) v1);
-    v1 = ((int) FindSceneFile(data_0216ea4c));
-    LoadNclrData((Unk020b4a44 **) v3, (void *) v1);
-    func_0200ee74((const void *) (*(u32 *) (v3[0] + 0xc)), 0x80);
-    func_0214c0f8((const void *) (*(u32 *) (v3[0] + 0xc)), 0, (u32) 0x80);
+    v1 = FindSceneFile(data_0216e9fc);
+    LoadNcgrData(&v2, v1);
+    func_0200ee74(v2->mUnk_14, v2->mUnk_10);
+    func_0214b824(v2->mUnk_14, 0, v2->mUnk_10);
+    v1 = FindSceneFile(data_0216ea14);
+    LoadNscrData((Unk020b47d8 **) &data_0217d400->mUnk_b4[0], v1);
+    v1 = FindSceneFile(data_0216ea30);
+    LoadNscrData((Unk020b47d8 **) &data_0217d400->mUnk_b4[1], v1);
+    v1 = FindSceneFile(data_0216ea4c);
+    LoadNclrData(&v3, v1);
+    func_0200ee74(v3->mUnk_0c, 0x80);
+    func_0214c0f8(v3->mUnk_0c, 0, (u32) 0x80);
 }
 
 #pragma thumb off

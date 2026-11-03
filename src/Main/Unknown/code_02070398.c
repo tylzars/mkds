@@ -84,7 +84,7 @@ void func_02071980(void *p, int b) {
 }
 
 void func_02071958(Unk0206bcb0 *p, s32 b) {
-    func_0210b564((s32) p, b, p->mUnk_3e0, p->mUnk_3e4, p->mUnk_500);
+    func_0210b564(&p->mUnk_00, b, p->mUnk_3e0, p->mUnk_3e4, p->mUnk_500);
 }
 
 void func_02071944(void *p, int v1) {

@@ -156,9 +156,8 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
     p->x = (s32) (((s64) p->x * c) >> 12);
     p->y = (s32) (((s64) p->y * c) >> 12);
     p->z = (s32) (((s64) p->z * c) >> 12);
-    if (func_01ffdee4(q, (u32 *) &a->mUnk_000.mUnk_0e4, 0, a->mUnk_000.mUnk_dc, 0x24, a->mUnk_000.mUnk_da,
-                      &t, &u, (s32 *) &v, &a->mUnk_000.mUnk_fc, NULL, NULL, NULL,
-                      e) != 0) {
+    if (func_01ffdee4(q, &a->mUnk_000.mUnk_0e4, 0, a->mUnk_000.mUnk_dc, 0x24, a->mUnk_000.mUnk_da, &t, &u, (s32 *) &v,
+                      &a->mUnk_000.mUnk_fc, NULL, NULL, NULL, e) != 0) {
         func_02148504(&t, q, q);
         if (a->mUnk_000.mUnk_fc & 0x1e34ef) {
             n = a->mUnk_12c;

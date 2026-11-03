@@ -1,8 +1,8 @@
 #include "Main/Unknown/code_020f7c60.h"
 #include "Main/Unknown/code_02109054.h"
 
-u32 func_020f7c60(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
+void *func_020f7c60(Unk0210bfbc *arg0, u32 arg1) {
+    Unk0210bfbc *value0 = arg0;
     u32 value1 = arg1;
     u32 value2;
     u32 value3;
@@ -19,6 +19,5 @@ u32 func_020f7c60(u32 arg0, u32 arg1) {
     }
     value2 = 0x7fu;
     value3 = 0u;
-    value0 = (u32) func_021090c4((void *) value0, value1, value2, value3);
-    return value0;
+    return func_021090c4(value0, value1, value2, value3);
 }

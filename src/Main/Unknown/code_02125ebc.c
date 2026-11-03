@@ -282,15 +282,15 @@ void func_02126f78(u32 *b) {
 #pragma thumb on
 
 void func_02126ef8(void) {
-    int v1;
-    v1 = *(s32 *) &data_0217d3f0;
-    if (0 < *(s32 *) (v1 + 0x28)) {
-        func_02016468(0x1f, ((0xee - *(s32 *) (v1 + 0x2c)) * 2), (void *) (v1 + 0x2246), 2);
+    Unk0217d3f0 *v1;
+    v1 = data_0217d3f0;
+    if (0 < v1->mUnk_28) {
+        func_02016468(0x1f, ((0xee - v1->mUnk_2c) * 2), &v1->mUnk_2246, 2);
         func_02016468((u32) 0x1f, (u32) ((0xfe - data_0217d3f0->mUnk_2c) * 2), (void *) &data_0217d3f0->mUnk_2246,
                       (u32) 2);
-        v1 = *(s32 *) &data_0217d3f0;
-        if (*(s32 *) (v1 + 0x28) == 2) {
-            func_02016468(0x1f, ((*(s32 *) (v1 + 0x2c) + 0xed) * 2), (void *) (v1 + 0x2244), 2);
+        v1 = data_0217d3f0;
+        if (v1->mUnk_28 == 2) {
+            func_02016468(0x1f, ((v1->mUnk_2c + 0xed) * 2), &v1->mUnk_2244, 2);
             func_02016468((u32) 0x1f, (u32) ((data_0217d3f0->mUnk_2c + 0xfd) * 2), (void *) &data_0217d3f0->mUnk_2244,
                           (u32) 2);
         }
@@ -298,14 +298,12 @@ void func_02126ef8(void) {
 }
 
 void func_02126ea8(void) {
-    int v1;
     int v2;
-    v1 = 0x2244;
     if (0 < data_0217d3f0->mUnk_28) {
         v2 = 0;
         do {
-            func_02016468(0x1f, ((v2 + 0xed) * 2), (void *) (*(s32 *) &data_0217d3f0 + v1), 2);
-            func_02016468(0x1f, ((v2 + 0xfd) * 2), (void *) (*(s32 *) &data_0217d3f0 + v1), 2);
+            func_02016468(0x1f, ((v2 + 0xed) * 2), &data_0217d3f0->mUnk_2244, 2);
+            func_02016468(0x1f, ((v2 + 0xfd) * 2), &data_0217d3f0->mUnk_2244, 2);
             v2 = v2 + 1;
         } while (v2 < 2);
     }

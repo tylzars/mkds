@@ -43,15 +43,15 @@ void func_0211dd44(void) {
 
 void func_0211db90(void) {
     void *v1;
-    int v2;
-    int v3;
-    int v4[1];
-    v2 = 0;
-    v3 = 0;
-    v4[0] = 0;
+    Unk020b4934 *v2;
+    Unk020b4934 *v3;
+    Unk020b4a44 *v4;
+    v2 = NULL;
+    v3 = NULL;
+    v4 = NULL;
     if (data_0217d368->mUnk_2c == 3) {
         v1 = FindSceneFile(data_0216dc08);
-        LocateNcgr((Unk020b4934 **) (&v3), v1);
+        LocateNcgr(&v3, v1);
         v1 = FindSceneFile(data_0216dbdc);
         LocateNscr((Unk020b47d8 **) &data_0217d368->mUnk_20, v1);
         v1 = FindSceneFile(data_0216dbe0);
@@ -62,7 +62,7 @@ void func_0211db90(void) {
         data_0217d368->mUnk_0c = v1;
     } else {
         v1 = FindSceneFile(data_0216dbe4);
-        LocateNcgr((Unk020b4934 **) (&v3), v1);
+        LocateNcgr(&v3, v1);
         v1 = FindSceneFile(data_0216dbf0);
         LocateNscr((Unk020b47d8 **) &data_0217d368->mUnk_20, v1);
         v1 = FindSceneFile(data_0216dbf4);
@@ -73,21 +73,21 @@ void func_0211db90(void) {
         data_0217d368->mUnk_0c = v1;
     }
     v1 = FindSceneFile(data_0216dbd8);
-    LocateNclr((Unk020b4a44 **) v4, v1);
+    LocateNclr(&v4, v1);
     v1 = func_02036bec((void *) data_0217d368->mUnk_28, (u32) (((u32) 0x00000800u)));
     data_0217d368->mUnk_24 = v1;
     v1 = FindSceneFile(data_0216dbf8);
-    LocateNcgr2((Unk020b4934 **) (&v2), v1);
+    LocateNcgr2(&v2, v1);
     v1 = FindSceneFile(data_0216dc04);
     LocateNcer(&data_0217d368->mUnk_00, v1);
     v1 = FindSceneFile(data_0216dbec);
     LocateNclr((Unk020b4a44 **) &data_0217d368->mUnk_10, v1);
-    func_02016468((u32) 0x14, (u32) 0, (void *) (*(u32 *) (v3 + 0x14)), (u32) (*(u32 *) (v3 + 0x10)));
+    func_02016468((u32) 0x14, (u32) 0, v3->mUnk_14, v3->mUnk_10);
     func_02016468((u32) 0x1b, (u32) 0, (void *) &data_0217d368->mUnk_20->mUnk_0c,
                   (*(u32 *) ((s32) data_0217d368->mUnk_20 + 8)));
     func_02016468((u32) 0x1b, (u32) (((u32) 0x00000800u)), data_0217d368->mUnk_24, (u32) (((u32) 0x00000800u)));
-    func_02016468((u32) 0x1f, (u32) 0, (void *) (*(u32 *) (v4[0] + 0xc)), (u32) 0x80);
-    func_02016468((u32) 0x23, (u32) 0, (void *) (*(u32 *) (v2 + 0x14)), (u32) (*(u32 *) (v2 + 0x10)));
+    func_02016468((u32) 0x1f, (u32) 0, v4->mUnk_0c, (u32) 0x80);
+    func_02016468((u32) 0x23, (u32) 0, v2->mUnk_14, v2->mUnk_10);
     func_02016468(0x1e, 0, (void *) (*(u32 *) (data_0217d368->mUnk_10 + 0xc)), (*(u32 *) (data_0217d368->mUnk_10 + 8)));
 }
 

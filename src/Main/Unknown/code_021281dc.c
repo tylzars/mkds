@@ -296,7 +296,7 @@ int func_0212825c(int a) {
     if (10 <= a) {
         a = 9;
     }
-    return *(s8 *) ((data_0215d0c0) + a);
+    return data_0215d0c0[a];
 }
 
 int func_02128244(int a) {
@@ -306,7 +306,7 @@ int func_02128244(int a) {
     if (10 <= a) {
         a = 9;
     }
-    return *(s8 *) ((data_0215d0cc) + a);
+    return data_0215d0cc[a];
 }
 
 #pragma thumb off

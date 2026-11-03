@@ -48,8 +48,8 @@ void func_020fcce4(Unk020fc2e8 *p0, s32 a, s32 b) {
     if (f == 0) {
         return;
     }
-    if (func_01ffdee4(v1, (u32 *) &p0->mUnk_000.mUnk_0e4, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mUnk_da, &v, NULL,
-                      NULL, NULL, NULL, NULL, NULL, NULL) == 0) {
+    if (func_01ffdee4(v1, &p0->mUnk_000.mUnk_0e4, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mUnk_da, &v, NULL, NULL,
+                      NULL, NULL, NULL, NULL, NULL) == 0) {
         return;
     }
     func_02148504(v1, &v, v1);

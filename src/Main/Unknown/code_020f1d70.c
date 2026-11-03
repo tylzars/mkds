@@ -190,8 +190,8 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
     p = &a->mUnk_000.mUnk_5c;
     r = &a->mUnk_130;
     func_02148504((const Vec3 *) p, q, q);
-    n = func_01ffdee4(q, (u32 *) &a->mUnk_000.mUnk_0e4, 0, a->mUnk_000.mUnk_dc, a->mUnk_164, a->mUnk_000.mUnk_da, &v1,
-                      &v2, (s32 *) &v3, &a->mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL);
+    n = func_01ffdee4(q, &a->mUnk_000.mUnk_0e4, 0, a->mUnk_000.mUnk_dc, a->mUnk_164, a->mUnk_000.mUnk_da, &v1, &v2,
+                      (s32 *) &v3, &a->mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL);
     if (n != 0) {
         f = a->mUnk_000.mUnk_fc & 0x80000;
         if (a->mUnk_158 != 0) {

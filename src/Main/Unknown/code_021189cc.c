@@ -6,14 +6,11 @@
 
 void func_021189cc(void) {
     int v1;
-    int v2;
     u32 v3;
     v1 = 0;
-    v2 = 0;
     do {
         v3 = func_021189f4(v1);
-        *(u32 *) (*(s32 *) &data_0217d360 + v2 + 0x48) = v3;
-        v2 = v2 + 4;
+        data_0217d360->mUnk_48[v1] = v3;
         v1 = v1 + 1;
     } while (v1 < 8);
 }

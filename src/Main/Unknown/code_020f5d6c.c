@@ -220,8 +220,8 @@ void func_020f63cc(Unk020f41c4_A *a) {
     func_02148504(p, q, q);
     a->mUnk_5c.x = (s32) (((s64) a->mUnk_5c.x * 0xfec) >> 12);
     p->z = (s32) (((s64) p->z * 0xfec) >> 12);
-    if (func_01ffdee4(q, (u32 *) &a->mUnk_0e4, 0, a->mUnk_dc, 0x44, a->mUnk_da, &v1, &v2, (s32 *) &v3, &a->mUnk_fc,
-                      NULL, NULL, NULL, &w) != 0) {
+    if (func_01ffdee4(q, &a->mUnk_0e4, 0, a->mUnk_dc, 0x44, a->mUnk_da, &v1, &v2, (s32 *) &v3, &a->mUnk_fc, NULL, NULL,
+                      NULL, &w) != 0) {
         func_02148504(&v1, q, q);
         if (a->mUnk_fc & 0x1e34ef) {
             func_020f9334(a, q, p, 0x385, &v2);

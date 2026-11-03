@@ -52,8 +52,8 @@ void func_020fcf10(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     v2->y = (v2->y * (s32) e + t.y) >> f;
     v2->z = (v2->z * e + t.z) >> f;
     func_02148504(v2, v1, v1);
-    if (func_01ffdee4(v1, (u32 *) &p0->mUnk_000.mUnk_0e4, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mUnk_da,
-                      &t, NULL, NULL, NULL, NULL, NULL, NULL, NULL) == 0) {
+    if (func_01ffdee4(v1, &p0->mUnk_000.mUnk_0e4, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mUnk_da, &t, NULL, NULL,
+                      NULL, NULL, NULL, NULL, NULL) == 0) {
         return;
     }
     if ((p->mUnk_48 & 1) == 0) {

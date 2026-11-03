@@ -76,7 +76,7 @@ int func_0210b8bc(void *p, s32 b) {
     if (c > 0x1e) {
         c = 0x1e;
     }
-    return (s32) func_021090c4(p, 0x1ce, ((c * 2) + 0x3c) & 0xff, (s16) (c - 0xa));
+    return (s32) func_021090c4(p, 0x1ce, ((c * 2) + 0x3c) & 0xff, c - 0xa);
 }
 
 void func_0210b874(struct Unk020e71a0_94 *p, s32 b) {

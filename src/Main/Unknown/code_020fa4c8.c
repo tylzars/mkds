@@ -397,9 +397,8 @@ void func_020fb46c(Unk020fc2e8 *param_1) {
         Vec3 *pv;
 
         pv = &param_1->mUnk_000.mUnk_50;
-        if (func_01ffdee4(pv, (u32 *) &param_1->mUnk_000.mUnk_0e4, 0, param_1->mUnk_000.mUnk_dc, 4,
-                          param_1->mUnk_000.mUnk_da, &v, NULL, NULL, &param_1->mUnk_000.mUnk_fc, NULL, NULL, NULL,
-                          NULL) != 0) {
+        if (func_01ffdee4(pv, &param_1->mUnk_000.mUnk_0e4, 0, param_1->mUnk_000.mUnk_dc, 4, param_1->mUnk_000.mUnk_da,
+                          &v, NULL, NULL, &param_1->mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL) != 0) {
             func_02148504(&v, pv, pv);
             func_020f7104(&param_1->mUnk_000, 0);
             if (param_1->mUnk_000.mUnk_74 & 0x8000000) {

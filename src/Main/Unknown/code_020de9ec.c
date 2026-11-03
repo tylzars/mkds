@@ -30,15 +30,15 @@
 
 #pragma thumb on
 
-void func_020df428(int a, int b) {
-    func_020de6a8((Unk020de6a8 *) a, (Unk020de6a8_1 *) b);
-    if (*(s32 *) (a + 0xf8) != 0) {
-        *(u16 *) (a + 0x110) = (0x0000ffffu);
+void func_020df428(Unk020de6a8 *a, Unk020de6a8_1 *b) {
+    func_020de6a8(a, b);
+    if (a->mUnk_0f8 != 0) {
+        a->mUnk_108.mUnk_00.mUnk_08 = (0x0000ffffu);
         return;
     }
-    func_020d7d4c((Unk020d84e4 *) (a + 0x108), (Unk020fa294 *) b, *&data_02158908, *(s16 *) (b + 0x28));
-    func_020d859c((Unk020d84e4 *) (a + 0x108), *(u16 *) (b + 0x30), 1);
-    func_020d8c74((Unk020e0144 *) (a + 0x108), (Vec3 *) (a + 4));
+    func_020d7d4c(&a->mUnk_108, (Unk020fa294 *) b, *&data_02158908, b->mUnk_28);
+    func_020d859c(&a->mUnk_108, b->mUnk_30, 1);
+    func_020d8c74(&a->mUnk_108.mUnk_00, &a->mUnk_000.mUnk_04);
 }
 
 #pragma thumb off

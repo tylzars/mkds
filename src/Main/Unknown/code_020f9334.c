@@ -260,8 +260,7 @@ void func_020f9334(void *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, Vec
     v.y = y;
     v.z = z;
 
-    func_01ffdee4(&v, (u32 *) param_2, 0, p->mUnk_dc >> 1, 0x24, p->mUnk_da, NULL, NULL, NULL, &a, NULL, NULL, NULL,
-                  NULL);
+    func_01ffdee4(&v, param_2, 0, p->mUnk_dc >> 1, 0x24, p->mUnk_da, NULL, NULL, NULL, &a, NULL, NULL, NULL, NULL);
     if ((a & 0x1e34ef) != 0 || (p->mUnk_fc & 0x80000) != 0) {
         if ((p->mUnk_74 & 0x4000000) != 0) {
             return;
