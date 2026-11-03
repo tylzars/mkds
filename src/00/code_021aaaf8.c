@@ -8,7 +8,7 @@
 #include "00/unk_021b6000.h"
 #include "code_02134d30.h"
 #include "code_0214d018.h"
-#include "code_0214d964.h"
+#include "code_0214d954.h"
 
 u32 func_ov000_021aaaf8(const u8 *a, s32 b, s32 c) {
     u32 i;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0214e6e4.h"
+#include "code_0214e308.h"
 
 typedef struct Unk021d299c {
     /* 00 */ u16 mUnk_00;

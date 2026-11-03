@@ -26,8 +26,8 @@
 #include "code_021488e8.h"
 #include "code_02148950.h"
 #include "code_0214a390.h"
-#include "code_0214d964.h"
-#include "code_0214e6e4.h"
+#include "code_0214d954.h"
+#include "code_0214e308.h"
 #include "code_021519d4.h"
 
 s32 func_ov003_021c2494(void *a, s32 b, u32 c) {

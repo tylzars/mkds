@@ -8,7 +8,6 @@
 #include "code_0200fc8c.h"
 #include "code_0200fd1c.h"
 #include "code_0214e308.h"
-#include "code_0214e6e4.h"
 
 void func_ov003_021d2dfc(void) {
     u16 a;

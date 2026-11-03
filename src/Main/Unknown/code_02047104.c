@@ -12,7 +12,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_020176c0.h"
 #include "code_020182c0.h"
-#include "code_0214e6e4.h"
+#include "code_0214e308.h"
 
 void func_02047104(void *a) {
     data_021759c4 = HeapAlloc(a, 0x40);
