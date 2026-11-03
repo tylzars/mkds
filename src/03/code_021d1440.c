@@ -9,15 +9,13 @@
 #include "03/code_021d27d8.h"
 #include "03/unk_021d7bd4.h"
 #include "code_02004d80.h"
-#include "code_02004270.h"
+#include "code_02003be0.h"
 #include "code_02134d30.h"
 #include "code_02139f70.h"
 #include "code_0214d018.h"
 #include "code_0200fd1c.h"
-#include "code_02003be0.h"
 #include "03/code_021d1d60.h"
 #include "03/unk_021d67d8.h"
-#include "code_02004238.h"
 #include "code_0200cd1c.h"
 #include "code_0200d118.h"
 #include "code_0214578c.h"
@@ -86,8 +84,7 @@ s32 func_ov003_021d15a4(Unk02003024 *a, u32 b) {
 }
 
 u32 func_ov003_021d1574(int a, u32 b, int c, u32 d) {
-    func_021461d8(0xffffffff, (c + *(s32 *) (a + 0x28)), b, d,
-                  (UnkFunc *) (&func_ov003_021d1568), (u32) (a), 1);
+    func_021461d8(0xffffffff, (c + *(s32 *) (a + 0x28)), b, d, (UnkFunc *) (&func_ov003_021d1568), (u32) (a), 1);
     return 6;
 }
 

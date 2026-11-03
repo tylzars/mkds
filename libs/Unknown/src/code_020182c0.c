@@ -1,8 +1,6 @@
 #include "code_020182c0.h"
 #include "code_02004d80.h"
-#include "code_02004238.h"
 #include "code_02003be0.h"
-#include "code_02004270.h"
 #include "code_02139f70.h"
 
 u32 func_020184a0(Unk02018344 *a) {

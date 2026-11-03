@@ -67,33 +67,14 @@ src/Main/Unknown/code_02003000.c:
 // provisional: file name and boundaries
 libs/Unknown/src/code_02003024.c:
     complete
-    .text       start:0x02003024 end:0x0200320c
-
-// provisional: file name and boundaries
-libs/Unknown/src/code_0200320c.c:
-    complete
-    .text       start:0x0200320c end:0x02003234
-
-// provisional: file name and boundaries
-libs/Unknown/src/code_02003234.c:
-    complete
-    .text       start:0x02003234 end:0x02003be0
+    .text       start:0x02003024 end:0x02003be0
     .data       start:0x02161760 end:0x02161764
 
 // provisional: file name and boundaries
 libs/Unknown/src/code_02003be0.c:
     complete
-    .text       start:0x02003be0 end:0x02004238
-
-// provisional: file name and boundaries
-libs/Unknown/src/code_02004238.c:
-    complete
-    .text       start:0x02004238 end:0x02004270
-
-// provisional: file name and boundaries
-libs/Unknown/src/code_02004270.c:
-    complete
-    .text       start:0x02004270 end:0x02004d80
+    .text       start:0x02003be0 end:0x02004d80
+    .bss        start:0x0216f320 end:0x0216f330
 
 // provisional: file name and boundaries
 libs/Unknown/src/code_02004d80.c:
