@@ -17,22 +17,22 @@ void func_ov001_02184874(Unk02188950 *d, Unk0206bcb0 *e) {
 
     if ((func_0207a974(e->mIndex)->mUnk_48 & 0x20) && e->mUnk_238 > 0) {
         if (func_ov001_021871f8(d, 8)) {
-            if (d->mUnk_0a0->mUnk_1dc > 0 || d->mUnk_0a0->mUnk_1e0 > 0) {
+            if (d->mPrm->mUnk_1dc > 0 || d->mPrm->mUnk_1e0 > 0) {
                 Vec3 a = {0, 0, 0};
                 a.x = e->mUnk_a4.x;
                 a.z = e->mUnk_a4.z;
                 if ((s64) a.z * a.z + ((s64) a.x * a.x + (s64) a.y * a.y) >= 0x10) {
                     func_02039860(&a, &a);
                 }
-                scale = d->mUnk_0a0->mUnk_1e0;
+                scale = d->mPrm->mUnk_1e0;
                 a.x = (s32) (((s64) a.x * scale) >> 12);
                 a.y = (s32) (((s64) a.y * scale) >> 12);
                 a.z = (s32) (((s64) a.z * scale) >> 12);
-                a.y = d->mUnk_0a0->mUnk_1dc;
+                a.y = d->mPrm->mUnk_1dc;
                 func_ov001_02187218(d, 7, NULL);
-                func_ov001_02188d64(d, (s32) (d->mUnk_0a0->mUnk_1d4), (s32) (d->mUnk_0a0->mUnk_1d8));
-                func_ov001_02188a8c(d, d->mUnk_0a0->mUnk_1e4, 0x270f000);
-                func_ov001_02188950(d, &a);
+                func_ov001_02188d64(d, (s32) (d->mPrm->mUnk_1d4), (s32) (d->mPrm->mUnk_1d8));
+                func_ov001_02188a8c(d, d->mPrm->mUnk_1e4, 0x270f000);
+                SetVelocity(d, &a);
                 func_ov001_02188dcc(d, func_ov001_02184d70);
                 func_ov001_02188cec(d, 0);
             }
@@ -66,22 +66,22 @@ void func_ov001_02184874(Unk02188950 *d, Unk0206bcb0 *e) {
             }
         }
     } else if (func_ov001_021871f8(d, 7)) {
-        if (d->mUnk_0a0->mUnk_1c4 > 0 || d->mUnk_0a0->mUnk_1c8 > 0) {
+        if (d->mPrm->mUnk_1c4 > 0 || d->mPrm->mUnk_1c8 > 0) {
             Vec3 c = {0, 0, 0};
             c.x = e->mUnk_a4.x;
             c.z = e->mUnk_a4.z;
             if ((s64) c.z * c.z + ((s64) c.x * c.x + (s64) c.y * c.y) >= 0x10) {
                 func_02039860(&c, &c);
             }
-            scale = d->mUnk_0a0->mUnk_1c8;
+            scale = d->mPrm->mUnk_1c8;
             c.x = (s32) (((s64) c.x * scale) >> 12);
             c.y = (s32) (((s64) c.y * scale) >> 12);
             c.z = (s32) (((s64) c.z * scale) >> 12);
-            c.y = d->mUnk_0a0->mUnk_1c4;
+            c.y = d->mPrm->mUnk_1c4;
             func_ov001_02187218(d, 7, NULL);
-            func_ov001_02188d64(d, (s32) (d->mUnk_0a0->mUnk_1bc), (s32) (d->mUnk_0a0->mUnk_1c0));
-            func_ov001_02188a8c(d, d->mUnk_0a0->mUnk_1cc, 0x270f000);
-            func_ov001_02188950(d, &c);
+            func_ov001_02188d64(d, (s32) (d->mPrm->mUnk_1bc), (s32) (d->mPrm->mUnk_1c0));
+            func_ov001_02188a8c(d, d->mPrm->mUnk_1cc, 0x270f000);
+            SetVelocity(d, &c);
             func_ov001_02188dcc(d, NULL);
             func_ov001_02188cec(d, 0);
         }

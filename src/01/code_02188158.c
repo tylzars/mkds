@@ -14,7 +14,7 @@ void func_ov001_021881f4(Unk02188950 *a, UnkFunc *b) {
 
 BOOL func_ov001_021881a8(Unk02188950 *a, Vec3 *b, s32 c, s32 d) {
     if ((c != 0 || d != 0) && (c == 0 || func_ov001_02188f04(a, b, c) != 0) &&
-        (d == 0 || func_ov001_02188eac(a, a->mUnk_1a8, b, d) != 0)) {
+        (d == 0 || func_ov001_02188eac(a, a->mMoveAngle, b, d) != 0)) {
         return TRUE;
     }
     return FALSE;

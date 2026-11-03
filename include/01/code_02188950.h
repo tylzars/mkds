@@ -184,9 +184,9 @@ typedef struct Unk02188950_a0 {
 } Unk02188950_a0;
 
 typedef struct Unk02188950_bc {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ Vec3 mUnk_08;
+    /* 00 */ s32 mKind;
+    /* 04 */ s32 mTimer;
+    /* 08 */ Vec3 mOffset;
     /* 14 */ void *mUnk_14;
 } Unk02188950_bc;
 
@@ -199,7 +199,7 @@ typedef struct Unk02188950_300 {
 // Layout provisional: functions on objects that share this prefix use different types at 0xa0 and 0xa8.
 typedef struct Unk02188950 {
     /* 000 */ MapObject mUnk_000;
-    /* 0a0 */ Unk02188950_a0 *mUnk_0a0;
+    /* 0a0 */ Unk02188950_a0 *mPrm;
     /* 0a4 */ struct Unk0218dabc *mUnk_0a4;
     /* 0a8 */ s32 mUnk_0a8;
     /* 0ac */ s32 mUnk_0ac;
@@ -223,24 +223,24 @@ typedef struct Unk02188950 {
     /* 168 */ s32 mUnk_168;
     /* 16c */ s32 mUnk_16c;
     /* 170 */ s32 mUnk_170;
-    /* 174 */ s32 mUnk_174;
+    /* 174 */ s32 mSpeed;
     /* 178 */ s32 mUnk_178;
     /* 17c */ s32 mUnk_17c;
-    /* 180 */ s32 mUnk_180;
-    /* 184 */ s32 mUnk_184;
-    /* 188 */ Vec3 mUnk_188;
+    /* 180 */ s32 mAngleState;
+    /* 184 */ s32 mAngle;
+    /* 188 */ Vec3 mAnglePoint;
     /* 194 */ s32 mUnk_194;
     /* 198 */ s32 mUnk_198;
     /* 19c */ s32 mUnk_19c;
     /* 1a0 */ s32 mUnk_1a0;
-    /* 1a4 */ s32 mUnk_1a4;
-    /* 1a8 */ s32 mUnk_1a8;
-    /* 1ac */ Vec3 mUnk_1ac;
+    /* 1a4 */ s32 mMoveAngleMode;
+    /* 1a8 */ s32 mMoveAngle;
+    /* 1ac */ Vec3 mMoveAnglePoint;
     /* 1b8 */ s32 mUnk_1b8;
     /* 1bc */ s32 mUnk_1bc;
     /* 1c0 */ s32 mUnk_1c0;
     /* 1c4 */ s32 mUnk_1c4;
-    /* 1c8 */ Vec3 mUnk_1c8;
+    /* 1c8 */ Vec3 mVelocity;
     /* 1d4 */ UnkFunc *mUnk_1d4;
     /* 1d8 */ s32 mUnk_1d8;
     /* 1dc */ UnkFunc *mUnk_1dc;
@@ -298,7 +298,7 @@ typedef struct Unk02188950 {
     /* 2c4 */ s32 mUnk_2c4;
     /* 2c8 */ u32 mUnk_2c8;
     /* 2cc */ u8 mUnk_2cc[0x4];
-    /* 2d0 */ s32 mUnk_2d0;
+    /* 2d0 */ s32 mTimer;
     /* 2d4 */ UnkFunc *mUnk_2d4;
     /* 2d8 */ s32 mUnk_2d8;
     /* 2dc */ UnkFunc *mUnk_2dc;
@@ -307,14 +307,14 @@ typedef struct Unk02188950 {
     /* 2e8 */ Vec3 mUnk_2e8;
     /* 2f4 */ Vec3 mUnk_2f4;
     /* 300 */ void *mUnk_300;
-    /* 304 */ struct Unk0219b250 *mUnk_304;
-    /* 308 */ void *mUnk_308;
+    /* 304 */ struct Unk0219b250 *mNsbmd;
+    /* 308 */ void *mShadowNsbmd;
 } Unk02188950;
 
-void func_ov001_02188950(Unk02188950 *a, Vec3 *b);
-void func_ov001_02188968(Unk02188950 *a, Vec3 *b);
-void func_ov001_02188980(Unk02188950 *a, Vec3 *b);
-void func_ov001_02188998(Unk02188950 *a, Vec3 *b);
+void SetVelocity(Unk02188950 *a, Vec3 *b);
+void SetAnglePoint(Unk02188950 *a, Vec3 *b);
+void SetMoveAnglePoint(Unk02188950 *a, Vec3 *b);
+void SetAnglePointAndMoveAnglePoint(Unk02188950 *a, Vec3 *b);
 void func_ov001_021889c8(Unk02188950 *a);
 void func_ov001_021889ec(Unk02188950 *a, s32 b, s32 c, s32 d, s32 e);
 void func_ov001_02188a30(Unk02188950 *a, s32 b, s32 c, s32 d, s32 e);

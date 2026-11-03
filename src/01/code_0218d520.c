@@ -29,16 +29,16 @@ void func_ov001_0218dc20(Unk02188950 *a) {
 
     switch (a->mUnk_0a8) {
         case 1:
-            r5 = a->mUnk_0a0->mUnk_0c0;
+            r5 = a->mPrm->mUnk_0c0;
             break;
         case 2:
-            r5 = a->mUnk_0a0->mUnk_0c4;
+            r5 = a->mPrm->mUnk_0c4;
             break;
         case 3:
-            r5 = a->mUnk_0a0->mUnk_0c8;
+            r5 = a->mPrm->mUnk_0c8;
             break;
         case 4:
-            r5 = a->mUnk_0a0->mUnk_0cc;
+            r5 = a->mPrm->mUnk_0cc;
             break;
     }
     idx = (ang >> 4) * 2;
@@ -55,15 +55,15 @@ void func_ov001_0218dba8(Unk02188950 *a) {
     a->mUnk_13c = a->mUnk_13c - 1;
     if (a->mUnk_13c <= 0) {
         a->mUnk_13c = 0;
-        cur = a->mUnk_184;
+        cur = a->mAngle;
         diff = (u16) (a->mUnk_0a4->mUnk_184 - cur);
         if (diff > 0x8000) {
             diff -= 0x10000;
         }
         limit = a->mUnk_194;
         step = diff < -limit ? -limit : (diff > limit ? limit : diff);
-        a->mUnk_184 = (u16) (cur + step);
-        a->mUnk_1a8 = a->mUnk_184;
+        a->mAngle = (u16) (cur + step);
+        a->mMoveAngle = a->mAngle;
     }
 }
 
@@ -75,16 +75,16 @@ void func_ov001_0218dadc(Unk02188950 *a) {
 
     switch (a->mUnk_0a8) {
         case 1:
-            r5 = a->mUnk_0a0->mUnk_0c0;
+            r5 = a->mPrm->mUnk_0c0;
             break;
         case 2:
-            r5 = a->mUnk_0a0->mUnk_0c4;
+            r5 = a->mPrm->mUnk_0c4;
             break;
         case 3:
-            r5 = a->mUnk_0a0->mUnk_0c8;
+            r5 = a->mPrm->mUnk_0c8;
             break;
         case 4:
-            r5 = a->mUnk_0a0->mUnk_0cc;
+            r5 = a->mPrm->mUnk_0cc;
             break;
     }
     idx = (ang >> 4) * 2;
@@ -94,8 +94,8 @@ void func_ov001_0218dadc(Unk02188950 *a) {
 }
 
 void func_ov001_0218dabc(Unk02188950 *a) {
-    a->mUnk_184 = a->mUnk_0a4->mUnk_184;
-    a->mUnk_1a8 = a->mUnk_184;
+    a->mAngle = a->mUnk_0a4->mUnk_184;
+    a->mMoveAngle = a->mAngle;
 }
 
 void func_ov001_0218da1c(Unk02188950 *a) {
@@ -109,7 +109,7 @@ void func_ov001_0218da1c(Unk02188950 *a) {
     } else if (func_ov001_02188220(a) >= 3) {
         a->mUnk_0ac = 0;
     }
-    func_0209b688((void *) (a->mUnk_304), (u16) (func_ov001_02188220(a)));
+    func_0209b688((void *) (a->mNsbmd), (u16) (func_ov001_02188220(a)));
 }
 
 void func_ov001_0218d9cc(Unk02188950 *a) {
@@ -132,14 +132,14 @@ void func_ov001_0218d950(Unk02188950 *a) {
     Unk0219b250_Item *s;
 
     func_ov001_02187218(a, 1, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, (s32) (a->mUnk_0a0->mUnk_088), (s32) (a->mUnk_0a0->mUnk_08c));
-    prod = a->mUnk_0a0->mUnk_0d0 * a->mUnk_0a8;
+    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_088), (s32) (a->mPrm->mUnk_08c));
+    prod = a->mPrm->mUnk_0d0 * a->mUnk_0a8;
     if (prod > 0) {
         f = 0.5f + (float) (prod << 12);
     } else {
         f = (float) (prod << 12) - 0.5f;
     }
-    s = a->mUnk_304->mUnk_1c;
+    s = a->mNsbmd->mUnk_1c;
     s->mUnk_0c = (s32) f;
     *s->mUnk_1c[s->mUnk_1a] = s->mUnk_0c;
 }
@@ -151,7 +151,7 @@ void func_ov001_0218d8f4(Unk02188950 *a, int b) {
     list = func_02100138(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && list->mUnk_00[i] != NULL; i++) {
-            func_ov001_02188d64(a, (s32) (a->mUnk_0a0->mUnk_088), (s32) (a->mUnk_0a0->mUnk_08c * b / 100));
+            func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_088), (s32) (a->mPrm->mUnk_08c * b / 100));
         }
     }
 }
@@ -164,8 +164,8 @@ void func_ov001_0218d87c(Unk02188950 *a, int b) {
     list = func_02100138(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (q = list->mUnk_00[i]) != NULL; i++) {
-            q->mUnk_13c = q->mUnk_0a0->mUnk_0d8 * q->mUnk_0a8 * 100 / b;
-            q->mUnk_194 = a->mUnk_0a0->mUnk_0d4 * b / 100;
+            q->mUnk_13c = q->mPrm->mUnk_0d8 * q->mUnk_0a8 * 100 / b;
+            q->mUnk_194 = a->mPrm->mUnk_0d4 * b / 100;
         }
     }
 }
@@ -173,16 +173,16 @@ void func_ov001_0218d87c(Unk02188950 *a, int b) {
 void func_ov001_0218d824(Unk02188950 *b, int c) {
     Unk02188950_a0 *a;
 
-    a = b->mUnk_0a0;
+    a = b->mPrm;
     func_ov001_02188cd8(b, (s32) (a->mUnk_090 * c / 100), (s32) (a->mUnk_094));
-    a = b->mUnk_0a0;
+    a = b->mPrm;
     func_ov001_02188c48(b, a->mUnk_098 * c / 100, a->mUnk_09c);
-    func_ov001_02188998(b, (Vec3 *) func_ov001_02187ee8(b));
+    SetAnglePointAndMoveAnglePoint(b, (Vec3 *) func_ov001_02187ee8(b));
 }
 
 void func_ov001_0218d800(Unk02188950 *a) {
     a->mUnk_150 = 1;
-    func_ov001_02188d64(a, (s32) (a->mUnk_0a0->mUnk_088), (s32) (a->mUnk_0a0->mUnk_08c));
+    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_088), (s32) (a->mPrm->mUnk_08c));
 }
 
 int func_ov001_0218d520(Unk02188950 *a) {
@@ -190,13 +190,13 @@ int func_ov001_0218d520(Unk02188950 *a) {
     s32 t;
     s32 *v;
 
-    if (func_ov001_021881a8(a, (Vec3 *) func_ov001_02187fc0(a), (s32) (a->mUnk_0a0->mUnk_0a0), 0)) {
+    if (func_ov001_021881a8(a, (Vec3 *) func_ov001_02187fc0(a), (s32) (a->mPrm->mUnk_0a0), 0)) {
         if (func_020a1154(data_021759c0->mUnk_62) <= 1) {
-            r4 = 0x1000 - a->mUnk_0a0->mUnk_0ac;
+            r4 = 0x1000 - a->mPrm->mUnk_0ac;
             t = func_ov001_02187f38(a);
             r4 = (s32) (((s64) t * r4) >> 12);
         } else if (func_020a1154(data_021759c0->mUnk_62) <= 2) {
-            r4 = 0x1000 - a->mUnk_0a0->mUnk_0a8;
+            r4 = 0x1000 - a->mPrm->mUnk_0a8;
             t = func_ov001_02187f38(a);
             r4 = (s32) (((s64) t * r4) >> 12);
         } else {
@@ -207,21 +207,21 @@ int func_ov001_0218d520(Unk02188950 *a) {
         }
         if ((data_021759c0->mUnk_08 == 4 ? func_020a126c() : 0) == 0 && a->mUnk_0a8 == 0 &&
             func_ov001_021871f8(a, 3) != 0) {
-            if (func_ov001_02188084(a, (s32) (a->mUnk_0a0->mUnk_120), (s32) (a->mUnk_0a0->mUnk_124),
-                                    (s32) (a->mUnk_0a0->mUnk_128))) {
-                a->mUnk_0a8 = a->mUnk_0a0->mUnk_12c;
+            if (func_ov001_02188084(a, (s32) (a->mPrm->mUnk_120), (s32) (a->mPrm->mUnk_124),
+                                    (s32) (a->mPrm->mUnk_128))) {
+                a->mUnk_0a8 = a->mPrm->mUnk_12c;
                 a->mUnk_150 = 3;
-                func_ov001_02188d30(a, (s32) (a->mUnk_0a0->mUnk_118), (s32) (a->mUnk_0a0->mUnk_11c),
+                func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_118), (s32) (a->mPrm->mUnk_11c),
                                     (UnkFunc *) (func_ov001_0218d800));
-                r4 -= a->mUnk_0a0->mUnk_130;
+                r4 -= a->mPrm->mUnk_130;
                 func_020d2774(&a->mUnk_000, (u32) (0x24b));
-            } else if (func_ov001_02188084(a, (s32) (a->mUnk_0a0->mUnk_10c), (s32) (a->mUnk_0a0->mUnk_110),
-                                           (s32) (a->mUnk_0a0->mUnk_114))) {
-                a->mUnk_0a8 = a->mUnk_0a0->mUnk_12c;
+            } else if (func_ov001_02188084(a, (s32) (a->mPrm->mUnk_10c), (s32) (a->mPrm->mUnk_110),
+                                           (s32) (a->mPrm->mUnk_114))) {
+                a->mUnk_0a8 = a->mPrm->mUnk_12c;
                 a->mUnk_150 = 3;
-                func_ov001_02188d30(a, (s32) (a->mUnk_0a0->mUnk_104), (s32) (a->mUnk_0a0->mUnk_108),
+                func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_104), (s32) (a->mPrm->mUnk_108),
                                     (UnkFunc *) (func_ov001_0218d800));
-                r4 -= a->mUnk_0a0->mUnk_130;
+                r4 -= a->mPrm->mUnk_130;
                 func_020d2774(&a->mUnk_000, (u32) (0x24b));
             }
         }

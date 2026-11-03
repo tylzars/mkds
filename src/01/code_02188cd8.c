@@ -11,12 +11,12 @@ void func_ov001_02188d8c(Unk02188950 *a, Vec3 *b) {
 }
 
 void func_ov001_02188d64(Unk02188950 *a, s32 b, s32 c) {
-    func_ov001_0219b208(a->mUnk_304, (u16) b, c, 0);
+    func_ov001_0219b208(a->mNsbmd, (u16) b, c, 0);
     a->mUnk_1d4 = NULL;
 }
 
 void func_ov001_02188d30(Unk02188950 *a, s32 b, s32 c, void (*d)(Unk02188950 *)) {
-    func_ov001_0219b208(a->mUnk_304, (u16) b, c, 1);
+    func_ov001_0219b208(a->mNsbmd, (u16) b, c, 1);
     if (d == NULL) {
         d = func_ov001_02188e88;
     }
@@ -34,7 +34,7 @@ void func_ov001_02188d08(Unk02188950 *a, s32 b, s32 c) {
 }
 
 void func_ov001_02188cec(Unk02188950 *a, s32 b) {
-    a->mUnk_174 = b;
+    a->mSpeed = b;
     a->mUnk_178 = 0;
     a->mUnk_17c = 0;
 }

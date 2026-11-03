@@ -15,8 +15,8 @@
 void func_ov001_02187c88(Unk02188950 *a, s32 b, const Vec3 *c) {
     a->mUnk_2e4 = b;
     a->mUnk_2f4 = *c;
-    a->mUnk_304->mUnk_10->mUnk_2c = a;
-    func_020109c4((void *) a->mUnk_304->mUnk_10, (void (*)(void *)) func_ov001_02187d14, (u32) (0), (u8) (6), (u8) (3));
+    a->mNsbmd->mUnk_10->mUnk_2c = a;
+    func_020109c4((void *) a->mNsbmd->mUnk_10, (void (*)(void *)) func_ov001_02187d14, (u32) (0), (u8) (6), (u8) (3));
 }
 
 void func_ov001_02187c60(Unk02188950 *a, void *b) {

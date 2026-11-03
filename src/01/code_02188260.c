@@ -7,8 +7,8 @@ u32 func_ov001_02188260(Unk02188950 *p) {
         func_ov001_021817e0();
     }
     p->mUnk_0ac++;
-    if (p->mUnk_0ac >= p->mUnk_0a0->mUnk_000) {
-        p->mUnk_0ac = p->mUnk_0a0->mUnk_000;
+    if (p->mUnk_0ac >= p->mPrm->mUnk_000) {
+        p->mUnk_0ac = p->mPrm->mUnk_000;
         if (data_021759c0->mUnk_08 == 4) {
             func_020a12b8();
         }

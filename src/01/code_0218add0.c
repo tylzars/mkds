@@ -26,10 +26,10 @@ void func_ov001_0218aef4(Unk02188950 *a) {
         Vec3 vel = {0, 0, 0};
         angle += 0x5555;
         idx = ((u16) angle >> 4) * 2;
-        pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mUnk_0a0->mUnk_1e4 * data_0215d4b4[idx]) >> 12);
+        pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mPrm->mUnk_1e4 * data_0215d4b4[idx]) >> 12);
         pos.y = a->mUnk_000.mPos.y;
-        pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mUnk_0a0->mUnk_1e4 * data_0215d4b4[idx + 1]) >> 12);
-        func_ov001_02187b94(func_020fd428(), &pos, &vel, a->mUnk_0a0->mUnk_1e8);
+        pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_1e4 * data_0215d4b4[idx + 1]) >> 12);
+        func_ov001_02187b94(func_020fd428(), &pos, &vel, a->mPrm->mUnk_1e8);
     }
     {
         Vec3 pos2;
@@ -37,14 +37,14 @@ void func_ov001_0218aef4(Unk02188950 *a) {
         pos2.x = a->mUnk_000.mPos.x;
         pos2.y = a->mUnk_000.mPos.y;
         pos2.z = a->mUnk_000.mPos.z;
-        func_ov001_02187b94(func_ov001_02187e00(9), &pos2, &vel2, a->mUnk_0a0->mUnk_1ec);
+        func_ov001_02187b94(func_ov001_02187e00(9), &pos2, &vel2, a->mPrm->mUnk_1ec);
     }
     func_ov001_02188cec(a, 0);
 }
 
 void func_ov001_0218ae60(Unk02188950 *a) {
     func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d30(a, a->mUnk_0a0->mUnk_200, a->mUnk_0a0->mUnk_204, NULL);
+    func_ov001_02188d30(a, a->mPrm->mUnk_200, a->mPrm->mUnk_204, NULL);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     func_ov001_02187518(a, (u32) (0), (u32) (0), (u32) (0), (u32) (0x411), (u32) (0));
@@ -57,10 +57,10 @@ void func_ov001_0218ae60(Unk02188950 *a) {
 void func_ov001_0218add0(Unk02188950 *a) {
     Vec3 vec = {0, 0, 0};
 
-    vec.y = a->mUnk_0a0->mUnk_1fc;
+    vec.y = a->mPrm->mUnk_1fc;
     func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, a->mUnk_0a0->mUnk_1f4, a->mUnk_0a0->mUnk_1f8);
-    func_ov001_02188950(a, &vec);
+    func_ov001_02188d64(a, a->mPrm->mUnk_1f4, a->mPrm->mUnk_1f8);
+    SetVelocity(a, &vec);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     func_ov001_02188db8(a, func_ov001_0218ae60);

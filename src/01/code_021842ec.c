@@ -3,7 +3,7 @@
 
 void func_ov001_021842ec(Unk02188950 *a) {
     func_ov001_02187218(a, 7, NULL);
-    func_ov001_02188d30(a, a->mUnk_0a0->mUnk_23c, a->mUnk_0a0->mUnk_240, NULL);
+    func_ov001_02188d30(a, a->mPrm->mUnk_23c, a->mPrm->mUnk_240, NULL);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     func_ov001_02187518(a, 0, 0, 0, 0x411, 0);

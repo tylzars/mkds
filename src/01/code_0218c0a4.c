@@ -28,35 +28,35 @@ void func_ov001_0218c490(Unk02188950 *a) {
     Unk0206bcb0 *p = func_0207a974((u16) data_021759c0->mUnk_62);
 
     func_ov001_02187218(a, 2, func_ov001_0218c5d4);
-    func_ov001_02188d64(a, (s32) (a->mUnk_0a0->mUnk_104), (s32) (a->mUnk_0a0->mUnk_108));
-    func_ov001_0219b1c4(a->mUnk_304, a->mUnk_0a0->mUnk_10c, a->mUnk_0a0->mUnk_108, 0);
-    func_ov001_02188cd8(a, (s32) (a->mUnk_0a0->mUnk_110), (s32) (a->mUnk_0a0->mUnk_114));
-    func_ov001_02188c48(a, a->mUnk_0a0->mUnk_118, a->mUnk_0a0->mUnk_11c);
-    func_ov001_02188998(a, &p->mUnk_80);
-    func_ov001_02188e24(a, a->mUnk_0a0->mUnk_12c, NULL);
+    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_104), (s32) (a->mPrm->mUnk_108));
+    func_ov001_0219b1c4(a->mNsbmd, a->mPrm->mUnk_10c, a->mPrm->mUnk_108, 0);
+    func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_110), (s32) (a->mPrm->mUnk_114));
+    func_ov001_02188c48(a, a->mPrm->mUnk_118, a->mPrm->mUnk_11c);
+    SetAnglePointAndMoveAnglePoint(a, &p->mUnk_80);
+    func_ov001_02188e24(a, a->mPrm->mUnk_12c, NULL);
     func_ov001_0218c5fc(a);
 }
 
 void func_ov001_0218c3ac(Unk02188950 *a) {
     if (func_ov001_02188220(a) == 0) {
-        func_ov001_02188cd8(a, (s32) (a->mUnk_0a0->mUnk_0a4), (s32) (a->mUnk_0a0->mUnk_0a8));
-        func_ov001_02188c48(a, a->mUnk_0a0->mUnk_0ac, a->mUnk_0a0->mUnk_0b0);
+        func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_0a4), (s32) (a->mPrm->mUnk_0a8));
+        func_ov001_02188c48(a, a->mPrm->mUnk_0ac, a->mPrm->mUnk_0b0);
     } else if (func_ov001_02188220(a) == 1) {
-        func_ov001_02188cd8(a, (s32) (a->mUnk_0a0->mUnk_0bc), (s32) (a->mUnk_0a0->mUnk_0c0));
-        func_ov001_02188c48(a, a->mUnk_0a0->mUnk_0c4, a->mUnk_0a0->mUnk_0c8);
+        func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_0bc), (s32) (a->mPrm->mUnk_0c0));
+        func_ov001_02188c48(a, a->mPrm->mUnk_0c4, a->mPrm->mUnk_0c8);
     } else {
-        func_ov001_02188cd8(a, (s32) (a->mUnk_0a0->mUnk_0cc), (s32) (a->mUnk_0a0->mUnk_0d0));
-        func_ov001_02188c48(a, a->mUnk_0a0->mUnk_0d4, a->mUnk_0a0->mUnk_0d8);
+        func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_0cc), (s32) (a->mPrm->mUnk_0d0));
+        func_ov001_02188c48(a, a->mPrm->mUnk_0d4, a->mPrm->mUnk_0d8);
     }
-    func_ov001_02188998(a, (Vec3 *) func_ov001_02187fc0(a));
-    func_ov001_02188e24(a, a->mUnk_0a0->mUnk_0b8, NULL);
-    func_ov001_02188de0(a, (s32) (a->mUnk_0a0->mUnk_0b4), 0, (Vec3 *) func_ov001_02187fc0(a), (UnkFunc *) (0));
+    SetAnglePointAndMoveAnglePoint(a, (Vec3 *) func_ov001_02187fc0(a));
+    func_ov001_02188e24(a, a->mPrm->mUnk_0b8, NULL);
+    func_ov001_02188de0(a, (s32) (a->mPrm->mUnk_0b4), 0, (Vec3 *) func_ov001_02187fc0(a), (UnkFunc *) (0));
 }
 
 void func_ov001_0218c354(Unk02188950 *a) {
     func_ov001_02187218(a, 1, func_ov001_0218c5ac);
-    func_ov001_02188d64(a, (s32) (a->mUnk_0a0->mUnk_098), (s32) (a->mUnk_0a0->mUnk_09c));
-    func_ov001_0219b1c4(a->mUnk_304, a->mUnk_0a0->mUnk_0a0, a->mUnk_0a0->mUnk_09c, 0);
+    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_098), (s32) (a->mPrm->mUnk_09c));
+    func_ov001_0219b1c4(a->mNsbmd, a->mPrm->mUnk_0a0, a->mPrm->mUnk_09c, 0);
     func_ov001_0218c3ac(a);
     func_ov001_0218c5fc(a);
 }
@@ -77,8 +77,8 @@ void func_ov001_0218c0a4(Unk02188950 *a) {
     s32 radius;
     s32 i;
 
-    a0 = a->mUnk_0a0;
-    angle = a->mUnk_184 - a0->mUnk_1a4 * (a->mUnk_138 / 2);
+    a0 = a->mPrm;
+    angle = a->mAngle - a0->mUnk_1a4 * (a->mUnk_138 / 2);
     n1 = a0->mUnk_1a8;
     if (n1 == 0x10000) {
         r = func_020d22d0();
@@ -124,23 +124,23 @@ void func_ov001_0218c0a4(Unk02188950 *a) {
     } else {
         sel = -1;
     }
-    radius = a->mUnk_0a0->mUnk_198;
+    radius = a->mPrm->mUnk_198;
     for (i = 0; i < a->mUnk_138; i++) {
         Vec3 pos;
         Vec3 vel = {0, 0, 0};
 
         pos.x = a->mUnk_000.mPos.x + (((s64) radius * data_0215d4b4[((u16) angle >> 4) * 2]) >> 12);
-        pos.y = a->mUnk_000.mPos.y + a->mUnk_0a0->mUnk_194;
+        pos.y = a->mUnk_000.mPos.y + a->mPrm->mUnk_194;
         pos.z = a->mUnk_000.mPos.z + (((s64) radius * data_0215d4b4[((u16) angle >> 4) * 2 + 1]) >> 12);
-        vel.x = ((s64) a->mUnk_0a0->mUnk_1a0 * data_0215d4b4[((u16) angle >> 4) * 2]) >> 12;
-        vel.y = a->mUnk_0a0->mUnk_19c;
-        vel.z = ((s64) a->mUnk_0a0->mUnk_1a0 * data_0215d4b4[((u16) angle >> 4) * 2 + 1]) >> 12;
+        vel.x = ((s64) a->mPrm->mUnk_1a0 * data_0215d4b4[((u16) angle >> 4) * 2]) >> 12;
+        vel.y = a->mPrm->mUnk_19c;
+        vel.z = ((s64) a->mPrm->mUnk_1a0 * data_0215d4b4[((u16) angle >> 4) * 2 + 1]) >> 12;
         if (i == sel) {
-            func_ov001_02187b2c(func_020f4ee8(), &pos, &vel, a->mUnk_0a0->mUnk_1ac);
+            func_ov001_02187b2c(func_020f4ee8(), &pos, &vel, a->mPrm->mUnk_1ac);
         } else {
-            func_ov001_02187b94(func_ov001_02187dd4(), &pos, &vel, a->mUnk_0a0->mUnk_1b0);
+            func_ov001_02187b94(func_ov001_02187dd4(), &pos, &vel, a->mPrm->mUnk_1b0);
         }
-        angle += a->mUnk_0a0->mUnk_1a4;
+        angle += a->mPrm->mUnk_1a4;
         func_0208b7bc(0x3f7, &pos);
         func_0208b7bc(0x3f6, &pos);
     }

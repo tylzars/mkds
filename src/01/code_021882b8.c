@@ -26,18 +26,18 @@ void func_ov001_021882b8(void) {
             func_ov001_02188e88(obj);
             obj->mUnk_2c0 = 0;
             obj->mUnk_2b8 = 3;
-            obj->mUnk_174 = obj->mUnk_178 = obj->mUnk_17c = 0;
-            obj->mUnk_180 = 0;
+            obj->mSpeed = obj->mUnk_178 = obj->mUnk_17c = 0;
+            obj->mAngleState = 0;
             obj->mUnk_194 = obj->mUnk_198 = obj->mUnk_19c = 0;
-            obj->mUnk_1a4 = 0;
+            obj->mMoveAngleMode = 0;
             obj->mUnk_1b8 = obj->mUnk_1bc = obj->mUnk_1c0 = 0;
-            obj->mUnk_1c8.x = obj->mUnk_1c8.y = obj->mUnk_1c8.z = 0;
+            obj->mVelocity.x = obj->mVelocity.y = obj->mVelocity.z = 0;
             obj->mUnk_168 = obj->mUnk_16c = 0x1f000;
             obj->mUnk_170 = 0;
             if (i - (data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0) < table->mUnk_04) {
                 obj->mUnk_000.mPos = table->mUnk_00[i - (data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0)]
                                          ->mUnk_000.mCourseMapRow->mUnk_00;
-                obj->mUnk_184 =
+                obj->mAngle =
                     (u16) (((s64) table->mUnk_00[i - (data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0)]
                                     ->mUnk_000.mCourseMapRow->mUnk_0c.y *
                                 0xb60b60b60bLL +

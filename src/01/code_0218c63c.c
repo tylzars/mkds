@@ -5,9 +5,9 @@
 void func_ov001_0218c728(Unk02188950 *a) {
     s32 *v1;
     Unk02188950_a0 *v2;
-    v2 = a->mUnk_0a0;
+    v2 = a->mPrm;
     func_ov001_0218875c(a, (s32) (v2->mUnk_008), (s32) (v2->mUnk_00c), (s32) (v2->mUnk_214));
-    func_ov001_021888a4(a, 0, (s32) (a->mUnk_0a0->mUnk_00c));
+    func_ov001_021888a4(a, 0, (s32) (a->mPrm->mUnk_00c));
     v1 = &a->mUnk_2a4;
     *v1 = ((u32) 0x00011800u);
     a->mUnk_298 = *v1;
@@ -22,7 +22,7 @@ void func_ov001_0218c6b4(Unk02188950 *a) {
     int v3;
     Unk02188950_a0 *v4;
     int v5;
-    v4 = a->mUnk_0a0;
+    v4 = a->mPrm;
     v3 = v4->mUnk_00c;
     v5 = v4->mUnk_008;
     v1 = _s32_div_f(v5, 0x14);
@@ -39,7 +39,7 @@ void func_ov001_0218c63c(Unk02188950 *a) {
     int v3;
     Unk02188950_a0 *v4;
     int v5;
-    v4 = a->mUnk_0a0;
+    v4 = a->mPrm;
     v3 = v4->mUnk_00c;
     v5 = v4->mUnk_008;
     v1 = _s32_div_f(v5, 0x14);

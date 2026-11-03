@@ -17,7 +17,8 @@ Unk0206bcb0 *func_ov001_02188104(Unk02188950 *a, s32 b, s32 c) {
     Unk0206bcb0 *q;
 
     q = func_0207a974((u16) data_021759c0->mUnk_62);
-    if (q != NULL && func_ov001_021881a8(a, (Vec3 *) &q->mUnk_80, (s32) (b), (s32) (c)) != 0 && (q->mUnk_48 & 0x40) == 0) {
+    if (q != NULL && func_ov001_021881a8(a, (Vec3 *) &q->mUnk_80, (s32) (b), (s32) (c)) != 0 &&
+        (q->mUnk_48 & 0x40) == 0) {
         return q;
     }
     return NULL;
@@ -29,7 +30,7 @@ Unk0206bcb0 *func_ov001_02188084(Unk02188950 *a, s32 b, s32 c, s32 d) {
     q = func_0207a974((u16) data_021759c0->mUnk_62);
     if (q != NULL && (q->mUnk_48 & 0x40) == 0 && (c != 0 || d != 0)) {
         if (c == 0 || func_ov001_02188f04(a, &q->mUnk_80, c) != 0) {
-            if (d == 0 || func_ov001_02188eac(a, a->mUnk_184 + b, &q->mUnk_80, d) != 0) {
+            if (d == 0 || func_ov001_02188eac(a, a->mAngle + b, &q->mUnk_80, d) != 0) {
                 return q;
             }
         }
