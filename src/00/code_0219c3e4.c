@@ -56,7 +56,7 @@ s32 func_ov000_0219c8dc(s32 a) {
     return a;
 }
 
-void func_ov000_0219c824(Unk0218f960 *a, Unk0219c400 *b, u32 c) {
+void func_ov000_0219c824(GpConnection *a, Unk0219c400 *b, u32 c) {
     data_ov000_021b565c->mUnk_34 = 0;
     if (b->mUnk_00 == 0) {
         if (data_ov000_021b565c->mUnk_04 == 2) {
@@ -168,7 +168,7 @@ void func_ov000_0219c524(void) {
     }
 }
 
-void func_ov000_0219c400(Unk0218f960 *a, Unk0219c400 *b, u32 f) {
+void func_ov000_0219c400(GpConnection *a, Unk0219c400 *b, u32 f) {
     char c[0x15];
     char d[0x15];
     char e[0x15];

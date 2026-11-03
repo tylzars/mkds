@@ -3,10 +3,10 @@
 #include "00/code_0218e49c.h"
 #include "00/code_0218f15c.h"
 
-int func_ov000_021961e8(Unk0218f960 *a, u32 b, u32 c, u32 d, u32 e) {
+int func_ov000_021961e8(GpConnection *a, u32 b, u32 c, u32 d, u32 e) {
     int v1;
     int v2;
-    a->mUnk_00->mUnk_210 = a->mUnk_00->mUnk_210 + 1;
+    a->mGpiConnection->mSearchCount = a->mGpiConnection->mSearchCount + 1;
     v1 = func_ov000_021938cc(a, 3, b, &v2, c, d, e);
     if (((v1 == 0) && (v1 = func_ov000_021962d4(a, (Unk021937c0Node *) v2), v1 == 0)) &&
         ((*(s32 *) (v2 + 8) == 0 || (v1 = func_ov000_0218f2e8(a, *(u32 *) (v2 + 0x18)), v1 == 0)))) {
@@ -15,7 +15,7 @@ int func_ov000_021961e8(Unk0218f960 *a, u32 b, u32 c, u32 d, u32 e) {
     return v1;
 }
 
-int func_ov000_021960a4(Unk0218f960 *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, int g, int h, u32 l, u32 m, u32 n) {
+int func_ov000_021960a4(GpConnection *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, int g, int h, u32 l, u32 m, u32 n) {
     int v1;
     int v2[2];
     if ((((((b == NULL) || (*b == 0)) && ((d == NULL || (*d == 0)))) && ((e == NULL || (*e == 0)))) &&

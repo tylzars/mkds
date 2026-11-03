@@ -480,7 +480,7 @@ u32 func_ov000_021a2768(u32 param_1) {
     return r;
 }
 
-void func_ov000_021a2870(Unk021b566c *param_1, Unk0218f960 *param_2, void **param_3, void *param_4, void *param_5,
+void func_ov000_021a2870(Unk021b566c *param_1, GpConnection *param_2, void **param_3, void *param_4, void *param_5,
                          void *param_6, void *param_7, u32 param_8) {
     data_ov000_021b566c = param_1;
     param_1->mUnk_00 = param_2;

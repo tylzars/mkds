@@ -58,7 +58,7 @@ void func_ov000_0219c1e4(void *a, void *b, s32 c, const char *d, const char *e, 
     data_ov000_021b54c8->mUnk_10 = func_ov000_0219b274;
     data_ov000_021b54c8->mUnk_14 = f == 0 ? 0x2000 : f;
     data_ov000_021b54c8->mUnk_18 = g == 0 ? 0x2000 : g;
-    data_ov000_021b54c8->mUnk_1c.mUnk_00 = NULL;
+    data_ov000_021b54c8->mUnk_1c.mGpiConnection = NULL;
     data_ov000_021b54c8->mUnk_20 = b;
     data_ov000_021b54c8->mUnk_24 = 0;
     data_ov000_021b54c8->mUnk_28 = 0;
@@ -115,14 +115,14 @@ void func_ov000_0219c0f4(void) {
         }
         func_ov000_0219b110();
         func_ov000_02197634();
-        if (data_ov000_021b54c8->mUnk_1c.mUnk_00 != NULL) {
+        if (data_ov000_021b54c8->mUnk_1c.mGpiConnection != NULL) {
             func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 0, NULL, 0);
             func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 3, NULL, 0);
             func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 1, NULL, 0);
             func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 2, NULL, 0);
             func_ov000_0218f268(&data_ov000_021b54c8->mUnk_1c);
             func_ov000_0218f2a0(&data_ov000_021b54c8->mUnk_1c);
-            data_ov000_021b54c8->mUnk_1c.mUnk_00 = NULL;
+            data_ov000_021b54c8->mUnk_1c.mGpiConnection = NULL;
         }
         func_ov000_0219c954();
         func_ov000_0219d4f8();

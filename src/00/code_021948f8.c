@@ -16,28 +16,28 @@
 #include "00/unk_021b2000.h"
 #include "00/code_0218dd8c.h"
 
-void func_ov000_021948f8(Unk0218f960 *a, Unk02194934 *b) {
-    func_ov000_0218de8c(a->mUnk_00->mUnk_428.mUnk_00, b);
+void func_ov000_021948f8(GpConnection *a, Unk02194934 *b) {
+    func_ov000_0218de8c(a->mGpiConnection->mProfileList.mTable, b);
 }
 
-void func_ov000_0219490c(Unk0218f960 *a, u32 b) {
-    Unk0218f960_00 *r;
+void func_ov000_0219490c(GpConnection *a, u32 b) {
+    GpiConnection *r;
     Unk02194934 *e;
 
-    r = a->mUnk_00;
+    r = a->mGpiConnection;
     if (func_ov000_02194934(a, b, &e) != 0) {
-        func_ov000_0218de8c(r->mUnk_428.mUnk_00, e);
+        func_ov000_0218de8c(r->mProfileList.mTable, e);
     }
 }
 
-u32 func_ov000_02194934(Unk0218f960 *a, u32 b, Unk02194934 **c) {
-    Unk0218f960_00 *r;
+u32 func_ov000_02194934(GpConnection *a, u32 b, Unk02194934 **c) {
+    GpiConnection *r;
     Unk02194934 d;
     Unk02194934 *e;
 
-    r = a->mUnk_00;
+    r = a->mGpiConnection;
     d.mUnk_00 = b;
-    e = func_ov000_0218de28(r->mUnk_428.mUnk_00, &d);
+    e = func_ov000_0218de28(r->mProfileList.mTable, &d);
     if (c != NULL) {
         *c = e;
     }
@@ -47,11 +47,11 @@ u32 func_ov000_02194934(Unk0218f960 *a, u32 b, Unk02194934 **c) {
     return 0;
 }
 
-Unk02194934 *func_ov000_0219496c(Unk0218f960 *a, s32 b) {
+Unk02194934 *func_ov000_0219496c(GpConnection *a, s32 b) {
     Unk0218f960_428 *c;
     Unk02194934 *e;
 
-    c = &a->mUnk_00->mUnk_428;
+    c = &a->mGpiConnection->mProfileList;
     if (b <= 0) {
         func_0213442c(data_ov000_021b354c, data_ov000_021b3554, NULL, 0x2b5);
     }
@@ -70,7 +70,7 @@ Unk02194934 *func_ov000_0219496c(Unk0218f960 *a, s32 b) {
         s.mUnk_10 = NULL;
         s.mUnk_18 = NULL;
         s.mUnk_14 = 0;
-        func_ov000_0218def0(c->mUnk_00, &s);
+        func_ov000_0218def0(c->mTable, &s);
     }
     c->mUnk_04 = c->mUnk_04 + 1;
     if (func_ov000_02194934(a, b, &e) != 0) {
@@ -79,7 +79,7 @@ Unk02194934 *func_ov000_0219496c(Unk0218f960 *a, s32 b) {
     return NULL;
 }
 
-s32 func_ov000_02194a0c(Unk0218f960 *a, Unk021937c0Node *b, const u8 *c) {
+s32 func_ov000_02194a0c(GpConnection *a, Unk021937c0Node *b, const u8 *c) {
     Unk02190ed4Cb p;
     u32 *m;
     s32 v;
@@ -118,14 +118,15 @@ s32 func_ov000_02194a0c(Unk0218f960 *a, Unk021937c0Node *b, const u8 *c) {
     return 0;
 }
 
-BOOL func_ov000_02194af4(Unk0218f960 *a) {
-    Unk0218f960_00 *r;
+BOOL func_ov000_02194af4(GpConnection *a) {
+    GpiConnection *r;
 
-    r = a->mUnk_00;
-    r->mUnk_430 = 0;
-    r->mUnk_428.mUnk_04 = 0;
-    r->mUnk_428.mUnk_00 = func_ov000_0218e0e0(0x1c, 4, func_ov000_02194ba4, func_ov000_02194b9c, func_ov000_02194b4c);
-    if (r->mUnk_428.mUnk_00 != NULL) {
+    r = a->mGpiConnection;
+    r->mBuddyCount = 0;
+    r->mProfileList.mUnk_04 = 0;
+    r->mProfileList.mTable =
+        func_ov000_0218e0e0(0x1c, 4, func_ov000_02194ba4, func_ov000_02194b9c, func_ov000_02194b4c);
+    if (r->mProfileList.mTable != NULL) {
         return TRUE;
     }
     return FALSE;

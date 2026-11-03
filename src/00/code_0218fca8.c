@@ -12,7 +12,7 @@
 #include "code_02139f70.h"
 #include "code_0213a460.h"
 
-s32 func_ov000_0218fca8(Unk0218f960 *a, u8 *b) {
+s32 func_ov000_0218fca8(GpConnection *a, u8 *b) {
     u8 c[0x1000];
     u8 d[0x100];
     u8 e[0x10];
@@ -29,14 +29,14 @@ s32 func_ov000_0218fca8(Unk0218f960 *a, u8 *b) {
     u8 *q;
     u8 *w;
     enum { K0 } i;
-    Unk0218f960_00 *o;
+    GpiConnection *o;
     Unk0218fca8 *p1;
     Unk0218fca8_40c *p2;
     Unk0218fca8_108 *p3;
     Unk02194934 *p;
     Unk02194934_08 *t;
 
-    o = a->mUnk_00;
+    o = a->mGpiConnection;
     if (func_ov000_021967b4(b, data_ov000_021b27c4, c, 0x1000) == 0) {
         func_ov000_021965a0(a, 1, data_ov000_021b27d8);
         func_ov000_02190f4c(a, 3, 1);
@@ -56,7 +56,7 @@ s32 func_ov000_0218fca8(Unk0218f960 *a, u8 *b) {
     }
     switch (k) {
         case 1:
-            s1 = o->mUnk_1a4[3];
+            s1 = o->mCallbacks[3];
             if (s1.mUnk_00 == NULL) {
                 break;
             }
@@ -111,7 +111,7 @@ s32 func_ov000_0218fca8(Unk0218f960 *a, u8 *b) {
             q += 8;
             p->mUnk_10 = func_ov000_0218e880(q);
             p->mUnk_14++;
-            s4 = o->mUnk_1a4[1];
+            s4 = o->mCallbacks[1];
             if (s4.mUnk_00 == NULL) {
                 break;
             }
@@ -145,7 +145,7 @@ s32 func_ov000_0218fca8(Unk0218f960 *a, u8 *b) {
                 do {
                     *w++ = 0;
                 } while (--i != 0);
-                p->mUnk_08->mUnk_00 = o->mUnk_430++;
+                p->mUnk_08->mUnk_00 = o->mBuddyCount++;
             }
             t = p->mUnk_08;
             if (func_ov000_021967b4(b, data_ov000_021b27d0, c, 0x1000) == 0) {
@@ -191,7 +191,7 @@ s32 func_ov000_0218fca8(Unk0218f960 *a, u8 *b) {
                 h = func_0213bf90(e);
                 t->mUnk_14 = (u16) (((h >> 8) & 0xff) | ((h << 8) & 0xff00));
             }
-            s3 = o->mUnk_1a4[2];
+            s3 = o->mCallbacks[2];
             if (s3.mUnk_00 == NULL) {
                 break;
             }
@@ -232,7 +232,7 @@ s32 func_ov000_0218fca8(Unk0218f960 *a, u8 *b) {
             } else {
                 d[0] = 0;
             }
-            s2 = o->mUnk_1a4[4];
+            s2 = o->mCallbacks[4];
             if (s2.mUnk_00 == NULL) {
                 break;
             }

@@ -261,7 +261,7 @@ u32 func_ov000_021a0a40(u32 a, u32 b, u32 c, u32 *d, u32 e) {
     return r;
 }
 
-s32 func_ov000_021a09d0(struct Unk0218f960 *a, u32 b, u32 c, const u8 *d) {
+s32 func_ov000_021a09d0(struct GpConnection *a, u32 b, u32 c, const u8 *d) {
     char v1[0x200];
     char *e;
     char *g;

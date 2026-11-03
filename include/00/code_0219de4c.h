@@ -3,7 +3,7 @@
 #include "types.h"
 
 typedef struct Unk021b566c {
-    /* 000 */ struct Unk0218f960 *mUnk_00;
+    /* 000 */ struct GpConnection *mUnk_00;
     /* 004 */ void **mUnk_04;
     /* 008 */ u32 mUnk_08;
     /* 00c */ u8 mUnk_0c;

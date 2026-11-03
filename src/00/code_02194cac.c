@@ -19,7 +19,7 @@
 #include "code_02134d30.h"
 #include "code_0213a460.h"
 
-s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b) {
+s32 func_ov000_02194cac(GpConnection *a, Unk02194cac *b) {
     u8 w0[0x200];
     u8 w1[0x200];
     Unk02194cac_10 e;
@@ -37,7 +37,7 @@ s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b) {
     Unk02190ed4Cb c2;
     BOOL d;
     s32 g;
-    Unk0218f960_00 *o;
+    GpiConnection *o;
     Unk02194cac_04 *p;
     BOOL k;
     s32 r;
@@ -58,7 +58,7 @@ s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b) {
     s32 i;
     Unk02194cac_0c2 *u9;
 
-    o = a->mUnk_00;
+    o = a->mGpiConnection;
     p = b->mUnk_04;
     if (b->mUnk_08 != 0) {
         k = TRUE;
@@ -84,11 +84,11 @@ s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b) {
                 if (p->mUnk_000 == 1) {
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3664);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3670);
-                    func_ov000_02190b58(a, p->mUnk_018, o->mUnk_198);
+                    func_ov000_02190b58(a, p->mUnk_018, o->mSesskey);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b367c);
-                    func_ov000_02190b58(a, p->mUnk_018, o->mUnk_1a0);
+                    func_ov000_02190b58(a, p->mUnk_018, o->mProfileId);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3688);
-                    func_ov000_02190b58(a, p->mUnk_018, o->mUnk_470);
+                    func_ov000_02190b58(a, p->mUnk_018, o->mNamespaceId);
                     if (p->mUnk_028[0] != 0) {
                         func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3698);
                         func_ov000_02190b80(a, p->mUnk_018, (u8 *) p->mUnk_028);
@@ -128,13 +128,13 @@ s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b) {
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b36f4);
                     func_ov000_02190b80(a, p->mUnk_018, (u8 *) p->mUnk_0cd);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3688);
-                    func_ov000_02190b58(a, p->mUnk_018, o->mUnk_470);
+                    func_ov000_02190b58(a, p->mUnk_018, o->mNamespaceId);
                 } else if (p->mUnk_000 == 4) {
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b36fc);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3670);
-                    func_ov000_02190b58(a, p->mUnk_018, o->mUnk_198);
+                    func_ov000_02190b58(a, p->mUnk_018, o->mSesskey);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b367c);
-                    func_ov000_02190b58(a, p->mUnk_018, o->mUnk_1a0);
+                    func_ov000_02190b58(a, p->mUnk_018, o->mProfileId);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3708);
                     func_ov000_02190b58(a, p->mUnk_018, p->mUnk_138);
                 } else if (p->mUnk_000 == 5) {
@@ -154,9 +154,9 @@ s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b) {
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b36f4);
                     func_ov000_02190b80(a, p->mUnk_018, (u8 *) p->mUnk_0cd);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3728);
-                    func_ov000_02190b58(a, p->mUnk_018, o->mUnk_46c);
+                    func_ov000_02190b58(a, p->mUnk_018, o->mProductId);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3688);
-                    func_ov000_02190b58(a, p->mUnk_018, o->mUnk_470);
+                    func_ov000_02190b58(a, p->mUnk_018, o->mNamespaceId);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b36a0);
                     func_ov000_02190b80(a, p->mUnk_018, (u8 *) p->mUnk_047);
                     if (p->mUnk_0ec[0] != 0) {
@@ -166,17 +166,17 @@ s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b) {
                 } else if (p->mUnk_000 == 7) {
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b373c);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3670);
-                    func_ov000_02190b58(a, p->mUnk_018, o->mUnk_198);
+                    func_ov000_02190b58(a, p->mUnk_018, o->mSesskey);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b367c);
-                    func_ov000_02190b58(a, p->mUnk_018, o->mUnk_1a0);
+                    func_ov000_02190b58(a, p->mUnk_018, o->mProfileId);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3688);
-                    func_ov000_02190b58(a, p->mUnk_018, o->mUnk_470);
+                    func_ov000_02190b58(a, p->mUnk_018, o->mNamespaceId);
                 } else if (p->mUnk_000 == 8) {
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3748);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3758);
                     func_ov000_02190b80(a, p->mUnk_018, (u8 *) p->mUnk_047);
                     func_ov000_02190b80(a, p->mUnk_018, data_ov000_021b3688);
-                    func_ov000_02190b58(a, p->mUnk_018, o->mUnk_470);
+                    func_ov000_02190b58(a, p->mUnk_018, o->mNamespaceId);
                 } else {
                     func_0213442c(data_ov000_021b3768, data_ov000_021b3628, NULL, 0x275);
                 }
@@ -186,8 +186,7 @@ s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b) {
                 b->mUnk_14 = 4;
             }
         } else if (b->mUnk_14 == 4) {
-            r = func_ov000_021907e8(a, p->mUnk_004, (Unk021906e4 *) &p->mUnk_008, (s32 *) &j, &m,
-                                    data_ov000_021b3634);
+            r = func_ov000_021907e8(a, p->mUnk_004, (Unk021906e4 *) &p->mUnk_008, (s32 *) &j, &m, data_ov000_021b3634);
             if (r != 0) {
                 if (r != 3) {
                     return r;
@@ -457,7 +456,7 @@ s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b) {
                         }
                         x = func_0213bf90(w1);
                         if (x != 0) {
-                            o->mUnk_418 = x;
+                            o->mErrorNumber = x;
                             y = 0;
                         } else {
                             if (func_ov000_021967b4(p->mUnk_008, data_ov000_021b3850, w1, 0x200) == 0) {
@@ -493,7 +492,7 @@ s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b) {
                         }
                         x = func_0213bf90(w1);
                         if (x != 0) {
-                            o->mUnk_418 = x;
+                            o->mErrorNumber = x;
                         }
                         if (func_ov000_021967b4(p->mUnk_008, data_ov000_021b3850, w1, 0x200) == 0) {
                             if (x == 0) {

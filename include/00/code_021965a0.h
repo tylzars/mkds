@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0218f960 Unk0218f960;
+typedef struct GpConnection GpConnection;
 
-void func_ov000_021965a0(Unk0218f960 *a, u32 b, const void *c);
+void func_ov000_021965a0(GpConnection *a, u32 b, const void *c);

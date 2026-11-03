@@ -49,5 +49,5 @@ void func_ov000_021a2468(const void *param_1, s32 param_2, s32 param_3, s32 para
                          u32 param_7, u32 param_8);
 void func_ov000_021a260c(u32 param_1, const void *param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6);
 u32 func_ov000_021a2768(u32 param_1);
-void func_ov000_021a2870(Unk021b566c *param_1, Unk0218f960 *param_2, void **param_3, void *param_4, void *param_5,
+void func_ov000_021a2870(Unk021b566c *param_1, GpConnection *param_2, void **param_3, void *param_4, void *param_5,
                          void *param_6, void *param_7, u32 param_8);

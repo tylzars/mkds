@@ -30,7 +30,7 @@
 #include "00/code_0219caac.h"
 #include "00/code_0219746c.h"
 
-void func_ov000_0219d8c8(Unk021b5664 *a, struct Unk0218f960 *b, u8 *c, Unk02152490 *d, s32 e) {
+void func_ov000_0219d8c8(Unk021b5664 *a, struct GpConnection *b, u8 *c, Unk02152490 *d, s32 e) {
     Unk021b5664 *q;
     data_ov000_021b5664 = a;
     a->mUnk_00 = 0;
@@ -73,7 +73,7 @@ void func_ov000_0219d81c(void) {
         func_ov000_0219d734(6, -0x1194a);
         return;
     }
-    if (data_ov000_021b5664->mUnk_04 != NULL && data_ov000_021b5664->mUnk_04->mUnk_00 != NULL) {
+    if (data_ov000_021b5664->mUnk_04 != NULL && data_ov000_021b5664->mUnk_04->mGpiConnection != NULL) {
         if (func_ov000_0219d034(func_ov000_0219d49c()) != 0) {
             return;
         }
@@ -143,7 +143,7 @@ void func_ov000_0219d734(s32 a, s32 b) {
 
 void func_ov000_0219d708(u32 a, u32 *b) {
     if (data_ov000_021b5664->mUnk_18 != NULL) {
-        func_ov000_0218eff8((Unk0218f960 *) (a), *b, 0, 0, (Unk0218eff8Cb) func_ov000_0219cd74, 0);
+        func_ov000_0218eff8((GpConnection *) (a), *b, 0, 0, (Unk0218eff8Cb) func_ov000_0219cd74, 0);
     }
     return;
 }
@@ -152,13 +152,13 @@ u32 func_ov000_0219d6c4(u32 a, u32 *b, u32 c) {
     int v1;
     v1 = strcmp((const u8 *) (b[2]), data_ov000_021b4078);
     if (v1 == 0) {
-        func_ov000_0218eff8((Unk0218f960 *) (a), *b, 0, 0, (Unk0218eff8Cb) func_ov000_0219cc94, 0);
+        func_ov000_0218eff8((GpConnection *) (a), *b, 0, 0, (Unk0218eff8Cb) func_ov000_0219cc94, 0);
         return 1;
     }
     return 0;
 }
 
-void func_ov000_0219d674(struct Unk0218f960 *a, s32 *b) {
+void func_ov000_0219d674(struct GpConnection *a, s32 *b) {
     Unk0218ec44 c;
     u32 d;
     Unk021b5664 *e;
@@ -215,13 +215,13 @@ u32 func_ov000_0219d558(s32 a, void *b, void *c) {
         return 0;
     }
     if (a == -1) {
-        a = data_ov000_021b5664->mUnk_04->mUnk_00->mUnk_214;
+        a = data_ov000_021b5664->mUnk_04->mGpiConnection->mStatus;
     }
     if (b == NULL) {
-        b = data_ov000_021b5664->mUnk_04->mUnk_00->mUnk_218;
+        b = data_ov000_021b5664->mUnk_04->mGpiConnection->mStatusString;
     }
     if (c == NULL) {
-        c = data_ov000_021b5664->mUnk_04->mUnk_00->mUnk_318;
+        c = data_ov000_021b5664->mUnk_04->mGpiConnection->mLocationString;
     }
     return func_ov000_0218e974(data_ov000_021b5664->mUnk_04, a, b, c);
 }

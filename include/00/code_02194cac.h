@@ -186,4 +186,4 @@ extern u8 data_ov000_021b3884[];
 extern u8 data_ov000_021b388c[];
 extern u8 data_ov000_021b4d6c[];
 
-s32 func_ov000_02194cac(Unk0218f960 *a, Unk02194cac *b);
+s32 func_ov000_02194cac(GpConnection *a, Unk02194cac *b);

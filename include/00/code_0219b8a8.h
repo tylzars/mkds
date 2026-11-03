@@ -15,7 +15,7 @@ typedef struct Unk021b54c8 {
     /* 10 */ void (*mUnk_10)();
     /* 14 */ u32 mUnk_14;
     /* 18 */ u32 mUnk_18;
-    /* 1c */ Unk0218f960 mUnk_1c;
+    /* 1c */ GpConnection mUnk_1c;
     /* 20 */ void *mUnk_20;
     /* 24 */ s32 mUnk_24;
     /* 28 */ s32 mUnk_28;

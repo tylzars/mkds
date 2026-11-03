@@ -4,11 +4,11 @@
 
 typedef struct Unk02152490 Unk02152490;
 
-struct Unk0218f960;
+struct GpConnection;
 
 typedef struct Unk021b5664 {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ struct Unk0218f960 *mUnk_04;
+    /* 04 */ struct GpConnection *mUnk_04;
     /* 08 */ u32 mUnk_08;
     /* 0c */ u64 mUnk_0c;
     /* 14 */ s32 mUnk_14;

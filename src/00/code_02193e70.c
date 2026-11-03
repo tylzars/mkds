@@ -32,8 +32,8 @@
 #include "00/code_021965a0.h"
 #include "00/code_021965c8.h"
 
-s32 func_ov000_02194590(Unk0218f960 *a, Unk02193f2cNode *b) {
-    Unk0218f960_00 *r;
+s32 func_ov000_02194590(GpConnection *a, Unk02193f2cNode *b) {
+    GpiConnection *r;
     Unk02193f2cNode *p;
     BOOL f;
     s32 t;
@@ -44,7 +44,7 @@ s32 func_ov000_02194590(Unk0218f960 *a, Unk02193f2cNode *b) {
     u8 *q;
     u8 *w;
 
-    r = a->mUnk_00;
+    r = a->mGpiConnection;
     switch (b->mUnk_00) {
         case 0x65:
             break;
@@ -70,13 +70,13 @@ s32 func_ov000_02194590(Unk0218f960 *a, Unk02193f2cNode *b) {
                 }
                 func_ov000_02190b80(a, b->mUnk_28, data_ov000_021b34d0);
                 func_ov000_02190b80(a, b->mUnk_28, data_ov000_021b34d8);
-                func_ov000_02190b58(a, b->mUnk_28, r->mUnk_1a0);
+                func_ov000_02190b58(a, b->mUnk_28, r->mProfileId);
                 func_ov000_02190b80(a, b->mUnk_28, data_ov000_021b34e0);
-                func_ov000_02190b80(a, b->mUnk_28, r->mUnk_110);
+                func_ov000_02190b80(a, b->mUnk_28, r->mNick);
                 func_ov000_02190b80(a, b->mUnk_28, data_ov000_021b34e8);
                 func_ov000_02190b80(a, b->mUnk_28, e->mUnk_18);
                 func_ov000_02190b80(a, b->mUnk_28, data_ov000_021b34c8);
-                for (p = r->mUnk_434; p != NULL; p = p->mNext) {
+                for (p = r->mPeerList; p != NULL; p = p->mNext) {
                     if (p->mUnk_0c == b->mUnk_0c && p != b && p->mUnk_00 <= 0x67) {
                         f = FALSE;
                     }
@@ -133,8 +133,8 @@ s32 func_ov000_02194590(Unk0218f960 *a, Unk02193f2cNode *b) {
     return 0;
 }
 
-s32 func_ov000_021943f0(Unk0218f960 *a, Unk02193f2cNode *b) {
-    Unk0218f960_00 *r;
+s32 func_ov000_021943f0(GpConnection *a, Unk02193f2cNode *b) {
+    GpiConnection *r;
     s32 x;
     s32 y;
     s32 t;
@@ -147,7 +147,7 @@ s32 func_ov000_021943f0(Unk0218f960 *a, Unk02193f2cNode *b) {
     u8 c3[0x21];
     u8 c4[0x103];
 
-    r = a->mUnk_00;
+    r = a->mGpiConnection;
     if (b->mUnk_00 != 0x68) {
         func_0213442c(data_ov000_021b34a8, data_ov000_021b333c, NULL, 0xc1);
     }
@@ -177,7 +177,7 @@ s32 func_ov000_021943f0(Unk0218f960 *a, Unk02193f2cNode *b) {
                 b->mUnk_00 = 0x6a;
                 return 0;
             }
-            sprintf(c4, data_ov000_021b34f0, r->mUnk_177, r->mUnk_1a0, v);
+            sprintf(c4, data_ov000_021b34f0, r->mPassword, r->mProfileId, v);
             func_ov000_0218e0fc(c4, strlen(c4), c3);
             if (strcmp(c2, c3) != 0) {
                 func_ov000_02190b80(a, b->mUnk_28, data_ov000_021b34f8);
@@ -198,7 +198,7 @@ s32 func_ov000_021943f0(Unk0218f960 *a, Unk02193f2cNode *b) {
     return 0;
 }
 
-s32 func_ov000_02194370(Unk0218f960 *a, Unk02193f2cNode *b) {
+s32 func_ov000_02194370(GpConnection *a, Unk02193f2cNode *b) {
     Unk02194370Entry *c;
     s32 y;
     s32 t;
@@ -223,8 +223,8 @@ s32 func_ov000_02194370(Unk0218f960 *a, Unk02193f2cNode *b) {
     return 0;
 }
 
-s32 func_ov000_021941c4(Unk0218f960 *a, Unk02193f2cNode *b) {
-    Unk0218f960_00 *r;
+s32 func_ov000_021941c4(GpConnection *a, Unk02193f2cNode *b) {
+    GpiConnection *r;
     Unk021941c4Msg *s;
     s32 x;
     s32 y;
@@ -234,7 +234,7 @@ s32 func_ov000_021941c4(Unk0218f960 *a, Unk02193f2cNode *b) {
     s32 o;
     s32 t;
 
-    r = a->mUnk_00;
+    r = a->mGpiConnection;
     if (b->mUnk_30 != 0) {
         t = func_ov000_021906e4(a, b->mUnk_08, (Unk021906e4 *) b->mUnk_28, (u32 *) &y, 1, data_ov000_021b3490);
         if (y != 0 || t != 0) {
@@ -267,7 +267,7 @@ s32 func_ov000_021941c4(Unk0218f960 *a, Unk02193f2cNode *b) {
         if (m != 0) {
             switch (n) {
                 case 1:
-                    p = r->mUnk_1a4[3];
+                    p = r->mCallbacks[3];
                     if (p.mUnk_00 != NULL) {
                         s = func_ov000_021a3690(0xc);
                         if (s == NULL) {
@@ -307,7 +307,7 @@ s32 func_ov000_021941c4(Unk0218f960 *a, Unk02193f2cNode *b) {
     return 0;
 }
 
-s32 func_ov000_02194160(Unk0218f960 *b, Unk02193f2cNode *c) {
+s32 func_ov000_02194160(GpConnection *b, Unk02193f2cNode *c) {
     s32 a = 0;
 
     if (c->mUnk_00 == 0x64) {
@@ -326,7 +326,7 @@ s32 func_ov000_02194160(Unk0218f960 *b, Unk02193f2cNode *c) {
     return a;
 }
 
-void func_ov000_02194120(Unk0218f960 *a, Unk02193f2cNode *b) {
+void func_ov000_02194120(GpConnection *a, Unk02193f2cNode *b) {
     func_ov000_0218e524(b->mUnk_08, 2);
     func_ov000_0218e53c(b->mUnk_08);
     func_ov000_021a3668(b->mUnk_18);
@@ -340,8 +340,8 @@ void func_ov000_02194120(Unk0218f960 *a, Unk02193f2cNode *b) {
     func_ov000_021a3668(b);
 }
 
-void func_ov000_0219405c(Unk0218f960 *f, Unk02193f2cNode *g) {
-    Unk0218f960_00 *a = f->mUnk_00;
+void func_ov000_0219405c(GpConnection *f, Unk02193f2cNode *g) {
+    GpiConnection *a = f->mGpiConnection;
     Unk02193f2cNode *b;
     Unk02193f2cNode *c;
     Unk0219405c *d;
@@ -350,9 +350,9 @@ void func_ov000_0219405c(Unk0218f960 *f, Unk02193f2cNode *g) {
     if (g == NULL) {
         func_0213442c(data_ov000_021b332c, data_ov000_021b333c, NULL, 0x213);
     }
-    b = a->mUnk_434;
+    b = a->mPeerList;
     if (b == g) {
-        a->mUnk_434 = g->mNext;
+        a->mPeerList = g->mNext;
     } else {
         c = b->mNext;
         while (c != g) {
@@ -391,14 +391,14 @@ void func_ov000_02193ff4(s32 a) {
     func_ov000_0218e74c(a);
 }
 
-s32 func_ov000_02193f50(Unk0218f960 *e) {
-    Unk0218f960_00 *a = e->mUnk_00;
+s32 func_ov000_02193f50(GpConnection *e) {
+    GpiConnection *a = e->mGpiConnection;
     Unk02193f2cNode *b;
     Unk02193f2cNode *c;
     s32 d;
 
-    if (a->mUnk_204 != -1 && func_ov000_0218e668(a->mUnk_204) != 0) {
-        d = func_ov000_0218e478(a->mUnk_204, NULL, NULL);
+    if (a->mListenSocket != -1 && func_ov000_0218e668(a->mListenSocket) != 0) {
+        d = func_ov000_0218e478(a->mListenSocket, NULL, NULL);
         if (d != -1) {
             b = func_ov000_02193eac(e, -1, 0);
             if (b != NULL) {
@@ -411,7 +411,7 @@ s32 func_ov000_02193f50(Unk0218f960 *e) {
             }
         }
     }
-    b = a->mUnk_434;
+    b = a->mPeerList;
     while (b != NULL) {
         c = b->mNext;
         d = func_ov000_02194160(e, b);
@@ -423,8 +423,8 @@ s32 func_ov000_02193f50(Unk0218f960 *e) {
     return 0;
 }
 
-Unk02193f2cNode *func_ov000_02193f2c(Unk0218f960 *object, u32 key) {
-    Unk02193f2cNode *node = object->mUnk_00->mUnk_434;
+Unk02193f2cNode *func_ov000_02193f2c(GpConnection *object, u32 key) {
+    Unk02193f2cNode *node = object->mGpiConnection->mPeerList;
     while (node != NULL) {
         if (node->mUnk_0c == key && node->mUnk_00 == 0x69) {
             return node;
@@ -440,8 +440,8 @@ void func_ov000_02193f18(u32 *a) {
     return;
 }
 
-Unk02193f2cNode *func_ov000_02193eac(Unk0218f960 *c, u32 d, u32 e) {
-    Unk0218f960_00 *a = c->mUnk_00;
+Unk02193f2cNode *func_ov000_02193eac(GpConnection *c, u32 d, u32 e) {
+    GpiConnection *a = c->mGpiConnection;
     Unk02193f2cNode *b = func_ov000_021a3690(0x40);
 
     if (b == NULL) {
@@ -453,13 +453,13 @@ Unk02193f2cNode *func_ov000_02193eac(Unk0218f960 *c, u32 d, u32 e) {
     b->mUnk_08 = -1;
     b->mUnk_0c = d;
     b->mUnk_10 = func_ov000_0218e320(NULL) + 0x12c;
-    b->mNext = a->mUnk_434;
+    b->mNext = a->mPeerList;
     b->mUnk_38 = (void *) func_ov000_0218dc94(0x18, 0, (void (*)(void *)) func_ov000_02193f18);
-    a->mUnk_434 = b;
+    a->mPeerList = b;
     return b;
 }
 
-int func_ov000_02193e70(Unk0218f960 *a, Unk02193f2cNode *b) {
+int func_ov000_02193e70(GpConnection *a, Unk02193f2cNode *b) {
     int v1;
     int v2[2];
     v1 = func_ov000_021938cc(a, 2, 0, v2, 0, 0, 0);

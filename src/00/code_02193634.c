@@ -23,8 +23,8 @@
 #include "00/code_02196000.h"
 #include "00/unk_021b3000.h"
 
-BOOL func_ov000_021937e8(Unk0218f960 *object, Unk021937c0Node **output, u32 key) {
-    Unk021937c0Node *node = object->mUnk_00->mUnk_424;
+BOOL func_ov000_021937e8(GpConnection *object, Unk021937c0Node **output, u32 key) {
+    Unk021937c0Node *node = object->mGpiConnection->mOperationList;
     while (node != NULL) {
         if (node->mUnk_18 == key) {
             if (output != NULL) {
@@ -40,8 +40,8 @@ BOOL func_ov000_021937e8(Unk0218f960 *object, Unk021937c0Node **output, u32 key)
     return FALSE;
 }
 
-BOOL func_ov000_021937c0(Unk0218f960 *object) {
-    Unk021937c0Node *node = object->mUnk_00->mUnk_424;
+BOOL func_ov000_021937c0(GpConnection *object) {
+    Unk021937c0Node *node = object->mGpiConnection->mOperationList;
     while (node != NULL) {
         if (node->mUnk_08 != 0 && node->mUnk_00 != 3) {
             return TRUE;
@@ -51,7 +51,7 @@ BOOL func_ov000_021937c0(Unk0218f960 *object) {
     return FALSE;
 }
 
-s32 func_ov000_02193748(Unk0218f960 *c, Unk021937c0Node *d, const u8 *e) {
+s32 func_ov000_02193748(GpConnection *c, Unk021937c0Node *d, const u8 *e) {
     s32 a = 0;
     u32 b = d->mUnk_00;
 

@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0218f960 Unk0218f960;
+typedef struct GpConnection GpConnection;
 
 // Argument block of the search of func_ov000_021948bc.
 typedef struct Unk0219488cArg {
@@ -12,4 +12,4 @@ typedef struct Unk0219488cArg {
     /* 0c */ s32 mUnk_0c;
 } Unk0219488cArg;
 
-s32 func_ov000_0219488c(Unk0218f960 *a, const u8 *b, const u8 *c, void **d);
+s32 func_ov000_0219488c(GpConnection *a, const u8 *b, const u8 *c, void **d);

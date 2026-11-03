@@ -20,15 +20,15 @@
 #include "code_02134d30.h"
 #include "code_02135014.h"
 
-void func_ov000_02193818(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
-    Unk0218f960_00 *a = param_1->mUnk_00;
-    Unk021937c0Node *b = a->mUnk_424;
+void func_ov000_02193818(GpConnection *param_1, Unk021937c0Node *param_2) {
+    GpiConnection *a = param_1->mGpiConnection;
+    Unk021937c0Node *b = a->mOperationList;
     Unk021937c0Node *c = NULL;
 
     while (b != NULL) {
         if (b == param_2) {
             if (c == NULL) {
-                a->mUnk_424 = b->mNext;
+                a->mOperationList = b->mNext;
             } else {
                 c->mNext = param_2->mNext;
             }
@@ -40,14 +40,14 @@ void func_ov000_02193818(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
     }
 }
 
-void func_ov000_02193858(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
-    Unk0218f960_00 *a = param_1->mUnk_00;
+void func_ov000_02193858(GpConnection *param_1, Unk021937c0Node *param_2) {
+    GpiConnection *a = param_1->mGpiConnection;
     Unk02193858 *b;
 
     if (param_2->mUnk_00 == 3) {
         b = (Unk02193858 *) param_2->mUnk_04;
-        a->mUnk_210--;
-        if (a->mUnk_210 < 0) {
+        a->mSearchCount--;
+        if (a->mSearchCount < 0) {
             func_0213442c(data_ov000_021b32c0, data_ov000_021b32b0, NULL, 0xb6);
         }
         func_ov000_0218e524(b->mUnk_04, 2);
@@ -62,9 +62,9 @@ void func_ov000_02193858(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
     func_ov000_021a3668(param_2);
 }
 
-u32 func_ov000_021938cc(Unk0218f960 *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6,
+u32 func_ov000_021938cc(GpConnection *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6,
                         int param_7) {
-    Unk0218f960_00 *a = param_1->mUnk_00;
+    GpiConnection *a = param_1->mGpiConnection;
     Unk021937c0Node *b = func_ov000_021a3690(0x24);
 
     if (b == NULL) {
@@ -78,22 +78,22 @@ u32 func_ov000_021938cc(Unk0218f960 *param_1, int param_2, int param_3, int *par
     if (param_2 == 0) {
         b->mUnk_18 = 1;
     } else {
-        b->mUnk_18 = a->mUnk_20c++;
-        if (a->mUnk_20c < 2) {
-            a->mUnk_20c = 2;
+        b->mUnk_18 = a->mNextOperationId++;
+        if (a->mNextOperationId < 2) {
+            a->mNextOperationId = 2;
         }
     }
     b->mUnk_1c = 0;
     b->mUnk_0c.mUnk_00 = (void (*)(void *, void *, u32)) param_6;
     b->mUnk_0c.mUnk_04 = param_7;
-    b->mNext = a->mUnk_424;
-    a->mUnk_424 = b;
+    b->mNext = a->mOperationList;
+    a->mOperationList = b;
     *param_4 = (s32) b;
     return 0;
 }
 
-s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
-    Unk0218f960_00 *a = param_1->mUnk_00;
+s32 func_ov000_02193954(GpConnection *param_1, Unk021937c0Node *param_2) {
+    GpiConnection *a = param_1->mGpiConnection;
     Unk02190ed4Cb b;
     Unk02193954_0 *c;
     Unk02193954_1 *d;
@@ -104,7 +104,7 @@ s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
     if (param_1 == NULL) {
         func_0213442c(data_ov000_021b32f0, data_ov000_021b32b0, NULL, 0x22);
     }
-    if (param_1->mUnk_00 == NULL) {
+    if (param_1->mGpiConnection == NULL) {
         func_0213442c(data_ov000_021b3304, data_ov000_021b32b0, NULL, 0x23);
     }
     if (param_2 == NULL) {
@@ -121,9 +121,9 @@ s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
                 }
                 memset(c, 0, 0x20);
                 c->mUnk_00 = param_2->mUnk_1c;
-                if (a->mUnk_418 == 0x201) {
-                    c->mUnk_04 = a->mUnk_1a0;
-                    a->mUnk_1a0 = 0;
+                if (a->mErrorNumber == 0x201) {
+                    c->mUnk_04 = a->mProfileId;
+                    a->mProfileId = 0;
                 }
                 g = func_ov000_02190ed4(param_1, b, c, param_2, 0);
                 if (g != 0) {
@@ -191,7 +191,7 @@ s32 func_ov000_02193954(Unk0218f960 *param_1, Unk021937c0Node *param_2) {
     return 0;
 }
 
-s32 func_ov000_02193b88(Unk0218f960 *param_1, Unk02193f2cNode *param_2, const u8 *param_3, s32 param_4) {
+s32 func_ov000_02193b88(GpConnection *param_1, Unk02193f2cNode *param_2, const u8 *param_3, s32 param_4) {
     u8 a[0x24];
     s32 b;
 
@@ -221,7 +221,7 @@ s32 func_ov000_02193b88(Unk0218f960 *param_1, Unk02193f2cNode *param_2, const u8
     return 0;
 }
 
-u32 func_ov000_02193c20(Unk0218f960 *param_1, Unk02193f2cNode *param_2, u32 param_3, Unk02193c20 *param_4) {
+u32 func_ov000_02193c20(GpConnection *param_1, Unk02193f2cNode *param_2, u32 param_3, Unk02193c20 *param_4) {
     u8 a[0x44];
     u32 b = param_4->mUnk_04;
     u32 c = param_4->mUnk_00;
@@ -234,7 +234,7 @@ u32 func_ov000_02193c20(Unk0218f960 *param_1, Unk02193f2cNode *param_2, u32 para
     return func_ov000_02190968(param_1, (Unk02190988 *) param_2, a);
 }
 
-s32 func_ov000_02193c74(Unk0218f960 *param_1, Unk02193f2cNode *param_2, u32 param_3, const u8 *param_4) {
+s32 func_ov000_02193c74(GpConnection *param_1, Unk02193f2cNode *param_2, u32 param_3, const u8 *param_4) {
     u32 b;
     s32 c;
 
@@ -283,7 +283,7 @@ s32 func_ov000_02193c74(Unk0218f960 *param_1, Unk02193f2cNode *param_2, u32 para
     }
 }
 
-s32 func_ov000_02193d64(Unk0218f960 *param_1, Unk02193f2cNode *param_2) {
+s32 func_ov000_02193d64(GpConnection *param_1, Unk02193f2cNode *param_2) {
     Unk02193d64 b;
     Unk02194934 *a;
     s32 c;

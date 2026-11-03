@@ -8,6 +8,6 @@
 
 void func_ov000_0219cc00(u32 a, u32 b, u32 c, u32 d);
 void func_ov000_0219cc30(u32 a, u32 b, u32 c);
-void func_ov000_0219cc94(Unk0218f960 *a, Unk0219c400 *b, u32 c);
-void func_ov000_0219cd74(Unk0218f960 *a, Unk0219c400 *b, u32 c);
-void func_ov000_0219ce48(Unk0218f960 *a, Unk0219c400 *b, u32 c);
+void func_ov000_0219cc94(GpConnection *a, Unk0219c400 *b, u32 c);
+void func_ov000_0219cd74(GpConnection *a, Unk0219c400 *b, u32 c);
+void func_ov000_0219ce48(GpConnection *a, Unk0219c400 *b, u32 c);

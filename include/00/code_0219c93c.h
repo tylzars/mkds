@@ -6,7 +6,7 @@
 #include "00/code_0218f960.h"
 
 typedef struct Unk021b565c {
-    /* 00 */ Unk0218f960 *mUnk_00;
+    /* 00 */ GpConnection *mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ u32 mUnk_08;
     /* 0c */ u32 mUnk_0c;

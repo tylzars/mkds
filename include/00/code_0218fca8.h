@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0218f960 Unk0218f960;
+typedef struct GpConnection GpConnection;
 
 // Object func_ov000_0218fca8 allocates with 0xc bytes and passes to func_ov000_02190ed4.
 typedef struct Unk0218fca8 {
@@ -40,4 +40,4 @@ extern u8 data_ov000_021b284c[];
 extern u8 data_ov000_021b2850[];
 extern u8 data_ov000_021b2854[];
 
-s32 func_ov000_0218fca8(Unk0218f960 *a, u8 *b);
+s32 func_ov000_0218fca8(GpConnection *a, u8 *b);

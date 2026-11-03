@@ -119,8 +119,8 @@ void func_ov000_0219338c(Unk02192e04 *a, Unk0219338c *b) {
     b->mUnk_200 = a->mUnk_cc[8];
 }
 
-s32 func_ov000_02192e04(Unk0218f960 *r, Unk021937c0Node *s, const u8 *t) {
-    Unk0218f960_00 *a;
+s32 func_ov000_02192e04(GpConnection *r, Unk021937c0Node *s, const u8 *t) {
+    GpiConnection *a;
     Unk02194934 *b;
     Unk02190ed4Cb c;
     u8 d[0x40];
@@ -136,7 +136,7 @@ s32 func_ov000_02192e04(Unk0218f960 *r, Unk021937c0Node *s, const u8 *t) {
     s32 o;
     s32 p;
 
-    a = r->mUnk_00;
+    a = r->mGpiConnection;
     if (func_ov000_02196870(r, t, 1) != 0) {
         return 4;
     }
@@ -285,7 +285,7 @@ s32 func_ov000_02192e04(Unk0218f960 *r, Unk021937c0Node *s, const u8 *t) {
             return 3;
         }
         p = a->mUnk_100;
-        q = a->mUnk_434;
+        q = a->mPeerList;
         while (q != NULL) {
             if (q->mUnk_0c == n && q->mUnk_00 == 0x65) {
                 if (b == NULL) {
@@ -327,22 +327,22 @@ s32 func_ov000_02192e04(Unk0218f960 *r, Unk021937c0Node *s, const u8 *t) {
     }
 }
 
-u32 func_ov000_02192d64(Unk0218f960 *a, Unk021906e4 *b) {
-    Unk0218f960_00 *v1;
-    v1 = a->mUnk_00;
-    if (0 < v1->mUnk_448) {
+u32 func_ov000_02192d64(GpConnection *a, Unk021906e4 *b) {
+    GpiConnection *v1;
+    v1 = a->mGpiConnection;
+    if (0 < v1->mUpdateproBufferLength) {
         func_ov000_02190b80(a, b, data_ov000_021b3184);
-        func_ov000_02190b58(a, b, v1->mUnk_198);
-        func_ov000_02190b80(a, b, v1->mUnk_440);
+        func_ov000_02190b58(a, b, v1->mSesskey);
+        func_ov000_02190b80(a, b, v1->mUpdateproBuffer);
         func_ov000_02190b80(a, b, data_ov000_021b2f94);
-        v1->mUnk_448 = 0;
+        v1->mUpdateproBufferLength = 0;
     }
-    if (0 < v1->mUnk_458) {
+    if (0 < v1->mUpdateuiBufferLength) {
         func_ov000_02190b80(a, b, data_ov000_021b319c);
-        func_ov000_02190b58(a, b, v1->mUnk_198);
-        func_ov000_02190b80(a, b, v1->mUnk_450);
+        func_ov000_02190b58(a, b, v1->mSesskey);
+        func_ov000_02190b80(a, b, v1->mUpdateuiBuffer);
         func_ov000_02190b80(a, b, data_ov000_021b2f94);
-        v1->mUnk_458 = 0;
+        v1->mUpdateuiBufferLength = 0;
     }
     return 0;
 }

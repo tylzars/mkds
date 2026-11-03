@@ -39,18 +39,18 @@ BOOL func_ov000_021967b4(const u8 *a, const void *v1, void *v2, s32 d) {
     return TRUE;
 }
 
-BOOL func_ov000_02196870(Unk0218f960 *a, const u8 *b, s32 c) {
-    Unk0218f960_00 *r;
+BOOL func_ov000_02196870(GpConnection *a, const u8 *b, s32 c) {
+    GpiConnection *r;
     BOOL t;
     u8 d[0x10];
 
-    r = a->mUnk_00;
+    r = a->mGpiConnection;
     if (strncmp(b, data_ov000_021b3aec, 7) == 0) {
         if (func_ov000_021967b4(b, data_ov000_021b3af4, d, 0x10) != FALSE) {
-            r->mUnk_418 = func_0213bf90(d);
+            r->mErrorNumber = func_0213bf90(d);
         }
-        if (func_ov000_021967b4(b, data_ov000_021b3afc, r->mUnk_000, 0x100) == FALSE) {
-            r->mUnk_000[0] = 0;
+        if (func_ov000_021967b4(b, data_ov000_021b3afc, r->mErrorMessage, 0x100) == FALSE) {
+            r->mErrorMessage[0] = 0;
         }
         if (c != 0) {
             t = (strstr(b, data_ov000_021b3b08) != NULL);
@@ -61,4 +61,4 @@ BOOL func_ov000_02196870(Unk0218f960 *a, const u8 *b, s32 c) {
     return FALSE;
 }
 
-void func_ov000_0219690c(Unk0218f960 *a, const u8 *b, ...) {}
+void func_ov000_0219690c(GpConnection *a, const u8 *b, ...) {}

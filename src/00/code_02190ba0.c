@@ -2,10 +2,10 @@
 #include "00/code_02193818.h"
 #include "00/code_02194840.h"
 
-u32 func_ov000_02191180(Unk0218f960 *a, Unk02194934 *b) {
-    Unk0218f960_00 *c;
+u32 func_ov000_02191180(GpConnection *a, Unk02194934 *b) {
+    GpiConnection *c;
 
-    c = a->mUnk_00;
+    c = a->mGpiConnection;
     if (b->mUnk_08 != NULL && c->mUnk_104 == 0) {
         func_ov000_021a3668(b->mUnk_08->mUnk_08);
         b->mUnk_08->mUnk_08 = NULL;
@@ -26,68 +26,68 @@ u32 func_ov000_02191180(Unk0218f960 *a, Unk02194934 *b) {
     return 1;
 }
 
-void func_ov000_02190ff8(Unk0218f960 *a, s32 b) {
-    Unk0218f960_00 *c;
+void func_ov000_02190ff8(GpConnection *a, s32 b) {
+    GpiConnection *c;
     Unk021937c0Node *d;
     Unk02193f2cNode *e;
     u32 f;
 
-    c = a->mUnk_00;
-    if (c->mUnk_1d8 == 4) {
+    c = a->mGpiConnection;
+    if (c->mConnectState == 4) {
         return;
     }
-    if (c->mUnk_1d8 != 0) {
-        if (b != 0 && c->mUnk_1d8 == 3) {
-            func_ov000_02190b80(a, &c->mUnk_1f4, data_ov000_021b2b28);
-            func_ov000_02190b58(a, &c->mUnk_1f4, c->mUnk_198);
-            func_ov000_02190b80(a, &c->mUnk_1f4, data_ov000_021b2b3c);
+    if (c->mConnectState != 0) {
+        if (b != 0 && c->mConnectState == 3) {
+            func_ov000_02190b80(a, &c->mOutputBuffer, data_ov000_021b2b28);
+            func_ov000_02190b58(a, &c->mOutputBuffer, c->mSesskey);
+            func_ov000_02190b80(a, &c->mOutputBuffer, data_ov000_021b2b3c);
         }
-        func_ov000_021906e4(a, c->mUnk_1d4, &c->mUnk_1f4, &f, 1, data_ov000_021b2b44);
-        if (c->mUnk_1d4 != -1) {
-            func_ov000_0218e524(c->mUnk_1d4, 2);
-            func_ov000_0218e53c(c->mUnk_1d4);
-            c->mUnk_1d4 = -1;
+        func_ov000_021906e4(a, c->mConnectSocket, &c->mOutputBuffer, &f, 1, data_ov000_021b2b44);
+        if (c->mConnectSocket != -1) {
+            func_ov000_0218e524(c->mConnectSocket, 2);
+            func_ov000_0218e53c(c->mConnectSocket);
+            c->mConnectSocket = -1;
         }
-        if (c->mUnk_204 != -1) {
-            func_ov000_0218e524(c->mUnk_204, 2);
-            func_ov000_0218e53c(c->mUnk_204);
-            c->mUnk_204 = -1;
+        if (c->mListenSocket != -1) {
+            func_ov000_0218e524(c->mListenSocket, 2);
+            func_ov000_0218e53c(c->mListenSocket);
+            c->mListenSocket = -1;
         }
-        c->mUnk_1d8 = 4;
-        c->mUnk_19c = 0;
-        c->mUnk_1a0 = 0;
+        c->mConnectState = 4;
+        c->mUserId = 0;
+        c->mProfileId = 0;
     }
-    func_ov000_021a3668(c->mUnk_1dc);
-    c->mUnk_1dc = NULL;
-    func_ov000_021a3668(c->mUnk_1ec);
-    c->mUnk_1ec = NULL;
-    func_ov000_021a3668(c->mUnk_1f4.mUnk_00);
-    c->mUnk_1f4.mUnk_00 = NULL;
-    func_ov000_021a3668(c->mUnk_440);
-    c->mUnk_440 = NULL;
-    func_ov000_021a3668(c->mUnk_450);
-    c->mUnk_450 = NULL;
-    while (c->mUnk_424 != NULL) {
-        func_ov000_02193818(a, c->mUnk_424);
+    func_ov000_021a3668(c->mInputBuffer);
+    c->mInputBuffer = NULL;
+    func_ov000_021a3668(c->mCommandBuffer);
+    c->mCommandBuffer = NULL;
+    func_ov000_021a3668(c->mOutputBuffer.mUnk_00);
+    c->mOutputBuffer.mUnk_00 = NULL;
+    func_ov000_021a3668(c->mUpdateproBuffer);
+    c->mUpdateproBuffer = NULL;
+    func_ov000_021a3668(c->mUpdateuiBuffer);
+    c->mUpdateuiBuffer = NULL;
+    while (c->mOperationList != NULL) {
+        func_ov000_02193818(a, c->mOperationList);
     }
-    c->mUnk_424 = NULL;
-    e = c->mUnk_434;
+    c->mOperationList = NULL;
+    e = c->mPeerList;
     while (e != NULL) {
         Unk02193f2cNode *g = e;
         e = e->mNext;
         func_ov000_02194120(a, g);
     }
-    c->mUnk_434 = NULL;
+    c->mPeerList = NULL;
     while (func_ov000_02194840(a, func_ov000_02191180, NULL) == 0) {
     }
 }
 
-void func_ov000_02190f4c(Unk0218f960 *a, s32 b, s32 c) {
-    Unk0218f960_00 *d;
+void func_ov000_02190f4c(GpConnection *a, s32 b, s32 c) {
+    GpiConnection *d;
     Unk02190ed4Cb e;
     Unk02190f4c *f;
 
-    d = a->mUnk_00;
+    d = a->mGpiConnection;
     if (d == NULL) {
         func_0213442c(data_ov000_021b2a8c, data_ov000_021b2a58, NULL, 0x23);
     }
@@ -98,26 +98,26 @@ void func_ov000_02190f4c(Unk0218f960 *a, s32 b, s32 c) {
         func_0213442c(data_ov000_021b2ab8, data_ov000_021b2a58, NULL, 0x25);
     }
     if (c == 1) {
-        d->mUnk_41c = 1;
+        d->mFatal = 1;
     }
-    e = d->mUnk_1a4[0];
+    e = d->mCallbacks[0];
     if (e.mUnk_00 != NULL) {
         f = func_ov000_021a3690(0x10);
         if (f != NULL) {
             f->mUnk_00 = b;
             f->mUnk_0c = c;
-            f->mUnk_04 = d->mUnk_418;
+            f->mUnk_04 = d->mErrorNumber;
             f->mUnk_08 = d;
         }
         func_ov000_02190ed4(a, e, f, NULL, 1);
     }
 }
 
-u32 func_ov000_02190ed4(Unk0218f960 *a, Unk02190ed4Cb b, void *c, Unk021937c0Node *d, s32 e) {
-    Unk0218f960_00 *f;
+u32 func_ov000_02190ed4(GpConnection *a, Unk02190ed4Cb b, void *c, Unk021937c0Node *d, s32 e) {
+    GpiConnection *f;
     Unk02190ed4Node *g;
 
-    f = a->mUnk_00;
+    f = a->mGpiConnection;
     g = func_ov000_021a3690(0x18);
     if (g == NULL) {
         func_ov000_02196590(a, data_ov000_021b2a7c);
@@ -132,17 +132,17 @@ u32 func_ov000_02190ed4(Unk0218f960 *a, Unk02190ed4Cb b, void *c, Unk021937c0Nod
     }
     g->mUnk_0c = e;
     g->mUnk_14 = NULL;
-    if (f->mUnk_438 == NULL) {
-        f->mUnk_438 = g;
+    if (f->mCallbackQueueHead == NULL) {
+        f->mCallbackQueueHead = g;
     }
-    if (f->mUnk_43c != NULL) {
-        f->mUnk_43c->mUnk_14 = g;
+    if (f->mCallbackQueueTail != NULL) {
+        f->mCallbackQueueTail->mUnk_14 = g;
     }
-    f->mUnk_43c = g;
+    f->mCallbackQueueTail = g;
     return 0;
 }
 
-void func_ov000_02190da0(Unk0218f960 *a, Unk02190ed4Node *b) {
+void func_ov000_02190da0(GpConnection *a, Unk02190ed4Node *b) {
     Unk02190da0Data *c;
     Unk02190da0Data *e;
     s32 d;
@@ -201,20 +201,20 @@ void func_ov000_02190da0(Unk0218f960 *a, Unk02190ed4Node *b) {
     func_ov000_021a3668(b);
 }
 
-u32 func_ov000_02190cd4(Unk0218f960 *a, s32 b) {
-    Unk0218f960_00 *c;
+u32 func_ov000_02190cd4(GpConnection *a, s32 b) {
+    GpiConnection *c;
     Unk02190ed4Node *d;
     Unk02190ed4Node *e;
     Unk02190ed4Node *f;
     Unk02190ed4Node *g;
 
-    c = a->mUnk_00;
+    c = a->mGpiConnection;
     if (b != 0) {
-        d = c->mUnk_438;
-        e = c->mUnk_43c;
+        d = c->mCallbackQueueHead;
+        e = c->mCallbackQueueTail;
         f = NULL;
-        c->mUnk_438 = NULL;
-        c->mUnk_43c = NULL;
+        c->mCallbackQueueHead = NULL;
+        c->mCallbackQueueTail = NULL;
         g = d;
         if (g != NULL) {
             do {
@@ -235,25 +235,25 @@ u32 func_ov000_02190cd4(Unk0218f960 *a, s32 b) {
                 g = h;
             } while (g != NULL);
         }
-        if (c->mUnk_438 != NULL) {
-            c->mUnk_43c->mUnk_14 = d;
-            c->mUnk_43c = e;
+        if (c->mCallbackQueueHead != NULL) {
+            c->mCallbackQueueTail->mUnk_14 = d;
+            c->mCallbackQueueTail = e;
         } else {
-            c->mUnk_438 = d;
-            c->mUnk_43c = e;
+            c->mCallbackQueueHead = d;
+            c->mCallbackQueueTail = e;
         }
         return 0;
     }
-    g = c->mUnk_438;
+    g = c->mCallbackQueueHead;
     while (g != NULL) {
-        c->mUnk_438 = NULL;
-        c->mUnk_43c = NULL;
+        c->mCallbackQueueHead = NULL;
+        c->mCallbackQueueTail = NULL;
         while (g != NULL) {
             d = g->mUnk_14;
             func_ov000_02190da0(a, g);
             g = d;
         }
-        g = c->mUnk_438;
+        g = c->mCallbackQueueHead;
     }
     return 0;
 }

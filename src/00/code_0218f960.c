@@ -27,24 +27,24 @@
 #include "00/code_021a3668.h"
 #include "00/unk_021b23b0.h"
 
-u32 func_ov000_0218fbe0(Unk0218f960 *a, s32 b, s32 c, const u8 *d) {
-    Unk0218f960_00 *o;
+u32 func_ov000_0218fbe0(GpConnection *a, s32 b, s32 c, const u8 *d) {
+    GpiConnection *o;
     u8 e[0xdad];
-    o = a->mUnk_00;
+    o = a->mGpiConnection;
     func_ov000_02196914(e, d, 0xdad);
-    func_ov000_02190b80(a, &o->mUnk_1f4, data_ov000_021b27c4);
-    func_ov000_02190b58(a, &o->mUnk_1f4, c);
-    func_ov000_02190b80(a, &o->mUnk_1f4, data_ov000_021b275c);
-    func_ov000_02190b58(a, &o->mUnk_1f4, o->mUnk_198);
-    func_ov000_02190b80(a, &o->mUnk_1f4, data_ov000_021b27cc);
-    func_ov000_02190b58(a, &o->mUnk_1f4, b);
-    func_ov000_02190b80(a, &o->mUnk_1f4, data_ov000_021b27d0);
-    func_ov000_02190b80(a, &o->mUnk_1f4, e);
-    func_ov000_02190b80(a, &o->mUnk_1f4, data_ov000_021b2778);
+    func_ov000_02190b80(a, &o->mOutputBuffer, data_ov000_021b27c4);
+    func_ov000_02190b58(a, &o->mOutputBuffer, c);
+    func_ov000_02190b80(a, &o->mOutputBuffer, data_ov000_021b275c);
+    func_ov000_02190b58(a, &o->mOutputBuffer, o->mSesskey);
+    func_ov000_02190b80(a, &o->mOutputBuffer, data_ov000_021b27cc);
+    func_ov000_02190b58(a, &o->mOutputBuffer, b);
+    func_ov000_02190b80(a, &o->mOutputBuffer, data_ov000_021b27d0);
+    func_ov000_02190b80(a, &o->mOutputBuffer, e);
+    func_ov000_02190b80(a, &o->mOutputBuffer, data_ov000_021b2778);
     return 0;
 }
 
-u32 func_ov000_0218fb3c(Unk0218f960 *a, s32 b, s32 c, const u8 *d) {
+u32 func_ov000_0218fb3c(GpConnection *a, s32 b, s32 c, const u8 *d) {
     Unk02194934 *e;
     Unk02193f2cNode *n;
     u32 r;
@@ -76,11 +76,11 @@ u32 func_ov000_0218fb3c(Unk0218f960 *a, s32 b, s32 c, const u8 *d) {
     return r;
 }
 
-u32 func_ov000_0218faac(Unk0218f960 *a, u32 b) {
-    Unk0218f960_00 *o;
+u32 func_ov000_0218faac(GpConnection *a, u32 b) {
+    GpiConnection *o;
     Unk02194934 *e;
     u32 r;
-    o = a->mUnk_00;
+    o = a->mGpiConnection;
     if (func_ov000_02194934(a, b, &e) == 0) {
         func_ov000_02196590(a, data_ov000_021b273c);
         return 2;
@@ -111,22 +111,22 @@ s32 func_ov000_0218fa98(void *unused, Unk0218fa98 *object, s32 minimum) {
     return 1;
 }
 
-u32 func_ov000_0218f960(Unk0218f960 *p, u32 b) {
-    Unk0218f960_00 *o;
+u32 func_ov000_0218f960(GpConnection *p, u32 b) {
+    GpiConnection *o;
     Unk02194934 *e;
     s32 n;
 
-    o = p->mUnk_00;
+    o = p->mGpiConnection;
     if (func_ov000_02194934(p, b, &e) == 0) {
         func_ov000_02196590(p, data_ov000_021b273c);
         return 2;
     }
-    func_ov000_02190b80(p, &o->mUnk_1f4, data_ov000_021b2750);
-    func_ov000_02190b80(p, &o->mUnk_1f4, data_ov000_021b275c);
-    func_ov000_02190b58(p, &o->mUnk_1f4, o->mUnk_198);
-    func_ov000_02190b80(p, &o->mUnk_1f4, data_ov000_021b2768);
-    func_ov000_02190b58(p, &o->mUnk_1f4, e->mUnk_00);
-    func_ov000_02190b80(p, &o->mUnk_1f4, data_ov000_021b2778);
+    func_ov000_02190b80(p, &o->mOutputBuffer, data_ov000_021b2750);
+    func_ov000_02190b80(p, &o->mOutputBuffer, data_ov000_021b275c);
+    func_ov000_02190b58(p, &o->mOutputBuffer, o->mSesskey);
+    func_ov000_02190b80(p, &o->mOutputBuffer, data_ov000_021b2768);
+    func_ov000_02190b58(p, &o->mOutputBuffer, e->mUnk_00);
+    func_ov000_02190b80(p, &o->mOutputBuffer, data_ov000_021b2778);
     if (e->mUnk_08 != NULL) {
         n = e->mUnk_08->mUnk_00;
         if (n < 0) {
@@ -141,8 +141,8 @@ u32 func_ov000_0218f960(Unk0218f960 *p, u32 b) {
         if (func_ov000_021947e4(e) != 0) {
             func_ov000_021948f8(p, e);
         }
-        o->mUnk_430--;
-        if (o->mUnk_430 < 0) {
+        o->mBuddyCount--;
+        if (o->mBuddyCount < 0) {
             func_0213442c(data_ov000_021b2798, data_ov000_021b278c, NULL, 0x204);
         }
         func_ov000_02194840(p, func_ov000_0218fa98, (void *) n);

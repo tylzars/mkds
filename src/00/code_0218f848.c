@@ -11,35 +11,35 @@
 #include "code_021384cc.h"
 #include "code_02134d30.h"
 
-u32 func_ov000_0218f848(Unk0218f960 *a, s32 b, s32 c) {
-    Unk0218f960 p;
+u32 func_ov000_0218f848(GpConnection *a, s32 b, s32 c) {
+    GpConnection p;
     u32 r;
     s32 i;
-    a->mUnk_00 = NULL;
-    p.mUnk_00 = func_ov000_021a3690(0x490);
-    if (p.mUnk_00 == NULL) {
+    a->mGpiConnection = NULL;
+    p.mGpiConnection = func_ov000_021a3690(0x490);
+    if (p.mGpiConnection == NULL) {
         return 1;
     }
-    memset(p.mUnk_00, 0, 0x490);
-    p.mUnk_00->mUnk_000[0] = 0;
-    p.mUnk_00->mUnk_418 = 0;
-    p.mUnk_00->mUnk_100 = 1;
-    p.mUnk_00->mUnk_104 = 0;
-    p.mUnk_00->mUnk_108 = 0;
-    p.mUnk_00->mUnk_10c = 0;
-    p.mUnk_00->mUnk_46c = b;
-    p.mUnk_00->mUnk_470 = c;
+    memset(p.mGpiConnection, 0, 0x490);
+    p.mGpiConnection->mErrorMessage[0] = 0;
+    p.mGpiConnection->mErrorNumber = 0;
+    p.mGpiConnection->mUnk_100 = 1;
+    p.mGpiConnection->mUnk_104 = 0;
+    p.mGpiConnection->mUnk_108 = 0;
+    p.mGpiConnection->mFirewall = 0;
+    p.mGpiConnection->mProductId = b;
+    p.mGpiConnection->mNamespaceId = c;
     if (func_ov000_02194af4(&p) == 0) {
-        func_ov000_021a3668(p.mUnk_00);
-        p.mUnk_00 = NULL;
+        func_ov000_021a3668(p.mGpiConnection);
+        p.mGpiConnection = NULL;
         return 1;
     }
-    p.mUnk_00->mUnk_420 = 0;
+    p.mGpiConnection->mUnk_420 = 0;
     for (i = 0; i < 6; i++) {
-        p.mUnk_00->mUnk_1a4[i].mUnk_00 = NULL;
-        p.mUnk_00->mUnk_1a4[i].mUnk_04 = 0;
+        p.mGpiConnection->mCallbacks[i].mUnk_00 = NULL;
+        p.mGpiConnection->mCallbacks[i].mUnk_04 = 0;
     }
-    p.mUnk_00->mUnk_460 = NULL;
+    p.mGpiConnection->mUnk_460 = NULL;
     func_ov000_0219690c(&p, data_ov000_021b2718);
     r = func_ov000_0218f654(&p);
     if (r != 0) {
@@ -48,6 +48,6 @@ u32 func_ov000_0218f848(Unk0218f960 *a, s32 b, s32 c) {
     }
     func_ov000_0218e8b8();
     srand(func_ov000_0218e8c4());
-    a->mUnk_00 = p.mUnk_00;
+    a->mGpiConnection = p.mGpiConnection;
     return 0;
 }

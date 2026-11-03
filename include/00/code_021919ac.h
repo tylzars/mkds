@@ -90,7 +90,7 @@ typedef union Unk021919ac_sa {
 void *func_ov000_0218e880(u8 *a);
 
 void func_ov000_021920d8(s8 *p, s32 n);
-u32 func_ov000_021919ac(Unk0218f960 *p, Unk021919ac_q *q);
-u32 func_ov000_02191cb0(Unk0218f960 *p, const u8 *a, const u8 *b, const u8 *c, const u8 *d, const s8 *e, const s8 *f,
+u32 func_ov000_021919ac(GpConnection *p, Unk021919ac_q *q);
+u32 func_ov000_02191cb0(GpConnection *p, const u8 *a, const u8 *b, const u8 *c, const u8 *d, const s8 *e, const s8 *f,
                         const u8 *g, s32 h, s32 i, s32 j, s32 k, s32 l);
-u32 func_ov000_02191e58(Unk0218f960 *p, Unk021919ac_node *n);
+u32 func_ov000_02191e58(GpConnection *p, Unk021919ac_node *n);

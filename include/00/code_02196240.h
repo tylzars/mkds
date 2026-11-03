@@ -30,8 +30,8 @@ typedef struct Unk021962d4Addr {
     /* 04 */ u32 mUnk_04;
 } Unk021962d4Addr;
 
-BOOL func_ov000_02196240(Unk0218f960 *a, Unk02196240 **b, u32 c);
-s32 func_ov000_021962d4(Unk0218f960 *a, Unk021937c0Node *b);
-void func_ov000_02196434(Unk0218f960 *a, Unk02193f2cNode *b, s32 c, const u8 *d, s32 e, s32 f);
-s32 func_ov000_02196480(Unk0218f960 *a, s32 *b, Unk02193f2cNode *c, s32 d, const u8 *e);
-s32 func_ov000_021964e4(Unk0218f960 *a, Unk021937c0Node *b, const u8 *c);
+BOOL func_ov000_02196240(GpConnection *a, Unk02196240 **b, u32 c);
+s32 func_ov000_021962d4(GpConnection *a, Unk021937c0Node *b);
+void func_ov000_02196434(GpConnection *a, Unk02193f2cNode *b, s32 c, const u8 *d, s32 e, s32 f);
+s32 func_ov000_02196480(GpConnection *a, s32 *b, Unk02193f2cNode *c, s32 d, const u8 *e);
+s32 func_ov000_021964e4(GpConnection *a, Unk021937c0Node *b, const u8 *c);

@@ -28,7 +28,7 @@ u32 func_ov000_02190b58(void *a, void *b, u32 c) {
     return func_ov000_02190b80(a, b, d);
 }
 
-u32 func_ov000_02190aa8(Unk0218f960 *a, s32 b, const void *c, s32 d, s32 *e, s32 *f, const s8 *g) {
+u32 func_ov000_02190aa8(GpConnection *a, s32 b, const void *c, s32 d, s32 *e, s32 *f, const s8 *g) {
     s32 h;
     u32 i;
 
@@ -56,7 +56,7 @@ u32 func_ov000_02190aa8(Unk0218f960 *a, s32 b, const void *c, s32 d, s32 *e, s32
     return 0;
 }
 
-u32 func_ov000_02190a24(Unk0218f960 *a, Unk02190988 *b, s8 c) {
+u32 func_ov000_02190a24(GpConnection *a, Unk02190988 *b, s8 c) {
     s32 d;
     s32 e;
     u32 f;
@@ -76,7 +76,7 @@ u32 func_ov000_02190a24(Unk0218f960 *a, Unk02190988 *b, s8 c) {
     return func_ov000_02190c64(a, &b->mUnk_28, c);
 }
 
-u32 func_ov000_02190988(Unk0218f960 *a, Unk02190988 *b, const u8 *c, s32 d) {
+u32 func_ov000_02190988(GpConnection *a, Unk02190988 *b, const u8 *c, s32 d) {
     s32 e;
     s32 f;
     s32 g;
@@ -110,12 +110,12 @@ u32 func_ov000_02190988(Unk0218f960 *a, Unk02190988 *b, const u8 *c, s32 d) {
     return 0;
 }
 
-u32 func_ov000_02190968(Unk0218f960 *p0, Unk02190988 *p1, const u8 *p2) {
+u32 func_ov000_02190968(GpConnection *p0, Unk02190988 *p1, const u8 *p2) {
     u32 v6 = strlen(p2);
     return func_ov000_02190988(p0, p1, p2, v6);
 }
 
-u32 func_ov000_021907e8(Unk0218f960 *a, s32 b, Unk021906e4 *c, s32 *d, u32 *e, const s8 *f) {
+u32 func_ov000_021907e8(GpConnection *a, s32 b, Unk021906e4 *c, s32 *d, u32 *e, const s8 *f) {
     u8 *g;
     s32 h;
     s32 i;
@@ -181,7 +181,7 @@ u32 func_ov000_021907e8(Unk0218f960 *a, s32 b, Unk021906e4 *c, s32 *d, u32 *e, c
     return 0;
 }
 
-u32 func_ov000_021906e4(Unk0218f960 *a, s32 b, Unk021906e4 *c, u32 *d, s32 e, const s8 *f) {
+u32 func_ov000_021906e4(GpConnection *a, s32 b, Unk021906e4 *c, u32 *d, s32 e, const s8 *f) {
     s32 g;
     s32 h;
     u8 *i;

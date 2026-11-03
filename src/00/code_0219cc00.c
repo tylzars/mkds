@@ -26,7 +26,7 @@
 #include "Main/Unknown/code_02152468.h"
 #include "Main/Unknown/code_02152a1c.h"
 
-void func_ov000_0219ce48(Unk0218f960 *a, Unk0219c400 *b, u32 c) {
+void func_ov000_0219ce48(GpConnection *a, Unk0219c400 *b, u32 c) {
     s32 i;
     s32 k;
     s32 n;
@@ -73,8 +73,8 @@ void func_ov000_0219ce48(Unk0218f960 *a, Unk0219c400 *b, u32 c) {
     }
 }
 
-void func_ov000_0219cd74(Unk0218f960 *a, Unk0219c400 *b, u32 c) {
-    Unk0218f960 *h = a;
+void func_ov000_0219cd74(GpConnection *a, Unk0219c400 *b, u32 c) {
+    GpConnection *h = a;
     s32 i;
     BOOL f;
     u8 s[0x18];
@@ -105,7 +105,7 @@ void func_ov000_0219cd74(Unk0218f960 *a, Unk0219c400 *b, u32 c) {
     }
 }
 
-void func_ov000_0219cc94(Unk0218f960 *a, Unk0219c400 *b, u32 c) {
+void func_ov000_0219cc94(GpConnection *a, Unk0219c400 *b, u32 c) {
     s32 i;
     BOOL f;
     u8 s[0x1c];
