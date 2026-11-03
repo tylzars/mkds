@@ -147,7 +147,7 @@ void func_020cbb10(void) {
         func_02025f90();
         func_02027df8();
         func_ov001_021984ac();
-        func_ov001_0219c6f0();
+        LoadSelectGhostAndKartIconData();
         func_ov001_0219f85c();
         func_ov001_021a10b8();
         func_ov001_0219d50c();

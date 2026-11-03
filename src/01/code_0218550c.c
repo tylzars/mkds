@@ -53,7 +53,7 @@ void func_ov001_021856ec(void) {
 }
 
 void func_ov001_021856c0(void) {
-    switch (func_ov001_0219b574()) {
+    switch (AdvanceSelectGhost()) {
         case 1:
             func_020ccc74(29, 0x1f);
             break;

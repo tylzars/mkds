@@ -11,46 +11,50 @@
 #include "Main/Unknown/code_02037000.h"
 #include "Main/Unknown/code_02125f6c.h"
 
-void func_ov001_0219df70(void *a) {
+void InitOptionEmbremSelect(void *a) {
     s32 i;
-    Unk021a9bfc *p;
+    OptionEmbremSelect *p;
     void *ptr;
 
-    data_ov001_021a9bfc = func_02036bec(a, 0x58);
-    data_ov001_021a9bfc->mUnk_30 = a;
-    data_ov001_021a9bfc->mUnk_00 = 0;
-    data_ov001_021a9bfc->mUnk_04 = 0;
-    data_ov001_021a9bfc->mUnk_08 = 0;
-    data_ov001_021a9bfc->mUnk_14 = 0;
-    data_ov001_021a9bfc->mUnk_24 = 1;
+    gOptionEmbremSelect = func_02036bec(a, 0x58);
+    gOptionEmbremSelect->mUnk_30 = a;
+    gOptionEmbremSelect->mState = 0;
+    gOptionEmbremSelect->mNextState = 0;
+    gOptionEmbremSelect->mUnk_08 = 0;
+    gOptionEmbremSelect->mStateFrames = 0;
+    gOptionEmbremSelect->mUnk_24 = 1;
     func_ov001_0219de58();
     for (i = 0; i < 2; i++) {
-        func_02124a98(data_ov001_021a6c38[i][0], 1, data_ov001_021a9bfc->mUnk_38, data_ov001_021a9bfc->mUnk_44);
+        func_02124a98(data_ov001_021a6c38[i][0], 1, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
+                      gOptionEmbremSelect->mOptionEmbremSelectSBncl);
     }
     func_020ae6d4(func_ov001_0219e920(), func_ov001_0219e90c());
-    func_02124ed0(a, data_ov001_021a9bfc->mUnk_44, data_ov001_021a9bfc->mUnk_4c, &data_ov001_021a9bfc->mUnk_34);
-    data_ov001_021a9bfc->mUnk_50 = FindSceneFile("option.bmg");
-    data_ov001_021a9bfc->mUnk_54 = func_02047a28("common.bmg");
-    func_021243ac(a, 0, data_ov001_021a9bfc->mUnk_4c, 0xa0, 0xe, 9, data_ov001_021a9bfc->mUnk_38,
-                  data_ov001_021a9bfc->mUnk_44, data_ov001_021a9bfc->mUnk_34, 0x4000);
-    p = data_ov001_021a9bfc;
-    ptr = GetBmgEntry(p->mUnk_50, 8);
-    func_0212426c(1, 0, data_ov001_021a9bfc->mUnk_4c, ptr, p->mUnk_44, p->mUnk_34);
+    func_02124ed0(a, gOptionEmbremSelect->mOptionEmbremSelectSBncl, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
+                  &gOptionEmbremSelect->mOptionEmbremSelectSTable);
+    gOptionEmbremSelect->mOptionMessages = FindSceneFile("option.bmg");
+    gOptionEmbremSelect->mCommonMessages = func_02047a28("common.bmg");
+    func_021243ac(a, 0, gOptionEmbremSelect->mOptionEmbremSelectSBnll, 0xa0, 0xe, 9,
+                  gOptionEmbremSelect->mOptionEmbremSelectSNcer, gOptionEmbremSelect->mOptionEmbremSelectSBncl,
+                  gOptionEmbremSelect->mOptionEmbremSelectSTable, 0x4000);
+    p = gOptionEmbremSelect;
+    ptr = GetBmgEntry(p->mOptionMessages, 8);
+    func_0212426c(1, 0, gOptionEmbremSelect->mOptionEmbremSelectSBnll, ptr, p->mOptionEmbremSelectSBncl,
+                  p->mOptionEmbremSelectSTable);
     for (i = 0; i < 2; i++) {
-        data_ov001_021a9bfc->mUnk_18[i].mUnk_00 = 250;
-        data_ov001_021a9bfc->mUnk_18[i].mUnk_02 = 0;
+        gOptionEmbremSelect->mUnk_18[i].mUnk_00 = 250;
+        gOptionEmbremSelect->mUnk_18[i].mUnk_02 = 0;
     }
-    data_ov001_021a9bfc->mUnk_0c = func_ov001_0219de38();
-    data_ov001_021a9bfc->mUnk_10 = data_ov001_021a9bfc->mUnk_0c;
+    gOptionEmbremSelect->mUnk_0c = func_ov001_0219de38();
+    gOptionEmbremSelect->mUnk_10 = gOptionEmbremSelect->mUnk_0c;
     func_ov001_0219d858();
     func_ov001_0219d810();
-    data_ov001_021a9bfc->mUnk_28[0] = 0;
-    data_ov001_021a9bfc->mUnk_28[1] = 0;
+    gOptionEmbremSelect->mOffsetTimers[0] = 0;
+    gOptionEmbremSelect->mOffsetTimers[1] = 0;
     func_021281c8(0xe);
 }
 
 void func_ov001_0219df64(void) {
-    data_ov001_021a9bfc = NULL;
+    gOptionEmbremSelect = NULL;
 }
 
 void func_ov001_0219de58(void) {
@@ -58,20 +62,22 @@ void func_ov001_0219de58(void) {
     Unk020b47d8 *b;
     Unk020b4a44 *c;
 
-    LocateNcgr(&a, FindSceneFile(data_ov001_021a8ce0));
-    LocateNscr(&b, FindSceneFile(data_ov001_021a8cfc));
-    LocateNclr(&c, FindSceneFile(data_ov001_021a8d14));
-    data_ov001_021a9bfc->mUnk_44 = FindSceneFile(data_ov001_021a8d30);
-    data_ov001_021a9bfc->mUnk_48 = FindSceneFile(data_ov001_021a8d4c);
-    data_ov001_021a9bfc->mUnk_4c = FindSceneFile(data_ov001_021a8d68);
-    LocateNcgr2(&data_ov001_021a9bfc->mUnk_3c, FindSceneFile(data_ov001_021a8d84));
-    LocateNcer(&data_ov001_021a9bfc->mUnk_38, FindSceneFile(data_ov001_021a8da4));
-    LocateNclr(&data_ov001_021a9bfc->mUnk_40, FindSceneFile(data_ov001_021a8dc4));
+    LocateNcgr(&a, FindSceneFile(gOptionTopMenuMBNcgrName));
+    LocateNscr(&b, FindSceneFile(gOptionTopMenuMNscrName));
+    LocateNclr(&c, FindSceneFile(gOptionTopMenuMBNclrName));
+    gOptionEmbremSelect->mOptionEmbremSelectSBncl = FindSceneFile(gOptionEmbremSelectSBnclName);
+    gOptionEmbremSelect->mOptionEmbremSelectSBnbl = FindSceneFile(gOptionEmbremSelectSBnblName);
+    gOptionEmbremSelect->mOptionEmbremSelectSBnll = FindSceneFile(gOptionEmbremSelectSBnllName);
+    LocateNcgr2(&gOptionEmbremSelect->mOptionEmbremSelectSNcgr, FindSceneFile(gOptionEmbremSelectSNcgrName));
+    LocateNcer(&gOptionEmbremSelect->mOptionEmbremSelectSNcer, FindSceneFile(gOptionEmbremSelectSNcerName));
+    LocateNclr(&gOptionEmbremSelect->mOptionEmbremSelectSONclr, FindSceneFile(gOptionEmbremSelectSONclrName));
     func_02016468(4, 0, a->mUnk_14, a->mUnk_10);
     func_02016468(8, 0, b->mUnk_0c, b->mUnk_08);
     func_02016468(0xf, 0, c->mUnk_0c, 0x100);
-    func_02016468(0x23, 0, data_ov001_021a9bfc->mUnk_3c->mUnk_14, data_ov001_021a9bfc->mUnk_3c->mUnk_10);
-    func_02016468(0x1e, 0, data_ov001_021a9bfc->mUnk_40->mUnk_0c, data_ov001_021a9bfc->mUnk_40->mUnk_08);
+    func_02016468(0x23, 0, gOptionEmbremSelect->mOptionEmbremSelectSNcgr->mUnk_14,
+                  gOptionEmbremSelect->mOptionEmbremSelectSNcgr->mUnk_10);
+    func_02016468(0x1e, 0, gOptionEmbremSelect->mOptionEmbremSelectSONclr->mUnk_0c,
+                  gOptionEmbremSelect->mOptionEmbremSelectSONclr->mUnk_08);
 }
 
 BOOL func_ov001_0219de38(void) {
@@ -84,48 +90,48 @@ BOOL func_ov001_0219de38(void) {
     return TRUE;
 }
 
-void func_ov001_0219de18(void) {
+void AdvanceOptionEmbremSelectState0(void) {
     int v1;
     v1 = func_02036c5c();
     if (v1 != 0) {
-        data_ov001_021a9bfc->mUnk_04 = 1;
+        gOptionEmbremSelect->mNextState = 1;
     }
     return;
 }
 
-void func_ov001_0219dd94(void) {
+void AdvanceOptionEmbremSelectState1(void) {
     s32 i;
     s32 j;
     s16 v;
 
-    data_ov001_021a9bfc->mUnk_14++;
-    v = func_020ae4c0(1, 250, 0, data_ov001_021a9bfc->mUnk_14, 10);
+    gOptionEmbremSelect->mStateFrames++;
+    v = func_020ae4c0(1, 250, 0, gOptionEmbremSelect->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6c28[i]; j++) {
             if (i == 1) {
-                data_ov001_021a9bfc->mUnk_18[i].mUnk_00 = v;
+                gOptionEmbremSelect->mUnk_18[i].mUnk_00 = v;
             } else {
-                data_ov001_021a9bfc->mUnk_18[i].mUnk_00 = -v;
+                gOptionEmbremSelect->mUnk_18[i].mUnk_00 = -v;
             }
         }
     }
-    if (data_ov001_021a9bfc->mUnk_14 >= 10) {
-        data_ov001_021a9bfc->mUnk_04 = 2;
-        data_ov001_021a9bfc->mUnk_14 = 0;
+    if (gOptionEmbremSelect->mStateFrames >= 10) {
+        gOptionEmbremSelect->mNextState = 2;
+        gOptionEmbremSelect->mStateFrames = 0;
         func_02128374();
     }
 }
 
-void func_ov001_0219dd74(void) {
+void AdvanceOptionEmbremSelectState2(void) {
     int v1;
     v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
-        data_ov001_021a9bfc->mUnk_04 = 3;
+        gOptionEmbremSelect->mNextState = 3;
     }
     return;
 }
 
-void func_ov001_0219dadc(void) {
+void AdvanceOptionEmbremSelectState3(void) {
     Unk02175628Index index = UNK_02175628_INDEX_8;
     s32 result = -1;
     BOOL cond2 = FALSE;
@@ -141,8 +147,8 @@ void func_ov001_0219dadc(void) {
         cond2 = TRUE;
     }
     if (cond2 != FALSE) {
-        result =
-            func_0201ea84(data_ov001_021a9bfc->mUnk_48, data_02175628[index].mUnk_48, data_02175628[index].mUnk_4a);
+        result = func_0201ea84(gOptionEmbremSelect->mOptionEmbremSelectSBnbl, data_02175628[index].mUnk_48,
+                               data_02175628[index].mUnk_4a);
     }
     flags = data_02175628[index].mUnk_00 & 2;
     if (flags != 0) {
@@ -160,14 +166,14 @@ void func_ov001_0219dadc(void) {
     if (cond2 != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[index].mUnk_48,
                                                                           data_02175628[index].mUnk_4a) != 0) {
     next:
-        data_ov001_021a9bfc->mUnk_04 = 5;
-        data_ov001_021a9bfc->mUnk_20 = 2;
-        if (data_ov001_021a9bfc->mUnk_0c != data_ov001_021a9bfc->mUnk_10) {
+        gOptionEmbremSelect->mNextState = 5;
+        gOptionEmbremSelect->mNextOptionState = 2;
+        if (gOptionEmbremSelect->mUnk_0c != gOptionEmbremSelect->mUnk_10) {
             func_02128310(1);
         } else {
             func_02128310(0);
         }
-        if (data_ov001_021a9bfc->mUnk_0c == 0) {
+        if (gOptionEmbremSelect->mUnk_0c == 0) {
             data_0217aa08->mUnk_00->mUnk_31_3 = 0;
         } else {
             data_0217aa08->mUnk_00->mUnk_31_3 = 1;
@@ -175,60 +181,60 @@ void func_ov001_0219dadc(void) {
         func_02056d40();
     } else {
         flags = data_02175628[index].mUnk_00 & 1;
-        if ((flags != 0 && data_ov001_021a9bfc->mUnk_08 == 0) || result == 0) {
-            if (data_ov001_021a9bfc->mUnk_08 == 0) {
-                data_ov001_021a9bfc->mUnk_24 = 0;
+        if ((flags != 0 && gOptionEmbremSelect->mUnk_08 == 0) || result == 0) {
+            if (gOptionEmbremSelect->mUnk_08 == 0) {
+                gOptionEmbremSelect->mUnk_24 = 0;
             }
-            data_ov001_021a9bfc->mUnk_04 = 4;
-            data_ov001_021a9bfc->mUnk_20 = 6;
-            data_ov001_021a9bfc->mUnk_08 = 0;
+            gOptionEmbremSelect->mNextState = 4;
+            gOptionEmbremSelect->mNextOptionState = 6;
+            gOptionEmbremSelect->mUnk_08 = 0;
             data_0217b488->mUnk_18 = 1;
             func_02105ac0(5);
         } else if (result == 1) {
-            data_ov001_021a9bfc->mUnk_08 = 1;
-            data_ov001_021a9bfc->mUnk_0c++;
+            gOptionEmbremSelect->mUnk_08 = 1;
+            gOptionEmbremSelect->mUnk_0c++;
             func_02105ac0(1);
-        } else if (func_020ae408(8, 0x40) != 0 && data_ov001_021a9bfc->mUnk_08 > 0) {
-            data_ov001_021a9bfc->mUnk_08--;
+        } else if (func_020ae408(8, 0x40) != 0 && gOptionEmbremSelect->mUnk_08 > 0) {
+            gOptionEmbremSelect->mUnk_08--;
             func_02105ac0(0);
-        } else if (func_020ae408(8, 0x80) != 0 && data_ov001_021a9bfc->mUnk_08 < 1) {
-            data_ov001_021a9bfc->mUnk_08++;
+        } else if (func_020ae408(8, 0x80) != 0 && gOptionEmbremSelect->mUnk_08 < 1) {
+            gOptionEmbremSelect->mUnk_08++;
             func_02105ac0(0);
-        } else if (data_ov001_021a9bfc->mUnk_08 == 1 && func_020ae408(8, 0x20) != 0) {
-            data_ov001_021a9bfc->mUnk_0c--;
-            data_ov001_021a9bfc->mUnk_28[0] = 6;
+        } else if (gOptionEmbremSelect->mUnk_08 == 1 && func_020ae408(8, 0x20) != 0) {
+            gOptionEmbremSelect->mUnk_0c--;
+            gOptionEmbremSelect->mOffsetTimers[0] = 6;
             func_02105ac0(1);
-        } else if (data_ov001_021a9bfc->mUnk_08 == 1 && func_020ae408(8, 0x10) != 0) {
-            data_ov001_021a9bfc->mUnk_0c++;
+        } else if (gOptionEmbremSelect->mUnk_08 == 1 && func_020ae408(8, 0x10) != 0) {
+            gOptionEmbremSelect->mUnk_0c++;
             if (func_020ae408(8, 0x10) != 0) {
-                data_ov001_021a9bfc->mUnk_28[1] = 6;
+                gOptionEmbremSelect->mOffsetTimers[1] = 6;
             }
             func_02105ac0(1);
         } else if (result == 2) {
-            data_ov001_021a9bfc->mUnk_08 = 1;
-            data_ov001_021a9bfc->mUnk_0c--;
-            data_ov001_021a9bfc->mUnk_28[0] = 6;
+            gOptionEmbremSelect->mUnk_08 = 1;
+            gOptionEmbremSelect->mUnk_0c--;
+            gOptionEmbremSelect->mOffsetTimers[0] = 6;
             func_02105ac0(1);
         } else if (result == 3) {
-            data_ov001_021a9bfc->mUnk_08 = 1;
-            data_ov001_021a9bfc->mUnk_0c++;
-            data_ov001_021a9bfc->mUnk_28[1] = 6;
+            gOptionEmbremSelect->mUnk_08 = 1;
+            gOptionEmbremSelect->mUnk_0c++;
+            gOptionEmbremSelect->mOffsetTimers[1] = 6;
             func_02105ac0(1);
         }
     }
-    if (data_ov001_021a9bfc->mUnk_0c < 0) {
-        data_ov001_021a9bfc->mUnk_0c = 1;
+    if (gOptionEmbremSelect->mUnk_0c < 0) {
+        gOptionEmbremSelect->mUnk_0c = 1;
     }
-    if (data_ov001_021a9bfc->mUnk_0c > 1) {
-        data_ov001_021a9bfc->mUnk_0c = 0;
+    if (gOptionEmbremSelect->mUnk_0c > 1) {
+        gOptionEmbremSelect->mUnk_0c = 0;
     }
 }
 
-void func_ov001_0219daa0(void) {
+void AdvanceOptionEmbremSelectState4(void) {
     int *v1;
     int v2;
-    v1 = (s32 *) &data_ov001_021a9bfc;
-    data_ov001_021a9bfc->mUnk_14 = data_ov001_021a9bfc->mUnk_14 + 1;
+    v1 = (s32 *) &gOptionEmbremSelect;
+    gOptionEmbremSelect->mStateFrames = gOptionEmbremSelect->mStateFrames + 1;
     v2 = *v1;
     if (10 <= *(s32 *) (v2 + 0x14)) {
         *(u32 *) (v2 + 4) = 5;
@@ -242,52 +248,52 @@ void func_ov001_0219daa0(void) {
     return;
 }
 
-void func_ov001_0219d998(void) {
+void AdvanceOptionEmbremSelectState5(void) {
     s32 i;
     s32 j;
     s32 value;
 
-    if (func_ov001_02192e84() == -1 && data_ov001_021a9bfc->mUnk_20 == 6) {
+    if (func_ov001_02192e84() == -1 && gOptionEmbremSelect->mNextOptionState == 6) {
         func_ov001_02192e78(3);
     }
-    data_ov001_021a9bfc->mUnk_14++;
-    value = func_020ae4c0(1, 0, 250, data_ov001_021a9bfc->mUnk_14, 10);
+    gOptionEmbremSelect->mStateFrames++;
+    value = func_020ae4c0(1, 0, 250, gOptionEmbremSelect->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6c28[i]; j++) {
             if (i == 0) {
-                data_ov001_021a9bfc->mUnk_18[i].mUnk_00 = -value;
+                gOptionEmbremSelect->mUnk_18[i].mUnk_00 = -value;
             } else {
-                data_ov001_021a9bfc->mUnk_18[i].mUnk_00 = value;
+                gOptionEmbremSelect->mUnk_18[i].mUnk_00 = value;
             }
         }
     }
-    if (data_ov001_021a9bfc->mUnk_14 >= 10) {
-        if (data_ov001_021a9bfc->mUnk_14 >= 10 &&
+    if (gOptionEmbremSelect->mStateFrames >= 10) {
+        if (gOptionEmbremSelect->mStateFrames >= 10 &&
             (IsSelectReturnState2NoState3Or4Request() != 0 || IsSelectReturnState0NoState1Request() != 0)) {
             if (func_ov001_02192e84() == -1) {
-                Unk021a9bfc *obj = data_ov001_021a9bfc;
+                OptionEmbremSelect *obj = gOptionEmbremSelect;
                 s32 arg;
                 void *first;
 
                 if (obj->mUnk_0c == obj->mUnk_10) {
-                    RequestOptionState(obj->mUnk_20);
+                    RequestOptionState(obj->mNextOptionState);
                     return;
                 }
                 arg = 9;
                 if (obj->mUnk_0c == 1) {
                     arg = 10;
                 }
-                obj->mUnk_04 = 6;
+                obj->mNextState = 6;
                 func_02125ebc(0x21);
-                first = GetBmgEntry(data_ov001_021a9bfc->mUnk_50, arg);
-                func_02126230(first, GetBmgEntry(data_ov001_021a9bfc->mUnk_54, 4));
-                data_ov001_021a9bfc->mUnk_14 = 0;
+                first = GetBmgEntry(gOptionEmbremSelect->mOptionMessages, arg);
+                func_02126230(first, GetBmgEntry(gOptionEmbremSelect->mCommonMessages, 4));
+                gOptionEmbremSelect->mStateFrames = 0;
             }
         }
     }
 }
 
-void func_ov001_0219d934(void) {
+void AdvanceOptionEmbremSelectState6(void) {
     s32 value;
 
     if (func_02125f54() != 0) {
@@ -307,7 +313,7 @@ void func_ov001_0219d934(void) {
         }
     }
     if (func_02125f88() != 0) {
-        RequestOptionState(data_ov001_021a9bfc->mUnk_20);
+        RequestOptionState(gOptionEmbremSelect->mNextOptionState);
     }
 }
 
@@ -317,20 +323,22 @@ void func_ov001_0219d858(void) {
     s32 index;
     s32 k;
 
-    index = data_ov001_021a9bfc->mUnk_44->mUnk_06;
+    index = gOptionEmbremSelect->mOptionEmbremSelectSBncl->mUnk_06;
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6c28[i]; j++) {
-            data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c38[i][j]].mUnk_04 = data_ov001_021a9bfc->mUnk_18[i].mUnk_00;
-            data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c38[i][j]].mUnk_06 = data_ov001_021a9bfc->mUnk_18[i].mUnk_02;
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][j]].mUnk_04 =
+                gOptionEmbremSelect->mUnk_18[i].mUnk_00;
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][j]].mUnk_06 =
+                gOptionEmbremSelect->mUnk_18[i].mUnk_02;
         }
     }
-    data_ov001_021a9bfc->mUnk_34[index].mUnk_04 = data_ov001_021a9bfc->mUnk_18[1].mUnk_00;
-    data_ov001_021a9bfc->mUnk_34[index].mUnk_06 = data_ov001_021a9bfc->mUnk_18[1].mUnk_02;
+    gOptionEmbremSelect->mOptionEmbremSelectSTable[index].mUnk_04 = gOptionEmbremSelect->mUnk_18[1].mUnk_00;
+    gOptionEmbremSelect->mOptionEmbremSelectSTable[index].mUnk_06 = gOptionEmbremSelect->mUnk_18[1].mUnk_02;
     for (k = 0; k < 3; k++) {
-        data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c20[k][0]].mUnk_04 -=
-            func_020adc64(6 - data_ov001_021a9bfc->mUnk_28[0]);
-        data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c20[k][1]].mUnk_04 +=
-            func_020adc64(6 - data_ov001_021a9bfc->mUnk_28[1]);
+        gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[k][0]].mUnk_04 -=
+            func_020adc64(6 - gOptionEmbremSelect->mOffsetTimers[0]);
+        gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[k][1]].mUnk_04 +=
+            func_020adc64(6 - gOptionEmbremSelect->mOffsetTimers[1]);
     }
 }
 
@@ -338,10 +346,10 @@ void func_ov001_0219d810(void) {
     s32 i;
 
     for (i = 0; i < data_ov001_021a6c30[1]; i++) {
-        if (i == data_ov001_021a9bfc->mUnk_0c) {
-            data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c1c[1][i]].mUnk_00 = 1;
+        if (i == gOptionEmbremSelect->mUnk_0c) {
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c1c[1][i]].mUnk_00 = 1;
         } else {
-            data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c1c[1][i]].mUnk_00 = 0;
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c1c[1][i]].mUnk_00 = 0;
         }
     }
 }
@@ -351,25 +359,27 @@ void func_ov001_0219d730(void) {
     s32 j;
 
     for (i = 0; i < 2; i++) {
-        if (i == data_ov001_021a9bfc->mUnk_08 && data_ov001_021a9bfc->mUnk_24 != 0) {
-            data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c38[i][1]].mUnk_00 = 1;
+        if (i == gOptionEmbremSelect->mUnk_08 && gOptionEmbremSelect->mUnk_24 != 0) {
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][1]].mUnk_00 = 1;
             if (i == 1) {
-                func_02124100(0, 14, data_ov001_021a9bfc->mUnk_4c, data_ov001_021a9bfc->mUnk_34,
-                              data_ov001_021a9bfc->mUnk_44);
+                func_02124100(0, 14, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
+                              gOptionEmbremSelect->mOptionEmbremSelectSTable,
+                              gOptionEmbremSelect->mOptionEmbremSelectSBncl);
             }
             for (j = 0; j < data_ov001_021a6c30[i]; j++) {
-                func_02124a20(data_ov001_021a6c1c[i][j], 14, data_ov001_021a9bfc->mUnk_38,
-                              data_ov001_021a9bfc->mUnk_44);
+                func_02124a20(data_ov001_021a6c1c[i][j], 14, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
+                              gOptionEmbremSelect->mOptionEmbremSelectSBncl);
             }
         } else {
-            data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c38[i][1]].mUnk_00 = 0;
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][1]].mUnk_00 = 0;
             if (i == 1) {
-                func_02124100(0, 15, data_ov001_021a9bfc->mUnk_4c, data_ov001_021a9bfc->mUnk_34,
-                              data_ov001_021a9bfc->mUnk_44);
+                func_02124100(0, 15, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
+                              gOptionEmbremSelect->mOptionEmbremSelectSTable,
+                              gOptionEmbremSelect->mOptionEmbremSelectSBncl);
             }
             for (j = 0; j < data_ov001_021a6c30[i]; j++) {
-                func_02124a20(data_ov001_021a6c1c[i][j], 15, data_ov001_021a9bfc->mUnk_38,
-                              data_ov001_021a9bfc->mUnk_44);
+                func_02124a20(data_ov001_021a6c1c[i][j], 15, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
+                              gOptionEmbremSelect->mOptionEmbremSelectSBncl);
             }
         }
     }
@@ -379,53 +389,54 @@ void func_ov001_0219d6ac(void) {
     s32 i;
 
     for (i = 0; i < 2; i++) {
-        if (data_ov001_021a9bfc->mUnk_08 == 1) {
-            if (data_ov001_021a9bfc->mUnk_28[i] > 0) {
-                data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c20[0][i]].mUnk_00 = 1;
-                data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c20[1][i]].mUnk_00 = 1;
-                data_ov001_021a9bfc->mUnk_28[i]--;
+        if (gOptionEmbremSelect->mUnk_08 == 1) {
+            if (gOptionEmbremSelect->mOffsetTimers[i] > 0) {
+                gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[0][i]].mUnk_00 = 1;
+                gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[1][i]].mUnk_00 = 1;
+                gOptionEmbremSelect->mOffsetTimers[i]--;
             } else {
-                data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c20[0][i]].mUnk_00 = 0;
-                data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c20[1][i]].mUnk_00 = 1;
+                gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[0][i]].mUnk_00 = 0;
+                gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[1][i]].mUnk_00 = 1;
             }
         } else {
-            data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c20[0][i]].mUnk_00 = 0;
-            data_ov001_021a9bfc->mUnk_34[data_ov001_021a6c20[1][i]].mUnk_00 = 0;
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[0][i]].mUnk_00 = 0;
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[1][i]].mUnk_00 = 0;
         }
     }
 }
 
-void func_ov001_0219d620(void) {
-    data_ov001_021a9bfc->mUnk_00 = data_ov001_021a9bfc->mUnk_04;
-    switch (data_ov001_021a9bfc->mUnk_00) {
+void AdvanceOptionEmbremSelect(void) {
+    gOptionEmbremSelect->mState = gOptionEmbremSelect->mNextState;
+    switch (gOptionEmbremSelect->mState) {
         case 0:
-            func_ov001_0219de18();
+            AdvanceOptionEmbremSelectState0();
             break;
         case 1:
-            func_ov001_0219dd94();
+            AdvanceOptionEmbremSelectState1();
             break;
         case 2:
-            func_ov001_0219dd74();
+            AdvanceOptionEmbremSelectState2();
             break;
         case 3:
-            func_ov001_0219dadc();
+            AdvanceOptionEmbremSelectState3();
             break;
         case 4:
-            func_ov001_0219daa0();
+            AdvanceOptionEmbremSelectState4();
             break;
         case 5:
-            func_ov001_0219d998();
+            AdvanceOptionEmbremSelectState5();
             break;
         case 6:
-            func_ov001_0219d934();
+            AdvanceOptionEmbremSelectState6();
             break;
     }
     func_ov001_0219d858();
     func_ov001_0219d810();
     func_ov001_0219d730();
     func_ov001_0219d6ac();
-    func_02124c30(data_ov001_021a9bfc->mUnk_44, data_ov001_021a9bfc->mUnk_38, data_ov001_021a9bfc->mUnk_4c,
-                  func_ov001_0219e90c(), data_ov001_021a9bfc->mUnk_34);
+    func_02124c30(gOptionEmbremSelect->mOptionEmbremSelectSBncl, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
+                  gOptionEmbremSelect->mOptionEmbremSelectSBnll, func_ov001_0219e90c(),
+                  gOptionEmbremSelect->mOptionEmbremSelectSTable);
 }
 
 void func_ov001_0219d600(void) {
@@ -433,8 +444,8 @@ void func_ov001_0219d600(void) {
     return;
 }
 
-void func_ov001_0219d5dc(void) {
-    Unk021a8cd0 local = data_ov001_021a8cd0;
+void RegisterOptionEmbremSelectCallbacks(void) {
+    Unk021a8cd0 local = gOptionEmbremSelectCallbacks;
 
     SetOptionStateCallbacks((UnkFunc **) (local.mUnk_00));
 }

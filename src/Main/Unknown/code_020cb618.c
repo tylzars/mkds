@@ -128,7 +128,7 @@ void func_020cb6c0(void) {
                 func_ov001_02198100(func_020cb99c(), p->mUnk_108, (s32) p->mUnk_50c);
                 break;
             case 26:
-                func_ov001_0219bb48((u32) func_020cb99c(), (u32) p->mUnk_108, (u32) p->mUnk_50c);
+                InitSelectGhost((u32) func_020cb99c(), (u32) p->mUnk_108, (u32) p->mUnk_50c);
                 break;
             case 12:
             case 24:

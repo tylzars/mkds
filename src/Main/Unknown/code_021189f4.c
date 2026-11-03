@@ -403,22 +403,22 @@ void func_02118b48(void) {
     u16 *p;
 
     if (*(vu16 *) 0x027ffc40 == 2) {
-        data_0217d360->mUnk_14 = FindSceneFile(data_0216d6a4);
+        data_0217d360->mSelectCupSBnbl = FindSceneFile(data_0216d6a4);
         return;
     }
     LocateNcgr(&e, FindSceneFile(data_0216d690));
     LocateNclr(&g, FindSceneFile(data_0216d6b8));
     LocateNscr(&f, FindSceneFile(data_0216d6bc));
-    data_0217d360->mUnk_20 = func_02036bec(data_0217d360->mUnk_2c, 0x800);
-    data_0217d360->mUnk_04 = FindSceneFile(data_0216d698);
-    data_0217d360->mUnk_08 = FindSceneFile(data_0216d6a8);
+    data_0217d360->mUnk_20 = func_02036bec(data_0217d360->mHeap, 0x800);
+    data_0217d360->mSelectCupMBncl = FindSceneFile(data_0216d698);
+    data_0217d360->mSelectCupMBnll = FindSceneFile(data_0216d6a8);
     LocateNcgr2(&a, FindSceneFile(data_0216d6ac));
-    LocateNcer(&data_0217d360->mUnk_00, FindSceneFile(data_0216d694));
+    LocateNcer(&data_0217d360->mSelectCupMNcer, FindSceneFile(data_0216d694));
     LocateNclr(&b, FindSceneFile(data_0216d6a0));
-    data_0217d360->mUnk_10 = FindSceneFile(data_0216d6b0);
-    data_0217d360->mUnk_14 = FindSceneFile(data_0216d6a4);
+    data_0217d360->mSelectCupSBncl = FindSceneFile(data_0216d6b0);
+    data_0217d360->mSelectCupSBnbl = FindSceneFile(data_0216d6a4);
     LocateNcgr2(&c, FindSceneFile(data_0216d69c));
-    LocateNcer(&data_0217d360->mUnk_0c, FindSceneFile(data_0216d6b4));
+    LocateNcer(&data_0217d360->mSelectCupSNcer, FindSceneFile(data_0216d6b4));
     LocateNclr(&d, FindSceneFile(data_0216d68c));
     p = b->mUnk_0c;
     if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
@@ -439,7 +439,7 @@ u32 func_021189f4(u32 a) {
     s32 i;
 
     r = 0;
-    switch (data_0217d360->mUnk_3c) {
+    switch (data_0217d360->mMode) {
         case 0:
         case 2:
             switch (a) {

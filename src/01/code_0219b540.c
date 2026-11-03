@@ -46,7 +46,7 @@
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_0211732c.h"
 
-void func_ov001_0219c6f0(void) {
+void LoadSelectGhostAndKartIconData(void) {
     Unk020b4934 *p3 = NULL;
     Unk02021dc8 *p4 = NULL;
     Unk020b4a44 *p5 = NULL;
@@ -54,12 +54,12 @@ void func_ov001_0219c6f0(void) {
     Unk020b4a44 *p2 = NULL;
     Unk020b47d8 *p1 = NULL;
 
-    LoadNcgrData(&p0, FindSceneFile(data_ov001_021a87b8));
-    LoadNscrData(&p1, FindSceneFile(data_ov001_021a8794));
-    LoadNclrData(&p2, FindSceneFile(data_ov001_021a87a8));
-    LoadNcgrData2(&p3, FindSceneFile(data_ov001_021a87a4));
-    LoadNcerData(&p4, FindSceneFile(data_ov001_021a87b4));
-    LoadNclrData(&p5, FindSceneFile(data_ov001_021a8798));
+    LoadNcgrData(&p0, FindSceneFile(gSelectGhostSBNcgrName));
+    LoadNscrData(&p1, FindSceneFile(gSelectGhostSNscrName));
+    LoadNclrData(&p2, FindSceneFile(gSelectGhostSBNclrName));
+    LoadNcgrData2(&p3, FindSceneFile(gSelectGhostSONcgrName));
+    LoadNcerData(&p4, FindSceneFile(gSelectGhostSONcerName));
+    LoadNclrData(&p5, FindSceneFile(gSelectGhostSONclrName));
     func_0211732c();
 }
 
@@ -73,121 +73,125 @@ void func_ov001_0219c544(void) {
     b = NULL;
     c = NULL;
     d = NULL;
-    LocateNcgr(&b, FindSceneFile(data_ov001_021a87b8));
-    LocateNscr(&d, FindSceneFile(data_ov001_021a8794));
-    LocateNclr(&c, FindSceneFile(data_ov001_021a87a8));
-    data_ov001_021a9bf4->mUnk_40 = func_02036bec(data_ov001_021a9bf4->mUnk_44, 0x800);
-    data_ov001_021a9bf4->mUnk_04 = FindSceneFile(data_ov001_021a879c);
-    data_ov001_021a9bf4->mUnk_08 = FindSceneFile(data_ov001_021a87b0);
-    LocateNcer(&data_ov001_021a9bf4->mUnk_00, FindSceneFile(data_ov001_021a87bc));
-    data_ov001_021a9bf4->mUnk_10 = FindSceneFile(data_ov001_021a8790);
-    data_ov001_021a9bf4->mUnk_14 = FindSceneFile(data_ov001_021a87a0);
-    data_ov001_021a9bf4->mUnk_18 = FindSceneFile(data_ov001_021a87ac);
-    LocateNcgr2(&a, FindSceneFile(data_ov001_021a87a4));
-    LocateNcer(&data_ov001_021a9bf4->mUnk_0c, FindSceneFile(data_ov001_021a87b4));
-    LocateNclr(&data_ov001_021a9bf4->mUnk_1c, FindSceneFile(data_ov001_021a8798));
-    data_ov001_021a9bf4->mUnk_20 = func_020b4018(0);
-    data_ov001_021a9bf4->mUnk_24 = func_020b400c(0);
-    data_ov001_021a9bf4->mUnk_28 = func_020b4030(0);
-    data_ov001_021a9bf4->mUnk_2c = func_020b4000(0);
+    LocateNcgr(&b, FindSceneFile(gSelectGhostSBNcgrName));
+    LocateNscr(&d, FindSceneFile(gSelectGhostSNscrName));
+    LocateNclr(&c, FindSceneFile(gSelectGhostSBNclrName));
+    gSelectGhost->mUnk_40 = func_02036bec(gSelectGhost->mHeap, 0x800);
+    gSelectGhost->mSelectCupCourseTaMBncl = FindSceneFile(gSelectCupCourseTaMBnclName);
+    gSelectGhost->mSelectCupCourseTaMBnll = FindSceneFile(gSelectCupCourseTaMBnllName);
+    LocateNcer(&gSelectGhost->mSelectCupCourseMNcer, FindSceneFile(gSelectCupCourseMNcerName));
+    gSelectGhost->mSelectGhostSBncl = FindSceneFile(gSelectGhostSBnclName);
+    gSelectGhost->mSelectGhostSBnbl = FindSceneFile(gSelectGhostSBnblName);
+    gSelectGhost->mSelectGhostSBnll = FindSceneFile(gSelectGhostSBnllName);
+    LocateNcgr2(&a, FindSceneFile(gSelectGhostSONcgrName));
+    LocateNcer(&gSelectGhost->mSelectGhostSONcer, FindSceneFile(gSelectGhostSONcerName));
+    LocateNclr(&gSelectGhost->mSelectGhostSONclr, FindSceneFile(gSelectGhostSONclrName));
+    gSelectGhost->mPlayerCharacterMNcgr = func_020b4018(0);
+    gSelectGhost->mPlayerCharacterMNcer = func_020b400c(0);
+    gSelectGhost->mPlayerCharacterMONclr = func_020b4030(0);
+    gSelectGhost->mPlayerCharacterMBncl = func_020b4000(0);
     func_02016468(0x17, 0, b->mUnk_14, b->mUnk_10);
     func_02016468(0x1f, 0, c->mUnk_0c, 0x20);
     func_02016468(0x1b, 0, d->mUnk_0c, d->mUnk_08);
-    func_02016468(0x1b, 0x800, data_ov001_021a9bf4->mUnk_40, 0x800);
+    func_02016468(0x1b, 0x800, gSelectGhost->mUnk_40, 0x800);
     func_02016468(0x23, 0, a->mUnk_14, a->mUnk_10);
-    func_02016468(0x1e, 0, data_ov001_021a9bf4->mUnk_1c->mUnk_0c, data_ov001_021a9bf4->mUnk_1c->mUnk_08);
+    func_02016468(0x1e, 0, gSelectGhost->mSelectGhostSONclr->mUnk_0c, gSelectGhost->mSelectGhostSONclr->mUnk_08);
 }
 
 void func_ov001_0219c480(void) {
     u16 cnt;
     s32 i;
 
-    data_ov001_021a9bf4->mUnk_4c = 0;
-    data_ov001_021a9bf4->mUnk_50 = 0;
-    data_ov001_021a9bf4->mUnk_58 = 0;
-    data_ov001_021a9bf4->mUnk_5c = -0xc0;
+    gSelectGhost->mNextState = 0;
+    gSelectGhost->mStateFrames = 0;
+    gSelectGhost->mBg0Offset = 0;
+    gSelectGhost->mUnk_5c = -0xc0;
     for (i = 0; i < 6; i++) {
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b6c[i]].mUnk_06 = -0xc0;
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[i]].mUnk_06 = -0xc0;
     }
-    data_ov001_021a9bf4->mUnk_34[10].mUnk_06 = -0xc0;
-    data_ov001_021a9bf4->mUnk_34[11].mUnk_06 = -0xc0;
-    cnt = data_ov001_021a9bf4->mUnk_10->mUnk_06;
+    gSelectGhost->mSelectGhostSTable[10].mUnk_06 = -0xc0;
+    gSelectGhost->mSelectGhostSTable[11].mUnk_06 = -0xc0;
+    cnt = gSelectGhost->mSelectGhostSBncl->mUnk_06;
     for (i = 0; i < 5; i++) {
-        data_ov001_021a9bf4->mUnk_34[cnt + data_ov001_021a6b54[i]].mUnk_06 = -0xc0;
+        gSelectGhost->mSelectGhostSTable[cnt + data_ov001_021a6b54[i]].mUnk_06 = -0xc0;
     }
-    data_ov001_021a9bf4->mUnk_34[cnt + 5].mUnk_06 = -0xc0;
+    gSelectGhost->mSelectGhostSTable[cnt + 5].mUnk_06 = -0xc0;
     for (i = 0; i < 2; i++) {
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b3c[i]].mUnk_06 = -0xc0;
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b38[i]].mUnk_06 = -0xc0;
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b3c[i]].mUnk_06 = -0xc0;
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[i]].mUnk_06 = -0xc0;
     }
 }
 
 void func_ov001_0219c46c(void) {
-    data_ov001_021a9bf4->mUnk_4c = 1;
-    data_ov001_021a9bf4->mUnk_50 = 0;
+    gSelectGhost->mNextState = 1;
+    gSelectGhost->mStateFrames = 0;
 }
 
 void func_ov001_0219c458(void) {
-    data_ov001_021a9bf4->mUnk_4c = 2;
-    data_ov001_021a9bf4->mUnk_50 = 0;
+    gSelectGhost->mNextState = 2;
+    gSelectGhost->mStateFrames = 0;
 }
 
 void func_ov001_0219c428(void) {
-    data_ov001_021a9bf4->mUnk_4c = 3;
-    data_ov001_021a9bf4->mUnk_50 = 0;
+    gSelectGhost->mNextState = 3;
+    gSelectGhost->mStateFrames = 0;
     func_0212b7e8();
     func_0212ecc0(&data_0217d068, 0, 5);
 }
 
 void func_ov001_0219c3ec(void) {
-    data_ov001_021a9bf4->mUnk_4c = 4;
-    data_ov001_021a9bf4->mUnk_50 = 0;
-    func_021277f8(GetBmgEntry(data_ov001_021a9bf4->mUnk_38, 4), GetBmgEntry(data_ov001_021a9bf4->mUnk_38, 2), 0);
+    gSelectGhost->mNextState = 4;
+    gSelectGhost->mStateFrames = 0;
+    func_021277f8(GetBmgEntry(gSelectGhost->mCommonMessages, 4), GetBmgEntry(gSelectGhost->mCommonMessages, 2), 0);
 }
 
 void func_ov001_0219c3d8(void) {
-    data_ov001_021a9bf4->mUnk_4c = 5;
-    data_ov001_021a9bf4->mUnk_50 = 0;
+    gSelectGhost->mNextState = 5;
+    gSelectGhost->mStateFrames = 0;
 }
 
 void func_ov001_0219c3bc(void) {
-    data_ov001_021a9bf4->mUnk_4c = 6;
-    data_ov001_021a9bf4->mUnk_50 = 0;
+    gSelectGhost->mNextState = 6;
+    gSelectGhost->mStateFrames = 0;
     func_021277e4();
 }
 
 void func_ov001_0219c3a8(void) {
-    data_ov001_021a9bf4->mUnk_4c = 7;
-    data_ov001_021a9bf4->mUnk_50 = 0;
+    gSelectGhost->mNextState = 7;
+    gSelectGhost->mStateFrames = 0;
 }
 
 void func_ov001_0219c358(void) {
-    data_ov001_021a9bf4->mUnk_34[10].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_34[11].mUnk_00 = 0;
-    data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b6c[0]].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b6c[1]].mUnk_00 = 0;
-    data_ov001_021a9bf4->mUnk_34[10].mUnk_00 = 0;
-    data_ov001_021a9bf4->mUnk_34[11].mUnk_00 = 1;
+    gSelectGhost->mSelectGhostSTable[10].mUnk_00 = 1;
+    gSelectGhost->mSelectGhostSTable[11].mUnk_00 = 0;
+    gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[0]].mUnk_00 = 1;
+    gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[1]].mUnk_00 = 0;
+    gSelectGhost->mSelectGhostSTable[10].mUnk_00 = 0;
+    gSelectGhost->mSelectGhostSTable[11].mUnk_00 = 1;
 }
 
-void func_ov001_0219c2a4(void) {
+// Stores both offsets and steps both timers; while timer i is above 0 the row data_ov001_021a6b38[i] picks is switched
+// on and the row data_ov001_021a6b3c[i] picks off, and the other way round once it reaches 0.
+void AdvanceSelectGhostOffsetTimers(void) {
     s32 i;
-    data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b38[0]].mUnk_04 = -func_020adc64(6 - data_ov001_021a9bf4->mUnk_54[0]);
-    data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b38[1]].mUnk_04 = func_020adc64(6 - data_ov001_021a9bf4->mUnk_54[1]);
+    gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[0]].mUnk_04 =
+        -func_020adc64(6 - gSelectGhost->mOffsetTimers[0]);
+    gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[1]].mUnk_04 =
+        func_020adc64(6 - gSelectGhost->mOffsetTimers[1]);
     for (i = 0; i < 2; i++) {
-        if (data_ov001_021a9bf4->mUnk_54[i] > 0) {
-            data_ov001_021a9bf4->mUnk_54[i]--;
-            data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b3c[i]].mUnk_00 = 0;
-            data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b38[i]].mUnk_00 = 1;
+        if (gSelectGhost->mOffsetTimers[i] > 0) {
+            gSelectGhost->mOffsetTimers[i]--;
+            gSelectGhost->mSelectGhostSTable[data_ov001_021a6b3c[i]].mUnk_00 = 0;
+            gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[i]].mUnk_00 = 1;
         } else {
-            data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b3c[i]].mUnk_00 = 1;
-            data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b38[i]].mUnk_00 = 0;
+            gSelectGhost->mSelectGhostSTable[data_ov001_021a6b3c[i]].mUnk_00 = 1;
+            gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[i]].mUnk_00 = 0;
         }
     }
 }
 
 void func_ov001_0219c0bc(void) {
-    Unk021a9bf4 *p = data_ov001_021a9bf4;
+    SelectGhost *p = gSelectGhost;
     Unk0201ea30 *q;
     u16 n;
     u16 a;
@@ -200,64 +204,63 @@ void func_ov001_0219c0bc(void) {
     u8 buf14[4];
     u16 buf18[16];
 
-    q = p->mUnk_10;
+    q = p->mSelectGhostSBncl;
     n = q->mUnk_06;
-    func_0212426c(1, data_ov001_021a6b54[4], data_ov001_021a9bf4->mUnk_18,
-                  GetBmgEntry(p->mUnk_3c, data_ov001_021a6b40[p->mUnk_60]), q, p->mUnk_34);
-    if (data_ov001_021a9bf4->mUnk_60 == 0) {
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b6c[2]].mUnk_00 = 0;
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b6c[3]].mUnk_00 = 0;
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b6c[4]].mUnk_00 = 0;
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b6c[5]].mUnk_00 = 0;
-        data_ov001_021a9bf4->mUnk_34[n + data_ov001_021a6b54[0]].mUnk_00 = 0;
-        data_ov001_021a9bf4->mUnk_34[n + data_ov001_021a6b54[1]].mUnk_00 = 0;
-        data_ov001_021a9bf4->mUnk_34[n + data_ov001_021a6b54[2]].mUnk_00 = 0;
+    func_0212426c(1, data_ov001_021a6b54[4], gSelectGhost->mSelectGhostSBnll,
+                  GetBmgEntry(p->mMenuMessages, data_ov001_021a6b40[p->mIndex]), q, p->mSelectGhostSTable);
+    if (gSelectGhost->mIndex == 0) {
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[2]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[3]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[4]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[5]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[n + data_ov001_021a6b54[0]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[n + data_ov001_021a6b54[1]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[n + data_ov001_021a6b54[2]].mUnk_00 = 0;
         return;
     }
-    data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b6c[2]].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b6c[3]].mUnk_00 = 1;
+    gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[2]].mUnk_00 = 1;
+    gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[3]].mUnk_00 = 1;
     a = data_ov001_021a6b6c[4];
-    data_ov001_021a9bf4->mUnk_34[a].mUnk_00 = 1;
+    gSelectGhost->mSelectGhostSTable[a].mUnk_00 = 1;
     b = data_ov001_021a6b6c[5];
-    data_ov001_021a9bf4->mUnk_34[b].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_34[n + data_ov001_021a6b54[0]].mUnk_00 = 1;
+    gSelectGhost->mSelectGhostSTable[b].mUnk_00 = 1;
+    gSelectGhost->mSelectGhostSTable[n + data_ov001_021a6b54[0]].mUnk_00 = 1;
     y = data_ov001_021a6b54[1];
-    data_ov001_021a9bf4->mUnk_34[n + y].mUnk_00 = 1;
+    gSelectGhost->mSelectGhostSTable[n + y].mUnk_00 = 1;
     x = data_ov001_021a6b54[2];
-    data_ov001_021a9bf4->mUnk_34[n + x].mUnk_00 = 1;
-    r = data_ov001_021a6b88[func_0211e274(data_ov001_021a6b78[data_ov001_021a9bf4->mUnk_60])];
-    func_02124748((u32) (r), (void *) (data_ov001_021a9bf4->mUnk_24), (void *) (data_ov001_021a9bf4->mUnk_20),
-                  (void *) (data_ov001_021a9bf4->mUnk_2c), 1, (u32) (a), (void *) (data_ov001_021a9bf4->mUnk_0c),
-                  (void *) (data_ov001_021a9bf4->mUnk_10));
-    blk = data_ov001_021a9bf4->mUnk_28->mUnk_0c;
-    func_02016468(
-        0x1e, 0x100,
-        blk +
-            (func_02124a68((u32) (r), (void *) (data_ov001_021a9bf4->mUnk_24), (void *) (data_ov001_021a9bf4->mUnk_2c))
-             << 5),
-        0x20);
-    k = func_0211e1f0(data_ov001_021a6b78[data_ov001_021a9bf4->mUnk_60]);
-    func_021171a0(k, data_ov001_021a9bf4->mUnk_0c, data_ov001_021a9bf4->mUnk_10, b, 9, 1);
-    func_0211e38c(data_ov001_021a6b78[data_ov001_021a9bf4->mUnk_60], buf14);
+    gSelectGhost->mSelectGhostSTable[n + x].mUnk_00 = 1;
+    r = data_ov001_021a6b88[func_0211e274(data_ov001_021a6b78[gSelectGhost->mIndex])];
+    func_02124748((u32) (r), (void *) (gSelectGhost->mPlayerCharacterMNcer),
+                  (void *) (gSelectGhost->mPlayerCharacterMNcgr), (void *) (gSelectGhost->mPlayerCharacterMBncl), 1,
+                  (u32) (a), (void *) (gSelectGhost->mSelectGhostSONcer), (void *) (gSelectGhost->mSelectGhostSBncl));
+    blk = gSelectGhost->mPlayerCharacterMONclr->mUnk_0c;
+    func_02016468(0x1e, 0x100,
+                  blk + (func_02124a68((u32) (r), (void *) (gSelectGhost->mPlayerCharacterMNcer),
+                                       (void *) (gSelectGhost->mPlayerCharacterMBncl))
+                         << 5),
+                  0x20);
+    k = func_0211e1f0(data_ov001_021a6b78[gSelectGhost->mIndex]);
+    func_021171a0(k, gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBncl, b, 9, 1);
+    func_0211e38c(data_ov001_021a6b78[gSelectGhost->mIndex], buf14);
     func_02116b80(buf14, buf18);
-    func_02124224(1, y, data_ov001_021a9bf4->mUnk_18, buf18, data_ov001_021a9bf4->mUnk_10, data_ov001_021a9bf4->mUnk_34,
-                  9);
-    func_0211e2f8(data_ov001_021a6b78[data_ov001_021a9bf4->mUnk_60], buf18);
-    func_0212426c(1, x, data_ov001_021a9bf4->mUnk_18, buf18, data_ov001_021a9bf4->mUnk_10,
-                  data_ov001_021a9bf4->mUnk_34);
+    func_02124224(1, y, gSelectGhost->mSelectGhostSBnll, buf18, gSelectGhost->mSelectGhostSBncl,
+                  gSelectGhost->mSelectGhostSTable, 9);
+    func_0211e2f8(data_ov001_021a6b78[gSelectGhost->mIndex], buf18);
+    func_0212426c(1, x, gSelectGhost->mSelectGhostSBnll, buf18, gSelectGhost->mSelectGhostSBncl,
+                  gSelectGhost->mSelectGhostSTable);
 }
 
 void func_ov001_0219c058(void) {
     BOOL ok = TRUE;
-    data_ov001_021a9bf4->mUnk_60++;
-    if (data_ov001_021a9bf4->mUnk_60 >= 4) {
-        data_ov001_021a9bf4->mUnk_60 = 0;
+    gSelectGhost->mIndex++;
+    if (gSelectGhost->mIndex >= 4) {
+        gSelectGhost->mIndex = 0;
     }
-    if (func_0211e160(data_ov001_021a6b78[data_ov001_021a9bf4->mUnk_60]) == 0) {
+    if (func_0211e160(data_ov001_021a6b78[gSelectGhost->mIndex]) == 0) {
         ok = FALSE;
         func_ov001_0219c058();
     }
-    data_ov001_021a9bf4->mUnk_54[1] = 6;
+    gSelectGhost->mOffsetTimers[1] = 6;
     if (ok != FALSE) {
         func_0212ecc0(&data_0217d068, 0, 1);
         func_ov001_0219c0bc();
@@ -266,15 +269,15 @@ void func_ov001_0219c058(void) {
 
 void func_ov001_0219bff4(void) {
     BOOL ok = TRUE;
-    data_ov001_021a9bf4->mUnk_60--;
-    if (data_ov001_021a9bf4->mUnk_60 < 0) {
-        data_ov001_021a9bf4->mUnk_60 = 3;
+    gSelectGhost->mIndex--;
+    if (gSelectGhost->mIndex < 0) {
+        gSelectGhost->mIndex = 3;
     }
-    if (func_0211e160(data_ov001_021a6b78[data_ov001_021a9bf4->mUnk_60]) == 0) {
+    if (func_0211e160(data_ov001_021a6b78[gSelectGhost->mIndex]) == 0) {
         ok = FALSE;
         func_ov001_0219bff4();
     }
-    data_ov001_021a9bf4->mUnk_54[0] = 6;
+    gSelectGhost->mOffsetTimers[0] = 6;
     if (ok != FALSE) {
         func_0212ecc0(&data_0217d068, 0, 1);
         func_ov001_0219c0bc();
@@ -282,43 +285,47 @@ void func_ov001_0219bff4(void) {
 }
 
 void func_ov001_0219bfc0(void) {
-    func_0202949c(data_ov001_021a6b78[data_ov001_021a9bf4->mUnk_60]);
-    func_0211e0c4(data_ov001_021a6b78[data_ov001_021a9bf4->mUnk_60]);
+    func_0202949c(data_ov001_021a6b78[gSelectGhost->mIndex]);
+    func_0211e0c4(data_ov001_021a6b78[gSelectGhost->mIndex]);
 }
 
 void func_ov001_0219be5c(void) {
-    u16 n = data_ov001_021a9bf4->mUnk_04->mUnk_06;
+    u16 n = gSelectGhost->mSelectCupCourseTaMBncl->mUnk_06;
 
-    data_ov001_021a9bf4->mUnk_30[0].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_30[2].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_30[1].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_30[4].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_30[3].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_30[5].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_30[n].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_30[n + 1].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_30[n + 2].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_30[n + 3].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_30[n + 4].mUnk_00 = 1;
-    data_ov001_021a9bf4->mUnk_30[n + 5].mUnk_00 = 1;
-    func_0211de00(data_ov001_021a6ba4[func_0202968c()], data_ov001_021a9bf4->mUnk_00, data_ov001_021a9bf4->mUnk_04, 0,
+    gSelectGhost->mSelectCupCourseTaMTable[0].mUnk_00 = 1;
+    gSelectGhost->mSelectCupCourseTaMTable[2].mUnk_00 = 1;
+    gSelectGhost->mSelectCupCourseTaMTable[1].mUnk_00 = 1;
+    gSelectGhost->mSelectCupCourseTaMTable[4].mUnk_00 = 1;
+    gSelectGhost->mSelectCupCourseTaMTable[3].mUnk_00 = 1;
+    gSelectGhost->mSelectCupCourseTaMTable[5].mUnk_00 = 1;
+    gSelectGhost->mSelectCupCourseTaMTable[n].mUnk_00 = 1;
+    gSelectGhost->mSelectCupCourseTaMTable[n + 1].mUnk_00 = 1;
+    gSelectGhost->mSelectCupCourseTaMTable[n + 2].mUnk_00 = 1;
+    gSelectGhost->mSelectCupCourseTaMTable[n + 3].mUnk_00 = 1;
+    gSelectGhost->mSelectCupCourseTaMTable[n + 4].mUnk_00 = 1;
+    gSelectGhost->mSelectCupCourseTaMTable[n + 5].mUnk_00 = 1;
+    func_0211de00(data_ov001_021a6ba4[func_0202968c()], gSelectGhost->mSelectCupCourseMNcer,
+                  gSelectGhost->mSelectCupCourseTaMBncl, 0, 0);
+    func_0211ded0((u32) (data_ov001_021a6ba4[func_0202968c()]), (void *) gSelectGhost->mSelectCupCourseMNcer,
+                  (void *) gSelectGhost->mSelectCupCourseTaMBncl, (u32) (5),
+                  (u16) (func_02124a68((u32) (5), (void *) (gSelectGhost->mSelectCupCourseMNcer),
+                                       (void *) (gSelectGhost->mSelectCupCourseTaMBncl))),
                   0);
-    func_0211ded0((u32) (data_ov001_021a6ba4[func_0202968c()]), (void *) data_ov001_021a9bf4->mUnk_00,
-                  (void *) data_ov001_021a9bf4->mUnk_04, (u32) (5),
-                  (u16) (func_02124a68((u32) (5), (void *) (data_ov001_021a9bf4->mUnk_00),
-                                       (void *) (data_ov001_021a9bf4->mUnk_04))),
-                  0);
-    func_0212426c(0, 2, data_ov001_021a9bf4->mUnk_08, GetBmgEntry(data_ov001_021a9bf4->mUnk_38, 0x73),
-                  data_ov001_021a9bf4->mUnk_04, data_ov001_021a9bf4->mUnk_30);
-    func_0212426c(0, 4, data_ov001_021a9bf4->mUnk_08, GetBmgEntry(data_ov001_021a9bf4->mUnk_38, 0x74),
-                  data_ov001_021a9bf4->mUnk_04, data_ov001_021a9bf4->mUnk_30);
-    func_02124140(0, 0, data_ov001_021a9bf4->mUnk_08, data_ov001_021a9bf4->mUnk_30, data_ov001_021a9bf4->mUnk_04);
-    func_02124140(1, 0, data_ov001_021a9bf4->mUnk_08, data_ov001_021a9bf4->mUnk_30, data_ov001_021a9bf4->mUnk_04);
-    func_02124140(2, 0, data_ov001_021a9bf4->mUnk_08, data_ov001_021a9bf4->mUnk_30, data_ov001_021a9bf4->mUnk_04);
-    func_02124140(4, 0, data_ov001_021a9bf4->mUnk_08, data_ov001_021a9bf4->mUnk_30, data_ov001_021a9bf4->mUnk_04);
+    func_0212426c(0, 2, gSelectGhost->mSelectCupCourseTaMBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 0x73),
+                  gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseTaMTable);
+    func_0212426c(0, 4, gSelectGhost->mSelectCupCourseTaMBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 0x74),
+                  gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseTaMTable);
+    func_02124140(0, 0, gSelectGhost->mSelectCupCourseTaMBnll, gSelectGhost->mSelectCupCourseTaMTable,
+                  gSelectGhost->mSelectCupCourseTaMBncl);
+    func_02124140(1, 0, gSelectGhost->mSelectCupCourseTaMBnll, gSelectGhost->mSelectCupCourseTaMTable,
+                  gSelectGhost->mSelectCupCourseTaMBncl);
+    func_02124140(2, 0, gSelectGhost->mSelectCupCourseTaMBnll, gSelectGhost->mSelectCupCourseTaMTable,
+                  gSelectGhost->mSelectCupCourseTaMBncl);
+    func_02124140(4, 0, gSelectGhost->mSelectCupCourseTaMBnll, gSelectGhost->mSelectCupCourseTaMTable,
+                  gSelectGhost->mSelectCupCourseTaMBncl);
 }
 
-void func_ov001_0219bb48(u32 a, u32 b, u32 c) {
+void InitSelectGhost(u32 a, u32 b, u32 c) {
     void *heap;
     s32 rem;
     s32 i;
@@ -327,121 +334,130 @@ void func_ov001_0219bb48(u32 a, u32 b, u32 c) {
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8300;
     heap = func_02036948((void *) a);
-    data_ov001_021a9bf4 = func_02036bec(heap, 0x70);
-    data_ov001_021a9bf4->mUnk_44 = heap;
-    data_ov001_021a9bf4->mUnk_48 = 0;
-    data_ov001_021a9bf4->mUnk_60 = 0;
-    data_ov001_021a9bf4->mUnk_64 = b;
-    data_ov001_021a9bf4->mUnk_68 = c;
-    data_ov001_021a9bf4->mUnk_6c = 0;
+    gSelectGhost = func_02036bec(heap, 0x70);
+    gSelectGhost->mHeap = heap;
+    gSelectGhost->mState = 0;
+    gSelectGhost->mIndex = 0;
+    gSelectGhost->mUnk_64 = b;
+    gSelectGhost->mUnk_68 = c;
+    gSelectGhost->mResult = 0;
     func_ov001_0219c544();
-    func_02117224(data_ov001_021a9bf4->mUnk_44);
-    func_02124ed0(data_ov001_021a9bf4->mUnk_44, data_ov001_021a9bf4->mUnk_04, data_ov001_021a9bf4->mUnk_08,
-                  &data_ov001_021a9bf4->mUnk_30);
-    func_02124ed0(data_ov001_021a9bf4->mUnk_44, data_ov001_021a9bf4->mUnk_10, data_ov001_021a9bf4->mUnk_18,
-                  &data_ov001_021a9bf4->mUnk_34);
-    data_ov001_021a9bf4->mUnk_38 = func_02047a28("common.bmg");
-    data_ov001_021a9bf4->mUnk_3c = FindSceneFile("menu.bmg");
+    func_02117224(gSelectGhost->mHeap);
+    func_02124ed0(gSelectGhost->mHeap, gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseTaMBnll,
+                  &gSelectGhost->mSelectCupCourseTaMTable);
+    func_02124ed0(gSelectGhost->mHeap, gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSBnll,
+                  &gSelectGhost->mSelectGhostSTable);
+    gSelectGhost->mCommonMessages = func_02047a28("common.bmg");
+    gSelectGhost->mMenuMessages = FindSceneFile("menu.bmg");
     rem = 0x8000;
-    rem -= func_021243ac(data_ov001_021a9bf4->mUnk_44, 0, data_ov001_021a9bf4->mUnk_08, 0xb4, 0xd, 0,
-                         data_ov001_021a9bf4->mUnk_00, data_ov001_021a9bf4->mUnk_04, data_ov001_021a9bf4->mUnk_30, rem);
-    rem -= func_021243ac(data_ov001_021a9bf4->mUnk_44, 1, data_ov001_021a9bf4->mUnk_08, 0xb4, 0xd, 1,
-                         data_ov001_021a9bf4->mUnk_00, data_ov001_021a9bf4->mUnk_04, data_ov001_021a9bf4->mUnk_30, rem);
-    rem -= func_021243ac(data_ov001_021a9bf4->mUnk_44, 2, data_ov001_021a9bf4->mUnk_08, 0x96, 0xd, 2,
-                         data_ov001_021a9bf4->mUnk_00, data_ov001_021a9bf4->mUnk_04, data_ov001_021a9bf4->mUnk_30, rem);
-    rem -= func_021243ac(data_ov001_021a9bf4->mUnk_44, 3, data_ov001_021a9bf4->mUnk_08, 0x50, 0xd, 3,
-                         data_ov001_021a9bf4->mUnk_00, data_ov001_021a9bf4->mUnk_04, data_ov001_021a9bf4->mUnk_30, rem);
-    rem -= func_021243ac(data_ov001_021a9bf4->mUnk_44, 4, data_ov001_021a9bf4->mUnk_08, 0x96, 0xd, 4,
-                         data_ov001_021a9bf4->mUnk_00, data_ov001_021a9bf4->mUnk_04, data_ov001_021a9bf4->mUnk_30, rem);
-    func_021243ac(data_ov001_021a9bf4->mUnk_44, 5, data_ov001_021a9bf4->mUnk_08, 0x50, 0xd, 5,
-                  data_ov001_021a9bf4->mUnk_00, data_ov001_021a9bf4->mUnk_04, data_ov001_021a9bf4->mUnk_30, rem);
+    rem -= func_021243ac(gSelectGhost->mHeap, 0, gSelectGhost->mSelectCupCourseTaMBnll, 0xb4, 0xd, 0,
+                         gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
+                         gSelectGhost->mSelectCupCourseTaMTable, rem);
+    rem -= func_021243ac(gSelectGhost->mHeap, 1, gSelectGhost->mSelectCupCourseTaMBnll, 0xb4, 0xd, 1,
+                         gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
+                         gSelectGhost->mSelectCupCourseTaMTable, rem);
+    rem -= func_021243ac(gSelectGhost->mHeap, 2, gSelectGhost->mSelectCupCourseTaMBnll, 0x96, 0xd, 2,
+                         gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
+                         gSelectGhost->mSelectCupCourseTaMTable, rem);
+    rem -= func_021243ac(gSelectGhost->mHeap, 3, gSelectGhost->mSelectCupCourseTaMBnll, 0x50, 0xd, 3,
+                         gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
+                         gSelectGhost->mSelectCupCourseTaMTable, rem);
+    rem -= func_021243ac(gSelectGhost->mHeap, 4, gSelectGhost->mSelectCupCourseTaMBnll, 0x96, 0xd, 4,
+                         gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
+                         gSelectGhost->mSelectCupCourseTaMTable, rem);
+    func_021243ac(gSelectGhost->mHeap, 5, gSelectGhost->mSelectCupCourseTaMBnll, 0x50, 0xd, 5,
+                  gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
+                  gSelectGhost->mSelectCupCourseTaMTable, rem);
     rem = func_02148ca0();
     for (i = 0; i < 5; i++) {
-        rem -= func_021243ac(data_ov001_021a9bf4->mUnk_44, data_ov001_021a6b54[i], data_ov001_021a9bf4->mUnk_18,
-                             data_ov001_021a6b48[i], data_ov001_021a6b60[i], i, data_ov001_021a9bf4->mUnk_0c,
-                             data_ov001_021a9bf4->mUnk_10, data_ov001_021a9bf4->mUnk_34, rem);
+        rem -= func_021243ac(gSelectGhost->mHeap, data_ov001_021a6b54[i], gSelectGhost->mSelectGhostSBnll,
+                             data_ov001_021a6b48[i], data_ov001_021a6b60[i], i, gSelectGhost->mSelectGhostSONcer,
+                             gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable, rem);
     }
-    func_021243ac(data_ov001_021a9bf4->mUnk_44, 5, data_ov001_021a9bf4->mUnk_18, 0x32, 0xd, 0xb,
-                  data_ov001_021a9bf4->mUnk_0c, data_ov001_021a9bf4->mUnk_10, data_ov001_021a9bf4->mUnk_34, rem);
-    func_0212426c(1, data_ov001_021a6b54[0], data_ov001_021a9bf4->mUnk_18, GetBmgEntry(data_ov001_021a9bf4->mUnk_3c, 8),
-                  data_ov001_021a9bf4->mUnk_10, data_ov001_021a9bf4->mUnk_34);
-    func_0212426c(1, data_ov001_021a6b54[3], data_ov001_021a9bf4->mUnk_18, GetBmgEntry(data_ov001_021a9bf4->mUnk_3c, 9),
-                  data_ov001_021a9bf4->mUnk_10, data_ov001_021a9bf4->mUnk_34);
-    func_0212426c(1, data_ov001_021a6b54[4], data_ov001_021a9bf4->mUnk_18,
-                  GetBmgEntry(data_ov001_021a9bf4->mUnk_3c, data_ov001_021a6b40[0]), data_ov001_021a9bf4->mUnk_10,
-                  data_ov001_021a9bf4->mUnk_34);
-    func_0212426c(1, 5, data_ov001_021a9bf4->mUnk_18, GetBmgEntry(data_ov001_021a9bf4->mUnk_38, 4),
-                  data_ov001_021a9bf4->mUnk_10, data_ov001_021a9bf4->mUnk_34);
-    func_0211de40(data_ov001_021a9bf4->mUnk_44);
-    func_0211df44(data_ov001_021a9bf4->mUnk_44);
-    func_0212b928(data_ov001_021a9bf4->mUnk_44, data_ov001_021a9bf4->mUnk_1c, 4);
+    func_021243ac(gSelectGhost->mHeap, 5, gSelectGhost->mSelectGhostSBnll, 0x32, 0xd, 0xb,
+                  gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable,
+                  rem);
+    func_0212426c(1, data_ov001_021a6b54[0], gSelectGhost->mSelectGhostSBnll,
+                  GetBmgEntry(gSelectGhost->mMenuMessages, 8), gSelectGhost->mSelectGhostSBncl,
+                  gSelectGhost->mSelectGhostSTable);
+    func_0212426c(1, data_ov001_021a6b54[3], gSelectGhost->mSelectGhostSBnll,
+                  GetBmgEntry(gSelectGhost->mMenuMessages, 9), gSelectGhost->mSelectGhostSBncl,
+                  gSelectGhost->mSelectGhostSTable);
+    func_0212426c(1, data_ov001_021a6b54[4], gSelectGhost->mSelectGhostSBnll,
+                  GetBmgEntry(gSelectGhost->mMenuMessages, data_ov001_021a6b40[0]), gSelectGhost->mSelectGhostSBncl,
+                  gSelectGhost->mSelectGhostSTable);
+    func_0212426c(1, 5, gSelectGhost->mSelectGhostSBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 4),
+                  gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable);
+    func_0211de40(gSelectGhost->mHeap);
+    func_0211df44(gSelectGhost->mHeap);
+    func_0212b928(gSelectGhost->mHeap, gSelectGhost->mSelectGhostSONclr, 4);
     func_0212b7fc();
     func_ov001_0219be5c();
     func_ov001_0219c480();
     for (i = 3; i >= 0; i--) {
         if (func_0211e160(data_ov001_021a6b78[i]) != 0) {
-            data_ov001_021a9bf4->mUnk_60 = i;
+            gSelectGhost->mIndex = i;
             break;
         }
     }
     func_ov001_0219c0bc();
-    func_02036820((void *) (data_ov001_021a9bf4->mUnk_44));
+    func_02036820((void *) (gSelectGhost->mHeap));
 }
 
 void func_ov001_0219baf4(void) {
-    if (data_ov001_021a9bf4->mUnk_6c == 1) {
+    if (gSelectGhost->mResult == 1) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | 0x1800;
     }
     func_0212b91c();
     func_0211de34();
     func_0211df38();
     func_02117218();
-    func_02036ab0(data_ov001_021a9bf4->mUnk_44);
-    data_ov001_021a9bf4 = NULL;
+    func_02036ab0(gSelectGhost->mHeap);
+    gSelectGhost = NULL;
 }
 
-void func_ov001_0219ba3c(void) {
+void AdvanceSelectGhostState0(void) {
     u16 n;
     s16 v;
     s32 i;
 
-    func_ov001_0219c2a4();
-    n = data_ov001_021a9bf4->mUnk_10->mUnk_06;
-    data_ov001_021a9bf4->mUnk_50++;
-    v = func_020ae4c0(1, ~0xbf, 0, data_ov001_021a9bf4->mUnk_50, 10);
-    data_ov001_021a9bf4->mUnk_5c = v;
+    AdvanceSelectGhostOffsetTimers();
+    n = gSelectGhost->mSelectGhostSBncl->mUnk_06;
+    gSelectGhost->mStateFrames++;
+    v = func_020ae4c0(1, ~0xbf, 0, gSelectGhost->mStateFrames, 10);
+    gSelectGhost->mUnk_5c = v;
     for (i = 0; i < 6; i++) {
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b6c[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[i]].mUnk_06 = v;
     }
     for (i = 0; i < 5; i++) {
-        data_ov001_021a9bf4->mUnk_34[n + data_ov001_021a6b54[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[n + data_ov001_021a6b54[i]].mUnk_06 = v;
     }
     for (i = 0; i < 2; i++) {
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b3c[i]].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b38[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b3c[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[i]].mUnk_06 = v;
     }
-    if (data_ov001_021a9bf4->mUnk_50 >= 10) {
+    if (gSelectGhost->mStateFrames >= 10) {
         func_ov001_0219c46c();
     }
 }
 
-void func_ov001_0219b9dc(void) {
+void AdvanceSelectGhostState1(void) {
     u16 n;
     s16 w;
 
-    func_ov001_0219c2a4();
-    n = data_ov001_021a9bf4->mUnk_10->mUnk_06;
-    data_ov001_021a9bf4->mUnk_50++;
-    w = -func_0212825c(data_ov001_021a9bf4->mUnk_50);
-    data_ov001_021a9bf4->mUnk_34[10].mUnk_06 = w;
-    data_ov001_021a9bf4->mUnk_34[11].mUnk_06 = w;
-    data_ov001_021a9bf4->mUnk_34[n + 5].mUnk_06 = w;
-    if (data_ov001_021a9bf4->mUnk_50 >= 10) {
+    AdvanceSelectGhostOffsetTimers();
+    n = gSelectGhost->mSelectGhostSBncl->mUnk_06;
+    gSelectGhost->mStateFrames++;
+    w = -func_0212825c(gSelectGhost->mStateFrames);
+    gSelectGhost->mSelectGhostSTable[10].mUnk_06 = w;
+    gSelectGhost->mSelectGhostSTable[11].mUnk_06 = w;
+    gSelectGhost->mSelectGhostSTable[n + 5].mUnk_06 = w;
+    if (gSelectGhost->mStateFrames >= 10) {
         func_ov001_0219c458();
     }
 }
 
-void func_ov001_0219b874(void) {
+void AdvanceSelectGhostState2(void) {
     s32 r;
     BOOL b;
     BOOL a;
@@ -450,7 +466,7 @@ void func_ov001_0219b874(void) {
     Unk02175628Index idx;
 
     r = -1;
-    func_ov001_0219c2a4();
+    AdvanceSelectGhostOffsetTimers();
     idx = UNK_02175628_INDEX_8;
     b = FALSE;
     a = FALSE;
@@ -461,7 +477,7 @@ void func_ov001_0219b874(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        r = func_0201ea84(data_ov001_021a9bf4->mUnk_14, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+        r = func_0201ea84(gSelectGhost->mSelectGhostSBnbl, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
         d = FALSE;
@@ -479,7 +495,7 @@ void func_ov001_0219b874(void) {
     }
     func_021281c8(14);
     func_ov001_0219c3a8();
-    data_ov001_021a9bf4->mUnk_6c = 2;
+    gSelectGhost->mResult = 2;
     func_02128310(0);
     return;
 next:
@@ -512,21 +528,21 @@ next:
     }
 }
 
-void func_ov001_0219b84c(void) {
-    func_ov001_0219c2a4();
-    data_ov001_021a9bf4->mUnk_50++;
-    if (data_ov001_021a9bf4->mUnk_50 >= 10) {
+void AdvanceSelectGhostState3(void) {
+    AdvanceSelectGhostOffsetTimers();
+    gSelectGhost->mStateFrames++;
+    if (gSelectGhost->mStateFrames >= 10) {
         func_ov001_0219c3ec();
     }
 }
 
-void func_ov001_0219b834(void) {
+void AdvanceSelectGhostState4(void) {
     if (func_021277c8() != 0) {
         func_ov001_0219c3d8();
     }
 }
 
-void func_ov001_0219b81c(void) {
+void AdvanceSelectGhostState5(void) {
     int v1;
     v1 = func_02127788();
     if (v1 != 0) {
@@ -535,7 +551,7 @@ void func_ov001_0219b81c(void) {
     return;
 }
 
-void func_ov001_0219b7c8(void) {
+void AdvanceSelectGhostState6(void) {
     s32 r;
 
     if (func_021277ac() == 0) {
@@ -545,7 +561,7 @@ void func_ov001_0219b7c8(void) {
     switch (r) {
         case 0:
             func_ov001_0219bfc0();
-            data_ov001_021a9bf4->mUnk_6c = 1;
+            gSelectGhost->mResult = 1;
             func_ov001_0219c3a8();
             func_021282c8();
             break;
@@ -557,95 +573,96 @@ void func_ov001_0219b7c8(void) {
     }
 }
 
-void func_ov001_0219b64c(void) {
+void AdvanceSelectGhostState7(void) {
     BOOL flag;
     s16 v;
     s16 w;
     u16 n;
     s32 i;
 
-    flag = data_ov001_021a9bf4->mUnk_6c == 1;
-    data_ov001_021a9bf4->mUnk_50++;
-    v = func_020ae4c0(1, 0, ~0xbf, data_ov001_021a9bf4->mUnk_50, 10);
+    flag = gSelectGhost->mResult == 1;
+    gSelectGhost->mStateFrames++;
+    v = func_020ae4c0(1, 0, ~0xbf, gSelectGhost->mStateFrames, 10);
     if (flag) {
-        n = data_ov001_021a9bf4->mUnk_04->mUnk_06;
-        data_ov001_021a9bf4->mUnk_58 = v;
-        data_ov001_021a9bf4->mUnk_30[0].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_30[2].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_30[1].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_30[4].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_30[3].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_30[5].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_30[n].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_30[n + 1].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_30[n + 2].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_30[n + 3].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_30[n + 4].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_30[n + 5].mUnk_06 = v;
+        n = gSelectGhost->mSelectCupCourseTaMBncl->mUnk_06;
+        gSelectGhost->mBg0Offset = v;
+        gSelectGhost->mSelectCupCourseTaMTable[0].mUnk_06 = v;
+        gSelectGhost->mSelectCupCourseTaMTable[2].mUnk_06 = v;
+        gSelectGhost->mSelectCupCourseTaMTable[1].mUnk_06 = v;
+        gSelectGhost->mSelectCupCourseTaMTable[4].mUnk_06 = v;
+        gSelectGhost->mSelectCupCourseTaMTable[3].mUnk_06 = v;
+        gSelectGhost->mSelectCupCourseTaMTable[5].mUnk_06 = v;
+        gSelectGhost->mSelectCupCourseTaMTable[n].mUnk_06 = v;
+        gSelectGhost->mSelectCupCourseTaMTable[n + 1].mUnk_06 = v;
+        gSelectGhost->mSelectCupCourseTaMTable[n + 2].mUnk_06 = v;
+        gSelectGhost->mSelectCupCourseTaMTable[n + 3].mUnk_06 = v;
+        gSelectGhost->mSelectCupCourseTaMTable[n + 4].mUnk_06 = v;
+        gSelectGhost->mSelectCupCourseTaMTable[n + 5].mUnk_06 = v;
     }
-    n = data_ov001_021a9bf4->mUnk_10->mUnk_06;
-    w = -func_02128244(data_ov001_021a9bf4->mUnk_50);
-    data_ov001_021a9bf4->mUnk_5c = v;
+    n = gSelectGhost->mSelectGhostSBncl->mUnk_06;
+    w = -func_02128244(gSelectGhost->mStateFrames);
+    gSelectGhost->mUnk_5c = v;
     for (i = 0; i < 6; i++) {
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b6c[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[i]].mUnk_06 = v;
     }
-    data_ov001_021a9bf4->mUnk_34[10].mUnk_06 = w;
-    data_ov001_021a9bf4->mUnk_34[11].mUnk_06 = w;
+    gSelectGhost->mSelectGhostSTable[10].mUnk_06 = w;
+    gSelectGhost->mSelectGhostSTable[11].mUnk_06 = w;
     for (i = 0; i < 5; i++) {
-        data_ov001_021a9bf4->mUnk_34[n + data_ov001_021a6b54[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[n + data_ov001_021a6b54[i]].mUnk_06 = v;
     }
     for (i = 0; i < 2; i++) {
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b3c[i]].mUnk_06 = v;
-        data_ov001_021a9bf4->mUnk_34[data_ov001_021a6b38[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b3c[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[i]].mUnk_06 = v;
     }
-    data_ov001_021a9bf4->mUnk_34[n + 5].mUnk_06 = w;
+    gSelectGhost->mSelectGhostSTable[n + 5].mUnk_06 = w;
 }
 
-int func_ov001_0219b574(void) {
-    data_ov001_021a9bf4->mUnk_48 = data_ov001_021a9bf4->mUnk_4c;
-    switch (data_ov001_021a9bf4->mUnk_48) {
+int AdvanceSelectGhost(void) {
+    gSelectGhost->mState = gSelectGhost->mNextState;
+    switch (gSelectGhost->mState) {
         case 0:
-            func_ov001_0219ba3c();
+            AdvanceSelectGhostState0();
             break;
         case 1:
-            func_ov001_0219b9dc();
+            AdvanceSelectGhostState1();
             break;
         case 2:
-            func_ov001_0219b874();
+            AdvanceSelectGhostState2();
             break;
         case 3:
-            func_ov001_0219b84c();
+            AdvanceSelectGhostState3();
             break;
         case 4:
-            func_ov001_0219b834();
+            AdvanceSelectGhostState4();
             break;
         case 5:
-            func_ov001_0219b81c();
+            AdvanceSelectGhostState5();
             break;
         case 6:
-            func_ov001_0219b7c8();
+            AdvanceSelectGhostState6();
             break;
         case 7:
-            func_ov001_0219b64c();
+            AdvanceSelectGhostState7();
             break;
     }
     func_0212b80c();
     func_ov001_0219c358();
-    func_02124c30(data_ov001_021a9bf4->mUnk_04, data_ov001_021a9bf4->mUnk_00, data_ov001_021a9bf4->mUnk_08,
-                  (void *) data_ov001_021a9bf4->mUnk_64, data_ov001_021a9bf4->mUnk_30);
-    func_02124c30(data_ov001_021a9bf4->mUnk_10, data_ov001_021a9bf4->mUnk_0c, data_ov001_021a9bf4->mUnk_18,
-                  (void *) data_ov001_021a9bf4->mUnk_68, data_ov001_021a9bf4->mUnk_34);
-    if (data_ov001_021a9bf4->mUnk_48 == 7) {
-        switch (data_ov001_021a9bf4->mUnk_6c) {
+    func_02124c30(gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseMNcer,
+                  gSelectGhost->mSelectCupCourseTaMBnll, (void *) gSelectGhost->mUnk_64,
+                  gSelectGhost->mSelectCupCourseTaMTable);
+    func_02124c30(gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBnll,
+                  (void *) gSelectGhost->mUnk_68, gSelectGhost->mSelectGhostSTable);
+    if (gSelectGhost->mState == 7) {
+        switch (gSelectGhost->mResult) {
             case 1:
-                if (data_ov001_021a9bf4->mUnk_50 >= 10) {
+                if (gSelectGhost->mStateFrames >= 10) {
                     if (IsSelectReturnState0NoState1Request() != 0) {
                         return 1;
                     }
                 }
                 break;
             case 2:
-                if (data_ov001_021a9bf4->mUnk_50 >= 10) {
+                if (gSelectGhost->mStateFrames >= 10) {
                     return 2;
                 }
                 break;
@@ -655,6 +672,6 @@ int func_ov001_0219b574(void) {
 }
 
 void func_ov001_0219b540(void) {
-    *(u32 *) 0x4000010 = (-data_ov001_021a9bf4->mUnk_58 << 16) & 0x1ff0000;
-    *(u32 *) 0x400101c = (-data_ov001_021a9bf4->mUnk_5c << 16) & 0x1ff0000;
+    *(u32 *) 0x4000010 = (-gSelectGhost->mBg0Offset << 16) & 0x1ff0000;
+    *(u32 *) 0x400101c = (-gSelectGhost->mUnk_5c << 16) & 0x1ff0000;
 }

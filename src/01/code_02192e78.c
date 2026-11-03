@@ -111,7 +111,7 @@ void InitOptionStates(void *heap, s16 a) {
                 func_ov001_02199964();
             } else {
                 gOptionStates->mState = 3;
-                func_ov001_0219d5dc();
+                RegisterOptionEmbremSelectCallbacks();
             }
             break;
     }
@@ -149,7 +149,7 @@ void AdvanceOptionStates(void) {
                 func_ov001_02199964();
                 break;
             case 3:
-                func_ov001_0219d5dc();
+                RegisterOptionEmbremSelectCallbacks();
                 break;
         }
         gOptionStates->mPrevState = gOptionStates->mState;

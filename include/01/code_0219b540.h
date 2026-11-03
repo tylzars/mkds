@@ -23,37 +23,39 @@ typedef struct Unk021a9bf4Block {
     /* 0c */ u8 *mUnk_0c;
 } Unk021a9bf4Block;
 
-// Object behind data_ov001_021a9bf4.
-typedef struct Unk021a9bf4 {
-    /* 00 */ struct Unk02021dc8 *mUnk_00;
-    /* 04 */ Unk0201ea30 *mUnk_04;
-    /* 08 */ void *mUnk_08;
-    /* 0c */ struct Unk02021dc8 *mUnk_0c;
-    /* 10 */ Unk0201ea30 *mUnk_10;
-    /* 14 */ void *mUnk_14;
-    /* 18 */ void *mUnk_18;
-    /* 1c */ Unk020b4a44 *mUnk_1c;
-    /* 20 */ void *mUnk_20;
-    /* 24 */ void *mUnk_24;
-    /* 28 */ Unk021a9bf4Block *mUnk_28;
-    /* 2c */ void *mUnk_2c;
-    /* 30 */ Unk02124b1c *mUnk_30;
-    /* 34 */ Unk02124b1c *mUnk_34;
-    /* 38 */ void *mUnk_38;
-    /* 3c */ void *mUnk_3c;
+// Object behind gSelectGhost.
+typedef struct SelectGhost {
+    /* 00 */ struct Unk02021dc8 *mSelectCupCourseMNcer;
+    /* 04 */ Unk0201ea30 *mSelectCupCourseTaMBncl;
+    /* 08 */ void *mSelectCupCourseTaMBnll;
+    /* 0c */ struct Unk02021dc8 *mSelectGhostSONcer;
+    /* 10 */ Unk0201ea30 *mSelectGhostSBncl;
+    /* 14 */ void *mSelectGhostSBnbl;
+    /* 18 */ void *mSelectGhostSBnll;
+    /* 1c */ Unk020b4a44 *mSelectGhostSONclr;
+    /* 20 */ void *mPlayerCharacterMNcgr;
+    /* 24 */ void *mPlayerCharacterMNcer;
+    /* 28 */ Unk021a9bf4Block *mPlayerCharacterMONclr;
+    /* 2c */ void *mPlayerCharacterMBncl;
+    /* 30 */ Unk02124b1c *mSelectCupCourseTaMTable;
+    /* 34 */ Unk02124b1c *mSelectGhostSTable;
+    /* 38 */ void *mCommonMessages;
+    /* 3c */ void *mMenuMessages;
     /* 40 */ void *mUnk_40;
-    /* 44 */ void *mUnk_44;
-    /* 48 */ s32 mUnk_48;
-    /* 4c */ s32 mUnk_4c;
-    /* 50 */ s32 mUnk_50;
-    /* 54 */ s16 mUnk_54[2];
-    /* 58 */ s32 mUnk_58;
+    /* 44 */ void *mHeap;
+    /* 48 */ s32 mState;
+    /* 4c */ s32 mNextState;
+    /* 50 */ s32 mStateFrames;
+    // Set to 6 by the index steps, counts down to 0; 6 - timer indexes data_02156868 through func_020adc64.
+    /* 54 */ s16 mOffsetTimers[2];
+    // Negated and shifted into the upper half-word of the BG0 offset register.
+    /* 58 */ s32 mBg0Offset;
     /* 5c */ s32 mUnk_5c;
-    /* 60 */ s32 mUnk_60;
+    /* 60 */ s32 mIndex;
     /* 64 */ u32 mUnk_64;
     /* 68 */ u32 mUnk_68;
-    /* 6c */ s32 mUnk_6c;
-} Unk021a9bf4;
+    /* 6c */ s32 mResult;
+} SelectGhost;
 
 #include "01/code_0219c000.h"
 #include "Main/Unknown/code_0212775c.h"
@@ -81,26 +83,26 @@ extern u16 data_ov001_021a6b6c[];
 extern u32 data_ov001_021a6b78[];
 extern u16 data_ov001_021a6b88[];
 extern u32 data_ov001_021a6ba4[];
-extern Unk021a9bf4 *data_ov001_021a9bf4;
+extern SelectGhost *gSelectGhost;
 
 void func_ov001_0219b540(void);
-int func_ov001_0219b574(void);
-void func_ov001_0219b64c(void);
-void func_ov001_0219b7c8(void);
-void func_ov001_0219b81c(void);
-void func_ov001_0219b834(void);
-void func_ov001_0219b84c(void);
-void func_ov001_0219b874(void);
-void func_ov001_0219b9dc(void);
-void func_ov001_0219ba3c(void);
+int AdvanceSelectGhost(void);
+void AdvanceSelectGhostState7(void);
+void AdvanceSelectGhostState6(void);
+void AdvanceSelectGhostState5(void);
+void AdvanceSelectGhostState4(void);
+void AdvanceSelectGhostState3(void);
+void AdvanceSelectGhostState2(void);
+void AdvanceSelectGhostState1(void);
+void AdvanceSelectGhostState0(void);
 void func_ov001_0219baf4(void);
-void func_ov001_0219bb48(u32 a, u32 b, u32 c);
+void InitSelectGhost(u32 a, u32 b, u32 c);
 void func_ov001_0219be5c(void);
 void func_ov001_0219bfc0(void);
 void func_ov001_0219bff4(void);
 void func_ov001_0219c058(void);
 void func_ov001_0219c0bc(void);
-void func_ov001_0219c2a4(void);
+void AdvanceSelectGhostOffsetTimers(void);
 void func_ov001_0219c358(void);
 void func_ov001_0219c3a8(void);
 void func_ov001_0219c3bc(void);
@@ -111,4 +113,4 @@ void func_ov001_0219c458(void);
 void func_ov001_0219c46c(void);
 void func_ov001_0219c480(void);
 void func_ov001_0219c544(void);
-void func_ov001_0219c6f0(void);
+void LoadSelectGhostAndKartIconData(void);

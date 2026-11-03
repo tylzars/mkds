@@ -221,24 +221,25 @@ typedef struct Unk0217d348 {
 
 // Object behind data_0217d360.
 typedef struct Unk0217d360 {
-    /* 00 */ struct Unk02021dc8 *mUnk_00;
-    /* 04 */ Unk0201ea30 *mUnk_04;
-    /* 08 */ void *mUnk_08;
-    /* 0c */ struct Unk02021dc8 *mUnk_0c;
-    /* 10 */ void *mUnk_10;
-    /* 14 */ Unk0201ea30 *mUnk_14;
-    /* 18 */ Unk02124b1c *mUnk_18;
-    /* 1c */ Unk02124b1c *mUnk_1c;
+    /* 00 */ struct Unk02021dc8 *mSelectCupMNcer;
+    /* 04 */ Unk0201ea30 *mSelectCupMBncl;
+    /* 08 */ void *mSelectCupMBnll;
+    /* 0c */ struct Unk02021dc8 *mSelectCupSNcer;
+    /* 10 */ void *mSelectCupSBncl;
+    /* 14 */ Unk0201ea30 *mSelectCupSBnbl;
+    /* 18 */ Unk02124b1c *mSelectCupMTable;
+    /* 1c */ Unk02124b1c *mSelectCupSTable;
     /* 20 */ void *mUnk_20;
-    /* 24 */ void *mUnk_24;
-    /* 28 */ void *mUnk_28;
-    /* 2c */ void *mUnk_2c;
-    /* 30 */ s32 mUnk_30;
-    /* 34 */ s32 mUnk_34;
-    /* 38 */ s32 mUnk_38;
-    /* 3c */ s32 mUnk_3c;
-    /* 40 */ s32 mUnk_40;
-    /* 44 */ s32 mUnk_44;
+    /* 24 */ void *mCommonMessages;
+    /* 28 */ void *mMenuMessages;
+    /* 2c */ void *mHeap;
+    /* 30 */ s32 mState;
+    /* 34 */ s32 mNextState;
+    /* 38 */ s32 mStateFrames;
+    /* 3c */ s32 mMode;
+    // Negated and shifted into the upper half-word of the BG0 offset register.
+    /* 40 */ s32 mBg0Offset;
+    /* 44 */ s32 mIndex;
     /* 48 */ s32 mUnk_48[8];
     /* 68 */ s32 mUnk_68;
     /* 6c */ s32 mUnk_6c;
@@ -249,7 +250,7 @@ typedef struct Unk0217d360 {
     /* 7c */ s32 mUnk_7c;
     /* 80 */ void *mUnk_80;
     /* 84 */ void *mUnk_84;
-    /* 88 */ s32 mUnk_88;
+    /* 88 */ s32 mResult;
 } Unk0217d360;
 
 // Object behind gSelectCup.

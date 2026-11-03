@@ -1220,7 +1220,7 @@ void func_ov001_02195704(void) {
 }
 
 void RegisterRecordTAttCallbacks(void) {
-    Unk021a8294 a = data_ov001_021a82d4;
+    Unk021a8294 a = gRecordTAttCallbacks;
 
     func_02111494(&a);
 }

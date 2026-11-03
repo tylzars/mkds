@@ -85,7 +85,7 @@ typedef struct Unk021a9b88 {
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ u16 *mUnk_18;
-    /* 1c */ u8 * mUnk_1c[5];
+    /* 1c */ u8 *mUnk_1c[5];
 } Unk021a9b88;
 
 // Allocated by InitSelectBattleStage and held in gSelectBattleStage.
@@ -159,37 +159,39 @@ extern Unk021a9b90 *data_ov001_021a9b90;
 extern OptionStates *gOptionStates;
 extern Unk021a9bec *data_ov001_021a9bec;
 extern Unk021a9bf8 *gSelectBattleStage;
-// One pair of halfwords of the object behind data_ov001_021a9bfc.
+// One pair of halfwords of the object behind gOptionEmbremSelect.
 typedef struct Unk021a9bfc_18 {
     /* 00 */ s16 mUnk_00;
     /* 02 */ s16 mUnk_02;
 } Unk021a9bfc_18;
 
-// Object behind data_ov001_021a9bfc.
-typedef struct Unk021a9bfc {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+// Object behind gOptionEmbremSelect.
+typedef struct OptionEmbremSelect {
+    /* 00 */ s32 mState;
+    /* 04 */ s32 mNextState;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
+    /* 14 */ s32 mStateFrames;
     /* 18 */ Unk021a9bfc_18 mUnk_18[2];
-    /* 20 */ s32 mUnk_20;
+    /* 20 */ s32 mNextOptionState;
     /* 24 */ s32 mUnk_24;
-    /* 28 */ s32 mUnk_28[2];
+    // Set to 6 by a press; counts down to 0 only while mUnk_08 == 1. 6 - timer indexes a table through func_020adc64
+    // (a displacement that returns to 0); [0] is subtracted from a row member, [1] added to one.
+    /* 28 */ s32 mOffsetTimers[2];
     /* 30 */ void *mUnk_30;
-    /* 34 */ Unk02124b1c *mUnk_34;
-    /* 38 */ struct Unk02021dc8 *mUnk_38;
-    /* 3c */ Unk020b4934 *mUnk_3c;
-    /* 40 */ Unk020b4a44 *mUnk_40;
-    /* 44 */ Unk0201ea30 *mUnk_44;
-    /* 48 */ void *mUnk_48;
-    /* 4c */ void *mUnk_4c;
-    /* 50 */ void *mUnk_50;
-    /* 54 */ void *mUnk_54;
-} Unk021a9bfc;
+    /* 34 */ Unk02124b1c *mOptionEmbremSelectSTable;
+    /* 38 */ struct Unk02021dc8 *mOptionEmbremSelectSNcer;
+    /* 3c */ Unk020b4934 *mOptionEmbremSelectSNcgr;
+    /* 40 */ Unk020b4a44 *mOptionEmbremSelectSONclr;
+    /* 44 */ Unk0201ea30 *mOptionEmbremSelectSBncl;
+    /* 48 */ void *mOptionEmbremSelectSBnbl;
+    /* 4c */ void *mOptionEmbremSelectSBnll;
+    /* 50 */ void *mOptionMessages;
+    /* 54 */ void *mCommonMessages;
+} OptionEmbremSelect;
 
-extern Unk021a9bfc *data_ov001_021a9bfc;
+extern OptionEmbremSelect *gOptionEmbremSelect;
 extern const char *data_ov001_021a90a8;
 extern const char *data_ov001_021a90e4;
 extern const char *data_ov001_021a90cc;

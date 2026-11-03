@@ -33,23 +33,23 @@ typedef struct Unk021a8cd0 {
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020472a8.h"
 
-extern const Unk021a8cd0 data_ov001_021a8cd0;
+extern const Unk021a8cd0 gOptionEmbremSelectCallbacks;
 
-void func_ov001_0219d5dc(void);
+void RegisterOptionEmbremSelectCallbacks(void);
 void func_ov001_0219d600(void);
-void func_ov001_0219d620(void);
+void AdvanceOptionEmbremSelect(void);
 void func_ov001_0219d6ac(void);
 void func_ov001_0219d730(void);
 void func_ov001_0219d810(void);
 void func_ov001_0219d858(void);
-void func_ov001_0219d934(void);
-void func_ov001_0219d998(void);
-void func_ov001_0219daa0(void);
-void func_ov001_0219dadc(void);
-void func_ov001_0219dd74(void);
-void func_ov001_0219dd94(void);
-void func_ov001_0219de18(void);
+void AdvanceOptionEmbremSelectState6(void);
+void AdvanceOptionEmbremSelectState5(void);
+void AdvanceOptionEmbremSelectState4(void);
+void AdvanceOptionEmbremSelectState3(void);
+void AdvanceOptionEmbremSelectState2(void);
+void AdvanceOptionEmbremSelectState1(void);
+void AdvanceOptionEmbremSelectState0(void);
 BOOL func_ov001_0219de38(void);
 void func_ov001_0219de58(void);
 void func_ov001_0219df64(void);
-void func_ov001_0219df70(void *a);
+void InitOptionEmbremSelect(void *a);
