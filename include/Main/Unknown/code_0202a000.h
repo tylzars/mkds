@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void InitWiFiVSCourseSelect(u32 param_1, u32 param_2, u32 param_3);
+void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3);

@@ -21,14 +21,14 @@
 #include "code_021382a8.h"
 #include "00/code_0218d818.h"
 
-int func_ov000_021971c8(int a, int b) {
+int func_ov000_021971c8(const s8 *a, int b) {
     int v1;
     int v2;
     v2 = 0;
     v1 = 0;
     if (0 < b) {
         do {
-            v2 = (0x9ccf9319u) * v2 + *(s8 *) (a + v1);
+            v2 = (0x9ccf9319u) * v2 + a[v1];
             v1 = v1 + 1;
         } while (v1 < b);
     }

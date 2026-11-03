@@ -19,8 +19,8 @@ void func_ov000_0218acf4(Unk0218a9bc *p, s32 a, u32 b, s32 c, UnkFunc *f, void *
     p->mUnk_48 = g;
     p->mUnk_28 = 0;
     p->mUnk_20 = func_ov000_0218e554(2, 2, 0);
-    func_ov000_0218ae5c((u32 *) &p->mUnk_14);
-    func_ov000_0218ae5c((u32 *) &p->mUnk_08);
+    func_ov000_0218ae5c(&p->mUnk_14);
+    func_ov000_0218ae5c(&p->mUnk_08);
 }
 
 void func_ov000_0218ad44(Unk0218a9bc *p, Unk0218af28 *e) {
@@ -28,7 +28,7 @@ void func_ov000_0218ad44(Unk0218a9bc *p, Unk0218af28 *e) {
     u8 b[0x100];
     s32 c;
     s32 i;
-    func_ov000_0218aedc((s32 *) &p->mUnk_08, (s32) e);
+    func_ov000_0218aedc(&p->mUnk_08, e);
     e->mUnk_1c = func_ov000_0218e8c4();
     a.mUnk_01 = 2;
     if ((e->mUnk_14 & 0x20) == 0) {

@@ -86,7 +86,7 @@ extern u32 data_ov000_021b4ca8;
 
 void func_ov000_02186d04(Unk021868d0 *a);
 void func_ov000_02186d7c(void *l);
-u32 func_ov000_02187230(int a);
+u32 func_ov000_02187230(Unk02186d7c *a);
 void func_ov000_02187274(Unk02186d7c *p);
 void func_ov000_021872bc(Unk02186d7c *p);
 u32 func_ov000_0218735c(Unk02186d7c *p);

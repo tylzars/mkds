@@ -36,7 +36,7 @@ extern char gWiFiVSCourseSelectSBnllName[];
 extern char gWiFiVSCourseSelectSBnblName[];
 
 s32 AdvanceWiFiVSCourseSelect(void);
-void InitWiFiVSCourseSelect(u32 param_1, u32 param_2, u32 param_3);
+void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3);
 s32 func_0202af60(void);
 void func_0202afe4(void);
 void func_0202b100(void);

@@ -7,14 +7,14 @@
 #include "code_02134d30.h"
 #include "code_0214d018.h"
 
-void func_ov000_0218a6f4(u32 a, int b, int c) {
+void func_ov000_0218a6f4(u8 *a, u8 *b, int c) {
     u8 v1;
     int v2;
     v2 = 0;
     if (0 < c) {
         do {
-            v1 = func_ov000_0218a71c((Unk0218a71c *) (a), (u8) (*(u8 *) (b + v2)));
-            *(u8 *) (b + v2) = v1;
+            v1 = func_ov000_0218a71c((Unk0218a71c *) a, b[v2]);
+            b[v2] = v1;
             v2 = v2 + 1;
         } while (v2 < c);
     }

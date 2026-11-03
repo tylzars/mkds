@@ -128,7 +128,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
     return r;
 }
 
-void InitWiFiVSCourseSelect(u32 param_1, u32 param_2, u32 param_3) {
+void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
     void *h;
     Unk02174e14_00 *p;
     Unk02174e14_00 *t;
@@ -148,8 +148,8 @@ void InitWiFiVSCourseSelect(u32 param_1, u32 param_2, u32 param_3) {
     gWiFiVSCourseSelect = func_02036bec(h, 0x158);
     func_0214d05c_inline(gWiFiVSCourseSelect, 0x158);
     gWiFiVSCourseSelect->mUnk_090 = h;
-    gWiFiVSCourseSelect->mUnk_080[0] = (void *) param_2;
-    gWiFiVSCourseSelect->mUnk_080[1] = (void *) param_3;
+    gWiFiVSCourseSelect->mUnk_080[0] = param_2;
+    gWiFiVSCourseSelect->mUnk_080[1] = param_3;
     gWiFiVSCourseSelect->mUnk_088 = func_02047a28(gCommonBmgName3);
     gWiFiVSCourseSelect->mUnk_08c = FindSceneFile(gWiFiBmgName);
     a = func_0200f5ac();

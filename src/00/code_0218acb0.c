@@ -7,20 +7,20 @@
 #include "00/code_0218b434.h"
 #include "00/code_0218e49c.h"
 
-void func_ov000_0218acf0(int a, u32 b) {
-    *(u32 *) (a + 0x28) = b;
+void func_ov000_0218acf0(Unk0218b668 *a, u32 b) {
+    a->mUnk_000.mUnk_28 = b;
     return;
 }
 
-void func_ov000_0218acd8(int a) {
-    func_ov000_0218ae5c((u32 *) ((u32 *) (u32) (a + 0x14)));
-    func_ov000_0218ae5c((u32 *) ((u32 *) (u32) (a + 8)));
+void func_ov000_0218acd8(Unk0218b668 *a) {
+    func_ov000_0218ae5c(&a->mUnk_000.mUnk_14);
+    func_ov000_0218ae5c(&a->mUnk_000.mUnk_08);
     return;
 }
 
-void func_ov000_0218acb0(struct Unk0218b668 *p) {
-    func_ov000_0218e53c(p->mUnk_020);
-    p->mUnk_020 = 0xffffffff;
-    func_ov000_0218ae5c(&p->mUnk_014);
-    func_ov000_0218ae5c(&p->mUnk_008);
+void func_ov000_0218acb0(Unk0218b668 *p) {
+    func_ov000_0218e53c(p->mUnk_000.mUnk_20);
+    p->mUnk_000.mUnk_20 = 0xffffffff;
+    func_ov000_0218ae5c(&p->mUnk_000.mUnk_14);
+    func_ov000_0218ae5c(&p->mUnk_000.mUnk_08);
 }

@@ -85,7 +85,7 @@ void func_ov000_0218def0(Unk0218e004 *c, void *d) {
     }
     if (c != NULL) {
         a = c->mUnk_0c(d, c->mUnk_04);
-        b = func_ov000_0218d980((s32 *) c->mUnk_00[a], d, (UnkCompare *) c->mUnk_10, 0, 0);
+        b = func_ov000_0218d980(c->mUnk_00[a], d, (UnkCompare *) c->mUnk_10, 0, 0);
         if (b == -1) {
             func_ov000_0218dbc0(c->mUnk_00[a], d);
             return;
@@ -104,7 +104,7 @@ BOOL func_ov000_0218de8c(Unk0218e004 *c, void *d) {
         return FALSE;
     }
     a = c->mUnk_0c(d, c->mUnk_04);
-    b = func_ov000_0218d980((s32 *) c->mUnk_00[a], d, (UnkCompare *) c->mUnk_10, 0, 0);
+    b = func_ov000_0218d980(c->mUnk_00[a], d, (UnkCompare *) c->mUnk_10, 0, 0);
     if (b != -1) {
         func_ov000_0218da5c(c->mUnk_00[a], b);
         return TRUE;
@@ -122,7 +122,7 @@ void *func_ov000_0218de28(Unk0218e004 *c, void *d) {
         return NULL;
     }
     a = c->mUnk_0c(d, c->mUnk_04);
-    b = func_ov000_0218d980((s32 *) c->mUnk_00[a], d, (UnkCompare *) c->mUnk_10, 0, 0);
+    b = func_ov000_0218d980(c->mUnk_00[a], d, (UnkCompare *) c->mUnk_10, 0, 0);
     if (b != -1) {
         return func_ov000_0218dbf8(c->mUnk_00[a], b);
     }
@@ -135,28 +135,25 @@ void func_ov000_0218dddc(Unk0218e004 *b, void (*c)(void *, void *), void *d) {
         func_0213442c(data_ov000_021b2354, data_ov000_021b2358, NULL, 0xb6);
     }
     for (a = 0; a < b->mUnk_04; a++) {
-        func_ov000_0218d938((s32 *) b->mUnk_00[a], (UnkCompare *) c, d);
+        func_ov000_0218d938(b->mUnk_00[a], (UnkCompare *) c, d);
     }
 }
 
-int func_ov000_0218dd8c(int *a, int b, u32 c) {
-    int v1;
-    int v2;
+void *func_ov000_0218dd8c(Unk0218e004 *a, int b, u32 c) {
+    void *v1;
     int v3;
     if (b == 0) {
         func_0213442c(data_ov000_021b2354, data_ov000_021b2358, NULL, 0xd3);
     }
     v3 = 0;
-    if (0 < a[1]) {
-        v2 = 0;
+    if (0 < a->mUnk_04) {
         do {
-            v1 = (s32) func_ov000_0218d8dc((s32 *) (*(u32 *) (*a + v2)), (UnkCompare *) b, (void *) c);
-            if (v1 != 0) {
+            v1 = func_ov000_0218d8dc(a->mUnk_00[v3], (UnkCompare *) b, (void *) c);
+            if (v1 != NULL) {
                 return v1;
             }
-            v2 = v2 + 4;
             v3 = v3 + 1;
-        } while (v3 < a[1]);
+        } while (v3 < a->mUnk_04);
     }
-    return 0;
+    return NULL;
 }

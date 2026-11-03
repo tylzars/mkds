@@ -62,7 +62,7 @@ void func_ov000_0218a9bc(Unk0218a9bc *p) {
         p->mUnk_08.mUnk_00->mUnk_1c = 0x9c4;
         p->mUnk_08.mUnk_00->mUnk_15 &= 0xd3;
         p->mUnk_44(p, 1, p->mUnk_08.mUnk_00, p->mUnk_48);
-        func_ov000_0218aea4((s32 *) &p->mUnk_08);
+        func_ov000_0218aea4(&p->mUnk_08);
         e = p->mUnk_08.mUnk_00;
     }
 }

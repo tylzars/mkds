@@ -28,7 +28,7 @@
 
 void func_ov000_0218c958(Unk021b4d24 *p) {
     func_ov000_0218c980(p);
-    func_ov000_0218d1a0((u32) p);
+    func_ov000_0218d1a0(p);
     func_ov000_0218b3c8(p);
     if (p->mUnk_004 != NULL) {
         func_ov000_0218dc48(p->mUnk_004);

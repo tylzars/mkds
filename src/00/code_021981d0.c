@@ -48,7 +48,7 @@ BOOL func_ov000_02198258(Unk02197fe8 *a, void *b, int c, int d) {
     }
     if (c == 0 || b == NULL) {
         b = NULL;
-        c = (s32) b;
+        c = 0;
     }
     a->mUnk_24++;
     a->mUnk_08->mUnk_1c++;
@@ -75,7 +75,7 @@ BOOL func_ov000_021982f4(Unk02197fe8 *a, int b, void *c, int d) {
     }
     if (d == 0 || c == NULL) {
         c = NULL;
-        d = (s32) c;
+        d = 0;
     }
     a->mUnk_24++;
     a->mUnk_08->mUnk_1c++;
@@ -178,6 +178,6 @@ void func_ov000_02198548(Unk02197fe8 *a, int b) {
         }
     } else {
         a->mUnk_0c = 6;
-        func_ov000_02198d50((u32) a);
+        func_ov000_02198d50(a);
     }
 }

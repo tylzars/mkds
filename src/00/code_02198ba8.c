@@ -59,8 +59,8 @@ BOOL func_ov000_02198c58(Unk02197fe8 *a, u8 *b, int c) {
         return TRUE;
     }
     e = a->mUnk_50.mUnk_00 + a->mUnk_50.mUnk_08;
-    func_ov000_02197d84((s32 *) &a->mUnk_50, (u32) data_ov000_021b3fa4, 2);
-    func_ov000_02197d84((s32 *) &a->mUnk_50, (u32) b, c);
+    func_ov000_02197d84((s32 *) &a->mUnk_50, data_ov000_021b3fa4, 2);
+    func_ov000_02197d84((s32 *) &a->mUnk_50, b, c);
     if (func_ov000_02198714((u32 *) a, (u32) e, d) == 0) {
         return FALSE;
     }

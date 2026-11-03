@@ -153,15 +153,15 @@ void func_ov000_02197d20(int *a, int b, int c) {
     a[2] = a[2] - c;
 }
 
-void func_ov000_02197d84(int *a, u32 b, int c) {
-    if (b != 0 && c != 0) {
+void func_ov000_02197d84(int *a, const u8 *b, int c) {
+    if (b != NULL && c != 0) {
         if (c == -1) {
-            c = strlen((const u8 *) b);
+            c = strlen(b);
         }
         if (a[2] + c > a[1]) {
             func_0213442c(data_ov000_021b3eec, data_ov000_021b3ebc, NULL, 0x40);
         }
-        memcpy((void *) (a[0] + a[2]), (const void *) b, c);
+        memcpy((void *) (a[0] + a[2]), b, c);
         a[2] = a[2] + c;
     }
 }

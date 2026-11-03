@@ -64,6 +64,6 @@ typedef struct Unk0219338c {
 u32 func_ov000_02192d64(Unk0218f960 *a, Unk021906e4 *b);
 s32 func_ov000_02192e04(Unk0218f960 *r, Unk021937c0Node *s, const u8 *t);
 void func_ov000_0219338c(Unk02192e04 *a, Unk0219338c *b);
-u32 func_ov000_021935bc(u32 a, u32 b, u32 *c, u32 *d, u32 *e);
+u32 func_ov000_021935bc(u32 a, s32 b, u32 *c, u32 *d, u32 *e);
 // Declared here until the code that defines them is decompiled.
 BOOL func_ov000_02196870(Unk0218f960 *param_1, const u8 *param_2, s32 param_3);

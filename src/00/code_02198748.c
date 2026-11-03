@@ -42,7 +42,7 @@ BOOL func_ov000_021987c8(Unk02197fe8 *a, void *b, int c, Unk02198778 *d) {
     }
     func_ov000_02197be0(e);
     func_ov000_02197b34((s8 *) a->mUnk_68, e);
-    func_ov000_02198f24((s32) a, (u32) e);
+    func_ov000_02198f24(a, e);
     a->mUnk_0c = 0;
     return FALSE;
 }
@@ -56,7 +56,7 @@ BOOL func_ov000_02198778(Unk02197fe8 *a, Unk02198778 *b) {
     if (a->mUnk_0c != 4) {
         return FALSE;
     }
-    func_ov000_02198df8((u32) a);
+    func_ov000_02198df8(a);
     a->mUnk_0c = 5;
     if (b != NULL) {
         a->mUnk_28 = *b;
@@ -68,7 +68,7 @@ void func_ov000_02198748(Unk02197fe8 *a, void *b, u32 c, ...) {
     a->mUnk_14 = 0;
     if (a->mUnk_0c == 4) {
         func_ov000_0219a61c((const u8 **) &b, (s32 *) &c);
-        func_ov000_02198d9c((s32) a, (u32) b, c);
+        func_ov000_02198d9c(a, b, c);
         a->mUnk_0c = 6;
     }
 }

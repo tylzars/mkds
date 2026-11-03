@@ -98,5 +98,5 @@ BOOL func_ov000_02197064(const s8 *a, u32 b, u8 *c, Unk021a8f84 **d);
 const s8 *func_ov000_021970e4(const s8 *text, const u8 *key);
 const s8 *func_ov000_021970fc(const s8 *text, const u8 *key);
 void func_ov000_02197190(u32 a, s8 *b);
-int func_ov000_021971c8(int a, int b);
+int func_ov000_021971c8(const s8 *a, int b);
 void func_ov000_02197634(void);

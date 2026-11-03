@@ -124,7 +124,7 @@ BOOL func_ov000_0219903c(Unk02197fe8 *a, u32 b, int c, int *d) {
         *d = 1;
         return TRUE;
     }
-    func_ov000_02197d84((s32 *) &a->mUnk_50, (u32) data_ov000_021b3fa4, 2);
+    func_ov000_02197d84((s32 *) &a->mUnk_50, data_ov000_021b3fa4, 2);
     func_ov000_02197e20((s32 *) &a->mUnk_50, b);
     func_ov000_02197ddc((s32 *) &a->mUnk_50, a->mUnk_64++);
     func_ov000_02197ddc((s32 *) &a->mUnk_50, a->mUnk_66);

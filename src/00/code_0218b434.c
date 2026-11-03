@@ -40,7 +40,7 @@ Unk0218b668 *func_ov000_0218b668(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, s32 g
     p->mUnk_634 = l;
     p->mUnk_624 = 0;
     func_ov000_0218cfb8(&p->mUnk_04c, (const u8 *) a, (const u8 *) b, (const u8 *) c, d, g, func_ov000_0218b780, p);
-    func_ov000_0218acf4((Unk0218a9bc *) p, e, f, g, func_ov000_0218b708, p);
+    func_ov000_0218acf4(&p->mUnk_000, e, f, g, func_ov000_0218b708, p);
     return p;
 }
 
@@ -58,7 +58,7 @@ s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const u8 *f,
     const u8 *s;
     n = 0;
     a->mUnk_620 = c;
-    a->mUnk_040 = 0;
+    a->mUnk_000.mUnk_40 = 0;
     for (i = 0; i < e; i++) {
         s = data_ov000_021b45bc[d[i]];
         if (n + (s32) strlen(s) + 1 >= 256) {
@@ -70,7 +70,7 @@ s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const u8 *f,
     r = func_ov000_0218ca58(&a->mUnk_04c, v1, f, g, h);
     if (r == 0 && b == 0) {
         n = 10;
-        while (a->mUnk_04c.mUnk_000 == 3 || (a->mUnk_010 > 0 && r == 0)) {
+        while (a->mUnk_04c.mUnk_000 == 3 || (a->mUnk_000.mUnk_08.mUnk_08 > 0 && r == 0)) {
             func_ov000_0218e8bc(n);
             r = func_ov000_0218b4bc(a);
         }
@@ -99,25 +99,25 @@ s32 func_ov000_0218b4f8(Unk0218b668 *a, u32 b, s32 c, u32 d) {
 
 void func_ov000_0218b4d4(struct Unk0218b668 *p, s32 a) {
     s32 b;
-    b = func_ov000_0218d300((u32) &p->mUnk_04c, a);
+    b = func_ov000_0218d300(&p->mUnk_04c, a);
     if (b != -1) {
         func_ov000_0218d238(&p->mUnk_04c, b);
     }
 }
 
 s32 func_ov000_0218b4bc(struct Unk0218b668 *p) {
-    func_ov000_0218a950((s32) p);
+    func_ov000_0218a950(p);
     return func_ov000_0218b8e4(&p->mUnk_04c);
 }
 
 void func_ov000_0218b4a4(struct Unk0218b668 *p) {
     func_ov000_0218c980(&p->mUnk_04c);
-    func_ov000_0218acd8((s32) p);
+    func_ov000_0218acd8(p);
 }
 
 void func_ov000_0218b48c(struct Unk0218b668 *p) {
     func_ov000_0218b4a4(p);
-    func_ov000_0218d1a0((u32) &p->mUnk_04c);
+    func_ov000_0218d1a0(&p->mUnk_04c);
 }
 
 u32 func_ov000_0218b480(u32 arg0, u32 arg1) {
@@ -126,7 +126,7 @@ u32 func_ov000_0218b480(u32 arg0, u32 arg1) {
     u32 value3;
     value0 = (value0) + 76u;
     value3 = (u32) &func_ov000_0218d218;
-    value0 = (u32) func_ov000_0218d218(value0, value1);
+    value0 = (u32) func_ov000_0218d218((Unk021b4d24 *) value0, value1);
     return value0;
 }
 
@@ -135,7 +135,7 @@ u32 func_ov000_0218b474(u32 arg0) {
     u32 value3;
     value0 = (value0) + 76u;
     value3 = (u32) &func_ov000_0218d22c;
-    value0 = (u32) func_ov000_0218d22c(value0);
+    value0 = (u32) func_ov000_0218d22c((Unk021b4d24 *) value0);
     return value0;
 }
 

@@ -95,15 +95,15 @@ void func_ov000_0218d340(Unk021b4d24 *p, u32 a) {
     p->mUnk_488(p, 0, a, p->mUnk_494);
 }
 
-int func_ov000_0218d300(u32 a, int b) {
+int func_ov000_0218d300(Unk021b4d24 *a, int b) {
     int v1;
     int *v2;
     int v3;
-    v1 = func_ov000_0218dc44((u32 *) ((u32 *) (u32) (*(u32 *) (a + 4))));
+    v1 = func_ov000_0218dc44(a->mUnk_004);
     v3 = 0;
     if (0 < v1) {
         do {
-            v2 = func_ov000_0218dbf8((s32 *) (*(u32 *) (a + 4)), v3);
+            v2 = func_ov000_0218dbf8(a->mUnk_004, v3);
             if (b == *v2) {
                 return v3;
             }
@@ -113,17 +113,17 @@ int func_ov000_0218d300(u32 a, int b) {
     return -1;
 }
 
-int func_ov000_0218d2a8(int a, int b, int c) {
+int func_ov000_0218d2a8(Unk021b4d24 *a, int b, int c) {
     u32 v1;
     int v2;
     int v3;
     u32 *v4;
     int v5;
-    v5 = func_ov000_0218dc44((u32 *) ((u32 *) (u32) (*(u32 *) (4 + a))));
+    v5 = func_ov000_0218dc44(a->mUnk_004);
     v2 = 0;
     if (0 < v5) {
         do {
-            v4 = func_ov000_0218dbf8((s32 *) (*(u32 *) (a + 4)), v2);
+            v4 = func_ov000_0218dbf8(a->mUnk_004, v2);
             v1 = *v4;
             v3 = func_ov000_0218b27c((u32 *) ((u32 *) (u32) (v1)));
             if ((b == v3) && (v3 = func_ov000_0218b25c(v1), c == v3)) {
@@ -151,22 +151,18 @@ void func_ov000_0218d238(Unk021b4d24 *p, s32 a) {
     func_ov000_0218d278(p, v);
 }
 
-u32 func_ov000_0218d22c(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_ov000_0218d22c(Unk021b4d24 *a) {
+    u32 value0;
     u32 value3;
-    value0 = (u32) * (const u32 *) ((value0) + 4u);
     value3 = (u32) &func_ov000_0218dc44;
-    value0 = (u32) func_ov000_0218dc44((u32 *) value0);
+    value0 = func_ov000_0218dc44(a->mUnk_004);
     return value0;
 }
 
-u32 func_ov000_0218d218(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    value0 = (u32) * (const u32 *) ((value0) + 4u);
-    value0 = (u32) func_ov000_0218dbf8((s32 *) value0, value1);
-    value0 = (u32) * (const u32 *) ((value0) + 0u);
-    return value0;
+u32 func_ov000_0218d218(Unk021b4d24 *a, u32 b) {
+    u32 *v;
+    v = func_ov000_0218dbf8(a->mUnk_004, b);
+    return *v;
 }
 
 void func_ov000_0218d1dc(Unk021b4d24 *p) {
@@ -183,21 +179,21 @@ void func_ov000_0218d1dc(Unk021b4d24 *p) {
     }
 }
 
-void func_ov000_0218d1a0(u32 a) {
+void func_ov000_0218d1a0(Unk021b4d24 *a) {
     int v1;
     u32 *v2;
     int v3;
-    v1 = func_ov000_0218dc44((u32 *) ((u32 *) (u32) (*(u32 *) (a + 4))));
+    v1 = func_ov000_0218dc44(a->mUnk_004);
     v3 = 0;
     if (0 < v1) {
         do {
-            v2 = func_ov000_0218dbf8((s32 *) (*(u32 *) (a + 4)), v3);
-            func_ov000_0218d278((Unk021b4d24 *) a, (u32) (*v2));
+            v2 = func_ov000_0218dbf8(a->mUnk_004, v3);
+            func_ov000_0218d278(a, *v2);
             v3 = v3 + 1;
         } while (v3 < v1);
     }
-    func_ov000_0218d8b4((s32 *) (*(u32 *) (a + 4)));
-    func_ov000_0218d1dc((Unk021b4d24 *) a);
+    func_ov000_0218d8b4(a->mUnk_004);
+    func_ov000_0218d1dc(a);
 }
 
 void func_ov000_0218d180(u32 p0) {
@@ -240,12 +236,13 @@ void func_ov000_0218d0e4(Unk021b4d24 *p, u32 v1) {
     }
 }
 
-int func_ov000_0218d0c8(int a, int b) {
+int func_ov000_0218d0c8(const void *a, int b) {
     int v1;
+    const s8 *p = a;
     v1 = 0;
     if (0 < b) {
         do {
-            if (*(s8 *) (a + v1) == 0) {
+            if (p[v1] == 0) {
                 return v1 + 1;
             }
             v1 = v1 + 1;

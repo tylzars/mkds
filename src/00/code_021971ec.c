@@ -85,7 +85,7 @@ s32 func_ov000_0219735c(const s8 *a, u32 b) {
         func_ov000_0218e53c(data_ov000_021b3b2c);
         return 5;
     }
-    e = func_ov000_021971c8((s32) d, strlen((const u8 *) d));
+    e = func_ov000_021971c8(d, strlen((const u8 *) d));
     e = sprintf((u8 *) g, data_ov000_021b3e0c, e, data_ov000_021b4f84);
     func_ov000_0218e0fc((const u8 *) g, e, f);
     data_ov000_021b3b30 = data_ov000_021b3b98;

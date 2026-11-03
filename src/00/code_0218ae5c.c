@@ -1,8 +1,9 @@
 #include "00/code_0218ae5c.h"
+#include "00/code_0218a9bc.h"
 
-void func_ov000_0218ae5c(u32 *a) {
-    a[1] = 0;
-    *a = a[1];
-    a[2] = 0;
+void func_ov000_0218ae5c(Unk0218ae68 *a) {
+    a->mUnk_04 = NULL;
+    a->mUnk_00 = a->mUnk_04;
+    a->mUnk_08 = 0;
     return;
 }

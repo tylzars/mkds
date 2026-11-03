@@ -6,20 +6,12 @@ unsigned int func_ov000_0218b570(unsigned int p0, unsigned int p1, unsigned int 
                                  unsigned int p5, unsigned int p6);
 
 #include "00/unk_021b4000.h"
+#include "00/code_0218a9bc.h"
 
 // Object of 0x638 bytes func_ov000_0218b668 allocates. func_ov000_0218acb0 passes 0x20 to func_ov000_0218e53c and
 // the addresses of 0x14 and 0x08 to func_ov000_0218ae5c.
 typedef struct Unk0218b668 {
-    /* 000 */ u8 mUnk_000[0x8];
-    /* 008 */ u32 mUnk_008;
-    /* 00c */ u8 mUnk_00c[0x4];
-    /* 010 */ s32 mUnk_010;
-    /* 014 */ u32 mUnk_014;
-    /* 018 */ u8 mUnk_018[0x8];
-    /* 020 */ u32 mUnk_020;
-    /* 024 */ u8 mUnk_024[0x1c];
-    /* 040 */ s32 mUnk_040;
-    /* 044 */ u8 mUnk_044[0x8];
+    /* 000 */ Unk0218a9bc mUnk_000;
     /* 04c */ Unk021b4d24 mUnk_04c;
     /* 620 */ u32 mUnk_620;
     /* 624 */ u32 mUnk_624;

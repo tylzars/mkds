@@ -28,8 +28,8 @@ s32 func_ov000_0218afa0(const u8 *const *first, const u8 *const *second) {
     return func_02142368(*first, *second);
 }
 
-u32 func_ov000_0218af9c(int a) {
-    return *(u32 *) (a + 0x1c);
+u32 func_ov000_0218af9c(Unk0218af28 *a) {
+    return a->mUnk_1c;
 }
 
 Unk0218af28 *func_ov000_0218af28(Unk021b4d24 *a, u32 b, u16 c) {
@@ -57,70 +57,70 @@ Unk0218af28 *func_ov000_0218af28(Unk021b4d24 *a, u32 b, u16 c) {
     return p;
 }
 
-void func_ov000_0218af24(int a, s32 b) {
-    *(u8 *) (a + 0x15) = b;
+void func_ov000_0218af24(Unk0218af28 *a, s32 b) {
+    a->mUnk_15 = b;
     return;
 }
 
-void func_ov000_0218af1c(int a, u32 b, u16 c) {
-    *(u32 *) (a + 8) = b;
-    *(u16 *) (a + 0xc) = c;
+void func_ov000_0218af1c(Unk0218af28 *a, u32 b, u16 c) {
+    a->mUnk_08 = b;
+    a->mUnk_0c = c;
     return;
 }
 
-void func_ov000_0218af18(int a, u32 b) {
-    *(u32 *) (a + 0x10) = b;
+void func_ov000_0218af18(Unk0218af28 *a, u32 b) {
+    a->mUnk_10 = b;
     return;
 }
 
-void func_ov000_0218af14(int a, u8 b) {
-    *(u8 *) (a + 0x14) = b;
+void func_ov000_0218af14(Unk0218af28 *a, u8 b) {
+    a->mUnk_14 = b;
     return;
 }
 
-u8 func_ov000_0218af10(int a) {
-    return *(u8 *) (a + 0x14);
+u8 func_ov000_0218af10(Unk0218af28 *a) {
+    return a->mUnk_14;
 }
 
-u32 func_ov000_0218aefc(int a) {
-    if (a == (*(s32 *) &data_ov000_021b4d1c)) {
+u32 func_ov000_0218aefc(Unk0218af28 *a) {
+    if (a == *(Unk0218af28 **) &data_ov000_021b4d1c) {
         return 1;
     }
     return 0;
 }
 
-void func_ov000_0218aedc(int *a, int b) {
-    if (a[1] != 0) {
-        *(s32 *) (a[1] + 0x20) = b;
+void func_ov000_0218aedc(Unk0218ae68 *a, Unk0218af28 *b) {
+    if (a->mUnk_04 != NULL) {
+        a->mUnk_04->mUnk_20 = b;
     }
-    a[1] = b;
-    *(u32 *) (b + 0x20) = 0;
-    if (*a == 0) {
-        *a = b;
+    a->mUnk_04 = b;
+    b->mUnk_20 = NULL;
+    if (a->mUnk_00 == NULL) {
+        a->mUnk_00 = b;
     }
-    a[2] = a[2] + 1;
+    a->mUnk_08 = a->mUnk_08 + 1;
     return;
 }
 
-void func_ov000_0218aec4(int *a, int b) {
-    *(s32 *) (b + 0x20) = *a;
-    *a = b;
-    if (a[1] == 0) {
-        a[1] = b;
+void func_ov000_0218aec4(Unk0218ae68 *a, Unk0218af28 *b) {
+    b->mUnk_20 = a->mUnk_00;
+    a->mUnk_00 = b;
+    if (a->mUnk_04 == NULL) {
+        a->mUnk_04 = b;
     }
-    a[2] = a[2] + 1;
+    a->mUnk_08 = a->mUnk_08 + 1;
     return;
 }
 
-int func_ov000_0218aea4(int *a) {
-    int v1;
-    v1 = *a;
-    if (v1 != 0) {
-        *a = *(s32 *) (v1 + 0x20);
-        if (*a == 0) {
-            a[1] = 0;
+Unk0218af28 *func_ov000_0218aea4(Unk0218ae68 *a) {
+    Unk0218af28 *v1;
+    v1 = a->mUnk_00;
+    if (v1 != NULL) {
+        a->mUnk_00 = v1->mUnk_20;
+        if (a->mUnk_00 == NULL) {
+            a->mUnk_04 = NULL;
         }
-        a[2] = a[2] + -1;
+        a->mUnk_08 = a->mUnk_08 + -1;
     }
     return v1;
 }

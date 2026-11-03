@@ -29,14 +29,14 @@ void func_ov000_02197e20(int *a, u8 b) {
     return;
 }
 
-void func_ov000_02197ddc(int *a, u32 b) {
+void func_ov000_02197ddc(int *a, s32 b) {
     int v1;
     if (a[2] + 2 > a[1]) {
         func_0213442c(data_ov000_021b3f10, data_ov000_021b3ebc, NULL, 0x2e);
     }
     v1 = a[2];
     a[2] = v1 + 1;
-    *(s8 *) (*a + v1) = (s32) b >> 8;
+    *(s8 *) (*a + v1) = b >> 8;
     v1 = a[2];
     a[2] = v1 + 1;
     *(s8 *) (*a + v1) = (s8) b;

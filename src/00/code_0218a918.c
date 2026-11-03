@@ -3,25 +3,26 @@
 #include "00/code_0218a9bc.h"
 #include "00/code_0218acf4.h"
 #include "00/code_0218aea4.h"
+#include "00/code_0218b434.h"
 
-void func_ov000_0218a98c(u32 a) {
-    u32 v1;
-    while ((*(s32 *) (a + 0x10) < *(s32 *) (a + 4) && (0 < *(s32 *) (a + 0x1c)))) {
-        v1 = func_ov000_0218aea4((s32 *) (u32) (a + 0x14));
-        func_ov000_0218ad44((Unk0218a9bc *) (a), (Unk0218af28 *) (v1));
+void func_ov000_0218a98c(Unk0218a9bc *a) {
+    Unk0218af28 *v1;
+    while ((a->mUnk_08.mUnk_08 < a->mUnk_04 && (0 < a->mUnk_14.mUnk_08))) {
+        v1 = func_ov000_0218aea4(&a->mUnk_14);
+        func_ov000_0218ad44(a, v1);
     }
     return;
 }
 
-void func_ov000_0218a950(int a) {
-    if (*(s32 *) (a + 0x10) != 0) {
-        func_ov000_0218aa14((Unk0218a9bc *) (a), 0);
-        func_ov000_0218a9bc((Unk0218a9bc *) (a));
-        if (0 < *(s32 *) (a + 0x1c)) {
-            func_ov000_0218a98c((u32) (a));
+void func_ov000_0218a950(Unk0218b668 *a) {
+    if (a->mUnk_000.mUnk_08.mUnk_08 != 0) {
+        func_ov000_0218aa14(&a->mUnk_000, 0);
+        func_ov000_0218a9bc(&a->mUnk_000);
+        if (0 < a->mUnk_000.mUnk_14.mUnk_08) {
+            func_ov000_0218a98c(&a->mUnk_000);
         }
-        if (*(s32 *) (a + 0x10) == 0) {
-            (**(UnkFunc **) (a + 0x44))(a, 2, 0, *(u32 *) (a + 0x48));
+        if (a->mUnk_000.mUnk_08.mUnk_08 == 0) {
+            a->mUnk_000.mUnk_44(a, 2, 0, a->mUnk_000.mUnk_48);
         }
     }
     return;
@@ -37,11 +38,11 @@ void func_ov000_0218a93c(u32 a, u8 b) {
     return;
 }
 
-void func_ov000_0218a918(int a, u32 b) {
+void func_ov000_0218a918(Unk0218b668 *a, Unk0218af28 *b) {
     int v1;
-    v1 = func_ov000_0218ae68((Unk0218ae68 *) (a + 8), (Unk0218af28 *) b);
+    v1 = func_ov000_0218ae68(&a->mUnk_000.mUnk_08, b);
     if (v1 == 0) {
-        func_ov000_0218ae68((Unk0218ae68 *) (u32) (a + 0x14), (Unk0218af28 *) b);
+        func_ov000_0218ae68(&a->mUnk_000.mUnk_14, b);
     }
     return;
 }
