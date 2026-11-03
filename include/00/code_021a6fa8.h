@@ -19,8 +19,8 @@ typedef struct Unk021a72a4 {
 
 // Start address and size of a part of an Unk021a6fa8 or of its blocks, set by func_ov000_021a71a4.
 typedef struct Unk021a71a4 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ u8 *mUnk_04;
+    /* 00 */ s32 mSize;
+    /* 04 */ u8 *mStart;
 } Unk021a71a4;
 
 // Shared start of the two blocks func_ov000_021a71c0 sets up behind an Unk021a6fa8.
@@ -57,7 +57,7 @@ typedef struct Unk021a722a {
 
 typedef struct Unk021a6fa8 {
     /* 00 */ u8 mUnk_00[8];
-    /* 08 */ u8 mUnk_08;
+    /* 08 */ u8 mState;
     /* 09 */ u8 mUnk_09;
     /* 0a */ u16 mUnk_0a;
     /* 0c */ u8 mUnk_0c[0xc];
@@ -66,22 +66,22 @@ typedef struct Unk021a6fa8 {
     /* 1c */ u32 mUnk_1c;
     /* 20 */ u32 mUnk_20;
     /* 24 */ u8 mUnk_24[0x18];
-    /* 3c */ Unk021a71a4 mUnk_3c;
-    /* 44 */ s32 mUnk_44;
-    /* 48 */ Unk021a71a4 mUnk_48;
+    /* 3c */ Unk021a71a4 mReceiveBuffer;
+    /* 44 */ s32 mReceiveBufferLength;
+    /* 48 */ Unk021a71a4 mSendBuffer;
     /* 50 */ Unk021a71a4 mUnk_50;
     /* 58 */ Unk021a71a4 mUnk_58;
     /* 60 */ u8 mUnk_60[4];
-    /* 64 */ void *mUnk_64;
-    /* 68 */ void *mUnk_68;
-    /* 6c */ s32 mUnk_6c;
+    /* 64 */ void *mReceiveBlock;
+    /* 68 */ void *mSendBlock;
+    /* 6c */ s32 mEntryResult;
     /* 70 */ s16 mUnk_70;
     /* 72 */ s8 mUnk_72;
     /* 73 */ s8 mUnk_73;
     /* 74 */ u16 mUnk_74;
     /* 76 */ u16 mUnk_76;
     /* 78 */ u16 *mUnk_78;
-    /* 7c */ struct Unk021a6fa8 *mUnk_7c;
+    /* 7c */ struct Unk021a6fa8 *mNext;
     /* 80 */ Unk021a71c0 mUnk_80;
 } Unk021a6fa8;
 

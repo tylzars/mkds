@@ -13,9 +13,9 @@ typedef struct Unk021b5fa8 Unk021b5fa8;
 
 // Object linked from Unk0200db5c.mUnk_a4.
 typedef struct Unk021b04f8 {
-    /* 00 */ Unk0200db5c *mUnk_00;
+    /* 00 */ Unk0200db5c *mThread;
     /* 04 */ u32 mUnk_04;
-    /* 08 */ u8 mUnk_08;
+    /* 08 */ u8 mState;
 } Unk021b04f8;
 
 extern u32 data_ov000_021b637c;

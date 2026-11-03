@@ -14,7 +14,7 @@
 #include "code_0214d018.h"
 
 s32 func_ov000_021a78a4(void *param_1, u32 param_2, Unk021a6fa8 *param_3) {
-    Unk021a71c0 *d = param_3->mUnk_64;
+    Unk021a71c0 *d = param_3->mReceiveBlock;
     u32 e = func_0200fca0();
     if (d->mUnk_10a >= d->mUnk_108 + param_2) {
         Unk021a78a4 *f = data_ov000_021b5f94->mUnk_18(param_2 + 0xc);
@@ -57,7 +57,7 @@ static inline s32 func_ov000_021a797c_inline(Unk021a6fa8 *a) {
 }
 
 s32 func_ov000_021a797c(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f) {
-    Unk021a71c0 *h = a->mUnk_64;
+    Unk021a71c0 *h = a->mReceiveBlock;
     u32 i;
     s32 g;
     Unk021a78a4 *j;
@@ -102,7 +102,7 @@ s32 func_ov000_021a797c(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f) {
 }
 
 s32 func_ov000_021a7a6c(Unk021a6fa8 *a) {
-    Unk021a71c0 *b = a->mUnk_64;
+    Unk021a71c0 *b = a->mReceiveBlock;
     u32 c = func_0200fca0();
     s32 d = b->mUnk_f8;
     if (d != 0) {
@@ -118,7 +118,7 @@ s32 func_ov000_021a7a9c(Unk021a7064 *a) {
 }
 
 s32 func_ov000_021a7aa8(Unk021a6fa8 *a) {
-    Unk021a71c0 *b = a->mUnk_64;
+    Unk021a71c0 *b = a->mReceiveBlock;
     Unk021a7064 *c;
     if (b->mUnk_f8 < b->mUnk_fc) {
         return 0;
@@ -133,7 +133,7 @@ s32 func_ov000_021a7aa8(Unk021a6fa8 *a) {
 s32 func_ov000_021a7af0(Unk021a7064 *param_1) {
     Unk021a7af0 *a = (Unk021a7af0 *) param_1;
     Unk021a6fa8 *b = a->mUnk_04;
-    Unk021a71c0 *c = b->mUnk_64;
+    Unk021a71c0 *c = b->mReceiveBlock;
     u8 *d = a->mUnk_10;
     u32 e = a->mUnk_14;
     u16 *f = a->mUnk_18;
@@ -154,7 +154,7 @@ s32 func_ov000_021a7af0(Unk021a7064 *param_1) {
         if (b->mUnk_73 != 0 && b->mUnk_73 != 4) {
             k = FALSE;
         }
-        if (k != FALSE && b->mUnk_08 != 4) {
+        if (k != FALSE && b->mState != 4) {
             i = NULL;
             break;
         }

@@ -23,11 +23,11 @@ typedef struct Unk021b69dc {
 
 typedef struct Unk021b6494 {
     /* 00 */ u8 mUnk_00[0x3c];
-    /* 3c */ u32 mUnk_3c;
-    /* 40 */ u8 *mUnk_40;
+    /* 3c */ u32 mReceiveBufferSize;
+    /* 40 */ u8 *mReceiveBuffer;
     /* 44 */ u8 mUnk_44[4];
-    /* 48 */ u32 mUnk_48;
-    /* 4c */ u8 *mUnk_4c;
+    /* 48 */ u32 mSendBufferSize;
+    /* 4c */ u8 *mSendBuffer;
     /* 50 */ u8 mUnk_50[0x14];
 } Unk021b6494;
 

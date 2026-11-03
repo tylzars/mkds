@@ -38,23 +38,23 @@ static inline s32 func_ov000_021a7de0_inline(Unk021a6fa8 *a) {
 }
 
 u8 *func_ov000_021a7bfc(Unk021a6fa8 *a, s32 *b, u16 *c, u16 *d, u32 *e) {
-    Unk021a71c0 *f = a->mUnk_64;
+    Unk021a71c0 *f = a->mReceiveBlock;
     Unk021a6fa8 *g = *(Unk021a6fa8 **) f->mUnk_00.mUnk_20.mUnk_a4;
     s32 h = f->mUnk_f8;
-    s32 i = g->mUnk_44 - h;
+    s32 i = g->mReceiveBufferLength - h;
     if (i >= 0) {
         *c = g->mUnk_0a;
         *d = g->mUnk_18;
         *e = g->mUnk_1c;
         *b = i;
-        if (i == 0 && g->mUnk_08 != 4) {
+        if (i == 0 && g->mState != 4) {
             return NULL;
         }
     } else {
         *b = -1;
         return NULL;
     }
-    return g->mUnk_3c.mUnk_04 + h;
+    return g->mReceiveBuffer.mStart + h;
 }
 
 s32 func_ov000_021a7c4c(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e) {
@@ -77,8 +77,8 @@ s32 func_ov000_021a7c4c(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e) {
                 k = c;
             }
             func_0214d1fc(j, b, c);
-            if (((Unk021a71c0 *) a->mUnk_64)->mUnk_fe == 0) {
-                ((Unk021a71c0 *) a->mUnk_64)->mUnk_f8 = ((Unk021a71c0 *) a->mUnk_64)->mUnk_f8 + k;
+            if (((Unk021a71c0 *) a->mReceiveBlock)->mUnk_fe == 0) {
+                ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_f8 = ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_f8 + k;
             }
         }
     } else {
@@ -115,7 +115,7 @@ s32 func_ov000_021a7d14(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f) {
 }
 
 s32 func_ov000_021a7d68(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f, s32 g) {
-    Unk021a71c0 *h = a->mUnk_64;
+    Unk021a71c0 *h = a->mReceiveBlock;
     s32 i;
     s32 j;
     BOOL k;
@@ -170,7 +170,7 @@ u32 func_ov000_021a7de0(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
             return -0x38;
         }
     }
-    h = g->mUnk_64;
+    h = g->mReceiveBlock;
     if (i == 0) {
         if (func_0200ec08(&h->mUnk_00.mUnk_e0) == 0) {
             return -6;
@@ -208,7 +208,7 @@ s32 func_ov000_021a7eec(const void *a, s32 b, Unk021a7eec *c) {
 s32 func_ov000_021a7f48(Unk021a7064 *param_1) {
     Unk021a7eec *a = (Unk021a7eec *) param_1;
     Unk021a6fa8 *b = a->mUnk_04;
-    Unk021a722a *c = b->mUnk_68;
+    Unk021a722a *c = b->mSendBlock;
     s32 e;
     u8 *f;
     s32 d = 0;
@@ -223,8 +223,8 @@ s32 func_ov000_021a7f48(Unk021a7064 *param_1) {
         } else {
             e = 0x2a;
         }
-        f = b->mUnk_48.mUnk_04 + e;
-        g = b->mUnk_48.mUnk_00 - e;
+        f = b->mSendBuffer.mStart + e;
+        g = b->mSendBuffer.mSize - e;
         for (;;) {
             h = func_ov000_021a7eec(f, g, a);
             if (h <= 0) {
@@ -249,7 +249,7 @@ s32 func_ov000_021a7f48(Unk021a7064 *param_1) {
 }
 
 s32 func_ov000_021a8014(Unk021a6fa8 *a, u8 *b, s32 c, s32 d, u16 e, u16 *f, s32 g) {
-    Unk021a722a *h = a->mUnk_68;
+    Unk021a722a *h = a->mSendBlock;
     Unk021a7eec *i;
     s32 j;
     u8 *k;
@@ -261,8 +261,8 @@ s32 func_ov000_021a8014(Unk021a6fa8 *a, u8 *b, s32 c, s32 d, u16 e, u16 *f, s32 
     }
     i->mUnk_0d = 0;
     j = 0;
-    k = h->mUnk_f8.mUnk_04;
-    l = h->mUnk_f8.mUnk_00;
+    k = h->mUnk_f8.mStart;
+    l = h->mUnk_f8.mSize;
     m = d + c;
     if (m < l) {
         i->mUnk_10 = k + d;
@@ -304,8 +304,8 @@ s32 func_ov000_021a8014(Unk021a6fa8 *a, u8 *b, s32 c, s32 d, u16 e, u16 *f, s32 
 }
 
 s32 func_ov000_021a8118(Unk021a6fa8 *a) {
-    Unk021a722a *b = a->mUnk_68;
-    s32 c = b->mUnk_f8.mUnk_00;
+    Unk021a722a *b = a->mSendBlock;
+    s32 c = b->mUnk_f8.mSize;
     s32 d = b->mUnk_100;
     d = b->mUnk_102 - d - 1;
     if (d < 0) {
@@ -315,7 +315,7 @@ s32 func_ov000_021a8118(Unk021a6fa8 *a) {
 }
 
 s32 func_ov000_021a813c(Unk021a6fa8 *a, s32 b, s32 c, u32 *d, s32 e) {
-    Unk021a722a *f = a->mUnk_68;
+    Unk021a722a *f = a->mSendBlock;
     s32 g;
     u32 h;
     if (c > b) {
@@ -347,7 +347,7 @@ s32 func_ov000_021a81a8(Unk021a6fa8 *a, u8 *b, s32 c, u16 d, u16 *e, s32 f) {
     s32 i;
     u32 j;
     g = 0;
-    h = ((Unk021a722a *) a->mUnk_68)->mUnk_10c->mUnk_48.mUnk_00;
+    h = ((Unk021a722a *) a->mSendBlock)->mUnk_10c->mSendBuffer.mSize;
     if (a->mUnk_73 == 1) {
         h -= 0x2a;
         if (c > h) {
@@ -398,7 +398,7 @@ u32 func_ov000_021a8268(u32 a, u32 b, u32 c, u16 d, u32 e, u32 f) {
             return -0x38;
         }
     }
-    h = g->mUnk_68;
+    h = g->mSendBlock;
     if ((f & 4) != 0 || g->mUnk_72 == 0) {
         if (func_0200ec08(&h->mUnk_00.mUnk_e0) == 0) {
             return -6;
@@ -436,7 +436,7 @@ s32 func_ov000_021a836c(s32 param_1) {
         return -0x38;
     }
     v->mUnk_70 |= 8;
-    b = a->mUnk_68;
+    b = a->mSendBlock;
     if (b != NULL && b->mUnk_10c != NULL) {
         c = func_ov000_021a7064(func_ov000_021a8344, b->mUnk_10c, a->mUnk_72);
         if (c == NULL) {
@@ -485,22 +485,22 @@ void func_ov000_021a84c4(Unk021a6fa8 *a) {
     if (a != NULL) {
         a->mUnk_70 = 0;
         if (func_ov000_021a7c4c_inline(a) != 0) {
-            func_ov000_021a8454(a->mUnk_68);
-            func_ov000_021a8454(a->mUnk_64);
+            func_ov000_021a8454(a->mSendBlock);
+            func_ov000_021a8454(a->mReceiveBlock);
         } else if (a->mUnk_73 == 1) {
-            b = ((Unk021a71c0 *) a->mUnk_64)->mUnk_104;
+            b = ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_104;
             while (b != NULL) {
                 c = b->mUnk_00;
                 data_ov000_021b5f94->mUnk_1c(b);
                 b = c;
             }
-            ((Unk021a71c0 *) a->mUnk_64)->mUnk_108 = 0;
-            ((Unk021a71c0 *) a->mUnk_64)->mUnk_100 = NULL;
-            ((Unk021a71c0 *) a->mUnk_64)->mUnk_104 = NULL;
-            func_0200df9c(&((Unk021a71c0 *) a->mUnk_64)->mUnk_10c);
-            func_ov000_021a8454(a->mUnk_64);
+            ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_108 = 0;
+            ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_100 = NULL;
+            ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_104 = NULL;
+            func_0200df9c(&((Unk021a71c0 *) a->mReceiveBlock)->mUnk_10c);
+            func_ov000_021a8454(a->mReceiveBlock);
         } else if (a->mUnk_73 == 2) {
-            func_ov000_021a8454(a->mUnk_68);
+            func_ov000_021a8454(a->mSendBlock);
         }
         d = func_0200fca0();
         func_ov000_021a8ae8((u32) a);
@@ -515,7 +515,7 @@ s32 func_ov000_021a8580(Unk021a7064 *a) {
     void *c;
     u32 d;
     if (func_ov000_021a7c4c_inline(b) != 0) {
-        func_0200e084(&((Unk021a722a *) b->mUnk_68)->mUnk_00.mUnk_20);
+        func_0200e084(&((Unk021a722a *) b->mSendBlock)->mUnk_00.mUnk_20);
         func_ov000_021ae094();
         func_ov000_021ae048();
         func_ov000_021ae258();
@@ -523,9 +523,9 @@ s32 func_ov000_021a8580(Unk021a7064 *a) {
     func_ov000_021ae2f4();
     b->mUnk_70 &= ~6;
     if (b->mUnk_73 == 2) {
-        c = b->mUnk_68;
+        c = b->mSendBlock;
     } else {
-        c = b->mUnk_64;
+        c = b->mReceiveBlock;
     }
     func_ov000_021a7008(c, NULL);
     d = func_0200fca0();
@@ -558,7 +558,7 @@ s32 func_ov000_021a8604(s32 param_1) {
     }
     v->mUnk_70 |= 0x18;
     if (func_ov000_021a7c4c_inline(a) != 0) {
-        func_ov000_021a7008(a->mUnk_68, NULL);
+        func_ov000_021a7008(a->mSendBlock, NULL);
     }
     c = func_ov000_021a7064(func_ov000_021a8580, a, 1);
     c->mUnk_0d = 0;

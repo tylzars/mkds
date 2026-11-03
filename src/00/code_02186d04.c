@@ -133,10 +133,10 @@ void func_ov000_02186d7c(void *l) {
         d = 60000;
     }
     func_0214d168(a, 0, 0x64);
-    a->mUnk_3c = 0xb68;
-    a->mUnk_40 = p->mLowReceiveBuffer;
-    a->mUnk_48 = 0x5ea;
-    a->mUnk_4c = p->mLowSendBuffer;
+    a->mReceiveBufferSize = 0xb68;
+    a->mReceiveBuffer = p->mLowReceiveBuffer;
+    a->mSendBufferSize = 0x5ea;
+    a->mSendBuffer = p->mLowSendBuffer;
     func_ov000_021ae304((void *) a);
     g = func_ov000_021acef8((const char *) p->mHost);
     if (g == 0) {

@@ -21,7 +21,7 @@ s32 func_ov000_021a740c(Unk021a7064 *param_1) {
     u32 e;
 
     a = param_1->mUnk_04;
-    b = a->mUnk_64;
+    b = a->mReceiveBlock;
     func_0200ed34(&b->mUnk_00.mUnk_e0);
     func_ov000_021ae290(param_1->mUnk_10, 0, 0);
     func_ov000_021ae1e4();
@@ -153,7 +153,7 @@ s32 func_ov000_021a7680(Unk021a7064 *param_1) {
 
     a = param_1->mUnk_04;
     c = 0;
-    b = a->mUnk_64;
+    b = a->mReceiveBlock;
     func_0200ed34(&b->mUnk_00.mUnk_e0);
     func_ov000_021ae290(param_1->mUnk_10, param_1->mUnk_12, (s32) param_1->mUnk_14);
     b->mUnk_f8 = 0;
@@ -211,7 +211,7 @@ s32 func_ov000_021a7748(Unk021a6fa8 *param_1, u16 param_2, u16 *param_3) {
         }
         if (v->mUnk_70 & 2) {
             if (v->mUnk_70 & 0x40) {
-                return param_1->mUnk_6c;
+                return param_1->mEntryResult;
             }
             return data_ov000_021b49b4;
         }

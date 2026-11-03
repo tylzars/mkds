@@ -28,11 +28,11 @@ typedef struct Unk02186d7cB4 {
     /* 00 */ u8 pad_00[0xc];
     /* 0c */ Unk02186d7c118 *mUnk_0c;
     /* 10 */ u8 pad_10[0x2c];
-    /* 3c */ u32 mUnk_3c;
-    /* 40 */ void *mUnk_40;
+    /* 3c */ u32 mReceiveBufferSize;
+    /* 40 */ void *mReceiveBuffer;
     /* 44 */ u8 pad_44[4];
-    /* 48 */ u32 mUnk_48;
-    /* 4c */ void *mUnk_4c;
+    /* 48 */ u32 mSendBufferSize;
+    /* 4c */ void *mSendBuffer;
     /* 50 */ u8 pad_50[0x14];
 } Unk02186d7cB4;
 

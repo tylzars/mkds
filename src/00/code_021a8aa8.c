@@ -386,7 +386,7 @@ void func_ov000_021a8ae8(u32 arg0) {
 void func_ov000_021a8ad0(Unk021a8ab8 **head, Unk021a8ab8 *node) {
     Unk021a8ab8 **link = func_ov000_021a8ab8(head, node);
     if (link != NULL) {
-        *link = node->mUnk_7c;
+        *link = node->mNext;
     }
     return;
 }
@@ -397,8 +397,8 @@ Unk021a8ab8 **func_ov000_021a8ab8(Unk021a8ab8 **head, Unk021a8ab8 *node) {
         if (entry == node) {
             return head;
         }
-        head = &entry->mUnk_7c;
-        entry = entry->mUnk_7c;
+        head = &entry->mNext;
+        entry = entry->mNext;
     }
     return NULL;
 }

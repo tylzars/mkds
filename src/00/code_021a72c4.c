@@ -55,7 +55,7 @@ s32 func_ov000_021a7378(Unk021a7064 *param_1) {
 
     a = param_1->mUnk_04;
     func_ov000_021ae304(a);
-    b = a->mUnk_68;
+    b = a->mSendBlock;
     switch (a->mUnk_73) {
         case 0:
         case 4:

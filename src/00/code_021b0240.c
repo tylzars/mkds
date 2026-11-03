@@ -46,13 +46,13 @@ void func_ov000_021b04f8(u32 a) {
         if (c != NULL) {
             do {
                 d = *(Unk021b04f8 **) c->mUnk_a4;
-                if (d != NULL && d->mUnk_00 != NULL) {
-                    if (d->mUnk_08 != 10 && d->mUnk_08 != 11) {
-                        d->mUnk_08 = 0;
+                if (d != NULL && d->mThread != NULL) {
+                    if (d->mState != 10 && d->mState != 11) {
+                        d->mState = 0;
                     }
                     if (d->mUnk_04 != 0) {
                         d->mUnk_04 = 0;
-                        func_0200df68(d->mUnk_00);
+                        func_0200df68(d->mThread);
                     }
                 }
                 c = c->mUnk_68;

@@ -56,7 +56,7 @@ u32 func_ov000_021a8994(Unk021a6fa8 *a) {
             d = FALSE;
         }
         if (d != FALSE) {
-            if ((v->mUnk_70 & 4) != 0 && a->mUnk_08 != 4 && (b & 1) == 0) {
+            if ((v->mUnk_70 & 4) != 0 && a->mState != 4 && (b & 1) == 0) {
                 v->mUnk_70 &= ~6;
             }
             if ((v->mUnk_70 & 2) == 0 && (v->mUnk_70 & 4) == 0) {
@@ -71,7 +71,7 @@ s32 func_ov000_021a8960(Unk021a6fa8 *a) {
     u32 v1;
     Unk021a71c0 *v2;
     s8 v3;
-    v2 = a->mUnk_64;
+    v2 = a->mReceiveBlock;
     v1 = 0;
     if (v2 != NULL) {
         v3 = a->mUnk_73;
@@ -80,7 +80,7 @@ s32 func_ov000_021a8960(Unk021a6fa8 *a) {
                 v1 = v2->mUnk_104->mUnk_04;
             }
         } else if ((v3 == 0) || (v3 == 4)) {
-            v1 = a->mUnk_44 - v2->mUnk_f8;
+            v1 = a->mReceiveBufferLength - v2->mUnk_f8;
         }
     }
     return v1;
@@ -98,10 +98,10 @@ s32 func_ov000_021a88e4(const u8 *a) {
         return 0;
     }
     func_0214d168(&b, 0, 0x64);
-    b.mUnk_3c.mUnk_04 = c;
-    b.mUnk_3c.mUnk_00 = 0xb68;
-    b.mUnk_48.mUnk_04 = c + 0xb68;
-    b.mUnk_48.mUnk_00 = 0x5ea;
+    b.mReceiveBuffer.mStart = c;
+    b.mReceiveBuffer.mSize = 0xb68;
+    b.mSendBuffer.mStart = c + 0xb68;
+    b.mSendBuffer.mSize = 0x5ea;
     func_ov000_021ae304(&b);
     d = func_ov000_021acef8((const char *) a);
     func_ov000_021ae2f4();

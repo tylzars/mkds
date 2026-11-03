@@ -64,10 +64,10 @@ void func_ov000_021ad898(void) {
 
     data_ov000_021b63b0 = 0;
     func_0214d168(&data_ov000_021b6494, 0, 0x64);
-    data_ov000_021b6494.mUnk_3c = 0x180;
-    data_ov000_021b6494.mUnk_40 = data_ov000_021b685c;
-    data_ov000_021b6494.mUnk_48 = 0x180;
-    data_ov000_021b6494.mUnk_4c = data_ov000_021b66dc;
+    data_ov000_021b6494.mReceiveBufferSize = 0x180;
+    data_ov000_021b6494.mReceiveBuffer = data_ov000_021b685c;
+    data_ov000_021b6494.mSendBufferSize = 0x180;
+    data_ov000_021b6494.mSendBuffer = data_ov000_021b66dc;
     func_ov000_021ae304(&data_ov000_021b6494);
     b = 0;
     d = TRUE;

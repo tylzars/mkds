@@ -125,7 +125,7 @@ void func_ov000_021a6f18(void *param_1) {
         func_0200db9c();
         func_0200ea3c(a, NULL, 0);
         if (b->mUnk_04 != NULL) {
-            b->mUnk_04->mUnk_6c = c;
+            b->mUnk_04->mEntryResult = c;
         }
         if (b->mUnk_08 != NULL) {
             func_0200eae8(b->mUnk_08, (void *) c, 0);
@@ -138,8 +138,8 @@ void func_ov000_021a6f18(void *param_1) {
 }
 
 s32 func_ov000_021a6f84(Unk021a6fa8 *param_1, Unk021a7064 *param_2) {
-    if (param_1->mUnk_64 != NULL) {
-        return func_ov000_021a6fc0(param_1->mUnk_64, param_2);
+    if (param_1->mReceiveBlock != NULL) {
+        return func_ov000_021a6fc0(param_1->mReceiveBlock, param_2);
     }
-    return func_ov000_021a6fc0(param_1->mUnk_68, param_2);
+    return func_ov000_021a6fc0(param_1->mSendBlock, param_2);
 }
