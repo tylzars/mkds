@@ -43,12 +43,12 @@ void func_020b2c80(s32 a) {
     s32 b;
     u16 *p;
 
-    n = data_0217b354->mUnk_038[func_020b2d04()].mUnk_18;
+    n = gChoisesS->mLists[func_020b2d04()].mValueCount;
     p = (u16 *) func_020b32f8();
     if (p != NULL) {
-        if (data_0217b354->mUnk_010 == 0 || data_0217b354->mUnk_014 >= 5) {
+        if (gChoisesS->mUnk_010 == 0 || gChoisesS->mUnk_014 >= 5) {
             b = 0xd - n * 2 + a * 4;
-            if (data_0217b354->mUnk_034 < 0x1e) {
+            if (gChoisesS->mUnk_034 < 0x1e) {
                 func_020b4428(p, 2, b, 1, 1, 0x21);
                 func_020b4428(p, 2, b + 1, 1, 1, 0x41);
             }

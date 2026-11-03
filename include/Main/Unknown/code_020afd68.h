@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020afd68(void);
+void InitMap2D(void);

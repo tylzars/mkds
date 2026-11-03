@@ -4152,7 +4152,7 @@ func_020aeb7c kind:function(arm,size=0xaf0) addr:0x020aeb7c
 func_020af66c kind:function(arm,size=0x200) addr:0x020af66c
 func_020af86c kind:function(arm,size=0x130) addr:0x020af86c
 func_020af99c kind:function(arm,size=0x3cc) addr:0x020af99c
-func_020afd68 kind:function(arm,size=0x654) addr:0x020afd68
+InitMap2D kind:function(arm,size=0x654) addr:0x020afd68
 func_020b03bc kind:function(arm,size=0x7d0) addr:0x020b03bc
 func_020b0b8c kind:function(arm,size=0xc18) addr:0x020b0b8c
 func_020b17a4 kind:function(arm,size=0x10c) addr:0x020b17a4
@@ -4175,7 +4175,7 @@ func_020b1d90 kind:function(arm,size=0x2c) addr:0x020b1d90
 func_020b1dbc kind:function(arm,size=0x14) addr:0x020b1dbc
 func_020b1dd0 kind:function(arm,size=0x14) addr:0x020b1dd0
 func_020b1de4 kind:function(thumb,size=0xc) addr:0x020b1de4
-func_020b1df0 kind:function(thumb,size=0x6b4) addr:0x020b1df0
+InitChoisesS kind:function(thumb,size=0x6b4) addr:0x020b1df0
 func_020b24a4 kind:function(arm,size=0x28) addr:0x020b24a4
 func_020b24cc kind:function(arm,size=0x18) addr:0x020b24cc
 func_020b24e4 kind:function(arm,size=0x14) addr:0x020b24e4
@@ -4417,8 +4417,8 @@ func_020c2570 kind:function(arm,size=0x36c) addr:0x020c2570
 func_020c28dc kind:function(arm,size=0x8e4) addr:0x020c28dc
 func_020c31c0 kind:function(arm,size=0x2c) addr:0x020c31c0
 func_020c31ec kind:function(arm,size=0x14) addr:0x020c31ec
-func_020c3200 kind:function(arm,size=0x454) addr:0x020c3200
-func_020c3654 kind:function(arm,size=0x518) addr:0x020c3654
+InitRaceGoalS kind:function(arm,size=0x454) addr:0x020c3200
+UpdateRaceGoalSOffset kind:function(arm,size=0x518) addr:0x020c3654
 func_020c3b6c kind:function(arm,size=0x234) addr:0x020c3b6c
 func_020c3da0 kind:function(arm,size=0x14) addr:0x020c3da0
 func_020c3db4 kind:function(arm,size=0x4c) addr:0x020c3db4
@@ -11543,7 +11543,7 @@ data_0217b340 kind:bss addr:0x0217b320
 data_0217b344 kind:bss addr:0x0217b324
 data_0217b34c kind:bss addr:0x0217b32c
 data_0217b350 kind:bss addr:0x0217b330
-data_0217b354 kind:bss addr:0x0217b334
+gChoisesS kind:bss addr:0x0217b334
 data_0217b358 kind:bss addr:0x0217b338
 data_0217b35c kind:bss addr:0x0217b33c
 data_0217b360 kind:bss addr:0x0217b340
@@ -11569,7 +11569,7 @@ data_0217b3d0 kind:bss addr:0x0217b3b0
 data_0217b3d4 kind:bss addr:0x0217b3b4
 data_0217b3d8 kind:bss addr:0x0217b3b8
 data_0217b3dc kind:bss addr:0x0217b3bc
-data_0217b3e0 kind:bss addr:0x0217b3c0
+gRaceGoalS kind:bss addr:0x0217b3c0
 data_0217b3e4 kind:bss addr:0x0217b3c4
 gRaceStartGp kind:bss addr:0x0217b3c8
 data_0217b3ec kind:bss addr:0x0217b3cc

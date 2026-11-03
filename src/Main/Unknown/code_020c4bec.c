@@ -142,7 +142,7 @@ void func_020c4e48(void) {
 }
 
 void InitRaceStartGp(void) {
-    Unk02021dc8 *v;
+    Unk02021dc8 *ncer;
     u8 buf[0x20];
     Unk02180728 w;
     void *r;
@@ -157,10 +157,10 @@ void InitRaceStartGp(void) {
     gRaceStartGp->mUnk_00 = 0;
     LoadNclrData(&gRaceStartGp->mRaceStartGpMONclr, FindSceneFileWrapper("race_start_gp_m_o.NCLR"));
     LoadNcgrData2(&gRaceStartGp->mRaceStartGpMONcgr, FindSceneFileWrapper("race_start_gp_m_o.NCGR"));
-    v = NULL;
-    LoadNcerData(&v, FindSceneFileWrapper("race_start_gp_m.NCER"));
+    ncer = NULL;
+    LoadNcerData(&ncer, FindSceneFileWrapper("race_start_gp_m.NCER"));
     for (i = 0; i < 3; i++) {
-        gRaceStartGp->mUnk_0c[i] = func_02021f1c(v, (u16) i);
+        gRaceStartGp->mRaceStartGpMNcerEntries[i] = func_02021f1c(ncer, (u16) i);
     }
     r = func_020b403c(2);
     s = -1;

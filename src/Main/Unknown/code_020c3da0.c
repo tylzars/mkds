@@ -1,5 +1,5 @@
 #include "Main/Unknown/code_020c3da0.h"
 
 u32 func_020c3da0(void) {
-    return ((u32) data_0217b3e0->mUnk_00a4);
+    return ((u32) gRaceGoalS->mUnk_00a4);
 }

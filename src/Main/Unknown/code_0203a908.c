@@ -138,7 +138,7 @@ void func_0203abdc(void) {
     func_02047b6c(9);
     func_02062b50();
     func_02047b6c(5);
-    func_020b1df0();
+    InitChoisesS();
     func_020b03bc();
     if (data_021759c0->mUnk_00c != 3) {
         func_020af99c();

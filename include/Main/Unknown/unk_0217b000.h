@@ -528,9 +528,9 @@ typedef struct Unk0217b350 {
     /* 408 */ u8 mUnk_408[0x400];
     /* 808 */ u16 mUnk_808;
     /* 80a */ u16 mUnk_80a;
-    /* 80c */ struct Unk020b4a44 *mUnk_80c[2];
-    /* 814 */ struct Unk020b4934 *mUnk_814[2];
-    /* 81c */ struct Unk020b47d8 *mUnk_81c[3];
+    /* 80c */ struct Unk020b4a44 *mNclrs[2];
+    /* 814 */ struct Unk020b4934 *mNcgrs[2];
+    /* 81c */ struct Unk020b47d8 *mNscrs[3];
     /* 828 */ s32 mUnk_828;
     /* 82c */ s32 mUnk_82c;
     /* 830 */ s32 mUnk_830;
@@ -558,8 +558,8 @@ typedef struct Unk0217b350 {
 } Unk0217b350;
 
 extern Unk0217b350 *data_0217b350;
-struct Unk0217b354;
-extern struct Unk0217b354 *data_0217b354;
+struct ChoisesS;
+extern struct ChoisesS *gChoisesS;
 struct Unk0217b3c4;
 extern struct Unk0217b3c4 *data_0217b3c4;
 // 8-byte elements at the start of Unk0217b3d8.
@@ -605,8 +605,8 @@ typedef struct Unk0217b3dc {
 } Unk0217b3dc;
 
 extern Unk0217b3dc *data_0217b3dc;
-// Object behind data_0217b3e0, 0x20e4 bytes, allocated by func_020c3200.
-typedef struct Unk0217b3e0 {
+// Object behind gRaceGoalS, 0x20e4 bytes, allocated by InitRaceGoalS.
+typedef struct RaceGoalS {
     /* 0000 */ s32 mUnk_0000[8];
     /* 0020 */ s32 mUnk_0020[8];
     /* 0040 */ s32 mUnk_0040[8];
@@ -621,14 +621,14 @@ typedef struct Unk0217b3e0 {
     /* 00b8 */ struct Unk020b4a44 *mRaceGoalSBNclr;
     /* 00bc */ struct Unk020b4934 *mRaceGoalSBNcgr;
     /* 00c0 */ struct Unk020b47d8 *mRaceGoalSNscrs[6];
-    /* 00d8 */ u16 mUnk_00d8[2][0x800];
-    /* 20d8 */ s32 mUnk_20d8;
-    /* 20dc */ s32 mUnk_20dc;
-    /* 20e0 */ s32 mUnk_20e0;
-} Unk0217b3e0;
+    /* 00d8 */ u16 mRaceGoalSSpaceNscrCopies[2][0x800];
+    /* 20d8 */ s32 mOffsetState;
+    /* 20dc */ s32 mOffsetStateFrames;
+    /* 20e0 */ s32 mOffset;
+} RaceGoalS;
 
-extern Unk0217b3e0 *data_0217b3e0;
-extern struct Unk0217b3e8 *gRaceStartGp;
+extern RaceGoalS *gRaceGoalS;
+extern struct RaceStartGp *gRaceStartGp;
 extern struct Unk0217b3f0 *data_0217b3f0;
 extern struct Unk0217b3f4 *data_0217b3f4;
 extern s32 data_0217b3f8;

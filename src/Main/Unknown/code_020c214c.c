@@ -19,7 +19,7 @@ void func_020c28dc(Unk020c06c4 *a) {
     s32 v;
     s32 p;
     s32 q;
-    Unk0217b3e0 *g = data_0217b3e0;
+    RaceGoalS *g = gRaceGoalS;
     s32 d = g->mUnk_00a0;
     s32 w;
     s32 x;
@@ -41,14 +41,14 @@ void func_020c28dc(Unk020c06c4 *a) {
     s32 e9[2];
     s32 t[8] = {0x22, 0x37, 0x4c, 0x61, 0x76, 0x8b, 0xa0, 0xb5};
 
-    switch (g->mUnk_20d8) {
+    switch (g->mOffsetState) {
         case 1:
         case 2:
         case 3:
         case 9:
             m = GetRaceGoalSNcerEntry(0x21);
             n = a->mUnk_400;
-            e10[1] = (data_0217b3e0->mUnk_20e0 + 0xb) << 12;
+            e10[1] = (gRaceGoalS->mOffset + 0xb) << 12;
             e10[0] = 0;
             u = &a->mUnk_000.mUnk_00[n];
             a->mUnk_400 += func_020224e0((Unk020224e0_o *) u, 0x80 - n, m, NULL, e10, 0, 1);
@@ -61,7 +61,7 @@ void func_020c28dc(Unk020c06c4 *a) {
         case 6:
             m = GetRaceGoalSNcerEntry(0x22);
             n = a->mUnk_400;
-            e11[1] = (data_0217b3e0->mUnk_20e0 + 0xb) << 12;
+            e11[1] = (gRaceGoalS->mOffset + 0xb) << 12;
             e11[0] = 0;
             u = &a->mUnk_000.mUnk_00[n];
             a->mUnk_400 += func_020224e0((Unk020224e0_o *) u, 0x80 - n, m, NULL, e11, 0, 1);
@@ -71,11 +71,11 @@ void func_020c28dc(Unk020c06c4 *a) {
             break;
         case 7:
         case 8:
-            w = data_0217b3e0->mUnk_20dc % 40;
+            w = gRaceGoalS->mOffsetStateFrames % 40;
             if (w < 0x20) {
                 m = GetRaceGoalSNcerEntry(0x2b);
                 n = a->mUnk_400;
-                z = data_0217b3e0->mUnk_20e0;
+                z = gRaceGoalS->mOffset;
                 e12[0] = 0x80000;
                 e12[1] = (z + 0x60) << 12;
                 u = &a->mUnk_000.mUnk_00[n];
@@ -87,8 +87,8 @@ void func_020c28dc(Unk020c06c4 *a) {
             break;
     }
     for (i = 0; (u32) i < (u32) data_021759c0->mUnk_3d0; i++) {
-        k = data_0217b3e0->mUnk_0040[i];
-        v = data_0217b3e0->mUnk_0020[k];
+        k = gRaceGoalS->mUnk_0040[i];
+        v = gRaceGoalS->mUnk_0020[k];
         p = v / 100;
         q = (v - p * 100) / 10;
         r = v % 10;
@@ -97,14 +97,14 @@ void func_020c28dc(Unk020c06c4 *a) {
             q = r;
             p = r;
         }
-        if (data_0217b3e0->mUnk_0000[i] == 0) {
+        if (gRaceGoalS->mUnk_0000[i] == 0) {
             func_020c3b6c(i, 2);
         } else if (k == func_020b4d9c()) {
             func_020c3b6c(i, 0);
         } else {
             func_020c3b6c(i, 1);
         }
-        if (data_0217b3e0->mUnk_0000[i] != 0) {
+        if (gRaceGoalS->mUnk_0000[i] != 0) {
             if (p != 0) {
                 m = GetRaceGoalSNcerEntry(p + 0x10);
                 e1[0] = (d + 0xba) << 12;
@@ -122,8 +122,8 @@ void func_020c28dc(Unk020c06c4 *a) {
             m = GetRaceGoalSNcerEntry(r + 0x10);
             e3[0] = (d + 0xcc) << 12;
             e3[1] = t[i] << 12;
-            a->mUnk_400 +=
-                func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m, NULL, e3, 0, 1);
+            a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m,
+                                         NULL, e3, 0, 1);
             if (!(data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2)) {
                 x = func_020b4b98(v) != 0 ? 0x1a : 0x1b;
                 m = GetRaceGoalSNcerEntry(x);
@@ -141,9 +141,9 @@ void func_020c28dc(Unk020c06c4 *a) {
                                              NULL, e5, 0, 1);
             }
             if (!(data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2 || data_021759c0->mUnk_60 == 1)) {
-                if (data_0217b3e0->mUnk_00ac == func_020c155c || data_0217b3e0->mUnk_00ac == func_020c13e8 ||
-                    data_0217b3e0->mUnk_00ac == func_020c13d0) {
-                    m = GetRaceGoalSNcerEntry(data_0217b3e0->mUnk_0080[k] + 0x1c);
+                if (gRaceGoalS->mUnk_00ac == func_020c155c || gRaceGoalS->mUnk_00ac == func_020c13e8 ||
+                    gRaceGoalS->mUnk_00ac == func_020c13d0) {
+                    m = GetRaceGoalSNcerEntry(gRaceGoalS->mUnk_0080[k] + 0x1c);
                     e6[0] = (d + 0xc) << 12;
                     e6[1] = t[i] << 12;
                     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400],
@@ -153,18 +153,18 @@ void func_020c28dc(Unk020c06c4 *a) {
             m = GetRaceGoalSNcerEntry(i + 8);
             e7[0] = (d + 0x1d) << 12;
             e7[1] = t[i] << 12;
-            a->mUnk_400 +=
-                func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m, NULL, e7, 0, 1);
+            a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m,
+                                         NULL, e7, 0, 1);
             m = GetRaceGoalSNcerEntry(k);
             e8[0] = (d + 0x2e) << 12;
             e8[1] = t[i] << 12;
-            a->mUnk_400 +=
-                func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m, NULL, e8, 0, 1);
+            a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m,
+                                         NULL, e8, 0, 1);
             m = GetRaceGoalSNcerEntry(k + 0x23);
             e9[0] = (d + 0x3b) << 12;
             e9[1] = t[i] << 12;
-            a->mUnk_400 +=
-                func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m, NULL, e9, 0, 1);
+            a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m,
+                                         NULL, e9, 0, 1);
         }
     }
 }
@@ -183,7 +183,7 @@ void func_020c2570(Unk020c06c4 *a, u32 b, s32 c, s32 d) {
     s32 s;
     void *m;
 
-    v = data_0217b3e0->mUnk_0020[b];
+    v = gRaceGoalS->mUnk_0020[b];
     p = v / 100;
     q = v / 10 % 10;
     r = v % 10;
@@ -290,7 +290,7 @@ void func_020c214c(Unk020c06c4 *a) {
     s32 v;
     Unk0217aa1c_144 *s;
 
-    d = data_0217b3e0->mUnk_00a0;
+    d = gRaceGoalS->mUnk_00a0;
     for (i = 0; i < 2; i++) {
         c[i] = 0;
     }

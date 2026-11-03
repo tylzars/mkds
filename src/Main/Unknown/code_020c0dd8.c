@@ -63,19 +63,19 @@ void func_020c1060(void) {
                 p = func_0205dc7c(i);
                 r = func_0205db28();
                 s = &data_0217aa1c->mUnk_000[r][func_0205dc7c(p)];
-                data_0217b3e0->mUnk_0020[i] = s->mUnk_00;
+                gRaceGoalS->mUnk_0020[i] = s->mUnk_00;
             }
         }
     }
     for (i = 0; (u32) i < (u32) data_021759c0->mUnk_3d0; i++) {
-        data_0217b3e0->mUnk_0040[i] = i;
+        gRaceGoalS->mUnk_0040[i] = i;
         a[i] = a[i] * neg;
     }
-    func_020ae770(data_0217b3e0->mUnk_0040, a, data_021759c0->mUnk_3d0);
+    func_020ae770(gRaceGoalS->mUnk_0040, a, data_021759c0->mUnk_3d0);
     for (k = 0; (u32) k < (u32) data_021759c0->mUnk_3d0; k++) {
         {
             for (j = 0; (u32) j < (u32) data_021759c0->mUnk_3d0; j++) {
-                if (k == data_0217b3e0->mUnk_0040[j]) {
+                if (k == gRaceGoalS->mUnk_0040[j]) {
                     m = j;
                     func_0205d76c(k, (j + 1) & 0xff);
                     data_0217b488->mUnk_ec[k] = j;
@@ -83,17 +83,17 @@ void func_020c1060(void) {
                 }
             }
             for (i = 0; (u32) i < (u32) data_021759c0->mUnk_3d0; i++) {
-                if (k == data_0217b3e0->mUnk_0060[i]) {
+                if (k == gRaceGoalS->mUnk_0060[i]) {
                     n = i;
                     break;
                 }
             }
             if (m < n) {
-                data_0217b3e0->mUnk_0080[k] = 1;
+                gRaceGoalS->mUnk_0080[k] = 1;
             } else if (m > n) {
-                data_0217b3e0->mUnk_0080[k] = 0;
+                gRaceGoalS->mUnk_0080[k] = 0;
             } else {
-                data_0217b3e0->mUnk_0080[k] = 2;
+                gRaceGoalS->mUnk_0080[k] = 2;
             }
         }
     }
@@ -102,13 +102,13 @@ void func_020c1060(void) {
 void func_020c0fd0(void) {
     s32 n;
 
-    n = data_0217b3e0->mUnk_00b0++;
+    n = gRaceGoalS->mUnk_00b0++;
     if (n < 0x14) {
-        data_0217b3e0->mUnk_00a0 = func_020ae4c0(1, 0, 0x100, n, 0x14);
+        gRaceGoalS->mUnk_00a0 = func_020ae4c0(1, 0, 0x100, n, 0x14);
     } else {
-        data_0217b3e0->mUnk_00a0 = 0x100;
-        data_0217b3e0->mUnk_00ac = func_020c0f48;
-        data_0217b3e0->mUnk_00b0 = 0;
+        gRaceGoalS->mUnk_00a0 = 0x100;
+        gRaceGoalS->mUnk_00ac = func_020c0f48;
+        gRaceGoalS->mUnk_00b0 = 0;
         func_020b1d90();
     }
 }
@@ -116,25 +116,25 @@ void func_020c0fd0(void) {
 void func_020c0f48(void) {
     s32 n;
 
-    n = data_0217b3e0->mUnk_00b0++;
+    n = gRaceGoalS->mUnk_00b0++;
     if (n < 0x14) {
-        data_0217b3e0->mUnk_00a0 = func_020ae4c0(1, 0x80, 0, n, 0x14);
+        gRaceGoalS->mUnk_00a0 = func_020ae4c0(1, 0x80, 0, n, 0x14);
     } else {
-        data_0217b3e0->mUnk_00a0 = 0;
-        data_0217b3e0->mUnk_00ac = func_020c0f0c;
-        data_0217b3e0->mUnk_00b0 = 0;
+        gRaceGoalS->mUnk_00a0 = 0;
+        gRaceGoalS->mUnk_00ac = func_020c0f0c;
+        gRaceGoalS->mUnk_00b0 = 0;
     }
 }
 
 void func_020c0f0c(void) {
     func_020c1060();
-    data_0217b3e0->mUnk_00ac = func_020c0ee4;
-    data_0217b3e0->mUnk_00b0 = 0;
+    gRaceGoalS->mUnk_00ac = func_020c0ee4;
+    gRaceGoalS->mUnk_00b0 = 0;
 }
 
 void func_020c0ee4(void) {
-    data_0217b3e0->mUnk_00ac = func_020c0dd8;
-    data_0217b3e0->mUnk_00b0 = 0;
+    gRaceGoalS->mUnk_00ac = func_020c0dd8;
+    gRaceGoalS->mUnk_00b0 = 0;
 }
 
 static inline Unk0217aa1c_144_00 *func_020c0dd8_inline(s32 j) {
@@ -153,12 +153,12 @@ void func_020c0dd8(void) {
                 a = b;
             }
         } else {
-            a = data_0217b3e0->mUnk_0020[data_0217b3e0->mUnk_0040[0]];
+            a = gRaceGoalS->mUnk_0020[gRaceGoalS->mUnk_0040[0]];
         }
-        data_0217b3e0->mUnk_00b4 = a >= data_021759c0->mUnk_3d8;
+        gRaceGoalS->mUnk_00b4 = a >= data_021759c0->mUnk_3d8;
     } else {
-        data_0217b3e0->mUnk_00b4 = (u32) data_021759c0->mUnk_60 >= data_021759c0->mUnk_3d8;
+        gRaceGoalS->mUnk_00b4 = (u32) data_021759c0->mUnk_60 >= data_021759c0->mUnk_3d8;
     }
-    data_0217b3e0->mUnk_00ac = func_020c13d0;
-    data_0217b3e0->mUnk_00b0 = 0;
+    gRaceGoalS->mUnk_00ac = func_020c13d0;
+    gRaceGoalS->mUnk_00b0 = 0;
 }

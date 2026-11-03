@@ -9,7 +9,7 @@ void func_020b3278(void) {
     if (func_020b252c() == 5) {
         func_02105b64(4);
     } else {
-        switch (data_0217b354->mUnk_028) {
+        switch (gChoisesS->mUnk_028) {
             case 0:
             case 8:
                 func_02105b64(0);

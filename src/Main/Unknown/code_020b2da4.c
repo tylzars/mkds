@@ -17,7 +17,7 @@ void func_020b2da4(void) {
     s32 b;
     u16 *p;
 
-    n = data_0217b354->mUnk_038[func_020b2d04()].mUnk_18;
+    n = gChoisesS->mLists[func_020b2d04()].mValueCount;
     p = (u16 *) func_020b32f8();
     if (p != NULL) {
         for (i = 0, b = 0xd - n * 2; i < n; i++) {

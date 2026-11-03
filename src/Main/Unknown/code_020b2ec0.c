@@ -4,7 +4,7 @@
 #pragma thumb on
 
 u32 func_020b2ec0(void) {
-    return ((u32) data_0217b354->mUnk_000);
+    return ((u32) gChoisesS->mUnk_000);
 }
 
 #pragma thumb off

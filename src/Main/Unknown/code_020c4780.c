@@ -17,7 +17,7 @@ void func_020c4ae8(void) {
     s32 v[2];
 
     gRaceStartGp->mUnk_18.mUnk_400 = 0;
-    c = gRaceStartGp->mUnk_0c[0];
+    c = gRaceStartGp->mRaceStartGpMNcerEntries[0];
     p = &gRaceStartGp->mUnk_18;
     v[0] = 0x80000;
     v[1] = 0x60000;

@@ -114,7 +114,7 @@ void func_02062b50(void) {
     func_0207800c();
     func_020872a4();
     func_02047728();
-    func_020afd68();
+    InitMap2D();
     func_02047b6c(2);
     CreateCourseMap(a);
     func_0206331c(a);

@@ -18,13 +18,13 @@ void func_020b2e64(u32 a) {
 }
 
 u32 func_020b2e58(void) {
-    return ((u32) data_0217b354->mUnk_004);
+    return ((u32) gChoisesS->mUnk_004);
 }
 
 int func_020b2e34(void) {
     int v1;
     int v2;
-    v2 = data_0217b354->mUnk_024;
+    v2 = gChoisesS->mUnk_024;
     if ((v2 == 2) && (v1 = func_020c3db4(), v1 != 0)) {
         v2 = 7;
     }

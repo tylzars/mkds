@@ -380,7 +380,7 @@ Locals that disappear or stay:
   when it is used in one statement. Substituted values are hoisted out of loops where invariant; passed straight to
   a call they are recomputed. A local assigned twice (`s32 left = c; left += b;`) is computed where written.
 - To keep a computation as its own statement, give it a second assignment in the same block or use a compound
-  assignment: `s32 r = c[1]->mUnk_0c[i]; r %= 0x400;` (func_020afd68); `a -= g->mUnk_80c;` instead of
+  assignment: `s32 r = nscrs[1]->mUnk_0c[i]; r %= 0x400;` (InitMap2D); `a -= g->mUnk_80c;` instead of
   `i = a - g->mUnk_80c;` (func_0202dc68).
 - `T *p = o->a; p += o->b;` pins the computation where written. A pointer built by `p = base; p += idx;` doesn't
   share its address with identical `base[idx]` accesses elsewhere; `&e[idx]` or `e + idx` does.

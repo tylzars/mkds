@@ -186,11 +186,11 @@ void func_020af99c(void) {
     }
     w = gCourseMap->mUnk_018->mUnk_14 & 0x7fff;
     *(vu16 *) 0x05000000 = w;
-    data_0217b350->mUnk_80c[0]->mUnk_0c[0] = w;
-    func_0200ee74(data_0217b350->mUnk_80c[0]->mUnk_0c, data_0217b350->mUnk_80c[0]->mUnk_08);
-    func_0214c160(data_0217b350->mUnk_80c[0]->mUnk_0c, 0, data_0217b350->mUnk_80c[0]->mUnk_08);
-    func_0214b95c(data_0217b350->mUnk_814[0]->mUnk_14, 0, data_0217b350->mUnk_814[0]->mUnk_10);
-    func_0214bc9c(data_0217b350->mUnk_81c[0]->mUnk_0c, 0, data_0217b350->mUnk_81c[0]->mUnk_08);
+    data_0217b350->mNclrs[0]->mUnk_0c[0] = w;
+    func_0200ee74(data_0217b350->mNclrs[0]->mUnk_0c, data_0217b350->mNclrs[0]->mUnk_08);
+    func_0214c160(data_0217b350->mNclrs[0]->mUnk_0c, 0, data_0217b350->mNclrs[0]->mUnk_08);
+    func_0214b95c(data_0217b350->mNcgrs[0]->mUnk_14, 0, data_0217b350->mNcgrs[0]->mUnk_10);
+    func_0214bc9c(data_0217b350->mNscrs[0]->mUnk_0c, 0, data_0217b350->mNscrs[0]->mUnk_08);
     func_0214c090(GetRaceNclrNcgr(0)->mNclr->mUnk_0c, 0, GetRaceNclrNcgr(0)->mNclr->mUnk_08);
     func_0214bf04(GetRaceNclrNcgr(0)->mNcgr->mUnk_14, 0, 0x4000);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0xe000) | 0xe000;

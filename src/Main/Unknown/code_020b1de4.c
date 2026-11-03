@@ -26,26 +26,26 @@ u32 func_020b24a4(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f) {
 #pragma thumb on
 #pragma optimize_for_size on
 
-void func_020b1df0(void) {
-    Unk0217b354 *p;
+void InitChoisesS(void) {
+    ChoisesS *p;
     u32 n;
     s32 i;
 
-    data_0217b354 = func_02036bec(func_020b2540(), 0x1a4);
-    data_0217b354->mUnk_000 = 0;
-    data_0217b354->mUnk_004 = 0;
-    data_0217b354->mUnk_008 = 0;
-    data_0217b354->mUnk_00c = 0;
-    data_0217b354->mUnk_014 = 0;
-    data_0217b354->mUnk_010 = 0;
-    data_0217b354->mUnk_01c = 0;
+    gChoisesS = func_02036bec(func_020b2540(), 0x1a4);
+    gChoisesS->mUnk_000 = 0;
+    gChoisesS->mUnk_004 = 0;
+    gChoisesS->mUnk_008 = 0;
+    gChoisesS->mUnk_00c = 0;
+    gChoisesS->mUnk_014 = 0;
+    gChoisesS->mUnk_010 = 0;
+    gChoisesS->mUnk_01c = 0;
     if (func_020b252c() == 4) {
-        data_0217b354->mUnk_020 = func_020adb34();
+        gChoisesS->mUnk_020 = func_020adb34();
     } else {
-        data_0217b354->mUnk_020 = 0;
+        gChoisesS->mUnk_020 = 0;
     }
-    data_0217b354->mUnk_02c = 0;
-    data_0217b354->mUnk_030 = 0;
+    gChoisesS->mUnk_02c = 0;
+    gChoisesS->mUnk_030 = 0;
     func_020b3008();
     func_020b31e4();
     switch (func_020b252c()) {
@@ -144,85 +144,84 @@ void func_020b1df0(void) {
             break;
     }
     if (func_020b24e4() != 3 && func_020b24e4() != 6) {
-        const char *t[6] = {
+        const char *nscrNames[6] = {
             "choises_s_1.NSCR", "choises_s_2.NSCR", "choises_s_3.NSCR",
             "choises_s_4.NSCR", "choises_s_5.NSCR", "choises_s_6.NSCR",
         };
 
-        LoadNclrData(&data_0217b354->mChoisesSBNclr, FindSceneFileWrapper("choises_s_b.NCLR"));
-        LoadNcgrData(&data_0217b354->mChoisesSBNcgr, FindSceneFileWrapper("choises_s_b.NCGR"));
+        LoadNclrData(&gChoisesS->mChoisesSBNclr, FindSceneFileWrapper("choises_s_b.NCLR"));
+        LoadNcgrData(&gChoisesS->mChoisesSBNcgr, FindSceneFileWrapper("choises_s_b.NCGR"));
         for (i = 0; i < 6; i++) {
-            LoadNscrData(&data_0217b354->mChoisesSNscrs[i], FindSceneFileWrapper(t[i]));
+            LoadNscrData(&gChoisesS->mChoisesSNscrs[i], FindSceneFileWrapper(nscrNames[i]));
         }
-        data_0217b354->mUnk_17c = data_0217b354->mChoisesSNscrs[data_0217b354->mUnk_038[0].mUnk_18 - 1];
-        data_0217b354->mUnk_180 = data_0217b354->mChoisesSNscrs[data_0217b354->mUnk_038[1].mUnk_18 - 1];
-        data_0217b354->mUnk_184 = data_0217b354->mChoisesSNscrs[data_0217b354->mUnk_038[2].mUnk_18 - 1];
-        data_0217b354->mUnk_188 = data_0217b354->mChoisesSNscrs[data_0217b354->mUnk_038[3].mUnk_18 - 1];
-        data_0217b354->mUnk_174 = func_02036bec(func_020b2540(), func_020b3260(data_0217b354->mUnk_038[1].mUnk_18));
+        gChoisesS->mList0Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[0].mValueCount - 1];
+        gChoisesS->mList1Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[1].mValueCount - 1];
+        gChoisesS->mList2Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[2].mValueCount - 1];
+        gChoisesS->mList3Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[3].mValueCount - 1];
+        gChoisesS->mUnk_174 = func_02036bec(func_020b2540(), func_020b3260(gChoisesS->mLists[1].mValueCount));
         switch (func_020b252c()) {
             case 2:
             case 3:
             case 4:
-                data_0217b354->mUnk_178 =
-                    func_02036bec(func_020b2540(), func_020b3260(data_0217b354->mUnk_038[2].mUnk_18));
+                gChoisesS->mUnk_178 = func_02036bec(func_020b2540(), func_020b3260(gChoisesS->mLists[2].mValueCount));
                 break;
         }
-        data_0217b354->mUnk_0a8 = func_020b403c(2);
-        func_02023408(data_0217b354->mUnk_0ac[0], func_020b3374()->mUnk_14, 0x20, 0xc, 4);
-        p = data_0217b354;
+        gChoisesS->mUnk_0a8 = func_020b403c(2);
+        func_02023408(gChoisesS->mUnk_0ac[0], func_020b3374()->mUnk_14, 0x20, 0xc, 4);
+        p = gChoisesS;
         func_020b24cc(&p->mUnk_12c[0], p->mUnk_0ac[0], p->mUnk_0a8, func_020b4acc(), 0);
-        func_02023408(data_0217b354->mUnk_0ac[1], data_0217b354->mUnk_174, 0x20, 0xc, 4);
-        p = data_0217b354;
+        func_02023408(gChoisesS->mUnk_0ac[1], gChoisesS->mUnk_174, 0x20, 0xc, 4);
+        p = gChoisesS;
         func_020b24cc(&p->mUnk_12c[1], p->mUnk_0ac[1], p->mUnk_0a8, func_020b4acc(), 0);
-        n = func_020b3260(data_0217b354->mUnk_038[1].mUnk_18) >> 1;
+        n = func_020b3260(gChoisesS->mLists[1].mValueCount) >> 1;
         for (i = 0; i < n; i++) {
-            data_0217b354->mUnk_174[i] = func_020b3374()->mUnk_14[i];
+            gChoisesS->mUnk_174[i] = func_020b3374()->mUnk_14[i];
         }
-        if (data_0217b354->mUnk_178 != NULL) {
-            func_02023408(data_0217b354->mUnk_0ac[2], data_0217b354->mUnk_178, 0x20, 0xc, 4);
-            p = data_0217b354;
+        if (gChoisesS->mUnk_178 != NULL) {
+            func_02023408(gChoisesS->mUnk_0ac[2], gChoisesS->mUnk_178, 0x20, 0xc, 4);
+            p = gChoisesS;
             func_020b24cc(&p->mUnk_12c[2], p->mUnk_0ac[2], p->mUnk_0a8, func_020b4acc(), 0);
-            n = func_020b3260(data_0217b354->mUnk_038[2].mUnk_18) >> 1;
+            n = func_020b3260(gChoisesS->mLists[2].mValueCount) >> 1;
             for (i = 0; i < n; i++) {
-                data_0217b354->mUnk_178[i] = func_020b3374()->mUnk_14[i];
+                gChoisesS->mUnk_178[i] = func_020b3374()->mUnk_14[i];
             }
         }
-        func_02023408(data_0217b354->mUnk_0ac[3], func_020b3374()->mUnk_14, 0x20, 0xc, 4);
-        p = data_0217b354;
+        func_02023408(gChoisesS->mUnk_0ac[3], func_020b3374()->mUnk_14, 0x20, 0xc, 4);
+        p = gChoisesS;
         func_020b24cc(&p->mUnk_12c[3], p->mUnk_0ac[3], p->mUnk_0a8, func_020b4acc(), 0);
         if (func_020b24e4() != 2) {
-            for (i = 0; i < data_0217b354->mUnk_038[0].mUnk_18; i++) {
-                func_020b24a4(&data_0217b354->mUnk_12c[0], 0x90, i * 16 + 9, 0xc, 0x412,
-                              func_020b320c(0, data_0217b354->mUnk_038[0].mUnk_00[i]));
+            for (i = 0; i < gChoisesS->mLists[0].mValueCount; i++) {
+                func_020b24a4(&gChoisesS->mUnk_12c[0], 0x90, i * 16 + 9, 0xc, 0x412,
+                              func_020b320c(0, gChoisesS->mLists[0].mValues[i]));
             }
         } else {
-            for (i = 0; i < data_0217b354->mUnk_038[3].mUnk_18; i++) {
-                func_020b24a4(&data_0217b354->mUnk_12c[3], 0x90, i * 16 + 9, 0xc, 0x412,
-                              func_020b320c(3, data_0217b354->mUnk_038[3].mUnk_00[i]));
+            for (i = 0; i < gChoisesS->mLists[3].mValueCount; i++) {
+                func_020b24a4(&gChoisesS->mUnk_12c[3], 0x90, i * 16 + 9, 0xc, 0x412,
+                              func_020b320c(3, gChoisesS->mLists[3].mValues[i]));
             }
         }
-        for (i = 0; i < data_0217b354->mUnk_038[1].mUnk_18; i++) {
-            func_020b24a4(&data_0217b354->mUnk_12c[1], 0x90, i * 16 + 9, 0xc, 0x412,
-                          func_020b320c(1, data_0217b354->mUnk_038[1].mUnk_00[i]));
+        for (i = 0; i < gChoisesS->mLists[1].mValueCount; i++) {
+            func_020b24a4(&gChoisesS->mUnk_12c[1], 0x90, i * 16 + 9, 0xc, 0x412,
+                          func_020b320c(1, gChoisesS->mLists[1].mValues[i]));
         }
-        for (i = 0; i < data_0217b354->mUnk_038[2].mUnk_18; i++) {
-            func_020b24a4(&data_0217b354->mUnk_12c[2], 0x90, i * 16 + 9, 0xc, 0x412,
-                          func_020b320c(2, data_0217b354->mUnk_038[2].mUnk_00[i]));
+        for (i = 0; i < gChoisesS->mLists[2].mValueCount; i++) {
+            func_020b24a4(&gChoisesS->mUnk_12c[2], 0x90, i * 16 + 9, 0xc, 0x412,
+                          func_020b320c(2, gChoisesS->mLists[2].mValues[i]));
         }
     } else {
-        data_0217b354->mChoisesSBNclr = NULL;
-        data_0217b354->mChoisesSBNcgr = NULL;
-        data_0217b354->mUnk_174 = NULL;
-        data_0217b354->mUnk_178 = NULL;
-        data_0217b354->mUnk_17c = NULL;
-        data_0217b354->mUnk_180 = NULL;
-        data_0217b354->mUnk_184 = NULL;
-        data_0217b354->mUnk_188 = NULL;
+        gChoisesS->mChoisesSBNclr = NULL;
+        gChoisesS->mChoisesSBNcgr = NULL;
+        gChoisesS->mUnk_174 = NULL;
+        gChoisesS->mUnk_178 = NULL;
+        gChoisesS->mList0Nscr = NULL;
+        gChoisesS->mList1Nscr = NULL;
+        gChoisesS->mList2Nscr = NULL;
+        gChoisesS->mList3Nscr = NULL;
     }
 }
 
 void func_020b1de4(void) {
-    data_0217b354 = NULL;
+    gChoisesS = NULL;
 }
 
 #pragma thumb off
