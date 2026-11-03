@@ -12,7 +12,6 @@
 #include "Main/Unknown/code_02060004.h"
 #include "Main/Unknown/code_021526a0.h"
 #include "Main/Unknown/code_02152918.h"
-#include "Main/Unknown/unk_0217a000.h"
 #include "code_0214d018.h"
 #include "code_02152500.h"
 #include "code_02152a24.h"

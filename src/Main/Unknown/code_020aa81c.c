@@ -12,7 +12,6 @@
 #include "Main/Unknown/code_02023000.h"
 #include "Main/Unknown/code_02133000.h"
 #include "Main/Unknown/unk_02167000.h"
-#include "code_02022aa8.h"
 #include "code_02023374.h"
 #include "code_0214d018.h"
 #include "code_0214e308.h"

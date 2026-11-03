@@ -4,8 +4,6 @@
 #include "Main/Unknown/code_0204a978.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/unk_02175628.h"
-#include "Main/Unknown/unk_021759c0.h"
-#include "Main/Unknown/unk_0217a000.h"
 
 u32 func_0203c8dc(u32 param_1) {
     if (data_021759c0->mUnk_08 == 5) {

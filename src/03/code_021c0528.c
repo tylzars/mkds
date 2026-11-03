@@ -4,7 +4,6 @@
 #include "03/code_021cdbd0.h"
 #include "03/code_021d2940.h"
 #include "03/code_021d250c.h"
-#include "03/types_021d299c.h"
 #include "03/unk_021d5f00.h"
 #include "03/unk_021d6000.h"
 #include "03/unk_021da000.h"

@@ -12,7 +12,6 @@
 #include "03/code_021d2940.h"
 #include "03/code_021d3000.h"
 #include "03/code_021d3488.h"
-#include "03/types_021d299c.h"
 #include "03/unk_021d5000.h"
 #include "03/unk_021da000.h"
 #include "03/code_021d27d8.h"

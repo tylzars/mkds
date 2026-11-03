@@ -14,7 +14,6 @@
 #include "code_02134d30.h"
 #include "code_02135014.h"
 #include "code_02139f70.h"
-#include "string.h"
 
 s8 *func_ov000_02197a9c(const u8 *a, const u8 *b, s8 *c) {
     u32 d;

@@ -1,6 +1,5 @@
 #include "01/code_021842b4.h"
 #include "01/code_02184390.h"
-#include "01/code_02188158.h"
 
 u32 func_ov001_021842b4(int a) {
     if (*(s32 *) (a + 0x1cc) < 0) {

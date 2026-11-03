@@ -1,6 +1,4 @@
 #include "00/code_021a6d6c.h"
-#include "00/code_021a6fa8.h"
-#include "00/code_021a6fb4.h"
 #include "00/code_021a72c4.h"
 #include "00/code_021a73d8.h"
 

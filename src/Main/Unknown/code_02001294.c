@@ -7,7 +7,6 @@
 #include "Main/Unknown/code_02125f6c.h"
 #include "Main/Unknown/code_02126230.h"
 #include "Main/Unknown/code_02126248.h"
-#include "Main/Unknown/unk_0217a000.h"
 #include "01/code_021956dc.h"
 
 void func_02001878(void) {

@@ -1,7 +1,4 @@
 #include "Main/Unknown/code_02001000.h"
-#include "Main/Unknown/code_02007624.h"
-#include "Main/Unknown/code_02007ec4.h"
-#include "Main/Unknown/code_02009adc.h"
 #include "Main/Unknown/code_02009cc8.h"
 #include "Main/Unknown/code_0200b02c.h"
 #include "Main/Unknown/code_0200b1b0.h"
@@ -17,7 +14,6 @@
 #include "Main/Unknown/code_0211d4a8.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_0200f5ac.h"
-#include "code_0214d018.h"
 
 #pragma thumb on
 

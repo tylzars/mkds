@@ -13,7 +13,6 @@
 #include "Main/Unknown/code_020be930.h"
 #include "Main/Unknown/code_020fa4c8.h"
 #include "Main/Unknown/code_020f81c0.h"
-#include "types.h"
 
 static inline u32 func_020f8a04_inline(Unk020f41c4_B *b, u32 c) {
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;

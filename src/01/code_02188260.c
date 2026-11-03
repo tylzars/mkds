@@ -1,7 +1,6 @@
 #include "01/code_0218155c.h"
 #include "01/code_02188260.h"
 #include "Main/Unknown/code_020a12b8.h"
-#include "Main/Unknown/unk_021759c0.h"
 
 u32 func_ov001_02188260(Unk02188950 *p) {
     if (data_021759c0->mUnk_08 == 4) {

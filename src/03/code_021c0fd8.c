@@ -2,7 +2,6 @@
 #include "03/code_021d197c.h"
 #include "03/code_021d27d8.h"
 #include "03/code_021d2ecc.h"
-#include "03/code_021d3488.h"
 
 void func_ov003_021c0fd8(u32 a) {
     int v1;
