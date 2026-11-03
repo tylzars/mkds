@@ -176,7 +176,7 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
     u8 v2;
     s32 v3;
     do {
-        p = (u8 *) func_ov000_021adfc8(&n, a);
+        p = func_ov000_021adfc8(&n, a);
         if (n == 0) {
             c->mUnk_429 = 9;
             return c->mUnk_429;
@@ -192,7 +192,7 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
                 c->mUnk_429 = 9;
                 return c->mUnk_429;
             }
-            if (func_ov000_021aa004((s32) q, n, (u32) a) == 0 && q[0] == 1) {
+            if (func_ov000_021aa004(q, n, a) == 0 && q[0] == 1) {
                 func_ov000_021aaa58(c, q + 1);
             } else {
                 c->mUnk_429 = 9;
@@ -210,7 +210,7 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
             c->mUnk_429 = 9;
             return c->mUnk_429;
         }
-        if (func_ov000_021aa004((s32) q, n, (u32) a) != 0) {
+        if (func_ov000_021aa004(q, n, a) != 0) {
             data_ov000_021b63ac(q);
             c->mUnk_429 = 9;
             return c->mUnk_429;
@@ -242,7 +242,7 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
                             }
                             break;
                         case 0x10:
-                            func_ov000_021aa5b0((s32 *) c, (u32) r);
+                            func_ov000_021aa5b0(c, r);
                             break;
                         case 2:
                             func_ov000_021aab74(c, r);
@@ -254,7 +254,7 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
                             c->mUnk_429 = 4;
                             break;
                         case 0x14:
-                            func_ov000_021aa3b8((s32) c, (s32) r);
+                            func_ov000_021aa3b8(c, r);
                             break;
                         default:
                             c->mUnk_429 = 9;

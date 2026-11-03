@@ -34,7 +34,7 @@ struct Unk0218b668;
 void func_ov000_0218b434(u32 arg0);
 s32 func_ov000_0218b440(const u8 *const *first, const u8 *const *second);
 u32 func_ov000_0218b44c(Unk0218afac *entry, u32 modulus);
-u32 func_ov000_0218b458(int a);
+u32 func_ov000_0218b458(Unk0218b668 *a);
 void func_ov000_0218b464(Unk0218b668 *p0, unsigned int p1, void *p2, unsigned int p3);
 u32 func_ov000_0218b474(u32 arg0);
 u32 func_ov000_0218b480(u32 arg0, u32 arg1);

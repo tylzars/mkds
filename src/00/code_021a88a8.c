@@ -15,6 +15,7 @@
 #include "00/code_021a740c.h"
 #include "00/unk_021b6000.h"
 #include "00/code_021a8aa8.h"
+#include "00/code_021a78a4.h"
 #include "00/types_021a8ab8.h"
 
 BOOL func_ov000_021a8a5c(Unk021a8ab8 *node) {
@@ -42,7 +43,7 @@ u32 func_ov000_021a8994(Unk021a6fa8 *a) {
         }
         if (a->mUnk_73 == 1 || (v->mUnk_70 & 4) != 0) {
             c = func_0200fca0();
-            if ((s32) func_ov000_021a8960((s32) a) > 0) {
+            if (func_ov000_021a8960(a) > 0) {
                 b |= 1;
             }
             if (func_ov000_021a8118(a) > 0) {
@@ -66,20 +67,20 @@ u32 func_ov000_021a8994(Unk021a6fa8 *a) {
     return b;
 }
 
-u32 func_ov000_021a8960(int a) {
+s32 func_ov000_021a8960(Unk021a6fa8 *a) {
     u32 v1;
-    int v2;
+    Unk021a71c0 *v2;
     s8 v3;
-    v2 = *(s32 *) (a + 100);
+    v2 = a->mUnk_64;
     v1 = 0;
-    if (v2 != 0) {
-        v3 = *(s8 *) (a + 0x73);
+    if (v2 != NULL) {
+        v3 = a->mUnk_73;
         if (v3 == 1) {
-            if (*(s32 *) (v2 + 0x104) != 0) {
-                v1 = * (u16 *) (*(s32 *) (v2 + 0x104) + 4);
+            if (v2->mUnk_104 != NULL) {
+                v1 = v2->mUnk_104->mUnk_04;
             }
         } else if ((v3 == 0) || (v3 == 4)) {
-            v1 = *(s32 *) (a + 0x44) - *(s32 *) (v2 + 0xf8);
+            v1 = a->mUnk_44 - v2->mUnk_f8;
         }
     }
     return v1;

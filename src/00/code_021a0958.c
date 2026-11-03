@@ -120,7 +120,7 @@ u32 func_ov000_021a0cac(s32 a, s32 b, u32 c) {
     if (a == 0) {
         b = (data_ov000_021b566c->mUnk_1e8 & 0xffff) | (data_ov000_021b566c->mUnk_176 << 16);
         if (func_ov000_0218b248(c) != 0) {
-            if (func_ov000_0218b27c((u32 *) c) == func_ov000_0218b458((s32) data_ov000_021b566c->mUnk_e4)) {
+            if (func_ov000_0218b27c((u32 *) c) == func_ov000_0218b458(data_ov000_021b566c->mUnk_e4)) {
                 data_ov000_021b566c->mUnk_1f8[k] = func_ov000_0218b244(c);
                 data_ov000_021b566c->mUnk_278[k] = func_ov000_0218b228(c);
                 x = FALSE;

@@ -143,8 +143,8 @@ void func_ov000_0218b464(Unk0218b668 *p0, u32 p1, void *p2, u32 p3) {
     func_ov000_0218d374(&p0->mUnk_04c, (s32) p1, (u32) p2, p3);
 }
 
-u32 func_ov000_0218b458(int a) {
-    return *(u32 *) (a + 0x4ec);
+u32 func_ov000_0218b458(Unk0218b668 *a) {
+    return a->mUnk_04c.mUnk_4a0;
 }
 
 u32 func_ov000_0218b44c(Unk0218afac *entry, u32 modulus) {

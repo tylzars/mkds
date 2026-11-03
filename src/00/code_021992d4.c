@@ -24,7 +24,7 @@ u32 func_ov000_021992d4(Unk02197e8c *a, u8 *b, s32 c, u32 d, u32 e) {
     s32 i;
     f = func_ov000_0219a5b0(a, d, e);
     if (a->mUnk_2c != NULL) {
-        if (func_ov000_02197f28((s32) a, (s32) f, d, e, 0, (s32) b, c, 0) == 0) {
+        if (func_ov000_02197f28(a, (s32) f, d, e, 0, (s32) b, c, 0) == 0) {
             return 0;
         }
     }

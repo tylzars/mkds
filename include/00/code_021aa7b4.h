@@ -2,4 +2,6 @@
 
 #include "types.h"
 
-void func_ov000_021aa7b4(int *a);
+typedef struct Unk021a998c_0c Unk021a998c_0c;
+
+void func_ov000_021aa7b4(Unk021a998c_0c *a);

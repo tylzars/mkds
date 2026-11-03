@@ -45,7 +45,7 @@ BOOL func_ov000_021a32a0(u32 a, void *b, s32 c) {
 
 BOOL func_ov000_021a3310(u16 a, u32 b, u8 *c, s32 d) {
     Unk021a2d68 *e = func_ov000_021a2fdc(b);
-    u32 t[2];
+    Unk021a31e8 t;
     s32 n;
     if (func_ov000_0219c39c() != 0) {
         return FALSE;
@@ -57,8 +57,8 @@ BOOL func_ov000_021a3310(u16 a, u32 b, u8 *c, s32 d) {
     e->mUnk_00 = c;
     e->mUnk_0c = 0;
     e->mUnk_14 = d;
-    func_ov000_021a321c(t, a, d);
-    func_ov000_021a2f98(b, (u32) t, 8, 1);
+    func_ov000_021a321c(&t, a, d);
+    func_ov000_021a2f98(b, (u32) &t, 8, 1);
     n = data_ov000_021b5dd0->mUnk_610;
     if (d <= n) {
         n = d;

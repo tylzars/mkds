@@ -19,7 +19,7 @@ BOOL func_ov000_02198148(Unk02197fe8 *a, s32 b) {
     a->mUnk_24--;
     a->mUnk_08->mUnk_1c--;
     if (a->mUnk_08->mUnk_14 != 0 && a->mUnk_08->mUnk_1c == 0) {
-        func_ov000_0219a3f8((u32 *) a->mUnk_08);
+        func_ov000_0219a3f8(a->mUnk_08);
         return FALSE;
     }
     return TRUE;
@@ -47,7 +47,7 @@ BOOL func_ov000_02198098(Unk02197fe8 *a, s32 b, s32 c, void *d, s32 e) {
     a->mUnk_24--;
     a->mUnk_08->mUnk_1c--;
     if (a->mUnk_08->mUnk_14 != 0 && a->mUnk_08->mUnk_1c == 0) {
-        func_ov000_0219a3f8((u32 *) a->mUnk_08);
+        func_ov000_0219a3f8(a->mUnk_08);
         return FALSE;
     }
     return TRUE;
@@ -75,14 +75,13 @@ BOOL func_ov000_02197fe8(Unk02197fe8 *a, s32 b, void *c, s32 d, s32 e) {
     a->mUnk_24--;
     a->mUnk_08->mUnk_1c--;
     if (a->mUnk_08->mUnk_14 != 0 && a->mUnk_08->mUnk_1c == 0) {
-        func_ov000_0219a3f8((u32 *) a->mUnk_08);
+        func_ov000_0219a3f8(a->mUnk_08);
         return FALSE;
     }
     return TRUE;
 }
 
-u32 func_ov000_02197f28(int d, int e, u32 f, u32 g, u32 h, int l, int m, int n) {
-    Unk02197e8c *a = (Unk02197e8c *) d;
+u32 func_ov000_02197f28(Unk02197e8c *a, int e, u32 f, u32 g, u32 h, int l, int m, int n) {
     Unk02197fe8 *b = (Unk02197fe8 *) e;
     UnkWordFunc *c;
     if (a == NULL) {
@@ -113,7 +112,7 @@ u32 func_ov000_02197f28(int d, int e, u32 f, u32 g, u32 h, int l, int m, int n) 
         b->mUnk_24--;
     }
     if (a->mUnk_14 != 0 && a->mUnk_1c == 0) {
-        func_ov000_0219a3f8((u32 *) a);
+        func_ov000_0219a3f8(a);
         return 0;
     }
     return 1;
@@ -138,7 +137,7 @@ BOOL func_ov000_02197e8c(Unk02197e8c *a, s32 b, s32 c, void *d, s32 e, s32 *f) {
     *f = a->mUnk_30(a, b, c, d, e);
     a->mUnk_1c--;
     if (a->mUnk_14 != 0 && a->mUnk_1c == 0) {
-        func_ov000_0219a3f8((u32 *) a);
+        func_ov000_0219a3f8(a);
         return FALSE;
     }
     return TRUE;

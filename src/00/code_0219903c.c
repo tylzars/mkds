@@ -26,11 +26,11 @@
 #include "00/code_0219a044.h"
 #include "00/code_0218e8c4.h"
 
-u32 func_ov000_0219922c(int a, u32 b, u32 c) {
+u32 func_ov000_0219922c(Unk02197e8c *a, u32 b, u32 c) {
     int v1;
     int v2;
-    v1 = (s32) func_ov000_0219a5b0((Unk02197e8c *) a, b, c);
-    if (*(s32 *) (a + 0x2c) != 0) {
+    v1 = (s32) func_ov000_0219a5b0(a, b, c);
+    if (a->mUnk_2c != NULL) {
         v2 = func_ov000_02197f28(a, v1, b, c, 1, 0, 0, 0);
         if (v2 == 0) {
             return 0;
@@ -76,7 +76,7 @@ u32 func_ov000_0219914c(Unk02197e8c *a) {
         if (r == -1) {
             e = func_ov000_0218e368(a->mUnk_00);
             if (e == -15) {
-                if (func_ov000_0219922c((s32) a, h.mUnk_04,
+                if (func_ov000_0219922c(a, h.mUnk_04,
                                         (u16) (((h.mUnk_02 >> 8) & 0xff) | ((h.mUnk_02 << 8) & 0xff00))) == 0) {
                     return 0;
                 }
@@ -125,9 +125,9 @@ BOOL func_ov000_0219903c(Unk02197fe8 *a, u32 b, int c, int *d) {
         return TRUE;
     }
     func_ov000_02197d84((s32 *) &a->mUnk_50, data_ov000_021b3fa4, 2);
-    func_ov000_02197e20((s32 *) &a->mUnk_50, b);
-    func_ov000_02197ddc((s32 *) &a->mUnk_50, a->mUnk_64++);
-    func_ov000_02197ddc((s32 *) &a->mUnk_50, a->mUnk_66);
+    func_ov000_02197e20(&a->mUnk_50, b);
+    func_ov000_02197ddc(&a->mUnk_50, a->mUnk_64++);
+    func_ov000_02197ddc(&a->mUnk_50, a->mUnk_66);
     *d = 0;
     return TRUE;
 }

@@ -156,7 +156,7 @@ void func_ov000_021a3c14(Unk021a3a18 *a, s8 *b, s32 c, void *d) {
                         __memcpy(&k.mUnk_000[k.mUnk_800], p6, 4);
                         k.mUnk_800 += 4;
                         __memcpy(&i, p6, 4);
-                        if (func_ov000_021a3e5c((s32) a, i) == 0) {
+                        if (func_ov000_021a3e5c(a, i) == 0) {
                             func_ov000_021a3eb0(a, (u8 *) (p6 + 4), c - 4);
                         }
                         break;

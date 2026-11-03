@@ -49,7 +49,7 @@ u32 func_ov000_021aae44(Unk021a998c_0c *a) {
             f |= 3;
             return f;
     }
-    r = func_ov000_021ab548((s32) a, (u32) a->mUnk_584);
+    r = func_ov000_021ab548(a, a->mUnk_584);
     if (r == 0) {
         f |= 1;
         return f;

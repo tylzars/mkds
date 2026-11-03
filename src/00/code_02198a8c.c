@@ -23,7 +23,7 @@ void func_ov000_02198a8c(Unk02197e8c *a) {
 
 void func_ov000_02198ab0(Unk02197e8c *a) {
     func_ov000_021988e8(a);
-    func_ov000_0219a3f8((u32 *) a);
+    func_ov000_0219a3f8(a);
 }
 
 u32 func_ov000_02198ac4(Unk02197e8c **a, const u8 *b, u32 c, u32 d, u32 e) {

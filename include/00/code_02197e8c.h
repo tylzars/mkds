@@ -40,8 +40,8 @@ typedef struct Unk02197fe8Entry {
 
 typedef struct Unk02197fe8Buf {
     /* 0 */ u8 *mUnk_00;
-    /* 4 */ u32 mUnk_04;
-    /* 8 */ u32 mUnk_08;
+    /* 4 */ s32 mUnk_04;
+    /* 8 */ s32 mUnk_08;
 } Unk02197fe8Buf;
 
 typedef struct Unk02197fe8 {
@@ -78,7 +78,7 @@ extern const u8 data_ov000_021b3f58[];
 extern const u8 data_ov000_021b3f68[];
 
 BOOL func_ov000_02197e8c(Unk02197e8c *a, s32 b, s32 c, void *d, s32 e, s32 *f);
-u32 func_ov000_02197f28(int d, int e, u32 f, u32 g, u32 h, int l, int m, int n);
+u32 func_ov000_02197f28(Unk02197e8c *a, int e, u32 f, u32 g, u32 h, int l, int m, int n);
 BOOL func_ov000_02197fe8(Unk02197fe8 *a, s32 b, void *c, s32 d, s32 e);
 BOOL func_ov000_02198098(Unk02197fe8 *a, s32 b, s32 c, void *d, s32 e);
 BOOL func_ov000_02198148(Unk02197fe8 *a, s32 b);

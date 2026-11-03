@@ -14,16 +14,16 @@ void func_ov000_021ab594(u32 a, u32 b) {
     }
 }
 
-u32 func_ov000_021ab548(int a, u32 b) {
+u32 func_ov000_021ab548(Unk021a998c_0c *a, const s8 *b) {
     int v1;
     int v2;
     u32 *v3;
     u32 *v4;
     int v5;
     v2 = 0;
-    v1 = *(s32 *) (a + 0x7ec);
+    v1 = a->mUnk_7ec;
     if (0 < v1) {
-        v4 = *(u32 **) (a + 0x7e8);
+        v4 = (u32 *) a->mUnk_7e8;
         v3 = v4;
         do {
             v5 = strcmp((const u8 *) (*(u32 *) *v3), (const u8 *) b);

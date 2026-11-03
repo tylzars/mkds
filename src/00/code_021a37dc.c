@@ -55,13 +55,13 @@ void func_ov000_021a3910(void) {
 }
 
 u32 func_ov000_021a38d8(void) {
-    int *v1;
-    v1 = (s32 *) data_ov000_021b5df4;
+    Unk021b5df4 *v1;
+    v1 = data_ov000_021b5df4;
     if (v1 == NULL) {
         return 0;
     }
-    if (*v1 != 0) {
-        *(u16 *) (v1 + 1) = 3;
+    if (v1->mUnk_00 != 0) {
+        v1->mUnk_04 = 3;
         func_ov000_021a3810();
         return 1;
     }

@@ -22,7 +22,8 @@ typedef struct Unk021a3a18 {
     /* 0c8 */ s32 mUnk_c8;
     /* 0cc */ u8 mUnk_cc[8];
     /* 0d4 */ void (*mUnk_d4)(s8 *a, s32 b, void *c);
-    /* 0d8 */ u8 pad_d8[0x2c];
+    /* 0d8 */ s32 mUnk_d8[10];
+    /* 100 */ s32 mUnk_100;
     /* 104 */ u32 mUnk_104;
     /* 108 */ u16 mUnk_108;
     /* 10a */ u8 pad_10a[2];
