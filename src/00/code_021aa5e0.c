@@ -1,10 +1,14 @@
 #include "00/code_021aa5e0.h"
 #include "00/code_021ab000.h"
 #include "00/code_021ab6d4.h"
+#include "00/code_021ab728.h"
 #include "00/code_021ab7b4.h"
 #include "00/code_021abc24.h"
+#include "00/code_021abca0.h"
 #include "00/code_021abd2c.h"
 #include "00/code_021ac3e4.h"
+#include "00/types_021a998c.h"
+#include "00/types_021ab5e4.h"
 
 void func_ov000_021aa5e0(Unk021a998c_0c *a) {
     s32 x;

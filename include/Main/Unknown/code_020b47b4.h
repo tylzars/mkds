@@ -1,10 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02047000.h"
-#include "Main/Unknown/code_0205e000.h"
-#include "Main/Unknown/unk_02164000.h"
-#include "Main/Unknown/code_020472a8.h"
 
 void *FindCourseFileWrapper(const char *arg0);
 void *FindSceneFileWrapper(const char *arg0);

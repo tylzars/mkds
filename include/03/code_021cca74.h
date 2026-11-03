@@ -18,8 +18,6 @@ typedef struct Unk021cca74 {
     /* 1e */ u8 mUnk_1e;
 } Unk021cca74;
 
-#include "03/unk_021da000.h"
-
 void func_ov003_021cca74(s32 offset);
 void func_ov003_021cca9c(s32 a, u16 *b);
 int func_ov003_021ccb1c(int a);

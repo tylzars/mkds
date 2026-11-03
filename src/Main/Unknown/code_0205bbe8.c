@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0205bbe8.h"
+#include "Main/Unknown/unk_0217a000.h"
 
 u32 func_0205bbe8(void) {
     u32 value0;

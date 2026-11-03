@@ -2,6 +2,7 @@
 #include "00/code_0218e368.h"
 #include "00/code_02196000.h"
 #include "00/code_02196590.h"
+#include "00/code_021967b4.h"
 #include "00/code_021a3678.h"
 #include "00/unk_021b2000.h"
 #include "code_0213442c.h"

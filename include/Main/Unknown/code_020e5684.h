@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e43a8.h"
+
+typedef struct Unk020e43a8 Unk020e43a8;
 
 // Second argument of func_020e5684: a vector at 0x0c, halfwords from 0x28.
 typedef struct Unk020e5684 {

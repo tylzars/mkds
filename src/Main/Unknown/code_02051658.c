@@ -1,15 +1,19 @@
 #include "Main/Unknown/code_02051658.h"
 #include "Main/Unknown/code_0200e000.h"
+#include "code_0200eddc.h"
 #include "code_020204c0.h"
 #include "Main/Unknown/code_0204e000.h"
 #include "Main/Unknown/code_02051640.h"
+#include "Main/Unknown/code_020529b8.h"
 #include "Main/Unknown/code_02053000.h"
+#include "Main/Unknown/code_02053e74.h"
 #include "Main/Unknown/code_02054000.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_021445e0.h"
 #include "code_021453ec.h"
 #include "code_02142eac.h"
+#include "code_0214d018.h"
 
 static inline u32 func_02051658_inline(void) {
     if (data_0217aa00 == NULL) {

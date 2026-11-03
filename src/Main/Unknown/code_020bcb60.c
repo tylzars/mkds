@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020bcb60.h"
+#include "Main/Unknown/unk_0217b000.h"
 
 u32 func_020bcb60(void) {
     u32 value0;

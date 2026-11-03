@@ -1,7 +1,16 @@
+#include "01/code_02185ef4.h"
+#include "01/code_02187d14.h"
+#include "01/code_02188158.h"
+#include "01/code_02188cd8.h"
+#include "01/code_02188da4.h"
 #include "01/code_0218add0.h"
+#include "01/code_0218b298.h"
 #include "01/unk_021a6000.h"
 #include "01/unk_021a9000.h"
+#include "Main/Unknown/code_02073eb8.h"
 #include "Main/Unknown/code_020b4000.h"
+#include "Main/Unknown/code_020d275c.h"
+#include "Main/Unknown/code_020fd264.h"
 
 void func_ov001_0218aef4(Unk02188950 *a) {
     Unk020f41c4_B *rng;

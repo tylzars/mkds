@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "03/types_021d299c.h"
 
 // Data whose layout isn't known yet.
 extern u16 data_ov003_021d5f54[];

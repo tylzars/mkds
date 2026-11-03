@@ -1,4 +1,7 @@
 #include "03/code_021c6f64.h"
+#include "03/code_021cd2e0.h"
+#include "03/unk_021da000.h"
+#include "code_021510a4.h"
 
 BOOL func_ov003_021c6f64(void) {
     u8 a[4];

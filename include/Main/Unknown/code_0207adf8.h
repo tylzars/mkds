@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_02084000.h"
+#include "Main/Unknown/code_020846c0.h"
 #include "Main/Unknown/unk_02155000.h"
 
 // Object func_0207adf8 works on.

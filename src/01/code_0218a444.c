@@ -1,4 +1,8 @@
+#include "01/code_02185ef4.h"
+#include "01/code_02188cd8.h"
+#include "01/code_02189da4.h"
 #include "01/code_0218a444.h"
+#include "01/code_0218a568.h"
 
 void func_ov001_0218a52c(Unk02188950 *a) {
     func_ov001_02187218(a, 7, (s32(*)(Unk02188950 *))(0));

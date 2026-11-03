@@ -1,10 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "00/types_021ab5e4.h"
-#include "00/code_021b0014.h"
-#include "00/code_021a8878.h"
-#include "00/code_021a6fa8.h"
+
+typedef struct Unk021ab5e4 Unk021ab5e4;
+typedef struct Unk021a6fa8 Unk021a6fa8;
 
 // Objects whose layout isn't known yet.
 extern u8 data_ov000_021b6010[];

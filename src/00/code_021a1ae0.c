@@ -1,5 +1,19 @@
+#include "00/code_02197e8c.h"
+#include "00/code_02198a8c.h"
+#include "00/code_0219a654.h"
+#include "00/code_0219dabc.h"
+#include "00/code_0219dd4c.h"
+#include "00/code_0219dee0.h"
+#include "00/code_0219e134.h"
+#include "00/code_0219eaf4.h"
+#include "00/code_0219f4c4.h"
+#include "00/code_0219fb48.h"
+#include "00/code_021a01dc.h"
+#include "00/code_021a0958.h"
 #include "00/code_021a1ae0.h"
 #include "00/code_021a1000.h"
+#include "00/code_021a3264.h"
+#include "00/code_021a369c.h"
 #include "00/code_021a4000.h"
 #include "00/unk_021b4000.h"
 #include "00/unk_021b5000.h"
@@ -113,7 +127,8 @@ void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 par
     if (param_3 != data_ov000_021b566c->mUnk_1f8[data_ov000_021b566c->mUnk_0d] ||
         param_4 != data_ov000_021b566c->mUnk_278[data_ov000_021b566c->mUnk_0d]) {
         j = data_ov000_021b566c->mUnk_0d;
-        if (*param_6 != 0 && (p = *(Unk021b566c **) &data_ov000_021b566c, p->mUnk_f4[j] == strtoul(param_6, NULL, 10))) {
+        if (*param_6 != 0 &&
+            (p = *(Unk021b566c **) &data_ov000_021b566c, p->mUnk_f4[j] == strtoul(param_6, NULL, 10))) {
             data_ov000_021b566c->mUnk_1f8[j] = param_3;
             data_ov000_021b566c->mUnk_278[data_ov000_021b566c->mUnk_0d] = param_4;
         } else {

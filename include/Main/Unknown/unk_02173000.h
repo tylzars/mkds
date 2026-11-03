@@ -1,11 +1,12 @@
 #pragma once
 
 #include "types.h"
-#include "ITCM/code_01ff8000.h"
-#include "code_020162b0.h"
-#include "code_02016844.h"
 #include "code_02016d34.h"
 #include "code_0201ec30.h" // Unk02173290
+
+typedef struct Unk01ff9048 Unk01ff9048;
+typedef struct Unk020162b0 Unk020162b0;
+typedef struct Unk02016468 Unk02016468;
 
 extern u32 data_02173274;
 

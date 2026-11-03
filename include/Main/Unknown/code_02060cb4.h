@@ -1,16 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02060004.h"
-#include "Main/Unknown/code_0203b000.h"
-#include "Main/Unknown/code_02057ca4.h"
-#include "Main/Unknown/code_02057d10.h"
-#include "Main/Unknown/code_020574c8.h"
-#include "Main/Unknown/code_02057800.h"
-#include "Main/Unknown/unk_0217a000.h"
-#include "Main/Unknown/unk_0217d000.h"
-#include "00/code_02182fdc.h"
-#include "01/code_021956dc.h"
 
 extern u32 data_021653e4;
 

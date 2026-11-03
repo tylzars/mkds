@@ -1,6 +1,19 @@
+#include "03/code_021bf410.h"
+#include "03/code_021bf4dc.h"
+#include "03/code_021bf810.h"
+#include "03/code_021c209c.h"
 #include "03/code_021c97c0.h"
+#include "03/code_021c99a8.h"
+#include "03/code_021cb11c.h"
+#include "03/code_021cd4ac.h"
+#include "03/code_021cdbd0.h"
 #include "03/code_021cef6c.h"
+#include "03/code_021cef90.h"
+#include "03/code_021d1dd0.h"
+#include "03/code_021d1f70.h"
 #include "03/code_021d254c.h"
+#include "03/unk_021d7000.h"
+#include "code_0214b824.h"
 
 void func_ov003_021c9980(void) {
     int v1;

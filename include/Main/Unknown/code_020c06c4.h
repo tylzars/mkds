@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217b000.h"
+
+typedef struct Unk0217b498 Unk0217b498;
 
 // 8-byte elements of the first table of Unk020c06c4: two words, each with a two-bit part at bit 10.
 typedef struct Unk020c06c4_08 {

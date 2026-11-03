@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_020ea670.h"
 #include "Main/Unknown/code_020f92e8.h"
 
 void func_020f9320(u32 p0, u32 p1) {

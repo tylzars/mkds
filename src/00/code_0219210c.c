@@ -1,4 +1,5 @@
 #include "00/code_0219210c.h"
+#include "00/code_021a3668.h"
 
 void func_ov000_0219210c(int a) {
     if (*(u32 **) (a + 0xc) != NULL) {

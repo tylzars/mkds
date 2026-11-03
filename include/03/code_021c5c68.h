@@ -1,8 +1,11 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021be610.h"
-#include "03/code_021d1fd0.h"
+#include "03/types_021d299c.h"
+
+typedef struct Unk021da104_04 Unk021da104_04;
+typedef struct Unk021d2188 Unk021d2188;
+typedef struct Unk021d299c Unk021d299c;
 
 // Object behind data_ov003_021da1f4 (0x5c bytes).
 typedef struct Unk021c5c68State {
@@ -29,8 +32,6 @@ typedef struct Unk021c5c68State {
     /* 59 */ u8 mUnk_59;
 } Unk021c5c68State;
 
-#include "03/types_021d299c.h"
-
 extern Unk021d299c data_ov003_021d6390[];
 
 void func_ov003_021c5c68(void);
@@ -46,5 +47,4 @@ void func_ov003_021c6394(void);
 void func_ov003_021c63c4(void);
 void func_ov003_021c6e38(void);
 void func_ov003_021ca8e8(void);
-// Declared here until the code that defines them is decompiled.
 void func_ov003_021cce78(void);

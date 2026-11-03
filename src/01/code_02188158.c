@@ -1,4 +1,8 @@
 #include "01/code_02188158.h"
+#include "01/code_02188950.h"
+#include "01/code_02188e88.h"
+#include "Main/Unknown/code_020fd264.h"
+#include "Main/Unknown/code_020fd7f0.h"
 
 void func_ov001_02188200(Unk02188950 *a, UnkFunc *b) {
     a->mUnk_2d4 = b;

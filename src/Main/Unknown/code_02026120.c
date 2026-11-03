@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_0202578c.h"
+#include "Main/Unknown/code_02025eb0.h"
 #include "Main/Unknown/code_02026120.h"
 
 #include "Main/Unknown/code_02025000.h"
@@ -5,6 +7,9 @@
 #include "Main/Unknown/code_02027000.h"
 #include "Main/Unknown/code_02029890.h"
 #include "Main/Unknown/code_0202b000.h"
+#include "Main/Unknown/code_0202bb80.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02056d54.h"
 #include "Main/Unknown/unk_02174000.h"
 #include "Main/Unknown/code_0202b604.h"
 #include "Main/Unknown/code_02036c5c.h"
@@ -46,6 +51,7 @@
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/code_02025f54.h"
 #include "Main/Unknown/code_0202719c.h"
+#include "code_0214d018.h"
 
 #pragma thumb on
 

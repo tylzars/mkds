@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "03/unk_021d8000.h"
 
 // Five, thirteen and sixteen bytes moved as one value.
 typedef struct Unk021bd338_5 {

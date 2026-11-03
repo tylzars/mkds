@@ -3,9 +3,11 @@
 #include "Main/Unknown/code_0212b1c0.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "Main/Unknown/code_02024000.h"
+#include "code_02023374.h"
 #include "code_0214a034.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "code_02016468.h"
+#include "code_0214d018.h"
 #include "Main/Unknown/code_0212b5d8.h"
 
 u32 func_0212b5d8(void) {

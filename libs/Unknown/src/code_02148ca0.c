@@ -2,6 +2,7 @@
 
 #include "Main/Unknown/code_02148cd0.h"
 #include "Main/Unknown/code_02148d24.h"
+#include "Main/Unknown/unk_02180000.h"
 
 u32 func_02148d24(void) {
     u32 value0;

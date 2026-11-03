@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0206152c.h"
 
 u32 func_0206152c(u32 arg0) {

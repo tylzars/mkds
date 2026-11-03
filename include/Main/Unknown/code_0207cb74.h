@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0208fd8c.h"
+
+typedef struct Unk0208fd8c Unk0208fd8c;
 
 struct Unk02089a24;
 struct Unk020888b4;

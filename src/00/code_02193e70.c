@@ -1,3 +1,5 @@
+#include "00/code_02190548.h"
+#include "00/code_0219218c.h"
 #include "00/code_02193e70.h"
 #include "00/code_02192000.h"
 #include "00/code_0218e3c4.h"
@@ -123,8 +125,7 @@ s32 func_ov000_02194590(Unk0218f960 *a, Unk02193f2cNode *b) {
             break;
     }
     if (b->mUnk_30 > 0) {
-        t = func_ov000_021906e4(a, b->mUnk_08, (Unk021906e4 *) b->mUnk_28, (u32 *) &z, 1,
-                                data_ov000_021b3490);
+        t = func_ov000_021906e4(a, b->mUnk_08, (Unk021906e4 *) b->mUnk_28, (u32 *) &z, 1, data_ov000_021b3490);
         if (z != 0 || t != 0) {
             b->mUnk_00 = 0x6a;
         }
@@ -150,8 +151,7 @@ s32 func_ov000_021943f0(Unk0218f960 *a, Unk02193f2cNode *b) {
     if (b->mUnk_00 != 0x68) {
         func_0213442c(data_ov000_021b34a8, data_ov000_021b333c, NULL, 0xc1);
     }
-    t = func_ov000_021907e8(a, b->mUnk_08, (Unk021906e4 *) &b->mUnk_18, (s32 *) &x, (u32 *) &y,
-                            data_ov000_021b3490);
+    t = func_ov000_021907e8(a, b->mUnk_08, (Unk021906e4 *) &b->mUnk_18, (s32 *) &x, (u32 *) &y, data_ov000_021b3490);
     if (t != 0) {
         return t;
     }
@@ -236,8 +236,7 @@ s32 func_ov000_021941c4(Unk0218f960 *a, Unk02193f2cNode *b) {
 
     r = a->mUnk_00;
     if (b->mUnk_30 != 0) {
-        t = func_ov000_021906e4(a, b->mUnk_08, (Unk021906e4 *) b->mUnk_28, (u32 *) &y, 1,
-                                data_ov000_021b3490);
+        t = func_ov000_021906e4(a, b->mUnk_08, (Unk021906e4 *) b->mUnk_28, (u32 *) &y, 1, data_ov000_021b3490);
         if (y != 0 || t != 0) {
             b->mUnk_00 = 0x6a;
             return 0;
@@ -252,8 +251,7 @@ s32 func_ov000_021941c4(Unk0218f960 *a, Unk02193f2cNode *b) {
             return 0;
         }
     }
-    t = func_ov000_021907e8(a, b->mUnk_08, (Unk021906e4 *) &b->mUnk_18, (s32 *) &x, (u32 *) &y,
-                            data_ov000_021b3490);
+    t = func_ov000_021907e8(a, b->mUnk_08, (Unk021906e4 *) &b->mUnk_18, (s32 *) &x, (u32 *) &y, data_ov000_021b3490);
     if (t != 0) {
         b->mUnk_00 = 0x6a;
         return 0;

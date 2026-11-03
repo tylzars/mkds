@@ -1,6 +1,11 @@
 #include "01/code_0219a050.h"
 
 #include "01/unk_021a6000.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02111428.h"
+#include "Main/Unknown/code_02111494.h"
+#include "Main/Unknown/code_02114158.h"
+#include "Main/Unknown/code_02125f6c.h"
 #include "Main/Unknown/unk_02175628.h"
 #include "01/code_021956dc.h"
 #include "Main/Unknown/code_02128210.h"

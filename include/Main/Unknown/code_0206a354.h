@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h"
+
+typedef struct Unk0206bcb0 Unk0206bcb0;
 
 // Object read by func_0206b020: vectors at 0x04, 0x28, 0x34 and 0x40.
 typedef struct Unk0206b020 {

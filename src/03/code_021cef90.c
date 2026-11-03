@@ -1,5 +1,7 @@
 #include "03/code_021cef90.h"
 #include "03/code_021bf4dc.h"
+#include "03/code_021d1790.h"
+#include "03/code_021d197c.h"
 #include "03/code_021d1fd0.h"
 #include "03/unk_021d5000.h"
 #include "03/unk_021da000.h"
@@ -13,6 +15,7 @@
 #include "03/unk_021d7000.h"
 #include "code_0214a390.h"
 #include "registers.h"
+#include "03/code_021cf260.h"
 
 #pragma opt_dead_assignments off
 

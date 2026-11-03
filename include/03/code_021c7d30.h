@@ -1,6 +1,9 @@
 #pragma once
 
 #include "types.h"
+#include "03/types_021d299c.h"
+
+typedef struct Unk021d299c Unk021d299c;
 
 // Object returned by func_ov003_021cdb6c, from its offset 0x400 on.
 typedef struct Unk021cdb6c {
@@ -22,10 +25,6 @@ typedef struct Unk021cdb6c {
 typedef struct Unk021d73d0 {
     /* 00 */ u8 mUnk_00[0xe];
 } Unk021d73d0;
-
-#include "03/code_021b94b8.h"
-#include "03/code_021cd4ac.h"
-#include "03/types_021d299c.h"
 
 extern u8 data_ov003_021d6430[];
 extern u8 data_ov003_021d6460[];

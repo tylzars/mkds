@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h"
 #include "code_02010fac.h"
+
+typedef struct Unk020136f0 Unk020136f0;
 
 // Fourth argument of func_02013e18 and func_02014164: halfword counts at 0x04 and 0x06, flags at 0x08, byte
 // offsets (from this struct) to two s16 arrays at 0x0c and 0x10, and halfword offsets to entries from 0x14.

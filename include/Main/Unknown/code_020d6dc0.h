@@ -1,8 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020d849c.h"
 #include "code_02012b30.h" // Unk02012f58
+
+typedef struct Unk020d84e4 Unk020d84e4;
+typedef struct Unk020d849c Unk020d849c;
 
 struct Unk020fa294;
 

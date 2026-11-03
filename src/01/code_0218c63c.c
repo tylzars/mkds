@@ -1,4 +1,6 @@
+#include "01/code_02188950.h"
 #include "01/code_0218c63c.h"
+#include "code_02133048.h"
 
 void func_ov001_0218c728(Unk02188950 *a) {
     s32 *v1;

@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0208c4e8.h"
+#include "Main/Unknown/code_0208c534.h"
 
 void func_0208c520(Unk0208c5b8 *p0) {
     p0->mUnk_62 = (u16) 0x0u;

@@ -1,6 +1,8 @@
+#include "ITCM/code_01ff9598.h"
 #include "ITCM/code_01ffa4b4.h"
 #include "ITCM/code_01ffdee4.h"
 #include "ITCM/code_01ff9000.h"
+#include "Main/Unknown/code_0206f04c.h"
 #include "Main/Unknown/code_0208ab98.h"
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/code_020d50ec.h"

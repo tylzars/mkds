@@ -1,11 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02175000.h"
-#include "Main/Unknown/unk_021759c0.h"
-#include "Main/Unknown/code_020487fc.h"
-#include "code_020176c0.h"
-#include "Main/Unknown/code_02036820.h"
+
+typedef struct Unk020487fc Unk020487fc;
+typedef struct Unk020176c0 Unk020176c0;
 
 // Object whose halfword at 0x04 func_0203a0dc and func_0203a520 write.
 typedef struct Unk0203a0dc {
@@ -13,7 +11,6 @@ typedef struct Unk0203a0dc {
     /* 04 */ u16 mUnk_04;
 } Unk0203a0dc;
 
-// Declared here until the code that defines them is decompiled.
 void func_02044940(void);
 void func_0204465c(void);
 void func_02037850(void);

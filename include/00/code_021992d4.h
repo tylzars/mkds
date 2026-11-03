@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "00/unk_021b3000.h"
-#include "00/code_02197e8c.h"
+
+typedef struct Unk02197e8c Unk02197e8c;
+typedef struct Unk02197fe8 Unk02197fe8;
 
 extern const u8 data_ov000_021b3fa8[];
 

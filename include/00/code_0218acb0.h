@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0218ae5c.h"
 
 struct Unk0218b668;
 

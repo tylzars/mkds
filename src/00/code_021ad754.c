@@ -1,4 +1,6 @@
+#include "00/code_021a998c.h"
 #include "00/code_021ad754.h"
+#include "00/code_021b0014.h"
 #include "00/unk_021b6000.h"
 #include "00/code_021a91b4.h"
 #include "00/code_021ad018.h"
@@ -11,6 +13,7 @@
 #include "code_0200dc3c.h"
 #include "code_0200f5ac.h"
 #include "code_0214d018.h"
+#include "Main/Unknown/unk_0216f000.h"
 
 u8 *func_ov000_021ad754(u8 *a, u8 b, u32 *c) {
     u32 d;

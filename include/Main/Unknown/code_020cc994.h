@@ -1,8 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02182fdc.h"
-#include "Main/Unknown/unk_021759c0.h"
 
 unsigned int func_020cc994(void);
 void func_020cc9a8(unsigned int p0);

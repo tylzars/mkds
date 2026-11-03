@@ -1,4 +1,5 @@
 #include "00/code_02199fa4.h"
+#include "00/code_02199fb0.h"
 
 u32 func_ov000_02199fa4(u32 arg0) {
     u32 value0 = arg0;

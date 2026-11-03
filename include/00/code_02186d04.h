@@ -3,6 +3,9 @@
 #include "types.h"
 #include "code_0200e0ec.h"
 
+typedef struct Unk021868d0 Unk021868d0;
+typedef struct Unk0200edc0 Unk0200edc0;
+
 // Block of four words: mUnk_00 is the first byte, mUnk_04 the cursor, mUnk_08 the end, mUnk_0c the size.
 typedef struct Unk02186d7cBuf {
     /* 00 */ u8 *mUnk_00;
@@ -71,11 +74,6 @@ typedef struct Unk02186d7c {
     /* 1a60 */ u8 mUnk_1a60[0x1000];
 } Unk02186d7c;
 
-// Declared here until the code that defines them is decompiled.
-
-#include "00/code_02186628.h"
-#include "code_0200e77c.h"
-
 extern u8 data_ov000_021b1204[];
 extern u8 data_ov000_021b1230[];
 extern u8 data_ov000_021b1258[];
@@ -94,7 +92,6 @@ void func_ov000_021872bc(Unk02186d7c *p);
 u32 func_ov000_0218735c(Unk02186d7c *p);
 s32 func_ov000_021873d4(Unk02186d7c *p, const Unk021873d4 *q);
 void func_ov000_021a9c5c(void *a, u32 n);
-// Declared here until the code that defines them is decompiled.
 s32 func_ov000_021adbac(void);
 void func_ov000_021adf00(u32 a);
 void func_ov000_021ae048(void);

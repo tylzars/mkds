@@ -8,9 +8,6 @@ typedef struct Unk0202cdf4 {
     /* 04 */ u16 mUnk_04;
 } Unk0202cdf4;
 
-#include "code_0212d5e0.h"
-#include "01/code_021956dc.h"
-
 void func_0202ccc0(void);
 void func_0202cdd4(void);
 s32 func_0202cdf4(Unk0202cdf4 *p);

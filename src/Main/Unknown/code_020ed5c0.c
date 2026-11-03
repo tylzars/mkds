@@ -1,5 +1,13 @@
+#include "Main/Unknown/code_02070398.h"
+#include "Main/Unknown/code_020be7fc.h"
+#include "Main/Unknown/code_020e66e4.h"
 #include "Main/Unknown/code_020ed5c0.h"
+#include "Main/Unknown/code_020f504c.h"
+#include "Main/Unknown/code_020f5d6c.h"
+#include "Main/Unknown/code_020f73fc.h"
+#include "Main/Unknown/code_020f7c90.h"
 #include "Main/Unknown/unk_0216c000.h"
+#include "ITCM/code_01ffcf7c.h"
 #include "ITCM/code_01ffd000.h"
 #include "Main/Unknown/code_02071000.h"
 #include "Main/Unknown/code_020be000.h"
@@ -373,7 +381,8 @@ void *func_020ed98c(Unk020f41c4_A *p, Vec3 *v) {
     if (p->mUnk_f0.y < 0xfae || (p->mUnk_74 & 0x80) != 0) {
         p->mUnk_94.mUnk_00[2] = *v;
         func_020397a8(&p->mUnk_f0, &p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0]);
-        if ((s64) p->mUnk_94.mUnk_00[0].x * p->mUnk_94.mUnk_00[0].x + (s64) p->mUnk_94.mUnk_00[0].y * p->mUnk_94.mUnk_00[0].y +
+        if ((s64) p->mUnk_94.mUnk_00[0].x * p->mUnk_94.mUnk_00[0].x +
+                (s64) p->mUnk_94.mUnk_00[0].y * p->mUnk_94.mUnk_00[0].y +
                 (s64) p->mUnk_94.mUnk_00[0].z * p->mUnk_94.mUnk_00[0].z >=
             0x10) {
             func_02039860(&p->mUnk_94.mUnk_00[0], &p->mUnk_94.mUnk_00[0]);
@@ -429,7 +438,8 @@ void func_020ed79c(Unk020ed718 *p, Vec3 *v) {
         if (q->mUnk_f0.y < 0xfae || (q->mUnk_74 & 0x80) != 0) {
             q->mUnk_94.mUnk_00[2] = *v;
             func_020397a8(&q->mUnk_f0, &q->mUnk_94.mUnk_00[2], &q->mUnk_94.mUnk_00[0]);
-            if ((s64) q->mUnk_94.mUnk_00[0].x * q->mUnk_94.mUnk_00[0].x + (s64) q->mUnk_94.mUnk_00[0].y * q->mUnk_94.mUnk_00[0].y +
+            if ((s64) q->mUnk_94.mUnk_00[0].x * q->mUnk_94.mUnk_00[0].x +
+                    (s64) q->mUnk_94.mUnk_00[0].y * q->mUnk_94.mUnk_00[0].y +
                     (s64) q->mUnk_94.mUnk_00[0].z * q->mUnk_94.mUnk_00[0].z >=
                 0x10) {
                 func_02039860(&q->mUnk_94.mUnk_00[0], &q->mUnk_94.mUnk_00[0]);
@@ -487,7 +497,8 @@ void func_020ed5c0(Unk020f41c4_A *p, Unk020e6488 *q, Vec3 *v) {
     if (p->mUnk_f0.y < 0xfae || (p->mUnk_74 & 0x80) != 0) {
         p->mUnk_94.mUnk_00[2] = *v;
         func_020397a8(&p->mUnk_f0, &p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0]);
-        if ((s64) p->mUnk_94.mUnk_00[0].x * p->mUnk_94.mUnk_00[0].x + (s64) p->mUnk_94.mUnk_00[0].y * p->mUnk_94.mUnk_00[0].y +
+        if ((s64) p->mUnk_94.mUnk_00[0].x * p->mUnk_94.mUnk_00[0].x +
+                (s64) p->mUnk_94.mUnk_00[0].y * p->mUnk_94.mUnk_00[0].y +
                 (s64) p->mUnk_94.mUnk_00[0].z * p->mUnk_94.mUnk_00[0].z >=
             0x10) {
             func_02039860(&p->mUnk_94.mUnk_00[0], &p->mUnk_94.mUnk_00[0]);

@@ -1,9 +1,12 @@
+#include "00/code_0218e49c.h"
+#include "00/code_02190ba0.h"
 #include "00/code_021965c8.h"
 #include "00/code_0218eb9c.h"
 #include "00/code_02196000.h"
 
 #include "00/code_021965a0.h"
 #include "code_0213442c.h"
+#include "00/code_021967b4.h"
 #include "00/unk_021b3000.h"
 
 u32 func_ov000_02196714(Unk0218f960 *a, u32 b, u32 *c) {

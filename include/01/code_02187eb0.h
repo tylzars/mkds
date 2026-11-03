@@ -1,9 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "01/code_02188950.h"
-#include "Main/Unknown/code_0206bcb0.h"
-#include "Main/Unknown/code_02042044.h"
+
+typedef struct Unk02188950 Unk02188950;
+typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Unk02042044 Unk02042044;
 
 void func_ov001_02187eb0(Unk02188950 *b);
 Unk02042044 *func_ov001_02187ee8(Unk02188950 *a);

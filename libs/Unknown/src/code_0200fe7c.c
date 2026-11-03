@@ -1,3 +1,5 @@
+#include "code_0200fc8c.h"
+#include "code_0200fe74.h"
 #include "code_0200fe7c.h"
 #include "Main/Unknown/code_0200f000.h"
 #include "code_0200f59c.h"

@@ -1,15 +1,21 @@
+#include "Main/Unknown/code_02056464.h"
 #include "Main/Unknown/code_02120610.h"
 #include "00/code_02182fdc.h"
+#include "Main/Unknown/code_02122b14.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "Main/Unknown/code_02056000.h"
 #include "Main/Unknown/code_02123000.h"
 #include "00/code_0219b000.h"
 #include "00/code_0219bb50.h"
+#include "00/code_0219bb68.h"
 #include "00/code_021a2000.h"
+#include "00/code_021a2950.h"
 #include "00/code_021a2cac.h"
+#include "00/code_021a2ccc.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/code_02029890.h"
 #include "code_02135014.h"
+#include "code_0214d018.h"
 
 #pragma opt_arithtransformation off
 
@@ -443,8 +449,8 @@ void RegisterKartKeysAndStart(void) {
             func_ov000_0219bc78(NULL, 0, data_0217d384->mUnk_194c, 1, KartKeysStartCallback, NULL, 0, 0);
             break;
         case 1:
-            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL, ComputeEloEval,
-                                0);
+            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
+                                ComputeEloEval, 0);
             break;
     }
     data_0217d384->mStartStatus = 1;

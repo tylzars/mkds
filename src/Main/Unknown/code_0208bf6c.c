@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0208bf6c.h"
+#include "Main/Unknown/code_02090348.h"
 
 void func_0208bf94(Unk020888b4 *a, s32 b) {
     Unk0206bcb0 *v1;

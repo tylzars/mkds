@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0212b090.h"
 
 #include "Main/Unknown/code_0212b09c.h"
@@ -8,7 +9,9 @@
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02120610.h"
 #include "Main/Unknown/code_02023000.h"
+#include "code_02023374.h"
 #include "code_021488e8.h"
+#include "code_0214d018.h"
 
 #pragma thumb on
 void func_0212b158(void *a) {

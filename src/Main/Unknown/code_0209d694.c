@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_0209b634.h"
+#include "Main/Unknown/code_0209bf70.h"
 #include "Main/Unknown/code_0209d694.h"
 
 #include "Main/Unknown/code_0208b498.h"
@@ -9,6 +11,7 @@
 #include "ITCM/code_01ffdee4.h"
 #include "Main/Unknown/code_020d22c0.h"
 #include "Main/Unknown/code_020d22e0.h"
+#include "Main/Unknown/code_020d278c.h"
 #include "Main/Unknown/code_020d4c28.h"
 #include "Main/Unknown/code_021000d0.h"
 #include "Main/Unknown/code_0210b760.h"
@@ -115,8 +118,8 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
                 p->mUnk_00.mUnk_10.y = t;
                 func_02148504(&p->mUnk_00.mUnk_04, &p->mUnk_00.mUnk_10, &p->mUnk_00.mUnk_04);
                 if (p->mUnk_a0 > 0x78 && p->mUnk_00.mUnk_10.y < 0) {
-                    if (func_01ffdee4(&p->mUnk_00.mUnk_04, NULL, 0, p->mUnk_00.mUnk_58.x, 8, -2, &v, NULL, NULL, &f, NULL, NULL, NULL,
-                                      NULL) != 0 &&
+                    if (func_01ffdee4(&p->mUnk_00.mUnk_04, NULL, 0, p->mUnk_00.mUnk_58.x, 8, -2, &v, NULL, NULL, &f,
+                                      NULL, NULL, NULL, NULL) != 0 &&
                         (f & 0x3f77ef) != 0) {
                         func_02148504(&p->mUnk_00.mUnk_04, &v, &p->mUnk_00.mUnk_04);
                         t = p->mUnk_00.mUnk_04.x - p->mUnk_a8.x;

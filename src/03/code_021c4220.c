@@ -1,6 +1,14 @@
+#include "03/code_021bf4dc.h"
+#include "03/code_021c4188.h"
+#include "03/code_021c41d4.h"
 #include "03/code_021c4220.h"
+#include "03/code_021c4dd4.h"
+#include "03/code_021cdbd0.h"
+#include "03/code_021d1dd0.h"
+#include "03/code_021d1f70.h"
 #include "03/code_021d1fd0.h"
 #include "03/code_021d254c.h"
+#include "03/code_021d2940.h"
 
 void func_ov003_021c42f4(void) {
     int v1;

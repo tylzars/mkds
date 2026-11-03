@@ -1,8 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h"
-#include "Main/Unknown/code_0210bcf4.h"
+
+typedef struct Unk0206bcb0 Unk0206bcb0;
 
 // Second argument of func_0210a5a8: a word callback at 0x3c.
 typedef struct Unk0210a5a8 {

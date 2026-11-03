@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020b1d64.h"
+#include "Main/Unknown/unk_0217b000.h"
 
 void func_020b1d90(void) {
     data_0217b350->mUnk_828 = 5;

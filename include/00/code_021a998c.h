@@ -1,11 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_021aa468.h"
-#include "00/code_021ab000.h"
-#include "00/unk_021b6000.h"
-#include "00/types_021a998c.h"
-#include "03/code_021b94b8.h"
+
+typedef struct Unk021a998c_0c Unk021a998c_0c;
 
 // Argument of func_ov000_021a998c.
 struct Unk021a998c;

@@ -1,4 +1,6 @@
 #include "00/code_021ad36c.h"
+#include "00/code_021ad3b8.h"
+#include "00/code_021ae258.h"
 
 u32 func_ov000_021ad36c(void) {
     u32 v1;

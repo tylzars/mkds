@@ -2,10 +2,12 @@
 #include "00/code_021a9228.h"
 #include "00/code_021ae01c.h"
 #include "00/code_021aefa8.h"
+#include "00/code_021af550.h"
 #include "code_0200dc3c.h"
 #include "code_0200f5ac.h"
 #include "code_0200fc8c.h"
 #include "code_02134d30.h"
+#include "Main/Unknown/unk_0216f000.h"
 
 s32 func_ov000_021adbac(void) {
     Unk021a998c *s;

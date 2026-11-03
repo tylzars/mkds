@@ -1,4 +1,5 @@
 #include "00/code_021ab7b4.h"
+#include "code_0214d018.h"
 
 void func_ov000_021ab7b4(u32 *a) {
     func_0214d168((void *) (a), (u8) (0), (u32) (0x58));

@@ -1,6 +1,8 @@
 #include "Main/Unknown/code_0202f4ac.h"
 #include "Main/Unknown/code_02038000.h"
+#include "Main/Unknown/code_02038c94.h"
 #include "Main/Unknown/code_0214d000.h"
+#include "code_0214d018.h"
 
 void func_0202f530(void *p, u32 v, u32 n) {
     volatile u32 value = v;

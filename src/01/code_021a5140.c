@@ -1,11 +1,16 @@
+#include "01/code_02184f7c.h"
+#include "01/code_021928c8.h"
 #include "01/code_021a5140.h"
 #include "01/code_02181000.h"
 #include "01/code_02184000.h"
 #include "01/code_02185000.h"
 #include "01/code_02192000.h"
 #include "01/code_021a6000.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02037000.h"
+#include "Main/Unknown/code_02037a04.h"
 #include "Main/Unknown/code_02038000.h"
+#include "Main/Unknown/code_02038c94.h"
 #include "Main/Unknown/code_02078000.h"
 #include "Main/Unknown/code_020ac000.h"
 #include "Main/Unknown/code_020b4000.h"
@@ -15,9 +20,11 @@
 #include "Main/Unknown/code_020391d4.h"
 #include "Main/Unknown/code_020472a8.h"
 #include "Main/Unknown/code_020ae4c0.h"
+#include "Main/Unknown/code_020ca6c4.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "01/code_02180ce8.h"
 #include "03/code_021b94b8.h"
+#include "code_0214d018.h"
 
 void InitEmblem(void) {
     Unk020391d4 unk;

@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_0208ab98.h"
+#include "Main/Unknown/code_020f81c0.h"
 #include "Main/Unknown/code_02102eb8.h"
 
 #include "Main/Unknown/code_0208a000.h"
@@ -11,6 +13,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_0203c5e4.h"
 #include "Main/Unknown/code_02074854.h"
+#include "03/code_021b7bb4.h"
 
 void func_021031ac(Unk02102674 *p) {
     s32 i;

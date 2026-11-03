@@ -1,8 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0219de4c.h"
-#include "00/code_021a0958.h"
 
 // Object func_ov000_0219db18 reads and writes through its last parameter.
 typedef struct Unk0219db18 {

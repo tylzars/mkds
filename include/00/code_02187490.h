@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "code_0200e0ec.h"
 #include "00/code_02186628.h"
+
+typedef struct Unk0200db5c Unk0200db5c;
 
 // Three words: a function called with (name, size) that returns a block, a function called with (name, block, 0) that
 // releases it, and a word.

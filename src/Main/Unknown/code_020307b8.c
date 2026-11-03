@@ -2,6 +2,7 @@
 #include "Main/Unknown/code_0203003c.h"
 #include "Main/Unknown/code_02030a10.h"
 #include "Main/Unknown/code_02036000.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020472a8.h"
 #include "Main/Unknown/code_020b3f7c.h"
@@ -17,6 +18,7 @@
 #include "Main/Unknown/unk_02163000.h"
 #include "Main/Unknown/unk_02174000.h"
 #include "code_02016468.h"
+#include "code_0214d018.h"
 
 #pragma optimize_for_size on
 

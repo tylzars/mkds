@@ -1,7 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217a000.h"
+
+typedef struct Unk0217aa08_08_04 Unk0217aa08_08_04;
+typedef struct Unk0217aa08_0c_04 Unk0217aa08_0c_04;
 
 // 0x20 bytes that func_02056bc0 fills and func_02056b30 reads.
 typedef struct Unk02056bc0 {

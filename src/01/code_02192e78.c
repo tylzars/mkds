@@ -1,12 +1,21 @@
 #include "01/code_02192e78.h"
 
 #include "01/code_02193000.h"
+#include "01/code_02199964.h"
+#include "01/code_0219d5dc.h"
+#include "01/code_0219e824.h"
 #include "01/unk_021a9000.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02125960.h"
 #include "Main/Unknown/code_0212a000.h"
+#include "Main/Unknown/code_0212a920.h"
+#include "Main/Unknown/code_0212abd0.h"
+#include "Main/Unknown/code_0212abdc.h"
 #include "Main/Unknown/code_0214a000.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "code_0214a2a0.h"
 #include "code_0214a2f4.h"
+#include "code_0214d018.h"
 #include "registers.h"
 
 void ClearOptionStateCallbacks(void) {

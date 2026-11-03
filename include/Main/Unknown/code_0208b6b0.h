@@ -5,7 +5,6 @@
 // Declared here until the code that defines them is decompiled.
 
 #include "code_020184e4.h"
-#include "Main/Unknown/code_02061654.h"
 
 extern Vec3 data_usa_021660fc;
 extern char data_usa_02166138[];

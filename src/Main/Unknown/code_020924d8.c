@@ -1,7 +1,10 @@
+#include "Main/Unknown/code_0209219c.h"
 #include "Main/Unknown/code_020924d8.h"
+#include "Main/Unknown/code_0209b634.h"
 #include "Main/Unknown/code_020d22e0.h"
 #include "Main/Unknown/code_020d275c.h"
 #include "Main/Unknown/code_020e6b58.h"
+#include "ITCM/code_01ff8000.h"
 #include "ITCM/code_01ff9000.h"
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/code_02146000.h"
@@ -9,6 +12,7 @@
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/unk_02166000.h"
+#include "code_02146cbc.h"
 #include "code_02147cd8.h"
 
 u8 func_0209297c(Unk0209219c *a, Unk0209297c *b, void *c, u8 *d) {

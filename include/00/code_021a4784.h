@@ -2,9 +2,7 @@
 
 #include "types.h"
 
-// Declared here until the code that defines them is decompiled.
-
-#include "00/code_021a4a08.h"
+typedef struct Unk021a4a08 Unk021a4a08;
 
 void func_ov000_021a4784(u32 a, int b);
 void func_ov000_021a47ac(Unk021a4a08 *a);

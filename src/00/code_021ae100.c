@@ -1,5 +1,6 @@
 #include "00/code_021ae100.h"
 #include "00/code_021a998c.h"
+#include "Main/Unknown/unk_0216f000.h"
 
 u32 func_ov000_021ae100(u16 *a, u32 *b) {
     Unk021a998c *v1;

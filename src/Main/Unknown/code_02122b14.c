@@ -1,7 +1,10 @@
 #include "Main/Unknown/code_02122b14.h"
 #include "00/code_0219b000.h"
+#include "00/code_0219bb68.h"
 #include "00/code_021a2000.h"
+#include "00/code_021a2ccc.h"
 #include "00/code_021a3000.h"
+#include "00/code_021a3264.h"
 #include "00/unk_021b5000.h"
 #include "00/code_021a31d4.h"
 #include "Main/Unknown/code_0205e000.h"
@@ -15,6 +18,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "01/code_021956dc.h"
 #include "code_0200f5ac.h"
+#include "code_0214d018.h"
 
 void func_02123a48(u32 a) {
     u8 i;

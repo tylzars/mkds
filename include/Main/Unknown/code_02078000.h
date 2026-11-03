@@ -1,9 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02078580.h"
 
-// Declared here until the code that defines them is decompiled.
 void func_02078c58(void *heap);
 void func_02078158(void);
 void func_020783c8(void);

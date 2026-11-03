@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_020ab058.h"
+#include "Main/Unknown/code_020ab088.h"
 #include "Main/Unknown/code_020ab5b4.h"
 
 #include "Main/Unknown/code_020ab5bc.h"
@@ -23,6 +25,9 @@
 #include "Main/Unknown/unk_02156000.h"
 #include "Main/Unknown/code_020aba94.h"
 #include "Main/Unknown/code_020aba9c.h"
+#include "code_0200eddc.h"
+#include "code_0214b824.h"
+#include "code_0214d018.h"
 
 #pragma thumb on
 

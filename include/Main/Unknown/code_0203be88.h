@@ -1,8 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0203ba84.h"
-#include "Main/Unknown/code_020487fc.h"
+
+typedef struct Unk020487fc Unk020487fc;
 
 // Object func_0203bf04 reads: the first 0x30 bytes and the 0xdcc bytes from 0x30.
 typedef struct Unk0203bf04_a {

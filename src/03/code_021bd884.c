@@ -1,3 +1,4 @@
+#include "03/code_021bcadc.h"
 #include "03/code_021bd884.h"
 
 #include "03/code_021b7bb4.h"
@@ -5,6 +6,7 @@
 #include "03/code_021bdaa4.h"
 #include "03/unk_021d6000.h"
 #include "03/unk_021d8000.h"
+#include "code_0200fd1c.h"
 #include "code_02134d30.h"
 
 s32 func_ov003_021bda78(u8 *p, u32 a, const void *b, u32 c) {

@@ -3,6 +3,8 @@
 #include "types.h"
 #include "00/code_021a6fa8.h"
 
+typedef struct Unk021b49b8 Unk021b49b8;
+
 struct Unk021a7064;
 
 typedef s32 (*Unk021a7064Func)(struct Unk021a7064 *param_1);
@@ -22,9 +24,6 @@ typedef struct Unk021a7064 {
     /* 1c */ u32 mUnk_1c;
     /* 20 */ u8 mUnk_20[0xc];
 } Unk021a7064;
-
-#include "00/unk_021b5000.h"
-#include "00/unk_021b4000.h"
 
 s32 func_ov000_021a6fb4(Unk021a6fa8 *a, Unk021a7064 *b);
 s32 func_ov000_021a6fc0(Unk021a7154 *d, Unk021a7064 *e);

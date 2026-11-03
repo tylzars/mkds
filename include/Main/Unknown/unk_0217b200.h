@@ -41,5 +41,3 @@ typedef struct Unk0217b200 {
 } Unk0217b200;
 
 extern Unk0217b200 *data_0217b200;
-
-#include "01/code_0219b540.h"

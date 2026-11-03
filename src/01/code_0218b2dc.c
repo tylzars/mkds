@@ -1,13 +1,25 @@
+#include "01/code_021882b8.h"
+#include "01/code_02188cd8.h"
 #include "01/code_0218b2dc.h"
 
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_0208b6b0.h"
+#include "Main/Unknown/code_0209b60c.h"
+#include "Main/Unknown/code_0209b634.h"
 #include "Main/Unknown/code_0209bef0.h"
+#include "01/code_0218b9b4.h"
 #include "01/unk_021a6000.h"
 #include "01/code_02188000.h"
 #include "01/code_0218c000.h"
+#include "Main/Unknown/code_020a100c.h"
+#include "Main/Unknown/code_020a126c.h"
+#include "Main/Unknown/code_020ac524.h"
 #include "Main/Unknown/code_020d4000.h"
 #include "01/code_02185ef4.h"
 #include "01/code_02187d14.h"
+#include "Main/Unknown/code_020d4c28.h"
 #include "Main/Unknown/code_020f4000.h"
+#include "Main/Unknown/code_02109110.h"
 #include "Main/Unknown/unk_0217c000.h"
 #include "01/code_02188158.h"
 #include "Main/Unknown/code_020364e0.h"
@@ -89,8 +101,7 @@ u32 func_ov001_0218b850(Unk02188950 *a) {
 
 void func_ov001_0218b828(int a) {
     func_ov001_02187218((Unk02188950 *) a, 8, (s32(*)(Unk02188950 *))(&func_ov001_0218b8d4));
-    func_ov001_02188d64((Unk02188950 *) a, *(u32 *) (*(s32 *) (a + 0xa0) + 100),
-                        *(u32 *) (*(s32 *) (a + 0xa0) + 0x68));
+    func_ov001_02188d64((Unk02188950 *) a, *(u32 *) (*(s32 *) (a + 0xa0) + 100), *(u32 *) (*(s32 *) (a + 0xa0) + 0x68));
 }
 
 void func_ov001_0218b7fc(Unk02188950 *a) {
@@ -231,8 +242,7 @@ void func_ov001_0218b35c(Unk0218d87c *a) {
             if (data_021759c0->mUnk_08 == 4) {
                 func_ov001_02181b8c(obj);
             }
-            func_ov001_021870e4((void *) a, obj, ("kuriking.nsbmd"), ("kuriking.nsbca"),
-                                ("kuriking.prm"));
+            func_ov001_021870e4((void *) a, obj, ("kuriking.nsbmd"), ("kuriking.nsbca"), ("kuriking.prm"));
             func_ov001_021870b0((void *) a, obj, ("sh_circle.nsbmd"));
             func_ov001_0219b31c(obj->mUnk_304, "kuriking.nsbta");
             func_ov001_0219b2e8(obj->mUnk_304, "kuriking.nsbtp");

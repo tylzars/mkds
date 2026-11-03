@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "code_020204b4.h"
 
 // Object behind data_02173290.
 typedef struct Unk02173290 {

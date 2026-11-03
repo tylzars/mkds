@@ -1,4 +1,6 @@
 #include "03/code_021bf4dc.h"
+#include "03/code_021ce024.h"
+#include "03/code_021ce110.h"
 #include "03/code_021d1fd0.h"
 #include "03/unk_021da000.h"
 #include "03/code_021bf410.h"
@@ -12,6 +14,7 @@
 #include "03/code_021d1000.h"
 #include "03/code_021c209c.h"
 #include "Main/Unknown/code_0200e000.h"
+#include "code_0200eddc.h"
 #include "code_02139f70.h"
 
 u8 *func_ov003_021bf650(const u8 *b) {

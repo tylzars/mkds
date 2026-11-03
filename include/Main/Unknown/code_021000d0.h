@@ -1,7 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e6fd4.h"
+
+typedef struct Unk020e71a0_98 Unk020e71a0_98;
+typedef struct Unk020e71a0 Unk020e71a0;
+typedef struct Unk020e6fd4 Unk020e6fd4;
 
 struct Unk021000d0;
 

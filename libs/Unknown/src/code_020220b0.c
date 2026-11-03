@@ -1,3 +1,4 @@
+#include "code_02022098.h"
 #include "code_020220b0.h"
 
 void func_020220b0(u32 arg0) {

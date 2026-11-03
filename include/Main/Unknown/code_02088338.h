@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02165000.h"
 
 char *BuildTeamEmblemNsbtxPath(s32 a);
 char *BuildEmblemNsbtxPath(u16 a);

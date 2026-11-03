@@ -2,16 +2,21 @@
 #include "03/code_021bf098.h"
 #include "03/code_021d1770.h"
 #include "03/code_021d1000.h"
+#include "03/code_021d1790.h"
+#include "03/code_021d197c.h"
 #include "03/code_021d27d8.h"
 #include "03/code_021d3488.h"
 #include "03/code_021d2ecc.h"
 #include "03/unk_021d5000.h"
+#include "03/unk_021d8000.h"
 #include "03/unk_021da000.h"
 #include "code_0200fc8c.h"
 #include "code_0214d018.h"
 #include "code_02147cd8.h"
 #include "03/code_021d1970.h"
 #include "03/code_021d1c18.h"
+#include "00/code_021a5b3c.h"
+#include "00/code_021a669c.h"
 
 u32 func_ov003_021be610(void (*param_0)(u32, u32), void *param_1, u32 param_2) {
     u32 a = func_0200fca0();

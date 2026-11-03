@@ -1,9 +1,9 @@
 #pragma once
 
 #include "types.h"
+#include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_0207a14c.h"
 
-// Declared here until the code that defines them is decompiled.
 void func_0207ad88();
 #include "Main/Unknown/code_0207a68c.h"
 void func_0207a8c4(Vec3 *a, s32 b);

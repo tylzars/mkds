@@ -3,6 +3,8 @@
 #include "types.h"
 #include "00/code_0218e49c.h"
 
+typedef struct Unk021a8f84 Unk021a8f84;
+
 // Output buffer the string writers append to: bytes at mUnk_000, used length at mUnk_800.
 typedef struct Unk021a471c {
     /* 000 */ u8 mUnk_000[0x800];

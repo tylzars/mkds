@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_021759c0.h"
 
 unsigned int func_020cc5d8(void);
 unsigned int func_020cc5ec(void);

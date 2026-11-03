@@ -1,4 +1,6 @@
+#include "03/code_021c209c.h"
 #include "03/code_021c30d4.h"
+#include "03/code_021c30f0.h"
 #include "03/code_021cef6c.h"
 
 void func_ov003_021c30d4(void) {

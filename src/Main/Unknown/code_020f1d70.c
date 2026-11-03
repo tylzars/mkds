@@ -2,11 +2,13 @@
 
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/code_020f6000.h"
+#include "Main/Unknown/code_020f6be8.h"
 #include "Main/Unknown/code_020f7000.h"
 #include "ITCM/code_01ffd000.h"
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_020ed5c0.h"
 #include "Main/Unknown/code_02109000.h"
+#include "Main/Unknown/code_02109054.h"
 #include "code_02147cd8.h"
 
 void func_020f2b94(void *a0, void *b0, s32 c, s32 d, s32 e, s32 f) {
@@ -188,8 +190,8 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
     p = &a->mUnk_000.mUnk_5c;
     r = &a->mUnk_130;
     func_02148504((const Vec3 *) p, q, q);
-    n = func_01ffdee4(q, (u32 *) &a->mUnk_000.mUnk_0e4, 0, a->mUnk_000.mUnk_dc, a->mUnk_164,
-                      a->mUnk_000.mUnk_da, &v1, &v2, (s32 *) &v3, &a->mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL);
+    n = func_01ffdee4(q, (u32 *) &a->mUnk_000.mUnk_0e4, 0, a->mUnk_000.mUnk_dc, a->mUnk_164, a->mUnk_000.mUnk_da, &v1,
+                      &v2, (s32 *) &v3, &a->mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL);
     if (n != 0) {
         f = a->mUnk_000.mUnk_fc & 0x80000;
         if (a->mUnk_158 != 0) {

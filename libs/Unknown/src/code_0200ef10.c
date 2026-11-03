@@ -1,4 +1,5 @@
 #include "code_0200ef10.h"
+#include "Main/Unknown/unk_02170000.h"
 
 u32 func_0200ef10(void) {
     u32 value0;

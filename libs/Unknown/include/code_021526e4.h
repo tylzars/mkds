@@ -1,7 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "code_02152490.h"
+
+typedef struct Unk02152490 Unk02152490;
+typedef struct Unk02152500 Unk02152500;
 
 s32 func_021526e4(const Unk02152490 *a);
 void func_02152744(Unk02152490 *a);

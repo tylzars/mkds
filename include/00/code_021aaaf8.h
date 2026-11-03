@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/types_021a998c.h"
+
+typedef struct Unk021a998c_0c Unk021a998c_0c;
 
 u32 func_ov000_021aaaf8(const u8 *a, s32 b, s32 c);
 BOOL func_ov000_021aab3c(const u8 *a, s32 b, s32 c, u32 d);

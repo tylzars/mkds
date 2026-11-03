@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_0205ee14.h"
 #include "Main/Unknown/code_020c5ccc.h"
 
 #include "Main/Unknown/code_020c5ce0.h"
@@ -7,6 +9,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_020c5db0.h"
 #include "Main/Unknown/code_020c53c4.h"
+#include "Main/Unknown/unk_0217b000.h"
 
 u32 func_020c5dc4(void) {
     return ((u32) data_0217b3f0->mUnk_00);

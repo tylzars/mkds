@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020dc474.h"
+
+typedef struct Unk020dc474 Unk020dc474;
 
 // Object of func_020dd7a8: a function at 0x10 and the address of the pointer that holds it at 0x24.
 typedef struct Unk020dd7a8 {

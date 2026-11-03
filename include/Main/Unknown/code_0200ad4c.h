@@ -1,9 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0214d000.h"
-#include "Main/Unknown/code_0200f000.h"
-#include "code_0200fd1c.h"
 #include "code_02142eac.h"
 
 // 0x180-byte entries from 0x600 of Unk0216fda8.

@@ -1,4 +1,11 @@
+#include "01/code_02185ef4.h"
+#include "01/code_02187eb0.h"
+#include "01/code_02188950.h"
+#include "01/code_02188cd8.h"
 #include "01/code_0218bfc8.h"
+#include "01/code_0218c0a4.h"
+#include "01/code_0218c584.h"
+#include "01/code_0219b1c4.h"
 
 void func_ov001_0218bfc8(Unk02188950 *a) {
     u32 v1;

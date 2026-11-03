@@ -1,4 +1,6 @@
+#include "Main/Unknown/code_02046be8.h"
 #include "Main/Unknown/code_020ec884.h"
+#include "Main/Unknown/unk_0216c000.h"
 
 void func_020ec884(Unk020e43a8 *arg0) {
     u32 value0 = (u32) arg0;

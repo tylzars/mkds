@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_0205bc08.h"
 #include "Main/Unknown/code_0205c800.h"
 #include "Main/Unknown/code_0205a548.h"
 #include "Main/Unknown/code_0205a92c.h"
@@ -6,12 +8,14 @@
 #include "Main/Unknown/code_02036000.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02046be8.h"
+#include "Main/Unknown/code_0205d0e8.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "00/code_0219bb50.h"
 #include "code_0200f5ac.h"
+#include "code_0214d018.h"
 
 void func_0205c800(u16 a, void (*b)(u32)) {
     u16 i;

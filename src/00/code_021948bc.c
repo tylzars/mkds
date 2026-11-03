@@ -1,4 +1,5 @@
 #include "00/code_021948bc.h"
+#include "code_02139f70.h"
 
 u32 func_ov000_021948bc(u32 a, int b, u32 *c) {
     int v1;

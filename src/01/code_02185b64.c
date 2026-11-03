@@ -1,16 +1,25 @@
 #include "01/code_02185b64.h"
 
+#include "Main/Unknown/code_0209b634.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "01/callees_0219b000.h"
+#include "01/code_02185ef4.h"
 #include "01/unk_021a6000.h"
 #include "Main/Unknown/code_02084000.h"
 #include "Main/Unknown/code_0209b000.h"
+#include "Main/Unknown/code_0209bf70.h"
 #include "Main/Unknown/code_020a1000.h"
+#include "Main/Unknown/code_020a100c.h"
 #include "Main/Unknown/code_020d2000.h"
+#include "Main/Unknown/code_020d2450.h"
+#include "Main/Unknown/code_020d2dec.h"
 #include "Main/Unknown/code_020d3000.h"
+#include "Main/Unknown/code_020f9c6c.h"
 #include "Main/Unknown/code_02146000.h"
+#include "code_02146cbc.h"
 #include "code_02147cd8.h"
 #include "code_02146d78.h"
+#include "ITCM/code_01ff8000.h"
 
 void func_ov001_02185dd0(Unk02185bb8 *a) {
     s32 mtx[9];

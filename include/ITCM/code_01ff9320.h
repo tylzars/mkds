@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "code_02010fac.h"
+
+typedef struct Unk0201290c_1c Unk0201290c_1c;
 
 // Command word and the 18 words sent with it: a mode, a 4x4 matrix and a trailing value.
 typedef struct Unk01ff9320_buf {

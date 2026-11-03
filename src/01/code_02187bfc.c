@@ -8,6 +8,7 @@
 #include "Main/Unknown/code_020da000.h"
 #include "Main/Unknown/code_020f4000.h"
 #include "Main/Unknown/code_020fd000.h"
+#include "Main/Unknown/code_020fd264.h"
 #include "Main/Unknown/code_02147000.h"
 
 void func_ov001_02187bfc(Unk02188950 *a, Vec3 *b, s32 c) {

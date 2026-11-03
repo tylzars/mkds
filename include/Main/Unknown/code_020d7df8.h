@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e005c.h"
+
+typedef struct Unk020e0144_00_0 Unk020e0144_00_0;
 
 // Second argument of func_020d7e44: a byte at 0x01 and a halfword at 0x02.
 typedef struct Unk020d7e44 {

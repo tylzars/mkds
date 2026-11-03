@@ -1,10 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021d1fd0.h"
-#include "03/unk_021d6000.h"
-#include "03/unk_021d7000.h"
-#include "03/unk_021da000.h"
 
 // Object returned by func_ov003_021cdb6c.
 typedef struct Unk021c8a60 {
@@ -25,7 +21,6 @@ typedef struct Unk021c8a60 {
     /* f6 */ u8 mUnk_f6;
 } Unk021c8a60;
 
-// Declared here until the code that defines them is decompiled.
 void func_ov003_021d2094(void *e, s32 f, u32 g, u32 h, s32 l, u16 *m, s32 n);
 void func_ov003_021cce78(void);
 void func_ov003_021c6e38(void);

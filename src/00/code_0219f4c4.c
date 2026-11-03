@@ -1,3 +1,6 @@
+#include "00/code_0219a654.h"
+#include "00/code_0219e4e8.h"
+#include "00/code_0219eaf4.h"
 #include "00/code_0219f4c4.h"
 #include "00/code_0218eb9c.h"
 #include "00/unk_021b5000.h"

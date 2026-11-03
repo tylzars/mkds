@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02180000.h"
 
 // Fields read from or written to the 14-byte object at data_021804a0 by func_021510a4 and func_02151910.
 typedef struct Unk021510a4 {

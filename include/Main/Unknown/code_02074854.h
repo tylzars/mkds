@@ -3,6 +3,8 @@
 #include "types.h"
 #include "Main/Unknown/unk_0217a000.h"
 
+typedef struct Unk02061808 Unk02061808;
+
 void func_02074854(void);
 void func_02074874(unsigned int p0);
 Unk02061808 *func_02074888(void);

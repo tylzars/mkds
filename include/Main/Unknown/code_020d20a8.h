@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020f36d8.h"
-#include "Main/Unknown/code_020e6fd4.h"
+
+typedef struct Unk020f41c4_A Unk020f41c4_A;
+typedef struct Unk020e71a0 Unk020e71a0;
 
 BOOL func_020d2234(Unk020e71a0 *d, Unk020f41c4_A *e);
 void *FindMainRaceOrMainEffectMapObjFile(const char *a);

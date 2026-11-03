@@ -1,15 +1,26 @@
 #include "01/code_02185ef4.h"
 
+#include "Main/Unknown/code_0208b498.h"
+#include "Main/Unknown/code_0209b60c.h"
+#include "Main/Unknown/code_0209b634.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "01/code_0219e000.h"
+#include "Main/Unknown/code_020d3b10.h"
+#include "Main/Unknown/code_020d3c94.h"
+#include "Main/Unknown/code_020e66e4.h"
 #include "Main/Unknown/code_020ea000.h"
 #include "Main/Unknown/code_020eb000.h"
+#include "Main/Unknown/code_020f5008.h"
+#include "Main/Unknown/code_020f9c6c.h"
+#include "Main/Unknown/code_020fd264.h"
 #include "Main/Unknown/code_02117000.h"
 #include "Main/Unknown/code_02118000.h"
 #include "Main/Unknown/code_0211e000.h"
+#include "code_02146cbc.h"
 #include "code_02147cd8.h"
 #include "01/code_0218d520.h"
 #include "01/unk_021a9000.h"
+#include "ITCM/code_01ff8000.h"
 #include "ITCM/code_01ff9000.h"
 #include "Main/Unknown/code_02146000.h"
 #include "Main/Unknown/code_0209b000.h"
@@ -617,8 +628,8 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
     pos.y = b->mUnk_000.mUnk_04.y + 0x14000;
     pos.z = b->mUnk_000.mUnk_04.z;
     b->mUnk_2c8 = 0;
-    if (func_01ffdee4(&pos, NULL, 0, 0x14000, b->mUnk_2b8 == 1 ? 4 : 1, -2, &v44, &v50,
-                      (s32 *) &v5c, &b->mUnk_2c8, NULL, NULL, NULL, NULL)) {
+    if (func_01ffdee4(&pos, NULL, 0, 0x14000, b->mUnk_2b8 == 1 ? 4 : 1, -2, &v44, &v50, (s32 *) &v5c, &b->mUnk_2c8,
+                      NULL, NULL, NULL, NULL)) {
         if (b->mUnk_2b8 == 2 || b->mUnk_2b8 == 3) {
             b->mUnk_000.mUnk_04.y += v44.y;
         } else {
@@ -710,10 +721,12 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
         b->mUnk_0b0 = 0;
         func_ov001_02188e94(b, &b->mUnk_1f4);
     }
-    if (b->mUnk_20c != NULL && func_ov001_021881a8(b, (Vec3 *) &b->mUnk_200, (s32) (b->mUnk_1f8), (s32) (b->mUnk_1fc))) {
+    if (b->mUnk_20c != NULL &&
+        func_ov001_021881a8(b, (Vec3 *) &b->mUnk_200, (s32) (b->mUnk_1f8), (s32) (b->mUnk_1fc))) {
         func_ov001_02188e94(b, &b->mUnk_20c);
     }
-    if (b->mUnk_224 != NULL && !func_ov001_021881a8(b, (Vec3 *) &b->mUnk_218, (s32) (b->mUnk_210), (s32) (b->mUnk_214))) {
+    if (b->mUnk_224 != NULL &&
+        !func_ov001_021881a8(b, (Vec3 *) &b->mUnk_218, (s32) (b->mUnk_210), (s32) (b->mUnk_214))) {
         func_ov001_02188e94(b, &b->mUnk_224);
     }
     if (b->mUnk_228 != NULL && b->mUnk_1c8.y == 0 && -b->mUnk_0a0->mUnk_018 < b->mUnk_174 &&
@@ -876,8 +889,8 @@ s32 func_ov001_021860cc(Unk02188950 *a, Vec3 *b, s32 c, Vec3 *d) {
             }
             return 0;
         case 2:
-            return func_020ead80(b, &a->mUnk_238, &a->mUnk_000.mUnk_28.mUnk_00[0], a->mUnk_25c, a->mUnk_260, a->mUnk_260,
-                                 c, d);
+            return func_020ead80(b, &a->mUnk_238, &a->mUnk_000.mUnk_28.mUnk_00[0], a->mUnk_25c, a->mUnk_260,
+                                 a->mUnk_260, c, d);
         case 1:
             return func_020eafc4(b, &a->mUnk_238, &a->mUnk_000.mUnk_28.mUnk_00[0], (Vec3 *) &a->mUnk_25c,
                                  (Vec3 *) &a->mUnk_25c, c, d);

@@ -1,4 +1,10 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_020b4000.h"
+#include "Main/Unknown/code_02116dd4.h"
 #include "Main/Unknown/code_0211db90.h"
+#include "Main/Unknown/unk_0216d000.h"
+#include "code_02016468.h"
 
 #pragma thumb on
 
@@ -82,8 +88,7 @@ void func_0211db90(void) {
     func_02016468((u32) 0x1b, (u32) (((u32) 0x00000800u)), data_0217d368->mUnk_24, (u32) (((u32) 0x00000800u)));
     func_02016468((u32) 0x1f, (u32) 0, (void *) (*(u32 *) (v4[0] + 0xc)), (u32) 0x80);
     func_02016468((u32) 0x23, (u32) 0, (void *) (*(u32 *) (v2 + 0x14)), (u32) (*(u32 *) (v2 + 0x10)));
-    func_02016468(0x1e, 0, (void *) (*(u32 *) (data_0217d368->mUnk_10 + 0xc)),
-                  (*(u32 *) (data_0217d368->mUnk_10 + 8)));
+    func_02016468(0x1e, 0, (void *) (*(u32 *) (data_0217d368->mUnk_10 + 0xc)), (*(u32 *) (data_0217d368->mUnk_10 + 8)));
 }
 
 #pragma thumb off

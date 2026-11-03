@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e43a8.h"
+
+typedef struct Unk020e43a8 Unk020e43a8;
 
 // Second parameter of func_020e57fc; the word at 0x29c is the only field read.
 typedef struct Unk020e57fc {

@@ -2,10 +2,13 @@
 
 #include "Main/Unknown/code_020acacc.h"
 #include "Main/Unknown/code_020acff4.h"
+#include "Main/Unknown/code_020ad230.h"
+#include "Main/Unknown/code_020adad0.h"
 #include "Main/Unknown/code_020adaf8.h"
 #include "Main/Unknown/code_020ae428.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020acb00.h"
+#include "00/code_02182fdc.h"
 
 #pragma thumb on
 u32 func_020acb00(u32 arg0) {

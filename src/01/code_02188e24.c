@@ -1,4 +1,6 @@
+#include "01/code_02188950.h"
 #include "01/code_02188e24.h"
+#include "01/code_02188e88.h"
 
 void func_ov001_02188e74(Unk02188950 *a, s32 b, UnkFunc *c) {
     a->mUnk_1d8 = b;

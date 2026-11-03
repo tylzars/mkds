@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020add50.h"
+#include "Main/Unknown/code_020add80.h"
 
 int func_020add50(u32 arg0, int arg1) {
     u32 value0 = arg0;

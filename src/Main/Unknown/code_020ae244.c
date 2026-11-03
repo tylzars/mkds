@@ -2,6 +2,7 @@
 #include "Main/Unknown/code_020ae1f4.h"
 #include "Main/Unknown/code_020ae21c.h"
 #include "Main/Unknown/code_020ae338.h"
+#include "Main/Unknown/unk_02175628.h"
 
 #pragma optimize_for_size on
 #pragma thumb on

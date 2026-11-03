@@ -2,8 +2,9 @@
 
 #include "types.h"
 #include "code_0201c528.h"
-#include "code_02147cd8.h"
-#include "Main/Unknown/code_0206bcb0.h"
+
+typedef struct Unk02148038 Unk02148038;
+typedef struct Unk0206bcb0 Unk0206bcb0;
 
 // 0x88 bytes, from the table behind data_0217b078. The pointer pairs at 0x00 to 0x28 hold objects returned by
 // func_0208b7bc.

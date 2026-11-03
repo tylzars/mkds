@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02042fc4.h"
 
 // One entry of the table returned by func_02042044.
 typedef struct Unk02042044 {
@@ -14,5 +13,3 @@ typedef struct Unk02042044 {
 } Unk02042044;
 
 Unk02042044 *func_02042044(u16 arg0, u16 arg1);
-
-// Declared here until the code that defines them is decompiled.

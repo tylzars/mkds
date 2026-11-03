@@ -2,6 +2,8 @@
 
 #include "types.h"
 
+typedef struct Unk021da2ac Unk021da2ac;
+
 typedef struct Unk021d1358 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
@@ -11,8 +13,6 @@ typedef struct Unk021d1358 {
     /* 14 */ u32 mUnk_14;
     /* 18 */ u8 mUnk_18;
 } Unk021d1358;
-
-#include "03/unk_021da000.h"
 
 u32 func_ov003_021d0a88(void);
 void func_ov003_021d0ab8(void);

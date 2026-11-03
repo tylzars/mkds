@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "code_02016638.h"
+
+typedef struct Unk02016638 Unk02016638;
 
 // Object at data_02173220: a pointer to an array of Unk02016638, its length at 04, two indices at 08 and 0a that
 // func_02016978 advances modulo the length, and a count at 0c (func_02016960 compares it with the length,

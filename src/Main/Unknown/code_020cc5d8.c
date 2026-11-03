@@ -3,6 +3,7 @@
 #include "Main/Unknown/code_020cc6a4.h"
 #include "Main/Unknown/code_020cc6dc.h"
 #include "Main/Unknown/code_020cc6f0.h"
+#include "Main/Unknown/unk_021759c0.h"
 
 u32 func_020cc728(u32 arg0) {
     u32 value0 = arg0;

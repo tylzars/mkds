@@ -9,6 +9,7 @@
 #include "Main/Unknown/code_020da000.h"
 #include "Main/Unknown/code_020f4000.h"
 #include "Main/Unknown/code_020fd000.h"
+#include "Main/Unknown/code_020fd264.h"
 #include "Main/Unknown/code_02147000.h"
 
 void func_ov001_02187c88(Unk02188950 *a, s32 b, const Vec3 *c) {

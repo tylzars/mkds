@@ -1,8 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217a000.h"
-#include "Main/Unknown/code_020b4000.h"
+
+typedef struct Unk020b4934 Unk020b4934;
+typedef struct Unk020b47d8 Unk020b47d8;
+typedef struct Unk020b4a44 Unk020b4a44;
 
 // Object behind the pointer at 0x85c of Unk021ca41c.
 typedef struct Unk021ca41c_085c {

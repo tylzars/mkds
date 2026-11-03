@@ -1,5 +1,8 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020d4c28.h"
 #include "Main/Unknown/code_020e5d0c.h"
 
+#include "Main/Unknown/code_020e66e4.h"
 #include "Main/Unknown/unk_02159000.h"
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/code_020d7000.h"
@@ -9,6 +12,7 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_02087000.h"
 #include "Main/Unknown/code_020ea000.h"
+#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036bec.h"
@@ -228,8 +232,7 @@ BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
 
 void CreatePendulumAndPendulumShadow(void) {
     func_020ea588((void **) &gPendulum, (void *) FindCourseMapObjFile(gPendulumNsbmdName), NULL);
-    func_020ea55c((void **) &gPendulumShadow, (void *) FindCourseMapObjFile(gPendulumShadowNsbmdName),
-                  0x3f);
+    func_020ea55c((void **) &gPendulumShadow, (void *) FindCourseMapObjFile(gPendulumShadowNsbmdName), 0x3f);
     func_02084968(gPendulum, 0x3f, 2, 0x294a);
 }
 

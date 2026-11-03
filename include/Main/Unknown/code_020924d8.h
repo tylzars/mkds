@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0209219c.h"
+
+typedef struct Unk0209219c Unk0209219c;
 
 // Object func_0209297c reads: a halfword at 0x74 and a vector at 0x80.
 typedef struct Unk0209297c {

@@ -1,11 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_021a998c.h"
-#include "00/unk_021b6380.h"
 #include "code_0200e0ec.h" // Unk0200db5c, Unk0200dce0
-#include "00/code_021b0014.h"
-#include "00/code_021afe5c.h"
+
+typedef struct Unk021a998c Unk021a998c;
+typedef struct Unk021b6434 Unk021b6434;
 
 // Frame built by func_ov000_021afc5c.
 typedef struct Unk021afc5c {

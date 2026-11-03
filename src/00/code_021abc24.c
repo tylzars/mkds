@@ -1,4 +1,7 @@
 #include "00/code_021abc24.h"
+#include "00/code_021abca0.h"
+#include "00/code_021ac37c.h"
+#include "00/unk_021b4000.h"
 
 void func_ov000_021abc4c(int a, u32 b) {
     int v1;

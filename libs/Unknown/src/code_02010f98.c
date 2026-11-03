@@ -1,4 +1,5 @@
 #include "code_02010f98.h"
+#include "Main/Unknown/unk_02170000.h"
 
 void func_02010f98(u32 arg0, u32 arg1) {
     u32 value0 = arg0;

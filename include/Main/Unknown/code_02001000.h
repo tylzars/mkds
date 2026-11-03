@@ -1,14 +1,11 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217a000.h"
-#include "Main/Unknown/code_02050300.h"
-#include "Main/Unknown/code_02125f54.h"
-#include "Main/Unknown/code_02125f6c.h"
-#include "Main/Unknown/code_02126230.h"
-#include "Main/Unknown/code_020b3f7c.h"
-#include "Main/Unknown/code_020b4000.h"
-#include "Main/Unknown/code_020b47d8.h"
+
+typedef struct Unk020b3fb0 Unk020b3fb0;
+typedef struct Unk020b4934 Unk020b4934;
+typedef struct Unk020b47d8 Unk020b47d8;
+typedef struct Unk020b4a44 Unk020b4a44;
 
 // Three pointers filled in by LoadNclrData, LoadNcgrData2 and LoadNscrData.
 typedef struct Unk02001d30 {

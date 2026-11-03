@@ -1,5 +1,8 @@
 #include "00/code_021ab548.h"
 #include "00/code_021a998c.h"
+#include "00/types_021a998c.h"
+#include "Main/Unknown/unk_0216f000.h"
+#include "code_02139f70.h"
 
 void func_ov000_021ab594(u32 a, u32 b) {
     Unk021a998c *v1;

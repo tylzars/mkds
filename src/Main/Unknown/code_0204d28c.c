@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_0204bfac.h"
 #include "Main/Unknown/code_0204d28c.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_0200f000.h"
@@ -11,6 +12,8 @@
 #include "code_02004270.h"
 #include "code_02004d80.h"
 #include "code_02004dc0.h"
+#include "code_0200eddc.h"
+#include "code_0200fc8c.h"
 
 // non-matching: second message block (0x27c-0x2d8): the original loads data_02175ec0.mUnk_0028 and v3->mUnk_04
 // before the mUnk_00_0 insert and builds the word in r3/r6, ours schedules them later in r0-r2

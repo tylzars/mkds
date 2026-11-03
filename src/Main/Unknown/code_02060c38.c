@@ -1,4 +1,6 @@
 #include "Main/Unknown/code_02060c38.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "code_0214d018.h"
 
 void func_02060c38(void *arg0) {
     u32 value0 = (u32) arg0;

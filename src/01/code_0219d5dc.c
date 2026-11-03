@@ -2,10 +2,14 @@
 
 #include "01/code_0219d000.h"
 #include "01/unk_021a6000.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_021059e0.h"
 #include "Main/Unknown/code_02125f54.h"
 #include "Main/Unknown/code_02056d40.h"
 #include "code_0201ea58.h"
+#include "code_0214a390.h"
 #include "Main/Unknown/code_02037000.h"
+#include "Main/Unknown/code_02125f6c.h"
 
 void func_ov001_0219df70(void *a) {
     s32 i;

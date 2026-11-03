@@ -1,3 +1,4 @@
+#include "code_02003024.h"
 #include "code_0200320c.h"
 
 s32 FileOpenFromRange(Unk02003024 *a) {

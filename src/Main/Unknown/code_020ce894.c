@@ -1,4 +1,6 @@
 #include "Main/Unknown/code_020ce894.h"
+#include "Main/Unknown/unk_02175000.h"
+#include "00/code_02182fdc.h"
 
 u32 func_020ce8bc(void) {
     return ((u32) data_021759d0->mUnk_20);

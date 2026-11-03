@@ -1,4 +1,6 @@
 #include "00/code_021874c0.h"
+#include "00/unk_021b4000.h"
+#include "code_0200e77c.h"
 
 u32 func_ov000_021874c0(void) {
     u32 v1;

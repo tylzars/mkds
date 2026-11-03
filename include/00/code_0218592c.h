@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02185984.h"
 
 // Object behind data_ov000_021b4c90; the bytes at 0x3bc are passed to func_0200ed34 and func_0200ecc4.
 typedef struct Unk021b4c90 {

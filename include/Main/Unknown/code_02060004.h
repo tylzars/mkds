@@ -1,28 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02056b30.h"
-#include "Main/Unknown/unk_0217a000.h"
-#include "Main/Unknown/code_02046000.h"
-#include "Main/Unknown/code_0203b000.h"
-#include "Main/Unknown/code_02048000.h"
-#include "code_021458c4.h"
-#include "Main/Unknown/code_02152000.h"
-#include "Main/Unknown/code_0214d000.h"
-#include "Main/Unknown/code_0205ee14.h"
-#include "Main/Unknown/code_02056a7c.h"
-#include "Main/Unknown/code_02056c6c.h"
-#include "Main/Unknown/code_02057304.h"
-#include "Main/Unknown/code_020563ec.h"
-#include "Main/Unknown/code_02056408.h"
-#include "Main/Unknown/code_02057624.h"
-#include "Main/Unknown/code_0205edcc.h"
-#include "Main/Unknown/code_021526a0.h"
-#include "Main/Unknown/code_02152698.h"
-#include "Main/Unknown/code_021524d8.h"
-#include "Main/Unknown/code_02152918.h"
-#include "Main/Unknown/code_0203b070.h"
-#include "00/code_0219d948.h"
 
 void func_02060004(s32 a);
 s32 func_02060268(s32 a);

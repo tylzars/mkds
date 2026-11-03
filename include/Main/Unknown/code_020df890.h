@@ -4,6 +4,7 @@
 #include "Main/Unknown/code_020de214.h"
 #include "Main/Unknown/code_020df48c.h"
 #include "Main/Unknown/code_020e005c.h"
+#include "Main/Unknown/unk_02158000.h"
 
 void func_020dffac(Unk020e005c *a);
 void func_020dff88(void *a);

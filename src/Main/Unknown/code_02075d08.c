@@ -1,5 +1,6 @@
 #include "Main/Unknown/code_02075d08.h"
 #include "Main/Unknown/code_02039860.h"
+#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
 #include "ITCM/code_01ffdee4.h"
 #include "Main/Unknown/code_020d3dbc.h"
@@ -12,6 +13,7 @@
 #include "Main/Unknown/unk_02154000.h"
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_02170000.h"
+#include "code_02010c84.h"
 #include "code_02147cd8.h"
 
 static inline s32 func_020760ec_inline(Vec3 *v, Vec3 *n) {
@@ -139,8 +141,8 @@ void func_020760ec(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
 
     data_usa_0217ac80 = 0;
     a->mUnk_258 = 0;
-    if (func_01ffdee4(&a->mUnk_024, (u32 *) &a->mUnk_134, 0, data_usa_021656c0, 2, -2, &v, &w, (s32 *) &x, &j, NULL, NULL, NULL,
-                      NULL) != 0 &&
+    if (func_01ffdee4(&a->mUnk_024, (u32 *) &a->mUnk_134, 0, data_usa_021656c0, 2, -2, &v, &w, (s32 *) &x, &j, NULL,
+                      NULL, NULL, NULL) != 0 &&
         (j & 0xc00) == 0) {
         if (j & 0x214300) {
             y = b->mUnk_50;

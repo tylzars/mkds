@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02175628.h"
+
+typedef struct Unk02175628_48 Unk02175628_48;
 
 // Four halfwords passed by value to func_020ae244.
 typedef struct Unk020ae244 {

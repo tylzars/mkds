@@ -3,6 +3,10 @@
 #include "types.h"
 #include "code_02003024.h"
 
+typedef struct Unk02005814 Unk02005814;
+typedef struct Unk02003024 Unk02003024;
+typedef struct Unk02003a6c Unk02003a6c;
+
 // Two words read as a pair: data_0216f35c, data_0216f364 and the blocks FileInitRomArchive and FS_LoadOverlayInfo read
 // at fixed addresses.
 typedef struct Unk02005704 {

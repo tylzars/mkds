@@ -1,5 +1,6 @@
 #include "Main/Unknown/code_020d8918.h"
 #include "Main/Unknown/code_020d8cac.h"
+#include "Main/Unknown/code_020e005c.h"
 #include "code_02147cd8.h"
 
 void func_020d8b18(Unk020e0144 *a, Vec3 *b, Vec3 *c) {

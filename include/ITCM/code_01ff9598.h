@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h"
+
+typedef struct Unk0206bcb0 Unk0206bcb0;
 
 // Six words of a table written by func_01ff9598 and the functions after it, at 0x00, 0x04, 0x10, 0x14, 0x30 and 0x34.
 typedef struct Unk01ff9598_A {

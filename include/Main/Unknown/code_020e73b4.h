@@ -1,9 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e5d0c.h"
-#include "Main/Unknown/code_020e6fd4.h"
-#include "Main/Unknown/code_0210b000.h"
+
+typedef struct Unk020e6488 Unk020e6488;
+typedef struct Unk020e6fd4 Unk020e6fd4;
+typedef struct Unk0210b7a8 Unk0210b7a8;
 
 // 0x40-byte block that func_020e7410 takes from data_02159370.
 typedef struct Unk020e7410 {

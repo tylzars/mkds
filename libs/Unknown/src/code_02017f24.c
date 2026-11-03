@@ -1,6 +1,7 @@
 #include "code_02017f24.h"
 #include "code_02134420.h"
 #include "Main/Unknown/code_0214d000.h"
+#include "00/code_02188720.h"
 
 Unk02017f24 *func_02018270(Unk02017f24 *a, u32 b, u16 c) {
     Unk02018174 *p;

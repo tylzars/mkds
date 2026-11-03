@@ -1,10 +1,16 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02059be4.h"
+#include "Main/Unknown/code_02061654.h"
 #include "Main/Unknown/code_020d2dec.h"
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020d2000.h"
 #include "Main/Unknown/code_020d3ae0.h"
 #include "Main/Unknown/code_020d4000.h"
+#include "Main/Unknown/code_020d4a10.h"
 #include "Main/Unknown/code_020d5000.h"
+#include "Main/Unknown/code_020d50ec.h"
+#include "Main/Unknown/code_020d7df8.h"
 #include "Main/Unknown/code_020e01f0.h"
 #include "Main/Unknown/code_020d3b10.h"
 #include "Main/Unknown/code_02047000.h"
@@ -215,7 +221,8 @@ Unk020e71a0 *func_020d34e4(u32 param_1, Unk020fa294 *param_2, Unk020e71a0 *param
             } else {
                 p->mUnk_02 |= data_021568d0;
             }
-            if ((a->mUnk_24[0] != NULL && a->mUnk_24[0]->mUnk_10 != NULL) || (a->mUnk_24[1] != NULL && a->mUnk_24[1]->mUnk_10 != NULL) ||
+            if ((a->mUnk_24[0] != NULL && a->mUnk_24[0]->mUnk_10 != NULL) ||
+                (a->mUnk_24[1] != NULL && a->mUnk_24[1]->mUnk_10 != NULL) ||
                 (a->mUnk_24[2] != NULL && a->mUnk_24[2]->mUnk_10 != NULL)) {
                 p->mUnk_02 &= ~2;
                 p->mUnk_02 &= ~8;

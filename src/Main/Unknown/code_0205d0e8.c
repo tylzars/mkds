@@ -3,6 +3,7 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217a000.h"
+#include "code_0214d018.h"
 
 void func_0205d0e8(u8 a, u8 b) {
     s32 i;

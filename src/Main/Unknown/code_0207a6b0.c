@@ -1,5 +1,7 @@
+#include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_0207a6b0.h"
 
+#include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217a000.h"
 
 void func_0207a70c(s32 a) {

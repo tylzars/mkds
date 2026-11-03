@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217a000.h"
+
+typedef struct Unk0217aa08_10_04 Unk0217aa08_10_04;
 
 // Two bytes: a flag and a value.
 typedef struct Unk02056a2c {

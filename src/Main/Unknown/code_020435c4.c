@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020435c4.h"
+#include "Main/Unknown/unk_02175000.h"
 
 u32 func_020435c4(void) {
     u32 value0;

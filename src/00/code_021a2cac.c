@@ -1,3 +1,5 @@
+#include "00/code_0219eaf4.h"
+#include "00/code_021a2950.h"
 #include "00/code_021a2cac.h"
 
 u32 func_ov000_021a2cac(void) {

@@ -1,6 +1,9 @@
 #include "00/code_02182fdc.h"
 #include "code_02148ca0.h"
 #include "registers.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020ae428.h"
+#include "Main/Unknown/code_02125f6c.h"
 
 void func_ov000_02184130(void) {
     Unk020b4934 *chr;

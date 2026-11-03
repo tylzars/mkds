@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02182fdc.h"
 
 u8 func_021201e4(int arg0);
 void func_02120200(int arg0, s16 arg1);

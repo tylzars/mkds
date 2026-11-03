@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0210b708.h"
+#include "Main/Unknown/code_0210bcf4.h"
 
 void func_0210b734(void *p0, u32 p1) {
     u32 v4 = ((u32 *) p0)[0];

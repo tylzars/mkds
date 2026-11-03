@@ -2,7 +2,6 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020487fc.h" // Unk020487fc
-#include "Main/Unknown/unk_0217a000.h"
 
 s32 func_02055730(u16 a);
 s32 func_0205579c(s32 a, s32 b);

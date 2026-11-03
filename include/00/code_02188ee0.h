@@ -1,11 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02188ec0.h"
-#include "00/code_02188720.h"
-#include "00/code_021a5b3c.h"
 
-// Declared here until the code that defines them is decompiled.
+typedef struct Unk02188ec0 Unk02188ec0;
+
 u32 func_ov000_021a5bfc(void);
 s32 func_ov000_021a6024(void);
 

@@ -1,3 +1,5 @@
+#include "00/code_02197b34.h"
+#include "00/code_02197e8c.h"
 #include "00/code_0219903c.h"
 #include "00/code_021981d0.h"
 
@@ -5,6 +7,8 @@
 #include "00/code_02197ddc.h"
 #include "00/code_02199f80.h"
 #include "00/code_0218d000.h"
+#include "00/code_02199fb0.h"
+#include "00/code_0219a430.h"
 #include "00/code_021a3000.h"
 #include "00/unk_021b2000.h"
 #include "code_0213442c.h"

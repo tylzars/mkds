@@ -1,8 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0218d000.h"
-#include "00/code_0218f960.h"
+
+typedef struct Unk0218f960 Unk0218f960;
 
 // Argument block of the walk over the list at 0x428: the object, the function to call and its argument.
 typedef struct Unk02194840Arg {

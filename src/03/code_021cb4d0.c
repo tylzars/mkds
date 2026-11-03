@@ -3,6 +3,7 @@
 #include "03/code_021bf000.h"
 #include "03/code_021cb000.h"
 #include "03/code_021d1000.h"
+#include "03/code_021d1dd0.h"
 #include "03/code_021d1f70.h"
 #include "03/unk_021da000.h"
 #include "03/code_021bf098.h"

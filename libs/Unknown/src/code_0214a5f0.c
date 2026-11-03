@@ -2,6 +2,7 @@
 #include "code_0214c778.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0216f000.h"
+#include "00/code_02188720.h"
 
 void func_0214a700(u32 a, u32 b, u16 c, u32 d, s32 e) {
     u32 v;

@@ -1,4 +1,5 @@
 #include "code_0202041c.h"
+#include "Main/Unknown/unk_02173000.h"
 
 void func_0202041c(void) {
     u32 value0;

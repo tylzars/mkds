@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02182fdc.h"
 
 // 0xc-byte object built on the stack by func_02123384.
 typedef struct Unk02123384 {

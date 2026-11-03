@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020391d4.h"
+#include "01/code_021a5140.h"
 
 void func_020391d4(Unk020391d4 *p0) {
     p0->mUnk_00 = (u16) 0x1u;

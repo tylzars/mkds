@@ -1,14 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02180608.h"
-#include "Main/Unknown/code_02028000.h"
-#include "Main/Unknown/code_02036000.h"
-#include "Main/Unknown/code_0211f498.h"
-#include "Main/Unknown/code_02128000.h"
-#include "Main/Unknown/code_0212b000.h"
-#include "Main/Unknown/unk_02174000.h"
-#include "Main/Unknown/code_02027f68.h"
+
+typedef struct Unk021b0cd4 Unk021b0cd4;
 
 extern Unk021b0cd4 data_ov000_021b0e40;
 

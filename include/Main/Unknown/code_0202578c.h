@@ -1,9 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020b4000.h"
-#include "Main/Unknown/code_02124094.h"
-#include "Main/Unknown/unk_02174000.h"
 
 // 12-byte entries of the table at data_usa_02153918.
 typedef struct Unk02153918 {

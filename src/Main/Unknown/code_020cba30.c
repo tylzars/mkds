@@ -1,4 +1,6 @@
 #include "Main/Unknown/code_020cba30.h"
+#include "00/code_02182fdc.h"
+#include "code_0214a390.h"
 
 void func_020cbabc(u32 p0) {
     data_0217b488->mUnk_08 = p0;

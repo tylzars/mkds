@@ -1,6 +1,10 @@
+#include "Main/Unknown/code_020b4000.h"
+#include "Main/Unknown/code_020c0ba8.h"
 #include "Main/Unknown/code_020d0e3c.h"
 #include "Main/Unknown/code_020c0000.h"
 #include "Main/Unknown/code_020d0ee8.h"
+#include "Main/Unknown/code_020d0f78.h"
+#include "Main/Unknown/unk_0217b000.h"
 
 #pragma optimize_for_size on
 

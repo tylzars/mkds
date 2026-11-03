@@ -1,15 +1,28 @@
 #include "01/code_021932e4.h"
+#include "code_0214a390.h"
 #include "registers.h"
 
+#include "01/code_02193c5c.h"
 #include "01/code_02195000.h"
+#include "01/code_0219e824.h"
 #include "01/unk_021a6000.h"
 #include "01/unk_021a8000.h"
+#include "01/unk_021a9000.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02036c5c.h"
+#include "Main/Unknown/code_02056d54.h"
 #include "Main/Unknown/code_02057000.h"
+#include "Main/Unknown/code_020ae408.h"
+#include "Main/Unknown/code_021059e0.h"
 #include "Main/Unknown/code_02125000.h"
+#include "Main/Unknown/code_02125ebc.h"
+#include "Main/Unknown/code_02125f6c.h"
 #include "Main/Unknown/code_02126000.h"
 #include "Main/Unknown/code_02125f54.h"
 #include "code_0201ea58.h"
 #include "Main/Unknown/code_02111488.h"
+#include "Main/Unknown/code_02126230.h"
+#include "Main/Unknown/code_02126248.h"
 
 void func_ov001_02193b28(void *heap) {
     s32 i;

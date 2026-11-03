@@ -1,4 +1,6 @@
+#include "Main/Unknown/code_02008934.h"
 #include "Main/Unknown/code_02008dbc.h"
+#include "code_0214cfe4.h"
 
 #pragma thumb on
 

@@ -1,4 +1,7 @@
 #include "00/code_02190ba0.h"
+#include "00/code_02193818.h"
+#include "00/code_02194840.h"
+#include "00/code_021948f8.h"
 
 u32 func_ov000_02191180(Unk0218f960 *a, Unk02194934 *b) {
     Unk0218f960_00 *c;

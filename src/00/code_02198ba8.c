@@ -1,8 +1,11 @@
+#include "00/code_02197b34.h"
+#include "00/code_02197e8c.h"
 #include "00/code_02198ba8.h"
 #include "00/code_02197000.h"
 #include "00/code_02197ddc.h"
 #include "00/code_02198714.h"
 #include "00/code_0219a01c.h"
+#include "00/unk_021b3000.h"
 #include "code_02134d30.h"
 
 static inline void func_ov000_02198ba8_inline(void *a, const void *b) {

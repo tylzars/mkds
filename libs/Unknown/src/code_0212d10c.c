@@ -1,7 +1,9 @@
+#include "code_0200eddc.h"
 #include "code_0212d10c.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0217d000.h"
+#include "00/code_02188720.h"
 
 s32 func_0212d154(u8 *a, u32 b, u32 c, u32 d, u32 e, UnkFunc *f, void *g) {
     volatile u32 v;

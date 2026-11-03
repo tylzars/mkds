@@ -1,3 +1,5 @@
+#include "00/code_0218e8c4.h"
+#include "00/code_0219dabc.h"
 #include "00/code_021a0958.h"
 #include "00/code_0218b220.h"
 #include "00/code_0218a000.h"

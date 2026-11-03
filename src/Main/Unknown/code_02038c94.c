@@ -2,6 +2,7 @@
 
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/unk_02175000.h"
 
 void func_02038e6c(void *a, u32 b) {
     Unk02038e6c *p = a;

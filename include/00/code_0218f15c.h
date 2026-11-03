@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0218f960.h"
+
+typedef struct Unk0218f960 Unk0218f960;
 
 // Zeroed by func_ov000_0218f15c and passed to the callback.
 typedef struct Unk0218f15cArg {

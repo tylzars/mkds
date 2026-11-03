@@ -2,7 +2,6 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0208b6b0.h"
-#include "Main/Unknown/unk_0217a000.h"
 
 void func_02081298(Unk0201ca6c *p, s32 a);
 void func_02081120(Unk0201ca6c *p, s32 a);

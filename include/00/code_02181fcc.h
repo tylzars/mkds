@@ -2,10 +2,10 @@
 
 #include "types.h"
 
+typedef struct Unk021b0cd4 Unk021b0cd4;
+
 // Objects whose layout isn't known yet.
 extern u8 data_ov000_021b05f8[][2];
-
-#include "00/code_02180608.h"
 
 extern u8 data_ov000_021b05ec[];
 // Objects whose layout isn't known yet.

@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02037a04.h"
 #include "Main/Unknown/code_0204984c.h"
 #include "Main/Unknown/code_020487fc.h"
 #include "Main/Unknown/code_0200f000.h"
@@ -199,8 +201,8 @@ void func_02049c3c(void *a) {
     data_021759cc->mUnk_118 = -1;
     data_021759cc->mUnk_11c = 0;
     func_02049c3c_inline(&data_021759cc->mUnk_0c4);
-    func_0200e28c(&data_021759cc->mUnk_004, (void (*)(void *)) func_0204a1a8, NULL, (u8 *) data_021759cc->mUnk_000 + 0x400,
-                  0x400, 15);
+    func_0200e28c(&data_021759cc->mUnk_004, (void (*)(void *)) func_0204a1a8, NULL,
+                  (u8 *) data_021759cc->mUnk_000 + 0x400, 0x400, 15);
     func_0200df68(&data_021759cc->mUnk_004);
     func_02049c3c_inline2(&data_021759cc->mUnk_0cc, func_02049d8c);
     func_02049c3c_inline2(&data_021759cc->mUnk_0d8, (void (*)(void *)) func_02049d54);

@@ -18,6 +18,8 @@
 #include "Main/Unknown/code_0212b090.h"
 #include "Main/Unknown/code_0212b09c.h"
 #include "Main/Unknown/unk_02168000.h"
+#include "code_0200eddc.h"
+#include "code_02023374.h"
 #include "code_0213c9f8.h"
 #include "code_0213ecf8.h"
 

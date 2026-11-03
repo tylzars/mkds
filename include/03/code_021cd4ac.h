@@ -48,8 +48,6 @@ typedef struct Unk021cd5e0_arg {
     /* 28 */ u8 mUnk_28[4][0x20];
 } Unk021cd5e0_arg;
 
-#include "03/unk_021da000.h"
-
 extern u8 data_ov003_021d6684[];
 
 void func_ov003_021cd4ac(int a);

@@ -2,12 +2,12 @@
 
 #include "types.h"
 
+typedef struct Unk021b4d24 Unk021b4d24;
+typedef struct Unk0218af28 Unk0218af28;
+
 typedef struct Unk0218afac {
     /* 00 */ const s8 *mName;
 } Unk0218afac;
-
-#include "00/unk_021b4000.h"
-#include "00/code_0218a9bc.h"
 
 int func_ov000_0218aea4(int *a);
 void func_ov000_0218aec4(int *a, int b);

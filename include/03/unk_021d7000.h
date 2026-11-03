@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "03/unk_021d6000.h"
+
+typedef struct Unk021d6974 Unk021d6974;
 
 // Bytes moved as one value.
 typedef struct Unk021d73e0 {

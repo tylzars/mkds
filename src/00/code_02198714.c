@@ -1,11 +1,11 @@
 #include "00/code_02198714.h"
 #include "00/code_0218e8c4.h"
+#include "00/code_0219a0d0.h"
 
 u32 func_ov000_02198714(u32 *a, u32 b, u32 c) {
     int v1;
     u32 v2;
-    v1 =
-        func_ov000_0219a110((u32 *) (a[2]), *a, *(u16 *) (a + 1), b, c);
+    v1 = func_ov000_0219a110((u32 *) (a[2]), *a, *(u16 *) (a + 1), b, c);
     if (v1 == 0) {
         return 0;
     }

@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020ade08.h"
 #include "Main/Unknown/code_020b6e00.h"
 
 #include "Main/Unknown/code_020b6a18.h"
@@ -28,7 +30,9 @@
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_02025d8c.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "code_0200eddc.h"
 #include "code_02021e8c.h"
+#include "code_02023374.h"
 #include "code_0214cfe4.h"
 
 void func_020b8624(void) {
@@ -122,7 +126,8 @@ void func_020b8624(void) {
         case 2:
             LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[3].mNclr, FindSceneFileWrapper("race_battle_m_o.NCLR"));
             if (data_021759c0->mUnk_00c == 4) {
-                LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[10].mNclr, FindSceneFileWrapper("race_start_battle_m_o.NCLR"));
+                LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[10].mNclr,
+                             FindSceneFileWrapper("race_start_battle_m_o.NCLR"));
             }
             break;
         case 4:
@@ -142,7 +147,8 @@ void func_020b8624(void) {
         case 2:
             LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[3].mNcgr, FindSceneFileWrapper("race_battle_m_o.NCGR"));
             if (data_021759c0->mUnk_00c == 4) {
-                LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[10].mNcgr, FindSceneFileWrapper("race_start_battle_m_o.NCGR"));
+                LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[10].mNcgr,
+                              FindSceneFileWrapper("race_start_battle_m_o.NCGR"));
             }
             break;
         case 4:
@@ -173,7 +179,8 @@ void func_020b8624(void) {
             s0.mUnk_04 = p;
             s0.mUnk_0c = 0;
             func_02024340(&s0, 0x80, 0x38, 0xe, 0x412, GetBmgEntry(func_020b47cc("common.bmg"), 0x81));
-            func_0200ee74(data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mUnk_14, data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mUnk_10);
+            func_0200ee74(data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mUnk_14,
+                          data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mUnk_10);
             a2 = NULL;
             LoadNcerData(&a2, FindSceneFileWrapper("race_ta_m.NCER"));
             for (i = 0; i < 0xf; i++) {
@@ -186,7 +193,8 @@ void func_020b8624(void) {
             s1.mUnk_04 = p;
             s1.mUnk_0c = 0;
             func_02024340(&s1, 0x80, 0x18, 0xe, 0x412, GetBmgEntry(func_020b47cc("common.bmg"), 0x6d));
-            func_0200ee74(data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mUnk_14, data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mUnk_10);
+            func_0200ee74(data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mUnk_14,
+                          data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mUnk_10);
             func_020b46d0(data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mUnk_14, 0, 0, 0x20, 4,
                           data_0217b3c4->mNclrNcgrPairs[0].mNcgr->mUnk_14, 0, 0);
             break;
@@ -197,8 +205,8 @@ void func_020b8624(void) {
                 for (i = 0; i < 0xd; i++) {
                     data_0217b3c4->mRaceBattleMNcerEntries[i] = func_02021f1c(a3, i);
                 }
-                func_0214cffc(data_0217b3c4->mNclrNcgrPairs[3].mNclr->mUnk_0c, data_0217b3c4->mNclrNcgrPairs[0].mNclr->mUnk_0c,
-                              0x40);
+                func_0214cffc(data_0217b3c4->mNclrNcgrPairs[3].mNclr->mUnk_0c,
+                              data_0217b3c4->mNclrNcgrPairs[0].mNclr->mUnk_0c, 0x40);
                 func_020b46d0(data_0217b3c4->mNclrNcgrPairs[3].mNcgr->mUnk_14, 0, 0, 0x20, 4,
                               data_0217b3c4->mNclrNcgrPairs[0].mNcgr->mUnk_14, 0, 0);
             } else {
@@ -224,8 +232,8 @@ void func_020b8624(void) {
                 func_02024340(&s2, 0, 0x18, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
                 func_0200ee74(data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mUnk_14,
                               data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mUnk_10);
-                func_0214cffc(data_0217b3c4->mNclrNcgrPairs[10].mNclr->mUnk_0c, data_0217b3c4->mNclrNcgrPairs[0].mNclr->mUnk_0c,
-                              0x40);
+                func_0214cffc(data_0217b3c4->mNclrNcgrPairs[10].mNclr->mUnk_0c,
+                              data_0217b3c4->mNclrNcgrPairs[0].mNclr->mUnk_0c, 0x40);
                 func_020b46d0(data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mUnk_14, 0, 0, 0x20, 4,
                               data_0217b3c4->mNclrNcgrPairs[0].mNcgr->mUnk_14, 0, 0);
             }
@@ -236,8 +244,8 @@ void func_020b8624(void) {
             for (i = 0; i < 0x16; i++) {
                 data_0217b3c4->mRaceMrMNcerEntries[i] = func_02021f1c(a5, i);
             }
-            func_0214cffc(data_0217b3c4->mNclrNcgrPairs[4].mNclr->mUnk_0c, data_0217b3c4->mNclrNcgrPairs[0].mNclr->mUnk_0c,
-                          0x40);
+            func_0214cffc(data_0217b3c4->mNclrNcgrPairs[4].mNclr->mUnk_0c,
+                          data_0217b3c4->mNclrNcgrPairs[0].mNclr->mUnk_0c, 0x40);
             func_020b46d0(data_0217b3c4->mNclrNcgrPairs[4].mNcgr->mUnk_14, 0, 0, 0x20, 4,
                           data_0217b3c4->mNclrNcgrPairs[0].mNcgr->mUnk_14, 0, 0);
             a6 = NULL;
@@ -245,8 +253,8 @@ void func_020b8624(void) {
             for (i = 0; i < 8; i++) {
                 data_0217b3c4->mRaceGoalMrMNcerEntries[i] = func_02021f1c(a6, i);
             }
-            func_0214cffc(data_0217b3c4->mNclrNcgrPairs[5].mNclr->mUnk_0c, data_0217b3c4->mNclrNcgrPairs[1].mNclr->mUnk_0c,
-                          0x20);
+            func_0214cffc(data_0217b3c4->mNclrNcgrPairs[5].mNclr->mUnk_0c,
+                          data_0217b3c4->mNclrNcgrPairs[1].mNclr->mUnk_0c, 0x20);
             func_020b46d0(data_0217b3c4->mNclrNcgrPairs[5].mNcgr->mUnk_14, 0, 0, 0x20, 8,
                           data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mUnk_14, 0, 0);
             break;

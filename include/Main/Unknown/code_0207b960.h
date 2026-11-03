@@ -2,6 +2,9 @@
 
 #include "types.h"
 
+typedef struct Unk0208fd8c_08 Unk0208fd8c_08;
+typedef struct Unk0208fd8c Unk0208fd8c;
+
 struct Unk020748b8_218;
 struct Unk0208fd8c;
 struct Unk020888b4;
@@ -14,8 +17,6 @@ typedef struct Unk0207b960 {
     /* 34 */ s32 mUnk_34;
     /* 38 */ s32 mUnk_38;
 } Unk0207b960;
-
-#include "Main/Unknown/code_0208fd8c.h"
 
 struct Unk020888b4;
 

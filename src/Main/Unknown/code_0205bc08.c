@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_02059be4.h"
 #include "Main/Unknown/code_0205bc08.h"
 #include "Main/Unknown/code_0205a000.h"
 #include "Main/Unknown/code_0205a908.h"
@@ -10,6 +11,7 @@
 #include "Main/Unknown/code_0203c000.h"
 #include "Main/Unknown/code_0203e000.h"
 #include "Main/Unknown/code_0203d568.h"
+#include "Main/Unknown/code_0205d0e8.h"
 #include "Main/Unknown/code_020b2e34.h"
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/code_020ee684.h"
@@ -21,7 +23,9 @@
 #include "Main/Unknown/code_02120610.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "00/code_0219bb50.h"
+#include "code_0200eddc.h"
 #include "code_0200f5ac.h"
+#include "code_0214d018.h"
 
 void func_0205bc08(void) {
     u16 v;

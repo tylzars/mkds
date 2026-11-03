@@ -1,8 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02188ec0.h"
-#include "00/code_021a5b3c.h"
 
 // Declared here until the code that defines it is decompiled.
 

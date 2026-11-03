@@ -1,18 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0219a61c.h"
-#include "00/code_0219a430.h"
-#include "00/code_0219a0d0.h"
-#include "00/code_0219a044.h"
-#include "00/code_0219903c.h"
-#include "00/unk_021b3000.h"
-#include "code_0213442c.h"
-#include "00/code_02197b34.h"
-#include "00/code_02197e8c.h"
-#include "00/code_021a3690.h"
-#include "00/code_02193818.h"
-#include "00/code_0218d000.h"
+
+typedef struct Unk02197e8c Unk02197e8c;
+typedef struct Unk02197fe8 Unk02197fe8;
 
 typedef struct Unk02198af4 {
     /* 00 */ u32 mUnk_00;
@@ -21,7 +12,6 @@ typedef struct Unk02198af4 {
     /* 0c */ u32 mUnk_0c;
 } Unk02198af4;
 
-// Declared here until the code that defines them is decompiled.
 BOOL func_ov000_0219a654(const u8 *a, u32 *b, u16 *c);
 
 BOOL func_ov000_021981d0(Unk02197fe8 *a, void *b);

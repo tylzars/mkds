@@ -2,6 +2,7 @@
 #include "00/code_021a8878.h"
 #include "00/code_021acfd8.h"
 #include "00/code_021ad018.h"
+#include "00/unk_021b6380.h"
 
 u32 func_ov000_021acef8(const char *a) {
     u32 r;

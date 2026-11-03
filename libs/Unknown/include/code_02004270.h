@@ -1,7 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "code_02003024.h"
+
+typedef struct Unk02005814 Unk02005814;
+typedef struct Unk02003024 Unk02003024;
+typedef struct Unk02003a6c Unk02003a6c;
 
 u32 FileQueueCommand(Unk02003024 *p0, u32 p1);
 u32 FileRunCommandBlocking(Unk02003024 *p0);

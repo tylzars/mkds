@@ -1,8 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02022000.h"
-#include "Main/Unknown/unk_02153000.h"
 
 // 8-byte entries written by func_02022eb0.
 typedef struct Unk02022eb0 {

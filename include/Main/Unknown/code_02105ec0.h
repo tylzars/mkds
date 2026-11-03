@@ -1,9 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212c478.h"
-#include "code_0212c6ac.h"
 #include "Main/Unknown/code_0210e33c.h"
+
+typedef struct Unk0212c400 Unk0212c400;
 
 // 0x08-byte entries behind data_0216c860.
 typedef struct Unk0216c860 {

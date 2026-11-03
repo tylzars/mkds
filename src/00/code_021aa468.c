@@ -1,9 +1,13 @@
 #include "00/code_021aa468.h"
 #include "00/code_021ab000.h"
 #include "00/code_021ab6d4.h"
+#include "00/code_021ab728.h"
 #include "00/code_021ab7b4.h"
 #include "00/code_021abc24.h"
+#include "00/code_021abca0.h"
 #include "00/code_021abd2c.h"
+#include "00/types_021a998c.h"
+#include "00/types_021ab5e4.h"
 #include "00/unk_021b4000.h"
 #include "code_0214d018.h"
 

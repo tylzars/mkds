@@ -1,5 +1,6 @@
 #include "00/code_02199f80.h"
 #include "00/code_02198a8c.h"
+#include "00/code_02199fb0.h"
 
 u32 func_ov000_02199f80(u32 a) {
     int v1;

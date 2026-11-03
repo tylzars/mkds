@@ -1,14 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0218a9bc.h"
-#include "00/code_0218a000.h"
-#include "00/code_0218b000.h"
-#include "00/code_0218c000.h"
-#include "00/code_021a3000.h"
-#include "00/code_0218b434.h"
-#include "00/types_0218b928.h"
-#include "00/unk_021b4000.h"
+
+typedef struct Unk0218af28 Unk0218af28;
+typedef struct Unk0218b668 Unk0218b668;
+typedef struct Unk021b4d24 Unk021b4d24;
 
 // Object func_ov000_0218ba88 builds.
 typedef struct Unk0218ba88 {

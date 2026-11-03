@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020dda38.h"
 #include "Main/Unknown/code_020de214.h"
 #include "Main/Unknown/code_020e43a8.h"
 #include "Main/Unknown/code_020364e0.h"

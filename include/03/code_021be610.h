@@ -1,10 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021bf098.h"
-#include "03/unk_021d8000.h"
-#include "00/code_021a5b3c.h"
-#include "00/code_021a669c.h"
 
 // Object at the start of the Unk021da104 allocation: the word at 0x00 and the halfword at 0x04 are written bit by
 // bit.
@@ -30,8 +26,6 @@ typedef struct Unk021bea3c {
 extern Unk021da104 *data_ov003_021da104;
 extern u8 data_usa_ov000_021b0788[];
 extern u8 data_usa_ov000_021b0790[];
-
-// Declared here until the code that defines them is decompiled.
 
 u32 func_ov003_021be610(void (*param_0)(u32, u32), void *param_1, u32 param_2);
 u32 func_ov003_021be708(void *param_0, void *param_1, u32 param_2);

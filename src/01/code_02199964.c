@@ -3,6 +3,8 @@
 #include "01/code_02198854.h"
 #include "01/code_0219853c.h"
 #include "00/code_02182fdc.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_021059e0.h"
 #include "Main/Unknown/code_02128244.h"
 #include "Main/Unknown/code_0212b000.h"
 #include "01/code_0219e824.h"
@@ -11,6 +13,7 @@
 #include "01/unk_021a8000.h"
 #include "Main/Unknown/code_02108000.h"
 #include "code_0201ea58.h"
+#include "code_0214a390.h"
 
 void func_ov001_02199f44(void *heap) {
     s32 i;

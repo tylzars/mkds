@@ -1,38 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02001000.h"
-#include "Main/Unknown/code_02006380.h"
-#include "Main/Unknown/code_02006954.h"
-#include "Main/Unknown/code_02007624.h"
-#include "Main/Unknown/code_02007ea0.h"
-#include "Main/Unknown/code_02008880.h"
-#include "03/code_021b94b8.h"
-#include "Main/Unknown/code_02009000.h"
-#include "Main/Unknown/code_0200f000.h"
-#include "code_0200fd1c.h"
-#include "Main/Unknown/unk_0216f000.h"
-#include "Main/Unknown/code_02009adc.h"
-#include "Main/Unknown/code_0200b1b0.h"
-#include "Main/Unknown/code_0200b200.h"
-#include "Main/Unknown/code_0200b9e0.h"
-#include "Main/Unknown/code_0200ba84.h"
-#include "Main/Unknown/code_0200e000.h"
-#include "Main/Unknown/code_02036000.h"
-#include "Main/Unknown/code_0204ea14.h"
-#include "Main/Unknown/code_0211d4a8.h"
-#include "Main/Unknown/code_0204f000.h"
-#include "Main/Unknown/code_02050300.h"
-#include "Main/Unknown/code_020529b8.h"
-#include "Main/Unknown/unk_02165000.h"
-#include "Main/Unknown/unk_02175000.h"
-#include "Main/Unknown/unk_0217a000.h"
-#include "code_0200f5ac.h"
-#include "code_0214d018.h"
-#include "Main/Unknown/code_02007ec4.h"
-#include "Main/Unknown/code_0200b02c.h"
-#include "Main/Unknown/code_0200bae0.h"
-#include "Main/Unknown/code_02009cc8.h"
+
+typedef struct Unk0217aa00_1658 Unk0217aa00_1658;
 
 // Twenty bytes after a two-byte head.
 typedef struct Unk0204e4d8 {
@@ -47,7 +17,6 @@ typedef struct Unk0204e4d8 {
     /* 02 */ u8 mUnk_02[0x14];
 } Unk0204e4d8;
 
-// Declared here until the code that defines them is decompiled.
 void func_0200b70c(void);
 void func_0200bae0(void);
 

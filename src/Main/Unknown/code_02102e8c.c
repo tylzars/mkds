@@ -1,4 +1,6 @@
+#include "Main/Unknown/code_020f8e3c.h"
 #include "Main/Unknown/code_02102e8c.h"
+#include "Main/Unknown/code_02102eb8.h"
 
 u32 func_02102e8c(u32 p0, u32 p1) {
     u32 v1 = ((u32) * (u32 *) ((p0) + (16)));

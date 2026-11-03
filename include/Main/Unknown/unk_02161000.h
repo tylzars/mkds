@@ -1,10 +1,13 @@
 #pragma once
 
 #include "types.h"
-#include "code_02013bdc.h"
-#include "code_02010c84.h"
-#include "code_02010fac.h"
-#include "code_02147cd8.h"
+
+typedef struct Unk02014c5c_out Unk02014c5c_out;
+typedef struct Unk02170500 Unk02170500;
+typedef struct Unk021617f4 Unk021617f4;
+typedef struct Unk021617f8 Unk021617f8;
+typedef struct Unk0201290c_1c Unk0201290c_1c;
+typedef struct Unk02148038 Unk02148038;
 
 // Objects whose layout isn't known yet.
 extern s16 data_021614b4[];

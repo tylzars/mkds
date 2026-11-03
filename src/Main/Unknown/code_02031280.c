@@ -1,6 +1,8 @@
+#include "Main/Unknown/code_0202578c.h"
 #include "Main/Unknown/code_02031280.h"
 #include "Main/Unknown/code_02030a20.h"
 #include "Main/Unknown/code_0202f14c.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0204f000.h"
 #include "Main/Unknown/code_020472a8.h"
 #include "Main/Unknown/code_0204aa04.h"
@@ -8,6 +10,7 @@
 #include "Main/Unknown/code_02025000.h"
 #include "Main/Unknown/code_02036000.h"
 #include "Main/Unknown/code_02036bec.h"
+#include "Main/Unknown/code_0204f814.h"
 #include "Main/Unknown/code_02054f58.h"
 #include "Main/Unknown/code_02055730.h"
 #include "Main/Unknown/code_02058b38.h"
@@ -34,6 +37,7 @@
 #include "00/code_02182fdc.h"
 #include "01/code_021956dc.h"
 #include "code_0214cfe4.h"
+#include "code_0214d018.h"
 
 #pragma thumb on
 
@@ -438,8 +442,8 @@ void func_0203154c(void *a, void *b, void *c) {
     data_02174e58->mUnk_6c = -1;
     v = func_02148cb8();
     p = &data_02174e58->mUnk_24[0];
-    func_02025b20(p, data_usa_0216370c, data_usa_0216372c, data_usa_0216374c, data_usa_0216376c, data_usa_02163788, NULL,
-                  FindSceneFile);
+    func_02025b20(p, data_usa_0216370c, data_usa_0216372c, data_usa_0216374c, data_usa_0216376c, data_usa_02163788,
+                  NULL, FindSceneFile);
     func_02025a50(0, data_02174e58->mUnk_150, p);
     i = 0;
     t = data_usa_02153d64;

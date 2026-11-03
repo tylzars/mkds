@@ -4,7 +4,9 @@
 #include "Main/Unknown/code_02028774.h"
 #include "Main/Unknown/code_020291c4.h"
 #include "Main/Unknown/code_020291f0.h"
+#include "Main/Unknown/code_0202f764.h"
 #include "Main/Unknown/code_020b502c.h"
+#include "Main/Unknown/unk_02174000.h"
 
 #pragma optimize_for_size on
 #pragma thumb on

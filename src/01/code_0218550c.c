@@ -1,4 +1,7 @@
 #include "01/code_0218550c.h"
+#include "Main/Unknown/code_02026120.h"
+#include "Main/Unknown/code_020ccc74.h"
+#include "Main/Unknown/code_0211e4e8.h"
 #include "Main/Unknown/code_02148000.h"
 #include "Main/Unknown/code_020ccc9c.h"
 #include "Main/Unknown/code_02026000.h"
@@ -7,9 +10,14 @@
 #include "01/code_021854d8.h"
 #include "01/callees_0219b000.h"
 #include "01/code_02185000.h"
+#include "01/code_021857a4.h"
+#include "01/code_0219b540.h"
 #include "01/code_021a1000.h"
+#include "01/code_021a11a4.h"
 #include "Main/Unknown/code_02028000.h"
 #include "Main/Unknown/code_020cc000.h"
+#include "code_021488e8.h"
+#include "code_02148950.h"
 #include "registers.h"
 
 #pragma optimize_for_size on

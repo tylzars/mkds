@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020f6be8.h"
+#include "Main/Unknown/code_0206bcb0.h"
 
 BOOL func_020f9c08(Unk020f41c4_A *param_1);
 void func_020f9ba8(Unk020f41c4_A *param_1);

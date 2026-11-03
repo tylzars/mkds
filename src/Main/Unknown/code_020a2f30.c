@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_02024974.h"
+#include "Main/Unknown/code_0209b634.h"
 #include "Main/Unknown/code_020a2f30.h"
 
 #include "Main/Unknown/code_020a36a8.h"
@@ -19,8 +21,10 @@
 #include "Main/Unknown/code_0210b870.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0215d000.h"
+#include "code_02146cbc.h"
 #include "code_02147cd8.h"
 #include "code_02148538.h"
+#include "ITCM/code_01ff8000.h"
 #include "ITCM/code_01ff9000.h"
 #include "Main/Unknown/code_020d3b10.h"
 #include "Main/Unknown/code_020e6b58.h"

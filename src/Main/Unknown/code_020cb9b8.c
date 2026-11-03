@@ -9,6 +9,7 @@
 #include "Main/Unknown/code_0212abd0.h"
 #include "Main/Unknown/code_02116ec0.h"
 #include "Main/Unknown/code_02084000.h"
+#include "Main/Unknown/unk_0217b000.h"
 
 #pragma thumb on
 #pragma optimize_for_size on

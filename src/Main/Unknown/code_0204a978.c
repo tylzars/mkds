@@ -1,5 +1,6 @@
 #include "Main/Unknown/code_0204a978.h"
 #include "Main/Unknown/code_0214d000.h"
+#include "code_0214d018.h"
 
 void func_0204a978(Unk02175650 *a) {
     if (a->mUnk_00 == NULL) {

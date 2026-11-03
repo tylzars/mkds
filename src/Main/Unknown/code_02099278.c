@@ -1,4 +1,7 @@
 #include "Main/Unknown/code_02099278.h"
+#include "Main/Unknown/code_020d22e0.h"
+#include "Main/Unknown/code_020d278c.h"
+#include "Main/Unknown/unk_02156000.h"
 
 void func_02099278(u32 p0) {
     u32 v1 = ((u32) (&data_02156598));

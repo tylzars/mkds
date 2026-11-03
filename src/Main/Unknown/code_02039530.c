@@ -1,5 +1,6 @@
 #include "Main/Unknown/code_02039530.h"
 #include "Main/Unknown/code_02039230.h"
+#include "Main/Unknown/unk_02175628.h"
 #include "code_0200f5ac.h"
 
 void func_02039530(u32 a, Unk02175628 *b) {

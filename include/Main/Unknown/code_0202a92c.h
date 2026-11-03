@@ -1,8 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0202a820.h"
-#include "Main/Unknown/code_02036c90.h"
 
 // 8-byte entries of the tables at data_usa_021539f4 and data_usa_02153a14.
 typedef struct Unk021539f4 {
@@ -48,6 +46,5 @@ void func_0202b3f4(void);
 void func_0202b4bc(s32 a, s32 b, s32 c, s32 d);
 void func_0202b554(s32 a, s32 b);
 
-// Declared here until the code that defines them is decompiled.
 void func_0202cb2c(s32 a);
 void func_0202cb68(s32 a);

@@ -1,5 +1,6 @@
 #include "03/code_021d2940.h"
 
+#include "03/types_021d299c.h"
 #include "03/unk_021da000.h"
 
 u32 func_ov003_021d2b20(u32 a) {

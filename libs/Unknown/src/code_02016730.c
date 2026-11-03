@@ -1,4 +1,5 @@
 #include "code_02016730.h"
+#include "code_0214b824.h"
 
 void func_0201673c(u32 arg0, u32 arg1, u32 arg2) {
     u32 value0 = arg0;

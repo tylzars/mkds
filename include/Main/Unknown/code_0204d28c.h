@@ -1,8 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "code_02003024.h"
-#include "Main/Unknown/unk_02175000.h"
+
+typedef struct Unk02003024 Unk02003024;
 
 // Entries of 0x20 bytes after a count word; func_0204d28c reads and rewrites the word at 0x18.
 typedef struct Unk0204d28c_20 {

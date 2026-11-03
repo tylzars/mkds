@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02175628.h"
 
 // Byte stream at data_usa_021755a0: mUnk_00 to mUnk_04 bound the buffer, mUnk_08 is the position, mUnk_0c the highest
 // position written, mUnk_14 the element size, mUnk_18 the mask of bits func_02039230 and func_020392c8 move.

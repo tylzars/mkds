@@ -1,4 +1,7 @@
 #include "Main/Unknown/code_0202f554.h"
+#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_020b4000.h"
+#include "Main/Unknown/unk_02163000.h"
 
 #pragma thumb on
 

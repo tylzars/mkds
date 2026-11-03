@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02121e24.h"
+#include "00/code_02182fdc.h"
 
 u32 func_02121e64(u32 arg0) {
     u32 value0 = arg0;

@@ -2,6 +2,8 @@
 
 #include "types.h"
 
+typedef struct Unk021b4d24 Unk021b4d24;
+
 // Object func_ov000_0218ce14 builds.
 typedef struct Unk0218ce14 {
     /* 0 */ u8 mUnk_00;
@@ -11,8 +13,6 @@ typedef struct Unk0218ce14 {
 } Unk0218ce14;
 
 // Declared here until the code that defines it is decompiled.
-
-#include "00/unk_021b4000.h"
 
 void func_ov000_0218cdc4(u8 **a, u8 b, s32 *c);
 void func_ov000_0218cdd8(u8 **a, const u8 *b, s32 *c);

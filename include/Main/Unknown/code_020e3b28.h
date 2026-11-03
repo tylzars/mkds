@@ -1,8 +1,12 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e0680.h"
-#include "Main/Unknown/code_020e3618.h"
+#include "Main/Unknown/code_020f9c6c.h"
+
+typedef struct Unk020e1e98_154 Unk020e1e98_154;
+typedef struct Unk020e3ef4 Unk020e3ef4;
+typedef struct Unk020e1dc0 Unk020e1dc0;
+typedef struct Unk020e38a0 Unk020e38a0;
 
 // Block of twelve words.
 typedef struct Unk020e3e48 {

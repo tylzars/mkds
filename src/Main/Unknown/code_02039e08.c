@@ -1,5 +1,9 @@
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02039e08.h"
 #include "Main/Unknown/code_02039774.h"
+#include "Main/Unknown/code_0203c07c.h"
+#include "Main/Unknown/code_020487fc.h"
+#include "Main/Unknown/code_0204984c.h"
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/code_02037a04.h"
 #include "Main/Unknown/code_02037000.h"
@@ -16,6 +20,7 @@
 #include "Main/Unknown/code_020431e4.h"
 #include "Main/Unknown/code_020435d4.h"
 #include "Main/Unknown/code_0205b0f4.h"
+#include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_02061f7c.h"
 #include "Main/Unknown/code_020ae824.h"
@@ -34,6 +39,7 @@
 #include "Main/Unknown/unk_02164000.h"
 #include "Main/Unknown/unk_0217c000.h"
 #include "01/code_0219e0a8.h"
+#include "code_020176c0.h"
 
 void func_0203a0dc(Unk0203a0dc *a, u32 b) {
     Unk021759c0 *q;

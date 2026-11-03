@@ -2,6 +2,7 @@
 
 #include "03/code_021bb03c.h"
 #include "03/code_021bb438.h"
+#include "03/unk_021d3000.h"
 
 void func_ov003_021bca90(u8 *a, u8 *b, u8 *c) {
     *c = *a ^ *b;

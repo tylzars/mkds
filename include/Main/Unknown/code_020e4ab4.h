@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02158000.h"
-#include "Main/Unknown/code_020e43a8.h"
+
+typedef struct Unk020e43a8 Unk020e43a8;
 
 void func_020e4ab4(Unk020e43a8 *p0);

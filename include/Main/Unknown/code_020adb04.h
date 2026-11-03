@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "code_02022aa8.h"
+
+typedef struct Unk02022aa8 Unk02022aa8;
 
 // Four bytes read by func_020adc24 and written by func_0214d1fc.
 typedef struct Unk020adc24 {

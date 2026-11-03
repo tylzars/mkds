@@ -2,7 +2,6 @@
 
 #include "types.h"
 #include "code_020184e4.h"
-#include "Main/Unknown/unk_0217b000.h"
 
 // Object behind data_0217b048: six vectors, six object pointers and a halfword; 0x64 bytes.
 typedef struct Unk0217b048 {

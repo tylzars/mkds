@@ -1,3 +1,6 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02046ad0.h"
+#include "Main/Unknown/code_020ea670.h"
 #include "Main/Unknown/code_020ffc08.h"
 
 #include "Main/Unknown/code_020ffc4c.h"
@@ -20,6 +23,7 @@
 #include "Main/Unknown/code_020ea000.h"
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0215a000.h"
+#include "code_02146cbc.h"
 
 Unk02100004 *func_02100004(void) {
     Unk02100004 *p;

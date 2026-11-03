@@ -1,4 +1,7 @@
 #include "00/code_021aa7b4.h"
+#include "00/code_021aa7f8.h"
+#include "00/unk_021b4000.h"
+#include "code_0214d018.h"
 
 void func_ov000_021aa7b4(int *a) {
     u8 v1[16];

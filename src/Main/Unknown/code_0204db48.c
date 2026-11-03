@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0204db48.h"
+#include "Main/Unknown/code_0204f814.h"
 #include "Main/Unknown/code_02050300.h"
 #include "Main/Unknown/code_02050080.h"
 #include "Main/Unknown/code_0204df5c.h"
@@ -9,6 +10,7 @@
 #include "Main/Unknown/code_02059878.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0217a000.h"
+#include "code_0214d018.h"
 
 s32 func_0204db48(Unk02003a6c *a, void *b, u32 c, u32 d) {
     func_0214d1fc((const void *) c, b, d);

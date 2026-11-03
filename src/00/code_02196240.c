@@ -1,3 +1,5 @@
+#include "00/code_02190ba0.h"
+#include "00/code_02193818.h"
 #include "00/code_02196240.h"
 #include "00/code_02190000.h"
 #include "code_02139f70.h"

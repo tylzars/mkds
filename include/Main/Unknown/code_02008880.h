@@ -1,8 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "code_02003024.h"
-#include "code_02004270.h"
+
+typedef struct Unk02003024 Unk02003024;
 
 // Two words of the 0x60-byte block that FS_ReadFile reads.
 typedef struct Unk02008880 {

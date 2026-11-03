@@ -1,8 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0218f960.h"
-#include "00/code_02190000.h"
+
+typedef struct Unk0218f960 Unk0218f960;
 
 extern u8 data_ov000_021b3a0c[];
 extern u8 data_ov000_021b3a2c[];

@@ -1,9 +1,12 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_0203a908.h"
 #include "Main/Unknown/code_02043a34.h"
 #include "Main/Unknown/code_02039520.h"
 #include "Main/Unknown/code_02039708.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020435d4.h"
 #include "Main/Unknown/code_0203b000.h"
+#include "Main/Unknown/code_020467d0.h"
 #include "Main/Unknown/code_02046c10.h"
 #include "Main/Unknown/code_02047104.h"
 #include "Main/Unknown/code_0204a9e4.h"
@@ -23,6 +26,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "01/code_021956dc.h"
 #include "code_021458c4.h"
+#include "code_0214d018.h"
 
 static inline void func_02043a34_inline(void) {
     if ((*(vu16 *) 0x027fffa8 & 0x8000) >> 15) {

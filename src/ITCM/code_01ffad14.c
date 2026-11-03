@@ -1,7 +1,10 @@
 #include "ITCM/code_01ffad14.h"
+#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
+#include "ITCM/code_01ffcf7c.h"
 #include "ITCM/code_01ffd000.h"
 #include "Main/Unknown/code_02039860.h"
+#include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/unk_02154000.h"
 
 void func_01ffb0cc(Unk0206bcb0 *p) {

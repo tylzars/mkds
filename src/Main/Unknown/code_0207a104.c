@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0207a104.h"
+#include "Main/Unknown/unk_0217a000.h"
 
 u16 func_0207a134(void) {
     u32 value0;

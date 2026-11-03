@@ -9,8 +9,6 @@ typedef struct Unk0202a658 {
     /* 808 */ s32 mUnk_808;
 } Unk0202a658;
 
-#include "Main/Unknown/unk_02174000.h"
-
 void func_0202a5a0(void);
 void func_0202a5d8(void);
 void func_0202a604(u32 a);

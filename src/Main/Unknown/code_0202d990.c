@@ -1,4 +1,10 @@
 #include "Main/Unknown/code_0202d990.h"
+#include "Main/Unknown/code_0202dd9c.h"
+#include "Main/Unknown/code_0202e43c.h"
+#include "Main/Unknown/code_020467d0.h"
+#include "Main/Unknown/code_020578fc.h"
+#include "Main/Unknown/code_02061654.h"
+#include "Main/Unknown/unk_02174000.h"
 
 #pragma opt_arithtransformation off
 

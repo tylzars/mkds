@@ -1,4 +1,6 @@
 #include "Main/Unknown/code_0203f2b4.h"
+#include "Main/Unknown/code_020f36d8.h"
+#include "Main/Unknown/unk_021759c0.h"
 
 BOOL func_0203f2dc(u32 a) {
     BOOL f;

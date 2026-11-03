@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_02024974.h"
 #include "Main/Unknown/code_02024fc0.h"
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/unk_02161000.h"

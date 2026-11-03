@@ -1,8 +1,22 @@
+#include "01/code_02185ef4.h"
+#include "01/code_02187c4c.h"
+#include "01/code_02187c60.h"
+#include "01/code_02187e78.h"
+#include "01/code_02187eb0.h"
+#include "01/code_02188158.h"
+#include "01/code_02188cd8.h"
+#include "01/code_02188de0.h"
+#include "01/code_02188e24.h"
 #include "01/code_0218a568.h"
 #include "01/code_02187000.h"
 #include "01/code_0218a000.h"
+#include "01/code_0218ac04.h"
 #include "01/code_0218b000.h"
+#include "01/code_0218b034.h"
+#include "01/code_0218b278.h"
+#include "Main/Unknown/code_020d275c.h"
 #include "Main/Unknown/code_020fd000.h"
+#include "Main/Unknown/code_020fd264.h"
 
 void func_ov001_0218aba0(Unk02188950 *a) {
     func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));

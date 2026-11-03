@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02102674.h"
+
+typedef struct Unk02102674 Unk02102674;
 
 unsigned int func_02102eb8();
 BOOL func_0210300c(Unk02102674 *p);

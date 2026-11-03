@@ -1,7 +1,9 @@
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02057ed8.h"
 #include "Main/Unknown/code_02057d10.h"
 #include "Main/Unknown/code_02036000.h"
 #include "Main/Unknown/code_02036bec.h"
+#include "Main/Unknown/unk_0217a000.h"
 #include "code_0200dc3c.h"
 
 void (*func_02057f8c(Unk0217aa0c *a))(void) {

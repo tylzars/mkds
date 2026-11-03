@@ -2,7 +2,6 @@
 
 #include "types.h"
 #include "Main/Unknown/unk_02175000.h"
-#include "Main/Unknown/code_020483e4.h"
 
 extern const char data_usa_02165008[];
 extern const char data_usa_02165010[];

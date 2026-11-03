@@ -2,7 +2,9 @@
 
 #include "types.h"
 #include "code_02012b30.h" // Unk02012f58
-#include "code_02012b30.h"
+
+typedef struct Unk02012f58 Unk02012f58;
+typedef struct Unk0201290c Unk0201290c;
 
 // Linked through mUnk_10. Bit 8 and bit 9 of mUnk_1a[n] are tested; the low byte is passed on to the function at
 // mUnk_0c, which is called with a pointer to its result, this object and that byte.

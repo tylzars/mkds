@@ -1,4 +1,6 @@
+#include "Main/Unknown/code_020b1dbc.h"
 #include "Main/Unknown/code_020bd7f8.h"
+#include "Main/Unknown/code_020bd850.h"
 
 void func_020bd7f8(Unk020d029c *a) {
     switch (func_020b1dbc()) {

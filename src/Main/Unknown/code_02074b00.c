@@ -7,6 +7,7 @@
 #include "Main/Unknown/code_02076000.h"
 #include "Main/Unknown/code_02076cc4.h"
 #include "Main/Unknown/code_0206bcb0.h"
+#include "Main/Unknown/code_02076cd0.h"
 #include "Main/Unknown/code_0207b960.h"
 #include "Main/Unknown/code_0208d978.h"
 #include "Main/Unknown/code_020b502c.h"
@@ -165,8 +166,8 @@ void func_02074e6c(Unk02061808 *p) {
     p->mUnk_018.y = p->mUnk_018.y - o->mUnk_2bc;
     p->mUnk_024.y = p->mUnk_024.y - o->mUnk_2bc;
     if (data_021759c0->mUnk_08 != 4 && data_021759c0->mUnk_08 != 2) {
-        if (func_01ffdee4(&p->mUnk_024, (u32 *) &p->mUnk_134, 0, data_usa_021656c0 >> 1, 2, -2, &w, NULL, NULL, NULL, NULL, NULL, NULL,
-                          NULL) != 0) {
+        if (func_01ffdee4(&p->mUnk_024, (u32 *) &p->mUnk_134, 0, data_usa_021656c0 >> 1, 2, -2, &w, NULL, NULL, NULL,
+                          NULL, NULL, NULL, NULL) != 0) {
             o = func_0207a974(p->mUnk_210);
             v = &o->mUnk_120;
             k = func_0214848c(v, &w);

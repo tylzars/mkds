@@ -1,4 +1,23 @@
+#include "Main/Unknown/code_0203b6ac.h"
+#include "Main/Unknown/code_020467d0.h"
+#include "Main/Unknown/code_020563ec.h"
+#include "Main/Unknown/code_02056408.h"
+#include "Main/Unknown/code_02056a7c.h"
+#include "Main/Unknown/code_02056b30.h"
+#include "Main/Unknown/code_02056c6c.h"
+#include "Main/Unknown/code_02057304.h"
+#include "Main/Unknown/code_02057624.h"
+#include "Main/Unknown/code_0205edcc.h"
+#include "Main/Unknown/code_0205ee14.h"
 #include "Main/Unknown/code_02060004.h"
+#include "Main/Unknown/code_021526a0.h"
+#include "Main/Unknown/code_02152918.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "code_0214d018.h"
+#include "code_02152500.h"
+#include "code_02152a24.h"
+#include "00/code_02182fdc.h"
+#include "00/code_0219d948.h"
 
 static inline s32 func_02060004_inline(s32 a, s32 b, Unk02056bc0 *c) {
     BOOL r;

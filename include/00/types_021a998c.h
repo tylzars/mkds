@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/types_021ab5e4.h"
+
+typedef struct Unk021ab5e4 Unk021ab5e4;
 
 // Object at 0x454 of Unk021a998c_0c.
 typedef struct Unk021aaf38 {

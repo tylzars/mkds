@@ -1,6 +1,12 @@
 #include "00/code_021a998c.h"
 #include "00/code_021aa054.h"
+#include "00/code_021aa468.h"
+#include "00/code_021ab728.h"
+#include "00/code_021abca0.h"
 #include "00/code_021adbac.h"
+#include "00/types_021a998c.h"
+#include "00/unk_021b6000.h"
+#include "code_0214d018.h"
 
 void func_ov000_021a998c(Unk021a998c *a) {
     u8 *msg;

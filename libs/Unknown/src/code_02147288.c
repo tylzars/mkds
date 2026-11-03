@@ -1,6 +1,7 @@
 #include "code_02147288.h"
 #include "code_02146d78.h"
 #include "code_02147cd8.h"
+#include "code_0214d018.h"
 #include "Main/Unknown/code_0214d000.h"
 
 void func_02147914(const Unk02012f58 *a, Unk02012f58 *b, s32 c, s32 d, s32 e) {
@@ -68,14 +69,14 @@ s32 func_0214755c(const Unk02012f58 *a, Unk02012f58 *b) {
     e1 = ((s64) a->mUnk_00[0].x * a->mUnk_00[1].y - (s64) a->mUnk_00[1].x * a->mUnk_00[0].y) >> 12;
     p->mUnk_00[2].z = ((s64) k * e1) >> 12;
     p->mUnk_00[3].x = -(s32) (((s64) p->mUnk_00[0].x * a->mUnk_00[3].x + (s64) p->mUnk_00[1].x * a->mUnk_00[3].y +
-                            (s64) p->mUnk_00[2].x * a->mUnk_00[3].z) >>
-                           12);
+                               (s64) p->mUnk_00[2].x * a->mUnk_00[3].z) >>
+                              12);
     p->mUnk_00[3].y = -(s32) (((s64) p->mUnk_00[0].y * a->mUnk_00[3].x + (s64) p->mUnk_00[1].y * a->mUnk_00[3].y +
-                            (s64) p->mUnk_00[2].y * a->mUnk_00[3].z) >>
-                           12);
+                               (s64) p->mUnk_00[2].y * a->mUnk_00[3].z) >>
+                              12);
     p->mUnk_00[3].z = -(s32) (((s64) p->mUnk_00[0].z * a->mUnk_00[3].x + (s64) p->mUnk_00[1].z * a->mUnk_00[3].y +
-                            (s64) p->mUnk_00[2].z * a->mUnk_00[3].z) >>
-                           12);
+                               (s64) p->mUnk_00[2].z * a->mUnk_00[3].z) >>
+                              12);
     if (p == &buf) {
         func_0214d118(&buf, b);
     }
@@ -95,8 +96,10 @@ void func_0214733c(const Unk02012f58 *a, const Unk02012f58 *b, Unk02012f58 *c) {
     x0 = a->mUnk_00[0].x;
     x1 = a->mUnk_00[0].y;
     x2 = a->mUnk_00[0].z;
-    p->mUnk_00[0].x = (s32) (((s64) x0 * b->mUnk_00[0].x + (s64) x1 * b->mUnk_00[1].x + (s64) x2 * b->mUnk_00[2].x) >> 12);
-    p->mUnk_00[0].y = (s32) (((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12);
+    p->mUnk_00[0].x =
+        (s32) (((s64) x0 * b->mUnk_00[0].x + (s64) x1 * b->mUnk_00[1].x + (s64) x2 * b->mUnk_00[2].x) >> 12);
+    p->mUnk_00[0].y =
+        (s32) (((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12);
     y0 = b->mUnk_00[0].z;
     y1 = b->mUnk_00[1].z;
     y2 = b->mUnk_00[2].z;
@@ -105,7 +108,8 @@ void func_0214733c(const Unk02012f58 *a, const Unk02012f58 *b, Unk02012f58 *c) {
     x1 = a->mUnk_00[1].y;
     x2 = a->mUnk_00[1].z;
     p->mUnk_00[1].z = (s32) (((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12);
-    p->mUnk_00[1].y = (s32) (((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12);
+    p->mUnk_00[1].y =
+        (s32) (((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12);
     y0 = b->mUnk_00[0].x;
     y1 = b->mUnk_00[1].x;
     y2 = b->mUnk_00[2].x;
@@ -114,7 +118,8 @@ void func_0214733c(const Unk02012f58 *a, const Unk02012f58 *b, Unk02012f58 *c) {
     x1 = a->mUnk_00[2].y;
     x2 = a->mUnk_00[2].z;
     p->mUnk_00[2].x = (s32) (((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12);
-    p->mUnk_00[2].y = (s32) (((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12);
+    p->mUnk_00[2].y =
+        (s32) (((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12);
     y0 = b->mUnk_00[0].z;
     y1 = b->mUnk_00[1].z;
     y2 = b->mUnk_00[2].z;
@@ -123,8 +128,10 @@ void func_0214733c(const Unk02012f58 *a, const Unk02012f58 *b, Unk02012f58 *c) {
     x1 = a->mUnk_00[3].y;
     x2 = a->mUnk_00[3].z;
     p->mUnk_00[3].z = b->mUnk_00[3].z + (((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12);
-    p->mUnk_00[3].y = b->mUnk_00[3].y + (((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12);
-    p->mUnk_00[3].x = b->mUnk_00[3].x + (((s64) x0 * b->mUnk_00[0].x + (s64) x1 * b->mUnk_00[1].x + (s64) x2 * b->mUnk_00[2].x) >> 12);
+    p->mUnk_00[3].y = b->mUnk_00[3].y +
+                      (((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12);
+    p->mUnk_00[3].x = b->mUnk_00[3].x +
+                      (((s64) x0 * b->mUnk_00[0].x + (s64) x1 * b->mUnk_00[1].x + (s64) x2 * b->mUnk_00[2].x) >> 12);
     if (p == &buf) {
         *c = buf;
     }

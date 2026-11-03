@@ -1,8 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "code_0214cfe4.h"
-#include "Main/Unknown/unk_0216f000.h"
 
 // One 0x590-byte entry of the table in Unk0216fc20.
 typedef struct Unk02008934 {

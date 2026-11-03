@@ -1,10 +1,14 @@
+#include "Main/Unknown/code_02046ad0.h"
 #include "Main/Unknown/code_020de438.h"
 
 #include "Main/Unknown/code_020de488.h"
 #include "Main/Unknown/code_020d2000.h"
+#include "Main/Unknown/code_020e66e4.h"
+#include "Main/Unknown/code_020e6a74.h"
 #include "Main/Unknown/code_020ec1fc.h"
 #include "Main/Unknown/code_020de4d4.h"
 #include "Main/Unknown/code_020de4e4.h"
+#include "Main/Unknown/unk_0216b000.h"
 
 void func_020de4e4(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
     Unk02012f58 *v1;

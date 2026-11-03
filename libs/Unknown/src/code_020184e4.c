@@ -10,6 +10,7 @@
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_02173000.h"
+#include "code_0214d018.h"
 #include "registers.h"
 
 void func_0201c09c(Unk020184e4 *p, Unk0201e3c8 *n) {
@@ -265,8 +266,8 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
         func_02147288(&pos, m, &pos);
         c = e->mUnk_14;
         func_0214818c(&c, &c);
-        t = (s32) (((s64) c.x * -m->mUnk_00[0].z + 0x800) >> 12) + (s32) (((s64) c.y * -m->mUnk_00[1].z + 0x800) >> 12) +
-            (s32) (((s64) c.z * -m->mUnk_00[2].z + 0x800) >> 12);
+        t = (s32) (((s64) c.x * -m->mUnk_00[0].z + 0x800) >> 12) +
+            (s32) (((s64) c.y * -m->mUnk_00[1].z + 0x800) >> 12) + (s32) (((s64) c.z * -m->mUnk_00[2].z + 0x800) >> 12);
         if (t < 0) {
             t = -t;
         }
@@ -304,8 +305,8 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
         func_02147288(&pos, m, &pos);
         c = e->mUnk_14;
         func_0214818c(&c, &c);
-        t = (s32) (((s64) c.x * -m->mUnk_00[0].z + 0x800) >> 12) + (s32) (((s64) c.y * -m->mUnk_00[1].z + 0x800) >> 12) +
-            (s32) (((s64) c.z * -m->mUnk_00[2].z + 0x800) >> 12);
+        t = (s32) (((s64) c.x * -m->mUnk_00[0].z + 0x800) >> 12) +
+            (s32) (((s64) c.y * -m->mUnk_00[1].z + 0x800) >> 12) + (s32) (((s64) c.z * -m->mUnk_00[2].z + 0x800) >> 12);
         if (t < 0) {
             t = -t;
         }
@@ -404,8 +405,8 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
         func_02147288(&pos, m, &pos);
         c = e->mUnk_14;
         func_0214818c(&c, &c);
-        t = (s32) (((s64) c.x * -m->mUnk_00[0].z + 0x800) >> 12) + (s32) (((s64) c.y * -m->mUnk_00[1].z + 0x800) >> 12) +
-            (s32) (((s64) c.z * -m->mUnk_00[2].z + 0x800) >> 12);
+        t = (s32) (((s64) c.x * -m->mUnk_00[0].z + 0x800) >> 12) +
+            (s32) (((s64) c.y * -m->mUnk_00[1].z + 0x800) >> 12) + (s32) (((s64) c.z * -m->mUnk_00[2].z + 0x800) >> 12);
         if (t < 0) {
             t = -t;
         }
@@ -443,8 +444,8 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
         func_02147288(&pos, m, &pos);
         c = e->mUnk_14;
         func_0214818c(&c, &c);
-        t = (s32) (((s64) c.x * -m->mUnk_00[0].z + 0x800) >> 12) + (s32) (((s64) c.y * -m->mUnk_00[1].z + 0x800) >> 12) +
-            (s32) (((s64) c.z * -m->mUnk_00[2].z + 0x800) >> 12);
+        t = (s32) (((s64) c.x * -m->mUnk_00[0].z + 0x800) >> 12) +
+            (s32) (((s64) c.y * -m->mUnk_00[1].z + 0x800) >> 12) + (s32) (((s64) c.z * -m->mUnk_00[2].z + 0x800) >> 12);
         if (t < 0) {
             t = -t;
         }

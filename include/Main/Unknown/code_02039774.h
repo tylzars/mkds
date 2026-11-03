@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02175000.h"
 
 void func_02039774(void);
 void func_020397a8(const Vec3 *a, const Vec3 *b, Vec3 *axb);

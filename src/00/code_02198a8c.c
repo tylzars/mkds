@@ -1,12 +1,18 @@
+#include "00/code_02197e8c.h"
 #include "00/code_02198a8c.h"
 #include "00/code_02198714.h"
 #include "00/code_02198ba8.h"
 #include "00/code_02198d04.h"
+#include "00/code_0219903c.h"
 #include "00/code_0219a000.h"
 #include "00/code_0219a01c.h"
+#include "00/code_0219a044.h"
 #include "00/code_0219a09c.h"
+#include "00/code_0219a0d0.h"
 #include "00/code_0219a3f4.h"
 #include "00/code_021988e8.h"
+#include "00/code_0219a430.h"
+#include "00/unk_021b3000.h"
 
 void func_ov000_02198a8c(Unk02197e8c *a) {
     if (func_ov000_0219914c(a) != 0) {

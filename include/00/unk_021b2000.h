@@ -1,7 +1,5 @@
 #pragma once
 
-#include "00/code_0218e2a4.h"
-
 #include "types.h"
 
 // Objects whose layout isn't known yet.

@@ -1,4 +1,11 @@
 #include "00/code_021a9640.h"
+#include "00/code_021ab728.h"
+#include "00/code_021abca0.h"
+#include "00/types_021a998c.h"
+#include "00/types_021ab5e4.h"
+#include "00/unk_021b6000.h"
+#include "code_0200dc3c.h"
+#include "code_0214d018.h"
 
 void func_ov000_021a9640(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;

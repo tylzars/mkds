@@ -1,4 +1,7 @@
 #include "01/code_0219d50c.h"
+#include "01/unk_021a8000.h"
+#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_020b47d8.h"
 
 void func_ov001_0219d50c(void) {
     void *v1;

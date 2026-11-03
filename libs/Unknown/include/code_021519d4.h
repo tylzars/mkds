@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "code_021510a4.h"
+
+typedef struct Unk021510a4 Unk021510a4;
 
 // Output of func_02151ddc: the first two fields of Unk021510a4, a flag and a word.
 typedef struct Unk02151ddc {

@@ -1,4 +1,5 @@
 #include "code_0214e6d4.h"
+#include "code_0214e6e4.h"
 
 u32 func_0214e6d4(void) {
     u32 value0;

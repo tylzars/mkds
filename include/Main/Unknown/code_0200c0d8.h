@@ -1,8 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0216f000.h"
-#include "Main/Unknown/code_0214d000.h"
 
 // Six bytes that func_0200c0d8 fills and func_0200c3a4 writes out.
 typedef struct Unk0200c0d8 {

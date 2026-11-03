@@ -1,4 +1,5 @@
 #include "code_0200cdb0.h"
+#include "code_0200fc8c.h"
 
 void func_0200cdb0(void) {
     u32 value0;

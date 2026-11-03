@@ -1,8 +1,12 @@
+#include "Main/Unknown/code_0204aa60.h"
 #include "Main/Unknown/code_020ae3b4.h"
 
 #include "Main/Unknown/code_02045874.h"
 #include "Main/Unknown/code_020ae3d8.h"
 #include "Main/Unknown/code_020ae408.h"
+#include "Main/Unknown/code_020ae428.h"
+#include "Main/Unknown/unk_02175000.h"
+#include "Main/Unknown/unk_0217a000.h"
 
 #pragma thumb on
 

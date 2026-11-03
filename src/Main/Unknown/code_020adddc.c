@@ -1,4 +1,6 @@
 #include "Main/Unknown/code_020adddc.h"
+#include "Main/Unknown/code_020ade08.h"
+#include "Main/Unknown/code_0212b090.h"
 
 #pragma thumb on
 

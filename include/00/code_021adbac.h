@@ -1,15 +1,13 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_021a998c.h"
-#include "00/code_021af550.h"
-#include "Main/Unknown/unk_0216f000.h"
+
+typedef struct Unk021a998c Unk021a998c;
 
 extern u32 (*data_ov000_021b6388)(void);
 extern u8 data_ov000_021b6364;
 extern u16 data_ov000_021b6370;
 
-// Declared here until the code that defines them is decompiled.
 void func_ov000_021b04d4(void);
 void func_ov000_021b04f8(u32 a);
 void func_ov000_021afc5c(u32 a);

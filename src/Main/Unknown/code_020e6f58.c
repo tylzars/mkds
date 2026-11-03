@@ -1,6 +1,8 @@
+#include "Main/Unknown/code_020d655c.h"
 #include "Main/Unknown/code_020e6f58.h"
 
 #include "Main/Unknown/code_020d6000.h"
+#include "Main/Unknown/code_020e6fd4.h"
 
 #pragma thumb on
 void func_020e6f58(Unk020e6fd4 *p, Unk020e71a0 *q) {

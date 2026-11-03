@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "code_0213ee6c.h"
+
+typedef struct Unk02136638 Unk02136638;
 
 // 16 bytes. Filled by func_0213e468 from the text after a '%', read by func_0213cae0 and passed by value
 // (one word in r3, three on the stack) to func_0213d398, func_0213deec and func_0213e1f0. Byte 0x05 is never accessed.

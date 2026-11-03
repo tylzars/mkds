@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e43a8.h"
+
+typedef struct Unk020e43a8 Unk020e43a8;
 
 // 0x10-byte request built on the stack here.
 typedef struct Unk020e4e08 {

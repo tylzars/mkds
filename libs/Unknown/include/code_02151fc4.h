@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "code_021510a4.h"
+
+typedef struct Unk021510a4 Unk021510a4;
 
 extern const u8 data_usa_02161730[];
 extern const u8 data_usa_02161738[];

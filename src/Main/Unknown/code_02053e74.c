@@ -1,3 +1,7 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_0204f240.h"
+#include "Main/Unknown/code_0204f814.h"
+#include "Main/Unknown/code_020529b8.h"
 #include "Main/Unknown/code_02053e74.h"
 #include "Main/Unknown/code_02006954.h"
 #include "Main/Unknown/code_02036000.h"
@@ -9,11 +13,13 @@
 #include "Main/Unknown/code_02053000.h"
 #include "Main/Unknown/code_02054000.h"
 #include "Main/Unknown/code_02054f38.h"
+#include "Main/Unknown/code_02054f58.h"
 #include "Main/Unknown/code_020562b4.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_020176c0.h"
+#include "code_0214d018.h"
 
 #pragma opt_rebuildconditionals off
 

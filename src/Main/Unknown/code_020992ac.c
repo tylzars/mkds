@@ -1,8 +1,11 @@
 #include "Main/Unknown/code_020992ac.h"
 
+#include "Main/Unknown/code_0209b634.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "Main/Unknown/code_0209b000.h"
+#include "Main/Unknown/code_0209bf70.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "ITCM/code_01ff8000.h"
 
 void *gDeTree1;
 void *gCrossTree1;

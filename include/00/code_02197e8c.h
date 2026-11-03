@@ -1,10 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0218d000.h"
-#include "00/code_0219a3f4.h"
-#include "00/unk_021b3000.h"
-#include "code_0213442c.h"
 
 struct Unk02197e8c;
 struct Unk02197fe8;

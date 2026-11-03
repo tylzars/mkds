@@ -1,10 +1,16 @@
+#include "Main/Unknown/code_0205d0e8.h"
 #include "Main/Unknown/code_02121e84.h"
+#include "00/code_02182fdc.h"
 #include "00/code_0219b000.h"
+#include "00/code_0219bb68.h"
 #include "00/code_021a2000.h"
+#include "00/code_021a2ccc.h"
 #include "00/code_021a3000.h"
+#include "00/code_021a3264.h"
 #include "Main/Unknown/code_0205d000.h"
 #include "Main/Unknown/code_02120610.h"
 #include "Main/Unknown/code_0214d000.h"
+#include "code_0214d018.h"
 
 #pragma opt_arithtransformation off
 

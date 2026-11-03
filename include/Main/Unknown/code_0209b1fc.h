@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0209a748.h"
-#include "Main/Unknown/code_0206bcb0.h"
+
+typedef struct Unk0209a7dc Unk0209a7dc;
+typedef struct Unk0206bcb0 Unk0206bcb0;
 
 void CreateCrabAndCrabHand(void *a);
 u8 func_0209b270(Unk0209a7dc *a, Unk0206bcb0 *b, u8 *c, u8 *d);

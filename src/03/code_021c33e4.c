@@ -1,4 +1,12 @@
+#include "03/code_021bf098.h"
+#include "03/code_021c209c.h"
 #include "03/code_021c33e4.h"
+#include "03/code_021cdbd0.h"
+#include "03/code_021d1dd0.h"
+#include "03/code_021d1f70.h"
+#include "03/code_021d2940.h"
+#include "code_0200fc8c.h"
+#include "code_0214f4a4.h"
 
 void func_ov003_021c3490(void) {
     int v1;

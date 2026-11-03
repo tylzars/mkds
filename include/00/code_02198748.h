@@ -1,7 +1,8 @@
 #pragma once
 
-#include "types.h"
+#include "00/code_02197e8c.h"
 #include "00/code_021981d0.h"
+#include "types.h"
 
 void func_ov000_02198748(Unk02197fe8 *a, void *b, u32 c, ...);
 BOOL func_ov000_02198778(Unk02197fe8 *a, Unk02198778 *b);

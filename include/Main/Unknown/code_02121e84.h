@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02182fdc.h"
 
 void func_02121e84(s32 a);
 void func_02121eb4(s32 a);

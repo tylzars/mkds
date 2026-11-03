@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020f36d8.h"
-#include "Main/Unknown/code_020ff344.h"
+
+typedef struct Unk020f41c4_A Unk020f41c4_A;
+typedef struct Unk020ff438 Unk020ff438;
 
 // Element of the two tables data_0217c200 and data_0217be00: 0x14 bytes of
 // bytes passed on followed by three words.

@@ -1,34 +1,11 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02182fdc.h"
-#include "01/code_02185ef4.h"
-#include "01/code_02188950.h"
-#include "01/code_0218b298.h"
-#include "01/code_0218f900.h"
-#include "01/unk_021a9000.h"
-#include "Main/Unknown/code_0200e000.h"
-#include "Main/Unknown/code_0209b000.h"
-#include "Main/Unknown/code_020b4000.h"
-#include "Main/Unknown/code_020b502c.h"
-#include "Main/Unknown/code_020b837c.h"
-#include "Main/Unknown/code_020b85f0.h"
-#include "Main/Unknown/code_020c0000.h"
-#include "Main/Unknown/code_020c0b84.h"
-#include "Main/Unknown/code_020c0d9c.h"
-#include "01/callees_0219b000.h"
-#include "01/code_02185000.h"
-#include "01/code_02186000.h"
-#include "01/code_0218d520.h"
-#include "Main/Unknown/code_0206bcb0.h"
-#include "01/code_02187000.h"
-#include "01/code_02188000.h"
-#include "01/code_02188e24.h"
-#include "01/code_0218affc.h"
-#include "01/code_0218b000.h"
-#include "Main/Unknown/code_020d2000.h"
-#include "01/code_0218a000.h"
-#include "01/unk_021a7000.h"
+
+typedef struct Unk02188950 Unk02188950;
+typedef struct Unk0218d87c Unk0218d87c;
+typedef struct Unk0206c1ac Unk0206c1ac;
+typedef struct Unk0206bcb0 Unk0206bcb0;
 
 void *func_ov001_02189da4(void);
 void *func_ov001_02189dbc(void);
@@ -50,9 +27,3 @@ u32 func_ov001_0218a2b8(Unk02188950 *a);
 void func_ov001_0218a2d4(void);
 void func_ov001_0218a2dc(Unk02188950 *a);
 void func_ov001_0218a30c(Unk02188950 *a);
-
-#include "01/code_0218b2dc.h"
-
-#include "01/code_0218f9d4.h"
-#include "Main/Unknown/unk_0217a000.h"
-#include "Main/Unknown/code_02061f7c.h"

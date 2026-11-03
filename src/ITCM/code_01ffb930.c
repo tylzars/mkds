@@ -1,4 +1,5 @@
 #include "ITCM/code_01ffb930.h"
+#include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/unk_02165000.h"
 
 void func_01ffb9e0(Unk0206bcb0 *p) {

@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "03/types_021d299c.h"
+
+typedef struct Unk021d299c Unk021d299c;
 
 extern Unk021d299c data_ov003_021d6380;
 extern u8 data_ov003_021da1d0;

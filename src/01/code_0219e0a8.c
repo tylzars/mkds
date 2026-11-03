@@ -3,6 +3,10 @@
 #include "01/code_0219e000.h"
 #include "01/code_0219f000.h"
 #include "01/unk_021a6000.h"
+#include "01/unk_021ca000.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02036c5c.h"
+#include "Main/Unknown/code_020ae5e4.h"
 #include "Main/Unknown/code_02105000.h"
 #include "Main/Unknown/code_02037000.h"
 
@@ -26,8 +30,8 @@ void func_ov001_0219e6ec(void *heap) {
     func_ov001_0219e660();
     func_ov001_0219e38c();
     func_020ae6d4(data_ov001_021ca400->mUnk_068, NULL);
-    func_02124ed0(data_ov001_021ca400->mHeap, data_ov001_021ca400->mEndingThanksBncl, data_ov001_021ca400->mEndingThanksBnll,
-                  &data_ov001_021ca400->mUnk_020);
+    func_02124ed0(data_ov001_021ca400->mHeap, data_ov001_021ca400->mEndingThanksBncl,
+                  data_ov001_021ca400->mEndingThanksBnll, &data_ov001_021ca400->mUnk_020);
     result = NULL;
     data_ov001_021ca400->mUnk_020->mUnk_00 = 0;
     {
@@ -43,8 +47,8 @@ void func_ov001_0219e6ec(void *heap) {
         }
         func_021243ac(data_ov001_021ca400->mHeap, 0, data_ov001_021ca400->mEndingThanksBnll,
                       table[data_ov001_021ca400->mKind][0], table[data_ov001_021ca400->mKind][1], 0,
-                      data_ov001_021ca400->mThanksYouMNcer, data_ov001_021ca400->mEndingThanksBncl, data_ov001_021ca400->mUnk_020,
-                      0x8000);
+                      data_ov001_021ca400->mThanksYouMNcer, data_ov001_021ca400->mEndingThanksBncl,
+                      data_ov001_021ca400->mUnk_020, 0x8000);
         func_0212426c(0, 0, data_ov001_021ca400->mEndingThanksBnll, result, data_ov001_021ca400->mEndingThanksBncl,
                       data_ov001_021ca400->mUnk_020);
     }
@@ -68,12 +72,18 @@ void func_ov001_0219e660(void) {
 }
 
 void func_ov001_0219e5d4(int i) {
-    func_02016468(4, 0, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mUnk_14, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mUnk_10);
-    func_02016468(8, 0, data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mUnk_0c, data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mUnk_08);
-    func_02016468(0xf, 0, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mUnk_0c, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mUnk_08);
-    func_02016468(0x14, 0, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mUnk_14, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mUnk_10);
-    func_02016468(0x18, 0, data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mUnk_0c, data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mUnk_08);
-    func_02016468(0x1f, 0, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mUnk_0c, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mUnk_08);
+    func_02016468(4, 0, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mUnk_14,
+                  data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mUnk_10);
+    func_02016468(8, 0, data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mUnk_0c,
+                  data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mUnk_08);
+    func_02016468(0xf, 0, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mUnk_0c,
+                  data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mUnk_08);
+    func_02016468(0x14, 0, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mUnk_14,
+                  data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mUnk_10);
+    func_02016468(0x18, 0, data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mUnk_0c,
+                  data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mUnk_08);
+    func_02016468(0x1f, 0, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mUnk_0c,
+                  data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mUnk_08);
 }
 
 void func_ov001_0219e5a0(void) {
@@ -88,28 +98,43 @@ void func_ov001_0219e38c(void) {
     LoadNcgrData(&data_ov001_021ca400->mUnk_038[0], FindSceneFile("logo_end_marioKart_m_b_02.ncgr"));
     LoadNscrData(&data_ov001_021ca400->mUnk_040[0], FindSceneFile("logo_end_marioKart_m_bg_02.nscr"));
 #else
-    LoadNcgrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[0], FindSceneFile("logo_end_marioKart_m_b_01.ncgr"));
-    LoadNscrData(&data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[0], FindSceneFile("logo_end_marioKart_m_bg_01.nscr"));
+    LoadNcgrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[0],
+                 FindSceneFile("logo_end_marioKart_m_b_01.ncgr"));
+    LoadNscrData(&data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[0],
+                 FindSceneFile("logo_end_marioKart_m_bg_01.nscr"));
 #endif
-    LoadNclrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[0], FindSceneFile("logo_end_marioKart_m_b.nclr"));
+    LoadNclrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[0],
+                 FindSceneFile("logo_end_marioKart_m_b.nclr"));
     switch (data_ov001_021ca400->mKind) {
         case 0:
-            LoadNcgrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[1], FindSceneFile("thanksYou_m_b_00.ncgr"));
-            LoadNscrData(&data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[1], FindSceneFile("thanksYou_m_bg_00.nscr"));
-            LoadNclrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[1], FindSceneFile("thanksYou_m_b_00.nclr"));
+            LoadNcgrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[1],
+                         FindSceneFile("thanksYou_m_b_00.ncgr"));
+            LoadNscrData(&data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[1],
+                         FindSceneFile("thanksYou_m_bg_00.nscr"));
+            LoadNclrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[1],
+                         FindSceneFile("thanksYou_m_b_00.nclr"));
             break;
         case 1:
-            LoadNcgrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[1], FindSceneFile("thanksYou_m_b_01_2.ncgr"));
-            LoadNscrData(&data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[1], FindSceneFile("thanksYou_m_bg_01_2.nscr"));
-            LoadNclrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[1], FindSceneFile("thanksYou_m_b_01.nclr"));
+            LoadNcgrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[1],
+                         FindSceneFile("thanksYou_m_b_01_2.ncgr"));
+            LoadNscrData(&data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[1],
+                         FindSceneFile("thanksYou_m_bg_01_2.nscr"));
+            LoadNclrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[1],
+                         FindSceneFile("thanksYou_m_b_01.nclr"));
             break;
     }
-    LoadNcgrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[0], FindSceneFile("end_allRightsReserved_s_b.ncgr"));
-    LoadNscrData(&data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[0], FindSceneFile("end_allRightsReserved_s_bg.nscr"));
-    LoadNclrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[0], FindSceneFile("end_allRightsReserved_s_b.nclr"));
-    LoadNcgrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[1], FindSceneFile("logo_end_Nintendo_s_b.ncgr"));
-    LoadNscrData(&data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[1], FindSceneFile("logo_end_Nintendo_s_bg.nscr"));
-    LoadNclrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[1], FindSceneFile("logo_end_Nintendo_s_b.nclr"));
+    LoadNcgrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[0],
+                 FindSceneFile("end_allRightsReserved_s_b.ncgr"));
+    LoadNscrData(&data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[0],
+                 FindSceneFile("end_allRightsReserved_s_bg.nscr"));
+    LoadNclrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[0],
+                 FindSceneFile("end_allRightsReserved_s_b.nclr"));
+    LoadNcgrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[1],
+                 FindSceneFile("logo_end_Nintendo_s_b.ncgr"));
+    LoadNscrData(&data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[1],
+                 FindSceneFile("logo_end_Nintendo_s_bg.nscr"));
+    LoadNclrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[1],
+                 FindSceneFile("logo_end_Nintendo_s_b.nclr"));
     LoadNcerData(&data_ov001_021ca400->mThanksYouMNcer, FindSceneFile("thanksYou_m.nce.ncer"));
     LoadNclrData(&data_ov001_021ca400->mThanksYouMO00Nclr, FindSceneFile("thanksYou_m_o_00.nclr"));
     switch (data_ov001_021ca400->mKind) {
@@ -127,7 +152,8 @@ void func_ov001_0219e38c(void) {
     } else {
         func_ov001_0219e5d4(0);
     }
-    func_02016468(0xe, 0, data_ov001_021ca400->mThanksYouMO00Nclr->mUnk_0c, data_ov001_021ca400->mThanksYouMO00Nclr->mUnk_08);
+    func_02016468(0xe, 0, data_ov001_021ca400->mThanksYouMO00Nclr->mUnk_0c,
+                  data_ov001_021ca400->mThanksYouMO00Nclr->mUnk_08);
 }
 
 void func_ov001_0219e34c(void) {
@@ -255,8 +281,8 @@ void func_ov001_0219e118(void) {
             func_ov001_0219e1b0();
             break;
     }
-    func_02124c30(data_ov001_021ca400->mEndingThanksBncl, data_ov001_021ca400->mThanksYouMNcer, data_ov001_021ca400->mEndingThanksBnll,
-                  data_ov001_021ca400->mUnk_068, data_ov001_021ca400->mUnk_020);
+    func_02124c30(data_ov001_021ca400->mEndingThanksBncl, data_ov001_021ca400->mThanksYouMNcer,
+                  data_ov001_021ca400->mEndingThanksBnll, data_ov001_021ca400->mUnk_068, data_ov001_021ca400->mUnk_020);
     func_020ae630((void *) (data_ov001_021ca400->mUnk_068), NULL);
 }
 

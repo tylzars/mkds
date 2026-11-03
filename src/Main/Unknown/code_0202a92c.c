@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_0202578c.h"
+#include "Main/Unknown/code_0202a820.h"
 #include "Main/Unknown/code_0202a92c.h"
 #include "Main/Unknown/code_02025000.h"
 #include "Main/Unknown/code_02025bb4.h"
@@ -5,6 +7,8 @@
 #include "Main/Unknown/code_02025d8c.h"
 #include "Main/Unknown/code_02025edc.h"
 #include "Main/Unknown/code_02029440.h"
+#include "Main/Unknown/code_0202e4b0.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/unk_02174000.h"
 #include "Main/Unknown/code_0202cb2c.h"
 #include "Main/Unknown/code_0202db04.h"
@@ -166,11 +170,12 @@ void InitWiFiVSCourseSelect(u32 param_1, u32 param_2, u32 param_3) {
     func_02025f80(&gWiFiVSCourseSelect->mUnk_0cc[0], 0, 10, -0xc0, 0);
     func_02025f80(&gWiFiVSCourseSelect->mUnk_0cc[2], 0, 10, 0x40, 0);
     *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & 0x43) | 0xc00;
-    func_020258d4(0, gWiFiVSCourseSelect, gWiFiVSCourseSelectMBNcgrName, gWiFiVSCourseSelectMBNclrName, gWiFiVSCourseSelectMNscrName, 0, FindSceneFile);
+    func_020258d4(0, gWiFiVSCourseSelect, gWiFiVSCourseSelectMBNcgrName, gWiFiVSCourseSelectMBNclrName,
+                  gWiFiVSCourseSelectMNscrName, 0, FindSceneFile);
     p = &gWiFiVSCourseSelect->mUnk_048;
     k = func_02148cb8();
-    func_02025b20(p, gWiFiVSCourseSelectMNcgrName, gWiFiVSCourseSelectMNcerName, gWiFiVSCourseSelectMONclrName, gWiFiVSCourseSelectMBnclName, gWiFiVSCourseSelectMBnllName, NULL,
-                  FindSceneFile);
+    func_02025b20(p, gWiFiVSCourseSelectMNcgrName, gWiFiVSCourseSelectMNcerName, gWiFiVSCourseSelectMONclrName,
+                  gWiFiVSCourseSelectMBnclName, gWiFiVSCourseSelectMBnllName, NULL, FindSceneFile);
     func_02025a50(0, gWiFiVSCourseSelect->mUnk_090, p);
     n = p->mUnk_0c->mUnk_06;
     for (i = 0; i < n; i++) {
@@ -188,12 +193,13 @@ void InitWiFiVSCourseSelect(u32 param_1, u32 param_2, u32 param_3) {
     }
     p->mUnk_18[4].mUnk_06 = 0x60 - (((s16 *) func_0201ea30(p->mUnk_0c, 4))[1] << 20 >> 20);
     p->mUnk_18[4].mUnk_00 = 0;
-    func_020258d4(1, &gWiFiVSCourseSelect->mUnk_000[1], gWiFiVSCourseSelectSBNcgrName, gWiFiVSCourseSelectSBNclrName, gWiFiVSCourseSelectSNscrName, 3,
-                  FindSceneFile);
+    func_020258d4(1, &gWiFiVSCourseSelect->mUnk_000[1], gWiFiVSCourseSelectSBNcgrName, gWiFiVSCourseSelectSBNclrName,
+                  gWiFiVSCourseSelectSNscrName, 3, FindSceneFile);
     t = &gWiFiVSCourseSelect->mUnk_064;
     k = func_02148ca0();
-    func_02025b20(t, gWiFiVSCourseSelectSNcgrName, gWiFiVSCourseSelectSNcerName, gWiFiVSCourseSelectSONclrName, gWiFiVSCourseSelectSBnclName, gWiFiVSCourseSelectSBnllName,
-                  gWiFiVSCourseSelectSBnblName, FindSceneFile);
+    func_02025b20(t, gWiFiVSCourseSelectSNcgrName, gWiFiVSCourseSelectSNcerName, gWiFiVSCourseSelectSONclrName,
+                  gWiFiVSCourseSelectSBnclName, gWiFiVSCourseSelectSBnllName, gWiFiVSCourseSelectSBnblName,
+                  FindSceneFile);
     func_02025a50(1, gWiFiVSCourseSelect->mUnk_090, t);
     m = t->mUnk_0c->mUnk_06;
     for (j = 0; j < m; j++) {

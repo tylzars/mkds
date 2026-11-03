@@ -1,9 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "code_0200e77c.h"
 #include "code_0212c7f0.h" // Unk0212c7f0
 #include "code_0212da38.h" // Unk02017328
+
+typedef struct Unk0200eb90 Unk0200eb90;
 
 struct Unk02005210;
 struct Unk02142aa8;

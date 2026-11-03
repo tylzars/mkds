@@ -1,9 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02180608.h"
-#include "Main/Unknown/code_02036000.h"
-#include "Main/Unknown/code_0202a820.h"
+
+typedef struct Unk021b0cd4 Unk021b0cd4;
 
 extern Unk021b0cd4 gWiFiVSCourseSelectCallbacks;
 

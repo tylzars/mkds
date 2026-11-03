@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h"
-#include "Main/Unknown/code_0210bcf4.h"
+
+typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Unk0210bcf4 Unk0210bcf4;
 
 // Five words of constant data used by func_02109468.
 typedef struct Unk02109468 {

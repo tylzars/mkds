@@ -5,6 +5,7 @@
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_0200f000.h"
 #include "code_0200f7a0.h"
+#include "code_0200fc8c.h"
 #include "Main/Unknown/unk_0216f000.h"
 
 void func_0200e084(Unk0200db5c *t) {

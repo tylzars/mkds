@@ -1,3 +1,5 @@
+#include "01/code_02187eb0.h"
+#include "01/code_02188cd8.h"
 #include "01/code_0218d374.h"
 
 #include "01/code_02185ef4.h"
@@ -5,9 +7,12 @@
 #include "01/code_02188da4.h"
 #include "01/code_02187000.h"
 #include "01/code_0218d520.h"
+#include "01/code_0218dce4.h"
 #include "01/code_0218ddb4.h"
 #include "Main/Unknown/code_0209b000.h"
+#include "Main/Unknown/code_020a10f0.h"
 #include "Main/Unknown/code_02100000.h"
+#include "Main/Unknown/code_021000d0.h"
 #include "Main/Unknown/code_0210b708.h"
 #include "Main/Unknown/code_02108e6c.h"
 #include "Main/Unknown/code_020d2000.h"

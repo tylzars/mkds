@@ -2,7 +2,8 @@
 
 #include "types.h"
 #include "code_0212c6a0.h"
-#include "code_0212d254.h"
+
+typedef struct Unk0212d5f8 Unk0212d5f8;
 
 // Object at data_ov003_021da274.
 typedef struct Unk021cdc4c {
@@ -11,8 +12,6 @@ typedef struct Unk021cdc4c {
     /* 94 */ void *mUnk_94;
     /* 98 */ u32 mUnk_98;
 } Unk021cdc4c;
-
-#include "03/unk_021da000.h"
 
 extern u8 data_ov003_021d77d4[];
 

@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0218dc44.h"
+
+typedef struct Unk0218dc94 Unk0218dc94;
 
 // 0x14 bytes. Table of Unk0218dc94 arrays: the array of buckets, its length, the per-element callback and the
 // functions that pick a bucket and compare two elements.

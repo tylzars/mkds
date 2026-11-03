@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020de588.h"
+
+typedef struct Unk020de6a8 Unk020de6a8;
 
 // Second argument of func_020dea50: a halfword at 0x74 and a word at 0x7c.
 typedef struct Unk020dea50_1 {

@@ -1,4 +1,9 @@
+#include "Main/Unknown/code_0210bc14.h"
+#include "Main/Unknown/code_0210bce0.h"
 #include "Main/Unknown/code_0210c134.h"
+#include "Main/Unknown/code_0210d078.h"
+#include "Main/Unknown/code_0210d0b4.h"
+#include "code_0201750c.h"
 
 void func_0210c134(int a, u32 b) {
     u32 v1;

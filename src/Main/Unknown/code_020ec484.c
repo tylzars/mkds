@@ -1,8 +1,11 @@
+#include "Main/Unknown/code_020d22e0.h"
+#include "Main/Unknown/code_020d50ec.h"
 #include "Main/Unknown/code_020ec484.h"
 
 #include "Main/Unknown/code_020ec490.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_020ec504.h"
+#include "Main/Unknown/unk_02159000.h"
 
 void func_020ec504(int a) {
     u16 v1;

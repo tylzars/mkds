@@ -1,8 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02174000.h"
-#include "Main/Unknown/unk_02175628.h"
+
+typedef struct Unk02175628 Unk02175628;
 
 u16 func_0202ecd4(u32 a, u32 b);
 u16 func_0202ecf0(Unk02175628 *a, u32 b);

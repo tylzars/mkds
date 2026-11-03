@@ -1,11 +1,21 @@
 #include "01/code_021899e4.h"
 
+#include "01/code_0218b298.h"
+#include "01/code_0218f900.h"
 #include "01/unk_021a6000.h"
 #include "01/unk_021a9000.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "Main/Unknown/code_020b47b4.h"
+#include "Main/Unknown/code_020b837c.h"
+#include "Main/Unknown/code_020b85f0.h"
+#include "Main/Unknown/code_020b8624.h"
+#include "Main/Unknown/code_020c06c4.h"
+#include "Main/Unknown/code_020c0b84.h"
+#include "Main/Unknown/code_020c0ba8.h"
+#include "Main/Unknown/code_020c0d9c.h"
 #include "00/code_02182fdc.h"
+#include "code_0200eddc.h"
 
 #pragma thumb off
 

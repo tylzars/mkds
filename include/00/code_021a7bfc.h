@@ -1,8 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_021a6fa8.h"
 #include "00/code_021a6fb4.h"
+
+typedef struct Unk021a7154 Unk021a7154;
+typedef struct Unk021a6fa8 Unk021a6fa8;
 
 // An Unk021a7064 entry as func_ov000_021a7eec and the functions after it see it.
 typedef struct Unk021a7eec {

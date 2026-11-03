@@ -1,4 +1,6 @@
 #include "00/code_0219c3e4.h"
+#include "00/code_0219c954.h"
+#include "00/code_0219d128.h"
 #include "00/unk_021b5000.h"
 #include "00/code_0219c93c.h"
 #include "Main/Unknown/code_0200f000.h"

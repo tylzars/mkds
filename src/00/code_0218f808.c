@@ -1,4 +1,6 @@
+#include "00/code_0218dd8c.h"
 #include "00/code_0218f808.h"
+#include "00/code_02190ba0.h"
 
 void func_ov000_0218f808(Unk0218f960 *a) {
     Unk0218f960_00 *v1;

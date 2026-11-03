@@ -4,7 +4,9 @@
 #include "Main/Unknown/code_020d2000.h"
 #include "Main/Unknown/code_020ea55c.h"
 #include "Main/Unknown/code_020ea588.h"
+#include "ITCM/code_01ff8000.h"
 #include "ITCM/code_01ff9000.h"
+#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
 #include "ITCM/code_01ffd000.h"
 #include "Main/Unknown/code_020472a8.h"
@@ -15,6 +17,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020e55b4.h"
+#include "code_02146cbc.h"
 
 void func_020e55b4(void) {
     u32 value;
@@ -96,8 +99,7 @@ void func_020e52bc(void) {
     Unk020e52bc_8 *b;
     Unk020e52bc_c *c;
 
-    func_020ea588((void **) &gObjShadow,
-                  (void *) FindMainRaceOrMainEffectMapObjFile(gObjShadowNsbmdName), NULL);
+    func_020ea588((void **) &gObjShadow, (void *) FindMainRaceOrMainEffectMapObjFile(gObjShadowNsbmdName), NULL);
     func_020849c0(gObjShadow, 0x3f);
     func_020849b0(gObjShadow, 0);
     a = gObjShadow->mUnk_004;

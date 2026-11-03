@@ -1,8 +1,15 @@
+#include "Main/Unknown/code_02061874.h"
 #include "Main/Unknown/code_020653d0.h"
+#include "Main/Unknown/code_02068eac.h"
+#include "Main/Unknown/code_02081618.h"
+#include "Main/Unknown/code_020d50ec.h"
+#include "Main/Unknown/code_02109054.h"
 #include "Main/Unknown/unk_02154000.h"
 #include "Main/Unknown/unk_02165000.h"
 #include "ITCM/code_01ffb000.h"
+#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
+#include "ITCM/code_01ffcf7c.h"
 #include "ITCM/code_01ffdee4.h"
 #include "Main/Unknown/code_0206a000.h"
 #include "Main/Unknown/code_0206b000.h"
@@ -202,8 +209,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
                     p->mUnk_44 &= ~0x2000;
                 }
             }
-            if (func_01ffdee4(&v, (u32 *) &v6, 0, p->mUnk_1d0, 1, p->mUnk_2c8, &v5, 0, 0, &w, 0, 0, 0,
-                              0)) {
+            if (func_01ffdee4(&v, (u32 *) &v6, 0, p->mUnk_1d0, 1, p->mUnk_2c8, &v5, 0, 0, &w, 0, 0, 0, 0)) {
                 func_02148504(&v, &v5, &v);
             }
             v6 = v;

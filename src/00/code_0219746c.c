@@ -1,5 +1,20 @@
+#include "00/code_0218e0fc.h"
+#include "00/code_0218e368.h"
+#include "00/code_0218e3c4.h"
+#include "00/code_02196960.h"
+#include "00/code_021971ec.h"
+#include "00/code_0219742c.h"
 #include "00/code_0219746c.h"
 #include "00/code_0218e8c4.h"
+#include "00/code_021a3668.h"
+#include "00/code_021a3678.h"
+#include "00/code_021a3690.h"
+#include "00/unk_021b4000.h"
+#include "code_0213442c.h"
+#include "code_02134d30.h"
+#include "code_02135014.h"
+#include "code_02139f70.h"
+#include "string.h"
 
 s8 *func_ov000_02197a9c(const u8 *a, const u8 *b, s8 *c) {
     u32 d;

@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_020888b4.h"
 #include "Main/Unknown/code_0208c16c.h"
 
 u32 func_0208c180(Unk020888b4 *p) {

@@ -1,4 +1,5 @@
 #include "code_021384cc.h"
+#include "Main/Unknown/unk_0216e000.h"
 
 void srand(u32 arg0) {
     u32 value0 = arg0;

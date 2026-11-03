@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e5d0c.h"
-#include "Main/Unknown/code_02100de4.h"
+
+typedef struct Unk020e6488 Unk020e6488;
+typedef struct Unk02101c84 Unk02101c84;
 
 // Row of the table behind data_0215a190.
 typedef struct Unk0215a190 {

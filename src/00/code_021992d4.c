@@ -6,11 +6,15 @@
 #include "00/code_02199000.h"
 #include "00/code_0219960c.h"
 #include "00/code_02199614.h"
+#include "00/code_02199ad8.h"
+#include "00/code_02199fb0.h"
 #include "00/code_0219a000.h"
 #include "00/code_0218e8c4.h"
 #include "00/code_02197e8c.h"
 #include "00/code_02198748.h"
 #include "00/code_02199fa4.h"
+#include "00/code_0219a430.h"
+#include "00/unk_021b3000.h"
 
 u32 func_ov000_021992d4(Unk02197e8c *a, u8 *b, s32 c, u32 d, u32 e) {
     Unk02197fe8 *f;

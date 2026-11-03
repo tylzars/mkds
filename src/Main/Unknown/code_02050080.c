@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_020431e4.h"
 #include "Main/Unknown/code_02050080.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_02043000.h"
@@ -5,6 +6,8 @@
 #include "Main/Unknown/code_0205e090.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0217a000.h"
+#include "code_0200eddc.h"
+#include "code_0214d018.h"
 
 #pragma opt_rebuildconditionals off
 

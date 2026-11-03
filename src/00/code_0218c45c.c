@@ -1,5 +1,7 @@
+#include "00/code_0218b280.h"
 #include "00/code_0218c45c.h"
 
+#include "00/code_0218db48.h"
 #include "00/types_0218b928.h"
 #include "00/code_0218aea4.h"
 #include "00/code_0218b000.h"
@@ -12,6 +14,7 @@
 #include "code_02134d30.h"
 #include "code_02139f70.h"
 #include "00/code_0218a71c.h"
+#include "00/unk_021b4000.h"
 
 void func_ov000_0218c8e0(Unk021b4d24 *a, s8 *b, s32 c) {
     s32 d;

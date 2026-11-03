@@ -3,6 +3,7 @@
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "01/code_021a2398.h"
+#include "code_0200eddc.h"
 
 void func_0204a798(Unk02175650 *a, u16 b) {
     BOOL f;

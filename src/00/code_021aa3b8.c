@@ -1,4 +1,7 @@
 #include "00/code_021aa3b8.h"
+#include "00/code_021aa468.h"
+#include "code_02134d30.h"
+#include "code_0214d018.h"
 
 // non-matching: 44 instructions differ; first at +0x0: original `push {r4, r5, lr}`, ours `push {r4, r5, r6, r7, lr}`
 void func_ov000_021aa3b8(int param_1, int param_2) {

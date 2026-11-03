@@ -6,6 +6,7 @@
 #include "00/code_021a6934.h"
 #include "00/code_021a73d8.h"
 #include "00/code_021a8424.h"
+#include "00/code_021a8878.h"
 #include "00/code_021afe5c.h"
 #include "00/code_021b0014.h"
 #include "code_0200dc3c.h"

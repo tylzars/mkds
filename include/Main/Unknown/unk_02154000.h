@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h"
+
+typedef struct Unk0206bcb0 Unk0206bcb0;
 
 // Objects whose layout isn't known yet.
 extern const u8 data_usa_0215470c[];

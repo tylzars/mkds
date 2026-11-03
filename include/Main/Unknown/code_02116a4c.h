@@ -1,12 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02182fdc.h"
-#include "code_02016468.h"
-#include "code_0214cfe4.h"
-#include "Main/Unknown/code_02124000.h"
-#include "Main/Unknown/unk_02175000.h"
-#include "Main/Unknown/unk_0217d000.h"
 
 // First argument of func_02116a4c.
 typedef struct Unk02116a4c {

@@ -1,3 +1,4 @@
+#include "03/code_021d1cd4.h"
 #include "03/code_021d2ecc.h"
 #include "Main/Unknown/code_0214d000.h"
 
@@ -6,6 +7,7 @@
 #include "03/code_021d1000.h"
 #include "03/unk_021da000.h"
 #include "03/code_021d3488.h"
+#include "code_0214d018.h"
 
 void func_ov003_021d2f78(void) {
     func_ov003_021d34c0(1, data_ov003_021da2f0->mUnk_808);

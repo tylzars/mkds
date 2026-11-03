@@ -1,5 +1,9 @@
+#include "03/code_021c209c.h"
 #include "03/code_021c9cb0.h"
+#include "03/code_021c9cf4.h"
+#include "03/code_021cdbd0.h"
 #include "03/code_021cef6c.h"
+#include "03/code_021cef90.h"
 
 void func_ov003_021c9ccc(void) {
     int v1;

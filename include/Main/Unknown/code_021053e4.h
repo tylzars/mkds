@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_021052fc.h"
+
+typedef struct Unk021052fc Unk021052fc;
 
 // 0x40-byte object behind data_0215a680.
 typedef struct Unk0215a680 {

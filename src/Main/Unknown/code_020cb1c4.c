@@ -2,6 +2,8 @@
 
 #include "Main/Unknown/code_020cb1cc.h"
 #include "Main/Unknown/code_020cb1dc.h"
+#include "Main/Unknown/unk_0217d068.h"
+#include "code_0212df7c.h"
 
 u32 func_020cb1dc(u32 arg0, u32 arg1) {
     u32 value0 = arg0;

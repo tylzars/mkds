@@ -1,5 +1,11 @@
+#include "Main/Unknown/code_0208ab98.h"
+#include "Main/Unknown/code_020d3dbc.h"
+#include "Main/Unknown/code_020d50ec.h"
+#include "Main/Unknown/code_020d655c.h"
 #include "Main/Unknown/code_020f9334.h"
 
+#include "Main/Unknown/code_020fe4b4.h"
+#include "Main/Unknown/code_02109054.h"
 #include "Main/Unknown/unk_02159000.h"
 #include "Main/Unknown/code_020d3000.h"
 #include "Main/Unknown/code_020d6000.h"
@@ -254,7 +260,8 @@ void func_020f9334(void *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, Vec
     v.y = y;
     v.z = z;
 
-    func_01ffdee4(&v, (u32 *) param_2, 0, p->mUnk_dc >> 1, 0x24, p->mUnk_da, NULL, NULL, NULL, &a, NULL, NULL, NULL, NULL);
+    func_01ffdee4(&v, (u32 *) param_2, 0, p->mUnk_dc >> 1, 0x24, p->mUnk_da, NULL, NULL, NULL, &a, NULL, NULL, NULL,
+                  NULL);
     if ((a & 0x1e34ef) != 0 || (p->mUnk_fc & 0x80000) != 0) {
         if ((p->mUnk_74 & 0x4000000) != 0) {
             return;

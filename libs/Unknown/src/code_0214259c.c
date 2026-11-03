@@ -1,9 +1,11 @@
+#include "code_0200eddc.h"
 #include "code_0214259c.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "code_0200fd1c.h"
 #include "code_0214cfe4.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "code_02142c24.h"
+#include "code_0214d018.h"
 #include "Main/Unknown/unk_0217e000.h"
 
 s32 func_02142a8c(void) {

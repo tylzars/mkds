@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020487fc.h"
+
+typedef struct Unk020487fc Unk020487fc;
 
 extern u8 *data_ov000_021b4c60;
 

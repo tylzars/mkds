@@ -1,9 +1,12 @@
 #include "01/code_02180ce8.h"
 
 #include "01/unk_021a9000.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/code_0214d000.h"
+#include "code_02133048.h"
 #include "code_02147cd8.h"
+#include "code_0214d018.h"
 #include "01/code_0218155c.h"
 #include "01/code_02188950.h"
 #include "01/code_02188e88.h"

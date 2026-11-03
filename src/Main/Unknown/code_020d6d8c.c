@@ -9,6 +9,7 @@
 #include "Main/Unknown/code_02146000.h"
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_0216b000.h"
+#include "code_02146cbc.h"
 #include "code_02146d78.h"
 #include "code_02147cd8.h"
 #include "code_02148538.h"
@@ -180,7 +181,8 @@ void func_020d759c(void *p, void *q, void *r, s32 d) {
     Unk020d7b88 *a = p;
     Unk020d7b88 *b = q;
     Unk020d7b88 *c = r;
-    s32 v = a->mUnk_00[0] * b->mUnk_00[0] + a->mUnk_00[1] * b->mUnk_00[1] + a->mUnk_00[2] * b->mUnk_00[2] + a->mUnk_00[3] * b->mUnk_00[3];
+    s32 v = a->mUnk_00[0] * b->mUnk_00[0] + a->mUnk_00[1] * b->mUnk_00[1] + a->mUnk_00[2] * b->mUnk_00[2] +
+            a->mUnk_00[3] * b->mUnk_00[3];
     if (v < 0) {
         c->mUnk_00[0] = a->mUnk_00[0] + ((d * -(b->mUnk_00[0] + a->mUnk_00[0])) >> 12);
         c->mUnk_00[1] = a->mUnk_00[1] + ((d * -(b->mUnk_00[1] + a->mUnk_00[1])) >> 12);
@@ -199,7 +201,8 @@ void func_020d73f0(Unk020d7b88 *a, Unk020d7b88 *b) {
     s32 r;
     s64 q;
     s64 t;
-    w = a->mUnk_00[0] * a->mUnk_00[0] + a->mUnk_00[1] * a->mUnk_00[1] + a->mUnk_00[2] * a->mUnk_00[2] + a->mUnk_00[3] * a->mUnk_00[3];
+    w = a->mUnk_00[0] * a->mUnk_00[0] + a->mUnk_00[1] * a->mUnk_00[1] + a->mUnk_00[2] * a->mUnk_00[2] +
+        a->mUnk_00[3] * a->mUnk_00[3];
     if (w > 0xE66666 && w < 0x119999A) {
         *b = *a;
         return;

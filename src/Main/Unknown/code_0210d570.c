@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_0210d0b4.h"
 #include "Main/Unknown/code_0210d570.h"
 
 u32 func_0210d58c(u32 p0) {

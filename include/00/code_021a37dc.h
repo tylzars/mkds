@@ -11,8 +11,6 @@ typedef struct Unk021a3910 {
     /* 0a */ u8 pad_0a[2];
 } Unk021a3910;
 
-#include "00/code_02188000.h"
-
 void func_ov000_021a37dc(void);
 u32 func_ov000_021a3810(void);
 void func_ov000_021a3884(void);

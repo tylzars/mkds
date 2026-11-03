@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0204a928.h"
+#include "code_0200eddc.h"
 
 void func_0204a928(void *arg0) {
     u32 value0 = (u32) arg0;

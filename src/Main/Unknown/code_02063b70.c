@@ -1,5 +1,7 @@
 #include "Main/Unknown/code_02063b70.h"
+#include "ITCM/code_01ff8000.h"
 #include "ITCM/code_01ff9000.h"
+#include "Main/Unknown/code_02079b9c.h"
 #include "Main/Unknown/code_020ed5c0.h"
 #include "Main/Unknown/code_02079b60.h"
 #include "Main/Unknown/code_02079000.h"
@@ -12,6 +14,7 @@
 #include "Main/Unknown/code_0208ab00.h"
 #include "Main/Unknown/code_0210b760.h"
 #include "Main/Unknown/code_02146000.h"
+#include "code_02146cbc.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/unk_0215d000.h"
 

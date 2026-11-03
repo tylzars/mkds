@@ -1,3 +1,4 @@
+#include "01/code_02181bd0.h"
 #include "01/code_02182f98.h"
 
 #include "01/unk_021a6000.h"
@@ -8,6 +9,8 @@
 #include "Main/Unknown/code_020e5000.h"
 #include "Main/Unknown/code_0210b000.h"
 #include "Main/Unknown/code_0209bef0.h"
+#include "ITCM/code_01ff8000.h"
+#include "code_02146cbc.h"
 
 void func_ov001_021830a8(void) {
     data_ov001_021a9b94 = 0;

@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_02060cb4.h"
 #include "Main/Unknown/code_0211f6cc.h"
 #include "Main/Unknown/code_0205b0f4.h"
 #include "Main/Unknown/code_02060000.h"
@@ -15,6 +16,7 @@
 #include "Main/Unknown/code_02060c38.h"
 #include "00/code_02182fdc.h"
 #include "00/code_0218d000.h"
+#include "00/code_0219d948.h"
 #include "00/unk_021b5000.h"
 #include "00/code_0219c39c.h"
 #include "00/code_021a3000.h"
@@ -23,6 +25,7 @@
 #include "03/code_021b94b8.h"
 #include "00/code_021a37dc.h"
 #include "Main/Unknown/unk_0217a000.h"
+#include "code_0214d018.h"
 
 void func_0211fef4(u32 a, void *b, u32 c) {
     if (data_0217d384->mUnk_0008.mUnk_0e != 5) {

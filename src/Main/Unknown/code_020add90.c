@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020add90.h"
+#include "code_02022aa8.h"
 #include "code_0214cfe4.h"
 
 void func_020addb8(void *a, u16 b, s32 c) {

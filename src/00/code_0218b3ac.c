@@ -1,9 +1,11 @@
 #include "00/code_0218b3ac.h"
+#include "00/code_0218dd8c.h"
+#include "00/code_021a3668.h"
+#include "00/unk_021b4000.h"
 
 void func_ov000_0218b3c8(void *a) {
     int v1;
-    if ((data_ov000_021b4d18 != NULL) &&
-        (v1 = func_ov000_0218df5c(data_ov000_021b4d18), v1 == 0)) {
+    if ((data_ov000_021b4d18 != NULL) && (v1 = func_ov000_0218df5c(data_ov000_021b4d18), v1 == 0)) {
         func_ov000_0218dfb4(data_ov000_021b4d18);
         *(s32 *) &data_ov000_021b4d18 = 0;
     }

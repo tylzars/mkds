@@ -9,8 +9,6 @@ typedef struct Unk02154228 {
     /* 05 */ u8 mUnk_05[0x3];
 } Unk02154228;
 
-#include "code_02003024.h"
-
 extern Unk02154228 data_usa_02154228[];
 extern const char data_usa_02165164[];
 extern const char data_usa_02165168[];

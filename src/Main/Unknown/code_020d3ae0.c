@@ -1,6 +1,9 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020b33d8.h"
 #include "Main/Unknown/code_020d3ae0.h"
 
 #include "Main/Unknown/code_020d3b10.h"
+#include "Main/Unknown/code_020d655c.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020d2000.h"
 #include "Main/Unknown/unk_02156000.h"
@@ -18,6 +21,7 @@
 #include "Main/Unknown/code_020d4130.h"
 #include "Main/Unknown/code_020d50ec.h"
 #include "Main/Unknown/unk_021759c0.h"
+#include "ITCM/code_01ffcf7c.h"
 #include "ITCM/code_01ffd000.h"
 #include "Main/Unknown/code_0207a780.h"
 #include "Main/Unknown/code_02061f7c.h"
@@ -43,6 +47,7 @@
 #include "Main/Unknown/code_0210bcf4.h"
 #include "Main/Unknown/code_0210cf9c.h"
 #include "Main/Unknown/code_02146000.h"
+#include "code_02146cbc.h"
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020d7000.h"
 #include "Main/Unknown/code_020d50c4.h"
@@ -735,8 +740,8 @@ BOOL func_020d3e34(Vec3 *a, s32 b, Unk020e71a0 *c, Vec3 *d) {
             func_020eb2a0(a, &c->mUnk_04, t, u, d);
             return TRUE;
         case 3:
-            return func_020ead80(a, &c->mUnk_04, &c->mUnk_28.mUnk_00[0], c->mUnk_58.x, c->mUnk_58.y, c->mUnk_58.y, b, d) !=
-                   0;
+            return func_020ead80(a, &c->mUnk_04, &c->mUnk_28.mUnk_00[0], c->mUnk_58.x, c->mUnk_58.y, c->mUnk_58.y, b,
+                                 d) != 0;
         case 4:
             return func_020eafc4(a, &c->mUnk_04, &c->mUnk_28.mUnk_00[0], &c->mUnk_58, &c->mUnk_58, b, d) != 0;
         case 0:

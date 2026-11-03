@@ -8,15 +8,15 @@ extern void (*data_ov000_021b6384)(void);
 
 #include "code_0200e0ec.h" // Unk0200db5c
 
+typedef struct Unk021b69dc Unk021b69dc;
+typedef struct Unk021b5fa8 Unk021b5fa8;
+
 // Object linked from Unk0200db5c.mUnk_a4.
 typedef struct Unk021b04f8 {
     /* 00 */ Unk0200db5c *mUnk_00;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u8 mUnk_08;
 } Unk021b04f8;
-
-#include "00/unk_021b6380.h"
-#include "00/unk_021b5000.h"
 
 extern u32 data_ov000_021b637c;
 extern u32 data_ov000_021b638c;

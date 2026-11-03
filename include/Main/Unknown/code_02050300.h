@@ -35,9 +35,10 @@ typedef struct Unk020504a4 {
     /* 17 */ u8 mUnk_17;
 } Unk020504a4;
 
-#include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/unk_02165000.h" // Unk021652a0
 #include "code_02142eac.h" // Unk021425e8
+
+typedef struct Unk0217aa00_45c Unk0217aa00_45c;
 
 u32 func_02050300(void);
 BOOL func_02050320(s32 a, u16 b, s32 c);

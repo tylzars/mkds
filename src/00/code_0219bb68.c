@@ -1,6 +1,11 @@
+#include "00/code_0218d488.h"
+#include "00/code_0219a654.h"
+#include "00/code_0219b1f8.h"
 #include "00/code_0219bb68.h"
 #include "00/code_0218eb9c.h"
 #include "00/code_0219c93c.h"
+#include "00/code_021a3264.h"
+#include "00/code_021a37dc.h"
 #include "00/unk_021b5000.h"
 #include "00/code_0219cc00.h"
 #include "00/code_0219c954.h"
@@ -248,7 +253,7 @@ void func_ov000_0219bea8(u32 a, u32 b, void (*c)(s32 a), u32 d) {
 }
 
 BOOL func_ov000_0219bdec(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32, u8), void *e, void (*f)(u32, u32),
-                        void *g) {
+                         void *g) {
     Unk021b54c8 *p;
     u32 n;
     if (data_ov000_021b54c8 == NULL || func_ov000_0219c39c() != 0 || (p = data_ov000_021b54c8)->mUnk_24 < 3 ||

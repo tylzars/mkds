@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_02057d10.h"
 #include "Main/Unknown/code_020d0ee8.h"
 
 #include "Main/Unknown/code_020d0efc.h"
@@ -6,6 +7,8 @@
 #include "Main/Unknown/code_020d0f78.h"
 #include "Main/Unknown/unk_0216a000.h"
 #include "Main/Unknown/code_02057000.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/unk_0217b000.h"
 
 u32 func_020d0f60(void) {
     u32 value0;

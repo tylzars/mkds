@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/types_021ab5e4.h"
+
+typedef struct Unk021ab5e4 Unk021ab5e4;
 
 u32 func_ov000_021ab5bc(void);
 Unk021ab5e4 *func_ov000_021ab5e4(const u8 *a);

@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "01/code_0219e824.h"
+#include "Main/Unknown/unk_02175000.h"
 
 extern Unk021a9034 data_0216e8e0;
 

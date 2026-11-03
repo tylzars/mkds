@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020d7da8.h"
+#include "Main/Unknown/code_020d7db4.h"
 
 #pragma thumb on
 void func_020d7da8(Unk020e0144 *arg0, Unk020fa294 *arg1, s32 arg2) {

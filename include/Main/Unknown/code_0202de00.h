@@ -1,13 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02025cd0.h"
-#include "Main/Unknown/code_02025d8c.h"
-#include "Main/Unknown/code_02124094.h"
-#include "Main/Unknown/code_021171a0.h"
-#include "Main/Unknown/code_020b3f7c.h"
-#include "code_0214cfe4.h"
-#include "Main/Unknown/unk_02174000.h"
+
+typedef struct Unk02174e14 Unk02174e14;
 
 // Halfword, hour and minute, as func_0202dcf4 fills them.
 typedef struct Unk0202de00_g {

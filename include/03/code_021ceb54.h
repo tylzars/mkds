@@ -1,12 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021d1770.h"
-#include "03/code_021d3488.h"
-#include "03/unk_021d6000.h"
-#include "03/unk_021da000.h"
 
-// Declared here until the code that defines them is decompiled.
+typedef struct Unk021d1770 Unk021d1770;
+typedef struct Unk021d34e0 Unk021d34e0;
+
 void func_ov003_021d18f0();
 void func_ov003_021d2658();
 

@@ -8,6 +8,8 @@
 #include "Main/Unknown/code_020ae214.h"
 #include "Main/Unknown/code_020ae21c.h"
 #include "Main/Unknown/code_020ae23c.h"
+#include "Main/Unknown/unk_02175628.h"
+#include "Main/Unknown/unk_021759c0.h"
 
 u32 func_020ae23c(u32 p0) {
     return ((u32) * (const u16 *) ((u8 *) p0 + 0));

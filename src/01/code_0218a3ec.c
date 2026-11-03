@@ -1,3 +1,5 @@
+#include "01/code_02185ef4.h"
+#include "01/code_02188cd8.h"
 #include "01/code_0218a3ec.h"
 
 void func_ov001_0218a3ec(Unk02188950 *a) {

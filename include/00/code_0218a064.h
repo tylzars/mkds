@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02188ec0.h"
+
+typedef struct Unk02188ec0 Unk02188ec0;
 
 // Object behind data_ov000_021b4d0c, 0x58 bytes.
 typedef struct Unk0218a064 {

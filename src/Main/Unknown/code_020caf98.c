@@ -10,8 +10,11 @@
 #include "Main/Unknown/code_020cb224.h"
 #include "Main/Unknown/code_020cb2d4.h"
 #include "Main/Unknown/code_020cc000.h"
+#include "Main/Unknown/code_020ccc74.h"
 #include "Main/Unknown/code_021059e0.h"
 #include "Main/Unknown/code_02128210.h"
+#include "Main/Unknown/code_02128274.h"
+#include "Main/Unknown/unk_0217b000.h"
 
 #pragma thumb on
 #pragma optimize_for_size on

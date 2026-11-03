@@ -1,9 +1,12 @@
 #pragma once
 
 #include "types.h"
-#include "code_02010fac.h"
-#include "code_02013bdc.h"
-#include "code_0214d018.h"
+#include "00/code_02188720.h"
+
+typedef struct Unk0201290c_0c Unk0201290c_0c;
+typedef struct Unk02170500_04 Unk02170500_04;
+typedef struct Unk02170500 Unk02170500;
+typedef struct Unk020152bc Unk020152bc;
 
 // Command buffer: the number of words stored from mUnk_04, then the words.
 typedef struct Unk01ff9048 {

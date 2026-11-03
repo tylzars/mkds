@@ -2,7 +2,9 @@
 
 #include "types.h"
 #include "00/code_021ae0c4.h"
-#include "00/code_021ae314.h"
+
+typedef struct Unk021ae3f0 Unk021ae3f0;
+typedef struct Unk021ae87c Unk021ae87c;
 
 extern Unk021a998c data_ov000_021b64f8;
 

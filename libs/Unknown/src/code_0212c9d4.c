@@ -1,3 +1,4 @@
+#include "code_0200eddc.h"
 #include "code_0212c9d4.h"
 #include "code_020207ec.h"
 #include "code_02020eb0.h"
@@ -10,6 +11,7 @@
 #include "code_0212f788.h"
 #include "code_0212f864.h"
 #include "Main/Unknown/unk_0217d000.h"
+#include "00/code_02188720.h"
 
 void func_0212d03c(void) {
     Unk0212ccd4 *p = &data_0217ddd0;

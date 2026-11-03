@@ -1,4 +1,6 @@
 #include "Main/Unknown/code_02056d40.h"
+#include "Main/Unknown/code_02057ca4.h"
+#include "Main/Unknown/unk_0217a000.h"
 
 #pragma thumb on
 void func_02056d40(void) {

@@ -3,6 +3,8 @@
 #include "types.h"
 #include "03/types_021d299c.h"
 
+typedef struct Unk021d299c Unk021d299c;
+
 // Seven bytes moved as one value.
 typedef struct Unk021d68c8 {
     /* 0 */ u8 mUnk_00[7];

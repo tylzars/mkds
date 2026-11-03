@@ -1,9 +1,12 @@
+#include "Main/Unknown/code_020ae428.h"
 #include "Main/Unknown/code_020caf08.h"
 #include "Main/Unknown/code_020cae8c.h"
 #include "Main/Unknown/code_020ae4c0.h"
 #include "Main/Unknown/code_020cb2d4.h"
 #include "Main/Unknown/code_020cc000.h"
+#include "Main/Unknown/code_020ccc74.h"
 #include "Main/Unknown/code_020ccc9c.h"
+#include "Main/Unknown/unk_0217b000.h"
 
 #pragma thumb on
 #pragma optimize_for_size on

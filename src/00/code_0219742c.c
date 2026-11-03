@@ -1,4 +1,6 @@
 #include "00/code_0219742c.h"
+#include "00/unk_021b3000.h"
+#include "00/unk_021b4000.h"
 
 void func_ov000_0219742c(void) {
     *(u32 *) &data_ov000_021b4e50 = 1;

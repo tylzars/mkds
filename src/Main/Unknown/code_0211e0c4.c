@@ -1,3 +1,11 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02043a34.h"
+#include "Main/Unknown/code_020467d0.h"
+#include "Main/Unknown/code_02060cb4.h"
+#include "Main/Unknown/code_02061428.h"
+#include "Main/Unknown/code_02061540.h"
+#include "Main/Unknown/code_02061654.h"
+#include "Main/Unknown/code_02090354.h"
 #include "Main/Unknown/code_0211e0c4.h"
 
 #include "Main/Unknown/code_02043000.h"
@@ -14,6 +22,7 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "code_0214cfe4.h"
+#include "code_0214d018.h"
 
 #pragma thumb on
 

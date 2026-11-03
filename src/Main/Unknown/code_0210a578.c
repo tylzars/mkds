@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0210a578.h"
+#include "Main/Unknown/unk_0216c000.h"
 
 int func_0210a578(void) {
     u32 value0;

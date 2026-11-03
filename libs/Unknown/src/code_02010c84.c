@@ -3,6 +3,7 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/unk_02170000.h"
+#include "00/code_02188720.h"
 
 void func_02010f74(u32 a, u32 b, u32 c) {
     data_0217029c.mUnk_94 = a | (b << 16) | ((c != 0) << 15);
@@ -26,8 +27,8 @@ Unk02012f58 *func_02010ed4(void) {
 
 void func_02010e70(void) {
     func_0214733c(&data_0217029c.mUnk_bc, &data_0217029c.mUnk_4c, &data_0217029c.mUnk_100[1]);
-    func_02147914(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[1], data_0217029c.mUnk_ec.x, data_0217029c.mUnk_ec.y,
-                  data_0217029c.mUnk_ec.z);
+    func_02147914(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[1], data_0217029c.mUnk_ec.x,
+                  data_0217029c.mUnk_ec.y, data_0217029c.mUnk_ec.z);
     func_0214755c(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[2]);
 }
 

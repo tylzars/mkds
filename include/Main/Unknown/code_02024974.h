@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h"
-#include "Main/Unknown/code_0210bcf4.h"
+
+typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Unk0210bfbc Unk0210bfbc;
 
 // Ten words at 0x40 of an Unk02024eec, built on the stack by func_020719d0.
 typedef struct Unk02024eec_40 {

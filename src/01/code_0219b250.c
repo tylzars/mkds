@@ -1,8 +1,12 @@
 #include "01/code_0219b250.h"
 
 #include "01/unk_021a6000.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020483e4.h"
 #include "Main/Unknown/code_0207a000.h"
 #include "Main/Unknown/code_02084000.h"
+#include "Main/Unknown/code_0209b634.h"
+#include "Main/Unknown/code_0209bf70.h"
 #include "Main/Unknown/code_020ea000.h"
 #include "Main/Unknown/code_02048000.h"
 #include "01/unk_021a9000.h"
@@ -13,6 +17,7 @@
 #include "Main/Unknown/code_02088000.h"
 #include "code_02135014.h"
 #include "Main/Unknown/code_0209b000.h"
+#include "Main/Unknown/code_020ea514.h"
 
 void *func_ov001_0219b510(void *p0, void *p1, void *p2, u32 p3, u16 p4, u16 p5, u16 p6) {
     u8 *r = func_0209bfa8(p0, p1, p2, p3, p4);

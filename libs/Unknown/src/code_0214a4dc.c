@@ -1,4 +1,6 @@
 #include "code_0214a4dc.h"
+#include "code_0214c728.h"
+#include "code_0214d018.h"
 #include "Main/Unknown/code_0214c000.h"
 #include "Main/Unknown/code_0214d000.h"
 

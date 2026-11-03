@@ -1,3 +1,7 @@
+#include "00/code_0219887c.h"
+#include "00/code_021988e8.h"
+#include "00/code_021a17bc.h"
+#include "00/code_021a1ae0.h"
 #include "00/code_021a2ccc.h"
 #include "03/code_021b94b8.h"
 #include "Main/Unknown/code_0200f000.h"

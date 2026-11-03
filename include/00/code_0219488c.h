@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0218f960.h"
+
+typedef struct Unk0218f960 Unk0218f960;
 
 // Argument block of the search of func_ov000_021948bc.
 typedef struct Unk0219488cArg {

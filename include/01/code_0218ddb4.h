@@ -1,30 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "01/code_02188950.h"
-#include "01/callees_0219b000.h"
-#include "01/code_02185000.h"
-#include "01/code_02186000.h"
-#include "01/code_0218d520.h"
-#include "Main/Unknown/code_0206bcb0.h"
-#include "01/code_02187000.h"
-#include "01/code_02188158.h"
-#include "01/code_0218e000.h"
-#include "Main/Unknown/code_020d2000.h"
-#include "01/code_02188000.h"
-#include "01/unk_021a7000.h"
-#include "01/code_0218155c.h"
-#include "01/code_02182000.h"
-#include "01/code_02185ef4.h"
-#include "01/code_02188484.h"
-#include "01/code_02188e24.h"
-#include "01/code_0218f000.h"
-#include "01/unk_021a6000.h"
-#include "Main/Unknown/code_02061000.h"
-#include "Main/Unknown/code_0208b000.h"
-#include "Main/Unknown/code_02133000.h"
-#include "Main/Unknown/unk_021759c0.h"
-#include "Main/Unknown/unk_0217d000.h"
+
+typedef struct Unk02188950 Unk02188950;
+typedef struct Unk0218d87c Unk0218d87c;
+typedef struct Unk0206bcb0 Unk0206bcb0;
 
 void *func_ov001_0218ddb4(void);
 void *func_ov001_0218ddcc(void);

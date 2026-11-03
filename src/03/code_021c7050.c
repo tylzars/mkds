@@ -1,4 +1,6 @@
 #include "03/code_021c7050.h"
+#include "03/code_021c70a4.h"
+#include "03/unk_021da000.h"
 
 void func_ov003_021c7050(void) {
     int v1;

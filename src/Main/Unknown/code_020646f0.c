@@ -1,5 +1,7 @@
 #include "Main/Unknown/code_020646f0.h"
+#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
+#include "ITCM/code_01ffcf7c.h"
 #include "ITCM/code_01ffd000.h"
 #include "ITCM/code_01ffdee4.h"
 #include "Main/Unknown/code_02040de0.h"
@@ -47,7 +49,8 @@ void func_020646f0(Unk0206bcb0 *a, s32 b) {
     g = a->mUnk_80;
     g.y = g.y + 0x1000;
     a->mUnk_80.y = a->mUnk_80.y - 0x1400;
-    if (func_01ffdee4(&a->mUnk_80, (u32 *) &g, (u32) &a->mUnk_50, 0x5000, 1, -2, &e, &f, NULL, NULL, NULL, NULL, NULL, NULL) != 0) {
+    if (func_01ffdee4(&a->mUnk_80, (u32 *) &g, (u32) &a->mUnk_50, 0x5000, 1, -2, &e, &f, NULL, NULL, NULL, NULL, NULL,
+                      NULL) != 0) {
         h.x = (s64) f.x * 0x5000 >> 12;
         h.y = (s64) f.y * 0x5000 >> 12;
         h.z = (s64) f.z * 0x5000 >> 12;

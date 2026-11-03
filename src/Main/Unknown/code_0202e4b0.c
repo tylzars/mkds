@@ -7,6 +7,7 @@
 #include "Main/Unknown/code_0202ee88.h"
 #include "Main/Unknown/code_0202f0a8.h"
 #include "Main/Unknown/code_02036000.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02036bec.h"
 
 #pragma optimize_for_size on

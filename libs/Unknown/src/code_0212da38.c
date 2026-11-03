@@ -1,3 +1,5 @@
+#include "code_0200eddc.h"
+#include "code_0200fc8c.h"
 #include "code_0212da38.h"
 
 #include "code_020207ec.h"
@@ -25,6 +27,7 @@
 #include "code_0212c668.h"
 #include "code_0212d214.h"
 #include "code_0212d5d0.h"
+#include "code_0214d018.h"
 #include "Main/Unknown/code_0214d000.h"
 
 u8 data_0217dec8[0x3c];

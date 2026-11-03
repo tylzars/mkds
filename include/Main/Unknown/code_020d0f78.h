@@ -1,8 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217b000.h"
-#include "Main/Unknown/code_020b4000.h"
+
+typedef struct Unk020b4934 Unk020b4934;
+typedef struct Unk020b47d8 Unk020b47d8;
+typedef struct Unk020b4a44 Unk020b4a44;
 
 // Object behind gCupPicture: three pointers that LoadNclrData, LoadNcgrData and LoadNscrData fill from
 // the three buffers at 0x10, 0x238 and 0x1038, then a word at 0xc.

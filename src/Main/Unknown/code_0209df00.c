@@ -1,5 +1,8 @@
+#include "Main/Unknown/code_0209b634.h"
+#include "Main/Unknown/code_0209bf70.h"
 #include "Main/Unknown/code_0209df00.h"
 #include "Main/Unknown/code_0209eb54.h"
+#include "ITCM/code_01ff8000.h"
 #include "ITCM/code_01ff9000.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_02061654.h"

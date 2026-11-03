@@ -6,14 +6,18 @@
 #include "Main/Unknown/code_02036000.h"
 #include "Main/Unknown/code_02036258.h"
 #include "Main/Unknown/code_02036438.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0204aa04.h"
 #include "Main/Unknown/code_020b3f7c.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/code_020d1630.h"
 #include "Main/Unknown/code_020d1640.h"
+#include "code_0200eddc.h"
+#include "code_02023374.h"
 #include "code_02149fe0.h"
 #include "Main/Unknown/unk_02174000.h"
 #include "code_0214b824.h"
+#include "code_0214d018.h"
 
 #pragma optimize_for_size on
 

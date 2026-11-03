@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02025e28.h"
+#include "Main/Unknown/unk_02153000.h"
 
 #pragma thumb on
 u32 func_02025e28(u32 arg0) {

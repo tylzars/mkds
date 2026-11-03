@@ -1,4 +1,13 @@
+#include "Main/Unknown/code_0202f20c.h"
+#include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_0204b03c.h"
+#include "Main/Unknown/code_02059be4.h"
+#include "Main/Unknown/unk_02154000.h"
+#include "Main/Unknown/unk_02175000.h"
+#include "code_0200cd1c.h"
+#include "code_0200f5ac.h"
+#include "code_0214578c.h"
+#include "01/code_021956dc.h"
 
 void func_0204b03c(void) {
     if (data_021759d0->mUnk_20 == 3) {

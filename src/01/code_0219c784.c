@@ -2,17 +2,21 @@
 
 #include "01/unk_021a6000.h"
 #include "Main/Unknown/code_02036000.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02037000.h"
 #include "01/unk_021a9000.h"
 #include "01/unk_021a8000.h"
 #include "Main/Unknown/code_020472a8.h"
 #include "Main/Unknown/code_020b4000.h"
+#include "Main/Unknown/code_021059e0.h"
 #include "Main/Unknown/code_0211732c.h"
+#include "Main/Unknown/code_021277ac.h"
 #include "Main/Unknown/code_0214a000.h"
 #include "Main/Unknown/code_020ae4c0.h"
 #include "Main/Unknown/code_02128210.h"
 #include "01/code_0219c000.h"
 #include "code_0201ea58.h"
+#include "code_0214a390.h"
 #include "registers.h"
 
 const u8 data_ov001_021a6bc4[] = {0};

@@ -1,9 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_021988e8.h"
 
-// Declared here until the code that defines them is decompiled.
 void **func_ov000_0219b8fc(u32 a, s32 b);
 
 u32 func_ov000_0219eaf4(void);

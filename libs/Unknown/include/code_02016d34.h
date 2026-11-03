@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "code_020169a4.h"
+
+typedef struct Unk020169a4 Unk020169a4;
 
 // Object at data_02173234: three pointers to Unk020169a4 and four words at 0c to 18 stored by func_02017070.
 typedef struct Unk02016d34 {

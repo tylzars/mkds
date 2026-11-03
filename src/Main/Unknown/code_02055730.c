@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_02036c90.h"
+#include "Main/Unknown/code_0204f814.h"
 #include "Main/Unknown/code_02055730.h"
 #include "Main/Unknown/code_02000000.h"
 #include "Main/Unknown/code_0200e000.h"
@@ -19,10 +21,12 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_0217a000.h"
+#include "code_0200eddc.h"
 #include "code_02148950.h"
 #include "code_02148d34.h"
 #include "code_0214a390.h"
 #include "code_0214b824.h"
+#include "code_0214d018.h"
 #include "registers.h"
 
 static inline u32 func_02055808_inline(void) {

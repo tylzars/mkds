@@ -1,8 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02056b30.h"
-#include "Main/Unknown/unk_0217a000.h"
+
+typedef struct Unk02056bc0 Unk02056bc0;
 
 // The word at 0 points to rows of 13 bytes from 6.
 typedef struct Unk0205fd2c_00 {

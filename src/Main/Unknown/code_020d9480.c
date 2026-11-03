@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020d9480.h"
+#include "Main/Unknown/code_020d94dc.h"
 
 void func_020d9480(u32 a, u32 b, u32 c) {
     u32 v1;

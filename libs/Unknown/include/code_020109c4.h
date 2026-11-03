@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "code_02010c84.h"
+
+typedef struct Unk02010d98 Unk02010d98;
 
 typedef struct Unk020109c4 {
     /* 00 */ u8 mUnk_00[0x20];

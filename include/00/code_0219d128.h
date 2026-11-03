@@ -1,22 +1,13 @@
 #pragma once
 
 #include "types.h"
+#include "00/code_0218f960.h"
 
-// Declared here until the code that defines them is decompiled.
-
-// Declared here until the code that defines them is decompiled.
-
-// Declared here until the code that defines them is decompiled.
+typedef struct Unk02152490 Unk02152490;
+typedef struct Unk021b5664 Unk021b5664;
 
 void func_ov000_0219d770(s32 a, const u8 *b, void (*c)(s32, u8, void *), void *d, void (*e)(s32, u8, void *, void *),
                          void *f, void (*g)(s32, s32, void *), void *h);
-
-// Declared here until the code that defines them is decompiled.
-
-#include "code_02152490.h"
-#include "00/code_0219d934.h"
-#include "00/code_0218e8c4.h"
-#include "00/unk_021b4000.h"
 
 u32 func_ov000_0219d128(u32 a);
 s32 func_ov000_0219d14c(Unk02152490 *a, s32 b, s32 c);

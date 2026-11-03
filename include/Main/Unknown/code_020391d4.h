@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "01/code_021a5140.h"
+
+typedef struct Unk020391d4 Unk020391d4;
 
 void func_020391d4(Unk020391d4 *p0);

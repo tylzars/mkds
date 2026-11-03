@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02025ebc.h"
+
+typedef struct Unk02025ebc Unk02025ebc;
 
 extern char data_usa_02161b3c[];
 extern char data_usa_02161b5c[];

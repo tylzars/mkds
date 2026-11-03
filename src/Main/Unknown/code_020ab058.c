@@ -7,6 +7,8 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_02167000.h"
 #include "Main/Unknown/code_020ab194.h"
+#include "Main/Unknown/unk_0217b000.h"
+#include "code_0214d018.h"
 
 #pragma thumb on
 u32 func_020ab194(u32 arg0, u32 arg1) {

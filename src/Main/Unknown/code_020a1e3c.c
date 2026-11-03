@@ -9,6 +9,7 @@
 #include "Main/Unknown/code_020a223c.h"
 #include "Main/Unknown/code_020a228c.h"
 #include "Main/Unknown/code_020a22ac.h"
+#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_020a2300.h"

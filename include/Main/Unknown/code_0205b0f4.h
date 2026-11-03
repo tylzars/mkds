@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217a000.h"
+
+typedef struct Unk0217aa14_104 Unk0217aa14_104;
 
 // 0x24 bytes from 0x04 of Unk0205b504, followed by four 8-byte values.
 typedef struct Unk0205b504_04 {

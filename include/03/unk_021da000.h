@@ -15,6 +15,7 @@
 #include "03/code_021c25e0.h"
 #include "03/code_021d27d8.h"
 #include "03/code_021d3488.h"
+#include "03/types_021d299c.h"
 
 // Object behind data_ov003_021da214.
 typedef struct Unk021da214 {

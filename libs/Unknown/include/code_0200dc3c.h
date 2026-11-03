@@ -2,7 +2,8 @@
 
 #include "types.h"
 #include "code_0200e0ec.h" // Unk0200db5c
-#include "code_0200e77c.h"
+
+typedef struct Unk0200df9c Unk0200df9c;
 
 void func_0200dc3c(u32 n);
 u32 func_0200dcd8(Unk0200db5c *t);

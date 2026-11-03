@@ -12,6 +12,7 @@
 #include "code_02148950.h"
 #include "code_02148d34.h"
 #include "code_0214a5f0.h"
+#include "code_0214d018.h"
 #include "registers.h"
 
 // Enum-typed parameters of the inlines below: the original reads their values before the register.

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h"
 
-// Declared here until the code that defines them is decompiled.
+typedef struct Unk0206bcb0 Unk0206bcb0;
+
 BOOL func_0206b4d0(Unk0206bcb0 *p);
 BOOL func_0206bab8(Unk0206bcb0 *p);
 void func_0207a70c(s32 a);

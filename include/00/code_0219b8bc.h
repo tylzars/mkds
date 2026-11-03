@@ -2,17 +2,14 @@
 
 #include "types.h"
 
+typedef struct Unk0219887c Unk0219887c;
+
 typedef struct Unk021b5550 {
     /* 00 */ u8 mUnk_00;
     /* 01 */ u8 mUnk_01;
     /* 02 */ u16 mUnk_02;
     /* 04 */ u32 mUnk_04;
 } Unk021b5550;
-
-// Declared here until the code that defines them is decompiled.
-
-#include "00/code_0219887c.h"
-#include "00/code_0219b580.h"
 
 extern void *data_ov000_021b54d0[32];
 extern Unk021b5550 data_ov000_021b5550[32];

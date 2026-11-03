@@ -1,4 +1,6 @@
 #include "Main/Unknown/code_02057294.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "code_0214d018.h"
 
 #pragma thumb on
 void func_020572e8(void) {

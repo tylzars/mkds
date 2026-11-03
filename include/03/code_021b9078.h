@@ -1,11 +1,11 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021b94b8.h"
-#include "03/code_021b8c8c.h"
-#include "03/code_021b8d9c.h"
-#include "03/code_021b8e60.h"
-#include "03/code_021b8f68.h"
+
+typedef struct Unk021ba734 Unk021ba734;
+typedef struct Unk021ba1b0 Unk021ba1b0;
+typedef struct Unk021b916c Unk021b916c;
+typedef struct Unk021d7c54 Unk021d7c54;
 
 extern s32 data_ov003_021d680c;
 extern s8 data_ov003_021d6868[];

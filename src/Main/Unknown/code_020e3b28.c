@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020e3b28.h"
 #include "Main/Unknown/unk_02158000.h"
 #include "Main/Unknown/unk_0216c000.h"
@@ -16,6 +17,7 @@
 #include "Main/Unknown/code_02146000.h"
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "code_02146cbc.h"
 #include "code_02146d78.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_020f9c6c.h"
@@ -67,8 +69,7 @@ void func_020e4184(Unk020e1dc0 *a) {
         if (m[e->mUnk_158] == 0) {
             switch (e->mUnk_158) {
                 case 0:
-                    func_020ea588(&gTestCylinder, (void *) FindCourseMapObjFile(gTestCylinderNsbmdName),
-                                  NULL);
+                    func_020ea588(&gTestCylinder, (void *) FindCourseMapObjFile(gTestCylinderNsbmdName), NULL);
                     func_02084968(gTestCylinder, 0x3f, 2, 0x294a);
                     break;
                 case 1:
@@ -84,8 +85,7 @@ void func_020e4184(Unk020e1dc0 *a) {
                     func_02084968(gRotaryRoom, 0x3f, 2, 0x294a);
                     break;
                 case 4:
-                    func_020ea588(&gRotaryBridge, (void *) FindCourseMapObjFile(gRotaryBridgeNsbmdName),
-                                  NULL);
+                    func_020ea588(&gRotaryBridge, (void *) FindCourseMapObjFile(gRotaryBridgeNsbmdName), NULL);
                     func_02084968(gRotaryBridge, 0x3f, 2, 0x294a);
                     break;
             }

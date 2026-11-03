@@ -1,4 +1,7 @@
 #include "code_0200dbe8.h"
+#include "code_0200dc3c.h"
+#include "code_0200fc8c.h"
+#include "Main/Unknown/unk_0216f000.h"
 
 void func_0200dc1c(Unk0200db5c **arg0) {
     u32 value0 = (u32) arg0;

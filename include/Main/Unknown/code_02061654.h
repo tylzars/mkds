@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02056b30.h"
 #include "code_02012b30.h" // Unk02012f58
+
+typedef struct Unk02056bc0 Unk02056bc0;
 
 u32 func_02061654(void *a);
 s32 func_02061678(void *a);

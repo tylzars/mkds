@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_020487fc.h"
 #include "Main/Unknown/code_02057d10.h"
 #include "Main/Unknown/code_02001000.h"
 #include "Main/Unknown/code_020019b0.h"
@@ -6,6 +7,7 @@
 #include "code_0200c894.h"
 #include "code_0200dc3c.h"
 #include "Main/Unknown/unk_02165000.h"
+#include "Main/Unknown/unk_0217a000.h"
 
 void func_02057e8c(void *a) {
     for (;;) {

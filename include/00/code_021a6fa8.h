@@ -2,7 +2,10 @@
 
 #include "types.h"
 #include "code_0200e0ec.h"
-#include "code_0200e77c.h"
+
+typedef struct Unk0200df9c Unk0200df9c;
+typedef struct Unk0200edc0 Unk0200edc0;
+typedef struct Unk0200eb90 Unk0200eb90;
 
 struct Unk021a6fa8;
 struct Unk021a78a4;

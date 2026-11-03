@@ -1,14 +1,18 @@
 #include "01/code_02192d48.h"
 
 #include "01/code_02192000.h"
+#include "Main/Unknown/code_0209b634.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "01/code_02193000.h"
 #include "01/unk_021a9000.h"
+#include "Main/Unknown/code_0209bf70.h"
 #include "Main/Unknown/code_0212a000.h"
 #include "Main/Unknown/code_0214a000.h"
 #include "Main/Unknown/code_0214d000.h"
+#include "code_02146cbc.h"
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020f9c6c.h"
+#include "ITCM/code_01ff8000.h"
 
 void func_ov001_02192e10(Unk02188950 *a) {
     s32 m[9];

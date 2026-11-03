@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217a000.h"
+
+typedef struct Unk02061808 Unk02061808;
 
 // The object behind data_0217aa6c.
 typedef Unk02061808 Unk02073904;

@@ -1,6 +1,10 @@
 #pragma once
 
 #include "types.h"
+#include "Main/Unknown/code_0200589c.h"
+
+typedef struct Unk0216f3dc_9c Unk0216f3dc_9c;
+typedef struct Unk0216f3dc Unk0216f3dc;
 
 // List node; the next node is at offset 0x28.
 typedef struct Unk02007014 {
@@ -12,8 +16,6 @@ typedef struct Unk02007014 {
     /* 30 */ u16 mUnk_30;
     /* 32 */ u16 mUnk_32;
 } Unk02007014;
-
-#include "Main/Unknown/code_0200589c.h"
 
 u32 func_02006954(s32 a, s32 b);
 void func_02006974(void);

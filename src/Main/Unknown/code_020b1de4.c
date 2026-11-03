@@ -1,8 +1,12 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020adb04.h"
 #include "Main/Unknown/code_020b1de4.h"
 #include "Main/Unknown/code_02023000.h"
+#include "Main/Unknown/code_020b250c.h"
 #include "Main/Unknown/code_020b252c.h"
 #include "Main/Unknown/code_020b24e4.h"
 #include "Main/Unknown/code_020b2540.h"
+#include "Main/Unknown/code_020b2ecc.h"
 #include "Main/Unknown/code_020b3260.h"
 #include "Main/Unknown/code_020b32ec.h"
 #include "Main/Unknown/code_020b3f7c.h"
@@ -11,6 +15,7 @@
 #include "Main/Unknown/code_020ad000.h"
 #include "Main/Unknown/code_020b2000.h"
 #include "Main/Unknown/code_020b3000.h"
+#include "code_02023374.h"
 
 void func_020b24cc(Unk02180728 *a, void *b, void *c, s32 d, s32 e) {
     a->mUnk_00 = b;

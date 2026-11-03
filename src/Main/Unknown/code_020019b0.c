@@ -1,4 +1,23 @@
+#include "Main/Unknown/code_02001000.h"
 #include "Main/Unknown/code_020019b0.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02037a04.h"
+#include "Main/Unknown/code_02038c94.h"
+#include "Main/Unknown/code_02046ad0.h"
+#include "Main/Unknown/code_02046be8.h"
+#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02056d54.h"
+#include "Main/Unknown/code_020b47d8.h"
+#include "Main/Unknown/code_020b502c.h"
+#include "Main/Unknown/code_02108e94.h"
+#include "Main/Unknown/code_021258f0.h"
+#include "Main/Unknown/code_02125960.h"
+#include "Main/Unknown/code_02125da0.h"
+#include "Main/Unknown/code_02125de0.h"
+#include "Main/Unknown/unk_02154000.h"
+#include "code_0200eddc.h"
+#include "code_0214a390.h"
+#include "code_0214b824.h"
 
 void func_02001d30(Unk02001d30 *a, s32 b, const char *c, const char *d, const char *e) {
     LoadNclrData(&a->mUnk_00, FindSceneFile(c));

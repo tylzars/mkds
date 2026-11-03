@@ -1,6 +1,7 @@
 #include "Main/Unknown/code_020cc0e4.h"
 
 #include "Main/Unknown/code_020cc134.h"
+#include "00/code_02182fdc.h"
 
 u32 func_020cc150(u32 arg0) {
     u32 value0 = arg0;

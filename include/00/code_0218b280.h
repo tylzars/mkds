@@ -1,10 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0218b3f4.h"
-#include "00/code_0218cdc4.h"
-#include "00/types_0218b928.h"
-#include "00/code_0218a9bc.h"
+
+typedef struct Unk0218af28 Unk0218af28;
 
 typedef struct Unk0218b30c {
     /* 0 */ const u8 *mUnk_00;

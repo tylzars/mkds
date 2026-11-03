@@ -1,7 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "code_02003024.h"
+
+typedef union Unk02003024U Unk02003024U;
+typedef struct Unk02003024 Unk02003024;
+typedef struct Unk02003a6c Unk02003a6c;
 
 // First Unk02003a6c of the list FS_RegisterArchiveName builds through mUnk_04/mUnk_08 (FS_FindArchive searches it).
 extern Unk02003a6c *data_0216f340;

@@ -1,3 +1,7 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02066ac0.h"
+#include "Main/Unknown/code_02067cb0.h"
+#include "Main/Unknown/code_02067f94.h"
 #include "Main/Unknown/code_020733ec.h"
 #include "Main/Unknown/code_020720dc.h"
 #include "Main/Unknown/code_02071ddc.h"
@@ -21,6 +25,7 @@
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_02147cd8.h"
+#include "ITCM/code_01ff9598.h"
 
 void func_02073630(void) {
     Unk021759c0 *d;

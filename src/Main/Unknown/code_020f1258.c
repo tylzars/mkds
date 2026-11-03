@@ -2,7 +2,9 @@
 
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/code_0203c000.h"
+#include "Main/Unknown/code_020f504c.h"
 #include "Main/Unknown/code_020f6000.h"
+#include "Main/Unknown/code_020f6be8.h"
 #include "Main/Unknown/code_020f7000.h"
 #include "Main/Unknown/unk_027e0000.h"
 #include "Main/Unknown/code_0206bcb0.h"

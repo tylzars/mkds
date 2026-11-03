@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020ae4c0.h"
 
 // 0x10-byte object passed to func_02025ebc, func_02025edc and func_02025f14.
 typedef struct Unk02025ebc {

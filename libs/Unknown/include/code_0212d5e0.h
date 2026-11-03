@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212d254.h"
+
+typedef struct Unk0212d5f8 Unk0212d5f8;
 
 Unk0212d5f8 *func_0212d5e0(Unk0212d5f8 *a);
 void func_0212d5f8(Unk0212d5f8 *a, void *buf);

@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0208aea8.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02047000.h"
@@ -10,6 +11,7 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/unk_021759c0.h"
+#include "code_0214d018.h"
 
 static inline u32 func_0208b190_inline(Unk020f41c4_B *b, u32 n) {
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;

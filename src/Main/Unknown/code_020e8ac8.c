@@ -1,3 +1,8 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02046ad0.h"
+#include "Main/Unknown/code_020d3dbc.h"
+#include "Main/Unknown/code_020d50ec.h"
+#include "Main/Unknown/code_020e66e4.h"
 #include "Main/Unknown/code_020e8ac8.h"
 
 #include "Main/Unknown/unk_02159000.h"
@@ -24,12 +29,14 @@
 #include "Main/Unknown/code_020ed5c0.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "ITCM/code_01ff9000.h"
+#include "ITCM/code_01ffcf7c.h"
 #include "ITCM/code_01ffd000.h"
 #include "Main/Unknown/code_02146000.h"
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_02012b30.h"
+#include "code_02146cbc.h"
 #include "code_02147288.h"
 #include "code_02146d78.h"
 #include "code_02147cd8.h"
@@ -483,8 +490,8 @@ void func_020e8ac8(void) {
                         f = TRUE;
                     }
                 }
-                if (func_01ffdee4(&data_0217b93c, p, 0, 0x12000, 4, -1, &t, NULL, NULL,
-                                  (u32 *) &data_0217b8fc, NULL, NULL, NULL, NULL) != 0) {
+                if (func_01ffdee4(&data_0217b93c, p, 0, 0x12000, 4, -1, &t, NULL, NULL, (u32 *) &data_0217b8fc, NULL,
+                                  NULL, NULL, NULL) != 0) {
                     func_020e8ac8_inline(&lo, &t, &lo);
                     func_020e8ac8_inline_2(&hi, &t, &hi);
                     f = TRUE;
@@ -511,7 +518,8 @@ void func_020e8ac8(void) {
             data_0217b90c.x = data_0217b930.x + data_0217b870 * (s32) (((s64) data_0217b8c8->mUnk_a4.x * 0x5000) >> 12);
             data_0217b90c.z = data_0217b930.z + data_0217b870 * (s32) (((s64) data_0217b8c8->mUnk_a4.z * 0x5000) >> 12);
             data_0217b90c.y = data_0217b930.y;
-            if (func_01ffdee4(&data_0217b90c, NULL, 0, 0x18e66, 0x10, -1, NULL, NULL, (s32 *) &v, NULL, NULL, NULL, NULL, NULL) != 0) {
+            if (func_01ffdee4(&data_0217b90c, NULL, 0, 0x18e66, 0x10, -1, NULL, NULL, (s32 *) &v, NULL, NULL, NULL,
+                              NULL, NULL) != 0) {
                 w = data_0217b8c8->mUnk_2a8;
                 if (w <= 0) {
                     w = -w;

@@ -2,6 +2,7 @@
 #include "registers.h"
 #include "code_02147cd8.h"
 #include "03/code_021c5c68.h"
+#include "03/unk_021da000.h"
 
 void func_ov003_021c5944(void) {
     int v1;

@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "01/code_02188950.h"
+
+typedef struct Unk02188950 Unk02188950;
 
 void func_ov001_02188484(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 l);
 void func_ov001_021884f0(Unk02188950 *a, int b, int c, int d, u32 e, u32 f, u32 g);

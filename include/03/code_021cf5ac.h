@@ -1,9 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021cf260.h"
-#include "03/unk_021da000.h"
-#include "code_02003024.h"
 
 // Fourteen bytes moved as one value.
 typedef struct Unk021cf5ac {

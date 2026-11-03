@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_0202578c.h"
 #include "Main/Unknown/code_0202bb80.h"
 #include "Main/Unknown/code_02025000.h"
 #include "Main/Unknown/code_02025bb4.h"
@@ -7,10 +8,12 @@
 #include "Main/Unknown/code_0202cb2c.h"
 #include "Main/Unknown/code_0202cca0.h"
 #include "Main/Unknown/code_02036000.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02036c5c.h"
 #include "Main/Unknown/code_020472a8.h"
 #include "Main/Unknown/code_020adb04.h"
+#include "Main/Unknown/code_020ae428.h"
 #include "Main/Unknown/code_020b3f7c.h"
 #include "Main/Unknown/code_020b47b4.h"
 #include "Main/Unknown/code_0211d4a8.h"
@@ -31,6 +34,7 @@
 #include "code_0214d018.h"
 #include "code_0202056c.h"
 #include "registers.h"
+#include "00/code_02182fdc.h"
 
 #pragma thumb on
 
@@ -384,8 +388,8 @@ void func_0202c65c(void *a, void *b) {
     func_02025f80(&data_02174e3c->mUnk_210[2], 3, 10, 0x60, 0);
     func_02025f80(&data_02174e3c->mUnk_210[3], 3, 10, 0x40, 0);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_02025b20(&data_02174e3c->mUnk_01c, data_usa_02162bf0, data_usa_02162c14, NULL, data_usa_02162c38, NULL, NULL,
-                      func_02047a28);
+        func_02025b20(&data_02174e3c->mUnk_01c, data_usa_02162bf0, data_usa_02162c14, NULL, data_usa_02162c38, NULL,
+                      NULL, func_02047a28);
     }
     data_02174e3c->mUnk_1fc = 1;
     func_02036820(data_02174e3c->mUnk_03c);

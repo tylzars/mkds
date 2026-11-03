@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_0203c07c.h"
 #include "Main/Unknown/code_020ae824.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_0203c000.h"
@@ -25,6 +26,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "code_0200eddc.h"
 #include "code_0214c778.h"
 
 void func_020ae824(void) {

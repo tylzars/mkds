@@ -7,6 +7,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "00/code_0219bb50.h"
+#include "code_0214d018.h"
 
 void func_0205a92c(void) {
     u8 i;

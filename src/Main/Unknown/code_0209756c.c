@@ -1,10 +1,13 @@
 #include "Main/Unknown/code_0209756c.h"
+#include "ITCM/code_01ff8000.h"
 #include "ITCM/code_01ff9000.h"
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_0208aea8.h"
 #include "Main/Unknown/code_0208b6b0.h"
 #include "Main/Unknown/code_0209b000.h"
+#include "Main/Unknown/code_0209b634.h"
 #include "Main/Unknown/code_0209bef0.h"
+#include "Main/Unknown/code_0209bf70.h"
 #include "Main/Unknown/code_020d22c0.h"
 #include "Main/Unknown/code_020d2450.h"
 #include "Main/Unknown/code_020d26e0.h"
@@ -17,7 +20,9 @@
 #include "Main/Unknown/unk_02166000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "code_020109c4.h"
 #include "code_020184e4.h"
+#include "code_02146cbc.h"
 #include "code_02146d78.h"
 #include "code_02147cd8.h"
 #include "code_02148538.h"
@@ -259,8 +264,8 @@ u32 func_02097ed0(Unk020975ec *p, Vec3 *a, s32 b, Vec3 *c) {
     } else {
         if (func_020eafc4(a, &p->mUnk_00.mUnk_04, &p->mUnk_a8[p->mUnk_ec0].mUnk_00[0], &data_usa_021564c4[p->mUnk_a4],
                           &data_usa_02156524[p->mUnk_a4], b, NULL) != 0) {
-            r = func_020eafc4(a, &p->mUnk_00.mUnk_04, &p->mUnk_648[p->mUnk_ec0].mUnk_00[0], &data_usa_0215656c[p->mUnk_a4],
-                              &data_usa_021564f4[p->mUnk_a4], b, c);
+            r = func_020eafc4(a, &p->mUnk_00.mUnk_04, &p->mUnk_648[p->mUnk_ec0].mUnk_00[0],
+                              &data_usa_0215656c[p->mUnk_a4], &data_usa_021564f4[p->mUnk_a4], b, c);
             if (r == 4 || p->mUnk_ecc == 3) {
                 p->mUnk_a0 = -1;
             } else if (p->mUnk_ecc == 2) {

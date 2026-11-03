@@ -1,8 +1,13 @@
+#include "03/code_021c3cc4.h"
+#include "03/code_021c482c.h"
 #include "03/code_021c4ad4.h"
 #include "03/code_021c3000.h"
 #include "03/code_021c3fc8.h"
 #include "03/code_021c4000.h"
 #include "03/code_021bf000.h"
+#include "03/code_021cef90.h"
+#include "03/code_021d1dd0.h"
+#include "03/types_021d299c.h"
 #include "03/unk_021d7000.h"
 #include "code_0214b824.h"
 

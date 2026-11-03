@@ -3,6 +3,8 @@
 #include "code_02147cd8.h"
 #include "code_0214a4dc.h"
 #include "Main/Unknown/code_0203c598.h"
+#include "Main/Unknown/code_02087228.h"
+#include "Main/Unknown/code_02087934.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_02061654.h"
 #include "Main/Unknown/code_02076cc4.h"

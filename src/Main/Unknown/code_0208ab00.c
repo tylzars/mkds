@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0208ab00.h"
+#include "ITCM/code_01ff8000.h"
 
 void func_0208ab4c(u16 *a) {
     u32 v1;

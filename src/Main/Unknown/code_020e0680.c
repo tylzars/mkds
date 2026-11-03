@@ -1,7 +1,17 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_0208ab98.h"
+#include "Main/Unknown/code_020d8918.h"
+#include "Main/Unknown/code_020d8bc0.h"
+#include "Main/Unknown/code_020d8cac.h"
 #include "Main/Unknown/code_020e0680.h"
+#include "Main/Unknown/code_020e8ac8.h"
+#include "Main/Unknown/code_020f9c6c.h"
+#include "Main/Unknown/code_0210a67c.h"
 #include "Main/Unknown/unk_02158000.h"
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "ITCM/code_01ff8000.h"
+#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
 #include "Main/Unknown/code_02084000.h"
 #include "Main/Unknown/code_0208a000.h"
@@ -429,8 +439,7 @@ void func_020e20a8(Unk020e20a8 *a) {
     func_020ea55c(&gTruckAShadow, (void *) FindCourseMapObjFile(gTruckAShadowNsbmdName), 7);
     func_020ea55c(&gBusAShadow, (void *) FindCourseMapObjFile(gBusAShadowNsbmdName), 7);
     func_020ea4bc(2, gCarA, &gCarANsbtp, (void *) b, (void *) FindCourseMapObjFile(gCarANsbtpName));
-    func_020ea4bc(2, gTruckA, &gTruckANsbtp, (void *) c,
-                  (void *) FindCourseMapObjFile(gTruckANsbtpName));
+    func_020ea4bc(2, gTruckA, &gTruckANsbtp, (void *) c, (void *) FindCourseMapObjFile(gTruckANsbtpName));
     func_02084968(gCarA, 0x3f, 2, 0x294a);
     for (k1 = 0, y1 = ((Unk0217b7a0 *) gCarA)->mUnk_04; k1 < y1->mUnk_18; k1++) {
         func_020134b0(y1, k1, 7);
@@ -629,7 +638,7 @@ void func_020e1a80(s32 a, s32 b, s32 c, u32 d, u16 e, u16 *f, s32 v, Unk020e005c
 // non-matching: code 0x3a0 vs 0x3a4: the incoming arguments land in different callee-saved registers (r6/r8, r5/r7,
 // r4/r6 against the original)
 BOOL func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 i, s32 j, Unk020e005c *w, Vec3 *l,
-                  Vec3 *m, Vec3 *n, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, Vec3 *r, u16 *s) {
+                   Vec3 *m, Vec3 *n, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, Vec3 *r, u16 *s) {
     BOOL u;
     BOOL v;
     BOOL k;

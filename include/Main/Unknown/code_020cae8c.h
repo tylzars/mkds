@@ -1,10 +1,11 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217b000.h"
-#include "Main/Unknown/code_020b4000.h"
-#include "code_02021db0.h"
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c
+
+typedef struct Unk020b4934 Unk020b4934;
+typedef struct Unk020b4a44 Unk020b4a44;
+typedef struct Unk02021dc8 Unk02021dc8;
 
 // Elements of the table at member 0x14 of Unk0217b43c.
 typedef struct Unk0217b43c_14 {

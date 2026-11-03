@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02153000.h"
+
+typedef struct Unk0215316c Unk0215316c;
 
 Unk0215316c func_0202577c(u32 arg0);

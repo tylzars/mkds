@@ -1,3 +1,7 @@
+#include "01/code_02187d14.h"
+#include "01/code_02187eb0.h"
+#include "01/code_02188230.h"
+#include "01/code_02188cd8.h"
 #include "01/code_0218d520.h"
 #include "01/code_02187000.h"
 #include "01/code_02187e78.h"
@@ -7,10 +11,14 @@
 #include "01/code_02188218.h"
 #include "01/code_02188e24.h"
 #include "Main/Unknown/code_0209b000.h"
+#include "Main/Unknown/code_0209b634.h"
 #include "Main/Unknown/code_020a1000.h"
+#include "Main/Unknown/code_020a10f0.h"
+#include "Main/Unknown/code_020a126c.h"
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/code_020d2000.h"
 #include "Main/Unknown/code_02100000.h"
+#include "Main/Unknown/code_021000d0.h"
 #include "Main/Unknown/unk_021759c0.h"
 
 void func_ov001_0218dc20(Unk02188950 *a) {

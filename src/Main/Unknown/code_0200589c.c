@@ -5,6 +5,8 @@
 #include "Main/Unknown/code_020070f0.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/code_02133000.h"
+#include "code_02133048.h"
+#include "code_0214d018.h"
 
 #pragma thumb on
 

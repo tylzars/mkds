@@ -1,11 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "01/unk_021ca000.h"
-#include "01/unk_021a6000.h"
-#include "01/unk_021a9000.h"
-#include "Main/Unknown/unk_0217a000.h"
-#include "Main/Unknown/code_02061654.h"
+
+typedef struct Unk02061808 Unk02061808;
 
 // Object whose address func_ov001_021a2048 receives as its second argument.
 typedef struct Unk021a2048_9c {

@@ -1,18 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021bf4dc.h"
-#include "03/code_021d1fd0.h"
-#include "03/unk_021d5000.h"
-#include "03/unk_021da000.h"
-#include "03/code_021bf410.h"
-#include "03/code_021c209c.h"
-#include "03/code_021c0ca8.h"
-#include "code_0212df7c.h"
-#include "03/code_021cdbd0.h"
-#include "03/code_021c6a18.h"
-#include "03/code_021cef6c.h"
-#include "03/code_021ce000.h"
+
+typedef struct Unk021d2188 Unk021d2188;
+typedef struct Unk021da1f8_04 Unk021da1f8_04;
 
 // Object behind data_ov003_021da1fc.
 typedef struct Unk021da1fc {
@@ -33,7 +24,6 @@ extern u16 data_ov003_021d7308[];
 extern u16 data_ov003_021d63f8[];
 extern u8 data_ov003_021d63fc[];
 
-// Declared here until the code that defines them is decompiled.
 void func_ov003_021c7614(void);
 void func_ov003_021c722c(void);
 

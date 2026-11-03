@@ -1,9 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "code_02003024.h"
 #include "Main/Unknown/code_02006954.h"
 #include "Main/Unknown/unk_02175000.h"
+
+typedef struct Unk02003024 Unk02003024;
 
 // Entry of 0x28 bytes; the table of pointers at the start of the object at 0x440 of data_02175ec0 points to them.
 typedef struct Unk0204bfac_28 {

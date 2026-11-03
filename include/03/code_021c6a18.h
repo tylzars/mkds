@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "03/code_021d1fd0.h"
+
+typedef struct Unk021d2188 Unk021d2188;
 
 // Object at 0x04 of Unk021da1f8.
 typedef struct Unk021da1f8_04 {
@@ -19,11 +20,8 @@ typedef struct Unk021da1f8 {
     /* 2a */ u8 mUnk_2a;
 } Unk021da1f8;
 
-#include "03/unk_021da000.h"
-
 extern u8 data_ov003_021d7278[];
 
-// Declared here until the code that defines them is decompiled.
 BOOL func_ov003_021c6764(void);
 void func_ov003_021c6914(void);
 void func_ov003_021c696c(void);

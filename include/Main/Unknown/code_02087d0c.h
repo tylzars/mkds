@@ -1,7 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "code_020109c4.h"
+
+typedef struct Unk02010b50 Unk02010b50;
+typedef struct Unk02010ab4 Unk02010ab4;
 
 // 0x38-byte object: a table of pointers at 0x1c (count at 0x18, current index at 0x1a) and a table of words at 0x20,
 // both with one entry per element.

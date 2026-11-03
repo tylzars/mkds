@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_0208b6b0.h"
 #include "Main/Unknown/code_0208d978.h"
 #include "Main/Unknown/code_0208b000.h"
 #include "code_02013730.h"
@@ -11,6 +13,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_02012b30.h"
+#include "code_0201750c.h"
 #include "code_02147288.h"
 #include "code_0214a4dc.h"
 #include "code_020172d0.h"
@@ -137,7 +140,8 @@ void func_0208e570(void *a) {
     func_0208ddf4(a, 2, (void *) func_020d2be8(), (void *) func_020d2bb0(), (void *) func_020d2b78(), NULL);
     func_0208ddf4(a, 4, (void *) func_020d2be8(), (void *) func_020d2bb0(), (void *) func_020d2b78(), NULL);
     if (data_021759c0->mUnk_00 == 0x17) {
-        func_0208ddf4(a, 3, (void *) func_020d2be8(), FindCourseFile(data_021663a8), FindCourseFile(data_021663c0), NULL);
+        func_0208ddf4(a, 3, (void *) func_020d2be8(), FindCourseFile(data_021663a8), FindCourseFile(data_021663c0),
+                      NULL);
     }
     data_0217b080->mUnk_5c = 10;
 }

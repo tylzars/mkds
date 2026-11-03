@@ -1,4 +1,6 @@
+#include "00/code_0218a9bc.h"
 #include "00/code_0218aea4.h"
+#include "00/code_0218cdc4.h"
 #include "00/types_0218b928.h"
 #include "00/code_0218d000.h"
 
@@ -10,6 +12,7 @@
 #include "00/code_0218dd8c.h"
 #include "code_0214177c.h"
 #include "00/code_0218afd4.h"
+#include "00/unk_021b4000.h"
 
 void func_ov000_0218afb8(u32 *a) {
     func_ov000_0218d0e4((u32) (0), (u32) (*a));

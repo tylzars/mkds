@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "code_0200f7a0.h"
+
+typedef struct Unk0200fb08 Unk0200fb08;
 
 void func_0200fb28(void);
 void func_0200fb80(Unk0200fb08 *n);

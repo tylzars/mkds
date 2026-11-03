@@ -1,7 +1,10 @@
 #include "01/code_0219853c.h"
 #include "01/code_02198854.h"
 #include "00/code_02182fdc.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020ae408.h"
+#include "Main/Unknown/code_02125960.h"
+#include "Main/Unknown/code_02125f6c.h"
 #include "Main/Unknown/code_0214a000.h"
 #include "Main/Unknown/code_02125ebc.h"
 #include "Main/Unknown/code_02126230.h"
@@ -19,6 +22,7 @@
 #include "01/unk_021a6000.h"
 #include "Main/Unknown/code_02056d40.h"
 #include "Main/Unknown/code_02125f54.h"
+#include "code_0214d018.h"
 
 void func_ov001_021987d4(void *heap, s16 a) {
     Unk02125de0Arg arg;

@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/types_021a998c.h"
+
+typedef struct Unk021a998c_0c Unk021a998c_0c;
 
 // Six length and pointer pairs.
 typedef struct Unk021aa880 {

@@ -1,4 +1,6 @@
 #include "Main/Unknown/code_02028d9c.h"
+#include "Main/Unknown/code_02078580.h"
+#include "Main/Unknown/unk_02174000.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_02028000.h"
 #include "Main/Unknown/code_02078000.h"
@@ -6,6 +8,7 @@
 
 #include "Main/Unknown/code_0214d000.h"
 #include "code_0201ea30.h"
+#include "code_0214d018.h"
 
 void *func_02028f08(s32 a, Unk0201ea30 *b) {
     return func_0201ea30(b, a);

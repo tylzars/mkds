@@ -2,6 +2,10 @@
 #include "01/code_02199964.h"
 #include "01/code_0219853c.h"
 #include "00/code_02182fdc.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_021059e0.h"
+#include "Main/Unknown/code_02108e94.h"
+#include "Main/Unknown/code_02125f6c.h"
 #include "Main/Unknown/code_02128244.h"
 #include "Main/Unknown/code_0212b000.h"
 #include "01/code_0219e824.h"
@@ -11,6 +15,8 @@
 #include "01/unk_021a8000.h"
 #include "Main/Unknown/code_02108000.h"
 #include "Main/Unknown/code_020ae408.h"
+#include "Main/Unknown/code_0212b5ec.h"
+#include "Main/Unknown/code_0212b91c.h"
 #include "Main/Unknown/code_0214a000.h"
 #include "Main/Unknown/code_02125ebc.h"
 #include "Main/Unknown/code_02126230.h"
@@ -24,6 +30,7 @@
 #include "Main/Unknown/code_02125f54.h"
 #include "code_02148ca0.h"
 #include "code_0201ea58.h"
+#include "code_0214a390.h"
 #include "registers.h"
 
 void func_ov001_021997dc(void) {

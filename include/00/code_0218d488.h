@@ -1,8 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0218b280.h"
-#include "00/code_0218cdc4.h"
+
+typedef struct Unk0218ce14 Unk0218ce14;
 
 // Declared here until the code that defines it is decompiled.
 

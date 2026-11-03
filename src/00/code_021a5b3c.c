@@ -3,6 +3,7 @@
 #include "00/code_021a4000.h"
 #include "00/code_021a5000.h"
 #include "00/code_021a6000.h"
+#include "code_0200eddc.h"
 #include "code_02142eac.h"
 #include "00/code_021a574c.h"
 #include "00/code_021a54b0.h"

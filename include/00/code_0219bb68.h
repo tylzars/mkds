@@ -3,15 +3,8 @@
 #include "types.h"
 
 BOOL func_ov000_0219bdec(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32, u8), void *e, void (*f)(u32, u32),
-                        void *g);
+                         void *g);
 
-// Declared here until the code that defines them is decompiled.
-
-#include "00/unk_021b5000.h"
-#include "03/code_021b94b8.h"
-#include "00/code_021a37dc.h"
-
-// Declared here until the code that defines them is decompiled.
 s32 func_ov000_0218d574(void);
 s32 func_ov000_0219bb68(void);
 s32 func_ov000_0219bbac(s32 a);
@@ -25,5 +18,4 @@ u32 func_ov000_0219c0c8(void);
 void func_ov000_0219c0f4(void);
 void func_ov000_0219c1e4(void *a, void *b, s32 c, const char *d, const char *e, s32 f, s32 g, void *h, s32 i);
 void func_ov000_0219d81c(void);
-// Declared here until the code that defines them is decompiled.
 void func_ov000_021a1430(void);

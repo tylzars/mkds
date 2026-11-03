@@ -3,6 +3,7 @@
 #include "Main/Unknown/code_020b2b24.h"
 #include "Main/Unknown/unk_02175628.h"
 #include "Main/Unknown/code_020b2b54.h"
+#include "00/code_02182fdc.h"
 
 u32 func_020b2b5c(void) {
     return ((u32) data_0217b488->mUnk_10);

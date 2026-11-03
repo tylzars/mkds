@@ -1,4 +1,5 @@
 #include "code_02004238.h"
+#include "code_0214d018.h"
 
 void FS_InitArchive(Unk02003a6c *arg0) {
     u32 value0 = (u32) arg0;

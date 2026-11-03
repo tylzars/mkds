@@ -2,9 +2,15 @@
 #include "00/code_021aa004.h"
 #include "00/code_021aa3b8.h"
 #include "00/code_021aa5b0.h"
+#include "00/code_021ab728.h"
 #include "00/code_021abc24.h"
+#include "00/code_021abca0.h"
 #include "00/code_021abd2c.h"
 #include "00/code_021adbac.h"
+#include "00/types_021a998c.h"
+#include "00/unk_021b6000.h"
+#include "code_0200fc8c.h"
+#include "code_0214d018.h"
 
 u8 func_ov000_021a9aa0(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;

@@ -1,10 +1,11 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212c478.h"
-#include "code_0212da38.h"
 #include "code_0212c478.h" // Unk0212c400
 #include "code_0212da38.h" // Unk0212d9dc
+
+typedef struct Unk0212c400 Unk0212c400;
+typedef struct Unk0212d9dc Unk0212d9dc;
 
 // 0x24-byte entries of the array at data_0217ca6c; func_02109468 fills the first one.
 typedef struct Unk0217ca6c {

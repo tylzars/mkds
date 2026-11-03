@@ -1,3 +1,4 @@
+#include "code_0200cd1c.h"
 #include "code_02148a58.h"
 #include "code_0200fd1c.h"
 #include "code_0214c778.h"
@@ -5,6 +6,7 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0216f000.h"
 #include "Main/Unknown/unk_02180000.h"
+#include "00/code_02188720.h"
 
 // Zeroes the 13 halfwords at data_021802b0, the word at 0x4000240, the bytes at 0x4000244-0x4000246 and the halfword
 // at 0x4000248.

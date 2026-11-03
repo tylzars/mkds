@@ -1,8 +1,14 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_0211f240.h"
 
 #include "Main/Unknown/code_0211f2ac.h"
+#include "Main/Unknown/unk_0215d000.h"
+#include "Main/Unknown/unk_0216e000.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "Main/Unknown/code_0211f2b8.h"
+#include "code_02016468.h"
 
 #pragma thumb on
 
@@ -60,8 +66,7 @@ void func_0211f244(int a, int b, void *c, void *d, u32 e, u16 f, int g) {
     func_02124748((u32) (*(u16 *) (((u32) ((u8 *) &data_0215d014)) + a * 2)), (void *) (v2[1]), (void *) (*v2),
                   (void *) (v2[3]), g, e, c, d);
     func_02016468(v1, (u32) ((u32) f << 5),
-                  (void *) ((s32) data_0217d37c->mUnk_08->mUnk_0c + ((u16 *) &data_0215d00c)[b] * 0x20),
-                  (u32) 0x20);
+                  (void *) ((s32) data_0217d37c->mUnk_08->mUnk_0c + ((u16 *) &data_0215d00c)[b] * 0x20), (u32) 0x20);
 }
 
 void func_0211f240(void) {}

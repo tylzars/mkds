@@ -6,16 +6,22 @@
 #include "Main/Unknown/code_0204bca0.h"
 #include "Main/Unknown/code_0204e000.h"
 #include "Main/Unknown/code_02052000.h"
+#include "Main/Unknown/code_020529b8.h"
 #include "Main/Unknown/code_02053000.h"
+#include "Main/Unknown/code_02053e74.h"
 #include "Main/Unknown/code_02055000.h"
+#include "Main/Unknown/code_02055730.h"
 #include "Main/Unknown/code_02056000.h"
 #include "Main/Unknown/code_02057fe4.h"
 #include "Main/Unknown/code_02059000.h"
+#include "Main/Unknown/code_0205928c.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_0217a000.h"
+#include "code_0200eddc.h"
 #include "code_02142eac.h"
 #include "code_021445e0.h"
+#include "code_0214d018.h"
 
 static inline u32 func_02050650_inline(void) {
     if (data_0217aa00 == NULL) {

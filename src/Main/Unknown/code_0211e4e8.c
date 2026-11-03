@@ -1,6 +1,12 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020ae428.h"
+#include "Main/Unknown/code_020d0e3c.h"
+#include "Main/Unknown/code_020d0efc.h"
 #include "Main/Unknown/code_0211e4e8.h"
 #include "registers.h"
 
+#include "Main/Unknown/code_0211f394.h"
+#include "Main/Unknown/code_0211f4b0.h"
 #include "Main/Unknown/unk_0215c000.h"
 #include "Main/Unknown/unk_0216d000.h"
 #include "Main/Unknown/unk_0216e000.h"

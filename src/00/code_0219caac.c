@@ -1,4 +1,5 @@
 #include "00/code_0219caac.h"
+#include "code_0214d018.h"
 
 u32 func_ov000_0219caf4(void) {
     return data_ov000_021b5664->mUnk_20;

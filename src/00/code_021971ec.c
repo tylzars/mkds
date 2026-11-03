@@ -1,4 +1,13 @@
+#include "00/code_0218e0fc.h"
+#include "00/code_0218e368.h"
+#include "00/code_0218e3c4.h"
+#include "00/code_0218e49c.h"
+#include "00/code_02196960.h"
 #include "00/code_021971ec.h"
+#include "00/unk_021b3000.h"
+#include "code_02135014.h"
+#include "code_02139f70.h"
+#include "code_0213a460.h"
 
 void func_ov000_021971ec(s8 *a, s32 b) {
     s32 d;

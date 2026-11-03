@@ -1,5 +1,11 @@
+#include "Main/Unknown/code_02068eac.h"
+#include "Main/Unknown/code_020d3c94.h"
+#include "Main/Unknown/code_020d50ec.h"
 #include "Main/Unknown/code_020f5d6c.h"
 
+#include "Main/Unknown/code_020fe4b4.h"
+#include "Main/Unknown/code_02109054.h"
+#include "Main/Unknown/code_0210a67c.h"
 #include "Main/Unknown/unk_02159000.h"
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/unk_021759c0.h"
@@ -95,8 +101,8 @@ void func_020f68b0(Unk020f41c4_A *a) {
             if ((a->mUnk_48 & 7) != func_02061f90()) {
                 return;
             }
-            if (func_01ffdee4(&a->mUnk_50.x, NULL, 0, a->mUnk_dc, 0x44, a->mUnk_da, NULL, NULL, NULL, &a->mUnk_fc, NULL, NULL, NULL, &w) ==
-                0) {
+            if (func_01ffdee4(&a->mUnk_50.x, NULL, 0, a->mUnk_dc, 0x44, a->mUnk_da, NULL, NULL, NULL, &a->mUnk_fc, NULL,
+                              NULL, NULL, &w) == 0) {
                 return;
             }
             if (func_020d5a68(&w, a->mUnk_fc, a->mUnk_104) != 0) {
@@ -214,8 +220,8 @@ void func_020f63cc(Unk020f41c4_A *a) {
     func_02148504(p, q, q);
     a->mUnk_5c.x = (s32) (((s64) a->mUnk_5c.x * 0xfec) >> 12);
     p->z = (s32) (((s64) p->z * 0xfec) >> 12);
-    if (func_01ffdee4(q, (u32 *) &a->mUnk_0e4, 0, a->mUnk_dc, 0x44, a->mUnk_da, &v1, &v2,
-                      (s32 *) &v3, &a->mUnk_fc, NULL, NULL, NULL, &w) != 0) {
+    if (func_01ffdee4(q, (u32 *) &a->mUnk_0e4, 0, a->mUnk_dc, 0x44, a->mUnk_da, &v1, &v2, (s32 *) &v3, &a->mUnk_fc,
+                      NULL, NULL, NULL, &w) != 0) {
         func_02148504(&v1, q, q);
         if (a->mUnk_fc & 0x1e34ef) {
             func_020f9334(a, q, p, 0x385, &v2);

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217a000.h"
 
 extern u16 data_021653e8;
 extern s16 data_021653ec;

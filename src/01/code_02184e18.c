@@ -1,4 +1,5 @@
 #include "01/code_02184e18.h"
+#include "01/code_02184f7c.h"
 
 void func_ov001_02184f40(Unk02188950 *a) {
     func_020d2774(&a->mUnk_000, (u32) (((u32) 0x0000020fu)));

@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_02038c94.h"
 #include "Main/Unknown/code_020cc168.h"
 #include "Main/Unknown/code_02038000.h"
 #include "Main/Unknown/code_020cae8c.h"
@@ -15,6 +16,7 @@
 #include "Main/Unknown/code_020cbad0.h"
 #include "Main/Unknown/unk_0216a000.h"
 #include "Main/Unknown/unk_021759c0.h"
+#include "01/code_021804e0.h"
 
 s32 func_020cc5b8(void) {
     if (data_021759c0->mUnk_08 == 4) {

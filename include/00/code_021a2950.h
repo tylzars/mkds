@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0219de4c.h"
 
 extern u8 data_ov000_021b5699[];
 extern u8 data_ov000_021b569a[];

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "code_02142eac.h"
 
 // Pair of masks followed by the data that func_0214461c returns the address of.
 typedef struct Unk0214461c {

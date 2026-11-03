@@ -1,3 +1,5 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02076cd0.h"
 #include "Main/Unknown/code_02112b48.h"
 
 #include "Main/Unknown/code_020472a8.h"
@@ -19,10 +21,12 @@
 #include "Main/Unknown/code_0212426c.h"
 #include "code_02148ca0.h"
 #include "Main/Unknown/unk_0215c000.h"
+#include "Main/Unknown/unk_0216d000.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "Main/Unknown/unk_0217d068.h"
 #include "00/code_02182fdc.h"
 #include "code_0212df7c.h"
+#include "code_0214d018.h"
 #include "registers.h"
 #include "Main/Unknown/code_021137a8.h"
 #include "Main/Unknown/code_02113f1c.h"
@@ -294,12 +298,10 @@ void func_02113f34(void) {
     v1 = FindSceneFile(gRecordVSMBNclrName);
     LocateNclr((Unk020b4a44 **) (&v7), v1);
     v3 = *(s32 *) (v4 + 0xc);
-    func_02016468((u32) 0x13, (u32) 0, (void *) (gRecordVS->mUnk_00->mUnk_14),
-                  (u32) (gRecordVS->mUnk_00->mUnk_10));
+    func_02016468((u32) 0x13, (u32) 0, (void *) (gRecordVS->mUnk_00->mUnk_14), (u32) (gRecordVS->mUnk_00->mUnk_10));
     func_02016468((u32) 0xe, (u32) 0, (void *) (*(u32 *) (v4 + 0xc)), (u32) (((u32) 0x000001a0u)));
     func_02016468((u32) 0xe, (u32) 0x1c0, (void *) (v3 + 0x1c0), (u32) 0x40);
-    func_02016468((u32) 0x23, (u32) 0, (void *) (gRecordVS->mUnk_28->mUnk_14),
-                  (u32) (gRecordVS->mUnk_28->mUnk_10));
+    func_02016468((u32) 0x23, (u32) 0, (void *) (gRecordVS->mUnk_28->mUnk_14), (u32) (gRecordVS->mUnk_28->mUnk_10));
     func_02016468((u32) 0x1e, (u32) 0, (void *) (*(u32 *) (v8 + 0xc)), (u32) (*(u32 *) (v8 + 8)));
     func_02016468((u32) 4, (u32) 0, (void *) (*(u32 *) (v5 + 0x14)), (u32) (*(u32 *) (v5 + 0x10)));
     func_02016468((u32) 8, (u32) 0, (void *) (v6 + 0xc), (u32) (*(u32 *) (v6 + 8)));
@@ -352,12 +354,10 @@ void func_02113d84(void) {
         if (func_02113ef0((s16) i)) {
             if (gRecordVS->mUnk_68 == i) {
                 gRecordVS->mUnk_3c[data_0215c3ec[i]].mUnk_00 = 1;
-                func_02124100(data_0215c3bc[i], 0xe, gRecordVS->mUnk_38, gRecordVS->mUnk_3c,
-                              gRecordVS->mUnk_30);
+                func_02124100(data_0215c3bc[i], 0xe, gRecordVS->mUnk_38, gRecordVS->mUnk_3c, gRecordVS->mUnk_30);
             } else {
                 gRecordVS->mUnk_3c[data_0215c3e0[i]].mUnk_00 = 1;
-                func_02124100(data_0215c3bc[i], 0xf, gRecordVS->mUnk_38, gRecordVS->mUnk_3c,
-                              gRecordVS->mUnk_30);
+                func_02124100(data_0215c3bc[i], 0xf, gRecordVS->mUnk_38, gRecordVS->mUnk_3c, gRecordVS->mUnk_30);
             }
             gRecordVS->mUnk_3c[data_0215c3f8[i]].mUnk_00 = !func_02114398(a + i);
             gRecordVS->mUnk_3c[data_0215c404[i]].mUnk_00 = func_02114398(a + i);
@@ -402,23 +402,17 @@ void func_02113a3c(void) {
                 }
             }
             func_02124fac(v[1][0], buf);
-            func_02124248(0, data_0215c410[1][0], gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08,
-                          gRecordVS->mUnk_14, 6);
+            func_02124248(0, data_0215c410[1][0], gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08, gRecordVS->mUnk_14, 6);
             func_02124fac(v[1][1], buf);
-            func_02124248(0, data_0215c410[1][1], gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08,
-                          gRecordVS->mUnk_14, 6);
+            func_02124248(0, data_0215c410[1][1], gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08, gRecordVS->mUnk_14, 6);
             func_02124fac(v[1][2], buf);
-            func_02124248(0, data_0215c410[1][2], gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08,
-                          gRecordVS->mUnk_14, 6);
+            func_02124248(0, data_0215c410[1][2], gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08, gRecordVS->mUnk_14, 6);
             func_02124fac(v[2][0], buf);
-            func_02124248(0, data_0215c410[2][0], gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08,
-                          gRecordVS->mUnk_14, 6);
+            func_02124248(0, data_0215c410[2][0], gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08, gRecordVS->mUnk_14, 6);
             func_02124fac(v[2][1], buf);
-            func_02124248(0, data_0215c410[2][1], gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08,
-                          gRecordVS->mUnk_14, 6);
+            func_02124248(0, data_0215c410[2][1], gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08, gRecordVS->mUnk_14, 6);
             func_02124fac(v[2][2], buf);
-            func_02124248(0, data_0215c410[2][2], gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08,
-                          gRecordVS->mUnk_14, 6);
+            func_02124248(0, data_0215c410[2][2], gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08, gRecordVS->mUnk_14, 6);
             func_021142d4(a + gRecordVS->mUnk_74, &w);
             func_02116a4c(&w, buf);
             func_02124224(0, 0xc, gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08, gRecordVS->mUnk_14, 6);
@@ -431,8 +425,7 @@ void func_02113a3c(void) {
             func_0212426c(0, 0, gRecordVS->mUnk_1c, buf, gRecordVS->mUnk_18, gRecordVS->mUnk_24);
             for (i = 0; i < 12; i++) {
                 func_02124fac(s[i] - 0x30, buf);
-                func_0212426c(0, data_0215c478[i], gRecordVS->mUnk_1c, buf, gRecordVS->mUnk_18,
-                              gRecordVS->mUnk_24);
+                func_0212426c(0, data_0215c478[i], gRecordVS->mUnk_1c, buf, gRecordVS->mUnk_18, gRecordVS->mUnk_24);
             }
             func_021141c8(a + gRecordVS->mUnk_74, gRecordVS->mUnk_78, gRecordVS->mUnk_7c);
             d = gRecordVS;
@@ -452,8 +445,7 @@ void func_021139b4(void) {
         b = a + i;
         if (func_021143b4() > b) {
             func_02114298(b, buf, 0x20);
-            func_0212426c(1, data_0215c3bc[i], gRecordVS->mUnk_38, buf, gRecordVS->mUnk_30,
-                          gRecordVS->mUnk_3c);
+            func_0212426c(1, data_0215c3bc[i], gRecordVS->mUnk_38, buf, gRecordVS->mUnk_30, gRecordVS->mUnk_3c);
         }
     }
     if (func_021143b4() <= a + gRecordVS->mUnk_68) {
@@ -821,8 +813,7 @@ void InitRecordVS(void *a) {
                        gRecordVS->mUnk_14, r);
     r -= func_021243ac(a, 1, gRecordVS->mUnk_0c, 0xaa, 0xe, 1, gRecordVS->mUnk_04, gRecordVS->mUnk_08,
                        gRecordVS->mUnk_14, r);
-    func_0212426c(0, 1, gRecordVS->mUnk_0c, GetBmgEntry(gRecordVS->mUnk_44, 0), gRecordVS->mUnk_08,
-                  gRecordVS->mUnk_14);
+    func_0212426c(0, 1, gRecordVS->mUnk_0c, GetBmgEntry(gRecordVS->mUnk_44, 0), gRecordVS->mUnk_08, gRecordVS->mUnk_14);
     r -= func_021243ac(a, 0xb, gRecordVS->mUnk_0c, 0x96, 0xe, 2, gRecordVS->mUnk_04, gRecordVS->mUnk_08,
                        gRecordVS->mUnk_14, r);
     func_0212426c(0, 0xb, gRecordVS->mUnk_0c, GetBmgEntry(gRecordVS->mUnk_44, 1), gRecordVS->mUnk_08,
@@ -833,15 +824,14 @@ void InitRecordVS(void *a) {
     x = gRecordVS->mUnk_08->mUnk_06;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            r -= func_021243ac(a, data_0215c410[i][j], gRecordVS->mUnk_0c, data_0215c424[i][j], data_0215c438[i][j],
-                               e, gRecordVS->mUnk_04, gRecordVS->mUnk_08, gRecordVS->mUnk_14, r);
+            r -= func_021243ac(a, data_0215c410[i][j], gRecordVS->mUnk_0c, data_0215c424[i][j], data_0215c438[i][j], e,
+                               gRecordVS->mUnk_04, gRecordVS->mUnk_08, gRecordVS->mUnk_14, r);
             e = x + data_0215c410[i][j];
         }
     }
     for (i = 0; i < 3; i++) {
-        func_0212426c(0, data_0215c410[0][i], gRecordVS->mUnk_0c,
-                      GetBmgEntry(gRecordVS->mUnk_44, data_0215c3b4[i]), gRecordVS->mUnk_08,
-                      gRecordVS->mUnk_14);
+        func_0212426c(0, data_0215c410[0][i], gRecordVS->mUnk_0c, GetBmgEntry(gRecordVS->mUnk_44, data_0215c3b4[i]),
+                      gRecordVS->mUnk_08, gRecordVS->mUnk_14);
     }
     r -= func_021243ac(a, 0, gRecordVS->mUnk_1c, 0x8c, 0x10, 0, gRecordVS->mUnk_04, gRecordVS->mUnk_18,
                        gRecordVS->mUnk_24, r);
@@ -864,8 +854,7 @@ void InitRecordVS(void *a) {
     }
     func_021243ac(a, 5, gRecordVS->mUnk_38, 0x98, 0x10, 0x19, gRecordVS->mUnk_2c, gRecordVS->mUnk_30,
                   gRecordVS->mUnk_3c, r);
-    func_0212426c(1, 5, gRecordVS->mUnk_38, GetBmgEntry(gRecordVS->mUnk_44, 3), gRecordVS->mUnk_30,
-                  gRecordVS->mUnk_3c);
+    func_0212426c(1, 5, gRecordVS->mUnk_38, GetBmgEntry(gRecordVS->mUnk_44, 3), gRecordVS->mUnk_30, gRecordVS->mUnk_3c);
     for (i = 0; i < 5; i++) {
         func_02124a98(data_0215c3e0[i], 0, gRecordVS->mUnk_2c, gRecordVS->mUnk_30);
         func_02124a98(data_0215c3ec[i], 0, gRecordVS->mUnk_2c, gRecordVS->mUnk_30);

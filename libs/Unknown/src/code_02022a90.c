@@ -1,4 +1,5 @@
 #include "code_02022a90.h"
+#include "Main/Unknown/unk_02174000.h"
 
 u32 func_02022a90(u32 arg0) {
     u32 value0 = arg0;

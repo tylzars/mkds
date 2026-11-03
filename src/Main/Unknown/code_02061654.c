@@ -1,7 +1,9 @@
+#include "Main/Unknown/code_02056b30.h"
 #include "Main/Unknown/code_02061654.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/unk_021759c0.h"
+#include "code_0214d018.h"
 
 void func_02061860(void) {
     u32 value0;

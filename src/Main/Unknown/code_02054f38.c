@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02054f38.h"
+#include "Main/Unknown/unk_0217a000.h"
 
 s32 func_02054f38(void) {
     u32 value0;

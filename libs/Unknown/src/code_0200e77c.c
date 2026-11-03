@@ -1,3 +1,4 @@
+#include "code_0200cd1c.h"
 #include "code_0200e77c.h"
 
 #include "code_0200cdc0.h"
@@ -6,6 +7,7 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "code_0200dc3c.h"
 #include "code_0200e0ec.h"
+#include "code_0200fc8c.h"
 #include "Main/Unknown/unk_0216f000.h"
 
 // With t = data_0216ff5c.mUnk_04: when n->mUnk_08 is 0 it is set to t, mUnk_0c is raised and func_0200ebe4 links n

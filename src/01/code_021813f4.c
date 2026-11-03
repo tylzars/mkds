@@ -12,7 +12,9 @@
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/code_020b837c.h"
 #include "Main/Unknown/code_020c0000.h"
+#include "Main/Unknown/code_020c06c4.h"
 #include "Main/Unknown/code_020c0b84.h"
+#include "Main/Unknown/code_020c0ba8.h"
 #include "Main/Unknown/code_020c0d9c.h"
 #include "Main/Unknown/code_0214d000.h"
 

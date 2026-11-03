@@ -1,9 +1,12 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_0212b91c.h"
 
 #include "Main/Unknown/code_0212b928.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0217d000.h"
+#include "code_0214d018.h"
 
 #pragma thumb on
 void func_0212b928(void *a, Unk020b4a44 *b, u32 c) {

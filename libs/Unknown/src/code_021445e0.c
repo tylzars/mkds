@@ -1,3 +1,5 @@
+#include "code_0200eddc.h"
+#include "code_0200fc8c.h"
 #include "code_021445e0.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_0200f000.h"
@@ -9,6 +11,7 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "code_0214cfe4.h"
 #include "code_0202056c.h"
+#include "code_0214d018.h"
 
 int func_021453c0(Unk021450ec *p, u32 n) {
     return func_021450ec(p, n, 0xffff, 2, 1);

@@ -1,4 +1,6 @@
 #include "Main/Unknown/code_0208533c.h"
+#include "Main/Unknown/unk_0217a000.h"
+#include "code_0201750c.h"
 
 void func_0208533c(void) {
     u32 value0;

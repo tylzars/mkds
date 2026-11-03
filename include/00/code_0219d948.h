@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0219cfc0.h"
 
 void func_ov000_0219d948(void *a);
 s32 func_ov000_0219d9b0(void *a, s32 b);

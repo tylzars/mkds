@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/unk_021b4000.h"
+
+typedef struct Unk021b4d24 Unk021b4d24;
 
 // Two bytes func_ov000_0218ca58 copies; the target may be unaligned.
 typedef struct Unk0218ca58 {

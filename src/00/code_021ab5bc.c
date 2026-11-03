@@ -1,4 +1,5 @@
 #include "00/code_021ab5bc.h"
+#include "00/types_021ab5e4.h"
 #include "00/unk_021b6000.h"
 #include "code_0200f5ac.h"
 #include "code_02134d30.h"

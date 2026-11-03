@@ -15,6 +15,7 @@
 #include "Main/Unknown/code_0207adf8.h" // Unk0207adf8
 #include "Main/Unknown/code_020846c0.h" // Unk02084b2c
 #include "Main/Unknown/code_02087d0c.h" // Unk02087d0c
+#include "code_02003024.h"
 
 // Objects whose layout isn't known yet.
 // What data_0217aa08 points to.
@@ -210,7 +211,7 @@ typedef struct Unk0217aa08 {
     /* 08 */ Unk0217aa08_08 *mUnk_08;
     /* 0c */ Unk0217aa08_0c *mUnk_0c;
     /* 10 */ Unk0217aa08_10 *mUnk_10;
-    /* 14 */ Unk0217aa08_14 * mUnk_14[3];
+    /* 14 */ Unk0217aa08_14 *mUnk_14[3];
     /* 20 */ Unk0217aa08_20 *mUnk_20;
     /* 24 */ Unk0217aa08_24 *mUnk_24;
     /* 28 */ u8 mUnk_28;

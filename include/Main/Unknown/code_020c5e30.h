@@ -1,10 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020c06c4.h"
 #include "Main/Unknown/code_02056b30.h"
-#include "Main/Unknown/code_020adb04.h"
-#include "Main/Unknown/unk_0217b000.h"
+
+typedef struct Unk020c06c4 Unk020c06c4;
 
 // Object behind data_0217b3f4, 0xe8 bytes allocated by func_020c6fac; mUnk_00 holds the function the object runs.
 typedef struct Unk0217b3f4 {

@@ -1,9 +1,11 @@
+#include "code_0214a54c.h"
 #include "code_0214a748.h"
 #include "code_0214a5f0.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_0214a000.h"
 #include "Main/Unknown/code_0214d000.h"
+#include "code_0214d018.h"
 #include "registers.h"
 
 void func_0214b048(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk0214ad4c *i) {

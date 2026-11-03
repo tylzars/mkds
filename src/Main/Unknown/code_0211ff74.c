@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0211ff74.h"
+#include "00/code_02182fdc.h"
 
 u32 func_0211ff74(void) {
     u32 value0;

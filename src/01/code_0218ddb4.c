@@ -1,8 +1,14 @@
+#include "01/code_02187d14.h"
+#include "01/code_02188de0.h"
 #include "01/code_0218ddb4.h"
 
 #include "01/code_02185ef4.h"
 #include "01/code_0218d000.h"
 #include "01/code_0218e000.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02061654.h"
+#include "Main/Unknown/code_02061874.h"
+#include "Main/Unknown/code_020681f0.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "01/code_0218155c.h"
 #include "01/code_02187cd4.h"
@@ -10,6 +16,12 @@
 #include "01/code_02188484.h"
 #include "01/code_0218f000.h"
 #include "01/unk_021a6000.h"
+#include "Main/Unknown/code_020a100c.h"
+#include "Main/Unknown/code_020a126c.h"
+#include "Main/Unknown/code_020d4c28.h"
+#include "Main/Unknown/code_020f9c6c.h"
+#include "Main/Unknown/code_02109110.h"
+#include "Main/Unknown/code_02110100.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "01/code_02188000.h"
 #include "01/unk_021a7000.h"
@@ -732,8 +744,7 @@ void func_ov001_0218de50(Unk0218d87c *a) {
             if (data_021759c0->mUnk_08 == 4) {
                 func_ov001_02181b8c(p);
             }
-            func_ov001_021870e4(a, p, data_ov001_021a7da0, data_ov001_021a7db4,
-                                data_ov001_021a7dc8);
+            func_ov001_021870e4(a, p, data_ov001_021a7da0, data_ov001_021a7db4, data_ov001_021a7dc8);
             func_ov001_021870b0(a, p, data_ov001_021a7dd8);
             a0 = p->mUnk_0a0;
             func_ov001_0218875c(p, (s32) (a0->mUnk_008), (s32) (a0->mUnk_00c), (s32) (a0->mUnk_240));

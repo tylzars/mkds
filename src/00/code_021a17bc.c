@@ -1,4 +1,17 @@
+#include "00/code_021988e8.h"
+#include "00/code_0219a654.h"
+#include "00/code_0219b8bc.h"
+#include "00/code_0219c384.h"
+#include "00/code_0219d128.h"
+#include "00/code_0219de4c.h"
+#include "00/code_0219e4e8.h"
+#include "00/code_0219eaf4.h"
+#include "00/code_0219f4c4.h"
+#include "00/code_021a01dc.h"
+#include "00/code_021a0958.h"
 #include "00/code_021a17bc.h"
+#include "00/code_021a4784.h"
+#include "00/unk_021b4000.h"
 
 void func_ov000_021a1a38(s32 d, s32 e) {
     Unk021b566c *p;

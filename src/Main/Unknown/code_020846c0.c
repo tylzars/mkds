@@ -1,4 +1,6 @@
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020846c0.h"
+#include "ITCM/code_01ff8000.h"
 #include "ITCM/code_01ff9000.h"
 #include "Main/Unknown/code_0205e090.h"
 #include "code_020109ac.h"
@@ -17,6 +19,7 @@
 #include "code_02010804.h"
 #include "code_02010c84.h"
 #include "code_020172d0.h"
+#include "code_0214d018.h"
 
 void func_0208526c(Unk0208526c *a, Unk020136f0 *b, Unk020136f0 *c) {
     u32 v1;

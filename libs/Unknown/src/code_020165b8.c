@@ -1,4 +1,5 @@
 #include "code_020165b8.h"
+#include "code_02016844.h"
 
 Unk02016638 *func_020165c8(Unk02016468 *p) {
     return p->mUnk_00 + p->mUnk_08;

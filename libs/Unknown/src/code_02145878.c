@@ -1,7 +1,9 @@
+#include "code_0200fd1c.h"
 #include "code_02145878.h"
 
 #include "Main/Unknown/code_02145888.h"
 #include "Main/Unknown/code_021458b4.h"
+#include "Main/Unknown/unk_0217f000.h"
 
 u32 func_021458b4(void) {
     u32 value0;

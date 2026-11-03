@@ -1,3 +1,4 @@
+#include "00/code_0218db48.h"
 #include "00/code_0219981c.h"
 #include "00/code_0218d000.h"
 #include "00/code_021a3000.h"
@@ -98,8 +99,7 @@ top:
     for (b = func_ov000_0218dc44(a->mUnk_5c) - 1; b >= 0; b--) {
         c = func_ov000_0218dbf8(a->mUnk_5c, b);
         if (c->mUnk_0c == a->mUnk_66) {
-            if (func_ov000_02199a0c((s32) a, c->mUnk_08, (u32) (a->mUnk_44.mUnk_00 + c->mUnk_00), c->mUnk_04) ==
-                0) {
+            if (func_ov000_02199a0c((s32) a, c->mUnk_08, (u32) (a->mUnk_44.mUnk_00 + c->mUnk_00), c->mUnk_04) == 0) {
                 return 0;
             }
             func_ov000_02199878(a, c, b);

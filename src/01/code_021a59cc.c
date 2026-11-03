@@ -1,3 +1,4 @@
+#include "01/code_02184f7c.h"
 #include "01/code_021a59cc.h"
 
 #include "types.h"
@@ -9,6 +10,7 @@
 #include "01/unk_021ca000.h"
 #include "00/code_02182fdc.h"
 #include "Main/Unknown/code_020364e0.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02124000.h"
 #include "Main/Unknown/unk_0217d068.h"

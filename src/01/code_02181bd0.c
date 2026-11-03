@@ -2,12 +2,22 @@
 
 #include "01/code_02181000.h"
 #include "01/code_02182000.h"
+#include "01/code_02182f98.h"
 #include "01/code_02183000.h"
 #include "01/unk_021a7000.h"
 #include "01/unk_021a9000.h"
 #include "Main/Unknown/code_0203e000.h"
+#include "Main/Unknown/code_0208b498.h"
 #include "Main/Unknown/code_0209b000.h"
+#include "Main/Unknown/code_0209b634.h"
+#include "Main/Unknown/code_0209bf70.h"
+#include "Main/Unknown/code_020d3b10.h"
+#include "Main/Unknown/code_020d4c28.h"
 #include "Main/Unknown/code_020d7000.h"
+#include "Main/Unknown/code_020d8bc0.h"
+#include "Main/Unknown/code_020d8cac.h"
+#include "Main/Unknown/code_020f9c6c.h"
+#include "Main/Unknown/code_021000d0.h"
 #include "Main/Unknown/code_02108000.h"
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
@@ -20,6 +30,7 @@
 #include "Main/Unknown/code_020a1000.h"
 #include "Main/Unknown/code_020e5000.h"
 #include "Main/Unknown/code_0210b000.h"
+#include "ITCM/code_01ff8000.h"
 
 void func_ov001_02182f1c(Unk02181c3c *p0, Unk0206bcb0 *p1) {
     p0->mUnk_0ac = 0x1e;
@@ -528,8 +539,8 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
                 b->mUnk_000.mUnk_10.y = ((s64) b->mUnk_000.mUnk_10.y * 0x1400) >> 12;
                 b->mUnk_000.mUnk_10.z = ((s64) b->mUnk_000.mUnk_10.z * 0x1400) >> 12;
             }
-            if (func_01ffdee4(&pos, NULL, 0, b->mUnk_000.mUnk_58.x, 1, b->mUnk_000.mUnk_64, &delta,
-                              &out1, (s32 *) &out2, &flags, NULL, NULL, NULL, NULL) != 0) {
+            if (func_01ffdee4(&pos, NULL, 0, b->mUnk_000.mUnk_58.x, 1, b->mUnk_000.mUnk_64, &delta, &out1,
+                              (s32 *) &out2, &flags, NULL, NULL, NULL, NULL) != 0) {
                 func_02148504(&b->mUnk_000.mUnk_04, &delta, &b->mUnk_000.mUnk_04);
                 if (flags & 0x214300) {
                     func_020eaa14(&b->mUnk_000.mUnk_10, &out2, 0x1000, 0x1000, 0xc00, &b->mUnk_000.mUnk_10);

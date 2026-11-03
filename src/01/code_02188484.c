@@ -1,4 +1,5 @@
 #include "01/code_02188484.h"
+#include "01/code_02188950.h"
 
 void func_ov001_021888a4(Unk02188950 *a, s32 b, s32 c) {
     if (b == 0) {

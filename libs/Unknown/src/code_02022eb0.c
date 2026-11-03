@@ -1,4 +1,6 @@
 #include "code_02022eb0.h"
+#include "Main/Unknown/code_02022000.h"
+#include "Main/Unknown/unk_02153000.h"
 
 static inline u32 clz_inline(u32 x) {
     u32 r;

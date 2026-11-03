@@ -9,12 +9,14 @@
 #include "code_0200e0c0.h"
 #include "code_0200e670.h"
 #include "Main/Unknown/code_0200f000.h"
+#include "code_0200fc8c.h"
 #include "code_0200fd1c.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0216f000.h"
 #include "Main/Unknown/unk_02170000.h"
 #include "Main/Unknown/unk_00000000.h"
 #include "Main/Unknown/unk_00002000.h"
+#include "00/code_02188720.h"
 
 void func_0200e5f8(Unk0200df9c *q, Unk0200db5c *t) {
     Unk0200db5c *p;

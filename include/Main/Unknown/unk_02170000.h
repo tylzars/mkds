@@ -2,9 +2,10 @@
 
 #include "types.h"
 #include "code_02013bdc.h"
-#include "code_02010c84.h"
 #include "code_0200e0ec.h" // Unk0200db5c
 #include "code_0200f7a0.h" // Unk02170260
+
+typedef struct Unk0217029c Unk0217029c;
 
 extern Unk0200db5c data_0217002c;
 extern u32 data_021701b4;

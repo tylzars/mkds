@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02182fdc.h"
 
 extern char data_ov000_021b0e18[];
 extern char data_ov000_021b0e24[];

@@ -1,4 +1,5 @@
 #include "00/code_02199a0c.h"
+#include "00/code_02199ad8.h"
 
 u32 func_ov000_02199a0c(int a, int b, u32 c, u32 d) {
     int v1;

@@ -1,4 +1,5 @@
 #include "00/code_02184354.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0210895c.h"
 #include "Main/Unknown/code_02029890.h"
 #include "code_02148ca0.h"
@@ -42,7 +43,8 @@ void InitWiFiVSMatching(void *a) {
     func_ov000_02184130();
     b = func_ov000_021804f4();
     func_020ae6d4(b, func_ov000_021804e0());
-    func_02124ed0(a, gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mWiFiVSMatchingBnll, &gWiFiVSMatching->mUnk_10d4);
+    func_02124ed0(a, gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mWiFiVSMatchingBnll,
+                  &gWiFiVSMatching->mUnk_10d4);
     gWiFiVSMatching->mWiFiMessages = FindSceneFile(data_ov000_021b0e18);
     gWiFiVSMatching->mCommonMessages = func_02047a28(data_ov000_021b0e24);
     func_ov000_02184670();
@@ -124,7 +126,8 @@ void func_ov000_02184670(void) {
 
         for (i = 0, t2 = data_ov000_021b066c, t3 = data_ov000_021b0664; i < 3; i++) {
             n -= func_021243ac(gWiFiVSMatching->mUnk_d0, *t3, gWiFiVSMatching->mWiFiVSMatchingBnll, t1[0], t1[1], *t2,
-                               gWiFiVSMatching->mWiFiVSMatchingSNcer, gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mUnk_10d4, n);
+                               gWiFiVSMatching->mWiFiVSMatchingSNcer, gWiFiVSMatching->mWiFiVSMatchingBncl,
+                               gWiFiVSMatching->mUnk_10d4, n);
             t2++;
             t1 += 2;
             t3++;
@@ -136,8 +139,9 @@ void func_ov000_02184670(void) {
 
         for (i = 0; i < 3; i++) {
             for (j = 0; j < 2; j++) {
-                n -= func_021243ac(gWiFiVSMatching->mUnk_d0, data_ov000_021b0670[i][j], gWiFiVSMatching->mWiFiVSMatchingBnll,
-                                   e[i][j][0], e[i][j][1], data_ov000_021b0678[i][j], gWiFiVSMatching->mWiFiVSMatchingSNcer,
+                n -= func_021243ac(gWiFiVSMatching->mUnk_d0, data_ov000_021b0670[i][j],
+                                   gWiFiVSMatching->mWiFiVSMatchingBnll, e[i][j][0], e[i][j][1],
+                                   data_ov000_021b0678[i][j], gWiFiVSMatching->mWiFiVSMatchingSNcer,
                                    gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mUnk_10d4, n);
             }
         }
@@ -152,7 +156,8 @@ void func_ov000_02184670(void) {
 
         for (i = 0, t1 = data_ov000_021b0668, t2 = data_ov000_021b0660; i < 3; i++) {
             n -= func_021243ac(gWiFiVSMatching->mUnk_d0, *t2, gWiFiVSMatching->mWiFiVSMatchingBnll, w[0], w[1], *t1,
-                               gWiFiVSMatching->mWiFiVSMatchingSNcer, gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mUnk_10d4, n);
+                               gWiFiVSMatching->mWiFiVSMatchingSNcer, gWiFiVSMatching->mWiFiVSMatchingBncl,
+                               gWiFiVSMatching->mUnk_10d4, n);
             g = gWiFiVSMatching;
             p = GetBmgEntry(g->mWiFiMessages, 9);
             func_0212426c(1, *t2, gWiFiVSMatching->mWiFiVSMatchingBnll, p, g->mWiFiVSMatchingBncl, g->mUnk_10d4);
@@ -166,8 +171,8 @@ void func_ov000_02184670(void) {
 
         q = LookupWiFiVSSettingMessageIndex(GetWiFiVSSettingIndex());
         func_021243ac(gWiFiVSMatching->mUnk_d0, 0xc, gWiFiVSMatching->mWiFiVSMatchingBnll, a[0], a[1],
-                      gWiFiVSMatching->mWiFiVSMatchingBncl->mUnk_06, gWiFiVSMatching->mWiFiVSMatchingSNcer, gWiFiVSMatching->mWiFiVSMatchingBncl,
-                      gWiFiVSMatching->mUnk_10d4, n);
+                      gWiFiVSMatching->mWiFiVSMatchingBncl->mUnk_06, gWiFiVSMatching->mWiFiVSMatchingSNcer,
+                      gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mUnk_10d4, n);
         func_0212426c(1, 0xc, gWiFiVSMatching->mWiFiVSMatchingBnll, GetBmgEntry(gWiFiVSMatching->mWiFiMessages, q),
                       gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mUnk_10d4);
     }

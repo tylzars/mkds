@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0208f0f8.h"
 #include "Main/Unknown/code_020888b4.h"
 #include "Main/Unknown/code_020ee684.h"
@@ -17,6 +18,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_020172d0.h"
+#include "Main/Unknown/code_0208eb10.h"
 
 // non-matching: same size; 29 words differ, all in the two blocks of constant stores: the original stores each
 // constant right after loading it (8 in r1, 3 then 1 in r7, 0x4d then 0xe in r10) and loads &data_021759c0 after the

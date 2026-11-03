@@ -1,4 +1,7 @@
+#include "Main/Unknown/code_020574a0.h"
+#include "Main/Unknown/code_02057764.h"
 #include "Main/Unknown/code_0205edcc.h"
+#include "Main/Unknown/unk_0217a000.h"
 
 void func_0205edf8(void) {
     u32 value0;

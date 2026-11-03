@@ -1,4 +1,7 @@
 #include "Main/Unknown/code_02027f68.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_021281fc.h"
+#include "Main/Unknown/code_0212b91c.h"
 #include "Main/Unknown/code_0214a000.h"
 #include "Main/Unknown/code_02028000.h"
 #include "Main/Unknown/code_02036000.h"
@@ -7,6 +10,7 @@
 #include "Main/Unknown/code_0212b000.h"
 #include "Main/Unknown/unk_02174000.h"
 
+#include "code_0214a390.h"
 #include "registers.h"
 
 u32 func_0202811c(void) {

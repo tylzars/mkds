@@ -1,5 +1,8 @@
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020429c8.h"
 #include "Main/Unknown/code_02036bec.h"
+#include "Main/Unknown/code_020b502c.h"
+#include "Main/Unknown/code_020f36d8.h"
 
 #pragma thumb on
 void func_02042ec0(Unk020f371c *a, Unk02175620_4c *b, u16 c) {

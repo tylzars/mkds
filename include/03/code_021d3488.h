@@ -2,6 +2,8 @@
 
 #include "types.h"
 
+typedef struct Unk021d1d88 Unk021d1d88;
+
 // Object passed to func_ov003_021d34e0, which stores its second argument at 0x08.
 typedef struct Unk021d34e0 {
     /* 00 */ u8 mUnk_00[8];
@@ -18,8 +20,6 @@ typedef struct Unk021d34e4 {
     /* 12 */ u8 mUnk_12[2];
 } Unk021d34e4;
 
-#include "03/code_021d1d88.h"
-
 typedef struct Unk021d34c8 {
     /* 00 */ Unk021d1d88 *mUnk_00;
     /* 04 */ struct Unk021d1d88 *mResource;
@@ -29,8 +29,6 @@ typedef struct Unk021d34c8 {
     /* 34 */ s32 mUnk_34;
     /* 38 */ Unk021d34e4 *mUnk_38;
 } Unk021d34c8;
-
-#include "03/code_021d2e68.h"
 
 void func_ov003_021d3488(int a, int b);
 void func_ov003_021d34c0(u32 arg0, u32 arg1);

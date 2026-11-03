@@ -1,8 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02153bec.h"
-#include "Main/Unknown/unk_02174000.h"
+
+typedef struct Unk02162f4c Unk02162f4c;
 
 extern s16 data_usa_02162c74[][4];
 extern char data_usa_02162d04[];

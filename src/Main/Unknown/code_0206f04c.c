@@ -14,6 +14,7 @@
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/code_0208c16c.h"
 #include "Main/Unknown/code_020b33d8.h"
+#include "ITCM/code_01ffad14.h"
 #include "ITCM/code_01ffb000.h"
 #include "Main/Unknown/code_02109054.h"
 #include "Main/Unknown/code_0207a000.h"

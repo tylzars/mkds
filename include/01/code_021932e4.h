@@ -1,30 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "01/code_02192e78.h"
-#include "01/unk_021a9000.h"
-#include "Main/Unknown/code_0214a000.h"
-#include "01/code_0219e824.h"
-#include "Main/Unknown/code_02124000.h"
-#include "01/code_021956dc.h"
-#include "Main/Unknown/code_02125ebc.h"
-#include "Main/Unknown/code_02125f88.h"
-#include "Main/Unknown/code_02105000.h"
-#include "Main/Unknown/code_02126000.h"
-#include "Main/Unknown/code_02126230.h"
-#include "Main/Unknown/code_020ae408.h"
-#include "Main/Unknown/unk_0217a000.h"
-#include "Main/Unknown/code_02128210.h"
-#include "00/code_02182fdc.h"
-#include "01/unk_021a8000.h"
-#include "Main/Unknown/code_02036c5c.h"
-#include "01/code_02193c5c.h"
-#include "Main/Unknown/unk_02175628.h"
-#include "Main/Unknown/unk_0217d068.h"
-#include "01/code_02194000.h"
-#include "01/code_0219e000.h"
-#include "Main/Unknown/code_02111000.h"
-#include "Main/Unknown/code_020472a8.h"
+
+typedef struct Unk021a9bd4 Unk021a9bd4;
 
 extern u8 data_ov001_021a65dc[];
 extern s32 data_ov001_021a65e4[];

@@ -1,7 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_0219de4c.h"
+#include "00/code_0218f960.h"
+
+typedef struct Unk021b566c Unk021b566c;
 
 // Five bytes at data_ov000_021b40bc; the first member of Unk021a0a40 starts with them.
 typedef struct Unk021b40bc {
@@ -27,7 +29,6 @@ typedef struct Unk021a0c30 {
     /* 08 */ u32 mUnk_08;
 } Unk021a0c30;
 
-// Declared here until the code that defines them is decompiled.
 void func_ov000_0219b110(void);
 
 s32 func_ov000_021a0958(u8 *a, const u8 *b, s32 c);

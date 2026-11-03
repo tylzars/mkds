@@ -1,4 +1,7 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020d7df8.h"
 #include "Main/Unknown/code_020ec8bc.h"
+#include "Main/Unknown/code_020f6be8.h"
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/code_020d8000.h"
 #include "Main/Unknown/code_020e6000.h"
@@ -261,8 +264,8 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
         q->y = q->y + r->y;
     }
     if (func_01ffdee4(q, (u32 *) &p->mUnk_000.mUnk_000.mUnk_0e4, 0, p->mUnk_000.mUnk_000.mUnk_dc, 4,
-                      p->mUnk_000.mUnk_000.mUnk_da, &v28, &v34, (s32 *) &v40,
-                      &p->mUnk_000.mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL) != 0) {
+                      p->mUnk_000.mUnk_000.mUnk_da, &v28, &v34, (s32 *) &v40, &p->mUnk_000.mUnk_000.mUnk_fc, NULL, NULL,
+                      NULL, NULL) != 0) {
         if (p->mUnk_000.mUnk_158 != 0) {
             if (v28.y > 0) {
                 q->y = q->y + v28.y;

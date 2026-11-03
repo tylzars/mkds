@@ -1,8 +1,10 @@
+#include "code_0200eddc.h"
 #include "code_0201ec30.h"
 #include "code_02020430.h"
 #include "Main/Unknown/unk_02173000.h"
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/code_0200e000.h"
+#include "code_020204b4.h"
 #include "code_0214f1a0.h"
 
 u8 func_0201ec30(void) {

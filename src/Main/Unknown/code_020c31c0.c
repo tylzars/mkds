@@ -1,6 +1,8 @@
 #include "Main/Unknown/code_020c31c0.h"
 
 #include "Main/Unknown/code_020c31ec.h"
+#include "Main/Unknown/code_020c3200.h"
+#include "Main/Unknown/unk_0217b000.h"
 
 u32 func_020c31ec(void) {
     u32 value0;

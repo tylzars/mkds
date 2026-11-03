@@ -1,15 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "01/code_021a1000.h"
-#include "Main/Unknown/code_02128210.h"
-#include "01/unk_021ca000.h"
-#include "01/unk_021a6000.h"
-#include "01/code_021956dc.h"
-#include "Main/Unknown/code_020ae4c0.h"
-#include "Main/Unknown/code_02056000.h"
-#include "Main/Unknown/code_02036c5c.h"
-#include "01/unk_021a9000.h"
 #include "Main/Unknown/code_02061654.h" // Unk02061808
 
 void func_ov001_021a11a4(void);

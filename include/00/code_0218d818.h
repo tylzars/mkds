@@ -2,14 +2,9 @@
 
 #include "types.h"
 
-typedef s32 UnkCompare(const void *a, const void *b);
+typedef struct Unk0218dc94 Unk0218dc94;
 
-#include "00/code_0218d000.h"
-#include "00/unk_021b2000.h"
-#include "code_0213442c.h"
-#include "00/code_021a3678.h"
-#include "00/code_021a3690.h"
-#include "00/code_0218dc44.h"
+typedef s32 UnkCompare(const void *a, const void *b);
 
 void *func_ov000_0218d818(const void *a, u8 *b, s32 c, s32 d, UnkCompare *e, s32 *f);
 void *func_ov000_0218d86c(const void *a, u8 *b, s32 c, s32 d, UnkCompare *e);

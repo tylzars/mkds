@@ -2,8 +2,9 @@
 
 #include "types.h"
 #include "Main/Unknown/unk_02029930.h" // Unk02029930_f8
-#include "Main/Unknown/code_0210f090.h"
 #include "code_0214e6e4.h"
+
+typedef struct Unk0210f090 Unk0210f090;
 
 // Three values that func_020565e4 and func_0205660c fill: a halfword and two bytes.
 typedef struct Unk020565e4 {

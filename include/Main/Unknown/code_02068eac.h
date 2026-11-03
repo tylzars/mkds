@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h"
+
+typedef struct Unk0206bcb0 Unk0206bcb0;
 
 BOOL func_02068eac(Unk0206bcb0 *p);
 s32 func_02068ec0(Unk0206bcb0 *p, s32 a);

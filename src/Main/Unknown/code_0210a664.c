@@ -1,4 +1,6 @@
+#include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_0210a664.h"
+#include "Main/Unknown/code_0210a67c.h"
 
 void func_0210a664(Unk0206bcb0 *p0) {
     p0->mUnk_450.mUnk_34 = (u32) ((~(0x0u)));

@@ -2,6 +2,8 @@
 
 #include "types.h"
 
+typedef struct Unk021a8f84 Unk021a8f84;
+
 // Entry of the list behind data_ov000_021b4e5c; the function at 0x18 takes the arguments of the entry's type.
 typedef union Unk021969d8Func {
     void (*mUnk_00)(u32 a, u32 b, s32 c, const u8 *d, u32 e);
@@ -31,8 +33,6 @@ typedef struct Unk02196d84 {
     /* 08 */ s32 mUnk_08;
 } Unk02196d84;
 
-// Declared here until the code that defines them is decompiled.
-
 // Record appended to the list at data_ov000_021b4e5c by func_ov000_02197020.
 typedef struct Unk02197020 {
     /* 00 */ u32 mUnk_00;
@@ -55,9 +55,6 @@ typedef struct Unk021b3b68 {
 typedef struct Unk021b3c88 {
     /* 00 */ s8 mUnk_00[0x100];
 } Unk021b3c88;
-
-#include "00/code_0218e49c.h"
-#include "00/unk_021b4000.h"
 
 extern u8 *data_ov000_021b3b30;
 extern const Unk021b3b68 data_ov000_021b3b68;
@@ -102,5 +99,4 @@ const s8 *func_ov000_021970e4(const s8 *text, const u8 *key);
 const s8 *func_ov000_021970fc(const s8 *text, const u8 *key);
 void func_ov000_02197190(u32 a, s8 *b);
 int func_ov000_021971c8(int a, int b);
-// Declared here until the code that defines them is decompiled.
 void func_ov000_02197634(void);

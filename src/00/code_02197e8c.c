@@ -1,4 +1,7 @@
+#include "00/code_0218db48.h"
 #include "00/code_02197e8c.h"
+#include "00/code_0219a3f4.h"
+#include "code_0213442c.h"
 
 BOOL func_ov000_02198148(Unk02197fe8 *a, s32 b) {
     if (a == NULL) {

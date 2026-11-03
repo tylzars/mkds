@@ -1,5 +1,8 @@
+#include "00/code_0218dc44.h"
+#include "00/code_0218dd8c.h"
 #include "00/code_0219a3f4.h"
 #include "00/code_0218e49c.h"
+#include "00/code_021a3668.h"
 
 void func_ov000_0219a3f8(u32 *a) {
     if (a[7] != 0) {

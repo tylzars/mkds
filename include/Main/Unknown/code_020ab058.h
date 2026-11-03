@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217b000.h"
 
 void func_020ab058(s32 (*arg0)(u32, s32));
 void func_020ab064(u16 (*arg0)(s32, u16));

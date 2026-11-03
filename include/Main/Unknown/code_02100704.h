@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02100de4.h"
+
+typedef struct Unk02101c84 Unk02101c84;
 
 void func_02100704(Unk02101c84 *p);
 void func_021009fc(Unk02101c84 *p);

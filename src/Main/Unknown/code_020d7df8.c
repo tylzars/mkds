@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020d7df8.h"
 #include "Main/Unknown/code_020d6dc0.h"
 #include "Main/Unknown/code_020364e0.h"
@@ -134,7 +135,8 @@ void func_020d7e44(u32 a, int m) {
     if (n == 2) {
         func_020d80e4(p->mUnk_00, 0, 1, NULL, &func_02042044(a, 0)->mUnk_00, &func_02042044(a, 1)->mUnk_00, NULL);
         if (p->mUnk_08 != 0) {
-            func_020d80e4(&p->mUnk_00[1], 0, 1, NULL, &func_02042044(a, 1)->mUnk_00, &func_02042044(a, 0)->mUnk_00, NULL);
+            func_020d80e4(&p->mUnk_00[1], 0, 1, NULL, &func_02042044(a, 1)->mUnk_00, &func_02042044(a, 0)->mUnk_00,
+                          NULL);
         }
         return;
     }

@@ -9,8 +9,6 @@ typedef struct Unk021da25c {
     /* 604 */ u8 mUnk_604;
 } Unk021da25c;
 
-#include "03/unk_021da000.h"
-
 void func_ov003_021cc8d4(u32 a);
 void func_ov003_021cc900(u32 a);
 void func_ov003_021cc924(u32 a);

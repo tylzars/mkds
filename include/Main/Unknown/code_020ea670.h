@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h"
-#include "Main/Unknown/code_020ebef8.h"
+
+typedef struct Unk0201290c Unk0201290c;
+typedef struct Unk020ebef8 Unk020ebef8;
 
 // First argument of func_020ea670, func_020ea740, func_020ea7cc and func_020ea8a8.
 typedef struct Unk020ea670 {

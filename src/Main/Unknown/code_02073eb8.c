@@ -1,7 +1,12 @@
 #include "Main/Unknown/code_02073eb8.h"
+#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
 #include "Main/Unknown/code_02039860.h"
+#include "Main/Unknown/code_020d4c28.h"
 #include "Main/Unknown/code_020d50c4.h"
+#include "Main/Unknown/unk_02154000.h"
+#include "Main/Unknown/unk_02165000.h"
+#include "Main/Unknown/unk_0217a000.h"
 #include "code_02147cd8.h"
 
 void func_02073eb8(Unk02061808 *p) {

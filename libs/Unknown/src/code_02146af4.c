@@ -1,4 +1,5 @@
 #include "code_02146af4.h"
+#include "Main/Unknown/unk_02180000.h"
 
 void func_02146b04(void *arg0) {
     u32 value0 = (u32) arg0;

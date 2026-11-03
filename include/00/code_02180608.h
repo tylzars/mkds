@@ -25,8 +25,6 @@ typedef struct Unk021b4c64 {
     /* 38 */ u8 pad_38[4];
 } Unk021b4c64;
 
-#include "Main/Unknown/code_021258f0.h"
-
 extern Unk021b4c64 *gWiFiStates;
 
 BOOL func_ov000_02180608(void);

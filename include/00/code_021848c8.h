@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02180608.h"
+
+typedef struct Unk021b0cd4 Unk021b0cd4;
 
 extern Unk021b0cd4 gSelectCharacterCallbacks;
 

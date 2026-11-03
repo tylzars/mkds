@@ -1,9 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h"
-#include "Main/Unknown/code_020e5d0c.h"
-#include "Main/Unknown/code_020f36d8.h"
+
+typedef struct Unk020e6514 Unk020e6514;
 
 // 0x10-byte slot of the two tables at data_0217baec and data_0217baf0; the
 // slot's first word points at an object with a word at 0x0c, a u16 at 0x1a and

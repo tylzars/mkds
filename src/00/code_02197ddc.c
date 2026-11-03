@@ -1,5 +1,7 @@
 #include "00/code_02197ddc.h"
 #include "00/code_021a3690.h"
+#include "00/unk_021b3000.h"
+#include "code_0213442c.h"
 
 u32 func_ov000_02197e60(int *a, int b) {
     int v1;

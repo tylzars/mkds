@@ -1,5 +1,10 @@
+#include "00/code_02197b34.h"
+#include "00/code_02197e8c.h"
 #include "00/code_02198748.h"
 #include "00/code_02198d04.h"
+#include "00/code_0219a0d0.h"
+#include "00/code_0219a61c.h"
+#include "00/code_021a3690.h"
 #include "code_02134d30.h"
 
 int func_ov000_0219885c(void *a, Unk02197fe8 **b, int c, u32 d) {

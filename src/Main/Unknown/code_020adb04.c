@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_0205ee14.h"
 #include "Main/Unknown/code_020adb04.h"
 #include "Main/Unknown/code_020add18.h"
 #include "Main/Unknown/code_020add90.h"
@@ -6,6 +7,7 @@
 #include "Main/Unknown/unk_02156000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "code_02022aa8.h"
 
 #pragma optimize_for_size on
 

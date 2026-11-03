@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "00/unk_021b6380.h"
 
 // Frame start: two addresses and a type word.
 typedef struct Unk021ae3a4 {

@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h"
+
+typedef struct Unk0206bcb0 Unk0206bcb0;
 
 // Stack frame of func_02068494 from its stack offset 0: a halfword and four vectors.
 typedef struct Unk02068494 {
@@ -24,6 +25,4 @@ void func_02068a64(Unk0206bcb0 *a, s32 b, s32 c);
 void func_02068b5c(Unk0206bcb0 *a);
 void func_02068b98(Unk0206bcb0 *a);
 
-// Declared here until the code that defines them is decompiled.
 void func_020757d8(void);
-#include "Main/Unknown/code_0207ae58.h"

@@ -18,8 +18,6 @@ typedef struct Unk02174e6c {
     /* 650 */ void *mUnk_650;
 } Unk02174e6c;
 
-#include "Main/Unknown/unk_02174000.h"
-
 void func_02035d18(void);
 void func_02035d20(void);
 void func_02035d48(u32 a, int b);

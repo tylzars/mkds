@@ -1,4 +1,5 @@
 #include "code_0212d214.h"
+#include "Main/Unknown/unk_0217d000.h"
 
 u32 func_0212d238(u32 arg0, void *arg1) {
     u32 value0 = arg0;

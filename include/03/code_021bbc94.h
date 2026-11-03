@@ -9,8 +9,6 @@ typedef struct Unk021bbd70 {
     /* 18 */ u8 mUnk_18[0x40];
 } Unk021bbd70;
 
-#include "03/unk_021d3000.h"
-
 extern u8 data_ov003_021d68dc[];
 
 void func_ov003_021bbc94(u8 *a, Unk021bbd70 *b);

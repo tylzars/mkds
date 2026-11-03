@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020b19b4.h"
 
 // Three words: the code multiplies the first by 60, adds the second, multiplies by 1000 and adds the third.
 typedef struct Unk020b1bf8 {

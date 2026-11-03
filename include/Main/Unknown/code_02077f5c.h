@@ -1,8 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217a000.h"
-#include "Main/Unknown/code_02076cd0.h"
+#include "Main/Unknown/code_020ed5c0.h"
+
+typedef struct Unk0217ad00_014 Unk0217ad00_014;
 
 void func_02077f5c(void);
 Unk0217ad00_014 *func_02077f7c(int param_1);
@@ -15,6 +16,5 @@ void func_02078158(void);
 void func_020783c8(void);
 void func_02078420(s32 param_1);
 
-// Declared here until the code that defines them is decompiled.
 void func_02077b1c(void);
 void func_02077b3c(void);

@@ -1,3 +1,5 @@
+#include "00/code_021a6fb4.h"
+#include "00/code_021a78a4.h"
 #include "00/code_021a7bc8.h"
 
 s32 func_ov000_021a7bc8(u32 p0, u32 p1, u32 p2, u32 p3, u32 p4) {

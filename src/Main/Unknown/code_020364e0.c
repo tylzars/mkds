@@ -2,6 +2,7 @@
 
 #include "Main/Unknown/code_020365ac.h"
 #include "Main/Unknown/code_02036000.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/unk_02174000.h"
 
 u32 func_020364f8(Unk02036590 *a, u32 b) {

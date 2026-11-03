@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02175628.h"
+
+typedef struct Unk02175628 Unk02175628;
 
 int AdvanceSelectKart(void);
 u16 func_020286f4(u32 a, u32 b);

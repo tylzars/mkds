@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020d22c0.h"
+
+typedef struct Unk020f41c4_B Unk020f41c4_B;
 
 BOOL func_02045874(void);
 s32 func_020458cc(void);

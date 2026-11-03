@@ -8,6 +8,7 @@
 
 #include "03/code_021d3488.h"
 #include "Main/Unknown/code_0200e000.h"
+#include "code_0200eddc.h"
 #include "code_0214b824.h"
 #include "03/code_021d1000.h"
 #include "code_0214d018.h"

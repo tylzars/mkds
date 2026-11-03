@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217d000.h"
 
 typedef struct Unk0215cd4c {
     /* 00 */ u16 mUnk_00[2];

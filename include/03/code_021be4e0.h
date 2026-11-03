@@ -1,8 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "03/unk_021d8000.h"
-#include "code_0200e77c.h"
 
 void func_ov003_021be4e0(u32 value);
 void func_ov003_021be4ec(u32 value, u32 unused);

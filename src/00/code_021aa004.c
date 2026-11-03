@@ -1,4 +1,6 @@
 #include "00/code_021aa004.h"
+#include "00/code_021adbac.h"
+#include "code_0214d018.h"
 
 u32 func_ov000_021aa004(int a, u32 b, u32 c) {
     u32 v1;

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02175628.h"
 
 BOOL func_020cb194(u16 *a);
 BOOL func_020cb170(u16 *a);

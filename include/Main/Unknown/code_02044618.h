@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_021759c0.h"
 
 // The 0x1e8 bytes at the start of the object behind data_021759c0, taken from 0x1e8.
 typedef struct Unk02044940_block {

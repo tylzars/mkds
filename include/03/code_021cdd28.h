@@ -2,12 +2,12 @@
 
 #include "types.h"
 
+typedef struct Unk021d34e0 Unk021d34e0;
+
 typedef struct Unk021cdd48_66a8 {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
 } Unk021cdd48_66a8;
-
-#include "03/code_021d3488.h"
 
 extern Unk021cdd48_66a8 data_ov003_021d66a8[];
 

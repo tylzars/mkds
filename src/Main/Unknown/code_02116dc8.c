@@ -1,6 +1,11 @@
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_02116dc8.h"
 
 #include "Main/Unknown/code_02116dd4.h"
+#include "Main/Unknown/unk_0216d000.h"
+#include "code_02021db0.h"
 
 #pragma thumb on
 

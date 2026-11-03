@@ -19,6 +19,7 @@
 #include "code_0200eddc.h"
 #include "code_0214b824.h"
 #include "code_0214d018.h"
+#include "code_021510a4.h"
 #include "code_02151868.h"
 
 void func_ov003_021c3dd4(void) {

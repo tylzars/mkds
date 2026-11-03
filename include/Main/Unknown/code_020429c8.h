@@ -1,8 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020b502c.h"
-#include "Main/Unknown/code_020f36d8.h"
+
+typedef struct Unk02175620_4c Unk02175620_4c;
+typedef struct Unk02175620_a0 Unk02175620_a0;
+typedef struct Unk020f371c Unk020f371c;
 
 void func_020429c8(void *a);
 void func_02042a10(void *a);

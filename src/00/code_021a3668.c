@@ -1,4 +1,5 @@
 #include "00/code_021a3668.h"
+#include "00/code_021a369c.h"
 
 void func_ov000_021a3668(void *arg0) {
     u32 value0 = (u32) arg0;

@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02175000.h"
+
+typedef struct Unk021755a0 Unk021755a0;
 
 // The 0xdc-byte object func_02038d88 returns is an Unk021755a0 (unk_02175000.h). Member 0x28 and member 0x70 of it
 // are each followed by 0x44 bytes of the layout below.

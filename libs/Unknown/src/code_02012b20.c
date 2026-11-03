@@ -1,4 +1,5 @@
 #include "code_02012b20.h"
+#include "Main/Unknown/unk_02173000.h"
 
 void func_02012b20(u32 arg0) {
     u32 value0 = arg0;

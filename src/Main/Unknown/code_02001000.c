@@ -1,4 +1,10 @@
 #include "Main/Unknown/code_02001000.h"
+#include "Main/Unknown/code_02050300.h"
+#include "Main/Unknown/code_020b3f7c.h"
+#include "Main/Unknown/code_02125f54.h"
+#include "Main/Unknown/code_02125f6c.h"
+#include "Main/Unknown/code_02126230.h"
+#include "Main/Unknown/unk_0217a000.h"
 
 void func_02001238(void) {
     Unk021a99c0_18 *v1;

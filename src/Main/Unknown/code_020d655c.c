@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020d655c.h"
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036bec.h"
@@ -14,6 +15,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "01/code_0218155c.h"
+#include "code_02146cbc.h"
 #include "code_02147cd8.h"
 
 u32 func_020d6d34(s32 a, s32 b, s32 c, s32 d, s32 e) {

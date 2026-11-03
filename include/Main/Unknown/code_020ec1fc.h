@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e43a8.h"
+
+typedef struct Unk020e43a8 Unk020e43a8;
 
 // Initialiser stored into the 0x28-byte object func_020ec314 allocates.
 typedef struct Unk021594e4 {

@@ -1,5 +1,10 @@
+#include "00/code_0218b280.h"
+#include "00/code_0219c954.h"
 #include "00/code_0219e4e8.h"
 #include "00/code_0218b000.h"
+#include "00/code_0219eaf4.h"
+#include "00/code_021a0958.h"
+#include "00/unk_021b4000.h"
 #include "00/unk_021b5000.h"
 #include "00/code_0219b8bc.h"
 #include "00/code_0219c000.h"
@@ -183,8 +188,8 @@ void func_ov000_0219e668(void) {
         for (n = 1; n <= (p = data_ov000_021b566c)->mUnk_0d; n++) {
             if ((data_ov000_021b5670->mUnk_08 & (1 << p->mUnk_2b8[n])) == 0) {
                 p = data_ov000_021b566c;
-                if (func_ov000_0219fee4(func_ov000_021a0ae8(0x11, p->mUnk_f4[n], p->mUnk_24[n], p->mUnk_a4[n], NULL, 0)) !=
-                    0) {
+                if (func_ov000_0219fee4(
+                        func_ov000_021a0ae8(0x11, p->mUnk_f4[n], p->mUnk_24[n], p->mUnk_a4[n], NULL, 0)) != 0) {
                     return;
                 }
             }

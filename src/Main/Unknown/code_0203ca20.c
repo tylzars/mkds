@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0203ca20.h"
+#include "Main/Unknown/code_020f36d8.h"
 
 u32 func_0203ca20(void) {
     u32 value0;
