@@ -3,6 +3,7 @@
 #include "types.h"
 
 typedef struct Unk021bf920 Unk021bf920;
+typedef struct Unk021d1770 Unk021d1770;
 typedef struct Unk021d34e0 Unk021d34e0;
 
 // Object behind data_ov003_021da160.
@@ -10,8 +11,8 @@ typedef struct Unk021da160 {
     /* 00 */ void *mUnk_00[4];
     /* 10 */ Unk021bf920 *mUnk_10[10];
     /* 38 */ Unk021bf920 *mUnk_38[2];
-    /* 40 */ void *mUnk_40[2];
-    /* 48 */ void *mUnk_48[4];
+    /* 40 */ Unk021d1770 *mUnk_40[2];
+    /* 48 */ Unk021d1770 *mUnk_48[4];
     /* 58 */ void *mUnk_58;
     /* 5c */ void *mUnk_5c;
     /* 60 */ u8 mUnk_60;

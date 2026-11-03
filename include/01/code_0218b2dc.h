@@ -19,7 +19,7 @@ void func_ov001_0218b640(Unk02188950 *a, void *b);
 void func_ov001_0218b6f8(Unk02188950 *a, void *b);
 void func_ov001_0218b72c(Unk02188950 *a);
 void func_ov001_0218b770(Unk02188950 *a);
-void func_ov001_0218b7a4(int a);
+void func_ov001_0218b7a4(Unk02188950 *a);
 void func_ov001_0218b7c8(Unk02188950 *a);
 void func_ov001_0218b7fc(Unk02188950 *a);
 void func_ov001_0218b828(Unk02188950 *a);

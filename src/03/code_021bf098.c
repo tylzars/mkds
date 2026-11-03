@@ -134,7 +134,7 @@ void func_ov003_021bf0d8(void) {
         }
         for (i = 0; i < n; i++) {
             func_ov003_021d250c(&data_ov003_021d5ed4[(data_ov003_021d5eec + data_ov003_021da108->mUnk_17 * 2)[i] * 2],
-                                data_ov003_021d5ec8, (s16 *) &a);
+                                data_ov003_021d5ec8, &a);
             if (func_ov003_021d2a34(&a) != 0) {
                 if (data_ov003_021da108->mUnk_10 != 0) {
                     break;

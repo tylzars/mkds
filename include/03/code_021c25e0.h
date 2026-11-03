@@ -13,8 +13,8 @@ typedef struct Unk021da194 {
 
 typedef struct Unk021d6e24 {
     /* 00 */ void *mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
+    /* 04 */ void *mUnk_04;
+    /* 08 */ void *mUnk_08;
     /* 0c */ u8 pad_0c[0xc];
     /* 18 */ u8 mUnk_18;
     /* 19 */ u8 pad_19[3];

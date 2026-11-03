@@ -84,7 +84,7 @@ void func_ov003_021bfa80(u32 param_1) {
     func_ov003_021d34c8(0, param_1);
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 4; j++) {
-            func_ov003_021d2388((s32) data_ov003_021da15c->mUnk_000[i][j]);
+            func_ov003_021d2388(data_ov003_021da15c->mUnk_000[i][j]);
             if (i == 0) {
                 func_ov003_021d197c(data_ov003_021da15c->mUnk_104[j]);
             }

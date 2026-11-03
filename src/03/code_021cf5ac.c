@@ -186,7 +186,7 @@ u32 func_ov003_021cf8ac(Unk021cf8ac *a) {
     if (func_02008880(q) != 0) {
         data_ov003_021da288->mUnk_1b144 = (u8 *) data_ov003_021da288 + 0x2c;
         if (data_ov003_021da288->mUnk_1b144 != NULL) {
-            if (func_02008570((u8 *) q, data_ov003_021da288->mUnk_1b144, 0x10000) != 0) {
+            if (func_02008570(q, data_ov003_021da288->mUnk_1b144, 0x10000) != 0) {
                 if (func_02008310(a, data_ov003_021da288->mUnk_1b144) != 0) {
                     r = 1;
                 }

@@ -215,10 +215,10 @@ void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
         n = data_usa_02153a14[i].mUnk_06;
         q = data_usa_02153a14[i].mUnk_00;
         e = t->mUnk_18;
-        func_02025c1c(n, (int) (e + n), t->mUnk_0c);
-        func_02025bf0(q, (int) (e + q + m), t->mUnk_14);
+        func_02025c1c(n, e + n, t->mUnk_0c);
+        func_02025bf0(q, e + q + m, t->mUnk_14);
     }
-    func_02025c1c(7, (int) (t->mUnk_18 + 7), t->mUnk_0c);
+    func_02025c1c(7, t->mUnk_18 + 7, t->mUnk_0c);
     w[0] = 0;
     w[1] = m;
     func_0202e530(gWiFiVSCourseSelect->mUnk_090, 2, w, 7, 8, 0x7c, t->mUnk_18, t->mUnk_10,

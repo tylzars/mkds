@@ -12,7 +12,7 @@ typedef struct Unk021da190 {
 
 extern Unk021da190 *data_ov003_021da190;
 
-int func_ov003_021c2530(int *a, u32 b);
+void *func_ov003_021c2530(Unk021c250c *a, u32 b);
 void func_ov003_021c2544(int a);
 Unk021c250c *func_ov003_021c2564(void *a);
 void func_ov003_021c25a4(void);

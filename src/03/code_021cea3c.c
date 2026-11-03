@@ -50,7 +50,7 @@ void func_ov003_021cea3c(u32 a) {
             func_ov003_021d197c(data_ov003_021da284->mUnk_08[i]);
         }
     }
-    func_ov003_021d2388((s32) data_ov003_021da284->mUnk_10);
+    func_ov003_021d2388(data_ov003_021da284->mUnk_10);
     func_ov003_021d34c8(1, a);
     func_ov003_021d2808(&data_ov003_021da284);
 }

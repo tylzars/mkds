@@ -1,4 +1,5 @@
 #include "03/code_021d250c.h"
+#include "03/types_021d299c.h"
 
 void func_ov003_021d2544(u16 a, u16 b, u16 *c) {
     *c = a;
@@ -14,10 +15,10 @@ void func_ov003_021d2530(s32 a, s32 b, s32 c, s32 d, u16 *e) {
     return;
 }
 
-void func_ov003_021d250c(u16 *a, u16 *b, short *c) {
-    *c = *a;
-    c[1] = a[1];
-    c[2] = *a + *b;
-    c[3] = a[1] + b[1];
+void func_ov003_021d250c(u16 *a, u16 *b, Unk021d299c *c) {
+    c->mUnk_00 = *a;
+    c->mUnk_02 = a[1];
+    c->mUnk_04 = *a + *b;
+    c->mUnk_06 = a[1] + b[1];
     return;
 }

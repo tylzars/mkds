@@ -31,7 +31,7 @@ void func_ov003_021c7a0c(void) {
     s32 b;
     s32 c;
     void *d;
-    int e;
+    void *e;
     u16 f;
     u16 g;
     u16 h[8];
@@ -117,13 +117,13 @@ void func_ov003_021c7a0c(void) {
         c = 0;
     }
     d = func_ov003_021d2288(0, data_ov003_021d6408[func_ov003_021c20d0()]);
-    e = func_ov003_021c2530((s32 *) data_ov003_021da19c, c);
+    e = func_ov003_021c2530(data_ov003_021da19c, c);
     swprintf(h, 8, data_ov003_021d73b0, -*(s32 *) data_ov003_021da200);
     f = data_ov003_021d641a[func_ov003_021c20d0() * 2];
     g = data_ov003_021d6418[func_ov003_021c20d0() * 2];
     func_ov003_021d2094(d, g, f, 2, 0xa, h, 0);
     func_ov003_021d2070(d, data_ov003_021d6410[0], data_ov003_021d6410[1], data_ov003_021d6410[2],
-                        data_ov003_021d6410[3], 2, func_ov003_021bf4dc(), (void *) e);
+                        data_ov003_021d6410[3], 2, func_ov003_021bf4dc(), e);
     func_ov003_021d1fd0(d);
 }
 

@@ -27,20 +27,22 @@ void func_02025c48(u32 a, u32 b, Unk0201ea30 *c) {
     *(u32 *) (v1 + 4) = *(u32 *) (v2 + 4);
 }
 
-void func_02025c1c(u32 a, int b, void *c) {
+void func_02025c1c(u32 a, void *b, void *c) {
+    u8 *d = b;
     short *v1;
     v1 = func_0201ea30(c, a);
-    *(u32 *) (b + 8) = 1;
-    *(s16 *) (b + 0xc) = ((*v1 << 0x14) >> 0x14);
-    *(s16 *) (b + 0xe) = ((v1[1] << 0x14) >> 0x14);
+    *(u32 *) (d + 8) = 1;
+    *(s16 *) (d + 0xc) = ((*v1 << 0x14) >> 0x14);
+    *(s16 *) (d + 0xe) = ((v1[1] << 0x14) >> 0x14);
 }
 
-void func_02025bf0(u32 a, int b, void *c) {
+void func_02025bf0(u32 a, void *b, void *c) {
+    u8 *d = b;
     short *v1;
     v1 = func_0201ea58(c, a);
-    *(u32 *) (b + 8) = 1;
-    *(s16 *) (b + 0xc) = ((*v1 << 0x14) >> 0x14);
-    *(s16 *) (b + 0xe) = ((v1[1] << 0x14) >> 0x14);
+    *(u32 *) (d + 8) = 1;
+    *(s16 *) (d + 0xc) = ((*v1 << 0x14) >> 0x14);
+    *(s16 *) (d + 0xe) = ((v1[1] << 0x14) >> 0x14);
 }
 
 void func_02025bb4(int id, int x, int y, void *graphics) {

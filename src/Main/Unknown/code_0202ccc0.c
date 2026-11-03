@@ -269,10 +269,10 @@ void func_0202d210(void *a, void *b, void *c) {
         j = data_usa_02162c74[i][3];
         k = data_usa_02162c74[i][0];
         u = q->mUnk_18;
-        func_02025c1c(j, (int) &u[j], q->mUnk_0c);
-        func_02025bf0(k, (int) (u + w + k), q->mUnk_14);
+        func_02025c1c(j, &u[j], q->mUnk_0c);
+        func_02025bf0(k, u + w + k, q->mUnk_14);
     }
-    func_02025c1c(0xe, (int) ((u8 *) q->mUnk_18 + 0x380), q->mUnk_0c);
+    func_02025c1c(0xe, (u8 *) q->mUnk_18 + 0x380, q->mUnk_0c);
     if (func_0202ddc4() != 0) {
         Unk02174e40_24 *s = &data_02174e40->mUnk_024;
         r[0] = 0;

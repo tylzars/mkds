@@ -31,7 +31,7 @@ void func_ov001_0218d0d4(Unk02188950 *a);
 s32 func_ov001_0218d0fc(Unk02188950 *a);
 s32 func_ov001_0218d16c(Unk02188950 *a);
 void func_ov001_0218d188(Unk02188950 *a);
-void func_ov001_0218d1bc(int a);
+void func_ov001_0218d1bc(Unk02188950 *a);
 void func_ov001_0218d1e0(Unk02188950 *a);
 void func_ov001_0218d214(Unk02188950 *a);
 void func_ov001_0218d23c(Unk02188950 *a);

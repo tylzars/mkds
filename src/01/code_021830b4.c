@@ -168,7 +168,7 @@ void func_ov001_02183c08(Unk02188950 *a) {
     func_ov001_02187218(a, 2, (s32(*)(Unk02188950 *))(0));
     func_ov001_02188d64(a, (s32) (a->mUnk_0a0->mUnk_0e8), (s32) (a->mUnk_0a0->mUnk_0ec));
     func_ov001_02188c90(a);
-    func_ov001_02188e24(a, a->mUnk_0a0->mUnk_0f0, (UnkFunc *) (&func_ov001_02183c54));
+    func_ov001_02188e24(a, a->mUnk_0a0->mUnk_0f0, &func_ov001_02183c54);
     func_ov001_02184e6c(a);
 }
 

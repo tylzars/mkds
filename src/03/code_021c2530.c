@@ -37,6 +37,6 @@ void func_ov003_021c2544(int a) {
     return;
 }
 
-int func_ov003_021c2530(int *a, u32 b) {
-    return a[1] + *(s32 *) (*a + (b & (0x0000ffffu)) * 4);
+void *func_ov003_021c2530(Unk021c250c *a, u32 b) {
+    return a->mData + a->mOffsets[b & 0x0000ffffu];
 }

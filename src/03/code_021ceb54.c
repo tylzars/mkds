@@ -50,7 +50,7 @@ void func_ov003_021cedbc(void) {
     for (i = 0; i < data_ov003_021d6720[data_ov003_021da284->mUnk_1c]; i++) {
         func_ov003_021d250c(
             data_ov003_021d67b0[data_ov003_021da284->mUnk_1c][data_ov003_021d6730[data_ov003_021da284->mUnk_1c][i]],
-            data_ov003_021d6754[data_ov003_021da284->mUnk_1c], (s16 *) &v1);
+            data_ov003_021d6754[data_ov003_021da284->mUnk_1c], &v1);
         if (func_ov003_021d2a34(&v1) != 0) {
             data_ov003_021da284->mUnk_1b = i;
             break;
