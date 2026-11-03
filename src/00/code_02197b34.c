@@ -140,29 +140,29 @@ BOOL func_ov000_02197ca0(const s8 *a) {
     return TRUE;
 }
 
-void func_ov000_02197d20(Unk02197fe8Buf *a, int b, int c) {
+void RemoveBufferBytes(Gt2Buffer *a, int b, int c) {
     if (b == -1) {
-        b = a->mUnk_08 - c;
+        b = a->mLength - c;
     }
-    if (b > a->mUnk_08) {
+    if (b > a->mLength) {
         func_0213442c(data_ov000_021b3ea4, data_ov000_021b3ebc, NULL, 0x4f);
     }
-    if (c > a->mUnk_08 - b) {
+    if (c > a->mLength - b) {
         func_0213442c(data_ov000_021b3ec8, data_ov000_021b3ebc, NULL, 0x50);
     }
-    memmove(a->mUnk_00 + b, a->mUnk_00 + b + c, a->mUnk_08 - b - c);
-    a->mUnk_08 = a->mUnk_08 - c;
+    memmove(a->mData + b, a->mData + b + c, a->mLength - b - c);
+    a->mLength = a->mLength - c;
 }
 
-void func_ov000_02197d84(Unk02197fe8Buf *a, const u8 *b, int c) {
+void AppendBufferBytes(Gt2Buffer *a, const u8 *b, int c) {
     if (b != NULL && c != 0) {
         if (c == -1) {
             c = strlen(b);
         }
-        if (a->mUnk_08 + c > a->mUnk_04) {
+        if (a->mLength + c > a->mSize) {
             func_0213442c(data_ov000_021b3eec, data_ov000_021b3ebc, NULL, 0x40);
         }
-        memcpy(a->mUnk_00 + a->mUnk_08, b, c);
-        a->mUnk_08 = a->mUnk_08 + c;
+        memcpy(a->mData + a->mLength, b, c);
+        a->mLength = a->mLength + c;
     }
 }

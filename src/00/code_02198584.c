@@ -4,19 +4,19 @@
 
 u32 func_ov000_02198584(u32 a, u32 b) {
     int v1;
-    v1 = func_ov000_021986ac((Unk02197fe8 *) a, b);
+    v1 = func_ov000_021986ac((Gt2Connection *) a, b);
     if (v1 == 0) {
         return 0;
     }
-    v1 = func_ov000_021985ec((Unk02197fe8 *) a, b);
+    v1 = func_ov000_021985ec((Gt2Connection *) a, b);
     if (v1 == 0) {
         return 0;
     }
-    v1 = func_ov000_02198658((Unk02197fe8 *) a, b);
+    v1 = func_ov000_02198658((Gt2Connection *) a, b);
     if (v1 == 0) {
         return 0;
     }
-    v1 = func_ov000_0219861c((Unk02197fe8 *) a, b);
+    v1 = func_ov000_0219861c((Gt2Connection *) a, b);
     if (v1 != 0) {
         return 1;
     }

@@ -18,15 +18,15 @@ void func_ov000_021988e8(Unk02197e8c *a) {
     func_ov000_0218dddc(a->mUnk_0c, (void (*)(void *, void *)) func_ov000_021988fc, NULL);
 }
 
-void func_ov000_021988fc(Unk02197fe8 **a) {
+void func_ov000_021988fc(Gt2Connection **a) {
     func_ov000_02198908(*a);
 }
 
-void func_ov000_02198908(Unk02197fe8 *a) {
+void func_ov000_02198908(Gt2Connection *a) {
     func_ov000_02198548(a, 1);
 }
 
-void func_ov000_02198914(Unk02197fe8 *a, u8 *b, int c, int d) {
+void func_ov000_02198914(Gt2Connection *a, u8 *b, int c, int d) {
     if (a->mUnk_0c == 5) {
         func_ov000_0219a61c((const u8 **) &b, &c);
         if (func_ov000_0218dc44((u32 *) a->mUnk_98) != 0) {
@@ -37,8 +37,8 @@ void func_ov000_02198914(Unk02197fe8 *a, u8 *b, int c, int d) {
     }
 }
 
-int func_ov000_02198968(void *a, Unk02197fe8 **b, u32 c, void *d, int e, u32 f, int g, int h) {
-    Unk02197fe8 *m;
+int func_ov000_02198968(void *a, Gt2Connection **b, u32 c, void *d, int e, u32 f, int g, int h) {
+    Gt2Connection *m;
     u32 i;
     u16 j;
     u32 k;
@@ -55,8 +55,8 @@ int func_ov000_02198968(void *a, Unk02197fe8 **b, u32 c, void *d, int e, u32 f, 
     if (l != 0) {
         return l;
     }
-    m->mUnk_20 = f;
-    n = func_ov000_021987c8(m, d, e, (Unk02198778 *) g);
+    m->mTimeSinceCreateLimit = f;
+    n = func_ov000_021987c8(m, d, e, (Gt2ConnectionCallbacks *) g);
     if (n != 0) {
         func_ov000_0219a220(m);
         return n;
@@ -79,13 +79,13 @@ int func_ov000_02198968(void *a, Unk02197fe8 **b, u32 c, void *d, int e, u32 f, 
     if (m->mUnk_0c == 5) {
         *b = m;
     }
-    return m->mUnk_18;
+    return m->mResult;
 }
 
-void func_ov000_02198a74(Unk02197fe8 *a, void *b, u32 c) {
+void func_ov000_02198a74(Gt2Connection *a, void *b, u32 c) {
     func_ov000_02198748(a, b, c);
 }
 
-int func_ov000_02198a7c(Unk02197fe8 *a, Unk02198778 *b) {
+int func_ov000_02198a7c(Gt2Connection *a, Gt2ConnectionCallbacks *b) {
     return func_ov000_02198778(a, b);
 }

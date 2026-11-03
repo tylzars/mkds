@@ -25,7 +25,7 @@ u32 func_ov000_02199a0c(int a, int b, u32 c, u32 d) {
             return 0;
         }
     } else if (b == 4) {
-        v1 = func_ov000_02199b70((Unk02197fe8 *) a);
+        v1 = func_ov000_02199b70((Gt2Connection *) a);
         if (v1 == 0) {
             return 0;
         }
@@ -34,7 +34,7 @@ u32 func_ov000_02199a0c(int a, int b, u32 c, u32 d) {
         if (v1 == 0) {
             return 0;
         }
-    } else if ((b == 6) && (v1 = func_ov000_02199ad8((Unk02197fe8 *) a), v1 == 0)) {
+    } else if ((b == 6) && (v1 = func_ov000_02199ad8((Gt2Connection *) a), v1 == 0)) {
         return 0;
     }
     return 1;

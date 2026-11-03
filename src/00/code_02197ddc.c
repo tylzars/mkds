@@ -4,42 +4,42 @@
 #include "00/unk_021b3000.h"
 #include "code_0213442c.h"
 
-u32 func_ov000_02197e60(Unk02197fe8Buf *a, int b) {
+u32 InitBuffer(Gt2Buffer *a, int b) {
     u8 *v1;
     v1 = func_ov000_021a3690(b);
-    a->mUnk_00 = v1;
-    if (a->mUnk_00 == 0) {
+    a->mData = v1;
+    if (a->mData == 0) {
         return 0;
     }
-    a->mUnk_04 = b;
+    a->mSize = b;
     return 1;
 }
 
-int func_ov000_02197e58(Unk02197fe8Buf *a) {
-    return a->mUnk_04 - a->mUnk_08;
+int GetBufferUnusedSize(Gt2Buffer *a) {
+    return a->mSize - a->mLength;
 }
 
-void func_ov000_02197e20(Unk02197fe8Buf *a, u8 b) {
+void AppendBufferByte(Gt2Buffer *a, u8 b) {
     int v1;
-    if (a->mUnk_08 >= a->mUnk_04) {
+    if (a->mLength >= a->mSize) {
         func_0213442c(data_ov000_021b3f34, data_ov000_021b3ebc, NULL, 0x23);
     }
-    v1 = a->mUnk_08;
-    a->mUnk_08 = v1 + 1;
-    a->mUnk_00[v1] = b;
+    v1 = a->mLength;
+    a->mLength = v1 + 1;
+    a->mData[v1] = b;
     return;
 }
 
-void func_ov000_02197ddc(Unk02197fe8Buf *a, s32 b) {
+void AppendBufferU16(Gt2Buffer *a, s32 b) {
     int v1;
-    if (a->mUnk_08 + 2 > a->mUnk_04) {
+    if (a->mLength + 2 > a->mSize) {
         func_0213442c(data_ov000_021b3f10, data_ov000_021b3ebc, NULL, 0x2e);
     }
-    v1 = a->mUnk_08;
-    a->mUnk_08 = v1 + 1;
-    a->mUnk_00[v1] = b >> 8;
-    v1 = a->mUnk_08;
-    a->mUnk_08 = v1 + 1;
-    a->mUnk_00[v1] = (s8) b;
+    v1 = a->mLength;
+    a->mLength = v1 + 1;
+    a->mData[v1] = b >> 8;
+    v1 = a->mLength;
+    a->mLength = v1 + 1;
+    a->mData[v1] = (s8) b;
     return;
 }

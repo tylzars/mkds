@@ -11,15 +11,15 @@
 #include "00/code_02198d04.h"
 #include "00/code_021981d0.h"
 
-BOOL func_ov000_021986ac(Unk02197fe8 *a, u32 b) {
+BOOL func_ov000_021986ac(Gt2Connection *a, u32 b) {
     if (a->mUnk_0c < 5) {
         BOOL r = FALSE;
         if (a->mUnk_10 != 0) {
-            if (a->mUnk_20 != 0 && b - a->mUnk_1c > a->mUnk_20) {
+            if (a->mTimeSinceCreateLimit != 0 && b - a->mCreateTime > a->mTimeSinceCreateLimit) {
                 r = TRUE;
             }
         } else if (a->mUnk_0c < 4) {
-            if (b - a->mUnk_1c > 60000) {
+            if (b - a->mCreateTime > 60000) {
                 r = TRUE;
             }
         }
@@ -34,7 +34,7 @@ BOOL func_ov000_021986ac(Unk02197fe8 *a, u32 b) {
     return TRUE;
 }
 
-BOOL func_ov000_02198658(Unk02197fe8 *a, u32 b) {
+BOOL func_ov000_02198658(Gt2Connection *a, u32 b) {
     int n;
     int i;
     Unk02198af4 *p;
@@ -50,7 +50,7 @@ BOOL func_ov000_02198658(Unk02197fe8 *a, u32 b) {
     return TRUE;
 }
 
-BOOL func_ov000_0219861c(Unk02197fe8 *a, u32 b) {
+BOOL func_ov000_0219861c(Gt2Connection *a, u32 b) {
     if (a->mUnk_90 == 0) {
         return TRUE;
     }
@@ -62,8 +62,8 @@ BOOL func_ov000_0219861c(Unk02197fe8 *a, u32 b) {
     return TRUE;
 }
 
-BOOL func_ov000_021985ec(Unk02197fe8 *a, u32 b) {
-    if (b - a->mUnk_88 > 30000) {
+BOOL func_ov000_021985ec(Gt2Connection *a, u32 b) {
+    if (b - a->mLastSendTime > 30000) {
         if (func_ov000_02198d04((u32) a) == 0) {
             return FALSE;
         }

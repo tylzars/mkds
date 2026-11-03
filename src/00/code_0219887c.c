@@ -7,8 +7,8 @@ u16 func_ov000_021988e4(void *a) {
     return *(u16 *) ((u8 *) a + 8);
 }
 
-int func_ov000_021988dc(Unk02197fe8 *a) {
-    return a->mUnk_50.mUnk_04 - a->mUnk_50.mUnk_08;
+int func_ov000_021988dc(Gt2Connection *a) {
+    return a->mSendBuffer.mSize - a->mSendBuffer.mLength;
 }
 
 u32 func_ov000_021988d8(u32 *a) {

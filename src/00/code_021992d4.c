@@ -17,8 +17,8 @@
 #include "00/unk_021b3000.h"
 
 u32 func_ov000_021992d4(Unk02197e8c *a, u8 *b, s32 c, u32 d, u32 e) {
-    Unk02197fe8 *f;
-    Unk02197fe8 *k;
+    Gt2Connection *f;
+    Gt2Connection *k;
     s32 g;
     BOOL h;
     s32 i;
@@ -99,7 +99,7 @@ u32 func_ov000_021992d4(Unk02197e8c *a, u8 *b, s32 c, u32 d, u32 e) {
     return 0;
 }
 
-u32 func_ov000_021994c4(Unk02197fe8 *a, u32 b, u8 *c, s32 d) {
+u32 func_ov000_021994c4(Gt2Connection *a, u32 b, u8 *c, s32 d) {
     u8 *e = c + 3;
     s32 f = d - 3;
     if (b == 0x64) {
@@ -128,7 +128,7 @@ u32 func_ov000_021994c4(Unk02197fe8 *a, u32 b, u8 *c, s32 d) {
 
 enum { K0, K1 };
 
-u32 func_ov000_02199554(Unk02197fe8 *a) {
+u32 func_ov000_02199554(Gt2Connection *a) {
     if (a->mUnk_0c == 7) {
         return 1;
     }
@@ -138,11 +138,11 @@ u32 func_ov000_02199554(Unk02197fe8 *a) {
     return 1;
 }
 
-u32 func_ov000_0219958c(Unk02197fe8 *a, u8 *b, s32 c) {
+u32 func_ov000_0219958c(Gt2Connection *a, u8 *b, s32 c) {
     s32 d;
     u8 *t;
     u8 *p;
-    if (a->mUnk_28.mUnk_0c == NULL) {
+    if (a->mCallbacks.mElapsedTimeCallback == NULL) {
         return 1;
     }
     if (c != 8) {

@@ -3,29 +3,29 @@
 #include "00/code_0219a3f4.h"
 #include "code_0213442c.h"
 
-BOOL func_ov000_02198148(Unk02197fe8 *a, s32 b) {
+BOOL func_ov000_02198148(Gt2Connection *a, s32 b) {
     if (a == NULL) {
         func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0xd9);
     }
     if (a == NULL) {
         return TRUE;
     }
-    if (a->mUnk_28.mUnk_0c == NULL) {
+    if (a->mCallbacks.mElapsedTimeCallback == NULL) {
         return TRUE;
     }
     a->mUnk_24++;
-    a->mUnk_08->mUnk_1c++;
-    a->mUnk_28.mUnk_0c(a, b);
+    a->mSocket->mUnk_1c++;
+    a->mCallbacks.mElapsedTimeCallback(a, b);
     a->mUnk_24--;
-    a->mUnk_08->mUnk_1c--;
-    if (a->mUnk_08->mUnk_14 != 0 && a->mUnk_08->mUnk_1c == 0) {
-        func_ov000_0219a3f8(a->mUnk_08);
+    a->mSocket->mUnk_1c--;
+    if (a->mSocket->mUnk_14 != 0 && a->mSocket->mUnk_1c == 0) {
+        func_ov000_0219a3f8(a->mSocket);
         return FALSE;
     }
     return TRUE;
 }
 
-BOOL func_ov000_02198098(Unk02197fe8 *a, s32 b, s32 c, void *d, s32 e) {
+BOOL func_ov000_02198098(Gt2Connection *a, s32 b, s32 c, void *d, s32 e) {
     Unk02197fe8Entry *f;
     if (a == NULL) {
         func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x101);
@@ -42,18 +42,18 @@ BOOL func_ov000_02198098(Unk02197fe8 *a, s32 b, s32 c, void *d, s32 e) {
         d = NULL;
     }
     a->mUnk_24++;
-    a->mUnk_08->mUnk_1c++;
+    a->mSocket->mUnk_1c++;
     f->mUnk_00(a, b, c, d, e);
     a->mUnk_24--;
-    a->mUnk_08->mUnk_1c--;
-    if (a->mUnk_08->mUnk_14 != 0 && a->mUnk_08->mUnk_1c == 0) {
-        func_ov000_0219a3f8(a->mUnk_08);
+    a->mSocket->mUnk_1c--;
+    if (a->mSocket->mUnk_14 != 0 && a->mSocket->mUnk_1c == 0) {
+        func_ov000_0219a3f8(a->mSocket);
         return FALSE;
     }
     return TRUE;
 }
 
-BOOL func_ov000_02197fe8(Unk02197fe8 *a, s32 b, void *c, s32 d, s32 e) {
+BOOL func_ov000_02197fe8(Gt2Connection *a, s32 b, void *c, s32 d, s32 e) {
     Unk02197fe8Entry *f;
     if (a == NULL) {
         func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x12d);
@@ -70,19 +70,19 @@ BOOL func_ov000_02197fe8(Unk02197fe8 *a, s32 b, void *c, s32 d, s32 e) {
         d = 0;
     }
     a->mUnk_24++;
-    a->mUnk_08->mUnk_1c++;
+    a->mSocket->mUnk_1c++;
     f->mUnk_00(a, b, c, d, e);
     a->mUnk_24--;
-    a->mUnk_08->mUnk_1c--;
-    if (a->mUnk_08->mUnk_14 != 0 && a->mUnk_08->mUnk_1c == 0) {
-        func_ov000_0219a3f8(a->mUnk_08);
+    a->mSocket->mUnk_1c--;
+    if (a->mSocket->mUnk_14 != 0 && a->mSocket->mUnk_1c == 0) {
+        func_ov000_0219a3f8(a->mSocket);
         return FALSE;
     }
     return TRUE;
 }
 
 u32 func_ov000_02197f28(Unk02197e8c *a, int e, u32 f, u32 g, u32 h, int l, int m, int n) {
-    Unk02197fe8 *b = (Unk02197fe8 *) e;
+    Gt2Connection *b = (Gt2Connection *) e;
     UnkWordFunc *c;
     if (a == NULL) {
         func_0213442c(data_ov000_021b3f50, data_ov000_021b3f58, NULL, 0x160);

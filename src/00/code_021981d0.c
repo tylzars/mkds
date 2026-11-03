@@ -14,36 +14,36 @@
 #include "00/code_021a3668.h"
 #include "00/unk_021b3000.h"
 
-BOOL func_ov000_021981d0(Unk02197fe8 *a, void *b) {
+BOOL func_ov000_021981d0(Gt2Connection *a, void *b) {
     if (a == NULL) {
         func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0xba);
     }
     if (a == NULL) {
         return TRUE;
     }
-    if (a->mUnk_28.mUnk_08 == NULL) {
+    if (a->mCallbacks.mUnk_08 == NULL) {
         return TRUE;
     }
     a->mUnk_24++;
-    a->mUnk_08->mUnk_1c++;
-    a->mUnk_28.mUnk_08(a, b);
+    a->mSocket->mUnk_1c++;
+    a->mCallbacks.mUnk_08(a, b);
     a->mUnk_24--;
-    a->mUnk_08->mUnk_1c--;
-    if (a->mUnk_08->mUnk_14 != 0 && a->mUnk_08->mUnk_1c == 0) {
-        func_ov000_0219a3f8(a->mUnk_08);
+    a->mSocket->mUnk_1c--;
+    if (a->mSocket->mUnk_14 != 0 && a->mSocket->mUnk_1c == 0) {
+        func_ov000_0219a3f8(a->mSocket);
         return FALSE;
     }
     return TRUE;
 }
 
-BOOL func_ov000_02198258(Unk02197fe8 *a, void *b, int c, int d) {
+BOOL func_ov000_02198258(Gt2Connection *a, void *b, int c, int d) {
     if (a == NULL) {
         func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x94);
     }
     if (a == NULL) {
         return TRUE;
     }
-    if (a->mUnk_28.mUnk_04 == NULL) {
+    if (a->mCallbacks.mDataCallback == NULL) {
         return TRUE;
     }
     if (c == 0 || b == NULL) {
@@ -51,26 +51,26 @@ BOOL func_ov000_02198258(Unk02197fe8 *a, void *b, int c, int d) {
         c = 0;
     }
     a->mUnk_24++;
-    a->mUnk_08->mUnk_1c++;
-    a->mUnk_28.mUnk_04(a, b, c, d);
+    a->mSocket->mUnk_1c++;
+    a->mCallbacks.mDataCallback(a, b, c, d);
     a->mUnk_24--;
-    a->mUnk_08->mUnk_1c--;
-    if (a->mUnk_08->mUnk_14 != 0 && a->mUnk_08->mUnk_1c == 0) {
-        func_ov000_0219a3f8(a->mUnk_08);
+    a->mSocket->mUnk_1c--;
+    if (a->mSocket->mUnk_14 != 0 && a->mSocket->mUnk_1c == 0) {
+        func_ov000_0219a3f8(a->mSocket);
         return FALSE;
     }
     return TRUE;
 }
 
-BOOL func_ov000_021982f4(Unk02197fe8 *a, int b, void *c, int d) {
+BOOL func_ov000_021982f4(Gt2Connection *a, int b, void *c, int d) {
     if (a == NULL) {
         func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x69);
     }
     if (a == NULL) {
         return TRUE;
     }
-    a->mUnk_18 = b;
-    if (a->mUnk_28.mUnk_00 == NULL) {
+    a->mResult = b;
+    if (a->mCallbacks.mResultCallback == NULL) {
         return TRUE;
     }
     if (d == 0 || c == NULL) {
@@ -78,18 +78,18 @@ BOOL func_ov000_021982f4(Unk02197fe8 *a, int b, void *c, int d) {
         d = 0;
     }
     a->mUnk_24++;
-    a->mUnk_08->mUnk_1c++;
-    a->mUnk_28.mUnk_00(a, b, c, d);
+    a->mSocket->mUnk_1c++;
+    a->mCallbacks.mResultCallback(a, b, c, d);
     a->mUnk_24--;
-    a->mUnk_08->mUnk_1c--;
-    if (a->mUnk_08->mUnk_14 != 0 && a->mUnk_08->mUnk_1c == 0) {
-        func_ov000_0219a3f8(a->mUnk_08);
+    a->mSocket->mUnk_1c--;
+    if (a->mSocket->mUnk_14 != 0 && a->mSocket->mUnk_1c == 0) {
+        func_ov000_0219a3f8(a->mSocket);
         return FALSE;
     }
     return TRUE;
 }
 
-BOOL func_ov000_02198394(Unk02197e8c *a, Unk02197fe8 *b, int c, int d, int e, int f, int g) {
+BOOL func_ov000_02198394(Unk02197e8c *a, Gt2Connection *b, int c, int d, int e, int f, int g) {
     if (a == NULL || b == NULL) {
         func_0213442c(data_ov000_021b3f74, data_ov000_021b3f58, NULL, 0x3d);
     }
@@ -135,15 +135,15 @@ BOOL func_ov000_02198448(Unk02197e8c *a) {
     return TRUE;
 }
 
-void func_ov000_021984b4(Unk02197fe8 *a) {
-    if (a->mUnk_38.mUnk_00 != NULL) {
-        func_ov000_021a3668(a->mUnk_38.mUnk_00);
+void func_ov000_021984b4(Gt2Connection *a) {
+    if (a->mUnk_38.mData != NULL) {
+        func_ov000_021a3668(a->mUnk_38.mData);
     }
-    if (a->mUnk_44.mUnk_00 != NULL) {
-        func_ov000_021a3668(a->mUnk_44.mUnk_00);
+    if (a->mUnk_44.mData != NULL) {
+        func_ov000_021a3668(a->mUnk_44.mData);
     }
-    if (a->mUnk_50.mUnk_00 != NULL) {
-        func_ov000_021a3668(a->mUnk_50.mUnk_00);
+    if (a->mSendBuffer.mData != NULL) {
+        func_ov000_021a3668(a->mSendBuffer.mData);
     }
     if (a->mUnk_5c != NULL) {
         func_ov000_0218dc48(a->mUnk_5c);
@@ -160,15 +160,15 @@ void func_ov000_021984b4(Unk02197fe8 *a) {
     func_ov000_021a3668(a);
 }
 
-void func_ov000_02198514(Unk02197fe8 *a, ...) {
+void func_ov000_02198514(Gt2Connection *a, ...) {
     if (a->mUnk_0c != 7) {
         a->mUnk_0c = 7;
-        func_ov000_0218de8c(a->mUnk_08->mUnk_0c, &a);
-        func_ov000_0218dbc0(a->mUnk_08->mUnk_10, &a);
+        func_ov000_0218de8c(a->mSocket->mUnk_0c, &a);
+        func_ov000_0218dbc0(a->mSocket->mUnk_10, &a);
     }
 }
 
-void func_ov000_02198548(Unk02197fe8 *a, int b) {
+void func_ov000_02198548(Gt2Connection *a, int b) {
     if (b != 0) {
         if (a->mUnk_0c < 7) {
             func_ov000_02198514(a);

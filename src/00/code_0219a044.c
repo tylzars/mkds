@@ -15,7 +15,7 @@
 void func_ov000_0219a06c(Unk02197e8c *a) {
     s32 b;
     for (b = func_ov000_0218dc44(a->mUnk_10) - 1; b >= 0; b--) {
-        func_ov000_0219a220(*(Unk02197fe8 **) func_ov000_0218dbf8(a->mUnk_10, b));
+        func_ov000_0219a220(*(Gt2Connection **) func_ov000_0218dbf8(a->mUnk_10, b));
     }
 }
 

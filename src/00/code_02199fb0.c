@@ -5,7 +5,7 @@
 #include "00/code_02197e8c.h"
 
 u32 func_ov000_02199fb0(int c, u32 d, u32 e) {
-    Unk02197fe8 *a = (Unk02197fe8 *) c;
+    Gt2Connection *a = (Gt2Connection *) c;
     s32 b = a->mUnk_0c;
     if (b < 5) {
         if (a->mUnk_10 != 0) {

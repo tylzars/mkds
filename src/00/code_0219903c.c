@@ -94,10 +94,10 @@ u32 func_ov000_0219914c(Unk02197e8c *a) {
     return 1;
 }
 
-u32 func_ov000_021990f8(Unk02197fe8 *a, u16 b, s32 c) {
+u32 func_ov000_021990f8(Gt2Connection *a, u16 b, s32 c) {
     Unk021990f8Entry d = {0, 0, 0, {0, 0}, 0};
     s32 e;
-    d.mUnk_00 = a->mUnk_50.mUnk_08;
+    d.mUnk_00 = a->mSendBuffer.mLength;
     d.mUnk_04 = c;
     d.mUnk_08 = b;
     d.mUnk_0c = func_ov000_0218e8c4();
@@ -109,8 +109,8 @@ u32 func_ov000_021990f8(Unk02197fe8 *a, u16 b, s32 c) {
     return 0;
 }
 
-BOOL func_ov000_0219903c(Unk02197fe8 *a, u32 b, int c, int *d) {
-    if (func_ov000_02197e58(&a->mUnk_50) < c) {
+BOOL func_ov000_0219903c(Gt2Connection *a, u32 b, int c, int *d) {
+    if (GetBufferUnusedSize(&a->mSendBuffer) < c) {
         if (func_ov000_02199f80((u32) a) == 0) {
             return FALSE;
         }
@@ -124,10 +124,10 @@ BOOL func_ov000_0219903c(Unk02197fe8 *a, u32 b, int c, int *d) {
         *d = 1;
         return TRUE;
     }
-    func_ov000_02197d84(&a->mUnk_50, data_ov000_021b3fa4, 2);
-    func_ov000_02197e20(&a->mUnk_50, b);
-    func_ov000_02197ddc(&a->mUnk_50, a->mUnk_64++);
-    func_ov000_02197ddc(&a->mUnk_50, a->mUnk_66);
+    AppendBufferBytes(&a->mSendBuffer, data_ov000_021b3fa4, 2);
+    AppendBufferByte(&a->mSendBuffer, b);
+    AppendBufferU16(&a->mSendBuffer, a->mUnk_64++);
+    AppendBufferU16(&a->mSendBuffer, a->mUnk_66);
     *d = 0;
     return TRUE;
 }

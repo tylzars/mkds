@@ -35,23 +35,22 @@ typedef struct Unk0219a110Addr {
     /* 4 */ u32 mUnk_04;
 } Unk0219a110Addr;
 
-u32 func_ov000_0219a28c(Unk02197e8c *a, Unk02197fe8 **b, u32 c, u32 d) {
-    Unk02197fe8 *e = NULL;
+u32 func_ov000_0219a28c(Unk02197e8c *a, Gt2Connection **b, u32 c, u32 d) {
+    Gt2Connection *e = NULL;
     if (func_ov000_0219a5b0(a, c, d) != NULL) {
         return 5;
     }
     e = func_ov000_0219a3e8();
     if (e != NULL) {
         memset(e, 0, 0xa0);
-        e->mUnk_00 = c;
-        e->mUnk_04 = d;
-        e->mUnk_08 = a;
-        e->mUnk_1c = func_ov000_0218e8c4();
-        e->mUnk_88 = e->mUnk_1c;
+        e->mAddress = c;
+        e->mPort = d;
+        e->mSocket = a;
+        e->mCreateTime = func_ov000_0218e8c4();
+        e->mLastSendTime = e->mCreateTime;
         e->mUnk_64 = 0;
         e->mUnk_66 = 0;
-        if (func_ov000_02197e60(&e->mUnk_44, a->mUnk_3c) != 0 &&
-            func_ov000_02197e60(&e->mUnk_50, a->mUnk_38) != 0) {
+        if (InitBuffer(&e->mUnk_44, a->mUnk_3c) != 0 && InitBuffer(&e->mSendBuffer, a->mUnk_38) != 0) {
             e->mUnk_5c = (void *) func_ov000_0218dc94(0x10, 0x40, NULL);
             if (e->mUnk_5c != NULL) {
                 e->mUnk_60 = (void *) func_ov000_0218dc94(0x10, 0x40, NULL);
@@ -72,8 +71,8 @@ u32 func_ov000_0219a28c(Unk02197e8c *a, Unk02197fe8 **b, u32 c, u32 d) {
         }
     }
     if (e != NULL) {
-        func_ov000_021a3668(e->mUnk_44.mUnk_00);
-        func_ov000_021a3668(e->mUnk_50.mUnk_00);
+        func_ov000_021a3668(e->mUnk_44.mData);
+        func_ov000_021a3668(e->mSendBuffer.mData);
         if (e->mUnk_5c != NULL) {
             func_ov000_0218dc48(e->mUnk_5c);
         }
@@ -91,20 +90,20 @@ u32 func_ov000_0219a28c(Unk02197e8c *a, Unk02197fe8 **b, u32 c, u32 d) {
     return 1;
 }
 
-void func_ov000_0219a220(Unk02197fe8 *a) {
+void func_ov000_0219a220(Gt2Connection *a) {
     s32 b;
     s32 c;
     if (a->mUnk_14 == 0 && a->mUnk_24 == 0) {
         if (a->mUnk_0c == 7) {
-            b = func_ov000_0218dc44(a->mUnk_08->mUnk_10);
+            b = func_ov000_0218dc44(a->mSocket->mUnk_10);
             for (c = 0; c < b; c++) {
-                if (a == *(Unk02197fe8 **) func_ov000_0218dbf8(a->mUnk_08->mUnk_10, c)) {
-                    func_ov000_0218da5c(a->mUnk_08->mUnk_10, c);
+                if (a == *(Gt2Connection **) func_ov000_0218dbf8(a->mSocket->mUnk_10, c)) {
+                    func_ov000_0218da5c(a->mSocket->mUnk_10, c);
                     return;
                 }
             }
         } else {
-            func_ov000_0218de8c(a->mUnk_08->mUnk_0c, &a);
+            func_ov000_0218de8c(a->mSocket->mUnk_0c, &a);
         }
     }
 }
@@ -143,8 +142,8 @@ u32 func_ov000_0219a110(u32 *c, u32 d, int f, u32 g, u32 h) {
     return 1;
 }
 
-u32 func_ov000_0219a0d0(Unk02197fe8 **a, u32 *b) {
-    Unk02197fe8 *c = *a;
+u32 func_ov000_0219a0d0(Gt2Connection **a, u32 *b) {
+    Gt2Connection *c = *a;
     u32 d = *b;
     if (c->mUnk_0c != 7 && func_ov000_02198584((u32) c, d) == 0) {
         return 0;

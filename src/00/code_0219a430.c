@@ -28,20 +28,20 @@ typedef struct Unk0219a430Addr {
     /* 4 */ u32 mUnk_04;
 } Unk0219a430Addr;
 
-void func_ov000_0219a5dc(Unk02197fe8 **a) {
+void func_ov000_0219a5dc(Gt2Connection **a) {
     func_ov000_021984b4(*a);
 }
 
-Unk02197fe8 *func_ov000_0219a5b0(Unk02197e8c *a, u32 b, u32 c) {
-    Unk02197fe8 d;
-    Unk02197fe8 *e;
+Gt2Connection *func_ov000_0219a5b0(Unk02197e8c *a, u32 b, u32 c) {
+    Gt2Connection d;
+    Gt2Connection *e;
     void *f;
-    d.mUnk_00 = b;
-    d.mUnk_04 = c;
+    d.mAddress = b;
+    d.mPort = c;
     e = &d;
     f = func_ov000_0218de28(a->mUnk_0c, &e);
     if (f != NULL) {
-        return *(Unk02197fe8 **) f;
+        return *(Gt2Connection **) f;
     }
     return NULL;
 }

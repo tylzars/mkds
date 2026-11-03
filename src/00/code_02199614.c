@@ -20,7 +20,7 @@
 #include "00/code_0219a028.h"
 #include "00/code_02199ad8.h"
 
-u32 func_ov000_021996fc(Unk02197fe8 *a, u32 b, const u8 *c, s32 d) {
+u32 func_ov000_021996fc(Gt2Connection *a, u32 b, const u8 *c, s32 d) {
     u32 e;
     s32 g;
     u32 f;
@@ -58,7 +58,7 @@ u32 func_ov000_021996fc(Unk02197fe8 *a, u32 b, const u8 *c, s32 d) {
     return 1;
 }
 
-u32 func_ov000_021996b8(Unk02197fe8 *a, const u8 *b, s32 c) {
+u32 func_ov000_021996b8(Gt2Connection *a, const u8 *b, s32 c) {
     if (c != 2) {
         if (func_ov000_02199fa4((u32) a) != 0) {
             return 1;
@@ -71,7 +71,7 @@ u32 func_ov000_021996b8(Unk02197fe8 *a, const u8 *b, s32 c) {
     return 0;
 }
 
-u32 func_ov000_02199614(Unk02197fe8 *a, const u8 *b, s32 c) {
+u32 func_ov000_02199614(Gt2Connection *a, const u8 *b, s32 c) {
     u32 d;
     u32 e;
     s32 f;

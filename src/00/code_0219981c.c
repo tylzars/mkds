@@ -22,7 +22,7 @@
 #include "00/code_0218d818.h"
 #include "00/code_02198ba8.h"
 
-u32 func_ov000_021998d8(Unk02197fe8 *a, s32 b, u32 c, const u8 *d, s32 e, s32 *f) {
+u32 func_ov000_021998d8(Gt2Connection *a, s32 b, u32 c, const u8 *d, s32 e, s32 *f) {
     Unk0219981cEntry g;
     s32 h;
     s32 i;
@@ -38,11 +38,11 @@ u32 func_ov000_021998d8(Unk02197fe8 *a, s32 b, u32 c, const u8 *d, s32 e, s32 *f
             break;
         }
     }
-    if (func_ov000_02197e58(&a->mUnk_44) < e) {
+    if (GetBufferUnusedSize(&a->mUnk_44) < e) {
         *f = 1;
         return 1;
     }
-    g.mUnk_00 = a->mUnk_44.mUnk_08;
+    g.mUnk_00 = a->mUnk_44.mLength;
     g.mUnk_04 = e;
     g.mUnk_08 = b;
     g.mUnk_0c = c;
@@ -51,7 +51,7 @@ u32 func_ov000_021998d8(Unk02197fe8 *a, s32 b, u32 c, const u8 *d, s32 e, s32 *f
         *f = 1;
         return 1;
     }
-    func_ov000_02197d84(&a->mUnk_44, d, e);
+    AppendBufferBytes(&a->mUnk_44, d, e);
     if (h == 0) {
         if (func_ov000_02198ba8(a, a->mUnk_66, c - 1) == 0) {
             return 0;
@@ -71,7 +71,7 @@ u32 func_ov000_021998d8(Unk02197fe8 *a, s32 b, u32 c, const u8 *d, s32 e, s32 *f
     return 1;
 }
 
-void func_ov000_02199878(Unk02197fe8 *a, Unk0219981cEntry *b, s32 c) {
+void func_ov000_02199878(Gt2Connection *a, Unk0219981cEntry *b, s32 c) {
     s32 d = 0;
     s32 e = b->mUnk_00;
     s32 f = b->mUnk_04;
@@ -89,17 +89,17 @@ void func_ov000_02199878(Unk02197fe8 *a, Unk0219981cEntry *b, s32 c) {
             }
         }
     }
-    func_ov000_02197d20(&a->mUnk_44, e, f);
+    RemoveBufferBytes(&a->mUnk_44, e, f);
 }
 
-u32 func_ov000_0219981c(Unk02197fe8 *a) {
+u32 func_ov000_0219981c(Gt2Connection *a) {
     s32 b;
     Unk0219981cEntry *c;
 top:
     for (b = func_ov000_0218dc44(a->mUnk_5c) - 1; b >= 0; b--) {
         c = func_ov000_0218dbf8(a->mUnk_5c, b);
         if (c->mUnk_0c == a->mUnk_66) {
-            if (func_ov000_02199a0c((s32) a, c->mUnk_08, (u32) (a->mUnk_44.mUnk_00 + c->mUnk_00), c->mUnk_04) == 0) {
+            if (func_ov000_02199a0c((s32) a, c->mUnk_08, (u32) (a->mUnk_44.mData + c->mUnk_00), c->mUnk_04) == 0) {
                 return 0;
             }
             func_ov000_02199878(a, c, b);
