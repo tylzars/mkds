@@ -17,8 +17,8 @@
 // Written into Unk02185984 at 0x1cc; mUnk_24 and mUnk_28 allocate and release the 0x13e0 bytes of the object and the
 // buffers.
 typedef struct Unk02186560 {
-    /* 00 */ u8 mUnk_00[0x15];
-    /* 15 */ u8 mUnk_15[0xc];
+    /* 00 */ char mUnk_00[0x15];
+    /* 15 */ char mUnk_15[0xc];
     /* 21 */ u8 pad_21[3];
     /* 24 */ void *(*mUnk_24)(const void *, u32);
     /* 28 */ void (*mUnk_28)(const void *, void *, u32);
@@ -52,7 +52,7 @@ typedef struct Unk02185984Data {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02[6];
     /* 08 */ u8 mUnk_08[6];
-    /* 0e */ u8 mUnk_0e[5];
+    /* 0e */ char mUnk_0e[5];
     /* 13 */ char mUnk_13[3];
     /* 16 */ char mUnk_16[5];
     /* 1b */ char mUnk_1b[4];
@@ -71,7 +71,7 @@ extern Unk021b4c94 data_ov000_021b4c94;
 // Declared here until the code that defines them is decompiled.
 void func_ov000_02185954(s32 a);
 
-u32 func_ov000_02185984(Http *a, const u8 *b, const u8 *c, Unk021868a4Entry *d, s32 e, s32 f);
+u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry *d, s32 e, s32 f);
 s32 func_ov000_02185d54(void);
 s32 func_ov000_02185ef4(void);
 void func_ov000_021860ac(void *param_1);

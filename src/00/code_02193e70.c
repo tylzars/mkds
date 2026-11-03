@@ -41,8 +41,8 @@ s32 func_ov000_02194590(GpConnection *a, Unk02193f2cNode *b) {
     s32 y;
     s32 z;
     Unk02194934 *e;
-    u8 *q;
-    u8 *w;
+    char *q;
+    char *w;
 
     r = a->mGpiConnection;
     switch (b->mUnk_00) {
@@ -139,13 +139,13 @@ s32 func_ov000_021943f0(GpConnection *a, Unk02193f2cNode *b) {
     s32 y;
     s32 t;
     s32 v;
-    u8 *p;
-    u8 *q;
-    u8 c0[0x10];
-    u8 c1[0x1f];
-    u8 c2[0x21];
-    u8 c3[0x21];
-    u8 c4[0x103];
+    char *p;
+    char *q;
+    char c0[0x10];
+    char c1[0x1f];
+    char c2[0x21];
+    char c3[0x21];
+    char c4[0x103];
 
     r = a->mGpiConnection;
     if (b->mUnk_00 != 0x68) {
@@ -275,7 +275,7 @@ s32 func_ov000_021941c4(GpConnection *a, Unk02193f2cNode *b) {
                             return 1;
                         }
                         s->mUnk_00 = b->mUnk_0c;
-                        s->mUnk_08 = (u32) func_ov000_0218e880((u8 *) m);
+                        s->mUnk_08 = (u32) func_ov000_0218e880((const char *) m);
                         s->mUnk_04 = func_ov000_0218e320(NULL);
                         t = func_ov000_02190ed4(a, p, s, NULL, 2);
                         if (t != 0) {
@@ -370,7 +370,7 @@ void func_ov000_0219405c(GpConnection *f, Unk02193f2cNode *g) {
         do {
             d = func_ov000_0218dbf8(g->mUnk_38, 0);
             if (d->mUnk_10 < 0x64) {
-                func_ov000_0218fbe0(f, g->mUnk_0c, d->mUnk_10, (const u8 *) (d->mUnk_00 + d->mUnk_14));
+                func_ov000_0218fbe0(f, g->mUnk_0c, d->mUnk_10, (const char *) (d->mUnk_00 + d->mUnk_14));
             }
             func_ov000_0218da5c(g->mUnk_38, 0);
         } while (func_ov000_0218dc44(g->mUnk_38) != 0);

@@ -111,7 +111,7 @@ void func_ov000_0219a220(Gt2Connection *a) {
 u32 func_ov000_0219a110(u32 *c, u32 d, int f, u32 g, u32 h) {
     Gt2Socket *a = (Gt2Socket *) c;
     s32 e;
-    func_ov000_0219a61c((const u8 **) &g, (s32 *) &h);
+    func_ov000_0219a61c((const char **) &g, (s32 *) &h);
     if (func_ov000_0218e644(a->mDescriptor) == 0) {
         return 1;
     }

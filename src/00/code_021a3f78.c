@@ -56,14 +56,14 @@ void func_ov000_021a412c(Unk021a4a08 *a, Unk021a471c *b, const u8 *c, s32 d) {
 }
 
 void func_ov000_021a3fc8(Unk021a4a08 *a, Unk021a471c *b, s32 c) {
-    u8 e[0x80];
+    char e[0x80];
     Unk021a3fc8 d;
     s32 f;
     s32 g;
     s32 h;
     s32 i;
     s32 j;
-    const u8 *k;
+    const char *k;
     u8 *l;
 
     d.mUnk_100 = 0;

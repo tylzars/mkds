@@ -105,8 +105,8 @@ u32 func_ov000_02191e58(GpConnection *p, Unk021919ac_node *n) {
     return 0;
 }
 
-u32 func_ov000_02191cb0(GpConnection *p, const u8 *a, const u8 *b, const u8 *c, const u8 *d, const s8 *e, const s8 *f,
-                        const u8 *g, s32 h, s32 i, s32 j, s32 k, s32 l) {
+u32 func_ov000_02191cb0(GpConnection *p, const char *a, const char *b, const char *c, const char *d, const s8 *e, const s8 *f,
+                        const char *g, s32 h, s32 i, s32 j, s32 k, s32 l) {
     GpiConnection *o;
     Unk021919ac_q *q;
     Unk021919ac_node *n;
@@ -136,9 +136,9 @@ u32 func_ov000_02191cb0(GpConnection *p, const u8 *a, const u8 *b, const u8 *c, 
     }
     o->mFirewall = 1;
     func_ov000_02196914(o->mNick, a, 0x1f);
-    func_ov000_02196914((u8 *) o->mUniquenick, b, 0x15);
+    func_ov000_02196914((char *) o->mUniquenick, b, 0x15);
     func_ov000_02196914(o->mEmail, c, 0x33);
-    func_ov000_02196914((u8 *) o->mPassword, d, 0x1f);
+    func_ov000_02196914((char *) o->mPassword, d, 0x1f);
     func_ov000_0218e850((s8 *) o->mEmail);
     q = func_ov000_021a3690(0x308);
     if (q == NULL) {
@@ -148,8 +148,8 @@ u32 func_ov000_02191cb0(GpConnection *p, const u8 *a, const u8 *b, const u8 *c, 
     memset(q, 0, 0x308);
     q->mUnk_304 = i;
     if (*e != 0 && *f != 0) {
-        func_ov000_02196914((u8 *) q->mUnk_0c2, e, 0x100);
-        func_ov000_02196914((u8 *) q->mUnk_1c2, f, 0x100);
+        func_ov000_02196914((char *) q->mUnk_0c2, (const char *) e, 0x100);
+        func_ov000_02196914((char *) q->mUnk_1c2, (const char *) f, 0x100);
     }
     if (g != NULL) {
         func_ov000_02196914(q->mUnk_2c2, g, 0x41);
@@ -179,9 +179,9 @@ u32 func_ov000_021919ac(GpConnection *p, Unk021919ac_q *q) {
     s8 *s;
     s8 *t;
     Unk021919ac_h *h;
-    u8 a[0x21];
-    u8 b[0x200];
-    u8 c[0x57];
+    char a[0x21];
+    char b[0x200];
+    char c[0x57];
     u16 v;
 
     o = p->mGpiConnection;
@@ -191,7 +191,7 @@ u32 func_ov000_021919ac(GpConnection *p, Unk021919ac_q *q) {
     } else {
         s = o->mPassword;
     }
-    func_ov000_0218e0fc((const u8 *) s, strlen((const u8 *) s), q->mUnk_0a1);
+    func_ov000_0218e0fc((const char *) s, strlen((const char *) s), q->mUnk_0a1);
     if (q->mUnk_0c2[0] != 0) {
         t = q->mUnk_0c2;
     } else if (o->mUniquenick[0] != 0) {

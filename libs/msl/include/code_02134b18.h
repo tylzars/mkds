@@ -5,8 +5,8 @@
 // Two conversion functions called through data_0216eccc.mUnk_08: mUnk_00 has the shape of func_02134ccc,
 // mUnk_04 that of func_02134c94.
 typedef struct Unk02134c94 {
-    /* 00 */ int (*mUnk_00)(u16 *dst, const u8 *src, u32 n);
-    /* 04 */ int (*mUnk_04)(u8 *dst, u16 c);
+    /* 00 */ int (*mUnk_00)(u16 *dst, const char *src, u32 n);
+    /* 04 */ int (*mUnk_04)(char *dst, u16 c);
 } Unk02134c94;
 
 // wctomb and mbtowc read the pointer at 0x08.
@@ -17,9 +17,9 @@ typedef struct Unk0216eccc {
 
 extern Unk0216eccc data_0216eccc;
 
-int wcstombs(u8 *dst, const u16 *src, u32 n);
-int mbstowcs(u16 *dst, const u8 *src, u32 n);
-int wctomb(u8 *dst, u16 c);
-int func_02134c94(u8 *dst, u16 c);
-int func_02134ccc(u16 *dst, const u8 *src, u32 n);
-int mbtowc(u16 *dst, const u8 *src, u32 n);
+int wcstombs(char *dst, const u16 *src, u32 n);
+int mbstowcs(u16 *dst, const char *src, u32 n);
+int wctomb(char *dst, u16 c);
+int func_02134c94(char *dst, u16 c);
+int func_02134ccc(u16 *dst, const char *src, u32 n);
+int mbtowc(u16 *dst, const char *src, u32 n);

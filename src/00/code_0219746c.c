@@ -15,16 +15,16 @@
 #include "code_02135014.h"
 #include "code_02139f70.h"
 
-s8 *func_ov000_02197a9c(const u8 *a, const u8 *b, s8 *c) {
+s8 *func_ov000_02197a9c(const char *a, const char *b, s8 *c) {
     u32 d;
-    u8 e[0x80];
+    char e[0x80];
     d = strlen(b);
     if (strlen(a) + d + 0x14 >= 0x80) {
         *(Unk021b3e44 *) c = data_ov000_021b3e44;
         return c;
     }
     sprintf(e, data_ov000_021b3e64, b, a);
-    func_ov000_0218e0fc(e, strlen(e), (u8 *) c);
+    func_ov000_0218e0fc(e, strlen(e), (char *) c);
     return c;
 }
 
@@ -215,12 +215,12 @@ void func_ov000_02197594(s32 a, s32 b, s32 c, UnkFunc *d, s32 e) {
     s32 h;
     data_ov000_021b3b30 = data_ov000_021b3b98;
     func_ov000_021971ec(f.mUnk_00, 0x23);
-    h = sprintf((u8 *) g, (const u8 *) f.mUnk_00, b, c, a);
+    h = sprintf((char *) g, (const char *) f.mUnk_00, b, c, a);
     func_ov000_02196f8c(g, h, a, d, e);
 }
 
 void func_ov000_02197558(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    func_ov000_02196e50(a, b, c, d, (const u8 *) e, strlen((const u8 *) e) + 1, (UnkFunc *) f, g, 1);
+    func_ov000_02196e50(a, b, c, d, (const u8 *) e, strlen((const char *) e) + 1, (UnkFunc *) f, g, 1);
 }
 
 BOOL func_ov000_0219746c(void) {

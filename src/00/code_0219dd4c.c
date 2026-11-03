@@ -34,7 +34,7 @@ void func_ov000_0219dd4c(const void *a, u32 b) {
     if (b >= 0x14) {
         do {
             func_0214d1fc(a, &c, 0x14);
-            if (strncmp((const u8 *) &c, data_ov000_021b40bc, 4) != 0) {
+            if (strncmp(c.mUnk_00, data_ov000_021b40bc, 4) != 0) {
                 break;
             }
             if (c.mUnk_04 != 3) {

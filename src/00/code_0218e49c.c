@@ -33,7 +33,7 @@ void func_ov000_0218e8b4(void) {
     return;
 }
 
-void *func_ov000_0218e880(u8 *a) {
+void *func_ov000_0218e880(const char *a) {
     void *b;
     if (a == NULL) {
         return NULL;

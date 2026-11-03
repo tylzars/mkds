@@ -2,7 +2,7 @@
 #include "00/code_02194840.h"
 #include "00/code_021948bc.h"
 
-s32 func_ov000_0219488c(GpConnection *a, const u8 *b, const u8 *c, void **d) {
+s32 func_ov000_0219488c(GpConnection *a, const char *b, const char *c, void **d) {
     Unk0219488cArg e;
 
     e.mUnk_00 = b;

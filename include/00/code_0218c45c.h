@@ -4,7 +4,7 @@
 
 typedef struct Unk021b4d24 Unk021b4d24;
 
-void func_ov000_0218c45c(Unk021b4d24 *a, u8 *b);
+void func_ov000_0218c45c(Unk021b4d24 *a, char *b);
 s32 func_ov000_0218c468(Unk021b4d24 *a, u8 *b, s32 c);
 s32 func_ov000_0218c550(Unk021b4d24 *a, void *b, u8 *c, s32 d, s32 e);
 void func_ov000_0218c744(Unk021b4d24 *a, u8 *b, s32 c, u8 *d, u16 *e);

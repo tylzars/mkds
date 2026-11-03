@@ -5,11 +5,11 @@
 typedef struct Gt2Buffer Gt2Buffer;
 
 extern const s8 data_ov000_021b3e6c[];
-extern const u8 data_ov000_021b3e90[];
-extern const u8 data_ov000_021b3e98[];
-extern const u8 data_ov000_021b3ea4[];
-extern const u8 data_ov000_021b3ec8[];
-extern const u8 data_ov000_021b3eec[];
+extern const char data_ov000_021b3e90[];
+extern const char data_ov000_021b3e98[];
+extern const char data_ov000_021b3ea4[];
+extern const char data_ov000_021b3ec8[];
+extern const char data_ov000_021b3eec[];
 
 s8 *func_ov000_02197b34(s8 *a, const s8 *b);
 s8 *func_ov000_02197be0(s8 *a);

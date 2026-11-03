@@ -138,13 +138,13 @@ s32 func_ov000_021881d0(const s8 *a, u32 b, u8 *c, u32 d) {
     return v1 - c;
 }
 
-s32 func_ov000_021882f8(const u8 *a, u32 b, s8 *c, u32 d) {
+s32 func_ov000_021882f8(const u8 *a, u32 b, char *c, u32 d) {
     const u8 *v1;
     s32 e;
     u32 r;
     s32 k;
     s32 l;
-    s8 *v2;
+    char *v2;
     u8 v3[3];
 
     r = b / 3 * 4 + (b % 3 != 0 ? 4 : 0);
@@ -189,7 +189,7 @@ s32 func_ov000_021882f8(const u8 *a, u32 b, s8 *c, u32 d) {
 
 s32 func_ov000_02188408(void) {
     Unk02188408 *s;
-    u8 *k;
+    char *k;
     u32 i;
     u8 j;
     u8 n;

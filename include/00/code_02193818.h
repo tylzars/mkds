@@ -96,7 +96,7 @@ void func_ov000_02193858(GpConnection *param_1, Unk021937c0Node *param_2);
 u32 func_ov000_021938cc(GpConnection *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6,
                         int param_7);
 s32 func_ov000_02193954(GpConnection *param_1, Unk021937c0Node *param_2);
-s32 func_ov000_02193b88(GpConnection *param_1, Unk02193f2cNode *param_2, const u8 *param_3, s32 param_4);
+s32 func_ov000_02193b88(GpConnection *param_1, Unk02193f2cNode *param_2, const char *param_3, s32 param_4);
 u32 func_ov000_02193c20(GpConnection *param_1, Unk02193f2cNode *param_2, u32 param_3, Unk02193c20 *param_4);
-s32 func_ov000_02193c74(GpConnection *param_1, Unk02193f2cNode *param_2, u32 param_3, const u8 *param_4);
+s32 func_ov000_02193c74(GpConnection *param_1, Unk02193f2cNode *param_2, u32 param_3, const char *param_4);
 s32 func_ov000_02193d64(GpConnection *param_1, Unk02193f2cNode *param_2);

@@ -49,9 +49,9 @@ typedef struct Unk02190988 {
 
 // Object at 0x04 of Unk021937c0Node.
 typedef struct Unk02191284Data {
-    /* 000 */ u8 mUnk_000[0x80];
-    /* 080 */ u8 mUnk_80[0x21];
-    /* 0a1 */ u8 mUnk_a1[0x21];
+    /* 000 */ char mUnk_000[0x80];
+    /* 080 */ char mUnk_80[0x21];
+    /* 0a1 */ char mUnk_a1[0x21];
     /* 0c2 */ s8 mUnk_c2[0x200];
     /* 2c2 */ s8 mUnk_2c2[0x42];
     /* 304 */ s32 mUnk_304;
@@ -69,5 +69,5 @@ typedef struct Unk02190f4c {
 typedef struct Unk02191284Node {
     /* 00 */ s32 mUnk_00;
     /* 04 */ u32 mUnk_04;
-    /* 08 */ u8 mUnk_08[0x18];
+    /* 08 */ char mUnk_08[0x18];
 } Unk02191284Node;

@@ -32,7 +32,7 @@ u32 func_ov000_021917b0(GpConnection *a, Unk02191284Data *b) {
     s8 i[0x59];
 
     c = a->mGpiConnection;
-    d = strlen((const u8 *) c->mPassword);
+    d = strlen((const char *) c->mPassword);
     func_ov000_0218e2a4(0x79707367);
     for (e = 0; e < d; e++) {
         t = func_ov000_0218e284(0, 0xff);
@@ -56,7 +56,7 @@ u32 func_ov000_021917b0(GpConnection *a, Unk02191284Data *b) {
     func_ov000_02190b80(a, &c->mOutputBuffer, data_ov000_021b2c50);
     func_ov000_02190b80(a, &c->mOutputBuffer, c->mUniquenick);
     if (b->mUnk_2c2[0] != 0) {
-        d = strlen((const u8 *) b->mUnk_2c2);
+        d = strlen((const char *) b->mUnk_2c2);
         func_ov000_0218e2a4(0x79707367);
         for (e = 0; e < d; e++) {
             t = func_ov000_0218e284(0, 0xff);
@@ -72,13 +72,13 @@ u32 func_ov000_021917b0(GpConnection *a, Unk02191284Data *b) {
     return 0;
 }
 
-u32 func_ov000_02191284(GpConnection *a, Unk021937c0Node *b, const u8 *c) {
+u32 func_ov000_02191284(GpConnection *a, Unk021937c0Node *b, const char *c) {
     GpiConnection *d;
     Unk02191284Data *e;
-    u8 f[0x21];
-    u8 g[0x15];
-    u8 h[0x200];
-    u8 i[0x52];
+    char f[0x21];
+    char g[0x15];
+    char h[0x200];
+    char i[0x52];
     Unk02190ed4Cb j;
     Unk02191284Node *k;
     void *l;
@@ -96,11 +96,11 @@ u32 func_ov000_02191284(GpConnection *a, Unk021937c0Node *b, const u8 *c) {
             }
         }
         if (strstr(c, data_ov000_021b2ba0) != NULL) {
-            func_ov000_021965a0(a, d->mErrorNumber, d);
+            func_ov000_021965a0(a, d->mErrorNumber, d->mErrorMessage);
             func_ov000_02190f4c(a, 4, 1);
             return 4;
         }
-        func_ov000_021965a0(a, d->mErrorNumber, d);
+        func_ov000_021965a0(a, d->mErrorNumber, d->mErrorMessage);
         func_ov000_02190f4c(a, 4, 0);
         return 4;
     }
@@ -112,7 +112,7 @@ u32 func_ov000_02191284(GpConnection *a, Unk021937c0Node *b, const u8 *c) {
                 func_ov000_02190f4c(a, 3, 1);
                 return 3;
             }
-            if (func_ov000_021967b4(c, data_ov000_021b2be0, e, 0x80) == 0) {
+            if (func_ov000_021967b4(c, data_ov000_021b2be0, e->mUnk_000, 0x80) == 0) {
                 func_ov000_021965a0(a, 1, data_ov000_021b2bb0);
                 func_ov000_02190f4c(a, 3, 1);
                 return 3;
@@ -182,7 +182,7 @@ u32 func_ov000_02191284(GpConnection *a, Unk021937c0Node *b, const u8 *c) {
             if (func_ov000_021967b4(c, data_ov000_021b2c50, g, 0x15) == 0) {
                 g[0] = 0;
             }
-            if (func_ov000_021967b4(c, data_ov000_021b2c60, d->mUnk_474, 0x19) == 0) {
+            if (func_ov000_021967b4(c, data_ov000_021b2c60, (char *) d->mUnk_474, 0x19) == 0) {
                 d->mUnk_474[0] = 0;
             }
             if (e->mUnk_c2[0] != 0) {

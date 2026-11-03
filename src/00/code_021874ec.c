@@ -17,17 +17,17 @@
 void func_ov000_021874ec(void) {
     Unk0218635c e;
     Unk021510a4 c;
-    u8 d[0x24];
-    u8 b2[4];
+    char d[0x24];
+    char b2[4];
     u16 b;
-    u8 *p1;
+    char *p1;
     s32 n1;
-    u8 *p2;
+    char *p2;
     s32 n2;
-    u8 *p3;
+    char *p3;
     s32 v;
-    u8 *t;
-    u8 *s;
+    char *t;
+    char *s;
     s32 n3;
     s32 k;
     s32 r;
@@ -72,7 +72,7 @@ void func_ov000_021874ec(void) {
             case 8:
                 break;
         }
-        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, (const u8 *) o->mUnk_938) != 1) {
+        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, (const char *) o->mUnk_938) != 1) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(2);
             break;
@@ -88,7 +88,7 @@ void func_ov000_021874ec(void) {
                 if (q->mUnk_118 != NULL) {
                     q->mUnk_04 = -6;
                     ReleaseHttp((Http *) gHttp);
-                    data_ov000_021b4cb4.mUnk_00 = *(u8 **) data_ov000_021b1040;
+                    data_ov000_021b4cb4.mUnk_00 = *(char **) data_ov000_021b1040;
                     data_ov000_021b4cb4.mUnk_04 = 0;
                     data_ov000_021b4cb4.mUnk_08 = 0;
                     data_ov000_021b4cb4.mUnk_0c = 0x200;
@@ -208,7 +208,7 @@ void func_ov000_021874ec(void) {
             break;
         }
         data_ov000_021b4cb0->mUnk_04 = -4;
-        data_ov000_021b4cb4.mUnk_00 = *(u8 **) data_ov000_021b1040;
+        data_ov000_021b4cb4.mUnk_00 = *(char **) data_ov000_021b1040;
         data_ov000_021b4cb4.mUnk_04 = 0;
         data_ov000_021b4cb4.mUnk_08 = 0;
         data_ov000_021b4cb4.mUnk_0c = 0x1000;
@@ -273,7 +273,7 @@ void func_ov000_021874ec(void) {
             case 8:
                 break;
         }
-        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, (const u8 *) o->mUnk_938) != 1) {
+        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, (const char *) o->mUnk_938) != 1) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(2);
             break;
@@ -289,7 +289,7 @@ void func_ov000_021874ec(void) {
             func_ov000_02187490(2);
             break;
         }
-        if (func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b1468, (char *) b2, 4) <= 0) {
+        if (func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b1468, b2, 4) <= 0) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(9);
             break;
@@ -338,14 +338,14 @@ void func_ov000_021874ec(void) {
                 break;
             }
         }
-        k = func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13c4, (char *) p1, n1 + 1);
+        k = func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13c4, p1, n1 + 1);
         if (k < 0) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(9);
             break;
         }
         p1[k] = 0;
-        k = func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13c8, (char *) p2, n2 + 1);
+        k = func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13c8, p2, n2 + 1);
         if (k < 0) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(9);
@@ -354,7 +354,7 @@ void func_ov000_021874ec(void) {
         p2[k] = 0;
         v = 0;
         if (n3 > 0) {
-            k = func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13d0, (char *) p3, n3 + 1);
+            k = func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13d0, p3, n3 + 1);
             if (k < 0) {
                 ReleaseHttp((Http *) gHttp);
                 func_ov000_02187490(9);
@@ -411,7 +411,7 @@ void func_ov000_021874ec(void) {
             case 8:
                 break;
         }
-        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 1, (const u8 *) o->mUnk_938) != 1) {
+        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 1, (const char *) o->mUnk_938) != 1) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(2);
             break;

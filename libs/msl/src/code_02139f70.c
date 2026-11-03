@@ -3,11 +3,11 @@
 #include "code_02139f70.h"
 #include "code_0213a460.h"
 
-double atof(const u8 *s) {
+double atof(const char *s) {
     return strtod(s, 0);
 }
 
-u32 strlen(const u8 *s) {
+u32 strlen(const char *s) {
     u32 n = -1;
     u32 c;
 
@@ -18,8 +18,8 @@ u32 strlen(const u8 *s) {
     return n;
 }
 
-char *strcpy(char *dst, const u8 *src) {
-    u8 *p;
+char *strcpy(char *dst, const char *src) {
+    char *p;
     u32 a;
     u32 b;
     u32 w;
@@ -28,13 +28,13 @@ char *strcpy(char *dst, const u8 *src) {
     u32 t;
     u32 n;
 
-    p = (u8 *) dst;
+    p = dst;
     a = (u32) src & 3;
     b = (u32) dst & 3;
     if (b == a) {
         if (a != 0) {
             *dst = *src;
-            if (*(u8 *) dst == 0) {
+            if (*dst == 0) {
                 return dst;
             }
             n = 3 - a;
@@ -75,8 +75,8 @@ char *strcpy(char *dst, const u8 *src) {
     return dst;
 }
 
-u8 *strncpy(u8 *dst, const u8 *src, u32 n) {
-    u8 *p;
+char *strncpy(char *dst, const char *src, u32 n) {
+    char *p;
 
     p = dst;
     for (; n != 0; n--) {
@@ -90,11 +90,11 @@ u8 *strncpy(u8 *dst, const u8 *src, u32 n) {
     return dst;
 }
 
-char *strcat(char *dst, const u8 *src) {
-    u8 *p;
-    u8 *q;
+char *strcat(char *dst, const char *src) {
+    char *p;
+    char *q;
 
-    p = (u8 *) dst;
+    p = dst;
     while (*p++ != 0) {
     }
     p--;
@@ -105,7 +105,7 @@ char *strcat(char *dst, const u8 *src) {
     return dst;
 }
 
-int strcmp(const u8 *a, const u8 *b) {
+int strcmp(const char *a, const char *b) {
     u32 c;
     u32 d;
     u32 x;
@@ -183,7 +183,7 @@ slow:
     return 0;
 }
 
-int strncmp(const u8 *a, const u8 *b, u32 n) {
+int strncmp(const char *a, const char *b, u32 n) {
     u32 c;
     u32 d;
 
@@ -202,9 +202,9 @@ int strncmp(const u8 *a, const u8 *b, u32 n) {
     return 0;
 }
 
-const u8 *strchr(const u8 *s, int c) {
+char *strchr(const char *s, int c) {
     u32 d;
-    const u8 *p;
+    const char *p;
 
     c = (u8) c;
     p = s + 1;
@@ -212,7 +212,7 @@ const u8 *strchr(const u8 *s, int c) {
     if (d != 0) {
         do {
             if (d == c) {
-                return p - 1;
+                return (char *) (p - 1);
             }
             d = *p++;
         } while (d != 0);
@@ -220,24 +220,24 @@ const u8 *strchr(const u8 *s, int c) {
     if (c != 0) {
         return 0;
     }
-    return p - 1;
+    return (char *) (p - 1);
 }
 
-u8 *strstr(const u8 *a, const u8 *b) {
+char *strstr(const char *a, const char *b) {
     u32 d;
-    const u8 *p;
+    const char *p;
     u32 c;
     u32 e;
-    const u8 *q;
-    const u8 *r;
+    const char *q;
+    const char *r;
     u32 f;
 
     if (b == 0) {
-        return (u8 *) a;
+        return (char *) a;
     }
     c = *b;
     if (c == 0) {
-        return (u8 *) a;
+        return (char *) a;
     }
     p = a + 1;
     d = *a;
@@ -250,7 +250,7 @@ u8 *strstr(const u8 *a, const u8 *b) {
                 f = *q++;
             } while (f == e && f != 0);
             if (e == 0) {
-                return (u8 *) (p - 1);
+                return (char *) (p - 1);
             }
         }
     }

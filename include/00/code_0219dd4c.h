@@ -4,7 +4,7 @@
 
 // 0x14 bytes at the start of each record func_ov000_0219dd4c walks.
 typedef struct Unk0219dd4c {
-    /* 00 */ u8 mUnk_00[4];
+    /* 00 */ char mUnk_00[4];
     /* 04 */ u32 mUnk_04;
     /* 08 */ u8 mUnk_08;
     /* 09 */ u8 mUnk_09;

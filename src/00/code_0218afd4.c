@@ -6,10 +6,10 @@
 #include "code_02139f70.h"
 #include "code_0214177c.h"
 
-u32 func_ov000_0218b1e0(const u8 *s) {
+u32 func_ov000_0218b1e0(const char *s) {
     Unk021b21ac t;
     u32 i;
-    const u8 **p;
+    const char **p;
     t = data_ov000_021b21ac;
     p = t.mUnk_00;
     for (i = 0; i < 2; i++) {
@@ -51,8 +51,8 @@ void func_ov000_0218b148(Unk0218af28 *e, s8 *v1) {
         if (b == NULL) {
             b = data_ov000_021b21c4;
         }
-        if (func_ov000_0218b1e0((u8 *) a) != 0) {
-            func_ov000_0218b380(e, (u8 *) a, (u8 *) b);
+        if (func_ov000_0218b1e0((const char *) a) != 0) {
+            func_ov000_0218b380(e, (const char *) a, (const char *) b);
         }
         a = func_ov000_0218b19c(NULL, 0x5c);
     }
@@ -85,7 +85,7 @@ void func_ov000_0218b010(Unk0218af28 *e, s8 *v1, s32 n) {
         v = v1;
         v1 += f;
         n -= f;
-        func_ov000_0218b380(e, (u8 *) p, (u8 *) v);
+        func_ov000_0218b380(e, (const char *) p, (const char *) v);
     }
     v1++;
     n--;
@@ -121,10 +121,10 @@ void func_ov000_0218b010(Unk0218af28 *e, s8 *v1, s32 n) {
                     return;
                 }
                 sprintf(t.mUnk_02, data_ov000_021b21bc, p, b);
-                func_ov000_0218b380(e, t.mUnk_02, (u8 *) v1);
+                func_ov000_0218b380(e, t.mUnk_02, (const char *) v1);
                 v1 += d;
                 n -= d;
-                p += strlen((u8 *) p) + 1;
+                p += strlen((const char *) p) + 1;
                 c++;
             }
             b++;

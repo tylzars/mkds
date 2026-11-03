@@ -24,7 +24,7 @@ u32 func_ov000_0218afac(Unk0218afac *entry, u32 modulus) {
     return func_ov000_0218afd4(entry->mName, modulus);
 }
 
-s32 func_ov000_0218afa0(const u8 *const *first, const u8 *const *second) {
+s32 func_ov000_0218afa0(const char *const *first, const char *const *second) {
     return func_02142368(*first, *second);
 }
 

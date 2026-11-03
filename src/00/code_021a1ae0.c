@@ -20,10 +20,10 @@
 #include "code_02139f70.h"
 #include "00/code_0219e4e8.h"
 
-void func_ov000_021a1ae0(u32 param_1, u32 param_2, u8 *param_3) {
+void func_ov000_021a1ae0(u32 param_1, u32 param_2, const char *param_3) {
     u32 v1[33];
-    u8 v2[16];
-    const u8 **e;
+    char v2[16];
+    const char **e;
     s32 i;
     u32 *q;
     e = NULL;
@@ -105,7 +105,7 @@ void func_ov000_021a1b2c(Unk0219887c *param_1, s32 param_2) {
     func_ov000_0219f544(1);
 }
 
-void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 param_4, s32 param_5, u8 *param_6) {
+void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 param_4, s32 param_5, char *param_6) {
     Unk021b566c *p;
     Unk021b5550 *e;
     void **q;
@@ -406,7 +406,7 @@ void func_ov000_021a2468(const void *param_1, s32 param_2, s32 param_3, s32 para
 }
 
 void func_ov000_021a260c(u32 param_1, const void *param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6) {
-    u8 v1[0x100];
+    char v1[0x100];
     s32 n;
     if (data_ov000_021b5674 != NULL) {
         func_ov000_021a3704(4, (u32) data_ov000_021b5674, 0);
@@ -458,7 +458,7 @@ u32 func_ov000_021a2768(u32 param_1) {
     do {
         p = data_ov000_021b566c;
         r = func_ov000_021a4a08((Unk021a4a08 **) &data_ov000_021b566c->mUnk_10, GetSocketDescriptor(*p->mUnk_04),
-                                GetSocketPort(*p->mUnk_04), (const u8 *) p->mUnk_2dc, (const u8 *) p->mUnk_2e0, 1, 1,
+                                GetSocketPort(*p->mUnk_04), (const char *) p->mUnk_2dc, (const char *) p->mUnk_2e0, 1, 1,
                                 (Unk021a4a08Func88) func_ov000_0219dee0, (Unk021a4a08Func8c) func_ov000_0219dedc,
                                 (Unk021a4a08Func8c) func_ov000_0219ded8, (Unk021a4a08Func94) func_ov000_0219de68,
                                 (Unk021a4a08Func98) func_ov000_0219de64, (Unk021a4a08Func9c) func_ov000_0219de5c, NULL);

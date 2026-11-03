@@ -88,8 +88,8 @@ void func_ov000_0219c79c(char *a, char *b, void (*c)(), s32 d) {
     Unk021b565c *v1;
     u32 v2;
     u64 v3;
-    strcpy(data_ov000_021b565c->mUnk_4c, (const u8 *) a);
-    strcpy(data_ov000_021b565c->mUnk_14c, (const u8 *) b);
+    strcpy(data_ov000_021b565c->mUnk_4c, a);
+    strcpy(data_ov000_021b565c->mUnk_14c, b);
     v2 = *(s32 *) &data_ov000_021b565c;
     v3 = func_0200f5ac();
     *(u64 *) (v2 + 0x38) = v3;
@@ -124,7 +124,7 @@ void func_ov000_0219c67c(void (*a)(), void *b) {
         }
         func_02152808(&data_ov000_021b565c->mUnk_40, data_ov000_021b565c->mUnk_0c, data_ov000_021b565c->mUnk_24c);
     }
-    strcpy((char *) s.mUnk_15, (const u8 *) data_ov000_021b565c->mUnk_255);
+    strcpy(s.mUnk_15, data_ov000_021b565c->mUnk_255);
     s.mUnk_24 = (void *(*) (const void *, u32)) func_ov000_021a372c;
     s.mUnk_28 = (void (*)(const void *, void *, u32)) func_ov000_021a3704;
     h = func_ov000_021a3718(0, 0x1a60, 4);
@@ -160,7 +160,7 @@ void func_ov000_0219c524(void) {
         } else {
             func_ov000_02186430();
             func_0214d168(&s, 0, 0x2c);
-            strcpy((char *) s.mUnk_15, (const u8 *) data_ov000_021b565c->mUnk_255);
+            strcpy(s.mUnk_15, data_ov000_021b565c->mUnk_255);
             s.mUnk_24 = (void *(*) (const void *, u32)) func_ov000_021a372c;
             s.mUnk_28 = (void (*)(const void *, void *, u32)) func_ov000_021a3704;
             func_ov000_02186560(&s, data_ov000_021b565c->mUnk_28);
@@ -193,7 +193,7 @@ void func_ov000_0219c400(GpConnection *a, Unk0219c400 *b, u32 f) {
         }
     } else if (p->mUnk_04 == 4) {
         func_02152808(&p->mUnk_20->mUnk_04, p->mUnk_0c, d);
-        if (strcmp((const u8 *) b->mUnk_8e, (const u8 *) d) == 0) {
+        if (strcmp((const char *) b->mUnk_8e, d) == 0) {
             func_02152808(&data_ov000_021b565c->mUnk_40, data_ov000_021b565c->mUnk_0c, e);
             func_021525f0(data_ov000_021b565c->mUnk_20, &data_ov000_021b565c->mUnk_40, b->mUnk_04);
             func_ov000_0218f130(a);

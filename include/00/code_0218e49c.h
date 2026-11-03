@@ -42,7 +42,7 @@ s32 func_ov000_0218e7ac(s32 a, u32 b);
 s32 func_ov000_0218e7dc(s32 a, u32 b);
 BOOL func_ov000_0218e80c(s32 a, s32 b);
 s8 *func_ov000_0218e850(s8 *a);
-void *func_ov000_0218e880(u8 *a);
+void *func_ov000_0218e880(const char *a);
 void func_ov000_0218e8b4(void);
 void func_ov000_0218e8b8(void);
 void func_ov000_0218e8bc(u32 arg0);

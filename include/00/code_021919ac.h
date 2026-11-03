@@ -32,12 +32,12 @@
 
 // Object of 0x308 bytes that func_ov000_02191cb0 allocates and fills.
 typedef struct Unk021919ac_q {
-    /* 000 */ u8 mUnk_000[0x80];
-    /* 080 */ u8 mUnk_080[0x21];
-    /* 0a1 */ u8 mUnk_0a1[0x21];
+    /* 000 */ char mUnk_000[0x80];
+    /* 080 */ char mUnk_080[0x21];
+    /* 0a1 */ char mUnk_0a1[0x21];
     /* 0c2 */ s8 mUnk_0c2[0x100];
     /* 1c2 */ s8 mUnk_1c2[0x100];
-    /* 2c2 */ u8 mUnk_2c2[0x41];
+    /* 2c2 */ char mUnk_2c2[0x41];
     /* 303 */ u8 mUnk_303;
     /* 304 */ s32 mUnk_304;
 } Unk021919ac_q;
@@ -87,10 +87,10 @@ typedef union Unk021919ac_sa {
 } Unk021919ac_sa;
 
 // Declared here until the code that defines them is decompiled.
-void *func_ov000_0218e880(u8 *a);
+void *func_ov000_0218e880(const char *a);
 
 void func_ov000_021920d8(s8 *p, s32 n);
 u32 func_ov000_021919ac(GpConnection *p, Unk021919ac_q *q);
-u32 func_ov000_02191cb0(GpConnection *p, const u8 *a, const u8 *b, const u8 *c, const u8 *d, const s8 *e, const s8 *f,
-                        const u8 *g, s32 h, s32 i, s32 j, s32 k, s32 l);
+u32 func_ov000_02191cb0(GpConnection *p, const char *a, const char *b, const char *c, const char *d, const s8 *e, const s8 *f,
+                        const char *g, s32 h, s32 i, s32 j, s32 k, s32 l);
 u32 func_ov000_02191e58(GpConnection *p, Unk021919ac_node *n);

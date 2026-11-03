@@ -12,10 +12,10 @@
 #include "code_02139f70.h"
 #include "code_0213a460.h"
 
-s32 func_ov000_0218fca8(GpConnection *a, u8 *b) {
-    u8 c[0x1000];
-    u8 d[0x100];
-    u8 e[0x10];
+s32 func_ov000_0218fca8(GpConnection *a, char *b) {
+    char c[0x1000];
+    char d[0x100];
+    char e[0x10];
     Unk02190ed4Cb s1;
     Unk02190ed4Cb s2;
     Unk02190ed4Cb s3;
@@ -26,7 +26,7 @@ s32 func_ov000_0218fca8(GpConnection *a, u8 *b) {
     s32 n;
     s32 r;
     u16 h;
-    u8 *q;
+    char *q;
     u8 *w;
     enum { K0 } i;
     GpiConnection *o;
@@ -94,7 +94,7 @@ s32 func_ov000_0218fca8(GpConnection *a, u8 *b) {
                 func_ov000_02190f4c(a, 3, 1);
                 return 3;
             }
-            q = (u8 *) strstr(c, data_ov000_021b2824);
+            q = strstr(c, data_ov000_021b2824);
             if (q == NULL) {
                 func_ov000_021965a0(a, 1, data_ov000_021b27d8);
                 func_ov000_02190f4c(a, 3, 1);
@@ -214,7 +214,7 @@ s32 func_ov000_0218fca8(GpConnection *a, u8 *b) {
                 func_ov000_02190f4c(a, 3, 1);
                 return 3;
             }
-            q = (u8 *) strstr(c, data_ov000_021b284c);
+            q = strstr(c, data_ov000_021b284c);
             if (q == NULL) {
                 func_ov000_021965a0(a, 1, data_ov000_021b27d8);
                 func_ov000_02190f4c(a, 3, 1);
@@ -226,7 +226,7 @@ s32 func_ov000_0218fca8(GpConnection *a, u8 *b) {
                 return 3;
             }
             n = func_0213bf90(q + 3);
-            q = (u8 *) strstr(c, data_ov000_021b2850);
+            q = strstr(c, data_ov000_021b2850);
             if (q != NULL) {
                 func_ov000_02196914(d, (q + 3), 0x100);
             } else {
@@ -243,7 +243,7 @@ s32 func_ov000_0218fca8(GpConnection *a, u8 *b) {
             }
             p3->mUnk_000 = y;
             p3->mUnk_004 = n;
-            strcpy((char *) p3->mUnk_008, d);
+            strcpy(p3->mUnk_008, d);
             r = func_ov000_02190ed4(a, s2, p3, NULL, 0);
             if (r != 0) {
                 return r;

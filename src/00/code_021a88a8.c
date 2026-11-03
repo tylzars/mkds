@@ -86,7 +86,7 @@ s32 func_ov000_021a8960(Unk021a6fa8 *a) {
     return v1;
 }
 
-s32 func_ov000_021a88e4(const u8 *a) {
+s32 func_ov000_021a88e4(const char *a) {
     Unk021a88e4 b;
     u8 *c;
     s32 d;
@@ -103,7 +103,7 @@ s32 func_ov000_021a88e4(const u8 *a) {
     b.mSendBuffer.mStart = c + 0xb68;
     b.mSendBuffer.mSize = 0x5ea;
     func_ov000_021ae304(&b);
-    d = func_ov000_021acef8((const char *) a);
+    d = func_ov000_021acef8(a);
     func_ov000_021ae2f4();
     data_ov000_021b5f94->mUnk_1c(c);
     return d;

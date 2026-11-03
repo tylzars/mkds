@@ -21,7 +21,7 @@ typedef struct Unk021d8dc8_40 {
 
 // 0xe8 bytes.
 typedef struct Unk021d8dc8 {
-    /* 00 */ u8 mUnk_00[0x20];
+    /* 00 */ char mUnk_00[0x20];
     /* 20 */ s32 mUnk_20;
     /* 24 */ s32 mUnk_24;
     /* 28 */ u8 mUnk_28[4][0x20];
@@ -30,7 +30,7 @@ typedef struct Unk021d8dc8 {
 
 // 0x60 bytes.
 typedef struct Unk021d8fb0 {
-    /* 00 */ u8 mUnk_00[0x2c];
+    /* 00 */ char mUnk_00[0x2c];
     /* 2c */ u32 mUnk_2c;
     /* 30 */ s32 mUnk_30;
     /* 34 */ u8 mUnk_34[0x28];

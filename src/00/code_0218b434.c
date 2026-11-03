@@ -39,7 +39,7 @@ Unk0218b668 *func_ov000_0218b668(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, s32 g
     p->mUnk_630 = h;
     p->mUnk_634 = l;
     p->mUnk_624 = 0;
-    func_ov000_0218cfb8(&p->mUnk_04c, (const u8 *) a, (const u8 *) b, (const u8 *) c, d, g, func_ov000_0218b780, p);
+    func_ov000_0218cfb8(&p->mUnk_04c, (const char *) a, (const char *) b, (const char *) c, d, g, func_ov000_0218b780, p);
     func_ov000_0218acf4(&p->mUnk_000, e, f, g, func_ov000_0218b708, p);
     return p;
 }
@@ -50,12 +50,12 @@ void func_ov000_0218b64c(Unk0218b668 *p) {
     func_ov000_021a3668(p);
 }
 
-s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const u8 *f, u32 g, u32 h) {
-    u8 v1[256] = {0};
+s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const char *f, u32 g, u32 h) {
+    char v1[256] = {0};
     s32 n;
     s32 i;
     s32 r;
-    const u8 *s;
+    const char *s;
     n = 0;
     a->mUnk_620 = c;
     a->mUnk_000.mUnk_40 = 0;
@@ -83,7 +83,7 @@ u32 func_ov000_0218b570(u32 p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5, u32 p6) 
     u32 v4 = p5;
     u32 v8 = p6;
     u32 v10 =
-        func_ov000_0218b590((Unk0218b668 *) p0, (s32) p1, p2, (u8 *) p3, (s32) v2, (const u8 *) v4, (u32) 0x80u, v8);
+        func_ov000_0218b590((Unk0218b668 *) p0, (s32) p1, p2, (u8 *) p3, (s32) v2, (const char *) v4, (u32) 0x80u, v8);
     return v10;
 }
 
@@ -151,7 +151,7 @@ u32 func_ov000_0218b44c(Unk0218afac *entry, u32 modulus) {
     return func_ov000_0218afd4(entry->mName, modulus);
 }
 
-s32 func_ov000_0218b440(const u8 *const *first, const u8 *const *second) {
+s32 func_ov000_0218b440(const char *const *first, const char *const *second) {
     return func_02142368(*first, *second);
 }
 

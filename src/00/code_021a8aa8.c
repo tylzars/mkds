@@ -90,7 +90,7 @@ s32 func_ov000_021a9008(s32 descriptor) {
     return func_ov000_021a8604(descriptor);
 }
 
-Unk021a8f84 *func_ov000_021a8f84(const u8 *a) {
+Unk021a8f84 *func_ov000_021a8f84(const char *a) {
     u32 b = func_ov000_021a88e4(a);
     if (b == 0) {
         return NULL;
@@ -273,8 +273,8 @@ s32 func_ov000_021a8c8c(void) {
     return func_ov000_021a87bc();
 }
 
-u8 *func_ov000_021a8c6c(Unk021b5dfc a) {
-    func_ov000_021a8bc0(2, &a, (char *) data_ov000_021b6030, 0x10);
+char *func_ov000_021a8c6c(Unk021b5dfc a) {
+    func_ov000_021a8bc0(2, &a, data_ov000_021b6030, 0x10);
     return data_ov000_021b6030;
 }
 

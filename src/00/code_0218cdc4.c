@@ -40,11 +40,11 @@
 #include "00/code_02193818.h"
 
 s32 func_ov000_0218d430(u32 *c, u32 *d) {
-    u8 *a;
-    u8 *b;
+    char *a;
+    char *b;
     s32 result;
-    a = func_ov000_0218b30c((Unk0218af28 *) *c, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
-    b = func_ov000_0218b30c((Unk0218af28 *) *d, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
+    a = func_ov000_0218b30c((Unk0218af28 *) *c, (const char *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
+    b = func_ov000_0218b30c((Unk0218af28 *) *d, (const char *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
     result = strcmp(a, b);
     if (data_ov000_021b4d24->mUnk_49c == 0) {
         result = -result;
@@ -53,11 +53,11 @@ s32 func_ov000_0218d430(u32 *c, u32 *d) {
 }
 
 s32 func_ov000_0218d3d8(u32 *a, u32 *b) {
-    u8 *x;
-    u8 *y;
+    char *x;
+    char *y;
     s32 r;
-    x = func_ov000_0218b30c((Unk0218af28 *) *a, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
-    y = func_ov000_0218b30c((Unk0218af28 *) *b, (const u8 *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
+    x = func_ov000_0218b30c((Unk0218af28 *) *a, (const char *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
+    y = func_ov000_0218b30c((Unk0218af28 *) *b, (const char *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
     r = func_02142368(x, y);
     if (data_ov000_021b4d24->mUnk_49c == 0) {
         r = -r;
@@ -205,7 +205,7 @@ void func_ov000_0218d180(u32 p0) {
     *(u32 *) ((v1) + (0 + (v8))) = (u32) 0x0u;
 }
 
-void *func_ov000_0218d134(Unk021b4d24 *p, const u8 *v1) {
+void *func_ov000_0218d134(Unk021b4d24 *p, const char *v1) {
     s32 k[2];
     s32 *e;
     k[0] = (s32) v1;
@@ -214,7 +214,7 @@ void *func_ov000_0218d134(Unk021b4d24 *p, const u8 *v1) {
         e[1] = e[1] + 1;
         return (void *) e[0];
     }
-    k[0] = (s32) func_ov000_0218e880((u8 *) v1);
+    k[0] = (s32) func_ov000_0218e880(v1);
     k[1] = 1;
     func_ov000_0218def0(func_ov000_0218b3f4(p), k);
     return (void *) k[0];
@@ -260,7 +260,7 @@ static inline void func_ov000_0218ce14_inline(Unk0218cd94 *d, Unk0218cd94 *s) {
     p[3] = q[3];
 }
 
-void func_ov000_0218cfb8(Unk021b4d24 *p, const u8 *a, const u8 *b, const u8 *c, u32 d, s32 e, UnkFunc *f, void *g) {
+void func_ov000_0218cfb8(Unk021b4d24 *p, const char *a, const char *b, const char *c, u32 d, s32 e, UnkFunc *f, void *g) {
     if (p == NULL) {
         func_0213442c(data_ov000_021b2280, data_ov000_021b2218, NULL, 0x11c);
     }
@@ -268,9 +268,9 @@ void func_ov000_0218cfb8(Unk021b4d24 *p, const u8 *a, const u8 *b, const u8 *c, 
         p->mUnk_000 = 1;
         func_ov000_0218d180((u32) p);
         func_ov000_0218b3f4(p);
-        strcpy((char *) p->mUnk_00c, a);
-        strcpy((char *) p->mUnk_030, b);
-        strcpy((char *) p->mUnk_054, c);
+        strcpy(p->mUnk_00c, a);
+        strcpy(p->mUnk_030, b);
+        strcpy(p->mUnk_054, c);
         p->mUnk_488 = f;
         p->mUnk_48c = NULL;
         if (f == NULL) {
@@ -296,13 +296,13 @@ void func_ov000_0218cfb8(Unk021b4d24 *p, const u8 *a, const u8 *b, const u8 *c, 
 
 void func_ov000_0218cf30(Unk021b4d24 *p) {
     s32 n = p->mUnk_080;
-    const u8 *s;
-    const u8 *t;
-    u8 *q;
+    const char *s;
+    const char *t;
+    char *q;
     if (n > 0) {
         s = data_ov000_021b21ec;
         if ((u32) n > strlen(s)) {
-            q = p->mUnk_07c;
+            q = (char *) p->mUnk_07c;
             t = data_ov000_021b21ec;
             if (strncmp(q, t, strlen(t)) == 0) {
                 func_ov000_0218c45c(p, q + strlen(s));
@@ -330,12 +330,12 @@ u32 func_ov000_0218cef4(const s8 *a, u32 b) {
 
 s32 func_ov000_0218ce14(Unk021b4d24 *p) {
     Unk0218ce14 v1;
-    u8 v2[0x80];
+    char v2[0x80];
     u32 h;
     Unk021a8f84 *e;
     h = func_ov000_0218cef4((s8 *) p->mUnk_00c, 0x14);
     if (data_ov000_021b4d20 != NULL) {
-        strcpy((char *) v2, data_ov000_021b4d20);
+        strcpy(v2, data_ov000_021b4d20);
     } else {
         sprintf(v2, data_ov000_021b2264, p->mUnk_00c, h);
     }
@@ -363,7 +363,7 @@ s32 func_ov000_0218ce14(Unk021b4d24 *p) {
     return 0;
 }
 
-void func_ov000_0218cdd8(u8 **a, const u8 *b, s32 *c) {
+void func_ov000_0218cdd8(u8 **a, const char *b, s32 *c) {
     u32 n;
     if (b == NULL) {
         b = data_ov000_021b2260;

@@ -35,9 +35,9 @@ typedef struct Http {
     /* 018 */ void (*mFree)(const void *, void *, s32);
     /* 01c */ u8 mUnk_01c[8];
     /* 024 */ s32 mResult;
-    /* 028 */ u8 mUnk_028[0x80];
-    /* 0a8 */ u8 *mHost;
-    /* 0ac */ u8 *mPath;
+    /* 028 */ char mUnk_028[0x80];
+    /* 0a8 */ char *mHost;
+    /* 0ac */ char *mPath;
     /* 0b0 */ s32 mUseHttps;
     /* 0b4 */ u8 mUnk_0b4[0x868];
     /* 91c */ void *mLowReceiveBuffer;
@@ -51,12 +51,12 @@ typedef struct Http {
 } Http;
 
 void func_ov000_02186628(const void *a);
-BOOL func_ov000_02186634(Unk021868a4Entry *a, s32 b, const u8 *c, char *d, s32 e);
-s32 func_ov000_02186674(Unk021868a4Entry *a, s32 b, const u8 *c, char *d, s32 e);
-void *func_ov000_021866b8(Unk021868a4Entry *a, s32 b, const u8 *c);
-BOOL func_ov000_021866fc(Unk021868a4Entry *a, s32 b, s32 c, const u8 *d);
+BOOL func_ov000_02186634(Unk021868a4Entry *a, s32 b, const char *c, char *d, s32 e);
+s32 func_ov000_02186674(Unk021868a4Entry *a, s32 b, const char *c, char *d, s32 e);
+void *func_ov000_021866b8(Unk021868a4Entry *a, s32 b, const char *c);
+BOOL func_ov000_021866fc(Unk021868a4Entry *a, s32 b, s32 c, const char *d);
 BOOL func_ov000_021868a4(Unk021868a4 *list, void *first, void *second);
-BOOL func_ov000_021868d0(Http *a, const u8 *b);
+BOOL func_ov000_021868d0(Http *a, const char *b);
 u32 GrowHttpBuffer(Http *a, HttpBuffer *b, int c);
 void FreeHttpBuffer(Http *a, HttpBuffer *b);
 u32 InitHttpBuffer(Http *a, HttpBuffer *b, int c);

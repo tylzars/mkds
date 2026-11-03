@@ -140,8 +140,8 @@ void func_ov003_021d1490(void *a, ...) {
     func_ov003_021d1d0c(data_ov003_021da2b0->mUnk_84, a);
 }
 
-u32 func_ov003_021d1440(const u8 *c, const u8 *d, s32 e) {
-    s32 a = strlen(c);
+u32 func_ov003_021d1440(const u8 *c, const char *d, s32 e) {
+    s32 a = strlen((const char *) c);
     s32 b = strlen(d);
 
     if (a < e || b < e) {

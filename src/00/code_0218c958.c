@@ -73,7 +73,7 @@ void func_ov000_0218ca1c(Unk021b4d24 *p) {
 
 // non-matching: the final two-byte copy puts the stack addresses in other registers and a different order (5
 // instructions, same size)
-s32 func_ov000_0218ca58(Unk021b4d24 *p, const u8 *a, const u8 *b, u32 c, u32 d) {
+s32 func_ov000_0218ca58(Unk021b4d24 *p, const char *a, const char *b, u32 c, u32 d) {
     u8 v1[0x300];
     Unk0218ca58 t;
     s32 v2;

@@ -27,9 +27,9 @@
 #include "00/code_021a3668.h"
 #include "00/unk_021b23b0.h"
 
-u32 func_ov000_0218fbe0(GpConnection *a, s32 b, s32 c, const u8 *d) {
+u32 func_ov000_0218fbe0(GpConnection *a, s32 b, s32 c, const char *d) {
     GpiConnection *o;
-    u8 e[0xdad];
+    char e[0xdad];
     o = a->mGpiConnection;
     func_ov000_02196914(e, d, 0xdad);
     func_ov000_02190b80(a, &o->mOutputBuffer, data_ov000_021b27c4);
@@ -44,7 +44,7 @@ u32 func_ov000_0218fbe0(GpConnection *a, s32 b, s32 c, const u8 *d) {
     return 0;
 }
 
-u32 func_ov000_0218fb3c(GpConnection *a, s32 b, s32 c, const u8 *d) {
+u32 func_ov000_0218fb3c(GpConnection *a, s32 b, s32 c, const char *d) {
     Unk02194934 *e;
     Unk02193f2cNode *n;
     u32 r;

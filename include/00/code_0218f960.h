@@ -17,14 +17,14 @@ typedef struct Unk0218f960_428 {
 // Object behind GpConnection.mUnk_00: func_ov000_0218f960 passes the address of 0x1f4 to func_ov000_02190b80 and
 // func_ov000_02190b58, reads 0x198 and decrements 0x430.
 typedef struct GpiConnection {
-    /* 000 */ u8 mErrorMessage[0x100];
+    /* 000 */ char mErrorMessage[0x100];
     /* 100 */ s32 mUnk_100;
     /* 104 */ s32 mUnk_104;
     /* 108 */ u32 mUnk_108;
     /* 10c */ s32 mFirewall;
-    /* 110 */ u8 mNick[0x1f];
+    /* 110 */ char mNick[0x1f];
     /* 12f */ s8 mUniquenick[0x15];
-    /* 144 */ u8 mEmail[0x33];
+    /* 144 */ char mEmail[0x33];
     /* 177 */ s8 mPassword[0x21];
     /* 198 */ u32 mSesskey;
     /* 19c */ u32 mUserId;
@@ -32,7 +32,7 @@ typedef struct GpiConnection {
     /* 1a4 */ Unk02190ed4Cb mCallbacks[6];
     /* 1d4 */ s32 mConnectSocket;
     /* 1d8 */ s32 mConnectState;
-    /* 1dc */ u8 *mInputBuffer;
+    /* 1dc */ char *mInputBuffer;
     /* 1e0 */ s32 mInputBufferCapacity;
     /* 1e4 */ s32 mInputBufferLength;
     /* 1e8 */ s32 mUnk_1e8;
@@ -44,8 +44,8 @@ typedef struct GpiConnection {
     /* 20c */ s32 mNextOperationId;
     /* 210 */ s32 mSearchCount;
     /* 214 */ s32 mStatus;
-    /* 218 */ u8 mStatusString[0x100];
-    /* 318 */ u8 mLocationString[0x100];
+    /* 218 */ char mStatusString[0x100];
+    /* 318 */ char mLocationString[0x100];
     /* 418 */ u32 mErrorNumber;
     /* 41c */ s32 mFatal;
     /* 420 */ s32 mUnk_420;
@@ -83,5 +83,5 @@ typedef struct Unk0218fa98 {
 u32 func_ov000_0218f960(GpConnection *p, u32 b);
 s32 func_ov000_0218fa98(void *unused, Unk0218fa98 *object, s32 minimum);
 u32 func_ov000_0218faac(GpConnection *a, u32 b);
-u32 func_ov000_0218fb3c(GpConnection *a, s32 b, s32 c, const u8 *d);
-u32 func_ov000_0218fbe0(GpConnection *a, s32 b, s32 c, const u8 *d);
+u32 func_ov000_0218fb3c(GpConnection *a, s32 b, s32 c, const char *d);
+u32 func_ov000_0218fbe0(GpConnection *a, s32 b, s32 c, const char *d);

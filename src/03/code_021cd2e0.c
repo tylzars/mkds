@@ -27,7 +27,7 @@ void func_ov003_021cd2e0(const char *v1, u8 *v2) {
             *p = ' ';
             p++;
         }
-        v2[i] = func_0213bf90(a);
+        v2[i] = func_0213bf90((const char *) a);
     }
 }
 

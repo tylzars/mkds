@@ -6,7 +6,7 @@ typedef struct Unk021b5df4 Unk021b5df4;
 
 typedef struct Unk021a3a18 {
     /* 000 */ u32 mUnk_00;
-    /* 004 */ u8 mUnk_04[0x80];
+    /* 004 */ char mUnk_04[0x80];
     /* 084 */ s8 mUnk_84[0x18];
     /* 09c */ void (*mUnk_9c)(s8 a, u8 *b, u32 c);
     /* 0a0 */ void (*mUnk_a0)(u32 a, u32 b);

@@ -5,9 +5,9 @@
 #include "code_0213a460.h"
 #include "Main/Unknown/unk_0216e000.h"
 
-const u8 *func_02139400(const u8 *a, Unk02139400 *b) {
+const char *func_02139400(const char *a, Unk02139400 *b) {
     Unk02139400 s = {0, 0, 0, 0, 0x7fffffff};
-    const unsigned char *p = a + 1;
+    const char *p = a + 1;
     int c = *p;
     int g;
     int h;
@@ -172,7 +172,7 @@ static inline int func_02138618_inline(int c) {
     return (c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x100);
 }
 
-int func_02138618(Unk02138618Func fn, void *a, const u8 *s, char *v) {
+int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
     int k;
     int s32;
     long long s64;
@@ -184,7 +184,7 @@ int func_02138618(Unk02138618Func fn, void *a, const u8 *s, char *v) {
     unsigned char c;
     char *p;
     int base;
-    unsigned char chb;
+    char chb;
     int n;
     int g;
     int e;
@@ -510,7 +510,7 @@ exit:
 
 int func_021385a0(void *a, int b, int c) {
     Unk0213a460 *p;
-    const u8 *s;
+    const char *s;
     u32 ch;
 
     p = a;
@@ -538,7 +538,7 @@ int func_021385a0(void *a, int b, int c) {
     }
 }
 
-int vsscanf(const u8 *a, const u8 *b, char *c) {
+int vsscanf(const char *a, const char *b, char *c) {
     Unk0213a460 loc;
 
     loc.mUnk_00 = a;
@@ -549,7 +549,7 @@ int vsscanf(const u8 *a, const u8 *b, char *c) {
     return func_02138618(func_021385a0, &loc, b, c);
 }
 
-int sscanf(const u8 *a, const u8 *b, ...) {
+int sscanf(const char *a, const char *b, ...) {
     char *ap;
 
     ap = (char *) (((u32) &b & ~3) + 4);

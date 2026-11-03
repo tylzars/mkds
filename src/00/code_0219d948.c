@@ -15,7 +15,7 @@
 #include "Main/Unknown/code_02152698.h"
 
 u8 func_ov000_0219d9ec(void *a, u8 *b, u8 *c, char *d) {
-    u8 e[4];
+    char e[4];
     Unk0218ec44 f;
     if (func_ov000_0219d094(a, &f) != 0) {
         if (f.mUnk_004 == 6) {

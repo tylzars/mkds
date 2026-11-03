@@ -191,8 +191,8 @@ s32 func_ov000_02193954(GpConnection *param_1, Unk021937c0Node *param_2) {
     return 0;
 }
 
-s32 func_ov000_02193b88(GpConnection *param_1, Unk02193f2cNode *param_2, const u8 *param_3, s32 param_4) {
-    u8 a[0x24];
+s32 func_ov000_02193b88(GpConnection *param_1, Unk02193f2cNode *param_2, const char *param_3, s32 param_4) {
+    char a[0x24];
     s32 b;
 
     if (param_2 == NULL) {
@@ -222,7 +222,7 @@ s32 func_ov000_02193b88(GpConnection *param_1, Unk02193f2cNode *param_2, const u
 }
 
 u32 func_ov000_02193c20(GpConnection *param_1, Unk02193f2cNode *param_2, u32 param_3, Unk02193c20 *param_4) {
-    u8 a[0x44];
+    char a[0x44];
     u32 b = param_4->mUnk_04;
     u32 c = param_4->mUnk_00;
     u32 d = param_4->mUnk_08;
@@ -234,7 +234,7 @@ u32 func_ov000_02193c20(GpConnection *param_1, Unk02193f2cNode *param_2, u32 par
     return func_ov000_02190968(param_1, (Unk02190988 *) param_2, a);
 }
 
-s32 func_ov000_02193c74(GpConnection *param_1, Unk02193f2cNode *param_2, u32 param_3, const u8 *param_4) {
+s32 func_ov000_02193c74(GpConnection *param_1, Unk02193f2cNode *param_2, u32 param_3, const char *param_4) {
     u32 b;
     s32 c;
 

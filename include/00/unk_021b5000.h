@@ -103,9 +103,9 @@ extern void *data_ov000_021b5fd8;
 extern Unk0200eb90 data_ov000_021b5fdc;
 
 extern s32 data_ov000_021b5284;
-extern u8 data_ov000_021b5288[2][0x16];
-extern u8 *data_ov000_021b52b4;
-extern u8 *data_ov000_021b52b8;
+extern char data_ov000_021b5288[2][0x16];
+extern char *data_ov000_021b52b4;
+extern char *data_ov000_021b52b8;
 extern u32 data_ov000_021b52bc;
 extern u32 data_ov000_021b52c0;
 extern void *data_ov000_021b52c4;

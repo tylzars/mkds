@@ -22,7 +22,7 @@
 #include "code_0200edc0.h"
 #include "Main/Unknown/code_02151f88.h"
 
-u32 func_ov000_02185984(Http *a, const u8 *b, const u8 *c, Unk021868a4Entry *d, s32 e, s32 f) {
+u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry *d, s32 e, s32 f) {
     Unk02185984Data g;
     u32 o[4];
     u32 p[3];
@@ -41,7 +41,7 @@ u32 func_ov000_02185984(Http *a, const u8 *b, const u8 *c, Unk021868a4Entry *d, 
     u8 *j;
     s32 k;
     s32 m;
-    u8 *n;
+    char *n;
     func_0200fe58(g.mUnk_02);
     func_0200fddc(&y);
     if (func_0214e038(o) != 0 || func_0214df78(p) != 0) {
@@ -139,7 +139,7 @@ u32 func_ov000_02185984(Http *a, const u8 *b, const u8 *c, Unk021868a4Entry *d, 
 
 s32 func_ov000_02185d54(void) {
     s32 b;
-    const u8 *c;
+    const char *c;
     Unk02185984 *d;
     c = NULL;
     b = func_0213bf90(func_ov000_021866b8(data_ov000_021b4c90->mUnk_1f8, 0x20, data_ov000_021b11a0));
@@ -156,9 +156,9 @@ s32 func_ov000_02185d54(void) {
         data_ov000_021b4c90->mUnk_008 = 0x4e85;
         return 0xd;
     }
-    b = strtol((const u8 *) data_ov000_021b4c90->mUnk_00c, &c, 10);
+    b = strtol(data_ov000_021b4c90->mUnk_00c, &c, 10);
     d = data_ov000_021b4c90;
-    if (c != (const u8 *) d->mUnk_00c + strlen((const u8 *) d->mUnk_00c)) {
+    if (c != d->mUnk_00c + strlen(d->mUnk_00c)) {
         d->mUnk_008 = 0x4e85;
         return 0xb;
     }
@@ -188,7 +188,7 @@ s32 func_ov000_02185ef4(void) {
     const char *b;
     void *c;
     if (func_ov000_021866fc(data_ov000_021b4c90->mUnk_1f8, 0x20, 0,
-                            (const u8 *) data_ov000_021b4c90->mUnk_2f8->mReceiveBuffer.mStart) != 1) {
+                            data_ov000_021b4c90->mUnk_2f8->mReceiveBuffer.mStart) != 1) {
         data_ov000_021b4c90->mUnk_008 = 0x4e84;
         return 0xd;
     }
@@ -324,7 +324,7 @@ void func_ov000_021860ac(void *param_1) {
 }
 
 s32 func_ov000_02186298(s32 a) {
-    if (strcmp(*(const u8 **) data_ov000_021b1040, data_ov000_021b1020) != 0) {
+    if (strcmp(*(const char **) data_ov000_021b1040, data_ov000_021b1020) != 0) {
         *(s32 *) (data_ov000_021b1040 + 0x18) = 1;
     }
     if (func_ov000_021873d4((Unk02186d7c *) data_ov000_021b4c90->mUnk_2f8, (const Unk021873d4 *) data_ov000_021b1040) !=

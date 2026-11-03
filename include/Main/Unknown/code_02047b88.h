@@ -22,5 +22,5 @@ void func_02047cf0(int a);
 void func_02047db8(void);
 void func_02047e0c(void);
 void func_02047e94(void);
-void func_02047f7c(s32 a, const u8 *b, u32 *c, void *d, s32 e, s32 f, s32 g);
+void func_02047f7c(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g);
 void func_02048050(int a, int b);

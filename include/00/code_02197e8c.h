@@ -74,9 +74,9 @@ typedef struct Gt2Connection {
     /* 9c */ void *mUnk_9c;
 } Gt2Connection;
 
-extern const u8 data_ov000_021b3f50[];
-extern const u8 data_ov000_021b3f58[];
-extern const u8 data_ov000_021b3f68[];
+extern const char data_ov000_021b3f50[];
+extern const char data_ov000_021b3f58[];
+extern const char data_ov000_021b3f68[];
 
 BOOL CallUnmatchedDataCallback(Gt2Socket *a, s32 b, s32 c, void *d, s32 e, s32 *f);
 u32 func_ov000_02197f28(Gt2Socket *a, int e, u32 f, u32 g, u32 h, int l, int m, int n);

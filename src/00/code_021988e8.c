@@ -28,7 +28,7 @@ void func_ov000_02198908(Gt2Connection *a) {
 
 void func_ov000_02198914(Gt2Connection *a, u8 *b, int c, int d) {
     if (a->mUnk_0c == 5) {
-        func_ov000_0219a61c((const u8 **) &b, &c);
+        func_ov000_0219a61c((const char **) &b, &c);
         if (func_ov000_0218dc44((u32 *) a->mUnk_98) != 0) {
             func_ov000_02198098(a, 0, (s32) b, (void *) c, d);
             return;
@@ -44,7 +44,7 @@ int func_ov000_02198968(void *a, Gt2Connection **b, u32 c, void *d, int e, u32 f
     u32 k;
     int l;
     int n;
-    if (func_ov000_0219a654((const u8 *) c, &i, &j) == 0 || i == 0 || (k = j) == 0) {
+    if (func_ov000_0219a654((const char *) c, &i, &j) == 0 || i == 0 || (k = j) == 0) {
         return 4;
     }
     if (((((i << 24) & 0xff000000) | (((i << 8) & 0xff0000) | (((i >> 24) & 0xff) | ((i >> 8) & 0xff00)))) &

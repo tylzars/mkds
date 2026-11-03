@@ -96,8 +96,8 @@ s32 func_ov000_021962d4(GpConnection *a, Unk021937c0Node *b) {
     return 0;
 }
 
-void func_ov000_02196434(GpConnection *a, Unk02193f2cNode *b, s32 c, const u8 *d, s32 e, s32 f) {
-    u8 s[0x40];
+void func_ov000_02196434(GpConnection *a, Unk02193f2cNode *b, s32 c, const char *d, s32 e, s32 f) {
+    char s[0x40];
     s32 v[3];
 
     if (func_ov000_021967b4(d, data_ov000_021b3994, s, 0x40) != 0) {
@@ -107,8 +107,8 @@ void func_ov000_02196434(GpConnection *a, Unk02193f2cNode *b, s32 c, const u8 *d
     }
 }
 
-s32 func_ov000_02196480(GpConnection *a, s32 *b, Unk02193f2cNode *c, s32 d, const u8 *e) {
-    u8 f[0x24];
+s32 func_ov000_02196480(GpConnection *a, s32 *b, Unk02193f2cNode *c, s32 d, const char *e) {
+    char f[0x24];
     s32 t;
 
     if (e == NULL) {
@@ -130,7 +130,7 @@ s32 func_ov000_02196480(GpConnection *a, s32 *b, Unk02193f2cNode *c, s32 d, cons
     return 0;
 }
 
-s32 func_ov000_021964e4(GpConnection *a, Unk021937c0Node *b, const u8 *c) {
+s32 func_ov000_021964e4(GpConnection *a, Unk021937c0Node *b, const char *c) {
     Unk02190ed4Cb p;
     u32 *m;
     s32 t;

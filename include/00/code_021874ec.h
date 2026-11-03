@@ -22,7 +22,7 @@ typedef struct Unk021b4cac {
 } Unk021b4cac;
 
 typedef struct Unk021b4cb4 {
-    /* 00 */ u8 *mUnk_00;
+    /* 00 */ char *mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
@@ -45,29 +45,29 @@ typedef struct Unk021b4cd4 {
 typedef struct Unk0218635c {
     /* 000 */ s32 mUnk_000;
     /* 004 */ u8 mUnk_004[0x46];
-    /* 04a */ u8 mUnk_04a[0x12d];
-    /* 177 */ u8 mUnk_177[0x4d];
+    /* 04a */ char mUnk_04a[0x12d];
+    /* 177 */ char mUnk_177[0x4d];
 } Unk0218635c;
 
 extern Unk021b4cb4 data_ov000_021b4cb4;
 extern Unk021b4cd4 data_ov000_021b4cd4;
-extern u8 *data_ov000_021b1384;
-extern u8 data_ov000_021b13ac[];
-extern u8 data_ov000_021b13c4[];
-extern u8 data_ov000_021b13c8[];
-extern u8 data_ov000_021b13d0[];
-extern u8 data_ov000_021b13d8[];
-extern u8 data_ov000_021b13f4[];
-extern u8 data_ov000_021b1400[];
-extern u8 data_ov000_021b1420[];
-extern u8 data_ov000_021b1424[];
-extern u8 data_ov000_021b142c[];
-extern u8 data_ov000_021b1434[];
-extern u8 data_ov000_021b143c[];
-extern u8 data_ov000_021b144c[];
-extern u8 data_ov000_021b1458[];
-extern u8 data_ov000_021b1460[];
-extern u8 data_ov000_021b1468[];
+extern char *data_ov000_021b1384;
+extern char data_ov000_021b13ac[];
+extern char data_ov000_021b13c4[];
+extern char data_ov000_021b13c8[];
+extern char data_ov000_021b13d0[];
+extern char data_ov000_021b13d8[];
+extern char data_ov000_021b13f4[];
+extern char data_ov000_021b1400[];
+extern char data_ov000_021b1420[];
+extern char data_ov000_021b1424[];
+extern char data_ov000_021b142c[];
+extern char data_ov000_021b1434[];
+extern char data_ov000_021b143c[];
+extern char data_ov000_021b144c[];
+extern char data_ov000_021b1458[];
+extern char data_ov000_021b1460[];
+extern char data_ov000_021b1468[];
 
 s32 func_ov000_021863cc(void);
 void func_ov000_02186404(void);

@@ -110,8 +110,8 @@ u32 func_ov000_0218f408(GpConnection *a) {
     Unk021937c0Node *n;
     u32 r;
     s32 m;
-    u8 *p;
-    u8 *q;
+    char *p;
+    char *q;
     s32 v1;
     u32 v2;
     s32 t;

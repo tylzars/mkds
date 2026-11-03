@@ -116,9 +116,9 @@ u64 func_ov000_021a350c(void) {
     return _ll_udiv(func_0200f5ac() << 6, 0x82ea);
 }
 
-s32 func_ov000_021a3530(const u8 *a, u8 *b, const u8 *c, int d) {
-    const u8 *p;
-    const u8 *q;
+s32 func_ov000_021a3530(const char *a, char *b, const char *c, int d) {
+    const char *p;
+    const char *q;
     s32 n;
     enum { K1 = 1 } k;
     if (b == NULL) {

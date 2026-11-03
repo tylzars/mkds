@@ -7,8 +7,8 @@
 #include "code_0213a460.h"
 #include "code_0213ee6c.h"
 
-const u8 *func_0213770c(const u8 *p, char **b, Unk021352e0 *buf) {
-    const u8 *s;
+const char *func_0213770c(const char *p, char **b, Unk021352e0 *buf) {
+    const char *s;
     Unk021352e0 v;
     int c;
     int n;
@@ -212,14 +212,14 @@ const u8 *func_0213770c(const u8 *p, char **b, Unk021352e0 *buf) {
     return s + 1;
 }
 
-u8 *func_02137358(unsigned long v, u8 *end, Unk021352e0 spec) {
+char *func_02137358(unsigned long v, char *end, Unk021352e0 spec) {
     int neg;
     int width;
     u8 alt;
     u8 sign;
     int d;
     int base;
-    u8 *p;
+    char *p;
     int cnt;
     int prec;
     u8 conv;
@@ -306,14 +306,14 @@ u8 *func_02137358(unsigned long v, u8 *end, Unk021352e0 spec) {
     return p;
 }
 
-u8 *func_02136f14(u64 v, u8 *end, Unk021352e0 spec) {
+char *func_02136f14(u64 v, char *end, Unk021352e0 spec) {
     int neg;
     int w;
     int flag;
     u32 wid;
     int alt;
     u64 base;
-    u8 *p;
+    char *p;
     int count;
     int ch;
     int d;
@@ -400,7 +400,7 @@ u8 *func_02136f14(u64 v, u8 *end, Unk021352e0 spec) {
     return p;
 }
 
-u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
+char *func_02136850(double x, char *buf, Unk021352e0 e) {
     int n;
     u8 c;
     u8 f;
@@ -428,45 +428,45 @@ u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
     a.mUnk_02 = 0x20;
     func_02140c28(&a, x, &r);
     if (0.0 == fabs(x)) {
-        p = (char *) buf - 6;
+        p = buf - 6;
         strcpy(p, data_0216eeb0);
-        return (u8 *) p;
+        return p;
     }
     if (r.mUnk_05[0] == 'I') {
         if (r.mUnk_00 != 0) {
-            p = (char *) buf - 5;
+            p = buf - 5;
             if (c == 'A') {
                 strcpy(p, data_0216ee80);
             } else {
                 strcpy(p, data_0216ee88);
             }
         } else {
-            p = (char *) buf - 4;
+            p = buf - 4;
             if (c == 'A') {
                 strcpy(p, data_0216ee90);
             } else {
                 strcpy(p, data_0216ee94);
             }
         }
-        return (u8 *) p;
+        return p;
     }
     if (r.mUnk_05[0] == 'N') {
         if (r.mUnk_00 != 0) {
-            p = (char *) buf - 5;
+            p = buf - 5;
             if (c == 'A') {
                 strcpy(p, data_0216ee98);
             } else {
                 strcpy(p, data_0216eea0);
             }
         } else {
-            p = (char *) buf - 4;
+            p = buf - 4;
             if (c == 'A') {
                 strcpy(p, data_0216eea8);
             } else {
                 strcpy(p, data_0216eeac);
             }
         }
-        return (u8 *) p;
+        return p;
     }
     b.mUnk_00 = 1;
     b.mUnk_01 = 1;
@@ -486,7 +486,7 @@ u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
     k |= ((u8 *) &x)[1] << 17;
     k = ((u32) k >> 21) & 0x7ff;
     j = k - 1023;
-    p = (char *) func_02137358(j, buf, b);
+    p = func_02137358(j, buf, b);
     if (c == 'a') {
         *--p = 'p';
     } else {
@@ -531,13 +531,13 @@ u8 *func_02136850(double x, u8 *buf, Unk021352e0 e) {
     } else if (s == 2) {
         *--p = ' ';
     }
-    return (u8 *) p;
+    return p;
 }
 
 void func_02136638(Unk02136638 *a, int k) {
-    u8 *b;
-    u8 *p;
-    u8 *q;
+    char *b;
+    char *p;
+    char *q;
     int n;
     u8 v;
     int c;
@@ -590,16 +590,16 @@ void func_02136638(Unk02136638 *a, int k) {
     a->mUnk_04 = k;
 }
 
-u8 *func_02135c80(double v, u8 *buf, Unk021352e0 f) {
+char *func_02135c80(double v, char *buf, Unk021352e0 f) {
     Unk02140c28 m;
     Unk02136638 d;
     u8 a;
     int b;
     int g;
     int h;
-    u8 *t;
+    char *t;
     char *p;
-    u8 *q;
+    char *q;
     int x;
     int y;
     int n;
@@ -627,42 +627,42 @@ u8 *func_02135c80(double v, u8 *buf, Unk021352e0 f) {
         case 'I':
             c = a;
             if (v < 0.0) {
-                p = (char *) buf - 5;
+                p = buf - 5;
                 if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x200)) {
                     strcpy(p, data_0216ee80);
                 } else {
                     strcpy(p, data_0216ee88);
                 }
             } else {
-                p = (char *) buf - 4;
+                p = buf - 4;
                 if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x200)) {
                     strcpy(p, data_0216ee90);
                 } else {
                     strcpy(p, data_0216ee94);
                 }
             }
-            return (u8 *) p;
+            return p;
         case 'N':
             c = a;
             if (d.mUnk_00) {
-                p = (char *) buf - 5;
+                p = buf - 5;
                 if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x200)) {
                     strcpy(p, data_0216ee98);
                 } else {
                     strcpy(p, data_0216eea0);
                 }
             } else {
-                p = (char *) buf - 4;
+                p = buf - 4;
                 if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x200)) {
                     strcpy(p, data_0216eea8);
                 } else {
                     strcpy(p, data_0216eeac);
                 }
             }
-            return (u8 *) p;
+            return p;
     }
     d.mUnk_02 += d.mUnk_04 - 1;
-    p = (char *) buf - 1;
+    p = buf - 1;
     *p = 0;
     switch (a) {
         case 'g':
@@ -711,7 +711,7 @@ u8 *func_02135c80(double v, u8 *buf, Unk021352e0 f) {
             p[-1] = y;
             p -= 2;
             *p = a;
-            if (b + ((char *) buf - p) > 0x1fd) {
+            if (b + (buf - p) > 0x1fd) {
                 return 0;
             }
             if (d.mUnk_04 < b + 1) {
@@ -791,25 +791,25 @@ u8 *func_02135c80(double v, u8 *buf, Unk021352e0 f) {
             }
             break;
     }
-    return (u8 *) p;
+    return p;
 }
 
-int func_021352e0(void *(*f)(void *, const u8 *, u32), void *a, const u8 *b, char *c) {
+int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b, char *c) {
     Unk021352e0 e;
-    u8 buf[0x200];
-    u8 g;
-    u8 h;
+    char buf[0x200];
+    char g;
+    char h;
     int k;
     unsigned long long x;
-    const u8 *s;
+    const char *s;
     int m;
     int n;
     int w;
-    u8 *p;
+    char *p;
     unsigned long v;
     double y;
     const u16 *t;
-    u8 *q;
+    char *q;
     void *u;
 
     g = ' ';
@@ -942,13 +942,13 @@ int func_021352e0(void *(*f)(void *, const u8 *, u32), void *a, const u8 *b, cha
                     }
                     p = buf;
                 } else {
-                    p = *(u8 **) ((c += 4) - 4);
+                    p = *(char **) ((c += 4) - 4);
                 }
                 if (p == 0) {
-                    p = (u8 *) "";
+                    p = "";
                 }
                 if (e.mUnk_03 != 0) {
-                    m = *(u8 *) p++;
+                    m = *p++;
                     if (e.mUnk_02 != 0 && m > e.mUnk_0c) {
                         m = e.mUnk_0c;
                     }

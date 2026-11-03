@@ -38,10 +38,10 @@ u32 func_ov000_0218eb44(GpConnection *a, u32 b) {
     return r;
 }
 
-u32 func_ov000_0218e974(GpConnection *a, s32 b, const u8 *c, const u8 *d) {
+u32 func_ov000_0218e974(GpConnection *a, s32 b, const char *c, const char *d) {
     GpiConnection *o;
-    u8 e[0x100];
-    u8 f[0x100];
+    char e[0x100];
+    char f[0x100];
     s8 *g;
     if (a == NULL || (o = a->mGpiConnection) == NULL) {
         return 2;
@@ -99,7 +99,7 @@ u32 func_ov000_0218e974(GpConnection *a, s32 b, const u8 *c, const u8 *d) {
     return 0;
 }
 
-u32 func_ov000_0218e908(GpConnection *a, s32 b, const u8 *c) {
+u32 func_ov000_0218e908(GpConnection *a, s32 b, const char *c) {
     GpiConnection *o;
     if (a == NULL || (o = a->mGpiConnection) == NULL) {
         return 2;

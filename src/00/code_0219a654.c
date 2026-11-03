@@ -24,10 +24,10 @@
 #include "code_0213a460.h"
 #include "00/code_0218e8c4.h"
 
-BOOL func_ov000_0219a654(const u8 *a, u32 *b, u16 *c) {
-    u8 d[0x100];
-    const u8 *e;
-    const u8 *f;
+BOOL func_ov000_0219a654(const char *a, u32 *b, u16 *c) {
+    char d[0x100];
+    const char *e;
+    const char *f;
     s32 g;
     s32 h;
     u32 i;
@@ -98,9 +98,9 @@ BOOL func_ov000_0219a654(const u8 *a, u32 *b, u16 *c) {
 
 u32 func_ov000_0219a760(u32 a, u32 b, u32 c) {
     Unk021b5dfc d;
-    u8 *e;
+    char *e;
 
-    e = (u8 *) c;
+    e = (char *) c;
     if (e == NULL) {
         data_ov000_021b5284 ^= 1;
         e = data_ov000_021b5288[data_ov000_021b5284];
@@ -385,17 +385,17 @@ BOOL func_ov000_0219ad20(void) {
     return TRUE;
 }
 
-u32 func_ov000_0219ad88(u8 *a, const u8 *b) {
-    u8 c[0x80];
+u32 func_ov000_0219ad88(char *a, const char *b) {
+    char c[0x80];
 
     if (a == NULL) {
-        snprintf((char *) c, 0x80, data_ov000_021b404c, data_ov000_021b4d6c, b);
+        snprintf(c, 0x80, data_ov000_021b404c, data_ov000_021b4d6c, b);
         a = c;
     }
     return func_ov000_0219adb4(a);
 }
 
-u32 func_ov000_0219adb4(const u8 *a) {
+u32 func_ov000_0219adb4(const char *a) {
     u32 b;
     Unk021a8f84 *c;
 

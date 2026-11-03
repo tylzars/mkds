@@ -5,7 +5,7 @@
 
 // Compares the byte strings a and b, mapping each byte below 0x80 through data_0215d184 first: -1 or 1 at the first
 // difference, 0 when both end together.
-int func_02142374(const u8 *a, const u8 *b) {
+int func_02142374(const char *a, const char *b) {
     int x;
     u8 c1;
     u8 c2;
@@ -27,7 +27,7 @@ int func_02142374(const u8 *a, const u8 *b) {
     }
 }
 
-int func_02142368(const u8 *a, const u8 *b) {
+int func_02142368(const char *a, const char *b) {
     return func_02142374(a, b);
 }
 
@@ -56,8 +56,8 @@ int func_021422a0(u32 a) {
 // Compares the digits from index n on with 5 followed by 0s: 1 when above, -1 when below; when equal, 1 if the digit
 // before index n is odd, else -1.
 int func_02142224(const Unk02136638 *a, int n) {
-    const u8 *p;
-    const u8 *end;
+    const char *p;
+    const char *end;
     u8 c;
 
     p = a->mUnk_05 + n;
@@ -83,8 +83,8 @@ int func_02142224(const Unk02136638 *a, int n) {
 // Adds 1 to the digit at index n - 1, carrying into the digits before it; a carry out of the first digit sets it to 1
 // and adds 1 to mUnk_02.
 void func_0214214c(Unk02136638 *a, int n) {
-    u8 *base;
-    u8 *p;
+    char *base;
+    char *p;
 
     base = a->mUnk_05;
     p = base + n - 1;
@@ -123,8 +123,8 @@ void func_021420c0(Unk02136638 *a, int n) {
 
 // Writes the decimal digits of v, most significant first, with mUnk_02 = digit count - 1.
 void func_02141f14(Unk02136638 *out, u64 v) {
-    u8 *p;
-    u8 *q;
+    char *p;
+    char *q;
     u8 t;
 
     out->mUnk_00 = 0;
@@ -144,16 +144,16 @@ void func_02141f14(Unk02136638 *out, u64 v) {
 // Multiplies the digits of a and b (mUnk_02 = the sum of theirs), keeps the first 32 and adds 1 to the last kept one
 // (func_0214214c) when the digits after them are above 5 followed by 0s, or equal to it and the last kept digit is odd.
 void func_02141c98(Unk02136638 *out, const Unk02136638 *a, const Unk02136638 *b) {
-    u8 buf[64];
+    char buf[64];
     int k;
     u32 carry;
     int i;
-    u8 *p;
-    u8 *end;
+    char *p;
+    char *end;
     int j;
     int n;
-    const u8 *pa;
-    const u8 *pb;
+    const char *pa;
+    const char *pb;
 
     carry = 0;
     i = a->mUnk_04 + b->mUnk_04 - 1;
@@ -211,9 +211,9 @@ round:
 
 // Reads up to 32 digit characters of s into out with mUnk_02 = n. Then adds 1 to the last digit (func_0214214c) when
 // the next byte is above 5, or is 5 with only '0' bytes after it and the last digit odd.
-void func_02141b5c(Unk02136638 *out, const u8 *s, int n) {
+void func_02141b5c(Unk02136638 *out, const char *s, int n) {
     int i;
-    const u8 *p;
+    const char *p;
 
     out->mUnk_02 = n;
     out->mUnk_00 = 0;
@@ -250,67 +250,67 @@ void func_0214177c(Unk02136638 *out, int n) {
 
     switch (n) {
         case -64:
-            func_02141b5c(out, (const u8 *) "542101086242752217003726400434970855712890625", -20);
+            func_02141b5c(out, "542101086242752217003726400434970855712890625", -20);
             return;
         case -53:
-            func_02141b5c(out, (const u8 *) "11102230246251565404236316680908203125", -16);
+            func_02141b5c(out, "11102230246251565404236316680908203125", -16);
             return;
         case -32:
-            func_02141b5c(out, (const u8 *) "23283064365386962890625", -10);
+            func_02141b5c(out, "23283064365386962890625", -10);
             return;
         case -16:
-            func_02141b5c(out, (const u8 *) "152587890625", -5);
+            func_02141b5c(out, "152587890625", -5);
             return;
         case -8:
-            func_02141b5c(out, (const u8 *) "390625", -3);
+            func_02141b5c(out, "390625", -3);
             return;
         case -7:
-            func_02141b5c(out, (const u8 *) "78125", -3);
+            func_02141b5c(out, "78125", -3);
             return;
         case -6:
-            func_02141b5c(out, (const u8 *) "15625", -2);
+            func_02141b5c(out, "15625", -2);
             return;
         case -5:
-            func_02141b5c(out, (const u8 *) "3125", -2);
+            func_02141b5c(out, "3125", -2);
             return;
         case -4:
-            func_02141b5c(out, (const u8 *) "625", -2);
+            func_02141b5c(out, "625", -2);
             return;
         case -3:
-            func_02141b5c(out, (const u8 *) "125", -1);
+            func_02141b5c(out, "125", -1);
             return;
         case -2:
-            func_02141b5c(out, (const u8 *) "25", -1);
+            func_02141b5c(out, "25", -1);
             return;
         case -1:
-            func_02141b5c(out, (const u8 *) "5", -1);
+            func_02141b5c(out, "5", -1);
             return;
         case 0:
-            func_02141b5c(out, (const u8 *) "1", 0);
+            func_02141b5c(out, "1", 0);
             return;
         case 1:
-            func_02141b5c(out, (const u8 *) "2", 0);
+            func_02141b5c(out, "2", 0);
             return;
         case 2:
-            func_02141b5c(out, (const u8 *) "4", 0);
+            func_02141b5c(out, "4", 0);
             return;
         case 3:
-            func_02141b5c(out, (const u8 *) "8", 0);
+            func_02141b5c(out, "8", 0);
             return;
         case 4:
-            func_02141b5c(out, (const u8 *) "16", 1);
+            func_02141b5c(out, "16", 1);
             return;
         case 5:
-            func_02141b5c(out, (const u8 *) "32", 1);
+            func_02141b5c(out, "32", 1);
             return;
         case 6:
-            func_02141b5c(out, (const u8 *) "64", 1);
+            func_02141b5c(out, "64", 1);
             return;
         case 7:
-            func_02141b5c(out, (const u8 *) "128", 2);
+            func_02141b5c(out, "128", 2);
             return;
         case 8:
-            func_02141b5c(out, (const u8 *) "256", 2);
+            func_02141b5c(out, "256", 2);
             return;
     }
     func_0214177c(&a, (n + (int) ((u32) (n & 0x80000000) >> 31)) >> 1);
@@ -318,9 +318,9 @@ void func_0214177c(Unk02136638 *out, int n) {
     if (n & 1) {
         b = *out;
         if (n > 0) {
-            func_02141b5c(&a, (const u8 *) "2", 0);
+            func_02141b5c(&a, "2", 0);
         } else {
-            func_02141b5c(&a, (const u8 *) "5", -1);
+            func_02141b5c(&a, "5", -1);
         }
         func_02141c98(out, &b, &a);
     }

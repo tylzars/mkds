@@ -213,7 +213,7 @@ s32 func_ov003_021be028(Unk021bdd3c *a, Unk021bdd3c *b, u32 *c) {
     i = b->mUnk_04;
     j = 0;
     for (; j < a->mUnk_00; j++) {
-        u8 n[0x22] = {0};
+        char n[0x22] = {0};
         memcpy(n, h->mUnk_04, 0x20);
         n[h->mUnk_00] = 0;
         k = 0;
@@ -243,7 +243,7 @@ s32 func_ov003_021be028(Unk021bdd3c *a, Unk021bdd3c *b, u32 *c) {
         i = b->mUnk_04;
     }
     if (e == FALSE) {
-        u8 o[0x22] = {0};
+        char o[0x22] = {0};
         f = FALSE;
         g = FALSE;
         h = a->mUnk_04;

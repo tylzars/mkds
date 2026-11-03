@@ -10,7 +10,7 @@ typedef struct Unk02136638 {
     /* 01 */ u8 mUnk_01;
     /* 02 */ s16 mUnk_02;
     /* 04 */ u8 mUnk_04;
-    /* 05 */ u8 mUnk_05[32];
+    /* 05 */ char mUnk_05[32];
 } Unk02136638;
 
 // First argument of func_02140c28 (reads mUnk_02).
@@ -31,7 +31,7 @@ extern const double data_0215d4a4[2];
 // Indexed 0-7 by func_0214049c.
 extern double data_0216ef30[];
 // Passed by func_0214049c to func_02141b5c.
-extern u8 data_0216ef70[];
+extern char data_0216ef70[];
 
 double func_0213ee6c(double a, double b);
 double copysign(double a, double b);

@@ -30,7 +30,7 @@
 #include "00/code_0219caac.h"
 #include "00/code_0219746c.h"
 
-void func_ov000_0219d8c8(Unk021b5664 *a, struct GpConnection *b, u8 *c, Unk02152490 *d, s32 e) {
+void func_ov000_0219d8c8(Unk021b5664 *a, struct GpConnection *b, char *c, Unk02152490 *d, s32 e) {
     Unk021b5664 *q;
     data_ov000_021b5664 = a;
     a->mUnk_00 = 0;
@@ -94,7 +94,7 @@ void func_ov000_0219d81c(void) {
     }
 }
 
-void func_ov000_0219d770(s32 a, const u8 *b, void (*c)(s32, u8, void *), void *d, void (*e)(s32, u8, void *, void *),
+void func_ov000_0219d770(s32 a, const char *b, void (*c)(s32, u8, void *), void *d, void (*e)(s32, u8, void *, void *),
                          void *f, void (*g)(s32, s32, void *), void *h) {
     s32 i;
     s32 j;
@@ -123,7 +123,7 @@ void func_ov000_0219d770(s32 a, const u8 *b, void (*c)(s32, u8, void *), void *d
                 return;
             }
         }
-        func_ov000_02197a9c((const u8 *) func_ov000_021975f4(NULL), b, l);
+        func_ov000_02197a9c((const char *) func_ov000_021975f4(NULL), b, l);
         func_ov000_02197594(0, a, (s32) l, func_ov000_0219cc30, 0);
         func_ov000_0219cb30();
     } else {
@@ -150,7 +150,7 @@ void func_ov000_0219d708(u32 a, u32 *b) {
 
 u32 func_ov000_0219d6c4(u32 a, u32 *b, u32 c) {
     int v1;
-    v1 = strcmp((const u8 *) (b[2]), data_ov000_021b4078);
+    v1 = strcmp((const char *) (b[2]), data_ov000_021b4078);
     if (v1 == 0) {
         func_ov000_0218eff8((GpConnection *) (a), *b, 0, 0, (Unk0218eff8Cb) func_ov000_0219cc94, 0);
         return 1;
@@ -265,7 +265,7 @@ void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
     s32 c;
     s32 d;
     s32 i;
-    u8 e[0x18];
+    char e[0x18];
     Unk0218ec44 f;
     s32 g;
     if (data_ov000_021b5664->mUnk_1e == 0) {

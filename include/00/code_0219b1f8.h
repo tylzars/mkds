@@ -8,7 +8,7 @@
 typedef struct Unk0219b4b4 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u8 pad_04[4];
-    /* 08 */ u8 *mUnk_08;
+    /* 08 */ char *mUnk_08;
 } Unk0219b4b4;
 
 Unk0219b1d4 *func_ov000_0219b1f8(u32 a);

@@ -22,7 +22,7 @@ u32 func_ov000_02190b80(void *p0, void *p1, const void *p2) {
 }
 
 u32 func_ov000_02190b58(void *a, void *b, u32 c) {
-    u8 d[0x14];
+    char d[0x14];
 
     sprintf(d, data_ov000_021b29a0, c);
     return func_ov000_02190b80(a, b, d);
@@ -76,7 +76,7 @@ u32 func_ov000_02190a24(GpConnection *a, Unk02190988 *b, s8 c) {
     return func_ov000_02190c64(a, &b->mUnk_28, c);
 }
 
-u32 func_ov000_02190988(GpConnection *a, Unk02190988 *b, const u8 *c, s32 d) {
+u32 func_ov000_02190988(GpConnection *a, Unk02190988 *b, const char *c, s32 d) {
     s32 e;
     s32 f;
     s32 g;
@@ -110,7 +110,7 @@ u32 func_ov000_02190988(GpConnection *a, Unk02190988 *b, const u8 *c, s32 d) {
     return 0;
 }
 
-u32 func_ov000_02190968(GpConnection *p0, Unk02190988 *p1, const u8 *p2) {
+u32 func_ov000_02190968(GpConnection *p0, Unk02190988 *p1, const char *p2) {
     u32 v6 = strlen(p2);
     return func_ov000_02190988(p0, p1, p2, v6);
 }

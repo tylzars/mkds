@@ -5,11 +5,11 @@
 #include "code_02134b18.h"
 #include "code_02139f70.h"
 
-int mbtowc(u16 *dst, const u8 *src, u32 n) {
+int mbtowc(u16 *dst, const char *src, u32 n) {
     return data_0216eccc.mUnk_08->mUnk_00(dst, src, n);
 }
 
-int func_02134ccc(u16 *dst, const u8 *src, u32 n) {
+int func_02134ccc(u16 *dst, const char *src, u32 n) {
     if (src == 0) {
         return 0;
     }
@@ -25,7 +25,7 @@ int func_02134ccc(u16 *dst, const u8 *src, u32 n) {
     return 1;
 }
 
-int func_02134c94(u8 *dst, u16 c) {
+int func_02134c94(char *dst, u16 c) {
     if (dst == 0) {
         return 0;
     }
@@ -33,11 +33,11 @@ int func_02134c94(u8 *dst, u16 c) {
     return 1;
 }
 
-int wctomb(u8 *dst, u16 c) {
+int wctomb(char *dst, u16 c) {
     return data_0216eccc.mUnk_08->mUnk_04(dst, c);
 }
 
-int mbstowcs(u16 *dst, const u8 *src, u32 n) {
+int mbstowcs(u16 *dst, const char *src, u32 n) {
     u32 i;
     int len;
     int r;
@@ -65,11 +65,11 @@ int mbstowcs(u16 *dst, const u8 *src, u32 n) {
     return i;
 }
 
-int wcstombs(u8 *dst, const u16 *src, u32 n) {
+int wcstombs(char *dst, const u16 *src, u32 n) {
     u32 len;
     u32 i = 0;
-    u8 buf[4];
-    u8 *p;
+    char buf[4];
+    char *p;
 
     if (dst == 0 || src == 0) {
         return 0;
@@ -141,7 +141,7 @@ int fflush(Unk0213c94c *a) {
     return 0;
 }
 
-u32 fwrite(const u8 *a, u32 b, u32 c, Unk0213c94c *d) {
+u32 fwrite(const char *a, u32 b, u32 c, Unk0213c94c *d) {
     int i;
     u8 *p;
     u32 r;
@@ -185,13 +185,13 @@ u32 fwrite(const u8 *a, u32 b, u32 c, Unk0213c94c *d) {
 #include "code_0213c94c.h"
 #include "code_0200e77c.h"
 
-u32 func_02134540(const u8 *a, u32 b, u32 c, Unk0213c94c *d) {
+u32 func_02134540(const char *a, u32 b, u32 c, Unk0213c94c *d) {
     u32 n;
     u32 t;
     u32 v;
     u32 l;
     int m;
-    u8 *q;
+    char *q;
     u8 *s1;
     u32 s2;
 
@@ -309,7 +309,7 @@ int func_0213446c(Unk0213c94c *a, u32 *b) {
     return 0;
 }
 
-void func_0213442c(const u8 *a, const u8 *b, const u8 *c, int d) {
-    printf((const u8 *) "Assertion (%s) failed in \"%s\", function \"%s\", line %d\n", a, b, c, d);
+void func_0213442c(const char *a, const char *b, const char *c, int d) {
+    printf("Assertion (%s) failed in \"%s\", function \"%s\", line %d\n", a, b, c, d);
     abort();
 }

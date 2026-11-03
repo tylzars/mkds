@@ -94,7 +94,7 @@ void func_ov000_0219dee0(s32 a, Unk021a471c *b, void *c) {
     d = a - 100;
     if (data_ov000_021b5698[d][0] != 0) {
         if (data_ov000_021b5699[d * 12] != 0) {
-            func_ov000_021a471c(b, *(const u8 **) &data_ov000_021b56a0[d * 12]);
+            func_ov000_021a471c(b, *(const char **) &data_ov000_021b56a0[d * 12]);
         } else {
             func_ov000_021a4760(b, **(s32 **) &data_ov000_021b56a0[d * 12]);
         }

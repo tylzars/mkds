@@ -69,12 +69,12 @@ s32 func_ov000_021972b4(void) {
         func_ov000_0218e53c(data_ov000_021b3b2c);
         return 5;
     }
-    data_ov000_021b4e4c = func_0213bf90((const u8 *) c);
+    data_ov000_021b4e4c = func_0213bf90((const char *) c);
     return 0;
 }
 
 s32 func_ov000_0219735c(const s8 *a, u32 b) {
-    u8 f[0x21];
+    char f[0x21];
     Unk021b3bdc c = data_ov000_021b3bdc;
     const s8 *d;
     s32 e;
@@ -85,12 +85,12 @@ s32 func_ov000_0219735c(const s8 *a, u32 b) {
         func_ov000_0218e53c(data_ov000_021b3b2c);
         return 5;
     }
-    e = func_ov000_021971c8(d, strlen((const u8 *) d));
-    e = sprintf((u8 *) g, data_ov000_021b3e0c, e, data_ov000_021b4f84);
-    func_ov000_0218e0fc((const u8 *) g, e, f);
+    e = func_ov000_021971c8(d, strlen((const char *) d));
+    e = sprintf((char *) g, data_ov000_021b3e0c, e, data_ov000_021b4f84);
+    func_ov000_0218e0fc((const char *) g, e, f);
     data_ov000_021b3b30 = data_ov000_021b3b98;
     func_ov000_021971ec(c.mUnk_00, 0x2b);
-    e = sprintf((u8 *) g, (const u8 *) c.mUnk_00, data_ov000_021b4e84, f, b);
+    e = sprintf((char *) g, (const char *) c.mUnk_00, data_ov000_021b4e84, f, b);
     if (func_ov000_02197220(g, e) <= 0) {
         func_ov000_0218e53c(data_ov000_021b3b2c);
         return 3;

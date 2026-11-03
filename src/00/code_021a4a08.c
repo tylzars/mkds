@@ -9,10 +9,10 @@
 #include "code_02139f70.h"
 #include "00/code_0218e8c4.h"
 
-s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const u8 *d, const u8 *e, s32 f, s32 g, Unk021a4a08Func88 h,
+s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const char *d, const char *e, s32 f, s32 g, Unk021a4a08Func88 h,
                         Unk021a4a08Func8c i, Unk021a4a08Func8c j, Unk021a4a08Func94 k, Unk021a4a08Func98 l,
                         Unk021a4a08Func9c m, void *n) {
-    u8 p[0x40];
+    char p[0x40];
     s32 r;
     s8 s;
     s32 t;
@@ -68,7 +68,7 @@ s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const u8 *d, const u8 *e,
         if (s == 0) {
             sprintf(p, data_ov000_021b4464, d);
         }
-        t = func_ov000_021a4654(s != 0 ? (u8 *) data_ov000_021b5e10 : p, 0x6cfc, &o->mUnk_0cc, NULL);
+        t = func_ov000_021a4654(s != 0 ? data_ov000_021b5e10 : p, 0x6cfc, &o->mUnk_0cc, NULL);
     } else {
         t = 1;
     }

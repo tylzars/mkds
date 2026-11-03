@@ -29,28 +29,28 @@ int func_ov000_021960a4(GpConnection *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, int 
         if (b == NULL) {
             *(u8 *) (v2[0] + 0x28) = 0;
         } else {
-            func_ov000_02196914((u8 *) (v2[0] + 0x28), b, 0x1f);
+            func_ov000_02196914((char *) (v2[0] + 0x28), (const char *) b, 0x1f);
         }
         if (c == NULL) {
             *(u8 *) (v2[0] + 0x47) = 0;
         } else {
-            func_ov000_02196914((u8 *) (v2[0] + 0x47), c, 0x15);
+            func_ov000_02196914((char *) (v2[0] + 0x47), (const char *) c, 0x15);
         }
         if (d == NULL) {
             *(u8 *) (v2[0] + 0x5c) = 0;
         } else {
-            func_ov000_02196914((u8 *) (v2[0] + 0x5c), d, 0x33);
+            func_ov000_02196914((char *) (v2[0] + 0x5c), (const char *) d, 0x33);
         }
         func_ov000_0218e850((s8 *) ((s8 *) (u32) (v2[0] + 0x5c)));
         if (e == NULL) {
             *(u8 *) (v2[0] + 0x8f) = 0;
         } else {
-            func_ov000_02196914((u8 *) (v2[0] + 0x8f), e, 0x1f);
+            func_ov000_02196914((char *) (v2[0] + 0x8f), (const char *) e, 0x1f);
         }
         if (f == NULL) {
             *(u8 *) (v2[0] + 0xae) = 0;
         } else {
-            func_ov000_02196914((u8 *) (v2[0] + 0xae), f, 0x1f);
+            func_ov000_02196914((char *) (v2[0] + 0xae), (const char *) f, 0x1f);
         }
         *(s32 *) (v2[0] + 0x130) = g;
         if (h < 0) {

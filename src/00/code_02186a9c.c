@@ -9,7 +9,7 @@
 
 #pragma opt_lifetimes off
 
-BOOL func_ov000_02186a9c(Http *a, const u8 *b) {
+BOOL func_ov000_02186a9c(Http *a, const char *b) {
     s32 d;
     HttpBuffer *c;
     s32 e;
@@ -31,7 +31,7 @@ BOOL func_ov000_02186a9c(Http *a, const u8 *b) {
     return FALSE;
 }
 
-BOOL func_ov000_02186b0c(Http *a, const u8 *b, const void *c, s32 d) {
+BOOL func_ov000_02186b0c(Http *a, const char *b, const void *c, s32 d) {
     HttpBuffer *e = &a->mSendBuffer;
     char *f;
     s32 g;
@@ -45,7 +45,7 @@ BOOL func_ov000_02186b0c(Http *a, const u8 *b, const void *c, s32 d) {
     }
     a->mPairCount = a->mPairCount + 1;
     g = func_ov000_021882f8(c, d, NULL, 0);
-    h = strlen((const u8 *) f);
+    h = strlen(f);
     i = g + (h - 2 + strlen(b));
     j = e->mEnd - e->mCursor;
     if (i > j) {
@@ -55,7 +55,7 @@ BOOL func_ov000_02186b0c(Http *a, const u8 *b, const void *c, s32 d) {
         j = e->mEnd - e->mCursor;
     }
     e->mCursor = e->mCursor + func_0200d9e0(e->mCursor, j, f, b);
-    if (func_ov000_021882f8(c, d, (s8 *) e->mCursor, e->mEnd - e->mCursor - 1) < 0) {
+    if (func_ov000_021882f8(c, d, e->mCursor, e->mEnd - e->mCursor - 1) < 0) {
         return TRUE;
     }
     e->mCursor = e->mCursor + g;
@@ -63,7 +63,7 @@ BOOL func_ov000_02186b0c(Http *a, const u8 *b, const void *c, s32 d) {
     return FALSE;
 }
 
-BOOL func_ov000_02186bd4(Http *a, const u8 *b, const u8 *c) {
+BOOL func_ov000_02186bd4(Http *a, const char *b, const char *c) {
     s32 e;
     HttpBuffer *d;
     s32 f;
@@ -73,7 +73,7 @@ BOOL func_ov000_02186bd4(Http *a, const u8 *b, const u8 *c) {
     s32 i;
     d = &a->mSendBuffer;
     e = strlen(c);
-    f = strlen((const u8 *) data_ov000_021b12a0);
+    f = strlen(data_ov000_021b12a0);
     e = e + (f - 4 + strlen(b));
     i = d->mEnd - d->mCursor;
     if (e + 1 > i) {
@@ -81,10 +81,10 @@ BOOL func_ov000_02186bd4(Http *a, const u8 *b, const u8 *c) {
             return TRUE;
         }
     }
-    p = (s8 *) strstr((const u8 *) d->mStart, data_ov000_021b1230);
+    p = (s8 *) strstr(d->mStart, data_ov000_021b1230);
     g = (char *) p + 2;
     h = p[2];
-    memmove(g + e, g, strlen((const u8 *) g) + 1);
+    memmove(g + e, g, strlen(g) + 1);
     i = func_0200d9e0(g, e + 1, data_ov000_021b12a0, b, c);
     g[i] = h;
     d->mCursor = d->mCursor + e;
@@ -103,7 +103,7 @@ BOOL func_ov000_02186c74(Http *a) {
         c = data_ov000_021b1300;
     }
     d = strlen(a->mHost);
-    e = strlen((const u8 *) c);
+    e = strlen(c);
     f = d + (e - 4 + strlen(a->mPath));
     if (InitHttpBuffer(a, &a->mSendBuffer, f + 0x400) != 1) {
         return TRUE;

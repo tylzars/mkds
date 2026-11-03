@@ -46,7 +46,7 @@ void func_ov000_0218ab90(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
                     if (b < 0) {
                         break;
                     }
-                    func_ov000_0218b380(e, data_ov000_021b45bc[p->mUnk_2c[a]], (u8 *) v1);
+                    func_ov000_0218b380(e, data_ov000_021b45bc[p->mUnk_2c[a]], (const char *) v1);
                     v1 += b;
                     n -= b;
                     a++;
@@ -66,7 +66,7 @@ void func_ov000_0218ab90(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
 
 void func_ov000_0218ab18(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
     BOOL a;
-    if (strstr((u8 *) v1, data_ov000_021b2180) != NULL) {
+    if (strstr((const char *) v1, data_ov000_021b2180) != NULL) {
         a = TRUE;
     } else {
         a = FALSE;

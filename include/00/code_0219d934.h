@@ -19,7 +19,7 @@ typedef struct Unk021b5664 {
     /* 1f */ u8 mUnk_1f;
     /* 20 */ u32 mUnk_20;
     /* 24 */ s32 mUnk_24;
-    /* 28 */ u8 *mUnk_28;
+    /* 28 */ char *mUnk_28;
     /* 2c */ void (*mUnk_2c)(s32, u8, void *);
     /* 30 */ void *mUnk_30;
     /* 34 */ void (*mUnk_34)(s32, u8, void *, void *);

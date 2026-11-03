@@ -46,7 +46,7 @@ Gt2Connection *FindConnection(Gt2Socket *a, u32 b, u32 c) {
     return NULL;
 }
 
-u32 CreateSocket(Gt2Socket **a, const u8 *b, u32 c, u32 d, u32 e) {
+u32 CreateSocket(Gt2Socket **a, const char *b, u32 c, u32 d, u32 e) {
     Gt2Socket *f;
     u16 i;
     Unk0219a430Addr g;

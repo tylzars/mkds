@@ -26,7 +26,7 @@ u32 func_ov000_021ab548(Unk021a998c_0c *a, const s8 *b) {
         v4 = (u32 *) a->mUnk_7e8;
         v3 = v4;
         do {
-            v5 = strcmp((const u8 *) (*(u32 *) *v3), (const u8 *) b);
+            v5 = strcmp((const char *) (*(u32 *) *v3), (const char *) b);
             if (v5 == 0) {
                 return v4[v2];
             }

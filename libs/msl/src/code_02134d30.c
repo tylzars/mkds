@@ -78,7 +78,8 @@ void *memset(void *p, int c, size_t n) {
     return p;
 }
 
-void *memchr(const u8 *p, int c, u32 n) {
+void *memchr(const void *x, int c, u32 n) {
+    const u8 *p = x;
     u8 ch = c;
 
     for (; n != 0; n--) {
@@ -101,7 +102,10 @@ void *func_02134d80(const void *a, int v, u32 n) {
     return 0;
 }
 
-int memcmp(const u8 *a, const u8 *b, u32 n) {
+int memcmp(const void *x, const void *y, u32 n) {
+    const u8 *a = x;
+    const u8 *b = y;
+
     for (; n != 0; n--) {
         if (*a++ != *b++) {
             return a[-1] < b[-1] ? -1 : 1;

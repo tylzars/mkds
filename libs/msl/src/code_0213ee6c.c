@@ -97,14 +97,14 @@ void func_021410bc(Unk02136638 *a, const Unk02136638 *b, const Unk02136638 *c) {
     int n;
     int m;
     int d;
-    u8 *p;
-    u8 *e;
-    const u8 *cb;
-    const u8 *s;
-    const u8 *t;
+    char *p;
+    char *e;
+    const char *cb;
+    const char *s;
+    const char *t;
     int k;
-    u8 *q;
-    const u8 *r;
+    char *q;
+    const char *r;
     int f;
 
     *a = *b;
@@ -192,7 +192,7 @@ done:
         t++;
     }
     if (t > p) {
-        u8 *x;
+        char *x;
         u8 cnt;
 
         cnt = t - p;
@@ -333,8 +333,8 @@ void func_02140c28(Unk02140c28 *a, double v, Unk02136638 *b) {
 }
 
 double func_0214049c(const Unk02136638 *d) {
-    u8 *p;
-    u8 *end;
+    char *p;
+    char *end;
     int m;
     u32 v;
     int i;

@@ -59,7 +59,7 @@ typedef struct Unk0219aeb0 {
 // Declared here until the code that defines them is decompiled.
 BOOL func_ov000_0218e57c(u32 *a);
 
-BOOL func_ov000_0219a654(const u8 *a, u32 *b, u16 *c);
+BOOL func_ov000_0219a654(const char *a, u32 *b, u16 *c);
 u32 func_ov000_0219a760(u32 a, u32 b, u32 c);
 void func_ov000_0219a7e4(u8 *a, s32 b, void *c);
 void func_ov000_0219a8bc(Unk0219b1d4 *a, Unk0219aa64 *b, Unk021a4654 *c);
@@ -72,8 +72,8 @@ void func_ov000_0219ac50(u32 a);
 s32 func_ov000_0219ac7c(u32 a, u32 b, u32 c, void (*d)(s32 a, void *b), void (*e)(s32 a, s32 b, void *c, void *d),
                         void *f);
 BOOL func_ov000_0219ad20(void);
-u32 func_ov000_0219ad88(u8 *a, const u8 *b);
-u32 func_ov000_0219adb4(const u8 *a);
+u32 func_ov000_0219ad88(char *a, const char *b);
+u32 func_ov000_0219adb4(const char *a);
 void func_ov000_0219ade4(Unk0219b1d4 *a);
 void func_ov000_0219aeb0(Unk0219b1d4 *a);
 u16 func_ov000_0219b038(u32 a);

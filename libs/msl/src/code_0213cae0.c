@@ -398,9 +398,9 @@ u16 *func_0213deec(u64 v, u16 *end, Unk0213d398 s) {
 }
 
 void func_0213dcd4(Unk02136638 *a, int k) {
-    u8 *b;
-    u8 *p;
-    u8 *q;
+    char *b;
+    char *p;
+    char *q;
     int n;
     u8 v;
     int c;
@@ -456,13 +456,13 @@ void func_0213dcd4(Unk02136638 *a, int k) {
 u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
     Unk02140c28 g;
     Unk02136638 h;
-    u8 buf[0x200];
+    char buf[0x200];
     int k;
     u16 t;
     u8 x;
     u8 y;
-    u8 *p;
-    u8 *q;
+    char *p;
+    char *q;
     u16 *r;
     int e;
     int m;
@@ -642,7 +642,7 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
 int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, char *d) {
     u16 e = ' ';
     u16 f;
-    u8 g;
+    char g;
     Unk0213d398 s;
     u16 buf[512];
     int t;
@@ -653,10 +653,10 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
     u16 *p;
     int n;
     double x;
-    const u8 *bp;
+    const char *bp;
     int m;
     const u16 *r;
-    const u8 *bq;
+    const char *bq;
     int k;
 
     t = 0;
@@ -777,9 +777,9 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
                     }
                 } else {
                     d += 4;
-                    bp = *(const u8 **) (d - 4);
+                    bp = *(const char **) (d - 4);
                     if (bp == 0) {
-                        bp = (const u8 *) "";
+                        bp = "";
                     }
                     if (s.mUnk_03 != 0) {
                     // reads p (the u16 pointer of the other branch), not bp

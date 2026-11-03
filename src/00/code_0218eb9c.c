@@ -87,9 +87,9 @@ u32 func_ov000_0218efa8(GpConnection *a, s32 b, const s8 *c) {
     return func_ov000_021923b4(a, b, c);
 }
 
-u32 func_ov000_0218ee70(GpConnection *a, u32 b, const u8 *c) {
+u32 func_ov000_0218ee70(GpConnection *a, u32 b, const char *c) {
     GpiConnection *o;
-    u8 e[0x401];
+    char e[0x401];
     s8 *g;
     if (a == NULL || (o = a->mGpiConnection) == NULL) {
         return 2;

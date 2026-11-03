@@ -15,8 +15,8 @@ typedef struct Unk02139400 {
 } Unk02139400;
 
 u32 rand(void);
-int sscanf(const u8 *a, const u8 *b, ...);
-int vsscanf(const u8 *a, const u8 *b, char *c);
+int sscanf(const char *a, const char *b, ...);
+int vsscanf(const char *a, const char *b, char *c);
 int func_021385a0(void *a, int b, int c);
-int func_02138618(Unk02138618Func f, void *a, const u8 *s, char *b);
-const u8 *func_02139400(const u8 *a, Unk02139400 *b);
+int func_02138618(Unk02138618Func f, void *a, const char *s, char *b);
+const char *func_02139400(const char *a, Unk02139400 *b);

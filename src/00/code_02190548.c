@@ -46,7 +46,7 @@ u32 func_ov000_021905d4(GpConnection *a, Unk021906e4 *b) {
 }
 
 u32 func_ov000_02190618(GpConnection *a, Unk021906e4 *b, s32 *c, s32 *d, s32 *e) {
-    u8 f[0x10];
+    char f[0x10];
     u8 *p;
     s32 n;
     s32 m;
@@ -54,17 +54,17 @@ u32 func_ov000_02190618(GpConnection *a, Unk021906e4 *b, s32 *c, s32 *d, s32 *e)
     if (b->mUnk_08 < 5) {
         return 0;
     }
-    p = (u8 *) strchr(b->mUnk_00, 10);
+    p = (u8 *) strchr((const char *) b->mUnk_00, 10);
     if (p != NULL) {
-        if (strncmp(p - 5, data_ov000_021b287c, 5) != 0) {
+        if (strncmp((const char *) (p - 5), data_ov000_021b287c, 5) != 0) {
             return 3;
         }
         *p = 0;
-        if (func_ov000_021967b4(b->mUnk_00, data_ov000_021b2884, f, 0x10) == 0) {
+        if (func_ov000_021967b4((const char *) b->mUnk_00, data_ov000_021b2884, f, 0x10) == 0) {
             return 3;
         }
         *d = func_0213bf90(f);
-        if (func_ov000_021967b4(b->mUnk_00, data_ov000_021b2888, f, 0x10) == 0) {
+        if (func_ov000_021967b4((const char *) b->mUnk_00, data_ov000_021b2888, f, 0x10) == 0) {
             return 3;
         }
         n = func_0213bf90(f);

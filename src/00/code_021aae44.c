@@ -124,8 +124,8 @@ BOOL func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
     u8 *v1;
     s32 i;
     u8 *q;
-    const u8 *s;
-    const u8 **v2;
+    const char *s;
+    const char **v2;
     u32 v;
     p = *b;
     t = *p++;

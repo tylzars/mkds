@@ -17,21 +17,21 @@ typedef struct Unk021352e0 {
 } Unk021352e0;
 
 // Strings passed to strcpy by func_02135c80 and func_02136850.
-extern u8 data_0216ee80[];
-extern u8 data_0216ee88[];
-extern u8 data_0216ee90[];
-extern u8 data_0216ee94[];
-extern u8 data_0216ee98[];
-extern u8 data_0216eea0[];
-extern u8 data_0216eea8[];
-extern u8 data_0216eeac[];
+extern char data_0216ee80[];
+extern char data_0216ee88[];
+extern char data_0216ee90[];
+extern char data_0216ee94[];
+extern char data_0216ee98[];
+extern char data_0216eea0[];
+extern char data_0216eea8[];
+extern char data_0216eeac[];
 // String passed to strcpy by func_02136850.
-extern u8 data_0216eeb0[];
+extern char data_0216eeb0[];
 
-int func_021352e0(void *(*f)(void *, const u8 *, u32), void *a, const u8 *b, char *c);
-u8 *func_02135c80(double v, u8 *end, Unk021352e0 spec);
+int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b, char *c);
+char *func_02135c80(double v, char *end, Unk021352e0 spec);
 void func_02136638(Unk02136638 *a, int k);
-u8 *func_02136850(double v, u8 *end, Unk021352e0 spec);
-u8 *func_02136f14(u64 v, u8 *end, Unk021352e0 spec);
-u8 *func_02137358(unsigned long v, u8 *end, Unk021352e0 spec);
-const u8 *func_0213770c(const u8 *p, char **b, Unk021352e0 *buf);
+char *func_02136850(double v, char *end, Unk021352e0 spec);
+char *func_02136f14(u64 v, char *end, Unk021352e0 spec);
+char *func_02137358(unsigned long v, char *end, Unk021352e0 spec);
+const char *func_0213770c(const char *p, char **b, Unk021352e0 *buf);

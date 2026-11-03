@@ -119,17 +119,17 @@ void func_ov000_0219338c(Unk02192e04 *a, Unk0219338c *b) {
     b->mUnk_200 = a->mUnk_cc[8];
 }
 
-s32 func_ov000_02192e04(GpConnection *r, Unk021937c0Node *s, const u8 *t) {
+s32 func_ov000_02192e04(GpConnection *r, Unk021937c0Node *s, const char *t) {
     GpiConnection *a;
     Unk02194934 *b;
     Unk02190ed4Cb c;
-    u8 d[0x40];
-    u8 e[0x1f];
-    u8 f[0x15];
-    u8 g[0x33];
-    u8 h[0x1f];
-    u8 i[0x1f];
-    u8 j[0x33];
+    char d[0x40];
+    char e[0x1f];
+    char f[0x15];
+    char g[0x33];
+    char h[0x1f];
+    char i[0x1f];
+    char j[0x33];
     Unk0219338c *l;
     Unk02193f2cNode *q;
     s32 n;
@@ -157,7 +157,7 @@ s32 func_ov000_02192e04(GpConnection *r, Unk021937c0Node *s, const u8 *t) {
     func_ov000_02194934(r, n, &b);
     {
         Unk02192e04 k = {0};
-        u8 m[0x4c];
+        char m[0x4c];
         k.mUnk_00[0] = e;
         k.mUnk_00[1] = f;
         k.mUnk_00[2] = g;

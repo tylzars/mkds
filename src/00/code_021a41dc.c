@@ -6,18 +6,18 @@
 #include "code_021384dc.h"
 #include "code_02139f70.h"
 
-void func_ov000_021a4418(Unk021a4a08 *a, Unk021a471c *b, const u8 *c, s32 d) {
+void func_ov000_021a4418(Unk021a4a08 *a, Unk021a471c *b, const char *c, s32 d) {
     u8 e[0x44];
 
     if (d >= 1 && d <= 0x41 && ((s8 *) c)[d - 1] == 0) {
         strcpy((char *) e, c);
-        func_ov000_021a44a0(a->mUnk_044, strlen(a->mUnk_044), e, d - 1);
+        func_ov000_021a44a0(a->mUnk_044, strlen((const char *) a->mUnk_044), e, d - 1);
         func_ov000_021a4578(e, d - 1, &b->mUnk_000[b->mUnk_800]);
-        b->mUnk_800 += strlen(&b->mUnk_000[b->mUnk_800]) + 1;
+        b->mUnk_800 += strlen((const char *) &b->mUnk_000[b->mUnk_800]) + 1;
     }
 }
 
-void func_ov000_021a438c(Unk021a4a08 *a, const u8 *b) {
+void func_ov000_021a438c(Unk021a4a08 *a, const char *b) {
     u32 c;
     u32 d;
     u16 e;
@@ -45,7 +45,7 @@ void func_ov000_021a41dc(Unk021a4a08 *a, Unk021a471c *b, s32 c, s32 d, const u8 
     s32 m;
     s32 n;
     const u8 *o;
-    const u8 *p;
+    const char *p;
     u8 *q;
     u8 *r;
 

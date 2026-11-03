@@ -16,7 +16,7 @@ s8 *func_ov000_02197b34(s8 *a, const s8 *b) {
     s32 f;
     s32 g;
     s32 i;
-    c = strlen((const u8 *) data_ov000_021b3e6c);
+    c = strlen((const char *) data_ov000_021b3e6c);
     d = func_ov000_02197ca0(b);
     e = 0;
     f = 0;
@@ -157,7 +157,7 @@ void RemoveBufferBytes(Gt2Buffer *a, int b, int c) {
 void AppendBufferBytes(Gt2Buffer *a, const u8 *b, int c) {
     if (b != NULL && c != 0) {
         if (c == -1) {
-            c = strlen(b);
+            c = strlen((const char *) b);
         }
         if (a->mLength + c > a->mSize) {
             func_0213442c(data_ov000_021b3eec, data_ov000_021b3ebc, NULL, 0x40);

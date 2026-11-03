@@ -179,12 +179,12 @@ void func_02047e94(void) {
     ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
 }
 
-void func_02047f7c(s32 a, const u8 *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
+void func_02047f7c(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
     Unk021759c8_8c8 *p;
     s32 h;
 
     p = &data_021759c8->mUnk_8c8;
-    strncpy(p->mUnk_00, b, 0x80);
+    strncpy((char *) p->mUnk_00, b, 0x80);
     p->mUnk_8c = a;
     p->mUnk_80 = c;
     p->mUnk_84 = d;
@@ -218,7 +218,7 @@ void func_02047f7c(s32 a, const u8 *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
 // the original (ours: multiply first). The two (s32) a casts keep those reads from sharing the first reads' a * 0x18
 // (as in the original); f is declared before e for the stack slots
 void func_02048050(int a, int b) {
-    u8 c[0x80] = {0};
+    char c[0x80] = {0};
     u32 *d;
     s32 f;
     s32 e;
@@ -318,7 +318,7 @@ void func_02048050(int a, int b) {
         case 14:
         case 16:
         case 18:
-            strncpy(c, (const u8 *) data_usa_021543e0[(s32) a].mUnk_00, 0x80);
+            strncpy(c, data_usa_021543e0[(s32) a].mUnk_00, 0x80);
             break;
     }
     if (c[0] != 0) {

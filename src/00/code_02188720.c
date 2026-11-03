@@ -208,7 +208,7 @@ void func_ov000_02188ad4(u8 a, Unk02188408Entry0xc0 *p, Unk02188408 *s) {
 s32 func_ov000_02188b20(u32 a, Unk02188408Entry0xc0 *p, Unk02188408 *s) {
     s32 i;
     s32 r;
-    u8 *e;
+    char *e;
     s32 n;
 
     i = 0;

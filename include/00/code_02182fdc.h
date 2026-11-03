@@ -220,7 +220,7 @@ typedef struct Unk0217d384_18e0 {
 // 0x18-byte elements of the table at member 0x18ec of Unk0217d384.
 typedef struct Unk0217d384_18ec {
     /* 00 */ s32 mValue;
-    /* 04 */ u8 mName[0x10];
+    /* 04 */ char mName[0x10];
     /* 14 */ u8 mId;
     /* 15 */ u8 pad_15[3];
 } Unk0217d384_18ec;

@@ -178,9 +178,9 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
     s32 i;
     BOOL c;
     s32 e;
-    u8 g[8];
+    char g[8];
     s32 q;
-    u8 x[12];
+    char x[12];
     Unk0218ec44 h;
     Unk021b566c *p;
     s32 n;

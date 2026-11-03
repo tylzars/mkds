@@ -14,7 +14,7 @@ typedef struct Unk021bdcd8 {
 // Table of 0x30-byte records, mUnk_00 counts them.
 typedef struct Unk021bdd3c_Entry {
     /* 00 */ u32 mUnk_00;
-    /* 04 */ u8 mUnk_04[0x20];
+    /* 04 */ char mUnk_04[0x20];
     /* 24 */ u8 mUnk_24[4];
     /* 28 */ Unk021d8c54 mUnk_28;
     /* 2e */ u16 mUnk_2e;

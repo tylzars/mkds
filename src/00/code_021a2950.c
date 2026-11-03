@@ -30,7 +30,7 @@ u32 func_ov000_021a2c64(void) {
     return 1;
 }
 
-u32 func_ov000_021a2b9c(u32 a, u8 *b, void *c) {
+u32 func_ov000_021a2b9c(u32 a, char *b, void *c) {
     u32 i;
     if (b == NULL || c == NULL) {
         return 0;
@@ -63,7 +63,7 @@ u32 func_ov000_021a2b9c(u32 a, u8 *b, void *c) {
     return a;
 }
 
-u32 func_ov000_021a2ad0(u32 a, u8 *b, void *c) {
+u32 func_ov000_021a2ad0(u32 a, char *b, void *c) {
     u32 i;
     if (b == NULL || c == NULL) {
         return 0;

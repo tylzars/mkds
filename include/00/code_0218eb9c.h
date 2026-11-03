@@ -6,8 +6,8 @@
 typedef struct Unk0218ec44 {
     /* 000 */ u32 mUnk_000;
     /* 004 */ s32 mUnk_004;
-    /* 008 */ u8 mUnk_008[0x100];
-    /* 108 */ u8 mUnk_108[0x100];
+    /* 008 */ char mUnk_008[0x100];
+    /* 108 */ char mUnk_108[0x100];
     /* 208 */ u32 mUnk_208;
     /* 20c */ s32 mUnk_20c;
 } Unk0218ec44;
@@ -50,7 +50,7 @@ u32 func_ov000_0218ec44(GpConnection *a, s32 b, Unk0218ec44 *c);
 s32 func_ov000_0218ed44(GpConnection *object, s32 *output);
 u32 func_ov000_0218ed74(GpConnection *b, int c);
 u32 func_ov000_0218ee1c(GpConnection *a, u32 b);
-u32 func_ov000_0218ee70(GpConnection *a, u32 b, const u8 *c);
+u32 func_ov000_0218ee70(GpConnection *a, u32 b, const char *c);
 u32 func_ov000_0218efa8(GpConnection *a, s32 b, const s8 *c);
 u32 func_ov000_0218eff8(GpConnection *a, u32 b, s32 c, u32 d, Unk0218eff8Cb e, u32 f);
 u32 func_ov000_0218f0a8(GpConnection *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, s32 g, u32 h, Unk0218f0a8Cb i, u32 j);

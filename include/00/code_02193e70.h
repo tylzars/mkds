@@ -29,21 +29,21 @@ typedef struct Unk02194370Entry {
 #include "00/code_021a3000.h"
 #include "00/code_021906e4.h"
 
-extern u8 data_ov000_021b333c[];
+extern char data_ov000_021b333c[];
 extern u8 data_ov000_021b33a0[];
-extern u8 data_ov000_021b3440[];
+extern char data_ov000_021b3440[];
 extern s8 data_ov000_021b3490[];
 extern u8 data_ov000_021b3494[];
-extern u8 data_ov000_021b34a4[];
-extern u8 data_ov000_021b34a8[];
-extern u8 data_ov000_021b34c8[];
-extern u8 data_ov000_021b34d0[];
-extern u8 data_ov000_021b34d8[];
-extern u8 data_ov000_021b34e0[];
-extern u8 data_ov000_021b34e8[];
-extern u8 data_ov000_021b34f0[];
-extern u8 data_ov000_021b34f8[];
-extern u8 data_ov000_021b3500[];
+extern char data_ov000_021b34a4[];
+extern char data_ov000_021b34a8[];
+extern char data_ov000_021b34c8[];
+extern char data_ov000_021b34d0[];
+extern char data_ov000_021b34d8[];
+extern char data_ov000_021b34e0[];
+extern char data_ov000_021b34e8[];
+extern char data_ov000_021b34f0[];
+extern char data_ov000_021b34f8[];
+extern char data_ov000_021b3500[];
 extern u8 data_ov000_021b3508[];
 extern u8 data_ov000_021b352c[];
 

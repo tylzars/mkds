@@ -5,11 +5,9 @@
 #include "code_02139f70.h"
 #include "code_0213a460.h"
 
-BOOL func_ov000_021967b4(const u8 *a, const void *v1, void *v2, s32 d) {
-    const u8 *b = v1;
-    u8 *c = v2;
-    const u8 *p;
-    const u8 *q;
+BOOL func_ov000_021967b4(const char *a, const char *b, char *c, s32 d) {
+    const char *p;
+    const char *q;
     s32 i;
     s8 f;
     s8 g;
@@ -39,10 +37,10 @@ BOOL func_ov000_021967b4(const u8 *a, const void *v1, void *v2, s32 d) {
     return TRUE;
 }
 
-BOOL func_ov000_02196870(GpConnection *a, const u8 *b, s32 c) {
+BOOL func_ov000_02196870(GpConnection *a, const char *b, s32 c) {
     GpiConnection *r;
     BOOL t;
-    u8 d[0x10];
+    char d[0x10];
 
     r = a->mGpiConnection;
     if (strncmp(b, data_ov000_021b3aec, 7) == 0) {
@@ -61,4 +59,4 @@ BOOL func_ov000_02196870(GpConnection *a, const u8 *b, s32 c) {
     return FALSE;
 }
 
-void func_ov000_0219690c(GpConnection *a, const u8 *b, ...) {}
+void func_ov000_0219690c(GpConnection *a, const char *b, ...) {}

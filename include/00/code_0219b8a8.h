@@ -23,8 +23,8 @@ typedef struct Unk021b54c8 {
     /* 2d */ u8 mUnk_2d;
     /* 2e */ u16 mUnk_2e;
     /* 30 */ u32 mUnk_30;
-    /* 34 */ u8 mUnk_34[0x20];
-    /* 54 */ u8 *mUnk_54;
+    /* 34 */ char mUnk_34[0x20];
+    /* 54 */ char *mUnk_54;
     /* 58 */ char *mUnk_58;
     /* 5c */ void (*mUnk_5c)(s32 param_1);
     /* 60 */ u32 mUnk_60;

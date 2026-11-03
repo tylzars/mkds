@@ -11,7 +11,7 @@ typedef struct Unk02188408Entry24 {
     /* 01 */ u8 mUnk_01;
     /* 02 */ u8 pad_02;
     /* 03 */ u8 mUnk_03;
-    /* 04 */ u8 mUnk_04[0x20];
+    /* 04 */ char mUnk_04[0x20];
 } Unk02188408Entry24;
 
 // Element of the table at 0x444 of an Unk02188408.
@@ -26,9 +26,9 @@ typedef struct Unk02188408Entry4 {
 typedef struct Unk02188408Entry0xc0 {
     /* 00 */ u8 pad_00[2];
     /* 02 */ u16 mUnk_02;
-    /* 04 */ u8 mUnk_04[6];
+    /* 04 */ char mUnk_04[6];
     /* 0a */ u16 mUnk_0a;
-    /* 0c */ u8 mUnk_0c[0x20];
+    /* 0c */ char mUnk_0c[0x20];
     /* 2c */ u16 mUnk_2c;
     /* 2e */ u8 pad_2e[8];
     /* 36 */ u16 mUnk_36;
@@ -62,8 +62,8 @@ typedef struct Unk02188408 {
 
 extern const s8 *data_ov000_021b1488;
 extern u8 data_ov000_021b1474[];
-extern u8 data_ov000_021b13ac[];
-extern u8 data_ov000_021b13d8[];
+extern char data_ov000_021b13ac[];
+extern char data_ov000_021b13d8[];
 extern u8 data_ov000_021b147c[];
 
 // Declared here until the code that defines them is decompiled.
@@ -72,6 +72,6 @@ void func_ov000_02188008(void);
 void func_ov000_02188068(void);
 u32 func_ov000_02188114(Unk02188114 *p);
 s32 func_ov000_021881d0(const s8 *a, u32 b, u8 *c, u32 d);
-s32 func_ov000_021882f8(const u8 *a, u32 b, s8 *c, u32 d);
+s32 func_ov000_021882f8(const u8 *a, u32 b, char *c, u32 d);
 s32 func_ov000_02188408(void);
 void func_ov000_021884a8(void);

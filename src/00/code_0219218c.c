@@ -114,7 +114,7 @@ u32 func_ov000_02192330(GpConnection *p, u32 a, u32 b) {
 
 u32 func_ov000_021923b4(GpConnection *p, s32 a, const s8 *b) {
     GpiConnection *o;
-    u8 c[0x100];
+    char c[0x100];
     u32 r;
 
     o = p->mGpiConnection;
@@ -128,7 +128,7 @@ u32 func_ov000_021923b4(GpConnection *p, s32 a, const s8 *b) {
                 func_ov000_02196590(p, data_ov000_021b2fbc);
                 return 2;
             }
-            func_ov000_02196914(c, b, 0x1f);
+            func_ov000_02196914(c, (const char *) b, 0x1f);
             func_ov000_02196914(o->mNick, c, 0x1f);
             r = func_ov000_02192d30(p, data_ov000_021b2fcc, c);
             if (r != 0) {
@@ -140,8 +140,8 @@ u32 func_ov000_021923b4(GpConnection *p, s32 a, const s8 *b) {
                 func_ov000_02196590(p, data_ov000_021b2fbc);
                 return 2;
             }
-            func_ov000_02196914(c, b, 0x15);
-            func_ov000_02196914((u8 *) o->mUniquenick, c, 0x15);
+            func_ov000_02196914(c, (const char *) b, 0x15);
+            func_ov000_02196914((char *) o->mUniquenick, c, 0x15);
             r = func_ov000_02192d30(p, data_ov000_021b2fd4, c);
             if (r != 0) {
                 return r;
@@ -152,7 +152,7 @@ u32 func_ov000_021923b4(GpConnection *p, s32 a, const s8 *b) {
                 func_ov000_02196590(p, data_ov000_021b2fbc);
                 return 2;
             }
-            func_ov000_02196914(c, b, 0x33);
+            func_ov000_02196914(c, (const char *) b, 0x33);
             func_ov000_0218e850((s8 *) c);
             func_ov000_02196914(o->mEmail, c, 0x33);
             r = func_ov000_02192cfc(p, data_ov000_021b2fe4, c);
@@ -165,47 +165,47 @@ u32 func_ov000_021923b4(GpConnection *p, s32 a, const s8 *b) {
                 func_ov000_02196590(p, data_ov000_021b2fbc);
                 return 2;
             }
-            func_ov000_02196914(c, b, 0x1f);
-            func_ov000_02196914((u8 *) o->mPassword, c, 0x1f);
+            func_ov000_02196914(c, (const char *) b, 0x1f);
+            func_ov000_02196914((char *) o->mPassword, c, 0x1f);
             r = func_ov000_02192cfc(p, data_ov000_021b2fec, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x704:
-            func_ov000_02196914(c, b, 0x1f);
+            func_ov000_02196914(c, (const char *) b, 0x1f);
             r = func_ov000_02192d30(p, data_ov000_021b2ff8, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x705:
-            func_ov000_02196914(c, b, 0x1f);
+            func_ov000_02196914(c, (const char *) b, 0x1f);
             r = func_ov000_02192d30(p, data_ov000_021b3004, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x707:
-            func_ov000_02196914(c, b, 0x4c);
+            func_ov000_02196914(c, (const char *) b, 0x4c);
             r = func_ov000_02192d30(p, data_ov000_021b3010, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x708:
-            func_ov000_02196914(c, b, 0xb);
+            func_ov000_02196914(c, (const char *) b, 0xb);
             r = func_ov000_02192d30(p, data_ov000_021b301c, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x709:
-            if (strlen((const u8 *) b) != 2) {
+            if (strlen((const char *) b) != 2) {
                 func_ov000_02196590(p, data_ov000_021b3028);
                 return 2;
             }
-            func_ov000_02196914(c, b, 3);
+            func_ov000_02196914(c, (const char *) b, 3);
             r = func_ov000_02192d30(p, data_ov000_021b3040, c);
             if (r != 0) {
                 return r;
@@ -232,120 +232,120 @@ u32 func_ov000_021923b4(GpConnection *p, s32 a, const s8 *b) {
             break;
         }
         case 0x706:
-            func_ov000_02196914(c, b, 0x100);
+            func_ov000_02196914(c, (const char *) b, 0x100);
             r = func_ov000_02192d30(p, data_ov000_021b3064, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x70d:
-            r = func_ov000_0219296c(p, 0x70d, func_0213bf90((const u8 *) b));
+            r = func_ov000_0219296c(p, 0x70d, func_0213bf90((const char *) b));
             if (r != 0) {
                 return r;
             }
             break;
         case 0x70e:
-            r = func_ov000_0219296c(p, 0x70e, func_0213bf90((const u8 *) b));
+            r = func_ov000_0219296c(p, 0x70e, func_0213bf90((const char *) b));
             if (r != 0) {
                 return r;
             }
             break;
         case 0x70f:
-            func_ov000_02196914(c, b, 0x100);
+            func_ov000_02196914(c, (const char *) b, 0x100);
             r = func_ov000_02192d30(p, data_ov000_021b3070, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x710:
-            r = func_ov000_0219296c(p, 0x710, func_0213bf90((const u8 *) b));
+            r = func_ov000_0219296c(p, 0x710, func_0213bf90((const char *) b));
             if (r != 0) {
                 return r;
             }
             break;
         case 0x711:
-            func_ov000_02196914(c, b, 0x100);
+            func_ov000_02196914(c, (const char *) b, 0x100);
             r = func_ov000_02192d30(p, data_ov000_021b3084, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x712:
-            r = func_ov000_0219296c(p, 0x712, func_0213bf90((const u8 *) b));
+            r = func_ov000_0219296c(p, 0x712, func_0213bf90((const char *) b));
             if (r != 0) {
                 return r;
             }
             break;
         case 0x714:
-            r = func_ov000_0219296c(p, 0x714, func_0213bf90((const u8 *) b));
+            r = func_ov000_0219296c(p, 0x714, func_0213bf90((const char *) b));
             if (r != 0) {
                 return r;
             }
             break;
         case 0x715:
-            r = func_ov000_0219296c(p, 0x715, func_0213bf90((const u8 *) b));
+            r = func_ov000_0219296c(p, 0x715, func_0213bf90((const char *) b));
             if (r != 0) {
                 return r;
             }
             break;
         case 0x716:
-            func_ov000_02196914(c, b, 0x100);
+            func_ov000_02196914(c, (const char *) b, 0x100);
             r = func_ov000_02192d30(p, data_ov000_021b3098, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x717:
-            func_ov000_02196914(c, b, 0x33);
+            func_ov000_02196914(c, (const char *) b, 0x33);
             r = func_ov000_02192d30(p, data_ov000_021b30a4, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x718:
-            func_ov000_02196914(c, b, 0x100);
+            func_ov000_02196914(c, (const char *) b, 0x100);
             r = func_ov000_02192d30(p, data_ov000_021b30ac, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x719:
-            func_ov000_02196914(c, b, 0x100);
+            func_ov000_02196914(c, (const char *) b, 0x100);
             r = func_ov000_02192d30(p, data_ov000_021b30b4, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x71a:
-            func_ov000_02196914(c, b, 0x100);
+            func_ov000_02196914(c, (const char *) b, 0x100);
             r = func_ov000_02192d30(p, data_ov000_021b30bc, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x71b:
-            func_ov000_02196914(c, b, 0x100);
+            func_ov000_02196914(c, (const char *) b, 0x100);
             r = func_ov000_02192d30(p, data_ov000_021b30c4, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x71c:
-            func_ov000_02196914(c, b, 0x100);
+            func_ov000_02196914(c, (const char *) b, 0x100);
             r = func_ov000_02192d30(p, data_ov000_021b30cc, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x71d:
-            func_ov000_02196914(c, b, 0x100);
+            func_ov000_02196914(c, (const char *) b, 0x100);
             r = func_ov000_02192d30(p, data_ov000_021b30d4, c);
             if (r != 0) {
                 return r;
             }
             break;
         case 0x71e:
-            func_ov000_02196914(c, b, 0x100);
+            func_ov000_02196914(c, (const char *) b, 0x100);
             r = func_ov000_02192d30(p, data_ov000_021b30dc, c);
             if (r != 0) {
                 return r;
@@ -359,7 +359,7 @@ u32 func_ov000_021923b4(GpConnection *p, s32 a, const s8 *b) {
 }
 
 u32 func_ov000_0219296c(GpConnection *p, s32 a, s32 b) {
-    u8 c[0x10];
+    char c[0x10];
     u32 r;
 
     switch (a) {
@@ -521,7 +521,7 @@ u32 func_ov000_0219296c(GpConnection *p, s32 a, s32 b) {
     return 0;
 }
 
-u32 func_ov000_02192cfc(GpConnection *p, const u8 *a, const u8 *b) {
+u32 func_ov000_02192cfc(GpConnection *p, const char *a, const char *b) {
     GpiConnection *o;
     u32 r;
 
@@ -537,7 +537,7 @@ u32 func_ov000_02192cfc(GpConnection *p, const u8 *a, const u8 *b) {
     return 0;
 }
 
-u32 func_ov000_02192d30(GpConnection *p, const u8 *a, const u8 *b) {
+u32 func_ov000_02192d30(GpConnection *p, const char *a, const char *b) {
     GpiConnection *o;
     u32 r;
 

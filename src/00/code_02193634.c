@@ -51,7 +51,7 @@ BOOL func_ov000_021937c0(GpConnection *object) {
     return FALSE;
 }
 
-s32 func_ov000_02193748(GpConnection *c, Unk021937c0Node *d, const u8 *e) {
+s32 func_ov000_02193748(GpConnection *c, Unk021937c0Node *d, const char *e) {
     s32 a = 0;
     u32 b = d->mUnk_00;
 

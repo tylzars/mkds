@@ -26,7 +26,7 @@ void func_ov000_02198ab0(Gt2Socket *a) {
     DeleteSocket(a);
 }
 
-u32 func_ov000_02198ac4(Gt2Socket **a, const u8 *b, u32 c, u32 d, u32 e) {
+u32 func_ov000_02198ac4(Gt2Socket **a, const char *b, u32 c, u32 d, u32 e) {
     return CreateSocket(a, b, c, d, e);
 }
 

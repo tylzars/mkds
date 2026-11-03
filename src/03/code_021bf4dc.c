@@ -20,7 +20,7 @@
 u8 *func_ov003_021bf650(const u8 *b) {
     u32 a;
 
-    strncpy(data_ov003_021da110, b, 0x3f);
+    strncpy((char *) data_ov003_021da110, (const char *) b, 0x3f);
     if (b[5] == 0x78) {
         return data_ov003_021da110;
     }

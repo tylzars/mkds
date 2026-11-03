@@ -48,7 +48,7 @@ u32 func_02018344(Unk020182c0 *a, const u8 *b, Unk02018344 *c) {
     a->mUnk_60 = p6;
     p4 = (u8 *) p4 + 8;
     a->mUnk_64 = p4;
-    if (FS_RegisterArchiveName(&a->mUnk_00, b, strlen(b)) == 0) {
+    if (FS_RegisterArchiveName(&a->mUnk_00, b, strlen((const char *) b)) == 0) {
         return 0;
     }
     if (FS_LoadArchive(&a->mUnk_00, p4, p6 + 0xc - p4, *(u32 *) (p6 + 4) - 0xc, p5 + 8 - p4, *(u32 *) (p5 + 4) - 8, 0,

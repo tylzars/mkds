@@ -33,7 +33,7 @@ void func_ov000_021a39d8(Unk021b5df4 *a, u16 b, u32 c, u32 d) {
 
 void func_ov000_021a3a18(Unk021a3a18 *a, s32 b) {
     Unk021a4480 k;
-    u8 t[0x14];
+    char t[0x14];
     s32 i;
     k.mUnk_800 = 0;
     func_ov000_021a4480((u32) &k, 3, (u32) a->mUnk_84);
@@ -116,9 +116,9 @@ void func_ov000_021a3c14(Unk021a3a18 *a, s8 *b, s32 c, void *d) {
                         break;
                     case 1:
                         if (c >= 13 && a->mUnk_a8 != 0) {
-                            func_ov000_021a438c((Unk021a4a08 *) a, (u8 *) (p6 + c - 13));
+                            func_ov000_021a438c((Unk021a4a08 *) a, (const char *) (p6 + c - 13));
                         }
-                        func_ov000_021a4418((Unk021a4a08 *) a, (Unk021a471c *) &k, (u8 *) p6, c);
+                        func_ov000_021a4418((Unk021a4a08 *) a, (Unk021a471c *) &k, (const char *) p6, c);
                         break;
                     case 2:
                         if (c > 0x20) {

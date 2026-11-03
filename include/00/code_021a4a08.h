@@ -49,9 +49,9 @@ typedef struct Unk021a4a08 {
 } Unk021a4a08;
 
 extern Unk021a4a08 data_ov000_021b4278;
-extern s8 data_ov000_021b5e10[];
+extern char data_ov000_021b5e10[];
 extern s8 data_ov000_021b5e50[];
 
-s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const u8 *d, const u8 *e, s32 f, s32 g, Unk021a4a08Func88 h,
+s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const char *d, const char *e, s32 f, s32 g, Unk021a4a08Func88 h,
                         Unk021a4a08Func8c i, Unk021a4a08Func8c j, Unk021a4a08Func94 k, Unk021a4a08Func98 l,
                         Unk021a4a08Func9c m, void *n);

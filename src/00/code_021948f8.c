@@ -79,12 +79,12 @@ Unk02194934 *func_ov000_0219496c(GpConnection *a, s32 b) {
     return NULL;
 }
 
-s32 func_ov000_02194a0c(GpConnection *a, Unk021937c0Node *b, const u8 *c) {
+s32 func_ov000_02194a0c(GpConnection *a, Unk021937c0Node *b, const char *c) {
     Unk02190ed4Cb p;
     u32 *m;
     s32 v;
     s32 t;
-    u8 d[0x10];
+    char d[0x10];
 
     if (func_ov000_02196870(a, c, 1) != 0) {
         return 4;

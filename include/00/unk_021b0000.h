@@ -4,7 +4,7 @@
 
 // Objects whose layout isn't known yet.
 extern u8 data_ov000_021b06e8[];
-extern u8 data_ov000_021b06f0[];
+extern char data_ov000_021b06f0[];
 extern u8 data_ov000_021b06f8[];
 extern u32 data_ov000_021b0704[];
 extern u8 data_ov000_021b0738[];

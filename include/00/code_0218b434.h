@@ -32,7 +32,7 @@ struct Unk0218b668;
 #include "00/code_0218acb0.h"
 
 void func_ov000_0218b434(u32 arg0);
-s32 func_ov000_0218b440(const u8 *const *first, const u8 *const *second);
+s32 func_ov000_0218b440(const char *const *first, const char *const *second);
 u32 func_ov000_0218b44c(Unk0218afac *entry, u32 modulus);
 u32 func_ov000_0218b458(Unk0218b668 *a);
 void func_ov000_0218b464(Unk0218b668 *p0, unsigned int p1, void *p2, unsigned int p3);
@@ -44,5 +44,5 @@ s32 func_ov000_0218b4bc(struct Unk0218b668 *p);
 void func_ov000_0218b4d4(struct Unk0218b668 *p, s32 a);
 s32 func_ov000_0218b4f8(Unk0218b668 *a, u32 b, s32 c, u32 d);
 s32 func_ov000_0218b530(Unk0218b668 *a, u32 b, s32 c, u8 *d, s32 e);
-s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const u8 *f, u32 g, u32 h);
+s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const char *f, u32 g, u32 h);
 void func_ov000_0218b64c(Unk0218b668 *p);

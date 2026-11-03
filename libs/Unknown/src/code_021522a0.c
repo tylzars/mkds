@@ -11,8 +11,8 @@
 
 #pragma thumb on
 
-void func_02152458(Unk02152500 *a, const void *b, u8 *c) {
-    func_02152808(b, a->mUnk_24, (char *) c);
+void func_02152458(Unk02152500 *a, const void *b, char *c) {
+    func_02152808(b, a->mUnk_24, c);
 }
 
 s32 func_02152390(const void *a, const void *b) {

@@ -28,7 +28,7 @@ int func_ov000_0219883c(void *a, Gt2Connection **b, int c, u32 d) {
 
 BOOL func_ov000_021987c8(Gt2Connection *a, void *b, int c, Gt2ConnectionCallbacks *d) {
     s8 e[0x24];
-    func_ov000_0219a61c((const u8 **) &b, (s32 *) &c);
+    func_ov000_0219a61c((const char **) &b, (s32 *) &c);
     if (c > 0) {
         a->mUnk_38.mData = func_ov000_021a3690(c);
         if (a->mUnk_38.mData == NULL) {
@@ -67,7 +67,7 @@ BOOL func_ov000_02198778(Gt2Connection *a, Gt2ConnectionCallbacks *b) {
 void func_ov000_02198748(Gt2Connection *a, void *b, u32 c, ...) {
     a->mUnk_14 = 0;
     if (a->mUnk_0c == 4) {
-        func_ov000_0219a61c((const u8 **) &b, (s32 *) &c);
+        func_ov000_0219a61c((const char **) &b, (s32 *) &c);
         func_ov000_02198d9c(a, b, c);
         a->mUnk_0c = 6;
     }

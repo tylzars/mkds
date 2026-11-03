@@ -4,7 +4,7 @@
 
 // Read by func_021385a0: a pointer to the next byte, and a flag word.
 typedef struct Unk0213a460 {
-    /* 00 */ const u8 *mUnk_00;
+    /* 00 */ const char *mUnk_00;
     /* 04 */ int mUnk_04;
 } Unk0213a460;
 
@@ -20,10 +20,10 @@ extern const double data_0216eca0;
 // Used by three functions of this file, by func_0213ee6c (which stores 33 there) and by overlay 0.
 extern int data_0217ee90;
 
-double strtod(const u8 *s, const u8 **end);
-long func_0213bf90(const u8 *s);
-long strtol(const u8 *s, const u8 **end, int base);
-u32 strtoul(const u8 *s, const u8 **end, int base);
+double strtod(const char *s, const char **end);
+long func_0213bf90(const char *s);
+long strtol(const char *s, const char **end, int base);
+u32 strtoul(const char *s, const char **end, int base);
 double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r);
 u64 func_0213c110(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int *s);
 u32 func_0213c560(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int *s);

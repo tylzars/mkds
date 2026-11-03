@@ -431,10 +431,10 @@ void RegisterKartKeysAndStart(void) {
     }
     func_0214d168(gKartFilterString, 0, 0x64);
     if (data_0217d384->mKeys[1].mValue == 1) {
-        sprintf(gKartFilterString, (const u8 *) "%s = '%s' and %s > %d and %s < %d", "kart_filter",
+        sprintf(gKartFilterString, "%s = '%s' and %s > %d and %s < %d", "kart_filter",
                 "ds_mario_kart_product", "kart_elo", eloLow, "kart_elo", eloHigh);
     } else {
-        sprintf(gKartFilterString, (const u8 *) "%s = '%s'", "kart_filter", "ds_mario_kart_product");
+        sprintf(gKartFilterString, "%s = '%s'", "kart_filter", "ds_mario_kart_product");
     }
     switch (data_0217d384->mKeys[1].mValue) {
         case 3:

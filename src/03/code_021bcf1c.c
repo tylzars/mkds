@@ -199,12 +199,12 @@ s32 func_ov003_021bcf1c(void) {
 s32 func_ov003_021bd338(void) {
     s32 a;
     s32 b;
-    u8 c[0x21];
-    u8 *d;
+    char c[0x21];
+    char *d;
     u8 *e;
     u8 *f;
     a = 1;
-    strcpy((char *) data_ov003_021d8dc8.mUnk_00, data_ov003_021d8fb0.mUnk_00);
+    strcpy(data_ov003_021d8dc8.mUnk_00, data_ov003_021d8fb0.mUnk_00);
     switch (data_ov003_021d8fb0.mUnk_2c) {
         case 0:
             data_ov003_021d8dc8.mUnk_20 = 0;

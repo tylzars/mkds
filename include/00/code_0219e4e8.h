@@ -4,8 +4,8 @@
 
 // Declared here until the code that defines them is decompiled.
 void func_ov000_0219d734(s32 a, s32 b);
-extern u8 data_ov000_021b40d8[];
-extern u8 data_ov000_021b40e4[];
+extern char data_ov000_021b40d8[];
+extern char data_ov000_021b40e4[];
 
 u32 func_ov000_0219e4e8(u32 a);
 u32 func_ov000_0219e594(u32 a);

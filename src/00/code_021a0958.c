@@ -78,7 +78,7 @@ u32 func_ov000_021a0f20(u32 a) {
         case 3:
             a = data_ov000_021b566c->mUnk_1f0;
             if (a == 0) {
-                func_ov000_021a0ed8((u8 *) v1, data_ov000_021b566c->mUnk_1e8, data_ov000_021b566c->mUnk_16,
+                func_ov000_021a0ed8(v1, data_ov000_021b566c->mUnk_1e8, data_ov000_021b566c->mUnk_16,
                                     data_ov000_021b566c->mUnk_15);
                 if (data_ov000_021b5674 != NULL) {
                     func_0200d9e0(v1, 0x100, data_ov000_021b4194, v1, data_ov000_021b5674);
@@ -102,8 +102,8 @@ u32 func_ov000_021a0f20(u32 a) {
     return r;
 }
 
-s32 func_ov000_021a0ed8(u8 *a, s32 b, s32 c, s32 d) {
-    return func_0200d9e0((char *) a, 0x100, data_ov000_021b413c, data_ov000_021b4108, 3, data_ov000_021b40c4, b, c, c,
+s32 func_ov000_021a0ed8(char *a, s32 b, s32 c, s32 d) {
+    return func_0200d9e0(a, 0x100, data_ov000_021b413c, data_ov000_021b4108, 3, data_ov000_021b40c4, b, c, c,
                          data_ov000_021b40f0, d, data_ov000_021b40fc, data_ov000_021b40c4);
 }
 
@@ -217,7 +217,7 @@ u32 func_ov000_021a0ae8(u32 a, u32 b, u32 c, u32 d, void *e, s32 f) {
             }
         }
         v2[n] = 0;
-        n = func_ov000_021a09d0(data_ov000_021b566c->mUnk_00, a, b, (u8 *) v2);
+        n = func_ov000_021a09d0(data_ov000_021b566c->mUnk_00, a, b, v2);
     }
     if (a == 2 || a == 6 || (u8) (a + 0xf8) <= 1) {
         data_ov000_021b566c->mUnk_3b4 = a;
@@ -261,7 +261,7 @@ u32 func_ov000_021a0a40(u32 a, u32 b, u32 c, u32 *d, u32 e) {
     return r;
 }
 
-s32 func_ov000_021a09d0(struct GpConnection *a, u32 b, u32 c, const u8 *d) {
+s32 func_ov000_021a09d0(struct GpConnection *a, u32 b, u32 c, const char *d) {
     char v1[0x200];
     char *e;
     char *g;
@@ -278,12 +278,12 @@ s32 func_ov000_021a09d0(struct GpConnection *a, u32 b, u32 c, const u8 *d) {
         func_0214d1fc(d, e, n);
         e[n] = 0;
     }
-    return func_ov000_0218e908(a, c, (const u8 *) v1);
+    return func_ov000_0218e908(a, c, v1);
 }
 
-s32 func_ov000_021a0958(u8 *a, const u8 *b, s32 c) {
-    const u8 *e;
-    const u8 *p;
+s32 func_ov000_021a0958(char *a, const char *b, s32 c) {
+    const char *e;
+    const char *p;
     s32 i;
     s32 n;
 

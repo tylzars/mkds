@@ -10,7 +10,7 @@ static inline u16 func_ov000_021a4654_inline(u16 v1) {
     return ((v1 >> 8) & 0xff) | ((v1 << 8) & 0xff00);
 }
 
-BOOL func_ov000_021a4654(const u8 *a, u32 b, Unk021a4654 *c, Unk021a8f84 **d) {
+BOOL func_ov000_021a4654(const char *a, u32 b, Unk021a4654 *c, Unk021a8f84 **d) {
     Unk021a8f84 *e;
 
     e = NULL;
@@ -55,7 +55,7 @@ void func_ov000_021a46d4(void) {
     }
 }
 
-void func_ov000_021a471c(Unk021a471c *a, const u8 *b) {
+void func_ov000_021a471c(Unk021a471c *a, const char *b) {
     s32 c;
     s32 d;
 
@@ -72,7 +72,7 @@ void func_ov000_021a471c(Unk021a471c *a, const u8 *b) {
 }
 
 void func_ov000_021a4760(Unk021a471c *a, s32 b) {
-    u8 c[0x18];
+    char c[0x18];
 
     sprintf(c, data_ov000_021b4428, b);
     func_ov000_021a471c(a, c);

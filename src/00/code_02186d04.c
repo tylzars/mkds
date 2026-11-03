@@ -39,7 +39,7 @@ s32 func_ov000_021873d4(Unk02186d7c *p, const Unk021873d4 *q) {
         p->mResult = 1;
         return 1;
     }
-    func_ov000_021868d0((Http *) p, (const u8 *) q->mUnk_00);
+    func_ov000_021868d0((Http *) p, (const char *) q->mUnk_00);
     p->mResult = func_ov000_02186c74((Http *) p);
     if (p->mResult == 0) {
         p->mUnk_00 = 0xff;
@@ -56,7 +56,7 @@ u32 func_ov000_0218735c(Unk02186d7c *p) {
     n = strlen(strstr(p->mSendBuffer.mStart, data_ov000_021b1230) + 4);
     if (n != 0) {
         func_0200d9e0(v1, 7, data_ov000_021b1370, n);
-        if (func_ov000_02186bd4((Http *) p, data_ov000_021b1374, (const u8 *) v1) != 0) {
+        if (func_ov000_02186bd4((Http *) p, data_ov000_021b1374, v1) != 0) {
             return 1;
         }
     }
@@ -121,8 +121,8 @@ void func_ov000_02186d7c(void *l) {
     s8 e;
     s32 n;
     Unk0201000c v1;
-    u8 *s;
-    const u8 *y;
+    char *s;
+    const char *y;
 
     f = 0;
     a = &p->mUnk_b4;
@@ -180,7 +180,7 @@ void func_ov000_02186d7c(void *l) {
         if (n > 0x238) {
             n = 0x238;
         }
-        n = func_ov000_021adbf4(p->mSendBuffer.mCursor, n);
+        n = func_ov000_021adbf4((const u8 *) p->mSendBuffer.mCursor, n);
         if (n <= 0) {
             p->mResult = 5;
             goto fail;

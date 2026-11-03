@@ -35,8 +35,8 @@ typedef struct Unk0213c94c {
     /* 48 */ u32 mUnk_48;
 } Unk0213c94c;
 
-void func_0213442c(const u8 *a, const u8 *b, const u8 *c, int d);
+void func_0213442c(const char *a, const char *b, const char *c, int d);
 int func_0213446c(Unk0213c94c *a, u32 *b);
 void func_02134508(Unk0213c94c *a);
 void func_0213453c(u8 *a, u32 *b);
-u32 func_02134540(const u8 *a, u32 b, u32 c, Unk0213c94c *d);
+u32 func_02134540(const char *a, u32 b, u32 c, Unk0213c94c *d);

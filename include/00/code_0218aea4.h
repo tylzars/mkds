@@ -21,6 +21,6 @@ void func_ov000_0218af1c(Unk0218af28 *a, u32 b, u16 c);
 void func_ov000_0218af24(Unk0218af28 *a, s32 b);
 Unk0218af28 *func_ov000_0218af28(Unk021b4d24 *a, u32 b, u16 c);
 u32 func_ov000_0218af9c(Unk0218af28 *a);
-s32 func_ov000_0218afa0(const u8 *const *first, const u8 *const *second);
+s32 func_ov000_0218afa0(const char *const *first, const char *const *second);
 u32 func_ov000_0218afac(Unk0218afac *entry, u32 modulus);
 void func_ov000_0218afb8(u32 *a);

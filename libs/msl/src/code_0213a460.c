@@ -229,7 +229,7 @@ u64 func_0213c110(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int 
     return acc;
 }
 
-u32 strtoul(const u8 *s, const u8 **end, int base) {
+u32 strtoul(const char *s, const char **end, int base) {
     int n;
     int neg;
     int ovf;
@@ -252,7 +252,7 @@ u32 strtoul(const u8 *s, const u8 **end, int base) {
     return v;
 }
 
-long strtol(const u8 *s, const u8 **end, int base) {
+long strtol(const char *s, const char **end, int base) {
     int n;
     int neg;
     int ovf;
@@ -276,7 +276,7 @@ long strtol(const u8 *s, const u8 **end, int base) {
     return v;
 }
 
-long func_0213bf90(const u8 *s) {
+long func_0213bf90(const char *s) {
     return strtol(s, 0, 10);
 }
 
@@ -292,8 +292,8 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
     int e;
     int ea;
     int sg;
-    u8 *hp;
-    u8 *hz;
+    char *hp;
+    char *hz;
     u32 lim;
     int he;
     int hk;
@@ -301,7 +301,7 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
     u32 hd;
     double x;
     Unk02136638 rec = {0};
-    u8 hb[8];
+    char hb[8];
 
     m = 0;
     *r = 0;
@@ -350,8 +350,8 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
                 break;
             case 0x4000: {
                 int i = 1;
-                u8 t[9] = "INFINITY";
-                u8 *tp;
+                char t[9] = "INFINITY";
+                char *tp;
 
                 tp = t + 1;
                 while (i < 8 && *tp == ((c < 0 || c >= 0x80) ? c : data_0215d204[c])) {
@@ -375,9 +375,9 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
             case 0x2000: {
                 int i = 1;
                 int j = 0;
-                u8 t[5] = "NAN(";
-                u8 buf[32] = {0};
-                u8 *tp;
+                char t[5] = "NAN(";
+                char buf[32] = {0};
+                char *tp;
 
                 tp = t + 1;
                 while (i < 4 && *tp == ((c < 0 || c >= 0x80) ? c : data_0215d204[c])) {
@@ -680,7 +680,7 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
 
     if (h == 0) {
         int k;
-        u8 *dp;
+        char *dp;
 
         if (em) {
             e = -e;
@@ -785,7 +785,7 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
     }
 }
 
-double strtod(const u8 *s, const u8 **end) {
+double strtod(const char *s, const char **end) {
     int n;
     int ovf;
     Unk0213a460 st;
