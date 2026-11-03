@@ -26,10 +26,7 @@ typedef struct Unk021000d0 {
     /* 18 */ Unk020e6fd4 *(*mUnk_18)(void);
     /* 1c */ Unk020e6fd4 *(*mUnk_1c)(void);
     /* 20 */ Unk020e71a0_98 *mUnk_20;
-    /* 24 */ Unk020e6fd4 *mUnk_24;
-    /* 28 */ Unk020e6fd4 *mUnk_28;
-    /* 2c */ Unk020e6fd4 *mUnk_2c;
-    /* 30 */ Unk020e6fd4 *mUnk_30;
+    /* 24 */ Unk020e6fd4 *mUnk_24[4];
 } Unk021000d0;
 
 void *func_02100138(u32 a);

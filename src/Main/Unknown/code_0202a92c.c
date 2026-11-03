@@ -46,7 +46,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
             if (func_02036c5c() == 0) {
                 break;
             }
-            if (gWiFiVSCourseSelect->mUnk_0cc.mUnk_00 == 1) {
+            if (gWiFiVSCourseSelect->mUnk_0cc[0].mUnk_00 == 1) {
                 gWiFiVSCourseSelect->mUnk_0ac = 1;
             }
             func_0202b264();
@@ -72,7 +72,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
         case 2:
             if (func_02121cd0() != 0) {
                 gWiFiVSCourseSelect->mUnk_0ac = 3;
-                func_02025f14(&gWiFiVSCourseSelect->mUnk_0ec, 2);
+                func_02025f14(&gWiFiVSCourseSelect->mUnk_0cc[2], 2);
             }
             break;
         case 3:
@@ -115,7 +115,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
             break;
     }
     func_0202afe4();
-    func_02025edc(&gWiFiVSCourseSelect->mUnk_0dc);
+    func_02025edc(&gWiFiVSCourseSelect->mUnk_0cc[1]);
     for (i = 0; i < 2; i++) {
         d = gWiFiVSCourseSelect;
         p = &d->mUnk_048;
@@ -162,9 +162,9 @@ void InitWiFiVSCourseSelect(u32 param_1, u32 param_2, u32 param_3) {
         gWiFiVSCourseSelect->mUnk_0bc[i] = 0;
         func_02025f80(&gWiFiVSCourseSelect->mUnk_0fc[i], 3, 10, 0xfc, 0);
     }
-    func_02025f80(&gWiFiVSCourseSelect->mUnk_0dc, 0, 10, -0x40, 0);
-    func_02025f80(&gWiFiVSCourseSelect->mUnk_0cc, 0, 10, -0xc0, 0);
-    func_02025f80(&gWiFiVSCourseSelect->mUnk_0ec, 0, 10, 0x40, 0);
+    func_02025f80(&gWiFiVSCourseSelect->mUnk_0cc[1], 0, 10, -0x40, 0);
+    func_02025f80(&gWiFiVSCourseSelect->mUnk_0cc[0], 0, 10, -0xc0, 0);
+    func_02025f80(&gWiFiVSCourseSelect->mUnk_0cc[2], 0, 10, 0x40, 0);
     *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & 0x43) | 0xc00;
     func_020258d4(0, gWiFiVSCourseSelect, gWiFiVSCourseSelectMBNcgrName, gWiFiVSCourseSelectMBNclrName, gWiFiVSCourseSelectMNscrName, 0, FindSceneFile);
     p = &gWiFiVSCourseSelect->mUnk_048;
@@ -260,8 +260,8 @@ void func_0202afe4(void) {
 
     v = 0;
     p = &gWiFiVSCourseSelect->mUnk_048;
-    func_02025edc(&gWiFiVSCourseSelect->mUnk_0ec);
-    p->mUnk_18[16].mUnk_04 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0ec);
+    func_02025edc(&gWiFiVSCourseSelect->mUnk_0cc[2]);
+    p->mUnk_18[16].mUnk_04 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[2]);
     p->mUnk_18[15].mUnk_04 = p->mUnk_18[16].mUnk_04;
     switch (gWiFiVSCourseSelect->mUnk_0ac) {
         case 0:
@@ -330,8 +330,8 @@ void func_0202b264(void) {
 
     p = &gWiFiVSCourseSelect->mUnk_064;
     n = p->mUnk_0c->mUnk_06 + p->mUnk_14->mUnk_06;
-    func_02025edc(&gWiFiVSCourseSelect->mUnk_0cc);
-    gWiFiVSCourseSelect->mUnk_154 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc);
+    func_02025edc(&gWiFiVSCourseSelect->mUnk_0cc[0]);
+    gWiFiVSCourseSelect->mUnk_154 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[0]);
     for (i = 0; i < n; i++) {
         p->mUnk_18[i].mUnk_06 = gWiFiVSCourseSelect->mUnk_154;
     }
@@ -361,10 +361,10 @@ void func_0202b2bc(void) {
     func_0212426c(0, data_usa_021539f4[0].mUnk_00, p->mUnk_14, h, p->mUnk_0c, p->mUnk_18);
     gWiFiVSCourseSelect->mUnk_144 = a;
     gWiFiVSCourseSelect->mUnk_148 = func_02025d8c(a);
-    gWiFiVSCourseSelect->mUnk_14c = h[0];
-    gWiFiVSCourseSelect->mUnk_14e = h[1];
-    gWiFiVSCourseSelect->mUnk_150 = h[2];
-    gWiFiVSCourseSelect->mUnk_152 = h[3];
+    gWiFiVSCourseSelect->mUnk_14c[0] = h[0];
+    gWiFiVSCourseSelect->mUnk_14c[1] = h[1];
+    gWiFiVSCourseSelect->mUnk_14c[2] = h[2];
+    gWiFiVSCourseSelect->mUnk_14c[3] = h[3];
 }
 
 void func_0202b3f4(void) {

@@ -128,13 +128,13 @@ s32 func_02034370(Unk02034370 *a) {
                     for (i = 0; i < 4; i++) {
                         j = i + 4;
                         if (func_0204ebb8(i, &s, &c[0], &c[1], &c[2], &s.mUnk_26, &s.mUnk_27, &s.mUnk_24)) {
-                            s.mUnk_1c = c[0];
-                            s.mUnk_18 = c[1];
-                            s.mUnk_20 = c[2];
+                            s.mUnk_18[1] = c[0];
+                            s.mUnk_18[0] = c[1];
+                            s.mUnk_18[2] = c[2];
                             data_02174e64->mUnk_190++;
                             if (data_02174e64->mUnk_09c[i].mUnk_28 == 0 ||
                                 func_02034e68(&data_02174e64->mUnk_09c[i].mUnk_00, &s) != 0) {
-                                v = func_02025d74(s.mUnk_20);
+                                v = func_02025d74(s.mUnk_18[2]);
                                 s.mUnk_00[10] = 0;
                                 func_0212426c(1, data_02164254[i][0], q->mUnk_14, &s, q->mUnk_0c, q->mUnk_18);
                                 func_0212426c(1, data_02164254[j][0], q->mUnk_14,
@@ -271,8 +271,8 @@ s32 func_02034370(Unk02034370 *a) {
             }
             break;
         case 8:
-            if (func_0202da44(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_20) != 0) {
-                v = func_02025d74(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_20);
+            if (func_0202da44(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_18[2]) != 0) {
+                v = func_02025d74(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_18[2]);
                 e = GetBmgEntry(data_02174e64->mUnk_088, 0x55);
                 f = GetBmgEntry(data_02174e64->mUnk_084, 0);
                 g = GetBmgEntry(data_02174e64->mUnk_084, 1);
@@ -305,7 +305,7 @@ s32 func_02034370(Unk02034370 *a) {
                 func_02125fc0();
                 if (func_02125f60() == 0) {
                     data_02174e64->mUnk_08c =
-                        func_0202d990(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_20);
+                        func_0202d990(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_18[2]);
                     ((Unk0202ddd8 *) func_0202ddd8())->mUnk_08_0 = 1;
                     func_020566a8((u8) data_02174e64->mUnk_08c, func_0202ddd8());
                     data_02174e64->mUnk_094 = 11;

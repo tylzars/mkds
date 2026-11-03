@@ -19,7 +19,7 @@ void func_02028fac(void) {
         p = &gSelectKart->mUnk_064;
         n = func_02029000(p->mUnk_0c) + func_02028ff8(p->mUnk_14);
         for (i = 0; i < n; i++) {
-            p->mUnk_18[i].mUnk_06 = func_02025ebc(&gSelectKart->mUnk_0ec);
+            p->mUnk_18[i].mUnk_06 = func_02025ebc(&gSelectKart->mUnk_0ac[4]);
         }
     }
 }

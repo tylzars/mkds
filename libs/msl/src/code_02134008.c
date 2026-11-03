@@ -15,19 +15,19 @@ Unk02134008 func_0213428c(Unk02134008 a, Unk02134008 b, u32 c) {
     }
     switch (c & 0x7c000000) {
         case 0x40000000:
-            fn = t->mUnk_14;
+            fn = t->mUnk_04[4];
             break;
         case 0x04000000:
-            fn = t->mUnk_04;
+            fn = t->mUnk_04[0];
             break;
         case 0x10000000:
-            fn = t->mUnk_0c;
+            fn = t->mUnk_04[2];
             break;
         case 0x20000000:
-            fn = t->mUnk_10;
+            fn = t->mUnk_04[3];
             break;
         case 0x08000000:
-            fn = t->mUnk_08;
+            fn = t->mUnk_04[1];
             break;
         default:
             fn = 0;

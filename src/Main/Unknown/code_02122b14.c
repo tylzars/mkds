@@ -30,8 +30,8 @@ void func_02123a48(u32 a) {
                     func_ov000_021a3264(i, &data_0217d384->mUnk_021c[i], 0x244);
                     func_02029930()->mUnk_00[i].mUnk_08 = 3;
                 } else {
-                    data_0217d384->mUnk_021c[i].mUnk_238 = data_0217aa08->mUnk_00->mUnk_44;
-                    data_0217d384->mUnk_021c[i].mUnk_23c = data_0217aa08->mUnk_00->mUnk_48;
+                    data_0217d384->mUnk_021c[i].mUnk_238 = data_0217aa08->mUnk_00->mUnk_34[4];
+                    data_0217d384->mUnk_021c[i].mUnk_23c = data_0217aa08->mUnk_00->mUnk_34[5];
                     func_02029930()->mUnk_00[i].mUnk_08 = 0;
                 }
                 func_02029930()->mUnk_00[i].mUnk_00 = -1;

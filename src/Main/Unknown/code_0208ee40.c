@@ -8,10 +8,10 @@
 
 void func_0208f0a0(void) {
     void *p;
-    p = func_0201733c(&data_0217b08c->mUnk_00, NULL);
+    p = func_0201733c(&data_0217b08c->mUnk_00[0], NULL);
     while (p != NULL) {
         func_0208e99c(p);
-        p = func_0201733c(&data_0217b08c->mUnk_00, p);
+        p = func_0201733c(&data_0217b08c->mUnk_00[0], p);
     }
 }
 
@@ -25,7 +25,7 @@ void func_0208ee7c(const Unk02012f58 *a) {
 
     f = data_021663d8;
     g = FALSE;
-    p = func_0201733c(&data_0217b08c->mUnk_00, NULL);
+    p = func_0201733c(&data_0217b08c->mUnk_00[0], NULL);
     if (p == NULL) {
         return;
     }
@@ -56,7 +56,7 @@ void func_0208ee7c(const Unk02012f58 *a) {
             }
         }
         f = f + 1;
-        p = func_0201733c(&data_0217b08c->mUnk_00, p);
+        p = func_0201733c(&data_0217b08c->mUnk_00[0], p);
     } while (p != NULL);
 }
 

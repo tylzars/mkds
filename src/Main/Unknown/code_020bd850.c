@@ -124,10 +124,10 @@ void func_020be2f4(Unk020d029c *a) {
     }
     e = data_0217b3d8->mUnk_0e8;
     p = &a->mUnk_000[data_0217b3d8->mUnk_0e4 * 4];
-    p[0].mUnk_06 = e[0] >> 4;
-    p[1].mUnk_06 = e[1] >> 4;
-    p[2].mUnk_06 = e[2] >> 4;
-    p[3].mUnk_06 = e[3] >> 4;
+    p[0].mUnk_00[3] = e[0] >> 4;
+    p[1].mUnk_00[3] = e[1] >> 4;
+    p[2].mUnk_00[3] = e[2] >> 4;
+    p[3].mUnk_00[3] = e[3] >> 4;
 }
 
 u32 func_020be15c(u16 a) {

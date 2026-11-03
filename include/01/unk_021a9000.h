@@ -85,11 +85,7 @@ typedef struct Unk021a9b88 {
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ u16 *mUnk_18;
-    /* 1c */ u8 *mUnk_1c;
-    /* 20 */ u8 *mUnk_20;
-    /* 24 */ u8 *mUnk_24;
-    /* 28 */ u8 *mUnk_28;
-    /* 2c */ u8 *mUnk_2c;
+    /* 1c */ u8 * mUnk_1c[5];
 } Unk021a9b88;
 
 // Allocated by InitSelectBattleStage and held in gSelectBattleStage.

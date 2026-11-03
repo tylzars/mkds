@@ -132,7 +132,7 @@ void func_02044940(void) {
             break;
         case 1:
             n = 1;
-            e = data_0217aa08->mUnk_14;
+            e = data_0217aa08->mUnk_14[0];
             if (e->mUnk_08_0 == 1) {
                 data_021759c0->mUnk_3e6 = 1;
                 data_021759c0->mUnk_3e4 = e->mUnk_08_8;
@@ -216,7 +216,7 @@ BOOL func_02044bf8(s32 a, s32 b) {
     if (data_021759c0->mUnk_1e8.mUnk_0c == 2) {
         return TRUE;
     }
-    p = data_0217aa08->mUnk_1c;
+    p = data_0217aa08->mUnk_14[2];
     if (p != NULL && p->mUnk_08_0 == 1) {
         func_020468b0(b, p->mUnk_04_0, p->mUnk_04_4, 2, -1, 3);
         data_021759c0->mUnk_250[b].mUnk_08.mUnk_10 = 2;
@@ -239,7 +239,7 @@ s32 func_02044d4c(s32 a, s32 b) {
     if (data_021759c0->mUnk_1e8.mUnk_0c == 2) {
         return 1;
     }
-    p = data_0217aa08->mUnk_18;
+    p = data_0217aa08->mUnk_14[1];
     r = p->mUnk_08_0 == 1 ? 1 : 0;
     if (r != 0) {
         func_020468b0(b, p->mUnk_04_0, p->mUnk_04_4, 2, -1, 3);
@@ -264,7 +264,7 @@ s32 func_02044e9c(s32 a, s32 b) {
     if (data_021759c0->mUnk_1e8.mUnk_0c == 2) {
         return 1;
     }
-    p = data_0217aa08->mUnk_14;
+    p = data_0217aa08->mUnk_14[0];
     if (p->mUnk_08_0 == 1) {
         func_020468b0(b, p->mUnk_04_0, p->mUnk_04_4, 2, -1, 3);
         data_021759c0->mUnk_250[b].mUnk_08.mUnk_10 = r;
@@ -381,24 +381,24 @@ void func_02045084(s32 a) {
         case 2:
             switch (data_021759c0->mUnk_68[a].mUnk_08.mUnk_10) {
                 case 0:
-                    *b0 = &data_0217aa08->mUnk_14->mUnk_0c;
+                    *b0 = &data_0217aa08->mUnk_14[0]->mUnk_0c;
                     *b1 = &data_0217aa08->mUnk_04->mUnk_008;
                     *b2 = g != FALSE ? 1 : 0;
-                    *b3 = data_0217aa08->mUnk_14->mUnk_08_2;
+                    *b3 = data_0217aa08->mUnk_14[0]->mUnk_08_2;
                     *b4 = 0;
                     break;
                 case 1:
-                    *b0 = &data_0217aa08->mUnk_18->mUnk_0c;
-                    *b1 = &data_0217aa08->mUnk_18->mUnk_30;
-                    *b2 = data_0217aa08->mUnk_18->mUnk_08_1;
-                    *b3 = data_0217aa08->mUnk_18->mUnk_08_2;
-                    *b4 = data_0217aa08->mUnk_18->mUnk_2f_0;
+                    *b0 = &data_0217aa08->mUnk_14[1]->mUnk_0c;
+                    *b1 = &data_0217aa08->mUnk_14[1]->mUnk_30;
+                    *b2 = data_0217aa08->mUnk_14[1]->mUnk_08_1;
+                    *b3 = data_0217aa08->mUnk_14[1]->mUnk_08_2;
+                    *b4 = data_0217aa08->mUnk_14[1]->mUnk_2f_0;
                     break;
                 case 2:
-                    *b0 = &data_0217aa08->mUnk_1c->mUnk_0c;
-                    *b1 = &data_0217aa08->mUnk_1c->mUnk_30;
+                    *b0 = &data_0217aa08->mUnk_14[2]->mUnk_0c;
+                    *b1 = &data_0217aa08->mUnk_14[2]->mUnk_30;
                     *b2 = 1;
-                    *b3 = data_0217aa08->mUnk_1c->mUnk_08_2;
+                    *b3 = data_0217aa08->mUnk_14[2]->mUnk_08_2;
                     *b4 = 1;
                     break;
             }

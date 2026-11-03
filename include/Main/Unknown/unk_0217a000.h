@@ -39,12 +39,7 @@ typedef struct Unk0217aa08_00 {
         };
     };
     /* 32 */ u8 mUnk_32[0x2];
-    /* 34 */ u32 mUnk_34;
-    /* 38 */ u32 mUnk_38;
-    /* 3c */ u32 mUnk_3c;
-    /* 40 */ u32 mUnk_40;
-    /* 44 */ u32 mUnk_44;
-    /* 48 */ u32 mUnk_48;
+    /* 34 */ u32 mUnk_34[6];
     /* 4c */ u8 mUnk_4c[0x4];
     /* 50 */ s32 mUnk_50;
     /* 54 */ s32 mUnk_54;
@@ -215,9 +210,7 @@ typedef struct Unk0217aa08 {
     /* 08 */ Unk0217aa08_08 *mUnk_08;
     /* 0c */ Unk0217aa08_0c *mUnk_0c;
     /* 10 */ Unk0217aa08_10 *mUnk_10;
-    /* 14 */ Unk0217aa08_14 *mUnk_14;
-    /* 18 */ Unk0217aa08_14 *mUnk_18;
-    /* 1c */ Unk0217aa08_14 *mUnk_1c;
+    /* 14 */ Unk0217aa08_14 * mUnk_14[3];
     /* 20 */ Unk0217aa08_20 *mUnk_20;
     /* 24 */ Unk0217aa08_24 *mUnk_24;
     /* 28 */ u8 mUnk_28;

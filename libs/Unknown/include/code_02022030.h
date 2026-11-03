@@ -66,10 +66,7 @@ typedef struct Unk020224e0_s {
 } Unk020224e0_s;
 
 typedef struct Unk020224e0_o {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
-    /* 06 */ u16 mUnk_06;
+    /* 00 */ u16 mUnk_00[4];
 } Unk020224e0_o;
 
 typedef struct Unk020224e0_c {

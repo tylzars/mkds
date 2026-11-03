@@ -44,12 +44,7 @@ typedef struct Unk021919ac_q {
 
 // Object of 0xf0 bytes that func_ov000_0219218c copies.
 typedef struct Unk021919ac_f0 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
-    /* 10 */ u32 mUnk_10;
-    /* 14 */ u32 mUnk_14;
+    /* 00 */ u32 mUnk_00[6];
     /* 18 */ u8 mUnk_18[0xb0];
     /* c8 */ u32 mUnk_c8;
     /* cc */ u8 mUnk_cc[0x24];

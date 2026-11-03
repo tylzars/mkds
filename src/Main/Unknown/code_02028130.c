@@ -53,11 +53,11 @@ int AdvanceSelectKart(void) {
     q = &d->mUnk_048;
     p = &d->mUnk_064;
     t = func_020435bc();
-    func_02025edc(&gSelectKart->mUnk_0ac);
-    func_02025edc(&gSelectKart->mUnk_0bc);
-    func_02025edc(&gSelectKart->mUnk_0cc);
-    func_02025edc(&gSelectKart->mUnk_0dc);
-    func_02025edc(&gSelectKart->mUnk_0ec);
+    func_02025edc(&gSelectKart->mUnk_0ac[0]);
+    func_02025edc(&gSelectKart->mUnk_0ac[1]);
+    func_02025edc(&gSelectKart->mUnk_0ac[2]);
+    func_02025edc(&gSelectKart->mUnk_0ac[3]);
+    func_02025edc(&gSelectKart->mUnk_0ac[4]);
     func_02029008();
     if (func_020280dc() == 0) {
         func_0212b80c();
@@ -70,7 +70,7 @@ int AdvanceSelectKart(void) {
     d = gSelectKart;
     switch (d->mUnk_094) {
         case 0:
-            if (d->mUnk_0ec.mUnk_00 == 1) {
+            if (d->mUnk_0ac[4].mUnk_00 == 1) {
                 d->mUnk_090 = 0;
                 if (func_020280dc() != 0) {
                     v = 1;
@@ -103,9 +103,9 @@ int AdvanceSelectKart(void) {
                 gSelectKart->mUnk_090 = 0;
                 gSelectKart->mUnk_100 = 2;
                 func_0202941c(0);
-                func_02025f14(&gSelectKart->mUnk_0bc, 2);
-                func_02025f14(&gSelectKart->mUnk_0dc, 2);
-                func_02025f14(&gSelectKart->mUnk_0ec, 2);
+                func_02025f14(&gSelectKart->mUnk_0ac[1], 2);
+                func_02025f14(&gSelectKart->mUnk_0ac[3], 2);
+                func_02025f14(&gSelectKart->mUnk_0ac[4], 2);
                 gSelectKart->mUnk_094 = 7;
                 if (gSelectKart->mUnk_0fc != 0) {
                     v = 1;
@@ -186,11 +186,11 @@ int AdvanceSelectKart(void) {
         case 6:
             d->mUnk_090 = d->mUnk_090 + 1;
             if (gSelectKart->mUnk_090 > 0x3c) {
-                func_02025f14(&gSelectKart->mUnk_0ac, 2);
-                func_02025f14(&gSelectKart->mUnk_0bc, 2);
-                func_02025f14(&gSelectKart->mUnk_0cc, 2);
-                func_02025f14(&gSelectKart->mUnk_0dc, 2);
-                func_02025f14(&gSelectKart->mUnk_0ec, 2);
+                func_02025f14(&gSelectKart->mUnk_0ac[0], 2);
+                func_02025f14(&gSelectKart->mUnk_0ac[1], 2);
+                func_02025f14(&gSelectKart->mUnk_0ac[2], 2);
+                func_02025f14(&gSelectKart->mUnk_0ac[3], 2);
+                func_02025f14(&gSelectKart->mUnk_0ac[4], 2);
                 if (gSelectKart->mUnk_0fc == 2) {
                     func_021219cc();
                     func_0202941c(3);
@@ -207,7 +207,7 @@ int AdvanceSelectKart(void) {
             }
             break;
         case 7:
-            if (d->mUnk_0ec.mUnk_00 == 3) {
+            if (d->mUnk_0ac[4].mUnk_00 == 3) {
                 func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mUnk_14 = d->mUnk_100 == 1;
                 gSelectKart->mUnk_094 = 8;
             }

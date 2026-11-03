@@ -159,12 +159,7 @@ typedef struct Unk02143a78_0c {
     /* 02 */ u16 mUnk_02;
     /* 04 */ void *mUnk_04;
     /* 08 */ u16 mUnk_08;
-    /* 0a */ u8 mUnk_0a;
-    /* 0b */ u8 mUnk_0b;
-    /* 0c */ u8 mUnk_0c;
-    /* 0d */ u8 mUnk_0d;
-    /* 0e */ u8 mUnk_0e;
-    /* 0f */ u8 mUnk_0f;
+    /* 0a */ u8 mUnk_0a[6];
 } Unk02143a78_0c;
 
 // Taken by func_02143c30 and func_02143c80.

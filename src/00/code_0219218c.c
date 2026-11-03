@@ -24,12 +24,12 @@ u32 func_ov000_0219218c(Unk0218f960 *p, Unk021919ac_node *n, Unk021919ac_f0 *a) 
     n->mUnk_0c = func_ov000_021a3690(0xf0);
     if (n->mUnk_0c != NULL) {
         *n->mUnk_0c = *a;
-        n->mUnk_0c->mUnk_00 = (u32) func_ov000_0218e880((u8 *) a->mUnk_00);
-        n->mUnk_0c->mUnk_04 = (u32) func_ov000_0218e880((u8 *) a->mUnk_04);
-        n->mUnk_0c->mUnk_08 = (u32) func_ov000_0218e880((u8 *) a->mUnk_08);
-        n->mUnk_0c->mUnk_0c = (u32) func_ov000_0218e880((u8 *) a->mUnk_0c);
-        n->mUnk_0c->mUnk_10 = (u32) func_ov000_0218e880((u8 *) a->mUnk_10);
-        n->mUnk_0c->mUnk_14 = (u32) func_ov000_0218e880((u8 *) a->mUnk_14);
+        n->mUnk_0c->mUnk_00[0] = (u32) func_ov000_0218e880((u8 *) a->mUnk_00[0]);
+        n->mUnk_0c->mUnk_00[1] = (u32) func_ov000_0218e880((u8 *) a->mUnk_00[1]);
+        n->mUnk_0c->mUnk_00[2] = (u32) func_ov000_0218e880((u8 *) a->mUnk_00[2]);
+        n->mUnk_0c->mUnk_00[3] = (u32) func_ov000_0218e880((u8 *) a->mUnk_00[3]);
+        n->mUnk_0c->mUnk_00[4] = (u32) func_ov000_0218e880((u8 *) a->mUnk_00[4]);
+        n->mUnk_0c->mUnk_00[5] = (u32) func_ov000_0218e880((u8 *) a->mUnk_00[5]);
         n->mUnk_0c->mUnk_c8 = (u32) func_ov000_0218e880((u8 *) a->mUnk_c8);
     }
     if (n->mUnk_0c != NULL) {

@@ -58,10 +58,10 @@ void func_020d1de8(Unk020d029c *param_1, s32 param_2) {
         data_0217b4b4->mUnk_20 = func_020ae5c4(param_1);
         p = data_0217b4b4->mUnk_18;
         e = &param_1->mUnk_000[data_0217b4b4->mUnk_20 * 4];
-        e[0].mUnk_06 = p[0] >> 4;
-        e[1].mUnk_06 = p[1] >> 4;
-        e[2].mUnk_06 = p[2] >> 4;
-        e[3].mUnk_06 = p[3] >> 4;
+        e[0].mUnk_00[3] = p[0] >> 4;
+        e[1].mUnk_00[3] = p[1] >> 4;
+        e[2].mUnk_00[3] = p[2] >> 4;
+        e[3].mUnk_00[3] = p[3] >> 4;
         data_0217b4b4->mUnk_18[3] = data_0217b4b4->mUnk_1c;
         data_0217b4b4->mUnk_18[0] = data_0217b4b4->mUnk_18[3];
         data_0217b4b4->mUnk_18[2] = 0;

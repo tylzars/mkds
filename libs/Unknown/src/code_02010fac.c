@@ -650,9 +650,9 @@ s32 func_02011254(Unk02011254 *a, Unk020111e0 *b, u32 c) {
             } else {
                 w = func_02147f34(b->mUnk_04, s);
             }
-            func_02011558(&a->mUnk_04, &t.mUnk_04, w, t.mUnk_00 & 1);
-            func_02011558(&a->mUnk_10, &t.mUnk_10, w, t.mUnk_00 & 8);
-            func_02011558(&a->mUnk_1c, &t.mUnk_1c, w, t.mUnk_00 & 0x10);
+            func_02011558(&a->mUnk_04[0], &t.mUnk_04[0], w, t.mUnk_00 & 1);
+            func_02011558(&a->mUnk_04[1], &t.mUnk_04[1], w, t.mUnk_00 & 8);
+            func_02011558(&a->mUnk_04[2], &t.mUnk_04[2], w, t.mUnk_00 & 0x10);
             if (!(t.mUnk_00 & 4)) {
                 a->mUnk_28.mUnk_00[3].x += (s32) (((s64) w * t.mUnk_28.mUnk_00[3].x) >> 12);
                 a->mUnk_28.mUnk_00[3].y += (s32) (((s64) w * t.mUnk_28.mUnk_00[3].y) >> 12);

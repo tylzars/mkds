@@ -235,9 +235,7 @@ extern Unk0208fd8c_08 *data_0217b0a4;
 
 // Object behind data_0217b08c, 0x38 bytes: 12-byte blocks at 0x00, 0x0c and 0x18.
 typedef struct Unk0217b08c {
-    /* 00 */ Unk02017328 mUnk_00;
-    /* 0c */ Unk02017328 mUnk_0c;
-    /* 18 */ Unk02017328 mUnk_18;
+    /* 00 */ Unk02017328 mUnk_00[3];
     /* 24 */ Unk0208526c mUnk_24;
     /* 34 */ s32 mUnk_34;
 } Unk0217b08c;

@@ -19,18 +19,13 @@ typedef struct Unk02174e28 {
     /* 0b4 */ s32 mUnk_0b4;
     /* 0b8 */ s32 mUnk_0b8;
     /* 0bc */ s32 mUnk_0bc[4];
-    /* 0cc */ Unk02025ebc mUnk_0cc;
-    /* 0dc */ Unk02025ebc mUnk_0dc;
-    /* 0ec */ Unk02025ebc mUnk_0ec;
+    /* 0cc */ Unk02025ebc mUnk_0cc[3];
     /* 0fc */ Unk02025ebc mUnk_0fc[4];
     /* 13c */ s32 mUnk_13c;
     /* 140 */ s32 mUnk_140;
     /* 144 */ s32 mUnk_144;
     /* 148 */ s32 mUnk_148;
-    /* 14c */ u16 mUnk_14c;
-    /* 14e */ u16 mUnk_14e;
-    /* 150 */ u16 mUnk_150;
-    /* 152 */ u16 mUnk_152;
+    /* 14c */ u16 mUnk_14c[4];
     /* 154 */ s16 mUnk_154;
 } Unk02174e28;
 

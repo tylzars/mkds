@@ -422,12 +422,12 @@ s32 func_02143a78(Unk021425e8Func a, Unk02143a78 *b) {
     pk->mUnk_02 = b->mUnk_04;
     pk->mUnk_04 = b->mUnk_00;
     pk->mUnk_08 = b->mUnk_06;
-    pk->mUnk_0a = b->mUnk_08[0];
-    pk->mUnk_0b = b->mUnk_08[1];
-    pk->mUnk_0c = b->mUnk_08[2];
-    pk->mUnk_0d = b->mUnk_08[3];
-    pk->mUnk_0e = b->mUnk_08[4];
-    pk->mUnk_0f = b->mUnk_08[5];
+    pk->mUnk_0a[0] = b->mUnk_08[0];
+    pk->mUnk_0a[1] = b->mUnk_08[1];
+    pk->mUnk_0a[2] = b->mUnk_08[2];
+    pk->mUnk_0a[3] = b->mUnk_08[3];
+    pk->mUnk_0a[4] = b->mUnk_08[4];
+    pk->mUnk_0a[5] = b->mUnk_08[5];
     r = func_02142ab8(0xa, 0);
     if (r == 0) {
         return 2;

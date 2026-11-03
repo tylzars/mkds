@@ -31,8 +31,8 @@ void func_0209be50(Unk0209bc74 *a, const char *b) {
     void *x;
 
     x = FindCourseMapObjFile(b);
-    a->mUnk_1c = func_02036bec(func_020364e0(func_020364e8()), 0x38);
-    func_020ea514(0, a->mUnk_10, a->mUnk_1c, a->mUnk_18, x);
+    a->mUnk_1c[0] = func_02036bec(func_020364e0(func_020364e8()), 0x38);
+    func_020ea514(0, a->mUnk_10, a->mUnk_1c[0], a->mUnk_18, x);
 }
 #pragma thumb off
 
@@ -41,8 +41,8 @@ void func_0209be1c(Unk0209bc74 *a, const char *b) {
     void *x;
 
     x = FindCourseMapObjFile(b);
-    a->mUnk_28 = func_02036bec(func_020364e0(func_020364e8()), 0x38);
-    func_020ea514(1, a->mUnk_10, a->mUnk_28, a->mUnk_18, x);
+    a->mUnk_1c[3] = func_02036bec(func_020364e0(func_020364e8()), 0x38);
+    func_020ea514(1, a->mUnk_10, a->mUnk_1c[3], a->mUnk_18, x);
 }
 #pragma thumb off
 
@@ -51,8 +51,8 @@ void func_0209bde8(Unk0209bc74 *a, const char *b) {
     void *x;
 
     x = FindCourseMapObjFile(b);
-    a->mUnk_20 = func_02036bec(func_020364e0(func_020364e8()), 0x38);
-    func_020ea514(2, a->mUnk_10, a->mUnk_20, a->mUnk_18, x);
+    a->mUnk_1c[1] = func_02036bec(func_020364e0(func_020364e8()), 0x38);
+    func_020ea514(2, a->mUnk_10, a->mUnk_1c[1], a->mUnk_18, x);
 }
 #pragma thumb off
 

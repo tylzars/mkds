@@ -170,9 +170,9 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
     x = (s32) (((s64) b->mUnk_110 * tbl[k * 2] + 0x800) >> 12);
     y = (s32) (((s64) b->mUnk_110 * tbl[k * 2 + 1] + 0x800) >> 12);
     func_02147230(buf, x, y);
-    buf[0] = b->mUnk_100;
-    buf[10] = b->mUnk_104;
-    buf[11] = b->mUnk_108;
+    buf[0] = b->mUnk_100[0];
+    buf[10] = b->mUnk_100[1];
+    buf[11] = b->mUnk_100[2];
     func_01ff9048(0x11, NULL, 0);
     func_01ff9048(0x19, buf, 0xc);
     func_020849d0(gCarTire);
@@ -472,9 +472,9 @@ void func_020e1f54(Unk020e1e98 *a, struct Unk020fa294 *b, Unk020e1e98_154 *c) {
     a->mUnk_120 = (s32) (((s64) c->mUnk_0c * a->mUnk_000.mUnk_1c.z) >> 12);
     a->mUnk_152 = (u16) ((u32) ((s16) b->mUnk_28 * 0xfa) / 100);
     a->mUnk_150 = a->mUnk_152;
-    a->mUnk_100 = c->mUnk_10;
-    a->mUnk_104 = c->mUnk_14 >> 4;
-    a->mUnk_108 = c->mUnk_18 >> 4;
+    a->mUnk_100[0] = c->mUnk_10;
+    a->mUnk_100[1] = c->mUnk_14 >> 4;
+    a->mUnk_100[2] = c->mUnk_18 >> 4;
     a->mUnk_110 = c->mUnk_1c;
     func_020e1e98(a);
     a->mUnk_15c = c->mUnk_2c;

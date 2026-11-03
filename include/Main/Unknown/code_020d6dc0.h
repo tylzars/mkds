@@ -8,10 +8,7 @@ struct Unk020fa294;
 
 // Four words: func_020d7b88 writes them.
 typedef struct Unk020d7b88 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+    /* 00 */ s32 mUnk_00[4];
 } Unk020d7b88;
 
 void func_020d7d4c(Unk020d84e4 *m, struct Unk020fa294 *b, s32 c, s32 d);

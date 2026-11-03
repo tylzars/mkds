@@ -19,9 +19,7 @@ typedef struct Unk020111e0 {
 // Result of func_02011254.
 typedef struct Unk02011254 {
     /* 00 */ u32 mUnk_00;
-    /* 04 */ Vec3 mUnk_04;
-    /* 10 */ Vec3 mUnk_10;
-    /* 1c */ Vec3 mUnk_1c;
+    /* 04 */ Vec3 mUnk_04[3];
     /* 28 */ Unk02012f58 mUnk_28;
 } Unk02011254;
 

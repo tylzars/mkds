@@ -46,10 +46,7 @@ typedef struct Unk02174e58 {
     /* 94 */ s32 mUnk_94;
     /* 98 */ s32 mUnk_98;
     /* 9c */ s32 mUnk_9c;
-    /* a0 */ Unk02025ebc mUnk_a0;
-    /* b0 */ Unk02025ebc mUnk_b0;
-    /* c0 */ Unk02025ebc mUnk_c0;
-    /* d0 */ Unk02025ebc mUnk_d0;
+    /* a0 */ Unk02025ebc mUnk_a0[4];
     /* e0 */ Unk02174e58_e0 mUnk_e0[8];
     /* 140 */ s32 mUnk_140;
     /* 144 */ s32 mUnk_144;

@@ -12,10 +12,10 @@ void func_0207a5f0(s32 a) {
     Unk0206bcb0_590 *s;
     for (i = 0; i < data_usa_0217acf4; i++) {
         s = p->mUnk_590;
-        func_02013044(s->mUnk_014->mUnk_04, a);
-        func_02013044(s->mUnk_010->mUnk_04, a);
-        if (s->mUnk_018 != NULL) {
-            func_02013044(s->mUnk_018->mUnk_04, a);
+        func_02013044(s->mUnk_010[1]->mUnk_04, a);
+        func_02013044(s->mUnk_010[0]->mUnk_04, a);
+        if (s->mUnk_010[2] != NULL) {
+            func_02013044(s->mUnk_010[2]->mUnk_04, a);
         }
         p++;
     }

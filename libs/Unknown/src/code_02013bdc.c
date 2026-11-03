@@ -502,9 +502,9 @@ void func_0201520c(Unk02014c5c_out *o) {
         return;
     }
     r = (const u32 *) e->mUnk_04;
-    o->mUnk_4c = r[0];
-    o->mUnk_50 = r[1];
-    o->mUnk_54 = r[2];
+    o->mUnk_4c[0] = r[0];
+    o->mUnk_4c[1] = r[1];
+    o->mUnk_4c[2] = r[2];
 }
 
 // non-matching: the original keeps the table header in r4 (push {r4, lr}); this version keeps every value in r0-r3, ip
@@ -616,33 +616,33 @@ void func_02014c5c(Unk02014c5c *obj, int idx, s32 a, Unk02014c5c_out *o) {
         if (!(flags & 6)) {
             if (!(flags & 8)) {
                 if (use) {
-                    func_02014954(&o->mUnk_4c, a, p, obj);
+                    func_02014954(&o->mUnk_4c[0], a, p, obj);
                 } else {
-                    func_02014ad0(&o->mUnk_4c, a, p, obj);
+                    func_02014ad0(&o->mUnk_4c[0], a, p, obj);
                 }
                 p += 2;
             } else {
-                o->mUnk_4c = *p++;
+                o->mUnk_4c[0] = *p++;
             }
             if (!(flags & 0x10)) {
                 if (use) {
-                    func_02014954(&o->mUnk_50, a, p, obj);
+                    func_02014954(&o->mUnk_4c[1], a, p, obj);
                 } else {
-                    func_02014ad0(&o->mUnk_50, a, p, obj);
+                    func_02014ad0(&o->mUnk_4c[1], a, p, obj);
                 }
                 p += 2;
             } else {
-                o->mUnk_50 = *p++;
+                o->mUnk_4c[1] = *p++;
             }
             if (!(flags & 0x20)) {
                 if (use) {
-                    func_02014954(&o->mUnk_54, a, p, obj);
+                    func_02014954(&o->mUnk_4c[2], a, p, obj);
                 } else {
-                    func_02014ad0(&o->mUnk_54, a, p, obj);
+                    func_02014ad0(&o->mUnk_4c[2], a, p, obj);
                 }
                 p += 2;
             } else {
-                o->mUnk_54 = *p++;
+                o->mUnk_4c[2] = *p++;
             }
         } else if (flags & 2) {
             o->mUnk_00 |= 4;

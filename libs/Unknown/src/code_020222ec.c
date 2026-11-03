@@ -125,9 +125,9 @@ u16 func_020224e0(Unk020224e0_o *a, u16 b, Unk020224e0_c *c, s32 *d, s32 *e, u16
     for (i = 0; i < b; i++) {
         o = &a[i];
         s = &c->mUnk_04[i];
-        o->mUnk_00 = s->mUnk_00;
-        o->mUnk_02 = s->mUnk_02;
-        o->mUnk_04 = s->mUnk_04;
+        o->mUnk_00[0] = s->mUnk_00;
+        o->mUnk_00[1] = s->mUnk_02;
+        o->mUnk_00[2] = s->mUnk_04;
         if (d != 0 || e != 0) {
             w = *(u32 *) o;
             x = (s16) ((w & 0x1ff0000) >> 16);

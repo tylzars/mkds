@@ -57,29 +57,29 @@ void func_020d7bec(Unk02012f58 *a) {
     t = func_02148538(a->mUnk_00[0].z, a->mUnk_00[2].z);
     t = (((s64) t * 0x28BE60DB9391LL) + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
-    data_0217b660.mUnk_00 = 0;
-    data_0217b660.mUnk_04 = data_0215d4b4[i * 2];
-    data_0217b660.mUnk_08 = 0;
-    data_0217b660.mUnk_0c = data_0215d4b4[i * 2 + 1];
+    data_0217b660.mUnk_00[0] = 0;
+    data_0217b660.mUnk_00[1] = data_0215d4b4[i * 2];
+    data_0217b660.mUnk_00[2] = 0;
+    data_0217b660.mUnk_00[3] = data_0215d4b4[i * 2 + 1];
 }
 
 void func_020d7b88(Vec3 *a, void *q) {
     Unk020d7b88 *b = q;
     s32 r = func_02147e8c((a->y + 0x1000) << 1);
     func_02147d88(a->z, r);
-    b->mUnk_04 = 0;
-    b->mUnk_00 = func_02147e28();
+    b->mUnk_00[1] = 0;
+    b->mUnk_00[0] = func_02147e28();
     func_02147d88(-a->x, r);
-    b->mUnk_0c = r >> 1;
-    b->mUnk_08 = func_02147e28();
+    b->mUnk_00[3] = r >> 1;
+    b->mUnk_00[2] = func_02147e28();
 }
 
 void func_020d7b34(s32 a, Unk020d7b88 *b) {
     s32 i = (u16) (a >> 1) >> 4;
-    b->mUnk_00 = 0;
-    b->mUnk_04 = data_0215d4b4[i * 2];
-    b->mUnk_08 = 0;
-    b->mUnk_0c = data_0215d4b4[i * 2 + 1];
+    b->mUnk_00[0] = 0;
+    b->mUnk_00[1] = data_0215d4b4[i * 2];
+    b->mUnk_00[2] = 0;
+    b->mUnk_00[3] = data_0215d4b4[i * 2 + 1];
 }
 
 void func_020d7a3c(void *p, s32 b, void *q) {
@@ -98,15 +98,15 @@ void func_020d7a3c(void *p, s32 b, void *q) {
     i = (u16) (b >> 1) >> 4;
     s = data_0215d4b4[i * 2];
     k = data_0215d4b4[i * 2 + 1];
-    c->mUnk_04 = ((r >> 1) * s) >> 12;
-    c->mUnk_0c = ((r >> 1) * k) >> 12;
+    c->mUnk_00[1] = ((r >> 1) * s) >> 12;
+    c->mUnk_00[3] = ((r >> 1) * k) >> 12;
     d = func_02147e28();
     func_02147d88(-a->x, r);
-    c->mUnk_00 = (d * k) >> 12;
-    c->mUnk_08 = (d * s) >> 12;
+    c->mUnk_00[0] = (d * k) >> 12;
+    c->mUnk_00[2] = (d * s) >> 12;
     d = func_02147e28();
-    c->mUnk_00 = c->mUnk_00 - ((d * s) >> 12);
-    c->mUnk_08 = c->mUnk_08 + ((d * k) >> 12);
+    c->mUnk_00[0] = c->mUnk_00[0] - ((d * s) >> 12);
+    c->mUnk_00[2] = c->mUnk_00[2] + ((d * k) >> 12);
 }
 
 void func_020d79b0(void *p, u32 b, void *q) {
@@ -115,17 +115,17 @@ void func_020d79b0(void *p, u32 b, void *q) {
     s32 i = (u16) (b >> 1) >> 4;
     s32 s = data_0215d4b4[i * 2];
     s32 k = data_0215d4b4[i * 2 + 1];
-    c->mUnk_00 = (a->mUnk_00 * k - a->mUnk_08 * s) >> 12;
-    c->mUnk_04 = (a->mUnk_0c * s) >> 12;
-    c->mUnk_08 = (a->mUnk_08 * k + a->mUnk_00 * s) >> 12;
-    c->mUnk_0c = (a->mUnk_0c * k) >> 12;
+    c->mUnk_00[0] = (a->mUnk_00[0] * k - a->mUnk_00[2] * s) >> 12;
+    c->mUnk_00[1] = (a->mUnk_00[3] * s) >> 12;
+    c->mUnk_00[2] = (a->mUnk_00[2] * k + a->mUnk_00[0] * s) >> 12;
+    c->mUnk_00[3] = (a->mUnk_00[3] * k) >> 12;
 }
 
 void func_020d7938(Unk020d7b88 *a, Unk020d7b88 *b, Unk020d7b88 *c) {
-    c->mUnk_00 = (a->mUnk_00 * b->mUnk_0c - a->mUnk_08 * b->mUnk_04) >> 12;
-    c->mUnk_04 = (a->mUnk_0c * b->mUnk_04) >> 12;
-    c->mUnk_08 = (a->mUnk_08 * b->mUnk_0c + a->mUnk_00 * b->mUnk_04) >> 12;
-    c->mUnk_0c = (a->mUnk_0c * b->mUnk_0c) >> 12;
+    c->mUnk_00[0] = (a->mUnk_00[0] * b->mUnk_00[3] - a->mUnk_00[2] * b->mUnk_00[1]) >> 12;
+    c->mUnk_00[1] = (a->mUnk_00[3] * b->mUnk_00[1]) >> 12;
+    c->mUnk_00[2] = (a->mUnk_00[2] * b->mUnk_00[3] + a->mUnk_00[0] * b->mUnk_00[1]) >> 12;
+    c->mUnk_00[3] = (a->mUnk_00[3] * b->mUnk_00[3]) >> 12;
 }
 
 void func_020d788c(Unk020d7b88 *a, s32 b, Unk020d7b88 *c) {
@@ -133,10 +133,10 @@ void func_020d788c(Unk020d7b88 *a, s32 b, Unk020d7b88 *c) {
     s32 i = (u16) (b >> 1) >> 4;
     s32 s = data_0215d4b4[i * 2];
     s32 k = data_0215d4b4[i * 2 + 1];
-    c->mUnk_00 = (q.mUnk_0c * s + q.mUnk_00 * k) >> 12;
-    c->mUnk_04 = (q.mUnk_04 * k + q.mUnk_08 * s) >> 12;
-    c->mUnk_08 = (q.mUnk_08 * k - q.mUnk_04 * s) >> 12;
-    c->mUnk_0c = (q.mUnk_0c * k - q.mUnk_00 * s) >> 12;
+    c->mUnk_00[0] = (q.mUnk_00[3] * s + q.mUnk_00[0] * k) >> 12;
+    c->mUnk_00[1] = (q.mUnk_00[1] * k + q.mUnk_00[2] * s) >> 12;
+    c->mUnk_00[2] = (q.mUnk_00[2] * k - q.mUnk_00[1] * s) >> 12;
+    c->mUnk_00[3] = (q.mUnk_00[3] * k - q.mUnk_00[0] * s) >> 12;
 }
 
 void func_020d77e0(void *m, s32 b, void *o) {
@@ -146,10 +146,10 @@ void func_020d77e0(void *m, s32 b, void *o) {
     s32 i = (u16) (b >> 1) >> 4;
     s32 s = data_0215d4b4[i * 2];
     s32 k = data_0215d4b4[i * 2 + 1];
-    c->mUnk_00 = (q.mUnk_00 * k - q.mUnk_08 * s) >> 12;
-    c->mUnk_04 = (q.mUnk_0c * s + q.mUnk_04 * k) >> 12;
-    c->mUnk_08 = (q.mUnk_08 * k + q.mUnk_00 * s) >> 12;
-    c->mUnk_0c = (q.mUnk_0c * k - q.mUnk_04 * s) >> 12;
+    c->mUnk_00[0] = (q.mUnk_00[0] * k - q.mUnk_00[2] * s) >> 12;
+    c->mUnk_00[1] = (q.mUnk_00[3] * s + q.mUnk_00[1] * k) >> 12;
+    c->mUnk_00[2] = (q.mUnk_00[2] * k + q.mUnk_00[0] * s) >> 12;
+    c->mUnk_00[3] = (q.mUnk_00[3] * k - q.mUnk_00[1] * s) >> 12;
 }
 
 void func_020d7734(void *m, s32 b, void *o) {
@@ -159,10 +159,10 @@ void func_020d7734(void *m, s32 b, void *o) {
     s32 i = (u16) (b >> 1) >> 4;
     s32 s = data_0215d4b4[i * 2];
     s32 k = data_0215d4b4[i * 2 + 1];
-    c->mUnk_00 = (q.mUnk_00 * k + q.mUnk_04 * s) >> 12;
-    c->mUnk_04 = (q.mUnk_04 * k - q.mUnk_00 * s) >> 12;
-    c->mUnk_08 = (q.mUnk_0c * s + q.mUnk_08 * k) >> 12;
-    c->mUnk_0c = (q.mUnk_0c * k - q.mUnk_08 * s) >> 12;
+    c->mUnk_00[0] = (q.mUnk_00[0] * k + q.mUnk_00[1] * s) >> 12;
+    c->mUnk_00[1] = (q.mUnk_00[1] * k - q.mUnk_00[0] * s) >> 12;
+    c->mUnk_00[2] = (q.mUnk_00[3] * s + q.mUnk_00[2] * k) >> 12;
+    c->mUnk_00[3] = (q.mUnk_00[3] * k - q.mUnk_00[2] * s) >> 12;
 }
 
 void func_020d76a8(Unk020d7b88 *a, s32 b, Unk020d7b88 *c) {
@@ -170,27 +170,27 @@ void func_020d76a8(Unk020d7b88 *a, s32 b, Unk020d7b88 *c) {
     s32 i = (u16) (b >> 1) >> 4;
     s32 s = data_0215d4b4[i * 2];
     s32 k = data_0215d4b4[i * 2 + 1];
-    c->mUnk_00 = (q.mUnk_0c * s) >> 12;
-    c->mUnk_04 = (q.mUnk_04 * k) >> 12;
-    c->mUnk_08 = (-q.mUnk_04 * s) >> 12;
-    c->mUnk_0c = (q.mUnk_0c * k) >> 12;
+    c->mUnk_00[0] = (q.mUnk_00[3] * s) >> 12;
+    c->mUnk_00[1] = (q.mUnk_00[1] * k) >> 12;
+    c->mUnk_00[2] = (-q.mUnk_00[1] * s) >> 12;
+    c->mUnk_00[3] = (q.mUnk_00[3] * k) >> 12;
 }
 
 void func_020d759c(void *p, void *q, void *r, s32 d) {
     Unk020d7b88 *a = p;
     Unk020d7b88 *b = q;
     Unk020d7b88 *c = r;
-    s32 v = a->mUnk_00 * b->mUnk_00 + a->mUnk_04 * b->mUnk_04 + a->mUnk_08 * b->mUnk_08 + a->mUnk_0c * b->mUnk_0c;
+    s32 v = a->mUnk_00[0] * b->mUnk_00[0] + a->mUnk_00[1] * b->mUnk_00[1] + a->mUnk_00[2] * b->mUnk_00[2] + a->mUnk_00[3] * b->mUnk_00[3];
     if (v < 0) {
-        c->mUnk_00 = a->mUnk_00 + ((d * -(b->mUnk_00 + a->mUnk_00)) >> 12);
-        c->mUnk_04 = a->mUnk_04 + ((d * -(b->mUnk_04 + a->mUnk_04)) >> 12);
-        c->mUnk_08 = a->mUnk_08 + ((d * -(b->mUnk_08 + a->mUnk_08)) >> 12);
-        c->mUnk_0c = a->mUnk_0c + ((d * -(b->mUnk_0c + a->mUnk_0c)) >> 12);
+        c->mUnk_00[0] = a->mUnk_00[0] + ((d * -(b->mUnk_00[0] + a->mUnk_00[0])) >> 12);
+        c->mUnk_00[1] = a->mUnk_00[1] + ((d * -(b->mUnk_00[1] + a->mUnk_00[1])) >> 12);
+        c->mUnk_00[2] = a->mUnk_00[2] + ((d * -(b->mUnk_00[2] + a->mUnk_00[2])) >> 12);
+        c->mUnk_00[3] = a->mUnk_00[3] + ((d * -(b->mUnk_00[3] + a->mUnk_00[3])) >> 12);
     } else {
-        c->mUnk_00 = a->mUnk_00 + ((d * (b->mUnk_00 - a->mUnk_00)) >> 12);
-        c->mUnk_04 = a->mUnk_04 + ((d * (b->mUnk_04 - a->mUnk_04)) >> 12);
-        c->mUnk_08 = a->mUnk_08 + ((d * (b->mUnk_08 - a->mUnk_08)) >> 12);
-        c->mUnk_0c = a->mUnk_0c + ((d * (b->mUnk_0c - a->mUnk_0c)) >> 12);
+        c->mUnk_00[0] = a->mUnk_00[0] + ((d * (b->mUnk_00[0] - a->mUnk_00[0])) >> 12);
+        c->mUnk_00[1] = a->mUnk_00[1] + ((d * (b->mUnk_00[1] - a->mUnk_00[1])) >> 12);
+        c->mUnk_00[2] = a->mUnk_00[2] + ((d * (b->mUnk_00[2] - a->mUnk_00[2])) >> 12);
+        c->mUnk_00[3] = a->mUnk_00[3] + ((d * (b->mUnk_00[3] - a->mUnk_00[3])) >> 12);
     }
 }
 
@@ -199,7 +199,7 @@ void func_020d73f0(Unk020d7b88 *a, Unk020d7b88 *b) {
     s32 r;
     s64 q;
     s64 t;
-    w = a->mUnk_00 * a->mUnk_00 + a->mUnk_04 * a->mUnk_04 + a->mUnk_08 * a->mUnk_08 + a->mUnk_0c * a->mUnk_0c;
+    w = a->mUnk_00[0] * a->mUnk_00[0] + a->mUnk_00[1] * a->mUnk_00[1] + a->mUnk_00[2] * a->mUnk_00[2] + a->mUnk_00[3] * a->mUnk_00[3];
     if (w > 0xE66666 && w < 0x119999A) {
         *b = *a;
         return;
@@ -216,10 +216,10 @@ void func_020d73f0(Unk020d7b88 *a, Unk020d7b88 *b) {
     }
     q = *(vu64 *) 0x40002a0;
     t = q * r;
-    b->mUnk_00 = (s32) ((t * a->mUnk_00 + 0x100000000000LL) >> 45);
-    b->mUnk_04 = (s32) ((t * a->mUnk_04 + 0x100000000000LL) >> 45);
-    b->mUnk_08 = (s32) ((t * a->mUnk_08 + 0x100000000000LL) >> 45);
-    b->mUnk_0c = (s32) ((t * a->mUnk_0c + 0x100000000000LL) >> 45);
+    b->mUnk_00[0] = (s32) ((t * a->mUnk_00[0] + 0x100000000000LL) >> 45);
+    b->mUnk_00[1] = (s32) ((t * a->mUnk_00[1] + 0x100000000000LL) >> 45);
+    b->mUnk_00[2] = (s32) ((t * a->mUnk_00[2] + 0x100000000000LL) >> 45);
+    b->mUnk_00[3] = (s32) ((t * a->mUnk_00[3] + 0x100000000000LL) >> 45);
 }
 
 void func_020d720c(Vec3 *a, u32 *m) {
@@ -233,28 +233,28 @@ void func_020d720c(Vec3 *a, u32 *m) {
     s32 t;
     t = ((s64) a->x * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
-    p.mUnk_00 = data_0215d4b4[i * 2];
-    p.mUnk_0c = data_0215d4b4[i * 2 + 1];
-    p.mUnk_04 = 0;
-    p.mUnk_08 = 0;
+    p.mUnk_00[0] = data_0215d4b4[i * 2];
+    p.mUnk_00[3] = data_0215d4b4[i * 2 + 1];
+    p.mUnk_00[1] = 0;
+    p.mUnk_00[2] = 0;
     q = p;
     t = ((s64) a->y * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
     s = data_0215d4b4[i * 2];
     c = data_0215d4b4[i * 2 + 1];
-    p.mUnk_00 = (q.mUnk_00 * c - q.mUnk_08 * s) >> 12;
-    p.mUnk_08 = (q.mUnk_08 * c + q.mUnk_00 * s) >> 12;
-    p.mUnk_04 = (q.mUnk_0c * s + q.mUnk_04 * c) >> 12;
-    p.mUnk_0c = (q.mUnk_0c * c - q.mUnk_04 * s) >> 12;
+    p.mUnk_00[0] = (q.mUnk_00[0] * c - q.mUnk_00[2] * s) >> 12;
+    p.mUnk_00[2] = (q.mUnk_00[2] * c + q.mUnk_00[0] * s) >> 12;
+    p.mUnk_00[1] = (q.mUnk_00[3] * s + q.mUnk_00[1] * c) >> 12;
+    p.mUnk_00[3] = (q.mUnk_00[3] * c - q.mUnk_00[1] * s) >> 12;
     r = p;
     t = ((s64) a->z * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
     s = data_0215d4b4[i * 2];
     c = data_0215d4b4[i * 2 + 1];
-    b->mUnk_00 = (r.mUnk_00 * c + r.mUnk_04 * s) >> 12;
-    b->mUnk_04 = (r.mUnk_04 * c - r.mUnk_00 * s) >> 12;
-    b->mUnk_08 = (r.mUnk_0c * s + r.mUnk_08 * c) >> 12;
-    b->mUnk_0c = (r.mUnk_0c * c - r.mUnk_08 * s) >> 12;
+    b->mUnk_00[0] = (r.mUnk_00[0] * c + r.mUnk_00[1] * s) >> 12;
+    b->mUnk_00[1] = (r.mUnk_00[1] * c - r.mUnk_00[0] * s) >> 12;
+    b->mUnk_00[2] = (r.mUnk_00[3] * s + r.mUnk_00[2] * c) >> 12;
+    b->mUnk_00[3] = (r.mUnk_00[3] * c - r.mUnk_00[2] * s) >> 12;
 }
 
 s32 func_020d70ac(Vec3 *a, Vec3 *b) {

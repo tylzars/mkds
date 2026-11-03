@@ -385,7 +385,7 @@ void func_0205b0f4(void) {
     }
     v = data_0217d384->mUnk_0008.mUnk_0e;
     q = data_0217aa08->mUnk_00;
-    n = q->mUnk_48;
+    n = q->mUnk_34[5];
     if (v != 0) {
         s8 c = data_0217d384->mUnk_1f54 - 1;
         if (c > 0) {
@@ -395,7 +395,7 @@ void func_0205b0f4(void) {
                 n = n - c;
             }
         }
-        q->mUnk_48 = n;
+        q->mUnk_34[5] = n;
         func_02056d40();
         func_02057d9c();
         if (data_021759d4->mUnk_0c != 0) {

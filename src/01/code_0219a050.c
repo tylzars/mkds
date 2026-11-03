@@ -276,12 +276,12 @@ void InitRecordTopMenu(void *heap) {
                       gRecordTopMenu->mUnk_18);
     }
     pp = &data_0217aa08->mUnk_00;
-    scores[1][0] = (*pp)->mUnk_34;
-    scores[2][0] = (*pp)->mUnk_38;
-    scores[1][1] = (*pp)->mUnk_3c;
-    scores[2][1] = (*pp)->mUnk_40;
-    scores[1][2] = (*pp)->mUnk_44;
-    scores[2][2] = (*pp)->mUnk_48;
+    scores[1][0] = (*pp)->mUnk_34[0];
+    scores[2][0] = (*pp)->mUnk_34[1];
+    scores[1][1] = (*pp)->mUnk_34[2];
+    scores[2][1] = (*pp)->mUnk_34[3];
+    scores[1][2] = (*pp)->mUnk_34[4];
+    scores[2][2] = (*pp)->mUnk_34[5];
     for (i = 1; i < 3; i++) {
         for (j = 0; j < 3; j++) {
             if (scores[i][j] > 9999) {

@@ -64,18 +64,7 @@ extern Unk020e54e4 *data_0217b818;
 
 // Destination of func_020e516c.
 typedef struct Unk020e516c {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ s32 mUnk_004;
-    /* 008 */ s32 mUnk_008;
-    /* 00c */ s32 mUnk_00c;
-    /* 010 */ s32 mUnk_010;
-    /* 014 */ s32 mUnk_014;
-    /* 018 */ s32 mUnk_018;
-    /* 01c */ s32 mUnk_01c;
-    /* 020 */ s32 mUnk_020;
-    /* 024 */ s32 mUnk_024;
-    /* 028 */ s32 mUnk_028;
-    /* 02c */ s32 mUnk_02c;
+    /* 000 */ s32 mUnk_000[12];
     /* 030 */ u16 mUnk_030;
 } Unk020e516c;
 

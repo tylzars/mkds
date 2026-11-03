@@ -46,9 +46,7 @@ typedef struct Unk02018a1c {
 
 typedef struct Unk020184e4 {
     /* 00 */ void *(*mUnk_00)(u32 a);
-    /* 04 */ Unk0201e494 mUnk_04;
-    /* 10 */ Unk0201e494 mUnk_10;
-    /* 1c */ Unk0201e494 mUnk_1c;
+    /* 04 */ Unk0201e494 mUnk_04[3];
     /* 28 */ Unk0201ca6c_20 *mUnk_28;
     /* 2c */ Unk020184e4_2c *mUnk_2c;
     /* 30 */ u16 mUnk_30;

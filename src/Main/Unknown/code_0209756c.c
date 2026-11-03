@@ -228,10 +228,10 @@ void func_02097d80(void *a, Unk020975ec *p) {
     func_01ff9048(0x19, e, 0xc);
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
     func_0209b7a0(gFlipper, p->mUnk_a4, 0);
-    s = gFlipper->mUnk_20;
+    s = gFlipper->mUnk_1c[1];
     s->mUnk_0c = p->mUnk_ec4 << 12;
     s->mUnk_1c[s->mUnk_1a]->mUnk_00 = s->mUnk_0c;
-    s = gFlipper->mUnk_28;
+    s = gFlipper->mUnk_1c[3];
     s->mUnk_0c = p->mUnk_ec6 << 12;
     s->mUnk_1c[s->mUnk_1a]->mUnk_00 = s->mUnk_0c;
     func_0209bb2c(a, gFlipper, p);

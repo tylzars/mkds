@@ -73,9 +73,7 @@ typedef struct Unk0217029c {
     /* 0ec */ Vec3 mUnk_ec;
     /* 0f8 */ u32 mUnk_f8;
     /* 0fc */ u32 mUnk_fc;
-    /* 100 */ Unk02012f58 mUnk_100;
-    /* 130 */ Unk02012f58 mUnk_130;
-    /* 160 */ Unk02012f58 mUnk_160;
+    /* 100 */ Unk02012f58 mUnk_100[3];
     /* 190 */ u8 mUnk_190[0xb0];
     /* 240 */ u32 mUnk_240;
     /* 244 */ u32 mUnk_244;

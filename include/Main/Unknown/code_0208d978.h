@@ -19,9 +19,7 @@ typedef struct Unk0208e490 {
     /* 84 */ void (*mUnk_84)(struct Unk0208e490 *);
     /* 88 */ s32 mUnk_88;
     /* 8c */ u32 mUnk_8c;
-    /* 90 */ Unk02087d0c *mUnk_90;
-    /* 94 */ Unk02087d0c *mUnk_94;
-    /* 98 */ Unk02087d0c *mUnk_98;
+    /* 90 */ Unk02087d0c *mUnk_90[3];
     /* 9c */ s32 mUnk_9c[3];
     /* a8 */ u32 mUnk_a8;
     /* ac */ u32 mUnk_ac;

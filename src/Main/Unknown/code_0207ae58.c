@@ -102,10 +102,10 @@ void func_0207b0d0(Unk0206bcb0 *p) {
     if (q->mUnk_064 != 0) {
         return;
     }
-    r = q->mUnk_010->mUnk_04;
+    r = q->mUnk_010[0]->mUnk_04;
     func_02013164(r, 0);
     func_0207a14c(r, 0);
-    r = q->mUnk_014->mUnk_04;
+    r = q->mUnk_010[1]->mUnk_04;
     func_02013164(r, 0);
     func_0207a14c(r, 0);
 }
@@ -117,17 +117,17 @@ void func_0207b13c(Unk0206bcb0 *p) {
     if (q->mUnk_064 != 0) {
         return;
     }
-    r = q->mUnk_010->mUnk_04;
+    r = q->mUnk_010[0]->mUnk_04;
     func_02013164(r, 2);
     func_0207a14c(r, 3);
-    r = q->mUnk_014->mUnk_04;
+    r = q->mUnk_010[1]->mUnk_04;
     func_02013164(r, 2);
     func_0207a14c(r, 3);
 }
 
 void func_0207b1a8(Unk0206bcb0 *p) {
     Unk0206bcb0_590 *q = p->mUnk_590;
-    Unk02084b2c *r = q->mUnk_010;
+    Unk02084b2c *r = q->mUnk_010[0];
     Unk0206bcb0_590_08 *s = q->mUnk_00c;
     Unk0201290c *t = r->mUnk_04;
     Unk02084b2c *u;
@@ -141,12 +141,12 @@ void func_0207b1a8(Unk0206bcb0 *p) {
         q->mUnk_0ac = 0;
     }
     func_0207a14c(t, 0);
-    u = q->mUnk_014;
+    u = q->mUnk_010[1];
     t = u->mUnk_04;
     func_02013164(t, 0);
     func_02010584((Unk020101e8 *) t, (Unk02010294 *) u->mUnk_5c.mUnk_0c);
     func_0207a14c(t, 0);
-    v = q->mUnk_018;
+    v = q->mUnk_010[2];
     if (v != NULL) {
         w = v->mUnk_04;
         func_02013164(w, 0);
@@ -158,7 +158,7 @@ void func_0207b1a8(Unk0206bcb0 *p) {
 
 void func_0207b284(Unk0206bcb0 *p) {
     Unk0206bcb0_590 *q = p->mUnk_590;
-    Unk02084b2c *r = q->mUnk_010;
+    Unk02084b2c *r = q->mUnk_010[0];
     Unk0206bcb0_590_08 *s = q->mUnk_00c;
     Unk0201290c *t = r->mUnk_04;
 
@@ -169,12 +169,12 @@ void func_0207b284(Unk0206bcb0 *p) {
         q->mUnk_0ac = 1;
     }
     func_0207a14c(t, 2);
-    t = q->mUnk_014->mUnk_04;
+    t = q->mUnk_010[1]->mUnk_04;
     func_02013164(t, 2);
     func_020104a4((Unk020101e8 *) t);
     func_0207a14c(t, 2);
-    if (q->mUnk_018 != NULL) {
-        t = q->mUnk_018->mUnk_04;
+    if (q->mUnk_010[2] != NULL) {
+        t = q->mUnk_010[2]->mUnk_04;
         func_02013164(t, 2);
         func_020104a4((Unk020101e8 *) t);
         func_0207a14c(t, 2);

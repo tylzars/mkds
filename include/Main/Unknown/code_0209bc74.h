@@ -32,10 +32,7 @@ typedef struct Unk0209bc74 {
     /* 10 */ Unk020ea670 *mUnk_10;
     /* 14 */ Unk0209bc74_14 *mUnk_14;
     /* 18 */ void *mUnk_18;
-    /* 1c */ Unk02087d0c *mUnk_1c;
-    /* 20 */ Unk02087d0c *mUnk_20;
-    /* 24 */ Unk02087d0c *mUnk_24;
-    /* 28 */ Unk02087d0c *mUnk_28;
+    /* 1c */ Unk02087d0c * mUnk_1c[4];
 } Unk0209bc74;
 
 extern Unk0209bc74_00 data_021565a0;

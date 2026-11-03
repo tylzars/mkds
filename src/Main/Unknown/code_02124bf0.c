@@ -79,10 +79,10 @@ u32 func_02124c70(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, Unk0201ea30 *d, Unk0212
     if (f->mUnk_10 != 0) {
         v18 = f->mUnk_24;
         p = &e->mUnk_000[r6];
-        p->mUnk_00[0].mUnk_06 = f->mUnk_14[0] >> 4;
-        p->mUnk_00[1].mUnk_06 = f->mUnk_14[1] >> 4;
-        p->mUnk_00[2].mUnk_06 = f->mUnk_14[2] >> 4;
-        p->mUnk_00[3].mUnk_06 = f->mUnk_14[3] >> 4;
+        p->mUnk_00[0].mUnk_00[3] = f->mUnk_14[0] >> 4;
+        p->mUnk_00[1].mUnk_00[3] = f->mUnk_14[1] >> 4;
+        p->mUnk_00[2].mUnk_00[3] = f->mUnk_14[2] >> 4;
+        p->mUnk_00[3].mUnk_00[3] = f->mUnk_14[3] >> 4;
         if (g != 0) {
             func_020ae5d4((u32) e);
         }

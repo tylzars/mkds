@@ -119,9 +119,7 @@ typedef struct Unk020e1e98 {
     /* 0d8 */ Unk020e0144 mUnk_0d8;
     /* 0fc */ u16 mUnk_0fc;
     /* 0fe */ s16 mUnk_0fe;
-    /* 100 */ s32 mUnk_100;
-    /* 104 */ s32 mUnk_104;
-    /* 108 */ s32 mUnk_108;
+    /* 100 */ s32 mUnk_100[3];
     /* 10c */ u16 mUnk_10c;
     /* 10e */ u8 mUnk_10e[0x2];
     /* 110 */ s32 mUnk_110;

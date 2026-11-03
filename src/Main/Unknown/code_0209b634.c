@@ -47,7 +47,7 @@ void func_0209bb2c(void *a, void *b, void *d) {
         return;
     }
     if (o->mUnk_10 != NULL) {
-        if (o->mUnk_24 != NULL) {
+        if (o->mUnk_1c[2] != NULL) {
             func_020ea670(o->mUnk_10, c->mUnk_66);
         } else {
             func_020ea7cc(o->mUnk_10, c->mUnk_66);
@@ -71,7 +71,7 @@ void func_0209ba88(u32 a, Unk0209bc74 *b, int d) {
         return;
     }
     if (o->mUnk_10 != NULL) {
-        if (o->mUnk_24 != NULL) {
+        if (o->mUnk_1c[2] != NULL) {
             func_020ea670(o->mUnk_10, c->mUnk_66);
         } else {
             func_020ea7cc(o->mUnk_10, c->mUnk_66);
@@ -194,7 +194,7 @@ void func_0209b7a0(void *a, s32 b, s32 c) {
 
 void func_0209b77c(void *a, u16 b) {
     Unk0209bc74 *o = a;
-    Unk02087d0c *p = o->mUnk_1c;
+    Unk02087d0c *p = o->mUnk_1c[0];
 
     p->mUnk_0c = b << 12;
     p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_0c;
@@ -203,12 +203,12 @@ void func_0209b77c(void *a, u16 b) {
 u16 func_0209b758(void *a) {
     Unk0209bc74 *o = a;
 
-    return (u16) ((u32) func_02087d0c(o->mUnk_1c) >> 12);
+    return (u16) ((u32) func_02087d0c(o->mUnk_1c[0]) >> 12);
 }
 
 void func_0209b734(void *a, u32 b) {
     Unk0209bc74 *o = a;
-    Unk02087d0c *p = o->mUnk_24;
+    Unk02087d0c *p = o->mUnk_1c[2];
 
     p->mUnk_0c = b << 12;
     p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_0c;
@@ -217,18 +217,18 @@ void func_0209b734(void *a, u32 b) {
 s32 func_0209b710(void *a) {
     Unk0209bc74 *o = a;
 
-    return (u16) ((u32) func_02087d0c(o->mUnk_24) >> 12);
+    return (u16) ((u32) func_02087d0c(o->mUnk_1c[2]) >> 12);
 }
 
 u16 func_0209b6ec(void *a) {
     Unk0209bc74 *o = a;
 
-    return (u16) ((u32) func_02087d0c(o->mUnk_28) >> 12);
+    return (u16) ((u32) func_02087d0c(o->mUnk_1c[3]) >> 12);
 }
 
 void func_0209b6c8(void *a, s32 b) {
     Unk0209bc74 *o = a;
-    Unk02087d0c *p = o->mUnk_28;
+    Unk02087d0c *p = o->mUnk_1c[3];
 
     p->mUnk_0c = b << 12;
     p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_0c;
@@ -245,7 +245,7 @@ void func_0209b688(void *a, u16 b) {
     if (o->mUnk_10 == NULL) {
         return;
     }
-    p = o->mUnk_20;
+    p = o->mUnk_1c[1];
     p->mUnk_0c = b << 12;
     p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_0c;
 }
@@ -259,5 +259,5 @@ u16 func_0209b634(void *a) {
     if (o->mUnk_10 == NULL) {
         return 0;
     }
-    return (u16) ((u32) func_02087d0c(o->mUnk_20) >> 12);
+    return (u16) ((u32) func_02087d0c(o->mUnk_1c[1]) >> 12);
 }

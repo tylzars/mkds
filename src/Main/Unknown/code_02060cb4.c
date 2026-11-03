@@ -31,12 +31,12 @@ void func_020612b0(void) {
 
     data_0217d384->mUnk_1f54 = data_0217d384->mUnk_1f52;
     a = data_0217aa08->mUnk_00;
-    b = a->mUnk_48 + (u8) (data_0217d384->mUnk_1f54 - 1);
+    b = a->mUnk_34[5] + (u8) (data_0217d384->mUnk_1f54 - 1);
     c = data_021653e4 + 3;
     if (b > c) {
         b = c;
     }
-    data_0217aa08->mUnk_00->mUnk_48 = b;
+    data_0217aa08->mUnk_00->mUnk_34[5] = b;
     func_02057ca4(data_0217aa08->mUnk_00);
     if (data_021759d4->mUnk_0c != 0) {
         func_02145d38();

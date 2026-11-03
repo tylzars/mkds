@@ -22,7 +22,7 @@ void func_0202a820(void) {
     func_02148950(1, 0, 0);
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | 0x1a00;
     *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 2;
-    *(vu32 *) 0x4000010 = (-func_02025ebc(&gWiFiVSCourseSelect->mUnk_0dc) << 16) & 0x1ff0000;
+    *(vu32 *) 0x4000010 = (-func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[1]) << 16) & 0x1ff0000;
     *(vu32 *) 0x400101c = (-gWiFiVSCourseSelect->mUnk_154 << 16) & 0x1ff0000;
     if (gWiFiVSCourseSelect->mUnk_154 != 0) {
         *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffff1fff) | 0x2000;

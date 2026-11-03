@@ -29,7 +29,7 @@ void *func_0212d51c(s32 a) {
     u32 off;
     u8 *base;
 
-    off = d->mUnk_8c->mUnk_08;
+    off = d->mUnk_8c->mUnk_08[0];
     t = off == 0 ? 0 : (Unk0212d328 *) ((u8 *) d->mUnk_8c + off);
     if (t == 0) {
         return 0;
@@ -51,7 +51,7 @@ u32 *func_0212d4b8(s32 a) {
     u32 off;
     u8 *base;
 
-    off = d->mUnk_8c->mUnk_0c;
+    off = d->mUnk_8c->mUnk_08[1];
     t = off == 0 ? 0 : (Unk0212d328 *) ((u8 *) d->mUnk_8c + off);
     if (t == 0) {
         return 0;
@@ -73,7 +73,7 @@ void *func_0212d454(s32 a) {
     u32 off;
     u8 *base;
 
-    off = d->mUnk_8c->mUnk_10;
+    off = d->mUnk_8c->mUnk_08[2];
     t = off == 0 ? 0 : (Unk0212d328 *) ((u8 *) d->mUnk_8c + off);
     if (t == 0) {
         return 0;
@@ -95,7 +95,7 @@ void *func_0212d3f0(s32 a) {
     u32 off;
     u8 *base;
 
-    off = d->mUnk_8c->mUnk_14;
+    off = d->mUnk_8c->mUnk_08[3];
     t = off == 0 ? 0 : (Unk0212d328 *) ((u8 *) d->mUnk_8c + off);
     if (t == 0) {
         return 0;
@@ -117,7 +117,7 @@ void *func_0212d38c(s32 a) {
     u32 off;
     u8 *base;
 
-    off = d->mUnk_8c->mUnk_18;
+    off = d->mUnk_8c->mUnk_08[4];
     t = off == 0 ? 0 : (Unk0212d328 *) ((u8 *) d->mUnk_8c + off);
     if (t == 0) {
         return 0;
@@ -139,7 +139,7 @@ void *func_0212d328(s32 a) {
     u32 off;
     u8 *base;
 
-    off = d->mUnk_8c->mUnk_1c;
+    off = d->mUnk_8c->mUnk_08[5];
     t = off == 0 ? 0 : (Unk0212d328 *) ((u8 *) d->mUnk_8c + off);
     if (t == 0) {
         return 0;

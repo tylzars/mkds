@@ -11,24 +11,24 @@ void func_020245a4(Unk02021f9c *a) {
         switch (p->mUnk_00) {
             case 0x46494e46:
                 q = (Unk020245a4_08 *) (p + 1);
-                q->mUnk_08 += (u32) a;
-                if (q->mUnk_0c != 0) {
-                    q->mUnk_0c += (u32) a;
+                q->mUnk_04[1] += (u32) a;
+                if (q->mUnk_04[2] != 0) {
+                    q->mUnk_04[2] += (u32) a;
                 }
-                if (q->mUnk_10 != 0) {
-                    q->mUnk_10 += (u32) a;
+                if (q->mUnk_04[3] != 0) {
+                    q->mUnk_04[3] += (u32) a;
                 }
                 break;
             case 0x43574448:
                 q = (Unk020245a4_08 *) (p + 1);
-                if (q->mUnk_04 != 0) {
-                    q->mUnk_04 += (u32) a;
+                if (q->mUnk_04[0] != 0) {
+                    q->mUnk_04[0] += (u32) a;
                 }
                 break;
             case 0x434d4150:
                 q = (Unk020245a4_08 *) (p + 1);
-                if (q->mUnk_08 != 0) {
-                    q->mUnk_08 += (u32) a;
+                if (q->mUnk_04[1] != 0) {
+                    q->mUnk_04[1] += (u32) a;
                 }
                 break;
             case 0x43474c50:

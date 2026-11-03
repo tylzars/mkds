@@ -126,21 +126,21 @@ s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c) {
         func_020d7b88((Vec3 *) &buf1, &buf2);
         func_01ffccd0(a, &buf2);
         d = b / 10;
-        ((Unk020e516c *) a)->mUnk_000 = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000 * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_004 = (s32) (((s64) ((Unk020e516c *) a)->mUnk_004 * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_008 = (s32) (((s64) ((Unk020e516c *) a)->mUnk_008 * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_00c = (s32) (((s64) ((Unk020e516c *) a)->mUnk_00c * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_010 = (s32) (((s64) ((Unk020e516c *) a)->mUnk_010 * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_014 = (s32) (((s64) ((Unk020e516c *) a)->mUnk_014 * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_018 = (s32) (((s64) ((Unk020e516c *) a)->mUnk_018 * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_01c = (s32) (((s64) ((Unk020e516c *) a)->mUnk_01c * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_020 = (s32) (((s64) ((Unk020e516c *) a)->mUnk_020 * d) >> 12);
+        ((Unk020e516c *) a)->mUnk_000[0] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[0] * d) >> 12);
+        ((Unk020e516c *) a)->mUnk_000[1] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[1] * d) >> 12);
+        ((Unk020e516c *) a)->mUnk_000[2] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[2] * d) >> 12);
+        ((Unk020e516c *) a)->mUnk_000[3] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[3] * d) >> 12);
+        ((Unk020e516c *) a)->mUnk_000[4] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[4] * d) >> 12);
+        ((Unk020e516c *) a)->mUnk_000[5] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[5] * d) >> 12);
+        ((Unk020e516c *) a)->mUnk_000[6] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[6] * d) >> 12);
+        ((Unk020e516c *) a)->mUnk_000[7] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[7] * d) >> 12);
+        ((Unk020e516c *) a)->mUnk_000[8] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[8] * d) >> 12);
     } else {
         func_02146cbc((Unk02012f58 *) a);
     }
-    ((Unk020e516c *) a)->mUnk_024 = s.x >> 4;
-    ((Unk020e516c *) a)->mUnk_028 = s.y >> 4;
-    ((Unk020e516c *) a)->mUnk_02c = s.z >> 4;
+    ((Unk020e516c *) a)->mUnk_000[9] = s.x >> 4;
+    ((Unk020e516c *) a)->mUnk_000[10] = s.y >> 4;
+    ((Unk020e516c *) a)->mUnk_000[11] = s.z >> 4;
     ((Unk020e516c *) a)->mUnk_030 = c;
     return r;
 }

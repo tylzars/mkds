@@ -4,11 +4,7 @@
 
 typedef struct Unk0218a71c {
     /* 000 */ u8 mUnk_000[256];
-    /* 100 */ u8 mUnk_100;
-    /* 101 */ u8 mUnk_101;
-    /* 102 */ u8 mUnk_102;
-    /* 103 */ u8 mUnk_103;
-    /* 104 */ u8 mUnk_104;
+    /* 100 */ u8 mUnk_100[5];
 } Unk0218a71c;
 
 u8 func_ov000_0218a71c(Unk0218a71c *p, u8 x);

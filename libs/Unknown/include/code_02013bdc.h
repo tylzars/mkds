@@ -32,9 +32,7 @@ typedef struct Unk02014c5c_out {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u8 mUnk_04[0x24];
     /* 28 */ s32 mUnk_28[9];
-    /* 4c */ s32 mUnk_4c;
-    /* 50 */ s32 mUnk_50;
-    /* 54 */ s32 mUnk_54;
+    /* 4c */ s32 mUnk_4c[3];
 } Unk02014c5c_out;
 
 // Halfword at 0x06: byte offset from this struct to a table whose first halfword is the stride; entry i holds a

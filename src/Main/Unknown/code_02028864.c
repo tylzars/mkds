@@ -50,21 +50,21 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     gSelectKart->mUnk_110 = -1;
     switch (func_02029930()->mUnk_108) {
         case 1:
-            func_02025f80(&gSelectKart->mUnk_0ac, 1, 10, -0x80, 0);
-            func_02025f80(&gSelectKart->mUnk_0cc, 1, 10, 0x60, 0);
+            func_02025f80(&gSelectKart->mUnk_0ac[0], 1, 10, -0x80, 0);
+            func_02025f80(&gSelectKart->mUnk_0ac[2], 1, 10, 0x60, 0);
             break;
         case 0:
-            func_02025f80(&gSelectKart->mUnk_0ac, 0, 10, -0x80, 0);
-            func_02025f80(&gSelectKart->mUnk_0cc, 0, 10, 0x60, 0);
+            func_02025f80(&gSelectKart->mUnk_0ac[0], 0, 10, -0x80, 0);
+            func_02025f80(&gSelectKart->mUnk_0ac[2], 0, 10, 0x60, 0);
             if (func_020280dc() == 0) {
                 func_020789e4();
                 func_02077f48(0);
             }
             break;
     }
-    func_02025f80(&gSelectKart->mUnk_0bc, 0, 10, -0x40, 0);
-    func_02025f80(&gSelectKart->mUnk_0dc, 0, 10, 0x40, 0);
-    func_02025f80(&gSelectKart->mUnk_0ec, 0, 10, -0xc0, 0);
+    func_02025f80(&gSelectKart->mUnk_0ac[1], 0, 10, -0x40, 0);
+    func_02025f80(&gSelectKart->mUnk_0ac[3], 0, 10, 0x40, 0);
+    func_02025f80(&gSelectKart->mUnk_0ac[4], 0, 10, -0xc0, 0);
     gSelectKart->mUnk_080 = c;
     gSelectKart->mUnk_084 = d;
     if (gSelectKart->mUnk_0fc != 0 || func_02029930()->mUnk_c8 == 3 || func_02029930()->mUnk_c8 == 2) {

@@ -179,16 +179,16 @@ void func_02043f28(u32 a) {
 // non-matching: same size; the original keeps the address of data_0217aa08 in r1 and the loaded object in r2 and r3,
 // here other registers.
 void func_02043fb0(u32 a) {
-    data_0217aa08->mUnk_18->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_1c->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_14->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[2]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
     func_02056700();
     func_02057d9c();
     if (data_021759d4->mUnk_0c != 0) {
         func_02145d38();
     }
     if (data_021759d4->mUnk_04 != NULL) {
-        data_0217aa08->mUnk_14->mUnk_08_0 = 0;
+        data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
     }
 }
 
@@ -199,19 +199,19 @@ void func_02044060(u32 a) {
     u8 v1[0x80];
 
     p = NULL;
-    data_0217aa08->mUnk_18->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_1c->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_14->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_18->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_1c->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_14->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[2]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[2]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
     func_02056700();
     func_02057d9c();
     if (data_021759d4->mUnk_0c != 0) {
         func_02145d38();
     }
     if (data_021759d4->mUnk_04 != NULL) {
-        data_0217aa08->mUnk_14->mUnk_08_0 = 0;
+        data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
     }
     if (func_0203b018(a, v1, 0x80) != 0) {
         p = func_02056284((u32) v1);
@@ -226,19 +226,19 @@ void func_02044060(u32 a) {
 // non-matching: same size; register choice differs in the repeated loads through data_0217aa08 (r0 here, r2 in the
 // original).
 void func_0204419c(u32 a, u32 b) {
-    data_0217aa08->mUnk_18->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_1c->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_14->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_18->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_1c->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_14->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[2]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[2]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
     func_02056700();
     func_02057d9c();
     if (data_021759d4->mUnk_0c != 0) {
         func_02145d38();
     }
     if (data_021759d4->mUnk_04 != NULL) {
-        data_0217aa08->mUnk_14->mUnk_08_0 = 0;
+        data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
     }
     func_02056670(b);
     func_02057d9c();
@@ -246,23 +246,23 @@ void func_0204419c(u32 a, u32 b) {
         func_02145d38();
     }
     if (data_021759d4->mUnk_04 != NULL) {
-        data_0217aa08->mUnk_18->mUnk_08_0 = 0;
+        data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
     }
 }
 
 // non-matching: same size; the original keeps the address of data_0217aa08 in r1 and the loaded object in r2 and r3,
 // here other registers.
 void func_020442d0(u32 a) {
-    data_0217aa08->mUnk_18->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_1c->mUnk_08_0 = 0;
-    data_0217aa08->mUnk_14->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[2]->mUnk_08_0 = 0;
+    data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
     func_02056700();
     func_02057d9c();
     if (data_021759d4->mUnk_0c != 0) {
         func_02145d38();
     }
     if (data_021759d4->mUnk_04 != NULL) {
-        data_0217aa08->mUnk_14->mUnk_08_0 = 0;
+        data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
     }
 }
 

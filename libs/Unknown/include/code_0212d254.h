@@ -44,12 +44,7 @@ typedef struct Unk0212d328 {
 // Block at mUnk_8c of Unk0212d5f8: offsets of six tables read by func_0212d328 to func_0212d51c.
 typedef struct Unk0212d38c {
     /* 00 */ u8 mUnk_00[8];
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
-    /* 10 */ u32 mUnk_10;
-    /* 14 */ u32 mUnk_14;
-    /* 18 */ u32 mUnk_18;
-    /* 1c */ u32 mUnk_1c;
+    /* 08 */ u32 mUnk_08[6];
 } Unk0212d38c;
 
 // 0x90-byte object: func_0212d5f8 copies its first 0x30 bytes from buf, func_0212d6c4 reads them through

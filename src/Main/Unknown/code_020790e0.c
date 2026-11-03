@@ -79,9 +79,9 @@ void CreateTire(Unk0206bcb0_590 *a, void *b) {
     Unk020136f0 *v8;
     v7 = func_02047950(BuildTireNsbmdPath(v6, a->mUnk_020->mUnk_00));
     v8 = FindKartModelFile(BuildTireNsbtxPath(v6, a->mUnk_020->mUnk_00));
-    a->mUnk_018 = func_02036bec(b, 0x6c);
-    v4 = func_02084b2c(b, a->mUnk_018, v7, v8);
-    func_020849c0(a->mUnk_018, 3);
+    a->mUnk_010[2] = func_02036bec(b, 0x6c);
+    v4 = func_02084b2c(b, a->mUnk_010[2], v7, v8);
+    func_020849c0(a->mUnk_010[2], 3);
     func_0207a14c(v4, 0);
 }
 
@@ -103,7 +103,7 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
     if (a->mUnk_0b0 != 0) {
         if ((u32) (a->mUnk_004 - 0x22) <= 1) {
             c = NULL;
-            p = (u8 *) a->mUnk_014->mUnk_04;
+            p = (u8 *) a->mUnk_010[1]->mUnk_04;
             switch (a->mUnk_004) {
                 case 0x22:
                     c = data_usa_021550e8;
@@ -123,7 +123,7 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
             func_0214c3c0();
         }
         if (a->mUnk_000 == 0xb) {
-            p = (u8 *) a->mUnk_010->mUnk_04;
+            p = (u8 *) a->mUnk_010[0]->mUnk_04;
             if (b != 0) {
                 i = func_02013754(p + *(s32 *) (p + 8) + 4, data_usa_02155028);
                 j = func_02013754(p + *(s32 *) (p + 8) + 4, data_usa_02155038);
@@ -196,16 +196,16 @@ void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c) {
     s32 i;
     s = func_02047950(BuildKartNsbmdPath(v7));
     t = FindKartModelFile(BuildKartNsbtxPath(v7));
-    a->mUnk_014 = func_02036bec(b, 0x6c);
-    r4 = func_02084b2c(b, a->mUnk_014, s, t);
-    func_020849c0(a->mUnk_014, 3);
+    a->mUnk_010[1] = func_02036bec(b, 0x6c);
+    r4 = func_02084b2c(b, a->mUnk_010[1], s, t);
+    func_020849c0(a->mUnk_010[1], 3);
     func_0207a14c(r4, 0);
     if (c != 0) {
         i = func_02013754((u8 *) r4 + r4->mUnk_08 + 4, data_usa_021550b8);
         func_02013468(r4, i, 0);
         gKartModels->mUnk_00c = i;
     }
-    func_0207940c(a->mUnk_014, a->mUnk_004, gKartModels->mUnk_010);
+    func_0207940c(a->mUnk_010[1], a->mUnk_004, gKartModels->mUnk_010);
 }
 
 void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
@@ -219,15 +219,15 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
     e8 = (u16) a->mUnk_000;
     v7 = func_02047950(BuildCharacterNsbmdPath(e8, c));
     v10 = FindKartModelFile(BuildCharacterNsbtxPath(e8, c));
-    a->mUnk_010 = func_02036bec(b, 0x6c);
-    p = func_02084b2c(b, a->mUnk_010, v7, v10);
-    func_020849c0(a->mUnk_010, 3);
+    a->mUnk_010[0] = func_02036bec(b, 0x6c);
+    p = func_02084b2c(b, a->mUnk_010[0], v7, v10);
+    func_020849c0(a->mUnk_010[0], 3);
     func_0207a14c(p, 0);
     if (c != 0) {
         i = 0;
         d = FALSE;
         a->mUnk_008 = func_02036bec(b, 0x38);
-        func_0208823c(0, a->mUnk_008, a->mUnk_010, 4, b, NULL);
+        func_0208823c(0, a->mUnk_008, a->mUnk_010[0], 4, b, NULL);
         do {
             s = func_02047950(BuildCharacterNsbcaPath(e8, i));
             if (s != NULL) {
@@ -248,7 +248,7 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
         }
     }
     a->mUnk_00c = func_02036bec(b, 0x38);
-    func_0208823c(2, a->mUnk_00c, a->mUnk_010, 1, b, NULL);
+    func_0208823c(2, a->mUnk_00c, a->mUnk_010[0], 1, b, NULL);
     func_0208805c(a->mUnk_00c, gKartModels->mUnk_028, b);
     func_02087f84(a->mUnk_00c, 0);
 }

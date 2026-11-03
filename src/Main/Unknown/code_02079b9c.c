@@ -4,5 +4,5 @@
 #include "code_02012b30.h"
 
 void func_02079b9c(struct Unk0206bcb0_590 *a, s32 b) {
-    func_02013468(a->mUnk_014->mUnk_04, gKartModels->mUnk_00c, b != 0 ? 0x1f : 0);
+    func_02013468(a->mUnk_010[1]->mUnk_04, gKartModels->mUnk_00c, b != 0 ? 0x1f : 0);
 }

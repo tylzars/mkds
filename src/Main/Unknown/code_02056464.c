@@ -13,7 +13,7 @@
 void func_02056670(u32 a) {
     Unk0217aa08_14 *p;
 
-    p = data_0217aa08->mUnk_18;
+    p = data_0217aa08->mUnk_14[1];
     if (func_020573c8(a) == 0) {
         p->mUnk_08_0 = 0;
     } else {
@@ -55,10 +55,10 @@ s32 func_020565ac(s32 a, s32 b, Unk020565e4 *c) {
     r = 0;
     switch (a) {
         case 0:
-            r = func_0205660c(data_0217aa08->mUnk_14, b, c);
+            r = func_0205660c(data_0217aa08->mUnk_14[0], b, c);
             break;
         case 1:
-            r = func_0205660c(data_0217aa08->mUnk_18, b, c);
+            r = func_0205660c(data_0217aa08->mUnk_14[1], b, c);
             break;
         case 2:
             break;
@@ -72,10 +72,10 @@ s32 func_02056574(s32 a, Unk020565e4 *b) {
     r = 0;
     switch (a) {
         case 0:
-            r = func_020565e4(data_0217aa08->mUnk_14, b);
+            r = func_020565e4(data_0217aa08->mUnk_14[0], b);
             break;
         case 1:
-            r = func_020565e4(data_0217aa08->mUnk_18, b);
+            r = func_020565e4(data_0217aa08->mUnk_14[1], b);
             break;
         case 2:
             break;

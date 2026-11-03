@@ -79,7 +79,7 @@ void func_020270fc(s32 a) {
     }
     func_02027188();
     func_0202721c();
-    func_02025f54(&gSelectCharacter->mUnk_0f8, 0);
+    func_02025f54(&gSelectCharacter->mUnk_0f8[0], 0);
     gSelectCharacter->mUnk_0f0 = gSelectCharacter->mUnk_090[gSelectCharacter->mUnk_060].mUnk_00;
     gSelectCharacter->mUnk_0f4 = func_02025e60(gSelectCharacter->mUnk_0f0);
 }
@@ -135,15 +135,15 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     gSelectCharacter->mUnk_080 = b;
     switch (func_02029930()->mUnk_108) {
         case 0:
-            func_02025f80(&gSelectCharacter->mUnk_0f8, 0, 10, -0x80, 0);
-            func_02025f80(&gSelectCharacter->mUnk_118, 0, 10, 0x60, 0);
+            func_02025f80(&gSelectCharacter->mUnk_0f8[0], 0, 10, -0x80, 0);
+            func_02025f80(&gSelectCharacter->mUnk_0f8[2], 0, 10, 0x60, 0);
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
                 func_020789e4();
             }
             break;
         case 2:
-            func_02025f80(&gSelectCharacter->mUnk_0f8, 1, 10, -0x80, 0);
-            func_02025f80(&gSelectCharacter->mUnk_118, 1, 10, 0x60, 0);
+            func_02025f80(&gSelectCharacter->mUnk_0f8[0], 1, 10, -0x80, 0);
+            func_02025f80(&gSelectCharacter->mUnk_0f8[2], 1, 10, 0x60, 0);
             switch (gSelectCharacter->mUnk_080) {
                 case 1:
                     if (data_0217aa00->mUnk_0004 == 8) {
@@ -156,7 +156,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
             }
             break;
     }
-    func_02025f80(&gSelectCharacter->mUnk_108, 0, 10, -0x40, 0);
+    func_02025f80(&gSelectCharacter->mUnk_0f8[1], 0, 10, -0x40, 0);
     gSelectCharacter->mUnk_054 = c;
     gSelectCharacter->mUnk_058 = d;
     if (gSelectCharacter->mUnk_080 != 0 || func_02029930()->mUnk_c8 == 3 || func_02029930()->mUnk_c8 == 2) {
@@ -479,25 +479,25 @@ int AdvanceSelectCharacter(void) {
                 } else {
                     if (func_020ae408(i, 0x40) != 0) {
                         p = gSelectCharacter;
-                        t = p->mUnk_084;
+                        t = p->mUnk_084[0];
                         if (t != -1) {
                             p->mUnk_060 = t;
                         }
                     } else if (func_020ae408(i, 0x80) != 0) {
                         p = gSelectCharacter;
-                        t = p->mUnk_086;
+                        t = p->mUnk_084[1];
                         if (t != -1) {
                             p->mUnk_060 = t;
                         }
                     } else if (func_020ae408(i, 0x10) != 0) {
                         p = gSelectCharacter;
-                        t = p->mUnk_088;
+                        t = p->mUnk_084[2];
                         if (t != -1) {
                             p->mUnk_060 = t;
                         }
                     } else if (func_020ae408(i, 0x20) != 0) {
                         p = gSelectCharacter;
-                        t = p->mUnk_08a;
+                        t = p->mUnk_084[3];
                         if (t != -1) {
                             p->mUnk_060 = t;
                         }
@@ -541,7 +541,7 @@ int AdvanceSelectCharacter(void) {
                             func_02027424(1);
                             func_02077f5c();
                             gSelectCharacter->mUnk_06c = 8;
-                            func_02025f14(&gSelectCharacter->mUnk_108, 2);
+                            func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
                         }
                         break;
                     case 1:
@@ -550,7 +550,7 @@ int AdvanceSelectCharacter(void) {
                             if (data_0217aa00->mUnk_0004 == 8) {
                                 data_0217aa00->mUnk_15f7 = c;
                             }
-                            func_02025f14(&gSelectCharacter->mUnk_108, 2);
+                            func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
                             func_02027424(1);
                             gSelectCharacter->mUnk_06c = 8;
                             func_02077f5c();
@@ -565,7 +565,7 @@ int AdvanceSelectCharacter(void) {
                         break;
                     case 2:
                         func_02121f1c(p->mUnk_0f0);
-                        func_02025f14(&gSelectCharacter->mUnk_108, 2);
+                        func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
                         func_02027424(1);
                         gSelectCharacter->mUnk_06c = 8;
                         func_02077f5c();
@@ -583,7 +583,7 @@ int AdvanceSelectCharacter(void) {
                     gSelectCharacter->mUnk_06c = 7;
                 } else {
                     func_02027424(1);
-                    func_02025f14(&gSelectCharacter->mUnk_108, 2);
+                    func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
                     gSelectCharacter->mUnk_06c = 8;
                 }
             }
@@ -597,7 +597,7 @@ int AdvanceSelectCharacter(void) {
                 } else {
                     func_02027424(2);
                 }
-                func_02025f14(&gSelectCharacter->mUnk_108, 2);
+                func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
                 if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
                     func_020789d4();
                 } else if (func_02029930()->mUnk_c8 == 2) {
@@ -625,12 +625,12 @@ int AdvanceSelectCharacter(void) {
             break;
     }
 
-    func_02025edc(&gSelectCharacter->mUnk_0f8);
-    func_02025edc(&gSelectCharacter->mUnk_108);
-    func_02025edc(&gSelectCharacter->mUnk_118);
-    func_0202728c(func_02025ebc(&gSelectCharacter->mUnk_0f8));
-    m = func_02025ebc(&gSelectCharacter->mUnk_108);
-    func_020272c0(m, func_02025ebc(&gSelectCharacter->mUnk_118));
+    func_02025edc(&gSelectCharacter->mUnk_0f8[0]);
+    func_02025edc(&gSelectCharacter->mUnk_0f8[1]);
+    func_02025edc(&gSelectCharacter->mUnk_0f8[2]);
+    func_0202728c(func_02025ebc(&gSelectCharacter->mUnk_0f8[0]));
+    m = func_02025ebc(&gSelectCharacter->mUnk_0f8[1]);
+    func_020272c0(m, func_02025ebc(&gSelectCharacter->mUnk_0f8[2]));
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         p = gSelectCharacter;
         if (p->mUnk_08c != 2) {

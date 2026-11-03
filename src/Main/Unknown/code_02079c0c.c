@@ -41,27 +41,27 @@ s32 func_02079ce0(struct Unk0206bcb0_590 *a, s32 b) {
         q->mUnk_00 = (s16) (q->mUnk_06 + (s32) (((s64) q->mUnk_0c * q->mUnk_2a + 0x800) >> 12)) +
                      ((s16) (q->mUnk_08 + (s32) (((s64) q->mUnk_0e * q->mUnk_2a + 0x800) >> 12)) << 5) +
                      ((s16) (q->mUnk_0a + (s32) (((s64) q->mUnk_10 * q->mUnk_2a + 0x800) >> 12)) << 10);
-        func_020132cc(a->mUnk_010->mUnk_04, q->mUnk_00);
-        func_020132cc(a->mUnk_014->mUnk_04, q->mUnk_00);
-        if (a->mUnk_018 != NULL) {
-            func_020132cc(a->mUnk_018->mUnk_04, q->mUnk_00);
+        func_020132cc(a->mUnk_010[0]->mUnk_04, q->mUnk_00);
+        func_020132cc(a->mUnk_010[1]->mUnk_04, q->mUnk_00);
+        if (a->mUnk_010[2] != NULL) {
+            func_020132cc(a->mUnk_010[2]->mUnk_04, q->mUnk_00);
         }
         q->mUnk_02 = (s16) (q->mUnk_12 + (s32) (((s64) q->mUnk_18 * q->mUnk_2a + 0x800) >> 12)) +
                      ((s16) (q->mUnk_14 + (s32) (((s64) q->mUnk_1a * q->mUnk_2a + 0x800) >> 12)) << 5) +
                      ((s16) (q->mUnk_16 + (s32) (((s64) q->mUnk_1c * q->mUnk_2a + 0x800) >> 12)) << 10);
-        func_020131f4(a->mUnk_010->mUnk_04, q->mUnk_02);
-        func_020131f4(a->mUnk_014->mUnk_04, q->mUnk_02);
-        if (a->mUnk_018 != NULL) {
-            func_020131f4(a->mUnk_018->mUnk_04, q->mUnk_02);
+        func_020131f4(a->mUnk_010[0]->mUnk_04, q->mUnk_02);
+        func_020131f4(a->mUnk_010[1]->mUnk_04, q->mUnk_02);
+        if (a->mUnk_010[2] != NULL) {
+            func_020131f4(a->mUnk_010[2]->mUnk_04, q->mUnk_02);
         }
         {
             s16 x = q->mUnk_1e + (s32) (((s64) q->mUnk_24 * q->mUnk_2a + 0x800) >> 12);
             s16 y = q->mUnk_20 + (s32) (((s64) q->mUnk_26 * q->mUnk_2a + 0x800) >> 12);
             s16 z = q->mUnk_22 + (s32) (((s64) q->mUnk_28 * q->mUnk_2a + 0x800) >> 12);
-            func_02013284(a->mUnk_010->mUnk_04, q->mUnk_04);
-            func_02013284(a->mUnk_014->mUnk_04, q->mUnk_04);
-            if (a->mUnk_018 != NULL) {
-                func_02013284(a->mUnk_018->mUnk_04, q->mUnk_04);
+            func_02013284(a->mUnk_010[0]->mUnk_04, q->mUnk_04);
+            func_02013284(a->mUnk_010[1]->mUnk_04, q->mUnk_04);
+            if (a->mUnk_010[2] != NULL) {
+                func_02013284(a->mUnk_010[2]->mUnk_04, q->mUnk_04);
             }
             q->mUnk_04 = x + (y << 5) + (z << 10);
         }
@@ -80,15 +80,15 @@ void func_02079c0c(struct Unk0206bcb0_590 *a) {
     b = p[0];
     c = p[3];
     d = p[1];
-    func_020132cc(a->mUnk_010->mUnk_04, b);
-    func_020132cc(a->mUnk_014->mUnk_04, b);
-    func_020131f4(a->mUnk_010->mUnk_04, c);
-    func_020131f4(a->mUnk_014->mUnk_04, c);
-    func_02013284(a->mUnk_010->mUnk_04, d);
-    func_02013284(a->mUnk_014->mUnk_04, d);
-    if (a->mUnk_018 != NULL) {
-        func_020132cc(a->mUnk_018->mUnk_04, b);
-        func_020131f4(a->mUnk_018->mUnk_04, c);
-        func_02013284(a->mUnk_018->mUnk_04, d);
+    func_020132cc(a->mUnk_010[0]->mUnk_04, b);
+    func_020132cc(a->mUnk_010[1]->mUnk_04, b);
+    func_020131f4(a->mUnk_010[0]->mUnk_04, c);
+    func_020131f4(a->mUnk_010[1]->mUnk_04, c);
+    func_02013284(a->mUnk_010[0]->mUnk_04, d);
+    func_02013284(a->mUnk_010[1]->mUnk_04, d);
+    if (a->mUnk_010[2] != NULL) {
+        func_020132cc(a->mUnk_010[2]->mUnk_04, b);
+        func_020131f4(a->mUnk_010[2]->mUnk_04, c);
+        func_02013284(a->mUnk_010[2]->mUnk_04, d);
     }
 }

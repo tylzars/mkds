@@ -63,7 +63,7 @@ void func_02056750(s32 a, u16 b) {
 
     n = func_0204684c();
     k = data_021759c0->mUnk_68[b].mUnk_08.mUnk_0c;
-    p = data_0217aa08->mUnk_14;
+    p = data_0217aa08->mUnk_14[0];
     if (n == -1) {
         return;
     }
@@ -117,7 +117,7 @@ void func_02056700(void) {
 
     f = FALSE;
     n = func_0204684c();
-    p = data_0217aa08->mUnk_14;
+    p = data_0217aa08->mUnk_14[0];
     if (n == -1) {
         f = TRUE;
     } else if (func_020573f8(n) == 0) {

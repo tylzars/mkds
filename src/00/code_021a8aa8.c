@@ -245,20 +245,20 @@ s32 func_ov000_021a8c94(void *b) {
     Unk021a8c94 *a = b;
     data_ov000_021b6040.mUnk_00 = a->mUnk_0c == 1 ? 1 : 0;
     data_ov000_021b6040.mUnk_04 =
-        ((a->mUnk_10 << 24) & 0xff000000) |
-        (((a->mUnk_10 << 8) & 0xff0000) | (((a->mUnk_10 >> 24) & 0xff) | ((a->mUnk_10 >> 8) & 0xff00)));
+        ((a->mUnk_10[0] << 24) & 0xff000000) |
+        (((a->mUnk_10[0] << 8) & 0xff0000) | (((a->mUnk_10[0] >> 24) & 0xff) | ((a->mUnk_10[0] >> 8) & 0xff00)));
     data_ov000_021b6040.mUnk_08 =
-        ((a->mUnk_14 << 24) & 0xff000000) |
-        (((a->mUnk_14 << 8) & 0xff0000) | (((a->mUnk_14 >> 24) & 0xff) | ((a->mUnk_14 >> 8) & 0xff00)));
+        ((a->mUnk_10[1] << 24) & 0xff000000) |
+        (((a->mUnk_10[1] << 8) & 0xff0000) | (((a->mUnk_10[1] >> 24) & 0xff) | ((a->mUnk_10[1] >> 8) & 0xff00)));
     data_ov000_021b6040.mUnk_0c =
-        ((a->mUnk_18 << 24) & 0xff000000) |
-        (((a->mUnk_18 << 8) & 0xff0000) | (((a->mUnk_18 >> 24) & 0xff) | ((a->mUnk_18 >> 8) & 0xff00)));
+        ((a->mUnk_10[2] << 24) & 0xff000000) |
+        (((a->mUnk_10[2] << 8) & 0xff0000) | (((a->mUnk_10[2] >> 24) & 0xff) | ((a->mUnk_10[2] >> 8) & 0xff00)));
     data_ov000_021b6040.mUnk_10 =
-        ((a->mUnk_1c << 24) & 0xff000000) |
-        (((a->mUnk_1c << 8) & 0xff0000) | (((a->mUnk_1c >> 24) & 0xff) | ((a->mUnk_1c >> 8) & 0xff00)));
+        ((a->mUnk_10[3] << 24) & 0xff000000) |
+        (((a->mUnk_10[3] << 8) & 0xff0000) | (((a->mUnk_10[3] >> 24) & 0xff) | ((a->mUnk_10[3] >> 8) & 0xff00)));
     data_ov000_021b6040.mUnk_14 =
-        ((a->mUnk_20 << 24) & 0xff000000) |
-        (((a->mUnk_20 << 8) & 0xff0000) | (((a->mUnk_20 >> 24) & 0xff) | ((a->mUnk_20 >> 8) & 0xff00)));
+        ((a->mUnk_10[4] << 24) & 0xff000000) |
+        (((a->mUnk_10[4] << 8) & 0xff0000) | (((a->mUnk_10[4] >> 24) & 0xff) | ((a->mUnk_10[4] >> 8) & 0xff00)));
     data_ov000_021b6040.mUnk_18 = func_ov000_021a8db8;
     data_ov000_021b6040.mUnk_1c = (void (*)(void *)) func_ov000_021a8d98;
     data_ov000_021b6014 = a->mUnk_04;

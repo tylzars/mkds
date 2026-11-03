@@ -5,12 +5,7 @@
 // Values read from the text, as built by func_ov000_02192e04 on its stack. The pointers at 0x00 to 0x14 point to
 // buffers of its own; 0x1c, 0x27 and 0x34 are arrays inside.
 typedef struct Unk02192e04 {
-    /* 00 */ u8 *mUnk_00;
-    /* 04 */ u8 *mUnk_04;
-    /* 08 */ u8 *mUnk_08;
-    /* 0c */ u8 *mUnk_0c;
-    /* 10 */ u8 *mUnk_10;
-    /* 14 */ u8 *mUnk_14;
+    /* 00 */ u8 *mUnk_00[6];
     /* 18 */ s32 mUnk_18;
     /* 1c */ u8 mUnk_1c[0xb];
     /* 27 */ u8 mUnk_27[3];
@@ -24,15 +19,7 @@ typedef struct Unk02192e04 {
     /* c0 */ s32 mUnk_c0;
     /* c4 */ s32 mUnk_c4;
     /* c8 */ u8 *mUnk_c8;
-    /* cc */ s32 mUnk_cc;
-    /* d0 */ s32 mUnk_d0;
-    /* d4 */ s32 mUnk_d4;
-    /* d8 */ s32 mUnk_d8;
-    /* dc */ s32 mUnk_dc;
-    /* e0 */ s32 mUnk_e0;
-    /* e4 */ s32 mUnk_e4;
-    /* e8 */ s32 mUnk_e8;
-    /* ec */ s32 mUnk_ec;
+    /* cc */ s32 mUnk_cc[9];
 } Unk02192e04;
 
 // Copy of Unk02192e04 made by func_ov000_0219338c, 0x204 bytes.

@@ -8,7 +8,7 @@
 
 void func_02027e78(void) {
     u32 a = 0x16;
-    s32 b = func_02025ebc(&gSelectKart->mUnk_0ec);
+    s32 b = func_02025ebc(&gSelectKart->mUnk_0ac[4]);
     if (gSelectKart->mUnk_094 != 8) {
         a |= 8;
     }

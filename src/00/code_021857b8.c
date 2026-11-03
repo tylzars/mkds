@@ -34,7 +34,7 @@ void func_ov000_0218583c(void) {
         func_02148950(1, 0, 1);
         if (data_0217b488->mUnk_6c != 0) {
             p = data_0217aa08->mUnk_00;
-            a = p->mUnk_48;
+            a = p->mUnk_34[5];
             b = data_0217d384->mUnk_1f54 - 1;
             if (b > 0) {
                 if (a < b) {
@@ -43,7 +43,7 @@ void func_ov000_0218583c(void) {
                     a -= b;
                 }
             }
-            p->mUnk_48 = a;
+            p->mUnk_34[5] = a;
             func_02056d40();
             func_02057d9c();
             if (data_021759d4->mUnk_0c != 0) {

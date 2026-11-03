@@ -15,10 +15,7 @@ typedef struct Unk020247fc {
 // the Unk02021f9c, relocated by func_020245a4.
 typedef struct Unk020245a4_08 {
     /* 00 */ u8 mUnk_00[4];
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
-    /* 10 */ u32 mUnk_10;
+    /* 04 */ u32 mUnk_04[4];
 } Unk020245a4_08;
 
 void func_020245a4(Unk02021f9c *a);

@@ -45,7 +45,7 @@ void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, u8 *param_3) {
     u8 *w;
     s32 k;
     s32 h;
-    e = param_2->mUnk_010->mUnk_04;
+    e = param_2->mUnk_010[0]->mUnk_04;
     func_0200ee74(param_3, 0x20);
     if (func_020799a0(param_1) != 0) {
         k = func_02013754((u8 *) e + e->mUnk_08 + 4, data_usa_02154ff8);

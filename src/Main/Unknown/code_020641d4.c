@@ -91,7 +91,7 @@ void func_020641f0(Unk0206bcb0 *a) {
         a->mUnk_1b4 = &a->mUnk_184_m;
     }
     b = a->mUnk_590;
-    if (b->mUnk_018 != NULL) {
+    if (b->mUnk_010[2] != NULL) {
         r = (Vec4 *) &b->mUnk_024;
         j = (s64) r->w * r->x >> 12;
         l = (s64) j * 0xce4 >> 12;
