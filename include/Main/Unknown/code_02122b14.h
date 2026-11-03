@@ -4,11 +4,12 @@
 
 // 0xc-byte object built on the stack by func_02123384.
 typedef struct Unk02123384 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ u8 mUnk_08;
-    /* 09 */ u8 mUnk_09;
-    /* 0a */ u8 mUnk_0a;
+    /* 00 */ s32 mKind;
+    /* 04 */ s32 mSize;
+    /* 08 */ u8 mFromIndex;
+    /* 09 */ u8 mToIndex;
+    // The sender's mKartMask; written, not read through this struct.
+    /* 0a */ u8 mKartMask;
 } Unk02123384;
 
 void func_02122b14(void);

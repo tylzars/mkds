@@ -35,7 +35,7 @@ void func_ov000_0218583c(void) {
         if (data_0217b488->mUnk_6c != 0) {
             p = data_0217aa08->mUnk_00;
             a = p->mUnk_34[5];
-            b = data_0217d384->mUnk_1f54 - 1;
+            b = data_0217d384->mKartCountCopy - 1;
             if (b > 0) {
                 if (a < b) {
                     a = 0;

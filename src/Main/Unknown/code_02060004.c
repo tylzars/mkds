@@ -172,7 +172,7 @@ s32 func_020607b0(u8 a) {
     func_0214d168(&b, 0, 0x24);
     b.mUnk_22_0 = 0;
     func_0205ee74(a, &b);
-    if (data_0217d384->mUnk_0008.mUnk_0e != 0) {
+    if (data_0217d384->mUnk_0008.mState != 0) {
         func_ov000_0219d948((u8 *) data_0217aa08->mUnk_20 + 0x874 + a * 12);
     } else {
         func_0214d168((u8 *) data_0217aa08->mUnk_20 + 0x874 + a * 12, 0, 0xc);

@@ -140,8 +140,8 @@ void InitWiFiStates(void *heap, s32 b) {
                     break;
                 case 1:
                     q = &data_0217d384->mUnk_0008;
-                    q->mUnk_10 = 2;
-                    q->mUnk_12 = 1;
+                    q->mNextState = 2;
+                    q->mNextStateRequested = 1;
                     gWiFiStates->mUnk_08 = 2;
                     RegisterWiFiVSSettingCallbacks();
                     break;
@@ -325,7 +325,7 @@ BOOL func_ov000_02180608(void) {
     if (gWiFiStates != NULL && gWiFiStates->mUnk_08 == 0) {
         valid = FALSE;
     }
-    if (data_0217d384->mUnk_0008.mUnk_0e == 0 && valid != FALSE) {
+    if (data_0217d384->mUnk_0008.mState == 0 && valid != FALSE) {
         return TRUE;
     }
     return FALSE;

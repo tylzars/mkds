@@ -4,10 +4,10 @@
 
 // Compared with three values by func_02121990.
 typedef struct Unk02121990 {
-    /* 0 */ s32 mUnk_00;
-    /* 4 */ s32 mUnk_04;
-    /* 8 */ u8 mUnk_08;
-    /* 9 */ u8 mUnk_09;
+    /* 0 */ s32 mKind;
+    /* 4 */ s32 mSize;
+    /* 8 */ u8 mFromIndex;
+    /* 9 */ u8 mToIndex;
 } Unk02121990;
 
 void func_02121dec(u32 a);

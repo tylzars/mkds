@@ -142,12 +142,12 @@ typedef struct Unk0217b488 {
 // Object at member 0x8 of Unk0217d384.
 typedef struct Unk0217d384_08 {
     /* 00 */ void *mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 04 */ s32 mStateFrames;
     /* 08 */ s32 mUnk_08;
     /* 0c */ u8 mUnk_0c[0x2];
-    /* 0e */ u16 mUnk_0e;
-    /* 10 */ u16 mUnk_10;
-    /* 12 */ u16 mUnk_12;
+    /* 0e */ u16 mState;
+    /* 10 */ u16 mNextState;
+    /* 12 */ u16 mNextStateRequested;
 } Unk0217d384_08;
 
 // 0xc-byte elements of the table at member 0x19f0 of Unk0217d384.
@@ -158,34 +158,35 @@ typedef struct Unk0217d384_19f0 {
 // 0x10-byte object at member 0x1f20 of Unk0217d384.
 typedef struct Unk0217d384_1f20 {
     /* 00 */ u8 mUnk_00[0xc];
-    /* 0c */ s32 mUnk_0c;
+    /* 0c */ s32 mStep;
 } Unk0217d384_1f20;
 
 // 0x44-byte elements of the tables at members 0x1d00 and 0x1e10 of Unk0217d384.
 typedef struct Unk0217d384_1d00 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ u8 mUnk_08;
-    /* 09 */ u8 mUnk_09;
-    /* 0a */ u8 mUnk_0a;
+    /* 00 */ s32 mKind;
+    /* 04 */ s32 mSize;
+    /* 08 */ u8 mFromIndex;
+    /* 09 */ u8 mToIndex;
+    /* 0a */ u8 mKartMask;
     /* 0b */ u8 mUnk_0b;
-    /* 0c */ s32 mUnk_0c[4];
-    /* 1c */ s32 mUnk_1c[4];
-    /* 2c */ s32 mUnk_2c;
-    /* 30 */ s32 mUnk_30;
-    /* 34 */ s32 mUnk_34;
-    /* 38 */ s32 mUnk_38;
+    /* 0c */ s32 mCharacterIndices[4];
+    /* 1c */ s32 mKartIndices[4];
+    /* 2c */ s32 mTalliedCourseId;
+    /* 30 */ s32 mCharacterIndex;
+    /* 34 */ s32 mKartIndex;
+    /* 38 */ s32 mPickedCourseId;
     /* 3c */ u8 mUnk_3c[0x4];
     /* 40 */ s32 mUnk_40;
 } Unk0217d384_1d00;
 
 // 0x244-byte elements of the table at member 0x21c of Unk0217d384.
 typedef struct Unk0217d384_021c {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ s32 mUnk_004;
-    /* 008 */ u8 mUnk_008;
-    /* 009 */ u8 mUnk_009;
-    /* 00a */ u8 mUnk_00a;
+    /* 000 */ s32 mKind;
+    /* 004 */ s32 mSize;
+    /* 008 */ u8 mFromIndex;
+    /* 009 */ u8 mToIndex;
+    // The sender's mKartMask; written, not read through this struct.
+    /* 00a */ u8 mKartMask;
     /* 00b */ u8 mUnk_00b;
     /* 00c */ u8 mUnk_00c[0x14];
     /* 020 */ u8 mUnk_020[0x200];
@@ -198,7 +199,7 @@ typedef struct Unk0217d384_021c {
     /* 236 */ u8 mUnk_236[0x2];
     /* 238 */ s32 mUnk_238;
     /* 23c */ s32 mUnk_23c;
-    /* 240 */ s32 mUnk_240;
+    /* 240 */ s32 mSeed;
 } Unk0217d384_021c;
 
 // 0x18-byte object at member 0x1954 of Unk0217d384: three 64-bit values (x = x * [8] + [0x10] in func_02121af4).
@@ -226,8 +227,8 @@ typedef struct Unk0217d384_18ec {
 
 // Object behind data_0217d384: 0x1f58 bytes allocated by func_021205ac.
 typedef struct Unk0217d384 {
-    /* 0000 */ void *mUnk_0000;
-    /* 0004 */ void *mUnk_0004;
+    /* 0000 */ void *mHeap;
+    /* 0004 */ void *mHeapBuffer;
     /* 0008 */ Unk0217d384_08 mUnk_0008;
     /* 001c */ u8 mUnk_001c[4][0x80];
     /* 021c */ Unk0217d384_021c mUnk_021c[4];
@@ -239,11 +240,15 @@ typedef struct Unk0217d384 {
     /* 194d */ u8 mUnk_194d;
     /* 194e */ u8 mUnk_194e;
     /* 194f */ u8 mUnk_194f;
-    /* 1950 */ s32 mUnk_1950;
+    /* 1950 */ s32 mStep;
     /* 1954 */ Unk0217d384_1954 mUnk_1954;
     /* 196c */ u8 mUnk_196c[0x14];
-    /* 1980 */ s32 mUnk_1980;
-    /* 1984 */ s32 mUnk_1984[4];
+    // Calls of the step function in the current step; zeroed by every normal step change and by the timeout
+    // (changes to step 11 that are not timeouts leave it as is).
+    /* 1980 */ s32 mStepFrames;
+    // Per kart: zeroed by the callback for that kart, counted up each step for every other kart in mKartMask; above
+    // 300 it sets the kart's bit in mKartRemoveMask (while 2 < mStep < 9).
+    /* 1984 */ s32 mSinceCallbackFrames[4];
     /* 1994 */ u8 mUnk_1994[0x5];
     /* 1999 */ u8 mUnk_1999;
     /* 199a */ u8 mUnk_199a[0x10];
@@ -263,7 +268,7 @@ typedef struct Unk0217d384 {
     /* 1d00 */ Unk0217d384_1d00 mUnk_1d00[4];
     /* 1e10 */ Unk0217d384_1d00 mUnk_1e10[4];
     /* 1f20 */ Unk0217d384_1f20 mUnk_1f20;
-    /* 1f30 */ s32 mUnk_1f30;
+    /* 1f30 */ s32 mHeapCreated;
     /* 1f34 */ s32 mUnk_1f34;
     /* 1f38 */ s32 mUnk_1f38;
     /* 1f3c */ s32 mUnk_1f3c;
@@ -273,11 +278,11 @@ typedef struct Unk0217d384 {
     /* 1f4c */ u8 mUnk_1f4c;
     /* 1f4d */ u8 mUnk_1f4d;
     /* 1f4e */ s8 mUnk_1f4e[4];
-    /* 1f52 */ u8 mUnk_1f52;
-    /* 1f53 */ u8 mUnk_1f53;
-    /* 1f54 */ u8 mUnk_1f54;
-    /* 1f55 */ u8 mUnk_1f55;
-    /* 1f56 */ u8 mUnk_1f56;
+    /* 1f52 */ u8 mKartCount;
+    /* 1f53 */ u8 mStartKartCount;
+    /* 1f54 */ u8 mKartCountCopy;
+    /* 1f55 */ u8 mKartMask;
+    /* 1f56 */ u8 mKartRemoveMask;
     /* 1f57 */ u8 mUnk_1f57;
 } Unk0217d384;
 

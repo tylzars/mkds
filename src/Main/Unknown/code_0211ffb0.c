@@ -10,7 +10,7 @@ void *func_0211fffc(u32 a, u32 b, s32 c) {
     void *p;
 
     v = func_0200fca0();
-    p = func_02036b74(data_0217d384->mUnk_0000, b, c);
+    p = func_02036b74(data_0217d384->mHeap, b, c);
     func_0200fcb4(v);
     return p;
 }
@@ -22,6 +22,6 @@ void func_0211ffb0(u32 a, void *b) {
         return;
     }
     v = func_0200fca0();
-    func_02036b30(data_0217d384->mUnk_0000, b);
+    func_02036b30(data_0217d384->mHeap, b);
     func_0200fcb4(v);
 }

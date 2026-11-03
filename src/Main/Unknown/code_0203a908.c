@@ -158,7 +158,7 @@ void func_0203abdc(void) {
             f = FALSE;
             q = data_0217d384;
             if (q != NULL) {
-                if (q->mUnk_1f30 != 0) {
+                if (q->mHeapCreated != 0) {
                     f = TRUE;
                 }
             }
@@ -166,8 +166,8 @@ void func_0203abdc(void) {
                 Unk0217d384_08 *p;
                 q->mUnk_1f38 = 1;
                 p = &data_0217d384->mUnk_0008;
-                p->mUnk_10 = 5;
-                p->mUnk_12 = 1;
+                p->mNextState = 5;
+                p->mNextStateRequested = 1;
             }
         }
     } else {
@@ -186,7 +186,7 @@ void func_0203aacc(void) {
         f = FALSE;
         q = data_0217d384;
         if (q != NULL) {
-            if (q->mUnk_1f30 != 0) {
+            if (q->mHeapCreated != 0) {
                 f = TRUE;
             }
         }
@@ -194,8 +194,8 @@ void func_0203aacc(void) {
             Unk0217d384_08 *p;
             q->mUnk_1f38 = 0;
             p = &data_0217d384->mUnk_0008;
-            p->mUnk_10 = 4;
-            p->mUnk_12 = 1;
+            p->mNextState = 4;
+            p->mNextStateRequested = 1;
         }
     }
     p = data_021759c0;

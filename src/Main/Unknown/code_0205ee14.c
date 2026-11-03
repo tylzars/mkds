@@ -484,8 +484,8 @@ void func_0205ef70(void) {
     func_0203bfec(v1);
     c = func_0205d4e8((u16) data_021759c0->mUnk_62);
     h = func_0205ef70_inline(data_021759c0->mUnk_62);
-    m = data_0217d384->mUnk_1f54 - 1;
-    g = data_0217d384->mUnk_1f54;
+    m = data_0217d384->mKartCountCopy - 1;
+    g = data_0217d384->mKartCountCopy;
     if (m > 0) {
         if (b < m) {
             b = 0;

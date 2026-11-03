@@ -139,7 +139,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
             break;
         case 3:
             data_02174e60->mUnk_0d0 = func_02122778(func_ov000_0219bb50());
-            data_02174e60->mUnk_0d8 = data_0217d384->mUnk_1f52;
+            data_02174e60->mUnk_0d8 = data_0217d384->mKartCount;
             data_02174e60->mUnk_148 = 1;
             data_02174e60->mUnk_14c = 0x384;
             data_02174e60->mUnk_150 = 2;

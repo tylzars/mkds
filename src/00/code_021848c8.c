@@ -23,7 +23,7 @@ void InitWiFiSelectCharacterState(void *a) {
     if (GetWiFiPrevState() != 5) {
         func_02122728();
         func_02029454((u8) func_02122778(func_ov000_0219bb50()));
-        func_02029440(data_0217d384->mUnk_1f52);
+        func_02029440(data_0217d384->mKartCount);
     }
     b = func_ov000_021804f4();
     c = func_ov000_021804e0();

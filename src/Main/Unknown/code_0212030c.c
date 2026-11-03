@@ -54,28 +54,28 @@ void func_021205ac(void *a) {
     data_0217d384 = func_02036b74(a, 0x1f58, 0x20);
     func_02046be8(&data_0217d384->mUnk_0008, data_0216e21c, 8, NULL);
     p = &data_0217d384->mUnk_0008;
-    p->mUnk_10 = 0;
-    p->mUnk_12 = 1;
+    p->mNextState = 0;
+    p->mNextStateRequested = 1;
 }
 
 void func_0212055c(void *a) {
-    data_0217d384->mUnk_0004 = func_02036b74(a, 0x3e800, 0x20);
-    data_0217d384->mUnk_0000 = func_02017988(data_0217d384->mUnk_0004, 0x3e800, 1);
-    data_0217d384->mUnk_1f30 = 1;
+    data_0217d384->mHeapBuffer = func_02036b74(a, 0x3e800, 0x20);
+    data_0217d384->mHeap = func_02017988(data_0217d384->mHeapBuffer, 0x3e800, 1);
+    data_0217d384->mHeapCreated = 1;
     func_ov000_021a3744(func_0211fffc, func_0211ffb0);
 }
 
 void func_02120514(void) {
     Unk0217d384_08 *p;
 
-    if (data_0217d384->mUnk_0000 != NULL) {
-        func_0201797c(data_0217d384->mUnk_0000);
-        func_02036b30(func_020364e0(func_020364e8()), data_0217d384->mUnk_0004);
+    if (data_0217d384->mHeap != NULL) {
+        func_0201797c(data_0217d384->mHeap);
+        func_02036b30(func_020364e0(func_020364e8()), data_0217d384->mHeapBuffer);
     }
-    data_0217d384->mUnk_1f30 = 0;
+    data_0217d384->mHeapCreated = 0;
     p = &data_0217d384->mUnk_0008;
-    p->mUnk_10 = 0;
-    p->mUnk_12 = 1;
+    p->mNextState = 0;
+    p->mNextStateRequested = 1;
 }
 #pragma thumb off
 
@@ -85,8 +85,8 @@ void func_021204d0(void) {
     func_02120714();
     data_0217d384->mUnk_1f34 = 1;
     p = &data_0217d384->mUnk_0008;
-    p->mUnk_10 = 0;
-    p->mUnk_12 = 1;
+    p->mNextState = 0;
+    p->mNextStateRequested = 1;
 }
 
 void func_02120404(void) {
@@ -128,7 +128,7 @@ void func_0212034c(void) {
         data_0217d384->mUnk_1f44 = func_ov000_0219c3cc(&data_0217d384->mUnk_1f48);
         func_ov000_0219c3b0();
     }
-    if (data_0217d384->mUnk_0008.mUnk_0e != 0) {
+    if (data_0217d384->mUnk_0008.mState != 0) {
         func_02120404();
     }
     func_02046b40(&data_0217d384->mUnk_0008);
@@ -141,7 +141,7 @@ s32 func_02120340(u32 a, void *b, s32 c, u32 (*d)(void)) {
 void *func_0212030c(u32 a) {
     Unk0217d384 *d = data_0217d384;
 
-    if (d->mUnk_1f55 & (1 << a)) {
+    if (d->mKartMask & (1 << a)) {
         return &d->mUnk_021c[a].mUnk_00c;
     }
     return NULL;

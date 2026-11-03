@@ -156,7 +156,7 @@ void func_ov000_02183b80(void) {
     if (func_02125fa4() != 0 && func_0212111c() == 1) {
         k = 0;
         gWiFiVSMatching->mUnk_08 = 0;
-        if (data_0217d384->mUnk_1f52 <= 1) {
+        if (data_0217d384->mKartCount <= 1) {
             func_ov000_021840c8();
             gWiFiVSMatching->mNextState = 9;
             gWiFiVSMatching->mUnk_40 = 1;
@@ -168,8 +168,8 @@ void func_ov000_02183b80(void) {
             func_02108990();
             return;
         }
-        gWiFiVSMatching->mUnk_30 = data_0217d384->mUnk_1f52 - 1;
-        for (j = 0; j < data_0217d384->mUnk_1f52; j++) {
+        gWiFiVSMatching->mUnk_30 = data_0217d384->mKartCount - 1;
+        for (j = 0; j < data_0217d384->mKartCount; j++) {
             if (j != func_ov000_0219bb50()) {
                 gWiFiVSMatching->mUnk_34[k] = j;
                 gWiFiVSMatching->mUnk_24[k] = 1;

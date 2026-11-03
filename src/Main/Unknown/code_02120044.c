@@ -124,7 +124,7 @@ void func_02120150(void) {
 
     d = data_0217d384;
     if (d != NULL) {
-        if (d->mUnk_1f30 != 0) {
+        if (d->mHeapCreated != 0) {
             a = TRUE;
         }
     }
@@ -132,7 +132,7 @@ void func_02120150(void) {
         return;
     }
     d->mUnk_1f3c++;
-    if (data_0217d384->mUnk_0008.mUnk_0e != 5) {
+    if (data_0217d384->mUnk_0008.mState != 5) {
         return;
     }
     if (data_0217d384->mUnk_1f38 == 0) {
@@ -152,8 +152,8 @@ void func_021200fc(void) {
         return;
     }
     p = &data_0217d384->mUnk_0008;
-    p->mUnk_10 = 2;
-    p->mUnk_12 = 1;
+    p->mNextState = 2;
+    p->mNextStateRequested = 1;
 }
 
 void func_021200f0(void) {
@@ -167,8 +167,8 @@ void func_021200a8(void) {
         return;
     }
     p = &data_0217d384->mUnk_0008;
-    p->mUnk_10 = 4;
-    p->mUnk_12 = 1;
+    p->mNextState = 4;
+    p->mNextStateRequested = 1;
 }
 
 void func_021200a4(void) {}

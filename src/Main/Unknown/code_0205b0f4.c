@@ -385,11 +385,11 @@ void func_0205b0f4(void) {
     if (func_0202056c(data_0217aa14->mUnk_749) > 1) {
         return;
     }
-    v = data_0217d384->mUnk_0008.mUnk_0e;
+    v = data_0217d384->mUnk_0008.mState;
     q = data_0217aa08->mUnk_00;
     n = q->mUnk_34[5];
     if (v != 0) {
-        s8 c = data_0217d384->mUnk_1f54 - 1;
+        s8 c = data_0217d384->mKartCountCopy - 1;
         if (c > 0) {
             if (n < c) {
                 n = 0;

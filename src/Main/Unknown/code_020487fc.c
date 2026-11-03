@@ -163,7 +163,7 @@ static inline s32 func_020487fc_inline10(void) {
 
 static inline s32 func_020487fc_inline11(void) {
     BOOL r = FALSE;
-    if (data_0217d384 != NULL && data_0217d384->mUnk_1f30 != 0) {
+    if (data_0217d384 != NULL && data_0217d384->mHeapCreated != 0) {
         r = TRUE;
     }
     return r;
@@ -171,7 +171,7 @@ static inline s32 func_020487fc_inline11(void) {
 
 static inline BOOL func_020487fc_inline13(void) {
     if (func_020487fc_inline11()) {
-        if (data_0217d384->mUnk_0008.mUnk_0e != 0) {
+        if (data_0217d384->mUnk_0008.mState != 0) {
             return FALSE;
         }
         return TRUE;

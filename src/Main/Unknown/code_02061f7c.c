@@ -450,11 +450,11 @@ void func_02062004(void) {
     func_0203d568();
     f = FALSE;
     p = data_0217d384;
-    if (p != NULL && p->mUnk_1f30 != 0) {
+    if (p != NULL && p->mHeapCreated != 0) {
         f = TRUE;
     }
     if (f != FALSE) {
-        p->mUnk_1f55 = data_0217aa14->mUnk_749;
+        p->mKartMask = data_0217aa14->mUnk_749;
     }
     data_0217aa14 = NULL;
 }
