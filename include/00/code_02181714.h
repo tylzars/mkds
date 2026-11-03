@@ -16,9 +16,9 @@ typedef struct Unk021b4c6c {
     /* 00 */ s32 mUnk_00;
     /* 04 */ u32 mUnk_04;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
+    /* 0c */ s32 mStateFrames;
+    /* 10 */ s32 mPendingWiFiState;
+    /* 14 */ void *mHeap;
     /* 18 */ s32 mUnk_18;
     /* 1c */ Unk02124b1c *mUnk_1c;
     /* 20 */ struct Unk02021dc8 *mUnk_20;
@@ -64,4 +64,4 @@ void func_ov000_02181dd0(void);
 s32 func_ov000_02181df0(void);
 void func_ov000_02181df8(void);
 void func_ov000_02181e8c(void);
-void InitWiFiTopMenu(void *a);
+void InitWiFiTopMenu(void *heap);

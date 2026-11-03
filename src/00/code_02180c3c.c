@@ -34,8 +34,8 @@ static inline s32 func_ov000_02180e58_inline(void) {
 }
 
 void func_ov000_02180c3c(void) {
-    data_ov000_021b4c68->mUnk_00 = data_ov000_021b4c68->mUnk_04;
-    switch (data_ov000_021b4c68->mUnk_00) {
+    data_ov000_021b4c68->mState = data_ov000_021b4c68->mNextState;
+    switch (data_ov000_021b4c68->mState) {
         case 0:
             func_ov000_02181458();
             break;
@@ -95,8 +95,8 @@ void func_ov000_02180cdc(void) {
     }
 next:
     if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
-        data_ov000_021b4c68->mUnk_0c = 1;
-        RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
+        data_ov000_021b4c68->mPendingWiFiState = 1;
+        RequestWiFiState(data_ov000_021b4c68->mPendingWiFiState);
     }
 }
 
@@ -114,14 +114,15 @@ void func_ov000_02180d94(void) {
         data_ov000_021b4c68->mUnk_10++;
         v = func_ov000_0218151c(data_ov000_021b4c68->mUnk_18, data_ov000_021b4c68->mUnk_10, &v2);
         if (v != -1) {
-            func_02126570(GetBmgEntry(data_ov000_021b4c68->mUnk_38, v), GetBmgEntry(data_ov000_021b4c68->mUnk_3c, 6));
+            func_02126570(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, v),
+                          GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 6));
             return;
         }
         v1 = 0;
         func_0214cfe4(v1, v3, 0x14);
         func_02124fac(data_ov000_021b4c68->mUnk_18, v3);
-        func_0212513c(v3, GetBmgEntry(data_ov000_021b4c68->mUnk_38, 0x30), v4, 0x258);
-        data_ov000_021b4c68->mUnk_04 = 9;
+        func_0212513c(v3, GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x30), v4, 0x258);
+        data_ov000_021b4c68->mNextState = 9;
         func_021266e4(v4);
         func_02128374();
     }
@@ -132,7 +133,7 @@ void func_ov000_02180e58(void) {
     s32 v;
     if (func_02125f88() != 0) {
         if (func_ov000_02180e58_inline() == 0) {
-            RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
+            RequestWiFiState(data_ov000_021b4c68->mPendingWiFiState);
             return;
         }
     }
@@ -144,9 +145,9 @@ void func_ov000_02180e58(void) {
                     data_ov000_021b4c68->mUnk_18 = -data_ov000_021b4c68->mUnk_18;
                 }
                 v = func_ov000_0218151c(data_ov000_021b4c68->mUnk_18, 0, &v1);
-                data_ov000_021b4c68->mUnk_04 = 8;
-                func_02126570(GetBmgEntry(data_ov000_021b4c68->mUnk_38, v),
-                              GetBmgEntry(data_ov000_021b4c68->mUnk_3c, 6));
+                data_ov000_021b4c68->mNextState = 8;
+                func_02126570(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, v),
+                              GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 6));
                 data_ov000_021b4c68->mUnk_10 = 0;
                 func_021089f4();
                 break;
@@ -155,12 +156,12 @@ void func_ov000_02180e58(void) {
             case 1:
                 if (func_ov000_021806a0() != 0) {
                     if (data_ov000_021b4c68->mUnk_14 != 0) {
-                        data_ov000_021b4c68->mUnk_04 = 5;
-                        func_02126570(GetBmgEntry(data_ov000_021b4c68->mUnk_38, 0x1e),
-                                      GetBmgEntry(data_ov000_021b4c68->mUnk_3c, 6));
+                        data_ov000_021b4c68->mNextState = 5;
+                        func_02126570(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x1e),
+                                      GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 6));
                         data_ov000_021b4c68->mUnk_10 = 0;
                     } else {
-                        data_ov000_021b4c68->mUnk_0c = 2;
+                        data_ov000_021b4c68->mPendingWiFiState = 2;
                         func_02125fc0();
                     }
                 }
@@ -177,15 +178,15 @@ void func_ov000_02180f80(void) {
     }
     if (func_02125f88() != 0) {
         if (func_02125f60() == 0) {
-            data_ov000_021b4c68->mUnk_04 = 7;
-            func_02126638(GetBmgEntry(data_ov000_021b4c68->mUnk_38, 0x14), 1, 1, 1, 0, 1, 0);
+            data_ov000_021b4c68->mNextState = 7;
+            func_02126638(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x14), 1, 1, 1, 0, 1, 0);
             func_0211fe24();
             data_ov000_021b4c68->mUnk_14 = 0;
             func_02108bb4();
             return;
         }
-        data_ov000_021b4c68->mUnk_0c = 1;
-        RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
+        data_ov000_021b4c68->mPendingWiFiState = 1;
+        RequestWiFiState(data_ov000_021b4c68->mPendingWiFiState);
     }
 }
 
@@ -200,18 +201,18 @@ void func_ov000_02180ffc(void) {
         if (data_ov000_021b4c68->mUnk_10 < 0) {
             data_ov000_021b4c68->mUnk_10++;
             p = data_ov000_021b4c68;
-            func_02126570(GetBmgEntry(p->mUnk_38, a[p->mUnk_10]), GetBmgEntry(p->mUnk_3c, 6));
+            func_02126570(GetBmgEntry(p->mWiFiMessages, a[p->mUnk_10]), GetBmgEntry(p->mCommonMessages, 6));
             return;
         }
         if (data_ov000_021b4c68->mUnk_10 == 0) {
             data_ov000_021b4c68->mUnk_10++;
             p = data_ov000_021b4c68;
-            func_02126570(GetBmgEntry(p->mUnk_38, a[p->mUnk_10]), GetBmgEntry(p->mUnk_3c, 4));
+            func_02126570(GetBmgEntry(p->mWiFiMessages, a[p->mUnk_10]), GetBmgEntry(p->mCommonMessages, 4));
             return;
         }
         if (func_ov000_02180e58_inline() == 0) {
-            data_ov000_021b4c68->mUnk_0c = 2;
-            RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
+            data_ov000_021b4c68->mPendingWiFiState = 2;
+            RequestWiFiState(data_ov000_021b4c68->mPendingWiFiState);
         }
     }
 }
@@ -227,26 +228,26 @@ void func_ov000_021810dc(void) {
         if (data_ov000_021b4c68->mUnk_10 < 1) {
             data_ov000_021b4c68->mUnk_10++;
             p = data_ov000_021b4c68;
-            func_02126570(GetBmgEntry(p->mUnk_38, a[p->mUnk_10]), GetBmgEntry(p->mUnk_3c, 6));
+            func_02126570(GetBmgEntry(p->mWiFiMessages, a[p->mUnk_10]), GetBmgEntry(p->mCommonMessages, 6));
             return;
         }
         if (data_ov000_021b4c68->mUnk_10 == 1) {
             data_ov000_021b4c68->mUnk_10++;
             p = data_ov000_021b4c68;
-            func_02126454(GetBmgEntry(p->mUnk_38, a[p->mUnk_10]), GetBmgEntry(data_ov000_021b4c68->mUnk_3c, 0),
-                          GetBmgEntry(p->mUnk_3c, 1), 1);
+            func_02126454(GetBmgEntry(p->mWiFiMessages, a[p->mUnk_10]),
+                          GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 0), GetBmgEntry(p->mCommonMessages, 1), 1);
             return;
         }
         if (func_02125f60() == 0) {
-            data_ov000_021b4c68->mUnk_04 = 7;
-            func_02126638(GetBmgEntry(data_ov000_021b4c68->mUnk_38, 0x14), 1, 1, 1, 0, 1, 0);
+            data_ov000_021b4c68->mNextState = 7;
+            func_02126638(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x14), 1, 1, 1, 0, 1, 0);
             func_0211fe24();
             data_ov000_021b4c68->mUnk_14 = 1;
             func_02108bb4();
             return;
         }
-        data_ov000_021b4c68->mUnk_0c = 1;
-        RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
+        data_ov000_021b4c68->mPendingWiFiState = 1;
+        RequestWiFiState(data_ov000_021b4c68->mPendingWiFiState);
     }
 }
 
@@ -261,25 +262,25 @@ void func_ov000_021811ec(void) {
         if (data_ov000_021b4c68->mUnk_10 < 0) {
             data_ov000_021b4c68->mUnk_10++;
             p = data_ov000_021b4c68;
-            func_02126570(GetBmgEntry(p->mUnk_38, a[p->mUnk_10]), GetBmgEntry(p->mUnk_3c, 6));
+            func_02126570(GetBmgEntry(p->mWiFiMessages, a[p->mUnk_10]), GetBmgEntry(p->mCommonMessages, 6));
             return;
         }
         if (data_ov000_021b4c68->mUnk_10 == 0) {
             data_ov000_021b4c68->mUnk_10++;
             p = data_ov000_021b4c68;
-            func_02126454(GetBmgEntry(p->mUnk_38, a[p->mUnk_10]), GetBmgEntry(data_ov000_021b4c68->mUnk_3c, 0),
-                          GetBmgEntry(p->mUnk_3c, 1), 1);
+            func_02126454(GetBmgEntry(p->mWiFiMessages, a[p->mUnk_10]),
+                          GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 0), GetBmgEntry(p->mCommonMessages, 1), 1);
             return;
         }
         if (func_02125f60() == 0) {
-            data_ov000_021b4c68->mUnk_04 = 4;
-            func_02126570(GetBmgEntry(data_ov000_021b4c68->mUnk_38, 0x23),
-                          GetBmgEntry(data_ov000_021b4c68->mUnk_3c, 6));
+            data_ov000_021b4c68->mNextState = 4;
+            func_02126570(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x23),
+                          GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 6));
             data_ov000_021b4c68->mUnk_10 = 0;
             return;
         }
-        data_ov000_021b4c68->mUnk_0c = 1;
-        RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
+        data_ov000_021b4c68->mPendingWiFiState = 1;
+        RequestWiFiState(data_ov000_021b4c68->mPendingWiFiState);
     }
 }
 
@@ -289,8 +290,9 @@ void func_ov000_021812f4(void) {
         return;
     }
     if (func_02125f88() != 0) {
-        data_ov000_021b4c68->mUnk_04 = 3;
-        func_02126570(GetBmgEntry(data_ov000_021b4c68->mUnk_38, 0x21), GetBmgEntry(data_ov000_021b4c68->mUnk_3c, 6));
+        data_ov000_021b4c68->mNextState = 3;
+        func_02126570(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x21),
+                      GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 6));
         data_ov000_021b4c68->mUnk_10 = 0;
     }
 }
@@ -306,44 +308,47 @@ void func_ov000_0218134c(void) {
         if (data_ov000_021b4c68->mUnk_10 < 0) {
             data_ov000_021b4c68->mUnk_10++;
             p = data_ov000_021b4c68;
-            func_02126570(GetBmgEntry(p->mUnk_38, a[p->mUnk_10]), GetBmgEntry(p->mUnk_3c, 6));
+            func_02126570(GetBmgEntry(p->mWiFiMessages, a[p->mUnk_10]), GetBmgEntry(p->mCommonMessages, 6));
             return;
         }
         if (data_ov000_021b4c68->mUnk_10 == 0) {
             data_ov000_021b4c68->mUnk_10++;
             p = data_ov000_021b4c68;
-            func_02126454(GetBmgEntry(p->mUnk_38, a[p->mUnk_10]), GetBmgEntry(data_ov000_021b4c68->mUnk_3c, 0),
-                          GetBmgEntry(p->mUnk_3c, 1), 0);
+            func_02126454(GetBmgEntry(p->mWiFiMessages, a[p->mUnk_10]),
+                          GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 0), GetBmgEntry(p->mCommonMessages, 1), 0);
             return;
         }
         if (func_02125f60() == 0) {
-            data_ov000_021b4c68->mUnk_04 = 7;
-            func_02126638(GetBmgEntry(data_ov000_021b4c68->mUnk_38, 0x14), 1, 1, 1, 0, 1, 0);
+            data_ov000_021b4c68->mNextState = 7;
+            func_02126638(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x14), 1, 1, 1, 0, 1, 0);
             func_0211fe24();
             data_ov000_021b4c68->mUnk_14 = 1;
             func_02108bb4();
             return;
         }
-        data_ov000_021b4c68->mUnk_0c = 1;
-        RequestWiFiState(data_ov000_021b4c68->mUnk_0c);
+        data_ov000_021b4c68->mPendingWiFiState = 1;
+        RequestWiFiState(data_ov000_021b4c68->mPendingWiFiState);
     }
 }
 
 void func_ov000_02181458(void) {
     if (func_ov000_02181684() != 0) {
-        data_ov000_021b4c68->mUnk_04 = 1;
-        func_02126570(GetBmgEntry(data_ov000_021b4c68->mUnk_38, 0x1c), GetBmgEntry(data_ov000_021b4c68->mUnk_3c, 6));
+        data_ov000_021b4c68->mNextState = 1;
+        func_02126570(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x1c),
+                      GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 6));
         data_ov000_021b4c68->mUnk_10 = 0;
         return;
     }
     if (func_ov000_0218167c() != 0) {
-        data_ov000_021b4c68->mUnk_04 = 6;
-        func_02126454(GetBmgEntry(data_ov000_021b4c68->mUnk_38, 0x13), GetBmgEntry(data_ov000_021b4c68->mUnk_3c, 0),
-                      GetBmgEntry(data_ov000_021b4c68->mUnk_3c, 1), 0);
+        data_ov000_021b4c68->mNextState = 6;
+        func_02126454(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x13),
+                      GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 0),
+                      GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 1), 0);
         return;
     }
-    data_ov000_021b4c68->mUnk_04 = 2;
-    func_02126570(GetBmgEntry(data_ov000_021b4c68->mUnk_38, 0x20), GetBmgEntry(data_ov000_021b4c68->mUnk_3c, 6));
+    data_ov000_021b4c68->mNextState = 2;
+    func_02126570(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x20),
+                  GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 6));
 }
 
 s32 func_ov000_0218151c(s32 a, s32 b, s32 *c) {

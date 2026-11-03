@@ -558,12 +558,12 @@ void InitWiFiVSSetting(void *heap) {
     s32 i;
 
     gWiFiVSSetting = func_02036bec(heap, 0x1060);
-    gWiFiVSSetting->mUnk_1038 = heap;
-    gWiFiVSSetting->mUnk_00 = 0;
-    gWiFiVSSetting->mUnk_04 = 0;
+    gWiFiVSSetting->mHeap = heap;
+    gWiFiVSSetting->mState = 0;
+    gWiFiVSSetting->mNextState = 0;
     gWiFiVSSetting->mUnk_08 = 1;
-    gWiFiVSSetting->mUnk_20 = -1;
-    gWiFiVSSetting->mUnk_10 = 0;
+    gWiFiVSSetting->mPendingWiFiState = -1;
+    gWiFiVSSetting->mStateFrames = 0;
     gWiFiVSSetting->mUnk_24 = 1;
     func_ov000_02180638(0);
     func_ov000_02182e18();
@@ -598,11 +598,11 @@ void InitWiFiVSSetting(void *heap) {
             for (i = 0; i < 3; i++) {
                 k = 0;
                 if (i == 1) {
-                    gWiFiVSSetting->mUnk_0c = data_ov000_021b05f0[data_0217b488->mUnk_54];
-                    if (gWiFiVSSetting->mUnk_0c == 0 && !func_ov000_021832f0()) {
-                        gWiFiVSSetting->mUnk_0c = 2;
+                    gWiFiVSSetting->mSettingIndex = data_ov000_021b05f0[data_0217b488->mUnk_54];
+                    if (gWiFiVSSetting->mSettingIndex == 0 && !func_ov000_021832f0()) {
+                        gWiFiVSSetting->mSettingIndex = 2;
                     }
-                    k = gWiFiVSSetting->mUnk_0c;
+                    k = gWiFiVSSetting->mSettingIndex;
                 }
                 v -= func_021243ac(heap, data_ov000_021b05e8[i], gWiFiVSSetting->mWiFiVSSettingBnll, d[i][0], d[i][1],
                                    data_ov000_021b060c[i][1], gWiFiVSSetting->mWiFiVSSettingSNcer,
@@ -611,7 +611,7 @@ void InitWiFiVSSetting(void *heap) {
                     t = GetBmgEntry(gWiFiVSSetting->mCommonMessages, data_ov000_021b0628[i][k]);
                 } else if (i == 1) {
                     t = GetBmgEntry(gWiFiVSSetting->mWiFiMessages,
-                                    LookupWiFiVSSettingMessageIndex(gWiFiVSSetting->mUnk_0c));
+                                    LookupWiFiVSSettingMessageIndex(gWiFiVSSetting->mSettingIndex));
                 } else {
                     t = GetBmgEntry(gWiFiVSSetting->mWiFiMessages, data_ov000_021b0628[i][k]);
                 }
@@ -632,8 +632,8 @@ void InitWiFiVSSetting(void *heap) {
             gWiFiVSSetting->mUnk_14[i][1] = 0;
         }
     }
-    gWiFiVSSetting->mUnk_2c = 0;
-    gWiFiVSSetting->mUnk_30 = 0;
+    gWiFiVSSetting->mIndexDecrementTimer = 0;
+    gWiFiVSSetting->mIndexIncrementTimer = 0;
     func_0212a910(1, 1);
     func_021281c8(0xe);
 }

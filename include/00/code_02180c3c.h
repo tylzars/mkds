@@ -4,17 +4,18 @@
 
 // Object behind data_ov000_021b4c68 (0x40 bytes).
 typedef struct Unk021b4c68 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
+    /* 00 */ u32 mState;
+    /* 04 */ u32 mNextState;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+    // Usually passed to RequestWiFiState right after it is stored; -1 until set.
+    /* 0c */ s32 mPendingWiFiState;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
-    /* 1c */ void *mUnk_1c;
+    /* 1c */ void *mHeap;
     /* 20 */ u8 pad_20[0x18];
-    /* 38 */ void *mUnk_38;
-    /* 3c */ void *mUnk_3c;
+    /* 38 */ void *mWiFiMessages;
+    /* 3c */ void *mCommonMessages;
 } Unk021b4c68;
 
 extern Unk021b4c68 *data_ov000_021b4c68;

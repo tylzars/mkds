@@ -26,20 +26,22 @@
 
 // Allocated by InitWiFiVSSetting and held in gWiFiVSSetting.
 typedef struct Unk021b4c70 {
-    /* 0000 */ s32 mUnk_00;
-    /* 0004 */ s32 mUnk_04;
+    /* 0000 */ s32 mState;
+    /* 0004 */ s32 mNextState;
     /* 0008 */ s32 mUnk_08;
-    /* 000c */ s32 mUnk_0c;
-    /* 0010 */ s32 mUnk_10;
+    /* 000c */ s32 mSettingIndex;
+    /* 0010 */ s32 mStateFrames;
     /* 0014 */ s16 mUnk_14[3][2];
-    /* 0020 */ s32 mUnk_20;
+    /* 0020 */ s32 mPendingWiFiState;
     /* 0024 */ s32 mUnk_24;
     /* 0028 */ s32 mUnk_28;
-    /* 002c */ s32 mUnk_2c;
-    /* 0030 */ s32 mUnk_30;
+    // Count down from 6 only while mUnk_08 == 1; a press sets them to 6. Nothing fires at 0: the cell flag and offset
+    // they drive stop there.
+    /* 002c */ s32 mIndexDecrementTimer;
+    /* 0030 */ s32 mIndexIncrementTimer;
     /* 0034 */ s32 mUnk_34;
-    /* 0038 */ u8 mUnk_38[0x1000];
-    /* 1038 */ void *mUnk_1038;
+    /* 0038 */ u8 mNscrCopy[0x1000];
+    /* 1038 */ void *mHeap;
     /* 103c */ Unk02124b1c *mUnk_103c;
     /* 1040 */ Unk02021dc8 *mWiFiVSSettingSNcer;
     /* 1044 */ Unk020b4934 *mWiFiVSSettingSNcgr;

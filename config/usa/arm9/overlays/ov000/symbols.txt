@@ -1519,11 +1519,11 @@ data_ov000_021b0aa8 kind:data(any) addr:0x021b0a68
 @1104 kind:data(any) addr:0x021b0a8c local
 @1105 kind:data(any) addr:0x021b0a98 local
 gWiFiTopMenuCallbacks kind:data(any) addr:0x021b0aa4
-data_ov000_021b0af4 kind:data(any) addr:0x021b0ab4
-data_ov000_021b0b0c kind:data(any) addr:0x021b0acc
-data_ov000_021b0b24 kind:data(any) addr:0x021b0ae4
-data_ov000_021b0b40 kind:data(any) addr:0x021b0b00
-data_ov000_021b0b5c kind:data(any) addr:0x021b0b1c
+gWiFiTopMenuSBnclName kind:data(any) addr:0x021b0ab4
+gWiFiTopMenuSBnblName kind:data(any) addr:0x021b0acc
+gWiFiTopMenuSNcgrName kind:data(any) addr:0x021b0ae4
+gWiFiTopMenuSNcerName kind:data(any) addr:0x021b0b00
+gWiFiTopMenuSONclrName kind:data(any) addr:0x021b0b1c
 @2870 kind:data(any) addr:0x021b0b34 local
 @2871 kind:data(any) addr:0x021b0b40 local
 data_usa_ov000_021b0b4c kind:data(any) addr:0x021b0b4c
