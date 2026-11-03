@@ -58,6 +58,8 @@
 - Each source file has a header with the same path and name: `src/01/code_0218254c.c` →
   `include/01/code_0218254c.h`. It declares every function and global the file defines (not its statics), and the
   structs they use.
+- A header that uses a struct only through a pointer declares it (`typedef struct Unk0206bcb0 Unk0206bcb0;`) instead of
+  including the struct's header. A file that reads a struct's members includes that struct's header itself.
 - Give parameters and return values the types the code shows:
   - a pointer whose fields the code reads or writes: a pointer to a struct (`Unk<addr>` until it has a name);
   - a pointer the code only passes on: `void *`;
