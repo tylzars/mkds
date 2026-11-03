@@ -28,12 +28,12 @@ typedef struct Unk0201290c_08 {
 // Object with the offsets of two tables at mUnk_08 and mUnk_0c, counted from this object.
 typedef struct Unk0201290c {
     /* 00 */ u8 mUnk_00[8];
-    /* 08 */ u32 mUnk_08;
+    /* 08 */ u32 mEntriesOffset;
     /* 0c */ u32 mUnk_0c;
     /* 10 */ u8 mUnk_10[6];
     /* 16 */ u8 mUnk_16;
     /* 17 */ u8 mUnk_17;
-    /* 18 */ u8 mUnk_18; // the per-entry functions run for indexes below this
+    /* 18 */ u8 mEntryCount; // the per-entry functions run for indexes below this
     /* 19 */ u8 mUnk_19[3];
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s32 mUnk_20;

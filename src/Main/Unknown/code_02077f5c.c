@@ -51,11 +51,11 @@ void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, u8 *param_3) {
     e = param_2->mUnk_010[0]->mUnk_04;
     func_0200ee74(param_3, 0x20);
     if (func_020799a0(param_1) != 0) {
-        k = func_02013754((u8 *) e + e->mUnk_08 + 4, data_usa_02154ff8);
+        k = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_02154ff8);
     } else {
-        k = func_02013754((u8 *) e + e->mUnk_08 + 4, data_usa_02155068);
+        k = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_02155068);
     }
-    t = (u8 *) e + e->mUnk_08;
+    t = (u8 *) e + e->mEntriesOffset;
     u = t + 4;
     w = u + *(u16 *) (t + 0xa);
     h = ((Unk0201290c_08 *) (t + *(u32 *) (w + *(u16 *) w * k + 4)))->mUnk_1c << 4;

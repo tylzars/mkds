@@ -33,7 +33,7 @@ void func_020136a8(Unk0201290c *a, u32 b, u32 c) {
     u8 *t;
     u8 *e;
 
-    p = (u8 *) a + a->mUnk_08;
+    p = (u8 *) a + a->mEntriesOffset;
     t = p + 4 + *(u16 *) (p + 0xa);
     e = p + *(u32 *) (t + *(u16 *) t * b + 4);
     *(u32 *) (e + 4) = (*(u32 *) (e + 4) & -0x8000) | c;
@@ -44,7 +44,7 @@ void func_02013660(Unk0201290c *a, u32 b, u32 c) {
     u8 *t;
     u8 *e;
 
-    p = (u8 *) a + a->mUnk_08;
+    p = (u8 *) a + a->mEntriesOffset;
     t = p + 4 + *(u16 *) (p + 0xa);
     e = p + *(u32 *) (t + *(u16 *) t * b + 4);
     *(u32 *) (e + 4) = (*(u32 *) (e + 4) & 0x8000ffff) | (c << 16);
@@ -55,7 +55,7 @@ void func_02013618(Unk0201290c *a, u32 b, u32 c) {
     u8 *t;
     u8 *e;
 
-    p = (u8 *) a + a->mUnk_08;
+    p = (u8 *) a + a->mEntriesOffset;
     t = p + 4 + *(u16 *) (p + 0xa);
     e = p + *(u32 *) (t + *(u16 *) t * b + 4);
     *(u32 *) (e + 8) = (*(u32 *) (e + 8) & -0x8000) | c;
@@ -66,7 +66,7 @@ void func_020135d0(Unk0201290c *a, u32 b, u32 c) {
     u8 *t;
     u8 *e;
 
-    p = (u8 *) a + a->mUnk_08;
+    p = (u8 *) a + a->mEntriesOffset;
     t = p + 4 + *(u16 *) (p + 0xa);
     e = p + *(u32 *) (t + *(u16 *) t * b + 4);
     *(u32 *) (e + 8) = (*(u32 *) (e + 8) & 0x8000ffff) | (c << 16);
@@ -77,7 +77,7 @@ void func_02013588(Unk0201290c *a, u32 b, u32 c) {
     u16 *t;
     Unk0201290c_08 *e;
 
-    q = (u8 *) a + a->mUnk_08;
+    q = (u8 *) a + a->mEntriesOffset;
     t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
     e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
     e->mUnk_0c = (e->mUnk_0c & ~0xf) | (c);
@@ -88,7 +88,7 @@ void func_02013540(Unk0201290c *a, u32 b, u32 c) {
     u16 *t;
     Unk0201290c_08 *e;
 
-    q = (u8 *) a + a->mUnk_08;
+    q = (u8 *) a + a->mEntriesOffset;
     t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
     e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
     e->mUnk_0c = (e->mUnk_0c & ~0x30) | (c << 4);
@@ -99,7 +99,7 @@ void func_020134f8(Unk0201290c *a, u32 b, u32 c) {
     u16 *t;
     Unk0201290c_08 *e;
 
-    q = (u8 *) a + a->mUnk_08;
+    q = (u8 *) a + a->mEntriesOffset;
     t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
     e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
     e->mUnk_0c = (e->mUnk_0c & ~0xc0) | (c << 6);
@@ -110,7 +110,7 @@ void func_020134b0(Unk0201290c *a, u32 b, u32 c) {
     u16 *t;
     Unk0201290c_08 *e;
 
-    q = (u8 *) a + a->mUnk_08;
+    q = (u8 *) a + a->mEntriesOffset;
     t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
     e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
     e->mUnk_0c = (e->mUnk_0c & ~0x3f000000) | (c << 24);
@@ -121,7 +121,7 @@ void func_02013468(Unk0201290c *a, u32 b, u32 c) {
     u16 *t;
     Unk0201290c_08 *e;
 
-    q = (u8 *) a + a->mUnk_08;
+    q = (u8 *) a + a->mEntriesOffset;
     t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
     e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
     e->mUnk_0c = (e->mUnk_0c & ~0x1f0000) | (c << 16);
@@ -132,7 +132,7 @@ void func_02013424(Unk0201290c *a, u32 b, s32 c) {
     u16 *t;
     Unk0201290c_08 *e;
 
-    q = (u8 *) a + a->mUnk_08;
+    q = (u8 *) a + a->mEntriesOffset;
     t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
     e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
     if (c != 0) {
@@ -147,7 +147,7 @@ void func_020133e0(Unk0201290c *a, u32 b, s32 c) {
     u16 *t;
     Unk0201290c_08 *e;
 
-    q = (u8 *) a + a->mUnk_08;
+    q = (u8 *) a + a->mEntriesOffset;
     t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
     e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
     if (c != 0) {
@@ -162,7 +162,7 @@ u32 func_020133ac(Unk0201290c *a, u32 b) {
     u16 *t;
     Unk0201290c_08 *e;
 
-    q = (u8 *) a + a->mUnk_08;
+    q = (u8 *) a + a->mEntriesOffset;
     t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
     e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
     return (e->mUnk_0c & 0xc0) >> 6;
@@ -173,7 +173,7 @@ u32 func_02013378(Unk0201290c *a, u32 b) {
     u16 *t;
     Unk0201290c_08 *e;
 
-    q = (u8 *) a + a->mUnk_08;
+    q = (u8 *) a + a->mEntriesOffset;
     t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
     e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
     return (e->mUnk_0c & 0x3f000000) >> 24;
@@ -184,7 +184,7 @@ u32 func_02013344(Unk0201290c *a, u32 b) {
     u16 *t;
     Unk0201290c_08 *e;
 
-    q = (u8 *) a + a->mUnk_08;
+    q = (u8 *) a + a->mEntriesOffset;
     t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
     e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
     return (e->mUnk_0c & 0x1f0000) >> 16;
@@ -195,7 +195,7 @@ u32 func_02013314(Unk0201290c *a, u32 b) {
     u16 *t;
     Unk0201290c_08 *e;
 
-    q = (u8 *) a + a->mUnk_08;
+    q = (u8 *) a + a->mEntriesOffset;
     t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
     e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
     return e->mUnk_0c & 0x8000;
@@ -204,7 +204,7 @@ u32 func_02013314(Unk0201290c *a, u32 b) {
 void func_020132cc(Unk0201290c *a, u32 b) {
     u32 i;
 
-    for (i = 0; i < a->mUnk_18; i++) {
+    for (i = 0; i < a->mEntryCount; i++) {
         func_020136a8(a, i, b);
     }
 }
@@ -212,7 +212,7 @@ void func_020132cc(Unk0201290c *a, u32 b) {
 void func_02013284(Unk0201290c *a, u32 b) {
     u32 i;
 
-    for (i = 0; i < a->mUnk_18; i++) {
+    for (i = 0; i < a->mEntryCount; i++) {
         func_02013660(a, i, b);
     }
 }
@@ -220,7 +220,7 @@ void func_02013284(Unk0201290c *a, u32 b) {
 void func_0201323c(Unk0201290c *a, u32 b) {
     u32 i;
 
-    for (i = 0; i < a->mUnk_18; i++) {
+    for (i = 0; i < a->mEntryCount; i++) {
         func_02013618(a, i, b);
     }
 }
@@ -228,7 +228,7 @@ void func_0201323c(Unk0201290c *a, u32 b) {
 void func_020131f4(Unk0201290c *a, u32 b) {
     u32 i;
 
-    for (i = 0; i < a->mUnk_18; i++) {
+    for (i = 0; i < a->mEntryCount; i++) {
         func_020135d0(a, i, b);
     }
 }
@@ -236,7 +236,7 @@ void func_020131f4(Unk0201290c *a, u32 b) {
 void func_020131ac(Unk0201290c *a, u32 b) {
     u32 i;
 
-    for (i = 0; i < a->mUnk_18; i++) {
+    for (i = 0; i < a->mEntryCount; i++) {
         func_02013588(a, i, b);
     }
 }
@@ -244,7 +244,7 @@ void func_020131ac(Unk0201290c *a, u32 b) {
 void func_02013164(Unk0201290c *a, u32 b) {
     u32 i;
 
-    for (i = 0; i < a->mUnk_18; i++) {
+    for (i = 0; i < a->mEntryCount; i++) {
         func_02013540(a, i, b);
     }
 }
@@ -252,7 +252,7 @@ void func_02013164(Unk0201290c *a, u32 b) {
 void func_0201311c(Unk0201290c *a, u32 b) {
     u32 i;
 
-    for (i = 0; i < a->mUnk_18; i++) {
+    for (i = 0; i < a->mEntryCount; i++) {
         func_020134f8(a, i, b);
     }
 }
@@ -260,7 +260,7 @@ void func_0201311c(Unk0201290c *a, u32 b) {
 void func_020130d4(Unk0201290c *a, u32 b) {
     u32 i;
 
-    for (i = 0; i < a->mUnk_18; i++) {
+    for (i = 0; i < a->mEntryCount; i++) {
         func_020134b0(a, i, b);
     }
 }
@@ -268,7 +268,7 @@ void func_020130d4(Unk0201290c *a, u32 b) {
 void func_0201308c(Unk0201290c *a, u32 b) {
     u32 i;
 
-    for (i = 0; i < a->mUnk_18; i++) {
+    for (i = 0; i < a->mEntryCount; i++) {
         func_02013468(a, i, b);
     }
 }
@@ -276,7 +276,7 @@ void func_0201308c(Unk0201290c *a, u32 b) {
 void func_02013044(Unk0201290c *a, u32 b) {
     u32 i;
 
-    for (i = 0; i < a->mUnk_18; i++) {
+    for (i = 0; i < a->mEntryCount; i++) {
         func_02013424(a, i, b);
     }
 }
@@ -284,7 +284,7 @@ void func_02013044(Unk0201290c *a, u32 b) {
 void func_02012ffc(Unk0201290c *a, u32 b) {
     u32 i;
 
-    for (i = 0; i < a->mUnk_18; i++) {
+    for (i = 0; i < a->mEntryCount; i++) {
         func_020133e0(a, i, b);
     }
 }

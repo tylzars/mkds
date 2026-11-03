@@ -327,33 +327,33 @@ void func_020d9900(Unk020d9cf4 *a) {
         func_02084e28(&a->mUnk_68, a->mUnk_60);
         i = 0;
         p = a->mUnk_68.mUnk_04;
-        for (; i < p->mUnk_18; i++) {
+        for (; i < p->mEntryCount; i++) {
             func_020135d0(p, i, 0x294a);
         }
         i = 0;
         p = a->mUnk_68.mUnk_04;
-        for (; i < p->mUnk_18; i++) {
+        for (; i < p->mEntryCount; i++) {
             func_020134b0(p, i, 1);
         }
     }
     func_02084e28(&a->mUnk_d4, a->mUnk_64);
     i = 0;
     p = a->mUnk_d4.mUnk_04;
-    for (; i < p->mUnk_18; i++) {
+    for (; i < p->mEntryCount; i++) {
         func_020135d0(p, i, 0x294a);
     }
     i = 0;
     p = a->mUnk_d4.mUnk_04;
-    for (; i < p->mUnk_18; i++) {
+    for (; i < p->mEntryCount; i++) {
         func_020134b0(p, i, 2);
     }
     q = a->mUnk_d4.mUnk_04;
-    r = func_02013754(&q->mUnk_00[q->mUnk_08] + 4, data_02158094);
+    r = func_02013754(&q->mUnk_00[q->mEntriesOffset] + 4, data_02158094);
     if (a->mUnk_60 != NULL) {
         n = a->mUnk_58;
         i = 0;
         p = a->mUnk_68.mUnk_04;
-        for (; i < p->mUnk_18; i++) {
+        for (; i < p->mEntryCount; i++) {
             func_02013468(p, i, n);
         }
     }

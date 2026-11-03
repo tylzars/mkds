@@ -202,7 +202,7 @@ void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c) {
     func_020849c0(a->mUnk_010[1], 3);
     func_0207a14c(r4, 0);
     if (c != 0) {
-        i = func_02013754((u8 *) r4 + r4->mUnk_08 + 4, data_usa_021550b8);
+        i = func_02013754((u8 *) r4 + r4->mEntriesOffset + 4, data_usa_021550b8);
         func_02013468(r4, i, 0);
         gKartModels->mUnk_00c = i;
     }

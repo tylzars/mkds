@@ -40,7 +40,7 @@ void func_0201290c(Unk0201290c *a, u32 b, u32 c, s32 d) {
         func_01ff9048(0x1b, v, 3);
     }
     if (d != 0) {
-        q = (u8 *) a + a->mUnk_08;
+        q = (u8 *) a + a->mEntriesOffset;
         h = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
         e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) h + *h * b + 4));
         if (!(e->mUnk_0c & 0x1f0000)) {

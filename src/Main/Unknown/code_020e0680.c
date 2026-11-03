@@ -448,19 +448,19 @@ void func_020e20a8(Unk020e20a8 *a) {
     func_020ea4bc(2, gCarA, &gCarANsbtp, (void *) b, (void *) FindCourseMapObjFile(gCarANsbtpName));
     func_020ea4bc(2, gTruckA, &gTruckANsbtp, (void *) c, (void *) FindCourseMapObjFile(gTruckANsbtpName));
     func_02084968(gCarA, 0x3f, 2, 0x294a);
-    for (k1 = 0, y1 = ((Unk0217b7a0 *) gCarA)->mUnk_04; k1 < y1->mUnk_18; k1++) {
+    for (k1 = 0, y1 = ((Unk0217b7a0 *) gCarA)->mUnk_04; k1 < y1->mEntryCount; k1++) {
         func_020134b0(y1, k1, 7);
     }
     func_02084968(gTruckA, 0x3f, 2, 0x294a);
-    for (k2 = 0, y2 = ((Unk0217b7a0 *) gTruckA)->mUnk_04; k2 < y2->mUnk_18; k2++) {
+    for (k2 = 0, y2 = ((Unk0217b7a0 *) gTruckA)->mUnk_04; k2 < y2->mEntryCount; k2++) {
         func_020134b0(y2, k2, 7);
     }
     func_02084968(gBusA, 0x3f, 2, 0x294a);
-    for (k3 = 0, y3 = ((Unk0217b7a0 *) gBusA)->mUnk_04; k3 < y3->mUnk_18; k3++) {
+    for (k3 = 0, y3 = ((Unk0217b7a0 *) gBusA)->mUnk_04; k3 < y3->mEntryCount; k3++) {
         func_020134b0(y3, k3, 7);
     }
     func_02084968(gCarTire, 0x3f, 2, 0x294a);
-    for (k4 = 0, y4 = ((Unk0217b7a0 *) gCarTire)->mUnk_04; k4 < y4->mUnk_18; k4++) {
+    for (k4 = 0, y4 = ((Unk0217b7a0 *) gCarTire)->mUnk_04; k4 < y4->mEntryCount; k4++) {
         func_020134b0(y4, k4, 7);
     }
     func_020849b0(gCarTire, 0);

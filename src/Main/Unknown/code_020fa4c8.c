@@ -548,7 +548,7 @@ void func_020faed0(Unk020fc2e8 *param_1, s32 param_2, s32 param_3) {
 
         o = data_0217bd38->mUnk_004;
         n = (u16) param_1->mUnk_000.mUnk_d8;
-        for (i = 0; i < o->mUnk_18; i++) {
+        for (i = 0; i < o->mEntryCount; i++) {
             func_02013468(o, i, n);
         }
     }
@@ -572,7 +572,7 @@ void func_020faed0(Unk020fc2e8 *param_1, s32 param_2, s32 param_3) {
         Unk0201290c *o;
 
         o = data_0217bd38->mUnk_004;
-        for (i = 0; i < o->mUnk_18; i++) {
+        for (i = 0; i < o->mEntryCount; i++) {
             func_02013468(o, i, 0x1f);
         }
     }

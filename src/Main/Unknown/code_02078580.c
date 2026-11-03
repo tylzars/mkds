@@ -380,8 +380,8 @@ void func_02078e4c(void *param_1, void *param_2) {
     s16 i = d->mUnk_264;
     if (i >= 0 && p->mUnk_2c == 0) {
         e = d->mUnk_058[i].mUnk_14->mUnk_04;
-        k = func_02013754((u8 *) e + e->mUnk_08 + 4, data_usa_02155018);
-        t = (u8 *) e + e->mUnk_08;
+        k = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_02155018);
+        t = (u8 *) e + e->mEntriesOffset;
         u = t + 4;
         w = u + *(u16 *) (t + 0xa);
         x = (Unk0201290c_08 *) (t + *(u32 *) (w + *(u16 *) w * k + 4));

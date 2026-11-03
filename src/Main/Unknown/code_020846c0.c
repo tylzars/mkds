@@ -108,7 +108,7 @@ void func_02084fb0(Unk02084b2c *a, Unk0201290c *b, u32 c) {
     } else {
         a->mUnk_54 = 0;
     }
-    if (b->mUnk_18 == 1 && b->mUnk_19[0] == 1) {
+    if (b->mEntryCount == 1 && b->mUnk_19[0] == 1) {
         a->mUnk_58 = 1;
     } else {
         a->mUnk_58 = 0;
@@ -116,7 +116,7 @@ void func_02084fb0(Unk02084b2c *a, Unk0201290c *b, u32 c) {
     func_02010c84((Unk02010c84 *) a, (u32) b);
     if (a->mUnk_54 != 0) {
         p = a->mUnk_04;
-        for (i = 0; i < p->mUnk_18; i++) {
+        for (i = 0; i < p->mEntryCount; i++) {
             if (func_020133ac(p, i) == 1) {
                 func_020134f8(p, i, 2);
             } else if (func_020133ac(p, i) == 2) {
@@ -131,7 +131,7 @@ void func_02084f68(Unk02084b2c *a) {
     Unk0201290c *p;
 
     p = a->mUnk_04;
-    for (i = 0; i < p->mUnk_18; i++) {
+    for (i = 0; i < p->mEntryCount; i++) {
         func_020134f8(p, i, 1);
     }
 }
@@ -141,7 +141,7 @@ void func_02084f20(Unk02084b2c *a) {
     Unk0201290c *p;
 
     p = a->mUnk_04;
-    for (i = 0; i < p->mUnk_18; i++) {
+    for (i = 0; i < p->mEntryCount; i++) {
         func_020134f8(p, i, 2);
     }
 }

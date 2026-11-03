@@ -23,7 +23,7 @@ void func_02079038(void *a, Unk020136f0 *b, Unk020136f0 *c) {
     v1 = func_02084d3c(a, b, c);
     func_020849c0(a, 3);
     func_0207a14c(v1, 1);
-    v2 = func_02013754((u8 *) v1 + v1->mUnk_08 + 4, data_02155098);
+    v2 = func_02013754((u8 *) v1 + v1->mEntriesOffset + 4, data_02155098);
     func_02013468(v1, v2, 0);
 }
 
