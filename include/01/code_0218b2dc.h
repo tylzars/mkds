@@ -12,7 +12,7 @@ void *func_ov001_0218b2dc(void);
 void *func_ov001_0218b2f4(void);
 void func_ov001_0218b310(void);
 void func_ov001_0218b33c(u32 a, u32 b);
-void func_ov001_0218b35c(Unk0218d87c *a);
+void InitKuriking(Unk0218d87c *a);
 void func_ov001_0218b404(u32 a, Unk02188950 *b);
 void func_ov001_0218b5d8(Unk0218d87c *a);
 void func_ov001_0218b640(Unk02188950 *a, void *b);

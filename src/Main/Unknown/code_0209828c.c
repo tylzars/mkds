@@ -75,19 +75,19 @@ static inline u32 func_020983c4_inline(u32 n) {
     return (u16) t;
 }
 
-void func_020983c4(void *a, Unk020983c4 *p) {
+void func_020983c4(void *a, Pakkun *p) {
     BOOL f;
     s32 t;
     s32 x;
     s32 y;
     Unk0210b7a8 s;
-    switch (p->mUnk_0b4) {
+    switch (p->mState) {
         case 0:
             p->mUnk_1b8 += func_020983c4_inline((u16) (p->mUnk_1ba - 1)) + 1;
             if (p->mUnk_1b8 >= p->mUnk_1ba) {
                 p->mUnk_1b8 -= p->mUnk_1ba;
             }
-            p->mUnk_0b4 = 1;
+            p->mState = 1;
         case 1:
             f = FALSE;
             if (p->mUnk_1dc < p->mUnk_1bc[p->mUnk_1b8]) {
@@ -103,26 +103,26 @@ void func_020983c4(void *a, Unk020983c4 *p) {
             }
             if (f != FALSE) {
                 if (func_020983c4_inline(2) == 0) {
-                    p->mUnk_0b4 = 2;
+                    p->mState = 2;
                 } else {
-                    p->mUnk_0b4 = 0;
+                    p->mState = 0;
                 }
             }
             break;
         case 2:
             if (p->mUnk_1ec >= -4 && p->mUnk_1ec <= 4) {
-                p->mUnk_1b4 = 0x1e;
-                p->mUnk_0b4 = 3;
+                p->mTimer = 0x1e;
+                p->mState = 3;
             }
             break;
         case 3:
-            if (p->mUnk_1b4-- <= 0) {
-                p->mUnk_1b4 = 0;
+            if (p->mTimer-- <= 0) {
+                p->mTimer = 0;
                 if (p->mUnk_1e8 >= 0xffc) {
                     p->mUnk_1e8 = 0x1000;
                     p->mUnk_1e4 = 0;
                     p->mUnk_1f4 = 0x7b;
-                    p->mUnk_0b4 = 4;
+                    p->mState = 4;
                 }
             } else {
                 p->mUnk_1e0 = p->mUnk_1e0 + 0xa4;
@@ -133,7 +133,7 @@ void func_020983c4(void *a, Unk020983c4 *p) {
             p->mUnk_1f4 = p->mUnk_1f4 - 8;
             if (p->mUnk_1f4 <= 0) {
                 if (p->mUnk_1f0 <= 0x119a) {
-                    p->mUnk_0b4 = 5;
+                    p->mState = 5;
                 }
             }
             break;
@@ -165,14 +165,14 @@ void func_020983c4(void *a, Unk020983c4 *p) {
                     func_0210b7a8(&s);
                 }
             } else if (p->mUnk_0a4 == 0) {
-                p->mUnk_1b4 = 0x1e;
-                p->mUnk_0b4 = 6;
+                p->mTimer = 0x1e;
+                p->mState = 6;
             }
             break;
         case 6:
-            if (p->mUnk_1b4-- <= 0) {
-                p->mUnk_1b4 = 0;
-                p->mUnk_0b4 = 0;
+            if (p->mTimer-- <= 0) {
+                p->mTimer = 0;
+                p->mState = 0;
             } else {
                 p->mUnk_1e0 = p->mUnk_1e0 - 0xa4;
             }
@@ -192,12 +192,12 @@ void func_020983c4(void *a, Unk020983c4 *p) {
 
 void func_0209886c(void) {
     s32 i;
-    Unk020983c4 *o;
+    Pakkun *o;
     float f;
     if (data_usa_0217b0dc == NULL) {
         return;
     }
-    for (i = 0; i < data_usa_0217b0dc->mUnk_04 && (o = (Unk020983c4 *) data_usa_0217b0dc->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < data_usa_0217b0dc->mUnk_04 && (o = (Pakkun *) data_usa_0217b0dc->mUnk_00[i]) != NULL; i++) {
         if (func_0209b758(gPakkunMouth) - 1 > 0) {
             f = 0.5f + (float) ((func_0209b758(gPakkunMouth) - 1) << 12);
         } else {
@@ -211,7 +211,7 @@ void func_0209886c(void) {
     }
 }
 
-void func_02098954(void *a, Unk020983c4 *p) {
+void func_02098954(void *a, Pakkun *p) {
     s32 w;
     s32 v[3];
     s32 d;
@@ -241,7 +241,7 @@ void CreatePakkunBody(void *a) {
     func_0209b9a4(gPakkunBody, 0x1f);
 }
 
-void func_02098a58(void *a, Unk020983c4 *p) {
+void func_02098a58(void *a, Pakkun *p) {
     s32 w;
     Vec3 v;
     s32 f[3];
@@ -271,7 +271,7 @@ void CreatePakkunZHead(void *a) {
     func_0209b9a4(gPakkunZHead, 0x1e);
 }
 
-void func_02098b68(void *a, Unk020983c4 *p) {
+void func_02098b68(void *a, Pakkun *p) {
     s32 w;
     s32 m[9];
     s32 n[9];
@@ -313,7 +313,7 @@ void CreatePakkunMouth(void *a) {
     func_0209b9a4(gPakkunMouth, 0x1f);
 }
 
-void func_02098d4c(Unk020983c4 *p) {
+void func_02098d4c(Pakkun *p) {
     s32 v;
     s32 d;
     Vec3 a;

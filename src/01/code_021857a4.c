@@ -26,7 +26,7 @@
 
 #pragma optimize_for_size on
 
-u16 func_ov001_02185b50(Unk02185bb8 *a) {
+u16 func_ov001_02185b50(MissionGateObject *a) {
     return a->mUnk_0a8 != 0;
 }
 

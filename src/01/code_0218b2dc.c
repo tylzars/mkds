@@ -233,7 +233,7 @@ void func_ov001_0218b404(u32 a, Unk02188950 *b) {
     func_0209b734(b->mUnk_304, (u16) b->mUnk_134);
 }
 
-void func_ov001_0218b35c(Unk0218d87c *a) {
+void InitKuriking(Unk0218d87c *a) {
     s32 i;
     Unk02188950 *obj;
 
@@ -267,7 +267,7 @@ void func_ov001_0218b310(void) {
 }
 
 void *func_ov001_0218b2f4(void) {
-    return (void *) func_0209bf1c(func_ov001_0218b35c, func_ov001_0218b33c, func_ov001_02187098);
+    return (void *) func_0209bf1c(InitKuriking, func_ov001_0218b33c, func_ov001_02187098);
 }
 
 void *func_ov001_0218b2dc(void) {

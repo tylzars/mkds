@@ -4,13 +4,13 @@
 #include "Main/Unknown/code_020e6fd4.h" // Unk020e71a0
 
 // Object up to 0x109 bytes.
-typedef struct Unk02096a04 {
+typedef struct CoverPooHole {
     /* 00 */ Unk020e71a0 mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mUnk_a8;
-    /* ac */ s32 mUnk_ac;
-    /* b0 */ s32 mUnk_b0;
+    /* ac */ s32 mTimer;
+    /* b0 */ s32 mState;
     /* b4 */ s32 mUnk_b4;
     /* b8 */ s32 mUnk_b8;
     /* bc */ s32 mUnk_bc;
@@ -35,11 +35,11 @@ typedef struct Unk02096a04 {
     /* 100 */ s32 mUnk_100;
     /* 104 */ s32 mUnk_104;
     /* 108 */ u8 mUnk_108;
-} Unk02096a04;
+} CoverPooHole;
 
 // Pointer table with a halfword count behind it.
 typedef struct Unk020968f4 {
-    /* 00 */ Unk02096a04 **mUnk_00;
+    /* 00 */ CoverPooHole **mUnk_00;
     /* 04 */ u16 mUnk_04;
 } Unk020968f4;
 
@@ -60,14 +60,14 @@ BOOL func_02095f38(Unk0217b498_00 *a);
 u32 func_02095f5c(void);
 u32 func_02095f7c(void);
 void func_02095f9c(void);
-void func_02095fec(void *a, Unk02096a04 *p);
+void func_02095fec(void *a, CoverPooHole *p);
 s32 func_020968c0(s32 a, s32 b);
 s32 func_020968dc(s32 a);
 void func_020968f4(Unk020968f4 *p);
-void func_02096a04(void *a, Unk02096a04 *p);
+void func_02096a04(void *a, CoverPooHole *p);
 void CreateCoverPooHole(void *a);
-BOOL func_02096df0(Unk02096a04 *p, const Vec3 *a, s32 b, Vec3 *c);
-u32 func_02096f54(Unk02096a04 *p, Unk0206bcb0 *a, u8 *b, u8 *c);
-u32 func_0209702c(Unk02096a04 *p, Unk0206bcb0 *a, u8 *b, u8 *c);
+BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c);
+u32 func_02096f54(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c);
+u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c);
 void func_02097520(Unk02097520 *p0);
 u32 func_0209753c(u32 a);

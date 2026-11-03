@@ -12,10 +12,10 @@
 #include "Main/Unknown/code_020dc474.h"
 
 // Object with the Unk020e0144 base at 0xc8 and its own fields from 0xec.
-typedef struct Unk020db2b8 {
+typedef struct Dossun {
     /* 00 */ Unk020e71a0 mUnk_00;
-    /* a0 */ s32 mUnk_a0;
-    /* a4 */ s32 mUnk_a4;
+    /* a0 */ s32 mState;
+    /* a4 */ s32 mTimer;
     /* a8 */ s32 mUnk_a8;
     /* ac */ s32 mUnk_ac;
     /* b0 */ s32 mUnk_b0;
@@ -36,7 +36,7 @@ typedef struct Unk020db2b8 {
     /* 100 */ s32 mUnk_100;
     /* 104 */ s32 mUnk_104;
     /* 108 */ s32 mUnk_108;
-} Unk020db2b8;
+} Dossun;
 
 // 0x28 bytes: a function at 0x10.
 typedef struct Unk020db1b0 {
@@ -64,7 +64,7 @@ typedef struct Unk020db268 {
 // 0x28 bytes: a function at 0x10.
 typedef struct Unk020dbe74 {
     /* 00 */ u8 mUnk_00[0x10];
-    /* 10 */ void (*mUnk_10)(void *a, Unk020db2b8 *p);
+    /* 10 */ void (*mUnk_10)(void *a, Dossun *p);
     /* 14 */ u8 mUnk_14[0x14];
 } Unk020dbe74;
 
@@ -73,13 +73,13 @@ typedef struct Unk020dbed0 {
     /* 00 */ u8 mUnk_00[8];
     /* 08 */ void (*mUnk_08)(void);
     /* 0c */ u8 mUnk_0c[4];
-    /* 10 */ void (*mUnk_10)(void *a, Unk020db2b8 *p, void *c, s32 d);
+    /* 10 */ void (*mUnk_10)(void *a, Dossun *p, void *c, s32 d);
     /* 14 */ u8 mUnk_14[0x18];
 } Unk020dbed0;
 
 // 0x40 bytes: a function at 0x00.
 typedef struct Unk020dbf2c {
-    /* 00 */ u32 (*mUnk_00)(Unk020db2b8 *p, Unk0206bcb0 *a, u8 *b, u8 *c);
+    /* 00 */ u32 (*mUnk_00)(Dossun *p, Unk0206bcb0 *a, u8 *b, u8 *c);
     /* 04 */ u8 mUnk_04[0x3c];
 } Unk020dbf2c;
 
@@ -93,14 +93,14 @@ void func_020dc354(Unk020dc474 *p);
 void func_020dc1d8(Unk020dc474 *p, Unk020fa294 *a);
 void func_020dc11c(Unk020dc474 *p, Unk020fa294 *a);
 void func_020dbf7c(Unk020dc474 *p);
-s32 func_020db4c4(Unk020db2b8 *p);
-void func_020db430(Unk020db2b8 *p);
+s32 func_020db4c4(Dossun *p);
+void func_020db430(Dossun *p);
 void CreateDossunAndDossunShadow(void);
-void func_020db2b8(Unk020db2b8 *p, Unk020fa294 *a);
+void func_020db2b8(Dossun *p, Unk020fa294 *a);
 void func_020db198(void);
 void func_020db050(void *a, Unk020da494 *p, void *c, u16 d);
 void func_020daf20(void *a, Unk020da494 *p);
 void CreateWanwanAndRockShadow(void);
-void func_020dbdac(void *a, Unk020db2b8 *p, void *c, s32 d);
-u32 func_020db548(Unk020db2b8 *p, Unk0206bcb0 *a, u8 *b, u8 *c);
-void func_020db760(void *a, Unk020db2b8 *p);
+void func_020dbdac(void *a, Dossun *p, void *c, s32 d);
+u32 func_020db548(Dossun *p, Unk0206bcb0 *a, u8 *b, u8 *c);
+void func_020db760(void *a, Dossun *p);

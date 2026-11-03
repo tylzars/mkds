@@ -20,7 +20,7 @@
 #include "code_02146d78.h"
 #include "ITCM/code_01ff8000.h"
 
-void func_ov001_02185dd0(Unk02185bb8 *a) {
+void func_ov001_02185dd0(MissionGateObject *a) {
     s32 mtx[9];
     s32 r4;
     s32 r6;
@@ -48,7 +48,7 @@ void func_ov001_02185dd0(Unk02185bb8 *a) {
     func_020d2584(a->mUnk_0a4, r6);
 }
 
-u32 func_ov001_02185d74(Unk02185bb8 *c, Unk02185d74 *d, u8 *e, u8 *f) {
+u32 func_ov001_02185d74(MissionGateObject *c, Unk02185d74 *d, u8 *e, u8 *f) {
     u32 a = *e;
     u32 b = *f;
 
@@ -57,7 +57,7 @@ u32 func_ov001_02185d74(Unk02185bb8 *c, Unk02185d74 *d, u8 *e, u8 *f) {
     }
     if (a == 1) {
         c->mUnk_000.mUnk_02 |= data_ov001_021a6580;
-        c->mUnk_0ac = 2;
+        c->mState = 2;
     }
     return b;
 }
@@ -73,7 +73,7 @@ void LoadMissionGate(void *a) {
 
 void func_ov001_02185d18(void) {}
 
-void func_ov001_02185ca0(void *a, Unk02185bb8 *b) {
+void func_ov001_02185ca0(void *a, MissionGateObject *b) {
     s32 buf;
 
     buf = 0x1e;
@@ -90,30 +90,30 @@ void func_ov001_02185ca0(void *a, Unk02185bb8 *b) {
 
 void func_ov001_02185c4c(Unk02185c4c *a) {
     s32 i;
-    Unk02185bb8 *e;
+    MissionGateObject *e;
 
     if (a) {
         for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != NULL; i++) {
             if (e->mUnk_000.mUnk_9c->mUnk_28 != 0) {
                 e->mUnk_000.mUnk_02 |= data_ov001_021a6580;
-                e->mUnk_0ac = 0;
+                e->mState = 0;
             } else {
                 e->mUnk_000.mUnk_02 &= ~1;
-                e->mUnk_0ac = 1;
+                e->mState = 1;
             }
         }
     }
 }
 
-void func_ov001_02185bb8(void *a, Unk02185bb8 *b) {
+void func_ov001_02185bb8(void *a, MissionGateObject *b) {
     s32 pos;
 
-    switch (b->mUnk_0ac) {
+    switch (b->mState) {
         case 0:
             pos = data_021759c0->mUnk_08 == 4 ? func_ov001_02181820() : 0;
             if (pos >= b->mUnk_000.mUnk_9c->mUnk_28 - 1) {
                 b->mUnk_000.mUnk_02 &= ~1;
-                b->mUnk_0ac = 1;
+                b->mState = 1;
             }
             break;
         case 2:
@@ -121,7 +121,7 @@ void func_ov001_02185bb8(void *a, Unk02185bb8 *b) {
             b->mUnk_0a8++;
             if (b->mUnk_0a8 >= pos - 1) {
                 b->mUnk_0a8 = func_0209b710(gMissionGate) - 1;
-                b->mUnk_0ac = 1;
+                b->mState = 1;
             }
             break;
     }

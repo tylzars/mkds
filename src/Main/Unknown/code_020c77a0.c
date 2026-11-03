@@ -31,7 +31,7 @@ void func_020c783c(void) {
                 data_0217b408->mUnk_10[n + 1].mUnk_08 = GetRaceSNcerEntry(0xb0);
                 data_0217b408->mUnk_10[n + 1].mUnk_0c = 2;
                 n += 2;
-                t = func_020db4c4((Unk020db2b8 *) p) * 16 >> 12;
+                t = func_020db4c4((Dossun *) p) * 16 >> 12;
                 data_0217b408->mUnk_10[n - 2].mUnk_00.mUnk_04 -= t;
             }
         }

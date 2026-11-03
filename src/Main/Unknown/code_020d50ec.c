@@ -216,10 +216,10 @@ void func_020d5dd0(Unk020d5bf0 *p) {
 
 #pragma thumb on
 void CreateNsbmdAndShadowNsbmd(void *a, const char *name, const char *shadowName) {
-    func_020ea588((void **) &data_0217b65c, FindCourseMapObjFile(name), NULL);
-    func_020ea55c((void **) &data_0217b658, FindCourseMapObjFile(shadowName), 7);
-    func_02084968(data_0217b65c, 0x3f, 2, 0x294a);
-    func_020849c0(data_0217b65c, 7);
+    func_020ea588((void **) &gRock, FindCourseMapObjFile(name), NULL);
+    func_020ea55c((void **) &gRockShadow, FindCourseMapObjFile(shadowName), 7);
+    func_02084968(gRock, 0x3f, 2, 0x294a);
+    func_020849c0(gRock, 7);
 }
 #pragma thumb off
 

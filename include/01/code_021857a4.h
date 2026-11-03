@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-typedef struct Unk02185bb8 Unk02185bb8;
+typedef struct MissionGateObject MissionGateObject;
 
-u16 func_ov001_02185b50(Unk02185bb8 *a);
+u16 func_ov001_02185b50(MissionGateObject *a);
 void func_ov001_02185b1c(void);
 void func_ov001_02185af0(void);
 void func_ov001_02185ad8(u32 a);

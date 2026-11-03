@@ -227,10 +227,10 @@ void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d) {
     b->mUnk_00.mUnk_28.mUnk_00[3].x = b->mUnk_00.mUnk_04.x >> 4;
     b->mUnk_00.mUnk_28.mUnk_00[3].y = b->mUnk_00.mUnk_04.y >> 4;
     b->mUnk_00.mUnk_28.mUnk_00[3].z = b->mUnk_00.mUnk_04.z >> 4;
-    func_020ea8a8(data_0217b65c, &b->mUnk_00.mUnk_28, &b->mUnk_00.mUnk_1c, d);
+    func_020ea8a8(gRock, &b->mUnk_00.mUnk_28, &b->mUnk_00.mUnk_1c, d);
     p = &data_0217b650->mUnk_2c;
     p->mUnk_24.x = b->mUnk_00.mUnk_04.x >> 4;
     p->mUnk_24.y = b->mUnk_00.mUnk_04.y >> 4;
     p->mUnk_24.z = b->mUnk_00.mUnk_04.z >> 4;
-    func_020ea868(data_0217b658, &data_0217b650->mUnk_2c, &b->mUnk_00.mUnk_1c, d);
+    func_020ea868(gRockShadow, &data_0217b650->mUnk_2c, &b->mUnk_00.mUnk_1c, d);
 }

@@ -11665,8 +11665,8 @@ data_0217b610 kind:bss addr:0x0217b5f0
 gCourseCollision kind:bss addr:0x0217b5f4
 data_0217b650 kind:bss addr:0x0217b630
 data_0217b654 kind:bss addr:0x0217b634
-data_0217b658 kind:bss addr:0x0217b638
-data_0217b65c kind:bss addr:0x0217b63c
+gRockShadow kind:bss addr:0x0217b638
+gRock kind:bss addr:0x0217b63c
 data_0217b660 kind:bss addr:0x0217b640
 data_0217b670 kind:bss addr:0x0217b650
 gWaterEfct kind:bss addr:0x0217b654

@@ -189,7 +189,7 @@ Unk020dbe74 *func_020dbe74(void) {
     return data_0217b690;
 }
 
-void func_020dbdac(void *a, Unk020db2b8 *p, void *c, s32 d) {
+void func_020dbdac(void *a, Dossun *p, void *c, s32 d) {
     Unk02012f58 *q;
     q = &p->mUnk_00.mUnk_28;
     if (p->mUnk_b4 != 0) {
@@ -205,7 +205,7 @@ void func_020dbdac(void *a, Unk020db2b8 *p, void *c, s32 d) {
     func_020ea868(gDossunShadow, q, &p->mUnk_00.mUnk_1c, d);
 }
 
-void func_020db760(void *a, Unk020db2b8 *p) {
+void func_020db760(void *a, Dossun *p) {
     Unk0210b7a8 s;
     Unk020e0144 *q;
     Unk02042044 *e;
@@ -219,7 +219,7 @@ void func_020db760(void *a, Unk020db2b8 *p) {
         p->mUnk_ba += p->mUnk_b8;
         n = p->mUnk_b8;
         if (n > 0x3e8 || n < -0x3e8) {
-            if (p->mUnk_a0 < 4) {
+            if (p->mState < 4) {
                 p->mUnk_b8 = (n * 0xfa00) >> 16;
             } else {
                 p->mUnk_b8 = (n * 0xf80c) >> 16;
@@ -235,15 +235,15 @@ void func_020db760(void *a, Unk020db2b8 *p) {
             p->mUnk_ba = p->mUnk_b8;
             p->mUnk_b4 = 0;
             p->mUnk_c0 = 0;
-            p->mUnk_a4 = 0x1e;
-            p->mUnk_a0 = 0;
+            p->mTimer = 0x1e;
+            p->mState = 0;
             return;
         }
         if (p->mUnk_b4 != 1) {
             return;
         }
         v = q->mUnk_04;
-        if (p->mUnk_a0 < 4) {
+        if (p->mState < 4) {
             if (v > 0x4000) {
                 t = (s32) (((s64) v * 0xf85) >> 12);
                 q->mUnk_04 = t;
@@ -272,13 +272,13 @@ void func_020db760(void *a, Unk020db2b8 *p) {
         p->mUnk_00.mUnk_04.y += p->mUnk_f8;
         return;
     }
-    switch (p->mUnk_a0) {
+    switch (p->mState) {
         case 0:
-            p->mUnk_a4--;
-            if (p->mUnk_a4 >= 0) {
+            p->mTimer--;
+            if (p->mTimer >= 0) {
                 return;
             }
-            p->mUnk_a0++;
+            p->mState++;
             t = p->mUnk_f0 != 0 ? 0xc00 : 0x3000;
             q->mUnk_04 = t;
             q->mUnk_10 = (s32) (((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12);
@@ -289,9 +289,9 @@ void func_020db760(void *a, Unk020db2b8 *p) {
             }
             break;
         case 2:
-            p->mUnk_a4--;
-            if (p->mUnk_a4 < 0 && p->mUnk_c2 < 0x1555) {
-                p->mUnk_a0++;
+            p->mTimer--;
+            if (p->mTimer < 0 && p->mUnk_c2 < 0x1555) {
+                p->mState++;
                 p->mUnk_a8 = -p->mUnk_100;
                 return;
             }
@@ -304,7 +304,7 @@ void func_020db760(void *a, Unk020db2b8 *p) {
             p->mUnk_a8 += p->mUnk_104;
             p->mUnk_00.mUnk_04.y -= p->mUnk_a8;
             if (p->mUnk_00.mUnk_04.y < p->mUnk_ac) {
-                p->mUnk_a0++;
+                p->mState++;
             }
             return;
         case 4:
@@ -316,11 +316,11 @@ void func_020db760(void *a, Unk020db2b8 *p) {
             }
             break;
         case 5:
-            p->mUnk_a4--;
-            if (p->mUnk_a4 >= 0) {
+            p->mTimer--;
+            if (p->mTimer >= 0) {
                 return;
             }
-            p->mUnk_a0++;
+            p->mState++;
             t = p->mUnk_108;
             q->mUnk_04 = t;
             q->mUnk_10 = (s32) (((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12);
@@ -343,12 +343,12 @@ void func_020db760(void *a, Unk020db2b8 *p) {
                 n = 0;
                 break;
         }
-        p->mUnk_a0 = n;
-        if (p->mUnk_a0 == 2) {
+        p->mState = n;
+        if (p->mState == 2) {
             p->mUnk_ac = p->mUnk_00.mUnk_04.y;
             p->mUnk_c2 = 0;
         }
-        if (p->mUnk_a0 == 5) {
+        if (p->mState == 5) {
             e = q->mUnk_1c;
             if (func_020d4ddc(&p->mUnk_00) == 0) {
                 if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
@@ -371,8 +371,8 @@ void func_020db760(void *a, Unk020db2b8 *p) {
             }
             p->mUnk_b0 = 1;
         }
-        p->mUnk_a4 = q->mUnk_1c->mUnk_0e;
-        if (p->mUnk_a4 != 0) {
+        p->mTimer = q->mUnk_1c->mUnk_0e;
+        if (p->mTimer != 0) {
             p->mUnk_00.mUnk_04 = q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_00[0];
             p->mUnk_00.mUnk_04.y += p->mUnk_f8;
             q->mUnk_14 = 0;
@@ -383,7 +383,7 @@ void func_020db760(void *a, Unk020db2b8 *p) {
     p->mUnk_00.mUnk_04.y += p->mUnk_f8;
 }
 
-u32 func_020db548(Unk020db2b8 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
+u32 func_020db548(Dossun *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
     Vec3 s0;
     Vec3 s1;
     Vec3 s2;
@@ -401,7 +401,7 @@ u32 func_020db548(Unk020db2b8 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
             if (func_02039828(&s0, &s1) > 0) {
                 func_020d8620(q);
             }
-            if (p->mUnk_a0 < 4) {
+            if (p->mState < 4) {
                 t = 0xa800;
             } else {
                 t = 0x8000;
@@ -419,7 +419,7 @@ u32 func_020db548(Unk020db2b8 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
             p->mUnk_bc = func_02061fb8();
         }
     }
-    if (p->mUnk_a0 == 4 || p->mUnk_b0 != 0) {
+    if (p->mState == 4 || p->mUnk_b0 != 0) {
         func_021484d0(&a->mUnk_1b8, &p->mUnk_00.mUnk_04, &s2);
         n = ((s64) s2.x * s2.x + (s64) s2.z * s2.z) * 5;
         y = s2.y;
@@ -431,11 +431,11 @@ u32 func_020db548(Unk020db2b8 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
     return *c;
 }
 
-s32 func_020db4c4(Unk020db2b8 *p) {
+s32 func_020db4c4(Dossun *p) {
     s32 r;
     s32 n;
     r = func_020d8cac(&p->mUnk_c8);
-    n = p->mUnk_a0;
+    n = p->mState;
     if (n < 4) {
         if (p->mUnk_f0 != 0) {
             return 0;
@@ -463,7 +463,7 @@ s32 func_020db4c4(Unk020db2b8 *p) {
 }
 
 #pragma thumb on
-void func_020db430(Unk020db2b8 *p) {
+void func_020db430(Dossun *p) {
     Unk020e0144 *q;
     s32 n;
     q = &p->mUnk_c8;
@@ -484,8 +484,8 @@ void func_020db430(Unk020db2b8 *p) {
             n = 0;
             break;
     }
-    p->mUnk_a0 = n;
-    p->mUnk_a4 = q->mUnk_1c->mUnk_0e;
+    p->mState = n;
+    p->mTimer = q->mUnk_1c->mUnk_0e;
     p->mUnk_b4 = 0;
     p->mUnk_ba = 0;
     p->mUnk_b8 = p->mUnk_ba;
@@ -504,7 +504,7 @@ void CreateDossunAndDossunShadow(void) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020db2b8(Unk020db2b8 *p, Unk020fa294 *a) {
+void func_020db2b8(Dossun *p, Unk020fa294 *a) {
     p->mUnk_f0 = a->mUnk_28;
     func_020d7da8(&p->mUnk_c8, a, p->mUnk_f0 != 0 ? 0xc00 : 0x3000);
     p->mUnk_ec = a->mUnk_2a;

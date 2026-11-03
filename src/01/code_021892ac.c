@@ -154,7 +154,7 @@ void func_ov001_02189444(void) {
         pos = &elem->mUnk_04;
         if (func_020b5ae8(pos, &data_ov001_021a9bb0->mUnk_10[count].mUnk_00, unk, 1, 1)) {
             data_ov001_021a9bb0->mUnk_10[count].mUnk_08 =
-                GetRaceSNcerEntry(func_ov001_02185b50((Unk02185bb8 *) elem) ? 0x5a : 0x59);
+                GetRaceSNcerEntry(func_ov001_02185b50((MissionGateObject *) elem) ? 0x5a : 0x59);
             data_ov001_021a9bb0->mUnk_10[count].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
             data_ov001_021a9bb0->mUnk_10[count].mUnk_0e = 0;
             data_ov001_021a9bb0->mUnk_10[count].mUnk_10 = elem->mUnk_7e;
