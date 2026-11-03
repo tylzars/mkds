@@ -225,16 +225,14 @@ void func_ov000_021ac7e8(u16 *a, u16 *b, u16 *c, s32 d, u16 *e) {
     }
 }
 
-// non-matching: stack frame 0x3c bytes against 0x34, the 64-bit divisor and dividend loads and spills differ (55 words)
 void func_ov000_021ac900(u16 *a, u16 *b, u16 *c, u16 *d, s32 e, u16 *f) {
-    u16 *g;
     u16 *h;
-    u16 *p;
     s32 i;
     s32 j;
     s32 k;
-    u32 l;
     u64 m;
+    u16 *g;
+    u32 l;
     u64 n;
     g = f + e;
     h = g + e;
@@ -254,10 +252,9 @@ void func_ov000_021ac900(u16 *a, u16 *b, u16 *c, u16 *d, s32 e, u16 *f) {
             } else {
                 m = (u64) * (c + j - 1) << 32;
             }
-            p = h + j;
             while (k < e) {
                 memmove(g + 1, g, (e * 2 - 1) * 2);
-                n = ((u64) p[0] << 48) + ((u64) p[-1] << 32) + ((u64) p[-2] << 16) + (u64) p[-3];
+                n = ((u64) (h + j)[0] << 48) + ((u64) (h + j)[-1] << 32) + ((u64) (h + j)[-2] << 16) + (u64) (h + j)[-3];
                 l = n / m;
                 if (l > 0xffff) {
                     l = 0xffff;

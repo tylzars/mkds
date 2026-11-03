@@ -306,10 +306,9 @@ void func_020757d8(void) {
     data_0217aca8 = 1;
 }
 
-// non-matching: 0x18c bytes against 0x194: the original keeps mUnk_32, mUnk_34 and mUnk_240 in r7, r6 and r5 (push of
-// r4-r7, stack offset 4), loads all four halfwords and mUnk_240 before the two subtractions and multiplies, and reads
-// mUnk_3c once more after the stores; the same interpolation in func_02074b00 differs the same way
 void func_02075900(Unk02061808 *p) {
+    Unk020748b8_218 *a;
+    s32 b;
     switch (p->mUnk_218->mUnk_3e) {
         case 0:
             p->mUnk_024 = p->mUnk_218->mUnk_00;
@@ -339,26 +338,29 @@ void func_02075900(Unk02061808 *p) {
             func_02074978(p);
             break;
     }
-    if (p->mUnk_218->mUnk_3c != 0) {
-        Unk020748b8_218 *q = p->mUnk_218;
+    a = p->mUnk_218;
+    if (a->mUnk_3c != 0) {
+        enum { K0 } t = p->mUnk_240;
+        Unk020748b8_218 *q = a;
+
 
         s32 x0 = q->mUnk_32;
-        s32 x1 = q->mUnk_38;
         s32 y0 = q->mUnk_34;
         s32 y1 = q->mUnk_3a;
-        s32 t = p->mUnk_240;
+        s32 x1 = q->mUnk_38;
         s32 v1 = x1 - x0;
         s32 v2 = y1 - y0;
 
+        b = ((s64) v2 * t) >> 12;
         p->mUnk_068 = x0 + (s32) (((s64) v1 * t) >> 12);
-        p->mUnk_06a = y0 + (s32) (((s64) v2 * t) >> 12);
+        p->mUnk_06a = y0 + (s32) b;
         p->mUnk_240 += q->mUnk_3c;
         if (p->mUnk_240 > 0x1000) {
             p->mUnk_240 = 0x1000;
         }
     } else {
-        p->mUnk_068 = p->mUnk_218->mUnk_32;
-        p->mUnk_06a = p->mUnk_218->mUnk_34;
+        p->mUnk_068 = a->mUnk_32;
+        p->mUnk_06a = a->mUnk_34;
     }
 }
 

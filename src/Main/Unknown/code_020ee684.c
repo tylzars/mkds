@@ -1157,22 +1157,29 @@ void func_020eecdc(Unk020eda5c *a) {
     }
 }
 
-// non-matching: 6 words from +0x14: the original sets k (r9) after the first cmp and sum (r7) after the 0x4cd load,
-// here both are set before the cmp
 void func_020eec48(Unk020eda5c *a, s32 i, Unk020f41c4_A *v) {
     s32 k;
     Unk020f41c4_A *e;
     s32 sum;
+    s32 b;
+    s32 d;
 
     k = 0;
     sum = 0;
-    while (a->mUnk_020 > i + 1) {
-        e = a->mUnk_014[a->mUnk_020 - 1];
-        func_020efa60(a, 0);
-        sum = sum + 0x4cd;
-        if (k++ > 0) {
-            func_02147fd8(sum, &e->mUnk_f0, &e->mUnk_5c, &e->mUnk_5c);
-        }
+    d = i;
+    d = d + 1;
+    if (a->mUnk_020 > (b = d)) {
+        s32 f = 0;
+        d = f;
+        do {
+            e = a->mUnk_014[a->mUnk_020 - 1];
+            func_020efa60(a, 0);
+            f = f + 0x4cd;
+            if (k++ > 0) {
+                func_02147fd8(f, &e->mUnk_f0, &e->mUnk_5c, &e->mUnk_5c);
+            }
+        } while (a->mUnk_020 > (b = i + 1));
+        f = d + 1;
     }
     func_020efa48(a, v);
 }

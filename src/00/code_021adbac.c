@@ -210,11 +210,11 @@ void func_ov000_021adf00(u32 a) {
     }
 }
 
-// non-matching: the byte count held in r0 instead of r2 in the memmove branch (3 words differ)
 void func_ov000_021adf30(u32 a, Unk021a998c *b) {
     u32 c;
     u32 d;
     u8 *e;
+    u8 *f;
 
     c = func_0200fca0();
     d = b->mUnk_44;
@@ -222,9 +222,10 @@ void func_ov000_021adf30(u32 a, Unk021a998c *b) {
         b->mUnk_44 = 0;
     } else {
         e = b->mUnk_40;
-        d -= a;
-        b->mUnk_44 = d;
-        memmove(e, e + a, d);
+        f = e;
+        f += a;
+        b->mUnk_44 = (d -= a);
+        memmove(e, &(*f), d);
     }
     func_0200fcb4(c);
     if (b->mUnk_08 != 0xa && b->mUnk_08 != 0xb && b->mUnk_44 == 0) {
