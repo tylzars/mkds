@@ -183,9 +183,9 @@ half:
     return (x + y) >> 1;
 }
 
-// non-matching: 0x134 bytes against 0x10c. The two multiplies are mla as in the original (`(s32) x * 3`: without the
-// cast a halfword value times 3 gives smlabb); the index values sit in other registers (k in r1 where the original has
-// r2), so this version saves lr and keeps a frame.
+// non-matching: same size; 14 words differ in the three-tap path: the original keeps d in r1 and k in r2 (here r3
+// and r1), so the loads and the two mla that follow use other registers. The volatile reads keep the two loads in
+// order; without them lr and a frame are used. `(s32) x * 3` keeps mla (without the cast: smlabb).
 u32 func_02015994(const void *a, u32 b, u32 c, u32 d) {
     const u8 *p;
     u32 n;
@@ -194,7 +194,6 @@ u32 func_02015994(const void *a, u32 b, u32 c, u32 d) {
     s32 y;
     s32 u;
     s32 v;
-    const Unk0201456c_16 *q;
 
     if (b & 0x20000000) {
         return c;
@@ -228,8 +227,8 @@ u32 func_02015994(const void *a, u32 b, u32 c, u32 d) {
                     k = d >> 2;
                     d = k + 1;
                 }
-                x = ((const Unk0201456c_16 *) p)[k].mUnk_00;
-                y = ((const Unk0201456c_16 *) p)[d].mUnk_00;
+                x = *(volatile s16 *) &((const Unk0201456c_16 *) p)[k].mUnk_00;
+                y = *(volatile s16 *) &((const Unk0201456c_16 *) p)[d].mUnk_00;
                 u = ((const Unk0201456c_16 *) p + k)->mUnk_02;
                 v = ((const Unk0201456c_16 *) p + d)->mUnk_02;
                 return (((s32) x * 3 + y) >> 2 & 0xffff) | (((s32) u * 3 + v) >> 2 << 16);
@@ -242,11 +241,10 @@ u32 func_02015994(const void *a, u32 b, u32 c, u32 d) {
 single:
     return ((const u32 *) p)[d];
 half:
-    q = (const Unk0201456c_16 *) p + k;
     x = ((const Unk0201456c_16 *) p)[k].mUnk_00;
-    y = q[1].mUnk_00;
-    u = q->mUnk_02;
-    v = q[1].mUnk_02;
+    y = ((const Unk0201456c_16 *) p + k)[1].mUnk_00;
+    u = ((const Unk0201456c_16 *) p + k)->mUnk_02;
+    v = ((const Unk0201456c_16 *) p + k)[1].mUnk_02;
     return (((x + y) >> 1) & 0xffff) | ((u + v) >> 1 << 16);
 }
 
@@ -506,8 +504,8 @@ void func_0201520c(Unk02014c5c_out *o) {
     o->mUnk_4c[2] = r[2];
 }
 
-// non-matching: the original keeps the table header in r4 (push {r4, lr}); this version keeps every value in r0-r3, ip
-// and lr and builds a 4-byte frame (0x70 bytes against 0x68).
+// non-matching: same size and frame; 13 words differ in registers: the original keeps d in ip, d->mUnk_00 in r2, its
+// byte in r1, the stride and f in r3 and the results of the three flag tests in lr.
 void func_020151a4(Unk02014c5c_out *o) {
     u32 f;
     Unk02170500_d4 *b;
@@ -518,8 +516,8 @@ void func_020151a4(Unk02014c5c_out *o) {
 
     d = data_02170500;
     b = d->mUnk_d4;
-    t = (u8 *) b + b->mUnk_06;
-    off = *(u32 *) (t + *(u16 *) t * d->mUnk_00[1] + 4);
+    t = (u8 *) b + (s32) b->mUnk_06;
+    off = *(u32 *) ((u8 *) b + b->mUnk_06 + *(u16 *) t * d->mUnk_00[1] + 4);
     f = *(u16 *) ((u8 *) b + off);
     q = (u8 *) b + off + 4;
     if (!(f & 1)) {

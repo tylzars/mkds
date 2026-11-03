@@ -654,15 +654,17 @@ void func_021459cc(u32 a, u32 b) {
     func_0200fcb4(s);
 }
 
-// non-matching: scheduling of the stores to mUnk_0c, mUnk_18 and mUnk_00 around the volatile zero (7 instructions
-// differ, same size) Sets up data_0217fa40 and data_0217fa00 and starts the object at mUnk_44 with func_021469a4 and
-// the 0x400 bytes before data_02180060.
+// non-matching: the store of -3 to mUnk_08 is scheduled before `mov r3, #0`; the original loads both constants first
+// (2 instructions differ, same size) Sets up data_0217fa40 and data_0217fa00 and starts the object at mUnk_44 with
+// func_021469a4 and the 0x400 bytes before data_02180060.
 void func_021458c4(void) {
     Unk021458c4 *p;
+    Unk021458c4 *a;
 
+    a = (Unk021458c4 *) &data_0217fa40;
     p = &data_0217fa40;
-    p->mUnk_08 = -3;
-    p->mUnk_0c = 0;
+    a->mUnk_08 = -3;
+    a->mUnk_0c = 0;
     p->mUnk_18 = 0;
     p->mUnk_00 = &data_0217fa00;
     func_0214d05c_inline(&data_0217fa00, 0x40);

@@ -211,38 +211,36 @@ void func_02024000(u8 *a, s32 b, s32 c, s32 d, s32 e, u32 f, s32 g) {
     }
 }
 
-// non-matching: 83.9%, the frame is 16 bytes smaller and the temporaries of the clamps sit in other registers
+// non-matching: 92.1%, same frame, one instruction short: the original loads fmt first, computes xe * fmt into r7 and
+// copies it to sl for e (`mov sl, r7`); x, y, fmt and g sit in other registers, and so does s in the 4-bit loop
 void func_02023d84(Unk02023d84 *a) {
+    u8 *src;
     s32 x;
-    s32 y;
+    u32 e;
     s32 v;
-    s32 xe;
+    s32 y;
+    u32 base;
     s32 y0;
     s32 ye;
+    u32 w;
     s32 n;
+    s32 xe;
     s32 fmt;
+    u32 *p;
     s32 r0;
-    s32 r1;
     s32 o;
     s32 g;
-    u32 *p;
     u32 *q;
-    u32 s;
-    u32 e;
-    u32 w;
-    u32 w2;
+    s32 s;
+    Unk020247fc b;
     u32 t;
-    u32 base;
-    u8 *src;
+    u32 w2;
     Unk020247fc z;
+    u32 c;
 
     x = a->mUnk_08;
     y = a->mUnk_0c;
-    if (x >= 0) {
-        v = x;
-    } else {
-        v = 0;
-    }
+    v = x >= 0 ? x : 0;
     xe = x + a->mUnk_10;
     if (y >= 0) {
         y0 = y;
@@ -265,80 +263,82 @@ void func_02023d84(Unk02023d84 *a) {
     fmt = a->mUnk_20;
     r0 = xe * fmt;
     g = a->mUnk_1c;
-    r1 = g * -x;
     e = r0;
     n = a->mUnk_18;
     v = v * fmt;
-    o = -y * n + r1;
+    o = -y * n + g * -x;
     src = a->mUnk_04;
     if (fmt == 4) {
-        base = a->mUnk_24;
+        w = a->mUnk_24;
         p = a->mUnk_00 + y0;
         q = a->mUnk_00 + ye;
-        for (; p < q; p++) {
-            w = *p;
-            z.mUnk_00 = src + ((u32) o >> 3);
-            z.mUnk_04 = 0;
-            z.mUnk_05 = 0;
-            func_020247fc(&z, o % 8);
-            for (s = v; s < e; s += 4) {
-                t = func_020247fc(&z, g);
-                if (t != 0) {
-                    w = (w & ~(0xf << s)) | ((base + t) << s);
-                }
-            }
-            *p = w;
-            o += n;
-        }
-    } else {
-        base = a->mUnk_24;
-        p = a->mUnk_00 + y0 * 2;
-        q = a->mUnk_00 + ye * 2;
-        for (; p < q; p += 2) {
-            w = p[0];
-            w2 = p[1];
-            z.mUnk_00 = src + ((u32) o >> 3);
-            z.mUnk_04 = 0;
-            z.mUnk_05 = 0;
-            func_020247fc(&z, o % 8);
-            for (s = v; s < e; s += 8) {
-                t = func_020247fc(&z, g);
-                if (t != 0) {
-                    if (s < 0x20) {
-                        w = (w & ~(0xff << s)) | ((base + t) << s);
-                    } else {
-                        w2 = (w2 & ~(0xff << (s - 0x20))) | ((base + t) << (s - 0x20));
+        if (p < q) {
+            do {
+                c = *p;
+                b.mUnk_00 = src + ((u32) o >> 3);
+                b.mUnk_04 = 0;
+                b.mUnk_05 = 0;
+                func_020247fc(&b, o % 8);
+                for (s = v; s < e; s += 4) {
+                    t = func_020247fc(&b, g);
+                    if (t != 0) {
+                        c = (c & ~(0xf << s)) | ((w + t) << s);
                     }
                 }
-            }
-            p[0] = w;
-            p[1] = w2;
-            o += n;
+                *p = c;
+                o += n;
+                p++;
+            } while (p < q);
         }
+        return;
+    }
+    base = a->mUnk_24;
+    p = a->mUnk_00 + y0 * 2;
+    q = a->mUnk_00 + ye * 2;
+    for (; p < q; p += 2) {
+        w = p[0];
+        w2 = p[1];
+        z.mUnk_00 = src + ((u32) o >> 3);
+        z.mUnk_04 = 0;
+        z.mUnk_05 = 0;
+        func_020247fc(&z, o % 8);
+        for (s = v; s < e; s += 8) {
+            t = func_020247fc(&z, g);
+            if (t != 0) {
+                if ((u32) s < 0x20) {
+                    w = (w & ~(0xff << s)) | ((base + t) << s);
+                } else {
+                    w2 = (w2 & ~(0xff << (s - 0x20))) | ((base + t) << (s - 0x20));
+                }
+            }
+        }
+        p[0] = w;
+        p[1] = w2;
+        o += n;
     }
 }
 
-// non-matching: 81.5%, the stack argument is kept in a register here and the early loads are ordered differently
+// non-matching: 98.9%, registers match; only the x1 clamp's movcs and the y1 shift are swapped (+0xa4)
 void func_02023bcc(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023374_24 *f) {
     Unk02023d84 s;
-    s32 bpt;
     s32 cw;
-    s32 ch;
     s32 skip;
     u32 w;
+    s32 xx;
     u32 h;
-    u32 x0;
     u32 y0;
     u32 x1;
+    s32 ch;
     u32 y1;
     s32 nx;
+    u32 x0;
     s32 ny;
     s32 xe;
     s32 ye;
-    s32 xx;
     s32 yy;
     u32 tw;
     u8 *p;
+    s32 bpt;
     u8 *base;
 
     bpt = (a->mUnk_0c * 0x40) / 8;
@@ -356,16 +356,16 @@ void func_02023bcc(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023
     if (d + ch < 0) {
         return;
     }
-    if (c > 0) {
-        x0 = (u32) c >> 3;
-    } else {
+    if (c <= 0) {
         x0 = 0;
+    } else {
+        x0 = (u32) c >> 3;
     }
     x1 = (u32) (c + cw + 7) >> 3;
-    if (d > 0) {
-        y0 = (u32) d >> 3;
-    } else {
+    if (d <= 0) {
         y0 = 0;
+    } else {
+        y0 = (u32) d >> 3;
     }
     y1 = (u32) (d + ch + 7) >> 3;
     if (x1 >= w) {
@@ -383,18 +383,18 @@ void func_02023bcc(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023
         return;
     }
     tw = a->mUnk_10;
-    skip = bpt * (tw - nx);
     p = base + bpt * (tw * y0 + x0);
+    skip = bpt * (tw - nx);
     if (c >= 0) {
         c &= 7;
     }
-    s.mUnk_04 = f->mUnk_04;
     if (d >= 0) {
         d &= 7;
     }
+    s.mUnk_04 = f->mUnk_04;
     ye = d - ny * 8;
-    s.mUnk_24 = e - 1;
     s.mUnk_10 = cw;
+    s.mUnk_24 = e - 1;
     s.mUnk_14 = ch;
     xe = c - nx * 8;
     s.mUnk_1c = b->mUnk_00->mUnk_08->mUnk_04[2];

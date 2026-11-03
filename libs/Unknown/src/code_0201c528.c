@@ -284,29 +284,29 @@ void func_0201dc88(Unk0201e3c8 *p, Unk0201ca6c_20 *q, s32 v) {
         8;
 }
 
-// non-matching: the original saves r4, r5, lr and reserves 4 more stack bytes (three callee-saved registers); this
-// build saves r4, lr (0x5c bytes vs 0x64)
 void func_0201dc24(Unk0201e3c8 *p, Unk0201ca6c_20 *q, s32 v) {
     Unk0201ca6c_20_10 *t;
     s32 i;
-    s32 n;
-    s32 w;
     s32 s;
+    s32 w;
+    s32 n;
 
     t = q->mUnk_10;
+    i = 0;
     n = t->mUnk_08_0;
     if (n <= 0) {
         return;
     }
     w = t->mUnk_08_8;
     s = 0;
-    for (i = 0; i < n; i++) {
+    do {
         if (v < s + w) {
             p->mUnk_2c = t->mUnk_00[i];
             return;
         }
-        s += w;
-    }
+        s += t->mUnk_08_8;
+        i++;
+    } while (i < n);
 }
 
 void func_0201dbd8(Unk0201e3c8 *p, Unk0201ca6c_20 *q, s32 v) {
