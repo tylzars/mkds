@@ -23,15 +23,59 @@
 #include "code_02133048.h"
 #include "code_0200fc8c.h"
 
-void func_ov000_021a6d6c(void) {
-    Unk021b5f94 *a = data_ov000_021b5f94;
+s32 func_ov000_021a6f84(Unk021a6fa8 *param_1, Unk021a7064 *param_2) {
+    if (param_1->mReceiveBlock != NULL) {
+        return func_ov000_021a6fc0(param_1->mReceiveBlock, param_2);
+    }
+    return func_ov000_021a6fc0(param_1->mSendBlock, param_2);
+}
 
-    data_ov000_021b63b4 = a->mUnk_04;
-    data_ov000_021b6380 = a->mUnk_08;
-    data_ov000_021b639c = a->mUnk_0c;
-    data_ov000_021b63d8[0] = a->mUnk_10;
-    data_ov000_021b63d8[1] = a->mUnk_14;
-    data_ov000_021b5fa0 |= 2;
+void func_ov000_021a6f18(void *param_1) {
+    Unk0200eb90 *a = param_1;
+    Unk021a7064 *b;
+    s32 c;
+    u32 d;
+
+    while (1) {
+        func_0200e904(a, (void **) &b, 1);
+        if (b == NULL) {
+            return;
+        }
+        c = b->mUnk_00(b);
+        d = IrqDisable();
+        func_0200db9c();
+        func_0200ea3c(a, NULL, 0);
+        if (b->mUnk_04 != NULL) {
+            b->mUnk_04->mEntryResult = c;
+        }
+        if (b->mUnk_08 != NULL) {
+            func_0200eae8(b->mUnk_08, (void *) c, 0);
+        }
+        func_ov000_021a7048(b);
+        func_0200db64();
+        IrqRestore(d);
+        func_0200de50();
+    }
+}
+
+s32 func_ov000_021a6ee4(Unk021b5f94 *param_1) {
+    func_02000b44(0x2000bbc);
+    if (data_ov000_021b5f94 != NULL) {
+        return 0;
+    }
+    data_ov000_021b5f94 = param_1;
+    func_ov000_021a6db0();
+    return func_ov000_021a6eb4();
+}
+
+s32 func_ov000_021a6eb4(void) {
+    s32 a;
+
+    a = func_ov000_021a70ec(data_ov000_021b5f94->mUnk_20);
+    if (a >= 0) {
+        data_ov000_021b5fa4 = (Unk021a6fa8 *) func_ov000_021a73d8(&data_ov000_021b49d0);
+    }
+    return a;
 }
 
 void func_ov000_021a6db0(void) {
@@ -89,57 +133,13 @@ void func_ov000_021a6db0(void) {
     func_ov000_021b02fc(a);
 }
 
-s32 func_ov000_021a6eb4(void) {
-    s32 a;
+void func_ov000_021a6d6c(void) {
+    Unk021b5f94 *a = data_ov000_021b5f94;
 
-    a = func_ov000_021a70ec(data_ov000_021b5f94->mUnk_20);
-    if (a >= 0) {
-        data_ov000_021b5fa4 = (Unk021a6fa8 *) func_ov000_021a73d8(&data_ov000_021b49d0);
-    }
-    return a;
-}
-
-s32 func_ov000_021a6ee4(Unk021b5f94 *param_1) {
-    func_02000b44(0x2000bbc);
-    if (data_ov000_021b5f94 != NULL) {
-        return 0;
-    }
-    data_ov000_021b5f94 = param_1;
-    func_ov000_021a6db0();
-    return func_ov000_021a6eb4();
-}
-
-void func_ov000_021a6f18(void *param_1) {
-    Unk0200eb90 *a = param_1;
-    Unk021a7064 *b;
-    s32 c;
-    u32 d;
-
-    while (1) {
-        func_0200e904(a, (void **) &b, 1);
-        if (b == NULL) {
-            return;
-        }
-        c = b->mUnk_00(b);
-        d = IrqDisable();
-        func_0200db9c();
-        func_0200ea3c(a, NULL, 0);
-        if (b->mUnk_04 != NULL) {
-            b->mUnk_04->mEntryResult = c;
-        }
-        if (b->mUnk_08 != NULL) {
-            func_0200eae8(b->mUnk_08, (void *) c, 0);
-        }
-        func_ov000_021a7048(b);
-        func_0200db64();
-        IrqRestore(d);
-        func_0200de50();
-    }
-}
-
-s32 func_ov000_021a6f84(Unk021a6fa8 *param_1, Unk021a7064 *param_2) {
-    if (param_1->mReceiveBlock != NULL) {
-        return func_ov000_021a6fc0(param_1->mReceiveBlock, param_2);
-    }
-    return func_ov000_021a6fc0(param_1->mSendBlock, param_2);
+    data_ov000_021b63b4 = a->mUnk_04;
+    data_ov000_021b6380 = a->mUnk_08;
+    data_ov000_021b639c = a->mUnk_0c;
+    data_ov000_021b63d8[0] = a->mUnk_10;
+    data_ov000_021b63d8[1] = a->mUnk_14;
+    data_ov000_021b5fa0 |= 2;
 }

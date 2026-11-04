@@ -10,6 +10,53 @@
 
 #pragma opt_rebuildconditionals off
 
+u32 func_ov000_0219d094(void *a, Unk0218ec44 *b) {
+    s32 c;
+    s32 d = 0;
+    if (data_ov000_021b5664 == NULL || func_ov000_0219c3e4() == 0) {
+        return 0;
+    }
+    c = func_02152520((void *) func_ov000_0219c9c4(), a);
+    if (c > 0 && func_ov000_0218ebe8(data_ov000_021b5664->mUnk_04, c, &d) != 0) {
+        return 0;
+    }
+    if (c <= 0 || d == -1) {
+        return 0;
+    }
+    if (func_ov000_0218ec44(data_ov000_021b5664->mUnk_04, d, b) != 0) {
+        return 0;
+    }
+    return 1;
+}
+
+int func_ov000_0219d034(int a) {
+    s32 b;
+    s32 c;
+    if (a == 0) {
+        return 0;
+    }
+    switch (a) {
+        case 1:
+            b = 11;
+            c = -1;
+            break;
+        case 2:
+            b = 11;
+            c = -2;
+            break;
+        case 3:
+            b = 6;
+            c = -10;
+            break;
+        case 4:
+            b = 6;
+            c = -20;
+            break;
+    }
+    func_ov000_0219d734(b, c - 0x11558);
+    return a;
+}
+
 int func_ov000_0219cfc0(int a) {
     s32 b;
     s32 c;
@@ -44,51 +91,4 @@ int func_ov000_0219cfc0(int a) {
     }
     func_ov000_0219d734(b, c - 0x11940);
     return a;
-}
-
-int func_ov000_0219d034(int a) {
-    s32 b;
-    s32 c;
-    if (a == 0) {
-        return 0;
-    }
-    switch (a) {
-        case 1:
-            b = 11;
-            c = -1;
-            break;
-        case 2:
-            b = 11;
-            c = -2;
-            break;
-        case 3:
-            b = 6;
-            c = -10;
-            break;
-        case 4:
-            b = 6;
-            c = -20;
-            break;
-    }
-    func_ov000_0219d734(b, c - 0x11558);
-    return a;
-}
-
-u32 func_ov000_0219d094(void *a, Unk0218ec44 *b) {
-    s32 c;
-    s32 d = 0;
-    if (data_ov000_021b5664 == NULL || func_ov000_0219c3e4() == 0) {
-        return 0;
-    }
-    c = func_02152520((void *) func_ov000_0219c9c4(), a);
-    if (c > 0 && func_ov000_0218ebe8(data_ov000_021b5664->mUnk_04, c, &d) != 0) {
-        return 0;
-    }
-    if (c <= 0 || d == -1) {
-        return 0;
-    }
-    if (func_ov000_0218ec44(data_ov000_021b5664->mUnk_04, d, b) != 0) {
-        return 0;
-    }
-    return 1;
 }

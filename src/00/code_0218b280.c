@@ -9,26 +9,17 @@
 #include "code_02139f70.h"
 #include "code_0213a460.h"
 
-double func_ov000_0218b280(Unk0218af28 *e, const char *v1, double d) {
-    char *a;
-    a = func_ov000_0218b30c(e, v1, NULL);
-    if (a != NULL) {
-        d = atof(a);
-    }
-    return d;
+void func_ov000_0218b380(Unk0218af28 *e, const char *v1, const char *v2) {
+    char *a[2];
+    a[0] = func_ov000_0218d134(NULL, v1);
+    a[1] = func_ov000_0218d134(NULL, v2);
+    func_ov000_0218def0(e->mUnk_18, a);
 }
 
-s32 func_ov000_0218b2a8(Unk0218af28 *e, const char *v1, s32 d) {
-    char *a;
-    s32 c;
-    if (strcmp(v1, data_ov000_021b21c8) == 0) {
-        return func_ov000_0218af9c(e);
-    }
-    a = func_ov000_0218b30c(e, v1, NULL);
-    if (a == NULL || (c = *a, !((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 8)))) {
-        return d;
-    }
-    return func_0213bf90(a);
+void func_ov000_0218b358(Unk0218af28 *e, const char *v1, u32 c) {
+    char a[20];
+    sprintf(a, data_ov000_021b21e4, c);
+    func_ov000_0218b380(e, v1, a);
 }
 
 char *func_ov000_0218b30c(Unk0218af28 *e, const char *v1, char *d) {
@@ -48,15 +39,24 @@ char *func_ov000_0218b30c(Unk0218af28 *e, const char *v1, char *d) {
     return d;
 }
 
-void func_ov000_0218b358(Unk0218af28 *e, const char *v1, u32 c) {
-    char a[20];
-    sprintf(a, data_ov000_021b21e4, c);
-    func_ov000_0218b380(e, v1, a);
+s32 func_ov000_0218b2a8(Unk0218af28 *e, const char *v1, s32 d) {
+    char *a;
+    s32 c;
+    if (strcmp(v1, data_ov000_021b21c8) == 0) {
+        return func_ov000_0218af9c(e);
+    }
+    a = func_ov000_0218b30c(e, v1, NULL);
+    if (a == NULL || (c = *a, !((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 8)))) {
+        return d;
+    }
+    return func_0213bf90(a);
 }
 
-void func_ov000_0218b380(Unk0218af28 *e, const char *v1, const char *v2) {
-    char *a[2];
-    a[0] = func_ov000_0218d134(NULL, v1);
-    a[1] = func_ov000_0218d134(NULL, v2);
-    func_ov000_0218def0(e->mUnk_18, a);
+double func_ov000_0218b280(Unk0218af28 *e, const char *v1, double d) {
+    char *a;
+    a = func_ov000_0218b30c(e, v1, NULL);
+    if (a != NULL) {
+        d = atof(a);
+    }
+    return d;
 }

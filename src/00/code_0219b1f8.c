@@ -25,30 +25,36 @@
 #include "code_02134d30.h"
 #include "code_0213a460.h"
 
-Unk0219b1d4 *func_ov000_0219b1f8(u32 a) {
-    s32 b;
-    Unk0219b1d4 *c;
+void func_ov000_0219b4b4(u32 a, Unk0219b4b4 *b, u32 g) {
+    char *d;
+    char c[12] = {0};
+    u32 e;
+    Unk021b54c8 *f;
 
-    if (data_ov000_021b52c4 == NULL) {
-        return NULL;
-    }
-    for (b = 0; b < func_ov000_0218dc44((u32 *) data_ov000_021b52c4); b++) {
-        c = func_ov000_0218dbf8(data_ov000_021b52c4, b);
-        if (c->mUnk_08 == a) {
-            return c;
+    d = b->mUnk_08;
+    if (func_ov000_0219d6c4(a, (u32 *) b, g) == 0) {
+        if (memcmp(d, data_ov000_021b4058, strlen(data_ov000_021b4058)) == 0) {
+            d += strlen(data_ov000_021b4058);
+            e = strchr(d, 0x76) - d;
+            strncpy(c, d, e);
+            if (e <= 10) {
+                if (strtoul(c, NULL, 10) == 3) {
+                    d += e + 1;
+                    if (memcmp(d, data_ov000_021b4060, strlen(data_ov000_021b4060)) == 0) {
+                        f = data_ov000_021b54c8;
+                        if (f->mUnk_24 == 5 || f->mUnk_33c.mUnk_15 == 2 || f->mUnk_33c.mUnk_15 == 3) {
+                            d += strlen(data_ov000_021b4060);
+                            func_ov000_021a1ae0(a, b->mUnk_00, d);
+                        }
+                    }
+                }
+            }
         }
     }
-    return NULL;
 }
 
-void func_ov000_0219b240(u32 *a) {
-    data_ov000_021b54cc = func_ov000_0218e368(GetSocketDescriptor(a));
-    func_ov000_0219c384(0xb, -0x17aeb);
-    data_ov000_021b54c8->mUnk_00 = NULL;
-}
-
-void func_ov000_0219b274(Unk0219887c *a, u32 b) {
-    func_ov000_021a314c(a, b);
+void func_ov000_0219b4a4(Unk0219887c *a, void *b, s32 c, u32 d) {
+    func_ov000_021a317c(a, b, c, d);
 }
 
 void func_ov000_0219b27c(Unk0219887c *a, u32 b) {
@@ -147,34 +153,28 @@ void func_ov000_0219b27c(Unk0219887c *a, u32 b) {
     }
 }
 
-void func_ov000_0219b4a4(Unk0219887c *a, void *b, s32 c, u32 d) {
-    func_ov000_021a317c(a, b, c, d);
+void func_ov000_0219b274(Unk0219887c *a, u32 b) {
+    func_ov000_021a314c(a, b);
 }
 
-void func_ov000_0219b4b4(u32 a, Unk0219b4b4 *b, u32 g) {
-    char *d;
-    char c[12] = {0};
-    u32 e;
-    Unk021b54c8 *f;
+void func_ov000_0219b240(u32 *a) {
+    data_ov000_021b54cc = func_ov000_0218e368(GetSocketDescriptor(a));
+    func_ov000_0219c384(0xb, -0x17aeb);
+    data_ov000_021b54c8->mUnk_00 = NULL;
+}
 
-    d = b->mUnk_08;
-    if (func_ov000_0219d6c4(a, (u32 *) b, g) == 0) {
-        if (memcmp(d, data_ov000_021b4058, strlen(data_ov000_021b4058)) == 0) {
-            d += strlen(data_ov000_021b4058);
-            e = strchr(d, 0x76) - d;
-            strncpy(c, d, e);
-            if (e <= 10) {
-                if (strtoul(c, NULL, 10) == 3) {
-                    d += e + 1;
-                    if (memcmp(d, data_ov000_021b4060, strlen(data_ov000_021b4060)) == 0) {
-                        f = data_ov000_021b54c8;
-                        if (f->mUnk_24 == 5 || f->mUnk_33c.mUnk_15 == 2 || f->mUnk_33c.mUnk_15 == 3) {
-                            d += strlen(data_ov000_021b4060);
-                            func_ov000_021a1ae0(a, b->mUnk_00, d);
-                        }
-                    }
-                }
-            }
+Unk0219b1d4 *func_ov000_0219b1f8(u32 a) {
+    s32 b;
+    Unk0219b1d4 *c;
+
+    if (data_ov000_021b52c4 == NULL) {
+        return NULL;
+    }
+    for (b = 0; b < func_ov000_0218dc44((u32 *) data_ov000_021b52c4); b++) {
+        c = func_ov000_0218dbf8(data_ov000_021b52c4, b);
+        if (c->mUnk_08 == a) {
+            return c;
         }
     }
+    return NULL;
 }

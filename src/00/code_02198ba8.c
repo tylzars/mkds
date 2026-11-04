@@ -15,36 +15,6 @@ static inline void func_ov000_02198ba8_inline(void *a, const void *b) {
     p[1] = q[1];
 }
 
-BOOL func_ov000_02198ba8(Gt2Connection *a, u16 b, u16 c) {
-    u8 d[7];
-    int e;
-    e = 0;
-    func_ov000_02198ba8_inline(d, data_ov000_021b3fa4);
-    d[2] = 0x65;
-    func_ov000_0219a01c(d, 3, b);
-    e += 5;
-    if (b != c) {
-        func_ov000_0219a01c(d, e, c);
-        e += 2;
-    }
-    if (func_ov000_02198714((u32 *) a, (u32) d, e) == 0) {
-        return FALSE;
-    }
-    return TRUE;
-}
-
-BOOL func_ov000_02198c08(Gt2Connection *a) {
-    u8 b[3];
-    func_ov000_02198ba8_inline(b, data_ov000_021b3fa4);
-    b[2] = 0x64;
-    func_ov000_0219a01c(b, 3, a->mUnk_66);
-    if (func_ov000_02198714((u32 *) a, (u32) b, 5) == 0) {
-        return FALSE;
-    }
-    a->mUnk_90 = 0;
-    return TRUE;
-}
-
 BOOL func_ov000_02198c58(Gt2Connection *a, u8 *b, int c) {
     int d;
     u8 *e;
@@ -65,5 +35,35 @@ BOOL func_ov000_02198c58(Gt2Connection *a, u8 *b, int c) {
         return FALSE;
     }
     RemoveBufferBytes(&a->mSendBuffer, -1, d);
+    return TRUE;
+}
+
+BOOL func_ov000_02198c08(Gt2Connection *a) {
+    u8 b[3];
+    func_ov000_02198ba8_inline(b, data_ov000_021b3fa4);
+    b[2] = 0x64;
+    func_ov000_0219a01c(b, 3, a->mUnk_66);
+    if (func_ov000_02198714((u32 *) a, (u32) b, 5) == 0) {
+        return FALSE;
+    }
+    a->mUnk_90 = 0;
+    return TRUE;
+}
+
+BOOL func_ov000_02198ba8(Gt2Connection *a, u16 b, u16 c) {
+    u8 d[7];
+    int e;
+    e = 0;
+    func_ov000_02198ba8_inline(d, data_ov000_021b3fa4);
+    d[2] = 0x65;
+    func_ov000_0219a01c(d, 3, b);
+    e += 5;
+    if (b != c) {
+        func_ov000_0219a01c(d, e, c);
+        e += 2;
+    }
+    if (func_ov000_02198714((u32 *) a, (u32) d, e) == 0) {
+        return FALSE;
+    }
     return TRUE;
 }

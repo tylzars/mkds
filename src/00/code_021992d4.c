@@ -16,6 +16,70 @@
 #include "00/code_0219a430.h"
 #include "00/unk_021b3000.h"
 
+enum { K0, K1 };
+
+u32 func_ov000_0219958c(Gt2Connection *a, u8 *b, s32 c) {
+    s32 d;
+    u8 *t;
+    u8 *p;
+    if (a->mCallbacks.mElapsedTimeCallback == NULL) {
+        return 1;
+    }
+    if (c != 8) {
+        return 1;
+    }
+    if (memcmp(b, data_ov000_021b3fa8, 4) != 0) {
+        return 1;
+    }
+    t = (u8 *) &d;
+    p = b + 4;
+    t[0] = p[0];
+    t[1] = p[1];
+    t[2] = p[2];
+    t[3] = p[3];
+    if (func_ov000_02198148(a, func_ov000_0218e8c4() - d) != 0) {
+        return 1;
+    }
+    return 0;
+}
+
+u32 func_ov000_02199554(Gt2Connection *a) {
+    if (a->mUnk_0c == 7) {
+        return 1;
+    }
+    if (func_ov000_02199fb0((s32) a, 2, a->mUnk_0c == 6 ? K0 : K1) == 0) {
+        return 0;
+    }
+    return 1;
+}
+
+u32 func_ov000_021994c4(Gt2Connection *a, u32 b, u8 *c, s32 d) {
+    u8 *e = c + 3;
+    s32 f = d - 3;
+    if (b == 0x64) {
+        if (func_ov000_021996b8(a, e, f) == 0) {
+            return 0;
+        }
+    } else if (b == 0x65) {
+        if (func_ov000_02199614(a, e, f) == 0) {
+            return 0;
+        }
+    } else if (b == 0x66) {
+        if (func_ov000_0219960c((u32) a, (u32) c, (u32) d) == 0) {
+            return 0;
+        }
+    } else if (b == 0x67) {
+        if (func_ov000_0219958c(a, e, f) == 0) {
+            return 0;
+        }
+    } else if (b == 0x68) {
+        if (func_ov000_02199554(a) == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 u32 func_ov000_021992d4(Gt2Socket *a, u8 *b, s32 c, u32 d, u32 e) {
     Gt2Connection *f;
     Gt2Connection *k;
@@ -94,70 +158,6 @@ u32 func_ov000_021992d4(Gt2Socket *a, u8 *b, s32 c, u32 d, u32 e) {
         return 0;
     }
     if (func_ov000_021994c4(k, i, b, c) != 0) {
-        return 1;
-    }
-    return 0;
-}
-
-u32 func_ov000_021994c4(Gt2Connection *a, u32 b, u8 *c, s32 d) {
-    u8 *e = c + 3;
-    s32 f = d - 3;
-    if (b == 0x64) {
-        if (func_ov000_021996b8(a, e, f) == 0) {
-            return 0;
-        }
-    } else if (b == 0x65) {
-        if (func_ov000_02199614(a, e, f) == 0) {
-            return 0;
-        }
-    } else if (b == 0x66) {
-        if (func_ov000_0219960c((u32) a, (u32) c, (u32) d) == 0) {
-            return 0;
-        }
-    } else if (b == 0x67) {
-        if (func_ov000_0219958c(a, e, f) == 0) {
-            return 0;
-        }
-    } else if (b == 0x68) {
-        if (func_ov000_02199554(a) == 0) {
-            return 0;
-        }
-    }
-    return 1;
-}
-
-enum { K0, K1 };
-
-u32 func_ov000_02199554(Gt2Connection *a) {
-    if (a->mUnk_0c == 7) {
-        return 1;
-    }
-    if (func_ov000_02199fb0((s32) a, 2, a->mUnk_0c == 6 ? K0 : K1) == 0) {
-        return 0;
-    }
-    return 1;
-}
-
-u32 func_ov000_0219958c(Gt2Connection *a, u8 *b, s32 c) {
-    s32 d;
-    u8 *t;
-    u8 *p;
-    if (a->mCallbacks.mElapsedTimeCallback == NULL) {
-        return 1;
-    }
-    if (c != 8) {
-        return 1;
-    }
-    if (memcmp(b, data_ov000_021b3fa8, 4) != 0) {
-        return 1;
-    }
-    t = (u8 *) &d;
-    p = b + 4;
-    t[0] = p[0];
-    t[1] = p[1];
-    t[2] = p[2];
-    t[3] = p[3];
-    if (func_ov000_02198148(a, func_ov000_0218e8c4() - d) != 0) {
         return 1;
     }
     return 0;

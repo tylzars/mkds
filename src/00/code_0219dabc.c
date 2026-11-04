@@ -14,20 +14,6 @@
 #include "00/code_021a17bc.h"
 #include "code_0200d118.h"
 
-u32 func_ov000_0219dabc(void) {
-    if (data_ov000_021b566c->mUnk_15 == 2) {
-        return 1;
-    }
-    if (data_ov000_021b566c->mUnk_15 != 3) {
-        data_ov000_021b566c->mUnk_174[1]++;
-    }
-    if (data_ov000_021b566c->mUnk_15 == 3 || data_ov000_021b566c->mUnk_174[1] >= 5) {
-        func_ov000_021a1a38(6, -0x15194);
-        return 0;
-    }
-    return 1;
-}
-
 void func_ov000_0219db18(s32 a, s32 b, s32 c, void *d) {
     s32 e;
     s32 f;
@@ -110,4 +96,18 @@ void func_ov000_0219db18(s32 a, s32 b, s32 c, void *d) {
             }
         }
     }
+}
+
+u32 func_ov000_0219dabc(void) {
+    if (data_ov000_021b566c->mUnk_15 == 2) {
+        return 1;
+    }
+    if (data_ov000_021b566c->mUnk_15 != 3) {
+        data_ov000_021b566c->mUnk_174[1]++;
+    }
+    if (data_ov000_021b566c->mUnk_15 == 3 || data_ov000_021b566c->mUnk_174[1] >= 5) {
+        func_ov000_021a1a38(6, -0x15194);
+        return 0;
+    }
+    return 1;
 }

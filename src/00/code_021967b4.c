@@ -5,6 +5,30 @@
 #include "code_02139f70.h"
 #include "code_0213a460.h"
 
+void func_ov000_0219690c(GpConnection *a, const char *b, ...) {}
+
+BOOL func_ov000_02196870(GpConnection *a, const char *b, s32 c) {
+    GpiConnection *r;
+    BOOL t;
+    char d[0x10];
+
+    r = a->mGpiConnection;
+    if (strncmp(b, data_ov000_021b3aec, 7) == 0) {
+        if (func_ov000_021967b4(b, data_ov000_021b3af4, d, 0x10) != FALSE) {
+            r->mErrorNumber = func_0213bf90(d);
+        }
+        if (func_ov000_021967b4(b, data_ov000_021b3afc, r->mErrorMessage, 0x100) == FALSE) {
+            r->mErrorMessage[0] = 0;
+        }
+        if (c != 0) {
+            t = (strstr(b, data_ov000_021b3b08) != NULL);
+            func_ov000_02190f4c(a, 4, (t != FALSE) ? 1 : 0);
+        }
+        return TRUE;
+    }
+    return FALSE;
+}
+
 BOOL func_ov000_021967b4(const char *a, const char *b, char *c, s32 d) {
     const char *p;
     const char *q;
@@ -36,27 +60,3 @@ BOOL func_ov000_021967b4(const char *a, const char *b, char *c, s32 d) {
     c[i] = 0;
     return TRUE;
 }
-
-BOOL func_ov000_02196870(GpConnection *a, const char *b, s32 c) {
-    GpiConnection *r;
-    BOOL t;
-    char d[0x10];
-
-    r = a->mGpiConnection;
-    if (strncmp(b, data_ov000_021b3aec, 7) == 0) {
-        if (func_ov000_021967b4(b, data_ov000_021b3af4, d, 0x10) != FALSE) {
-            r->mErrorNumber = func_0213bf90(d);
-        }
-        if (func_ov000_021967b4(b, data_ov000_021b3afc, r->mErrorMessage, 0x100) == FALSE) {
-            r->mErrorMessage[0] = 0;
-        }
-        if (c != 0) {
-            t = (strstr(b, data_ov000_021b3b08) != NULL);
-            func_ov000_02190f4c(a, 4, (t != FALSE) ? 1 : 0);
-        }
-        return TRUE;
-    }
-    return FALSE;
-}
-
-void func_ov000_0219690c(GpConnection *a, const char *b, ...) {}

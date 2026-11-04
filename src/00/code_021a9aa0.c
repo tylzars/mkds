@@ -12,160 +12,6 @@
 #include "code_0200fc8c.h"
 #include "code_0214d018.h"
 
-u8 func_ov000_021a9aa0(Unk021a998c *a) {
-    Unk021a998c_0c *c = a->mUnk_0c;
-    Unk021a998c_0c_7f4 *d = c->mUnk_7f4;
-    s32 e;
-    u32 f;
-    u8 *g;
-    u8 *h;
-    s32 i;
-    if (d != NULL) {
-        e = d->mUnk_00;
-    } else {
-        e = 0;
-    }
-    f = func_ov000_021ab5bc();
-    c->mUnk_028[0] = f >> 24;
-    c->mUnk_028[1] = f >> 16;
-    c->mUnk_028[2] = f >> 8;
-    c->mUnk_028[3] = f;
-    func_ov000_021a9ca8(&c->mUnk_028[4], 0x1c);
-    g = data_ov000_021b63a4(e + 0x9d);
-    if (g == NULL) {
-        c->mUnk_429 = 9;
-        return 1;
-    }
-    h = g + 5;
-    g[5] = 2;
-    h[1] = 0;
-    h[2] = 0;
-    h[3] = 0x46;
-    h[4] = 3;
-    h[5] = 0;
-    MemCopy(c->mUnk_028, h + 6, 0x20);
-    h[0x26] = 0x20;
-    if (c->mUnk_000 != NULL) {
-        MemCopy(c->mUnk_000, h + 0x27, 0x20);
-        h += 0x47;
-        c->mUnk_004 = 1;
-    } else {
-        func_ov000_021a9ca8(h + 0x27, 0x1c);
-        f = data_ov000_021b6180;
-        h[0x43] = f >> 24;
-        h[0x44] = f >> 16;
-        h[0x45] = f >> 8;
-        h += 0x46;
-        *h++ = f;
-        c->mUnk_000 = func_ov000_021ab5e4(h - 0x20);
-        data_ov000_021b6180 = data_ov000_021b6180 + 1;
-        c->mUnk_004 = 0;
-    }
-    h[0] = c->mUnk_006 >> 8;
-    h[1] = c->mUnk_006;
-    h += 2;
-    *h++ = 0;
-    if (c->mUnk_004 == 0) {
-        if (e != 0) {
-            h[0] = 0xb;
-            i = e + 6;
-            h[1] = i >> 16;
-            h[2] = i >> 8;
-            h[3] = i;
-            i = e + 3;
-            h[4] = i >> 16;
-            h[5] = i >> 8;
-            h[6] = i;
-            h[7] = e >> 16;
-            h[8] = e >> 8;
-            h += 9;
-            *h++ = e;
-            MemCopy(d->mUnk_04, h, e);
-            h += e;
-        }
-        h[0] = 0xe;
-        h[1] = 0;
-        h[2] = 0;
-        h += 3;
-        *h++ = 0;
-    }
-    i = h - g - 5;
-    g[0] = 0x16;
-    g[1] = 3;
-    g[2] = 0;
-    g[3] = i >> 8;
-    g[4] = i;
-    func_ov000_021abca0(c->mUnk_2c0, g + 5, i);
-    func_ov000_021ab728(c->mUnk_378, g + 5, i);
-    func_ov000_021adcec(g, i + 5, NULL, 0, a);
-    data_ov000_021b63ac(g);
-    return c->mUnk_004;
-}
-
-void func_ov000_021a9c5c(void *a, u32 n) {
-    u8 b[0x60];
-    u32 c;
-    func_ov000_021abd2c((u32 *) b);
-    c = IrqDisable();
-    func_ov000_021abca0(b, data_ov000_021b6184, 0x14);
-    func_ov000_021abca0(b, a, n);
-    func_ov000_021abc4c((s32) b, (u32) data_ov000_021b6184);
-    IrqRestore(c);
-    data_ov000_021b617c = 1;
-}
-
-void func_ov000_021a9ca8(u8 *a, s32 n) {
-    u8 b[0x14];
-    u8 d[0x5c];
-    u32 c;
-    s32 i;
-    s32 j;
-    s32 k;
-    u32 h;
-    u8 *e;
-    u8 *f;
-    u32 g;
-    u32 q;
-    u64 *l;
-    u64 m;
-    if (data_ov000_021b617c == 0) {
-        l = data_ov000_021b63e0;
-        m = l[1] * l[0] + l[2];
-        l[0] = m;
-        c = m >> 32;
-        func_ov000_021a9c5c(&c, 4);
-    }
-    i = 0x14;
-    j = 0;
-    while (j < n) {
-        if (i == 0x14) {
-            func_ov000_021abd2c((u32 *) d);
-            g = IrqDisable();
-            func_ov000_021abca0(d, data_ov000_021b6184, 0x14);
-            func_ov000_021abc24((u32) d, (u32) b);
-            h = 1;
-            k = 0x13;
-            e = b + 0x13;
-            f = &data_ov000_021b6197;
-            for (; k >= 0; k--) {
-                q = *f + *e + h;
-                *f = q;
-                h = q >> 8;
-                e--;
-                f--;
-            }
-            c = q;
-            IrqRestore(g);
-            i = 0;
-        }
-        if (b[i] != 0) {
-            a[j] = b[i];
-            j++;
-        }
-        i++;
-    }
-}
-
 u8 func_ov000_021a9d68(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
     u32 n;
@@ -278,4 +124,158 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
         data_ov000_021b63ac(q);
     }
     return c->mUnk_429;
+}
+
+void func_ov000_021a9ca8(u8 *a, s32 n) {
+    u8 b[0x14];
+    u8 d[0x5c];
+    u32 c;
+    s32 i;
+    s32 j;
+    s32 k;
+    u32 h;
+    u8 *e;
+    u8 *f;
+    u32 g;
+    u32 q;
+    u64 *l;
+    u64 m;
+    if (data_ov000_021b617c == 0) {
+        l = data_ov000_021b63e0;
+        m = l[1] * l[0] + l[2];
+        l[0] = m;
+        c = m >> 32;
+        func_ov000_021a9c5c(&c, 4);
+    }
+    i = 0x14;
+    j = 0;
+    while (j < n) {
+        if (i == 0x14) {
+            func_ov000_021abd2c((u32 *) d);
+            g = IrqDisable();
+            func_ov000_021abca0(d, data_ov000_021b6184, 0x14);
+            func_ov000_021abc24((u32) d, (u32) b);
+            h = 1;
+            k = 0x13;
+            e = b + 0x13;
+            f = &data_ov000_021b6197;
+            for (; k >= 0; k--) {
+                q = *f + *e + h;
+                *f = q;
+                h = q >> 8;
+                e--;
+                f--;
+            }
+            c = q;
+            IrqRestore(g);
+            i = 0;
+        }
+        if (b[i] != 0) {
+            a[j] = b[i];
+            j++;
+        }
+        i++;
+    }
+}
+
+void func_ov000_021a9c5c(void *a, u32 n) {
+    u8 b[0x60];
+    u32 c;
+    func_ov000_021abd2c((u32 *) b);
+    c = IrqDisable();
+    func_ov000_021abca0(b, data_ov000_021b6184, 0x14);
+    func_ov000_021abca0(b, a, n);
+    func_ov000_021abc4c((s32) b, (u32) data_ov000_021b6184);
+    IrqRestore(c);
+    data_ov000_021b617c = 1;
+}
+
+u8 func_ov000_021a9aa0(Unk021a998c *a) {
+    Unk021a998c_0c *c = a->mUnk_0c;
+    Unk021a998c_0c_7f4 *d = c->mUnk_7f4;
+    s32 e;
+    u32 f;
+    u8 *g;
+    u8 *h;
+    s32 i;
+    if (d != NULL) {
+        e = d->mUnk_00;
+    } else {
+        e = 0;
+    }
+    f = func_ov000_021ab5bc();
+    c->mUnk_028[0] = f >> 24;
+    c->mUnk_028[1] = f >> 16;
+    c->mUnk_028[2] = f >> 8;
+    c->mUnk_028[3] = f;
+    func_ov000_021a9ca8(&c->mUnk_028[4], 0x1c);
+    g = data_ov000_021b63a4(e + 0x9d);
+    if (g == NULL) {
+        c->mUnk_429 = 9;
+        return 1;
+    }
+    h = g + 5;
+    g[5] = 2;
+    h[1] = 0;
+    h[2] = 0;
+    h[3] = 0x46;
+    h[4] = 3;
+    h[5] = 0;
+    MemCopy(c->mUnk_028, h + 6, 0x20);
+    h[0x26] = 0x20;
+    if (c->mUnk_000 != NULL) {
+        MemCopy(c->mUnk_000, h + 0x27, 0x20);
+        h += 0x47;
+        c->mUnk_004 = 1;
+    } else {
+        func_ov000_021a9ca8(h + 0x27, 0x1c);
+        f = data_ov000_021b6180;
+        h[0x43] = f >> 24;
+        h[0x44] = f >> 16;
+        h[0x45] = f >> 8;
+        h += 0x46;
+        *h++ = f;
+        c->mUnk_000 = func_ov000_021ab5e4(h - 0x20);
+        data_ov000_021b6180 = data_ov000_021b6180 + 1;
+        c->mUnk_004 = 0;
+    }
+    h[0] = c->mUnk_006 >> 8;
+    h[1] = c->mUnk_006;
+    h += 2;
+    *h++ = 0;
+    if (c->mUnk_004 == 0) {
+        if (e != 0) {
+            h[0] = 0xb;
+            i = e + 6;
+            h[1] = i >> 16;
+            h[2] = i >> 8;
+            h[3] = i;
+            i = e + 3;
+            h[4] = i >> 16;
+            h[5] = i >> 8;
+            h[6] = i;
+            h[7] = e >> 16;
+            h[8] = e >> 8;
+            h += 9;
+            *h++ = e;
+            MemCopy(d->mUnk_04, h, e);
+            h += e;
+        }
+        h[0] = 0xe;
+        h[1] = 0;
+        h[2] = 0;
+        h += 3;
+        *h++ = 0;
+    }
+    i = h - g - 5;
+    g[0] = 0x16;
+    g[1] = 3;
+    g[2] = 0;
+    g[3] = i >> 8;
+    g[4] = i;
+    func_ov000_021abca0(c->mUnk_2c0, g + 5, i);
+    func_ov000_021ab728(c->mUnk_378, g + 5, i);
+    func_ov000_021adcec(g, i + 5, NULL, 0, a);
+    data_ov000_021b63ac(g);
+    return c->mUnk_004;
 }

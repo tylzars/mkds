@@ -1542,10 +1542,10 @@ gWiFiVSSettingCallbacks kind:data(any) addr:0x021b0b60
 @2802 kind:data(any) addr:0x021b0c40 local
 data_usa_ov000_021b0c5c kind:data(any) addr:0x021b0c5c
 data_usa_ov000_021b0c68 kind:data(any) addr:0x021b0c68
-data_ov000_021b0cb4 kind:data(any) addr:0x021b0c74
-data_ov000_021b0cb8 kind:data(any) addr:0x021b0c78
-data_ov000_021b0cc0 kind:data(any) addr:0x021b0c80
-data_ov000_021b0cc8 kind:data(any) addr:0x021b0c88
+@2702 kind:data(any) addr:0x021b0c74 local
+@2692 kind:data(any) addr:0x021b0c78 local
+@2667 kind:data(any) addr:0x021b0c80 local
+@2678 kind:data(any) addr:0x021b0c88 local
 data_usa_ov000_021b0c94 kind:data(any) addr:0x021b0c94
 data_ov000_021b0ce4 kind:data(any) addr:0x021b0ca4
 data_ov000_021b0d04 kind:data(any) addr:0x021b0cc4

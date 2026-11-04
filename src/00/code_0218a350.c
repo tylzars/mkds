@@ -4,66 +4,46 @@
 #include "code_0214d018.h"
 #include "code_021507c8.h"
 
-s32 func_ov000_0218a350(const u8 *a, u8 *b, s32 c, u32 d) {
-    s32 f;
-    s32 g;
-    s32 h;
-    u32 t;
+void func_ov000_0218a5b0(const u8 *a, u8 *b) {
+    Unk0218a5b0 t = data_ov000_021b2118;
     s32 i;
-    u32 w;
-    u32 x;
+    s32 j;
+    s32 k;
+    s32 l;
     s32 m;
-    if (d >= (u32) (c * 3) >> 2) {
-        f = c & 3;
-        g = c - f;
-    } else {
-        return -1;
+    u32 v;
+    u32 w;
+    u8 *p;
+    func_ov000_0218a350(a, b, 32, 24);
+    for (j = 0; j < 24; j++) {
+        b[j] ^= data_ov000_021b20f4[j];
     }
-    h = 0;
-    for (; h < g; h += 4) {
-        t = 0;
-        for (i = 0; i < 4; i++) {
-            t |= func_ov000_0218a444(a[h + i]) << ((3 - i) * 6);
-        }
-        w = t;
-        for (m = 0; m < 3; m++) {
-            b[h / 4 * 3 + m] = ((u8 *) &w)[2 - m];
-        }
-    }
-    if (f != 0) {
-        t = 0;
-        x = 0;
-        for (i = 0; i < f; i++) {
-            t |= func_ov000_0218a444(a[g + i]) << ((3 - i) * 6);
-            x |= t;
-        }
-        for (i = 0; i < f; i++) {
-            b[g * 3 / 4 + i] = ((u8 *) &x)[2 - i];
+    for (i = 0; i < 24; i++) {
+        k = (u8) i;
+        l = k;
+        v = b[i];
+        while (t.mUnk_00[l] != 0xff) {
+            p = &t.mUnk_00[l];
+            l = t.mUnk_00[l];
+            w = b[l];
+            b[t.mUnk_00[k]] = v;
+            k = l;
+            *p = 0xff;
+            v = w;
         }
     }
-    return (u32) (c * 3) >> 2;
+    for (m = 0; m < 24; m++) {
+        b[m] ^= data_ov000_021b20e8[m];
+    }
 }
 
-s32 func_ov000_0218a444(u32 c) {
-    s32 d;
-    if (c >= 0x41 && c <= 0x5a) {
-        return c - 0x41;
-    }
-    if (c >= 0x61 && c <= 0x7a) {
-        d = c - 0x61;
-        return d + 0x1a;
-    }
-    if (c >= 0x30 && c <= 0x39) {
-        d = c - 0x30;
-        return d + 0x34;
-    }
-    if (c == 0x2b) {
-        return 0x3e;
-    }
-    if (c == 0x2f) {
-        return 0x3f;
-    }
-    return -(c != 0x3d);
+void func_ov000_0218a57c(const u8 *a, u8 *b) {
+    Unk02150610 c;
+    u8 d[20];
+    func_021507c8((u32) &c);
+    func_021506d4(&c, a, 24);
+    func_02150610(d, &c);
+    MemCopy(d + 3, b, 13);
 }
 
 void func_ov000_0218a48c(const u8 *a, u8 *b) {
@@ -111,44 +91,64 @@ void func_ov000_0218a48c(const u8 *a, u8 *b) {
     }
 }
 
-void func_ov000_0218a57c(const u8 *a, u8 *b) {
-    Unk02150610 c;
-    u8 d[20];
-    func_021507c8((u32) &c);
-    func_021506d4(&c, a, 24);
-    func_02150610(d, &c);
-    MemCopy(d + 3, b, 13);
+s32 func_ov000_0218a444(u32 c) {
+    s32 d;
+    if (c >= 0x41 && c <= 0x5a) {
+        return c - 0x41;
+    }
+    if (c >= 0x61 && c <= 0x7a) {
+        d = c - 0x61;
+        return d + 0x1a;
+    }
+    if (c >= 0x30 && c <= 0x39) {
+        d = c - 0x30;
+        return d + 0x34;
+    }
+    if (c == 0x2b) {
+        return 0x3e;
+    }
+    if (c == 0x2f) {
+        return 0x3f;
+    }
+    return -(c != 0x3d);
 }
 
-void func_ov000_0218a5b0(const u8 *a, u8 *b) {
-    Unk0218a5b0 t = data_ov000_021b2118;
+s32 func_ov000_0218a350(const u8 *a, u8 *b, s32 c, u32 d) {
+    s32 f;
+    s32 g;
+    s32 h;
+    u32 t;
     s32 i;
-    s32 j;
-    s32 k;
-    s32 l;
-    s32 m;
-    u32 v;
     u32 w;
-    u8 *p;
-    func_ov000_0218a350(a, b, 32, 24);
-    for (j = 0; j < 24; j++) {
-        b[j] ^= data_ov000_021b20f4[j];
+    u32 x;
+    s32 m;
+    if (d >= (u32) (c * 3) >> 2) {
+        f = c & 3;
+        g = c - f;
+    } else {
+        return -1;
     }
-    for (i = 0; i < 24; i++) {
-        k = (u8) i;
-        l = k;
-        v = b[i];
-        while (t.mUnk_00[l] != 0xff) {
-            p = &t.mUnk_00[l];
-            l = t.mUnk_00[l];
-            w = b[l];
-            b[t.mUnk_00[k]] = v;
-            k = l;
-            *p = 0xff;
-            v = w;
+    h = 0;
+    for (; h < g; h += 4) {
+        t = 0;
+        for (i = 0; i < 4; i++) {
+            t |= func_ov000_0218a444(a[h + i]) << ((3 - i) * 6);
+        }
+        w = t;
+        for (m = 0; m < 3; m++) {
+            b[h / 4 * 3 + m] = ((u8 *) &w)[2 - m];
         }
     }
-    for (m = 0; m < 24; m++) {
-        b[m] ^= data_ov000_021b20e8[m];
+    if (f != 0) {
+        t = 0;
+        x = 0;
+        for (i = 0; i < f; i++) {
+            t |= func_ov000_0218a444(a[g + i]) << ((3 - i) * 6);
+            x |= t;
+        }
+        for (i = 0; i < f; i++) {
+            b[g * 3 / 4 + i] = ((u8 *) &x)[2 - i];
+        }
     }
+    return (u32) (c * 3) >> 2;
 }

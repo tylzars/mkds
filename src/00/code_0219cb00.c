@@ -3,24 +3,6 @@
 
 #pragma opt_propagation off
 
-void func_ov000_0219cb00(void) {
-    Unk021b5664 *p = data_ov000_021b5664;
-    if (p->mUnk_20 == 0) {
-        func_ov000_0219d734(0xb, -70009);
-        return;
-    }
-    p->mUnk_20--;
-}
-
-void func_ov000_0219cb30(void) {
-    Unk021b5664 *p = data_ov000_021b5664;
-    if (p->mUnk_20 == -1) {
-        func_ov000_0219d734(0xb, -70009);
-        return;
-    }
-    p->mUnk_20++;
-}
-
 void func_ov000_0219cb64(u32 a, u32 b, s32 c, u32 d, s32 e, u32 f, u32 g) {
     u32 t;
     t = g;
@@ -48,4 +30,22 @@ void func_ov000_0219cb64(u32 a, u32 b, s32 c, u32 d, s32 e, u32 f, u32 g) {
             }
         }
     }
+}
+
+void func_ov000_0219cb30(void) {
+    Unk021b5664 *p = data_ov000_021b5664;
+    if (p->mUnk_20 == -1) {
+        func_ov000_0219d734(0xb, -70009);
+        return;
+    }
+    p->mUnk_20++;
+}
+
+void func_ov000_0219cb00(void) {
+    Unk021b5664 *p = data_ov000_021b5664;
+    if (p->mUnk_20 == 0) {
+        func_ov000_0219d734(0xb, -70009);
+        return;
+    }
+    p->mUnk_20--;
 }

@@ -14,27 +14,12 @@
 #include "00/code_02198748.h"
 #include "00/code_02198a8c.h"
 
-void func_ov000_021988e8(Gt2Socket *a) {
-    func_ov000_0218dddc(a->mConnections, (void (*)(void *, void *)) func_ov000_021988fc, NULL);
+int func_ov000_02198a7c(Gt2Connection *a, Gt2ConnectionCallbacks *b) {
+    return func_ov000_02198778(a, b);
 }
 
-void func_ov000_021988fc(Gt2Connection **a) {
-    func_ov000_02198908(*a);
-}
-
-void func_ov000_02198908(Gt2Connection *a) {
-    func_ov000_02198548(a, 1);
-}
-
-void func_ov000_02198914(Gt2Connection *a, u8 *b, int c, int d) {
-    if (a->mUnk_0c == 5) {
-        func_ov000_0219a61c((const char **) &b, &c);
-        if (func_ov000_0218dc44((u32 *) a->mUnk_98) != 0) {
-            func_ov000_02198098(a, 0, (s32) b, (void *) c, d);
-            return;
-        }
-        func_ov000_02198ad8(a, b, c, d);
-    }
+void func_ov000_02198a74(Gt2Connection *a, void *b, u32 c) {
+    func_ov000_02198748(a, b, c);
 }
 
 int func_ov000_02198968(void *a, Gt2Connection **b, u32 c, void *d, int e, u32 f, int g, int h) {
@@ -82,10 +67,25 @@ int func_ov000_02198968(void *a, Gt2Connection **b, u32 c, void *d, int e, u32 f
     return m->mResult;
 }
 
-void func_ov000_02198a74(Gt2Connection *a, void *b, u32 c) {
-    func_ov000_02198748(a, b, c);
+void func_ov000_02198914(Gt2Connection *a, u8 *b, int c, int d) {
+    if (a->mUnk_0c == 5) {
+        func_ov000_0219a61c((const char **) &b, &c);
+        if (func_ov000_0218dc44((u32 *) a->mUnk_98) != 0) {
+            func_ov000_02198098(a, 0, (s32) b, (void *) c, d);
+            return;
+        }
+        func_ov000_02198ad8(a, b, c, d);
+    }
 }
 
-int func_ov000_02198a7c(Gt2Connection *a, Gt2ConnectionCallbacks *b) {
-    return func_ov000_02198778(a, b);
+void func_ov000_02198908(Gt2Connection *a) {
+    func_ov000_02198548(a, 1);
+}
+
+void func_ov000_021988fc(Gt2Connection **a) {
+    func_ov000_02198908(*a);
+}
+
+void func_ov000_021988e8(Gt2Socket *a) {
+    func_ov000_0218dddc(a->mConnections, (void (*)(void *, void *)) func_ov000_021988fc, NULL);
 }

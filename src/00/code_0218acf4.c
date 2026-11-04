@@ -7,22 +7,6 @@
 #include "00/unk_021b4000.h"
 #include "00/code_0218e8c4.h"
 
-void func_ov000_0218acf4(Unk0218a9bc *p, s32 a, u32 b, s32 c, UnkFunc *f, void *g) {
-    if (c == 0 && data_ov000_021b4d28 != 1) {
-        return;
-    }
-    func_ov000_0218e8b8();
-    p->mUnk_00 = b;
-    p->mUnk_04 = a;
-    p->mUnk_40 = 0;
-    p->mUnk_44 = f;
-    p->mUnk_48 = g;
-    p->mUnk_28 = 0;
-    p->mUnk_20 = func_ov000_0218e554(2, 2, 0);
-    func_ov000_0218ae5c(&p->mUnk_14);
-    func_ov000_0218ae5c(&p->mUnk_08);
-}
-
 void func_ov000_0218ad44(Unk0218a9bc *p, Unk0218af28 *e) {
     Unk0218aa14 a;
     u8 b[0x100];
@@ -67,4 +51,20 @@ void func_ov000_0218ad44(Unk0218a9bc *p, Unk0218af28 *e) {
         }
         func_ov000_0218e3e4(p->mUnk_20, b, c, 0, &a, 8);
     }
+}
+
+void func_ov000_0218acf4(Unk0218a9bc *p, s32 a, u32 b, s32 c, UnkFunc *f, void *g) {
+    if (c == 0 && data_ov000_021b4d28 != 1) {
+        return;
+    }
+    func_ov000_0218e8b8();
+    p->mUnk_00 = b;
+    p->mUnk_04 = a;
+    p->mUnk_40 = 0;
+    p->mUnk_44 = f;
+    p->mUnk_48 = g;
+    p->mUnk_28 = 0;
+    p->mUnk_20 = func_ov000_0218e554(2, 2, 0);
+    func_ov000_0218ae5c(&p->mUnk_14);
+    func_ov000_0218ae5c(&p->mUnk_08);
 }

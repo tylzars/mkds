@@ -15,39 +15,23 @@
 #include "code_0214d018.h"
 #include "Main/Unknown/unk_0216f000.h"
 
-u8 *func_ov000_021ad754(u8 *a, u8 b, u32 *c) {
-    u32 d;
+void func_ov000_021adb00(void) {
+    s32 a;
 
-    MemFill(a, 0, 0xec);
-    *(u16 *) a = 0x101;
-    a[2] = 6;
-    data_ov000_021b63e0[0] = (s64) data_ov000_021b63e0[1] * (s64) data_ov000_021b63e0[0] + data_ov000_021b63e0[2];
-    d = data_ov000_021b63e0[0] >> 32;
-    if (c != NULL) {
-        *c = d;
+    data_ov000_021b6384();
+    if (data_ov000_021b63b4 != 0) {
+        func_ov000_021afc5c(data_ov000_021b63b4);
+        func_0200dc3c(100);
+        func_ov000_021afc5c(data_ov000_021b63b4);
+        a = func_0200f5ac() >> 16;
+        while (data_ov000_021b6388() != 0 && (s32) (func_0200f5ac() >> 16) - a < 0x17) {
+            if (data_ov000_021b6368 != 0) {
+                func_ov000_021b04f8(4);
+                return;
+            }
+            func_0200dc3c(100);
+        }
     }
-    *(u16 *) (a + 4) = (u16) (d >> 16) >> 8 | (u16) (d >> 16) << 8;
-    *(u16 *) (a + 6) = (u16) d >> 8 | (u16) d << 8;
-    *(u16 *) (a + 0xc) = (u16) (data_ov000_021b63b4 >> 16) >> 8 | (u16) (data_ov000_021b63b4 >> 16) << 8;
-    *(u16 *) (a + 0xe) = (u16) data_ov000_021b63b4 >> 8 | (u16) data_ov000_021b63b4 << 8;
-    MemCopy(data_ov000_021b63d0, a + 0x1c, 6);
-    *(u16 *) (a + 0xec) = 0x8263;
-    *(u16 *) (a + 0xee) = 0x6353;
-    *(u16 *) (a + 0xf0) = 0x135;
-    a[0xf2] = b;
-    a[0xf3] = 0x3d;
-    a[0xf4] = 7;
-    a[0xf5] = 1;
-    MemCopy(data_ov000_021b63d0, a + 0xf6, 6);
-    a[0xfc] = 0xc;
-    a[0xfd] = 10;
-    MemCopy(data_ov000_021b4c34, a + 0xfe, 10);
-    a[0x108] = 0x37;
-    a[0x109] = 3;
-    a[0x10a] = 1;
-    a[0x10b] = 3;
-    a[0x10c] = 6;
-    return a + 0x10d;
 }
 
 void func_ov000_021ad898(void) {
@@ -171,21 +155,37 @@ void func_ov000_021ad898(void) {
     func_ov000_021ae2f4();
 }
 
-void func_ov000_021adb00(void) {
-    s32 a;
+u8 *func_ov000_021ad754(u8 *a, u8 b, u32 *c) {
+    u32 d;
 
-    data_ov000_021b6384();
-    if (data_ov000_021b63b4 != 0) {
-        func_ov000_021afc5c(data_ov000_021b63b4);
-        func_0200dc3c(100);
-        func_ov000_021afc5c(data_ov000_021b63b4);
-        a = func_0200f5ac() >> 16;
-        while (data_ov000_021b6388() != 0 && (s32) (func_0200f5ac() >> 16) - a < 0x17) {
-            if (data_ov000_021b6368 != 0) {
-                func_ov000_021b04f8(4);
-                return;
-            }
-            func_0200dc3c(100);
-        }
+    MemFill(a, 0, 0xec);
+    *(u16 *) a = 0x101;
+    a[2] = 6;
+    data_ov000_021b63e0[0] = (s64) data_ov000_021b63e0[1] * (s64) data_ov000_021b63e0[0] + data_ov000_021b63e0[2];
+    d = data_ov000_021b63e0[0] >> 32;
+    if (c != NULL) {
+        *c = d;
     }
+    *(u16 *) (a + 4) = (u16) (d >> 16) >> 8 | (u16) (d >> 16) << 8;
+    *(u16 *) (a + 6) = (u16) d >> 8 | (u16) d << 8;
+    *(u16 *) (a + 0xc) = (u16) (data_ov000_021b63b4 >> 16) >> 8 | (u16) (data_ov000_021b63b4 >> 16) << 8;
+    *(u16 *) (a + 0xe) = (u16) data_ov000_021b63b4 >> 8 | (u16) data_ov000_021b63b4 << 8;
+    MemCopy(data_ov000_021b63d0, a + 0x1c, 6);
+    *(u16 *) (a + 0xec) = 0x8263;
+    *(u16 *) (a + 0xee) = 0x6353;
+    *(u16 *) (a + 0xf0) = 0x135;
+    a[0xf2] = b;
+    a[0xf3] = 0x3d;
+    a[0xf4] = 7;
+    a[0xf5] = 1;
+    MemCopy(data_ov000_021b63d0, a + 0xf6, 6);
+    a[0xfc] = 0xc;
+    a[0xfd] = 10;
+    MemCopy(data_ov000_021b4c34, a + 0xfe, 10);
+    a[0x108] = 0x37;
+    a[0x109] = 3;
+    a[0x10a] = 1;
+    a[0x10b] = 3;
+    a[0x10c] = 6;
+    return a + 0x10d;
 }
