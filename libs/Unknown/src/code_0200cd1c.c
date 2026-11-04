@@ -3,9 +3,13 @@
 
 // non-matching: the original loads the callee address into r1 and branches with bx r1; ours uses ip. Every other ARM
 // tail call through a register in the game uses ip (117 of them), so the original is likely hand-written
-s32 func_0200cd1c(u32 a) {
-    return func_0200ce80(a);
+// clang-format off
+// Hand-written asm: jumps to func_0200ce80 through r1; the compiler always uses ip for a jump like this.
+asm s32 func_0200cd1c(u32 a) {
+    ldr r1, =func_0200ce80
+    bx r1
 }
+// clang-format on
 
 // clang-format off
 // Takes the highest set bit out of the two words at 0x027fffb0 (first word, then the second) and returns its number:
