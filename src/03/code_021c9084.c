@@ -3,8 +3,6 @@
 #include "03/unk_021da000.h"
 #include "Main/Unknown/code_02147000.h"
 #include "03/code_021c7d30.h"
-#include "03/code_021c85a0.h"
-#include "03/code_021c8e48.h"
 #include "03/code_021c209c.h"
 #include "03/code_021ccd18.h"
 #include "03/code_021b94b8.h"

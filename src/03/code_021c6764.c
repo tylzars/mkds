@@ -13,7 +13,7 @@
 #include "code_0212df7c.h"
 #include "03/code_021cdbd0.h"
 #include "03/code_021ce000.h"
-#include "03/code_021cef6c.h"
+#include "03/code_021cea3c.h"
 #include "03/code_021d3254.h"
 
 void func_ov003_021c696c(void) {

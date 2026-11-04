@@ -25,7 +25,7 @@
 #include "03/code_021d1fd0.h"
 #include "03/code_021d254c.h"
 #include "03/code_021d1f70.h"
-#include "03/code_021cef6c.h"
+#include "03/code_021cea3c.h"
 
 void func_ov003_021c56fc(void) {
     int v1;

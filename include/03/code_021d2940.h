@@ -14,3 +14,7 @@ u32 func_ov003_021d2acc(u32 a);
 u32 func_ov003_021d2ae8(u32 a);
 u32 func_ov003_021d2b04(u32 a);
 u32 func_ov003_021d2b20(u32 a);
+void func_ov003_021d2b3c(void);
+void func_ov003_021d2c78(void);
+void func_ov003_021d2d14(void);
+void func_ov003_021d2d28(void);

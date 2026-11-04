@@ -3,7 +3,7 @@
 #include "03/code_021c6f08.h"
 #include "03/code_021c70a4.h"
 #include "03/code_021cdbd0.h"
-#include "03/code_021cef6c.h"
+#include "03/code_021cea3c.h"
 #include "03/code_021cef90.h"
 
 void func_ov003_021c6f3c(void) {

@@ -21,7 +21,7 @@
 #include "03/unk_021d6000.h"
 #include "03/code_021ca940.h"
 
-#include "03/code_021cef6c.h"
+#include "03/code_021cea3c.h"
 #include "03/code_021d1fd0.h"
 #include "03/code_021d254c.h"
 #include "03/code_021bf098.h"
