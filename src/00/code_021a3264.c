@@ -10,7 +10,8 @@
 #include "code_0200f5ac.h"
 #include "code_0200fd1c.h"
 #include "code_021329f8.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 
 u32 func_ov000_021a363c(void *param_1, void *param_2, void *param_3, u32 param_4) {
     StringFormatBounded(param_3, 0x1000, data_ov000_021b41f4, param_4, param_1, param_4, param_2);

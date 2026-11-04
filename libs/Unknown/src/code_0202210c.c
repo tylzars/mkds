@@ -1,6 +1,6 @@
 #include "code_0202210c.h"
 #include "code_020222ec.h"
-#include "code_02134420.h"
+#include "code_02134398.h"
 
 static inline void func_0202212c_inline2(const Unk02022030 *a, u16 i) {
     switch (a->mUnk_1c) {

@@ -10,7 +10,8 @@
 #include "00/code_021a86bc.h"
 #include "code_0200db4c.h"
 #include "code_0200f7a0.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 #include "code_02139f70.h"
 
 s32 func_ov003_021bdcd8(s32 v1, const void *v2, u32 v3) {

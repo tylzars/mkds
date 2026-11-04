@@ -12,7 +12,9 @@
 #include "Main/Unknown/code_020b837c.h"
 #include "code_020222ec.h"
 #include "Main/Unknown/code_020b3000.h"
-#include "Main/Unknown/code_020c4bec.h"
+#include "Main/Unknown/unk_0217b000.h"
+#include "code_02022030.h"
+#include "Main/Unknown/code_020c476c.h"
 
 void func_020c43c4(void) {
     Unk0206bcb0 *p;

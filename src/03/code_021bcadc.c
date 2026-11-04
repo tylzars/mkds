@@ -2,7 +2,8 @@
 #include "03/code_021bbc94.h"
 #include "03/code_021bcadc.h"
 #include "03/unk_021d8000.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 
 int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
     u8 a[16];

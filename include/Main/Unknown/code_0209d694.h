@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Object behind the words at 0xbc and 0xc0 of Unk0209d694: a flags word at 0x24, a halfword at 0x70 and a byte at 0x80.

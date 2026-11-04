@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Object with the MapObject base: two halfwords at 0xa0 and 0xa2, then two words (func_0209f178, func_0209f1c8,

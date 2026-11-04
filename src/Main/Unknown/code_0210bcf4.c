@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0210bcf4.h"
+#include "code_0212d254.h"
 
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/code_0210b000.h"
@@ -9,7 +10,27 @@
 #include "code_0212bcac.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "code_020172d0.h"
-#include "code_0212d254.h"
+#include "Main/Unknown/code_0210bce0.h"
+#include "Main/Unknown/code_0210d078.h"
+#include "Main/Unknown/code_0210d0b4.h"
+#include "code_0201750c.h"
+
+void func_0210c134(int a, u32 b) {
+    u32 v1;
+    u32 v2;
+    ListInit((LinkedList *) ((u32 *) (u32) (a + 0xc)), (u16) 8);
+    v1 = ((u32) (&func_0210d0b4));
+    *(u32 *) (a + 0x38) = 1;
+    v2 = ((u32) (&func_0210d078));
+    *(u32 *) (a + 0x2c) = v1;
+    *(u32 *) (a + 0x30) = v2;
+    *(u16 *) (a + 0x34) = 0;
+    *(u32 *) (a + 0x28) = b;
+    *(u32 *) (a + 0x18) = 3;
+    func_0210bce0((u32 *) (u32) (a + 0x1c));
+    func_0210bce0((u32 *) (u32) a);
+    func_0210bc8c((((u32) (&data_0217d028))), a);
+}
 
 void func_0210c0bc(Unk0210bfbc *p) {
     void *a;

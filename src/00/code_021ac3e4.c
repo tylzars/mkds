@@ -5,7 +5,8 @@
 #include "00/code_021acec8.h"
 #include "00/unk_021b6000.h"
 #include "code_021329f8.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 #include "code_0214d018.h"
 
 void func_ov000_021acb98(u16 *a, const u16 *b, u16 c, s32 d) {

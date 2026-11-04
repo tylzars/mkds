@@ -1,6 +1,9 @@
 #pragma once
 
 #include "types.h"
+#include "Main/Unknown/code_0206bcb0.h"
+#include "Main/Unknown/code_02042044.h"
+#include "Main/Unknown/code_020f9c6c.h"
 #include "Main/Unknown/code_020a8ed8.h" // Unk020a9268, Unk020a9224
 #include "Main/Unknown/unk_0217b000.h"
 

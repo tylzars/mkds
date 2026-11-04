@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020d22c0.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
 // Object of 0xb0 bytes: the MapObject it starts with, then a halfword and three words.

@@ -1,5 +1,6 @@
 #include "Main/Unknown/code_020d3c94.h"
 #include "Main/Unknown/code_0210a67c.h"
+#include "code_0212d254.h"
 #include "Main/Unknown/code_0210bcf4.h"
 
 #include "Main/Unknown/code_020d3000.h"
@@ -14,7 +15,6 @@
 #include "Main/Unknown/code_0210f000.h"
 #include "Main/Unknown/code_0210faac.h"
 #include "code_0212bcac.h"
-#include "code_0212d254.h"
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_0210ab30.h"
 #include "Main/Unknown/code_0210ab48.h"

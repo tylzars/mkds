@@ -1,12 +1,12 @@
 #pragma once
 
 #include "types.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_02042044.h"
 #include "code_02012b30.h" // Unk02012f58
 #include "Main/Unknown/code_020d8cac.h"
 #include "Main/Unknown/code_020b502c.h"
-#include "code_02012b30.h"
 #include "Main/Unknown/code_020f9c6c.h"
 
 struct Unk02012f58;

@@ -11,7 +11,8 @@
 #include "03/unk_021d8000.h"
 #include "code_0200f5ac.h"
 #include "code_021329f8.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 
 void func_ov003_021bb408(u8 *output, const u32 *input, u32 size) {
     u32 i;

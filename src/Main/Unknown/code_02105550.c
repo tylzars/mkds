@@ -55,7 +55,7 @@
 #include "Main/Unknown/code_0210912c.h"
 #include "Main/Unknown/code_02109178.h"
 #include "Main/Unknown/code_0210b6a0.h"
-#include "Main/Unknown/code_0210bac0.h"
+#include "Main/Unknown/code_0210b870.h"
 #include "Main/Unknown/code_0210bbec.h"
 #include "Main/Unknown/code_0210d570.h"
 #include "Main/Unknown/code_0210dc48.h"
@@ -79,7 +79,7 @@
 #include "Main/Unknown/code_02108c1c.h"
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/unk_02174000.h"
-#include "Main/Unknown/code_02024fc0.h"
+#include "Main/Unknown/code_02024974.h"
 
 void func_02108ddc(void) {
     func_0212d5e0(&data_0217c868);

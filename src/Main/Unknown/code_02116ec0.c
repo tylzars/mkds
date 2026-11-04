@@ -1,6 +1,7 @@
+#include "Main/Unknown/code_02116ec0.h"
+
 #include "Main/Unknown/code_0203ba84.h"
 #include "Main/Unknown/code_0203be88.h"
-#include "Main/Unknown/code_02116ec0.h"
 #include "Main/Unknown/unk_0215c000.h"
 #include "Main/Unknown/code_02029000.h"
 #include "Main/Unknown/code_02029440.h"
@@ -10,6 +11,19 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "code_0202056c.h"
+#include "Main/Unknown/code_02036820.h"
+
+#pragma thumb on
+
+void func_0211717c(void *a) {
+    u32 v1;
+    v1 = ((u32) HeapAlloc(a, (u32) 4));
+    *(u32 *) &data_0217d358 = v1;
+    v1 = (u32) func_0203bedc(a);
+    *(u32 *) (*(u32 *) &data_0217d358) = v1;
+}
+
+#pragma thumb off
 
 #pragma thumb on
 

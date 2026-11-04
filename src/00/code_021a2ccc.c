@@ -17,7 +17,8 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "code_02139f70.h"
 #include "00/unk_021b4000.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 
 void func_ov000_021a3250(u32 (*arg0)(void)) {
     u32 value0 = (u32) arg0;

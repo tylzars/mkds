@@ -6,7 +6,8 @@
 #include "00/code_02198714.h"
 #include "00/code_0219a01c.h"
 #include "00/unk_021b3000.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 
 static inline void func_ov000_02198ba8_inline(void *a, const void *b) {
     u8 *p = (u8 *) a;

@@ -2,8 +2,11 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_02061f7c.h"
 #include "Main/Unknown/code_02108e6c.h"
+#include "Main/Unknown/code_0206bcb0.h"
+#include "Main/Unknown/code_02042044.h"
+#include "Main/Unknown/code_020f9c6c.h"
 #include "Main/Unknown/code_020a8ed8.h"
-#include "Main/Unknown/code_020d22e0.h"
+#include "Main/Unknown/code_020d22c0.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_02147cd8.h"
 

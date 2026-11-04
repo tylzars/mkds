@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Object of the list func_02100138(0x70): the shared MapObject part, then the words and the pointer func_020ac5e4

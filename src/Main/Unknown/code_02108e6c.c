@@ -7,6 +7,7 @@
 #include "Main/Unknown/code_02108ec4.h"
 #include "Main/Unknown/code_02108ed8.h"
 #include "Main/Unknown/code_02108edc.h"
+#include "code_0212d254.h"
 #include "Main/Unknown/code_0210bcf4.h"
 #include "Main/Unknown/code_0210d740.h"
 #include "Main/Unknown/code_0210dc7c.h"
@@ -16,7 +17,6 @@
 #include "Main/Unknown/unk_0217d000.h"
 #include "Main/Unknown/unk_0217d068.h"
 #include "code_0212bcac.h"
-#include "code_0212d254.h"
 #include "code_0212df7c.h"
 
 void func_02108edc(s32 a, s32 b) {

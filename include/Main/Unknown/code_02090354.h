@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_02080b1c.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Value at 0x00 (halfword), 0x02 and 0x03 (bytes) combined by func_020908d0.

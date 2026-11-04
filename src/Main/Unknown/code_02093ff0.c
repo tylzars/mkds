@@ -16,7 +16,6 @@
 #include "ITCM/code_01ff9000.h"
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_0209bef0.h"
-#include "Main/Unknown/code_020d22e0.h"
 #include "Main/Unknown/code_020d3b10.h"
 #include "Main/Unknown/code_020e6b58.h"
 #include "Main/Unknown/unk_0215d000.h"

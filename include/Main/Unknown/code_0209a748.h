@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020e005c.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
 // Block of eight words at 0xb0 and 0xd0 of Unk0209a7dc: the u16 at 0x00 grows by 0x18 each step, 0x14 and 0x1c move

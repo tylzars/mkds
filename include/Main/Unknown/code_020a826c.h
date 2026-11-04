@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7a8
 #include "code_0212bcac.h"

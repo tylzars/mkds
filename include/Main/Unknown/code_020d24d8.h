@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
 void func_020d2668(MapObject *b, Unk0210bfbc *c, s32 d, s32 e);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Object behind func_ov001_02188c90 and the per-state functions around func_ov001_021900ac.

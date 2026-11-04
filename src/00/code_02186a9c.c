@@ -4,7 +4,8 @@
 #include "00/unk_021b1000.h"
 #include "00/code_02186628.h"
 #include "code_0200d118.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 #include "code_02139f70.h"
 
 #pragma opt_lifetimes off

@@ -3,6 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_021052fc.h"
 #include "Main/Unknown/code_020ed5c0.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 #include "Main/Unknown/code_020f36d8.h"
 
@@ -34,10 +35,10 @@ typedef struct Unk0217b4f0 {
 } Unk0217b4f0;
 
 // Declared here until the code that defines them is decompiled.
-#include "Main/Unknown/code_020d20a8.h"
+#include "Main/Unknown/code_020d2090.h"
 #include "Main/Unknown/code_020d275c.h"
 #include "Main/Unknown/code_020d26e0.h"
-#include "Main/Unknown/code_020d22e0.h"
+#include "Main/Unknown/code_020d22c0.h"
 #include "Main/Unknown/code_020d26f8.h"
 #include "Main/Unknown/code_020d278c.h"
 #include "Main/Unknown/code_020d2c2c.h"

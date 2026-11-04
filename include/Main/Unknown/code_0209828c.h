@@ -1,9 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0209905c.h" // Unk0209905c
+#include "Main/Unknown/code_02099020.h"
 #include "Main/Unknown/code_0209bc74.h" // Unk0209bc74
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
 
 // Object up to 0x200 bytes: the shared part, a counter at 0xa4 that cycles between 0xac and 0xb0, a state at 0xb4,

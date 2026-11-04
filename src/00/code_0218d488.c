@@ -7,8 +7,8 @@
 #include "00/code_021919ac.h"
 #include "00/code_021a3a18.h"
 #include "00/unk_021b2000.h"
-#include "code_02134d30.h"
-#include "code_02135014.h"
+#include "string.h"
+#include "code_02134398.h"
 #include "code_02139f70.h"
 
 #pragma opt_propagation off

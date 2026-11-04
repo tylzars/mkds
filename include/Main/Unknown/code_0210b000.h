@@ -5,6 +5,7 @@
 // Declared here until the code that defines them is decompiled.
 #include "Main/Unknown/code_0210bafc.h"
 #include "Main/Unknown/code_0210bc14.h"
+#include "code_0212d254.h"
 #include "Main/Unknown/code_0210bcf4.h"
 typedef struct Unk0210b7a8 {
     /* 00 */ s32 mUnk_00;

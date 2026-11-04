@@ -7,7 +7,8 @@
 #include "Main/Unknown/code_02151718.h"
 
 #include "03/code_021cd2e0.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 #include "code_021510a4.h"
 #include "code_0214d018.h"
 #include "Main/Unknown/code_0214d000.h"

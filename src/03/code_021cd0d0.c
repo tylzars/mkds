@@ -1,6 +1,7 @@
 #include "03/code_021cd0d0.h"
 #include "03/unk_021d6000.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 #include "03/code_021cd000.h"
 
 #include "03/types_021da26c.h"

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Object of func_0209ec80: after the shared part, a halfword at 0xa0, the phase at 0xa4, a counter at 0xa8 and the

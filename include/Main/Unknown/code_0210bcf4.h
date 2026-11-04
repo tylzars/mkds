@@ -2,7 +2,6 @@
 
 #include "types.h"
 #include "code_0212bcac.h"
-#include "code_0212d254.h" // Unk0212d580
 #include "code_0212da38.h" // LinkedList
 
 // data_0217d048 is addressed in rows of twelve bytes; func_0210bfbc and func_0210c0bc address the
@@ -63,9 +62,10 @@ typedef struct Unk0210bcf4 {
     /* 20 */ Unk0210bcf4_20 *mUnk_20;
 } Unk0210bcf4;
 
-void func_0210c0bc(Unk0210bfbc *p);
-void func_0210c084(Unk0210bf24 *p, u32 b);
-void func_0210bfbc(Unk0210bfbc *p);
-void func_0210bf24(u32 a, u32 b, u32 c, u32 d);
-u32 func_0210bee8(u32 a, u32 b, u32 c, u32 d, u32 e);
 u32 func_0210bcf4(u32 a, u32 b, u32 c, u32 d, u32 e);
+u32 func_0210bee8(u32 a, u32 b, u32 c, u32 d, u32 e);
+void func_0210bf24(u32 a, u32 b, u32 c, u32 d);
+void func_0210bfbc(Unk0210bfbc *p);
+void func_0210c084(Unk0210bf24 *p, u32 b);
+void func_0210c0bc(Unk0210bfbc *p);
+void func_0210c134(int a, u32 b);

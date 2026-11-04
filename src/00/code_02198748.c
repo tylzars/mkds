@@ -4,7 +4,8 @@
 #include "00/code_0219a0d0.h"
 #include "00/code_0219a61c.h"
 #include "00/code_021a3690.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 
 int func_ov000_0219885c(void *a, Gt2Connection **b, int c, u32 d) {
     int r = CreateConnection(a, b, c, d);

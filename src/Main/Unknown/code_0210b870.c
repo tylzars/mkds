@@ -1,12 +1,23 @@
-#include "Main/Unknown/code_02109054.h"
 #include "Main/Unknown/code_0210b870.h"
 
+#include "Main/Unknown/code_02109054.h"
+#include "code_0212d254.h"
 #include "Main/Unknown/code_0210bcf4.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 #include "Main/Unknown/code_02109000.h"
 #include "Main/Unknown/code_0210bad4.h"
 #include "Main/Unknown/unk_0217c000.h"
 #include "code_0212bcac.h"
+
+u32 func_0210bac0(void) {
+    u32 value0;
+    u32 value1;
+    value0 = (u32) &data_0217ccac;
+    value1 = 0u;
+    *(u32 *) ((value0) + (0)) = value1;
+    return value0;
+}
 
 void func_0210ba78(void *p0, s32 b) {
     Unk0206bcb0 *p;

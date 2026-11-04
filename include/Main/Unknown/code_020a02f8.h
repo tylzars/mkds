@@ -1,8 +1,8 @@
 #pragma once
 
 #include "types.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
-#include "Main/Unknown/code_020b502c.h" // Unk02175620_84
 
 // Object with the MapObject base at 0x00 (func_020a0318, func_020a066c, func_020a089c).
 typedef struct Unk020a0318 {
@@ -27,11 +27,22 @@ typedef struct Unk020a066c {
     /* 04 */ u16 mUnk_04;
 } Unk020a066c;
 
-Unk02175620_84 *func_020a0f0c(void);
-void func_020a0e00(void);
-void func_020a0dbc(void);
-void func_020a08ec(void);
-void func_020a089c(Unk020a0318 *p);
-void func_020a066c(Unk020a066c *p);
-void func_020a0318(void *a, Unk020a0318 *p);
+#include "Main/Unknown/code_020b502c.h" // Unk02175620_84
+
 u32 func_020a02f8(void);
+void func_020a0318(void *a, Unk020a0318 *p);
+void func_020a066c(Unk020a066c *p);
+void func_020a089c(Unk020a0318 *p);
+void func_020a08ec(void);
+void func_020a0dbc(void);
+void func_020a0e00(void);
+Unk02175620_84 *func_020a0f0c(void);
+Vec3 *func_020a0ff0(int arg0);
+void func_020a1748(u16 a);
+void func_020a1790(void);
+void func_020a1904(u16 a);
+void func_020a19f8(u16 a);
+void func_020a1b6c(u16 a);
+u16 func_020a1cd8(s32 a);
+void func_020a1ddc(s32 a);
+unsigned int func_020a1e3c(unsigned int p0);

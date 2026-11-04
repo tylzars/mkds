@@ -1,11 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0200ba44.h"
-#include "Main/Unknown/code_0200ba84.h"
 #include "Main/Unknown/unk_0216f000.h"
+#include "code_0200fc8c.h"
+#include "Main/Unknown/code_0200b6e8.h"
 #include "code_02142eac.h"
-#include "Main/Unknown/code_0200b7e0.h"
 
 // Object behind data_0216fdec; the members are the ones the code reads.
 typedef struct Unk0216fdec {

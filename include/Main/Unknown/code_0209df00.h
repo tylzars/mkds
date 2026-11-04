@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
 
 // Element of 0x10 bytes: a position, then two halfwords.

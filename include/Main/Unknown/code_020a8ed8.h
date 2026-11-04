@@ -1,13 +1,10 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 #include "Main/Unknown/code_020e005c.h"
 #include "Main/Unknown/code_020e516c.h"
-#include "Main/Unknown/code_02042044.h"
-#include "Main/Unknown/code_020f9c6c.h"
-#include "Main/Unknown/code_020a826c.h" // Unk020a826c_a0
 
 // Object of 0x134 bytes: the shared MapObject part, a Unk020e0144 at 0xc4 and a Unk020e516c at 0xe8.
 typedef struct Unk020a9268 {
@@ -44,11 +41,14 @@ typedef struct Unk020a9224 {
     /* c0 */ s32 mUnk_c0;
 } Unk020a9224;
 
-void func_020a9c54(void *a, Unk020a9268 *p, u32 c, u32 d);
-void func_020a9a5c(Unk020a9a5c *p);
-void func_020a9268(void *a, Unk020a9268 *p);
-void func_020a9224(void);
-u32 func_020a9204(void);
-u32 func_020a91e0(void);
-u32 func_020a91c0(void);
+#include "Main/Unknown/code_020a826c.h" // Unk020a826c_a0
+
 void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b);
+u32 func_020a91c0(void);
+u32 func_020a91e0(void);
+u32 func_020a9204(void);
+void func_020a9224(void);
+void func_020a9268(void *a, Unk020a9268 *p);
+void func_020a9a5c(Unk020a9a5c *p);
+void func_020a9c54(void *a, Unk020a9268 *p, u32 c, u32 d);
+unsigned int func_020a9cd0(unsigned int p0);

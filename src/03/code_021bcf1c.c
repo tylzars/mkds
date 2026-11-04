@@ -11,7 +11,8 @@
 #include "03/code_021be4e0.h"
 #include "00/code_021a8aa8.h"
 #include "code_0200db4c.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 #include "code_02139f70.h"
 #include "03/code_021be264.h"
 

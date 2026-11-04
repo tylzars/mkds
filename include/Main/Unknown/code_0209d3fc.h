@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Object of func_0209d3fc: the MapObject it starts with, a word at 0xac, halfwords at 0xb0 and 0xb2 and a state

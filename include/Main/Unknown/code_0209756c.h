@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
 #include "code_0201c528.h" // Unk0201ca6c
 #include "code_02012b30.h" // Unk02012f58

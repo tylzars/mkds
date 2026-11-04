@@ -19,8 +19,8 @@
 #include "00/code_021a4000.h"
 #include "00/code_021a88a8.h"
 #include "00/code_021a8aa8.h"
-#include "code_02134d30.h"
-#include "code_02135014.h"
+#include "string.h"
+#include "code_02134398.h"
 
 void func_ov000_021a39d8(Unk021b5df4 *a, u16 b, u32 c, u32 d) {
     if (data_ov000_021b5df4 == NULL) {

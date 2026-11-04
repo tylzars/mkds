@@ -3,6 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_020e6b58.h"
 #include "Main/Unknown/code_020f36d8.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
 // Object func_020d4f94 reads: a vector at 0x24.

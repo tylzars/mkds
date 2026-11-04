@@ -9,7 +9,8 @@
 #include "00/code_021a3690.h"
 #include "00/unk_021b23b0.h"
 #include "code_021384cc.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 
 u32 GpiInitialize(GpConnection *a, s32 b, s32 c) {
     GpConnection p;

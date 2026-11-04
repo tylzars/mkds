@@ -2,7 +2,8 @@
 #include "03/code_021bdaa4.h"
 #include "03/code_021b7bb4.h"
 #include "03/code_021bd000.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 
 u8 *func_ov003_021bdaa4(u8 *p, u32 a, const void *b, u32 c) {
     u32 d;

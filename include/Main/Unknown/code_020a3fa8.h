@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020a2e4c.h" // Unk020a2fe4
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // 0x38-byte entries from 0xa4 of Unk020a3fa8; func_020a3fa8 walks the first data_021759c0->mUnk_3d0 of them.

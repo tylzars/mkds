@@ -9,7 +9,14 @@ typedef struct Unk0204a598 {
     /* 04 */ s16 mUnk_04;
 } Unk0204a598;
 
+#include "Main/Unknown/unk_02175000.h"
+
 s32 func_0204a550(void *a);
 void func_0204a598(Unk0204a598 *a);
 void func_0204a5e8(void);
 unsigned int func_0204a5f4(unsigned int p0);
+void func_0204a5f8(void);
+BOOL func_0204a620(Unk02175650 *a);
+BOOL func_0204a650(Unk02175650 *a);
+u16 func_0204a664(Unk02175650 *a);
+void func_0204a798(Unk02175650 *a, u16 b);

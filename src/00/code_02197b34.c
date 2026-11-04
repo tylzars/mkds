@@ -2,9 +2,8 @@
 #include "00/code_0218e2dc.h"
 #include "00/code_02197e8c.h"
 #include "00/unk_021b3000.h"
-#include "code_02134420.h"
-#include "code_0213442c.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 #include "code_021384cc.h"
 #include "code_02139f70.h"
 

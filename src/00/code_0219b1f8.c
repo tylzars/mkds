@@ -3,7 +3,8 @@
 #include "00/code_0218d000.h"
 #include "00/code_021a3000.h"
 #include "00/unk_021b2000.h"
-#include "code_0213442c.h"
+#include "string.h"
+#include "code_02134398.h"
 #include "00/unk_021b4000.h"
 #include "00/code_0218e2dc.h"
 #include "00/code_0219887c.h"
@@ -21,7 +22,6 @@
 #include "00/code_021a1ae0.h"
 #include "00/code_021a2ccc.h"
 #include "00/code_021a3a18.h"
-#include "code_02134d30.h"
 #include "code_0213a460.h"
 
 void func_ov000_0219b4b4(u32 a, Unk0219b4b4 *b, u32 g) {

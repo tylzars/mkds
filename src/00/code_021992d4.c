@@ -1,5 +1,6 @@
 #include "00/code_021992d4.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 #include "00/code_021985ec.h"
 #include "00/code_021988e8.h"
 #include "00/code_02198a8c.h"

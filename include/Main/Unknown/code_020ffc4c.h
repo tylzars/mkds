@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
 // Object of func_020ffb1c and the functions of this file: 0xc0 bytes.

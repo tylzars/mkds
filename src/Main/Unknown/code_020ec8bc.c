@@ -1,5 +1,5 @@
 #include "Main/Unknown/code_02036820.h"
-#include "Main/Unknown/code_020d7df8.h"
+#include "Main/Unknown/code_020d7db4.h"
 #include "Main/Unknown/code_020ec8bc.h"
 #include "Main/Unknown/code_020f6be8.h"
 #include "Main/Unknown/unk_0216c000.h"
@@ -23,7 +23,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217b000.h"
-#include "code_02135014.h"
+#include "code_02134398.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_020ee684.h"
 

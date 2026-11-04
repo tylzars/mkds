@@ -1,8 +1,11 @@
-#include "Main/Unknown/code_0209bf70.h"
 #include "Main/Unknown/code_020a8ed8.h"
+#include "Main/Unknown/code_0206bcb0.h"
+#include "Main/Unknown/code_02042044.h"
+#include "Main/Unknown/code_020f9c6c.h"
+
+#include "Main/Unknown/code_0209bf70.h"
 #include "Main/Unknown/code_0209b000.h"
 #include "Main/Unknown/code_0209bef0.h"
-#include "Main/Unknown/code_020a9cd0.h"
 #include "Main/Unknown/code_020a9cd4.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_02061654.h"
@@ -14,7 +17,6 @@
 #include "Main/Unknown/code_020e516c.h"
 #include "Main/Unknown/code_020d2450.h"
 #include "Main/Unknown/code_020d8cac.h"
-#include "Main/Unknown/code_020d22e0.h"
 #include "Main/Unknown/code_020d22c0.h"
 #include "Main/Unknown/code_0203c8c0.h"
 #include "Main/Unknown/code_0207a780.h"
@@ -30,6 +32,10 @@
 #include "Main/Unknown/code_0203c000.h"
 #include "Main/Unknown/unk_0215f000.h"
 #include "Main/Unknown/code_020a9000.h"
+
+u32 func_020a9cd0(u32 p0) {
+    return p0;
+}
 
 void func_020a9c54(void *a, Unk020a9268 *p, u32 c, u32 d) {
     u32 v;

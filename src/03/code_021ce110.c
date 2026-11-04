@@ -10,7 +10,8 @@
 #include "03/code_021d1770.h"
 #include "03/code_021d1970.h"
 #include "03/code_021d27d8.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 #include "code_0200f5ac.h"
 
 void func_ov003_021ce110(Unk021d34e0 *a) {

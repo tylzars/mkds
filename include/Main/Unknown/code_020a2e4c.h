@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Object of the list func_02100138(0x6c), set up by func_020a2fe4: the shared MapObject part, then the value

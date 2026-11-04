@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
 
 struct Unk020e71a0_94;
 
@@ -13,6 +12,8 @@ typedef struct Unk0216ca48 {
     /* 0c */ u32 mUnk_0c;
 } Unk0216ca48;
 
+#include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+
 extern Unk0216ca48 data_0216ca48;
 
 void func_0210b870(void);
@@ -23,3 +24,4 @@ void func_0210b924(void *p, s32 b);
 void func_0210b98c(struct Unk020e71a0_94 *p, s32 b);
 void func_0210ba38(struct Unk020e71a0_94 *p, s32 b);
 void func_0210ba78(void *p0, s32 b);
+u32 func_0210bac0(void);

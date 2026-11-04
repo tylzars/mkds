@@ -17,7 +17,7 @@
 
 #include "Main/Unknown/code_0202b604.h"
 #include "Main/Unknown/code_02120240.h"
-#include "Main/Unknown/code_021281b4.h"
+#include "Main/Unknown/code_0212775c.h"
 #include "Main/Unknown/code_0212a910.h"
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_02036c90.h"
@@ -31,7 +31,7 @@ void InitWiFiVSMatching(void *a);
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020b4000.h"
-#include "Main/Unknown/code_02077eb4.h"
+#include "Main/Unknown/code_02077bc0.h"
 #include "Main/Unknown/code_020472a8.h"
 #include "Main/Unknown/code_020ae4c0.h"
 #include "Main/Unknown/code_020b3f7c.h"

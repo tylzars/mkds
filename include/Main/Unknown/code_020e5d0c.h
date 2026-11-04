@@ -4,7 +4,7 @@
 #include "code_02013bdc.h"
 #include "Main/Unknown/code_020e43a8.h"
 #include "Main/Unknown/code_020e516c.h"
-#include "Main/Unknown/code_020e595c.h"
+#include "Main/Unknown/code_020e5684.h"
 
 // Second argument of func_020e5e24, read at 0x00..0x2b.
 typedef struct Unk020e5e24_2 {

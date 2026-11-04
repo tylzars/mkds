@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
 // Object passed to the per-frame functions func_ov001_02185bb8 and func_ov001_02185ca0.

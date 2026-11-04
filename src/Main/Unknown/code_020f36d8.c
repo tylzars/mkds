@@ -1,7 +1,8 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_020ee684.h"
-#include "Main/Unknown/code_020f5008.h"
+#include "Main/Unknown/code_0206bcb0.h"
+#include "Main/Unknown/code_020f49bc.h"
 #include "Main/Unknown/code_020fe4b4.h"
 
 void func_020f4884(Unk020f40dc *rec) {

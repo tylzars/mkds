@@ -8,7 +8,7 @@
 #include "Main/Unknown/code_020b4000.h" // Ncgr, Nscr, Nclr
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk0201ea30
 #include "Main/Unknown/code_020b3f7c.h" // Unk020b3fb0
-#include "Main/Unknown/code_0202f764.h" // Unk02174e50_24
+#include "Main/Unknown/code_0202f688.h"
 #include "Main/Unknown/code_0205ee14.h" // Unk0205fd2c
 
 // 0x18-byte elements of the table at member 0 of Unk02029930.

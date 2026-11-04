@@ -2,7 +2,8 @@
 
 #include "code_021352e0.h"
 #include "code_02134b18.h"
-#include "code_02134d30.h"
+#include "string.h"
+#include "code_02134398.h"
 #include "code_02139f70.h"
 #include "code_0213a460.h"
 #include "code_0213ee6c.h"

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
 // 0x20-byte part of Unk02094000 at 0xbc and 0xdc, written by func_02094000.

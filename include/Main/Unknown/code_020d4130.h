@@ -3,6 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_020e6b58.h"
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
 // Object func_020d4418 and func_020d4484 read: a Unk02012f58 at 0x30.

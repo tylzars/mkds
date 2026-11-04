@@ -3,6 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
+#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
 
 // Object of func_02093270: after the shared part, a counter at 0xa0, a halfword at 0xa4, a value at 0xa8, a
