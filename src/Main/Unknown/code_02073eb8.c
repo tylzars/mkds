@@ -81,7 +81,7 @@ void func_02076a5c(void) {
     Vec3 u;
     s32 t;
 
-    q = func_0207a974(data_021759c0->mUnk_62);
+    q = GetKart(data_021759c0->mEntryIndex);
     func_0207729c(data_0217ac94);
     if (data_021759c0->mUnk_08 == 4) {
         if (data_021759c0->mUnk_044 & 0x20) {
@@ -149,8 +149,8 @@ void func_02076528(Unk02061808 *a, Unk0206bcb0 *b) {
     }
     t = a->mUnk_064 - a->mUnk_060;
     a->mUnk_060 = a->mUnk_060 + (s32) (((s64) t * k + 0x800) >> 12);
-    a->mUnk_068 = data_0215d4b4[((u16) a->mUnk_060 >> 4) * 2];
-    a->mUnk_06a = data_0215d4b4[((u16) a->mUnk_060 >> 4) * 2 + 1];
+    a->mUnk_068 = gPairsByAngle[((u16) a->mUnk_060 >> 4) * 2];
+    a->mUnk_06a = gPairsByAngle[((u16) a->mUnk_060 >> 4) * 2 + 1];
     if (b->mUnk_48 & 0x10000) {
         a->mUnk_0e8 = a->mUnk_0e8 + (s32) (((s64) (0x14cd - a->mUnk_0e8) * 0xcd + 0x800) >> 12);
     } else {
@@ -343,7 +343,7 @@ void func_02075eb8(void) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
-    if (func_0203c880(func_0207a974(data_021759c0->mUnk_62)->mIndex) != 0) {
+    if (func_0203c880(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
         r = &data_0217561c->mUnk_498;
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     }
@@ -388,7 +388,7 @@ void func_02075d08(s32 a) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
-    if (func_0203c880(func_0207a974(data_021759c0->mUnk_62)->mIndex) != 0) {
+    if (func_0203c880(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
         r = &data_0217561c->mUnk_498;
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     }
@@ -463,7 +463,7 @@ s32 func_02075a94(Unk02061808 *p) {
                         func_0207bd6c(&p->mUnk_1d0, q);
                     }
                 }
-                if (func_0203c880(func_0207a974(data_021759c0->mUnk_62)->mIndex) != 0) {
+                if (func_0203c880(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
                     b = &data_0217561c->mUnk_498;
                     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
                 }
@@ -555,7 +555,7 @@ void func_020757d8(void) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
-    if (func_0203c880(func_0207a974(data_021759c0->mUnk_62)->mIndex) != 0) {
+    if (func_0203c880(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
         b = &data_0217561c->mUnk_498;
         b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     }
@@ -691,14 +691,14 @@ void func_02074e6c(Unk02061808 *p) {
         func_0207a948(&p->mUnk_018, p->mUnk_210);
         p->mUnk_018.y = p->mUnk_018.y + 0x6000;
     }
-    o = func_0207a974(p->mUnk_210);
+    o = GetKart(p->mUnk_210);
     a = o->mUnk_138;
     i = (u16) ((s32) (((s64) q->mUnk_18.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
     j = (u16) ((s32) (((s64) q->mUnk_18.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
     k = (u16) ((s32) (((s64) q->mUnk_24.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
     l = (u16) ((s32) (((s64) q->mUnk_24.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m0, &o->mUnk_120, data_0215d4b4[(o->mUnk_2c0 >> 4) * 2],
-                                           data_0215d4b4[(o->mUnk_2c0 >> 4) * 2 + 1]);
+    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m0, &o->mUnk_120, gPairsByAngle[(o->mUnk_2c0 >> 4) * 2],
+                                           gPairsByAngle[(o->mUnk_2c0 >> 4) * 2 + 1]);
     Vec3MultiplyMatrix3x3(&a, m0, &a);
     b = a;
     c = b;
@@ -706,10 +706,10 @@ void func_02074e6c(Unk02061808 *p) {
     func_02074b00_inline(&n, &d, -q->mUnk_18.z);
     func_020397a8(&data_usa_02154fc4, &a, &f);
     func_020397a8(&c, &f, &g);
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m2, &g, data_0215d4b4[(i >> 4) * 2],
-                                           data_0215d4b4[(i >> 4) * 2 + 1]);
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m3, &f, data_0215d4b4[(j >> 4) * 2],
-                                           data_0215d4b4[(j >> 4) * 2 + 1]);
+    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m2, &g, gPairsByAngle[(i >> 4) * 2],
+                                           gPairsByAngle[(i >> 4) * 2 + 1]);
+    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m3, &f, gPairsByAngle[(j >> 4) * 2],
+                                           gPairsByAngle[(j >> 4) * 2 + 1]);
     Matrix3x3Multiply(m3, m2, m4);
     Vec3MultiplyMatrix3x3(&d, m4, &d);
     func_02074b00_inline(&t, &d, q->mUnk_18.z);
@@ -720,10 +720,10 @@ void func_02074e6c(Unk02061808 *p) {
     g.x = -g.x;
     g.y = -g.y;
     g.z = -g.z;
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m5, &g, data_0215d4b4[(k >> 4) * 2],
-                                           data_0215d4b4[(k >> 4) * 2 + 1]);
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m6, &f, data_0215d4b4[(l >> 4) * 2],
-                                           data_0215d4b4[(l >> 4) * 2 + 1]);
+    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m5, &g, gPairsByAngle[(k >> 4) * 2],
+                                           gPairsByAngle[(k >> 4) * 2 + 1]);
+    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m6, &f, gPairsByAngle[(l >> 4) * 2],
+                                           gPairsByAngle[(l >> 4) * 2 + 1]);
     Matrix3x3Multiply(m5, m2, m5);
     Matrix3x3Multiply(m6, m3, m6);
     Matrix3x3Multiply(m6, m5, m7);
@@ -734,7 +734,7 @@ void func_02074e6c(Unk02061808 *p) {
     if (data_021759c0->mUnk_08 != 4 && data_021759c0->mUnk_08 != 2) {
         if (func_01ffdee4(&p->mUnk_024, (u32 *) &p->mUnk_134, 0, data_usa_021656c0 >> 1, 2, -2, &w, NULL, NULL, NULL,
                           NULL, NULL, NULL, NULL) != 0) {
-            o = func_0207a974(p->mUnk_210);
+            o = GetKart(p->mUnk_210);
             v = &o->mUnk_120;
             k = Vec3Dot(v, &w);
             w.x = (s32) (((s64) o->mUnk_120.x * k) >> 12);
@@ -747,7 +747,7 @@ void func_02074e6c(Unk02061808 *p) {
 }
 
 void func_02074b00(Unk02061808 *p) {
-    Unk0206bcb0 *o = func_0207a974(p->mUnk_210);
+    Unk0206bcb0 *o = GetKart(p->mUnk_210);
     Unk020748b8_218 *q = p->mUnk_218;
     Vec3 a;
     Vec3 b;
@@ -786,8 +786,8 @@ void func_02074b00(Unk02061808 *p) {
         func_02039860(&d, &d);
     }
     Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m, &data_usa_02154fc4,
-                                           data_0215d4b4[(data_usa_021656a0 >> 4) * 2],
-                                           data_0215d4b4[(data_usa_021656a0 >> 4) * 2 + 1]);
+                                           gPairsByAngle[(data_usa_021656a0 >> 4) * 2],
+                                           gPairsByAngle[(data_usa_021656a0 >> 4) * 2 + 1]);
     Vec3MultiplyMatrix3x3(&d, m, &d);
     d.x = (s32) (((s64) d.x * 0xfae) >> 12);
     d.y = (s32) (((s64) d.y * 0xfae) >> 12);

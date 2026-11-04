@@ -45,9 +45,9 @@ void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
     x = (u16) ((q->mUnk_0c.x >> 12) * 0xb6);
     y = (u16) ((q->mUnk_0c.y >> 12) * 0xb6);
     z = (u16) ((q->mUnk_0c.z >> 12) * 0xb6);
-    Matrix4x3FromPairX((s32 *) &m1, data_0215d4b4[(x >> 4) * 2], data_0215d4b4[(x >> 4) * 2 + 1]);
-    Matrix4x3FromPairY(&m2, data_0215d4b4[(y >> 4) * 2], data_0215d4b4[(y >> 4) * 2 + 1]);
-    Matrix4x3FromPairZ((s32 *) &m3, data_0215d4b4[(z >> 4) * 2], data_0215d4b4[(z >> 4) * 2 + 1]);
+    Matrix4x3FromPairX((s32 *) &m1, gPairsByAngle[(x >> 4) * 2], gPairsByAngle[(x >> 4) * 2 + 1]);
+    Matrix4x3FromPairY(&m2, gPairsByAngle[(y >> 4) * 2], gPairsByAngle[(y >> 4) * 2 + 1]);
+    Matrix4x3FromPairZ((s32 *) &m3, gPairsByAngle[(z >> 4) * 2], gPairsByAngle[(z >> 4) * 2 + 1]);
     Matrix4x3Multiply(&m1, &m3, &r);
     Matrix4x3Multiply(&m2, &r, &r);
     x0 = -r.mUnk_00[0].x;

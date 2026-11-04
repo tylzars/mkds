@@ -49,7 +49,7 @@ void func_0210298c(Unk02102674 *p) {
             if (p->mUnk_130[i] == 0) {
                 continue;
             }
-            r = func_0207a974(i);
+            r = GetKart(i);
             if (r->mUnk_7c & 0x402020) {
                 continue;
             }

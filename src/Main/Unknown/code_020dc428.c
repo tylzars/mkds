@@ -315,8 +315,8 @@ void func_020dccc8(Unk020dc474 *p) {
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 i = (u16) (((r->mUnk_00 >> 32) * 0x10000) >> 32) >> 4;
                 j++;
-                q->x = p->mUnk_a0.x + (s32) (((s64) data_0215d4b4[i * 2] * d) >> 12);
-                q->z = p->mUnk_a0.z + (s32) (((s64) data_0215d4b4[i * 2 + 1] * d) >> 12);
+                q->x = p->mUnk_a0.x + (s32) (((s64) gPairsByAngle[i * 2] * d) >> 12);
+                q->z = p->mUnk_a0.z + (s32) (((s64) gPairsByAngle[i * 2 + 1] * d) >> 12);
                 if (j > 5) {
                     break;
                 }
@@ -348,14 +348,14 @@ void func_020dccc8(Unk020dc474 *p) {
     func_020d8474(&p->mUnk_100, &p->mUnk_00.mPos);
     if (!(p->mUnk_00.mFlags & 0x800)) {
         u = func_02061fa4();
-        o = func_0207a974(u);
+        o = GetKart(u);
         if (func_0206c0e0(o) == 0) {
             e = p->mUnk_1dc;
             if ((s64) (o->mUnk_80.x - p->mUnk_a0.x) * (o->mUnk_80.x - p->mUnk_a0.x) +
                     (s64) (o->mUnk_80.z - p->mUnk_a0.z) * (o->mUnk_80.z - p->mUnk_a0.z) <
                 (s64) e * e) {
-                p->mUnk_1f0 = &func_0207a974(u)->mUnk_80;
-                p->mUnk_1f4 = &func_0207a974(u)->mUnk_a4;
+                p->mUnk_1f0 = &GetKart(u)->mUnk_80;
+                p->mUnk_1f4 = &GetKart(u)->mUnk_a4;
                 p->mUnk_00.mUnk_80.mUnk_10 = 1;
                 p->mUnk_00.mUnk_80.mUnk_12 = 1;
             }

@@ -15,7 +15,7 @@ void func_0210a5a8(Unk0206bcb0 *a, Unk0210a5a8 *b) {
         a->mUnk_00.mUnk_2c = (void (*)(void *, void *, u32)) func_0210aa14;
     }
     a->mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a76c;
-    if (func_0205e0a0() == 2 || a->mIndex != data_021759c0->mUnk_62) {
+    if (func_0205e0a0() == 2 || a->mIndex != data_021759c0->mEntryIndex) {
         b->mUnk_3c = func_0210a63c;
     } else {
         b->mUnk_3c = func_0210aa0c;

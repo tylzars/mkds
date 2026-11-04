@@ -234,7 +234,7 @@ void *func_0208b498(u32 a, Vec3 *b, u32 c, s32 d) {
         }
     }
     if (q != NULL) {
-        w = func_0207a974(c)->mUnk_3b0;
+        w = GetKart(c)->mUnk_3b0;
         w.x = ((s64) w.x * d) >> 12;
         w.y = ((s64) w.y * d) >> 12;
         w.z = ((s64) w.z * d) >> 12;

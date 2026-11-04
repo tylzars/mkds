@@ -18,7 +18,7 @@ void func_ov001_021882b8(void) {
     Unk02188950 *obj;
     Unk0218d87c *table;
 
-    if (!(data_021759c0->mUnk_08 == 4 ? func_020a1084((u16) data_021759c0->mUnk_62) : 0)) {
+    if (!(data_021759c0->mUnk_08 == 4 ? func_020a1084((u16) data_021759c0->mEntryIndex) : 0)) {
         for (i = data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : (u8) 0;
              i <= (data_021759c0->mUnk_08 == 4 ? func_ov001_02181b30() : (u16) 0); i++) {
             obj = data_021759c0->mUnk_08 == 4 ? func_ov001_02181b68(i) : 0;

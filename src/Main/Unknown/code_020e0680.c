@@ -120,7 +120,7 @@ void *func_020e2d5c(void) {
 void func_020e2ccc(Unk020e20a8 *a) {
     u16 b;
 
-    b = data_021759c0->mUnk_62;
+    b = data_021759c0->mEntryIndex;
     if (a->mUnk_038 == 0) {
         return;
     }
@@ -181,7 +181,7 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
         return;
     }
     k = b->mUnk_10c >> 4;
-    tbl = data_0215d4b4;
+    tbl = gPairsByAngle;
     x = (s32) (((s64) b->mUnk_110 * tbl[k * 2] + 0x800) >> 12);
     y = (s32) (((s64) b->mUnk_110 * tbl[k * 2 + 1] + 0x800) >> 12);
     Matrix4x3FromPairX(buf, x, y);
@@ -418,7 +418,7 @@ void func_020e230c(Unk0217b79c *a) {
                     } else {
                         f = (float) (v << 12) - 0.5f;
                     }
-                    w = data_0215d4b4[((((u16) (((s64) (s32) f * 0xB60B60B60B + 0x80000000000) >> 44)) >> 4) << 1) + 1];
+                    w = gPairsByAngle[((((u16) (((s64) (s32) f * 0xB60B60B60B + 0x80000000000) >> 44)) >> 4) << 1) + 1];
                 } else {
                     w = 0x2000;
                 }
@@ -449,7 +449,7 @@ void func_020e20a8(Unk020e20a8 *a) {
 
     b = (u32) FindCourseMapObjFile(gCarANsbmdName);
     c = (u32) FindCourseMapObjFile(gTruckANsbmdName);
-    a->mUnk_038 = data_021759c0->mUnk_08 != 4 && func_0203c5e4() == 0 && (u16) data_021759c0->mUnk_62 < 8;
+    a->mUnk_038 = data_021759c0->mUnk_08 != 4 && func_0203c5e4() == 0 && (u16) data_021759c0->mEntryIndex < 8;
     a->mUnk_03c = 0;
     func_020ea588(&gCarA, (void *) b, NULL);
     func_020ea588(&gTruckA, (void *) c, NULL);

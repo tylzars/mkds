@@ -145,7 +145,7 @@ void func_ov001_0218a074(u32 a, Unk02188950 *b) {
     if (active != 0) {
         if (func_ov001_021871f8(b, 1) != 0) {
             if (data_021759c0->mUnk_08 == 4) {
-                active = func_020a1084((u16) data_021759c0->mUnk_62);
+                active = func_020a1084((u16) data_021759c0->mEntryIndex);
             } else {
                 active = 0;
             }

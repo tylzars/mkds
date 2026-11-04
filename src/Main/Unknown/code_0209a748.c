@@ -75,7 +75,7 @@ void func_0209b388(Unk0209a7dc *a, Vec3 *b, Vec3 *c, Vec3 *d) {
     } else {
         r = func_020d22d0();
         z = (u16) func_0209b388_inline(r, 0x10000);
-        x = data_0215d4b4[((u16) z >> 4) * 2 + 1];
+        x = gPairsByAngle[((u16) z >> 4) * 2 + 1];
         x = ((s64) x * 0x1800) >> 12;
         a->mUnk_000.mUnk_10.x = x;
         a->mUnk_000.mUnk_10.z = x;
@@ -125,7 +125,7 @@ u8 func_0209b270(Unk0209a7dc *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
             }
             func_020f8ddc(b);
         } else {
-            t = func_0207a974((u16) data_021759c0->mUnk_62);
+            t = GetKart((u16) data_021759c0->mEntryIndex);
             func_0209b388(a, &t->mUnk_80, &t->mUnk_68, &t->mUnk_a4);
         }
     }
@@ -153,15 +153,15 @@ void func_0209b088(void *a, Unk0209a7dc *b) {
     func_020e6d88(&b->mUnk_000.mMatrix.mUnk_00[1]);
     func_01ff9048(0x19, func_020e6bd0(&b->mUnk_000.mPos), 0xc);
     if (b->mUnk_0a2 != 0) {
-        Matrix3x3FromPairZ(f0, data_0215d4b4[(b->mUnk_0a2 >> 4) * 2], data_0215d4b4[(b->mUnk_0a2 >> 4) * 2 + 1]);
+        Matrix3x3FromPairZ(f0, gPairsByAngle[(b->mUnk_0a2 >> 4) * 2], gPairsByAngle[(b->mUnk_0a2 >> 4) * 2 + 1]);
         func_01ff9048(0x1a, f0, 9);
     }
     func_01ff9048(0x1b, &b->mUnk_000.mUnk_1c, 3);
     func_0209b688(gCrab, (u16) (b->mUnk_0a8 >> 12));
     func_0209bbd0(a, gCrab);
     func_0209bb2c(a, gCrab, b);
-    Matrix3x3FromPairZ(f1, data_0215d4b4[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2],
-                       data_0215d4b4[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2 + 1]);
+    Matrix3x3FromPairZ(f1, gPairsByAngle[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2],
+                       gPairsByAngle[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, f1, 9);
     func_0209b688(gCrabHand, (u16) (b->mUnk_0ac >> 12));
     func_0209bbd0(a, gCrabHand);
@@ -191,7 +191,7 @@ void func_0209af98(Unk0209af98 *p) {
 }
 
 s16 func_0209af80(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2];
+    return gPairsByAngle[(a >> 4) * 2];
 }
 
 s32 func_0209af64(s32 a, s32 b) {

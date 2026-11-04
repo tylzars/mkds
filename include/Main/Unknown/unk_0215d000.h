@@ -21,7 +21,7 @@ extern Unk0215d064 data_0215d0a4[];
 extern Unk0215d064 data_0215d0ac[];
 
 // Objects whose layout isn't known yet.
-extern const s16 data_0215d4b4[];
+extern const s16 gPairsByAngle[];
 extern s16 data_0215d6b4[];
 
 extern u16 data_0215d00c[];

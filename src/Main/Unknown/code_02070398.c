@@ -149,7 +149,7 @@ void func_02072eb8(Unk0206bcb0 *p) {
         r = func_020410a4(i, &a, &c);
     }
     i = ((u16) ((s32) (((s64) c.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
-    Matrix3x3FromPairY(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+    Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m, &b);
     if (data_021759c0->mUnk_08 != 2 && gCourseMap->mUnk_60 != 0) {
         (e = &(data_027e00c8)[p->mIndex])->mUnk_1f0.mUnk_00 = func_02040f78((u16) p->mUnk_3c4);
@@ -163,13 +163,13 @@ void func_02072eb8(Unk0206bcb0 *p) {
         Vec3AddScaled((s32) (((s64) data_usa_02165504 * y) >> 12), &b, &a, &a);
         if (c.x != 0 && y != 0) {
             i = ((u16) ((s32) (((s64) c.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
-            l = data_0215d4b4[i * 2];
+            l = gPairsByAngle[i * 2];
             i = (s32) ((l * -y + 0x800) >> 12);
             a.y += (s32) (((s64) i * data_usa_02165504 + 0x800) >> 12);
         }
         if (c.z != 0 && x != 0) {
             i = ((u16) ((s32) (((s64) c.z * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
-            l = data_0215d4b4[i * 2];
+            l = gPairsByAngle[i * 2];
             i = (s32) ((l * x + 0x800) >> 12);
             a.y += (s32) (((s64) i * data_usa_02165504 + 0x800) >> 12);
         }
@@ -290,7 +290,7 @@ void func_02072930(Unk0206bcb0 *p) {
     func_02080e9c(p);
     func_0208c5d0(func_0208c5b8(p->mIndex));
     func_020719d0(p);
-    if (p->mIndex == data_021759c0->mUnk_62) {
+    if (p->mIndex == data_021759c0->mEntryIndex) {
         func_0210fa74(0);
     }
     func_0210a664(p);
@@ -658,7 +658,7 @@ void func_02071f44(Unk0206bcb0 *p) {
 
 void func_02071e28(Unk0206bcb0 *p) {
     p->mUnk_7c = 0;
-    if (p->mIndex == data_021759c0->mUnk_62) {
+    if (p->mIndex == data_021759c0->mEntryIndex) {
         p->mUnk_7c |= 1;
         if (data_021759c0->mUnk_08 == 5) {
             p->mUnk_7c |= 0x200;
@@ -670,7 +670,7 @@ void func_02071e28(Unk0206bcb0 *p) {
     } else if (data_021759c0->mUnk_08 == 5) {
         p->mUnk_7c |= 0x400;
     }
-    if (data_021759c0->mUnk_68[p->mIndex].mUnk_08.mUnk_00 == 2) {
+    if (data_021759c0->mCurrentEntries[p->mIndex].mUnk_08.mKind == 2) {
         p->mUnk_7c |= 4;
         p->mUnk_384 = 0;
     }
@@ -852,10 +852,10 @@ void func_020719d0(Unk0206bcb0 *p) {
     t.mUnk_14 = e;
     t.mUnk_18 = f;
     t.mUnk_1c = g;
-    if (p->mIndex != data_021759c0->mUnk_62) {
+    if (p->mIndex != data_021759c0->mEntryIndex) {
         b = c;
     }
-    if (p->mIndex != data_021759c0->mUnk_62) {
+    if (p->mIndex != data_021759c0->mEntryIndex) {
         a = c;
     }
     t.mUnk_20 = b;
@@ -1214,7 +1214,7 @@ void func_020708a4(Unk0206bcb0 *p) {
     b.y = gCourseMap->mUnk_34[*gCourseMap->mUnk_fc].mUnk_0c.y;
     b.z = gCourseMap->mUnk_34[*gCourseMap->mUnk_fc].mUnk_0c.z;
     k = (u16) (((s64) b.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >> 4;
-    Matrix3x3FromPairY(m1, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
+    Matrix3x3FromPairY(m1, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m1, &e);
     func_021035ac(p->mIndex);
 
@@ -1320,8 +1320,8 @@ void func_020708a4(Unk0206bcb0 *p) {
                 p->mUnk_234 = -5000;
             }
         }
-        Matrix4x3FirstThreeRowsFromVec3AndPair(&m2, &p->mUnk_120, data_0215d4b4[((u16) p->mUnk_234 >> 4) * 2],
-                                               data_0215d4b4[((u16) p->mUnk_234 >> 4) * 2 + 1]);
+        Matrix4x3FirstThreeRowsFromVec3AndPair(&m2, &p->mUnk_120, gPairsByAngle[((u16) p->mUnk_234 >> 4) * 2],
+                                               gPairsByAngle[((u16) p->mUnk_234 >> 4) * 2 + 1]);
         Vec3MultiplyMatrix3x3(&n, &m2.mUnk_00[0].x, &n);
         p->mUnk_244 = n;
         func_01ff9f60(p, &n);
@@ -1361,7 +1361,7 @@ void func_020705fc(Unk0206bcb0 *p, u32 b) {
     a.z = gCourseMap->mUnk_34[i].mUnk_00.z;
     k = (u16) (((s64) gCourseMap->mUnk_34[gCourseMap->mUnk_fc[b]].mUnk_0c.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >>
         4;
-    Matrix3x3FromPairY(m, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
+    Matrix3x3FromPairY(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m, &e);
     if (data_021759c0->mUnk_08 == 2) {
         Vec3Sub(&a, &p->mUnk_80, &v);
@@ -1418,9 +1418,9 @@ void func_02070484(Unk0206bcb0 *p, Vec4 *q) {
     p->mUnk_234 = p->mUnk_234 + p->mUnk_3e8;
     k = p->mUnk_236;
     t = (u16) p->mUnk_234;
-    Matrix4x3FromPairY(&m1, data_0215d4b4[(k >> 4) * 2], data_0215d4b4[(k >> 4) * 2 + 1]);
+    Matrix4x3FromPairY(&m1, gPairsByAngle[(k >> 4) * 2], gPairsByAngle[(k >> 4) * 2 + 1]);
     Vec3MultiplyMatrix4x3(&data_02154f88, &m1, &v1);
-    Matrix4x3FromVec3AndPair(&m2, &v1, data_0215d4b4[(t >> 4) * 2], data_0215d4b4[(t >> 4) * 2 + 1]);
+    Matrix4x3FromVec3AndPair(&m2, &v1, gPairsByAngle[(t >> 4) * 2], gPairsByAngle[(t >> 4) * 2 + 1]);
     Vec3MultiplyMatrix4x3(&data_02154f7c, &m2, &v2);
     func_01ffd0e8(q, &data_02154f7c, &v2);
     if (p->mUnk_48 & 0x80000000) {

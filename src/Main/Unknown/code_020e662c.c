@@ -280,7 +280,7 @@ void func_020e66e4(Unk020e6488 *p, Unk02012f58 *q, s32 r, Vec3 *v, s32 a5, u16 a
     func_01ff9048(0x19, q, 0xc);
     if (r != 0) {
         i = r >> 4;
-        Matrix3x3FromPairZ((s32 *) *(void **) data_0217b858, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+        Matrix3x3FromPairZ((s32 *) *(void **) data_0217b858, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
         func_01ff9048(0x1a, *(void **) data_0217b858, 9);
     }
     if (v != NULL) {

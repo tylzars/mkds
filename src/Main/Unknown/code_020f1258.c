@@ -148,7 +148,7 @@ int func_020f1258(int a0, int i, s32 c, u32 b) {
     s64 t2;
 
     a = (Unk020f5d6c *) a0;
-    p = func_0207a974(i);
+    p = GetKart(i);
     x = (u16) (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
                    ? (u16) (a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)
                    : 8);

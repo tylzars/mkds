@@ -13,14 +13,15 @@
 u16 func_020b4d9c(void) {
     Unk021759c0 *p = data_021759c0;
 
-    return p->mUnk_00c == 1 ? p->mUnk_063 : p->mUnk_62;
+    return p->mUnk_00c == 1 ? p->mUnk_063 : p->mEntryIndex;
 }
 
 u16 func_020b4d2c(void) {
     u16 a;
 
-    a = func_0203c8c0((u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mUnk_62));
-    if (func_0203c880((u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mUnk_62)) == 0) {
+    a = func_0203c8c0((u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mEntryIndex));
+    if (func_0203c880((u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mEntryIndex)) ==
+        0) {
         a = a - 1;
     }
     return a;
@@ -41,8 +42,8 @@ void func_020b4cec(s32 *a, s32 b) {
 }
 
 void func_020b4cb0(s32 *a, s32 b) {
-    s32 s = data_0215d4b4[(b >> 4) * 2];
-    s32 c = data_0215d4b4[(b >> 4) * 2 + 1];
+    s32 s = gPairsByAngle[(b >> 4) * 2];
+    s32 c = gPairsByAngle[(b >> 4) * 2 + 1];
 
     a[0] = c;
     a[1] = s;
@@ -51,11 +52,11 @@ void func_020b4cb0(s32 *a, s32 b) {
 }
 
 void func_020b4c74(s32 *a, s32 b) {
-    s32 c = data_0215d4b4[(b >> 4) * 2 + 1];
+    s32 c = gPairsByAngle[(b >> 4) * 2 + 1];
     s32 s;
 
     a[0] = -c;
-    s = data_0215d4b4[(b >> 4) * 2];
+    s = gPairsByAngle[(b >> 4) * 2];
     a[1] = s;
     a[2] = s;
     a[3] = c;
@@ -63,8 +64,8 @@ void func_020b4c74(s32 *a, s32 b) {
 
 void func_020b4bf8(s32 *a, s32 b, s32 c) {
     s32 i = c >> 4;
-    s32 s = data_0215d4b4[i * 2];
-    s32 v1 = data_0215d4b4[i * 2 + 1];
+    s32 s = gPairsByAngle[i * 2];
+    s32 v1 = gPairsByAngle[i * 2 + 1];
     s32 v;
 
     if (b != 0) {

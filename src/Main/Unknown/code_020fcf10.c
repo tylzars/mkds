@@ -26,11 +26,11 @@ void func_020fcf10(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         p0->mUnk_22c.z = -p0->mUnk_22c.z;
     }
     func_020397a8(&p0->mUnk_22c, &p->mUnk_244, &t);
-    s = (s32) (((s64) c * data_0215d4b4[(b >> 4) * 2 + 1]) >> 12);
+    s = (s32) (((s64) c * gPairsByAngle[(b >> 4) * 2 + 1]) >> 12);
     p0->mUnk_250.x = (s32) (((s64) t.x * s) >> 12);
     p0->mUnk_250.y = (s32) (((s64) t.y * s) >> 12);
     p0->mUnk_250.z = (s32) (((s64) t.z * s) >> 12);
-    s = (s32) (((s64) c * data_0215d4b4[(b >> 4) * 2]) >> 12);
+    s = (s32) (((s64) c * gPairsByAngle[(b >> 4) * 2]) >> 12);
     Vec3AddScaled(s, &p0->mUnk_22c, &p0->mUnk_250, &p0->mUnk_250);
     Vec3AddScaled(0x1e000, &p0->mUnk_22c, &p0->mUnk_250, &t);
     if (func_0206c0b0(p) == 0) {

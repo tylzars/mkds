@@ -215,7 +215,7 @@ void func_020dee8c(void) {
     }
     data_0217b6fc += 0xca;
     n = data_0217b6fc >> 4;
-    Matrix4x3FromPairY(&data_0217b720, data_0215d4b4[n * 2], data_0215d4b4[n * 2 + 1]);
+    Matrix4x3FromPairY(&data_0217b720, gPairsByAngle[n * 2], gPairsByAngle[n * 2 + 1]);
 }
 
 void func_020dec4c(void *a, Unk020de6a8 *b, u32 c, u32 d) {
@@ -311,7 +311,7 @@ void func_020deb2c(Vec3 *a, void *b, u32 c, int d, u32 e) {
     u32 v2;
     v2 = (u32) * (u16 *) ((u32) b + 0x74);
     if (d == 0) {
-        if (v2 == data_021759c0->mUnk_62) {
+        if (v2 == data_021759c0->mEntryIndex) {
             v1 = func_0208b7bc((u32) 0x2d, (const Vec3 *) a);
             if (v1 != NULL) {
                 func_02081f10(v1, v2, (u32) 0x1e);
@@ -342,7 +342,7 @@ u8 func_020dea50(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d) {
     a->mUnk_0a4 = 0;
     a->mUnk_000.mFlags |= data_021585a4;
     m = a->mUnk_000.mUnk_78 & 3;
-    v = data_021759c0->mUnk_68[b->mUnk_74].mUnk_08.mUnk_00;
+    v = data_021759c0->mCurrentEntries[b->mUnk_74].mUnk_08.mKind;
     if ((u32) v <= 3) {
         if (((1 << v) & 0xd) != 0) {
             n = TRUE;

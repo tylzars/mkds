@@ -25,8 +25,8 @@ s64 func_02040d24(const UnkPair020b502c *a, const UnkPair020b502c *b) {
 
 static inline s32 func_02040bc0_inline(s8 i) {
     BOOL f = FALSE;
-    if ((u32) data_021759c0->mUnk_68[(u16) i].mUnk_08.mUnk_00 <= 3 &&
-        ((1 << data_021759c0->mUnk_68[(u16) i].mUnk_08.mUnk_00) & 0xd) != 0) {
+    if ((u32) data_021759c0->mCurrentEntries[(u16) i].mUnk_08.mKind <= 3 &&
+        ((1 << data_021759c0->mCurrentEntries[(u16) i].mUnk_08.mKind) & 0xd) != 0) {
         f = TRUE;
     }
     return f;
@@ -35,7 +35,7 @@ static inline s32 func_02040bc0_inline(s8 i) {
 s32 func_02040bc0(void) {
     BOOL r = FALSE;
     BOOL g;
-    s8 i = data_021759c0->mUnk_62;
+    s8 i = data_021759c0->mEntryIndex;
 
     if (i == -1 || func_02040bc0_inline(i) == 0) {
         r = TRUE;
@@ -192,7 +192,7 @@ void func_02040750(Unk0217561c_14 *a, s32 b) {
     }
     func_0203f5f0(&a->mUnk_0c[5].mUnk_02, &a->mUnk_0c[5].mUnk_03, &a->mUnk_0c[5].mUnk_00, 0,
                   data_0217561c->mUnk_000[0].mUnk_00);
-    if (b == data_021759c0->mUnk_62) {
+    if (b == data_021759c0->mEntryIndex) {
         a->mUnk_30 = a->mUnk_30 | 1;
     }
     a->mUnk_3c = (a->mUnk_3c & ~0xf) | ((u16) (b + 1) & 0xf);
@@ -325,7 +325,7 @@ void func_020401ac(void) {
     }
     func_020401ac_inline4(&data_0217561c->mUnk_47c, s);
     data_0217561c->mUnk_494 = s;
-    data_021759c0->mUnk_1e8.mUnk_5c = s;
+    data_021759c0->mNextHeader.mUnk_5c = s;
     a = func_0200f5ac();
     c = func_0200f5ac();
     d = func_0200f5ac();

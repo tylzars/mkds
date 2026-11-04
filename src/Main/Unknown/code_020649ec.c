@@ -213,7 +213,7 @@ void func_020649ec(Unk0206bcb0 *a, void (**b)(Unk0206bcb0 *)) {
     Unk0206bcb0_590_08 *d;
 
     GetHeap(func_020364e8());
-    c = data_021759c0->mUnk_68[a->mIndex].mUnk_08.mUnk_00 == 3;
+    c = data_021759c0->mCurrentEntries[a->mIndex].mUnk_08.mKind == 3;
     a->mKartModelsEntry = func_02079bf0(a->mIndex);
     func_0208adc8(&a->mKartModelsEntry->mUnk_040, 1);
     if (data_021759c0->mUnk_08 == 5) {

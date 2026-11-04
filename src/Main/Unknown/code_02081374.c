@@ -20,7 +20,7 @@ void func_020813ec(s32 a, Vec3 *b) {
     Vec3s16 h;
     Vec3 v;
     Vec3 w;
-    Unk0206bcb0 *q = func_0207a974(a);
+    Unk0206bcb0 *q = GetKart(a);
     Unk0217ae84 *e = &data_0217ae84[a];
     Unk0201ca6c *p;
 

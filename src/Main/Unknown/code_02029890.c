@@ -10,33 +10,33 @@ Unk02029930 *func_02029930(void) {
 #pragma thumb off
 
 void func_0202991c(u32 p0) {
-    data_021759c0->mUnk_1e8.mUnk_14 = p0;
+    data_021759c0->mNextHeader.mUnk_14 = p0;
 }
 
 void func_02029908(u32 p0) {
-    data_021759c0->mUnk_1e8.mUnk_08 = p0;
+    data_021759c0->mNextHeader.mUnk_08 = p0;
 }
 
 void func_020298f4(u32 p0) {
-    data_021759c0->mUnk_1e8.mCourseId = p0;
+    data_021759c0->mNextHeader.mCourseId = p0;
 }
 
 void func_020298e0(u32 p0) {
-    data_021759c0->mUnk_1e8.mUnk_10 = p0;
+    data_021759c0->mNextHeader.mUnk_10 = p0;
 }
 
 void func_020298cc(u32 p0) {
-    data_021759c0->mUnk_1e8.mUnk_57 = (u8) p0;
+    data_021759c0->mNextHeader.mUnk_57 = (u8) p0;
 }
 
 void func_020298b8(u32 p0) {
-    data_021759c0->mUnk_1e8.mUseTeams = (u8) p0;
+    data_021759c0->mNextHeader.mUseTeams = (u8) p0;
 }
 
 void func_020298a4(u32 p0) {
-    data_021759c0->mUnk_1e8.mUnk_1c = p0;
+    data_021759c0->mNextHeader.mUnk_1c = p0;
 }
 
 void func_02029890(u32 p0) {
-    data_021759c0->mUnk_1e8.mCourseListMode = p0;
+    data_021759c0->mNextHeader.mCourseListMode = p0;
 }

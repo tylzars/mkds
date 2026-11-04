@@ -209,7 +209,7 @@ void func_0205d558(s32 a) {
         }
         e->mUnk_02 = r;
         for (k = 0; k < (u32) data_021759c0->mKartCount; k++) {
-            if (j == data_021759c0->mUnk_68[k].mUnk_08.mTeamIndex) {
+            if (j == data_021759c0->mCurrentEntries[k].mUnk_08.mTeamIndex) {
                 n = n + data_0217aa1c->mUnk_000[(u8) ((data_021759c0->mUnk_60 - 1) % 4)][(u8) (s32) (u8) k].mUnk_00;
             }
         }
@@ -321,7 +321,7 @@ s32 func_0205d190(void) {
 
     p = data_021759c0;
     q = data_0217aa1c;
-    c = p->mUnk_62;
+    c = p->mEntryIndex;
     a = q->mUnk_140;
     d = (u8) c;
     v = q->mUnk_000[(u8) ((p->mUnk_60 - 1) % 4)][(u8) d].mUnk_00;

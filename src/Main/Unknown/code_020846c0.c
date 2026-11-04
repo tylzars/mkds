@@ -396,7 +396,7 @@ void func_020846c0(void *a) {
         }
         data_0217ae94[i] = NULL;
         data_0217ae74[i] = NULL;
-        if (i == data_021759c0->mUnk_62) {
+        if (i == data_021759c0->mEntryIndex) {
             data_0217ae8c[i] = 0;
         } else {
             data_0217ae8c[i] = 1;

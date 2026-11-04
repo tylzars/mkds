@@ -38,7 +38,7 @@
 void func_ov001_0218bee4(Unk02188950 *a) {
     Unk0206bcb0 *unk;
 
-    unk = func_0207a974((u16) data_021759c0->mUnk_62);
+    unk = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 2, (s32(*)(Unk02188950 *)) func_ov001_0218c55c);
     func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_184), (s32) (a->mPrm->mUnk_188), (UnkFunc *) func_ov001_0218bfc8);
     func_ov001_0219b1c4(a->mNsbmd, (s32) (a->mPrm->mUnk_18c), (s32) (a->mPrm->mUnk_188), 0);
@@ -52,7 +52,7 @@ void func_ov001_0218bee4(Unk02188950 *a) {
 void func_ov001_0218bde8(Unk02188950 *a) {
     Unk0206bcb0 *unk;
 
-    unk = func_0207a974((u16) data_021759c0->mUnk_62);
+    unk = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 2, (s32(*)(Unk02188950 *)) func_ov001_0218c55c);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_134), (s32) (a->mPrm->mUnk_138));
     func_ov001_0219b1c4(a->mNsbmd, (s32) (a->mPrm->mUnk_13c), (s32) (a->mPrm->mUnk_138), 0);
@@ -145,7 +145,7 @@ void func_ov001_0218ba34(Unk02188950 *a) {
 void func_ov001_0218b9b4(Unk02188950 *a) {
     Unk0206bcb0 *unk;
 
-    unk = func_0207a974((u16) data_021759c0->mUnk_62);
+    unk = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_078), (s32) (a->mPrm->mUnk_07c));
     func_ov001_02188c48(a, a->mPrm->mUnk_20c, a->mPrm->mUnk_210);

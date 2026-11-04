@@ -46,7 +46,7 @@ void func_020f4884(Unk020f40dc *rec) {
         return;
     }
     if (data_021759c0->mUnk_08 == 5) {
-        if (data_021759c0->mUnk_62 == rec->mUnk_04->mUnk_1f8) {
+        if (data_021759c0->mEntryIndex == rec->mUnk_04->mUnk_1f8) {
             kind = (Unk020f40dc_Kind) rec->mUnk_00;
             func_020fe958(data_0217bc48[kind].mUnk_08);
         }
@@ -201,8 +201,8 @@ void func_020f41c4(Unk020f40dc *rec) {
         radius = 0x1800;
     }
     count = rec->mUnk_08;
-    va = (s32) (((s64) radius * data_0215d4b4[angle * 2]) >> 12);
-    vb = (s32) (((s64) radius * data_0215d4b4[angle * 2 + 1]) >> 12);
+    va = (s32) (((s64) radius * gPairsByAngle[angle * 2]) >> 12);
+    vb = (s32) (((s64) radius * gPairsByAngle[angle * 2 + 1]) >> 12);
     func_020f1048(&data_027e00cc[tab], count, rec->mUnk_14, owner->mIndex, &owner->mUnk_98);
     i = 0;
     if (i < count) {
@@ -526,7 +526,7 @@ void func_020f371c(Unk020f371c_Ref *in, Unk020f371c_Ref *out, u32 idx, s32 flag)
     found = FALSE;
     best = 0x5f592e1;
     if (idx < 8) {
-        other = func_0207a974(idx);
+        other = GetKart(idx);
         pos = &other->mUnk_98;
         {
             s64 sq = (s64) (((const Vec3 *) pos)->x - ((const Vec3 *) origin)->x) *

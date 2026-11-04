@@ -66,7 +66,7 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
             v1 = p->mState;
             if (v1 == 0 || v1 == 3) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if (data_021759c0->mUnk_68[a->mIndex].mUnk_08.mUnk_00 != 2) {
+                if (data_021759c0->mCurrentEntries[a->mIndex].mUnk_08.mKind != 2) {
                     if ((p->mUnk_00.mUnk_78 & 4) == 0) {
                         if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
                             t = 2;
@@ -87,7 +87,7 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
             }
             if (g == 1 && (v1 == 4 || (v1 == 5 && p->mUnk_a0 > 0x7800) || v1 == 1)) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if ((p->mUnk_00.mFlags & 0x800) == 0 || a->mIndex == data_021759c0->mUnk_62) {
+                if ((p->mUnk_00.mFlags & 0x800) == 0 || a->mIndex == data_021759c0->mEntryIndex) {
                     p->mUnk_104 = 1;
                     p->mUnk_b4 = p->mUnk_a0;
                     p->mUnk_b8 = p->mUnk_a4;
@@ -131,7 +131,7 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
             }
             if (v1 == 1) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if ((p->mUnk_00.mFlags & 0x800) == 0 || a->mIndex == data_021759c0->mUnk_62) {
+                if ((p->mUnk_00.mFlags & 0x800) == 0 || a->mIndex == data_021759c0->mEntryIndex) {
                     p->mUnk_104 = 1;
                     p->mUnk_b4 = p->mUnk_a0;
                     p->mUnk_b8 = p->mUnk_a4;
@@ -327,7 +327,7 @@ void func_02096a04(void *a, CoverPooHole *p) {
     L:
         e = p->mUnk_c8;
         k = ((u16) p->mUnk_e8 >> 4) * 2;
-        v1 = data_0215d4b4[k];
+        v1 = gPairsByAngle[k];
         r = (s32) (((s64) v1 * 0x7000) >> 12);
         if (r <= 0) {
             r = -r;
@@ -339,9 +339,9 @@ void func_02096a04(void *a, CoverPooHole *p) {
         f3[2] = 0;
         func_01ff9048(0x1c, f3, 3);
         j = (e >> 4) * 2;
-        Matrix3x3FromPairY(m, data_0215d4b4[j], data_0215d4b4[j + 1]);
+        Matrix3x3FromPairY(m, gPairsByAngle[j], gPairsByAngle[j + 1]);
         func_01ff9048(0x1a, m, 9);
-        Matrix3x3FromPairZ(m, v1, data_0215d4b4[k + 1]);
+        Matrix3x3FromPairZ(m, v1, gPairsByAngle[k + 1]);
         func_01ff9048(0x1a, m, 9);
     } else {
         t = p->mUnk_a0 >> 4;
@@ -381,7 +381,7 @@ void func_020968f4(Unk020968f4 *p) {
 }
 
 s32 func_020968dc(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2];
+    return gPairsByAngle[(a >> 4) * 2];
 }
 
 s32 func_020968c0(s32 a, s32 b) {

@@ -113,8 +113,8 @@ void func_020ea1d4(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
     func_020d8488((u32) &data_0217bb88, (u32) &v);
     data_0217b878 += 0x64;
     i = data_0217b878 >> 4;
-    c = data_0215d4b4[i * 2];
-    s = data_0215d4b4[i * 2 + 1];
+    c = gPairsByAngle[i * 2];
+    s = gPairsByAngle[i * 2 + 1];
     b = func_020ea1d4_inline(param_3->x, param_2->x, (s + 0x1000) >> 2);
     a = func_020ea1d4_inline(param_3->y, param_2->y, (c + 0x1000) >> 2);
     v.x = (s32) (((s64) v.x * b) >> 12);
@@ -739,8 +739,8 @@ void func_020e84b0(void) {
     a = ((u32) d << 4) >> 16;
     if (n > 0 && n < 0x10000) {
         i = (n >> 4) << 1;
-        s = data_0215d4b4[i];
-        c = data_0215d4b4[i + 1];
+        s = gPairsByAngle[i];
+        c = gPairsByAngle[i + 1];
         b = (s32) (((s64) data_0217b9a8.z * c) >> 12);
         t = b - (s32) (((s64) data_0217b9a8.x * s) >> 12);
         data_0217b9c0.z = t;

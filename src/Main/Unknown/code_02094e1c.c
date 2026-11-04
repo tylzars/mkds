@@ -114,7 +114,7 @@ u16 func_020951b4(Unk020f41c4_B *a) {
 }
 
 s16 func_0209519c(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2];
+    return gPairsByAngle[(a >> 4) * 2];
 }
 
 s32 func_0209518c(s32 a, s32 b) {
@@ -122,7 +122,7 @@ s32 func_0209518c(s32 a, s32 b) {
 }
 
 s16 func_0209516c(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2 + 1];
+    return gPairsByAngle[(a >> 4) * 2 + 1];
 }
 
 void func_02094e8c(void *a, Unk02094e8c *o) {
@@ -148,7 +148,7 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
     if (t <= 0) {
         o->mUnk_a0 = 0xf;
         c = o->mUnk_00.mCourseMapRow->mUnk_28;
-        g = func_0207a974((u16) data_021759c0->mUnk_62);
+        g = GetKart((u16) data_021759c0->mEntryIndex);
         e = c << 12;
         q2 = &g->mUnk_80;
         v1 = q2->x - o->mUnk_00.mPos.x;
@@ -214,7 +214,7 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
             break;
     }
     if (func_02093ff0() > 0) {
-        func_020d26e0(func_0207a974((u16) data_021759c0->mUnk_62), 0x11e);
+        func_020d26e0(GetKart((u16) data_021759c0->mEntryIndex), 0x11e);
     }
 }
 

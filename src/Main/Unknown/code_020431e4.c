@@ -109,14 +109,14 @@ void func_020431e4(void) {
     q = data_021759c0;
     z = data_0217aa00;
     for (j = 0; j < 8; j++) {
-        s = q->mUnk_68[j].mUnk_08.mUnk_00;
+        s = q->mCurrentEntries[j].mUnk_08.mKind;
         t = FALSE;
-        w = q->mUnk_68[j].mUnk_08.mUnk_0c;
+        w = q->mCurrentEntries[j].mUnk_08.mIndex;
         if ((u32) s <= 3 && ((1 << s) & 0xd)) {
             t = TRUE;
         }
         if (t != FALSE) {
-            if (j == q->mUnk_62) {
+            if (j == q->mEntryIndex) {
                 if (func_020431e4_inline(z) != 0) {
                     data_02175628[w].mSourceKind = 4;
                 } else if (q->mUnk_00c == 2) {

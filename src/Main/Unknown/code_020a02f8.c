@@ -84,7 +84,7 @@ void func_020a22ac(u16 a) {
     if (func_02061fec() != 1) {
         return;
     }
-    if (func_01ffc67c(func_0207a974(a)) != 0) {
+    if (func_01ffc67c(GetKart(a)) != 0) {
         return;
     }
     data_0217b1fc->mUnk_000[a].mUnk_64 = 10;
@@ -154,8 +154,8 @@ s32 func_020a1ee4(s32 a, s32 b) {
     if (data_0217b1fc->mUnk_3b4 >= 0) {
         return 0;
     }
-    v1 = func_0207a974(a);
-    v2 = func_0207a974(b);
+    v1 = GetKart(a);
+    v2 = GetKart(b);
     v4 = &data_0217b1fc->mUnk_000[b];
     v3 = &data_0217b1fc->mUnk_000[a];
     f5 = FALSE;
@@ -237,7 +237,7 @@ void func_020a1e40(s32 a, Unk020f41c4_A *p) {
     if (data_0217b1fc->mUnk_3b4 >= 0) {
         return;
     }
-    if (func_0207a974(a)->mState == 0) {
+    if (GetKart(a)->mState == 0) {
         return;
     }
     if (p->mUnk_44 != 0 && p->mUnk_44 != 1 && p->mUnk_44 != 9) {
@@ -389,9 +389,9 @@ void func_020a1904(u16 a) {
     }
     func_020a19f8(a);
     if (data_021759c0->mUnk_08 == 2) {
-        func_02068b5c(func_0207a974(a));
+        func_02068b5c(GetKart(a));
     } else if (data_021759c0->mUnk_08 == 4) {
-        c = func_0207a974(a);
+        c = GetKart(a);
         c->mUnk_48 |= 0x2000;
         c->mUnk_7c |= 8;
     }
@@ -429,7 +429,7 @@ found:
         }
     }
     for (i = 0; i < n; i++) {
-        c = func_0207a974((u16) i);
+        c = GetKart((u16) i);
         c->mUnk_48 |= 0x2000;
         c->mUnk_7c |= 8;
     }
@@ -440,7 +440,7 @@ found:
         }
         data_0217b1fc->mUnk_3a8 = 0x5a;
     } else if (data_021759c0->mUnk_08 == 4) {
-        v1 = data_021759c0->mUnk_62;
+        v1 = data_021759c0->mEntryIndex;
         if (data_0217b1fc->mUnk_3b4 == v1) {
             func_0203e74c((u16) v1);
         } else {
@@ -585,7 +585,7 @@ void func_020a12b8(void) {
     } else if (data_021759c0->mUnk_08 == 4) {
         for (i = 7; i >= 0; i--) {
             k = func_020a12b8_inline(i);
-            if (k != data_021759c0->mUnk_62 && data_0217b1fc->mUnk_3b4 < 0) {
+            if (k != data_021759c0->mEntryIndex && data_0217b1fc->mUnk_3b4 < 0) {
                 func_020a16d0(k);
             }
         }
@@ -773,7 +773,7 @@ void func_020a0e00(void) {
         e->mUnk_44 = (u16) i;
         e->mUnk_48 = (u16) i;
         if (i < data_021759c0->mKartCount) {
-            switch (data_021759c0->mUnk_68[(u16) i].mUnk_08.mTeamIndex) {
+            switch (data_021759c0->mCurrentEntries[(u16) i].mUnk_08.mTeamIndex) {
                 case 0:
                     e->mUnk_46 = 1;
                     break;
@@ -827,8 +827,8 @@ void func_020a08ec(void) {
         }
         for (i = 0; i < n; i++) {
             if (data_0217b1fc->mUnk_000[i].mUnk_08 == 1) {
-                if (i != data_021759c0->mUnk_62) {
-                    func_02068a00(func_0207a974((u16) i));
+                if (i != data_021759c0->mEntryIndex) {
+                    func_02068a00(GetKart((u16) i));
                 }
                 data_0217b1fc->mUnk_000[i].mUnk_08 = 2;
             }
@@ -838,10 +838,10 @@ void func_020a08ec(void) {
     for (i = n - 1; i >= 0; i--) {
         e = &data_0217b1fc->mUnk_000[i];
         if (e->mUnk_08 == 1) {
-            func_02068a00(func_0207a974((u16) i));
+            func_02068a00(GetKart((u16) i));
             data_0217b1fc->mUnk_000[i].mUnk_08 = 2;
         } else if (data_0217b1fc->mUnk_3b4 < 0 && e->mUnk_4c > 0) {
-            o = func_0207a974((u16) i);
+            o = GetKart((u16) i);
             e = &data_0217b1fc->mUnk_000[i];
             v = e->mUnk_64 - 1;
             if (v <= 0) {
@@ -994,7 +994,7 @@ void func_020a0318(void *a, Unk020a0318 *p) {
         p->mUnk_c0 = 0xf;
         w = p->mUnk_a8;
         x = w / 2;
-        o = func_0207a974((u16) data_021759c0->mUnk_62);
+        o = GetKart((u16) data_021759c0->mEntryIndex);
         y = o->mUnk_80.x - p->mUnk_ac;
         z = o->mUnk_80.z - p->mUnk_b4;
         d = (s64) y * y + (s64) z * z;
@@ -1026,7 +1026,7 @@ void func_020a0318(void *a, Unk020a0318 *p) {
     if (p->mUnk_bc != 0) {
         if (p->mUnk_c4 != 0) {
             if (*func_02108e6c(8) != NULL) {
-                o = func_0207a974((u16) data_021759c0->mUnk_62);
+                o = GetKart((u16) data_021759c0->mEntryIndex);
                 p->mUnk_a0 = p->mUnk_a0 - (s32) (((s64) o->mUnk_2a0 * 0x1000) >> 12);
                 if (p->mUnk_a0 < 0xc000) {
                     p->mUnk_a0 = 0xc000;

@@ -132,11 +132,11 @@ void func_01ffb130(Unk0206bcb0 *p) {
     }
     if ((p->mUnk_44 & 0x10) || (p->mUnk_4c & 0x10000000)) {
         Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m1, &p->mUnk_244,
-                                               data_0215d4b4[((u16) p->mUnk_388 >> 4) * 2],
-                                               data_0215d4b4[((u16) p->mUnk_388 >> 4) * 2 + 1]);
+                                               gPairsByAngle[((u16) p->mUnk_388 >> 4) * 2],
+                                               gPairsByAngle[((u16) p->mUnk_388 >> 4) * 2 + 1]);
         if (p->mUnk_48 & 1) {
-            Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m2, &p->mUnk_120, data_0215d4b4[0xba],
-                                                   data_0215d4b4[0xbb]);
+            Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m2, &p->mUnk_120, gPairsByAngle[0xba],
+                                                   gPairsByAngle[0xbb]);
             Matrix3x3Multiply(m2.mUnk_00, m1.mUnk_00, m1.mUnk_00);
         }
         Vec3MultiplyMatrix3x3(&p->mUnk_278, m1.mUnk_00, &p->mUnk_50);

@@ -65,7 +65,7 @@ BOOL func_020fcbb8(Unk020fc2e8 *p0, s32 v1) {
     s32 dx;
     s32 dz;
 
-    p = func_0207a974(v1);
+    p = GetKart(v1);
     if (func_0206c0b0(p) != 0) {
         return FALSE;
     }

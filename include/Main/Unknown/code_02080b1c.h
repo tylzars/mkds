@@ -21,7 +21,7 @@ typedef struct Unk02080b1c_00 {
     /* 26 */ u8 mUnk_26[2];
 } Unk02080b1c_00;
 
-// Current entry at 0x00, previous entry at 0x04, a vector at 0x08, the halfword at 0x1c given to func_0207a974 and a
+// Current entry at 0x00, previous entry at 0x04, a vector at 0x08, the halfword at 0x1c given to GetKart and a
 // byte at 0x1e.
 typedef struct Unk02080b1c {
     /* 00 */ Unk02080b1c_00 *mUnk_00;
@@ -33,7 +33,7 @@ typedef struct Unk02080b1c {
     /* 1e */ u8 mUnk_1e;
 } Unk02080b1c;
 
-// Object of 0x2a bytes: an Unk02080b1c at 0x00, a word at 0x20, the halfword at 0x24 given to func_0207a974 and
+// Object of 0x2a bytes: an Unk02080b1c at 0x00, a word at 0x20, the halfword at 0x24 given to GetKart and
 // halfwords at 0x26 and 0x28.
 typedef struct Unk020905a8 {
     /* 00 */ Unk02080b1c mUnk_00;

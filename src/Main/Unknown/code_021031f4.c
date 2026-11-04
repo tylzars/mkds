@@ -356,8 +356,8 @@ void func_02103db0(s32 v1, Unk021035ac_Pair param_2, s32 param_3) {
     q = e->mUnk_10;
     a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
     t = (s32) (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x10000) >> 32) >> 4;
-    c = data_0215d4b4[2 * t];
-    s = data_0215d4b4[2 * t + 1];
+    c = gPairsByAngle[2 * t];
+    s = gPairsByAngle[2 * t + 1];
     if (param_3 != 0) {
         a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
         t = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xcd) >> 32) + 0x800;
@@ -401,8 +401,8 @@ void func_02103900(s32 v1, s32 n, s32 v2) {
     Unk020f41c4_B *a;
 
     a = &data_0217561c->mUnk_498;
-    func_0207a974(v1);
-    if (v1 != data_021759c0->mUnk_62) {
+    GetKart(v1);
+    if (v1 != data_021759c0->mEntryIndex) {
         return;
     }
     data_0217c638 = v1;
@@ -474,7 +474,7 @@ void func_021038f0(u32 param_1, u32 param_2) {
 }
 
 void func_02103890(int v1) {
-    if (v1 != data_021759c0->mUnk_62) {
+    if (v1 != data_021759c0->mEntryIndex) {
         return;
     }
     *(u32 *) data_0217c658 = 0;
@@ -586,7 +586,7 @@ void func_021035ac(int b2) {
     s32 a;
     s32 b;
 
-    if (b2 != data_021759c0->mUnk_62) {
+    if (b2 != data_021759c0->mEntryIndex) {
         return;
     }
     n = *(s32 *) data_0217c658;
@@ -683,14 +683,14 @@ void func_021031f4(Unk02102674 *p) {
     u16 v;
 
     b2 = (u16) ((p->mUnk_000.mUnk_78 & 0x8000) == 0 ? (u16) (p->mUnk_000.mUnk_78 & ~0xff00) : 8);
-    a = data_021759c0->mUnk_62;
+    a = data_021759c0->mEntryIndex;
     if (data_021759c0->mUnk_08 == 2) {
         b3 = data_021759c0->mKartCount;
         for (i = 0; i < b3; i++) {
             if (i == b2) {
                 continue;
             }
-            r = func_0207a974(i);
+            r = GetKart(i);
             if (r->mUnk_7c & 0x402020) {
                 continue;
             }
@@ -710,7 +710,7 @@ void func_021031f4(Unk02102674 *p) {
         n = func_0203c8dc(b2);
         do {
             v = (u16) data_0217561c->mUnk_474[(u8) j - 1];
-            r = func_0207a974(v);
+            r = GetKart(v);
             if ((r->mUnk_7c & 0x402020) == 0 && (r->mUnk_4c & 0x10000840) == 0 && (r->mUnk_48 & 0x10000) == 0) {
                 p->mUnk_130[v] = 4 - ((j - 1) >> 1);
             }
@@ -722,6 +722,6 @@ void func_021031f4(Unk02102674 *p) {
         return;
     }
     p->mUnk_198 = 1;
-    p->mUnk_12c = func_0207a974(a);
+    p->mUnk_12c = GetKart(a);
     func_020f8e3c((u32) p->mUnk_12c, 0xf3);
 }

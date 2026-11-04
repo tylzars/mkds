@@ -66,7 +66,7 @@ void func_02056750(s32 a, u16 b) {
     u32 w;
 
     n = func_0204684c();
-    k = data_021759c0->mUnk_68[b].mUnk_08.mUnk_0c;
+    k = data_021759c0->mCurrentEntries[b].mUnk_08.mIndex;
     p = data_0217aa08->mUnk_14[0];
     if (n == -1) {
         return;
@@ -76,9 +76,9 @@ void func_02056750(s32 a, u16 b) {
     p->mUnk_04_16 = t[0];
     p->mUnk_04_23 = t[1];
     p->mUnk_04_27 = t[2];
-    w = data_021759c0->mUnk_68[b].mCharacterIndex;
+    w = data_021759c0->mCurrentEntries[b].mCharacterIndex;
     p->mUnk_04_0 = (u8) w;
-    w = data_021759c0->mUnk_68[b].mKartIndex;
+    w = data_021759c0->mCurrentEntries[b].mKartIndex;
     p->mUnk_04_4 = (u8) w;
     w = data_021759c0->mCourseId;
     p->mUnk_04_10 = (u8) w;

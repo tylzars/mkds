@@ -123,7 +123,7 @@ void func_ov001_02187af4(Unk02188950 *a) {
 }
 
 // Writes to param_3 a point for entry param_2 of param_1->mUnk_0bc: param_1->mUnk_004 plus the entry's mUnk_08
-// combined with the pair of data_0215d4b4 values selected by param_1->mUnk_184. The entry's mUnk_00 (1-5) selects
+// combined with the pair of gPairsByAngle values selected by param_1->mUnk_184. The entry's mUnk_00 (1-5) selects
 // the variant; other values write nothing.
 void func_ov001_02187684(Unk02188950 *a, int b, Vec3 *c) {
     Unk02061808 *obj;
@@ -135,23 +135,23 @@ void func_ov001_02187684(Unk02188950 *a, int b, Vec3 *c) {
     switch (a->mUnk_0bc[b].mKind) {
         case 1:
             c->x = a->mUnk_000.mPos.x +
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * data_0215d4b4[((u16) a->mAngle >> 4) * 2]) >> 12) +
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12) +
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
             c->y = a->mUnk_000.mPos.y + a->mUnk_0bc[b].mOffset.y;
             c->z = a->mUnk_000.mPos.z +
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1]) >> 12) -
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * data_0215d4b4[((u16) a->mAngle >> 4) * 2]) >> 12);
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12) -
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12);
             break;
         case 3:
             // As case 1 with mUnk_024 of the object from func_02061808 added, then halved.
             obj = func_02061808();
             c->x = a->mUnk_000.mPos.x + obj->mUnk_024.x +
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * data_0215d4b4[((u16) a->mAngle >> 4) * 2]) >> 12) +
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12) +
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
             c->y = a->mUnk_000.mPos.y + obj->mUnk_024.y + a->mUnk_0bc[b].mOffset.y;
             c->z = a->mUnk_000.mPos.z + obj->mUnk_024.z +
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1]) >> 12) -
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * data_0215d4b4[((u16) a->mAngle >> 4) * 2]) >> 12);
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12) -
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12);
             c->x >>= 1;
             c->y >>= 1;
             c->z >>= 1;
@@ -164,29 +164,29 @@ void func_ov001_02187684(Unk02188950 *a, int b, Vec3 *c) {
             x = (s32) (((s64) t * a->mUnk_000.mUnk_1c.x) >> 12);
             t = a->mUnk_0bc[b].mOffset.z;
             z = (s32) (((s64) t * a->mUnk_000.mUnk_1c.z) >> 12);
-            c->x = a->mUnk_000.mPos.x + (s32) (((s64) z * data_0215d4b4[((u16) a->mAngle >> 4) * 2]) >> 12) +
-                   (s32) (((s64) x * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
+            c->x = a->mUnk_000.mPos.x + (s32) (((s64) z * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12) +
+                   (s32) (((s64) x * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
             c->y = a->mUnk_000.mPos.y + y;
-            c->z = a->mUnk_000.mPos.z + (s32) (((s64) z * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1]) >> 12) -
-                   (s32) (((s64) x * data_0215d4b4[((u16) a->mAngle >> 4) * 2]) >> 12);
+            c->z = a->mUnk_000.mPos.z + (s32) (((s64) z * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12) -
+                   (s32) (((s64) x * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12);
             break;
         case 4:
             c->x = a->mUnk_000.mPos.x +
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * data_0215d4b4[((u16) a->mAngle >> 4) * 2]) >> 12) +
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12) +
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
             c->y = a->mUnk_000.mCourseMapRow->mUnk_00.y + a->mUnk_0bc[b].mOffset.y;
             c->z = a->mUnk_000.mPos.z +
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1]) >> 12) -
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * data_0215d4b4[((u16) a->mAngle >> 4) * 2]) >> 12);
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12) -
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12);
             break;
         case 5:
             c->x = a->mUnk_000.mPos.x +
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * data_0215d4b4[((u16) a->mAngle >> 4) * 2]) >> 12) +
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12) +
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
             c->y = a->mUnk_0bc[b].mOffset.y - func_020d3d48(0);
             c->z = a->mUnk_000.mPos.z +
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1]) >> 12) -
-                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * data_0215d4b4[((u16) a->mAngle >> 4) * 2]) >> 12);
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.z * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12) -
+                   (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12);
             break;
     }
 }
@@ -298,11 +298,11 @@ void func_ov001_021872e0(Unk02188950 *a, int b, int c, int d, int e, int f, int 
                 if (a->mUnk_0bc[i].mUnk_14 != NULL) {
                     func_0208b6b0(&a->mUnk_0bc[i].mUnk_14);
                 }
-                rot.x = ((s64) g * data_0215d4b4[((u16) a->mAngle >> 4) * 2] >> 12) +
-                        ((s64) e * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1] >> 12);
+                rot.x = ((s64) g * gPairsByAngle[((u16) a->mAngle >> 4) * 2] >> 12) +
+                        ((s64) e * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1] >> 12);
                 rot.y = f;
-                rot.z = ((s64) g * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1] >> 12) -
-                        ((s64) e * data_0215d4b4[((u16) a->mAngle >> 4) * 2] >> 12);
+                rot.z = ((s64) g * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1] >> 12) -
+                        ((s64) e * gPairsByAngle[((u16) a->mAngle >> 4) * 2] >> 12);
                 func_0208b748(h, &pos, &rot, func_ov001_0218742c);
             }
         }
@@ -626,8 +626,8 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
     idx = ((u16) b->mMoveAngle >> 4) * 2;
     speed = b->mSpeed;
     dy = b->mVelocity.y;
-    dz = b->mVelocity.z + (s32) ((speed * data_0215d4b4[idx + 1]) >> 12);
-    dx = b->mVelocity.x + (s32) ((speed * data_0215d4b4[idx]) >> 12);
+    dz = b->mVelocity.z + (s32) ((speed * gPairsByAngle[idx + 1]) >> 12);
+    dx = b->mVelocity.x + (s32) ((speed * gPairsByAngle[idx]) >> 12);
     b->mUnk_000.mPos.x += dx;
     b->mUnk_000.mPos.y += dy;
     b->mUnk_000.mPos.z += dz;
@@ -682,8 +682,8 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
             func_ov001_02187074(b->mUnk_160, b->mUnk_164, b->mUnk_000.mUnk_1c.x);
     }
     if (b->mUnk_234 == 1) {
-        Matrix3x3FromPairY(&b->mUnk_000.mMatrix.mUnk_00[0].x, data_0215d4b4[((u16) b->mAngle >> 4) * 2],
-                           data_0215d4b4[((u16) b->mAngle >> 4) * 2 + 1]);
+        Matrix3x3FromPairY(&b->mUnk_000.mMatrix.mUnk_00[0].x, gPairsByAngle[((u16) b->mAngle >> 4) * 2],
+                           gPairsByAngle[((u16) b->mAngle >> 4) * 2 + 1]);
         Vec3MultiplyMatrix3x3((Vec3 *) &b->mUnk_244, &b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_238);
         Vec3Add(&b->mUnk_238, &b->mUnk_000.mPos, &b->mUnk_238);
     } else {
@@ -801,7 +801,7 @@ void func_ov001_02186368(void *a, Unk02188950 *b) {
         func_01ff9048(0x19, func_020e6b58(&b->mUnk_000.mPos), 0xc);
         if (b->mUnk_000.mUnk_7e != 0) {
             k = b->mUnk_000.mUnk_7e >> 4;
-            Matrix3x3FromPairY(m, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
+            Matrix3x3FromPairY(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
             func_01ff9048(0x1a, m, 9);
         }
         func_01ff9048(0x1b, &b->mUnk_000.mUnk_1c.x, 3);
@@ -857,7 +857,7 @@ void func_ov001_021861f4(void *d, Unk02188950 *e, s32 f) {
         func_01ff9048(0x14, &value, 1);
         func_01ff9048(0x19, func_020e6b58(&v), 0xc);
         k = (u16) e->mAngle >> 4;
-        Matrix3x3FromPairY(m, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
+        Matrix3x3FromPairY(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
         func_01ff9048(0x1a, m, 9);
         c = e->mUnk_288 >> 4;
         b = e->mUnk_284 >> 4;

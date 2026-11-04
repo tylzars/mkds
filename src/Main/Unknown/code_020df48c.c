@@ -64,7 +64,7 @@ Unk020de2d8 *func_020df61c(void) {
 void func_020df58c(void) {
     s32 x;
 
-    x = data_0215d4b4[(data_0217b750 >> 4) * 2];
+    x = gPairsByAngle[(data_0217b750 >> 4) * 2];
     data_0217b754 = (s32) (((s64) x * 0x4000) >> 12);
     data_0217b750 += 0x2d8;
     data_0217b75c = 0xf00 - (x >> 4);

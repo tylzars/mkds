@@ -140,7 +140,7 @@ void func_020733ec(Unk0206bcb0 *p) {
     func_020e0650((u32 *) &p->mUnk_208);
     p->mUnk_310 = HeapAlloc(h, 0x158);
     if (gCourseMap->mUnk_70 != 0 || gCourseMap->mUnk_90 != 0) {
-        if (data_021759c0->mUnk_68[p->mIndex].mUnk_08.mUnk_00 == 1) {
+        if (data_021759c0->mCurrentEntries[p->mIndex].mUnk_08.mKind == 1) {
             p->mUnk_7c |= 2;
             if (p->mUnk_7c & 2) {
                 for (i = 0; i < 12; i++) {

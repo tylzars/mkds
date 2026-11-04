@@ -52,7 +52,7 @@ void func_020dffac(Unk020e005c *a) {
     p = &a->mUnk_144;
     r = func_020d8cac(p);
     i = (s32) (((s64) r * 0x40000) >> 12);
-    t = data_0215d4b4[(i >> 4) * 2];
+    t = gPairsByAngle[(i >> 4) * 2];
     n = (s32) (((s64) -t * a->mUnk_168) >> 12);
     p->mUnk_04 = n > 0x200 ? n : 0x200;
     if (n <= 0x200) {
@@ -167,7 +167,7 @@ void func_020dfafc(void *a, MkdEfBubbleObject *b, void *c, s32 d) {
     func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mPos), 0xc);
     if (b->mUnk_a8 != 0) {
         n = b->mUnk_a8 >> 4;
-        Matrix3x3FromPairZ(m, data_0215d4b4[n * 2], data_0215d4b4[n * 2 + 1]);
+        Matrix3x3FromPairZ(m, gPairsByAngle[n * 2], gPairsByAngle[n * 2 + 1]);
         func_01ff9048(0x1a, m, 9);
     }
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);

@@ -217,7 +217,7 @@ void func_020fde18(Unk020fdae8 *e) {
     if (v1 == v2) {
         return;
     }
-    p = func_0207a974(v1);
+    p = GetKart(v1);
     if (func_0206c0e0(p) != 0) {
         return;
     }

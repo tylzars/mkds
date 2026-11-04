@@ -226,7 +226,7 @@ void func_020688a0(Unk0206bcb0 *a) {
     a->mUnk_7c = a->mUnk_7c | 0x10000008;
     a->mUnk_48 = a->mUnk_48 | 0x2000;
     if ((a->mUnk_7c & 1) != 0) {
-        if (func_0203c880((u16) data_021759c0->mUnk_62) != 0) {
+        if (func_0203c880((u16) data_021759c0->mEntryIndex) != 0) {
             b = data_0217561c->mUnk_4e0;
         } else {
             b = 6;

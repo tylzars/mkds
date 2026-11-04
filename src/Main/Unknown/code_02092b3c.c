@@ -76,14 +76,14 @@ static inline BOOL func_02092b5c_inline_3(Unk020919e8 *p, s32 k) {
 
     for (i = 0; i < data_021759c0->mKartCount; i++) {
         f = FALSE;
-        if ((u32) data_021759c0->mUnk_68[(u16) i].mUnk_08.mUnk_00 <= 3 &&
-            ((1 << data_021759c0->mUnk_68[(u16) i].mUnk_08.mUnk_00) & 0xd)) {
+        if ((u32) data_021759c0->mCurrentEntries[(u16) i].mUnk_08.mKind <= 3 &&
+            ((1 << data_021759c0->mCurrentEntries[(u16) i].mUnk_08.mKind) & 0xd)) {
             f = TRUE;
         }
-        if (f == FALSE && i != data_021759c0->mUnk_62) {
+        if (f == FALSE && i != data_021759c0->mEntryIndex) {
             continue;
         }
-        o = func_0207a974((u16) i);
+        o = GetKart((u16) i);
         if (func_02092b5c_inline_4(&o->mUnk_80, &p->mUnk_00.mPos) >= 0x15f900000000LL) {
             continue;
         }
@@ -105,7 +105,7 @@ static inline void func_02092b5c_inline_5(Vec3 *v, s32 x, s32 y, s32 z) {
 }
 
 s16 func_020930b0(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2];
+    return gPairsByAngle[(a >> 4) * 2];
 }
 
 s32 func_020930a0(s32 a, s32 b) {
@@ -113,7 +113,7 @@ s32 func_020930a0(s32 a, s32 b) {
 }
 
 s16 func_02093080(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2 + 1];
+    return gPairsByAngle[(a >> 4) * 2 + 1];
 }
 
 void func_02092b5c(void *a, Unk020919e8 *p) {

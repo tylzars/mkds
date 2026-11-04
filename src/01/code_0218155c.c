@@ -93,7 +93,7 @@ void func_ov001_02181aa0(void) {
         case 7:
             n = func_ov001_0218180c();
             if (data_ov001_021a9b90->mUnk_04 >= n) {
-                func_0203e74c(data_021759c0->mUnk_62);
+                func_0203e74c(data_021759c0->mEntryIndex);
             }
             break;
     }
@@ -120,7 +120,7 @@ void func_ov001_021819f4(void) {
     Unk021a9b90 *o;
 
     data_ov001_021a9b90 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x68);
-    c = func_0207a974((u16) data_021759c0->mUnk_62);
+    c = GetKart((u16) data_021759c0->mEntryIndex);
     o = data_ov001_021a9b90;
     o->mUnk_34 = c->mUnk_80;
     o->mUnk_28 = o->mUnk_34;
@@ -133,7 +133,7 @@ void func_ov001_02181860(void) {
     Unk0206bcb0 *c;
     Unk021a9b90 *o;
 
-    c = func_0207a974((u16) data_021759c0->mUnk_62);
+    c = GetKart((u16) data_021759c0->mEntryIndex);
     if ((c->mUnk_48 & 0x200) == 0) {
         o = data_ov001_021a9b90;
         o->mUnk_34 = o->mUnk_28;
@@ -143,12 +143,12 @@ void func_ov001_02181860(void) {
         o->mUnk_40 = c->mUnk_236;
     }
     if (data_021759c0->mUnk_08 == 4 ? func_020a126c() : 0) {
-        if (data_021759c0->mUnk_08 == 4 ? func_020a1084((u16) data_021759c0->mUnk_62) : 0) {
-            if (func_020a1154((u16) data_021759c0->mUnk_62)) {
+        if (data_021759c0->mUnk_08 == 4 ? func_020a1084((u16) data_021759c0->mEntryIndex) : 0) {
+            if (func_020a1154((u16) data_021759c0->mEntryIndex)) {
                 data_ov001_021a9b90->mUnk_00 += 1;
                 if (data_ov001_021a9b90->mUnk_00 > 0xf) {
                     data_ov001_021a9b90->mUnk_00 = 0;
-                    func_020a1748((u16) data_021759c0->mUnk_62);
+                    func_020a1748((u16) data_021759c0->mEntryIndex);
                     return;
                 }
             }

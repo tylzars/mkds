@@ -28,11 +28,11 @@ void func_ov001_0218d3ec(Unk02188950 *a) {
     s32 y;
     s32 t;
 
-    if (func_020a1154((u16) data_021759c0->mUnk_62) <= 1) {
+    if (func_020a1154((u16) data_021759c0->mEntryIndex) <= 1) {
         y = 0x1000 - a->mPrm->mUnk_0ac;
         t = func_ov001_02187f38(a);
         x = (s32) (((s64) t * y) >> 12);
-    } else if (func_020a1154((u16) data_021759c0->mUnk_62) <= 2) {
+    } else if (func_020a1154((u16) data_021759c0->mEntryIndex) <= 2) {
         y = 0x1000 - a->mPrm->mUnk_0a8;
         t = func_ov001_02187f38(a);
         x = (s32) (((s64) t * y) >> 12);

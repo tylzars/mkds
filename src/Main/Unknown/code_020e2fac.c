@@ -207,7 +207,7 @@ u8 func_020e311c(Unk020e1e98 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
 
     switch (c[0]) {
         case 2:
-            if (data_021759c0->mUnk_68[b->mIndex].mUnk_08.mUnk_00 == 2) {
+            if (data_021759c0->mCurrentEntries[b->mIndex].mUnk_08.mKind == 2) {
                 return d[0];
             }
             if (a->mUnk_000.mUnk_80.mUnk_0e == 7) {

@@ -130,7 +130,7 @@ void func_020d9f8c(Unk020d9cf4 *a) {
     }
     switch (a->mUnk_24) {
         case 0:
-            a->mUnk_30 = data_0215d4b4[(a->mUnk_2c >> 4) * 2];
+            a->mUnk_30 = gPairsByAngle[(a->mUnk_2c >> 4) * 2];
             a->mUnk_04 = a->mUnk_1c + (s32) (((s64) a->mUnk_28 * a->mUnk_30) >> 12);
             a->mUnk_10 = a->mUnk_04;
             a->mUnk_2c = a->mUnk_2c + a->mUnk_2e;
@@ -161,7 +161,7 @@ void func_020d9f8c(Unk020d9cf4 *a) {
             }
             break;
         case 2:
-            a->mUnk_30 = data_0215d4b4[(a->mUnk_2c >> 4) * 2];
+            a->mUnk_30 = gPairsByAngle[(a->mUnk_2c >> 4) * 2];
             a->mUnk_04 = a->mUnk_1c + (s32) (((s64) a->mUnk_28 * a->mUnk_30) >> 12);
             a->mUnk_10 = a->mUnk_04;
             a->mUnk_2c = a->mUnk_2c + a->mUnk_2e;
@@ -196,12 +196,12 @@ void func_020d9f8c(Unk020d9cf4 *a) {
     w = a->mUnk_3c - a->mUnk_50;
     if (a->mUnk_60 != NULL) {
         j = (a->mUnk_3c >> 4) * 2;
-        a->mUnk_00 = a->mUnk_18 + (s32) (((s64) a->mUnk_44 * data_0215d4b4[j]) >> 12);
-        a->mUnk_08 = a->mUnk_20 + (s32) (((s64) a->mUnk_44 * data_0215d4b4[j + 1]) >> 12);
+        a->mUnk_00 = a->mUnk_18 + (s32) (((s64) a->mUnk_44 * gPairsByAngle[j]) >> 12);
+        a->mUnk_08 = a->mUnk_20 + (s32) (((s64) a->mUnk_44 * gPairsByAngle[j + 1]) >> 12);
     }
     k = (w >> 4) * 2;
-    a->mUnk_0c = a->mUnk_18 + (s32) (((s64) a->mUnk_48 * data_0215d4b4[k]) >> 12);
-    a->mUnk_14 = a->mUnk_20 + (s32) (((s64) a->mUnk_48 * data_0215d4b4[k + 1]) >> 12);
+    a->mUnk_0c = a->mUnk_18 + (s32) (((s64) a->mUnk_48 * gPairsByAngle[k]) >> 12);
+    a->mUnk_14 = a->mUnk_20 + (s32) (((s64) a->mUnk_48 * gPairsByAngle[k + 1]) >> 12);
 }
 
 void func_020d9e60(Unk020d9cf4 *a, struct Unk02012f58 *b) {

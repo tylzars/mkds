@@ -162,7 +162,7 @@ void func_020e012c(Unk020e005c *a) {
     Unk020e0144 *b = &a->mUnk_144;
     s32 v = func_020d8cac(b);
     s32 w = (u16) (((s64) v << 18) >> 12);
-    s16 t = data_0215d4b4[(w >> 4) * 2];
+    s16 t = gPairsByAngle[(w >> 4) * 2];
     s32 p = (s32) (((s64) t * a->mUnk_168) >> 12);
     s32 m;
 

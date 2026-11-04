@@ -205,7 +205,7 @@ void func_02095848(void *a, Unk02095544 *p) {
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
     func_0209bb2c(a, gBakuShadow, p);
     i = (u16) (u32) AngleFromPair(-p->mUnk_00.mUnk_10.y, 0xc000) >> 4;
-    Matrix3x3FromPairX(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+    Matrix3x3FromPairX(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
     func_0209bb2c(a, gBakubaku, p);
 }
@@ -234,7 +234,7 @@ void func_02095544(void *a, Unk02095544 *p) {
     switch (p->mUnk_b0) {
         case 0:
             if (func_02061818() != 2) {
-                o = func_0207a974((u16) data_021759c0->mUnk_62);
+                o = GetKart((u16) data_021759c0->mEntryIndex);
                 q = &o->mUnk_80;
                 v2 = q->x - p->mUnk_a4.x;
                 v1 = q->z - p->mUnk_a4.z;

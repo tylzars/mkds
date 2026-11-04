@@ -14,9 +14,9 @@ void func_ov001_0218b1d8(Unk02188950 *a) {
     Vec3 vec;
 
     if (func_ov001_02187c4c(a)) {
-        vec.x = (s32) (((s64) a->mPrm->mUnk_134 * data_0215d4b4[((u16) a->mMoveAngle >> 4) * 2]) >> 12);
+        vec.x = (s32) (((s64) a->mPrm->mUnk_134 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2]) >> 12);
         vec.y = a->mPrm->mUnk_138;
-        vec.z = (s32) (((s64) a->mPrm->mUnk_134 * data_0215d4b4[((u16) a->mMoveAngle >> 4) * 2 + 1]) >> 12);
+        vec.z = (s32) (((s64) a->mPrm->mUnk_134 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2 + 1]) >> 12);
         func_ov001_02187bfc(a, &vec, a->mPrm->mUnk_13c);
     }
 }
@@ -36,14 +36,14 @@ void func_ov001_0218b034(Unk02188950 *a) {
         angle += 0x5555;
         if (func_ov001_02188220(a) == 0) {
             idx = ((u16) angle >> 4) * 2;
-            pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mPrm->mUnk_14c * data_0215d4b4[idx]) >> 12);
+            pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mPrm->mUnk_14c * gPairsByAngle[idx]) >> 12);
             pos.y = a->mUnk_000.mPos.y + a->mPrm->mUnk_150;
-            pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_14c * data_0215d4b4[idx + 1]) >> 12);
+            pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_14c * gPairsByAngle[idx + 1]) >> 12);
         } else {
             idx = ((u16) angle >> 4) * 2;
-            pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mPrm->mUnk_154 * data_0215d4b4[idx]) >> 12);
+            pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mPrm->mUnk_154 * gPairsByAngle[idx]) >> 12);
             pos.y = a->mUnk_000.mPos.y + a->mPrm->mUnk_158;
-            pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_154 * data_0215d4b4[idx + 1]) >> 12);
+            pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_154 * gPairsByAngle[idx + 1]) >> 12);
         }
         if (i == 0) {
             func_ov001_02187b94(func_020fd428(), &pos, &vel, a->mPrm->mUnk_15c);

@@ -131,7 +131,7 @@ u32 func_0203b230(void) {
     BOOL v1;
     a = (data_021759c0->mUnk_08 == 4) ? data_021759c0->mMissionTableRow : -1;
     b = (data_021759c0->mUnk_08 == 4) ? data_021759c0->mMissionTableColumn : -1;
-    t = func_0203c880((u16) data_021759c0->mUnk_62);
+    t = func_0203c880((u16) data_021759c0->mEntryIndex);
     t = (t != 0) ? data_0217561c->mUnk_4e0 : 6;
     if (t != 0) {
         return 0;

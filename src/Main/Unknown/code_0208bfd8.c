@@ -11,9 +11,9 @@
 #include "Main/Unknown/code_0207f000.h"
 
 void func_0208c0f0(Unk020888b4 *p, s32 a) {
-    Unk0206bcb0 *q = func_0207a974(a);
+    Unk0206bcb0 *q = GetKart(a);
 
-    p->mUnk_154 = (data_021759c0->mUnk_68[a].mUnk_08.mUnk_14 & 1) != 0;
+    p->mUnk_154 = (data_021759c0->mCurrentEntries[a].mUnk_08.mUnk_14 & 1) != 0;
     func_0207fa74(p, q, p->mUnk_154);
     func_0207e200(&p->mUnk_e8, p);
     func_0207c448(&p->mUnk_11c);

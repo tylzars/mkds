@@ -226,13 +226,13 @@ void func_020c97c0(void) {
                 y = data_0217b428->mUnk_060[i].mUnk_04;
                 if (x > -0x10 && x < 0x110 && y > -0x10 && y < 0xd0 && func_0207a84c(i) == 0) {
                     data_0217b428->mUnk_000[i] = 1;
-                    if (data_021759c0->mUnk_08 == 1 && data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 == 2) {
+                    if (data_021759c0->mUnk_08 == 1 && data_021759c0->mCurrentEntries[i].mUnk_08.mKind == 2) {
                         data_0217b428->mUnk_040[i] = 1;
                     } else {
                         data_0217b428->mUnk_040[i] = 0;
                     }
                     func_0207a8c4(&data_0217b428->mUnk_0a0[i], i);
-                    if (func_0207a974(i)->mState != 0) {
+                    if (GetKart(i)->mState != 0) {
                         data_0217b428->mUnk_110[i]++;
                         data_0217b428->mUnk_100[i] = (data_0217b428->mUnk_110[i] << 12) % 0x10000;
                     } else {
@@ -255,7 +255,7 @@ void func_020c97c0(void) {
                     data_0217b428->mUnk_000[i] = 1;
                     data_0217b428->mUnk_040[i] = func_020b4dc4(i);
                     func_0207a8c4(&data_0217b428->mUnk_0a0[i], i);
-                    if (func_0207a974(i)->mState != 0) {
+                    if (GetKart(i)->mState != 0) {
                         data_0217b428->mUnk_110[i]++;
                         data_0217b428->mUnk_100[i] = (data_0217b428->mUnk_110[i] << 12) % 0x10000;
                     } else {
@@ -323,7 +323,7 @@ void func_020c97c0(void) {
         } else {
             data_0217b428->mUnk_170[i] = 0;
         }
-        if (i != func_020b4d9c() && (func_0207a974(i)->mUnk_7c & 0x402000) != 0) {
+        if (i != func_020b4d9c() && (GetKart(i)->mUnk_7c & 0x402000) != 0) {
             data_0217b428->mUnk_020[i] = 1;
         } else {
             data_0217b428->mUnk_020[i] = 0;
@@ -383,8 +383,8 @@ static inline void func_020c8dbc_inline3(Unk020c06c4 *p, s32 i, s32 h) {
 
     for (j = 0; j < 3; j++) {
         x = (u16) (((h + 12 - j * 4) << 16) / 64) >> 4;
-        v3 = (s16) data_0215d4b4[x * 2 + 1] * 11 >> 12;
-        v4 = (s16) data_0215d4b4[x * 2] * 11 >> 12;
+        v3 = (s16) gPairsByAngle[x * 2 + 1] * 11 >> 12;
+        v4 = (s16) gPairsByAngle[x * 2] * 11 >> 12;
         c = GetRaceSNcerEntry(h % 12 < 6 ? 93 + j * 2 : 94 + j * 2);
         func_020c8dbc_inline2(p, c, data_0217b428->mUnk_060[i].mUnk_00 + v3, data_0217b428->mUnk_060[i].mUnk_04 + v4);
     }

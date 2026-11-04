@@ -194,7 +194,7 @@ void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     Unk0217aebc_128 *r;
     Unk020888b4 *u;
 
-    v = data_021759c0->mUnk_68[b->mIndex].mUnk_08.mUnk_00;
+    v = data_021759c0->mCurrentEntries[b->mIndex].mUnk_08.mKind;
     if ((u32) v <= 3) {
         if ((1 << v) & 0xd) {
             f = TRUE;
@@ -208,7 +208,7 @@ void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     r4 = (s16) (u16) (r->mUnk_00 >> 52);
     r5 = func_020853f0(b->mIndex);
-    u = func_0207a974(b->mIndex)->mUnk_310;
+    u = GetKart(b->mIndex)->mUnk_310;
     if (u->mUnk_154 != 0) {
         r5 = r6;
     }
@@ -241,7 +241,7 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         a->mUnk_08 = 0;
         a->mUnk_18 = 0;
         f = FALSE;
-        v = data_021759c0->mUnk_68[b->mIndex].mUnk_08.mUnk_00;
+        v = data_021759c0->mCurrentEntries[b->mIndex].mUnk_08.mKind;
         if ((u32) v <= 3) {
             if ((1 << v) & 0xd) {
                 f = TRUE;
@@ -314,7 +314,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
 
     a->mUnk_18 = 0;
     f = FALSE;
-    v = data_021759c0->mUnk_68[m].mUnk_08.mUnk_00;
+    v = data_021759c0->mCurrentEntries[m].mUnk_08.mKind;
     if ((u32) v <= 3) {
         if ((1 << v) & 0xd) {
             f = TRUE;
@@ -335,7 +335,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
                     for (i = 1; i < 4; i++) {
                         d = func_02085408(i);
                         if (d >= 0) {
-                            Unk020888b4 *u = func_0207a974(d)->mUnk_310;
+                            Unk020888b4 *u = GetKart(d)->mUnk_310;
                             Unk02089a24 *s = &u->mUnk_e8;
 
                             if (u->mUnk_154 != 0) {
@@ -387,7 +387,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
             if (d >= 0) {
                 g = func_020853a4(m);
                 g -= func_020853a4((u16) d);
-                if (g > func_0207a974(d)->mUnk_310->mUnk_e8.mUnk_24) {
+                if (g > GetKart(d)->mUnk_310->mUnk_e8.mUnk_24) {
                     a->mUnk_10 = (s32) (((s64) a->mUnk_10 * 0xf85) >> 12);
                     a->mUnk_18 = 1;
                 }
@@ -403,7 +403,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
                 } else {
                     d = func_02085458(n);
                     if (d >= 0) {
-                        Unk0206bcb0 *q = func_0207a974(d);
+                        Unk0206bcb0 *q = GetKart(d);
                         s32 w = r->mUnk_08;
 
                         if (q->mUnk_310->mUnk_e8.mUnk_04 > (s32) (((s64) w * 0xcd0) >> 12)) {

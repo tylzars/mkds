@@ -194,7 +194,7 @@ void func_02080b1c(Unk02080b1c *p) {
     u32 v;
     Unk0217aebc_128 *q;
 
-    if (!(func_0207a974(p->mUnk_1c)->mUnk_4c & 0x10000000)) {
+    if (!(GetKart(p->mUnk_1c)->mUnk_4c & 0x10000000)) {
         n = p->mUnk_00->mUnk_24;
         if (n > 1) {
             q = func_0208537c();
@@ -330,7 +330,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
         n0 = 0;
         if (d != NULL) {
             k = 0;
-            Vec3Sub(&d->mPos, &func_0207a974(c)->mUnk_80, &v);
+            Vec3Sub(&d->mPos, &GetKart(c)->mUnk_80, &v);
             if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
                 func_02039860(&v, &v);
             }
@@ -338,7 +338,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
                 if (p->mUnk_04 == ((const Unk0208001c *) p)->mUnk_00->mUnk_00[i]) {
                     continue;
                 }
-                Vec3Sub(p->mUnk_00->mUnk_00[i]->mUnk_20, &func_0207a974(c)->mUnk_80, &w);
+                Vec3Sub(p->mUnk_00->mUnk_00[i]->mUnk_20, &GetKart(c)->mUnk_80, &w);
                 if ((s64) w.x * w.x + (s64) w.y * w.y + (s64) w.z * w.z >= 0x10) {
                     func_02039860(&w, &w);
                 }
@@ -358,13 +358,13 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
             }
         } else if (e != -1) {
             n1 = (u16) n1;
-            if (func_0207a974(e)->mUnk_4c & 0x40) {
+            if (GetKart(e)->mUnk_4c & 0x40) {
                 v3 = TRUE;
             } else {
                 v3 = FALSE;
             }
-            o = func_0207a974(c);
-            Vec3Sub(&func_0207a974(e)->mUnk_80, &o->mUnk_80, &x);
+            o = GetKart(c);
+            Vec3Sub(&GetKart(e)->mUnk_80, &o->mUnk_80, &x);
             if ((s64) x.x * x.x + (s64) x.y * x.y + (s64) x.z * x.z >= 0x10) {
                 func_02039860(&x, &x);
             }
@@ -372,7 +372,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
                 if (p->mUnk_04 == ((const Unk0208001c *) p)->mUnk_00->mUnk_00[i]) {
                     continue;
                 }
-                Vec3Sub(p->mUnk_00->mUnk_00[i]->mUnk_20, &func_0207a974(c)->mUnk_80, &y);
+                Vec3Sub(p->mUnk_00->mUnk_00[i]->mUnk_20, &GetKart(c)->mUnk_80, &y);
                 if ((s64) y.x * y.x + (s64) y.y * y.y + (s64) y.z * y.z >= 0x10) {
                     func_02039860(&y, &y);
                 }

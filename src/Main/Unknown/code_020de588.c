@@ -36,8 +36,8 @@ void func_020de84c(void) {
     data_0217b704 = HeapAlloc(GetHeap(func_020364e8()), 0x1770);
     for (i = 0; i < 0x12c; i++) {
         n = (u16) (((u32) i << 16) / 0x12c) >> 4;
-        a = data_0215d4b4[n * 2 + 1];
-        b = data_0215d4b4[n * 2];
+        a = gPairsByAngle[n * 2 + 1];
+        b = gPairsByAngle[n * 2];
         data_0217b704[i].mUnk_00 = a;
         data_0217b704[i].mUnk_04 = b;
         data_0217b704[i].mUnk_08 = (s32) (((s64) a * a) >> 12);
@@ -47,8 +47,8 @@ void func_020de84c(void) {
     data_0217b708 = HeapAlloc(GetHeap(func_020364e8()), 0x410);
     for (j = 0; j < 0x82; j++) {
         n = (u16) (((u32) j << 16) / 0x82) >> 4;
-        data_0217b708[j].mUnk_00 = data_0215d4b4[n * 2 + 1];
-        data_0217b708[j].mUnk_04 = data_0215d4b4[n * 2];
+        data_0217b708[j].mUnk_00 = gPairsByAngle[n * 2 + 1];
+        data_0217b708[j].mUnk_04 = gPairsByAngle[n * 2];
     }
     if (data_021759c0->mCourseId == 0x1d) {
         data_0217b71c->mUnk_14 &= 0xffff7fff;

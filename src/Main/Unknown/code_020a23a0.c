@@ -175,7 +175,7 @@ void func_020a269c(s32 a, u32 b) {
 }
 
 s16 func_020a2684(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2];
+    return gPairsByAngle[(a >> 4) * 2];
 }
 
 s32 func_020a2668(s32 a, s32 b) {
@@ -250,9 +250,9 @@ void func_020a23cc(void) {
     func_01ff9048(0x1c, v2, 3);
     v4 = data_0217b200->mUnk_008.mUnk_04;
     Matrix3x3FromPairX(m1, data_0215d6b4[0x76], data_0215d6b4[0x77]);
-    Matrix3x3FromPairY(m2, data_0215d4b4[(data_0217b200->mUnk_004 >> 4) * 2],
-                       data_0215d4b4[(data_0217b200->mUnk_004 >> 4) * 2 + 1]);
-    Matrix3x3FromPairZ(m3, data_0215d4b4[(v4 >> 4) * 2], data_0215d4b4[(v4 >> 4) * 2 + 1]);
+    Matrix3x3FromPairY(m2, gPairsByAngle[(data_0217b200->mUnk_004 >> 4) * 2],
+                       gPairsByAngle[(data_0217b200->mUnk_004 >> 4) * 2 + 1]);
+    Matrix3x3FromPairZ(m3, gPairsByAngle[(v4 >> 4) * 2], gPairsByAngle[(v4 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, m1, 9);
     func_01ff9048(0x1a, m2, 9);
     func_01ff9048(0x1a, m3, 9);

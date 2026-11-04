@@ -224,7 +224,7 @@ void func_ov001_0218cedc(u32 a, Unk02188950 *b) {
     if (r != 0) {
         if (func_ov001_021871f8(b, 1) != 0) {
             if (data_021759c0->mUnk_08 == 4) {
-                r = func_020a1084((u16) data_021759c0->mUnk_62);
+                r = func_020a1084((u16) data_021759c0->mEntryIndex);
             } else {
                 r = 0;
             }
@@ -313,15 +313,15 @@ void func_ov001_0218cbdc(Unk02188950 *a, Unk02188950_a0 *b) {
                 diff -= 0x10000;
             }
             if (diff > 0) {
-                a->mUnk_000.mUnk_10.x = ((s64) a->mPrm->mUnk_0fc * data_0215d4b4[(((u16) r4 + 0x4000) >> 4) * 2]) >> 12;
+                a->mUnk_000.mUnk_10.x = ((s64) a->mPrm->mUnk_0fc * gPairsByAngle[(((u16) r4 + 0x4000) >> 4) * 2]) >> 12;
                 a->mUnk_000.mUnk_10.y = 0;
                 a->mUnk_000.mUnk_10.z =
-                    ((s64) a->mPrm->mUnk_0fc * data_0215d4b4[(((u16) a->mMoveAngle + 0x4000) >> 4) * 2 + 1]) >> 12;
+                    ((s64) a->mPrm->mUnk_0fc * gPairsByAngle[(((u16) a->mMoveAngle + 0x4000) >> 4) * 2 + 1]) >> 12;
             } else {
-                a->mUnk_000.mUnk_10.x = ((s64) a->mPrm->mUnk_0fc * data_0215d4b4[(((u16) r4 - 0x4000) >> 4) * 2]) >> 12;
+                a->mUnk_000.mUnk_10.x = ((s64) a->mPrm->mUnk_0fc * gPairsByAngle[(((u16) r4 - 0x4000) >> 4) * 2]) >> 12;
                 a->mUnk_000.mUnk_10.y = 0;
                 a->mUnk_000.mUnk_10.z =
-                    ((s64) a->mPrm->mUnk_0fc * data_0215d4b4[(((u16) a->mMoveAngle - 0x4000) >> 4) * 2 + 1]) >> 12;
+                    ((s64) a->mPrm->mUnk_0fc * gPairsByAngle[(((u16) a->mMoveAngle - 0x4000) >> 4) * 2 + 1]) >> 12;
             }
             a->mUnk_2d8 = 0xc;
             func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);

@@ -49,8 +49,8 @@ void func_020c1ef8(void) {
         gRaceGoalS->mUnk_0040[i] = i;
         if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
             v = x0;
-            if ((u32) data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 <= 3 &&
-                ((1 << data_021759c0->mUnk_68[i].mUnk_08.mUnk_00) & 0xd)) {
+            if ((u32) data_021759c0->mCurrentEntries[i].mUnk_08.mKind <= 3 &&
+                ((1 << data_021759c0->mCurrentEntries[i].mUnk_08.mKind) & 0xd)) {
                 v = 1;
             }
             c = v != 0 ? 1 : x1;

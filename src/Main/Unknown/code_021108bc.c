@@ -90,7 +90,7 @@ s32 func_02110e58(void) {
         case 5:
             switch (data_0217d32c.mUnk_0c) {
                 case 0:
-                    if (func_0203c8dc((u16) p->mUnk_62) - 1 == 0) {
+                    if (func_0203c8dc((u16) p->mEntryIndex) - 1 == 0) {
                         b = 0;
                     } else {
                         b = 1;
@@ -109,7 +109,7 @@ s32 func_02110e58(void) {
             } else {
                 switch (data_0217d32c.mUnk_0c) {
                     case 0:
-                        if (func_0203c8dc((u16) p->mUnk_62) - 1 == 0) {
+                        if (func_0203c8dc((u16) p->mEntryIndex) - 1 == 0) {
                             b = 0;
                         } else {
                             b = 1;

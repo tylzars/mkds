@@ -66,7 +66,7 @@ void func_0210b610(void) {
     a = *(u32 *) data_0217ccb8 + 0x1999;
     *(u32 *) data_0217ccb8 = a;
     b = a & 0xffff;
-    c = data_0215d4b4[(b >> 4) * 2];
+    c = gPairsByAngle[(b >> 4) * 2];
     d = (s64) c * 0x90000 + 0x800;
     *(u32 *) data_0217ccb8 = b;
     data_0217ccb4 = (s32) (d >> 12) >> 12;
@@ -148,7 +148,7 @@ void func_0210b2a8(Unk0206bcb0 *a, s32 b, s32 c, s32 d, u32 e) {
     }
     if (e != 0) {
         w = 0;
-        h = a->mIndex == data_021759c0->mUnk_62;
+        h = a->mIndex == data_021759c0->mEntryIndex;
         if (e > 0x11170) {
             w = 0x384;
             if (h != FALSE) {
@@ -264,7 +264,7 @@ void func_0210af40(Unk0206bcb0 *a, s32 b, s32 c) {
             return;
         }
         e = 0x7f;
-        f = a->mIndex == data_021759c0->mUnk_62;
+        f = a->mIndex == data_021759c0->mEntryIndex;
         if (c == 5) {
             e = 0x7f;
         } else if (c == 3) {
@@ -364,7 +364,7 @@ void func_0210ad58(Unk0206bcb0 *a, s32 b) {
     if (q->mUnk_64 != 0) {
         return;
     }
-    if (a->mIndex == data_021759c0->mUnk_62) {
+    if (a->mIndex == data_021759c0->mEntryIndex) {
         func_0210abf4(a, b, 1, 0x6e);
         q->mUnk_6c = 0;
         return;
@@ -457,7 +457,7 @@ void func_0210aa14(Unk0206bcb0 *a, Unk0210bf24 *b, s32 c) {
     d = b->mUnk_18;
     e = b->mUnk_16;
     f = -1;
-    if (a->mIndex == data_021759c0->mUnk_62) {
+    if (a->mIndex == data_021759c0->mEntryIndex) {
         p = func_0212d580(d, e);
         g = p->mUnk_05;
         if (g == 2) {
@@ -498,7 +498,7 @@ void func_0210a880(Unk0206bcb0 *a, Unk0210bf24 *b, s32 c) {
     if (b->mUnk_18 != 2) {
         f = a->mUnk_500;
         w = 0;
-        g = a->mIndex == data_021759c0->mUnk_62;
+        g = a->mIndex == data_021759c0->mEntryIndex;
         if (f > 0x11170) {
             w = 0x384;
             if (g != FALSE) {

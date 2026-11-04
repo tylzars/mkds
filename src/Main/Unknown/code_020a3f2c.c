@@ -131,7 +131,7 @@ u32 func_020a6ae4(Unk020a5958 *p, Unk0206bcb0 *o, u8 *a, u8 *b) {
         p->mUnk_ca = o->mIndex;
         func_020a10ac(o->mIndex, 1);
         func_020a10f0(o->mIndex, 1);
-        r = o->mIndex == data_021759c0->mUnk_62 ? 1 : 0;
+        r = o->mIndex == data_021759c0->mEntryIndex ? 1 : 0;
         c = func_020a1180();
         n = func_020a1154(o->mIndex);
         func_0210b98c(p->mUnk_00.mUnk_94, func_02024974(0, r, c, n));
@@ -222,7 +222,7 @@ void func_020a683c(void *a, Unk020a5958 *p, void *b, s32 c) {
     }
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
     x = data_021567a4[data_0217b220] >> 4;
-    Matrix3x3FromPairY(m, data_0215d4b4[x * 2 + 1], data_0215d4b4[x * 2]);
+    Matrix3x3FromPairY(m, gPairsByAngle[x * 2 + 1], gPairsByAngle[x * 2]);
     func_01ff9048(0x1a, m, 9);
     u.x = 0x2000;
     u.y = 0x2000;
@@ -340,7 +340,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
                     p->mUnk_b8 = p->mUnk_b8 == 0;
                 }
             }
-            v = func_0207a974(p->mUnk_c8);
+            v = GetKart(p->mUnk_c8);
             p->mUnk_a0 += p->mUnk_00.mUnk_10.y;
             p->mUnk_00.mPos = *func_020a0ff0(p->mUnk_c8);
             p->mUnk_00.mPos.y += p->mUnk_a0 + (func_020a23a0(v) + 0x7800);
@@ -420,7 +420,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
             }
             p->mUnk_a0 += p->mUnk_00.mUnk_10.y;
             p->mUnk_00.mPos = *func_020a0ff0(p->mUnk_c8);
-            p->mUnk_00.mPos.y += p->mUnk_a0 + (func_020a23a0(func_0207a974(p->mUnk_c8)) + 0x7800);
+            p->mUnk_00.mPos.y += p->mUnk_a0 + (func_020a23a0(GetKart(p->mUnk_c8)) + 0x7800);
             p->mUnk_00.mUnk_10.y -= 0x52;
             p->mUnk_a8 += 0x19a;
             if (p->mUnk_a8 >= 0x1000) {
@@ -436,8 +436,8 @@ void func_020a5958(void *a, Unk020a5958 *p) {
                 g = &data_0217561c->mUnk_47c;
                 g->mUnk_00 = g->mUnk_08 * g->mUnk_00 + g->mUnk_10;
                 s = ((u64) (u32) (g->mUnk_00 >> 32) * 0x14000) >> 32;
-                x = p->mUnk_cc.x + (s32) (((s64) s * data_0215d4b4[(r >> 4) * 2]) >> 12) - p->mUnk_00.mPos.x;
-                z = p->mUnk_cc.z + (s32) (((s64) s * data_0215d4b4[(r >> 4) * 2 + 1]) >> 12) - p->mUnk_00.mPos.z;
+                x = p->mUnk_cc.x + (s32) (((s64) s * gPairsByAngle[(r >> 4) * 2]) >> 12) - p->mUnk_00.mPos.x;
+                z = p->mUnk_cc.z + (s32) (((s64) s * gPairsByAngle[(r >> 4) * 2 + 1]) >> 12) - p->mUnk_00.mPos.z;
                 p->mUnk_e0 = 4;
                 p->mUnk_00.mUnk_10.x = ((s64) x * 0x25) >> 12;
                 p->mUnk_00.mUnk_10.y = 0x5000;
@@ -669,7 +669,7 @@ void func_020a5608(Unk0206bcb0 *a, Unk0206bcb0 *b) {
     p->mUnk_dc = 0;
     p->mUnk_c4 = -1;
     func_020a1218(1);
-    r = a->mIndex == data_021759c0->mUnk_62 ? 1 : 0;
+    r = a->mIndex == data_021759c0->mEntryIndex ? 1 : 0;
     c = func_020a1180();
     n = func_020a1154(a->mIndex);
     func_0210b98c(p->mUnk_00.mUnk_94, func_02024974(1, r, c, n));
@@ -683,7 +683,7 @@ BOOL func_020a5268(u16 a, u16 b) {
     Vec3 v;
     s32 n;
 
-    o = func_0207a974(a);
+    o = GetKart(a);
     func_020a2378();
     if (func_020a1154(b) >= 3 || func_020a1154(a) == 0) {
         e = func_020a2378() + a;
@@ -699,7 +699,7 @@ BOOL func_020a5268(u16 a, u16 b) {
             }
         }
         if (l != NULL) {
-            if (a == data_021759c0->mUnk_62) {
+            if (a == data_021759c0->mEntryIndex) {
                 func_020a2ebc(l, NULL);
             } else {
                 v.x = o->mUnk_80.x;
@@ -743,7 +743,7 @@ BOOL func_020a5268(u16 a, u16 b) {
             }
             func_02081f10(func_0208b7bc(0x7a, &o->mUnk_80), o->mIndex, 0x20);
             func_02081f10(func_0208b7bc(0x7b, &o->mUnk_80), o->mIndex, 0x20);
-            func_020d26ec(func_0207a974(b), 0x14f);
+            func_020d26ec(GetKart(b), 0x14f);
             if (func_020a1154(a) == 0) {
                 func_020a16d0(a);
             }
@@ -815,7 +815,7 @@ s32 func_020a4f54(u16 a, u16 b) {
             v1->mUnk_34 = 4;
         }
     }
-    if (a == data_021759c0->mUnk_62 || b == data_021759c0->mUnk_62) {
+    if (a == data_021759c0->mEntryIndex || b == data_021759c0->mEntryIndex) {
         s.mUnk_00 = 0x14f;
         s.mUnk_04 = NULL;
         s.mUnk_08 = 2;
@@ -845,9 +845,9 @@ BOOL func_020a4d94(u16 a, u16 b) {
         }
     }
     if (l != NULL) {
-        o = func_0207a974(a);
+        o = GetKart(a);
         func_020a2378();
-        if (a == data_021759c0->mUnk_62) {
+        if (a == data_021759c0->mEntryIndex) {
             func_020a2ebc(l, NULL);
         } else {
             v.x = o->mUnk_80.x;
@@ -952,7 +952,7 @@ void func_020a49d4(Unk020a3fa8 *a) {
             if (a->mUnk_000.mCourseMapRow->mUnk_2c != 0) {
                 p->mUnk_30 = a->mUnk_000.mCourseMapRow->mUnk_2c;
             } else {
-                switch (data_021759c0->mUnk_68[(u16) i].mUnk_08.mTeamIndex) {
+                switch (data_021759c0->mCurrentEntries[(u16) i].mUnk_08.mTeamIndex) {
                     case 0:
                         p->mUnk_30 = 1;
                         break;
@@ -1009,7 +1009,7 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
         }
         for (i = 0; i < n; i++) {
             Unk020a3fa8_a4 *e = &c->mUnk_0a4[i];
-            func_0207a974((u16) i);
+            GetKart((u16) i);
             e->mUnk_34 = 1;
             if (c->mUnk_000.mCourseMapRow->mUnk_28 != 0 || c->mUnk_000.mCourseMapRow->mUnk_2a != 0) {
                 e->mUnk_04 = c->mUnk_000.mCourseMapRow->mUnk_28;
@@ -1025,7 +1025,7 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
         Unk0206bcb0 *p;
         Unk020a3fa8_a4 *e = &c->mUnk_0a4[i];
         func_020748a8();
-        p = func_0207a974((u16) i);
+        p = GetKart((u16) i);
         v.x = p->mUnk_80.x;
         v.y = p->mUnk_80.y + func_020a23a0(p) - 0xf666;
         v.z = p->mUnk_80.z;
@@ -1121,12 +1121,12 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
                     e->mUnk_00 = 30;
                     e->mUnk_34 = 0;
                 }
-                func_020d26ec(func_0207a974((u16) i), 0x152);
+                func_020d26ec(GetKart((u16) i), 0x152);
             }
         } else if (e->mUnk_04 <= 0) {
             e->mUnk_34 = 0;
         }
-        if (i == data_021759c0->mUnk_62) {
+        if (i == data_021759c0->mEntryIndex) {
             if (func_020a2264(i) > 0 || func_020a223c(i) > 0) {
                 s = func_020a1154(i) >= 3 ? 600 : 300;
                 d = func_020a1154(i) >= 3 ? 200 : 100;

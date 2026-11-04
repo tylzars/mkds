@@ -86,9 +86,9 @@ void func_0209280c(void *a, Unk0209219c *b) {
     func_01ff9048(0x14, &s, 1);
     func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mPos), 0xc);
     if (b->mUnk_cc != 0) {
-        Matrix3x3FromPairZ(m, data_0215d4b4[((u16) -d >> 4) * 2], data_0215d4b4[((u16) -d >> 4) * 2 + 1]);
+        Matrix3x3FromPairZ(m, gPairsByAngle[((u16) -d >> 4) * 2], gPairsByAngle[((u16) -d >> 4) * 2 + 1]);
     } else {
-        Matrix3x3FromPairZ(m, data_0215d4b4[((u16) d >> 4) * 2], data_0215d4b4[((u16) d >> 4) * 2 + 1]);
+        Matrix3x3FromPairZ(m, gPairsByAngle[((u16) d >> 4) * 2], gPairsByAngle[((u16) d >> 4) * 2 + 1]);
     }
     func_01ff9048(0x1a, m, 9);
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);

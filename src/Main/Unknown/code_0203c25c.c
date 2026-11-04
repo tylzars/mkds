@@ -68,7 +68,7 @@ void func_0203c2e4(u16 a) {
         func_020a16d0(a);
     }
     p->mUnk_00 = 4;
-    func_02069044(func_0207a974(a));
+    func_02069044(GetKart(a));
     func_020b1cdc(a, 1);
     if (func_0203ef58() != 0) {
         switch (data_021759c0->mUnk_08) {

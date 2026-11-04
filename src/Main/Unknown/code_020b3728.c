@@ -68,8 +68,8 @@ void func_020b3cd8(void) {
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
             f = FALSE;
-            if ((u32) data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 <= 3) {
-                if ((1 << data_021759c0->mUnk_68[i].mUnk_08.mUnk_00) & 0xd) {
+            if ((u32) data_021759c0->mCurrentEntries[i].mUnk_08.mKind <= 3) {
+                if ((1 << data_021759c0->mCurrentEntries[i].mUnk_08.mKind) & 0xd) {
                     f = TRUE;
                 }
             }
@@ -80,8 +80,8 @@ void func_020b3cd8(void) {
             a[i] = (v << 4) + (g << 3) + 8 - func_0203c8dc(i);
         } else {
             f = FALSE;
-            if ((u32) data_021759c0->mUnk_68[i].mUnk_08.mUnk_00 <= 3) {
-                if ((1 << data_021759c0->mUnk_68[i].mUnk_08.mUnk_00) & 0xd) {
+            if ((u32) data_021759c0->mCurrentEntries[i].mUnk_08.mKind <= 3) {
+                if ((1 << data_021759c0->mCurrentEntries[i].mUnk_08.mKind) & 0xd) {
                     f = TRUE;
                 }
             }
@@ -156,7 +156,7 @@ void func_020b3b58(void) {
             break;
         }
     }
-    func_0205d6d0(data_021759c0->mUnk_68[i].mUnk_08.mTeamIndex);
+    func_0205d6d0(data_021759c0->mCurrentEntries[i].mUnk_08.mTeamIndex);
 }
 
 void func_020b3b08(void) {
@@ -233,7 +233,7 @@ void func_020b3728(void) {
                         case 4:
                         case 6:
                         case 10:
-                            if ((func_0203c880((u16) d->mUnk_62) ? data_0217561c->mUnk_4e0 : 6) != 0) {
+                            if ((func_0203c880((u16) d->mEntryIndex) ? data_0217561c->mUnk_4e0 : 6) != 0) {
                                 f = FALSE;
                             }
                             break;
@@ -260,14 +260,14 @@ void func_020b3728(void) {
             switch (d->mUnk_08) {
                 case 3:
                     if (d->mUnk_1c == 1) {
-                        func_02089ef4((func_0207a974(d->mUnk_62)->mUnk_7c & 0x2000000) ? 4 : 5);
+                        func_02089ef4((GetKart(d->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
                     }
                     break;
                 case 2:
-                    func_02089ef4((func_0207a974(d->mUnk_62)->mUnk_7c & 0x2000000) ? 4 : 5);
+                    func_02089ef4((GetKart(d->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
                     break;
                 case 4:
-                    if ((func_0203c880((u16) d->mUnk_62) ? data_0217561c->mUnk_4e0 : 6) != 0) {
+                    if ((func_0203c880((u16) d->mEntryIndex) ? data_0217561c->mUnk_4e0 : 6) != 0) {
                         func_02089ef4(7);
                     }
                     break;
@@ -289,7 +289,7 @@ void func_020b3728(void) {
     d = data_021759c0;
     switch (d->mUnk_08) {
         case 4:
-            if ((func_0203c880((u16) d->mUnk_62) ? data_0217561c->mUnk_4e0 : 6) == 0) {
+            if ((func_0203c880((u16) d->mEntryIndex) ? data_0217561c->mUnk_4e0 : 6) == 0) {
                 func_02089ef4(6);
             }
             break;

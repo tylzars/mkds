@@ -90,7 +90,7 @@ void func_0203fed4(void) {
         if (t != 0) {
             switch (data_021759c0->mUnk_08) {
                 case 4:
-                    func_0203e788((u16) data_021759c0->mUnk_62, 1);
+                    func_0203e788((u16) data_021759c0->mEntryIndex, 1);
                     g = data_0217d084.mUnk_04 == 2 || data_0217d084.mUnk_04 == 3;
                     if (g) {
                         func_0212ecc0(&data_0217d068, 0, 0x4a);

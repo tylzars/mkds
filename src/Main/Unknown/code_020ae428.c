@@ -31,7 +31,7 @@ s32 func_020ae584(s32 a) {
 #pragma thumb off
 
 s16 func_020ae564(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2 + 1];
+    return gPairsByAngle[(a >> 4) * 2 + 1];
 }
 
 s32 func_020ae554(s32 a, s32 b) {
@@ -103,4 +103,3 @@ u16 func_020ae444(Unk02175628 *a, u32 b) {
 u16 func_020ae428(u32 a, u32 b) {
     return func_020ae444(&data_02175628[a], b);
 }
-

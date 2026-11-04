@@ -121,7 +121,7 @@ void func_02077998(void) {
 }
 
 void func_02077944(void) {
-    Unk0206bcb0 *a = func_0207a974(data_021759c0->mUnk_62);
+    Unk0206bcb0 *a = GetKart(data_021759c0->mEntryIndex);
 
     data_0217ac94 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
     func_02076a5c();
@@ -256,8 +256,8 @@ void func_0207729c(Unk02061808 *p) {
     p->mUnk_168 = 0;
     p->mUnk_064 = data_0216569c;
     p->mUnk_060 = data_0216569c + 5;
-    p->mUnk_068 = data_0215d4b4[((u16) p->mUnk_060 >> 4) * 2];
-    p->mUnk_06a = data_0215d4b4[((u16) p->mUnk_060 >> 4) * 2 + 1];
+    p->mUnk_068 = gPairsByAngle[((u16) p->mUnk_060 >> 4) * 2];
+    p->mUnk_06a = gPairsByAngle[((u16) p->mUnk_060 >> 4) * 2 + 1];
     p->mUnk_06c = 0x1555;
     p->mUnk_070 = 0x400;
     p->mUnk_08c = 0x640000;

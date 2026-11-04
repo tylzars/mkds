@@ -90,7 +90,7 @@ u32 func_02102eb8(Unk02102674 *p, s32 b) {
     s32 a;
     s32 b2;
 
-    a = data_021759c0->mUnk_62;
+    a = data_021759c0->mEntryIndex;
     s = func_020748a8();
     func_020f82a4(0);
     if (a < 0) {
@@ -98,7 +98,7 @@ u32 func_02102eb8(Unk02102674 *p, s32 b) {
     } else {
         b2 = a;
     }
-    p->mUnk_12c = func_0207a974(b2);
+    p->mUnk_12c = GetKart(b2);
     p->mUnk_000.mUnk_50 = p->mUnk_12c->mUnk_98;
     Vec3AddScaled(0x5800, &s->mUnk_00, &p->mUnk_000.mUnk_50, &p->mUnk_000.mUnk_50);
     Vec3AddScaled(func_0203c5e4() != 0 ? 0x5800 : 0xa800, &s->mUnk_15c, &p->mUnk_000.mUnk_50, &p->mUnk_000.mUnk_50);

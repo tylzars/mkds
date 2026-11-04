@@ -339,9 +339,9 @@ void func_020ba63c(Unk020d029c *p) {
 
     x = data_0217b3cc->mUnk_00;
     y = data_0217b3cc->mUnk_08;
-    r = GetRaceMNcerEntry(data_021759c0->mUseTeams == 0                                     ? 8
-                          : data_021759c0->mUnk_68[func_020b4d9c()].mUnk_08.mTeamIndex == 0 ? 9
-                                                                                            : 10);
+    r = GetRaceMNcerEntry(data_021759c0->mUseTeams == 0                                             ? 8
+                          : data_021759c0->mCurrentEntries[func_020b4d9c()].mUnk_08.mTeamIndex == 0 ? 9
+                                                                                                    : 10);
     if (data_021759c0->mUnk_00c == 4) {
         return;
     }
@@ -566,7 +566,7 @@ void func_020b9dfc(Unk020d029c *p) {
                 if (data_0217561c->mUnk_000[func_020b4d9c()].mUnk_14 != 2) {
                     return;
                 }
-                if ((func_0207a974(func_020b4d9c())->mUnk_7c & 0x402000) == 0) {
+                if ((GetKart(func_020b4d9c())->mUnk_7c & 0x402000) == 0) {
                     return;
                 }
                 t = GetRaceBattleMNcerEntry(0xc);

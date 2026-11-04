@@ -3,10 +3,10 @@
 #include "Main/Unknown/unk_021759c0.h"
 
 void func_02046740(void) {
-    data_021759c0->mUnk_1e8.mUnk_60 = data_021759c0->mUnk_60 + 1;
-    if (data_021759c0->mUnk_1e8.mUnk_60 <= 4) {
-        data_021759c0->mUnk_1e8.mCourseId =
-            data_02154128[data_021759c0->mUnk_1e8.mUnk_04][data_021759c0->mUnk_1e8.mUnk_60 - 1];
+    data_021759c0->mNextHeader.mUnk_60 = data_021759c0->mUnk_60 + 1;
+    if (data_021759c0->mNextHeader.mUnk_60 <= 4) {
+        data_021759c0->mNextHeader.mCourseId =
+            data_02154128[data_021759c0->mNextHeader.mUnk_04][data_021759c0->mNextHeader.mUnk_60 - 1];
     }
-    data_021759c0->mUnk_1e8.mUnk_0c = 3;
+    data_021759c0->mNextHeader.mUnk_0c = 3;
 }

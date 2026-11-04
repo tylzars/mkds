@@ -508,11 +508,11 @@ void func_020b5290(void) {
 }
 
 s32 func_020b5270(s32 x) {
-    return data_0215d4b4[(x >> 4) * 2 + 1];
+    return gPairsByAngle[(x >> 4) * 2 + 1];
 }
 
 s32 func_020b5258(s32 x) {
-    return data_0215d4b4[(x >> 4) * 2];
+    return gPairsByAngle[(x >> 4) * 2];
 }
 
 s32 func_020b5250(s32 x) {

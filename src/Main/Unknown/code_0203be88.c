@@ -57,7 +57,7 @@ BOOL func_0203c174(void) {
 
 u32 func_0203c0bc(void) {
     u32 v;
-    s32 i = data_021759c0->mUnk_62;
+    s32 i = data_021759c0->mEntryIndex;
     if (i == -1) {
         return 0;
     }

@@ -187,14 +187,14 @@ void func_020fc654(Unk020fc2e8 *p) {
     a = p->mUnk_260;
     if (p->mUnk_000.mUnk_74 & 0x40000000) {
         p->mUnk_268 += 0x5dc;
-        v = data_0215d4b4[(p->mUnk_268 >> 4) * 2];
+        v = gPairsByAngle[(p->mUnk_268 >> 4) * 2];
         Vec3AddScaled(a + (s32) (((s64) p->mUnk_264 * v) >> 12), &p->mUnk_000.mUnk_f0, &p->mUnk_000.mUnk_50, &buf);
         Vec3Sub(&buf, &p->mUnk_000.mUnk_0c4, &buf);
         Vec3AddScaled(0x333, &buf, &p->mUnk_000.mUnk_0c4, &p->mUnk_000.mUnk_0c4);
     } else {
         p->mUnk_000.mUnk_0c4.y += p->mUnk_000.mUnk_5c.y >> 1;
         p->mUnk_268 += 0x5dc;
-        v = data_0215d4b4[(p->mUnk_268 >> 4) * 2];
+        v = gPairsByAngle[(p->mUnk_268 >> 4) * 2];
         a += (s32) (((s64) p->mUnk_264 * v) >> 12);
         a = a + p->mUnk_000.mUnk_50.y - p->mUnk_000.mUnk_0c4.y;
         p->mUnk_000.mUnk_0c4.y += (s32) (((s64) a * 0x19a) >> 12);
@@ -328,7 +328,7 @@ void func_020fbd98(Unk020fc2e8 *param_1) {
         }
         if (param_1->mUnk_276 ==
                 (u16) (!(param_1->mUnk_000.mUnk_78 & 0x8000) ? (u16) (param_1->mUnk_000.mUnk_78 & ~0xff00) : 8) ||
-            func_02068eac(func_0207a974(param_1->mUnk_276)) != 0) {
+            func_02068eac(GetKart(param_1->mUnk_276)) != 0) {
             param_1->mUnk_278 = 1;
         } else {
             param_1->mUnk_280 |= 1 << param_1->mUnk_276;
@@ -339,7 +339,7 @@ void func_020fbd98(Unk020fc2e8 *param_1) {
         n = (u8) data_021759c0->mKartCount;
         for (i = 1; i <= n; i = (u16) (i + 1)) {
             param_1->mUnk_276 = data_0217561c->mUnk_474[(u8) i - 1];
-            if (func_02068eac(func_0207a974(param_1->mUnk_276)) == 0) {
+            if (func_02068eac(GetKart(param_1->mUnk_276)) == 0) {
                 break;
             }
         }
@@ -387,7 +387,7 @@ void func_020fbd98(Unk020fc2e8 *param_1) {
 void func_020fbd4c(Unk020fc2e8 *param_1) {
     param_1->mUnk_27c = Vec3Length(&param_1->mUnk_000.mUnk_5c);
     param_1->mUnk_284 = 0x1e000;
-    if (param_1->mUnk_228->mUnk_1f8 == data_021759c0->mUnk_62) {
+    if (param_1->mUnk_228->mUnk_1f8 == data_021759c0->mEntryIndex) {
         param_1->mUnk_270 = 0xdd;
     }
 }
@@ -961,7 +961,7 @@ void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
     if ((data_027e00c8)[param_1].mUnk_030.mUnk_00 != 0x13) {
         return;
     }
-    v = data_021759c0->mUnk_68[param_1].mUnk_08.mUnk_00;
+    v = data_021759c0->mCurrentEntries[param_1].mUnk_08.mKind;
     if (v == 3) {
         return;
     }

@@ -104,7 +104,7 @@ void func_02063cc4(Unk0206bcb0 *a) {
             func_02063cc4_inline(0x14, 0x1c);
             func_01ff9048(0x1c, &f->mUnk_18, 3);
             w = (a->mUnk_3a4 >> 4) * 2;
-            Matrix3x3FromPairX(j, data_0215d4b4[w], data_0215d4b4[w + 1]);
+            Matrix3x3FromPairX(j, gPairsByAngle[w], gPairsByAngle[w + 1]);
             func_01ff9048(0x1a, j, 9);
             func_020849d0(e->mUnk_010[2]);
             if (f->mUnk_18 != 0) {
@@ -116,7 +116,7 @@ void func_02063cc4(Unk0206bcb0 *a) {
             func_02063cc4_inline2(0x1b, h, h, h);
             func_01ff9048(0x11, NULL, 0);
             w = (a->mUnk_4cc >> 4) * 2;
-            Matrix3x3FromPairY(k, data_0215d4b4[w], data_0215d4b4[w + 1]);
+            Matrix3x3FromPairY(k, gPairsByAngle[w], gPairsByAngle[w + 1]);
             func_01ff9048(0x1a, k, 9);
             func_01ff9048(0x1a, j, 9);
             func_020849d0(e->mUnk_010[2]);

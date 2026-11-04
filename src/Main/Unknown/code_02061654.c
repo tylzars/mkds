@@ -291,7 +291,7 @@ void func_02062464(void) {
         data_0217aa7c = v;
         data_0217aa6c = func_02074888();
     } else if (func_0203c5e4() != 0) {
-        func_02076528(data_0217aa88, func_0207a974(data_021759c0->mUnk_063));
+        func_02076528(data_0217aa88, GetKart(data_021759c0->mUnk_063));
         func_02076cd0(data_0217aa88);
         if (func_02075a94(data_0217aa5c) != 0) {
             data_0217aa6c = data_0217aa5c;
@@ -301,7 +301,7 @@ void func_02062464(void) {
             data_0217aa7c = &data_0217aa88->mUnk_030;
         }
     } else {
-        func_02076528(data_0217aa88, func_0207a974(data_021759c0->mUnk_62));
+        func_02076528(data_0217aa88, GetKart(data_021759c0->mEntryIndex));
         func_02076cd0(data_0217aa88);
         data_0217aa6c = data_0217aa88;
         data_0217aa7c = &data_0217aa88->mUnk_030;

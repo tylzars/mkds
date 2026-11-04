@@ -128,7 +128,7 @@ void func_ov001_02183dec(Unk02188950 *a) {
 }
 
 s32 func_ov001_02183d94(Unk02188950 *a) {
-    SetAnglePointAndMoveAnglePoint(a, &func_0207a974((u16) data_021759c0->mUnk_62)->mUnk_80);
+    SetAnglePointAndMoveAnglePoint(a, &GetKart((u16) data_021759c0->mEntryIndex)->mUnk_80);
     if (a->mSpeed < a->mPrm->mUnk_108) {
         func_ov001_02188200(a, func_ov001_02184874);
         func_ov001_02184e6c(a);
@@ -139,7 +139,7 @@ s32 func_ov001_02183d94(Unk02188950 *a) {
 void func_ov001_02183cc8(Unk02188950 *a) {
     Unk0206bcb0 *r4;
 
-    r4 = func_0207a974((u16) data_021759c0->mUnk_62);
+    r4 = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 2, func_ov001_02183d94);
     func_ov001_02188d64(a, a->mPrm->mUnk_10c, a->mPrm->mUnk_110);
     func_ov001_02188c48(a, a->mPrm->mUnk_118, a->mPrm->mUnk_118);
@@ -185,7 +185,7 @@ void func_ov001_02183b9c(Unk02188950 *a) {
 void func_ov001_02183ad8(Unk02188950 *a) {
     Unk0206bcb0 *r4;
 
-    r4 = func_0207a974((u16) data_021759c0->mUnk_62);
+    r4 = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 3, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_0cc, a->mPrm->mUnk_0d0);
     func_ov001_02188c48(a, a->mPrm->mUnk_0d8, a->mPrm->mUnk_0d8);
@@ -367,7 +367,7 @@ void func_ov001_021832cc(u32 b, Unk02188950 *d) {
 
     if (data_021759c0->mUnk_08 == 4 ? func_020a126c() : 0) {
         if (func_ov001_021871f8(d, 1) != 0) {
-            if (data_021759c0->mUnk_08 == 4 ? func_020a1084((u16) data_021759c0->mUnk_62) : 0) {
+            if (data_021759c0->mUnk_08 == 4 ? func_020a1084((u16) data_021759c0->mEntryIndex) : 0) {
                 func_ov001_02183850(d);
             } else {
                 func_ov001_02183f0c(d);
@@ -387,7 +387,7 @@ void func_ov001_021832cc(u32 b, Unk02188950 *d) {
                     a = d->mPrm;
                     c = func_ov001_02188000(d, a->mUnk_140, a->mUnk_144);
                     if (c != NULL) {
-                        if ((func_0207a974(c->mIndex)->mUnk_48 & 0x100000) != 0 && c->mUnk_238 > 0) {
+                        if ((GetKart(c->mIndex)->mUnk_48 & 0x100000) != 0 && c->mUnk_238 > 0) {
                             func_ov001_02183dec(d);
                         }
                     }

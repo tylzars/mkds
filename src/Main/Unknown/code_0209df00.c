@@ -143,8 +143,8 @@ void func_0209e508(void *a, Unk0209df84 *b) {
                 func_01ff9048(0x14, &s1, 1);
                 func_01ff9048(0x19, func_020e6cf8(&b->mUnk_c4[i][j].mUnk_00), 0xc);
                 if (b->mUnk_c4[i][j].mUnk_0e != 0) {
-                    Matrix3x3FromPairZ(m1, data_0215d4b4[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2],
-                                       data_0215d4b4[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2 + 1]);
+                    Matrix3x3FromPairZ(m1, gPairsByAngle[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2],
+                                       gPairsByAngle[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2 + 1]);
                     func_01ff9048(0x1a, m1, 9);
                 }
                 func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
@@ -158,7 +158,7 @@ void func_0209e508(void *a, Unk0209df84 *b) {
         func_01ff9048(0x14, &s2, 1);
         func_01ff9048(0x19, func_020e6cf8(&b->mUnk_b4), 0xc);
         if (b->mUnk_c2 != 0) {
-            Matrix3x3FromPairZ(m2, data_0215d4b4[(b->mUnk_c2 >> 4) * 2], data_0215d4b4[(b->mUnk_c2 >> 4) * 2 + 1]);
+            Matrix3x3FromPairZ(m2, gPairsByAngle[(b->mUnk_c2 >> 4) * 2], gPairsByAngle[(b->mUnk_c2 >> 4) * 2 + 1]);
             func_01ff9048(0x1a, m2, 9);
         }
         func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
@@ -182,8 +182,8 @@ void func_0209e508(void *a, Unk0209df84 *b) {
                 func_01ff9048(0x14, &s3, 1);
                 func_01ff9048(0x19, func_020e6cf8(&b->mUnk_c4[i][j].mUnk_00), 0xc);
                 if (b->mUnk_c4[i][j].mUnk_0e != 0) {
-                    Matrix3x3FromPairZ(m3, data_0215d4b4[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2],
-                                       data_0215d4b4[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2 + 1]);
+                    Matrix3x3FromPairZ(m3, gPairsByAngle[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2],
+                                       gPairsByAngle[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2 + 1]);
                     func_01ff9048(0x1a, m3, 9);
                 }
                 func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
@@ -246,7 +246,7 @@ void func_0209df84(void *a, Unk0209df84 *b) {
     n = b->mUnk_ac;
     b->mUnk_b4 = b->mUnk_00.mPos;
     if (b->mUnk_a2 == 1) {
-        p = func_0207a974((u16) data_021759c0->mUnk_62);
+        p = GetKart((u16) data_021759c0->mEntryIndex);
         if (func_0209df84_inline(p, b, n - 0xf000) != FALSE) {
             Vec3Sub(&p->mUnk_80, &b->mUnk_00.mPos, &v);
             d = func_02039828(&v, &b->mUnk_00.mMatrix.mUnk_00[2]);
@@ -278,9 +278,9 @@ void func_0209df84(void *a, Unk0209df84 *b) {
         for (j = 0; j < b->mUnk_a0; j++) {
             w = w + b->mUnk_a4;
             b->mUnk_c4[j][i].mUnk_0c = w;
-            Vec3AddScaled(((s64) n * data_0215d4b4[(w >> 4) * 2 + 1]) >> 12, &b->mUnk_00.mMatrix.mUnk_00[0],
+            Vec3AddScaled(((s64) n * gPairsByAngle[(w >> 4) * 2 + 1]) >> 12, &b->mUnk_00.mMatrix.mUnk_00[0],
                           &b->mUnk_00.mPos, &b->mUnk_c4[j][i].mUnk_00);
-            Vec3AddScaled(((s64) n * data_0215d4b4[(w >> 4) * 2]) >> 12, &b->mUnk_00.mMatrix.mUnk_00[1],
+            Vec3AddScaled(((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12, &b->mUnk_00.mMatrix.mUnk_00[1],
                           &b->mUnk_c4[j][i].mUnk_00, &b->mUnk_c4[j][i].mUnk_00);
             b->mUnk_c4[j][i].mUnk_0e = b->mUnk_c4[j][i].mUnk_0e + 0x51e;
         }

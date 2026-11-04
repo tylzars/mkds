@@ -127,13 +127,13 @@ void func_0201e170(const Unk0201e170 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q
 
     switch (a->mUnk_02) {
         case 0:
-            Matrix3x3FromPairX(buf, data_0215d4b4[(a->mUnk_00 >> 4) * 2], data_0215d4b4[(a->mUnk_00 >> 4) * 2 + 1]);
+            Matrix3x3FromPairX(buf, gPairsByAngle[(a->mUnk_00 >> 4) * 2], gPairsByAngle[(a->mUnk_00 >> 4) * 2 + 1]);
             break;
         case 1:
-            Matrix3x3FromPairY(buf, data_0215d4b4[(a->mUnk_00 >> 4) * 2], data_0215d4b4[(a->mUnk_00 >> 4) * 2 + 1]);
+            Matrix3x3FromPairY(buf, gPairsByAngle[(a->mUnk_00 >> 4) * 2], gPairsByAngle[(a->mUnk_00 >> 4) * 2 + 1]);
             break;
         case 2:
-            Matrix3x3FromPairZ(buf, data_0215d4b4[(a->mUnk_00 >> 4) * 2], data_0215d4b4[(a->mUnk_00 >> 4) * 2 + 1]);
+            Matrix3x3FromPairZ(buf, gPairsByAngle[(a->mUnk_00 >> 4) * 2], gPairsByAngle[(a->mUnk_00 >> 4) * 2 + 1]);
             break;
     }
     Vec3MultiplyMatrix3x3(&p->mUnk_08, buf, &p->mUnk_08);
@@ -452,8 +452,8 @@ void func_0201ca6c(Unk0201ca6c *p, Unk0201e494 *l0) {
                     k = acc / n;
                     acc += 0x10000;
                     k >>= 4;
-                    a = data_0215d4b4[k * 2];
-                    b = data_0215d4b4[k * 2 + 1];
+                    a = gPairsByAngle[k * 2];
+                    b = gPairsByAngle[k * 2 + 1];
                     v3.x = (s32) (((s64) a * p->mUnk_5c + 0x800) >> 12);
                     v3.y = (s32) (((s64) b * p->mUnk_5c + 0x800) >> 12);
                     v3.z = 0;
@@ -914,8 +914,8 @@ void func_0201c09c(Unk020184e4 *p, Unk0201e3c8 *n) {
         t.y = n->mUnk_08.y + n->mUnk_38.y;
         t.z = n->mUnk_08.z + n->mUnk_38.z;
         Vec3MultiplyMatrix4x3(&t, q, &t);
-        t0 = data_0215d4b4[(n->mUnk_20 >> 4) * 2];
-        t1 = data_0215d4b4[(n->mUnk_20 >> 4) * 2 + 1];
+        t0 = gPairsByAngle[(n->mUnk_20 >> 4) * 2];
+        t1 = gPairsByAngle[(n->mUnk_20 >> 4) * 2 + 1];
         m.mUnk_00[0].x = ((s64) t1 * f0 + 0x800) >> 12;
         m.mUnk_00[0].y = ((s64) t0 * f0 + 0x800) >> 12;
         m.mUnk_00[0].z = 0;
@@ -935,8 +935,8 @@ void func_0201c09c(Unk020184e4 *p, Unk0201e3c8 *n) {
         t.y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         t.z = n->mUnk_08.z + n->mUnk_38.z - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
         Vec3MultiplyMatrix4x3(&t, q, &t);
-        t0 = data_0215d4b4[(n->mUnk_20 >> 4) * 2];
-        t1 = data_0215d4b4[(n->mUnk_20 >> 4) * 2 + 1];
+        t0 = gPairsByAngle[(n->mUnk_20 >> 4) * 2];
+        t1 = gPairsByAngle[(n->mUnk_20 >> 4) * 2 + 1];
         m.mUnk_00[0].x = ((s64) t1 * f0 + 0x800) >> 12;
         m.mUnk_00[0].y = ((s64) t0 * f0 + 0x800) >> 12;
         m.mUnk_00[0].z = 0;
@@ -1007,8 +1007,8 @@ void func_0201bc48(Unk020184e4 *p, Unk0201e3c8 *n) {
         t.y = n->mUnk_08.y + n->mUnk_38.y;
         t.z = n->mUnk_08.z + n->mUnk_38.z;
         Vec3MultiplyMatrix4x3(&t, q, &t);
-        t0 = data_0215d4b4[(n->mUnk_20 >> 4) * 2];
-        t1 = data_0215d4b4[(n->mUnk_20 >> 4) * 2 + 1];
+        t0 = gPairsByAngle[(n->mUnk_20 >> 4) * 2];
+        t1 = gPairsByAngle[(n->mUnk_20 >> 4) * 2 + 1];
         m.mUnk_00[0].x = ((s64) t1 * f0 + 0x800) >> 12;
         m.mUnk_00[0].y = ((s64) t0 * f0 + 0x800) >> 12;
         m.mUnk_00[0].z = 0;
@@ -1028,8 +1028,8 @@ void func_0201bc48(Unk020184e4 *p, Unk0201e3c8 *n) {
         t.y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
         t.z = n->mUnk_08.z + n->mUnk_38.z - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
         Vec3MultiplyMatrix4x3(&t, q, &t);
-        t0 = data_0215d4b4[(n->mUnk_20 >> 4) * 2];
-        t1 = data_0215d4b4[(n->mUnk_20 >> 4) * 2 + 1];
+        t0 = gPairsByAngle[(n->mUnk_20 >> 4) * 2];
+        t1 = gPairsByAngle[(n->mUnk_20 >> 4) * 2 + 1];
         m.mUnk_00[0].x = ((s64) t1 * f0 + 0x800) >> 12;
         m.mUnk_00[0].y = ((s64) t0 * f0 + 0x800) >> 12;
         m.mUnk_00[0].z = 0;
@@ -1348,8 +1348,8 @@ void func_0201ab30(Unk020184e4 *p, Unk0201e3c8 *n) {
     if (k == 0) {
         return;
     }
-    data_02161ac8[p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_17](data_0215d4b4[(n->mUnk_20 >> 4) * 2],
-                                                                    data_0215d4b4[(n->mUnk_20 >> 4) * 2 + 1], &b);
+    data_02161ac8[p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_17](gPairsByAngle[(n->mUnk_20 >> 4) * 2],
+                                                                    gPairsByAngle[(n->mUnk_20 >> 4) * 2 + 1], &b);
     f1 = n->mUnk_30;
     f0 = ((s64) f1 * p->mUnk_40->mUnk_20->mUnk_00->mUnk_30 + 0x800) >> 12;
     switch (p->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
@@ -1414,8 +1414,8 @@ void func_0201a7e0(Unk020184e4 *p, Unk0201e3c8 *n) {
     if (k == 0) {
         return;
     }
-    data_02161ac8[p->mUnk_40->mUnk_20->mUnk_14->mUnk_00_9](data_0215d4b4[(n->mUnk_20 >> 4) * 2],
-                                                           data_0215d4b4[(n->mUnk_20 >> 4) * 2 + 1], &b);
+    data_02161ac8[p->mUnk_40->mUnk_20->mUnk_14->mUnk_00_9](gPairsByAngle[(n->mUnk_20 >> 4) * 2],
+                                                           gPairsByAngle[(n->mUnk_20 >> 4) * 2 + 1], &b);
     f1 = n->mUnk_30;
     f0 = ((s64) f1 * p->mUnk_40->mUnk_20->mUnk_00->mUnk_30 + 0x800) >> 12;
     switch (p->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
@@ -1484,8 +1484,8 @@ void func_0201a364(Unk020184e4 *p, Unk0201e3c8 *n) {
     if (k == 0) {
         return;
     }
-    data_02161ac8[p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_17](data_0215d4b4[(n->mUnk_20 >> 4) * 2],
-                                                                    data_0215d4b4[(n->mUnk_20 >> 4) * 2 + 1], &b);
+    data_02161ac8[p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_17](gPairsByAngle[(n->mUnk_20 >> 4) * 2],
+                                                                    gPairsByAngle[(n->mUnk_20 >> 4) * 2 + 1], &b);
     Matrix4x3Identity(&d);
     if (p->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_31 == 0) {
         Vec3Normalize(&n->mUnk_14, &v);
@@ -1586,8 +1586,8 @@ void func_02019ee4(Unk020184e4 *p, Unk0201e3c8 *n) {
     if (k == 0) {
         return;
     }
-    data_02161ac8[p->mUnk_40->mUnk_20->mUnk_14->mUnk_00_9](data_0215d4b4[(n->mUnk_20 >> 4) * 2],
-                                                           data_0215d4b4[(n->mUnk_20 >> 4) * 2 + 1], &b);
+    data_02161ac8[p->mUnk_40->mUnk_20->mUnk_14->mUnk_00_9](gPairsByAngle[(n->mUnk_20 >> 4) * 2],
+                                                           gPairsByAngle[(n->mUnk_20 >> 4) * 2 + 1], &b);
     Matrix4x3Identity(&d);
     if (p->mUnk_40->mUnk_20->mUnk_14->mUnk_10.mUnk_00_6 == 0) {
         Vec3Normalize(&n->mUnk_14, &v);

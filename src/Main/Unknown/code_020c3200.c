@@ -197,7 +197,7 @@ void InitRaceGoalS(void) {
     gRaceGoalS->mUnk_00a0 = -0x100;
     for (j = 0; j < data_021759c0->mKartCount; j = (u16) (j + 1)) {
         if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
-            e = data_021759c0->mUnk_68[j].mUnk_08.mUnk_00;
+            e = data_021759c0->mCurrentEntries[j].mUnk_08.mKind;
             k = e == 0 || e == 2 || e == 3 ? 1 : 0;
             l = func_0205d360(j);
             s[j] = l * 16 + k * 8;
@@ -208,7 +208,7 @@ void InitRaceGoalS(void) {
             }
             gRaceGoalS->mUnk_0020[j] = func_0205d360(j);
         } else {
-            e = data_021759c0->mUnk_68[j].mUnk_08.mUnk_00;
+            e = data_021759c0->mCurrentEntries[j].mUnk_08.mKind;
             l = e == 0 || e == 2 || e == 3 ? 1 : 0;
             k = func_0205d3f0(j);
             s[j] = k * 16 + l * 8 + 8 - func_0205d27c(j);

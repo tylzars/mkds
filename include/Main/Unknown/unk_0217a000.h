@@ -1513,7 +1513,7 @@ typedef struct Unk0217aa1c {
 } Unk0217aa1c;
 
 extern Unk0217aa1c *data_0217aa1c;
-extern struct Unk0206bcb0 *data_0217ad18;
+extern struct Unk0206bcb0 *gKarts;
 extern LinkedList data_0217aeb0;
 struct Unk0206cdd4_B;
 extern struct Unk0206cdd4_B *data_usa_0217acfc;

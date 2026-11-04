@@ -89,10 +89,10 @@ void func_0209d3fc(void *a, Unk0209d3fc *b) {
     func_01ff9048(0x14, &s, 1);
     func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mPos), 0xc);
     if (b->mUnk_dc == 3 || b->mUnk_dc == 4) {
-        t = (s32) (((s64) data_0215d4b4[((u16) b->mUnk_ac >> 4) * 2 + 1] * -0x14000) >> 12) + 0x14000;
+        t = (s32) (((s64) gPairsByAngle[((u16) b->mUnk_ac >> 4) * 2 + 1] * -0x14000) >> 12) + 0x14000;
         k = (b->mUnk_b0 >> 4) * 2;
-        v.x = (s32) (((s64) t * data_0215d4b4[k + 1]) >> 12) >> 4;
-        v.y = (s32) (((s64) t * data_0215d4b4[k]) >> 12) >> 4;
+        v.x = (s32) (((s64) t * gPairsByAngle[k + 1]) >> 12) >> 4;
+        v.y = (s32) (((s64) t * gPairsByAngle[k]) >> 12) >> 4;
         v.z = 0;
         func_01ff9048(0x1c, &v, 3);
     }
@@ -151,7 +151,7 @@ static inline BOOL func_0209cf34_inline_b(Unk0209cf34 *p) {
     s32 z;
 
     for (i = 0; i < data_021759c0->mKartCount; i++) {
-        k = func_0207a974((u16) i);
+        k = GetKart((u16) i);
         q = &k->mUnk_80;
         x = q->x - p->mUnk_000.mPos.x;
         z = q->z - p->mUnk_000.mPos.z;
@@ -225,9 +225,9 @@ void func_0209cf34(Unk02100094 *a, Unk0209cf34 *p) {
             v.x = p->mUnk_000.mPos.x;
             v.y = p->mUnk_000.mPos.y - 0x1e000;
             v.z = p->mUnk_000.mPos.z;
-            w.x = data_0215d4b4[(p->mUnk_0a4 >> 4) * 2];
+            w.x = gPairsByAngle[(p->mUnk_0a4 >> 4) * 2];
             w.y = 0;
-            w.z = data_0215d4b4[(p->mUnk_0a4 >> 4) * 2 + 1];
+            w.z = gPairsByAngle[(p->mUnk_0a4 >> 4) * 2 + 1];
             func_0209d694(&v, &w);
             p->mUnk_0a0 += 1;
             if (p->mUnk_0a0 >= 2) {
@@ -333,7 +333,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Unk0206bcb0 *k, u8 *b, u8 *c) {
             p->mUnk_000.mUnk_10.y = 0;
             p->mUnk_000.mUnk_10.z = 0;
         }
-        if (data_021759c0->mUnk_68[k->mIndex].mUnk_08.mUnk_00 != 2 && p->mUnk_11c == 0) {
+        if (data_021759c0->mCurrentEntries[k->mIndex].mUnk_08.mKind != 2 && p->mUnk_11c == 0) {
             p->mUnk_0b8 = 0x8000;
             p->mUnk_0c4 = 0x1000;
             p->mUnk_0c8 = 0x400;
@@ -365,7 +365,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Unk0206bcb0 *k, u8 *b, u8 *c) {
                     func_02039860(&v3, &v3);
                 }
                 Vec3AddScaled(k->mUnk_1d0, &v3, &k->mUnk_1b8, &v3);
-                if (k->mIndex == data_021759c0->mUnk_62) {
+                if (k->mIndex == data_021759c0->mEntryIndex) {
                     func_0208b7bc(0x74, &v3);
                 } else {
                     func_0208b7bc(0x75, &v3);
@@ -518,7 +518,7 @@ void func_0209c4f0(Unk02100094 *a) {
 }
 
 s16 func_0209c4d8(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2];
+    return gPairsByAngle[(a >> 4) * 2];
 }
 
 s32 func_0209c4bc(s32 a, s32 b) {

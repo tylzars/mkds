@@ -337,11 +337,11 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
         case 1:
         case 3:
             r = 2;
-            data_021759c0->mUnk_1e8.mUnk_0c = 0;
+            data_021759c0->mNextHeader.mUnk_0c = 0;
             break;
         case 8:
             r = 2;
-            data_021759c0->mUnk_1e8.mUnk_0c = r;
+            data_021759c0->mNextHeader.mUnk_0c = r;
             break;
         case 2:
             switch (data_021759c0->mUnk_08) {
@@ -511,7 +511,7 @@ u32 func_0203a3cc(u32 a) {
 }
 
 void func_0203a3b8(u32 p0) {
-    data_021759c0->mUnk_1e8.mUnk_0c = p0;
+    data_021759c0->mNextHeader.mUnk_0c = p0;
 }
 
 u32 func_0203a3a4(void) {

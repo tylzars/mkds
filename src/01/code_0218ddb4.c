@@ -98,9 +98,9 @@ void func_ov001_0218f724(Unk02188950 *b) {
     a = (data_021759c0->mUnk_08 == 4 ? func_ov001_02181a78() : 0) - a;
     Vec3Sub(&b->mUnk_000.mPos, data_021759c0->mUnk_08 == 4 ? func_ov001_02181a94() : 0, &v2);
     for (i = 0; i < 1; i++) {
-        c = data_0215d4b4[((u16) a >> 4) * 2 + 1];
+        c = gPairsByAngle[((u16) a >> 4) * 2 + 1];
         x = v2.x;
-        s = data_0215d4b4[((u16) a >> 4) * 2];
+        s = gPairsByAngle[((u16) a >> 4) * 2];
         z = v2.z;
     }
     v1.x += (s32) (z * s >> 12) + (s32) (x * c >> 12) - v2.x;
@@ -117,7 +117,7 @@ void func_ov001_0218f6d8(Unk02188950 *a) {
 }
 
 s32 func_ov001_0218f688(Unk02188950 *a) {
-    Unk0206bcb0 *obj = func_0207a974((u16) data_021759c0->mUnk_62);
+    Unk0206bcb0 *obj = GetKart((u16) data_021759c0->mEntryIndex);
     if ((obj->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &obj->mUnk_80);
         func_ov001_02188d8c(a, (Vec3 *) (&obj->mUnk_80));
@@ -127,7 +127,7 @@ s32 func_ov001_0218f688(Unk02188950 *a) {
 }
 
 s32 func_ov001_0218f634(Unk02188950 *a) {
-    Unk0206bcb0 *obj = func_0207a974((u16) data_021759c0->mUnk_62);
+    Unk0206bcb0 *obj = GetKart((u16) data_021759c0->mEntryIndex);
     if ((obj->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &obj->mUnk_80);
         func_ov001_02188d8c(a, (Vec3 *) (&obj->mUnk_80));
@@ -140,7 +140,7 @@ s32 func_ov001_0218f634(Unk02188950 *a) {
 void func_ov001_0218f57c(Unk02188950 *a) {
     Unk0206bcb0 *p;
 
-    p = func_0207a974((u16) data_021759c0->mUnk_62);
+    p = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_1fc), (s32) (a->mPrm->mUnk_200));
     func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_204), (s32) (a->mPrm->mUnk_208));
@@ -152,7 +152,7 @@ void func_ov001_0218f57c(Unk02188950 *a) {
 }
 
 void func_ov001_0218f51c(Unk02188950 *a) {
-    func_0207a974((u16) data_021759c0->mUnk_62);
+    GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
     func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_1f4), (s32) (a->mPrm->mUnk_1f8), (UnkFunc *) (func_ov001_0218f57c));
     func_ov001_02188200(a, func_ov001_0218f9a8);
@@ -162,7 +162,7 @@ void func_ov001_0218f51c(Unk02188950 *a) {
 void func_ov001_0218f454(Unk02188950 *a) {
     Unk0206bcb0 *p;
 
-    p = func_0207a974((u16) data_021759c0->mUnk_62);
+    p = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_1d8), (s32) (a->mPrm->mUnk_1dc));
     func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_1e0), (s32) (a->mPrm->mUnk_1e4));
@@ -178,7 +178,7 @@ s32 func_ov001_0218f3ec(Unk02188950 *a) {
     Unk0206bcb0 *p;
     Vec3 v;
 
-    p = func_0207a974((u16) data_021759c0->mUnk_62);
+    p = GetKart((u16) data_021759c0->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
         Vec3AddScaled(a->mPrm->mUnk_21c, &p->mUnk_68, &p->mUnk_80, &v);
         SetAnglePointAndMoveAnglePoint(a, &v);
@@ -192,7 +192,7 @@ s32 func_ov001_0218f3ec(Unk02188950 *a) {
 s32 func_ov001_0218f3ac(Unk02188950 *a) {
     Unk0206bcb0 *p;
 
-    p = func_0207a974((u16) data_021759c0->mUnk_62);
+    p = GetKart((u16) data_021759c0->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &p->mUnk_80);
     }
@@ -204,7 +204,7 @@ void func_ov001_0218f2a8(Unk02188950 *a) {
     Unk0206bcb0 *p;
     Vec3 v;
 
-    p = func_0207a974((u16) data_021759c0->mUnk_62);
+    p = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3AddScaled(a->mPrm->mUnk_21c, &p->mUnk_68, &p->mUnk_80, &v);
     func_ov001_02187218(a, 5, func_ov001_0218f3ac);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_0ec), (s32) (a->mPrm->mUnk_0f0));
@@ -224,7 +224,7 @@ s32 func_ov001_0218f244(Unk02188950 *a) {
     Unk0206bcb0 *p;
     Vec3 v;
 
-    p = func_0207a974((u16) data_021759c0->mUnk_62);
+    p = GetKart((u16) data_021759c0->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
         Vec3AddScaled(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mUnk_80, &v);
         SetAnglePointAndMoveAnglePoint(a, &v);
@@ -238,7 +238,7 @@ void func_ov001_0218f16c(Unk02188950 *a) {
     Unk0206bcb0 *p;
     Vec3 v;
 
-    p = func_0207a974((u16) data_021759c0->mUnk_62);
+    p = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3AddScaled(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mUnk_80, &v);
     func_ov001_02187218(a, 3, func_ov001_0218f244);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_0c4), (s32) (a->mPrm->mUnk_0c8));
@@ -256,7 +256,7 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
     Unk0206bcb0 *p;
     float f;
 
-    p = func_0207a974((u16) data_021759c0->mUnk_62);
+    p = GetKart((u16) data_021759c0->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &p->mUnk_80);
         func_ov001_02188d8c(a, (Vec3 *) (&p->mUnk_80));
@@ -288,7 +288,7 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
 }
 
 void func_ov001_0218ef30(Unk02188950 *a) {
-    func_0207a974((u16) data_021759c0->mUnk_62);
+    GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 3, func_ov001_0218efc4);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_090), (s32) (a->mPrm->mUnk_094));
     func_ov001_02188cec(a, (s32) (a->mPrm->mUnk_0a0));
@@ -303,7 +303,7 @@ void func_ov001_0218ee88(Unk02188950 *a) {
     Unk0206bcb0 *p;
     Vec3 v;
 
-    p = func_0207a974((u16) data_021759c0->mUnk_62);
+    p = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3AddScaled(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mUnk_80, &v);
     a->mUnk_000.mPos.x = v.x;
     a->mUnk_000.mPos.y = a->mUnk_000.mCourseMapRow->mUnk_00.y + a->mPrm->mUnk_080;
@@ -319,7 +319,7 @@ void func_ov001_0218ee88(Unk02188950 *a) {
 void func_ov001_0218edc8(Unk02188950 *a) {
     Unk0206bcb0 *p;
 
-    p = func_0207a974((u16) data_021759c0->mUnk_62);
+    p = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 3, func_ov001_0218f634);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_144), (s32) (a->mPrm->mUnk_148));
     func_ov001_02188d1c(a, (s32) (a->mPrm->mUnk_14c), (s32) (a->mPrm->mUnk_150));
@@ -335,7 +335,7 @@ u32 func_ov001_0218edb8(void) {
 }
 
 void func_ov001_0218ec40(Unk02188950 *a) {
-    func_0207a974((u16) data_021759c0->mUnk_62);
+    GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 1, (s32(*)(Unk02188950 *)) func_ov001_0218edb8);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_118), (s32) (a->mPrm->mUnk_11c));
     func_ov001_02188d1c(a, (s32) (a->mPrm->mUnk_120), (s32) (a->mPrm->mUnk_124));
@@ -360,7 +360,7 @@ void func_ov001_0218ec40(Unk02188950 *a) {
 
 void func_ov001_0218eb94(Unk02188950 *a) {
     Unk020f41c4_B *rng;
-    func_0207a974((u16) data_021759c0->mUnk_62);
+    GetKart((u16) data_021759c0->mEntryIndex);
     rng = func_020d22d0();
     rng->mUnk_00 = (s64) rng->mUnk_08 * (s64) rng->mUnk_00 + rng->mUnk_10;
     a->mUnk_000.mPos.x = ((Vec3 *) func_ov001_02187fc0(a))->x;
@@ -591,9 +591,9 @@ void func_ov001_0218e474(Unk02188950 *a) {
 }
 
 void func_ov001_0218e38c(Unk02188950 *a, Unk0206bcb0 *b) {
-    a->mUnk_000.mUnk_10.x = ((s64) -a->mPrm->mUnk_024 * data_0215d4b4[(b->mUnk_236 >> 4) * 2]) >> 12;
+    a->mUnk_000.mUnk_10.x = ((s64) -a->mPrm->mUnk_024 * gPairsByAngle[(b->mUnk_236 >> 4) * 2]) >> 12;
     a->mUnk_000.mUnk_10.y = 0;
-    a->mUnk_000.mUnk_10.z = ((s64) -a->mPrm->mUnk_024 * data_0215d4b4[(b->mUnk_236 >> 4) * 2 + 1]) >> 12;
+    a->mUnk_000.mUnk_10.z = ((s64) -a->mPrm->mUnk_024 * gPairsByAngle[(b->mUnk_236 >> 4) * 2 + 1]) >> 12;
     func_ov001_021829ac(a->mPrm->mUnk_190);
     func_ov001_0218ead0(a);
     a->mUnk_2d8 = 0;
@@ -660,7 +660,7 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
 
     if (data_021759c0->mUnk_08 == 4 ? func_020a126c() : 0) {
         if (func_ov001_021871f8(b, 5) != 0) {
-            if (data_021759c0->mUnk_08 == 4 ? func_020a1084((u16) data_021759c0->mUnk_62) : 0) {
+            if (data_021759c0->mUnk_08 == 4 ? func_020a1084((u16) data_021759c0->mEntryIndex) : 0) {
                 func_ov001_0218e710(b);
             } else if (data_021759c0->mUnk_08 == 4 ? func_020a128c() : 0) {
                 func_ov001_0218e5c4(b);
@@ -671,7 +671,7 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
     } else {
         if (b->mUnk_0a8 != 0) {
             if (func_ov001_021871f8(b, 5) != 0) {
-                p = func_0207a974((u16) data_021759c0->mUnk_62);
+                p = GetKart((u16) data_021759c0->mEntryIndex);
                 if (p->mState == 0 && (p->mUnk_48 & 0x200) == 0 &&
                     func_ov001_02188104(b, 0, b->mPrm->mUnk_184) != NULL &&
                     func_ov001_02188000(b, 0, b->mPrm->mUnk_180) != NULL &&
@@ -689,7 +689,7 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
                 func_ov001_0218ec40(b);
             }
         } else {
-            p = func_0207a974((u16) data_021759c0->mUnk_62);
+            p = GetKart((u16) data_021759c0->mEntryIndex);
             if (p->mUnk_48 & 0x200) {
                 if (data_021759c0->mUnk_08 == 4 ? func_ov001_02181820() : 0) {
                     if (data_021759c0->mUnk_08 == 4) {

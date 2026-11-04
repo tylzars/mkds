@@ -181,11 +181,11 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
                 r->mUnk_5c = r->mUnk_5c + (s32) (((s64) (r->mUnk_40 - r->mUnk_5c) * 0x333 + 0x800) >> 12);
                 p->mUnk_388 = r->mUnk_5c;
                 Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m1, &p->mUnk_12c,
-                                                       data_0215d4b4[((u16) p->mUnk_388 >> 4) * 2],
-                                                       data_0215d4b4[((u16) p->mUnk_388 >> 4) * 2 + 1]);
+                                                       gPairsByAngle[((u16) p->mUnk_388 >> 4) * 2],
+                                                       gPairsByAngle[((u16) p->mUnk_388 >> 4) * 2 + 1]);
                 if (p->mUnk_48 & 1) {
                     Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m2, (Vec3 *) &p->mUnk_120,
-                                                           data_0215d4b4[0xba], data_0215d4b4[0xbb]);
+                                                           gPairsByAngle[0xba], gPairsByAngle[0xbb]);
                     Matrix3x3Multiply(m2.mUnk_00, m1.mUnk_00, m1.mUnk_00);
                 }
                 Vec3MultiplyMatrix3x3(&p->mUnk_278, m1.mUnk_00, &p->mUnk_50);
@@ -261,7 +261,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
         } else {
             for (; i < (u32) data_021759c0->mKartCount; i++) {
                 if (i != p->mIndex) {
-                    func_0206a624(func_0207a974(i));
+                    func_0206a624(GetKart(i));
                 }
             }
         }
@@ -327,19 +327,19 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
         func_021038f0(p->mIndex, 0);
     }
     if (c) {
-        o = func_0207a974((u16) ((f & 0x60000000) >> 29));
+        o = GetKart((u16) ((f & 0x60000000) >> 29));
         if (o != p) {
             o->mUnk_4c |= 0x1000;
         }
     }
-    o = func_0207a974(data_021759c0->mUnk_62);
+    o = GetKart(data_021759c0->mEntryIndex);
     e = 0;
     if (((p->mUnk_514->mUnk_30 & 0x400000) != 0) != ((f & 0x400000) != 0) && o->mIndex == 0) {
         Vec3 t;
 
         s = p->mIndex;
         t = data_02154f88;
-        o2 = func_0207a974(s);
+        o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
             if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l3;
@@ -358,7 +358,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
 
         s = p->mIndex;
         t = data_02154f88;
-        o2 = func_0207a974(s);
+        o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
             if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l4;
@@ -377,7 +377,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
 
         s = p->mIndex;
         t = data_02154f88;
-        o2 = func_0207a974(s);
+        o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
             if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l5;
@@ -396,7 +396,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
 
         s = p->mIndex;
         t = data_02154f88;
-        o2 = func_0207a974(s);
+        o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
             if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l6;
@@ -418,7 +418,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
 
         s = p->mIndex;
         t = data_02154f88;
-        o2 = func_0207a974(s);
+        o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
             if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l7;
@@ -439,7 +439,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
 
         s = p->mIndex;
         t = data_02154f88;
-        o2 = func_0207a974(s);
+        o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
             if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l8;
@@ -460,7 +460,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
 
         s = p->mIndex;
         t = data_02154f88;
-        o2 = func_0207a974(s);
+        o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
             if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l9;
@@ -481,7 +481,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
 
         s = p->mIndex;
         t = data_02154f88;
-        o2 = func_0207a974(s);
+        o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
             if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
                 goto l10;

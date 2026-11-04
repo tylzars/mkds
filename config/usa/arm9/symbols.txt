@@ -2882,7 +2882,7 @@ func_0207a8c4 kind:function(arm,size=0x2c) addr:0x0207a8c4
 func_0207a8f0 kind:function(arm,size=0x2c) addr:0x0207a8f0
 func_0207a91c kind:function(arm,size=0x2c) addr:0x0207a91c
 func_0207a948 kind:function(arm,size=0x2c) addr:0x0207a948
-func_0207a974 kind:function(arm,size=0x1c) addr:0x0207a974
+GetKart kind:function(arm,size=0x1c) addr:0x0207a974
 func_0207a990 kind:function(arm,size=0x64) addr:0x0207a990
 func_0207a9f4 kind:function(arm,size=0x88) addr:0x0207a9f4
 func_0207aa7c kind:function(arm,size=0x70) addr:0x0207aa7c
@@ -8843,7 +8843,7 @@ data_0215d384 kind:data(any) addr:0x0215d384
 data_0215d484 kind:data(any) addr:0x0215d484
 data_0215d494 kind:data(any) addr:0x0215d494
 data_0215d4a4 kind:data(any) addr:0x0215d4a4
-data_0215d4b4 kind:data(any) addr:0x0215d4b4
+gPairsByAngle kind:data(any) addr:0x0215d4b4
 data_usa_0215d5b4 kind:data(any) addr:0x0215d5b4
 data_0215d6b4 kind:data(any) addr:0x0215d6b4
 data_usa_0215d8b4 kind:data(any) addr:0x0215d8b4
@@ -11348,8 +11348,8 @@ data_usa_0217ace4 kind:bss addr:0x0217ace4
 data_0217ad08 kind:bss addr:0x0217ace8
 data_usa_0217acec kind:bss addr:0x0217acec
 data_0217ad10 kind:bss addr:0x0217acf0
-data_usa_0217acf4 kind:bss addr:0x0217acf4
-data_0217ad18 kind:bss addr:0x0217acf8
+gKartCount kind:bss addr:0x0217acf4
+gKarts kind:bss addr:0x0217acf8
 data_usa_0217acfc kind:bss addr:0x0217acfc
 data_0217ad20 kind:bss addr:0x0217ad00
 data_0217ad24 kind:bss addr:0x0217ad04

@@ -103,7 +103,7 @@ static inline s32 func_02101f7c_inline(Unk020ee684 *v1, Unk021759c0 *o, s32 a, u
     }
     if (l | ((q->mUnk_4c & 0x40) ? 1 : 0)) {
         v2 = FALSE;
-    } else if (a != -1 && a == o->mUnk_68[k].mUnk_08.mTeamIndex) {
+    } else if (a != -1 && a == o->mCurrentEntries[k].mUnk_08.mTeamIndex) {
         v2 = FALSE;
     } else {
         v2 = FALSE;
@@ -247,7 +247,7 @@ void func_02101d90(Unk02101c84 *p, s32 a) {
             }
             if (l | ((q->mUnk_4c & 0x40) ? 1 : 0)) {
                 l = 0;
-            } else if (a != -1 && a == o->mUnk_68[k].mUnk_08.mTeamIndex) {
+            } else if (a != -1 && a == o->mCurrentEntries[k].mUnk_08.mTeamIndex) {
                 l = 0;
             } else {
                 l = 0;
@@ -383,7 +383,7 @@ void func_02101964(Unk02101c84 *p, s32 a) {
 }
 
 void func_021018a0(Unk02101c84 *p) {
-    p->mUnk_168 = func_0207a974((u16) (p->mUnk_000.mUnk_78 & ~0xff00));
+    p->mUnk_168 = GetKart((u16) (p->mUnk_000.mUnk_78 & ~0xff00));
     p->mUnk_184 = p->mUnk_168->mUnk_98;
     p->mUnk_190 = p->mUnk_168->mUnk_a4;
     *(Vec3 *) &p->mUnk_16c =
@@ -579,7 +579,7 @@ void func_02101178(Unk02101c84 *p) {
             } else {
                 i = 8;
             }
-            f(p, o->mUnk_68[(u16) i].mUnk_08.mTeamIndex);
+            f(p, o->mCurrentEntries[(u16) i].mUnk_08.mTeamIndex);
             if (p->mUnk_140 == 8) {
                 f(p, -1);
             }
@@ -592,7 +592,7 @@ void func_02101178(Unk02101c84 *p) {
         p->mUnk_000.mUnk_d0 = &p->mUnk_000.mUnk_50;
     }
     if (p->mUnk_140 < 8) {
-        p->mUnk_168 = func_0207a974(p->mUnk_140);
+        p->mUnk_168 = GetKart(p->mUnk_140);
         p->mUnk_184 = p->mUnk_168->mUnk_98;
         p->mUnk_190 = p->mUnk_168->mUnk_a4;
         p->mUnk_144 = 0;
@@ -1043,7 +1043,7 @@ void func_021003e8(Unk02101c84 *p, u32 sel, s32 v1) {
     switch (sel) {
         case 0:
             p->mUnk_250 = v1;
-            if (p->mUnk_250 == data_021759c0->mUnk_62) {
+            if (p->mUnk_250 == data_021759c0->mEntryIndex) {
                 p->mUnk_24c = 1;
             }
             break;

@@ -129,8 +129,8 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
                         if ((s64) t * t + (s64) k * k < 0x2710000000LL) {
                             r = (u16) (((u64) func_0209d84c_inline(func_020d22d0()) * 0x10000) >> 32);
                             k = (r >> 4) * 2;
-                            p->mUnk_00.mUnk_10.x = ((s64) data_0215d4b4[k] * 0x1800) >> 12;
-                            p->mUnk_00.mUnk_10.z = ((s64) data_0215d4b4[k + 1] * 0x1800) >> 12;
+                            p->mUnk_00.mUnk_10.x = ((s64) gPairsByAngle[k] * 0x1800) >> 12;
+                            p->mUnk_00.mUnk_10.z = ((s64) gPairsByAngle[k + 1] * 0x1800) >> 12;
                         } else {
                             p->mUnk_00.mUnk_10.x = -p->mUnk_00.mUnk_10.x;
                             p->mUnk_00.mUnk_10.z = -p->mUnk_00.mUnk_10.z;
@@ -175,9 +175,9 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
                 p->mUnk_00.mUnk_10.y = t;
                 p->mUnk_b4 += 0xe39;
                 p->mUnk_00.mPos.x =
-                    p->mUnk_00.mPos.x + (s32) (((s64) data_0215d4b4[(p->mUnk_b4 >> 4) * 2] * 0x2000) >> 12);
+                    p->mUnk_00.mPos.x + (s32) (((s64) gPairsByAngle[(p->mUnk_b4 >> 4) * 2] * 0x2000) >> 12);
                 p->mUnk_00.mPos.z =
-                    p->mUnk_00.mPos.z + (s32) (((s64) data_0215d4b4[(p->mUnk_b4 >> 4) * 2 + 1] * 0x2000) >> 12);
+                    p->mUnk_00.mPos.z + (s32) (((s64) gPairsByAngle[(p->mUnk_b4 >> 4) * 2 + 1] * 0x2000) >> 12);
                 p->mUnk_00.mPos.y = p->mUnk_00.mPos.y + p->mUnk_00.mUnk_10.y;
             } else {
                 func_020d2398(&p->mUnk_00);

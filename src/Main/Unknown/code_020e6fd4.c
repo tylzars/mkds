@@ -98,12 +98,12 @@ void func_020e7760(void) {
         data_0217b8c8 = NULL;
         return;
     }
-    if (data_021759c0->mUnk_62 < 0) {
+    if (data_021759c0->mEntryIndex < 0) {
         data_0217b8c8 = NULL;
         return;
     }
-    data_0217b888 = data_021759c0->mUnk_62;
-    q = func_0207a974(data_0217b888);
+    data_0217b888 = data_021759c0->mEntryIndex;
+    q = GetKart(data_0217b888);
     data_0217b8c8 = q;
     data_0217b8c0 = &q->mKartModelsEntry->mUnk_040;
     data_0217b9c0.x = 0;
@@ -217,13 +217,13 @@ void func_020e7460(void) {
     data_0217b8e0 = HeapAlloc(h, 0x78);
     data_0217b904 = HeapAlloc(h, 0x78);
     for (i = 0, x = 0; i < 0x3c; i++) {
-        data_0217b8a4[i] = (u16) (((s64) data_0215d4b4[(x >> 4) * 2] * 0x4c) >> 12);
-        k = (u16) (((u64) (s64) data_0215d4b4[((u16) (x + 0xa218) >> 4) * 2] * 0xb60b60b60b + 0x80000000000) >> 44) >>
+        data_0217b8a4[i] = (u16) (((s64) gPairsByAngle[(x >> 4) * 2] * 0x4c) >> 12);
+        k = (u16) (((u64) (s64) gPairsByAngle[((u16) (x + 0xa218) >> 4) * 2] * 0xb60b60b60b + 0x80000000000) >> 44) >>
             4;
-        data_0217b8a8[i] = data_0215d4b4[k * 2];
-        data_0217b8a0[i] = data_0215d4b4[k * 2 + 1];
-        data_0217b8e0[i] = (u32) (((s64) data_0215d4b4[((u16) (x + 0x1554) >> 4) * 2] * 0x19a) >> 12) + 0xe66;
-        data_0217b904[i] = (u32) (((s64) data_0215d4b4[((u16) (x + 0xbbb0) >> 4) * 2] * 0x19a) >> 12) + 0x119a;
+        data_0217b8a8[i] = gPairsByAngle[k * 2];
+        data_0217b8a0[i] = gPairsByAngle[k * 2 + 1];
+        data_0217b8e0[i] = (u32) (((s64) gPairsByAngle[((u16) (x + 0x1554) >> 4) * 2] * 0x19a) >> 12) + 0xe66;
+        data_0217b904[i] = (u32) (((s64) gPairsByAngle[((u16) (x + 0xbbb0) >> 4) * 2] * 0x19a) >> 12) + 0x119a;
         x += 0x444;
     }
     data_0217b8e8 = 0;

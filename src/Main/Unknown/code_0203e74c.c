@@ -33,7 +33,7 @@ s32 func_0203ef58(void) {
             r = TRUE;
             for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
                 f = 0;
-                s = o->mUnk_68[i].mUnk_08.mUnk_00;
+                s = o->mCurrentEntries[i].mUnk_08.mKind;
                 if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {
                     f = 1;
                 }
@@ -115,7 +115,7 @@ s32 func_0203ef58(void) {
             r = TRUE;
             for (i = 0; i < (u32) o->mKartCount; i++) {
                 f = 0;
-                s = o->mUnk_68[i].mUnk_08.mUnk_00;
+                s = o->mCurrentEntries[i].mUnk_08.mKind;
                 if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {
                     f = 1;
                 }
@@ -294,7 +294,7 @@ void func_0203e9a0(Unk0217561c_14 *a, s32 b) {
     s32 c;
     s32 m;
     s16 d;
-    c = data_021759c0->mUnk_68[(u32) (a->mUnk_3c << 24) >> 28].mUnk_08.mUnk_0c;
+    c = data_021759c0->mCurrentEntries[(u32) (a->mUnk_3c << 24) >> 28].mUnk_08.mIndex;
     if (b != 0) {
         a->mUnk_00 = 1;
     } else {
@@ -358,7 +358,7 @@ void func_0203e788(s32 a, s32 b) {
     if ((e->mUnk_30 & 0x20) != 0) {
         return;
     }
-    q = func_0207a974(a);
+    q = GetKart(a);
     e = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + a * 0x8c);
     data_0217561c->mUnk_000[0].mUnk_04 = 0;
     func_0203f5f0(&t.mUnk_02, &t.mUnk_03, &t.mUnk_00, 0, data_0217561c->mUnk_000[0].mUnk_00);

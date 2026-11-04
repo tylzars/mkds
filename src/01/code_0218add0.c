@@ -26,9 +26,9 @@ void func_ov001_0218aef4(Unk02188950 *a) {
         Vec3 vel = {0, 0, 0};
         angle += 0x5555;
         idx = ((u16) angle >> 4) * 2;
-        pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mPrm->mUnk_1e4 * data_0215d4b4[idx]) >> 12);
+        pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mPrm->mUnk_1e4 * gPairsByAngle[idx]) >> 12);
         pos.y = a->mUnk_000.mPos.y;
-        pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_1e4 * data_0215d4b4[idx + 1]) >> 12);
+        pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_1e4 * gPairsByAngle[idx + 1]) >> 12);
         func_ov001_02187b94(func_020fd428(), &pos, &vel, a->mPrm->mUnk_1e8);
     }
     {

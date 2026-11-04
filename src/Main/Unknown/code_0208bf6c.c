@@ -3,7 +3,7 @@
 
 void func_0208bf94(Unk020888b4 *a, s32 b) {
     Unk0206bcb0 *v1;
-    v1 = func_0207a974(b);
+    v1 = GetKart(b);
     func_02089788(a, v1);
     func_02089ce4((u32) &a->mUnk_140, (u32) a);
     func_02090348((u32) &a->mUnk_11c);

@@ -118,7 +118,7 @@ void func_020c5940(void) {
         return;
     }
     if (data_021759c0->mUnk_08 == 4) {
-        if ((func_0203c880((u16) data_021759c0->mUnk_62) != 0 ? data_0217561c->mUnk_4e0 : 6) != 0 &&
+        if ((func_0203c880((u16) data_021759c0->mEntryIndex) != 0 ? data_0217561c->mUnk_4e0 : 6) != 0 &&
             func_0207a218() == 0 && n == 0) {
             return;
         }
@@ -158,12 +158,12 @@ void func_020c5940(void) {
             }
             break;
         case 4:
-            if (func_0203c880((u16) data_021759c0->mUnk_62) != 0 ? data_0217561c->mUnk_4e0 : 6) {
+            if (func_0203c880((u16) data_021759c0->mEntryIndex) != 0 ? data_0217561c->mUnk_4e0 : 6) {
                 data_0217b3f0->mUnk_18 = 9;
             } else {
                 data_0217b3f0->mUnk_18 = func_0205d140();
             }
-            if ((func_0203c880((u16) data_021759c0->mUnk_62) != 0 ? data_0217561c->mUnk_4e0 : 6) == 0) {
+            if ((func_0203c880((u16) data_021759c0->mEntryIndex) != 0 ? data_0217561c->mUnk_4e0 : 6) == 0) {
                 if (n == 1) {
                     switch (data_0217b3f0->mUnk_18) {
                         case 0:
@@ -600,8 +600,8 @@ void func_020c4780(void) {
         } while (a < data_021759c0->mKartCount);
     }
     for (a = 0; a < 16; a++) {
-        s32 s = data_0215d4b4[((u16) (a * 0x10000 / 16) >> 4) * 2];
-        s32 c = data_0215d4b4[((u16) (a * 0x10000 / 16) >> 4) * 2 + 1];
+        s32 s = gPairsByAngle[((u16) (a * 0x10000 / 16) >> 4) * 2];
+        s32 c = gPairsByAngle[((u16) (a * 0x10000 / 16) >> 4) * 2 + 1];
         data_0217b3e4->mUnk_810[a].mUnk_00 = c;
         data_0217b3e4->mUnk_810[a].mUnk_04 = s;
         data_0217b3e4->mUnk_810[a].mUnk_08 = -s;
@@ -655,7 +655,7 @@ void func_020c43c4(void) {
         func_020b1d50();
         func_020b1d50();
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
-            p = func_0207a974(i);
+            p = GetKart(i);
             d = data_0217b3e4;
             for (j = 0x27; j != 0; j--) {
                 d->mUnk_010[i][j] = d->mUnk_010[i][j - 1];

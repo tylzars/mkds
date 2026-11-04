@@ -49,7 +49,7 @@ void func_02094c70(void *a, Unk02094000 *b) {
     if (b->mUnk_ac == 0) {
         return;
     }
-    func_0207a974((u16) data_021759c0->mUnk_62);
+    GetKart((u16) data_021759c0->mEntryIndex);
     func_0209b940(gTeresa, func_020d3c44());
     func_0209b688(gTeresa, b->mUnk_ae);
     func_0209b9a4(gTeresa, b->mUnk_ac);
@@ -111,7 +111,7 @@ void func_02094c24(Unk020946b8 *a) {
 }
 
 s16 func_02094c0c(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2];
+    return gPairsByAngle[(a >> 4) * 2];
 }
 
 s32 func_02094bf0(s32 a, s32 b) {
@@ -119,7 +119,7 @@ s32 func_02094bf0(s32 a, s32 b) {
 }
 
 s16 func_02094bd0(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2 + 1];
+    return gPairsByAngle[(a >> 4) * 2 + 1];
 }
 
 void func_02094768(void *a, Unk02094000 *o) {
@@ -181,14 +181,14 @@ void func_02094768(void *a, Unk02094000 *o) {
     m = o->mUnk_dc.mUnk_04;
     n = o->mUnk_10c;
     if (func_02061818() == 2) {
-        o->mUnk_00.mPos.x = o->mUnk_a0.x + (s32) (((s64) n * data_0215d4b4[(w >> 4) * 2 + 1]) >> 12);
+        o->mUnk_00.mPos.x = o->mUnk_a0.x + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2 + 1]) >> 12);
         o->mUnk_00.mPos.y = o->mUnk_a0.y + m;
-        o->mUnk_00.mPos.z = o->mUnk_a0.z + (s32) (((s64) n * data_0215d4b4[(w >> 4) * 2]) >> 12);
+        o->mUnk_00.mPos.z = o->mUnk_a0.z + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12);
     } else {
-        g = func_0207a974((u16) data_021759c0->mUnk_62);
-        o->mUnk_00.mPos.x = g->mUnk_80.x + (o->mUnk_a0.x + (s32) (((s64) n * data_0215d4b4[(w >> 4) * 2 + 1]) >> 12));
+        g = GetKart((u16) data_021759c0->mEntryIndex);
+        o->mUnk_00.mPos.x = g->mUnk_80.x + (o->mUnk_a0.x + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2 + 1]) >> 12));
         o->mUnk_00.mPos.y = o->mUnk_a0.y + m;
-        o->mUnk_00.mPos.z = g->mUnk_80.z + (o->mUnk_a0.z + (s32) (((s64) n * data_0215d4b4[(w >> 4) * 2]) >> 12));
+        o->mUnk_00.mPos.z = g->mUnk_80.z + (o->mUnk_a0.z + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12));
     }
 }
 

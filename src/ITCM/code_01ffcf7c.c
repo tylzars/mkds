@@ -339,7 +339,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
     if ((q->mUnk_4c & 0x8000000) && p->mUnk_70 < 0x46000 && (q->mUnk_44 & 0x10) && !(q->mUnk_48 & 0x8020) &&
         q->mUnk_2a4 > 0x3000 && p->mUnk_90 != 2 && p->mUnk_a8 == 0) {
         p->mUnk_c8 += 0x44c;
-        p->mUnk_ca = ((s64) data_0215d4b4[(p->mUnk_c8 >> 4) * 2] * 0xfa + 0x800) >> 12;
+        p->mUnk_ca = ((s64) gPairsByAngle[(p->mUnk_c8 >> 4) * 2] * 0xfa + 0x800) >> 12;
         q->mUnk_236 += (s16) p->mUnk_ca * p->mUnk_cc;
         r = TRUE;
     } else {
@@ -359,11 +359,11 @@ end:
 
 void func_01ffd190(const Vec3 *a, s32 b, Vec4 *c) {
     s32 i = (s32) ((u32) (b << 15) >> 16) >> 4;
-    s32 s = data_0215d4b4[i * 2];
+    s32 s = gPairsByAngle[i * 2];
     c->x = ((s64) a->x * s + 0x800) >> 12;
     c->y = ((s64) a->y * s + 0x800) >> 12;
     c->z = ((s64) a->z * s + 0x800) >> 12;
-    c->w = data_0215d4b4[i * 2 + 1];
+    c->w = gPairsByAngle[i * 2 + 1];
 }
 
 s32 func_01ffd0e8(Vec4 *a, const Vec3 *b, const Vec3 *c) {

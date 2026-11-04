@@ -11,7 +11,7 @@ void func_0207a8c4(Vec3 *a, s32 b);
 void func_0207a8f0(Vec3 *a, s32 b);
 void func_0207a91c(Vec3 *a, u8 b);
 void func_0207a948(Vec3 *a, s32 b);
-Unk0206bcb0 *func_0207a974(s32 a);
+Unk0206bcb0 *GetKart(s32 a);
 void func_0207a990(void);
 void func_0207a9f4(void);
 void func_0207aa7c(void);

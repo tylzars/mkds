@@ -260,7 +260,7 @@ void func_02067488(Unk0206bcb0 *a) {
     if (data_021759c0->mUnk_08 != 0) {
         return;
     }
-    c = func_0207a974(data_021759c0->mUnk_62);
+    c = GetKart(data_021759c0->mEntryIndex);
     Vec3Sub(&a->mUnk_80, &c->mUnk_80, &b);
     b.x = b.x >> 12;
     b.y = b.y >> 12;
@@ -292,9 +292,9 @@ void func_02066fe0(Unk0206bcb0 *a) {
         if ((q->mUnk_70 != 0 || q->mUnk_90 != 0) && func_0203c880(a->mIndex) != 0) {
             p = data_021759c0;
             i = a->mIndex;
-            b = &p->mUnk_68[i].mUnk_08;
+            b = &p->mCurrentEntries[i].mUnk_08;
             c = 0;
-            if ((u32) b->mUnk_00 <= 3 && ((1 << b->mUnk_00) & 0xd) != 0) {
+            if ((u32) b->mKind <= 3 && ((1 << b->mKind) & 0xd) != 0) {
                 c = 1;
             }
             if (c != 0) {
@@ -382,7 +382,7 @@ void func_02066fe0(Unk0206bcb0 *a) {
     if (g == 0) {
         return;
     }
-    if (a->mIndex == p->mUnk_62) {
+    if (a->mIndex == p->mEntryIndex) {
         c = func_02110e58();
         switch (c) {
             case 0:
@@ -413,7 +413,7 @@ void func_02066de8(Unk0206bcb0 *a) {
     s32 f;
 
     a->mUnk_5a0 = a->mUnk_5a0 + data_021654c8;
-    a->mUnk_5a4 = data_0215d4b4[(a->mUnk_5a0 >> 4) * 2];
+    a->mUnk_5a4 = gPairsByAngle[(a->mUnk_5a0 >> 4) * 2];
     if (a->mUnk_594 > 0) {
         a->mUnk_594 = (s64) a->mUnk_594 * data_021654fc + 0x800 >> 12;
         a->mUnk_594 = a->mUnk_594 - 0x64;
@@ -429,7 +429,7 @@ void func_02066de8(Unk0206bcb0 *a) {
     c = (s64) a->mUnk_59c * data_021654cc + 0x800 >> 12;
     d = (s64) c * a->mUnk_5a4 + 0x800 >> 12;
     e = d;
-    Matrix4x3FromPairY(&b, data_0215d4b4[(e >> 4) * 2], data_0215d4b4[(e >> 4) * 2 + 1]);
+    Matrix4x3FromPairY(&b, gPairsByAngle[(e >> 4) * 2], gPairsByAngle[(e >> 4) * 2 + 1]);
     Matrix4x3Multiply(&b, &a->mUnk_150_m, &a->mUnk_184_m);
     if ((a->mUnk_59c > 0 ? a->mUnk_59c : -a->mUnk_59c) >= 0x29) {
         return;

@@ -16,12 +16,12 @@ typedef struct Unk020565e4 {
 // Values of Unk021759c0_70.mUnk_00 that func_02045590 stores (entry 0 gets KIND_0, the others KIND_1).
 typedef enum { UNK_021759C0_70_KIND_0, UNK_021759C0_70_KIND_1 } Unk021759c0_70_Kind;
 
-// The 0x28 bytes from 0x08 of each Unk021759c0_68 entry (code keeps pointers to them).
+// The 0x28 bytes from 0x08 of each KartEntry entry (code keeps pointers to them).
 typedef struct Unk021759c0_70 {
-    /* 00 */ s32 mUnk_00;
+    /* 00 */ s32 mKind;
     /* 04 */ s32 mTeamIndex;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+    /* 0c */ s32 mIndex;
     /* 10 */ s32 mUnk_10;
     /* 14 */ u16 mUnk_14;
     /* 16 */ s8 mUnk_16;
@@ -36,11 +36,11 @@ typedef struct Unk021759c0_70 {
 } Unk021759c0_70;
 
 // 0x30-byte entries at 0x68 and 0x250 of the object behind data_021759c0.
-typedef struct Unk021759c0_68 {
+typedef struct KartEntry {
     /* 00 */ s32 mCharacterIndex;
     /* 04 */ s32 mKartIndex;
     /* 08 */ Unk021759c0_70 mUnk_08;
-} Unk021759c0_68;
+} KartEntry;
 
 // The 0x68 bytes at 0x1e8 of the object behind data_021759c0.
 typedef struct Unk021759c0_1e8 {
@@ -63,7 +63,7 @@ typedef struct Unk021759c0_1e8 {
     /* 59 */ u8 mUnk_59[0x3];
     /* 5c */ s32 mUnk_5c;
     /* 60 */ u16 mUnk_60;
-    /* 62 */ s8 mUnk_62;
+    /* 62 */ s8 mEntryIndex;
     /* 63 */ u8 mUnk_63;
     /* 64 */ s8 mUnk_64;
     /* 65 */ u8 mUnk_65[0x3];
@@ -123,13 +123,13 @@ typedef struct Unk021759c0 {
     /* 059 */ u8 mUnk_059[0x3];
     /* 05c */ s32 mUnk_05c;
     /* 60 */ u16 mUnk_60;
-    /* 62 */ s8 mUnk_62;
+    /* 62 */ s8 mEntryIndex;
     /* 063 */ u8 mUnk_063;
     /* 064 */ s8 mUnk_064;
     /* 065 */ u8 mUnk_065[0x3];
-    /* 68 */ Unk021759c0_68 mUnk_68[8];
-    /* 1e8 */ Unk021759c0_1e8 mUnk_1e8;
-    /* 250 */ Unk021759c0_68 mUnk_250[8];
+    /* 68 */ KartEntry mCurrentEntries[8];
+    /* 1e8 */ Unk021759c0_1e8 mNextHeader;
+    /* 250 */ KartEntry mNextEntries[8];
     /* 3d0 */ u8 mKartCount;
     /* 3d1 */ u8 mUnk_3d1;
     /* 3d2 */ u8 mTeamKartCounts[2];

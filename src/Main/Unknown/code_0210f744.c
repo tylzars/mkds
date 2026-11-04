@@ -532,7 +532,7 @@ void func_0210fb88(Unk0217d244 *a, Unk0212c400 **b) {
     } else if ((a->mUnk_08 >> 1) & 1) {
         a->mUnk_04 += 0x1111;
         a->mUnk_04 &= 0xffff;
-        k = (s32) (((s64) data_0215d4b4[(a->mUnk_04 >> 4) * 2] * 0x30000 + 0x800) >> 12) >> 12;
+        k = (s32) (((s64) gPairsByAngle[(a->mUnk_04 >> 4) * 2] * 0x30000 + 0x800) >> 12) >> 12;
         k += 0x80;
         if (j > 0x3c) {
             j = 0x3c;

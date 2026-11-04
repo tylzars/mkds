@@ -162,7 +162,7 @@ void func_02069ea8(Unk0206bcb0 *p) {
         p->mUnk_428.x = 0x1000;
         p->mUnk_428.y = 0x1000;
         p->mUnk_428.z = 0x1000;
-        if (p->mIndex == data_021759c0->mUnk_62) {
+        if (p->mIndex == data_021759c0->mEntryIndex) {
             func_0210fa74(0);
         }
         func_0210a664(p);
@@ -197,7 +197,7 @@ void func_02069e10(Unk0206bcb0 *p) {
     }
     for (; i < (u32) data_021759c0->mKartCount; i++) {
         if (i != p->mIndex) {
-            func_0206a624(func_0207a974(i));
+            func_0206a624(GetKart(i));
         }
     }
 }
@@ -355,7 +355,7 @@ void func_0206988c(Unk0206bcb0 *p) {
     if (p->mUnk_7c & 1) {
         return;
     }
-    func_0207a948(&a, (u16) data_021759c0->mUnk_62);
+    func_0207a948(&a, (u16) data_021759c0->mEntryIndex);
     func_0207a948(&b, p->mIndex);
     d = (a.x - b.x) >> 12;
     e = (a.y - b.y) >> 12;

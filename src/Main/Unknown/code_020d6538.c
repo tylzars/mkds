@@ -72,9 +72,9 @@ void func_020d7bec(Unk02012f58 *a) {
     t = (((s64) t * 0x28BE60DB9391LL) + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
     data_0217b660.mUnk_00[0] = 0;
-    data_0217b660.mUnk_00[1] = data_0215d4b4[i * 2];
+    data_0217b660.mUnk_00[1] = gPairsByAngle[i * 2];
     data_0217b660.mUnk_00[2] = 0;
-    data_0217b660.mUnk_00[3] = data_0215d4b4[i * 2 + 1];
+    data_0217b660.mUnk_00[3] = gPairsByAngle[i * 2 + 1];
 }
 
 void func_020d7b88(Vec3 *a, void *q) {
@@ -91,9 +91,9 @@ void func_020d7b88(Vec3 *a, void *q) {
 void func_020d7b34(s32 a, Unk020d7b88 *b) {
     s32 i = (u16) (a >> 1) >> 4;
     b->mUnk_00[0] = 0;
-    b->mUnk_00[1] = data_0215d4b4[i * 2];
+    b->mUnk_00[1] = gPairsByAngle[i * 2];
     b->mUnk_00[2] = 0;
-    b->mUnk_00[3] = data_0215d4b4[i * 2 + 1];
+    b->mUnk_00[3] = gPairsByAngle[i * 2 + 1];
 }
 
 void func_020d7a3c(void *p, s32 b, void *q) {
@@ -110,8 +110,8 @@ void func_020d7a3c(void *p, s32 b, void *q) {
     r = SqrtFixed12Result();
     DivFixed12Start(a->z, r);
     i = (u16) (b >> 1) >> 4;
-    s = data_0215d4b4[i * 2];
-    k = data_0215d4b4[i * 2 + 1];
+    s = gPairsByAngle[i * 2];
+    k = gPairsByAngle[i * 2 + 1];
     c->mUnk_00[1] = ((r >> 1) * s) >> 12;
     c->mUnk_00[3] = ((r >> 1) * k) >> 12;
     d = DivFixed12Result();
@@ -127,8 +127,8 @@ void func_020d79b0(void *p, u32 b, void *q) {
     Unk020d7b88 *a = p;
     Unk020d7b88 *c = q;
     s32 i = (u16) (b >> 1) >> 4;
-    s32 s = data_0215d4b4[i * 2];
-    s32 k = data_0215d4b4[i * 2 + 1];
+    s32 s = gPairsByAngle[i * 2];
+    s32 k = gPairsByAngle[i * 2 + 1];
     c->mUnk_00[0] = (a->mUnk_00[0] * k - a->mUnk_00[2] * s) >> 12;
     c->mUnk_00[1] = (a->mUnk_00[3] * s) >> 12;
     c->mUnk_00[2] = (a->mUnk_00[2] * k + a->mUnk_00[0] * s) >> 12;
@@ -145,8 +145,8 @@ void func_020d7938(Unk020d7b88 *a, Unk020d7b88 *b, Unk020d7b88 *c) {
 void func_020d788c(Unk020d7b88 *a, s32 b, Unk020d7b88 *c) {
     Unk020d7b88 q = *a;
     s32 i = (u16) (b >> 1) >> 4;
-    s32 s = data_0215d4b4[i * 2];
-    s32 k = data_0215d4b4[i * 2 + 1];
+    s32 s = gPairsByAngle[i * 2];
+    s32 k = gPairsByAngle[i * 2 + 1];
     c->mUnk_00[0] = (q.mUnk_00[3] * s + q.mUnk_00[0] * k) >> 12;
     c->mUnk_00[1] = (q.mUnk_00[1] * k + q.mUnk_00[2] * s) >> 12;
     c->mUnk_00[2] = (q.mUnk_00[2] * k - q.mUnk_00[1] * s) >> 12;
@@ -158,8 +158,8 @@ void func_020d77e0(void *m, s32 b, void *o) {
     Unk020d7b88 *c = o;
     Unk020d7b88 q = *a;
     s32 i = (u16) (b >> 1) >> 4;
-    s32 s = data_0215d4b4[i * 2];
-    s32 k = data_0215d4b4[i * 2 + 1];
+    s32 s = gPairsByAngle[i * 2];
+    s32 k = gPairsByAngle[i * 2 + 1];
     c->mUnk_00[0] = (q.mUnk_00[0] * k - q.mUnk_00[2] * s) >> 12;
     c->mUnk_00[1] = (q.mUnk_00[3] * s + q.mUnk_00[1] * k) >> 12;
     c->mUnk_00[2] = (q.mUnk_00[2] * k + q.mUnk_00[0] * s) >> 12;
@@ -171,8 +171,8 @@ void func_020d7734(void *m, s32 b, void *o) {
     Unk020d7b88 *c = o;
     Unk020d7b88 q = *a;
     s32 i = (u16) (b >> 1) >> 4;
-    s32 s = data_0215d4b4[i * 2];
-    s32 k = data_0215d4b4[i * 2 + 1];
+    s32 s = gPairsByAngle[i * 2];
+    s32 k = gPairsByAngle[i * 2 + 1];
     c->mUnk_00[0] = (q.mUnk_00[0] * k + q.mUnk_00[1] * s) >> 12;
     c->mUnk_00[1] = (q.mUnk_00[1] * k - q.mUnk_00[0] * s) >> 12;
     c->mUnk_00[2] = (q.mUnk_00[3] * s + q.mUnk_00[2] * k) >> 12;
@@ -182,8 +182,8 @@ void func_020d7734(void *m, s32 b, void *o) {
 void func_020d76a8(Unk020d7b88 *a, s32 b, Unk020d7b88 *c) {
     Unk020d7b88 q = *a;
     s32 i = (u16) (b >> 1) >> 4;
-    s32 s = data_0215d4b4[i * 2];
-    s32 k = data_0215d4b4[i * 2 + 1];
+    s32 s = gPairsByAngle[i * 2];
+    s32 k = gPairsByAngle[i * 2 + 1];
     c->mUnk_00[0] = (q.mUnk_00[3] * s) >> 12;
     c->mUnk_00[1] = (q.mUnk_00[1] * k) >> 12;
     c->mUnk_00[2] = (-q.mUnk_00[1] * s) >> 12;
@@ -249,15 +249,15 @@ void func_020d720c(Vec3 *a, u32 *m) {
     s32 t;
     t = ((s64) a->x * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
-    p.mUnk_00[0] = data_0215d4b4[i * 2];
-    p.mUnk_00[3] = data_0215d4b4[i * 2 + 1];
+    p.mUnk_00[0] = gPairsByAngle[i * 2];
+    p.mUnk_00[3] = gPairsByAngle[i * 2 + 1];
     p.mUnk_00[1] = 0;
     p.mUnk_00[2] = 0;
     q = p;
     t = ((s64) a->y * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
-    s = data_0215d4b4[i * 2];
-    c = data_0215d4b4[i * 2 + 1];
+    s = gPairsByAngle[i * 2];
+    c = gPairsByAngle[i * 2 + 1];
     p.mUnk_00[0] = (q.mUnk_00[0] * c - q.mUnk_00[2] * s) >> 12;
     p.mUnk_00[2] = (q.mUnk_00[2] * c + q.mUnk_00[0] * s) >> 12;
     p.mUnk_00[1] = (q.mUnk_00[3] * s + q.mUnk_00[1] * c) >> 12;
@@ -265,8 +265,8 @@ void func_020d720c(Vec3 *a, u32 *m) {
     r = p;
     t = ((s64) a->z * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
-    s = data_0215d4b4[i * 2];
-    c = data_0215d4b4[i * 2 + 1];
+    s = gPairsByAngle[i * 2];
+    c = gPairsByAngle[i * 2 + 1];
     b->mUnk_00[0] = (r.mUnk_00[0] * c + r.mUnk_00[1] * s) >> 12;
     b->mUnk_00[1] = (r.mUnk_00[1] * c - r.mUnk_00[0] * s) >> 12;
     b->mUnk_00[2] = (r.mUnk_00[3] * s + r.mUnk_00[2] * c) >> 12;
@@ -333,7 +333,7 @@ s32 Vec3NormalizeXZAndGetLengthOrZero(Vec3 *a, Vec3 *b) {
 void func_020d6f20(Vec3 *a, s32 b, Vec3 *c) {
     s32 m[9];
     s32 i = b >> 4;
-    Matrix3x3FromPairY(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+    Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     Vec3MultiplyMatrix3x3(a, m, c);
 }
 
@@ -345,10 +345,10 @@ void func_020d6df0(Vec3 *a, s32 *b) {
     i = (u16) ((((s64) a->x * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
     j = (u16) ((((s64) a->y * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
     k = (u16) ((((s64) a->z * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
-    Matrix3x3FromPairX(b, data_0215d4b4[(i >> 4) * 2], data_0215d4b4[(i >> 4) * 2 + 1]);
-    Matrix3x3FromPairY(m, data_0215d4b4[(j >> 4) * 2], data_0215d4b4[(j >> 4) * 2 + 1]);
+    Matrix3x3FromPairX(b, gPairsByAngle[(i >> 4) * 2], gPairsByAngle[(i >> 4) * 2 + 1]);
+    Matrix3x3FromPairY(m, gPairsByAngle[(j >> 4) * 2], gPairsByAngle[(j >> 4) * 2 + 1]);
     Matrix3x3Multiply(b, m, b);
-    Matrix3x3FromPairZ(m, data_0215d4b4[(k >> 4) * 2], data_0215d4b4[(k >> 4) * 2 + 1]);
+    Matrix3x3FromPairZ(m, gPairsByAngle[(k >> 4) * 2], gPairsByAngle[(k >> 4) * 2 + 1]);
     Matrix3x3Multiply(b, m, b);
 }
 
@@ -560,7 +560,7 @@ Unk0217b654 *func_020d6794(void) {
 
 void func_020d673c(void) {
     s32 i = (s32) (func_02061fb8() << 25 >> 16) >> 4;
-    Matrix3x3FromPairY(data_0217b650->mUnk_2c.mUnk_00, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+    Matrix3x3FromPairY(data_0217b650->mUnk_2c.mUnk_00, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
 }
 
 void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d) {

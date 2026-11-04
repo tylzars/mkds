@@ -135,7 +135,7 @@ void func_020a79c4(void *a, Unk020a7f18 *p) {
             for (i = 0; i < p->mUnk_1d0; i++) {
                 if (p->mUnk_0b0[i].mUnk_3c != 0) {
                     k = ((u16) p->mUnk_0b0[i].mUnk_3c >> 4) * 2;
-                    Matrix3x3FromPairZ(m0, data_0215d4b4[k], data_0215d4b4[k + 1]);
+                    Matrix3x3FromPairZ(m0, gPairsByAngle[k], gPairsByAngle[k + 1]);
                     func_01ff9048(0x1a, m0, 9);
                 }
                 if (i != 0) {
@@ -164,7 +164,7 @@ void func_020a79c4(void *a, Unk020a7f18 *p) {
                 func_01ff9048(0x19, func_020e6cf8(&p->mUnk_0b0[i].mUnk_00), 12);
                 if ((p->mUnk_000.mFlags & 0x12) == 0 && p->mUnk_0b0[i].mUnk_3c != 0) {
                     k = ((u16) p->mUnk_0b0[i].mUnk_3c >> 4) * 2;
-                    Matrix3x3FromPairZ(m1, data_0215d4b4[k], data_0215d4b4[k + 1]);
+                    Matrix3x3FromPairZ(m1, gPairsByAngle[k], gPairsByAngle[k + 1]);
                     func_01ff9048(0x1a, m1, 9);
                 }
                 t = p->mUnk_0b0[i].mUnk_18;
@@ -237,7 +237,7 @@ void func_020a78c8(Unk020e6fd4 *l) {
 }
 
 s32 func_020a78b0(s32 a) {
-    return data_0215d4b4[(a >> 4) * 2];
+    return gPairsByAngle[(a >> 4) * 2];
 }
 
 s32 func_020a7894(s32 a, s32 b) {
@@ -411,7 +411,7 @@ BOOL func_020a72c8(u16 a, u16 b) {
         if (b >= 8) {
             b = a;
         }
-        func_020a5608(func_0207a974(a), func_0207a974(b));
+        func_020a5608(GetKart(a), GetKart(b));
         return TRUE;
     }
     return FALSE;
@@ -422,7 +422,7 @@ void func_020a7270(u16 a) {
         return;
     }
     func_020a10f0(a, -1);
-    func_020a5608(func_0207a974(a), func_0207a974(a));
+    func_020a5608(GetKart(a), GetKart(a));
 }
 
 void func_020a71c8(void) {

@@ -116,7 +116,7 @@ void func_02089a24(Unk020888b4 *a, Unk02089a24 *b) {
     b->mUnk_28 = 0;
     b->mUnk_2c = 0;
     b->mUnk_30 = 0;
-    v = data_021759c0->mUnk_68[a->mIndex].mUnk_08.mUnk_00;
+    v = data_021759c0->mCurrentEntries[a->mIndex].mUnk_08.mKind;
     if ((u32) v <= 3) {
         if ((1 << v) & 0xd) {
             c = TRUE;
@@ -392,7 +392,7 @@ void func_02088e44(Unk020888b4 *p) {
         k = gSearchStartIndex;
         for (n = 0; n < (u32) data_021759c0->mKartCount; n++) {
             if (func_0207f554(p->mIndex, k) != 0) {
-                o = func_0207a974(k);
+                o = GetKart(k);
                 v3 = &p->mUnk_00->mUnk_80;
                 d = func_020888b4_inline(v3, &o->mUnk_80);
                 c = 0;
@@ -459,7 +459,7 @@ void func_02088e44(Unk020888b4 *p) {
         v1 = &data_027e00c8[p->mIndex];
         c = 1;
         if (v1->mUnk_058.mUnk_000 == 0xf && v1->mUnk_030.mUnk_00 == 0x13) {
-            if ((func_0207a974(p->mIndex)->mUnk_4c & 0x40) == 0) {
+            if ((GetKart(p->mIndex)->mUnk_4c & 0x40) == 0) {
                 c = 0;
             }
         }

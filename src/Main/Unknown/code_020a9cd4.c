@@ -89,7 +89,7 @@ void func_020a9cd4(void *a, Unk020a9268 *p) {
     func_01ff9048(0x19, func_020e6cf8(&p->mUnk_000.mPos), 0xc);
     if (p->mUnk_0a0 != 0) {
         i = (u16) p->mUnk_0a0 >> 4;
-        Matrix3x3FromPairZ((s32 *) v1, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+        Matrix3x3FromPairZ((s32 *) v1, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
         func_01ff9048(0x1a, v1, 9);
     }
     func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);

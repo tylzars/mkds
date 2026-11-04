@@ -348,7 +348,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
     r = func_02061808();
     switch (data_021759c0->mCourseId) {
         case 0x14:
-            if (func_0203c25c(data_021759c0->mUnk_62) != 0 || func_02062ec4() != 0) {
+            if (func_0203c25c(data_021759c0->mEntryIndex) != 0 || func_02062ec4() != 0) {
                 k = 0x898000;
             } else {
                 k = 0x834000;
@@ -356,14 +356,14 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
             v = AngleFromPair(r->mUnk_024.x - b->x, r->mUnk_024.z - b->z);
             if (v >= 0 && v <= 0xaaab) {
                 n = ((u16) v >> 4) << 1;
-                a->mUnk_10.x = b->x + (s32) (((s64) data_0215d4b4[n] * 0x5dc000) >> 12);
+                a->mUnk_10.x = b->x + (s32) (((s64) gPairsByAngle[n] * 0x5dc000) >> 12);
                 a->mUnk_10.y = b->y;
-                a->mUnk_10.z = b->z + (s32) (((s64) data_0215d4b4[n + 1] * 0x5dc000) >> 12);
+                a->mUnk_10.z = b->z + (s32) (((s64) gPairsByAngle[n + 1] * 0x5dc000) >> 12);
                 a->mUnk_20 = 0;
             } else if (r->mUnk_024.z > b->z && r->mUnk_024.y < b->y - 0x32000) {
-                a->mUnk_10.x = b->x + (s32) (((s64) data_0215d4b4[0] * 0x5dc000) >> 12);
+                a->mUnk_10.x = b->x + (s32) (((s64) gPairsByAngle[0] * 0x5dc000) >> 12);
                 a->mUnk_10.y = b->y;
-                a->mUnk_10.z = b->z + (s32) (((s64) data_0215d4b4[1] * 0x5dc000) >> 12);
+                a->mUnk_10.z = b->z + (s32) (((s64) gPairsByAngle[1] * 0x5dc000) >> 12);
                 v = a->mUnk_10.x - k;
                 n = r->mUnk_024.x;
                 if (n <= v) {
@@ -379,7 +379,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
             }
             break;
         case 0x19:
-            if (func_0203c25c(data_021759c0->mUnk_62) != 0 || func_02062ec4() != 0) {
+            if (func_0203c25c(data_021759c0->mEntryIndex) != 0 || func_02062ec4() != 0) {
                 m = 0x384000;
             } else {
                 m = 0x320000;

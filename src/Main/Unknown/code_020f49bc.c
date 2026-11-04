@@ -784,7 +784,7 @@ void func_020f53d0(Unk020f5d6c *a) {
     func_020f1a14((u32) a);
 }
 
-// Returns 1 while func_0207a974(b) is within the 0x1d0/0x1d4 radius of the 0x50/0x54/0x58
+// Returns 1 while GetKart(b) is within the 0x1d0/0x1d4 radius of the 0x50/0x54/0x58
 // words, or when the 0xda halfword is -1; otherwise sets the 0x24c/0x24e halfwords, returns 0.
 BOOL func_020f5324(void *a0, s32 b) {
     Unk020f5d6c *a;
@@ -794,7 +794,7 @@ BOOL func_020f5324(void *a0, s32 b) {
     s32 t;
 
     a = a0;
-    k = func_0207a974(b);
+    k = GetKart(b);
     r = k->mUnk_1d0 + (s32) ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_e0 * 3) >> 1);
     n = a->mUnk_000.mUnk_000.mUnk_000.mUnk_50.z - k->mUnk_1d8.z;
     t = a->mUnk_000.mUnk_000.mUnk_000.mUnk_50.x - k->mUnk_1d8.x;
@@ -1048,7 +1048,7 @@ void func_020f4b20(Unk020f40dc *a, Unk020ee684 *b) {
     for (i = 0; i < 3; i++) {
         a->mUnk_14[i] = NULL;
     }
-    a->mUnk_24 = data_021759c0->mUnk_68[b->mUnk_1f8].mUnk_08.mUnk_00 == 3;
+    a->mUnk_24 = data_021759c0->mCurrentEntries[b->mUnk_1f8].mUnk_08.mKind == 3;
 }
 
 void func_020f49bc(Unk020f40dc *a) {

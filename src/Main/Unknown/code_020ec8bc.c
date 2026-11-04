@@ -162,7 +162,7 @@ void func_020ece1c(Unk020ec8bc *p, s32 a, s32 b, s32 c) {
 
     func_020f2228(&p->mUnk_000, a);
     if (p->mUnk_000.mUnk_158 != 0 && (p->mUnk_000.mUnk_000.mUnk_74 & 0x20000) != 0) {
-        n = func_0207a974((u16) (p->mUnk_000.mUnk_000.mUnk_78 & ~0xff00))->mUnk_98.y + 0x1e000;
+        n = GetKart((u16) (p->mUnk_000.mUnk_000.mUnk_78 & ~0xff00))->mUnk_98.y + 0x1e000;
         if (p->mUnk_000.mUnk_000.mUnk_50.y < n) {
             p->mUnk_000.mUnk_000.mUnk_50.y = n;
         }

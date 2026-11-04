@@ -168,8 +168,8 @@ void func_020f7c90(Unk020f41c4_A *a, Vec3 *b, Vec3 *c) {
     q = &data_0217561c->mUnk_47c;
     q->mUnk_00 = q->mUnk_08 * q->mUnk_00 + q->mUnk_10;
     i = (u16) ((((u64) (u32) (q->mUnk_00 >> 32) * 0x10000) >> 32)) >> 4;
-    a->mUnk_108.z = data_0215d4b4[i * 2 + 1];
-    a->mUnk_108.x = data_0215d4b4[i * 2];
+    a->mUnk_108.z = gPairsByAngle[i * 2 + 1];
+    a->mUnk_108.x = gPairsByAngle[i * 2];
     a->mUnk_5c.z = (s32) (((s64) a->mUnk_108.z * 0x14cd) >> 12);
     a->mUnk_5c.x = (s32) (((s64) a->mUnk_108.x * 0x14cd) >> 12);
     a->mUnk_74 |= 0x2000000;

@@ -38,9 +38,9 @@ void func_02086a04(void) {
     s32 j;
     q = func_020d50e0();
     for (i = 0; i < data_021759c0->mKartCount; i++) {
-        func_0207a974(i);
+        GetKart(i);
         data_0217aed0->mUnk_0e4[i] = 0;
-        p = func_0207a974(i);
+        p = GetKart(i);
         k = p->mUnk_1d0 * 3;
         s = p->mKartModelsEntry;
         Vec3Sub(p->mUnk_508, &q->mUnk_08, &v30);
@@ -55,7 +55,7 @@ void func_02086a04(void) {
         e = v24.x * v24.x + v24.y * v24.y + v24.z * v24.z;
         data_0217aed0->mUnk_124[i] = e;
         data_0217aed0->mUnk_0a4[(u16) (data_0217aed0->mUnk_024[p->mIndex] + data_0217aed0->mUnk_084[p->mIndex])] = e;
-        if (p->mIndex != data_021759c0->mUnk_62) {
+        if (p->mIndex != data_021759c0->mEntryIndex) {
             a = TRUE;
             if (e > data_0217ca6c[0].mUnk_20) {
                 a = FALSE;
@@ -103,7 +103,7 @@ void func_02086a04(void) {
     }
     if (func_02061818() != 3) {
         n = 0;
-        for (j = data_0217aed0->mUnk_074[data_021759c0->mUnk_62] + 1; j < data_021759c0->mKartCount; j++) {
+        for (j = data_0217aed0->mUnk_074[data_021759c0->mEntryIndex] + 1; j < data_021759c0->mKartCount; j++) {
             Unk02086250 *t;
             t = data_0217aed0->mUnk_000[data_0217aed0->mUnk_044[j]];
             if (t != NULL) {
@@ -147,7 +147,7 @@ void func_0208677c(void) {
     i = 0;
     while (i < data_0217aed0->mUnk_020) {
         p = data_0217aed0->mUnk_0c4[i];
-        m = func_0207a974(p->mUnk_0c);
+        m = GetKart(p->mUnk_0c);
         w = m->mUnk_508;
         v = *w;
         x = data_0217aed0->mUnk_104[p->mUnk_0c];
@@ -166,9 +166,8 @@ void func_0208677c(void) {
                 p->mUnk_14 = 2;
             }
         }
-        if (data_0217aed0->mUnk_0e4[p->mUnk_0c] != 0 || (func_0207a974(p->mUnk_0c)->mUnk_7c & 0x402020) != 0 ||
-            (func_020738f8(w->y - func_0207a974(data_021759c0->mUnk_62)->mUnk_80.y) > 0x96000 &&
-             func_02061818() != 3)) {
+        if (data_0217aed0->mUnk_0e4[p->mUnk_0c] != 0 || (GetKart(p->mUnk_0c)->mUnk_7c & 0x402020) != 0 ||
+            (func_020738f8(w->y - GetKart(data_021759c0->mEntryIndex)->mUnk_80.y) > 0x96000 && func_02061818() != 3)) {
             p->mUnk_20 = -1;
         }
         if (p->mUnk_18 != 0) {
@@ -288,7 +287,7 @@ void func_02086250(Unk02012f58 *a) {
         if (h == 0) {
             continue;
         }
-        if ((func_0207a974(data_0217aed0->mUnk_044[i])->mUnk_7c & 0xe0) != 0) {
+        if ((GetKart(data_0217aed0->mUnk_044[i])->mUnk_7c & 0xe0) != 0) {
             continue;
         }
         Vec3MultiplyMatrix4x3(&p->mUnk_00, a, &v);

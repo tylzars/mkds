@@ -175,7 +175,7 @@ void func_02024a88(Unk0206bcb0 *a) {
     }
     if (data_0217c814.mUnk_0c == 0) {
         h = a->mUnk_4d4;
-        if (h > 0xcd && data_021759c0->mUnk_68[a->mIndex].mUnk_08.mUnk_00 != 1) {
+        if (h > 0xcd && data_021759c0->mCurrentEntries[a->mIndex].mUnk_08.mKind != 1) {
             if (f != 0) {
                 if ((a->mUnk_4c & 0x20000000) != 0) {
                     i = 0;

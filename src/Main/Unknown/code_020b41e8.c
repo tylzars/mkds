@@ -95,8 +95,8 @@ void func_020b41e8(s32 a, s32 b, s32 c, s32 d, s32 e) {
     u16 *q;
     s32 w;
 
-    i = p->mUnk_00c == 1 ? p->mUnk_063 : p->mUnk_62;
-    n = p->mUnk_68[i].mCharacterIndex;
+    i = p->mUnk_00c == 1 ? p->mUnk_063 : p->mEntryIndex;
+    n = p->mCurrentEntries[i].mCharacterIndex;
     if (n == 12) {
         o1 = (Nclr *) func_020b4024(1);
     } else {
@@ -106,7 +106,7 @@ void func_020b41e8(s32 a, s32 b, s32 c, s32 d, s32 e) {
     k = o1->mData;
     if (n == 12) {
         m = data_0217b488
-                ->mUnk_10c[(u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mUnk_62)];
+                ->mUnk_10c[(u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mEntryIndex)];
     } else {
         m = n;
     }

@@ -411,7 +411,7 @@ void func_0206d18c(Unk0206bcb0 *p) {
             } else {
                 while (i < data_021759c0->mKartCount) {
                     if (i != p->mIndex) {
-                        func_0206a624(func_0207a974(i));
+                        func_0206a624(GetKart(i));
                     }
                     i = (u16) (i + 1);
                 }
@@ -442,7 +442,7 @@ void func_0206d18c(Unk0206bcb0 *p) {
     if (i >= data_021759c0->mKartCount) {
         return;
     }
-    q = func_0207a974(i);
+    q = GetKart(i);
     if (q->mIndex != p->mIndex && r != 0) {
         if (data_021759c0->mUnk_08 != 4) {
             func_0207a70c(i);

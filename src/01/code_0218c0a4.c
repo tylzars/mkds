@@ -34,7 +34,7 @@
 #include "Main/Unknown/unk_0217c000.h"
 
 void func_ov001_0218c490(Unk02188950 *a) {
-    Unk0206bcb0 *p = func_0207a974((u16) data_021759c0->mUnk_62);
+    Unk0206bcb0 *p = GetKart((u16) data_021759c0->mEntryIndex);
 
     func_ov001_02187218(a, 2, func_ov001_0218c5d4);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_104), (s32) (a->mPrm->mUnk_108));
@@ -138,12 +138,12 @@ void func_ov001_0218c0a4(Unk02188950 *a) {
         Vec3 pos;
         Vec3 vel = {0, 0, 0};
 
-        pos.x = a->mUnk_000.mPos.x + (((s64) radius * data_0215d4b4[((u16) angle >> 4) * 2]) >> 12);
+        pos.x = a->mUnk_000.mPos.x + (((s64) radius * gPairsByAngle[((u16) angle >> 4) * 2]) >> 12);
         pos.y = a->mUnk_000.mPos.y + a->mPrm->mUnk_194;
-        pos.z = a->mUnk_000.mPos.z + (((s64) radius * data_0215d4b4[((u16) angle >> 4) * 2 + 1]) >> 12);
-        vel.x = ((s64) a->mPrm->mUnk_1a0 * data_0215d4b4[((u16) angle >> 4) * 2]) >> 12;
+        pos.z = a->mUnk_000.mPos.z + (((s64) radius * gPairsByAngle[((u16) angle >> 4) * 2 + 1]) >> 12);
+        vel.x = ((s64) a->mPrm->mUnk_1a0 * gPairsByAngle[((u16) angle >> 4) * 2]) >> 12;
         vel.y = a->mPrm->mUnk_19c;
-        vel.z = ((s64) a->mPrm->mUnk_1a0 * data_0215d4b4[((u16) angle >> 4) * 2 + 1]) >> 12;
+        vel.z = ((s64) a->mPrm->mUnk_1a0 * gPairsByAngle[((u16) angle >> 4) * 2 + 1]) >> 12;
         if (i == sel) {
             func_ov001_02187b2c(func_020f4ee8(), &pos, &vel, a->mPrm->mUnk_1ac);
         } else {

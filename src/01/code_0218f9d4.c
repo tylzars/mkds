@@ -83,9 +83,9 @@ void func_ov001_021927c0(Unk02188950 *a) {
         func_ov001_02188200(a, func_ov001_021927c0);
         return;
     }
-    a->mUnk_000.mUnk_10.x = ((s64) a->mPrm->mUnk_144 * data_0215d4b4[(u16) a->mMoveAngle >> 4 << 1]) >> 12;
+    a->mUnk_000.mUnk_10.x = ((s64) a->mPrm->mUnk_144 * gPairsByAngle[(u16) a->mMoveAngle >> 4 << 1]) >> 12;
     a->mUnk_000.mUnk_10.y = 0;
-    a->mUnk_000.mUnk_10.z = ((s64) a->mPrm->mUnk_144 * data_0215d4b4[((u16) a->mMoveAngle >> 4 << 1) + 1]) >> 12;
+    a->mUnk_000.mUnk_10.z = ((s64) a->mPrm->mUnk_144 * gPairsByAngle[((u16) a->mMoveAngle >> 4 << 1) + 1]) >> 12;
     a->mUnk_2d8 = 0xd;
     func_ov001_02188200(a, func_ov001_021927c0);
     func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
@@ -110,7 +110,7 @@ void func_ov001_02192694(void) {
     } else {
         obj = NULL;
     }
-    other = func_0207a974((u16) data_021759c0->mUnk_62);
+    other = GetKart((u16) data_021759c0->mEntryIndex);
     if (obj->mUnk_0a8 == 4) {
         a0 = obj->mPrm;
         ang = AngleFromPair(other->mUnk_80.z - obj->mUnk_000.mPos.z, other->mUnk_80.x - obj->mUnk_000.mPos.x) -
@@ -121,9 +121,9 @@ void func_ov001_02192694(void) {
               AngleFromPair(other->mUnk_80.z - obj->mUnk_000.mPos.z, other->mUnk_80.x - obj->mUnk_000.mPos.x);
     }
     idx = (ang >> 4) * 2;
-    pos.x = obj->mUnk_000.mPos.x + (s32) (((s64) a0->mUnk_270 * data_0215d4b4[idx + 1]) >> 12);
+    pos.x = obj->mUnk_000.mPos.x + (s32) (((s64) a0->mUnk_270 * gPairsByAngle[idx + 1]) >> 12);
     pos.y = obj->mUnk_000.mPos.y;
-    pos.z = obj->mUnk_000.mPos.z + (s32) (((s64) obj->mPrm->mUnk_270 * data_0215d4b4[idx]) >> 12);
+    pos.z = obj->mUnk_000.mPos.z + (s32) (((s64) obj->mPrm->mUnk_270 * gPairsByAngle[idx]) >> 12);
     SetAnglePointAndMoveAnglePoint(obj, &pos);
 }
 
@@ -150,15 +150,15 @@ void func_ov001_021924cc(void) {
     } else {
         objC = NULL;
     }
-    a.x = (s32) (((s64) objB->mPrm->mUnk_274 * data_0215d4b4[((u16) objB->mAngle >> 4) * 2]) >> 12);
+    a.x = (s32) (((s64) objB->mPrm->mUnk_274 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2]) >> 12);
     a.y = objB->mUnk_000.mPos.y;
-    a.z = (s32) (((s64) objB->mPrm->mUnk_274 * data_0215d4b4[((u16) objB->mAngle >> 4) * 2 + 1]) >> 12);
-    b.x = -(s32) (((s64) objB->mPrm->mUnk_278 * data_0215d4b4[((u16) objB->mAngle >> 4) * 2 + 1]) >> 12);
+    a.z = (s32) (((s64) objB->mPrm->mUnk_274 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2 + 1]) >> 12);
+    b.x = -(s32) (((s64) objB->mPrm->mUnk_278 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2 + 1]) >> 12);
     b.y = objB->mUnk_000.mPos.y;
-    b.z = (s32) (((s64) objB->mPrm->mUnk_278 * data_0215d4b4[((u16) objB->mAngle >> 4) * 2]) >> 12);
-    c.x = (s32) (((s64) objB->mPrm->mUnk_278 * data_0215d4b4[((u16) objB->mAngle >> 4) * 2 + 1]) >> 12);
+    b.z = (s32) (((s64) objB->mPrm->mUnk_278 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2]) >> 12);
+    c.x = (s32) (((s64) objB->mPrm->mUnk_278 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2 + 1]) >> 12);
     c.y = objB->mUnk_000.mPos.y;
-    c.z = -(s32) (((s64) objB->mPrm->mUnk_278 * data_0215d4b4[((u16) objB->mAngle >> 4) * 2]) >> 12);
+    c.z = -(s32) (((s64) objB->mPrm->mUnk_278 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2]) >> 12);
     SetAnglePoint(obj, &a);
     SetAnglePoint(objC, &a);
     SetMoveAnglePoint(obj, &b);
@@ -429,7 +429,7 @@ s32 func_ov001_02191870(Unk02188950 *a) {
 }
 
 void func_ov001_021917d0(Unk02188950 *a) {
-    func_0207a974((u16) data_021759c0->mUnk_62);
+    GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(func_ov001_02191888));
     func_ov001_02188d64(a, a->mPrm->mUnk_148, a->mPrm->mUnk_14c);
     func_ov001_02188cd8(a, a->mPrm->mUnk_150, a->mPrm->mUnk_154);
@@ -438,7 +438,7 @@ void func_ov001_021917d0(Unk02188950 *a) {
 }
 
 void func_ov001_021916e0(Unk02188950 *a) {
-    Unk0206bcb0 *v1 = func_0207a974((u16) data_021759c0->mUnk_62);
+    Unk0206bcb0 *v1 = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
     if ((a->mUnk_000.mFlags & 0x400) == 0) {
@@ -514,7 +514,7 @@ s32 func_ov001_02191470(Unk02188950 *a) {
 }
 
 void func_ov001_021913b8(Unk02188950 *a) {
-    Unk0206bcb0 *v1 = func_0207a974((u16) data_021759c0->mUnk_62);
+    Unk0206bcb0 *v1 = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
     func_ov001_02187e78(a);
@@ -529,7 +529,7 @@ void func_ov001_021913b8(Unk02188950 *a) {
 }
 
 void func_ov001_02191318(Unk02188950 *a) {
-    Unk0206bcb0 *v1 = func_0207a974((u16) data_021759c0->mUnk_62);
+    Unk0206bcb0 *v1 = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
     local.y = a->mPrm->mUnk_0a4;
@@ -559,7 +559,7 @@ void func_ov001_02191258(Unk02188950 *a) {
 }
 
 void func_ov001_021911a8(Unk02188950 *a) {
-    Unk0206bcb0 *v1 = func_0207a974((u16) data_021759c0->mUnk_62);
+    Unk0206bcb0 *v1 = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
     local.y = a->mPrm->mUnk_1e4;
@@ -747,7 +747,7 @@ s32 func_ov001_02190b58(Unk02188950 *c) {
     b = (data_021759c0->mUnk_08 == 4
              ? func_ov001_02181b68((u16) ((data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0) + 1))
              : 0);
-    SetAnglePointAndMoveAnglePoint(c, &func_0207a974((u16) data_021759c0->mUnk_62)->mUnk_80);
+    SetAnglePointAndMoveAnglePoint(c, &GetKart((u16) data_021759c0->mEntryIndex)->mUnk_80);
     func_ov001_021924cc();
     if (func_ov001_021871f8(a, 3) && func_ov001_021871f8(b, 3)) {
         func_ov001_02188218(c, (s32) ((u16) c->mPrm->mUnk_1ec));
@@ -760,7 +760,7 @@ void func_ov001_02190acc(Unk02188950 *c) {
     Unk02188950 *a;
     Unk02188950 *b;
 
-    func_0207a974((u16) data_021759c0->mUnk_62);
+    GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(c, 3, func_ov001_02190b58);
     func_ov001_02188c90(c);
     a = (data_021759c0->mUnk_08 == 4
@@ -783,7 +783,7 @@ s32 func_ov001_02190a20(Unk02188950 *c) {
     b = (data_021759c0->mUnk_08 == 4
              ? func_ov001_02181b68((u16) ((data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0) + 1))
              : 0);
-    SetAnglePointAndMoveAnglePoint(c, &func_0207a974((u16) data_021759c0->mUnk_62)->mUnk_80);
+    SetAnglePointAndMoveAnglePoint(c, &GetKart((u16) data_021759c0->mEntryIndex)->mUnk_80);
     func_ov001_021924cc();
     if (func_ov001_021871f8(a, 3) && func_ov001_021871f8(b, 3)) {
         c->mUnk_0a8 = c->mUnk_0a8 == 4 ? 5 : 4;
@@ -798,7 +798,7 @@ void func_ov001_02190948(Unk02188950 *c) {
     Unk02188950 *b;
 
     if (func_ov001_0218820c(c)) {
-        r4 = func_0207a974((u16) data_021759c0->mUnk_62);
+        r4 = GetKart((u16) data_021759c0->mEntryIndex);
         func_ov001_02187218(c, 3, func_ov001_02190a20);
         func_ov001_02188c48(c, c->mPrm->mUnk_2c4, 0x270f000);
         SetAnglePointAndMoveAnglePoint(c, &r4->mUnk_80);
@@ -839,7 +839,7 @@ int func_ov001_021908a8(Unk02188950 *c) {
     } else {
         b = NULL;
     }
-    r4 = func_0207a974((u16) data_021759c0->mUnk_62);
+    r4 = GetKart((u16) data_021759c0->mEntryIndex);
     SetAnglePointAndMoveAnglePoint(c, &r4->mUnk_80);
     func_ov001_021924cc();
     if (func_ov001_021871f8(a, 3) && func_ov001_021871f8(b, 3)) {
@@ -853,7 +853,7 @@ void func_ov001_0219081c(Unk02188950 *c) {
     Unk02188950 *a;
     Unk02188950 *b;
 
-    func_0207a974((u16) data_021759c0->mUnk_62);
+    GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(c, 3, func_ov001_021908a8);
     func_ov001_02188c90(c);
     if (data_021759c0->mUnk_08 == 4) {
@@ -897,7 +897,7 @@ int func_ov001_02190688(Unk02188950 *c) {
     Unk02188950 *a;
     Unk02188950 *b;
 
-    r4 = func_0207a974((u16) data_021759c0->mUnk_62);
+    r4 = GetKart((u16) data_021759c0->mEntryIndex);
     if (data_021759c0->mUnk_08 == 4) {
         a = func_ov001_02181b68((u16) ((data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0)));
     } else {
@@ -982,7 +982,7 @@ void func_ov001_02190468(Unk02188950 *c) {
     Unk02188950 *a;
     Unk02188950 *b;
 
-    r4 = func_0207a974((u16) data_021759c0->mUnk_62);
+    r4 = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(c, 3, func_ov001_0219052c);
     func_ov001_02188c48(c, c->mPrm->mUnk_2c4, 0x270f000);
     SetAnglePointAndMoveAnglePoint(c, &r4->mUnk_80);
@@ -1009,7 +1009,7 @@ int func_ov001_021903e0(Unk02188950 *c) {
     Unk02188950 *a;
     Unk02188950 *b;
 
-    func_0207a974((u16) data_021759c0->mUnk_62);
+    GetKart((u16) data_021759c0->mEntryIndex);
     if (data_021759c0->mUnk_08 == 4) {
         a = func_ov001_02181b68((u16) ((data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0)));
     } else {
@@ -1030,7 +1030,7 @@ void func_ov001_02190328(Unk02188950 *c) {
     Unk02188950 *a;
     Unk02188950 *b;
 
-    func_0207a974((u16) data_021759c0->mUnk_62);
+    GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(c, 3, func_ov001_021903e0);
     func_ov001_02188c90(c);
     c->mUnk_0a8 = (c->mUnk_0a8 == 5) ? 4 : 5;
@@ -1057,7 +1057,7 @@ void func_ov001_02190270(Unk02188950 *c) {
     Unk02188950 *a;
     Unk02188950 *b;
 
-    func_0207a974((u16) data_021759c0->mUnk_62);
+    GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(c, 3, func_ov001_021903e0);
     func_ov001_02188c90(c);
     c->mUnk_0a8 = (c->mUnk_0a8 == 5) ? 4 : 5;
@@ -1226,9 +1226,9 @@ void func_ov001_0218fd20(Unk02188950 *a, Unk0218fd20 *b) {
     }
     limit = a->mPrm->mUnk_088;
     if (diff <= limit && diff >= -limit && func_ov001_021871f8(a, 7)) {
-        vec.x = (s32) (((s64) -a->mPrm->mUnk_224 * data_0215d4b4[((u16) a->mAngle >> 4) * 2]) >> 12);
+        vec.x = (s32) (((s64) -a->mPrm->mUnk_224 * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12);
         vec.y = a->mPrm->mUnk_228;
-        vec.z = (s32) (((s64) -a->mPrm->mUnk_224 * data_0215d4b4[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
+        vec.z = (s32) (((s64) -a->mPrm->mUnk_224 * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
         SetVelocity((data_021759c0->mUnk_08 == 4
                          ? func_ov001_02181b68((u16) (data_021759c0->mUnk_08 == 4 ? func_ov001_02181b54() : 0))
                          : 0),
@@ -1307,7 +1307,7 @@ void func_ov001_0218fb24(u32 a, Unk02188950 *b) {
     s32 value;
 
     if ((data_021759c0->mUnk_08 == 4 ? func_020a128c() : 0) && func_ov001_021871f8(b, 3)) {
-        if (data_021759c0->mUnk_08 == 4 ? func_020a1084((u16) data_021759c0->mUnk_62) : 0) {
+        if (data_021759c0->mUnk_08 == 4 ? func_020a1084((u16) data_021759c0->mEntryIndex) : 0) {
             func_ov001_02190df8(b);
         } else {
             func_ov001_02190eb0(b);
