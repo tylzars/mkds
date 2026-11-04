@@ -46,7 +46,8 @@ def check_module(module):
         data_only = not orig and start in data_starts  # a unit of data only (an assembled table)
         # An assembler unit may open with padding or a table and carry pools and tables after its last routine.
         assembled = src.endswith(".s")
-        if (not orig or orig[0][0] != start) and not data_only and not assembled:
+        # A C unit may also open with its initialized data when a section pragma puts that data in .text.
+        if (not orig or orig[0][0] != start) and start not in data_starts and not assembled:
             probs.append(f"start {start:#x} is not a function start")
         if start % 4 or end % 4:
             # The linker places every section on a 4-byte boundary: an end at a halfword (after a Thumb function)
