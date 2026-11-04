@@ -11,6 +11,64 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_0200fc8c.h"
 
+void func_01ffff38(u32 a, const void *b, void *c, u32 d) {
+    vu32 *e;
+    u32 s = IrqDisable();
+
+    *(vu32 *) (0x4000000 + a * 12 + 0xb0) = (u32) b;
+    e = (vu32 *) ((u32) 0x40000b0 + a * 12);
+    e[1] = (u32) c;
+    e[2] = d;
+    IrqRestore(s);
+}
+
+void func_01fffec4(u32 a, const void *b, void *c, u32 d) {
+    vu32 *r = (vu32 *) 0x40000b0;
+    vu32 *e;
+    u32 s = IrqDisable();
+
+    *(vu32 *) (0x4000000 + a * 12 + 0xb0) = (u32) b;
+    e = (vu32 *) ((u32) r + a * 12);
+    e[1] = (u32) c;
+    e[2] = d;
+    *r;
+    *r;
+    if (a == 0) {
+        e[0] = 0;
+        e[1] = 0;
+        e[2] = 0x81400001;
+    }
+    IrqRestore(s);
+}
+
+void func_01fffe8c(u32 a, const void *b, void *c, u32 d) {
+    u32 o = a * 12;
+    vu32 *e = (vu32 *) ((u32) 0x40000b0 + o);
+
+    *(vu32 *) (0x4000000 + o + 0xb0) = (u32) b;
+    e[1] = (u32) c;
+    e[2] = d;
+}
+
+void func_01fffe2c(u32 a, const void *b, void *c, u32 d) {
+    vu32 *r = (vu32 *) 0x40000b0;
+    vu32 *e;
+
+    *(vu32 *) (0x4000000 + a * 12 + 0xb0) = (u32) b;
+    e = (vu32 *) ((u32) 0x40000b0 + a * 12);
+    e[1] = (u32) c;
+    e[2] = d;
+    *r;
+    *r;
+    if (a == 0) {
+        e[0] = 0;
+        e[1] = 0;
+        e[2] = 0x81400001;
+    }
+    *r;
+    *r;
+}
+
 BOOL func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
     s32 i;
     u32 v;
@@ -152,62 +210,4 @@ BOOL func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
         }
     }
     return FALSE;
-}
-
-void func_01fffe2c(u32 a, const void *b, void *c, u32 d) {
-    vu32 *r = (vu32 *) 0x40000b0;
-    vu32 *e;
-
-    *(vu32 *) (0x4000000 + a * 12 + 0xb0) = (u32) b;
-    e = (vu32 *) ((u32) 0x40000b0 + a * 12);
-    e[1] = (u32) c;
-    e[2] = d;
-    *r;
-    *r;
-    if (a == 0) {
-        e[0] = 0;
-        e[1] = 0;
-        e[2] = 0x81400001;
-    }
-    *r;
-    *r;
-}
-
-void func_01fffe8c(u32 a, const void *b, void *c, u32 d) {
-    u32 o = a * 12;
-    vu32 *e = (vu32 *) ((u32) 0x40000b0 + o);
-
-    *(vu32 *) (0x4000000 + o + 0xb0) = (u32) b;
-    e[1] = (u32) c;
-    e[2] = d;
-}
-
-void func_01fffec4(u32 a, const void *b, void *c, u32 d) {
-    vu32 *r = (vu32 *) 0x40000b0;
-    vu32 *e;
-    u32 s = IrqDisable();
-
-    *(vu32 *) (0x4000000 + a * 12 + 0xb0) = (u32) b;
-    e = (vu32 *) ((u32) r + a * 12);
-    e[1] = (u32) c;
-    e[2] = d;
-    *r;
-    *r;
-    if (a == 0) {
-        e[0] = 0;
-        e[1] = 0;
-        e[2] = 0x81400001;
-    }
-    IrqRestore(s);
-}
-
-void func_01ffff38(u32 a, const void *b, void *c, u32 d) {
-    vu32 *e;
-    u32 s = IrqDisable();
-
-    *(vu32 *) (0x4000000 + a * 12 + 0xb0) = (u32) b;
-    e = (vu32 *) ((u32) 0x40000b0 + a * 12);
-    e[1] = (u32) c;
-    e[2] = d;
-    IrqRestore(s);
 }

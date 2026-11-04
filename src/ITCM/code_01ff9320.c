@@ -20,6 +20,45 @@ Unk01ff9320_Fn data_01ff9300[8] = {
 
 #pragma section ITCM end
 
+void func_01ff94d4(s32 *o, const Unk0201290c_1c *v1) {
+    s32 a;
+    s32 b;
+    s32 t;
+
+    a = v1->mUnk_2c << 12;
+    b = v1->mUnk_2e << 12;
+    DivFixed12Start(b, a);
+    o[0] = v1->mUnk_20[1];
+    o[5] = v1->mUnk_20[1];
+    o[1] = (-v1->mUnk_20[0] * DivFixed12Result()) >> 12;
+    DivFixed12Start(a, b);
+    t = -(v1->mUnk_20[0] + v1->mUnk_20[1]);
+    o[12] = (v1->mUnk_2c * (t + 0x1000)) << 3;
+    o[13] = (v1->mUnk_2e * (v1->mUnk_20[0] - v1->mUnk_20[1] + 0x1000)) << 3;
+    o[4] = (v1->mUnk_20[0] * DivFixed12Result()) >> 12;
+}
+
+void func_01ff9490(s32 *o, const Unk0201290c_1c *v1) {
+    s32 t;
+
+    o[0] = v1->mUnk_18[0];
+    o[5] = v1->mUnk_18[1];
+    o[1] = 0;
+    o[12] = 0;
+    t = -(v1->mUnk_18[1] << 1);
+    o[13] = (v1->mUnk_2e * (t + 0x2000)) << 3;
+    o[4] = 0;
+}
+
+void func_01ff946c(s32 *o) {
+    o[0] = 0x1000;
+    o[1] = 0;
+    o[4] = 0;
+    o[5] = 0x1000;
+    o[12] = 0;
+    o[13] = 0;
+}
+
 void func_01ff9320(Unk0201290c_1c *p) {
     Unk01ff9320_buf b;
 
@@ -52,43 +91,4 @@ void func_01ff9320(Unk0201290c_1c *p) {
         b.mUnk_08[13] = ((s64) p->mUnk_34 * b.mUnk_08[13]) >> 12;
     }
     func_01ff9048(b.mUnk_00, (u32 *) &b + 1, 0x12);
-}
-
-void func_01ff946c(s32 *o) {
-    o[0] = 0x1000;
-    o[1] = 0;
-    o[4] = 0;
-    o[5] = 0x1000;
-    o[12] = 0;
-    o[13] = 0;
-}
-
-void func_01ff9490(s32 *o, const Unk0201290c_1c *v1) {
-    s32 t;
-
-    o[0] = v1->mUnk_18[0];
-    o[5] = v1->mUnk_18[1];
-    o[1] = 0;
-    o[12] = 0;
-    t = -(v1->mUnk_18[1] << 1);
-    o[13] = (v1->mUnk_2e * (t + 0x2000)) << 3;
-    o[4] = 0;
-}
-
-void func_01ff94d4(s32 *o, const Unk0201290c_1c *v1) {
-    s32 a;
-    s32 b;
-    s32 t;
-
-    a = v1->mUnk_2c << 12;
-    b = v1->mUnk_2e << 12;
-    DivFixed12Start(b, a);
-    o[0] = v1->mUnk_20[1];
-    o[5] = v1->mUnk_20[1];
-    o[1] = (-v1->mUnk_20[0] * DivFixed12Result()) >> 12;
-    DivFixed12Start(a, b);
-    t = -(v1->mUnk_20[0] + v1->mUnk_20[1]);
-    o[12] = (v1->mUnk_2c * (t + 0x1000)) << 3;
-    o[13] = (v1->mUnk_2e * (v1->mUnk_20[0] - v1->mUnk_20[1] + 0x1000)) << 3;
-    o[4] = (v1->mUnk_20[0] * DivFixed12Result()) >> 12;
 }
