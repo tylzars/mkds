@@ -309,17 +309,15 @@ u8 func_02104000(s32 a, s32 b) {
     return x;
 }
 
-// non-matching: same size; 110 words differ from +0x10: registers (the original keeps data_0217561c in r5)
-// and the order of the first loads.
 void func_02103db0(s32 v1, volatile s32 param_2, s32 param_3) {
     Unk0217561c *b;
     Unk020f41c4_B *a;
     Unk021035ac *e;
     s16(*q)[2];
+    s32 i;
     s16 c;
     s16 s;
     s32 t;
-    s32 i;
     s16 f0;
     s16 f1;
 
@@ -328,7 +326,7 @@ void func_02103db0(s32 v1, volatile s32 param_2, s32 param_3) {
     a = &b->mUnk_498;
     q = e->mUnk_10;
     a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-    t = (s32) (u16) (((u64) (u32) (a->mUnk_00 >> 32)) >> 16) >> 4;
+    t = (s32) (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x10000) >> 32) >> 4;
     c = data_0215d4b4[2 * t];
     s = data_0215d4b4[2 * t + 1];
     if (param_3 != 0) {
@@ -338,11 +336,11 @@ void func_02103db0(s32 v1, volatile s32 param_2, s32 param_3) {
         a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
         t = 0xa66 + (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x52) >> 32);
     }
+    t = (s16) t;
     if (data_0217c64c != 0) {
         t = (s16) (((s64) t * 0x800) >> 12);
     }
     e->mUnk_2c = data_0215a47c[v1];
-    t = (s16) t;
     q[0][0] = -t;
     q[0][1] = -t;
     q[1][0] = -t;
@@ -354,8 +352,8 @@ void func_02103db0(s32 v1, volatile s32 param_2, s32 param_3) {
     for (i = 0; i < 4; i++) {
         f1 = q[i][1];
         f0 = q[i][0];
-        q[i][0] = (f0 * s - f1 * c) >> 12;
-        q[i][1] = (f0 * c + f1 * s) >> 12;
+        q[i][0] = (s * f0 - c * f1) >> 12;
+        q[i][1] = (c * f0 + s * f1) >> 12;
         *(u32 *) &e->mUnk_00[(u32) i] = param_2;
     }
     *(u32 *) &e->mUnk_20 = param_2;

@@ -230,14 +230,11 @@ void func_020866b4(void) {
     }
 }
 
-// non-matching: 3 instructions longer: the original keeps the previous index in r8 and the scaled indexes in r5 and r7,
-// pushes six registers and needs no stack alignment word; here one register fewer is used and 4 bytes of stack are
-// allocated.
 void func_020865ec(void) {
-    u32 *a;
     u16 *p;
     s16 *q;
     u16 i;
+    u32 *a;
     s32 j;
     u32 x;
     u32 y;
@@ -248,10 +245,10 @@ void func_020865ec(void) {
         x = a[j];
         y = a[i];
         if (x > y) {
-            a[j] = y;
-            a[i] = x;
             p = data_0217aed0->mUnk_094;
             q = data_0217aed0->mUnk_084;
+            a[j] = y;
+            a[i] = x;
             q[p[i]]--;
             q[p[j]]++;
             u = p[i];
