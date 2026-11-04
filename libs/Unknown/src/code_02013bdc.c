@@ -183,9 +183,6 @@ half:
     return (x + y) >> 1;
 }
 
-// non-matching: same size; 14 words differ in the three-tap path: the original keeps d in r1 and k in r2 (here r3
-// and r1), so the loads and the two mla that follow use other registers. The volatile reads keep the two loads in
-// order; without them lr and a frame are used. `(s32) x * 3` keeps mla (without the cast: smlabb).
 u32 func_02015994(const void *a, u32 b, u32 c, u32 d) {
     const u8 *p;
     u32 n;
@@ -221,17 +218,19 @@ u32 func_02015994(const void *a, u32 b, u32 c, u32 d) {
             }
             if (d & 1) {
                 if (d & 2) {
-                    d >>= 2;
-                    k = d + 1;
+                    n = d >> 2;
+                    k = n + 1;
                 } else {
                     k = d >> 2;
-                    d = k + 1;
+                    n = k + 1;
                 }
-                x = *(volatile s16 *) &((const Unk0201456c_16 *) p)[k].mUnk_00;
-                y = *(volatile s16 *) &((const Unk0201456c_16 *) p)[d].mUnk_00;
-                u = ((const Unk0201456c_16 *) p + k)->mUnk_02;
-                v = ((const Unk0201456c_16 *) p + d)->mUnk_02;
-                return (((s32) x * 3 + y) >> 2 & 0xffff) | (((s32) u * 3 + v) >> 2 << 16);
+                x = ((const Unk0201456c_16 *) p)[k].mUnk_00;
+                y = ((const Unk0201456c_16 *) p)[n].mUnk_00;
+                u = ((const Unk0201456c_16 *) p)[k].mUnk_02;
+                v = ((const Unk0201456c_16 *) p)[n].mUnk_02;
+                x = x * 3 + y;
+                u = u * 3 + v;
+                return (x >> 2 & 0xffff) | (u >> 2 << 16);
             }
             k = d >> 2;
             goto half;
@@ -504,8 +503,6 @@ void func_0201520c(Unk02014c5c_out *o) {
     o->mUnk_4c[2] = r[2];
 }
 
-// non-matching: same size and frame; 13 words differ in registers: the original keeps d in ip, d->mUnk_00 in r2, its
-// byte in r1, the stride and f in r3 and the results of the three flag tests in lr.
 void func_020151a4(Unk02014c5c_out *o) {
     u32 f;
     Unk02170500_d4 *b;
@@ -513,11 +510,13 @@ void func_020151a4(Unk02014c5c_out *o) {
     Unk02170500 *d;
     u32 off;
     u8 *q;
+    u8 *m;
 
     d = data_02170500;
     b = d->mUnk_d4;
-    t = (u8 *) b + (s32) b->mUnk_06;
-    off = *(u32 *) ((u8 *) b + b->mUnk_06 + *(u16 *) t * d->mUnk_00[1] + 4);
+    m = d->mUnk_00;
+    t = (u8 *) b + b->mUnk_06;
+    off = *(u32 *) (t + *(u16 *) t * m[1] + 4);
     f = *(u16 *) ((u8 *) b + off);
     q = (u8 *) b + off + 4;
     if (!(f & 1)) {
@@ -530,7 +529,7 @@ void func_020151a4(Unk02014c5c_out *o) {
             q += 0x10;
         }
     }
-    d->mUnk_e8(o, q);
+    d->mUnk_e8(o, q, m, f);
 }
 
 void func_02015044(Unk02014c5c_out *o) {

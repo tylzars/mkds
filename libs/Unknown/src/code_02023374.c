@@ -171,16 +171,20 @@ u32 func_02024168(const u8 *a) {
     return data_02153118[a[1]][a[0]];
 }
 
-// non-matching: 57.6%, the 4-byte format matches in shape but the 8-byte format builds its 64-bit mask with other
-// shifts and registers
 void func_02024000(u8 *a, s32 b, s32 c, s32 d, s32 e, u32 f, s32 g) {
+    u32 k;
     u32 *p;
     u32 *q;
     u32 m;
     u32 n;
+    u32 s;
+    u32 x;
     u32 lo;
     u32 hi;
-    u64 k;
+    u32 z;
+    u32 w;
+    u32 *r;
+    u32 *t;
     volatile u32 v;
 
     if (d == 8 && e == 8) {
@@ -189,24 +193,42 @@ void func_02024000(u8 *a, s32 b, s32 c, s32 d, s32 e, u32 f, s32 g) {
         return;
     }
     if (g == 4) {
-        n = 32 - (b * 4 + d * 4);
-        m = (0xffffffffu >> (b * 4)) << (n + b * 4);
+        x = b * 4;
+        n = 32 - (x + d * 4);
+        m = (0xffffffffu >> x) << (n + x);
+        k = f & (m >> n);
+        m = ~(m >> n);
         p = (u32 *) a + c;
         q = p + e;
-        f &= m >> n;
         for (; p < q; p++) {
-            *p = f | (*p & ~(m >> n));
+            *p = k | (*p & m);
         }
     } else {
-        n = 64 - (b * 8 + d * 8);
-        k = (((u64) 0xffffffffffffffff >> (b * 8)) << (n + b * 8)) >> n;
-        lo = (u32) k;
-        hi = (u32) (k >> 32);
-        p = (u32 *) a + c * 2;
-        q = p + e * 2;
-        for (; p < q; p += 2) {
-            p[0] = (f & lo) | (p[0] & ~lo);
-            p[1] = (f & hi) | (p[1] & ~hi);
+        x = b * 8;
+        n = 64 - (x + d * 8);
+        m = 0xffffffffu >> x;
+        if (n >= 32) {
+            s = n - 32;
+            lo = (m << (x + s)) >> s;
+        } else {
+            lo = m << x;
+        }
+        m = 0xffffffffu << n;
+        if (x >= 32) {
+            x -= 32;
+            hi = (m >> (x + n)) << x;
+        } else {
+            hi = m >> n;
+        }
+        r = (u32 *) a + c * 2;
+        t = r + e * 2;
+        w = f & lo;
+        z = f & hi;
+        lo = ~lo;
+        hi = ~hi;
+        for (; r < t; r += 2) {
+            r[0] = w | (r[0] & lo);
+            r[1] = z | (r[1] & hi);
         }
     }
 }
@@ -412,12 +434,9 @@ void func_02023bcc(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023
     }
 }
 
-// non-matching: 68.9%, same shape as func_02023bcc; registers of the early locals and spill order differ
 void func_020239a8(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023374_24 *f) {
     Unk02023d84 s;
-    s32 bpt;
     s32 cw;
-    s32 ch;
     u32 w;
     u32 h;
     u32 x0;
@@ -425,23 +444,28 @@ void func_020239a8(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023
     u32 x1;
     u32 y1;
     s32 nx;
+    s32 ch;
     s32 ny;
-    s32 xe;
     s32 ye;
     s32 xx;
+    s32 xe;
     s32 yy;
     u32 tx;
     u32 ty;
     u32 v;
-    u32 v0;
-    u32 v1;
     u8 *p;
+    s32 bpt;
+    u32 v1;
+    u32 v0;
+    u32 t;
+    u32 th;
+    u32 tw;
 
     bpt = (a->mUnk_0c * 0x40) / 8;
     cw = f->mUnk_00->mUnk_01;
-    ch = b->mUnk_00->mUnk_08->mUnk_01;
     w = a->mUnk_04;
     h = a->mUnk_08;
+    ch = b->mUnk_00->mUnk_08->mUnk_01;
     if (cw == 0) {
         return;
     }
@@ -451,18 +475,19 @@ void func_020239a8(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023
     if (d + ch < 0) {
         return;
     }
-    if (c > 0) {
-        x0 = (u32) c >> 3;
-    } else {
+    if (c <= 0) {
         x0 = 0;
-    }
-    x1 = (u32) (c + cw + 7) >> 3;
-    if (d > 0) {
-        y0 = (u32) d >> 3;
     } else {
+        x0 = (u32) c >> 3;
+    }
+    x1 = c + cw + 7;
+    if (d <= 0) {
         y0 = 0;
+    } else {
+        y0 = (u32) d >> 3;
     }
     y1 = (u32) (d + ch + 7) >> 3;
+    x1 >>= 3;
     if (x1 >= w) {
         x1 = w;
     }
@@ -494,6 +519,8 @@ void func_020239a8(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023
     s.mUnk_20 = a->mUnk_0c;
     s.mUnk_18 = s.mUnk_1c * b->mUnk_00->mUnk_08->mUnk_00;
     v = a->mUnk_10;
+    tw = a->mUnk_04;
+    th = a->mUnk_08;
     v0 = ((u8 *) &v)[0];
     v1 = ((u8 *) &v)[1];
     ty = y0;
@@ -501,7 +528,8 @@ void func_020239a8(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023
         s.mUnk_0c = yy;
         tx = x0;
         for (xx = c; xx > xe; xx -= 8) {
-            s.mUnk_00 = (u32 *) (p + func_02024184(tx, ty, w, h, v0, v1) * bpt);
+            t = func_02024184(tx, ty, tw, th, v0, v1);
+            s.mUnk_00 = (u32 *) (p + t * bpt);
             s.mUnk_08 = xx;
             func_02023d84(&s);
             tx++;
@@ -594,10 +622,9 @@ void func_02023764(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
     }
 }
 
-// non-matching: 73.1%, same shape as func_02023764, 8 bytes more stack; spill order and registers of the loop locals
-// differ
 void func_02023548(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
     s32 yy;
+    s32 g;
     s32 yh;
     s32 xe;
     s32 ye;
@@ -619,6 +646,7 @@ void func_02023548(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
     s32 xend;
     s32 x1;
     s32 xw;
+    u32 t;
 
     fmt = a->mUnk_0c;
     xe = c + e;
@@ -634,9 +662,9 @@ void func_02023548(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
     x0 = c & ~7;
     yy = d & ~7;
     v = a->mUnk_10;
-    bpt = (fmt * 0x40) / 8;
     xend = (xe + 7) & ~7;
     yend = (ye + 7) & ~7;
+    bpt = (fmt * 0x40) / 8;
     tx0 = x0 / 8;
     ty = yy / 8;
     w = a->mUnk_04;
@@ -655,8 +683,9 @@ void func_02023548(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
         if (yh > 8) {
             yh = 8;
         }
-        yh -= y1;
+        g = yh - y1;
         for (xx = x0; xx < xend; xx += 8) {
+            t = func_02024184(tx, ty, w, h, v0, v1);
             if (xx < c) {
                 x1 = c - xx;
             } else {
@@ -667,7 +696,7 @@ void func_02023548(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
                 xw = 8;
             }
             xw -= x1;
-            func_02024000(p + func_02024184(tx, ty, w, h, v0, v1) * bpt, x1, y1, xw, yh, b, fmt);
+            func_02024000(p + t * bpt, x1, y1, xw, g, b, fmt);
             tx++;
         }
         ty++;

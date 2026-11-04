@@ -105,7 +105,7 @@ typedef struct Unk02170500 {
     /* dc */ u8 *mUnk_dc;
     /* e0 */ s32 mUnk_e0;
     /* e4 */ s32 mUnk_e4;
-    /* e8 */ UnkFunc *mUnk_e8; // called with four arguments by func_02014c5c and two by func_020151a4
+    /* e8 */ UnkFunc *mUnk_e8; // called with four arguments by func_02014c5c and func_020151a4
     /* ec */ void (*mUnk_ec)(Unk02014c5c_out *);
     /* f0 */ void (*mUnk_f0)(Unk0201290c_1c *);
     /* f4 */ Unk0201290c_1c mUnk_f4;

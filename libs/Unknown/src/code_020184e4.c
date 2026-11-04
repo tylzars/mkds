@@ -202,9 +202,6 @@ void func_0201bc48(Unk020184e4 *p, Unk0201e3c8 *n) {
     func_0201c690(p->mUnk_40->mUnk_7c, p->mUnk_40->mUnk_7e, 0, 0);
 }
 
-// non-matching: same size; the callee-saved registers rotate: the original keeps w in r4, h in r5, e in r6 and
-// p in r7, this compiles to h r4, e r5, p r6, w r7 (m r8 and r0-r3, ip, lr in the switch agree), and the
-// products and stores before each GxFifoWrite0x19Then12Words call are scheduled in a different order.
 void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
     Vec3 c;
     Vec3 pos;
@@ -225,12 +222,12 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
     s32 i;
     s32 j;
     s32 n;
-    u32 r;
 
     m = p->mUnk_44;
     s = p->mUnk_40->mUnk_20->mUnk_00->mUnk_30;
     a = (e->mUnk_2e_0 * (e->mUnk_2e_5 + 1)) >> 5;
-    r = reg_G3_POLYGON_ATTR = p->mUnk_3c | 0xc0 | (e->mUnk_2e_10 << 24) | (a << 16);
+    reg_G3_POLYGON_ATTR = (e->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (a << 16);
+    reg_G3_POLYGON_ATTR; // read back after the write
     if (a == 0) {
         return;
     }
@@ -274,16 +271,16 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
         u = ((s64) (0x1000 - t) * (s32) p->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_8 + 0x800) >> 12;
         x = ((s64) w * (u + 0x1000) + 0x800) >> 12;
         buf[0] = ((s64) v.x * h + 0x800) >> 12;
-        buf[1] = ((s64) v.y * h + 0x800) >> 12;
-        buf[2] = 0;
         buf[3] = ((s64) -v.y * x + 0x800) >> 12;
-        buf[4] = ((s64) v.x * x + 0x800) >> 12;
-        buf[5] = 0;
         buf[6] = 0;
-        buf[7] = 0;
-        buf[8] = 0x1000;
         buf[9] = pos.x;
+        buf[1] = ((s64) v.y * h + 0x800) >> 12;
+        buf[4] = ((s64) v.x * x + 0x800) >> 12;
+        buf[7] = 0;
         buf[10] = pos.y;
+        buf[2] = 0;
+        buf[5] = 0;
+        buf[8] = 0x1000;
         buf[11] = pos.z;
         reg_G3_MTX_IDENTITY = 0;
         GxFifoWrite0x19Then12Words(buf);
@@ -313,16 +310,16 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
         u = ((s64) (0x1000 - t) * (s32) p->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_8 + 0x800) >> 12;
         x = ((s64) w * (u + 0x1000) + 0x800) >> 12;
         buf[0] = ((s64) v.x * h + 0x800) >> 12;
-        buf[1] = ((s64) v.y * h + 0x800) >> 12;
-        buf[2] = 0;
         buf[3] = ((s64) -v.y * x + 0x800) >> 12;
-        buf[4] = ((s64) v.x * x + 0x800) >> 12;
-        buf[5] = 0;
         buf[6] = 0;
-        buf[7] = 0;
-        buf[8] = 0x1000;
         buf[9] = pos.x;
+        buf[1] = ((s64) v.y * h + 0x800) >> 12;
+        buf[4] = ((s64) v.x * x + 0x800) >> 12;
+        buf[7] = 0;
         buf[10] = pos.y;
+        buf[2] = 0;
+        buf[5] = 0;
+        buf[8] = 0x1000;
         buf[11] = pos.z;
         reg_G3_MTX_IDENTITY = 0;
         n = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
@@ -341,9 +338,6 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
                   p->mUnk_40->mUnk_20->mUnk_00->mUnk_52);
 }
 
-// non-matching: same size; the callee-saved registers rotate: the original keeps w in r4, h in r5, e in r6 and
-// p in r7, this compiles to h r4, e r5, p r6, w r7 (m r8 and r0-r3, ip, lr in the switch agree), and the
-// products and stores before each GxFifoWrite0x19Then12Words call are scheduled in a different order.
 void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
     Vec3 c;
     Vec3 pos;
@@ -364,12 +358,12 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
     s32 i;
     s32 j;
     s32 n;
-    u32 r;
 
     m = p->mUnk_44;
     s = p->mUnk_40->mUnk_20->mUnk_00->mUnk_30;
     a = (e->mUnk_2e_0 * (e->mUnk_2e_5 + 1)) >> 5;
-    r = reg_G3_POLYGON_ATTR = p->mUnk_3c | 0xc0 | (e->mUnk_2e_10 << 24) | (a << 16);
+    reg_G3_POLYGON_ATTR = (e->mUnk_2e_10 << 24) | (p->mUnk_3c | 0xc0) | (a << 16);
+    reg_G3_POLYGON_ATTR; // read back after the write
     if (a == 0) {
         return;
     }
@@ -413,16 +407,16 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
         u = ((s64) (0x1000 - t) * (s32) p->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_8 + 0x800) >> 12;
         x = ((s64) w * (u + 0x1000) + 0x800) >> 12;
         buf[0] = ((s64) v.x * h + 0x800) >> 12;
-        buf[1] = ((s64) v.y * h + 0x800) >> 12;
-        buf[2] = 0;
         buf[3] = ((s64) -v.y * x + 0x800) >> 12;
-        buf[4] = ((s64) v.x * x + 0x800) >> 12;
-        buf[5] = 0;
         buf[6] = 0;
-        buf[7] = 0;
-        buf[8] = 0x1000;
         buf[9] = pos.x;
+        buf[1] = ((s64) v.y * h + 0x800) >> 12;
+        buf[4] = ((s64) v.x * x + 0x800) >> 12;
+        buf[7] = 0;
         buf[10] = pos.y;
+        buf[2] = 0;
+        buf[5] = 0;
+        buf[8] = 0x1000;
         buf[11] = pos.z;
         reg_G3_MTX_IDENTITY = 0;
         GxFifoWrite0x19Then12Words(buf);
@@ -452,16 +446,16 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
         u = ((s64) (0x1000 - t) * (s32) p->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_8 + 0x800) >> 12;
         x = ((s64) w * (u + 0x1000) + 0x800) >> 12;
         buf[0] = ((s64) v.x * h + 0x800) >> 12;
-        buf[1] = ((s64) v.y * h + 0x800) >> 12;
-        buf[2] = 0;
         buf[3] = ((s64) -v.y * x + 0x800) >> 12;
-        buf[4] = ((s64) v.x * x + 0x800) >> 12;
-        buf[5] = 0;
         buf[6] = 0;
-        buf[7] = 0;
-        buf[8] = 0x1000;
         buf[9] = pos.x;
+        buf[1] = ((s64) v.y * h + 0x800) >> 12;
+        buf[4] = ((s64) v.x * x + 0x800) >> 12;
+        buf[7] = 0;
         buf[10] = pos.y;
+        buf[2] = 0;
+        buf[5] = 0;
+        buf[8] = 0x1000;
         buf[11] = pos.z;
         reg_G3_MTX_IDENTITY = 0;
         n = p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
