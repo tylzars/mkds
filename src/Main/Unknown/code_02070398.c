@@ -181,7 +181,7 @@ void func_02072eb8(Kart *p) {
     } else if (x & 0x1000000) {
         func_02081f10(func_0208b7bc(0x70, &a), p->mIndex, 0x32);
     }
-    func_02072b94(p, &a, &b, r);
+    ResetKartAndSetPos(p, &a, &b, r);
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         func_0207a6b0()->mUnk_18++;
     } else {
@@ -229,7 +229,7 @@ s32 func_02072d84(Kart *p, s32 *a) {
     return r;
 }
 
-void func_02072b94(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c) {
+void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c) {
     Unk0206bcb0_514 *q;
     Vec3 v;
 
@@ -356,7 +356,7 @@ void func_020727d4(Kart *p) {
     func_01ffd190(&data_02154f7c, p->mUnk_236, &p->mUnk_e0_m);
     func_01ffcd84(&p->mUnk_120, &p->mUnk_e0_m);
     func_02063b10(p, &b);
-    func_02072b94(p, &a, &b, NULL);
+    ResetKartAndSetPos(p, &a, &b, NULL);
     if (data_021759c0->mMode == 5) {
         q = &p->mUnk_1d8;
     } else {
@@ -434,7 +434,7 @@ void func_02072600(Kart *p) {
     p->mUnk_386 = 0;
 }
 
-void func_020720dc(Kart *p) {
+void ResetKart(Kart *p) {
     Vec3 v;
     u16 i;
 

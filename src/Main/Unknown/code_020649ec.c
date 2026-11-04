@@ -207,7 +207,7 @@ void func_02064d44(Kart *a) {
     func_01ffc064(&a->mUnk_1c4, &a->mPrevPos, 0x400, a);
 }
 
-void func_020649ec(Kart *a, void (**b)(Kart *)) {
+void InitKart(Kart *a, void (**b)(Kart *)) {
     u32 c;
     u16 i;
     Unk0206bcb0_590_08 *d;

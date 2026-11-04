@@ -298,7 +298,7 @@ void func_02068640(Kart *a, s32 b) {
         func_01ffd190(&data_02154f7c, a->mUnk_236, &a->mUnk_e0_m);
         func_01ffcd84(&a->mUnk_120, &a->mUnk_e0_m);
         func_02063b10(a, &e);
-        func_02072b94(a, &c, &e, NULL);
+        ResetKartAndSetPos(a, &c, &e, NULL);
         f = data_021759c0->mMode == 5 ? &a->mUnk_1d8 : &a->mUnk_1b8;
         if (a->mUnk_2c8 == -1) {
             a->mUnk_2c8 = func_020d555c(f, a->mUnk_2cc->mUnk_00 + 0xd000, 0x8000, a);

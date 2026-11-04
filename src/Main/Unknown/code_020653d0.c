@@ -105,7 +105,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     }
     if (((p->mUnk_514->mUnk_30 & 0x10000) != 0) != ((f & 0x10000) != 0)) {
         s = p->mUnk_236;
-        func_02072b94(p, &v, 0, 0);
+        ResetKartAndSetPos(p, &v, 0, 0);
         p->mUnk_236 = s;
         v3 = data_02165530;
         func_01ffd190(&v3, p->mUnk_236, (Vec4 *) &p->mUnk_e0);
@@ -231,19 +231,19 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         p->mUnk_260 += 0x21a2;
     }
     if (((p->mUnk_514->mUnk_30 & 0x20000) != 0) != ((f & 0x20000) != 0)) {
-        func_0206b914(p);
+        StartKartState6(p);
         c = 1;
     }
     if (((p->mUnk_514->mUnk_30 & 4) != 0) != ((f & 4) != 0)) {
-        func_0206bbb4(p, 1, 0);
+        StartKartState2(p, 1, 0);
         c = 1;
     }
     if (((p->mUnk_514->mUnk_30 & 8) != 0) != ((f & 8) != 0)) {
-        func_0206bbb4(p, 2, 0);
+        StartKartState2(p, 2, 0);
         c = 1;
     }
     if (((p->mUnk_514->mUnk_30 & 0x10) != 0) != ((f & 0x10) != 0)) {
-        func_0206b358(p);
+        StartKartState3(p);
         c = 1;
     }
     if (((p->mUnk_514->mUnk_30 & 0x2000) != 0) != ((f & 0x2000) != 0)) {
@@ -287,7 +287,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             goto l1;
         }
         func_021090c4(&p->mUnk_00, 0xe8, 0x7f, 0);
-        func_0206a980(p, &q->mUnk_98, 0);
+        StartKartState5(p, &q->mUnk_98, 0);
     l1:
         if (((p->mUnk_514->mUnk_30 & 0x80) != 0) != ((f & 0x80) != 0)) {
             func_021090c4(&p->mUnk_00, 0xe8, 0x7f, 0);
@@ -300,7 +300,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (p->mState == 4) {
             goto l2;
         }
-        func_0206add0(p, &q->mUnk_98, 0);
+        StartKartState4(p, &q->mUnk_98, 0);
     l2:
         if (((p->mUnk_514->mUnk_30 & 0x80) != 0) != ((f & 0x80) != 0)) {
             func_021090c4(&p->mUnk_00, 0xe8, 0x7f, 0);
@@ -349,7 +349,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         }
         func_020653d0_inline(o, o2, &t);
         func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
-        func_0206a980(o, &t, 0);
+        StartKartState5(o, &t, 0);
     l3:
         e = 1;
     }
@@ -368,7 +368,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         }
         func_020653d0_inline(o, o2, &t);
         func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
-        func_0206a980(o, &t, 0);
+        StartKartState5(o, &t, 0);
     l4:
         e = 1;
     }
@@ -387,7 +387,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         }
         func_020653d0_inline(o, o2, &t);
         func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
-        func_0206a980(o, &t, 0);
+        StartKartState5(o, &t, 0);
     l5:
         e = 1;
     }
@@ -406,7 +406,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         }
         func_020653d0_inline(o, o2, &t);
         func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
-        func_0206a980(o, &t, 0);
+        StartKartState5(o, &t, 0);
     l6:
         e = 1;
     }
@@ -431,7 +431,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             func_02039860(&t, &t);
         }
         func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
-        func_0206add0(o, &t, 0);
+        StartKartState4(o, &t, 0);
     l7:
     }
     if (((p->mUnk_514->mUnk_30 & 0x400) != 0) != ((f & 0x400) != 0) && o->mIndex == 1) {
@@ -452,7 +452,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             func_02039860(&t, &t);
         }
         func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
-        func_0206add0(o, &t, 0);
+        StartKartState4(o, &t, 0);
     l8:
     }
     if (((p->mUnk_514->mUnk_30 & 0x800) != 0) != ((f & 0x800) != 0) && o->mIndex == 2) {
@@ -473,7 +473,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             func_02039860(&t, &t);
         }
         func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
-        func_0206add0(o, &t, 0);
+        StartKartState4(o, &t, 0);
     l9:
     }
     if (((p->mUnk_514->mUnk_30 & 0x1000) != 0) != ((f & 0x1000) != 0) && o->mIndex == 3) {
@@ -494,7 +494,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             func_02039860(&t, &t);
         }
         func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
-        func_0206add0(o, &t, 0);
+        StartKartState4(o, &t, 0);
     l10:
     }
 l0:

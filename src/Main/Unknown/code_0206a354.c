@@ -29,7 +29,7 @@
 #include "code_02146d78.h"
 #include "code_02147cd8.h"
 
-void func_0206bbb4(Kart *p, int a, int b) {
+void StartKartState2(Kart *p, int a, int b) {
     int d = 1;
 
     func_0206bf88(p, 2);
@@ -59,7 +59,7 @@ void func_0206bbb4(Kart *p, int a, int b) {
     func_0210af40(p, p->mUnk_3cc, 1);
 }
 
-void func_0206bb04(Kart *p) {
+void AdvanceKartState1And2(Kart *p) {
     if (p->mUnk_4c & 0x20) {
         return;
     }
@@ -75,18 +75,18 @@ void func_0206bb04(Kart *p) {
     }
 }
 
-BOOL func_0206bab8(Kart *p) {
+BOOL TryStartKartState6(Kart *p) {
     if (!func_0206be54(p, 6)) {
         return FALSE;
     }
-    func_0206b914(p);
+    StartKartState6(p);
     if (p->mUnk_7c & 0x200) {
         p->mUnk_514->mUnk_2c ^= 0x20000;
     }
     return TRUE;
 }
 
-void func_0206b914(Kart *p) {
+void StartKartState6(Kart *p) {
     p->mForwardSpeed = 0;
     p->mUnk_388 = 0;
     p->mUnk_48 &= 0xdfe77fdf;
@@ -135,7 +135,7 @@ void func_0206b914(Kart *p) {
     }
 }
 
-void func_0206b5b4(Kart *p) {
+void AdvanceKartState6(Kart *p) {
     Vec3 a;
     s32 c;
     u16 i;
@@ -217,7 +217,7 @@ void func_0206b5b4(Kart *p) {
     }
 }
 
-BOOL func_0206b4d0(Kart *p) {
+BOOL TryStartKartState3(Kart *p) {
     BOOL v1;
     BOOL v2;
     BOOL c;
@@ -249,14 +249,14 @@ BOOL func_0206b4d0(Kart *p) {
     if (!v1) {
         return FALSE;
     }
-    func_0206b358(p);
+    StartKartState3(p);
     if (p->mUnk_7c & 0x200) {
         p->mUnk_514->mUnk_2c ^= 0x10;
     }
     return TRUE;
 }
 
-void func_0206b358(Kart *p) {
+void StartKartState3(Kart *p) {
     Vec3 v;
 
     func_0206bf88(p, 3);
@@ -287,7 +287,7 @@ void func_0206b358(Kart *p) {
     }
 }
 
-void func_0206b16c(Kart *p) {
+void AdvanceKartState3(Kart *p) {
     s16 n;
 
     if (p->mUnk_318 == 0) {
@@ -335,7 +335,7 @@ void func_0206b16c(Kart *p) {
     }
 }
 
-BOOL func_0206b020(Kart *p, Unk0206b020 *a) {
+BOOL TryStartKartState4(Kart *p, Unk0206b020 *a) {
     Vec3 t;
     Vec3 u;
     Vec3 w;
@@ -378,11 +378,11 @@ BOOL func_0206b020(Kart *p, Unk0206b020 *a) {
         t.y = -t.y;
         t.z = -t.z;
     }
-    func_0206add0(p, &t, 0);
+    StartKartState4(p, &t, 0);
     return TRUE;
 }
 
-void func_0206add0(Kart *p, const Vec3 *a, s32 b) {
+void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
     Vec3 v;
     s32 r;
     s32 x;
@@ -438,7 +438,7 @@ void func_0206add0(Kart *p, const Vec3 *a, s32 b) {
     }
 }
 
-void func_0206ac10(Kart *p) {
+void AdvanceKartState4(Kart *p) {
     s16 n;
 
     if (p->mUnk_318 == 0) {
@@ -480,7 +480,7 @@ void func_0206ac10(Kart *p) {
     }
 }
 
-s32 func_0206a980(Kart *p, const Vec3 *a, s32 b) {
+s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
     Vec3 v;
     Vec3 w;
     s32 r;
@@ -547,7 +547,7 @@ s32 func_0206a980(Kart *p, const Vec3 *a, s32 b) {
     return 1;
 }
 
-void func_0206a784(Kart *p) {
+void AdvanceKartState5(Kart *p) {
     s16 n;
 
     if (p->mUnk_318 == 0) {

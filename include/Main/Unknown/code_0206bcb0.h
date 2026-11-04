@@ -486,7 +486,7 @@ void func_02071944(void *p, int arg);
 #include "Main/Unknown/code_021035ac.h"
 BOOL func_0206bcb0(Kart *p, int a, int b);
 BOOL func_0206be54(Kart *p, int a);
-void func_0206bbb4(Kart *p, int a, int b);
+void StartKartState2(Kart *p, int a, int b);
 void func_0206c5e4(Kart *p);
 void func_02063b10(const Kart *p, Vec3 *out);
 void func_02063b30(const Kart *p, Vec3 *out);

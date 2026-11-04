@@ -4,8 +4,8 @@
 
 typedef struct Kart Kart;
 
-BOOL func_0206b4d0(Kart *p);
-BOOL func_0206bab8(Kart *p);
+BOOL TryStartKartState3(Kart *p);
+BOOL TryStartKartState6(Kart *p);
 void func_0207a70c(s32 a);
 
 void func_0206d020(Kart *p, int a, int b);

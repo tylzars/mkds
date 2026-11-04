@@ -144,7 +144,7 @@ void func_02062b50(void) {
     func_02047b6c(1);
     func_0208aa30(a);
     func_02085e04();
-    func_0207abec(data_021759c0->mKartCount);
+    InitKarts(data_021759c0->mKartCount);
     func_02077944();
     func_020777ac(data_021759c0->mUnk_063);
     if (data_0217aa54->mUnk_28 != 0) {
@@ -264,7 +264,7 @@ void func_02062464(void) {
     data_0217d020 = 1;
     func_01ffdb70();
     func_02063294();
-    func_0207aaec();
+    UpdateKarts();
     if (data_0217aa54->mUnk_0c == 0) {
         func_02085778();
     }
@@ -441,7 +441,7 @@ void func_02062078(void) {
     func_0206326c();
     func_020d4418((Unk020d4418 *) data_0217aa6c);
     func_01ff92b4();
-    func_0207a9f4();
+    DrawKarts();
     func_02010fac(0, data_0217aa54->mUnk_40, data_0217aa54->mUnk_42, data_0217aa54->mUnk_44);
     func_020e9810();
     func_020d4484((Unk020d4418 *) data_0217aa6c);

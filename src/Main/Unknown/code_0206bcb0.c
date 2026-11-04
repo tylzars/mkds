@@ -574,7 +574,7 @@ BOOL func_0206bcb0(Kart *p, int a, int b) {
         return FALSE;
     }
     if (x) {
-        func_0206bbb4(p, a, b);
+        StartKartState2(p, a, b);
         if (b == 0) {
             if (a == 1) {
                 if (p->mUnk_7c & 0x200) {

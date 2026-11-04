@@ -131,7 +131,7 @@ void func_0207ad88(Unk0207adf8 *a, u32 b, u32 c) {
     }
 }
 
-void func_0207abec(u32 a) {
+void InitKarts(u32 a) {
     u16 i;
     void *h = GetHeap(func_020364e8());
     Unk0206cdd4_B *q;
@@ -162,12 +162,12 @@ void func_0207abec(u32 a) {
     for (i = 0; i < a; i++) {
         gKarts[i].mIndex = i;
         gKarts[i].mEntryIndex = data_021759c0->mCurrentEntries[i].mUnk_08.mIndex;
-        func_020649ec(&gKarts[i], data_usa_021655e4);
+        InitKart(&gKarts[i], data_usa_021655e4);
     }
     data_0217ad28 = 0;
 }
 
-void func_0207aaec(void) {
+void UpdateKarts(void) {
     s32 i;
     Kart *p = gKarts;
     data_0217ad20 = 0;
@@ -198,12 +198,12 @@ void func_0207aa7c(void) {
     }
 }
 
-void func_0207a9f4(void) {
+void DrawKarts(void) {
     s32 i = 0;
     u16 *p = func_02086058();
     (gKarts[data_021759c0->mEntryIndex].mKartModelsEntry)->mUnk_060 = 1;
     for (; i < gKartCount; i++) {
-        func_02063cc4(&gKarts[*p]);
+        DrawKart(&gKarts[*p]);
         p++;
     }
 }

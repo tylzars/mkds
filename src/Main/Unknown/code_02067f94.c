@@ -36,7 +36,7 @@ void func_020680e0(Kart *a, const Vec3 *b) {
         c = d == FALSE ? 1 : 0;
     }
     if (c != 0) {
-        func_0206add0(a, b, 0);
+        StartKartState4(a, b, 0);
         f = TRUE;
     } else {
         f = FALSE;
@@ -51,7 +51,7 @@ void func_020680e0(Kart *a, const Vec3 *b) {
 }
 
 void func_02068094(Kart *a, s32 b, s32 c) {
-    if (func_0206b020(a, (Unk0206b020 *) c) == 0) {
+    if (TryStartKartState4(a, (Unk0206b020 *) c) == 0) {
         return;
     }
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
@@ -92,7 +92,7 @@ void func_02067f94(Kart *a, const Vec3 *b) {
         c = d == FALSE ? 1 : 0;
     }
     if (c != 0) {
-        func_0206a980(a, b, 0);
+        StartKartState5(a, b, 0);
         f = TRUE;
     } else {
         f = FALSE;

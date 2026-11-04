@@ -49,7 +49,7 @@ extern Unk021652a0 data_usa_0216522c;
 extern UnkFunc *const data_021652b0[];
 extern UnkFunc *const data_02165388[];
 struct Kart;
-extern void (*const data_usa_021655c4[])(struct Kart *);
+extern void (*const gKartStateFunctions[])(struct Kart *);
 extern const Unk021a9034 data_02165368;
 extern const Unk021a9034 data_usa_021651b0;
 extern const char data_02165074[];

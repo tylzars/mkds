@@ -70,7 +70,7 @@ BOOL func_0206de18(Kart *p, Kart *q, const Vec3 *v) {
     r = FALSE;
     c = func_0206dbf8_inline(q);
     if (c != 0) {
-        func_0206add0(q, v, 1);
+        StartKartState4(q, v, 1);
         func_021090c4(&q->mUnk_00, 0xe8, 0x7f, 0);
         if (q->mUnk_7c & 0x200) {
             q->mUnk_514->mUnk_2c ^= 0x80;
@@ -124,7 +124,7 @@ BOOL func_0206dbf8(Kart *p, Kart *q) {
             a.y = -a.y;
             a.z = -a.z;
         }
-        func_0206a980(q, &a, 1);
+        StartKartState5(q, &a, 1);
         func_021090c4(&q->mUnk_00, 0xe8, 0x7f, 0);
         if (q->mUnk_7c & 0x200) {
             q->mUnk_514->mUnk_2c ^= 0x80;
@@ -364,7 +364,7 @@ void func_0206d18c(Kart *p) {
         case 0:
         case 1:
         case 7:
-            r = func_0206b4d0(p);
+            r = TryStartKartState3(p);
             break;
         case 2:
             r = func_0206bcb0(p, 1, r);
@@ -389,14 +389,14 @@ void func_0206d18c(Kart *p) {
             if (((Unk020fc2e8 *) e)->mUnk_2e4 != 0) {
                 r = func_0206bcb0(p, 2, r);
             } else {
-                r = func_0206bab8(p);
+                r = TryStartKartState6(p);
             }
             break;
         case 9:
             if (((Unk020fc2e8 *) e)->mUnk_16c != 0) {
                 r = func_0206bcb0(p, 2, r);
             } else {
-                r = func_0206bab8(p);
+                r = TryStartKartState6(p);
             }
             break;
         case 6:

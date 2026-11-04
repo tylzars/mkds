@@ -17,7 +17,7 @@ void func_01ffb0cc(Kart *p) {
     p->mUnk_4f0.z = data_02154ba4[p->mUnk_4fc];
 }
 
-s32 func_01ffaf18(Kart *p) {
+s32 LimitKartForwardSpeedAndGetScaled(Kart *p) {
     BOOL v1;
     s32 a = p->mForwardSpeed;
     s32 c;
@@ -83,7 +83,7 @@ s32 func_01ffaf18(Kart *p) {
     return ((s64) p->mForwardSpeed * (0x1000 - (p->mUnk_274 >> 3)) + 0x800) >> 12;
 }
 
-void func_01ffae14(Kart *p, s32 a) {
+void ScaleKartVelocityAndSetCappedLengthAndDirection(Kart *p, s32 a) {
     s32 r;
 
     p->mVelocity.x = (s64) p->mVelocity.x * a >> 12;

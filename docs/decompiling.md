@@ -469,7 +469,7 @@ Memory and aliasing:
 - A register loaded from a volatile global just before a call that doesn't take it is a discarded volatile read
   statement (`data_02175614.mUnk_00;`), not an extra argument (func_02037abc).
 - A volatile field read once for two tests (bits 0x10 and 0x20) is one local read: `c = a->mUnk_4c; b = (c & 0x10)
-  != 0;` (func_02063cc4).
+  != 0;` (DrawKart).
 - Arguments with side effects (volatile read, `x++`) are evaluated before stack-argument stores and other
   arguments; side-effect-free ones are loaded after the stores. An enum-typed copy plus a named reference gives the
   same effect.
@@ -740,8 +740,8 @@ Expression shapes:
   switch: one local, `t = b->m; if (..) { switch (t) { .. t = 9; .. } v = t; }` (func_0200b43c).
 - Range compare signed (`blt`/`ble`) where the original is unsigned (`bcc`/`bls`): an unsigned mask constant, `v &
   0xff00u` (func_ov000_021a0cac).
-- A sign flag and its source swapped: write abs as `a = a > 0 ? a : -a;`, not `if (a <= 0) a = -a;` (func_01ffaf18).
-- `streq` of the zero arm before the other arm's store: negate the `||` chain to `&&` and swap the arms (func_01ffaf18).
+- A sign flag and its source swapped: write abs as `a = a > 0 ? a : -a;`, not `if (a <= 0) a = -a;` (LimitKartForwardSpeedAndGetScaled).
+- `streq` of the zero arm before the other arm's store: negate the `||` chain to `&&` and swap the arms (LimitKartForwardSpeedAndGetScaled).
 - An early `popeq`/`bxeq` return of 0 where ours if-converts the tail: `if (ok != 0) { return expr; } return 0;`
   (func_02015fa0).
 - Two failure paths sharing one `flag = 0` block: `goto done` after the success test with a single `flag = 0` below, and
@@ -883,7 +883,7 @@ Expression shapes:
 - A local declared inside a loop body gets a higher slot than any function-scope local: declare it at function
   scope (func_ov003_021ce5b8).
 - `v = K; f(cmd, &v, 1);` eight times with a 4-byte frame slot each, and `Vec3` argument buffers with a slot each:
-  static inline helpers `func_X_inline(cmd, val) { f(cmd, &val, 1); }` (func_02063cc4, frame 0xa4 -> 0xbc at once).
+  static inline helpers `func_X_inline(cmd, val) { f(cmd, &val, 1); }` (DrawKart).
 
 - A local array zeroed through `add rX, sp, #N` and two stores had `= {0}` at its declaration (func_0206e874).
 - A call result stored to a local's stack slot where the original keeps it in r0: that local has its address taken
@@ -935,7 +935,7 @@ Expression shapes:
   Vec3 *b)` parameters keeps the reload of the fields for the next call, and a fill helper `(Vec3 *, x, y, z)` loads
   before the first random call and spills (func_020919e8).
 - A pointer passed through a helper with `Vec3 *dst, const Vec3 *src` loads `a->mUnk_508` once across the three
-  stores (func_02063cc4).
+  stores (DrawKart).
 
 - Thumb: a byte copy that forms the destination address before the source, with the value always in r0, is
   `__memcpy(dst, src, n)` with a constant n (func_ov000_021923b4). A struct store whose nearby address is loaded early
@@ -1062,7 +1062,7 @@ Link order and linking:
 - A zero high word set before the add in a `u64` store of a sum with a call: `(u32) (sum + call())` (Thumb;
   func_0203b6ac).
 - The sign word of a constant product computed early and shared with an earlier product of the same value: put the
-  `(s64)` cast on the constant, `x * (s64) 0x19a` (func_01ffaf18).
+  `(s64)` cast on the constant, `x * (s64) 0x19a` (LimitKartForwardSpeedAndGetScaled).
 - A first `smull` taking the second term of the source sum: write the first two terms swapped, `x * x + y * y + z * z`
   for an `smull` of `y * y` first (func_0209297c).
 - Projected components kept in registers and stored to the vector after the sum of squares, ours storing then reloading

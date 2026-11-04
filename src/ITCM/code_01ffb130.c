@@ -109,7 +109,7 @@ void func_01ffb130(Kart *p) {
     if (p->mUnk_7c & 0x20) {
         return;
     }
-    data_usa_021655c4[p->mState](p);
+    gKartStateFunctions[p->mState](p);
     func_01ffb9e0(p);
     if (p->mUnk_48 & 0x40) {
         p->mUnk_3ac++;
@@ -156,7 +156,7 @@ void func_01ffb130(Kart *p) {
             p->mUnk_d4 = 0x1000;
         }
     }
-    a = func_01ffaf18(p);
+    a = LimitKartForwardSpeedAndGetScaled(p);
     func_01ffb930(&a, p);
     if ((p->mUnk_44 & 0x90) || (p->mUnk_4c & 0x10000000)) {
         k = p->mUnk_240;
@@ -190,7 +190,7 @@ void func_01ffb130(Kart *p) {
     Vec3Add(&p->mVelocity, &p->mUnk_2f0, &p->mVelocity);
     Vec3Add(&p->mVelocity, &p->mUnk_1fc, &p->mVelocity);
     func_01ff9c40(p);
-    func_01ffae14(p, b);
+    ScaleKartVelocityAndSetCappedLengthAndDirection(p, b);
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         func_0207a74c(func_02039828(&p->mVelocity, &p->mUnk_50));
         if ((p->mUnk_44 & 0x1000000) && p->mUnk_4d4 != 0) {
@@ -223,6 +223,6 @@ void func_01ffb130(Kart *p) {
     }
     func_01ffc064(&p->mUnk_1d8, p->mUnk_510, p->mUnk_2cc->mUnk_04, p);
     func_0206d18c(p);
-    func_0206dfd0(p);
+    CollideKartWithKarts(p);
     func_0206d578(p);
 }

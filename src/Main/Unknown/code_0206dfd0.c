@@ -55,7 +55,7 @@ static inline s32 func_0206dfd0_inline_2(Vec3 *v, Vec3 *n) {
     return func_02039860(v, n);
 }
 
-void func_0206dfd0(Kart *p) {
+void CollideKartWithKarts(Kart *p) {
     s32 i;
     Kart *q;
     s32 r;

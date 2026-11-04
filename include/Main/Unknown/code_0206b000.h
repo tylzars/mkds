@@ -4,5 +4,5 @@
 
 typedef struct Kart Kart;
 
-void func_0206b914(Kart *p);
-void func_0206b358(Kart *p);
+void StartKartState6(Kart *p);
+void StartKartState3(Kart *p);

@@ -73,7 +73,7 @@ int func_02067d0c(Kart *p, s32 *a) {
 }
 
 int func_02067cb0(Kart *p, s32 *a) {
-    if (func_0206b4d0(p)) {
+    if (TryStartKartState3(p)) {
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             func_0207a6b0()->mUnk_14++;
         }

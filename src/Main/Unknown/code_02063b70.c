@@ -42,7 +42,7 @@ static inline void func_02063cc4_inline3(Vec3 *a, const Vec3 *b) {
     a->z = b->z >> 4;
 }
 
-void func_02063cc4(Kart *a) {
+void DrawKart(Kart *a) {
     u32 b;
     u32 c;
     u32 d;
