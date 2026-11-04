@@ -2,7 +2,7 @@
 
 #include "00/code_02180608.h"
 #include "00/code_021acef8.h"
-#include "00/code_021adbac.h"
+#include "00/code_021ad734.h"
 #include "00/code_02186d04.h"
 #include "00/code_02187484.h"
 #include "00/code_02188008.h"
@@ -81,9 +81,6 @@ extern const char *data_ov000_021b4a30[];
 extern u8 data_ov000_021b4a58[];
 extern u8 data_ov000_021b4a5c[];
 extern u8 data_ov000_021b4a60[];
-extern u8 data_ov000_021b4a64[];
-extern u8 data_ov000_021b4aa4[];
-extern u32 data_ov000_021b4ae4[];
 extern u8 data_ov000_021b4be4[];
 extern u8 data_ov000_021b4be5[];
 extern u8 data_ov000_021b4c80[];

@@ -83,8 +83,7 @@ PATH_COMPILERS = {
     # verified: four ov000 files whose switches end in `add pc, r0` (docs/compiler.md, Game code)
     "src/00/code_021a9aa0.c": "1.2/sp2p3",
     "src/00/code_021aae44.c": "1.2/sp2p3",
-    "src/00/code_021ad754.c": "1.2/sp2p3",
-    "src/00/code_021ae984.c": "1.2/sp2p3",
+    "src/00/code_021ad734.c": "1.2/sp2p3",  # holds the former code_021ad754 and code_021ae984
 }
 # Flags from CC_FLAGS that sources under these paths must not get.
 PATH_DROP_FLAGS = {

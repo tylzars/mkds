@@ -30,10 +30,10 @@ what it shows and the command that reruns it on every installed build
   and on no 2.0 build at any `-proc`; in the disassembly, every ARM game function returns through
   `ldm {.., lr}; bx lr`, never `ldm {.., pc}`, which 1.2 sp3/sp4 emit under `-proc arm946e`. DSP multiplies (`smulbb`,
   `smlabb`) in game code need `-proc arm946e`.
-- Thumb sp2p3: four ov000 files (`src/00/code_021a9aa0.c`, `code_021aae44.c`, `code_021ad754.c`, `code_021ae984.c`)
+- Thumb sp2p3: three ov000 files (`src/00/code_021a9aa0.c`, `code_021aae44.c`, `code_021ad734.c`)
   have switches that read the table at +6 and end in `add pc, r0`, the sp2p3 form; nothing else in the USA ROM does.
   1.2 base builds that dispatch one way only, whatever the source, and every other function from 0x021a0000 to
-  0x021b5000 builds the same on base and sp2p3, so these four files are built with sp2p3.
+  0x021b5000 builds the same on base and sp2p3, so these files are built with sp2p3.
 - ARM sp2p3: `func_020f40a0` and `func_020f4754` (main) index an array written twice, once with a cast; base and sp2
   fold it into `mla` and an offset, sp2p3 indexes through a register. sp2 builds the same ARM bytes as base.
 - `-char unsigned`: a function walking a `char` path (main 0x02047780, `thumb_char_strings.c`) is 0x13c bytes with

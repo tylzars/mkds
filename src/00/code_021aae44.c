@@ -2,8 +2,6 @@
 
 #include "00/code_021ab000.h"
 #include "00/code_021ab6d4.h"
-#include "00/code_021ab728.h"
-#include "00/code_021ab7b4.h"
 #include "00/code_021abc24.h"
 #include "00/code_021abca0.h"
 #include "00/code_021abd2c.h"
