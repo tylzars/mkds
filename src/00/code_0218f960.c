@@ -19,7 +19,7 @@
 #include "00/code_021947e4.h"
 #include "00/code_02190548.h"
 #include "00/code_021948f8.h"
-#include "00/code_02196914.h"
+#include "00/code_02196594.h"
 #include "00/code_021a3690.h"
 #include "00/code_02196590.h"
 #include "code_0213a460.h"
@@ -34,7 +34,6 @@
 #include "00/code_02192000.h"
 #include "00/code_021a3668.h"
 #include "00/unk_021b23b0.h"
-#include "00/code_021967b4.h"
 
 s32 func_ov000_0218fca8(GpConnection *a, char *b) {
     char c[0x1000];

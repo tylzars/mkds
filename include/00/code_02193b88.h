@@ -63,7 +63,7 @@ u32 GpiCreateOperation(GpConnection *param_1, int param_2, int param_3, int *par
                        int param_7);
 
 #include "00/code_021965a0.h"
-#include "00/code_021967b4.h"
+#include "00/code_02196594.h"
 #include "00/code_0218e2dc.h"
 
 // Entry of the list behind GpiPeer.mUnk_38.

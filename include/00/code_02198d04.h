@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02197e8c.h"
+#include "00/code_02197e58.h"
 
 u32 func_ov000_02198d04(u32 param_1);
 u32 func_ov000_02198d50(Gt2Connection *param_1);

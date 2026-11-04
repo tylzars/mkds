@@ -1,7 +1,16 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02186628.h"
+#include "code_0200fc8c.h"
+#include "00/unk_021b1000.h"
+#include "code_02151868.h"
+#include "code_021519d4.h"
+#include "00/code_02186a9c.h"
+#include "00/code_021acef8.h"
+#include "00/code_021a6c08.h"
+#include "00/code_0218a67c.h"
+#include "00/code_021a6934.h"
+#include "00/code_02185954.h"
 #include "00/code_02188008.h"
 
 typedef struct Unk0200db5c Unk0200db5c;
@@ -61,10 +70,6 @@ typedef struct Unk0218635c {
 } Unk0218635c;
 
 #include "code_0200db4c.h"
-#include "code_02151868.h"
-#include "00/code_02185954.h"
-#include "00/unk_021b1000.h"
-#include "00/code_02186a9c.h"
 
 extern char *data_ov000_021b1384;
 extern char data_ov000_021b13ac[];

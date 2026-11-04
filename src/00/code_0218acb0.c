@@ -4,7 +4,7 @@
 #include "00/code_0218b000.h"
 #include "00/code_0218c000.h"
 #include "00/code_021a3000.h"
-#include "00/code_0218b434.h"
+#include "00/code_0218aea4.h"
 #include "00/code_0218e2dc.h"
 
 void func_ov000_0218acf0(Unk0218b668 *a, u32 b) {

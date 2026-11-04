@@ -74,12 +74,34 @@ typedef struct Gt2Connection {
     /* 9c */ void *mUnk_9c;
 } Gt2Connection;
 
+BOOL CallUnmatchedDataCallback(Gt2Socket *a, s32 b, s32 c, void *d, s32 e, s32 *f);
+BOOL Gt2CallElapsedTimeCallback(Gt2Connection *connection, s32 b);
+
+typedef struct Gt2Socket Gt2Socket;
+typedef struct Gt2Connection Gt2Connection;
+
+typedef struct Unk02198af4 {
+    /* 00 */ u32 mUnk_00;
+    /* 04 */ u32 mUnk_04;
+    /* 08 */ u8 mUnk_08[4];
+    /* 0c */ u32 mUnk_0c;
+} Unk02198af4;
+
+BOOL Gt2ParseAddress(const char *a, u32 *b, u16 *c);
+
+BOOL Gt2CallDataCallback(Gt2Connection *connection, void *b, int c, int d);
+BOOL Gt2SetResultAndCallResultCallback(Gt2Connection *connection, int b, void *c, int d);
+BOOL CallIncomingConnectionCallback(Gt2Socket *a, Gt2Connection *b, int c, int d, int e, int f, int g);
+
 extern const char data_ov000_021b3f50[];
 extern const char data_ov000_021b3f58[];
 extern const char data_ov000_021b3f68[];
 
-BOOL CallUnmatchedDataCallback(Gt2Socket *a, s32 b, s32 c, void *d, s32 e, s32 *f);
 u32 func_ov000_02197f28(Gt2Socket *socket, int e, u32 f, u32 g, u32 h, int l, int m, int n);
 BOOL func_ov000_02197fe8(Gt2Connection *connection, s32 b, void *c, s32 d, s32 e);
 BOOL func_ov000_02198098(Gt2Connection *connection, s32 b, s32 c, void *d, s32 e);
-BOOL Gt2CallElapsedTimeCallback(Gt2Connection *connection, s32 b);
+BOOL func_ov000_021981d0(Gt2Connection *connection, void *b);
+BOOL func_ov000_02198448(Gt2Socket *socket);
+void func_ov000_021984b4(Gt2Connection *a);
+void func_ov000_02198514(Gt2Connection *a, ...);
+void func_ov000_02198548(Gt2Connection *a, int b);

@@ -2,6 +2,11 @@
 
 #include "types.h"
 
+typedef struct GpConnection GpConnection;
+
+u32 GpSendMessage(GpConnection *a, s32 b, const char *c);
+u32 GpSetStatus(GpConnection *a, s32 b, const char *c, const char *d);
+
 // Output of GpGetBuddyStatus: a copy of the entry's fields, two 0x100-byte strings included.
 typedef struct Unk0218ec44 {
     /* 000 */ u32 mUnk_000;
@@ -11,8 +16,6 @@ typedef struct Unk0218ec44 {
     /* 208 */ u32 mUnk_208;
     /* 20c */ s32 mUnk_20c;
 } Unk0218ec44;
-
-#include "00/code_0218f960.h"
 
 // Element of the array behind Unk0218eff8Arg.mUnk_0c, 0xac bytes.
 typedef struct Unk0219c400Entry {
@@ -42,16 +45,16 @@ typedef struct Unk0218f0a8Arg {
 typedef void (*Unk0218eff8Cb)(GpConnection *a, Unk0218eff8Arg *b, u32 c);
 typedef void (*Unk0218f0a8Cb)(GpConnection *a, Unk0218f0a8Arg *b, u32 c);
 
-#include "00/code_02194000.h"
-
 u32 GpIsBuddy(GpConnection *a, u32 b);
 u32 GpGetBuddyIndex(GpConnection *a, u32 b, s32 *c);
 u32 GpGetBuddyStatus(GpConnection *a, s32 b, Unk0218ec44 *c);
 s32 GpGetBuddyCount(GpConnection *object, s32 *output);
+u32 GpWriteAddbuddy(GpConnection *a, u32 b, const char *c);
+void GpDisconnect(GpConnection *a);
+
+u32 func_ov000_0218eb44(GpConnection *a, u32 b);
 u32 func_ov000_0218ed74(GpConnection *b, int c);
 u32 func_ov000_0218ee1c(GpConnection *a, u32 b);
-u32 GpWriteAddbuddy(GpConnection *a, u32 b, const char *c);
 u32 func_ov000_0218efa8(GpConnection *a, s32 b, const s8 *c);
 u32 func_ov000_0218eff8(GpConnection *a, u32 b, s32 c, u32 d, Unk0218eff8Cb e, u32 f);
 u32 func_ov000_0218f0a8(GpConnection *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, s32 g, u32 h, Unk0218f0a8Cb i, u32 j);
-void GpDisconnect(GpConnection *a);

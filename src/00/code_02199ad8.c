@@ -11,7 +11,7 @@
 #include "00/code_02197b08.h"
 #include "00/code_02197b34.h"
 #include "00/code_02197ddc.h"
-#include "00/code_02197e8c.h"
+#include "00/code_02197e58.h"
 #include "00/code_021985ec.h"
 #include "00/code_021988e8.h"
 #include "00/code_02198a8c.h"
@@ -22,7 +22,6 @@
 #include "00/code_021a3668.h"
 #include "code_021382a8.h"
 #include "00/code_0218e2dc.h"
-#include "00/code_021981d0.h"
 
 enum { K0, K1 };
 

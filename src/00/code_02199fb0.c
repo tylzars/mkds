@@ -2,7 +2,7 @@
 #include "00/code_021985ec.h"
 #include "00/code_021988e8.h"
 #include "00/code_02198a8c.h"
-#include "00/code_02197e8c.h"
+#include "00/code_02197e58.h"
 
 u32 func_ov000_02199fb0(int c, u32 d, u32 e) {
     Gt2Connection *a = (Gt2Connection *) c;

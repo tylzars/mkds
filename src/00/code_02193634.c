@@ -1,7 +1,7 @@
 #include "00/code_02193634.h"
 
 #include "00/code_021947e4.h"
-#include "00/code_02196914.h"
+#include "00/code_02196594.h"
 #include "00/code_021965a0.h"
 #include "00/code_021a3690.h"
 #include "00/code_02196590.h"
@@ -27,7 +27,6 @@
 #include "00/code_02194bb8.h"
 #include "00/code_02193000.h"
 #include "00/code_02193b88.h"
-#include "00/code_021967b4.h"
 #include "00/unk_021b3000.h"
 #include "00/code_02190cd4.h"
 #include "00/code_0218e2dc.h"

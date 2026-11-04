@@ -8,7 +8,7 @@
 
 #include "00/code_021906e4.h"
 #include "00/code_021947e4.h"
-#include "00/code_02196914.h"
+#include "00/code_02196594.h"
 #include "00/code_021a3690.h"
 #include "00/code_02196590.h"
 #include "00/unk_021b2000.h"
@@ -27,7 +27,6 @@
 #include "00/code_02196000.h"
 #include "00/code_02190000.h"
 #include "00/code_021965a0.h"
-#include "00/code_021967b4.h"
 
 u32 GpiIsValidDate(int a, int b, int c);
 s32 GpiProcessOperation(GpConnection *c, GpiOperation *d, const char *e);

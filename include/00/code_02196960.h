@@ -56,11 +56,22 @@ typedef struct Unk021b3c88 {
     /* 00 */ s8 mUnk_00[0x100];
 } Unk021b3c88;
 
+void GstatsClose(void);
+
+typedef struct Unk021b3bdc {
+    /* 00 */ s8 mUnk_00[0x2c];
+} Unk021b3bdc;
+
+extern s32 data_ov000_021b3b2c;
 extern u8 *data_ov000_021b3b30;
+extern u32 data_ov000_021b3b34;
+extern char data_ov000_021b3b38[];
+extern char data_ov000_021b3b40[];
 extern const Unk021b3b68 data_ov000_021b3b68;
 extern Unk02196960Key data_ov000_021b3b78;
 extern u8 data_ov000_021b3b88[];
 extern u8 data_ov000_021b3b98[];
+extern const Unk021b3bdc data_ov000_021b3bdc;
 extern const Unk021b3c08 data_ov000_021b3c08;
 extern const Unk021b3c88 data_ov000_021b3c88;
 extern char data_ov000_021b3db8[];
@@ -76,8 +87,12 @@ extern const char data_ov000_021b3df0[];
 extern const char data_ov000_021b3df8[];
 extern const char data_ov000_021b3e00[];
 extern const char data_ov000_021b3e04[];
+extern const char data_ov000_021b3e0c[];
+extern u32 data_ov000_021b4e4c;
 extern void *data_ov000_021b4e5c;
 extern s32 data_ov000_021b4e70;
+extern char data_ov000_021b4e84[];
+extern char data_ov000_021b4f84[];
 extern s8 data_ov000_021b5084[];
 
 void func_ov000_02196960(void);
@@ -99,4 +114,7 @@ const s8 *func_ov000_021970e4(const s8 *text, const char *key);
 const s8 *func_ov000_021970fc(const s8 *text, const char *key);
 void func_ov000_02197190(u32 a, s8 *b);
 int func_ov000_021971c8(const s8 *a, int b);
-void GstatsClose(void);
+void func_ov000_021971ec(s8 *a, s32 b);
+s32 func_ov000_02197220(s8 *a, s32 b);
+s32 func_ov000_021972b4(void);
+s32 func_ov000_0219735c(const s8 *a, u32 b);

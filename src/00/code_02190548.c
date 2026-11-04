@@ -12,7 +12,7 @@
 #include "00/code_02190ff8.h"
 #include "00/code_02196000.h"
 #include "00/code_021906e4.h"
-#include "00/code_021967b4.h"
+#include "00/code_02196594.h"
 #include "00/unk_021b23b0.h"
 #include "code_0213a460.h"
 

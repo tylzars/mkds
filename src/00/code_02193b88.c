@@ -1,7 +1,7 @@
 #include "00/code_02193b88.h"
 #include "00/code_021906e4.h"
 #include "00/code_021947e4.h"
-#include "00/code_02196914.h"
+#include "00/code_02196594.h"
 #include "00/code_021a3690.h"
 #include "00/code_02196590.h"
 #include "00/unk_021b2000.h"
@@ -33,11 +33,10 @@
 #include "00/code_02190548.h"
 #include "00/code_0219218c.h"
 #include "00/code_02192000.h"
-#include "00/code_0218eb9c.h"
+#include "00/code_0218e8d4.h"
 #include "00/code_0218f15c.h"
 #include "00/code_021a3678.h"
 #include "code_021382a8.h"
-#include "00/code_021965c8.h"
 #include "00/code_02190cd4.h"
 
 s32 func_ov000_02194590(GpConnection *a, GpiPeer *b) {

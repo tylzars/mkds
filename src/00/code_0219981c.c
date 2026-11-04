@@ -9,7 +9,7 @@
 #include "00/code_021a3690.h"
 #include "00/code_02197b34.h"
 #include "00/code_02197ddc.h"
-#include "00/code_02197e8c.h"
+#include "00/code_02197e58.h"
 #include "00/code_021985ec.h"
 #include "00/code_021988e8.h"
 #include "00/code_02198a8c.h"
@@ -18,7 +18,6 @@
 #include "00/code_0219a014.h"
 #include "code_021382a8.h"
 #include "Main/Unknown/code_02133000.h"
-#include "00/code_02198ba8.h"
 
 u32 func_ov000_021998d8(Gt2Connection *a, s32 b, u32 c, const u8 *d, s32 e, s32 *f) {
     Unk0219981cEntry g;

@@ -1,7 +1,6 @@
 #pragma once
 
-#include "00/code_02197e8c.h"
-#include "00/code_021981d0.h"
+#include "00/code_02197e58.h"
 #include "types.h"
 
 void func_ov000_02198748(Gt2Connection *a, void *b, u32 c, ...);
