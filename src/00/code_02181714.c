@@ -378,7 +378,7 @@ void func_ov000_021817e8(void) {
 }
 
 void AdvanceWiFiTopMenu(void) {
-    Unk021b4c6c *p;
+    WiFiTopMenu *p;
     gWiFiTopMenu->mState = gWiFiTopMenu->mNextState;
     switch (gWiFiTopMenu->mState) {
         case 0:

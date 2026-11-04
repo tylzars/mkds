@@ -19,7 +19,7 @@ void AdvanceWiFiVSSetting(void);
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c
 
 // Allocated by InitWiFiVSSetting and held in gWiFiVSSetting.
-typedef struct Unk021b4c70 {
+typedef struct WiFiVSSetting {
     /* 0000 */ s32 mState;
     /* 0004 */ s32 mNextState;
     /* 0008 */ s32 mUnk_08;
@@ -45,10 +45,10 @@ typedef struct Unk021b4c70 {
     /* 1054 */ void *mWiFiVSSettingBnll;
     /* 1058 */ void *mWiFiMessages;
     /* 105c */ void *mCommonMessages;
-} Unk021b4c70;
+} WiFiVSSetting;
 
 // Object behind gWiFiVSMatching; mUnk_00 selects the handler run by AdvanceWiFiVSMatching.
-typedef struct Unk021b4c74 {
+typedef struct WiFiVSMatching {
     /* 0000 */ s32 mState;
     /* 0004 */ s32 mNextState;
     /* 0008 */ s32 mUnk_08;
@@ -84,7 +84,7 @@ typedef struct Unk021b4c74 {
     /* 16fc */ void *mWiFiMessages;
     /* 1700 */ void *mCommonMessages;
     /* 1704 */ u8 pad_1704[8];
-} Unk021b4c74;
+} WiFiVSMatching;
 
 // Four callbacks, passed to SetWiFiStateCallbacks by RegisterWiFiVSMatchingCallbacks.
 
@@ -285,8 +285,8 @@ extern s32 data_ov000_021b0628[3][4];
 extern u8 data_ov000_021b0670[3][2];
 extern u8 data_ov000_021b0678[3][2];
 extern u8 data_ov000_021b068c[3][5];
-extern Unk021b4c70 *gWiFiVSSetting;
-extern Unk021b4c74 *gWiFiVSMatching;
+extern WiFiVSSetting *gWiFiVSSetting;
+extern WiFiVSMatching *gWiFiVSMatching;
 
 void InitWiFiVSSetting(void *heap);
 void RegisterWiFiVSMatchingCallbacks(void);

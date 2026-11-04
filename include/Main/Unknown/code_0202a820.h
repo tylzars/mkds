@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_020d22c0.h"
 
 // Object behind gWiFiVSCourseSelect, 0x158 bytes (InitWiFiVSCourseSelect allocates it).
-typedef struct Unk02174e28 {
+typedef struct WiFiVSCourseSelect {
     /* 000 */ Unk02174e60_00 mUnk_000[2];
     /* 048 */ Unk02174e14_00 mUnk_048;
     /* 064 */ Unk02174e14_00 mUnk_064;
@@ -27,7 +27,7 @@ typedef struct Unk02174e28 {
     /* 148 */ s32 mUnk_148;
     /* 14c */ u16 mUnk_14c[4];
     /* 154 */ s16 mUnk_154;
-} Unk02174e28;
+} WiFiVSCourseSelect;
 
 // 8-byte entries of the tables at data_usa_021539f4 and data_usa_02153a14.
 typedef struct Unk021539f4 {

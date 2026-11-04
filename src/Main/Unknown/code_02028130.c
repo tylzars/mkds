@@ -57,7 +57,7 @@ u16 func_020286f4(u32 a, u32 b) {
 #pragma thumb on
 
 int AdvanceSelectKart(void) {
-    Unk02174e18 *d;
+    SelectKart *d;
     Unk02174e50_24 *p;
     s32 e;
     s32 r;

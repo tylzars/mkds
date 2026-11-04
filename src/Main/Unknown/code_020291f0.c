@@ -23,7 +23,7 @@ void func_0202941c(s32 a) {
 void func_02029330(void) {
     s32 a;
     s32 b;
-    Unk02174e18 *d;
+    SelectKart *d;
     Unk02174e50_24 *p;
     if (func_020280dc() == 0) {
         d = gSelectKart;
@@ -49,7 +49,7 @@ void func_02029330(void) {
 }
 
 void func_020292bc(void) {
-    Unk02174e18 *d;
+    SelectKart *d;
     s32 i;
     i = gSelectKart->mUnk_09c + 1;
     if (i >= 0x24) {
@@ -70,7 +70,7 @@ void func_020292bc(void) {
 }
 
 void func_02029248(void) {
-    Unk02174e18 *d;
+    SelectKart *d;
     s32 i;
     i = gSelectKart->mUnk_09c - 1;
     if (i < 0) {

@@ -316,7 +316,7 @@ void func_0211a100(void) {
     s32 i;
     u32 a;
     u32 b;
-    Unk0217d364 *p;
+    SelectCup *p;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         a = gSelectCup->mUnk_04->mUnk_06;
         b = gSelectCup->mUnk_10->mUnk_06;
@@ -395,7 +395,7 @@ void func_0211a07c(void) {
 }
 
 void func_02119e88(void) {
-    Unk0217d364 *p;
+    SelectCup *p;
     u32 a;
     u8 b[0x24];
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {

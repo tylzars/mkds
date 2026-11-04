@@ -129,7 +129,7 @@ void AdvanceSelectReturnState0(void) {
 }
 
 void AdvanceSelectReturnState1(void) {
-    Unk0217d3f8 *p;
+    SelectReturn *p;
     gSelectReturn->mBg2Offset = func_0212825c(gSelectReturn->mUnk_0c);
     gSelectReturn->mUnk_0c++;
     p = gSelectReturn;
@@ -160,7 +160,7 @@ void AdvanceSelectReturnState2(void) {
 
 #pragma thumb on
 void AdvanceSelectReturnState3(void) {
-    Unk0217d3f8 *p;
+    SelectReturn *p;
     p = gSelectReturn;
     p->mBg2Offset = data_0215d0b4[p->mUnk_0c];
     gSelectReturn->mUnk_0c++;
@@ -179,7 +179,7 @@ void AdvanceSelectReturnState3(void) {
 }
 
 void AdvanceSelectReturnState4(void) {
-    Unk0217d3f8 *p;
+    SelectReturn *p;
     gSelectReturn->mBg2Offset = func_02128244(gSelectReturn->mUnk_0c);
     gSelectReturn->mUnk_0c++;
     p = gSelectReturn;
@@ -191,7 +191,7 @@ void AdvanceSelectReturnState4(void) {
 }
 
 void AdvanceSelectReturn(void) {
-    Unk0217d3f8 *p;
+    SelectReturn *p;
     p = gSelectReturn;
     if (p->mUnk_00 != 0) {
         p->mState = p->mUnk_08;
@@ -216,7 +216,7 @@ void AdvanceSelectReturn(void) {
 }
 
 void WriteSelectReturnRegisters(void) {
-    Unk0217d3f8 *p;
+    SelectReturn *p;
     u32 t;
     p = gSelectReturn;
     if (p->mUnk_00 != 0) {
@@ -273,7 +273,7 @@ void func_021282c8(void) {
 s32 IsSelectReturnState2NoState3Or4Request(void) {
     BOOL r;
     BOOL t;
-    Unk0217d3f8 *p;
+    SelectReturn *p;
     r = FALSE;
     t = FALSE;
     p = gSelectReturn;
@@ -290,7 +290,7 @@ s32 IsSelectReturnState2NoState3Or4Request(void) {
 
 s32 IsSelectReturnState0NoState1Request(void) {
     BOOL r;
-    Unk0217d3f8 *p;
+    SelectReturn *p;
     r = FALSE;
     p = gSelectReturn;
     if (p->mState == 0 && p->mState1Requested == 0) {

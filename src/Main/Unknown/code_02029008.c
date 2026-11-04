@@ -53,7 +53,7 @@ s32 func_020290fc(void) {
 u32 func_020290ac(s32 a) {
     u32 r = 0;
     u32 t;
-    Unk02174e18 *d = gSelectKart;
+    SelectKart *d = gSelectKart;
     s32 n;
     if (d->mUnk_110 == a) {
         n = d->mUnk_10c;
@@ -70,7 +70,7 @@ u32 func_020290ac(s32 a) {
 }
 
 void func_02029008(void) {
-    Unk02174e18 *d = gSelectKart;
+    SelectKart *d = gSelectKart;
     Unk02174e50_24 *p;
     if (d->mUnk_104 == FALSE) {
         p = &d->mUnk_048;

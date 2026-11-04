@@ -114,7 +114,7 @@ void func_02043038(void) {
 }
 
 void func_02042fd8(void *a) {
-    Unk02175620 *g;
+    CourseMap *g;
     Unk02175620_94 *t;
     u16 n;
     s32 d;
@@ -203,7 +203,7 @@ void func_02042ec0(Unk020f371c *a, Unk02175620_4c *b, u16 c) {
 }
 
 void func_02042e0c(void *a) {
-    Unk02175620 *g;
+    CourseMap *g;
     Unk02175620_4c *d;
     Unk020f371c **q;
     s32 i;
@@ -284,7 +284,7 @@ void func_02042d34(Unk02175620_a0 *a, Unk02175620_4c *b, u16 c) {
 }
 
 void func_02042c3c(void *a) {
-    Unk02175620 *g;
+    CourseMap *g;
     Unk02175620_4c *d;
     Unk02175620_a0 **q;
     Unk02175620_4c *t;
@@ -323,7 +323,7 @@ void func_02042c3c(void *a) {
 }
 
 void func_02042a10(void *a) {
-    Unk02175620 *g;
+    CourseMap *g;
     Unk02175620_8c *r;
     Unk02175620_8c *t;
     Unk02175620_bc **q;
@@ -787,7 +787,7 @@ s32 func_02042170(void *a, ...) {
 void CreateCourseMap(void *a) {
     char path[0x100];
     Unk02042064 *header;
-    Unk02175620 *courseMap;
+    CourseMap *courseMap;
     s32 *offset;
     u8 *base;
     s32 i;

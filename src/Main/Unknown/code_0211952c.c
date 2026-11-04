@@ -148,7 +148,7 @@ void func_02119ba8(void) {
 
 void func_02119ac4(void) {
     u16 buf[0x100];
-    Unk0217d364 *d;
+    SelectCup *d;
 
     gSelectCup->mUnk_38 = 5;
     gSelectCup->mUnk_3c = 0;

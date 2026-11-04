@@ -103,7 +103,7 @@ void func_020cac18(void) {
 }
 
 void func_020caba4(s32 a) {
-    Unk0217b438 *p;
+    EmblemChoises *p;
     s32 n;
     u16 *v;
     s32 c;

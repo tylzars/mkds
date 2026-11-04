@@ -9,7 +9,7 @@
 #include "Main/Unknown/code_0207ae58.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-// 0x88-byte object built from an entry of the table at Unk02175620::mUnk_7c: the entry, two Unk0207b960 and two
+// 0x88-byte object built from an entry of the table at CourseMap::mUnk_7c: the entry, two Unk0207b960 and two
 // halfwords.
 typedef struct Unk02077750 {
     /* 00 */ Unk020748b8_218 *mUnk_00;

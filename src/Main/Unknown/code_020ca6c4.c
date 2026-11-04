@@ -24,7 +24,7 @@ u32 func_020ca7e0(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f) {
 #pragma thumb on
 #pragma optimize_for_size on
 void InitEmblemChoises(void) {
-    Unk0217b438 *p;
+    EmblemChoises *p;
 
     gEmblemChoises = HeapAlloc(func_020ca820(), 0x6c);
     gEmblemChoises->mUnk_00 = 0;

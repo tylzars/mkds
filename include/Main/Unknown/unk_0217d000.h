@@ -178,22 +178,22 @@ typedef struct Unk0217d32c {
 } Unk0217d32c;
 
 // Object behind gRecordVS.
-typedef struct Unk0217d348 {
-    /* 00 */ struct Ncgr *mUnk_00;
-    /* 04 */ struct Unk02021dc8 *mUnk_04;
-    /* 08 */ Unk0201ea30 *mUnk_08;
-    /* 0c */ void *mUnk_0c;
-    /* 10 */ struct Nscr *mUnk_10;
+typedef struct RecordVS {
+    /* 00 */ struct Ncgr *mRecordVSMNcgr;
+    /* 04 */ struct Unk02021dc8 *mRecordVSMNcer;
+    /* 08 */ Unk0201ea30 *mRecordVSMBncl;
+    /* 0c */ void *mRecordVSMBnll;
+    /* 10 */ struct Nscr *mRecordVSM02Nscr;
     /* 14 */ Unk02124b1c *mUnk_14;
-    /* 18 */ Unk0201ea30 *mUnk_18;
-    /* 1c */ void *mUnk_1c;
-    /* 20 */ struct Nscr *mUnk_20;
+    /* 18 */ Unk0201ea30 *mRecordVSMTransientBncl;
+    /* 1c */ void *mRecordVSMTransientBnll;
+    /* 20 */ struct Nscr *mRecordVSM03Nscr;
     /* 24 */ Unk02124b1c *mUnk_24;
-    /* 28 */ struct Ncgr *mUnk_28;
-    /* 2c */ struct Unk02021dc8 *mUnk_2c;
-    /* 30 */ Unk0201ea30 *mUnk_30;
-    /* 34 */ Unk0201ea30 *mUnk_34;
-    /* 38 */ void *mUnk_38;
+    /* 28 */ struct Ncgr *mRecordVSSNcgr;
+    /* 2c */ struct Unk02021dc8 *mRecordVSSNcer;
+    /* 30 */ Unk0201ea30 *mRecordVSSBncl;
+    /* 34 */ Unk0201ea30 *mRecordVSSBnbl;
+    /* 38 */ void *mRecordVSSBnll;
     /* 3c */ Unk02124b1c *mUnk_3c;
     /* 40 */ s32 mUnk_40;
     /* 44 */ void *mUnk_44;
@@ -217,7 +217,7 @@ typedef struct Unk0217d348 {
     /* 88 */ s32 mUnk_88;
     /* 8c */ s32 mUnk_8c;
     /* 90 */ s32 mUnk_90;
-} Unk0217d348;
+} RecordVS;
 
 // Object behind data_0217d360.
 typedef struct Unk0217d360 {
@@ -254,7 +254,7 @@ typedef struct Unk0217d360 {
 } Unk0217d360;
 
 // Object behind gSelectCup.
-typedef struct Unk0217d364 {
+typedef struct SelectCup {
     /* 00 */ struct Unk02021dc8 *mUnk_00;
     /* 04 */ Unk0201ea30 *mUnk_04;
     /* 08 */ void *mUnk_08;
@@ -285,7 +285,7 @@ typedef struct Unk0217d364 {
     /* 64 */ void *mUnk_64;
     /* 68 */ void *mUnk_68;
     /* 6c */ s32 mUnk_6c;
-} Unk0217d364;
+} SelectCup;
 
 // Object behind gSelectRaceRule, and the object its mUnk_20 member points to.
 typedef struct Unk0217d368_20 {
@@ -517,7 +517,7 @@ typedef struct Unk0217d3f4 {
 } Unk0217d3f4;
 
 // Object behind gSelectReturn: 0x828 bytes allocated by InitSelectReturn.
-typedef struct Unk0217d3f8 {
+typedef struct SelectReturn {
     /* 000 */ s32 mUnk_00;
     /* 004 */ s32 mState;
     /* 008 */ s32 mUnk_08;
@@ -529,7 +529,7 @@ typedef struct Unk0217d3f8 {
     /* 81c */ s32 mBg2Offset;
     /* 820 */ s32 mDisplayBitOn;
     /* 824 */ s32 mUnk_824;
-} Unk0217d3f8;
+} SelectReturn;
 
 // Records of 8 bytes: 0x80 of them start an Unk0217d3fc_00, and two are at member 0x10c of Unk0217d404
 // (func_0212a920 copies 6 bytes of a record into one of those).
@@ -690,7 +690,7 @@ extern char gKartFilterString[0x64];
 extern Unk0217d3ec *data_0217d3ec;
 extern TxtSystem *gTxtSystem;
 extern Unk0217d3f4 *data_0217d3f4;
-extern Unk0217d3f8 *gSelectReturn;
+extern SelectReturn *gSelectReturn;
 extern Unk0217d3fc *data_0217d3fc;
 extern Keyboard *gKeyboard;
 extern Unk0217d408 *data_0217d408;
@@ -738,10 +738,10 @@ extern Unk0212c400 *data_0217d07c;
 extern Unk0217d084 data_0217d084;
 extern struct Unk0212d5f8 data_0217d0a0;
 extern Unk0217d32c data_0217d32c;
-extern Unk0217d348 *gRecordVS;
+extern RecordVS *gRecordVS;
 extern Unk0217d34c *data_0217d34c;
 extern Unk0217d360 *data_0217d360;
-extern Unk0217d364 *gSelectCup;
+extern SelectCup *gSelectCup;
 extern u32 data_0217d1bc;
 extern u8 data_0217d1c0[];
 extern u8 data_0217d1c4[];

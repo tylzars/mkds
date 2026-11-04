@@ -6,7 +6,7 @@ typedef struct Ncgr Ncgr;
 typedef struct Nscr Nscr;
 typedef struct Nclr Nclr;
 
-// Object behind the pointer at 0x85c of Unk021ca41c.
+// Object behind the pointer at 0x85c of Emblem.
 typedef struct Unk021ca41c_085c {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02[0x2];
@@ -18,7 +18,7 @@ typedef struct Unk021ca41c_085c {
 } Unk021ca41c_085c;
 
 // Object behind gEmblem, allocated by InitEmblem.
-typedef struct Unk021ca41c {
+typedef struct Emblem {
     /* 0000 */ u8 mUnk_0000[0x404];
     /* 0404 */ u8 mUnk_0404[0x404];
     /* 0808 */ Nclr *mEmblemMONclr;
@@ -70,7 +70,7 @@ typedef struct Unk021ca41c {
     /* 10b4 */ s32 mUnk_10b4;
     /* 10b8 */ s32 mUnk_10b8;
     /* 10bc */ s32 mUnk_10bc;
-} Unk021ca41c;
+} Emblem;
 
 // Block of 20 halfwords that func_020391d4 fills with defaults and func_02038d88 reads.
 typedef struct Unk020391d4 {
@@ -96,6 +96,6 @@ typedef struct Unk020391d4 {
     /* 26 */ u16 mUnk_26;
 } Unk020391d4;
 
-extern Unk021ca41c *gEmblem;
+extern Emblem *gEmblem;
 
 void InitEmblem(void);

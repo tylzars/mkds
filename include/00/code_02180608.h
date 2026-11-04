@@ -9,7 +9,7 @@ typedef struct Unk021b0cd4 {
     /* 0c */ void (*mUnk_0c)(void);
 } Unk021b0cd4;
 
-typedef struct Unk021b4c64 {
+typedef struct WiFiStates {
     /* 00 */ void *mUnk_00;
     /* 04 */ void *mUnk_04;
     /* 08 */ u32 mUnk_08;
@@ -23,9 +23,9 @@ typedef struct Unk021b4c64 {
     /* 30 */ u32 mUnk_30;
     /* 34 */ s32 mUnk_34;
     /* 38 */ u8 pad_38[4];
-} Unk021b4c64;
+} WiFiStates;
 
-extern Unk021b4c64 *gWiFiStates;
+extern WiFiStates *gWiFiStates;
 
 BOOL func_ov000_02180608(void);
 void func_ov000_02180638(s32 arg0);

@@ -12,6 +12,6 @@
 #include "Main/Unknown/code_020b47d8.h"
 #include "Main/Unknown/code_020b6a18.h"
 #include "Main/Unknown/code_0207a880.h"
-#include "Main/Unknown/code_020b502c.h" // Unk02175620
+#include "Main/Unknown/code_020b502c.h" // CourseMap
 
-Unk02175620 *func_020431bc(u32 arg0);
+CourseMap *func_020431bc(u32 arg0);

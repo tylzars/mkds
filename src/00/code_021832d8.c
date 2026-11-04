@@ -46,7 +46,7 @@ void func_ov000_02184670(void) {
     }
     {
         void *p;
-        Unk021b4c74 *g;
+        WiFiVSMatching *g;
         u8 c[3][2] = {{0x78, 0x20}, {0x78, 0x20}, {0x78, 0x20}};
         u8 *w = &c[0][0];
         u8 *t1;
@@ -642,7 +642,7 @@ void func_ov000_021834b0(s32 t) {
     s32 i;
 
     for (i = 0; i < 5; i++) {
-        Unk021b4c74 *p = gWiFiVSMatching;
+        WiFiVSMatching *p = gWiFiVSMatching;
 
         p->mUnk_4c[i] = ((((0x1000 - t) * p->mUnk_58[i][2] + t * p->mUnk_94[i][2]) >> 12) << 10) |
                         ((((0x1000 - t) * p->mUnk_58[i][0] + t * p->mUnk_94[i][0]) >> 12) |

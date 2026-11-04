@@ -21,7 +21,7 @@
 
 void func_020646f0(Kart *a, s32 b) {
     Unk02012f58 *m;
-    Unk02175620 *c;
+    CourseMap *c;
     Vec3 d;
     Vec3 e;
     Vec3 f;

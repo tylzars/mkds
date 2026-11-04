@@ -93,10 +93,10 @@ void func_0202b3f4(void) {
     for (i = 0; i < gWiFiVSCourseSelect->mUnk_0b8; i++) {
         p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_06 = func_020ae4c0(
             1, 0, (s16) (0x60 - (((s16 *) func_0201ea30(p->mUnk_0c, data_usa_021539f4[i].mUnk_06))[1] << 20 >> 20)),
-            (*(struct Unk02174e28 **) &gWiFiVSCourseSelect)->mUnk_13c, 0x3c);
+            (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mUnk_13c, 0x3c);
         p->mUnk_18[n + data_usa_021539f4[i].mUnk_00].mUnk_06 = func_020ae4c0(
             1, 0, (s16) (0x60 - (((s16 *) func_0201ea58(p->mUnk_14, data_usa_021539f4[i].mUnk_00))[1] << 20 >> 20)),
-            (*(struct Unk02174e28 **) &gWiFiVSCourseSelect)->mUnk_13c, 0x3c);
+            (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mUnk_13c, 0x3c);
     }
 }
 
@@ -216,7 +216,7 @@ void func_0202afe4(void) {
 }
 
 s32 func_0202af60(void) {
-    Unk02174e28 *o;
+    WiFiVSCourseSelect *o;
     Unk020f41c4_B *r;
     Unk0217b488 *d;
     s32 i;
@@ -346,7 +346,7 @@ void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
 }
 
 s32 AdvanceWiFiVSCourseSelect(void) {
-    Unk02174e28 *d;
+    WiFiVSCourseSelect *d;
     Unk02174e14_00 *p;
     s32 r = 0;
     s32 i;

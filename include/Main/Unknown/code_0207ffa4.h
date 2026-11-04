@@ -13,7 +13,7 @@
 #include "Main/Unknown/code_0207a880.h"
 #include "Main/Unknown/code_020b502c.h" // Unk02175620_bc
 
-// Two entries of the table at Unk02175620::mUnk_bc (the current one at 0x00 and the previous one at 0x04), a vector at
+// Two entries of the table at CourseMap::mUnk_bc (the current one at 0x00 and the previous one at 0x04), a vector at
 // 0x08, a third entry at 0x14 and a word at 0x18.
 typedef struct Unk0208001c {
     /* 00 */ Unk02175620_bc *mUnk_00;

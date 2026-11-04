@@ -12,7 +12,7 @@ struct Ncgr;
 struct Nclr;
 
 // Object behind gWiFiTopMenu; LocateAndQueueWiFiTopMenu fills 0x20 to 0x30.
-typedef struct Unk021b4c6c {
+typedef struct WiFiTopMenu {
     /* 00 */ s32 mState;
     /* 04 */ u32 mNextState;
     /* 08 */ s32 mUnk_08;
@@ -29,7 +29,7 @@ typedef struct Unk021b4c6c {
     /* 34 */ u8 pad_34[4];
     /* 38 */ void *mUnk_38;
     /* 3c */ void *mUnk_3c;
-} Unk021b4c6c;
+} WiFiTopMenu;
 
 #include "00/code_02180608.h"
 #include "00/unk_021b4000.h"
@@ -45,7 +45,7 @@ extern const u8 data_ov000_021b05c8[];
 // Objects whose layout isn't known yet.
 extern s32 data_ov000_021b05cc[];
 extern Unk021b0cd4 gWiFiTopMenuCallbacks;
-extern Unk021b4c6c *gWiFiTopMenu;
+extern WiFiTopMenu *gWiFiTopMenu;
 
 void RegisterWiFiTopMenuCallbacks(void);
 void func_ov000_02181738(void);

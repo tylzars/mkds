@@ -149,7 +149,7 @@ typedef struct Unk0217b4f8 {
 } Unk0217b4f8;
 
 // Object behind gEmblemChoises, 0x6c bytes (InitEmblemChoises allocates it); func_020ca9e4 calls the function at 0x0c.
-typedef struct Unk0217b438 {
+typedef struct EmblemChoises {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
@@ -167,7 +167,7 @@ typedef struct Unk0217b438 {
     /* 60 */ struct Nclr *mChoisesSBNclr;
     /* 64 */ struct Ncgr *mChoisesSBNcgr;
     /* 68 */ struct Nscr *mChoisesS3Nscr;
-} Unk0217b438;
+} EmblemChoises;
 
 // 16-byte rows of the table behind gGrpconfTbl (CreateMapObject reads the halfwords).
 typedef struct GrpconfTblRow {
@@ -632,7 +632,7 @@ extern struct RaceStartGp *gRaceStartGp;
 extern struct Unk0217b3f0 *data_0217b3f0;
 extern struct Unk0217b3f4 *data_0217b3f4;
 extern s32 data_0217b3f8;
-extern Unk0217b438 *gEmblemChoises;
+extern EmblemChoises *gEmblemChoises;
 extern struct Unk0217b43c *data_0217b43c;
 extern struct Unk0217b4a4 *gCupPicture;
 extern struct Unk0217b4b0 *data_0217b4b0;

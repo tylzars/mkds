@@ -89,7 +89,7 @@ typedef struct Unk021a9b88 {
 } Unk021a9b88;
 
 // Allocated by InitSelectBattleStage and held in gSelectBattleStage.
-typedef struct Unk021a9bf8 {
+typedef struct SelectBattleStage {
     /* 0000 */ s32 mState;
     /* 0004 */ s32 mNextState;
     /* 0008 */ s32 mIndex;
@@ -118,7 +118,7 @@ typedef struct Unk021a9bf8 {
     /* 107c */ void *mUnk_107c;
     /* 1080 */ void *mMenuMessages;
     /* 1084 */ void *mCommonMessages;
-} Unk021a9bf8;
+} SelectBattleStage;
 
 // Object that func_ov001_02180610 allocates and data_ov001_021a99e4 points to.
 typedef struct Unk021a99e4 {
@@ -154,7 +154,7 @@ extern const char *data_ov001_021a9940;
 extern const char *data_ov001_021a9944;
 extern Unk021a99e4 *data_ov001_021a99e4;
 extern u16 data_ov001_021a9ba0;
-extern Unk021a9bf8 *gSelectBattleStage;
+extern SelectBattleStage *gSelectBattleStage;
 // One pair of halfwords of the object behind gOptionEmbremSelect.
 typedef struct Unk021a9bfc_18 {
     /* 00 */ s16 mUnk_00;

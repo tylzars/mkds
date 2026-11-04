@@ -341,7 +341,7 @@ void func_02068494(Kart *a, s32 b, s32 c) {
     Unk02068494 d;
     s32 i;
     BOOL j;
-    Unk02175620 *k;
+    CourseMap *k;
 
     i = a->mForwardSpeed;
     d.mUnk_04 = a->mPos;

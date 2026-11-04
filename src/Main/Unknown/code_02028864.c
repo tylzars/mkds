@@ -39,7 +39,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     Unk02174e50_24 *p;
     Unk02174e50_24 e;
     Unk02174e50_24 f;
-    Unk02174e18 *g;
+    SelectKart *g;
     s32 i;
     s32 m;
     s32 n;

@@ -52,7 +52,7 @@ typedef struct Unk02029930 {
 extern Unk02029930 *data_02174e1c;
 
 // 0x118-byte object that gSelectKart points to.
-typedef struct Unk02174e18 {
+typedef struct SelectKart {
     /* 000 */ u8 mUnk_000[0x24];
     /* 024 */ Unk02174e50_24 mUnk_024;
     /* 040 */ u8 mUnk_040[8];
@@ -78,9 +78,9 @@ typedef struct Unk02174e18 {
     /* 110 */ s32 mUnk_110;
     /* 114 */ u16 mUnk_114;
     /* 116 */ u8 mUnk_116[2];
-} Unk02174e18;
+} SelectKart;
 
-extern Unk02174e18 *gSelectKart;
+extern SelectKart *gSelectKart;
 
 // Four words at 0x04 of Unk02174e3c_4c.
 typedef struct Unk02174e3c_4c_04 {
@@ -246,7 +246,7 @@ extern Unk02174e64 *data_02174e64;
 
 // Objects whose layout isn't known yet.
 extern struct Unk0202a658 *data_02174e24;
-extern struct Unk02174e28 *gWiFiVSCourseSelect;
+extern struct WiFiVSCourseSelect *gWiFiVSCourseSelect;
 // 0x20 bytes, then the word at 0x44 the code addresses 0xc past.
 typedef struct Unk02174e40_24 {
     /* 00 */ u8 mUnk_00[0x20];

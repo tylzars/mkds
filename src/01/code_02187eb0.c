@@ -82,7 +82,7 @@ s32 func_ov001_02187f38(Unk02188950 *a) {
 }
 
 Unk02042044 *func_ov001_02187ee8(Unk02188950 *a) {
-    Unk02175620 *g = gCourseMap;
+    CourseMap *g = gCourseMap;
     s32 n;
 
     if (a->mUnk_148 < g->mUnk_0c) {
@@ -96,7 +96,7 @@ Unk02042044 *func_ov001_02187ee8(Unk02188950 *a) {
 }
 
 void func_ov001_02187eb0(Unk02188950 *b) {
-    Unk02175620 *g;
+    CourseMap *g;
     Unk02175620_08 *e;
     s32 a;
     s32 n;

@@ -346,7 +346,7 @@ s32 func_020411e4(Vec3 *a) {
 
 u16 func_02041170(u32 a) {
     u16 r;
-    Unk02175620 *p;
+    CourseMap *p;
 
     if (data_021759c0->mMode == 2) {
         p = gCourseMap;

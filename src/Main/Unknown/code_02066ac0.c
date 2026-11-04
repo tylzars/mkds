@@ -274,7 +274,7 @@ void func_02067488(Kart *a) {
 
 void func_02066fe0(Kart *a) {
     Unk021759c0 *p;
-    Unk02175620 *q;
+    CourseMap *q;
     Unk021759c0_70 *b;
     u32 c;
     s32 d;

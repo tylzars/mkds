@@ -32,7 +32,7 @@ const u8 gSelectBattleStageSTableIndices[6][3] = {{0, 12, 6}, {1, 13, 7},  {2, 1
 const SelectBattleStageNscrRect gSelectBattleStageNscrRects[] = {
     {2, 15, 7, 16}, {16, 29, 7, 16}, {2, 15, 7, 16}, {16, 29, 7, 16}, {2, 15, 7, 16}, {16, 29, 7, 16},
 };
-Unk021a9bf8 *gSelectBattleStage;
+SelectBattleStage *gSelectBattleStage;
 
 void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
     s32 i, j;
