@@ -3,6 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_020b4000.h" // Ncgr, Nclr
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk0201ea30
+#include "Main/Unknown/code_020302a0.h"
 
 // Object behind data_02174e54, 0x40 bytes.
 typedef struct Unk02174e54 {
@@ -28,5 +29,3 @@ void func_0203003c(s32 a);
 void func_02030200(void);
 s32 func_0203023c(void);
 s32 func_02030274(s32 a, s32 b);
-void func_020302a0(void);
-void func_020302f0(u32 a, u32 b, u32 c, u32 d);

@@ -128,13 +128,13 @@ BOOL func_0200806c(Unk020072c0_buf *a, void *b, u16 c, void *d) {
     return TRUE;
 }
 
-// non-matching: same size; 72 lines differ; first: original `str r0, [sp, #0]`, ours `adds r5, r0, #0`
 u32 func_020080e8(Unk0200806c_b *a, Unk020082b4 *b) {
     u32 v1;
-    u32 v2;
     u16 v3;
     u8 i;
     Unk020082b4_0c *v4;
+    u16 *c;
+    c = a->mUnk_0c;
     v1 = 0;
     if (b == NULL) {
         return 0;
@@ -143,16 +143,15 @@ u32 func_020080e8(Unk0200806c_b *a, Unk020082b4 *b) {
         a->mUnk_00[i] = v1;
         v1 += b->mUnk_0c[i].mUnk_08;
     }
-    a->mUnk_0c[0] = 0;
+    c[0] = 0;
     for (i = 0; i < 3; i++) {
         v4 = &b->mUnk_0c[i];
-        v2 = v4->mUnk_08;
-        v3 = a->mUnk_0c[i] + (u16) ((v2 + data_0216fdac->mUnk_1318 - 1) / data_0216fdac->mUnk_1318);
-        if (func_02007f38(i, v4->mUnk_04, v2) == 0) {
+        v3 = c[i] + (u16) ((v4->mUnk_08 + data_0216fdac->mUnk_1318 - 1) / data_0216fdac->mUnk_1318);
+        if (func_02007f38(i, v4->mUnk_04, v4->mUnk_08) == 0) {
             return 0;
         }
         if (i < 2) {
-            a->mUnk_0c[i + 1] = v3;
+            c[i + 1] = v3;
         } else {
             a->mUnk_0c[3] = v3;
         }
