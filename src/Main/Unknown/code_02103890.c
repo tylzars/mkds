@@ -262,45 +262,32 @@ void func_02104118(void) {
     func_02104144(data_0217c64c != 0 ? (Unk0210340c *) data_0217c664 : (Unk0210340c *) data_0217c684);
 }
 
-// non-matching: the long-lived m5 and the high byte x get swapped registers
-// (mine m5=ip / x=r0, original m5=r0 / x=ip); 30 words from +0x2c, all register renames
 u8 func_02104000(s32 a, s32 b) {
+    u8 y;
     s32 m5;
     s32 m3;
-    u8 m;
-    u8 v;
     u8 x;
 
     m3 = (1 << (a + 1)) | (1 << (a + 2)) | (1 << (a + 3));
     m5 = m3 | (1 << a) | (1 << (a + 4));
-    x = 0;
+    y = 0;
     if (b > 1) {
-        m = m3 >> 3;
-        v = data_0217c65c[b - 2];
-        x |= v & m;
-        data_0217c65c[b - 2] = v | m;
+        y |= data_0217c65c[b - 2] & (u8) (m3 >> 3);
+        data_0217c65c[b - 2] |= (u8) (m3 >> 3);
     }
     if (b > 0) {
-        m = m5 >> 3;
-        v = data_0217c65c[b - 1];
-        x |= v & m;
-        data_0217c65c[b - 1] = v | m;
+        y |= data_0217c65c[b - 1] & (u8) (m5 >> 3);
+        data_0217c65c[b - 1] |= (u8) (m5 >> 3);
     }
-    m = m5 >> 3;
-    v = data_0217c65c[b];
-    x |= v & m;
-    data_0217c65c[b] = v | m;
+    x = y | (data_0217c65c[b] & (u8) (m5 >> 3));
+    data_0217c65c[b] |= (u8) (m5 >> 3);
     if (b < 7) {
-        m = m5 >> 3;
-        v = data_0217c65c[b + 1];
-        x |= v & m;
-        data_0217c65c[b + 1] = v | m;
+        x |= data_0217c65c[b + 1] & (u8) (m5 >> 3);
+        data_0217c65c[b + 1] |= (u8) (m5 >> 3);
     }
     if (b < 6) {
-        m = m3 >> 3;
-        v = data_0217c65c[b + 2];
-        x |= v & m;
-        data_0217c65c[b + 2] = v | m;
+        x |= data_0217c65c[b + 2] & (u8) (m3 >> 3);
+        data_0217c65c[b + 2] |= (u8) (m3 >> 3);
     }
     return x;
 }

@@ -213,8 +213,6 @@ static inline void func_02076528_inline(Vec3 *v, s32 k) {
     v->z = (s32) (((s64) v->z * k) >> 12);
 }
 
-// non-matching: 0x528 bytes against 0x534: the original keeps the second argument in r4, the first in r5 and the stack
-// offset 0xcd0 product in r6 (ours r5, r6, r4) and the three scaled components follow different load order
 void func_02076528(Unk02061808 *a, Unk0206bcb0 *b) {
     Vec3 v = b->mUnk_80;
     Vec3 g;
@@ -227,6 +225,7 @@ void func_02076528(Unk02061808 *a, Unk0206bcb0 *b) {
     s32 k;
     s32 t;
     s32 n;
+    Vec3 *p;
 
     s = (s32) (((s64) b->mUnk_2bc * 0xcd0) >> 12);
     if (a->mUnk_258 == 0) {
@@ -256,7 +255,8 @@ void func_02076528(Unk02061808 *a, Unk0206bcb0 *b) {
     if (a->mUnk_060 > a->mUnk_064) {
         k = 0xcd;
     }
-    a->mUnk_060 = a->mUnk_060 + (s32) (((s64) (a->mUnk_064 - a->mUnk_060) * k + 0x800) >> 12);
+    t = a->mUnk_064 - a->mUnk_060;
+    a->mUnk_060 = a->mUnk_060 + (s32) (((s64) t * k + 0x800) >> 12);
     a->mUnk_068 = data_0215d4b4[((u16) a->mUnk_060 >> 4) * 2];
     a->mUnk_06a = data_0215d4b4[((u16) a->mUnk_060 >> 4) * 2 + 1];
     if (b->mUnk_48 & 0x10000) {
@@ -280,18 +280,19 @@ void func_02076528(Unk02061808 *a, Unk0206bcb0 *b) {
         }
     }
     func_020760ec(a, b, &u);
+    p = &b->mUnk_120;
     t = 0;
     if (b->mUnk_44 & 8) {
         t = data_usa_021656c4;
         if (b->mUnk_2c4 > 0) {
-            t = t * -1;
+            t *= -1;
         }
     }
     a->mUnk_16c = a->mUnk_16c + (s32) (((s64) (t - a->mUnk_16c) * 0xcd + 0x800) >> 12);
     n = a->mUnk_16c;
-    a->mUnk_188.x = (s32) (((s64) b->mUnk_120.x * n) >> 12);
-    a->mUnk_188.y = (s32) (((s64) b->mUnk_120.y * n) >> 12);
-    a->mUnk_188.z = (s32) (((s64) b->mUnk_120.z * n) >> 12);
+    a->mUnk_188.x = (s32) (((s64) p->x * n) >> 12);
+    a->mUnk_188.y = (s32) (((s64) p->y * n) >> 12);
+    a->mUnk_188.z = (s32) (((s64) p->z * n) >> 12);
     if (b->mUnk_48 & 0x40000000) {
         func_02063b30(b, &q);
     } else {
