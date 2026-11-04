@@ -41,8 +41,8 @@ typedef struct Unk0205b504 {
 void func_0205b0f4(void);
 void func_0205b32c(void);
 void func_0205b504(u32 a, Unk0205b504 *b, u32 c, u32 d);
-void func_0205b6bc(u32 a, Unk0205b504 *b);
-void func_0205b778(u32 a, Unk0205b504 *b);
+void func_0205b6bc(u32 a, Unk0205b504 *b, u32 c);
+void func_0205b778(u32 a, Unk0205b504 *b, u32 c);
 void func_0205b824(const u64 *a, s32 b);
 s32 func_0205b954(s32 a);
 Unk0217aa14_104 *func_0205b978(s32 a, u32 b);

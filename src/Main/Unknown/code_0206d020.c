@@ -264,9 +264,6 @@ void func_0206d578(Unk0206bcb0 *p) {
     }
 }
 
-// non-matching: same size (0x430); registers and scheduling only: the first product of (a * t >> 12) * scale sits in r2
-// (original r1) with scale in r5/r4 swapped, and the three q->mUnk_244 products with dot are ordered x, z, y in other
-// registers from +0x2d8, with the 0xaab/0x800 rounding product placed after them
 void func_0206d7c8(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v, s32 c, Vec3 *v1) {
     s32 a;
     s32 b;
@@ -289,7 +286,7 @@ void func_0206d7c8(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v, s32 c, Vec3 *v
     b = q->mUnk_2cc->mUnk_0c + q->mUnk_2d0[1];
     v2 = p->mUnk_2a0;
     if (p->mUnk_7c & 0x600) {
-        if ((float) v2 > 4.8828128e-05f) {
+        if ((float) v2 > 4.8828125e-05f) {
             v2 = 0x333;
         }
     } else if (v2 > 0x800) {
@@ -317,8 +314,8 @@ void func_0206d7c8(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v, s32 c, Vec3 *v
     if (t > 0x5000) {
         t = 0x5000;
     }
-    t = (s32) (((s64) a * t) >> 12);
-    v2 = (s32) (((s64) t * v2) >> 12);
+    b = (s32) (((s64) a * t) >> 12);
+    v2 = (s32) (((s64) b * v2) >> 12);
     d = q->mUnk_50;
     if (q->mUnk_44 & 0x100) {
         d.x = -d.x;
@@ -353,12 +350,12 @@ void func_0206d7c8(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v, s32 c, Vec3 *v
         m.y = 0;
     }
     v3 = Vec3Dot(&q->mUnk_244, &m);
-    v6 = (s32) (((s64) q->mUnk_244.x * v3) >> 12);
-    v7 = (s32) (((s64) q->mUnk_244.z * v3) >> 12);
-    v8 = (s32) (((s64) q->mUnk_244.y * v3) >> 12);
-    q->mUnk_2d8.x += m.x - v6;
-    q->mUnk_2d8.z += m.z - v7;
-    q->mUnk_260 += m.y - v8;
+    v6 = m.x - (s32) (((s64) q->mUnk_244.x * v3) >> 12);
+    v8 = m.y - (s32) (((s64) q->mUnk_244.y * v3) >> 12);
+    v7 = m.z - (s32) (((s64) q->mUnk_244.z * v3) >> 12);
+    q->mUnk_2d8.x += v6;
+    q->mUnk_2d8.z += v7;
+    q->mUnk_260 += v8;
     v2 = (s32) (((s64) v2 * 0xaab + 0x800) >> 12);
     if (v2 > 0x1000) {
         v2 = 0x1000;
@@ -377,12 +374,12 @@ void func_0206d7c8(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v, s32 c, Vec3 *v
     if (t <= 0x3000) {
         return;
     }
-    q->mUnk_4c |= 0x2000000;
     if (v2 > 0) {
         t = v2;
     } else {
         t = -v2;
     }
+    q->mUnk_4c |= 0x2000000;
     if (t <= q->mUnk_594) {
         return;
     }

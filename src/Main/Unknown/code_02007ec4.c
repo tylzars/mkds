@@ -66,20 +66,18 @@ u32 func_02007f38(u32 a, u32 b, u32 c) {
     return 0;
 }
 
-// non-matching: 0x84 bytes, original 0x7c; 43 lines differ; first: original `ldr r0, [pc, #96]`, ours `ldr r0, [pc,
-// #104]`
 u32 func_02007ff0(u32 a, u32 b, u32 c) {
     switch (data_02152bc0[a]) {
         case 2:
             if (b >= 0x027ffe00 && b + c <= 0x027fff60) {
                 return 1;
             }
-            return 0;
+            break;
         case 0:
             if (b >= 0x02000000 && b + c <= 0x022c0000) {
                 return 1;
             }
-            return 0;
+            break;
         case 1:
             if (b >= 0x022c0000 && b + c <= 0x02300000) {
                 return 1;
@@ -87,10 +85,11 @@ u32 func_02007ff0(u32 a, u32 b, u32 c) {
             if (b >= 0x02000000 && b + c <= 0x02300000) {
                 return 1;
             }
-            return 0;
+            break;
         default:
             return 0;
     }
+    return 0;
 }
 
 static inline struct Unk0216fdac *func_0200806c_inline(void) {
@@ -159,11 +158,11 @@ u32 func_020080e8(Unk0200806c_b *a, Unk020082b4 *b) {
     return 1;
 }
 
-// non-matching: 0x128 bytes, original 0x12c; 86 lines differ; first: original `adds r4, r3, #0`, ours `adds r6, r3, #0`
 void func_02008188(Unk02008188 *a, u32 *b, Unk020082b4_0c *c, u32 *d) {
     u32 v1;
     u32 v2;
     u32 *v3;
+    u32 v4;
     switch (*b) {
         case 0:
             v3 = a->mUnk_028;
@@ -180,16 +179,17 @@ void func_02008188(Unk02008188 *a, u32 *b, Unk020082b4_0c *c, u32 *d) {
             v1 = 0;
             v2 = 0;
             v3 = a->mUnk_038;
+            v4 = a->mUnk_038[0] + v3[1];
             if (a->mUnk_038[0] >= 0x02000000 && a->mUnk_038[0] < 0x023fe800) {
-                if (a->mUnk_038[0] + v3[1] > 0x02300000) {
-                    if (a->mUnk_038[0] + v3[1] < 0x023fe800 && v3[1] <= 0x40000) {
+                if (v4 > 0x02300000) {
+                    if (v4 < 0x023fe800 && v3[1] <= 0x40000) {
                         v2 = 1;
                     } else {
                         v1 = 1;
                     }
                 }
             } else if (a->mUnk_038[0] >= 0x037f8000 && a->mUnk_038[0] < 0x0380f000) {
-                if (a->mUnk_038[0] + v3[1] <= 0x0380f000) {
+                if (v4 <= 0x0380f000) {
                     v2 = 1;
                 } else {
                     v1 = 1;

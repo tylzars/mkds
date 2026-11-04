@@ -346,21 +346,19 @@ u8 func_0205db28(void) {
     return (u8) ((data_021759c0->mUnk_60 - 1) % 4);
 }
 
-// non-matching: the original uses three separate zero registers (r1, r2, r4) for the stores and counters and keeps the
-// first pointer in r0 with a 4-byte-smaller frame, here one zero register and one stack word more; 0xc bytes shorter.
 void func_0205db50(void) {
     Unk0217aa1c *p;
+    s32 i;
+    s32 j;
+    s32 k;
     Unk0217aa1c_00 *e;
-    Unk0217aa1c_144_00 *f;
-    s32 i, j;
     BOOL x;
+    Unk0217aa1c_144_00 *f;
 
     p = data_0217aa1c;
-    e = (Unk0217aa1c_00 *) p;
-    f = (Unk0217aa1c_144_00 *) p->mUnk_144;
-    x = FALSE;
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 8; j++) {
+            e = &p->mUnk_000[i][j];
             e->mUnk_03 = 0;
             e->mUnk_04 = 0;
             e->mUnk_00 = 0;
@@ -369,23 +367,21 @@ void func_0205db50(void) {
             e->mUnk_08 = 0;
             e->mUnk_09 = 0;
             e->mUnk_06 = 0;
-            e++;
         }
-        for (j = 0; j < 2; j++) {
+        for (k = 0; k < 2; k++) {
+            f = &p->mUnk_144[i].mUnk_00[k];
             f->mUnk_00 = 0;
             f->mUnk_02 = 0;
-            f++;
         }
     }
-    if (data_0217aa00 != NULL && data_0217aa00->mUnk_0000 != 0) {
-        if (data_0217aa00->mUnk_0004 != 13) {
-            x = TRUE;
-        }
+    x = FALSE;
+    if ((data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) != 0 && data_0217aa00->mUnk_0004 != 13) {
+        x = TRUE;
     }
-    if (x == FALSE) {
-        data_0217aa1c->mUnk_164_0 = 0;
-    } else {
+    if (x != FALSE) {
         data_0217aa1c->mUnk_164_0 = 1;
+    } else {
+        data_0217aa1c->mUnk_164_0 = 0;
     }
     p->mUnk_140 = 0;
 }

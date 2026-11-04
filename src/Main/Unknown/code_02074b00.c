@@ -20,17 +20,11 @@
 #include "code_02147cd8.h"
 
 static inline void func_02074b00_inline(Vec3 *v, const Vec3 *u, s32 s) {
-    s32 x = u->x;
-    s32 y = u->y;
-    s32 z = u->z;
-    v->x = (s32) (((s64) x * s) >> 12);
-    v->y = (s32) (((s64) y * s) >> 12);
-    v->z = (s32) (((s64) z * s) >> 12);
+    v->x = (s32) (((s64) u->x * s) >> 12);
+    v->y = (s32) (((s64) u->y * s) >> 12);
+    v->z = (s32) (((s64) u->z * s) >> 12);
 }
 
-// non-matching: same size (0x36c), 42 words differ in register choice and order: the original loads the scale into ip
-// before the three components (r2, r1, r0), the 0xfae scaling uses ip/lr/r7 where this uses lr/r7/ip, and the
-// interpolation at the end loads mUnk_240 into ip and subtracts both differences before the first multiply
 void func_02074b00(Unk02061808 *p) {
     Unk0206bcb0 *o = func_0207a974(p->mUnk_210);
     Unk020748b8_218 *q = p->mUnk_218;
@@ -80,13 +74,18 @@ void func_02074b00(Unk02061808 *p) {
     func_02062254(&d);
     q = p->mUnk_218;
     if (q->mUnk_3c != 0) {
+        s32 r;
+        enum { K0 } t = p->mUnk_240;
         s32 x0 = q->mUnk_32;
-        s32 x1 = q->mUnk_38;
         s32 y0 = q->mUnk_34;
         s32 y1 = q->mUnk_3a;
-        s32 t = p->mUnk_240;
-        p->mUnk_068 = x0 + (s32) (((s64) (x1 - x0) * t) >> 12);
-        p->mUnk_06a = y0 + (s32) (((s64) (y1 - y0) * t) >> 12);
+        s32 x1 = q->mUnk_38;
+        s32 v1 = x1 - x0;
+        s32 v2 = y1 - y0;
+
+        r = ((s64) v2 * t) >> 12;
+        p->mUnk_068 = x0 + (s32) (((s64) v1 * t) >> 12);
+        p->mUnk_06a = y0 + (s32) r;
         p->mUnk_240 += q->mUnk_3c;
         if (p->mUnk_240 > 0x1000) {
             p->mUnk_240 = 0x1000;

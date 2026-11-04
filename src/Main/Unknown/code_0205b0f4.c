@@ -155,7 +155,7 @@ void func_0205b824(const u64 *a, s32 b) {
     data_0217aa14->mUnk_014[b].mUnk_34 = n;
 }
 
-void func_0205b778(u32 a, Unk0205b504 *b) {
+void func_0205b778(u32 a, Unk0205b504 *b, u32 c) {
     Unk0217aa14 *p;
     Unk0217aa14_104 *e;
     u8 *s;
@@ -183,7 +183,7 @@ void func_0205b778(u32 a, Unk0205b504 *b) {
     MemCopy(s, e, n);
 }
 
-void func_0205b6bc(u32 a, Unk0205b504 *b) {
+void func_0205b6bc(u32 a, Unk0205b504 *b, u32 c) {
     s32 t;
     Unk0217aa14 *p;
     s16 x;
@@ -215,8 +215,6 @@ void func_0205b6bc(u32 a, Unk0205b504 *b) {
     data_0217aa14->mUnk_736 += (s16) ((t + 0x800) >> 12);
 }
 
-// non-matching: the original also pushes r7 and a stack pad (index in r7, 0x1b8 bytes); here the same code uses r5 and
-// lr and is 0x18c bytes.
 void func_0205b504(u32 a, Unk0205b504 *b, u32 c, u32 d) {
     u32 v1;
     Unk0217aa14 *p;
@@ -237,7 +235,7 @@ void func_0205b504(u32 a, Unk0205b504 *b, u32 c, u32 d) {
     p->mUnk_740[v1] = 0;
     data_0217aa14->mUnk_74a[b->mUnk_00_0] = b->mUnk_02_0;
     data_0217aa14->mUnk_74e[b->mUnk_00_0] = b->mUnk_01;
-    switch (b->mUnk_00_4) {
+    switch (((volatile Unk0205b504 *) b)->mUnk_00_4) {
         case 0:
             m = &b->mUnk_04;
             i = b->mUnk_00_0;
@@ -261,10 +259,10 @@ void func_0205b504(u32 a, Unk0205b504 *b, u32 c, u32 d) {
             data_0217aa14->mUnk_0fa = data_0217aa14->mUnk_0fa | (1 << b->mUnk_00_0);
             break;
         case 2:
-            func_0205b6bc(a, b);
+            func_0205b6bc(a, b, c);
             break;
         case 3:
-            func_0205b778(a, b);
+            func_0205b778(a, b, c);
             break;
         case 4:
         case 5:
