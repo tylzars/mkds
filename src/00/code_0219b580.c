@@ -33,7 +33,7 @@
 #include "00/code_0219c39c.h"
 #include "00/code_0219d000.h"
 #include "00/unk_021b4000.h"
-#include "00/code_02185984.h"
+#include "00/code_02185954.h"
 #include "03/code_021b94b8.h"
 #include "00/code_021a369c.h"
 #include "00/code_021a2ccc.h"

@@ -1,6 +1,6 @@
 #include "00/code_021857b8.h"
-#include "Main/Unknown/code_02036c5c.h"
 
+#include "Main/Unknown/code_02036c5c.h"
 #include "00/code_02180608.h"
 #include "00/code_02182fdc.h"
 #include "code_02148950.h"
@@ -12,6 +12,15 @@
 #include "registers.h"
 #include "code_0200e77c.h"
 #include "01/code_021956dc.h"
+#include "Main/Unknown/code_02036bec.h"
+#include "Main/Unknown/code_02036820.h"
+
+void func_ov000_0218592c(void *a) {
+    data_ov000_021b4c8c = HeapAlloc(a, 8);
+    data_ov000_021b4c8c->mUnk_00 = 0;
+    data_ov000_021b4c8c->mUnk_04 = 0;
+    func_02036f10(0x1e);
+}
 
 void func_ov000_02185920(void) {
     data_ov000_021b4c8c = NULL;

@@ -1,8 +1,19 @@
-#include "00/code_02188ec0.h"
 #include "00/code_021894e4.h"
+
+#include "00/code_02188ec0.h"
 #include "00/unk_021b0000.h"
 #include "00/unk_021b2000.h"
 #include "code_0214d018.h"
+#include "code_02139f70.h"
+
+u32 func_ov000_02189714(Unk02188ee0 *a) {
+    int v1;
+    v1 = strncmp((const char *) a->mUnk_0c, data_ov000_021b06f0, 8);
+    if (v1 == 0) {
+        return 8;
+    }
+    return 0;
+}
 
 u8 func_ov000_021896c4(Unk02188ec0 *v1) {
     u8 n;

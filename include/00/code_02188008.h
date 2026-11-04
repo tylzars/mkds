@@ -1,9 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02187490.h"
-#include "00/code_021884e4.h"
-#include "00/code_021874ec.h"
+#include "00/code_021884d8.h"
+#include "00/code_02187484.h"
 
 // Element of the table at 0x300 of an Unk02188408.
 typedef struct Unk02188408Entry24 {

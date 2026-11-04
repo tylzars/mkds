@@ -1,18 +1,18 @@
 #pragma once
 
 #include "types.h"
+
+// Object behind data_ov000_021b4c90; the bytes at 0x3bc are passed to func_0200ed34 and func_0200ecc4.
+typedef struct Unk021b4c90 {
+    /* 000 */ u8 pad_000[4];
+    /* 004 */ s32 mUnk_004;
+    /* 008 */ u8 pad_008[0x3b4];
+    /* 3bc */ u8 mUnk_3bc[4];
+} Unk021b4c90;
+
 #include "code_0200db4c.h"
-#include "code_0200fd1c.h" // Unk0200fddc
-#include "00/unk_021b1000.h"
 #include "00/code_02186628.h"
-#include "code_02151868.h"
-#include "code_021519d4.h"
-#include "00/code_02186a9c.h"
-#include "00/code_021acef8.h"
-#include "00/code_021adbac.h"
 #include "00/code_02186d04.h"
-#include "00/code_021a6abc.h"
-#include "00/code_0218a67c.h"
 
 // Written into Unk02185984 at 0x1cc; mUnk_24 and mUnk_28 allocate and release the 0x13e0 bytes of the object and the
 // buffers.
@@ -65,12 +65,20 @@ typedef struct Unk021b4c94 {
     /* 10 */ u16 mUnk_10;
 } Unk021b4c94;
 
+#include "code_0200fd1c.h" // Unk0200fddc
+#include "00/unk_021b1000.h"
+#include "code_02151868.h"
+#include "code_021519d4.h"
+#include "00/code_02186a9c.h"
+#include "00/code_021acef8.h"
+#include "00/code_021adbac.h"
+#include "00/code_021a6abc.h"
+#include "00/code_0218a67c.h"
+
 extern Unk02185984 *data_ov000_021b4c90;
 extern Unk021b4c94 data_ov000_021b4c94;
 
-// Declared here until the code that defines them is decompiled.
 void func_ov000_02185954(s32 a);
-
 u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry *d, s32 e, s32 f);
 s32 func_ov000_02185d54(void);
 s32 func_ov000_02185ef4(void);

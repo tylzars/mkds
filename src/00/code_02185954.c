@@ -1,4 +1,10 @@
-#include "00/code_02185984.h"
+#include "00/code_02185954.h"
+
+#include "00/code_02182fdc.h"
+#include "code_0200e77c.h"
+#include "00/code_021857b8.h"
+#include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02036bec.h"
 #include "00/unk_021b1000.h"
 #include "00/code_02186a9c.h"
 #include "00/code_021acef8.h"
@@ -11,7 +17,6 @@
 #include "00/code_021a6000.h"
 #include "code_0200d118.h"
 #include "code_0200db4c.h"
-#include "code_0200e77c.h"
 #include "code_0200f5ac.h"
 #include "code_0200fc8c.h"
 #include "code_0200fd1c.h"
@@ -439,4 +444,10 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
         return 8;
     }
     return 0;
+}
+
+void func_ov000_02185954(s32 a) {
+    func_0200ed34(((Unk021b4c90 *) data_ov000_021b4c90)->mUnk_3bc);
+    ((Unk021b4c90 *) data_ov000_021b4c90)->mUnk_004 = a;
+    func_0200ecc4(((Unk021b4c90 *) data_ov000_021b4c90)->mUnk_3bc);
 }

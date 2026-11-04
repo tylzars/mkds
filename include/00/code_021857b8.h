@@ -19,3 +19,4 @@ void func_ov000_021857e0(void);
 void func_ov000_02185818(void);
 void func_ov000_0218583c(void);
 void func_ov000_02185920(void);
+void func_ov000_0218592c(void *a);
