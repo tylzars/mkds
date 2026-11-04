@@ -11,3 +11,5 @@ void func_ov003_021cb6b0(void);
 void func_ov003_021cb6c8(void);
 void func_ov003_021cb6ec(void);
 void func_ov003_021cb71c(void);
+void func_ov003_021cb758(void);
+void func_ov003_021cb7fc(void);

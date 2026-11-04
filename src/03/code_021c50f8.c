@@ -2,7 +2,7 @@
 
 #include "03/code_021c5000.h"
 #include "03/code_021c5528.h"
-#include "03/code_021cb758.h"
+#include "03/code_021cb4d0.h"
 #include "03/code_021cd000.h"
 #include "03/code_021be000.h"
 #include "03/code_021bf000.h"
@@ -15,8 +15,8 @@
 #include "03/code_021bf098.h"
 #include "03/code_021c209c.h"
 #include "03/code_021c6000.h"
-#include "03/code_021c5c68.h"
-#include "03/code_021ccd18.h"
+#include "03/code_021c5724.h"
+#include "03/code_021cca74.h"
 #include "03/code_021ce000.h"
 #include "03/code_021d1000.h"
 #include "03/unk_021d7000.h"
@@ -34,6 +34,36 @@
 #include "03/code_021d3488.h"
 #include "03/code_021c2000.h"
 #include "03/code_021bf4dc.h"
+#include "03/code_021d1440.h"
+#include "03/unk_021d5000.h"
+#include "03/code_021cd2e0.h"
+#include "03/code_021bf810.h"
+#include "03/code_021be610.h"
+#include "code_0212df7c.h"
+
+void func_ov003_021c54dc(void) {
+    data_ov003_021da1e0 = 0;
+    func_ov003_021c5458();
+    func_ov003_021bf854();
+    func_ov003_021bf43c(0x82, -1, 0);
+    func_ov003_021bf5ec(2);
+    func_ov003_021bf578(0x67);
+    func_ov003_021beef8(0);
+    func_ov003_021c1fc8();
+    func_ov003_021cdc10(0xb);
+    func_ov003_021c212c(func_ov003_021c541c);
+}
+
+void func_ov003_021c5458(void) {
+    func_ov003_021bf620(data_ov003_021d71d0, MemCopyWordsToG2Bg2CntBits2To5Address);
+    func_ov003_021bf620(data_ov003_021d71e8, func_0214c160);
+    func_ov003_021bf620(data_ov003_021d7200, MemCopyHalfwordsToG2Bg2CntBits8To12Address);
+    *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 3;
+    *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & ~3) | 3;
+    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 3;
+    *(vu16 *) 0x400000a = (*(vu16 *) 0x400000a & ~3) | 3;
+    *(vu16 *) 0x400000c = (*(vu16 *) 0x400000c & ~3) | 3;
+}
 
 void func_ov003_021c541c(void) {
     func_ov003_021d1ee0(2, 1, 1, 8);

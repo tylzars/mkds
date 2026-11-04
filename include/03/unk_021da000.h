@@ -4,7 +4,7 @@
 #include "03/code_021d1fd0.h"
 #include "03/code_021c209c.h"
 #include "03/code_021c4ad4.h"
-#include "03/code_021d079c.h"
+#include "03/code_021cfa68.h"
 #include "types.h"
 #include "03/code_021d1770.h" // Unk021d1770
 #include "03/code_021d1d88.h"

@@ -5,7 +5,7 @@
 #include "03/code_021c99a8.h"
 #include "03/code_021ca54c.h"
 #include "03/code_021cb000.h"
-#include "03/code_021cb758.h"
+#include "03/code_021cb4d0.h"
 #include "03/code_021cef90.h"
 #include "03/code_021d1dd0.h"
 #include "03/unk_021da000.h"
@@ -34,7 +34,7 @@
 #include "03/unk_021d5000.h"
 #include "03/code_021bf410.h"
 #include "03/code_021b94b8.h"
-#include "03/code_021cd4ac.h"
+#include "03/code_021cd2e0.h"
 #include "03/code_021bf810.h"
 #include "03/code_021be610.h"
 

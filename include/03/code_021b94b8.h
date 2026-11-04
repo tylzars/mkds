@@ -174,7 +174,8 @@ void func_ov003_021ba734(Unk021ba734 *list, Unk021ba778Src *src, s32 count);
 void func_ov003_021ba744(Unk021ba1b0 *request, Unk021ba778Src *rec);
 void func_ov003_021ba778(Unk021ba778Src *src, Unk021ba778Dst *dst);
 
+#include "03/code_021b7000.h"
+#include "03/unk_021d8000.h"
+#include "Main/Unknown/code_02133000.h"
 #include "03/code_021b7bb4.h"
-#include "03/code_021b9078.h"
-#include "03/code_021b9278.h"
 #include "03/code_021ba818.h"

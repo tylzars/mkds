@@ -1,5 +1,6 @@
 #include "03/code_021cea3c.h"
 
+#include "03/unk_021d6000.h"
 #include "03/code_021ce5b8.h"
 #include "03/code_021d197c.h"
 #include "03/unk_021da000.h"
@@ -10,7 +11,6 @@
 #include "03/code_021d1fd0.h"
 #include "03/code_021d27d8.h"
 #include "03/code_021d3488.h"
-#include "03/unk_021d6000.h"
 #include "code_0214a348.h"
 #include "registers.h"
 #include "03/code_021d1790.h"

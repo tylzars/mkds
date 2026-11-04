@@ -13,6 +13,9 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_0203c5e4.h"
 #include "Main/Unknown/code_02073eb8.h"
+#include "03/code_021b7000.h"
+#include "03/unk_021d8000.h"
+#include "Main/Unknown/code_02133000.h"
 #include "03/code_021b7bb4.h"
 
 void func_021031ac(Unk02102674 *p) {
