@@ -168,6 +168,7 @@ void func_0200b344(Unk021425e8 *a) {
 void func_0200b200(void) {
     Unk0200c16c v1;
     Unk0200c12c v2;
+    u8 *p;
     switch (data_0216fde8->mUnk_5f0e) {
         case 5:
             v2.mUnk_00 = data_0216fde8->mUnk_5f08;
@@ -175,7 +176,9 @@ void func_0200b200(void) {
             v2.mUnk_1c = data_0216fde8->mUnk_5f0c;
             MemCopy(data_0216fde8->mUnk_05c4, v2.mUnk_04, 0x16);
             v1.mUnk_00 = 7;
-            *(u8 *) &v1.mUnk_02 = func_0200c12c((u8 *) &v1 + 3, &v2);
+            p = &v1.mUnk_00;
+            p += 3;
+            *(u8 *) &v1.mUnk_02 = func_0200c12c(p, &v2);
             if (func_0200c16c(&v1, data_0216fde8->mUnk_04a0) != NULL) {
                 func_0200bc78(8, 0xffff, data_0216fde8->mUnk_04a0);
             }

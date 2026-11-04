@@ -1069,7 +1069,6 @@ extern void *gSanboB;
 extern void *gIronBall;
 
 extern Unk0209bc74 *gFlipper;
-extern void *data_usa_0217b07c;
 extern void *gBasabasa;
 extern void *gMkdEfBurner;
 extern void *gCow;

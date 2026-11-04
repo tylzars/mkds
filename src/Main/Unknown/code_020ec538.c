@@ -5,8 +5,8 @@
 #include "Main/Unknown/code_020d6000.h"
 #include "code_02147cd8.h"
 
-const Vec3 data_0215957c = {0x1000, 0, 0};
 const Vec3 data_02159588 = {0x1000, 0, 0};
+const Vec3 data_0215957c = {0x1000, 0, 0};
 const Vec3 data_02159594 = {0, 0, 0};
 
 void func_020ec854(Unk020e43a8 *param_1, s32 param_2, u32 param_3, u16 param_4, u32 param_5, s32 param_6) {

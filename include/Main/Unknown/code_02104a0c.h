@@ -25,9 +25,9 @@ extern Vec3 data_0217c73c;
 
 extern struct Unk020fa294 data_0217c730;
 
-extern u16 data_0215a584;
-extern Vec3 data_0215a6c0;
-extern Vec3 data_0215a6cc;
+extern const u16 data_0215a584;
+extern const Vec3 data_0215a6c0;
+extern const Vec3 data_0215a6cc;
 
 void func_02105214(void);
 void func_021051d4(Unk020eda5c *p0, Unk020f40dc *p1);

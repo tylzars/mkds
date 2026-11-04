@@ -11,7 +11,7 @@
 #include "Main/Unknown/code_020de000.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-Unk0215a680 data_0215a680 = {{0, 0, 0, 0xf000, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0}};
+const Unk0215a680 data_0215a680 = {{0, 0, 0, 0xf000, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0}};
 
 u32 func_02105504(void) {
     u32 r = 0;

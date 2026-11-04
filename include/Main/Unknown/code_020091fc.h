@@ -96,13 +96,12 @@ typedef struct Unk02009828 {
 } Unk02009828;
 
 extern u8 data_0216fc30;
-extern void *data_0216fc3c;
 extern u32 data_0216fc44;
 extern void (*data_0216fc48)(u32 a);
 extern Unk0216fc4c data_0216fc4c;
 extern Unk0216fc60 data_0216fc60;
 extern u8 data_0216fce0[0xc0];
-extern u8 data_0216fd30[0x70];
+extern Unk0216fc1c data_0216fd30[1];
 
 u32 func_020091fc(Unk02007ec4 *a);
 u32 func_0200921c(Unk02008f00Func a, u32 b, Unk02007ec4 *c);

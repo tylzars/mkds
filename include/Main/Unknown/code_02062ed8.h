@@ -38,7 +38,7 @@ typedef struct Unk020636f8_B {
 
 extern Unk0217aafc data_usa_0217aafc;
 extern u8 data_usa_0217ab04[];
-extern u8 data_usa_0217ab3c[];
+extern u8 data_0217ab5c[];
 extern u8 data_usa_0217ab74[];
 extern Unk02012f58 data_usa_0217abac;
 

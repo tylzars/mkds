@@ -24,8 +24,6 @@ typedef struct Unk021bea3c {
 } Unk021bea3c;
 
 extern Unk021da104 *data_ov003_021da104;
-extern u8 data_usa_ov000_021b0788[];
-extern u8 data_usa_ov000_021b0790[];
 
 u32 func_ov003_021be610(void (*param_0)(u32, u32), void *param_1, u32 param_2);
 u32 func_ov003_021be708(void *param_0, void *param_1, u32 param_2);

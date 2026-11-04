@@ -26,7 +26,7 @@
 #include "Main/Unknown/code_020364e0.h"
 #include "code_020176c0.h"
 
-UnkFunc *const data_0216e21c[14] = {
+UnkFunc *data_0216e21c[14] = {
     0,
     0,
     func_02120144,

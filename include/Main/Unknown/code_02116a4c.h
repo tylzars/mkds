@@ -17,16 +17,15 @@ typedef struct Unk02116b98 {
 } Unk02116b98;
 
 typedef s16 Unk0215c5b4[2][7];
-extern Unk0215c5b4 data_0215c5b4;
-extern u16 data_0215c5d0[4];
 
-void func_02116d24(void);
-s16 func_02116d10(s32 a, s32 b);
-void func_02116ce8(s32 a, u16 *b, s32 c);
-void func_02116ccc(u16 *a, s32 b);
-void func_02116cb0(u16 *a, s32 b);
-void func_02116b98(Unk02116b98 *a, u16 *b, s32 c);
-void func_02116b8c(void *a, u16 *b);
-void func_02116b80(void *in, void *out);
-void func_02116b50(u32 a, u16 *b);
+extern const Unk0215c5b4 data_0215c5b4;
+
 void func_02116a4c(Unk02116a4c *a, u16 *b);
+void func_02116b50(u32 a, u16 *b);
+void func_02116b80(void *in, void *out);
+void func_02116b8c(void *a, u16 *b);
+void func_02116b98(Unk02116b98 *a, u16 *b, s32 c);
+void func_02116cb0(u16 *a, s32 b);
+void func_02116ccc(u16 *a, s32 b);
+void func_02116ce8(s32 a, u16 *b, s32 c);
+s16 func_02116d10(s32 a, s32 b);

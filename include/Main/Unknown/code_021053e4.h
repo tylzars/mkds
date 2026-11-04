@@ -9,7 +9,7 @@ typedef struct Unk0215a680 {
     /* 00 */ u32 mUnk_00[0x10];
 } Unk0215a680;
 
-extern Unk0215a680 data_0215a680;
+extern const Unk0215a680 data_0215a680;
 
 u32 func_02105504(void);
 u32 func_021054d0(void);

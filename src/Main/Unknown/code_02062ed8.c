@@ -108,7 +108,7 @@ void func_0206331c(void *a) {
     d = FindCourseFile(data_usa_0216542c);
     func_0206331c_inline(2, data_usa_0217ab04, data_usa_0217aafc.mUnk_00, a, b, d, &data_usa_0217aafc.mUnk_20);
     d = FindCourseFile(data_usa_02165440);
-    func_0206331c_inline(1, data_usa_0217ab3c, data_usa_0217aafc.mUnk_00, a, b, d, &data_usa_0217aafc.mUnk_58);
+    func_0206331c_inline(1, data_0217ab5c, data_usa_0217aafc.mUnk_00, a, b, d, &data_usa_0217aafc.mUnk_58);
     func_020849c0(data_usa_0217aafc.mUnk_00, 8);
     func_02012ffc(e, 1);
     switch (data_021759c0->mCourseId) {
@@ -160,7 +160,7 @@ void func_02063294(void) {
         func_02087de0(data_usa_0217ab04);
     }
     if (data_usa_0217aafc.mUnk_58 != 0) {
-        func_02087de0(data_usa_0217ab3c);
+        func_02087de0(data_0217ab5c);
     }
     if (data_usa_0217aafc.mUnk_04 != NULL && data_usa_0217aafc.mUnk_90 != 0) {
         func_02087de0(data_usa_0217ab74);

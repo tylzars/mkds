@@ -9,7 +9,7 @@
 
 #pragma thumb on
 
-u16 data_0215c4ac[2] = {0x1e, 0x1f};
+const u16 data_0215c4ac[2] = {0x1e, 0x1f};
 
 void func_02116084(void) {
     s32 v;

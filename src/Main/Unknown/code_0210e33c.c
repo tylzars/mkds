@@ -20,9 +20,9 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-Unk0215c380 data_0215c380 = {0xff, 0xff, 0xff};
-Unk0215c380 data_0215c38c = {0xff, 0xff, 0xff};
-Unk0215c380 data_0215c398 = {0xff, 0xff, 0xff};
+const Unk0215c380 data_0215c38c = {0xff, 0xff, 0xff};
+const Unk0215c380 data_0215c380 = {0xff, 0xff, 0xff};
+const Unk0215c380 data_0215c398 = {0xff, 0xff, 0xff};
 
 void func_0210ef34(void) {
     func_0210e434(func_02108950());

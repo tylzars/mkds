@@ -33,10 +33,10 @@
 #include "code_0212bcac.h"
 #include "code_0212df7c.h"
 
-u16 data_0215a584 = 0x2000;
+const u16 data_0215a584 = 0x2000;
 
-Vec3 data_0215a6c0 = {0x1000, 0x1000, 0x1000};
-Vec3 data_0215a6cc = {0, 0, 0};
+const Vec3 data_0215a6c0 = {0x1000, 0x1000, 0x1000};
+const Vec3 data_0215a6cc = {0, 0, 0};
 
 #pragma thumb on
 void func_02105214(void) {

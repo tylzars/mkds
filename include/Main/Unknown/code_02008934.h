@@ -54,7 +54,7 @@ typedef struct Unk0216fc1c_10 {
     /* 01 */ u8 mUnk_01[0x15];
 } Unk0216fc1c_10;
 
-// Object behind data_usa_0216fc1c.
+// Object behind data_0216fc3c.
 typedef struct Unk0216fc1c {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u8 mUnk_04 : 2;
@@ -74,7 +74,7 @@ typedef struct Unk0216fc1c {
 typedef void (*Unk02008f00Func)(u32 a, void *b, u32 c);
 
 extern Unk0216fc20 *data_0216fc40;
-extern Unk0216fc1c *data_usa_0216fc1c;
+extern Unk0216fc1c *data_0216fc3c;
 
 Unk02008934 *func_02008934();
 void func_0200895c(u32 a);

@@ -3,7 +3,7 @@
 #include "types.h"
 
 // Seven pairs of functions passed to func_02046be8 by func_021205ac.
-extern UnkFunc *const data_0216e21c[14];
+extern UnkFunc *data_0216e21c[14];
 
 u32 func_021205e8(void);
 void func_021205ac(void *a);

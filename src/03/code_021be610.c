@@ -16,6 +16,7 @@
 #include "03/code_021d1970.h"
 #include "03/code_021d1c18.h"
 #include "00/code_021a669c.h"
+#include "00/unk_021b0000.h"
 
 void func_ov003_021bf048(u32 param_0) {
     Unk021da108 *a;
@@ -369,7 +370,7 @@ u32 func_ov003_021be860(u8 *param_0, u8 *param_1, s32 param_2, u32 param_3) {
         }
     } else {
         MemFill(b, 0xff, 6);
-        data_ov003_021d8c14 = data_usa_ov000_021b0788;
+        data_ov003_021d8c14 = data_ov000_021b07bc;
     }
     b = data_ov003_021d8cc4;
     data_ov003_021d8c18 = b;
@@ -390,7 +391,7 @@ u32 func_ov003_021be860(u8 *param_0, u8 *param_1, s32 param_2, u32 param_3) {
         }
     } else {
         MemFill(data_ov003_021d8cc4, 0xff, 0x20);
-        data_ov003_021d8c18 = data_usa_ov000_021b0790;
+        data_ov003_021d8c18 = data_ov000_021b07c4;
     }
     if (data_ov003_021d8bfc == 3) {
         if (func_ov000_021a61c4(data_ov003_021d8c64, data_ov003_021d8c18, data_ov003_021d8c30) == 3) {

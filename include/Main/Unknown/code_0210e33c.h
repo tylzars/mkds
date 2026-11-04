@@ -38,9 +38,9 @@ typedef struct Unk0217d178 {
     /* 40 */ s32 mUnk_40;
 } Unk0217d178;
 
-extern Unk0215c380 data_0215c380;
-extern Unk0215c380 data_0215c38c;
-extern Unk0215c380 data_0215c398;
+extern const Unk0215c380 data_0215c380;
+extern const Unk0215c380 data_0215c38c;
+extern const Unk0215c380 data_0215c398;
 extern Unk0217c7b4 data_0217c7b4;
 
 void func_0210ef34(void);

@@ -606,6 +606,36 @@ void func_01ff81b4(Unk02170500 *s, u32 a) {
     s->mUnk_00 += 1;
 }
 
+// clang-format off
+// Interrupt dispatch: reads the interrupt flag and enable registers (0x04000210), takes the highest set bit with clz,
+// acknowledges it, and runs the function in data_027e0008 for that bit with lr set to func_01ff8058.
+// Not compiled code: it jumps with a set return address instead of a call (ldr lr, bx).
+asm void func_01ff8000(void) {
+    stmdb sp!, {lr}
+    mov ip, #0x4000000
+    add ip, ip, #0x210
+    ldr r1, [ip, #-0x8]
+    cmp r1, #0x0
+    ldmeqia sp!, {pc}
+    ldmia ip, {r1, r2}
+    ands r1, r1, r2
+    ldmeqia sp!, {pc}
+    mov r3, #0x80000000
+L_loop:
+    clz r0, r1
+    bics r1, r1, r3, lsr r0
+    bne L_loop
+    mov r1, r3, lsr r0
+    str r1, [ip, #0x4]
+    rsbs r0, r0, #0x1f
+    ldr r1, =data_027e0008
+    ldr r0, [r1, r0, lsl #0x2]
+    ldr lr, =func_01ff8058
+    bx r0
+}
+// clang-format on
+
+// clang-format off
 // Thread switch after an interrupt: clears the pending flags of the thread list at data_027e0000, then saves the
 // registers of the running thread in its context and loads those of the first runnable thread.
 // Not compiled code: it switches processor modes and moves the whole register set with the user-bank forms of stm and
@@ -701,31 +731,4 @@ L_01ff8120:
     stmda sp!, {r0, r1, r2, r3, ip, lr}
     ldmia sp!, {pc}
 }
-
-// clang-format off
-// Interrupt dispatch: reads the interrupt flag and enable registers (0x04000210), takes the highest set bit with clz,
-// acknowledges it, and runs the function in data_027e0008 for that bit with lr set to func_01ff8058.
-// Not compiled code: it jumps with a set return address instead of a call (ldr lr, bx).
-asm void func_01ff8000(void) {
-    stmdb sp!, {lr}
-    mov ip, #0x4000000
-    add ip, ip, #0x210
-    ldr r1, [ip, #-0x8]
-    cmp r1, #0x0
-    ldmeqia sp!, {pc}
-    ldmia ip, {r1, r2}
-    ands r1, r1, r2
-    ldmeqia sp!, {pc}
-    mov r3, #0x80000000
-L_loop:
-    clz r0, r1
-    bics r1, r1, r3, lsr r0
-    bne L_loop
-    mov r1, r3, lsr r0
-    str r1, [ip, #0x4]
-    rsbs r0, r0, #0x1f
-    ldr r1, =data_027e0008
-    ldr r0, [r1, r0, lsl #0x2]
-    ldr lr, =func_01ff8058
-    bx r0
-}
+// clang-format on

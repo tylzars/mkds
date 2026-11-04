@@ -177,6 +177,7 @@ src/Main/Unknown/code_02008908.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_02008934.c:
+    complete
     .text       start:0x02008934 end:0x02008dbc
 
 // provisional: file name and boundaries
@@ -186,6 +187,7 @@ src/Main/Unknown/code_02008dbc.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_02008e10.c:
+    complete
     .text       start:0x02008e10 end:0x020091e0
 
 // provisional: file name and boundaries
@@ -215,6 +217,7 @@ src/Main/Unknown/code_0200b1b0.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_0200b200.c:
+    complete
     .text       start:0x0200b200 end:0x0200b6e8
 
 // provisional: file name and boundaries
@@ -722,7 +725,13 @@ libs/Unknown/src/code_02022aa8.c:
 
 // provisional: file name and boundaries
 libs/Unknown/src/code_02023374.c:
-    .text       start:0x02023374 end:0x020245a4
+    complete
+    .text       start:0x02023374 end:0x02024184
+
+// provisional: file name and boundaries
+libs/Unknown/src/code_02024184.c:
+    complete
+    .text       start:0x02024184 end:0x020245a4
 
 // provisional: file name and boundaries
 libs/Unknown/src/code_020245a4.c:
@@ -2118,6 +2127,7 @@ src/Main/Unknown/code_02061654.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_02062ed8.c:
+    complete
     .text       start:0x02062ed8 end:0x020638c0
 
 // provisional: file name and boundaries
@@ -2530,6 +2540,7 @@ src/Main/Unknown/code_0208eb10.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_020901a0.c:
+    complete
     .text       start:0x020901a0 end:0x02090348
 
 // provisional: file name and boundaries
@@ -4266,7 +4277,9 @@ src/Main/Unknown/code_020ec484.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_020ec538.c:
+    complete
     .text       start:0x020ec538 end:0x020ec884
+    .rodata     start:0x0215957c end:0x021595a0
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_020ec884.c:
@@ -4559,7 +4572,9 @@ src/Main/Unknown/code_021052f0.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_021053e4.c:
+    complete
     .text       start:0x021053e4 end:0x02105550
+    .rodata     start:0x0215a680 end:0x0215a6c0
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_02105550.c:
@@ -4603,7 +4618,9 @@ src/Main/Unknown/code_02109178.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_02109184.c:
+    complete
     .text       start:0x02109184 end:0x0210a578
+    .data       start:0x0216c8cc end:0x0216ca20
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_0210a578.c:
@@ -4747,7 +4764,9 @@ src/Main/Unknown/code_0210e328.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_0210e33c.c:
+    complete
     .text       start:0x0210e33c end:0x0210ef50
+    .rodata     start:0x0215c380 end:0x0215c3a4
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_0210ef50.c:
@@ -4847,7 +4866,9 @@ src/Main/Unknown/code_021145b4.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_02116084.c:
+    complete
     .text       start:0x02116084 end:0x02116174
+    .rodata     start:0x0215c4ac end:0x0215c4b0
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_02116174.c:
@@ -4856,7 +4877,15 @@ src/Main/Unknown/code_02116174.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_02116a4c.c:
-    .text       start:0x02116a4c end:0x02116dc8
+    complete
+    .text       start:0x02116a4c end:0x02116d24
+    .rodata     start:0x0215c5b4 end:0x0215c5d0
+
+// provisional: file name and boundaries
+src/Main/Unknown/code_02116d24.c:
+    complete
+    .text       start:0x02116d24 end:0x02116dc8
+    .rodata     start:0x0215c5d0 end:0x0215c5d8
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_02116dc8.c:
@@ -4969,7 +4998,9 @@ src/Main/Unknown/code_02120044.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_0212030c.c:
+    complete
     .text       start:0x0212030c end:0x021205f4
+    .data       start:0x0216e1fc end:0x0216e234
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_021205f4.c:
