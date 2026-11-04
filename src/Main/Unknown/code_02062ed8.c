@@ -46,7 +46,7 @@ void func_02063880(Kart *a) {
 
 void func_02063830(Kart *a) {
     if (func_0207a870() != 0) {
-        func_0203c1a8(&a->mUnk_80, a->mIndex);
+        func_0203c1a8(&a->mPos, a->mIndex);
     }
     if ((a->mUnk_4c & 0x1000) != 0) {
         func_0206d138(a);
@@ -57,7 +57,7 @@ void func_02063830(Kart *a) {
 
 void func_020637e0(Kart *a) {
     if (func_0207a870() != 0) {
-        func_0203c1a8(&a->mUnk_80, a->mIndex);
+        func_0203c1a8(&a->mPos, a->mIndex);
     }
     if ((a->mUnk_4c & 0x1000) != 0) {
         func_0206d138(a);
@@ -79,10 +79,10 @@ void func_020636f8(Kart *a) {
     c = &data_0217aa14->mUnk_754->mUnk_04;
     d = (Unk020636f8_B *) ((u8 *) c + 8);
     b = a->mUnk_514;
-    d->mUnk_00 = a->mUnk_80.x >> 10;
-    d->mUnk_02 = (a->mUnk_80.y - a->mUnk_2bc) >> 10;
-    d->mUnk_04 = a->mUnk_80.z >> 10;
-    d->mUnk_06 = a->mUnk_2a8 >> 2;
+    d->mUnk_00 = a->mPos.x >> 10;
+    d->mUnk_02 = (a->mPos.y - a->mUnk_2bc) >> 10;
+    d->mUnk_04 = a->mPos.z >> 10;
+    d->mUnk_06 = a->mForwardSpeed >> 2;
     d->mUnk_0a = a->mUnk_236;
     d->mUnk_10 = a->mUnk_44;
     d->mUnk_10 = d->mUnk_10 | (((b->mUnk_98.x >> 6) & 0xff) << 24 | ((b->mUnk_98.y >> 6) & 0xff) << 16 |

@@ -150,7 +150,7 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
         c = o->mUnk_00.mCourseMapRow->mUnk_28;
         g = GetKart((u16) data_021759c0->mEntryIndex);
         e = c << 12;
-        q2 = &g->mUnk_80;
+        q2 = &g->mPos;
         v1 = q2->x - o->mUnk_00.mPos.x;
         v2 = q2->z - o->mUnk_00.mPos.z;
         if ((s64) v1 * v1 + (s64) v2 * v2 < (s64) e * e) {

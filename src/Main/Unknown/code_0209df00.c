@@ -68,15 +68,15 @@ static inline BOOL func_0209df84_inline(Kart *p, Unk0209df84 *b, s32 t) {
     s32 u;
 
     u = -t;
-    z = p->mUnk_80.z - b->mUnk_00.mPos.z;
+    z = p->mPos.z - b->mUnk_00.mPos.z;
     if (z > t || z < u) {
         return FALSE;
     }
-    x = p->mUnk_80.x - b->mUnk_00.mPos.x;
+    x = p->mPos.x - b->mUnk_00.mPos.x;
     if (x > t || x < u) {
         return FALSE;
     }
-    y = p->mUnk_80.y - b->mUnk_00.mPos.y;
+    y = p->mPos.y - b->mUnk_00.mPos.y;
     if (y > t || y < u) {
         return FALSE;
     }
@@ -248,7 +248,7 @@ void func_0209df84(void *a, Unk0209df84 *b) {
     if (b->mUnk_a2 == 1) {
         p = GetKart((u16) data_021759c0->mEntryIndex);
         if (func_0209df84_inline(p, b, n - 0xf000) != FALSE) {
-            Vec3Sub(&p->mUnk_80, &b->mUnk_00.mPos, &v);
+            Vec3Sub(&p->mPos, &b->mUnk_00.mPos, &v);
             d = func_02039828(&v, &b->mUnk_00.mMatrix.mUnk_00[2]);
             if ((b->mUnk_19e4 < 0 && d > 0) || (b->mUnk_19e4 > 0 && d < 0)) {
                 func_02108e38();

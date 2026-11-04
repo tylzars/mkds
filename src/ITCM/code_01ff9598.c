@@ -98,7 +98,7 @@ BOOL func_01ffa1f8(Kart *p) {
     u32 i;
     u32 r;
 
-    if (p->mUnk_80.y < 0) {
+    if (p->mPos.y < 0) {
         if (!(p->mUnk_7c & 0x400) && !(p->mUnk_48 & 0x800)) {
             p->mUnk_48 = p->mUnk_48 | 0x800;
             i = p->mIndex;
@@ -167,7 +167,7 @@ void func_01ffa0c4(Kart *p) {
         p->mUnk_380 = 0;
         p->mUnk_234 = 0;
         p->mUnk_44 = p->mUnk_44 & ~0x4000;
-        p->mUnk_2ac = p->mUnk_80.y;
+        p->mUnk_2ac = p->mPos.y;
         return;
     }
     p->mUnk_380 = p->mUnk_380 + 1;
@@ -270,7 +270,7 @@ void func_01ff9d18(Kart *p) {
     }
     r = func_02061fb8();
     if (p->mUnk_410 == 0) {
-        j = p->mUnk_78;
+        j = p->mEntryIndex;
         if ((u16) (data_02175628[j].mUnk_00 & 1) != 0) {
             p->mUnk_410 = r;
         }
@@ -301,7 +301,7 @@ void func_01ff9cb0(Kart *p) {
     if (p->mUnk_208->mUnk_00 == 0) {
         return;
     }
-    func_020e0538((Unk020e04b0 *) p->mUnk_208, &p->mUnk_80);
+    func_020e0538((Unk020e04b0 *) p->mUnk_208, &p->mPos);
     p->mUnk_208->mUnk_00 = 0;
 }
 
@@ -341,7 +341,7 @@ void func_01ff9b70(Kart *p) {
     } else {
         func_0208c534(func_0208c5b8(p->mIndex));
     }
-    p->mUnk_3b0 = p->mUnk_a4;
+    p->mUnk_3b0 = p->mVelocity;
     f = p->mUnk_44;
     if (f & 0x10) {
         if (!(f & 0x1000)) {

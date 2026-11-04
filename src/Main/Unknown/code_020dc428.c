@@ -351,11 +351,11 @@ void func_020dccc8(Unk020dc474 *p) {
         o = GetKart(u);
         if (func_0206c0e0(o) == 0) {
             e = p->mUnk_1dc;
-            if ((s64) (o->mUnk_80.x - p->mUnk_a0.x) * (o->mUnk_80.x - p->mUnk_a0.x) +
-                    (s64) (o->mUnk_80.z - p->mUnk_a0.z) * (o->mUnk_80.z - p->mUnk_a0.z) <
+            if ((s64) (o->mPos.x - p->mUnk_a0.x) * (o->mPos.x - p->mUnk_a0.x) +
+                    (s64) (o->mPos.z - p->mUnk_a0.z) * (o->mPos.z - p->mUnk_a0.z) <
                 (s64) e * e) {
-                p->mUnk_1f0 = &GetKart(u)->mUnk_80;
-                p->mUnk_1f4 = &GetKart(u)->mUnk_a4;
+                p->mUnk_1f0 = &GetKart(u)->mPos;
+                p->mUnk_1f4 = &GetKart(u)->mVelocity;
                 p->mUnk_00.mUnk_80.mUnk_10 = 1;
                 p->mUnk_00.mUnk_80.mUnk_12 = 1;
             }

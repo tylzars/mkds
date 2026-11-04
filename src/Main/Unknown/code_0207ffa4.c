@@ -330,7 +330,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
         n0 = 0;
         if (d != NULL) {
             k = 0;
-            Vec3Sub(&d->mPos, &GetKart(c)->mUnk_80, &v);
+            Vec3Sub(&d->mPos, &GetKart(c)->mPos, &v);
             if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
                 func_02039860(&v, &v);
             }
@@ -338,7 +338,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
                 if (p->mUnk_04 == ((const Unk0208001c *) p)->mUnk_00->mUnk_00[i]) {
                     continue;
                 }
-                Vec3Sub(p->mUnk_00->mUnk_00[i]->mUnk_20, &GetKart(c)->mUnk_80, &w);
+                Vec3Sub(p->mUnk_00->mUnk_00[i]->mUnk_20, &GetKart(c)->mPos, &w);
                 if ((s64) w.x * w.x + (s64) w.y * w.y + (s64) w.z * w.z >= 0x10) {
                     func_02039860(&w, &w);
                 }
@@ -364,7 +364,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
                 v3 = FALSE;
             }
             o = GetKart(c);
-            Vec3Sub(&GetKart(e)->mUnk_80, &o->mUnk_80, &x);
+            Vec3Sub(&GetKart(e)->mPos, &o->mPos, &x);
             if ((s64) x.x * x.x + (s64) x.y * x.y + (s64) x.z * x.z >= 0x10) {
                 func_02039860(&x, &x);
             }
@@ -372,7 +372,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
                 if (p->mUnk_04 == ((const Unk0208001c *) p)->mUnk_00->mUnk_00[i]) {
                     continue;
                 }
-                Vec3Sub(p->mUnk_00->mUnk_00[i]->mUnk_20, &GetKart(c)->mUnk_80, &y);
+                Vec3Sub(p->mUnk_00->mUnk_00[i]->mUnk_20, &GetKart(c)->mPos, &y);
                 if ((s64) y.x * y.x + (s64) y.y * y.y + (s64) y.z * y.z >= 0x10) {
                     func_02039860(&y, &y);
                 }

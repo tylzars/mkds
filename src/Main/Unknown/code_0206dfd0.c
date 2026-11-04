@@ -151,20 +151,20 @@ void func_0206dfd0(Kart *p) {
             Vec3Add(p->mUnk_510, &a, p->mUnk_510);
             Vec3Add(q->mUnk_510, &b, q->mUnk_510);
             if (q->mUnk_44 & 0xc0) {
-                Vec3Sub(&q->mUnk_a4, &p->mUnk_a4, &e);
+                Vec3Sub(&q->mVelocity, &p->mVelocity, &e);
                 f = Vec3Dot(&n, &e);
                 e.x = (s32) (((s64) n.x * f) >> 12);
                 e.y = (s32) (((s64) n.y * f) >> 12);
                 e.z = (s32) (((s64) n.z * f) >> 12);
-                p->mUnk_2a8 += Vec3Dot(&p->mUnk_50, &e);
+                p->mForwardSpeed += Vec3Dot(&p->mUnk_50, &e);
             }
             if (p->mUnk_44 & 0xc0) {
-                Vec3Sub(&p->mUnk_a4, &q->mUnk_a4, &g);
+                Vec3Sub(&p->mVelocity, &q->mVelocity, &g);
                 f = Vec3Dot(&n, &g);
                 g.x = (s32) (((s64) n.x * f) >> 12);
                 g.y = (s32) (((s64) n.y * f) >> 12);
                 g.z = (s32) (((s64) n.z * f) >> 12);
-                q->mUnk_2a8 += Vec3Dot(&q->mUnk_50, &g);
+                q->mForwardSpeed += Vec3Dot(&q->mUnk_50, &g);
             }
             if (data_021759c0->mMode == 2) {
                 k = func_020a1ee4(p->mIndex, q->mIndex);

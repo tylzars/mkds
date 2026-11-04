@@ -385,7 +385,7 @@ void func_02101964(Unk02101c84 *p, s32 a) {
 void func_021018a0(Unk02101c84 *p) {
     p->mUnk_168 = GetKart((u16) (p->mUnk_000.mUnk_78 & ~0xff00));
     p->mUnk_184 = p->mUnk_168->mUnk_98;
-    p->mUnk_190 = p->mUnk_168->mUnk_a4;
+    p->mUnk_190 = p->mUnk_168->mVelocity;
     *(Vec3 *) &p->mUnk_16c =
         (Vec3){0, (s32) (((s64) * (s32 *) p->mUnk_168->mUnk_2cc * p->mUnk_168->mUnk_bc.z + 0x800) >> 12), 0};
     p->mUnk_17c = 0;
@@ -594,7 +594,7 @@ void func_02101178(Unk02101c84 *p) {
     if (p->mUnk_140 < 8) {
         p->mUnk_168 = GetKart(p->mUnk_140);
         p->mUnk_184 = p->mUnk_168->mUnk_98;
-        p->mUnk_190 = p->mUnk_168->mUnk_a4;
+        p->mUnk_190 = p->mUnk_168->mVelocity;
         p->mUnk_144 = 0;
         func_020f8e3c((u32) p->mUnk_168, 0xf4);
         if (p->mUnk_168->mUnk_48 & 1) {
@@ -820,7 +820,7 @@ void func_021009fc(Unk02101c84 *p) {
     if (p->mUnk_24c != 0) {
         if (e->mUnk_014 == 0x10) {
             p->mUnk_184 = p->mUnk_168->mUnk_98;
-            p->mUnk_190 = p->mUnk_168->mUnk_a4;
+            p->mUnk_190 = p->mUnk_168->mVelocity;
             p->mUnk_16c = 0;
             p->mUnk_174 = 0;
         } else {

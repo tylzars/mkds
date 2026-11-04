@@ -315,7 +315,7 @@ extern Unk02175620 *gCourseMap;
 extern Unk0217b3c0 *data_0217b3c0;
 
 extern u16 func_020435bc(void);
-extern void func_0207a8f0(Vec3 *dst, s32 idx);
+extern void GetKartPrevPos(Vec3 *dst, s32 idx);
 extern void func_0207a91c(Vec3 *dst, u8 idx);
 extern void func_0207a948(Vec3 *dst, s32 idx);
 s32 func_020b502c(s32 a, s32 b);

@@ -568,7 +568,7 @@ void func_0208ecd8(Unk0208ec64_08 *a, Unk0208ec64 *b) {
     s32 k;
 
     o = GetKart(b->mUnk_20);
-    v = o->mUnk_80;
+    v = o->mPos;
     p = &o->mUnk_120;
     k = b->mUnk_24;
     x.x = (s32) (((s64) p->x * k) >> 12);
@@ -620,7 +620,7 @@ Unk0208ec64 *func_0208eb1c(s32 a) {
             o = GetKart(a);
             t = o->mKartModelsEntry;
             v = ((Vec3 *) &t->mUnk_020->mUnk_44)[t->mUnk_000];
-            p->mUnk_14 = (u32) &o->mUnk_80;
+            p->mUnk_14 = (u32) &o->mPos;
             p->mUnk_18 = 0;
             p->mUnk_1c = 0x400;
             p->mUnk_20 = a;

@@ -186,9 +186,9 @@ void func_02094768(void *a, Unk02094000 *o) {
         o->mUnk_00.mPos.z = o->mUnk_a0.z + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12);
     } else {
         g = GetKart((u16) data_021759c0->mEntryIndex);
-        o->mUnk_00.mPos.x = g->mUnk_80.x + (o->mUnk_a0.x + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2 + 1]) >> 12));
+        o->mUnk_00.mPos.x = g->mPos.x + (o->mUnk_a0.x + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2 + 1]) >> 12));
         o->mUnk_00.mPos.y = o->mUnk_a0.y + m;
-        o->mUnk_00.mPos.z = g->mUnk_80.z + (o->mUnk_a0.z + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12));
+        o->mUnk_00.mPos.z = g->mPos.z + (o->mUnk_a0.z + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12));
     }
 }
 

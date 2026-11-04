@@ -36,7 +36,7 @@ static inline void func_020653d0_inline(Kart *o, Kart *o2, Vec3 *t) {
     Vec3 t2;
 
     *t = *(Vec3 *) &o2->mUnk_120;
-    Vec3Sub(&o->mUnk_80, &o2->mUnk_80, &t1);
+    Vec3Sub(&o->mPos, &o2->mPos, &t1);
     Vec3Cross(&o2->mUnk_138, &t1, &t2);
     if (Vec3Dot(&t2, &o2->mUnk_12c) < 0) {
         t->x = -t->x;
@@ -75,7 +75,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     v.x = a->mUnk_00 << 10;
     v.y = a->mUnk_02 << 10;
     v.z = a->mUnk_04 << 10;
-    p->mUnk_2a8 = a->mUnk_06 << 2;
+    p->mForwardSpeed = a->mUnk_06 << 2;
     p->mUnk_236 = a->mUnk_0a;
     q->mUnk_44 = a->mUnk_14;
     q->mUnk_48 = a->mUnk_10;
@@ -112,15 +112,15 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         *(Vec4 *) &p->mUnk_108.z = *(Vec4 *) &p->mUnk_e0;
         if (p->mUnk_7c & 0x400) {
             r = p->mUnk_514;
-            r->mUnk_00 = p->mUnk_80;
+            r->mUnk_00 = p->mPos;
             r->mUnk_10 = r->mUnk_00;
             r->mUnk_4c = *(Vec4 *) &p->mUnk_108.z;
             r->mUnk_a8 = data_02154f94;
             r->mUnk_b4 = 0;
         }
     }
-    if ((s64) (p->mUnk_80.x - v.x) * (p->mUnk_80.x - v.x) + (s64) (p->mUnk_80.y - v.y) * (p->mUnk_80.y - v.y) +
-            (s64) (p->mUnk_80.z - v.z) * (p->mUnk_80.z - v.z) >=
+    if ((s64) (p->mPos.x - v.x) * (p->mPos.x - v.x) + (s64) (p->mPos.y - v.y) * (p->mPos.y - v.y) +
+            (s64) (p->mPos.z - v.z) * (p->mPos.z - v.z) >=
         0x15f90000000LL) {
         switch (q->mUnk_b4) {
             case 0:
@@ -152,9 +152,9 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         q->mUnk_a8 = v4;
         v.y += 0x14000;
         Vec3Add(&v, &v4, &v);
-        p->mUnk_80 = v;
-        p->mUnk_8c = p->mUnk_80;
-        p->mUnk_98 = p->mUnk_8c;
+        p->mPos = v;
+        p->mPrevPos = p->mPos;
+        p->mUnk_98 = p->mPrevPos;
         q->mUnk_00 = p->mUnk_98;
         *(Vec3 *) &p->mUnk_25c = data_02154f94;
         func_01ffc064(&p->mUnk_1b8, &v, 0x400, p);
@@ -164,12 +164,12 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             q->mUnk_b4 = 0;
         }
     } else if (!(p->mUnk_48 & 0x20000)) {
-        v6 = p->mUnk_8c;
+        v6 = p->mPrevPos;
         Vec3Add(&v, &q->mUnk_a8, &v);
         func_020d5180(&v, n * 0xd000 + p->mUnk_1d0, 0x8000);
         for (i = 0; i < n; i++) {
             if (p->mUnk_48 & 0x40) {
-                p->mUnk_80.y -= 0x19a;
+                p->mPos.y -= 0x19a;
             } else {
                 if (i < 3 && i < n / 2) {
                     func_01ffc090(p, func_01ffc27c(p, 0));
@@ -189,13 +189,13 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                     Matrix3x3Multiply(m2.mUnk_00, m1.mUnk_00, m1.mUnk_00);
                 }
                 Vec3MultiplyMatrix3x3(&p->mUnk_278, m1.mUnk_00, &p->mUnk_50);
-                k = p->mUnk_2a8;
+                k = p->mForwardSpeed;
                 v2.x = (s32) (((s64) p->mUnk_50.x * k) >> 12);
                 v2.y = (s32) (((s64) p->mUnk_50.y * k) >> 12);
                 v2.z = (s32) (((s64) p->mUnk_50.z * k) >> 12);
                 Vec3Add(&v, &v2, &v);
                 Vec3Add(&v, &p->mUnk_2d8, &v);
-                Vec3Add(&p->mUnk_a4, &p->mUnk_2d8, &p->mUnk_a4);
+                Vec3Add(&p->mVelocity, &p->mUnk_2d8, &p->mVelocity);
                 if (p->mUnk_514->mUnk_44 & 1) {
                     p->mUnk_260 = 0;
                 }
@@ -221,8 +221,8 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     if (p->mUnk_48 & 0x40) {
         goto l0;
     }
-    p->mUnk_80.x = v.x;
-    p->mUnk_80.z = v.z;
+    p->mPos.x = v.x;
+    p->mPos.z = v.z;
     c = 0;
     if (((p->mUnk_514->mUnk_30 & 1) != 0) != ((f & 1) != 0) && (p->mUnk_44 & 0x10)) {
         r = ((volatile Kart *) p)->mUnk_514;

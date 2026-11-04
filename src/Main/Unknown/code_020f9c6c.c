@@ -997,7 +997,7 @@ static inline s32 func_020fa4c8_inline(Unk020f41c4_A *e, Kart *a) {
     if ((u16) a->mIndex != (u16) (!(e->mUnk_78 & 0x8000) ? (u16) (e->mUnk_78 & ~0xff00) : 8)) {
         return 1;
     }
-    if (e->mUnk_5c.x != 0 || e->mUnk_5c.y != 0 || e->mUnk_5c.z != 0 || a->mUnk_2a8 != 0) {
+    if (e->mUnk_5c.x != 0 || e->mUnk_5c.y != 0 || e->mUnk_5c.z != 0 || a->mForwardSpeed != 0) {
         Vec3Sub(&e->mUnk_0e4, &a->mUnk_1e4, &b);
         b.y = 0;
         Vec3Sub(&e->mUnk_50, &a->mUnk_1d8, &c);
@@ -1052,7 +1052,7 @@ s32 func_020fa4c8(Kart *param_1) {
         k = e->mUnk_44;
         if (data_0217bc34[k].mUnk_88 != 0) {
             if (func_020f9880(e) != 0) {
-                func_020f6be8(e, &param_1->mUnk_1b8, &param_1->mUnk_a4, &param_1->mUnk_05c);
+                func_020f6be8(e, &param_1->mUnk_1b8, &param_1->mVelocity, &param_1->mUnk_05c);
                 func_020f6f10(e, 1, (u16) param_1->mIndex);
             } else {
                 func_020f7430(e, 1);

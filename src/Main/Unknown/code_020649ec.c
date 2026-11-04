@@ -74,7 +74,7 @@ void func_020651fc(Kart *a) {
     b = a->mUnk_514;
     func_01ffcd84(&a->mUnk_120, &a->mUnk_110_q);
     func_02066ac0(a);
-    if (a->mUnk_2a8 > 0x3000) {
+    if (a->mForwardSpeed > 0x3000) {
         b->mUnk_a8 = data_02154f94;
     }
     func_01ffca50(a);
@@ -120,7 +120,7 @@ void func_02064f50(Kart *a) {
     } else {
         a->mUnk_44 = a->mUnk_44 & ~0x80000;
     }
-    func_01ffc064(&a->mUnk_1b8, &a->mUnk_80, 0x400, a);
+    func_01ffc064(&a->mUnk_1b8, &a->mPos, 0x400, a);
     func_01ffa4b4(a, &d);
     func_02064d60(a, &d);
     a->mUnk_244 = d;
@@ -134,7 +134,7 @@ void func_02064f50(Kart *a) {
         func_02071788(a);
     }
     a->mUnk_230(a);
-    e = a->mUnk_80;
+    e = a->mPos;
     e.y = e.y - b->mUnk_60;
     c = b->mUnk_24;
     Vec3Sub(&e, &b->mUnk_00, &f);
@@ -204,7 +204,7 @@ void func_02064d60(Kart *a, Vec3 *b) {
 }
 
 void func_02064d44(Kart *a) {
-    func_01ffc064(&a->mUnk_1c4, &a->mUnk_8c, 0x400, a);
+    func_01ffc064(&a->mUnk_1c4, &a->mPrevPos, 0x400, a);
 }
 
 void func_020649ec(Kart *a, void (**b)(Kart *)) {
@@ -247,9 +247,9 @@ void func_020649ec(Kart *a, void (**b)(Kart *)) {
     if (a->mUnk_20c_fn[1] != 0) {
         a->mUnk_20c_fn[1](a);
     }
-    a->mUnk_508 = &a->mUnk_80;
+    a->mUnk_508 = &a->mPos;
     a->mUnk_50c = &a->mUnk_110_q;
-    a->mUnk_510 = &a->mUnk_80;
+    a->mUnk_510 = &a->mPos;
     if (a->mUnk_20c_fn[0] != 0) {
         a->mUnk_20c_fn[0](a);
     }
@@ -264,14 +264,14 @@ void func_020649ec(Kart *a, void (**b)(Kart *)) {
             a->mUnk_50c = &a->mUnk_514->mUnk_4c;
             a->mUnk_510 = &a->mUnk_514->mUnk_00;
         } else {
-            a->mUnk_508 = &a->mUnk_80;
+            a->mUnk_508 = &a->mPos;
             a->mUnk_50c = &a->mUnk_110_q;
-            a->mUnk_510 = &a->mUnk_80;
+            a->mUnk_510 = &a->mPos;
         }
     } else {
-        a->mUnk_508 = &a->mUnk_80;
+        a->mUnk_508 = &a->mPos;
         a->mUnk_50c = &a->mUnk_110_q;
-        a->mUnk_510 = &a->mUnk_80;
+        a->mUnk_510 = &a->mPos;
     }
     a->mUnk_534 = a->mUnk_508;
     func_020646f0(a, 0);

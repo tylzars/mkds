@@ -107,9 +107,9 @@ u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
                     p->mUnk_100 = 0x100;
                     func_020d26f8(&p->mUnk_00, a);
                     if (data_021759c0->mMode == 4) {
-                        v.x = (p->mUnk_00.mPos.x + a->mUnk_80.x) >> 1;
-                        v.y = (p->mUnk_00.mPos.y + a->mUnk_80.y) >> 1;
-                        v.z = (p->mUnk_00.mPos.z + a->mUnk_80.z) >> 1;
+                        v.x = (p->mUnk_00.mPos.x + a->mPos.x) >> 1;
+                        v.y = (p->mUnk_00.mPos.y + a->mPos.y) >> 1;
+                        v.z = (p->mUnk_00.mPos.z + a->mPos.z) >> 1;
                         func_0208b7bc(0x442, &v);
                         func_0208b7bc(0x443, &v);
                         if (data_021759c0->mMode == 4) {
@@ -168,9 +168,9 @@ u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
                 if ((p->mUnk_00.mFlags & 0x800) == 0) {
                     p->mState = 6;
                 }
-                p->mUnk_00.mUnk_10.x = (s32) (((s64) a->mUnk_a4.x * -0x4cd) >> 12);
-                p->mUnk_00.mUnk_10.y = (s32) (((s64) a->mUnk_a4.y * -0x4cd) >> 12);
-                p->mUnk_00.mUnk_10.z = (s32) (((s64) a->mUnk_a4.z * -0x4cd) >> 12);
+                p->mUnk_00.mUnk_10.x = (s32) (((s64) a->mVelocity.x * -0x4cd) >> 12);
+                p->mUnk_00.mUnk_10.y = (s32) (((s64) a->mVelocity.y * -0x4cd) >> 12);
+                p->mUnk_00.mUnk_10.z = (s32) (((s64) a->mVelocity.z * -0x4cd) >> 12);
                 p->mUnk_00.mUnk_10.y = 0x3800;
                 return 12;
             }

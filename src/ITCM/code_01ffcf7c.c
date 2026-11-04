@@ -305,7 +305,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
             func_0208c1d0(&v2, &v3, p);
             o = p->mKart;
             r = TRUE;
-            Vec3Sub(&o->mUnk_80, &v2, &v9);
+            Vec3Sub(&o->mPos, &v2, &v9);
             v9.y = 0;
             func_02063b30(o, &v8);
             d = Vec3Dot(&v8, &v3);

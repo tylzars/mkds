@@ -56,7 +56,7 @@ u32 func_020980ec(Unk020975ec *p, Kart *q, void *b, u8 *c) {
             p->mUnk_00.mUnk_10.y = 0;
             p->mUnk_00.mUnk_10.z = 0;
         } else {
-            Vec3Sub(&q->mUnk_80, &p->mUnk_00.mPos, &w);
+            Vec3Sub(&q->mPos, &p->mUnk_00.mPos, &w);
             f = Vec3Length(&w);
             e = &p->mUnk_a8[p->mUnk_ec0].mUnk_00[2];
             f = (s32) (((s64) f * s) >> 12);

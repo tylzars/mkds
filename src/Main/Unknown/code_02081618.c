@@ -1270,7 +1270,7 @@ void func_0208181c(s32 a) {
     do {
         if (e->mUnk_00[i] != NULL) {
             Vec3AddScaled((s32) (((s64) q->mUnk_bc.y * data_02155854[q->mKartModelsEntry->mUnk_000] + 0x800) >> 12),
-                          &q->mUnk_12c, &q->mUnk_80, &v);
+                          &q->mUnk_12c, &q->mPos, &v);
             func_0208b5b0(e->mUnk_00[i], &v);
             w.x = (s32) (((s64) q->mUnk_3b0.x * 0xc00) >> 12);
             w.y = (s32) (((s64) q->mUnk_3b0.y * 0xc00) >> 12);

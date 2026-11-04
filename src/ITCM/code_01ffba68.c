@@ -190,7 +190,7 @@ void func_01ffcac0(Kart *p) {
     p->mUnk_4c &= 0xffeb7efd;
     p->mUnk_2b4 = p->mUnk_2b2;
     p->mUnk_2b2 = 0;
-    p->mUnk_8c = p->mUnk_80;
+    p->mPrevPos = p->mPos;
     p->mUnk_1e4 = p->mUnk_1d8;
     p->mUnk_2f0 = p->mUnk_2e4;
     p->mUnk_2e4 = p->mUnk_2d8;
@@ -276,18 +276,18 @@ void func_01ffc6c0(Kart *p) {
     if (func_02061fec() == 1) {
         a = 0;
         if (func_01ffc67c(p) != FALSE) {
-            k = p->mUnk_78;
+            k = p->mEntryIndex;
             data_02175628[k].mBitMask = 0xe04;
             if (p->mUnk_4c & 0x10000000) {
-                k = p->mUnk_78;
+                k = p->mEntryIndex;
                 data_02175628[k].mBitMask = 0xe34;
             }
             if (p->mUnk_48 & 0x2000000) {
-                k = p->mUnk_78;
+                k = p->mEntryIndex;
                 data_02175628[k].mBitMask = 0xe05;
             }
         } else {
-            k = p->mUnk_78;
+            k = p->mEntryIndex;
             data_02175628[k].mBitMask = 0xff7;
             func_01ffc558(p);
         }
@@ -314,7 +314,7 @@ void func_01ffc6c0(Kart *p) {
     func_01ffc92c(p);
     func_01ffc558(p);
     func_01ffc5a0(p);
-    k = p->mUnk_78;
+    k = p->mEntryIndex;
     a = data_02175628[k].mBits;
     if ((u16) (a & 0x20)) {
         p->mUnk_48 |= 8;
@@ -340,11 +340,11 @@ void func_01ffc5a0(Kart *p) {
     p->mUnk_48 &= ~0x186;
     p->mUnk_44 &= ~0x40500;
     q = (u32 *) &p->mUnk_48;
-    k = p->mUnk_78;
+    k = p->mEntryIndex;
     if ((u16) (data_02175628[k].mBits & 1)) {
         *q |= 2;
     }
-    k = p->mUnk_78;
+    k = p->mEntryIndex;
     if ((u16) (data_02175628[k].mBits & 2)) {
         r = (u32 *) &p->mUnk_48;
         p->mUnk_48 |= 4;
@@ -354,7 +354,7 @@ void func_01ffc5a0(Kart *p) {
             *r |= 0x80;
         }
     }
-    if (p->mUnk_2a8 < 0) {
+    if (p->mForwardSpeed < 0) {
         p->mUnk_44 |= 0x100;
     }
 }
@@ -370,7 +370,7 @@ void func_01ffc558(Kart *p) {
     if (!(d->mUnk_044 & 1)) {
         return;
     }
-    k = p->mUnk_78;
+    k = p->mEntryIndex;
     data_02175628[k].mBitMask = 0xff6;
 }
 
@@ -396,7 +396,7 @@ s32 func_01ffc27c(Kart *p, s32 a) {
     if (p->mUnk_4c & 0x30000000) {
         return 0;
     }
-    v = p->mUnk_2a8;
+    v = p->mForwardSpeed;
     t = v > 0 ? v : -v;
     if (t < 0x2000) {
         t = v <= 0 ? -v : v;
@@ -412,7 +412,7 @@ s32 func_01ffc27c(Kart *p, s32 a) {
             t = t << 1;
         }
         p->mUnk_236 = p->mUnk_236 - t;
-        k = p->mUnk_78;
+        k = p->mEntryIndex;
         w = data_02175628[k].mBits;
         if ((u16) (w & 0x20)) {
             p->mUnk_48 |= 8;
@@ -422,7 +422,7 @@ s32 func_01ffc27c(Kart *p, s32 a) {
         return 1;
     }
     if (!(f & 0x10)) {
-        k = p->mUnk_78;
+        k = p->mEntryIndex;
         w = data_02175628[k].mBits;
         if ((u16) (w & 0x40)) {
             p->mUnk_234 += 0x96;
@@ -439,11 +439,11 @@ s32 func_01ffc27c(Kart *p, s32 a) {
     }
     c = p->mUnk_44;
     f = c;
-    if (((f & 0x100) && (u16) (data_02175628[k = p->mUnk_78].mBits & 2)) || ((f & 0x100) && !(f & 0xa))) {
+    if (((f & 0x100) && (u16) (data_02175628[k = p->mEntryIndex].mBits & 2)) || ((f & 0x100) && !(f & 0xa))) {
         b = -1;
         x = (s16) ((s16) x * (s16) b);
     }
-    k = p->mUnk_78;
+    k = p->mEntryIndex;
     w = data_02175628[k].mBits;
     if ((u16) (w & 0x20)) {
         r = ((s32(*)(Kart *, s32, s32, s32, s32, u32)) func_01ffc158)(p, x, b, 1, d, 8);
@@ -517,7 +517,7 @@ void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
     Vec3 d;
     Vec3 e;
 
-    Vec3Sub(&p->mUnk_80, &p->mUnk_8c, &d);
+    Vec3Sub(&p->mPos, &p->mPrevPos, &d);
     Vec3Add(&d, b, &e);
     Vec3AddScaled(p->mUnk_1d0 + c, &p->mUnk_15c, &e, a);
 }
@@ -619,7 +619,7 @@ void func_01ffba68(Kart *p) {
         if (p->mUnk_4c & 0x10000040) {
             v = 0x4cd;
         } else {
-            e = p->mUnk_2a8;
+            e = p->mForwardSpeed;
             f = p->mUnk_2a0;
             if (e < 0) {
                 v = c + (s32) (((s64) -e * 0x52 + 0x800) >> 12);
@@ -639,14 +639,14 @@ void func_01ffba68(Kart *p) {
     }
     f = p->mUnk_48;
     if (f & 0x10000000) {
-        p->mUnk_2a8 += 0x1000;
+        p->mForwardSpeed += 0x1000;
     } else if (p->mUnk_44 & 0x10) {
         g = p->mUnk_4c;
         if (!(g & 0x20000000)) {
             if (f & 0x80) {
-                p->mUnk_2a8 = (s32) (((s64) p->mUnk_2a8 * 0xfae) >> 12);
+                p->mForwardSpeed = (s32) (((s64) p->mForwardSpeed * 0xfae) >> 12);
             } else if (f & 0x26) {
-                p->mUnk_2a8 += v;
+                p->mForwardSpeed += v;
             } else if (!(g & 0x10000000)) {
                 p->mUnk_44 |= 0x400;
             }

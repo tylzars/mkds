@@ -38,8 +38,8 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
         if (func_ov001_021871f8(d, 8)) {
             if (d->mPrm->mUnk_1dc > 0 || d->mPrm->mUnk_1e0 > 0) {
                 Vec3 a = {0, 0, 0};
-                a.x = e->mUnk_a4.x;
-                a.z = e->mUnk_a4.z;
+                a.x = e->mVelocity.x;
+                a.z = e->mVelocity.z;
                 if ((s64) a.z * a.z + ((s64) a.x * a.x + (s64) a.y * a.y) >= 0x10) {
                     func_02039860(&a, &a);
                 }
@@ -87,8 +87,8 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
     } else if (func_ov001_021871f8(d, 7)) {
         if (d->mPrm->mUnk_1c4 > 0 || d->mPrm->mUnk_1c8 > 0) {
             Vec3 c = {0, 0, 0};
-            c.x = e->mUnk_a4.x;
-            c.z = e->mUnk_a4.z;
+            c.x = e->mVelocity.x;
+            c.z = e->mVelocity.z;
             if ((s64) c.z * c.z + ((s64) c.x * c.x + (s64) c.y * c.y) >= 0x10) {
                 func_02039860(&c, &c);
             }

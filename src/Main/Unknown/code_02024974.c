@@ -210,14 +210,14 @@ void func_02024a88(Kart *a) {
     k = a->mUnk_2a4;
     h = k - j;
     l = h > 0 ? 1 : 0;
-    if (g != 0 && a->mUnk_2a8 > 0 && (a->mUnk_44 & 0x10) != 0) {
+    if (g != 0 && a->mForwardSpeed > 0 && (a->mUnk_44 & 0x10) != 0) {
         g = ((s64) q->mUnk_24 * k + 0x800) >> 12;
         if (g > 0x280000) {
             g = 0x280000;
         }
         q->mUnk_04 = data_02153158[(a->mUnk_2a0 >> 8) & 0xff];
         func_0210ddf4(&data_0217d274, func_02086080(a->mIndex), (void (*)(void *, int)) func_02024fe8, a, (s32) q);
-    } else if (f != 0 || (g != 0 && a->mUnk_2a8 < 0)) {
+    } else if (f != 0 || (g != 0 && a->mForwardSpeed < 0)) {
         if (l != 0) {
             i = (s32) (((s64) h * q->mUnk_18 + 0x800) >> 12) + 0x580000;
         } else {

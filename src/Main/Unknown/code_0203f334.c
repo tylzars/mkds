@@ -386,7 +386,7 @@ void func_0203f334(Unk0217561c_14 *a, s32 b) {
         return;
     }
     func_0207a948(&u, (u32) (a->mUnk_3c << 24) >> 28);
-    func_0207a8f0(&v, (u32) (a->mUnk_3c << 24) >> 28);
+    GetKartPrevPos(&v, (u32) (a->mUnk_3c << 24) >> 28);
     Vec3Sub(&u, &v, &w);
     w.x = (s64) w.x * -240 >> 12;
     w.y = (s64) w.y * -240 >> 12;

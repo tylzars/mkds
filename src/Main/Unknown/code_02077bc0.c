@@ -161,7 +161,7 @@ void func_0207abec(u32 a) {
     }
     for (i = 0; i < a; i++) {
         gKarts[i].mIndex = i;
-        gKarts[i].mUnk_78 = data_021759c0->mCurrentEntries[i].mUnk_08.mIndex;
+        gKarts[i].mEntryIndex = data_021759c0->mCurrentEntries[i].mUnk_08.mIndex;
         func_020649ec(&gKarts[i], data_usa_021655e4);
     }
     data_0217ad28 = 0;
@@ -228,8 +228,8 @@ void func_0207a91c(Vec3 *a, u8 b) {
     *a = *gKarts[b].mUnk_534;
 }
 
-void func_0207a8f0(Vec3 *a, s32 b) {
-    *a = gKarts[b].mUnk_8c;
+void GetKartPrevPos(Vec3 *a, s32 b) {
+    *a = gKarts[b].mPrevPos;
 }
 
 void func_0207a8c4(Vec3 *a, s32 b) {

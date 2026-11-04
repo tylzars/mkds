@@ -347,7 +347,7 @@ void func_020e24d0(Unk020e1e98 *a, Vec3 *b) {
 
 u8 func_020e2494(Unk020e1e98 *a, Kart *b, u8 *c, u8 *d) {
     if (*c == 1) {
-        func_020e24d0(a, &b->mUnk_80);
+        func_020e24d0(a, &b->mPos);
         func_020d26f8(&a->mUnk_000, b);
     }
     return *d;

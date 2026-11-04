@@ -411,7 +411,7 @@ u32 func_020db548(Dossun *p, Kart *a, u8 *b, u8 *c) {
             q->mUnk_10 = (s32) (((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12);
             p->mUnk_b4 = 1;
             p->mUnk_b8 = 0x1b58;
-            if ((s64) s0.z * a->mUnk_a4.x - (s64) s0.x * a->mUnk_a4.z < 0) {
+            if ((s64) s0.z * a->mVelocity.x - (s64) s0.x * a->mVelocity.z < 0) {
                 p->mUnk_b8 = -p->mUnk_b8;
             }
             func_020d26f8(&p->mUnk_00, a);

@@ -138,7 +138,7 @@ void func_02069f6c(Kart *p) {
         }
     }
     if (p->mUnk_48 & 0x4000000) {
-        p->mUnk_2a8 = 0;
+        p->mForwardSpeed = 0;
     }
     if ((float) p->mUnk_434 > 0.3f / 4096.0f) {
         p->mUnk_434 -= 0x4cd;
@@ -427,7 +427,7 @@ void func_020695c4(Kart *p) {
     if (p->mKartModelsEntry->mUnk_058 == 0) {
         v = data_usa_02165560;
         for (i = 0; i < 3; i++) {
-            func_02081f10(func_0208b7bc(v.mUnk_00[i], &p->mUnk_80), p->mIndex, 0x14);
+            func_02081f10(func_0208b7bc(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
         }
     }
     func_02081724(p->mIndex);
@@ -479,7 +479,7 @@ void func_0206938c(Kart *p) {
         if (p->mKartModelsEntry->mUnk_058 == 0) {
             v = data_usa_02165560;
             for (i = 0; i < 3; i++) {
-                func_02081f10(func_0208b7bc(v.mUnk_00[i], &p->mUnk_80), p->mIndex, 0x14);
+                func_02081f10(func_0208b7bc(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
             }
         }
         func_020815dc(p->mIndex);

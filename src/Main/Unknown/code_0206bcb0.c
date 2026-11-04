@@ -142,7 +142,7 @@ void func_0206c5e4(Kart *p) {
         return;
     }
     if (p->mUnk_380 >= 5 && !(f & 0x1a)) {
-        k = p->mUnk_78;
+        k = p->mEntryIndex;
         if ((u16) (data_02175628[k].mBits & 0x100)) {
             if (f & 1) {
                 goto recheck;
@@ -177,7 +177,7 @@ recheck:
     g = p->mUnk_2c4;
     if (!(f & 8) && (f & 0x10)) {
         if ((f & 3) && p->mUnk_2a4 > (s32) (((s64) p->mUnk_2cc->mUnk_10 * 0x8cd) >> 12) && g != 0 &&
-            (u16) (data_02175628[k = p->mUnk_78].mBits & 0x100)) {
+            (u16) (data_02175628[k = p->mEntryIndex].mBits & 0x100)) {
             p->mUnk_44 |= 8;
             p->mUnk_2fc = 1;
             if (p->mUnk_2c4 > 0) {
@@ -199,7 +199,7 @@ recheck:
     }
     f = p->mUnk_44;
     if (f & 8) {
-        k = p->mUnk_78;
+        k = p->mEntryIndex;
         if (!((u16) (data_02175628[k].mBits & 0x100) && (p->mUnk_48 & 2) && p->mUnk_2a4 >= p->mUnk_2cc->mUnk_10 / 2 &&
               !(f & 0x2000c0))) {
             if (!(f & 0x10)) {
@@ -247,7 +247,7 @@ recheck:
             ang = func_02148538(len, func_02039828(&p->mUnk_290, &v));
             turn = (s16) (((s64) ang * 0x28be60db9391LL + 0x80000000LL) >> 44);
         }
-        if (p->mUnk_2a8 < 0) {
+        if (p->mForwardSpeed < 0) {
             g = -g;
         }
         p->mUnk_388 += (s16) (turn * g);
@@ -262,7 +262,7 @@ recheck:
         p->mUnk_38a = (s32) (((s64) p->mUnk_2a4 * 0x1a) >> 12);
         return;
     }
-    k = p->mUnk_78;
+    k = p->mEntryIndex;
     if (!(u16) (data_02175628[k].mUnk_00 & 0x100)) {
         if (!(p->mUnk_44 & 0x20000000)) {
             return;
@@ -312,7 +312,7 @@ int func_0206c494(Kart *p) {
         p->mUnk_2c4 = 0;
         result = TRUE;
         pending = FALSE;
-        k = p->mUnk_78;
+        k = p->mEntryIndex;
         bits = data_02175628[k].mBits;
         if ((u16) (bits & 0x20)) {
             dir = TRUE;
@@ -365,7 +365,7 @@ BOOL func_0206c354(Kart *p, const Vec3 *a, int flag) {
             list = arr;
             n = 4;
         }
-        Vec3AddScaled(-p->mUnk_1d0, a, &p->mUnk_80, &tmp);
+        Vec3AddScaled(-p->mUnk_1d0, a, &p->mPos, &tmp);
         Vec3AddScaled((s32) (((s64) p->mUnk_bc.y * 0x8000 + 0x800) >> 12), &p->mUnk_12c, &tmp, &tmp);
         for (; i < n; i++) {
             func_0208b748(list[i], &tmp, p, func_0206c450);
@@ -386,7 +386,7 @@ void func_0206c2b4(Unk0206c1ac *obj, Kart *p) {
 }
 
 void func_0206c1ac(Unk0206c1ac *obj, Kart *p) {
-    Vec3 v = p->mUnk_80;
+    Vec3 v = p->mPos;
     UnkVec16 rot;
     Vec3 *q;
 

@@ -167,7 +167,7 @@ void func_0208677c(void) {
             }
         }
         if (data_0217aed0->mUnk_0e4[p->mUnk_0c] != 0 || (GetKart(p->mUnk_0c)->mUnk_7c & 0x402020) != 0 ||
-            (func_020738f8(w->y - GetKart(data_021759c0->mEntryIndex)->mUnk_80.y) > 0x96000 && func_02061818() != 3)) {
+            (func_020738f8(w->y - GetKart(data_021759c0->mEntryIndex)->mPos.y) > 0x96000 && func_02061818() != 3)) {
             p->mUnk_20 = -1;
         }
         if (p->mUnk_18 != 0) {

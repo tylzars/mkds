@@ -44,7 +44,7 @@ void func_ov001_0218bee4(Unk02188950 *a) {
     func_ov001_0219b1c4(a->mNsbmd, (s32) (a->mPrm->mUnk_18c), (s32) (a->mPrm->mUnk_188), 0);
     func_ov001_02188cd8(a, 0, (s32) (a->mPrm->mUnk_144));
     func_ov001_02188a30(a, 0, a->mPrm->mUnk_154, a->mPrm->mUnk_148, a->mPrm->mUnk_14c);
-    SetAnglePoint(a, &unk->mUnk_80);
+    SetAnglePoint(a, &unk->mPos);
     SetMoveAnglePoint(a, (Vec3 *) func_ov001_02187fc0(a));
     func_ov001_02188e74(a, (s32) ((u32) (a->mPrm->mUnk_190)), func_ov001_0218c0a4);
 }
@@ -58,7 +58,7 @@ void func_ov001_0218bde8(Unk02188950 *a) {
     func_ov001_0219b1c4(a->mNsbmd, (s32) (a->mPrm->mUnk_13c), (s32) (a->mPrm->mUnk_138), 0);
     func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_140), (s32) (a->mPrm->mUnk_144));
     func_ov001_02188a30(a, a->mPrm->mUnk_150, a->mPrm->mUnk_154, a->mPrm->mUnk_148, a->mPrm->mUnk_14c);
-    SetAnglePoint(a, &unk->mUnk_80);
+    SetAnglePoint(a, &unk->mPos);
     SetMoveAnglePoint(a, (Vec3 *) func_ov001_02187fc0(a));
     func_ov001_02188e24(a, (s32) ((u32) (a->mPrm->mUnk_158)), (UnkFunc *) func_ov001_0218bee4);
     a->mUnk_138 = func_ov001_02187f7c(a);
@@ -149,6 +149,6 @@ void func_ov001_0218b9b4(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_078), (s32) (a->mPrm->mUnk_07c));
     func_ov001_02188c48(a, a->mPrm->mUnk_20c, a->mPrm->mUnk_210);
-    SetAnglePointAndMoveAnglePoint(a, &unk->mUnk_80);
+    SetAnglePointAndMoveAnglePoint(a, &unk->mPos);
     func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_204), (s32) (a->mPrm->mUnk_208));
 }

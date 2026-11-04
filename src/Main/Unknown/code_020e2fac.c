@@ -218,8 +218,8 @@ u8 func_020e311c(Unk020e1e98 *a, Kart *b, u8 *c, u8 *d) {
             func_020d26f8(&a->mUnk_000, b);
             break;
         case 1:
-            Vec3Sub(&a->mUnk_000.mPos, &b->mUnk_80, &v);
-            if ((s64) v.z * b->mUnk_a4.x - (s64) v.x * b->mUnk_a4.z < 0) {
+            Vec3Sub(&a->mUnk_000.mPos, &b->mPos, &v);
+            if ((s64) v.z * b->mVelocity.x - (s64) v.x * b->mVelocity.z < 0) {
                 a->mUnk_0b4.mUnk_00 = 1;
             } else {
                 a->mUnk_0b4.mUnk_00 = 0;

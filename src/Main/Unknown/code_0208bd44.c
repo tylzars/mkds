@@ -22,7 +22,7 @@ void func_0208bef4(Unk020888b4 *p) {
             return;
         }
     }
-    p->mUnk_28.mUnk_14 = func_020413a4(&p->mKart->mUnk_80);
+    p->mUnk_28.mUnk_14 = func_020413a4(&p->mKart->mPos);
     if (p->mUnk_28.mUnk_14 != NULL) {
         p->mUnk_28.mUnk_18 = 1;
     }

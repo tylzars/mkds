@@ -40,9 +40,9 @@ Unk0219b250 *data_ov001_021a9b98;
 
 void func_ov001_02182f1c(Unk02181c3c *p0, Kart *p1) {
     p0->mUnk_0ac = 0x1e;
-    p0->mUnk_000.mPos.x = p1->mUnk_80.x;
-    p0->mUnk_000.mPos.y = p1->mUnk_80.y + 0xc000;
-    p0->mUnk_000.mPos.z = p1->mUnk_80.z;
+    p0->mUnk_000.mPos.x = p1->mPos.x;
+    p0->mUnk_000.mPos.y = p1->mPos.y + 0xc000;
+    p0->mUnk_000.mPos.z = p1->mPos.z;
     p0->mUnk_000.mUnk_10.y = 0x3000;
     p0->mUnk_0f8 = 1;
     p0->mUnk_0b0 = 0x99a;
@@ -94,12 +94,12 @@ void func_ov001_02182d30(void) {
         o->mUnk_0f8 = 3;
         o->mUnk_0b0 = 0x99a;
         o->mUnk_0a0 = 0x10;
-        o->mUnk_000.mPos.x = c->mUnk_80.x;
-        o->mUnk_000.mPos.y = c->mUnk_80.y + 0x1a000;
-        o->mUnk_000.mPos.z = c->mUnk_80.z;
-        o->mUnk_000.mUnk_10.x = c->mUnk_a4.x + (s32) (((s64) b * gPairsByAngle[(a >> 4) * 2]) >> 12);
-        o->mUnk_000.mUnk_10.y = c->mUnk_a4.y + 0x4000;
-        o->mUnk_000.mUnk_10.z = c->mUnk_a4.z + (s32) (((s64) b * gPairsByAngle[(a >> 4) * 2 + 1]) >> 12);
+        o->mUnk_000.mPos.x = c->mPos.x;
+        o->mUnk_000.mPos.y = c->mPos.y + 0x1a000;
+        o->mUnk_000.mPos.z = c->mPos.z;
+        o->mUnk_000.mUnk_10.x = c->mVelocity.x + (s32) (((s64) b * gPairsByAngle[(a >> 4) * 2]) >> 12);
+        o->mUnk_000.mUnk_10.y = c->mVelocity.y + 0x4000;
+        o->mUnk_000.mUnk_10.z = c->mVelocity.z + (s32) (((s64) b * gPairsByAngle[(a >> 4) * 2 + 1]) >> 12);
         o->mUnk_000.mFlags &= ~1;
         arg.mUnk_00 = 0x1d9;
         arg.mUnk_04 = NULL;
@@ -141,9 +141,9 @@ void func_ov001_02182bdc(void) {
             v = func_ov001_02181b68(n);
         }
         o->mUnk_0e8 = &v->mUnk_000.mPos;
-        o->mUnk_000.mPos.x = c->mUnk_80.x;
-        o->mUnk_000.mPos.y = c->mUnk_80.y + 0x1a000;
-        o->mUnk_000.mPos.z = c->mUnk_80.z;
+        o->mUnk_000.mPos.x = c->mPos.x;
+        o->mUnk_000.mPos.y = c->mPos.y + 0x1a000;
+        o->mUnk_000.mPos.z = c->mPos.z;
         o->mUnk_000.mUnk_10.x = (s32) (((s64) b * gPairsByAngle[(a >> 4) * 2]) >> 12);
         o->mUnk_000.mUnk_10.y = 0x4000;
         o->mUnk_000.mUnk_10.z = (s32) (((s64) b * gPairsByAngle[(a >> 4) * 2 + 1]) >> 12);
@@ -450,7 +450,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             if (b->mUnk_000.mCourseMapRow->mUnk_2a != 0) {
                 radius = b->mUnk_000.mCourseMapRow->mUnk_2a;
                 for (i = 0; i < data_021759c0->mKartCount; i++) {
-                    v = &GetKart((u16) i)->mUnk_80;
+                    v = &GetKart((u16) i)->mPos;
                     dx = v->x - b->mUnk_000.mPos.x;
                     dz = v->z - b->mUnk_000.mPos.z;
                     if ((s64) dx * dx + (s64) dz * dz < (s64) (radius << 12) * (radius << 12)) {
@@ -496,14 +496,14 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             b->mUnk_0a0 = n;
             func_ov001_02182eb8(b, 4);
             e = GetKart((u16) data_021759c0->mEntryIndex);
-            b->mUnk_000.mPos.x = e->mUnk_80.x;
+            b->mUnk_000.mPos.x = e->mPos.x;
             b->mUnk_000.mPos.y += b->mUnk_000.mUnk_10.y;
-            b->mUnk_000.mPos.z = e->mUnk_80.z;
+            b->mUnk_000.mPos.z = e->mPos.z;
             b->mUnk_000.mUnk_10.y -= 0x333;
             if (b->mUnk_0ac-- <= 0) {
                 func_020d2398((void *) ((u32) b));
             } else if (b->mUnk_0ac == 3) {
-                func_02081f10(func_0208b7bc(0x3f4, &e->mUnk_80), e->mIndex, 0x18);
+                func_02081f10(func_0208b7bc(0x3f4, &e->mPos), e->mIndex, 0x18);
             }
             if (b->mUnk_0fc != NULL) {
                 func_0208b5b0(b->mUnk_0fc, &b->mUnk_000.mPos);

@@ -58,7 +58,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
     if (func_01ffdee4(&p->mUnk_1b8, &p->mUnk_1c4, (u32) &p->mUnk_50, p->mUnk_1d0, 1, p->mUnk_2c8, &v1, &v5, &v2, &f,
                       (u32 *) &v3, (s32 *) &v4, &h, &w) != 0) {
         m = f & 0x1e34ef;
-        Vec3Add(&p->mUnk_80, &v1, &p->mUnk_80);
+        Vec3Add(&p->mPos, &v1, &p->mPos);
         func_0208ab98(&p->mKartModelsEntry->mUnk_040, (f & 0x3c000000) >> 26, p->mUnk_2a4);
         func_01ff9c9c(p, f);
         func_0206f694(p, f, &v4, h);
@@ -148,7 +148,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
                     p->mUnk_1fc.y = 0;
                 }
                 p->mUnk_44 |= 0x10;
-                if (p->mUnk_2a8 != 0 || func_02070398(p, f, &w) == 0) {
+                if (p->mForwardSpeed != 0 || func_02070398(p, f, &w) == 0) {
                     func_01ff9cb0(p);
                     if (((s32(*)(Kart *, u32, Vec3 *)) data_0217ac14)(p, f, &v3) != 0) {
                         n = 0;

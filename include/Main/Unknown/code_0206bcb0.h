@@ -182,12 +182,12 @@ typedef struct Kart {
     /* 68 */ Vec3 mUnk_68;
     /* 74 */ u16 mIndex;
     /* 76 */ u8 mUnk_76[0x2];
-    /* 78 */ s32 mUnk_78;
+    /* 78 */ s32 mEntryIndex;
     /* 7c */ vu32 mUnk_7c;
-    /* 80 */ Vec3 mUnk_80;
-    /* 8c */ Vec3 mUnk_8c;
+    /* 80 */ Vec3 mPos;
+    /* 8c */ Vec3 mPrevPos;
     /* 98 */ Vec3 mUnk_98;
-    /* a4 */ Vec3 mUnk_a4;
+    /* a4 */ Vec3 mVelocity;
     /* b0 */ Vec3 mUnk_b0;
     /* bc */ Vec3 mUnk_bc;
     /* c8 */ s32 mUnk_c8;
@@ -280,7 +280,7 @@ typedef struct Kart {
     /* 29c */ s32 mUnk_29c;
     /* 2a0 */ s32 mUnk_2a0;
     /* 2a4 */ s32 mUnk_2a4;
-    /* 2a8 */ s32 mUnk_2a8;
+    /* 2a8 */ s32 mForwardSpeed;
     /* 2ac */ s32 mUnk_2ac;
     /* 2b0 */ u16 mUnk_2b0;
     /* 2b2 */ u16 mUnk_2b2;

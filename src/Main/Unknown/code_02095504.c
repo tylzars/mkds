@@ -235,7 +235,7 @@ void func_02095544(void *a, Unk02095544 *p) {
         case 0:
             if (func_02061818() != 2) {
                 o = GetKart((u16) data_021759c0->mEntryIndex);
-                q = &o->mUnk_80;
+                q = &o->mPos;
                 v2 = q->x - p->mUnk_a4.x;
                 v1 = q->z - p->mUnk_a4.z;
                 d = (s64) v2 * v2 + (s64) v1 * v1;

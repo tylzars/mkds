@@ -80,7 +80,7 @@ int func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
             t.y = (s32) (((s64) t.y * c) >> 12);
             t.z = (s32) (((s64) t.z * c) >> 12);
             Vec3Add(&a->mUnk_22c, &t, &a->mUnk_22c);
-            Vec3Sub(&a->mUnk_228->mUnk_1fc->mUnk_a4, q, &t);
+            Vec3Sub(&a->mUnk_228->mUnk_1fc->mVelocity, q, &t);
             t.y = 0;
             t.x = (s32) (((s64) t.x * c) >> 12);
             t.y = (s32) (((s64) t.y * c) >> 12);

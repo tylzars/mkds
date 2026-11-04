@@ -119,7 +119,7 @@ void func_01ffb130(Kart *p) {
                 func_020e7a18();
             }
         } else {
-            p->mUnk_80.y -= 0x19a;
+            p->mPos.y -= 0x19a;
         }
     } else {
         func_01ffb9cc(p);
@@ -127,7 +127,7 @@ void func_01ffb130(Kart *p) {
     if (p->mUnk_44 & 0x10) {
         func_02063b10(p, &v2);
         if (!(p->mUnk_48 & 6) && p->mUnk_244.y > 0 && (v2.y > 0 ? v2.y : -v2.y) > 0xcd && p->mUnk_38c <= 0) {
-            p->mUnk_2a8 += (s32) (((s64) -v2.y * 0x19a) >> 12);
+            p->mForwardSpeed += (s32) (((s64) -v2.y * 0x19a) >> 12);
         }
     }
     if ((p->mUnk_44 & 0x10) || (p->mUnk_4c & 0x10000000)) {
@@ -180,19 +180,19 @@ void func_01ffb130(Kart *p) {
     if (p->mState == 6) {
         v1.y = 0;
     }
-    p->mUnk_a4 = v1;
-    Vec3Add(&p->mUnk_a4, &p->mUnk_374, &p->mUnk_a4);
-    p->mUnk_a4.y += p->mUnk_260;
-    Vec3AddScaled(p->mUnk_274, &p->mUnk_268, &p->mUnk_a4, &p->mUnk_a4);
-    if (!(p->mUnk_44 & 0x10) && p->mUnk_380 > 5 && p->mUnk_a4.y < -0x6000) {
-        p->mUnk_a4.y = -0x6000;
+    p->mVelocity = v1;
+    Vec3Add(&p->mVelocity, &p->mUnk_374, &p->mVelocity);
+    p->mVelocity.y += p->mUnk_260;
+    Vec3AddScaled(p->mUnk_274, &p->mUnk_268, &p->mVelocity, &p->mVelocity);
+    if (!(p->mUnk_44 & 0x10) && p->mUnk_380 > 5 && p->mVelocity.y < -0x6000) {
+        p->mVelocity.y = -0x6000;
     }
-    Vec3Add(&p->mUnk_a4, &p->mUnk_2f0, &p->mUnk_a4);
-    Vec3Add(&p->mUnk_a4, &p->mUnk_1fc, &p->mUnk_a4);
+    Vec3Add(&p->mVelocity, &p->mUnk_2f0, &p->mVelocity);
+    Vec3Add(&p->mVelocity, &p->mUnk_1fc, &p->mVelocity);
     func_01ff9c40(p);
     func_01ffae14(p, b);
     if (p->mUnk_7c & 1) {
-        func_0207a74c(func_02039828(&p->mUnk_a4, &p->mUnk_50));
+        func_0207a74c(func_02039828(&p->mVelocity, &p->mUnk_50));
         if ((p->mUnk_44 & 0x1000000) && p->mUnk_4d4 != 0) {
             p->mUnk_4d4 = (s32) (((s64) p->mUnk_4d4 * 0xfae) >> 12);
             if (p->mUnk_4d4 < 0xcd) {
@@ -201,7 +201,7 @@ void func_01ffb130(Kart *p) {
         }
     }
     if (!(p->mUnk_7c & 0x20)) {
-        Vec3Add(&p->mUnk_80, &p->mUnk_a4, &p->mUnk_80);
+        Vec3Add(&p->mPos, &p->mVelocity, &p->mPos);
         p->mUnk_38c = 0x1000;
     }
     f = (p->mUnk_44 & 0x10) ? 0xee1 : 0xfae;

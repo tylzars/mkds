@@ -73,7 +73,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
     func_0207a948(&a, p->mIndex);
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == 0) {
-        func_0204360c(p->mKart->mUnk_78, 1);
+        func_0204360c(p->mKart->mEntryIndex, 1);
         Vec3Sub(&p->mUnk_44, &a, &b);
         func_01ffd224(p, &b, t);
     }
@@ -109,7 +109,7 @@ void func_0207e35c(struct Unk020888b4 *p) {
     func_0207a948(&a, p->mIndex);
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == 0) {
-        func_0204360c(p->mKart->mUnk_78, 1);
+        func_0204360c(p->mKart->mEntryIndex, 1);
         Vec3Sub(&p->mUnk_44, &a, &b);
         func_01ffd224(p, &b, t);
     }
@@ -476,13 +476,13 @@ void func_0207d814(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     a->mUnk_18 = 0;
     a->mUnk_10 = 0;
     if (data_021759c0->mUnk_00c == 5) {
-        b->mKart->mUnk_2a8 = a->mUnk_00;
+        b->mKart->mForwardSpeed = a->mUnk_00;
         return;
     }
     if (data_021759c0->mUnk_00c == 6) {
         t = func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00);
-        b->mKart->mUnk_2a8 = (s32) (((s64) b->mKart->mUnk_2cc->mUnk_10 * t + 0x800) >> 12);
-        b->mKart->mUnk_cc = b->mKart->mUnk_2a8;
+        b->mKart->mForwardSpeed = (s32) (((s64) b->mKart->mUnk_2cc->mUnk_10 * t + 0x800) >> 12);
+        b->mKart->mUnk_cc = b->mKart->mForwardSpeed;
         b->mKart->mUnk_d0 = b->mKart->mUnk_cc;
         return;
     }

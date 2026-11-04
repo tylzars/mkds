@@ -101,7 +101,7 @@ u8 func_0209b344(Unk0209a7dc *a, Kart *b, u8 *c, u8 *d) {
 
     e = *d;
     if (*c == 1) {
-        func_0209b388(a, &b->mUnk_80, &b->mUnk_68, &b->mUnk_a4);
+        func_0209b388(a, &b->mPos, &b->mUnk_68, &b->mVelocity);
         func_020d26f8(&a->mUnk_000, b);
     }
     return e;
@@ -126,7 +126,7 @@ u8 func_0209b270(Unk0209a7dc *a, Kart *b, u8 *c, u8 *d) {
             func_020f8ddc(b);
         } else {
             t = GetKart((u16) data_021759c0->mEntryIndex);
-            func_0209b388(a, &t->mUnk_80, &t->mUnk_68, &t->mUnk_a4);
+            func_0209b388(a, &t->mPos, &t->mUnk_68, &t->mVelocity);
         }
     }
     return e;

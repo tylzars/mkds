@@ -55,7 +55,7 @@ s32 func_02067bf4(Kart *a, s32 *b) {
         }
         func_02055c5c();
     }
-    a->mUnk_2a8 = 0;
+    a->mForwardSpeed = 0;
     return 5;
 }
 
@@ -261,7 +261,7 @@ void func_02067488(Kart *a) {
         return;
     }
     c = GetKart(data_021759c0->mEntryIndex);
-    Vec3Sub(&a->mUnk_80, &c->mUnk_80, &b);
+    Vec3Sub(&a->mPos, &c->mPos, &b);
     b.x = b.x >> 12;
     b.y = b.y >> 12;
     b.z = b.z >> 12;
@@ -300,7 +300,7 @@ void func_02066fe0(Kart *a) {
             if (c != 0) {
                 c = a->mUnk_7c;
                 if ((c & 6) == 0 && (c & 8) == 0) {
-                    data_02175664[a->mUnk_78].mSourceKind = 3;
+                    data_02175664[a->mEntryIndex].mSourceKind = 3;
                     if (data_0217561c->mUnk_000[a->mIndex].mUnk_14 == 1) {
                         func_0208c260(a->mUnk_310, a->mIndex);
                         a->mUnk_7c = a->mUnk_7c | 2;
@@ -417,7 +417,7 @@ void func_02066de8(Kart *a) {
     if (a->mUnk_594 > 0) {
         a->mUnk_594 = (s64) a->mUnk_594 * data_021654fc + 0x800 >> 12;
         a->mUnk_594 = a->mUnk_594 - 0x64;
-        if ((a->mUnk_44 & 0x10) == 0 || (a->mUnk_2a8 > 0 ? a->mUnk_2a8 : -a->mUnk_2a8) < 0x3000) {
+        if ((a->mUnk_44 & 0x10) == 0 || (a->mForwardSpeed > 0 ? a->mForwardSpeed : -a->mForwardSpeed) < 0x3000) {
             a->mUnk_594 = (s64) a->mUnk_594 * 0xe66 + 0x800 >> 12;
         }
         if (a->mUnk_594 < 0) {
@@ -508,16 +508,16 @@ void func_02066ac0(Kart *a) {
         m = ListGetNext(&e->mUnk_80, m);
     }
     if ((a->mUnk_514->mUnk_44 & 2) != 0) {
-        func_0204360c(a->mUnk_78, 1);
+        func_0204360c(a->mEntryIndex, 1);
     }
     if ((a->mUnk_514->mUnk_44 & 4) != 0) {
-        func_0204360c(a->mUnk_78, 2);
+        func_0204360c(a->mEntryIndex, 2);
     }
     if ((a->mUnk_514->mUnk_44 & 8) != 0) {
-        func_0204360c(a->mUnk_78, 0x20);
+        func_0204360c(a->mEntryIndex, 0x20);
     }
     if ((a->mUnk_514->mUnk_44 & 0x10) != 0) {
-        func_0204360c(a->mUnk_78, 0x10);
+        func_0204360c(a->mEntryIndex, 0x10);
     }
     if ((a->mUnk_514->mUnk_44 & 1) != 0) {
         a->mUnk_44 = a->mUnk_44 | 0x10;

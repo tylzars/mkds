@@ -210,7 +210,7 @@ void func_02089788(Unk020888b4 *p, Kart *q) {
     p->mKart = q;
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
-    func_02080908(&p->mUnk_28, &q->mUnk_80, &q->mUnk_138, q->mIndex);
+    func_02080908(&p->mUnk_28, &q->mPos, &q->mUnk_138, q->mIndex);
     p->mUnk_44 = *p->mUnk_28.mUnk_00->mUnk_20;
     func_020898bc(p);
     if (data_021759c0->mUnk_18 == 0) {
@@ -286,7 +286,7 @@ void func_02089494(Unk020888b4 *p) {
         if (p->mIndex == func_02061f90()) {
             f = p->mUnk_5c;
             z = *g;
-            Vec3Sub(f, &q->mUnk_80, &t);
+            Vec3Sub(f, &q->mPos, &t);
             z.y = 0;
             t.y = 0;
             Vec3Cross(&z, &t, &u);
@@ -318,7 +318,7 @@ void func_02089494(Unk020888b4 *p) {
     if (p->mUnk_c4 != 0) {
         return;
     }
-    func_0204360c(p->mKart->mUnk_78, 1);
+    func_0204360c(p->mKart->mEntryIndex, 1);
     Vec3Sub(p->mUnk_5c, &v, &w);
     func_01ffd224(p, &w, g);
 }
@@ -393,11 +393,11 @@ void func_02088e44(Unk020888b4 *p) {
         for (n = 0; n < (u32) data_021759c0->mKartCount; n++) {
             if (func_0207f554(p->mIndex, k) != 0) {
                 o = GetKart(k);
-                v3 = &p->mKart->mUnk_80;
-                d = func_020888b4_inline(v3, &o->mUnk_80);
+                v3 = &p->mKart->mPos;
+                d = func_020888b4_inline(v3, &o->mPos);
                 c = 0;
                 if (d < 0x895440) {
-                    if (func_020738f8(p->mKart->mUnk_80.y - o->mUnk_80.y) < 0x3c000) {
+                    if (func_020738f8(p->mKart->mPos.y - o->mPos.y) < 0x3c000) {
                         c = 1;
                         p->mUnk_b8 = d;
                     }
@@ -430,11 +430,11 @@ void func_02088e44(Unk020888b4 *p) {
     }
     q = p->mKart;
     o = p->mUnk_b0;
-    v3 = &q->mUnk_80;
-    d = func_020888b4_inline(v3, &o->mUnk_80);
+    v3 = &q->mPos;
+    d = func_020888b4_inline(v3, &o->mPos);
     c = 0;
     if (d < 0xf42400) {
-        if (func_020738f8(p->mKart->mUnk_80.y - p->mUnk_b0->mUnk_80.y) < 0x3c000) {
+        if (func_020738f8(p->mKart->mPos.y - p->mUnk_b0->mPos.y) < 0x3c000) {
             p->mUnk_b8 = d;
             c = 1;
         }
@@ -442,11 +442,11 @@ void func_02088e44(Unk020888b4 *p) {
     if (c == 0) {
         goto clear;
     }
-    if (func_020738f8(p->mKart->mUnk_80.y - p->mUnk_b0->mUnk_80.y) >= 0x3c000) {
+    if (func_020738f8(p->mKart->mPos.y - p->mUnk_b0->mPos.y) >= 0x3c000) {
         goto clear;
     }
     c = 0;
-    Vec3Sub(&p->mUnk_b0->mUnk_80, &p->mKart->mUnk_80, &v);
+    Vec3Sub(&p->mUnk_b0->mPos, &p->mKart->mPos, &v);
     if (Vec3Dot(&v, &p->mKart->mUnk_138) > 0) {
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
             func_02039860(&v, &v);
@@ -466,7 +466,7 @@ void func_02088e44(Unk020888b4 *p) {
         x = c != 0 ? 1 : 0;
         y = (p->mUnk_b0->mUnk_4c & 0x40) != 0 ? 1 : 0;
         if (x != 0 && y == 0 && p->mUnk_bc > 0xb33) {
-            u = p->mUnk_b0->mUnk_80;
+            u = p->mUnk_b0->mPos;
             u.y = p->mUnk_44.y;
             t = *p->mUnk_28.mUnk_00->mUnk_20;
             z = data_02155eb0;
@@ -564,17 +564,17 @@ void func_02088a0c(Unk020888b4 *p) {
     if (r != NULL) {
         if (!(r->mFlags & 1)) {
             v1 = &r->mPos;
-            v2 = &p->mKart->mUnk_80;
+            v2 = &p->mKart->mPos;
             d = func_020888b4_inline(v2, v1);
             m = gEntryYDifferenceLimit;
-            if (d < 0x15f900 && func_020738f8(p->mKart->mUnk_80.y - r->mPos.y) < m) {
+            if (d < 0x15f900 && func_020738f8(p->mKart->mPos.y - r->mPos.y) < m) {
                 c = TRUE;
             } else {
                 c = FALSE;
             }
             if (c != FALSE) {
                 n = FALSE;
-                Vec3Sub(&r->mPos, &p->mKart->mUnk_80, &v);
+                Vec3Sub(&r->mPos, &p->mKart->mPos, &v);
                 if (Vec3Dot(&v, &p->mKart->mUnk_138) > 0) {
                     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
                         func_02039860(&v, &v);
@@ -645,9 +645,9 @@ BOOL func_020888b4(Unk020888b4 *p, s32 a, s32 b) {
         if (!(e->mFlags & 1)) {
             c++;
             v1 = &e->mPos;
-            v2 = &p->mKart->mUnk_80;
+            v2 = &p->mKart->mPos;
             d = func_020888b4_inline(v2, v1);
-            if (d < a && func_020738f8(p->mKart->mUnk_80.y - e->mPos.y) < b) {
+            if (d < a && func_020738f8(p->mKart->mPos.y - e->mPos.y) < b) {
                 x = TRUE;
             } else {
                 x = FALSE;

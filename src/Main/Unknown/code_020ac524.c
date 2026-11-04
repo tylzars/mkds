@@ -108,7 +108,7 @@ void func_020ac6a8(void *a, ShineBalloonObject *b) {
                     b->mState = 2;
                 }
             }
-            b->mUnk_00.mPos = b->mUnk_ac->mUnk_80;
+            b->mUnk_00.mPos = b->mUnk_ac->mPos;
             break;
         case 2:
             if (func_020a1154(b->mUnk_ac->mIndex) == 0) {
@@ -116,7 +116,7 @@ void func_020ac6a8(void *a, ShineBalloonObject *b) {
                 b->mUnk_a4 = 8;
                 b->mState = 3;
             }
-            b->mUnk_00.mPos = b->mUnk_ac->mUnk_80;
+            b->mUnk_00.mPos = b->mUnk_ac->mPos;
             break;
         case 3:
             if (b->mTimer-- <= 0) {
@@ -132,7 +132,7 @@ void func_020ac6a8(void *a, ShineBalloonObject *b) {
                     }
                 }
             }
-            b->mUnk_00.mPos = b->mUnk_ac->mUnk_80;
+            b->mUnk_00.mPos = b->mUnk_ac->mPos;
             break;
     }
 }

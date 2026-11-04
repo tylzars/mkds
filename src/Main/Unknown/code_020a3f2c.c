@@ -118,9 +118,9 @@ u32 func_020a6ae4(Unk020a5958 *p, Kart *o, u8 *a, u8 *b) {
         }
         p->mUnk_00.mFlags |= data_021567a0;
         p->mUnk_c0 = 0x19;
-        p->mUnk_00.mPos.x = o->mUnk_80.x;
-        p->mUnk_00.mPos.y = o->mUnk_80.y + func_020a23a0(o) + 0x7800;
-        p->mUnk_00.mPos.z = o->mUnk_80.z;
+        p->mUnk_00.mPos.x = o->mPos.x;
+        p->mUnk_00.mPos.y = o->mPos.y + func_020a23a0(o) + 0x7800;
+        p->mUnk_00.mPos.z = o->mPos.z;
         p->mUnk_a0 = 0;
         p->mUnk_00.mUnk_10.x = 0;
         p->mUnk_00.mUnk_10.y = 0x3000;
@@ -357,7 +357,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
                     }
                 }
                 if (p->mUnk_a8 <= 0) {
-                    func_02081f10(func_0208b7bc(0x7c, &v->mUnk_80), v->mIndex, 0x16);
+                    func_02081f10(func_0208b7bc(0x7c, &v->mPos), v->mIndex, 0x16);
                 }
             } else {
                 p->mUnk_a8 += 0x19a;
@@ -647,9 +647,9 @@ void func_020a5608(Kart *a, Kart *b) {
     }
     p->mUnk_00.mFlags = p->mUnk_00.mFlags | data_021567a0;
     p->mUnk_00.mFlags &= ~0x20;
-    p->mUnk_00.mPos.x = a->mUnk_80.x;
-    p->mUnk_00.mPos.y = a->mUnk_80.y;
-    p->mUnk_00.mPos.z = a->mUnk_80.z;
+    p->mUnk_00.mPos.x = a->mPos.x;
+    p->mUnk_00.mPos.y = a->mPos.y;
+    p->mUnk_00.mPos.z = a->mPos.z;
     p->mUnk_00.mUnk_10.x = 0;
     p->mUnk_00.mUnk_10.y = 0x1000;
     p->mUnk_00.mUnk_10.z = 0;
@@ -660,7 +660,7 @@ void func_020a5608(Kart *a, Kart *b) {
     p->mUnk_a8 = 0;
     p->mUnk_c0 = 0;
     p->mUnk_e0 = 3;
-    p->mUnk_cc = b->mUnk_80;
+    p->mUnk_cc = b->mPos;
     if (b == a) {
         p->mUnk_d8 = 0;
     } else {
@@ -702,9 +702,9 @@ BOOL func_020a5268(u16 a, u16 b) {
             if (a == data_021759c0->mEntryIndex) {
                 func_020a2ebc(l, NULL);
             } else {
-                v.x = o->mUnk_80.x;
-                v.y = o->mUnk_80.y + func_020a23a0(o) - 0xf666;
-                v.z = o->mUnk_80.z;
+                v.x = o->mPos.x;
+                v.y = o->mPos.y + func_020a23a0(o) - 0xf666;
+                v.z = o->mPos.z;
                 l->mUnk_00.mFlags &= ~4;
                 l->mUnk_00.mFlags &= ~2;
                 l->mUnk_00.mFlags &= ~8;
@@ -741,8 +741,8 @@ BOOL func_020a5268(u16 a, u16 b) {
             if (func_020a1154(b) >= 2 && func_020a2204(b) != 0) {
                 e->mUnk_34 = 4;
             }
-            func_02081f10(func_0208b7bc(0x7a, &o->mUnk_80), o->mIndex, 0x20);
-            func_02081f10(func_0208b7bc(0x7b, &o->mUnk_80), o->mIndex, 0x20);
+            func_02081f10(func_0208b7bc(0x7a, &o->mPos), o->mIndex, 0x20);
+            func_02081f10(func_0208b7bc(0x7b, &o->mPos), o->mIndex, 0x20);
             func_020d26ec(GetKart(b), 0x14f);
             if (func_020a1154(a) == 0) {
                 func_020a16d0(a);
@@ -850,9 +850,9 @@ BOOL func_020a4d94(u16 a, u16 b) {
         if (a == data_021759c0->mEntryIndex) {
             func_020a2ebc(l, NULL);
         } else {
-            v.x = o->mUnk_80.x;
-            v.y = o->mUnk_80.y + func_020a23a0(o) - 0xf666;
-            v.z = o->mUnk_80.z;
+            v.x = o->mPos.x;
+            v.y = o->mPos.y + func_020a23a0(o) - 0xf666;
+            v.z = o->mPos.z;
             l->mUnk_00.mFlags &= ~4;
             l->mUnk_00.mFlags &= ~2;
             l->mUnk_00.mFlags &= ~8;
@@ -1026,9 +1026,9 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
         Unk020a3fa8_a4 *e = &c->mUnk_0a4[i];
         func_020748a8();
         p = GetKart((u16) i);
-        v.x = p->mUnk_80.x;
-        v.y = p->mUnk_80.y + func_020a23a0(p) - 0xf666;
-        v.z = p->mUnk_80.z;
+        v.x = p->mPos.x;
+        v.y = p->mPos.y + func_020a23a0(p) - 0xf666;
+        v.z = p->mPos.z;
         switch (e->mUnk_34) {
             case 0:
                 if (e->mUnk_00 > 0) {
@@ -1170,7 +1170,7 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
                     t2.z = (s32) (((s64) q->z * -0xcd) >> 12);
                     func_020a2e74(o, &t2);
                 }
-                func_020a2e88(o, &v, &p->mUnk_a4);
+                func_020a2e88(o, &v, &p->mVelocity);
                 func_020a2e58(o, i);
                 func_020a2e4c(o, 1, NULL);
                 o->mUnk_00.mFlags &= ~4;
@@ -1182,7 +1182,7 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
             m = func_020a1154(i) + (func_020a2204(i) != 0 ? 1 : 0);
             for (j = 0; j < m; j++) {
                 o = e->mUnk_10[j];
-                func_020a2e88(o, &v, &p->mUnk_a4);
+                func_020a2e88(o, &v, &p->mVelocity);
                 func_020a2e58(o, i);
                 if (j == 0) {
                     func_020a2e4c(o, m, e->mUnk_10);

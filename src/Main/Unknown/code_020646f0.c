@@ -34,14 +34,14 @@ void func_020646f0(Kart *a, s32 b) {
     Vec3 *n;
 
     if (b == 0) {
-        func_02041bb0(&a->mUnk_80, &d, a->mIndex);
+        func_02041bb0(&a->mPos, &d, a->mIndex);
         if (data_021759c0->mUnk_00c == 5) {
-            a->mUnk_80 = data_0216549c[a->mIndex];
+            a->mPos = data_0216549c[a->mIndex];
         }
     } else {
         c = gCourseMap;
         if (c->mUnk_3c != NULL) {
-            n = &a->mUnk_80;
+            n = &a->mPos;
             if (n != NULL) {
                 *n = c->mUnk_3c->mUnk_00;
             }
@@ -49,32 +49,32 @@ void func_020646f0(Kart *a, s32 b) {
         }
     }
     if ((a->mUnk_7c & 0x600) != 0) {
-        j = a->mUnk_80.x >> 10;
-        k = a->mUnk_80.y >> 10;
-        l = a->mUnk_80.z >> 10;
-        a->mUnk_80.x = j << 10;
-        a->mUnk_80.y = k << 10;
-        a->mUnk_80.z = l << 10;
+        j = a->mPos.x >> 10;
+        k = a->mPos.y >> 10;
+        l = a->mPos.z >> 10;
+        a->mPos.x = j << 10;
+        a->mPos.y = k << 10;
+        a->mPos.z = l << 10;
     }
-    g = a->mUnk_80;
+    g = a->mPos;
     g.y = g.y + 0x1000;
-    a->mUnk_80.y = a->mUnk_80.y - 0x1400;
-    if (func_01ffdee4(&a->mUnk_80, (u32 *) &g, (u32) &a->mUnk_50, 0x5000, 1, -2, &e, &f, NULL, NULL, NULL, NULL, NULL,
+    a->mPos.y = a->mPos.y - 0x1400;
+    if (func_01ffdee4(&a->mPos, (u32 *) &g, (u32) &a->mUnk_50, 0x5000, 1, -2, &e, &f, NULL, NULL, NULL, NULL, NULL,
                       NULL) != 0) {
         h.x = (s64) f.x * 0x5000 >> 12;
         h.y = (s64) f.y * 0x5000 >> 12;
         h.z = (s64) f.z * 0x5000 >> 12;
         Vec3Sub(&e, &h, &e);
-        Vec3Add(&a->mUnk_80, &e, &a->mUnk_80);
+        Vec3Add(&a->mPos, &e, &a->mPos);
     }
-    a->mUnk_80.y = a->mUnk_80.y - 0x1000;
+    a->mPos.y = a->mPos.y - 0x1000;
     a->mUnk_236 = (u32) (d.y * 0xb6) >> 12;
     func_01ffd190(&data_02154a3c, a->mUnk_236, &a->mUnk_e0_m);
     a->mUnk_110_q = a->mUnk_e0_m;
     func_01ffcd84(&a->mUnk_120, &a->mUnk_110_q);
     a->mUnk_150_m = a->mUnk_120_m;
-    a->mUnk_8c = a->mUnk_80;
-    a->mUnk_98 = a->mUnk_8c;
+    a->mPrevPos = a->mPos;
+    a->mUnk_98 = a->mPrevPos;
     a->mUnk_174.x = a->mUnk_98.x;
     a->mUnk_174.y = a->mUnk_98.y;
     a->mUnk_174.z = a->mUnk_98.z;

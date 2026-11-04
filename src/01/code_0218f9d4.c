@@ -113,12 +113,10 @@ void func_ov001_02192694(void) {
     other = GetKart((u16) data_021759c0->mEntryIndex);
     if (obj->mUnk_0a8 == 4) {
         a0 = obj->mPrm;
-        ang = AngleFromPair(other->mUnk_80.z - obj->mUnk_000.mPos.z, other->mUnk_80.x - obj->mUnk_000.mPos.x) -
-              a0->mUnk_26c;
+        ang = AngleFromPair(other->mPos.z - obj->mUnk_000.mPos.z, other->mPos.x - obj->mUnk_000.mPos.x) - a0->mUnk_26c;
     } else {
         a0 = obj->mPrm;
-        ang = a0->mUnk_26c +
-              AngleFromPair(other->mUnk_80.z - obj->mUnk_000.mPos.z, other->mUnk_80.x - obj->mUnk_000.mPos.x);
+        ang = a0->mUnk_26c + AngleFromPair(other->mPos.z - obj->mUnk_000.mPos.z, other->mPos.x - obj->mUnk_000.mPos.x);
     }
     idx = (ang >> 4) * 2;
     pos.x = obj->mUnk_000.mPos.x + (s32) (((s64) a0->mUnk_270 * gPairsByAngle[idx + 1]) >> 12);
@@ -523,7 +521,7 @@ void func_ov001_021913b8(Unk02188950 *a) {
     SetVelocity(a, &local);
     func_ov001_02188c90(a);
     func_ov001_02188cd8(a, a->mPrm->mUnk_0d8, a->mPrm->mUnk_0dc);
-    func_ov001_02188de0(a, a->mPrm->mUnk_0e8, 0, &v1->mUnk_80, func_ov001_02191488);
+    func_ov001_02188de0(a, a->mPrm->mUnk_0e8, 0, &v1->mPos, func_ov001_02191488);
     func_ov001_02188e24(a, a->mPrm->mUnk_0ec, func_ov001_02191488);
     a->mUnk_2c0 = 0;
 }
@@ -537,7 +535,7 @@ void func_ov001_02191318(Unk02188950 *a) {
     func_ov001_02188d64(a, a->mPrm->mUnk_08c, a->mPrm->mUnk_090);
     SetVelocity(a, &local);
     func_ov001_02188c90(a);
-    SetAnglePointAndMoveAnglePoint(a, &v1->mUnk_80);
+    SetAnglePointAndMoveAnglePoint(a, &v1->mPos);
     func_ov001_02188cd8(a, a->mPrm->mUnk_094, a->mPrm->mUnk_098);
     func_ov001_02188e24(a, a->mPrm->mUnk_0a8, func_ov001_021913b8);
 }
@@ -567,7 +565,7 @@ void func_ov001_021911a8(Unk02188950 *a) {
     func_ov001_02188d64(a, a->mPrm->mUnk_1cc, a->mPrm->mUnk_1d0);
     SetVelocity(a, &local);
     func_ov001_02188c90(a);
-    SetAnglePointAndMoveAnglePoint(a, &v1->mUnk_80);
+    SetAnglePointAndMoveAnglePoint(a, &v1->mPos);
     func_ov001_02188cd8(a, a->mPrm->mUnk_1d4, a->mPrm->mUnk_1d8);
     func_ov001_02188db8(a, func_ov001_02191258);
     func_ov001_02188200(a, func_ov001_02192794);
@@ -744,7 +742,7 @@ s32 func_ov001_02190b58(Unk02188950 *c) {
     b = (data_021759c0->mMode == 4
              ? func_ov001_02181b68((u16) ((data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0) + 1))
              : 0);
-    SetAnglePointAndMoveAnglePoint(c, &GetKart((u16) data_021759c0->mEntryIndex)->mUnk_80);
+    SetAnglePointAndMoveAnglePoint(c, &GetKart((u16) data_021759c0->mEntryIndex)->mPos);
     func_ov001_021924cc();
     if (func_ov001_021871f8(a, 3) && func_ov001_021871f8(b, 3)) {
         func_ov001_02188218(c, (s32) ((u16) c->mPrm->mUnk_1ec));
@@ -778,7 +776,7 @@ s32 func_ov001_02190a20(Unk02188950 *c) {
     b = (data_021759c0->mMode == 4
              ? func_ov001_02181b68((u16) ((data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0) + 1))
              : 0);
-    SetAnglePointAndMoveAnglePoint(c, &GetKart((u16) data_021759c0->mEntryIndex)->mUnk_80);
+    SetAnglePointAndMoveAnglePoint(c, &GetKart((u16) data_021759c0->mEntryIndex)->mPos);
     func_ov001_021924cc();
     if (func_ov001_021871f8(a, 3) && func_ov001_021871f8(b, 3)) {
         c->mUnk_0a8 = c->mUnk_0a8 == 4 ? 5 : 4;
@@ -796,7 +794,7 @@ void func_ov001_02190948(Unk02188950 *c) {
         r4 = GetKart((u16) data_021759c0->mEntryIndex);
         func_ov001_02187218(c, 3, func_ov001_02190a20);
         func_ov001_02188c48(c, c->mPrm->mUnk_2c4, 0x270f000);
-        SetAnglePointAndMoveAnglePoint(c, &r4->mUnk_80);
+        SetAnglePointAndMoveAnglePoint(c, &r4->mPos);
         if (data_021759c0->mMode == 4) {
             a = func_ov001_02181b68((u16) ((data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0)));
         } else {
@@ -835,7 +833,7 @@ int func_ov001_021908a8(Unk02188950 *c) {
         b = NULL;
     }
     r4 = GetKart((u16) data_021759c0->mEntryIndex);
-    SetAnglePointAndMoveAnglePoint(c, &r4->mUnk_80);
+    SetAnglePointAndMoveAnglePoint(c, &r4->mPos);
     func_ov001_021924cc();
     if (func_ov001_021871f8(a, 3) && func_ov001_021871f8(b, 3)) {
         func_ov001_02188218(c, 4);
@@ -908,7 +906,7 @@ int func_ov001_02190688(Unk02188950 *c) {
             c->mUnk_0a8 = 5;
             func_ov001_02187218(c, 3, func_ov001_0219079c);
             func_ov001_02188c48(c, c->mPrm->mUnk_2c4, 0x270f000);
-            SetAnglePointAndMoveAnglePoint(c, &r4->mUnk_80);
+            SetAnglePointAndMoveAnglePoint(c, &r4->mPos);
             func_ov001_02191ecc(a);
             func_ov001_02191f70(b);
         }
@@ -916,7 +914,7 @@ int func_ov001_02190688(Unk02188950 *c) {
         c->mUnk_0a8 = 4;
         func_ov001_02187218(c, 3, func_ov001_0219079c);
         func_ov001_02188c48(c, c->mPrm->mUnk_2c4, 0x270f000);
-        SetAnglePointAndMoveAnglePoint(c, &r4->mUnk_80);
+        SetAnglePointAndMoveAnglePoint(c, &r4->mPos);
         func_ov001_02191f70(a);
         func_ov001_02191ecc(b);
     }
@@ -980,7 +978,7 @@ void func_ov001_02190468(Unk02188950 *c) {
     r4 = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(c, 3, func_ov001_0219052c);
     func_ov001_02188c48(c, c->mPrm->mUnk_2c4, 0x270f000);
-    SetAnglePointAndMoveAnglePoint(c, &r4->mUnk_80);
+    SetAnglePointAndMoveAnglePoint(c, &r4->mPos);
     if (data_021759c0->mMode == 4) {
         a = func_ov001_02181b68((u16) ((data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0)));
     } else {

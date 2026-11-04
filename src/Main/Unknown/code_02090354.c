@@ -530,7 +530,7 @@ void func_02090748(Unk020905a8 *a) {
     Vec3 v;
     s32 r;
     p = GetKart(a->mUnk_24);
-    v = p->mUnk_80;
+    v = p->mPos;
     a->mUnk_20 = func_0207eafc(a->mUnk_00.mUnk_00->mUnk_18, &v, &p->mUnk_12c, &p->mUnk_138);
     if ((p->mUnk_48 & 0x40000000) != 0 && p->mUnk_3e4 == 1) {
         r = func_02080bf4(&a->mUnk_00, &v);
@@ -540,8 +540,8 @@ void func_02090748(Unk020905a8 *a) {
             r = func_02080c64(&a->mUnk_00, &v);
         }
     }
-    p->mUnk_2a8 = 0xa800;
-    p->mUnk_cc = p->mUnk_2a8;
+    p->mForwardSpeed = 0xa800;
+    p->mUnk_cc = p->mForwardSpeed;
     p->mUnk_d0 = p->mUnk_cc;
     if (r != 0) {
         func_0207ff5c((u32) a);
@@ -567,7 +567,7 @@ void func_02090638(Unk020905a8 *a) {
         s = 0x52;
     }
     w = p->mUnk_236 + (s16) (((s64) v * 0xb6 + 0x800) >> 12);
-    b = *(volatile s32 *) &p->mUnk_78;
+    b = *(volatile s32 *) &p->mEntryIndex;
     m = data_0217562a[b].mBits;
     if ((u16) (m & 0x20) != 0) {
         p->mUnk_236 = p->mUnk_236 + 0xa0;

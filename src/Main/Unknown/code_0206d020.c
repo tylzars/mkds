@@ -117,7 +117,7 @@ BOOL func_0206dbf8(Kart *p, Kart *q) {
     c = func_0206dbf8_inline(q);
     if (c != 0) {
         a = p->mUnk_120;
-        Vec3Sub(&q->mUnk_80, &p->mUnk_80, &b);
+        Vec3Sub(&q->mPos, &p->mPos, &b);
         Vec3Cross(&p->mUnk_138, &b, &v1);
         if (Vec3Dot(&v1, &p->mUnk_12c) < 0) {
             a.x = -a.x;
@@ -262,7 +262,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     if (q->mKartModelsEntry->mUnk_058 != 0) {
         return;
     }
-    t = q->mUnk_2a8;
+    t = q->mForwardSpeed;
     if (t <= 0) {
         t = -t;
     }
@@ -303,7 +303,7 @@ void func_0206d578(Kart *p) {
             for (i = 0; i < data_0217b5a8; i++) {
                 q = data_0217b5c4[i];
                 if (q->mUnk_2a4 >= 0x2000 && (data_0217b5bc[i] & 0x800) && q != p && !(q->mUnk_7c & 0x402000)) {
-                    Vec3Sub(&q->mUnk_80, &p->mUnk_80, &v);
+                    Vec3Sub(&q->mPos, &p->mPos, &v);
                     d = Vec3Length(&v);
                     if (func_02039828(&q->mUnk_50, &v) > (s32) (((s64) d * 0xe7f) >> 12)) {
                         v1 = TRUE;
@@ -369,9 +369,9 @@ void func_0206d18c(Kart *p) {
         case 2:
             r = func_0206bcb0(p, 1, r);
             if (r != 0 && p->mKartModelsEntry->mUnk_058 == 0) {
-                func_0208b7bc(0xc, &p->mUnk_80);
-                func_0208b7bc(0xd, &p->mUnk_80);
-                func_0208b7bc(0xe, &p->mUnk_80);
+                func_0208b7bc(0xc, &p->mPos);
+                func_0208b7bc(0xd, &p->mPos);
+                func_0208b7bc(0xe, &p->mPos);
             }
             break;
         case 3:

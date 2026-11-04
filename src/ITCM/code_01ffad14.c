@@ -19,7 +19,7 @@ void func_01ffb0cc(Kart *p) {
 
 s32 func_01ffaf18(Kart *p) {
     BOOL v1;
-    s32 a = p->mUnk_2a8;
+    s32 a = p->mForwardSpeed;
     s32 c;
     s32 g;
     s32 b;
@@ -37,69 +37,70 @@ s32 func_01ffaf18(Kart *p) {
     }
     g = p->mUnk_39c + (b + (s32) ((s64) c * (s32) ((s64) p->mUnk_38c * p->mUnk_394 >> 12) >> 12));
     if (a > g) {
-        p->mUnk_2a8 = g;
+        p->mForwardSpeed = g;
     } else {
         if (a <= (s32) (p->mUnk_38c * (s64) 0x19a >> 12) && !(p->mUnk_44 & 0x80000) && !(f & 6)) {
-            p->mUnk_2a8 = 0;
+            p->mForwardSpeed = 0;
         } else {
-            p->mUnk_2a8 = a;
+            p->mForwardSpeed = a;
         }
     }
     if (v1) {
-        p->mUnk_2a8 *= -1;
+        p->mForwardSpeed *= -1;
     }
     g = p->mUnk_3a0;
     if (g != 0) {
         if (g > 0) {
-            a = p->mUnk_2a8;
+            a = p->mForwardSpeed;
             if (a < 0) {
-                p->mUnk_2a8 = a + g;
-                if (p->mUnk_2a8 > p->mUnk_3a0) {
-                    p->mUnk_2a8 = p->mUnk_3a0;
+                p->mForwardSpeed = a + g;
+                if (p->mForwardSpeed > p->mUnk_3a0) {
+                    p->mForwardSpeed = p->mUnk_3a0;
                 }
             } else {
                 a = a > 0 ? a : -a;
                 c = g > 0 ? g : -g;
                 if (c > a) {
-                    p->mUnk_2a8 = g;
+                    p->mForwardSpeed = g;
                 }
             }
         } else {
-            a = p->mUnk_2a8;
+            a = p->mForwardSpeed;
             if (a > 0) {
-                p->mUnk_2a8 = a + g;
-                if (p->mUnk_2a8 < p->mUnk_3a0) {
-                    p->mUnk_2a8 = p->mUnk_3a0;
+                p->mForwardSpeed = a + g;
+                if (p->mForwardSpeed < p->mUnk_3a0) {
+                    p->mForwardSpeed = p->mUnk_3a0;
                 }
             } else {
                 a = a > 0 ? a : -a;
                 c = g > 0 ? g : -g;
                 if (c > a) {
-                    p->mUnk_2a8 = g;
+                    p->mForwardSpeed = g;
                 }
             }
         }
     }
-    return ((s64) p->mUnk_2a8 * (0x1000 - (p->mUnk_274 >> 3)) + 0x800) >> 12;
+    return ((s64) p->mForwardSpeed * (0x1000 - (p->mUnk_274 >> 3)) + 0x800) >> 12;
 }
 
 void func_01ffae14(Kart *p, s32 a) {
     s32 r;
 
-    p->mUnk_a4.x = (s64) p->mUnk_a4.x * a >> 12;
+    p->mVelocity.x = (s64) p->mVelocity.x * a >> 12;
     r = 0;
-    p->mUnk_a4.y = (s64) p->mUnk_a4.y * a >> 12;
-    p->mUnk_a4.z = (s64) p->mUnk_a4.z * a >> 12;
-    if ((s64) p->mUnk_a4.x * p->mUnk_a4.x + (s64) p->mUnk_a4.y * p->mUnk_a4.y + (s64) p->mUnk_a4.z * p->mUnk_a4.z >=
+    p->mVelocity.y = (s64) p->mVelocity.y * a >> 12;
+    p->mVelocity.z = (s64) p->mVelocity.z * a >> 12;
+    if ((s64) p->mVelocity.x * p->mVelocity.x + (s64) p->mVelocity.y * p->mVelocity.y +
+            (s64) p->mVelocity.z * p->mVelocity.z >=
         0x10) {
-        r = func_02039860(&p->mUnk_a4, &p->mUnk_b0);
+        r = func_02039860(&p->mVelocity, &p->mUnk_b0);
     }
     p->mUnk_2a4 = r;
     if (p->mUnk_2a4 > 0xd000) {
         p->mUnk_2a4 = 0xd000;
-        p->mUnk_a4.x = (s64) p->mUnk_b0.x * 0xd000 >> 12;
-        p->mUnk_a4.y = (s64) p->mUnk_b0.y * 0xd000 >> 12;
-        p->mUnk_a4.z = (s64) p->mUnk_b0.z * 0xd000 >> 12;
+        p->mVelocity.x = (s64) p->mUnk_b0.x * 0xd000 >> 12;
+        p->mVelocity.y = (s64) p->mUnk_b0.y * 0xd000 >> 12;
+        p->mVelocity.z = (s64) p->mUnk_b0.z * 0xd000 >> 12;
     }
 }
 

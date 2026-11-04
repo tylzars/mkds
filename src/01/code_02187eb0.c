@@ -26,8 +26,7 @@ Kart *func_ov001_02188104(Unk02188950 *a, s32 b, s32 c) {
     Kart *q;
 
     q = GetKart((u16) data_021759c0->mEntryIndex);
-    if (q != NULL && func_ov001_021881a8(a, (Vec3 *) &q->mUnk_80, (s32) (b), (s32) (c)) != 0 &&
-        (q->mUnk_48 & 0x40) == 0) {
+    if (q != NULL && func_ov001_021881a8(a, (Vec3 *) &q->mPos, (s32) (b), (s32) (c)) != 0 && (q->mUnk_48 & 0x40) == 0) {
         return q;
     }
     return NULL;
@@ -38,8 +37,8 @@ Kart *func_ov001_02188084(Unk02188950 *a, s32 b, s32 c, s32 d) {
 
     q = GetKart((u16) data_021759c0->mEntryIndex);
     if (q != NULL && (q->mUnk_48 & 0x40) == 0 && (c != 0 || d != 0)) {
-        if (c == 0 || func_ov001_02188f04(a, &q->mUnk_80, c) != 0) {
-            if (d == 0 || func_ov001_02188eac(a, a->mAngle + b, &q->mUnk_80, d) != 0) {
+        if (c == 0 || func_ov001_02188f04(a, &q->mPos, c) != 0) {
+            if (d == 0 || func_ov001_02188eac(a, a->mAngle + b, &q->mPos, d) != 0) {
                 return q;
             }
         }
@@ -52,8 +51,8 @@ Kart *func_ov001_02188000(Unk02188950 *a, s32 b, s32 c) {
 
     q = GetKart((u16) data_021759c0->mEntryIndex);
     if (q != NULL && (q->mUnk_48 & 0x40) == 0 && (b != 0 || c != 0)) {
-        if (b == 0 || func_ov001_02188f04(a, &q->mUnk_80, b) != 0) {
-            if (c == 0 || func_ov001_02188eac(a, q->mUnk_236 + 0x8000, &q->mUnk_80, c) != 0) {
+        if (b == 0 || func_ov001_02188f04(a, &q->mPos, b) != 0) {
+            if (c == 0 || func_ov001_02188eac(a, q->mUnk_236 + 0x8000, &q->mPos, c) != 0) {
                 return q;
             }
         }

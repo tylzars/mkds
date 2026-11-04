@@ -122,9 +122,9 @@ void func_02068b98(Kart *a) {
             a->mUnk_3c8 = a->mUnk_3c8 + 1;
             return;
         }
-        a->mUnk_80.x = 0x1000000;
-        a->mUnk_80.y = 0xff000000;
-        a->mUnk_80.z = 0x1000000;
+        a->mPos.x = 0x1000000;
+        a->mPos.y = 0xff000000;
+        a->mPos.z = 0x1000000;
         a->mUnk_bc = data_02154f94;
     } else {
         g = 0x18 - c;
@@ -343,8 +343,8 @@ void func_02068494(Kart *a, s32 b, s32 c) {
     BOOL j;
     Unk02175620 *k;
 
-    i = a->mUnk_2a8;
-    d.mUnk_04 = a->mUnk_80;
+    i = a->mForwardSpeed;
+    d.mUnk_04 = a->mPos;
     if (b != 0) {
         k = gCourseMap;
         if (k->mUnk_3c == NULL) {
@@ -365,10 +365,10 @@ void func_02068494(Kart *a, s32 b, s32 c) {
     a->mUnk_7c = a->mUnk_7c & ~0xe000;
     func_02103890(a->mIndex);
     func_020646f0(a, b);
-    a->mUnk_80.y = a->mUnk_80.y - 0x1000;
+    a->mPos.y = a->mPos.y - 0x1000;
     if (b != 0) {
         if (d.mUnk_00 != 0) {
-            a->mUnk_2a8 = i;
+            a->mForwardSpeed = i;
             a->mUnk_48 = a->mUnk_48 | 0x2000;
         }
     }
@@ -383,7 +383,7 @@ void func_02068494(Kart *a, s32 b, s32 c) {
         }
     }
     if (data_021759c0->mMode == 2) {
-        Vec3Sub(&a->mUnk_80, &d.mUnk_04, &d.mUnk_28);
+        Vec3Sub(&a->mPos, &d.mUnk_04, &d.mUnk_28);
         func_020a21bc(a->mIndex, (s32) &d.mUnk_28);
     }
     if ((a->mUnk_7c & 1) == 0) {
@@ -420,7 +420,7 @@ void func_020681f0(Kart *a) {
         if (a->mUnk_30c > 0) {
             return;
         }
-        k = a->mUnk_78;
+        k = a->mEntryIndex;
         e = data_02175628[k].mUnk_00;
         if ((u16) (e & 0x20) != 0) {
             c = &a->mUnk_300;

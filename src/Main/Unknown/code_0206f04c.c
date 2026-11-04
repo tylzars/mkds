@@ -132,7 +132,7 @@ void func_0206ff50(Kart *p, u32 a) {
         if (p->mKartModelsEntry->mUnk_058 == 0) {
             e = data_usa_02165560;
             for (f = 0; f < 3; f++) {
-                func_02081f10(func_0208b7bc(e.mUnk_00[f], &p->mUnk_80), p->mIndex, 0x14);
+                func_02081f10(func_0208b7bc(e.mUnk_00[f], &p->mPos), p->mIndex, 0x14);
             }
         }
         func_020815dc(p->mIndex);
@@ -154,7 +154,7 @@ void func_0206ff50(Kart *p, u32 a) {
         func_02075d08(1);
     }
     if ((u16) (b + 0xffff) <= 1) {
-        g = p->mUnk_80;
+        g = p->mPos;
         if (b == 1) {
             p->mUnk_48 |= 0x800000;
             b = 0xce;
@@ -162,7 +162,7 @@ void func_0206ff50(Kart *p, u32 a) {
             p->mUnk_48 |= 0x1000000;
             b = 0x15d;
         }
-        g.y = p->mUnk_80.y - func_020d3d48(p->mUnk_80.y);
+        g.y = p->mPos.y - func_020d3d48(p->mPos.y);
         func_0208d978(&g, (p->mUnk_7c & 1) != 0);
         p->mUnk_4c |= 0x4000000;
         func_021090c4(&p->mUnk_00, b, 0x7f, 0);
@@ -177,7 +177,7 @@ void func_0206fe08(Kart *p) {
     s32 c;
     Vec3 d;
 
-    a = func_020d3d48(p->mUnk_80.y);
+    a = func_020d3d48(p->mPos.y);
     if (a < 0 && !(p->mUnk_4c & 0x4000000)) {
         b = FALSE;
         c = (s32) (((s64) p->mUnk_3f4 * p->mUnk_bc.z) >> 12);
@@ -187,9 +187,9 @@ void func_0206fe08(Kart *p) {
         }
         func_0207a6c0(p);
         p->mUnk_500 = -a;
-        if (func_020d3d48(p->mUnk_80.y) <= -0xa000 && func_020d3d48(p->mUnk_8c.y) > -0xa000 && p->mUnk_a4.y < -0x2000) {
-            d = p->mUnk_80;
-            d.y = p->mUnk_80.y - a;
+        if (func_020d3d48(p->mPos.y) <= -0xa000 && func_020d3d48(p->mPrevPos.y) > -0xa000 && p->mVelocity.y < -0x2000) {
+            d = p->mPos;
+            d.y = p->mPos.y - a;
             func_0208d978(&d, (p->mUnk_7c & 1) != 0);
             b = FALSE;
         }
@@ -250,7 +250,7 @@ void func_0206f914(Kart *p) {
                     w = p->mUnk_7c;
                     if ((w & 0x10) && p->mKartModelsEntry->mUnk_058 == 0) {
                         if ((w & 1) || !(w & 0x402000)) {
-                            Vec3AddScaled(g.mUnk_00[p->mKartModelsEntry->mUnk_004] << 4, &p->mUnk_138, &p->mUnk_80, &e);
+                            Vec3AddScaled(g.mUnk_00[p->mKartModelsEntry->mUnk_004] << 4, &p->mUnk_138, &p->mPos, &e);
                             func_0208b748(0x72, &e, p, func_0206c1ac);
                             func_0208b748(0x73, &e, p, func_0206c1ac);
                         }
@@ -287,7 +287,7 @@ void func_0206f914(Kart *p) {
                     w = p->mUnk_7c;
                     if ((w & 0x10) && p->mKartModelsEntry->mUnk_058 == 0) {
                         if ((w & 1) || !(w & 0x402000)) {
-                            Vec3AddScaled(h.mUnk_00[p->mKartModelsEntry->mUnk_004] << 4, &p->mUnk_138, &p->mUnk_80, &f);
+                            Vec3AddScaled(h.mUnk_00[p->mKartModelsEntry->mUnk_004] << 4, &p->mUnk_138, &p->mPos, &f);
                             func_0208b748(0x72, &f, p, func_0206c1ac);
                             func_0208b748(0x73, &f, p, func_0206c1ac);
                         }
@@ -346,7 +346,7 @@ void func_0206f824(Kart *p, Vec3 *a, s32 b) {
         e >>= 1;
     }
     if (b == 0) {
-        Vec3Sub(c, &p->mUnk_80, &g);
+        Vec3Sub(c, &p->mPos, &g);
         func_020397a8(a, &g, &f);
         func_020397a8(&f, a, &g);
         if (!((s64) g.x * g.x + (s64) g.y * g.y + (s64) g.z * g.z < 0x10)) {
@@ -461,7 +461,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     if (b == 0) {
         h = func_02039828(&p->mUnk_138, a);
         j = TRUE;
-        g = Vec3Dot(a, &p->mUnk_a4);
+        g = Vec3Dot(a, &p->mVelocity);
         m.x = (s32) (((s64) a->x * g) >> 12);
         m.y = (s32) (((s64) a->y * g) >> 12);
         m.z = (s32) (((s64) a->z * g) >> 12);
@@ -488,12 +488,12 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                         g = 1;
                     }
                     if (g == 0) {
-                        n = p->mUnk_80;
+                        n = p->mPos;
                         g = 0x800;
                         if (p->mUnk_4c & 0x10000) {
                             g = 0x4cd;
                         }
-                        Vec3AddScaled(-p->mUnk_1d0, a, &p->mUnk_80, &n);
+                        Vec3AddScaled(-p->mUnk_1d0, a, &p->mPos, &n);
                         Vec3AddScaled((s32) (((s64) p->mUnk_bc.y * (g << 4) + 0x800) >> 12), &p->mUnk_12c, &n, &n);
                         func_0208b748(0x3b, &n, p, func_0206c488);
                     }

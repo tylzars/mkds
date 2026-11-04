@@ -152,7 +152,7 @@ static inline BOOL func_0209cf34_inline_b(Unk0209cf34 *p) {
 
     for (i = 0; i < data_021759c0->mKartCount; i++) {
         k = GetKart((u16) i);
-        q = &k->mUnk_80;
+        q = &k->mPos;
         x = q->x - p->mUnk_000.mPos.x;
         z = q->z - p->mUnk_000.mPos.z;
         if ((s64) x * x + (s64) z * z < 0x15f900000000LL) {
@@ -296,7 +296,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
     d = *c;
     if (e == 3 || e == 4) {
         if (p->mUnk_120[k->mIndex] == 0) {
-            Vec3Sub(&k->mUnk_80, &p->mUnk_000.mPos, &v2);
+            Vec3Sub(&k->mPos, &p->mUnk_000.mPos, &v2);
             t = Vec3Dot(&k->mUnk_b0, &v2);
             v0.x = ((s64) k->mUnk_b0.x * t) >> 12;
             v0.y = ((s64) k->mUnk_b0.y * t) >> 12;

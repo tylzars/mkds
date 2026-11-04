@@ -4,12 +4,12 @@
 
 void func_01ffb9e0(Kart *p) {
     if ((p->mUnk_44 & 0x400) || p->mState != 0) {
-        p->mUnk_2a8 = (s64) p->mUnk_2a8 * p->mUnk_2cc->mUnk_2c >> 12;
+        p->mForwardSpeed = (s64) p->mForwardSpeed * p->mUnk_2cc->mUnk_2c >> 12;
     }
     if (!(p->mUnk_48 & 0x2000)) {
         return;
     }
-    p->mUnk_2a8 = (s64) p->mUnk_2a8 * 0xe66 >> 12;
+    p->mForwardSpeed = (s64) p->mForwardSpeed * 0xe66 >> 12;
 }
 
 void func_01ffb9cc(Kart *p) {

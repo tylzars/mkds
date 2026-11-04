@@ -87,7 +87,7 @@ BOOL func_0206bab8(Kart *p) {
 }
 
 void func_0206b914(Kart *p) {
-    p->mUnk_2a8 = 0;
+    p->mForwardSpeed = 0;
     p->mUnk_388 = 0;
     p->mUnk_48 &= 0xdfe77fdf;
     p->mUnk_238 = 0;
@@ -120,7 +120,7 @@ void func_0206b914(Kart *p) {
     p->mUnk_338 = 0;
     p->mUnk_33c = 0;
     p->mUnk_344 = 0;
-    p->mUnk_340 = p->mUnk_80.y;
+    p->mUnk_340 = p->mPos.y;
     p->mUnk_348 = 0;
     func_020eff40(&(data_027e00c8)[p->mIndex]);
     if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
@@ -143,7 +143,7 @@ void func_0206b5b4(Kart *p) {
     if (p->mUnk_35c == 0) {
         Matrix3x3 m;
 
-        p->mUnk_2a8 = 0;
+        p->mForwardSpeed = 0;
         if ((p->mUnk_318 > 0 ? p->mUnk_318 : -p->mUnk_318) < 0x1ffff) {
             p->mUnk_314 = p->mUnk_314 - p->mUnk_360;
             p->mUnk_318 = p->mUnk_318 + p->mUnk_360;
@@ -182,7 +182,7 @@ void func_0206b5b4(Kart *p) {
     }
     func_01ffcf7c(&p->mUnk_34c, &p->mUnk_34c);
     if (!(p->mUnk_4c & 0x80000000)) {
-        if ((u32) p->mUnk_348 > 2 && (p->mUnk_340 >= p->mUnk_80.y || (p->mUnk_44 & 0x10))) {
+        if ((u32) p->mUnk_348 > 2 && (p->mUnk_340 >= p->mPos.y || (p->mUnk_44 & 0x10))) {
             if (p->mUnk_7c & 0x1) {
                 func_020747f4(0);
             }
@@ -266,17 +266,17 @@ void func_0206b358(Kart *p) {
     p->mUnk_370 = 0;
     p->mUnk_35c = 0;
     p->mUnk_318 = 0;
-    p->mUnk_2a8 = p->mUnk_2a8 + 0x800;
+    p->mForwardSpeed = p->mForwardSpeed + 0x800;
     func_02063b50((u32) p, (u32) &p->mUnk_31c);
     func_02063b10(p, &v);
     Vec3AddScaled(0x2e2, &v, &p->mUnk_31c, &p->mUnk_31c);
     func_02039860(&p->mUnk_31c, &p->mUnk_31c);
     func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
-    p->mUnk_2a8 = (s32) (((s64) p->mUnk_2a8 * 0x99a) >> 12);
+    p->mForwardSpeed = (s32) (((s64) p->mForwardSpeed * 0x99a) >> 12);
     if (p->mKartModelsEntry->mUnk_058 == 0) {
-        func_0208b7bc(0xc, &p->mUnk_80);
-        func_0208b7bc(0xd, &p->mUnk_80);
-        func_0208b7bc(0xe, &p->mUnk_80);
+        func_0208b7bc(0xc, &p->mPos);
+        func_0208b7bc(0xd, &p->mPos);
+        func_0208b7bc(0xe, &p->mPos);
     }
     if (!(p->mUnk_48 & 0x840)) {
         func_0210af40(p, p->mUnk_3cc, 2);
@@ -371,7 +371,7 @@ BOOL func_0206b020(Kart *p, Unk0206b020 *a) {
         return FALSE;
     }
     t = a->mUnk_28;
-    Vec3Sub(&p->mUnk_80, &a->mUnk_04, &u);
+    Vec3Sub(&p->mPos, &a->mUnk_04, &u);
     Vec3Cross(&a->mUnk_40, &u, &w);
     if (Vec3Dot(&w, &a->mUnk_34) < 0) {
         t.x = -t.x;
@@ -411,16 +411,16 @@ void func_0206add0(Kart *p, const Vec3 *a, s32 b) {
         p->mUnk_260 += y;
         r = func_02039828(&p->mUnk_50, a);
         if (r <= 0) {
-            p->mUnk_2a8 = 0;
+            p->mForwardSpeed = 0;
         } else {
-            p->mUnk_2a8 = (s32) (((s64) p->mUnk_2a8 * r) >> 12) >> 2;
+            p->mForwardSpeed = (s32) (((s64) p->mForwardSpeed * r) >> 12) >> 2;
         }
     }
     func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
     if (p->mKartModelsEntry->mUnk_058 == 0) {
-        func_0208b7bc(0xc, &p->mUnk_80);
-        func_0208b7bc(0xd, &p->mUnk_80);
-        func_0208b7bc(0xe, &p->mUnk_80);
+        func_0208b7bc(0xc, &p->mPos);
+        func_0208b7bc(0xd, &p->mPos);
+        func_0208b7bc(0xe, &p->mPos);
     }
     p->mUnk_4c |= 0x1;
     if (!(p->mUnk_48 & 0x840)) {
@@ -516,9 +516,9 @@ s32 func_0206a980(Kart *p, const Vec3 *a, s32 b) {
         p->mUnk_260 += y;
         r = func_02039828(&p->mUnk_50, &v);
         if (r <= 0) {
-            p->mUnk_2a8 = 0;
+            p->mForwardSpeed = 0;
         } else {
-            p->mUnk_2a8 = (s32) (((s64) p->mUnk_2a8 * r) >> 12) >> 2;
+            p->mForwardSpeed = (s32) (((s64) p->mForwardSpeed * r) >> 12) >> 2;
         }
     }
     func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
@@ -527,9 +527,9 @@ s32 func_0206a980(Kart *p, const Vec3 *a, s32 b) {
         func_ov001_0218173c();
     }
     if (p->mKartModelsEntry->mUnk_058 == 0) {
-        func_0208b7bc(0xc, &p->mUnk_80);
-        func_0208b7bc(0xd, &p->mUnk_80);
-        func_0208b7bc(0xe, &p->mUnk_80);
+        func_0208b7bc(0xc, &p->mPos);
+        func_0208b7bc(0xd, &p->mPos);
+        func_0208b7bc(0xe, &p->mPos);
     }
     if (!(p->mUnk_48 & 0x840)) {
         func_0210af40(p, p->mUnk_3cc, 2);

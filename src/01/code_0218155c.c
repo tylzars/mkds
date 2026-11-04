@@ -122,7 +122,7 @@ void func_ov001_021819f4(void) {
     data_ov001_021a9b90 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x68);
     c = GetKart((u16) data_021759c0->mEntryIndex);
     o = data_ov001_021a9b90;
-    o->mUnk_34 = c->mUnk_80;
+    o->mUnk_34 = c->mPos;
     o->mUnk_28 = o->mUnk_34;
     o->mUnk_42 = c->mUnk_236;
     o = data_ov001_021a9b90;
@@ -139,7 +139,7 @@ void func_ov001_02181860(void) {
         o->mUnk_34 = o->mUnk_28;
         o->mUnk_42 = o->mUnk_40;
         o = data_ov001_021a9b90;
-        o->mUnk_28 = c->mUnk_80;
+        o->mUnk_28 = c->mPos;
         o->mUnk_40 = c->mUnk_236;
     }
     if (data_021759c0->mMode == 4 ? func_020a126c() : 0) {

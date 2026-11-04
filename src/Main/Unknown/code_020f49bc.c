@@ -1071,7 +1071,7 @@ void func_020f49bc(Unk020f40dc *a) {
     a->mUnk_08--;
     e = a->mUnk_14[a->mUnk_08];
     q = &p->mUnk_98;
-    r = &p->mUnk_a4;
+    r = &p->mVelocity;
     func_020f0ea0(data_027e00cc + e->mUnk_44, e);
     func_020efd1c(a->mUnk_04, e);
     Vec3AddScaled(0xb33, r, &e->mUnk_5c, &e->mUnk_5c);
