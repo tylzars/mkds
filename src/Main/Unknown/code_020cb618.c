@@ -38,7 +38,7 @@ void func_020cb6c0(void) {
     if (p->mUnk_00c != p->mUnk_008) {
         switch (p->mUnk_00c) {
             case 4:
-                func_ov001_021a1858((s32) func_020cb99c(), p->mUnk_108, p->mUnk_50c);
+                InitSelectEngine((s32) func_020cb99c(), p->mUnk_108, p->mUnk_50c);
                 break;
             case 5:
             case 8:
@@ -119,13 +119,13 @@ void func_020cb6c0(void) {
                 InitSelectBattleStage(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
                 break;
             case 18:
-                func_ov001_0219f058(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
+                InitMissionRunLVsel(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
                 break;
             case 19:
-                func_ov001_021a0190((s32) func_020cb99c(), (s32) p->mUnk_108, (s32) p->mUnk_50c);
+                InitMissionRunMSsel((s32) func_020cb99c(), (s32) p->mUnk_108, (s32) p->mUnk_50c);
                 break;
             case 20:
-                func_ov001_02198100(func_020cb99c(), p->mUnk_108, (s32) p->mUnk_50c);
+                InitTimeAttackTopMenu(func_020cb99c(), p->mUnk_108, (s32) p->mUnk_50c);
                 break;
             case 26:
                 InitSelectGhost((u32) func_020cb99c(), (u32) p->mUnk_108, (u32) p->mUnk_50c);
@@ -164,7 +164,7 @@ void func_020cb618(void) {
     if (data_0217b43c->mUnk_00c != data_0217b43c->mUnk_008) {
         switch (data_0217b43c->mUnk_008) {
             case 4:
-                func_ov001_021a1838();
+                ReleaseSelectEngine();
                 break;
             case 5:
             case 8:
@@ -197,13 +197,13 @@ void func_020cb618(void) {
                 ReleaseSelectBattleStage();
                 break;
             case 18:
-                func_ov001_0219efec();
+                ReleaseMissionRunLVsel();
                 break;
             case 19:
-                func_ov001_021a0140();
+                ReleaseMissionRunMSsel();
                 break;
             case 20:
-                func_ov001_021980e0();
+                ReleaseTimeAttackTopMenu();
                 break;
             case 26:
                 func_ov001_0219baf4();

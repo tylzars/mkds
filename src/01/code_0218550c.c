@@ -107,7 +107,7 @@ void func_ov001_021855f8(void) {
 }
 
 void func_ov001_021855cc(void) {
-    switch (func_ov001_021a11c4()) {
+    switch (AdvanceSelectEngine()) {
         case 1:
             func_020ccc74(5, 0x1f);
             break;

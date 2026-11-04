@@ -9,7 +9,7 @@
 #include "Main/Unknown/code_02122ae4.h"
 #include "00/code_02181f98.h"
 
-void func_ov000_02184a6c(void *a) {
+void InitWiFiSelectKartState(void *a) {
     void *b;
     void *c;
 
@@ -31,7 +31,7 @@ void func_ov000_02184a50(void) {
     return;
 }
 
-void func_ov000_02184a0c(void) {
+void AdvanceWiFiSelectKartState(void) {
     s32 a;
 
     a = AdvanceSelectKart();
@@ -57,7 +57,7 @@ void func_ov000_02184a04(void) {
     return;
 }
 
-void func_ov000_021849e0(void) {
-    Unk021b0cd4 callbacks = data_ov000_021b0e40;
+void RegisterSelectKartCallbacks(void) {
+    Unk021b0cd4 callbacks = gSelectKartCallbacks;
     SetWiFiStateCallbacks(&callbacks);
 }

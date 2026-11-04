@@ -220,7 +220,7 @@ void AdvanceWiFiStates(void) {
                 RegisterSelectCharacterCallbacks();
                 break;
             case 5:
-                func_ov000_021849e0();
+                RegisterSelectKartCallbacks();
                 break;
             case 6:
                 RegisterWiFiVSCourseSelectCallbacks();

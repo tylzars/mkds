@@ -3,18 +3,18 @@
 #include "types.h"
 
 void func_ov001_0219f8ec(void);
-s32 func_ov001_0219f934(void);
-void func_ov001_0219f9f8(void);
-void func_ov001_0219fb5c(void);
-void func_ov001_0219fbdc(void);
-void func_ov001_0219fc08(void);
-void func_ov001_0219fc34(void);
-void func_ov001_0219fc70(void);
-void func_ov001_0219ff8c(void);
-void func_ov001_0219ffb4(void);
-void func_ov001_021a0118(void);
-void func_ov001_021a0140(void);
-void func_ov001_021a0190(s32 a, s32 b, s32 c);
+s32 AdvanceMissionRunMSsel(void);
+void AdvanceMissionRunMSselState8(void);
+void AdvanceMissionRunMSselState7(void);
+void AdvanceMissionRunMSselState6(void);
+void AdvanceMissionRunMSselState5(void);
+void AdvanceMissionRunMSselState4(void);
+void AdvanceMissionRunMSselState3(void);
+void AdvanceMissionRunMSselState2(void);
+void AdvanceMissionRunMSselState1(void);
+void AdvanceMissionRunMSselState0(void);
+void ReleaseMissionRunMSsel(void);
+void InitMissionRunMSsel(s32 a, s32 b, s32 c);
 void func_ov001_021a03a0(void);
 void func_ov001_021a03f8(void);
 void func_ov001_021a0414(void);
@@ -33,5 +33,5 @@ void func_ov001_021a09a4(void);
 void func_ov001_021a0b3c(void);
 void func_ov001_021a0e08(s32 a, u16 *b);
 void func_ov001_021a0e34(void);
-void func_ov001_021a0e7c(void);
+void LocateAndQueueMissionRunMSsel(void);
 void func_ov001_021a10b8(void);

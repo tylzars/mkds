@@ -3,10 +3,10 @@
 #include "types.h"
 #include "00/code_02181f98.h"
 
-// Object behind data_ov001_021a9bd4.
-typedef struct Unk021a9bd4 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+// Object behind gOptionTopMenu.
+typedef struct OptionTopMenu {
+    /* 00 */ s32 mState;
+    /* 04 */ s32 mNextState;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
@@ -19,9 +19,9 @@ typedef struct Unk021a9bd4 {
     /* 2c */ Nclr *mUnk_2c;
     /* 30 */ void *mUnk_30;
     /* 34 */ void *mUnk_34;
-    /* 38 */ void *mUnk_38;
-    /* 3c */ void *mUnk_3c;
-} Unk021a9bd4;
+    /* 38 */ void *mOptionMessages;
+    /* 3c */ void *mCommonMessages;
+} OptionTopMenu;
 
 // Five callbacks handed over as one block.
 typedef struct Unk021a8294 {

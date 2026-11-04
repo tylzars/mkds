@@ -145,12 +145,12 @@ void func_020cbb10(void) {
     if (func_020cbad0() == 0) {
         func_02025f90();
         func_02027df8();
-        func_ov001_021984ac();
+        LoadTimeAttackTopMenuData();
         LoadSelectGhostAndKartIconData();
-        func_ov001_0219f85c();
+        LoadMissionRunLVselData();
         func_ov001_021a10b8();
         func_ov001_0219d50c();
-        func_ov001_021a1f60();
+        LoadSelectEngineData();
         func_02118d44();
         func_0211f240();
         func_0211a6bc();

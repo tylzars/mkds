@@ -2,27 +2,27 @@
 
 #include "types.h"
 
-typedef struct Unk021a9bd4 Unk021a9bd4;
+typedef struct OptionTopMenu OptionTopMenu;
 
 extern u8 data_ov001_021a65dc[];
 extern s32 data_ov001_021a65e4[];
 extern const char data_ov001_021a8254[];
 extern const char data_ov001_021a8260[];
 
-void func_ov001_021932e4(void);
+void RegisterOptionTopMenuCallbacks(void);
 void func_ov001_02193308(void);
-void func_ov001_02193344(void);
+void AdvanceOptionTopMenu(void);
 void func_ov001_021933dc(void);
-void func_ov001_02193448(void);
-void func_ov001_0219348c(void);
-void func_ov001_02193514(void);
-void func_ov001_02193578(void);
-void func_ov001_021935f8(void);
-void func_ov001_02193730(void);
-void func_ov001_02193774(void);
-void func_ov001_02193924(void);
-void func_ov001_02193944(void);
-void func_ov001_02193a00(void);
-void func_ov001_02193a20(void);
+void AdvanceOptionTopMenuState9(void);
+void AdvanceOptionTopMenuState8(void);
+void AdvanceOptionTopMenuState7(void);
+void AdvanceOptionTopMenuState6(void);
+void AdvanceOptionTopMenuState5(void);
+void AdvanceOptionTopMenuState4(void);
+void AdvanceOptionTopMenuState3(void);
+void AdvanceOptionTopMenuState2(void);
+void AdvanceOptionTopMenuState1(void);
+void AdvanceOptionTopMenuState0(void);
+void LocateAndQueueOptionTopMenu(void);
 void func_ov001_02193b1c(void);
-void func_ov001_02193b28(void *heap);
+void InitOptionTopMenu(void *heap);

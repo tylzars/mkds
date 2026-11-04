@@ -112,12 +112,12 @@ AdvanceWiFiSelectCharacterState kind:function(thumb,size=0x3e) addr:0x021848c0
 func_ov000_02184934 kind:function(thumb,size=0x2) addr:0x02184900
 func_ov000_02184938 kind:function(thumb,size=0x18) addr:0x02184904
 InitWiFiSelectCharacterState kind:function(thumb,size=0x90) addr:0x0218491c
-func_ov000_021849e0 kind:function(thumb,size=0x24) addr:0x021849ac
+RegisterSelectKartCallbacks kind:function(thumb,size=0x24) addr:0x021849ac
 func_ov000_02184a04 kind:function(thumb,size=0x8) addr:0x021849d0
-func_ov000_02184a0c kind:function(thumb,size=0x42) addr:0x021849d8
+AdvanceWiFiSelectKartState kind:function(thumb,size=0x42) addr:0x021849d8
 func_ov000_02184a50 kind:function(thumb,size=0x2) addr:0x02184a1c
 func_ov000_02184a54 kind:function(thumb,size=0x18) addr:0x02184a20
-func_ov000_02184a6c kind:function(thumb,size=0x38) addr:0x02184a38
+InitWiFiSelectKartState kind:function(thumb,size=0x38) addr:0x02184a38
 RegisterWiFiVSCourseSelectCallbacks kind:function(thumb,size=0x24) addr:0x02184a70
 func_ov000_02184ac8 kind:function(thumb,size=0x8) addr:0x02184a94
 AdvanceWiFiVSCourseSelectState kind:function(thumb,size=0x7c) addr:0x02184a9c
@@ -1561,7 +1561,7 @@ data_ov000_021b0d04 kind:data(any) addr:0x021b0cc4
 data_ov000_021b0e18 kind:data(any) addr:0x021b0dd8
 data_ov000_021b0e24 kind:data(any) addr:0x021b0de4
 gSelectCharacterCallbacks kind:data(any) addr:0x021b0df0
-data_ov000_021b0e40 kind:data(any) addr:0x021b0e00
+gSelectKartCallbacks kind:data(any) addr:0x021b0e00
 gWiFiVSCourseSelectCallbacks kind:data(any) addr:0x021b0e10
 gWiFiAikotobaCallbacks kind:data(any) addr:0x021b0e20
 data_ov000_021b0e70 kind:data(any) addr:0x021b0e30

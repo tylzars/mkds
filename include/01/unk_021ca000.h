@@ -31,8 +31,8 @@ typedef struct Unk021ca400 {
 } Unk021ca400;
 
 // Objects whose layout isn't known yet.
-// Object behind data_ov001_021ca410.
-typedef struct Unk021ca410 {
+// Object behind gMissionRunLVsel.
+typedef struct MissionRunLVsel {
     /* 00 */ struct Unk02021dc8 *mUnk_00;
     /* 04 */ Unk0201ea30 *mUnk_04;
     /* 08 */ void *mUnk_08;
@@ -40,8 +40,8 @@ typedef struct Unk021ca410 {
     /* 10 */ Unk02124b1c *mUnk_10;
     /* 14 */ void *mUnk_14;
     /* 18 */ void *mHeap;
-    /* 1c */ s32 mUnk_1c;
-    /* 20 */ s32 mUnk_20;
+    /* 1c */ s32 mState;
+    /* 20 */ s32 mNextState;
     /* 24 */ s32 mUnk_24;
     /* 28 */ s32 mUnk_28[7];
     /* 44 */ s32 mUnk_44;
@@ -52,24 +52,24 @@ typedef struct Unk021ca410 {
     /* 50 */ void *mUnk_50;
     /* 54 */ void *mUnk_54;
     /* 58 */ s32 mUnk_58;
-} Unk021ca410;
+} MissionRunLVsel;
 
-// Object behind Unk021ca414::mUnk_1c.
+// Object behind MissionRunMSsel::mUnk_1c.
 typedef struct Unk021ca414_1c {
     /* 00 */ u8 mUnk_00[0x8];
     /* 08 */ u32 mUnk_08;
     /* 0c */ u8 *mUnk_0c;
 } Unk021ca414_1c;
 
-// 0x2c-byte element of the table behind Unk021ca414::mUnk_50.
+// 0x2c-byte element of the table behind MissionRunMSsel::mUnk_50.
 typedef struct Unk021ca414_50 {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ u16 mUnk_0c;
     /* 0e */ u8 mUnk_0e[0x1e];
 } Unk021ca414_50;
 
-// Object behind data_ov001_021ca414.
-typedef struct Unk021ca414 {
+// Object behind gMissionRunMSsel.
+typedef struct MissionRunMSsel {
     /* 00 */ struct Unk02021dc8 *mUnk_00;
     /* 04 */ Unk0201ea30 *mUnk_04;
     /* 08 */ void *mUnk_08;
@@ -84,11 +84,11 @@ typedef struct Unk021ca414 {
     /* 48 */ void *mUnk_48;
     /* 4c */ void *mUnk_4c;
     /* 50 */ Unk021ca414_50 *mUnk_50;
-    /* 54 */ void *mUnk_54;
-    /* 58 */ void *mUnk_58;
+    /* 54 */ void *mCommonMessages;
+    /* 58 */ void *mMissionMessages;
     /* 5c */ void *mHeap;
-    /* 60 */ u32 mUnk_60;
-    /* 64 */ s32 mUnk_64;
+    /* 60 */ u32 mState;
+    /* 64 */ s32 mNextState;
     /* 68 */ s32 mUnk_68;
     /* 6c */ s32 mUnk_6c[9];
     /* 90 */ s32 mUnk_90;
@@ -105,10 +105,10 @@ typedef struct Unk021ca414 {
     /* b4 */ void *mUnk_b4;
     /* b8 */ void *mUnk_b8;
     /* bc */ s32 mUnk_bc;
-} Unk021ca414;
+} MissionRunMSsel;
 
-// Object behind data_ov001_021ca418.
-typedef struct Unk021ca418 {
+// Object behind gSelectEngine.
+typedef struct SelectEngine {
     /* 00 */ struct Unk02021dc8 *mUnk_00;
     /* 04 */ void *mUnk_04;
     /* 08 */ struct Unk02021dc8 *mUnk_08;
@@ -118,8 +118,8 @@ typedef struct Unk021ca418 {
     /* 18 */ Unk02124b1c *mUnk_18;
     /* 1c */ void *mUnk_1c;
     /* 20 */ void *mHeap;
-    /* 24 */ s32 mUnk_24;
-    /* 28 */ s32 mUnk_28;
+    /* 24 */ s32 mState;
+    /* 28 */ s32 mNextState;
     /* 2c */ s32 mUnk_2c;
     /* 30 */ s32 mUnk_30;
     /* 34 */ s32 mUnk_34;
@@ -130,7 +130,7 @@ typedef struct Unk021ca418 {
     /* 44 */ void *mUnk_44;
     /* 48 */ void *mUnk_48;
     /* 4c */ s32 mUnk_4c;
-} Unk021ca418;
+} SelectEngine;
 
 // Object behind data_ov001_021ca420, allocated by func_ov001_021a6238.
 typedef struct Unk021ca420 {

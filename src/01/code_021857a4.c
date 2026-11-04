@@ -41,7 +41,7 @@ void func_ov001_02185b1c(void) {
 }
 
 void func_ov001_02185af0(void) {
-    switch (func_ov001_0219ead4()) {
+    switch (AdvanceMissionRunLVsel()) {
         case 1:
             func_020ccc74(0x13, 0x1f);
             break;
@@ -74,7 +74,7 @@ void func_ov001_02185a88(void) {
 }
 
 void func_ov001_02185a5c(void) {
-    switch (func_ov001_0219f934()) {
+    switch (AdvanceMissionRunMSsel()) {
         case 1:
             func_020ccc74(0x1d, 0x1f);
             break;
@@ -101,7 +101,7 @@ void func_ov001_02185a14(s32 a) {
 #pragma thumb on
 
 void func_ov001_021859b8(void) {
-    switch (func_ov001_02197b54()) {
+    switch (AdvanceTimeAttackTopMenu()) {
         case 1:
             func_020ccc74(0x15, 0x1f);
             break;

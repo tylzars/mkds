@@ -19,12 +19,12 @@ typedef struct OptionStateCallbacks {
     /* 0c */ UnkFunc *mUnk_0c;
 } OptionStateCallbacks;
 
-extern const OptionStateCallbacks data_ov001_021a8170;
+extern const OptionStateCallbacks gOptionTopMenuCallbacks;
 
-// Object behind data_ov001_021a9bec.
-typedef struct Unk021a9bec {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+// Object behind gOptionHensyuMenu.
+typedef struct OptionHensyuMenu {
+    /* 00 */ s32 mState;
+    /* 04 */ s32 mNextState;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
@@ -36,7 +36,7 @@ typedef struct Unk021a9bec {
     /* 28 */ Nclr *mUnk_28;
     /* 2c */ void *mUnk_2c;
     /* 30 */ void *mUnk_30;
-} Unk021a9bec;
+} OptionHensyuMenu;
 
 // Allocated by InitOptionStates and held in gOptionStates.
 typedef struct OptionStates {
@@ -219,22 +219,22 @@ extern char data_ov001_021a94a4[];
 extern char data_ov001_021a94b0[];
 extern char data_ov001_021a94bc[];
 extern char data_ov001_021a94d0[];
-typedef struct Unk021a9be0 {
+typedef struct TimeAttackTopMenu {
     /* 00 */ struct Unk02021dc8 *mUnk_00;
     /* 04 */ void *mUnk_04;
     /* 08 */ void *mUnk_08;
     /* 0c */ Unk02124b1c *mUnk_0c;
     /* 10 */ void *mUnk_10;
     /* 14 */ void *mHeap;
-    /* 18 */ s32 mUnk_18;
-    /* 1c */ s32 mUnk_1c;
+    /* 18 */ s32 mState;
+    /* 1c */ s32 mNextState;
     /* 20 */ s32 mUnk_20;
     /* 24 */ s32 mUnk_24;
     /* 28 */ s32 mUnk_28;
     /* 2c */ void *mUnk_2c;
     /* 30 */ s32 mUnk_30;
     /* 34 */ s32 mUnk_34;
-} Unk021a9be0;
+} TimeAttackTopMenu;
 
 extern Unk0217b498 *data_ov001_021a9bc0;
 extern u16 data_ov001_021a9b94;

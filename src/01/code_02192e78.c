@@ -99,18 +99,18 @@ void InitOptionStates(void *heap, s16 a) {
         case 0:
             gOptionStates->mPrevState = 4;
             gOptionStates->mState = 0;
-            func_ov001_021932e4();
+            RegisterOptionTopMenuCallbacks();
             break;
         case 14:
             gOptionStates->mPrevState = 5;
             gOptionStates->mState = 2;
-            func_ov001_02199964();
+            RegisterOptionHensyuMenuCallbacks();
             break;
         case 3:
             gOptionStates->mPrevState = 6;
             if (data_0217b488->mUnk_18 == 0) {
                 gOptionStates->mState = 2;
-                func_ov001_02199964();
+                RegisterOptionHensyuMenuCallbacks();
             } else {
                 gOptionStates->mState = 3;
                 RegisterOptionEmbremSelectCallbacks();
@@ -142,13 +142,13 @@ void AdvanceOptionStates(void) {
         gOptionStates->mStateHeap = CreateExpHeapFromMaxFree(gOptionStates->mHeap);
         switch (gOptionStates->mNextState) {
             case 0:
-                func_ov001_021932e4();
+                RegisterOptionTopMenuCallbacks();
                 break;
             case 1:
-                func_ov001_02198854();
+                RegisterOptionSelectMenuCallbacks();
                 break;
             case 2:
-                func_ov001_02199964();
+                RegisterOptionHensyuMenuCallbacks();
                 break;
             case 3:
                 RegisterOptionEmbremSelectCallbacks();
