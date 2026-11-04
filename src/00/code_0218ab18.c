@@ -5,10 +5,10 @@
 #include "00/code_0218aea4.h"
 #include "00/code_0218afd4.h"
 #include "00/code_0218b280.h"
-#include "00/code_0218cdc4.h"
+#include "00/code_0218cd74.h"
 #include "00/code_021a4b84.h"
 #include "code_02139f70.h"
-#include "00/code_0218e8c4.h"
+#include "00/code_0218e2dc.h"
 
 void func_ov000_0218ac54(Unk0218a9bc *p, Unk0218af28 *e, s32 a, s32 b) {
     u8 *c;

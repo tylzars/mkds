@@ -9,7 +9,7 @@
 #include "00/unk_021b3000.h"
 #include "00/unk_021b4000.h"
 #include "code_02135014.h"
-#include "00/code_02190ba0.h"
+#include "00/code_02190ff8.h"
 #include "00/code_02196914.h"
 #include "00/code_021965a0.h"
 #include "00/code_021a3690.h"
@@ -18,17 +18,23 @@
 #include "code_02134d30.h"
 #include "code_0213a460.h"
 #include "00/code_021919ac.h"
-#include "00/code_02193818.h"
 #include "00/code_021948f8.h"
 #include "00/code_0218e0fc.h"
-#include "00/code_021967b4.h"
 #include "00/code_02191200.h"
-#include "00/code_02196240.h"
-#include "00/code_02193634.h"
+#include "00/code_02196480.h"
 #include "00/code_02192d64.h"
+#include "00/code_0218d000.h"
+#include "00/code_021a3000.h"
+#include "00/code_0218d818.h"
+#include "00/code_02196000.h"
+#include "00/code_0218f960.h"
+#include "00/code_02194bb8.h"
+#include "00/code_02193b88.h"
+#include "00/code_021967b4.h"
+#include "00/code_02193634.h"
 #include "00/code_021a4654.h"
 #include "00/code_0219488c.h"
-#include "00/code_0218e49c.h"
+#include "00/code_0218e2dc.h"
 
 // Object of 0x308 bytes that func_ov000_02191cb0 allocates and fills.
 typedef struct Unk021919ac_q {
@@ -91,6 +97,8 @@ void *func_ov000_0218e880(const char *a);
 
 void func_ov000_021920d8(s8 *p, s32 n);
 u32 func_ov000_021919ac(GpConnection *p, Unk021919ac_q *q);
-u32 func_ov000_02191cb0(GpConnection *p, const char *a, const char *b, const char *c, const char *d, const s8 *e, const s8 *f,
-                        const char *g, s32 h, s32 i, s32 j, s32 k, s32 l);
+u32 func_ov000_02191cb0(GpConnection *p, const char *a, const char *b, const char *c, const char *d, const s8 *e,
+                        const s8 *f, const char *g, s32 h, s32 i, s32 j, s32 k, s32 l);
 u32 func_ov000_02191e58(GpConnection *p, Unk021919ac_node *n);
+
+#include "00/code_02190cd4.h"

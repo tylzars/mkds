@@ -8,9 +8,9 @@
 #include "00/code_0218dd8c.h"
 #include "00/code_0218d000.h"
 #include "00/code_021a3000.h"
-#include "00/code_0218dc44.h"
+#include "00/code_0218d818.h"
 #include "03/code_021b94b8.h"
-#include "00/code_0218e49c.h"
+#include "00/code_0218e2dc.h"
 #include "00/code_02198748.h"
 #include "00/code_02198a8c.h"
 

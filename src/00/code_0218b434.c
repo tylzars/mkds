@@ -5,9 +5,9 @@
 #include "00/code_021a3668.h"
 #include "00/unk_021b2000.h"
 #include "code_0213442c.h"
-#include "00/code_0218dc44.h"
+#include "00/code_0218d818.h"
 #include "00/code_0218b220.h"
-#include "00/code_0218cdc4.h"
+#include "00/code_0218cd74.h"
 #include "00/code_0218c958.h"
 #include "00/code_0218a000.h"
 #include "00/code_0218c000.h"
@@ -18,10 +18,9 @@
 #include "00/code_0218a918.h"
 #include "00/code_0218acb0.h"
 #include "00/unk_021b4000.h"
-#include "00/code_0218e368.h"
+#include "00/code_0218e2dc.h"
 #include "00/code_0218b000.h"
 #include "03/code_021b94b8.h"
-#include "00/code_0218e49c.h"
 #include "00/code_021a4b84.h"
 #include "code_02135014.h"
 #include "code_02139f70.h"
@@ -39,7 +38,8 @@ Unk0218b668 *func_ov000_0218b668(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, s32 g
     p->mUnk_630 = h;
     p->mUnk_634 = l;
     p->mUnk_624 = 0;
-    func_ov000_0218cfb8(&p->mUnk_04c, (const char *) a, (const char *) b, (const char *) c, d, g, func_ov000_0218b780, p);
+    func_ov000_0218cfb8(&p->mUnk_04c, (const char *) a, (const char *) b, (const char *) c, d, g, func_ov000_0218b780,
+                        p);
     func_ov000_0218acf4(&p->mUnk_000, e, f, g, func_ov000_0218b708, p);
     return p;
 }

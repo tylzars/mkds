@@ -80,8 +80,47 @@ typedef struct Unk0218fa98 {
     /* 08 */ s32 *mUnk_08;
 } Unk0218fa98;
 
+typedef struct GpConnection GpConnection;
+
+// Object func_ov000_0218fca8 allocates with 0xc bytes and passes to func_ov000_02190ed4.
+typedef struct Unk0218fca8 {
+    /* 00 */ s32 mUnk_00;
+    /* 04 */ s32 mUnk_04;
+    /* 08 */ void *mUnk_08;
+} Unk0218fca8;
+
+// Object func_ov000_0218fca8 allocates with 0x40c bytes and passes to func_ov000_02190ed4.
+typedef struct Unk0218fca8_40c {
+    /* 000 */ s32 mUnk_000;
+    /* 004 */ s32 mUnk_004;
+    /* 008 */ char mUnk_008[0x404];
+} Unk0218fca8_40c;
+
+// Object func_ov000_0218fca8 allocates with 0x108 bytes and passes to func_ov000_02190ed4.
+typedef struct Unk0218fca8_108 {
+    /* 000 */ s32 mUnk_000;
+    /* 004 */ s32 mUnk_004;
+    /* 008 */ char mUnk_008[0x100];
+} Unk0218fca8_108;
+
+extern char data_ov000_021b27c4[];
+extern char data_ov000_021b27d0[];
+extern char data_ov000_021b27d8[];
+extern char data_ov000_021b2808[];
+extern char data_ov000_021b280c[];
+extern u8 data_ov000_021b2814[];
+extern char data_ov000_021b2824[];
+extern char data_ov000_021b2830[];
+extern char data_ov000_021b2834[];
+extern char data_ov000_021b283c[];
+extern char data_ov000_021b2844[];
+extern char data_ov000_021b284c[];
+extern char data_ov000_021b2850[];
+extern char data_ov000_021b2854[];
+
 u32 func_ov000_0218f960(GpConnection *p, u32 b);
 s32 func_ov000_0218fa98(void *unused, Unk0218fa98 *object, s32 minimum);
 u32 func_ov000_0218faac(GpConnection *a, u32 b);
 u32 func_ov000_0218fb3c(GpConnection *a, s32 b, s32 c, const char *d);
 u32 func_ov000_0218fbe0(GpConnection *a, s32 b, s32 c, const char *d);
+s32 func_ov000_0218fca8(GpConnection *a, char *b);

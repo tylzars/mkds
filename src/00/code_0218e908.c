@@ -1,4 +1,5 @@
-#include "00/code_0218e8c4.h"
+#include "00/code_0218e908.h"
+
 #include "00/code_0218f960.h"
 #include "00/code_02190000.h"
 #include "code_02139f70.h"
@@ -6,10 +7,10 @@
 #include "00/code_021a3000.h"
 #include "00/unk_021b2000.h"
 #include "code_0213442c.h"
-#include "00/code_0218dc44.h"
-#include "00/code_0218e368.h"
+#include "00/code_0218d818.h"
+#include "00/code_0218e2dc.h"
 #include "00/code_021965a0.h"
-#include "00/code_02190ba0.h"
+#include "00/code_02190ff8.h"
 #include "00/code_02196000.h"
 #include "code_02135014.h"
 #include "00/code_021906e4.h"
@@ -116,13 +117,4 @@ u32 func_ov000_0218e908(GpConnection *a, s32 b, const char *c) {
         return 2;
     }
     return func_ov000_0218fb3c(a, b, 1, c);
-}
-
-u32 func_ov000_0218e8c4(void) {
-    u64 t;
-    if (func_0200f6e4() != 1) {
-        func_0213442c(data_ov000_021b23b0, data_ov000_021b23d0, NULL, 0x109);
-    }
-    t = func_0200f5ac();
-    return (t << 6) / 0x82ea;
 }

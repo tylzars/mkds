@@ -1,5 +1,5 @@
 #include "00/code_021a39d8.h"
-#include "00/code_0218e3c4.h"
+#include "00/code_0218e2dc.h"
 #include "00/code_021a3000.h"
 #include "00/code_021a377c.h"
 #include "00/code_021a37dc.h"
@@ -16,7 +16,6 @@
 #include "code_02135014.h"
 #include "code_0214d018.h"
 #include "00/code_021a41dc.h"
-#include "00/code_0218e8c4.h"
 
 void func_ov000_021a3c14(Unk021a3a18 *a, s8 *b, s32 c, void *d) {
     Unk021a4480 k;

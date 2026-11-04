@@ -7,10 +7,8 @@
 #include "00/code_021a3678.h"
 #include "00/code_021a3690.h"
 #include "00/code_021a3000.h"
-#include "00/code_0218dc44.h"
-#include "code_021382a8.h"
 #include "00/code_0218d818.h"
-#include "00/code_0218db48.h"
+#include "code_021382a8.h"
 #include "00/code_021a3668.h"
 
 Unk0218e004 *func_ov000_0218e004(s32 c, s32 d, s32 e, s32 (*f)(void *, s32), s32 (*g)(void *, void *),

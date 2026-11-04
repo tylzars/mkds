@@ -1,6 +1,6 @@
 #include "00/code_0218dd8c.h"
 #include "00/code_0219a09c.h"
-#include "00/code_0218e8c4.h"
+#include "00/code_0218e2dc.h"
 #include "00/code_0219a0d0.h"
 
 u32 func_ov000_0219a09c(Gt2Socket *a) {

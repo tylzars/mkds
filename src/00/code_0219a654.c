@@ -1,15 +1,11 @@
 #include "00/code_0218d818.h"
-#include "00/code_0218db48.h"
 #include "00/code_0219a654.h"
 #include "00/code_0218d000.h"
 #include "00/code_021a3000.h"
 #include "00/unk_021b2000.h"
 #include "code_0213442c.h"
-#include "00/code_0218dc44.h"
-#include "00/code_0218e3c4.h"
+#include "00/code_0218e2dc.h"
 #include "00/unk_021b4000.h"
-#include "00/code_0218e368.h"
-#include "00/code_0218e49c.h"
 #include "00/code_0219b1d4.h"
 #include "00/code_0219b1f8.h"
 #include "00/code_021a4654.h"
@@ -22,7 +18,6 @@
 #include "code_02135014.h"
 #include "code_02139f70.h"
 #include "code_0213a460.h"
-#include "00/code_0218e8c4.h"
 
 Unk0219b1d4 *func_ov000_0219b178(void) {
     Unk0219b1d4 a = {0};

@@ -2,12 +2,10 @@
 #include "00/code_021a39d8.h"
 #include "00/code_021a4000.h"
 
-#include "00/code_0218e49c.h"
+#include "00/code_0218e2dc.h"
 #include "00/code_021a3668.h"
 #include "00/code_021a3000.h"
 #include "00/unk_021b4000.h"
-#include "00/code_0218e8c4.h"
-#include "00/code_0218e3c4.h"
 
 void func_ov000_021a49f4(void *a, UnkFunc *b) {
     if (a == NULL) {
