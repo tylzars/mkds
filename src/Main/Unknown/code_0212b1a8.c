@@ -39,7 +39,7 @@ void func_0212b260(void) {
         a += 0x100;
     }
     a = a % 256;
-    func_0214d05c_inline((void *) (func_0214a034() + ((a >> 3) << 10)), 0x400);
+    MemFillWordsByBlock_inline((void *) (func_0214a034() + ((a >> 3) << 10)), 0x400);
     p = data_0217d40c;
     if (p->mUnk_014 > 0) {
         p->mUnk_014 -= p->mUnk_00c;
@@ -53,7 +53,7 @@ void func_0212b260(void) {
     }
     i = 0;
     n = FALSE;
-    func_0214d168(buf, 0, 0xc8);
+    MemFill(buf, 0, 0xc8);
     do {
         p = data_0217d40c;
         r = p->mUnk_018;
@@ -117,7 +117,7 @@ void func_0212b260(void) {
             p->mUnk_018 += 2;
         }
     } while (n == FALSE);
-    func_0214d168(data_0217d40c->mUnk_050, 0, 0x800);
+    MemFill(data_0217d40c->mUnk_050, 0, 0x800);
     v = data_0217d40c->mUnk_850;
     c = 0;
     if (v == 3) {

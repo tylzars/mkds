@@ -114,19 +114,19 @@ void func_0212ee8c(Unk02017328 *a, void *b) {
     Unk0212ee8c *p;
     Unk0212ee8c *next;
 
-    v = func_0200fca0();
-    p = func_0201733c(a, 0);
+    v = IrqDisable();
+    p = ListGetNext(a, 0);
     if (p != 0) {
         do {
-            next = func_0201733c(a, p);
+            next = ListGetNext(a, p);
             if (p->mUnk_08 == b) {
-                func_02017354(a, p);
+                ListRemove(a, p);
                 func_0212ee54(p);
             }
             p = next;
         } while (p != 0);
     }
-    func_0200fcb4(v);
+    IrqRestore(v);
 }
 
 u32 func_0212ee54(void *arg0) {
@@ -135,12 +135,12 @@ u32 func_0212ee54(void *arg0) {
     u32 value4;
     u32 value5;
     value5 = value0;
-    value0 = (u32) func_0200fca0();
+    value0 = (u32) IrqDisable();
     value4 = value0;
     value0 = (u32) &data_0217df08;
     value1 = value5;
-    func_020174a4((Unk02017328 *) value0, (void *) value1);
+    ListAppend((Unk02017328 *) value0, (void *) value1);
     value0 = value4;
-    value0 = (u32) func_0200fcb4(value0);
+    value0 = (u32) IrqRestore(value0);
     return value0;
 }

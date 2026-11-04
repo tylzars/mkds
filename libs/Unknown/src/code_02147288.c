@@ -78,7 +78,7 @@ s32 func_0214755c(const Unk02012f58 *a, Unk02012f58 *b) {
                                (s64) p->mUnk_00[2].z * a->mUnk_00[3].z) >>
                               12);
     if (p == &buf) {
-        func_0214d118(&buf, b);
+        MemCopy12Words(&buf, b);
     }
     return 0;
 }
@@ -137,7 +137,7 @@ void func_0214733c(const Unk02012f58 *a, const Unk02012f58 *b, Unk02012f58 *c) {
     }
 }
 
-void func_02147288(const Vec3 *a, const Unk02012f58 *b, Vec3 *c) {
+void Vec3MultiplyMatrix4x3(const Vec3 *a, const Unk02012f58 *b, Vec3 *c) {
     s32 x;
     s32 y;
     s32 z;

@@ -3,6 +3,6 @@
 #include "code_0200d118.h"
 
 u32 func_0203b070(u32 a, u32 b, u32 c) {
-    func_0200d9e0((char *) b, c, data_02164770, a);
+    StringFormatBounded((char *) b, c, data_02164770, a);
     return 1;
 }

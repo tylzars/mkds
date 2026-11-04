@@ -37,10 +37,10 @@ void func_020367c4(void) {
 
 void func_02036778(void) {
     func_0200cc74(1, func_020367c4);
-    func_0200cae4(1);
+    InterruptEnableSetBits(1);
     *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
-    func_0200fc8c();
+    IrqEnable();
     func_02148a58(1);
 }
 
@@ -57,10 +57,10 @@ void func_020366bc(void) {
     func_02148a10();
     *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & ~0x10000;
     func_0200cc74(1, func_020367c4);
-    func_0200cae4(1);
+    InterruptEnableSetBits(1);
     *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
-    func_0200fc8c();
+    IrqEnable();
     func_02148a58(1);
     FS_Init(-1);
     func_02039774();

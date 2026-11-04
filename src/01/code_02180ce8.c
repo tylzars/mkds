@@ -35,8 +35,8 @@ void func_ov001_02181274(s32 p0, s32 p1, s32 p2) {
     heap = GetHeap(func_020364e8());
     data_ov001_021a9b88->mUnk_1c[0] =
         (u8 *) HeapAllocAligned(heap, data_ov001_021a9b88->mUnk_04 / 8 * (data_ov001_021a9b88->mUnk_04 / 8), 0x20);
-    func_0214d168(data_ov001_021a9b88->mUnk_1c[0], data_ov001_021a9b88->mUnk_00 / 8 * data_ov001_021a9b88->mUnk_00 / 8,
-                  data_ov001_021a9b88->mUnk_04 / 8 * (data_ov001_021a9b88->mUnk_04 / 8));
+    MemFill(data_ov001_021a9b88->mUnk_1c[0], data_ov001_021a9b88->mUnk_00 / 8 * data_ov001_021a9b88->mUnk_00 / 8,
+            data_ov001_021a9b88->mUnk_04 / 8 * (data_ov001_021a9b88->mUnk_04 / 8));
     for (i = 0; i < data_ov001_021a9b88->mUnk_00 / 8; i++) {
         for (j = 0; j < data_ov001_021a9b88->mUnk_00 / 8; j++) {
             data_ov001_021a9b88->mUnk_1c[0][i * data_ov001_021a9b88->mUnk_04 / 8 + j] =
@@ -74,8 +74,8 @@ void func_ov001_021811c8(void) {
         data_ov001_021a9b88->mUnk_10 = 1;
         data_ov001_021a9b88->mUnk_0c = 1;
         data_ov001_021a9b88->mUnk_14 = 0;
-        func_0214d0a8(data_ov001_021a9b88->mUnk_1c[1], data_ov001_021a9b88->mUnk_1c[2],
-                      data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
+        MemCopyWordsByBlock(data_ov001_021a9b88->mUnk_1c[1], data_ov001_021a9b88->mUnk_1c[2],
+                            data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
     }
 }
 
@@ -160,8 +160,8 @@ void func_ov001_02181048(void) {
     data_ov001_021a9b88->mUnk_10 = 0;
     data_ov001_021a9b88->mUnk_0c = 0;
     data_ov001_021a9b88->mUnk_14 = 0;
-    func_0214d0a8(data_ov001_021a9b88->mUnk_1c[1], data_ov001_021a9b88->mUnk_1c[2],
-                  data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
+    MemCopyWordsByBlock(data_ov001_021a9b88->mUnk_1c[1], data_ov001_021a9b88->mUnk_1c[2],
+                        data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
 }
 
 u32 func_ov001_02181020(u32 a, u32 b, u32 c) {
@@ -214,7 +214,7 @@ s32 func_ov001_02180eec(s32 p0, s32 p1, s32 p2, s32 p3, s32 p4) {
     if (dx == 0) {
         stepX = 0;
     } else if (dx < dy) {
-        stepX = func_02147f34(p2 - p0, dy);
+        stepX = DivFixed12(p2 - p0, dy);
     } else if (p2 > p0) {
         stepX = 0x1000;
     } else {
@@ -223,7 +223,7 @@ s32 func_ov001_02180eec(s32 p0, s32 p1, s32 p2, s32 p3, s32 p4) {
     if (dy == 0) {
         stepY = 0;
     } else if (dy < dx) {
-        stepY = func_02147f34(p3 - p1, dx);
+        stepY = DivFixed12(p3 - p1, dx);
     } else if (p3 > p1) {
         stepY = 0x1000;
     } else {
@@ -277,8 +277,8 @@ s32 func_ov001_02180ce8(s32 p0, s32 p1, s32 p2) {
         if (val != p2) {
             top = 1;
             ((Unk02180ce8 *) data_ov001_021a9b88->mUnk_1c[4])[0] = s0;
-            func_0214d05c_inline(data_ov001_021a9b88->mUnk_1c[3],
-                                 data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
+            MemFillWordsByBlock_inline(data_ov001_021a9b88->mUnk_1c[3],
+                                       data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
             do {
                 s32 steps[2] = {-1, 1};
 

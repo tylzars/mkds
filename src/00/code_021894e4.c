@@ -94,21 +94,21 @@ u8 func_ov000_02189614(Unk02188ec0 *v1) {
     n = func_ov000_0218954c(v1);
     c += n;
     if (v1->mUnk_d0c == 0 || v1->mUnk_d0c == 4) {
-        func_0214d1fc(data_ov000_021b20d0, c->mUnk_04, 8);
+        MemCopy(data_ov000_021b20d0, c->mUnk_04, 8);
         c->mUnk_03 = 8;
         c->mUnk_01 = 6;
         n++;
         c++;
     }
     if (v1->mUnk_d0c == 0 || v1->mUnk_d0c == 7) {
-        func_0214d1fc(data_ov000_021b06e8, c->mUnk_04, 8);
+        MemCopy(data_ov000_021b06e8, c->mUnk_04, 8);
         c->mUnk_03 = 8;
         c->mUnk_01 = 9;
         n++;
         c++;
     }
     if (v1->mUnk_d0c == 0 || v1->mUnk_d0c == 8) {
-        func_0214d1fc(data_ov000_021b06f8, c->mUnk_04, 0xb);
+        MemCopy(data_ov000_021b06f8, c->mUnk_04, 0xb);
         c->mUnk_03 = 0xb;
         c->mUnk_01 = 10;
         n++;
@@ -124,7 +124,7 @@ u8 func_ov000_021896c4(Unk02188ec0 *v1) {
     n = func_ov000_0218954c(v1);
     c += n;
     if (v1->mUnk_d0c == 0 || v1->mUnk_d0c == 6) {
-        func_0214d1fc(data_ov000_021b06f0, c->mUnk_04, 8);
+        MemCopy(data_ov000_021b06f0, c->mUnk_04, 8);
         c->mUnk_03 = 8;
         c->mUnk_01 = 8;
         n++;

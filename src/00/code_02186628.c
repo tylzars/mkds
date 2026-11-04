@@ -31,7 +31,7 @@ void FreeHttpBuffer(Http *a, HttpBuffer *b) {
     if (b->mStart != NULL) {
         a->mFree(data_ov000_021b1280, b->mStart, 0);
     }
-    func_0214d168(b, 0, 0x10);
+    MemFill(b, 0, 0x10);
 }
 
 u32 GrowHttpBuffer(Http *a, HttpBuffer *b, int c) {
@@ -43,7 +43,7 @@ u32 GrowHttpBuffer(Http *a, HttpBuffer *b, int c) {
     if (v1 == NULL) {
         return 0;
     }
-    func_0214d1fc(b->mStart, v1, b->mSize);
+    MemCopy(b->mStart, v1, b->mSize);
     a->mFree(NULL, b->mStart, 0);
     if (v1 == NULL) {
         return 0;
@@ -108,7 +108,7 @@ BOOL func_ov000_021866fc(Unk021868a4Entry *a, s32 b, s32 c, const char *d) {
     g.mEntries = a;
     g.mCapacity = b;
     g.mCount = 0;
-    func_0214d168(a, 0, b * 8);
+    MemFill(a, 0, b * 8);
     e = strstr(d, data_ov000_021b1230);
     if (e == NULL) {
         return FALSE;

@@ -35,7 +35,7 @@ s32 func_02063b70(Unk0206bcb0 *a) {
     if (d != FALSE) {
         t = a->mUnk_1d0 + 0x5000;
         g = *a->mUnk_1b4;
-        func_02147fd8(t, &a->mUnk_12c, a->mUnk_508, &h);
+        Vec3AddScaled(t, &a->mUnk_12c, a->mUnk_508, &h);
         g.mUnk_00[3].x = h.x >> 4;
         g.mUnk_00[3].y = h.y >> 4;
         g.mUnk_00[3].z = h.z >> 4;

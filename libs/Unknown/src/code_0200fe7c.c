@@ -31,8 +31,8 @@ void func_020106c8(Unk020101e8_08 *a, Unk020103c0_e *b, Unk02010294 *c, Unk02010
         n->mUnk_14 |= d->mUnk_00 + m;
         x = d->mUnk_04 & 0x7ff;
         y = (d->mUnk_04 >> 11) & 0x7ff;
-        n->mUnk_24 = (x == n->mUnk_20) ? 0x1000 : func_02147f34(x << 12, n->mUnk_20 << 12);
-        n->mUnk_28 = (y == n->mUnk_22) ? 0x1000 : func_02147f34(y << 12, n->mUnk_22 << 12);
+        n->mUnk_24 = (x == n->mUnk_20) ? 0x1000 : DivFixed12(x << 12, n->mUnk_20 << 12);
+        n->mUnk_28 = (y == n->mUnk_22) ? 0x1000 : DivFixed12(y << 12, n->mUnk_22 << 12);
     }
     b->mUnk_03 |= 1;
 }
@@ -314,7 +314,7 @@ u32 func_0200ff04(u32 m, u16 v) {
     u32 t;
     s32 k;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     t = m & data_02170284;
     while (1) {
         k = 31 - func_0200fe74(t);
@@ -323,7 +323,7 @@ u32 func_0200ff04(u32 m, u16 v) {
         }
         t &= ~(1 << k);
         if (v != data_02170288[k]) {
-            func_0200fcb4(s);
+            IrqRestore(s);
             return 0;
         }
     }
@@ -337,7 +337,7 @@ u32 func_0200ff04(u32 m, u16 v) {
         data_02170288[k] = v;
         data_02170284 |= 1 << k;
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     return 1;
 }
 
@@ -346,7 +346,7 @@ void func_0200fe7c(u32 m, u16 v) {
     u32 s;
     s32 k;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     t = m & data_02170284 & 0x1ff;
     while (1) {
         k = 31 - func_0200fe74(t);
@@ -359,5 +359,5 @@ void func_0200fe7c(u32 m, u16 v) {
             data_02170284 &= ~(1 << k);
         }
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
 }

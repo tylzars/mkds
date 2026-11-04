@@ -73,7 +73,7 @@ void func_020d4f94(Unk020d4f94 *p) {
     s32 buf[10];
 
     func_02146d0c(p, buf);
-    func_02146d78(&p->mUnk_24, buf, &data_0217b4f8.mUnk_08);
+    Vec3MultiplyMatrix3x3(&p->mUnk_24, buf, &data_0217b4f8.mUnk_08);
     data_0217b4f8.mUnk_08.x = -data_0217b4f8.mUnk_08.x;
     data_0217b4f8.mUnk_08.y = -data_0217b4f8.mUnk_08.y;
     data_0217b4f8.mUnk_08.z = -data_0217b4f8.mUnk_08.z;
@@ -83,10 +83,10 @@ void func_020d4f94(Unk020d4f94 *p) {
     data_0217b4f8.mUnk_14.x = -buf[6];
     data_0217b4f8.mUnk_14.y = -buf[7];
     data_0217b4f8.mUnk_14.z = -buf[8];
-    func_02146d78(&data_0217b550.mUnk_20, buf, &data_0217b4f8.mUnk_20);
-    func_02146d78(&data_0217b550.mUnk_2c, buf, &data_0217b4f8.mUnk_2c);
-    func_02146d78(&data_0217b550.mUnk_38, buf, &data_0217b4f8.mUnk_38);
-    func_02146d78(&data_0217b550.mUnk_44, buf, &data_0217b4f8.mUnk_44);
+    Vec3MultiplyMatrix3x3(&data_0217b550.mUnk_20, buf, &data_0217b4f8.mUnk_20);
+    Vec3MultiplyMatrix3x3(&data_0217b550.mUnk_2c, buf, &data_0217b4f8.mUnk_2c);
+    Vec3MultiplyMatrix3x3(&data_0217b550.mUnk_38, buf, &data_0217b4f8.mUnk_38);
+    Vec3MultiplyMatrix3x3(&data_0217b550.mUnk_44, buf, &data_0217b4f8.mUnk_44);
     if (data_0217b4f8.mUnk_50 != 0) {
         data_0217b4f8.mUnk_50 = 0;
         data_0217b4f8.mUnk_54 = 1;

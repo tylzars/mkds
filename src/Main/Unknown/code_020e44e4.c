@@ -38,8 +38,8 @@ void func_020e47c8(Unk020e43a8 *p, Vec3 *a) {
     p->mUnk_f4.z = a->y;
     {
         s32 *q = &p->mUnk_d4;
-        p->mUnk_104 = -func_02147f34(q[0], q[1]);
-        p->mUnk_108 = -func_02147f34(q[2], q[1]);
+        p->mUnk_104 = -DivFixed12(q[0], q[1]);
+        p->mUnk_108 = -DivFixed12(q[2], q[1]);
     }
 }
 
@@ -104,7 +104,7 @@ void func_020e44e4(u32 a, Unk020e43a8 *p) {
     func_02146d44((s32 *) &p->mUnk_00.mMatrix, data_0215d4b4[(p->mUnk_00.mUnk_7e >> 4) * 2],
                   data_0215d4b4[(p->mUnk_00.mUnk_7e >> 4) * 2 + 1]);
     func_02146dfc((const s32 *) &p->mUnk_00.mMatrix, (const s32 *) &p->mUnk_c4, (s32 *) &p->mUnk_00.mMatrix);
-    func_02147fd8(-p->mUnk_104, &p->mUnk_00.mMatrix.mUnk_00[1], &p->mUnk_00.mPos, &p->mUnk_f4);
+    Vec3AddScaled(-p->mUnk_104, &p->mUnk_00.mMatrix.mUnk_00[1], &p->mUnk_00.mPos, &p->mUnk_f4);
     if (p->mUnk_00.mUnk_80.mUnk_0e == 3) {
         return;
     }

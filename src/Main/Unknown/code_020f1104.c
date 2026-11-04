@@ -37,6 +37,6 @@ void func_020f112c(int arg0, int arg1) {
 }
 
 void func_020f1104(int a) {
-    func_02148504((const Vec3 *) ((u32) (a + 0x22c)), (const Vec3 *) ((u32) (a + 0x5c)), (Vec3 *) (((a + 0x5c))));
+    Vec3Add((const Vec3 *) ((u32) (a + 0x22c)), (const Vec3 *) ((u32) (a + 0x5c)), (Vec3 *) (((a + 0x5c))));
     func_020f29e8(a);
 }

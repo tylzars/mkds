@@ -48,7 +48,7 @@ void FS_ClearOverlayImage(Unk020055f0 *p) {
     b = p->mUnk_04;
     func_0200eea4(b, a);
     func_0200ee3c(b, a);
-    func_0214d168(b + n, 0, a - n);
+    MemFill(b + n, 0, a - n);
 }
 
 void FS_GetOverlayFileID(Unk02005814 *dst, Unk020055f0 *src) {
@@ -114,7 +114,7 @@ u32 FS_LoadOverlayInfo(Unk020055f0 *dst, u32 sel, u32 idx) {
         if (idx * 32 >= tab->mUnk_04) {
             return 0;
         }
-        func_0214d1fc(tab->mUnk_00 + idx * 32, dst, 0x20);
+        MemCopy(tab->mUnk_00 + idx * 32, dst, 0x20);
         dst->mUnk_20 = sel;
         FS_InitFile(&o);
         FS_GetOverlayFileID(&s, dst);
@@ -174,8 +174,8 @@ u32 FileCheckHmac(const u8 *expected, const u8 *data, u32 n) {
     u8 k[0x40];
     u32 i;
 
-    func_0214d168(d, 0, 0x14);
-    func_0214d1fc(data_02161768, k, data_0216176c);
+    MemFill(d, 0, 0x14);
+    MemCopy(data_02161768, k, data_0216176c);
     func_02150808(d, data, n, k, data_0216176c);
     for (i = 0; i < 0x14; i += 4) {
         if (*(u32 *) (d + i) != *(u32 *) (expected + i)) {
@@ -200,7 +200,7 @@ void FS_StartOverlay(Unk020055f0 *rec) {
             }
         }
         if (ok == 0) {
-            func_0214d168(rec->mUnk_04, 0, n);
+            MemFill(rec->mUnk_04, 0, n);
             func_0200fd1c();
             return;
         }
@@ -240,7 +240,7 @@ void FS_EndOverlay(Unk020055f0 *rec) {
         hi = lo + (rec->mUnk_08 + rec->mUnk_0c);
         found = 0;
         last = 0;
-        irq = func_0200fca0();
+        irq = IrqDisable();
         prev = 0;
         head = data_0217eeb0;
         cur = head;
@@ -270,7 +270,7 @@ void FS_EndOverlay(Unk020055f0 *rec) {
                 cur = next;
             } while (cur != 0);
         }
-        func_0200fcb4(irq);
+        IrqRestore(irq);
         if (found == 0) {
             return;
         }
@@ -324,10 +324,10 @@ void FS_AttachOverlayTable(u32 sel, u8 *data, u32 n) {
     } else {
         dst = &data_0216f364;
     }
-    irq = func_0200fca0();
+    irq = IrqDisable();
     dst->mUnk_00 = data;
     dst->mUnk_04 = n;
-    func_0200fcb4(irq);
+    IrqRestore(irq);
 }
 
 void FileFinishCardRead(Unk02003a6c *p) {

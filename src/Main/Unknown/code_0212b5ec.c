@@ -85,7 +85,7 @@ void func_0212b5ec(void *a) {
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & ~0x1f00) | 0x100;
     *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 1;
     *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & 0x43) | 0x1000;
-    func_0214d05c_inline((void *) func_0214a034(), 0x8000);
+    MemFillWordsByBlock_inline((void *) func_0214a034(), 0x8000);
     for (i = 0; i < 0x400; i++) {
         ((u16 *) func_0214a2f4())[i] = i | 0xf000;
     }
@@ -100,6 +100,6 @@ void func_0212b5ec(void *a) {
     q->mUnk_04 = t;
     q->mUnk_08 = v;
     q->mUnk_0c = 0;
-    func_0214d168(data_0217d40c->mUnk_050, 0, 0x800);
+    MemFill(data_0217d40c->mUnk_050, 0, 0x800);
     data_0217d40c->mUnk_018 = GetBmgEntry(FindSceneFile(data_0216ea94), 0);
 }

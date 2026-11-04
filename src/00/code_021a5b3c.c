@@ -23,12 +23,12 @@ u32 func_ov000_021a5b3c(u32 a) {
     u32 v2;
     Unk021b5f50 *g;
 
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     b = 0;
     g = data_ov000_021b5f50;
     v2 = g->mUnk_2264;
     if (g == NULL) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 0;
     }
     if (a & 0x8000) {
@@ -50,7 +50,7 @@ u32 func_ov000_021a5b3c(u32 a) {
         b |= 0x400000;
     }
     g->mUnk_2264 = a | (v2 & ~b);
-    func_0200fcb4(v1);
+    IrqRestore(v1);
     return v2;
 }
 
@@ -59,13 +59,13 @@ u32 func_ov000_021a5bfc(void) {
     u32 r;
     Unk021b5f50 *g;
 
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     r = 0;
     g = data_ov000_021b5f50;
     if (g != NULL) {
         r = g->mUnk_2260;
     }
-    func_0200fcb4(v1);
+    IrqRestore(v1);
     return r;
 }
 
@@ -75,30 +75,30 @@ s32 func_ov000_021a5c24(void) {
     Unk021b5f50 *g;
     Unk02142988 *p;
 
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
         case 13:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 2;
         case 1:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 0;
         case 6:
             func_ov000_021a57fc(0xd);
             data_ov000_021b5f50->mUnk_2280 = 9;
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 3;
         case 3:
         case 9:
         case 12:
             break;
         default:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 1;
     }
     if (g->mUnk_226b == 1) {
@@ -113,7 +113,7 @@ s32 func_ov000_021a5c24(void) {
                 if (r == 0) {
                     func_ov000_021a57fc(1);
                     data_ov000_021b5f50->mUnk_2280 = 0;
-                    func_0200fcb4(v1);
+                    IrqRestore(v1);
                     return 0;
                 }
                 break;
@@ -134,16 +134,16 @@ s32 func_ov000_021a5c24(void) {
                 data_ov000_021b5f50->mUnk_2280 = 9;
                 break;
             case 8:
-                func_0200fcb4(v1);
+                IrqRestore(v1);
                 return 4;
             case 3:
             default:
                 func_ov000_021a57fc(0xb);
-                func_0200fcb4(v1);
+                IrqRestore(v1);
                 return 7;
         }
     }
-    func_0200fcb4(v1);
+    IrqRestore(v1);
     return 3;
 }
 
@@ -152,21 +152,21 @@ s32 func_ov000_021a5db0(void) {
     s32 r;
     Unk021b5f50 *g;
 
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
         case 10:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 2;
         case 3:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 0;
         default:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 1;
         case 9:
             break;
@@ -182,16 +182,16 @@ s32 func_ov000_021a5db0(void) {
                 data_ov000_021b5f50->mUnk_2280 = 6;
                 break;
             case 8:
-                func_0200fcb4(v1);
+                IrqRestore(v1);
                 return 4;
             case 3:
             default:
                 func_ov000_021a57fc(0xb);
-                func_0200fcb4(v1);
+                IrqRestore(v1);
                 return 7;
         }
     }
-    func_0200fcb4(v1);
+    IrqRestore(v1);
     return 3;
 }
 
@@ -200,49 +200,49 @@ s32 func_ov000_021a5e84(Unk021a5e84 *a, Unk02188de4 *b, u32 c) {
     s32 r;
     Unk021b5f50 *g;
 
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
         case 3:
             if (a == NULL) {
-                func_0200fcb4(v1);
+                IrqRestore(v1);
                 return 1;
             }
             if (a->mUnk_3c != 0) {
-                func_0200fcb4(v1);
+                IrqRestore(v1);
                 return 1;
             }
             if (b != NULL) {
                 if (b->mUnk_00 >= 4 || b->mUnk_01 >= 4) {
-                    func_0200fcb4(v1);
+                    IrqRestore(v1);
                     return 1;
                 }
                 g->mUnk_2250 = b->mUnk_00;
                 data_ov000_021b5f50->mUnk_2251 = b->mUnk_01;
                 if (data_ov000_021b5f50->mUnk_2250 == 0) {
-                    func_0214d168(data_ov000_021b5f50->mUnk_2200, 0, 0x50);
+                    MemFill(data_ov000_021b5f50->mUnk_2200, 0, 0x50);
                 } else {
-                    func_0214d1fc(b->mUnk_02, data_ov000_021b5f50->mUnk_2200, 0x50);
+                    MemCopy(b->mUnk_02, data_ov000_021b5f50->mUnk_2200, 0x50);
                 }
             } else {
-                func_0214d168(g->mUnk_2200, 0, 0x52);
+                MemFill(g->mUnk_2200, 0, 0x52);
             }
-            func_0214d1fc(a, data_ov000_021b5f50->mUnk_2140, 0xc0);
+            MemCopy(a, data_ov000_021b5f50->mUnk_2140, 0xc0);
             data_ov000_021b5f50->mUnk_2170 = data_ov000_021b5f50->mUnk_216e | 3;
             func_ov000_021a5b3c(c);
             break;
         case 8:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 2;
         case 9:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 0;
         default:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 1;
     }
     r = func_021454c4(func_ov000_021a54b0, 0xffff, 0x50, 0xffff, 0xffff);
@@ -252,15 +252,15 @@ s32 func_ov000_021a5e84(Unk021a5e84 *a, Unk02188de4 *b, u32 c) {
             data_ov000_021b5f50->mUnk_2280 = 5;
             break;
         case 8:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 4;
         case 3:
         default:
             func_ov000_021a57fc(0xb);
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 7;
     }
-    func_0200fcb4(v1);
+    IrqRestore(v1);
     return 3;
 }
 
@@ -268,10 +268,10 @@ s32 func_ov000_021a6024(void) {
     u32 v1;
     Unk021b5f50 *g;
 
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
@@ -280,16 +280,16 @@ s32 func_ov000_021a6024(void) {
             data_ov000_021b5f50->mUnk_2280 = 4;
             break;
         case 7:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 2;
         case 3:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 0;
         default:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 1;
     }
-    func_0200fcb4(v1);
+    IrqRestore(v1);
     return 3;
 }
 
@@ -298,23 +298,23 @@ s32 func_ov000_021a60a4(const void *a, const u8 *b, u32 c) {
     s32 r;
     Unk021b5f50 *g;
 
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
         case 5:
             func_ov000_021a5948(a, b, c);
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 2;
         case 6:
             func_ov000_021a5948(a, b, c);
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 0;
         default:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 1;
         case 3:
             func_ov000_021a5948(a, b, c);
@@ -327,15 +327,15 @@ s32 func_ov000_021a60a4(const void *a, const u8 *b, u32 c) {
                     data_ov000_021b5f50->mUnk_2280 = 3;
                     break;
                 case 8:
-                    func_0200fcb4(v1);
+                    IrqRestore(v1);
                     return 4;
                 case 3:
                 default:
                     func_ov000_021a57fc(0xb);
-                    func_0200fcb4(v1);
+                    IrqRestore(v1);
                     return 7;
             }
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 3;
     }
 }
@@ -352,21 +352,21 @@ s32 func_ov000_021a61e4(void) {
     s32 r;
     Unk021b5f50 *g;
 
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
         case 4:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 2;
         case 1:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 0;
         default:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 1;
         case 3:
             r = func_02143e78(func_ov000_021a54b0);
@@ -376,15 +376,15 @@ s32 func_ov000_021a61e4(void) {
                     data_ov000_021b5f50->mUnk_2280 = 2;
                     break;
                 case 8:
-                    func_0200fcb4(v1);
+                    IrqRestore(v1);
                     return 4;
                 case 3:
                 default:
                     func_ov000_021a57fc(0xb);
-                    func_0200fcb4(v1);
+                    IrqRestore(v1);
                     return 7;
             }
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 3;
     }
 }
@@ -394,10 +394,10 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
     s32 r;
     Unk021b5f50 *g;
 
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
@@ -405,22 +405,22 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
             func_ov000_021a5a78(a, b);
             break;
         case 2:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 2;
         case 3:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 0;
         default:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 1;
     }
     switch (func_02142e78(data_ov000_021b5f50, (u16) data_ov000_021b5f50->mUnk_226c)) {
         case 3:
             func_ov000_021a57fc(0xb);
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 7;
         case 4:
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 5;
         case 1:
         case 2:
@@ -428,7 +428,7 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
         case 6:
         default:
             func_ov000_021a57fc(0xb);
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 7;
         case 0:
             break;
@@ -436,15 +436,15 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
     if (func_02143280() == 0) {
         if (func_02142c24() != 0) {
             func_ov000_021a57fc(0xb);
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 7;
         }
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 5;
     }
     if (func_021435e8(func_ov000_021a56e4) != 0) {
         func_ov000_021a57fc(0xb);
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 7;
     }
     r = func_02143f50(func_ov000_021a54b0);
@@ -455,15 +455,15 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
             break;
         case 8:
             func_ov000_021a57fc(0xc);
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 1;
         case 3:
         default:
             func_ov000_021a57fc(0xb);
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 7;
     }
-    func_0200fcb4(v1);
+    IrqRestore(v1);
     return 3;
 }
 
@@ -471,39 +471,39 @@ BOOL func_ov000_021a6428(void) {
     u32 v1;
     Unk021b5f50 *g;
 
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return TRUE;
     }
     if (g->mUnk_2260 != 1) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return TRUE;
     }
     data_ov000_021b5f50 = NULL;
-    func_0200fcb4(v1);
+    IrqRestore(v1);
     return FALSE;
 }
 
 s32 func_ov000_021a6470(Unk021b5f50 *a, u32 b) {
     u32 v1;
 
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     if (data_ov000_021b5f50 != NULL) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 1;
     }
     if (a == NULL) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 1;
     }
     if (((u32) a & 0x1f) != 0) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 1;
     }
     if (b < sizeof(Unk021b5f50)) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 6;
     }
     data_ov000_021b5f50 = a;
@@ -523,7 +523,7 @@ s32 func_ov000_021a6470(Unk021b5f50 *a, u32 b) {
         func_0200fb28();
     }
     func_0200fb08(&data_ov000_021b5f50->mUnk_22cc);
-    func_0200fcb4(v1);
+    IrqRestore(v1);
     return 0;
 }
 

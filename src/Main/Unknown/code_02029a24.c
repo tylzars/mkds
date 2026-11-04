@@ -20,7 +20,7 @@ void func_02029a70(void *a) {
 
 void func_02029a4c(void *a, u32 b, u32 c) {
     volatile u32 v = b;
-    func_0214d05c(v, a, c);
+    MemFillWordsByBlock(v, a, c);
 }
 
 void func_02029a38(void *a, u32 b) {

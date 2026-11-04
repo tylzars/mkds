@@ -146,7 +146,7 @@ void func_0214e994(Unk0214e334 *p) {
         data_021803d8.mUnk_30 = 0;
         return;
     }
-    v = func_0200fca0();
+    v = IrqDisable();
     a = p->mUnk_04;
     if (a != 0) {
         *(vu16 *) 0x4000280 = 0;
@@ -181,18 +181,18 @@ void func_0214e994(Unk0214e334 *p) {
         data_021803d8.mUnk_18.mUnk_10 = 0;
         data_021803d8.mUnk_18.mUnk_14 = 0;
     }
-    func_0200fcb4(v);
+    IrqRestore(v);
     data_021803d8.mUnk_30 = 1;
 }
 
 // non-matching: in the second arm the original loads mUnk_36, stores it, then loads mUnk_34; this loads both first
 void func_0214e8f4(void) {
-    u32 v = func_0200fca0();
-    s32 r = func_0214d6e8(6, 0x3000000, 0);
+    u32 v = IrqDisable();
+    s32 r = PxiSendFifoWord(6, 0x3000000, 0);
     u32 ok = r >= 0 ? 1 : 0;
 
     if (ok == 0) {
-        func_0200fcb4(v);
+        IrqRestore(v);
         data_021803d8.mUnk_34 |= 1;
         if (data_021803d8.mUnk_00 != 0) {
             data_021803d8.mUnk_00(0, 4, 0);
@@ -200,7 +200,7 @@ void func_0214e8f4(void) {
     } else {
         data_021803d8.mUnk_36 |= 1;
         data_021803d8.mUnk_34 &= ~1;
-        func_0200fcb4(v);
+        IrqRestore(v);
     }
 }
 
@@ -215,7 +215,7 @@ u32 func_0214e89c(Unk0214e334_b *out) {
     return 0;
 }
 
-// Stores p, b and n (clearing mUnk_04 of each entry), sends two words through func_0214d6e8 and sets bit 2 of mUnk_34
+// Stores p, b and n (clearing mUnk_04 of each entry), sends two words through PxiSendFifoWord and sets bit 2 of mUnk_34
 // (calling mUnk_00 with (1, 4, 0)) when either call returns a negative value, or bit 2 of mUnk_36 otherwise.
 void func_0214e788(u32 a, u32 b, Unk0214e334_b *p, u32 n) {
     u32 i;
@@ -230,18 +230,18 @@ void func_0214e788(u32 a, u32 b, Unk0214e334_b *p, u32 n) {
     for (i = 0; i < n; i++) {
         data_021803d8.mUnk_10[i].mUnk_04 = 0;
     }
-    s = func_0200fca0();
-    if (func_0214d6e8(6, (b & 0xff) | 0x2000100, 0) < 0) {
+    s = IrqDisable();
+    if (PxiSendFifoWord(6, (b & 0xff) | 0x2000100, 0) < 0) {
         ok = 0;
     } else {
-        if (func_0214d6e8(6, a | 0x1010000, 0) < 0) {
+        if (PxiSendFifoWord(6, a | 0x1010000, 0) < 0) {
             ok = 0;
         } else {
             ok = 1;
         }
     }
     if ((ok & 0xff) == 0) {
-        func_0200fcb4(s);
+        IrqRestore(s);
         data_021803d8.mUnk_34 |= 2;
         f = data_021803d8.mUnk_00;
         if (f != 0) {
@@ -250,21 +250,21 @@ void func_0214e788(u32 a, u32 b, Unk0214e334_b *p, u32 n) {
     } else {
         data_021803d8.mUnk_36 |= 2;
         data_021803d8.mUnk_34 &= ~2;
-        func_0200fcb4(s);
+        IrqRestore(s);
     }
 }
 
-// Sends one word through func_0214d6e8 and sets bit 4 of mUnk_34 (calling mUnk_00 with (2, 4, 0)) when the call
+// Sends one word through PxiSendFifoWord and sets bit 4 of mUnk_34 (calling mUnk_00 with (2, 4, 0)) when the call
 // returns a negative value, or bit 4 of mUnk_36 otherwise.
 void func_0214e6e4(void) {
     u32 s;
     s32 ok;
     void (*f)(u32, u8, u8);
 
-    s = func_0200fca0();
-    ok = func_0214d6e8(6, 0x3000200, 0) >= 0;
+    s = IrqDisable();
+    ok = PxiSendFifoWord(6, 0x3000200, 0) >= 0;
     if ((ok & 0xff) == 0) {
-        func_0200fcb4(s);
+        IrqRestore(s);
         data_021803d8.mUnk_34 |= 4;
         f = data_021803d8.mUnk_00;
         if (f != 0) {
@@ -273,7 +273,7 @@ void func_0214e6e4(void) {
     } else {
         data_021803d8.mUnk_36 |= 4;
         data_021803d8.mUnk_34 &= ~4;
-        func_0200fcb4(s);
+        IrqRestore(s);
     }
 }
 
@@ -301,7 +301,7 @@ u32 func_0214e464(Unk0214e334 *out, u16 a, u16 b, u16 c, u16 d, u16 e, u16 f, u1
     if (c == g || d == h || a == e || b == f) {
         return 1;
     }
-    s = func_0200fca0();
+    s = IrqDisable();
     reg_CP_DIVCNT = 0;
     *(vu32 *) 0x04000290 = (a - e) << 8;
     reg_CP_DIV_DENOM = (u32) (c - g);
@@ -314,20 +314,20 @@ u32 func_0214e464(Unk0214e334 *out, u16 a, u16 b, u16 c, u16 d, u16 e, u16 f, u1
     *(vu32 *) 0x04000290 = z << 8;
     reg_CP_DIV_DENOM = (u32) w;
     if (q >= 0x8000 || q < -0x8000) {
-        func_0200fcb4(s);
+        IrqRestore(s);
         return 1;
     }
     out->mUnk_04 = q;
     q = (s16) ((((a + e) << 8) - out->mUnk_04 * (c + g)) >> 7);
     if (q >= 0x8000 || q < -0x8000) {
-        func_0200fcb4(s);
+        IrqRestore(s);
         return 1;
     }
     out->mUnk_00 = q;
     while (reg_CP_DIVCNT & 0x8000) {
     }
     q = *(vs32 *) 0x040002a0;
-    func_0200fcb4(s);
+    IrqRestore(s);
     if (q >= 0x8000 || q < -0x8000) {
         return 1;
     }

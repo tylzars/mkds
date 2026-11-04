@@ -22,7 +22,7 @@ void func_020d29cc(MapObject *d, Vec3 *e) {
             case 3:
             case 4:
             case 5:
-                a = func_021482cc(&d->mUnk_58);
+                a = Vec3Length(&d->mUnk_58);
                 break;
             case 0:
             case 1:
@@ -39,7 +39,7 @@ void func_020d29cc(MapObject *d, Vec3 *e) {
             case 3:
             case 4:
             case 5:
-                a = func_021482cc(&d->mUnk_58);
+                a = Vec3Length(&d->mUnk_58);
                 break;
             case 0:
             case 1:
@@ -56,7 +56,7 @@ void func_020d29cc(MapObject *d, Vec3 *e) {
             case 3:
             case 4:
             case 5:
-                a = func_021482cc(&d->mUnk_58);
+                a = Vec3Length(&d->mUnk_58);
                 break;
             case 0:
             case 1:
@@ -89,7 +89,7 @@ void func_020d2950(MapObject *b, s32 c) {
         case 3:
         case 4:
         case 5:
-            a = func_021482cc(&b->mUnk_58);
+            a = Vec3Length(&b->mUnk_58);
             break;
         case 0:
         case 1:

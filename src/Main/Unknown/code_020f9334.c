@@ -213,7 +213,7 @@ void func_020f944c(void *param_1, void *param_2) {
         return;
     }
     if ((r->mFlags & 0x40) == 0 && (p->mUnk_74 & 0x80000) == 0 && func_020d6968(p->mUnk_44, r) != 0) {
-        func_02148504(&p->mUnk_50, &a, &p->mUnk_50);
+        Vec3Add(&p->mUnk_50, &a, &p->mUnk_50);
     }
     switch (func_020d6a54(p, r, &b)) {
         case 1:

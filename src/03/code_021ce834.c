@@ -32,9 +32,9 @@ u32 func_ov003_021ce920(void (*a)(u32)) {
         d->mUnk_1374.mUnk_00 = d->mUnk_0f00;
         data_ov003_021da280->mUnk_1374.mUnk_08 = func_02143090();
         func_0200fddc(&s);
-        func_0214d1fc(data_ov003_021d66c4, &data_ov003_021da280->mUnk_1374.mUnk_14[0], 8);
+        MemCopy(data_ov003_021d66c4, &data_ov003_021da280->mUnk_1374.mUnk_14[0], 8);
         data_ov003_021da280->mUnk_1374.mUnk_14[9] = 1;
-        func_0214d1fc(s.mUnk_04, &data_ov003_021da280->mUnk_1374.mUnk_14[0xc], s.mUnk_18 * 2);
+        MemCopy(s.mUnk_04, &data_ov003_021da280->mUnk_1374.mUnk_14[0xc], s.mUnk_18 * 2);
         if (func_ov003_021ce8ec() != 0) {
             data_ov003_021da280->mUnk_1b7c = func_ov003_021d3544(0, func_ov003_021ce4d4, NULL, 0x78);
             return 1;

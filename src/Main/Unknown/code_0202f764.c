@@ -46,7 +46,7 @@
 // Fills with 0 through a halfword stack offset of its own.
 static inline void func_0202f764_inline(void *p, s32 v1) {
     volatile u16 zero = 0;
-    func_0214cfe4(zero, p, v1);
+    MemFillHalfwords(zero, p, v1);
 }
 
 void func_0202fd2c(void) {
@@ -155,7 +155,7 @@ void func_0202fbc8(void *a, void *b, void *c) {
 
     v1 = CreateFrmHeapFromMaxFree(a);
     data_02174e50 = HeapAlloc(v1, 0xa8);
-    func_0214d05c_inline(data_02174e50, 0xa8);
+    MemFillWordsByBlock_inline(data_02174e50, 0xa8);
     data_02174e50->mHeap = v1;
     data_02174e50->mUnk_40 = b;
     data_02174e50->mUnk_44 = c;

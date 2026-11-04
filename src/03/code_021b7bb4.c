@@ -69,7 +69,7 @@ s32 func_ov003_021b7da0(const u8 *left, const u8 *right, s32 count) {
 }
 
 void func_ov003_021b7d90(void *arg0, const void *arg1, u32 arg2) {
-    func_0214d1fc(arg1, arg0, arg2);
+    MemCopy(arg1, arg0, arg2);
 }
 
 void func_ov003_021b7d84(void *arg0, s32 arg1, u32 arg2) {
@@ -79,8 +79,8 @@ void func_ov003_021b7d84(void *arg0, s32 arg1, u32 arg2) {
     u32 value3;
     value1 = (value1 << 24);
     value1 = (value1 >> 24);
-    value3 = (u32) &func_0214d168;
-    func_0214d168((void *) value0, (u8) value1, value2);
+    value3 = (u32) &MemFill;
+    MemFill((void *) value0, (u8) value1, value2);
     return;
 }
 

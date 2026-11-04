@@ -10,7 +10,7 @@ u16 data_02170280;
 u16 data_0217027c;
 
 void func_0200fe58(void *p) {
-    func_0214d1fc((void *) 0x27ffcf4, p, 6);
+    MemCopy((void *) 0x27ffcf4, p, 6);
 }
 
 void func_0200fddc(Unk0200fddc *p) {
@@ -23,8 +23,8 @@ void func_0200fddc(Unk0200fddc *p) {
     p->mUnk_03 = s[4];
     p->mUnk_18 = s[0x1a];
     p->mUnk_4e = s[0x50];
-    func_0214cffc(s + 6, p->mUnk_04, 0x14);
-    func_0214cffc(s + 0x1c, p->mUnk_1a, 0x34);
+    MemCopyHalfwords(s + 6, p->mUnk_04, 0x14);
+    MemCopyHalfwords(s + 0x1c, p->mUnk_1a, 0x34);
 }
 
 void func_0200fd74(void) {
@@ -48,7 +48,7 @@ void func_0200fd30(u32 a, u32 b) {
 
 void func_0200fd1c(void) {
     while (1) {
-        func_0200fca0();
+        IrqDisable();
         func_0200fd04();
     }
 }

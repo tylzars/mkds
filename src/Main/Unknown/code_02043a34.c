@@ -223,7 +223,7 @@ void func_02044060(u32 a) {
     if (p != NULL) {
         return;
     }
-    func_0214d168(p, 0, 0x1000);
+    MemFill(p, 0, 0x1000);
     p->mUnk_08_0 = 0;
 }
 

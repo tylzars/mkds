@@ -12,12 +12,12 @@ void func_0200c894(u32 a, u32 b) {
     Unk027e0000 *p;
     u32 *q;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     p = (Unk027e0000 *) 0x027e0000;
     if (a != 0) {
         p->mUnk_3ff8 &= ~b;
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     p = (Unk027e0000 *) 0x027e0000;
     if ((b & p->mUnk_3ff8) != 0) {
         return;

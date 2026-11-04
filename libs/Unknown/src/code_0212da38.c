@@ -446,8 +446,8 @@ Unk02021968 *func_0212e0b8(u32 a, Unk0212d9dc *b, u32 c) {
         if (m != n + 0x3c) {
             return 0;
         }
-        func_0214d1fc(p->mUnk_3c, p->mUnk_3c + p->mUnk_38, n);
-        func_0214d168(p->mUnk_3c, 0, n);
+        MemCopy(p->mUnk_3c, p->mUnk_3c + p->mUnk_38, n);
+        MemFill(p->mUnk_3c, 0, n);
         func_0200ee58(p, size);
         if (c != 0) {
             func_0212d238(a, p);
@@ -463,13 +463,13 @@ void func_0212e04c(void *a, Unk0212d5f8 *b, u32 c) {
     if (b == 0) {
         return;
     }
-    v = func_0200fca0();
+    v = IrqDisable();
     p = func_0212d5e0(b);
     if (a == func_0212d254(c)) {
         func_0212d238(c, 0);
     }
     func_0212d5e0(p);
-    func_0200fcb4(v);
+    IrqRestore(v);
 }
 
 void func_0212e018(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {
@@ -592,8 +592,8 @@ void func_0212dbec(Unk0212d9dc *a) {
     void *node;
     u32 flag = 0;
 
-    for (e = func_02017328(&a->mUnk_04, 0); e != 0; e = func_02017328(&a->mUnk_04, 0)) {
-        for (node = func_02017328(e, 0); node != 0; node = func_02017328(e, node)) {
+    for (e = ListGetPrev(&a->mUnk_04, 0); e != 0; e = ListGetPrev(&a->mUnk_04, 0)) {
+        for (node = ListGetPrev(e, 0); node != 0; node = ListGetPrev(e, node)) {
             Unk0212db7c *n = node;
 
             if (n->mUnk_0c != 0) {
@@ -601,7 +601,7 @@ void func_0212dbec(Unk0212d9dc *a) {
                 flag = 1;
             }
         }
-        func_02017354(&a->mUnk_04, e);
+        ListRemove(&a->mUnk_04, e);
     }
     FrmHeapFree(a->mUnk_00, 3);
     if (flag != 0) {
@@ -618,12 +618,12 @@ void *func_0212db7c(Unk0212d9dc *a, u32 size, UnkFunc *f, void *p, u32 v) {
     if (n == 0) {
         return 0;
     }
-    e = func_02017328(&a->mUnk_04, 0);
+    e = ListGetPrev(&a->mUnk_04, 0);
     n->mUnk_08 = size;
     n->mUnk_0c = f;
     n->mUnk_10 = p;
     n->mUnk_14 = v;
-    func_020174a4(e, n);
+    ListAppend(e, n);
     return n + 1;
 }
 
@@ -649,8 +649,8 @@ void func_0212da38(Unk0212d9dc *a, s32 n) {
     }
     if (n < a->mUnk_04.mUnk_08) {
         do {
-            e = func_02017328(&a->mUnk_04, 0);
-            for (node = func_02017328(e, node); node != 0; node = func_02017328(e, node)) {
+            e = ListGetPrev(&a->mUnk_04, 0);
+            for (node = ListGetPrev(e, node); node != 0; node = ListGetPrev(e, node)) {
                 Unk0212db7c *p = node;
 
                 if (p->mUnk_0c != 0) {
@@ -658,7 +658,7 @@ void func_0212da38(Unk0212d9dc *a, s32 n) {
                     flag = 1;
                 }
             }
-            func_02017354(&a->mUnk_04, e);
+            ListRemove(&a->mUnk_04, e);
         } while (n < a->mUnk_04.mUnk_08);
     }
     FrmHeapRestoreFrontBack(a->mUnk_00, n);

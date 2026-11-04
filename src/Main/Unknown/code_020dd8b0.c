@@ -38,7 +38,7 @@ void func_020dd8b0(Unk020dd950 *d, Vec3 *a, Vec3 *b) {
     s32 i;
     s32 k;
 
-    func_021484d0(b, a, &v);
+    Vec3Sub(b, a, &v);
     k = d->mUnk_24;
     v.x = (s32) (((s64) v.x * k) >> 12);
     v.y = (s32) (((s64) v.y * k) >> 12);
@@ -49,7 +49,7 @@ void func_020dd8b0(Unk020dd950 *d, Vec3 *a, Vec3 *b) {
     q->y = 0;
     q->z = 0;
     for (i = 1; i < d->mUnk_20; i++) {
-        func_02148504(&d->mUnk_44[i - 1], &v, &d->mUnk_44[i]);
+        Vec3Add(&d->mUnk_44[i - 1], &v, &d->mUnk_44[i]);
         q = d->mUnk_48;
         q[i].x = 0;
         q[i].y = 0;

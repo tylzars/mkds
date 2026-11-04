@@ -94,7 +94,7 @@ void func_ov003_021ce6ac(Unk021ce5b8 *a) {
         q = d->mUnk_1300[0].mUnk_00;
         for (; k < 16; k++) {
             if (memcmp(q, data_ov003_021d66bc, 6) == 0) {
-                func_0214d1fc(e->mUnk_04, d->mUnk_1300[k].mUnk_00, 6);
+                MemCopy(e->mUnk_04, d->mUnk_1300[k].mUnk_00, 6);
                 data_ov003_021da280->mUnk_1300[k].mUnk_06 = (e->mUnk_15 & 1) ? 1 : 0;
                 goto next;
             }

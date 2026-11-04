@@ -29,7 +29,7 @@ void func_ov003_021c73cc(void) {
             if (data_ov003_021da1fc->mUnk_08[data_ov003_021da1fc->mUnk_14 * 3 + 2] == 0) {
                 data_ov003_021da1fc->mUnk_14--;
             }
-            func_0214d168(data_ov003_021da1fc->mUnk_08 + data_ov003_021da1fc->mUnk_14 * 3, 0, 3);
+            MemFill(data_ov003_021da1fc->mUnk_08 + data_ov003_021da1fc->mUnk_14 * 3, 0, 3);
             if (data_ov003_021da1fc->mUnk_14 == 0 && data_ov003_021da1fc->mUnk_08[2] == 0) {
                 func_ov003_021c1c90(0);
             }
@@ -125,7 +125,7 @@ u32 func_ov003_021c735c(s32 a) {
     if (f != 0 && f != 0x20) {
         return 1;
     }
-    func_0214d1fc(c, b, 3);
+    MemCopy(c, b, 3);
     b[3] = 0;
     c = b;
     for (e = 0; e < 3; e++) {

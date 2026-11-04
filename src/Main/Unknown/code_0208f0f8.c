@@ -61,15 +61,15 @@ void func_0208f0f8(void *a) {
     data_0217b08c = HeapAlloc(a, 0x38);
     e = HeapAlloc(a, n * 0x30);
     f = HeapAlloc(a, m * 0x1c);
-    func_02017538(&data_0217b08c->mUnk_00[0], 0);
-    func_02017538(&data_0217b08c->mUnk_00[1], 0);
-    func_02017538(&data_0217b08c->mUnk_00[2], 0);
+    ListInit(&data_0217b08c->mUnk_00[0], 0);
+    ListInit(&data_0217b08c->mUnk_00[1], 0);
+    ListInit(&data_0217b08c->mUnk_00[2], 0);
     for (i = 0; i < n; i++) {
-        func_02017538(&e[i].mUnk_08, 0);
-        func_020174a4(&data_0217b08c->mUnk_00[1], &e[i]);
+        ListInit(&e[i].mUnk_08, 0);
+        ListAppend(&data_0217b08c->mUnk_00[1], &e[i]);
     }
     for (i = 0; i < m; i++) {
-        func_020174a4(&data_0217b08c->mUnk_00[2], &f[i]);
+        ListAppend(&data_0217b08c->mUnk_00[2], &f[i]);
     }
     func_0208526c(&data_0217b08c->mUnk_24, s, s);
     q = data_0217b08c->mUnk_24.mUnk_0c;

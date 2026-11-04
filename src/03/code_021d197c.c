@@ -52,7 +52,7 @@ Unk021d1770 *func_ov003_021d19e0(u32 f, s32 g, s32 h) {
     Unk021d1770_08 *e;
 
     a = func_ov003_021d1cd4(data_ov003_021da2b4[f].mUnk_224);
-    b = func_0200ca9c(1);
+    b = InterruptEnableClearBits(1);
     if (h != 0) {
         c = &data_ov003_021da2b4[f].mUnk_200;
         if (c != &data_ov003_021da2b4[f].mUnk_210) {
@@ -88,7 +88,7 @@ Unk021d1770 *func_ov003_021d19e0(u32 f, s32 g, s32 h) {
             func_0200fd1c();
         }
     }
-    func_0200cae4(b);
+    InterruptEnableSetBits(b);
     a->mUnk_0c = g;
     return a;
 }

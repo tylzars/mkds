@@ -154,11 +154,11 @@ void func_0209a7dc(void *a, Unk0209a7dc *b) {
             func_0209a7dc_inline(&b->mUnk_0d0);
             func_020d8a5c(&b->mUnk_0f0, &b->mUnk_000.mPos);
             v = *func_020d88fc(&b->mUnk_0f0);
-            func_021484d0(&v, &b->mUnk_000.mMatrix.mUnk_00[1], &v);
+            Vec3Sub(&v, &b->mUnk_000.mMatrix.mUnk_00[1], &v);
             v.x = ((s64) v.x * 0x800) >> 12;
             v.y = ((s64) v.y * 0x800) >> 12;
             v.z = ((s64) v.z * 0x800) >> 12;
-            func_02148504(&b->mUnk_000.mMatrix.mUnk_00[1], &v, &b->mUnk_000.mMatrix.mUnk_00[1]);
+            Vec3Add(&b->mUnk_000.mMatrix.mUnk_00[1], &v, &b->mUnk_000.mMatrix.mUnk_00[1]);
             if ((s64) b->mUnk_000.mMatrix.mUnk_00[1].x * b->mUnk_000.mMatrix.mUnk_00[1].x +
                     (s64) b->mUnk_000.mMatrix.mUnk_00[1].y * b->mUnk_000.mMatrix.mUnk_00[1].y +
                     (s64) b->mUnk_000.mMatrix.mUnk_00[1].z * b->mUnk_000.mMatrix.mUnk_00[1].z >=
@@ -169,7 +169,7 @@ void func_0209a7dc(void *a, Unk0209a7dc *b) {
         case 2:
             if (b->mUnk_0a4-- > 0) {
                 b->mUnk_000.mUnk_10.y -= 0x400;
-                func_02148504(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
+                Vec3Add(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
                 b->mUnk_0a2 += b->mUnk_0a0;
                 return;
             }

@@ -61,7 +61,7 @@ Unk021ab5e4 *func_ov000_021ab5e4(const u8 *a) {
         }
         e++;
     }
-    func_0214d1fc(a, v1, 0x20);
+    MemCopy(a, v1, 0x20);
     v1->mUnk_50 = t;
     v1->mUnk_5a = 1;
     return v1;

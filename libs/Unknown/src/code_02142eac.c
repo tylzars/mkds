@@ -57,7 +57,7 @@ s32 func_02144438(Unk021425e8Func a, const void *b, void *c, u32 d) {
     }
     func_0200ee58(c, d);
     func_02142c0c(0x12, (u32) a);
-    func_0214d1fc(b, w, 6);
+    MemCopy(b, w, 6);
     r = func_02142ab8(0x12, 4, w[0], w[1], c, d);
     if (r == 0) {
         return 2;
@@ -471,11 +471,11 @@ s32 func_021438f0(Unk021425e8Func a, Unk021438f0 *b) {
     pk->mUnk_04 = b->mUnk_00;
     pk->mUnk_08 = b->mUnk_04;
     pk->mUnk_0a = b->mUnk_08;
-    func_0214d1fc(b->mUnk_0a, pk->mUnk_0c, 6);
+    MemCopy(b->mUnk_0a, pk->mUnk_0c, 6);
     pk->mUnk_12 = b->mUnk_10;
     pk->mUnk_36 = b->mUnk_34;
     pk->mUnk_14 = b->mUnk_12;
-    func_0214d1fc(b->mUnk_14, pk->mUnk_16, 0x20);
+    MemCopy(b->mUnk_14, pk->mUnk_16, 0x20);
     r = func_02142ab8(0x26, 0);
     if (r == 0) {
         return 2;
@@ -515,9 +515,9 @@ s32 func_021437d8(Unk021425e8Func a, u16 *b, void *c, u32 d, u16 e) {
     pk->mUnk_00 = 0xc;
     pk->mUnk_04 = b;
     if (c != 0) {
-        func_0214d1fc(c, pk->mUnk_08, 0x18);
+        MemCopy(c, pk->mUnk_08, 0x18);
     } else {
-        func_0214d168(pk->mUnk_08, 0, 0x18);
+        MemFill(pk->mUnk_08, 0, 0x18);
     }
     pk->mUnk_20 = d;
     pk->mUnk_26 = e;
@@ -581,14 +581,14 @@ s32 func_021435e8(Unk021425e8Func a) {
     u32 s;
     s32 r;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     r = func_02142a8c();
     if (r != 0) {
-        func_0200fcb4(s);
+        IrqRestore(s);
         return r;
     }
     func_02142aa8()->mUnk_0c0 = a;
-    func_0200fcb4(s);
+    IrqRestore(s);
     return 0;
 }
 
@@ -597,16 +597,16 @@ s32 func_0214358c(u32 n, UnkFunc *f, void *arg) {
     s32 r;
     Unk02142aa8 *p;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     r = func_02142a8c();
     if (r != 0) {
-        func_0200fcb4(s);
+        IrqRestore(s);
         return r;
     }
     p = func_02142aa8();
     p->mUnk_0c4[n] = f;
     p->mUnk_104[n] = arg;
-    func_0200fcb4(s);
+    IrqRestore(s);
     return 0;
 }
 
@@ -623,7 +623,7 @@ s32 func_02143520(void *a) {
         return 6;
     }
     func_0200ee3c(p->mUnk_004, 0x7bc);
-    func_0214d0a8(p->mUnk_004, a, 0x7bc);
+    MemCopyWordsByBlock(p->mUnk_004, a, 0x7bc);
     return 0;
 }
 

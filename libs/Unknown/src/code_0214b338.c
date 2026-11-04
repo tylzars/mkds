@@ -39,7 +39,7 @@ void func_0214b6a0(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1) {
         func_0214c990(data_0216f074[0], a, (void *) d, c, 0, 0);
     } else {
-        func_0214d02c(a, (void *) d, c);
+        MemCopyWords(a, (void *) d, c);
     }
 }
 
@@ -78,7 +78,7 @@ void func_0214b558(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1) {
         func_0214c990(data_0216f074[0], a, (void *) d, c, 0, 0);
     } else {
-        func_0214d02c(a, (void *) d, c);
+        MemCopyWords(a, (void *) d, c);
     }
 }
 
@@ -99,7 +99,7 @@ void func_0214b468(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1) {
         func_0214c990(data_0216f074[0], a, (void *) (b + 0x6898000), c, 0, 0);
     } else {
-        func_0214d02c(a, (void *) (b + 0x6898000), c);
+        MemCopyWords(a, (void *) (b + 0x6898000), c);
     }
 }
 
@@ -119,7 +119,7 @@ void func_0214b384(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1) {
         func_0214c990(data_0216f074[0], a, (void *) (b + 0x68a0000), c, 0, 0);
     } else {
-        func_0214d02c(a, (void *) (b + 0x68a0000), c);
+        MemCopyWords(a, (void *) (b + 0x68a0000), c);
     }
 }
 

@@ -57,7 +57,7 @@ void func_ov000_0219db18(s32 a, s32 b, s32 c, void *d) {
                 data_ov000_021b566c->mUnk_198 = 7;
             }
             data_ov000_021b566c->mUnk_0c = 0;
-            func_0200d9e0(i, 12, data_ov000_021b40b8, data_ov000_021b566c->mUnk_1e8);
+            StringFormatBounded(i, 12, data_ov000_021b40b8, data_ov000_021b566c->mUnk_1e8);
             if (func_ov000_0219e3e4(func_ov000_02198968(
                     *data_ov000_021b566c->mUnk_04, NULL,
                     func_ov000_0219a760(data_ov000_021b566c->mUnk_1f8[e], data_ov000_021b566c->mUnk_278[e], 0), i, -1,

@@ -117,13 +117,13 @@ u8 *func_020ff0b0(u8 *a, Vec3 *b, Vec3 *q, void *c) {
 
     if (q != NULL) {
         if (c != NULL) {
-            func_021484d0(q, b, (Vec3 *) t);
+            Vec3Sub(q, b, (Vec3 *) t);
         }
         a = func_020ff0b0_inline(a, &t[0], c, 10);
         a = func_020ff0b0_inline(a, &t[1], c, 9);
         a = func_020ff0b0_inline(a, &t[2], c, 10);
         if (c == NULL) {
-            func_02148504((Vec3 *) t, b, q);
+            Vec3Add((Vec3 *) t, b, q);
         }
     } else {
         a++;
@@ -349,7 +349,7 @@ void func_020fea84(u32 a, u32 b, void *c, u8 d) {
     p = &data_0217be00[v1];
     p->mUnk_14 = a;
     p->mUnk_18 = b;
-    func_0214d1fc(c, p, d);
+    MemCopy(c, p, d);
     data_0217bd64[0] = data_0217bd80[v1][0];
     if (data_0217bd60[0] == 0xff) {
         data_0217bd60[0] = v1;
@@ -381,7 +381,7 @@ void func_020fe9d0(u32 a, u32 b, s32 c, void *d, u32 e) {
     p->mUnk_14 = a;
     p->mUnk_18 = b;
     p->mUnk_1c = e;
-    func_0214d1fc(d, p, 0x14);
+    MemCopy(d, p, 0x14);
     data_0217bd5c[0] = data_0217bdc0[v1][0];
     data_0217bdc0[v1][0] = data_0217bd68[0];
     if (e != 0) {

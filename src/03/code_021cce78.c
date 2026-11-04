@@ -65,8 +65,8 @@ void func_ov003_021ccf30(Unk021ccf30 *a) {
                 }
             }
             q = &v1[j];
-            func_0214d1fc(p->mUnk_04, q->mUnk_20, 6);
-            func_0214d1fc(p->mUnk_0c, q, 0x20);
+            MemCopy(p->mUnk_04, q->mUnk_20, 6);
+            MemCopy(p->mUnk_0c, q, 0x20);
             q->mUnk_26 = a->mUnk_50[i];
             if ((p->mUnk_2c & 0x10) == 0) {
                 q->mUnk_28 = 0;

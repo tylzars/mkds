@@ -39,7 +39,7 @@ BOOL func_020ee528(Unk020eda5c *a) {
     a->mUnk_078 = (s32) (((s64) p->mUnk_2cc->mUnk_08 * p->mUnk_bc.z + 0x800) >> 12);
     a->mUnk_07c = p->mUnk_2bc;
     a->mUnk_080 = func_02039828(&a->mUnk_02c.mUnk_18, &a->mUnk_05c) > 0;
-    func_021484d0(&a->mUnk_050, &p->mUnk_8c, &a->mUnk_06c);
+    Vec3Sub(&a->mUnk_050, &p->mUnk_8c, &a->mUnk_06c);
     v.x = (s32) (((s64) p->mUnk_41c.x * p->mUnk_428.x) >> 12);
     v.y = (s32) (((s64) p->mUnk_41c.y * p->mUnk_428.y) >> 12);
     v.z = (s32) (((s64) p->mUnk_41c.z * p->mUnk_428.z) >> 12);
@@ -180,7 +180,7 @@ void func_020edf10(Unk020eda5c *p) {
     for (i = 0; i < n; i++) {
         q = d[i];
         q->mUnk_11c = q->mUnk_11c + 1;
-        func_021484d0(&q->mUnk_50, &q->mUnk_0e4, &q->mUnk_5c);
+        Vec3Sub(&q->mUnk_50, &q->mUnk_0e4, &q->mUnk_5c);
         q->mUnk_0e4 = q->mUnk_50;
         if (p->mUnk_024 == 0) {
             q->mUnk_f0 = p->mUnk_02c.mUnk_0c;
@@ -285,17 +285,17 @@ s32 func_020edc9c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
     s32 n;
     s32 r;
 
-    n = func_021482cc(&p->mUnk_06c);
+    n = Vec3Length(&p->mUnk_06c);
     if (p->mUnk_080 != 0) {
         r = a + (s32) (((s64) n * b) >> 12);
-        func_02147fd8(c, &p->mUnk_02c.mUnk_18, &p->mUnk_06c, &v);
+        Vec3AddScaled(c, &p->mUnk_02c.mUnk_18, &p->mUnk_06c, &v);
     } else {
         Vec3 *t;
 
         t = &p->mUnk_010->mUnk_1fc;
         if ((s64) t->x * t->x + (s64) t->y * t->y + (s64) t->z * t->z >= 0x10) {
             r = a + (s32) (((s64) n * b) >> 12);
-            func_02147fd8(c, &p->mUnk_02c.mUnk_18, t, &v);
+            Vec3AddScaled(c, &p->mUnk_02c.mUnk_18, t, &v);
         } else {
             r = a - n;
             v = p->mUnk_02c.mUnk_18;
@@ -314,11 +314,11 @@ s32 func_020edb8c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
     Vec3 v;
     s32 n;
 
-    n = func_021482cc(&p->mUnk_06c);
+    n = Vec3Length(&p->mUnk_06c);
     if (p->mUnk_080 != 0) {
         a -= n;
-        func_021484d0(&p->mUnk_06c, &p->mUnk_010->mUnk_1fc, &v);
-        func_02147fd8(c, &p->mUnk_02c.mUnk_18, &v, &v);
+        Vec3Sub(&p->mUnk_06c, &p->mUnk_010->mUnk_1fc, &v);
+        Vec3AddScaled(c, &p->mUnk_02c.mUnk_18, &v, &v);
         v.x = -v.x;
         v.y = -v.y;
         v.z = -v.z;

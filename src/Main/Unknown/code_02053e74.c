@@ -420,10 +420,10 @@ void func_02054208(Unk0217aa00_15bc *a) {
     s32 j;
 
     a->mUnk_3a = 0;
-    func_0214d168(data_0217aa00->mUnk_15c4, 0, 8);
+    MemFill(data_0217aa00->mUnk_15c4, 0, 8);
     for (i = 0; i < 8; i++) {
         a->mUnk_10[i] = 0;
-        func_0214d168(&a->mUnk_0c[i], 0, 8);
+        MemFill(&a->mUnk_0c[i], 0, 8);
     }
     a->mUnk_3c[0] = 0;
     for (i = 0; i < 7; i++) {
@@ -469,7 +469,7 @@ void func_02053fa8(void) {
     data_0217aa00->mUnk_008a = 0;
     data_0217aa00->mUnk_008b = 0;
     data_0217aa00->mUnk_0044.mUnk_3e = 0;
-    func_0214d1fc(data_0217aa08->mUnk_00->mUnk_0c, data_0217aa00->mUnk_0044.mUnk_38, 0x14);
+    MemCopy(data_0217aa08->mUnk_00->mUnk_0c, data_0217aa00->mUnk_0044.mUnk_38, 0x14);
     data_0217aa00->mUnk_0044.mUnk_38->mUnk_0e.mUnk_06_4 = (u8) data_021759d0->mUnk_04;
     data_0217aa00->mUnk_0044.mUnk_38->mUnk_0e.mUnk_06_0 = 0;
     for (j = 0; j < 4; j++) {

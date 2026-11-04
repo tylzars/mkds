@@ -15,12 +15,12 @@
 
 void func_ov000_021af4d4(Unk021af3e8 *a) {
     a->mUnk_06 = 0x200;
-    func_0214d1fc(a->mUnk_08, a->mUnk_12, 10);
-    func_0214d1fc(data_ov000_021b63d0, a->mUnk_08, 6);
+    MemCopy(a->mUnk_08, a->mUnk_12, 10);
+    MemCopy(data_ov000_021b63d0, a->mUnk_08, 6);
     a->mUnk_0e = (u16) (((u16) (data_ov000_021b63b4 >> 16) >> 8) | ((u16) (data_ov000_021b63b4 >> 16) << 8));
     a->mUnk_10 = (u16) (((u16) data_ov000_021b63b4 >> 8) | ((u16) data_ov000_021b63b4 << 8));
-    func_0214d1fc(a->mUnk_12, (u8 *) a - 0xe, 6);
-    func_0214d1fc(data_ov000_021b63d0, (u8 *) a - 8, 6);
+    MemCopy(a->mUnk_12, (u8 *) a - 0xe, 6);
+    MemCopy(data_ov000_021b63d0, (u8 *) a - 8, 6);
     func_ov000_021affcc((u8 *) a - 0xe, 0x2a, NULL, 0);
 }
 
@@ -127,7 +127,7 @@ void func_ov000_021af2a0(Unk021ae3f0 *c, Unk021af1e4 *d, u32 e) {
         } else {
             b->mReceiveBufferLength = e;
         }
-        func_0214d1fc((u8 *) d + 8, b->mReceiveBuffer, b->mReceiveBufferLength);
+        MemCopy((u8 *) d + 8, b->mReceiveBuffer, b->mReceiveBufferLength);
         if (b->mUnk_04 == 3) {
             b->mUnk_04 = 0;
             func_0200df68(b->mThread);

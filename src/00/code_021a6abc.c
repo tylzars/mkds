@@ -64,11 +64,11 @@ u8 *func_ov000_021a6b10(void) {
     u32 c;
 
     b = func_ov000_021a5b30();
-    c = func_0200fca0();
+    c = IrqDisable();
     if (b != NULL && b->mUnk_2260 == 9 && b->mUnk_226b == 0) {
         a = b->mUnk_2144;
     }
-    func_0200fcb4(c);
+    IrqRestore(c);
     return a;
 }
 
@@ -79,12 +79,12 @@ u8 *func_ov000_021a6abc(u16 *e) {
     u32 d;
 
     c = func_ov000_021a5b30();
-    d = func_0200fca0();
+    d = IrqDisable();
     if (c != NULL && c->mUnk_2260 == 9 && c->mUnk_226b == 0) {
         a = c->mUnk_214c;
         b = c->mUnk_214a;
     }
-    func_0200fcb4(d);
+    IrqRestore(d);
     if (e != NULL) {
         *e = b;
     }

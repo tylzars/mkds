@@ -68,7 +68,7 @@ int func_021455a0(Unk021425e8Func a, const void *b, u32 c, u32 d, u16 e, u8 f) {
     if (c > 0x70) {
         return 6;
     }
-    func_0214cffc(b, data_0217f960, c);
+    MemCopyHalfwords(b, data_0217f960, c);
     func_0200ee58(data_0217f960, c);
     func_02142c0c(0x18, (u32) a);
     r = func_02142ab8(0x18, 5, data_0217f960, c, d, e, f);

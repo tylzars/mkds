@@ -30,13 +30,13 @@ void func_020fcf10(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     p0->mUnk_250.y = (s32) (((s64) t.y * s) >> 12);
     p0->mUnk_250.z = (s32) (((s64) t.z * s) >> 12);
     s = (s32) (((s64) c * data_0215d4b4[(b >> 4) * 2]) >> 12);
-    func_02147fd8(s, &p0->mUnk_22c, &p0->mUnk_250, &p0->mUnk_250);
-    func_02147fd8(0x1e000, &p0->mUnk_22c, &p0->mUnk_250, &t);
+    Vec3AddScaled(s, &p0->mUnk_22c, &p0->mUnk_250, &p0->mUnk_250);
+    Vec3AddScaled(0x1e000, &p0->mUnk_22c, &p0->mUnk_250, &t);
     if (func_0206c0b0(p) == 0) {
         p0->mUnk_244 = p->mUnk_98;
     }
-    func_02148504(&t, &p0->mUnk_244, &t);
-    func_021484d0(&t, v1, v);
+    Vec3Add(&t, &p0->mUnk_244, &t);
+    Vec3Sub(&t, v1, v);
     t.x = (s32) (((s64) v->x * d) >> 12);
     t.y = (s32) (((s64) v->y * d) >> 12);
     t.z = (s32) (((s64) v->z * d) >> 12);
@@ -51,7 +51,7 @@ void func_020fcf10(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     v2->x = (v2->x * (s32) e + t.x) >> f;
     v2->y = (v2->y * (s32) e + t.y) >> f;
     v2->z = (v2->z * e + t.z) >> f;
-    func_02148504(v2, v1, v1);
+    Vec3Add(v2, v1, v1);
     if (func_01ffdee4(v1, &p0->mUnk_000.mUnk_0e4, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mUnk_da, &t, NULL, NULL,
                       NULL, NULL, NULL, NULL, NULL) == 0) {
         return;
@@ -60,5 +60,5 @@ void func_020fcf10(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         v1->y += t.y;
         return;
     }
-    func_02148504(v1, &t, v1);
+    Vec3Add(v1, &t, v1);
 }

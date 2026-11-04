@@ -58,6 +58,6 @@ void func_020de214(void *a, Unk020de000 *b) {
     if (b->mUnk_f4 == 0) {
         b->mUnk_04 = p->mUnk_00.mPos;
     }
-    func_02147fd8(-p->mUnk_f0, &p->mUnk_00.mMatrix.mUnk_00[2], &p->mUnk_00.mPos, &v);
+    Vec3AddScaled(-p->mUnk_f0, &p->mUnk_00.mMatrix.mUnk_00[2], &p->mUnk_00.mPos, &v);
     func_020ddb44(&b->mUnk_a4, &v, &p->mUnk_00.mUnk_10);
 }

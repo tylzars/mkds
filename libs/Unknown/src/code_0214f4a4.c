@@ -19,13 +19,13 @@ Unk0214fe10 data_02180470[4];
 int func_021501d8(void) {
     u32 v;
 
-    v = func_0200fca0();
+    v = IrqDisable();
     if (data_02180448.mUnk_00 != 0) {
-        func_0200fcb4(v);
+        IrqRestore(v);
         return 0;
     }
     data_02180448.mUnk_00 = 1;
-    func_0200fcb4(v);
+    IrqRestore(v);
     return 1;
 }
 
@@ -310,7 +310,7 @@ int func_0214faac(u32 *a, u32 *b) {
 }
 
 void func_0214fa7c(u32 a) {
-    while (func_0214d6e8(8, a, 0) != 0) {
+    while (PxiSendFifoWord(8, a, 0) != 0) {
     }
 }
 
@@ -336,10 +336,10 @@ void func_0214f83c(u32 a, u32 b, u32 c) {
     func_0214f51c(data_0218043c);
     saved = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 0;
-    v0 = func_0200fca0();
-    v1 = func_0200ca9c(0x3fffff);
-    func_0200cb1c(0x40000);
-    func_0200fcb4(v0);
+    v0 = IrqDisable();
+    v1 = InterruptEnableClearBits(0x3fffff);
+    InterruptEnableWrite(0x40000);
+    IrqRestore(v0);
     tmp = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
     if ((a & 8) != 0) {
@@ -387,9 +387,9 @@ void func_0214f83c(u32 a, u32 b, u32 c) {
         *(vu32 *) 0x4000000 = k0;
         *(vu32 *) 0x4001000 = k1;
     }
-    func_0200fca0();
-    func_0200cb1c(v1);
-    func_0200fcb4(v0);
+    IrqDisable();
+    InterruptEnableWrite(v1);
+    IrqRestore(v0);
     tmp = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = saved;
     if (d != 0) {

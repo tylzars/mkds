@@ -370,7 +370,7 @@ void func_02068494(Unk0206bcb0 *a, s32 b, s32 c) {
         }
     }
     if (data_021759c0->mUnk_08 == 2) {
-        func_021484d0(&a->mUnk_80, &d.mUnk_04, &d.mUnk_28);
+        Vec3Sub(&a->mUnk_80, &d.mUnk_04, &d.mUnk_28);
         func_020a21bc(a->mIndex, (s32) &d.mUnk_28);
     }
     if ((a->mUnk_7c & 1) == 0) {

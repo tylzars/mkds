@@ -72,7 +72,7 @@ s32 func_0204eb08(void *a) {
     m = data_0217aa00->mUnk_0044.mUnk_43;
     do {
         if ((m & (1 << i)) != 0) {
-            func_0214d1fc(&data_0217aa00->mUnk_045c[i], a, 0x14);
+            MemCopy(&data_0217aa00->mUnk_045c[i], a, 0x14);
             r = TRUE;
             break;
         }

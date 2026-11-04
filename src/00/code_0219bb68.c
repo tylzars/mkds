@@ -91,14 +91,14 @@ void func_ov000_0219c1e4(void *a, void *b, s32 c, const char *d, const char *e, 
     } else {
         n = 0xff;
     }
-    func_0214d1fc(d, data_ov000_021b4e84, n);
+    MemCopy(d, data_ov000_021b4e84, n);
     data_ov000_021b4e84[n] = 0;
     if (strlen(e) < 0x100) {
         m = strlen(e);
     } else {
         m = 0xff;
     }
-    func_0214d1fc(e, data_ov000_021b4f84, m);
+    MemCopy(e, data_ov000_021b4f84, m);
     data_ov000_021b4f84[m] = 0;
 }
 
@@ -268,7 +268,7 @@ BOOL func_ov000_0219bdec(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u3
         } else {
             n = 0x1f;
         }
-        func_0214d1fc(a, p->mUnk_34, n);
+        MemCopy(a, p->mUnk_34, n);
     }
     data_ov000_021b54c8->mUnk_34[n] = 0;
     data_ov000_021b54c8->mUnk_64 = b;

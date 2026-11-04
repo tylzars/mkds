@@ -3,7 +3,7 @@
 // clang-format off
 // Clears the interrupt disable bit (0x80) of the status register and returns its previous value.
 // Not compiled code: C has no way to read or write the status register (mrs/msr).
-asm u32 func_0200fc8c(void) {
+asm u32 IrqEnable(void) {
     mrs r0, cpsr
     bic r1, r0, #0x80
     msr cpsr_c, r1
@@ -13,7 +13,7 @@ asm u32 func_0200fc8c(void) {
 
 // Sets the interrupt disable bit (0x80) of the status register and returns its previous value.
 // Not compiled code: C has no way to read or write the status register (mrs/msr).
-asm u32 func_0200fca0(void) {
+asm u32 IrqDisable(void) {
     mrs r0, cpsr
     orr r1, r0, #0x80
     msr cpsr_c, r1
@@ -23,7 +23,7 @@ asm u32 func_0200fca0(void) {
 
 // Replaces the interrupt disable bit (0x80) of the status register with the one in r0 and returns the previous value.
 // Not compiled code: C has no way to read or write the status register (mrs/msr).
-asm u32 func_0200fcb4(u32 a) {
+asm u32 IrqRestore(u32 a) {
     mrs r1, cpsr
     bic r2, r1, #0x80
     orr r2, r2, r0

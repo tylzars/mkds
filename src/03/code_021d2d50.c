@@ -13,13 +13,13 @@ void func_ov003_021d2dfc(void) {
     u16 a;
 
     data_ov003_021da2ec = *(vu32 *) 0x4000210;
-    func_0200cb1c(0x40018);
-    func_0200cae4(1);
+    InterruptEnableWrite(0x40018);
+    InterruptEnableSetBits(1);
     data_ov003_021da2e8 = func_0200cbe8(1);
     func_0200cc74(1, func_ov003_021d2da4);
     a = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
-    func_0200fc8c();
+    IrqEnable();
 }
 
 void func_ov003_021d2dcc(void) {
@@ -27,7 +27,7 @@ void func_ov003_021d2dcc(void) {
 
     a = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 0;
-    func_0200cb1c(data_ov003_021da2ec);
+    InterruptEnableWrite(data_ov003_021da2ec);
     func_0200cc74(1, data_ov003_021da2e8);
 }
 

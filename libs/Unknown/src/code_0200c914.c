@@ -57,17 +57,17 @@ UnkFunc *func_0200cbe8(u32 m) {
 void func_0200cb9c(u32 n, UnkFunc *f, u32 a) {
     data_0216fee0[n].mUnk_00 = f;
     data_0216fee0[n].mUnk_08 = a;
-    data_0216fee0[n].mUnk_04 = func_0200cae4(1 << (n + 8)) & (1 << (n + 8));
+    data_0216fee0[n].mUnk_04 = InterruptEnableSetBits(1 << (n + 8)) & (1 << (n + 8));
 }
 
 void func_0200cb50(u32 n, UnkFunc *f, u32 a) {
     (data_0216fee0 + 4)[n].mUnk_00 = f;
     (data_0216fee0 + 4)[n].mUnk_08 = a;
-    func_0200cae4(1 << (n + 3));
+    InterruptEnableSetBits(1 << (n + 3));
     (data_0216fee0 + 4)[n].mUnk_04 = 1;
 }
 
-u32 func_0200cb1c(u32 v) {
+u32 InterruptEnableWrite(u32 v) {
     u16 w;
     u32 o;
 
@@ -80,7 +80,7 @@ u32 func_0200cb1c(u32 v) {
     return o;
 }
 
-u32 func_0200cae4(u32 m) {
+u32 InterruptEnableSetBits(u32 m) {
     u16 w;
     u32 o;
 
@@ -93,7 +93,7 @@ u32 func_0200cae4(u32 m) {
     return o;
 }
 
-u32 func_0200ca9c(u32 m) {
+u32 InterruptEnableClearBits(u32 m) {
     u16 w;
     u32 o;
 
@@ -106,7 +106,7 @@ u32 func_0200ca9c(u32 m) {
     return o;
 }
 
-u32 func_0200ca68(u32 v) {
+u32 InterruptFlagWrite(u32 v) {
     u16 w;
     u32 o;
 
@@ -143,7 +143,7 @@ void func_0200c994(u32 n) {
     if (data_0216fee0[n].mUnk_04 != 0) {
         return;
     }
-    func_0200ca9c(m);
+    InterruptEnableClearBits(m);
 }
 
 void func_0200c984(void) {

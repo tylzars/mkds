@@ -11,7 +11,7 @@ void func_02152490(void *a, void *b) {
     Unk02152500 *p = a;
     Unk02152490 *q = b;
 
-    func_0214d168(q, 0, 12);
+    MemFill(q, 0, 12);
     if (func_021526bc(p) != 0) {
         func_02152a7c(q, p->mUnk_1c);
         func_021529e0(q, 3);

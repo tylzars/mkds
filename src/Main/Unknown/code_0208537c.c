@@ -102,7 +102,7 @@ void func_0208552c(void) {
         }
         if (v == 1) {
             if (w >= 0) {
-                data_0217aebc->mUnk_08c = func_02147f34(data_0217aebc->mUnk_000[i], 0x4ce);
+                data_0217aebc->mUnk_08c = DivFixed12(data_0217aebc->mUnk_000[i], 0x4ce);
                 if (data_0217aebc->mUnk_08c < 0x19a) {
                     data_0217aebc->mUnk_08c = 0x19a;
                 } else if (data_0217aebc->mUnk_08c > 0x1000) {

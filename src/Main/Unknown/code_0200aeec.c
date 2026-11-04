@@ -44,7 +44,7 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
             d = 31;
         }
     }
-    v3 = func_0200fca0();
+    v3 = IrqDisable();
     a->mUnk_04_0 = 1;
     a->mUnk_04_1 = d;
     a->mUnk_08 = b;
@@ -76,7 +76,7 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
             v4->mUnk_00 = a;
         }
     }
-    func_0200fcb4(v3);
+    IrqRestore(v3);
 }
 
 #pragma thumb off

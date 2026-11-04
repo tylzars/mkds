@@ -19,7 +19,7 @@
 #include "code_0214d018.h"
 
 u32 func_0212d9dc(Unk0212d9dc *a, void *p) {
-    func_02017538(&a->mUnk_04, 12);
+    ListInit(&a->mUnk_04, 12);
     a->mUnk_00 = p;
     return func_0212d98c(a) != 0;
 }
@@ -32,7 +32,7 @@ u32 func_0212d98c(Unk0212d9dc *a) {
         return 0;
     }
     func_0212da1c(p);
-    func_020174a4(&a->mUnk_04, p);
+    ListAppend(&a->mUnk_04, p);
     return 1;
 }
 
@@ -113,7 +113,7 @@ u32 func_0212d6c4(Unk0212d5f8 *a, void *p, u32 flag) {
 void func_0212d5f8(Unk0212d5f8 *a, void *buf) {
     u32 i;
 
-    func_0214d02c(buf, a, 0x30);
+    MemCopyWords(buf, a, 0x30);
     a->mUnk_8c = a->mUnk_18 == 0 ? 0 : (Unk0212d38c *) ((u8 *) buf + a->mUnk_18);
     a->mUnk_84 = a->mUnk_20 == 0 ? 0 : (Unk0212d254 *) ((u8 *) buf + a->mUnk_20);
     a->mUnk_88 = a->mUnk_10 == 0 ? 0 : (u8 *) buf + a->mUnk_10;

@@ -10,13 +10,13 @@ u32 func_ov000_021a6ce4(void) {
     Unk021b5f50 *b;
     u32 c;
 
-    a = func_0200fca0();
+    a = IrqDisable();
     b = func_ov000_021a5b30();
     c = 0;
     if (b != NULL && b->mUnk_2260 == 9) {
         c = func_ov000_021a6c68();
     }
-    func_0200fcb4(a);
+    IrqRestore(a);
     return c;
 }
 

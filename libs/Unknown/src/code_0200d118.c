@@ -1,6 +1,6 @@
 #include "code_0200d118.h"
 
-void func_0200db20(Unk0200d118 *s, char c) {
+void StringFormatPutChar(Unk0200d118 *s, char c) {
     if (s->mUnk_00 != 0) {
         s->mUnk_04[0] = c;
         s->mUnk_00 = s->mUnk_00 - 1;
@@ -8,7 +8,7 @@ void func_0200db20(Unk0200d118 *s, char c) {
     s->mUnk_04 = s->mUnk_04 + 1;
 }
 
-void func_0200dab8(Unk0200d118 *s, char c, int n) {
+void StringFormatPutRepeat(Unk0200d118 *s, char c, int n) {
     u32 k;
     u32 m;
 
@@ -26,7 +26,7 @@ void func_0200dab8(Unk0200d118 *s, char c, int n) {
     s->mUnk_04 = s->mUnk_04 + n;
 }
 
-void func_0200da58(Unk0200d118 *s, const char *p, int n) {
+void StringFormatPutBytes(Unk0200d118 *s, const char *p, int n) {
     u32 k;
     u32 m;
 
@@ -44,25 +44,25 @@ void func_0200da58(Unk0200d118 *s, const char *p, int n) {
     s->mUnk_04 = s->mUnk_04 + n;
 }
 
-int func_0200da28(char *buf, const char *p, ...) {
+int StringFormat(char *buf, const char *p, ...) {
     char *q;
 
     q = (char *) (((u32) &p & ~3) + 4);
-    return func_0200da10(buf, p, q);
+    return StringFormatArgs(buf, p, q);
 }
 
-int func_0200da10(char *buf, const char *p, char *q) {
-    return func_0200d118(buf, 0x7fffffff, p, q);
+int StringFormatArgs(char *buf, const char *p, char *q) {
+    return StringFormatArgsBounded(buf, 0x7fffffff, p, q);
 }
 
-int func_0200d9e0(char *buf, u32 n, const char *p, ...) {
+int StringFormatBounded(char *buf, u32 n, const char *p, ...) {
     char *q;
 
     q = (char *) (((u32) &p & ~3) + 4);
-    return func_0200d118(buf, n, p, q);
+    return StringFormatArgsBounded(buf, n, p, q);
 }
 
-int func_0200d118(char *buf, u32 n, const char *p, char *q) {
+int StringFormatArgsBounded(char *buf, u32 n, const char *p, char *q) {
     int w;
     int g;
     int i;
@@ -89,17 +89,17 @@ int func_0200d118(char *buf, u32 n, const char *p, char *q) {
     while (*p != 0) {
         c = *(const s8 *) p;
         if ((u32) (((u8) c ^ 0x20) - 0xa1) < 0x3c) {
-            func_0200db20(&s, c);
+            StringFormatPutChar(&s, c);
             c = *++p;
             if (c != 0) {
                 p++;
-                func_0200db20(&s, c);
+                StringFormatPutChar(&s, c);
             }
             continue;
         }
         if (c != '%') {
             p++;
-            func_0200db20(&s, c);
+            StringFormatPutChar(&s, c);
             continue;
         }
         f = 0;
@@ -202,11 +202,11 @@ int func_0200d118(char *buf, u32 n, const char *p, char *q) {
                 q += 4;
                 y = *(int *) (q - 4);
                 if (f & 8) {
-                    func_0200db20(&s, y);
-                    func_0200dab8(&s, ' ', w - 1);
+                    StringFormatPutChar(&s, y);
+                    StringFormatPutRepeat(&s, ' ', w - 1);
                 } else {
-                    func_0200dab8(&s, (f & 0x10) ? '0' : ' ', w - 1);
-                    func_0200db20(&s, y);
+                    StringFormatPutRepeat(&s, (f & 0x10) ? '0' : ' ', w - 1);
+                    StringFormatPutChar(&s, y);
                 }
                 p++;
                 continue;
@@ -225,11 +225,11 @@ int func_0200d118(char *buf, u32 n, const char *p, char *q) {
                 }
                 w -= j;
                 if (f & 8) {
-                    func_0200da58(&s, u, j);
-                    func_0200dab8(&s, ' ', w);
+                    StringFormatPutBytes(&s, u, j);
+                    StringFormatPutRepeat(&s, ' ', w);
                 } else {
-                    func_0200dab8(&s, (f & 0x10) ? '0' : ' ', w);
-                    func_0200da58(&s, u, j);
+                    StringFormatPutRepeat(&s, (f & 0x10) ? '0' : ' ', w);
+                    StringFormatPutBytes(&s, u, j);
                 }
                 p++;
                 continue;
@@ -251,12 +251,12 @@ int func_0200d118(char *buf, u32 n, const char *p, char *q) {
                 continue;
             case '%':
                 if (t + 1 == p) {
-                    func_0200db20(&s, *p++);
+                    StringFormatPutChar(&s, *p++);
                     continue;
                 }
             default:
             label_copy:
-                func_0200da58(&s, t, p - t);
+                StringFormatPutBytes(&s, t, p - t);
                 continue;
         }
     label_16:
@@ -381,17 +381,17 @@ int func_0200d118(char *buf, u32 n, const char *p, char *q) {
         }
         w -= i + g;
         if (!(f & 8)) {
-            func_0200dab8(&s, ' ', w);
+            StringFormatPutRepeat(&s, ' ', w);
         }
         while (i > 0) {
-            func_0200db20(&s, a[--i]);
+            StringFormatPutChar(&s, a[--i]);
         }
-        func_0200dab8(&s, '0', z);
+        StringFormatPutRepeat(&s, '0', z);
         while (g > 0) {
-            func_0200db20(&s, b[--g]);
+            StringFormatPutChar(&s, b[--g]);
         }
         if (f & 8) {
-            func_0200dab8(&s, ' ', w);
+            StringFormatPutRepeat(&s, ' ', w);
         }
         p++;
     }

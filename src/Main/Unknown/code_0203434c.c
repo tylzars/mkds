@@ -144,7 +144,7 @@ s32 func_02034370(Unk02034370 *a) {
                                 func_0212426c(1, data_02164254[i][0], q->mUnk_14, &s, q->mUnk_0c, q->mUnk_18);
                                 func_0212426c(1, data_02164254[j][0], q->mUnk_14,
                                               GetBmgEntry(data_02174e64->mUnk_088, v), q->mUnk_0c, q->mUnk_18);
-                                func_0214d0a8(&s, &data_02174e64->mUnk_09c[i].mUnk_00, 0x28);
+                                MemCopyWordsByBlock(&s, &data_02174e64->mUnk_09c[i].mUnk_00, 0x28);
                                 data_02174e64->mUnk_09c[i].mUnk_28 = 1;
                                 func_02025f14(&data_02174e64->mUnk_09c[i].mUnk_2c, 0);
                                 if (data_02174e64->mUnk_080 == i) {

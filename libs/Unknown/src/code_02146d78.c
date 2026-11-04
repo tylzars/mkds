@@ -100,7 +100,7 @@ void func_02146dfc(const s32 *a, const s32 *b, s32 *c) {
     }
 }
 
-void func_02146d78(const Vec3 *a, const s32 *b, Vec3 *c) {
+void Vec3MultiplyMatrix3x3(const Vec3 *a, const s32 *b, Vec3 *c) {
     s32 x;
     s32 y;
     s32 z;

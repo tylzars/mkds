@@ -219,11 +219,11 @@ u32 func_02096f54(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
 BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c) {
     Vec3 s;
     s32 d;
-    func_021484d0(a, &p->mUnk_00.mPos, &s);
+    Vec3Sub(a, &p->mUnk_00.mPos, &s);
     if (s.y >= p->mUnk_a0 + b) {
         return FALSE;
     }
-    d = func_021482cc(&s);
+    d = Vec3Length(&s);
     if (d >= p->mUnk_00.mUnk_58.x + b) {
         return FALSE;
     }

@@ -259,7 +259,7 @@ void func_02048050(int a, int b) {
                     break;
                 case 2:
                     if (data_021759c0->mUnk_00c == 6) {
-                        func_0200d9e0((char *) c, 0x80, data_usa_02165058);
+                        StringFormatBounded((char *) c, 0x80, data_usa_02165058);
                     } else {
                         func_020483e4((u32) c, (u8 *) data_usa_021541a8[b].mUnk_00);
                     }

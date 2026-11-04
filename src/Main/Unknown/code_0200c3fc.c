@@ -23,8 +23,8 @@ void func_0200c430(u32 arg0) {
     *(u32 *) ((value1) + 0u) = value0;
     value1 = 0u;
     value2 = 0x21cu;
-    value3 = (u32) &func_0214d168;
-    func_0214d168((void *) value0, (u8) value1, value2);
+    value3 = (u32) &MemFill;
+    MemFill((void *) value0, (u8) value1, value2);
 }
 #pragma thumb off
 
@@ -35,7 +35,7 @@ void func_0200c3fc(s32 a) {
 
     if (data_0216fdf4 != NULL) {
         i = a - 1;
-        func_0214d168(&data_0216fdf4->mUnk_000[i * 0x20], 0, 0x1e);
+        MemFill(&data_0216fdf4->mUnk_000[i * 0x20], 0, 0x1e);
         data_0216fdf4->mUnk_1e0[i] = 0;
     }
 }

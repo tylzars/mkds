@@ -17,7 +17,7 @@ u32 func_020074d8(void) {
     u8 *v9;
     v5 = 0;
     v4 = -1;
-    func_0214d168(v2, 0, 16);
+    MemFill(v2, 0, 16);
     v3 = 1;
     v7 = data_0216fdac;
     for (; v3 <= 15; v3++) {
@@ -48,7 +48,7 @@ u32 func_020074d8(void) {
     v1.mUnk_02 = v4;
     v9 = func_0200c3a4((u8 *) &v1, (u8 *) v7);
     if (v9 != NULL) {
-        func_0214d1fc(data_0216fdac->mUnk_1788 + v4 * 0x5d4, v9, 0xe4);
+        MemCopy(data_0216fdac->mUnk_1788 + v4 * 0x5d4, v9, 0xe4);
     }
     return func_02008908(0xea, v5, *(u32 *) &data_0216fdac);
 }

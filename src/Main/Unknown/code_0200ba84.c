@@ -16,13 +16,13 @@ u32 func_0200baa8(void) {
 
 void func_0200ba84(UnkFunc *p0) {
     u32 v1 = (u32) p0;
-    u32 v2 = ((u32) func_0200fca0());
+    u32 v2 = ((u32) IrqDisable());
     u32 v3 = ((u32) (&data_0216fde8));
     u32 v4 = ((u32) * (u32 *) ((v3) + (0)));
     u32 v5 = 0x5e0u;
     u32 v7;
     *(u32 *) ((v4) + (0 + (v5))) = v1;
-    v7 = ((u32) func_0200fcb4(v2));
+    v7 = ((u32) IrqRestore(v2));
 }
 
 #pragma thumb off

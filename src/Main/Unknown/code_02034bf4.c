@@ -38,7 +38,7 @@ void func_02034bf4(void *a, void *b, void *c) {
 
     h = CreateFrmHeapFromMaxFree(a);
     data_02174e64 = HeapAlloc(h, 0x1a8);
-    func_0214d05c_inline(data_02174e64, 0x1a8);
+    MemFillWordsByBlock_inline(data_02174e64, 0x1a8);
     data_02174e64->mHeap = h;
     data_02174e64->mUnk_024[0] = b;
     data_02174e64->mUnk_024[1] = c;

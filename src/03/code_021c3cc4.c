@@ -59,7 +59,7 @@ void func_ov003_021c3cc4(void) {
         e = a + 0xc0;
         f = a + 0x40;
         for (i = 0; i < 2; i++, e += 0x20, f += 0x20) {
-            func_0214d1fc(e, f, 0x20);
+            MemCopy(e, f, 0x20);
         }
     }
     func_0200ee74(a, 0x200);

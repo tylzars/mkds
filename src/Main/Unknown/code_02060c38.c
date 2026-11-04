@@ -13,8 +13,8 @@ void func_02060c38(void *arg0) {
     value2 = (u32) * (const u32 *) ((value1) + (0));
     value1 = value0;
     value0 = (u32) * (const u32 *) ((value2) + (32));
-    value12 = (u32) &func_0214d1fc;
+    value12 = (u32) &MemCopy;
     value2 = 0x2d0u;
     value0 = (value0) + (value3);
-    func_0214d1fc((const void *) value0, (void *) value1, value2);
+    MemCopy((const void *) value0, (void *) value1, value2);
 }

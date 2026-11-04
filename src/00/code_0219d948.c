@@ -81,5 +81,5 @@ void func_ov000_0219d948(void *a) {
             func_ov000_0218eb44(data_ov000_021b5664->mUnk_04, b);
         }
     }
-    func_0214d168(a, 0, 12);
+    MemFill(a, 0, 12);
 }

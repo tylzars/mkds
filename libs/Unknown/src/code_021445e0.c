@@ -56,7 +56,7 @@ int func_021450ec(Unk021450ec *p, u32 n, u32 mask, u32 k, u32 flag) {
         func_0200ee3c(&q->mUnk_086, 2);
         w = q->mUnk_086;
     }
-    func_0214d05c_inline(p, 0x820);
+    MemFillWordsByBlock_inline(p, 0x820);
     p->mUnk_808 = 0;
     p->mUnk_80a = 0;
     p->mUnk_80c = 0;
@@ -192,7 +192,7 @@ int func_02144c6c(Unk021450ec *p, void *a, void *b) {
         }
         if (p->mUnk_80c != p->mUnk_80a) {
             p->mUnk_000[p->mUnk_80c].mUnk_00 |= 1;
-            func_0214cffc(&p->mUnk_000[p->mUnk_80c], b, 0x200);
+            MemCopyHalfwords(&p->mUnk_000[p->mUnk_80c], b, 0x200);
             p->mUnk_81a = p->mUnk_800[p->mUnk_80c];
             p->mUnk_80c = (p->mUnk_80c + 1) & 3;
             f1 = 1;
@@ -219,7 +219,7 @@ int func_02144c6c(Unk021450ec *p, void *a, void *b) {
             if ((p->mUnk_000[p->mUnk_80c].mUnk_00 & 1) == 0) {
                 p->mUnk_000[p->mUnk_80c].mUnk_00 |= 1;
             } else {
-                func_0214cffc(&p->mUnk_000[p->mUnk_80c], b, 0x200);
+                MemCopyHalfwords(&p->mUnk_000[p->mUnk_80c], b, 0x200);
                 p->mUnk_81a = p->mUnk_800[p->mUnk_80c];
                 p->mUnk_80c = (p->mUnk_80c + 1) & 3;
                 t = 1;
@@ -228,7 +228,7 @@ int func_02144c6c(Unk021450ec *p, void *a, void *b) {
         }
         if (t != 0) {
             e7 = &p->mUnk_000[p->mUnk_80a].mUnk_04[0x1c];
-            func_0214cffc(a, e7, p->mUnk_810);
+            MemCopyHalfwords(a, e7, p->mUnk_810);
             rr = func_02144048((UnkFunc *) func_02144b64, p, e7, p->mUnk_810, p->mUnk_80e, p->mUnk_816, 1);
             p->mUnk_80a = (p->mUnk_80a + 1) & 3;
             if (rr != 2) {
@@ -313,7 +313,7 @@ void func_02144a50(Unk02144920 *a) {
             case 9:
                 t = a->mUnk_12;
                 d = 1;
-                s = func_0200fca0();
+                s = IrqDisable();
                 n = p->mUnk_808;
                 m = ~(d << t);
                 p->mUnk_000[n].mUnk_00 &= m;
@@ -321,7 +321,7 @@ void func_02144a50(Unk02144920 *a) {
                     k = (n + 1) & 3;
                     p->mUnk_000[k].mUnk_00 &= m;
                 }
-                func_0200fcb4(s);
+                IrqRestore(s);
                 func_02144688(p, 0);
                 if (p->mUnk_818 == 1) {
                     func_02144688(p, 0);
@@ -374,7 +374,7 @@ void func_02144920(Unk02144920 *a) {
         if ((v & (1 << g)) == 0) {
             return;
         }
-        func_0214cffc(d, &p->mUnk_000[p->mUnk_808], n);
+        MemCopyHalfwords(d, &p->mUnk_000[p->mUnk_808], n);
         p->mUnk_800[p->mUnk_808] = a->mUnk_1a >> 1;
         p->mUnk_808 = (p->mUnk_808 + 1) & 3;
     } else {
@@ -407,15 +407,15 @@ void func_02144814(Unk021450ec *p, u32 bit, const void *src) {
     }
     dst = func_021445e0(p, p->mUnk_80e, p->mUnk_000[n].mUnk_04, bit);
     if (src != 0) {
-        func_0214cffc(src, dst, p->mUnk_810);
+        MemCopyHalfwords(src, dst, p->mUnk_810);
     } else {
         z = 0;
-        func_0214cfe4(z, dst, p->mUnk_810);
+        MemFillHalfwords(z, dst, p->mUnk_810);
     }
-    s = func_0200fca0();
+    s = IrqDisable();
     p->mUnk_000[n].mUnk_00 &= ~m;
     p->mUnk_000[n].mUnk_02 |= m;
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 // When the block at mUnk_808 starts with 0: advances mUnk_808, clears the block two ahead (one ahead when mUnk_818
@@ -431,7 +431,7 @@ void func_02144688(Unk021450ec *p, u32 f) {
     volatile u16 z;
 
     q = func_02142aa8()->mUnk_004;
-    s = func_0200fca0();
+    s = IrqDisable();
     if (p->mUnk_000[p->mUnk_808].mUnk_00 == 0) {
         func_0200ee3c(&q->mUnk_086, 2);
         i = p->mUnk_808;
@@ -443,14 +443,14 @@ void func_02144688(Unk021450ec *p, u32 f) {
             n2 = n1;
         }
         z = 0;
-        func_0214cfe4(z, &p->mUnk_000[n2], 0x200);
+        MemFillHalfwords(z, &p->mUnk_000[n2], 0x200);
         p->mUnk_000[n2].mUnk_00 = p->mUnk_80e & (w | 1);
         p->mUnk_808 = n1;
         p->mUnk_000[i].mUnk_00 = p->mUnk_80e;
         if (f == 1) {
             p->mUnk_000[i].mUnk_00 &= ~1;
         }
-        func_0200fcb4(s);
+        IrqRestore(s);
         r = func_02144048((UnkFunc *) func_02144b64, p, &p->mUnk_000[i], p->mUnk_814, p->mUnk_80e & w, p->mUnk_816, 1);
         if (r == 7) {
             p->mUnk_800[i] = 0xffff;
@@ -461,7 +461,7 @@ void func_02144688(Unk021450ec *p, u32 f) {
             }
         }
     } else {
-        func_0200fcb4(s);
+        IrqRestore(s);
     }
 }
 

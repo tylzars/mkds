@@ -325,7 +325,7 @@ static inline s32 func_0203df74_c_inline(Unk02175620_4c *r, u16 c, s32 v) {
     if (r->mUnk_02 == 0) {
         x = 0;
     } else {
-        x = func_02147f34(t + v, r->mUnk_02 << 12);
+        x = DivFixed12(t + v, r->mUnk_02 << 12);
     }
     t = x + (r->mUnk_0a << 12);
     return (s32) (((s64) t * data_0217561c->mUnk_4e4 + 0x800) >> 12);

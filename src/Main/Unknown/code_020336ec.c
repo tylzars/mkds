@@ -16,7 +16,7 @@
 // Fills with 0 through a halfword stack offset of its own.
 static inline void func_020338f8_inline(void *p, s32 n) {
     volatile u16 v = 0;
-    func_0214cfe4(v, p, n);
+    MemFillHalfwords(v, p, n);
 }
 
 #pragma thumb on

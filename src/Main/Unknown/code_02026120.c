@@ -136,7 +136,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
 
     h = CreateFrmHeapFromMaxFree(a);
     gSelectCharacter = HeapAlloc(h, 0x12c);
-    func_0214d05c_inline(gSelectCharacter, 0x12c);
+    MemFillWordsByBlock_inline(gSelectCharacter, 0x12c);
     gSelectCharacter->mHeap = h;
     gSelectCharacter->mUnk_080 = b;
     switch (func_02029930()->mUnk_108) {

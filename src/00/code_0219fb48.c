@@ -124,7 +124,7 @@ void func_ov000_0219ff0c(u32 a, u32 *b) {
 
     n = b[0] + 2;
     if (n > 2) {
-        func_0214d02c(b + 1, &data_ov000_021b566c->mUnk_330[2], (n - 2) * 4);
+        MemCopyWords(b + 1, &data_ov000_021b566c->mUnk_330[2], (n - 2) * 4);
     }
     data_ov000_021b566c->mUnk_330[0] = n - 1;
     data_ov000_021b566c->mUnk_330[1] = a;

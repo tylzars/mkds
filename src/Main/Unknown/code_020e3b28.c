@@ -136,9 +136,9 @@ void func_020e410c(Unk020e1dc0 *a) {
             if (j < 0) {
                 e->mUnk_138 = z;
             } else {
-                func_021484d0(&p[j]->mUnk_000.mPos, &e->mUnk_000.mPos, &v);
+                Vec3Sub(&p[j]->mUnk_000.mPos, &e->mUnk_000.mPos, &v);
                 v.y = z2;
-                e->mUnk_154 = func_021482cc(&v);
+                e->mUnk_154 = Vec3Length(&v);
                 e->mUnk_154 -= p[j]->mUnk_000.mUnk_58.x;
             }
             j = i;
@@ -255,7 +255,7 @@ void func_020e3bc0(s32 a, Unk020e38a0 *b) {
     b->mUnk_0a0 = *(Unk020e38a0_28 *) &b->mUnk_000.mMatrix;
     func_02146d28((s32 *) &b->mUnk_000.mMatrix, data_0215d4b4[(y >> 4) * 2], data_0215d4b4[(y >> 4) * 2 + 1]);
     func_02146dfc((const s32 *) &b->mUnk_000.mMatrix, (const s32 *) &b->mUnk_0c4, (s32 *) &b->mUnk_000.mMatrix);
-    func_02147fd8(-b->mUnk_104, &b->mUnk_000.mMatrix.mUnk_00[1], &b->mUnk_000.mPos, &b->mUnk_0f4);
+    Vec3AddScaled(-b->mUnk_104, &b->mUnk_000.mMatrix.mUnk_00[1], &b->mUnk_000.mPos, &b->mUnk_0f4);
     if (b->mUnk_150 != 0) {
         b->mUnk_150--;
         return;

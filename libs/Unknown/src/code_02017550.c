@@ -6,7 +6,7 @@ Unk02017584 *HeapFindInnermostInList(Unk02017328 *a, u32 b) {
     Unk02017584 *p;
     Unk02017584 *r;
 
-    p = func_0201733c(a, 0);
+    p = ListGetNext(a, 0);
     while (p != 0) {
         if (p->mRangeStart <= b && b < p->mRangeEnd) {
             r = HeapFindInnermostInList(&p->mUnk_0c, b);
@@ -15,7 +15,7 @@ Unk02017584 *HeapFindInnermostInList(Unk02017328 *a, u32 b) {
             }
             return r;
         }
-        p = func_0201733c(a, p);
+        p = ListGetNext(a, p);
     }
     return 0;
 }
@@ -39,16 +39,16 @@ void HeapInitAndLink(Unk02017584 *a, u32 b, u32 c, u32 d, u16 e) {
     a->mUnk_20 = 0;
     a->mUnk_20 &= ~0xff;
     a->mUnk_20 |= e & 0xff;
-    func_02017538(&a->mUnk_0c, 4);
+    ListInit(&a->mUnk_0c, 4);
     if (gHeapListInitialized == 0) {
-        func_02017538(&gHeapList, 4);
+        ListInit(&gHeapList, 4);
         gHeapListInitialized = 1;
     }
-    func_020174a4(HeapFindList((u32) a), a);
+    ListAppend(HeapFindList((u32) a), a);
 }
 
 void HeapUnlink(Unk02017584 *a) {
-    func_02017354(HeapFindList((u32) a), a);
+    ListRemove(HeapFindList((u32) a), a);
 }
 
 void *HeapFindInnermost(void *a) {

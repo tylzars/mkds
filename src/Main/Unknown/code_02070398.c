@@ -406,7 +406,7 @@ void func_020708a4(Unk0206bcb0 *p) {
     b.z = gCourseMap->mUnk_34[*gCourseMap->mUnk_fc].mUnk_0c.z;
     k = (u16) (((s64) b.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >> 4;
     func_02146d44(m1, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
-    func_02146d78(&data_02154f70, m1, &e);
+    Vec3MultiplyMatrix3x3(&data_02154f70, m1, &e);
     func_021035ac(p->mIndex);
 
     w = p->mUnk_4c;
@@ -476,11 +476,11 @@ void func_020708a4(Unk0206bcb0 *p) {
 
     data_0217566a[p->mUnk_78].mBitMask = 0xe04;
     func_020397a8(&data_02154f7c, &e, &f);
-    func_021484d0(&p->mUnk_80, &a, &g);
+    Vec3Sub(&p->mUnk_80, &a, &g);
     g.y = 0;
-    func_02147fd8(func_02039828(&f, &g), &f, &a, &a);
+    Vec3AddScaled(func_02039828(&f, &g), &f, &a, &a);
     func_02039828(&f, &g);
-    func_021484d0(&a, &p->mUnk_80, &c);
+    Vec3Sub(&a, &p->mUnk_80, &c);
     d = func_020708a4_inline(&c, &c);
 
     if (func_02039828(&c, &e) <= 0) {
@@ -513,7 +513,7 @@ void func_020708a4(Unk0206bcb0 *p) {
         }
         func_02146f98(&m2, &p->mUnk_120, data_0215d4b4[((u16) p->mUnk_234 >> 4) * 2],
                       data_0215d4b4[((u16) p->mUnk_234 >> 4) * 2 + 1]);
-        func_02146d78(&n, &m2.mUnk_00[0].x, &n);
+        Vec3MultiplyMatrix3x3(&n, &m2.mUnk_00[0].x, &n);
         p->mUnk_244 = n;
         func_01ff9f60(p, &n);
     }
@@ -531,7 +531,7 @@ void func_020708a4(Unk0206bcb0 *p) {
         }
     }
     p->mUnk_a4 = m2.mUnk_00[3];
-    func_02148504(&p->mUnk_80, &p->mUnk_a4, &p->mUnk_80);
+    Vec3Add(&p->mUnk_80, &p->mUnk_a4, &p->mUnk_80);
 }
 
 void func_020705fc(Unk0206bcb0 *p, u32 b) {
@@ -553,9 +553,9 @@ void func_020705fc(Unk0206bcb0 *p, u32 b) {
     k = (u16) (((s64) gCourseMap->mUnk_34[gCourseMap->mUnk_fc[b]].mUnk_0c.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >>
         4;
     func_02146d44(m, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
-    func_02146d78(&data_02154f70, m, &e);
+    Vec3MultiplyMatrix3x3(&data_02154f70, m, &e);
     if (data_021759c0->mUnk_08 == 2) {
-        func_021484d0(&a, &p->mUnk_80, &v);
+        Vec3Sub(&a, &p->mUnk_80, &v);
         func_020a21bc(p->mIndex, (s32) &v);
     }
     p->mUnk_80 = a;
@@ -610,9 +610,9 @@ void func_02070484(Unk0206bcb0 *p, Vec4 *q) {
     k = p->mUnk_236;
     t = (u16) p->mUnk_234;
     func_02147250(&m1, data_0215d4b4[(k >> 4) * 2], data_0215d4b4[(k >> 4) * 2 + 1]);
-    func_02147288(&data_02154f88, &m1, &v1);
+    Vec3MultiplyMatrix4x3(&data_02154f88, &m1, &v1);
     func_021478f0(&m2, &v1, data_0215d4b4[(t >> 4) * 2], data_0215d4b4[(t >> 4) * 2 + 1]);
-    func_02147288(&data_02154f7c, &m2, &v2);
+    Vec3MultiplyMatrix4x3(&data_02154f7c, &m2, &v2);
     func_01ffd0e8(q, &data_02154f7c, &v2);
     if (p->mUnk_48 & 0x80000000) {
         q->x = -q->x;

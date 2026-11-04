@@ -201,7 +201,7 @@ void func_0202bb80(void) {
 }
 
 static inline void func_0202c0d4_inline(const void *a, void *b, s32 c) {
-    func_0214cffc(a, b, c);
+    MemCopyHalfwords(a, b, c);
 }
 
 void func_0202c0d4(s32 a, s32 b) {
@@ -226,8 +226,8 @@ void func_0202c0d4(s32 a, s32 b) {
                 data_02174e3c->mUnk_048 = 1;
                 data_02174e3c->mUnk_044 = 0;
                 data_02174e3c->mUnk_208 = 1;
-                func_0214cffc(data_0217aa08->mUnk_00->mUnk_0c, data_02174e3c->mUnk_04c[data_02174e3c->mUnk_044].mUnk_14,
-                              0x14);
+                MemCopyHalfwords(data_0217aa08->mUnk_00->mUnk_0c,
+                                 data_02174e3c->mUnk_04c[data_02174e3c->mUnk_044].mUnk_14, 0x14);
                 func_0202c8dc();
                 break;
             case 1:
@@ -250,7 +250,7 @@ void func_0202c0d4(s32 a, s32 b) {
                 for (j = 0; j < (n = data_02174e3c->mUnk_048); j++) {
                     func_02029930()->mUnk_00[j].mUnk_08 = 0;
                     v = 0;
-                    func_0214cfe4(v, data_02174e3c->mUnk_04c[j].mUnk_14, 0x16);
+                    MemFillHalfwords(v, data_02174e3c->mUnk_04c[j].mUnk_14, 0x16);
                     func_0202c0d4_inline(data_0217aa00->mUnk_1e8c[(u16) j] == 0xffff
                                              ? (void *) 0
                                              : &data_0217aa00->mUnk_045c[data_0217aa00->mUnk_1e8c[(u16) j]],
@@ -270,7 +270,7 @@ void func_0202c0d4(s32 a, s32 b) {
                 data_02174e3c->mUnk_044 = func_020295e4();
                 for (i = 0; i < (n = data_02174e3c->mUnk_048); i++) {
                     v2 = 0;
-                    func_0214cfe4(v2, data_02174e3c->mUnk_04c[i].mUnk_14, 0x16);
+                    MemFillHalfwords(v2, data_02174e3c->mUnk_04c[i].mUnk_14, 0x16);
                     if (func_02122734(i) >= 0) {
                         func_0202c0d4_inline(func_021202b0((u8) func_02122734(i)), data_02174e3c->mUnk_04c[i].mUnk_14,
                                              0x14);
@@ -352,7 +352,7 @@ void func_0202c65c(void *a, void *b) {
     Unk02174e14_00 *q;
     s32 i;
     data_02174e3c = HeapAlloc(h, 0x258);
-    func_0214d05c_inline(data_02174e3c, 0x258);
+    MemFillWordsByBlock_inline(data_02174e3c, 0x258);
     data_02174e3c->mHeap = h;
     data_02174e3c->mUnk_038 = b;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
@@ -399,7 +399,7 @@ void func_0202c884(s32 a, u16 *b) {
     Unk02174e3c *p = data_02174e3c;
     u16 v1[12];
     v1[0] = 0;
-    func_0214cfe4(v1[0], &v1[1], 0x16);
+    MemFillHalfwords(v1[0], &v1[1], 0x16);
     b[10] = 0;
     func_020adc7c(b, &v1[1]);
     func_0212426c(0, data_usa_02174e14[a].mUnk_00, p->mUnk_000.mUnk_14, &v1[1], p->mUnk_000.mUnk_0c,
@@ -415,8 +415,8 @@ void func_0202c8dc(void) {
     w[1] = 0;
     for (i = data_02174e3c->mUnk_048; i < 8; i++) {
         u[0] = 0;
-        func_0214cfe4(u[0], data_02174e3c->mUnk_04c[i].mUnk_14, 0x16);
-        func_0214cffc(h, data_02174e3c->mUnk_04c[i].mUnk_14, 0x14);
+        MemFillHalfwords(u[0], data_02174e3c->mUnk_04c[i].mUnk_14, 0x16);
+        MemCopyHalfwords(h, data_02174e3c->mUnk_04c[i].mUnk_14, 0x14);
         u[1] = i + 0x31 - data_02174e3c->mUnk_048;
         wcsncat(data_02174e3c->mUnk_04c[i].mUnk_14, w, 1);
     }

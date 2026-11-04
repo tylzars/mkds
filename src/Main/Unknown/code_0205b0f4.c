@@ -180,7 +180,7 @@ void func_0205b778(u32 a, Unk0205b504 *b) {
     if (p->mUnk_104[v1].mUnk_86_0 == 0) {
         p->mUnk_104[v1].mUnk_86_0 = 1;
     }
-    func_0214d1fc(s, e, n);
+    MemCopy(s, e, n);
 }
 
 // non-matching: the original keeps the new 0xf4 value in r2 and reuses it for the 0x800 step (add r2, r2, r1, asr #1);
@@ -255,7 +255,7 @@ void func_0205b504(u32 a, Unk0205b504 *b, u32 c, u32 d) {
                 return;
             }
             e = &data_0217aa14->mUnk_014[i];
-            func_0214d1fc(m, e, 0x28);
+            MemCopy(m, e, 0x28);
             t = func_0200f5ac();
             e->mUnk_0c = t;
             e->mUnk_10 = t >> 32;

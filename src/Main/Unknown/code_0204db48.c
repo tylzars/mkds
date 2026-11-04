@@ -13,7 +13,7 @@
 #include "code_0214d018.h"
 
 s32 func_0204db48(Unk02003a6c *a, void *b, u32 c, u32 d) {
-    func_0214d1fc((const void *) c, b, d);
+    MemCopy((const void *) c, b, d);
     return 0;
 }
 

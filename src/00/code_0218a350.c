@@ -86,7 +86,7 @@ void func_ov000_0218a48c(const u8 *a, u8 *b) {
     for (k = 0; k < 13; k++) {
         b[k] ^= data_ov000_021b20ec[k];
     }
-    func_0214d1fc(b, t, 13);
+    MemCopy(b, t, 13);
     l = 0;
     p = t;
     q = data_ov000_021b0790;
@@ -117,7 +117,7 @@ void func_ov000_0218a57c(const u8 *a, u8 *b) {
     func_021507c8((u32) &c);
     func_021506d4(&c, a, 24);
     func_02150610(d, &c);
-    func_0214d1fc(d + 3, b, 13);
+    MemCopy(d + 3, b, 13);
 }
 
 void func_ov000_0218a5b0(const u8 *a, u8 *b) {

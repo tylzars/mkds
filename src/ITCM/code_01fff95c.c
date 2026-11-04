@@ -185,7 +185,7 @@ void func_01fffe8c(u32 a, const void *b, void *c, u32 d) {
 void func_01fffec4(u32 a, const void *b, void *c, u32 d) {
     vu32 *r = (vu32 *) 0x40000b0;
     vu32 *e;
-    u32 s = func_0200fca0();
+    u32 s = IrqDisable();
 
     *(vu32 *) (0x4000000 + a * 12 + 0xb0) = (u32) b;
     e = (vu32 *) ((u32) r + a * 12);
@@ -198,16 +198,16 @@ void func_01fffec4(u32 a, const void *b, void *c, u32 d) {
         e[1] = 0;
         e[2] = 0x81400001;
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 void func_01ffff38(u32 a, const void *b, void *c, u32 d) {
     vu32 *e;
-    u32 s = func_0200fca0();
+    u32 s = IrqDisable();
 
     *(vu32 *) (0x4000000 + a * 12 + 0xb0) = (u32) b;
     e = (vu32 *) ((u32) 0x40000b0 + a * 12);
     e[1] = (u32) c;
     e[2] = d;
-    func_0200fcb4(s);
+    IrqRestore(s);
 }

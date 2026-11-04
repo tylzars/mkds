@@ -66,7 +66,7 @@ void func_01ffba68(Unk0206bcb0 *p) {
             } else if (f > b) {
                 v = a;
             } else {
-                e = func_02147f34(c - a, b - 0x800);
+                e = DivFixed12(c - a, b - 0x800);
                 f = f - 0x800;
                 v = c - (s32) (((s64) e * f) >> 12);
             }
@@ -179,20 +179,20 @@ void func_01ffbe70(Unk0206bcb0 *p) {
 }
 
 void func_01ffbfe4(Unk0206bcb0 *p) {
-    func_02147fd8(p->mUnk_1d0 + 0x400, &p->mUnk_15c, &p->mUnk_98, &p->mUnk_1c4);
+    Vec3AddScaled(p->mUnk_1d0 + 0x400, &p->mUnk_15c, &p->mUnk_98, &p->mUnk_1c4);
 }
 
 void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Unk0206bcb0 *p) {
     Vec3 d;
     Vec3 e;
 
-    func_021484d0(&p->mUnk_80, &p->mUnk_8c, &d);
-    func_02148504(&d, b, &e);
-    func_02147fd8(p->mUnk_1d0 + c, &p->mUnk_15c, &e, a);
+    Vec3Sub(&p->mUnk_80, &p->mUnk_8c, &d);
+    Vec3Add(&d, b, &e);
+    Vec3AddScaled(p->mUnk_1d0 + c, &p->mUnk_15c, &e, a);
 }
 
 void func_01ffc064(Vec3 *a, const Vec3 *b, s32 c, Unk0206bcb0 *p) {
-    func_02147fd8(p->mUnk_1d0 + c, &p->mUnk_12c, b, a);
+    Vec3AddScaled(p->mUnk_1d0 + c, &p->mUnk_12c, b, a);
 }
 
 static inline const s32 func_01ffc090_inline(void) {

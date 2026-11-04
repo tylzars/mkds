@@ -24,19 +24,19 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             data_02173278 = n;
         } while (data_02173278 == 0);
     }
-    v = func_0200fca0();
+    v = IrqDisable();
     if (data_02173284 != 0) {
-        func_0200fcb4(v);
+        IrqRestore(v);
         return 5;
     }
     if (data_0217327c != 0) {
-        func_0200fcb4(v);
+        IrqRestore(v);
         return 5;
     }
     switch (a) {
         case 4:
             if (func_0200ff04(4, data_02173278) == 0) {
-                func_0200fcb4(v);
+                IrqRestore(v);
                 return 6;
             }
             data_0217327c = 4;
@@ -44,7 +44,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             break;
         case 8:
             if (func_0200ff04(8, data_02173278) == 0) {
-                func_0200fcb4(v);
+                IrqRestore(v);
                 return 6;
             }
             data_0217327c = 8;
@@ -52,7 +52,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             break;
         case 12:
             if (func_0200ff04(12, data_02173278) == 0) {
-                func_0200fcb4(v);
+                IrqRestore(v);
                 return 6;
             }
             data_0217327c = 12;
@@ -60,7 +60,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             *(vu8 *) 0x4000243 = 0x8a;
             break;
         default:
-            func_0200fcb4(v);
+            IrqRestore(v);
             return 3;
     }
     if (func_0214d79c(0xf, 0) == 0) {
@@ -72,14 +72,14 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
         data_02173284 = b;
     }
     data_02173280 = c;
-    if (func_0214d6e8(0xf, 0x10000, 0) < 0) {
+    if (PxiSendFifoWord(0xf, 0x10000, 0) < 0) {
         func_0200fe7c(data_0217327c, data_02173278);
         data_0217327c = 0;
         data_02173284 = 0;
-        func_0200fcb4(v);
+        IrqRestore(v);
         return 4;
     }
-    func_0200fcb4(v);
+    IrqRestore(v);
     return 1;
 }
 
@@ -90,9 +90,9 @@ s32 func_0201e6b8(UnkFunc *a, u32 b) {
     if (func_0214d79c(0xf, 1) == 0) {
         return 2;
     }
-    v = func_0200fca0();
+    v = IrqDisable();
     if (data_02173284 != 0) {
-        func_0200fcb4(v);
+        IrqRestore(v);
         return 5;
     }
     if (func_0214d79c(0xf, 0) == 0) {
@@ -104,12 +104,12 @@ s32 func_0201e6b8(UnkFunc *a, u32 b) {
         data_02173284 = a;
     }
     data_02173280 = b;
-    if (func_0214d6e8(0xf, 0x20000, 0) < 0) {
+    if (PxiSendFifoWord(0xf, 0x20000, 0) < 0) {
         data_02173284 = 0;
-        func_0200fcb4(v);
+        IrqRestore(v);
         return 4;
     }
-    func_0200fcb4(v);
+    IrqRestore(v);
     return 1;
 }
 

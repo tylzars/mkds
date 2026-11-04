@@ -27,7 +27,7 @@ void func_020749a4(Unk02061808 *p, s32 a) {
     e0 = func_02042044(q->mUnk_40, 0);
     e1 = func_02042044(q->mUnk_40, 1);
     v = e0->mUnk_00;
-    func_021484d0(&e1->mUnk_00, &e0->mUnk_00, &d);
+    Vec3Sub(&e1->mUnk_00, &e0->mUnk_00, &d);
     if ((s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z < 0x10) {
         m = 0;
     } else {
@@ -41,7 +41,7 @@ void func_020749a4(Unk02061808 *p, s32 a) {
     s.x = (s32) (((s64) d.x * m) >> 12);
     s.y = (s32) (((s64) d.y * m) >> 12);
     s.z = (s32) (((s64) d.z * m) >> 12);
-    func_02148504(&v, &s, &p->mUnk_024);
+    Vec3Add(&v, &s, &p->mUnk_024);
 }
 
 void func_02074978(Unk02061808 *p) {

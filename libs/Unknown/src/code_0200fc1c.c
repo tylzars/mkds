@@ -10,7 +10,7 @@ void func_0200fc1c(void) {
     data_02170268 = 1;
     data_02170274[0] = 0;
     data_02170274[1] = 0;
-    func_0200ca9c(4);
+    InterruptEnableClearBits(4);
     data_02170270 = 0;
     data_0217026c = 0;
 }

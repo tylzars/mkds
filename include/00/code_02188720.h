@@ -32,7 +32,7 @@ typedef struct Unk02188d78 {
 
 static inline void func_0214d018_inline(void *p, u32 n) {
     vu32 v = 0;
-    func_0214d018(v, p, n);
+    MemFillWords(v, p, n);
 }
 
 // Declared here until the code that defines them is decompiled.

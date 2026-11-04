@@ -254,7 +254,7 @@ void func_02067488(Unk0206bcb0 *a) {
         return;
     }
     c = func_0207a974(data_021759c0->mUnk_62);
-    func_021484d0(&a->mUnk_80, &c->mUnk_80, &b);
+    Vec3Sub(&a->mUnk_80, &c->mUnk_80, &b);
     b.x = b.x >> 12;
     b.y = b.y >> 12;
     b.z = b.z >> 12;
@@ -458,12 +458,12 @@ void func_02066ac0(Unk0206bcb0 *a) {
             i = data_0217aa14->mUnk_728 - h;
             if (i < 0) {
                 k = -i;
-                c = func_020172d8(&b->mUnk_8c, 0);
+                c = ListGetNth(&b->mUnk_8c, 0);
                 if (c != NULL) {
-                    func_02017354(&b->mUnk_8c, c);
+                    ListRemove(&b->mUnk_8c, c);
                     c->mUnk_0c = *g;
                     c->mUnk_08 = k + 1;
-                    func_020174a4(&b->mUnk_80, c);
+                    ListAppend(&b->mUnk_80, c);
                 }
                 e = a->mUnk_514;
                 e->mUnk_5c = e->mUnk_5c + (s32) ((s64) (e->mUnk_40 - e->mUnk_5c) * 0x333 + 0x800 >> 12);
@@ -483,22 +483,22 @@ void func_02066ac0(Unk0206bcb0 *a) {
         a->mUnk_388 = e->mUnk_5c;
     }
     e = a->mUnk_514;
-    m = func_0201733c(&e->mUnk_80, NULL);
+    m = ListGetNext(&e->mUnk_80, NULL);
     while (m != NULL) {
-        n = func_0201733c(&e->mUnk_80, m);
+        n = ListGetNext(&e->mUnk_80, m);
         m->mUnk_08 = m->mUnk_08 - 1;
         if (m->mUnk_08 <= 0) {
             if (j == 0) {
                 func_020653d0(a, &m->mUnk_0c, 0);
             }
-            func_02017354(&e->mUnk_80, m);
-            func_020174a4(&e->mUnk_8c, m);
+            ListRemove(&e->mUnk_80, m);
+            ListAppend(&e->mUnk_8c, m);
             if (n == NULL) {
                 break;
             }
             m = n;
         }
-        m = func_0201733c(&e->mUnk_80, m);
+        m = ListGetNext(&e->mUnk_80, m);
     }
     if ((a->mUnk_514->mUnk_44 & 2) != 0) {
         func_0204360c(a->mUnk_78, 1);

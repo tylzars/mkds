@@ -13,7 +13,7 @@ u32 func_ov000_021aa004(u8 *a, s32 b, Unk021a998c *c) {
         if (v2 > b) {
             v2 = b;
         }
-        func_0214d1fc(v1, a, v2);
+        MemCopy(v1, a, v2);
         func_ov000_021adf30(v2, c);
         a = a + v2;
         b = b - v2;

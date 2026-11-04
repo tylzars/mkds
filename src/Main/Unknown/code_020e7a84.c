@@ -66,7 +66,7 @@ void func_020e8790(void) {
     data_0217b9c0.x = (s32) (((s64) data_0217b9a8.z * data_0215f4b4[0]) >> 12) +
                       (s32) (((s64) data_0217b9a8.x * data_0215f4b4[1]) >> 12);
     data_0217b9c0.y = data_0217b9a8.y;
-    func_02147288(&data_0217b9c0, &data_0217bab8, &data_0217b9c0);
+    Vec3MultiplyMatrix4x3(&data_0217b9c0, &data_0217bab8, &data_0217b9c0);
     data_0217b90c = data_0217b9c0;
     data_0217b918 = data_0217b90c;
     data_0217b924.x = 0;
@@ -117,7 +117,7 @@ void func_020e84b0(void) {
         }
         data_0217b9c0.x = (s32) (((s64) data_0217b9a8.z * s) >> 12) + (s32) (((s64) data_0217b9a8.x * c) >> 12);
         data_0217b9c0.y = data_0217b9a8.y;
-        func_02147288(&data_0217b9c0, &data_0217bab8, &data_0217b9c0);
+        Vec3MultiplyMatrix4x3(&data_0217b9c0, &data_0217bab8, &data_0217b9c0);
         if (data_0217b8f8 != 0) {
             data_0217b8b4 -= 0xf0;
         } else {
@@ -165,7 +165,7 @@ void func_020e8418(void) {
     data_0217b8b4 = 0;
     v = data_0217b978;
     v.x += data_0217b88c;
-    func_02147288(&v, &data_0217bab8, &data_0217b9c0);
+    Vec3MultiplyMatrix4x3(&v, &data_0217bab8, &data_0217b9c0);
 }
 
 void func_020e8368(void) {
@@ -173,7 +173,7 @@ void func_020e8368(void) {
 
     v = data_0217b978;
     v.x += data_0217b88c;
-    func_02147288(&v, &data_0217bab8, &data_0217b9c0);
+    Vec3MultiplyMatrix4x3(&v, &data_0217bab8, &data_0217b9c0);
     if (++data_0217b8b4 > data_0217b880 || (data_0217b8c8->mUnk_48 & 0x800) != 0) {
         func_02046bcc(&data_0217b9ec, 5);
     }
@@ -227,9 +227,9 @@ void func_020e7fa8(void) {
     if (func_0203c5e4() != 0) {
         q = (u32 *) func_020e6b48();
         ((Unk02012f58 *) q)->mUnk_00[3] = data_0217b954;
-        func_02147288(&data_0217b960, (Unk02012f58 *) q, &data_0217b9c0);
+        Vec3MultiplyMatrix4x3(&data_0217b960, (Unk02012f58 *) q, &data_0217b9c0);
     } else {
-        func_02147288(&data_0217b960, &data_0217bab8, &data_0217b9c0);
+        Vec3MultiplyMatrix4x3(&data_0217b960, &data_0217bab8, &data_0217b9c0);
     }
     data_0217b90c = data_0217b9c0;
     data_0217b918 = data_0217b90c;
@@ -280,9 +280,9 @@ void func_020e7ed0(void) {
     if (func_0203c5e4() != 0) {
         p = (void *) func_020e6b48();
         ((Unk02012f58 *) p)->mUnk_00[3] = data_0217b954;
-        func_02147288(&data_0217b960, (Unk02012f58 *) p, &data_0217b9c0);
+        Vec3MultiplyMatrix4x3(&data_0217b960, (Unk02012f58 *) p, &data_0217b9c0);
     } else {
-        func_02147288(&data_0217b960, &data_0217bab8, &data_0217b9c0);
+        Vec3MultiplyMatrix4x3(&data_0217b960, &data_0217bab8, &data_0217b9c0);
     }
 }
 
@@ -290,7 +290,7 @@ void func_020e7e58(void) {
     s32 a;
 
     data_0217b8e4 = 1;
-    func_02147288(&data_0217b9c0, &data_0217ba88, &data_0217b984);
+    Vec3MultiplyMatrix4x3(&data_0217b9c0, &data_0217ba88, &data_0217b984);
     data_0217b89c = 0;
     a = 0;
     if ((data_0217b8c8->mUnk_48 & 1) == 0) {
@@ -302,7 +302,7 @@ void func_020e7e58(void) {
 void func_020e7d90(void) {
     s32 a;
 
-    func_02147288(&data_0217b984, &data_0217bab8, &data_0217b9c0);
+    Vec3MultiplyMatrix4x3(&data_0217b984, &data_0217bab8, &data_0217b9c0);
     if ((data_0217b8c8->mUnk_48 & 1) != 0) {
         a = 0x2000;
     } else {
@@ -342,7 +342,7 @@ void func_020e7b7c(void) {
             p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
         }
     }
-    func_02147288(&data_0217b9c0, &data_0217ba88, &data_0217b96c);
+    Vec3MultiplyMatrix4x3(&data_0217b9c0, &data_0217ba88, &data_0217b96c);
     for (i = 0, b = 0, a = 0; i < 0x1e; i++) {
         t = (b > -0x3000) ? -0x3000 : b;
         a -= t;
@@ -377,7 +377,7 @@ void func_020e7a84(void) {
     s32 a;
     s32 b;
 
-    func_02147288(&data_0217b96c, &data_0217bab8, &data_0217b9c0);
+    Vec3MultiplyMatrix4x3(&data_0217b96c, &data_0217bab8, &data_0217b9c0);
     data_0217b8d0 -= 0x19a;
     a = data_0217b8d0;
     if (a > -0x3000) {

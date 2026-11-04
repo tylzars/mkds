@@ -599,7 +599,7 @@ void func_01ff8dec(u32 *a, Unk020152bc *b) {
 }
 
 void func_01ff8e64(Unk02170500 *s, Unk02170500_04 *i) {
-    func_0214d05c_inline(s, 0x188);
+    MemFillWordsByBlock_inline(s, 0x188);
     s->mUnk_c4[0] = 1;
     s->mUnk_08 = 1;
     if (i->mUnk_30 != 0) {
@@ -661,7 +661,7 @@ void func_01ff9048(u32 a, const void *b, u32 n) {
                 if (n == 0) {
                     return;
                 }
-                func_0214d0a8(b, &data_usa_021731e4->mUnk_04[data_usa_021731e4->mUnk_00], n * 4);
+                MemCopyWordsByBlock(b, &data_usa_021731e4->mUnk_04[data_usa_021731e4->mUnk_00], n * 4);
                 data_usa_021731e4->mUnk_00 += n;
                 return;
             }
@@ -675,7 +675,7 @@ void func_01ff9048(u32 a, const void *b, u32 n) {
         func_01ff921c();
     }
     *(vu32 *) 0x4000400 = a;
-    func_0214d044(b, (vu32 *) 0x4000400, n * 4);
+    MemCopyWordsToOneAddress(b, (vu32 *) 0x4000400, n * 4);
 }
 
 void func_01ff9144(const void *a, u32 b) {
@@ -711,7 +711,7 @@ void func_01ff9234(void) {
     if (data_usa_021731e4->mUnk_00 == 0) {
         return;
     }
-    func_0214d044(data_usa_021731e4->mUnk_04, (vu32 *) 0x4000400, data_usa_021731e4->mUnk_00 * 4);
+    MemCopyWordsToOneAddress(data_usa_021731e4->mUnk_04, (vu32 *) 0x4000400, data_usa_021731e4->mUnk_00 * 4);
     data_usa_021731e4->mUnk_00 = 0;
 }
 

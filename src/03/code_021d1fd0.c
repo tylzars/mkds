@@ -157,11 +157,11 @@ void func_ov003_021d2188(Unk021d2188 *d) {
     if (d == (*(Unk021d1fd0 **) &data_ov003_021da2c4)->mUnk_718) {
         c = (void *) func_0214a054();
         a = 0;
-        func_0214cfe4(a, c, (data_ov003_021d67e0[0] * data_ov003_021d67e0[1]) << 5);
+        MemFillHalfwords(a, c, (data_ov003_021d67e0[0] * data_ov003_021d67e0[1]) << 5);
     } else {
         c = (void *) func_0214a054();
         b = 0;
-        func_0214cfe4(b, c, (data_ov003_021d67e0[2] * data_ov003_021d67e0[3]) << 5);
+        MemFillHalfwords(b, c, (data_ov003_021d67e0[2] * data_ov003_021d67e0[3]) << 5);
     }
     func_ov003_021d2808(&d->mUnk_30);
 }

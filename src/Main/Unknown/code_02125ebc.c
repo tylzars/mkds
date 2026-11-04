@@ -161,7 +161,7 @@ void func_0212745c(void) {
 static inline void func_0212717c_inline(void *dst, u16 value) {
     vu16 v = value;
 
-    func_0214cfe4(v, dst, 0x1000);
+    MemFillHalfwords(v, dst, 0x1000);
 }
 
 s32 func_0212717c(s32 d) {
@@ -217,7 +217,7 @@ s32 func_0212717c(s32 d) {
     func_0214c0f8(c->mData + 0xe0, 0x1c0, 0x40);
     data_0217d3f0->mUnk_2244 = c->mData[0xee];
     data_0217d3f0->mUnk_2246 = c->mData[0xdf];
-    func_0214d05c_inline((void *) func_0214a214(), 0x1000);
+    MemFillWordsByBlock_inline((void *) func_0214a214(), 0x1000);
     func_0212717c_inline((void *) func_0214a2f4(), data_0217d3f0->mUnk_2220[4]);
     return d;
 }
@@ -254,7 +254,7 @@ void func_02126f78(u32 *b) {
     s32 k;
     u16 *d;
 
-    func_0214d05c_inline(data_0217d3f0->mUnk_54, 0x1000);
+    MemFillWordsByBlock_inline(data_0217d3f0->mUnk_54, 0x1000);
     func_0212717c_inline(&data_0217d3f0->mUnk_1054, data_0217d3f0->mUnk_2220[4]);
     for (i = 0; i < 9; i++) {
         if (*b != 0) {

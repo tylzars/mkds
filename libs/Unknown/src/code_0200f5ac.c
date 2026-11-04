@@ -21,7 +21,7 @@ void func_0200f6f4(void) {
     *(vu16 *) 0x4000100 = 0;
     *(vu16 *) 0x4000102 = 0xc1;
     func_0200cc74(8, func_0200f65c);
-    func_0200cae4(8);
+    InterruptEnableSetBits(8);
     data_02170250 = 0;
 }
 
@@ -48,12 +48,12 @@ u64 func_0200f5ac(void) {
     volatile u16 t;
     volatile u64 v;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     t = *(vu16 *) 0x4000100;
     v = data_02170254 & 0xffffffffffffULL;
     if ((*(vu32 *) 0x4000214 & 8) && !(t & 0x8000)) {
         v++;
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     return (v << 16) | t;
 }

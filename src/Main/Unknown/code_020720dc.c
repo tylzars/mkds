@@ -271,7 +271,7 @@ void func_020726bc(Unk0206bcb0 *p) {
     p->mUnk_2cc->mUnk_10 = (s32) (((s64) p->mUnk_2cc->mUnk_10 * a) >> 12);
     p->mUnk_2cc->mUnk_32 = p->mUnk_2cc->mUnk_32 + b;
     p->mUnk_3f4 = 0x1000 - p->mUnk_2cc->mUnk_68[4];
-    p->mUnk_3f4 = func_02147f34(p->mUnk_3f4, p->mUnk_2cc->mUnk_00 << 1);
+    p->mUnk_3f4 = DivFixed12(p->mUnk_3f4, p->mUnk_2cc->mUnk_00 << 1);
     p->mUnk_2d0 = func_0208ae74(p->mIndex);
     q = p->mUnk_2cc;
     r = p->mUnk_2d0;
@@ -491,7 +491,7 @@ void func_02072eb8(Unk0206bcb0 *p) {
     }
     i = ((u16) ((s32) (((s64) c.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
     func_02146d44(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
-    func_02146d78(&data_02154f70, m, &b);
+    Vec3MultiplyMatrix3x3(&data_02154f70, m, &b);
     if (data_021759c0->mUnk_08 != 2 && gCourseMap->mUnk_60 != 0) {
         (e = &(data_027e00c8)[p->mIndex])->mUnk_1f0.mUnk_00 = func_02040f78((u16) p->mUnk_3c4);
         e->mUnk_1f0.mUnk_04 = 1;
@@ -500,8 +500,8 @@ void func_02072eb8(Unk0206bcb0 *p) {
         x = data_usa_02154d4c[p->mIndex][0];
         y = data_usa_02154d50[p->mIndex][0];
         func_020397a8(&data_02154f7c, &b, &d);
-        func_02147fd8((s32) (((s64) data_usa_02165504 * x) >> 12), &d, &a, &a);
-        func_02147fd8((s32) (((s64) data_usa_02165504 * y) >> 12), &b, &a, &a);
+        Vec3AddScaled((s32) (((s64) data_usa_02165504 * x) >> 12), &d, &a, &a);
+        Vec3AddScaled((s32) (((s64) data_usa_02165504 * y) >> 12), &b, &a, &a);
         if (c.x != 0 && y != 0) {
             i = ((u16) ((s32) (((s64) c.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
             l = data_0215d4b4[i * 2];

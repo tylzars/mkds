@@ -39,11 +39,11 @@ void func_ov001_021843b0(Unk02188950 *a, Unk0206bcb0 *b) {
                 func_ov001_02188dcc(a, func_ov001_02184d70);
                 func_ov001_02188cec(a, 0);
             }
-            func_021484d0(&a->mUnk_000.mPos, &b->mUnk_1b8, &vec2);
+            Vec3Sub(&a->mUnk_000.mPos, &b->mUnk_1b8, &vec2);
             if ((s64) vec2.x * vec2.x + (s64) vec2.y * vec2.y + (s64) vec2.z * vec2.z >= 0x10) {
                 func_02039860(&vec2, &vec2);
             }
-            func_02147fd8(b->mUnk_1d0, &vec2, &b->mUnk_1b8, &vec2);
+            Vec3AddScaled(b->mUnk_1d0, &vec2, &b->mUnk_1b8, &vec2);
             if (a->mUnk_000.mKind == 0x1f5) {
                 a->mUnk_000.mUnk_78 |= data_ov001_021a657c;
                 func_02109060(&a->mUnk_000.mUnk_94->mUnk_00, 0x214);

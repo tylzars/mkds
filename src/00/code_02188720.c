@@ -70,10 +70,10 @@ s32 func_ov000_021887cc(void) {
     if (a == 1) {
         a = func_ov000_02189f00();
     } else if (a < 7) {
-        b = func_0200fca0();
+        b = IrqDisable();
         a = ((u8(*)(void)) func_ov000_02189e80)();
         func_ov000_02188534(a);
-        func_0200fcb4(b);
+        IrqRestore(b);
     } else if (a < 9) {
         a = ((u8(*)(void)) func_ov000_0218922c)();
     } else if (a < 10) {
@@ -155,12 +155,12 @@ void func_ov000_021889b0(u32 a, Unk02188408 *s) {
             if (t[a].mUnk_02 < u->mUnk_02) {
                 break;
             }
-            func_0214d02c(u, &x, 4);
-            func_0214d02c(&t[a], u, 4);
-            func_0214d02c(&x, &t[a], 4);
-            func_0214d02c(w, &y, 0xc0);
-            func_0214d02c(&e[a], w, 0xc0);
-            func_0214d02c(&y, &e[a], 0xc0);
+            MemCopyWords(u, &x, 4);
+            MemCopyWords(&t[a], u, 4);
+            MemCopyWords(&x, &t[a], 4);
+            MemCopyWords(w, &y, 0xc0);
+            MemCopyWords(&e[a], w, 0xc0);
+            MemCopyWords(&y, &e[a], 0xc0);
             a = i;
             u--;
             w--;
@@ -188,7 +188,7 @@ void func_ov000_02188a74(u32 a, Unk02188408Entry0xc0 *p, Unk02188408 *s) {
         t->mUnk_02 = v;
         t->mUnk_03 = s->mUnk_d11 + 1;
     }
-    func_0214d02c(p, e, 0xc0);
+    MemCopyWords(p, e, 0xc0);
 }
 
 void func_ov000_02188ad4(u8 a, Unk02188408Entry0xc0 *p, Unk02188408 *s) {
@@ -202,7 +202,7 @@ void func_ov000_02188ad4(u8 a, Unk02188408Entry0xc0 *p, Unk02188408 *s) {
     h = p->mUnk_02;
     t->mUnk_02 = (h & 2) != 0 ? (u8) (h >> 2) : (u8) ((h >> 2) + 0x19);
     t->mUnk_03 = s->mUnk_d11 + 1;
-    func_0214d02c(p, e, 0xc0);
+    MemCopyWords(p, e, 0xc0);
 }
 
 s32 func_ov000_02188b20(u32 a, Unk02188408Entry0xc0 *p, Unk02188408 *s) {

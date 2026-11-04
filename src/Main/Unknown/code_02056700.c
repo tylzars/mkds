@@ -48,7 +48,7 @@ s32 func_020569dc(s32 a, s32 b, Unk02056a2c *c) {
 }
 
 void func_020569a8(void *a) {
-    func_0214d1fc(a, data_0217aa08->mUnk_04->mUnk_008, 0x200);
+    MemCopy(a, data_0217aa08->mUnk_04->mUnk_008, 0x200);
     data_0217aa08->mUnk_04->mUnk_004 = 1;
     func_02056430();
 }
@@ -71,7 +71,7 @@ void func_02056750(s32 a, u16 b) {
     if (n == -1) {
         return;
     }
-    func_0214d168(p, 0, 0xe00);
+    MemFill(p, 0, 0xe00);
     func_0203bfec(t);
     p->mUnk_04_16 = t[0];
     p->mUnk_04_23 = t[1];
@@ -91,9 +91,9 @@ void func_02056750(s32 a, u16 b) {
     p->mUnk_08_8 = v.mUnk_00;
     p->mUnk_08_15 = v.mUnk_01;
     p->mUnk_08_22 = v.mUnk_02;
-    func_0214d1fc(data_0217aa08->mUnk_00->mUnk_0c, p->mUnk_0c, 0x14);
-    func_0214d1fc(data_02175628[k].mUnk_28, p->mUnk_30, 0xdcc);
-    func_0214d168(v1, 0, 0xf);
+    MemCopy(data_0217aa08->mUnk_00->mUnk_0c, p->mUnk_0c, 0x14);
+    MemCopy(data_02175628[k].mUnk_28, p->mUnk_30, 0xdcc);
+    MemFill(v1, 0, 0xf);
     for (i = 1; i <= (s32) func_02044618(); i++) {
         j = (i - 1) * 3;
         func_0203c778(b, i, &v.mUnk_00, &v.mUnk_01, &v.mUnk_02);
@@ -105,7 +105,7 @@ void func_02056750(s32 a, u16 b) {
         v1[j + 1] = w >> 8;
         v1[j + 2] = w;
     }
-    func_0214d1fc(v1, p->mUnk_20, 0xf);
+    MemCopy(v1, p->mUnk_20, 0xf);
     m = n;
     func_020579d0(m, p);
     if (func_020573f8(m) == 0) {

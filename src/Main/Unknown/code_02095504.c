@@ -65,7 +65,7 @@ void func_02095544(void *a, Unk02095544 *p) {
             break;
         case 1:
             p->mUnk_00.mUnk_10.y -= 0x400;
-            func_02148504(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+            Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             if (p->mUnk_00.mPos.y < p->mUnk_00.mCourseMapRow->mUnk_00.y) {
                 return;
             }
@@ -79,7 +79,7 @@ void func_02095544(void *a, Unk02095544 *p) {
             break;
         case 2:
             p->mUnk_00.mUnk_10.y -= 0x400;
-            func_02148504(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+            Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             if (p->mUnk_00.mPos.y > p->mUnk_00.mCourseMapRow->mUnk_00.y) {
                 return;
             }
@@ -93,7 +93,7 @@ void func_02095544(void *a, Unk02095544 *p) {
             break;
         case 3:
             p->mUnk_00.mUnk_10.y -= 0x400;
-            func_02148504(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+            Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             if (p->mUnk_00.mPos.y <= p->mUnk_00.mCourseMapRow->mUnk_00.y - 0x32000) {
                 p->mUnk_a0 = 0x708;
                 p->mUnk_b0 = 4;
@@ -115,7 +115,7 @@ void func_020957ec(Unk020e6fd4 *p) {
         return;
     }
     for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
-        func_02147fd8(0x320000, &e->mUnk_00.mMatrix.mUnk_00[2], &e->mUnk_00.mCourseMapRow->mUnk_00, &e->mUnk_a4);
+        Vec3AddScaled(0x320000, &e->mUnk_00.mMatrix.mUnk_00[2], &e->mUnk_00.mCourseMapRow->mUnk_00, &e->mUnk_a4);
     }
 }
 

@@ -108,7 +108,7 @@ u32 func_ov000_02189134(Unk02188ec0 *v1) {
 
     b = &v1->mUnk_470[v1->mUnk_d13];
     v1->mUnk_d0d = func_ov000_02188ee0(v1);
-    func_0214d168(&v1->mUnk_cb8, 0, 0x52);
+    MemFill(&v1->mUnk_cb8, 0, 0x52);
     if (func_ov000_02188de4(v1, v1->mUnk_d0d, &v1->mUnk_cb8) != 0) {
         v1->mUnk_d0b_2 = 1;
         if (((b->mUnk_2c >> 4) & 1) == 0) {

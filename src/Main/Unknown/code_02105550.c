@@ -401,8 +401,8 @@ void func_02108344(u32 a, u32 b, u32 c) {
     func_0212ba68(0x7f);
     func_0212ba34(0);
     func_0210d970(0x1e);
-    data_0217c7f0.mUnk_1c = func_02147f34(0x7f000, 0x46000);
-    data_0217c7f0.mUnk_20 = func_02147f34(0x7f000, 0x3c000);
+    data_0217c7f0.mUnk_1c = DivFixed12(0x7f000, 0x46000);
+    data_0217c7f0.mUnk_20 = DivFixed12(0x7f000, 0x3c000);
     data_0217c7f0.mUnk_14 = 0xff;
     data_0217c7f0.mUnk_18 = 0x7f;
     data_0217c7f0.mUnk_00 = data_0217c7f0.mUnk_1c;

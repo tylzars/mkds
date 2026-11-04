@@ -63,13 +63,13 @@ u32 func_0214f2a8(Unk0214f2a8 *p, void (*fn)(), u32 arg) {
             return 2;
     }
     g = p->mUnk_10 != 0 ? (f | 0x10) & 0xff : f & 0xff;
-    v = func_0200fca0();
+    v = IrqDisable();
     if (data_02180414.mUnk_00 != 0) {
-        func_0200fcb4(v);
+        IrqRestore(v);
         return 1;
     }
     data_02180414.mUnk_00 = 1;
-    func_0200fcb4(v);
+    IrqRestore(v);
     data_02180414.mUnk_04 = fn;
     data_02180414.mUnk_08 = arg;
     data_02180414.mUnk_10 = p->mUnk_14;
@@ -86,14 +86,14 @@ u32 func_0214f264(Unk0214f2a8 *p) {
 }
 
 u32 func_0214f1f4(void (*fn)(), u32 arg) {
-    u32 v = func_0200fca0();
+    u32 v = IrqDisable();
 
     if (data_02180414.mUnk_00 != 0) {
-        func_0200fcb4(v);
+        IrqRestore(v);
         return 1;
     }
     data_02180414.mUnk_00 = 1;
-    func_0200fcb4(v);
+    IrqRestore(v);
     data_02180414.mUnk_04 = fn;
     data_02180414.mUnk_08 = arg;
     return func_0214ef00() != 0 ? 0 : 3;
@@ -173,29 +173,29 @@ void func_0214f060(u32 a, u32 b, u32 c) {
 }
 
 u32 func_0214ef34(u32 a, u32 b, u32 c, u32 d) {
-    if (func_0214d6e8(9, d | 0x2004100, 0) < 0) {
+    if (PxiSendFifoWord(9, d | 0x2004100, 0) < 0) {
         return 0;
     }
-    if (func_0214d6e8(9, (a >> 16) | 0x10000, 0) < 0) {
+    if (PxiSendFifoWord(9, (a >> 16) | 0x10000, 0) < 0) {
         return 0;
     }
-    if (func_0214d6e8(9, (a & 0xffff) | 0x20000, 0) < 0) {
+    if (PxiSendFifoWord(9, (a & 0xffff) | 0x20000, 0) < 0) {
         return 0;
     }
-    if (func_0214d6e8(9, (b >> 16) | 0x30000, 0) < 0) {
+    if (PxiSendFifoWord(9, (b >> 16) | 0x30000, 0) < 0) {
         return 0;
     }
-    if (func_0214d6e8(9, (b & 0xffff) | 0x40000, 0) < 0) {
+    if (PxiSendFifoWord(9, (b & 0xffff) | 0x40000, 0) < 0) {
         return 0;
     }
-    if (func_0214d6e8(9, (c >> 16) | 0x50000, 0) < 0) {
+    if (PxiSendFifoWord(9, (c >> 16) | 0x50000, 0) < 0) {
         return 0;
     }
-    return func_0214d6e8(9, (c & 0xffff) | 0x1060000, 0) >= 0;
+    return PxiSendFifoWord(9, (c & 0xffff) | 0x1060000, 0) >= 0;
 }
 
 s32 func_0214ef00(void) {
-    return func_0214d6e8(9, 0x3004200, 0) >= 0;
+    return PxiSendFifoWord(9, 0x3004200, 0) >= 0;
 }
 
 void func_0214eef0(u32 arg0) {

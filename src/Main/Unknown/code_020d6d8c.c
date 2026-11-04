@@ -321,7 +321,7 @@ void func_020d6f20(Vec3 *a, s32 b, Vec3 *c) {
     s32 m[9];
     s32 i = b >> 4;
     func_02146d44(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
-    func_02146d78(a, m, c);
+    Vec3MultiplyMatrix3x3(a, m, c);
 }
 
 void func_020d6df0(Vec3 *a, s32 *b) {

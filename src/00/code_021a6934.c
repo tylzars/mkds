@@ -14,10 +14,10 @@ u32 func_ov000_021a6aa0(Unk021b5f54Func arg0) {
     u32 value1;
     u32 value4;
     value4 = (value0) + (0u);
-    value0 = (u32) func_0200fca0();
+    value0 = (u32) IrqDisable();
     value1 = (u32) &data_ov000_021b5f54;
     *(u32 *) ((value1) + 40u) = value4;
-    value0 = (u32) func_0200fcb4(value0);
+    value0 = (u32) IrqRestore(value0);
     return value0;
 }
 
@@ -26,24 +26,24 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
     Unk021b5f50 *b;
     s32 c;
 
-    a = func_0200fca0();
+    a = IrqDisable();
     if (func_ov000_021a5b30() == NULL) {
-        func_0200fcb4(a);
+        IrqRestore(a);
         return -1;
     }
     func_0200ed34(&data_ov000_021b5f54.mUnk_0c);
     b = func_ov000_021a5b30();
     if (b == NULL) {
         func_0200ecc4(&data_ov000_021b5f54.mUnk_0c);
-        func_0200fcb4(a);
+        IrqRestore(a);
         return -1;
     }
     if (b->mUnk_2260 != 9 || b->mUnk_226b == 1) {
         func_0200ecc4(&data_ov000_021b5f54.mUnk_0c);
-        func_0200fcb4(a);
+        IrqRestore(a);
         return -4;
     }
-    func_0214d1fc(e, b->mUnk_0f00, f);
+    MemCopy(e, b->mUnk_0f00, f);
     c = func_02144438(func_ov000_021a6944, d, b->mUnk_0f00, (u16) f);
     switch (c) {
         case 0:
@@ -56,7 +56,7 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
         case 8:
         default:
             func_0200ecc4(&data_ov000_021b5f54.mUnk_0c);
-            func_0200fcb4(a);
+            IrqRestore(a);
             return -5;
         case 2:
             func_0200e01c(&data_ov000_021b5f54.mUnk_04);
@@ -64,11 +64,11 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
                 case 1:
                 default:
                     func_0200ecc4(&data_ov000_021b5f54.mUnk_0c);
-                    func_0200fcb4(a);
+                    IrqRestore(a);
                     return -5;
                 case 0:
                     func_0200ecc4(&data_ov000_021b5f54.mUnk_0c);
-                    func_0200fcb4(a);
+                    IrqRestore(a);
                     return f;
             }
     }

@@ -213,11 +213,11 @@ void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d) {
         v0.z = -(s32) (((s64) b->mUnk_00.mUnk_10.x * (s64) b->mUnk_118) >> 12);
         v0.y = 0;
         func_020397a8(&v0, &v2, &v1);
-        func_02148504(&v2, &v1, &v2);
+        Vec3Add(&v2, &v1, &v2);
         func_02039860(&v2, &b->mUnk_00.mMatrix.mUnk_00[0]);
         func_020397a8(&v0, &v3, &v1);
-        func_02148504(&v3, &v1, &v3);
-        r = func_0214848c(&b->mUnk_00.mMatrix.mUnk_00[0], &v3);
+        Vec3Add(&v3, &v1, &v3);
+        r = Vec3Dot(&b->mUnk_00.mMatrix.mUnk_00[0], &v3);
         v3.x = v3.x - (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[0].x * (s64) r) >> 12);
         v3.y = v3.y - (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[0].y * (s64) r) >> 12);
         v3.z = v3.z - (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[0].z * (s64) r) >> 12);

@@ -237,7 +237,7 @@ void func_ov001_021a09a4(void) {
                 c2 = 14;
             }
             zero = 0;
-            func_0214cfe4(zero, data_ov001_021ca414->mUnk_20, 0x20);
+            MemFillHalfwords(zero, data_ov001_021ca414->mUnk_20, 0x20);
             pal = data_ov001_021ca414->mUnk_1c->mUnk_0c;
             for (k = 0; k < 16; k++) {
                 col0 = ((u16 *) (pal + c0 * 32))[k];

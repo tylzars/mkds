@@ -118,7 +118,7 @@ void func_020e705c(Unk020e6fd4 *p) {
             if ((e->mFlags & 4) == 0) {
                 t = e->mPos;
                 cb(p, e);
-                func_021484d0(&e->mPos, &t, &e->mUnk_10);
+                Vec3Sub(&e->mPos, &t, &e->mUnk_10);
                 if (e->mUnk_94 != NULL) {
                     func_020e71a0(e);
                 }

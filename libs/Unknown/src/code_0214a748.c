@@ -210,10 +210,10 @@ void func_0214abb4(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, Unk02012f
     v0.x = a->x - c->x;
     v0.y = a->y - c->y;
     v0.z = a->z - c->z;
-    func_0214818c(&v0, &v0);
-    func_021483a0(b, &v0, &v1);
-    func_0214818c(&v1, &v1);
-    func_021483a0(&v0, &v1, &v2);
+    Vec3Normalize(&v0, &v0);
+    Vec3Cross(b, &v0, &v1);
+    Vec3Normalize(&v1, &v1);
+    Vec3Cross(&v0, &v1, &v2);
     if (d != 0) {
         reg_G3_MTX_MODE = 2;
         p = &reg_G3_MTX_LOAD_4x3;
@@ -227,9 +227,9 @@ void func_0214abb4(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, Unk02012f
         *p = v2.z;
         *p = v0.z;
     }
-    x = -func_0214848c(a, &v1);
-    y = -func_0214848c(a, &v2);
-    z = -func_0214848c(a, &v0);
+    x = -Vec3Dot(a, &v1);
+    y = -Vec3Dot(a, &v2);
+    z = -Vec3Dot(a, &v0);
     if (d != 0) {
         *p = x;
         *p = y;
@@ -351,7 +351,7 @@ s32 func_0214a7a4(void *a) {
     if (*(vu32 *) 0x4000600 & 0x8000000) {
         return -1;
     }
-    func_0214d13c((const void *) 0x4000640, a);
+    MemCopy16Words((const void *) 0x4000640, a);
     return 0;
 }
 
@@ -359,10 +359,10 @@ s32 func_0214a75c(void *a) {
     if (*(vu32 *) 0x4000600 & 0x8000000) {
         return -1;
     }
-    func_0214d0fc((const void *) 0x4000680, a);
+    MemCopy9Words((const void *) 0x4000680, a);
     return 0;
 }
 
 void func_0214a748(const void *a) {
-    func_0214d0e0(a, (void *) 0x4000360);
+    MemCopy8Words(a, (void *) 0x4000360);
 }

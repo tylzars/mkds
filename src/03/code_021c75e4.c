@@ -47,7 +47,7 @@ void func_ov003_021c7748(void) {
     if (memcmp(d->mUnk_08, data_ov003_021d73ac, 3) != 0) {
         d->mUnk_14 = 3;
     } else {
-        func_0214d168(d->mUnk_08, 0, 0xc);
+        MemFill(d->mUnk_08, 0, 0xc);
         data_ov003_021da1fc->mUnk_14 = 0;
     }
     func_ov003_021c76b4();

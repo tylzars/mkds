@@ -237,13 +237,13 @@ recheck:
         Vec3 w;
         Vec3 *q = &p->mUnk_138;
 
-        dot = func_0214848c(&p->mUnk_284, q);
+        dot = Vec3Dot(&p->mUnk_284, q);
         v.x = p->mUnk_138.x - (s32) (((s64) p->mUnk_284.x * dot) >> 12);
         v.y = q->y - (s32) (((s64) p->mUnk_284.y * dot) >> 12);
         v.z = q->z - (s32) (((s64) p->mUnk_284.z * dot) >> 12);
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 16 ? func_02039860(&v, &v) : 0) {
             func_020397a8(&p->mUnk_290, &v, &w);
-            len = func_021482cc(&w);
+            len = Vec3Length(&w);
             ang = func_02148538(len, func_02039828(&p->mUnk_290, &v));
             turn = (s16) (((s64) ang * 0x28be60db9391LL + 0x80000000LL) >> 44);
         }
@@ -365,8 +365,8 @@ BOOL func_0206c354(Unk0206bcb0 *p, const Vec3 *a, int flag) {
             list = arr;
             n = 4;
         }
-        func_02147fd8(-p->mUnk_1d0, a, &p->mUnk_80, &tmp);
-        func_02147fd8((s32) (((s64) p->mUnk_bc.y * 0x8000 + 0x800) >> 12), &p->mUnk_12c, &tmp, &tmp);
+        Vec3AddScaled(-p->mUnk_1d0, a, &p->mUnk_80, &tmp);
+        Vec3AddScaled((s32) (((s64) p->mUnk_bc.y * 0x8000 + 0x800) >> 12), &p->mUnk_12c, &tmp, &tmp);
         for (; i < n; i++) {
             func_0208b748(list[i], &tmp, p, func_0206c450);
         }
@@ -390,7 +390,7 @@ void func_0206c1ac(Unk0206c1ac *obj, Unk0206bcb0 *p) {
     UnkVec16 rot;
     Vec3 *q;
 
-    func_02147fd8((s32) (((s64) p->mUnk_1d0 * -0x1333 + 0x800) >> 12), &p->mUnk_138, &v, &v);
+    Vec3AddScaled((s32) (((s64) p->mUnk_1d0 * -0x1333 + 0x800) >> 12), &p->mUnk_138, &v, &v);
     v.x >>= 4;
     v.y >>= 4;
     v.z >>= 4;

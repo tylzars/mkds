@@ -15,7 +15,7 @@
 void func_02007ec4(Unk02007ec4 *a, u16 b, u16 c, u32 d, u32 e) {
     u32 v1;
     u32 v2;
-    func_0214d1fc(*(u16 *) 0x027ffc40 == 2 ? (void *) 0x027ffc42 : (void *) 0, a, 0x3c);
+    MemCopy(*(u16 *) 0x027ffc40 == 2 ? (void *) 0x027ffc42 : (void *) 0, a, 0x3c);
     a->mUnk_3c = 0x10;
     a->mUnk_44 = a->mUnk_0c | (a->mUnk_0e << 16);
     a->mUnk_48 = a->mUnk_10;
@@ -240,7 +240,7 @@ void func_020082b4(Unk020082b4 *a, Unk02008188 *b) {
         v3++;
         v4++;
     }
-    func_0214d1fc(v2, a->mUnk_3c, 0x88);
+    MemCopy(v2, a->mUnk_3c, 0x88);
 }
 
 u32 func_02008310(void *a, Unk02008188 *b) {
@@ -251,19 +251,19 @@ u32 func_02008310(void *a, Unk02008188 *b) {
     Unk020082b4 *v5;
     u8 i;
     v2 = 0xff;
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     if (func_02009958() == 0) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 0;
     }
     v4 = data_0216fdac;
     if (v4->mUnk_1524 + 1 > 0x10) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 0;
     }
     for (i = 0; i < 0x10; i++) {
         if (((Unk0216fdac *) ((u8 *) v4 + i * 0x5d4))->mUnk_1d40 == a) {
-            func_0200fcb4(v1);
+            IrqRestore(v1);
             return 0;
         }
         if (((Unk0216fdac *) ((u8 *) v4 + i * 0x5d4))->mUnk_1d52 == 0) {
@@ -272,16 +272,16 @@ u32 func_02008310(void *a, Unk02008188 *b) {
         }
     }
     if (i == 0x10) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 0;
     }
     v3 = v2 * 0x5d4;
     ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d40 = a;
     v5 = (Unk020082b4 *) (data_0216fdac->mUnk_1788 + v3);
     func_020082b4(v5, b);
-    func_0214d1fc((u8 *) a + 0x1c, v5->mUnk_c4, 0x20);
+    MemCopy((u8 *) a + 0x1c, v5->mUnk_c4, 0x20);
     if (func_020080e8((Unk0200806c_b *) (data_0216fdac->mUnk_1d2c + v3), v5) == 0) {
-        func_0200fcb4(v1);
+        IrqRestore(v1);
         return 0;
     }
     func_02009828((Unk0200b610 *) (data_0216fdac->mUnk_1788 + 0xe4 + v3), a, (const u8 *) &data_0216fdac->mUnk_1300);
@@ -300,7 +300,7 @@ u32 func_02008310(void *a, Unk02008188 *b) {
     }
     ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d52 = 1;
     data_0216fdac->mUnk_1524++;
-    func_0200fcb4(v1);
+    IrqRestore(v1);
     return 1;
 }
 

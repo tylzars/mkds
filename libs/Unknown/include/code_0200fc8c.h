@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-u32 func_0200fc8c(void);
-u32 func_0200fca0(void);
-u32 func_0200fcb4(u32 a);
+u32 IrqEnable(void);
+u32 IrqDisable(void);
+u32 IrqRestore(u32 a);
 u32 func_0200fccc(void);
 u32 func_0200fce0(u32 a);
 u32 func_0200fcf8(void);

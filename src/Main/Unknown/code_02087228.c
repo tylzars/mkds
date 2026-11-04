@@ -279,7 +279,7 @@ void func_02087228(Unk02086098 *a, u16 b) {
     u16 v;
     p = data_0217aed4;
     q = data_0217aed0->mUnk_144[b];
-    func_0214d1fc(data_0217aed0->mUnk_164[b], p, a->mUnk_08);
+    MemCopy(data_0217aed0->mUnk_164[b], p, a->mUnk_08);
     v = 0x7fff;
     if (data_021759c0->mUseTeams != 0) {
         v = data_02155a28[data_021759c0->mUnk_68[b].mUnk_08.mTeamIndex];

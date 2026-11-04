@@ -14,18 +14,18 @@ void func_ov003_021d3298(void) {
 
     func_021492d8(0x1f3);
     a = 0;
-    func_0214d05c(a, (void *) 0x6800000, 0x40000);
+    MemFillWordsByBlock(a, (void *) 0x6800000, 0x40000);
     b = 0;
-    func_0214d05c(b, (void *) 0x6880000, 0x24000);
+    MemFillWordsByBlock(b, (void *) 0x6880000, 0x24000);
     func_02148dac();
     c = 0x200;
-    func_0214d05c(c, (void *) 0x7000000, 0x400);
+    MemFillWordsByBlock(c, (void *) 0x7000000, 0x400);
     d = 0;
-    func_0214d05c(d, (void *) 0x5000000, 0x400);
+    MemFillWordsByBlock(d, (void *) 0x5000000, 0x400);
     e = 0x200;
-    func_0214d05c(e, (void *) 0x7000400, 0x400);
+    MemFillWordsByBlock(e, (void *) 0x7000400, 0x400);
     f = 0;
-    func_0214d05c(f, (void *) 0x5000400, 0x400);
+    MemFillWordsByBlock(f, (void *) 0x5000400, 0x400);
 }
 
 void func_ov003_021d332c(void) {

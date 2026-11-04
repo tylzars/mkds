@@ -17,7 +17,7 @@ void func_020483a0(char *a) {
     } else {
         b = data_usa_0216510c;
     }
-    func_0200d9e0(a, 0x80, data_usa_02165110, data_usa_021541a8[10].mUnk_00, b, data_usa_02165124);
+    StringFormatBounded(a, 0x80, data_usa_02165110, data_usa_021541a8[10].mUnk_00, b, data_usa_02165124);
 }
 
 void func_02048350(char *a) {
@@ -30,7 +30,7 @@ void func_02048350(char *a) {
         b = data_usa_021650e4;
     }
     c = func_02048474();
-    func_0200d9e0(a, 0x80, data_usa_021650e8, data_usa_021541a8[10].mUnk_00, b, c, data_usa_02165100);
+    StringFormatBounded(a, 0x80, data_usa_021650e8, data_usa_021541a8[10].mUnk_00, b, c, data_usa_02165100);
 }
 
 #pragma thumb off
@@ -40,12 +40,12 @@ void func_02048350(char *a) {
 void func_02048324(u32 a) {
     u32 v1;
     v1 = func_02048474();
-    func_0200d9e0((char *) a, 0x80, data_021650bc, v1, (u32) &data_021650d8);
+    StringFormatBounded((char *) a, 0x80, data_021650bc, v1, (u32) &data_021650d8);
 }
 
 void func_020482f0(u32 a, const char *b, int c) {
     if (*b != 0) {
-        func_0200d9e0((char *) a, 0x80, data_021650a0, b, ((u32 *) &data_02164d28)[c], (u32) &data_021650b4);
+        StringFormatBounded((char *) a, 0x80, data_021650a0, b, ((u32 *) &data_02164d28)[c], (u32) &data_021650b4);
     }
 }
 
@@ -53,14 +53,14 @@ void func_020482ac(int a, u8 *b, int c) {
     u32 v1;
     if (*b != 0) {
         v1 = func_02048474();
-        func_0200d9e0((char *) a, 0x80, data_02165080, b, ((u32 *) &data_02164d28)[c], v1, (u32) &data_02165098);
+        StringFormatBounded((char *) a, 0x80, data_02165080, b, ((u32 *) &data_02164d28)[c], v1, (u32) &data_02165098);
     }
 }
 
 void func_02048284(u32 a, u32 b) {
     u32 v1;
     v1 = func_02048474();
-    func_0200d9e0((char *) b, 0x80, data_02165074, a, v1);
+    StringFormatBounded((char *) b, 0x80, data_02165074, a, v1);
 }
 
 #pragma thumb off

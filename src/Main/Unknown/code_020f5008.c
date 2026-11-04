@@ -90,7 +90,7 @@ void func_020f4e78(Unk020f5008 *a, Vec3 *b, Vec3 *c) {
         return;
     }
     a->mUnk_000.mUnk_000.mUnk_50 = *c;
-    func_021484d0(&a->mUnk_000.mUnk_000.mUnk_50, &a->mUnk_000.mUnk_000.mUnk_0e4, &a->mUnk_000.mUnk_000.mUnk_5c);
+    Vec3Sub(&a->mUnk_000.mUnk_000.mUnk_50, &a->mUnk_000.mUnk_000.mUnk_0e4, &a->mUnk_000.mUnk_000.mUnk_5c);
 }
 
 // Runs the object's first word and stores the 0x120 and 0x130 words.
@@ -194,7 +194,7 @@ void func_020f49bc(Unk020f40dc *a) {
     r = &p->mUnk_a4;
     func_020f0ea0(data_027e00cc + e->mUnk_44, e);
     func_020efd1c(a->mUnk_04, e);
-    func_02147fd8(0xb33, r, &e->mUnk_5c, &e->mUnk_5c);
+    Vec3AddScaled(0xb33, r, &e->mUnk_5c, &e->mUnk_5c);
     *(Vec3 *) &e->mUnk_50 = *q;
     func_020f6630(e, 0, q, r, &p->mUnk_244);
     k = e->mUnk_44;

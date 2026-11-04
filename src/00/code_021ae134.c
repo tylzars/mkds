@@ -36,12 +36,12 @@ u32 func_ov000_021ae16c(Unk021a998c *b) {
         b->mState = 2;
         b->mStateStartTime = func_0200f5ac() >> 16;
         func_ov000_021aefc0(b, 2, 24);
-        s = func_0200fca0();
+        s = IrqDisable();
         if (data_ov000_021b63b4 != 0) {
             b->mUnk_04 = 1;
             func_0200e01c(NULL);
         }
-        func_0200fcb4(s);
+        IrqRestore(s);
         if (b->mState == 4) {
             return 0;
         }

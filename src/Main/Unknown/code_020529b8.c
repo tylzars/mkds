@@ -45,8 +45,8 @@ void func_020529b8(Unk021425e8 *a) {
                 func_02050d80(a->mUnk_10, &a->mUnk_0a[0], (Unk0217aa00_45c *) a->mUnk_14);
                 break;
             case 0:
-                func_0214d1fc(&data_0217aa08->mUnk_00->mUnk_0c, &data_0217aa00->mUnk_045c[0], 0x14);
-                func_0214d1fc(&data_0217aa08->mUnk_00->mUnk_20, &data_0217aa00->mUnk_045c[0].mUnk_224, 4);
+                MemCopy(&data_0217aa08->mUnk_00->mUnk_0c, &data_0217aa00->mUnk_045c[0], 0x14);
+                MemCopy(&data_0217aa08->mUnk_00->mUnk_20, &data_0217aa00->mUnk_045c[0].mUnk_224, 4);
                 v = 0;
                 v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
                 switch (v1) {
@@ -216,13 +216,13 @@ void *func_02052fa4(u32 a, u32 b, void *c) {
     void *r;
 
     r = NULL;
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     if (c != NULL) {
         HeapFree(data_0217aa00->mHeap, c);
     } else {
         r = HeapAllocAligned(data_0217aa00->mHeap, b, -0x20);
     }
-    func_0200fcb4(v1);
+    IrqRestore(v1);
     return r;
 }
 
@@ -498,7 +498,7 @@ BOOL func_0205373c(void) {
                 }
             }
         }
-        func_0214d1fc(v2, &buf[0], 8);
+        MemCopy(v2, &buf[0], 8);
     } else {
         v1 = FALSE;
     }
@@ -507,7 +507,7 @@ BOOL func_0205373c(void) {
             if ((data_0217aa00->mUnk_15f6 & (1 << i)) != 0) {
                 v2 = func_0214461c(data_0217aa00->mUnk_15bc, data_0217aa00->mUnk_15c0, i);
                 if (v2 != NULL) {
-                    func_0214d1fc(v2, &buf[i], 8);
+                    MemCopy(v2, &buf[i], 8);
                 } else {
                     v1 = FALSE;
                     break;
@@ -517,7 +517,7 @@ BOOL func_0205373c(void) {
     }
     for (i = 0; i < 8; i++) {
         if (v1 != FALSE && (data_0217aa00->mUnk_15f6 & (1 << i)) != 0) {
-            func_0214d1fc(&buf[i], &q->mUnk_0c[i], 8);
+            MemCopy(&buf[i], &q->mUnk_0c[i], 8);
             q->mUnk_10[i] = 1;
         } else {
             q->mUnk_10[i] = 0;

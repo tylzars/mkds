@@ -65,7 +65,7 @@ void func_ov000_021a1b2c(Unk0219887c *param_1, s32 param_2) {
                 func_ov000_0219f9bc(data_ov000_021b566c->mUnk_f4[data_ov000_021b566c->mUnk_0d + 1]);
                 return;
             }
-            func_0200d9e0(v1, 12, data_ov000_021b40b8, p->mUnk_1e8);
+            StringFormatBounded(v1, 12, data_ov000_021b40b8, p->mUnk_1e8);
             p = data_ov000_021b566c;
             if (func_ov000_0219e3e4(func_ov000_02198968(
                     *data_ov000_021b566c->mUnk_04, NULL,
@@ -169,7 +169,7 @@ u32 func_ov000_021a1e40(u32 param_1, u32 param_2, u16 param_3, u8 *param_4, u32 
         return 0;
     }
     v = 0;
-    func_0214d018(v, &a, 8);
+    MemFillWords(v, &a, 8);
     a.mUnk_01 = 2;
     a.mUnk_04 = param_2;
     a.mUnk_02 = ((param_3 >> 8) & 0xff) | ((param_3 << 8) & 0xff00);
@@ -371,7 +371,7 @@ void func_ov000_021a2468(const void *param_1, s32 param_2, s32 param_3, s32 para
     data_ov000_021b566c->mUnk_19e = param_4 != 0 ? 1 : 0;
     data_ov000_021b566c->mUnk_45c = param_7;
     data_ov000_021b566c->mUnk_460 = param_8;
-    func_0214d1fc(param_1, data_ov000_021b566c->mUnk_2ec, param_2);
+    MemCopy(param_1, data_ov000_021b566c->mUnk_2ec, param_2);
     data_ov000_021b566c->mUnk_32c = param_2;
     if (param_2 == 0 || (param_2 < param_3 && param_4 == 0 &&
                          (data_ov000_021b5670 == NULL || data_ov000_021b5670->mUnk_00 == 0 ||
@@ -388,10 +388,10 @@ void func_ov000_021a2468(const void *param_1, s32 param_2, s32 param_3, s32 para
     if (data_ov000_021b566c->mUnk_e4 == NULL && func_ov000_0219e594(5) != 0) {
         return;
     }
-    func_0200d9e0(v1, 12, data_ov000_021b40b8, param_3);
+    StringFormatBounded(v1, 12, data_ov000_021b40b8, param_3);
     func_ov000_021a363c(data_ov000_021b411c, v1, v2, 0x2f);
     func_ov000_021a360c(data_ov000_021b4120, param_4 != 0 ? data_ov000_021b41e0 : data_ov000_021b41e4, v2, 0x2f);
-    func_0200d9e0(v1, 12, data_ov000_021b40b8, 3);
+    StringFormatBounded(v1, 12, data_ov000_021b40b8, 3);
     func_ov000_021a360c(data_ov000_021b4118, v1, v2, 0x2f);
     if (func_ov000_0219e608(func_ov000_0219d558(4, v2, NULL)) != 0) {
         return;
@@ -420,7 +420,7 @@ void func_ov000_021a260c(u32 param_1, const void *param_2, u32 param_3, u32 para
             func_ov000_021a1a38(11, -80001);
             return;
         }
-        func_0214d1fc(param_2, data_ov000_021b5674, n);
+        MemCopy(param_2, data_ov000_021b5674, n);
         *((u8 *) data_ov000_021b5674 + n - 1) = 0;
     }
     ((void (*)(u32, u32, u32, u32)) func_ov000_021a10b0)(0, param_1, param_3, param_4);
@@ -458,8 +458,8 @@ u32 func_ov000_021a2768(u32 param_1) {
     do {
         p = data_ov000_021b566c;
         r = func_ov000_021a4a08((Unk021a4a08 **) &data_ov000_021b566c->mUnk_10, GetSocketDescriptor(*p->mUnk_04),
-                                GetSocketPort(*p->mUnk_04), (const char *) p->mUnk_2dc, (const char *) p->mUnk_2e0, 1, 1,
-                                (Unk021a4a08Func88) func_ov000_0219dee0, (Unk021a4a08Func8c) func_ov000_0219dedc,
+                                GetSocketPort(*p->mUnk_04), (const char *) p->mUnk_2dc, (const char *) p->mUnk_2e0, 1,
+                                1, (Unk021a4a08Func88) func_ov000_0219dee0, (Unk021a4a08Func8c) func_ov000_0219dedc,
                                 (Unk021a4a08Func8c) func_ov000_0219ded8, (Unk021a4a08Func94) func_ov000_0219de68,
                                 (Unk021a4a08Func98) func_ov000_0219de64, (Unk021a4a08Func9c) func_ov000_0219de5c, NULL);
         if (r == 0) {
@@ -499,7 +499,7 @@ void func_ov000_021a2870(Unk021b566c *param_1, GpConnection *param_2, void **par
     data_ov000_021b566c->mUnk_2e0 = (u32) param_6;
     data_ov000_021b566c->mUnk_2e4 = (u32) param_7;
     data_ov000_021b566c->mUnk_2e8 = param_8;
-    func_0214d168(data_ov000_021b566c->mUnk_2ec, 0, 0x40);
+    MemFill(data_ov000_021b566c->mUnk_2ec, 0, 0x40);
     data_ov000_021b566c->mUnk_32c = 0;
     data_ov000_021b566c->mUnk_44c = NULL;
     data_ov000_021b566c->mUnk_450 = 0;

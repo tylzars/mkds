@@ -215,7 +215,7 @@ void func_ov000_021adf30(u32 a, Unk021a998c *b) {
     u8 *e;
     u8 *f;
 
-    c = func_0200fca0();
+    c = IrqDisable();
     d = b->mReceiveBufferLength;
     if (a >= d) {
         b->mReceiveBufferLength = 0;
@@ -226,7 +226,7 @@ void func_ov000_021adf30(u32 a, Unk021a998c *b) {
         b->mReceiveBufferLength = (d -= a);
         memmove(e, &(*f), d);
     }
-    func_0200fcb4(c);
+    IrqRestore(c);
     if (b->mState != 0xa && b->mState != 0xb && b->mReceiveBufferLength == 0) {
         func_ov000_021aefb4(b, 0x1b);
     }

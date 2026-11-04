@@ -1,7 +1,7 @@
 #include "code_0214cfe4.h"
 
 // Copies size bytes from src to dst, a halfword at a time.
-void func_0214cffc(const void *src, void *dst, s32 size) {
+void MemCopyHalfwords(const void *src, void *dst, s32 size) {
     s32 i;
 
     i = 0;
@@ -15,7 +15,7 @@ void func_0214cffc(const void *src, void *dst, s32 size) {
 }
 
 // Stores value at dst, a halfword at a time, for size bytes.
-void func_0214cfe4(u16 value, void *dst, s32 size) {
+void MemFillHalfwords(u16 value, void *dst, s32 size) {
     s32 i;
 
     i = 0;

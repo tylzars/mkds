@@ -37,7 +37,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
     s64 q;
     p->mUnk_00[0] = *d;
     p->mUnk_00[3] = *e;
-    func_021484d0(e, d, &t1);
+    Vec3Sub(e, d, &t1);
     n = func_020d70ac(&t1, &t2);
     if (n == 0) {
         p->mUnk_00[1] = p->mUnk_00[0];
@@ -50,7 +50,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
         return;
     }
     if (c != NULL) {
-        func_021484d0(e, c, &t3);
+        Vec3Sub(e, c, &t3);
         if (func_020d70ac(&t3, &t3) != 0) {
             w = (0x1000 - func_02039828(&t2, &t3)) >> 1;
             u = (s32) (((s64) n * (s64) w) >> 12);
@@ -64,7 +64,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
                 t4.y = (s32) (((s64) t3.y * (s64) r) >> 12);
                 t4.z = (s32) (((s64) t3.z * (s64) r) >> 12);
             }
-            func_02147fd8(0x555, &t4, &p->mUnk_00[0], &p->mUnk_00[1]);
+            Vec3AddScaled(0x555, &t4, &p->mUnk_00[0], &p->mUnk_00[1]);
         } else {
             p->mUnk_00[1] = p->mUnk_00[0];
         }
@@ -72,7 +72,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
         p->mUnk_00[1] = p->mUnk_00[0];
     }
     if (f != NULL) {
-        func_021484d0(f, d, &t5);
+        Vec3Sub(f, d, &t5);
         if (func_020d70ac(&t5, &t5) != 0) {
             w = (0x1000 - func_02039828(&t2, &t5)) >> 1;
             v = (s32) (((s64) n * (s64) w) >> 12);
@@ -86,7 +86,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
                 t6.y = (s32) (((s64) t5.y * (s64) r) >> 12);
                 t6.z = (s32) (((s64) t5.z * (s64) r) >> 12);
             }
-            func_02147fd8(-0x555, &t6, &p->mUnk_00[3], &p->mUnk_00[2]);
+            Vec3AddScaled(-0x555, &t6, &p->mUnk_00[3], &p->mUnk_00[2]);
         } else {
             p->mUnk_00[2] = p->mUnk_00[3];
         }
@@ -94,13 +94,13 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
         p->mUnk_00[2] = p->mUnk_00[3];
     }
     p->mUnk_40 = n;
-    p->mUnk_44 = func_02147f34(0x1000000, p->mUnk_40);
+    p->mUnk_44 = DivFixed12(0x1000000, p->mUnk_40);
     p->mUnk_38 = v + (n + u);
-    p->mUnk_3c = func_02147f34(0x1000000, p->mUnk_38);
+    p->mUnk_3c = DivFixed12(0x1000000, p->mUnk_38);
     p->mUnk_30 = p->mUnk_38;
     p->mUnk_34 = p->mUnk_3c;
     if (b != 0) {
-        r = func_0214848c(&t2, &data_02158088);
+        r = Vec3Dot(&t2, &data_02158088);
         p->mUnk_48.x = data_02158088.x - (s32) (((s64) t2.x * (s64) r) >> 12);
         p->mUnk_48.y = data_02158088.y - (s32) (((s64) t2.y * (s64) r) >> 12);
         p->mUnk_48.z = data_02158088.z - (s32) (((s64) t2.z * (s64) r) >> 12);

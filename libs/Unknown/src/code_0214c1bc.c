@@ -26,7 +26,7 @@ void func_0214c6a8(void) {
 // Copies c bytes from a to data_021802ec + b; or, when data_02180300 is not 0, to data_02180300 + b - data_02180304 if
 // b is at least data_02180304. A copy that crosses data_02180304 is split there: the first data_02180304 - b bytes go
 // to data_021802ec + b, the rest to data_02180300. Each part uses func_0214c990 when data_0216f074 is not -1 (the first
-// part uses func_0214cb88 when it is longer than 0x30), else func_0214d02c.
+// part uses func_0214cb88 when it is longer than 0x30), else MemCopyWords.
 void func_0214c544(const void *a, u32 b, u32 c) {
     u8 *p;
     u32 q;
@@ -48,12 +48,12 @@ void func_0214c544(const void *a, u32 b, u32 c) {
             if (data_0216f074[0] != -1 && n > 0x30) {
                 func_0214cb88(data_0216f074[0], a, dst, n);
             } else {
-                func_0214d02c(a, dst, n);
+                MemCopyWords(a, dst, n);
             }
             if (data_0216f074[0] != -1) {
                 func_0214c990(data_0216f074[0], (const u8 *) a + n, p, c - n, 0, 0);
             } else {
-                func_0214d02c((const u8 *) a + n, p, c - n);
+                MemCopyWords((const u8 *) a + n, p, c - n);
             }
             return;
         }
@@ -61,7 +61,7 @@ void func_0214c544(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1) {
         func_0214c990(data_0216f074[0], a, dst, c, 0, 0);
     } else {
-        func_0214d02c(a, dst, c);
+        MemCopyWords(a, dst, c);
     }
 }
 
@@ -87,7 +87,7 @@ void func_0214c418(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1) {
         func_0214c990(data_0216f074[0], a, p, c, 0, 0);
     } else {
-        func_0214d02c(a, p, c);
+        MemCopyWords(a, p, c);
     }
 }
 
@@ -126,7 +126,7 @@ void func_0214c288(const void *a, u32 b) {
     if (data_0216f074[0] != -1) {
         func_0214c990(data_0216f074[0], a, p, b, 0, 0);
     } else {
-        func_0214d02c(a, p, b);
+        MemCopyWords(a, p, b);
     }
 }
 
@@ -135,7 +135,7 @@ void func_0214c214(const void *a, u32 b) {
     if (data_0216f074[0] != -1) {
         func_0214c990(data_0216f074[0], a, p, b, 0, 0);
     } else {
-        func_0214d02c(a, p, b);
+        MemCopyWords(a, p, b);
     }
 }
 

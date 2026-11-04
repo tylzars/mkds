@@ -8,7 +8,7 @@
 void func_ov000_0218a064(const u32 *a, Unk02188ec0 *v1, Unk0218a064 *v2) {
     Unk02188db0 *e;
 
-    func_0214d1fc(data_ov000_021b0738, v2, 0x58);
+    MemCopy(data_ov000_021b0738, v2, 0x58);
     v2->mUnk_04 = a[0];
     v2->mUnk_08 = a[1];
     if (v1->mUnk_d0d < 6) {

@@ -46,7 +46,7 @@ u32 func_ov003_021c8400(void) {
     if (func_ov003_021d2a34(&data_ov003_021d67e8) == 0) {
         return 0xe;
     }
-    c = func_02147d30(*(u16 *) data_ov003_021da210, 0x1d);
+    c = Div32(*(u16 *) data_ov003_021da210, 0x1d);
     b = &a;
     a = data_ov003_021d643c;
     for (d = 0; d < 4; d++, c++, a.mUnk_02 += 0x1d) {
@@ -56,7 +56,7 @@ u32 func_ov003_021c8400(void) {
             }
         }
     }
-    e = func_02147d30(*(u16 *) data_ov003_021da210, 0x1d);
+    e = Div32(*(u16 *) data_ov003_021da210, 0x1d);
     for (d = 0; d < 4; d++, e++) {
         if (e == 2) {
             a = data_ov003_021d644c;
@@ -73,7 +73,7 @@ u32 func_ov003_021c8400(void) {
             break;
         }
     }
-    e = func_02147d30(*(u16 *) data_ov003_021da210, 0x1d);
+    e = Div32(*(u16 *) data_ov003_021da210, 0x1d);
     for (d = 0; d < 4; d++, e++) {
         if (e == 6) {
             a = data_ov003_021d644c;
@@ -104,7 +104,7 @@ u32 func_ov003_021c8400(void) {
 int func_ov003_021c83cc(int a) {
     int v1;
     int v2;
-    v1 = func_02147d30((u32) ((*(u16 *) &data_ov003_021da210)), 0x1d);
+    v1 = Div32((u32) ((*(u16 *) &data_ov003_021da210)), 0x1d);
     v2 = 0;
     do {
         if (v1 == a) {
@@ -118,7 +118,7 @@ int func_ov003_021c83cc(int a) {
 
 int func_ov003_021c83b0(int a) {
     int v1;
-    v1 = func_02147d30((u32) ((*(u16 *) &data_ov003_021da210)), 0x1d);
+    v1 = Div32((u32) ((*(u16 *) &data_ov003_021da210)), 0x1d);
     return v1 + a;
 }
 
@@ -173,7 +173,7 @@ void func_ov003_021c824c(void) {
     u32 a;
     s32 b;
     if (data_ov003_021da214->mUnk_44 != 0) {
-        a = func_02147d30(*(u16 *) data_ov003_021da210, 0x1d);
+        a = Div32(*(u16 *) data_ov003_021da210, 0x1d);
         b = func_02147cd8(*(u16 *) data_ov003_021da210, 0x1d) - 0x33;
         *(vu32 *) 0x4000010 = (b << 16) & 0x1ff0000;
         *(vu32 *) 0x4000018 = ((b + data_ov003_021d6460[a]) << 16) & 0x1ff0000;
@@ -205,7 +205,7 @@ void func_ov003_021c812c(void) {
         return;
     }
     a = (Unk021cdb6c *) func_ov003_021cdb6c();
-    b = data_ov003_021da20c[0] + func_02147d30(*(u16 *) data_ov003_021da210, 0x1d);
+    b = data_ov003_021da20c[0] + Div32(*(u16 *) data_ov003_021da210, 0x1d);
     switch (b) {
         case 2:
             if (a->mUnk_f5 != 0) {

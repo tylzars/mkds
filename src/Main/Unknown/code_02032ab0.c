@@ -65,7 +65,7 @@
 // Fills with 0 through a halfword stack offset of its own.
 static inline void func_02032f94_inline(void *p, s32 n) {
     volatile u16 v = 0;
-    func_0214cfe4(v, p, n);
+    MemFillHalfwords(v, p, n);
 }
 
 static inline Unk0217aa1c_144_00 *func_02032f94_inline_2(s32 j) {
@@ -94,7 +94,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
     s32 f[8];
 
     data_02174e60 = HeapAlloc(a, 0x154);
-    func_0214d05c_inline(data_02174e60, 0x154);
+    MemFillWordsByBlock_inline(data_02174e60, 0x154);
     data_02174e60->mUnk_0b8[0] = b;
     data_02174e60->mUnk_0b8[1] = c;
     data_02174e60->mUnk_0e0 = data_021759d0->mUnk_20;

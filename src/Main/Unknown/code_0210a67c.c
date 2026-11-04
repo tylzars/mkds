@@ -41,12 +41,12 @@ u32 func_0210b6a0(void) {
     u32 value12;
     value1 = 0xafc8000u;
     value0 = 0x384000u;
-    value0 = (u32) func_02147f34((s32) value0, (s32) value1);
+    value0 = (u32) DivFixed12((s32) value0, (s32) value1);
     value2 = (u32) &data_0217ccb0;
     value1 = 0xafc8000u;
     *(u32 *) ((value2) + (0)) = value0;
     value0 = 0x1c2000u;
-    value0 = (u32) func_02147f34((s32) value0, (s32) value1);
+    value0 = (u32) DivFixed12((s32) value0, (s32) value1);
     value3 = (u32) &data_0217ccbc;
     value2 = (u32) &data_0217ccb4;
     value12 = 0u;
@@ -387,10 +387,10 @@ void func_0210abf4(Unk0206bcb0 *a, s32 b, s32 c, s32 d) {
         do {
             if (p->mUnk_18 == 2) {
                 q = p;
-                p = func_0201733c(&a->mUnk_00.mUnk_0c, p);
+                p = ListGetNext(&a->mUnk_00.mUnk_0c, p);
                 func_0210c450(&a->mUnk_00, q, 0);
             } else {
-                p = func_0201733c(&a->mUnk_00.mUnk_0c, p);
+                p = ListGetNext(&a->mUnk_00.mUnk_0c, p);
             }
         } while (p != NULL);
     }

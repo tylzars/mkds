@@ -43,7 +43,7 @@ void func_ov000_021aab74(Unk021a998c_0c *a, u8 *b) {
     u8 *c;
     u8 *p;
     Unk021ab5e4 *s;
-    func_0214d1fc(b + 2, a->mUnk_028, 0x20);
+    MemCopy(b + 2, a->mUnk_028, 0x20);
     n = b[0x22];
     c = b + 0x23;
     s = a->mUnk_000;

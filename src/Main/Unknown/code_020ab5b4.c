@@ -220,7 +220,7 @@ u16 func_020ab748(void) {
 #pragma thumb on
 
 void func_020ab72c(void) {
-    func_0214d05c_inline(&data_0217b2d8, 0x28);
+    MemFillWordsByBlock_inline(&data_0217b2d8, 0x28);
 }
 
 #pragma thumb off

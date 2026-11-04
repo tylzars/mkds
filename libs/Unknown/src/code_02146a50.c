@@ -13,7 +13,7 @@ void func_02146ab4(void) {
 }
 
 void func_02146a50(u32 a, s32 b) {
-    while (func_0214d6e8(14, a, 0) != 0) {
+    while (PxiSendFifoWord(14, a, 0) != 0) {
         WaitByLoop(b);
     }
 }

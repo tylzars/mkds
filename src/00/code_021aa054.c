@@ -22,7 +22,7 @@ s32 func_ov000_021aa054(void *g, u8 *h) {
             f = a->mUnk_3d0;
             func_ov000_021ab7b4((u32 *) f);
             func_ov000_021ab728(f, a->mUnk_090, 0x10);
-            func_0214d168(e, 0x36, 0x30);
+            MemFill(e, 0x36, 0x30);
             func_ov000_021ab728(f, e, 0x30);
             func_ov000_021ab728(f, a->mUnk_1a0, 8);
             func_ov000_021ab728(f, b, 1);
@@ -31,7 +31,7 @@ s32 func_ov000_021aa054(void *g, u8 *h) {
             func_ov000_021ab6d4((s32) f, (u32) d);
             func_ov000_021ab7b4((u32 *) f);
             func_ov000_021ab728(f, a->mUnk_090, 0x10);
-            func_0214d168(e, 0x5c, 0x30);
+            MemFill(e, 0x5c, 0x30);
             func_ov000_021ab728(f, e, 0x30);
             func_ov000_021ab728(f, d, 0x10);
             func_ov000_021ab6d4((s32) f, (u32) d);
@@ -41,7 +41,7 @@ s32 func_ov000_021aa054(void *g, u8 *h) {
             f = a->mUnk_31c;
             func_ov000_021abd2c((u32 *) f);
             func_ov000_021abca0(f, a->mUnk_090, 0x14);
-            func_0214d168(e, 0x36, 0x28);
+            MemFill(e, 0x36, 0x28);
             func_ov000_021abca0(f, e, 0x28);
             func_ov000_021abca0(f, a->mUnk_1a0, 8);
             func_ov000_021abca0(f, b, 1);
@@ -50,7 +50,7 @@ s32 func_ov000_021aa054(void *g, u8 *h) {
             func_ov000_021abc4c((s32) f, (u32) d);
             func_ov000_021abd2c((u32 *) f);
             func_ov000_021abca0(f, a->mUnk_090, 0x14);
-            func_0214d168(e, 0x5c, 0x28);
+            MemFill(e, 0x5c, 0x28);
             func_ov000_021abca0(f, e, 0x28);
             func_ov000_021abca0(f, d, 0x14);
             func_ov000_021abc4c((s32) f, (u32) d);

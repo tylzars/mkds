@@ -42,7 +42,7 @@ void func_02015d68(Unk020152bc *a, Unk02015d68_b *b, Unk02015428_c *c) {
     a->mUnk_19 = c->mUnk_18;
     a->mUnk_08 = b;
     v = 0;
-    func_0214cfe4(v, a->mUnk_1a, a->mUnk_19 * 2);
+    MemFillHalfwords(v, a->mUnk_1a, a->mUnk_19 * 2);
     for (i = 0; i < b->mUnk_0d; i++) {
         tab = (u8 *) b + 0xc + b->mUnk_12;
         k = func_02013754(r + 4, (const u32 *) (tab + *(u16 *) (tab + 2) + i * 16));
@@ -75,13 +75,13 @@ void func_02015c7c(Unk02015b9c_o *a, const u32 *b, Unk02015b9c *c) {
     if (x == c->mUnk_2c) {
         x = 0x1000;
     } else {
-        x = func_02147f34(x << 12, c->mUnk_2c << 12);
+        x = DivFixed12(x << 12, c->mUnk_2c << 12);
     }
     c->mUnk_30 = x;
     if (y == c->mUnk_2e) {
         y = 0x1000;
     } else {
-        y = func_02147f34(y << 12, c->mUnk_2e << 12);
+        y = DivFixed12(y << 12, c->mUnk_2e << 12);
     }
     c->mUnk_34 = y;
 }
@@ -299,7 +299,7 @@ void func_020157d8(Unk020152bc *a, Unk02015428_b *b, Unk02015428_c *c) {
     a->mUnk_0c = data_021617dc;
     a->mUnk_19 = c->mUnk_18;
     v = 0;
-    func_0214cfe4(v, a->mUnk_1a, a->mUnk_19 * 2);
+    MemFillHalfwords(v, a->mUnk_1a, a->mUnk_19 * 2);
     for (i = 0; i < b->mUnk_09; i++) {
         tab = (u8 *) b + 8 + b->mUnk_0e;
         k = func_02013754(r + 4, (const u32 *) (tab + *(u16 *) (tab + 2) + i * 16));
@@ -425,7 +425,7 @@ void func_02015428(Unk020152bc *a, Unk02015428_b *b, Unk02015428_c *c) {
     a->mUnk_0c = data_021617e4;
     a->mUnk_19 = c->mUnk_18;
     v = 0;
-    func_0214cfe4(v, a->mUnk_1a, a->mUnk_19 * 2);
+    MemFillHalfwords(v, a->mUnk_1a, a->mUnk_19 * 2);
     for (i = 0; i < b->mUnk_09; i++) {
         tab = (u8 *) b + 8 + b->mUnk_0e;
         k = func_02013754(r + 4, (const u32 *) (tab + *(u16 *) (tab + 2) + i * 16));
@@ -462,7 +462,7 @@ void func_020152bc(Unk020152bc *a, Unk02014c5c *b, Unk020152bc_c *c) {
     a->mUnk_0c = data_021617d8;
     a->mUnk_19 = c->mUnk_17;
     v = 0;
-    func_0214cfe4(v, a->mUnk_1a, a->mUnk_19 * 2);
+    MemFillHalfwords(v, a->mUnk_1a, a->mUnk_19 * 2);
     q = b->mUnk_14;
     for (i = 0; i < b->mUnk_06; i++) {
         a->mUnk_1a[i] = (*(u32 *) ((u8 *) b + q[i]) >> 24) | 0x100;
@@ -1107,13 +1107,13 @@ void func_02014164(s32 *out, s32 a, const u32 *p, Unk02014c5c *obj) {
                     out[3] = out[3] * 3 + t[3];
                     out[4] = out[4] * 3 + t[4];
                     out[5] = out[5] * 3 + t[5];
-                    func_0214818c((Vec3 *) out, (Vec3 *) out);
-                    func_0214818c((Vec3 *) (out + 3), (Vec3 *) (out + 3));
+                    Vec3Normalize((Vec3 *) out, (Vec3 *) out);
+                    Vec3Normalize((Vec3 *) (out + 3), (Vec3 *) (out + 3));
                     if (f == 0) {
                         out[6] = out[6] * 3 + t[6];
                         out[7] = out[7] * 3 + t[7];
                         out[8] = out[8] * 3 + t[8];
-                        func_0214818c((Vec3 *) (out + 6), (Vec3 *) (out + 6));
+                        Vec3Normalize((Vec3 *) (out + 6), (Vec3 *) (out + 6));
                     } else {
                         x5 = out[5];
                         x0 = out[0];
@@ -1142,13 +1142,13 @@ void func_02014164(s32 *out, s32 a, const u32 *p, Unk02014c5c *obj) {
         out[3] += u[3];
         out[4] += u[4];
         out[5] += u[5];
-        func_0214818c((Vec3 *) out, (Vec3 *) out);
-        func_0214818c((Vec3 *) (out + 3), (Vec3 *) (out + 3));
+        Vec3Normalize((Vec3 *) out, (Vec3 *) out);
+        Vec3Normalize((Vec3 *) (out + 3), (Vec3 *) (out + 3));
         if (f == 0) {
             out[6] += u[6];
             out[7] += u[7];
             out[8] += u[8];
-            func_0214818c((Vec3 *) (out + 6), (Vec3 *) (out + 6));
+            Vec3Normalize((Vec3 *) (out + 6), (Vec3 *) (out + 6));
         } else {
             x5 = out[5];
             x0 = out[0];
@@ -1270,14 +1270,14 @@ interp:
     out[3] = t[3] * m + ((q * (u[3] - t[3])) >> 12);
     out[4] = t[4] * m + ((q * (u[4] - t[4])) >> 12);
     out[5] = t[5] * m + ((q * (u[5] - t[5])) >> 12);
-    func_0214818c((Vec3 *) out, (Vec3 *) out);
-    func_0214818c((Vec3 *) (out + 3), (Vec3 *) (out + 3));
+    Vec3Normalize((Vec3 *) out, (Vec3 *) out);
+    Vec3Normalize((Vec3 *) (out + 3), (Vec3 *) (out + 3));
     if (f == 0) {
         out[6] = t[6] * m + ((q * (u[6] - t[6])) >> 12);
         out[7] = t[7] * m + ((q * (u[7] - t[7])) >> 12);
         r = t[8];
         out[8] = t[8] * m + ((q * (u[8] - r)) >> 12);
-        func_0214818c((Vec3 *) (out + 6), (Vec3 *) (out + 6));
+        Vec3Normalize((Vec3 *) (out + 6), (Vec3 *) (out + 6));
     } else {
         h = out[5];
         x0 = out[0];

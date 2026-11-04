@@ -37,7 +37,7 @@ void func_0210bfbc(Unk0210bfbc *p) {
     u8 f;
 
     v = 3;
-    for (a = p->mUnk_0c.mUnk_00; a != NULL; a = func_0201733c(&p->mUnk_0c, a)) {
+    for (a = p->mUnk_0c.mUnk_00; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
         f = a->mUnk_19;
         if (f & 2) {
             v = 0;

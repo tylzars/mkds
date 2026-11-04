@@ -42,10 +42,10 @@ static inline void func_0205dee0_inline(void *c, void *e) {
     u32 f;
     if (FS_LoadOverlay(0, (u32) e) != 0) {
         func_0200cc74(1, NULL);
-        func_0200ca9c(1);
+        InterruptEnableClearBits(1);
         reg_OS_IME;
         reg_OS_IME = 0;
-        func_0200fca0();
+        IrqDisable();
         func_02148a58(0);
         func_ov000_021a397c(2);
         f = 1;

@@ -904,7 +904,7 @@ void func_020be9d4(void) {
             }
             n = (s32) f;
             data_0217b3dc->mUnk_004 = (s32) (((s64) n * 20) >> 12);
-            data_0217b3dc->mUnk_008 = func_02147f34(0x2400, data_0217b3dc->mUnk_004);
+            data_0217b3dc->mUnk_008 = DivFixed12(0x2400, data_0217b3dc->mUnk_004);
             func_020b503c(func_020b1d34(), data_0217b3dc->mUnk_004);
             func_0207a91c(&v, func_020b4d9c());
             data_0217b3dc->mUnk_000 = func_020b4e70(&v) != 0 ? 0 : 3;

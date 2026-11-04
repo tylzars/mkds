@@ -15,7 +15,7 @@ void func_020579d0(u32 a, const void *b) {
     t = a * 0xe00;
     p = data_021759d4->mUnk_60;
     if (data_021759d4->mUnk_0c != 0) {
-        func_0214d1fc(b, p, 0xe00);
+        MemCopy(b, p, 0xe00);
         *(u32 *) p = 0x47504b4e;
         func_0204b418(t + 0xaf00, p, 0xe00, 0);
     }
@@ -42,7 +42,7 @@ void func_02057944(s32 a, const void *b) {
     t = a << 12;
     p = data_021759d4->mUnk_60;
     if (data_021759d4->mUnk_0c != 0) {
-        func_0214d1fc(b, p, 0x1000);
+        MemCopy(b, p, 0x1000);
         *(u32 *) p = 0x47444b4e;
         func_0204b418(t + 0x26f00, p, 0x1000, 0);
     }

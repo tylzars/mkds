@@ -52,7 +52,7 @@ void func_02152744(Unk02152490 *a) {
 void func_021527ac(Unk02152500 *a, u32 b) {
     u32 t[0x100];
 
-    func_0214d168(a, 0, 0x40);
+    MemFill(a, 0, 0x40);
     a->mUnk_00 = 0x40;
     a->mUnk_1c = 0;
     a->mUnk_24 = b;
@@ -69,7 +69,7 @@ void func_02152808(const Unk02152490 *a, u32 b, char *c) {
 
     func_0215286c(func_02152ac8(a), 0x2b, d);
     func_0215286c(func_02152ac4(a), 0x20, e);
-    func_0200d9e0(c, 0x15, data_0216f2a0, d, (u8) (b >> 24), (u8) (b >> 16), (u8) (b >> 8), (u8) b, e);
+    StringFormatBounded(c, 0x15, data_0216f2a0, d, (u8) (b >> 24), (u8) (b >> 16), (u8) (b >> 8), (u8) b, e);
 }
 
 void func_0215286c(u64 a, s32 n, char *c) {

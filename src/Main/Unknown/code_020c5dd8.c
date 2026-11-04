@@ -267,7 +267,7 @@ found:
         e->mUnk_02 = n0;
         e->mUnk_03 = n1;
         g[k].mUnk_00 = n2;
-        func_0214cffc(data_021759c0->mUnk_68[func_020b4d9c()].mUnk_08.mUnk_18, e->mUnk_04, 0x14);
+        MemCopyHalfwords(data_021759c0->mUnk_68[func_020b4d9c()].mUnk_08.mUnk_18, e->mUnk_04, 0x14);
         e->mUnk_18 = 1;
         e->mUnk_19 = data_021759c0->mUnk_68[func_020b4d9c()].mCharacterIndex;
         e->mUnk_1a = data_021759c0->mUnk_68[func_020b4d9c()].mKartIndex;
@@ -307,7 +307,7 @@ BOOL func_020c6428(s32 a) {
         e->mUnk_02 = n0;
         e->mUnk_03 = n1;
         g[5].mUnk_00 = n2;
-        func_0214cffc(data_021759c0->mUnk_68[func_020b4d9c()].mUnk_08.mUnk_18, e->mUnk_04, 0x14);
+        MemCopyHalfwords(data_021759c0->mUnk_68[func_020b4d9c()].mUnk_08.mUnk_18, e->mUnk_04, 0x14);
         e->mUnk_18 = 1;
         e->mUnk_19 = data_021759c0->mUnk_68[func_020b4d9c()].mCharacterIndex;
         e->mUnk_1a = data_021759c0->mUnk_68[func_020b4d9c()].mKartIndex;
@@ -352,7 +352,7 @@ void func_020c610c(void) {
             r = FALSE;
             if (func_020ba620() != 0) {
                 if (data_021759c0->mUnk_08 == 1 && data_021759c0->mUnk_3e6 == 1) {
-                    func_0214d1fc(&data_021759c0->mUnk_3e2, &x, 4);
+                    MemCopy(&data_021759c0->mUnk_3e2, &x, 4);
                     v1 = TRUE;
                 } else {
                     v1 = FALSE;
@@ -422,7 +422,7 @@ void func_020c5f7c(void) {
     r = FALSE;
     if (func_020ba620() != 0) {
         if (data_021759c0->mUnk_08 == 1 && data_021759c0->mUnk_3e6 == 1) {
-            func_0214d1fc(&data_021759c0->mUnk_3e2, &x, 4);
+            MemCopy(&data_021759c0->mUnk_3e2, &x, 4);
             v1 = TRUE;
         } else {
             v1 = FALSE;

@@ -93,12 +93,12 @@ void func_ov000_021aea34(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
                 c = 1;
             }
             if (param_3 != 0) {
-                g = func_0200fca0();
-                func_0214d1fc((u8 *) param_2 + (param_2->mUnk_0c & 0xf0) / 4,
-                              (u8 *) a->mReceiveBuffer + a->mReceiveBufferLength, param_3);
+                g = IrqDisable();
+                MemCopy((u8 *) param_2 + (param_2->mUnk_0c & 0xf0) / 4,
+                        (u8 *) a->mReceiveBuffer + a->mReceiveBufferLength, param_3);
                 a->mReceiveBufferLength += param_3;
                 a->mUnk_24 += param_3;
-                func_0200fcb4(g);
+                IrqRestore(g);
                 if (a->mUnk_04 == 2) {
                     a->mUnk_04 = 0;
                     func_0200df68(a->mThread);
@@ -237,7 +237,7 @@ void func_ov000_021aeed8(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
     Unk021a998c *p;
 
     p = &data_ov000_021b64f8;
-    func_0214d168(p, 0, 0x64);
+    MemFill(p, 0, 0x64);
     p->mUnk_0a = (u16) ((param_2->mUnk_02 >> 8) | (param_2->mUnk_02 << 8));
     p->mUnk_18 = (u16) ((param_2->mUnk_00 >> 8) | (param_2->mUnk_00 << 8));
     p->mUnk_1c = (u32) (((u16) ((param_1->mUnk_0c >> 8) | (param_1->mUnk_0c << 8)) << 16) |

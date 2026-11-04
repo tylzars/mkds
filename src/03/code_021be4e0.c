@@ -27,7 +27,7 @@ void func_ov003_021be59c(u32 a, s32 b, s32 c) {
 }
 
 void func_ov003_021be568(void) {
-    u32 a = func_0200fca0();
+    u32 a = IrqDisable();
     s32 i;
 
     data_ov003_021d8c38 = 0;
@@ -35,11 +35,11 @@ void func_ov003_021be568(void) {
     for (i = 0; i < 4; i++) {
         data_ov003_021d8c6c[i] = 0;
     }
-    func_0200fcb4(a);
+    IrqRestore(a);
 }
 
 u32 func_ov003_021be528(void) {
-    u32 a = func_0200fca0();
+    u32 a = IrqDisable();
     s32 b = data_ov003_021d8c3c;
     u32 c;
 
@@ -53,7 +53,7 @@ u32 func_ov003_021be528(void) {
             data_ov003_021d8c3c = 0;
         }
     }
-    func_0200fcb4(a);
+    IrqRestore(a);
     return c;
 }
 

@@ -122,17 +122,17 @@ BOOL func_02041a70(Vec3 *a, Unk02175620_74 *b) {
     s32 d;
     s32 t;
 
-    func_021484d0(a, (Vec3 *) b, &v);
-    d = func_0214848c(&v, &b->mUnk_24);
+    Vec3Sub(a, (Vec3 *) b, &v);
+    d = Vec3Dot(&v, &b->mUnk_24);
     if (d > (s32) (((s64) b->mUnk_0c.y * 0x64000 + 0x800) >> 12) || d < 0) {
         return FALSE;
     }
-    d = func_0214848c(&v, &b->mUnk_18);
+    d = Vec3Dot(&v, &b->mUnk_18);
     t = (s32) (((s64) b->mUnk_0c.x * 0x32000 + 0x800) >> 12);
     if (d < -t || d > t) {
         return FALSE;
     }
-    d = func_0214848c(&v, &b->mUnk_30);
+    d = Vec3Dot(&v, &b->mUnk_30);
     t = (s32) (((s64) b->mUnk_0c.z * 0x32000 + 0x800) >> 12);
     if (d < -t || d > t) {
         return FALSE;
@@ -154,10 +154,10 @@ s32 func_02041944(Vec3 *a, Unk02175620_74 *b) {
             r = func_02041a70(a, b);
             break;
         case 1:
-            func_021484d0(a, (Vec3 *) b, &v);
-            if (func_0214848c(&v, &b->mUnk_24) <= (s32) (((s64) b->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                x = func_0214848c(&v, &b->mUnk_18) >> 4;
-                y = func_0214848c(&v, &b->mUnk_30) >> 4;
+            Vec3Sub(a, (Vec3 *) b, &v);
+            if (Vec3Dot(&v, &b->mUnk_24) <= (s32) (((s64) b->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                x = Vec3Dot(&v, &b->mUnk_18) >> 4;
+                y = Vec3Dot(&v, &b->mUnk_30) >> 4;
                 z = (s32) (((s64) b->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
                 if ((s32) (((s64) z * z + 0x800) >> 12) >=
                     (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
@@ -188,10 +188,10 @@ s32 func_0204176c(Vec3 *a, s32 *b) {
                     t = func_02041a70(a, p);
                     break;
                 case 1:
-                    func_021484d0(a, (Vec3 *) p, &v);
-                    if (func_0214848c(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                        x = func_0214848c(&v, &p->mUnk_18) >> 4;
-                        y = func_0214848c(&v, &p->mUnk_30) >> 4;
+                    Vec3Sub(a, (Vec3 *) p, &v);
+                    if (Vec3Dot(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                        x = Vec3Dot(&v, &p->mUnk_18) >> 4;
+                        y = Vec3Dot(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
                         if ((s32) (((s64) z * z + 0x800) >> 12) >=
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
@@ -236,10 +236,10 @@ void *func_02041588(Vec3 *a) {
                     t = func_02041a70(a, p);
                     break;
                 case 1:
-                    func_021484d0(a, (Vec3 *) p, &v);
-                    if (func_0214848c(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                        x = func_0214848c(&v, &p->mUnk_18) >> 4;
-                        y = func_0214848c(&v, &p->mUnk_30) >> 4;
+                    Vec3Sub(a, (Vec3 *) p, &v);
+                    if (Vec3Dot(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                        x = Vec3Dot(&v, &p->mUnk_18) >> 4;
+                        y = Vec3Dot(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
                         if ((s32) (((s64) z * z + 0x800) >> 12) >=
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
@@ -279,10 +279,10 @@ Unk02175620_bc *func_020413a4(Vec3 *a) {
                     t = func_02041a70(a, p);
                     break;
                 case 1:
-                    func_021484d0(a, (Vec3 *) p, &v);
-                    if (func_0214848c(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                        x = func_0214848c(&v, &p->mUnk_18) >> 4;
-                        y = func_0214848c(&v, &p->mUnk_30) >> 4;
+                    Vec3Sub(a, (Vec3 *) p, &v);
+                    if (Vec3Dot(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                        x = Vec3Dot(&v, &p->mUnk_18) >> 4;
+                        y = Vec3Dot(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
                         if ((s32) (((s64) z * z + 0x800) >> 12) >=
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
@@ -321,10 +321,10 @@ s32 func_020411e4(Vec3 *a) {
                     t = func_02041a70(a, p);
                     break;
                 case 1:
-                    func_021484d0(a, (Vec3 *) p, &v);
-                    if (func_0214848c(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                        x = func_0214848c(&v, &p->mUnk_18) >> 4;
-                        y = func_0214848c(&v, &p->mUnk_30) >> 4;
+                    Vec3Sub(a, (Vec3 *) p, &v);
+                    if (Vec3Dot(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                        x = Vec3Dot(&v, &p->mUnk_18) >> 4;
+                        y = Vec3Dot(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
                         if ((s32) (((s64) z * z + 0x800) >> 12) >=
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
@@ -455,10 +455,10 @@ s32 func_02040de0(s32 a, u32 b) {
                 t = func_02041a70(&v, p);
                 break;
             case 1:
-                func_021484d0(&v, (Vec3 *) p, &w);
-                if (func_0214848c(&w, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                    x = func_0214848c(&w, &p->mUnk_18) >> 4;
-                    y = func_0214848c(&w, &p->mUnk_30) >> 4;
+                Vec3Sub(&v, (Vec3 *) p, &w);
+                if (Vec3Dot(&w, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                    x = Vec3Dot(&w, &p->mUnk_18) >> 4;
+                    y = Vec3Dot(&w, &p->mUnk_30) >> 4;
                     z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
                     if ((s32) (((s64) z * z + 0x800) >> 12) >=
                         (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {

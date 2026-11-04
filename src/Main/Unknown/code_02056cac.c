@@ -8,7 +8,7 @@
 
 void func_02056cac(Unk0217aa08_0c_04 *a, Unk02056bc0 *b) {
     if (b->mUnk_18 != 0) {
-        func_0214d1fc(b->mUnk_04, a->mUnk_08, 0x14);
+        MemCopy(b->mUnk_04, a->mUnk_08, 0x14);
         a->mUnk_00_0 = 1;
         a->mUnk_00_1 = b->mUnk_19;
         a->mUnk_04 = b->mUnk_1a;
@@ -16,7 +16,7 @@ void func_02056cac(Unk0217aa08_0c_04 *a, Unk02056bc0 *b) {
         a->mUnk_00_15 = b->mUnk_03;
         a->mUnk_00_22 = b->mUnk_00;
     } else {
-        func_0214d168(a, 0, 0x1c);
+        MemFill(a, 0, 0x1c);
     }
 }
 

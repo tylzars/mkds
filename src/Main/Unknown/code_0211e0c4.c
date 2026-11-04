@@ -97,8 +97,8 @@ void func_0211e2f8(u32 a, void *b) {
         case 4:
             break;
     }
-    func_0214d168(b, 0, 0x20);
-    func_0214cffc(buf, b, 0x14);
+    MemFill(b, 0, 0x20);
+    MemCopyHalfwords(buf, b, 0x14);
 }
 
 s32 func_0211e274(u32 a) {

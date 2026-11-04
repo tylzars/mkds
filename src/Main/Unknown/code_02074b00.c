@@ -42,7 +42,7 @@ void func_02074b00(Unk02061808 *p) {
 
     p->mUnk_0b4 = p->mUnk_018;
     b = o->mUnk_80;
-    func_02147fd8(q->mUnk_00.z, &o->mUnk_120, &o->mUnk_80, &a);
+    Vec3AddScaled(q->mUnk_00.z, &o->mUnk_120, &o->mUnk_80, &a);
     a.y = 0x1f4000;
     b.y = 0x1f4000;
     c = o->mUnk_138;
@@ -51,8 +51,8 @@ void func_02074b00(Unk02061808 *p) {
         func_02039860(&c, &c);
     }
     func_02074b00_inline(&c, &c, q->mUnk_00.x);
-    func_02148504(&a, &c, &a);
-    func_02148504(&b, &c, &b);
+    Vec3Add(&a, &c, &a);
+    Vec3Add(&b, &c, &b);
     if (func_02061fb8() < q->mUnk_46) {
         p->mUnk_018 = b;
         p->mUnk_024 = a;
@@ -60,19 +60,19 @@ void func_02074b00(Unk02061808 *p) {
         p->mUnk_018 = b;
         p->mUnk_024 = a;
         p->mUnk_144 = p->mUnk_144 + 0x52;
-        func_021484d0(&p->mUnk_134, &p->mUnk_024, &p->mUnk_0a8);
-        func_021484d0(&p->mUnk_0b4, &p->mUnk_018, &p->mUnk_0b4);
-        func_02147fd8(p->mUnk_144, &p->mUnk_0a8, &a, &p->mUnk_024);
-        func_02147fd8(p->mUnk_144, &p->mUnk_0b4, &b, &p->mUnk_018);
+        Vec3Sub(&p->mUnk_134, &p->mUnk_024, &p->mUnk_0a8);
+        Vec3Sub(&p->mUnk_0b4, &p->mUnk_018, &p->mUnk_0b4);
+        Vec3AddScaled(p->mUnk_144, &p->mUnk_0a8, &a, &p->mUnk_024);
+        Vec3AddScaled(p->mUnk_144, &p->mUnk_0b4, &b, &p->mUnk_018);
     }
     func_02076cd0(p);
-    func_021484d0(&a, &b, &d);
+    Vec3Sub(&a, &b, &d);
     if ((s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z >= 0x10) {
         func_02039860(&d, &d);
     }
     func_02146f98((Unk02012f58 *) m, &data_usa_02154fc4, data_0215d4b4[(data_usa_021656a0 >> 4) * 2],
                   data_0215d4b4[(data_usa_021656a0 >> 4) * 2 + 1]);
-    func_02146d78(&d, m, &d);
+    Vec3MultiplyMatrix3x3(&d, m, &d);
     d.x = (s32) (((s64) d.x * 0xfae) >> 12);
     d.y = (s32) (((s64) d.y * 0xfae) >> 12);
     d.z = (s32) (((s64) d.z * 0xfae) >> 12);
@@ -137,7 +137,7 @@ void func_02074e6c(Unk02061808 *p) {
     l = (u16) ((s32) (((s64) q->mUnk_24.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
     func_02146f98((Unk02012f58 *) m0, &o->mUnk_120, data_0215d4b4[(o->mUnk_2c0 >> 4) * 2],
                   data_0215d4b4[(o->mUnk_2c0 >> 4) * 2 + 1]);
-    func_02146d78(&a, m0, &a);
+    Vec3MultiplyMatrix3x3(&a, m0, &a);
     b = a;
     c = b;
     d = b;
@@ -147,9 +147,9 @@ void func_02074e6c(Unk02061808 *p) {
     func_02146f98((Unk02012f58 *) m2, &g, data_0215d4b4[(i >> 4) * 2], data_0215d4b4[(i >> 4) * 2 + 1]);
     func_02146f98((Unk02012f58 *) m3, &f, data_0215d4b4[(j >> 4) * 2], data_0215d4b4[(j >> 4) * 2 + 1]);
     func_02146dfc(m3, m2, m4);
-    func_02146d78(&d, m4, &d);
+    Vec3MultiplyMatrix3x3(&d, m4, &d);
     func_02074b00_inline(&t, &d, q->mUnk_18.z);
-    func_02148504(&p->mUnk_018, &t, &p->mUnk_024);
+    Vec3Add(&p->mUnk_018, &t, &p->mUnk_024);
     f.x = -f.x;
     f.y = -f.y;
     f.z = -f.z;
@@ -161,8 +161,8 @@ void func_02074e6c(Unk02061808 *p) {
     func_02146dfc(m5, m2, m5);
     func_02146dfc(m6, m3, m6);
     func_02146dfc(m6, m5, m7);
-    func_02146d78(&n, m7, &n);
-    func_02148504(&p->mUnk_024, &n, &p->mUnk_018);
+    Vec3MultiplyMatrix3x3(&n, m7, &n);
+    Vec3Add(&p->mUnk_024, &n, &p->mUnk_018);
     p->mUnk_018.y = p->mUnk_018.y - o->mUnk_2bc;
     p->mUnk_024.y = p->mUnk_024.y - o->mUnk_2bc;
     if (data_021759c0->mUnk_08 != 4 && data_021759c0->mUnk_08 != 2) {
@@ -170,11 +170,11 @@ void func_02074e6c(Unk02061808 *p) {
                           NULL, NULL, NULL, NULL) != 0) {
             o = func_0207a974(p->mUnk_210);
             v = &o->mUnk_120;
-            k = func_0214848c(v, &w);
+            k = Vec3Dot(v, &w);
             w.x = (s32) (((s64) o->mUnk_120.x * k) >> 12);
             w.y = (s32) (((s64) v->y * k) >> 12);
             w.z = (s32) (((s64) v->z * k) >> 12);
-            func_02148504(&w, &p->mUnk_024, &p->mUnk_024);
+            Vec3Add(&w, &p->mUnk_024, &p->mUnk_024);
         }
     }
     func_02076cd0(p);
@@ -342,7 +342,6 @@ void func_02075900(Unk02061808 *p) {
     if (a->mUnk_3c != 0) {
         enum { K0 } t = p->mUnk_240;
         Unk020748b8_218 *q = a;
-
 
         s32 x0 = q->mUnk_32;
         s32 y0 = q->mUnk_34;

@@ -232,20 +232,20 @@ void func_0204bb34(void *a) {
     o = FS_FindArchive(data_usa_021651d0, 3);
     g = (Unk02175ec0 *) &data_02175ec0;
     while (1) {
-        s = func_0200fca0();
+        s = IrqDisable();
         b = (Unk021762e0 *) &data_usa_021762e0;
         r = b->mUnk_46c8;
         if (r == NULL) {
             do {
                 if (g->mUnk_000c == 0) {
-                    func_0200fcb4(s);
+                    IrqRestore(s);
                     return;
                 }
                 func_0200e01c(NULL);
                 r = b->mUnk_46c8;
             } while (r == NULL);
         }
-        func_0200fcb4(s);
+        IrqRestore(s);
         if (r->mUnk_80 == 1) {
             FS_OpenFileDirect(&r->mUnk_38, o, r->mUnk_90, r->mUnk_90 + r->mUnk_94, r->mUnk_8c);
             i = 0;
@@ -260,14 +260,14 @@ void func_0204bb34(void *a) {
             r->mUnk_98 = 0;
             r->mUnk_a0 = 1;
             r->mUnk_9c = 2;
-            s2 = func_0200fca0();
+            s2 = IrqDisable();
             func_0204d18c(&data_usa_021762e0, (Unk0204c090 *) r, 1);
-            func_0200fcb4(s2);
+            IrqRestore(s2);
         } else {
             FS_CloseFile(&r->mUnk_38);
-            s2 = func_0200fca0();
+            s2 = IrqDisable();
             func_0204d0bc(&data_usa_021762e0, (Unk0204c090 *) r);
-            func_0200fcb4(s2);
+            IrqRestore(s2);
         }
     }
 }

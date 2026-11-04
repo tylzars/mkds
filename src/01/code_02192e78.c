@@ -64,10 +64,10 @@ void func_ov001_021930ac(void) {
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 1;
     d1 = (void *) func_0214a2f4();
     a = 0;
-    func_0214d05c(a, d1, 0x1000);
+    MemFillWordsByBlock(a, d1, 0x1000);
     d2 = (void *) func_0214a2a0();
     b = 0;
-    func_0214d05c(b, d2, 0x1000);
+    MemFillWordsByBlock(b, d2, 0x1000);
 }
 
 void InitOptionStates(void *heap, s16 a) {

@@ -96,7 +96,7 @@ int func_020071b4(void) {
     int v2;
     Unk0216fdac *v3;
     v1[0] = 0;
-    func_0214cfe4(v1[0], &v1[1], 10);
+    MemFillHalfwords(v1[0], &v1[1], 10);
     i = 1;
     v3 = data_0216fdac;
     for (; i <= 15; i++) {

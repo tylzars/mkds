@@ -3,7 +3,7 @@
 
 u8 *func_ov000_021ad734(u8 a, u32 b, u8 *c, u32 d) {
     if (d < b) {
-        func_0214d168(c, a, b - d);
+        MemFill(c, a, b - d);
         c = c + (b - d);
     }
     return c;

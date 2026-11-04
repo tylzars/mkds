@@ -37,7 +37,7 @@ void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
             if (p->mUnk_74 & 0x1000) {
                 break;
             }
-            func_021484d0(&p->mUnk_0e4, c, &v);
+            Vec3Sub(&p->mUnk_0e4, c, &v);
             if (!(p->mUnk_74 & 0x8000) && (p->mUnk_74 & 0x1000000)) {
                 func_020f7c90(p, c, &v);
                 break;
@@ -90,7 +90,7 @@ void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
             if (n != 0) {
                 func_020f6be8(p, c, d, &v2);
             } else {
-                func_021484d0(&p->mUnk_50, c, &v2);
+                Vec3Sub(&p->mUnk_50, c, &v2);
                 if (v2.y < 0) {
                     v2.y = 0;
                 }

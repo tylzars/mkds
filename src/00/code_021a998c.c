@@ -23,7 +23,7 @@ void func_ov000_021a998c(Unk021a998c *a) {
     msg[3] = 0;
     msg[4] = 1;
     msg[5] = 1;
-    func_0214d168(obj->mUnk_1a0, 0, 8);
+    MemFill(obj->mUnk_1a0, 0, 8);
     msg[6] = 0x16;
     msg[7] = 3;
     msg[8] = 0;
@@ -33,12 +33,12 @@ void func_ov000_021a998c(Unk021a998c *a) {
     msg[12] = 0;
     msg[13] = 0;
     msg[14] = 0x24;
-    func_0214d1fc(obj->mUnk_378, obj->mUnk_3d0, 0x58);
+    MemCopy(obj->mUnk_378, obj->mUnk_3d0, 0x58);
     func_ov000_021aa50c(obj, msg + 0xf, 0);
-    func_0214d1fc(obj->mUnk_3d0, obj->mUnk_378, 0x58);
-    func_0214d1fc(obj->mUnk_2c0, obj->mUnk_31c, 0x5c);
+    MemCopy(obj->mUnk_3d0, obj->mUnk_378, 0x58);
+    MemCopy(obj->mUnk_2c0, obj->mUnk_31c, 0x5c);
     func_ov000_021aa468(obj, msg + 0x1f, 0);
-    func_0214d1fc(obj->mUnk_31c, obj->mUnk_2c0, 0x5c);
+    MemCopy(obj->mUnk_31c, obj->mUnk_2c0, 0x5c);
     func_ov000_021abca0(obj->mUnk_2c0, msg + 0xb, 0x28);
     func_ov000_021ab728(obj->mUnk_378, msg + 0xb, 0x28);
     func_ov000_021adcec(msg, func_ov000_021aa054(obj, msg + 6) + 6, NULL, 0, a);

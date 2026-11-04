@@ -734,7 +734,7 @@ void func_02148c20(void) {
 // Updates the halfword at 0x4000304, calls func_02148c20, then calls func_0200cd28 until data_021802a8 is nonzero
 // (calling func_0200fd1c when it returns -3). Zeroes 0x4000004 and 0x4000000, then passes 0 with the ranges
 // 0x4000008 (size 0x60) and 0x4001000 (size 0x70) to func_0214cc04 when data_0216f074[0] is not -1 and to
-// func_0214d018 otherwise, with the halfword at 0x400006c zeroed in between. Finally stores 0x100 in the halfwords
+// MemFillWords otherwise, with the halfword at 0x400006c zeroed in between. Finally stores 0x100 in the halfwords
 // at 0x4000020, 0x4000026, 0x4000030, 0x4000036 and the same offsets from 0x4001000.
 void func_02148a88(void) {
     s32 r;
@@ -760,10 +760,10 @@ void func_02148a88(void) {
         volatile u32 z0 = 0;
         volatile u32 z1;
 
-        func_0214d018(z0, (void *) 0x4000008, 0x60);
+        MemFillWords(z0, (void *) 0x4000008, 0x60);
         *(vu16 *) 0x400006c = 0;
         z1 = 0;
-        func_0214d018(z1, (void *) 0x4001000, 0x70);
+        MemFillWords(z1, (void *) 0x4001000, 0x70);
     }
     *(vu16 *) 0x4000020 = 0x100;
     *(vu16 *) 0x4000026 = 0x100;

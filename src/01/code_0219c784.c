@@ -133,7 +133,7 @@ void LocateAndQueueSelectBattleStage(void) {
     LocateNcer(&gSelectBattleStage->mSelectBattleStageSNcer, FindSceneFile("mg/select_battle_stage_s.nce.ncer"));
     LocateNclr(&nclrSO, FindSceneFile("mg/select_battle_stage_s_o.nclr"));
     z = 0;
-    func_0214cfe4(z, gSelectBattleStage->mSelectBattleStageMNscrCopy, 0x1000);
+    MemFillHalfwords(z, gSelectBattleStage->mSelectBattleStageMNscrCopy, 0x1000);
     func_02016468(6, 0, ncgrMB->mData, ncgrMB->mDataSize);
     func_02016468(10, 0, gSelectBattleStage->mSelectBattleStageMNscrCopy, 0x1000);
     func_02016468(15, 0, nclrMB->mData, 0x180);

@@ -9,7 +9,7 @@ void func_0200aea8(u32 arg0) {
     u32 value3;
     value1 = 0u;
     value2 = 112u;
-    value3 = (u32) &func_0214d168;
-    func_0214d168((void *) value0, (u8) value1, value2);
+    value3 = (u32) &MemFill;
+    MemFill((void *) value0, (u8) value1, value2);
 }
 #pragma thumb off

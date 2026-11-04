@@ -123,8 +123,8 @@ void func_ov001_021975f4(u16 a) {
         gRecordTAtt->mUnk_38[cnt + pal].mUnk_00 = 1;
         func_02124224(0, pal, gRecordTAtt->mUnk_10, str, gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38, 7);
         func_020600d0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], value, name);
-        func_0214d168(str, 0, 0x20);
-        func_0214cffc(name, str, 0x14);
+        MemFill(str, 0, 0x20);
+        MemCopyHalfwords(name, str, 0x14);
         pal = data_ov001_021a6810[0];
         gRecordTAtt->mUnk_38[cnt + pal].mUnk_00 = 1;
         func_0212426c(0, pal, gRecordTAtt->mUnk_10, str, gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38);
@@ -152,8 +152,8 @@ void func_ov001_021975f4(u16 a) {
         gRecordTAtt->mUnk_3c[cnt + pal].mUnk_00 = 1;
         func_02124224(1, pal, gRecordTAtt->mUnk_24, str, gRecordTAtt->mUnk_1c, gRecordTAtt->mUnk_3c, 7);
         func_020600d0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], value, name);
-        func_0214d168(str, 0, 0x20);
-        func_0214cffc(name, str, 0x14);
+        MemFill(str, 0, 0x20);
+        MemCopyHalfwords(name, str, 0x14);
         pal = data_ov001_021a6810[a];
         gRecordTAtt->mUnk_3c[cnt + pal].mUnk_00 = 1;
         func_0212426c(1, pal, gRecordTAtt->mUnk_24, str, gRecordTAtt->mUnk_1c, gRecordTAtt->mUnk_3c);
@@ -225,8 +225,8 @@ void func_ov001_021972f4(void) {
         gRecordTAtt->mUnk_38[cnt + 2].mUnk_00 = 1;
         func_02124224(0, 2, gRecordTAtt->mUnk_10, str, gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38, 7);
         func_020600d0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], 5, name);
-        func_0214d168(str, 0, 0x20);
-        func_0214cffc(name, str, 0x14);
+        MemFill(str, 0, 0x20);
+        MemCopyHalfwords(name, str, 0x14);
         gRecordTAtt->mUnk_38[cnt + 4].mUnk_00 = 1;
         func_0212426c(0, 4, gRecordTAtt->mUnk_10, str, gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_38);
     } else {
@@ -381,7 +381,7 @@ void func_ov001_02196ecc(void) {
     gRecordTAtt->mUnk_54 = 9;
     gRecordTAtt->mUnk_58 = 0;
     buf[0] = 0;
-    func_0214cfe4(buf[0], &buf[1], 0x200);
+    MemFillHalfwords(buf[0], &buf[1], 0x200);
     p = gRecordTAtt;
     a = GetBmgEntry(p->mUnk_44, data_ov001_021a6980[p->mUnk_6c]);
     func_0212513c(a, GetBmgEntry(p->mUnk_48, 10), &buf[1], 0x200);

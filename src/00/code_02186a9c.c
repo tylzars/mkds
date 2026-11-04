@@ -23,7 +23,7 @@ BOOL func_ov000_02186a9c(Http *a, const char *b) {
         }
         e = c->mEnd - c->mCursor;
     }
-    f = func_0200d9e0(c->mCursor, e, data_ov000_021b1290, b);
+    f = StringFormatBounded(c->mCursor, e, data_ov000_021b1290, b);
     if (f != d) {
         return TRUE;
     }
@@ -54,7 +54,7 @@ BOOL func_ov000_02186b0c(Http *a, const char *b, const void *c, s32 d) {
         }
         j = e->mEnd - e->mCursor;
     }
-    e->mCursor = e->mCursor + func_0200d9e0(e->mCursor, j, f, b);
+    e->mCursor = e->mCursor + StringFormatBounded(e->mCursor, j, f, b);
     if (func_ov000_021882f8(c, d, e->mCursor, e->mEnd - e->mCursor - 1) < 0) {
         return TRUE;
     }
@@ -85,7 +85,7 @@ BOOL func_ov000_02186bd4(Http *a, const char *b, const char *c) {
     g = (char *) p + 2;
     h = p[2];
     memmove(g + e, g, strlen(g) + 1);
-    i = func_0200d9e0(g, e + 1, data_ov000_021b12a0, b, c);
+    i = StringFormatBounded(g, e + 1, data_ov000_021b12a0, b, c);
     g[i] = h;
     d->mCursor = d->mCursor + e;
     return FALSE;
@@ -108,6 +108,6 @@ BOOL func_ov000_02186c74(Http *a) {
     if (InitHttpBuffer(a, &a->mSendBuffer, f + 0x400) != 1) {
         return TRUE;
     }
-    b->mCursor = b->mCursor + func_0200d9e0(b->mCursor, b->mSize, c, a->mPath, a->mHost);
+    b->mCursor = b->mCursor + StringFormatBounded(b->mCursor, b->mSize, c, a->mPath, a->mHost);
     return FALSE;
 }

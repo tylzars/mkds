@@ -85,7 +85,7 @@ void func_ov000_021ae724(Unk021ae3f0 *a, Unk021ae724 *b, u32 c) {
         } else {
             s->mReceiveBufferLength = c;
         }
-        func_0214d1fc((u8 *) b + 8, s->mReceiveBuffer, s->mReceiveBufferLength);
+        MemCopy((u8 *) b + 8, s->mReceiveBuffer, s->mReceiveBufferLength);
         if (s->mUnk_04 == 3) {
             s->mUnk_04 = 0;
             func_0200df68(s->mThread);
@@ -152,7 +152,7 @@ Unk021ae3f0 *func_ov000_021ae51c(Unk021ae3f0 *r, u32 *s) {
         l->mUnk_08 = 0;
         l->mUnk_2c = func_0200f5ac() >> 16;
         l->mUnk_30 = l->mUnk_34 + 0xe + b;
-        func_0214d1fc(r, l->mUnk_34 + 0xe, b);
+        MemCopy(r, l->mUnk_34 + 0xe, b);
     }
     if (k->mUnk_04 == 8 || g > 0x1000) {
         k->mUnk_04 = 0;
@@ -168,7 +168,7 @@ Unk021ae3f0 *func_ov000_021ae51c(Unk021ae3f0 *r, u32 *s) {
     k->mUnk_0c[k->mUnk_04] = e;
     k->mUnk_1c[k->mUnk_04] = h;
     k->mUnk_04++;
-    func_0214d1fc((u8 *) r + b, k->mUnk_30 + f, d);
+    MemCopy((u8 *) r + b, k->mUnk_30 + f, d);
     j = k->mUnk_08;
     if (j == 0) {
         return NULL;

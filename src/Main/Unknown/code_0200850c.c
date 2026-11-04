@@ -20,10 +20,10 @@ void func_0200850c(u32 *a, u32 b, u32 c, int d) {
     }
     if (b < c) {
         if (d != 0) {
-            func_0214d168((void *) ((u32 *) (u32) (a[2] + b)), (u8) 0, (u32) (c - b));
+            MemFill((void *) ((u32 *) (u32) (a[2] + b)), (u8) 0, (u32) (c - b));
             return;
         }
-        func_0214d1fc((const void *) ((u16 *) (u32) (a[1] + b)), (void *) ((u32 *) (u32) (a[2] + b)), (u32) (c - b));
+        MemCopy((const void *) ((u16 *) (u32) (a[1] + b)), (void *) ((u32 *) (u32) (a[2] + b)), (u32) (c - b));
     }
 }
 

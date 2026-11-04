@@ -34,7 +34,7 @@ void *FrmHeapAllocFront(Unk02018174 *a, u32 b, u32 c) {
 
         if ((u16) (*(u32 *) ((u8 *) a - 4) & 0xff) & 1) {
             z = 0;
-            func_0214d018(z, (void *) lo, n);
+            MemFillWords(z, (void *) lo, n);
         }
     }
     a->mFrontAddr = e;
@@ -59,7 +59,7 @@ u32 FrmHeapAllocBack(Unk02018174 *a, u32 b, u32 c) {
 
         if ((u16) (*(u32 *) ((u8 *) a - 4) & 0xff) & 1) {
             z = 0;
-            func_0214d018(z, (void *) s, n);
+            MemFillWords(z, (void *) s, n);
         }
     }
     a->mBackAddr = s;

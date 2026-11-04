@@ -274,17 +274,17 @@ void func_02089494(Unk020888b4 *p) {
         p->mUnk_a4 = func_020800a0(s);
         func_020892bc(p);
         p->mUnk_44 = *s->mUnk_00->mUnk_20;
-        func_02148504(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
+        Vec3Add(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
     } else {
         if (p->mIndex == func_02061f90()) {
             f = p->mUnk_5c;
             z = *g;
-            func_021484d0(f, &q->mUnk_80, &t);
+            Vec3Sub(f, &q->mUnk_80, &t);
             z.y = 0;
             t.y = 0;
-            func_021483a0(&z, &t, &u);
-            d = func_021482cc(&u);
-            p->mUnk_70 = (s32) (((s64) func_02148538(d, func_0214848c(&z, &t)) * 0x394bb834c8LL + 0x80000000LL) >> 32);
+            Vec3Cross(&z, &t, &u);
+            d = Vec3Length(&u);
+            p->mUnk_70 = (s32) (((s64) func_02148538(d, Vec3Dot(&z, &t)) * 0x394bb834c8LL + 0x80000000LL) >> 32);
         }
         if (func_02080e2c(s, &v) != 0 || func_02080dbc(s, &v) != 0) {
             x = FALSE;
@@ -300,7 +300,7 @@ void func_02089494(Unk020888b4 *p) {
             p->mUnk_a4 = func_020800a0(s);
             func_020892bc(p);
             p->mUnk_44 = *s->mUnk_00->mUnk_20;
-            func_02148504(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
+            Vec3Add(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
             s->mUnk_14 = NULL;
             s->mUnk_18 = 0;
         }
@@ -312,7 +312,7 @@ void func_02089494(Unk020888b4 *p) {
         return;
     }
     func_0204360c(p->mUnk_00->mUnk_78, 1);
-    func_021484d0(p->mUnk_5c, &v, &w);
+    Vec3Sub(p->mUnk_5c, &v, &w);
     func_01ffd224(p, &w, g);
 }
 
@@ -325,7 +325,7 @@ void func_020892bc(Unk020888b4 *p) {
     s32 n;
     s32 f;
 
-    func_021483a0(&p->mUnk_28.mUnk_08, &z, &p->mUnk_60);
+    Vec3Cross(&p->mUnk_28.mUnk_08, &z, &p->mUnk_60);
     p->mUnk_6c++;
     if (p->mUnk_6c > p->mUnk_6e) {
         p->mUnk_6c = 0;
@@ -439,12 +439,12 @@ void func_02088e44(Unk020888b4 *p) {
         goto clear;
     }
     c = 0;
-    func_021484d0(&p->mUnk_b0->mUnk_80, &p->mUnk_00->mUnk_80, &v);
-    if (func_0214848c(&v, &p->mUnk_00->mUnk_138) > 0) {
+    Vec3Sub(&p->mUnk_b0->mUnk_80, &p->mUnk_00->mUnk_80, &v);
+    if (Vec3Dot(&v, &p->mUnk_00->mUnk_138) > 0) {
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
             func_02039860(&v, &v);
         }
-        p->mUnk_bc = func_0214848c(&v, &p->mUnk_00->mUnk_138);
+        p->mUnk_bc = Vec3Dot(&v, &p->mUnk_00->mUnk_138);
         c = 1;
     }
     p->mUnk_b4 = c != 0;
@@ -463,8 +463,8 @@ void func_02088e44(Unk020888b4 *p) {
             u.y = p->mUnk_44.y;
             t = *p->mUnk_28.mUnk_00->mUnk_20;
             z = data_02155eb0;
-            func_021483a0(&p->mUnk_28.mUnk_08, &z, &e);
-            func_021484d0(&u, &t, &w);
+            Vec3Cross(&p->mUnk_28.mUnk_08, &z, &e);
+            Vec3Sub(&u, &t, &w);
             d = func_02039828(&w, &e);
             c = p->mUnk_28.mUnk_00->mUnk_24;
             if (func_020738f8(d) >= c) {
@@ -567,12 +567,12 @@ void func_02088a0c(Unk020888b4 *p) {
             }
             if (c != FALSE) {
                 n = FALSE;
-                func_021484d0(&r->mPos, &p->mUnk_00->mUnk_80, &v);
-                if (func_0214848c(&v, &p->mUnk_00->mUnk_138) > 0) {
+                Vec3Sub(&r->mPos, &p->mUnk_00->mUnk_80, &v);
+                if (Vec3Dot(&v, &p->mUnk_00->mUnk_138) > 0) {
                     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
                         func_02039860(&v, &v);
                     }
-                    p->mUnk_d8 = func_0214848c(&v, &p->mUnk_00->mUnk_138);
+                    p->mUnk_d8 = Vec3Dot(&v, &p->mUnk_00->mUnk_138);
                     n = TRUE;
                 }
                 if (n != FALSE && p->mUnk_d8 > 0xb33) {
@@ -580,8 +580,8 @@ void func_02088a0c(Unk020888b4 *p) {
                     u.y = p->mUnk_44.y;
                     t = *p->mUnk_28.mUnk_00->mUnk_20;
                     z = data_02155eb0;
-                    func_021483a0(&p->mUnk_28.mUnk_08, &z, &e);
-                    func_021484d0(&u, &t, &w);
+                    Vec3Cross(&p->mUnk_28.mUnk_08, &z, &e);
+                    Vec3Sub(&u, &t, &w);
                     m = func_02039828(&w, &e);
                     x = p->mUnk_28.mUnk_00->mUnk_24;
                     if (func_020738f8(m) >= x) {

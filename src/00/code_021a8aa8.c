@@ -295,9 +295,9 @@ char *func_ov000_021a8bc0(s32 a, const void *b, char *c, u32 d) {
     if (d < 0x10) {
         return NULL;
     }
-    func_0214d1fc(b, e, 4);
+    MemCopy(b, e, 4);
     func_ov000_021a8bb0(*(u32 *) e, &e[4]);
-    func_0200d9e0(c, 0x10, data_ov000_021b49e8, e[7], e[6], e[5], e[4]);
+    StringFormatBounded(c, 0x10, data_ov000_021b49e8, e[7], e[6], e[5], e[4]);
     return c;
 }
 

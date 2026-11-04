@@ -28,7 +28,7 @@ void func_02124b1c(Unk02124b1c *a, s32 b, s32 c) {
     i = (b >> 4) * 2;
     p = a->mUnk_14;
     q = a->mUnk_24;
-    r = func_02147f34(0x1000, c);
+    r = DivFixed12(0x1000, c);
     x = data_0215d4b4[i + 1];
     a->mUnk_14[0] = ((s64) x * r) >> 12;
     y = data_0215d4b4[i];

@@ -28,11 +28,11 @@ u16 func_0203c5f8(u16 a, u8 *b, u8 *c, u16 *d) {
                     (u32) ((v2.mUnk_02 * 60 + v2.mUnk_03) * 1000 + v2.mUnk_00)) {
                     k = TRUE;
                     if (q != p) {
-                        func_0214d1fc(q, p, 4);
+                        MemCopy(q, p, 4);
                     }
                 } else {
                     if (p != &v2) {
-                        func_0214d1fc(q, p, 4);
+                        MemCopy(q, p, 4);
                     }
                 }
                 if (k != FALSE) {

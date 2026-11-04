@@ -61,7 +61,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == 0) {
         func_0204360c(p->mUnk_00->mUnk_78, 1);
-        func_021484d0(&p->mUnk_44, &a, &b);
+        Vec3Sub(&p->mUnk_44, &a, &b);
         func_01ffd224(p, &b, t);
     }
     func_0207ebfc(p);
@@ -97,7 +97,7 @@ void func_0207e35c(struct Unk020888b4 *p) {
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == 0) {
         func_0204360c(p->mUnk_00->mUnk_78, 1);
-        func_021484d0(&p->mUnk_44, &a, &b);
+        Vec3Sub(&p->mUnk_44, &a, &b);
         func_01ffd224(p, &b, t);
     }
     func_0207ebfc(p);

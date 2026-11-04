@@ -55,7 +55,7 @@ BOOL func_0203b018(u32 a, void *b, u32 c) {
     if (v == -1) {
         return FALSE;
     }
-    func_0200d9e0(b, c, data_usa_02164754, v & 0xff);
+    StringFormatBounded(b, c, data_usa_02164754, v & 0xff);
     return TRUE;
 }
 

@@ -73,7 +73,7 @@ void func_0209b388(Unk0209a7dc *a, Vec3 *b, Vec3 *c, Vec3 *d) {
     s32 z;
 
     if (b != NULL && c != NULL) {
-        func_021484d0(&a->mUnk_000.mPos, b, &v);
+        Vec3Sub(&a->mUnk_000.mPos, b, &v);
         z = c->z;
         x = c->x;
         if ((s64) v.z * x - (s64) v.x * z < 0) {

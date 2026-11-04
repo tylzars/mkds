@@ -48,18 +48,18 @@ void func_01ffa4b4(Unk0206bcb0 *p, Vec3 *a) {
     if (func_01ffdee4(&p->mUnk_1b8, &p->mUnk_1c4, (u32) &p->mUnk_50, p->mUnk_1d0, 1, p->mUnk_2c8, &v1, &v5, &v2, &f,
                       (u32 *) &v3, (s32 *) &v4, &h, &w) != 0) {
         m = f & 0x1e34ef;
-        func_02148504(&p->mUnk_80, &v1, &p->mUnk_80);
+        Vec3Add(&p->mUnk_80, &v1, &p->mUnk_80);
         func_0208ab98(&p->mKartModelsEntry->mUnk_040, (f & 0x3c000000) >> 26, p->mUnk_2a4);
         func_01ff9c9c(p, f);
         func_0206f694(p, f, &v4, h);
         if (f & 0x200300) {
             func_0206f574(p, f, &v2);
             if (m != 0) {
-                d = func_0214848c(&v5, &p->mUnk_2d8);
+                d = Vec3Dot(&v5, &p->mUnk_2d8);
                 p->mUnk_2d8.x -= (s32) (((s64) v5.x * d) >> 12);
                 p->mUnk_2d8.y -= (s32) (((s64) v5.y * d) >> 12);
                 p->mUnk_2d8.z -= (s32) (((s64) v5.z * d) >> 12);
-                d = func_0214848c(&v5, &p->mUnk_2e4);
+                d = Vec3Dot(&v5, &p->mUnk_2e4);
                 p->mUnk_2e4.x -= (s32) (((s64) v5.x * d) >> 12);
                 p->mUnk_2e4.y -= (s32) (((s64) v5.y * d) >> 12);
                 p->mUnk_2e4.z -= (s32) (((s64) v5.z * d) >> 12);

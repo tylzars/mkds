@@ -41,15 +41,15 @@ s32 func_01ffd0e8(Vec4 *a, const Vec3 *b, const Vec3 *c) {
     Vec3 v;
     s32 r;
     BOOL k = TRUE;
-    func_021483a0(b, c, &v);
-    r = func_02147e8c((func_0214848c(b, c) + 0x1000) << 1);
+    Vec3Cross(b, c, &v);
+    r = func_02147e8c((Vec3Dot(b, c) + 0x1000) << 1);
     *a = data_usa_02155194;
     if (r <= 0) {
         k = FALSE;
     } else {
-        a->x = func_02147f34(v.x, r);
-        a->y = func_02147f34(v.y, r);
-        a->z = func_02147f34(v.z, r);
+        a->x = DivFixed12(v.x, r);
+        a->y = DivFixed12(v.y, r);
+        a->z = DivFixed12(v.z, r);
         a->w = r >> 1;
     }
     return k;
@@ -98,7 +98,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
     func_0208c1d0(&v0, &v1, p);
     if (p->mUnk_a8 == 1) {
         u = &q->mUnk_12c;
-        d = func_0214848c(u, &v1);
+        d = Vec3Dot(u, &v1);
         v5.x = v1.x - (s32) (((s64) u->x * d) >> 12);
         v5.y = v1.y - (s32) (((s64) u->y * d) >> 12);
         v5.z = v1.z - (s32) (((s64) u->z * d) >> 12);
@@ -106,10 +106,10 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
             func_0208c1d0(&v2, &v3, p);
             o = p->mUnk_00;
             r = TRUE;
-            func_021484d0(&o->mUnk_80, &v2, &v9);
+            Vec3Sub(&o->mUnk_80, &v2, &v9);
             v9.y = 0;
             func_02063b30(o, &v8);
-            d = func_0214848c(&v8, &v3);
+            d = Vec3Dot(&v8, &v3);
             v10.x = v3.x - (s32) (((s64) v8.x * d) >> 12);
             v10.y = v3.y - (s32) (((s64) v8.y * d) >> 12);
             v10.z = v3.z - (s32) (((s64) v8.z * d) >> 12);
@@ -125,7 +125,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
             e = 0x1000;
         }
         func_02063b30(q, &v6);
-        d = func_0214848c(&v6, a);
+        d = Vec3Dot(&v6, a);
         v7.x = a->x - (s32) (((s64) v6.x * d) >> 12);
         v7.y = a->y - (s32) (((s64) v6.y * d) >> 12);
         v7.z = a->z - (s32) (((s64) v6.z * d) >> 12);
@@ -168,7 +168,7 @@ s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     s32 q;
     s32 h;
     c = (c + b) >> 12;
-    func_021484d0(a, &data_0217b4f8.mUnk_08, &v);
+    Vec3Sub(a, &data_0217b4f8.mUnk_08, &v);
     v.x = (a->x - data_0217b4f8.mUnk_08.x) >> 12;
     v.z = (a->z - data_0217b4f8.mUnk_08.z) >> 12;
     q = v.x * v.x + v.z * v.z;

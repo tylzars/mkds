@@ -25,9 +25,9 @@ void func_0204bf48(int a, u32 b, u32 c, void *d, void *e, u32 f) {
 static inline void func_0204bcec_inline(Unk02175ec0 *a, void *p) {
     u32 t;
     if (p != NULL) {
-        t = func_0200fca0();
+        t = IrqDisable();
         a->mUnk_0014(a->mUnk_0018, 0, p);
-        func_0200fcb4(t);
+        IrqRestore(t);
     }
 }
 
@@ -77,7 +77,7 @@ void func_0204bcec(void) {
     void *p;
     Unk02003a6c *u;
     g = (Unk02175ec0 *) &data_02175ec0;
-    s = func_0200fca0();
+    s = IrqDisable();
     if (data_usa_02175e84 != 0) {
         p = g->mUnk_0020;
         if (p != NULL) {
@@ -101,7 +101,7 @@ void func_0204bcec(void) {
         func_0214358c(data_02175ec0.mUnk_0030, NULL, NULL);
         data_usa_02175e84 = 0;
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 u32 func_0204bcdc(void) {
@@ -117,11 +117,11 @@ u32 func_0204bcb4(u32 arg0) {
     u32 value2;
     u32 value4;
     value4 = value0;
-    value0 = (u32) func_0200fca0();
+    value0 = (u32) IrqDisable();
     value1 = (u32) &data_02179ec0;
     value2 = (value4) & ~(1u);
     *(u32 *) ((value1) + (2832)) = value2;
-    value0 = (u32) func_0200fcb4(value0);
+    value0 = (u32) IrqRestore(value0);
     return value0;
 }
 

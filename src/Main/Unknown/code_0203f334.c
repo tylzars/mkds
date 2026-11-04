@@ -33,7 +33,7 @@ void func_0203f334(Unk0217561c_14 *a, s32 b) {
     }
     func_0207a948(&u, (u32) (a->mUnk_3c << 24) >> 28);
     func_0207a8f0(&v, (u32) (a->mUnk_3c << 24) >> 28);
-    func_021484d0(&u, &v, &w);
+    Vec3Sub(&u, &v, &w);
     w.x = (s64) w.x * -240 >> 12;
     w.y = (s64) w.y * -240 >> 12;
     w.z = (s64) w.z * -240 >> 12;
@@ -44,7 +44,7 @@ void func_0203f334(Unk0217561c_14 *a, s32 b) {
     k = t;
     do {
         n = func_0203fcac(&p, 0, k);
-        func_02148504(&p, &w, &p);
+        Vec3Add(&p, &w, &p);
         i++;
     } while (n > 0 && i < 0x11);
     func_0203f5f0(&e[a->mUnk_24 - 2].mUnk_02, &e[a->mUnk_24 - 2].mUnk_03, &e[a->mUnk_24 - 2].mUnk_00, -i * 0xf0,
@@ -299,7 +299,7 @@ s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
         x >>= 10;
         y >>= 10;
     }
-    return func_02147f34((s32) x, (s32) y);
+    return DivFixed12((s32) x, (s32) y);
 }
 
 BOOL func_0203fde0(const Vec3 *a, const Unk02175620_44 *b, const Unk02175620_44 *c) {

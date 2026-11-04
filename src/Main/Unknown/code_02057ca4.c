@@ -10,7 +10,7 @@ void func_02057ca4(void *a) {
     if (data_021759d4->mUnk_0c != 0) {
         enum { K0 = 0x53444b4d } b;
         enum { K1 = 0x30315653 } c;
-        func_0214d1fc(a, v, 0x100);
+        MemCopy(a, v, 0x100);
         b = K0;
         c = K1;
         v[0] = b;

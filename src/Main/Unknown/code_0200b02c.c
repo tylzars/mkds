@@ -9,7 +9,7 @@
 void func_0200b02c(Unk0200aeec_head *a, u32 b) {
     u32 v1;
     u32 v2;
-    v1 = func_0200fca0();
+    v1 = IrqDisable();
     if (data_0216fde0 == NULL) {
         data_0216fde0 = a;
         func_0200b00c(&a->mUnk_c4);
@@ -18,7 +18,7 @@ void func_0200b02c(Unk0200aeec_head *a, u32 b) {
         func_0200e28c(&a->mUnk_00, func_0200b08c, a, (u8 *) a + 0xe4 + v2, v2, 0);
         func_0200df68(&a->mUnk_00);
     }
-    func_0200fcb4(v1);
+    IrqRestore(v1);
 }
 
 void func_0200b08c(void *param_1) {
@@ -32,7 +32,7 @@ void func_0200b08c(void *param_1) {
     a = param_1;
     v6 = 0;
     for (;;) {
-        v2 = func_0200fca0();
+        v2 = IrqDisable();
         while (a->mUnk_c0 == NULL) {
             func_0200dce0(&a->mUnk_00, v6);
             func_0200e01c(NULL);
@@ -40,11 +40,11 @@ void func_0200b08c(void *param_1) {
         v1 = a->mUnk_c0;
         a->mUnk_c0 = a->mUnk_c0->mUnk_00;
         func_0200dce0(&a->mUnk_00, v1->mUnk_04_1);
-        func_0200fcb4(v2);
+        IrqRestore(v2);
         if (v1->mUnk_08 != NULL) {
             ((void (*)(Unk0200aeec *)) v1->mUnk_08)(v1);
         }
-        v3 = func_0200fca0();
+        v3 = IrqDisable();
         v4 = (void (*)(Unk0200aeec *)) v1->mUnk_0c;
         v5 = func_0200dcd8(&a->mUnk_00);
         if (a->mUnk_c0 == NULL) {
@@ -65,7 +65,7 @@ void func_0200b08c(void *param_1) {
         if (v1 == &a->mUnk_c4) {
             break;
         }
-        func_0200fcb4(v3);
+        IrqRestore(v3);
     }
     func_0200e260();
 }

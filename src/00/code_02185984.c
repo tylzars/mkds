@@ -47,38 +47,38 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
     if (func_0214e038(o) != 0 || func_0214df78(p) != 0) {
         return 5;
     }
-    h = func_0200fca0();
+    h = IrqDisable();
     i = func_ov000_021a6b10();
     if (i == NULL) {
-        func_0200fcb4(h);
+        IrqRestore(h);
         return 3;
     }
-    func_0214d1fc(i, g.mUnk_08, 6);
-    func_0214d168(v, 0, 0x21);
+    MemCopy(i, g.mUnk_08, 6);
+    MemFill(v, 0, 0x21);
     j = func_ov000_021a6abc((u16 *) &g);
     if (j == NULL) {
-        func_0200fcb4(h);
+        IrqRestore(h);
         return 3;
     }
-    func_0214d1fc(j, v, g.mUnk_00);
-    func_0200fcb4(h);
-    func_0214d1fc((const void *) 0x27ffe0c, g.mUnk_0e, 4);
+    MemCopy(j, v, g.mUnk_00);
+    IrqRestore(h);
+    MemCopy((const void *) 0x27ffe0c, g.mUnk_0e, 4);
     g.mUnk_0e[4] = 0;
-    func_0214d1fc((const void *) 0x27ffe10, g.mUnk_13, 2);
+    MemCopy((const void *) 0x27ffe10, g.mUnk_13, 2);
     g.mUnk_13[2] = 0;
     l = g.mUnk_02;
     for (k = 0; k < 6; l++, k++) {
-        func_0200da28(&r[k * 2], data_ov000_021b1060, *l);
+        StringFormat(&r[k * 2], data_ov000_021b1060, *l);
     }
     r[12] = 0;
     if (y.mUnk_00 > 6) {
         y.mUnk_00 = 1;
     }
-    func_0200d9e0(g.mUnk_16, 5, data_ov000_021b1068, y.mUnk_02, y.mUnk_03);
-    func_0200d9e0(s, 0xd, data_ov000_021b1074, o[0], o[1], o[2], p[0], p[1], p[2]);
-    func_0214d1fc(y.mUnk_04, t, 0x14);
+    StringFormatBounded(g.mUnk_16, 5, data_ov000_021b1068, y.mUnk_02, y.mUnk_03);
+    StringFormatBounded(s, 0xd, data_ov000_021b1074, o[0], o[1], o[2], p[0], p[1], p[2]);
+    MemCopy(y.mUnk_04, t, 0x14);
     t[0x14] = 0;
-    func_0214d168(&q, 0, 0xc);
+    MemFill(&q, 0, 0xc);
     q.mEntries = d;
     q.mCapacity = e;
     if (f != 1) {
@@ -99,16 +99,16 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
     }
     func_ov000_021868a4(&q, data_ov000_021b10c0, data_ov000_021b10c8);
     if (data_ov000_021b4c94.mUnk_00 != 0) {
-        func_0200d9e0(x, 0xe, data_ov000_021b10d0, data_ov000_021b4c94.mUnk_00);
+        StringFormatBounded(x, 0xe, data_ov000_021b10d0, data_ov000_021b4c94.mUnk_00);
     } else {
-        func_0200d9e0(x, 0xe, data_ov000_021b10d0, data_ov000_021b4c94.mUnk_08);
+        StringFormatBounded(x, 0xe, data_ov000_021b10d0, data_ov000_021b4c94.mUnk_08);
     }
     func_ov000_021868a4(&q, data_ov000_021b10d8, x);
-    func_0200d9e0(g.mUnk_1b, 4, data_ov000_021b10e0, data_ov000_021b4c94.mUnk_10);
+    StringFormatBounded(g.mUnk_1b, 4, data_ov000_021b10e0, data_ov000_021b4c94.mUnk_10);
     func_ov000_021868a4(&q, data_ov000_021b10e8, g.mUnk_1b);
-    func_0200d9e0(u, 0xd, data_ov000_021b10f0, g.mUnk_08[0], g.mUnk_08[1], g.mUnk_08[2], g.mUnk_08[3], g.mUnk_08[4],
-                  g.mUnk_08[5]);
-    func_0200d9e0(w, 0xd, data_ov000_021b110c, 0);
+    StringFormatBounded(u, 0xd, data_ov000_021b10f0, g.mUnk_08[0], g.mUnk_08[1], g.mUnk_08[2], g.mUnk_08[3],
+                        g.mUnk_08[4], g.mUnk_08[5]);
+    StringFormatBounded(w, 0xd, data_ov000_021b110c, 0);
     func_ov000_0218a67c(v, &w[3]);
     func_ov000_021868a4(&q, data_ov000_021b111c, g.mUnk_0e);
     func_ov000_021868a4(&q, data_ov000_021b1124, g.mUnk_13);
@@ -350,9 +350,9 @@ s32 func_ov000_02186298(s32 a) {
 void func_ov000_0218635c(s32 *a) {
     s32 b;
     if (data_ov000_021b4c90 == NULL) {
-        func_0214d168(a, 0, 0x1c4);
+        MemFill(a, 0, 0x1c4);
     }
-    func_0214d1fc(&data_ov000_021b4c90->mUnk_008, a, 0x1c4);
+    MemCopy(&data_ov000_021b4c90->mUnk_008, a, 0x1c4);
     b = *a;
     if (b >= 0) {
         if (b < 0x4e20 || b >= 0x7530) {
@@ -424,9 +424,9 @@ s32 func_ov000_02186560(Unk02186560 *a, Http *b) {
         return 2;
     }
     data_ov000_021b4c90 = c;
-    func_0214d168(c, 0, 0x13e0);
+    MemFill(c, 0, 0x13e0);
     data_ov000_021b4c90->mUnk_2f8 = b;
-    func_0214d168(&data_ov000_021b4c90->mUnk_008, 0, 0x1c4);
+    MemFill(&data_ov000_021b4c90->mUnk_008, 0, 0x1c4);
     data_ov000_021b4c90->mUnk_008 = -1;
     data_ov000_021b4c90->mUnk_1cc = *a;
     data_ov000_021b4c90->mUnk_1cc.mUnk_00[0x14] = 0;

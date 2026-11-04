@@ -441,7 +441,7 @@ void InitRecordGpx(void *heap) {
     }
     gRecordGpx->mUnk_4c = HeapAlloc(heap, 0x134);
     zero = 0;
-    func_0214cfe4(zero, gRecordGpx->mUnk_4c, 0x134);
+    MemFillHalfwords(zero, gRecordGpx->mUnk_4c, 0x134);
     func_ov001_02194a50();
 }
 

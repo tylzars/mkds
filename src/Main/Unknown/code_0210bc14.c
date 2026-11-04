@@ -17,7 +17,7 @@ u32 func_0210bc8c(int a, int b) {
         p->mUnk_08 = (u32) a;
     }
     if (i != FALSE) {
-        func_020174a4((Unk02017328 *) a, (void *) b);
+        ListAppend((Unk02017328 *) a, (void *) b);
     } else {
         return 0;
     }
@@ -27,7 +27,7 @@ u32 func_0210bc8c(int a, int b) {
 void func_0210bc54(Unk02017328 *a, void *b) {
     Unk0210bc54 *p;
 
-    func_02017354(a, b);
+    ListRemove(a, b);
     p = (Unk0210bc54 *) ((u8 *) b + a->mUnk_0a);
     if (p->mUnk_08 != 0) {
         p->mUnk_08 = 0;

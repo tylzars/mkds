@@ -24,8 +24,8 @@ void func_ov000_02184130(void) {
     LocateNclr(&gWiFiVSMatching->mWiFiVSMatchingSONclr, FindSceneFile("WiFi_VS_matching_s_o.nclr"));
     (reg_G2S_DB_BG3CNT) = ((reg_G2S_DB_BG3CNT) & 0x43) | 0x4400;
     zero = 0;
-    func_0214cfe4(zero, gWiFiVSMatching->mUnk_d4, 0x1000);
-    func_0214cffc(scrn->mData, gWiFiVSMatching->mUnk_d4, 0x800);
+    MemFillHalfwords(zero, gWiFiVSMatching->mUnk_d4, 0x1000);
+    MemCopyHalfwords(scrn->mData, gWiFiVSMatching->mUnk_d4, 0x800);
     func_02016468(0x17, 0, chr->mData, chr->mDataSize);
     func_02016468(0x1b, 0, gWiFiVSMatching->mUnk_d4, 0x1000);
     func_02016468(0x1f, 0, pltt->mData, 0x80);
@@ -177,7 +177,7 @@ void func_ov000_02183b80(void) {
             }
         }
         for (i = 0; i < gWiFiVSMatching->mUnk_30; i++) {
-            func_0214cffc(func_021202b0(gWiFiVSMatching->mUnk_34[i]), name, 0x14);
+            MemCopyHalfwords(func_021202b0(gWiFiVSMatching->mUnk_34[i]), name, 0x14);
             name[10] = 0;
             func_0212426c(1, data_ov000_021b0664[i], gWiFiVSMatching->mWiFiVSMatchingBnll, name,
                           gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mUnk_10d4);

@@ -12,14 +12,14 @@ void func_0201e540(Vec3 *v) {
     v->x = (s32) (data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 8;
     v->y = (s32) (data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 8;
     v->z = (s32) (data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 8;
-    func_0214818c(v, v);
+    Vec3Normalize(v, v);
 }
 
 void func_0201e4e4(Vec3 *v) {
     v->x = (s32) (data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 8;
     v->y = (s32) (data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 8;
     v->z = 0;
-    func_0214818c(v, v);
+    Vec3Normalize(v, v);
 }
 
 void func_0201e494(Unk0201e494 *l0, Unk0201e3c8 *p) {
@@ -126,7 +126,7 @@ void func_0201e170(const Unk0201e170 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q
             func_02146d60(buf, data_0215d4b4[(a->mUnk_00 >> 4) * 2], data_0215d4b4[(a->mUnk_00 >> 4) * 2 + 1]);
             break;
     }
-    func_02146d78(&p->mUnk_08, buf, &p->mUnk_08);
+    Vec3MultiplyMatrix3x3(&p->mUnk_08, buf, &p->mUnk_08);
 }
 
 void func_0201e054(const Unk0201e054 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q) {
@@ -506,7 +506,7 @@ void func_0201ca6c(Unk0201ca6c *p, Unk0201e494 *l0) {
                     v8.x = a8.mUnk_00;
                     v8.y = a8.mUnk_02;
                     v8.z = a8.mUnk_04;
-                    if (func_0214848c(&v8, &n0->mUnk_08) <= 0) {
+                    if (Vec3Dot(&v8, &n0->mUnk_08) <= 0) {
                         n0->mUnk_08.x = -n0->mUnk_08.x;
                         n0->mUnk_08.y = -n0->mUnk_08.y;
                         n0->mUnk_08.z = -n0->mUnk_08.z;
@@ -522,7 +522,7 @@ void func_0201ca6c(Unk0201ca6c *p, Unk0201e494 *l0) {
                     v9.x = a9.mUnk_00;
                     v9.y = a9.mUnk_02;
                     v9.z = a9.mUnk_04;
-                    if (func_0214848c(&v9, &n0->mUnk_08) < 0) {
+                    if (Vec3Dot(&v9, &n0->mUnk_08) < 0) {
                         n0->mUnk_08.x = -n0->mUnk_08.x;
                         n0->mUnk_08.y = -n0->mUnk_08.y;
                         n0->mUnk_08.z = -n0->mUnk_08.z;
@@ -606,11 +606,11 @@ void func_0201ca6c(Unk0201ca6c *p, Unk0201e494 *l0) {
                       (s32) (((s64) n0->mUnk_14.y * p->mUnk_8a.mUnk_02 + 0x800) >> 12);
                 w.z = (s32) (((s64) n0->mUnk_14.x * p->mUnk_84.mUnk_04 + 0x800) >> 12) +
                       (s32) (((s64) n0->mUnk_14.y * p->mUnk_8a.mUnk_04 + 0x800) >> 12);
-                func_0214818c(&w, &u);
+                Vec3Normalize(&w, &u);
             } else if (n0->mUnk_08.x == 0 && n0->mUnk_08.y == 0 && n0->mUnk_08.z == 0) {
                 func_0201e540(&u);
             } else {
-                func_0214818c(&n0->mUnk_08, &u);
+                Vec3Normalize(&n0->mUnk_08, &u);
             }
 
             n0->mUnk_14.x = p->mUnk_40.x + ((s32) (((s64) u.x * s1 + 0x800) >> 12) +

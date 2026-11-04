@@ -229,7 +229,7 @@ BOOL func_02044bf8(s32 a, s32 b) {
     if (p != NULL && p->mUnk_08_0 == 1) {
         func_020468b0(b, p->mUnk_04_0, p->mUnk_04_4, 2, -1, 3);
         data_021759c0->mUnk_250[b].mUnk_08.mUnk_10 = 2;
-        func_0214d1fc(&p->mUnk_30[0x200], data_02175650[b].mUnk_00, 0xdcc);
+        MemCopy(&p->mUnk_30[0x200], data_02175650[b].mUnk_00, 0xdcc);
         func_020565e4(p, &data_021759c0->mUnk_3e8);
         for (i = 1; i <= 5; i++) {
             func_0205660c(p, i, &data_021759c0->mUnk_3ec[i - 1]);
@@ -253,7 +253,7 @@ s32 func_02044d4c(s32 a, s32 b) {
     if (r != 0) {
         func_020468b0(b, p->mUnk_04_0, p->mUnk_04_4, 2, -1, 3);
         data_021759c0->mUnk_250[b].mUnk_08.mUnk_10 = 1;
-        func_0214d1fc(&p->mUnk_30[0x200], data_02175650[b].mUnk_00, 0xdcc);
+        MemCopy(&p->mUnk_30[0x200], data_02175650[b].mUnk_00, 0xdcc);
         func_02056574(1, &data_021759c0->mUnk_3e8);
         for (i = 1; i <= 5; i++) {
             func_020565ac(1, i, &data_021759c0->mUnk_3ec[i - 1]);
@@ -277,7 +277,7 @@ s32 func_02044e9c(s32 a, s32 b) {
     if (p->mUnk_08_0 == 1) {
         func_020468b0(b, p->mUnk_04_0, p->mUnk_04_4, 2, -1, 3);
         data_021759c0->mUnk_250[b].mUnk_08.mUnk_10 = r;
-        func_0214d1fc(p->mUnk_30, data_02175650[b].mUnk_00, 0xdcc);
+        MemCopy(p->mUnk_30, data_02175650[b].mUnk_00, 0xdcc);
         r = TRUE;
         func_02056574(0, &data_021759c0->mUnk_3e8);
         for (i = 1; i <= 5; i++) {
@@ -444,7 +444,7 @@ void func_02045590(void) {
     data_021759c0->mUnk_1e8.mUnk_1c = 0;
     data_021759c0->mUnk_1e8.mCourseListMode = 0;
     data_021759c0->mUnk_1e8.mUnk_24 = 0;
-    func_0214d168(&data_021759c0->mUnk_1e8.mMissionFileRow, 0, 0x2c);
+    MemFill(&data_021759c0->mUnk_1e8.mMissionFileRow, 0, 0x2c);
     data_021759c0->mUnk_1e8.mMissionTableRow = -1;
     data_021759c0->mUnk_1e8.mMissionTableColumn = -1;
     data_021759c0->mUnk_1e8.mUnk_56[0] = 0;

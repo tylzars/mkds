@@ -79,15 +79,15 @@ Unk020207ec *func_02021488(u32 a) {
     Unk020207ec *q;
     s32 i;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     if ((a & 1) != 0) {
         while (data_021732cc == func_02021834()) {
-            func_0200fcb4(s);
+            IrqRestore(s);
             func_0200fd10(0x64);
-            s = func_0200fca0();
+            s = IrqDisable();
         }
     } else if (data_021732cc == func_02021834()) {
-        func_0200fcb4(s);
+        IrqRestore(s);
         return 0;
     }
     i = data_021732dc;
@@ -108,7 +108,7 @@ Unk020207ec *func_02021488(u32 a) {
     data_021732d8 = q;
     data_021732e4--;
     data_021732cc++;
-    func_0200fcb4(s);
+    IrqRestore(s);
     return p;
 }
 
@@ -147,7 +147,7 @@ void func_020213a4(Unk020207ec *p) {
     u32 s;
     Unk020207ec *t;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     t = data_021732d4;
     if (t == 0) {
         data_021732d4 = p;
@@ -157,20 +157,20 @@ void func_020213a4(Unk020207ec *p) {
         data_021732d4 = p;
     }
     p->mUnk_00 = 0;
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 u32 func_020211e4(u32 a) {
     u32 s;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     if (data_021732d0 == 0) {
-        func_0200fcb4(s);
+        IrqRestore(s);
         return 1;
     }
     if (data_021732e4 >= 8) {
         if ((a & 1) == 0) {
-            func_0200fcb4(s);
+            IrqRestore(s);
             return 0;
         }
         do {
@@ -178,17 +178,17 @@ u32 func_020211e4(u32 a) {
         } while (data_021732e4 >= 8);
     }
     func_0200ee74(data_021735a0, 0x1800);
-    if (func_0214d6e8(7, (u32) data_021732d0, 0) < 0) {
+    if (PxiSendFifoWord(7, (u32) data_021732d0, 0) < 0) {
         if ((a & 1) == 0) {
-            func_0200fcb4(s);
+            IrqRestore(s);
             return 0;
         }
-        if (func_0214d6e8(7, (u32) data_021732d0, 0) < 0) {
+        if (PxiSendFifoWord(7, (u32) data_021732d0, 0) < 0) {
             do {
-                func_0200fcb4(s);
+                IrqRestore(s);
                 func_0200fd10(0x64);
-                s = func_0200fca0();
-            } while (func_0214d6e8(7, (u32) data_021732d0, 0) < 0);
+                s = IrqDisable();
+            } while (PxiSendFifoWord(7, (u32) data_021732d0, 0) < 0);
         }
     }
     if ((a & 2) != 0) {
@@ -203,7 +203,7 @@ u32 func_020211e4(u32 a) {
     data_021732d4 = 0;
     data_021732e4++;
     data_021732e8++;
-    func_0200fcb4(s);
+    IrqRestore(s);
     return 1;
 }
 
@@ -229,13 +229,13 @@ u32 func_02021114(void) {
     u32 s;
     u32 v;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     if (data_021732d0 == 0) {
         v = data_021732cc;
     } else {
         v = data_021732e8;
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     return v;
 }
 
@@ -244,7 +244,7 @@ u32 func_020210c0(u32 a) {
     u32 c;
     u32 r;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     c = data_021732cc;
     if (a > c) {
         if ((a - c) < 0x80000000u) {
@@ -259,7 +259,7 @@ u32 func_020210c0(u32 a) {
             r = 0;
         }
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     return r;
 }
 
@@ -268,12 +268,12 @@ s32 func_02021080(void) {
     Unk020207ec *p;
     s32 n;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     n = 0;
     for (p = data_021732c8; p != 0; p = p->mUnk_00) {
         n++;
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     return n;
 }
 
@@ -282,12 +282,12 @@ s32 func_02021040(void) {
     Unk020207ec *p;
     s32 n;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     n = 0;
     for (p = data_021732d0; p != 0; p = p->mUnk_00) {
         n++;
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     return n;
 }
 
@@ -301,9 +301,9 @@ s32 func_02021020(void) {
 void func_02020ff0(u32 a, u32 b) {
     u32 s;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     func_020216d4(b);
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 void func_02020f84(void) {
@@ -320,7 +320,7 @@ void func_02020f84(void) {
 }
 
 void func_02020f50(void) {
-    while (func_0214d6e8(7, 0, 0) < 0) {
+    while (PxiSendFifoWord(7, 0, 0) < 0) {
     }
 }
 
@@ -329,10 +329,10 @@ Unk020207ec *func_02020ef8(void) {
     Unk020207ec *p;
     Unk020207ec *n;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     p = data_021732c8;
     if (p == 0) {
-        func_0200fcb4(s);
+        IrqRestore(s);
         return 0;
     }
     n = p->mUnk_00;
@@ -340,7 +340,7 @@ Unk020207ec *func_02020ef8(void) {
     if (n == 0) {
         data_021732d8 = 0;
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     return p;
 }
 
@@ -351,9 +351,9 @@ u32 func_02020eb0(void) {
     if (func_0200e8fc() == 0) {
         return 1;
     }
-    s = func_0200fca0();
+    s = IrqDisable();
     *(vu32 *) 0x04fff200 = 0x10;
     v = *(vu32 *) 0x04fff200;
-    func_0200fcb4(s);
+    IrqRestore(s);
     return v != 0;
 }

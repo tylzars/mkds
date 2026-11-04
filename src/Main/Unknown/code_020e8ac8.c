@@ -109,10 +109,10 @@ void func_020ea1d4(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
     v.x = (s32) (((s64) v.x * b) >> 12);
     v.y = (s32) (((s64) v.y * a) >> 12);
     v.z = 0;
-    func_02148504(&v, param_1, &v);
+    Vec3Add(&v, param_1, &v);
     w = v;
     w.x += data_0217b88c;
-    func_02147288(&w, &data_0217bab8, &data_0217b9c0);
+    Vec3MultiplyMatrix4x3(&w, &data_0217bab8, &data_0217b9c0);
 }
 
 void func_020e9d10(void) {
@@ -164,7 +164,7 @@ void func_020e9d10(void) {
         func_020e9658();
         v = data_0217b990;
         v.x += data_0217b88c;
-        func_02147288(&v, &data_0217bab8, &data_0217b9c0);
+        Vec3MultiplyMatrix4x3(&v, &data_0217bab8, &data_0217b9c0);
         data_0217b890 = 3;
         if (func_0203c5e4() == 0) {
             if ((u32) data_0217b890 <= 1) {
@@ -188,7 +188,7 @@ void func_020e9d10(void) {
             func_020e9658();
             v = data_0217b978;
             v.x += data_0217b88c;
-            func_02147288(&v, &data_0217bab8, &data_0217b9c0);
+            Vec3MultiplyMatrix4x3(&v, &data_0217bab8, &data_0217b9c0);
             if (data_0217b87c == data_0217b884) {
                 data_0217b890 = 1;
                 if (func_0203c5e4() == 0) {
@@ -369,7 +369,7 @@ void func_020e9658(void) {
     Vec3 *v;
 
     data_0217ba88 = data_0217ba58;
-    func_021484d0(&data_0217b954, &data_0217bab8.mUnk_00[3], &data_0217b9b4);
+    Vec3Sub(&data_0217b954, &data_0217bab8.mUnk_00[3], &data_0217b9b4);
     data_0217bab8.mUnk_00[3] = data_0217b954;
     data_0217bab8.mUnk_00[3].y = data_0217bab8.mUnk_00[3].y + (data_0217b8c8->mUnk_a4.y - data_0217b8c8->mUnk_2b8);
     data_0217bab8.mUnk_00[1] = data_02159494;
@@ -395,7 +395,7 @@ void func_020e9658(void) {
     }
     func_020397a8(&data_0217bab8.mUnk_00[0], &data_0217bab8.mUnk_00[1], &data_0217bab8.mUnk_00[2]);
     func_02146d0c(&data_0217bab8, &data_0217ba58);
-    func_02146d78(&data_0217bab8.mUnk_00[3], (const s32 *) &data_0217ba58, &data_0217ba7c);
+    Vec3MultiplyMatrix3x3(&data_0217bab8.mUnk_00[3], (const s32 *) &data_0217ba58, &data_0217ba7c);
     data_0217ba58.mUnk_00[3].x = -data_0217ba58.mUnk_00[3].x;
     data_0217ba58.mUnk_00[3].y = -data_0217ba58.mUnk_00[3].y;
     data_0217ba58.mUnk_00[3].z = -data_0217ba58.mUnk_00[3].z;
@@ -471,12 +471,12 @@ void func_020e8ac8(void) {
             t.y = (s32) (((s64) data_0217bab8.mUnk_00[0].y * d) >> 12);
             t.z = (s32) (((s64) data_0217bab8.mUnk_00[0].z * d) >> 12);
         }
-        func_02148504(&data_0217b930, &t, &data_0217b93c);
+        Vec3Add(&data_0217b930, &t, &data_0217b93c);
         d = -data_0217b8d4 >> 1;
         t.x = (s32) (((s64) data_0217bab8.mUnk_00[1].x * d) >> 12);
         t.y = (s32) (((s64) data_0217bab8.mUnk_00[1].y * d) >> 12);
         t.z = (s32) (((s64) data_0217bab8.mUnk_00[1].z * d) >> 12);
-        func_02148504(&data_0217b93c, &t, &data_0217b93c);
+        Vec3Add(&data_0217b93c, &t, &data_0217b93c);
         data_0217b8fc = 0;
         if (data_0217b900 == 0) {
             if (data_0217b8bc != 0 || data_0217b8f0 != 0) {
@@ -503,12 +503,12 @@ void func_020e8ac8(void) {
                 data_0217b894 = 0;
             }
             t = lo;
-            func_02148504(&t, &hi, &t);
+            Vec3Add(&t, &hi, &t);
             if (t.y < 0 && data_0217b9ec.mUnk_00e == 5) {
                 t.y = 0;
             }
-            func_02148504(&data_0217b930, &t, &data_0217b930);
-            func_02148504(&data_0217b93c, &t, &data_0217b93c);
+            Vec3Add(&data_0217b930, &t, &data_0217b930);
+            Vec3Add(&data_0217b93c, &t, &data_0217b93c);
         }
         if (data_0217b900 == 0) {
             data_0217b870++;
@@ -569,7 +569,7 @@ void func_020e8ac8(void) {
             if (data_0217b908 < 0x7b) {
                 data_0217b908 = 0x7b;
             }
-            func_021484d0(&data_0217b9c0, &data_0217b930, &t);
+            Vec3Sub(&data_0217b9c0, &data_0217b930, &t);
             t.y += data_0217b8ec;
             u.x = func_02039828(&t, &data_0217bab8.mUnk_00[0]);
             u.z = func_02039828(&t, &data_0217bad0);
@@ -596,14 +596,14 @@ void func_020e8ac8(void) {
             }
             data_0217b924.x += v.x;
             data_0217b924.z += v.z;
-            func_02146d78(&data_0217b924, (const s32 *) &data_0217bab8.mUnk_00[0], &u);
+            Vec3MultiplyMatrix3x3(&data_0217b924, (const s32 *) &data_0217bab8.mUnk_00[0], &u);
         }
         data_0217b924.y = data_0217b924.y + ((s32) (((s64) data_021593bc.y * t.y) >> 12) -
                                              (s32) (((s64) data_021593b0.y * data_0217b924.y) >> 12));
         u.y = data_0217b924.y;
-        func_02148504(&data_0217b930, &u, &data_0217b930);
-        func_021484d0(&data_0217b930, &data_0217b948, &v);
-        func_02147fd8(0xd9a, &v, &data_0217b948, &data_0217b948);
+        Vec3Add(&data_0217b930, &u, &data_0217b930);
+        Vec3Sub(&data_0217b930, &data_0217b948, &v);
+        Vec3AddScaled(0xd9a, &v, &data_0217b948, &data_0217b948);
     }
     if (data_0217b8e4 == 0) {
         return;

@@ -22,7 +22,7 @@ void func_ov003_021c5994(u32 param_0) {
     *(u16 *) &data_ov003_021da1f0 = *(u16 *) &data_ov003_021da1f0 - a;
     func_ov003_021c5c68();
     func_ov003_021cce58(
-        func_02147d30(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40));
+        Div32(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40));
     func_ov003_021cce48();
     func_ov003_021c590c();
     data_ov003_021da1f4->mUnk_38 = 0;
@@ -50,7 +50,7 @@ void func_ov003_021c5a0c(u32 param_0) {
     func_ov003_021c5aa4();
     if (a == 0) {
         func_ov003_021cce58(
-            func_02147d30(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40));
+            Div32(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40));
         func_ov003_021cce48();
         func_ov003_021c590c();
         data_ov003_021da1f4->mUnk_38 = 0;
@@ -103,7 +103,7 @@ void func_ov003_021c5b90(int param_0, int param_1) {
         if (b <= 0x10) {
             param_1 += 6;
         }
-        func_0214d168(a, 0, 0x22);
+        MemFill(a, 0, 0x22);
         if (b <= 0x10) {
             n = b;
         } else {
@@ -114,7 +114,7 @@ void func_ov003_021c5b90(int param_0, int param_1) {
         }
         func_ov003_021d2094(data_ov003_021da1f4->mUnk_0c, 0xa, param_1, 2, 0xa, a, 1);
         if (b > 0x10) {
-            func_0214d168(a, 0, 0x22);
+            MemFill(a, 0, 0x22);
             n = b - 0x10;
             for (i = 0; i < n; i++) {
                 a[i] = (data_ov003_021da1f4->mUnk_00 + c)[i + 0x10];

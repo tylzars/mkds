@@ -4,11 +4,11 @@
 
 #pragma thumb on
 
-// Calls func_0214d6e8(13, a, 0) and, while it returns nonzero, WaitByLoop(1) and the call again.
+// Calls PxiSendFifoWord(13, a, 0) and, while it returns nonzero, WaitByLoop(1) and the call again.
 void func_0200c46c(u32 a) {
-    if (func_0214d6e8(13, a, 0) != 0) {
+    if (PxiSendFifoWord(13, a, 0) != 0) {
         do {
             WaitByLoop(1);
-        } while (func_0214d6e8(13, a, 0) != 0);
+        } while (PxiSendFifoWord(13, a, 0) != 0);
     }
 }

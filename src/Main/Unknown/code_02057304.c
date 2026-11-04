@@ -47,13 +47,13 @@ void func_02057304(s32 a) {
     u16 n;
     u8 *p;
 
-    func_0214d168(data_0217aa08->mUnk_00, 0, 0x100);
+    MemFill(data_0217aa08->mUnk_00, 0, 0x100);
     if (a != 0) {
         n = data_021759d0->mUnk_3e;
         p = data_021759d0->mUnk_2a;
         data_0217aa08->mUnk_00->mUnk_31_0 = 1;
-        func_0214d168(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
-        func_0214d1fc(p, data_0217aa08->mUnk_00->mUnk_0c, ((u32) n << 17) >> 16);
+        MemFill(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
+        MemCopy(p, data_0217aa08->mUnk_00->mUnk_0c, ((u32) n << 17) >> 16);
     }
     data_0217aa08->mUnk_00->mUnk_31_1 = 0;
     data_0217aa08->mUnk_00->mUnk_31_3 = 0;

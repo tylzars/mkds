@@ -30,7 +30,7 @@ void func_0200fb80(Unk0200fb08 *n) {
     }
     *(vu16 *) 0x4000104 = v;
     *(vu16 *) 0x4000106 = 0xc1;
-    func_0200cae4(0x10);
+    InterruptEnableSetBits(0x10);
 }
 
 void func_0200fb28(void) {
@@ -41,7 +41,7 @@ void func_0200fb28(void) {
     func_0200f580(1);
     data_02170260.mUnk_00 = 0;
     data_02170260.mUnk_04 = 0;
-    func_0200ca9c(0x10);
+    InterruptEnableClearBits(0x10);
 }
 
 u32 func_0200fb18(void) {
@@ -101,21 +101,21 @@ void func_0200f950(Unk0200fb08 *n, u64 a, void (*f)(void *), void *p) {
     if (n == 0 || n->mUnk_00 != 0) {
         func_0200fd1c();
     }
-    s = func_0200fca0();
+    s = IrqDisable();
     n->mUnk_1c = 0;
     n->mUnk_00 = f;
     n->mUnk_04 = p;
     func_0200f9c8(n, a + func_0200f5ac());
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 void func_0200f8b8(Unk0200fb08 *n) {
     u32 s;
     Unk0200fb08 *next;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     if (n->mUnk_00 == 0) {
-        func_0200fcb4(s);
+        IrqRestore(s);
         return;
     }
     next = n->mUnk_18;
@@ -134,7 +134,7 @@ void func_0200f8b8(Unk0200fb08 *n) {
     }
     n->mUnk_00 = 0;
     n->mUnk_1c = 0;
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 void func_0200f7a0(void) {
@@ -144,7 +144,7 @@ void func_0200f7a0(void) {
     u64 c;
 
     *(vu16 *) 0x4000106 = 0;
-    func_0200ca9c(0x10);
+    InterruptEnableClearBits(0x10);
     *(u32 *) ((u8 *) &data_027e0000 + 0x3ff8) |= 0x10;
     c = func_0200f5ac();
     n = data_02170260.mUnk_00;

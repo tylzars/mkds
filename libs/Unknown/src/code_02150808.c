@@ -51,13 +51,13 @@ void func_02150c1c(Unk02150a10 *ctx, u8 *src, u32 n) {
     if (f != 0) {
         if (f + n >= 0x40) {
             k = 0x40 - f;
-            func_0214d1fc(src, buf + f, k);
+            MemCopy(src, buf + f, k);
             n -= k;
             src += k;
             data_0216f26c(ctx, buf, 0x40);
             ctx->mUnk_1c = 0;
         } else {
-            func_0214d1fc(src, buf + f, n);
+            MemCopy(src, buf + f, n);
             ctx->mUnk_1c += n;
             return;
         }
@@ -70,7 +70,7 @@ void func_02150c1c(Unk02150a10 *ctx, u8 *src, u32 n) {
             src += k;
         } else {
             do {
-                func_0214d1fc(src, buf, 0x40);
+                MemCopy(src, buf, 0x40);
                 src += 0x40;
                 data_0216f26c(ctx, buf, 0x40);
                 k -= 0x40;
@@ -81,11 +81,11 @@ void func_02150c1c(Unk02150a10 *ctx, u8 *src, u32 n) {
     if (n == 0) {
         return;
     }
-    func_0214d1fc(src, buf, n);
+    MemCopy(src, buf, n);
 }
 
 // Callers pass ctx and out only. The prologue pushes r0-r3 (the form 1.2 gives a variadic function), and the call
-// to func_0214d018 at the end clears the pushed ctx.
+// to MemFillWords at the end clears the pushed ctx.
 void func_02150a10(Unk02150a10 *ctx, u8 *out, ...) {
     volatile u32 z;
     u32 *w;
@@ -156,7 +156,7 @@ void func_02150a10(Unk02150a10 *ctx, u8 *out, ...) {
     out[19] = x;
     ctx->mUnk_1c = 0;
     z = 0;
-    func_0214d018(z, &ctx, 4);
+    MemFillWords(z, &ctx, 4);
 }
 
 void func_02150994(Unk02150a10 *ctx, u8 *data, int n) {

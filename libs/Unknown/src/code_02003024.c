@@ -42,13 +42,13 @@ void FileReadTableBytes(Unk02003ad8 *a, void *b, u32 c) {
             o->mUnk_1c &= ~0x200;
             break;
         case 6:
-            s = func_0200fca0();
+            s = IrqDisable();
             if (o->mUnk_1c & 0x200) {
                 do {
                     func_0200e01c(&o->mUnk_0c);
                 } while (o->mUnk_1c & 0x200);
             }
-            func_0200fcb4(s);
+            IrqRestore(s);
             break;
     }
     a->mUnk_04 += c;
@@ -334,9 +334,9 @@ s32 FileBuildPathString(Unk02003024 *a) {
     } else {
         n = 3;
     }
-    func_0214d1fc(o, buf, n);
+    MemCopy(o, buf, n);
     off += n;
-    func_0214d1fc(":/", buf + off, 2);
+    MemCopy(":/", buf + off, 2);
     FileEnterDirectoryById(&c, k);
     if (id != 0x10000) {
         c.mUnk_30.e.mUnk_00 = &e;
@@ -349,7 +349,7 @@ s32 FileBuildPathString(Unk02003024 *a) {
             } while (FileDispatchCommand(&c, 3) == 0);
         }
         n = e.mUnk_10 + 1;
-        func_0214d1fc(e.mUnk_14, buf + len - n, n);
+        MemCopy(e.mUnk_14, buf + len - n, n);
         len -= n;
     } else {
         *(buf + len - 1) = 0;
@@ -366,7 +366,7 @@ s32 FileBuildPathString(Unk02003024 *a) {
                 do {
                     if (e.mUnk_0c != 0 && e.mUnk_00.h.mUnk_04 == k) {
                         n = e.mUnk_10;
-                        func_0214d1fc(e.mUnk_14, buf + len - n, n);
+                        MemCopy(e.mUnk_14, buf + len - n, n);
                         len -= n;
                         break;
                     }
@@ -417,7 +417,7 @@ void FileFinishCommand(Unk02003024 *a, s32 b) {
     Unk02003024 *p;
     Unk02003024 *q;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     p = a->mUnk_00;
     q = a->mUnk_04;
     if (p != 0) {
@@ -431,7 +431,7 @@ void FileFinishCommand(Unk02003024 *a, s32 b) {
     a->mUnk_0c &= ~0x4f;
     a->mUnk_14 = b;
     func_0200df9c(&a->mUnk_18);
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 s32 FileDispatchCommand(Unk02003024 *a, u32 b) {
@@ -468,14 +468,14 @@ s32 FileDispatchCommand(Unk02003024 *a, u32 b) {
     }
     if (r == 6) {
         if (((a->mUnk_0c & 4) ? 1 : 0) != 0) {
-            s = func_0200fca0();
+            s = IrqDisable();
             if (p->mUnk_1c & 0x200) {
                 do {
                     func_0200e01c(&p->mUnk_0c);
                 } while (p->mUnk_1c & 0x200);
             }
             r = a->mUnk_14;
-            func_0200fcb4(s);
+            IrqRestore(s);
         }
     } else if (((a->mUnk_0c & 4) ? 1 : 0) != 0) {
         p->mUnk_1c &= ~0x200;

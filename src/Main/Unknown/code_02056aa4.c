@@ -8,7 +8,7 @@
 
 void func_02056aa4(Unk0217aa08_08_04 *a, Unk02056bc0 *b) {
     if (a->mUnk_00_0 != 0) {
-        func_0214d1fc(a->mUnk_08, b->mUnk_04, 0x14);
+        MemCopy(a->mUnk_08, b->mUnk_04, 0x14);
         b->mUnk_19 = a->mUnk_00_1;
         b->mUnk_1a = a->mUnk_00_b[1];
         b->mUnk_02 = a->mUnk_04_8;

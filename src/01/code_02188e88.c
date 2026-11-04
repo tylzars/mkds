@@ -93,7 +93,7 @@ u32 func_ov001_02188f04(Unk02188950 *a, Vec3 *b, s32 c) {
     float f2;
 
     if (b != NULL) {
-        func_021484d0(b, &a->mUnk_000.mPos, &local);
+        Vec3Sub(b, &a->mUnk_000.mPos, &local);
         dx = a->mUnk_000.mPos.x - b->x;
         dz = a->mUnk_000.mPos.z - b->z;
         if (c > 0) {

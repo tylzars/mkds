@@ -363,10 +363,10 @@ void func_02121190(u32 kartType, s32 b, s32 c) {
     Unk0217d384_08 *p;
 
     func_ov000_0219bbfc();
-    func_0214d168(&data_0217d384->mKeys[0], 0, 0x18);
-    func_0214d168(&data_0217d384->mKeys[1], 0, 0x18);
-    func_0214d168(&data_0217d384->mKeys[2], 0, 0x18);
-    func_0214d168(&data_0217d384->mKeys[3], 0, 0x18);
+    MemFill(&data_0217d384->mKeys[0], 0, 0x18);
+    MemFill(&data_0217d384->mKeys[1], 0, 0x18);
+    MemFill(&data_0217d384->mKeys[2], 0, 0x18);
+    MemFill(&data_0217d384->mKeys[3], 0, 0x18);
     data_0217d384->mUnk_194e = 0;
     data_0217d384->mUnk_194c = 0;
     data_0217d384->mUnk_194d = 0;
@@ -375,7 +375,7 @@ void func_02121190(u32 kartType, s32 b, s32 c) {
     data_0217d384->mKartCountCopy = 0;
     data_0217d384->mKartMask = 0;
     data_0217d384->mKartRemoveMask = 0;
-    func_0214d168(&data_0217d384->mStep, 0, 0x60);
+    MemFill(&data_0217d384->mStep, 0, 0x60);
     data_0217d384->mKeys[1].mValue = kartType;
     data_0217d384->mUnk_194c = 4;
     if (b == 0) {
@@ -405,7 +405,7 @@ void RegisterKartKeysAndStart(void) {
     s32 eloLow;
 
     func_02120610();
-    func_0214d168(data_0217d384->mUnk_021c, 0, 0x910);
+    MemFill(data_0217d384->mUnk_021c, 0, 0x910);
     func_02056464((Unk0217aa00_45c *) &data_0217d384->mUnk_021c[0].mUnk_00c);
     data_0217d384->mKeys[0].mValue = data_0217d384->mUnk_021c[0].mRegion;
     data_0217d384->mKeys[3].mValue = data_0217d384->mUnk_021c[0].mElo;
@@ -429,10 +429,10 @@ void RegisterKartKeysAndStart(void) {
     if (eloHigh > 0x2710) {
         eloHigh = 0x2710;
     }
-    func_0214d168(gKartFilterString, 0, 0x64);
+    MemFill(gKartFilterString, 0, 0x64);
     if (data_0217d384->mKeys[1].mValue == 1) {
-        sprintf(gKartFilterString, "%s = '%s' and %s > %d and %s < %d", "kart_filter",
-                "ds_mario_kart_product", "kart_elo", eloLow, "kart_elo", eloHigh);
+        sprintf(gKartFilterString, "%s = '%s' and %s > %d and %s < %d", "kart_filter", "ds_mario_kart_product",
+                "kart_elo", eloLow, "kart_elo", eloHigh);
     } else {
         sprintf(gKartFilterString, "%s = '%s'", "kart_filter", "ds_mario_kart_product");
     }
@@ -568,7 +568,7 @@ void KartKeysStartCallback(u32 a, s32 b) {
             d = data_0217d384;
             i++;
         }
-        func_0214d168(d->mUnk_021c, 0, 0x910);
+        MemFill(d->mUnk_021c, 0, 0x910);
         func_02056464((Unk0217aa00_45c *) &data_0217d384->mUnk_021c[func_ov000_0219bb50()].mUnk_00c);
         func_02123a48(0);
         data_0217d384->mStartStatus = 3;
@@ -587,14 +587,14 @@ void func_021208e8(s32 a) {
 }
 
 void func_02120714(void) {
-    func_0214d168(data_0217d384->mUnk_001c, 0, 0x200);
-    func_0214d168(data_0217d384->mUnk_021c, 0, 0x910);
-    func_0214d168(data_0217d384->mUnk_0b2c, 0, 0xe24);
-    func_0214d168(&data_0217d384->mStep, 0, 0x60);
-    func_0214d168(data_0217d384->mUnk_19b0, 0, 0x350);
-    func_0214d168(data_0217d384->mUnk_1d00, 0, 0x110);
-    func_0214d168(data_0217d384->mUnk_1e10, 0, 0x110);
-    func_0214d168(&data_0217d384->mUnk_1f20, 0, 0x10);
+    MemFill(data_0217d384->mUnk_001c, 0, 0x200);
+    MemFill(data_0217d384->mUnk_021c, 0, 0x910);
+    MemFill(data_0217d384->mUnk_0b2c, 0, 0xe24);
+    MemFill(&data_0217d384->mStep, 0, 0x60);
+    MemFill(data_0217d384->mUnk_19b0, 0, 0x350);
+    MemFill(data_0217d384->mUnk_1d00, 0, 0x110);
+    MemFill(data_0217d384->mUnk_1e10, 0, 0x110);
+    MemFill(&data_0217d384->mUnk_1f20, 0, 0x10);
     data_0217d384->mUnk_1f34 = 0;
     data_0217d384->mUnk_1f38 = 0;
     data_0217d384->mUnk_1f3c = 0;
@@ -603,7 +603,7 @@ void func_02120714(void) {
     data_0217d384->mUnk_1f48 = 0;
     data_0217d384->mUnk_1f4c = 0;
     data_0217d384->mUnk_1f4d = 0;
-    func_0214d168(data_0217d384->mUnk_1f4e, 0, 4);
+    MemFill(data_0217d384->mUnk_1f4e, 0, 4);
     data_0217d384->mKartCount = 0;
     data_0217d384->mStartKartCount = 0;
     data_0217d384->mKartCountCopy = 0;

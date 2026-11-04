@@ -322,5 +322,5 @@ void func_ov000_0219ea88(void) {
         e++;
     }
     v = 0;
-    func_0214d018(v, data_ov000_021b5698, 0x738);
+    MemFillWords(v, data_ov000_021b5698, 0x738);
 }

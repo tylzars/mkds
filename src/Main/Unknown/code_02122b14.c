@@ -26,9 +26,9 @@ void func_02123a48(u32 a) {
     func_0211fe44();
     switch (a) {
         case 0:
-            func_0214d168(&data_0217d384->mStep, 0, 0x60);
-            func_0214d168(data_0217d384->mUnk_1e10, 0, 0x110);
-            func_0214d168(data_0217d384->mUnk_1d00, 0, 0x110);
+            MemFill(&data_0217d384->mStep, 0, 0x60);
+            MemFill(data_0217d384->mUnk_1e10, 0, 0x110);
+            MemFill(data_0217d384->mUnk_1d00, 0, 0x110);
             for (i = 0; i < data_0217d384->mStartKartCount; i++) {
                 if (i != func_ov000_0219bb50()) {
                     func_ov000_021a3264(i, &data_0217d384->mUnk_021c[i], 0x244);

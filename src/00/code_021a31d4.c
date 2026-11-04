@@ -37,7 +37,7 @@ void func_ov000_021a321c(Unk021a31e8 *a, u16 b, u32 c) {
 
 u16 func_ov000_021a31e8(const void *a) {
     Unk021a31e8 t;
-    func_0214d1fc(a, &t, 8);
+    MemCopy(a, &t, 8);
     if (memcmp(t.mUnk_06, data_ov000_021b41f0, 2) == 0) {
         return t.mUnk_04;
     }

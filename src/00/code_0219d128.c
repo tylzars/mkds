@@ -317,7 +317,7 @@ void func_ov000_0219d2c4(void) {
 
 void func_ov000_0219d288(Unk02152490 *a, s32 b, s32 c) {
     if (data_ov000_021b5664 != NULL) {
-        func_0214d168(&a[b], 0, 12);
+        MemFill(&a[b], 0, 12);
         if (data_ov000_021b5664->mUnk_3c != NULL) {
             data_ov000_021b5664->mUnk_3c(b, c, data_ov000_021b5664->mUnk_40);
         }

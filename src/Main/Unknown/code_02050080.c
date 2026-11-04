@@ -46,7 +46,7 @@ u32 func_020501b0(u32 a) {
         e = &data_0217aa00->mUnk_00ac[a];
         data_0217aa00->mUnk_0436 &= ~1;
         if (e->mUnk_dc_0 != 0) {
-            func_0214d1fc(e, data_0217aa00->mUnk_0024, 0xc0);
+            MemCopy(e, data_0217aa00->mUnk_0024, 0xc0);
             func_0200ee58(data_0217aa00->mUnk_0024, 0xc0);
             q = data_0217aa00;
             *(Unk0217aa00_42c *) &q->mUnk_042c = e->mUnk_c0_42c;

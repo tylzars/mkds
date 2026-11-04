@@ -67,7 +67,7 @@ void func_0205aa60(void) {
                     e->mUnk_0b = func_020fa0e8(e->mUnk_09, e->mUnk_0a);
                 }
                 if (e->mUnk_0b != 0) {
-                    func_0214d1fc(d, e->mUnk_04, e->mUnk_0b);
+                    MemCopy(d, e->mUnk_04, e->mUnk_0b);
                     d += e->mUnk_0b;
                 }
             }
@@ -94,7 +94,7 @@ void func_0205ab78(void) {
                     e->mUnk_09 = 15;
                     e->mUnk_0a = 0;
                     e->mUnk_0b = 0;
-                    func_0214d168(e->mUnk_04, 0, 20);
+                    MemFill(e->mUnk_04, 0, 20);
                 }
                 break;
             case 1:
@@ -132,7 +132,7 @@ void func_0205ac38(void) {
                 break;
             case 1:
                 if (e->mUnk_0b != 0 && 0x30 - (v + e->mUnk_0b) >= 0) {
-                    func_0214d1fc(e->mUnk_04, b, e->mUnk_0b);
+                    MemCopy(e->mUnk_04, b, e->mUnk_0b);
                     v = v + e->mUnk_0b;
                     b += e->mUnk_0b;
                 }
@@ -168,7 +168,7 @@ void func_0205ad88(void) {
             e->mUnk_09 = 15;
             e->mUnk_0a = 0;
             e->mUnk_0b = 0;
-            func_0214d168(e->mUnk_04, 0, 20);
+            MemFill(e->mUnk_04, 0, 20);
             data_0217aa14->mUnk_6e4[i][j] = 0;
         }
         e = &data_0217aa14->mUnk_324[i];
@@ -177,7 +177,7 @@ void func_0205ad88(void) {
         e->mUnk_09 = 15;
         e->mUnk_0a = 0;
         e->mUnk_0b = 0;
-        func_0214d168(e->mUnk_04, 0, 20);
+        MemFill(e->mUnk_04, 0, 20);
     }
     data_0217aa14->mUnk_724 = 0x30;
 }

@@ -297,7 +297,7 @@ void func_0205c470(void) {
     data_0217aa14->mUnk_72c = 0;
     data_0217aa14->mUnk_738 = 0;
     data_0217aa14->mUnk_758 = 2;
-    func_0214d168(data_0217aa14->mUnk_754, 0, 0x6c);
+    MemFill(data_0217aa14->mUnk_754, 0, 0x6c);
     for (i = 0; i < 4; i++) {
         if ((data_0217aa14->mUnk_0fc & (1 << i)) != 0 && (data_0217aa14->mUnk_749 & (1 << i)) == 0) {
             if (data_0217aa18->mUnk_06[i] >= 0) {
@@ -348,12 +348,12 @@ void func_0205c6b0(void) {
     q = &p->mUnk_754->mUnk_04;
     for (i = 0; i < 4; i++) {
         if (p->mUnk_014[i].mUnk_30 != 0) {
-            func_0214d1fc(&p->mUnk_014[i], q, 0x28);
+            MemCopy(&p->mUnk_014[i], q, 0x28);
             *(u64 *) &q->mUnk_0c[2] = func_0200f5ac();
             if (func_0205c340(i, 0, 0x28) != 0) {
                 data_0217aa14->mUnk_014[i].mUnk_30 = 0;
             } else {
-                func_0214d168(q, 0, 0x28);
+                MemFill(q, 0, 0x28);
             }
             break;
         }

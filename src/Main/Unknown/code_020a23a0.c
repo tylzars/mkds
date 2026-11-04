@@ -207,7 +207,7 @@ void func_020a29cc(void) {
     func_02010fac(1, data_0217b200->mUnk_0fe, data_0217b200->mUnk_102, data_0217b200->mUnk_106);
     func_02010f98(0, 0x7fff);
     func_02010f98(1, 0x7fff);
-    x = (s32) (((s64) func_02147f34(data_0215d6b4[0x54], data_0215d6b4[0x55]) * 0x19a) >> 12);
+    x = (s32) (((s64) DivFixed12(data_0215d6b4[0x54], data_0215d6b4[0x55]) * 0x19a) >> 12);
     y = (s32) (((s64) -x * 0x1555) >> 12);
     if (data_021759c0->mUnk_57 != 0) {
         func_0214b048(x, -x, -y, y, 0x19a, 0x1388000, 0x200, 0, (Unk0214ad4c *) data_0217029c.mUnk_08);

@@ -64,6 +64,6 @@ void func_0212c824(Unk0212c7f0 *p) {
 
 void func_0212c7f0(Unk0212c7f0 *p) {
     func_0212bb7c(p->mUnk_40);
-    func_02017354(&data_0217dd1c, p);
+    ListRemove(&data_0217dd1c, p);
     p->mUnk_24_0 = 0;
 }

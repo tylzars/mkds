@@ -144,9 +144,9 @@ void func_0210298c(Unk02102674 *p) {
     p->mUnk_000.mUnk_50.x = (s32) (((s64) s->mUnk_0c.x * -w.x) >> 12);
     p->mUnk_000.mUnk_50.y = (s32) (((s64) s->mUnk_0c.y * -w.x) >> 12);
     p->mUnk_000.mUnk_50.z = (s32) (((s64) s->mUnk_0c.z * -w.x) >> 12);
-    func_02147fd8(w.y, &s->mUnk_00, &p->mUnk_000.mUnk_50, &p->mUnk_000.mUnk_50);
-    func_02147fd8(-w.z, &s->mUnk_15c, &p->mUnk_000.mUnk_50, &p->mUnk_000.mUnk_50);
-    func_02148504(&s->mUnk_24, &p->mUnk_000.mUnk_50, &p->mUnk_000.mUnk_50);
+    Vec3AddScaled(w.y, &s->mUnk_00, &p->mUnk_000.mUnk_50, &p->mUnk_000.mUnk_50);
+    Vec3AddScaled(-w.z, &s->mUnk_15c, &p->mUnk_000.mUnk_50, &p->mUnk_000.mUnk_50);
+    Vec3Add(&s->mUnk_24, &p->mUnk_000.mUnk_50, &p->mUnk_000.mUnk_50);
 }
 
 void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t) {
@@ -170,7 +170,7 @@ void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t) {
     s.mUnk_00[1].x = (s32) (((s64) s.mUnk_00[1].x * d) >> 12);
     s.mUnk_00[1].y = (s32) (((s64) s.mUnk_00[1].y * d) >> 12);
     s.mUnk_00[1].z = (s32) (((s64) s.mUnk_00[1].z * d) >> 12);
-    func_02147fd8(p->mUnk_19c, &s.mUnk_00[0], &s.mUnk_00[1], &s.mUnk_00[1]);
+    Vec3AddScaled(p->mUnk_19c, &s.mUnk_00[0], &s.mUnk_00[1], &s.mUnk_00[1]);
     w.x = (s32) (((s64) p->mUnk_180 * p->mUnk_000.mUnk_68.x) >> 12);
     w.y = (s32) (((s64) p->mUnk_184.x * p->mUnk_000.mUnk_68.y) >> 12);
     w.z = p->mUnk_000.mUnk_68.z;

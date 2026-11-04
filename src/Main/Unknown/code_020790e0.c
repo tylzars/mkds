@@ -243,7 +243,7 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
         if (d != FALSE) {
             func_02087f84(a->mUnk_008, 0);
             a->mUnk_02c = (func_02087d0c(a->mUnk_008) - 0x1000) / 2;
-            a->mUnk_030 = func_02147f34(0x1000, a->mUnk_02c);
+            a->mUnk_030 = DivFixed12(0x1000, a->mUnk_02c);
         } else {
             a->mUnk_008->mUnk_18 = 0;
         }
@@ -315,7 +315,7 @@ void func_02079678(void *a, s32 b) {
                     e->mUnk_054->mUnk_v[j].z = e->mUnk_020->mUnk_14[j].z >> 4;
                     j++;
                 } while (j < 4);
-                e->mUnk_054->mUnk_v[1].x = func_02147f34(-e->mUnk_054->mUnk_v[0].x * 2, e->mUnk_020->mUnk_10);
+                e->mUnk_054->mUnk_v[1].x = DivFixed12(-e->mUnk_054->mUnk_v[0].x * 2, e->mUnk_020->mUnk_10);
                 e->mUnk_054->mUnk_v[3].x = -e->mUnk_054->mUnk_v[2].x * 2;
                 CreateTire(e, a);
             }
@@ -354,7 +354,7 @@ void InitKartModels(void *a, u32 b) {
         e->mUnk_004 = data_021759c0->mUnk_68[i].mKartIndex;
         func_02079988((s32) e, e->mUnk_004);
         e->mUnk_020 = HeapAlloc(a, 0xe0);
-        func_0214d1fc(v4 + e->mUnk_004 * 0xe0, e->mUnk_020, 0xe0);
+        MemCopy(v4 + e->mUnk_004 * 0xe0, e->mUnk_020, 0xe0);
         func_0208aea8(i, (u16) e->mUnk_004, (u16) d[i].mUnk_000);
     }
     func_02079678(a, 1);

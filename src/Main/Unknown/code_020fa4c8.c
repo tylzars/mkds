@@ -186,7 +186,7 @@ void func_020fbd98(Unk020fc2e8 *param_1) {
 }
 
 void func_020fbd4c(Unk020fc2e8 *param_1) {
-    param_1->mUnk_27c = func_021482cc(&param_1->mUnk_000.mUnk_5c);
+    param_1->mUnk_27c = Vec3Length(&param_1->mUnk_000.mUnk_5c);
     param_1->mUnk_284 = 0x1e000;
     if (param_1->mUnk_228->mUnk_1f8 == data_021759c0->mUnk_62) {
         param_1->mUnk_270 = 0xdd;
@@ -261,7 +261,7 @@ void func_020fbae0(Unk020fc2e8 *param_1) {
 void func_020fba6c(Unk020fc2e8 *param_1) {
     param_1->mUnk_264 = 0x5000;
     param_1->mUnk_288 = 0x3e8;
-    func_021484d0(&param_1->mUnk_238, &param_1->mUnk_298, &param_1->mUnk_28c);
+    Vec3Sub(&param_1->mUnk_238, &param_1->mUnk_298, &param_1->mUnk_28c);
     if (param_1->mUnk_26c != 0) {
         func_0208eb10(param_1->mUnk_26c);
         param_1->mUnk_26c = 0;
@@ -302,14 +302,14 @@ void func_020fb7f8(Unk020fc2e8 *param_1) {
             v.y = param_1->mUnk_250.y * 2;
             v.z = param_1->mUnk_250.z * 2;
             func_020397a8(q, &v, &v);
-            func_02147fd8((s32) (((s64) (param_1->mUnk_25c - 0x10000) * 0xccd) >> 12), q, &v, &v);
+            Vec3AddScaled((s32) (((s64) (param_1->mUnk_25c - 0x10000) * 0xccd) >> 12), q, &v, &v);
         } else {
             v.x = (s32) (((s64) param_1->mUnk_250.z * 0x2000) >> 12);
             v.y = (s32) (((s64) (param_1->mUnk_25c - 0x10000) * 0xccd) >> 12);
             v.z = -(s32) (((s64) param_1->mUnk_250.x * 0x2000) >> 12);
         }
         if (param_1->mUnk_2ec == 0) {
-            func_021484d0(&v, &param_1->mUnk_298, &param_1->mUnk_28c);
+            Vec3Sub(&v, &param_1->mUnk_298, &param_1->mUnk_28c);
         }
         func_020fc2e8(param_1, &v, 1, q);
         return;
@@ -358,7 +358,7 @@ void func_020fb61c(Unk020fc2e8 *param_1) {
     }
     q = func_020fbd98_inline(param_1);
     if (q != NULL) {
-        func_02147fd8(param_1->mUnk_27c, q, &param_1->mUnk_22c, &v);
+        Vec3AddScaled(param_1->mUnk_27c, q, &param_1->mUnk_22c, &v);
     } else {
         z = param_1->mUnk_22c.z;
         y = param_1->mUnk_27c;
@@ -367,8 +367,8 @@ void func_020fb61c(Unk020fc2e8 *param_1) {
         v.y = y;
         v.z = z;
     }
-    func_021484d0(&v, &param_1->mUnk_2a4, &v);
-    func_02147fd8(param_1->mUnk_284, &v, &param_1->mUnk_2a4, &param_1->mUnk_2a4);
+    Vec3Sub(&v, &param_1->mUnk_2a4, &v);
+    Vec3AddScaled(param_1->mUnk_284, &v, &param_1->mUnk_2a4, &param_1->mUnk_2a4);
     func_020fc2e8(param_1, &param_1->mUnk_2a4, 0, q);
 }
 
@@ -399,7 +399,7 @@ void func_020fb46c(Unk020fc2e8 *param_1) {
         pv = &param_1->mUnk_000.mUnk_50;
         if (func_01ffdee4(pv, &param_1->mUnk_000.mUnk_0e4, 0, param_1->mUnk_000.mUnk_dc, 4, param_1->mUnk_000.mUnk_da,
                           &v, NULL, NULL, &param_1->mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL) != 0) {
-            func_02148504(&v, pv, pv);
+            Vec3Add(&v, pv, pv);
             func_020f7104(&param_1->mUnk_000, 0);
             if (param_1->mUnk_000.mUnk_74 & 0x8000000) {
                 func_020fe71c(5, param_1->mUnk_228->mUnk_1f8, param_1->mUnk_000.mUnk_4e);
@@ -626,7 +626,7 @@ void func_020fad00(void) {
     s32 v;
 
     data_0217bd3c = 0x1e000;
-    data_0217bd40 = func_02147f34(0x1000, data_0217bd3c);
+    data_0217bd40 = DivFixed12(0x1000, data_0217bd3c);
     data_0217bd44 = 0x299a;
     a = data_0217bd3c;
     b = data_0217bc34[5].mUnk_6c;
@@ -799,9 +799,9 @@ static inline s32 func_020fa4c8_inline(Unk020f41c4_A *e, Unk0206bcb0 *a) {
         return 1;
     }
     if (e->mUnk_5c.x != 0 || e->mUnk_5c.y != 0 || e->mUnk_5c.z != 0 || a->mUnk_2a8 != 0) {
-        func_021484d0(&e->mUnk_0e4, &a->mUnk_1e4, &b);
+        Vec3Sub(&e->mUnk_0e4, &a->mUnk_1e4, &b);
         b.y = 0;
-        func_021484d0(&e->mUnk_50, &a->mUnk_1d8, &c);
+        Vec3Sub(&e->mUnk_50, &a->mUnk_1d8, &c);
         c.y = 0;
         d1 = func_02039828(&b, &b);
         d2 = func_02039828(&c, &c);

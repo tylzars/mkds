@@ -13,7 +13,7 @@ void func_02057244(void) {
     value0 = (u32) * (const u32 *) ((value0) + 32u);
     value1 = 0u;
     value2 = 0xc00u;
-    value3 = (u32) &func_0214d168;
-    func_0214d168((void *) value0, (u8) value1, value2);
+    value3 = (u32) &MemFill;
+    MemFill((void *) value0, (u8) value1, value2);
 }
 #pragma thumb off

@@ -107,7 +107,7 @@ void func_0208b934(void *a) {
             data_0217b048 = HeapAlloc(c, 0x64);
             for (j = 0; j < 6; j++) {
                 data_0217b048->mUnk_48[j] = NULL;
-                func_021484d0(&data_usa_02155f78[j], &w, &v);
+                Vec3Sub(&data_usa_02155f78[j], &w, &v);
                 q = &data_0217b048->mUnk_00[j];
                 if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
                     func_02039860(&v, q);

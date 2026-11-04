@@ -49,7 +49,7 @@ u32 func_ov000_02188114(Unk02188114 *p) {
     if (data_ov000_021b4cb0 == NULL) {
         return 4;
     }
-    func_0214d168(data_ov000_021b4cb0, 0, 0x1200);
+    MemFill(data_ov000_021b4cb0, 0, 0x1200);
     data_ov000_021b4cb0->mUnk_04 = -99999;
     data_ov000_021b4cb0->mUnk_108 = *p;
     if (gHttp != NULL) {
@@ -163,8 +163,8 @@ s32 func_ov000_021882f8(const u8 *a, u32 b, char *c, u32 d) {
         if (l >= 3) {
             l = 3;
         }
-        func_0214d168(v3, 0, 3);
-        func_0214d1fc(a, v3, l);
+        MemFill(v3, 0, 3);
+        MemCopy(a, v3, l);
         v2[0] = data_ov000_021b1488[v3[0] >> 2];
         if (k >= 2) {
             v2[1] = data_ov000_021b1488[(v3[0] << 4 & 0x3f) | v3[1] >> 4];

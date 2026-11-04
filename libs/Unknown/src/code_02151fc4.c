@@ -44,7 +44,7 @@ u64 func_0215211c(u32 a, u32 b, u32 c, u32 d) {
         *i = (data_usa_02161738[(*i >> 4) & 0xf] << 4) | data_usa_02161738[*i & 0xf];
         i++;
     }
-    func_0214d1fc(e.b, f, 8);
+    MemCopy(e.b, f, 8);
     h = 0;
     k = f;
     j = data_usa_02161730;

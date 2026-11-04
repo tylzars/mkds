@@ -55,7 +55,7 @@ u8 func_ov000_0218973c(u32 a) {
 
     v1 = (Unk02188ec0 *) func_ov000_02188584(0x10);
     z = 0;
-    func_0214d018(z, v1->mUnk_300, 0x144);
+    MemFillWords(z, v1->mUnk_300, 0x144);
     switch (a) {
         case 0:
             v1->mUnk_d10 = func_ov000_021896c4(v1);

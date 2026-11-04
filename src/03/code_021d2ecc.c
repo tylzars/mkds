@@ -17,7 +17,7 @@ void func_ov003_021d2f78(void) {
 u8 *func_ov003_021d2f44(int a, u8 *b) {
     u8 *v1;
     v1 = func_ov003_021d1cd4(data_ov003_021da2f0->mUnk_800[a]);
-    func_0214d02c(b, v1, 8);
+    MemCopyWords(b, v1, 8);
     return v1;
 }
 

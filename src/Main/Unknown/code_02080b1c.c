@@ -13,7 +13,7 @@ s32 func_02080c64(Unk02080b1c *p, Vec3 *a) {
 
     r = FALSE;
     d = n->mUnk_1c;
-    func_021484d0(n->mUnk_18, a, &v);
+    Vec3Sub(n->mUnk_18, a, &v);
     v.y = r;
     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z < (s64) d * d) {
         r = TRUE;
@@ -28,7 +28,7 @@ s32 func_02080bf4(Unk02080b1c *p, Vec3 *a) {
 
     r = FALSE;
     if (p->mUnk_08.x != 0 || p->mUnk_08.y != 0 || p->mUnk_08.z != 0) {
-        func_021484d0(a, w, &v);
+        Vec3Sub(a, w, &v);
         if (func_02039828(&p->mUnk_08, &v) > 0) {
             r = TRUE;
         }
@@ -57,6 +57,6 @@ void func_02080b1c(Unk02080b1c *p) {
     }
     p->mUnk_04 = p->mUnk_00;
     p->mUnk_00 = p->mUnk_00->mUnk_00[i];
-    func_021484d0(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
+    Vec3Sub(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
     func_02039860(&p->mUnk_08, &p->mUnk_08);
 }

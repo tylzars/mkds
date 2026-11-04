@@ -128,7 +128,7 @@ s32 func_02142ab8(u32 a, u16 b, ...) {
         ((u32 *) ((u8 *) p + 4))[i] = ap[-1];
     }
     func_0200ee58(p, 0x100);
-    r = func_0214d6e8(0xa, (u32) p, 0);
+    r = PxiSendFifoWord(0xa, (u32) p, 0);
     func_0200eae8(&data_0217eed8, p, 1);
     if (r < 0) {
         return 8;
@@ -279,12 +279,12 @@ void func_021425e8(u32 a, Unk021425e8 *m, s32 c) {
                 data_0217ef20.mUnk_12 = v7;
                 data_0217ef20.mUnk_20 = v6;
                 data_0217ef20.mUnk_1a = 0xffff;
-                func_0214d1fc(p5, data_0217ef20.mUnk_14, 6);
+                MemCopy(p5, data_0217ef20.mUnk_14, 6);
                 if (p4 != 0) {
-                    func_0214cffc(p4, data_0217ef20.mUnk_24, 0x18);
+                    MemCopyHalfwords(p4, data_0217ef20.mUnk_24, 0x18);
                 } else {
                     z = 0;
-                    func_0214cfe4(z, data_0217ef20.mUnk_24, 0x18);
+                    MemFillHalfwords(z, data_0217ef20.mUnk_24, 0x18);
                 }
                 for (i = 0; i < 16; i++) {
                     data_0217ef20.mUnk_06 = i;

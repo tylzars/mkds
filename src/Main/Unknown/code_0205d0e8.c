@@ -9,7 +9,7 @@ void func_0205d0e8(u8 a, u8 b) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
-        func_0214d1fc(&data_0217aa1c->mUnk_000[i][a], &data_0217aa1c->mUnk_000[i][b], 10);
+        MemCopy(&data_0217aa1c->mUnk_000[i][a], &data_0217aa1c->mUnk_000[i][b], 10);
     }
 }
 

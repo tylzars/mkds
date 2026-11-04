@@ -54,8 +54,8 @@ void func_020646f0(Unk0206bcb0 *a, s32 b) {
         h.x = (s64) f.x * 0x5000 >> 12;
         h.y = (s64) f.y * 0x5000 >> 12;
         h.z = (s64) f.z * 0x5000 >> 12;
-        func_021484d0(&e, &h, &e);
-        func_02148504(&a->mUnk_80, &e, &a->mUnk_80);
+        Vec3Sub(&e, &h, &e);
+        Vec3Add(&a->mUnk_80, &e, &a->mUnk_80);
     }
     a->mUnk_80.y = a->mUnk_80.y - 0x1000;
     a->mUnk_236 = (u32) (d.y * 0xb6) >> 12;

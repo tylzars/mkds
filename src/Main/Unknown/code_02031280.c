@@ -75,7 +75,7 @@ void func_02031f5c(void) {
     q = &data_02174e58->mUnk_24[1];
     for (i = 1, t = data_usa_02153d88; i < 8; t++, i++) {
         v1[0] = 0;
-        func_0214cfe4(v1[0], &v1[1], 0x16);
+        MemFillHalfwords(v1[0], &v1[1], 0x16);
         if (func_0204fcec(i, &v1[1]) != 0) {
             v1[11] = 0;
             func_0212426c(1, t->mUnk_00, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);
@@ -100,9 +100,9 @@ void func_02031e80(void) {
     q = &data_02174e58->mUnk_24[1];
     for (i = 1, t = data_usa_02153d88; i < 8; t++, i++) {
         v1[0] = 0;
-        func_0214cfe4(v1[0], &v1[1], 0x16);
+        MemFillHalfwords(v1[0], &v1[1], 0x16);
         if (&data_0217aa00->mUnk_045c[(u16) i] != NULL) {
-            func_0214cffc(&data_0217aa00->mUnk_045c[(u16) i], &v1[1], 0x14);
+            MemCopyHalfwords(&data_0217aa00->mUnk_045c[(u16) i], &v1[1], 0x14);
             if (v1[1] != 0) {
                 func_0212426c(1, t->mUnk_00, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);
                 data_02174e58->mUnk_e0[i].mUnk_00 = 2;
@@ -433,7 +433,7 @@ void func_0203154c(void *a, void *b, void *c) {
     h = CreateFrmHeapFromMaxFree(a);
     data_02174e58 = HeapAlloc(h, 0x154);
     z = 0;
-    func_0214d05c(z, data_02174e58, 0x154);
+    MemFillWordsByBlock(z, data_02174e58, 0x154);
     data_02174e58->mHeap = h;
     data_02174e58->mUnk_5c = b;
     data_02174e58->mUnk_60 = c;
@@ -485,7 +485,7 @@ void func_0203147c(void *a, void *b, void *c) {
 
     func_0203154c(a, b, c);
     q = &data_02174e58->mUnk_24[1];
-    func_0214cffc(data_0217aa08->mUnk_00->mUnk_0c, v1, 0x14);
+    MemCopyHalfwords(data_0217aa08->mUnk_00->mUnk_0c, v1, 0x14);
     v1[10] = 0;
     func_0212426c(1, data_usa_02153d7c[0].mUnk_00, q->mUnk_14, v1, q->mUnk_0c, q->mUnk_18);
     func_0212426c(1, data_usa_02153dbc[16], q->mUnk_14,
@@ -515,7 +515,7 @@ void func_02031280(void *a, void *b, void *c) {
     data_02174e58->mUnk_70 = 2;
     data_02174e58->mUnk_84 = func_0204fe90(func_0202f14c()->mUnk_00);
     v1[0] = 0;
-    func_0214cfe4(v1[0], &v1[1], 0x16);
+    MemFillHalfwords(v1[0], &v1[1], 0x16);
     if (data_02174e58->mUnk_84 == 0 && func_0204ff14(func_0202f14c()->mUnk_00, &v1[1]) != 0) {
         v1[11] = 0;
         func_0212426c(1, data_usa_02153d7c[0].mUnk_00, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);

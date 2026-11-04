@@ -70,7 +70,7 @@ void func_ov003_021c6508(void) {
         data_ov003_021da1f4->mUnk_53 = 0x37;
     }
     if (a != 0) {
-        b = func_02147d30(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40);
+        b = Div32(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40);
     }
     func_ov003_021ccea4(a, 0x55, 0xec, 0x3f, b);
 }

@@ -28,9 +28,9 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
         case 2:
             if (func_ov003_021cf360() == 2) {
                 s = data_ov003_021da288;
-                t = func_0200fca0();
+                t = IrqDisable();
                 s->mMask |= 1 << a;
-                func_0200fcb4(t);
+                IrqRestore(t);
                 p = data_ov003_021da288->mRecords[a - 1].mUnk_16;
                 p[0] = c->mUnk_0a[0];
                 p[1] = c->mUnk_0a[1];
@@ -44,14 +44,14 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
         case 3:
             if (func_ov003_021cf284(a) != 6) {
                 m = ~(1 << a);
-                t = func_0200fca0();
+                t = IrqDisable();
                 data_ov003_021da288->mMask &= m;
                 data_ov003_021da288->mUnk_04 &= m;
                 data_ov003_021da288->mUnk_06 &= m;
                 data_ov003_021da288->mUnk_08 &= m;
                 data_ov003_021da288->mUnk_0a &= m;
                 data_ov003_021da288->mUnk_0c &= m;
-                func_0200fcb4(t);
+                IrqRestore(t);
             }
             break;
         case 10:
@@ -63,7 +63,7 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
             func_ov003_021cf844(a);
             t = (u32) func_02007e38(a);
             if (t != 0) {
-                func_0214d1fc((void *) t, &data_ov003_021da288->mRecords[a - 1], 0x16);
+                MemCopy((void *) t, &data_ov003_021da288->mRecords[a - 1], 0x16);
             }
             break;
         case 14:
@@ -148,14 +148,14 @@ u32 func_ov003_021cf284(u32 a) {
     u16 b;
     u16 s[7];
 
-    t = func_0200fca0();
+    t = IrqDisable();
     b = 1 << a;
     if ((data_ov003_021da288->mMask & b) == 0) {
-        func_0200fcb4(t);
+        IrqRestore(t);
         return 0;
     }
-    func_0214d1fc(data_ov003_021da288, s, 0xe);
-    func_0200fcb4(t);
+    MemCopy(data_ov003_021da288, s, 0xe);
+    IrqRestore(t);
     if ((s[2] & b) != 0) {
         return 2;
     }

@@ -155,7 +155,7 @@ void func_ov000_021a2e7c(Unk0219887c *a, const void *b, int c) {
     v1 = func_ov000_0219b9c4(a);
     v2 = &data_ov000_021b5dd0->mUnk_000[v1];
     if ((v2->mUnk_04 != NULL) && (v2->mUnk_08 >= c)) {
-        func_0214d1fc(b, v2->mUnk_04, c);
+        MemCopy(b, v2->mUnk_04, c);
         if (data_ov000_021b5dd0->mUnk_604 != NULL) {
             data_ov000_021b5dd0->mUnk_604(v1, v2->mUnk_04, c);
         }
@@ -177,7 +177,7 @@ void func_ov000_021a2dfc(int a, void *b, s32 c) {
             if (c != 8) {
                 return;
             }
-            func_0214d1fc(b, t, 8);
+            MemCopy(b, t, 8);
             e->mUnk_18 = t[0];
             e->mUnk_10 = 0;
             if (e->mUnk_04 != NULL && e->mUnk_08 >= e->mUnk_18) {
@@ -202,7 +202,7 @@ void func_ov000_021a2d68(int a, void *b, s32 c) {
         if (e->mUnk_10 + c > e->mUnk_08) {
             func_0200fd1c();
         }
-        func_0214d1fc(b, e->mUnk_04 + e->mUnk_10, c);
+        MemCopy(b, e->mUnk_04 + e->mUnk_10, c);
     }
     e->mUnk_10 += c;
     n = e->mUnk_18;

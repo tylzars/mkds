@@ -57,10 +57,10 @@ s32 func_ov000_021a9280(u8 *a, u32 b, u8 *c, u32 d, Unk021a998c *e) {
             j = b;
         }
         k = i - j;
-        func_0214d1fc(a, l + 5, j);
+        MemCopy(a, l + 5, j);
         a += j;
         b -= j;
-        func_0214d1fc(c, l + 5 + j, k);
+        MemCopy(c, l + 5 + j, k);
         c += k;
         l[0] = 0x17;
         l[1] = 3;

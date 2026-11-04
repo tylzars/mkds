@@ -29,13 +29,13 @@ s32 func_0200589c(Unk0216f3dc *a, s32 b, s32 c) {
     v2 = func_02007114();
     switch (v3->mUnk_00) {
         case 2:
-            func_0214d02c(v3, a, 0x9c);
+            MemCopyWords(v3, a, 0x9c);
             a->mUnk_000.mUnk_0c = v2;
             v2 = func_020070d8();
             v1 = func_02006858(b, a->mUnk_000.mUnk_08, a->mUnk_000.mUnk_0c, v2, func_020070e4());
             break;
         case 6:
-            func_0214d02c(v3, a, 0x9c);
+            MemCopyWords(v3, a, 0x9c);
             a->mUnk_000.mUnk_0c = v2;
             for (i = 0, v4 = &a->mUnk_1d4[0].mUnk_24; i < 16; i++) {
                 if (((a->mUnk_000.mUnk_08 >> i) & 1) != 0) {
@@ -50,7 +50,7 @@ s32 func_0200589c(Unk0216f3dc *a, s32 b, s32 c) {
             }
             break;
         case 4:
-            func_0214d02c(v3, a, 0x9c);
+            MemCopyWords(v3, a, 0x9c);
             a->mUnk_000.mUnk_0c = v2;
             for (i = 0, v5 = &a->mUnk_1d4[0].mUnk_24; i < 16; i++) {
                 if (((a->mUnk_000.mUnk_08 >> i) & 1) != 0) {
@@ -65,7 +65,7 @@ s32 func_0200589c(Unk0216f3dc *a, s32 b, s32 c) {
             }
             break;
         case 10:
-            func_0214d02c(v3, a, 0x9c);
+            MemCopyWords(v3, a, 0x9c);
             a->mUnk_000.mUnk_0c = v2;
             v1 = func_0200654c(b, a->mUnk_000.mUnk_08, a->mUnk_000.mUnk_0c, &a->mUnk_000.mUnk_14,
                                *((u8 *) &a->mUnk_000.mUnk_1c[0] + 1));
@@ -280,13 +280,13 @@ u32 func_02005dac(Unk0216f3dc *a, s32 b, const u8 *c, s32 d) {
         do {
             switch (v2) {
                 case 1:
-                    func_0214d1fc(c, &v5->mUnk_01, 1);
+                    MemCopy(c, &v5->mUnk_01, 1);
                     c = c + 1;
                     v1 = v1 + 1;
                     v2 = 2;
                     continue;
                 case 2:
-                    func_0214d1fc(c, &v5->mUnk_08, 2);
+                    MemCopy(c, &v5->mUnk_08, 2);
                     c = c + 2;
                     v1 = v1 + 2;
                     v2 = v5->mUnk_08;
@@ -306,7 +306,7 @@ u32 func_02005dac(Unk0216f3dc *a, s32 b, const u8 *c, s32 d) {
                     v2 = 3;
                     continue;
                 case 3:
-                    func_0214d1fc(c, &v5->mUnk_02, 1);
+                    MemCopy(c, &v5->mUnk_02, 1);
                     c = c + 1;
                     v1 = v1 + 1;
                     switch (v5->mUnk_01) {
@@ -331,7 +331,7 @@ u32 func_02005dac(Unk0216f3dc *a, s32 b, const u8 *c, s32 d) {
                             continue;
                     }
                 case 10:
-                    func_0214d1fc(c, &v5->mUnk_0d, 1);
+                    MemCopy(c, &v5->mUnk_0d, 1);
                     c = c + 1;
                     v1 = v1 + 1;
                     v2 = 9;
@@ -343,7 +343,7 @@ u32 func_02005dac(Unk0216f3dc *a, s32 b, const u8 *c, s32 d) {
                     v1 = v1 + 9;
                     return v1;
                 case 4:
-                    func_0214d1fc(c, &v5->mUnk_0a, 2);
+                    MemCopy(c, &v5->mUnk_0a, 2);
                     c = c + 2;
                     v1 = v1 + 2;
                     if (v5->mUnk_01 == 3) {
@@ -351,8 +351,8 @@ u32 func_02005dac(Unk0216f3dc *a, s32 b, const u8 *c, s32 d) {
                     }
                     continue;
                 case 5:
-                    func_0214d1fc(c, &v5->mUnk_06, 2);
-                    func_0214d1fc(c + 2, &v5->mUnk_04, 2);
+                    MemCopy(c, &v5->mUnk_06, 2);
+                    MemCopy(c + 2, &v5->mUnk_04, 2);
                     if (func_02006ffc() != 0) {
                         func_020070c0(v5->mUnk_04);
                         func_020070cc(v5->mUnk_06);
@@ -373,7 +373,7 @@ u32 func_02005dac(Unk0216f3dc *a, s32 b, const u8 *c, s32 d) {
                             return v1 + 4;
                     }
                 case 7:
-                    func_0214d1fc(c, &v5->mUnk_10, 4);
+                    MemCopy(c, &v5->mUnk_10, 4);
                     c = c + 4;
                     v1 = v1 + 4;
                     v3 = v5->mUnk_01;
@@ -404,7 +404,7 @@ u32 func_02005dac(Unk0216f3dc *a, s32 b, const u8 *c, s32 d) {
                             continue;
                     }
                 case 8:
-                    func_0214d1fc(c, &v5->mUnk_14, 4);
+                    MemCopy(c, &v5->mUnk_14, 4);
                     c = c + 4;
                     v1 = v1 + 4;
                     v3 = v5->mUnk_01;
@@ -511,7 +511,7 @@ void func_020061d8(Unk0216f3dc *a, s32 b, s32 c, u32 d) {
                     *((u8 *) &v1->mUnk_1c[0] + 1) = 0;
                 } else {
                     *((u8 *) &v1->mUnk_1c[0] + 1) = v2->mUnk_0d;
-                    func_0214d1fc(v2->mUnk_20, &v1->mUnk_14, *((u8 *) &v1->mUnk_1c[0] + 1));
+                    MemCopy(v2->mUnk_20, &v1->mUnk_14, *((u8 *) &v1->mUnk_1c[0] + 1));
                 }
                 break;
             case 12:
@@ -535,12 +535,12 @@ BOOL func_0200628c(Unk0200628c *a, s32 b, const u8 *c) {
         if (b == a->mUnk_04 - 1) {
             v3 = (u32) (_s32_div_f(a->mUnk_00, v1) >> 32);
             if (v3 != 0) {
-                func_0214d1fc(c, v2 + b * v1, v3);
+                MemCopy(c, v2 + b * v1, v3);
             } else {
-                func_0214d1fc(c, v2 + b * v1, v1);
+                MemCopy(c, v2 + b * v1, v1);
             }
         } else {
-            func_0214d1fc(c, v2 + b * v1, v1);
+            MemCopy(c, v2 + b * v1, v1);
         }
     } else {
         return FALSE;

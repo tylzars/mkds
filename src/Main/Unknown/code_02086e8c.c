@@ -44,7 +44,7 @@ void func_020870ec(void *a, u16 b) {
                 c = -1;
                 break;
         }
-        func_0214d1fc(q->mUnk_0c, p, q->mUnk_04);
+        MemCopy(q->mUnk_0c, p, q->mUnk_04);
         if (c > 0) {
             for (i = 0; i < q->mUnk_04; i++) {
                 v = p[i];

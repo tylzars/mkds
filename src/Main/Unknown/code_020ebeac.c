@@ -110,7 +110,7 @@ void func_020ec1fc(void *a, Unk020e43a8 *b, void *c, u32 d) {
     v.x = b->mUnk_00.mPos.x;
     v.z = b->mUnk_00.mPos.z;
     v.y = b->mUnk_0b4 - (s32) (((s64) b->mUnk_0bc * b->mUnk_cc) >> 12) - (s32) (((s64) b->mUnk_0c4 * b->mUnk_d4) >> 12);
-    func_02147fd8(-b->mUnk_00.mUnk_58.x, (const Vec3 *) &b->mUnk_0bc, &v, &v);
+    Vec3AddScaled(-b->mUnk_00.mUnk_58.x, (const Vec3 *) &b->mUnk_0bc, &v, &v);
     func_020e5634((Unk020e516c *) &b->mUnk_114, &v);
     func_020e53ac((Unk020e516c *) &b->mUnk_114, &t, 0, d);
 }
@@ -175,8 +175,8 @@ void func_020ebef8(Unk020ebef8 *c, Vec3 *d) {
     p = func_020d22c0();
     p->mUnk_00 = p->mUnk_08 * p->mUnk_00 + p->mUnk_10;
     q->mUnk_5c = *d;
-    func_02147fd8(n, &a, &c->mUnk_000.mPos, &q->mUnk_50);
-    func_02147fd8(0, &b, &q->mUnk_50, &q->mUnk_50);
+    Vec3AddScaled(n, &a, &c->mUnk_000.mPos, &q->mUnk_50);
+    Vec3AddScaled(0, &b, &q->mUnk_50, &q->mUnk_50);
     q->mUnk_68.x = 0xcd;
     q->mUnk_68.y = 0xcd;
     q->mUnk_68.z = 0xcd;

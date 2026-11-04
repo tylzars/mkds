@@ -26,7 +26,7 @@
 #include "code_0200e77c.h"
 
 s32 func_ov000_021873d4(Unk02186d7c *p, const Unk021873d4 *q) {
-    func_0214d168(p, 0, 0x1a60);
+    MemFill(p, 0, 0x1a60);
     p->mContentLength = -1;
     p->mUnk_04 = *q;
     p->mLowReceiveBuffer = p->mUnk_04.mUnk_10(data_ov000_021b1320, 0xb68);
@@ -55,7 +55,7 @@ u32 func_ov000_0218735c(Unk02186d7c *p) {
     }
     n = strlen(strstr(p->mSendBuffer.mStart, data_ov000_021b1230) + 4);
     if (n != 0) {
-        func_0200d9e0(v1, 7, data_ov000_021b1370, n);
+        StringFormatBounded(v1, 7, data_ov000_021b1370, n);
         if (func_ov000_02186bd4((Http *) p, data_ov000_021b1374, v1) != 0) {
             return 1;
         }
@@ -132,7 +132,7 @@ void func_ov000_02186d7c(void *l) {
     if (d <= 0) {
         d = 60000;
     }
-    func_0214d168(a, 0, 0x64);
+    MemFill(a, 0, 0x64);
     a->mReceiveBufferSize = 0xb68;
     a->mReceiveBuffer = p->mLowReceiveBuffer;
     a->mSendBufferSize = 0x5ea;
@@ -145,7 +145,7 @@ void func_ov000_02186d7c(void *l) {
     }
     func_ov000_021ae270();
     if (p->mUseHttps == 1) {
-        func_0214d168(b, 0, 0x804);
+        MemFill(b, 0, 0x804);
         b->mUnk_7e4 = func_ov000_02186a84;
         b->mUnk_7d4 = p->mHost;
         a->mUnk_0c = b;
@@ -243,7 +243,7 @@ void func_ov000_02186d7c(void *l) {
             if ((s32) m >= r) {
                 m = r;
             }
-            func_0214d1fc(x, c->mCursor, m);
+            MemCopy(x, c->mCursor, m);
             c->mCursor += m;
             *c->mCursor = 0;
             if (f != 1) {
@@ -323,7 +323,7 @@ void ReleaseHttp(Http *a) {
             a->mFree(data_ov000_021b1334, a->mLowSendBuffer, 0);
             a->mLowSendBuffer = NULL;
         }
-        func_0214d168(a, 0, 0x1a60);
+        MemFill(a, 0, 0x1a60);
     }
     return;
 }

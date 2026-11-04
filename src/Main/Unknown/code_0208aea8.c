@@ -30,8 +30,8 @@ void func_0208aea8(u32 a, u32 b, u32 c) {
     } else if (data_021759c0->mUnk_08 == 2) {
         b = (u16) (c + 0x25);
     }
-    func_0214d1fc(p + b * 0x98, data_0217b038->mUnk_00 + a * 0x98, 0x98);
-    func_0214d1fc(q + c * 8, data_0217b038->mUnk_04 + a * 8, 8);
+    MemCopy(p + b * 0x98, data_0217b038->mUnk_00 + a * 0x98, 0x98);
+    MemCopy(q + c * 8, data_0217b038->mUnk_04 + a * 8, 8);
 }
 
 void func_0208af40(void *a, u32 b) {
@@ -122,7 +122,7 @@ void func_0208b190(void) {
         }
     }
     for (i = 0; i < 6; i++) {
-        s32 d = func_0214848c(&v3, &data_0217b048->mUnk_00[i]);
+        s32 d = Vec3Dot(&v3, &data_0217b048->mUnk_00[i]);
         if (d >= v1) {
             v1 = d;
             v2 = i;

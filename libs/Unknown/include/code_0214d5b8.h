@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Word of two bit-fields and a 26-bit field that func_0214d5c4 and func_0214d6e8 pack and unpack.
+// Word of two bit-fields and a 26-bit field that func_0214d5c4 and PxiSendFifoWord pack and unpack.
 typedef struct Unk0214d5c4 {
     /* 00 */ u32 mUnk_00_0 : 5;
     /* 00 */ u32 mUnk_00_5 : 1;
@@ -20,7 +20,7 @@ extern u16 data_02180328;
 
 void func_0214d5b8(void);
 void func_0214d5c4(void);
-s32 func_0214d6e8(u32 a, u32 b, u32 c);
+s32 PxiSendFifoWord(u32 a, u32 b, u32 c);
 s32 func_0214d79c(u32 a, u32 b);
 void func_0214d7c4(u32 a, UnkFunc *fn);
 void func_0214d830(void);

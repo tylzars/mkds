@@ -8,7 +8,7 @@ void func_0204a978(Unk02175650 *a) {
     }
     if (a->mUnk_0c == 0) {
         if (a->mUnk_00 != NULL) {
-            func_0214d168(a->mUnk_00, 0, 0xdcc);
+            MemFill(a->mUnk_00, 0, 0xdcc);
         }
         a->mUnk_0c = 1;
     }

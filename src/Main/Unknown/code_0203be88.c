@@ -52,13 +52,13 @@ u8 *func_0203bedc(void *a) {
 #pragma thumb off
 
 void func_0203bf04(Unk0203bf04_a *a, Unk0203bf04_b *b) {
-    func_0214d1fc(a, b, 0x30);
-    func_0214d1fc(a->mUnk_030, b->mUnk_230, 0xdcc);
+    MemCopy(a, b, 0x30);
+    MemCopy(a->mUnk_030, b->mUnk_230, 0xdcc);
     if (data_0217aa08->mUnk_04->mUnk_004 != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
-        func_0214d1fc(data_0217aa08->mUnk_04->mUnk_008, b->mUnk_030, 0x200);
+        MemCopy(data_0217aa08->mUnk_04->mUnk_008, b->mUnk_030, 0x200);
         b->mUnk_008 |= 2;
     } else {
-        func_0214d168(b->mUnk_030, 0, 0x200);
+        MemFill(b->mUnk_030, 0, 0x200);
         b->mUnk_008 &= ~2;
     }
     b->mUnk_02f_0 = func_02056208();

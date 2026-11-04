@@ -14,7 +14,7 @@ u32 func_ov000_02188de4(struct Unk02188ec0 *v1, u32 a, Unk02188de4 *v2) {
             p++;
         case 0:
             v2->mUnk_00 = p->mUnk_e6;
-            func_0214d1fc(p->mUnk_80, v2->mUnk_02, 0x50);
+            MemCopy(p->mUnk_80, v2->mUnk_02, 0x50);
             break;
         case 5:
             p++;
@@ -22,7 +22,7 @@ u32 func_ov000_02188de4(struct Unk02188ec0 *v1, u32 a, Unk02188de4 *v2) {
             p++;
         case 3:
             v2->mUnk_00 = 1;
-            func_0214d1fc(p->mUnk_d1, v2->mUnk_02, 0x14);
+            MemCopy(p->mUnk_d1, v2->mUnk_02, 0x14);
             v2->mUnk_02[0x14] = 0;
             break;
         case 6:

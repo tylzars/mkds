@@ -119,7 +119,7 @@ void func_ov000_02180d94(void) {
             return;
         }
         v1 = 0;
-        func_0214cfe4(v1, v3, 0x14);
+        MemFillHalfwords(v1, v3, 0x14);
         func_02124fac(data_ov000_021b4c68->mUnk_18, v3);
         func_0212513c(v3, GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x30), v4, 0x258);
         data_ov000_021b4c68->mNextState = 9;

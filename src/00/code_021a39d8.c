@@ -20,7 +20,7 @@
 
 void func_ov000_021a39d8(Unk021b5df4 *a, u16 b, u32 c, u32 d) {
     if (data_ov000_021b5df4 == NULL) {
-        func_0214d168(a, 0, 12);
+        MemFill(a, 0, 12);
         a->mUnk_08 = b;
         a->mUnk_0a = 1;
         a->mUnk_04 = 1;
@@ -45,8 +45,7 @@ void func_ov000_021a3a18(Unk021a3a18 *a, s32 b) {
     func_ov000_021a471c((Unk021a471c *) &k, data_ov000_021b4394);
     func_ov000_021a4760((Unk021a471c *) &k, a->mUnk_c0);
     func_ov000_021a471c((Unk021a471c *) &k, data_ov000_021b43a0);
-    func_ov000_021a471c((Unk021a471c *) &k,
-                        a->mUnk_c8 != 0 ? data_ov000_021b43a8 : data_ov000_021b43ac);
+    func_ov000_021a471c((Unk021a471c *) &k, a->mUnk_c8 != 0 ? data_ov000_021b43a8 : data_ov000_021b43ac);
     if (b != 0) {
         func_ov000_021a471c((Unk021a471c *) &k, data_ov000_021b43b0);
         func_ov000_021a4760((Unk021a471c *) &k, b);

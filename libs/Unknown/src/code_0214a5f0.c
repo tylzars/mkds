@@ -25,9 +25,9 @@ void func_0214a648(void) {
         func_0214cc04(data_0216f074[0], (void *) 0x4000360, 0, 0x60);
     } else {
         a = 0;
-        func_0214d018(a, (void *) 0x4000330, 0x10);
+        MemFillWords(a, (void *) 0x4000330, 0x10);
         b = 0;
-        func_0214d018(b, (void *) 0x4000360, 0x60);
+        MemFillWords(b, (void *) 0x4000360, 0x60);
     }
     for (i = 0; i < 32; i++) {
         *(vu32 *) 0x40004d0 = 0;

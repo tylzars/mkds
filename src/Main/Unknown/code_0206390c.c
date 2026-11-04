@@ -85,7 +85,7 @@ void func_0206390c(Unk0206390c *a) {
     g.x = (s64) g.x * h >> 12;
     g.y = (s64) g.y * h >> 12;
     g.z = (s64) g.z * h >> 12;
-    func_02148504(&f, &g, &f);
+    Vec3Add(&f, &g, &f);
     func_02081618(b, &f);
     a->mUnk_24 = 0;
     a->mUnk_92 = 0;

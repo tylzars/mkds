@@ -65,7 +65,7 @@ u32 func_0205fe1c(u8 *a, Unk02056bc0 *b, s32 c) {
     }
     e = ((e & 0x3ffff) << 14) | ((f & 0x1f) << 9);
     *(u32 *) &d[0] = e | (g & 0x1ff);
-    func_0214d1fc(&b->mUnk_04, &d[4], 4);
+    MemCopy(&b->mUnk_04, &d[4], 4);
     *(u16 *) &d[8] = 0;
     func_0204b284(d, 10, 1);
     x = 0xc3;
@@ -180,7 +180,7 @@ void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
         func_02057624((u32) &e);
     }
     if (data_021759c0->mUnk_68[a].mUnk_08.mUnk_18 != NULL) {
-        func_0214d1fc(data_021759c0->mUnk_68[a].mUnk_08.mUnk_18, e.mUnk_0e, 0x14);
+        MemCopy(data_021759c0->mUnk_68[a].mUnk_08.mUnk_18, e.mUnk_0e, 0x14);
     }
     switch (c) {
         case 0:
@@ -555,12 +555,12 @@ void func_0205eeb0(void) {
 }
 
 void func_0205ee74(u32 a, void *b) {
-    func_0214d1fc(b, &data_0217aa08->mUnk_20->mUnk_04[a], 0x24);
+    MemCopy(b, &data_0217aa08->mUnk_20->mUnk_04[a], 0x24);
 }
 
 u32 func_0205ee14(u32 a, void *b) {
     if (b != NULL) {
-        func_0214d1fc(&data_0217aa08->mUnk_20->mUnk_04[a], b, 0x24);
+        MemCopy(&data_0217aa08->mUnk_20->mUnk_04[a], b, 0x24);
     }
     return data_0217aa08->mUnk_20->mUnk_04[a].mUnk_22_0 != 0;
 }

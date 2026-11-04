@@ -156,23 +156,23 @@ void func_0201261c(Unk02011624 *a, u32 b) {
         p0c->x = mm[12];
         p0c->y = mm[13];
         p0c->z = mm[14];
-        p18->x = func_021482cc((Vec3 *) &mm[0]);
-        p18->y = func_021482cc((Vec3 *) &mm[4]);
-        p18->z = func_021482cc((Vec3 *) &mm[8]);
+        p18->x = Vec3Length((Vec3 *) &mm[0]);
+        p18->y = Vec3Length((Vec3 *) &mm[4]);
+        p18->z = Vec3Length((Vec3 *) &mm[8]);
         if (data_0217029c.mUnk_fc & 1) {
             reg_G3X_GXFIFO = 0x171012;
-            func_0214d044(data_021618e0, &reg_G3X_GXFIFO, 8);
-            func_0214d044(func_02010de8(), &reg_G3X_GXFIFO, 0x30);
+            MemCopyWordsToOneAddress(data_021618e0, &reg_G3X_GXFIFO, 8);
+            MemCopyWordsToOneAddress(func_02010de8(), &reg_G3X_GXFIFO, 0x30);
             reg_G3X_GXFIFO = 0x1b19;
-            func_0214d044(data_021618e8, &reg_G3X_GXFIFO, 0x3c);
+            MemCopyWordsToOneAddress(data_021618e8, &reg_G3X_GXFIFO, 0x3c);
         } else if (data_0217029c.mUnk_fc & 2) {
             reg_G3X_GXFIFO = 0x171012;
-            func_0214d044(data_021618e0, &reg_G3X_GXFIFO, 8);
-            func_0214d044(func_02010ed4(), &reg_G3X_GXFIFO, 0x30);
+            MemCopyWordsToOneAddress(data_021618e0, &reg_G3X_GXFIFO, 8);
+            MemCopyWordsToOneAddress(func_02010ed4(), &reg_G3X_GXFIFO, 0x30);
             reg_G3X_GXFIFO = 0x1b19;
-            func_0214d044(data_021618e8, &reg_G3X_GXFIFO, 0x3c);
+            MemCopyWordsToOneAddress(data_021618e8, &reg_G3X_GXFIFO, 0x3c);
         } else {
-            func_0214d044(data_021618dc, &reg_G3X_GXFIFO, 0x48);
+            MemCopyWordsToOneAddress(data_021618dc, &reg_G3X_GXFIFO, 0x48);
         }
     }
     if (v == 3) {
@@ -247,32 +247,32 @@ void func_020122cc(Unk02011624 *a, u32 b) {
         p54->x = mm[12];
         p54->y = mm[13];
         p54->z = mm[14];
-        p60->x = func_021482cc((Vec3 *) &mm[0]);
-        p60->y = func_021482cc((Vec3 *) &mm[4]);
-        p60->z = func_021482cc((Vec3 *) &mm[8]);
+        p60->x = Vec3Length((Vec3 *) &mm[0]);
+        p60->y = Vec3Length((Vec3 *) &mm[4]);
+        p60->z = Vec3Length((Vec3 *) &mm[8]);
         if (mm[5] != 0 || mm[6] != 0) {
-            func_0214818c((Vec3 *) &mm[4], &p30[1]);
+            Vec3Normalize((Vec3 *) &mm[4], &p30[1]);
             p30[2].y = -p30[1].z;
             p30[2].z = p30[1].y;
         } else {
-            func_0214818c((Vec3 *) &mm[8], &p30[2]);
+            Vec3Normalize((Vec3 *) &mm[8], &p30[2]);
             p30[1].z = -p30[2].y;
             p30[1].y = p30[2].z;
         }
         if (data_0217029c.mUnk_fc & 1) {
             reg_G3X_GXFIFO = 0x171012;
-            func_0214d044(data_02161928, &reg_G3X_GXFIFO, 8);
-            func_0214d044(func_02010de8(), &reg_G3X_GXFIFO, 0x30);
+            MemCopyWordsToOneAddress(data_02161928, &reg_G3X_GXFIFO, 8);
+            MemCopyWordsToOneAddress(func_02010de8(), &reg_G3X_GXFIFO, 0x30);
             reg_G3X_GXFIFO = 0x1b19;
-            func_0214d044(data_02161930, &reg_G3X_GXFIFO, 0x3c);
+            MemCopyWordsToOneAddress(data_02161930, &reg_G3X_GXFIFO, 0x3c);
         } else if (data_0217029c.mUnk_fc & 2) {
             reg_G3X_GXFIFO = 0x171012;
-            func_0214d044(data_02161928, &reg_G3X_GXFIFO, 8);
-            func_0214d044(func_02010ed4(), &reg_G3X_GXFIFO, 0x30);
+            MemCopyWordsToOneAddress(data_02161928, &reg_G3X_GXFIFO, 8);
+            MemCopyWordsToOneAddress(func_02010ed4(), &reg_G3X_GXFIFO, 0x30);
             reg_G3X_GXFIFO = 0x1b19;
-            func_0214d044(data_02161930, &reg_G3X_GXFIFO, 0x3c);
+            MemCopyWordsToOneAddress(data_02161930, &reg_G3X_GXFIFO, 0x3c);
         } else {
-            func_0214d044(data_02161924, &reg_G3X_GXFIFO, 0x48);
+            MemCopyWordsToOneAddress(data_02161924, &reg_G3X_GXFIFO, 0x48);
         }
     }
     if (v == 3) {
@@ -310,7 +310,7 @@ void func_02011c58(Unk02011624 *a) {
     q = (u8 *) b + b->mUnk_10;
     v = 0;
     p = a->mUnk_00 + 3;
-    func_0214d05c_inline(&t, sizeof(t));
+    MemFillWordsByBlock_inline(&t, sizeof(t));
     func_01ff9234();
     reg_G3_MTX_MODE = 0;
     reg_G3_MTX_STORE = 1;
@@ -643,7 +643,7 @@ s32 func_02011254(Unk02011254 *a, Unk020111e0 *b, u32 c) {
         q->mUnk_0c(a, q, q->mUnk_1a[c] & 0xff);
         return 1;
     }
-    func_0214d05c_inline(a, sizeof(*a));
+    MemFillWordsByBlock_inline(a, sizeof(*a));
     a->mUnk_00 = -1;
     do {
         h = b->mUnk_1a[c];
@@ -652,7 +652,7 @@ s32 func_02011254(Unk02011254 *a, Unk020111e0 *b, u32 c) {
             if (s == 0x1000) {
                 w = b->mUnk_04;
             } else {
-                w = func_02147f34(b->mUnk_04, s);
+                w = DivFixed12(b->mUnk_04, s);
             }
             func_02011558(&a->mUnk_04[0], &t.mUnk_04[0], w, t.mUnk_00 & 1);
             func_02011558(&a->mUnk_04[1], &t.mUnk_04[1], w, t.mUnk_00 & 8);
@@ -677,10 +677,10 @@ s32 func_02011254(Unk02011254 *a, Unk020111e0 *b, u32 c) {
         }
         b = b->mUnk_10;
     } while (b != 0);
-    func_021483a0(&a->mUnk_28.mUnk_00[0], &a->mUnk_28.mUnk_00[1], &a->mUnk_28.mUnk_00[2]);
-    func_0214818c(&a->mUnk_28.mUnk_00[0], &a->mUnk_28.mUnk_00[0]);
-    func_0214818c(&a->mUnk_28.mUnk_00[2], &a->mUnk_28.mUnk_00[2]);
-    func_021483a0(&a->mUnk_28.mUnk_00[2], &a->mUnk_28.mUnk_00[0], &a->mUnk_28.mUnk_00[1]);
+    Vec3Cross(&a->mUnk_28.mUnk_00[0], &a->mUnk_28.mUnk_00[1], &a->mUnk_28.mUnk_00[2]);
+    Vec3Normalize(&a->mUnk_28.mUnk_00[0], &a->mUnk_28.mUnk_00[0]);
+    Vec3Normalize(&a->mUnk_28.mUnk_00[2], &a->mUnk_28.mUnk_00[2]);
+    Vec3Cross(&a->mUnk_28.mUnk_00[2], &a->mUnk_28.mUnk_00[0], &a->mUnk_28.mUnk_00[1]);
     return 1;
 }
 
@@ -852,7 +852,7 @@ void func_02010cec(Unk02010c84 *a, const Unk02010cec_08 *b, u32 c, u32 d) {
 void func_02010c84(Unk02010c84 *a, u32 b) {
     volatile u32 z = 0;
 
-    func_0214d018(z, a, 0x54);
+    MemFillWords(z, a, 0x54);
     a->mUnk_0c = data_021617f0;
     a->mUnk_14 = data_021617ec;
     a->mUnk_1c = data_021617e8;

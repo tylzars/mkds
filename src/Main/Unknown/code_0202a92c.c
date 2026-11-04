@@ -146,7 +146,7 @@ void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
 
     h = CreateFrmHeapFromMaxFree((void *) param_1);
     gWiFiVSCourseSelect = HeapAlloc(h, 0x158);
-    func_0214d05c_inline(gWiFiVSCourseSelect, 0x158);
+    MemFillWordsByBlock_inline(gWiFiVSCourseSelect, 0x158);
     gWiFiVSCourseSelect->mHeap = h;
     gWiFiVSCourseSelect->mUnk_080[0] = param_2;
     gWiFiVSCourseSelect->mUnk_080[1] = param_3;

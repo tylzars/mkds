@@ -266,7 +266,7 @@ s32 func_02030b18(Unk02030b18 *a) {
     }
     if (data_02174e58->mUnk_84 == 0 && data_02174e58->mUnk_80 == 0) {
         v3[0] = 0;
-        func_0214cfe4(v3[0], &v3[1], 0x16);
+        MemFillHalfwords(v3[0], &v3[1], 0x16);
         if (func_0204ff14(func_0202f14c()->mUnk_00, &v3[1]) != 0) {
             v3[11] = 0;
             func_0212426c(1, data_usa_02153d7c[0].mUnk_00, p->mUnk_14, &v3[1], p->mUnk_0c, p->mUnk_18);

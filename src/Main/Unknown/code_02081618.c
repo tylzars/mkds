@@ -79,11 +79,11 @@ void func_02084478(Unk0206bcb0 *p) {
         q.x = (s32) (((s64) v.x * p->mUnk_bc.x) >> 12);
         q.y = (s32) (((s64) v.y * p->mUnk_bc.y) >> 12);
         q.z = (s32) (((s64) v.z * p->mUnk_bc.z) >> 12);
-        func_02147288(&q, &p->mUnk_150_m, &e->mUnk_34[i]);
+        Vec3MultiplyMatrix4x3(&q, &p->mUnk_150_m, &e->mUnk_34[i]);
         e->mUnk_34[i].x = e->mUnk_34[i].x >> 4;
         e->mUnk_34[i].y = e->mUnk_34[i].y >> 4;
         e->mUnk_34[i].z = e->mUnk_34[i].z >> 4;
-        func_02146d78(&data_02155818[i], &p->mUnk_150.x, &w);
+        Vec3MultiplyMatrix3x3(&data_02155818[i], &p->mUnk_150.x, &w);
         e->mUnk_4c[i].mUnk_00 = w.x;
         e->mUnk_4c[i].mUnk_02 = w.y;
         e->mUnk_4c[i].mUnk_04 = w.z;
@@ -459,7 +459,7 @@ void func_02083680(Unk0201ca6c *p, s32 a) {
     w.x = (s32) (((s64) g->mUnk_15c.x * 0x5000) >> 12);
     w.y = (s32) (((s64) g->mUnk_15c.y * 0x5000) >> 12);
     w.z = (s32) (((s64) g->mUnk_15c.z * 0x5000) >> 12);
-    func_02148504(&w, &v, &u);
+    Vec3Add(&w, &v, &u);
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = u.z + p->mUnk_20->mUnk_00->mUnk_04.z;
@@ -506,7 +506,7 @@ void func_02083484(Unk0201ca6c *p, s32 a) {
         }
     }
     p->mUnk_98_b.mUnk_02 = n;
-    func_02148504(q->mUnk_508, &w, &x);
+    Vec3Add(q->mUnk_508, &w, &x);
     x.x = x.x >> 4;
     x.y = x.y >> 4;
     x.z = x.z >> 4;
@@ -776,7 +776,7 @@ void func_02082aec(void) {
             x = 0xb33;
             break;
     }
-    data_0217ae9c = func_02147f34(0x1000, (s32) (((s64) x * 0x779a + 0x800) >> 12));
+    data_0217ae9c = DivFixed12(0x1000, (s32) (((s64) x * 0x779a + 0x800) >> 12));
     data_0217ae88 = NULL;
     data_0217ae78 = NULL;
     switch (data_021759c0->mCourseId) {
@@ -845,7 +845,7 @@ void func_02082a10(Unk0201ca6c *p, s32 a) {
     if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
         func_02039860(&v, &v);
     }
-    func_02147fd8(0x5800, &v, &g->mUnk_9c, &u);
+    Vec3AddScaled(0x5800, &v, &g->mUnk_9c, &u);
     u.y = 0x1f400;
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
@@ -876,7 +876,7 @@ void func_02082750(Unk0201ca6c *p, s32 a) {
     if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
         func_02039860(&v, &v);
     }
-    func_021483a0(&data_02155a08, &v, &x);
+    Vec3Cross(&data_02155a08, &v, &x);
     t = (s32) (((s64) q->mUnk_2a4 * data_0217ae9c + 0x800) >> 12);
     y = data_02165984;
     k = 0;
@@ -889,14 +889,14 @@ void func_02082750(Unk0201ca6c *p, s32 a) {
     }
     i = (s32) (((s64) t * 0x38e3 + 0x800) >> 12);
     func_02146f98((Unk02012f58 *) &m, &x, data_0215d4b4[(i >> 4) * 2], data_0215d4b4[(i >> 4) * 2 + 1]);
-    func_02146d78(&y, m.mUnk_00, &y);
+    Vec3MultiplyMatrix3x3(&y, m.mUnk_00, &y);
     h.mUnk_00 = y.x;
     h.mUnk_02 = y.y;
     h.mUnk_04 = y.z;
     p->mUnk_68 = (s16) ((s32) (((s64) (0x1000 - t) * 0x800 + 0x800) >> 12) + 0x800);
     p->mUnk_50 = h;
     s = data_02165954 + k;
-    func_02147fd8(data_02165938 + (s32) (((s64) s * (s64) t + 0x800) >> 12), &v, &g->mUnk_9c, &u);
+    Vec3AddScaled(data_02165938 + (s32) (((s64) s * (s64) t + 0x800) >> 12), &v, &g->mUnk_9c, &u);
     u.y = func_0207a974(data_021759c0->mUnk_62)->mUnk_508->y >> 4;
     u.y = u.y - (s32) (((s64) data_02165934 * t + 0x800) >> 12);
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
@@ -918,7 +918,7 @@ void func_0208266c(Unk0201ca6c *p, s32 a) {
     if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
         func_02039860(&v, &v);
     }
-    func_02147fd8(data_02165958, &v, &g->mUnk_09c, &u);
+    Vec3AddScaled(data_02165958, &v, &g->mUnk_09c, &u);
     u.y = 0x1f400;
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
@@ -944,14 +944,14 @@ void func_020824d0(Unk0201ca6c *p, s32 a) {
     if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
         func_02039860(&v, &v);
     }
-    func_021483a0(&data_02155a08, &v, &x);
+    Vec3Cross(&data_02155a08, &v, &x);
     w.y = w.y * 0xffffffff;
     h.mUnk_00 = w.x;
     h.mUnk_02 = w.y;
     h.mUnk_04 = w.z;
     p->mUnk_68 = 0x1000;
     p->mUnk_50 = h;
-    func_02147fd8(data_02165964, &v, &g->mUnk_09c, &u);
+    Vec3AddScaled(data_02165964, &v, &g->mUnk_09c, &u);
     u.y = u.y + (data_02165968 + (s32) (((s64) g->mUnk_15c.y * data_02165960 + 0x800) >> 12));
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
@@ -975,7 +975,7 @@ void func_02082368(Unk0201ca6c *p, s32 a) {
     if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
         func_02039860(&v, &v);
     }
-    func_02147fd8(0x5800, &v, &g->mUnk_9c, &u);
+    Vec3AddScaled(0x5800, &v, &g->mUnk_9c, &u);
     u.y = func_0207a974(data_021759c0->mUnk_62)->mUnk_508->y >> 4;
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
@@ -1014,7 +1014,7 @@ void func_020821cc(Unk0201ca6c *p, s32 a) {
         func_02039860(&v, &v);
     }
     k = k * 3;
-    func_02147fd8((s32) (((s64) k * (s64) t + 0x800) >> 12) + 0x5800, &v, &g->mUnk_9c, &u);
+    Vec3AddScaled((s32) (((s64) k * (s64) t + 0x800) >> 12) + 0x5800, &v, &g->mUnk_9c, &u);
     u.y = func_0207a974(data_021759c0->mUnk_62)->mUnk_508->y >> 4;
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
@@ -1036,7 +1036,7 @@ void func_02082034(Unk0201ca6c *p, s32 a) {
     w = data_02155a14;
     if (func_0203c5e4() != 0) {
         func_02148714(g->mUnk_068, g->mUnk_06a);
-        func_021484d0(&g->mUnk_024, &g->mUnk_134, &w);
+        Vec3Sub(&g->mUnk_024, &g->mUnk_134, &w);
         w.x = w.x >> 4;
         w.y = w.y >> 4;
         w.z = w.z >> 4;
@@ -1045,9 +1045,9 @@ void func_02082034(Unk0201ca6c *p, s32 a) {
     if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
         func_02039860(&v, &v);
     }
-    func_02147fd8(data_02165958, &v, &g->mUnk_09c, &u);
+    Vec3AddScaled(data_02165958, &v, &g->mUnk_09c, &u);
     u.y = u.y + (data_0216595c + (s32) (((s64) g->mUnk_15c.y * data_02165940 + 0x800) >> 12));
-    func_02148504(&u, &w, &u);
+    Vec3Add(&u, &w, &u);
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = u.z + p->mUnk_20->mUnk_00->mUnk_04.z;
@@ -1193,8 +1193,8 @@ void func_02081b64(Unk0201ca6c *p, Unk0206bcb0 *q, s32 a, s32 b) {
     v.x = s->x >> 4;
     v.y = s->y >> 4;
     v.z = s->z >> 4;
-    func_02147fd8((s32) (((s64) q->mUnk_bc.z * b + 0x800) >> 12), &q->mUnk_138, &v, &v);
-    func_02147fd8((s32) (((s64) q->mUnk_bc.y * a + 0x800) >> 12), &q->mUnk_12c, &v, &v);
+    Vec3AddScaled((s32) (((s64) q->mUnk_bc.z * b + 0x800) >> 12), &q->mUnk_138, &v, &v);
+    Vec3AddScaled((s32) (((s64) q->mUnk_bc.y * a + 0x800) >> 12), &q->mUnk_12c, &v, &v);
     p->mUnk_28.x = v.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = v.y + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = v.z + p->mUnk_20->mUnk_00->mUnk_04.z;
@@ -1269,7 +1269,7 @@ void func_0208181c(s32 a) {
     i = 0;
     do {
         if (e->mUnk_00[i] != NULL) {
-            func_02147fd8((s32) (((s64) q->mUnk_bc.y * data_02155854[q->mKartModelsEntry->mUnk_000] + 0x800) >> 12),
+            Vec3AddScaled((s32) (((s64) q->mUnk_bc.y * data_02155854[q->mKartModelsEntry->mUnk_000] + 0x800) >> 12),
                           &q->mUnk_12c, &q->mUnk_80, &v);
             func_0208b5b0(e->mUnk_00[i], &v);
             w.x = (s32) (((s64) q->mUnk_3b0.x * 0xc00) >> 12);

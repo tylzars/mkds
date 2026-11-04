@@ -79,7 +79,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0a0.mUnk_10.x = x3;
                     p->mUnk_0a0.mUnk_10.y = y3;
                     p->mUnk_0a0.mUnk_10.z = z3;
-                    func_02147fd8((s32) (((s64) p->mUnk_000.mUnk_1c.z * 0x5000) >> 12), &p->mUnk_000.mMatrix.mUnk_00[2],
+                    Vec3AddScaled((s32) (((s64) p->mUnk_000.mUnk_1c.z * 0x5000) >> 12), &p->mUnk_000.mMatrix.mUnk_00[2],
                                   &p->mUnk_0a0.mUnk_10, &p->mUnk_0a0.mUnk_10);
                     break;
                 default:
@@ -139,7 +139,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0a0.mUnk_10.x = x4;
                     p->mUnk_0a0.mUnk_10.y = y4;
                     p->mUnk_0a0.mUnk_10.z = z4;
-                    func_02147fd8((s32) (((s64) p->mUnk_000.mUnk_1c.z * 0x5000) >> 12), &p->mUnk_000.mMatrix.mUnk_00[2],
+                    Vec3AddScaled((s32) (((s64) p->mUnk_000.mUnk_1c.z * 0x5000) >> 12), &p->mUnk_000.mMatrix.mUnk_00[2],
                                   &p->mUnk_0a0.mUnk_10, &p->mUnk_0a0.mUnk_10);
                     q = p->mUnk_000.mCourseMapRow;
                     z5 = q->mUnk_00.z;
@@ -152,7 +152,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0c8.mUnk_10.x = x5;
                     p->mUnk_0c8.mUnk_10.y = y5;
                     p->mUnk_0c8.mUnk_10.z = z5;
-                    func_02147fd8((s32) (((s64) p->mUnk_000.mUnk_1c.z * -0x5000) >> 12),
+                    Vec3AddScaled((s32) (((s64) p->mUnk_000.mUnk_1c.z * -0x5000) >> 12),
                                   &p->mUnk_000.mMatrix.mUnk_00[2], &p->mUnk_0c8.mUnk_10, &p->mUnk_0c8.mUnk_10);
                     break;
                 default:

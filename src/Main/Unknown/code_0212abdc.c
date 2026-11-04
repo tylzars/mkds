@@ -29,7 +29,7 @@
 void func_0212b064(void) {
     volatile u16 a;
     a = 0;
-    func_0214cfe4(a, data_0217d408->mUnk_1444, 0x600);
+    MemFillHalfwords(a, data_0217d408->mUnk_1444, 0x600);
 }
 
 void *func_0212afac(void) {
@@ -99,7 +99,7 @@ void func_0212ae80(void) {
 void func_0212ae2c(void) {
     u16 a[11];
     a[0] = 0;
-    func_0214cfe4(a[0], &a[1], 0x14);
+    MemFillHalfwords(a[0], &a[1], 0x14);
     func_02124fac(func_021205f4(), &a[1]);
     func_0212513c(&a[1], data_0217d408->mUnk_0008, data_0217d408->mUnk_1444, 0x600);
     data_0217d408->mUnk_0008 = data_0217d408->mUnk_1444;
@@ -145,7 +145,7 @@ void func_0212abdc(void *a, void *b) {
     Unk0217d3fc_00_00 *q;
     data_0217d404 = HeapAlloc(a, 0x11c);
     data_0217d404->mUnk_038 = b;
-    func_0214d168(data_0217d404->mUnk_03c, 0, 0x20);
+    MemFill(data_0217d404->mUnk_03c, 0, 0x20);
     data_0217d404->mUnk_024 = 0;
     for (i = 0; i < 5; i++) {
         data_0217d404->mUnk_000[i] = 0;

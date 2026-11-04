@@ -412,7 +412,7 @@ void func_02062078(void) {
     b.x = -p->mUnk_030.mUnk_00[0].z;
     b.y = -p->mUnk_030.mUnk_00[1].z;
     b.z = -p->mUnk_030.mUnk_00[2].z;
-    func_021484d0(&b, &a, &c);
+    Vec3Sub(&b, &a, &c);
     if ((s64) c.x * c.x + (s64) c.y * c.y + (s64) c.z * c.z >= 16) {
         func_02039860(&c, &c);
     }

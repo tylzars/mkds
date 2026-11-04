@@ -39,7 +39,7 @@ void func_020b65f0(void) {
     data_0217b3c0->mUnk_54 = d;
     data_0217b3c0->mUnk_5c = func_02147edc(d.mUnk_00 - c.mUnk_00);
     data_0217b3c0->mUnk_64 = func_02147edc(d.mUnk_04 - c.mUnk_04);
-    data_0217b3c0->mUnk_28 = func_020b502c(func_02147f34(d.mUnk_00 - c.mUnk_00, 0x200000), 0xb0000);
+    data_0217b3c0->mUnk_28 = func_020b502c(DivFixed12(d.mUnk_00 - c.mUnk_00, 0x200000), 0xb0000);
     func_020b681c(&e, &f);
     data_0217b3c0->mUnk_6c = e;
     data_0217b3c0->mUnk_74 = f;

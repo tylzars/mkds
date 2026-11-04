@@ -22,9 +22,9 @@ s32 func_0214e1b0(void) {
     return func_0214e17c(0x27);
 }
 
-// Returns whether func_0214d6e8(5, a << 8 & 0x7f00, 0) is not negative.
+// Returns whether PxiSendFifoWord(5, a << 8 & 0x7f00, 0) is not negative.
 s32 func_0214e17c(u32 a) {
-    return func_0214d6e8(5, (a << 8) & 0x7f00, 0) >= 0;
+    return PxiSendFifoWord(5, (a << 8) & 0x7f00, 0) >= 0;
 }
 
 // Runs once: clears the first word, mUnk_04, mUnk_1c, mUnk_08 and mUnk_0c, waits until func_0214d79c(5, 1) is
@@ -50,13 +50,13 @@ void func_0214e0f4(void) {
 u32 func_0214e07c(u32 *a, UnkFunc *b, u32 c) {
     u32 s;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     if (data_021803b0.mUnk_00 != 0) {
-        func_0200fcb4(s);
+        IrqRestore(s);
         return 1;
     }
     data_021803b0.mUnk_00 = 1;
-    func_0200fcb4(s);
+    IrqRestore(s);
     data_021803b0.mUnk_14 = 0;
     data_021803b0.mUnk_18 = 0;
     data_021803b0.mUnk_08 = a;
@@ -78,13 +78,13 @@ u32 func_0214e038(u32 *a) {
 u32 func_0214dfbc(u32 *a, UnkFunc *b, u32 c) {
     u32 s;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     if (data_021803b0.mUnk_00 != 0) {
-        func_0200fcb4(s);
+        IrqRestore(s);
         return 1;
     }
     data_021803b0.mUnk_00 = 1;
-    func_0200fcb4(s);
+    IrqRestore(s);
     data_021803b0.mUnk_14 = 1;
     data_021803b0.mUnk_18 = 0;
     data_021803b0.mUnk_08 = a;

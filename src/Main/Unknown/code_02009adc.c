@@ -16,12 +16,12 @@
 
 void func_02009c04(void) {
     u32 v1;
-    v1 = ((s64) func_0200fca0());
+    v1 = ((s64) IrqDisable());
     if (data_0216fdac->mUnk_1320 == 0) {
         func_0200fd1c();
     }
     func_02009c34();
-    func_0200fcb4(v1);
+    IrqRestore(v1);
 }
 
 #pragma thumb off
@@ -37,8 +37,8 @@ void func_02009ae8(u32 a) {
     if (a != 0 && a < 16) {
         v1 = a - 1;
         data_0216fdac->mUnk_148a[v1] = 0;
-        func_0214d168(data_0216fdac->mUnk_14a8 + v1, 0, 4);
-        func_0214d168(data_0216fdac->mUnk_1340 + v1 * 0x16, 0, 0x16);
+        MemFill(data_0216fdac->mUnk_14a8 + v1, 0, 4);
+        MemFill(data_0216fdac->mUnk_1340 + v1 * 0x16, 0, 0x16);
         func_0200c3fc(a);
         v2 = 0;
         data_0216fdac->mUnk_1754[v1] = v2;

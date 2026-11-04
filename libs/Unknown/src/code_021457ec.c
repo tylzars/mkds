@@ -48,11 +48,11 @@ int func_0214581c(void) {
     u32 s;
 
     p = (Unk021458c4 *) (u32) &data_0217fa40;
-    s = func_0200fca0();
+    s = IrqDisable();
     while (p->mUnk_114 & 4) {
         func_0200e01c(&p->mUnk_10c);
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     return p->mUnk_00->mUnk_00 == 0;
 }
 

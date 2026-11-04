@@ -99,7 +99,7 @@ void func_021293b4(void) {
     p = data_0217d400;
     q = &p->mUnk_2c[p->mUnk_04];
     w = func_020ab798();
-    func_0214cffc(w, q, 0x18);
+    MemCopyHalfwords(w, q, 0x18);
     func_021296b4();
     if (v == 5 || (func_020ab8c4() == 1 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
         p = data_0217d400;
@@ -272,8 +272,8 @@ void func_02128f7c(void) {
                 data_0217d400->mUnk_10 = 0xb;
             } else {
                 data_0217aa08->mUnk_00->mUnk_31_0 = 1;
-                func_0214d168(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
-                func_0214d1fc(&p->mUnk_2c[1], data_0217aa08->mUnk_00->mUnk_0c, 0x14);
+                MemFill(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
+                MemCopy(&p->mUnk_2c[1], data_0217aa08->mUnk_00->mUnk_0c, 0x14);
                 func_02056d40();
                 func_02125ebc(0x21);
                 a = (s32) GetBmgEntry(data_0217d400->mUnk_c0, 0x10);

@@ -90,7 +90,7 @@ Unk021d34e4 *func_ov003_021d34e4(u32 a, void (*b)(Unk021d34e4 *a, u32 b), u32 c,
     f->mUnk_0c = c;
     f->mUnk_10 = d;
     f->mUnk_11 = e;
-    h = func_0200ca9c(1);
+    h = InterruptEnableClearBits(1);
     g = data_ov003_021da32c[a].mUnk_0c.mUnk_04;
     while (1) {
         if (d < g->mUnk_10) {
@@ -99,7 +99,7 @@ Unk021d34e4 *func_ov003_021d34e4(u32 a, void (*b)(Unk021d34e4 *a, u32 b), u32 c,
         }
         g = g->mUnk_04;
     }
-    func_0200cae4(h);
+    InterruptEnableSetBits(h);
     return f;
 }
 

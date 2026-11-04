@@ -149,7 +149,7 @@ Unk020dfc44 *func_020dfc44(void) {
     data_0217b76c = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     *data_0217b76c = data_02158784;
     func_020e6f50(&data_0217b76c);
-    data_0217b76c->mUnk_28 = func_02147f34(0x4000000, 0x1333);
+    data_0217b76c->mUnk_28 = DivFixed12(0x4000000, 0x1333);
     return data_0217b76c;
 }
 

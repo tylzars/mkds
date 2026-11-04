@@ -7,7 +7,7 @@
 void func_0202f530(void *p, u32 v, u32 n) {
     volatile u32 value = v;
 
-    func_0214d05c(value, p, n);
+    MemFillWordsByBlock(value, p, n);
 }
 
 void func_0202f51c(void *p, u32 n) {

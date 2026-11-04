@@ -41,7 +41,7 @@ void func_020ab11c(s32 *a, s32 *b, s32 *c, s32 *d) {
 }
 
 void func_020ab088(struct Unk02022aa8 *a, void *b, u16 *c, s32 d, s32 e, s32 f) {
-    func_0214d168(&data_0217b278, 0, 0x54);
+    MemFill(&data_0217b278, 0, 0x54);
     data_0217b254.mUnk_00 = a;
     data_0217b254.mUnk_04 = b;
     data_0217b254.mUnk_08 = b;

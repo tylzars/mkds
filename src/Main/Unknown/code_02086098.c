@@ -42,12 +42,12 @@ void func_02086a04(void) {
         p = func_0207a974(i);
         k = p->mUnk_1d0 * 3;
         s = p->mKartModelsEntry;
-        func_021484d0(p->mUnk_508, &q->mUnk_08, &v30);
-        d = func_0214848c(&v30, &q->mUnk_14);
+        Vec3Sub(p->mUnk_508, &q->mUnk_08, &v30);
+        d = Vec3Dot(&v30, &q->mUnk_14);
         data_0217aed0->mUnk_104[i] = d + k;
         data_0217aed0->mUnk_074[p->mIndex] = data_0217aed0->mUnk_024[p->mIndex] + data_0217aed0->mUnk_034[p->mIndex];
         data_0217aed0->mUnk_054[data_0217aed0->mUnk_074[p->mIndex]] = d;
-        func_021484d0(p->mUnk_508, &q->mUnk_08, &v24);
+        Vec3Sub(p->mUnk_508, &q->mUnk_08, &v24);
         v24.x = v24.x >> 12;
         v24.y = v24.y >> 12;
         v24.z = v24.z >> 12;
@@ -74,9 +74,9 @@ void func_02086a04(void) {
             } else {
                 g = FALSE;
                 h = k >> 12;
-                if (func_0214848c(&v24, &q->mUnk_20) - h > 0) {
+                if (Vec3Dot(&v24, &q->mUnk_20) - h > 0) {
                     g = TRUE;
-                } else if (func_0214848c(&v24, &q->mUnk_2c) - h > 0) {
+                } else if (Vec3Dot(&v24, &q->mUnk_2c) - h > 0) {
                     g = TRUE;
                 }
                 if (g != FALSE) {
@@ -296,7 +296,7 @@ void func_02086250(Unk02012f58 *a) {
         if ((func_0207a974(data_0217aed0->mUnk_044[i])->mUnk_7c & 0xe0) != 0) {
             continue;
         }
-        func_02147288(&p->mUnk_00, a, &v);
+        Vec3MultiplyMatrix4x3(&p->mUnk_00, a, &v);
         if (v.z >= 0) {
             f = FALSE;
         } else {
@@ -304,8 +304,8 @@ void func_02086250(Unk02012f58 *a) {
             t = (s32) (((s64) v.x * m->mUnk_00[0].x + (s64) v.z * m->mUnk_00[2].z) >> 12);
             u = (s32) (((s64) v.y * m->mUnk_00[1].z + (s64) v.z * m->mUnk_00[3].x) >> 12);
             z = -((const Vec3 *) &v)->z;
-            t = func_02147f34(t, z);
-            u = func_02147f34(u, z);
+            t = DivFixed12(t, z);
+            u = DivFixed12(u, z);
             t = (s32) ((((s64) t << 19) + 0x800) >> 12);
             u = (s32) (((s64) u * 0x60000 + 0x800) >> 12);
             f = TRUE;

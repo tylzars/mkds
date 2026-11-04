@@ -39,7 +39,7 @@ void func_ov000_021a3910(void) {
         if (data_ov000_021b5df4->mUnk_04 != 1) {
             return;
         }
-        func_0214d168(&t, 0, 12);
+        MemFill(&t, 0, 12);
         t.mUnk_08 = data_ov000_021b5df4->mUnk_08;
         t.mUnk_09 = data_ov000_021b5df4->mUnk_0a;
         t.mUnk_00 = func_ov000_021a372c;

@@ -83,11 +83,11 @@ Vec3 *func_020d8654(Unk020fa294 *a) {
             }
             e = func_02042044(k, 0);
             f = func_02042044(k, (u16) (n - 1));
-            func_021484d0(&e->mUnk_00, &f->mUnk_00, &v);
+            Vec3Sub(&e->mUnk_00, &f->mUnk_00, &v);
         } else {
             e = func_02042044(k, (u16) (i + 1));
             f = func_02042044(k, i);
-            func_021484d0(&e->mUnk_00, &f->mUnk_00, &v);
+            Vec3Sub(&e->mUnk_00, &f->mUnk_00, &v);
         }
         t = v.z;
         v.z = -v.x;

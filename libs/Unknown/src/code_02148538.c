@@ -4,7 +4,7 @@
 
 // Returns a u16 from the signs of a and b and which magnitude is larger. Equal magnitudes and zero inputs return
 // 0x2000, 0x6000, 0xa000, 0xe000, 0x4000, 0xc000, 0 or 0x8000. Otherwise the result is a base (0, 0x4000, 0x8000,
-// -0x4000, -0x8000) plus or minus the s16 at index (func_02147f34(n, d) >> 5) of data_021615b8, where n and d are
+// -0x4000, -0x8000) plus or minus the s16 at index (DivFixed12(n, d) >> 5) of data_021615b8, where n and d are
 // the smaller and larger magnitude. Returns 0 when d is 0.
 u16 func_02148714(s32 a, s32 b) {
     s32 n;
@@ -89,9 +89,9 @@ u16 func_02148714(s32 a, s32 b) {
         return 0;
     }
     if (f != 0) {
-        return base + data_021615b8[func_02147f34(n, d) >> 5];
+        return base + data_021615b8[DivFixed12(n, d) >> 5];
     }
-    return base - data_021615b8[func_02147f34(n, d) >> 5];
+    return base - data_021615b8[DivFixed12(n, d) >> 5];
 }
 
 // Same shape as func_02148714 with the bases 0, 0x1922, 0x3244, -0x1922 and -0x3244, the constants 0xc91, 0x25b3,
@@ -180,7 +180,7 @@ s16 func_02148538(s32 a, s32 b) {
         return 0;
     }
     if (f != 0) {
-        return base + data_021614b4[func_02147f34(n, d) >> 5];
+        return base + data_021614b4[DivFixed12(n, d) >> 5];
     }
-    return base - data_021614b4[func_02147f34(n, d) >> 5];
+    return base - data_021614b4[DivFixed12(n, d) >> 5];
 }

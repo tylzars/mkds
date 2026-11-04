@@ -34,7 +34,7 @@ void func_ov000_021a9640(Unk021a998c *a) {
     e[1] = 2;
     func_ov000_021a9ca8(e + 2, b - 0x33);
     e[b - 0x31] = 0;
-    func_0214d1fc(c->mUnk_000->mUnk_20, e + b - 0x30, 0x30);
+    MemCopy(c->mUnk_000->mUnk_20, e + b - 0x30, 0x30);
     f = (u16 *) data_ov000_021b63a4(d * 8);
     if (f == NULL) {
         data_ov000_021b63ac(e);
@@ -114,11 +114,11 @@ void func_ov000_021a9868(Unk021a998c *a) {
     c->mUnk_008[2] = f >> 8;
     c->mUnk_008[3] = f;
     func_ov000_021a9ca8(&c->mUnk_008[4], 0x1c);
-    func_0214d1fc(c->mUnk_008, d + 2, 0x20);
+    MemCopy(c->mUnk_008, d + 2, 0x20);
     c->mUnk_000 = func_ov000_021ab63c(a->mUnk_1c, a->mUnk_18);
     if (c->mUnk_000 != NULL) {
         d[0x22] = 0x20;
-        func_0214d1fc(c->mUnk_000, d + 0x23, 0x20);
+        MemCopy(c->mUnk_000, d + 0x23, 0x20);
         d += 0x43;
     } else {
         e = d + 0x22;

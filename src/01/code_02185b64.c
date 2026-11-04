@@ -38,9 +38,9 @@ void func_ov001_02185dd0(MissionGateObject *a) {
     a->mUnk_0a0 = CreateMapObjectFromObject(&a->mUnk_000, 0x66);
     a->mUnk_0a4 = CreateMapObjectFromObject(&a->mUnk_000, 0x66);
     a->mUnk_000.mCourseMapRow->mUnk_28 = saved;
-    func_02147fd8(-(a->mUnk_000.mUnk_58.x + r4), &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_000.mPos,
+    Vec3AddScaled(-(a->mUnk_000.mUnk_58.x + r4), &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_000.mPos,
                   &a->mUnk_0a0->mPos);
-    func_02147fd8(a->mUnk_000.mUnk_58.x + r4, &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_000.mPos, &a->mUnk_0a4->mPos);
+    Vec3AddScaled(a->mUnk_000.mUnk_58.x + r4, &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_000.mPos, &a->mUnk_0a4->mPos);
     func_020d2950(a->mUnk_0a0, r4);
     func_020d2950(a->mUnk_0a4, r4);
     func_020d2584(a->mUnk_0a0, r6);

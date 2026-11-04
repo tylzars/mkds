@@ -12,6 +12,6 @@ void func_ov000_021aa7b4(Unk021a998c_0c *a) {
     func_ov000_021aa7f8(v1, data_ov000_021b4a58, a);
     func_ov000_021aa7f8(v2, data_ov000_021b4a5c, a);
     func_ov000_021aa7f8(v3, data_ov000_021b4a60, a);
-    func_0214d1fc(v1, a->mUnk_000->mUnk_20, 0x30);
+    MemCopy(v1, a->mUnk_000->mUnk_20, 0x30);
     return;
 }

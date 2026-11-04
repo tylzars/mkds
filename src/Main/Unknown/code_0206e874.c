@@ -97,7 +97,7 @@ void func_0206e874(Unk0206bcb0 *p) {
                                     w = *u;
                                 } else {
                                     if (d != 0) {
-                                        s = func_0214848c(&v, u);
+                                        s = Vec3Dot(&v, u);
                                         w.x = ((s64) v.x * s) >> 12;
                                         w.y = ((s64) v.y * s) >> 12;
                                         w.z = ((s64) v.z * s) >> 12;
@@ -106,10 +106,10 @@ void func_0206e874(Unk0206bcb0 *p) {
                                         m = 0;
                                     }
                                 }
-                                p->mUnk_39c = func_021482cc(&w);
+                                p->mUnk_39c = Vec3Length(&w);
                                 if (p->mUnk_39c > 0x1000 && m != 0) {
                                     p->mUnk_3a0 = func_02039828(&p->mUnk_50, &w);
-                                    s = func_0214848c(&p->mUnk_50, &w);
+                                    s = Vec3Dot(&p->mUnk_50, &w);
                                     v6 = w.y - (s32) (((s64) p->mUnk_50.y * s) >> 12);
                                     v7 = w.z - (s32) (((s64) p->mUnk_50.z * s) >> 12);
                                     v5 = w.x - (s32) (((s64) p->mUnk_50.x * s) >> 12);
@@ -164,7 +164,7 @@ void func_0206e874(Unk0206bcb0 *p) {
                 t.x = 0;
             }
         }
-        func_02148504(&p->mUnk_80, &t, &p->mUnk_80);
+        Vec3Add(&p->mUnk_80, &t, &p->mUnk_80);
     }
     for (j = 0; j < 2; j++) {
         p->mUnk_438[j] = v1[j];
@@ -215,11 +215,11 @@ void func_0206edac(Unk0206bcb0 *p, Vec3 *a) {
     if ((!(p->mUnk_4c & 0x10000000) && p->mUnk_a4.y < 0 &&
          (p->mUnk_380 > 0x19 || p->mUnk_2ac - p->mUnk_80.y > 0x1e000)) ||
         p->mState == 6) {
-        s = func_0214848c(a, &p->mUnk_a4);
+        s = Vec3Dot(a, &p->mUnk_a4);
         v.x = ((s64) a->x * s) >> 12;
         v.y = ((s64) a->y * s) >> 12;
         v.z = ((s64) a->z * s) >> 12;
-        if (func_021482cc(&v) > 0x2000) {
+        if (Vec3Length(&v) > 0x2000) {
             m = ((s64) p->mUnk_dc * 0x1800) >> 12;
             n = v.y;
             if (n <= 0) {

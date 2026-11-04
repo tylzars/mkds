@@ -40,7 +40,7 @@ void func_0202dfd4(void *a) {
     u8 *p;
     s32 n;
     data_02174e44 = HeapAlloc(a, 0x8dc);
-    func_0214d05c_inline(data_02174e44, 0x8dc);
+    MemFillWordsByBlock_inline(data_02174e44, 0x8dc);
     data_02174e44->mUnk_8d0 = HeapAllocAligned(a, 0xe00, 0x20);
     data_02174e44->mUnk_8d4 = HeapAllocAligned(a, 0x1000, 0x20);
     q = func_02038d88(a, data_usa_02154840);

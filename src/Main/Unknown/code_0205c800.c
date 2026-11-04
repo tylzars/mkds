@@ -69,12 +69,12 @@ static inline BOOL func_0205c98c_inline(void) {
     q = &p->mUnk_754->mUnk_04;
     for (i = 0; i < 4; i++) {
         if (p->mUnk_014[i].mUnk_30 != 0) {
-            func_0214d1fc(&p->mUnk_014[i], q, 0x28);
+            MemCopy(&p->mUnk_014[i], q, 0x28);
             *(u64 *) &q->mUnk_0c[2] = func_0200f5ac();
             if (func_0205c340(i, 0, 0x28) != 0) {
                 data_0217aa14->mUnk_014[i].mUnk_30 = 0;
             } else {
-                func_0214d168(q, 0, 0x28);
+                MemFill(q, 0, 0x28);
             }
             return TRUE;
         }
@@ -210,9 +210,9 @@ void func_0205cd24(void *a) {
         }
     }
     data_0217aa14->mUnk_0fc = data_0217aa18->mUnk_04;
-    func_0214d168(data_0217aa14->mUnk_754, 0, 0x6c);
+    MemFill(data_0217aa14->mUnk_754, 0, 0x6c);
     for (n = 0; n < 4; n++) {
-        func_0214d168(&data_0217aa14->mUnk_104[n], 0, 0x68);
+        MemFill(&data_0217aa14->mUnk_104[n], 0, 0x68);
         data_0217aa14->mUnk_104[n].mUnk_86_0 = 0;
     }
     k = data_0217aa14->mUnk_0fc;

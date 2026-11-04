@@ -34,20 +34,20 @@ void func_0214ced0(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
     data_02180308.mUnk_14 = arg;
     func_0214c778(a, b, c, 0);
     func_0214c920(a);
-    s = func_0200fca0();
+    s = IrqDisable();
     data_02180308.mUnk_18 = (*(u32 *) 0x4000600 & 0xc0000000) >> 0x1e;
     data_02180308.mUnk_1c = func_0200cbe8(0x200000);
     *(u32 *) 0x4000600 = (*(u32 *) 0x4000600 & ~0xc0000000) | 0x40000000;
     func_0200cc74(0x200000, func_0214ce08);
-    func_0200cae4(0x200000);
+    InterruptEnableSetBits(0x200000);
     func_0214ce08();
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 // Does nothing when data_02180308.mUnk_0c is 0. Otherwise takes n = min(mUnk_0c, 0x1d8), advances mUnk_08 by n and
 // lowers mUnk_0c by n, and calls func_01ffff38 with data_02180308.mUnk_04, the old mUnk_08, 0x4000400 and n >> 2 under
 // 0x84400000 (0xc4400000 and func_0200cb9c(mUnk_04, func_0214cd94, 0) first when mUnk_0c reached 0), then
-// func_0200ca68(0x200000).
+// InterruptFlagWrite(0x200000).
 void func_0214ce08(void) {
     const u8 *p;
     u32 n;
@@ -65,11 +65,11 @@ void func_0214ce08(void) {
     if (data_02180308.mUnk_0c == 0) {
         func_0200cb9c(data_02180308.mUnk_04, func_0214cd94, 0);
         func_01ffff38(data_02180308.mUnk_04, p, (void *) 0x4000400, 0xc4400000 | (n >> 2));
-        func_0200ca68(0x200000);
+        InterruptFlagWrite(0x200000);
         return;
     }
     func_01ffff38(data_02180308.mUnk_04, p, (void *) 0x4000400, 0x84400000 | (n >> 2));
-    func_0200ca68(0x200000);
+    InterruptFlagWrite(0x200000);
 }
 
 // Restores the top two bits of the word at 0x4000600 from data_02180308.mUnk_18, passes mUnk_1c to func_0200cc74,
@@ -77,7 +77,7 @@ void func_0214ce08(void) {
 void func_0214cd94(void) {
     u32 v;
 
-    func_0200ca9c(0x200000);
+    InterruptEnableClearBits(0x200000);
     *(u32 *) 0x4000600 = (data_02180308.mUnk_18 << 0x1e) | (*(u32 *) 0x4000600 & ~0xc0000000);
     func_0200cc74(0x200000, data_02180308.mUnk_1c);
     data_02180308.mUnk_00 = 0;
@@ -133,10 +133,10 @@ void func_0214cc04(u32 a, void *b, u32 c, u32 d) {
     }
     while (*(vu32 *) (0x40000b0 + (a * 3 + 2) * 4) & 0x80000000) {
     }
-    s = func_0200fca0();
+    s = IrqDisable();
     *(vu32 *) (0x4000000 + a * 4 + 0xe0) = c;
     func_01fffe2c(a, (const void *) (0x40000e0 + a * 4), b, (d >> 2) | 0x85000000);
-    func_0200fcb4(s);
+    IrqRestore(s);
     while (*(vu32 *) (0x40000b0 + (a * 3 + 2) * 4) & 0x80000000) {
     }
 }
@@ -171,7 +171,7 @@ void func_0214cb10(u32 a, const void *b, void *c, u32 d) {
 
 // Runs f(arg) at once when d is 0. Otherwise calls func_0214c920(a), stores c at 0x40000e0 + a * 4 and calls
 // func_01fffe8c with that address as source, b as destination and (d >> 2) | 0x85000000 (0xc5000000 and
-// func_0200cb9c(a, f, arg) first when f is not 0), all between func_0200fca0 and func_0200fcb4.
+// func_0200cb9c(a, f, arg) first when f is not 0), all between IrqDisable and IrqRestore.
 void func_0214ca38(u32 a, void *b, u32 c, u32 d, UnkFunc *f, u32 arg) {
     u32 s;
 
@@ -184,15 +184,15 @@ void func_0214ca38(u32 a, void *b, u32 c, u32 d, UnkFunc *f, u32 arg) {
     func_0214c920(a);
     if (f != 0) {
         func_0200cb9c(a, f, arg);
-        s = func_0200fca0();
+        s = IrqDisable();
         *(vu32 *) (0x4000000 + a * 4 + 0xe0) = c;
         func_01fffe8c(a, (const void *) (0x40000e0 + a * 4), b, (d >> 2) | 0xc5000000);
-        func_0200fcb4(s);
+        IrqRestore(s);
     } else {
-        s = func_0200fca0();
+        s = IrqDisable();
         *(vu32 *) (0x4000000 + a * 4 + 0xe0) = c;
         func_01fffe8c(a, (const void *) (0x40000e0 + a * 4), b, (d >> 2) | 0x85000000);
-        func_0200fcb4(s);
+        IrqRestore(s);
     }
 }
 
@@ -215,13 +215,13 @@ void func_0214c990(u32 a, const void *b, void *c, u32 d, UnkFunc *f, u32 arg) {
     }
 }
 
-// Between func_0200fca0 and func_0200fcb4: waits for bit 31 of the word at 0x40000b0 + (a * 3 + 2) * 4 to clear, then
+// Between IrqDisable and IrqRestore: waits for bit 31 of the word at 0x40000b0 + (a * 3 + 2) * 4 to clear, then
 // for a == 0 stores 0 at 0x40000b0 and 0x40000b4 and 0x81400001 at 0x40000b8.
 void func_0214c920(u32 a) {
     u32 s;
     vu32 *d;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     while (*(vu32 *) (0x40000b0 + (a * 3 + 2) * 4) & 0x80000000) {
     }
     if (a == 0) {
@@ -230,17 +230,17 @@ void func_0214c920(u32 a) {
         d[1] = 0;
         d[2] = 0x81400001;
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
-// Between func_0200fca0 and func_0200fcb4: clears bits 9, 11, 12, 13 and then bit 15 of the halfword at
+// Between IrqDisable and IrqRestore: clears bits 9, 11, 12, 13 and then bit 15 of the halfword at
 // 0x40000b0 + a * 12 + 10, reads it twice, then for a == 0 stores 0 at 0x40000b0 and 0x40000b4 and 0x81400001 at
 // 0x40000b8.
 void func_0214c89c(u32 a) {
     u32 s;
     vu32 *d;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     *(vu16 *) (0x4000000 + (a * 6 + 5) * 2 + 0xb0) &= ~0x3a00;
     *(vu16 *) (0x4000000 + (a * 6 + 5) * 2 + 0xb0) &= ~0x8000;
     *(vu16 *) (0x4000000 + (a * 6 + 5) * 2 + 0xb0);
@@ -251,7 +251,7 @@ void func_0214c89c(u32 a) {
         d[1] = 0;
         d[2] = 0x81400001;
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 // For each of the three word groups at 0x40000b8 + i * 12 other than the one at index a: when bit 31 is set and the

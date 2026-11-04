@@ -28,8 +28,8 @@ void func_02080908(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c) {
     v3[0] = v3[1] = v3[2] = 0xc8000;
     m = -0x1000;
     for (i = 0; i < gCourseMap->mUnk_88; i++) {
-        func_021484d0(&gCourseMap->mUnk_84[i].mUnk_00, a, &v);
-        d = func_021482cc(&v);
+        Vec3Sub(&gCourseMap->mUnk_84[i].mUnk_00, a, &v);
+        d = Vec3Length(&v);
         if (d < 0xc8000) {
             for (k = 0; k < 3; k++) {
                 if (d < v3[k]) {
@@ -42,7 +42,7 @@ void func_02080908(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c) {
     }
     for (j = 0; j < 3; j++) {
         if (v2[j] != NULL) {
-            func_021484d0(v2[j]->mUnk_20, a, &w);
+            Vec3Sub(v2[j]->mUnk_20, a, &w);
             if ((s64) w.x * w.x + (s64) w.y * w.y + (s64) w.z * w.z >= 0x10) {
                 func_02039860(&w, &w);
             }

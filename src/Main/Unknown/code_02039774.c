@@ -18,15 +18,15 @@ void func_02039bd4(void) {
     switch (data_02175614.mUnk_00) {
         case 0:
             func_021492d8(0x1f7);
-            func_0214d05c_inline((void *) 0x6800000, 0x60000);
-            func_0214d05c_inline((void *) 0x6880000, 0x24000);
+            MemFillWordsByBlock_inline((void *) 0x6800000, 0x60000);
+            MemFillWordsByBlock_inline((void *) 0x6880000, 0x24000);
             break;
         case 2:
             break;
         case 1:
         case 3:
             func_021492d8(0x1ff);
-            func_0214d05c_inline((void *) 0x6800000, 0xa4000);
+            MemFillWordsByBlock_inline((void *) 0x6800000, 0xa4000);
             break;
     }
     func_02148dac();
@@ -90,7 +90,7 @@ void func_02039a1c(void) {
     if (data_02175614.mUnk_00 != 0 && data_02175614.mUnk_00 != 3) {
         data_02175614.mUnk_00 = 2;
         func_021492d8(8);
-        func_0214d05c_inline((void *) 0x6860000, 0x20000);
+        MemFillWordsByBlock_inline((void *) 0x6860000, 0x20000);
         func_02148dac();
         if (func_0201e7a8(8, func_02039abc, 0) != 1) {
             func_0200fd1c();

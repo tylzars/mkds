@@ -15,7 +15,7 @@ void func_ov000_021ab728(void *f, const u8 *b, u32 c) {
     a->mUnk_14 += c >> 29;
     e = 64 - d;
     if (c >= e) {
-        func_0214d1fc(b, &a->mUnk_18[d], e);
+        MemCopy(b, &a->mUnk_18[d], e);
         d = 0;
         func_ov000_021ab7e8(a, a->mUnk_18);
         for (; e + 63 < c; e += 64) {
@@ -24,5 +24,5 @@ void func_ov000_021ab728(void *f, const u8 *b, u32 c) {
     } else {
         e = 0;
     }
-    func_0214d1fc(b + e, &a->mUnk_18[d], c - e);
+    MemCopy(b + e, &a->mUnk_18[d], c - e);
 }

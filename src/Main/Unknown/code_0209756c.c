@@ -301,8 +301,8 @@ u32 func_020980ec(Unk020975ec *p, Unk0206bcb0 *q, void *b, u8 *c) {
             p->mUnk_00.mUnk_10.y = 0;
             p->mUnk_00.mUnk_10.z = 0;
         } else {
-            func_021484d0(&q->mUnk_80, &p->mUnk_00.mPos, &w);
-            f = func_021482cc(&w);
+            Vec3Sub(&q->mUnk_80, &p->mUnk_00.mPos, &w);
+            f = Vec3Length(&w);
             e = &p->mUnk_a8[p->mUnk_ec0].mUnk_00[2];
             f = (s32) (((s64) f * s) >> 12);
             p->mUnk_00.mUnk_10.x = (s32) (((s64) e->x * f) >> 12);

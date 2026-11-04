@@ -24,7 +24,7 @@ void func_ov000_021a91b4(void) {
     value0 = (u32) &data_ov000_021b61f4;
     value1 = 0u;
     value2 = 0x170u;
-    value3 = (u32) &func_0214d168;
-    func_0214d168((void *) value0, (u8) value1, value2);
+    value3 = (u32) &MemFill;
+    MemFill((void *) value0, (u8) value1, value2);
     return;
 }

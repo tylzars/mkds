@@ -101,7 +101,7 @@ void func_02085e04(void) {
                     break;
             }
         }
-        data_0217aec0->mUnk_04 = func_02147f34(data_0217aec0->mUnk_04, 0x3000);
+        data_0217aec0->mUnk_04 = DivFixed12(data_0217aec0->mUnk_04, 0x3000);
     }
     func_02085d1c();
     func_0207fba0();
@@ -221,7 +221,7 @@ void func_02085ad8(void) {
     a = 0;
     b = 0;
     g = data_021759c0->mKartCount;
-    func_02017538(&data_0217aebc->mUnk_12c, 4);
+    ListInit(&data_0217aebc->mUnk_12c, 4);
     for (i = 0; (u32) i < 2; i++) {
         if (data_021759c0->mUnk_3d5[i] >= 0) {
             a++;
@@ -242,7 +242,7 @@ void func_02085ad8(void) {
     j = 0;
     for (; j < q; j++) {
         data_0217aebc->mUnk_0b0[j].mUnk_00 = (u16) (j + a + 1);
-        func_020174a4(&data_0217aebc->mUnk_12c, &data_0217aebc->mUnk_0b0[j]);
+        ListAppend(&data_0217aebc->mUnk_12c, &data_0217aebc->mUnk_0b0[j]);
     }
     a = 0;
     p = data_021759c0;
@@ -346,9 +346,9 @@ s32 func_02085984(u16 a, u32 *b) {
                     h = (s64) (u32) (c->mUnk_00 >> 32) * (s64) (u32) y >> 32;
                 }
             }
-            e = func_020172d8(l, (u16) h);
+            e = ListGetNth(l, (u16) h);
             r = e->mUnk_00;
-            func_02017354(l, e);
+            ListRemove(l, e);
         }
     }
     return r;

@@ -39,9 +39,9 @@ u32 FindArchiveFile(u32 archiveName, const char *path) {
     char fullPath[0x80];
 
     if (path[0] == '/') {
-        func_0200d9e0(fullPath, 0x80, gArchiveColonFormat, archiveName, path);
+        StringFormatBounded(fullPath, 0x80, gArchiveColonFormat, archiveName, path);
     } else {
-        func_0200d9e0(fullPath, 0x80, gArchiveColonSlashFormat, archiveName, path);
+        StringFormatBounded(fullPath, 0x80, gArchiveColonSlashFormat, archiveName, path);
     }
     return func_020182c0((const u8 *) fullPath);
 }
@@ -167,36 +167,36 @@ void *LoadKartModelFile(const char *path) {
     if (b == 1 || b == 3 || b == 0xc) {
         archiveName = gArchiveNames[10];
         if (path[0] == '/') {
-            func_0200d9e0(fullPath, 0x80, data_usa_02165008, archiveName, path);
+            StringFormatBounded(fullPath, 0x80, data_usa_02165008, archiveName, path);
         } else {
-            func_0200d9e0(fullPath, 0x80, data_usa_02165010, archiveName, path);
+            StringFormatBounded(fullPath, 0x80, data_usa_02165010, archiveName, path);
         }
         file = func_02048504(fullPath, 8);
     } else {
         if (data_021759c8->mUnk_00[6].mLoaded != 0) {
             archiveName = gArchiveNames[6];
             if (path[0] == '/') {
-                func_0200d9e0(fullPath, 0x80, data_usa_02165018, archiveName, path);
+                StringFormatBounded(fullPath, 0x80, data_usa_02165018, archiveName, path);
             } else {
-                func_0200d9e0(fullPath, 0x80, data_usa_02165020, archiveName, path);
+                StringFormatBounded(fullPath, 0x80, data_usa_02165020, archiveName, path);
             }
             file = func_02048504(fullPath, 8);
         }
         if (file == NULL && data_021759c8->mUnk_00[7].mLoaded != 0) {
             archiveName = gArchiveNames[7];
             if (path[0] == '/') {
-                func_0200d9e0(fullPath, 0x80, data_usa_02165028, archiveName, path);
+                StringFormatBounded(fullPath, 0x80, data_usa_02165028, archiveName, path);
             } else {
-                func_0200d9e0(fullPath, 0x80, data_usa_02165030, archiveName, path);
+                StringFormatBounded(fullPath, 0x80, data_usa_02165030, archiveName, path);
             }
             file = func_02048504(fullPath, 8);
         }
         if (file == NULL && data_021759c8->mUnk_00[8].mLoaded != 0) {
             archiveName = gArchiveNames[8];
             if (path[0] == '/') {
-                func_0200d9e0(fullPath, 0x80, data_usa_02165038, archiveName, path);
+                StringFormatBounded(fullPath, 0x80, data_usa_02165038, archiveName, path);
             } else {
-                func_0200d9e0(fullPath, 0x80, data_usa_02165040, archiveName, path);
+                StringFormatBounded(fullPath, 0x80, data_usa_02165040, archiveName, path);
             }
             file = func_02048504(fullPath, 8);
         }
@@ -313,7 +313,7 @@ void func_02047468(const void *a, u32 b) {
     u32 v1;
     char v2[128];
     v1 = func_02048440();
-    func_0200d9e0(v2, 0x80, gArchivePrefixFormat, a, v1);
+    StringFormatBounded(v2, 0x80, gArchivePrefixFormat, a, v1);
     func_02047498(v2, b);
 }
 

@@ -243,9 +243,9 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
             v7 = v7 + v13;
         }
     }
-    v13 = func_0200fca0();
+    v13 = IrqDisable();
     v6 = (u32 *) data_02175ec0.mUnk_0014(data_02175ec0.mUnk_0018, v7, NULL);
-    func_0200fcb4(v13);
+    IrqRestore(v13);
     *v6 = v10;
     v11 = 0;
     k = FALSE;

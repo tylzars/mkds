@@ -33,14 +33,14 @@ void func_ov000_0219dd4c(const void *a, u32 b) {
     e = 0;
     if (b >= 0x14) {
         do {
-            func_0214d1fc(a, &c, 0x14);
+            MemCopy(a, &c, 0x14);
             if (strncmp(c.mUnk_00, data_ov000_021b40bc, 4) != 0) {
                 break;
             }
             if (c.mUnk_04 != 3) {
                 break;
             }
-            func_0214d1fc(a + 0x14, d, c.mUnk_09);
+            MemCopy(a + 0x14, d, c.mUnk_09);
             if (func_ov000_021a01dc(c.mUnk_08, c.mUnk_10, c.mUnk_0c, c.mUnk_0a, (u32 *) d, c.mUnk_09 >> 2) == 0) {
                 break;
             }

@@ -15,9 +15,9 @@ void func_ov003_021cd2e0(const char *v1, u8 *v2) {
     s32 i;
     s32 j;
     u8 *p;
-    func_0214d168(a, 0, 4);
+    MemFill(a, 0, 4);
     for (i = 0; i < 4; i++) {
-        func_0214d1fc(v1 + i * 3, a, 3);
+        MemCopy(v1 + i * 3, a, 3);
         j = 0;
         p = a;
         for (; j < 3; j++) {
@@ -39,7 +39,7 @@ void func_ov003_021cd338(s32 param_1) {
     void *e;
     Unk021cd5e0 *p;
     s32 i;
-    func_0214d168(d, 0, 0x10);
+    MemFill(d, 0, 0x10);
     d[param_1] = 1;
     if (param_1 <= 2) {
         p = data_ov003_021da270;
@@ -76,14 +76,14 @@ void func_ov003_021cd42c(void) {
     Unk021510a4 b;
     u8 *c;
     s32 i;
-    func_0214cfe4(a, data_ov003_021da270, 0x400);
+    MemFillHalfwords(a, data_ov003_021da270, 0x400);
     for (i = 0; i < 3; i++) {
         data_ov003_021da270->mUnk_000[i].mUnk_00.mUnk_e7 = 0xff;
     }
     func_02151fc4(&b);
     c = func_021510a4(&b);
     for (i = 0; i < 2; i++) {
-        func_0214d1fc(c, data_ov003_021da270->mUnk_000[i].mUnk_f0, 0xe);
+        MemCopy(c, data_ov003_021da270->mUnk_000[i].mUnk_f0, 0xe);
     }
     for (i = 0; i < 4; i++) {
         func_ov003_021cd338(i);

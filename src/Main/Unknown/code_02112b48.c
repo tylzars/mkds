@@ -202,8 +202,8 @@ void func_02114298(u16 a, void *b, u32 c) {
     u8 t[0x14];
 
     func_020608fc(data_0217d34c->mUnk_04[a].mUnk_00, t);
-    func_0214d168(b, 0, c);
-    func_0214cffc(t, b, 0x14);
+    MemFill(b, 0, c);
+    MemCopyHalfwords(t, b, 0x14);
 }
 
 s32 func_0211427c(u16 a) {
@@ -223,7 +223,7 @@ void func_021141c8(u16 a, Unk021141c8 *b, void *c) {
     } while (d == 0 ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1);
     if (!func_0205eca4(data_0217d34c->mUnk_08, data_0217d34c->mUnk_04[a].mUnk_00, b) || b->mUnk_200 == 0) {
         b->mUnk_200 = 1;
-        func_0214d0a8(data_0217d34c->mUnk_0c, b, 0x200);
+        MemCopyWordsByBlock(data_0217d34c->mUnk_0c, b, 0x200);
     }
     func_020ac2fc(b, c, 0x20);
 }

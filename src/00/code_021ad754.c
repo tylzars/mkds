@@ -18,7 +18,7 @@
 u8 *func_ov000_021ad754(u8 *a, u8 b, u32 *c) {
     u32 d;
 
-    func_0214d168(a, 0, 0xec);
+    MemFill(a, 0, 0xec);
     *(u16 *) a = 0x101;
     a[2] = 6;
     data_ov000_021b63e0[0] = (s64) data_ov000_021b63e0[1] * (s64) data_ov000_021b63e0[0] + data_ov000_021b63e0[2];
@@ -30,7 +30,7 @@ u8 *func_ov000_021ad754(u8 *a, u8 b, u32 *c) {
     *(u16 *) (a + 6) = (u16) d >> 8 | (u16) d << 8;
     *(u16 *) (a + 0xc) = (u16) (data_ov000_021b63b4 >> 16) >> 8 | (u16) (data_ov000_021b63b4 >> 16) << 8;
     *(u16 *) (a + 0xe) = (u16) data_ov000_021b63b4 >> 8 | (u16) data_ov000_021b63b4 << 8;
-    func_0214d1fc(data_ov000_021b63d0, a + 0x1c, 6);
+    MemCopy(data_ov000_021b63d0, a + 0x1c, 6);
     *(u16 *) (a + 0xec) = 0x8263;
     *(u16 *) (a + 0xee) = 0x6353;
     *(u16 *) (a + 0xf0) = 0x135;
@@ -38,10 +38,10 @@ u8 *func_ov000_021ad754(u8 *a, u8 b, u32 *c) {
     a[0xf3] = 0x3d;
     a[0xf4] = 7;
     a[0xf5] = 1;
-    func_0214d1fc(data_ov000_021b63d0, a + 0xf6, 6);
+    MemCopy(data_ov000_021b63d0, a + 0xf6, 6);
     a[0xfc] = 0xc;
     a[0xfd] = 10;
-    func_0214d1fc(data_ov000_021b4c34, a + 0xfe, 10);
+    MemCopy(data_ov000_021b4c34, a + 0xfe, 10);
     a[0x108] = 0x37;
     a[0x109] = 3;
     a[0x10a] = 1;
@@ -63,7 +63,7 @@ void func_ov000_021ad898(void) {
     Unk021b69dc *j;
 
     data_ov000_021b63b0 = 0;
-    func_0214d168(&data_ov000_021b6494, 0, 0x64);
+    MemFill(&data_ov000_021b6494, 0, 0x64);
     data_ov000_021b6494.mReceiveBufferSize = 0x180;
     data_ov000_021b6494.mReceiveBuffer = data_ov000_021b685c;
     data_ov000_021b6494.mSendBufferSize = 0x180;

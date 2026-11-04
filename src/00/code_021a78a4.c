@@ -15,7 +15,7 @@
 
 s32 func_ov000_021a78a4(void *param_1, u32 param_2, Unk021a6fa8 *param_3) {
     Unk021a71c0 *d = param_3->mReceiveBlock;
-    u32 e = func_0200fca0();
+    u32 e = IrqDisable();
     if (d->mUnk_10a >= d->mUnk_108 + param_2) {
         Unk021a78a4 *f = data_ov000_021b5f94->mUnk_18(param_2 + 0xc);
         if (f != NULL) {
@@ -24,7 +24,7 @@ s32 func_ov000_021a78a4(void *param_1, u32 param_2, Unk021a6fa8 *param_3) {
             f->mUnk_04 = param_2;
             f->mUnk_06 = param_3->mUnk_18;
             f->mUnk_08 = param_3->mUnk_1c;
-            func_0214d1fc(param_1, f->mUnk_0c, param_2);
+            MemCopy(param_1, f->mUnk_0c, param_2);
             if (param_3->mUnk_74 == 0) {
                 param_3->mUnk_74 = param_3->mUnk_0a;
             }
@@ -44,7 +44,7 @@ s32 func_ov000_021a78a4(void *param_1, u32 param_2, Unk021a6fa8 *param_3) {
         data_ov000_021b5ffc[1]++;
     }
     func_0200df9c(&d->mUnk_10c);
-    func_0200fcb4(e);
+    IrqRestore(e);
     return 1;
 }
 
@@ -62,7 +62,7 @@ s32 func_ov000_021a797c(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f) {
     s32 g;
     Unk021a78a4 *j;
     *(Unk021a78a4 *volatile *) &h->mUnk_104;
-    i = func_0200fca0();
+    i = IrqDisable();
     j = h->mUnk_104;
     while (j == NULL) {
         if (f == 0) {
@@ -80,7 +80,7 @@ s32 func_ov000_021a797c(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f) {
         if (c > j->mUnk_04) {
             c = j->mUnk_04;
         }
-        func_0214d1fc(j->mUnk_0c, b, c);
+        MemCopy(j->mUnk_0c, b, c);
         if (d != NULL) {
             *d = j->mUnk_06;
         }
@@ -97,19 +97,19 @@ s32 func_ov000_021a797c(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f) {
             h->mUnk_108 -= g;
         }
     }
-    func_0200fcb4(i);
+    IrqRestore(i);
     return g;
 }
 
 s32 func_ov000_021a7a6c(Unk021a6fa8 *a) {
     Unk021a71c0 *b = a->mReceiveBlock;
-    u32 c = func_0200fca0();
+    u32 c = IrqDisable();
     s32 d = b->mUnk_f8;
     if (d != 0) {
         b->mUnk_f8 = 0;
         func_ov000_021adf00(d);
     }
-    func_0200fcb4(c);
+    IrqRestore(c);
     return d;
 }
 
@@ -167,7 +167,7 @@ s32 func_ov000_021a7af0(Unk021a7064 *param_1) {
         if (e > j) {
             e = j;
         }
-        func_0214d1fc(i, d, e);
+        MemCopy(i, d, e);
         func_ov000_021adf00(e);
         return e;
     }

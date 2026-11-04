@@ -13,9 +13,9 @@ void func_ov003_021ba778(Unk021ba778Src *src, Unk021ba778Dst *dst) {
     int count;
     int mode;
     dst->mUnk_00 = src->mUnk_0a;
-    func_0214cffc(src->mUnk_0c, dst->mUnk_04, 0x20);
+    MemCopyHalfwords(src->mUnk_0c, dst->mUnk_04, 0x20);
     dst->mUnk_24 = src->mUnk_36;
-    func_0214cffc(src->mUnk_04, dst->mUnk_30, 6);
+    MemCopyHalfwords(src->mUnk_04, dst->mUnk_30, 6);
     count = 0;
     for (i = 0; i < 12; i++) {
         if (src->mUnk_30 & data_ov003_021d687c[i].mUnk_00) {
@@ -40,9 +40,9 @@ void func_ov003_021ba778(Unk021ba778Src *src, Unk021ba778Dst *dst) {
 
 void func_ov003_021ba744(Unk021ba1b0 *request, Unk021ba778Src *rec) {
     vu16 zero = 0;
-    func_0214cfe4(zero, rec->mUnk_0c, 0x20);
+    MemFillHalfwords(zero, rec->mUnk_0c, 0x20);
     rec->mUnk_0a = request->mUnk_00;
-    func_0214d1fc(request->mUnk_04, rec->mUnk_0c, rec->mUnk_0a);
+    MemCopy(request->mUnk_04, rec->mUnk_0c, rec->mUnk_0a);
 }
 
 void func_ov003_021ba734(Unk021ba734 *list, Unk021ba778Src *src, s32 count) {
@@ -67,10 +67,10 @@ s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *)) {
     if (alloc == NULL || release == NULL) {
         return -1;
     }
-    enabled = func_0200fca0();
+    enabled = IrqDisable();
     data_ov003_021d8a0c = alloc;
     data_ov003_021d8a18 = release;
-    func_0200fcb4(enabled);
+    IrqRestore(enabled);
     buffer = data_ov003_021d8a0c(0x5890);
     data_ov003_021d8a14 = buffer;
     if (buffer == NULL) {
@@ -140,10 +140,10 @@ s32 func_ov003_021ba560(void) {
                 break;
         }
     } while (running != FALSE);
-    enabled = func_0200fca0();
+    enabled = IrqDisable();
     data_ov003_021d8a0c = NULL;
     data_ov003_021d8a18 = NULL;
-    func_0200fcb4(enabled);
+    IrqRestore(enabled);
     return result;
 }
 
@@ -271,7 +271,7 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
     } else if (request->mUnk_24 == 1) {
         flags = 0xc0000;
     }
-    func_0214d168(&data_ov003_021d8a4c, 0, 0x60);
+    MemFill(&data_ov003_021d8a4c, 0, 0x60);
     if (request->mUnk_28 == 5) {
         data_ov003_021d8a4c.mUnk_00 = 1;
     } else if (request->mUnk_28 == 0xd) {
@@ -282,7 +282,7 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
         return -1;
     }
     data_ov003_021d8a4c.mUnk_01 = 0;
-    func_0214d1fc(request->mUnk_2c, data_ov003_021d8a4c.mUnk_02, request->mUnk_28);
+    MemCopy(request->mUnk_2c, data_ov003_021d8a4c.mUnk_02, request->mUnk_28);
     func_ov000_021a6894();
     if (func_ov003_021baaac(NULL, request->mUnk_04, request->mUnk_00, 0x30bffe) != 0) {
         retries = 0;

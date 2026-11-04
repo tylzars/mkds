@@ -31,7 +31,7 @@ void func_0200d028(void) {
     *(u32 *) 0x027fffb0 = 0xffffffff;
     *(u32 *) 0x027fffb4 = 0xffff0000;
     v = 0;
-    func_0214d018(v, (void *) 0x027fffc0, 0x28);
+    MemFillWords(v, (void *) 0x027fffc0, 0x28);
     reg_MI_EXMEMCNT |= 0x800;
     reg_MI_EXMEMCNT |= 0x80;
     func_0200cf20(0x7e, (Unk0200ce60 *) 0x027ffff0, 0);
@@ -62,7 +62,7 @@ s32 func_0200cf30(u32 a, Unk0200ce60 *p, u32 (*f)(void), s32 k) {
     if (k != 0) {
         s = func_0200fccc();
     } else {
-        s = func_0200fca0();
+        s = IrqDisable();
     }
     p->mUnk_04 = 0;
     if (f != 0) {
@@ -72,7 +72,7 @@ s32 func_0200cf30(u32 a, Unk0200ce60 *p, u32 (*f)(void), s32 k) {
     if (k != 0) {
         func_0200fce0(s);
     } else {
-        func_0200fcb4(s);
+        IrqRestore(s);
     }
     return 0;
 }
@@ -88,7 +88,7 @@ s32 func_0200cea0(u32 a, Unk0200ce60 *p, u32 (*f)(void), s32 k) {
     if (k != 0) {
         s = func_0200fccc();
     } else {
-        s = func_0200fca0();
+        s = IrqDisable();
     }
     r = func_0214d33c(a, &p->mUnk_00);
     if (r == 0) {
@@ -100,7 +100,7 @@ s32 func_0200cea0(u32 a, Unk0200ce60 *p, u32 (*f)(void), s32 k) {
     if (k != 0) {
         func_0200fce0(s);
     } else {
-        func_0200fcb4(s);
+        IrqRestore(s);
     }
     return r;
 }

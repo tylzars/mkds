@@ -8,7 +8,7 @@
 #pragma thumb on
 
 static inline u8 *func_0214d1fc_inline(const void *v1, u8 *v2, u32 n) {
-    func_0214d1fc(v1, v2, n);
+    MemCopy(v1, v2, n);
     return v2 + n;
 }
 
@@ -35,7 +35,7 @@ s32 func_020068b4(s32 a, u16 b, u8 c) {
     v.m0 = 1;
     v1 = func_0214d1fc_inline(&v, v1, 1);
     v1 = func_0214d1fc_inline(&v.m2, v1, 2);
-    func_0214d1fc(&c, v1, 1);
+    MemCopy(&c, v1, 1);
     return (s32) v1 + 1 - a;
 }
 
@@ -52,7 +52,7 @@ s32 func_02006858(s32 a, u16 b, u8 c, u32 d, u32 e) {
     v1 = func_0214d1fc_inline(&v.m2, v1, 2);
     v1 = func_0214d1fc_inline(&c, v1, 1);
     v1 = func_0214d1fc_inline(&d, v1, 2);
-    func_0214d1fc(&e, v1, 2);
+    MemCopy(&e, v1, 2);
     return (s32) v1 + 2 - a;
 }
 
@@ -70,7 +70,7 @@ s32 func_020067f0(s32 a, u16 b, u8 c, s16 d, u32 e, u32 f) {
     v1 = func_0214d1fc_inline(&c, v1, 1);
     v1 = func_0214d1fc_inline(&d, v1, 2);
     v1 = func_0214d1fc_inline(&e, v1, 2);
-    func_0214d1fc(&f, v1, 2);
+    MemCopy(&f, v1, 2);
     return (s32) v1 + 2 - a;
 }
 
@@ -87,7 +87,7 @@ s32 func_02006794(s32 a, u16 b, u8 c, u32 d, u32 e) {
     v1 = func_0214d1fc_inline(&v.m2, v1, 2);
     v1 = func_0214d1fc_inline(&c, v1, 1);
     v1 = func_0214d1fc_inline(&d, v1, 4);
-    func_0214d1fc(&e, v1, 4);
+    MemCopy(&e, v1, 4);
     return (s32) v1 + 4 - a;
 }
 
@@ -106,9 +106,9 @@ s32 func_0200671c(s32 a, u32 b, u8 c, u32 d, u32 e, u32 f, s32 g) {
     v1 = func_0214d1fc_inline(&d, v1, 4);
     v1 = func_0214d1fc_inline(&e, v1, 4);
     if (f == 0) {
-        func_0214d168(v1, 0, g);
+        MemFill(v1, 0, g);
     } else {
-        func_0214d1fc((void *) f, v1, g);
+        MemCopy((void *) f, v1, g);
     }
     return (s32) v1 + g - a;
 }
@@ -126,7 +126,7 @@ s32 func_020066c0(s32 a, u16 b, u8 c, u32 d, u32 e) {
     v1 = func_0214d1fc_inline(&v.m2, v1, 2);
     v1 = func_0214d1fc_inline(&c, v1, 1);
     v1 = func_0214d1fc_inline(&d, v1, 4);
-    func_0214d1fc(&e, v1, 4);
+    MemCopy(&e, v1, 4);
     return (s32) v1 + 4 - a;
 }
 
@@ -145,9 +145,9 @@ s32 func_02006648(s32 a, u32 b, u8 c, u32 d, u32 e, u32 f, u32 g) {
     v1 = func_0214d1fc_inline(&d, v1, 4);
     v1 = func_0214d1fc_inline(&e, v1, 4);
     if (f == 0) {
-        func_0214d168(v1, 0, g);
+        MemFill(v1, 0, g);
     } else {
-        func_0214d1fc((void *) f, v1, g);
+        MemCopy((void *) f, v1, g);
     }
     return (s32) v1 + g - a;
 }
@@ -164,7 +164,7 @@ s32 func_020065f8(s32 a, u16 b, u8 c, u32 d) {
     v1 = func_0214d1fc_inline(&v, v1, 1);
     v1 = func_0214d1fc_inline(&v.m2, v1, 2);
     v1 = func_0214d1fc_inline(&c, v1, 1);
-    func_0214d1fc(&d, v1, 4);
+    MemCopy(&d, v1, 4);
     return (s32) v1 + 4 - a;
 }
 
@@ -180,7 +180,7 @@ s32 func_020065a8(s32 a, u16 b, u8 c, u32 d) {
     v1 = func_0214d1fc_inline(&v, v1, 1);
     v1 = func_0214d1fc_inline(&v.m2, v1, 2);
     v1 = func_0214d1fc_inline(&c, v1, 1);
-    func_0214d1fc(&d, v1, 4);
+    MemCopy(&d, v1, 4);
     return (s32) v1 + 4 - a;
 }
 
@@ -197,7 +197,7 @@ s32 func_0200654c(s32 a, u16 b, u8 c, u32 *d, u32 e) {
     v1 = func_0214d1fc_inline(&v.m2, v1, 2);
     v1 = func_0214d1fc_inline(&c, v1, 1);
     v1 = func_0214d1fc_inline(&e, v1, 1);
-    func_0214d1fc(d, v1, 9);
+    MemCopy(d, v1, 9);
     return (s32) v1 + 9 - a;
 }
 
@@ -212,7 +212,7 @@ s32 func_02006508(s32 a, u16 b, u8 c) {
     v.m0 = 0xb;
     v1 = func_0214d1fc_inline(&v, v1, 1);
     v1 = func_0214d1fc_inline(&v.m2, v1, 2);
-    func_0214d1fc(&c, v1, 1);
+    MemCopy(&c, v1, 1);
     return (s32) v1 + 1 - a;
 }
 
@@ -281,7 +281,7 @@ void func_0200639c(Unk0200628c *a, s32 b, void *c, u32 d) {
     a->mUnk_04 = b / v1 + ((b % v1) != 0 ? 1 : 0);
     a->mUnk_14 = c;
     a->mUnk_18 = (u8 *) d;
-    func_0214d168(c, 0, func_02006f98(b));
+    MemFill(c, 0, func_02006f98(b));
 }
 
 BOOL func_02006380(Unk0200628c *a, s32 b) {

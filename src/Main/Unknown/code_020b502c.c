@@ -327,9 +327,9 @@ void func_020b5290(void) {
         if (data_0217b3c0->mUnk_8c < 300) {
             func_0207a91c(&target, func_020b4d9c());
             data_0217b3c0->mUnk_8c = 300;
-            func_021484d0(&target, &data_0217b3c0->mUnk_90, &dir);
+            Vec3Sub(&target, &data_0217b3c0->mUnk_90, &dir);
             func_02039860(&dir, &dir);
-            func_02147fd8(0xa000, &dir, &data_0217b3c0->mUnk_90, &data_0217b3c0->mUnk_90);
+            Vec3AddScaled(0xa000, &dir, &data_0217b3c0->mUnk_90, &data_0217b3c0->mUnk_90);
             if (func_020b5250(target.x - data_0217b3c0->mUnk_90.x) *
                         func_020b5250(target.x - data_0217b3c0->mUnk_90.x) +
                     func_020b5250(target.z - data_0217b3c0->mUnk_90.z) *
@@ -382,7 +382,7 @@ void func_020b503c(Unk020b503c *p, s32 scale) {
     if (func_020b1dbc() == 2) {
         func_020b5290();
     }
-    data_0217b3c0->mUnk_18 = func_020b5250(func_02147f34(0xb0000, scale));
+    data_0217b3c0->mUnk_18 = func_020b5250(DivFixed12(0xb0000, scale));
     scale = func_02147f18(scale);
     a = func_020b502c(data_0217b3c0->mUnk_1c, scale);
     b = func_020b502c(data_0217b3c0->mUnk_1e, scale);

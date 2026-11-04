@@ -1,19 +1,19 @@
 #include "code_02147cd8.h"
 #include "registers.h"
 
-void func_02148504(const Vec3 *a, const Vec3 *b, Vec3 *c) {
+void Vec3Add(const Vec3 *a, const Vec3 *b, Vec3 *c) {
     c->x = a->x + b->x;
     c->y = a->y + b->y;
     c->z = a->z + b->z;
 }
 
-void func_021484d0(const Vec3 *a, const Vec3 *b, Vec3 *c) {
+void Vec3Sub(const Vec3 *a, const Vec3 *b, Vec3 *c) {
     c->x = a->x - b->x;
     c->y = a->y - b->y;
     c->z = a->z - b->z;
 }
 
-s32 func_0214848c(const Vec3 *a, const Vec3 *b) {
+s32 Vec3Dot(const Vec3 *a, const Vec3 *b) {
     return (s32) (((s64) a->x * b->x + (s64) a->y * b->y + (s64) a->z * b->z + 0x800) >> 12);
 }
 
@@ -27,7 +27,7 @@ s32 func_0214843c(const Unk02148038 *a, const Unk02148038 *b) {
     return (s32) (((s64) p + (q + 0x800)) >> 12);
 }
 
-void func_021483a0(const Vec3 *a, const Vec3 *b, Vec3 *c) {
+void Vec3Cross(const Vec3 *a, const Vec3 *b, Vec3 *c) {
     s32 x;
     s32 y;
     s32 z;
@@ -53,7 +53,7 @@ void func_02148334(const Unk02148038 *a, const Unk02148038 *b, Unk02148038 *c) {
     c->mUnk_04 = z;
 }
 
-s32 func_021482cc(const Vec3 *a) {
+s32 Vec3Length(const Vec3 *a) {
     s64 s;
 
     s = (s64) a->x * a->x;
@@ -66,7 +66,7 @@ s32 func_021482cc(const Vec3 *a) {
     return ((s32) * (vu32 *) 0x040002B4 + 1) >> 1;
 }
 
-void func_0214818c(const Vec3 *a, Vec3 *b) {
+void Vec3Normalize(const Vec3 *a, Vec3 *b) {
     s64 s;
     s32 r;
     s64 t;
@@ -114,7 +114,7 @@ void func_02148038(const Unk02148038 *a, Unk02148038 *b) {
     b->mUnk_04 = (s16) ((t * a->mUnk_04 + 0x100000000000LL) >> 45);
 }
 
-void func_02147fd8(s32 a, const Vec3 *b, const Vec3 *c, Vec3 *d) {
+void Vec3AddScaled(s32 a, const Vec3 *b, const Vec3 *c, Vec3 *d) {
     d->x = c->x + (s32) (((s64) a * b->x) >> 12);
     d->y = c->y + (s32) (((s64) a * b->y) >> 12);
     d->z = c->z + (s32) (((s64) a * b->z) >> 12);
@@ -139,7 +139,7 @@ s32 func_02147f50(const Vec3 *a, const Vec3 *b) {
     return ((s32) * (vu32 *) 0x040002B4 + 1) >> 1;
 }
 
-s32 func_02147f34(s32 a, s32 b) {
+s32 DivFixed12(s32 a, s32 b) {
     func_02147d88(a, b);
     return func_02147e28();
 }
@@ -195,7 +195,7 @@ void func_02147d88(s32 a, s32 b) {
     reg_CP_DIV_DENOM = (u32) b;
 }
 
-u32 func_02147d30(u32 a, u32 b) {
+u32 Div32(u32 a, u32 b) {
     reg_CP_DIVCNT = 0;
     *(vu32 *) 0x04000290 = a;
     reg_CP_DIV_DENOM = b;

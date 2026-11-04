@@ -102,13 +102,13 @@ void func_ov003_021c8c14(void) {
             r = (Unk021c8a60 *) func_ov003_021cdb6c();
             r->mUnk_d0 = func_021516d8(r->mUnk_f0);
             if (r->mUnk_f5 != 0) {
-                func_0214d168(r->mUnk_c0, 0, 4);
-                func_0214d168(r->mUnk_c4, 0, 4);
-                func_0214d168(r->mUnk_f0, 0, 4);
+                MemFill(r->mUnk_c0, 0, 4);
+                MemFill(r->mUnk_c4, 0, 4);
+                MemFill(r->mUnk_f0, 0, 4);
                 r->mUnk_d0 = 0;
             }
             if (r->mUnk_f6 != 0) {
-                func_0214d168(r->mUnk_c8, 0, 8);
+                MemFill(r->mUnk_c8, 0, 8);
             }
             func_ov003_021c2120(2, 0);
             func_ov003_021c20f8(0, 0);
@@ -136,7 +136,7 @@ void func_ov003_021c8b94(void) {
     int a;
     int i;
     int j;
-    a = func_02147d30(*(u16 *) &data_ov003_021da210, 0x1d);
+    a = Div32(*(u16 *) &data_ov003_021da210, 0x1d);
     func_ov003_021d2060(data_ov003_021da214->mUnk_14, 0);
     for (i = 0, j = a; i < 5; i++, j++) {
         func_ov003_021c8a60(j, i);
@@ -176,7 +176,7 @@ void func_ov003_021c8a60(u32 a, int b) {
             if (r->mUnk_e6_2 == 1) {
                 x = _s32_div_f(x, 2);
             }
-            func_0214d168(y, 0, 0x21);
+            MemFill(y, 0, 0x21);
             memset(y, 0x2a, x);
             func_ov003_021c876c(y, b);
             return;
@@ -362,7 +362,7 @@ void func_ov003_021c876c(const u8 *g, int h) {
     int i;
     int d;
     int e;
-    func_0214d168(f, 0, 0x22);
+    MemFill(f, 0, 0x22);
     a = func_ov003_021d3254(g, 0x20);
     if (a <= 0x10) {
         b = a;
@@ -383,7 +383,7 @@ void func_ov003_021c876c(const u8 *g, int h) {
     }
     func_ov003_021d2094(data_ov003_021da214->mUnk_14, 0x48, d, 2, 8, f, 1);
     if (a > 0x10) {
-        func_0214d168(f, 0, 0x22);
+        MemFill(f, 0, 0x22);
         e = a - 0x10;
         for (i = 0; i < e; i++) {
             c = g[i + 0x10];
@@ -411,7 +411,7 @@ void func_ov003_021c85a0(void) {
     int i;
     u32 x;
     u32 y;
-    a = func_02147d30(*(u16 *) &data_ov003_021da210, 0x1d);
+    a = Div32(*(u16 *) &data_ov003_021da210, 0x1d);
     b = 0x34 - func_02147cd8(*(u16 *) &data_ov003_021da210, 0x1d);
     if (data_ov003_021da214->mUnk_34 != NULL) {
         if (a == 0) {

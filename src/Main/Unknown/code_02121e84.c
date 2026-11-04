@@ -113,24 +113,24 @@ void func_02121f4c(u32 a, void *b, u32 c) {
             if (p->mUnk_40 == 0) {
                 return;
             }
-            func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+            MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
             data_0217d384->mUnk_19ab |= 1 << a;
             break;
         case 9:
             if (data_0217d384->mStep == 3) {
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 data_0217d384->mUnk_19ab |= 1 << a;
             } else if (data_0217d384->mStep == 4) {
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 data_0217d384->mUnk_19ab |= 1 << a;
             }
             break;
         case 3:
             if (data_0217d384->mStep == 1) {
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 data_0217d384->mUnk_19ab = 0xff;
             } else if (data_0217d384->mStep == 5) {
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 if (p->mCharacterIndex == -1) {
                     return;
                 }
@@ -139,46 +139,46 @@ void func_02121f4c(u32 a, void *b, u32 c) {
                 }
                 data_0217d384->mUnk_19ab |= 1 << a;
             } else if (data_0217d384->mStep == 4) {
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 data_0217d384->mUnk_19ab = 0xff;
             }
             break;
         case 4:
             if (data_0217d384->mStep == 5) {
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 data_0217d384->mUnk_19ab |= 1 << a;
             } else if (data_0217d384->mStep == 6) {
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 data_0217d384->mUnk_19ab |= 1 << a;
             }
             break;
         case 5:
             if (data_0217d384->mStep == 6) {
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 data_0217d384->mUnk_19ab = 0xff;
             } else if (data_0217d384->mStep == 7) {
                 if (p->mPickedCourseId == 0) {
                     return;
                 }
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 data_0217d384->mUnk_19ab |= 1 << a;
             }
             break;
         case 6:
             if (data_0217d384->mStep == 7) {
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 data_0217d384->mUnk_19ab |= 1 << a;
             } else if (data_0217d384->mStep == 8) {
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 data_0217d384->mUnk_19ab |= 1 << a;
             }
             break;
         case 7:
             if (data_0217d384->mStep == 8) {
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 data_0217d384->mUnk_19ab |= 1 << a;
             } else if (data_0217d384->mStep == 9) {
-                func_0214d1fc(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
                 func_0212145c(a);
                 data_0217d384->mUnk_19ab |= 1 << a;
             }

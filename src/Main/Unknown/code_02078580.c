@@ -74,13 +74,13 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
     }
     func_02010fe4(&v);
     func_0201100c(&t);
-    func_0214d0fc(m2, &data_0217029c.mUnk_bc);
+    MemCopy9Words(m2, &data_0217029c.mUnk_bc);
     data_0217029c.mUnk_fc &= ~0xa4;
     func_02011034();
     if (data_0217ad08->mUnk_1cc != NULL) {
         func_01ff8cf0(data_0217ad08->mUnk_1cc);
     }
-    func_0214d0fc(m1, &data_0217029c.mUnk_bc);
+    MemCopy9Words(m1, &data_0217029c.mUnk_bc);
     data_0217029c.mUnk_fc &= ~0xa4;
     func_0201100c(&t);
     func_02011034();
@@ -117,7 +117,7 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
                     u.x = e->x >> 4;
                     u.y = e->y >> 4;
                     u.z = e->z >> 4;
-                    func_02147288(&u, &m3, &t);
+                    Vec3MultiplyMatrix4x3(&u, &m3, &t);
                     func_02010fe4(&w);
                     func_0201100c(&t);
                     func_02011034();
@@ -131,7 +131,7 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
             }
         }
         if (param_1->mUnk_10 != NULL) {
-            func_02147288(&param_1->mUnk_20->mUnk_44[param_1->mUnk_00], &m3, &t);
+            Vec3MultiplyMatrix4x3(&param_1->mUnk_20->mUnk_44[param_1->mUnk_00], &m3, &t);
             func_0201100c(&t);
             func_02011034();
             if (param_3 != 0) {
@@ -161,8 +161,8 @@ void func_020787f4(s32 param_1, s32 param_2) {
     b = data_usa_02155188;
     c = data_usa_021656f0;
     c.y += param_2;
-    func_021484d0(&c, &data_usa_021656fc, &d);
-    func_021483a0(&b, &d, &e);
+    Vec3Sub(&c, &data_usa_021656fc, &d);
+    Vec3Cross(&b, &d, &e);
     data_021704dc = data_usa_021656fc;
     data_021704e8 = e;
     data_021704f4 = c;
@@ -177,7 +177,7 @@ void func_02078934(s32 param_1) {
     s32 c;
     s32 b;
     s32 a;
-    a = (s32) (((s64) func_02147f34(0x579, 0xf09) * 0x200) >> 12);
+    a = (s32) (((s64) DivFixed12(0x579, 0xf09) * 0x200) >> 12);
     b = -a;
     c = (s32) (((s64) b * 0x1555) >> 12);
     d = -c;

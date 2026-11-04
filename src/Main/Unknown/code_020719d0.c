@@ -32,10 +32,10 @@ void func_020719d0(Unk0206bcb0 *p) {
     q->mUnk_0c = 0;
     q->mUnk_10 = 0;
     q->mUnk_14 = 0;
-    q->mUnk_18 = func_02147f34(0x300000, 0xd000 - p->mUnk_2cc->mUnk_10);
-    q->mUnk_1c = func_02147f34(0x580000, p->mUnk_2cc->mUnk_10);
-    q->mUnk_20 = func_02147f34(0x480000, p->mUnk_2cc->mUnk_10);
-    q->mUnk_24 = func_02147f34(0x280000, p->mUnk_2cc->mUnk_10);
+    q->mUnk_18 = DivFixed12(0x300000, 0xd000 - p->mUnk_2cc->mUnk_10);
+    q->mUnk_1c = DivFixed12(0x580000, p->mUnk_2cc->mUnk_10);
+    q->mUnk_20 = DivFixed12(0x480000, p->mUnk_2cc->mUnk_10);
+    q->mUnk_24 = DivFixed12(0x280000, p->mUnk_2cc->mUnk_10);
     q->mUnk_28 = 0;
     q->mUnk_2c = 0;
     q->mUnk_30 = 0;

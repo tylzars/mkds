@@ -105,7 +105,7 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void
     while ((ix = *++pl) != 0) {
         tr = ta[ix];
         vt = tb[tr.mUnk_04];
-        func_021484d0(&pa, &vt, &ua);
+        Vec3Sub(&pa, &vt, &ua);
         n[3].x = tc[tr.mUnk_0c].x;
         n[3].y = tc[tr.mUnk_0c].y;
         n[3].z = tc[tr.mUnk_0c].z;
@@ -174,7 +174,7 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void
                 if (b == NULL) {
                     continue;
                 }
-                func_021484d0(&pb, &vt, &ub);
+                Vec3Sub(&pb, &vt, &ub);
                 if (func_02039828(&ub, &n[0]) < 0) {
                     continue;
                 }
@@ -205,7 +205,7 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void
                 if (b == NULL) {
                     continue;
                 }
-                func_021484d0(&pb, &vt, &ub);
+                Vec3Sub(&pb, &vt, &ub);
                 if (func_02039828(&ub, &n[0]) < 0) {
                     continue;
                 }
@@ -236,7 +236,7 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void
                 if (b == NULL) {
                     continue;
                 }
-                func_021484d0(&pb, &vt, &ub);
+                Vec3Sub(&pb, &vt, &ub);
                 if (func_02039828(&ub, &n[0]) < 0) {
                     continue;
                 }
@@ -265,7 +265,7 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void
                 v = 0;
             }
             if (j != NULL) {
-                func_02147fd8(-d1, &n[1], &uc, &uc);
+                Vec3AddScaled(-d1, &n[1], &uc, &uc);
             }
             goto lk;
         le:
@@ -274,7 +274,7 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void
                 v = 0;
             }
             if (j != NULL) {
-                func_02147fd8(-d2, &n[2], &uc, &uc);
+                Vec3AddScaled(-d2, &n[2], &uc, &uc);
             }
             goto lk;
         lf:
@@ -283,7 +283,7 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void
                 v = 0;
             }
             if (j != NULL) {
-                func_02147fd8(-d3, &n[3], &uc, &uc);
+                Vec3AddScaled(-d3, &n[3], &uc, &uc);
             }
             goto lk;
         lg:
@@ -300,7 +300,7 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void
                 continue;
             }
             if (j != NULL) {
-                func_021484d0(&uc, &ua, &uc);
+                Vec3Sub(&uc, &ua, &uc);
             }
             v = 0;
         lk:
@@ -316,7 +316,7 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void
             goto ln;
         lm:
             if (d0 < 0 && b != NULL) {
-                func_021484d0(&pb, &vt, &ub);
+                Vec3Sub(&pb, &vt, &ub);
                 if (func_02039828(&ub, &n[0]) < 0) {
                     if (fl & 0x20) {
                         continue;
@@ -338,7 +338,7 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void
             bt |= 1 << (((at & 0xc) >> 2) + 0x1a);
             bt |= (at & 2) << 0x17;
             if (b != NULL) {
-                func_021484d0(&pb, &vt, &ub);
+                Vec3Sub(&pb, &vt, &ub);
                 dt = func_02039828(&ub, &n[0]);
                 if (dt < 0) {
                     if (v && (bt & 0x214300) && c != 0) {
@@ -362,7 +362,7 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void
                         continue;
                     }
                 }
-                func_021484d0(&pa, &pb, &ub);
+                Vec3Sub(&pa, &pb, &ub);
                 if (func_02039828(&ub, &n[0]) > 0x333) {
                     if (v && (bt & 0x214300) && c != 0) {
                         ua.x = (s32) (((s64) pe * n[0].x) >> 2);
@@ -595,7 +595,7 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void
                 cd.z = ((s64) cc.z * ((Vec3 *) c)->z) >> 12;
                 cc.x = cc.x - (s32) (((s64) cd.x * ((Vec3 *) c)->x) >> 12);
                 cc.z = cc.z - (s32) (((s64) cd.z * ((Vec3 *) c)->z) >> 12);
-                func_02148504((Vec3 *) &wa.mUnk_00, (Vec3 *) &wa.mUnk_0c, &ua);
+                Vec3Add((Vec3 *) &wa.mUnk_00, (Vec3 *) &wa.mUnk_0c, &ua);
                 if (func_02039828(&cc, &ua) >= 0) {
                     if ((s64) cc.x * cc.x + (s64) cc.y * cc.y + (s64) cc.z * cc.z >= 16) {
                         func_02039860(&cc, &cc);

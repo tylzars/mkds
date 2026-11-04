@@ -383,9 +383,9 @@ BOOL func_0206b020(Unk0206bcb0 *p, Unk0206b020 *a) {
         return FALSE;
     }
     t = a->mUnk_28;
-    func_021484d0(&p->mUnk_80, &a->mUnk_04, &u);
-    func_021483a0(&a->mUnk_40, &u, &w);
-    if (func_0214848c(&w, &a->mUnk_34) < 0) {
+    Vec3Sub(&p->mUnk_80, &a->mUnk_04, &u);
+    Vec3Cross(&a->mUnk_40, &u, &w);
+    if (Vec3Dot(&w, &a->mUnk_34) < 0) {
         t.x = -t.x;
         t.y = -t.y;
         t.z = -t.z;
@@ -455,7 +455,7 @@ void func_0206b358(Unk0206bcb0 *p) {
     p->mUnk_2a8 = p->mUnk_2a8 + 0x800;
     func_02063b50((u32) p, (u32) &p->mUnk_31c);
     func_02063b10(p, &v);
-    func_02147fd8(0x2e2, &v, &p->mUnk_31c, &p->mUnk_31c);
+    Vec3AddScaled(0x2e2, &v, &p->mUnk_31c, &p->mUnk_31c);
     func_02039860(&p->mUnk_31c, &p->mUnk_31c);
     func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
     p->mUnk_2a8 = (s32) (((s64) p->mUnk_2a8 * 0x99a) >> 12);
@@ -548,7 +548,7 @@ void func_0206b5b4(Unk0206bcb0 *p) {
         }
         i = (u16) (((s64) p->mUnk_334 * 0xce4) >> 12);
         func_02146f98((Unk02012f58 *) &m, &p->mUnk_328, data_0215d4b4[(i >> 4) * 2], data_0215d4b4[(i >> 4) * 2 + 1]);
-        func_02146d78(&p->mUnk_31c, m.mUnk_00, &a);
+        Vec3MultiplyMatrix3x3(&p->mUnk_31c, m.mUnk_00, &a);
         func_01ffd190(&a, p->mUnk_314, &p->mUnk_34c);
     } else {
         Vec4 q;

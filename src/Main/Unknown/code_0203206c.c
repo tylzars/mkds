@@ -285,7 +285,7 @@ void func_02032654(void *a, s32 b, void *c, void *d) {
 
     h = CreateFrmHeapFromMaxFree(a);
     data_02174e5c = HeapAlloc(h, 0x6c);
-    func_0214d05c_inline(data_02174e5c, 0x6c);
+    MemFillWordsByBlock_inline(data_02174e5c, 0x6c);
     data_02174e5c->mHeap = h;
     data_02174e5c->mUnk_68 = b;
     data_02174e5c->mUnk_38 = c;

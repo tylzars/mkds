@@ -143,7 +143,7 @@ u32 func_ov000_021a1514(void **a) {
     if (data_ov000_021b566c == NULL) {
         return 0;
     }
-    func_0214d168(data_ov000_021b5678, 0, 0x20);
+    MemFill(data_ov000_021b5678, 0, 0x20);
     i = 0;
     c = (u8 *) data_ov000_021b566c;
     if (i <= ((Unk021b566c *) c)->mUnk_0e) {
@@ -170,11 +170,11 @@ u32 func_ov000_021a1488(void) {
     if (data_ov000_021b566c->mUnk_15 != 2) {
         return 0;
     }
-    func_0200d9e0(name, 0xc, data_ov000_021b40b8, data_ov000_021b566c->mUnk_16 + 1);
+    StringFormatBounded(name, 0xc, data_ov000_021b40b8, data_ov000_021b566c->mUnk_16 + 1);
     func_ov000_021a363c(data_ov000_021b41a8, name, buffer, 0x2f);
-    func_0200d9e0(name, 0xc, data_ov000_021b40b8, data_ov000_021b566c->mUnk_0d + 1);
+    StringFormatBounded(name, 0xc, data_ov000_021b40b8, data_ov000_021b566c->mUnk_0d + 1);
     func_ov000_021a360c(data_ov000_021b41ac, name, buffer, 0x2f);
-    func_0200d9e0(name, 0xc, data_ov000_021b40b8, 3);
+    StringFormatBounded(name, 0xc, data_ov000_021b40b8, 3);
     func_ov000_021a360c(data_ov000_021b4118, name, buffer, 0x2f);
     return func_ov000_0219d558(6, buffer, NULL);
 }
@@ -253,13 +253,13 @@ void func_ov000_021a1140(s32 a) {
         data_ov000_021b566c->mUnk_2d8 = 0;
         func_0214d018_inline(data_ov000_021b566c->mUnk_24, 0x80);
         h = 0;
-        func_0214cfe4(h, data_ov000_021b566c->mUnk_a4, 0x40);
+        MemFillHalfwords(h, data_ov000_021b566c->mUnk_a4, 0x40);
         func_0214d018_inline(data_ov000_021b566c->mUnk_f4, 0x80);
         func_0214d018_inline(data_ov000_021b566c->mUnk_18c, 0xc);
         func_0214d018_inline(data_ov000_021b566c->mUnk_1f8, 0x80);
         g = 0;
-        func_0214cfe4(g, data_ov000_021b566c->mUnk_278, 0x40);
-        func_0214d168(data_ov000_021b566c->mUnk_2b8, 0, 0x20);
+        MemFillHalfwords(g, data_ov000_021b566c->mUnk_278, 0x40);
+        MemFill(data_ov000_021b566c->mUnk_2b8, 0, 0x20);
         func_0214d018_inline(data_ov000_021b566c->mUnk_330, 0x84);
         if (a == 1) {
             if (data_ov000_021b566c->mUnk_15 == 0) {

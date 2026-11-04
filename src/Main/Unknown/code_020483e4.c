@@ -167,7 +167,7 @@ void func_02048498(char *a, s32 b, s32 c) {
     } else {
         f = data_usa_02165170;
     }
-    func_0200d9e0(a, 0x80, data_usa_02165174, data_usa_02154228[b].mUnk_00, f, e);
+    StringFormatBounded(a, 0x80, data_usa_02165174, data_usa_02154228[b].mUnk_00, f, e);
 }
 
 u32 func_02048474(void) {
@@ -197,13 +197,13 @@ void func_0204840c(u32 a, u8 *b) {
     u32 v1;
     if (*b != 0) {
         v1 = func_02048474();
-        func_0200d9e0((char *) a, 0x80, data_02165148, b, v1, (u32) &data_0216515c);
+        StringFormatBounded((char *) a, 0x80, data_02165148, b, v1, (u32) &data_0216515c);
     }
 }
 
 void func_020483e4(u32 a, u8 *b) {
     if (*b != 0) {
-        func_0200d9e0((char *) a, 0x80, data_0216512c, b, (u32) &data_02165140);
+        StringFormatBounded((char *) a, 0x80, data_0216512c, b, (u32) &data_02165140);
     }
 }
 

@@ -6,7 +6,7 @@
 #pragma thumb on
 
 void func_02152468(void *a, u32 b) {
-    func_0214d168(a, 0, 0xc);
+    MemFill(a, 0, 0xc);
     func_02152a7c(a, b);
     func_021529e0(a, 3);
 }

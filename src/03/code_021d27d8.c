@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_0214d000.h"
 
 void func_ov003_021d28b0(void *buffer) {
-    func_0214d168(buffer, 0, 0x40000);
+    MemFill(buffer, 0, 0x40000);
     data_ov003_021da2c8 = ExpHeapCreate(buffer, 0x40000, 0);
     if (data_ov003_021da2c8 == NULL) {
         func_0200fd1c();
@@ -20,39 +20,39 @@ void func_ov003_021d2894(void) {
 }
 
 void *func_ov003_021d285c(u32 size, s32 alignment) {
-    u32 interrupts = func_0200ca9c(1);
+    u32 interrupts = InterruptEnableClearBits(1);
     void *block = ExpHeapAlloc(data_ov003_021da2c8, size, alignment);
 
     if (block == NULL) {
         func_0200fd1c();
     }
-    func_0200cae4(interrupts);
+    InterruptEnableSetBits(interrupts);
     return block;
 }
 
 void *func_ov003_021d283c(u32 size, s32 alignment) {
     void *block = func_ov003_021d285c(size, alignment);
 
-    func_0214d168(block, 0, size);
+    MemFill(block, 0, size);
     return block;
 }
 
 void func_ov003_021d2808(void *storage) {
     void **block = storage;
-    u32 interrupts = func_0200ca9c(1);
+    u32 interrupts = InterruptEnableClearBits(1);
 
     if (*block != NULL) {
         ExpHeapFree(data_ov003_021da2c8, *block);
-        func_0200cae4(interrupts);
+        InterruptEnableSetBits(interrupts);
         *block = NULL;
     }
 }
 
 void func_ov003_021d27d8(void *block) {
-    u32 interrupts = func_0200ca9c(1);
+    u32 interrupts = InterruptEnableClearBits(1);
 
     if (block != NULL) {
         ExpHeapFree(data_ov003_021da2c8, block);
-        func_0200cae4(interrupts);
+        InterruptEnableSetBits(interrupts);
     }
 }

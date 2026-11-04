@@ -15,7 +15,7 @@ u32 func_02009c34(void) {
     u32 v1;
     u32 v2;
     v1 = 1;
-    v2 = func_0200fca0();
+    v2 = IrqDisable();
     p = (Unk0216fda8 **) &data_0216fda8;
     if ((*p)->mUnk_526 == 0) {
         v1 = 0;
@@ -27,7 +27,7 @@ u32 func_02009c34(void) {
             v1 = func_02009c98();
         }
     }
-    func_0200fcb4(v2);
+    IrqRestore(v2);
     return v1;
 }
 

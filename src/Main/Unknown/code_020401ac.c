@@ -90,11 +90,11 @@ void func_02040a8c(Unk0217561c_500 *a, s32 b) {
         a->mUnk_00 = 0;
     } else {
         a->mUnk_00 =
-            (func_02147f34(r->mUnk_0a * (d->mUnk_000[0].mUnk_0c - d->mUnk_000[0].mUnk_00), d->mUnk_000[0].mUnk_0c) +
+            (DivFixed12(r->mUnk_0a * (d->mUnk_000[0].mUnk_0c - d->mUnk_000[0].mUnk_00), d->mUnk_000[0].mUnk_0c) +
              0x800) >>
             12;
     }
-    a->mUnk_04 = (r->mUnk_0c * func_02147f34(e->mUnk_28 << 12, data_0217561c->mUnk_000[0].mUnk_0c << 12)) >> 12;
+    a->mUnk_04 = (r->mUnk_0c * DivFixed12(e->mUnk_28 << 12, data_0217561c->mUnk_000[0].mUnk_0c << 12)) >> 12;
     if (t->mUnk_00 != 0) {
         a->mUnk_08 = r->mUnk_0e;
     } else {
@@ -129,7 +129,7 @@ s16 func_020408f0(s32 a) {
             h = (u8 *) g + 0x28;
             t = func_0207a6b0();
             b.mUnk_00 =
-                func_02147f34(*(s16 *) (h + 4) * (*(u16 *) (h + 2) - d->mUnk_000[0].mUnk_00) << 12, 0x3e8000) >> 12;
+                DivFixed12(*(s16 *) (h + 4) * (*(u16 *) (h + 2) - d->mUnk_000[0].mUnk_00) << 12, 0x3e8000) >> 12;
             b.mUnk_04 = 0;
             b.mUnk_08 = 0;
             b.mUnk_0c = 0;
@@ -218,7 +218,7 @@ static inline void func_020401ac_inline4(Unk020f41c4_B *x, u32 s) {
 }
 
 static inline s32 func_020401ac_inline5(s32 a, s32 b) {
-    return b == 0 ? 0 : func_02147f34(a + 0x1000, b << 12);
+    return b == 0 ? 0 : DivFixed12(a + 0x1000, b << 12);
 }
 
 static inline u32 func_020401ac_inline6(Unk020f41c4_B *x, u32 n) {

@@ -22,7 +22,7 @@ s32 func_0212d154(u8 *a, u32 b, u32 c, u32 d, u32 e, UnkFunc *f, void *g) {
         return 0;
     }
     v = 0;
-    func_0214d018(v, a, b);
+    MemFillWords(v, a, b);
     func_0200ee74(a, b);
     return func_0212ccd4(1, a, a + (b >> 1), b >> 1, c, 0, 0, 1, d, 0x7f, 0, 0x7f, e, f, g);
 }
@@ -233,9 +233,9 @@ void func_0212cad8(void) {
     }
     p->mUnk_1c = 0;
     v = 0;
-    func_0214d018(v, p->mUnk_0c, p->mUnk_14);
+    MemFillWords(v, p->mUnk_0c, p->mUnk_14);
     w = 0;
-    func_0214d018(w, p->mUnk_10, p->mUnk_14);
+    MemFillWords(w, p->mUnk_10, p->mUnk_14);
     func_0200ee74(p->mUnk_0c, p->mUnk_14);
     func_0200ee74(p->mUnk_10, p->mUnk_14);
     func_02020c2c(p->mUnk_24, p->mUnk_28, p->mUnk_2c >= 0 ? 1 << p->mUnk_2c : 0, 0);

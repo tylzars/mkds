@@ -63,8 +63,8 @@ void func_ov000_02182e18(void) {
     LocateNclr(&gWiFiVSSetting->mWiFiVSSettingSONclr, FindSceneFile("WiFi_VS_setting_s_o.nclr"));
     *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x4400;
     v4 = 0;
-    func_0214cfe4(v4, gWiFiVSSetting->mNscrCopy, 0x1000);
-    func_0214cffc(v2->mData, gWiFiVSSetting->mNscrCopy, 0x800);
+    MemFillHalfwords(v4, gWiFiVSSetting->mNscrCopy, 0x1000);
+    MemCopyHalfwords(v2->mData, gWiFiVSSetting->mNscrCopy, 0x800);
     func_02016468(0x17, 0, v1->mData, v1->mDataSize);
     func_02016468(0x1b, 0, gWiFiVSSetting->mNscrCopy, 0x1000);
     func_02016468(0x1f, 0, v3->mData, 0x80);

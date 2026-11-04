@@ -88,7 +88,7 @@ s32 func_02080e2c(Unk0208001c *p, Vec3 *a) {
     BOOL r = FALSE;
 
     n = p->mUnk_00->mUnk_24;
-    func_021484d0(p->mUnk_00->mUnk_20, a, &v);
+    Vec3Sub(p->mUnk_00->mUnk_20, a, &v);
     v.y = r;
     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z < (s64) n * n) {
         r = TRUE;
@@ -102,7 +102,7 @@ s32 func_02080dbc(Unk0208001c *p, Vec3 *a) {
     BOOL r = FALSE;
 
     if (p->mUnk_08.x != 0 || p->mUnk_08.y != 0 || p->mUnk_08.z != 0) {
-        func_021484d0(a, t, &v);
+        Vec3Sub(a, t, &v);
         if (func_02039828(&p->mUnk_08, &v) > 0) {
             r = TRUE;
         }
@@ -114,7 +114,7 @@ void func_02080d34(Unk02080d34 *p, u16 a) {
     p->mUnk_00.mUnk_00 = gCourseMap->mUnk_a4;
     p->mUnk_00.mUnk_04 = p->mUnk_00.mUnk_00->mUnk_0c;
     p->mUnk_00.mUnk_08 = data_021557ec;
-    func_021484d0(p->mUnk_00.mUnk_00->mUnk_18, p->mUnk_00.mUnk_04->mUnk_18, &p->mUnk_00.mUnk_08);
+    Vec3Sub(p->mUnk_00.mUnk_00->mUnk_18, p->mUnk_00.mUnk_04->mUnk_18, &p->mUnk_00.mUnk_08);
     func_02039860(&p->mUnk_00.mUnk_08, &p->mUnk_00.mUnk_08);
     p->mUnk_00.mUnk_14 = NULL;
     p->mUnk_00.mUnk_18 = 0;
@@ -128,6 +128,6 @@ void func_02080cd0(Unk0208001c *p, Unk02175620_bc *a) {
     p->mUnk_14 = NULL;
     p->mUnk_18 = 0;
     p->mUnk_08 = data_021557ec;
-    func_021484d0(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
+    Vec3Sub(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
     func_02039860(&p->mUnk_08, &p->mUnk_08);
 }

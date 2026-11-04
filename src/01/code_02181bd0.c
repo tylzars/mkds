@@ -408,7 +408,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             b->mUnk_0a0 = n;
             func_ov001_02182eb8(b, 1);
             b->mUnk_000.mUnk_10.y -= 0x333;
-            func_02148504(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
+            Vec3Add(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
             if (b->mUnk_000.mPos.y <= b->mUnk_0e4) {
                 b->mUnk_000.mPos.y = b->mUnk_0e4;
                 if (b->mUnk_000.mUnk_10.y <= 0) {
@@ -526,12 +526,12 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             }
             func_ov001_02182eb8(b, 1);
             b->mUnk_000.mUnk_10.y -= 0x333;
-            func_02148504(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
+            Vec3Add(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
             pos.x = b->mUnk_000.mPos.x;
             pos.y = b->mUnk_000.mUnk_58.x + (b->mUnk_000.mPos.y - 0xe000);
             pos.z = b->mUnk_000.mPos.z;
             if (func_020d2c2c(&pos, &b->mUnk_000.mUnk_10, b->mUnk_000.mUnk_58.x, b->mUnk_000.mUnk_64, 2, &delta) != 0) {
-                func_02148504(&b->mUnk_000.mPos, &delta, &b->mUnk_000.mPos);
+                Vec3Add(&b->mUnk_000.mPos, &delta, &b->mUnk_000.mPos);
                 if ((s64) delta.x * delta.x + (s64) delta.y * delta.y + (s64) delta.z * delta.z >= 0x10) {
                     func_02039860(&delta, &b->mUnk_000.mUnk_10);
                 }
@@ -541,7 +541,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             }
             if (func_01ffdee4(&pos, NULL, 0, b->mUnk_000.mUnk_58.x, 1, b->mUnk_000.mUnk_64, &delta, &out1, &out2,
                               &flags, NULL, NULL, NULL, NULL) != 0) {
-                func_02148504(&b->mUnk_000.mPos, &delta, &b->mUnk_000.mPos);
+                Vec3Add(&b->mUnk_000.mPos, &delta, &b->mUnk_000.mPos);
                 if (flags & 0x214300) {
                     func_020eaa14(&b->mUnk_000.mUnk_10, &out2, 0x1000, 0x1000, 0xc00, &b->mUnk_000.mUnk_10);
                     if ((s64) b->mUnk_000.mUnk_10.x * b->mUnk_000.mUnk_10.x +
@@ -575,7 +575,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
         case 4:
             func_ov001_02182eb8(b, 1);
             b->mUnk_000.mUnk_10.y -= 0x333;
-            func_02148504(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
+            Vec3Add(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
             n = b->mUnk_0a0 - 1;
             if (n > 0) {
                 b->mUnk_0a0 = n;
@@ -617,7 +617,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             }
             func_ov001_02182eb8(b, 1);
             b->mUnk_000.mUnk_10.y -= 0x333;
-            func_02148504(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
+            Vec3Add(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
             if (b->mUnk_000.mUnk_10.y <= 0) {
                 b->mUnk_0f8 = 6;
             }
@@ -645,7 +645,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             } else if (b->mUnk_000.mPos.z > b->mUnk_0e8->z) {
                 b->mUnk_000.mUnk_10.z -= 0x400;
             }
-            func_02148504(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
+            Vec3Add(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
             if (b->mUnk_0ac-- <= 0) {
                 b->mUnk_0ac = 0;
                 n = b->mUnk_0a0 - 1;
@@ -679,8 +679,8 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             if (b->mUnk_0a0 != 0 && b->mUnk_0e8 != NULL) {
                 func_ov001_02182eb8(b, 1);
                 b->mUnk_000.mUnk_10.y -= 0x14;
-                func_02148504(&b->mUnk_0ec, &b->mUnk_000.mUnk_10, &b->mUnk_0ec);
-                func_02148504(&b->mUnk_0ec, b->mUnk_0e8, &b->mUnk_000.mPos);
+                Vec3Add(&b->mUnk_0ec, &b->mUnk_000.mUnk_10, &b->mUnk_0ec);
+                Vec3Add(&b->mUnk_0ec, b->mUnk_0e8, &b->mUnk_000.mPos);
                 if ((s64) ((const Vec3 *) &b->mUnk_0ec)->x * ((const Vec3 *) &b->mUnk_0ec)->x +
                         (s64) ((const Vec3 *) &b->mUnk_0ec)->z * ((const Vec3 *) &b->mUnk_0ec)->z >=
                     0x190000000LL) {

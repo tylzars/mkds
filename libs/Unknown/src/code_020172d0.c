@@ -1,11 +1,11 @@
 #include "code_020172d0.h"
 #include "code_0201750c.h"
 
-void func_020174a4(Unk02017328 *a, void *p) {
+void ListAppend(Unk02017328 *a, void *p) {
     u32 o;
 
     if (a->mUnk_00 == 0) {
-        func_0201750c((u32) a, (u32) p);
+        ListAppendToEmpty((u32) a, (u32) p);
         return;
     }
     o = a->mUnk_0a;
@@ -16,11 +16,11 @@ void func_020174a4(Unk02017328 *a, void *p) {
     a->mUnk_08++;
 }
 
-void func_02017440(Unk02017328 *a, void *p) {
+void ListPrepend(Unk02017328 *a, void *p) {
     u32 o;
 
     if (a->mUnk_00 == 0) {
-        func_0201750c((u32) a, (u32) p);
+        ListAppendToEmpty((u32) a, (u32) p);
         return;
     }
     o = a->mUnk_0a;
@@ -31,17 +31,17 @@ void func_02017440(Unk02017328 *a, void *p) {
     a->mUnk_08++;
 }
 
-void func_020173c0(Unk02017328 *a, void *p, void *q) {
+void ListInsertBefore(Unk02017328 *a, void *p, void *q) {
     u32 o;
     u8 *l;
     void *n;
 
     if (p == 0) {
-        func_020174a4(a, q);
+        ListAppend(a, q);
         return;
     }
     if (p == a->mUnk_00) {
-        func_02017440(a, q);
+        ListPrepend(a, q);
         return;
     }
     o = a->mUnk_0a;
@@ -54,7 +54,7 @@ void func_020173c0(Unk02017328 *a, void *p, void *q) {
     a->mUnk_08++;
 }
 
-void func_02017354(Unk02017328 *a, void *p) {
+void ListRemove(Unk02017328 *a, void *p) {
     u32 o;
     u8 *l;
     void *x;
@@ -78,32 +78,32 @@ void func_02017354(Unk02017328 *a, void *p) {
     a->mUnk_08--;
 }
 
-void *func_0201733c(Unk02017328 *a, void *p) {
+void *ListGetNext(Unk02017328 *a, void *p) {
     if (p == 0) {
         return a->mUnk_00;
     }
     return *(void **) ((u8 *) p + a->mUnk_0a + 4);
 }
 
-void *func_02017328(Unk02017328 *a, void *p) {
+void *ListGetPrev(Unk02017328 *a, void *p) {
     if (p == 0) {
         return a->mUnk_04;
     }
     return *(void **) ((u8 *) p + a->mUnk_0a);
 }
 
-void *func_020172d8(Unk02017328 *a, s32 b) {
+void *ListGetNth(Unk02017328 *a, s32 b) {
     s32 i;
     void *p;
 
     i = 0;
-    p = func_0201733c(a, 0);
+    p = ListGetNext(a, 0);
     while (p != 0) {
         if (i == b) {
             return p;
         }
         i++;
-        p = func_0201733c(a, p);
+        p = ListGetNext(a, p);
     }
     return 0;
 }

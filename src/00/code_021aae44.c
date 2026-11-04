@@ -145,7 +145,7 @@ BOOL func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
                     switch (e) {
                         case 0:
                             if (n <= 0x100) {
-                                func_0214d1fc(p, a->mUnk_468, n);
+                                MemCopy(p, a->mUnk_468, n);
                                 a->mUnk_568 = n;
                             }
                             break;
@@ -162,7 +162,7 @@ BOOL func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
                     switch (e) {
                         case 0:
                             if (n <= 8) {
-                                func_0214d1fc(p, a->mUnk_56c, n);
+                                MemCopy(p, a->mUnk_56c, n);
                                 a->mUnk_574 = n;
                             }
                             break;
@@ -232,7 +232,7 @@ BOOL func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
                 if (a->mUnk_580 != 0) {
                     func_ov000_021ab4b0(a->mUnk_684, (const s8 *) p, n);
                     if (a->mUnk_582 == 5 && n <= 0x4f) {
-                        func_0214d1fc(p, a->mUnk_784, n);
+                        MemCopy(p, a->mUnk_784, n);
                         a->mUnk_784[n] = 0;
                     }
                 } else {

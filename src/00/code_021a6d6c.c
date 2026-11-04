@@ -40,7 +40,7 @@ void func_ov000_021a6db0(void) {
     s32 c;
     s32 d;
 
-    func_0214d168(a, 0, 0x30);
+    MemFill(a, 0, 0x30);
     a->mUnk_04 = b->mUnk_18;
     a->mUnk_08 = b->mUnk_1c;
     a->mUnk_10 = func_ov000_021a6d40;
@@ -121,7 +121,7 @@ void func_ov000_021a6f18(void *param_1) {
             return;
         }
         c = b->mUnk_00(b);
-        d = func_0200fca0();
+        d = IrqDisable();
         func_0200db9c();
         func_0200ea3c(a, NULL, 0);
         if (b->mUnk_04 != NULL) {
@@ -132,7 +132,7 @@ void func_ov000_021a6f18(void *param_1) {
         }
         func_ov000_021a7048(b);
         func_0200db64();
-        func_0200fcb4(d);
+        IrqRestore(d);
         func_0200de50();
     }
 }

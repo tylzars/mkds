@@ -114,11 +114,11 @@ void func_ov000_021874ec(void) {
                         func_ov000_02187490(8);
                         break;
                     }
-                    h = func_0200fca0();
-                    func_0214d168(d, 0, 0x21);
+                    h = IrqDisable();
+                    MemFill(d, 0, 0x21);
                     func_ov000_021a6abc(&b);
-                    func_0214d1fc(func_ov000_021a6abc(NULL), d, b);
-                    func_0200fcb4(h);
+                    MemCopy(func_ov000_021a6abc(NULL), d, b);
+                    IrqRestore(h);
                     if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1434, d, strlen(d)) != 0) {
                         ReleaseHttp((Http *) gHttp);
                         func_ov000_02187490(8);
@@ -234,11 +234,11 @@ void func_ov000_021874ec(void) {
             func_ov000_02187490(8);
             break;
         }
-        h = func_0200fca0();
-        func_0214d168(d, 0, 0x21);
+        h = IrqDisable();
+        MemFill(d, 0, 0x21);
         func_ov000_021a6abc(&b);
-        func_0214d1fc(func_ov000_021a6abc(NULL), d, b);
-        func_0200fcb4(h);
+        MemCopy(func_ov000_021a6abc(NULL), d, b);
+        IrqRestore(h);
         if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1434, d, strlen(d)) != 0) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(8);

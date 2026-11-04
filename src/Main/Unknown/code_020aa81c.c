@@ -39,7 +39,7 @@ void func_020aafa8(Unk0217b278 *a) {
     h = a->mUnk_2c->mUnk_04->mUnk_02;
     w = a->mUnk_2c->mUnk_04->mUnk_00;
     n = h * w;
-    func_0214cfe4(n, data_0217b254.mUnk_0c, data_0217b254.mUnk_14 * (data_0217b254.mUnk_10 * 2));
+    MemFillHalfwords(n, data_0217b254.mUnk_0c, data_0217b254.mUnk_14 * (data_0217b254.mUnk_10 * 2));
     i = 0;
     v1 = 0;
     v1 = (u32) v1;
@@ -128,7 +128,7 @@ void func_020aad9c(Unk0217b278 *a) {
     f = data_0217b254.mUnk_00;
     c = f->mUnk_00->mUnk_08->mUnk_01;
     q = a->mUnk_2c;
-    func_0214d0a8(q->mUnk_04->mData, data_0217b254.mUnk_04, q->mUnk_04->mDataSize);
+    MemCopyWordsByBlock(q->mUnk_04->mData, data_0217b254.mUnk_04, q->mUnk_04->mDataSize);
     func_02023408(&v2, data_0217b254.mUnk_04, q->mUnk_04->mUnk_02, q->mUnk_04->mUnk_00, 4);
     n = func_020aaf70(q);
     k = n;
@@ -161,8 +161,8 @@ void func_020aab70(Unk0217b278 *a) {
     Unk0217b278_10 *r;
 
     q = a->mUnk_2c;
-    func_0214d0a8(data_0217b254.mUnk_04, data_0217b254.mUnk_08, q->mUnk_04->mDataSize);
-    func_0214d05c_inline((u8 *) data_0217b254.mUnk_08 + (q->mUnk_04->mDataSize << 5), 0x20);
+    MemCopyWordsByBlock(data_0217b254.mUnk_04, data_0217b254.mUnk_08, q->mUnk_04->mDataSize);
+    MemFillWordsByBlock_inline((u8 *) data_0217b254.mUnk_08 + (q->mUnk_04->mDataSize << 5), 0x20);
     if (a->mUnk_40 != 0) {
         e = q->mUnk_00 + (a->mUnk_40 - 1);
         r = e;

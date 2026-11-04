@@ -86,7 +86,7 @@ void func_020ff97c(Unk020ff97c *e) {
     e->mUnk_00.mUnk_10.x = 0;
     e->mUnk_00.mUnk_10.y = 0;
     e->mUnk_00.mUnk_10.z = 0;
-    func_02147fd8(-e->mUnk_104, &e->mUnk_00.mMatrix.mUnk_00[1], &e->mUnk_00.mPos, &e->mUnk_f4);
+    Vec3AddScaled(-e->mUnk_104, &e->mUnk_00.mMatrix.mUnk_00[1], &e->mUnk_00.mPos, &e->mUnk_f4);
     e->mUnk_134 = 0;
     e->mUnk_138 = 0;
     e->mUnk_13c = 1;

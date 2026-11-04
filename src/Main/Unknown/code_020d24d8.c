@@ -51,7 +51,7 @@ void func_020d2584(MapObject *b, s32 c) {
         case 3:
         case 4:
         case 5:
-            a = func_021482cc(&b->mUnk_58);
+            a = Vec3Length(&b->mUnk_58);
             break;
         case 0:
         case 1:
@@ -68,7 +68,7 @@ s32 func_020d252c(MapObject *a) {
         case 3:
         case 4:
         case 5:
-            return func_021482cc(&a->mUnk_58);
+            return Vec3Length(&a->mUnk_58);
         case 0:
         case 1:
         case 2:

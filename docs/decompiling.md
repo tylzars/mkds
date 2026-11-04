@@ -209,7 +209,7 @@ Other:
   loops, loops entered by `b test` without a guard, cases sharing an epilogue. Speed and size code in one range
   means a file boundary.
 - An inline's locals go after all the caller's. A `static inline` wrapper with a `volatile` local gives a call its
-  own argument slot (`func_0214d05c_inline`).
+  own argument slot (`MemFillWordsByBlock_inline`).
 - 64-bit products: only `_ll_mul` exists, so use `(s64)` operands (unsigned ones call `_ull_mul`). `u64 /` calls
   `_ll_udiv`. `_fflt` is a label inside the unsigned conversion; name it in `symbols.txt`.
 - Functions defined out of address order show their calls to each other as mismatches. Reorder.

@@ -34,12 +34,12 @@ void func_021469a4(void *a) {
 
     p = &data_0217fa40;
     for (;;) {
-        s = func_0200fca0();
+        s = IrqDisable();
         while ((p->mUnk_114 & 8) == 0) {
             p->mUnk_104 = &p->mUnk_44;
             func_0200e01c(0);
         }
-        func_0200fcb4(s);
+        IrqRestore(s);
         p->mUnk_40(p);
     }
 }
@@ -64,18 +64,18 @@ int func_02146868(Unk021458c4 *p, s32 a, s32 b) {
     do {
         p->mUnk_04 = a;
         p->mUnk_114 |= 0x20;
-        while (func_0214d6e8(11, a, 1) < 0) {
+        while (PxiSendFifoWord(11, a, 1) < 0) {
         }
         if (a == 0) {
             q = p->mUnk_00;
-            while (func_0214d6e8(11, (u32) q, 1) < 0) {
+            while (PxiSendFifoWord(11, (u32) q, 1) < 0) {
             }
         }
-        s = func_0200fca0();
+        s = IrqDisable();
         while (p->mUnk_114 & 0x20) {
             func_0200e01c(0);
         }
-        func_0200fcb4(s);
+        IrqRestore(s);
         v = p->mUnk_00->mUnk_00;
     } while (v == 4 && --b > 0);
     return v == 0;
@@ -96,7 +96,7 @@ int func_021467d0(Unk02146154 *p) {
         if (n > d->mUnk_24) {
             n = d->mUnk_24;
         }
-        func_0214d1fc((u8 *) p->mUnk_20 + m, (void *) d->mUnk_20, n);
+        MemCopy((u8 *) p->mUnk_20 + m, (void *) d->mUnk_20, n);
         d->mUnk_1c += n;
         d->mUnk_20 += n;
         d->mUnk_24 -= n;
@@ -143,19 +143,19 @@ void func_02146600(void) {
     data_0217fa40.mUnk_20 += 0x200;
     data_0217fa40.mUnk_24 -= 0x200;
     if (data_0217fa40.mUnk_24 == 0) {
-        func_0200ca9c(0x80000);
-        func_0200ca68(0x80000);
+        InterruptEnableClearBits(0x80000);
+        InterruptFlagWrite(0x80000);
         p = (Unk021458c4 *) (u32) &data_0217fa40;
         p->mUnk_00->mUnk_00 = 0;
         cb = p->mUnk_38;
         arg = p->mUnk_3c;
-        s = func_0200fca0();
+        s = IrqDisable();
         p->mUnk_114 &= ~0x4c;
         func_0200df9c(&p->mUnk_10c);
         if (p->mUnk_114 & 0x10) {
             func_0200df68(&p->mUnk_44);
         }
-        func_0200fcb4(s);
+        IrqRestore(s);
         if (cb != 0) {
             cb(arg);
         }
@@ -216,7 +216,7 @@ int func_021464a4(Unk02146154 *p) {
     }
     p->mUnk_04 = (*(u32 *) 0x027ffe60 & ~0x07000000) | 0xa1000000;
     if (r != 0) {
-        s = func_0200fca0();
+        s = IrqDisable();
         func_0200eea4((void *) addr, len);
         rem = addr & 31;
         if (rem != 0) {
@@ -228,9 +228,9 @@ int func_021464a4(Unk02146154 *p) {
         func_0200ee3c((void *) addr, len);
         func_0200ee98();
         func_0200cc74(0x80000, func_02146600);
-        func_0200ca68(0x80000);
-        func_0200cae4(0x80000);
-        func_0200fcb4(s);
+        InterruptFlagWrite(0x80000);
+        InterruptEnableSetBits(0x80000);
+        IrqRestore(s);
         func_021466d8();
     }
     return r;
@@ -297,13 +297,13 @@ void func_02146300(Unk021458c4 *a) {
     p->mUnk_00->mUnk_00 = 0;
     cb = p->mUnk_38;
     arg = p->mUnk_3c;
-    s = func_0200fca0();
+    s = IrqDisable();
     p->mUnk_114 &= ~0x4c;
     func_0200df9c(&p->mUnk_10c);
     if (p->mUnk_114 & 0x10) {
         func_0200df68(&p->mUnk_44);
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     if (cb != 0) {
         cb(arg);
     }
@@ -319,14 +319,14 @@ void func_021461d8(u32 a, u32 b, u32 c, u32 d, UnkFunc *e, u32 f, u32 g) {
     p = (Unk021458c4 *) (u32) &data_0217fa40;
     q = &data_02180080;
     func_02145888();
-    s = func_0200fca0();
+    s = IrqDisable();
     while (p->mUnk_114 & 4) {
         func_0200e01c(&p->mUnk_10c);
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = e;
     p->mUnk_3c = f;
-    func_0200fcb4(s);
+    IrqRestore(s);
     p->mUnk_28 = a;
     p->mUnk_1c = b + data_02180060;
     p->mUnk_20 = c;
@@ -406,7 +406,7 @@ void func_02145f80(Unk021458c4 *p) {
             p->mUnk_00->mUnk_0c = p->mUnk_1c;
             p->mUnk_00->mUnk_10 = (u32) p->mUnk_120;
         } else {
-            func_0214d1fc((void *) p->mUnk_1c, p->mUnk_120, n);
+            MemCopy((void *) p->mUnk_1c, p->mUnk_120, n);
             func_0200ee74(p->mUnk_120, n);
             func_0200ee98();
             p->mUnk_00->mUnk_0c = (s32) p->mUnk_120;
@@ -420,7 +420,7 @@ void func_02145f80(Unk021458c4 *p) {
                 break;
             }
         } else if (b == 0) {
-            func_0214d1fc(p->mUnk_120, (void *) p->mUnk_20, n);
+            MemCopy(p->mUnk_120, (void *) p->mUnk_20, n);
         }
         p->mUnk_1c += n;
         p->mUnk_20 += n;
@@ -428,13 +428,13 @@ void func_02145f80(Unk021458c4 *p) {
     } while (p->mUnk_24 != 0);
     cb = p->mUnk_38;
     arg = p->mUnk_3c;
-    s = func_0200fca0();
+    s = IrqDisable();
     p->mUnk_114 &= ~0x4c;
     func_0200df9c(&p->mUnk_10c);
     if (p->mUnk_114 & 0x10) {
         func_0200df68(&p->mUnk_44);
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     if (cb != 0) {
         cb(arg);
     }
@@ -448,14 +448,14 @@ int func_02145e8c(u32 a, u32 b, u32 c, UnkFunc *d, void *e, u32 f, u32 g, u32 h,
 
     p = (Unk021458c4 *) (u32) &data_0217fa40;
     func_02000b44((u32) (BuildInfo + 0x24));
-    s = func_0200fca0();
+    s = IrqDisable();
     while (p->mUnk_114 & 4) {
         func_0200e01c(&p->mUnk_10c);
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = d;
     p->mUnk_3c = (u32) e;
-    func_0200fcb4(s);
+    IrqRestore(s);
     p->mUnk_1c = a;
     p->mUnk_20 = b;
     p->mUnk_24 = c;
@@ -483,14 +483,14 @@ int func_02145d44(s32 a) {
         func_0200fd1c();
     }
     func_02145888();
-    s = func_0200fca0();
+    s = IrqDisable();
     while (p->mUnk_114 & 4) {
         func_0200e01c(&p->mUnk_10c);
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = 0;
     p->mUnk_3c = 0;
-    func_0200fcb4(s);
+    IrqRestore(s);
     func_02145b54(a);
     data_0217fa40.mUnk_104 = data_0216ff5c.mUnk_04;
     func_02146868(p, 2, 1);
@@ -500,13 +500,13 @@ int func_02145d44(s32 a) {
     func_02146868(p, 6, 1);
     cb = p->mUnk_38;
     arg = p->mUnk_3c;
-    s = func_0200fca0();
+    s = IrqDisable();
     p->mUnk_114 &= ~0x4c;
     func_0200df9c(&p->mUnk_10c);
     if (p->mUnk_114 & 0x10) {
         func_0200df68(&p->mUnk_44);
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     if (cb != 0) {
         cb(arg);
     }
@@ -530,7 +530,7 @@ void func_02145b54(s32 a) {
     u32 x;
 
     p = data_0217fa40.mUnk_00;
-    func_0214d168(&p->mUnk_18, 0, 0x28);
+    MemFill(&p->mUnk_18, 0, 0x28);
     p->mUnk_04 = a;
     if (a == 0) {
         return;
@@ -611,7 +611,7 @@ void func_02145a70(u32 a, u32 b) {
     u32 s;
 
     p = (Unk021458c4 *) (u32) &data_0217fa40;
-    s = func_0200fca0();
+    s = IrqDisable();
     if (p->mUnk_08 == a) {
         if (p->mUnk_18 != b) {
             func_0200fd1c();
@@ -625,7 +625,7 @@ void func_02145a70(u32 a, u32 b) {
     }
     p->mUnk_0c++;
     p->mUnk_00->mUnk_00 = 0;
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 // Counts mUnk_0c down; at 0 sets mUnk_08 to -3 and passes mUnk_10 to func_0200df9c.
@@ -634,7 +634,7 @@ void func_021459cc(u32 a, u32 b) {
     u32 s;
 
     p = &data_0217fa40;
-    s = func_0200fca0();
+    s = IrqDisable();
     if (p->mUnk_08 != a || p->mUnk_0c == 0) {
         func_0200fd1c();
     } else {
@@ -649,7 +649,7 @@ void func_021459cc(u32 a, u32 b) {
         }
     }
     p->mUnk_00->mUnk_00 = 0;
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 // non-matching: the store of -3 to mUnk_08 is scheduled before `mov r3, #0`; the original loads both constants first
@@ -665,10 +665,10 @@ void func_021458c4(void) {
     a->mUnk_0c = 0;
     p->mUnk_18 = 0;
     p->mUnk_00 = &data_0217fa00;
-    func_0214d05c_inline(&data_0217fa00, 0x40);
+    MemFillWordsByBlock_inline(&data_0217fa00, 0x40);
     func_0200ee74(&data_0217fa00, 0x40);
     if (*(u16 *) 0x027ffc40 != 2) {
-        func_0214d1fc((void *) 0x027ffe00, (void *) 0x027ffa80, 0x160);
+        MemCopy((void *) 0x027ffe00, (void *) 0x027ffa80, 0x160);
     }
     p->mUnk_10.mUnk_04 = 0;
     p->mUnk_10.mUnk_00 = p->mUnk_10.mUnk_04;

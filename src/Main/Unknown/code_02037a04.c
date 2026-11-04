@@ -17,10 +17,10 @@
 // Enum-typed parameters of the inlines below: the original reads their values before the register.
 typedef enum { UNK_02037ABC_ARG_0 } Unk02037abc_Arg;
 
-// Calls func_0214d05c with v, passed through a stack offset of its own.
+// Calls MemFillWordsByBlock with v, passed through a stack offset of its own.
 static inline void func_02037abc_inline(u32 v, void *p, u32 n) {
     volatile u32 w = v;
-    func_0214d05c(w, p, n);
+    MemFillWordsByBlock(w, p, n);
 }
 
 // Sets the low two bits of the halfword register r and its bit 6 from the first two halfwords of q.

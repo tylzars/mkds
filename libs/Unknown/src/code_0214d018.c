@@ -5,7 +5,7 @@
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here each word is stored with a conditional one-register `stmlt r1!`.
-asm void func_0214d018(u32 a, void *b, u32 c) {
+asm void MemFillWords(u32 a, void *b, u32 c) {
     add ip, r1, r2
 fillw_loop:
     cmp r1, ip
@@ -18,7 +18,7 @@ fillw_loop:
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here each word moves with a conditional one-register `ldmlt r0!` / `stmlt r1!`.
-asm void func_0214d02c(const void *a, void *b, u32 c) {
+asm void MemCopyWords(const void *a, void *b, u32 c) {
     add ip, r1, r2
 copyw_loop:
     cmp r1, ip
@@ -32,7 +32,7 @@ copyw_loop:
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here each word is read with a conditional one-register `ldmlt r0!`.
-asm void func_0214d044(const void *a, vu32 *b, u32 c) {
+asm void MemCopyWordsToOneAddress(const void *a, vu32 *b, u32 c) {
     add ip, r0, r2
 copyp_loop:
     cmp r0, ip
@@ -46,7 +46,7 @@ copyp_loop:
 // time.
 // Not compiled code: it saves r4-r9 without lr, where in 1.2 code a function that saves r4 also saves lr
 // (docs/compiler.md, Registers), and stores with conditional `stmlt r1!` lists 1.2 builds only in block moves.
-asm void func_0214d05c(u32 a, void *b, u32 c) {
+asm void MemFillWordsByBlock(u32 a, void *b, u32 c) {
     stmfd sp!, {r4, r5, r6, r7, r8, r9}
     // ip = end of the whole 32-byte blocks; r0 and r2-r8 all hold the value.
     add r9, r1, r2
@@ -75,7 +75,7 @@ fillb_word_loop:
 // Not compiled code: it saves r4-r10 without lr and without a padding word, where 1.2 saves lr with r4 and pads every
 // frame to 8 bytes (docs/compiler.md, Registers; frame layout in the compiler), and copies with conditional `ldmlt` /
 // `stmlt` lists 1.2 builds only in block moves.
-asm void func_0214d0a8(const void *a, void *b, u32 c) {
+asm void MemCopyWordsByBlock(const void *a, void *b, u32 c) {
     stmfd sp!, {r4, r5, r6, r7, r8, r9, r10}
     // ip = end of the whole 32-byte blocks.
     add r10, r1, r2
@@ -99,7 +99,7 @@ copyb_word_loop:
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here it copies with `ldm r0!` / `stm r1!` and data in r2, r3 and ip.
-asm void func_0214d0e0(const void *a, void *b) {
+asm void MemCopy8Words(const void *a, void *b) {
     ldmia r0!, {r2, r3, ip}
     stmia r1!, {r2, r3, ip}
     ldmia r0!, {r2, r3, ip}
@@ -113,7 +113,7 @@ asm void func_0214d0e0(const void *a, void *b) {
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here it copies with `ldm r0!` / `stm r1!` and data in r2, r3 and ip.
-asm void func_0214d0fc(const void *a, void *b) {
+asm void MemCopy9Words(const void *a, void *b) {
     ldmia r0!, {r2, r3, ip}
     stmia r1!, {r2, r3, ip}
     ldmia r0!, {r2, r3, ip}
@@ -127,7 +127,7 @@ asm void func_0214d0fc(const void *a, void *b) {
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here it copies with `ldm r0!` / `stm r1!` and data in r2, r3 and ip.
-asm void func_0214d118(const void *a, void *b) {
+asm void MemCopy12Words(const void *a, void *b) {
     ldmia r0!, {r2, r3, ip}
     stmia r1!, {r2, r3, ip}
     ldmia r0!, {r2, r3, ip}
@@ -143,7 +143,7 @@ asm void func_0214d118(const void *a, void *b) {
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here it copies with `ldm r0!` / `stm r1!` and data in r2, r3 and ip.
-asm void func_0214d13c(const void *a, void *b) {
+asm void MemCopy16Words(const void *a, void *b) {
     ldmia r0!, {r2, r3, ip}
     stmia r1!, {r2, r3, ip}
     ldmia r0!, {r2, r3, ip}
@@ -160,7 +160,7 @@ asm void func_0214d13c(const void *a, void *b) {
 // Fills c bytes at a with the byte b using only halfword and word stores (an odd first or last byte is merged with its
 // neighbour through a halfword read).
 // Not compiled code: it tests bits with tst, which the 1.2 compiler never builds (docs/compiler.md).
-asm void func_0214d168(void *a, u8 b, u32 c) {
+asm void MemFill(void *a, u8 b, u32 c) {
     // Nothing to do for c = 0. An odd start address: merge the byte into the halfword below it.
     cmp r2, #0
     bxeq lr
@@ -213,7 +213,7 @@ fillh_last_byte:
 // with its neighbour through a halfword read; when a and b differ in alignment the bytes are reassembled from halfword
 // reads.
 // Not compiled code: it tests bits with tst, which the 1.2 compiler never builds (docs/compiler.md).
-asm void func_0214d1fc(const void *a, void *b, u32 c) {
+asm void MemCopy(const void *a, void *b, u32 c) {
     // Nothing to do for c = 0. An odd destination: merge the first byte into the halfword below it.
     cmp r2, #0
     bxeq lr

@@ -299,7 +299,7 @@ BOOL func_020586ac(u8 a, u8 *b, u16 c, u8 d, u8 e) {
     *(u16 *) (q + 2) = c;
     q[0] = d;
     if (b != NULL) {
-        func_0214d1fc(b, q + 4, c);
+        MemCopy(b, q + 4, c);
     } else {
         c = 0;
     }
@@ -430,7 +430,7 @@ void func_02058338(void) {
     }
     for (i = 1; i < 8; i++) {
         if ((data_0217aa00->mUnk_162a & (1 << i)) == 0) {
-            func_0214d168(&data_0217aa00->mUnk_045c[i], 0, 0x22c);
+            MemFill(&data_0217aa00->mUnk_045c[i], 0, 0x22c);
         }
     }
 }
@@ -543,7 +543,7 @@ void func_02058130(void) {
     if (data_0217aa00->mUnk_0000 == 2) {
         i = data_0217aa00->mUnk_0432;
     }
-    func_0214d1fc(data_0217aa08->mUnk_00->mUnk_20, data_0217aa00->mUnk_045c[(u16) i].mUnk_224, 4);
+    MemCopy(data_0217aa08->mUnk_00->mUnk_20, data_0217aa00->mUnk_045c[(u16) i].mUnk_224, 4);
     data_0217aa00->mUnk_162a |= 1;
 }
 

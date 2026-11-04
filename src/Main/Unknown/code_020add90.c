@@ -5,7 +5,7 @@
 void func_020addb8(void *a, u16 b, s32 c) {
     volatile u16 v = b;
 
-    func_0214cfe4(v, a, c);
+    MemFillHalfwords(v, a, c);
 }
 
 u32 func_020add90(Unk02022aa8 *a, u32 b) {

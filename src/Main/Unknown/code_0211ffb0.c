@@ -9,9 +9,9 @@ void *func_0211fffc(u32 a, u32 b, s32 c) {
     u32 v;
     void *p;
 
-    v = func_0200fca0();
+    v = IrqDisable();
     p = HeapAllocAligned(data_0217d384->mHeap, b, c);
-    func_0200fcb4(v);
+    IrqRestore(v);
     return p;
 }
 
@@ -21,7 +21,7 @@ void func_0211ffb0(u32 a, void *b) {
     if (b == NULL) {
         return;
     }
-    v = func_0200fca0();
+    v = IrqDisable();
     HeapFree(data_0217d384->mHeap, b);
-    func_0200fcb4(v);
+    IrqRestore(v);
 }

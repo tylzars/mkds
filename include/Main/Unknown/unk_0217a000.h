@@ -1344,7 +1344,7 @@ typedef struct Unk0217aec0 {
 } Unk0217aec0;
 
 // Object behind data_0217aebc, 0x144 bytes: word tables of eight entries, the eight
-// 0xc-byte entries at 0xb0 passed to func_020174a4, and the list at 0x12c.
+// 0xc-byte entries at 0xb0 passed to ListAppend, and the list at 0x12c.
 typedef struct Unk0217aebc {
     /* 000 */ s32 mUnk_000[8];
     /* 020 */ s32 mUnk_020[8];

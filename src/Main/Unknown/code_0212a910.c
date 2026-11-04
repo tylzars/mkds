@@ -112,8 +112,8 @@ void func_0212a920(void) {
     for (i = 0; i < 2; i++) {
         v = data_0217d404->mUnk_014[i];
         if (data_0217d404->mUnk_024 < 0x69 || (u32) v <= 1) {
-            func_0214cffc(&data_0217d404->mUnk_10c[i],
-                          &data_0217d404->mUnk_038->mUnk_00[data_0217d404->mUnk_038->mUnk_400], 6);
+            MemCopyHalfwords(&data_0217d404->mUnk_10c[i],
+                             &data_0217d404->mUnk_038->mUnk_00[data_0217d404->mUnk_038->mUnk_400], 6);
             data_0217d404->mUnk_038->mUnk_400++;
         }
     }

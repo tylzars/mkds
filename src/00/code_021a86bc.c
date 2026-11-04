@@ -57,7 +57,7 @@ s32 func_ov000_021a8740(void) {
     Unk021a6fa8 *b;
     u32 c;
     for (;;) {
-        c = func_0200fca0();
+        c = IrqDisable();
         a = data_ov000_021b6004;
         if (a != NULL) {
             b = data_ov000_021b5fa4;
@@ -68,7 +68,7 @@ s32 func_ov000_021a8740(void) {
                 a = a->mNext;
             } while (a != NULL);
         }
-        func_0200fcb4(c);
+        IrqRestore(c);
         if (a == NULL) {
             break;
         }

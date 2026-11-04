@@ -60,7 +60,7 @@ void func_0200c6b8(void) {
     if ((*(u16 *) 0x04000300 & 1) == 0) {
         return;
     }
-    v = func_0200cb1c(0x40000);
+    v = InterruptEnableWrite(0x40000);
     w = reg_OS_IME;
     reg_OS_IME = 1;
     func_0200c4c0(data_0216fe04.mUnk_02, &a);
@@ -80,7 +80,7 @@ void func_0200c6b8(void) {
     }
     s->mUnk_06 = d->mUnk_80.mUnk_30;
     s->mUnk_08 = d->mUnk_80.mUnk_2c;
-    func_0214d02c((void *) 0xffff0020, data_0216fe20.mUnk_04, 0x9c);
+    MemCopyWords((void *) 0xffff0020, data_0216fe20.mUnk_04, 0x9c);
     func_0200ee08();
     func_0200c46c(((((u32) &data_0216fe20 - 0x02000000) >> 5) << 6) | 1);
     while (data_0216fe04.mUnk_00 != 1) {
@@ -88,7 +88,7 @@ void func_0200c6b8(void) {
     }
     reg_OS_IME;
     reg_OS_IME = w;
-    func_0200cb1c(v);
+    InterruptEnableWrite(v);
 }
 
 void func_0200c690(u32 a, u32 b) {
@@ -176,7 +176,7 @@ void func_0200c508(Unk0200c4a4 *p) {
 
 void func_0200c4c0(u32 a, Unk0200c4a4 *p) {
     for (;;) {
-        p->mUnk_04 = func_0200fca0();
+        p->mUnk_04 = IrqDisable();
         p->mUnk_00 = func_0200cdc0((Unk0200ce60 *) 0x027fffe8) & 0x40;
         if (p->mUnk_00 != 0) {
             break;
@@ -184,7 +184,7 @@ void func_0200c4c0(u32 a, Unk0200c4a4 *p) {
         if (func_0200ce60(a) == 0) {
             break;
         }
-        func_0200fcb4(p->mUnk_04);
+        IrqRestore(p->mUnk_04);
         WaitByLoop(1);
     }
 }
@@ -193,5 +193,5 @@ void func_0200c4a4(u32 a, Unk0200c4a4 *p) {
     if (p->mUnk_00 == 0) {
         func_0200cd1c(a);
     }
-    func_0200fcb4(p->mUnk_04);
+    IrqRestore(p->mUnk_04);
 }

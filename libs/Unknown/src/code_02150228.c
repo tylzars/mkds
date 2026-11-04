@@ -31,23 +31,23 @@ void func_021506d4(Unk02150610 *ctx, const u8 *src, u32 n) {
         if (n == 0) {
             return;
         }
-        func_0214d1fc(src, ctx->mUnk_18 + off, n);
+        MemCopy(src, ctx->mUnk_18 + off, n);
         return;
     }
-    func_0214d1fc(src, ctx->mUnk_18 + off, room);
+    MemCopy(src, ctx->mUnk_18 + off, room);
     func_02150228(ctx);
     n -= room;
     blocks = n >> 6;
     p = src + room;
     for (; blocks > 0; blocks--) {
-        func_0214d1fc(p, ctx->mUnk_18, 0x40);
+        MemCopy(p, ctx->mUnk_18, 0x40);
         p += 0x40;
         func_02150228(ctx);
     }
     if ((n & 0x3f) == 0) {
         return;
     }
-    func_0214d1fc(p, ctx->mUnk_18, n & 0x3f);
+    MemCopy(p, ctx->mUnk_18, n & 0x3f);
 }
 
 void func_02150610(u8 *out, Unk02150610 *ctx) {
@@ -64,19 +64,19 @@ void func_02150610(u8 *out, Unk02150610 *ctx) {
     n = (u32) (ctx->mUnk_10 & 0x3f);
     m = 0x40 - n;
     if (m < 8) {
-        func_0214d168(ctx->mUnk_18 + n, 0, m);
+        MemFill(ctx->mUnk_18 + n, 0, m);
         func_02150228(ctx);
         n = 0;
         m = 0x40;
     }
     if (m > 8) {
-        func_0214d168(ctx->mUnk_18 + n, 0, m - 8);
+        MemFill(ctx->mUnk_18 + n, 0, m - 8);
     }
     ctx->mUnk_50 = lo;
     ctx->mUnk_54 = hi;
     func_02150228(ctx);
-    func_0214d1fc(ctx, out, 0x10);
-    func_0214d168(ctx, 0, 0x58);
+    MemCopy(ctx, out, 0x10);
+    MemFill(ctx, 0, 0x58);
 }
 
 void func_02150228(Unk02150610 *q) {

@@ -18,7 +18,7 @@ void func_0200ed34(void *p) {
     Unk0200db5c *t;
 
     n = p;
-    s = func_0200fca0();
+    s = IrqDisable();
     t = data_0216ff5c.mUnk_04;
     while (1) {
         if (n->mUnk_08 == 0) {
@@ -35,7 +35,7 @@ void func_0200ed34(void *p) {
             t->mUnk_84 = 0;
         }
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 // When n->mUnk_08 is data_0216ff5c.mUnk_04, lowers mUnk_0c; at 0 calls func_0200ebc0, clears mUnk_08 and calls
@@ -46,7 +46,7 @@ void func_0200ecc4(void *p) {
     Unk0200db5c *t;
 
     n = p;
-    s = func_0200fca0();
+    s = IrqDisable();
     t = data_0216ff5c.mUnk_04;
     if (n->mUnk_08 == t) {
         n->mUnk_0c = n->mUnk_0c - 1;
@@ -56,7 +56,7 @@ void func_0200ecc4(void *p) {
             func_0200df9c(&n->mUnk_00);
         }
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
 }
 
 // While t->mUnk_88.mUnk_00 is not 0, takes an object from t->mUnk_88 (func_0200e594), clears its mUnk_08 and
@@ -84,7 +84,7 @@ s32 func_0200ec08(void *p) {
     Unk0200db5c *t;
 
     n = p;
-    s = func_0200fca0();
+    s = IrqDisable();
     t = data_0216ff5c.mUnk_04;
     if (n->mUnk_08 == 0) {
         n->mUnk_08 = t;
@@ -97,7 +97,7 @@ s32 func_0200ec08(void *p) {
     } else {
         r = 0;
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     return r;
 }
 
@@ -152,11 +152,11 @@ void func_0200eb90(Unk0200eb90 *q, void **p, s32 n) {
 s32 func_0200eae8(Unk0200eb90 *q, void *v, s32 f) {
     u32 s;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     if (q->mUnk_14 <= q->mUnk_1c) {
         do {
             if ((f & 1) == 0) {
-                func_0200fcb4(s);
+                IrqRestore(s);
                 return 0;
             }
             func_0200e01c(&q->mUnk_00);
@@ -165,7 +165,7 @@ s32 func_0200eae8(Unk0200eb90 *q, void *v, s32 f) {
     q->mUnk_10[(q->mUnk_18 + q->mUnk_1c) % q->mUnk_14] = v;
     q->mUnk_1c = q->mUnk_1c + 1;
     func_0200df9c(&q->mUnk_08);
-    func_0200fcb4(s);
+    IrqRestore(s);
     return 1;
 }
 
@@ -175,11 +175,11 @@ s32 func_0200eae8(Unk0200eb90 *q, void *v, s32 f) {
 s32 func_0200ea3c(Unk0200eb90 *q, void **p, s32 f) {
     u32 s;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     if (q->mUnk_1c == 0) {
         do {
             if ((f & 1) == 0) {
-                func_0200fcb4(s);
+                IrqRestore(s);
                 return 0;
             }
             func_0200e01c(&q->mUnk_08);
@@ -191,7 +191,7 @@ s32 func_0200ea3c(Unk0200eb90 *q, void **p, s32 f) {
     q->mUnk_18 = (q->mUnk_18 + 1) % q->mUnk_14;
     q->mUnk_1c = q->mUnk_1c - 1;
     func_0200df9c(&q->mUnk_00);
-    func_0200fcb4(s);
+    IrqRestore(s);
     return 1;
 }
 
@@ -201,11 +201,11 @@ s32 func_0200ea3c(Unk0200eb90 *q, void **p, s32 f) {
 s32 func_0200e988(Unk0200eb90 *q, void *v, s32 f) {
     u32 s;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     if (q->mUnk_14 <= q->mUnk_1c) {
         do {
             if ((f & 1) == 0) {
-                func_0200fcb4(s);
+                IrqRestore(s);
                 return 0;
             }
             func_0200e01c(&q->mUnk_00);
@@ -215,7 +215,7 @@ s32 func_0200e988(Unk0200eb90 *q, void *v, s32 f) {
     q->mUnk_10[q->mUnk_18] = v;
     q->mUnk_1c = q->mUnk_1c + 1;
     func_0200df9c(&q->mUnk_08);
-    func_0200fcb4(s);
+    IrqRestore(s);
     return 1;
 }
 
@@ -224,11 +224,11 @@ s32 func_0200e988(Unk0200eb90 *q, void *v, s32 f) {
 s32 func_0200e904(Unk0200eb90 *q, void **p, s32 f) {
     u32 s;
 
-    s = func_0200fca0();
+    s = IrqDisable();
     if (q->mUnk_1c == 0) {
         do {
             if ((f & 1) == 0) {
-                func_0200fcb4(s);
+                IrqRestore(s);
                 return 0;
             }
             func_0200e01c(&q->mUnk_08);
@@ -237,7 +237,7 @@ s32 func_0200e904(Unk0200eb90 *q, void **p, s32 f) {
     if (p != 0) {
         *p = q->mUnk_10[q->mUnk_18];
     }
-    func_0200fcb4(s);
+    IrqRestore(s);
     return 1;
 }
 
@@ -270,7 +270,7 @@ u32 func_0200e884(void) {
     return data_021617cc;
 }
 
-// Repeats, each pass between func_0200fca0 and func_0200fcb4, until func_0200ce80 has been called (it is when
+// Repeats, each pass between IrqDisable and IrqRestore, until func_0200ce80 has been called (it is when
 // func_0200ce60 returns 0). The result has bit 24 set when two words at fixed addresses are 0x544e494e and
 // 0x4f444e45, else bit 25.
 u32 func_0200e7b0(void) {
@@ -285,7 +285,7 @@ u32 func_0200e7b0(void) {
     a = 0;
     do {
         v = -1;
-        s = func_0200fca0();
+        s = IrqDisable();
         if ((func_0200cdc0((Unk0200ce60 *) 0x27fffe8) & 0x40) != 0 || (v = func_0200ce60(h)) == 0) {
             if (*(u32 *) 0x8000000 == 0x544e494e && *(u32 *) 0x8000004 == 0x4f444e45) {
                 a = 0x1000000;
@@ -297,7 +297,7 @@ u32 func_0200e7b0(void) {
                 d = 1;
             }
         }
-        func_0200fcb4(s);
+        IrqRestore(s);
     } while (d == 0);
     return a;
 }

@@ -44,8 +44,8 @@ void func_ov003_021cc83c(void) {
     func_ov003_021bf5ec(2);
     func_0200fddc(&b);
     a[0] = 0;
-    func_0214cfe4(a[0], &a[1], 0x16);
-    func_0214cffc(b.mUnk_04, &a[1], b.mUnk_18 * 2);
+    MemFillHalfwords(a[0], &a[1], 0x16);
+    MemCopyHalfwords(b.mUnk_04, &a[1], b.mUnk_18 * 2);
     func_ov003_021bf4f4((u32) &a[1], 0x6d);
     func_ov003_021beef8(0);
     func_ov003_021ce920(func_ov003_021cc4ec);

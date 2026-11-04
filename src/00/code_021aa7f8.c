@@ -33,10 +33,10 @@ void func_ov000_021aaa58(Unk021a998c_0c *a, u8 *b) {
             a->mUnk_000 = NULL;
             b += n + 8 + x;
             if (y >= 0x20) {
-                func_0214d1fc(b, a->mUnk_008, 0x20);
+                MemCopy(b, a->mUnk_008, 0x20);
             } else {
-                func_0214d168(a->mUnk_008, 0, 0x20 - y);
-                func_0214d1fc(b, a->mUnk_028 - y, y);
+                MemFill(a->mUnk_008, 0, 0x20 - y);
+                MemCopy(b, a->mUnk_028 - y, y);
             }
             a->mUnk_429 = 1;
         }
@@ -48,7 +48,7 @@ void func_ov000_021aa9ec(Unk021a998c_0c *a, const u8 *b) {
     u16 m;
     const u8 *c;
     if (func_ov000_021aaaec(b[0], b[1]) != 0) {
-        func_0214d1fc(b + 2, a->mUnk_008, 0x20);
+        MemCopy(b + 2, a->mUnk_008, 0x20);
         n = b[0x22];
         c = b + 0x23;
         if (n != 0x20) {

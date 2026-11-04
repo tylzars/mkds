@@ -42,7 +42,7 @@ void func_ov003_021cdb44(u32 a) {
 }
 
 void func_ov003_021cdb14(const u8 *a) {
-    func_0214d1fc(a, data_ov003_021da270->mUnk_400.mUnk_00.mUnk_40, (u32) 0x20);
+    MemCopy(a, data_ov003_021da270->mUnk_400.mUnk_00.mUnk_40, (u32) 0x20);
     data_ov003_021da270->mUnk_400.mUnk_00.mUnk_e7 = 0;
 }
 
@@ -50,7 +50,7 @@ void func_ov003_021cd9dc(const u8 *a) {
     s32 i;
     s32 n;
     u8 *p;
-    func_0214d168(data_ov003_021da270->mUnk_400.mUnk_00.mUnk_80[0], 0, 0x10);
+    MemFill(data_ov003_021da270->mUnk_400.mUnk_00.mUnk_80[0], 0, 0x10);
     n = func_ov003_021d3254(a, 0x20);
     switch (n) {
         case 0:
@@ -68,7 +68,7 @@ void func_ov003_021cd9dc(const u8 *a) {
             break;
         default:
             data_ov003_021da270->mUnk_400.mUnk_00.mUnk_e6_2 = 1;
-            func_0214d1fc(a, data_ov003_021da270->mUnk_400.mUnk_00.mUnk_80[0], 0x10);
+            MemCopy(a, data_ov003_021da270->mUnk_400.mUnk_00.mUnk_80[0], 0x10);
             break;
     }
     switch (n) {
@@ -110,7 +110,7 @@ void func_ov003_021cd964(const char *input) {
 }
 
 void func_ov003_021cd948(void *output) {
-    func_0214d1fc((u8 *) data_ov003_021da270 + 0x440, output, 0x20);
+    MemCopy((u8 *) data_ov003_021da270 + 0x440, output, 0x20);
 }
 
 void func_ov003_021cd918(u32 p0) {
@@ -120,7 +120,7 @@ void func_ov003_021cd918(u32 p0) {
     const char *v10 = data_ov003_021d77c4;
     u32 v11 = ((u32) v5[0]);
     u32 v12 = ((u32) v5[1]);
-    u32 v13 = func_0200da28((char *) p0, v10, v11, v12, v6, v8);
+    u32 v13 = StringFormat((char *) p0, v10, v11, v12, v6, v8);
 }
 
 void func_ov003_021cd8e8(u32 p0) {
@@ -130,7 +130,7 @@ void func_ov003_021cd8e8(u32 p0) {
     const char *v10 = data_ov003_021d77c4;
     u32 v11 = ((u32) v5[0]);
     u32 v12 = ((u32) v5[1]);
-    u32 v13 = func_0200da28((char *) p0, v10, v11, v12, v6, v8);
+    u32 v13 = StringFormat((char *) p0, v10, v11, v12, v6, v8);
 }
 
 void func_ov003_021cd8b8(u32 p0) {
@@ -140,7 +140,7 @@ void func_ov003_021cd8b8(u32 p0) {
     const char *v10 = data_ov003_021d77c4;
     u32 v11 = ((u32) v5[0]);
     u32 v12 = ((u32) v5[1]);
-    u32 v13 = func_0200da28((char *) p0, v10, v11, v12, v6, v8);
+    u32 v13 = StringFormat((char *) p0, v10, v11, v12, v6, v8);
 }
 
 void func_ov003_021cd888(u32 p0) {
@@ -150,7 +150,7 @@ void func_ov003_021cd888(u32 p0) {
     const char *v10 = data_ov003_021d77c4;
     u32 v11 = ((u32) v5[0]);
     u32 v12 = ((u32) v5[1]);
-    u32 v13 = func_0200da28((char *) p0, v10, v11, v12, v6, v8);
+    u32 v13 = StringFormat((char *) p0, v10, v11, v12, v6, v8);
 }
 
 void func_ov003_021cd858(u32 p0) {
@@ -160,7 +160,7 @@ void func_ov003_021cd858(u32 p0) {
     const char *v10 = data_ov003_021d77c4;
     u32 v11 = ((u32) v5[0]);
     u32 v12 = ((u32) v5[1]);
-    u32 v13 = func_0200da28((char *) p0, v10, v11, v12, v6, v8);
+    u32 v13 = StringFormat((char *) p0, v10, v11, v12, v6, v8);
 }
 
 u8 func_ov003_021cd844(int a) {
@@ -190,18 +190,18 @@ void func_ov003_021cd6d0(void) {
     Unk021cd5e0_entry *q = &data_ov003_021da270->mUnk_000[p->mUnk_f4].mUnk_00;
     *q = p->mUnk_00;
     if (p->mUnk_f5 != 0) {
-        func_0214d168(q->mUnk_c0, 0, 4);
-        func_0214d168(q->mUnk_c4, 0, 4);
+        MemFill(q->mUnk_c0, 0, 4);
+        MemFill(q->mUnk_c4, 0, 4);
         q->mUnk_d0 = 0;
     } else {
-        func_0214d1fc(p->mUnk_00.mUnk_c0, q->mUnk_c0, 4);
-        func_0214d1fc(p->mUnk_00.mUnk_c4, q->mUnk_c4, 4);
+        MemCopy(p->mUnk_00.mUnk_c0, q->mUnk_c0, 4);
+        MemCopy(p->mUnk_00.mUnk_c4, q->mUnk_c4, 4);
         q->mUnk_d0 = func_021516d8(p->mUnk_f0);
     }
     if (p->mUnk_f6 != 0) {
-        func_0214d168(q->mUnk_c8, 0, 8);
+        MemFill(q->mUnk_c8, 0, 8);
     } else {
-        func_0214d1fc(p->mUnk_00.mUnk_c8, q->mUnk_c8, 8);
+        MemCopy(p->mUnk_00.mUnk_c8, q->mUnk_c8, 8);
     }
     func_ov003_021cd338(p->mUnk_f4);
 }
@@ -213,8 +213,8 @@ void func_ov003_021cd5e0(const Unk021cd5e0_arg *a) {
     u8 *v1;
     u8 *v2;
     p = &data_ov003_021da270->mUnk_400;
-    func_0214d168(p, 0, 0xef);
-    func_0214d1fc(a, p->mUnk_00.mUnk_40, 0x20);
+    MemFill(p, 0, 0xef);
+    MemCopy(a, p->mUnk_00.mUnk_40, 0x20);
     switch (a->mUnk_20) {
         case 1:
             p->mUnk_00.mUnk_e6_0 = 1;
@@ -238,12 +238,12 @@ void func_ov003_021cd5e0(const Unk021cd5e0_arg *a) {
     v2 = p->mUnk_00.mUnk_80[0];
     v1 = (u8 *) a->mUnk_28;
     for (; i < 4; i++) {
-        func_0214d1fc(v1, v2, n);
+        MemCopy(v1, v2, n);
         v2 += 0x10;
         v1 += 0x20;
     }
     p->mUnk_00.mUnk_e7 = 2;
-    func_0214d168(p->mUnk_f0, 0, 4);
+    MemFill(p->mUnk_f0, 0, 4);
     p->mUnk_f5 = 1;
     p->mUnk_f6 = 1;
     func_ov003_021cd6d0();
@@ -263,65 +263,65 @@ void func_ov003_021cd4e8(int arg0) {
     value0 = (value4) + (0u);
     value1 = 0u;
     value2 = 239u;
-    func_0214d168((void *) value0, (u8) value1, value2);
+    MemFill((void *) value0, (u8) value1, value2);
     value0 = (value5) + (0u);
     value1 = (value4) + (0u);
     value1 = (value1) + 209u;
     value2 = 5u;
-    func_0214d1fc((const void *) value0, (void *) value1, value2);
+    MemCopy((const void *) value0, (void *) value1, value2);
     value0 = (value5) + (6u);
     value1 = (value4) + (0u);
     value1 = (value1) + 214u;
     value2 = 5u;
-    func_0214d1fc((const void *) value0, (void *) value1, value2);
+    MemCopy((const void *) value0, (void *) value1, value2);
     value0 = (value5) + (0u);
     value0 = (value0) + 12u;
     value1 = (value4) + (0u);
     value1 = (value1) + 219u;
     value2 = 5u;
-    func_0214d1fc((const void *) value0, (void *) value1, value2);
+    MemCopy((const void *) value0, (void *) value1, value2);
     value0 = (value5) + (0u);
     value0 = (value0) + 18u;
     value1 = (value4) + (0u);
     value1 = (value1) + 224u;
     value2 = 5u;
-    func_0214d1fc((const void *) value0, (void *) value1, value2);
+    MemCopy((const void *) value0, (void *) value1, value2);
     value0 = (value5) + (0u);
     value0 = (value0) + 24u;
     value1 = (value4) + (0u);
     value1 = (value1) + 96u;
     value2 = 32u;
-    func_0214d1fc((const void *) value0, (void *) value1, value2);
+    MemCopy((const void *) value0, (void *) value1, value2);
     value0 = (value5) + (0u);
     value0 = (value0) + 57u;
     value1 = (value4) + (0u);
     value1 = (value1) + 128u;
     value2 = 13u;
-    func_0214d1fc((const void *) value0, (void *) value1, value2);
+    MemCopy((const void *) value0, (void *) value1, value2);
     value0 = (value5) + (0u);
     value0 = (value0) + 71u;
     value1 = (value4) + (0u);
     value1 = (value1) + 144u;
     value2 = 13u;
-    func_0214d1fc((const void *) value0, (void *) value1, value2);
+    MemCopy((const void *) value0, (void *) value1, value2);
     value0 = (value5) + (0u);
     value0 = (value0) + 85u;
     value1 = (value4) + (0u);
     value1 = (value1) + 160u;
     value2 = 13u;
-    func_0214d1fc((const void *) value0, (void *) value1, value2);
+    MemCopy((const void *) value0, (void *) value1, value2);
     value0 = (value5) + (0u);
     value0 = (value0) + 99u;
     value1 = (value4) + (0u);
     value1 = (value1) + 176u;
     value2 = 13u;
-    func_0214d1fc((const void *) value0, (void *) value1, value2);
+    MemCopy((const void *) value0, (void *) value1, value2);
     value5 = (value5) + 113u;
     value0 = (value5) + (0u);
     value1 = (value4) + (0u);
     value1 = (value1) + 64u;
     value2 = 32u;
-    func_0214d1fc((const void *) value0, (void *) value1, value2);
+    MemCopy((const void *) value0, (void *) value1, value2);
     value0 = (value4) + (0u);
     value0 = (value0) + 230u;
     value1 = (u32) * (const u8 *) ((value0) + 0u);
@@ -348,7 +348,7 @@ void func_ov003_021cd4e8(int arg0) {
     value0 = (value0) + 240u;
     value1 = 0u;
     value2 = 4u;
-    func_0214d168((void *) value0, (u8) value1, value2);
+    MemFill((void *) value0, (u8) value1, value2);
     value1 = 1u;
     value0 = (value4) + (0u);
     value0 = (value0) + 245u;
@@ -366,7 +366,7 @@ u32 func_ov003_021cd4dc(void) {
 void func_ov003_021cd4ac(int a) {
     Unk021cd5e0_entry *v1;
     v1 = &data_ov003_021da270->mUnk_000[a].mUnk_00;
-    func_0214d168(v1, (u8) (0), 0xef);
+    MemFill(v1, (u8) (0), 0xef);
     v1->mUnk_e7 = 0xff;
     func_ov003_021cd338((u32) (a));
     return;

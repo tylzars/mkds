@@ -84,7 +84,7 @@ void func_02093910(void *a, Unk02093910 *p) {
                 } else {
                     func_0210b7ec(p->mUnk_a8, func_020d4ef4(&p->mUnk_00.mPos));
                 }
-                func_02148504(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+                Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
                 if (p->mUnk_a0 < 0x24e) {
                     func_020d275c(&p->mUnk_00, 0x17d);
                 }
@@ -95,7 +95,7 @@ void func_02093910(void *a, Unk02093910 *p) {
         case 1:
             if (p->mUnk_a0-- > 0) {
                 p->mUnk_00.mUnk_10.y -= 0x400;
-                func_02148504(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+                Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             } else {
                 func_020d2398(&p->mUnk_00);
             }

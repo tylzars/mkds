@@ -21,5 +21,5 @@ void func_0214a4f8(const void *a) {
 
 void func_0214a4dc(const void *a) {
     *(vu32 *) 0x4000400 = 0x1a;
-    func_0214d0fc(a, (void *) 0x4000400);
+    MemCopy9Words(a, (void *) 0x4000400);
 }
