@@ -1,8 +1,3 @@
-#include "code_02130380.h"
-#include "code_021423e4.h"
-#include "code_02134008.h"
-
-// clang-format off
 // Multiplies the doubles r1:r0 and r3:r2 and returns the product in r1:r0, rounded as the floating-point status word
 // says (GetFloatStatus; see code_0212f884.s). Denormal operands are normalised first; underflow, overflow, inexact and
 // invalid (zero times infinity, signalling NaNs) set their flags or call the trap handlers with event codes ending in
@@ -10,7 +5,18 @@
 // Not compiled code: it counts leading zeros with clz and tests bits with tst, neither of which the 1.2 compiler
 // builds, and saves the argument registers and ip around its calls in the middle of the body, where 1.2 saves registers
 // only in the prologue and never ip (docs/compiler.md).
-asm u64 _dmul(u32 a, u32 b, u32 c, u32 d) {
+//
+// The constants after the code are read only by the second half, which is its own function so that they are marked
+// as data (starts at the return-infinity block).
+
+    .text
+    .extern GetFloatStatus
+    .extern FloatTrapPairToPair
+    .extern FloatTrapPairPairToPair
+
+    .global _dmul
+    .type _dmul, @function
+_dmul:
     // Save the operands. lr = the sign of the product. Unpack the first operand: ip = exponent, r1:r0 = significand
     // shifted up 11 with the leading one set; exponent 0 or 0x7ff is special.
     stmfd sp!, {r0, r1, r2, r3, r4, r5, r6, r7, lr}
@@ -328,9 +334,14 @@ dmul_denormal_down:
 dmul_round_bit_only:
     orr r0, r0, r1, lsl #1
     b dmul_half_smallest
+    .size _dmul, . - _dmul
+
+    .global func_021307a4
+    .type func_021307a4, @function
+func_021307a4:
     // Return infinity with the product's sign.
 dmul_return_inf:
-    ldr r1, =0x7ff00000
+    ldr r1, dmul_const_0
     orr r1, lr, r1
     mov r0, #0
     add sp, sp, #16
@@ -452,7 +463,7 @@ dmul_overflow:
     bne dmul_trap_overflow
     orr r3, r3, #0x14
     str r3, [r2]
-    ldr r1, =0x7ff00000
+    ldr r1, dmul_const_0
     orr r1, lr, r1
     mov r0, #0
     tst r3, #0x800000
@@ -490,7 +501,7 @@ dmul_return_zero:
 dmul_trap_overflow_round:
     add sp, sp, #16
     sub r1, r1, #0x60000000
-    ldr r2, =0x10000093
+    ldr r2, dmul_const_1
     bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
@@ -503,7 +514,7 @@ dmul_trap_overflow:
     orr r1, lr, r1, lsr #12
     sub ip, ip, #0x600
     orr r1, r1, ip, lsl #20
-    ldr r2, =0x10000093
+    ldr r2, dmul_const_1
     bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
@@ -516,14 +527,14 @@ dmul_trap_underflow:
     orr r1, lr, r1, lsr #12
     add ip, ip, #0x600
     orr r1, r1, ip, lsl #20
-    ldr r2, =0x20000093
+    ldr r2, dmul_const_2
     bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
     // Invalid trap: pass the original operands from the stack.
 dmul_trap_invalid:
     ldmfd sp!, {r0, r1, r2, r3}
-    ldr ip, =0x4000093
+    ldr ip, dmul_const_3
     stmdb sp!, {ip}
     bl FloatTrapPairPairToPair
     add sp, sp, #4
@@ -532,9 +543,18 @@ dmul_trap_invalid:
     // Inexact trap: pass the rounded result.
 dmul_trap_inexact:
     add sp, sp, #16
-    ldr r2, =0x40000093
+    ldr r2, dmul_const_4
     bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
-}
-// clang-format on
+dmul_const_0:
+    .word 0x7ff00000
+dmul_const_1:
+    .word 0x10000093
+dmul_const_2:
+    .word 0x20000093
+dmul_const_3:
+    .word 0x04000093
+dmul_const_4:
+    .word 0x40000093
+    .size func_021307a4, . - func_021307a4

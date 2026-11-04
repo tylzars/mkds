@@ -6501,7 +6501,7 @@ libs/mathlib/src/code_02130198.c:
     .text       start:0x02130198 end:0x02130380
 
 // provisional: file name and boundaries
-libs/mathlib/src/code_02130380.c:
+libs/mathlib/src/code_02130380.s:
     .text       start:0x02130380 end:0x02130a70
 
 // provisional: file name and boundaries

@@ -36103,7 +36103,6 @@ from:0x021465d0 kind:arm_call to:0x0200cae4 module:main
 from:0x021465d8 kind:arm_call to:0x0200fcb4 module:main
 from:0x021465dc kind:arm_call to:0x021466d8 module:main
 from:0x021465ec kind:load to:0x0217fa20 module:main
-from:0x021465f0 kind:load to:0x01ff8000 module:itcm
 from:0x021465fc kind:load to:0x02146600 module:main
 from:0x02146610 kind:arm_call to:0x0214c89c module:main
 from:0x02146644 kind:arm_call to:0x0200ca9c module:main
