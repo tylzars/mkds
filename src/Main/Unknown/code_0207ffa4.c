@@ -33,7 +33,7 @@
 void func_02081060(Kart *p) {
     Unk0201ca6c *e;
 
-    if (!(p->mUnk_7c & 1)) {
+    if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
         return;
     }
     if (data_0217ae94[p->mIndex] != NULL) {

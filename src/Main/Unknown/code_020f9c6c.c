@@ -399,7 +399,7 @@ void func_020fbc18(Unk020fc2e8 *param_1) {
 
     p = param_1->mUnk_228->mUnk_1fc;
     r = 0x800;
-    if ((param_1->mUnk_000.mUnk_74 & 0x10000000) && (p->mUnk_7c & 1)) {
+    if ((param_1->mUnk_000.mUnk_74 & 0x10000000) && (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
         r += 0x19a;
     }
     if (param_1->mUnk_27c > 0xd000) {

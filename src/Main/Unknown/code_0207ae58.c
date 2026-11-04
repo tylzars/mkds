@@ -193,7 +193,7 @@ void func_0207b44c(Kart *a) {
         a->mUnk_7c |= 0x20000;
         func_02068a64(a, 3, 1);
     }
-    if ((a->mUnk_7c & 1) != 0) {
+    if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         k = 1;
         if (f != 0) {
             if (f == 2) {

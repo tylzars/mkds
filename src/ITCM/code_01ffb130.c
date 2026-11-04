@@ -69,7 +69,7 @@ void func_01ffb130(Kart *p) {
     }
     if (p->mUnk_4c & 0x2000) {
         q = &p->mUnk_538;
-        if (p->mUnk_7c & 1) {
+        if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             func_0210ddf4(&data_0217d26c, func_02086080(p->mIndex), func_020718c8, p, 0xa3);
         }
         q->mUnk_0a++;
@@ -85,7 +85,7 @@ void func_01ffb130(Kart *p) {
     if (p->mUnk_4c & 0x40) {
         q = &p->mUnk_538;
         func_0208181c(p->mIndex);
-        if ((p->mUnk_7c & 0x10) && p->mKartModelsEntry->mUnk_008->mUnk_1a == 0) {
+        if ((p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) && p->mKartModelsEntry->mUnk_008->mUnk_1a == 0) {
             func_02068a64(p, 2, 1);
         }
         q->mUnk_06++;
@@ -95,7 +95,7 @@ void func_01ffb130(Kart *p) {
             p->mUnk_29c = 0;
             func_020817b8(p->mIndex);
             func_02068a64(p, 0, 1);
-            if ((p->mUnk_7c & 1) && data_021759c0->mUnk_00c == 0) {
+            if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mUnk_00c == 0) {
                 func_02106dc8();
             }
             if (p->mUnk_4c & 0x2000) {
@@ -115,7 +115,7 @@ void func_01ffb130(Kart *p) {
         p->mUnk_3ac++;
         if (p->mUnk_3ac > 0x41) {
             p->mUnk_48 &= ~0x240;
-            if (p->mUnk_7c & 1) {
+            if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                 func_020e7a18();
             }
         } else {
@@ -191,7 +191,7 @@ void func_01ffb130(Kart *p) {
     Vec3Add(&p->mVelocity, &p->mUnk_1fc, &p->mVelocity);
     func_01ff9c40(p);
     func_01ffae14(p, b);
-    if (p->mUnk_7c & 1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         func_0207a74c(func_02039828(&p->mVelocity, &p->mUnk_50));
         if ((p->mUnk_44 & 0x1000000) && p->mUnk_4d4 != 0) {
             p->mUnk_4d4 = (s32) (((s64) p->mUnk_4d4 * 0xfae) >> 12);

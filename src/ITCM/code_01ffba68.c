@@ -160,7 +160,7 @@ void func_01ffcb58(Kart *p) {
     if (p->mUnk_7c & 0x20) {
         return;
     }
-    if (p->mUnk_44 & 0x20) {
+    if (p->mUnk_44 & KART_44_NEAR_KART) {
         p->mUnk_44 |= 0x80000;
     } else {
         p->mUnk_44 &= ~0x80000;
@@ -173,7 +173,7 @@ void func_01ffcb58(Kart *p) {
     if (p->mUnk_4c & 0x8000) {
         func_02084478(p);
     }
-    if ((p->mUnk_7c & 1) && func_02061fec() == 1) {
+    if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && func_02061fec() == 1) {
         func_0207a790(p->mIndex);
     }
     func_01ffc920(p);
@@ -213,7 +213,7 @@ void func_01ffc9e8(Kart *p, s32 a) {
     s32 c;
     s32 d;
 
-    c = (p->mUnk_7c & 1) ? 3 : 2;
+    c = (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 3 : 2;
     b = data_usa_0216ca38[a];
     d = func_02086080(p->mIndex);
     func_0210ddf4(&(&data_0217d26c)[c], d + b, func_02071980, p, a);
@@ -228,7 +228,7 @@ s32 func_01ffc92c(Kart *p) {
     b = FALSE;
     a = func_0203c8dc(p->mIndex);
     if (a != p->mUnk_3d8) {
-        if (p->mUnk_7c & 1) {
+        if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             func_0210689c((u8) (a - 1));
         }
         if (a < p->mUnk_3d8 && a < data_021759c0->mKartCount) {

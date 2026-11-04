@@ -106,7 +106,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
             }
         }
         if (f & 0x8c10) {
-            if ((p->mUnk_7c & 1) && (f & 0x10)) {
+            if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && (f & 0x10)) {
                 if (b2 == 0) {
                     func_0210f458((u16) ((func_020d59f8(0x10) & 0xe0) >> 5));
                 }

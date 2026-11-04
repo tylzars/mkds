@@ -317,7 +317,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             func_0207b0d0(p);
         }
         func_02079f70(p->mKartModelsEntry, 0, 0x1084, 0);
-        if (p->mUnk_7c & 0x10) {
+        if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
             func_0207b054(p, 1, 0);
             func_0207b708(p->mKartModelsEntry, 1);
         }

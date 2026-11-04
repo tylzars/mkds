@@ -19,7 +19,7 @@ void func_0206ceb4(s32 *out, Kart *p) {
     if (p->mUnk_238 <= 0) {
         p->mUnk_48 &= 0xdfff7fdf;
         p->mUnk_238 = 0;
-        if (!(p->mUnk_7c & 0x1)) {
+        if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
             return;
         }
         if (!(p->mUnk_4c & 0x10000000)) {
@@ -29,7 +29,7 @@ void func_0206ceb4(s32 *out, Kart *p) {
         return;
     }
     *out = 0x1000;
-    if (p->mUnk_7c & 0x1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         id = (p->mUnk_48 & 0x8000) ? 0xa0 : 0x9e;
         func_0210ddf4(&data_0217d26c, func_02086080(p->mIndex), func_020718c8, p, id);
     }
@@ -64,7 +64,7 @@ void func_0206cdd4(Kart *p) {
         func_0206d020(p, 1, p->mUnk_2cc->mUnk_0e);
         p->mUnk_48 |= 0x80000;
         p->mUnk_23c = p->mUnk_2cc->mUnk_0e;
-        if (p->mUnk_7c & 0x1) {
+        if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             func_0207a6b0()->mUnk_04++;
             // placeholder: the same test twice gives the original's two loads and compares
             if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
@@ -124,7 +124,7 @@ void func_0206cc60(Kart *p, int arg) {
     if (p->mUnk_2fc < 3) {
         return;
     }
-    if (!(p->mUnk_7c & 0x1)) {
+    if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
         return;
     }
     func_02109078(&p->mUnk_00, 0xd1, 0x7f, 0);
@@ -209,7 +209,7 @@ recheck:
                 func_0206d020(p, 1, p->mUnk_2cc->mUnk_0e);
                 p->mUnk_48 |= 0x80000;
                 p->mUnk_23c = p->mUnk_2cc->mUnk_0e;
-                if (p->mUnk_7c & 0x1) {
+                if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                     func_0207a6b0()->mUnk_04++;
                     // placeholder: the same test twice gives the original's two loads and compares
                     if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
@@ -274,7 +274,7 @@ recheck:
     if (!(p->mUnk_44 & 0x10)) {
         return;
     }
-    if (p->mUnk_7c & 0x1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         id = func_02086080(p->mIndex);
         func_0210ddf4(&data_0217d284, id + func_0210a578(), func_02071944, p, 0xcf);
     }
@@ -354,7 +354,7 @@ void func_0206c450(Unk0206c1ac *obj, Kart *p) {
 }
 
 BOOL func_0206c354(Kart *p, const Vec3 *a, int flag) {
-    if (p->mUnk_7c & 0x10) {
+    if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
         int arr[4] = {0x77, 0x76, 0x78, 0x79};
         u16 i = 0;
         u32 n = 1;
@@ -452,7 +452,7 @@ void func_0206bf88(Kart *p, int mode) {
     p->mUnk_238 = 0;
     p->mUnk_538.mUnk_00 = 0;
     p->mUnk_23c = 0;
-    if (p->mUnk_7c & 0x1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
             func_02074854();
         }

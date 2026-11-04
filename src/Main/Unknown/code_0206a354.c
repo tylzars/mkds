@@ -93,7 +93,7 @@ void func_0206b914(Kart *p) {
     p->mUnk_238 = 0;
     p->mUnk_538.mUnk_00 = 0;
     p->mUnk_23c = 0;
-    if (p->mUnk_7c & 0x1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
             func_02074854();
         }
@@ -130,7 +130,7 @@ void func_0206b914(Kart *p) {
         func_0210af40(p, p->mUnk_3cc, 2);
     }
     p->mUnk_4c &= ~0x80000000;
-    if (p->mUnk_7c & 0x1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         func_020747f4(1);
     }
 }
@@ -183,7 +183,7 @@ void func_0206b5b4(Kart *p) {
     func_01ffcf7c(&p->mUnk_34c, &p->mUnk_34c);
     if (!(p->mUnk_4c & 0x80000000)) {
         if ((u32) p->mUnk_348 > 2 && (p->mUnk_340 >= p->mPos.y || (p->mUnk_44 & 0x10))) {
-            if (p->mUnk_7c & 0x1) {
+            if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                 func_020747f4(0);
             }
             if (p->mUnk_35c != 0) {

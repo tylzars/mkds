@@ -256,7 +256,7 @@ void func_0210af40(Kart *a, s32 b, s32 c) {
     if (a->mUnk_4c & 0x10000000) {
         return;
     }
-    if (a->mUnk_7c & 4) {
+    if (a->mUnk_7c & KART_7C_ENTRY_KIND_2) {
         return;
     }
     if (data_0217c814.mUnk_0c != 1) {

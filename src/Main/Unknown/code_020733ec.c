@@ -133,7 +133,7 @@ void func_020733ec(Kart *p) {
     p->mUnk_230 = func_02071568;
     func_020726bc(p);
     func_02071e28(p);
-    if (p->mUnk_7c & 0x10) {
+    if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
         func_0207a73c(DivFixed12(0x1000, p->mUnk_2cc->mUnk_10));
     }
     func_02071c18(p);

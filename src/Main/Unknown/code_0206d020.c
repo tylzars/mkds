@@ -503,7 +503,7 @@ void func_0206d020(Kart *p, int a, int b) {
     func_0210a53c(p);
     c = ~0x8000;
     p->mUnk_48 &= c;
-    if (p->mUnk_7c & 0x1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!a) {
             f = 0;
         } else {

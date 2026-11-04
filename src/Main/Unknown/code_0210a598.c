@@ -9,7 +9,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 
 void func_0210a5a8(Kart *a, Unk0210a5a8 *b) {
-    if (a->mUnk_7c & 4) {
+    if (a->mUnk_7c & KART_7C_ENTRY_KIND_2) {
         a->mUnk_00.mUnk_2c = (void (*)(void *, void *, u32)) func_0210ab44;
     } else {
         a->mUnk_00.mUnk_2c = (void (*)(void *, void *, u32)) func_0210aa14;

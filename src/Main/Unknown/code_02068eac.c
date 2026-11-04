@@ -72,7 +72,7 @@ BOOL func_0206a24c(Kart *p) {
     p->mUnk_3a4 = 0;
     p->mUnk_4c |= 0x10000;
     p->mUnk_48 |= 0x4000000;
-    if (p->mUnk_7c & 1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         func_02074874(0x1f40);
     }
     p->mUnk_394 = 0xb33;
@@ -133,7 +133,7 @@ void func_02069f6c(Kart *p) {
     s->mUnk_0e--;
     if (s->mUnk_0e == 0x1c2) {
         p->mUnk_48 &= ~0x4000000;
-        if (p->mUnk_7c & 1) {
+        if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             func_02074854();
         }
     }
@@ -176,7 +176,7 @@ void func_02069ea8(Kart *p) {
     if (!(p->mUnk_4c & 0x10080)) {
         p->mUnk_394 = 0x1000;
     }
-    if (p->mUnk_7c & 1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         func_02074854();
     }
 }
@@ -223,12 +223,12 @@ void func_02069c38(Kart *p) {
         p->mUnk_7c &= ~0x2000;
         p->mUnk_7c &= ~0xc000;
         p->mUnk_29c = 0;
-        if (!(p->mUnk_7c & 1)) {
+        if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
             func_0208c4e8(func_0208c5b8(p->mIndex));
         } else {
             func_021090c4(&p->mUnk_00, 0xf9, 0x7f, 0);
         }
-        func_0210fa40(0, (p->mUnk_7c & 1) ? 1 : 0);
+        func_0210fa40(0, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 1 : 0);
     }
     if (p->mUnk_4c & 0x8000000) {
         p->mUnk_4c &= ~0x8020000;
@@ -243,7 +243,7 @@ void func_02069c38(Kart *p) {
     p->mUnk_29c = 1;
     func_0207b284(p);
     func_02081a40(p->mIndex);
-    if ((p->mUnk_7c & 1) && data_021759c0->mUnk_00c == 0) {
+    if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mUnk_00c == 0) {
         func_02106e78();
     }
     if (data_021759c0->mMode == 2) {
@@ -268,7 +268,7 @@ void func_02069aa0(Kart *p) {
         p->mUnk_29c = 0;
         func_020817b8(p->mIndex);
         func_02068a64(p, 0, 1);
-        if ((p->mUnk_7c & 1) && data_021759c0->mUnk_00c == 0) {
+        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mUnk_00c == 0) {
             func_02106dc8();
         }
         if (p->mUnk_4c & 0x2000) {
@@ -287,8 +287,8 @@ void func_02069aa0(Kart *p) {
             func_02079f70(p->mKartModelsEntry, func_0207a134(), func_0207a11c(), func_0207a104());
         }
     }
-    func_0210fa40(1, (p->mUnk_7c & 1) ? 1 : 0);
-    if (p->mUnk_7c & 1) {
+    func_0210fa40(1, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 1 : 0);
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         p->mUnk_7c |= 0x4000;
     } else {
         s->mUnk_12 = 2;
@@ -316,7 +316,7 @@ void func_0206988c(Kart *p) {
         return;
     }
     s = &p->mUnk_538;
-    if (!(w & 1)) {
+    if (!(w & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
         if (s->mUnk_16 < 0x50) {
             s->mUnk_16++;
             s->mUnk_14++;
@@ -345,14 +345,14 @@ void func_0206988c(Kart *p) {
         p->mUnk_7c &= ~0x2000;
         p->mUnk_7c &= ~0xc000;
         p->mUnk_29c = 0;
-        if (!(p->mUnk_7c & 1)) {
+        if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
             func_0208c4e8(func_0208c5b8(p->mIndex));
         } else {
             func_021090c4(&p->mUnk_00, 0xf9, 0x7f, 0);
         }
-        func_0210fa40(0, (p->mUnk_7c & 1) ? 1 : 0);
+        func_0210fa40(0, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 1 : 0);
     }
-    if (p->mUnk_7c & 1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         return;
     }
     func_0207a948(&a, (u16) data_021759c0->mEntryIndex);
@@ -387,12 +387,12 @@ void func_020695c4(Kart *p) {
         p->mUnk_7c &= ~0x2000;
         p->mUnk_7c &= ~0xc000;
         p->mUnk_29c = 0;
-        if (!(p->mUnk_7c & 1)) {
+        if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
             func_0208c4e8(func_0208c5b8(p->mIndex));
         } else {
             func_021090c4(&p->mUnk_00, 0xf9, 0x7f, 0);
         }
-        func_0210fa40(0, (p->mUnk_7c & 1) ? 1 : 0);
+        func_0210fa40(0, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 1 : 0);
     }
     if (p->mUnk_4c & 0x8000000) {
         p->mUnk_4c &= ~0x8020000;
@@ -408,7 +408,7 @@ void func_020695c4(Kart *p) {
         p->mUnk_29c = 0;
         func_020817b8(p->mIndex);
         func_02068a64(p, 0, 1);
-        if ((p->mUnk_7c & 1) && data_021759c0->mUnk_00c == 0) {
+        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mUnk_00c == 0) {
             func_02106dc8();
         }
         if (p->mUnk_4c & 0x2000) {
@@ -435,7 +435,7 @@ void func_020695c4(Kart *p) {
     if (p->mUnk_7c & 0x200) {
         p->mUnk_514->mUnk_2c ^= 0x100000;
     }
-    if (p->mUnk_7c & 1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         func_02074874(0x1d4c);
     }
 }
@@ -469,7 +469,7 @@ void func_0206938c(Kart *p) {
         }
         p->mUnk_4c &= ~0x10000000;
         func_0210515c(p->mIndex);
-        if (p->mUnk_7c & 1) {
+        if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             func_02074854();
         }
         p->mUnk_4c8 = 0x1000;
@@ -540,7 +540,7 @@ void func_0206924c(Kart *p, u32 a) {
         func_0207b0d0(p);
     }
     func_02079f70(p->mKartModelsEntry, 0, 0x1084, 0);
-    if (p->mUnk_7c & 0x10) {
+    if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
         func_0207b054(p, 1, 0);
         func_0207b708(p->mKartModelsEntry, 1);
     }
@@ -600,7 +600,7 @@ void func_02069068(Kart *p) {
     }
     func_02081000(p);
     func_0210a53c(p);
-    if (!(p->mUnk_7c & 1)) {
+    if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
         func_021090c4(&p->mUnk_00, 0xa4, 0x7f, 0);
     }
     if (p->mUnk_7c & 0x200) {

@@ -230,8 +230,8 @@ void func_0206dfd0(Kart *p) {
                 func_0206d7c8(p, q, &n, 0, &u);
             }
         }
-        p->mUnk_44 |= 0x20;
-        q->mUnk_44 |= 0x20;
+        p->mUnk_44 |= KART_44_NEAR_KART;
+        q->mUnk_44 |= KART_44_NEAR_KART;
         p->mNearKartMask |= 1 << q->mIndex;
         q->mNearKartMask |= 1 << p->mIndex;
     }

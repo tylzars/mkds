@@ -88,7 +88,7 @@ void func_0206ff50(Kart *p, u32 a) {
             c = func_02041170(data_0217561c->mUnk_000[k].mUnk_46);
         }
         p->mUnk_3c4 = c;
-        if ((p->mUnk_7c & 1) && data_021759c0->mCourseId == 0x1d && (data_0217c780 & 1)) {
+        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mCourseId == 0x1d && (data_0217c780 & 1)) {
             d = (Unk0212c400 **) func_0210e128((void *) func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (d[0] != NULL) {
@@ -113,7 +113,7 @@ void func_0206ff50(Kart *p, u32 a) {
     p->mUnk_238 = 0;
     p->mUnk_538.mUnk_00 = 0;
     p->mUnk_23c = 0;
-    if (p->mUnk_7c & 1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
             func_02074854();
         }
@@ -122,7 +122,7 @@ void func_0206ff50(Kart *p, u32 a) {
     if (p->mUnk_4c & 0x10000000) {
         p->mUnk_4c &= ~0x10000000;
         func_0210515c(p->mIndex);
-        if (p->mUnk_7c & 1) {
+        if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             func_02074854();
         }
         p->mUnk_4c8 = 0x1000;
@@ -150,7 +150,7 @@ void func_0206ff50(Kart *p, u32 a) {
     b = (u16) ((func_020d59f8(0x800) & 0xe0) >> 5);
     p->mUnk_4bc = p->mUnk_3f8;
     p->mUnk_4c |= 0x200000;
-    if (p->mUnk_7c & 1) {
+    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         func_02075d08(1);
     }
     if ((u16) (b + 0xffff) <= 1) {
@@ -163,7 +163,7 @@ void func_0206ff50(Kart *p, u32 a) {
             b = 0x15d;
         }
         g.y = p->mPos.y - func_020d3d48(p->mPos.y);
-        func_0208d978(&g, (p->mUnk_7c & 1) != 0);
+        func_0208d978(&g, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0);
         p->mUnk_4c |= 0x4000000;
         func_021090c4(&p->mUnk_00, b, 0x7f, 0);
         p->mUnk_c8 = 0;
@@ -190,7 +190,7 @@ void func_0206fe08(Kart *p) {
         if (func_020d3d48(p->mPos.y) <= -0xa000 && func_020d3d48(p->mPrevPos.y) > -0xa000 && p->mVelocity.y < -0x2000) {
             d = p->mPos;
             d.y = p->mPos.y - a;
-            func_0208d978(&d, (p->mUnk_7c & 1) != 0);
+            func_0208d978(&d, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0);
             b = FALSE;
         }
         if (b != FALSE) {
@@ -270,7 +270,7 @@ void func_0206f914(Kart *p) {
                     func_0210af40(p, p->mUnk_3cc, 5);
                 }
                 p->mUnk_48 |= 0x8000;
-                if (p->mUnk_7c & 1) {
+                if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                     func_0207a6b0()->mUnk_00 = 1;
                 } else {
                     func_021090c4(&p->mUnk_00, 0xa1, 0x7f, 0);
@@ -316,7 +316,7 @@ void func_0206f914(Kart *p) {
                     func_0210af40(p, p->mUnk_3cc, 5);
                 }
                 p->mUnk_48 |= 0x8000;
-                if (p->mUnk_7c & 1) {
+                if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                     func_0207a6b0()->mUnk_00 = 1;
                 } else {
                     func_021090c4(&p->mUnk_00, 0xa1, 0x7f, 0);
@@ -508,7 +508,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                 p->mUnk_238 = 0;
                 p->mUnk_538.mUnk_00 = 0;
                 p->mUnk_23c = 0;
-                if (p->mUnk_7c & 1) {
+                if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                     if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
                         func_02074854();
                     }
@@ -533,7 +533,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                 p->mUnk_386 = l;
             }
         }
-        if ((p->mUnk_7c & 1) && p->mVelocityLength > 0x3000 && f == 2) {
+        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && p->mVelocityLength > 0x3000 && f == 2) {
             func_0207a6b0()->mUnk_10++;
         }
         p->mUnk_388 = 0;

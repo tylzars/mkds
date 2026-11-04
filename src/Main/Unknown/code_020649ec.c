@@ -115,7 +115,7 @@ void func_02064f50(Kart *a) {
     if ((a->mUnk_7c & 0x20) != 0) {
         return;
     }
-    if ((a->mUnk_44 & 0x20) != 0) {
+    if ((a->mUnk_44 & KART_44_NEAR_KART) != 0) {
         a->mUnk_44 = a->mUnk_44 | 0x80000;
     } else {
         a->mUnk_44 = a->mUnk_44 & ~0x80000;
@@ -253,7 +253,7 @@ void func_020649ec(Kart *a, void (**b)(Kart *)) {
     if (a->mUnk_20c_fn[0] != 0) {
         a->mUnk_20c_fn[0](a);
     }
-    if (data_021759c0->mUnk_00c == 2 || (a->mUnk_7c & 1) == 0) {
+    if (data_021759c0->mUnk_00c == 2 || (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) == 0) {
         a->mUnk_20c_fn[2] = func_02064180;
     } else {
         a->mUnk_20c_fn[2] = func_020641b8;
@@ -282,7 +282,7 @@ void func_020649ec(Kart *a, void (**b)(Kart *)) {
         a->mUnk_174.x = a->mUnk_174.x >> 4;
         a->mUnk_174.y = a->mUnk_174.y >> 4;
         a->mUnk_174.z = a->mUnk_174.z >> 4;
-        if ((a->mUnk_7c & 0x10) != 0) {
+        if ((a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0) {
             func_0207b734(a);
             d = a->mKartModelsEntry->mUnk_008;
             *d->mUnk_1c[d->mUnk_1a] = d->mUnk_0c;
