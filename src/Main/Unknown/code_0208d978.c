@@ -64,23 +64,23 @@ void func_0208e82c(const Unk02012f58 *a, Unk0208ec64_08 *b, Unk0208ec64_08 *c, U
     Unk02012f58 m;
     Unk02012f58 n;
 
-    func_02147218(&m, 0x1000, b->mUnk_08, 0x1000);
-    func_02147218(&n, 0x1000, c->mUnk_08, 0x1000);
+    Matrix4x3FromDiagonal(&m, 0x1000, b->mUnk_08, 0x1000);
+    Matrix4x3FromDiagonal(&n, 0x1000, c->mUnk_08, 0x1000);
     m.mUnk_00[3].x = b->mUnk_10.x;
     m.mUnk_00[3].y = b->mUnk_10.y;
     m.mUnk_00[3].z = b->mUnk_10.z;
     n.mUnk_00[3].x = c->mUnk_10.x;
     n.mUnk_00[3].y = c->mUnk_10.y;
     n.mUnk_00[3].z = c->mUnk_10.z;
-    func_0214733c(&m, a, &m);
-    func_0214733c(&n, a, &n);
+    Matrix4x3Multiply(&m, a, &m);
+    Matrix4x3Multiply(&n, a, &n);
     *(u32 *) 0x4000500 = 1;
-    func_0214a514(&m);
+    GxFifoWrite0x17Then12Words(&m);
     *(u32 *) 0x4000488 = (u16) ((d->mUnk_1c << 8) >> 16);
     *(u32 *) 0x4000490 = 0x10000;
     *(u32 *) 0x4000488 = 0;
     *(u32 *) 0x4000490 = 0xf0000;
-    func_0214a514(&n);
+    GxFifoWrite0x17Then12Words(&n);
     *(u32 *) 0x4000488 = (u16) ((d->mUnk_20 << 8) >> 16) << 16;
     *(u32 *) 0x4000490 = 0xf0000;
     *(u32 *) 0x4000488 = (u16) ((d->mUnk_1c << 8) >> 16) | (u16) ((d->mUnk_20 << 8) >> 16) << 16;
@@ -190,7 +190,7 @@ void func_0208e358(void) {
     Unk02012f58 m;
     Unk0208e490 *p;
 
-    func_021471bc(&m);
+    Matrix4x3Identity(&m);
     p = ListGetNext(&data_0217b080->mUnk_00, NULL);
     if (p == NULL) {
         return;

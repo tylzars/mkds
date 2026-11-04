@@ -9,7 +9,7 @@ void func_020fcb30(Unk020fc2e8 *p) {
 
 void func_020fcac0(Unk020fc2e8 *a) {
     func_02046be8(&a->mUnk_2e8, (UnkFunc *const *) data_0216c6b4, 8, a);
-    func_021471bc((Unk02012f58 *) a->mUnk_2b4);
+    Matrix4x3Identity((Unk02012f58 *) a->mUnk_2b4);
     a->mUnk_274 = 1;
     a->mUnk_276 = data_0217561c->mUnk_474[0];
     a->mUnk_278 = 0;

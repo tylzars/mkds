@@ -419,7 +419,7 @@ void func_ov003_021bee24(void) {
     Unk021da104_04 *b;
     u32 c;
 
-    data_ov003_021da104->mUnk_09 = func_02147cd8(data_ov003_021da104->mUnk_09 + 1, 0x28);
+    data_ov003_021da104->mUnk_09 = Div32Remainder(data_ov003_021da104->mUnk_09 + 1, 0x28);
     c = Div32(data_ov003_021da104->mUnk_09, 5) + 0x47;
     func_ov003_021d1c3c(0, c, (u8 *) data_ov003_021da104->mUnk_04);
     b = data_ov003_021da104->mUnk_04;

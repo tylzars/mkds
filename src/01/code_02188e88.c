@@ -118,7 +118,7 @@ u32 func_ov001_02188eac(Unk02188950 *a, s32 b, Vec3 *c, s32 d) {
     s32 v;
 
     if (c != NULL) {
-        v = (u16) (func_02148714(c->x - a->mUnk_000.mPos.x, c->z - a->mUnk_000.mPos.z) - b);
+        v = (u16) (AngleFromPair(c->x - a->mUnk_000.mPos.x, c->z - a->mUnk_000.mPos.z) - b);
         if (v > 0x8000) {
             v -= 0x10000;
         }

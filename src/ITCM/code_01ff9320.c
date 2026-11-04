@@ -71,13 +71,13 @@ void func_01ff94d4(s32 *o, const Unk0201290c_1c *v1) {
 
     a = v1->mUnk_2c << 12;
     b = v1->mUnk_2e << 12;
-    func_02147d88(b, a);
+    DivFixed12Start(b, a);
     o[0] = v1->mUnk_20[1];
     o[5] = v1->mUnk_20[1];
-    o[1] = (-v1->mUnk_20[0] * func_02147e28()) >> 12;
-    func_02147d88(a, b);
+    o[1] = (-v1->mUnk_20[0] * DivFixed12Result()) >> 12;
+    DivFixed12Start(a, b);
     t = -(v1->mUnk_20[0] + v1->mUnk_20[1]);
     o[12] = (v1->mUnk_2c * (t + 0x1000)) << 3;
     o[13] = (v1->mUnk_2e * (v1->mUnk_20[0] - v1->mUnk_20[1] + 0x1000)) << 3;
-    o[4] = (v1->mUnk_20[0] * func_02147e28()) >> 12;
+    o[4] = (v1->mUnk_20[0] * DivFixed12Result()) >> 12;
 }

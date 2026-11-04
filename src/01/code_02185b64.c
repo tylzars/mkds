@@ -28,9 +28,9 @@ void func_ov001_02185dd0(MissionGateObject *a) {
 
     func_020d2450(a);
     a->mUnk_000.mUnk_7e = (s32) (((s64) a->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xB60B60B60BLL + 0x80000000000LL) >> 44);
-    func_02146d44(mtx, data_0215d4b4[(a->mUnk_000.mUnk_7e >> 4) * 2],
-                  data_0215d4b4[(a->mUnk_000.mUnk_7e >> 4) * 2 + 1]);
-    func_02146dfc(mtx, &a->mUnk_000.mMatrix.mUnk_00[0].x, &a->mUnk_000.mMatrix.mUnk_00[0].x);
+    Matrix3x3FromPairY(mtx, data_0215d4b4[(a->mUnk_000.mUnk_7e >> 4) * 2],
+                       data_0215d4b4[(a->mUnk_000.mUnk_7e >> 4) * 2 + 1]);
+    Matrix3x3Multiply(mtx, &a->mUnk_000.mMatrix.mUnk_00[0].x, &a->mUnk_000.mMatrix.mUnk_00[0].x);
     r4 = (s32) (((s64) a->mUnk_000.mUnk_1c.x * 0xA000LL) >> 12);
     r6 = (s32) (((s64) a->mUnk_000.mUnk_1c.y * 0xF000LL) >> 12);
     saved = a->mUnk_000.mCourseMapRow->mUnk_28;

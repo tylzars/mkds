@@ -207,7 +207,7 @@ void func_020af99c(void) {
     reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f00) | 0x1200) | 0x2000;
     reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f) | 0xf) | 0x20;
     reg_GXS_DB_DISPCNT &= ~0xe000;
-    func_02148934(5);
+    GxsDispCntBits0To2Write(5);
     func_0214c028(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
     func_0214bea4(GetRaceNclrNcgr(6)->mNcgr->mData, 0, 0x4000);
     func_020b17a4();

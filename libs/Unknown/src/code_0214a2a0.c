@@ -1,6 +1,6 @@
 #include "code_0214a2a0.h"
 
-u32 func_0214a2a0(void) {
+u32 G2sBg1CntBits8To12Address(void) {
     u32 value0;
     value0 = 0x400100au;
     value0 = (u32) * (const u16 *) ((value0) + (0));

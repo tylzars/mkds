@@ -60,7 +60,7 @@ void func_ov003_021d2b3c(void) {
             break;
         }
         i++;
-        c = func_02147cd8(c + 4, 5);
+        c = Div32Remainder(c + 4, 5);
     } while (i < 4);
     c = b ^ a;
     data_ov003_021da2d4->mBits.mBit_1 = b & c;

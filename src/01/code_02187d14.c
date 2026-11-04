@@ -66,8 +66,8 @@ void func_ov001_02187d14(Unk02187d14 *c) {
     if (c->mUnk_00->mUnk_01 == p->mUnk_2e4) {
         q = func_02061808();
         func_02012f58(&a, NULL);
-        func_0214755c(&q->mUnk_030, &b);
-        func_0214733c(&a, &b, &a);
+        Matrix4x3Invert(&q->mUnk_030, &b);
+        Matrix4x3Multiply(&a, &b, &a);
         p->mUnk_2e8.x = a.mUnk_00[3].x << 4;
         p->mUnk_2e8.y = a.mUnk_00[3].y << 4;
         p->mUnk_2e8.z = a.mUnk_00[3].z << 4;

@@ -66,13 +66,13 @@ void func_020d7bec(Unk02012f58 *a) {
 
 void func_020d7b88(Vec3 *a, void *q) {
     Unk020d7b88 *b = q;
-    s32 r = func_02147e8c((a->y + 0x1000) << 1);
-    func_02147d88(a->z, r);
+    s32 r = SqrtFixed12((a->y + 0x1000) << 1);
+    DivFixed12Start(a->z, r);
     b->mUnk_00[1] = 0;
-    b->mUnk_00[0] = func_02147e28();
-    func_02147d88(-a->x, r);
+    b->mUnk_00[0] = DivFixed12Result();
+    DivFixed12Start(-a->x, r);
     b->mUnk_00[3] = r >> 1;
-    b->mUnk_00[2] = func_02147e28();
+    b->mUnk_00[2] = DivFixed12Result();
 }
 
 void func_020d7b34(s32 a, Unk020d7b88 *b) {
@@ -94,18 +94,18 @@ void func_020d7a3c(void *p, s32 b, void *q) {
     s64 w = (s64) ((a->y + 0x1000) << 1) << 32;
     *(vu16 *) 0x40002b0 = 1;
     *(vu64 *) 0x40002b8 = w;
-    r = func_02147dc0();
-    func_02147d88(a->z, r);
+    r = SqrtFixed12Result();
+    DivFixed12Start(a->z, r);
     i = (u16) (b >> 1) >> 4;
     s = data_0215d4b4[i * 2];
     k = data_0215d4b4[i * 2 + 1];
     c->mUnk_00[1] = ((r >> 1) * s) >> 12;
     c->mUnk_00[3] = ((r >> 1) * k) >> 12;
-    d = func_02147e28();
-    func_02147d88(-a->x, r);
+    d = DivFixed12Result();
+    DivFixed12Start(-a->x, r);
     c->mUnk_00[0] = (d * k) >> 12;
     c->mUnk_00[2] = (d * s) >> 12;
-    d = func_02147e28();
+    d = DivFixed12Result();
     c->mUnk_00[0] = c->mUnk_00[0] - ((d * s) >> 12);
     c->mUnk_00[2] = c->mUnk_00[2] + ((d * k) >> 12);
 }
@@ -320,7 +320,7 @@ s32 func_020d6f78(Vec3 *a, Vec3 *b) {
 void func_020d6f20(Vec3 *a, s32 b, Vec3 *c) {
     s32 m[9];
     s32 i = b >> 4;
-    func_02146d44(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+    Matrix3x3FromPairY(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
     Vec3MultiplyMatrix3x3(a, m, c);
 }
 
@@ -332,11 +332,11 @@ void func_020d6df0(Vec3 *a, s32 *b) {
     i = (u16) ((((s64) a->x * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
     j = (u16) ((((s64) a->y * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
     k = (u16) ((((s64) a->z * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
-    func_02146d28(b, data_0215d4b4[(i >> 4) * 2], data_0215d4b4[(i >> 4) * 2 + 1]);
-    func_02146d44(m, data_0215d4b4[(j >> 4) * 2], data_0215d4b4[(j >> 4) * 2 + 1]);
-    func_02146dfc(b, m, b);
-    func_02146d60(m, data_0215d4b4[(k >> 4) * 2], data_0215d4b4[(k >> 4) * 2 + 1]);
-    func_02146dfc(b, m, b);
+    Matrix3x3FromPairX(b, data_0215d4b4[(i >> 4) * 2], data_0215d4b4[(i >> 4) * 2 + 1]);
+    Matrix3x3FromPairY(m, data_0215d4b4[(j >> 4) * 2], data_0215d4b4[(j >> 4) * 2 + 1]);
+    Matrix3x3Multiply(b, m, b);
+    Matrix3x3FromPairZ(m, data_0215d4b4[(k >> 4) * 2], data_0215d4b4[(k >> 4) * 2 + 1]);
+    Matrix3x3Multiply(b, m, b);
 }
 
 u32 func_020d6dc0(s32 a, s32 b, s32 c, s32 d) {

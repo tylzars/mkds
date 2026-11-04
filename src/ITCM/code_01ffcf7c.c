@@ -42,7 +42,7 @@ s32 func_01ffd0e8(Vec4 *a, const Vec3 *b, const Vec3 *c) {
     s32 r;
     BOOL k = TRUE;
     Vec3Cross(b, c, &v);
-    r = func_02147e8c((Vec3Dot(b, c) + 0x1000) << 1);
+    r = SqrtFixed12((Vec3Dot(b, c) + 0x1000) << 1);
     *a = data_usa_02155194;
     if (r <= 0) {
         k = FALSE;

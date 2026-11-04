@@ -412,7 +412,7 @@ void func_ov003_021c85a0(void) {
     u32 x;
     u32 y;
     a = Div32(*(u16 *) &data_ov003_021da210, 0x1d);
-    b = 0x34 - func_02147cd8(*(u16 *) &data_ov003_021da210, 0x1d);
+    b = 0x34 - Div32Remainder(*(u16 *) &data_ov003_021da210, 0x1d);
     if (data_ov003_021da214->mUnk_34 != NULL) {
         if (a == 0) {
             x = 0x26;

@@ -39,8 +39,8 @@ s32 func_0212b0b8(void) {
     if (data_0217d408->mUnk_000c == 0) {
         return -1;
     }
-    func_02148908((u16 *) 0x400006c, 0);
-    func_02148908((u16 *) 0x400106c, 0);
+    MasterBrightWrite((u16 *) 0x400006c, 0);
+    MasterBrightWrite((u16 *) 0x400106c, 0);
     if ((u16) (data_021755dc.mUnk_00 & 1) != 0) {
         p = data_0217d408;
         if (p->mUnk_0004 != 0) {

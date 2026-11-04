@@ -13,7 +13,7 @@
 // Object of func_020ff97c: 0x144 bytes.
 typedef struct Unk020ff97c {
     /* 000 */ MapObject mUnk_00;
-    /* 0a0 */ Unk02146dfc mUnk_a0;
+    /* 0a0 */ Matrix3x3 mUnk_a0;
     /* 0c4 */ u8 mUnk_c4[0x24];
     /* 0e8 */ Vec3 mUnk_e8;
     /* 0f4 */ Vec3 mUnk_f4;

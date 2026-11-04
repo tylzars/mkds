@@ -217,8 +217,8 @@ s32 func_0212717c(s32 d) {
     func_0214c0f8(c->mData + 0xe0, 0x1c0, 0x40);
     data_0217d3f0->mUnk_2244 = c->mData[0xee];
     data_0217d3f0->mUnk_2246 = c->mData[0xdf];
-    MemFillWordsByBlock_inline((void *) func_0214a214(), 0x1000);
-    func_0212717c_inline((void *) func_0214a2f4(), data_0217d3f0->mUnk_2220[4]);
+    MemFillWordsByBlock_inline((void *) G2Bg2CntBits8To12Address(), 0x1000);
+    func_0212717c_inline((void *) G2sBg0CntBits8To12Address(), data_0217d3f0->mUnk_2220[4]);
     return d;
 }
 

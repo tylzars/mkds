@@ -318,7 +318,7 @@ void func_020e9810(void) {
     v4.y = 0;
     v4.z = 0xa4;
     func_01ff9048(0x1c, &v4, 3);
-    func_02146d60(m, data_0217b8a8[data_0217b8e8], data_0217b8a0[data_0217b8e8]);
+    Matrix3x3FromPairZ(m, data_0217b8a8[data_0217b8e8], data_0217b8a0[data_0217b8e8]);
     func_01ff9048(0x1a, m, 9);
     func_020e6a18(&data_0217ba2c);
     func_020e6854(&data_0217ba2c, NULL, 0, 0x1f);
@@ -394,7 +394,7 @@ void func_020e9658(void) {
         data_0217bab8.mUnk_00[0] = data_0217bab8.mUnk_00[2];
     }
     func_020397a8(&data_0217bab8.mUnk_00[0], &data_0217bab8.mUnk_00[1], &data_0217bab8.mUnk_00[2]);
-    func_02146d0c(&data_0217bab8, &data_0217ba58);
+    Matrix3x3Transpose(&data_0217bab8, &data_0217ba58);
     Vec3MultiplyMatrix3x3(&data_0217bab8.mUnk_00[3], (const s32 *) &data_0217ba58, &data_0217ba7c);
     data_0217ba58.mUnk_00[3].x = -data_0217ba58.mUnk_00[3].x;
     data_0217ba58.mUnk_00[3].y = -data_0217ba58.mUnk_00[3].y;

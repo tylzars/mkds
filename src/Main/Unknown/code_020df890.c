@@ -167,7 +167,7 @@ void func_020dfafc(void *a, MkdEfBubbleObject *b, void *c, s32 d) {
     func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mPos), 0xc);
     if (b->mUnk_a8 != 0) {
         n = b->mUnk_a8 >> 4;
-        func_02146d60(m, data_0215d4b4[n * 2], data_0215d4b4[n * 2 + 1]);
+        Matrix3x3FromPairZ(m, data_0215d4b4[n * 2], data_0215d4b4[n * 2 + 1]);
         func_01ff9048(0x1a, m, 9);
     }
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);

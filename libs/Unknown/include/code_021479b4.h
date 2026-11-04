@@ -3,8 +3,8 @@
 #include "types.h"
 
 // Sixteen words.
-typedef struct Unk021479b4 {
+typedef struct Matrix4x4 {
     /* 00 */ s32 mUnk_00[16];
-} Unk021479b4;
+} Matrix4x4;
 
-void func_021479b4(const s32 *a, const s32 *b, s32 *c);
+void Matrix4x4Multiply(const s32 *a, const s32 *b, s32 *c);

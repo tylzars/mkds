@@ -20,8 +20,8 @@ void func_0203907c(void) {
     data_021755a8.mUnk_04 = 0;
     data_021755a8.mUnk_06 = 0;
     data_021755a8.mUnk_08 = 0x10;
-    func_02148908((u16 *) 0x400006c, data_021755b4.mUnk_08);
-    func_02148908((u16 *) 0x400106c, data_021755a8.mUnk_08);
+    MasterBrightWrite((u16 *) 0x400006c, data_021755b4.mUnk_08);
+    MasterBrightWrite((u16 *) 0x400106c, data_021755a8.mUnk_08);
 }
 
 void func_020390f0(Unk021755a8 *a) {

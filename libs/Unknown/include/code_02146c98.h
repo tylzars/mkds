@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 *func_02146c98(s32 *a);
+u32 *Matrix2x2Identity(s32 *a);

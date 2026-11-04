@@ -347,7 +347,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
             } else {
                 k = 0x834000;
             }
-            v = func_02148714(r->mUnk_024.x - b->x, r->mUnk_024.z - b->z);
+            v = AngleFromPair(r->mUnk_024.x - b->x, r->mUnk_024.z - b->z);
             if (v >= 0 && v <= 0xaaab) {
                 n = ((u16) v >> 4) << 1;
                 a->mUnk_10.x = b->x + (s32) (((s64) data_0215d4b4[n] * 0x5dc000) >> 12);

@@ -50,7 +50,7 @@ void func_ov001_02180800(void) {
         switch (data_ov001_021a99e4->mUnk_0004) {
             case 0:
                 func_ov001_02180c6c((u32) 1);
-                func_02148934(0);
+                GxsDispCntBits0To2Write(0);
                 func_ov001_02180c40((u32) 0, (u32) 0);
                 func_ov001_02180c24((u32) 0);
                 func_ov001_02180bf8((u32) 0);
@@ -62,7 +62,7 @@ void func_ov001_02180800(void) {
             case 2:
             case 3:
                 func_ov001_02180c6c((u32) 2);
-                func_02148934(0);
+                GxsDispCntBits0To2Write(0);
                 func_ov001_02180b94((u32) 0, (u32) 0);
                 func_ov001_02180b78((u32) 0);
                 func_ov001_02180b4c((u32) 0);

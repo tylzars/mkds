@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0214a54c(void *a);
+void MemZero128WordsToOneAddress(void *a);

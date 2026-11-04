@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_0214a2a0(void);
+u32 G2sBg1CntBits8To12Address(void);

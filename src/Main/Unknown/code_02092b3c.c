@@ -87,7 +87,7 @@ static inline BOOL func_02092b5c_inline_3(Unk020919e8 *p, s32 k) {
         if (func_02092b5c_inline_4(&o->mUnk_80, &p->mUnk_00.mPos) >= 0x15f900000000LL) {
             continue;
         }
-        d = func_02148714(o->mUnk_80.x - p->mUnk_00.mPos.x, o->mUnk_80.z - p->mUnk_00.mPos.z) - k;
+        d = AngleFromPair(o->mUnk_80.x - p->mUnk_00.mPos.x, o->mUnk_80.z - p->mUnk_00.mPos.z) - k;
         if (d < -0x1f40) {
             continue;
         }

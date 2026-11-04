@@ -147,11 +147,11 @@ void func_0201261c(Unk02011624 *a, u32 b) {
         while (func_0214a7a4(mm) != 0) {
         }
         if (data_0217029c.mUnk_fc & 1) {
-            func_021471e4(func_02010e2c(), m2);
-            func_021479b4(mm, m2, mm);
+            Matrix4x3ToMatrix4x4(func_02010e2c(), m2);
+            Matrix4x4Multiply(mm, m2, mm);
         } else if (data_0217029c.mUnk_fc & 2) {
-            func_021471e4(&data_0217029c.mUnk_4c, m3);
-            func_021479b4(mm, m3, mm);
+            Matrix4x3ToMatrix4x4(&data_0217029c.mUnk_4c, m3);
+            Matrix4x4Multiply(mm, m3, mm);
         }
         p0c->x = mm[12];
         p0c->y = mm[13];
@@ -238,11 +238,11 @@ void func_020122cc(Unk02011624 *a, u32 b) {
         while (func_0214a7a4(mm) != 0) {
         }
         if (data_0217029c.mUnk_fc & 1) {
-            func_021471e4(func_02010e2c(), m2);
-            func_021479b4(mm, m2, mm);
+            Matrix4x3ToMatrix4x4(func_02010e2c(), m2);
+            Matrix4x4Multiply(mm, m2, mm);
         } else if (data_0217029c.mUnk_fc & 2) {
-            func_021471e4(&data_0217029c.mUnk_4c, m3);
-            func_021479b4(mm, m3, mm);
+            Matrix4x3ToMatrix4x4(&data_0217029c.mUnk_4c, m3);
+            Matrix4x4Multiply(mm, m3, mm);
         }
         p54->x = mm[12];
         p54->y = mm[13];
@@ -324,7 +324,7 @@ void func_02011c58(Unk02011624 *a) {
             a->mUnk_cc[k >> 5] |= 1 << (k & 0x1f);
             reg_G3_MTX_RESTORE = p[0];
             reg_G3_MTX_MODE = 1;
-            func_0214a4f8(q + k * 0x54);
+            GxFifoWrite0x19Then12Words(q + k * 0x54);
         }
         if (i != 0) {
             t.mUnk_30[0] += (v * r[0]) >> 12;
@@ -341,7 +341,7 @@ void func_02011c58(Unk02011624 *a) {
             while (func_0214a7a4(m) != 0) {
             }
             reg_G3_MTX_MODE = 2;
-            func_0214a4dc(q + k * 0x54 + 0x30);
+            GxFifoWrite0x1aThenMemCopy9Words(q + k * 0x54 + 0x30);
         }
         r = data_02171944[k];
         v = p[2] << 4;
@@ -372,9 +372,9 @@ void func_02011c58(Unk02011624 *a) {
     t.mUnk_30[6] += (v * r[6]) >> 12;
     t.mUnk_30[7] += (v * r[7]) >> 12;
     t.mUnk_30[8] += (v * r[8]) >> 12;
-    func_0214a514(t.mUnk_30);
+    GxFifoWrite0x17Then12Words(t.mUnk_30);
     reg_G3_MTX_MODE = 1;
-    func_0214a514(t.mUnk_00);
+    GxFifoWrite0x17Then12Words(t.mUnk_00);
     reg_G3_MTX_MODE = 0;
     reg_G3_MTX_RESTORE = 1;
     reg_G3_MTX_MODE = 2;
@@ -710,8 +710,8 @@ void func_02011074(void) {
     data_0217029c.mUnk_90 = 0x60293130;
     data_0217029c.mUnk_a4 = 0x33333333;
     data_0217029c.mUnk_b8 = 0x2a1b19;
-    func_021471bc(&data_0217029c.mUnk_4c);
-    func_02147954(data_0217029c.mUnk_08);
+    Matrix4x3Identity(&data_0217029c.mUnk_4c);
+    Matrix4x4Identity(data_0217029c.mUnk_08);
     data_0217029c.mUnk_80 = 0x2d8b62d8;
     data_0217029c.mUnk_84 = 0x40000200;
     data_0217029c.mUnk_88 = 0x800001ff;
@@ -727,7 +727,7 @@ void func_02011074(void) {
     data_0217029c.mUnk_bc.mUnk_00[3].x = 0;
     data_0217029c.mUnk_bc.mUnk_00[3].y = 0;
     data_0217029c.mUnk_bc.mUnk_00[3].z = 0;
-    func_02146cbc(&data_0217029c.mUnk_bc);
+    Matrix3x3Identity(&data_0217029c.mUnk_bc);
     data_0217029c.mUnk_ec.x = 0x1000;
     data_0217029c.mUnk_ec.y = 0x1000;
     data_0217029c.mUnk_ec.z = 0x1000;
@@ -791,17 +791,17 @@ void func_02010f24(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
 
 Unk02012f58 *func_02010ed4(void) {
     if (!(data_0217029c.mUnk_fc & 0x8)) {
-        func_0214755c(&data_0217029c.mUnk_4c, &data_0217029c.mUnk_100[0]);
+        Matrix4x3Invert(&data_0217029c.mUnk_4c, &data_0217029c.mUnk_100[0]);
         data_0217029c.mUnk_fc |= 0x8;
     }
     return &data_0217029c.mUnk_100[0];
 }
 
 void func_02010e70(void) {
-    func_0214733c(&data_0217029c.mUnk_bc, &data_0217029c.mUnk_4c, &data_0217029c.mUnk_100[1]);
-    func_02147914(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[1], data_0217029c.mUnk_ec.x,
-                  data_0217029c.mUnk_ec.y, data_0217029c.mUnk_ec.z);
-    func_0214755c(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[2]);
+    Matrix4x3Multiply(&data_0217029c.mUnk_bc, &data_0217029c.mUnk_4c, &data_0217029c.mUnk_100[1]);
+    Matrix4x3ScaleRowsCopyRow3(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[1], data_0217029c.mUnk_ec.x,
+                               data_0217029c.mUnk_ec.y, data_0217029c.mUnk_ec.z);
+    Matrix4x3Invert(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[2]);
 }
 
 Unk02012f58 *func_02010e2c(void) {

@@ -12,7 +12,7 @@ void func_020ceb20(void) {
         func_020ceb70(0x1e);
         func_02148950(1, 0, 0);
         func_020ceb54(0x1f);
-        func_02148934(0);
+        GxsDispCntBits0To2Write(0);
     }
     func_ov001_0219c784();
 }

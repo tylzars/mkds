@@ -164,7 +164,7 @@ void func_0203eb38(void) {
             h = data_0217561c->mUnk_000[0].mUnk_00;
             if (data_021759c0->mUnk_08 == 0) {
                 if (p->mUnk_44 > 0) {
-                    h = (u32) (h * func_02147f18(p->mUnk_44)) >> 12;
+                    h = (u32) (h * ReciprocalFixed12(p->mUnk_44)) >> 12;
                     if (h > 0x57e40) {
                         h = 0x57e40;
                     }
@@ -228,7 +228,7 @@ void func_0203ecf0(void) {
             h = data_0217561c->mUnk_000[0].mUnk_00;
             if (data_021759c0->mUnk_08 == 0) {
                 if (p->mUnk_44 > 0) {
-                    h = (u32) (h * func_02147f18(p->mUnk_44)) >> 12;
+                    h = (u32) (h * ReciprocalFixed12(p->mUnk_44)) >> 12;
                     if (h > 0x57e40) {
                         h = 0x57e40;
                     }
@@ -271,7 +271,7 @@ void func_0203ee28(void) {
             h = data_0217561c->mUnk_000[0].mUnk_00;
             if (data_021759c0->mUnk_08 == 0) {
                 if (p->mUnk_44 > 0) {
-                    h = (u32) (h * func_02147f18(p->mUnk_44)) >> 12;
+                    h = (u32) (h * ReciprocalFixed12(p->mUnk_44)) >> 12;
                     if (h > 0x57e40) {
                         h = 0x57e40;
                     }

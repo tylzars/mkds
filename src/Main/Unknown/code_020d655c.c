@@ -196,7 +196,7 @@ Unk0217b654 *func_020d6794(void) {
 
 void func_020d673c(void) {
     s32 i = (s32) (func_02061fb8() << 25 >> 16) >> 4;
-    func_02146d44(data_0217b650->mUnk_2c.mUnk_00, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+    Matrix3x3FromPairY(data_0217b650->mUnk_2c.mUnk_00, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
 }
 
 void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d) {

@@ -19,7 +19,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/unk_0217c000.h"
 
-u16 func_02148714(s32 a, s32 b);
+u16 AngleFromPair(s32 a, s32 b);
 
 static inline u16 func_0209f800_inline(u32 n) {
     Unk020f41c4_B *b;
@@ -276,5 +276,5 @@ void func_0209fdb4(void *a, Unk020a018c *p) {
             func_0209fdb4_inline(p);
             break;
     }
-    p->mUnk_00.mUnk_7e = func_02148714(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z);
+    p->mUnk_00.mUnk_7e = AngleFromPair(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z);
 }

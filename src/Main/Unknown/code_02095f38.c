@@ -337,9 +337,9 @@ void func_02096a04(void *a, CoverPooHole *p) {
         f3[2] = 0;
         func_01ff9048(0x1c, f3, 3);
         j = (e >> 4) * 2;
-        func_02146d44(m, data_0215d4b4[j], data_0215d4b4[j + 1]);
+        Matrix3x3FromPairY(m, data_0215d4b4[j], data_0215d4b4[j + 1]);
         func_01ff9048(0x1a, m, 9);
-        func_02146d60(m, v1, data_0215d4b4[k + 1]);
+        Matrix3x3FromPairZ(m, v1, data_0215d4b4[k + 1]);
         func_01ff9048(0x1a, m, 9);
     } else {
         t = p->mUnk_a0 >> 4;

@@ -302,7 +302,7 @@ void func_ov001_0218ee88(Unk02188950 *a) {
     a->mUnk_000.mPos.y = a->mUnk_000.mCourseMapRow->mUnk_00.y + a->mPrm->mUnk_080;
     a->mUnk_000.mPos.z = v.z;
     a->mMoveAngle =
-        (u16) (func_02148714(p->mUnk_80.x - a->mUnk_000.mPos.x, p->mUnk_80.z - a->mUnk_000.mPos.z) + 0x4000);
+        (u16) (AngleFromPair(p->mUnk_80.x - a->mUnk_000.mPos.x, p->mUnk_80.z - a->mUnk_000.mPos.z) + 0x4000);
     a->mAngle = a->mMoveAngle;
     func_ov001_0218ef30(a);
     func_ov001_02182a3c(0);

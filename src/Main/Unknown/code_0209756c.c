@@ -173,14 +173,14 @@ void func_020979c8(Unk020e6fd4 *a) {
                 p->mUnk_00.mFlags &= ~0x400;
                 p->mUnk_00.mUnk_7e = 0x2000;
                 p->mUnk_eb8 = 0x1e;
-                func_02146d44(m2, data_usa_02160fb4[0x74], data_usa_02160fb4[0x75]);
+                Matrix3x3FromPairY(m2, data_usa_02160fb4[0x74], data_usa_02160fb4[0x75]);
                 break;
             case 1:
                 p->mUnk_a4 = 1;
                 p->mUnk_00.mFlags |= data_usa_02156584;
                 p->mUnk_00.mUnk_7e = 0x2000;
                 p->mUnk_eb8 = 0x1e;
-                func_02146d44(m2, data_usa_0215d8b4[10], data_usa_0215d8b4[11]);
+                Matrix3x3FromPairY(m2, data_usa_0215d8b4[10], data_usa_0215d8b4[11]);
                 break;
         }
         p->mUnk_ec8 = 0;
@@ -197,20 +197,20 @@ void func_020979c8(Unk020e6fd4 *a) {
             }
             e = e - d;
             k = (u16) e >> 4;
-            func_02146d44(m1, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
+            Matrix3x3FromPairY(m1, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
             q = &p->mUnk_a8[j];
-            func_02146dfc(m1, &p->mUnk_00.mMatrix.mUnk_00[0].x, &q->mUnk_00[0].x);
-            func_02146dfc(m2, &q->mUnk_00[0].x, &p->mUnk_648[j].mUnk_00[0].x);
+            Matrix3x3Multiply(m1, &p->mUnk_00.mMatrix.mUnk_00[0].x, &q->mUnk_00[0].x);
+            Matrix3x3Multiply(m2, &q->mUnk_00[0].x, &p->mUnk_648[j].mUnk_00[0].x);
             p->mUnk_be8[j].x = p->mUnk_00.mPos.x >> 4;
             p->mUnk_be8[j].y = p->mUnk_00.mPos.y >> 4;
             p->mUnk_be8[j].z = p->mUnk_00.mPos.z >> 4;
             if (p->mUnk_a4 == 0) {
-                k = (u16) (-e + func_02148714(-2, -10)) >> 4;
+                k = (u16) (-e + AngleFromPair(-2, -10)) >> 4;
                 p->mUnk_d50[j].x = (p->mUnk_00.mPos.x + (s32) (((s64) v1 * data_0215d4b4[k * 2 + 1]) >> 12)) >> 4;
                 p->mUnk_d50[j].y = p->mUnk_00.mPos.y >> 4;
                 p->mUnk_d50[j].z = (p->mUnk_00.mPos.z + (s32) (((s64) v1 * data_0215d4b4[k * 2]) >> 12)) >> 4;
             } else {
-                k = (u16) (-e - func_02148714(-2, -10)) >> 4;
+                k = (u16) (-e - AngleFromPair(-2, -10)) >> 4;
                 p->mUnk_d50[j].x = (p->mUnk_00.mPos.x - (s32) (((s64) v1 * data_0215d4b4[k * 2 + 1]) >> 12)) >> 4;
                 p->mUnk_d50[j].y = p->mUnk_00.mPos.y >> 4;
                 p->mUnk_d50[j].z = (p->mUnk_00.mPos.z - (s32) (((s64) v1 * data_0215d4b4[k * 2]) >> 12)) >> 4;

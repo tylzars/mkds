@@ -138,7 +138,7 @@ s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c) {
         ((Unk020e516c *) a)->mUnk_000[7] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[7] * d) >> 12);
         ((Unk020e516c *) a)->mUnk_000[8] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[8] * d) >> 12);
     } else {
-        func_02146cbc((Unk02012f58 *) a);
+        Matrix3x3Identity((Unk02012f58 *) a);
     }
     ((Unk020e516c *) a)->mUnk_000[9] = s.x >> 4;
     ((Unk020e516c *) a)->mUnk_000[10] = s.y >> 4;

@@ -162,9 +162,9 @@ void func_ov003_021c39a4(void) {
 
 void func_ov003_021c3940(s32 a) {
     if (a == 1) {
-        data_ov003_021da1ac = func_02147cd8(data_ov003_021da1ac + 2, 3);
+        data_ov003_021da1ac = Div32Remainder(data_ov003_021da1ac + 2, 3);
     } else {
-        data_ov003_021da1ac = func_02147cd8(data_ov003_021da1ac + 1, 3);
+        data_ov003_021da1ac = Div32Remainder(data_ov003_021da1ac + 1, 3);
     }
     func_ov003_021cdc10(8);
     func_ov003_021bf6c8(data_ov003_021d6368[data_ov003_021da1ac * 4], data_ov003_021d636c[data_ov003_021da1ac * 4],

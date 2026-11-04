@@ -115,7 +115,7 @@ void func_02093a50(void *a, Unk02093910 *p) {
     func_01ff9048(0x14, &t, 1);
     func_01ff9048(0x19, func_020e6b58(&p->mUnk_00.mPos), 12);
     i = p->mUnk_00.mUnk_7e >> 4;
-    func_02146d44(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+    Matrix3x3FromPairY(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
     func_0209bb2c(a, gNsKiller2S, p);

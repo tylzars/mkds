@@ -178,7 +178,7 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
     tbl = data_0215d4b4;
     x = (s32) (((s64) b->mUnk_110 * tbl[k * 2] + 0x800) >> 12);
     y = (s32) (((s64) b->mUnk_110 * tbl[k * 2 + 1] + 0x800) >> 12);
-    func_02147230(buf, x, y);
+    Matrix4x3FromPairX(buf, x, y);
     buf[0] = b->mUnk_100[0];
     buf[10] = b->mUnk_100[1];
     buf[11] = b->mUnk_100[2];

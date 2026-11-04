@@ -28,8 +28,8 @@ void func_020e6df0(Unk02012f58 *p) {
     data_0217b850->mUnk_00[2].x = 0;
     data_0217b850->mUnk_00[2].y = -p->mUnk_00[1].z;
     data_0217b850->mUnk_00[2].z = p->mUnk_00[1].y;
-    func_02146d0c(p, data_0217b848);
-    func_02146dfc((const s32 *) data_0217b850, (const s32 *) data_0217b848, (s32 *) data_0217b860);
+    Matrix3x3Transpose(p, data_0217b848);
+    Matrix3x3Multiply((const s32 *) data_0217b850, (const s32 *) data_0217b848, (s32 *) data_0217b860);
     {
         Unk02012f58 *h;
         Vec3 *v;
@@ -280,7 +280,7 @@ void func_020e66e4(Unk020e6488 *p, Unk02012f58 *q, s32 r, Vec3 *v, s32 a5, u16 a
     func_01ff9048(0x19, q, 0xc);
     if (r != 0) {
         i = r >> 4;
-        func_02146d60((s32 *) *(void **) data_0217b858, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+        Matrix3x3FromPairZ((s32 *) *(void **) data_0217b858, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
         func_01ff9048(0x1a, *(void **) data_0217b858, 9);
     }
     if (v != NULL) {
@@ -315,7 +315,7 @@ void func_020e662c(void) {
     *(u32 *) &data_0217b854 = v1;
     v1 = ((u32) HeapAlloc((void *) data_021759d0->mHeap, (u32) 0x24));
     *(u32 *) &data_0217b858 = v1;
-    func_021471bc((Unk02012f58 *) (u32) data_0217b844);
+    Matrix4x3Identity((Unk02012f58 *) (u32) data_0217b844);
 }
 
 #pragma thumb off

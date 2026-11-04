@@ -135,8 +135,8 @@ void func_02095848(void *a, Unk02095544 *p) {
     func_01ff9048(0x19, &p->mUnk_00.mMatrix, 12);
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
     func_0209bb2c(a, gBakuShadow, p);
-    i = (u16) (u32) func_02148714(-p->mUnk_00.mUnk_10.y, 0xc000) >> 4;
-    func_02146d28(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+    i = (u16) (u32) AngleFromPair(-p->mUnk_00.mUnk_10.y, 0xc000) >> 4;
+    Matrix3x3FromPairX(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
     func_0209bb2c(a, gBakubaku, p);
 }

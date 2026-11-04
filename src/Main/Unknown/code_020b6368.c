@@ -74,7 +74,7 @@ u16 func_020b6368(void) {
             } else {
                 p = func_020748a8();
             }
-            a = func_02148714(p->mUnk_030[8], p->mUnk_030[2]);
+            a = AngleFromPair(p->mUnk_030[8], p->mUnk_030[2]);
             r = (0x14000 - a) % 0x10000;
             data_0217b3c0->mUnk_8c = 0;
             break;

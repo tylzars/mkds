@@ -197,8 +197,8 @@ void func_0209e508(void *a, Unk0209df84 *b) {
                 func_01ff9048(0x14, &s1, 1);
                 func_01ff9048(0x19, func_020e6cf8(&b->mUnk_c4[i][j].mUnk_00), 0xc);
                 if (b->mUnk_c4[i][j].mUnk_0e != 0) {
-                    func_02146d60(m1, data_0215d4b4[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2],
-                                  data_0215d4b4[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2 + 1]);
+                    Matrix3x3FromPairZ(m1, data_0215d4b4[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2],
+                                       data_0215d4b4[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2 + 1]);
                     func_01ff9048(0x1a, m1, 9);
                 }
                 func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
@@ -212,7 +212,7 @@ void func_0209e508(void *a, Unk0209df84 *b) {
         func_01ff9048(0x14, &s2, 1);
         func_01ff9048(0x19, func_020e6cf8(&b->mUnk_b4), 0xc);
         if (b->mUnk_c2 != 0) {
-            func_02146d60(m2, data_0215d4b4[(b->mUnk_c2 >> 4) * 2], data_0215d4b4[(b->mUnk_c2 >> 4) * 2 + 1]);
+            Matrix3x3FromPairZ(m2, data_0215d4b4[(b->mUnk_c2 >> 4) * 2], data_0215d4b4[(b->mUnk_c2 >> 4) * 2 + 1]);
             func_01ff9048(0x1a, m2, 9);
         }
         func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
@@ -236,8 +236,8 @@ void func_0209e508(void *a, Unk0209df84 *b) {
                 func_01ff9048(0x14, &s3, 1);
                 func_01ff9048(0x19, func_020e6cf8(&b->mUnk_c4[i][j].mUnk_00), 0xc);
                 if (b->mUnk_c4[i][j].mUnk_0e != 0) {
-                    func_02146d60(m3, data_0215d4b4[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2],
-                                  data_0215d4b4[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2 + 1]);
+                    Matrix3x3FromPairZ(m3, data_0215d4b4[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2],
+                                       data_0215d4b4[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2 + 1]);
                     func_01ff9048(0x1a, m3, 9);
                 }
                 func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);

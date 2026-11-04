@@ -112,7 +112,7 @@ void func_020a3948(void *p, Unk020a2fe4 *a) {
         func_01ff9048(0x19, func_020e6cf8(&a->mUnk_e8), 12);
         if (a->mUnk_00.mUnk_7e != 0) {
             i = (a->mUnk_00.mUnk_7e >> 4) * 2;
-            func_02146d60(m0, data_0215d4b4[i + 1], data_0215d4b4[i]);
+            Matrix3x3FromPairZ(m0, data_0215d4b4[i + 1], data_0215d4b4[i]);
             func_01ff9048(0x1a, m0, 9);
         }
         u = a->mUnk_e4;
@@ -159,7 +159,7 @@ void func_020a3948(void *p, Unk020a2fe4 *a) {
             e = a->mUnk_f8[i];
             func_01ff9048(0x11, NULL, 0);
             k = data_02156700[n - 1][i];
-            func_02146d60(m1, data_0215d4b4[(k >> 4) * 2 + 1], data_0215d4b4[(k >> 4) * 2]);
+            Matrix3x3FromPairZ(m1, data_0215d4b4[(k >> 4) * 2 + 1], data_0215d4b4[(k >> 4) * 2]);
             func_01ff9048(0x1a, m1, 9);
             t = e->mUnk_d0;
             if (t != 0x1000) {
@@ -269,7 +269,7 @@ void func_020a35b0(Unk020a2fe4 *a) {
     s32 w;
 
     g = func_02061808();
-    v1 = func_02148714(g->mUnk_15c.x, g->mUnk_15c.z) - 0x4000;
+    v1 = AngleFromPair(g->mUnk_15c.x, g->mUnk_15c.z) - 0x4000;
     Vec3Sub(&a->mUnk_00.mPos, &g->mUnk_024, &v);
     i = (v1 >> 4) * 2;
     s = data_0215d4b4[i];
@@ -279,7 +279,7 @@ void func_020a35b0(Unk020a2fe4 *a) {
     u = v.y;
     Vec3Sub(&a->mUnk_b0, &g->mUnk_024, &v);
     w = (s32) (((s64) v.x * s) >> 12) + (s32) (((s64) v.z * c) >> 12);
-    a->mUnk_00.mUnk_7e = func_02148714(u - v.y, -(y + x - w));
+    a->mUnk_00.mUnk_7e = AngleFromPair(u - v.y, -(y + x - w));
 }
 
 void func_020a3154(void *p, Unk020a2fe4 *a) {

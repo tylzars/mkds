@@ -285,7 +285,7 @@ void func_02049e38(s32 a) {
             func_020373ec();
         } while (func_02036d08() == 0);
     } else {
-        func_02148908((u16 *) 0x400006c, 0x10);
+        MasterBrightWrite((u16 *) 0x400006c, 0x10);
     }
 }
 

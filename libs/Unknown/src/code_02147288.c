@@ -4,21 +4,21 @@
 #include "code_0214d018.h"
 #include "Main/Unknown/code_0214d000.h"
 
-void func_02147914(const Unk02012f58 *a, Unk02012f58 *b, s32 c, s32 d, s32 e) {
-    func_021470f8(a, b, c, d, e);
+void Matrix4x3ScaleRowsCopyRow3(const Unk02012f58 *a, Unk02012f58 *b, s32 c, s32 d, s32 e) {
+    Matrix4x3ScaleFirstThreeRows(a, b, c, d, e);
     b->mUnk_00[3].x = a->mUnk_00[3].x;
     b->mUnk_00[3].y = a->mUnk_00[3].y;
     b->mUnk_00[3].z = a->mUnk_00[3].z;
 }
 
-void func_021478f0(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
-    func_02146f98(a, b, c, d);
+void Matrix4x3FromVec3AndPair(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
+    Matrix4x3FirstThreeRowsFromVec3AndPair(a, b, c, d);
     a->mUnk_00[3].x = 0;
     a->mUnk_00[3].y = 0;
     a->mUnk_00[3].z = 0;
 }
 
-s32 func_0214755c(const Unk02012f58 *a, Unk02012f58 *b) {
+s32 Matrix4x3Invert(const Unk02012f58 *a, Unk02012f58 *b) {
     Unk02012f58 buf;
     Unk02012f58 *p;
     s64 c0;
@@ -51,12 +51,12 @@ s32 func_0214755c(const Unk02012f58 *a, Unk02012f58 *b) {
     if (n == 0) {
         return -1;
     }
-    func_02147dec(n);
+    ReciprocalFixed12Start(n);
     d0 = ((s64) a->mUnk_00[0].y * a->mUnk_00[2].z - (s64) a->mUnk_00[2].y * a->mUnk_00[0].z) >> 12;
     d1 = ((s64) a->mUnk_00[0].y * a->mUnk_00[1].z - (s64) a->mUnk_00[1].y * a->mUnk_00[0].z) >> 12;
     d2 = ((s64) a->mUnk_00[0].x * a->mUnk_00[2].z - (s64) a->mUnk_00[2].x * a->mUnk_00[0].z) >> 12;
     d3 = ((s64) a->mUnk_00[0].x * a->mUnk_00[1].z - (s64) a->mUnk_00[1].x * a->mUnk_00[0].z) >> 12;
-    k = func_02147e28();
+    k = DivFixed12Result();
     p->mUnk_00[0].x = ((s64) k * c0) >> 12;
     p->mUnk_00[0].y = -(s32) (((s64) k * d0) >> 12);
     p->mUnk_00[0].z = ((s64) k * d1) >> 12;
@@ -83,7 +83,7 @@ s32 func_0214755c(const Unk02012f58 *a, Unk02012f58 *b) {
     return 0;
 }
 
-void func_0214733c(const Unk02012f58 *a, const Unk02012f58 *b, Unk02012f58 *c) {
+void Matrix4x3Multiply(const Unk02012f58 *a, const Unk02012f58 *b, Unk02012f58 *c) {
     Unk02012f58 buf;
     Unk02012f58 *p;
     s32 x0, x1, x2;

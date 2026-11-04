@@ -1,7 +1,7 @@
 #include "code_021479b4.h"
 
-void func_021479b4(const s32 *a, const s32 *b, s32 *c) {
-    Unk021479b4 buf;
+void Matrix4x4Multiply(const s32 *a, const s32 *b, s32 *c) {
+    Matrix4x4 buf;
     s32 *p;
     s32 x0;
     s32 x1;
@@ -61,6 +61,6 @@ void func_021479b4(const s32 *a, const s32 *b, s32 *c) {
     p[12] = (s32) (((s64) x0 * b[0] + (s64) x1 * b[4] + (s64) x2 * b[8] + (s64) x3 * b[12]) >> 12);
     p[15] = (s32) (((s64) x0 * b[3] + (s64) x1 * b[7] + (s64) x2 * b[11] + (s64) x3 * b[15]) >> 12);
     if (p == buf.mUnk_00) {
-        *(Unk021479b4 *) c = buf;
+        *(Matrix4x4 *) c = buf;
     }
 }

@@ -14,7 +14,7 @@ void func_ov003_021c5994(u32 param_0) {
     func_ov003_021cce38();
     func_ov003_021bf698();
     *(u16 *) &data_ov003_021da1f0 = *(u16 *) &data_ov003_021da1f0 + 4;
-    a = func_02147cd8(*(u16 *) &data_ov003_021da1f0, 0x1c);
+    a = Div32Remainder(*(u16 *) &data_ov003_021da1f0, 0x1c);
     if (a >= 4) {
         func_ov003_021c5aa4();
         return;
@@ -38,7 +38,7 @@ void func_ov003_021c5a0c(u32 param_0) {
     } else {
         *(u16 *) &data_ov003_021da1f0 = 0;
     }
-    a = func_02147cd8(*(u16 *) &data_ov003_021da1f0, 0x1c);
+    a = Div32Remainder(*(u16 *) &data_ov003_021da1f0, 0x1c);
     if (a == 0x18) {
         func_ov003_021c5c68();
         return;
@@ -62,7 +62,7 @@ void func_ov003_021c5aa4(void) {
     int a;
     int b;
     int i;
-    a = 0x36 - func_02147cd8(*(u16 *) &data_ov003_021da1f0, 0x1c);
+    a = 0x36 - Div32Remainder(*(u16 *) &data_ov003_021da1f0, 0x1c);
     b = data_ov003_021da1f4->mUnk_51;
     if (b > 5) {
         b = 5;

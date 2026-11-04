@@ -383,7 +383,7 @@ void func_020b503c(Unk020b503c *p, s32 scale) {
         func_020b5290();
     }
     data_0217b3c0->mUnk_18 = func_020b5250(DivFixed12(0xb0000, scale));
-    scale = func_02147f18(scale);
+    scale = ReciprocalFixed12(scale);
     a = func_020b502c(data_0217b3c0->mUnk_1c, scale);
     b = func_020b502c(data_0217b3c0->mUnk_1e, scale);
     if (func_020b523c() != 0) {

@@ -73,7 +73,7 @@ void func_0201c09c(Unk020184e4 *p, Unk0201e3c8 *n) {
         m.mUnk_00[3].y = t.y;
         m.mUnk_00[3].z = t.z;
         reg_G3_MTX_IDENTITY = 0;
-        func_0214a4f8(&m);
+        GxFifoWrite0x19Then12Words(&m);
     } else {
         t.x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         t.y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -100,7 +100,7 @@ void func_0201c09c(Unk020184e4 *p, Unk0201e3c8 *n) {
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        func_0214a4f8(&m);
+        GxFifoWrite0x19Then12Words(&m);
     }
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                           ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
@@ -166,7 +166,7 @@ void func_0201bc48(Unk020184e4 *p, Unk0201e3c8 *n) {
         m.mUnk_00[3].y = t.y;
         m.mUnk_00[3].z = t.z;
         reg_G3_MTX_IDENTITY = 0;
-        func_0214a4f8(&m);
+        GxFifoWrite0x19Then12Words(&m);
     } else {
         t.x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         t.y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -193,7 +193,7 @@ void func_0201bc48(Unk020184e4 *p, Unk0201e3c8 *n) {
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        func_0214a4f8(&m);
+        GxFifoWrite0x19Then12Words(&m);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
@@ -204,7 +204,7 @@ void func_0201bc48(Unk020184e4 *p, Unk0201e3c8 *n) {
 
 // non-matching: same size; the callee-saved registers rotate: the original keeps w in r4, h in r5, e in r6 and
 // p in r7, this compiles to h r4, e r5, p r6, w r7 (m r8 and r0-r3, ip, lr in the switch agree), and the
-// products and stores before each func_0214a4f8 call are scheduled in a different order.
+// products and stores before each GxFifoWrite0x19Then12Words call are scheduled in a different order.
 void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
     Vec3 c;
     Vec3 pos;
@@ -286,7 +286,7 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
         buf[10] = pos.y;
         buf[11] = pos.z;
         reg_G3_MTX_IDENTITY = 0;
-        func_0214a4f8(buf);
+        GxFifoWrite0x19Then12Words(buf);
     } else {
         pos.x = e->mUnk_08.x + e->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         pos.y = e->mUnk_08.y + e->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -331,7 +331,7 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
         reg_G3_MTX_TRANS = i;
         reg_G3_MTX_TRANS = j;
         reg_G3_MTX_TRANS = n;
-        func_0214a4f8(buf);
+        GxFifoWrite0x19Then12Words(buf);
     }
     q = e->mUnk_36;
     k = p->mUnk_40->mUnk_72;
@@ -343,7 +343,7 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
 
 // non-matching: same size; the callee-saved registers rotate: the original keeps w in r4, h in r5, e in r6 and
 // p in r7, this compiles to h r4, e r5, p r6, w r7 (m r8 and r0-r3, ip, lr in the switch agree), and the
-// products and stores before each func_0214a4f8 call are scheduled in a different order.
+// products and stores before each GxFifoWrite0x19Then12Words call are scheduled in a different order.
 void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
     Vec3 c;
     Vec3 pos;
@@ -425,7 +425,7 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
         buf[10] = pos.y;
         buf[11] = pos.z;
         reg_G3_MTX_IDENTITY = 0;
-        func_0214a4f8(buf);
+        GxFifoWrite0x19Then12Words(buf);
     } else {
         pos.x = e->mUnk_08.x + e->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         pos.y = e->mUnk_08.y + e->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -470,7 +470,7 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
         reg_G3_MTX_TRANS = i;
         reg_G3_MTX_TRANS = j;
         reg_G3_MTX_TRANS = n;
-        func_0214a4f8(buf);
+        GxFifoWrite0x19Then12Words(buf);
     }
     q = e->mUnk_36;
     k = p->mUnk_40->mUnk_72;
@@ -514,14 +514,14 @@ void func_0201ab30(Unk020184e4 *p, Unk0201e3c8 *n) {
             f1 = ((s64) f1 * n->mUnk_34 + 0x800) >> 12;
             break;
     }
-    func_02147218(&c, f0, f1, f1);
-    func_0214733c(&c, &b, &a);
+    Matrix4x3FromDiagonal(&c, f0, f1, f1);
+    Matrix4x3Multiply(&c, &b, &a);
     if (p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y;
         a.mUnk_00[3].z = n->mUnk_08.z + n->mUnk_38.z;
-        func_0214a514(p->mUnk_44);
-        func_0214a4f8(&a);
+        GxFifoWrite0x17Then12Words(p->mUnk_44);
+        GxFifoWrite0x19Then12Words(&a);
     } else {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -533,8 +533,8 @@ void func_0201ab30(Unk020184e4 *p, Unk0201e3c8 *n) {
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        func_0214a4f8(p->mUnk_44);
-        func_0214a4f8(&a);
+        GxFifoWrite0x19Then12Words(p->mUnk_44);
+        GxFifoWrite0x19Then12Words(&a);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
@@ -580,14 +580,14 @@ void func_0201a7e0(Unk020184e4 *p, Unk0201e3c8 *n) {
             f1 = ((s64) f1 * n->mUnk_34 + 0x800) >> 12;
             break;
     }
-    func_02147218(&c, f0, f1, f1);
-    func_0214733c(&b, &c, &a);
+    Matrix4x3FromDiagonal(&c, f0, f1, f1);
+    Matrix4x3Multiply(&b, &c, &a);
     if (p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y;
         a.mUnk_00[3].z = n->mUnk_08.z + n->mUnk_38.z;
-        func_0214a514(p->mUnk_44);
-        func_0214a4f8(&a);
+        GxFifoWrite0x17Then12Words(p->mUnk_44);
+        GxFifoWrite0x19Then12Words(&a);
     } else {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -599,8 +599,8 @@ void func_0201a7e0(Unk020184e4 *p, Unk0201e3c8 *n) {
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        func_0214a4f8(p->mUnk_44);
-        func_0214a4f8(&a);
+        GxFifoWrite0x19Then12Words(p->mUnk_44);
+        GxFifoWrite0x19Then12Words(&a);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
@@ -636,7 +636,7 @@ void func_0201a364(Unk020184e4 *p, Unk0201e3c8 *n) {
     }
     data_02161ac8[p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_17](data_0215d4b4[(n->mUnk_20 >> 4) * 2],
                                                                     data_0215d4b4[(n->mUnk_20 >> 4) * 2 + 1], &b);
-    func_021471bc(&d);
+    Matrix4x3Identity(&d);
     if (p->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_31 == 0) {
         Vec3Normalize(&n->mUnk_14, &v);
     } else {
@@ -665,7 +665,7 @@ void func_0201a364(Unk020184e4 *p, Unk0201e3c8 *n) {
     d.mUnk_00[2].x = w.x;
     d.mUnk_00[2].y = w.y;
     d.mUnk_00[2].z = w.z;
-    func_0214733c(&b, &d, &b);
+    Matrix4x3Multiply(&b, &d, &b);
     f1 = n->mUnk_30;
     f0 = ((s64) f1 * p->mUnk_40->mUnk_20->mUnk_00->mUnk_30 + 0x800) >> 12;
     switch (p->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
@@ -680,14 +680,14 @@ void func_0201a364(Unk020184e4 *p, Unk0201e3c8 *n) {
             f1 = ((s64) f1 * n->mUnk_34 + 0x800) >> 12;
             break;
     }
-    func_02147218(&c, f0, f1, f1);
-    func_0214733c(&c, &b, &a);
+    Matrix4x3FromDiagonal(&c, f0, f1, f1);
+    Matrix4x3Multiply(&c, &b, &a);
     if (p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y;
         a.mUnk_00[3].z = n->mUnk_08.z + n->mUnk_38.z;
-        func_0214a514(p->mUnk_44);
-        func_0214a4f8(&a);
+        GxFifoWrite0x17Then12Words(p->mUnk_44);
+        GxFifoWrite0x19Then12Words(&a);
     } else {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -699,8 +699,8 @@ void func_0201a364(Unk020184e4 *p, Unk0201e3c8 *n) {
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        func_0214a4f8(p->mUnk_44);
-        func_0214a4f8(&a);
+        GxFifoWrite0x19Then12Words(p->mUnk_44);
+        GxFifoWrite0x19Then12Words(&a);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
@@ -738,7 +738,7 @@ void func_02019ee4(Unk020184e4 *p, Unk0201e3c8 *n) {
     }
     data_02161ac8[p->mUnk_40->mUnk_20->mUnk_14->mUnk_00_9](data_0215d4b4[(n->mUnk_20 >> 4) * 2],
                                                            data_0215d4b4[(n->mUnk_20 >> 4) * 2 + 1], &b);
-    func_021471bc(&d);
+    Matrix4x3Identity(&d);
     if (p->mUnk_40->mUnk_20->mUnk_14->mUnk_10.mUnk_00_6 == 0) {
         Vec3Normalize(&n->mUnk_14, &v);
     } else {
@@ -767,7 +767,7 @@ void func_02019ee4(Unk020184e4 *p, Unk0201e3c8 *n) {
     d.mUnk_00[2].x = w.x;
     d.mUnk_00[2].y = w.y;
     d.mUnk_00[2].z = w.z;
-    func_0214733c(&b, &d, &b);
+    Matrix4x3Multiply(&b, &d, &b);
     f1 = n->mUnk_30;
     f0 = ((s64) f1 * p->mUnk_40->mUnk_20->mUnk_00->mUnk_30 + 0x800) >> 12;
     switch (p->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
@@ -782,14 +782,14 @@ void func_02019ee4(Unk020184e4 *p, Unk0201e3c8 *n) {
             f1 = ((s64) f1 * n->mUnk_34 + 0x800) >> 12;
             break;
     }
-    func_02147218(&c, f0, f1, f1);
-    func_0214733c(&b, &c, &a);
+    Matrix4x3FromDiagonal(&c, f0, f1, f1);
+    Matrix4x3Multiply(&b, &c, &a);
     if (p->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y;
         a.mUnk_00[3].z = n->mUnk_08.z + n->mUnk_38.z;
-        func_0214a514(p->mUnk_44);
-        func_0214a4f8(&a);
+        GxFifoWrite0x17Then12Words(p->mUnk_44);
+        GxFifoWrite0x19Then12Words(&a);
     } else {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -801,8 +801,8 @@ void func_02019ee4(Unk020184e4 *p, Unk0201e3c8 *n) {
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        func_0214a4f8(p->mUnk_44);
-        func_0214a4f8(&a);
+        GxFifoWrite0x19Then12Words(p->mUnk_44);
+        GxFifoWrite0x19Then12Words(&a);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
@@ -1142,14 +1142,14 @@ void func_02018f94(Unk0201ca6c *a, Vec3 *b, Vec3 *c) {
     a->mUnk_28.x = (c->x + b->x) / 2;
     a->mUnk_28.y = (c->y + b->y) / 2;
     a->mUnk_28.z = (c->z + b->z) / 2;
-    a->mUnk_60 = func_02147f50(b, c) / 2;
+    a->mUnk_60 = Vec3Distance(b, c) / 2;
     v.x = c->x - b->x;
     v.y = c->y - b->y;
     v.z = c->z - b->z;
     Vec3Normalize(&v, &v);
-    a->mUnk_50.mUnk_00 = v.x;
-    a->mUnk_50.mUnk_02 = v.y;
-    a->mUnk_50.mUnk_04 = v.z;
+    a->mUnk_50.x = v.x;
+    a->mUnk_50.y = v.y;
+    a->mUnk_50.z = v.z;
 }
 
 u32 func_02018f5c(s32 a, s32 b) {

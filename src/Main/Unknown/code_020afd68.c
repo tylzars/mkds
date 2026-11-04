@@ -74,7 +74,7 @@ void func_020b18b0(void) {
     } else {
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1400;
     }
-    func_02148934(5);
+    GxsDispCntBits0To2Write(5);
     reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 2;
     reg_G2S_DB_BG2CNT &= ~0x40;
     reg_G2S_DB_BG3CNT &= ~0x40;
@@ -86,7 +86,7 @@ void func_020b18b0(void) {
 
 void func_020b17a4(void) {
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1e00;
-    func_02148934(0);
+    GxsDispCntBits0To2Write(0);
     reg_G2S_DB_BG1OFS = 0;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT &= ~0x40;
@@ -166,7 +166,7 @@ void func_020b0b8c(void) {
         switch (data_0217b350->mUnk_828) {
             case 0:
                 reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
-                func_02148934(0);
+                GxsDispCntBits0To2Write(0);
                 reg_G2S_DB_BG2OFS = 0;
                 reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 2;
                 reg_G2S_DB_BG2CNT &= ~0x40;
@@ -274,7 +274,7 @@ void func_020b0b8c(void) {
         case 6:
             if (data_0217b350->mUnk_834 != 0) {
                 reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1200;
-                func_02148934(0);
+                GxsDispCntBits0To2Write(0);
                 reg_G2S_DB_BG1OFS = 0;
                 reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
                 reg_G2S_DB_BG1CNT &= ~0x40;
@@ -566,9 +566,9 @@ void InitMap2D(void) {
             nscrs[1]->mData[i] = (u16) (nscrs[1]->mData[i] & 0xfc00) | (r + ((k + 6) << 5));
         }
         func_0200eddc();
-        func_02148934(5);
+        GxsDispCntBits0To2Write(5);
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
-        func_02148934(0);
+        GxsDispCntBits0To2Write(0);
         reg_G2S_DB_BG2OFS = 0;
         reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 2;
         reg_G2S_DB_BG2CNT = reg_G2S_DB_BG2CNT & ~0x40;

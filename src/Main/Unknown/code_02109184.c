@@ -351,7 +351,7 @@ s32 func_0210920c(Unk0210bcf4 *p) {
     u32 a;
     s32 v;
 
-    a = func_02148714(p->mUnk_08 << 12, -p->mUnk_0c << 12);
+    a = AngleFromPair(p->mUnk_08 << 12, -p->mUnk_0c << 12);
     if (a > 0x7fff) {
         a = (u16) (0xffff - a);
     }

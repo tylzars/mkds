@@ -3,7 +3,7 @@
 #include "types.h"
 #include "code_0201c528.h"
 
-typedef struct Unk02148038 Unk02148038;
+typedef struct Vec3s16 Vec3s16;
 typedef struct Unk0206bcb0 Unk0206bcb0;
 
 // 0x88 bytes, from the table behind data_0217b078. The pointer pairs at 0x00 to 0x28 hold objects returned by
@@ -38,7 +38,7 @@ typedef struct Unk0208c5b8 {
     /* 78 */ void (*mUnk_78)(struct Unk0208c5b8 *);
     /* 7c */ void (*mUnk_7c)(struct Unk0208c5b8 *);
     /* 80 */ void (*mUnk_80)(struct Unk0208c5b8 *);
-    /* 84 */ void (*mUnk_84)(struct Unk0208c5b8 *, Unk02148038 *, Vec3 *);
+    /* 84 */ void (*mUnk_84)(struct Unk0208c5b8 *, Vec3s16 *, Vec3 *);
 } Unk0208c5b8;
 
 extern const Vec3 data_02155fcc;
@@ -46,9 +46,9 @@ extern const Vec3 data_02155fcc;
 void func_0208c534(Unk0208c5b8 *p);
 Unk0208c5b8 *func_0208c5b8(int v1);
 void func_0208c5d0(Unk0208c5b8 *p);
-void func_0208c6dc(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b);
+void func_0208c6dc(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b);
 void func_0208c884(Unk0208c5b8 *p, int v1);
-void func_0208c930(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b);
+void func_0208c930(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b);
 void func_0208cacc(Unk0208c5b8 *p, int v1);
 void func_0208cb8c(Unk0208c5b8 *p, Unk0206bcb0 *q);
 void func_0208ccf0(Unk0208c5b8 *p);
@@ -58,8 +58,8 @@ void func_0208cddc(Unk0208c5b8 *p);
 void func_0208ceac(Unk0208c5b8 *p);
 void func_0208cefc(Unk0208c5b8 *p);
 void func_0208cf5c(Unk0208c5b8 *p);
-void func_0208d02c(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b);
-void func_0208d0dc(Unk0208c5b8 *p, Unk02148038 *a, Vec3 *b);
+void func_0208d02c(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b);
+void func_0208d0dc(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b);
 void func_0208d1ec(Unk0208c5b8 *p);
 void func_0208d234(Unk0208c5b8 *p);
 void func_0208d298(Unk0208c5b8 *p);

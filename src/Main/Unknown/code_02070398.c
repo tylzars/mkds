@@ -405,7 +405,7 @@ void func_020708a4(Unk0206bcb0 *p) {
     b.y = gCourseMap->mUnk_34[*gCourseMap->mUnk_fc].mUnk_0c.y;
     b.z = gCourseMap->mUnk_34[*gCourseMap->mUnk_fc].mUnk_0c.z;
     k = (u16) (((s64) b.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >> 4;
-    func_02146d44(m1, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
+    Matrix3x3FromPairY(m1, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m1, &e);
     func_021035ac(p->mIndex);
 
@@ -511,8 +511,8 @@ void func_020708a4(Unk0206bcb0 *p) {
                 p->mUnk_234 = -5000;
             }
         }
-        func_02146f98(&m2, &p->mUnk_120, data_0215d4b4[((u16) p->mUnk_234 >> 4) * 2],
-                      data_0215d4b4[((u16) p->mUnk_234 >> 4) * 2 + 1]);
+        Matrix4x3FirstThreeRowsFromVec3AndPair(&m2, &p->mUnk_120, data_0215d4b4[((u16) p->mUnk_234 >> 4) * 2],
+                                               data_0215d4b4[((u16) p->mUnk_234 >> 4) * 2 + 1]);
         Vec3MultiplyMatrix3x3(&n, &m2.mUnk_00[0].x, &n);
         p->mUnk_244 = n;
         func_01ff9f60(p, &n);
@@ -552,7 +552,7 @@ void func_020705fc(Unk0206bcb0 *p, u32 b) {
     a.z = gCourseMap->mUnk_34[i].mUnk_00.z;
     k = (u16) (((s64) gCourseMap->mUnk_34[gCourseMap->mUnk_fc[b]].mUnk_0c.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >>
         4;
-    func_02146d44(m, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
+    Matrix3x3FromPairY(m, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m, &e);
     if (data_021759c0->mUnk_08 == 2) {
         Vec3Sub(&a, &p->mUnk_80, &v);
@@ -609,9 +609,9 @@ void func_02070484(Unk0206bcb0 *p, Vec4 *q) {
     p->mUnk_234 = p->mUnk_234 + p->mUnk_3e8;
     k = p->mUnk_236;
     t = (u16) p->mUnk_234;
-    func_02147250(&m1, data_0215d4b4[(k >> 4) * 2], data_0215d4b4[(k >> 4) * 2 + 1]);
+    Matrix4x3FromPairY(&m1, data_0215d4b4[(k >> 4) * 2], data_0215d4b4[(k >> 4) * 2 + 1]);
     Vec3MultiplyMatrix4x3(&data_02154f88, &m1, &v1);
-    func_021478f0(&m2, &v1, data_0215d4b4[(t >> 4) * 2], data_0215d4b4[(t >> 4) * 2 + 1]);
+    Matrix4x3FromVec3AndPair(&m2, &v1, data_0215d4b4[(t >> 4) * 2], data_0215d4b4[(t >> 4) * 2 + 1]);
     Vec3MultiplyMatrix4x3(&data_02154f7c, &m2, &v2);
     func_01ffd0e8(q, &data_02154f7c, &v2);
     if (p->mUnk_48 & 0x80000000) {

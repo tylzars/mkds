@@ -61,10 +61,10 @@ void func_020a23cc(void) {
     v2[2] = -0x2000;
     func_01ff9048(0x1c, v2, 3);
     v4 = data_0217b200->mUnk_008.mUnk_04;
-    func_02146d28(m1, data_0215d6b4[0x76], data_0215d6b4[0x77]);
-    func_02146d44(m2, data_0215d4b4[(data_0217b200->mUnk_004 >> 4) * 2],
-                  data_0215d4b4[(data_0217b200->mUnk_004 >> 4) * 2 + 1]);
-    func_02146d60(m3, data_0215d4b4[(v4 >> 4) * 2], data_0215d4b4[(v4 >> 4) * 2 + 1]);
+    Matrix3x3FromPairX(m1, data_0215d6b4[0x76], data_0215d6b4[0x77]);
+    Matrix3x3FromPairY(m2, data_0215d4b4[(data_0217b200->mUnk_004 >> 4) * 2],
+                       data_0215d4b4[(data_0217b200->mUnk_004 >> 4) * 2 + 1]);
+    Matrix3x3FromPairZ(m3, data_0215d4b4[(v4 >> 4) * 2], data_0215d4b4[(v4 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, m1, 9);
     func_01ff9048(0x1a, m2, 9);
     func_01ff9048(0x1a, m3, 9);
@@ -244,7 +244,7 @@ void func_020a29cc(void) {
         p->mUnk_14 = 0;
         p->mUnk_18 = 0x36;
         p->mUnk_1c = 0;
-        func_021471bc(&data_0217b200->mUnk_0cc);
+        Matrix4x3Identity(&data_0217b200->mUnk_0cc);
         if (data_0217b200->mUnk_002 == 0) {
             data_0217b200->mUnk_118->mUnk_5c = data_0217b200->mUnk_114;
             data_0217b200->mUnk_118->mUnk_28.x =

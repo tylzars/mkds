@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0214a5e0(u32 arg0);
+void G2Bg0OfsWrite(u32 arg0);

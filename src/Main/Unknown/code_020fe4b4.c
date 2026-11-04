@@ -68,7 +68,7 @@ void func_020ff1d8(void) {
         return;
     }
     v = data_0216c734;
-    func_02146f98(&data_0217c600, &v, 0xb50, 0xb50);
+    Matrix4x3FirstThreeRowsFromVec3AndPair(&data_0217c600, &v, 0xb50, 0xb50);
     p = &data_027e00cc[7];
     e = p->mUnk_04;
     n = p->mUnk_08;

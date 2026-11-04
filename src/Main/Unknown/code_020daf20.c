@@ -194,9 +194,9 @@ void func_020dbdac(void *a, Dossun *p, void *c, s32 d) {
     q = &p->mUnk_00.mMatrix;
     if (p->mUnk_b4 != 0) {
         q = &data_0217b69c;
-        func_02146d44((s32 *) &data_0217b69c, data_0215d4b4[((u16) p->mUnk_ba >> 4) * 2],
-                      data_0215d4b4[((u16) p->mUnk_ba >> 4) * 2 + 1]);
-        func_02146dfc((const s32 *) &data_0217b69c, (const s32 *) &p->mUnk_00.mMatrix, (s32 *) &data_0217b69c);
+        Matrix3x3FromPairY((s32 *) &data_0217b69c, data_0215d4b4[((u16) p->mUnk_ba >> 4) * 2],
+                           data_0215d4b4[((u16) p->mUnk_ba >> 4) * 2 + 1]);
+        Matrix3x3Multiply((const s32 *) &data_0217b69c, (const s32 *) &p->mUnk_00.mMatrix, (s32 *) &data_0217b69c);
     }
     q->mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     q->mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;

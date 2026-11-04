@@ -1,6 +1,6 @@
 #include "code_02146d78.h"
 
-void func_021470f8(const Unk02012f58 *a, Unk02012f58 *b, s32 c, s32 d, s32 e) {
+void Matrix4x3ScaleFirstThreeRows(const Unk02012f58 *a, Unk02012f58 *b, s32 c, s32 d, s32 e) {
     b->mUnk_00[0].x = (s32) (((s64) c * a->mUnk_00[0].x) >> 12);
     b->mUnk_00[0].y = (s32) (((s64) c * a->mUnk_00[0].y) >> 12);
     b->mUnk_00[0].z = (s32) (((s64) c * a->mUnk_00[0].z) >> 12);
@@ -12,7 +12,7 @@ void func_021470f8(const Unk02012f58 *a, Unk02012f58 *b, s32 c, s32 d, s32 e) {
     b->mUnk_00[2].z = (s32) (((s64) e * a->mUnk_00[2].z) >> 12);
 }
 
-void func_02146f98(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
+void Matrix4x3FirstThreeRowsFromVec3AndPair(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
     s32 x;
     s32 y;
     s32 z;
@@ -57,8 +57,8 @@ void func_02146f98(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d) {
     a->mUnk_00[2].y = yz - sx;
 }
 
-void func_02146dfc(const s32 *a, const s32 *b, s32 *c) {
-    Unk02146dfc buf;
+void Matrix3x3Multiply(const s32 *a, const s32 *b, s32 *c) {
+    Matrix3x3 buf;
     s32 *p;
     s32 x0;
     s32 x1;
@@ -96,7 +96,7 @@ void func_02146dfc(const s32 *a, const s32 *b, s32 *c) {
     p[7] = (s32) (((s64) x0 * b[1] + (s64) x1 * b[4] + (s64) x2 * b[7]) >> 12);
     p[8] = (s32) (((s64) x0 * b[2] + (s64) x1 * b[5] + (s64) x2 * b[8]) >> 12);
     if (p == buf.mUnk_00) {
-        *(Unk02146dfc *) c = buf;
+        *(Matrix3x3 *) c = buf;
     }
 }
 

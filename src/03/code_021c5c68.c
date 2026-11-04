@@ -197,7 +197,7 @@ void func_ov003_021c5f9c(void) {
                 Div32(data_ov003_021da1f4->mUnk_40 * func_ov003_021cce6c(), data_ov003_021da1f4->mUnk_53);
             func_ov003_021cdc10(0x13);
             func_ov003_021c5c68();
-            a = func_02147cd8(*(u16 *) &data_ov003_021da1f0, 0x1c);
+            a = Div32Remainder(*(u16 *) &data_ov003_021da1f0, 0x1c);
             if (a == 0) {
                 func_ov003_021c590c();
             } else if (a < 0xe) {

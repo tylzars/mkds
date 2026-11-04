@@ -58,7 +58,7 @@ void func_02077c1c(void) {
     Unk0217ad08_058 *e;
     Unk0217ad08_058_08 *r;
 
-    func_0214a5e0(data_0217ad08->mUnk_024.mUnk_2c);
+    G2Bg0OfsWrite(data_0217ad08->mUnk_024.mUnk_2c);
     if (data_0217aa0c->mUnk_f8 == 0) {
         p = &data_0217ad08->mUnk_1f4[data_0217ad08->mUnk_266];
         if (p->mUnk_2c != 0) {

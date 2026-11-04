@@ -23,7 +23,7 @@ void func_02077f0c(u16 *a, int b, u32 c) {
     if (v3 < 0) {
         v3 = 0xffff - v3;
     }
-    v2 = func_021488e8(v3, c);
+    v2 = MulFixed12(v3, c);
     *a = *a + v2;
     if (((*a + 100) - b) < 0) {
         *a = (u16) (*a + 100);

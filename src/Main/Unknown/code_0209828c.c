@@ -289,11 +289,13 @@ void func_02098b68(void *a, Pakkun *p) {
     f[2] = 0;
     func_01ff9048(0x1c, f, 3);
     if (p->mUnk_1dc != 0) {
-        func_02146d44(m, data_0215d4b4[((u16) p->mUnk_1dc >> 4) * 2], data_0215d4b4[((u16) p->mUnk_1dc >> 4) * 2 + 1]);
+        Matrix3x3FromPairY(m, data_0215d4b4[((u16) p->mUnk_1dc >> 4) * 2],
+                           data_0215d4b4[((u16) p->mUnk_1dc >> 4) * 2 + 1]);
         func_01ff9048(0x1a, m, 9);
     }
     if (p->mUnk_1e0 != 0) {
-        func_02146d28(n, data_0215d4b4[((u16) p->mUnk_1e0 >> 4) * 2], data_0215d4b4[((u16) p->mUnk_1e0 >> 4) * 2 + 1]);
+        Matrix3x3FromPairX(n, data_0215d4b4[((u16) p->mUnk_1e0 >> 4) * 2],
+                           data_0215d4b4[((u16) p->mUnk_1e0 >> 4) * 2 + 1]);
         func_01ff9048(0x1a, n, 9);
     }
     t = p->mUnk_1f0;
@@ -349,7 +351,7 @@ void func_02098d4c(Pakkun *p) {
         if (v >= 0) {
             func_020d7db4(&p->mUnk_0b8[p->mUnk_1ba], (u16) v, 100);
             func_020d8918(&p->mUnk_0b8[p->mUnk_1ba], &a, &b);
-            d = func_02148714(b.x, b.z) - p->mUnk_1d8;
+            d = AngleFromPair(b.x, b.z) - p->mUnk_1d8;
             if (d > 0x8000) {
                 d -= 0x10000;
             }

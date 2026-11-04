@@ -32,19 +32,19 @@ void func_020b65f0(void) {
     func_020b6b54(&a, &b);
     data_0217b3c0->mUnk_2c = a;
     data_0217b3c0->mUnk_34 = b;
-    data_0217b3c0->mUnk_3c = func_02147edc(b.mUnk_00 - a.mUnk_00);
-    data_0217b3c0->mUnk_44 = func_02147edc(b.mUnk_04 - a.mUnk_04);
+    data_0217b3c0->mUnk_3c = ReciprocalFixed12Raw(b.mUnk_00 - a.mUnk_00);
+    data_0217b3c0->mUnk_44 = ReciprocalFixed12Raw(b.mUnk_04 - a.mUnk_04);
     func_020b6a98(&c, &d);
     data_0217b3c0->mUnk_4c = c;
     data_0217b3c0->mUnk_54 = d;
-    data_0217b3c0->mUnk_5c = func_02147edc(d.mUnk_00 - c.mUnk_00);
-    data_0217b3c0->mUnk_64 = func_02147edc(d.mUnk_04 - c.mUnk_04);
+    data_0217b3c0->mUnk_5c = ReciprocalFixed12Raw(d.mUnk_00 - c.mUnk_00);
+    data_0217b3c0->mUnk_64 = ReciprocalFixed12Raw(d.mUnk_04 - c.mUnk_04);
     data_0217b3c0->mUnk_28 = func_020b502c(DivFixed12(d.mUnk_00 - c.mUnk_00, 0x200000), 0xb0000);
     func_020b681c(&e, &f);
     data_0217b3c0->mUnk_6c = e;
     data_0217b3c0->mUnk_74 = f;
-    data_0217b3c0->mUnk_7c = func_02147edc(f.mUnk_00 - e.mUnk_00);
-    data_0217b3c0->mUnk_84 = func_02147edc(f.mUnk_04 - e.mUnk_04);
+    data_0217b3c0->mUnk_7c = ReciprocalFixed12Raw(f.mUnk_00 - e.mUnk_00);
+    data_0217b3c0->mUnk_84 = ReciprocalFixed12Raw(f.mUnk_04 - e.mUnk_04);
     data_0217b3c0->mUnk_8c = 0;
     data_0217b3c0->mUnk_90 = data_02156874;
 }

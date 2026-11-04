@@ -215,7 +215,7 @@ void func_020dee8c(void) {
     }
     data_0217b6fc += 0xca;
     n = data_0217b6fc >> 4;
-    func_02147250(&data_0217b720, data_0215d4b4[n * 2], data_0215d4b4[n * 2 + 1]);
+    Matrix4x3FromPairY(&data_0217b720, data_0215d4b4[n * 2], data_0215d4b4[n * 2 + 1]);
 }
 
 void func_020dec4c(void *a, Unk020de6a8 *b, u32 c, u32 d) {

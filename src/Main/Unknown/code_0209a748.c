@@ -34,15 +34,15 @@ void func_0209b088(void *a, Unk0209a7dc *b) {
     func_020e6d88(&b->mUnk_000.mMatrix.mUnk_00[1]);
     func_01ff9048(0x19, func_020e6bd0(&b->mUnk_000.mPos), 0xc);
     if (b->mUnk_0a2 != 0) {
-        func_02146d60(f0, data_0215d4b4[(b->mUnk_0a2 >> 4) * 2], data_0215d4b4[(b->mUnk_0a2 >> 4) * 2 + 1]);
+        Matrix3x3FromPairZ(f0, data_0215d4b4[(b->mUnk_0a2 >> 4) * 2], data_0215d4b4[(b->mUnk_0a2 >> 4) * 2 + 1]);
         func_01ff9048(0x1a, f0, 9);
     }
     func_01ff9048(0x1b, &b->mUnk_000.mUnk_1c, 3);
     func_0209b688(gCrab, (u16) (b->mUnk_0a8 >> 12));
     func_0209bbd0(a, gCrab);
     func_0209bb2c(a, gCrab, b);
-    func_02146d60(f1, data_0215d4b4[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2],
-                  data_0215d4b4[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2 + 1]);
+    Matrix3x3FromPairZ(f1, data_0215d4b4[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2],
+                       data_0215d4b4[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, f1, 9);
     func_0209b688(gCrabHand, (u16) (b->mUnk_0ac >> 12));
     func_0209bbd0(a, gCrabHand);

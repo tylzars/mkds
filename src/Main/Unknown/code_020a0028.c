@@ -32,8 +32,8 @@ void func_020a018c(void *a, Unk020a018c *p) {
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_00.mMatrix, 0xc);
     if (p->mUnk_00.mUnk_7e != 0) {
-        func_02146d44(q, data_0215d4b4[((p->mUnk_00.mUnk_7e >> 4) << 1)],
-                      data_0215d4b4[((p->mUnk_00.mUnk_7e >> 4) << 1) + 1]);
+        Matrix3x3FromPairY(q, data_0215d4b4[((p->mUnk_00.mUnk_7e >> 4) << 1)],
+                           data_0215d4b4[((p->mUnk_00.mUnk_7e >> 4) << 1) + 1]);
         func_01ff9048(0x1a, q, 9);
     }
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);

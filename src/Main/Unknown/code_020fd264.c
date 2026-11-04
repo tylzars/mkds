@@ -47,7 +47,7 @@
 
 void func_020fe3d8(int a) {
     u32 v1;
-    func_021471bc((Unk02012f58 *) (a + 0x13c));
+    Matrix4x3Identity((Unk02012f58 *) (a + 0x13c));
     func_02046be8((void *) (a + 0x184), (UnkFunc *const *) &data_0216c714, 4, (void *) a);
     func_02046bcc((void *) (a + 0x184), (u16) 0);
     *(u32 *) (a + 0x170) = 300;

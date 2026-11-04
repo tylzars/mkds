@@ -18,8 +18,8 @@ void func_02036c90(void) {
     data_021755a8.mUnk_04 = 0;
     data_021755a8.mUnk_06 = 0;
     data_021755a8.mUnk_08 = 0;
-    func_02148908((u16 *) 0x400006c, data_021755b4.mUnk_08);
-    func_02148908((u16 *) 0x400106c, data_021755a8.mUnk_08);
+    MasterBrightWrite((u16 *) 0x400006c, data_021755b4.mUnk_08);
+    MasterBrightWrite((u16 *) 0x400106c, data_021755a8.mUnk_08);
 }
 
 u32 func_02036d08(void) {
@@ -185,10 +185,10 @@ void func_02037498(s32 a) {
     data_021755a0->mUnk_d8 |= 1;
     data_021755a0->mUnk_c4 = func_0200f5ac();
     if (c != data_021755b4.mUnk_08) {
-        func_02148908((u16 *) 0x400006c, data_021755b4.mUnk_08);
+        MasterBrightWrite((u16 *) 0x400006c, data_021755b4.mUnk_08);
     }
     if (d != data_021755a8.mUnk_08) {
-        func_02148908((u16 *) 0x400106c, data_021755a8.mUnk_08);
+        MasterBrightWrite((u16 *) 0x400106c, data_021755a8.mUnk_08);
     }
     if (data_usa_02175584 != NULL) {
         data_usa_02175584(2);
@@ -236,10 +236,10 @@ void func_02037658(s32 a) {
     data_021755a0->mUnk_d8 |= 1;
     data_021755a0->mUnk_c4 = func_0200f5ac();
     if (c != data_021755b4.mUnk_08) {
-        func_02148908((u16 *) 0x400006c, data_021755b4.mUnk_08);
+        MasterBrightWrite((u16 *) 0x400006c, data_021755b4.mUnk_08);
     }
     if (d != data_021755a8.mUnk_08) {
-        func_02148908((u16 *) 0x400106c, data_021755a8.mUnk_08);
+        MasterBrightWrite((u16 *) 0x400106c, data_021755a8.mUnk_08);
     }
     if (data_usa_02175584 != NULL) {
         data_usa_02175584(2);
@@ -279,10 +279,10 @@ void func_02037850(void) {
     data_021755a0->mUnk_d8 |= 1;
     data_021755a0->mUnk_c4 = func_0200f5ac();
     if (c != data_021755b4.mUnk_08) {
-        func_02148908((u16 *) 0x400006c, data_021755b4.mUnk_08);
+        MasterBrightWrite((u16 *) 0x400006c, data_021755b4.mUnk_08);
     }
     if (d != data_021755a8.mUnk_08) {
-        func_02148908((u16 *) 0x400106c, data_021755a8.mUnk_08);
+        MasterBrightWrite((u16 *) 0x400106c, data_021755a8.mUnk_08);
     }
     if (data_usa_02175584 != NULL) {
         data_usa_02175584(2);

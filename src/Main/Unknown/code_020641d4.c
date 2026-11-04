@@ -45,7 +45,7 @@ void func_020641f0(Unk0206bcb0 *a) {
     n = a->mUnk_4c;
     if ((n & 0x10) != 0) {
         p = &a->mUnk_150_m;
-        func_021471bc(&d);
+        Matrix4x3Identity(&d);
         e = d;
         func_01ffcd84(&f, &a->mUnk_34c);
         q = &a->mUnk_12c;
@@ -57,21 +57,21 @@ void func_020641f0(Unk0206bcb0 *a) {
         m.y = -m.y;
         m.z = -m.z;
         e.mUnk_00[3] = m;
-        func_0214733c(&a->mUnk_120_m, &d, p);
-        func_0214733c(p, &f, p);
-        func_0214733c(p, &e, p);
+        Matrix4x3Multiply(&a->mUnk_120_m, &d, p);
+        Matrix4x3Multiply(p, &f, p);
+        Matrix4x3Multiply(p, &e, p);
         if ((a->mUnk_4c & 0x20) != 0) {
             i = (a->mUnk_364 >> 4) * 2;
-            func_02147250(&g, data_0215d4b4[i], data_0215d4b4[i + 1]);
-            func_0214733c(p, &g, p);
+            Matrix4x3FromPairY(&g, data_0215d4b4[i], data_0215d4b4[i + 1]);
+            Matrix4x3Multiply(p, &g, p);
         }
         p->mUnk_00[3].x = p->mUnk_00[3].x + a->mUnk_508->x;
         p->mUnk_00[3].y = p->mUnk_00[3].y + a->mUnk_508->y;
         p->mUnk_00[3].z = p->mUnk_00[3].z + a->mUnk_508->z;
     } else if ((n & 0x20) != 0) {
         i = (a->mUnk_364 >> 4) * 2;
-        func_02147250(&h, data_0215d4b4[i], data_0215d4b4[i + 1]);
-        func_0214733c(&h, &a->mUnk_120_m, &a->mUnk_150_m);
+        Matrix4x3FromPairY(&h, data_0215d4b4[i], data_0215d4b4[i + 1]);
+        Matrix4x3Multiply(&h, &a->mUnk_120_m, &a->mUnk_150_m);
         q = a->mUnk_508;
         a->mUnk_174.x = q->x;
         a->mUnk_174.y = q->y;

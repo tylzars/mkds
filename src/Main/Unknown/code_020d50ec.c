@@ -153,7 +153,7 @@ void func_020d5fb4(void *a, Unk020d5bf0 *p) {
     if (p->mUnk_110 != 0 && p->mUnk_000.mUnk_1c.y < p->mUnk_114) {
         r = p->mUnk_000.mUnk_1c.y + p->mUnk_110;
         u = (r * 0x1e000) >> 12;
-        func_02147d88(0x1000, u);
+        DivFixed12Start(0x1000, u);
         w = &p->mUnk_000.mUnk_1c;
         w->x = r;
         w->y = r;
@@ -164,7 +164,7 @@ void func_020d5fb4(void *a, Unk020d5bf0 *p) {
             func_020d5148(p->mUnk_000.mUnk_64, p->mUnk_000.mUnk_58.x);
         }
         p->mUnk_000.mUnk_68 = ((s64) p->mUnk_000.mKindData->mUnk_2c * r) >> 12;
-        p->mUnk_118 = func_02147e28();
+        p->mUnk_118 = DivFixed12Result();
     }
     if (p->mUnk_0a4.mUnk_00.mUnk_18 == 0) {
         func_020d634c(p, 0);
@@ -214,7 +214,7 @@ void func_020d5dd0(Unk020d5bf0 *p) {
     p->mUnk_000.mMatrix.mUnk_00[2] = data_021569f0;
     r = p->mUnk_10c;
     u = (r * 0x1e000) >> 12;
-    func_02147d88(0x1000, u);
+    DivFixed12Start(0x1000, u);
     v = &p->mUnk_000.mUnk_1c;
     v->x = r;
     v->y = r;
@@ -225,7 +225,7 @@ void func_020d5dd0(Unk020d5bf0 *p) {
         func_020d5148(p->mUnk_000.mUnk_64, p->mUnk_000.mUnk_58.x);
     }
     p->mUnk_000.mUnk_68 = ((s64) p->mUnk_000.mKindData->mUnk_2c * r) >> 12;
-    p->mUnk_118 = func_02147e28();
+    p->mUnk_118 = DivFixed12Result();
 }
 
 #pragma thumb on

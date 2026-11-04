@@ -51,7 +51,7 @@ void func_020a79c4(void *a, Unk020a7f18 *p) {
             for (i = 0; i < p->mUnk_1d0; i++) {
                 if (p->mUnk_0b0[i].mUnk_3c != 0) {
                     k = ((u16) p->mUnk_0b0[i].mUnk_3c >> 4) * 2;
-                    func_02146d60(m0, data_0215d4b4[k], data_0215d4b4[k + 1]);
+                    Matrix3x3FromPairZ(m0, data_0215d4b4[k], data_0215d4b4[k + 1]);
                     func_01ff9048(0x1a, m0, 9);
                 }
                 if (i != 0) {
@@ -80,7 +80,7 @@ void func_020a79c4(void *a, Unk020a7f18 *p) {
                 func_01ff9048(0x19, func_020e6cf8(&p->mUnk_0b0[i].mUnk_00), 12);
                 if ((p->mUnk_000.mFlags & 0x12) == 0 && p->mUnk_0b0[i].mUnk_3c != 0) {
                     k = ((u16) p->mUnk_0b0[i].mUnk_3c >> 4) * 2;
-                    func_02146d60(m1, data_0215d4b4[k], data_0215d4b4[k + 1]);
+                    Matrix3x3FromPairZ(m1, data_0215d4b4[k], data_0215d4b4[k + 1]);
                     func_01ff9048(0x1a, m1, 9);
                 }
                 t = p->mUnk_0b0[i].mUnk_18;

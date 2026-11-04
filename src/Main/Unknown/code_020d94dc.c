@@ -273,7 +273,7 @@ void func_020d9cf4(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i
     gWater->mUnk_58 = l;
     gWater->mUnk_5a = m;
     gWater->mUnk_5c = n;
-    func_021471bc(&gWater->mUnk_140);
+    Matrix4x3Identity(&gWater->mUnk_140);
     gWater->mUnk_170 = o;
 }
 

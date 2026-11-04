@@ -1,6 +1,6 @@
 #include "code_0214a000.h"
 
-u32 func_0214a000(void) {
+u32 G2Bg1CntBits2To5Address(void) {
     u32 a;
     u32 b;
 

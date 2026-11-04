@@ -7,7 +7,7 @@
 #include "code_0200db4c.h"
 #include "code_02142eac.h" // Unk021438f0, Unk02143a78, Unk02143c30
 #include "code_021445e0.h" // Unk021450ec, Unk0214461c
-#include "code_02147cd8.h" // Unk02148038
+#include "code_02147cd8.h" // Vec3s16
 #include "code_0214a748.h" // Unk0214ad4c
 #include "code_02012b30.h" // Unk02012f58
 #include "Main/Unknown/code_02006954.h"
@@ -1296,7 +1296,7 @@ typedef struct Unk0217ae84 {
     /* 2c */ struct Unk0201ca6c *mUnk_2c;
     /* 30 */ struct Unk0201ca6c *mUnk_30;
     /* 34 */ Vec3 mUnk_34[2];
-    /* 4c */ Unk02148038 mUnk_4c[2];
+    /* 4c */ Vec3s16 mUnk_4c[2];
 } Unk0217ae84;
 
 extern Unk0217ae84 *data_0217ae84;

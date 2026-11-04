@@ -115,9 +115,9 @@ Unk021d2188 *func_ov003_021d2288(u32 g, u32 h) {
     a->mUnk_20.mUnk_08 = 1;
     a->mUnk_20.mUnk_0c = 1;
     if (g == 1) {
-        e = func_0214a2f4();
+        e = G2sBg0CntBits8To12Address();
     } else {
-        e = func_0214a314();
+        e = G2Bg0CntBits8To12Address();
     }
     func_020232b0((u16 *) e, c, b, 0, 0, 0x20, data_ov003_021d67dc[g], 0xf);
     func_ov003_021d2060(a, 0);
@@ -155,11 +155,11 @@ void func_ov003_021d2188(Unk021d2188 *d) {
 
     func_ov003_021d34c0(1, d->mUnk_34);
     if (d == (*(Unk021d1fd0 **) &data_ov003_021da2c4)->mUnk_718) {
-        c = (void *) func_0214a054();
+        c = (void *) G2Bg0CntBits2To5Address();
         a = 0;
         MemFillHalfwords(a, c, (data_ov003_021d67e0[0] * data_ov003_021d67e0[1]) << 5);
     } else {
-        c = (void *) func_0214a054();
+        c = (void *) G2Bg0CntBits2To5Address();
         b = 0;
         MemFillHalfwords(b, c, (data_ov003_021d67e0[2] * data_ov003_021d67e0[3]) << 5);
     }

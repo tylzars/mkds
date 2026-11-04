@@ -7,7 +7,7 @@ typedef struct Unk02170500 Unk02170500;
 typedef struct Unk021617f4 Unk021617f4;
 typedef struct Unk021617f8 Unk021617f8;
 typedef struct Unk0201290c_1c Unk0201290c_1c;
-typedef struct Unk02148038 Unk02148038;
+typedef struct Vec3s16 Vec3s16;
 
 // Objects whose layout isn't known yet.
 extern s16 data_021614b4[];
@@ -32,7 +32,7 @@ extern u32 (*data_021619ec)(s32 a, s32 b, s32 c);
 extern u32 (*data_021619f4)(s32 a, s32 b, s32 c);
 extern void (*data_02161ac0[])(s32 a, s32 b, s32 c, s32 d);
 extern void (*data_02161ac8[])(s32 a, s32 b, void *c);
-extern Unk02148038 data_02161ad0;
+extern Vec3s16 data_02161ad0;
 
 extern u8 data_02161ad8;
 

@@ -210,7 +210,7 @@ void func_0206331c(void *a) {
             func_020134b0(e, g[i], 7);
         }
     }
-    func_021471bc(&data_usa_0217abac);
+    Matrix4x3Identity(&data_usa_0217abac);
     func_0206302c();
 }
 

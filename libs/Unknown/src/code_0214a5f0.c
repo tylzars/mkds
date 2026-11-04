@@ -4,7 +4,7 @@
 #include "Main/Unknown/unk_0216f000.h"
 #include "00/code_02188720.h"
 
-void func_0214a700(u32 a, u32 b, u16 c, u32 d, s32 e) {
+void ClearColorDepthWrite(u32 a, u32 b, u16 c, u32 d, s32 e) {
     u32 v;
 
     v = a | (b << 16) | (d << 24);
@@ -34,7 +34,7 @@ void func_0214a648(void) {
     }
 }
 
-s32 func_0214a61c(u32 *a) {
+s32 GxStatTryReadBits8To12(u32 *a) {
     if (*(vu32 *) 0x4000600 & 0x4000) {
         return -1;
     }
@@ -42,7 +42,7 @@ s32 func_0214a61c(u32 *a) {
     return 0;
 }
 
-s32 func_0214a5f0(u32 *a) {
+s32 GxStatTryReadBit13(u32 *a) {
     if (*(vu32 *) 0x4000600 & 0x4000) {
         return -1;
     }

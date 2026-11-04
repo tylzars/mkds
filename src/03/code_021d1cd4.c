@@ -6,7 +6,7 @@
 
 void func_ov003_021d1d0c(Unk021d1d88 *c, void *d) {
     u32 a = InterruptEnableClearBits(1);
-    u32 b = func_02147cd8(c->mUnk_03 + 1, c->mUnk_00);
+    u32 b = Div32Remainder(c->mUnk_03 + 1, c->mUnk_00);
 
     if (b == c->mUnk_02) {
         IrqDisableLoopForever();
@@ -22,7 +22,7 @@ void *func_ov003_021d1cd4(Unk021d1d88 *d) {
     u8 c = d->mUnk_03;
 
     if (d->mUnk_02 != c) {
-        d->mUnk_03 = func_02147cd8(c + d->mUnk_00 - 1, d->mUnk_00);
+        d->mUnk_03 = Div32Remainder(c + d->mUnk_00 - 1, d->mUnk_00);
         a = d->mUnk_04[d->mUnk_03];
     }
     InterruptEnableSetBits(b);

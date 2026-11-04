@@ -54,7 +54,7 @@ void func_ov003_021c8ea0(void) {
                 *(u16 *) &data_ov003_021da210 = _s32_div_f(func_ov003_021cce6c() * 0x91, 0x37);
                 func_ov003_021cdc10(0x13);
                 func_ov003_021c8b94();
-                a = func_02147cd8(*(u16 *) &data_ov003_021da210, 0x1d);
+                a = Div32Remainder(*(u16 *) &data_ov003_021da210, 0x1d);
                 if (a == 0) {
                     func_ov003_021c812c();
                     return;

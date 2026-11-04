@@ -131,7 +131,7 @@ void func_ov003_021c8320(u32 b) {
     } else {
         *(u16 *) data_ov003_021da210 = 0;
     }
-    a = func_02147cd8(*(u16 *) data_ov003_021da210, 0x1d);
+    a = Div32Remainder(*(u16 *) data_ov003_021da210, 0x1d);
     if (a == 0x17) {
         func_ov003_021c8b94();
         return;
@@ -155,7 +155,7 @@ void func_ov003_021c82b4(u32 b) {
     func_ov003_021cce38();
     func_ov003_021bf698();
     *(u16 *) data_ov003_021da210 = *(u16 *) data_ov003_021da210 + 6;
-    a = func_02147cd8(*(u16 *) data_ov003_021da210, 0x1d);
+    a = Div32Remainder(*(u16 *) data_ov003_021da210, 0x1d);
     if (a >= 6) {
         func_ov003_021c85a0();
         return;
@@ -174,7 +174,7 @@ void func_ov003_021c824c(void) {
     s32 b;
     if (data_ov003_021da214->mUnk_44 != 0) {
         a = Div32(*(u16 *) data_ov003_021da210, 0x1d);
-        b = func_02147cd8(*(u16 *) data_ov003_021da210, 0x1d) - 0x33;
+        b = Div32Remainder(*(u16 *) data_ov003_021da210, 0x1d) - 0x33;
         *(vu32 *) 0x4000010 = (b << 16) & 0x1ff0000;
         *(vu32 *) 0x4000018 = ((b + data_ov003_021d6460[a]) << 16) & 0x1ff0000;
         data_ov003_021da214->mUnk_44 = 0;

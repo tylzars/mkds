@@ -39,7 +39,7 @@ void func_0212b260(void) {
         a += 0x100;
     }
     a = a % 256;
-    MemFillWordsByBlock_inline((void *) (func_0214a034() + ((a >> 3) << 10)), 0x400);
+    MemFillWordsByBlock_inline((void *) (G2sBg0CntBits2To5Address() + ((a >> 3) << 10)), 0x400);
     p = data_0217d40c;
     if (p->mUnk_014 > 0) {
         p->mUnk_014 -= p->mUnk_00c;

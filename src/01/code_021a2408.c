@@ -51,7 +51,7 @@ void func_ov001_021a2408(void) {
             *(vu32 *) 0x4001010 = (-(gEmblem->mUnk_10a0 - 0xc0) << 16) & 0x1ff0000;
             *(vu32 *) 0x4001018 =
                 ((gEmblem->mUnk_10a8 >> 12) & 0x1ff) | (((-gEmblem->mUnk_10a8 >> 12) << 16) & 0x1ff0000);
-            func_02148934(1);
+            GxsDispCntBits0To2Write(1);
             *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 2;
             *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x1218;
             func_0200ee74(gEmblem->mUnk_0a7c, 0x200);
@@ -78,7 +78,7 @@ void func_ov001_021a2408(void) {
             *(vu32 *) 0x4001010 = (-(gEmblem->mUnk_10a0 - 0xc0) << 16) & 0x1ff0000;
             *(vu32 *) 0x4001018 =
                 ((gEmblem->mUnk_10a8 >> 12) & 0x1ff) | (((-gEmblem->mUnk_10a8 >> 12) << 16) & 0x1ff0000);
-            func_02148934(0);
+            GxsDispCntBits0To2Write(0);
             *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 1;
             *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x1010;
             *(vu32 *) 0x400101c = 0;

@@ -256,7 +256,7 @@ void func_02094000(Vec3 *a) {
         e = func_02094000_inline(&data_0217561c->mUnk_498, 0x30);
         c = (u16) (func_02094000_inline(&data_0217561c->mUnk_498, 0) >> 20);
         b = func_02094000_inline(&data_0217561c->mUnk_498, 0x5555);
-        k = func_02148714(g->mUnk_18.z - g->mUnk_24.z, g->mUnk_18.x - g->mUnk_24.x) + b - 0x2aaa;
+        k = AngleFromPair(g->mUnk_18.z - g->mUnk_24.z, g->mUnk_18.x - g->mUnk_24.x) + b - 0x2aaa;
         func_02094000_inline_2(&o->mUnk_bc, func_02094000_inline(&data_0217561c->mUnk_498, 0x10000), k, c + 0x1000, 0,
                                e + 0x60, 0);
     } else {

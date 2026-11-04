@@ -5,7 +5,7 @@
 // Not compiled code: the stores are `stm r0!` with lists that do not start at r0. The 1.2 compiler builds ldm/stm only
 // in prologues, epilogues and block moves (struct copies and fills), which keep their data in r0 upward and move the
 // base off r0; separate stores of constants stay `str` (docs/compiler.md, ldm/stm; checked on C).
-asm void func_02146cbc(Unk02012f58 *a) {
+asm void Matrix3x3Identity(Unk02012f58 *a) {
     mov r2, #0x1000
     str r2, [r0, #32]
     mov r3, #0
@@ -22,7 +22,7 @@ asm void func_02146cbc(Unk02012f58 *a) {
 // Not compiled code: it copies with `ldm r0!` / `stm r1!` and data in r2, r3 and ip. The 1.2 compiler builds ldm/stm
 // only in prologues, epilogues and block moves (struct copies and fills), which keep their data in r0 upward and move
 // the base off r0; separate stores of constants stay `str` (docs/compiler.md, ldm/stm; checked on C).
-asm void func_02146ce0(const s32 *a, s32 *b) {
+asm void Matrix3x3ToMatrix4x3(const s32 *a, s32 *b) {
     ldmia r0!, {r2, r3, ip}
     stmia r1!, {r2, r3, ip}
     ldmia r0!, {r2, r3, ip}
@@ -39,7 +39,7 @@ asm void func_02146ce0(const s32 *a, s32 *b) {
 // Copies the 3x3 block of words at a to b transposed (rows become columns).
 // Not compiled code: it saves r4-r9 without lr; in 1.2 code a function that saves r4 also saves lr (docs/compiler.md,
 // Registers), and the transposed stores are `stm` lists 1.2 never builds outside block moves.
-asm void func_02146d0c(const void *a, void *b) {
+asm void Matrix3x3Transpose(const void *a, void *b) {
     stmfd sp!, {r4, r5, r6, r7, r8, r9}
     ldmia r0, {r2, r3, r4, r5, r6, r7, r8, r9, ip}
     stmia r1!, {r2, r5, r8}
@@ -54,7 +54,7 @@ asm void func_02146d0c(const void *a, void *b) {
 // Fills the nine words at a with the rows (0x1000, 0, 0), (0, c, b), (0, -b, c).
 // Not compiled code: it builds 0x1000 with `movs; lsls`, which 1.2 never does in Thumb code (it loads such a constant
 // from a constant word; docs/compiler.md, Thumb constants).
-asm void func_02146d28(s32 *a, s32 b, s32 c) {
+asm void Matrix3x3FromPairX(s32 *a, s32 b, s32 c) {
     mov r3, #1
     lsl r3, r3, #12
     str r3, [r0]
@@ -74,7 +74,7 @@ asm void func_02146d28(s32 *a, s32 b, s32 c) {
 // Fills the nine words at a with the rows (c, 0, -b), (0, 0x1000, 0), (b, 0, c).
 // Not compiled code: it builds 0x1000 with `movs; lsls`, which 1.2 never does in Thumb code (it loads such a constant
 // from a constant word; docs/compiler.md, Thumb constants).
-asm void func_02146d44(s32 *a, s32 b, s32 c) {
+asm void Matrix3x3FromPairY(s32 *a, s32 b, s32 c) {
     str r2, [r0]
     str r2, [r0, #32]
     mov r3, #0
@@ -95,7 +95,7 @@ asm void func_02146d44(s32 *a, s32 b, s32 c) {
 // Not compiled code: it builds 0x1000 with `movs; lsls`, which 1.2 never does in Thumb code (it loads such a constant
 // from a constant word; docs/compiler.md, Thumb constants). It also stores the arguments with `stmia r0!`, which 1.2
 // builds in Thumb code only for block moves.
-asm void func_02146d60(s32 *a, s32 b, s32 c) {
+asm void Matrix3x3FromPairZ(s32 *a, s32 b, s32 c) {
     stmia r0!, {r2}
     mov r3, #0
     stmia r0!, {r1, r3}

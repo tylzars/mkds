@@ -102,7 +102,7 @@ void func_02040a8c(Unk0217561c_500 *a, s32 b) {
     }
     a->mUnk_0c = r->mUnk_10 * t->mUnk_04;
     a->mUnk_10 = r->mUnk_12 * t->mUnk_08;
-    a->mUnk_14 = -((u32) (t->mUnk_0c * func_02147f18(r->mUnk_14 << 12)) >> 12);
+    a->mUnk_14 = -((u32) (t->mUnk_0c * ReciprocalFixed12(r->mUnk_14 << 12)) >> 12);
     a->mUnk_18 = t->mUnk_10 * -r->mUnk_16;
     a->mUnk_1c = t->mUnk_14 * -r->mUnk_18;
     a->mUnk_20 = t->mUnk_18 * -r->mUnk_1a;
@@ -335,8 +335,8 @@ void func_020401ac(void) {
         func_020427d4(&data_0217561c->mUnk_47c);
     }
     data_0217561c->mUnk_4d0 = 0;
-    data_0217561c->mUnk_4e4 = func_02147f18((gCourseMap->mUnk_9c + 1) << 12);
-    data_0217561c->mUnk_4e8 = func_02147f18(func_02044618() << 12);
+    data_0217561c->mUnk_4e4 = ReciprocalFixed12((gCourseMap->mUnk_9c + 1) << 12);
+    data_0217561c->mUnk_4e8 = ReciprocalFixed12(func_02044618() << 12);
     for (i = 0; i < gCourseMap->mUnk_98 + 1; i++) {
         v1 = i % (gCourseMap->mUnk_98 + 1);
         if (v1 == gCourseMap->mUnk_98) {

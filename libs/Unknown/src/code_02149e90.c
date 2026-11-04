@@ -1,6 +1,6 @@
 #include "code_02149e90.h"
 
-u32 func_02149f88(void) {
+u32 G2Bg2CntBits2To5Address(void) {
     s32 a;
     u32 b;
 
@@ -12,7 +12,7 @@ u32 func_02149f88(void) {
     return 0;
 }
 
-u32 func_02149f40(void) {
+u32 G2sBg2CntBits2To5Address(void) {
     s32 a;
     u32 b;
 
@@ -24,7 +24,7 @@ u32 func_02149f40(void) {
     return 0;
 }
 
-u32 func_02149ee0(void) {
+u32 G2Bg3CntBits2To5Address(void) {
     s32 a;
     u32 b;
 
@@ -36,7 +36,7 @@ u32 func_02149ee0(void) {
     return 0;
 }
 
-u32 func_02149e90(void) {
+u32 G2sBg3CntBits2To5Address(void) {
     s32 a;
     u32 b;
 

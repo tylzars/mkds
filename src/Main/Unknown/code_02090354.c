@@ -643,7 +643,7 @@ void func_020916a0(void *a, Unk020912a0 *b) {
     s[2] = 0;
     func_01ff9048(0x1c, s, 3);
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
-    func_02146d60(m, data_0215d4b4[((u16) b->mUnk_a4 >> 4) * 2], data_0215d4b4[((u16) b->mUnk_a4 >> 4) * 2 + 1]);
+    Matrix3x3FromPairZ(m, data_0215d4b4[((u16) b->mUnk_a4 >> 4) * 2], data_0215d4b4[((u16) b->mUnk_a4 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
     func_0209bb2c(a, gSmanTop, b);
 }

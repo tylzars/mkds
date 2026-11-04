@@ -129,7 +129,7 @@ void func_0209f1c8(void *a, Unk0209f1c8 *b) {
     func_01ff9048(0x19, &b->mUnk_00.mMatrix, 0xc);
     if (b->mUnk_00.mUnk_7e != 0) {
         i = b->mUnk_00.mUnk_7e >> 4;
-        func_02146d44(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+        Matrix3x3FromPairY(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
         func_01ff9048(0x1a, m, 9);
     }
     func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);

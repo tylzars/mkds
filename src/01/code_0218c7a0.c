@@ -299,7 +299,7 @@ void func_ov001_0218cbdc(Unk02188950 *a, Unk02188950_a0 *b) {
             a->mUnk_2d8 = 0xc;
         } else {
             r4 = a->mMoveAngle;
-            diff = (u16) (func_02148714(b->mUnk_080 - a->mUnk_000.mPos.x, b->mUnk_088 - a->mUnk_000.mPos.z) - r4);
+            diff = (u16) (AngleFromPair(b->mUnk_080 - a->mUnk_000.mPos.x, b->mUnk_088 - a->mUnk_000.mPos.z) - r4);
             if (diff > 0x8000) {
                 diff -= 0x10000;
             }

@@ -83,7 +83,7 @@ s32 func_020fc79c(Unk020eda5c *a, Unk020fc2e8 *e) {
     }
     func_020fc94c(e);
     // one 36-byte copy of the three vectors (three Vec3 assignments give 0x160 bytes against 0x150)
-    *(Unk02146dfc *) &e->mUnk_000.mUnk_94 = *(Unk02146dfc *) &a->mUnk_02c.mUnk_00;
+    *(Matrix3x3 *) &e->mUnk_000.mUnk_94 = *(Matrix3x3 *) &a->mUnk_02c.mUnk_00;
     if (e->mUnk_000.mUnk_74 & 0x8000000) {
         e->mUnk_2f8 = 0;
         e->mUnk_2fa = 1;

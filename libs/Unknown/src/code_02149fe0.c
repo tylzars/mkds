@@ -1,6 +1,6 @@
 #include "code_02149fe0.h"
 
-u32 func_02149fe0(void) {
+u32 G2sBg1CntBits2To5Address(void) {
     u32 value0;
     value0 = 0x400100au;
     value0 = (u32) * (const u16 *) ((value0) + (0));

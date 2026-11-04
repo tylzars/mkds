@@ -422,8 +422,8 @@ void func_02066de8(Unk0206bcb0 *a) {
     c = (s64) a->mUnk_59c * data_021654cc + 0x800 >> 12;
     d = (s64) c * a->mUnk_5a4 + 0x800 >> 12;
     e = d;
-    func_02147250(&b, data_0215d4b4[(e >> 4) * 2], data_0215d4b4[(e >> 4) * 2 + 1]);
-    func_0214733c(&b, &a->mUnk_150_m, &a->mUnk_184_m);
+    Matrix4x3FromPairY(&b, data_0215d4b4[(e >> 4) * 2], data_0215d4b4[(e >> 4) * 2 + 1]);
+    Matrix4x3Multiply(&b, &a->mUnk_150_m, &a->mUnk_184_m);
     if ((a->mUnk_59c > 0 ? a->mUnk_59c : -a->mUnk_59c) >= 0x29) {
         return;
     }

@@ -44,7 +44,7 @@ void func_020cb3e4(void) {
         func_0214bf04((const void *) (data_0217b43c->mSinglePlaySelectModeMNcgr->mData), 0,
                       (u32) (data_0217b43c->mSinglePlaySelectModeMNcgr->mDataSize));
         func_020cb48c(0x16);
-        func_02148934((u32) 0);
+        GxsDispCntBits0To2Write((u32) 0);
         func_0214c028((const void *) (data_0217b43c->mSinglePlaySelectModeSONclr->mData), 0,
                       (u32) (data_0217b43c->mSinglePlaySelectModeSONclr->mDataSize));
         func_0214bea4((const void *) (data_0217b43c->mSinglePlaySelectModeSNcgr->mData), 0,

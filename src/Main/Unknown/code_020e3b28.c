@@ -253,8 +253,8 @@ void func_020e3bc0(s32 a, Unk020e38a0 *b) {
     b->mUnk_124.z = (s32) (((s64) b->mUnk_000.mMatrix.mUnk_00[0].z * d) >> 12);
     b->mUnk_14a = y;
     b->mUnk_0a0 = *(Unk020e38a0_28 *) &b->mUnk_000.mMatrix;
-    func_02146d28((s32 *) &b->mUnk_000.mMatrix, data_0215d4b4[(y >> 4) * 2], data_0215d4b4[(y >> 4) * 2 + 1]);
-    func_02146dfc((const s32 *) &b->mUnk_000.mMatrix, (const s32 *) &b->mUnk_0c4, (s32 *) &b->mUnk_000.mMatrix);
+    Matrix3x3FromPairX((s32 *) &b->mUnk_000.mMatrix, data_0215d4b4[(y >> 4) * 2], data_0215d4b4[(y >> 4) * 2 + 1]);
+    Matrix3x3Multiply((const s32 *) &b->mUnk_000.mMatrix, (const s32 *) &b->mUnk_0c4, (s32 *) &b->mUnk_000.mMatrix);
     Vec3AddScaled(-b->mUnk_104, &b->mUnk_000.mMatrix.mUnk_00[1], &b->mUnk_000.mPos, &b->mUnk_0f4);
     if (b->mUnk_150 != 0) {
         b->mUnk_150--;

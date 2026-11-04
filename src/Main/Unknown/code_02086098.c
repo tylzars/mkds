@@ -272,7 +272,7 @@ void func_02086250(Unk02012f58 *a) {
     *(u32 *) 0x40004c4 = 0x4210;
     *(u32 *) 0x40004c0 = 0x42100000;
     *(u32 *) 0x4000440 = 0;
-    func_0214a530(&data_0217aee0);
+    GxFifoWrite0x16Then16Words(&data_0217aee0);
     *(u32 *) 0x4000440 = 3;
     *(u32 *) 0x4000454 = 0;
     for (i = data_021759c0->mKartCount - 1; i >= 0; i--) {
@@ -332,9 +332,9 @@ void func_02086098(Unk02086098 *a, Unk02086250 *b, Unk02012f58 *c, s32 d, s32 e,
     if (a->mUnk_08 != 0) {
         *(u32 *) 0x40004ac = a->mUnk_18 >> (4 - ((a->mUnk_00 >> 26 & 7) == 2));
     }
-    func_021471bc(&m);
+    Matrix4x3Identity(&m);
     m.mUnk_00[3] = b->mUnk_00;
-    func_0214733c(&m, c, &m);
+    Matrix4x3Multiply(&m, c, &m);
     m.mUnk_00[3].x = g;
     if (b->mUnk_10 == 1) {
         m.mUnk_00[3].x = g + ((s32) (((s64) i * d + 0x800) >> 12) + 0x1e000);
@@ -354,7 +354,7 @@ void func_02086098(Unk02086098 *a, Unk02086250 *b, Unk02012f58 *c, s32 d, s32 e,
     m.mUnk_00[2].x = 0;
     *(u32 *) 0x40004a4 = (func_02086098_inline(b) | 0xc0) | (f << 16);
     *(u32 *) 0x4000440 = 2;
-    func_0214a514(&m);
+    GxFifoWrite0x17Then12Words(&m);
     *(u32 *) 0x4000500 = 1;
     *(u32 *) 0x4000480 = 0x7fff;
     k(x, y, b->mUnk_26);

@@ -299,7 +299,7 @@ void func_02012f58(Unk02012f58 *a, void *b) {
     if (a != 0) {
         while (func_0214a7a4(m) != 0) {
         }
-        func_02147980(m, a);
+        Matrix4x4ToMatrix4x3(m, a);
     }
     if (b != 0) {
         while (func_0214a75c(b) != 0) {

@@ -404,7 +404,7 @@ int func_ov001_02187074(int a, int b, int c) {
 }
 
 u16 func_ov001_02187024(Vec3 *a, Vec3 *b, s32 c, s32 d) {
-    s32 diff = (u16) (func_02148714(a->x - b->x, a->z - b->z) - d);
+    s32 diff = (u16) (AngleFromPair(a->x - b->x, a->z - b->z) - d);
     s32 res;
 
     if (c < 0) {
@@ -424,7 +424,7 @@ u16 func_ov001_02187024(Vec3 *a, Vec3 *b, s32 c, s32 d) {
 }
 
 u16 func_ov001_02186fb4(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
-    s32 diff = (u16) (func_02148714(a->x - b->x, a->z - b->z) - e);
+    s32 diff = (u16) (AngleFromPair(a->x - b->x, a->z - b->z) - e);
     s32 limit;
     s32 res;
     s32 target;
@@ -673,8 +673,8 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
             func_ov001_02187074(b->mUnk_160, b->mUnk_164, b->mUnk_000.mUnk_1c.x);
     }
     if (b->mUnk_234 == 1) {
-        func_02146d44(&b->mUnk_000.mMatrix.mUnk_00[0].x, data_0215d4b4[((u16) b->mAngle >> 4) * 2],
-                      data_0215d4b4[((u16) b->mAngle >> 4) * 2 + 1]);
+        Matrix3x3FromPairY(&b->mUnk_000.mMatrix.mUnk_00[0].x, data_0215d4b4[((u16) b->mAngle >> 4) * 2],
+                           data_0215d4b4[((u16) b->mAngle >> 4) * 2 + 1]);
         Vec3MultiplyMatrix3x3((Vec3 *) &b->mUnk_244, &b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_238);
         Vec3Add(&b->mUnk_238, &b->mUnk_000.mPos, &b->mUnk_238);
     } else {
@@ -792,7 +792,7 @@ void func_ov001_02186368(void *a, Unk02188950 *b) {
         func_01ff9048(0x19, func_020e6b58(&b->mUnk_000.mPos), 0xc);
         if (b->mUnk_000.mUnk_7e != 0) {
             k = b->mUnk_000.mUnk_7e >> 4;
-            func_02146d44(m, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
+            Matrix3x3FromPairY(m, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
             func_01ff9048(0x1a, m, 9);
         }
         func_01ff9048(0x1b, &b->mUnk_000.mUnk_1c.x, 3);
@@ -848,7 +848,7 @@ void func_ov001_021861f4(void *d, Unk02188950 *e, s32 f) {
         func_01ff9048(0x14, &value, 1);
         func_01ff9048(0x19, func_020e6b58(&v), 0xc);
         k = (u16) e->mAngle >> 4;
-        func_02146d44(m, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
+        Matrix3x3FromPairY(m, data_0215d4b4[k * 2], data_0215d4b4[k * 2 + 1]);
         func_01ff9048(0x1a, m, 9);
         c = e->mUnk_288 >> 4;
         b = e->mUnk_284 >> 4;

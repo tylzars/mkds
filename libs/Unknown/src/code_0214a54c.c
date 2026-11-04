@@ -5,7 +5,7 @@
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward and move the base off r0; separate stores of constants stay `str`
 // (docs/compiler.md, ldm/stm; checked on C). Here every `stm r0` stores constants in r1-r3 and ip to the same address.
-asm void func_0214a54c(void *a) {
+asm void MemZero128WordsToOneAddress(void *a) {
     mov r1, #0
     mov r2, #0
     mov r3, #0

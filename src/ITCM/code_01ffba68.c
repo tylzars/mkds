@@ -119,13 +119,13 @@ void func_01ffba68(Unk0206bcb0 *p) {
 }
 
 void func_01ffbd9c(Unk0206bcb0 *p) {
-    func_02147d88(p->mUnk_2a4, p->mUnk_d0);
+    DivFixed12Start(p->mUnk_2a4, p->mUnk_d0);
     if (p->mUnk_44 & 0x10) {
         func_020397a8(&p->mUnk_120, &p->mUnk_244, &p->mUnk_278);
     } else {
         func_02063b10(p, &p->mUnk_278);
     }
-    p->mUnk_2a0 = func_02147e28();
+    p->mUnk_2a0 = DivFixed12Result();
     if (p->mUnk_2a0 > 0x1000) {
         p->mUnk_2a0 = 0x1000;
         p->mUnk_2a4 = p->mUnk_d0;

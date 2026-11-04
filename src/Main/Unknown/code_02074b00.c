@@ -70,8 +70,9 @@ void func_02074b00(Unk02061808 *p) {
     if ((s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z >= 0x10) {
         func_02039860(&d, &d);
     }
-    func_02146f98((Unk02012f58 *) m, &data_usa_02154fc4, data_0215d4b4[(data_usa_021656a0 >> 4) * 2],
-                  data_0215d4b4[(data_usa_021656a0 >> 4) * 2 + 1]);
+    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m, &data_usa_02154fc4,
+                                           data_0215d4b4[(data_usa_021656a0 >> 4) * 2],
+                                           data_0215d4b4[(data_usa_021656a0 >> 4) * 2 + 1]);
     Vec3MultiplyMatrix3x3(&d, m, &d);
     d.x = (s32) (((s64) d.x * 0xfae) >> 12);
     d.y = (s32) (((s64) d.y * 0xfae) >> 12);
@@ -135,8 +136,8 @@ void func_02074e6c(Unk02061808 *p) {
     j = (u16) ((s32) (((s64) q->mUnk_18.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
     k = (u16) ((s32) (((s64) q->mUnk_24.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
     l = (u16) ((s32) (((s64) q->mUnk_24.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
-    func_02146f98((Unk02012f58 *) m0, &o->mUnk_120, data_0215d4b4[(o->mUnk_2c0 >> 4) * 2],
-                  data_0215d4b4[(o->mUnk_2c0 >> 4) * 2 + 1]);
+    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m0, &o->mUnk_120, data_0215d4b4[(o->mUnk_2c0 >> 4) * 2],
+                                           data_0215d4b4[(o->mUnk_2c0 >> 4) * 2 + 1]);
     Vec3MultiplyMatrix3x3(&a, m0, &a);
     b = a;
     c = b;
@@ -144,9 +145,11 @@ void func_02074e6c(Unk02061808 *p) {
     func_02074b00_inline(&n, &d, -q->mUnk_18.z);
     func_020397a8(&data_usa_02154fc4, &a, &f);
     func_020397a8(&c, &f, &g);
-    func_02146f98((Unk02012f58 *) m2, &g, data_0215d4b4[(i >> 4) * 2], data_0215d4b4[(i >> 4) * 2 + 1]);
-    func_02146f98((Unk02012f58 *) m3, &f, data_0215d4b4[(j >> 4) * 2], data_0215d4b4[(j >> 4) * 2 + 1]);
-    func_02146dfc(m3, m2, m4);
+    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m2, &g, data_0215d4b4[(i >> 4) * 2],
+                                           data_0215d4b4[(i >> 4) * 2 + 1]);
+    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m3, &f, data_0215d4b4[(j >> 4) * 2],
+                                           data_0215d4b4[(j >> 4) * 2 + 1]);
+    Matrix3x3Multiply(m3, m2, m4);
     Vec3MultiplyMatrix3x3(&d, m4, &d);
     func_02074b00_inline(&t, &d, q->mUnk_18.z);
     Vec3Add(&p->mUnk_018, &t, &p->mUnk_024);
@@ -156,11 +159,13 @@ void func_02074e6c(Unk02061808 *p) {
     g.x = -g.x;
     g.y = -g.y;
     g.z = -g.z;
-    func_02146f98((Unk02012f58 *) m5, &g, data_0215d4b4[(k >> 4) * 2], data_0215d4b4[(k >> 4) * 2 + 1]);
-    func_02146f98((Unk02012f58 *) m6, &f, data_0215d4b4[(l >> 4) * 2], data_0215d4b4[(l >> 4) * 2 + 1]);
-    func_02146dfc(m5, m2, m5);
-    func_02146dfc(m6, m3, m6);
-    func_02146dfc(m6, m5, m7);
+    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m5, &g, data_0215d4b4[(k >> 4) * 2],
+                                           data_0215d4b4[(k >> 4) * 2 + 1]);
+    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m6, &f, data_0215d4b4[(l >> 4) * 2],
+                                           data_0215d4b4[(l >> 4) * 2 + 1]);
+    Matrix3x3Multiply(m5, m2, m5);
+    Matrix3x3Multiply(m6, m3, m6);
+    Matrix3x3Multiply(m6, m5, m7);
     Vec3MultiplyMatrix3x3(&n, m7, &n);
     Vec3Add(&p->mUnk_024, &n, &p->mUnk_018);
     p->mUnk_018.y = p->mUnk_018.y - o->mUnk_2bc;

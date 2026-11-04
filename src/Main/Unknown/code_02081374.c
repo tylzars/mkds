@@ -16,7 +16,7 @@ void func_0208155c(s32 a, s32 b) {
 }
 
 void func_020813ec(s32 a, Vec3 *b) {
-    Unk02148038 h;
+    Vec3s16 h;
     Vec3 v;
     Vec3 w;
     Unk0206bcb0 *q = func_0207a974(a);
@@ -38,9 +38,9 @@ void func_020813ec(s32 a, Vec3 *b) {
     e->mUnk_28->mUnk_40 = v;
     Vec3AddScaled(-q->mUnk_1d0, b, q->mUnk_508, &w);
     func_0208b5b0(e->mUnk_28, &w);
-    h.mUnk_00 = b->x;
-    h.mUnk_02 = b->y;
-    h.mUnk_04 = b->z;
+    h.x = b->x;
+    h.y = b->y;
+    h.z = b->z;
     e->mUnk_28->mUnk_50 = h;
     q->mUnk_48 |= 0x400;
 }

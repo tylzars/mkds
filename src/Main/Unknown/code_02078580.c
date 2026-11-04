@@ -57,20 +57,20 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
     t.x = data_usa_021656f0.x;
     t.y = data_usa_021656f0.y;
     t.z = data_usa_021656f0.z;
-    k = func_021488e8(data_usa_021656e4, param_2->mUnk_08);
+    k = MulFixed12(data_usa_021656e4, param_2->mUnk_08);
     v.x = k;
     v.y = k;
     v.z = k;
-    func_02146d44(m1, data_0215d4b4[(param_2->mUnk_16 >> 4) * 2], data_0215d4b4[(param_2->mUnk_16 >> 4) * 2 + 1]);
-    func_02146d28(m2, data_0215d4b4[(((u16) (data_usa_021656dc + param_2->mUnk_1a)) >> 4) * 2],
-                  data_0215d4b4[(((u16) (data_usa_021656dc + param_2->mUnk_1a)) >> 4) * 2 + 1]);
-    func_02146dfc(m1, m2, m1);
+    Matrix3x3FromPairY(m1, data_0215d4b4[(param_2->mUnk_16 >> 4) * 2], data_0215d4b4[(param_2->mUnk_16 >> 4) * 2 + 1]);
+    Matrix3x3FromPairX(m2, data_0215d4b4[(((u16) (data_usa_021656dc + param_2->mUnk_1a)) >> 4) * 2],
+                       data_0215d4b4[(((u16) (data_usa_021656dc + param_2->mUnk_1a)) >> 4) * 2 + 1]);
+    Matrix3x3Multiply(m1, m2, m1);
     if (param_1->mUnk_20 != NULL) {
-        func_02146ce0(m1, &m3.mUnk_00[0].x);
+        Matrix3x3ToMatrix4x3(m1, &m3.mUnk_00[0].x);
         m3.mUnk_00[3] = t;
-        func_02147914(&m3, &m3, v.x, v.y, v.z);
+        Matrix4x3ScaleRowsCopyRow3(&m3, &m3, v.x, v.y, v.z);
     } else {
-        func_021471bc(&m3);
+        Matrix4x3Identity(&m3);
     }
     func_02010fe4(&v);
     func_0201100c(&t);

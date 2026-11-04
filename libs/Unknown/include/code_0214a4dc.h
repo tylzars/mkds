@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-void func_0214a4dc(const void *a);
-void func_0214a4f8(const void *a);
-void func_0214a514(const void *a);
-void func_0214a530(const void *a);
+void GxFifoWrite0x1aThenMemCopy9Words(const void *a);
+void GxFifoWrite0x19Then12Words(const void *a);
+void GxFifoWrite0x17Then12Words(const void *a);
+void GxFifoWrite0x16Then16Words(const void *a);

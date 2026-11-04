@@ -108,7 +108,7 @@ void func_02037abc(void *a) {
     data_02175614.mUnk_00;
     func_02148950(p->mUnk_06, p->mUnk_08, p->mUnk_0a);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (p->mUnk_02 << 8);
-    func_02148934(p->mUnk_0c);
+    GxsDispCntBits0To2Write(p->mUnk_0c);
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (p->mUnk_04 << 8);
     if (p->mUnk_0a == 1) {
         func_0214aa58();
@@ -122,13 +122,13 @@ void func_02037abc(void *a) {
         reg_G2_BLDCNT = 0;
         reg_G3_SWAP_BUFFERS = (p->mUnk_6c->mUnk_03 << 1) | p->mUnk_6c->mUnk_02;
         v = p->mUnk_6c->mUnk_00;
-        func_0214a700((u16) (v & 0x7fff), (u8) ((v & 0x8000) >> 15), 0x7fff, 0x3f, 0);
+        ClearColorDepthWrite((u16) (v & 0x7fff), (u8) ((v & 0x8000) >> 15), 0x7fff, 0x3f, 0);
     }
     if (p->mUnk_02 & 1) {
         q = &p->mUnk_28;
         func_02037abc_inline2(&reg_G2_BG0CNT, q);
         if (p->mUnk_0a == 1) {
-            func_0214a5e0(0);
+            G2Bg0OfsWrite(0);
         } else {
             reg_G2_BG0OFS = 0;
             func_02037abc_inline6(&reg_G2_BG0CNT, (Unk02037abc_Arg) q->mUnk_04, (Unk02037abc_Arg) q->mUnk_06,

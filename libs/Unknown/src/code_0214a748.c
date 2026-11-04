@@ -20,7 +20,7 @@ void func_0214b048(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
     s32 u;
     vu32 *p;
 
-    func_02147dec(d - c);
+    ReciprocalFixed12Start(d - c);
     if (h != 0) {
         reg_G3_MTX_MODE = 0;
         p = &reg_G3_MTX_LOAD_4x4;
@@ -38,7 +38,7 @@ void func_0214b048(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
         i->mUnk_3c = 0;
     }
     e2 = e << 1;
-    x = func_02147e64();
+    x = DivResult64();
     reg_CP_DIV_NUMER = 0x100000000000ULL;
     reg_CP_DIV_DENOM = (u32) (a - b);
     if (g != 0x1000) {
@@ -54,7 +54,7 @@ void func_0214b048(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
     if (i != 0) {
         i->mUnk_00 = t1;
     }
-    y = func_02147e64();
+    y = DivResult64();
     reg_CP_DIV_NUMER = 0x100000000000ULL;
     reg_CP_DIV_DENOM = (u32) (e - f);
     if (g != 0x1000) {
@@ -84,7 +84,7 @@ void func_0214b048(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
             i->mUnk_24 = k1;
         }
     }
-    z = func_02147e64();
+    z = DivResult64();
     if (g != 0x1000) {
         z = z * g / 0x1000;
     }
@@ -114,7 +114,7 @@ void func_0214ad4c(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
     s32 w;
     vu32 *p;
 
-    func_02147dec(d - c);
+    ReciprocalFixed12Start(d - c);
     if (h != 0) {
         reg_G3_MTX_MODE = 0;
         p = &reg_G3_MTX_LOAD_4x4;
@@ -131,7 +131,7 @@ void func_0214ad4c(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
         i->mUnk_2c = 0;
         i->mUnk_3c = g;
     }
-    x = func_02147e64();
+    x = DivResult64();
     reg_CP_DIV_NUMER = 0x100000000000ULL;
     reg_CP_DIV_DENOM = (u32) (a - b);
     if (g != 0x1000) {
@@ -148,7 +148,7 @@ void func_0214ad4c(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
     if (i != 0) {
         i->mUnk_00 = u;
     }
-    y = func_02147e64();
+    y = DivResult64();
     reg_CP_DIV_NUMER = 0x100000000000ULL;
     reg_CP_DIV_DENOM = (u32) (e - f);
     if (g != 0x1000) {
@@ -165,7 +165,7 @@ void func_0214ad4c(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
     if (i != 0) {
         i->mUnk_14 = v;
     }
-    z = func_02147e64();
+    z = DivResult64();
     if (g != 0x1000) {
         z = z * g / 0x1000;
     }
@@ -292,7 +292,7 @@ void func_0214a9d0(void) {
 }
 
 void func_0214a99c(void) {
-    func_0214a54c((void *) 0x4000400);
+    MemZero128WordsToOneAddress((void *) 0x4000400);
     while (*(vu32 *) 0x4000600 & 0x8000000) {
     }
 }
@@ -302,9 +302,9 @@ void func_0214a8ec(void) {
     u32 b;
 
     *(vu32 *) 0x4000600 |= 0x8000;
-    while (func_0214a61c(&a) != 0) {
+    while (GxStatTryReadBits8To12(&a) != 0) {
     }
-    while (func_0214a5f0(&b) != 0) {
+    while (GxStatTryReadBit13(&b) != 0) {
     }
     *(vu32 *) 0x4000440 = 3;
     *(vu32 *) 0x4000454 = 0;
@@ -323,9 +323,9 @@ void func_0214a840(void) {
     u32 b;
 
     *(vu32 *) 0x4000600 |= 0x8000;
-    while (func_0214a61c(&a) != 0) {
+    while (GxStatTryReadBits8To12(&a) != 0) {
     }
-    while (func_0214a5f0(&b) != 0) {
+    while (GxStatTryReadBit13(&b) != 0) {
     }
     *(vu32 *) 0x4000440 = 3;
     *(vu32 *) 0x4000454 = 0;

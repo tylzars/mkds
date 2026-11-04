@@ -2,13 +2,13 @@
 #include "code_02146bb8.h"
 
 // clang-format off
-// Calls func_02146c24 with the address of mUnk_48, stores the status register and the registers (r0 = 1 saved) into
+// Calls DivSqrtRegistersSave with the address of mUnk_48, stores the status register and the registers (r0 = 1 saved) into
 // the words from 0, the banked sp of mode 0xd3 at 0x44 and the address of the return point at 0x3c, and returns 0.
 // non-matching: same size; 1 lines differ; first: original `add r1, r0, #0`, ours `mov r1, r0`
 asm s32 ThreadSaveContext(Unk0200db5c *t) {
     stmdb sp!, {r0, lr}
     add r0, r0, #0x48
-    ldr r1, =func_02146c24
+    ldr r1, =DivSqrtRegistersSave
     blx r1
     ldmia sp!, {r0, lr}
     add r1, r0, #0x0
@@ -26,12 +26,12 @@ asm s32 ThreadSaveContext(Unk0200db5c *t) {
     bx lr
 }
 
-// Calls func_02146bb8 with the address of mUnk_48, then switches to mode 0xd3 and restores the registers and the
+// Calls DivSqrtRegistersRestore with the address of mUnk_48, then switches to mode 0xd3 and restores the registers and the
 // status word saved by ThreadSaveContext.
 asm void ThreadLoadContext(Unk0200db5c *t) {
     stmdb sp!, {r0, lr}
     add r0, r0, #0x48
-    ldr r1, =func_02146bb8
+    ldr r1, =DivSqrtRegistersRestore
     blx r1
     ldmia sp!, {r0, lr}
     mrs r1, cpsr

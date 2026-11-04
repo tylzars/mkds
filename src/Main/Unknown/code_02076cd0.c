@@ -160,7 +160,7 @@ void func_0207729c(Unk02061808 *p) {
     b = *(volatile Vec3 *) &data_usa_02154fc4;
     p->mUnk_000 = data_usa_02154fc4;
     p->mUnk_00c = data_usa_02154fd0;
-    func_021471bc(&p->mUnk_030);
+    Matrix4x3Identity(&p->mUnk_030);
     p->mUnk_15c = data_usa_02154fb8;
     p->mUnk_168 = 0;
     p->mUnk_064 = data_0216569c;

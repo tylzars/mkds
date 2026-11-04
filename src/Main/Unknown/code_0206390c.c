@@ -75,9 +75,9 @@ void func_0206390c(Unk0206390c *a) {
     }
     i = func_0206182c();
     func_02012f58(&d, c);
-    func_0214755c(i, &e);
-    func_0214733c(&d, &e, &d);
-    func_02146dfc((const s32 *) c, (const s32 *) &e, (s32 *) c);
+    Matrix4x3Invert(i, &e);
+    Matrix4x3Multiply(&d, &e, &d);
+    Matrix3x3Multiply((const s32 *) c, (const s32 *) &e, (s32 *) c);
     f = d.mUnk_00[3];
     g = c[2];
     j = func_0207a974(b);

@@ -197,7 +197,7 @@ void func_020a683c(void *a, Unk020a5958 *p, void *b, s32 c) {
     }
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
     x = data_021567a4[data_0217b220] >> 4;
-    func_02146d44(m, data_0215d4b4[x * 2 + 1], data_0215d4b4[x * 2]);
+    Matrix3x3FromPairY(m, data_0215d4b4[x * 2 + 1], data_0215d4b4[x * 2]);
     func_01ff9048(0x1a, m, 9);
     u.x = 0x2000;
     u.y = 0x2000;

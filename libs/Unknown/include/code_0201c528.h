@@ -78,7 +78,7 @@ typedef struct Unk0201ca6c_20_00 {
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
-    /* 1c */ Unk02148038 mUnk_1c;
+    /* 1c */ Vec3s16 mUnk_1c;
     /* 22 */ u16 mUnk_22;
     /* 24 */ s32 mUnk_24;
     /* 28 */ s32 mUnk_28;
@@ -235,7 +235,7 @@ struct Unk0201ca6c {
     /* 40 */ Vec3 mUnk_40;
     /* 4c */ u16 mUnk_4c;
     /* 4e */ s16 mUnk_4e;
-    /* 50 */ Unk02148038 mUnk_50;
+    /* 50 */ Vec3s16 mUnk_50;
     /* 56 */ u16 mUnk_56;
     /* 58 */ s32 mUnk_58;
     /* 5c */ s32 mUnk_5c;
@@ -254,8 +254,8 @@ struct Unk0201ca6c {
     /* 80 */ u32 mUnk_80_8 : 8;
     /* 80 */ u32 mUnk_80_16 : 3;
     /* 80 */ u32 mUnk_80_19 : 13;
-    /* 84 */ Unk02148038 mUnk_84;
-    /* 8a */ Unk02148038 mUnk_8a;
+    /* 84 */ Vec3s16 mUnk_84;
+    /* 8a */ Vec3s16 mUnk_8a;
     /* 90 */ void (*mUnk_90)(Unk0201ca6c *p, s32 a);
     /* 94 */ union {
         void *mUnk_94;
@@ -319,7 +319,7 @@ void func_0201e054(const Unk0201e054 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q
 void func_0201e170(const Unk0201e170 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q);
 void func_0201e248(const Unk0201e248 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q);
 void func_0201e2cc(const Unk0201e2cc *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q);
-void func_0201e394(const Unk02148038 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q);
+void func_0201e394(const Vec3s16 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q);
 Unk0201e3c8 *func_0201e3c8(Unk0201e494 *l0, Unk0201e3c8 *p);
 Unk0201e3c8 *func_0201e448(Unk0201e494 *l0);
 void func_0201e494(Unk0201e494 *l0, Unk0201e3c8 *p);

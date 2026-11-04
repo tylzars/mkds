@@ -1,6 +1,6 @@
 #include "code_0214a054.h"
 
-u32 func_0214a214(void) {
+u32 G2Bg2CntBits8To12Address(void) {
     u32 a;
     u32 h;
     u32 b;
@@ -28,7 +28,7 @@ u32 func_0214a214(void) {
     return 0;
 }
 
-u32 func_0214a194(void) {
+u32 G2sBg2CntBits8To12Address(void) {
     u32 a;
     u32 h;
     u32 x;
@@ -54,7 +54,7 @@ u32 func_0214a194(void) {
     return 0;
 }
 
-u32 func_0214a108(void) {
+u32 G2Bg3CntBits8To12Address(void) {
     u32 a;
     u32 h;
     u32 b;
@@ -82,7 +82,7 @@ u32 func_0214a108(void) {
     return 0;
 }
 
-u32 func_0214a088(void) {
+u32 G2sBg3CntBits8To12Address(void) {
     u32 a;
     u32 h;
     u32 x;
@@ -108,7 +108,7 @@ u32 func_0214a088(void) {
     return 0;
 }
 
-u32 func_0214a054(void) {
+u32 G2Bg0CntBits2To5Address(void) {
     u32 a;
     u32 b;
 
