@@ -8,13 +8,12 @@
 #include "00/code_0219b580.h"
 #include "code_0214d018.h"
 
-// non-matching: 0x6c bytes, original 0x68; 22 lines differ; first: original `push {r4, lr}`, ours `stmfd sp!, {lr}`
 void func_0205a548(s32 a, s32 b, s32 c) {
-    Unk0217aa14_104 *e;
+    Unk0217aa14_104_68 *e;
 
-    e = &data_0217aa14->mUnk_104[a];
-    e->mUnk_68 = b;
-    e->mUnk_6c = b;
+    e = &data_0217aa14->mUnk_104[a].mUnk_68_view;
+    e->mUnk_00 = b;
+    e->mUnk_04 = b;
     func_020f40dc(&data_027e00c8[(u16) data_0217aa18->mUnk_06[a]].mUnk_030, b, c);
 }
 

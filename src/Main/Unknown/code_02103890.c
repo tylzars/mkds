@@ -176,8 +176,6 @@ void func_0210449c(Unk021035ac *p) {
     func_0212ecc0(r, 0, (u16) v);
 }
 
-// non-matching: same size; the loop over the 0x34-byte entries allocates r4-r7 differently (the original keeps
-// the count pointer in r5, the index in r7 and the offset in r6).
 void func_02104368(void) {
     s32 i;
     Unk0210340c *p;
@@ -187,12 +185,10 @@ void func_02104368(void) {
     if (*(s32 *) data_0217c658 == 0) {
         return;
     }
-    // non-matching: loop temps get swapped registers (mine i=r5/&n=r7/&table=r6/offset=r4,
-    // original i=r7/&n=r5/&table=r4/offset=r6; callee also in r0 vs r1)
     for (i = 0; i < *(s32 *) data_0217c658; i++) {
         Unk021035ac *e = &((Unk021035ac *) data_0217c654)[i];
 
-        ((void (*)(void)) e->mUnk_24)();
+        ((void (*)(Unk021035ac *)) e->mUnk_24)(e);
     }
     n = *(s32 *) data_0217c650 + 1;
     *(s32 *) data_0217c650 = n;

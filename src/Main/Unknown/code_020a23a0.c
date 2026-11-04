@@ -223,9 +223,9 @@ void func_020a29cc(void) {
 
         v2 = data_021676d0;
         v3 = data_021676c4;
-        __memcpy(&data_021704dc, &v3, sizeof(Vec3));
-        data_021704e8 = v2;
-        data_021704f4 = v1;
+        data_021704dc[0] = v3;
+        data_021704dc[1] = v2;
+        data_021704dc[2] = v1;
         func_0214abb4(&v3, &v2, &v1, 0, &data_0217029c.mUnk_4c);
         data_0217029c.mUnk_fc &= ~0xe8;
         func_02038c9c(data_021755a0, 1, 1);

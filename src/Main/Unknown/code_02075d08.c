@@ -349,15 +349,13 @@ void func_02076a5c(void) {
     (data_0217ac94)->mUnk_018.y = q->mUnk_80.y + (data_0217ac94)->mUnk_0d4;
 }
 
-// non-matching: ours pushes r4, r5 and keeps the first argument in r5 (original r4 only, address 0x9c in lr, 0x90 in
-// ip, 8 bytes of stack against 4)
 void func_02076bcc(Unk02061808 *a) {
     Vec3 *b = &a->mUnk_09c;
     Vec3 *c = (Vec3 *) &a->mUnk_090;
 
-    data_021704dc = *b;
-    data_021704e8 = *(Vec3 *) a;
-    data_021704f4 = *c;
+    data_021704dc[0] = *b;
+    data_021704dc[1] = *(Vec3 *) a;
+    data_021704dc[2] = *c;
     func_0214abb4(b, (Vec3 *) a, c, 0, &data_usa_021702c8);
     data_0217029c.mUnk_fc &= ~0xe8;
 }

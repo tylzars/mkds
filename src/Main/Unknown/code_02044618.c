@@ -425,14 +425,9 @@ void func_02045084(s32 a) {
     }
 }
 
-// non-matching: same size; in the loop the original keeps the zero constants in r3/r4 and the 0x30 offset in r5 (here
-// zero in r5/ip, offset in r4), and orders the moveq/movne pair of the (i == 0) select the other way.
 void func_02045590(void) {
     u16 i;
-    u16 j;
-    u16 k;
     Unk020565e4 *e;
-    Unk021759c0 *q;
 
     data_021759c0->mUnk_1e8.mCourseId = 0x14;
     data_021759c0->mUnk_1e8.mUnk_04 = 0;
@@ -458,7 +453,7 @@ void func_02045590(void) {
     for (i = 0; i < 8; i++) {
         data_021759c0->mUnk_250[i].mCharacterIndex = i;
         data_021759c0->mUnk_250[i].mKartIndex = i * 3;
-        data_021759c0->mUnk_250[i].mUnk_08.mUnk_00 = i != 0 ? 1 : 0;
+        data_021759c0->mUnk_250[i].mUnk_08.mUnk_00 = i == 0 ? UNK_021759C0_70_KIND_0 : UNK_021759C0_70_KIND_1;
         data_021759c0->mUnk_250[i].mUnk_08.mTeamIndex = -1;
         data_021759c0->mUnk_250[i].mUnk_08.mUnk_08 = 3;
         data_021759c0->mUnk_250[i].mUnk_08.mUnk_0c = i;
@@ -474,29 +469,27 @@ void func_02045590(void) {
     data_021759c0->mUnk_250[6].mUnk_08.mUnk_08 = 1;
     data_021759c0->mKartCount = 0;
     data_021759c0->mUnk_3d1 = 0;
-    for (j = 0; j < 2; j++) {
-        data_021759c0->mTeamKartCounts[j] = 0;
+    for (i = 0; i < 2; i++) {
+        data_021759c0->mTeamKartCounts[i] = 0;
     }
     data_021759c0->mUnk_3d4 = 0;
-    for (j = 0; j < 2; j++) {
-        data_021759c0->mUnk_3d5[j] = -1;
+    for (i = 0; i < 2; i++) {
+        data_021759c0->mUnk_3d5[i] = -1;
     }
     data_021759c0->mUnk_3d8 = 0;
-    for (k = 0; k < 0x21; k++) {
-        data_021759c0->mCourseList[k] = 0;
+    for (i = 0; i < 0x21; i++) {
+        data_021759c0->mCourseList[i] = 0;
     }
     data_021759c0->mCourseListIndex = 0;
-    q = data_021759c0;
-    e = &q->mUnk_3e8;
+    e = &data_021759c0->mUnk_3e8;
     e->mUnk_02 = 0;
     e->mUnk_03 = 0;
-    q->mUnk_3e8.mUnk_00 = 0;
+    e->mUnk_00 = 0;
     for (i = 0; i < 5; i++) {
-        q = data_021759c0;
-        e = q->mUnk_3ec;
-        e[i].mUnk_02 = 0;
-        e[i].mUnk_03 = 0;
-        e[i].mUnk_00 = 0;
+        e = &data_021759c0->mUnk_3ec[i];
+        e->mUnk_02 = 0;
+        e->mUnk_03 = 0;
+        e->mUnk_00 = 0;
     }
     func_0205db50();
     func_0205d07c();

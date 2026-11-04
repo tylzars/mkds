@@ -28,7 +28,6 @@ extern u8 data_02170344[];
 
 extern Unk0217029c data_0217029c;
 extern Unk02170500 *data_02170500;
-extern Vec3 data_021704dc;
-extern Vec3 data_021704e8;
-extern Vec3 data_021704f4;
+// The three vectors passed to func_0214abb4, written together before each call.
+extern Vec3 data_021704dc[3];
 extern Unk0201290c_1c data_usa_021704e4[];

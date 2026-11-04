@@ -163,9 +163,9 @@ void func_020787f4(s32 param_1, s32 param_2) {
     c.y += param_2;
     Vec3Sub(&c, &data_usa_021656fc, &d);
     Vec3Cross(&b, &d, &e);
-    data_021704dc = data_usa_021656fc;
-    data_021704e8 = e;
-    data_021704f4 = c;
+    data_021704dc[0] = data_usa_021656fc;
+    data_021704dc[1] = e;
+    data_021704dc[2] = c;
     func_0214abb4(&data_usa_021656fc, &e, &c, 0, &data_0217029c.mUnk_4c);
     data_0217029c.mUnk_fc &= ~0xe8;
     func_02011034();

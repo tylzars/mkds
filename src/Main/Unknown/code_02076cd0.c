@@ -147,27 +147,24 @@ void func_02077060(Unk02061808 *p) {
                   (Unk0214ad4c *) data_0217acc0);
 }
 
-// non-matching: 0x340 bytes against 0x348; the original copies data_usa_02154fdc through a second stack vector (two
-// ldm/stm hops, frame 0x3c) and loads the constant words and vector copies in a different order (first difference at
-// 0x28)
 void func_0207729c(Unk02061808 *p) {
-    Vec3 a;
     Vec3 b;
+    Vec3 a;
     Vec3 c;
 
     p->mUnk_024.x = 0x1e3000;
     p->mUnk_024.y = 0x4bd000;
     p->mUnk_024.z = 0xc6b000;
-    a = data_usa_02154fdc;
+    a = *(volatile Vec3 *) &data_usa_02154fdc;
     p->mUnk_018 = a;
-    b = data_usa_02154fc4;
+    b = *(volatile Vec3 *) &data_usa_02154fc4;
     p->mUnk_000 = data_usa_02154fc4;
     p->mUnk_00c = data_usa_02154fd0;
     func_021471bc(&p->mUnk_030);
     p->mUnk_15c = data_usa_02154fb8;
     p->mUnk_168 = 0;
     p->mUnk_064 = data_0216569c;
-    p->mUnk_060 = p->mUnk_064 + 5;
+    p->mUnk_060 = data_0216569c + 5;
     p->mUnk_068 = data_0215d4b4[((u16) p->mUnk_060 >> 4) * 2];
     p->mUnk_06a = data_0215d4b4[((u16) p->mUnk_060 >> 4) * 2 + 1];
     p->mUnk_06c = 0x1555;
@@ -232,7 +229,7 @@ void func_0207729c(Unk02061808 *p) {
     p->mUnk_260 = c;
     p->mUnk_0a8 = c;
     p->mUnk_0b4 = c;
-    p->mUnk_26c = data_021759c0->mUnk_57 == 0 ? 1 : -1;
+    p->mUnk_26c = data_021759c0->mUnk_57 ? -1 : 1;
     p->mUnk_21c = NULL;
     p->mUnk_220 = NULL;
     p->mUnk_20c = 0;
