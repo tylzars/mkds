@@ -8,9 +8,9 @@
 
 u16 data_02180430;
 vu32 data_02180438;
-Unk0214f4bc *data_02180444;
+CallbackEntry *data_02180444;
 u32 data_02180440;
-Unk0214f4bc *data_0218043c;
+CallbackEntry *data_0218043c;
 vu32 data_02180434;
 Unk0214f630 data_02180448;
 ThreadLock data_02180458;
@@ -37,7 +37,7 @@ void func_021501c0(void) {
     }
 }
 
-void func_021501b8(u32 a, u32 *p) {
+void WordStore(u32 a, u32 *p) {
     *p = a;
 }
 
@@ -68,10 +68,10 @@ void func_021500a0(void) {
     data_02180430 = 1;
     data_02180448.mUnk_00 = 0;
     data_02180448.mUnk_04 = 0;
-    func_0214d5b8();
-    while (func_0214d79c(8, 1) == 0) {
+    PxiInit();
+    while (PxiCallbackBitIsSet(8, 1) == 0) {
     }
-    func_0214d7c4(8, func_0214ffb4);
+    PxiCallbackSet(8, func_0214ffb4);
     for (i = 0; i < 4; i++) {
         data_02180470[i].mUnk_00 = 0;
     }
@@ -158,7 +158,7 @@ int func_0214fdd4(u32 a, u16 *p) {
     u32 v;
     int r;
 
-    r = func_0214fe10(a, p, func_021501b8, &v);
+    r = func_0214fe10(a, p, WordStore, &v);
     if (r != 0) {
         return r;
     }
@@ -181,7 +181,7 @@ int func_0214fd18(u32 a, u16 b) {
     u32 v;
     int r;
 
-    r = func_0214fd54(a, b, func_021501b8, &v);
+    r = func_0214fd54(a, b, WordStore, &v);
     if (r != 0) {
         return r;
     }
@@ -216,7 +216,7 @@ int func_0214fc74(u32 a) {
     u32 v;
     int r;
 
-    r = func_0214fcb0(a, func_021501b8, &v);
+    r = func_0214fcb0(a, WordStore, &v);
     if (r != 0) {
         return r;
     }
@@ -260,7 +260,7 @@ int func_0214fba8(u32 a, u32 b) {
     u32 v;
     int r;
 
-    r = func_0214fbe4(a, b, func_021501b8, &v);
+    r = func_0214fbe4(a, b, WordStore, &v);
     if (r != 0) {
         return r;
     }
@@ -276,7 +276,7 @@ int func_0214fb54(void) {
     u32 v;
     int r;
 
-    r = func_0214fb90(func_021501b8, &v);
+    r = func_0214fb90(WordStore, &v);
     if (r != 0) {
         return r;
     }
@@ -333,7 +333,7 @@ void func_0214f83c(u32 a, u32 b, u32 c) {
     u16 tmp;
 
     d = 0;
-    func_0214f51c(data_0218043c);
+    CallbackListRun(data_0218043c);
     saved = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 0;
     v0 = IrqDisable();
@@ -395,7 +395,7 @@ void func_0214f83c(u32 a, u32 b, u32 c) {
     if (d != 0) {
         func_0214fb54();
     }
-    func_0214f51c(data_02180444);
+    CallbackListRun(data_02180444);
 }
 
 int func_0214f74c(u32 a, u32 b, u32 c, u32 d) {
@@ -455,7 +455,7 @@ int func_0214f680(u32 a) {
     u32 v;
     int r;
 
-    r = func_0214f6bc(a, func_021501b8, &v);
+    r = func_0214f6bc(a, WordStore, &v);
     if (r != 0) {
         return r;
     }
@@ -478,7 +478,7 @@ int func_0214f5f4(u32 *p) {
     u32 v;
     int r;
 
-    r = func_0214f630(p, func_021501b8, &v);
+    r = func_0214f630(p, WordStore, &v);
     if (r != 0) {
         return r;
     }
@@ -486,38 +486,38 @@ int func_0214f5f4(u32 *p) {
     return v;
 }
 
-void func_0214f5e0(Unk0214f4bc **pp, Unk0214f4bc *p) {
+void CallbackListPrepend(CallbackEntry **pp, CallbackEntry *p) {
     if (pp != 0) {
-        p->mUnk_08 = *pp;
+        p->mNext = *pp;
         *pp = p;
     }
 }
 
-void func_0214f598(Unk0214f4bc **pp, Unk0214f4bc *p) {
-    Unk0214f4bc *a;
-    Unk0214f4bc *b;
+void CallbackListAppend(CallbackEntry **pp, CallbackEntry *p) {
+    CallbackEntry *a;
+    CallbackEntry *b;
 
     if (pp == 0) {
         return;
     }
     a = *pp;
     if (a == 0) {
-        p->mUnk_08 = 0;
+        p->mNext = 0;
         *pp = p;
         return;
     }
-    b = a->mUnk_08;
+    b = a->mNext;
     while (b != 0) {
         a = b;
-        b = b->mUnk_08;
+        b = b->mNext;
     }
-    p->mUnk_08 = b;
-    a->mUnk_08 = p;
+    p->mNext = b;
+    a->mNext = p;
 }
 
-void func_0214f54c(Unk0214f4bc **pp, Unk0214f4bc *p) {
-    Unk0214f4bc *a;
-    Unk0214f4bc *b;
+void CallbackListRemove(CallbackEntry **pp, CallbackEntry *p) {
+    CallbackEntry *a;
+    CallbackEntry *b;
 
     if (pp == 0) {
         return;
@@ -530,43 +530,43 @@ void func_0214f54c(Unk0214f4bc **pp, Unk0214f4bc *p) {
     do {
         if (a == p) {
             if (a == b) {
-                *pp = a->mUnk_08;
+                *pp = a->mNext;
             } else {
-                b->mUnk_08 = a->mUnk_08;
+                b->mNext = a->mNext;
             }
             return;
         }
         b = a;
-        a = a->mUnk_08;
+        a = a->mNext;
     } while (a != 0);
 }
 
-void func_0214f51c(Unk0214f4bc *p) {
+void CallbackListRun(CallbackEntry *p) {
     if (p == 0) {
         return;
     }
     do {
-        p->mUnk_00(p->mUnk_04);
-        p = p->mUnk_08;
+        p->mCallback(p->mArg);
+        p = p->mNext;
     } while (p != 0);
 }
 
-void func_0214f504(Unk0214f4bc *p) {
-    func_0214f598(&data_0218043c, p);
+void func_0214f504(CallbackEntry *p) {
+    CallbackListAppend(&data_0218043c, p);
 }
 
-void func_0214f4ec(Unk0214f4bc *p) {
-    func_0214f5e0(&data_0218043c, p);
+void func_0214f4ec(CallbackEntry *p) {
+    CallbackListPrepend(&data_0218043c, p);
 }
 
-void func_0214f4d4(Unk0214f4bc *p) {
-    func_0214f598(&data_02180444, p);
+void func_0214f4d4(CallbackEntry *p) {
+    CallbackListAppend(&data_02180444, p);
 }
 
-void func_0214f4bc(Unk0214f4bc *p) {
-    func_0214f54c(&data_0218043c, p);
+void func_0214f4bc(CallbackEntry *p) {
+    CallbackListRemove(&data_0218043c, p);
 }
 
-void func_0214f4a4(Unk0214f4bc *p) {
-    func_0214f54c(&data_02180444, p);
+void func_0214f4a4(CallbackEntry *p) {
+    CallbackListRemove(&data_02180444, p);
 }

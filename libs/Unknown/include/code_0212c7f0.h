@@ -3,15 +3,15 @@
 #include "types.h"
 #include "code_02003024.h" // Unk02003024
 #include "code_0212f788.h" // Interpolator
-#include "code_0214f4a4.h" // Unk0214f4bc
+#include "code_0214f4a4.h" // CallbackEntry
 
 // 0x160 bytes; data_0217e404 holds four. Flags word at 0x24: bit 0 and bit 1 are tested and cleared or set by
 // func_0212c824, func_0212c918 and func_0212c948. mUnk_4c holds mUnk_48 bytes. Bits of mUnk_110: 0 is tested by
 // func_0212ef48, func_0212efb8 and func_0212f094, 1 by func_0212efb8 and func_0212f094, 2 and 3 by func_0212f094.
 typedef struct Unk0212c7f0 {
     /* 00 */ u8 mUnk_00[8];
-    /* 08 */ Unk0214f4bc mUnk_08;
-    /* 14 */ Unk0214f4bc mUnk_14;
+    /* 08 */ CallbackEntry mUnk_08;
+    /* 14 */ CallbackEntry mUnk_14;
     /* 20 */ u8 mUnk_20[4];
     /* 24 */ s32 mUnk_24_0 : 1;
     /* 24 */ s32 mUnk_24_1 : 1;

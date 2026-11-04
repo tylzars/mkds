@@ -29,13 +29,13 @@
 
 void func_ov003_021bf8c0(void) {
     data_ov003_021da154 = func_ov003_021d285c(0xc0, 4);
-    func_ov003_021bf620(data_ov003_021d6bb0, func_0214ba2c);
+    func_ov003_021bf620(data_ov003_021d6bb0, MemCopyWordsToG2Bg1CntBits2To5Address);
     switch (func_ov003_021c20c0()) {
         case 0:
-            func_ov003_021bf620(data_ov003_021d6b60[0], func_0214bd6c);
+            func_ov003_021bf620(data_ov003_021d6b60[0], MemCopyHalfwordsToG2Bg1CntBits8To12Address);
             break;
         case 1:
-            func_ov003_021bf620(data_ov003_021d6b60[1], func_0214bd6c);
+            func_ov003_021bf620(data_ov003_021d6b60[1], MemCopyHalfwordsToG2Bg1CntBits8To12Address);
             break;
     }
 }

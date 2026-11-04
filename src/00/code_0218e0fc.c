@@ -99,7 +99,7 @@ void func_ov000_0218e130(const u8 *c, char *d) {
 
 void func_ov000_0218e0fc(const char *c, s32 d, char *e) {
     u8 a[16];
-    Unk02150610 b;
+    Hash16State b;
     func_ov000_021acef0(&b);
     func_ov000_021acee8(&b, (const u8 *) c, d);
     func_ov000_021acee0(a, &b);

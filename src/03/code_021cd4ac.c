@@ -182,7 +182,7 @@ void func_ov003_021cd790(s32 a) {
     } else {
         data_ov003_021da270->mUnk_400.mUnk_f6 = 1;
     }
-    func_021516b0(q->mUnk_d0, data_ov003_021da270->mUnk_400.mUnk_f0);
+    Bytes4StoreTopBitsMask(q->mUnk_d0, data_ov003_021da270->mUnk_400.mUnk_f0);
 }
 
 void func_ov003_021cd6d0(void) {
@@ -196,7 +196,7 @@ void func_ov003_021cd6d0(void) {
     } else {
         MemCopy(p->mUnk_00.mUnk_c0, q->mUnk_c0, 4);
         MemCopy(p->mUnk_00.mUnk_c4, q->mUnk_c4, 4);
-        q->mUnk_d0 = func_021516d8(p->mUnk_f0);
+        q->mUnk_d0 = CountSetBitsInBytes4(p->mUnk_f0);
     }
     if (p->mUnk_f6 != 0) {
         MemFill(q->mUnk_c8, 0, 8);

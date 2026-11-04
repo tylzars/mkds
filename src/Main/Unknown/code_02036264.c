@@ -68,7 +68,7 @@ void func_020362dc(void *a) {
         }
     }
     func_0200ee58(data_02174e6c->mUnk_034, 0x600);
-    func_0214bb64(data_02174e6c->mUnk_034, 0, 0x600);
+    MemCopyHalfwordsToG2sBg3CntBits8To12Address(data_02174e6c->mUnk_034, 0, 0x600);
     func_02036264(data_02174e6c->mUnk_034, 0x600);
     for (i = 10; i < 14; i++) {
         for (j = 0; j < 0x20; j++) {
@@ -76,7 +76,7 @@ void func_020362dc(void *a) {
         }
     }
     func_0200ee58(data_02174e6c->mUnk_034, 0x600);
-    func_0214bd04(data_02174e6c->mUnk_034, 0, 0x600);
+    MemCopyHalfwordsToG2sBg1CntBits8To12Address(data_02174e6c->mUnk_034, 0, 0x600);
     func_02036258();
     FrmHeapShrinkInParent(data_02174e6c->mHeap);
 }

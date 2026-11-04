@@ -4,7 +4,7 @@
 // Returns -1 when a field of a is out of range (mUnk_00 below 100, mUnk_04 in 1..12, mUnk_08 in 1..31, mUnk_0c below
 // 7); otherwise mUnk_08 - 1 + data_0216f074[mUnk_04], plus 1 when mUnk_04 >= 3 and mUnk_00 is a multiple of 4, plus
 // mUnk_00 * 365 + (mUnk_00 + 3) / 4.
-s32 func_0214e274(const Unk0214e1e0 *a) {
+s32 DateToDays(const Unk0214e1e0 *a) {
     u32 y;
     u32 m;
     u32 d;

@@ -176,7 +176,7 @@ u32 FileCheckHmac(const u8 *expected, const u8 *data, u32 n) {
 
     MemFill(d, 0, 0x14);
     MemCopy(data_02161768, k, data_0216176c);
-    func_02150808(d, data, n, k, data_0216176c);
+    Hash20Hmac(d, data, n, k, data_0216176c);
     for (i = 0; i < 0x14; i += 4) {
         if (*(u32 *) (d + i) != *(u32 *) (expected + i)) {
             break;

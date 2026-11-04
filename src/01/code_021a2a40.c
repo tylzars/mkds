@@ -61,13 +61,16 @@ void func_ov001_021a4fa0(void) {
     func_0200ee74(gEmblem->mEmblemMBNclr->mData, gEmblem->mEmblemMBNclr->mDataSize);
     func_0214c160((const void *) gEmblem->mEmblemMBNclr->mData, 0, gEmblem->mEmblemMBNclr->mDataSize);
     func_0200ee74((const void *) gEmblem->mEmblemMBNcgr->mData, gEmblem->mEmblemMBNcgr->mDataSize);
-    func_0214ba2c((const void *) (gEmblem->mEmblemMBNcgr->mData), 0, gEmblem->mEmblemMBNcgr->mDataSize);
+    MemCopyWordsToG2Bg1CntBits2To5Address((const void *) (gEmblem->mEmblemMBNcgr->mData), 0,
+                                          gEmblem->mEmblemMBNcgr->mDataSize);
     func_0200ee74(gEmblem->mUnk_0a7c, 0x200);
-    func_0214b95c((const void *) gEmblem->mUnk_0a7c, 0, 0x200);
+    MemCopyWordsToG2Bg2CntBits2To5Address((const void *) gEmblem->mUnk_0a7c, 0, 0x200);
     func_0200ee74(gEmblem->mEmblemMNscr->mData, gEmblem->mEmblemMNscr->mDataSize);
-    func_0214bd6c((const void *) gEmblem->mEmblemMNscr->mData, 0, gEmblem->mEmblemMNscr->mDataSize);
+    MemCopyHalfwordsToG2Bg1CntBits8To12Address((const void *) gEmblem->mEmblemMNscr->mData, 0,
+                                               gEmblem->mEmblemMNscr->mDataSize);
     func_0200ee74(gEmblem->mEmblemMBgNscr->mData, gEmblem->mEmblemMBgNscr->mDataSize);
-    func_0214bc9c((const void *) gEmblem->mEmblemMBgNscr->mData, 0, gEmblem->mEmblemMBgNscr->mDataSize);
+    MemCopyHalfwordsToG2Bg2CntBits8To12Address((const void *) gEmblem->mEmblemMBgNscr->mData, 0,
+                                               gEmblem->mEmblemMBgNscr->mDataSize);
     reg_G2_BG1OFS = 0;
     reg_G2_BG2OFS = 0;
 }
@@ -93,23 +96,28 @@ void func_ov001_021a4d10(void) {
     func_0200ee74(gEmblem->mEmblemSBNclr->mData, gEmblem->mEmblemSBNclr->mDataSize);
     func_0214c0f8((const void *) gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
     func_0200ee74((const void *) gEmblem->mEmblemSBNcgr->mData, gEmblem->mEmblemSBNcgr->mDataSize);
-    func_0214b9c4((const void *) (gEmblem->mEmblemSBNcgr->mData), 0, gEmblem->mEmblemSBNcgr->mDataSize);
+    MemCopyWordsToG2sBg1CntBits2To5Address((const void *) (gEmblem->mEmblemSBNcgr->mData), 0,
+                                           gEmblem->mEmblemSBNcgr->mDataSize);
     func_0200ee74((const void *) func_ov001_02181174(), func_ov001_02181180());
-    func_0214b824((const void *) (func_ov001_02181174()), func_ov001_02181194(), func_ov001_02181180());
+    MemCopyWordsToG2sBg3CntBits2To5Address((const void *) (func_ov001_02181174()), func_ov001_02181194(),
+                                           func_ov001_02181180());
     func_0200ee74(gEmblem->mEmblemSTemplateFrameNscr->mData, gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
-    func_0214bdd4((const void *) gEmblem->mEmblemSTemplateFrameNscr->mData, 0,
-                  gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
+    MemCopyHalfwordsToG2sBg0CntBits8To12Address((const void *) gEmblem->mEmblemSTemplateFrameNscr->mData, 0,
+                                                gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
     func_0200ee74(gEmblem->mEmblemSToolNscr->mData, gEmblem->mEmblemSToolNscr->mDataSize);
-    func_0214bd04((const void *) gEmblem->mEmblemSToolNscr->mData, 0, gEmblem->mEmblemSToolNscr->mDataSize);
+    MemCopyHalfwordsToG2sBg1CntBits8To12Address((const void *) gEmblem->mEmblemSToolNscr->mData, 0,
+                                                gEmblem->mEmblemSToolNscr->mDataSize);
     func_0200ee74(gEmblem->mEmblemSBgNscr->mData, gEmblem->mEmblemSBgNscr->mDataSize);
-    func_0214bc34((const void *) gEmblem->mEmblemSBgNscr->mData, 0, gEmblem->mEmblemSBgNscr->mDataSize);
+    MemCopyHalfwordsToG2sBg2CntBits8To12Address((const void *) gEmblem->mEmblemSBgNscr->mData, 0,
+                                                gEmblem->mEmblemSBgNscr->mDataSize);
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x1010;
     func_0200ee74(gEmblem->mEmblemSTemplateDarkNscr->mData, gEmblem->mEmblemSTemplateDarkNscr->mDataSize);
-    func_0214bb64((const void *) gEmblem->mEmblemSTemplateDarkNscr->mData, 0,
-                  gEmblem->mEmblemSTemplateDarkNscr->mDataSize);
+    MemCopyHalfwordsToG2sBg3CntBits8To12Address((const void *) gEmblem->mEmblemSTemplateDarkNscr->mData, 0,
+                                                gEmblem->mEmblemSTemplateDarkNscr->mDataSize);
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x1218;
     func_0200ee74((const void *) func_ov001_021811bc(), func_ov001_02181198());
-    func_0214bb64((const void *) (func_ov001_021811bc()), func_ov001_021811b8(), func_ov001_02181198());
+    MemCopyHalfwordsToG2sBg3CntBits8To12Address((const void *) (func_ov001_021811bc()), func_ov001_021811b8(),
+                                                func_ov001_02181198());
 }
 
 void func_ov001_021a4ba0(void) {
@@ -129,11 +137,14 @@ void func_ov001_021a4ba0(void) {
     func_0200ee74(gEmblem->mEmblemSBNclr->mData, gEmblem->mEmblemSBNclr->mDataSize);
     func_0214c0f8((const void *) gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
     func_0200ee74((const void *) gEmblem->mEmblemCameraSBNcgr->mData, gEmblem->mEmblemCameraSBNcgr->mDataSize);
-    func_0214b9c4((const void *) (gEmblem->mEmblemCameraSBNcgr->mData), 0, gEmblem->mEmblemCameraSBNcgr->mDataSize);
+    MemCopyWordsToG2sBg1CntBits2To5Address((const void *) (gEmblem->mEmblemCameraSBNcgr->mData), 0,
+                                           gEmblem->mEmblemCameraSBNcgr->mDataSize);
     func_0200ee74(gEmblem->mEmblemCameraSDSNscr->mData, gEmblem->mEmblemCameraSDSNscr->mDataSize);
-    func_0214bd04((const void *) gEmblem->mEmblemCameraSDSNscr->mData, 0, gEmblem->mEmblemCameraSDSNscr->mDataSize);
+    MemCopyHalfwordsToG2sBg1CntBits8To12Address((const void *) gEmblem->mEmblemCameraSDSNscr->mData, 0,
+                                                gEmblem->mEmblemCameraSDSNscr->mDataSize);
     func_0200ee74(gEmblem->mEmblemCameraSBgNscr->mData, gEmblem->mEmblemCameraSBgNscr->mDataSize);
-    func_0214bc34((const void *) gEmblem->mEmblemCameraSBgNscr->mData, 0, gEmblem->mEmblemCameraSBgNscr->mDataSize);
+    MemCopyHalfwordsToG2sBg2CntBits8To12Address((const void *) gEmblem->mEmblemCameraSBgNscr->mData, 0,
+                                                gEmblem->mEmblemCameraSBgNscr->mDataSize);
 }
 
 void func_ov001_021a4b28(void) {

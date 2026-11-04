@@ -139,7 +139,7 @@ void func_02047e0c(void) {
     } else {
         p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
     }
-    func_0214d344(p->mUnk_80, p->mUnk_84);
+    ExpandCompressed(p->mUnk_80, p->mUnk_84);
     func_0200ee58(p->mUnk_84, n);
     ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
 }
@@ -168,13 +168,13 @@ void func_02047e94(void) {
     } else {
         p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
     }
-    func_0214d564((u32) b, (u32) p->mUnk_84, (u32) p->mUnk_88);
+    ExpandCompressedStateInit((u32) b, (u32) p->mUnk_84, (u32) p->mUnk_88);
     do {
         r = FS_ReadFile(&f, p->mUnk_88, 0x400);
         if (r <= 0) {
             return;
         }
-    } while (func_0214d464(b, (const u8 *) p->mUnk_88, r) != 0);
+    } while (ExpandCompressedContinue(b, (const u8 *) p->mUnk_88, r) != 0);
     func_0200ee58(p->mUnk_84, n);
     ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
 }

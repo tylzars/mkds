@@ -8,7 +8,7 @@
 #include "code_02017f24.h" // Unk02017f24
 #include "code_0200db4c.h"
 #include "Main/Unknown/code_020d22c0.h" // Unk020f41c4_B
-#include "code_0214f4a4.h" // Unk0214f4bc
+#include "code_0214f4a4.h" // CallbackEntry
 #include "Main/Unknown/code_02105ec0.h" // Unk0217d060
 
 // Object behind data_021759d0 (0x7c bytes); the 0x14 bytes at 0x2a are the source of a block move into
@@ -64,8 +64,8 @@ typedef struct Unk021759cc {
     /* 004 */ Unk0200db5c mUnk_004;
     /* 0bc */ u8 mUnk_0bc[8];
     /* 0c4 */ ThreadQueue mUnk_0c4;
-    /* 0cc */ Unk0214f4bc mUnk_0cc;
-    /* 0d8 */ Unk0214f4bc mUnk_0d8;
+    /* 0cc */ CallbackEntry mUnk_0cc;
+    /* 0d8 */ CallbackEntry mUnk_0d8;
     /* 0e4 */ s32 mUnk_0e4;
     /* 0e8 */ s32 mUnk_0e8;
     /* 0ec */ Unk021a9034 mUnk_0ec;

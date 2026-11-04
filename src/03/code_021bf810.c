@@ -49,6 +49,6 @@ void func_ov003_021bf83c(void) {
 
 void func_ov003_021bf810(u32 a) {
     func_0200ee74(data_ov003_021da154, 0xc0);
-    func_0214bd6c(data_ov003_021da154, 0, 0xc0);
+    MemCopyHalfwordsToG2Bg1CntBits8To12Address(data_ov003_021da154, 0, 0xc0);
     func_ov003_021d34c8(1, a);
 }

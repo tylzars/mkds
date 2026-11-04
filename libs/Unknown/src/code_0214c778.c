@@ -10,9 +10,9 @@ Unk0214ccd4 data_02180308;
 
 // Runs f(arg) at once when c is 0. Otherwise waits until data_02180308.mUnk_00 is 0 and bits 24-26 of the word at
 // 0x4000600 include bit 1, fills in data_02180308 (mUnk_00 = 1), saves the top two bits of that word and
-// InterruptHandlerGet(0x200000), sets those bits to 1, installs func_0214ce08 with InterruptHandlerSet(0x200000, ...)
-// and calls it.
-void func_0214ced0(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
+// InterruptHandlerGet(0x200000), sets those bits to 1, installs GxFifoSendNextPiece with InterruptHandlerSet(0x200000,
+// ...) and calls it.
+void GxFifoSendWordsInPieces(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
     u32 s;
     vu32 *p;
 
@@ -39,17 +39,17 @@ void func_0214ced0(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
     data_02180308.mUnk_18 = (*(u32 *) 0x4000600 & 0xc0000000) >> 0x1e;
     data_02180308.mUnk_1c = InterruptHandlerGet(0x200000);
     *(u32 *) 0x4000600 = (*(u32 *) 0x4000600 & ~0xc0000000) | 0x40000000;
-    InterruptHandlerSet(0x200000, func_0214ce08);
+    InterruptHandlerSet(0x200000, GxFifoSendNextPiece);
     InterruptEnableSetBits(0x200000);
-    func_0214ce08();
+    GxFifoSendNextPiece();
     IrqRestore(s);
 }
 
 // Does nothing when data_02180308.mUnk_0c is 0. Otherwise takes n = min(mUnk_0c, 0x1d8), advances mUnk_08 by n and
 // lowers mUnk_0c by n, and calls func_01ffff38 with data_02180308.mUnk_04, the old mUnk_08, 0x4000400 and n >> 2 under
-// 0x84400000 (0xc4400000 and func_0200cb9c(mUnk_04, func_0214cd94, 0) first when mUnk_0c reached 0), then
+// 0x84400000 (0xc4400000 and func_0200cb9c(mUnk_04, GxFifoSendWordsInPiecesDone, 0) first when mUnk_0c reached 0), then
 // InterruptFlagWrite(0x200000).
-void func_0214ce08(void) {
+void GxFifoSendNextPiece(void) {
     const u8 *p;
     u32 n;
 
@@ -64,7 +64,7 @@ void func_0214ce08(void) {
     data_02180308.mUnk_0c = data_02180308.mUnk_0c - n;
     data_02180308.mUnk_08 = p + n;
     if (data_02180308.mUnk_0c == 0) {
-        func_0200cb9c(data_02180308.mUnk_04, func_0214cd94, 0);
+        func_0200cb9c(data_02180308.mUnk_04, GxFifoSendWordsInPiecesDone, 0);
         func_01ffff38(data_02180308.mUnk_04, p, (void *) 0x4000400, 0xc4400000 | (n >> 2));
         InterruptFlagWrite(0x200000);
         return;
@@ -75,7 +75,7 @@ void func_0214ce08(void) {
 
 // Restores the top two bits of the word at 0x4000600 from data_02180308.mUnk_18, passes mUnk_1c to InterruptHandlerSet,
 // clears mUnk_00 and calls mUnk_10(mUnk_14) when mUnk_10 is not 0.
-void func_0214cd94(void) {
+void GxFifoSendWordsInPiecesDone(void) {
     u32 v;
 
     InterruptEnableClearBits(0x200000);
@@ -90,9 +90,9 @@ void func_0214cd94(void) {
 
 // Runs f(arg) at once when c is 0. Otherwise waits until data_02180308.mUnk_00 is 0, sets mUnk_00 to 1, stores a, f and
 // arg at mUnk_04, mUnk_10 and mUnk_14, calls func_0214c7e8(a, 0x38000000), func_0214c778(a, b, c, 0) and
-// func_0214c920(a), and installs func_0214cc94 with func_0200cb9c(a, ..., 0) before calling func_01ffff38 with
+// func_0214c920(a), and installs GxFifoSendWordsDone with func_0200cb9c(a, ..., 0) before calling func_01ffff38 with
 // 0x4000400 as destination.
-void func_0214ccd4(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
+void GxFifoSendWords(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
     if (c == 0) {
         if (f != 0) {
             f(arg);
@@ -108,12 +108,12 @@ void func_0214ccd4(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
     func_0214c7e8(a, 0x38000000);
     func_0214c778(a, b, c, 0);
     func_0214c920(a);
-    func_0200cb9c(a, func_0214cc94, 0);
+    func_0200cb9c(a, GxFifoSendWordsDone, 0);
     func_01ffff38(a, b, (void *) 0x4000400, 0xfc400000 | (c >> 2));
 }
 
 // Clears data_02180308.mUnk_00 and calls mUnk_10(mUnk_14) when mUnk_10 is not 0.
-void func_0214cc94(void) {
+void GxFifoSendWordsDone(void) {
     u32 v;
 
     data_02180308.mUnk_00 = 0;

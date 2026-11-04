@@ -187,9 +187,9 @@ static inline void func_02049c3c_inline(ThreadQueue *q) {
     q->mHead = q->mTail = NULL;
 }
 
-static inline void func_02049c3c_inline2(Unk0214f4bc *p, void (*f)(void *)) {
-    p->mUnk_00 = f;
-    p->mUnk_04 = NULL;
+static inline void func_02049c3c_inline2(CallbackEntry *p, void (*f)(void *)) {
+    p->mCallback = f;
+    p->mArg = NULL;
 }
 
 void func_02049c3c(void *a) {

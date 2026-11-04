@@ -38,11 +38,11 @@ void func_ov000_0218a5b0(const u8 *a, u8 *b) {
 }
 
 void func_ov000_0218a57c(const u8 *a, u8 *b) {
-    Unk02150610 c;
+    Hash16State c;
     u8 d[20];
-    func_021507c8((u32) &c);
-    func_021506d4(&c, a, 24);
-    func_02150610(d, &c);
+    Hash16Init((u32) &c);
+    Hash16Update(&c, a, 24);
+    Hash16Final(d, &c);
     MemCopy(d + 3, b, 13);
 }
 

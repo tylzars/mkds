@@ -91,7 +91,7 @@ s32 func_02061104(const void *a) {
     u8 i;
     u8 *f;
 
-    d = func_021528bc(a);
+    d = Decimal12CharsToValue(a);
     if (func_02152950(d, 0x414d434a) == 0) {
         return 1;
     }
@@ -234,7 +234,7 @@ s32 func_02060cb4(const void *a, void *b) {
     u8 c[12];
     u64 d;
 
-    d = func_021528bc(a);
+    d = Decimal12CharsToValue(a);
     func_021524d8(c, (u32) d, (u32) (d >> 32));
     return func_02060d1c((u8 *) data_0217aa08->mUnk_20 + 0x874, b, c, 1, 0, 1);
 }

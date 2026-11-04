@@ -192,8 +192,8 @@ void func_020af99c(void) {
     data_0217b350->mNclrs[0]->mData[0] = w;
     func_0200ee74(data_0217b350->mNclrs[0]->mData, data_0217b350->mNclrs[0]->mDataSize);
     func_0214c160(data_0217b350->mNclrs[0]->mData, 0, data_0217b350->mNclrs[0]->mDataSize);
-    func_0214b95c(data_0217b350->mNcgrs[0]->mData, 0, data_0217b350->mNcgrs[0]->mDataSize);
-    func_0214bc9c(data_0217b350->mNscrs[0]->mData, 0, data_0217b350->mNscrs[0]->mDataSize);
+    MemCopyWordsToG2Bg2CntBits2To5Address(data_0217b350->mNcgrs[0]->mData, 0, data_0217b350->mNcgrs[0]->mDataSize);
+    MemCopyHalfwordsToG2Bg2CntBits8To12Address(data_0217b350->mNscrs[0]->mData, 0, data_0217b350->mNscrs[0]->mDataSize);
     func_0214c090(GetRaceNclrNcgr(0)->mNclr->mData, 0, GetRaceNclrNcgr(0)->mNclr->mDataSize);
     func_0214bf04(GetRaceNclrNcgr(0)->mNcgr->mData, 0, 0x4000);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0xe000) | 0xe000;
@@ -211,9 +211,9 @@ void func_020af99c(void) {
     func_0214c028(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
     func_0214bea4(GetRaceNclrNcgr(6)->mNcgr->mData, 0, 0x4000);
     func_020b17a4();
-    func_0214bd04(func_020c3e14(0)->mData, 0, func_020c3e14(0)->mDataSize);
-    func_0214bc34(func_020c3e14(1)->mData, 0, func_020c3e14(1)->mDataSize);
-    func_0214bb64(func_020c3e14(2)->mData, 0, func_020c3e14(2)->mDataSize);
+    MemCopyHalfwordsToG2sBg1CntBits8To12Address(func_020c3e14(0)->mData, 0, func_020c3e14(0)->mDataSize);
+    MemCopyHalfwordsToG2sBg2CntBits8To12Address(func_020c3e14(1)->mData, 0, func_020c3e14(1)->mDataSize);
+    MemCopyHalfwordsToG2sBg3CntBits8To12Address(func_020c3e14(2)->mData, 0, func_020c3e14(2)->mDataSize);
     func_0214c0f8(data_0217b34c + 0x100, 0, 0x200);
     func_020cfca4();
     func_02149124(0x80);
@@ -226,8 +226,8 @@ void func_020af99c(void) {
     reg_G2S_DB_BG0CNT = reg_G2S_DB_BG0CNT & ~3;
     reg_G2S_DB_BG0CNT &= ~0x40;
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x10c;
-    func_0214ba94(func_020b3374()->mData, 0, func_020b3374()->mDataSize);
-    func_0214bdd4(func_020b32f8(), 0, 0x600);
+    MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, func_020b3374()->mDataSize);
+    MemCopyHalfwordsToG2sBg0CntBits8To12Address(func_020b32f8(), 0, 0x600);
     func_020b18b0();
     data_0217b350->mUnk_898 = 1;
 }

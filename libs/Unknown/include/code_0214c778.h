@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Object at data_02180308, set up by func_0214ccd4 and func_0214ced0.
+// Object at data_02180308, set up by GxFifoSendWords and GxFifoSendWordsInPieces.
 typedef struct Unk0214ccd4 {
     /* 00 */ vu32 mUnk_00;
     /* 04 */ u32 mUnk_04;
@@ -25,8 +25,8 @@ void func_0214ca38(u32 a, void *b, u32 c, u32 d, UnkFunc *f, u32 arg);
 void func_0214cb10(u32 a, const void *b, void *c, u32 d);
 void func_0214cb88(u32 a, const void *b, void *c, u32 d);
 void func_0214cc04(u32 a, void *b, u32 c, u32 d);
-void func_0214cc94(void);
-void func_0214ccd4(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg);
-void func_0214cd94(void);
-void func_0214ce08(void);
-void func_0214ced0(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg);
+void GxFifoSendWordsDone(void);
+void GxFifoSendWords(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg);
+void GxFifoSendWordsInPiecesDone(void);
+void GxFifoSendNextPiece(void);
+void GxFifoSendWordsInPieces(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg);

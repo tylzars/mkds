@@ -94,7 +94,7 @@ void func_0214eb88(void) {
         return;
     }
     data_021803d4 = 1;
-    func_0214d5b8();
+    PxiInit();
     data_021803d8.mUnk_32 = 0;
     data_021803d8.mUnk_36 = 0;
     data_021803d8.mUnk_0c = 0;
@@ -102,9 +102,9 @@ void func_0214eb88(void) {
     data_021803d8.mUnk_10 = 0;
     data_021803d8.mUnk_30 = 0;
     data_021803d8.mUnk_34 = 0;
-    while (!func_0214d79c(6, 1)) {
+    while (!PxiCallbackBitIsSet(6, 1)) {
     }
-    func_0214d7c4(6, func_0214ec18);
+    PxiCallbackSet(6, func_0214ec18);
 }
 
 u32 func_0214eadc(Unk0214e334 *p) {

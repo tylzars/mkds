@@ -47,8 +47,8 @@ s32 func_02142c98(void *buf, u32 n, u32 size) {
         data_0217eed0 = 0;
         return 6;
     }
-    func_0214d5b8();
-    if (func_0214d79c(0xa, 1) == 0) {
+    PxiInit();
+    if (PxiCallbackBitIsSet(0xa, 1) == 0) {
         data_0217eed0 = 0;
         return 4;
     }
@@ -70,7 +70,7 @@ s32 func_02142c98(void *buf, u32 n, u32 size) {
         func_0200ee58(data_0217ef60[j], 2);
         RingQueueAppend(&data_0217eed8, data_0217ef60[j], 1);
     }
-    func_0214d7c4(0xa, func_021425e8);
+    PxiCallbackSet(0xa, func_021425e8);
     return 0;
 }
 
@@ -85,7 +85,7 @@ s32 func_02142c24(void) {
         return r;
     }
     func_021425cc();
-    func_0214d7c4(0xa, 0);
+    PxiCallbackSet(0xa, 0);
     data_0217eed4 = 0;
     data_0217eed0 = 0;
     return 0;

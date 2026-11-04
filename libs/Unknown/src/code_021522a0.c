@@ -62,7 +62,7 @@ void func_02152324(void *a) {
     func_02152340(a, (u8 *) a + 0x10);
 }
 
-u32 func_02152314(u32 a) {
+u32 IsMultipleOf4(u32 a) {
     if ((a & 3) == 0) {
         return 1;
     }
@@ -75,7 +75,7 @@ s32 func_021522a0(const u32 *a) {
         return -1;
     }
     b = a[2] - 1 + ((const u32 *) &data_0216f26c)[a[1]];
-    if (a[1] >= 3 && func_02152314(a[0]) != 0) {
+    if (a[1] >= 3 && IsMultipleOf4(a[0]) != 0) {
         b++;
     }
     b = b + a[0] * 365;

@@ -29,20 +29,20 @@ void func_ov003_021c2b28(void) {
     }
     func_ov003_021d1cb0(1, func_ov003_021bf650(data_ov003_021d6ec8));
     func_ov003_021d1cb0(0, func_ov003_021bf650(data_ov003_021d6edc));
-    func_ov003_021bf620(data_ov003_021d6ef0, func_0214b9c4);
+    func_ov003_021bf620(data_ov003_021d6ef0, MemCopyWordsToG2sBg1CntBits2To5Address);
     func_ov003_021bf620(data_ov003_021d6f04, func_0214c0f8);
     func_ov003_021bf620(data_ov003_021d6f18, func_0214bea4);
     func_ov003_021bf620(data_ov003_021d6f30, func_0214c028);
-    func_ov003_021bf620(data_ov003_021d6f48, func_0214b95c);
+    func_ov003_021bf620(data_ov003_021d6f48, MemCopyWordsToG2Bg2CntBits2To5Address);
     func_ov003_021bf620(data_ov003_021d6f60, func_0214c160);
     func_ov003_021bf620(data_ov003_021d6f78, func_0214bf04);
     func_ov003_021bf620(data_ov003_021d6f90, func_0214c090);
     switch (func_ov003_021c20c0()) {
         case 0:
-            func_ov003_021bf620(data_ov003_021d6fa8, func_0214bd04);
+            func_ov003_021bf620(data_ov003_021d6fa8, MemCopyHalfwordsToG2sBg1CntBits8To12Address);
             break;
         case 1:
-            func_ov003_021bf620(data_ov003_021d6fbc, func_0214bd04);
+            func_ov003_021bf620(data_ov003_021d6fbc, MemCopyHalfwordsToG2sBg1CntBits8To12Address);
             break;
     }
     *(u16 *) 0x400100a = (*(u16 *) 0x400100a & ~3) | 3;

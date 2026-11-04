@@ -27,8 +27,8 @@ s32 func_0214e17c(u32 a) {
     return PxiSendFifoWord(5, (a << 8) & 0x7f00, 0) >= 0;
 }
 
-// Runs once: clears the first word, mUnk_04, mUnk_1c, mUnk_08 and mUnk_0c, waits until func_0214d79c(5, 1) is
-// nonzero and passes 5 and func_0214d9e8 to func_0214d7c4.
+// Runs once: clears the first word, mUnk_04, mUnk_1c, mUnk_08 and mUnk_0c, waits until PxiCallbackBitIsSet(5, 1) is
+// nonzero and passes 5 and func_0214d9e8 to PxiCallbackSet.
 void func_0214e0f4(void) {
     if (data_021803ac != 0) {
         return;
@@ -39,10 +39,10 @@ void func_0214e0f4(void) {
     data_021803b0.mUnk_1c = 0;
     data_021803b0.mUnk_08 = 0;
     data_021803b0.mUnk_0c = 0;
-    func_0214d5b8();
-    while (func_0214d79c(5, 1) == 0) {
+    PxiInit();
+    while (PxiCallbackBitIsSet(5, 1) == 0) {
     }
-    func_0214d7c4(5, func_0214d9e8);
+    PxiCallbackSet(5, func_0214d9e8);
 }
 
 // Returns 1 while mUnk_00 is set; otherwise records a, b and c, clears mUnk_14 and mUnk_18 and returns 0 when
@@ -104,7 +104,7 @@ u32 func_0214df78(u32 *a) {
 
 // With c set: clears mUnk_18 and mUnk_00 and calls mUnk_04 (cleared first) with 6 and mUnk_10. Otherwise, with bits
 // 8-14 of b equal to 0x30, calls mUnk_1c; with the low byte of b zero, fills the words at mUnk_08 (and mUnk_0c) from
-// the fixed-address fields of Unk027ffde8 and Unk027ffdec selected by mUnk_14, most through func_0214d964, or
+// the fixed-address fields of Unk027ffde8 and Unk027ffdec selected by mUnk_14, most through DecimalNibblesToValue, or
 // changes Unk027ffdea and calls func_0214e1b0; then, when mUnk_18 is 0, clears mUnk_00 and calls mUnk_04 the same
 // way with a value from 0 to 6.
 void func_0214d9e8(u32 a, u32 b, s32 c) {
@@ -141,27 +141,27 @@ void func_0214d9e8(u32 a, u32 b, s32 c) {
         switch (data_021803b0.mUnk_14) {
             case 0:
                 p = data_021803b0.mUnk_08;
-                p[0] = func_0214d964(((Unk027ffde8 *) 0x027ffde8)->mUnk_00_0);
-                p[1] = func_0214d964(((Unk027ffde8 *) 0x027ffde8)->mUnk_00_8);
-                p[2] = func_0214d964(((Unk027ffde8 *) 0x027ffde8)->mUnk_00_16);
+                p[0] = DecimalNibblesToValue(((Unk027ffde8 *) 0x027ffde8)->mUnk_00_0);
+                p[1] = DecimalNibblesToValue(((Unk027ffde8 *) 0x027ffde8)->mUnk_00_8);
+                p[2] = DecimalNibblesToValue(((Unk027ffde8 *) 0x027ffde8)->mUnk_00_16);
                 p[3] = ((Unk027ffde8 *) 0x027ffde8)->mUnk_00_24;
                 break;
             case 1:
                 p = data_021803b0.mUnk_08;
-                p[0] = func_0214d964(((Unk027ffdec *) 0x027ffdec)->mUnk_00_0);
-                p[1] = func_0214d964(((Unk027ffdec *) 0x027ffdec)->mUnk_00_8);
-                p[2] = func_0214d964(((Unk027ffdec *) 0x027ffdec)->mUnk_00_16);
+                p[0] = DecimalNibblesToValue(((Unk027ffdec *) 0x027ffdec)->mUnk_00_0);
+                p[1] = DecimalNibblesToValue(((Unk027ffdec *) 0x027ffdec)->mUnk_00_8);
+                p[2] = DecimalNibblesToValue(((Unk027ffdec *) 0x027ffdec)->mUnk_00_16);
                 break;
             case 2:
                 p = data_021803b0.mUnk_08;
-                p[0] = func_0214d964(*(u32 *) 0x027ffde8 & 0xff);
-                p[1] = func_0214d964(((Unk027ffde8 *) 0x027ffde8)->mUnk_00_8);
-                p[2] = func_0214d964(((Unk027ffde8 *) 0x027ffde8)->mUnk_00_16);
+                p[0] = DecimalNibblesToValue(*(u32 *) 0x027ffde8 & 0xff);
+                p[1] = DecimalNibblesToValue(((Unk027ffde8 *) 0x027ffde8)->mUnk_00_8);
+                p[2] = DecimalNibblesToValue(((Unk027ffde8 *) 0x027ffde8)->mUnk_00_16);
                 p[3] = ((Unk027ffde8 *) 0x027ffde8)->mUnk_00_24;
                 p = data_021803b0.mUnk_0c;
-                p[0] = func_0214d964(((Unk027ffdec *) 0x027ffdec)->mUnk_00_0);
-                p[1] = func_0214d964(((Unk027ffdec *) 0x027ffdec)->mUnk_00_8);
-                p[2] = func_0214d964(((Unk027ffdec *) 0x027ffdec)->mUnk_00_16);
+                p[0] = DecimalNibblesToValue(((Unk027ffdec *) 0x027ffdec)->mUnk_00_0);
+                p[1] = DecimalNibblesToValue(((Unk027ffdec *) 0x027ffdec)->mUnk_00_8);
+                p[2] = DecimalNibblesToValue(((Unk027ffdec *) 0x027ffdec)->mUnk_00_16);
                 break;
             case 3:
             case 4:
@@ -194,8 +194,8 @@ void func_0214d9e8(u32 a, u32 b, s32 c) {
             case 8:
                 p = data_021803b0.mUnk_08;
                 p[0] = ((Unk027ffdec_b *) 0x027ffdec)->mUnk_00_0;
-                p[1] = func_0214d964(((Unk027ffdec_b *) 0x027ffdec)->mUnk_00_8);
-                p[2] = func_0214d964(((Unk027ffdec_b *) 0x027ffdec)->mUnk_00_16);
+                p[1] = DecimalNibblesToValue(((Unk027ffdec_b *) 0x027ffdec)->mUnk_00_8);
+                p[2] = DecimalNibblesToValue(((Unk027ffdec_b *) 0x027ffdec)->mUnk_00_16);
                 p[3] = 0;
                 if (((Unk027ffdec_b *) 0x027ffdec)->mUnk_00_7) {
                     p[3] += 1;
@@ -295,7 +295,7 @@ void func_0214d9e8(u32 a, u32 b, s32 c) {
 }
 
 // Returns the value of x read as 8 decimal digits (4 bits each, least significant first), or 0 when a digit is above 9.
-u32 func_0214d964(u32 x) {
+u32 DecimalNibblesToValue(u32 x) {
     u32 r;
     u32 m;
     s32 i;

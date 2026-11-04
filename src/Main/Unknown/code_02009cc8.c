@@ -49,7 +49,7 @@ s32 func_02009ce4(u16 a) {
     func_020096d4();
     v4 = func_02009e70();
     IrqRestore(v1);
-    data_0216fdac->mUnk_74c8 = func_0214d79c(0xf, 1);
+    data_0216fdac->mUnk_74c8 = PxiCallbackBitIsSet(0xf, 1);
     return v4;
 }
 

@@ -90,7 +90,7 @@ s32 SwapLockTry(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k) {
     } else {
         s = IrqDisable();
     }
-    r = func_0214d33c(a, &p->mUnk_00);
+    r = WordSwap(a, &p->mUnk_00);
     if (r == 0) {
         if (f != 0) {
             f();

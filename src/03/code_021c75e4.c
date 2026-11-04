@@ -67,13 +67,13 @@ void func_ov003_021c76b4(void) {
     void *v3 = &func_0214c090;
     u32 v4 = func_ov003_021bf620(v2, v3);
     void *v5 = &data_ov003_021d7364;
-    void *v6 = &func_0214b95c;
+    void *v6 = &MemCopyWordsToG2Bg2CntBits2To5Address;
     u32 v7 = func_ov003_021bf620(v5, v6);
     void *v8 = &data_ov003_021d737c;
     void *v9 = &func_0214c160;
     u32 v10 = func_ov003_021bf620(v8, v9);
     void *v11 = &data_ov003_021d7394;
-    void *v12 = &func_0214bc9c;
+    void *v12 = &MemCopyHalfwordsToG2Bg2CntBits8To12Address;
     u32 v13 = func_ov003_021bf620(v11, v12);
     u32 v14 = 0x4001008u;
     u32 v15 = ((u32) * (u16 *) ((v14) + (0)));

@@ -1,6 +1,6 @@
 #include "code_021507c8.h"
 
-void func_021507c8(u32 arg0) {
+void Hash16Init(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;

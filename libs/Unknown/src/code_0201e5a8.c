@@ -10,8 +10,8 @@
 s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
     u32 v;
 
-    func_0214d5b8();
-    if (func_0214d79c(0xf, 1) == 0) {
+    PxiInit();
+    if (PxiCallbackBitIsSet(0xf, 1) == 0) {
         return 2;
     }
     if (data_02173278 == 0) {
@@ -63,8 +63,8 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             IrqRestore(v);
             return 3;
     }
-    if (func_0214d79c(0xf, 0) == 0) {
-        func_0214d7c4(0xf, func_0201e5ac);
+    if (PxiCallbackBitIsSet(0xf, 0) == 0) {
+        PxiCallbackSet(0xf, func_0201e5ac);
     }
     if (b == 0) {
         data_02173284 = func_0201e5a8;
@@ -86,8 +86,8 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
 s32 func_0201e6b8(UnkFunc *a, u32 b) {
     u32 v;
 
-    func_0214d5b8();
-    if (func_0214d79c(0xf, 1) == 0) {
+    PxiInit();
+    if (PxiCallbackBitIsSet(0xf, 1) == 0) {
         return 2;
     }
     v = IrqDisable();
@@ -95,8 +95,8 @@ s32 func_0201e6b8(UnkFunc *a, u32 b) {
         IrqRestore(v);
         return 5;
     }
-    if (func_0214d79c(0xf, 0) == 0) {
-        func_0214d7c4(0xf, func_0201e5ac);
+    if (PxiCallbackBitIsSet(0xf, 0) == 0) {
+        PxiCallbackSet(0xf, func_0201e5ac);
     }
     if (a == 0) {
         data_02173284 = func_0201e5a8;
@@ -135,7 +135,7 @@ void func_0201e5ac(u32 a, u32 b) {
                 func_0200fe7c(data_0217327c, data_02173278);
                 data_0217327c = 0;
             }
-            func_0214d7c4(0xf, 0);
+            PxiCallbackSet(0xf, 0);
             break;
     }
     if (f != 0) {

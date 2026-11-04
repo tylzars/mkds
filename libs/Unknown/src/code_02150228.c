@@ -18,68 +18,68 @@ u32 data_0216f16c[64] = {
     0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1, 0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391,
 };
 
-void func_021506d4(Unk02150610 *ctx, const u8 *src, u32 n) {
+void Hash16Update(Hash16State *ctx, const u8 *src, u32 n) {
     u32 off;
     u32 room;
     int blocks;
     const u8 *p;
 
-    off = (u32) ctx->mUnk_10 & 0x3f;
-    ctx->mUnk_10 += n;
+    off = (u32) ctx->mByteCount & 0x3f;
+    ctx->mByteCount += n;
     room = 0x40 - off;
     if (room > n) {
         if (n == 0) {
             return;
         }
-        MemCopy(src, ctx->mUnk_18 + off, n);
+        MemCopy(src, ctx->mBlock + off, n);
         return;
     }
-    MemCopy(src, ctx->mUnk_18 + off, room);
-    func_02150228(ctx);
+    MemCopy(src, ctx->mBlock + off, room);
+    Hash16Block(ctx);
     n -= room;
     blocks = n >> 6;
     p = src + room;
     for (; blocks > 0; blocks--) {
-        MemCopy(p, ctx->mUnk_18, 0x40);
+        MemCopy(p, ctx->mBlock, 0x40);
         p += 0x40;
-        func_02150228(ctx);
+        Hash16Block(ctx);
     }
     if ((n & 0x3f) == 0) {
         return;
     }
-    MemCopy(p, ctx->mUnk_18, n & 0x3f);
+    MemCopy(p, ctx->mBlock, n & 0x3f);
 }
 
-void func_02150610(u8 *out, Unk02150610 *ctx) {
+void Hash16Final(u8 *out, Hash16State *ctx) {
     u32 lo;
     u32 hi;
     u32 n;
     u32 m;
     u64 bits;
 
-    bits = ctx->mUnk_10 << 3;
+    bits = ctx->mByteCount << 3;
     lo = (u32) bits;
     hi = (u32) (bits >> 32);
-    func_021506d4(ctx, &data_0216f0a8, 1);
-    n = (u32) (ctx->mUnk_10 & 0x3f);
+    Hash16Update(ctx, &data_0216f0a8, 1);
+    n = (u32) (ctx->mByteCount & 0x3f);
     m = 0x40 - n;
     if (m < 8) {
-        MemFill(ctx->mUnk_18 + n, 0, m);
-        func_02150228(ctx);
+        MemFill(ctx->mBlock + n, 0, m);
+        Hash16Block(ctx);
         n = 0;
         m = 0x40;
     }
     if (m > 8) {
-        MemFill(ctx->mUnk_18 + n, 0, m - 8);
+        MemFill(ctx->mBlock + n, 0, m - 8);
     }
-    ctx->mUnk_50 = lo;
-    ctx->mUnk_54 = hi;
-    func_02150228(ctx);
+    ctx->mBitCountLow = lo;
+    ctx->mBitCountHigh = hi;
+    Hash16Block(ctx);
     MemCopy(ctx, out, 0x10);
     MemFill(ctx, 0, 0x58);
 }
 
-void func_02150228(Unk02150610 *q) {
+void Hash16Block(Hash16State *q) {
     const u32 *w;
     const u32 *p;
     s32 i;
@@ -91,11 +91,11 @@ void func_02150228(Unk02150610 *q) {
     u32 *x;
     const u32 *k;
 
-    x = (u32 *) q->mUnk_18;
-    a = q->mUnk_00[0];
-    b = q->mUnk_00[1];
-    c = q->mUnk_00[2];
-    d = q->mUnk_00[3];
+    x = (u32 *) q->mBlock;
+    a = q->mWords[0];
+    b = q->mWords[1];
+    c = q->mWords[2];
+    d = q->mWords[3];
     k = data_0216f16c;
     for (i = 0, w = x; i < 4; i++) {
         t = *k++;
@@ -153,8 +153,8 @@ void func_02150228(Unk02150610 *q) {
         t += x[*p++] + (b + (d ^ (c | ~a)));
         b = c + ((t << 21) | (t >> 11));
     }
-    q->mUnk_00[0] += a;
-    q->mUnk_00[1] += b;
-    q->mUnk_00[2] += c;
-    q->mUnk_00[3] += d;
+    q->mWords[0] += a;
+    q->mWords[1] += b;
+    q->mWords[2] += c;
+    q->mWords[3] += d;
 }

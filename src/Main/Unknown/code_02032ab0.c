@@ -185,10 +185,10 @@ void func_02032f94(void *a, s32 b, s32 c) {
     func_02025884(t, data_02153f80[data_02174e60->mUnk_0dc][0], data_02153f84[data_02174e60->mUnk_0dc][0],
                   data_02153f8c[data_02174e60->mUnk_0dc][0], 3, FindSceneFile);
     LoadNscrData(&t->mUnk_14[2], FindSceneFile(data_02153f88[data_02174e60->mUnk_0dc][0]));
-    func_0214b88c(t->mUnk_00[3]->mData, 0, t->mUnk_00[3]->mDataSize);
+    MemCopyWordsToG2Bg3CntBits2To5Address(t->mUnk_00[3]->mData, 0, t->mUnk_00[3]->mDataSize);
     func_0214c160(t->mUnk_10->mData, 0, 0x140);
-    func_0214bc9c(t->mUnk_14[2]->mData, 0, t->mUnk_14[2]->mDataSize);
-    func_0214bbcc(t->mUnk_14[3]->mData, 0, t->mUnk_14[3]->mDataSize);
+    MemCopyHalfwordsToG2Bg2CntBits8To12Address(t->mUnk_14[2]->mData, 0, t->mUnk_14[2]->mDataSize);
+    MemCopyHalfwordsToG2Bg3CntBits8To12Address(t->mUnk_14[3]->mData, 0, t->mUnk_14[3]->mDataSize);
     s = &data_02174e60->mUnk_048[0];
     func_02025abc(s, data_02153f90[data_02174e60->mUnk_0dc][0], data_02153f94[data_02174e60->mUnk_0dc][0],
                   data_02153f98[data_02174e60->mUnk_0dc][0], data_02153f9c[data_02174e60->mUnk_0dc][0],
@@ -215,9 +215,9 @@ void func_02032f94(void *a, s32 b, s32 c) {
     }
     t = &data_02174e60->mUnk_000[1];
     func_02025884(t, data_02164178, data_02164190, data_021641a8, 3, FindSceneFile);
-    func_0214b824(t->mUnk_00[3]->mData, 0, t->mUnk_00[3]->mDataSize);
+    MemCopyWordsToG2sBg3CntBits2To5Address(t->mUnk_00[3]->mData, 0, t->mUnk_00[3]->mDataSize);
     func_0214c0f8(t->mUnk_10->mData, 0, 0x140);
-    func_0214bb64(t->mUnk_14[3]->mData, 0, t->mUnk_14[3]->mDataSize);
+    MemCopyHalfwordsToG2sBg3CntBits8To12Address(t->mUnk_14[3]->mData, 0, t->mUnk_14[3]->mDataSize);
     n = func_02148ca0();
     p = data_02174e60;
     q = &p->mUnk_048[1];

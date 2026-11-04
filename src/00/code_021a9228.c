@@ -88,7 +88,7 @@ u32 func_ov000_021ab5bc(void) {
     u32 b[3];
     func_0214e038((u32 *) &a);
     func_0214df78(b);
-    return (u32) func_0214e1e0(&a, (const Unk0214e1e0 *) b) + 0x386d4380;
+    return (u32) DateTimeToSeconds(&a, (const Unk0214e1e0 *) b) + 0x386d4380;
 }
 
 void func_ov000_021ab594(u32 a, u32 b) {

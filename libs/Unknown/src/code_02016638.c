@@ -44,27 +44,27 @@ void func_0201688c(const void *a, u32 b, u32 c) {
 }
 
 void func_02016880(const void *a, u32 b, u32 c) {
-    func_0214bafc(a, b, c);
+    MemCopyWordsToG2Bg0CntBits2To5Address(a, b, c);
 }
 
 void func_02016874(const void *a, u32 b, u32 c) {
-    func_0214ba2c(a, b, c);
+    MemCopyWordsToG2Bg1CntBits2To5Address(a, b, c);
 }
 
 void func_02016868(const void *a, u32 b, u32 c) {
-    func_0214b95c(a, b, c);
+    MemCopyWordsToG2Bg2CntBits2To5Address(a, b, c);
 }
 
 void func_0201685c(const void *a, u32 b, u32 c) {
-    func_0214b88c(a, b, c);
+    MemCopyWordsToG2Bg3CntBits2To5Address(a, b, c);
 }
 
 void func_02016850(const void *a, u32 b, u32 c) {
-    func_0214be3c(a, b, c);
+    MemCopyHalfwordsToG2Bg0CntBits8To12Address(a, b, c);
 }
 
 void func_02016844(const void *a, u32 b, u32 c) {
-    func_0214bd6c(a, b, c);
+    MemCopyHalfwordsToG2Bg1CntBits8To12Address(a, b, c);
 }
 
 void func_02016838(u32 arg0, u32 arg1, u32 arg2) {
@@ -72,12 +72,12 @@ void func_02016838(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214bc9c;
-    func_0214bc9c((const void *) value0, (int) value1, value2);
+    value12 = (u32) &MemCopyHalfwordsToG2Bg2CntBits8To12Address;
+    MemCopyHalfwordsToG2Bg2CntBits8To12Address((const void *) value0, (int) value1, value2);
 }
 
 void func_0201682c(const void *a, u32 b, u32 c) {
-    func_0214bbcc(a, b, c);
+    MemCopyHalfwordsToG2Bg3CntBits8To12Address(a, b, c);
 }
 
 void func_02016820(u32 arg0, u32 arg1, u32 arg2) {
@@ -85,12 +85,12 @@ void func_02016820(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214bc9c;
-    func_0214bc9c((const void *) value0, (int) value1, value2);
+    value12 = (u32) &MemCopyHalfwordsToG2Bg2CntBits8To12Address;
+    MemCopyHalfwordsToG2Bg2CntBits8To12Address((const void *) value0, (int) value1, value2);
 }
 
 void func_02016814(const void *a, u32 b, u32 c) {
-    func_0214bbcc(a, b, c);
+    MemCopyHalfwordsToG2Bg3CntBits8To12Address(a, b, c);
 }
 
 void func_02016808(u32 arg0, u32 arg1, u32 arg2) {
@@ -137,7 +137,7 @@ void func_02016784(u32 arg0, u32 arg1, u32 arg2) {
 }
 
 void func_02016778(const void *a, u32 b, u32 c) {
-    func_0214ba94(a, b, c);
+    MemCopyWordsToG2sBg0CntBits2To5Address(a, b, c);
 }
 
 void func_0201676c(u32 arg0, u32 arg1, u32 arg2) {
@@ -145,8 +145,8 @@ void func_0201676c(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214b9c4;
-    func_0214b9c4((const void *) value0, (int) value1, value2);
+    value12 = (u32) &MemCopyWordsToG2sBg1CntBits2To5Address;
+    MemCopyWordsToG2sBg1CntBits2To5Address((const void *) value0, (int) value1, value2);
 }
 
 void func_02016760(u32 arg0, u32 arg1, u32 arg2) {
@@ -154,8 +154,8 @@ void func_02016760(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214b8f4;
-    func_0214b8f4((const void *) value0, (int) value1, value2);
+    value12 = (u32) &MemCopyWordsToG2sBg2CntBits2To5Address;
+    MemCopyWordsToG2sBg2CntBits2To5Address((const void *) value0, (int) value1, value2);
 }
 
 void func_02016754(u32 arg0, u32 arg1, u32 arg2) {
@@ -163,12 +163,12 @@ void func_02016754(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214b824;
-    func_0214b824((const void *) value0, (int) value1, value2);
+    value12 = (u32) &MemCopyWordsToG2sBg3CntBits2To5Address;
+    MemCopyWordsToG2sBg3CntBits2To5Address((const void *) value0, (int) value1, value2);
 }
 
 void func_02016748(const void *a, u32 b, u32 c) {
-    func_0214bdd4(a, b, c);
+    MemCopyHalfwordsToG2sBg0CntBits8To12Address(a, b, c);
 }
 
 void func_0201673c(u32 arg0, u32 arg1, u32 arg2) {
@@ -176,8 +176,8 @@ void func_0201673c(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214bd04;
-    func_0214bd04((const void *) value0, (int) value1, value2);
+    value12 = (u32) &MemCopyHalfwordsToG2sBg1CntBits8To12Address;
+    MemCopyHalfwordsToG2sBg1CntBits8To12Address((const void *) value0, (int) value1, value2);
 }
 
 void func_02016730(u32 arg0, u32 arg1, u32 arg2) {
@@ -185,12 +185,12 @@ void func_02016730(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214bc34;
-    func_0214bc34((const void *) value0, (int) value1, value2);
+    value12 = (u32) &MemCopyHalfwordsToG2sBg2CntBits8To12Address;
+    MemCopyHalfwordsToG2sBg2CntBits8To12Address((const void *) value0, (int) value1, value2);
 }
 
 void func_02016724(const void *a, u32 b, u32 c) {
-    func_0214bb64(a, b, c);
+    MemCopyHalfwordsToG2sBg3CntBits8To12Address(a, b, c);
 }
 
 void func_02016718(u32 arg0, u32 arg1, u32 arg2) {
@@ -198,12 +198,12 @@ void func_02016718(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214bc34;
-    func_0214bc34((const void *) value0, (int) value1, value2);
+    value12 = (u32) &MemCopyHalfwordsToG2sBg2CntBits8To12Address;
+    MemCopyHalfwordsToG2sBg2CntBits8To12Address((const void *) value0, (int) value1, value2);
 }
 
 void func_0201670c(const void *a, u32 b, u32 c) {
-    func_0214bb64(a, b, c);
+    MemCopyHalfwordsToG2sBg3CntBits8To12Address(a, b, c);
 }
 
 void func_02016700(u32 arg0, u32 arg1, u32 arg2) {

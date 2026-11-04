@@ -4,13 +4,13 @@
 
 typedef struct ThreadLock ThreadLock;
 
-// func_0214f51c calls mUnk_00 with mUnk_04 and follows mUnk_08; func_0214f54c, func_0214f598 and func_0214f5e0
-// link and unlink objects through mUnk_08.
-typedef struct Unk0214f4bc {
-    /* 00 */ void (*mUnk_00)(void *);
-    /* 04 */ void *mUnk_04;
-    /* 08 */ struct Unk0214f4bc *mUnk_08;
-} Unk0214f4bc;
+// CallbackListRun calls mUnk_00 with mUnk_04 and follows mUnk_08; CallbackListRemove, CallbackListAppend and
+// CallbackListPrepend link and unlink objects through mUnk_08.
+typedef struct CallbackEntry {
+    /* 00 */ void (*mCallback)(void *);
+    /* 04 */ void *mArg;
+    /* 08 */ struct CallbackEntry *mNext;
+} CallbackEntry;
 
 // 0x10 bytes. func_021501d8 sets mUnk_00 to 1 when it was 0, func_02150164 clears it and func_021501c0 loops until it
 // is 0. func_02150164 calls mUnk_04 with a word and mUnk_08. func_0214f630 sets mUnk_0c and func_0214ffb4 stores a
@@ -31,22 +31,22 @@ typedef struct Unk0214fe10 {
 extern u16 data_02180430;
 extern vu32 data_02180434;
 extern vu32 data_02180438;
-extern Unk0214f4bc *data_0218043c;
+extern CallbackEntry *data_0218043c;
 extern u32 data_02180440;
-extern Unk0214f4bc *data_02180444;
+extern CallbackEntry *data_02180444;
 extern Unk0214f630 data_02180448;
 extern ThreadLock data_02180458;
 extern Unk0214fe10 data_02180470[4];
 
-void func_0214f4a4(Unk0214f4bc *p);
-void func_0214f4bc(Unk0214f4bc *p);
-void func_0214f4d4(Unk0214f4bc *p);
-void func_0214f4ec(Unk0214f4bc *p);
-void func_0214f504(Unk0214f4bc *p);
-void func_0214f51c(Unk0214f4bc *p);
-void func_0214f54c(Unk0214f4bc **pp, Unk0214f4bc *p);
-void func_0214f598(Unk0214f4bc **pp, Unk0214f4bc *p);
-void func_0214f5e0(Unk0214f4bc **pp, Unk0214f4bc *p);
+void func_0214f4a4(CallbackEntry *p);
+void func_0214f4bc(CallbackEntry *p);
+void func_0214f4d4(CallbackEntry *p);
+void func_0214f4ec(CallbackEntry *p);
+void func_0214f504(CallbackEntry *p);
+void CallbackListRun(CallbackEntry *p);
+void CallbackListRemove(CallbackEntry **pp, CallbackEntry *p);
+void CallbackListAppend(CallbackEntry **pp, CallbackEntry *p);
+void CallbackListPrepend(CallbackEntry **pp, CallbackEntry *p);
 int func_0214f5f4(u32 *p);
 int func_0214f630(u32 *p, void (*fn)(u32 a, u32 *b), u32 *arg);
 int func_0214f680(u32 a);
@@ -74,6 +74,6 @@ int func_0214fefc(u32 a, u16 b);
 void func_0214ffb4(u32 a, u32 b, u32 c);
 void func_021500a0(void);
 void func_02150164(u32 a);
-void func_021501b8(u32 a, u32 *p);
+void WordStore(u32 a, u32 *p);
 void func_021501c0(void);
 int func_021501d8(void);

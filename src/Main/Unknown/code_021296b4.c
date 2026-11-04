@@ -369,7 +369,7 @@ void func_02129cbc(void) {
     v1 = FindSceneFile(data_0216e9fc);
     LoadNcgrData(&v2, v1);
     func_0200ee74(v2->mData, v2->mDataSize);
-    func_0214b824(v2->mData, 0, v2->mDataSize);
+    MemCopyWordsToG2sBg3CntBits2To5Address(v2->mData, 0, v2->mDataSize);
     v1 = FindSceneFile(data_0216ea14);
     LoadNscrData((Nscr **) &data_0217d400->mUnk_b4[0], v1);
     v1 = FindSceneFile(data_0216ea30);

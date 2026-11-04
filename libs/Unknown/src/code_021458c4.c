@@ -52,10 +52,10 @@ int func_02146868(Unk021458c4 *p, s32 a, s32 b) {
 
     if (!(p->mUnk_114 & 2)) {
         p->mUnk_114 |= 2;
-        if (func_0214d79c(11, 1) == 0) {
+        if (PxiCallbackBitIsSet(11, 1) == 0) {
             do {
                 func_0200fd10(100);
-            } while (func_0214d79c(11, 1) == 0);
+            } while (PxiCallbackBitIsSet(11, 1) == 0);
         }
         func_02146868(p, 0, 1);
     }
@@ -673,7 +673,7 @@ void func_021458c4(void) {
     p->mUnk_108 = 4;
     ThreadInit(&p->mUnk_44, func_021469a4, 0, (u8 *) &data_02180060, 0x400, p->mUnk_108);
     ThreadSetRunnable(&p->mUnk_44);
-    func_0214d7c4(11, func_02146a00);
+    PxiCallbackSet(11, func_02146a00);
     if (*(u16 *) 0x027ffc40 != 2) {
         func_02145878(1);
     }

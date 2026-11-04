@@ -6,7 +6,7 @@
 #pragma thumb on
 
 void func_020487e0(const void *a, void *b, u32 c) {
-    func_0214d344(a, b);
+    ExpandCompressed(a, b);
     func_0200ee58(b, c);
 }
 

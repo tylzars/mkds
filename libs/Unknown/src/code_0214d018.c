@@ -312,7 +312,7 @@ copyh_last_byte:
 // Clears the nine words at a.
 // Not compiled code: it stores with `stmia r0!` and the list {r1, r2, r3}; in Thumb code the 1.2 compiler builds stm
 // only for block moves, which keep their data in r0 upward (docs/compiler.md, ldm/stm).
-asm void func_0214d32c(s32 *a) {
+asm void MemZero9Words(s32 *a) {
     mov r1, #0
     mov r2, #0
     mov r3, #0
@@ -327,7 +327,7 @@ asm void func_0214d32c(s32 *a) {
 // Swaps a with the word at b in one instruction and returns the old word.
 // Not compiled code: it is a word swp, which the 1.2 compiler never builds: the instruction's opcode number appears in
 // the compiler only as an argument to its error reporter, while the byte form has a code-generator use.
-asm s32 func_0214d33c(s32 a, s32 *b) {
+asm s32 WordSwap(s32 a, s32 *b) {
     swp r0, r0, [r1]
     bx lr
 }
@@ -338,7 +338,7 @@ asm s32 func_0214d33c(s32 a, s32 *b) {
 // with swpb.
 // Not compiled code: it tests bits with tst, which the 1.2 compiler never builds, and tests `subs r4, r4, #1` with lt,
 // where 1.2 folds a compare into a flag-setting subtract only for eq/ne/mi/pl (docs/compiler.md).
-asm void func_0214d344(const void *a, void *b) {
+asm void ExpandCompressed(const void *a, void *b) {
     // r2 = the number of bytes still to write.
     stmfd sp!, {r4, r5, r6, lr}
     ldr r5, [r0], #4

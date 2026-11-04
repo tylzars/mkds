@@ -30,9 +30,9 @@ void MemCopy12Words(const void *a, void *b);
 void MemCopy16Words(const void *a, void *b);
 void MemFill(void *a, u8 b, u32 c);
 void MemCopy(const void *a, void *b, u32 c);
-void func_0214d32c(s32 *a);
-s32 func_0214d33c(s32 a, s32 *b);
-void func_0214d344(const void *a, void *b);
+void MemZero9Words(s32 *a);
+s32 WordSwap(s32 a, s32 *b);
+void ExpandCompressed(const void *a, void *b);
 
 // Calls MemFillWordsByBlock with 0, passed through a stack offset of its own.
 static inline void MemFillWordsByBlock_inline(void *p, u32 n) {

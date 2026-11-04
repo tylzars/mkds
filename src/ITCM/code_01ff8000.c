@@ -249,7 +249,7 @@ void func_01ff8220(Unk02170500 *s, u32 a) {
             k = (v2 & 0xf0) >> 4;
             b1 = ((s16 *) r)[1];
             b0 = ((s16 *) r)[0];
-            func_0214d32c(o->mUnk_28);
+            MemZero9Words(o->mUnk_28);
             r += 2;
             m = (*p & 0x100) ? -0x1000 : 0x1000;
             o->mUnk_28[k] = m;
@@ -685,9 +685,9 @@ void func_01ff9144(const void *a, u32 b) {
     func_01ff9234();
     data_usa_021731e8 = 1;
     if (*(u32 *) data_0217320c != 0) {
-        func_0214ccd4(data_0216f074[0], a, b, (UnkFunc *) func_01ff9210, (u32) &data_usa_021731e8);
+        GxFifoSendWords(data_0216f074[0], a, b, (UnkFunc *) func_01ff9210, (u32) &data_usa_021731e8);
     } else {
-        func_0214ced0(data_0216f074[0], a, b, (UnkFunc *) func_01ff9210, (u32) &data_usa_021731e8);
+        GxFifoSendWordsInPieces(data_0216f074[0], a, b, (UnkFunc *) func_01ff9210, (u32) &data_usa_021731e8);
     }
 }
 

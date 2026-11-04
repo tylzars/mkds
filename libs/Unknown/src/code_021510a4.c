@@ -11,7 +11,7 @@
 
 #pragma thumb on
 
-u8 func_021516d8(const u8 *a) {
+u8 CountSetBitsInBytes4(const u8 *a) {
     s32 c;
     s32 b;
     s32 d;
@@ -30,7 +30,7 @@ u8 func_021516d8(const u8 *a) {
     return c;
 }
 
-void func_021516b0(u32 a, u8 *b) {
+void Bytes4StoreTopBitsMask(u32 a, u8 *b) {
     s32 c;
     u32 d;
     u32 e;
@@ -43,7 +43,7 @@ void func_021516b0(u32 a, u8 *b) {
     }
 }
 
-u32 func_02151698(const u8 *a) {
+u32 Bytes32AnyNonzero(const u8 *a) {
     s32 b;
     for (b = 0; b < 0x20; b++) {
         if (a[b] != 0) {
@@ -250,9 +250,9 @@ u32 func_0215122c(u32 a, u32 b, void *c) {
     u32 d;
     func_0200ee3c(c, b);
     d = 4;
-    while (func_0214d79c(d, 1) == 0) {
+    while (PxiCallbackBitIsSet(d, 1) == 0) {
     }
-    func_0214d7c4(4, (UnkFunc *) func_02151128);
+    PxiCallbackSet(4, (UnkFunc *) func_02151128);
     d = 1;
     while (1) {
         if (func_02151288(d, a, b, (u32) c) == 1) {
@@ -267,9 +267,9 @@ u32 func_0215122c(u32 a, u32 b, void *c) {
 void func_021511d8(u32 a, u16 b, void *c) {
     u32 d;
     d = 4;
-    while (func_0214d79c(d, 1) == 0) {
+    while (PxiCallbackBitIsSet(d, 1) == 0) {
     }
-    func_0214d7c4(4, (UnkFunc *) func_02151128);
+    PxiCallbackSet(4, (UnkFunc *) func_02151128);
     func_0200ee58(c, b);
     d = 2;
     while (1) {
@@ -296,9 +296,9 @@ u32 func_02151154(void) {
     u32 c;
     a = 4;
     b = 1;
-    while (func_0214d79c(a, b) == 0) {
+    while (PxiCallbackBitIsSet(a, b) == 0) {
     }
-    func_0214d7c4(4, (UnkFunc *) func_02151128);
+    PxiCallbackSet(4, (UnkFunc *) func_02151128);
     b = 0x40000;
     a = 7;
     c = 0;

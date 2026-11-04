@@ -9,8 +9,8 @@ UnkWordFunc *data_021802a4;
 u32 data_021802a0;
 
 void func_02146b80(void) {
-    func_0214d5b8();
-    func_0214d7c4(14, func_02146b14);
+    PxiInit();
+    PxiCallbackSet(14, func_02146b14);
     data_021802a4 = 0;
 }
 

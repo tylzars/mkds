@@ -125,7 +125,7 @@ void func_020b0b8c(void) {
         return;
     }
     if (data_0217b350->mUnk_840 != 0) {
-        func_0214ba94(func_020b3374()->mData, 0, 0x3000);
+        MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, 0x3000);
         data_0217b350->mUnk_840 = 0;
         func_0214c090(GetRaceNclrNcgr(1)->mNclr->mData, 0, GetRaceNclrNcgr(1)->mNclr->mDataSize);
         func_0214bf04(GetRaceNclrNcgr(1)->mNcgr->mData, 0, 0x4000);
@@ -142,8 +142,9 @@ void func_020b0b8c(void) {
                     reg_G2_BG3CNT &= ~0x40;
                     reg_G2_BG3CNT = (reg_G2_BG3CNT & 0x43) | 0x500;
                     func_0214c160(data_0217b350->mNclrs[0]->mData, 0, data_0217b350->mNclrs[0]->mDataSize);
-                    func_0214b88c(data_0217b350->mNcgrs[0]->mData, 0, data_0217b350->mNcgrs[0]->mDataSize);
-                    func_0214bbcc(data_0217b350->mNscrs[1]->mData, 0, 0x600);
+                    MemCopyWordsToG2Bg3CntBits2To5Address(data_0217b350->mNcgrs[0]->mData, 0,
+                                                          data_0217b350->mNcgrs[0]->mDataSize);
+                    MemCopyHalfwordsToG2Bg3CntBits8To12Address(data_0217b350->mNscrs[1]->mData, 0, 0x600);
                     func_0214a40c((u32 *) 0x04000050, 8, 0x27, 5, 9);
                 }
                 data_0217b350->mUnk_844 = 0;
@@ -155,8 +156,8 @@ void func_020b0b8c(void) {
     if (v == 0 && data_0217b350->mUnk_84c != 0) {
         reg_G2_BG3OFS = 0x01ff0000 & (func_020ae4c0(1, -64, 0, func_020c5db0(), 20) << 16);
     } else if (v == 4 && data_0217b350->mUnk_84c != 0) {
-        func_0214ba94(func_020b3374()->mData, 0, 0x3000);
-        func_0214bdd4(func_020b32f8(), 0, 0x600);
+        MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, 0x3000);
+        MemCopyHalfwordsToG2sBg0CntBits8To12Address(func_020b32f8(), 0, 0x600);
     }
     func_0200ee74(data_0217b350->mUnk_004, 0x400);
     func_0214bfcc(data_0217b350->mUnk_004, 0, 0x400);
@@ -190,11 +191,12 @@ void func_020b0b8c(void) {
                 reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x10c;
                 func_020b17a4();
                 func_0214c0f8(func_020c3e2c(0)->mUnk_00->mData, 0, func_020c3e2c(0)->mUnk_00->mDataSize);
-                func_0214b9c4(func_020c3e2c(0)->mUnk_04->mData, 0, func_020c3e2c(0)->mUnk_04->mDataSize);
+                MemCopyWordsToG2sBg1CntBits2To5Address(func_020c3e2c(0)->mUnk_04->mData, 0,
+                                                       func_020c3e2c(0)->mUnk_04->mDataSize);
                 func_0214c028(GetRaceNclrNcgr(7)->mNclr->mData, 0, 0x80);
                 func_0214bea4(GetRaceNclrNcgr(7)->mNcgr->mData, 0, 0x4000);
-                func_0214ba94(func_020b3374()->mData, 0, 0x3000);
-                func_0214bdd4(func_020b32f8(), 0, 0x600);
+                MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, 0x3000);
+                MemCopyHalfwordsToG2sBg0CntBits8To12Address(func_020b32f8(), 0, 0x600);
                 break;
             case 6:
                 break;
@@ -236,7 +238,7 @@ void func_020b0b8c(void) {
             switch (data_021759c0->mUnk_08) {
                 case 2:
                 case 3:
-                    func_0214ba94(func_020b3374()->mData, 0, 0x800);
+                    MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, 0x800);
                     break;
             }
             w = func_020c3e00();
@@ -244,8 +246,8 @@ void func_020b0b8c(void) {
                 a = -w & 0x1ff;
                 reg_G2S_DB_BG2OFS = a;
                 reg_G2S_DB_BG3OFS = a;
-                func_0214bc34(func_020c3e14(1)->mData, 0, 0x600);
-                func_0214bb64(func_020c3e14(2)->mData, 0, 0x600);
+                MemCopyHalfwordsToG2sBg2CntBits8To12Address(func_020c3e14(1)->mData, 0, 0x600);
+                MemCopyHalfwordsToG2sBg3CntBits8To12Address(func_020c3e14(2)->mData, 0, 0x600);
             }
             break;
         case 5:
@@ -253,14 +255,14 @@ void func_020b0b8c(void) {
             switch (data_021759c0->mUnk_08) {
                 case 2:
                 case 3:
-                    func_0214ba94(func_020b3374()->mData, 0, 0x800);
+                    MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, 0x800);
                     break;
             }
             w = func_020c3e00();
             if (data_0217b350->mUnk_830 != 0) {
-                func_0214bd04(func_020c3e14(3)->mData, 0, func_020c3e14(3)->mDataSize);
-                func_0214bc34(func_020c3e14(4)->mData, 0, func_020c3e14(4)->mDataSize);
-                func_0214bb64(func_020c3e14(5)->mData, 0, func_020c3e14(5)->mDataSize);
+                MemCopyHalfwordsToG2sBg1CntBits8To12Address(func_020c3e14(3)->mData, 0, func_020c3e14(3)->mDataSize);
+                MemCopyHalfwordsToG2sBg2CntBits8To12Address(func_020c3e14(4)->mData, 0, func_020c3e14(4)->mDataSize);
+                MemCopyHalfwordsToG2sBg3CntBits8To12Address(func_020c3e14(5)->mData, 0, func_020c3e14(5)->mDataSize);
                 func_0214c028(GetRaceNclrNcgr(8)->mNclr->mData, 0, 0x20);
                 func_0214c028(GetRaceNclrNcgr(8)->mNclr->mData + 0xc0, 0x180, 0x80);
                 func_0214bea4(GetRaceNclrNcgr(8)->mNcgr->mData, 0, 0x4000);
@@ -280,8 +282,10 @@ void func_020b0b8c(void) {
                 reg_G2S_DB_BG1CNT &= ~0x40;
                 reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 8;
                 func_0214c0f8(data_0217b350->mNclrs[1]->mData, 0, 0x20);
-                func_0214b9c4(data_0217b350->mNcgrs[1]->mData, 0, data_0217b350->mNcgrs[1]->mDataSize);
-                func_0214bd04(data_0217b350->mNscrs[2]->mData, 0, data_0217b350->mNscrs[2]->mDataSize);
+                MemCopyWordsToG2sBg1CntBits2To5Address(data_0217b350->mNcgrs[1]->mData, 0,
+                                                       data_0217b350->mNcgrs[1]->mDataSize);
+                MemCopyHalfwordsToG2sBg1CntBits8To12Address(data_0217b350->mNscrs[2]->mData, 0,
+                                                            data_0217b350->mNscrs[2]->mDataSize);
                 func_0214c028(GetRaceNclrNcgr(9)->mNclr->mData, 0, 0xa0);
                 func_0214c028(GetRaceNclrNcgr(9)->mNclr->mData + 0xb0, 0x160, 0xa0);
                 func_0214bea4(GetRaceNclrNcgr(9)->mNcgr->mData, 0, 0x4000);
@@ -293,9 +297,9 @@ void func_020b0b8c(void) {
         if (data_0217561c->mUnk_4cc == 0) {
             w = (reg_GX_DISPCNT & 0x1f00) >> 8;
             reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | ((w | 4) << 8);
-            func_0214bc9c(data_0217b350->mNscrs[0]->mData, 0, 0x600);
+            MemCopyHalfwordsToG2Bg2CntBits8To12Address(data_0217b350->mNscrs[0]->mData, 0, 0x600);
         }
-        func_0214bdd4(func_020b32f8(), 0, 0x600);
+        MemCopyHalfwordsToG2sBg0CntBits8To12Address(func_020b32f8(), 0, 0x600);
         w = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | ((w | 1) << 8);
         func_0214a390((u16 *) 0x04001050, 0x3e, 0x3f, 8, 8, -7);
@@ -577,18 +581,18 @@ void InitMap2D(void) {
         reg_G2S_DB_BG3CNT = reg_G2S_DB_BG3CNT & ~0x40;
         reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x308;
         func_0214c0f8(nclrs[0]->mData, 0, nclrs[0]->mDataSize);
-        func_0214b8f4(ncgrs[0]->mData, 0, ncgrs[0]->mDataSize);
-        func_0214b8f4(ncgrs[1]->mData, 0x1800, ncgrs[1]->mDataSize);
-        func_0214bc34(nscrs[0]->mData, 0, nscrs[0]->mDataSize);
-        func_0214bb64(nscrs[1]->mData, 0, nscrs[1]->mDataSize);
+        MemCopyWordsToG2sBg2CntBits2To5Address(ncgrs[0]->mData, 0, ncgrs[0]->mDataSize);
+        MemCopyWordsToG2sBg2CntBits2To5Address(ncgrs[1]->mData, 0x1800, ncgrs[1]->mDataSize);
+        MemCopyHalfwordsToG2sBg2CntBits8To12Address(nscrs[0]->mData, 0, nscrs[0]->mDataSize);
+        MemCopyHalfwordsToG2sBg3CntBits8To12Address(nscrs[1]->mData, 0, nscrs[1]->mDataSize);
     }
 
     func_020b18b0();
     func_0214c0f8(nclrs[2]->mData, 0, 0x200);
-    func_0214b824(ncgrs[2]->mData, 0, ncgrs[2]->mDataSize);
-    func_0214bc34(nscrs[2]->mData, 0, nscrs[2]->mDataSize);
+    MemCopyWordsToG2sBg3CntBits2To5Address(ncgrs[2]->mData, 0, ncgrs[2]->mDataSize);
+    MemCopyHalfwordsToG2sBg2CntBits8To12Address(nscrs[2]->mData, 0, nscrs[2]->mDataSize);
     if (func_020b64e8()) {
-        func_0214bb64(nscrs[3]->mData, 0, nscrs[3]->mDataSize);
+        MemCopyHalfwordsToG2sBg3CntBits8To12Address(nscrs[3]->mData, 0, nscrs[3]->mDataSize);
     }
     func_02149124(0x80);
     func_0214b4dc();

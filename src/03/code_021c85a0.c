@@ -100,7 +100,7 @@ void func_ov003_021c8c14(void) {
             break;
         case 11:
             r = (Unk021c8a60 *) func_ov003_021cdb6c();
-            r->mUnk_d0 = func_021516d8(r->mUnk_f0);
+            r->mUnk_d0 = CountSetBitsInBytes4(r->mUnk_f0);
             if (r->mUnk_f5 != 0) {
                 MemFill(r->mUnk_c0, 0, 4);
                 MemFill(r->mUnk_c4, 0, 4);

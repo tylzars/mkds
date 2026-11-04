@@ -30,7 +30,7 @@ u32 func_02152b08(u8 *a) {
     return 0;
 }
 
-u32 func_02152ae0(u32 *a, u32 b, u32 c, u32 d) {
+u32 BitFieldInsert(u32 *a, u32 b, u32 c, u32 d) {
     if ((b & ~d) != 0) {
         return 0;
     }

@@ -20,34 +20,34 @@ u32 func_02150dc8(u32 v) {
     return old;
 }
 
-void func_02150d78(Unk02150a10 *p0) {
-    p0->mUnk_00[0] = (u32) 0x67452301u;
-    p0->mUnk_00[1] = (u32) 0xefcdab89u;
-    p0->mUnk_00[2] = (u32) 0x98badcfeu;
-    p0->mUnk_00[3] = (u32) 0x10325476u;
-    p0->mUnk_00[4] = (u32) 0xc3d2e1f0u;
-    p0->mUnk_14 = (u32) 0x0u;
-    p0->mUnk_18 = (u32) 0x0u;
-    p0->mUnk_1c = (u32) 0x0u;
+void Hash20Init(Hash20State *p0) {
+    p0->mWords[0] = (u32) 0x67452301u;
+    p0->mWords[1] = (u32) 0xefcdab89u;
+    p0->mWords[2] = (u32) 0x98badcfeu;
+    p0->mWords[3] = (u32) 0x10325476u;
+    p0->mWords[4] = (u32) 0xc3d2e1f0u;
+    p0->mBitCountLow = (u32) 0x0u;
+    p0->mBitCountHigh = (u32) 0x0u;
+    p0->mBufferLen = (u32) 0x0u;
 }
 
-void func_02150c1c(Unk02150a10 *ctx, u8 *src, u32 n) {
+void Hash20Update(Hash20State *ctx, u8 *src, u32 n) {
     u8 *buf;
     u32 t;
     u32 f;
     u32 k;
 
-    buf = ctx->mUnk_20;
+    buf = ctx->mBlock;
     if (n == 0) {
         return;
     }
-    t = ctx->mUnk_14 + (n << 3);
-    if (t < ctx->mUnk_14) {
-        ctx->mUnk_18++;
+    t = ctx->mBitCountLow + (n << 3);
+    if (t < ctx->mBitCountLow) {
+        ctx->mBitCountHigh++;
     }
-    ctx->mUnk_18 += n >> 29;
-    ctx->mUnk_14 = t;
-    f = ctx->mUnk_1c;
+    ctx->mBitCountHigh += n >> 29;
+    ctx->mBitCountLow = t;
+    f = ctx->mBufferLen;
     if (f != 0) {
         if (f + n >= 0x40) {
             k = 0x40 - f;
@@ -55,10 +55,10 @@ void func_02150c1c(Unk02150a10 *ctx, u8 *src, u32 n) {
             n -= k;
             src += k;
             data_0216f26c(ctx, buf, 0x40);
-            ctx->mUnk_1c = 0;
+            ctx->mBufferLen = 0;
         } else {
             MemCopy(src, buf + f, n);
-            ctx->mUnk_1c += n;
+            ctx->mBufferLen += n;
             return;
         }
     }
@@ -77,7 +77,7 @@ void func_02150c1c(Unk02150a10 *ctx, u8 *src, u32 n) {
             } while ((int) k > 0);
         }
     }
-    ctx->mUnk_1c = n;
+    ctx->mBufferLen = n;
     if (n == 0) {
         return;
     }
@@ -86,7 +86,7 @@ void func_02150c1c(Unk02150a10 *ctx, u8 *src, u32 n) {
 
 // Callers pass ctx and out only. The prologue pushes r0-r3 (the form 1.2 gives a variadic function), and the call
 // to MemFillWords at the end clears the pushed ctx.
-void func_02150a10(Unk02150a10 *ctx, u8 *out, ...) {
+void Hash20Final(Hash20State *ctx, u8 *out, ...) {
     volatile u32 z;
     u32 *w;
     u8 *b;
@@ -94,13 +94,13 @@ void func_02150a10(Unk02150a10 *ctx, u8 *out, ...) {
     int i;
     u32 x;
 
-    n = ctx->mUnk_1c;
-    w = (u32 *) ctx->mUnk_20;
+    n = ctx->mBufferLen;
+    w = (u32 *) ctx->mBlock;
     i = n >> 2;
     if ((n & 3) == 0) {
         w[i] = 0;
     }
-    b = ctx->mUnk_20;
+    b = ctx->mBlock;
     b[n] = 0x80;
     n++;
     while ((n & 3) != 0) {
@@ -108,7 +108,7 @@ void func_02150a10(Unk02150a10 *ctx, u8 *out, ...) {
         n++;
     }
     i++;
-    if (ctx->mUnk_1c >= 0x38) {
+    if (ctx->mBufferLen >= 0x38) {
         for (; i < 16; i++) {
             w[i] = 0;
         }
@@ -118,48 +118,48 @@ void func_02150a10(Unk02150a10 *ctx, u8 *out, ...) {
     for (; i < 14; i++) {
         w[i] = 0;
     }
-    x = ctx->mUnk_14;
+    x = ctx->mBitCountLow;
     b[0x3f] = x;
     b[0x3e] = x >> 8;
     b[0x3d] = x >> 16;
     b[0x3c] = x >> 24;
-    x = ctx->mUnk_18;
+    x = ctx->mBitCountHigh;
     b[0x3b] = x;
     b[0x3a] = x >> 8;
     b[0x39] = x >> 16;
     b[0x38] = x >> 24;
     data_0216f26c(ctx, (u8 *) w, 0x40);
-    x = ctx->mUnk_00[0];
+    x = ctx->mWords[0];
     out[0] = x >> 24;
     out[1] = x >> 16;
     out[2] = x >> 8;
     out[3] = x;
-    x = ctx->mUnk_00[1];
+    x = ctx->mWords[1];
     out[4] = x >> 24;
     out[5] = x >> 16;
     out[6] = x >> 8;
     out[7] = x;
-    x = ctx->mUnk_00[2];
+    x = ctx->mWords[2];
     out[8] = x >> 24;
     out[9] = x >> 16;
     out[10] = x >> 8;
     out[11] = x;
-    x = ctx->mUnk_00[3];
+    x = ctx->mWords[3];
     out[12] = x >> 24;
     out[13] = x >> 16;
     out[14] = x >> 8;
     out[15] = x;
-    x = ctx->mUnk_00[4];
+    x = ctx->mWords[4];
     out[16] = x >> 24;
     out[17] = x >> 16;
     out[18] = x >> 8;
     out[19] = x;
-    ctx->mUnk_1c = 0;
+    ctx->mBufferLen = 0;
     z = 0;
     MemFillWords(z, &ctx, 4);
 }
 
-void func_02150994(Unk02150a10 *ctx, u8 *data, int n) {
+void func_02150994(Hash20State *ctx, u8 *data, int n) {
     u32 a;
     u32 b;
     int i;
@@ -178,11 +178,11 @@ void func_02150994(Unk02150a10 *ctx, u8 *data, int n) {
     }
 }
 
-void func_02150808(u8 *a, const u8 *b, u32 n, const u8 *c, s32 m) {
+void Hash20Hmac(u8 *a, const u8 *b, u32 n, const u8 *c, s32 m) {
     u8 buf0[0x40];
     u8 buf1[0x40];
     u8 buf2[0x14];
-    Unk02150a10 v;
+    Hash20State v;
     u8 *p;
     s32 i;
 
@@ -191,9 +191,9 @@ void func_02150808(u8 *a, const u8 *b, u32 n, const u8 *c, s32 m) {
         return;
     }
     if (m > 0x40) {
-        func_02150d78(&v);
-        func_02150c1c(&v, (u8 *) c, m);
-        func_02150a10(&v, p);
+        Hash20Init(&v);
+        Hash20Update(&v, (u8 *) c, m);
+        Hash20Final(&v, p);
         c = p;
         m = 0x14;
     }
@@ -205,12 +205,12 @@ void func_02150808(u8 *a, const u8 *b, u32 n, const u8 *c, s32 m) {
         buf0[i] = 0x36;
         buf1[i] = 0x5c;
     }
-    func_02150d78(&v);
-    func_02150c1c(&v, buf0, 0x40);
-    func_02150c1c(&v, (u8 *) b, n);
-    func_02150a10(&v, p);
-    func_02150d78(&v);
-    func_02150c1c(&v, buf1, 0x40);
-    func_02150c1c(&v, p, 0x14);
-    func_02150a10(&v, a);
+    Hash20Init(&v);
+    Hash20Update(&v, buf0, 0x40);
+    Hash20Update(&v, (u8 *) b, n);
+    Hash20Final(&v, p);
+    Hash20Init(&v);
+    Hash20Update(&v, buf1, 0x40);
+    Hash20Update(&v, p, 0x14);
+    Hash20Final(&v, a);
 }

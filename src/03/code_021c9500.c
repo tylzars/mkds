@@ -37,10 +37,10 @@ void func_ov003_021c9500(void) {
     c = data_ov003_021d73f8;
     *(u16 *) 0x400000c = (*(u16 *) 0x400000c & 0x43) | 0xe18;
     func_ov003_021bf620(data_ov003_021d7460, func_0214c090);
-    func_ov003_021bf620(data_ov003_021d7474, func_0214b88c);
-    func_ov003_021bf620(data_ov003_021d748c, func_0214b95c);
+    func_ov003_021bf620(data_ov003_021d7474, MemCopyWordsToG2Bg3CntBits2To5Address);
+    func_ov003_021bf620(data_ov003_021d748c, MemCopyWordsToG2Bg2CntBits2To5Address);
     func_ov003_021bf620(&b, func_0214c160);
-    func_ov003_021bf620(data_ov003_021d74a4, func_0214bbcc);
+    func_ov003_021bf620(data_ov003_021d74a4, MemCopyHalfwordsToG2Bg3CntBits8To12Address);
     data_ov003_021da214->mUnk_08 = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), NULL, 4);
     func_ov003_021cca30(data_ov003_021da214->mUnk_08);
     func_ov003_021cc9fc();

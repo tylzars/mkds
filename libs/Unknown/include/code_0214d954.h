@@ -63,7 +63,7 @@ extern u16 data_021803ac;
 extern Unk0214d93c data_021803b0;
 
 void func_0214d954(u32 arg0);
-u32 func_0214d964(u32 x);
+u32 DecimalNibblesToValue(u32 x);
 void func_0214d9e8(u32 a, u32 b, s32 c);
 u32 func_0214df78(u32 *a);
 u32 func_0214dfbc(u32 *a, UnkFunc *b, u32 c);

@@ -1122,7 +1122,7 @@ Link order and linking:
   difference, not source: the 1.2 base always emits the `bx` form. Four functions in ov000 use the other form
   (func_ov000_021a9d68, 021ab09c, 021ad898, 021aea34).
 - Thumb `ldrsb` and `ldrsh` have only the register-offset form, so `*(p + 11 - i)` differs from `p[11 - i]`
-  (func_021528bc).
+  (Decimal12CharsToValue).
 - A byte loaded, moved to a second register for `muls` and used again after, with the two registers swapped: read the
   field inside the index expression and write the update as `x--` or `x -= 1`, not a local or `x = x - 1`
   (func_ov003_021c73cc).

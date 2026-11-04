@@ -555,7 +555,7 @@ void func_02015044(Unk02014c5c_out *o) {
             i = (e->mUnk_00 & 0xf0) >> 4;
             x = q[0];
             y = q[1];
-            func_0214d32c(o->mUnk_28);
+            MemZero9Words(o->mUnk_28);
             o->mUnk_28[i] = (e->mUnk_00 & 0x100) ? -0x1000 : 0x1000;
             o->mUnk_28[data_02152c30[i][0]] = x;
             o->mUnk_28[data_02152c31[i][0]] = y;

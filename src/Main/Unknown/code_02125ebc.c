@@ -187,12 +187,12 @@ s32 func_0212717c(s32 d) {
     }
     data_0217d3f0->mUnk_2220[0] = 0;
     func_0200ee74(a->mData, a->mDataSize);
-    func_0214b95c(a->mData, 0, a->mDataSize);
+    MemCopyWordsToG2Bg2CntBits2To5Address(a->mData, 0, a->mDataSize);
     if (data_0217d3f0->mUnk_48 != 0) {
         d = d - a->mDataSize;
         data_0217d3f0->mUnk_2220[2] = d >> 5;
         func_0200ee74(a->mData, a->mDataSize);
-        func_0214ba94(a->mData, d, a->mDataSize);
+        MemCopyWordsToG2sBg0CntBits2To5Address(a->mData, d, a->mDataSize);
     }
     if (*(vu16 *) 0x27ffc40 != 2) {
         if (data_0217d3f0->mUnk_44 != 0) {
@@ -200,7 +200,7 @@ s32 func_0212717c(s32 d) {
         }
         data_0217d3f0->mUnk_223c[0] = a->mDataSize >> 5;
         func_0200ee74(b->mData, b->mDataSize);
-        func_0214b95c(b->mData, data_0217d3f0->mUnk_223c[0] << 5, b->mDataSize);
+        MemCopyWordsToG2Bg2CntBits2To5Address(b->mData, data_0217d3f0->mUnk_223c[0] << 5, b->mDataSize);
         if (data_0217d3f0->mUnk_4c != 0) {
             data_0217d3f0->mUnk_2220[3] = data_0217d3f0->mUnk_2220[2];
         }
@@ -210,7 +210,7 @@ s32 func_0212717c(s32 d) {
         data_0217d3f0->mUnk_2220[6] = d >> 5;
         data_0217d3f0->mUnk_223c[1] = d >> 5;
         func_0200ee74(b->mData, b->mDataSize);
-        func_0214ba94(b->mData, d, b->mDataSize);
+        MemCopyWordsToG2sBg0CntBits2To5Address(b->mData, d, b->mDataSize);
     }
     func_0200ee74(c->mData, 0x1c0);
     func_0214c160(c->mData + 0xe0, 0x1c0, 0x40);

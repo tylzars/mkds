@@ -32,10 +32,10 @@ void func_0200fd74(void) {
         return;
     }
     data_0217027c = 1;
-    func_0214d5b8();
-    while (func_0214d79c(0xc, 1) == 0) {
+    PxiInit();
+    while (PxiCallbackBitIsSet(0xc, 1) == 0) {
     }
-    func_0214d7c4(0xc, func_0200fd30);
+    PxiCallbackSet(0xc, func_0200fd30);
 }
 
 void func_0200fd30(u32 a, u32 b) {

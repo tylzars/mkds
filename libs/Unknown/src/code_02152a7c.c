@@ -6,7 +6,7 @@
 
 void func_02152a8c(Unk02152490 *a, u32 b, u32 c) {
     enum { K0 } d = K0;
-    func_02152ae0(&a->mUnk_00, c, d, 0x7ff);
+    BitFieldInsert(&a->mUnk_00, c, d, 0x7ff);
     a->mUnk_04 = b;
 }
 

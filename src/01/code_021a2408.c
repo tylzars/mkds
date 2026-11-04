@@ -55,7 +55,7 @@ void func_ov001_021a2408(void) {
             *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 2;
             *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x1218;
             func_0200ee74(gEmblem->mUnk_0a7c, 0x200);
-            func_0214b95c((const void *) (gEmblem->mUnk_0a7c), 0, 0x200);
+            MemCopyWordsToG2Bg2CntBits2To5Address((const void *) (gEmblem->mUnk_0a7c), 0, 0x200);
             func_0214a40c((u32 *) 0x4001050, 0, 0, 0x10, 0x10);
             gEmblem->mUnk_1098 = 4;
             break;
@@ -64,9 +64,10 @@ void func_ov001_021a2408(void) {
             *(vu32 *) 0x4001018 =
                 ((gEmblem->mUnk_10a8 >> 12) & 0x1ff) | (((-gEmblem->mUnk_10a8 >> 12) << 16) & 0x1ff0000);
             func_0200ee74((const void *) func_ov001_02181174(), func_ov001_02181180());
-            func_0214b824((const void *) (func_ov001_02181174()), func_ov001_02181194(), func_ov001_02181180());
+            MemCopyWordsToG2sBg3CntBits2To5Address((const void *) (func_ov001_02181174()), func_ov001_02181194(),
+                                                   func_ov001_02181180());
             func_0200ee74(gEmblem->mUnk_0a7c, 0x200);
-            func_0214b95c((const void *) (gEmblem->mUnk_0a7c), 0, 0x200);
+            MemCopyWordsToG2Bg2CntBits2To5Address((const void *) (gEmblem->mUnk_0a7c), 0, 0x200);
             src = gEmblem->mEmblemSBNclr->mData;
             dst = gEmblem->mEmblemSONclr->mData;
             dst[0x91] = src[func_ov001_021a63b4() == 1 ? 2 : 1];
@@ -94,7 +95,7 @@ void func_ov001_021a2408(void) {
             break;
         case 5:
             func_0200ee74(gEmblem->mUnk_0a7c, 0x200);
-            func_0214b95c((const void *) (gEmblem->mUnk_0a7c), 0, 0x200);
+            MemCopyWordsToG2Bg2CntBits2To5Address((const void *) (gEmblem->mUnk_0a7c), 0, 0x200);
             src = gEmblem->mEmblemSBNclr->mData;
             dst = gEmblem->mEmblemSONclr->mData;
             dst[0x91] = src[func_ov001_021a63b4() == 1 ? 2 : 1];
@@ -106,9 +107,10 @@ void func_ov001_021a2408(void) {
             *(vu32 *) 0x4001018 =
                 ((gEmblem->mUnk_10a8 >> 12) & 0x1ff) | (((-gEmblem->mUnk_10a8 >> 12) << 16) & 0x1ff0000);
             func_0200ee74((const void *) func_ov001_02181174(), func_ov001_02181180());
-            func_0214b824((const void *) (func_ov001_02181174()), func_ov001_02181194(), func_ov001_02181180());
+            MemCopyWordsToG2sBg3CntBits2To5Address((const void *) (func_ov001_02181174()), func_ov001_02181194(),
+                                                   func_ov001_02181180());
             func_0200ee74(gEmblem->mUnk_0a7c, 0x200);
-            func_0214b95c((const void *) (gEmblem->mUnk_0a7c), 0, 0x200);
+            MemCopyWordsToG2Bg2CntBits2To5Address((const void *) (gEmblem->mUnk_0a7c), 0, 0x200);
             src = gEmblem->mEmblemSBNclr->mData;
             dst = gEmblem->mEmblemSONclr->mData;
             dst[0x91] = src[func_ov001_021a63b4() == 1 ? 2 : 1];

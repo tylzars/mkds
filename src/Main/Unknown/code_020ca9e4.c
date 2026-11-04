@@ -13,11 +13,11 @@
 void func_020ca9e4(void) {
     if (gEmblemChoises->mUnk_08 != 0) {
         func_0214c0f8(gEmblemChoises->mChoisesSBNclr->mData + 0xe0, 0x1c0, 0x40);
-        func_0214ba94(gEmblemChoises->mChoisesSBNcgr->mData, 0, 0x3000);
+        MemCopyWordsToG2sBg0CntBits2To5Address(gEmblemChoises->mChoisesSBNcgr->mData, 0, 0x3000);
         gEmblemChoises->mUnk_08 = 0;
     }
     if (gEmblemChoises->mUnk_00 != 0) {
-        func_0214bdd4(gEmblemChoises->mChoisesS3Nscr->mData, 0, 0x600);
+        MemCopyHalfwordsToG2sBg0CntBits8To12Address(gEmblemChoises->mChoisesS3Nscr->mData, 0, 0x600);
     }
     if (gEmblemChoises->mUnk_00 != gEmblemChoises->mUnk_04) {
         if (gEmblemChoises->mUnk_00 != 0) {

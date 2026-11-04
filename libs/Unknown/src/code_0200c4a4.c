@@ -32,13 +32,13 @@ void func_0200c7f4(void) {
     if (data_0216fe0c == 0) {
         data_0216fe0c = 1;
         func_0200c620();
-        func_0214d5b8();
-        while (func_0214d79c(13, 1) == 0) {
+        PxiInit();
+        while (PxiCallbackBitIsSet(13, 1) == 0) {
         }
-        func_0214d7c4(13, (UnkFunc *) func_0200c690);
+        PxiCallbackSet(13, (UnkFunc *) func_0200c690);
         func_0200c6b8();
-        func_0214d7c4(13, 0);
-        func_0214d7c4(13, (UnkFunc *) func_0200c65c);
+        PxiCallbackSet(13, 0);
+        PxiCallbackSet(13, (UnkFunc *) func_0200c65c);
         data_0216fe10 = 0;
     }
 }

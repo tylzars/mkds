@@ -307,16 +307,16 @@ void func_02020ff0(u32 a, u32 b) {
 }
 
 void func_02020f84(void) {
-    func_0214d7c4(7, func_02020ff0);
+    PxiCallbackSet(7, func_02020ff0);
     if (func_02020eb0() == 0) {
         return;
     }
-    if (func_0214d79c(7, 1) != 0) {
+    if (PxiCallbackBitIsSet(7, 1) != 0) {
         return;
     }
     do {
         func_0200fd10(0x64);
-    } while (func_0214d79c(7, 1) == 0);
+    } while (PxiCallbackBitIsSet(7, 1) == 0);
 }
 
 void func_02020f50(void) {

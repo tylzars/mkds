@@ -20,7 +20,7 @@
 // Calls fifteen functions in a fixed order.
 void func_0200eec0(void) {
     func_0200f210();
-    func_0214d5b8();
+    PxiInit();
     func_0200d028();
     func_0200f190();
     func_0200cd04();

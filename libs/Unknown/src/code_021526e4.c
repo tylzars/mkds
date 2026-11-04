@@ -67,12 +67,12 @@ void func_02152808(const Unk02152490 *a, u32 b, char *c) {
     char d[0x15];
     char e[0x15];
 
-    func_0215286c(func_02152ac8(a), 0x2b, d);
-    func_0215286c(func_02152ac4(a), 0x20, e);
+    ValueToChars5Bit(func_02152ac8(a), 0x2b, d);
+    ValueToChars5Bit(func_02152ac4(a), 0x20, e);
     StringFormatBounded(c, 0x15, data_0216f2a0, d, (u8) (b >> 24), (u8) (b >> 16), (u8) (b >> 8), (u8) b, e);
 }
 
-void func_0215286c(u64 a, s32 n, char *c) {
+void ValueToChars5Bit(u64 a, s32 n, char *c) {
     s32 i;
     s32 len;
     const s8 *t;
@@ -86,7 +86,7 @@ void func_0215286c(u64 a, s32 n, char *c) {
     c[len] = 0;
 }
 
-u64 func_021528bc(const void *a) {
+u64 Decimal12CharsToValue(const void *a) {
     const s8 *p = a;
     u64 s;
     u64 m;

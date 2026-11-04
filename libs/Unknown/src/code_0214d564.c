@@ -1,6 +1,6 @@
 #include "code_0214d564.h"
 
-void func_0214d564(u32 arg0, u32 arg1, u32 arg2) {
+void ExpandCompressedStateInit(u32 arg0, u32 arg1, u32 arg2) {
     u32 value0 = arg0;
     u32 value1 = arg1;
     u32 value2 = arg2;

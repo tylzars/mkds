@@ -1,6 +1,6 @@
 #include "code_0214e258.h"
 
-s32 func_0214e258(const Unk0214e1e0 *arg0) {
+s32 TimeToSeconds(const Unk0214e1e0 *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;

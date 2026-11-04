@@ -8,10 +8,10 @@ UnkFunc *data_0218032c[32];
 u16 data_02180328;
 
 // Runs once: clears the first word at mUnk_388 and the 32 entries of data_0218032c, writes 0xc408 to the register
-// at 0x04000184, calls InterruptFlagWrite, InterruptHandlerSet (with func_0214d5c4) and InterruptEnableSetBits with
-// 0x40000, then writes the low 4 bits read from the register at 0x04000180 back shifted left by 8 until the conditions
-// of its loop hold.
-void func_0214d830(void) {
+// at 0x04000184, calls InterruptFlagWrite, InterruptHandlerSet (with PxiReceiveDispatch) and InterruptEnableSetBits
+// with 0x40000, then writes the low 4 bits read from the register at 0x04000180 back shifted left by 8 until the
+// conditions of its loop hold.
+void PxiInitOnce(void) {
     u32 s;
     s32 i;
     s32 n;
@@ -29,7 +29,7 @@ void func_0214d830(void) {
         }
         reg_PXI_SUBP_FIFO_CNT = 0xc408;
         InterruptFlagWrite(0x40000);
-        InterruptHandlerSet(0x40000, (UnkFunc *) func_0214d5c4);
+        InterruptHandlerSet(0x40000, (UnkFunc *) PxiReceiveDispatch);
         InterruptEnableSetBits(0x40000);
         j = 0;
         for (;;) {
@@ -53,7 +53,7 @@ void func_0214d830(void) {
 }
 
 // Stores fn in entry a of the table and sets or clears bit a of the first word at mUnk_388.
-void func_0214d7c4(u32 a, UnkFunc *fn) {
+void PxiCallbackSet(u32 a, UnkFunc *fn) {
     u32 s;
     Unk027ffc00 *p;
 
@@ -69,7 +69,7 @@ void func_0214d7c4(u32 a, UnkFunc *fn) {
 }
 
 // Returns whether bit a of word b at mUnk_388 is set.
-s32 func_0214d79c(u32 a, u32 b) {
+s32 PxiCallbackBitIsSet(u32 a, u32 b) {
     Unk027ffc00 *p;
 
     p = (Unk027ffc00 *) 0x027ffc00;
@@ -79,7 +79,7 @@ s32 func_0214d79c(u32 a, u32 b) {
 // Packs a (5 bits), c (1 bit) and b (26 bits) into one word and writes it to the register at 0x04000188.
 // Returns -1 when the register at 0x04000184 shows bit 0x4000 (cleared by writing 0xc000), -2 when bit 2 is set.
 s32 PxiSendFifoWord(u32 a, u32 b, u32 c) {
-    Unk0214d5c4 v;
+    PxiWord v;
     u32 s;
 
     v.mUnk_00_0 = a;
@@ -101,8 +101,8 @@ s32 PxiSendFifoWord(u32 a, u32 b, u32 c) {
 
 // Reads words from 0x04100000 until the register at 0x04000184 shows bit 0x100; calls the table entry selected by
 // the low 5 bits with the word's other fields; an unhandled word with bit 5 clear is written back with bit 5 set.
-void func_0214d5c4(void) {
-    Unk0214d5c4 v;
+void PxiReceiveDispatch(void) {
+    PxiWord v;
     s32 r;
     u32 s;
     UnkFunc *f;
@@ -153,7 +153,7 @@ void func_0214d5c4(void) {
     }
 }
 
-// Calls func_0214d830.
-void func_0214d5b8(void) {
-    func_0214d830();
+// Calls PxiInitOnce.
+void PxiInit(void) {
+    PxiInitOnce();
 }

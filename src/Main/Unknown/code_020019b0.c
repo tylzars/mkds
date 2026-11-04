@@ -29,16 +29,16 @@ void func_02001d30(Unk02001d30 *a, s32 b, const char *c, const char *d, const ch
     LoadNcgrData2(&a->mUnk_04, FindSceneFile(d));
     func_0200ee58(a->mUnk_04->mData, a->mUnk_04->mDataSize);
     if (b != 0) {
-        func_0214ba2c(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
+        MemCopyWordsToG2Bg1CntBits2To5Address(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
     } else {
-        func_0214b9c4(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
+        MemCopyWordsToG2sBg1CntBits2To5Address(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
     }
     LoadNscrData(&a->mUnk_08, FindSceneFile(e));
     func_0200ee58(a->mUnk_08->mData, a->mUnk_08->mDataSize);
     if (b != 0) {
-        func_0214bd6c(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
+        MemCopyHalfwordsToG2Bg1CntBits8To12Address(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
     } else {
-        func_0214bd04(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
+        MemCopyHalfwordsToG2sBg1CntBits8To12Address(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
     }
 }
 

@@ -14,11 +14,11 @@ void func_0214f418(void) {
     data_02180410 = 1;
     data_02180414.mUnk_00 = 0;
     data_02180414.mUnk_04 = 0;
-    func_0214d5b8();
-    while (!func_0214d79c(9, 1)) {
+    PxiInit();
+    while (!PxiCallbackBitIsSet(9, 1)) {
     }
     *(u32 *) 0x27fff90 = 0;
-    func_0214d7c4(9, func_0214f060);
+    PxiCallbackSet(9, func_0214f060);
 }
 
 u32 func_0214f2a8(Unk0214f2a8 *p, void (*fn)(), u32 arg) {

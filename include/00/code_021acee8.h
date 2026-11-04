@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk02150610 Unk02150610;
+typedef struct Hash16State Hash16State;
 
-void func_ov000_021acee8(Unk02150610 *ctx, const u8 *src, u32 count);
+void func_ov000_021acee8(Hash16State *ctx, const u8 *src, u32 count);

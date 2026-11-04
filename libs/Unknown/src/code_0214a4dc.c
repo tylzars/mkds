@@ -6,17 +6,17 @@
 
 void GxFifoWrite0x16Then16Words(const void *a) {
     *(vu32 *) 0x4000400 = 0x16;
-    func_0214c74c(a, (void *) 0x4000400);
+    MemCopy16WordsToOneAddress(a, (void *) 0x4000400);
 }
 
 void GxFifoWrite0x17Then12Words(const void *a) {
     *(vu32 *) 0x4000400 = 0x17;
-    func_0214c728(a, (void *) 0x4000400);
+    MemCopy12WordsToOneAddress(a, (void *) 0x4000400);
 }
 
 void GxFifoWrite0x19Then12Words(const void *a) {
     *(vu32 *) 0x4000400 = 0x19;
-    func_0214c728(a, (void *) 0x4000400);
+    MemCopy12WordsToOneAddress(a, (void *) 0x4000400);
 }
 
 void GxFifoWrite0x1aThenMemCopy9Words(const void *a) {

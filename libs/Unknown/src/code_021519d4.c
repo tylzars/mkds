@@ -199,7 +199,7 @@ u32 func_02151a64(const u8 *a) {
     if (c > 2) {
         return 0;
     }
-    if (func_02151698(a + 0x40) == 0) {
+    if (Bytes32AnyNonzero(a + 0x40) == 0) {
         return 0;
     }
     if (memcmp(a + 0xc0, data_usa_0216172c, 4) != 0) {
@@ -209,7 +209,7 @@ u32 func_02151a64(const u8 *a) {
         if (a[0xd0] > 0x20) {
             return 0;
         }
-        func_021516b0(a[0xd0], b);
+        Bytes4StoreTopBitsMask(a[0xd0], b);
         if (func_02151640(a + 0xc0, b) == 0) {
             return 0;
         }
