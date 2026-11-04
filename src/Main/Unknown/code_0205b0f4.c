@@ -183,8 +183,6 @@ void func_0205b778(u32 a, Unk0205b504 *b) {
     MemCopy(s, e, n);
 }
 
-// non-matching: the original keeps the new 0xf4 value in r2 and reuses it for the 0x800 step (add r2, r2, r1, asr #1);
-// here it is built in r1 and the byte index and the 0xfa byte swap r0 and r1 (16 words).
 void func_0205b6bc(u32 a, Unk0205b504 *b) {
     s32 t;
     Unk0217aa14 *p;
@@ -192,16 +190,14 @@ void func_0205b6bc(u32 a, Unk0205b504 *b) {
     s16 v;
     s16 d;
     u32 v1;
-    u8 f;
 
     x = b->mUnk_04.mUnk_00_s;
     p = data_0217aa14;
     v = p->mUnk_736;
     if (p->mUnk_00e == 2) {
         v1 = 1 << b->mUnk_00_0;
-        f = p->mUnk_0fa;
-        if ((f & v1) == 0) {
-            p->mUnk_0fa = f | v1;
+        if ((p->mUnk_0fa & v1) == 0) {
+            p->mUnk_0fa |= v1;
         }
         return;
     }
@@ -216,7 +212,7 @@ void func_0205b6bc(u32 a, Unk0205b504 *b) {
     }
     t = (d << 11) + (data_0217aa14->mUnk_0f4 >> 1);
     data_0217aa14->mUnk_0f4 = t;
-    data_0217aa14->mUnk_736 = data_0217aa14->mUnk_736 + (((t + 0x800) << 4) >> 16);
+    data_0217aa14->mUnk_736 += (s16) ((t + 0x800) >> 12);
 }
 
 // non-matching: the original also pushes r7 and a stack pad (index in r7, 0x1b8 bytes); here the same code uses r5 and

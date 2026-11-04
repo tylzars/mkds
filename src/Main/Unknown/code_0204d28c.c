@@ -174,7 +174,6 @@ typedef struct Unk0204d6f4_hdr {
     u32 mUnk_5c;
 } Unk0204d6f4_hdr;
 
-// non-matching: the inner loop's w and q trade r5/r7 (the original keeps w in r5, q in r7)
 void func_0204d6f4(Unk02003024 *a, s32 b) {
     Unk0204d6f4_hdr v2;
     Unk02003024 v1;
@@ -266,14 +265,16 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
         u32 *v16 = v4[0];
         u8 *v17 = (u8 *) (v16 + 1);
         s32 n = *v16 >> 3;
+        Unk0204d28c_20 *q;
+        s32 l;
         u32 *w = (u32 *) (v17 + (n << 3));
         u32 v18 = v9 + v5->mUnk_48;
         v12 = 8;
         for (i = 2; i < 4; i++) {
-            s32 l;
             u32 *v19 = v4[i];
-            Unk0204d28c_20 *q = (Unk0204d28c_20 *) (v19 + 1);
-            s32 v20 = *v19 >> 5;
+            s32 v20;
+            q = (Unk0204d28c_20 *) (v19 + 1);
+            v20 = *v19 >> 5;
             for (l = 0; l < v20; l++) {
                 FS_SeekFile(&v1, v18 + (q[l].mUnk_18 << 3), v11);
                 FS_ReadFile(&v1, w, v12);

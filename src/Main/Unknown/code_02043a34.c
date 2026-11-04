@@ -133,25 +133,16 @@ void func_02043c14(void) {
     func_02043c14_inline();
 }
 
-// non-matching: 0x220 bytes against 0x218; the inlined calls of the two helpers use a different literal order and the
-// loop counter code differs.
 void func_02043d10(void *a) {
     s32 i;
-    Unk02175628 *p;
 
     func_02047178();
     func_02047104(a);
-    p = data_02175628;
-    for (i = 0; i < 2; i++) {
-        func_0204aa04((u32) &p->mUnk_28, (u32) a);
-        p++;
+    for (i = 0; i <= 1; i++) {
+        func_0204aa04((u32) &data_02175628[i].mUnk_28, (u32) a);
     }
-    if (i < 10) {
-        p = &data_02175628[(u32) i];
-        for (; i < 10; i++) {
-            func_0204a9f8((u32) &p->mUnk_28);
-            p++;
-        }
+    for (; i < 10; i++) {
+        func_0204a9f8((u32) &data_02175628[i].mUnk_28);
     }
     data_02175624 = HeapAlloc(a, 0x10);
     func_02043c14_inline();

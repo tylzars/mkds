@@ -90,9 +90,6 @@ void func_0206d138(Unk0206bcb0 *p) {
     func_0207b054(p, 2, 0);
 }
 
-// non-matching: +0x2b4 to +0x2c4 the mask 1 << mUnk_74 & 0xff and the test with the byte at 0x128 use r2 for the
-// `and` result and r0 for `ands`/`orr` in ours; the original keeps the mask in r0 and sends the `ands` result to r2;
-// same size
 void func_0206d18c(Unk0206bcb0 *p) {
     s32 r;
     Unk020f41c4_A *e;
@@ -186,13 +183,10 @@ void func_0206d18c(Unk0206bcb0 *p) {
         return;
     }
     if (p->mUnk_4c & 0x10000040) {
-        u32 m;
-        u8 b = e->mUnk_128;
-        m = (1 << p->mIndex) & 0xff;
-        if (b & m) {
+        if (e->mUnk_128 & (u8) (1 << p->mIndex)) {
             return;
         }
-        e->mUnk_128 = b | m;
+        e->mUnk_128 |= (u8) (1 << p->mIndex);
         func_021090c4(&p->mUnk_00, 0xe9, 0x7f, 0);
         return;
     }

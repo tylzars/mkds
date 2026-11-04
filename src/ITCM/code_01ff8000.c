@@ -156,12 +156,10 @@ void func_01ff81b4(Unk02170500 *s, u32 a) {
     s->mUnk_00 += 1;
 }
 
-// non-matching: same size; the original keeps the halfword at +2 of the pair in the stack word at sp+0 and the one at
-// +0 in r11 (swapped here, so the stack word is at sp+4); the mla is `mla r0, r1, r4, r0` there, `mla r0, r4, r0, r1`
-// here; the first table value is stored after the second table address is loaded (constant-word load order)
 void func_01ff8220(Unk02170500 *s, u32 a) {
-    u32 w;
+    s32 b0;
     s32 b1;
+    enum { K0 } w;
     u32 t;
     u32 q;
     u32 t2;
@@ -173,12 +171,12 @@ void func_01ff8220(Unk02170500 *s, u32 a) {
     u32 f;
     u32 c;
     s32 v2;
-    s32 b0;
     s32 m;
     u16 *p;
     u8 *h;
     u8 *e;
     Unk02170500_04 *i;
+    u32 b;
 
     v1 = s->mUnk_00[1];
     n = 4;
@@ -232,7 +230,8 @@ void func_01ff8220(Unk02170500 *s, u32 a) {
             }
         }
         h = (u8 *) s->mUnk_d4;
-        e = h + *(u32 *) (h + *(u16 *) (h + 6) + *(u16 *) (h + *(u16 *) (h + 6)) * v1 + 4);
+        b = *(u16 *) (h + *(u16 *) (h + 6));
+        e = h + *(u32 *) (h + *(u16 *) (h + 6) + b * v1 + 4);
         p = (u16 *) e;
         r = (u16 *) (e + 4);
         if (!(*p & 1)) {

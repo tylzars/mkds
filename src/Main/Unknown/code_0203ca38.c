@@ -284,10 +284,8 @@ void func_0203d078(void) {
     }
 }
 
-// non-matching: registers only, in the first loop of case 2: the counter b is in r2 (original r0) and the
-// data_0217561c base and the 0x3d0 count byte are in r0 (original r2)
 void func_0203d21c(void) {
-    u32 b;
+    Unk0217561c *p;
     s32 v = -1;
     Unk021759c0 *d = data_021759c0;
     s32 m = d->mUnk_08;
@@ -337,15 +335,20 @@ void func_0203d21c(void) {
         case 2: {
             s32 e;
             if (f != FALSE) {
-                for (b = 0; b < d->mKartCount; b = (u16) (b + 1)) {
-                    if (data_0217561c->mUnk_000[b].mUnk_14 == 1) {
-                        if (f != FALSE) {
-                            if (v == -1) {
-                                d = data_021759c0;
-                                v = d->mUnk_68[b].mUnk_08.mTeamIndex;
+                a = 0;
+                if (a < d->mKartCount) {
+                    p = data_0217561c;
+                    do {
+                        if (p->mUnk_000[a].mUnk_14 == 1) {
+                            if (f != FALSE) {
+                                if (v == -1) {
+                                    d = data_021759c0;
+                                    v = d->mUnk_68[a].mUnk_08.mTeamIndex;
+                                }
                             }
                         }
-                    }
+                        a = (u16) (a + 1);
+                    } while (a < d->mKartCount);
                 }
             }
             for (a = 0; a < data_021759c0->mKartCount; a = (u16) (a + 1)) {
