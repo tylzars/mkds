@@ -8,7 +8,7 @@
 #include "01/code_0219a050.h"
 #include "01/code_0219b540.h"
 #include "01/code_02193c5c.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 #include "Main/Unknown/types_02180728.h" // Unk02180728
 
 // Four callbacks; the first receives OptionStates::mUnk_04.
@@ -255,3 +255,5 @@ extern Unk0217b498 *data_ov001_021a9bc4;
 extern u16 data_ov001_021a9b94;
 extern const char *data_ov001_021a90e8[5];
 extern const char *data_ov001_021a92c8[5];
+
+#include "00/code_021832d8.h"

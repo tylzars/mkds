@@ -3,7 +3,7 @@
 #include "types.h"
 #include "01/code_021956dc.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 #include "Main/Unknown/code_02125de0.h"
 
 // An s16 pair of Unk021a9be8.
@@ -78,3 +78,5 @@ void func_ov001_02199464(void);
 void func_ov001_021995f8(void);
 void func_ov001_02199640(void *a);
 void func_ov001_021997dc(void);
+
+#include "00/code_021832d8.h"

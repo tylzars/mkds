@@ -33,7 +33,7 @@ typedef struct Unk021b4c6c {
 
 #include "00/code_02180608.h"
 #include "00/unk_021b4000.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 #include "code_02021db0.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_020472a8.h"
@@ -65,3 +65,5 @@ s32 func_ov000_02181df0(void);
 void func_ov000_02181df8(void);
 void func_ov000_02181e8c(void);
 void InitWiFiTopMenu(void *heap);
+
+#include "00/code_021832d8.h"

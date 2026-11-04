@@ -31,7 +31,7 @@ typedef struct Unk021b4c84 {
 } Unk021b4c84;
 
 #include "00/code_02180608.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 #include "Main/Unknown/code_020472a8.h"
 
 extern u8 data_ov000_021b06bc[2];
@@ -61,3 +61,5 @@ u32 func_ov000_02185184(void);
 void func_ov000_021851a0(void);
 void func_ov000_02185230(void);
 void InitWiFiAikotoba(void *a);
+
+#include "00/code_021832d8.h"

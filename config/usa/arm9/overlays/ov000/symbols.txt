@@ -1509,13 +1509,13 @@ OV000_DATA_START kind:data(any) addr:0x021b07c0
 @3585 kind:data(any) addr:0x021b09d8 local
 @3586 kind:data(any) addr:0x021b09f8 local
 @3587 kind:data(any) addr:0x021b0a18 local
-data_ov000_021b0a78 kind:data(any) addr:0x021b0a38
-data_ov000_021b0a7c kind:data(any) addr:0x021b0a3c
-data_ov000_021b0a80 kind:data(any) addr:0x021b0a40
-data_ov000_021b0a84 kind:data(any) addr:0x021b0a44
-data_ov000_021b0a8c kind:data(any) addr:0x021b0a4c
+@2935 kind:data(any) addr:0x021b0a38 local
+@2967 kind:data(any) addr:0x021b0a3c local
+@2912 kind:data(any) addr:0x021b0a40 local
+@2951 kind:data(any) addr:0x021b0a44 local
+@2852 kind:data(any) addr:0x021b0a4c local
 data_ov000_021b0a98 kind:data(any) addr:0x021b0a58
-data_ov000_021b0aa8 kind:data(any) addr:0x021b0a68
+@2854 kind:data(any) addr:0x021b0a68 local
 @1104 kind:data(any) addr:0x021b0a8c local
 @1105 kind:data(any) addr:0x021b0a98 local
 gWiFiTopMenuCallbacks kind:data(any) addr:0x021b0aa4
@@ -1526,10 +1526,10 @@ gWiFiTopMenuSNcerName kind:data(any) addr:0x021b0b00
 gWiFiTopMenuSONclrName kind:data(any) addr:0x021b0b1c
 @2870 kind:data(any) addr:0x021b0b34 local
 @2871 kind:data(any) addr:0x021b0b40 local
-data_usa_ov000_021b0b4c kind:data(any) addr:0x021b0b4c
-data_usa_ov000_021b0b50 kind:data(any) addr:0x021b0b50
-data_usa_ov000_021b0b54 kind:data(any) addr:0x021b0b54
-data_usa_ov000_021b0b58 kind:data(any) addr:0x021b0b58
+@3245 kind:data(any) addr:0x021b0b4c local
+@3247 kind:data(any) addr:0x021b0b50 local
+@3249 kind:data(any) addr:0x021b0b54 local
+@3256 kind:data(any) addr:0x021b0b58 local
 gWiFiVSSettingCallbacks kind:data(any) addr:0x021b0b60
 @2794 kind:data(any) addr:0x021b0b70 local
 @2795 kind:data(any) addr:0x021b0b8c local
@@ -1540,24 +1540,24 @@ gWiFiVSSettingCallbacks kind:data(any) addr:0x021b0b60
 @2800 kind:data(any) addr:0x021b0c08 local
 @2801 kind:data(any) addr:0x021b0c24 local
 @2802 kind:data(any) addr:0x021b0c40 local
-data_usa_ov000_021b0c5c kind:data(any) addr:0x021b0c5c
-data_usa_ov000_021b0c68 kind:data(any) addr:0x021b0c68
+@4460 kind:data(any) addr:0x021b0c5c local
+@4461 kind:data(any) addr:0x021b0c68 local
 @2702 kind:data(any) addr:0x021b0c74 local
 @2692 kind:data(any) addr:0x021b0c78 local
 @2667 kind:data(any) addr:0x021b0c80 local
 @2678 kind:data(any) addr:0x021b0c88 local
-data_usa_ov000_021b0c94 kind:data(any) addr:0x021b0c94
+@3294 kind:data(any) addr:0x021b0c94 local
 data_ov000_021b0ce4 kind:data(any) addr:0x021b0ca4
 data_ov000_021b0d04 kind:data(any) addr:0x021b0cc4
-data_usa_ov000_021b0cec kind:data(any) addr:0x021b0cec
-data_usa_ov000_021b0d08 kind:data(any) addr:0x021b0d08
-data_usa_ov000_021b0d20 kind:data(any) addr:0x021b0d20
-data_usa_ov000_021b0d3c kind:data(any) addr:0x021b0d3c
-data_usa_ov000_021b0d54 kind:data(any) addr:0x021b0d54
-data_usa_ov000_021b0d6c kind:data(any) addr:0x021b0d6c
-data_usa_ov000_021b0d84 kind:data(any) addr:0x021b0d84
-data_usa_ov000_021b0da0 kind:data(any) addr:0x021b0da0
-data_usa_ov000_021b0dbc kind:data(any) addr:0x021b0dbc
+@4010 kind:data(any) addr:0x021b0cec local
+@4011 kind:data(any) addr:0x021b0d08 local
+@4012 kind:data(any) addr:0x021b0d20 local
+@4013 kind:data(any) addr:0x021b0d3c local
+@4014 kind:data(any) addr:0x021b0d54 local
+@4015 kind:data(any) addr:0x021b0d6c local
+@4016 kind:data(any) addr:0x021b0d84 local
+@4017 kind:data(any) addr:0x021b0da0 local
+@4018 kind:data(any) addr:0x021b0dbc local
 data_ov000_021b0e18 kind:data(any) addr:0x021b0dd8
 data_ov000_021b0e24 kind:data(any) addr:0x021b0de4
 gSelectCharacterCallbacks kind:data(any) addr:0x021b0df0

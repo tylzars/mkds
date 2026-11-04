@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 
 // Object behind data_ov001_021ca400.
 typedef struct Unk021ca400 {
@@ -175,3 +175,5 @@ extern Unk021ca414 *data_ov001_021ca414;
 extern Unk021ca418 *data_ov001_021ca418;
 extern Unk021ca424 *data_ov001_021ca424;
 extern Unk021ca420 *data_ov001_021ca420;
+
+#include "00/code_021832d8.h"

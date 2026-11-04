@@ -11,7 +11,7 @@ typedef struct SelectBattleStageNscrRect {
 
 extern const u8 gSelectBattleStageSTableIndices[6][3];
 
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 #include "01/code_021956dc.h"
 #include "01/unk_021a6000.h"
 #include "01/unk_021a9000.h"
@@ -55,3 +55,5 @@ void func_ov001_0219cf60(void);
 void LocateAndQueueSelectBattleStage(void);
 void ReleaseSelectBattleStage(void);
 void InitSelectBattleStage(void *c, s32 d, void *e, void *f);
+
+#include "00/code_021832d8.h"

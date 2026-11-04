@@ -21,7 +21,7 @@ typedef struct Unk021a8cd0 {
 #include "Main/Unknown/code_02128210.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "01/code_021956dc.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 #include "Main/Unknown/code_02056000.h"
 #include "Main/Unknown/code_02105000.h"
 #include "Main/Unknown/code_020ae408.h"
@@ -53,3 +53,5 @@ BOOL func_ov001_0219de38(void);
 void func_ov001_0219de58(void);
 void func_ov001_0219df64(void);
 void InitOptionEmbremSelect(void *a);
+
+#include "00/code_021832d8.h"

@@ -13,7 +13,7 @@
 #include "Main/Unknown/unk_0217d068.h"
 #include "Main/Unknown/unk_02175628.h"
 #include "Main/Unknown/code_0212426c.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_02060004.h"
 
@@ -162,3 +162,5 @@ void func_ov001_021972f4(void);
 void func_ov001_0219750c(u16 a);
 void func_ov001_021975f4(u16 a);
 void func_ov001_021978b4(void);
+
+#include "00/code_021832d8.h"

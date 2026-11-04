@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02182fdc.h" // Nclr, Ncgr
+#include "00/code_02181f98.h"
 #include "code_02021db0.h" // Unk02021e40
 
 // 16-byte element of the table at 0x7dc of an Unk0217b3c4.
@@ -28,3 +28,5 @@ typedef struct Unk0217b3c4 {
 } Unk0217b3c4;
 
 void func_020b8624(void);
+
+#include "00/code_021832d8.h"

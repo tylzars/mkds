@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 #include "Main/Unknown/code_02056b30.h"
 
 // 0x03-byte argument of func_0203b0a0.
@@ -21,3 +21,5 @@ s32 func_0203b324(void);
 BOOL func_0203b3d8(Unk02056bc0 *a, Unk02056bc0 *b);
 void func_0203b4c8(Unk02056bc0 *a);
 void func_0203b598(Unk02056bc0 *a, Unk0217aa1c_144_00 *b, Unk02056bc0 *c);
+
+#include "00/code_021832d8.h"

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 
 // Object behind data_ov001_021a9bd4.
 typedef struct Unk021a9bd4 {
@@ -139,3 +139,5 @@ void AdvanceRecordGpxOffsetTimers(void);
 void func_ov001_02194fd8(s32 a);
 void func_ov001_021950fc(s32 a);
 void func_ov001_021953d0(void);
+
+#include "00/code_021832d8.h"

@@ -63,7 +63,7 @@ typedef struct SelectGhost {
 #include "01/unk_021a9000.h"
 #include "Main/Unknown/code_0211d000.h"
 #include "Main/Unknown/code_0212b000.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 #include "01/unk_021a8000.h"
 #include "01/unk_021a6000.h"
 #include "Main/Unknown/code_020ae408.h"
@@ -114,3 +114,5 @@ void func_ov001_0219c46c(void);
 void func_ov001_0219c480(void);
 void func_ov001_0219c544(void);
 void LoadSelectGhostAndKartIconData(void);
+
+#include "00/code_021832d8.h"

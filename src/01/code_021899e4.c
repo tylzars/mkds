@@ -14,7 +14,7 @@
 #include "Main/Unknown/code_020c0b84.h"
 #include "Main/Unknown/code_020c0ba8.h"
 #include "Main/Unknown/code_020c0d9c.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 #include "code_0200eddc.h"
 
 #pragma thumb off

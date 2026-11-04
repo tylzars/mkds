@@ -15,7 +15,7 @@
 #include "code_0214d018.h"
 #include "code_02152500.h"
 #include "code_02152a24.h"
-#include "00/code_02182fdc.h"
+#include "00/code_021832d8.h"
 #include "00/code_0219d948.h"
 
 static inline s32 func_02060004_inline(s32 a, s32 b, Unk02056bc0 *c) {

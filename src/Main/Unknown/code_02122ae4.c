@@ -1,5 +1,5 @@
 #include "Main/Unknown/code_02122ae4.h"
-#include "00/code_02182fdc.h"
+#include "00/code_021832d8.h"
 
 u32 func_02122ae4(void) {
     u32 value0;

@@ -19,7 +19,7 @@
 #include "Main/Unknown/unk_02164000.h"
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/unk_021759c0.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 
 #pragma thumb on
 

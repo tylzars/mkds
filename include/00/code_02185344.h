@@ -29,7 +29,7 @@ typedef struct Unk021b4c88 {
 } Unk021b4c88;
 
 #include "00/code_02180608.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 #include "Main/Unknown/code_020472a8.h"
 
 extern Unk021b0cd4 gWiFiAikotobaCheckCallbacks;
@@ -49,3 +49,5 @@ void func_ov000_021855f8(void);
 void InitWiFiAikotobaCheck(void *a);
 void func_ov000_021856a8(void);
 void func_ov000_02185788(void);
+
+#include "00/code_021832d8.h"

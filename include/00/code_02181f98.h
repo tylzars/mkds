@@ -1,28 +1,22 @@
 #pragma once
 
-#include "00/code_ov000_021804e0.h"
-#include "00/code_02181fcc.h"
-#include "00/unk_021b4000.h"
-#include "00/code_02180608.h"
-#include "00/code_0219b580.h"
-
 #include "types.h"
+
+typedef struct Unk021b0cd4 Unk021b0cd4;
+
+// Objects whose layout isn't known yet.
+extern u8 data_ov000_021b05f8[][2];
+
+extern Unk021b0cd4 gWiFiVSSettingCallbacks;
+
+void RegisterWiFiVSSettingCallbacks(void);
+void AdvanceWiFiVSSetting(void);
+
 #include "Main/Unknown/code_0205e2cc.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_02077eb4.h"
-#include "Main/Unknown/code_020472a8.h"
-#include "Main/Unknown/code_020ae4c0.h"
-#include "Main/Unknown/code_020b3f7c.h"
-#include "Main/Unknown/code_02125f88.h"
-#include "Main/Unknown/code_02128210.h"
-#include "code_0214cfe4.h"
-#include "Main/Unknown/unk_0217d068.h"
-#include "Main/Unknown/unk_02175628.h"
-#include "Main/Unknown/code_0212426c.h"
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c
-#include "code_02016468.h"
 
 // Allocated by InitWiFiVSSetting and held in gWiFiVSSetting.
 typedef struct Unk021b4c70 {
@@ -286,50 +280,18 @@ typedef struct Unk0217d384 {
     /* 1f57 */ u8 mUnk_1f57;
 } Unk0217d384;
 
-extern u8 data_ov000_021b05e8[3];
-extern u8 data_ov000_021b05f0[];
 extern u8 data_ov000_021b060c[3][9];
 extern s32 data_ov000_021b0628[3][4];
-extern u8 data_ov000_021b0658[2];
-extern u8 data_ov000_021b065c[3];
-extern u8 data_ov000_021b0660[3];
-extern u8 data_ov000_021b0664[3];
-extern u8 data_ov000_021b0668[3];
-extern u8 data_ov000_021b066c[3];
 extern u8 data_ov000_021b0670[3][2];
 extern u8 data_ov000_021b0678[3][2];
-extern s32 data_ov000_021b0680[3];
 extern u8 data_ov000_021b068c[3][5];
-extern s8 data_ov000_021b069c[30];
-extern u8 data_ov000_021b0ce4[30];
-extern u8 data_ov000_021b0d04[40];
 extern Unk021b4c70 *gWiFiVSSetting;
 extern Unk021b4c74 *gWiFiVSMatching;
-extern Unk0217b488 *data_0217b488;
-extern Unk0217d384 *data_0217d384;
 
 void InitWiFiVSSetting(void *heap);
-BOOL func_ov000_021832f0(void);
 void RegisterWiFiVSMatchingCallbacks(void);
-void func_ov000_02183330(void);
 void AdvanceWiFiVSMatching(void);
-void func_ov000_02183444(void);
-void func_ov000_021834b0(s32 t);
-void func_ov000_02183548(void);
-void func_ov000_0218364c(void);
-void func_ov000_02183674(void);
-void func_ov000_021836f4(void);
-void func_ov000_021837b8(void);
-void func_ov000_0218381c(void);
-void func_ov000_02183858(void);
-void func_ov000_021839d0(void);
-void func_ov000_02183a0c(void);
-void func_ov000_02183b80(void);
-void func_ov000_0218401c(void);
-void func_ov000_021840c8(void);
-void func_ov000_02184130(void);
 
-void func_02036f10(s16);
 #include "Main/Unknown/code_020ac2fc.h"
 #include "Main/Unknown/code_0210895c.h"
 #include "Main/Unknown/code_02108a40.h"
@@ -341,7 +303,6 @@ void func_02036f10(s16);
 #include "Main/Unknown/code_02128274.h"
 #include "Main/Unknown/code_0212b928.h"
 
-void func_ov000_02184354(void);
 void InitWiFiVSMatching(void *heap);
 
 #include "Main/Unknown/code_0202b604.h"
@@ -350,3 +311,50 @@ void InitWiFiVSMatching(void *heap);
 #include "Main/Unknown/code_0212a910.h"
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_02036c90.h"
+
+#include "00/code_ov000_021804e0.h"
+#include "00/unk_021b4000.h"
+#include "00/code_02180608.h"
+#include "00/code_0219b580.h"
+#include "Main/Unknown/code_02036bec.h"
+#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_020ae4c0.h"
+#include "Main/Unknown/code_020b3f7c.h"
+#include "Main/Unknown/code_02125f88.h"
+#include "Main/Unknown/code_02128210.h"
+#include "code_0214cfe4.h"
+#include "Main/Unknown/unk_0217d068.h"
+#include "Main/Unknown/unk_02175628.h"
+#include "Main/Unknown/code_0212426c.h"
+#include "code_02016468.h"
+
+extern Unk0217b488 *data_0217b488;
+extern u8 data_ov000_021b05e8[3];
+extern u8 data_ov000_021b05ec[];
+extern u8 data_ov000_021b05f0[];
+// Objects whose layout isn't known yet.
+extern s32 data_ov000_021b0600[];
+extern u8 data_ov000_021b066c[3];
+
+void func_02036f10(s16);
+void func_ov000_02181ff0(void);
+void func_ov000_02182150(void);
+void func_ov000_021821e0(void);
+void func_ov000_02182270(void);
+void func_ov000_021823b0(void);
+void func_ov000_021823e4(void);
+void func_ov000_02182474(void);
+void func_ov000_021824e8(void);
+void func_ov000_021825b8(void);
+void func_ov000_02182688(void);
+void func_ov000_02182878(void);
+void func_ov000_021828e4(void);
+void func_ov000_02182c60(void);
+void func_ov000_02182cb8(void);
+void func_ov000_02182d28(void);
+void func_ov000_02182d74(void);
+void func_ov000_02182de8(void);
+void func_ov000_02182e18(void);
+void func_ov000_02182f88(void);
+BOOL func_ov000_021832f0(void);
+void func_ov000_02184354(void);

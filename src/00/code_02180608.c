@@ -2,10 +2,10 @@
 #include "00/unk_021b4000.h"
 #include "00/code_02180814.h"
 
-#include "00/code_02182fdc.h"
+#include "00/code_021832d8.h"
+#include "00/code_02181f98.h"
 #include "00/code_02180c04.h"
 #include "00/code_02181714.h"
-#include "00/code_02181fcc.h"
 #include "00/code_021848c8.h"
 #include "00/code_021849e0.h"
 #include "00/code_02184aa4.h"

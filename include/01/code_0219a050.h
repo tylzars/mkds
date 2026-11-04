@@ -28,7 +28,7 @@ typedef struct RecordTopMenu {
 #include "Main/Unknown/code_020ae4c0.h"
 #include "Main/Unknown/code_02111000.h"
 #include "01/code_021956dc.h"
-#include "00/code_02182fdc.h"
+#include "00/code_02181f98.h"
 #include "01/code_0219a000.h"
 #include "Main/Unknown/code_02125f88.h"
 #include "Main/Unknown/code_02128210.h"
@@ -76,3 +76,5 @@ void func_ov001_0219ae88(void);
 void func_ov001_0219af90(s32 a);
 void func_ov001_0219afc8(s32 a);
 void func_ov001_0219b000(void);
+
+#include "00/code_021832d8.h"
