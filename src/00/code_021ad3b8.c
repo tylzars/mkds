@@ -4,9 +4,6 @@
 #include "00/unk_021b6380.h"
 #include "code_0200f5ac.h"
 
-// non-matching: size 0x264 against 0x268; the original keeps the buffer pointer in r5 and the table pointer in r4
-// (swapped here), the code byte in r3, and reads the last byte through the buffer pointer after forming the second
-// pointer
 s32 func_ov000_021ad3b8(u32 a, s32 b) {
     u32 c;
     s32 d;
@@ -36,44 +33,49 @@ s32 func_ov000_021ad3b8(u32 a, s32 b) {
             d = 3;
             i = (u16) (f[0x10] << 8 | f[0x11]) << 16 | (u16) (f[0x12] << 8 | f[0x13]);
             h = f + j;
-            if (f[0xec] == 0x63 && f[0xed] == 0x82 && f[0xee] == 0x53 && f[0xef] == 0x63) {
+            if (f[0xec] == 0x63 && f[0xed] == 0x82 && f[0xee] == 0x53) {
                 g = f + 0xf0;
-                while (g < h && (k = *g++) != 0xff) {
-                    if (k == 0) {
-                        continue;
+                if (f[0xef] == 0x63) {
+                    while (g < h && (k = *g++) != 0xff) {
+                        if (k == 0) {
+                            continue;
+                        }
+                        switch (k) {
+                            case 1:
+                                data_ov000_021b6380 = (u16) (g[1] << 8 | g[2]) << 16 | (u16) (g[3] << 8 | g[4]);
+                                break;
+                            case 3:
+                                data_ov000_021b639c = (u16) (g[1] << 8 | g[2]) << 16 | (u16) (g[3] << 8 | g[4]);
+                                break;
+                            case 6:
+                                if (g[0] < 8) {
+                                    m[1] = 0;
+                                } else {
+                                    m[1] = (u16) (g[5] << 8 | g[6]) << 16 | (u16) (g[7] << 8 | g[8]);
+                                }
+                                m[0] = (u16) (g[1] << 8 | g[2]) << 16 | (u16) (g[3] << 8 | g[4]);
+                                break;
+                            case 0x33:
+                                data_ov000_021b63b8 = (u16) (g[1] << 8 | g[2]) << 16 | (u16) (g[3] << 8 | g[4]);
+                                break;
+                            case 0x35:
+                                switch (g[1]) {
+                                    case 2:
+                                        data_ov000_021b63bc = i;
+                                        d = 1;
+                                        break;
+                                    case 5:
+                                        data_ov000_021b63b4 = i;
+                                        d = 2;
+                                        break;
+                                }
+                                break;
+                            case 0x36:
+                                data_ov000_021b638c = (u16) (g[1] << 8 | g[2]) << 16 | (u16) (g[3] << 8 | g[4]);
+                                break;
+                        }
+                        g += *g + 1;
                     }
-                    switch (k) {
-                        case 1:
-                            data_ov000_021b6380 = (u16) (g[1] << 8 | g[2]) << 16 | (u16) (g[3] << 8 | g[4]);
-                            break;
-                        case 3:
-                            data_ov000_021b639c = (u16) (g[1] << 8 | g[2]) << 16 | (u16) (g[3] << 8 | g[4]);
-                            break;
-                        case 6:
-                            if (g[0] < 8) {
-                                m[1] = 0;
-                            } else {
-                                m[1] = (u16) (g[5] << 8 | g[6]) << 16 | (u16) (g[7] << 8 | g[8]);
-                            }
-                            m[0] = (u16) (g[1] << 8 | g[2]) << 16 | (u16) (g[3] << 8 | g[4]);
-                            break;
-                        case 0x33:
-                            data_ov000_021b63b8 = (u16) (g[1] << 8 | g[2]) << 16 | (u16) (g[3] << 8 | g[4]);
-                            break;
-                        case 0x35:
-                            if (g[1] == 2) {
-                                data_ov000_021b63bc = i;
-                                d = 1;
-                            } else if (g[1] == 5) {
-                                data_ov000_021b63b4 = i;
-                                d = 2;
-                            }
-                            break;
-                        case 0x36:
-                            data_ov000_021b638c = (u16) (g[1] << 8 | g[2]) << 16 | (u16) (g[3] << 8 | g[4]);
-                            break;
-                    }
-                    g += *g + 1;
                 }
             }
         }

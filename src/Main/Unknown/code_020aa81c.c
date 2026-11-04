@@ -100,21 +100,19 @@ Unk0217b278_10 *func_020aaea0(Unk0217b278 *a, s32 b, s32 c) {
     return NULL;
 }
 
-// non-matching: the two locals at stack offsets 0x0c and 0x10 are swapped, and the original reloads the entry
-// index and shifts it at every use instead of stepping an entry pointer.
 void func_020aad9c(Unk0217b278 *a) {
     Unk02022aa8 *f;
-    Unk0217b278_1c *q;
     Unk0217b278_10 *e;
     Unk02022ce4_08 *u;
     Unk02022c80 *t;
     Unk02023374_24 v1;
     Unk02023374 v2;
     s32 c;
+    Unk0217b278_1c *q;
     u32 g;
     s32 v;
     s32 n;
-    s32 v3;
+    s32 j;
     s32 h;
     s32 i;
     s32 k;
@@ -125,12 +123,13 @@ void func_020aad9c(Unk0217b278 *a) {
     MemCopyWordsByBlock(q->mUnk_04->mData, data_0217b254.mUnk_04, q->mUnk_04->mDataSize);
     func_02023408(&v2, data_0217b254.mUnk_04, q->mUnk_04->mUnk_02, q->mUnk_04->mUnk_00, 4);
     n = func_020aaf70(q);
-    k = n;
+    i = 0;
     if (q->mUnk_0e - n > 0) {
-        v3 = 0;
-        for (i = 0; i < q->mUnk_0e - k; i++) {
-            e = q->mUnk_00 + n;
-            g = a->mUnk_30[v3 / 2];
+        j = 0;
+        k = n;
+        do {
+            e = &q->mUnk_00[(u32) n];
+            g = *(u16 *) ((u8 *) a->mUnk_30 + j);
             if (e->mUnk_02 > 1 && e->mUnk_03 > 1) {
                 v = func_02022ce4(f, g);
                 if (v == 0xffff) {
@@ -144,8 +143,9 @@ void func_020aad9c(Unk0217b278 *a) {
                 v2.mUnk_14(&v2, f, e->mUnk_00 + h, e->mUnk_01 + (e->mUnk_03 - c) / 2, data_0217b254.mUnk_20, &v1);
             }
             n++;
-            v3 += 2;
-        }
+            j += 2;
+            i++;
+        } while (i < q->mUnk_0e - k);
     }
 }
 

@@ -214,9 +214,6 @@ void func_02047f7c(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
     }
 }
 
-// non-matching: 2 words; the last read of data_usa_021543e0 loads the table address before the a * 0x18 multiply in
-// the original (ours: multiply first). The two (s32) a casts keep those reads from sharing the first reads' a * 0x18
-// (as in the original); f is declared before e for the stack slots
 void func_02048050(int a, int b) {
     char c[0x80] = {0};
     u32 *d;
@@ -324,7 +321,7 @@ void func_02048050(int a, int b) {
     if (c[0] != 0) {
         func_02047f7c(a, c, d, NULL, f, e, g);
     }
-    h = data_usa_021543e0[(s32) a].mUnk_04;
+    h = *(s32 *) ((s32) &data_usa_021543e0[0].mUnk_04 + a * 0x18);
     if (h != -1) {
         func_02048050(h, b);
     }

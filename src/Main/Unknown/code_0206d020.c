@@ -396,6 +396,7 @@ static inline s32 func_0206dbf8_inline(Unk0206bcb0 *q) {
     BOOL c;
     BOOL t;
     BOOL u;
+    int v;
     u32 f;
 
     f = q->mUnk_4c;
@@ -411,7 +412,8 @@ static inline s32 func_0206dbf8_inline(Unk0206bcb0 *q) {
         t = TRUE;
         if (!(f & 0x10000040) && !(q->mUnk_48 & 0x1800)) {
             u = FALSE;
-            if (q->mState != 0 && q->mState != 1 && q->mState != 2) {
+            v = q->mState;
+            if (v != 0 && v != 1 && v != 2) {
                 u = TRUE;
             }
             if (u == FALSE) {
@@ -423,101 +425,99 @@ static inline s32 func_0206dbf8_inline(Unk0206bcb0 *q) {
     return c;
 }
 
-// non-matching: size 0x248 against 0x220; the original keeps `mov r0, #1` (the result) in r0 and the masked 0x200 word
-// of the flag in r2 for the whole switch and ends each case with its own epilogue; ours rebuilds `mov r0, #1` at every
-// return and tests r1; the opening flag test also differs (original keeps the 0x4c word in r2, the flag result in r1)
 BOOL func_0206dbf8(Unk0206bcb0 *p, Unk0206bcb0 *q) {
     Vec3 a;
     Vec3 b;
     Vec3 v1;
+    BOOL r;
     s32 c;
     u32 w;
 
+    r = FALSE;
     c = func_0206dbf8_inline(q);
-    if (c == 0) {
-        return FALSE;
-    }
-    a = p->mUnk_120;
-    Vec3Sub(&q->mUnk_80, &p->mUnk_80, &b);
-    Vec3Cross(&p->mUnk_138, &b, &v1);
-    if (Vec3Dot(&v1, &p->mUnk_12c) < 0) {
-        a.x = -a.x;
-        a.y = -a.y;
-        a.z = -a.z;
-    }
-    func_0206a980(q, &a, 1);
-    func_021090c4(&q->mUnk_00, 0xe8, 0x7f, 0);
-    if (q->mUnk_7c & 0x200) {
-        q->mUnk_514->mUnk_2c ^= 0x80;
-    }
-    w = p->mUnk_7c & 0x200;
-    if (w == 0) {
-        return TRUE;
-    }
-    switch (q->mIndex) {
-        case 0:
-            if (w) {
-                p->mUnk_514->mUnk_2c ^= 0x400000;
+    if (c != 0) {
+        a = p->mUnk_120;
+        Vec3Sub(&q->mUnk_80, &p->mUnk_80, &b);
+        Vec3Cross(&p->mUnk_138, &b, &v1);
+        if (Vec3Dot(&v1, &p->mUnk_12c) < 0) {
+            a.x = -a.x;
+            a.y = -a.y;
+            a.z = -a.z;
+        }
+        func_0206a980(q, &a, 1);
+        func_021090c4(&q->mUnk_00, 0xe8, 0x7f, 0);
+        if (q->mUnk_7c & 0x200) {
+            q->mUnk_514->mUnk_2c ^= 0x80;
+        }
+        r = TRUE;
+        w = p->mUnk_7c & 0x200;
+        if (w != 0) {
+            switch (q->mIndex) {
+                case 0:
+                    if (w) {
+                        p->mUnk_514->mUnk_2c ^= 0x400000;
+                    }
+                    break;
+                case 1:
+                    if (w) {
+                        p->mUnk_514->mUnk_2c ^= 0x800000;
+                    }
+                    break;
+                case 2:
+                    if (w) {
+                        p->mUnk_514->mUnk_2c ^= 0x1000000;
+                    }
+                    break;
+                case 3:
+                    if (w) {
+                        p->mUnk_514->mUnk_2c ^= 0x2000000;
+                    }
+                    break;
             }
-            return TRUE;
-        case 1:
-            if (w) {
-                p->mUnk_514->mUnk_2c ^= 0x800000;
-            }
-            return TRUE;
-        case 2:
-            if (w) {
-                p->mUnk_514->mUnk_2c ^= 0x1000000;
-            }
-            return TRUE;
-        case 3:
-            if (w) {
-                p->mUnk_514->mUnk_2c ^= 0x2000000;
-            }
-            return TRUE;
+        }
     }
-    return TRUE;
+    return r;
 }
 
-// non-matching: size 0x1e0 against 0x1b8, the same difference as func_0206dbf8
 BOOL func_0206de18(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v) {
+    BOOL r;
     s32 c;
     u32 w;
 
+    r = FALSE;
     c = func_0206dbf8_inline(q);
-    if (c == 0) {
-        return FALSE;
-    }
-    func_0206add0(q, v, 1);
-    func_021090c4(&q->mUnk_00, 0xe8, 0x7f, 0);
-    if (q->mUnk_7c & 0x200) {
-        q->mUnk_514->mUnk_2c ^= 0x80;
-    }
-    w = p->mUnk_7c & 0x200;
-    if (w == 0) {
-        return TRUE;
-    }
-    switch (q->mIndex) {
-        case 0:
-            if (w) {
-                p->mUnk_514->mUnk_2c ^= 0x200;
+    if (c != 0) {
+        func_0206add0(q, v, 1);
+        func_021090c4(&q->mUnk_00, 0xe8, 0x7f, 0);
+        if (q->mUnk_7c & 0x200) {
+            q->mUnk_514->mUnk_2c ^= 0x80;
+        }
+        r = TRUE;
+        w = p->mUnk_7c & 0x200;
+        if (w != 0) {
+            switch (q->mIndex) {
+                case 0:
+                    if (w) {
+                        p->mUnk_514->mUnk_2c ^= 0x200;
+                    }
+                    break;
+                case 1:
+                    if (w) {
+                        p->mUnk_514->mUnk_2c ^= 0x400;
+                    }
+                    break;
+                case 2:
+                    if (w) {
+                        p->mUnk_514->mUnk_2c ^= 0x800;
+                    }
+                    break;
+                case 3:
+                    if (w) {
+                        p->mUnk_514->mUnk_2c ^= 0x1000;
+                    }
+                    break;
             }
-            return TRUE;
-        case 1:
-            if (w) {
-                p->mUnk_514->mUnk_2c ^= 0x400;
-            }
-            return TRUE;
-        case 2:
-            if (w) {
-                p->mUnk_514->mUnk_2c ^= 0x800;
-            }
-            return TRUE;
-        case 3:
-            if (w) {
-                p->mUnk_514->mUnk_2c ^= 0x1000;
-            }
-            return TRUE;
+        }
     }
-    return TRUE;
+    return r;
 }

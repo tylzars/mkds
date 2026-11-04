@@ -311,9 +311,13 @@ static inline Unk0217aa00_45c *func_02045084_inline(Unk0217aa00 *q, s32 a) {
     return e == 0xffff ? 0 : &q->mUnk_045c[e];
 }
 
-// non-matching: 0x500 bytes, original 0x50c; the original keeps the first flag in r3 (reused as the zero constant after
-// its compare) and makes two conditional-move copies of it (r1 and r3), here the flag lives in sl and one copy is left
-// out.
+static inline BOOL func_02045084_inline2(void) {
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
+        return TRUE;
+    }
+    return FALSE;
+}
+
 void func_02045084(s32 a) {
     Unk0217aa08 *p;
     Unk0217aa00 *q;
@@ -337,8 +341,13 @@ void func_02045084(s32 a) {
     b4 = &data_021759c0->mUnk_68[a].mUnk_08.mUnk_26;
     b5 = &data_021759c0->mUnk_68[a].mUnk_08.mUnk_20;
     f = FALSE;
-    if (p->mUnk_04->mUnk_004 != 0 && p->mUnk_00->mUnk_31_3 == 0) {
-        f = TRUE;
+    if (p->mUnk_04->mUnk_004 != 0) {
+        f = p->mUnk_00->mUnk_31_3 == 0;
+    }
+    if (f != FALSE) {
+        g = TRUE;
+    } else {
+        g = FALSE;
     }
     *b0 = NULL;
     *b1 = NULL;
@@ -346,11 +355,6 @@ void func_02045084(s32 a) {
     *b5 = 0;
     *b3 = data_021759d0->mUnk_00;
     *b4 = 0;
-    if (f != FALSE) {
-        g = TRUE;
-    } else {
-        g = FALSE;
-    }
     if (a == data_021759c0->mUnk_62) {
         *b0 = &data_0217aa08->mUnk_00->mUnk_0c;
         *b1 = &data_0217aa08->mUnk_04->mUnk_008;
@@ -369,19 +373,16 @@ void func_02045084(s32 a) {
             if (t == FALSE) {
                 return;
             }
-            if (func_02045084_inline(data_0217aa00, a) == NULL) {
+            if (func_02045084_inline(q, a) == NULL) {
                 return;
             }
-            *b0 = func_02045084_inline(data_0217aa00, a);
+            *b0 = func_02045084_inline(q, a);
             *b1 = &func_02045084_inline(data_0217aa00, a)->mUnk_014;
             *b2 = func_02045084_inline(data_0217aa00, a)->mUnk_214;
             *b3 = func_02045084_inline(data_0217aa00, a)->mUnk_228_0;
-            q = data_0217aa00;
-            if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || (q->mUnk_0457 & (1 << q->mUnk_1e8c[a])) != 0) {
-                *b5 = 0;
-            } else {
-                *b5 = (s32) &func_02045084_inline(data_0217aa00, a)->mUnk_218;
-            }
+            *b5 = func_02045084_inline2() || (data_0217aa00->mUnk_0457 & (1 << data_0217aa00->mUnk_1e8c[a])) != 0
+                      ? 0
+                      : (s32) &func_02045084_inline(data_0217aa00, a)->mUnk_218;
             *b4 = func_02045084_inline(data_0217aa00, a)->mUnk_229;
             break;
         case 2:
