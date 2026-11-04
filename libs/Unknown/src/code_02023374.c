@@ -318,7 +318,6 @@ void func_02023d84(Unk02023d84 *a) {
     }
 }
 
-// non-matching: 98.9%, registers match; only the x1 clamp's movcs and the y1 shift are swapped (+0xa4)
 void func_02023bcc(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023374_24 *f) {
     Unk02023d84 s;
     s32 cw;
@@ -367,10 +366,11 @@ void func_02023bcc(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023
     } else {
         y0 = (u32) d >> 3;
     }
-    y1 = (u32) (d + ch + 7) >> 3;
+    y1 = d + ch + 7;
     if (x1 >= w) {
         x1 = w;
     }
+    y1 >>= 3;
     if (y1 >= h) {
         y1 = h;
     }

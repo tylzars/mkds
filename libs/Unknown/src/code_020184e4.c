@@ -1203,21 +1203,14 @@ Unk020184e4 *func_02018d94(void *(*a)(u32 a), u16 b, u16 c, s32 d, u16 e, u16 f)
     return p;
 }
 
-// non-matching: registers only: the byte offset of the first loop is in r4 (original r6) and f1 in r6 (original r4)
 void func_02018a1c(Unk020184e4 *a, Unk02018a1c *b) {
     s32 i;
     s32 off;
     Unk0201ca6c_20 *e;
     Unk0201ca6c_20_00_00 flags;
     Unk0201ca6c_20_18 *g;
-    s32 f1;
     Unk020184e4_2c *h;
     Unk020184e4_2c_00 *d;
-    s32 f0;
-    s32 f2;
-    s32 f3;
-    s32 f4;
-    s32 f5;
 
     off = 0x20;
     a->mUnk_30 = b->mUnk_08;
@@ -1259,47 +1252,42 @@ void func_02018a1c(Unk020184e4 *a, Unk02018a1c *b) {
         } else {
             e->mUnk_14 = 0;
         }
-        f1 = flags.mUnk_00_25;
-        f0 = flags.mUnk_00_24;
-        f2 = flags.mUnk_00_26;
-        f3 = flags.mUnk_00_27;
-        f4 = flags.mUnk_00_28;
-        f5 = flags.mUnk_00_29;
-        e->mUnk_1c = f0 + f1 + f2 + f3 + f4 + f5;
+        e->mUnk_1c = flags.mUnk_00_24 + flags.mUnk_00_25 + flags.mUnk_00_26 + flags.mUnk_00_27 + flags.mUnk_00_28 +
+                     flags.mUnk_00_29;
         if (e->mUnk_1c != 0) {
             e->mUnk_18 = a->mUnk_00(e->mUnk_1c << 3);
             g = e->mUnk_18;
-            if (f0) {
+            if (flags.mUnk_00_24) {
                 g->mUnk_04 = (u8 *) b + off;
                 g->mUnk_00 = func_0201e394;
                 off += 8;
                 g++;
             }
-            if (f1) {
+            if (flags.mUnk_00_25) {
                 g->mUnk_04 = (u8 *) b + off;
                 g->mUnk_00 = func_0201e2cc;
                 off += 8;
                 g++;
             }
-            if (f2) {
+            if (flags.mUnk_00_26) {
                 g->mUnk_04 = (u8 *) b + off;
                 g->mUnk_00 = func_0201e248;
                 off += 0x10;
                 g++;
             }
-            if (f3) {
+            if (flags.mUnk_00_27) {
                 g->mUnk_04 = (u8 *) b + off;
                 g->mUnk_00 = func_0201e170;
                 off += 4;
                 g++;
             }
-            if (f4) {
+            if (flags.mUnk_00_28) {
                 g->mUnk_04 = (u8 *) b + off;
                 g->mUnk_00 = func_0201e054;
                 off += 8;
                 g++;
             }
-            if (f5) {
+            if (flags.mUnk_00_29) {
                 g->mUnk_04 = (u8 *) b + off;
                 g->mUnk_00 = func_0201dfc0;
                 off += 0x10;
