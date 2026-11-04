@@ -139,11 +139,11 @@ w("")
 # ---- rules ----
 w(f"rule download_tool\n  command = {PY} tools/download_tool.py $tool $tag --path $path --outputs $out\n  description = DOWNLOAD $tool\n")
 w(f"rule extract\n  command = {DSD} rom extract --rom $in --output-path $outdir {bios_flag}\n  description = EXTRACT $in\n")
-w(f"rule delink\n  command = {DSD} delink -c $config && {PY} tools/delink_multidef.py @{build_dir}/delink_multidef.rsp\n"
+w(f"rule delink\n  command = {DSD} delink -c $config && {PY} tools/mark_data.py @{build_dir}/delink_multidef.rsp && {PY} tools/delink_multidef.py @{build_dir}/delink_multidef.rsp\n"
   f"  rspfile = {build_dir}/delink_multidef.rsp\n  rspfile_content = $out\n  description = DELINK\n")
 w(f"rule lcf\n  command = {DSD} lcf -c $config && {PY} tools/lcf_force_active.py $lcf_raw $lcf_final --config-dir {config_dir}\n  description = LCF\n")
 w(f"rule mwcc\n  command = {WINE} $cc $base_flags $cc_flags {' '.join('-i ' + d for d in include_dirs)} "
-  f"-d version_{ver.upper()} -MD -c $in -o $outdir && {PY} tools/transform_dep.py $basefile.d $basefile.d && {PY} tools/demote_multidef.py $out\n"
+  f"-d version_{ver.upper()} -MD -c $in -o $outdir && {PY} tools/transform_dep.py $basefile.d $basefile.d && {PY} tools/demote_multidef.py $out && {PY} tools/mark_data.py $out\n"
   f"  depfile = $basefile.d\n  deps = gcc\n  description = MWCC $in\n")
 # The same compile with -requireprotos, writing the calls that have no declaration in scope (tools/check_protos.py).
 # tools/protos_prefix.h declares the compiler intrinsics; -prefix looks it up from the first include directory.
@@ -215,7 +215,7 @@ for src in sources:
         continue
     version, flags = source_flags(src)
     cc = str(MWCC_ROOT / version / "mwccarm.exe") if version else CC
-    build(str(obj), "mwcc", [str(src)], implicit=[cc, "tools/demote_multidef.py"] + tool_outputs, variables={
+    build(str(obj), "mwcc", [str(src)], implicit=[cc, "tools/demote_multidef.py", "tools/mark_data.py"] + tool_outputs, variables={
         "cc": cc,
         "base_flags": " ".join(flags[:-1]),
         "cc_flags": flags[-1],

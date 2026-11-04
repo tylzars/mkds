@@ -1090,10 +1090,10 @@ Link order and linking:
 
 - A `bl` to an earlier function of the same file used to score as a mismatch; the report now scores it 100%.
 - A `bl` to another function of the same unit counts as a mismatch while that callee doesn't match.
-- Data inside asm bodies (no `$d` mapping symbol) and a data block whose delinked target has no mapping symbol give
-  under 100% with identical bytes. A hand-written `.s` unit sat at 99.84% because two trailing constant words
-  reached only from routines entered by a branch were read as instructions. Declaring those routines as functions
-  (in `symbols.txt` and the `.s`) fixed it (func_02131694).
+- Data inside asm bodies (no `$d` mapping symbol) and a data block whose delinked target has no mapping symbol gave
+  under 100% with identical bytes; the report now marks the data on both sides. A hand-written `.s` unit sat at
+  99.84% because two trailing constant words reached only from routines entered by a branch were read as
+  instructions; declaring those routines as functions (in `symbols.txt` and the `.s`) fixed it (func_02131694).
 - Literal-pool relocation names in not-yet-linked units differ.
 - `tools/objdiff_place.py` gives each objdiff scratch its own compiler and flags.
 - `dsd check symbols` keeps a few unfixable mismatches (labels inside asm bodies that emit no symbol). Document them.
