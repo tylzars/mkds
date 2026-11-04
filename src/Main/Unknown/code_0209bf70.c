@@ -297,10 +297,10 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
     if (e == 3 || e == 4) {
         if (p->mUnk_120[k->mIndex] == 0) {
             Vec3Sub(&k->mPos, &p->mUnk_000.mPos, &v2);
-            t = Vec3Dot(&k->mUnk_b0, &v2);
-            v0.x = ((s64) k->mUnk_b0.x * t) >> 12;
-            v0.y = ((s64) k->mUnk_b0.y * t) >> 12;
-            v0.z = ((s64) k->mUnk_b0.z * t) >> 12;
+            t = Vec3Dot(&k->mVelocityDirection, &v2);
+            v0.x = ((s64) k->mVelocityDirection.x * t) >> 12;
+            v0.y = ((s64) k->mVelocityDirection.y * t) >> 12;
+            v0.z = ((s64) k->mVelocityDirection.z * t) >> 12;
             v1.x = v2.x - v0.x;
             v1.y = v2.y - v0.y;
             v1.z = v2.z - v0.z;

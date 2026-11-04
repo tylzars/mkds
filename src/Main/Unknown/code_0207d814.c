@@ -483,7 +483,7 @@ void func_0207d814(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         t = func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00);
         b->mKart->mForwardSpeed = (s32) (((s64) b->mKart->mUnk_2cc->mUnk_10 * t + 0x800) >> 12);
         b->mKart->mUnk_cc = b->mKart->mForwardSpeed;
-        b->mKart->mUnk_d0 = b->mKart->mUnk_cc;
+        b->mKart->mSpeedLimit = b->mKart->mUnk_cc;
         return;
     }
     func_0207e088(a, b);

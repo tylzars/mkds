@@ -404,7 +404,7 @@ void func_0207f05c(Unk020888b4 *p) {
         r = func_0208537c();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
-        if (v <= p->mUnk_88 && p->mKart->mUnk_2a4 >= p->mUnk_9c) {
+        if (v <= p->mUnk_88 && p->mKart->mVelocityLength >= p->mUnk_9c) {
             a = *p->mUnk_08.mUnk_00.mUnk_00->mUnk_18;
             d = data_usa_021557c4;
             func_020397a8(&p->mUnk_08.mUnk_00.mUnk_08, &d, &b);
@@ -577,7 +577,7 @@ void func_0207ebfc(Unk020888b4 *p) {
     p->mUnk_60 = data_usa_021557d0;
     p->mUnk_74 = 0;
     if (!(q->mUnk_44 & 0xc00c0)) {
-        n = q->mUnk_2a4;
+        n = q->mVelocityLength;
         if (n > (s32) (((s64) q->mUnk_2cc->mUnk_10 * 0x8cd) >> 12)) {
             return;
         }
@@ -693,7 +693,7 @@ void func_0207e668(Unk020888b4 *p) {
     q = p->mKart;
     {
         BOOL c;
-        if ((q->mUnk_44 & 0xc0) && q->mUnk_2a4 < 0x3000) {
+        if ((q->mUnk_44 & 0xc0) && q->mVelocityLength < 0x3000) {
             c = TRUE;
         } else {
             c = FALSE;

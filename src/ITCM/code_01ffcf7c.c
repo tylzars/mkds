@@ -319,7 +319,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
         }
     }
     if (p->mUnk_70 > 0x2000) {
-        e = ((s64) q->mUnk_2a4 * *data_usa_0217ae40) >> 12;
+        e = ((s64) q->mVelocityLength * *data_usa_0217ae40) >> 12;
         if (e > 0x1000) {
             e = 0x1000;
         }
@@ -337,7 +337,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
         r = TRUE;
     }
     if ((q->mUnk_4c & 0x8000000) && p->mUnk_70 < 0x46000 && (q->mUnk_44 & 0x10) && !(q->mUnk_48 & 0x8020) &&
-        q->mUnk_2a4 > 0x3000 && p->mUnk_90 != 2 && p->mUnk_a8 == 0) {
+        q->mVelocityLength > 0x3000 && p->mUnk_90 != 2 && p->mUnk_a8 == 0) {
         p->mUnk_c8 += 0x44c;
         p->mUnk_ca = ((s64) gPairsByAngle[(p->mUnk_c8 >> 4) * 2] * 0xfa + 0x800) >> 12;
         q->mUnk_236 += (s16) p->mUnk_ca * p->mUnk_cc;

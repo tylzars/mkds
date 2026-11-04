@@ -185,11 +185,11 @@ void func_01ffcb58(Kart *p) {
 }
 
 void func_01ffcac0(Kart *p) {
-    p->mUnk_2b0 = 0;
+    p->mTestedKartMask = 0;
     p->mUnk_44 &= 0x57ffffdf;
     p->mUnk_4c &= 0xffeb7efd;
-    p->mUnk_2b4 = p->mUnk_2b2;
-    p->mUnk_2b2 = 0;
+    p->mPrevNearKartMask = p->mNearKartMask;
+    p->mNearKartMask = 0;
     p->mPrevPos = p->mPos;
     p->mUnk_1e4 = p->mUnk_1d8;
     p->mUnk_2f0 = p->mUnk_2e4;
@@ -478,7 +478,7 @@ s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
         }
     } else {
         m = data_usa_021654c0 * b;
-        x = a - (s32) (((s64) m * p->mUnk_2a0) >> 12);
+        x = a - (s32) (((s64) m * p->mVelocityLengthRatio) >> 12);
     }
     if (f & 0x10) {
         p->mUnk_2d4 += c * 0x666;
@@ -488,7 +488,7 @@ s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
             p->mUnk_2d4 = -0x1000;
         }
     }
-    if (p->mUnk_2a4 != 0 && !(p->mUnk_44 & 0x8000000)) {
+    if (p->mVelocityLength != 0 && !(p->mUnk_44 & 0x8000000)) {
         p->mUnk_3ec = x * c;
     }
     return 1;
@@ -562,27 +562,27 @@ void func_01ffbe70(Kart *p) {
 }
 
 void func_01ffbe04(Kart *p) {
-    if (p->mUnk_d0 > p->mUnk_cc) {
-        p->mUnk_d0 = (s32) (((s64) p->mUnk_d0 * 0xf37) >> 12);
-        if (p->mUnk_d0 < p->mUnk_cc) {
-            p->mUnk_d0 = p->mUnk_cc;
+    if (p->mSpeedLimit > p->mUnk_cc) {
+        p->mSpeedLimit = (s32) (((s64) p->mSpeedLimit * 0xf37) >> 12);
+        if (p->mSpeedLimit < p->mUnk_cc) {
+            p->mSpeedLimit = p->mUnk_cc;
         }
     } else {
-        p->mUnk_d0 = p->mUnk_cc;
+        p->mSpeedLimit = p->mUnk_cc;
     }
 }
 
 void func_01ffbd9c(Kart *p) {
-    DivFixed12Start(p->mUnk_2a4, p->mUnk_d0);
+    DivFixed12Start(p->mVelocityLength, p->mSpeedLimit);
     if (p->mUnk_44 & 0x10) {
         func_020397a8(&p->mUnk_120, &p->mUnk_244, &p->mUnk_278);
     } else {
         func_02063b10(p, &p->mUnk_278);
     }
-    p->mUnk_2a0 = DivFixed12Result();
-    if (p->mUnk_2a0 > 0x1000) {
-        p->mUnk_2a0 = 0x1000;
-        p->mUnk_2a4 = p->mUnk_d0;
+    p->mVelocityLengthRatio = DivFixed12Result();
+    if (p->mVelocityLengthRatio > 0x1000) {
+        p->mVelocityLengthRatio = 0x1000;
+        p->mVelocityLength = p->mSpeedLimit;
     }
 }
 
@@ -620,7 +620,7 @@ void func_01ffba68(Kart *p) {
             v = 0x4cd;
         } else {
             e = p->mForwardSpeed;
-            f = p->mUnk_2a0;
+            f = p->mVelocityLengthRatio;
             if (e < 0) {
                 v = c + (s32) (((s64) -e * 0x52 + 0x800) >> 12);
             } else if (f < 0x800) {

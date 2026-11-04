@@ -158,7 +158,7 @@ void func_01ffa11c(Kart *p, const Vec3 *a) {
             p->mUnk_3a8 = m;
         }
     } else {
-        p->mUnk_3a8 = (s64) m * p->mUnk_2a0 >> 12;
+        p->mUnk_3a8 = (s64) m * p->mVelocityLengthRatio >> 12;
     }
 }
 

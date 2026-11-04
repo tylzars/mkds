@@ -542,7 +542,7 @@ void func_02090748(Unk020905a8 *a) {
     }
     p->mForwardSpeed = 0xa800;
     p->mUnk_cc = p->mForwardSpeed;
-    p->mUnk_d0 = p->mUnk_cc;
+    p->mSpeedLimit = p->mUnk_cc;
     if (r != 0) {
         func_0207ff5c((u32) a);
     } else {

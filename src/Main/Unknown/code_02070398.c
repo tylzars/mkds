@@ -447,7 +447,7 @@ void func_020720dc(Kart *p) {
     p->mPrevPos = p->mUnk_98;
     p->mPos = p->mPrevPos;
     p->mVelocity = v;
-    p->mUnk_b0 = v;
+    p->mVelocityDirection = v;
     p->mUnk_bc.x = 0x1000;
     p->mUnk_bc.y = 0x1000;
     p->mUnk_bc.z = 0x1000;
@@ -460,7 +460,7 @@ void func_020720dc(Kart *p) {
     p->mUnk_434 = 0x1000;
     p->mUnk_c8 = -0x2b9;
     p->mUnk_cc = 0;
-    p->mUnk_d0 = 0xd000;
+    p->mSpeedLimit = 0xd000;
     p->mUnk_d4 = 0x1000;
     p->mUnk_d8 = 0x1000;
     p->mState = 0;
@@ -494,13 +494,13 @@ void func_020720dc(Kart *p) {
     p->mUnk_290 = v;
     p->mUnk_50 = v;
     p->mUnk_68 = p->mUnk_50;
-    p->mUnk_2a0 = 0;
-    p->mUnk_2a4 = 0;
+    p->mVelocityLengthRatio = 0;
+    p->mVelocityLength = 0;
     p->mForwardSpeed = 0;
     p->mUnk_2ac = 0;
-    p->mUnk_2b0 = 0;
-    p->mUnk_2b2 = 0;
-    p->mUnk_2b4 = 0;
+    p->mTestedKartMask = 0;
+    p->mNearKartMask = 0;
+    p->mPrevNearKartMask = 0;
     p->mUnk_29c = 0;
     p->mUnk_2b8 = 0;
     p->mUnk_2bc = 0;
@@ -1408,7 +1408,7 @@ void func_02070484(Kart *p, Vec4 *q) {
     u16 k;
     u16 t;
 
-    if (p->mUnk_2a4 < 0x1000) {
+    if (p->mVelocityLength < 0x1000) {
         return;
     }
     if (func_02039828(&p->mUnk_12c, &data_02154f7c) <= 0) {
@@ -1431,7 +1431,7 @@ void func_02070484(Kart *p, Vec4 *q) {
     if (p->mUnk_44 & 2) {
         return;
     }
-    d = func_02039828(&p->mUnk_b0, &p->mUnk_138);
+    d = func_02039828(&p->mVelocityDirection, &p->mUnk_138);
     if (d <= 0) {
         d = -d;
     }
@@ -1454,7 +1454,7 @@ BOOL func_02070398(Kart *p, u32 b, void *c) {
             func_020d5aa0(c, b, (Unk020e04b0 *) p->mUnk_208, &p->mPos, NULL);
         }
         p->mVelocity = data_02154f94;
-        p->mUnk_2a4 = 0;
+        p->mVelocityLength = 0;
         p->mUnk_44 |= 0x1000;
         return TRUE;
     }

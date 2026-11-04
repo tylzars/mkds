@@ -93,7 +93,7 @@ void func_020641f0(Kart *a) {
         r = (Vec4 *) &b->mUnk_024;
         j = (s64) r->w * r->x >> 12;
         l = (s64) j * 0xce4 >> 12;
-        k = a->mUnk_2a0;
+        k = a->mVelocityLengthRatio;
         if (a->mUnk_4d4 > k) {
             a->mUnk_3a4 = a->mUnk_3a4 + (u16) ((s64) a->mUnk_4d4 * 0x7d0 >> 12);
         } else {

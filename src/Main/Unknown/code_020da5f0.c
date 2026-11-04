@@ -209,7 +209,7 @@ u32 func_020da73c(Unk020da494 *p, Kart *a, u8 *b, u8 *c) {
         case 0:
             if (p->mUnk_c4 == 0x1000) {
                 if (p->mUnk_c8 == 0) {
-                    p->mUnk_c8 = (s32) (((s64) a->mUnk_2a4 * 0x52) >> 12);
+                    p->mUnk_c8 = (s32) (((s64) a->mVelocityLength * 0x52) >> 12);
                 }
             }
             break;

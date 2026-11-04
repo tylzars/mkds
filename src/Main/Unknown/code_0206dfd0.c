@@ -94,7 +94,7 @@ void func_0206dfd0(Kart *p) {
             continue;
         }
         q = data_0217b5c4[i];
-        if (p->mUnk_2b0 & (1 << q->mIndex)) {
+        if (p->mTestedKartMask & (1 << q->mIndex)) {
             continue;
         }
         if (q->mUnk_7c & 0x402020) {
@@ -104,8 +104,8 @@ void func_0206dfd0(Kart *p) {
             continue;
         }
         r = p->mUnk_1d0 + q->mUnk_1d0;
-        q->mUnk_2b0 |= 1 << p->mIndex;
-        p->mUnk_2b0 |= 1 << q->mIndex;
+        q->mTestedKartMask |= 1 << p->mIndex;
+        p->mTestedKartMask |= 1 << q->mIndex;
         if (func_0206dfd0_inline(p, q, r) == FALSE) {
             continue;
         }
@@ -194,11 +194,11 @@ void func_0206dfd0(Kart *p) {
                     func_0206de18(q, p, &n);
                 }
             } else if (p->mUnk_3d4 <= 0) {
-                if (p->mUnk_2a4 > 0x1000 || q->mUnk_2a4 > 0x1000) {
+                if (p->mVelocityLength > 0x1000 || q->mVelocityLength > 0x1000) {
                     if (data_0217c814.mUnk_00 > 0x78) {
                         func_021090c4(&p->mUnk_00, 0x80, 0x7f, 0);
                     }
-                    if (p->mUnk_2a4 > q->mUnk_2a4) {
+                    if (p->mVelocityLength > q->mVelocityLength) {
                         q->mUnk_3d2 = 0x14;
                     } else {
                         p->mUnk_3d2 = 0x14;
@@ -232,7 +232,7 @@ void func_0206dfd0(Kart *p) {
         }
         p->mUnk_44 |= 0x20;
         q->mUnk_44 |= 0x20;
-        p->mUnk_2b2 |= 1 << q->mIndex;
-        q->mUnk_2b2 |= 1 << p->mIndex;
+        p->mNearKartMask |= 1 << q->mIndex;
+        q->mNearKartMask |= 1 << p->mIndex;
     }
 }

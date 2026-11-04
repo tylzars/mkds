@@ -29,7 +29,7 @@ s32 func_01ffaf18(Kart *p) {
 
     a = a > 0 ? a : -a;
     b = p->mUnk_274;
-    c = p->mUnk_d0 - b;
+    c = p->mSpeedLimit - b;
     if ((f & 4) && (p->mUnk_44 & 0x100)) {
         if (c > 0x3000) {
             c = 0x3000;
@@ -93,14 +93,14 @@ void func_01ffae14(Kart *p, s32 a) {
     if ((s64) p->mVelocity.x * p->mVelocity.x + (s64) p->mVelocity.y * p->mVelocity.y +
             (s64) p->mVelocity.z * p->mVelocity.z >=
         0x10) {
-        r = func_02039860(&p->mVelocity, &p->mUnk_b0);
+        r = func_02039860(&p->mVelocity, &p->mVelocityDirection);
     }
-    p->mUnk_2a4 = r;
-    if (p->mUnk_2a4 > 0xd000) {
-        p->mUnk_2a4 = 0xd000;
-        p->mVelocity.x = (s64) p->mUnk_b0.x * 0xd000 >> 12;
-        p->mVelocity.y = (s64) p->mUnk_b0.y * 0xd000 >> 12;
-        p->mVelocity.z = (s64) p->mUnk_b0.z * 0xd000 >> 12;
+    p->mVelocityLength = r;
+    if (p->mVelocityLength > 0xd000) {
+        p->mVelocityLength = 0xd000;
+        p->mVelocity.x = (s64) p->mVelocityDirection.x * 0xd000 >> 12;
+        p->mVelocity.y = (s64) p->mVelocityDirection.y * 0xd000 >> 12;
+        p->mVelocity.z = (s64) p->mVelocityDirection.z * 0xd000 >> 12;
     }
 }
 

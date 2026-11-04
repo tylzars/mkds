@@ -206,9 +206,9 @@ void func_0206e874(Kart *p) {
                     if (g != 0) {
                         m = 0x1000;
                     } else {
-                        m = ((s64) (0x1000 - s) * (s32) (((s64) p->mUnk_2a4 * data_usa_021654ec) >> 12)) >> 12;
+                        m = ((s64) (0x1000 - s) * (s32) (((s64) p->mVelocityLength * data_usa_021654ec) >> 12)) >> 12;
                     }
-                    if (p->mUnk_2a4 > 0x2000 || g != 0) {
+                    if (p->mVelocityLength > 0x2000 || g != 0) {
                         if (n < 2) {
                             for (j = 0; j < 2; j++) {
                                 if (e == p->mUnk_438[j]) {

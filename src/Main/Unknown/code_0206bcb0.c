@@ -176,7 +176,7 @@ recheck:
     f = p->mUnk_44;
     g = p->mUnk_2c4;
     if (!(f & 8) && (f & 0x10)) {
-        if ((f & 3) && p->mUnk_2a4 > (s32) (((s64) p->mUnk_2cc->mUnk_10 * 0x8cd) >> 12) && g != 0 &&
+        if ((f & 3) && p->mVelocityLength > (s32) (((s64) p->mUnk_2cc->mUnk_10 * 0x8cd) >> 12) && g != 0 &&
             (u16) (data_02175628[k = p->mEntryIndex].mBits & 0x100)) {
             p->mUnk_44 |= 8;
             p->mUnk_2fc = 1;
@@ -200,8 +200,8 @@ recheck:
     f = p->mUnk_44;
     if (f & 8) {
         k = p->mEntryIndex;
-        if (!((u16) (data_02175628[k].mBits & 0x100) && (p->mUnk_48 & 2) && p->mUnk_2a4 >= p->mUnk_2cc->mUnk_10 / 2 &&
-              !(f & 0x2000c0))) {
+        if (!((u16) (data_02175628[k].mBits & 0x100) && (p->mUnk_48 & 2) &&
+              p->mVelocityLength >= p->mUnk_2cc->mUnk_10 / 2 && !(f & 0x2000c0))) {
             if (!(f & 0x10)) {
                 p->mUnk_44 |= 0x8000;
             }
@@ -259,7 +259,7 @@ recheck:
         if (!(p->mUnk_44 & 8)) {
             return;
         }
-        p->mUnk_38a = (s32) (((s64) p->mUnk_2a4 * 0x1a) >> 12);
+        p->mUnk_38a = (s32) (((s64) p->mVelocityLength * 0x1a) >> 12);
         return;
     }
     k = p->mEntryIndex;
@@ -308,7 +308,7 @@ int func_0206c494(Kart *p) {
     Unk0208c5b8 *t;
     enum { K0 } k;
 
-    if (p->mUnk_2a4 < 0x1800 && (p->mUnk_48 & 0x80)) {
+    if (p->mVelocityLength < 0x1800 && (p->mUnk_48 & 0x80)) {
         p->mUnk_2c4 = 0;
         result = TRUE;
         pending = FALSE;

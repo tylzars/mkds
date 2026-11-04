@@ -1025,7 +1025,7 @@ void func_020a0318(void *a, Unk020a0318 *p) {
         if (p->mUnk_c4 != 0) {
             if (*func_02108e6c(8) != NULL) {
                 o = GetKart((u16) data_021759c0->mEntryIndex);
-                p->mUnk_a0 = p->mUnk_a0 - (s32) (((s64) o->mUnk_2a0 * 0x1000) >> 12);
+                p->mUnk_a0 = p->mUnk_a0 - (s32) (((s64) o->mVelocityLengthRatio * 0x1000) >> 12);
                 if (p->mUnk_a0 < 0xc000) {
                     p->mUnk_a0 = 0xc000;
                 }

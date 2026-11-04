@@ -207,7 +207,7 @@ void func_02024a88(Kart *a) {
         return;
     }
     j = a->mUnk_2cc->mUnk_10;
-    k = a->mUnk_2a4;
+    k = a->mVelocityLength;
     h = k - j;
     l = h > 0 ? 1 : 0;
     if (g != 0 && a->mForwardSpeed > 0 && (a->mUnk_44 & 0x10) != 0) {
@@ -215,7 +215,7 @@ void func_02024a88(Kart *a) {
         if (g > 0x280000) {
             g = 0x280000;
         }
-        q->mUnk_04 = data_02153158[(a->mUnk_2a0 >> 8) & 0xff];
+        q->mUnk_04 = data_02153158[(a->mVelocityLengthRatio >> 8) & 0xff];
         func_0210ddf4(&data_0217d274, func_02086080(a->mIndex), (void (*)(void *, int)) func_02024fe8, a, (s32) q);
     } else if (f != 0 || (g != 0 && a->mForwardSpeed < 0)) {
         if (l != 0) {
@@ -226,7 +226,7 @@ void func_02024a88(Kart *a) {
         g = func_02024eec((Unk02024eec *) &a->mUnk_450, i, l);
         q->mUnk_04 = 0x7f;
         if (q->mUnk_14 == 0) {
-            q->mUnk_00 = a->mUnk_2a0 < 0x333 ? q->mUnk_64 : q->mUnk_60;
+            q->mUnk_00 = a->mVelocityLengthRatio < 0x333 ? q->mUnk_64 : q->mUnk_60;
         }
         func_0210ddf4(&data_0217d274, func_02086080(a->mIndex), (void (*)(void *, int)) func_0202506c, a, (s32) q);
     } else {
@@ -237,9 +237,9 @@ void func_02024a88(Kart *a) {
         }
         g = func_02024eec((Unk02024eec *) &a->mUnk_450, i, l);
         q->mUnk_04 = 0x32;
-        if (a->mUnk_2a0 < 0x19a) {
+        if (a->mVelocityLengthRatio < 0x19a) {
             q->mUnk_00 = q->mUnk_58;
-        } else if (a->mUnk_2a0 < 0x4cd) {
+        } else if (a->mVelocityLengthRatio < 0x4cd) {
             q->mUnk_00 = q->mUnk_54;
         } else {
             q->mUnk_00 = q->mUnk_50;

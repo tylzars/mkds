@@ -489,7 +489,7 @@ void func_02083484(Unk0201ca6c *p, s32 a) {
     m = p->mUnk_98_b.mUnk_01;
     f = 1;
     if (func_020675b4(q) == 0) {
-        if (q->mUnk_2a4 >= 0x119a) {
+        if (q->mVelocityLength >= 0x119a) {
             f = 0;
         }
     }
@@ -537,7 +537,7 @@ void func_0208335c(Unk0201ca6c *p, s32 a) {
     r = p->mUnk_98_b.mUnk_03;
     f = 1;
     if (func_020675b4(q) == 0) {
-        if (q->mUnk_2a4 >= 0x119a) {
+        if (q->mVelocityLength >= 0x119a) {
             f = 0;
         }
     }
@@ -581,7 +581,7 @@ void func_020831bc(Unk0201ca6c *p, s32 a) {
     k = data_0216596c[p->mUnk_98_b.mUnk_00];
     f = 1;
     if (func_020675b4(q) == 0) {
-        if (q->mUnk_2a4 >= 0x119a) {
+        if (q->mVelocityLength >= 0x119a) {
             f = 0;
         }
     }
@@ -631,7 +631,7 @@ void func_02082fec(Unk0201ca6c *p, s32 a) {
     r = p->mUnk_98_b.mUnk_03;
     k = data_0216596c[p->mUnk_98_b.mUnk_00];
     if (func_020675b4(q) == 0) {
-        if (q->mUnk_2a4 >= 0x119a) {
+        if (q->mVelocityLength >= 0x119a) {
             f = 0;
         }
     }
@@ -876,7 +876,7 @@ void func_02082750(Unk0201ca6c *p, s32 a) {
         func_02039860(&v, &v);
     }
     Vec3Cross(&data_02155a08, &v, &x);
-    t = (s32) (((s64) q->mUnk_2a4 * data_0217ae9c + 0x800) >> 12);
+    t = (s32) (((s64) q->mVelocityLength * data_0217ae9c + 0x800) >> 12);
     y = data_02165984;
     k = 0;
     if (t > 0x1000) {
@@ -980,7 +980,7 @@ void func_02082368(Unk0201ca6c *p, s32 a) {
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = u.z + p->mUnk_20->mUnk_00->mUnk_04.z;
-    t = (s32) (((s64) q->mUnk_2a4 * data_0217ae9c + 0x800) >> 12);
+    t = (s32) (((s64) q->mVelocityLength * data_0217ae9c + 0x800) >> 12);
     if (t > 0x1000) {
         t = 0x1000;
     }
@@ -1001,7 +1001,7 @@ void func_020821cc(Unk0201ca6c *p, s32 a) {
     g = func_020748a8();
     q = GetKart(data_021759c0->mEntryIndex);
     v = g->mUnk_15c;
-    t = (s32) (((s64) q->mUnk_2a4 * data_0217ae9c + 0x800) >> 12);
+    t = (s32) (((s64) q->mVelocityLength * data_0217ae9c + 0x800) >> 12);
     k = 0;
     v.y = 0;
     if (t > 0x1000) {
@@ -1262,10 +1262,10 @@ void func_0208181c(s32 a) {
     Vec3 v;
 
     q = GetKart(a);
-    y = (s16) func_0208181c_inline(data_0216593c + func_0208181c_inline(q->mUnk_2a0, data_02165950 - data_0216593c),
-                                   data_02165948);
-    x = (s16) func_0208181c_inline(data_02165944 + func_0208181c_inline(q->mUnk_2a0, data_0216594c - data_02165944),
-                                   data_02165948);
+    y = (s16) func_0208181c_inline(
+        data_0216593c + func_0208181c_inline(q->mVelocityLengthRatio, data_02165950 - data_0216593c), data_02165948);
+    x = (s16) func_0208181c_inline(
+        data_02165944 + func_0208181c_inline(q->mVelocityLengthRatio, data_0216594c - data_02165944), data_02165948);
     i = 0;
     do {
         if (e->mUnk_00[i] != NULL) {

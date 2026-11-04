@@ -470,7 +470,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         p->mUnk_300 = p->mUnk_302;
         p->mUnk_30c = 0;
         p->mUnk_386 = 0;
-        if (p->mUnk_2a4 > 0x1800) {
+        if (p->mVelocityLength > 0x1800) {
             if (!(p->mUnk_48 & 0x20) && (m.x != 0 || m.y != 0 || m.z != 0) && c != 0x1000) {
                 func_020eaa14(&m, a, 0, 0x4cd, 0, &m);
                 p->mUnk_2d8.x = m.x;
@@ -515,17 +515,17 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                     func_02055c5c();
                 }
             }
-            if (p->mUnk_2a4 > 0x2000 && c != 0x1000) {
-                l = (s16) ((p->mUnk_2a4 >> 12) * 100);
+            if (p->mVelocityLength > 0x2000 && c != 0x1000) {
+                l = (s16) ((p->mVelocityLength >> 12) * 100);
                 if ((u16) p->mUnk_388 > 0x7fff) {
                     l = (s16) (l * (s16) -1);
                 }
                 p->mUnk_386 = l;
             }
-        } else if (p->mUnk_2a4 > 0x2000 && c != 0x1000) {
+        } else if (p->mVelocityLength > 0x2000 && c != 0x1000) {
             k = 0x1000 - i;
-            if (p->mUnk_2a4 > 0x1800 && k > 0x19a) {
-                l = (s16) (((s32) (((s64) p->mUnk_2a4 * k) >> 12) >> 12) * 30);
+            if (p->mVelocityLength > 0x1800 && k > 0x19a) {
+                l = (s16) (((s32) (((s64) p->mVelocityLength * k) >> 12) >> 12) * 30);
                 func_020397a8(&p->mUnk_05c, a, &o);
                 if (func_02039828(&o, &p->mUnk_12c) < 0) {
                     l = (s16) (l * (s16) -1);
@@ -533,7 +533,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                 p->mUnk_386 = l;
             }
         }
-        if ((p->mUnk_7c & 1) && p->mUnk_2a4 > 0x3000 && f == 2) {
+        if ((p->mUnk_7c & 1) && p->mVelocityLength > 0x3000 && f == 2) {
             func_0207a6b0()->mUnk_10++;
         }
         p->mUnk_388 = 0;

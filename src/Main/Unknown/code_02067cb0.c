@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_020ed5c0.h"
 
 int func_02067ec4(Kart *p, s32 *a, MapObject *c) {
-    if (p->mUnk_2a4 > 0x3000 || (c->mFlags & 0x200)) {
+    if (p->mVelocityLength > 0x3000 || (c->mFlags & 0x200)) {
         if (func_0206bcb0(p, 1, 0)) {
             if (p->mKartModelsEntry->mUnk_058 == 0) {
                 func_0208b7bc(0xc, &p->mPos);
@@ -26,7 +26,7 @@ int func_02067ec4(Kart *p, s32 *a, MapObject *c) {
 }
 
 int func_02067e10(Kart *p, s32 *a, MapObject *c) {
-    if (p->mUnk_2a4 > 0x3000 || (c->mFlags & 0x200)) {
+    if (p->mVelocityLength > 0x3000 || (c->mFlags & 0x200)) {
         if (func_0206bcb0(p, 2, 0)) {
             if (p->mKartModelsEntry->mUnk_058 == 0) {
                 func_0208b7bc(0xc, &p->mPos);
@@ -45,7 +45,7 @@ int func_02067e10(Kart *p, s32 *a, MapObject *c) {
 }
 
 int func_02067d88(Kart *p, s32 *a, MapObject *c) {
-    if (p->mUnk_2a4 > 0x3000 || (c->mFlags & 0x200)) {
+    if (p->mVelocityLength > 0x3000 || (c->mFlags & 0x200)) {
         if (func_0206bcb0(p, 2, 0)) {
             if (p->mUnk_7c & 1) {
                 func_0207a6b0()->mUnk_14++;

@@ -274,7 +274,7 @@ void func_020760ec(Unk02061808 *a, Kart *b, Vec3 *c) {
     }
     if (m != FALSE && a->mUnk_25c == 0) {
         if (a->mUnk_254 == 0) {
-            k = (s32) (((s64) (0x1000 - b->mUnk_2a0) * 0x5000) >> 12) + 0x3000;
+            k = (s32) (((s64) (0x1000 - b->mVelocityLengthRatio) * 0x5000) >> 12) + 0x3000;
             v.x = (s32) (((s64) v.x * k) >> 12);
             v.y = (s32) (((s64) v.y * k) >> 12);
             v.z = (s32) (((s64) v.z * k) >> 12);

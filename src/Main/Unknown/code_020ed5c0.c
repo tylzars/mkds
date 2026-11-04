@@ -44,7 +44,7 @@ BOOL func_020ee528(Unk020eda5c *a) {
     a->mUnk_02c = *(Unk020eda5c_02c *) &p->mUnk_150;
     a->mUnk_050 = p->mUnk_98;
     a->mUnk_05c = p->mVelocity;
-    a->mUnk_068 = p->mUnk_2a4;
+    a->mUnk_068 = p->mVelocityLength;
     a->mUnk_078 = (s32) (((s64) p->mUnk_2cc->mUnk_08 * p->mUnk_bc.z + 0x800) >> 12);
     a->mUnk_07c = p->mUnk_2bc;
     a->mUnk_080 = func_02039828(&a->mUnk_02c.mUnk_18, &a->mUnk_05c) > 0;
