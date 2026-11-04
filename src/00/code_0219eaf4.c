@@ -1,5 +1,5 @@
 #include "00/code_0219a654.h"
-#include "00/code_0219bb68.h"
+#include "00/code_0219b580.h"
 #include "00/code_0219d128.h"
 #include "00/code_0219e4e8.h"
 #include "00/code_0219eaf4.h"
@@ -21,7 +21,6 @@
 #include "code_0200d118.h"
 #include "00/code_021a10b0.h"
 #include "00/code_021a3264.h"
-#include "00/code_0219b8bc.h"
 
 u32 func_ov000_0219eaf4(void) {
     Unk021b566c *p;

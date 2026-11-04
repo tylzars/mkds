@@ -14,7 +14,7 @@
 #include "Main/Unknown/code_020c70ec.h"
 #include "Main/Unknown/unk_02175628.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "00/code_0219bb50.h"
+#include "00/code_0219b580.h"
 #include "code_02147cd8.h"
 
 void func_0203e74c(u16 param_1) {

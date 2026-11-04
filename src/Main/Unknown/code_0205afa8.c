@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_0205d0e8.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "00/code_0219bb50.h"
+#include "00/code_0219b580.h"
 
 s32 func_0205afa8(void) {
     u32 c;

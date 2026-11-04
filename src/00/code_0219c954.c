@@ -14,8 +14,7 @@
 #include "00/code_0219c3e4.h"
 #include "00/code_02198a8c.h"
 #include "00/code_0218f15c.h"
-#include "00/code_0219b8a8.h"
-#include "00/code_0219bb68.h"
+#include "00/code_0219b580.h"
 
 void func_ov000_0219ca84(void) {
     func_ov000_0219c67c(func_ov000_0219c80c, NULL);

@@ -9,8 +9,7 @@
 #include "00/code_0218e368.h"
 #include "00/code_0219887c.h"
 #include "00/code_0219a654.h"
-#include "00/code_0219b8a8.h"
-#include "00/code_0219b8bc.h"
+#include "00/code_0219b580.h"
 #include "00/code_0219c384.h"
 #include "00/code_0219d000.h"
 #include "00/code_0219c000.h"
@@ -25,7 +24,6 @@
 #include "00/code_021a4784.h"
 #include "code_02134d30.h"
 #include "code_0213a460.h"
-#include "00/code_0219b580.h"
 
 Unk0219b1d4 *func_ov000_0219b1f8(u32 a) {
     s32 b;

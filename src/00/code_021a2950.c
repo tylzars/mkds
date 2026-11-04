@@ -9,7 +9,7 @@
 #include "00/code_0218cdc4.h"
 #include "00/code_0218b434.h"
 #include "00/unk_021b5000.h"
-#include "00/code_0219b8bc.h"
+#include "00/code_0219b580.h"
 #include "00/code_0219c39c.h"
 #include "00/code_0219eac8.h"
 #include "00/code_021a1000.h"

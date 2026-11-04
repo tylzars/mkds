@@ -6,7 +6,7 @@
 #include "00/code_021a0958.h"
 #include "00/unk_021b4000.h"
 #include "00/unk_021b5000.h"
-#include "00/code_0219b8bc.h"
+#include "00/code_0219b580.h"
 #include "00/code_0219c000.h"
 #include "00/code_0219c384.h"
 #include "00/code_0219f000.h"

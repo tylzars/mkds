@@ -4,7 +4,7 @@
 #include "03/code_021b94b8.h"
 #include "Main/Unknown/code_0200f000.h"
 
-#include "00/code_0219b8bc.h"
+#include "00/code_0219b580.h"
 #include "00/unk_021b5000.h"
 #include "00/code_0219c39c.h"
 #include "00/code_021a1000.h"
@@ -14,7 +14,6 @@
 #include "code_0200fd1c.h"
 #include "code_0214d018.h"
 #include "00/code_0219b000.h"
-#include "00/code_0219bb50.h"
 #include "code_021329f8.h"
 
 void func_ov000_021a317c(Unk0219887c *a, void *b, s32 c, u32 d) {
