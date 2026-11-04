@@ -2,7 +2,8 @@
 
 #include "types.h"
 #include "00/code_0219b1d4.h" // Unk0219b1d4
-#include "00/code_021a4654.h" // Unk021a4654
+#include "00/code_0218e2dc.h"
+#include "00/code_021a3a18.h"
 
 // Six bytes at data_ov000_021b400c, written at the start of each buffer.
 typedef struct Unk021b400c {

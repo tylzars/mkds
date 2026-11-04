@@ -11,9 +11,6 @@ typedef struct Unk021a6bb4 {
     /* 2c */ u8 mUnk_2c[1];
 } Unk021a6bb4;
 
-u8 *func_ov000_021a6abc(u16 *e);
-u8 *func_ov000_021a6b10(void);
-void func_ov000_021a6b54(void);
-void func_ov000_021a6bb4(Unk021a6bb4 *b);
-void func_ov000_021a6bdc(void);
 void func_ov000_021a6c08(u8 c);
+s32 func_ov000_021a6c68(void);
+u8 func_ov000_021a6c90(void);

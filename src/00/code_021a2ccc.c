@@ -1,20 +1,78 @@
+#include "00/code_021a2ccc.h"
+
 #include "00/code_021988e8.h"
 #include "00/code_021a1ae0.h"
-#include "00/code_021a2ccc.h"
 #include "03/code_021b94b8.h"
 #include "Main/Unknown/code_0200f000.h"
-
 #include "00/code_0219b580.h"
 #include "00/unk_021b5000.h"
 #include "00/code_0219c39c.h"
 #include "00/code_021a1000.h"
 #include "00/code_021a2000.h"
-#include "00/code_021a31d4.h"
 #include "code_0200f5ac.h"
 #include "code_0200fd1c.h"
 #include "code_0214d018.h"
 #include "00/code_0219b000.h"
 #include "code_021329f8.h"
+#include "Main/Unknown/code_0214d000.h"
+#include "code_02139f70.h"
+#include "00/unk_021b4000.h"
+#include "code_02134d30.h"
+
+void func_ov000_021a3250(u32 (*arg0)(void)) {
+    u32 value0 = (u32) arg0;
+    u32 value1;
+    u32 value2;
+    value1 = (u32) &data_ov000_021b5dd0;
+    value2 = (u32) * (const u32 *) ((value1) + 0u);
+    value1 = 0x600u;
+    *(u32 *) ((value2) + (value1)) = value0;
+    return;
+}
+
+void func_ov000_021a323c(void (*arg0)(u32, void *, u32)) {
+    u32 value0 = (u32) arg0;
+    u32 value1;
+    u32 value2;
+    value1 = (u32) &data_ov000_021b5dd0;
+    value2 = (u32) * (const u32 *) ((value1) + 0u);
+    value1 = 0x604u;
+    *(u32 *) ((value2) + (value1)) = value0;
+    return;
+}
+
+void func_ov000_021a321c(Unk021a31e8 *a, u16 b, u32 c) {
+    strncpy((char *) a->mUnk_06, data_ov000_021b41f0, 2);
+    a->mUnk_04 = b;
+    a->mUnk_00 = c;
+    return;
+}
+
+u16 func_ov000_021a31e8(const void *a) {
+    Unk021a31e8 t;
+    MemCopy(a, &t, 8);
+    if (memcmp(t.mUnk_06, data_ov000_021b41f0, 2) == 0) {
+        return t.mUnk_04;
+    }
+    return 0;
+}
+
+s32 func_ov000_021a31d4(s32 value) {
+    switch (value) {
+        case 2:
+        case 3:
+        case 4:
+            return 12;
+        default:
+            return 8;
+    }
+}
+
+void func_ov000_021a31a4(Unk021b5dd0 *state) {
+    data_ov000_021b5dd0 = state;
+    MemFill(state, 0, sizeof(Unk021b5dd0));
+    data_ov000_021b5dd0->mUnk_610 = 0x5b9;
+}
 
 void func_ov000_021a317c(Unk0219887c *a, void *b, s32 c, u32 d) {
     if (data_ov000_021b5dd0 != NULL) {

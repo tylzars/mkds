@@ -72,7 +72,7 @@ typedef struct Unk021b4c94 {
 #include "00/code_02186a9c.h"
 #include "00/code_021acef8.h"
 #include "00/code_021adbac.h"
-#include "00/code_021a6abc.h"
+#include "00/code_021a6c08.h"
 #include "00/code_0218a67c.h"
 
 extern Unk02185984 *data_ov000_021b4c90;
@@ -91,3 +91,5 @@ void func_ov000_02186430(void);
 void func_ov000_02186474(void);
 void func_ov000_021864e0(void);
 s32 func_ov000_02186560(Unk02186560 *a, Http *b);
+
+#include "00/code_021a6934.h"

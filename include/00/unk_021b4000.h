@@ -11,11 +11,9 @@
 #include "00/code_02184ba8.h"
 #include "00/code_02185344.h"
 #include "00/code_0218e2dc.h"
-#include "00/code_021a4a08.h"
+#include "00/code_021a3a18.h"
 
 #include "types.h"
-#include "00/code_021a39d8.h"
-#include "00/code_021a3eb0.h"
 #include "00/code_021a6fa8.h"
 
 // Settings func_ov000_021a72c4 reads and func_ov000_021a71c0 applies.
@@ -197,3 +195,5 @@ extern char data_ov000_021b4138[];
 extern char data_ov000_021b413c[];
 extern char data_ov000_021b4194[];
 extern char data_ov000_021b41a0[];
+
+#include "00/code_021a3760.h"

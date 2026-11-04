@@ -32,9 +32,9 @@
 #include "00/code_02193b88.h"
 #include "00/code_021967b4.h"
 #include "00/code_02193634.h"
-#include "00/code_021a4654.h"
-#include "00/code_0219488c.h"
 #include "00/code_0218e2dc.h"
+#include "00/code_021a3a18.h"
+#include "00/code_0219488c.h"
 
 // Object of 0x308 bytes that GpiStartConnect allocates and fills.
 typedef struct Unk021919ac_q {

@@ -1,24 +1,15 @@
-#include "00/code_021a6c68.h"
+#include "00/code_021a6c08.h"
 
+#include "00/code_021a6908.h"
+#include "00/code_021a68dc.h"
+#include "00/code_021a669c.h"
+#include "00/code_021a6934.h"
 #include "00/unk_021b5000.h"
-#include "00/code_021a574c.h"
+#include "code_0200edc0.h"
 #include "code_02133048.h"
+#include "code_02142eac.h"
 #include "code_0200fc8c.h"
-
-u32 func_ov000_021a6ce4(void) {
-    u32 a;
-    Unk021b5f50 *b;
-    u32 c;
-
-    a = IrqDisable();
-    b = func_ov000_021a5b30();
-    c = 0;
-    if (b != NULL && b->mUnk_2260 == 9) {
-        c = func_ov000_021a6c68();
-    }
-    IrqRestore(a);
-    return c;
-}
+#include "00/code_021a574c.h"
 
 u8 func_ov000_021a6c90(void) {
     s32 a = 0;
@@ -50,4 +41,22 @@ s32 func_ov000_021a6c68(void) {
         level = 1;
     }
     return level;
+}
+
+void func_ov000_021a6c08(u8 c) {
+    u8 a;
+    u8 b;
+
+    if (c & 2) {
+        a = (c >> 2) & 0xff;
+    } else {
+        a = (c >> 2) + 25;
+    }
+    b = data_ov000_021b5f80;
+    data_ov000_021b5f84[b % 16] = a;
+    if (b >= 16) {
+        data_ov000_021b5f80 = (b + 1) % 16 + 16;
+    } else {
+        data_ov000_021b5f80++;
+    }
 }

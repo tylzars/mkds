@@ -18,7 +18,7 @@
 #include "03/code_021c2000.h"
 #include "03/code_021c209c.h"
 #include "00/code_021a3000.h"
-#include "00/code_021a37dc.h"
+#include "00/code_021a3760.h"
 #include "01/code_021956dc.h"
 #include "code_02004dc0.h"
 #include "code_0200c914.h"

@@ -28,9 +28,8 @@
 #include "00/code_021a1ac0.h"
 #include "00/code_021a4000.h"
 #include "00/unk_021b4000.h"
-#include "00/code_021a39d8.h"
+#include "00/code_021a3a18.h"
 #include "00/code_0218e2dc.h"
-#include "00/code_021a4784.h"
 
 // Block built by func_ov000_021a1e40.
 typedef struct Unk021a1e40 {
@@ -51,3 +50,5 @@ void func_ov000_021a260c(u32 param_1, const void *param_2, u32 param_3, u32 para
 u32 func_ov000_021a2768(u32 param_1);
 void func_ov000_021a2870(Unk021b566c *param_1, GpConnection *param_2, void **param_3, void *param_4, void *param_5,
                          void *param_6, void *param_7, u32 param_8);
+
+#include "00/code_021a3760.h"

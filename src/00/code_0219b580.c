@@ -20,7 +20,7 @@
 #include "00/code_0218d488.h"
 #include "00/code_0218eb9c.h"
 #include "00/code_0219c93c.h"
-#include "00/code_021a37dc.h"
+#include "00/code_021a3760.h"
 #include "00/code_0219cc00.h"
 #include "Main/Unknown/code_02152000.h"
 #include "code_02139f70.h"
@@ -28,7 +28,6 @@
 #include "00/code_021988e8.h"
 #include "00/code_0218d000.h"
 #include "00/code_0218f15c.h"
-#include "00/code_021a3760.h"
 #include "00/code_0219c384.h"
 #include "00/code_0219c39c.h"
 #include "00/code_0219d000.h"
@@ -37,7 +36,7 @@
 #include "03/code_021b94b8.h"
 #include "00/code_021a369c.h"
 #include "00/code_021a2ccc.h"
-#include "00/code_021a4784.h"
+#include "00/code_021a3a18.h"
 #include "00/code_0218a000.h"
 #include "00/code_0218b000.h"
 #include "00/code_0218c000.h"
@@ -46,7 +45,6 @@
 #include "00/code_0219caac.h"
 #include "00/code_0219742c.h"
 #include "00/code_021971ec.h"
-#include "00/code_021a31a4.h"
 
 void func_ov000_0219c1e4(void *a, void *b, s32 c, const char *d, const char *e, s32 f, s32 g, void *h, s32 i) {
     u32 n;

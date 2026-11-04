@@ -2,6 +2,7 @@
 
 #include "code_0200db4c.h"
 #include "code_0214d018.h"
+#include "00/code_021a669c.h"
 #include "00/code_021a6934.h"
 
 void func_ov000_021affcc(u8 *a, u32 b, const void *c, u32 d) {
