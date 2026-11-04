@@ -316,12 +316,10 @@ BOOL func_0203fde0(const Vec3 *a, const Unk02175620_44 *b, const Unk02175620_44 
     return FALSE;
 }
 
-// non-matching: size 0x2cc against 0x2d8; the original keeps a second copy of the global pointer in r0 (mov r0, r5)
-// used for the final call, forms the address of the first member at 0x14 as base + 0x14 before the mla, and orders the
-// first test of the switch cases differently
 void func_0203fed4(void) {
     Unk0217561c *p;
     s32 t;
+    Unk0217561c *q;
     u32 e;
     u32 l;
     u32 h;
@@ -331,18 +329,20 @@ void func_0203fed4(void) {
     u16 i;
     Unk020f41c4_B *r;
     u16 *c;
+    u32 v;
 
     t = 0;
     p = data_0217561c;
+    q = p;
     if (p->mUnk_000[0].mUnk_04 != 0) {
         h = p->mUnk_4f4;
         l = 0x57e40;
         f = FALSE;
+        e = p->mUnk_000[0].mUnk_00;
         if (h != 0) {
             l = h;
             f = TRUE;
         }
-        e = p->mUnk_000[0].mUnk_00;
         if (data_021759c0->mUnk_08 == 5 && e > 0x4650) {
             k = data_0217aa18->mUnk_06[func_ov000_0219bb50()];
             if (k >= 0) {
@@ -384,34 +384,35 @@ void func_0203fed4(void) {
             t = 1;
         }
         p->mUnk_000[0].mUnk_00 = e;
-        for (i = 0; i < data_021759c0->mKartCount; i++) {
-            if ((u32) data_0217561c->mUnk_000[i].mUnk_18 <= 0x57e40) {
-                data_0217561c->mUnk_000[i].mUnk_18++;
+        for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+            v = data_0217561c->mUnk_000[i].mUnk_18;
+            if (v <= 0x57e40) {
+                v++;
             }
+            data_0217561c->mUnk_000[i].mUnk_18 = v;
         }
         if (t != 0) {
             switch (data_021759c0->mUnk_08) {
+                case 4:
+                    func_0203e788((u16) data_021759c0->mUnk_62, 1);
+                    g = data_0217d084.mUnk_04 == 2 || data_0217d084.mUnk_04 == 3;
+                    if (g) {
+                        func_0212ecc0(&data_0217d068, 0, 0x4a);
+                    }
+                    break;
                 case 2:
                     if (data_021759c0->mUnk_18 == 1) {
                         data_0217561c->mUnk_4f4 = func_020a1520() * 0x3c;
                         p->mUnk_000[0].mUnk_00 = 0;
                     }
                     break;
-                case 4:
-                    func_0203e788(data_021759c0->mUnk_62, 1);
-                    switch (data_0217d084.mUnk_04) {
-                        case 2:
-                        case 3:
-                            func_0212ecc0(&data_0217d068, 0, 0x4a);
-                            break;
-                    }
-                    break;
             }
         }
-        r = &data_0217561c->mUnk_47c;
+        q = data_0217561c;
+        r = &q->mUnk_47c;
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         t = -(s16) (u16) (r->mUnk_00 >> 32 >> 20);
     }
-    c = &p->mUnk_000[0].mUnk_08;
+    c = &q->mUnk_000[0].mUnk_08;
     func_0203f5f0((u8 *) c + 2, (u8 *) c + 3, c, t, p->mUnk_000[0].mUnk_00);
 }
