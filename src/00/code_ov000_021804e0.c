@@ -4,6 +4,8 @@
 #include "00/unk_021b4000.h"
 #include "00/code_02180608.h"
 #include "Main/Unknown/code_02077000.h"
+#include "Main/Unknown/unk_02175000.h"
+#include "Main/Unknown/code_020487fc.h"
 #include "Main/Unknown/code_020ae5e4.h"
 #include "Main/Unknown/code_020ae630.h"
 #include "Main/Unknown/code_020364e0.h"

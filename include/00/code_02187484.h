@@ -2,16 +2,9 @@
 
 #include "types.h"
 #include "00/code_02186628.h"
+#include "00/code_02188008.h"
 
 typedef struct Unk0200db5c Unk0200db5c;
-
-// Three words: a function called with (name, size) that returns a block, a function called with (name, block, 0) that
-// releases it, and a word.
-typedef struct Unk02188114 {
-    /* 00 */ void *(*mUnk_00)();
-    /* 04 */ void (*mUnk_04)();
-    /* 08 */ u32 mUnk_08;
-} Unk02188114;
 
 // Object behind data_ov000_021b4cb0.
 typedef struct Unk02187490 {
@@ -71,7 +64,6 @@ typedef struct Unk0218635c {
 #include "code_02151868.h"
 #include "00/code_02185954.h"
 #include "00/unk_021b1000.h"
-#include "00/code_02188008.h"
 #include "00/code_02186a9c.h"
 
 extern char *data_ov000_021b1384;

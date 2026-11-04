@@ -1,10 +1,7 @@
 #pragma once
 
 #include "types.h"
-
-typedef struct GpConnection GpConnection;
-
-#include "00/code_02190cd4.h"
+#include "00/code_0218f960.h"
 
 // Object at 0x04 of Unk02194cac.
 typedef struct Unk02194cac_04 {
@@ -100,8 +97,6 @@ typedef struct Unk02194cac_44 {
     /* 3c */ char **mUnk_3c;
     /* 40 */ char **mUnk_40;
 } Unk02194cac_44;
-
-#include "00/code_021919ac.h"
 
 extern char data_ov000_021b35b8[];
 extern u8 data_ov000_021b35f8[];

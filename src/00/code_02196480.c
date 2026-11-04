@@ -30,6 +30,7 @@
 #include "code_021384cc.h"
 #include "00/code_0218e2dc.h"
 #include "00/unk_021b4000.h"
+#include "00/code_02190cd4.h"
 
 s32 func_ov000_021964e4(GpConnection *a, GpiOperation *b, const char *c) {
     GpiCallback p;

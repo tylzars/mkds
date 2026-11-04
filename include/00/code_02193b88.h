@@ -2,7 +2,6 @@
 
 #include "types.h"
 #include "00/code_0218f960.h"
-#include "00/code_021919ac.h"
 
 // Payload at 0x04 of a GpiOperation whose 0x00 is 3.
 typedef struct Unk02193858 {
@@ -63,11 +62,8 @@ typedef struct Unk02193d64 {
 u32 GpiCreateOperation(GpConnection *param_1, int param_2, int param_3, int *param_4, int param_5, int param_6,
                        int param_7);
 
-#include "00/code_02190cd4.h"
-
 #include "00/code_021965a0.h"
 #include "00/code_021967b4.h"
-#include "00/code_02193634.h"
 #include "00/code_0218e2dc.h"
 
 // Entry of the list behind GpiPeer.mUnk_38.

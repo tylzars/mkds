@@ -15,6 +15,8 @@
 #include "00/code_0218d000.h"
 #include "00/unk_021b2000.h"
 #include "00/code_0218dd8c.h"
+#include "00/code_021a3668.h"
+#include "00/code_02190cd4.h"
 
 void GpiReleaseProfile(GpiProfile *a) {
     if (a->mBuddyStatus != NULL) {

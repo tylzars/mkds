@@ -38,6 +38,7 @@
 #include "00/code_021967b4.h"
 #include "code_021384cc.h"
 #include "00/unk_021b4000.h"
+#include "00/code_02190cd4.h"
 
 void func_ov000_02196434(GpConnection *a, GpiPeer *b, s32 c, const char *d, s32 e, s32 f) {
     char s[0x40];

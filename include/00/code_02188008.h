@@ -2,7 +2,14 @@
 
 #include "types.h"
 #include "00/code_021884d8.h"
-#include "00/code_02187484.h"
+
+// Three words: a function called with (name, size) that returns a block, a function called with (name, block, 0) that
+// releases it, and a word.
+typedef struct Unk02188114 {
+    /* 00 */ void *(*mUnk_00)();
+    /* 04 */ void (*mUnk_04)();
+    /* 08 */ u32 mUnk_08;
+} Unk02188114;
 
 // Element of the table at 0x300 of an Unk02188408.
 typedef struct Unk02188408Entry24 {

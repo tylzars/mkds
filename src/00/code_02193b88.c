@@ -39,6 +39,7 @@
 #include "00/code_021a3678.h"
 #include "code_021382a8.h"
 #include "00/code_021965c8.h"
+#include "00/code_02190cd4.h"
 
 s32 func_ov000_02194590(GpConnection *a, GpiPeer *b) {
     GpiConnection *r;

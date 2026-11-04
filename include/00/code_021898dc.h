@@ -2,7 +2,6 @@
 
 #include "types.h"
 #include "00/code_02188ec0.h"
-#include "00/code_02188720.h"
 #include "00/code_021a5b3c.h"
 
 // Four words handed to func_ov000_021a629c by func_ov000_02189f00.

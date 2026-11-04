@@ -6,7 +6,6 @@
 #include "00/code_02193000.h"
 #include "00/code_021a3000.h"
 #include "00/code_021906e4.h"
-#include "00/code_02193b88.h"
 
 u32 GpiCallQueuedCallbacks(GpConnection *a, s32 b);
 void GpiCallAndFreeCallback(GpConnection *a, GpiQueuedCallback *data);

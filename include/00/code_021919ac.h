@@ -9,7 +9,6 @@
 #include "00/unk_021b3000.h"
 #include "00/unk_021b4000.h"
 #include "code_02135014.h"
-#include "00/code_02190ff8.h"
 #include "00/code_02196914.h"
 #include "00/code_021965a0.h"
 #include "00/code_021a3690.h"
@@ -17,7 +16,6 @@
 #include "code_0213442c.h"
 #include "code_02134d30.h"
 #include "code_0213a460.h"
-#include "00/code_021919ac.h"
 #include "00/code_021948f8.h"
 #include "00/code_0218e0fc.h"
 #include "00/code_02191200.h"
@@ -28,10 +26,7 @@
 #include "00/code_0218d818.h"
 #include "00/code_02196000.h"
 #include "00/code_0218f960.h"
-#include "00/code_02194bb8.h"
-#include "00/code_02193b88.h"
 #include "00/code_021967b4.h"
-#include "00/code_02193634.h"
 #include "00/code_0218e2dc.h"
 #include "00/code_021a3a18.h"
 #include "00/code_0219488c.h"
@@ -100,5 +95,3 @@ u32 GpiWriteLogin(GpConnection *p, Unk021919ac_q *q);
 u32 GpiStartConnect(GpConnection *p, const char *a, const char *b, const char *c, const char *d, const s8 *e,
                     const s8 *f, const char *g, s32 h, s32 i, s32 j, s32 k, s32 l);
 u32 GpiOpenSockets(GpConnection *p, Unk021919ac_node *n);
-
-#include "00/code_02190cd4.h"

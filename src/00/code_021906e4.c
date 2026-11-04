@@ -32,6 +32,7 @@
 #include "00/code_021a3678.h"
 #include "00/code_021965a0.h"
 #include "00/code_02194840.h"
+#include "00/code_02190cd4.h"
 
 u32 GpiAppendBufferByte(void *a, GpiBuffer *outputBuffer, s32 c) {
     u8 *d;
