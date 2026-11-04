@@ -1,6 +1,7 @@
+#include "00/code_0219d128.h"
+
 #include "00/code_0218e908.h"
 #include "00/code_0219cb00.h"
-#include "00/code_0219d128.h"
 #include "00/code_0219d000.h"
 #include "00/unk_021b4000.h"
 #include "00/unk_021b5000.h"
@@ -8,7 +9,6 @@
 #include "00/code_0219cc00.h"
 #include "00/code_0218f15c.h"
 #include "code_02139f70.h"
-
 #include "00/code_0218eb9c.h"
 #include "00/code_0219d934.h"
 #include "Main/Unknown/code_02152000.h"
@@ -29,6 +29,13 @@
 #include "00/code_0219c384.h"
 #include "00/code_0219caac.h"
 #include "00/code_0219742c.h"
+
+void func_ov000_0219d934(void *first, void *second) {
+    if (data_ov000_021b5664 != NULL) {
+        data_ov000_021b5664->mUnk_44 = first;
+        data_ov000_021b5664->mUnk_48 = second;
+    }
+}
 
 void func_ov000_0219d8c8(Unk021b5664 *a, struct GpConnection *b, char *c, Unk02152490 *d, s32 e) {
     Unk021b5664 *q;
