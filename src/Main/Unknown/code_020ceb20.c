@@ -9,9 +9,9 @@
 #pragma thumb on
 void func_020ceb20(void) {
     if (func_020cccc0() != 0) {
-        func_020ceb70(0x1e);
+        GxDispCntBits8To12Write2(0x1e);
         func_02148950(1, 0, 0);
-        func_020ceb54(0x1f);
+        GxsDispCntBits8To12Write2(0x1f);
         GxsDispCntBits0To2Write(0);
     }
     func_ov001_0219c784();

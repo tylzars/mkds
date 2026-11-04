@@ -146,7 +146,7 @@ void func_02118814(void) {
 
 void func_021187d4(void) {
     if (*(vu16 *) 0x027ffc40 != 2) {
-        func_020d0efc(data_0215ca1c[data_0217d360->mIndex][data_0217d360->mUnk_78]);
+        TrySetCupPictureIndexAndQueueLoads(data_0215ca1c[data_0217d360->mIndex][data_0217d360->mUnk_78]);
         data_0217d360->mUnk_7c = 1;
     }
 }
@@ -1008,9 +1008,9 @@ s32 func_02117418(void) {
     func_02118458();
     if (*(vu16 *) 0x027ffc40 != 2) {
         if (data_0217d360->mUnk_7c != 0 && func_020d0ec4() != 0) {
-            p = func_020d0e58();
-            CallQueueAppend(0xf, 0, func_020d0ea0(), 0xe0);
-            CallQueueAppend(4, 0x20, func_020d0e7c(), 0xdc0);
+            p = GetCupPictureNscrData();
+            CallQueueAppend(0xf, 0, GetCupPictureNclrData(), 0xe0);
+            CallQueueAppend(4, 0x20, GetCupPictureNcgrData(), 0xdc0);
             for (i = 0; i < 11; i++) {
                 n = (i + 8) * 0x20 + 0x16;
                 CallQueueAppend(8, n * 2, p + n, 0x14);

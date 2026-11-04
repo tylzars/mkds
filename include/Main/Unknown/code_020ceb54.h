@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_020ceb54(int arg0);
-void func_020ceb70(int arg0);
+void GxsDispCntBits8To12Write2(int arg0);
+void GxDispCntBits8To12Write2(int arg0);

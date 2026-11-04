@@ -10,7 +10,7 @@ void func_020cec00(void) {
     int v1;
     v1 = func_020cccc0();
     if (v1 != 0) {
-        func_020ceb54(0x1f);
+        GxsDispCntBits8To12Write2(0x1f);
         GxsDispCntBits0To2Write((u32) 0);
     }
     func_0211a794();

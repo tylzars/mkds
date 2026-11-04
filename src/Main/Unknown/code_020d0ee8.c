@@ -20,7 +20,7 @@ u32 func_020d0f60(void) {
 }
 
 #pragma thumb on
-u32 func_020d0efc(int a) {
+u32 TrySetCupPictureIndexAndQueueLoads(int a) {
     u32 r;
 
     r = 1;

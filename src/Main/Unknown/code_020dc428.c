@@ -419,7 +419,7 @@ void func_020dc7c0(Unk020dc474 *p) {
         b.z = p->mUnk_1f4->z * k;
         Vec3Add(&b, p->mUnk_1f0, &b);
         Vec3Sub(&b, &p->mUnk_a0, &a);
-        m = func_020d6f78(&a, &a);
+        m = Vec3NormalizeXZAndGetLengthOrZero(&a, &a);
         if (m > p->mUnk_f0) {
             m -= p->mUnk_f0 >> 1;
         }
@@ -455,7 +455,7 @@ void func_020dc7c0(Unk020dc474 *p) {
     p->mUnk_00.mPos.z += p->mUnk_00.mUnk_10.z;
     Vec3Sub(&p->mUnk_00.mPos, &p->mUnk_a0, &a);
     if ((s64) a.x * a.x + (s64) a.z * a.z >= (s64) p->mUnk_1ec * p->mUnk_1ec) {
-        func_020d6f78(&a, &a);
+        Vec3NormalizeXZAndGetLengthOrZero(&a, &a);
         p->mUnk_00.mPos.x = p->mUnk_a0.x + (s32) (((s64) a.x * p->mUnk_1ec) >> 12);
         p->mUnk_00.mPos.z = p->mUnk_a0.z + (s32) (((s64) a.z * p->mUnk_1ec) >> 12);
         k = (s32) (((s64) p->mUnk_00.mUnk_10.x * a.x) >> 12);

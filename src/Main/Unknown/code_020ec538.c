@@ -69,7 +69,7 @@ void func_020ec538(Unk020e43a8 *param_1, const Unk020ec6e4 *param_2) {
     b = param_2 ? param_2->mUnk_05c : data_02159594;
     Vec3Sub(&param_1->mUnk_00.mPos, &a, &out);
     if ((s64) out.z * b.x - (s64) out.x * b.z < 0) {
-        if (func_020d6f78(&b, &out) == 0) {
+        if (Vec3NormalizeXZAndGetLengthOrZero(&b, &out) == 0) {
             out = data_0215957c;
         } else {
             s32 x = out.x;
@@ -80,7 +80,7 @@ void func_020ec538(Unk020e43a8 *param_1, const Unk020ec6e4 *param_2) {
         }
         param_1->mUnk_0a8 = 1;
     } else {
-        if (func_020d6f78(&b, &out) == 0) {
+        if (Vec3NormalizeXZAndGetLengthOrZero(&b, &out) == 0) {
             out = data_02159588;
         } else {
             s32 x = out.x;

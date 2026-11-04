@@ -46,7 +46,7 @@ void *FindCourseMapObjFile(const char *a) {
     return FindCourseFile(buf);
 }
 
-u32 func_020d2178(s32 c) {
+u32 DecimalNonZeroDigitsToBitMask(s32 c) {
     u32 a;
     s32 b;
     a = 0;

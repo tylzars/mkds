@@ -273,7 +273,7 @@ void func_020d720c(Vec3 *a, u32 *m) {
     b->mUnk_00[3] = (r.mUnk_00[3] * c - r.mUnk_00[2] * s) >> 12;
 }
 
-s32 func_020d70ac(Vec3 *a, Vec3 *b) {
+s32 Vec3NormalizeAndGetLengthOrZero(Vec3 *a, Vec3 *b) {
     s64 w;
     s32 r;
     s64 q;
@@ -302,7 +302,7 @@ s32 func_020d70ac(Vec3 *a, Vec3 *b) {
     return (r + 1) >> 1;
 }
 
-s32 func_020d6f78(Vec3 *a, Vec3 *b) {
+s32 Vec3NormalizeXZAndGetLengthOrZero(Vec3 *a, Vec3 *b) {
     s64 w;
     s32 r;
     s64 q;

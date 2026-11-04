@@ -928,7 +928,7 @@ void func_020d3ae0(s32 a, MapObject *b) {
         b->mFlags = b->mFlags | (*(u16 *) &data_021568e8);
         a = (a - v1) * 0x10000 >> 0x10;
     }
-    v2 = func_020d2178((u32) a);
+    v2 = DecimalNonZeroDigitsToBitMask((u32) a);
     b->mUnk_74 = v2;
 }
 

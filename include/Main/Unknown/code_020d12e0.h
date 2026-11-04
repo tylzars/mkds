@@ -16,5 +16,5 @@ typedef struct Unk0217b4ac {
     /* 010 */ Unk020d029c mUnk_10;
 } Unk0217b4ac;
 
-u16 func_020d13f8(void);
-void func_020d12e0(void);
+u16 UpdateEndingStaffRoll(void);
+void DrawEndingStaffRoll(void);

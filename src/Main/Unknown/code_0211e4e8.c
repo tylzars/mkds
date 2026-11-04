@@ -154,7 +154,7 @@ void func_0211ed80(void) {
         data_0217d378->mUnk_1c[data_0215cf04[m]].mUnk_00 = 0;
         func_02124100(data_0215cf0c[m], 0xf, data_0217d378->mUnk_14, data_0217d378->mUnk_1c, data_0217d378->mUnk_10);
     }
-    func_020d0efc(data_0215cf8c[data_0215cf2c[func_0202968c()]][0]);
+    TrySetCupPictureIndexAndQueueLoads(data_0215cf8c[data_0215cf2c[func_0202968c()]][0]);
     data_0217d378->mUnk_38 = 1;
 }
 
@@ -404,17 +404,17 @@ s32 func_0211e51c(void) {
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         if (data_0217d378->mUnk_38 != 0 && func_020d0ec4() != 0) {
-            p = func_020d0e58();
-            CallQueueAppend(0xf, 0, func_020d0ea0(), 0xe0);
-            CallQueueAppend(4, 0x20, func_020d0e7c(), 0xdc0);
+            p = GetCupPictureNscrData();
+            CallQueueAppend(0xf, 0, GetCupPictureNclrData(), 0xe0);
+            CallQueueAppend(4, 0x20, GetCupPictureNcgrData(), 0xdc0);
             a = 8;
             b = 0x14;
             for (i = 0; i < 0xb; i++) {
                 n = ((i + 8) << 5) + 0x16;
                 CallQueueAppend(a, n << 1, p + n, b);
             }
-            CallQueueAppend(0x1f, 0, func_020d0ea0(), 0xe0);
-            CallQueueAppend(0x17, 0x20, func_020d0e7c(), 0xdc0);
+            CallQueueAppend(0x1f, 0, GetCupPictureNclrData(), 0xe0);
+            CallQueueAppend(0x17, 0x20, GetCupPictureNcgrData(), 0xdc0);
             a = 0x1b;
             for (i = 0; i < 0xb; i++) {
                 n = ((i + 8) << 5) + 0x16;

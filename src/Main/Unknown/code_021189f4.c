@@ -337,9 +337,9 @@ s32 func_02118e64(void) {
     func_0211a07c();
     if (*(vu16 *) 0x027ffc40 != 2) {
         if (gSelectCup->mUnk_60 != 0 && func_020d0ec4() != 0) {
-            p = func_020d0e58();
-            CallQueueAppend(0x1f, 0, func_020d0ea0(), 0xe0);
-            CallQueueAppend(0x17, 0x20, func_020d0e7c(), 0xdc0);
+            p = GetCupPictureNscrData();
+            CallQueueAppend(0x1f, 0, GetCupPictureNclrData(), 0xe0);
+            CallQueueAppend(0x17, 0x20, GetCupPictureNcgrData(), 0xdc0);
             for (i = 0; i < 11; i++) {
                 CallQueueAppend(0x1b, ((i + 8) * 0x20 + 0x16) * 2, p + ((i + 8) * 0x20 + 0x16), 0x14);
             }

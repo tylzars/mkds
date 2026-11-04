@@ -50,7 +50,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
     p->mUnk_00[0] = *d;
     p->mUnk_00[3] = *e;
     Vec3Sub(e, d, &t1);
-    n = func_020d70ac(&t1, &t2);
+    n = Vec3NormalizeAndGetLengthOrZero(&t1, &t2);
     if (n == 0) {
         p->mUnk_00[1] = p->mUnk_00[0];
         p->mUnk_00[2] = p->mUnk_00[3];
@@ -63,7 +63,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
     }
     if (c != NULL) {
         Vec3Sub(e, c, &t3);
-        if (func_020d70ac(&t3, &t3) != 0) {
+        if (Vec3NormalizeAndGetLengthOrZero(&t3, &t3) != 0) {
             w = (0x1000 - func_02039828(&t2, &t3)) >> 1;
             u = (s32) (((s64) n * (s64) w) >> 12);
             if (a != 0) {
@@ -85,7 +85,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
     }
     if (f != NULL) {
         Vec3Sub(f, d, &t5);
-        if (func_020d70ac(&t5, &t5) != 0) {
+        if (Vec3NormalizeAndGetLengthOrZero(&t5, &t5) != 0) {
             w = (0x1000 - func_02039828(&t2, &t5)) >> 1;
             v = (s32) (((s64) n * (s64) w) >> 12);
             if (a != 0) {

@@ -425,7 +425,7 @@ void func_02119e88(void) {
             p = gSelectCup;
             func_02124224(0, 5, p->mUnk_08, data_0216dbc0, p->mUnk_04, p->mUnk_1c, 9);
         }
-        func_020d0efc(data_0215cbec[data_0215cadc[func_0202968c()]][gSelectCup->mUnk_50]);
+        TrySetCupPictureIndexAndQueueLoads(data_0215cbec[data_0215cadc[func_0202968c()]][gSelectCup->mUnk_50]);
         gSelectCup->mUnk_60 = 1;
     }
 }

@@ -15,21 +15,21 @@ BOOL func_020d0ec4(void) {
     return FALSE;
 }
 
-void *func_020d0ea0(void) {
+void *GetCupPictureNclrData(void) {
     if (func_020d0ec4() != FALSE) {
         return gCupPicture->mCupPictureNclr->mData;
     }
     return NULL;
 }
 
-void *func_020d0e7c(void) {
+void *GetCupPictureNcgrData(void) {
     if (func_020d0ec4() != FALSE) {
         return gCupPicture->mCupPictureNcgr->mData;
     }
     return NULL;
 }
 
-void *func_020d0e58(void) {
+void *GetCupPictureNscrData(void) {
     if (func_020d0ec4() != FALSE) {
         return &gCupPicture->mCupPictureNscr->mData;
     }

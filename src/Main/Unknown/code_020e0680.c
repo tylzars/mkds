@@ -702,7 +702,7 @@ BOOL func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 
     y.x <<= 10;
     y.y <<= 10;
     y.z <<= 10;
-    t = func_020d70ac(&y, &tmp);
+    t = Vec3NormalizeAndGetLengthOrZero(&y, &tmp);
     if (t > (a << 10)) {
         return FALSE;
     }
@@ -1037,7 +1037,7 @@ rest:
     v.x <<= 10;
     v.y <<= 10;
     v.z <<= 10;
-    t = func_020d70ac(&v, &w);
+    t = Vec3NormalizeAndGetLengthOrZero(&v, &w);
     if (t > (c << 10)) {
         return 0;
     }
@@ -1168,7 +1168,7 @@ s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
         v.x = x;
         v.y = 0;
         v.z = y;
-        x = func_020d6f78(&v, &v);
+        x = Vec3NormalizeXZAndGetLengthOrZero(&v, &v);
         k = t - x;
         if (x == 0) {
             w = data_021588f0;
@@ -1183,7 +1183,7 @@ s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
     v.x = x;
     v.y = 0;
     v.z = y;
-    x = func_020d6f78(&v, &v);
+    x = Vec3NormalizeXZAndGetLengthOrZero(&v, &v);
     k = t - x;
     if (x == 0) {
         w = data_021588fc;

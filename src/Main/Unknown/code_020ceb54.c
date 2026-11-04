@@ -1,6 +1,6 @@
 #include "Main/Unknown/code_020ceb54.h"
 
-void func_020ceb70(int arg0) {
+void GxDispCntBits8To12Write2(int arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;
@@ -11,7 +11,7 @@ void func_020ceb70(int arg0) {
     *(u32 *) ((value2) + (0)) = value0;
 }
 
-void func_020ceb54(int arg0) {
+void GxsDispCntBits8To12Write2(int arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;

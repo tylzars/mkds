@@ -754,7 +754,7 @@ void func_020af66c(void) {
         return;
     }
     if (v == 6) {
-        func_020d13f8();
+        UpdateEndingStaffRoll();
         func_0212b204();
         return;
     }

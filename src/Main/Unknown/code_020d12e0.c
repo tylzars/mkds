@@ -63,7 +63,7 @@ u32 func_020d1450(void) {
     return value0;
 }
 
-u16 func_020d13f8(void) {
+u16 UpdateEndingStaffRoll(void) {
     if (gEndingStaffRoll->mUnk_00 < 0x7fffffff) {
         gEndingStaffRoll->mUnk_00++;
     }
@@ -73,7 +73,7 @@ u16 func_020d13f8(void) {
     return *(vu16 *) 0x4000304;
 }
 
-void func_020d12e0(void) {
+void DrawEndingStaffRoll(void) {
     Unk020d029c *b;
     s32 i;
     Unk020224e0_o *e;
