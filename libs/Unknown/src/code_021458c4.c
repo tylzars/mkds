@@ -521,9 +521,8 @@ int func_02145d2c(void) {
     return func_02145800();
 }
 
-// non-matching: scheduling of the last three statements: original stores 0 to both words before loading data_0217fa40
-// (4 instructions differ) Clears the words of data_0217fa00 from mUnk_18 on and fills them for the value a; stores 3 in
-// mUnk_00 when a is not one of the known values.
+// Clears the words of data_0217fa00 from mUnk_18 on and fills them for the value a; stores 3 in mUnk_00 when a is
+// not one of the known values.
 void func_02145b54(s32 a) {
     Unk021458b4 *p;
     u32 m;
@@ -544,17 +543,19 @@ void func_02145b54(s32 a) {
                 p->mUnk_20 = 0x10;
                 p->mUnk_24 = 1;
                 p->mUnk_28 = 0x4f;
-                return;
+                break;
             case 0x2000:
                 p->mUnk_20 = 0x20;
                 p->mUnk_24 = 2;
                 p->mUnk_28 = 0x4f;
-                return;
+                break;
             case 0x10000:
                 p->mUnk_20 = 0x80;
                 p->mUnk_24 = 2;
                 p->mUnk_28 = 0x9e;
-                return;
+                break;
+            default:
+                goto fail;
         }
     } else if (x == 2) {
         switch (m) {
@@ -579,18 +580,16 @@ void func_02145b54(s32 a) {
         p->mUnk_20 = 0x100;
         p->mUnk_24 = 3;
         p->mUnk_28 = 0x4f;
+    } else if (x == 3 && (m == 0x2000 || m == 0x8000)) {
+        p->mUnk_20 = m;
+        p->mUnk_24 = 2;
+    } else {
+    fail:
+        p->mUnk_04 = 0;
+        p->mUnk_18 = 0;
+        data_0217fa40.mUnk_00->mUnk_00 = 3;
         return;
-    } else if (x == 3) {
-        if (m == 0x2000 || m == 0x8000) {
-            p->mUnk_20 = m;
-            p->mUnk_24 = 2;
-            return;
-        }
     }
-fail:
-    p->mUnk_04 = 0;
-    p->mUnk_18 = 0;
-    data_0217fa40.mUnk_00->mUnk_00 = 3;
 }
 
 // Stores f in mUnk_40 and starts the object at mUnk_44.
@@ -652,17 +651,14 @@ void func_021459cc(u32 a, u32 b) {
     IrqRestore(s);
 }
 
-// non-matching: the store of -3 to mUnk_08 is scheduled before `mov r3, #0`; the original loads both constants first
-// (2 instructions differ, same size) Sets up data_0217fa40 and data_0217fa00 and starts the object at mUnk_44 with
-// func_021469a4 and the 0x400 bytes before data_02180060.
+// Sets up data_0217fa40 and data_0217fa00 and starts the object at mUnk_44 with func_021469a4 and the 0x400 bytes
+// before data_02180060.
 void func_021458c4(void) {
     Unk021458c4 *p;
-    Unk021458c4 *a;
 
-    a = (Unk021458c4 *) &data_0217fa40;
     p = &data_0217fa40;
-    a->mUnk_08 = -3;
-    a->mUnk_0c = 0;
+    p->mUnk_08 = -3;
+    p->mUnk_0c = 0;
     p->mUnk_18 = 0;
     p->mUnk_00 = &data_0217fa00;
     MemFillWordsByBlock_inline(&data_0217fa00, 0x40);
