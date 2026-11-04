@@ -965,6 +965,7 @@ src/00/code_021aa004.c:
 
 // provisional: file name and boundaries
 src/00/code_021aaaf8.c:
+    complete
     .text       start:0x021aaac4 end:0x021aadf8
 
 // provisional: file name and boundaries
