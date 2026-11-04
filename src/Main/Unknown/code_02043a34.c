@@ -171,13 +171,11 @@ void func_02043f28(u32 a) {
     func_021087f4(r);
 }
 
-// non-matching: same size; the original keeps the address of data_0217aa08 in r1 and the loaded object in r2 and r3,
-// here other registers.
 void func_02043fb0(u32 a) {
     data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
     data_0217aa08->mUnk_14[2]->mUnk_08_0 = 0;
     data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
-    func_02056700();
+    func_02056700(a);
     func_02057d9c();
     if (data_021759d4->mUnk_0c != 0) {
         func_02145d38();
@@ -187,8 +185,6 @@ void func_02043fb0(u32 a) {
     }
 }
 
-// non-matching: same size; register choice differs in the repeated loads through data_0217aa08 (r0 here, r1 and r2 in
-// the original).
 void func_02044060(u32 a) {
     Unk0217aa08_14 *p;
     u8 v1[0x80];
@@ -200,7 +196,7 @@ void func_02044060(u32 a) {
     data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
     data_0217aa08->mUnk_14[2]->mUnk_08_0 = 0;
     data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
-    func_02056700();
+    func_02056700(a);
     func_02057d9c();
     if (data_021759d4->mUnk_0c != 0) {
         func_02145d38();
@@ -218,8 +214,6 @@ void func_02044060(u32 a) {
     p->mUnk_08_0 = 0;
 }
 
-// non-matching: same size; register choice differs in the repeated loads through data_0217aa08 (r0 here, r2 in the
-// original).
 void func_0204419c(u32 a, u32 b) {
     data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
     data_0217aa08->mUnk_14[2]->mUnk_08_0 = 0;
@@ -227,7 +221,7 @@ void func_0204419c(u32 a, u32 b) {
     data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
     data_0217aa08->mUnk_14[2]->mUnk_08_0 = 0;
     data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
-    func_02056700();
+    func_02056700(a);
     func_02057d9c();
     if (data_021759d4->mUnk_0c != 0) {
         func_02145d38();
@@ -245,13 +239,11 @@ void func_0204419c(u32 a, u32 b) {
     }
 }
 
-// non-matching: same size; the original keeps the address of data_0217aa08 in r1 and the loaded object in r2 and r3,
-// here other registers.
 void func_020442d0(u32 a) {
     data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
     data_0217aa08->mUnk_14[2]->mUnk_08_0 = 0;
     data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
-    func_02056700();
+    func_02056700(a);
     func_02057d9c();
     if (data_021759d4->mUnk_0c != 0) {
         func_02145d38();

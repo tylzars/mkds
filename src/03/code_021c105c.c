@@ -13,15 +13,15 @@
 #include "03/unk_021d6000.h"
 #include "03/code_021d1fd0.h"
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
-// call), size 0x3c against 0x4c
+static inline void func_ov003_021c105c_inline(Unk021bf920 *p, u32 *x, u32 *y) {
+    *x = (p->mUnk_00 & 0x1ff0000) >> 16;
+    *y = p->mUnk_00 & 0xff;
+}
+
 void func_ov003_021c105c(Unk021d34e0 *param_1) {
-    u32 a;
+    s32 a;
     s32 b;
-    Unk021bf920 *p;
-    p = data_ov003_021da160->mUnk_10[0];
-    a = (p->mUnk_00 & 0x1ff0000) >> 16;
-    b = p->mUnk_00 & 0xff;
+    func_ov003_021c105c_inline(data_ov003_021da160->mUnk_10[0], (u32 *) &a, (u32 *) &b);
     b = b + 0xc;
     func_ov003_021c1364(0, b);
     if (b >= 0xc0) {

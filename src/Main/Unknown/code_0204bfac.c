@@ -110,14 +110,10 @@ void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, Unk02003024 *f, s32 g) {
     func_0204bad8();
 }
 
-// non-matching: size 0xa0 against 0x94; the original loads the address of data_02175ec0 into r4 before the call to
-// FS_Init and keeps the first parameter in r8 (push of r4-r8, no stack word); ours loads it after the call and
-// pushes r4-r7 with a stack word
 void func_0204c28c(u32 a, u32 b, u32 c, u32 d) {
-    Unk02175ec0 *v1;
+    Unk02175ec0 *const v1 = &data_02175ec0;
     u16 v2;
 
-    v1 = &data_02175ec0;
     FS_Init(-1);
     v2 = a;
     v1->mUnk_0030 = v2;

@@ -17,7 +17,7 @@ typedef struct Unk02056750_c {
     /* 02 */ u16 mUnk_02;
 } Unk02056750_c;
 
-void func_02056700(void);
+void func_02056700(u32 a);
 void func_02056750(s32 a, u16 b);
 void func_020569a8(void *a);
 s32 func_020569dc(s32 a, s32 b, Unk02056a2c *c);

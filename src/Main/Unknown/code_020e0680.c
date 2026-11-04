@@ -354,17 +354,24 @@ u8 func_020e246c(Unk020e1e98 *a, Unk020e246c *b, u8 *c, u8 *d) {
     return *d;
 }
 
-// non-matching: 19 words differ, first +0xc: the loads that fill the outgoing stack arguments run in a different order
 void func_020e2400(Unk020e1e98 *a, Vec3 *b, s32 c, Vec3 *d) {
     Vec3 e;
     Vec3 f;
+    s32 x;
+    s32 y;
+    s32 z;
 
-    e.z = a->mUnk_114.z;
-    e.y = a->mUnk_114.y;
-    e.x = a->mUnk_114.x;
-    f.x = a->mUnk_114.x;
+    z = a->mUnk_114.z;
+    y = a->mUnk_114.y;
+    x = a->mUnk_114.x;
+    e.x = x;
+    e.y = y;
+    e.z = z;
+    z = a->mUnk_120;
+    x = a->mUnk_114.x;
+    f.x = x;
     f.y = 0;
-    f.z = a->mUnk_120;
+    f.z = z;
     func_020eafc4(b, &a->mUnk_000.mPos, &a->mUnk_000.mMatrix.mUnk_00[0], &e, &f, c, d);
 }
 

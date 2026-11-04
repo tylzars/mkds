@@ -33,14 +33,11 @@ void func_02007ec4(Unk02007ec4 *a, u16 b, u16 c, u32 d, u32 e) {
     a->mUnk_4b = v2 | v1 | 1;
 }
 
-// non-matching: same size; register allocation only; 0 lines differ; first: original `nothing`, ours `nothing`
 u32 func_02007f38(u32 a, u32 b, u32 c) {
     u32 v1;
     switch (data_02152bc0[a]) {
         case 0:
         case 2:
-// non-matching: 0x84 bytes, original 0x7c; 43 lines differ; first: original `ldr r0, [pc, #96]`, ours `ldr
-// r0, [pc, // #104]`
             return func_02007ff0(a, b, c);
         case 1:
             if (b >= 0x02000000 && b < 0x023fe800) {
@@ -62,10 +59,11 @@ u32 func_02007f38(u32 a, u32 b, u32 c) {
                 }
                 return 0;
             }
-            return 0;
+            break;
         default:
             return 0;
     }
+    return 0;
 }
 
 // non-matching: 0x84 bytes, original 0x7c; 43 lines differ; first: original `ldr r0, [pc, #96]`, ours `ldr r0, [pc,

@@ -140,8 +140,6 @@ BOOL func_02041a70(Vec3 *a, Unk02175620_74 *b) {
     return TRUE;
 }
 
-// non-matching: the original keeps the result in r3 and reuses the zero constant of the result for the products, here
-// the result lives in another register
 s32 func_02041944(Vec3 *a, Unk02175620_74 *b) {
     Vec3 v;
     s32 r = 0;
@@ -155,14 +153,14 @@ s32 func_02041944(Vec3 *a, Unk02175620_74 *b) {
             break;
         case 1:
             Vec3Sub(a, (Vec3 *) b, &v);
-            if (Vec3Dot(&v, &b->mUnk_24) <= (s32) (((s64) b->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+            if (Vec3Dot(&v, &b->mUnk_24) > (s32) (((s64) b->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                r = 0;
+            } else {
                 x = Vec3Dot(&v, &b->mUnk_18) >> 4;
                 y = Vec3Dot(&v, &b->mUnk_30) >> 4;
                 z = (s32) (((s64) b->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                if ((s32) (((s64) z * z + 0x800) >> 12) >=
-                    (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
-                    r = 1;
-                }
+                r = (s32) (((s64) z * z + 0x800) >> 12) >=
+                    (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12);
             }
             break;
     }

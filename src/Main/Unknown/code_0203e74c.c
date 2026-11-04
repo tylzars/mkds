@@ -138,8 +138,6 @@ void func_0203e9a0(Unk0217561c_14 *a, s32 b) {
     data_0217561c->mUnk_000[0].mUnk_0e++;
 }
 
-// non-matching: same size; after the call to func_0203f5f0 the halfword at 0x3c is loaded after the compare against 4
-// in the original, before it in ours (8 words differ).
 void func_0203eb38(void) {
     u16 i;
     Unk0217561c_14 *p;
@@ -191,8 +189,9 @@ void func_0203eb38(void) {
                     break;
             }
             if (g != 0) {
+                u32 k = (u32) (p->mUnk_3c << 24) >> 28;
                 if (data_021759c0->mUnk_08 == 4) {
-                    func_0203e788((u32) (p->mUnk_3c << 24) >> 28, 0);
+                    func_0203e788(k, 0);
                 }
             } else {
                 func_0203e788((u32) (p->mUnk_3c << 24) >> 28, 4);

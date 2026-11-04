@@ -114,13 +114,13 @@ void func_02056750(s32 a, u16 b) {
     }
 }
 
-void func_02056700(void) {
+void func_02056700(u32 a) {
     s32 n;
     BOOL f;
     Unk0217aa08_14 *p;
 
     f = FALSE;
-    n = func_0204684c();
+    n = func_0204684c(a);
     p = data_0217aa08->mUnk_14[0];
     if (n == -1) {
         f = TRUE;
