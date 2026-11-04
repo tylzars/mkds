@@ -37,17 +37,20 @@ cd28_clear:
 }
 // clang-format on
 
-// non-matching: the original tests with pl/mi after cmp #0x60 (ours ge/lt) and keeps the shifted bit in its own
-// register (mov, lsr, then orr; ours folds the shift into the orr). No other compiled ARM function in the game has a
-// pl/mi test after a compare with a constant, so the original is likely hand-written like its neighbour
-void IdFree(s32 a) {
-    u32 *p;
-    p = (u32 *) 0x027fffb0;
-    if (a >= 0x60) {
-        p = p + 1;
-        a = a - 0x60;
-    } else {
-        a = a - 0x40;
-    }
-    *p = *p | (0x80000000u >> a);
+// clang-format off
+// Hand-written asm: sets bit a of the two words at 0x027fffb0 (bits 0x40 to 0x5f in the first, 0x60 and up in the
+// second). It tests with pl/mi after a compare, which the compiler never does.
+asm void IdFree(s32 a) {
+    ldr r3, =0x27fffb0
+    cmp r0, #0x60
+    addpl r3, r3, #0x4
+    subpl r0, r0, #0x60
+    submi r0, r0, #0x40
+    mov r1, #0x80000000
+    mov r1, r1, lsr r0
+    ldr r2, [r3, #0x0]
+    orr r2, r2, r1
+    str r2, [r3, #0x0]
+    bx lr
 }
+// clang-format on
