@@ -187,7 +187,7 @@ void func_ov001_0219cec4(void) {
     }
 }
 
-void func_ov001_0219cdd4(void) {
+void AdvanceSelectBattleStageState0(void) {
     s32 i, j;
 
     gSelectBattleStage->mStateFrames++;
@@ -215,7 +215,7 @@ void func_ov001_0219cdd4(void) {
     }
 }
 
-void func_ov001_0219cdb4(void) {
+void AdvanceSelectBattleStageState1(void) {
     int v1;
     v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
@@ -224,7 +224,7 @@ void func_ov001_0219cdb4(void) {
     return;
 }
 
-void func_ov001_0219cba0(void) {
+void AdvanceSelectBattleStageState2(void) {
     Unk02175628Index idx = UNK_02175628_INDEX_8;
     s32 res = -1;
     s32 sel = -4;
@@ -316,7 +316,7 @@ next:
     }
 }
 
-void func_ov001_0219caf4(void) {
+void AdvanceSelectBattleStageState3(void) {
     s32 i;
     s16 v;
 
@@ -338,7 +338,7 @@ void func_ov001_0219caf4(void) {
     }
 }
 
-void func_ov001_0219ca94(void) {
+void AdvanceSelectBattleStageState4(void) {
     if (IsSelectReturnState2NoState3Or4Request() != 0) {
         gSelectBattleStage->mPendingResult = -2;
         func_021277f8(GetBmgEntry(gSelectBattleStage->mMenuMessages, 0x14),
@@ -349,7 +349,7 @@ void func_ov001_0219ca94(void) {
     }
 }
 
-void func_ov001_0219ca2c(void) {
+void AdvanceSelectBattleStageState5(void) {
     if (func_02127788() != 0) {
         if (gSelectBattleStage->mPendingResult == -2 || gSelectBattleStage->mPendingResult == -1) {
             if (func_02127794() == 1) {
@@ -370,7 +370,7 @@ void func_ov001_0219ca2c(void) {
     }
 }
 
-void func_ov001_0219c950(void) {
+void AdvanceSelectBattleStageState6(void) {
     s32 i;
     s32 j;
 
@@ -423,25 +423,25 @@ s32 AdvanceSelectBattleStage(void) {
     gSelectBattleStage->mState = gSelectBattleStage->mNextState;
     switch (gSelectBattleStage->mState) {
         case 0:
-            func_ov001_0219cdd4();
+            AdvanceSelectBattleStageState0();
             break;
         case 1:
-            func_ov001_0219cdb4();
+            AdvanceSelectBattleStageState1();
             break;
         case 2:
-            func_ov001_0219cba0();
+            AdvanceSelectBattleStageState2();
             break;
         case 3:
-            func_ov001_0219caf4();
+            AdvanceSelectBattleStageState3();
             break;
         case 4:
-            func_ov001_0219ca94();
+            AdvanceSelectBattleStageState4();
             break;
         case 5:
-            func_ov001_0219ca2c();
+            AdvanceSelectBattleStageState5();
             break;
         case 6:
-            func_ov001_0219c950();
+            AdvanceSelectBattleStageState6();
             break;
     }
     func_ov001_0219c8c8();

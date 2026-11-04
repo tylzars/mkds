@@ -12,8 +12,8 @@ struct Nclr;
 
 // Object behind gWiFiAikotoba; func_ov000_021851a0 fills 0x20 to 0x30.
 typedef struct Unk021b4c84 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 00 */ s32 mState;
+    /* 04 */ s32 mNextState;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
@@ -49,14 +49,14 @@ void RegisterWiFiAikotobaCallbacks(void);
 void func_ov000_02184bcc(void);
 void AdvanceWiFiAikotoba(void);
 void func_ov000_02184c74(void);
-void func_ov000_02184ce0(void);
-void func_ov000_02184d4c(void);
-void func_ov000_02184dbc(void);
-void func_ov000_02184ed4(void);
-void func_ov000_02184f1c(void);
-void func_ov000_021850b0(void);
-void func_ov000_021850d0(void);
-void func_ov000_02185164(void);
+void AdvanceWiFiAikotobaState7(void);
+void AdvanceWiFiAikotobaState6(void);
+void AdvanceWiFiAikotobaState5(void);
+void AdvanceWiFiAikotobaState4(void);
+void AdvanceWiFiAikotobaState3(void);
+void AdvanceWiFiAikotobaState2(void);
+void AdvanceWiFiAikotobaState1(void);
+void AdvanceWiFiAikotobaState0(void);
 u32 func_ov000_02185184(void);
 void func_ov000_021851a0(void);
 void func_ov000_02185230(void);

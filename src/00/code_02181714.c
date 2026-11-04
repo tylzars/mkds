@@ -42,8 +42,8 @@ void InitWiFiTopMenu(void *heap) {
 
     gWiFiTopMenu = HeapAlloc(heap, 0x40);
     gWiFiTopMenu->mHeap = heap;
-    gWiFiTopMenu->mUnk_00 = 0;
-    gWiFiTopMenu->mUnk_04 = 0;
+    gWiFiTopMenu->mState = 0;
+    gWiFiTopMenu->mNextState = 0;
     gWiFiTopMenu->mPendingWiFiState = -1;
     switch (GetWiFiPrevState()) {
         case 0:
@@ -61,7 +61,7 @@ void InitWiFiTopMenu(void *heap) {
     gWiFiTopMenu->mUnk_18 = 1;
     gWiFiTopMenu->mUnk_38 = FindSceneFile("wifi.bmg");
     gWiFiTopMenu->mUnk_3c = func_02047a28("common.bmg");
-    func_ov000_02181df8();
+    LocateAndQueueWiFiTopMenu();
     for (i = 0; i < 3; i++) {
         func_02124a98(data_ov000_021b05c0[i], 1, gWiFiTopMenu->mUnk_20, gWiFiTopMenu->mUnk_2c);
     }
@@ -81,7 +81,7 @@ void func_ov000_02181e8c(void) {
     gWiFiTopMenu = NULL;
 }
 
-void func_ov000_02181df8(void) {
+void LocateAndQueueWiFiTopMenu(void) {
     void *v1;
     v1 = FindSceneFile(gWiFiTopMenuSBnclName);
     gWiFiTopMenu->mUnk_2c = v1;
@@ -102,23 +102,23 @@ s32 func_ov000_02181df0(void) {
     return func_02061250();
 }
 
-void func_ov000_02181dd0(void) {
+void AdvanceWiFiTopMenuState0(void) {
     int v1;
     v1 = func_02036c5c();
     if (v1 != 0) {
-        gWiFiTopMenu->mUnk_04 = 1;
+        gWiFiTopMenu->mNextState = 1;
     }
     return;
 }
 
-void func_ov000_02181d44(void) {
+void AdvanceWiFiTopMenuState1(void) {
     s32 v = 0;
     s32 i;
     s32 j;
 
     gWiFiTopMenu->mStateFrames = gWiFiTopMenu->mStateFrames + 1;
     if (gWiFiTopMenu->mStateFrames >= 20) {
-        gWiFiTopMenu->mUnk_04 = 2;
+        gWiFiTopMenu->mNextState = 2;
         gWiFiTopMenu->mStateFrames = v;
         func_02128374();
     } else if (gWiFiTopMenu->mStateFrames >= 10) {
@@ -133,17 +133,17 @@ void func_ov000_02181d44(void) {
     }
 }
 
-void func_ov000_02181d20(void) {
+void AdvanceWiFiTopMenuState2(void) {
     int v1;
     v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
-        gWiFiTopMenu->mUnk_04 = 3;
+        gWiFiTopMenu->mNextState = 3;
         func_021281c8(0xf);
     }
     return;
 }
 
-void func_ov000_02181b4c(void) {
+void AdvanceWiFiTopMenuState3(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
     BOOL v1 = FALSE;
     u32 v2 = -1;
@@ -176,7 +176,7 @@ void func_ov000_02181b4c(void) {
             goto next;
         }
     }
-    gWiFiTopMenu->mUnk_04 = 5;
+    gWiFiTopMenu->mNextState = 5;
     gWiFiTopMenu->mPendingWiFiState = 10;
     if (gWiFiTopMenu->mPendingWiFiState == 10) {
         func_02128310(1);
@@ -202,7 +202,7 @@ next:
         if (gWiFiTopMenu->mUnk_08 == v4) {
             gWiFiTopMenu->mUnk_18 = 0;
         }
-        gWiFiTopMenu->mUnk_04 = 4;
+        gWiFiTopMenu->mNextState = 4;
         switch (gWiFiTopMenu->mUnk_08) {
             case 0:
                 if (func_0211fd68() == 1) {
@@ -236,7 +236,7 @@ next:
     }
 }
 
-void func_ov000_02181ab8(void) {
+void AdvanceWiFiTopMenuState4(void) {
     s32 i;
     s32 v;
 
@@ -246,7 +246,7 @@ void func_ov000_02181ab8(void) {
         gWiFiTopMenu->mUnk_1c[data_ov000_021b05d8[gWiFiTopMenu->mUnk_08][i]].mUnk_04 = v;
     }
     if (gWiFiTopMenu->mStateFrames >= 10) {
-        gWiFiTopMenu->mUnk_04 = 5;
+        gWiFiTopMenu->mNextState = 5;
         if (gWiFiTopMenu->mUnk_08 == 0 || gWiFiTopMenu->mUnk_08 == 2) {
             func_021282c8();
         }
@@ -256,7 +256,7 @@ void func_ov000_02181ab8(void) {
     }
 }
 
-void func_ov000_0218198c(void) {
+void AdvanceWiFiTopMenuState5(void) {
     s32 i;
     s32 j;
     s32 v;
@@ -287,7 +287,7 @@ void func_ov000_0218198c(void) {
         }
         if (func_ov000_021806c4() == -1) {
             if (gWiFiTopMenu->mPendingWiFiState == 8 && func_ov000_02181df0() == 0) {
-                gWiFiTopMenu->mUnk_04 = 8;
+                gWiFiTopMenu->mNextState = 8;
                 gWiFiTopMenu->mPendingWiFiState = -1;
                 func_021266e4(GetBmgEntry(gWiFiTopMenu->mUnk_38, 0x12));
                 gWiFiTopMenu->mStateFrames = 0;
@@ -299,7 +299,7 @@ void func_ov000_0218198c(void) {
     }
 }
 
-void func_ov000_02181940(void) {
+void AdvanceWiFiTopMenuState6(void) {
     int v1;
     v1 = func_02125f54();
     if (v1 != 0) {
@@ -311,14 +311,14 @@ void func_ov000_02181940(void) {
         v1 = func_02125f60();
         if (v1 == 0) {
             func_0211fd28();
-            gWiFiTopMenu->mUnk_04 = 7;
+            gWiFiTopMenu->mNextState = 7;
             return;
         }
-        gWiFiTopMenu->mUnk_04 = 1;
+        gWiFiTopMenu->mNextState = 1;
     }
 }
 
-void func_ov000_02181904(void) {
+void AdvanceWiFiTopMenuState7(void) {
     int v1;
     v1 = func_ov000_021806c4();
     if ((v1 == -1) && (gWiFiTopMenu->mPendingWiFiState == 10)) {
@@ -330,7 +330,7 @@ void func_ov000_02181904(void) {
     }
 }
 
-void func_ov000_02181854(void) {
+void AdvanceWiFiTopMenuState8(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
     s32 a;
     BOOL b;
@@ -353,7 +353,7 @@ void func_ov000_02181854(void) {
                 return;
             }
         }
-        gWiFiTopMenu->mUnk_04 = 1;
+        gWiFiTopMenu->mNextState = 1;
         func_02128310(0);
         func_02125fc0();
     }
@@ -379,34 +379,34 @@ void func_ov000_021817e8(void) {
 
 void AdvanceWiFiTopMenu(void) {
     Unk021b4c6c *p;
-    gWiFiTopMenu->mUnk_00 = gWiFiTopMenu->mUnk_04;
-    switch (gWiFiTopMenu->mUnk_00) {
+    gWiFiTopMenu->mState = gWiFiTopMenu->mNextState;
+    switch (gWiFiTopMenu->mState) {
         case 0:
-            func_ov000_02181dd0();
+            AdvanceWiFiTopMenuState0();
             break;
         case 1:
-            func_ov000_02181d44();
+            AdvanceWiFiTopMenuState1();
             break;
         case 2:
-            func_ov000_02181d20();
+            AdvanceWiFiTopMenuState2();
             break;
         case 3:
-            func_ov000_02181b4c();
+            AdvanceWiFiTopMenuState3();
             break;
         case 4:
-            func_ov000_02181ab8();
+            AdvanceWiFiTopMenuState4();
             break;
         case 5:
-            func_ov000_0218198c();
+            AdvanceWiFiTopMenuState5();
             break;
         case 6:
-            func_ov000_02181940();
+            AdvanceWiFiTopMenuState6();
             break;
         case 7:
-            func_ov000_02181904();
+            AdvanceWiFiTopMenuState7();
             break;
         case 8:
-            func_ov000_02181854();
+            AdvanceWiFiTopMenuState8();
             break;
     }
     func_ov000_021817e8();

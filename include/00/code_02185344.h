@@ -9,8 +9,8 @@ struct Nclr;
 
 // Object behind gWiFiAikotobaCheck; func_ov000_0218554c fills 0x34 to 0x48.
 typedef struct Unk021b4c88 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 00 */ s32 mState;
+    /* 04 */ s32 mNextState;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s16 mUnk_0c;
     /* 0e */ u16 mUnk_0e[12];
@@ -40,9 +40,9 @@ extern Unk021b4c88 *gWiFiAikotobaCheck;
 void RegisterWiFiAikotobaCheckCallbacks(void);
 void func_ov000_02185368(void);
 void AdvanceWiFiAikotobaCheck(void);
-void func_ov000_021853c4(void);
-void func_ov000_02185418(void);
-void func_ov000_021854a8(void);
+void AdvanceWiFiAikotobaCheckState2(void);
+void AdvanceWiFiAikotobaCheckState1(void);
+void AdvanceWiFiAikotobaCheckState0(void);
 void func_ov000_021854f8(void);
 void func_ov000_0218554c(void);
 void func_ov000_021855f8(void);

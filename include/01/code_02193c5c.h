@@ -137,6 +137,6 @@ void func_ov001_02194d78(void);
 void AdvanceRecordGpxOffsetTimers(void);
 void func_ov001_02194fd8(s32 a);
 void func_ov001_021950fc(s32 a);
-void func_ov001_021953d0(void);
+void LocateAndQueueRecordGpx(void);
 
 #include "00/code_021832d8.h"

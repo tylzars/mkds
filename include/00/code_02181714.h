@@ -11,10 +11,10 @@ struct Unk02021dc8;
 struct Ncgr;
 struct Nclr;
 
-// Object behind gWiFiTopMenu; func_ov000_02181df8 fills 0x20 to 0x30.
+// Object behind gWiFiTopMenu; LocateAndQueueWiFiTopMenu fills 0x20 to 0x30.
 typedef struct Unk021b4c6c {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
+    /* 00 */ s32 mState;
+    /* 04 */ u32 mNextState;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mStateFrames;
     /* 10 */ s32 mPendingWiFiState;
@@ -51,18 +51,18 @@ void RegisterWiFiTopMenuCallbacks(void);
 void func_ov000_02181738(void);
 void AdvanceWiFiTopMenu(void);
 void func_ov000_021817e8(void);
-void func_ov000_02181854(void);
-void func_ov000_02181904(void);
-void func_ov000_02181940(void);
-void func_ov000_0218198c(void);
+void AdvanceWiFiTopMenuState8(void);
+void AdvanceWiFiTopMenuState7(void);
+void AdvanceWiFiTopMenuState6(void);
+void AdvanceWiFiTopMenuState5(void);
 // Declared here until the code that defines them is decompiled.
-void func_ov000_02181ab8(void);
-void func_ov000_02181b4c(void);
-void func_ov000_02181d20(void);
-void func_ov000_02181d44(void);
-void func_ov000_02181dd0(void);
+void AdvanceWiFiTopMenuState4(void);
+void AdvanceWiFiTopMenuState3(void);
+void AdvanceWiFiTopMenuState2(void);
+void AdvanceWiFiTopMenuState1(void);
+void AdvanceWiFiTopMenuState0(void);
 s32 func_ov000_02181df0(void);
-void func_ov000_02181df8(void);
+void LocateAndQueueWiFiTopMenu(void);
 void func_ov000_02181e8c(void);
 void InitWiFiTopMenu(void *heap);
 

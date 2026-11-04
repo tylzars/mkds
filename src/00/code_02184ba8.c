@@ -35,8 +35,8 @@ void InitWiFiAikotoba(void *a) {
 
     gWiFiAikotoba = HeapAlloc(a, 0x40);
     gWiFiAikotoba->mUnk_18 = a;
-    gWiFiAikotoba->mUnk_00 = 0;
-    gWiFiAikotoba->mUnk_04 = 0;
+    gWiFiAikotoba->mState = 0;
+    gWiFiAikotoba->mNextState = 0;
     gWiFiAikotoba->mUnk_10 = -1;
     b = GetWiFiPrevState();
     switch (b) {
@@ -97,16 +97,16 @@ u32 func_ov000_02185184(void) {
     return 0;
 }
 
-void func_ov000_02185164(void) {
+void AdvanceWiFiAikotobaState0(void) {
     int v1;
     v1 = func_02036c5c();
     if (v1 != 0) {
-        gWiFiAikotoba->mUnk_04 = 1;
+        gWiFiAikotoba->mNextState = 1;
     }
     return;
 }
 
-void func_ov000_021850d0(void) {
+void AdvanceWiFiAikotobaState1(void) {
     s32 a;
     s32 i;
     s32 j;
@@ -123,22 +123,22 @@ void func_ov000_021850d0(void) {
         }
     }
     if (gWiFiAikotoba->mUnk_0c >= 10) {
-        gWiFiAikotoba->mUnk_04 = 2;
+        gWiFiAikotoba->mNextState = 2;
         gWiFiAikotoba->mUnk_0c = 0;
         func_02128374();
     }
 }
 
-void func_ov000_021850b0(void) {
+void AdvanceWiFiAikotobaState2(void) {
     int v1;
     v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
-        gWiFiAikotoba->mUnk_04 = 3;
+        gWiFiAikotoba->mNextState = 3;
     }
     return;
 }
 
-void func_ov000_02184f1c(void) {
+void AdvanceWiFiAikotobaState3(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
     u32 a = -1;
     BOOL b;
@@ -175,7 +175,7 @@ void func_ov000_02184f1c(void) {
             goto next;
         }
     }
-    gWiFiAikotoba->mUnk_04 = 5;
+    gWiFiAikotoba->mNextState = 5;
     gWiFiAikotoba->mUnk_10 = 1;
     func_02128310(0);
     return;
@@ -194,7 +194,7 @@ next:
                     break;
             }
         }
-        gWiFiAikotoba->mUnk_04 = 4;
+        gWiFiAikotoba->mNextState = 4;
         switch (gWiFiAikotoba->mUnk_08) {
             case 0:
                 gWiFiAikotoba->mUnk_10 = 11;
@@ -220,10 +220,10 @@ next:
     }
 }
 
-void func_ov000_02184ed4(void) {
+void AdvanceWiFiAikotobaState4(void) {
     gWiFiAikotoba->mUnk_0c = gWiFiAikotoba->mUnk_0c + 1;
     if (gWiFiAikotoba->mUnk_0c >= 10) {
-        gWiFiAikotoba->mUnk_04 = 5;
+        gWiFiAikotoba->mNextState = 5;
         if (gWiFiAikotoba->mUnk_10 == 11) {
             func_021282c8();
         }
@@ -233,7 +233,7 @@ void func_ov000_02184ed4(void) {
     }
 }
 
-void func_ov000_02184dbc(void) {
+void AdvanceWiFiAikotobaState5(void) {
     s32 a;
     s32 i;
     s32 j;
@@ -260,7 +260,7 @@ void func_ov000_02184dbc(void) {
     }
     if (gWiFiAikotoba->mUnk_0c >= 10) {
         if (func_ov000_02185184() != 0 && gWiFiAikotoba->mUnk_10 == 11) {
-            gWiFiAikotoba->mUnk_04 = 6;
+            gWiFiAikotoba->mNextState = 6;
             gWiFiAikotoba->mUnk_10 = -1;
             c = GetBmgEntry(gWiFiAikotoba->mUnk_38, 0xf);
             func_02126570(c, GetBmgEntry(gWiFiAikotoba->mUnk_3c, 6));
@@ -273,12 +273,12 @@ void func_ov000_02184dbc(void) {
     }
 }
 
-void func_ov000_02184d4c(void) {
+void AdvanceWiFiAikotobaState6(void) {
     void *a;
     void *b;
 
     if (func_02125f88() != 0 && IsSelectReturnState0NoState1Request() != 0) {
-        gWiFiAikotoba->mUnk_04 = 7;
+        gWiFiAikotoba->mNextState = 7;
         a = GetBmgEntry(gWiFiAikotoba->mUnk_38, 0x10);
         b = GetBmgEntry(gWiFiAikotoba->mUnk_3c, 0);
         func_02126454(a, b, GetBmgEntry(gWiFiAikotoba->mUnk_3c, 1), 0);
@@ -289,7 +289,7 @@ void func_ov000_02184d4c(void) {
     }
 }
 
-void func_ov000_02184ce0(void) {
+void AdvanceWiFiAikotobaState7(void) {
     if (func_02125f88() != 0) {
         if (func_02125f60() == 0) {
             gWiFiAikotoba->mUnk_10 = 0xe;
@@ -299,7 +299,7 @@ void func_ov000_02184ce0(void) {
             data_0217b488->mUnk_50 = 1;
             return;
         }
-        gWiFiAikotoba->mUnk_04 = 1;
+        gWiFiAikotoba->mNextState = 1;
         gWiFiAikotoba->mUnk_10 = -1;
         return;
     }
@@ -325,31 +325,31 @@ void func_ov000_02184c74(void) {
 void AdvanceWiFiAikotoba(void) {
     Unk021b4c84 *p;
 
-    gWiFiAikotoba->mUnk_00 = gWiFiAikotoba->mUnk_04;
-    switch (gWiFiAikotoba->mUnk_00) {
+    gWiFiAikotoba->mState = gWiFiAikotoba->mNextState;
+    switch (gWiFiAikotoba->mState) {
         case 0:
-            func_ov000_02185164();
+            AdvanceWiFiAikotobaState0();
             break;
         case 1:
-            func_ov000_021850d0();
+            AdvanceWiFiAikotobaState1();
             break;
         case 2:
-            func_ov000_021850b0();
+            AdvanceWiFiAikotobaState2();
             break;
         case 3:
-            func_ov000_02184f1c();
+            AdvanceWiFiAikotobaState3();
             break;
         case 4:
-            func_ov000_02184ed4();
+            AdvanceWiFiAikotobaState4();
             break;
         case 5:
-            func_ov000_02184dbc();
+            AdvanceWiFiAikotobaState5();
             break;
         case 6:
-            func_ov000_02184d4c();
+            AdvanceWiFiAikotobaState6();
             break;
         case 7:
-            func_ov000_02184ce0();
+            AdvanceWiFiAikotobaState7();
             break;
     }
     func_ov000_02184c74();

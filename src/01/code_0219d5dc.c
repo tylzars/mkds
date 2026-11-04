@@ -25,7 +25,7 @@ void InitOptionEmbremSelect(void *a) {
     gOptionEmbremSelect->mUnk_08 = 0;
     gOptionEmbremSelect->mStateFrames = 0;
     gOptionEmbremSelect->mUnk_24 = 1;
-    func_ov001_0219de58();
+    LocateAndQueueOptionEmbremSelect();
     for (i = 0; i < 2; i++) {
         func_02124a98(data_ov001_021a6c38[i][0], 1, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
                       gOptionEmbremSelect->mOptionEmbremSelectSBncl);
@@ -59,7 +59,7 @@ void func_ov001_0219df64(void) {
     gOptionEmbremSelect = NULL;
 }
 
-void func_ov001_0219de58(void) {
+void LocateAndQueueOptionEmbremSelect(void) {
     Ncgr *a;
     Nscr *b;
     Nclr *c;

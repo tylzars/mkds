@@ -40,7 +40,7 @@
 
 RecordTAtt *gRecordTAtt;
 
-void func_ov001_021978b4(void) {
+void LocateAndQueueRecordTAtt(void) {
     Nclr *l0 = NULL;
     Ncgr *l4 = NULL;
     Nclr *l8 = NULL;
@@ -279,7 +279,7 @@ void func_ov001_02197058(void) {
     u16 n;
     u16 m;
 
-    gRecordTAtt->mUnk_54 = 0;
+    gRecordTAtt->mNextState = 0;
     gRecordTAtt->mUnk_58 = 0;
     gRecordTAtt->mUnk_5c = -192;
     gRecordTAtt->mUnk_60 = -256;
@@ -321,24 +321,24 @@ void func_ov001_02197058(void) {
 }
 
 void func_ov001_0219703c(void) {
-    gRecordTAtt->mUnk_54 = 1;
+    gRecordTAtt->mNextState = 1;
     gRecordTAtt->mUnk_58 = 0;
     func_ov001_021972f4();
 }
 
 void func_ov001_02197024(void) {
-    gRecordTAtt->mUnk_54 = 2;
+    gRecordTAtt->mNextState = 2;
     gRecordTAtt->mUnk_58 = 0;
     gRecordTAtt->mUnk_74 = 0;
 }
 
 void func_ov001_02197010(void) {
-    gRecordTAtt->mUnk_54 = 3;
+    gRecordTAtt->mNextState = 3;
     gRecordTAtt->mUnk_58 = 0;
 }
 
 void func_ov001_02196fd8(void) {
-    gRecordTAtt->mUnk_54 = 4;
+    gRecordTAtt->mNextState = 4;
     gRecordTAtt->mUnk_58 = 0;
     switch (gRecordTAtt->mUnk_70) {
         case 0:
@@ -352,24 +352,24 @@ void func_ov001_02196fd8(void) {
 }
 
 void func_ov001_02196fc4(void) {
-    gRecordTAtt->mUnk_54 = 5;
+    gRecordTAtt->mNextState = 5;
     gRecordTAtt->mUnk_58 = 0;
 }
 
 void func_ov001_02196fb0(void) {
-    gRecordTAtt->mUnk_54 = 6;
+    gRecordTAtt->mNextState = 6;
     gRecordTAtt->mUnk_58 = 0;
 }
 
 void func_ov001_02196f80(void) {
-    gRecordTAtt->mUnk_54 = 7;
+    gRecordTAtt->mNextState = 7;
     gRecordTAtt->mUnk_58 = 0;
     gRecordTAtt->mUnk_3c[13].mUnk_00 = 1;
     func_0212ecc0(&data_0217d068, 0, 4);
 }
 
 void func_ov001_02196f64(void) {
-    gRecordTAtt->mUnk_54 = 8;
+    gRecordTAtt->mNextState = 8;
     gRecordTAtt->mUnk_58 = 0;
     func_021282c8();
 }
@@ -380,7 +380,7 @@ void func_ov001_02196ecc(void) {
     void *a;
     void *b;
 
-    gRecordTAtt->mUnk_54 = 9;
+    gRecordTAtt->mNextState = 9;
     gRecordTAtt->mUnk_58 = 0;
     buf[0] = 0;
     MemFillHalfwords(buf[0], &buf[1], 0x200);
@@ -393,20 +393,20 @@ void func_ov001_02196ecc(void) {
 }
 
 void func_ov001_02196eb0(void) {
-    gRecordTAtt->mUnk_54 = 10;
+    gRecordTAtt->mNextState = 10;
     gRecordTAtt->mUnk_58 = 0;
     func_02125ed0(0, 11);
 }
 
 void func_ov001_02196e88(void) {
-    gRecordTAtt->mUnk_54 = 11;
+    gRecordTAtt->mNextState = 11;
     gRecordTAtt->mUnk_58 = 0;
     func_02125fc0();
     func_02125ed0(0, 5);
 }
 
 void func_ov001_02196e54(void) {
-    gRecordTAtt->mUnk_54 = 12;
+    gRecordTAtt->mNextState = 12;
     gRecordTAtt->mUnk_58 = 0;
     func_02128374();
     func_ov001_021972f4();
@@ -414,7 +414,7 @@ void func_ov001_02196e54(void) {
 }
 
 void func_ov001_02196e30(void) {
-    gRecordTAtt->mUnk_54 = 13;
+    gRecordTAtt->mNextState = 13;
     gRecordTAtt->mUnk_58 = 0;
     func_0212ecc0(&data_0217d068, 0, 6);
 }
@@ -429,7 +429,7 @@ void func_ov001_02196dbc(void) {
     i = 0;
     n = 0;
     k = 0;
-    gRecordTAtt->mUnk_54 = 14;
+    gRecordTAtt->mNextState = 14;
     gRecordTAtt->mUnk_58 = i;
     func_0205fdb4(data_ov001_021a6900[gRecordTAtt->mUnk_6c], buf);
     while (n < 19) {
@@ -449,18 +449,18 @@ void func_ov001_02196dbc(void) {
 }
 
 void func_ov001_02196da8(void) {
-    gRecordTAtt->mUnk_54 = 15;
+    gRecordTAtt->mNextState = 15;
     gRecordTAtt->mUnk_58 = 0;
 }
 
 void func_ov001_02196d8c(void) {
-    gRecordTAtt->mUnk_54 = 0x10;
+    gRecordTAtt->mNextState = 0x10;
     gRecordTAtt->mUnk_58 = 0;
     func_02125fc0();
 }
 
 void func_ov001_02196d78(void) {
-    gRecordTAtt->mUnk_54 = 0x11;
+    gRecordTAtt->mNextState = 0x11;
     gRecordTAtt->mUnk_58 = 0;
 }
 
@@ -519,7 +519,7 @@ void InitRecordTAtt(void *heap) {
     (reg_G2S_DB_BG3CNT) = ((reg_G2S_DB_BG3CNT) & 0x43) | 0x5810;
     gRecordTAtt = HeapAlloc(heap, 0x94);
     gRecordTAtt->mUnk_4c = heap;
-    gRecordTAtt->mUnk_50 = 0;
+    gRecordTAtt->mState = 0;
     gRecordTAtt->mUnk_6c = 0;
     gRecordTAtt->mUnk_70 = 0;
     gRecordTAtt->mUnk_74 = 0;
@@ -528,7 +528,7 @@ void InitRecordTAtt(void *heap) {
     for (i = 0; i < 2; i++) {
         gRecordTAtt->mUnk_78[i] = 0;
     }
-    func_ov001_021978b4();
+    LocateAndQueueRecordTAtt();
     func_021172a8(heap);
     func_020ae6d4(func_02111318(), func_0211130c());
     func_02124ed0(heap, gRecordTAtt->mUnk_08, gRecordTAtt->mUnk_10, &gRecordTAtt->mUnk_38);
@@ -575,7 +575,7 @@ void func_ov001_02196904(void) {
     (reg_GXS_DB_DISPCNT) = ((reg_GXS_DB_DISPCNT) & ~0x1f00) | ((b & ~9) << 8);
 }
 
-void func_ov001_021968bc(void) {
+void AdvanceRecordTAttState0(void) {
     s16 v;
 
     gRecordTAtt->mUnk_58++;
@@ -588,7 +588,7 @@ void func_ov001_021968bc(void) {
     }
 }
 
-void func_ov001_02196724(void) {
+void AdvanceRecordTAttState1(void) {
     s32 i;
     u16 x;
     u16 y;
@@ -632,7 +632,7 @@ void func_ov001_02196724(void) {
     }
 }
 
-void func_ov001_02196514(void) {
+void AdvanceRecordTAttState2(void) {
     s32 a = -1;
     s32 b = -1;
     Unk02175628Index idx = UNK_02175628_INDEX_8;
@@ -716,7 +716,7 @@ done:
     }
 }
 
-void func_ov001_021963a8(void) {
+void AdvanceRecordTAttState3(void) {
     s32 i;
     u16 x;
     u16 y;
@@ -765,7 +765,7 @@ void func_ov001_021963a8(void) {
     }
 }
 
-void func_ov001_0219623c(void) {
+void AdvanceRecordTAttState4(void) {
     s32 i;
     u16 x;
     u16 y;
@@ -814,7 +814,7 @@ void func_ov001_0219623c(void) {
     }
 }
 
-void func_ov001_021960a4(void) {
+void AdvanceRecordTAttState5(void) {
     s32 i;
     u16 x;
     u16 y;
@@ -858,7 +858,7 @@ void func_ov001_021960a4(void) {
     }
 }
 
-void func_ov001_02196058(void) {
+void AdvanceRecordTAttState6(void) {
     s16 v;
 
     gRecordTAtt->mUnk_58++;
@@ -871,7 +871,7 @@ void func_ov001_02196058(void) {
     }
 }
 
-void func_ov001_02195ff8(void) {
+void AdvanceRecordTAttState7(void) {
     s16 v;
     u16 x;
 
@@ -887,7 +887,7 @@ void func_ov001_02195ff8(void) {
     }
 }
 
-void func_ov001_02195eb8(void) {
+void AdvanceRecordTAttState8(void) {
     s32 i;
     u16 x;
     s32 j;
@@ -922,13 +922,13 @@ void func_ov001_02195eb8(void) {
     }
 }
 
-void func_ov001_02195ea0(void) {
+void AdvanceRecordTAttState9(void) {
     if (func_02125fa4() != 0) {
         func_ov001_02196eb0();
     }
 }
 
-void func_ov001_02195e38(void) {
+void AdvanceRecordTAttState10(void) {
     if (func_02125f54() != 0) {
         if (func_02125f60() == 0) {
             if (func_02060268(data_ov001_021a6900[gRecordTAtt->mUnk_6c]) == 0) {
@@ -944,7 +944,7 @@ void func_ov001_02195e38(void) {
     }
 }
 
-void func_ov001_02195d64(void) {
+void AdvanceRecordTAttState11(void) {
     s16 v;
     u16 w;
 
@@ -973,7 +973,7 @@ void func_ov001_02195d64(void) {
     }
 }
 
-void func_ov001_02195ba4(void) {
+void AdvanceRecordTAttState12(void) {
     s32 i;
     u16 x;
     s32 j;
@@ -1025,7 +1025,7 @@ void func_ov001_02195ba4(void) {
     }
 }
 
-void func_ov001_02195a6c(void) {
+void AdvanceRecordTAttState13(void) {
     s32 i;
     u16 x;
     s32 j;
@@ -1058,7 +1058,7 @@ void func_ov001_02195a6c(void) {
     }
 }
 
-void func_ov001_02195a54(void) {
+void AdvanceRecordTAttState14(void) {
     int v1;
     v1 = func_02125fa4();
     if (v1 != 0) {
@@ -1067,7 +1067,7 @@ void func_ov001_02195a54(void) {
     return;
 }
 
-void func_ov001_021959d8(void) {
+void AdvanceRecordTAttState15(void) {
     Unk02175628Index i;
     u16 f;
     BOOL b;
@@ -1092,7 +1092,7 @@ void func_ov001_021959d8(void) {
     func_02128310(0);
 }
 
-void func_ov001_021959c0(void) {
+void AdvanceRecordTAttState16(void) {
     int v1;
     v1 = func_02125f88();
     if (v1 != 0) {
@@ -1101,7 +1101,7 @@ void func_ov001_021959c0(void) {
     return;
 }
 
-void func_ov001_02195894(void) {
+void AdvanceRecordTAttState17(void) {
     s32 i;
     s32 j;
     u16 m;
@@ -1136,61 +1136,61 @@ void func_ov001_02195894(void) {
 void AdvanceRecordTAtt(void) {
     RecordTAtt *p;
 
-    gRecordTAtt->mUnk_50 = gRecordTAtt->mUnk_54;
-    switch (gRecordTAtt->mUnk_50) {
+    gRecordTAtt->mState = gRecordTAtt->mNextState;
+    switch (gRecordTAtt->mState) {
         case 0:
-            func_ov001_021968bc();
+            AdvanceRecordTAttState0();
             break;
         case 1:
-            func_ov001_02196724();
+            AdvanceRecordTAttState1();
             break;
         case 2:
-            func_ov001_02196514();
+            AdvanceRecordTAttState2();
             break;
         case 3:
-            func_ov001_021963a8();
+            AdvanceRecordTAttState3();
             break;
         case 4:
-            func_ov001_0219623c();
+            AdvanceRecordTAttState4();
             break;
         case 5:
-            func_ov001_021960a4();
+            AdvanceRecordTAttState5();
             break;
         case 6:
-            func_ov001_02196058();
+            AdvanceRecordTAttState6();
             break;
         case 7:
-            func_ov001_02195ff8();
+            AdvanceRecordTAttState7();
             break;
         case 8:
-            func_ov001_02195eb8();
+            AdvanceRecordTAttState8();
             break;
         case 9:
-            func_ov001_02195ea0();
+            AdvanceRecordTAttState9();
             break;
         case 10:
-            func_ov001_02195e38();
+            AdvanceRecordTAttState10();
             break;
         case 11:
-            func_ov001_02195d64();
+            AdvanceRecordTAttState11();
             break;
         case 12:
-            func_ov001_02195ba4();
+            AdvanceRecordTAttState12();
             break;
         case 13:
-            func_ov001_02195a6c();
+            AdvanceRecordTAttState13();
             break;
         case 14:
-            func_ov001_02195a54();
+            AdvanceRecordTAttState14();
             break;
         case 15:
-            func_ov001_021959d8();
+            AdvanceRecordTAttState15();
             break;
         case 16:
-            func_ov001_021959c0();
+            AdvanceRecordTAttState16();
             break;
         case 17:
-            func_ov001_02195894();
+            AdvanceRecordTAttState17();
             break;
     }
     p = gRecordTAtt;

@@ -63,8 +63,8 @@ void InitWiFiAikotobaCheck(void *a) {
 
     gWiFiAikotobaCheck = HeapAlloc(a, 0x54);
     gWiFiAikotobaCheck->mUnk_2c = a;
-    gWiFiAikotobaCheck->mUnk_00 = 0;
-    gWiFiAikotobaCheck->mUnk_04 = 0;
+    gWiFiAikotobaCheck->mState = 0;
+    gWiFiAikotobaCheck->mNextState = 0;
     gWiFiAikotobaCheck->mUnk_28 = -1;
     gWiFiAikotobaCheck->mUnk_08 = 0;
     gWiFiAikotobaCheck->mUnk_4c = FindSceneFile(data_ov000_021b0fc0);
@@ -112,16 +112,16 @@ void func_ov000_021854f8(void) {
     }
 }
 
-void func_ov000_021854a8(void) {
+void AdvanceWiFiAikotobaCheckState0(void) {
     gWiFiAikotobaCheck->mUnk_08 = gWiFiAikotobaCheck->mUnk_08 + 1;
     gWiFiAikotobaCheck->mUnk_0c = func_020ae4c0(1, 0x50, 0, gWiFiAikotobaCheck->mUnk_08, 15);
     if (gWiFiAikotobaCheck->mUnk_08 >= 15 && func_02125fa4() != 0) {
-        gWiFiAikotobaCheck->mUnk_04 = 1;
+        gWiFiAikotobaCheck->mNextState = 1;
         gWiFiAikotobaCheck->mUnk_08 = 0;
     }
 }
 
-void func_ov000_02185418(void) {
+void AdvanceWiFiAikotobaCheckState1(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
     BOOL a;
     BOOL b;
@@ -142,13 +142,13 @@ void func_ov000_02185418(void) {
             return;
         }
     }
-    gWiFiAikotobaCheck->mUnk_04 = 2;
+    gWiFiAikotobaCheck->mNextState = 2;
     gWiFiAikotobaCheck->mUnk_28 = 8;
     func_02128310(0);
     func_02125fc0();
 }
 
-void func_ov000_021853c4(void) {
+void AdvanceWiFiAikotobaCheckState2(void) {
     gWiFiAikotobaCheck->mUnk_08 = gWiFiAikotobaCheck->mUnk_08 + 1;
     gWiFiAikotobaCheck->mUnk_0c = func_020ae4c0(1, 0, 0x50, gWiFiAikotobaCheck->mUnk_08, 15);
     if (gWiFiAikotobaCheck->mUnk_08 >= 15 && func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
@@ -159,16 +159,16 @@ void func_ov000_021853c4(void) {
 void AdvanceWiFiAikotobaCheck(void) {
     Unk021b4c88 *p;
 
-    gWiFiAikotobaCheck->mUnk_00 = gWiFiAikotobaCheck->mUnk_04;
-    switch (gWiFiAikotobaCheck->mUnk_00) {
+    gWiFiAikotobaCheck->mState = gWiFiAikotobaCheck->mNextState;
+    switch (gWiFiAikotobaCheck->mState) {
         case 0:
-            func_ov000_021854a8();
+            AdvanceWiFiAikotobaCheckState0();
             break;
         case 1:
-            func_ov000_02185418();
+            AdvanceWiFiAikotobaCheckState1();
             break;
         case 2:
-            func_ov000_021853c4();
+            AdvanceWiFiAikotobaCheckState2();
             break;
     }
     func_ov000_021854f8();

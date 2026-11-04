@@ -904,7 +904,7 @@ Expression shapes:
 - Spill slots in the wrong order: the declaration order of the spilled locals sets it (func_021243ac).
 - A spill slot just after the named locals and before a temporary, holding a scaled table index: it is a named local,
   `u32 e = tbl[i] << 6;`, added to `(u32) base` at each use; `(u8 *)` adds let the compiler fold `e` away
-  (func_ov000_02183858).
+  (AdvanceWiFiVSMatchingState4).
 - Out-parameter locals of an inline getter kept in stack words with their dead stores, ours in registers: cast the
   addresses at every call, `f(p, (u32 *) &x, (u32 *) &y)` (func_ov003_021c85a0).
 - A frame about 0x200 too big with a separate scratch buffer: make the buffer an array member of a local struct

@@ -95,7 +95,7 @@ void func_ov001_0219ae88(void) {
     u16 *p;
     s32 n;
 
-    gRecordTopMenu->mUnk_34 = 0;
+    gRecordTopMenu->mNextState = 0;
     gRecordTopMenu->mUnk_38 = 0;
     gRecordTopMenu->mUnk_3c = ~0xbf;
     n = gRecordTopMenu->mUnk_04->mUnk_06;
@@ -121,62 +121,62 @@ void func_ov001_0219ae88(void) {
 }
 
 void func_ov001_0219ae74(void) {
-    gRecordTopMenu->mUnk_34 = 1;
+    gRecordTopMenu->mNextState = 1;
     gRecordTopMenu->mUnk_38 = 0;
 }
 
 void func_ov001_0219ae60(void) {
-    gRecordTopMenu->mUnk_34 = 2;
+    gRecordTopMenu->mNextState = 2;
     gRecordTopMenu->mUnk_38 = 0;
 }
 
 void func_ov001_0219ae44(void) {
-    gRecordTopMenu->mUnk_34 = 3;
+    gRecordTopMenu->mNextState = 3;
     gRecordTopMenu->mUnk_38 = 0;
     func_02128374();
 }
 
 void func_ov001_0219ae30(void) {
-    gRecordTopMenu->mUnk_34 = 4;
+    gRecordTopMenu->mNextState = 4;
     gRecordTopMenu->mUnk_38 = 0;
 }
 
 void func_ov001_0219ae10(void) {
-    gRecordTopMenu->mUnk_34 = 5;
+    gRecordTopMenu->mNextState = 5;
     gRecordTopMenu->mUnk_38 = 0;
     func_0212ecc0(&data_0217d068, 0, 5);
 }
 
 void func_ov001_0219adfc(void) {
-    gRecordTopMenu->mUnk_34 = 6;
+    gRecordTopMenu->mNextState = 6;
     gRecordTopMenu->mUnk_38 = 0;
 }
 
 void func_ov001_0219ade8(void) {
-    gRecordTopMenu->mUnk_34 = 7;
+    gRecordTopMenu->mNextState = 7;
     gRecordTopMenu->mUnk_38 = 0;
 }
 
 void func_ov001_0219adbc(void) {
-    gRecordTopMenu->mUnk_34 = 8;
+    gRecordTopMenu->mNextState = 8;
     gRecordTopMenu->mUnk_38 = 0;
     func_021262f0(GetBmgEntry(gRecordTopMenu->mUnk_20, 0x76));
 }
 
 void func_ov001_0219ad98(void) {
-    gRecordTopMenu->mUnk_34 = 9;
+    gRecordTopMenu->mNextState = 9;
     gRecordTopMenu->mUnk_38 = 0;
     func_0212ecc0(&data_0217d068, 0, 0x15);
 }
 
 void func_ov001_0219ad7c(void) {
-    gRecordTopMenu->mUnk_34 = 10;
+    gRecordTopMenu->mNextState = 10;
     gRecordTopMenu->mUnk_38 = 0;
     func_02125fc0();
 }
 
 void func_ov001_0219ad68(void) {
-    gRecordTopMenu->mUnk_34 = 11;
+    gRecordTopMenu->mNextState = 11;
     gRecordTopMenu->mUnk_38 = 0;
 }
 
@@ -236,7 +236,7 @@ void InitRecordTopMenu(void *heap) {
     *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & 0x43) | 0x1018;
     gRecordTopMenu = HeapAlloc(heap, 0x48);
     gRecordTopMenu->mHeap = heap;
-    gRecordTopMenu->mUnk_30 = 0;
+    gRecordTopMenu->mState = 0;
     switch (func_0211147c()) {
         case 1:
         case 5:
@@ -317,7 +317,7 @@ void func_ov001_0219a950(void) {
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (b << 8);
 }
 
-void func_ov001_0219a938(void) {
+void AdvanceRecordTopMenuState0(void) {
     int v1;
     v1 = func_02036c5c();
     if (v1 != 0) {
@@ -326,7 +326,7 @@ void func_ov001_0219a938(void) {
     return;
 }
 
-void func_ov001_0219a80c(void) {
+void AdvanceRecordTopMenuState1(void) {
     s16 a;
     s32 i;
     s32 j;
@@ -362,7 +362,7 @@ void func_ov001_0219a80c(void) {
     }
 }
 
-void func_ov001_0219a77c(void) {
+void AdvanceRecordTopMenuState2(void) {
     s16 v;
     s32 i;
 
@@ -379,7 +379,7 @@ void func_ov001_0219a77c(void) {
     }
 }
 
-void func_ov001_0219a764(void) {
+void AdvanceRecordTopMenuState3(void) {
     int v1;
     v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
@@ -388,7 +388,7 @@ void func_ov001_0219a764(void) {
     return;
 }
 
-void func_ov001_0219a5bc(void) {
+void AdvanceRecordTopMenuState4(void) {
     Unk02175628Index i;
     u16 flags;
     BOOL b;
@@ -462,7 +462,7 @@ skip:
     }
 }
 
-void func_ov001_0219a4fc(void) {
+void AdvanceRecordTopMenuState5(void) {
     s16 v;
 
     gRecordTopMenu->mUnk_38++;
@@ -484,7 +484,7 @@ void func_ov001_0219a4fc(void) {
     }
 }
 
-void func_ov001_0219a3a0(void) {
+void AdvanceRecordTopMenuState6(void) {
     s16 a;
     s32 i;
     s32 j;
@@ -523,7 +523,7 @@ void func_ov001_0219a3a0(void) {
     }
 }
 
-void func_ov001_0219a304(void) {
+void AdvanceRecordTopMenuState7(void) {
     s16 v;
     s32 i;
 
@@ -540,7 +540,7 @@ void func_ov001_0219a304(void) {
     }
 }
 
-void func_ov001_0219a2ec(void) {
+void AdvanceRecordTopMenuState8(void) {
     int v1;
     v1 = func_02125fa4();
     if (v1 != 0) {
@@ -549,7 +549,7 @@ void func_ov001_0219a2ec(void) {
     return;
 }
 
-void func_ov001_0219a258(void) {
+void AdvanceRecordTopMenuState9(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
     u16 flags;
     BOOL b;
@@ -577,7 +577,7 @@ void func_ov001_0219a258(void) {
     func_02128310(0);
 }
 
-void func_ov001_0219a240(void) {
+void AdvanceRecordTopMenuState10(void) {
     int v1;
     v1 = func_02125f88();
     if (v1 != 0) {
@@ -586,7 +586,7 @@ void func_ov001_0219a240(void) {
     return;
 }
 
-void func_ov001_0219a1a4(void) {
+void AdvanceRecordTopMenuState11(void) {
     s32 i;
     s16 v;
     gRecordTopMenu->mUnk_38++;
@@ -604,43 +604,43 @@ void func_ov001_0219a1a4(void) {
 
 void AdvanceRecordTopMenu(void) {
     RecordTopMenu *p;
-    gRecordTopMenu->mUnk_30 = gRecordTopMenu->mUnk_34;
-    switch (gRecordTopMenu->mUnk_30) {
+    gRecordTopMenu->mState = gRecordTopMenu->mNextState;
+    switch (gRecordTopMenu->mState) {
         case 0:
-            func_ov001_0219a938();
+            AdvanceRecordTopMenuState0();
             break;
         case 1:
-            func_ov001_0219a80c();
+            AdvanceRecordTopMenuState1();
             break;
         case 2:
-            func_ov001_0219a77c();
+            AdvanceRecordTopMenuState2();
             break;
         case 3:
-            func_ov001_0219a764();
+            AdvanceRecordTopMenuState3();
             break;
         case 4:
-            func_ov001_0219a5bc();
+            AdvanceRecordTopMenuState4();
             break;
         case 5:
-            func_ov001_0219a4fc();
+            AdvanceRecordTopMenuState5();
             break;
         case 6:
-            func_ov001_0219a3a0();
+            AdvanceRecordTopMenuState6();
             break;
         case 7:
-            func_ov001_0219a304();
+            AdvanceRecordTopMenuState7();
             break;
         case 8:
-            func_ov001_0219a2ec();
+            AdvanceRecordTopMenuState8();
             break;
         case 9:
-            func_ov001_0219a258();
+            AdvanceRecordTopMenuState9();
             break;
         case 10:
-            func_ov001_0219a240();
+            AdvanceRecordTopMenuState10();
             break;
         case 11:
-            func_ov001_0219a1a4();
+            AdvanceRecordTopMenuState11();
             break;
     }
     p = gRecordTopMenu;

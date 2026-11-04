@@ -235,7 +235,7 @@ void func_ov000_021840c8(void) {
     }
 }
 
-void func_ov000_0218401c(void) {
+void AdvanceWiFiVSMatchingState0(void) {
     gWiFiVSMatching->mUnk_08 = gWiFiVSMatching->mUnk_08 + 1;
     gWiFiVSMatching->mUnk_08 = gWiFiVSMatching->mUnk_08 + 1;
     gWiFiVSMatching->mUnk_10 = func_020ae4c0(1, 0x100, 0, gWiFiVSMatching->mUnk_08, 10);
@@ -258,7 +258,7 @@ void func_ov000_0218401c(void) {
     }
 }
 
-void func_ov000_02183b80(void) {
+void AdvanceWiFiVSMatchingState1(void) {
     Unk02175628Index idx = UNK_02175628_INDEX_8;
     BOOL a;
     BOOL b;
@@ -421,7 +421,7 @@ void func_ov000_02183b80(void) {
     gWiFiVSMatching->mUnk_38 = sh;
 }
 
-void func_ov000_02183a0c(void) {
+void AdvanceWiFiVSMatchingState2(void) {
     s32 t = gWiFiVSMatching->mUnk_08;
     u16 x = (t << 16) / 0x14;
     s32 y = ((0x13 - t) * 0xf33) / 0x14 + 0xcd;
@@ -458,7 +458,7 @@ void func_ov000_02183a0c(void) {
     }
 }
 
-void func_ov000_021839d0(void) {
+void AdvanceWiFiVSMatchingState3(void) {
     gWiFiVSMatching->mUnk_08 = gWiFiVSMatching->mUnk_08 + 1;
     if (gWiFiVSMatching->mUnk_08 >= 0x28) {
         gWiFiVSMatching->mNextState = 4;
@@ -478,7 +478,7 @@ u8 data_ov000_021b0d04[40] = {
     0x82, 0x7d, 0x78, 0x73, 0x6e, 0x69, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64,
 };
 
-void func_ov000_02183858(void) {
+void AdvanceWiFiVSMatchingState4(void) {
     s32 orig;
     s32 i1;
     s32 i2;
@@ -532,7 +532,7 @@ void func_ov000_02183858(void) {
     }
 }
 
-void func_ov000_0218381c(void) {
+void AdvanceWiFiVSMatchingState5(void) {
     gWiFiVSMatching->mUnk_08 = gWiFiVSMatching->mUnk_08 + 1;
     if (gWiFiVSMatching->mUnk_08 >= 0x50) {
         gWiFiVSMatching->mNextState = 4;
@@ -541,7 +541,7 @@ void func_ov000_0218381c(void) {
     }
 }
 
-void func_ov000_021837b8(void) {
+void AdvanceWiFiVSMatchingState8(void) {
     gWiFiVSMatching->mUnk_08 = gWiFiVSMatching->mUnk_08 + 1;
     // mUnk_30 is 1 to 3 here and indexes the table from 1.
     if (gWiFiVSMatching->mUnk_08 >= (data_ov000_021b0680 - 1)[gWiFiVSMatching->mUnk_30]) {
@@ -556,7 +556,7 @@ void func_ov000_021837b8(void) {
     }
 }
 
-void func_ov000_021836f4(void) {
+void AdvanceWiFiVSMatchingState9(void) {
     BOOL a;
     BOOL b;
     u16 v;
@@ -591,7 +591,7 @@ void func_ov000_021836f4(void) {
     }
 }
 
-void func_ov000_02183674(void) {
+void AdvanceWiFiVSMatchingState10(void) {
     gWiFiVSMatching->mUnk_08 = gWiFiVSMatching->mUnk_08 + 1;
     gWiFiVSMatching->mUnk_10 = func_020ae4c0(1, 0, 0x100, gWiFiVSMatching->mUnk_08, 10);
     if (gWiFiVSMatching->mUnk_08 >= 10) {
@@ -608,7 +608,7 @@ void func_ov000_02183674(void) {
     }
 }
 
-void func_ov000_0218364c(void) {
+void AdvanceWiFiVSMatchingState11(void) {
     if (func_02036d08() != 0) {
         if (func_02125f88() != 0) {
             RequestWiFiState(gWiFiVSMatching->mUnk_20);
@@ -676,34 +676,34 @@ void AdvanceWiFiVSMatching(void) {
     gWiFiVSMatching->mState = gWiFiVSMatching->mNextState;
     switch (gWiFiVSMatching->mState) {
         case 0:
-            func_ov000_0218401c();
+            AdvanceWiFiVSMatchingState0();
             break;
         case 1:
-            func_ov000_02183b80();
+            AdvanceWiFiVSMatchingState1();
             break;
         case 2:
-            func_ov000_02183a0c();
+            AdvanceWiFiVSMatchingState2();
             break;
         case 3:
-            func_ov000_021839d0();
+            AdvanceWiFiVSMatchingState3();
             break;
         case 4:
-            func_ov000_02183858();
+            AdvanceWiFiVSMatchingState4();
             break;
         case 5:
-            func_ov000_0218381c();
+            AdvanceWiFiVSMatchingState5();
             break;
         case 8:
-            func_ov000_021837b8();
+            AdvanceWiFiVSMatchingState8();
             break;
         case 9:
-            func_ov000_021836f4();
+            AdvanceWiFiVSMatchingState9();
             break;
         case 10:
-            func_ov000_02183674();
+            AdvanceWiFiVSMatchingState10();
             break;
         case 11:
-            func_ov000_0218364c();
+            AdvanceWiFiVSMatchingState11();
             break;
     }
     func_ov000_02183548();

@@ -172,7 +172,7 @@ void func_ov000_02182de8(void) {
     func_02126638(v1, 0, 0, 1, 0, 0, 0);
 }
 
-void func_ov000_02182d74(void) {
+void AdvanceWiFiVSSettingState0(void) {
     if (func_02036d08() != 0) {
         func_02037288(10);
     }
@@ -190,7 +190,7 @@ void func_ov000_02182d74(void) {
     }
 }
 
-void func_ov000_02182d28(void) {
+void AdvanceWiFiVSSettingState1(void) {
     int v1;
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
     v1 = func_02125fa4();
@@ -206,7 +206,7 @@ void func_ov000_02182d28(void) {
     return;
 }
 
-void func_ov000_02182cb8(void) {
+void AdvanceWiFiVSSettingState2(void) {
     s32 v;
     s32 i;
 
@@ -226,7 +226,7 @@ void func_ov000_02182cb8(void) {
     }
 }
 
-void func_ov000_02182c60(void) {
+void AdvanceWiFiVSSettingState3(void) {
     s16 v;
 
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
@@ -242,7 +242,7 @@ void func_ov000_02182c60(void) {
     }
 }
 
-void func_ov000_021828e4(void) {
+void AdvanceWiFiVSSettingState4(void) {
     s32 v1 = gWiFiVSSetting->mUnk_08;
     s32 prevSettingIndex = gWiFiVSSetting->mSettingIndex;
     Unk02175628Index i = UNK_02175628_INDEX_8;
@@ -368,7 +368,7 @@ end:
     }
 }
 
-void func_ov000_02182878(void) {
+void AdvanceWiFiVSSettingState5(void) {
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
     if (gWiFiVSSetting->mStateFrames >= 10) {
         gWiFiVSSetting->mNextState = 6;
@@ -386,7 +386,7 @@ void func_ov000_02182878(void) {
     }
 }
 
-void func_ov000_02182688(void) {
+void AdvanceWiFiVSSettingState6(void) {
     s32 v;
     s16 u;
     s32 i;
@@ -452,7 +452,7 @@ void func_ov000_02182688(void) {
     }
 }
 
-void func_ov000_021825b8(void) {
+void AdvanceWiFiVSSettingState7(void) {
     Unk02175628Index v1 = UNK_02175628_INDEX_8;
     BOOL a;
     BOOL b;
@@ -491,7 +491,7 @@ void func_ov000_021825b8(void) {
     }
 }
 
-void func_ov000_021824e8(void) {
+void AdvanceWiFiVSSettingState8(void) {
     Unk02175628Index v1 = UNK_02175628_INDEX_8;
     BOOL a;
     BOOL b;
@@ -530,7 +530,7 @@ void func_ov000_021824e8(void) {
     }
 }
 
-void func_ov000_02182474(void) {
+void AdvanceWiFiVSSettingState9(void) {
     if (func_02125f54() != 0) {
         func_02125fc0();
         return;
@@ -547,7 +547,7 @@ void func_ov000_02182474(void) {
     }
 }
 
-void func_ov000_021823e4(void) {
+void AdvanceWiFiVSSettingState10(void) {
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
     if (func_02125fa4() != 0 && gWiFiVSSetting->mUnk_34 == 0) {
         gWiFiVSSetting->mUnk_34 = 1;
@@ -564,7 +564,7 @@ void func_ov000_021823e4(void) {
     }
 }
 
-void func_ov000_021823b0(void) {
+void AdvanceWiFiVSSettingState11(void) {
     int v1;
     v1 = func_02125f54();
     if (v1 != 0) {
@@ -649,40 +649,40 @@ void AdvanceWiFiVSSetting(void) {
     gWiFiVSSetting->mState = gWiFiVSSetting->mNextState;
     switch (gWiFiVSSetting->mState) {
         case 0:
-            func_ov000_02182d74();
+            AdvanceWiFiVSSettingState0();
             break;
         case 1:
-            func_ov000_02182d28();
+            AdvanceWiFiVSSettingState1();
             break;
         case 2:
-            func_ov000_02182cb8();
+            AdvanceWiFiVSSettingState2();
             break;
         case 3:
-            func_ov000_02182c60();
+            AdvanceWiFiVSSettingState3();
             break;
         case 4:
-            func_ov000_021828e4();
+            AdvanceWiFiVSSettingState4();
             break;
         case 5:
-            func_ov000_02182878();
+            AdvanceWiFiVSSettingState5();
             break;
         case 6:
-            func_ov000_02182688();
+            AdvanceWiFiVSSettingState6();
             break;
         case 7:
-            func_ov000_021825b8();
+            AdvanceWiFiVSSettingState7();
             break;
         case 8:
-            func_ov000_021824e8();
+            AdvanceWiFiVSSettingState8();
             break;
         case 9:
-            func_ov000_02182474();
+            AdvanceWiFiVSSettingState9();
             break;
         case 10:
-            func_ov000_021823e4();
+            AdvanceWiFiVSSettingState10();
             break;
         case 11:
-            func_ov000_021823b0();
+            AdvanceWiFiVSSettingState11();
             break;
     }
     func_0212b80c();

@@ -33,7 +33,7 @@
 
 RecordGpx *gRecordGpx;
 
-void func_ov001_021953d0(void) {
+void LocateAndQueueRecordGpx(void) {
     Nclr *l0 = NULL;
     Ncgr *l4 = NULL;
     Nclr *l8 = NULL;
@@ -411,7 +411,7 @@ void InitRecordGpx(void *heap) {
     for (i = 0; i < 2; i++) {
         gRecordGpx->mOffsetTimers[i] = 0;
     }
-    func_ov001_021953d0();
+    LocateAndQueueRecordGpx();
     func_021172a8(heap);
     func_0211dfb4((u32) heap);
     p = func_02111318();

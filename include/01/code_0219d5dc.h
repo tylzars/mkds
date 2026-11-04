@@ -50,7 +50,7 @@ void AdvanceOptionEmbremSelectState2(void);
 void AdvanceOptionEmbremSelectState1(void);
 void AdvanceOptionEmbremSelectState0(void);
 BOOL func_ov001_0219de38(void);
-void func_ov001_0219de58(void);
+void LocateAndQueueOptionEmbremSelect(void);
 void func_ov001_0219df64(void);
 void InitOptionEmbremSelect(void *a);
 
