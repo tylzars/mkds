@@ -10,8 +10,8 @@ u32 func_020099cc(void) {
     return data_0216fda8->mUnk_008;
 }
 
-u32 func_020099c0(void) {
-    return ((u32) data_0216fda8->mUnk_00c);
+u16 func_020099c0(void) {
+    return data_0216fda8->mUnk_00c;
 }
 
 #pragma thumb off

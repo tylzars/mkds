@@ -83,7 +83,7 @@ extern u8 data_ov003_021d8c7c[0x10];
 extern u8 data_ov003_021d8ca4[];
 extern char data_ov003_021d8ce4[];
 extern u8 data_ov003_021d8cac[];
-extern u8 data_ov003_021d8eb0[0x254];
+extern u32 data_ov003_021d8eb0[0x95];
 extern Unk021d8fb0 data_ov003_021d8fb0;
 extern u8 data_ov003_021d9014[];
 extern Unk021d90ac data_ov003_021d90ac;

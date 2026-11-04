@@ -205,14 +205,14 @@ void func_020e1e98(Unk020e1e98 *a);
 void func_020e1e38(Unk020e1dc0 *a, void *b, void (*c)(Unk020e3ef4 *, void *, u32));
 void func_020e1dec(Unk020e3ef4 *a, void *b, u32 c);
 void func_020e1dc0(Unk020e1dc0 *a, void *b);
-s32 func_020e1d10(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *e, Unk020e0764 *f, Vec3 *g, u16 *h, Vec3 *i,
+s32 func_020e1d10(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *e, Unk020e0764 *f, Vec3 *g, u16 *h, Vec3 *i,
                   u16 *j);
 void func_020e1a80(s32 a, s32 b, s32 c, u32 d, u16 e, u16 *f, s32 v, Unk020e005c *w, Vec3 *g, Vec3 *h, Unk020e0764 *i,
                    Unk020e0764 *j, Vec3 *k, Vec3 *l, u16 *m);
 BOOL func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 i, s32 j, Unk020e005c *w, Vec3 *l,
                    Vec3 *m, Vec3 *n, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, Vec3 *r, u16 *s);
-s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
+s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
                   u16 *s);
-s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
+s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
                   u16 *s);
 void func_020e0680(Unk020e005c *a, Vec3 *b, Vec3 *c, Vec3 *d, u16 *e);

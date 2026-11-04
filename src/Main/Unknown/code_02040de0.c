@@ -10,31 +10,32 @@
 #include "code_02147288.h"
 #include "code_02147cd8.h"
 
-// non-matching: the original saves two more registers (r10, r11) and has an 8-byte larger frame; it computes the
-// products of the second and third components before the first sum and the loop index is kept as a pointer step, here
-// the order of the multiplies and the loop registers differ
 void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
     Unk02175620_34 *q = NULL;
+    Unk02175620_34 *p;
     s32 i;
     u16 x;
     u16 y;
     u16 z;
+    Unk02012f58 r;
     Unk02012f58 m1;
     Unk02012f58 m2;
     Unk02012f58 m3;
-    Unk02012f58 r;
-    s64 h;
-    s64 k;
-    s64 l;
-    s64 n;
+    s32 x0;
+    s32 y0;
+    s32 z0;
+    s32 x2;
+    s32 y2;
+    s32 z2;
 
     if (gCourseMap->mUnk_018->mUnk_04 != 0) {
         d = 0x1000 - d;
     }
     if (gCourseMap->mUnk_020 > 1) {
         for (i = 0; i < gCourseMap->mUnk_020; i++) {
-            if (c == (s16) ((Unk02175620_34 *) gCourseMap->mUnk_01c)[i].mUnk_1a) {
-                q = &((Unk02175620_34 *) gCourseMap->mUnk_01c)[i];
+            p = &((Unk02175620_34 *) gCourseMap->mUnk_01c)[i];
+            if (c == (s16) p->mUnk_1a) {
+                q = p;
                 break;
             }
         }
@@ -49,14 +50,15 @@ void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
     Matrix4x3FromPairZ((s32 *) &m3, data_0215d4b4[(z >> 4) * 2], data_0215d4b4[(z >> 4) * 2 + 1]);
     Matrix4x3Multiply(&m1, &m3, &r);
     Matrix4x3Multiply(&m2, &r, &r);
-    h = (s64) -r.mUnk_00[0].z * d;
-    k = (s64) -r.mUnk_00[0].y * d;
-    l = (s64) -r.mUnk_00[2].y * e;
-    n = (s64) -r.mUnk_00[2].z * e;
-    a->x = q->mUnk_00.x + (s32) (((s64) -r.mUnk_00[0].x * d + 0x800) >> 12) +
-           (s32) (((s64) -r.mUnk_00[2].x * e + 0x800) >> 12);
-    a->y = q->mUnk_00.y + (s32) ((k + 0x800) >> 12) + (s32) ((l + 0x800) >> 12);
-    a->z = q->mUnk_00.z + (s32) ((h + 0x800) >> 12) + (s32) ((n + 0x800) >> 12);
+    x0 = -r.mUnk_00[0].x;
+    y0 = -r.mUnk_00[0].y;
+    z0 = -r.mUnk_00[0].z;
+    x2 = -r.mUnk_00[2].x;
+    y2 = -r.mUnk_00[2].y;
+    z2 = -r.mUnk_00[2].z;
+    a->x = q->mUnk_00.x + (s32) (((s64) x0 * d + 0x800) >> 12) + (s32) (((s64) x2 * e + 0x800) >> 12);
+    a->y = q->mUnk_00.y + (s32) (((s64) y0 * d + 0x800) >> 12) + (s32) (((s64) y2 * e + 0x800) >> 12);
+    a->z = q->mUnk_00.z + (s32) (((s64) z0 * d + 0x800) >> 12) + (s32) (((s64) z2 * e + 0x800) >> 12);
     b->x = q->mUnk_0c.x;
     b->y = q->mUnk_0c.y;
     b->z = q->mUnk_0c.z;

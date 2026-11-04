@@ -207,7 +207,7 @@ void func_02104368(void) {
         func_0212c6f0((Unk0212c400 **) func_02108e6c(6), 1);
         return;
     }
-    p = data_0217c64c != 0 ? (Unk0210340c *) data_0217c664 : (Unk0210340c *) data_0217c684;
+    p = data_0217c64c != 0 ? &data_0217c664 : &data_0217c684;
     p->mUnk_04 = p->mUnk_04 & ~0x1f0000;
     p->mUnk_04 = p->mUnk_04 | (h << 16);
 }
@@ -259,7 +259,7 @@ void func_02104144(Unk0210340c *p) {
 }
 
 void func_02104118(void) {
-    func_02104144(data_0217c64c != 0 ? (Unk0210340c *) data_0217c664 : (Unk0210340c *) data_0217c684);
+    func_02104144(data_0217c64c != 0 ? &data_0217c664 : &data_0217c684);
 }
 
 u8 func_02104000(s32 a, s32 b) {
@@ -292,7 +292,7 @@ u8 func_02104000(s32 a, s32 b) {
     return x;
 }
 
-void func_02103db0(s32 v1, volatile s32 param_2, s32 param_3) {
+void func_02103db0(s32 v1, Unk021035ac_Pair param_2, s32 param_3) {
     Unk0217561c *b;
     Unk020f41c4_B *a;
     Unk021035ac *e;
@@ -337,26 +337,21 @@ void func_02103db0(s32 v1, volatile s32 param_2, s32 param_3) {
         f0 = q[i][0];
         q[i][0] = (s * f0 - c * f1) >> 12;
         q[i][1] = (c * f0 + s * f1) >> 12;
-        *(u32 *) &e->mUnk_00[(u32) i] = param_2;
+        *(Unk021035ac_Pair *) e->mUnk_00[(u32) i] = param_2;
     }
-    *(u32 *) &e->mUnk_20 = param_2;
+    *(Unk021035ac_Pair *) e->mUnk_20 = param_2;
     e->mUnk_24 = (void *) func_0210449c;
     e->mUnk_30 = -1;
     e->mUnk_28 = 0;
 }
 
-// non-matching: 0x4c4 bytes against 0x4b0. The scalings are `((u64) ... * 0x1000) >> 32` (`>> 20` gives lsr/orr, the
-// original has lsl/orr). Left: the original reads the low word of a->mUnk_00 once for the scaling and the next random
-// step (here again after the halfword store), and the u64 multiply-add temporaries are in other registers.
 void func_02103900(s32 v1, s32 n, s32 v2) {
-    volatile s16 a8;
-    volatile s16 a10;
+    Unk021035ac_Pair v;
     s32 i;
     s32 j;
     s32 m;
     s32 t8;
     s32 t10;
-    Unk0210340c *p;
     Unk020f41c4_B *a;
 
     a = &data_0217561c->mUnk_498;
@@ -377,38 +372,37 @@ void func_02103900(s32 v1, s32 n, s32 v2) {
     for (i = 0; i < 8; i++) {
         data_0217c65c[i] = 0;
     }
-    j = 0;
     m = 1;
-    for (i = 0; i < 0x10 && j < n; i++) {
+    for (i = 0, j = 0; i < 0x10 && j < n; i++) {
         if (data_0217c64c != 0) {
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-            a8 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x1000) >> 32) * 2;
+            v.mHalf.mUnk_00 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x1000) >> 32) * 2;
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-            a10 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xc00) >> 32) * 2;
+            v.mHalf.mUnk_02 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xc00) >> 32) * 2;
         } else if (*(s32 *) data_0217c658 == 0) {
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-            a8 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x1000) >> 32);
+            v.mHalf.mUnk_00 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x1000) >> 32);
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-            a8 = a8 + (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x1000) >> 32);
+            v.mHalf.mUnk_00 = v.mHalf.mUnk_00 + (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x1000) >> 32);
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-            a10 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xc00) >> 32);
+            v.mHalf.mUnk_02 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xc00) >> 32);
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-            a10 = a10 + (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xc00) >> 32);
+            v.mHalf.mUnk_02 = v.mHalf.mUnk_02 + (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xc00) >> 32);
         } else {
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-            a8 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x2000) >> 32);
+            v.mHalf.mUnk_00 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x2000) >> 32);
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-            a10 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x1800) >> 32);
+            v.mHalf.mUnk_02 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x1800) >> 32);
         }
-        t8 = a8 >> 10;
-        t10 = a10 >> 10;
+        t8 = v.mHalf.mUnk_00 >> 10;
+        t10 = v.mHalf.mUnk_02 >> 10;
         if (t10 >= 3 || t8 < 3 || t8 > 4) {
             if ((data_0217c65c[t10] & (m << t8)) == 0) {
                 s32 r = func_02104000(t8, t10);
 
-                a8 = a8 - 0x1000;
-                a10 = a10 - 0x600;
-                func_02103db0(j, *(s32 *) &a8, r);
+                v.mHalf.mUnk_00 -= 0x1000;
+                v.mHalf.mUnk_02 -= 0x600;
+                func_02103db0(j, v, r);
                 j++;
             }
         }
@@ -417,17 +411,15 @@ void func_02103900(s32 v1, s32 n, s32 v2) {
     *(u32 *) data_0217c650 = 0;
     data_0217c640 = 0x1f;
     if (data_0217c64c != 0) {
-        p = (Unk0210340c *) data_0217c664;
-        p->mUnk_04 = p->mUnk_04 & ~0x1f0000;
-        p->mUnk_04 = p->mUnk_04 | 0x1f0000;
         *(u32 *) data_0217c644 = 0x96;
         *(u32 *) data_0217c648 = 0x1e;
+        data_0217c664.mUnk_04 &= ~0x1f0000;
+        data_0217c664.mUnk_04 |= 0x1f0000;
     } else {
-        p = (Unk0210340c *) data_0217c684;
-        p->mUnk_04 = p->mUnk_04 & ~0x1f0000;
-        p->mUnk_04 = p->mUnk_04 | 0x1f0000;
         *(u32 *) data_0217c644 = 0x184;
         *(u32 *) data_0217c648 = 0x2d;
+        data_0217c684.mUnk_04 &= ~0x1f0000;
+        data_0217c684.mUnk_04 |= 0x1f0000;
     }
 }
 

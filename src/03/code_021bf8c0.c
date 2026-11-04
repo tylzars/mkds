@@ -1,5 +1,6 @@
 #include "03/code_021bf4dc.h"
 #include "03/code_021bf8c0.h"
+#include "03/code_021c105c.h"
 #include "03/code_021bf000.h"
 #include "03/code_021bf810.h"
 #include "03/code_021c0000.h"
@@ -372,41 +373,36 @@ void func_ov003_021c00ec(int param_1) {
     func_ov003_021c0050(0x30, b);
 }
 
-// non-matching: size 0x1b8 against 0x1c4. The original spills the product of the parameter by 12 and the pointer to the
-// first row length to stack offsets 20 and 28 and steps pointers through the halfword table; the compiled code keeps
-// them in registers.
 void func_ov003_021c0154(u32 param_1, s32 param_2, u32 param_3) {
-    u8 a[5] = {12, 12, 12, 11, 0};
-    u8 c[5] = {1, 1, 1, 1, 0};
-    u8 d[5] = {0, 0, 0, 0, 2};
-    s32 b;
+    u8 a[5];
+    u8 c[5];
+    u8 d[5];
     s32 i;
+    s32 j;
     s32 k;
     Unk021bf920 *p;
-    b = param_2 * 12;
-    if (a[param_2] > 0) {
-        for (i = 0; i < a[param_2]; i++) {
-            p = data_ov003_021da15c->mUnk_030[b + i];
-            p->mUnk_00 = p->mUnk_00 & 0xc1fffcff;
-            p = data_ov003_021da15c->mUnk_030[b + i];
-            p->mUnk_00 =
-                ((data_ov003_021d5fb0[b + i][0] & 0x1ff) << 16) | ((p->mUnk_00 & 0xfe00ff00) | (param_3 & 0xff));
-        }
+    *(Unk021c1364_05 *) a = *(Unk021c1364_05 *) data_ov003_021d6bcc;
+    *(Unk021c1364_05 *) c = *(Unk021c1364_05 *) data_ov003_021d6bd4;
+    *(Unk021c1364_05 *) d = *(Unk021c1364_05 *) data_ov003_021d6bc4;
+    j = param_2 * 12;
+    for (i = 0; i < a[(u32) param_2]; i++, j++) {
+        p = data_ov003_021da15c->mUnk_030[j];
+        p->mUnk_00 = p->mUnk_00 & 0xc1fffcff;
+        p = data_ov003_021da15c->mUnk_030[j];
+        p->mUnk_00 = ((data_ov003_021d5fb0[j][0] & 0x1ff) << 16) | ((p->mUnk_00 & 0xfe00ff00) | (param_3 & 0xff));
     }
     if (param_2 < 4) {
-        func_ov003_021d1ffc(data_ov003_021da15c->mUnk_000[param_1][param_2], data_ov003_021d5fb0[b][0], param_3,
-                            data_ov003_021da15c->mUnk_104[param_2], 2);
+        func_ov003_021d1ffc(data_ov003_021da15c->mUnk_000[param_1][param_2], data_ov003_021d5fb0[param_2 * 12][0],
+                            param_3, data_ov003_021da15c->mUnk_104[param_2], 2);
     }
     k = Div32Remainder(param_2 + 3, 4);
-    if (c[param_2] > 0) {
-        for (i = 0; i < c[param_2]; i++) {
-            p = data_ov003_021da15c->mUnk_0ec[k];
-            p->mUnk_00 = p->mUnk_00 & 0xc1fffcff;
-            p = data_ov003_021da15c->mUnk_0ec[k];
-            p->mUnk_00 = ((data_ov003_021d5f90[k][0] & 0x1ff) << 16) | ((p->mUnk_00 & 0xfe00ff00) | (param_3 & 0xff));
-        }
+    for (i = 0; i < c[(u32) param_2]; i++) {
+        p = data_ov003_021da15c->mUnk_0ec[k];
+        p->mUnk_00 = p->mUnk_00 & 0xc1fffcff;
+        p = data_ov003_021da15c->mUnk_0ec[k];
+        p->mUnk_00 = ((data_ov003_021d5f90[k][0] & 0x1ff) << 16) | ((p->mUnk_00 & 0xfe00ff00) | (param_3 & 0xff));
     }
-    for (i = 0; i < d[param_2]; i++) {
+    for (i = 0; i < d[(u32) param_2]; i++) {
         func_ov003_021d18f0(data_ov003_021da15c->mUnk_0fc[i], -1, 0, 0);
         func_ov003_021d17d4(data_ov003_021da15c->mUnk_0fc[i], -1, data_ov003_021d5f88[i][0], param_3);
     }

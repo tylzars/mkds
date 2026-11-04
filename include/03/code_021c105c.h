@@ -32,13 +32,6 @@ typedef struct Unk021c1364_05 {
     /* 0 */ u8 mUnk_00[5];
 } Unk021c1364_05;
 
-// Stack object of func_ov003_021c1364.
-typedef struct Unk021c1364 {
-    /* 00 */ Unk021c1364_05 mUnk_00;
-    /* 05 */ Unk021c1364_05 mUnk_05;
-    /* 0a */ Unk021c1364_05 mUnk_0a;
-} Unk021c1364;
-
 void func_ov003_021c105c(Unk021d34e0 *param_1);
 void func_ov003_021c10a8(Unk021d34e0 *param_1);
 void func_ov003_021c10f4(Unk021d34e0 *param_1);

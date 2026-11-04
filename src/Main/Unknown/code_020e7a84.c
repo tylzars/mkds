@@ -23,9 +23,6 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-// non-matching: same instructions and data references. The data_0217b878 store comes after the products here (zero reg
-// reused after the call; the original stores it right after data_0217b9c0.z, but writing it before the `if` scores
-// lower) and data_0217b9a8.z stays in r5 where the original keeps it in lr, so the umull pair is lr/ip there
 void func_020e8790(void) {
     Unk020e6514 *p;
     s32 t;
@@ -55,6 +52,7 @@ void func_020e8790(void) {
     data_0217b9cc[2] = &data_0217bb34;
     data_0217b9cc[3] = &data_0217bb40;
     func_020d7d18(&data_0217bb88.mUnk_00, 0, data_0217b9cc, 0x1ec);
+    data_0217b878 = 0;
     t = (s32) (((s64) data_0217b9a8.z * data_0215f4b4[1]) >> 12) -
         (s32) (((s64) data_0217b9a8.x * data_0215f4b4[0]) >> 12);
     data_0217b8b4 = 0x8000;
@@ -62,30 +60,29 @@ void func_020e8790(void) {
     if (t > 0) {
         data_0217b9c0.z = t * 3;
     }
-    data_0217b878 = 0;
     data_0217b9c0.x = (s32) (((s64) data_0217b9a8.z * data_0215f4b4[0]) >> 12) +
                       (s32) (((s64) data_0217b9a8.x * data_0215f4b4[1]) >> 12);
     data_0217b9c0.y = data_0217b9a8.y;
     Vec3MultiplyMatrix4x3(&data_0217b9c0, &data_0217bab8, &data_0217b9c0);
     data_0217b90c = data_0217b9c0;
     data_0217b918 = data_0217b90c;
-    data_0217b924.x = 0;
-    data_0217b924.y = 0;
-    data_0217b924.z = 0;
-    data_0217b9b4.x = 0;
-    data_0217b8b8 = 0;
-    data_0217b9b4.y = 0;
-    data_0217b9b4.z = 0;
-    data_0217b8cc = 0;
-    data_0217b870 = 0;
-    data_0217b88c = 0;
-    data_0217b8ec = 0;
-    data_0217b8f0 = 1;
-    data_0217b8bc = 1;
     data_0217b93c = data_0217b918;
     data_0217b99c = data_0217b93c;
     data_0217b930 = data_0217b99c;
+    data_0217b9b4.x = 0;
+    data_0217b9b4.y = 0;
+    data_0217b9b4.z = 0;
+    data_0217b924.x = 0;
+    data_0217b870 = 0;
+    data_0217b924.y = 0;
+    data_0217b924.z = 0;
+    data_0217b8b8 = 0;
+    data_0217b88c = 0;
+    data_0217b8cc = 0;
     data_0217b948 = data_0217b930;
+    data_0217b8ec = 0;
+    data_0217b8f0 = 1;
+    data_0217b8bc = 1;
     data_0217b894 = 0;
 }
 

@@ -407,19 +407,19 @@ void func_020d58c0(void) {
     } while (j < 0x100);
 }
 
-// non-matching: 4 instructions larger (0x374 against 0x364): the registers of the slot pointer, the loop variable and
-// the two search positions differ from +0x8
 s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
-    s32 i;
     Unk0217b5b8 *e;
-    s32 hi;
-    s32 lo;
+    s16 hi;
+    s16 lo;
+    s32 i;
     s32 p;
     s32 q;
     s32 s;
-    s32 m;
     s32 t;
     s32 j;
+    s32 m;
+    Unk0217b5b4 *f;
+    Unk0217b5b4 *u;
 
     if (data_0217b5b0 >= 0x100) {
         return -1;
@@ -433,8 +433,8 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
     e->mUnk_10 = b;
     e->mUnk_14 = c;
     e->mUnk_18 = d;
-    hi = ((a->x + b) << 5) >> 16;
-    lo = ((a->x - b) << 5) >> 16;
+    hi = (a->x + b) >> 11;
+    lo = (a->x - b) >> 11;
     if (data_0217b5b0 == 0) {
         data_0217b5b4[0].mUnk_00 = 0;
         data_0217b5b4[0].mUnk_01 = 0;
@@ -449,8 +449,8 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
     }
     p = 0;
     q = 0;
-    m = data_0217b5b0;
     s = data_0217b5b0;
+    m = data_0217b5b0;
     for (;;) {
         t = p + s;
         j = q + s;
@@ -474,12 +474,14 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
     m = data_0217b5b0;
     if (m > p) {
         do {
-            data_0217b5b4[m] = data_0217b5b4[m - 1];
-            data_0217b5c0[data_0217b5b4[m].mUnk_00].mUnk_00 += 1;
-            data_0217b5b8[data_0217b5c0[data_0217b5b4[m].mUnk_00].mUnk_01].mUnk_00 += 1;
+            f = &data_0217b5b4[m];
+            *f = data_0217b5b4[m - 1];
+            u = &data_0217b5c0[f->mUnk_00];
+            u->mUnk_00 += 1;
+            data_0217b5b8[u->mUnk_01].mUnk_00 += 1;
             m--;
-            if (data_0217b5b4[m + 1].mUnk_01 >= q) {
-                data_0217b5b4[m + 1].mUnk_01 += 1;
+            if (f->mUnk_01 >= q) {
+                f->mUnk_01 += 1;
             }
         } while (m > p);
     }
@@ -496,9 +498,10 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
     m = data_0217b5b0;
     if (m > q) {
         do {
-            data_0217b5c0[m] = data_0217b5c0[m - 1];
-            data_0217b5b4[data_0217b5c0[m].mUnk_00].mUnk_00 += 1;
-            data_0217b5b8[data_0217b5c0[m].mUnk_01].mUnk_02 += 1;
+            f = &data_0217b5c0[m];
+            *f = data_0217b5c0[m - 1];
+            data_0217b5b4[f->mUnk_00].mUnk_00 += 1;
+            data_0217b5b8[f->mUnk_01].mUnk_02 += 1;
             m--;
         } while (m > q);
     }
@@ -509,34 +512,35 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
     return i;
 }
 
-// non-matching: 106 words differ from +0x30: the original keeps the slot pointer in a stack slot and the loop variables
-// in other registers; the compiled code keeps everything in registers
 u32 func_020d5344(s32 a) {
     Unk0217b5b8 *e;
     s32 s;
     s32 t;
     s32 k;
     s32 j;
-    u32 v;
+    s32 v;
     Unk0217b5b4 *q;
+    Unk0217b5b4 *c;
 
     if (a < 0 || a >= 0x100) {
         return -1;
     }
     e = &data_0217b5b8[a];
     s = e->mUnk_00;
+    t = e->mUnk_02;
     if (e->mUnk_0c == NULL) {
         return -1;
     }
-    t = e->mUnk_02;
     k = s;
     if (k < data_0217b5b0 - 1) {
         do {
-            data_0217b5b4[k] = data_0217b5b4[k + 1];
-            data_0217b5c0[data_0217b5b4[k].mUnk_00].mUnk_00 -= 1;
-            data_0217b5b8[data_0217b5c0[data_0217b5b4[k].mUnk_00].mUnk_01].mUnk_00 -= 1;
-            if (data_0217b5b4[k].mUnk_01 > t) {
-                data_0217b5b4[k].mUnk_01 -= 1;
+            q = &data_0217b5b4[k];
+            *q = data_0217b5b4[k + 1];
+            c = &data_0217b5c0[q->mUnk_00];
+            c->mUnk_00 -= 1;
+            data_0217b5b8[c->mUnk_01].mUnk_00 -= 1;
+            if (q->mUnk_01 > t) {
+                q->mUnk_01 -= 1;
             }
             k++;
         } while (k < data_0217b5b0 - 1);
@@ -544,18 +548,19 @@ u32 func_020d5344(s32 a) {
     k = t;
     if (k < data_0217b5b0 - 1) {
         do {
-            data_0217b5c0[k] = data_0217b5c0[k + 1];
-            data_0217b5b4[data_0217b5c0[k].mUnk_00].mUnk_00 -= 1;
-            data_0217b5b8[data_0217b5c0[k].mUnk_01].mUnk_02 -= 1;
-            v = data_0217b5c0[k].mUnk_00;
+            q = &data_0217b5c0[k];
+            *q = data_0217b5c0[k + 1];
+            data_0217b5b4[q->mUnk_00].mUnk_00 -= 1;
+            data_0217b5b8[q->mUnk_01].mUnk_02 -= 1;
+            v = q->mUnk_00;
             if (v < s) {
-                q = &data_0217b5b4[v];
-                j = q->mUnk_01;
+                c = &data_0217b5b4[v];
+                j = c->mUnk_01;
                 if (j == t) {
-                    while (data_0217b5c0[j].mUnk_00 < v) {
+                    while (data_0217b5c0[j].mUnk_00 < (u32) v) {
                         j++;
                     }
-                    q->mUnk_01 = j;
+                    c->mUnk_01 = j;
                 }
             }
             k++;

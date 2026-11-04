@@ -59,7 +59,16 @@ from:0x01ff92ac kind:load to:0x021731e4 module:main
 from:0x01ff92bc kind:arm_call to:0x01ff9234 module:itcm
 from:0x01ff92dc kind:load to:0x021731e4 module:main
 from:0x01ff92fc kind:load to:0x021731e4 module:main
+from:0x01ff9300 kind:load to:0x01ff9828 module:itcm
+from:0x01ff9304 kind:load to:0x01ff974c module:itcm
+from:0x01ff9308 kind:load to:0x01ff96cc module:itcm
+from:0x01ff930c kind:load to:0x01ff9684 module:itcm
+from:0x01ff9310 kind:load to:0x01ff9598 module:itcm
+from:0x01ff9314 kind:load to:0x01ff94d4 module:itcm
+from:0x01ff9318 kind:load to:0x01ff9490 module:itcm
+from:0x01ff931c kind:load to:0x01ff946c module:itcm
 from:0x01ff9450 kind:arm_call to:0x01ff9048 module:itcm
+from:0x01ff9468 kind:load to:0x01ff9300 module:itcm
 from:0x01ff94fc kind:arm_call to:0x02147d88 module:main
 from:0x01ff9510 kind:arm_call to:0x02147e28 module:main
 from:0x01ff9530 kind:arm_call to:0x02147d88 module:main

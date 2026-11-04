@@ -33,18 +33,15 @@ s32 func_ov003_021bdd1c(s32 v1, const Unk021bdcd8 *v2, const u8 *param_2, const 
     return a;
 }
 
-// non-matching: 98.5: size 0x2e8 against 0x2ec. The original keeps a second loop counter that nothing reads (g and h
-// both incremented in their stack slots) and steps three pointers (name, record, the six-byte value) where this has
-// four (mUnk_2e uses its own g pointer; indexing it with h gives three, but g still goes: dead-store pass drops g).
 s32 func_ov003_021bdd3c(void) {
     s32 a;
     s32 b;
+    s32 h;
+    s32 g;
     BOOL c;
     s32 d;
     u32 e;
     u32 f;
-    s32 g;
-    s32 h;
     Unk021bdd3c *j;
     Unk021bdd3c *k;
     Unk021d8c2c *l;
@@ -132,18 +129,18 @@ s32 func_ov003_021bdd3c(void) {
         if (data_ov003_021d8be0 != 0) {
             break;
         }
+        g = 0;
         if (a >= data_ov003_021d8c40) {
             a = -6;
             goto end;
         }
-        g = 0;
         h = 0;
         l = data_ov003_021d8c2c;
         if (a > 0) {
             do {
                 memcpy(j->mUnk_04[g].mUnk_04, l->mUnk_0c, 0x20);
-                j->mUnk_04[h].mUnk_00 = l->mUnk_0a;
-                j->mUnk_04[h].mUnk_04[l->mUnk_0a] = 0;
+                j->mUnk_04[g].mUnk_00 = l->mUnk_0a;
+                j->mUnk_04[g].mUnk_04[l->mUnk_0a] = 0;
                 j->mUnk_04[g].mUnk_2e = (l->mUnk_2c & 0x10) ? 1 : 0;
                 s = (u8 *) &l->mUnk_04;
                 t = (u8 *) &j->mUnk_04[g].mUnk_28;
@@ -159,20 +156,23 @@ s32 func_ov003_021bdd3c(void) {
             } while (h < a);
         }
         j->mUnk_00 = a;
-        if (data_ov003_021d8c08 != 1 && func_ov003_021be028(j, k, &i) != 0) {
-            m = &j->mUnk_04[i];
-            data_ov003_021d8be8 = i;
-            strcpy(data_ov003_021d8ce4, m->mUnk_04);
-            t = (u8 *) &data_ov003_021d8c5c;
-            s = (u8 *) &m->mUnk_28;
-            t[0] = s[0];
-            t[1] = s[1];
-            t[2] = s[2];
-            t[3] = s[3];
-            t[4] = s[4];
-            t[5] = s[5];
-            func_ov003_021bb29c(o, (const s8 *) &data_ov003_021d8c5c);
-            break;
+        if (data_ov003_021d8c08 != 1) {
+            g = func_ov003_021be028(j, k, &i);
+            if (g != 0) {
+                m = &j->mUnk_04[i];
+                data_ov003_021d8be8 = i;
+                strcpy(data_ov003_021d8ce4, m->mUnk_04);
+                t = (u8 *) &data_ov003_021d8c5c;
+                s = (u8 *) &m->mUnk_28;
+                t[0] = s[0];
+                t[1] = s[1];
+                t[2] = s[2];
+                t[3] = s[3];
+                t[4] = s[4];
+                t[5] = s[5];
+                func_ov003_021bb29c(o, (const s8 *) &data_ov003_021d8c5c);
+                break;
+            }
         }
         memcpy(k, j, e);
         data_ov003_021d8c08 = 2;

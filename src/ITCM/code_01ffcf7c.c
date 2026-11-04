@@ -320,12 +320,9 @@ void func_01ffd900(s32 a, s32 b) {
     }
 }
 
-// non-matching: original spills the outer loop counter of the first sort to the stack (sub sp, 4; str/ldr [sp]) and
-// keeps it in r3 in the second, with another register order; size 0x360 against 0x374
 void func_01ffdb70(void) {
     s32 i = 0;
     s32 k = 0;
-    s32 m;
     s32 n;
     s32 t;
     Unk0217b5b8 *e;
@@ -336,7 +333,8 @@ void func_01ffdb70(void) {
     Unk0217b5b4 *y;
     u32 w;
     Unk0217b5b4 *v1;
-    Unk0217b5b4 *v2;
+    Unk0217b5b4 *pa;
+    Unk0217b5b4 *pb;
     if (data_0217b5b0 > 0) {
         do {
             e = &data_0217b5b8[i];
@@ -363,60 +361,52 @@ void func_01ffdb70(void) {
         } while (k < data_0217b5b0);
     }
     for (i = 1; i < data_0217b5b0; i++) {
-        m = i;
-        while (1) {
-            x = &data_0217b5b4[m];
-            y = &data_0217b5b4[m - 1];
-            if (!(y->mUnk_02 > x->mUnk_02 && m >= 1)) {
-                break;
-            }
+        k = i;
+        while ((x = &data_0217b5b4[k], y = &data_0217b5b4[k - 1], y->mUnk_02 > x->mUnk_02) && k >= 1) {
             w = *(u32 *) x;
             *(u32 *) x = *(u32 *) y;
             *(u32 *) y = w;
             v1 = data_0217b5c0;
-            v1[x->mUnk_00].mUnk_00++;
-            v1[y->mUnk_00].mUnk_00--;
-            data_0217b5b8[v1[x->mUnk_00].mUnk_01].mUnk_00++;
-            data_0217b5b8[v1[y->mUnk_00].mUnk_01].mUnk_00--;
+            pa = &v1[x->mUnk_00];
+            pb = &v1[y->mUnk_00];
+            pa->mUnk_00++;
+            pb->mUnk_00--;
+            data_0217b5b8[pa->mUnk_01].mUnk_00++;
+            data_0217b5b8[pb->mUnk_01].mUnk_00--;
             if (x->mUnk_01 == y->mUnk_00) {
                 t = x->mUnk_01;
                 do {
                     t++;
-                } while (data_0217b5c0[t].mUnk_00 < m);
+                } while (data_0217b5c0[t].mUnk_00 < k);
                 x->mUnk_01 = t;
             }
             if (y->mUnk_01 > x->mUnk_00) {
                 y->mUnk_01 = x->mUnk_00;
             }
-            m--;
+            k--;
         }
     }
     for (i = 1; i < data_0217b5b0; i++) {
-        m = i;
-        while (1) {
-            x = &data_0217b5c0[m];
-            y = &data_0217b5c0[m - 1];
-            if (!(y->mUnk_02 > x->mUnk_02 && m >= 1)) {
-                break;
-            }
+        k = i;
+        while ((x = &data_0217b5c0[k], y = &data_0217b5c0[k - 1], y->mUnk_02 > x->mUnk_02) && k >= 1) {
             w = *(u32 *) x;
             *(u32 *) x = *(u32 *) y;
             *(u32 *) y = w;
-            v2 = data_0217b5b4;
-            v2[x->mUnk_00].mUnk_00++;
-            v2[y->mUnk_00].mUnk_00--;
+            data_0217b5b4[x->mUnk_00].mUnk_00++;
+            data_0217b5b4[y->mUnk_00].mUnk_00--;
             data_0217b5b8[x->mUnk_01].mUnk_02++;
             data_0217b5b8[y->mUnk_01].mUnk_02--;
             if (x->mUnk_00 > y->mUnk_00) {
-                for (n = x->mUnk_00; n > y->mUnk_00 && data_0217b5b4[n].mUnk_01 == m - 1; n--) {
+                for (n = x->mUnk_00; n > y->mUnk_00 && data_0217b5b4[n].mUnk_01 == k - 1; n--) {
                     data_0217b5b4[n].mUnk_01++;
                 }
             } else {
-                for (n = y->mUnk_00; n > x->mUnk_00 && data_0217b5b4[n].mUnk_01 == m; n--) {
-                    data_0217b5b4[n].mUnk_01--;
+                n = y->mUnk_00;
+                while (n > x->mUnk_00 && data_0217b5b4[n].mUnk_01 == k) {
+                    data_0217b5b4[n--].mUnk_01--;
                 }
             }
-            m--;
+            k--;
         }
     }
 }

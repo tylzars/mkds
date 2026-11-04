@@ -2,6 +2,15 @@
 
 #include "types.h"
 
+// Two halfwords passed and stored as one value (rows of Unk021035ac, func_02103db0's second argument).
+typedef union {
+    u32 mWord;
+    struct {
+        /* 00 */ s16 mUnk_00;
+        /* 02 */ s16 mUnk_02;
+    } mHalf;
+} Unk021035ac_Pair;
+
 // Row of the 0x34-byte table addressed by data_0217c654.
 typedef struct {
     /* 00 */ s16 mUnk_00[4][2];

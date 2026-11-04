@@ -133,36 +133,38 @@ void func_ov003_021c12cc(int param_1, int param_2) {
     func_ov003_021d1890(data_ov003_021da160->mUnk_40[param_1 - 12], -1, 0, data_ov003_021d6214[param_2]);
 }
 
-// non-matching: loop address registers are computed per iteration instead of stepped, size 0x1a8 against 0x1ac
 void func_ov003_021c1364(int param_1, u32 param_2) {
-    Unk021c1364 s;
+    u8 a[5];
+    u8 c[5];
+    u8 d[5];
     BOOL b;
     int i;
+    int j;
     Unk021bf920 *p;
-    s.mUnk_00 = *(Unk021c1364_05 *) data_ov003_021d6dc8;
-    s.mUnk_05 = *(Unk021c1364_05 *) data_ov003_021d6dd0;
-    s.mUnk_0a = *(Unk021c1364_05 *) data_ov003_021d6dc0;
-    for (i = 0; i < s.mUnk_00.mUnk_00[param_1]; i++) {
-        p = data_ov003_021da160->mUnk_10[param_1 * 3 + i];
+    *(Unk021c1364_05 *) a = *(Unk021c1364_05 *) data_ov003_021d6dc8;
+    *(Unk021c1364_05 *) c = *(Unk021c1364_05 *) data_ov003_021d6dd0;
+    *(Unk021c1364_05 *) d = *(Unk021c1364_05 *) data_ov003_021d6dc0;
+    j = param_1 * 3;
+    for (i = 0; i < a[(u32) param_1]; i++, j++) {
+        p = data_ov003_021da160->mUnk_10[j];
         p->mUnk_00 = p->mUnk_00 & 0xc1fffcff;
-        p = data_ov003_021da160->mUnk_10[param_1 * 3 + i];
-        p->mUnk_00 =
-            ((data_ov003_021d6274[(param_1 * 3 + i) * 2] & 0x1ff) << 16) | (p->mUnk_00 & 0xfe00ff00) | (param_2 & 0xff);
+        p = data_ov003_021da160->mUnk_10[j];
+        p->mUnk_00 = ((data_ov003_021d6274[j][0] & 0x1ff) << 16) | ((p->mUnk_00 & 0xfe00ff00) | (param_2 & 0xff));
     }
     if (param_1 < 4) {
-        func_ov003_021d1ffc(data_ov003_021da160->mUnk_00[param_1], data_ov003_021d6274[param_1 * 3 * 2], param_2,
+        func_ov003_021d1ffc(data_ov003_021da160->mUnk_00[param_1], data_ov003_021d6274[param_1 * 3][0], param_2,
                             data_ov003_021da160->mUnk_48[param_1], 2);
     }
-    for (i = 0; i < s.mUnk_05.mUnk_00[param_1]; i++) {
+    for (i = 0; i < c[(u32) param_1]; i++) {
         p = data_ov003_021da160->mUnk_38[i];
         p->mUnk_00 = p->mUnk_00 & 0xc1fffcff;
         p = data_ov003_021da160->mUnk_38[i];
-        p->mUnk_00 = ((data_ov003_021d623c[i * 2] & 0x1ff) << 16) | (p->mUnk_00 & 0xfe00ff00) | (param_2 & 0xff);
+        p->mUnk_00 = ((data_ov003_021d623c[i][0] & 0x1ff) << 16) | ((p->mUnk_00 & 0xfe00ff00) | (param_2 & 0xff));
     }
     b = FALSE;
-    for (i = 0; i < s.mUnk_0a.mUnk_00[param_1]; i++) {
+    for (i = 0; i < d[(u32) param_1]; i++) {
         func_ov003_021d18f0(data_ov003_021da160->mUnk_40[i], -1, b, b);
-        func_ov003_021d17d4(data_ov003_021da160->mUnk_40[i], -1, data_ov003_021d6244[i * 2], param_2);
+        func_ov003_021d17d4(data_ov003_021da160->mUnk_40[i], -1, data_ov003_021d6244[i][0], param_2);
     }
 }
 

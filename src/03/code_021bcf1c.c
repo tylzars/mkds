@@ -15,9 +15,6 @@
 #include "code_02139f70.h"
 #include "03/code_021be264.h"
 
-// non-matching: the original keeps the tick base (m) at stack offset 0x40 and the address of data_ov003_021d8bec in r6,
-// with the receive buffer address reloaded from the constant words; ours keeps m and the buffer address in registers,
-// so the frame is 0x5c bytes against 0x64 and the code is 0x410 bytes against 0x41c
 s32 func_ov003_021bcf1c(void) {
     u32 m;
     s32 b;
@@ -139,7 +136,7 @@ s32 func_ov003_021bcf1c(void) {
                     data_ov003_021d8c04 =
                         func_ov003_021bd938(data_ov003_021d9904, 5, data_ov003_021d9104, data_ov003_021d8ca4);
                     if (data_ov003_021d8c04 != 0 && func_ov003_021bd59c(data_ov003_021d9104) != 0) {
-                        if (data_ov003_021d8fb0.mUnk_00[0] != 0) {
+                        if (*(s8 *) data_ov003_021d8fb0.mUnk_00 != 0) {
                             data_ov003_021d8bd0 = 1;
                         } else {
                             data_ov003_021d8bd0 = 0;
@@ -348,7 +345,7 @@ s32 func_ov003_021bd59c(u8 *p) {
                 u8 *i;
                 g = func_ov003_021b7c44_inline(*(u16 *) f);
                 h = 0;
-                i = data_ov003_021d8eb0;
+                i = (u8 *) data_ov003_021d8eb0;
                 for (; h < 4; h++) {
                     *(u32 *) (i + 0x15c) = g;
                     i += 0x28;
@@ -360,7 +357,7 @@ s32 func_ov003_021bd59c(u8 *p) {
                 s32 h;
                 g = func_ov003_021b7c44_inline(*(u16 *) f);
                 h = 0;
-                l = data_ov003_021d8eb0;
+                l = (u8 *) data_ov003_021d8eb0;
                 for (; h < 4; h++) {
                     *(u32 *) (l + 0x160) = g;
                     l += 0x28;

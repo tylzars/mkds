@@ -8,19 +8,17 @@
 
 #pragma thumb on
 
-// non-matching: 4 words differ; the original keeps the address of data_0216fda8 in r3 and the loaded pointer in r0,
-// ours has them the other way round (same instructions, same size)
 u32 func_02009c34(void) {
-    Unk0216fda8 **p;
     u32 v1;
     u32 v2;
     v1 = 1;
     v2 = IrqDisable();
-    p = (Unk0216fda8 **) &data_0216fda8;
-    if ((*p)->mUnk_526 == 0) {
+    if (data_0216fda8->mUnk_526 == 0) {
         v1 = 0;
-        (*p)->mUnk_5e4 = v1;
-        (*p)->mUnk_526 = 1;
+        // the address of mUnk_5e4 is computed with a 64-bit add; its low half is the same address, and the leftover
+        // flag-setting add (removed after register allocation) is what gives the original's registers
+        *(u32 *) ((u32) data_0216fda8 + 0x5e4LL) = v1;
+        data_0216fda8->mUnk_526 = 1;
         if (func_0200b018() != 0) {
             func_0200aeb4(func_02009c90);
         } else {

@@ -7,7 +7,7 @@
 void func_02103890(int idx);
 void func_021038f0(u32 param_1, u32 param_2);
 void func_02103900(s32 idx, s32 n, s32 flag);
-void func_02103db0(s32 idx, volatile s32 param_2, s32 param_3);
+void func_02103db0(s32 idx, Unk021035ac_Pair param_2, s32 param_3);
 u8 func_02104000(s32 a, s32 b);
 void func_02104118(void);
 void func_02104144(Unk0210340c *p);

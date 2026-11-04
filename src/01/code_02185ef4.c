@@ -627,8 +627,8 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
     pos.y = b->mUnk_000.mPos.y + 0x14000;
     pos.z = b->mUnk_000.mPos.z;
     b->mUnk_2c8 = 0;
-    if (func_01ffdee4(&pos, NULL, 0, 0x14000, b->mUnk_2b8 == 1 ? 4 : 1, -2, &v44, &v50, &v5c, &b->mUnk_2c8, NULL, NULL,
-                      NULL, NULL)) {
+    if (func_01ffdee4(&pos, NULL, 0, 0x14000, b->mUnk_2b8 == 1 ? (u16) 4 : (u16) 1, -2, &v44, &v50, &v5c, &b->mUnk_2c8,
+                      NULL, NULL, NULL, NULL)) {
         if (b->mUnk_2b8 == 2 || b->mUnk_2b8 == 3) {
             b->mUnk_000.mPos.y += v44.y;
         } else {

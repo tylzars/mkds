@@ -167,7 +167,7 @@ void func_02103554(const char *a) {
 
     func_020e6488((Unk020e6488 **) &v, FindCourseMapObjFile(a), 0, 0);
     func_020e6ab8((Unk020e6488 *) v);
-    func_0210340c((Unk0210340c *) data_0217c664, (Unk020e6488 *) v);
+    func_0210340c(&data_0217c664, (Unk020e6488 *) v);
 }
 
 void func_02103544(u32 a, u32 b) {
@@ -185,7 +185,7 @@ void func_02103468(void) {
     data_0217c64c = 0;
     func_0212c6f0((Unk0212c400 **) func_02108e6c(6), 1);
     q = func_020ed4d0(data_0216c7b4, NULL, data_0216c7c4);
-    func_0210340c((Unk0210340c *) data_0217c684, q);
+    func_0210340c(&data_0217c684, q);
     data_0217c63c = func_020d3c2c();
     for (i = 0; i < 3; i++) {
         func_020d3c2c();

@@ -1,16 +1,27 @@
 #include "ITCM/code_01ff9320.h"
 #include "ITCM/code_01ff8000.h"
+#include "ITCM/code_01ff9598.h"
 #include "code_02010c84.h"
 #include "code_02147cd8.h"
 
 #pragma opt_arithtransformation off
 
-// non-matching: 2 words: the table address 0x1ff9300 is loaded into ip (original r0). The original reads the table of
-// eight function pointers at 0x01ff9300 (func_01ff9828 down to func_01ff946c) by its symbol; an extern array of
-// Unk01ff9320_Fn matches, but the config has no symbol or relocations for it yet.
+// The table below is initialized data kept in .text ahead of the code (the original has it at 0x01ff9300, right
+// before func_01ff9320); 1.2 puts initialized non-const data in the section a `#pragma section` names.
+#pragma define_section ITCM ".text"                                                                                    \
+                            ".bss" abs32 RWX
+#pragma section ITCM begin
+
+Unk01ff9320_Fn data_01ff9300[8] = {
+    (Unk01ff9320_Fn) func_01ff9828, (Unk01ff9320_Fn) func_01ff974c, (Unk01ff9320_Fn) func_01ff96cc,
+    (Unk01ff9320_Fn) func_01ff9684, (Unk01ff9320_Fn) func_01ff9598, (Unk01ff9320_Fn) func_01ff94d4,
+    (Unk01ff9320_Fn) func_01ff9490, (Unk01ff9320_Fn) func_01ff946c,
+};
+
+#pragma section ITCM end
+
 void func_01ff9320(Unk0201290c_1c *p) {
     Unk01ff9320_buf b;
-    enum { K0 = 0x1ff9300 } t = K0;
 
     if (p->mUnk_00 & 8) {
         b.mUnk_00 = 0x101610;
@@ -29,7 +40,7 @@ void func_01ff9320(Unk0201290c_1c *p) {
     b.mUnk_08[3] = 0;
     b.mUnk_08[2] = 0;
     b.mUnk_08[15] = 0x1000;
-    ((Unk01ff9320_Fn *) t)[p->mUnk_00 & 7](b.mUnk_08, p);
+    data_01ff9300[p->mUnk_00 & 7](b.mUnk_08, p);
     if (p->mUnk_30 != 0x1000) {
         b.mUnk_08[0] = ((s64) p->mUnk_30 * b.mUnk_08[0]) >> 12;
         b.mUnk_08[1] = ((s64) p->mUnk_30 * b.mUnk_08[1]) >> 12;

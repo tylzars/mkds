@@ -70,9 +70,10 @@ int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
     return e;
 }
 
-// non-matching: the original spills p (offset 0x2c) and gives r4 to a byte swap term, here p stays in r4 and that
-// term is spilled; size 0x210 against 0x20c. The (u32) cast keeps i * 8 recomputed each pass as
-// in the original, but is not proven to be the original spelling
+typedef struct Unk021bccd0_block {
+    /* 0 */ u8 mUnk_00[8];
+} Unk021bccd0_block;
+
 BOOL func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
     u8 a[16];
     u64 b;
@@ -85,7 +86,6 @@ BOOL func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int
     s64 t;
     u8 *p;
     u8 *q;
-    u8 *r;
     enum { K0 } k;
 
     d[0] = 0xa6a6a6a6;
@@ -108,12 +108,7 @@ BOOL func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int
     for (h = 0; h < 6; h++) {
         for (i = 1; i <= f; i++) {
             p = param_1 + (u32) i * 8;
-            r = p;
-            q = a + 8;
-            k = 8;
-            do {
-                *q++ = *r++;
-            } while (--k != 0);
+            *(Unk021bccd0_block *) (a + 8) = *(Unk021bccd0_block *) p;
             func_ov003_021bc1c4(c, g, a, a);
             t = (s64) f * (s32) h + (s32) i;
             b = ((((u64) t & 0x00000000000000ffULL) << 56) | (((u64) t & 0x000000000000ff00ULL) << 40) |
@@ -121,18 +116,10 @@ BOOL func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int
                  (((u64) t & 0x000000ff00000000ULL) >> 8) | (((u64) t & 0x0000ff0000000000ULL) >> 24) |
                  (((u64) t & 0x00ff000000000000ULL) >> 40) | (((u64) t & 0xff00000000000000ULL) >> 56));
             func_ov003_021bca90(a, (u8 *) &b, a);
-            r = a + 8;
-            k = 8;
-            do {
-                *p++ = *r++;
-            } while (--k != 0);
+            *(Unk021bccd0_block *) p = *(Unk021bccd0_block *) (a + 8);
         }
     }
-    q = a;
-    k = 8;
-    do {
-        *param_1++ = *q++;
-    } while (--k != 0);
+    *(Unk021bccd0_block *) param_1 = *(Unk021bccd0_block *) a;
     return TRUE;
 }
 

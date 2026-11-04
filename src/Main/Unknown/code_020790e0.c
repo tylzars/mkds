@@ -254,20 +254,20 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
     func_02087f84(a->mUnk_00c, 0);
 }
 
-// non-matching: the original spills the loop counter (stack offset 0xc) and keeps the remainder flag in r6; ours does
-// the opposite, so it is 0x170 bytes against 0x160
 void func_02079678(void *a, s32 b) {
     BOOL v6;
-    s32 v4;
     Unk0206bcb0_590 *e;
+    s32 v4;
     u16 j;
     BOOL f;
     s32 g;
+    u16 i;
     s32 p;
     s32 q;
     s32 r;
     s32 s;
-    u16 i;
+    Vec3 *dst;
+    Vec3 *src;
     if (b != 0) {
         p = 0;
         q = 7;
@@ -279,48 +279,46 @@ void func_02079678(void *a, s32 b) {
         r = 0x15;
         s = 0x25;
     }
-    for (i = 0; i < gKartModels->mUnk_008; i++) {
-        if (b == 0) {
-            g = 1;
-        } else {
-            g = i;
-        }
-        e = &gKartModels->mUnk_000[i];
-        v4 = func_020799a0(i);
-        if ((u16) e->mUnk_004 % 3 == 0) {
-            v6 = TRUE;
-        } else {
-            v6 = FALSE;
-        }
-        if (v6 != FALSE && g != 0) {
-            f = TRUE;
-        } else {
-            f = FALSE;
-        }
-        if (e->mUnk_000 >= p && e->mUnk_000 < q) {
-            CreateCharacter(e, a, v4);
-        }
-        if (f == FALSE) {
-            if ((v6 != FALSE && b == 0) || (e->mUnk_004 >= r && e->mUnk_004 < s)) {
-                CreateKart(e, a, v4);
+    i = 0;
+    if (i < gKartModels->mUnk_008) {
+        g = (b == 0) ? 1 : i;
+        do {
+            e = &gKartModels->mUnk_000[i];
+            v4 = func_020799a0(i);
+            if ((u16) e->mUnk_004 % 3 == 0) {
+                v6 = TRUE;
+            } else {
+                v6 = FALSE;
             }
-        }
-        if (b != 0) {
-            if (v4 != 0) {
-                j = 0;
-                e->mUnk_054 = HeapAlloc(a, 0x30);
-                do {
-                    e->mUnk_054->mUnk_v[j].x = e->mUnk_020->mUnk_14[j].x >> 4;
-                    e->mUnk_054->mUnk_v[j].y = e->mUnk_020->mUnk_14[j].y >> 4;
-                    e->mUnk_054->mUnk_v[j].z = e->mUnk_020->mUnk_14[j].z >> 4;
-                    j++;
-                } while (j < 4);
-                e->mUnk_054->mUnk_v[1].x = DivFixed12(-e->mUnk_054->mUnk_v[0].x * 2, e->mUnk_020->mUnk_10);
-                e->mUnk_054->mUnk_v[3].x = -e->mUnk_054->mUnk_v[2].x * 2;
-                CreateTire(e, a);
+            f = (v6 != FALSE && g != 0) ? TRUE : FALSE;
+            if (e->mUnk_000 >= p && e->mUnk_000 < q) {
+                CreateCharacter(e, a, v4);
             }
-            CreateKartShadow(e, a);
-        }
+            if (f == FALSE) {
+                if ((v6 != FALSE && b != 0) || (e->mUnk_004 >= r && e->mUnk_004 < s)) {
+                    CreateKart(e, a, v4);
+                }
+            }
+            if (b != 0) {
+                if (v4 != 0) {
+                    j = 0;
+                    e->mUnk_054 = HeapAlloc(a, 0x30);
+                    do {
+                        dst = &e->mUnk_054->mUnk_v[j];
+                        src = &e->mUnk_020->mUnk_14[j];
+                        dst->x = src->x >> 4;
+                        dst->y = src->y >> 4;
+                        dst->z = src->z >> 4;
+                        j++;
+                    } while (j < 4);
+                    e->mUnk_054->mUnk_v[1].x = DivFixed12(-e->mUnk_054->mUnk_v[0].x * 2, e->mUnk_020->mUnk_10);
+                    e->mUnk_054->mUnk_v[3].x = -e->mUnk_054->mUnk_v[2].x * 2;
+                    CreateTire(e, a);
+                }
+                CreateKartShadow(e, a);
+            }
+            i++;
+        } while (i < gKartModels->mUnk_008);
     }
 }
 

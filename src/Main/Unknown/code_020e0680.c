@@ -556,7 +556,7 @@ void func_020e1dc0(Unk020e1dc0 *a, void *b) {
     }
 }
 
-s32 func_020e1d10(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *e, Unk020e0764 *f, Vec3 *g, u16 *h, Vec3 *i,
+s32 func_020e1d10(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *e, Unk020e0764 *f, Vec3 *g, u16 *h, Vec3 *i,
                   u16 *j) {
     switch (a->mUnk_134) {
         case 0:
@@ -764,10 +764,7 @@ BOOL func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 
     return TRUE;
 }
 
-// non-matching: the original keeps n & 0x8 at stack offset 0x4c, so v, w and tmp sit 4 bytes higher; the three
-// "-((x + c) + f)" sums add f as the second operand; d is passed to func_020e16dc through lsl/lsr #16 (its parameter
-// is u16; a u32 parameter removes that here but makes func_020e16dc worse), and some loads are scheduled differently
-s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
+s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
                   u16 *s) {
     Vec3 v;
     Vec3 w;
@@ -785,6 +782,7 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *o, Unk020e
     BOOL u;
     BOOL e;
     BOOL h;
+    BOOL y;
     s32 t;
 
     n = 0;
@@ -857,18 +855,18 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *o, Unk020e
             if (n & 0x8) {
                 f4 = (a->mUnk_108 + c) - f4;
             } else {
-                f4 = -((a->mUnk_10c + c) + f4);
+                f4 = -(a->mUnk_10c + c) - f4;
             }
             if (n & 0x1) {
                 if (n & 0x800) {
                     k6 = (a->mUnk_100 + c) - f6;
                 } else {
-                    k6 = -((a->mUnk_100 + c) + f6);
+                    k6 = -(a->mUnk_100 + c) - f6;
                 }
                 if (n & 0x80) {
                     k5 = (a->mUnk_104 + c) - f5;
                 } else {
-                    k5 = -((a->mUnk_104 + c) + f5);
+                    k5 = -(a->mUnk_104 + c) - f5;
                 }
                 m6 = k6 > 0 ? k6 : -k6;
                 m5 = k5 > 0 ? k5 : -k5;
@@ -881,7 +879,7 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *o, Unk020e
         if (n & 0x80) {
             k5 = (a->mUnk_104 + c) - f5;
         } else {
-            k5 = -((a->mUnk_104 + c) + f5);
+            k5 = -(a->mUnk_104 + c) - f5;
         }
         if (!(n & 0x1)) {
             goto call_80_8;
@@ -892,7 +890,7 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *o, Unk020e
     if (n & 0x800) {
         k6 = (a->mUnk_100 + c) - f6;
     } else {
-        k6 = -((a->mUnk_100 + c) + f6);
+        k6 = -(a->mUnk_100 + c) - f6;
     }
     if (n & 0x10) {
         if (!(n & 0x1)) {
@@ -952,15 +950,15 @@ call_80_8:
     return func_020e16dc(c, f5, f4, n, 0x80, 0x8, g, d, a->mUnk_114.x, a->mUnk_114.y, a, b, &a->mUnk_034, &a->mUnk_040,
                          o, p, q, r, s);
 call_8_800:
-    if (n & 0x800) {
-        f6 = f6 - a->mUnk_100;
-    } else {
-        f6 = f6 + a->mUnk_100;
-    }
     if (n & 0x8) {
         f4 = f4 - a->mUnk_108;
     } else {
         f4 = f4 + a->mUnk_10c;
+    }
+    if (n & 0x800) {
+        f6 = f6 - a->mUnk_100;
+    } else {
+        f6 = f6 + a->mUnk_100;
     }
     return func_020e16dc(c, f4, f6, n, 8, 0x800, g, d, a->mUnk_114.y, a->mUnk_110, a, b, &a->mUnk_040, &a->mUnk_028, o,
                          p, q, r, s);
@@ -968,6 +966,7 @@ rest:
     u = FALSE;
     if ((d & 0x60) == 0) {
         e = TRUE;
+        y = TRUE;
         h = FALSE;
         if (a->mUnk_110 != 0) {
             t = (n & 0x800) ? a->mUnk_028.y : -a->mUnk_028.y;
@@ -984,10 +983,10 @@ rest:
                 }
             }
             if (h == FALSE) {
-                e = FALSE;
+                y = FALSE;
             }
         }
-        if (e != FALSE) {
+        if (y == FALSE) {
             k5 = 0;
             if (a->mUnk_114.y != 0) {
                 t = (n & 0x8) ? a->mUnk_040.y : -a->mUnk_040.y;
@@ -1044,7 +1043,7 @@ rest:
         v.y >>= 10;
         v.z >>= 10;
         Vec3Sub(&tmp, &v, &tmp);
-        t = Vec3Length(&tmp);
+        c = Vec3Length(&tmp);
     } else {
         w = a->mUnk_034;
         tmp.x = (s32) (((s64) w.x * c) >> 12);
@@ -1063,8 +1062,8 @@ rest:
         *g = 8;
         x = p;
     }
-    if (t >= x->mUnk_18) {
-        x->mUnk_18 = t;
+    if (c >= x->mUnk_18) {
+        x->mUnk_18 = c;
         x->mUnk_1c = w;
     }
     tmp.x <<= 10;
@@ -1099,8 +1098,8 @@ rest:
     return 1;
 }
 
-// non-matching: code 0x43c vs 0x448.
-s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u32 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
+// non-matching: code 0x434 vs 0x448.
+s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
                   u16 *s) {
     Vec3 v;
     s32 d0;

@@ -1044,7 +1044,6 @@ void func_020ef1cc(Unk020eda5c *p) {
     }
 }
 
-// non-matching: registers differ (a=r10 vs r9, the 0x1800 accumulator spilled vs r5, stack 0x6c vs 0x64)
 void func_020eecdc(Unk020eda5c *a) {
     Unk020ee684 *c;
     Unk020f41c4_A **q;
@@ -1054,10 +1053,8 @@ void func_020eecdc(Unk020eda5c *a) {
     s32 s14;
     s32 k70;
     s32 f;
-    s32 k267;
-    s32 k2;
     s32 d;
-    s64 f2;
+    s32 e;
     s32 s;
     Vec3 v40;
     Vec3 v4c;
@@ -1066,7 +1063,6 @@ void func_020eecdc(Unk020eda5c *a) {
     s32 i;
     s32 x;
     Vec3 *t;
-    s32 d0;
     Unk020f41c4_A *b;
     Unk020eda5c *p;
 
@@ -1076,18 +1072,18 @@ void func_020eecdc(Unk020eda5c *a) {
     n = a->mUnk_020;
     v40 = c->mUnk_1fc->mUnk_1fc;
     q = a->mUnk_014;
-    f = (s32) (((s64) a->mUnk_084.z * 0x3000) >> 12);
     x = a->mUnk_078 + (s32) (((s64) a->mUnk_084.z << 14) >> 12);
+    w = &p->mUnk_0a8;
+    f = (s32) (((s64) a->mUnk_084.z * 0x3000) >> 12);
     v = &p->mUnk_09c;
     k70 = data_0217bc34[b->mUnk_44].mUnk_70;
-    w = &p->mUnk_0a8;
     func_020ef65c(a, &b->mUnk_50, w);
     if (func_020fa0b8(b, k70, 0x19a) != 0) {
         func_020f9f08(b, a->mUnk_084.x, a->mUnk_084.y);
     }
     if (n > 1) {
         if (a->mUnk_080 != 0) {
-            Vec3Sub(&p->mUnk_0d8, v, &v58);
+            Vec3Sub(&p->mUnk_0d8, &p->mUnk_09c, &v58);
             s = (s32) (((s64) a->mUnk_068 * a->mUnk_068) >> 12);
             v58.x = (s32) (((s64) v58.x * s) >> 12);
             v58.y = (s32) (((s64) v58.y * s) >> 12);
@@ -1102,19 +1098,15 @@ void func_020eecdc(Unk020eda5c *a) {
             s14 = 0x1000;
         }
     }
-    f2 = (s64) f * f;
-    k267 = 0x267;
-    k2 = (k - 6) & 0xf;
-    d0 = 0x1800;
-    t = &p->mUnk_0b4;
     for (i = 1; i < n; i++) {
         b = q[i];
+        t = &(&p->mUnk_0a8)[i];
         Vec3Add(t, &v40, t);
         if (a->mUnk_024 != 0) {
             Vec3Add(&q[i - 1]->mUnk_5c, &b->mUnk_5c, &b->mUnk_5c);
         }
         if (a->mUnk_080 != 0) {
-            Vec3AddScaled(d0, &v58, t, t);
+            Vec3AddScaled(i * 0x1800, &v58, t, t);
         }
         if (p->mUnk_0cc[i] > 0) {
             Vec3AddScaled(p->mUnk_0cc[i], &a->mUnk_06c, t, t);
@@ -1131,12 +1123,14 @@ void func_020eecdc(Unk020eda5c *a) {
         if (d < 0) {
             t->y = t->y + d;
         }
-        s = (s32) (((s64) (p->mUnk_0ec[i - 1][k2] - a->mUnk_07c) * s14) >> 12);
+        e = p->mUnk_0ec[i - 1][(k - 6) & 0xf];
         if (i == 1) {
-            p->mUnk_0ec[i][k] = p->mUnk_0ec[i - 1][k2];
+            p->mUnk_0ec[1][k] = e;
         }
+        d = e - a->mUnk_07c;
+        d = (s32) (((s64) d * s14) >> 12);
         Vec3Sub(t, w, &v4c);
-        if ((s64) v4c.x * v4c.x + (s64) v4c.y * v4c.y + (s64) v4c.z * v4c.z >= f2) {
+        if ((s64) v4c.x * v4c.x + (s64) v4c.y * v4c.y + (s64) v4c.z * v4c.z >= (s64) f * f) {
             if ((s64) v4c.x * v4c.x + (s64) v4c.y * v4c.y + (s64) v4c.z * v4c.z >= 0x10) {
                 func_02039860(&v4c, &v4c);
             }
@@ -1145,13 +1139,11 @@ void func_020eecdc(Unk020eda5c *a) {
                 p->mUnk_0cc[i] -= 0x3d;
             }
         }
-        Vec3AddScaled(s + (s32) (((s64) a->mUnk_084.z * 0x4333) >> 12), &a->mUnk_02c.mUnk_0c, t, &b->mUnk_50);
-        if (func_020fa0b8(b, k70, k267) != 0) {
+        Vec3AddScaled(d + (s32) (((s64) a->mUnk_084.z * 0x4333) >> 12), &a->mUnk_02c.mUnk_0c, t, &b->mUnk_50);
+        w = t;
+        if (func_020fa0b8(b, k70, 0x19a + i * 0xcd) != 0) {
             func_020f9f08(b, a->mUnk_084.x, a->mUnk_084.y);
         }
-        k267 += 0xcd;
-        t++;
-        d0 += 0x1800;
     }
     if ((c->mUnk_1ec & 0x244) == 0x244 && a->mUnk_000 != 0xf && a->mUnk_024 == 0) {
         func_020efa60(a, 1);
@@ -1185,54 +1177,46 @@ void func_020eec48(Unk020eda5c *a, s32 i, Unk020f41c4_A *v) {
     func_020efa48(a, v);
 }
 
-// non-matching: the loop body keeps the table base and the vector pointers in other registers (84 words)
 void func_020eea6c(Unk020eda5c *a) {
-    const s16 *v1;
+    Unk020f41c4_A **d;
+    s32 n;
     s32 c;
     s32 x;
-    s32 y;
     s32 k;
     s32 m;
-    s32 d0;
-    s32 d1;
-    s32 d2;
-    s32 d3;
+    s32 t;
+    s32 u;
     s32 i;
-    s32 n;
-    Vec3 *p0;
+    Vec3 *q;
     Vec3 *p1;
+    Vec3 *p0;
     Vec3 *p2;
-    Unk020f41c4_A *e;
+    s32 y;
 
-    v1 = data_0215d4b4;
-    c = a->mUnk_178;
-    p0 = &a->mUnk_02c.mUnk_00;
-    p1 = &a->mUnk_02c.mUnk_18;
-    p2 = &a->mUnk_180;
     i = a->mUnk_174 >> 4;
     n = a->mUnk_020;
-    y = (s32) (((s64) c * v1[i * 2 + 1]) >> 12);
-    x = (s32) (((s64) c * v1[i * 2]) >> 12);
-    m = (s32) (((s64) x * 0xddb) >> 12);
+    c = a->mUnk_178;
+    y = (s32) (((s64) c * data_0215d4b4[i * 2 + 1]) >> 12);
+    x = (s32) (((s64) c * data_0215d4b4[i * 2]) >> 12);
+    t = -y >> 1;
+    u = -x >> 1;
+    d = a->mUnk_014;
+    p1 = &a->mUnk_02c.mUnk_18;
+    p0 = &a->mUnk_02c.mUnk_00;
+    p2 = &a->mUnk_180;
     k = (s32) (((s64) y * 0xddb) >> 12);
-    d0 = (-y >> 1) - m;
-    d1 = (-y >> 1) + m;
-    d2 = (-x >> 1) + k;
-    d3 = (-x >> 1) - k;
-    if (n <= 0) {
-        return;
-    }
+    m = (s32) (((s64) x * 0xddb) >> 12);
     for (i = 0; i < n; i++) {
-        e = a->mUnk_014[i];
+        q = &d[i]->mUnk_50;
         if (a->mUnk_18c[i] == 0) {
-            Vec3AddScaled(y, p1, p2, &e->mUnk_50);
-            Vec3AddScaled(x, p0, &e->mUnk_50, &e->mUnk_50);
+            Vec3AddScaled(y, p1, p2, q);
+            Vec3AddScaled(x, p0, q, q);
         } else if (a->mUnk_18c[i] == 1) {
-            Vec3AddScaled(d0, p1, p2, &e->mUnk_50);
-            Vec3AddScaled(d2, p0, &e->mUnk_50, &e->mUnk_50);
+            Vec3AddScaled(t - m, p1, p2, q);
+            Vec3AddScaled(u + k, p0, q, q);
         } else {
-            Vec3AddScaled(d1, p1, p2, &e->mUnk_50);
-            Vec3AddScaled(d3, p0, &e->mUnk_50, &e->mUnk_50);
+            Vec3AddScaled(t + m, p1, p2, q);
+            Vec3AddScaled(u - k, p0, q, q);
         }
     }
 }

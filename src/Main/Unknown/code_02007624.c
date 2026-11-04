@@ -150,7 +150,7 @@ void func_020079c4(s32 a, Unk021425e8 *b) {
             } while (i < 16);
             {
                 u32 v7;
-                u32 v8;
+                u16 v8;
                 v7 = func_020099cc();
                 v8 = func_020099c0();
                 func_0200964c(v7, v8, func_02009974());

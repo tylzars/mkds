@@ -15,7 +15,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_02147cd8.h"
 
-int func_01ffdee4(void *a, void *b, u32 c, int r, u32 fl, short e, void *f, void *g, void *h, u32 *o, u32 *j, int *k,
+int func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, void *g, void *h, u32 *o, u32 *j, int *k,
                   u16 *l, u32 *m) {
     u16 *pl;
     Unk0217b614_08 *ta;
