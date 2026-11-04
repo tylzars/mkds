@@ -96,7 +96,7 @@ extern void *data_ov000_021b4d04;
 extern void *data_ov000_021b4d08;
 extern Unk02188114 *data_ov000_021b4d0c;
 extern Unk021884e4 *data_ov000_021b4d10;
-extern struct Unk0218e004 *data_ov000_021b4d18;
+extern struct Hashtable *data_ov000_021b4d18;
 extern u8 data_ov000_021b4d1c[];
 // Objects behind data_ov000_021b4c78 and data_ov000_021b4c7c.
 typedef struct Unk021b4c78 {
@@ -107,20 +107,20 @@ extern Unk021b4c78 *data_ov000_021b4c78;
 extern Unk021b4c78 *data_ov000_021b4c7c;
 
 // Object behind data_ov000_021b4d24; the 0x5d8 bytes at offset 0x4c of a Unk0218b668.
-typedef struct Unk021b4d24 {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ struct Unk0218dc94 *mUnk_004;
-    /* 008 */ struct Unk0218dc94 *mUnk_008;
+typedef struct SbServerList {
+    /* 000 */ s32 mState;
+    /* 004 */ struct Darray *mUnk_004;
+    /* 008 */ struct Darray *mUnk_008;
     /* 00c */ char mUnk_00c[0x24];
     /* 030 */ char mUnk_030[0x24];
     /* 054 */ char mUnk_054[0x20];
     /* 074 */ s8 mUnk_074[8];
-    /* 07c */ u8 *mUnk_07c;
-    /* 080 */ s32 mUnk_080;
+    /* 07c */ u8 *mInBuffer;
+    /* 080 */ s32 mInBufferLength;
     /* 084 */ char *mUnk_084[0xff];
     /* 480 */ s32 mUnk_480;
     /* 484 */ s32 mUnk_484;
-    /* 488 */ UnkFunc *mUnk_488;
+    /* 488 */ UnkFunc *mCallback;
     /* 48c */ UnkFunc *mUnk_48c;
     /* 490 */ UnkFunc *mUnk_490;
     /* 494 */ void *mUnk_494;
@@ -139,9 +139,9 @@ typedef struct Unk021b4d24 {
     /* 5c8 */ s32 mUnk_5c8;
     /* 5cc */ s32 mUnk_5cc;
     /* 5d0 */ int mUnk_5d0;
-} Unk021b4d24;
+} SbServerList;
 
-extern Unk021b4d24 *data_ov000_021b4d24;
+extern SbServerList *data_ov000_021b4d24;
 extern s32 data_ov000_021b4d28;
 extern const char *data_ov000_021b4d20;
 extern char data_ov000_021b4d2c[];

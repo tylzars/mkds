@@ -116,13 +116,13 @@ void func_ov000_0219c0f4(void) {
             data_ov000_021b54c8->mUnk_33c.mUnk_e4 = NULL;
         }
         func_ov000_0219b110();
-        func_ov000_02197634();
+        GstatsClose();
         if (data_ov000_021b54c8->mUnk_1c.mGpiConnection != NULL) {
             func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 0, NULL, 0);
             func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 3, NULL, 0);
             func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 1, NULL, 0);
             func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 2, NULL, 0);
-            func_ov000_0218f268(&data_ov000_021b54c8->mUnk_1c);
+            GpUpdate(&data_ov000_021b54c8->mUnk_1c);
             func_ov000_0218f2a0(&data_ov000_021b54c8->mUnk_1c);
             data_ov000_021b54c8->mUnk_1c.mGpiConnection = NULL;
         }
@@ -171,8 +171,8 @@ void func_ov000_0219bf10(void) {
         case 1:
             switch (func_ov000_0218d574()) {
                 case 1:
-                    if (func_ov000_0219b77c(func_ov000_0218f2b8(&data_ov000_021b54c8->mUnk_1c,
-                                                                data_ov000_021b54c8->mUnk_84.mUnk_08, 0)) != 0) {
+                    if (func_ov000_0219b77c(GpInitialize(&data_ov000_021b54c8->mUnk_1c,
+                                                         data_ov000_021b54c8->mUnk_84.mUnk_08, 0)) != 0) {
                         return;
                     }
                     if (func_ov000_0219b77c(func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 0,
@@ -416,7 +416,7 @@ s32 func_ov000_0219ba20(void) {
     }
     v = (u16) (func_ov000_021a3448(0x4000) + 0xc000);
     p = data_ov000_021b54c8;
-    r = func_ov000_02198ac4((Gt2Socket **) data_ov000_021b54c8, (const char *) func_ov000_0219a760(0, v, 0), p->mUnk_14,
+    r = func_ov000_02198ac4((Gt2Socket **) data_ov000_021b54c8, (const char *) Gt2FormatAddress(0, v, 0), p->mUnk_14,
                             p->mUnk_18, (u32) func_ov000_0219b240);
     if (func_ov000_0219b704(r) != 0) {
         return r;

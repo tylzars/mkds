@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Values read from the text, as built by func_ov000_02192e04 on its stack. The pointers at 0x00 to 0x14 point to
+// Values read from the text, as built by GpiProcessInfoOperation on its stack. The pointers at 0x00 to 0x14 point to
 // buffers of its own; 0x1c, 0x27 and 0x34 are arrays inside.
 typedef struct Unk02192e04 {
     /* 00 */ char *mUnk_00[6];
@@ -61,9 +61,9 @@ typedef struct Unk0219338c {
 #include "00/code_021906e4.h"
 #include "00/code_0218f960.h"
 
-u32 func_ov000_02192d64(GpConnection *a, Unk021906e4 *b);
-s32 func_ov000_02192e04(GpConnection *r, Unk021937c0Node *s, const char *t);
+u32 GpiWriteUpdateBuffers(GpConnection *a, GpiBuffer *b);
+s32 GpiProcessInfoOperation(GpConnection *r, GpiOperation *s, const char *t);
 void func_ov000_0219338c(Unk02192e04 *a, Unk0219338c *b);
-u32 func_ov000_021935bc(u32 a, s32 b, u32 *c, u32 *d, u32 *e);
+u32 GpiUnpackDate(u32 a, s32 b, u32 *c, u32 *d, u32 *e);
 // Declared here until the code that defines them is decompiled.
-BOOL func_ov000_02196870(GpConnection *param_1, const char *param_2, s32 param_3);
+BOOL GpiReadError(GpConnection *param_1, const char *param_2, s32 param_3);

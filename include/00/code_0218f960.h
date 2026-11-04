@@ -14,8 +14,8 @@ typedef struct Unk0218f960_428 {
     /* 04 */ s32 mUnk_04;
 } Unk0218f960_428;
 
-// Object behind GpConnection.mUnk_00: func_ov000_0218f960 passes the address of 0x1f4 to func_ov000_02190b80 and
-// func_ov000_02190b58, reads 0x198 and decrements 0x430.
+// Object behind GpConnection.mUnk_00: GpiWriteDelbuddyAndRemoveBuddy passes the address of 0x1f4 to
+// GpiAppendBufferString and GpiAppendBufferNumber, reads 0x198 and decrements 0x430.
 typedef struct GpiConnection {
     /* 000 */ char mErrorMessage[0x100];
     /* 100 */ s32 mUnk_100;
@@ -29,7 +29,7 @@ typedef struct GpiConnection {
     /* 198 */ u32 mSesskey;
     /* 19c */ u32 mUserId;
     /* 1a0 */ u32 mProfileId;
-    /* 1a4 */ Unk02190ed4Cb mCallbacks[6];
+    /* 1a4 */ GpiCallback mCallbacks[6];
     /* 1d4 */ s32 mConnectSocket;
     /* 1d8 */ s32 mConnectState;
     /* 1dc */ char *mInputBuffer;
@@ -38,7 +38,7 @@ typedef struct GpiConnection {
     /* 1e8 */ s32 mUnk_1e8;
     /* 1ec */ void *mCommandBuffer;
     /* 1f0 */ s32 mCommandBufferCapacity;
-    /* 1f4 */ Unk021906e4 mOutputBuffer;
+    /* 1f4 */ GpiBuffer mOutputBuffer;
     /* 204 */ s32 mListenSocket;
     /* 208 */ u32 mPort;
     /* 20c */ s32 mNextOperationId;
@@ -49,12 +49,12 @@ typedef struct GpiConnection {
     /* 418 */ u32 mErrorNumber;
     /* 41c */ s32 mFatal;
     /* 420 */ s32 mUnk_420;
-    /* 424 */ Unk021937c0Node *mOperationList;
+    /* 424 */ GpiOperation *mOperationList;
     /* 428 */ Unk0218f960_428 mProfileList;
     /* 430 */ s32 mBuddyCount;
-    /* 434 */ Unk02193f2cNode *mPeerList;
-    /* 438 */ Unk02190ed4Node *mCallbackQueueHead;
-    /* 43c */ Unk02190ed4Node *mCallbackQueueTail;
+    /* 434 */ GpiPeer *mPeerList;
+    /* 438 */ GpiQueuedCallback *mCallbackQueueHead;
+    /* 43c */ GpiQueuedCallback *mCallbackQueueTail;
     /* 440 */ void *mUpdateproBuffer;
     /* 444 */ s32 mUpdateproBufferCapacity;
     /* 448 */ s32 mUpdateproBufferLength;
@@ -70,7 +70,7 @@ typedef struct GpiConnection {
     /* 474 */ s8 mUnk_474[0x19];
 } GpiConnection;
 
-// Object passed to func_ov000_0218f960 as its first argument.
+// Object passed to GpiWriteDelbuddyAndRemoveBuddy as its first argument.
 typedef struct GpConnection {
     /* 00 */ GpiConnection *mGpiConnection;
 } GpConnection;
@@ -82,21 +82,21 @@ typedef struct Unk0218fa98 {
 
 typedef struct GpConnection GpConnection;
 
-// Object func_ov000_0218fca8 allocates with 0xc bytes and passes to func_ov000_02190ed4.
+// Object func_ov000_0218fca8 allocates with 0xc bytes and passes to GpiQueueCallback.
 typedef struct Unk0218fca8 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ void *mUnk_08;
 } Unk0218fca8;
 
-// Object func_ov000_0218fca8 allocates with 0x40c bytes and passes to func_ov000_02190ed4.
+// Object func_ov000_0218fca8 allocates with 0x40c bytes and passes to GpiQueueCallback.
 typedef struct Unk0218fca8_40c {
     /* 000 */ s32 mUnk_000;
     /* 004 */ s32 mUnk_004;
     /* 008 */ char mUnk_008[0x404];
 } Unk0218fca8_40c;
 
-// Object func_ov000_0218fca8 allocates with 0x108 bytes and passes to func_ov000_02190ed4.
+// Object func_ov000_0218fca8 allocates with 0x108 bytes and passes to GpiQueueCallback.
 typedef struct Unk0218fca8_108 {
     /* 000 */ s32 mUnk_000;
     /* 004 */ s32 mUnk_004;
@@ -118,8 +118,8 @@ extern char data_ov000_021b284c[];
 extern char data_ov000_021b2850[];
 extern char data_ov000_021b2854[];
 
-u32 func_ov000_0218f960(GpConnection *p, u32 b);
-s32 func_ov000_0218fa98(void *unused, Unk0218fa98 *object, s32 minimum);
+u32 GpiWriteDelbuddyAndRemoveBuddy(GpConnection *p, u32 b);
+s32 GpiDecrementBuddyIndexAbove(void *unused, Unk0218fa98 *object, s32 minimum);
 u32 func_ov000_0218faac(GpConnection *a, u32 b);
 u32 func_ov000_0218fb3c(GpConnection *a, s32 b, s32 c, const char *d);
 u32 func_ov000_0218fbe0(GpConnection *a, s32 b, s32 c, const char *d);

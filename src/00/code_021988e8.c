@@ -29,7 +29,7 @@ int func_ov000_02198968(void *a, Gt2Connection **b, u32 c, void *d, int e, u32 f
     u32 k;
     int l;
     int n;
-    if (func_ov000_0219a654((const char *) c, &i, &j) == 0 || i == 0 || (k = j) == 0) {
+    if (Gt2ParseAddress((const char *) c, &i, &j) == 0 || i == 0 || (k = j) == 0) {
         return 4;
     }
     if (((((i << 24) & 0xff000000) | (((i << 8) & 0xff0000) | (((i >> 24) & 0xff) | ((i >> 8) & 0xff00)))) &
@@ -70,7 +70,7 @@ int func_ov000_02198968(void *a, Gt2Connection **b, u32 c, void *d, int e, u32 f
 void func_ov000_02198914(Gt2Connection *a, u8 *b, int c, int d) {
     if (a->mUnk_0c == 5) {
         func_ov000_0219a61c((const char **) &b, &c);
-        if (func_ov000_0218dc44((u32 *) a->mUnk_98) != 0) {
+        if (DarrayGetCount((u32 *) a->mUnk_98) != 0) {
             func_ov000_02198098(a, 0, (s32) b, (void *) c, d);
             return;
         }
@@ -87,5 +87,5 @@ void func_ov000_021988fc(Gt2Connection **a) {
 }
 
 void func_ov000_021988e8(Gt2Socket *a) {
-    func_ov000_0218dddc(a->mConnections, (void (*)(void *, void *)) func_ov000_021988fc, NULL);
+    HashtableForEach(a->mConnections, (void (*)(void *, void *)) func_ov000_021988fc, NULL);
 }

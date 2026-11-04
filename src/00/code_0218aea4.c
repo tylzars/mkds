@@ -28,27 +28,27 @@ s32 func_ov000_0218afa0(const char *const *first, const char *const *second) {
     return func_02142368(*first, *second);
 }
 
-u32 func_ov000_0218af9c(Unk0218af28 *a) {
-    return a->mUnk_1c;
+u32 func_ov000_0218af9c(SbServer *a) {
+    return a->mPing;
 }
 
-Unk0218af28 *func_ov000_0218af28(Unk021b4d24 *a, u32 b, u16 c) {
-    Unk0218af28 *p;
+SbServer *func_ov000_0218af28(SbServerList *a, u32 b, u16 c) {
+    SbServer *p;
     p = func_ov000_021a3690(0x24);
     if (p == NULL) {
         return NULL;
     }
-    p->mUnk_18 =
-        func_ov000_0218e004(8, 8, 4, (s32(*)(void *, s32)) func_ov000_0218afac,
-                            (s32(*)(void *, void *)) func_ov000_0218afa0, (void (*)(void *)) func_ov000_0218afb8);
-    if (p->mUnk_18 == NULL) {
+    p->mKeyValues =
+        HashtableCreate(8, 8, 4, (s32(*)(void *, s32)) func_ov000_0218afac,
+                        (s32(*)(void *, void *)) func_ov000_0218afa0, (void (*)(void *)) func_ov000_0218afb8);
+    if (p->mKeyValues == NULL) {
         func_ov000_021a3668(p);
         return NULL;
     }
     p->mUnk_14 = 0;
     p->mUnk_15 = 0;
     p->mUnk_20 = NULL;
-    p->mUnk_1c = 0;
+    p->mPing = 0;
     p->mUnk_10 = 0;
     p->mUnk_00 = b;
     p->mUnk_04 = c;
@@ -57,39 +57,39 @@ Unk0218af28 *func_ov000_0218af28(Unk021b4d24 *a, u32 b, u16 c) {
     return p;
 }
 
-void func_ov000_0218af24(Unk0218af28 *a, s32 b) {
+void func_ov000_0218af24(SbServer *a, s32 b) {
     a->mUnk_15 = b;
     return;
 }
 
-void func_ov000_0218af1c(Unk0218af28 *a, u32 b, u16 c) {
+void func_ov000_0218af1c(SbServer *a, u32 b, u16 c) {
     a->mUnk_08 = b;
     a->mUnk_0c = c;
     return;
 }
 
-void func_ov000_0218af18(Unk0218af28 *a, u32 b) {
+void func_ov000_0218af18(SbServer *a, u32 b) {
     a->mUnk_10 = b;
     return;
 }
 
-void func_ov000_0218af14(Unk0218af28 *a, u8 b) {
+void func_ov000_0218af14(SbServer *a, u8 b) {
     a->mUnk_14 = b;
     return;
 }
 
-u8 func_ov000_0218af10(Unk0218af28 *a) {
+u8 func_ov000_0218af10(SbServer *a) {
     return a->mUnk_14;
 }
 
-u32 func_ov000_0218aefc(Unk0218af28 *a) {
-    if (a == *(Unk0218af28 **) &data_ov000_021b4d1c) {
+u32 func_ov000_0218aefc(SbServer *a) {
+    if (a == *(SbServer **) &data_ov000_021b4d1c) {
         return 1;
     }
     return 0;
 }
 
-void func_ov000_0218aedc(Unk0218ae68 *a, Unk0218af28 *b) {
+void func_ov000_0218aedc(Unk0218ae68 *a, SbServer *b) {
     if (a->mUnk_04 != NULL) {
         a->mUnk_04->mUnk_20 = b;
     }
@@ -102,7 +102,7 @@ void func_ov000_0218aedc(Unk0218ae68 *a, Unk0218af28 *b) {
     return;
 }
 
-void func_ov000_0218aec4(Unk0218ae68 *a, Unk0218af28 *b) {
+void func_ov000_0218aec4(Unk0218ae68 *a, SbServer *b) {
     b->mUnk_20 = a->mUnk_00;
     a->mUnk_00 = b;
     if (a->mUnk_04 == NULL) {
@@ -112,8 +112,8 @@ void func_ov000_0218aec4(Unk0218ae68 *a, Unk0218af28 *b) {
     return;
 }
 
-Unk0218af28 *func_ov000_0218aea4(Unk0218ae68 *a) {
-    Unk0218af28 *v1;
+SbServer *func_ov000_0218aea4(Unk0218ae68 *a) {
+    SbServer *v1;
     v1 = a->mUnk_00;
     if (v1 != NULL) {
         a->mUnk_00 = v1->mUnk_20;

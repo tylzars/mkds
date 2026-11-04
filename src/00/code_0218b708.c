@@ -47,7 +47,7 @@
 #include "00/code_0218b280.h"
 #include "00/code_0218a71c.h"
 
-void func_ov000_0218c8e0(Unk021b4d24 *a, s8 *b, s32 c) {
+void func_ov000_0218c8e0(SbServerList *a, s8 *b, s32 c) {
     s32 d;
     s8 *p;
     s32 i;
@@ -103,16 +103,16 @@ BOOL func_ov000_0218c84c(u8 *a, s32 b) {
     return *(s8 *) a == 0;
 }
 
-BOOL func_ov000_0218c794(Unk021b4d24 *a, u8 *b, s32 c) {
+BOOL func_ov000_0218c794(SbServerList *a, u8 *b, s32 c) {
     s32 d;
     s32 i;
     s32 k;
     s32 t;
-    d = func_ov000_0218dc44(a->mUnk_008);
+    d = DarrayGetCount(a->mUnk_008);
     i = 0;
     if (d > 0) {
         do {
-            switch (((Unk0218c0bc *) func_ov000_0218dbf8(a->mUnk_008, i))->mUnk_04) {
+            switch (((Unk0218c0bc *) DarrayGetElement(a->mUnk_008, i))->mUnk_04) {
                 case 1:
                     b += 1;
                     c -= 1;
@@ -150,7 +150,7 @@ BOOL func_ov000_0218c794(Unk021b4d24 *a, u8 *b, s32 c) {
     return TRUE;
 }
 
-void func_ov000_0218c744(Unk021b4d24 *a, u8 *b, s32 c, u8 *d, u16 *e) {
+void func_ov000_0218c744(SbServerList *a, u8 *b, s32 c, u8 *d, u16 *e) {
     u8 f;
     u8 *p;
     u8 *q;
@@ -175,7 +175,7 @@ void func_ov000_0218c744(Unk021b4d24 *a, u8 *b, s32 c, u8 *d, u16 *e) {
     }
 }
 
-s32 func_ov000_0218c550(Unk021b4d24 *a, void *b, u8 *c, s32 d, s32 e) {
+s32 func_ov000_0218c550(SbServerList *a, void *b, u8 *c, s32 d, s32 e) {
     s32 h;
     s32 f;
     s32 g;
@@ -229,14 +229,14 @@ s32 func_ov000_0218c550(Unk021b4d24 *a, void *b, u8 *c, s32 d, s32 e) {
         func_ov000_0218af18(b, j);
     }
     if ((g & 0x40) != 0) {
-        h = func_ov000_0218dc44(a->mUnk_008);
+        h = DarrayGetCount(a->mUnk_008);
         i = 0;
         if (h > 0) {
             do {
-                r = func_ov000_0218dbf8(a->mUnk_008, i);
+                r = DarrayGetElement(a->mUnk_008, i);
                 switch (r->mUnk_04) {
                     case 1:
-                        func_ov000_0218b358(b, r->mUnk_00, c[0]);
+                        SbServerSetInt(b, r->mUnk_00, c[0]);
                         c += 1;
                         d -= 1;
                         break;
@@ -244,7 +244,7 @@ s32 func_ov000_0218c550(Unk021b4d24 *a, void *b, u8 *c, s32 d, s32 e) {
                         q = (u8 *) &k;
                         q[0] = c[0];
                         q[1] = c[1];
-                        func_ov000_0218b358(b, r->mUnk_00, (u16) ((k >> 8 & 0xff) | (k << 8 & 0xff00)));
+                        SbServerSetInt(b, r->mUnk_00, (u16) ((k >> 8 & 0xff) | (k << 8 & 0xff00)));
                         c += 2;
                         d -= 2;
                         break;
@@ -257,12 +257,12 @@ s32 func_ov000_0218c550(Unk021b4d24 *a, void *b, u8 *c, s32 d, s32 e) {
                             n = 0xff;
                         }
                         if (n == 0xff) {
-                            func_ov000_0218b380(b, r->mUnk_00, (const char *) c);
+                            SbServerSetValue(b, r->mUnk_00, (const char *) c);
                             n = strlen((const char *) c) + 1;
                             c += n;
                             d -= n;
                         } else {
-                            func_ov000_0218b380(b, r->mUnk_00, a->mUnk_084[n]);
+                            SbServerSetValue(b, r->mUnk_00, a->mUnk_084[n]);
                         }
                         break;
                 }
@@ -278,7 +278,7 @@ s32 func_ov000_0218c550(Unk021b4d24 *a, void *b, u8 *c, s32 d, s32 e) {
             n = strlen((const char *) c) + 1;
             c += n;
             d -= n;
-            func_ov000_0218b380(b, (const char *) o, (const char *) c);
+            SbServerSetValue(b, (const char *) o, (const char *) c);
             n = strlen((const char *) c) + 1;
             c += n;
             d -= n;
@@ -289,7 +289,7 @@ s32 func_ov000_0218c550(Unk021b4d24 *a, void *b, u8 *c, s32 d, s32 e) {
     return f - d;
 }
 
-s32 func_ov000_0218c468(Unk021b4d24 *a, u8 *b, s32 c) {
+s32 func_ov000_0218c468(SbServerList *a, u8 *b, s32 c) {
     s32 e;
     s32 d;
     void *h;
@@ -328,12 +328,12 @@ s32 func_ov000_0218c468(Unk021b4d24 *a, u8 *b, s32 c) {
     return r;
 }
 
-void func_ov000_0218c45c(Unk021b4d24 *a, char *b) {
+void func_ov000_0218c45c(SbServerList *a, char *b) {
     a->mUnk_4ac = b;
     return;
 }
 
-s32 func_ov000_0218c15c(Unk021b4d24 *a) {
+s32 func_ov000_0218c15c(SbServerList *a) {
     u8 *p;
     s32 n;
     s32 u;
@@ -343,8 +343,8 @@ s32 func_ov000_0218c15c(Unk021b4d24 *a) {
     Unk0218c0bc e;
     u8 *q;
     u8 *r;
-    p = a->mUnk_07c;
-    n = a->mUnk_080;
+    p = a->mInBuffer;
+    n = a->mInBufferLength;
     switch (a->mUnk_5c8) {
         case 0:
             if (n < 1) {
@@ -373,7 +373,7 @@ s32 func_ov000_0218c15c(Unk021b4d24 *a) {
             q[1] = p[1];
             q[2] = p[2];
             q[3] = p[3];
-            a->mUnk_488(a, 6, *(u32 *) data_ov000_021b4d1c, a->mUnk_494);
+            a->mCallback(a, 6, *(u32 *) data_ov000_021b4d1c, a->mUnk_494);
             q = (u8 *) &a->mUnk_4a8;
             r = p + 4;
             q[0] = r[0];
@@ -383,8 +383,8 @@ s32 func_ov000_0218c15c(Unk021b4d24 *a) {
                     break;
                 }
                 func_ov000_0218c45c(a, (char *) (p + 6));
-                a->mUnk_488(a, 5, *(u32 *) data_ov000_021b4d1c, a->mUnk_494);
-                if (a->mUnk_07c == NULL) {
+                a->mCallback(a, 5, *(u32 *) data_ov000_021b4d1c, a->mUnk_494);
+                if (a->mInBuffer == NULL) {
                     break;
                 }
             }
@@ -392,7 +392,7 @@ s32 func_ov000_0218c15c(Unk021b4d24 *a) {
             n -= 6;
             if ((a->mUnk_5c4 & 2) != 0 || a->mUnk_4a8 == 0xffff) {
                 a->mUnk_5c8 = 5;
-                a->mUnk_000 = 2;
+                a->mState = 2;
                 break;
             }
             a->mUnk_5c8 = 2;
@@ -403,14 +403,14 @@ s32 func_ov000_0218c15c(Unk021b4d24 *a) {
                     break;
                 }
                 a->mUnk_484 = p[0];
-                a->mUnk_008 = func_ov000_0218dc94(8, a->mUnk_484, NULL);
+                a->mUnk_008 = DarrayCreate(8, a->mUnk_484, NULL);
                 if (a->mUnk_008 == NULL) {
                     return 5;
                 }
                 p += 1;
                 n -= 1;
             }
-            while (a->mUnk_484 > func_ov000_0218dc44(a->mUnk_008)) {
+            while (a->mUnk_484 > DarrayGetCount(a->mUnk_008)) {
                 if (n < 2) {
                     break;
                 }
@@ -420,12 +420,12 @@ s32 func_ov000_0218c15c(Unk021b4d24 *a) {
                 }
                 e.mUnk_04 = p[0];
                 e.mUnk_00 = func_ov000_0218d134(a, (const char *) (p + 1));
-                func_ov000_0218dbc0(a->mUnk_008, &e);
+                DarrayAppend(a->mUnk_008, &e);
                 k += 1;
                 p += k;
                 n -= k;
             }
-            if (a->mUnk_484 > func_ov000_0218dc44(a->mUnk_008)) {
+            if (a->mUnk_484 > DarrayGetCount(a->mUnk_008)) {
                 break;
             }
             a->mUnk_5c8 = 3;
@@ -466,13 +466,13 @@ s32 func_ov000_0218c15c(Unk021b4d24 *a) {
                     n -= 5;
                     p += 5;
                     a->mUnk_5c8 = 5;
-                    a->mUnk_000 = 2;
-                    a->mUnk_488(a, 3, *(u32 *) data_ov000_021b4d1c, a->mUnk_494);
+                    a->mState = 2;
+                    a->mCallback(a, 3, *(u32 *) data_ov000_021b4d1c, a->mUnk_494);
                     break;
                 }
                 p += k;
                 n -= k;
-                if (a->mUnk_07c == NULL) {
+                if (a->mInBuffer == NULL) {
                     k = 0;
                 }
             } while (k != 0);
@@ -481,17 +481,17 @@ s32 func_ov000_0218c15c(Unk021b4d24 *a) {
     if (n < 0) {
         func_0213442c(data_ov000_021b2228, data_ov000_021b2218, NULL, 0x4af);
     }
-    if (a->mUnk_07c == NULL) {
+    if (a->mInBuffer == NULL) {
         return 0;
     }
     if (n != 0) {
-        memmove(a->mUnk_07c, p, n);
+        memmove(a->mInBuffer, p, n);
     }
-    a->mUnk_080 = n;
+    a->mInBufferLength = n;
     return 0;
 }
 
-s32 func_ov000_0218c0bc(Unk021b4d24 *a, u8 *b, s32 c) {
+s32 func_ov000_0218c0bc(SbServerList *a, u8 *b, s32 c) {
     s32 d;
     s32 i;
     s32 k;
@@ -502,7 +502,7 @@ s32 func_ov000_0218c0bc(Unk021b4d24 *a, u8 *b, s32 c) {
     if (a->mUnk_008 != NULL) {
         func_ov000_0218c9d4(a);
     }
-    a->mUnk_008 = func_ov000_0218dc94(8, d, NULL);
+    a->mUnk_008 = DarrayCreate(8, d, NULL);
     if (a->mUnk_008 == NULL) {
         return 5;
     }
@@ -518,7 +518,7 @@ s32 func_ov000_0218c0bc(Unk021b4d24 *a, u8 *b, s32 c) {
             }
             e.mUnk_04 = b[0];
             e.mUnk_00 = func_ov000_0218d134(a, (const char *) (b + 1));
-            func_ov000_0218dbc0(a->mUnk_008, &e);
+            DarrayAppend(a->mUnk_008, &e);
             k += 1;
             b += k;
             c -= k;
@@ -528,7 +528,7 @@ s32 func_ov000_0218c0bc(Unk021b4d24 *a, u8 *b, s32 c) {
     return 0;
 }
 
-s32 func_ov000_0218bf78(Unk021b4d24 *a, u8 *b, s32 c) {
+s32 func_ov000_0218bf78(SbServerList *a, u8 *b, s32 c) {
     s32 d;
     s32 i;
     s32 e;
@@ -595,7 +595,7 @@ s32 func_ov000_0218bf78(Unk021b4d24 *a, u8 *b, s32 c) {
     return 0;
 }
 
-s32 func_ov000_0218be68(Unk021b4d24 *a, u8 *b, s32 c) {
+s32 func_ov000_0218be68(SbServerList *a, u8 *b, s32 c) {
     u32 g;
     u32 d;
     u16 e;
@@ -655,7 +655,7 @@ s32 func_ov000_0218be68(Unk021b4d24 *a, u8 *b, s32 c) {
     return 0;
 }
 
-s32 func_ov000_0218be10(Unk021b4d24 *a, u8 *b, s32 c) {
+s32 func_ov000_0218be10(SbServerList *a, u8 *b, s32 c) {
     u32 d;
     u16 e;
     s32 f;
@@ -682,7 +682,7 @@ s32 func_ov000_0218be10(Unk021b4d24 *a, u8 *b, s32 c) {
     return 0;
 }
 
-s32 func_ov000_0218bd5c(Unk021b4d24 *a, u8 *b, s32 c) {
+s32 func_ov000_0218bd5c(SbServerList *a, u8 *b, s32 c) {
     s32 d;
     void *e;
     u16 f;
@@ -706,19 +706,19 @@ s32 func_ov000_0218bd5c(Unk021b4d24 *a, u8 *b, s32 c) {
     if (d == -1) {
         func_ov000_0218d340(a, (u32) e);
     }
-    a->mUnk_488(a, 1, e, a->mUnk_494);
+    a->mCallback(a, 1, e, a->mUnk_494);
     return 0;
 }
 
-s32 func_ov000_0218bc08(Unk021b4d24 *a) {
+s32 func_ov000_0218bc08(SbServerList *slist) {
     s32 b;
     u16 c;
     u8 *q;
     u8 *p;
     b = 0;
-    while (a->mUnk_080 >= 3) {
+    while (slist->mInBufferLength >= 3) {
         q = (u8 *) &c;
-        p = a->mUnk_07c;
+        p = slist->mInBuffer;
         q[0] = p[0];
         q[1] = p[1];
         c = (c >> 8 & 0xff) | (c << 8 & 0xff00);
@@ -726,88 +726,88 @@ s32 func_ov000_0218bc08(Unk021b4d24 *a) {
             b = 4;
             break;
         }
-        if (a->mUnk_080 < c) {
+        if (slist->mInBufferLength < c) {
             return 0;
         }
-        switch ((s8) a->mUnk_07c[2]) {
+        switch ((s8) slist->mInBuffer[2]) {
             case 1:
-                b = func_ov000_0218c0bc(a, a->mUnk_07c + 3, c - 3);
+                b = func_ov000_0218c0bc(slist, slist->mInBuffer + 3, c - 3);
                 break;
             case 2:
-                b = func_ov000_0218bd5c(a, a->mUnk_07c + 3, c - 3);
+                b = func_ov000_0218bd5c(slist, slist->mInBuffer + 3, c - 3);
                 break;
             case 3:
-                if (func_ov000_0218e420(a->mUnk_4b0, a->mUnk_07c, c, 0) <= 0) {
+                if (func_ov000_0218e420(slist->mUnk_4b0, slist->mInBuffer, c, 0) <= 0) {
                     return 3;
                 }
                 break;
             case 4:
-                b = func_ov000_0218be10(a, a->mUnk_07c + 3, c - 3);
+                b = func_ov000_0218be10(slist, slist->mInBuffer + 3, c - 3);
                 break;
             case 5:
-                b = func_ov000_0218be68(a, a->mUnk_07c + 3, c - 3);
+                b = func_ov000_0218be68(slist, slist->mInBuffer + 3, c - 3);
                 break;
             case 6:
-                b = func_ov000_0218bf78(a, a->mUnk_07c + 3, c - 3);
+                b = func_ov000_0218bf78(slist, slist->mInBuffer + 3, c - 3);
                 break;
         }
-        a->mUnk_080 -= c;
-        if (a->mUnk_080 < 0) {
+        slist->mInBufferLength -= c;
+        if (slist->mInBufferLength < 0) {
             func_0213442c(data_ov000_021b2200, data_ov000_021b2218, NULL, 0x5b4);
         }
-        if (a->mUnk_080 != 0 && a->mUnk_07c != NULL) {
-            memmove(a->mUnk_07c, a->mUnk_07c + c, a->mUnk_080);
+        if (slist->mInBufferLength != 0 && slist->mInBuffer != NULL) {
+            memmove(slist->mInBuffer, slist->mInBuffer + c, slist->mInBufferLength);
         }
         if (b != 0) {
             break;
         }
     }
     if (b != 0) {
-        func_ov000_0218cf30(a);
+        func_ov000_0218cf30(slist);
     }
     return b;
 }
 
-s32 func_ov000_0218bb44(Unk021b4d24 *a) {
+s32 func_ov000_0218bb44(SbServerList *a) {
     s32 b;
     s32 c;
     s32 d;
     if (func_ov000_0218e668(a->mUnk_4b0) == 0) {
         return 0;
     }
-    b = a->mUnk_080;
-    c = func_ov000_0218e460(a->mUnk_4b0, a->mUnk_07c + b, 0x1000 - b, 0);
+    b = a->mInBufferLength;
+    c = func_ov000_0218e460(a->mUnk_4b0, a->mInBuffer + b, 0x1000 - b, 0);
     if ((u32) (c + 1) <= 1) {
         func_ov000_0218cf30(a);
         return 3;
     }
-    a->mUnk_080 += c;
+    a->mInBufferLength += c;
     d = 0;
-    if (a->mUnk_000 == 2 || a->mUnk_5c8 > 0) {
-        func_ov000_0218a6f4(a->mUnk_4bc, a->mUnk_07c + b, a->mUnk_080 - b);
+    if (a->mState == 2 || a->mUnk_5c8 > 0) {
+        func_ov000_0218a6f4(a->mUnk_4bc, a->mInBuffer + b, a->mInBufferLength - b);
     }
-    if (a->mUnk_000 == 3) {
+    if (a->mState == 3) {
         d = func_ov000_0218c15c(a);
     }
     if (d != 0) {
         return d;
     }
-    if (a->mUnk_000 == 2 && a->mUnk_080 > 0) {
+    if (a->mState == 2 && a->mInBufferLength > 0) {
         return func_ov000_0218bc08(a);
     }
     return 0;
 }
 
-s32 func_ov000_0218ba88(Unk021b4d24 *a, u32 b, u16 c, u8 *d, s32 e) {
+s32 func_ov000_0218ba88(SbServerList *a, u32 b, u16 c, u8 *d, s32 e) {
     Unk0218ba88 g;
     u16 h;
     u8 *p;
     u8 *q;
     s32 r;
-    if (a->mUnk_000 == 1) {
+    if (a->mState == 1) {
         func_ov000_0218ca58(a, NULL, NULL, 2, 0);
     }
-    if (a->mUnk_000 == 1) {
+    if (a->mState == 1) {
         return 3;
     }
     h = e + 9;
@@ -837,7 +837,7 @@ s32 func_ov000_0218ba88(Unk021b4d24 *a, u32 b, u16 c, u8 *d, s32 e) {
     return 0;
 }
 
-s32 func_ov000_0218ba10(Unk021b4d24 *a, u32 b, u16 c, u32 d) {
+s32 func_ov000_0218ba10(SbServerList *a, u32 b, u16 c, u32 d) {
     u8 v[10];
     u8 *p;
     u8 *q;
@@ -857,7 +857,7 @@ s32 func_ov000_0218ba10(Unk021b4d24 *a, u32 b, u16 c, u32 d) {
     return func_ov000_0218ba88(a, b, c, v, 10);
 }
 
-s32 func_ov000_0218b928(Unk021b4d24 *a) {
+s32 func_ov000_0218b928(SbServerList *a) {
     Unk0218b8f4 v1;
     s32 v2;
     u8 v3[0x5e0];
@@ -878,15 +878,15 @@ s32 func_ov000_0218b928(Unk021b4d24 *a) {
     if (func_ov000_0218e8c4() - a->mUnk_4b4 > 0x7d0) {
         func_ov000_0218e53c(a->mUnk_4b0);
         a->mUnk_4b0 = -1;
-        a->mUnk_000 = 1;
-        a->mUnk_488(a, 3, *(u32 *) data_ov000_021b4d1c, a->mUnk_494);
+        a->mState = 1;
+        a->mCallback(a, 3, *(u32 *) data_ov000_021b4d1c, a->mUnk_494);
     }
     return 0;
 }
 
-s32 func_ov000_0218b8e4(Unk021b4d24 *a) {
+s32 func_ov000_0218b8e4(SbServerList *a) {
     func_ov000_0218d1dc(a);
-    switch (a->mUnk_000) {
+    switch (a->mState) {
         case 2:
         case 3:
             return func_ov000_0218bb44(a);
@@ -898,14 +898,14 @@ s32 func_ov000_0218b8e4(Unk021b4d24 *a) {
     }
 }
 
-void func_ov000_0218b780(Unk021b4d24 *a, s32 b, Unk0218af28 *c, Unk0218b668 *d) {
+void func_ov000_0218b780(SbServerList *a, s32 b, SbServer *c, Unk0218b668 *d) {
     switch (b) {
         case 0:
             d->mUnk_630(d, 0, c, d->mUnk_634);
             if (((c->mUnk_14 & 3) == 0 || (c->mUnk_14 & 0x40) == 0) && (c->mUnk_14 & 0x2c) == 0 && d->mUnk_624 == 0) {
                 s32 t;
                 if (c->mUnk_15 & 1) {
-                    if (d->mUnk_04c.mUnk_000 == 0 || d->mUnk_000.mUnk_40 == 0) {
+                    if (d->mUnk_04c.mState == 0 || d->mUnk_000.mUnk_40 == 0) {
                         t = 1;
                     } else {
                         t = 0;
@@ -933,7 +933,7 @@ void func_ov000_0218b780(Unk021b4d24 *a, s32 b, Unk0218af28 *c, Unk0218b668 *d) 
             if (d->mUnk_620 != 0) {
                 func_ov000_0218c980(a);
             }
-            if (func_ov000_0218dc44(a->mUnk_004) == 0 || d->mUnk_000.mUnk_08.mUnk_08 == 0) {
+            if (DarrayGetCount(a->mUnk_004) == 0 || d->mUnk_000.mUnk_08.mUnk_08 == 0) {
                 d->mUnk_630(d, 4, 0, d->mUnk_634);
             }
             break;
@@ -949,7 +949,7 @@ void func_ov000_0218b780(Unk021b4d24 *a, s32 b, Unk0218af28 *c, Unk0218b668 *d) 
     }
 }
 
-void func_ov000_0218b708(void *a, s32 b, Unk0218af28 *c, Unk0218b668 *d) {
+void func_ov000_0218b708(void *a, s32 b, SbServer *c, Unk0218b668 *d) {
     switch (b) {
         case 1:
             d->mUnk_630(d, 2, c, d->mUnk_634);

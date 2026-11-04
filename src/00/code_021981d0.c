@@ -30,8 +30,8 @@ void func_ov000_02198548(Gt2Connection *a, int b) {
 void func_ov000_02198514(Gt2Connection *a, ...) {
     if (a->mUnk_0c != 7) {
         a->mUnk_0c = 7;
-        func_ov000_0218de8c(a->mSocket->mConnections, &a);
-        func_ov000_0218dbc0(a->mSocket->mConnectionsToFree, &a);
+        HashtableRemove(a->mSocket->mConnections, &a);
+        DarrayAppend(a->mSocket->mConnectionsToFree, &a);
     }
 }
 
@@ -46,35 +46,35 @@ void func_ov000_021984b4(Gt2Connection *a) {
         func_ov000_021a3668(a->mSendBuffer.mData);
     }
     if (a->mUnk_5c != NULL) {
-        func_ov000_0218dc48(a->mUnk_5c);
+        DarrayDelete(a->mUnk_5c);
     }
     if (a->mUnk_60 != NULL) {
-        func_ov000_0218dc48(a->mUnk_60);
+        DarrayDelete(a->mUnk_60);
     }
     if (a->mUnk_98 != NULL) {
-        func_ov000_0218dc48(a->mUnk_98);
+        DarrayDelete(a->mUnk_98);
     }
     if (a->mUnk_9c != NULL) {
-        func_ov000_0218dc48(a->mUnk_9c);
+        DarrayDelete(a->mUnk_9c);
     }
     func_ov000_021a3668(a);
 }
 
-BOOL func_ov000_02198448(Gt2Socket *a) {
-    if (a == NULL) {
+BOOL func_ov000_02198448(Gt2Socket *socket) {
+    if (socket == NULL) {
         func_0213442c(data_ov000_021b3f50, data_ov000_021b3f58, NULL, 0x1b);
     }
-    if (a == NULL) {
+    if (socket == NULL) {
         return TRUE;
     }
-    if (a->mUnk_24 == NULL) {
+    if (socket->mUnk_24 == NULL) {
         return TRUE;
     }
-    a->mRunningCallbackCount++;
-    a->mUnk_24(a);
-    a->mRunningCallbackCount--;
-    if (a->mDeletePending != 0 && a->mRunningCallbackCount == 0) {
-        DeleteSocket(a);
+    socket->mRunningCallbackCount++;
+    socket->mUnk_24(socket);
+    socket->mRunningCallbackCount--;
+    if (socket->mDeletePending != 0 && socket->mRunningCallbackCount == 0) {
+        DeleteSocket(socket);
         return FALSE;
     }
     return TRUE;
@@ -106,76 +106,76 @@ BOOL CallIncomingConnectionCallback(Gt2Socket *a, Gt2Connection *b, int c, int d
     return TRUE;
 }
 
-BOOL func_ov000_021982f4(Gt2Connection *a, int b, void *c, int d) {
-    if (a == NULL) {
+BOOL Gt2SetResultAndCallResultCallback(Gt2Connection *connection, int b, void *c, int d) {
+    if (connection == NULL) {
         func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x69);
     }
-    if (a == NULL) {
+    if (connection == NULL) {
         return TRUE;
     }
-    a->mResult = b;
-    if (a->mCallbacks.mResultCallback == NULL) {
+    connection->mResult = b;
+    if (connection->mCallbacks.mResultCallback == NULL) {
         return TRUE;
     }
     if (d == 0 || c == NULL) {
         c = NULL;
         d = 0;
     }
-    a->mUnk_24++;
-    a->mSocket->mRunningCallbackCount++;
-    a->mCallbacks.mResultCallback(a, b, c, d);
-    a->mUnk_24--;
-    a->mSocket->mRunningCallbackCount--;
-    if (a->mSocket->mDeletePending != 0 && a->mSocket->mRunningCallbackCount == 0) {
-        DeleteSocket(a->mSocket);
+    connection->mUnk_24++;
+    connection->mSocket->mRunningCallbackCount++;
+    connection->mCallbacks.mResultCallback(connection, b, c, d);
+    connection->mUnk_24--;
+    connection->mSocket->mRunningCallbackCount--;
+    if (connection->mSocket->mDeletePending != 0 && connection->mSocket->mRunningCallbackCount == 0) {
+        DeleteSocket(connection->mSocket);
         return FALSE;
     }
     return TRUE;
 }
 
-BOOL func_ov000_02198258(Gt2Connection *a, void *b, int c, int d) {
-    if (a == NULL) {
+BOOL Gt2CallDataCallback(Gt2Connection *connection, void *b, int c, int d) {
+    if (connection == NULL) {
         func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x94);
     }
-    if (a == NULL) {
+    if (connection == NULL) {
         return TRUE;
     }
-    if (a->mCallbacks.mDataCallback == NULL) {
+    if (connection->mCallbacks.mDataCallback == NULL) {
         return TRUE;
     }
     if (c == 0 || b == NULL) {
         b = NULL;
         c = 0;
     }
-    a->mUnk_24++;
-    a->mSocket->mRunningCallbackCount++;
-    a->mCallbacks.mDataCallback(a, b, c, d);
-    a->mUnk_24--;
-    a->mSocket->mRunningCallbackCount--;
-    if (a->mSocket->mDeletePending != 0 && a->mSocket->mRunningCallbackCount == 0) {
-        DeleteSocket(a->mSocket);
+    connection->mUnk_24++;
+    connection->mSocket->mRunningCallbackCount++;
+    connection->mCallbacks.mDataCallback(connection, b, c, d);
+    connection->mUnk_24--;
+    connection->mSocket->mRunningCallbackCount--;
+    if (connection->mSocket->mDeletePending != 0 && connection->mSocket->mRunningCallbackCount == 0) {
+        DeleteSocket(connection->mSocket);
         return FALSE;
     }
     return TRUE;
 }
 
-BOOL func_ov000_021981d0(Gt2Connection *a, void *b) {
-    if (a == NULL) {
+BOOL func_ov000_021981d0(Gt2Connection *connection, void *b) {
+    if (connection == NULL) {
         func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0xba);
     }
-    if (a == NULL) {
+    if (connection == NULL) {
         return TRUE;
     }
-    if (a->mCallbacks.mUnk_08 == NULL) {
+    if (connection->mCallbacks.mUnk_08 == NULL) {
         return TRUE;
     }
-    a->mUnk_24++;
-    a->mSocket->mRunningCallbackCount++;
-    a->mCallbacks.mUnk_08(a, b);
-    a->mUnk_24--;
-    a->mSocket->mRunningCallbackCount--;
-    if (a->mSocket->mDeletePending != 0 && a->mSocket->mRunningCallbackCount == 0) {
-        DeleteSocket(a->mSocket);
+    connection->mUnk_24++;
+    connection->mSocket->mRunningCallbackCount++;
+    connection->mCallbacks.mUnk_08(connection, b);
+    connection->mUnk_24--;
+    connection->mSocket->mRunningCallbackCount--;
+    if (connection->mSocket->mDeletePending != 0 && connection->mSocket->mRunningCallbackCount == 0) {
+        DeleteSocket(connection->mSocket);
         return FALSE;
     }
     return TRUE;

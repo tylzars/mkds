@@ -11,4 +11,4 @@ typedef struct Unk02194840Arg {
     /* 08 */ void *mUnk_08;
 } Unk02194840Arg;
 
-BOOL func_ov000_02194840(GpConnection *a, void *b, void *c);
+BOOL GpiForEachProfileWhileNonZero(GpConnection *a, void *b, void *c);

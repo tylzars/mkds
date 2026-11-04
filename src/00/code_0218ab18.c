@@ -10,7 +10,7 @@
 #include "code_02139f70.h"
 #include "00/code_0218e2dc.h"
 
-void func_ov000_0218ac54(Unk0218a9bc *p, Unk0218af28 *e, s32 a, s32 b) {
+void func_ov000_0218ac54(Unk0218a9bc *p, SbServer *e, s32 a, s32 b) {
     u8 *c;
     c = &e->mUnk_14;
     e->mUnk_14 &= 0xc3;
@@ -32,7 +32,7 @@ void func_ov000_0218ac54(Unk0218a9bc *p, Unk0218af28 *e, s32 a, s32 b) {
     }
 }
 
-void func_ov000_0218ab90(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
+void func_ov000_0218ab90(Unk0218a9bc *p, SbServer *e, s8 *v1, s32 n) {
     s32 a;
     s32 b;
     if (v1[0] == 0) {
@@ -46,7 +46,7 @@ void func_ov000_0218ab90(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
                     if (b < 0) {
                         break;
                     }
-                    func_ov000_0218b380(e, data_ov000_021b45bc[p->mUnk_2c[a]], (const char *) v1);
+                    SbServerSetValue(e, data_ov000_021b45bc[p->mUnk_2c[a]], (const char *) v1);
                     v1 += b;
                     n -= b;
                     a++;
@@ -58,13 +58,13 @@ void func_ov000_0218ab90(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
             e->mUnk_14 |= 0x43;
         }
         e->mUnk_14 &= 0xf3;
-        e->mUnk_1c = func_ov000_0218e8c4() - e->mUnk_1c;
+        e->mPing = func_ov000_0218e8c4() - e->mPing;
         func_ov000_0218ae68(&p->mUnk_08, e);
         p->mUnk_44(p, 0, e, p->mUnk_48);
     }
 }
 
-void func_ov000_0218ab18(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
+void func_ov000_0218ab18(Unk0218a9bc *p, SbServer *e, s8 *v1, s32 n) {
     BOOL a;
     if (strstr((const char *) v1, data_ov000_021b2180) != NULL) {
         a = TRUE;
@@ -79,7 +79,7 @@ void func_ov000_0218ab18(Unk0218a9bc *p, Unk0218af28 *e, s8 *v1, s32 n) {
             e->mUnk_14 |= 0x42;
         }
         e->mUnk_14 &= 0xf3;
-        e->mUnk_1c = func_ov000_0218e8c4() - e->mUnk_1c;
+        e->mPing = func_ov000_0218e8c4() - e->mPing;
         func_ov000_0218ae68(&p->mUnk_08, e);
         p->mUnk_44(p, 0, e, p->mUnk_48);
     }

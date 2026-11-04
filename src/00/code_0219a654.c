@@ -23,18 +23,18 @@ Unk0219b1d4 *func_ov000_0219b178(void) {
     Unk0219b1d4 a = {0};
 
     if (data_ov000_021b52c4 == NULL) {
-        data_ov000_021b52c4 = (void *) func_ov000_0218dc94(0x40, 4, (void (*)(void *)) func_ov000_0219b1d4);
+        data_ov000_021b52c4 = (void *) DarrayCreate(0x40, 4, (void (*)(void *)) func_ov000_0219b1d4);
     }
-    func_ov000_0218dbc0(data_ov000_021b52c4, &a);
-    return func_ov000_0218dbf8(data_ov000_021b52c4, func_ov000_0218dc44((u32 *) data_ov000_021b52c4) - 1);
+    DarrayAppend(data_ov000_021b52c4, &a);
+    return DarrayGetElement(data_ov000_021b52c4, DarrayGetCount((u32 *) data_ov000_021b52c4) - 1);
 }
 
 void func_ov000_0219b130(Unk0219b1d4 *a) {
     s32 b;
 
-    for (b = 0; b < func_ov000_0218dc44((u32 *) data_ov000_021b52c4); b++) {
-        if (a == func_ov000_0218dbf8(data_ov000_021b52c4, b)) {
-            func_ov000_0218da9c(data_ov000_021b52c4, b);
+    for (b = 0; b < DarrayGetCount((u32 *) data_ov000_021b52c4); b++) {
+        if (a == DarrayGetElement(data_ov000_021b52c4, b)) {
+            DarrayRemoveWithoutCallback(data_ov000_021b52c4, b);
             return;
         }
     }
@@ -42,7 +42,7 @@ void func_ov000_0219b130(Unk0219b1d4 *a) {
 
 void func_ov000_0219b110(void) {
     if (data_ov000_021b52c4 != NULL) {
-        func_ov000_0218dc48(data_ov000_021b52c4);
+        DarrayDelete(data_ov000_021b52c4);
         data_ov000_021b52c4 = NULL;
     }
 }
@@ -350,8 +350,8 @@ void func_ov000_0219aaec(void) {
     s32 a;
 
     if (data_ov000_021b52c4 != NULL) {
-        for (a = func_ov000_0218dc44((u32 *) data_ov000_021b52c4) - 1; a >= 0; a--) {
-            func_ov000_0219ab24(func_ov000_0218dbf8(data_ov000_021b52c4, a));
+        for (a = DarrayGetCount((u32 *) data_ov000_021b52c4) - 1; a >= 0; a--) {
+            func_ov000_0219ab24(DarrayGetElement(data_ov000_021b52c4, a));
         }
     }
 }
@@ -478,7 +478,7 @@ void func_ov000_0219a7e4(u8 *a, s32 b, void *c) {
     }
 }
 
-u32 func_ov000_0219a760(u32 a, u32 b, u32 c) {
+u32 Gt2FormatAddress(u32 a, u32 b, u32 c) {
     Unk021b5dfc d;
     char *e;
 
@@ -502,7 +502,7 @@ u32 func_ov000_0219a760(u32 a, u32 b, u32 c) {
     return (u32) e;
 }
 
-BOOL func_ov000_0219a654(const char *a, u32 *b, u16 *c) {
+BOOL Gt2ParseAddress(const char *a, u32 *b, u16 *c) {
     char d[0x100];
     const char *e;
     const char *f;

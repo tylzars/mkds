@@ -6,7 +6,7 @@
 #include "code_0213442c.h"
 #include "00/code_0218dd8c.h"
 
-BOOL func_ov000_02194840(GpConnection *a, void *b, void *c) {
+BOOL GpiForEachProfileWhileNonZero(GpConnection *a, void *b, void *c) {
     GpiConnection *r;
     Unk02194840Arg d;
 
@@ -14,7 +14,7 @@ BOOL func_ov000_02194840(GpConnection *a, void *b, void *c) {
     d.mUnk_00 = a;
     d.mUnk_04 = b;
     d.mUnk_08 = c;
-    if (func_ov000_0218dd8c(r->mProfileList.mTable, (s32) func_ov000_02194874, (u32) &d) == NULL) {
+    if (HashtableFindByFn(r->mProfileList.mTable, (s32) func_ov000_02194874, (u32) &d) == NULL) {
         return TRUE;
     }
     return FALSE;

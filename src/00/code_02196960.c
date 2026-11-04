@@ -113,9 +113,9 @@ void func_ov000_02197020(s32 a, s32 b, s32 c, s32 d, s32 e, UnkFunc *f, s32 g) {
     h.mUnk_0c = d;
     h.mUnk_10 = e;
     if (data_ov000_021b4e5c == NULL) {
-        data_ov000_021b4e5c = func_ov000_0218dc94(0x1c, 2, NULL);
+        data_ov000_021b4e5c = DarrayCreate(0x1c, 2, NULL);
     }
-    func_ov000_0218dbc0(data_ov000_021b4e5c, &h);
+    DarrayAppend(data_ov000_021b4e5c, &h);
 }
 
 void func_ov000_02196f8c(s8 *a, s32 b, s32 c, UnkFunc *d, s32 e) {
@@ -125,7 +125,7 @@ void func_ov000_02196f8c(s8 *a, s32 b, s32 c, UnkFunc *d, s32 e) {
         g = func_ov000_02197220(a, b);
     }
     if (g <= 0) {
-        func_ov000_02197634();
+        GstatsClose();
         data_ov000_021b3b30 = data_ov000_021b3b98;
         func_ov000_021971ec(f.mUnk_00, 0xf);
         if (d != NULL) {
@@ -164,7 +164,7 @@ void func_ov000_02196e50(s32 a, s32 b, s32 c, s32 d, const u8 *e, s32 f, UnkFunc
         m = func_ov000_02197220(n, l);
     }
     if (m <= 0) {
-        func_ov000_02197634();
+        GstatsClose();
         if (g != NULL) {
             g(a, b, c, d, 0, 0, h);
         }
@@ -206,14 +206,14 @@ s32 func_ov000_02196d84(s32 a, s32 b, s32 c) {
         return -1;
     }
     d = 0;
-    if ((s32) func_ov000_0218dc44((u32 *) data_ov000_021b4e5c) > 0) {
+    if ((s32) DarrayGetCount((u32 *) data_ov000_021b4e5c) > 0) {
         do {
-            e = func_ov000_0218dbf8(data_ov000_021b4e5c, d);
+            e = DarrayGetElement(data_ov000_021b4e5c, d);
             if (e->mUnk_00 == a && e->mUnk_04 == b && e->mUnk_08 == c) {
                 return d;
             }
             d++;
-        } while (d < (s32) func_ov000_0218dc44((u32 *) data_ov000_021b4e5c));
+        } while (d < (s32) DarrayGetCount((u32 *) data_ov000_021b4e5c));
     }
     return -1;
 }
@@ -224,7 +224,7 @@ void func_ov000_02196d0c(u8 *f, s32 g) {
     const s8 *c = func_ov000_021970e4((const s8 *) f, data_ov000_021b3df8);
     s32 d = func_ov000_02196d84(0, b, 0);
     if (d != -1) {
-        Unk02196d84 *e = func_ov000_0218dbf8(data_ov000_021b4e5c, d);
+        Unk02196d84 *e = DarrayGetElement(data_ov000_021b4e5c, d);
         e->mUnk_08 = a;
         func_ov000_021969d8(d, a > 0 ? 1 : 0, 0, (const u8 *) c, 0);
     }
@@ -240,7 +240,7 @@ void func_ov000_02196ca4(u8 *c, s32 d) {
     b = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) c, data_ov000_021b3dc4));
     t = func_ov000_02196d84(3, b, 0);
     if (t != -1) {
-        p = func_ov000_0218dbf8(data_ov000_021b4e5c, t);
+        p = DarrayGetElement(data_ov000_021b4e5c, t);
         p->mUnk_08 = a;
         func_ov000_021969d8(t, (a > 0) ? 1 : 0, 0, NULL, 0);
     }
@@ -338,8 +338,8 @@ s32 func_ov000_02196a84(u8 *a, s32 b) {
 void func_ov000_021969d8(s32 a, s32 b, s32 c, const u8 *d, s32 e) {
     Unk021969d8Entry *p;
 
-    if (a >= 0 && a < func_ov000_0218dc44(data_ov000_021b4e5c)) {
-        p = func_ov000_0218dbf8(data_ov000_021b4e5c, a);
+    if (a >= 0 && a < DarrayGetCount(data_ov000_021b4e5c)) {
+        p = DarrayGetElement(data_ov000_021b4e5c, a);
         if (p->mUnk_18.mUnk_00 != NULL) {
             switch (p->mUnk_00) {
                 case 0:
@@ -356,7 +356,7 @@ void func_ov000_021969d8(s32 a, s32 b, s32 c, const u8 *d, s32 e) {
                     break;
             }
         }
-        func_ov000_0218da5c(data_ov000_021b4e5c, a);
+        DarrayRemove(data_ov000_021b4e5c, a);
     }
 }
 
@@ -365,13 +365,13 @@ void func_ov000_02196960(void) {
     Unk02196960Key k;
 
     if (data_ov000_021b4e5c != NULL) {
-        for (i = func_ov000_0218dc44(data_ov000_021b4e5c) - 1; i >= 0; i--) {
+        for (i = DarrayGetCount(data_ov000_021b4e5c) - 1; i >= 0; i--) {
             k = data_ov000_021b3b78;
             data_ov000_021b3b30 = data_ov000_021b3b98;
             func_ov000_021971ec((s8 *) k.mUnk_00, 0xf);
             func_ov000_021969d8(i, 0, 0, k.mUnk_00, 0);
         }
-        func_ov000_0218dc48(data_ov000_021b4e5c);
+        DarrayDelete(data_ov000_021b4e5c);
         data_ov000_021b4e5c = NULL;
     }
 }

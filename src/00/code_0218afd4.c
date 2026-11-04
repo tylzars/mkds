@@ -42,7 +42,7 @@ s8 *func_ov000_0218b19c(s8 *s, s32 c) {
     return a;
 }
 
-void func_ov000_0218b148(Unk0218af28 *e, s8 *v1) {
+void func_ov000_0218b148(SbServer *e, s8 *v1) {
     s8 *a;
     s8 *b;
     a = func_ov000_0218b19c(v1 + 1, 0x5c);
@@ -52,13 +52,13 @@ void func_ov000_0218b148(Unk0218af28 *e, s8 *v1) {
             b = data_ov000_021b21c4;
         }
         if (func_ov000_0218b1e0((const char *) a) != 0) {
-            func_ov000_0218b380(e, (const char *) a, (const char *) b);
+            SbServerSetValue(e, (const char *) a, (const char *) b);
         }
         a = func_ov000_0218b19c(NULL, 0x5c);
     }
 }
 
-void func_ov000_0218b010(Unk0218af28 *e, s8 *v1, s32 n) {
+void func_ov000_0218b010(SbServer *e, s8 *v1, s32 n) {
     Unk0218b010 t;
     s8 *s;
     s8 *p;
@@ -85,7 +85,7 @@ void func_ov000_0218b010(Unk0218af28 *e, s8 *v1, s32 n) {
         v = v1;
         v1 += f;
         n -= f;
-        func_ov000_0218b380(e, (const char *) p, (const char *) v);
+        SbServerSetValue(e, (const char *) p, (const char *) v);
     }
     v1++;
     n--;
@@ -121,7 +121,7 @@ void func_ov000_0218b010(Unk0218af28 *e, s8 *v1, s32 n) {
                     return;
                 }
                 sprintf(t.mUnk_02, data_ov000_021b21bc, p, b);
-                func_ov000_0218b380(e, t.mUnk_02, (const char *) v1);
+                SbServerSetValue(e, t.mUnk_02, (const char *) v1);
                 v1 += d;
                 n -= d;
                 p += strlen((const char *) p) + 1;

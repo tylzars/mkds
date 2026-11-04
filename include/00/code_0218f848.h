@@ -4,4 +4,4 @@
 
 typedef struct GpConnection GpConnection;
 
-u32 func_ov000_0218f848(GpConnection *a, s32 b, s32 c);
+u32 GpiInitialize(GpConnection *a, s32 b, s32 c);

@@ -187,7 +187,7 @@ void func_ov000_0219c400(GpConnection *a, Unk0219c400 *b, u32 f) {
                 }
             }
         } else {
-            func_ov000_0218f130(a);
+            GpDisconnect(a);
             func_ov000_0219c67c(func_ov000_0219c80c, NULL);
             data_ov000_021b565c->mUnk_04 = 1;
         }
@@ -196,7 +196,7 @@ void func_ov000_0219c400(GpConnection *a, Unk0219c400 *b, u32 f) {
         if (strcmp((const char *) b->mUnk_8e, d) == 0) {
             func_02152808(&data_ov000_021b565c->mUnk_40, data_ov000_021b565c->mUnk_0c, e);
             func_021525f0(data_ov000_021b565c->mUnk_20, &data_ov000_021b565c->mUnk_40, b->mUnk_04);
-            func_ov000_0218f130(a);
+            GpDisconnect(a);
             data_ov000_021b5660(data_ov000_021b565c->mUnk_4c, data_ov000_021b565c->mUnk_14c, data_ov000_021b5658);
         } else {
             if (func_ov000_0219c8dc(func_ov000_0218eff8(a, b->mUnk_04, 0, 0, func_ov000_0219c400, 0)) != 0) {

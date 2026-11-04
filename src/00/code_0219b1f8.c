@@ -169,8 +169,8 @@ Unk0219b1d4 *func_ov000_0219b1f8(u32 a) {
     if (data_ov000_021b52c4 == NULL) {
         return NULL;
     }
-    for (b = 0; b < func_ov000_0218dc44((u32 *) data_ov000_021b52c4); b++) {
-        c = func_ov000_0218dbf8(data_ov000_021b52c4, b);
+    for (b = 0; b < DarrayGetCount((u32 *) data_ov000_021b52c4); b++) {
+        c = DarrayGetElement(data_ov000_021b52c4, b);
         if (c->mUnk_08 == a) {
             return c;
         }

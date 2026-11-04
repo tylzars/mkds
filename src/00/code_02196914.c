@@ -3,14 +3,14 @@
 #include "code_0213442c.h"
 #include "code_02139f70.h"
 
-void func_ov000_02196914(char *a, const char *b, s32 c) {
-    if (a == NULL) {
+void GpiCopyString(char *dest, const char *src, s32 c) {
+    if (dest == NULL) {
         func_0213442c(data_ov000_021b3b10, data_ov000_021b3a1c, NULL, 0x2f);
     }
-    if (b == NULL) {
+    if (src == NULL) {
         func_0213442c(data_ov000_021b3b20, data_ov000_021b3a1c, NULL, 0x30);
     }
-    strncpy(a, b, c);
-    *(a + c + -1) = 0;
+    strncpy(dest, src, c);
+    *(dest + c + -1) = 0;
     return;
 }

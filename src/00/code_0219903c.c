@@ -117,9 +117,9 @@ u32 func_ov000_021990f8(Gt2Connection *a, u16 b, s32 c) {
     d.mUnk_04 = c;
     d.mUnk_08 = b;
     d.mUnk_0c = func_ov000_0218e8c4();
-    e = func_ov000_0218dc44(a->mUnk_60);
-    func_ov000_0218dbc0(a->mUnk_60, &d);
-    if (e + 1 == func_ov000_0218dc44(a->mUnk_60)) {
+    e = DarrayGetCount(a->mUnk_60);
+    DarrayAppend(a->mUnk_60, &d);
+    if (e + 1 == DarrayGetCount(a->mUnk_60)) {
         return 1;
     }
     return 0;

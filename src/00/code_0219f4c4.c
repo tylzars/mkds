@@ -289,7 +289,7 @@ u32 func_ov000_0219f4c4(u32 *a, u32 b) {
         return 1;
     }
     for (i = 0; i < b; i++) {
-        if (func_ov000_0218eb9c(p->mUnk_00, *a) == 0) {
+        if (GpIsBuddy(p->mUnk_00, *a) == 0) {
             return 0;
         }
         p = data_ov000_021b566c;

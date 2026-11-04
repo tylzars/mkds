@@ -33,81 +33,81 @@
 #include "00/code_021965a0.h"
 #include "00/code_02194840.h"
 
-u32 func_ov000_02190c64(void *a, Unk021906e4 *b, s32 c) {
+u32 GpiAppendBufferByte(void *a, GpiBuffer *outputBuffer, s32 c) {
     u8 *d;
     s32 e;
     s32 f;
 
-    if (b == NULL) {
+    if (outputBuffer == NULL) {
         func_0213442c(data_ov000_021b2890, data_ov000_021b28a8, NULL, 0x25);
     }
-    e = b->mUnk_08;
-    f = b->mUnk_04;
-    d = b->mUnk_00;
+    e = outputBuffer->mLength;
+    f = outputBuffer->mCapacity;
+    d = outputBuffer->mBuffer;
     if (f == e) {
         f += 0x800;
         d = func_ov000_021a3678(d, f + 1);
         if (d == NULL) {
-            func_ov000_02196590(a, data_ov000_021b292c);
+            GpiSetErrorMessage(a, data_ov000_021b292c);
             return 1;
         }
     }
     d[e] = c;
     d[e + 1] = 0;
-    b->mUnk_08 += 1;
-    b->mUnk_04 = f;
-    b->mUnk_00 = d;
+    outputBuffer->mLength += 1;
+    outputBuffer->mCapacity = f;
+    outputBuffer->mBuffer = d;
     return 0;
 }
 
-u32 func_ov000_02190ba0(void *a, Unk021906e4 *b, const void *c, s32 d) {
+u32 GpiAppendBufferBytes(void *a, GpiBuffer *outputBuffer, const void *string, s32 stringLen) {
     s32 f;
     u8 *e;
     s32 g;
 
-    if (c == NULL) {
+    if (string == NULL) {
         func_0213442c(data_ov000_021b2a18, data_ov000_021b28a8, NULL, 0x51);
     }
-    if (d < 0) {
+    if (stringLen < 0) {
         func_0213442c(data_ov000_021b2a28, data_ov000_021b28a8, NULL, 0x52);
     }
-    if (b == NULL) {
+    if (outputBuffer == NULL) {
         func_0213442c(data_ov000_021b2890, data_ov000_021b28a8, NULL, 0x53);
     }
-    if (c == NULL) {
+    if (string == NULL) {
         return 0;
     }
-    g = b->mUnk_08;
-    f = b->mUnk_04;
-    e = b->mUnk_00;
-    if (f - g < d) {
-        f += d < 0x800 ? 0x800 : d;
+    g = outputBuffer->mLength;
+    f = outputBuffer->mCapacity;
+    e = outputBuffer->mBuffer;
+    if (f - g < stringLen) {
+        f += stringLen < 0x800 ? 0x800 : stringLen;
         e = func_ov000_021a3678(e, f + 1);
         if (e == NULL) {
-            func_ov000_02196590(a, data_ov000_021b292c);
+            GpiSetErrorMessage(a, data_ov000_021b292c);
             return 1;
         }
     }
-    memcpy(e + g, c, d);
-    e[g + d] = 0;
-    b->mUnk_08 += d;
-    b->mUnk_04 = f;
-    b->mUnk_00 = e;
+    memcpy(e + g, string, stringLen);
+    e[g + stringLen] = 0;
+    outputBuffer->mLength += stringLen;
+    outputBuffer->mCapacity = f;
+    outputBuffer->mBuffer = e;
     return 0;
 }
 
-u32 func_ov000_02190b80(void *p0, void *p1, const void *p2) {
-    return func_ov000_02190ba0(p0, p1, p2, strlen(p2));
+u32 GpiAppendBufferString(void *p0, void *p1, const void *p2) {
+    return GpiAppendBufferBytes(p0, p1, p2, strlen(p2));
 }
 
-u32 func_ov000_02190b58(void *a, void *b, u32 c) {
+u32 GpiAppendBufferNumber(void *a, void *b, u32 c) {
     char d[0x14];
 
     sprintf(d, data_ov000_021b29a0, c);
-    return func_ov000_02190b80(a, b, d);
+    return GpiAppendBufferString(a, b, d);
 }
 
-u32 func_ov000_02190aa8(GpConnection *a, s32 b, const void *c, s32 d, s32 *e, s32 *f, const s8 *g) {
+u32 GpiSendBytes(GpConnection *a, s32 b, const void *c, s32 d, s32 *e, s32 *f, const s8 *g) {
     s32 h;
     u32 i;
 
@@ -118,8 +118,8 @@ u32 func_ov000_02190aa8(GpConnection *a, s32 b, const void *c, s32 d, s32 *e, s3
             if (g[0] == 0x50 && g[1] == 0x52) {
                 return 3;
             }
-            func_ov000_021965a0(a, 5, data_ov000_021b29cc);
-            func_ov000_02190f4c(a, 3, 0);
+            GpiSetError(a, 5, data_ov000_021b29cc);
+            GpiQueueErrorCallback(a, 3, 0);
             return 3;
         }
         *f = 0;
@@ -135,16 +135,16 @@ u32 func_ov000_02190aa8(GpConnection *a, s32 b, const void *c, s32 d, s32 *e, s3
     return 0;
 }
 
-u32 func_ov000_02190a24(GpConnection *a, Unk02190988 *b, s8 c) {
+u32 GpiPeerSendByte(GpConnection *a, Unk02190988 *b, s8 c) {
     s32 d;
     s32 e;
     u32 f;
 
-    if (b->mUnk_28.mUnk_00 == NULL) {
+    if (b->mOutputBuffer.mBuffer == NULL) {
         func_0213442c(data_ov000_021b29a4, data_ov000_021b28a8, NULL, 0xde);
     }
-    if (b->mUnk_28.mUnk_08 - b->mUnk_28.mUnk_0c == 0 && func_ov000_0218dc44(b->mUnk_38) == 0) {
-        f = func_ov000_02190aa8(a, b->mUnk_08, &c, 1, &d, &e, data_ov000_021b29c8);
+    if (b->mOutputBuffer.mLength - b->mOutputBuffer.mPos == 0 && DarrayGetCount(b->mQueuedMessages) == 0) {
+        f = GpiSendBytes(a, b->mSocket, &c, 1, &d, &e, data_ov000_021b29c8);
         if (f != 0) {
             return f;
         }
@@ -152,25 +152,25 @@ u32 func_ov000_02190a24(GpConnection *a, Unk02190988 *b, s8 c) {
             return 0;
         }
     }
-    return func_ov000_02190c64(a, &b->mUnk_28, c);
+    return GpiAppendBufferByte(a, &b->mOutputBuffer, c);
 }
 
-u32 func_ov000_02190988(GpConnection *a, Unk02190988 *b, const char *c, s32 d) {
+u32 GpiPeerSendBytes(GpConnection *a, Unk02190988 *b, const char *c, s32 d) {
     s32 e;
     s32 f;
     s32 g;
     u32 h;
 
-    if (b->mUnk_28.mUnk_00 == NULL) {
+    if (b->mOutputBuffer.mBuffer == NULL) {
         func_0213442c(data_ov000_021b29a4, data_ov000_021b28a8, NULL, 0xfb);
     }
     e = 0;
     if (d == 0) {
         return e;
     }
-    if (b->mUnk_28.mUnk_08 - b->mUnk_28.mUnk_0c == 0 && func_ov000_0218dc44(b->mUnk_38) == 0) {
+    if (b->mOutputBuffer.mLength - b->mOutputBuffer.mPos == 0 && DarrayGetCount(b->mQueuedMessages) == 0) {
         do {
-            h = func_ov000_02190aa8(a, b->mUnk_08, c + e, d, &f, &g, data_ov000_021b29c8);
+            h = GpiSendBytes(a, b->mSocket, c + e, d, &f, &g, data_ov000_021b29c8);
             if (h != 0) {
                 return h;
             }
@@ -181,7 +181,7 @@ u32 func_ov000_02190988(GpConnection *a, Unk02190988 *b, const char *c, s32 d) {
         } while (g != 0 && d != 0);
     }
     if (d != 0) {
-        h = func_ov000_02190ba0(a, &b->mUnk_28, c + e, d);
+        h = GpiAppendBufferBytes(a, &b->mOutputBuffer, c + e, d);
         if (h != 0) {
             return h;
         }
@@ -189,12 +189,12 @@ u32 func_ov000_02190988(GpConnection *a, Unk02190988 *b, const char *c, s32 d) {
     return 0;
 }
 
-u32 func_ov000_02190968(GpConnection *p0, Unk02190988 *p1, const char *p2) {
+u32 GpiPeerSendString(GpConnection *p0, Unk02190988 *p1, const char *p2) {
     u32 v6 = strlen(p2);
-    return func_ov000_02190988(p0, p1, p2, v6);
+    return GpiPeerSendBytes(p0, p1, p2, v6);
 }
 
-u32 func_ov000_021907e8(GpConnection *a, s32 b, Unk021906e4 *c, s32 *d, u32 *e, const s8 *f) {
+u32 GpiReceiveBuffer(GpConnection *a, s32 sock, GpiBuffer *inputBuffer, s32 *bytesRead, u32 *connClosed, const s8 *f) {
     u8 *g;
     s32 h;
     s32 i;
@@ -204,21 +204,21 @@ u32 func_ov000_021907e8(GpConnection *a, s32 b, Unk021906e4 *c, s32 *d, u32 *e, 
     BOOL m;
     s32 n;
 
-    if (b == -1) {
+    if (sock == -1) {
         func_0213442c(data_ov000_021b28d8, data_ov000_021b28a8, NULL, 0x150);
     }
-    if (c == NULL) {
+    if (inputBuffer == NULL) {
         func_0213442c(data_ov000_021b28f0, data_ov000_021b28a8, NULL, 0x151);
     }
-    if (d == NULL) {
+    if (bytesRead == NULL) {
         func_0213442c(data_ov000_021b2904, data_ov000_021b28a8, NULL, 0x152);
     }
-    if (e == NULL) {
+    if (connClosed == NULL) {
         func_0213442c(data_ov000_021b2918, data_ov000_021b28a8, NULL, 0x153);
     }
-    g = c->mUnk_00;
-    h = c->mUnk_08;
-    i = c->mUnk_04;
+    g = inputBuffer->mBuffer;
+    h = inputBuffer->mLength;
+    i = inputBuffer->mCapacity;
     j = 0;
     k = FALSE;
     l = 0;
@@ -229,15 +229,15 @@ u32 func_ov000_021907e8(GpConnection *a, s32 b, Unk021906e4 *c, s32 *d, u32 *e, 
             i = n;
             g = func_ov000_021a3678(g, n + 1);
             if (g == NULL) {
-                func_ov000_02196590(a, data_ov000_021b292c);
+                GpiSetErrorMessage(a, data_ov000_021b292c);
                 return 1;
             }
         }
-        l = func_ov000_0218e460(b, g + h, i - h, 0);
+        l = func_ov000_0218e460(sock, g + h, i - h, 0);
         if (l == -1) {
-            n = func_ov000_0218e368(b);
+            n = func_ov000_0218e368(sock);
             if (n != -6 && n != -0x1a && n != -0x4c) {
-                func_ov000_02196590(a, data_ov000_021b293c);
+                GpiSetErrorMessage(a, data_ov000_021b293c);
                 return 3;
             }
         } else if (l == 0) {
@@ -252,38 +252,38 @@ u32 func_ov000_021907e8(GpConnection *a, s32 b, Unk021906e4 *c, s32 *d, u32 *e, 
     if (j != 0) {
         func_ov000_0219690c(a, data_ov000_021b298c, f, j);
     }
-    c->mUnk_00 = g;
-    c->mUnk_08 = h;
-    c->mUnk_04 = i;
-    *d = j;
-    *e = k;
+    inputBuffer->mBuffer = g;
+    inputBuffer->mLength = h;
+    inputBuffer->mCapacity = i;
+    *bytesRead = j;
+    *connClosed = k;
     return 0;
 }
 
-u32 func_ov000_021906e4(GpConnection *a, s32 b, Unk021906e4 *c, u32 *d, s32 e, const s8 *f) {
+u32 GpiSendBuffer(GpConnection *a, s32 sock, GpiBuffer *outputBuffer, u32 *d, s32 e, const s8 *f) {
     s32 g;
     s32 h;
     u8 *i;
-    s32 j;
-    s32 k;
+    s32 len;
+    s32 pos;
     s32 m;
     s32 l;
     s32 n;
     u32 r;
 
-    if (c == NULL) {
+    if (outputBuffer == NULL) {
         func_0213442c(data_ov000_021b2890, data_ov000_021b28a8, NULL, 0x1b9);
     }
-    i = c->mUnk_00;
-    j = c->mUnk_08;
-    k = c->mUnk_0c;
-    l = j - k;
+    i = outputBuffer->mBuffer;
+    len = outputBuffer->mLength;
+    pos = outputBuffer->mPos;
+    l = len - pos;
     m = 0;
     if (l == 0) {
         return m;
     }
     do {
-        r = func_ov000_02190aa8(a, b, i + (k + m), l, &g, &h, f);
+        r = GpiSendBytes(a, sock, i + (pos + m), l, &g, &h, f);
         if (r != 0) {
             return r;
         }
@@ -296,22 +296,22 @@ u32 func_ov000_021906e4(GpConnection *a, s32 b, Unk021906e4 *c, u32 *d, s32 e, c
     if (e != 0) {
         if (m > 0) {
             memmove(i, i + m, l + 1);
-            j -= m;
+            len -= m;
         }
     } else {
-        k += m;
+        pos += m;
     }
-    if (j < 0) {
+    if (len < 0) {
         func_0213442c(data_ov000_021b28b4, data_ov000_021b28a8, NULL, 0x1de);
     }
-    if (k < 0) {
+    if (pos < 0) {
         func_0213442c(data_ov000_021b28c0, data_ov000_021b28a8, NULL, 0x1df);
     }
-    if (k > j) {
+    if (pos > len) {
         func_0213442c(data_ov000_021b28cc, data_ov000_021b28a8, NULL, 0x1e0);
     }
-    c->mUnk_08 = j;
-    c->mUnk_0c = k;
+    outputBuffer->mLength = len;
+    outputBuffer->mPos = pos;
     if (d != NULL) {
         *d = g;
     }

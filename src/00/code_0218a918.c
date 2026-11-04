@@ -6,7 +6,7 @@
 #include "00/code_0218b434.h"
 
 void func_ov000_0218a98c(Unk0218a9bc *a) {
-    Unk0218af28 *v1;
+    SbServer *v1;
     while ((a->mUnk_08.mUnk_08 < a->mUnk_04 && (0 < a->mUnk_14.mUnk_08))) {
         v1 = func_ov000_0218aea4(&a->mUnk_14);
         func_ov000_0218ad44(a, v1);
@@ -38,7 +38,7 @@ void func_ov000_0218a93c(u32 a, u8 b) {
     return;
 }
 
-void func_ov000_0218a918(Unk0218b668 *a, Unk0218af28 *b) {
+void func_ov000_0218a918(Unk0218b668 *a, SbServer *b) {
     int v1;
     v1 = func_ov000_0218ae68(&a->mUnk_000.mUnk_08, b);
     if (v1 == 0) {

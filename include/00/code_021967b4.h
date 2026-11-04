@@ -13,6 +13,6 @@ extern char data_ov000_021b3af4[];
 extern char data_ov000_021b3afc[];
 extern char data_ov000_021b3b08[];
 
-BOOL func_ov000_021967b4(const char *a, const char *b, char *c, s32 d);
-BOOL func_ov000_02196870(GpConnection *a, const char *b, s32 c);
+BOOL GpiGetValue(const char *command, const char *key, char *value, s32 len);
+BOOL GpiReadError(GpConnection *a, const char *b, s32 c);
 void func_ov000_0219690c(GpConnection *a, const char *b, ...);

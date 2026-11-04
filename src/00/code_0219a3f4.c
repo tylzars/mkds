@@ -11,8 +11,8 @@ void DeleteSocket(Gt2Socket *a) {
         return;
     }
     func_ov000_0218e53c(a->mDescriptor);
-    func_ov000_0218dfb4(a->mConnections);
-    func_ov000_0218dc48(a->mConnectionsToFree);
+    HashtableDelete(a->mConnections);
+    DarrayDelete(a->mConnectionsToFree);
     func_ov000_021a3668(a);
     func_ov000_0218e8b4();
     return;

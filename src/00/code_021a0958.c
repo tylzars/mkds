@@ -178,7 +178,7 @@ u32 func_ov000_021a0c30(Unk021a0c30 *a) {
     s32 i;
 
     if (a->mUnk_00 == 0) {
-        if (func_ov000_0219e594(func_ov000_0218b4f8(data_ov000_021b566c->mUnk_e4, func_ov000_0219a760(a->mUnk_04, 0, 0),
+        if (func_ov000_0219e594(func_ov000_0218b4f8(data_ov000_021b566c->mUnk_e4, Gt2FormatAddress(a->mUnk_04, 0, 0),
                                                     a->mUnk_02, a->mUnk_08)) != 0) {
             return 2;
         }
@@ -252,7 +252,7 @@ u32 func_ov000_021a0a40(u32 a, u32 b, u32 c, u32 *d, u32 e) {
     s.mUnk_0c = (u32) data_ov000_021b566c->mUnk_1c;
     s.mUnk_10 = data_ov000_021b566c->mUnk_1e8;
     for (i = 0; i < 5; i++) {
-        r = func_ov000_0218b530(data_ov000_021b566c->mUnk_e4, func_ov000_0219a760(b, 0, 0), c, (u8 *) &s,
+        r = func_ov000_0218b530(data_ov000_021b566c->mUnk_e4, Gt2FormatAddress(b, 0, 0), c, (u8 *) &s,
                                 s.mUnk_09 + 0x14);
         if (r == 0 || r != 2) {
             break;
@@ -278,7 +278,7 @@ s32 func_ov000_021a09d0(struct GpConnection *a, u32 b, u32 c, const char *d) {
         MemCopy(d, e, n);
         e[n] = 0;
     }
-    return func_ov000_0218e908(a, c, v1);
+    return GpSendMessage(a, c, v1);
 }
 
 s32 func_ov000_021a0958(char *a, const char *b, s32 c) {

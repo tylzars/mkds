@@ -10,7 +10,7 @@ u32 func_ov000_02199fb0(int c, u32 d, u32 e) {
     if (b < 5) {
         if (a->mUnk_10 != 0) {
             func_ov000_02198514(a);
-            if (func_ov000_021982f4(a, d, NULL, 0) == 0) {
+            if (Gt2SetResultAndCallResultCallback(a, d, NULL, 0) == 0) {
                 return 0;
             }
         } else {

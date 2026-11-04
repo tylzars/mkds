@@ -8,31 +8,31 @@
 #include "code_021384cc.h"
 #include "code_02139f70.h"
 
-void AppendBufferBytes(Gt2Buffer *a, const u8 *b, int c) {
-    if (b != NULL && c != 0) {
-        if (c == -1) {
-            c = strlen((const char *) b);
+void AppendBufferBytes(Gt2Buffer *buffer, const u8 *b, int len) {
+    if (b != NULL && len != 0) {
+        if (len == -1) {
+            len = strlen((const char *) b);
         }
-        if (a->mLength + c > a->mSize) {
+        if (buffer->mLength + len > buffer->mSize) {
             func_0213442c(data_ov000_021b3eec, data_ov000_021b3ebc, NULL, 0x40);
         }
-        memcpy(a->mData + a->mLength, b, c);
-        a->mLength = a->mLength + c;
+        memcpy(buffer->mData + buffer->mLength, b, len);
+        buffer->mLength = buffer->mLength + len;
     }
 }
 
-void RemoveBufferBytes(Gt2Buffer *a, int b, int c) {
-    if (b == -1) {
-        b = a->mLength - c;
+void RemoveBufferBytes(Gt2Buffer *buffer, int start, int shortenBy) {
+    if (start == -1) {
+        start = buffer->mLength - shortenBy;
     }
-    if (b > a->mLength) {
+    if (start > buffer->mLength) {
         func_0213442c(data_ov000_021b3ea4, data_ov000_021b3ebc, NULL, 0x4f);
     }
-    if (c > a->mLength - b) {
+    if (shortenBy > buffer->mLength - start) {
         func_0213442c(data_ov000_021b3ec8, data_ov000_021b3ebc, NULL, 0x50);
     }
-    memmove(a->mData + b, a->mData + b + c, a->mLength - b - c);
-    a->mLength = a->mLength - c;
+    memmove(buffer->mData + start, buffer->mData + start + shortenBy, buffer->mLength - start - shortenBy);
+    buffer->mLength = buffer->mLength - shortenBy;
 }
 
 BOOL func_ov000_02197ca0(const s8 *a) {
@@ -81,7 +81,7 @@ BOOL func_ov000_02197ca0(const s8 *a) {
     return TRUE;
 }
 
-s8 *func_ov000_02197be0(s8 *a) {
+s8 *func_ov000_02197be0(s8 *buffer) {
     s32 b[9];
     u32 c;
     u32 h;
@@ -90,11 +90,11 @@ s8 *func_ov000_02197be0(s8 *a) {
     s32 e;
     u32 g;
     u8 *i;
-    if (a == NULL) {
+    if (buffer == NULL) {
         func_0213442c(data_ov000_021b3e90, data_ov000_021b3e98, NULL, 0x2b);
     }
     srand(func_ov000_0218e8c4());
-    a[0] = (s32) rand() % 0x5d + 0x21;
+    buffer[0] = (s32) rand() % 0x5d + 0x21;
     e = 0;
     f = 1;
     b[1] = e;
@@ -106,8 +106,8 @@ s8 *func_ov000_02197be0(s8 *a) {
     b[6] = f;
     b[7] = f;
     do {
-        c = (u8) a[f - 1];
-        d = (u8) a[0];
+        c = (u8) buffer[f - 1];
+        d = (u8) buffer[0];
         if (c < d) {
             g = b[0];
         } else {
@@ -127,14 +127,14 @@ s8 *func_ov000_02197be0(s8 *a) {
         d ^= h;
         e = d;
         e ^= g;
-        i = (u8 *) &a[f];
-        a[f] = (s32) rand() % 0x5d + 0x21;
+        i = (u8 *) &buffer[f];
+        buffer[f] = (s32) rand() % 0x5d + 0x21;
         if ((e != 0 && (*i & b[6]) == 0) || (e == 0 && (*i & b[7]) == 1)) {
             (*i)++;
         }
         f++;
     } while (f < 0x20);
-    return a;
+    return buffer;
 }
 
 s8 *func_ov000_02197b34(s8 *a, const s8 *b) {

@@ -36,7 +36,7 @@
 #include "00/code_0219488c.h"
 #include "00/code_0218e2dc.h"
 
-// Object of 0x308 bytes that func_ov000_02191cb0 allocates and fills.
+// Object of 0x308 bytes that GpiStartConnect allocates and fills.
 typedef struct Unk021919ac_q {
     /* 000 */ char mUnk_000[0x80];
     /* 080 */ char mUnk_080[0x21];
@@ -56,15 +56,15 @@ typedef struct Unk021919ac_f0 {
     /* cc */ u8 mUnk_cc[0x24];
 } Unk021919ac_f0;
 
-// Object that func_ov000_021938cc returns through its fourth argument.
+// Object that GpiCreateOperation returns through its fourth argument.
 typedef struct Unk021919ac_node {
-    /* 00 */ u32 mUnk_00;
+    /* 00 */ u32 mType;
     /* 04 */ u32 mUnk_04;
     /* 08 */ void *mUnk_08;
     /* 0c */ Unk021919ac_f0 *mUnk_0c;
     /* 10 */ u32 mUnk_10;
     /* 14 */ s32 mUnk_14;
-    /* 18 */ s32 mUnk_18;
+    /* 18 */ s32 mId;
     /* 1c */ u32 mUnk_1c;
 } Unk021919ac_node;
 
@@ -81,7 +81,7 @@ typedef struct Unk021919ac_h {
     /* 04 */ u32 mUnk_04;
 } Unk021919ac_h;
 
-// Address of 8 bytes that func_ov000_02191e58 passes on.
+// Address of 8 bytes that GpiOpenSockets passes on.
 typedef union Unk021919ac_sa {
     struct {
         /* 00 */ u8 mUnk_00;
@@ -96,9 +96,9 @@ typedef union Unk021919ac_sa {
 void *func_ov000_0218e880(const char *a);
 
 void func_ov000_021920d8(s8 *p, s32 n);
-u32 func_ov000_021919ac(GpConnection *p, Unk021919ac_q *q);
-u32 func_ov000_02191cb0(GpConnection *p, const char *a, const char *b, const char *c, const char *d, const s8 *e,
-                        const s8 *f, const char *g, s32 h, s32 i, s32 j, s32 k, s32 l);
-u32 func_ov000_02191e58(GpConnection *p, Unk021919ac_node *n);
+u32 GpiWriteLogin(GpConnection *p, Unk021919ac_q *q);
+u32 GpiStartConnect(GpConnection *p, const char *a, const char *b, const char *c, const char *d, const s8 *e,
+                    const s8 *f, const char *g, s32 h, s32 i, s32 j, s32 k, s32 l);
+u32 GpiOpenSockets(GpConnection *p, Unk021919ac_node *n);
 
 #include "00/code_02190cd4.h"

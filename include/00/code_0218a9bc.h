@@ -5,7 +5,7 @@
 struct Unk0218a9bc;
 
 // 0x24 bytes allocated by func_ov000_0218af28.
-typedef struct Unk0218af28 {
+typedef struct SbServer {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u16 mUnk_04;
     /* 08 */ u32 mUnk_08;
@@ -13,14 +13,14 @@ typedef struct Unk0218af28 {
     /* 10 */ u32 mUnk_10;
     /* 14 */ u8 mUnk_14;
     /* 15 */ u8 mUnk_15;
-    /* 18 */ void *mUnk_18;
-    /* 1c */ u32 mUnk_1c;
-    /* 20 */ struct Unk0218af28 *mUnk_20;
-} Unk0218af28;
+    /* 18 */ void *mKeyValues;
+    /* 1c */ u32 mPing;
+    /* 20 */ struct SbServer *mUnk_20;
+} SbServer;
 
 typedef struct Unk0218ae68 {
-    /* 00 */ Unk0218af28 *mUnk_00;
-    /* 04 */ Unk0218af28 *mUnk_04;
+    /* 00 */ SbServer *mUnk_00;
+    /* 04 */ SbServer *mUnk_04;
     /* 08 */ s32 mUnk_08;
 } Unk0218ae68;
 

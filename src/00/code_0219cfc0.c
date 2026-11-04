@@ -17,13 +17,13 @@ u32 func_ov000_0219d094(void *a, Unk0218ec44 *b) {
         return 0;
     }
     c = func_02152520((void *) func_ov000_0219c9c4(), a);
-    if (c > 0 && func_ov000_0218ebe8(data_ov000_021b5664->mUnk_04, c, &d) != 0) {
+    if (c > 0 && GpGetBuddyIndex(data_ov000_021b5664->mUnk_04, c, &d) != 0) {
         return 0;
     }
     if (c <= 0 || d == -1) {
         return 0;
     }
-    if (func_ov000_0218ec44(data_ov000_021b5664->mUnk_04, d, b) != 0) {
+    if (GpGetBuddyStatus(data_ov000_021b5664->mUnk_04, d, b) != 0) {
         return 0;
     }
     return 1;

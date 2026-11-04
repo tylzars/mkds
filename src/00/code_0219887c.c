@@ -20,11 +20,11 @@ void SetUnmatchedDataCallback(int a, u32 b) {
     return;
 }
 
-void func_ov000_021988a4(Unk0219887c *a, void *b) {
-    if (a == NULL) {
+void func_ov000_021988a4(Unk0219887c *connection, void *b) {
+    if (connection == NULL) {
         func_0213442c(data_ov000_021b3f8c, data_ov000_021b3f98, NULL, 0x19c);
     }
-    a->mUnk_40 = b;
+    connection->mUnk_40 = b;
     return;
 }
 

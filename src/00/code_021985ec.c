@@ -25,7 +25,7 @@ BOOL func_ov000_021986ac(Gt2Connection *a, u32 b) {
         if (r != FALSE) {
             func_ov000_02198b8c(a);
             func_ov000_02198514(a);
-            if (func_ov000_021982f4(a, 6, NULL, 0) == 0) {
+            if (Gt2SetResultAndCallResultCallback(a, 6, NULL, 0) == 0) {
                 return FALSE;
             }
         }
@@ -37,9 +37,9 @@ BOOL func_ov000_02198658(Gt2Connection *a, u32 b) {
     int n;
     int i;
     Unk02198af4 *p;
-    n = func_ov000_0218dc44((u32 *) a->mUnk_60);
+    n = DarrayGetCount((u32 *) a->mUnk_60);
     for (i = 0; i < n; i++) {
-        p = func_ov000_0218dbf8(a->mUnk_60, i);
+        p = DarrayGetElement(a->mUnk_60, i);
         if (b - p->mUnk_0c > 1000) {
             if (func_ov000_02198af4(a, p) == 0) {
                 return FALSE;

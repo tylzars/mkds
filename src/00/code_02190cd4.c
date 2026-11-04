@@ -31,85 +31,85 @@
 #include "00/code_02193b88.h"
 #include "00/code_02194840.h"
 
-void func_ov000_02190f4c(GpConnection *a, s32 b, s32 c) {
-    GpiConnection *d;
-    Unk02190ed4Cb e;
+void GpiQueueErrorCallback(GpConnection *a, s32 result, s32 fatal) {
+    GpiConnection *iconnection;
+    GpiCallback e;
     Unk02190f4c *f;
 
-    d = a->mGpiConnection;
-    if (d == NULL) {
+    iconnection = a->mGpiConnection;
+    if (iconnection == NULL) {
         func_0213442c(data_ov000_021b2a8c, data_ov000_021b2a58, NULL, 0x23);
     }
-    if (b == 0) {
+    if (result == 0) {
         func_0213442c(data_ov000_021b2aa0, data_ov000_021b2a58, NULL, 0x24);
     }
-    if (c != 1 && c != 0) {
+    if (fatal != 1 && fatal != 0) {
         func_0213442c(data_ov000_021b2ab8, data_ov000_021b2a58, NULL, 0x25);
     }
-    if (c == 1) {
-        d->mFatal = 1;
+    if (fatal == 1) {
+        iconnection->mFatal = 1;
     }
-    e = d->mCallbacks[0];
-    if (e.mUnk_00 != NULL) {
+    e = iconnection->mCallbacks[0];
+    if (e.mCallback != NULL) {
         f = func_ov000_021a3690(0x10);
         if (f != NULL) {
-            f->mUnk_00 = b;
-            f->mUnk_0c = c;
-            f->mUnk_04 = d->mErrorNumber;
-            f->mUnk_08 = d;
+            f->mUnk_00 = result;
+            f->mUnk_0c = fatal;
+            f->mUnk_04 = iconnection->mErrorNumber;
+            f->mUnk_08 = iconnection;
         }
-        func_ov000_02190ed4(a, e, f, NULL, 1);
+        GpiQueueCallback(a, e, f, NULL, 1);
     }
 }
 
-u32 func_ov000_02190ed4(GpConnection *a, Unk02190ed4Cb b, void *c, Unk021937c0Node *d, s32 e) {
+u32 GpiQueueCallback(GpConnection *a, GpiCallback b, void *c, GpiOperation *d, s32 e) {
     GpiConnection *f;
-    Unk02190ed4Node *g;
+    GpiQueuedCallback *g;
 
     f = a->mGpiConnection;
     g = func_ov000_021a3690(0x18);
     if (g == NULL) {
-        func_ov000_02196590(a, data_ov000_021b2a7c);
+        GpiSetErrorMessage(a, data_ov000_021b2a7c);
         return 1;
     }
-    g->mUnk_00 = b;
-    g->mUnk_08 = c;
+    g->mCallback = b;
+    g->mArg = c;
     if (d != NULL) {
-        g->mUnk_10 = d->mUnk_18;
+        g->mUnk_10 = d->mId;
     } else {
         g->mUnk_10 = 0;
     }
     g->mUnk_0c = e;
-    g->mUnk_14 = NULL;
+    g->mNext = NULL;
     if (f->mCallbackQueueHead == NULL) {
         f->mCallbackQueueHead = g;
     }
     if (f->mCallbackQueueTail != NULL) {
-        f->mCallbackQueueTail->mUnk_14 = g;
+        f->mCallbackQueueTail->mNext = g;
     }
     f->mCallbackQueueTail = g;
     return 0;
 }
 
-void func_ov000_02190da0(GpConnection *a, Unk02190ed4Node *b) {
+void GpiCallAndFreeCallback(GpConnection *a, GpiQueuedCallback *data) {
     Unk02190da0Data *c;
     Unk02190da0Data *e;
     s32 d;
 
-    if (b->mUnk_00.mUnk_00 == NULL) {
+    if (data->mCallback.mCallback == NULL) {
         func_0213442c(data_ov000_021b2a38, data_ov000_021b2a58, NULL, 0x6e);
     }
-    if (b->mUnk_08 == NULL) {
+    if (data->mArg == NULL) {
         func_0213442c(data_ov000_021b2a68, data_ov000_021b2a58, NULL, 0x6f);
     }
-    b->mUnk_00.mUnk_00(a, b->mUnk_08, b->mUnk_00.mUnk_04);
-    if (b->mUnk_0c == 2) {
-        c = b->mUnk_08;
+    data->mCallback.mCallback(a, data->mArg, data->mCallback.mUnk_04);
+    if (data->mUnk_0c == 2) {
+        c = data->mArg;
         func_ov000_021a3668(c->mUnk_08);
-        c = b->mUnk_08;
+        c = data->mArg;
         c->mUnk_08 = NULL;
-    } else if (b->mUnk_0c == 3) {
-        e = b->mUnk_08;
+    } else if (data->mUnk_0c == 3) {
+        e = data->mArg;
         for (d = 0; d < e->mUnk_38; d++) {
             func_ov000_021a3668(e->mUnk_3c[d]);
             e->mUnk_3c[d] = NULL;
@@ -120,24 +120,24 @@ void func_ov000_02190da0(GpConnection *a, Unk02190ed4Node *b) {
         e->mUnk_3c = NULL;
         func_ov000_021a3668(e->mUnk_40);
         e->mUnk_40 = NULL;
-    } else if (b->mUnk_0c == 4) {
-        c = b->mUnk_08;
+    } else if (data->mUnk_0c == 4) {
+        c = data->mArg;
         func_ov000_021a3668(c->mUnk_0c);
         c->mUnk_0c = NULL;
-    } else if (b->mUnk_0c == 7) {
-        c = b->mUnk_08;
+    } else if (data->mUnk_0c == 7) {
+        c = data->mArg;
         if (c->mUnk_10 != NULL) {
             func_ov000_021a3668(c->mUnk_10);
             c->mUnk_10 = NULL;
         }
-    } else if (b->mUnk_0c == 8) {
-        c = b->mUnk_08;
+    } else if (data->mUnk_0c == 8) {
+        c = data->mArg;
         if (c->mUnk_08 != NULL) {
             func_ov000_021a3668(c->mUnk_08);
             c->mUnk_08 = NULL;
         }
-    } else if (b->mUnk_0c == 9) {
-        Unk02190da0Data *f = b->mUnk_08;
+    } else if (data->mUnk_0c == 9) {
+        Unk02190da0Data *f = data->mArg;
         for (d = 0; d < f->mUnk_04; d++) {
             func_ov000_021a3668(f->mUnk_08[d]);
             f->mUnk_08[d] = NULL;
@@ -145,17 +145,17 @@ void func_ov000_02190da0(GpConnection *a, Unk02190ed4Node *b) {
         func_ov000_021a3668(f->mUnk_08);
         f->mUnk_08 = NULL;
     }
-    func_ov000_021a3668(b->mUnk_08);
-    b->mUnk_08 = NULL;
-    func_ov000_021a3668(b);
+    func_ov000_021a3668(data->mArg);
+    data->mArg = NULL;
+    func_ov000_021a3668(data);
 }
 
-u32 func_ov000_02190cd4(GpConnection *a, s32 b) {
+u32 GpiCallQueuedCallbacks(GpConnection *a, s32 b) {
     GpiConnection *c;
-    Unk02190ed4Node *d;
-    Unk02190ed4Node *e;
-    Unk02190ed4Node *f;
-    Unk02190ed4Node *g;
+    GpiQueuedCallback *d;
+    GpiQueuedCallback *e;
+    GpiQueuedCallback *f;
+    GpiQueuedCallback *g;
 
     c = a->mGpiConnection;
     if (b != 0) {
@@ -167,17 +167,17 @@ u32 func_ov000_02190cd4(GpConnection *a, s32 b) {
         g = d;
         if (g != NULL) {
             do {
-                Unk02190ed4Node *h = g->mUnk_14;
+                GpiQueuedCallback *h = g->mNext;
                 if (g->mUnk_10 == b || g->mUnk_0c == 1) {
                     if (f != NULL) {
-                        f->mUnk_14 = h;
+                        f->mNext = h;
                     } else {
                         d = h;
                     }
                     if (e == g) {
                         e = f;
                     }
-                    func_ov000_02190da0(a, g);
+                    GpiCallAndFreeCallback(a, g);
                 } else {
                     f = g;
                 }
@@ -185,7 +185,7 @@ u32 func_ov000_02190cd4(GpConnection *a, s32 b) {
             } while (g != NULL);
         }
         if (c->mCallbackQueueHead != NULL) {
-            c->mCallbackQueueTail->mUnk_14 = d;
+            c->mCallbackQueueTail->mNext = d;
             c->mCallbackQueueTail = e;
         } else {
             c->mCallbackQueueHead = d;
@@ -198,8 +198,8 @@ u32 func_ov000_02190cd4(GpConnection *a, s32 b) {
         c->mCallbackQueueHead = NULL;
         c->mCallbackQueueTail = NULL;
         while (g != NULL) {
-            d = g->mUnk_14;
-            func_ov000_02190da0(a, g);
+            d = g->mNext;
+            GpiCallAndFreeCallback(a, g);
             g = d;
         }
         g = c->mCallbackQueueHead;

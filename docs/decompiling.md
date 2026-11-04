@@ -571,7 +571,7 @@ Expression shapes:
   view with a real 2-D member.
 - A dead product still shapes code: scaling all three components before overwriting one matters.
 - A big loop where the original rebuilds stack-array addresses (`add rX, sp, #n`) and constants at each use but
-  ours holds them in registers (func_ov000_02194cac): look for a cast of a loop-invariant parameter in that loop
+  ours holds them in registers (GpiUpdateSearch): look for a cast of a loop-invariant parameter in that loop
   (`(u32) a` as a call argument). Declare the callee's parameter with the pointer type and pass `a` without the cast
   (a header change; probe every user).
 - `((const T *) p->f)->g` in a loop condition shares the base pointer and reloads only the field (func_020800f4). A
@@ -749,7 +749,7 @@ Expression shapes:
 - A predicated arm that forms its address in `ip` alone where ours goes through r4: write the multi-statement arm first,
   with the `!= 0` test (func_02050080).
 - A one-argument call whose other copy of the declaration is unprototyped: pass the missing `0` argument
-  (func_ov000_021962d4).
+  (GpiOpenSearchSocket).
 
 ### 1.7 Constants and Literal Pools
 
@@ -887,10 +887,10 @@ Expression shapes:
 
 - A local array zeroed through `add rX, sp, #N` and two stores had `= {0}` at its declaration (func_0206e874).
 - A call result stored to a local's stack slot where the original keeps it in r0: that local has its address taken
-  elsewhere; use a separate local (func_ov000_02191e58).
+  elsewhere; use a separate local (GpiOpenSockets).
 - Thumb: an 8-byte local zeroed twice mid-function through `add rX, sp, #N; str [rX]; str [rX, #4]` on one slot:
   `__builtin__clear(&s, sizeof(s));`, like `= {0}` without the extra slot (hand-picked; the only spelling that matched;
-  func_ov000_02191e58).
+  GpiOpenSockets).
 - A small local array kept in memory and reloaded after stores, where ours is in registers: one store through `((Vec3 *)
   d)->x` at the first assignment. `*(d + 0)`, `*&d[0]`, unions, wrapped arrays and inline pointer helpers did not work
   (func_02101964).

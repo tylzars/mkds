@@ -124,8 +124,8 @@ s32 func_ov000_0218d528(u32 *a, u32 *b) {
     s32 r;
     e = *a;
     f = *b;
-    x = func_ov000_0218b2a8((Unk0218af28 *) e, (void *) data_ov000_021b4d24->mUnk_498, 0);
-    r = x - func_ov000_0218b2a8((Unk0218af28 *) f, (void *) data_ov000_021b4d24->mUnk_498, 0);
+    x = SbServerGetInt((SbServer *) e, (void *) data_ov000_021b4d24->mUnk_498, 0);
+    r = x - SbServerGetInt((SbServer *) f, (void *) data_ov000_021b4d24->mUnk_498, 0);
     if (data_ov000_021b4d24->mUnk_49c == 0) {
         r = -r;
     }
@@ -140,8 +140,8 @@ s32 func_ov000_0218d488(u32 *a, u32 *b) {
     double d;
     e = *a;
     f = *b;
-    x = func_ov000_0218b280((Unk0218af28 *) e, (const char *) data_ov000_021b4d24->mUnk_498, 0);
-    y = func_ov000_0218b280((Unk0218af28 *) f, (const char *) data_ov000_021b4d24->mUnk_498, 0);
+    x = SbServerGetDouble((SbServer *) e, (const char *) data_ov000_021b4d24->mUnk_498, 0);
+    y = SbServerGetDouble((SbServer *) f, (const char *) data_ov000_021b4d24->mUnk_498, 0);
     d = x - y;
     if (data_ov000_021b4d24->mUnk_49c == 0) {
         d = 0 - d;

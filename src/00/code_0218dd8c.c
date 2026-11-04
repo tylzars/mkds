@@ -11,147 +11,147 @@
 #include "code_021382a8.h"
 #include "00/code_021a3668.h"
 
-Unk0218e004 *func_ov000_0218e004(s32 c, s32 d, s32 e, s32 (*f)(void *, s32), s32 (*g)(void *, void *),
-                                 void (*h)(void *)) {
-    Unk0218e004 *a;
+Hashtable *HashtableCreate(s32 elemSize, s32 nBuckets, s32 e, s32 (*hashFn)(void *, s32), s32 (*compFn)(void *, void *),
+                           void (*h)(void *)) {
+    Hashtable *table;
     s32 b;
-    if (f == NULL) {
+    if (hashFn == NULL) {
         func_0213442c(data_ov000_021b236c, data_ov000_021b2358, NULL, 0x38);
     }
-    if (g == NULL) {
+    if (compFn == NULL) {
         func_0213442c(data_ov000_021b2374, data_ov000_021b2358, NULL, 0x39);
     }
-    if (c == 0) {
+    if (elemSize == 0) {
         func_0213442c(data_ov000_021b237c, data_ov000_021b2358, NULL, 0x3a);
     }
-    if (d == 0) {
+    if (nBuckets == 0) {
         func_0213442c(data_ov000_021b2388, data_ov000_021b2358, NULL, 0x3b);
     }
-    a = func_ov000_021a3690(0x14);
-    if (a == NULL) {
+    table = func_ov000_021a3690(0x14);
+    if (table == NULL) {
         func_0213442c(data_ov000_021b2364, data_ov000_021b2358, NULL, 0x3e);
     }
-    a->mUnk_00 = func_ov000_021a3690(d * 4);
-    if (a->mUnk_00 == NULL) {
+    table->mBuckets = func_ov000_021a3690(nBuckets * 4);
+    if (table->mBuckets == NULL) {
         func_0213442c(data_ov000_021b2394, data_ov000_021b2358, NULL, 0x41);
     }
-    for (b = 0; b < d; b++) {
-        a->mUnk_00[b] = func_ov000_0218dc94(c, e, h);
+    for (b = 0; b < nBuckets; b++) {
+        table->mBuckets[b] = DarrayCreate(elemSize, e, h);
     }
-    a->mUnk_04 = d;
-    a->mUnk_08 = h;
-    a->mUnk_10 = g;
-    a->mUnk_0c = f;
-    return a;
+    table->mBucketCount = nBuckets;
+    table->mElemCallback = h;
+    table->mCompFn = compFn;
+    table->mHashFn = hashFn;
+    return table;
 }
 
-void func_ov000_0218dfb4(void *c) {
-    Unk0218e004 *a = c;
+void HashtableDelete(void *c) {
+    Hashtable *table = c;
     s32 b;
-    if (a == NULL) {
+    if (table == NULL) {
         func_0213442c(data_ov000_021b2364, data_ov000_021b2358, NULL, 0x51);
     }
-    if (a != NULL) {
-        for (b = 0; b < a->mUnk_04; b++) {
-            func_ov000_0218dc48(a->mUnk_00[b]);
+    if (table != NULL) {
+        for (b = 0; b < table->mBucketCount; b++) {
+            DarrayDelete(table->mBuckets[b]);
         }
-        func_ov000_021a3668(a->mUnk_00);
-        func_ov000_021a3668(a);
+        func_ov000_021a3668(table->mBuckets);
+        func_ov000_021a3668(table);
     }
 }
 
-s32 func_ov000_0218df5c(Unk0218e004 *c) {
+s32 HashtableGetCount(Hashtable *table) {
     s32 a = 0;
     s32 b;
-    if (c == NULL) {
+    if (table == NULL) {
         func_0213442c(data_ov000_021b2364, data_ov000_021b2358, NULL, 0x61);
     }
-    if (c == NULL) {
+    if (table == NULL) {
         return 0;
     }
-    for (b = 0; b < c->mUnk_04; b++) {
-        a += func_ov000_0218dc44(c->mUnk_00[b]);
+    for (b = 0; b < table->mBucketCount; b++) {
+        a += DarrayGetCount(table->mBuckets[b]);
     }
     return a;
 }
 
-void func_ov000_0218def0(Unk0218e004 *c, void *d) {
+void HashtableSet(Hashtable *table, void *d) {
     s32 a;
     s32 b;
-    if (c == NULL) {
+    if (table == NULL) {
         func_0213442c(data_ov000_021b2364, data_ov000_021b2358, NULL, 0x71);
     }
-    if (c != NULL) {
-        a = c->mUnk_0c(d, c->mUnk_04);
-        b = func_ov000_0218d980(c->mUnk_00[a], d, (UnkCompare *) c->mUnk_10, 0, 0);
+    if (table != NULL) {
+        a = table->mHashFn(d, table->mBucketCount);
+        b = DarrayFindIndex(table->mBuckets[a], d, (UnkCompare *) table->mCompFn, 0, 0);
         if (b == -1) {
-            func_ov000_0218dbc0(c->mUnk_00[a], d);
+            DarrayAppend(table->mBuckets[a], d);
             return;
         }
-        func_ov000_0218da1c(c->mUnk_00[a], d, b);
+        DarrayReplace(table->mBuckets[a], d, b);
     }
 }
 
-BOOL func_ov000_0218de8c(Unk0218e004 *c, void *d) {
+BOOL HashtableRemove(Hashtable *table, void *d) {
     s32 a;
     s32 b;
-    if (c == NULL) {
+    if (table == NULL) {
         func_0213442c(data_ov000_021b2364, data_ov000_021b2358, NULL, 0x82);
     }
-    if (c == NULL) {
+    if (table == NULL) {
         return FALSE;
     }
-    a = c->mUnk_0c(d, c->mUnk_04);
-    b = func_ov000_0218d980(c->mUnk_00[a], d, (UnkCompare *) c->mUnk_10, 0, 0);
+    a = table->mHashFn(d, table->mBucketCount);
+    b = DarrayFindIndex(table->mBuckets[a], d, (UnkCompare *) table->mCompFn, 0, 0);
     if (b != -1) {
-        func_ov000_0218da5c(c->mUnk_00[a], b);
+        DarrayRemove(table->mBuckets[a], b);
         return TRUE;
     }
     return FALSE;
 }
 
-void *func_ov000_0218de28(Unk0218e004 *c, void *d) {
+void *HashtableFind(Hashtable *table, void *d) {
     s32 a;
     s32 b;
-    if (c == NULL) {
+    if (table == NULL) {
         func_0213442c(data_ov000_021b2364, data_ov000_021b2358, NULL, 0x94);
     }
-    if (c == NULL) {
+    if (table == NULL) {
         return NULL;
     }
-    a = c->mUnk_0c(d, c->mUnk_04);
-    b = func_ov000_0218d980(c->mUnk_00[a], d, (UnkCompare *) c->mUnk_10, 0, 0);
+    a = table->mHashFn(d, table->mBucketCount);
+    b = DarrayFindIndex(table->mBuckets[a], d, (UnkCompare *) table->mCompFn, 0, 0);
     if (b != -1) {
-        return func_ov000_0218dbf8(c->mUnk_00[a], b);
+        return DarrayGetElement(table->mBuckets[a], b);
     }
     return NULL;
 }
 
-void func_ov000_0218dddc(Unk0218e004 *b, void (*c)(void *, void *), void *d) {
+void HashtableForEach(Hashtable *table, void (*fn)(void *, void *), void *d) {
     s32 a;
-    if (c == NULL) {
+    if (fn == NULL) {
         func_0213442c(data_ov000_021b2354, data_ov000_021b2358, NULL, 0xb6);
     }
-    for (a = 0; a < b->mUnk_04; a++) {
-        func_ov000_0218d938(b->mUnk_00[a], (UnkCompare *) c, d);
+    for (a = 0; a < table->mBucketCount; a++) {
+        DarrayForEachReverse(table->mBuckets[a], (UnkCompare *) fn, d);
     }
 }
 
-void *func_ov000_0218dd8c(Unk0218e004 *a, int b, u32 c) {
+void *HashtableFindByFn(Hashtable *table, int fn, u32 c) {
     void *v1;
     int v3;
-    if (b == 0) {
+    if (fn == 0) {
         func_0213442c(data_ov000_021b2354, data_ov000_021b2358, NULL, 0xd3);
     }
     v3 = 0;
-    if (0 < a->mUnk_04) {
+    if (0 < table->mBucketCount) {
         do {
-            v1 = func_ov000_0218d8dc(a->mUnk_00[v3], (UnkCompare *) b, (void *) c);
+            v1 = DarrayFindByFnReverse(table->mBuckets[v3], (UnkCompare *) fn, (void *) c);
             if (v1 != NULL) {
                 return v1;
             }
             v3 = v3 + 1;
-        } while (v3 < a->mUnk_04);
+        } while (v3 < table->mBucketCount);
     }
     return NULL;
 }

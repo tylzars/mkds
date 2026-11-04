@@ -27,7 +27,7 @@ s8 *func_ov000_02197a9c(const char *a, const char *b, s8 *c) {
     return c;
 }
 
-s32 func_ov000_02197924(s32 a, s32 b) {
+s32 GstatsStartConnect(s32 a, s32 b) {
     u8 c[8];
     s8 d[0x84];
     s32 e;
@@ -44,7 +44,7 @@ s32 func_ov000_02197924(s32 a, s32 b) {
     func_ov000_0218e8b8();
     data_ov000_021b4e64 = func_ov000_0218e8c4();
     if (data_ov000_021b3b2c != -1) {
-        func_ov000_02197634();
+        GstatsClose();
     }
     data_ov000_021b4e54 = 0;
     if (func_ov000_0218e374((u32) data_ov000_021b3c48) == -1) {
@@ -82,7 +82,7 @@ s32 func_ov000_02197924(s32 a, s32 b) {
     return 6;
 }
 
-s32 func_ov000_021976bc(void) {
+s32 GstatsUpdateConnect(void) {
     s32 a[2];
     s32 b;
     s32 c;
@@ -95,13 +95,13 @@ s32 func_ov000_021976bc(void) {
             b = func_ov000_0218e68c(data_ov000_021b3b2c, NULL, (u32 *) &a[0], (u32 *) &a[1]);
             if (b == -1 || (b == 1 && a[1] == 1)) {
                 data_ov000_021b4e60 = 1;
-                func_ov000_02197634();
+                GstatsClose();
                 return 3;
             }
             if (b == 0) {
                 if (func_ov000_0218e8c4() - data_ov000_021b4e48 > data_ov000_021b3b34) {
                     data_ov000_021b4e60 = 1;
-                    func_ov000_02197634();
+                    GstatsClose();
                     return 7;
                 }
                 return 6;
@@ -114,7 +114,7 @@ s32 func_ov000_021976bc(void) {
             if (func_ov000_0218e668(data_ov000_021b3b2c) == 0) {
                 if (func_ov000_0218e8c4() - data_ov000_021b4e48 > data_ov000_021b3b34) {
                     data_ov000_021b4e60 = 1;
-                    func_ov000_02197634();
+                    GstatsClose();
                     return 7;
                 }
                 return 6;
@@ -123,7 +123,7 @@ s32 func_ov000_021976bc(void) {
                                     data_ov000_021b4e74 - data_ov000_021b4e54, 0);
             if (b == -1) {
                 data_ov000_021b4e60 = 1;
-                func_ov000_02197634();
+                GstatsClose();
                 return 3;
             }
             data_ov000_021b4e54 += b;
@@ -138,7 +138,7 @@ s32 func_ov000_021976bc(void) {
             c = func_ov000_0219735c(data_ov000_021b4e58, data_ov000_021b4e68);
             if (c != 0) {
                 data_ov000_021b4e60 = 1;
-                func_ov000_02197634();
+                GstatsClose();
                 return c;
             }
             data_ov000_021b4e60 = 4;
@@ -149,7 +149,7 @@ s32 func_ov000_021976bc(void) {
             if (func_ov000_0218e668(data_ov000_021b3b2c) == 0) {
                 if (func_ov000_0218e8c4() - data_ov000_021b4e48 > data_ov000_021b3b34) {
                     data_ov000_021b4e60 = 1;
-                    func_ov000_02197634();
+                    GstatsClose();
                     return 7;
                 }
                 return 6;
@@ -157,7 +157,7 @@ s32 func_ov000_021976bc(void) {
             c = func_ov000_021972b4();
             if (c != 0) {
                 data_ov000_021b4e60 = 1;
-                func_ov000_02197634();
+                GstatsClose();
                 return c;
             }
             data_ov000_021b4e74 += data_ov000_021b4e54;
@@ -171,18 +171,18 @@ s32 func_ov000_021976bc(void) {
     }
 }
 
-s32 func_ov000_02197690(s32 a) {
-    s32 b = func_ov000_02197924(a, 0);
+s32 GstatsConnect(s32 a) {
+    s32 b = GstatsStartConnect(a, 0);
     if (b == 6) {
         do {
-            b = func_ov000_021976bc();
+            b = GstatsUpdateConnect();
             func_ov000_0218e8bc(5);
         } while (b == 6);
     }
     return b;
 }
 
-void func_ov000_02197634(void) {
+void GstatsClose(void) {
     if (data_ov000_021b3b2c != -1) {
         func_ov000_0218e524(data_ov000_021b3b2c, 2);
         func_ov000_0218e53c(data_ov000_021b3b2c);
@@ -247,7 +247,7 @@ BOOL func_ov000_0219746c(void) {
             a = func_ov000_0218e460(data_ov000_021b3b2c, data_ov000_021b4e58 + data_ov000_021b4e54,
                                     data_ov000_021b4e74 - data_ov000_021b4e54, 0);
             if (a <= 0) {
-                func_ov000_02197634();
+                GstatsClose();
                 return FALSE;
             }
             data_ov000_021b4e54 += a;

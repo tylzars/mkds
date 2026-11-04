@@ -36,7 +36,7 @@ void func_ov000_0219c9d8(void) {
         case 3:
         case 4:
             if (p->mUnk_00 != NULL && p->mUnk_00->mGpiConnection != NULL) {
-                func_ov000_0218f268(p->mUnk_00);
+                GpUpdate(p->mUnk_00);
             }
             if (data_ov000_021b565c->mUnk_34 != 0) {
                 if ((((u64) func_0200f5ac() - data_ov000_021b565c->mUnk_38) << 6) / 0x82ea > 0xea60) {

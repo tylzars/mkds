@@ -43,7 +43,7 @@ void func_ov000_0219ce48(GpConnection *a, Unk0219c400 *b, u32 c) {
             }
             k = 0;
             for (i = 0; i < b->mUnk_04; i++) {
-                func_ov000_0219d034(func_ov000_0218ebe8(a, b->mUnk_0c[i].mUnk_00, &n));
+                func_ov000_0219d034(GpGetBuddyIndex(a, b->mUnk_0c[i].mUnk_00, &n));
                 if (n == ~k) {
                     func_ov000_0219d128(b->mUnk_0c[i].mUnk_00);
                 } else {

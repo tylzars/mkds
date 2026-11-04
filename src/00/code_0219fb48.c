@@ -32,7 +32,7 @@ s32 func_ov000_021a0064(s32 a, u32 b, s32 c) {
 
     switch (data_ov000_021b566c->mUnk_15) {
         case 1:
-            if (func_ov000_0218eb9c(data_ov000_021b566c->mUnk_00, a) == 0) {
+            if (GpIsBuddy(data_ov000_021b566c->mUnk_00, a) == 0) {
                 r = 0xff;
                 break;
             }
@@ -69,7 +69,7 @@ s32 func_ov000_021a0064(s32 a, u32 b, s32 c) {
             }
             break;
         case 2:
-            if (func_ov000_0218eb9c(data_ov000_021b566c->mUnk_00, a) == 0) {
+            if (GpIsBuddy(data_ov000_021b566c->mUnk_00, a) == 0) {
                 r = 0xff;
             } else if (b != 3 || data_ov000_021b566c->mUnk_14 == data_ov000_021b566c->mUnk_16) {
                 r = 3;
@@ -151,7 +151,7 @@ u32 func_ov000_0219fdc8(u32 a, s32 b) {
     }
     if (data_ov000_021b566c->mUnk_15 == 0) {
         t = func_ov000_0218b480((u32) data_ov000_021b566c->mUnk_e4, 0);
-        data_ov000_021b566c->mUnk_f4[0] = func_ov000_0218b2a8((Unk0218af28 *) t, data_ov000_021b40c4, 0);
+        data_ov000_021b566c->mUnk_f4[0] = SbServerGetInt((SbServer *) t, data_ov000_021b40c4, 0);
         data_ov000_021b566c->mUnk_24[0] = func_ov000_0218b27c((u32 *) t);
         data_ov000_021b566c->mUnk_a4[0] = func_ov000_0218b260(t);
         data_ov000_021b566c->mUnk_1ec = data_ov000_021b566c->mUnk_f4[0];
@@ -232,8 +232,8 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
         if (k <= data_ov000_021b566c->mUnk_0d) {
             continue;
         }
-        r = func_ov000_0218ebe8(data_ov000_021b566c->mUnk_00, n, &q);
-        r |= func_ov000_0218ec44(data_ov000_021b566c->mUnk_00, q, &h);
+        r = GpGetBuddyIndex(data_ov000_021b566c->mUnk_00, n, &q);
+        r |= GpGetBuddyStatus(data_ov000_021b566c->mUnk_00, q, &h);
         if (r != 0) {
             continue;
         }

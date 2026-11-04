@@ -4,4 +4,4 @@
 
 typedef struct GpConnection GpConnection;
 
-void func_ov000_021965a0(GpConnection *a, u32 b, const char *c);
+void GpiSetError(GpConnection *a, u32 b, const char *c);

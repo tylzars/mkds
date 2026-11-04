@@ -10,7 +10,7 @@ typedef struct Unk0218b8f4 {
     /* 4 */ u32 mUnk_04;
 } Unk0218b8f4;
 
-// Entry of the list at Unk021b4d24::mUnk_008.
+// Entry of the list at SbServerList::mUnk_008.
 typedef struct Unk0218c0bc {
     /* 0 */ char *mUnk_00;
     /* 4 */ s32 mUnk_04;

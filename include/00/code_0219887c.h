@@ -10,7 +10,7 @@ typedef struct Unk0219887c {
 } Unk0219887c;
 
 u8 *func_ov000_0219887c(Unk0219887c *object);
-void func_ov000_021988a4(Unk0219887c *a, void *b);
+void func_ov000_021988a4(Unk0219887c *connection, void *b);
 void SetUnmatchedDataCallback(int a, u32 b);
 u32 GetSocketDescriptor(u32 *a);
 int func_ov000_021988dc(Gt2Connection *a);

@@ -12,11 +12,11 @@
 u32 func_ov000_02198fdc(Gt2Connection *param_1) {
     int v1;
     int *v2;
-    v1 = func_ov000_0218dc44(param_1->mUnk_60);
+    v1 = DarrayGetCount(param_1->mUnk_60);
     if (v1 <= 0) {
         func_0213442c(data_ov000_021b3fb0, data_ov000_021b3fb8, NULL, 0x475);
     }
-    v2 = func_ov000_0218dbf8(param_1->mUnk_60, v1 + -1);
+    v2 = DarrayGetElement(param_1->mUnk_60, v1 + -1);
     v1 = func_ov000_02198714((u32 *) param_1, (u32) (param_1->mSendBuffer.mData + *v2), v2[1]);
     if (v1 == 0) {
         return 0;

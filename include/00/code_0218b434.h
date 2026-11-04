@@ -12,7 +12,7 @@ unsigned int func_ov000_0218b570(unsigned int p0, unsigned int p1, unsigned int 
 // the addresses of 0x14 and 0x08 to func_ov000_0218ae5c.
 typedef struct Unk0218b668 {
     /* 000 */ Unk0218a9bc mUnk_000;
-    /* 04c */ Unk021b4d24 mUnk_04c;
+    /* 04c */ SbServerList mUnk_04c;
     /* 620 */ u32 mUnk_620;
     /* 624 */ u32 mUnk_624;
     /* 628 */ u32 mUnk_628;

@@ -16,14 +16,14 @@
 #include "00/unk_021b2000.h"
 #include "00/code_0218dd8c.h"
 
-void func_ov000_02194b4c(Unk02194934 *a) {
-    if (a->mUnk_08 != NULL) {
-        func_ov000_021a3668(a->mUnk_08->mUnk_08);
-        a->mUnk_08->mUnk_08 = NULL;
-        func_ov000_021a3668(a->mUnk_08->mUnk_0c);
-        a->mUnk_08->mUnk_0c = NULL;
-        func_ov000_021a3668(a->mUnk_08);
-        a->mUnk_08 = NULL;
+void GpiReleaseProfile(GpiProfile *a) {
+    if (a->mBuddyStatus != NULL) {
+        func_ov000_021a3668(a->mBuddyStatus->mUnk_08);
+        a->mBuddyStatus->mUnk_08 = NULL;
+        func_ov000_021a3668(a->mBuddyStatus->mUnk_0c);
+        a->mBuddyStatus->mUnk_0c = NULL;
+        func_ov000_021a3668(a->mBuddyStatus);
+        a->mBuddyStatus = NULL;
     }
     func_ov000_0219210c((Unk021919ac_node *) a);
     func_ov000_021a3668(a->mUnk_10);
@@ -32,99 +32,98 @@ void func_ov000_02194b4c(Unk02194934 *a) {
     a->mUnk_18 = NULL;
 }
 
-BOOL func_ov000_02194af4(GpConnection *a) {
+BOOL GpiInitProfileList(GpConnection *a) {
     GpiConnection *r;
 
     r = a->mGpiConnection;
     r->mBuddyCount = 0;
     r->mProfileList.mUnk_04 = 0;
-    r->mProfileList.mTable =
-        func_ov000_0218e0e0(0x1c, 4, func_ov000_02194ba4, func_ov000_02194b9c, func_ov000_02194b4c);
+    r->mProfileList.mTable = func_ov000_0218e0e0(0x1c, 4, GpiHashProfile, GpiCompareProfiles, GpiReleaseProfile);
     if (r->mProfileList.mTable != NULL) {
         return TRUE;
     }
     return FALSE;
 }
 
-s32 func_ov000_02194a0c(GpConnection *a, Unk021937c0Node *b, const char *c) {
-    Unk02190ed4Cb p;
+s32 func_ov000_02194a0c(GpConnection *a, GpiOperation *b, const char *c) {
+    GpiCallback p;
     u32 *m;
     s32 v;
     s32 t;
     char d[0x10];
 
-    if (func_ov000_02196870(a, c, 1) != 0) {
+    if (GpiReadError(a, c, 1) != 0) {
         return 4;
     }
     if (strncmp(c, data_ov000_021b3564, 5) != 0) {
-        func_ov000_021965a0(a, 1, data_ov000_021b356c);
-        func_ov000_02190f4c(a, 3, 1);
+        GpiSetError(a, 1, data_ov000_021b356c);
+        GpiQueueErrorCallback(a, 3, 1);
         return 3;
     }
-    if (func_ov000_021967b4(c, data_ov000_021b359c, d, 0x10) == 0) {
-        func_ov000_021965a0(a, 1, data_ov000_021b356c);
-        func_ov000_02190f4c(a, 3, 1);
+    if (GpiGetValue(c, data_ov000_021b359c, d, 0x10) == 0) {
+        GpiSetError(a, 1, data_ov000_021b356c);
+        GpiQueueErrorCallback(a, 3, 1);
         return 3;
     }
     v = func_0213bf90(d);
     p = b->mUnk_0c;
-    if (p.mUnk_00 != NULL) {
+    if (p.mCallback != NULL) {
         m = func_ov000_021a3690(8);
         if (m == NULL) {
-            func_ov000_02196590(a, data_ov000_021b35a8);
+            GpiSetErrorMessage(a, data_ov000_021b35a8);
             return 1;
         }
         m[1] = v;
         m[0] = 0;
-        t = func_ov000_02190ed4(a, p, m, b, 0);
+        t = GpiQueueCallback(a, p, m, b, 0);
         if (t != 0) {
             return t;
         }
     }
-    func_ov000_02193818(a, b);
+    GpiRemoveOperation(a, b);
     return 0;
 }
 
-Unk02194934 *func_ov000_0219496c(GpConnection *a, s32 b) {
+GpiProfile *GpiFindOrAddProfile(GpConnection *a, s32 id) {
     Unk0218f960_428 *c;
-    Unk02194934 *e;
+    GpiProfile *e;
 
     c = &a->mGpiConnection->mProfileList;
-    if (b <= 0) {
+    if (id <= 0) {
         func_0213442c(data_ov000_021b354c, data_ov000_021b3554, NULL, 0x2b5);
     }
-    if (b <= 0) {
+    if (id <= 0) {
         return NULL;
     }
-    if (func_ov000_02194934(a, b, &e) != 0) {
+    if (GpiFindProfile(a, id, &e) != 0) {
         return e;
     }
     {
-        Unk02194934 s = {0};
+        GpiProfile s = {0};
 
-        s.mUnk_00 = b;
-        s.mUnk_04 = 0;
+        s.mProfileId = id;
+        s.mUserId = 0;
         s.mUnk_0c = 0;
         s.mUnk_10 = NULL;
         s.mUnk_18 = NULL;
         s.mUnk_14 = 0;
-        func_ov000_0218def0(c->mTable, &s);
+        HashtableSet(c->mTable, &s);
     }
     c->mUnk_04 = c->mUnk_04 + 1;
-    if (func_ov000_02194934(a, b, &e) != 0) {
+    if (GpiFindProfile(a, id, &e) != 0) {
         return e;
     }
     return NULL;
 }
 
-u32 func_ov000_02194934(GpConnection *a, u32 b, Unk02194934 **c) {
+u32 GpiFindProfile(GpConnection *a, u32 b, GpiProfile **c) {
     GpiConnection *r;
-    Unk02194934 d;
-    Unk02194934 *e;
+    GpiProfile d;
+    GpiProfile *e;
 
     r = a->mGpiConnection;
-    d.mUnk_00 = b;
-    e = func_ov000_0218de28(r->mProfileList.mTable, &d);
+    d.mProfileId = b;
+    e = HashtableFind(r->mProfileList.mTable, &d);
     if (c != NULL) {
         *c = e;
     }
@@ -134,16 +133,16 @@ u32 func_ov000_02194934(GpConnection *a, u32 b, Unk02194934 **c) {
     return 0;
 }
 
-void func_ov000_0219490c(GpConnection *a, u32 b) {
+void GpiRemoveProfileById(GpConnection *a, u32 b) {
     GpiConnection *r;
-    Unk02194934 *e;
+    GpiProfile *e;
 
     r = a->mGpiConnection;
-    if (func_ov000_02194934(a, b, &e) != 0) {
-        func_ov000_0218de8c(r->mProfileList.mTable, e);
+    if (GpiFindProfile(a, b, &e) != 0) {
+        HashtableRemove(r->mProfileList.mTable, e);
     }
 }
 
-void func_ov000_021948f8(GpConnection *a, Unk02194934 *b) {
-    func_ov000_0218de8c(a->mGpiConnection->mProfileList.mTable, b);
+void GpiRemoveProfile(GpConnection *a, GpiProfile *b) {
+    HashtableRemove(a->mGpiConnection->mProfileList.mTable, b);
 }

@@ -5,20 +5,20 @@
 #include "00/code_0218e2dc.h"
 #include "00/unk_021b4000.h"
 
-void func_ov000_0218ad44(Unk0218a9bc *p, Unk0218af28 *e) {
+void func_ov000_0218ad44(Unk0218a9bc *p, SbServer *e) {
     Unk0218aa14 a;
     u8 b[0x100];
     s32 c;
     s32 i;
     func_ov000_0218aedc(&p->mUnk_08, e);
-    e->mUnk_1c = func_ov000_0218e8c4();
+    e->mPing = func_ov000_0218e8c4();
     a.mUnk_01 = 2;
     if ((e->mUnk_14 & 0x20) == 0) {
         if (p->mUnk_00 == 1) {
             b[0] = 0xfe;
             b[1] = 0xfd;
             b[2] = 0;
-            __memcpy(&b[3], &e->mUnk_1c, 4);
+            __memcpy(&b[3], &e->mPing, 4);
             if ((e->mUnk_14 & 4) != 0) {
                 b[7] = p->mUnk_40;
                 for (i = 0; i < p->mUnk_40; i++) {

@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-typedef struct Unk021b4d24 Unk021b4d24;
+typedef struct SbServerList SbServerList;
 
 void func_ov000_0218b3ac(int *a);
 void func_ov000_0218b3c8(void *a);
-struct Unk0218e004 *func_ov000_0218b3f4(struct Unk021b4d24 *p);
+struct Hashtable *func_ov000_0218b3f4(struct SbServerList *p);

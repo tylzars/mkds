@@ -12,7 +12,7 @@ extern const char data_ov000_021b3ec8[];
 extern const char data_ov000_021b3eec[];
 
 s8 *func_ov000_02197b34(s8 *a, const s8 *b);
-s8 *func_ov000_02197be0(s8 *a);
+s8 *func_ov000_02197be0(s8 *buffer);
 BOOL func_ov000_02197ca0(const s8 *a);
-void RemoveBufferBytes(Gt2Buffer *a, int b, int c);
-void AppendBufferBytes(Gt2Buffer *a, const u8 *b, int c);
+void RemoveBufferBytes(Gt2Buffer *buffer, int start, int shortenBy);
+void AppendBufferBytes(Gt2Buffer *buffer, const u8 *b, int len);

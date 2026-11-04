@@ -3,7 +3,7 @@
 #include "types.h"
 #include "00/types_021906e4.h"
 
-// Object behind Unk021937c0Node.mUnk_04: func_ov000_02196240 clears and fills it, func_ov000_021962d4 sets the
+// Object behind GpiOperation.mUnk_04: GpiCreateSearch clears and fills it, GpiOpenSearchSocket sets the
 // word at 0x04 and gives it the buffer at 0x08 of 0x0c bytes.
 typedef struct Unk02196240 {
     /* 000 */ u32 mUnk_000;
@@ -21,31 +21,31 @@ typedef struct Unk02196240 {
     /* 140 */ s32 mUnk_140;
 } Unk02196240;
 
-typedef struct Unk021937c0Node {
-    /* 00 */ u32 mUnk_00;
+typedef struct GpiOperation {
+    /* 00 */ u32 mType;
     /* 04 */ Unk02196240 *mUnk_04;
     /* 08 */ u32 mUnk_08;
-    /* 0c */ Unk02190ed4Cb mUnk_0c;
+    /* 0c */ GpiCallback mUnk_0c;
     /* 14 */ s32 mUnk_14;
-    /* 18 */ u32 mUnk_18;
+    /* 18 */ u32 mId;
     /* 1c */ u32 mUnk_1c;
-    /* 20 */ struct Unk021937c0Node *mNext;
-} Unk021937c0Node;
+    /* 20 */ struct GpiOperation *mNext;
+} GpiOperation;
 
-typedef struct Unk02193f2cNode {
-    /* 00 */ s32 mUnk_00;
+typedef struct GpiPeer {
+    /* 00 */ s32 mState;
     /* 04 */ u32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
+    /* 08 */ s32 mSocket;
+    /* 0c */ u32 mProfileId;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ void *mUnk_18;
     /* 1c */ u32 mUnk_1c;
     /* 20 */ s32 mUnk_20;
     /* 24 */ u8 mUnk_24[4];
-    /* 28 */ u8 mUnk_28[8];
-    /* 30 */ s32 mUnk_30;
+    /* 28 */ u8 mOutputBuffer[8];
+    /* 30 */ s32 mOutputBufferLength;
     /* 34 */ u8 mUnk_34[4];
-    /* 38 */ void *mUnk_38;
-    /* 3c */ struct Unk02193f2cNode *mNext;
-} Unk02193f2cNode;
+    /* 38 */ void *mQueuedMessages;
+    /* 3c */ struct GpiPeer *mNext;
+} GpiPeer;

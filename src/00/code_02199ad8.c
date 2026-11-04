@@ -31,12 +31,12 @@ u32 func_ov000_02199ec8(Gt2Connection *a, u32 b) {
     s32 d;
     s32 e;
     Unk021990f8Entry *f;
-    c = func_ov000_0218dc44(a->mUnk_60);
+    c = DarrayGetCount(a->mUnk_60);
     if (c == 0) {
         return 1;
     }
     for (d = 0; d < c; d++) {
-        f = func_ov000_0218dbf8(a->mUnk_60, d);
+        f = DarrayGetElement(a->mUnk_60, d);
         if (func_ov000_0219a014(f->mUnk_08, b) >= 0) {
             break;
         }
@@ -45,17 +45,17 @@ u32 func_ov000_02199ec8(Gt2Connection *a, u32 b) {
         return 1;
     }
     while (d-- != 0) {
-        func_ov000_0218da5c(a->mUnk_60, d);
+        DarrayRemove(a->mUnk_60, d);
     }
-    c = func_ov000_0218dc44(a->mUnk_60);
+    c = DarrayGetCount(a->mUnk_60);
     if (c == 0) {
         a->mSendBuffer.mLength = 0;
         return 1;
     }
-    f = func_ov000_0218dbf8(a->mUnk_60, 0);
+    f = DarrayGetElement(a->mUnk_60, 0);
     e = f->mUnk_00;
     for (d = 0; d < c; d++) {
-        f = func_ov000_0218dbf8(a->mUnk_60, d);
+        f = DarrayGetElement(a->mUnk_60, d);
         f->mUnk_00 -= e;
     }
     RemoveBufferBytes(&a->mSendBuffer, 0, e);
@@ -66,13 +66,13 @@ u32 func_ov000_02199e50(Gt2Connection *a, const u8 *b, s32 c) {
     if (a->mUnk_0c != 5 && a->mUnk_0c != 6) {
         return 1;
     }
-    if (func_ov000_0218dc44(a->mUnk_9c) != 0) {
+    if (DarrayGetCount(a->mUnk_9c) != 0) {
         if (func_ov000_02197fe8(a, 0, (void *) b, c, 0) != 0) {
             return 1;
         }
         return 0;
     }
-    if (func_ov000_02198258(a, b, c, 0) != 0) {
+    if (Gt2CallDataCallback(a, b, c, 0) != 0) {
         return 1;
     }
     return 0;
@@ -85,13 +85,13 @@ u32 func_ov000_02199dd0(int b, u32 c, u32 d) {
             return 0;
         }
     } else {
-        if (func_ov000_0218dc44(a->mUnk_9c) != 0) {
+        if (DarrayGetCount(a->mUnk_9c) != 0) {
             if (func_ov000_02197fe8(a, 0, (void *) c, d, 1) != 0) {
                 return 1;
             }
             return 0;
         }
-        if (func_ov000_02198258(a, (const u8 *) c, d, 1) == 0) {
+        if (Gt2CallDataCallback(a, (const u8 *) c, d, 1) == 0) {
             return 0;
         }
     }
@@ -200,7 +200,7 @@ u32 func_ov000_02199b70(Gt2Connection *a) {
         return 0;
     }
     a->mUnk_0c = 5;
-    if (func_ov000_021982f4(a, 0, NULL, 0) != 0) {
+    if (Gt2SetResultAndCallResultCallback(a, 0, NULL, 0) != 0) {
         return 1;
     }
     return 0;
@@ -218,7 +218,7 @@ u32 func_ov000_02199b14(int b, u32 c, u32 d) {
     if (func_ov000_02198b8c(a) == 0) {
         return 0;
     }
-    if (func_ov000_021982f4(a, 2, (void *) c, d) != 0) {
+    if (Gt2SetResultAndCallResultCallback(a, 2, (void *) c, d) != 0) {
         return 1;
     }
     return 0;

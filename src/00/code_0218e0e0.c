@@ -6,6 +6,6 @@
 #include "00/code_0218dd8c.h"
 
 void *func_ov000_0218e0e0(u32 a, u32 b, void *c, void *d, void *e) {
-    return func_ov000_0218e004((s32) (a), (s32) (b), 4, (s32(*)(void *, s32))(c), (s32(*)(void *, void *))(d),
-                               (void (*)(void *))(e));
+    return HashtableCreate((s32) (a), (s32) (b), 4, (s32(*)(void *, s32))(c), (s32(*)(void *, void *))(d),
+                           (void (*)(void *))(e));
 }

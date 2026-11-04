@@ -5,10 +5,10 @@
 void func_ov000_0218f808(GpConnection *a) {
     GpiConnection *v1;
     v1 = a->mGpiConnection;
-    func_ov000_02190ff8(a, 1);
+    GpiCloseConnection(a, 1);
     func_ov000_021a3668(v1->mUnk_460);
     v1->mUnk_460 = NULL;
-    func_ov000_0218dfb4(v1->mProfileList.mTable);
+    HashtableDelete(v1->mProfileList.mTable);
     func_ov000_021a3668(v1);
     a->mGpiConnection = NULL;
     return;

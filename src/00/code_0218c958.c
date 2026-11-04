@@ -21,44 +21,44 @@
 #include "code_021384cc.h"
 #include "00/code_021a3668.h"
 
-void func_ov000_0218c958(Unk021b4d24 *p) {
+void func_ov000_0218c958(SbServerList *p) {
     func_ov000_0218c980(p);
     func_ov000_0218d1a0(p);
     func_ov000_0218b3c8(p);
     if (p->mUnk_004 != NULL) {
-        func_ov000_0218dc48(p->mUnk_004);
+        DarrayDelete(p->mUnk_004);
     }
     p->mUnk_004 = NULL;
 }
 
-void func_ov000_0218c980(Unk021b4d24 *p) {
-    if (p->mUnk_07c != NULL) {
-        func_ov000_021a3668(p->mUnk_07c);
+void func_ov000_0218c980(SbServerList *p) {
+    if (p->mInBuffer != NULL) {
+        func_ov000_021a3668(p->mInBuffer);
     }
-    p->mUnk_07c = NULL;
-    p->mUnk_080 = 0;
+    p->mInBuffer = NULL;
+    p->mInBufferLength = 0;
     if (p->mUnk_4b0 != -1) {
         func_ov000_0218e53c(p->mUnk_4b0);
     }
     p->mUnk_4b0 = -1;
-    p->mUnk_000 = 1;
+    p->mState = 1;
     func_ov000_0218c9d4(p);
     p->mUnk_484 = -1;
     func_ov000_0218ca1c(p);
 }
 
-void func_ov000_0218c9d4(Unk021b4d24 *p) {
+void func_ov000_0218c9d4(SbServerList *p) {
     int i;
     if (p->mUnk_008 != NULL) {
-        for (i = 0; i < func_ov000_0218dc44(p->mUnk_008); i++) {
-            func_ov000_0218d0e4(p, *(u32 *) func_ov000_0218dbf8(p->mUnk_008, i));
+        for (i = 0; i < DarrayGetCount(p->mUnk_008); i++) {
+            func_ov000_0218d0e4(p, *(u32 *) DarrayGetElement(p->mUnk_008, i));
         }
-        func_ov000_0218dc48(p->mUnk_008);
+        DarrayDelete(p->mUnk_008);
         p->mUnk_008 = NULL;
     }
 }
 
-void func_ov000_0218ca1c(Unk021b4d24 *p) {
+void func_ov000_0218ca1c(SbServerList *p) {
     int i;
     for (i = 0; i < p->mUnk_480; i++) {
         func_ov000_0218d0e4(p, (u32) p->mUnk_084[i]);
@@ -68,14 +68,14 @@ void func_ov000_0218ca1c(Unk021b4d24 *p) {
 
 // non-matching: the final two-byte copy puts the stack addresses in other registers and a different order (5
 // instructions, same size)
-s32 func_ov000_0218ca58(Unk021b4d24 *p, const char *a, const char *b, u32 c, u32 d) {
+s32 func_ov000_0218ca58(SbServerList *p, const char *a, const char *b, u32 c, u32 d) {
     u8 v1[0x300];
     Unk0218ca58 t;
     s32 v2;
     u8 *v3;
     u8 *q;
     s32 r;
-    if (p->mUnk_000 != 1) {
+    if (p->mState != 1) {
         func_0213442c(data_ov000_021b2240, data_ov000_021b2218, NULL, 0x20a);
     }
     if (a == NULL) {
@@ -122,19 +122,19 @@ s32 func_ov000_0218ca58(Unk021b4d24 *p, const char *a, const char *b, u32 c, u32
         func_ov000_0218c980(p);
         return 3;
     }
-    p->mUnk_000 = 3;
+    p->mState = 3;
     p->mUnk_5c8 = 0;
-    if (p->mUnk_07c == NULL) {
-        p->mUnk_07c = func_ov000_021a3690(0x1000);
-        if (p->mUnk_07c == NULL) {
+    if (p->mInBuffer == NULL) {
+        p->mInBuffer = func_ov000_021a3690(0x1000);
+        if (p->mInBuffer == NULL) {
             return 5;
         }
-        p->mUnk_080 = 0;
+        p->mInBufferLength = 0;
     }
     return 0;
 }
 
-s32 func_ov000_0218cc48(Unk021b4d24 *p, void *a, s32 b) {
+s32 func_ov000_0218cc48(SbServerList *p, void *a, s32 b) {
     s32 i = 1;
     s32 n;
     s32 r;
@@ -162,7 +162,7 @@ s32 func_ov000_0218cc48(Unk021b4d24 *p, void *a, s32 b) {
 
 // non-matching: loop temporaries get other registers (values in r4/r0 swapped) and the stack word at 0x20 is never
 // stored (0xac bytes against 0xb6)
-void func_ov000_0218ccbc(Unk021b4d24 *p) {
+void func_ov000_0218ccbc(SbServerList *p) {
     s32 v1;
     s32 v2;
     s32 v3;

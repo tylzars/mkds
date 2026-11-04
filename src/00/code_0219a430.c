@@ -38,7 +38,7 @@ Gt2Connection *FindConnection(Gt2Socket *a, u32 b, u32 c) {
     d.mAddress = b;
     d.mPort = c;
     e = &d;
-    f = func_ov000_0218de28(a->mConnections, &e);
+    f = HashtableFind(a->mConnections, &e);
     if (f != NULL) {
         return *(Gt2Connection **) f;
     }
@@ -59,7 +59,7 @@ u32 CreateSocket(Gt2Socket **a, const char *b, u32 c, u32 d, u32 e) {
     if (c == 0) {
         c = 0x10000;
     }
-    if (func_ov000_0219a654(b, &h, &i) == 0) {
+    if (Gt2ParseAddress(b, &h, &i) == 0) {
         return 4;
     }
     f = func_ov000_021a3690(0x44);
@@ -71,22 +71,22 @@ u32 CreateSocket(Gt2Socket **a, const char *b, u32 c, u32 d, u32 e) {
     f->mUnk_3c = d;
     f->mSendBufferSize = c;
     f->mUnk_24 = (void (*)(Gt2Socket *)) e;
-    f->mConnections = func_ov000_0218e004(4, 0x20, 2, (s32(*)(void *, s32)) & func_ov000_0219a604,
-                                          (s32(*)(void *, void *)) & func_ov000_0219a5e8, NULL);
+    f->mConnections = HashtableCreate(4, 0x20, 2, (s32(*)(void *, s32)) & func_ov000_0219a604,
+                                      (s32(*)(void *, void *)) & func_ov000_0219a5e8, NULL);
     if (f->mConnections == NULL) {
         func_ov000_021a3668(f);
         return 1;
     }
-    f->mConnectionsToFree = (void *) func_ov000_0218dc94(4, 4, (void (*)(void *)) & func_ov000_0219a5dc);
+    f->mConnectionsToFree = (void *) DarrayCreate(4, 4, (void (*)(void *)) & func_ov000_0219a5dc);
     if (f->mConnectionsToFree == NULL) {
-        func_ov000_0218dfb4(f->mConnections);
+        HashtableDelete(f->mConnections);
         func_ov000_021a3668(f);
         return 1;
     }
     f->mDescriptor = func_ov000_0218e554(2, 2, 0);
     if (f->mDescriptor == -1) {
-        func_ov000_0218dfb4(f->mConnections);
-        func_ov000_0218dc48(f->mConnectionsToFree);
+        HashtableDelete(f->mConnections);
+        DarrayDelete(f->mConnectionsToFree);
         func_ov000_021a3668(f);
         return 3;
     }
@@ -98,8 +98,8 @@ u32 CreateSocket(Gt2Socket **a, const char *b, u32 c, u32 d, u32 e) {
     g.mUnk_02 = ((i >> 8) & 0xff) | ((i << 8) & 0xff00);
     if (func_ov000_0218e4e4(f->mDescriptor, &g, 8) == -1) {
         func_ov000_0218e53c(f->mDescriptor);
-        func_ov000_0218dfb4(f->mConnections);
-        func_ov000_0218dc48(f->mConnectionsToFree);
+        HashtableDelete(f->mConnections);
+        DarrayDelete(f->mConnectionsToFree);
         func_ov000_021a3668(f);
         return 3;
     }

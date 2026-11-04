@@ -46,7 +46,7 @@ void func_ov000_0219db18(s32 a, s32 b, s32 c, void *d) {
             StringFormatBounded(i, 12, data_ov000_021b40b8, data_ov000_021b566c->mUnk_1e8);
             if (func_ov000_0219e3e4(func_ov000_02198968(
                     *data_ov000_021b566c->mUnk_04, NULL,
-                    func_ov000_0219a760(data_ov000_021b566c->mUnk_1f8[e], data_ov000_021b566c->mUnk_278[e], 0), i, -1,
+                    Gt2FormatAddress(data_ov000_021b566c->mUnk_1f8[e], data_ov000_021b566c->mUnk_278[e], 0), i, -1,
                     0x1388, data_ov000_021b566c->mUnk_08, 0)) != 0) {
                 return;
             }

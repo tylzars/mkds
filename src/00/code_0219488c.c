@@ -9,7 +9,7 @@ s32 func_ov000_0219488c(GpConnection *a, const char *b, const char *c, void **d)
     e.mUnk_04 = c;
     e.mUnk_08 = d;
     e.mUnk_0c = 0;
-    func_ov000_02194840(a, func_ov000_021948bc, &e);
+    GpiForEachProfileWhileNonZero(a, func_ov000_021948bc, &e);
     if (e.mUnk_0c == 0) {
         *d = NULL;
     }

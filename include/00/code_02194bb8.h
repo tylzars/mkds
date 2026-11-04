@@ -27,16 +27,16 @@ typedef struct Unk02194cac_04 {
     /* 140 */ s32 mUnk_140;
 } Unk02194cac_04;
 
-// Object func_ov000_02194cac takes as its second argument.
+// Object GpiUpdateSearch takes as its second argument.
 typedef struct Unk02194cac {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ Unk02194cac_04 *mUnk_04;
     /* 08 */ u32 mUnk_08;
-    /* 0c */ Unk02190ed4Cb mUnk_0c;
+    /* 0c */ GpiCallback mUnk_0c;
     /* 14 */ s32 mUnk_14;
 } Unk02194cac;
 
-// 0xac-byte array element func_ov000_02194cac fills.
+// 0xac-byte array element GpiUpdateSearch fills.
 typedef struct Unk02194cac_ac {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s8 mUnk_04[0x1f];
@@ -46,7 +46,7 @@ typedef struct Unk02194cac_ac {
     /* 76 */ s8 mUnk_76[0x36];
 } Unk02194cac_ac;
 
-// 0x128-byte array element func_ov000_02194cac fills.
+// 0x128-byte array element GpiUpdateSearch fills.
 typedef struct Unk02194cac_128 {
     /* 000 */ s32 mUnk_000;
     /* 004 */ s8 mUnk_004[0x20];
@@ -54,7 +54,7 @@ typedef struct Unk02194cac_128 {
     /* 028 */ s8 mUnk_028[0x100];
 } Unk02194cac_128;
 
-// 0x10-byte local of func_ov000_02194cac passed to Unk02190ed4Cb.mUnk_00.
+// 0x10-byte local of GpiUpdateSearch passed to GpiCallback.mUnk_00.
 typedef struct Unk02194cac_10 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -62,7 +62,7 @@ typedef struct Unk02194cac_10 {
     /* 0c */ Unk02194cac_ac *mUnk_0c;
 } Unk02194cac_10;
 
-// Objects func_ov000_02194cac allocates and passes to func_ov000_02190ed4.
+// Objects GpiUpdateSearch allocates and passes to GpiQueueCallback.
 typedef struct Unk02194cac_08 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -172,10 +172,10 @@ extern char data_ov000_021b3994[];
 extern char data_ov000_021b399c[];
 extern char data_ov000_021b4d6c[];
 
-BOOL func_ov000_02194bb8(GpConnection *a);
-s32 func_ov000_02194cac(GpConnection *a, Unk02194cac *b);
+BOOL GpiUpdateSearches(GpConnection *a);
+s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b);
 int func_ov000_021960a4(GpConnection *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, int g, int h, u32 l, u32 m, u32 n);
 int func_ov000_021961e8(GpConnection *a, u32 b, u32 c, u32 d, u32 e);
-BOOL func_ov000_02196240(GpConnection *a, Unk02196240 **b, u32 c);
-s32 func_ov000_021962d4(GpConnection *a, Unk021937c0Node *b);
-void func_ov000_02196434(GpConnection *a, Unk02193f2cNode *b, s32 c, const char *d, s32 e, s32 f);
+BOOL GpiCreateSearch(GpConnection *a, Unk02196240 **b, u32 c);
+s32 GpiOpenSearchSocket(GpConnection *a, GpiOperation *b);
+void func_ov000_02196434(GpConnection *a, GpiPeer *b, s32 c, const char *d, s32 e, s32 f);

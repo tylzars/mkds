@@ -38,8 +38,7 @@ Unk0218b668 *func_ov000_0218b668(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, s32 g
     p->mUnk_630 = h;
     p->mUnk_634 = l;
     p->mUnk_624 = 0;
-    func_ov000_0218cfb8(&p->mUnk_04c, (const char *) a, (const char *) b, (const char *) c, d, g, func_ov000_0218b780,
-                        p);
+    SbServerListInit(&p->mUnk_04c, (const char *) a, (const char *) b, (const char *) c, d, g, func_ov000_0218b780, p);
     func_ov000_0218acf4(&p->mUnk_000, e, f, g, func_ov000_0218b708, p);
     return p;
 }
@@ -70,7 +69,7 @@ s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const char *
     r = func_ov000_0218ca58(&a->mUnk_04c, v1, f, g, h);
     if (r == 0 && b == 0) {
         n = 10;
-        while (a->mUnk_04c.mUnk_000 == 3 || (a->mUnk_000.mUnk_08.mUnk_08 > 0 && r == 0)) {
+        while (a->mUnk_04c.mState == 3 || (a->mUnk_000.mUnk_08.mUnk_08 > 0 && r == 0)) {
             func_ov000_0218e8bc(n);
             r = func_ov000_0218b4bc(a);
         }
@@ -126,7 +125,7 @@ u32 func_ov000_0218b480(u32 arg0, u32 arg1) {
     u32 value3;
     value0 = (value0) + 76u;
     value3 = (u32) &func_ov000_0218d218;
-    value0 = (u32) func_ov000_0218d218((Unk021b4d24 *) value0, value1);
+    value0 = (u32) func_ov000_0218d218((SbServerList *) value0, value1);
     return value0;
 }
 
@@ -135,7 +134,7 @@ u32 func_ov000_0218b474(u32 arg0) {
     u32 value3;
     value0 = (value0) + 76u;
     value3 = (u32) &func_ov000_0218d22c;
-    value0 = (u32) func_ov000_0218d22c((Unk021b4d24 *) value0);
+    value0 = (u32) func_ov000_0218d22c((SbServerList *) value0);
     return value0;
 }
 

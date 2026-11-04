@@ -33,10 +33,10 @@
 #include "00/code_021965a0.h"
 #include "00/code_021967b4.h"
 
-u32 func_ov000_02193634(int a, int b, int c);
-s32 func_ov000_02193748(GpConnection *c, Unk021937c0Node *d, const char *e);
+u32 GpiIsValidDate(int a, int b, int c);
+s32 GpiProcessOperation(GpConnection *c, GpiOperation *d, const char *e);
 BOOL func_ov000_021937c0(GpConnection *object);
-BOOL func_ov000_021937e8(GpConnection *object, Unk021937c0Node **output, u32 key);
-void func_ov000_02193818(GpConnection *param_1, Unk021937c0Node *param_2);
-void func_ov000_02193858(GpConnection *param_1, Unk021937c0Node *param_2);
-s32 func_ov000_02193954(GpConnection *param_1, Unk021937c0Node *param_2);
+BOOL GpiFindOperation(GpConnection *object, GpiOperation **output, u32 key);
+void GpiRemoveOperation(GpConnection *param_1, GpiOperation *param_2);
+void GpiDeleteOperation(GpConnection *param_1, GpiOperation *param_2);
+s32 GpiQueueOperationCallback(GpConnection *connection, GpiOperation *operation);

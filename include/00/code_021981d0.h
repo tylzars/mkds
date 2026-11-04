@@ -12,13 +12,13 @@ typedef struct Unk02198af4 {
     /* 0c */ u32 mUnk_0c;
 } Unk02198af4;
 
-BOOL func_ov000_0219a654(const char *a, u32 *b, u16 *c);
+BOOL Gt2ParseAddress(const char *a, u32 *b, u16 *c);
 
-BOOL func_ov000_021981d0(Gt2Connection *a, void *b);
-BOOL func_ov000_02198258(Gt2Connection *a, void *b, int c, int d);
-BOOL func_ov000_021982f4(Gt2Connection *a, int b, void *c, int d);
+BOOL func_ov000_021981d0(Gt2Connection *connection, void *b);
+BOOL Gt2CallDataCallback(Gt2Connection *connection, void *b, int c, int d);
+BOOL Gt2SetResultAndCallResultCallback(Gt2Connection *connection, int b, void *c, int d);
 BOOL CallIncomingConnectionCallback(Gt2Socket *a, Gt2Connection *b, int c, int d, int e, int f, int g);
-BOOL func_ov000_02198448(Gt2Socket *a);
+BOOL func_ov000_02198448(Gt2Socket *socket);
 void func_ov000_021984b4(Gt2Connection *a);
 void func_ov000_02198514(Gt2Connection *a, ...);
 void func_ov000_02198548(Gt2Connection *a, int b);

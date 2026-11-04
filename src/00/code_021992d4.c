@@ -37,7 +37,7 @@ u32 func_ov000_0219958c(Gt2Connection *a, u8 *b, s32 c) {
     t[1] = p[1];
     t[2] = p[2];
     t[3] = p[3];
-    if (func_ov000_02198148(a, func_ov000_0218e8c4() - d) != 0) {
+    if (Gt2CallElapsedTimeCallback(a, func_ov000_0218e8c4() - d) != 0) {
         return 1;
     }
     return 0;

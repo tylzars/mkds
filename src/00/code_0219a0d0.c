@@ -46,15 +46,15 @@ u32 CreateConnection(Gt2Socket *a, Gt2Connection **b, u32 c, u32 d) {
         e->mUnk_64 = 0;
         e->mUnk_66 = 0;
         if (InitBuffer(&e->mUnk_44, a->mUnk_3c) != 0 && InitBuffer(&e->mSendBuffer, a->mSendBufferSize) != 0) {
-            e->mUnk_5c = (void *) func_ov000_0218dc94(0x10, 0x40, NULL);
+            e->mUnk_5c = (void *) DarrayCreate(0x10, 0x40, NULL);
             if (e->mUnk_5c != NULL) {
-                e->mUnk_60 = (void *) func_ov000_0218dc94(0x10, 0x40, NULL);
+                e->mUnk_60 = (void *) DarrayCreate(0x10, 0x40, NULL);
                 if (e->mUnk_60 != NULL) {
-                    e->mUnk_98 = (void *) func_ov000_0218dc94(4, 2, NULL);
+                    e->mUnk_98 = (void *) DarrayCreate(4, 2, NULL);
                     if (e->mUnk_98 != NULL) {
-                        e->mUnk_9c = (void *) func_ov000_0218dc94(4, 2, NULL);
+                        e->mUnk_9c = (void *) DarrayCreate(4, 2, NULL);
                         if (e->mUnk_9c != NULL) {
-                            func_ov000_0218def0(a->mConnections, &e);
+                            HashtableSet(a->mConnections, &e);
                             *b = FindConnection(a, c, d);
                             if (*b != NULL) {
                                 return 0;
@@ -69,16 +69,16 @@ u32 CreateConnection(Gt2Socket *a, Gt2Connection **b, u32 c, u32 d) {
         func_ov000_021a3668(e->mUnk_44.mData);
         func_ov000_021a3668(e->mSendBuffer.mData);
         if (e->mUnk_5c != NULL) {
-            func_ov000_0218dc48(e->mUnk_5c);
+            DarrayDelete(e->mUnk_5c);
         }
         if (e->mUnk_60 != NULL) {
-            func_ov000_0218dc48(e->mUnk_60);
+            DarrayDelete(e->mUnk_60);
         }
         if (e->mUnk_98 != NULL) {
-            func_ov000_0218dc48(e->mUnk_98);
+            DarrayDelete(e->mUnk_98);
         }
         if (e->mUnk_9c != NULL) {
-            func_ov000_0218dc48(e->mUnk_9c);
+            DarrayDelete(e->mUnk_9c);
         }
         func_ov000_021a3668(e);
     }
@@ -90,15 +90,15 @@ void func_ov000_0219a220(Gt2Connection *a) {
     s32 c;
     if (a->mUnk_14 == 0 && a->mUnk_24 == 0) {
         if (a->mUnk_0c == 7) {
-            b = func_ov000_0218dc44(a->mSocket->mConnectionsToFree);
+            b = DarrayGetCount(a->mSocket->mConnectionsToFree);
             for (c = 0; c < b; c++) {
-                if (a == *(Gt2Connection **) func_ov000_0218dbf8(a->mSocket->mConnectionsToFree, c)) {
-                    func_ov000_0218da5c(a->mSocket->mConnectionsToFree, c);
+                if (a == *(Gt2Connection **) DarrayGetElement(a->mSocket->mConnectionsToFree, c)) {
+                    DarrayRemove(a->mSocket->mConnectionsToFree, c);
                     return;
                 }
             }
         } else {
-            func_ov000_0218de8c(a->mSocket->mConnections, &a);
+            HashtableRemove(a->mSocket->mConnections, &a);
         }
     }
 }

@@ -11,7 +11,7 @@
 #include "code_021384cc.h"
 #include "code_02134d30.h"
 
-u32 func_ov000_0218f848(GpConnection *a, s32 b, s32 c) {
+u32 GpiInitialize(GpConnection *a, s32 b, s32 c) {
     GpConnection p;
     u32 r;
     s32 i;
@@ -29,19 +29,19 @@ u32 func_ov000_0218f848(GpConnection *a, s32 b, s32 c) {
     p.mGpiConnection->mFirewall = 0;
     p.mGpiConnection->mProductId = b;
     p.mGpiConnection->mNamespaceId = c;
-    if (func_ov000_02194af4(&p) == 0) {
+    if (GpiInitProfileList(&p) == 0) {
         func_ov000_021a3668(p.mGpiConnection);
         p.mGpiConnection = NULL;
         return 1;
     }
     p.mGpiConnection->mUnk_420 = 0;
     for (i = 0; i < 6; i++) {
-        p.mGpiConnection->mCallbacks[i].mUnk_00 = NULL;
+        p.mGpiConnection->mCallbacks[i].mCallback = NULL;
         p.mGpiConnection->mCallbacks[i].mUnk_04 = 0;
     }
     p.mGpiConnection->mUnk_460 = NULL;
     func_ov000_0219690c(&p, data_ov000_021b2718);
-    r = func_ov000_0218f654(&p);
+    r = GpiResetConnection(&p);
     if (r != 0) {
         func_ov000_0218f808(&p);
         return r;

@@ -13,8 +13,8 @@
 
 void func_ov000_0219a06c(Gt2Socket *a) {
     s32 b;
-    for (b = func_ov000_0218dc44(a->mConnectionsToFree) - 1; b >= 0; b--) {
-        func_ov000_0219a220(*(Gt2Connection **) func_ov000_0218dbf8(a->mConnectionsToFree, b));
+    for (b = DarrayGetCount(a->mConnectionsToFree) - 1; b >= 0; b--) {
+        func_ov000_0219a220(*(Gt2Connection **) DarrayGetElement(a->mConnectionsToFree, b));
     }
 }
 

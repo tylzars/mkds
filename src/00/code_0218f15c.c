@@ -46,9 +46,9 @@
 #include "00/unk_021b4000.h"
 #include "code_021384cc.h"
 
-u32 func_ov000_0218f654(GpConnection *a) {
+u32 GpiResetConnection(GpConnection *a) {
     GpiConnection *o;
-    Unk021937c0Node **n;
+    GpiOperation **n;
     o = a->mGpiConnection;
     o->mNick[0] = 0;
     o->mUniquenick[0] = 0;
@@ -65,12 +65,12 @@ u32 func_ov000_0218f654(GpConnection *a) {
     func_ov000_021a3668(o->mCommandBuffer);
     o->mCommandBuffer = NULL;
     o->mCommandBuffer = NULL;
-    o->mOutputBuffer.mUnk_08 = 0;
-    o->mOutputBuffer.mUnk_0c = 0;
-    o->mOutputBuffer.mUnk_04 = 0;
-    func_ov000_021a3668(o->mOutputBuffer.mUnk_00);
-    o->mOutputBuffer.mUnk_00 = NULL;
-    o->mOutputBuffer.mUnk_00 = NULL;
+    o->mOutputBuffer.mLength = 0;
+    o->mOutputBuffer.mPos = 0;
+    o->mOutputBuffer.mCapacity = 0;
+    func_ov000_021a3668(o->mOutputBuffer.mBuffer);
+    o->mOutputBuffer.mBuffer = NULL;
+    o->mOutputBuffer.mBuffer = NULL;
     o->mUpdateproBufferLength = 0;
     o->mUnk_44c = 0;
     o->mUpdateproBufferCapacity = 0;
@@ -87,11 +87,11 @@ u32 func_ov000_0218f654(GpConnection *a) {
     o->mNextOperationId = 2;
     n = &o->mOperationList;
     while (*n != NULL) {
-        func_ov000_02193818(a, *n);
+        GpiRemoveOperation(a, *n);
     }
     o->mOperationList = NULL;
     o->mBuddyCount = 0;
-    func_ov000_02194840(a, func_ov000_0218f7f8, NULL);
+    GpiForEachProfileWhileNonZero(a, func_ov000_0218f7f8, NULL);
     o->mUserId = 0;
     o->mProfileId = 0;
     o->mSesskey = 0;
@@ -106,7 +106,7 @@ u32 func_ov000_0218f654(GpConnection *a) {
 
 u32 func_ov000_0218f408(GpConnection *a) {
     GpiConnection *o;
-    Unk021937c0Node *n;
+    GpiOperation *n;
     u32 r;
     s32 m;
     char *p;
@@ -117,16 +117,16 @@ u32 func_ov000_0218f408(GpConnection *a) {
     v2 = 0;
     o = a->mGpiConnection;
     do {
-        func_ov000_02192d64(a, &o->mOutputBuffer);
-        r = func_ov000_021906e4(a, o->mConnectSocket, &o->mOutputBuffer, &v2, 1, data_ov000_021b262c);
+        GpiWriteUpdateBuffers(a, &o->mOutputBuffer);
+        r = GpiSendBuffer(a, o->mConnectSocket, &o->mOutputBuffer, &v2, 1, data_ov000_021b262c);
         if (r != 0) {
             return r;
         }
-        r = func_ov000_021907e8(a, o->mConnectSocket, (Unk021906e4 *) &o->mInputBuffer, &v1, &v2, data_ov000_021b262c);
+        r = GpiReceiveBuffer(a, o->mConnectSocket, (GpiBuffer *) &o->mInputBuffer, &v1, &v2, data_ov000_021b262c);
         if (r != 0) {
             if (r == 3) {
-                func_ov000_021965a0(a, 5, data_ov000_021b2630);
-                func_ov000_02190f4c(a, 3, 1);
+                GpiSetError(a, 5, data_ov000_021b2630);
+                GpiQueueErrorCallback(a, 3, 1);
                 return 3;
             }
             return r;
@@ -144,7 +144,7 @@ u32 func_ov000_0218f408(GpConnection *a) {
                 o->mCommandBufferCapacity = o->mCommandBufferCapacity + t;
                 q = func_ov000_021a3678(o->mCommandBuffer, o->mCommandBufferCapacity + 1);
                 if (q == NULL) {
-                    func_ov000_02196590(a, data_ov000_021b2670);
+                    GpiSetErrorMessage(a, data_ov000_021b2670);
                     return 1;
                 }
                 o->mCommandBuffer = q;
@@ -156,16 +156,16 @@ u32 func_ov000_0218f408(GpConnection *a) {
             p = strstr(q, data_ov000_021b2680);
             if (p != NULL) {
                 m = func_0213bf90(p + 4);
-                if (func_ov000_021937e8(a, &n, m) == 0) {
+                if (GpiFindOperation(a, &n, m) == 0) {
                     func_ov000_0219690c(a, data_ov000_021b2688, m);
                 } else {
-                    r = func_ov000_02193748(a, n, o->mCommandBuffer);
+                    r = GpiProcessOperation(a, n, o->mCommandBuffer);
                     if (r != 0) {
                         return r;
                     }
                 }
             } else {
-                if (func_ov000_02196870(a, q, 1) != 0) {
+                if (GpiReadError(a, q, 1) != 0) {
                     return 4;
                 }
                 q = o->mCommandBuffer;
@@ -182,8 +182,8 @@ u32 func_ov000_0218f408(GpConnection *a) {
         }
         if (v2 != 0) {
             o->mConnectState = 4;
-            func_ov000_021965a0(a, 7, data_ov000_021b26f0);
-            func_ov000_02190f4c(a, 3, 1);
+            GpiSetError(a, 7, data_ov000_021b26f0);
+            GpiQueueErrorCallback(a, 3, 1);
             return 0;
         }
         r = func_ov000_021937c0(a);
@@ -194,11 +194,11 @@ u32 func_ov000_0218f408(GpConnection *a) {
     return 0;
 }
 
-int func_ov000_0218f2e8(void *a, int b) {
+int GpiUpdateConnection(void *a, int b) {
     GpConnection *p;
     GpiConnection *o;
-    Unk021937c0Node *n;
-    Unk021937c0Node *m;
+    GpiOperation *n;
+    GpiOperation *m;
     u32 r;
     u32 x;
     BOOL t;
@@ -221,7 +221,7 @@ int func_ov000_0218f2e8(void *a, int b) {
             }
         } while (t != FALSE);
         if (r != 0) {
-            if (func_ov000_021937e8(p, &n, 1) != 0) {
+            if (GpiFindOperation(p, &n, 1) != 0) {
                 n->mUnk_1c = 4;
             } else {
                 func_0213442c(data_ov000_021b2628, data_ov000_021b2620, NULL, 0x1db);
@@ -233,43 +233,43 @@ int func_ov000_0218f2e8(void *a, int b) {
             r = func_ov000_0218f408(p);
         }
         if (r == 0) {
-            r = func_ov000_02193f50(p);
+            r = GpiUpdatePeers(p);
         }
     }
     if (r == 0) {
-        r = func_ov000_02194bb8(p);
+        r = GpiUpdateSearches(p);
     }
     n = o->mOperationList;
     if (n != NULL) {
         do {
             if (n->mUnk_1c != 0) {
-                func_ov000_02193954(p, n);
+                GpiQueueOperationCallback(p, n);
                 m = n;
                 n = n->mNext;
-                func_ov000_02193818(p, m);
+                GpiRemoveOperation(p, m);
             } else {
                 n = n->mNext;
             }
         } while (n != NULL);
     }
-    x = func_ov000_02190cd4(p, b);
+    x = GpiCallQueuedCallbacks(p, b);
     if (x == 0) {
         if (o->mFatal != 0) {
-            func_ov000_02190ff8(p, 0);
+            GpiCloseConnection(p, 0);
         }
         x = r;
     }
     return x;
 }
 
-u32 func_ov000_0218f2b8(GpConnection *a, s32 b, s32 c) {
+u32 GpInitialize(GpConnection *a, s32 b, s32 c) {
     if (data_ov000_021b4d28 != 1) {
         return 2;
     }
     if (a == NULL) {
         return 2;
     }
-    return func_ov000_0218f848(a, b, c);
+    return GpiInitialize(a, b, c);
 }
 
 void func_ov000_0218f2a0(GpConnection *a) {
@@ -278,7 +278,7 @@ void func_ov000_0218f2a0(GpConnection *a) {
     }
 }
 
-u32 func_ov000_0218f268(GpConnection *a) {
+u32 GpUpdate(GpConnection *a) {
     GpiConnection *o;
     if (a == NULL || (o = a->mGpiConnection) == NULL) {
         return 2;
@@ -286,7 +286,7 @@ u32 func_ov000_0218f268(GpConnection *a) {
     if (o->mUnk_108 != 0) {
         return 0;
     }
-    return func_ov000_0218f2e8(a, 0);
+    return GpiUpdateConnection(a, 0);
 }
 
 u32 func_ov000_0218f21c(GpConnection *a, s32 b, void (*c)(void *a, void *b, u32 c), u32 d) {
@@ -295,10 +295,10 @@ u32 func_ov000_0218f21c(GpConnection *a, s32 b, void (*c)(void *a, void *b, u32 
         return 2;
     }
     if (b < 0 || b >= 6) {
-        func_ov000_02196590(a, data_ov000_021b2518);
+        GpiSetErrorMessage(a, data_ov000_021b2518);
         return 2;
     }
-    o->mCallbacks[b].mUnk_00 = c;
+    o->mCallbacks[b].mCallback = c;
     o->mCallbacks[b].mUnk_04 = d;
     return 0;
 }
@@ -315,7 +315,7 @@ u32 func_ov000_0218f15c(GpConnection *a, s8 *b, s8 *c, s32 d, s32 e, Unk0218f15c
         return 2;
     }
     if (f == NULL) {
-        func_ov000_02196590(a, data_ov000_021b242c);
+        GpiSetErrorMessage(a, data_ov000_021b242c);
         return 2;
     }
     if (o->mUnk_108 != 0) {
@@ -323,6 +323,6 @@ u32 func_ov000_0218f15c(GpConnection *a, s8 *b, s8 *c, s32 d, s32 e, Unk0218f15c
         f(a, &h, g);
         return 0;
     }
-    return func_ov000_02191cb0(a, data_ov000_021b2514, data_ov000_021b2514, data_ov000_021b2514, data_ov000_021b2514, b,
-                               c, NULL, d, 0, e, (s32) f, g);
+    return GpiStartConnect(a, data_ov000_021b2514, data_ov000_021b2514, data_ov000_021b2514, data_ov000_021b2514, b, c,
+                           NULL, d, 0, e, (s32) f, g);
 }

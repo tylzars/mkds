@@ -99,4 +99,4 @@ const s8 *func_ov000_021970e4(const s8 *text, const char *key);
 const s8 *func_ov000_021970fc(const s8 *text, const char *key);
 void func_ov000_02197190(u32 a, s8 *b);
 int func_ov000_021971c8(const s8 *a, int b);
-void func_ov000_02197634(void);
+void GstatsClose(void);

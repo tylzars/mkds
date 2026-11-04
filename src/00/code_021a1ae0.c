@@ -456,8 +456,8 @@ void func_ov000_021a1b2c(Unk0219887c *param_1, s32 param_2) {
             p = data_ov000_021b566c;
             if (func_ov000_0219e3e4(func_ov000_02198968(
                     *data_ov000_021b566c->mUnk_04, NULL,
-                    func_ov000_0219a760(p->mUnk_1f8[p->mUnk_14],
-                                        ((const Unk021b566c *) p)->mUnk_278[((const Unk021b566c *) p)->mUnk_14], 0),
+                    Gt2FormatAddress(p->mUnk_1f8[p->mUnk_14],
+                                     ((const Unk021b566c *) p)->mUnk_278[((const Unk021b566c *) p)->mUnk_14], 0),
                     v1, -1, 5000, p->mUnk_08, 0)) == 0) {
                 return;
             }

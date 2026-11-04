@@ -31,53 +31,53 @@
 #include "00/code_0218e2dc.h"
 #include "00/unk_021b4000.h"
 
-s32 func_ov000_021964e4(GpConnection *a, Unk021937c0Node *b, const char *c) {
-    Unk02190ed4Cb p;
+s32 func_ov000_021964e4(GpConnection *a, GpiOperation *b, const char *c) {
+    GpiCallback p;
     u32 *m;
     s32 t;
 
-    if (func_ov000_02196870(a, c, 1) != 0) {
+    if (GpiReadError(a, c, 1) != 0) {
         return 4;
     }
     if (strncmp(c, data_ov000_021b39c4, 4) != 0) {
-        func_ov000_021965a0(a, 1, data_ov000_021b39cc);
-        func_ov000_02190f4c(a, 3, 1);
+        GpiSetError(a, 1, data_ov000_021b39cc);
+        GpiQueueErrorCallback(a, 3, 1);
         return 3;
     }
     p = b->mUnk_0c;
-    if (p.mUnk_00 != NULL) {
+    if (p.mCallback != NULL) {
         m = func_ov000_021a3690(4);
         if (m == NULL) {
-            func_ov000_02196590(a, data_ov000_021b39fc);
+            GpiSetErrorMessage(a, data_ov000_021b39fc);
             return 1;
         }
         m[0] = 0;
-        t = func_ov000_02190ed4(a, p, m, b, 0);
+        t = GpiQueueCallback(a, p, m, b, 0);
         if (t != 0) {
             return t;
         }
     }
-    func_ov000_02193818(a, b);
+    GpiRemoveOperation(a, b);
     return 0;
 }
 
-s32 func_ov000_02196480(GpConnection *a, s32 *b, Unk02193f2cNode *c, s32 d, const char *e) {
+s32 func_ov000_02196480(GpConnection *a, s32 *b, GpiPeer *c, s32 d, const char *e) {
     char f[0x24];
     s32 t;
 
     if (e == NULL) {
         e = data_ov000_021b39a8;
     }
-    t = func_ov000_02193c20(a, c, 0xc9, (Unk02193c20 *) b);
+    t = GpiPeerSendXfer(a, c, 0xc9, (GpiTransferId *) b);
     if (t != 0) {
         return t;
     }
     sprintf(f, data_ov000_021b39ac, 1, d);
-    t = func_ov000_02190968(a, (Unk02190988 *) c, f);
+    t = GpiPeerSendString(a, (Unk02190988 *) c, f);
     if (t != 0) {
         return t;
     }
-    t = func_ov000_02193b88(a, c, e, -1);
+    t = GpiPeerSendLenMsg(a, c, e, -1);
     if (t != 0) {
         return t;
     }

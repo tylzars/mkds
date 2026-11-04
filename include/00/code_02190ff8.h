@@ -23,5 +23,5 @@
 #include "00/code_021906e4.h"
 #include "00/code_02193b88.h"
 
-void func_ov000_02190ff8(GpConnection *a, s32 b);
-u32 func_ov000_02191180(GpConnection *a, Unk02194934 *b);
+void GpiCloseConnection(GpConnection *a, s32 b);
+u32 func_ov000_02191180(GpConnection *a, GpiProfile *b);

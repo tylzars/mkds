@@ -179,7 +179,7 @@ void func_ov000_0219e138(u32 a, s32 b, s32 c) {
                         } while (func_ov000_0218b474(a) != 0);
                     }
                     if (func_ov000_0218b474(a) != 0) {
-                        e = func_ov000_0218b2a8((Unk0218af28 *) func_ov000_0218b480(a, 0), data_ov000_021b40c4, 0);
+                        e = SbServerGetInt((SbServer *) func_ov000_0218b480(a, 0), data_ov000_021b40c4, 0);
                         f = data_ov000_021b566c;
                         if (f->mUnk_15 == 1 && e == f->mUnk_f4[0]) {
                             if (func_ov000_0219dfe4(0) != 0) {

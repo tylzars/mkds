@@ -19,27 +19,27 @@ int GetBufferUnusedSize(Gt2Buffer *a) {
     return a->mSize - a->mLength;
 }
 
-void AppendBufferByte(Gt2Buffer *a, u8 b) {
+void AppendBufferByte(Gt2Buffer *buffer, u8 b) {
     int v1;
-    if (a->mLength >= a->mSize) {
+    if (buffer->mLength >= buffer->mSize) {
         func_0213442c(data_ov000_021b3f34, data_ov000_021b3ebc, NULL, 0x23);
     }
-    v1 = a->mLength;
-    a->mLength = v1 + 1;
-    a->mData[v1] = b;
+    v1 = buffer->mLength;
+    buffer->mLength = v1 + 1;
+    buffer->mData[v1] = b;
     return;
 }
 
-void AppendBufferU16(Gt2Buffer *a, s32 b) {
+void AppendBufferU16(Gt2Buffer *buffer, s32 b) {
     int v1;
-    if (a->mLength + 2 > a->mSize) {
+    if (buffer->mLength + 2 > buffer->mSize) {
         func_0213442c(data_ov000_021b3f10, data_ov000_021b3ebc, NULL, 0x2e);
     }
-    v1 = a->mLength;
-    a->mLength = v1 + 1;
-    a->mData[v1] = b >> 8;
-    v1 = a->mLength;
-    a->mLength = v1 + 1;
-    a->mData[v1] = (s8) b;
+    v1 = buffer->mLength;
+    buffer->mLength = v1 + 1;
+    buffer->mData[v1] = b >> 8;
+    v1 = buffer->mLength;
+    buffer->mLength = v1 + 1;
+    buffer->mData[v1] = (s8) b;
     return;
 }

@@ -103,7 +103,7 @@ s32 func_ov000_021a2a88(u32 a, void *b, s32 c) {
     }
     r = func_ov000_0218b480((u32) data_ov000_021b566c->mUnk_e4, a);
     if (r != 0) {
-        c = func_ov000_0218b2a8((Unk0218af28 *) r, b, c);
+        c = SbServerGetInt((SbServer *) r, b, c);
     }
     return c;
 }
