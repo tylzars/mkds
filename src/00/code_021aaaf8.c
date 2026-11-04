@@ -9,59 +9,28 @@
 #include "code_0214d018.h"
 #include "code_0214d954.h"
 
-u32 func_ov000_021aaaf8(const u8 *a, s32 b, s32 c) {
-    u32 i;
-    const u16 *p;
-    for (i = 0, p = data_ov000_021b4a00; i < 2; p++, i++) {
-        if (func_ov000_021aab3c(a, b, c, *p) != 0) {
-            return data_ov000_021b4a00[i];
+BOOL func_ov000_021aadcc(const s8 *a, const s8 *b) {
+    s32 x;
+    s32 y;
+    s8 c;
+    s8 d;
+    for (;;) {
+        while ((d = *a++) == (c = *b++)) {
+            if (d == 0) {
+                return FALSE;
+            }
         }
-    }
-    return 0;
-}
-
-BOOL func_ov000_021aab3c(const u8 *a, s32 b, s32 c, u32 d) {
-    s32 i;
-    u32 e;
-    for (i = 0; i < b; i++) {
-        e = (a[0] << 8) + a[1];
-        if (c == 3) {
-            e = (e << 8) + a[2];
-        }
-        if (e == d) {
+        if (c != '*') {
             return TRUE;
         }
-        a += c;
-    }
-    return FALSE;
-}
-
-// non-matching: one instruction order, ours loads ldrb r6, [r0] before adds r4, #0x23 and the original after; same size
-void func_ov000_021aab74(Unk021a998c_0c *a, u8 *b) {
-    u8 n;
-    u8 *c;
-    u8 *p;
-    Unk021ab5e4 *s;
-    MemCopy(b + 2, a->mUnk_028, 0x20);
-    n = b[0x22];
-    c = b + 0x23;
-    s = a->mUnk_000;
-    if (s != NULL && n == 0x20 && memcmp(s->mUnk_00, c, 0x20) == 0) {
-        a->mUnk_004 = 1;
-    } else {
-        if (s != NULL) {
-            s->mUnk_5a = 0;
+        a--;
+        x = func_ov000_021aae2c(a);
+        y = func_ov000_021aae2c(b);
+        if (y > x) {
+            return TRUE;
         }
-        if (n == 0) {
-            a->mUnk_000 = &data_ov000_021b6198;
-        } else {
-            a->mUnk_000 = func_ov000_021ab5e4(c);
-        }
-        a->mUnk_004 = 0;
+        a += x - y;
     }
-    p = c + n;
-    a->mUnk_006 = (p[0] << 8) + p[1];
-    a->mUnk_429 = 2;
 }
 
 void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b) {
@@ -130,26 +99,57 @@ void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b) {
     }
 }
 
-BOOL func_ov000_021aadcc(const s8 *a, const s8 *b) {
-    s32 x;
-    s32 y;
-    s8 c;
-    s8 d;
-    for (;;) {
-        while ((d = *a++) == (c = *b++)) {
-            if (d == 0) {
-                return FALSE;
-            }
+// non-matching: one instruction order, ours loads ldrb r6, [r0] before adds r4, #0x23 and the original after; same size
+void func_ov000_021aab74(Unk021a998c_0c *a, u8 *b) {
+    u8 n;
+    u8 *c;
+    u8 *p;
+    Unk021ab5e4 *s;
+    MemCopy(b + 2, a->mUnk_028, 0x20);
+    n = b[0x22];
+    c = b + 0x23;
+    s = a->mUnk_000;
+    if (s != NULL && n == 0x20 && memcmp(s->mUnk_00, c, 0x20) == 0) {
+        a->mUnk_004 = 1;
+    } else {
+        if (s != NULL) {
+            s->mUnk_5a = 0;
         }
-        if (c != '*') {
-            return TRUE;
+        if (n == 0) {
+            a->mUnk_000 = &data_ov000_021b6198;
+        } else {
+            a->mUnk_000 = func_ov000_021ab5e4(c);
         }
-        a--;
-        x = func_ov000_021aae2c(a);
-        y = func_ov000_021aae2c(b);
-        if (y > x) {
-            return TRUE;
-        }
-        a += x - y;
+        a->mUnk_004 = 0;
     }
+    p = c + n;
+    a->mUnk_006 = (p[0] << 8) + p[1];
+    a->mUnk_429 = 2;
+}
+
+BOOL func_ov000_021aab3c(const u8 *a, s32 b, s32 c, u32 d) {
+    s32 i;
+    u32 e;
+    for (i = 0; i < b; i++) {
+        e = (a[0] << 8) + a[1];
+        if (c == 3) {
+            e = (e << 8) + a[2];
+        }
+        if (e == d) {
+            return TRUE;
+        }
+        a += c;
+    }
+    return FALSE;
+}
+
+u32 func_ov000_021aaaf8(const u8 *a, s32 b, s32 c) {
+    u32 i;
+    const u16 *p;
+    for (i = 0, p = data_ov000_021b4a00; i < 2; p++, i++) {
+        if (func_ov000_021aab3c(a, b, c, *p) != 0) {
+            return data_ov000_021b4a00[i];
+        }
+    }
+    return 0;
 }
