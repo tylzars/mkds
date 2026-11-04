@@ -24,6 +24,9 @@ s32 data_0216fe0c;
 s32 data_0216fe08;
 Unk0216fe20 data_0216fe20;
 s32 (*data_0216fe10)(void);
+s32 data_0216fe14;
+s32 data_0216fe18;
+s32 data_0216fe1c;
 
 void func_0200c7f4(void) {
     if (data_0216fe0c == 0) {

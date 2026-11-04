@@ -23,12 +23,12 @@
 u32 data_0216f350;
 u32 data_0216f354;
 u32 data_0216f358;
-Unk02005704 data_0216f35c;
 Unk02005704 data_0216f364;
+Unk02005704 data_0216f35c;
 Unk02003a6c data_0216f36c;
 
-u8 data_02161764[4] = "rom";
 void *data_02161768 = data_02152b80;
+u8 data_02161764[4] = "rom";
 u32 data_0216176c = 0x40;
 
 s32 FileGetOverlayLoadSize(Unk020055f0 *p) {

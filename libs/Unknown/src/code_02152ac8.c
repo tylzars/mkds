@@ -7,18 +7,6 @@
 
 #pragma thumb on
 
-u64 func_02152ac8(const Unk02152490 *a) {
-    return (u64) (a->mUnk_00 & 0x7ff) << 32 | a->mUnk_04;
-}
-
-u32 func_02152ae0(u32 *a, u32 b, u32 c, u32 d) {
-    if ((b & ~d) != 0) {
-        return 0;
-    }
-    *a = *a & ~(d << c) | b << c;
-    return 1;
-}
-
 u32 func_02152b08(u8 *a) {
     u32 r;
     s32 s;
@@ -40,6 +28,18 @@ u32 func_02152b08(u8 *a) {
         return 1;
     }
     return 0;
+}
+
+u32 func_02152ae0(u32 *a, u32 b, u32 c, u32 d) {
+    if ((b & ~d) != 0) {
+        return 0;
+    }
+    *a = *a & ~(d << c) | b << c;
+    return 1;
+}
+
+u64 func_02152ac8(const Unk02152490 *a) {
+    return (u64) (a->mUnk_00 & 0x7ff) << 32 | a->mUnk_04;
 }
 
 #pragma thumb off

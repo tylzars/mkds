@@ -7,16 +7,16 @@
 #include "code_0214d5b8.h"
 #include "code_02021764.h"
 
-Unk020207ec *data_021732c8;
 u32 data_021732cc;
-Unk020207ec *data_021732d0;
-Unk020207ec *data_021732d4;
+u32 data_021732e8;
 Unk020207ec *data_021732d8;
+Unk020207ec *data_021732d0;
+Unk020207ec *data_021732c8;
+Unk020207ec *data_021732d4;
 s32 data_021732dc;
 s32 data_021732e0;
 s32 data_021732e4;
-u32 data_021732e8;
-Unk020207ec *data_021732ec[9];
+Unk020207ec *data_021732ec[13];
 Unk020217b4 data_02173320;
 Unk020207ec data_021735a0[256];
 

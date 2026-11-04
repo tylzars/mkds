@@ -6,8 +6,8 @@
 #include "code_0214d018.h"
 #include "code_0214d5b8.h"
 
-u16 data_0217027c;
 u16 data_02170280;
+u16 data_0217027c;
 
 void func_0200fe58(void *p) {
     func_0214d1fc((void *) 0x27ffcf4, p, 6);

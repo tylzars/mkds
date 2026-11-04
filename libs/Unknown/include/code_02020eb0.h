@@ -31,7 +31,7 @@ extern s32 data_021732dc;
 extern s32 data_021732e0;
 extern s32 data_021732e4;
 extern u32 data_021732e8;
-extern Unk020207ec *data_021732ec[9];
+extern Unk020207ec *data_021732ec[13];
 extern Unk020217b4 data_02173320;
 extern Unk020207ec data_021735a0[256];
 extern Unk02021734 data_02174da0[8];

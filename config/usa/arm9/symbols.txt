@@ -11113,8 +11113,6 @@ data_0216fe08 kind:bss addr:0x0216fde8
 data_0216fe0c kind:bss addr:0x0216fdec
 data_0216fe10 kind:bss addr:0x0216fdf0
 data_0216fe20 kind:bss addr:0x0216fe00
-data_usa_0216fe04 kind:bss addr:0x0216fe04
-data_usa_0216fe80 kind:bss addr:0x0216fe80
 data_0216fee0 kind:bss addr:0x0216fec0
 data_0216ff40 kind:bss addr:0x0216ff20
 data_0216ff44 kind:bss addr:0x0216ff24
@@ -11209,8 +11207,6 @@ data_021732e8 kind:bss addr:0x021732c8
 data_021732ec kind:bss addr:0x021732cc
 data_02173320 kind:bss addr:0x02173300
 data_021735a0 kind:bss addr:0x02173580
-data_usa_02174580 kind:bss addr:0x02174580
-data_usa_02174d68 kind:bss addr:0x02174d68
 data_02174da0 kind:bss addr:0x02174d80
 data_02174e00 kind:bss addr:0x02174de0
 data_02174e04 kind:bss addr:0x02174de4

@@ -3,3 +3,7 @@
 # share; dsd resolves that pointer to ov000, so -dead would strip them.
 func_ov001_02185538
 func_ov001_02185828
+data_0216fe14
+data_0216fe18
+data_0216fe1c
+func_02133e04
