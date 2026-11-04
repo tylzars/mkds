@@ -963,22 +963,7 @@ src/00/code_021a9200.c:
 // provisional: file name and boundaries
 src/00/code_021a9228.c:
     complete
-    .text       start:0x021a91f4 end:0x021a95dc
-
-// provisional: file name and boundaries
-src/00/code_021a9610.c:
-    complete
-    .text       start:0x021a95dc end:0x021a960c
-
-// provisional: file name and boundaries
-src/00/code_021a9640.c:
-    complete
-    .text       start:0x021a960c end:0x021a9958
-
-// provisional: file name and boundaries
-src/00/code_021a998c.c:
-    complete
-    .text       start:0x021a9958 end:0x021a9a6c
+    .text       start:0x021a91f4 end:0x021a9a6c
 
 // provisional: file name and boundaries
 src/00/code_021a9aa0.c:
@@ -988,61 +973,7 @@ src/00/code_021a9aa0.c:
 // provisional: file name and boundaries
 src/00/code_021aa004.c:
     complete
-    .text       start:0x021a9fd0 end:0x021aa020
-
-// provisional: file name and boundaries
-src/00/code_021aa054.c:
-    complete
-    .text       start:0x021aa020 end:0x021aa1ac
-
-src/00/code_021aa1e0.c:
-    complete
-    .text       start:0x021aa1ac end:0x021aa34c
-
-// provisional: file name and boundaries
-src/00/code_021aa380.c:
-    complete
-    .text       start:0x021aa34c end:0x021aa364
-
-// provisional: file name and boundaries
-src/00/code_021aa398.c:
-    complete
-    .text       start:0x021aa364 end:0x021aa384
-
-// provisional: file name and boundaries
-src/00/code_021aa3b8.c:
-    complete
-    .text       start:0x021aa384 end:0x021aa434
-
-// provisional: file name and boundaries
-src/00/code_021aa468.c:
-    complete
-    .text       start:0x021aa434 end:0x021aa57c
-
-// provisional: file name and boundaries
-src/00/code_021aa5b0.c:
-    complete
-    .text       start:0x021aa57c end:0x021aa5ac
-
-// provisional: file name and boundaries
-src/00/code_021aa5e0.c:
-    complete
-    .text       start:0x021aa5ac end:0x021aa780
-
-// provisional: file name and boundaries
-src/00/code_021aa7b4.c:
-    complete
-    .text       start:0x021aa780 end:0x021aa7c4
-
-// provisional: file name and boundaries
-src/00/code_021aa7f8.c:
-    complete
-    .text       start:0x021aa7c4 end:0x021aaab8
-
-// provisional: file name and boundaries
-src/00/code_021aaaec.c:
-    complete
-    .text       start:0x021aaab8 end:0x021aaac4
+    .text       start:0x021a9fd0 end:0x021aaac4
 
 // provisional: file name and boundaries
 src/00/code_021aaaf8.c:
@@ -1056,17 +987,7 @@ src/00/code_021aae2c.c:
 // provisional: file name and boundaries
 src/00/code_021aae44.c:
     complete
-    .text       start:0x021aae10 end:0x021ab514
-
-// provisional: file name and boundaries
-src/00/code_021ab548.c:
-    complete
-    .text       start:0x021ab514 end:0x021ab588
-
-// provisional: file name and boundaries
-src/00/code_021ab5bc.c:
-    complete
-    .text       start:0x021ab588 end:0x021ab6a0
+    .text       start:0x021aae10 end:0x021ab6a0
 
 // provisional: file name and boundaries
 src/00/code_021ab6d4.c:

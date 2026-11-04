@@ -1,5 +1,5 @@
 #include "00/code_021ae958.h"
-#include "00/code_021a998c.h"
+#include "00/code_021a9228.h"
 
 void func_ov000_021ae958(const Unk021ae3f0 *a, const Unk021ae87c *b) {
     Unk021a998c *p;

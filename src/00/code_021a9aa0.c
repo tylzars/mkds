@@ -1,7 +1,5 @@
 #include "00/code_021a9aa0.h"
 #include "00/code_021aa004.h"
-#include "00/code_021aa3b8.h"
-#include "00/code_021aa5b0.h"
 #include "00/code_021ab728.h"
 #include "00/code_021abc24.h"
 #include "00/code_021abca0.h"

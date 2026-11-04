@@ -1,13 +1,12 @@
 #pragma once
 
 #include "types.h"
-#include "00/code_021ab5bc.h"
-#include "00/code_021aa7f8.h"
-#include "00/code_021aa1e0.h"
+#include "00/code_021aae44.h"
+#include "00/code_021aa004.h"
 #include "00/code_021ae134.h"
 #include "00/unk_021b6380.h"
 #include "00/code_021ac3e4.h"
-#include "00/code_021a998c.h"
+#include "00/code_021a9228.h"
 
 extern u8 data_ov000_021b617c;
 extern u32 data_ov000_021b6180;
