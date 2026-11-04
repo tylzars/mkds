@@ -316,7 +316,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
             for (i = 0; i < gSelectCharacter->mUnk_07c; i++) {
                 func_02025c94(data_usa_02153554[i].mUnk_00, t[i].mUnk_00, t[i].mUnk_02, s->mUnk_0c);
                 func_02025c94(data_usa_02153554[i].mUnk_02, t[i].mUnk_00, t[i].mUnk_02, s->mUnk_0c);
-                func_02025bb4(data_usa_02153554[i].mUnk_06, t[i].mUnk_00, t[i].mUnk_02, s->mUnk_10);
+                RectTableSetEntryXY(data_usa_02153554[i].mUnk_06, t[i].mUnk_00, t[i].mUnk_02, s->mUnk_10);
                 func_02025c94(data_usa_02153554[i].mUnk_04, (s16) (t[i].mUnk_00 + 3), (s16) (t[i].mUnk_02 + 3),
                               s->mUnk_0c);
             }
@@ -324,7 +324,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
                 s->mUnk_18[data_usa_02153554[i].mUnk_00].mUnk_00 = 0;
                 s->mUnk_18[data_usa_02153554[i].mUnk_02].mUnk_00 = 0;
                 s->mUnk_18[data_usa_02153554[i].mUnk_04].mUnk_00 = 0;
-                func_02025bb4(data_usa_02153554[i].mUnk_06, 0x400, 0x400, s->mUnk_10);
+                RectTableSetEntryXY(data_usa_02153554[i].mUnk_06, 0x400, 0x400, s->mUnk_10);
             }
         }
         func_020271e8();

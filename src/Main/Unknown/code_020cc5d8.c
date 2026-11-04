@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_020cc6f0.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-u32 func_020cc728(u32 arg0) {
+u32 GetCurrentCharacterIndex(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -17,7 +17,7 @@ u32 func_020cc728(u32 arg0) {
     return value0;
 }
 
-u32 func_020cc70c(u32 arg0) {
+u32 GetCurrentKartIndex(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -41,11 +41,11 @@ u32 func_020cc6f0(u32 arg0) {
     return value0;
 }
 
-u32 func_020cc6dc(void) {
+u32 GetCurrentUseTeams(void) {
     return ((u32) data_021759c0->mUseTeams);
 }
 
-u32 func_020cc6c0(u32 arg0) {
+u32 GetCurrentTeamIndex(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -77,7 +77,7 @@ u32 func_020cc67c(void) {
     return ((u32) data_021759c0->mUnk_014);
 }
 
-u32 func_020cc668(void) {
+u32 GetCurrentKartCount(void) {
     return ((u32) data_021759c0->mKartCount);
 }
 
@@ -85,7 +85,7 @@ u32 func_020cc654(void) {
     return ((u32) data_021759c0->mUnk_08);
 }
 
-u32 func_020cc640(void) {
+u32 GetCurrentCourseId(void) {
     return ((u32) data_021759c0->mCourseId);
 }
 

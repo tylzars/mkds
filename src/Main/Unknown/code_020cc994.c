@@ -13,7 +13,7 @@ void func_020cca74(u32 p0) {
     data_021759c0->mUnk_1e8.mUnk_04 = p0;
 }
 
-void func_020cca60(u32 p0) {
+void SetNextCourseId(u32 p0) {
     data_021759c0->mUnk_1e8.mCourseId = p0;
 }
 
@@ -33,7 +33,7 @@ void func_020cca10(u32 p0) {
     data_021759c0->mUnk_1e8.mUnk_18 = p0;
 }
 
-void func_020cc9fc(u32 p0) {
+void SetNextUseTeams(u32 p0) {
     data_021759c0->mUnk_1e8.mUseTeams = (u8) p0;
 }
 
@@ -45,7 +45,7 @@ void func_020cc9d0(u32 p0) {
     data_021759c0->mUnk_1e8.mUnk_1c = p0;
 }
 
-void func_020cc9bc(u32 p0) {
+void SetNextCourseListMode(u32 p0) {
     data_021759c0->mUnk_1e8.mCourseListMode = p0;
 }
 

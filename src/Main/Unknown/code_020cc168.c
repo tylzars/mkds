@@ -38,11 +38,11 @@ void func_020cc3e8(void) {
     u16 i;
 
     for (i = 0; i < 8; i++) {
-        func_02029930()->mUnk_00[i].mCharacterIndex = func_020cc728(i);
-        func_02029930()->mUnk_00[i].mKartIndex = func_020cc70c(i);
+        func_02029930()->mUnk_00[i].mCharacterIndex = GetCurrentCharacterIndex(i);
+        func_02029930()->mUnk_00[i].mKartIndex = GetCurrentKartIndex(i);
         func_02029930()->mUnk_00[i].mUnk_08 = func_020cc6f0(i);
-        if (func_020cc6dc() != 0) {
-            func_02029930()->mUnk_00[i].mTeamIndex = func_020cc6c0(i);
+        if (GetCurrentUseTeams() != 0) {
+            func_02029930()->mUnk_00[i].mTeamIndex = GetCurrentTeamIndex(i);
         } else {
             func_02029930()->mUnk_00[i].mTeamIndex = -1;
         }
@@ -51,7 +51,7 @@ void func_020cc3e8(void) {
     }
     func_02029930()->mUnk_cc = func_020cc690();
     func_02029930()->mUnk_c0 = func_020cc67c();
-    func_02029930()->mKartCount = func_020cc668();
+    func_02029930()->mKartCount = GetCurrentKartCount();
     if (func_020cae54() != 0) {
         u32 v;
 
@@ -74,11 +74,11 @@ void func_020cc3e8(void) {
     if (func_020cae38() != 0) {
         func_02029930()->mCourseId = 10;
     } else {
-        func_02029930()->mCourseId = func_020cc640();
+        func_02029930()->mCourseId = GetCurrentCourseId();
     }
     func_02029930()->mUnk_d4 = func_020cc62c();
     func_02029930()->mUnk_d8 = func_020cc618();
-    func_02029930()->mUseTeams = func_020cc6dc();
+    func_02029930()->mUseTeams = GetCurrentUseTeams();
     func_02029930()->mUnk_e4 = func_020cc604();
     func_02029930()->mUnk_e4 = func_020cc604();
     func_02029930()->mUnk_e8 = func_020cc5ec();
