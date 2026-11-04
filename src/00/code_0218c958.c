@@ -80,11 +80,9 @@ s32 func_ov000_0218cc48(SbServerList *p, void *a, s32 b) {
     return 0;
 }
 
-// non-matching: the final two-byte copy puts the stack addresses in other registers and a different order (5
-// instructions, same size)
 s32 func_ov000_0218ca58(SbServerList *p, const char *a, const char *b, u32 c, u32 d) {
     u8 v1[0x300];
-    Unk0218ca58 t;
+    u16 t;
     s32 v2;
     u8 *v3;
     u8 *q;
@@ -130,8 +128,8 @@ s32 func_ov000_0218ca58(SbServerList *p, const char *a, const char *b, u32 c, u3
     if ((p->mUnk_5c4 & 0x80) != 0) {
         func_ov000_0218cd94(&v3, d, &v2);
     }
-    *(u16 *) &t = (u16) ((((u16) v2 >> 8) & 0xff) | (((u16) v2 << 8) & 0xff00));
-    *(Unk0218ca58 *) q = t;
+    t = (u16) ((((u16) v2 >> 8) & 0xff) | (((u16) v2 << 8) & 0xff00));
+    __memcpy(v1, &t, 2);
     if (func_ov000_0218e420(p->mUnk_4b0, v1, v2, 0) <= 0) {
         func_ov000_0218c980(p);
         return 3;

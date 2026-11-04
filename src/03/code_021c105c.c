@@ -29,15 +29,10 @@ void func_ov003_021c105c(Unk021d34e0 *param_1) {
     }
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
-// call), size 0x3c against 0x4c
 void func_ov003_021c10a8(Unk021d34e0 *param_1) {
-    u32 a;
+    s32 a;
     s32 b;
-    Unk021bf920 *p;
-    p = data_ov003_021da160->mUnk_10[3];
-    a = (p->mUnk_00 & 0x1ff0000) >> 16;
-    b = p->mUnk_00 & 0xff;
+    func_ov003_021c105c_inline(data_ov003_021da160->mUnk_10[3], (u32 *) &a, (u32 *) &b);
     b = b + 0xc;
     func_ov003_021c1364(1, b);
     if (b >= 0xc0) {
@@ -45,15 +40,10 @@ void func_ov003_021c10a8(Unk021d34e0 *param_1) {
     }
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
-// call), size 0x3c against 0x4c
 void func_ov003_021c10f4(Unk021d34e0 *param_1) {
-    u32 a;
+    s32 a;
     s32 b;
-    Unk021bf920 *p;
-    p = data_ov003_021da160->mUnk_10[6];
-    a = (p->mUnk_00 & 0x1ff0000) >> 16;
-    b = p->mUnk_00 & 0xff;
+    func_ov003_021c105c_inline(data_ov003_021da160->mUnk_10[6], (u32 *) &a, (u32 *) &b);
     b = b + 0xc;
     func_ov003_021c1364(2, b);
     if (b >= 0xc0) {
@@ -61,15 +51,10 @@ void func_ov003_021c10f4(Unk021d34e0 *param_1) {
     }
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
-// call), size 0x3c against 0x4c
 void func_ov003_021c1140(Unk021d34e0 *param_1) {
-    u32 a;
+    s32 a;
     s32 b;
-    Unk021bf920 *p;
-    p = data_ov003_021da160->mUnk_10[9];
-    a = (p->mUnk_00 & 0x1ff0000) >> 16;
-    b = p->mUnk_00 & 0xff;
+    func_ov003_021c105c_inline(data_ov003_021da160->mUnk_10[9], (u32 *) &a, (u32 *) &b);
     b = b + 0xc;
     func_ov003_021c1364(3, b);
     if (b >= 0xc0) {
@@ -77,15 +62,10 @@ void func_ov003_021c1140(Unk021d34e0 *param_1) {
     }
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
-// call), size 0x40 against 0x50
 void func_ov003_021c118c(Unk021d34e0 *param_1) {
-    u32 a;
+    s32 a;
     s32 b;
-    Unk021bf920 *p;
-    p = func_ov003_021d1974((s32) data_ov003_021da160->mUnk_40[0], 0);
-    a = (p->mUnk_00 & 0x1ff0000) >> 16;
-    b = p->mUnk_00 & 0xff;
+    func_ov003_021c105c_inline(func_ov003_021d1974((s32) data_ov003_021da160->mUnk_40[0], 0), (u32 *) &a, (u32 *) &b);
     b = b + 0xc;
     func_ov003_021c1364(4, b);
     if (b >= 0xc0) {

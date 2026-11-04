@@ -269,25 +269,25 @@ void func_0204c320(Unk0204c320 *a) {
     }
 }
 
-// non-matching: size matches (0x4b0); 118 words differ, only in register numbers: the original keeps the parameter in
-// r5, the index in r4, the table in r6, the first word in r7 and the pointer to the payload in r8; ours uses r7, r6,
-// r5, r8 and r4
 void func_0204c7e4(Unk0204c320 *a) {
     s32 i;
-    Unk02175ec0_440s *z;
     Unk0204c320_14 *p;
-    Unk0204c090 *v1;
-    Unk0204c090 *v2;
-    Unk0204c090 *v3;
-    Unk0204c090 *v4;
-    u32 v5;
-    u32 v6;
     s32 v7;
+    u32 v6;
+    Unk02175ec0_440s *z;
+    Unk0204c090 *v2;
+    u32 v12;
+    Unk0204c090 *v3;
+    Unk0204c090 *v1;
+    u32 v5;
+    Unk0204c320_14 *q;
+    s32 j;
+    s32 k;
+    Unk0204c090 *v4;
     s32 v8;
     s32 v9;
     s32 v10;
     s32 v11;
-    u32 v12;
     s32 v13;
     s32 v14;
     Unk02003024 *v16;
@@ -309,8 +309,8 @@ void func_0204c7e4(Unk0204c320 *a) {
             z->mUnk_0000[i] = p->mUnk_0e;
             switch (a->mUnk_14.mUnk_m.mUnk_00_0) {
                 case 0:
-                    v5 = (a->mUnk_14.mUnk_m.mUnk_00_4 << 8) | p->mUnk_m.mUnk_08;
                     v6 = a->mUnk_14.mUnk_m.mUnk_00_8;
+                    v5 = (a->mUnk_14.mUnk_m.mUnk_00_4 << 8) | p->mUnk_m.mUnk_08;
                     v7 = p->mUnk_m.mUnk_04;
                     if (z->mUnk_46e0 != 0 || v5 != data_02175ec0.mUnk_0028) {
                         z->mUnk_46e0 = 1;
@@ -374,9 +374,9 @@ void func_0204c7e4(Unk0204c320 *a) {
             }
             return;
         case 13:
-            p = &a->mUnk_14;
-            v5 = p->mUnk_w;
-            p->mUnk_0e.mUnk_08 = 0;
+            q = &a->mUnk_14;
+            v5 = q->mUnk_w;
+            q->mUnk_0e.mUnk_08 = 0;
             for (v4 = data_02179ec0.mUnk_b04; v4 != NULL; v4 = v4->mUnk_000) {
                 if (v4->mUnk_080 == 2 && v4->mUnk_004.mUnk_00 == v5) {
                     break;
@@ -385,9 +385,9 @@ void func_0204c7e4(Unk0204c320 *a) {
             if (v4 == NULL) {
                 return;
             }
-            v8 = a->mUnk_20;
+            v8 = ((Unk0204c320 *) ((u8 *) q - 0x14))->mUnk_20;
             v9 = v4->mUnk_098;
-            v10 = p->mUnk_0e.mUnk_04;
+            v10 = q->mUnk_0e.mUnk_04;
             if (v4->mUnk_09c != 2) {
                 v17 = (v4->mUnk_038.mUnk_0c & 1) != 0 ? 1 : 0;
                 if (v17 == 0) {
@@ -399,7 +399,7 @@ void func_0204c7e4(Unk0204c320 *a) {
             v13 = v4->mUnk_09c;
             for (v7 = 0; v7 < 2; v7++) {
                 if (v7 == v13) {
-                    break;
+                    continue;
                 }
                 v14 = v11 - v4->mUnk_0a4[v7];
                 if (v14 < 0) {
@@ -408,16 +408,16 @@ void func_0204c7e4(Unk0204c320 *a) {
                 if (v14 + v8 > 0x400) {
                     continue;
                 }
-                p->mUnk_0e.mUnk_04 = v9;
-                p->mUnk_0e.mUnk_08 = (s32) (v4->mUnk_0c0[v7] + v14);
+                q->mUnk_0e.mUnk_04 = v9;
+                q->mUnk_0e.mUnk_08 = (s32) (v4->mUnk_0c0[v7] + v14);
                 break;
             }
             if (v4->mUnk_09c != 2) {
                 return;
             }
             v11 = v8 * v10;
-            for (v13 = 0; v13 < 2; v13++) {
-                v14 = v11 - v4->mUnk_0a4[v13];
+            for (j = 0; j < 2; j++) {
+                v14 = v11 - v4->mUnk_0a4[j];
                 if (v14 < 0) {
                     continue;
                 }
@@ -425,28 +425,25 @@ void func_0204c7e4(Unk0204c320 *a) {
                     break;
                 }
             }
-            if (v13 < 2) {
+            if (j < 2) {
                 return;
             }
-            v13 = v4->mUnk_0a0;
+            k = v4->mUnk_0a0;
             do {
-                v13++;
-                if (v13 >= 2) {
-                    v13 = 0;
+                k++;
+                if (k >= 2) {
+                    k = 0;
                 }
-            } while (v13 == v7);
-            v4->mUnk_0a0 = v13;
-            v4->mUnk_09c = v13;
-            v4->mUnk_0a4[v13] = v11 & -0x200;
+            } while (k == v7);
+            v4->mUnk_0a0 = k;
+            v4->mUnk_09c = k;
+            v4->mUnk_0a4[k] = v11 & -0x200;
             FS_SeekFile(&v4->mUnk_038, v11 & -0x200, 0);
-            FS_ReadFileAsync(&v4->mUnk_038, v4->mUnk_0c0[v13], 0x400);
-            return;
+            FS_ReadFileAsync(&v4->mUnk_038, v4->mUnk_0c0[k], 0x400);
+            break;
     }
 }
 
-// non-matching: size 0x1d0 against 0x1cc; in the last case the original loads the word at 0xc and the halfword at 0x10
-// of the parameter into r12 and r1 before it tests the first word of data_02175ec0, ours loads them again in each
-// branch
 void func_0204cc94(Unk0204cc94 *a) {
     Unk02175ec0 *p;
     Unk02175ec0_440s *z;
@@ -454,6 +451,9 @@ void func_0204cc94(Unk0204cc94 *a) {
     u16 v2;
     u16 v3;
     u8 *v4;
+    const u8 *s;
+    u16 n;
+    u16 m;
 
     p = &data_02175ec0;
     z = (Unk02175ec0_440s *) ((u8 *) p + 0x440);
@@ -493,11 +493,14 @@ void func_0204cc94(Unk0204cc94 *a) {
             z->mUnk_46d8 = z->mUnk_46d8 & ~(1 << a->mUnk_12);
             return;
         case 21:
+            s = a->mUnk_0c;
+            n = a->mUnk_10;
             if (p->mUnk_0000 != 0) {
-                z->mUnk_46d8 = z->mUnk_46d8 | (1 << a->mUnk_12);
-                func_0200692c(a->mUnk_0c, a->mUnk_10, a->mUnk_12);
+                m = a->mUnk_12;
+                z->mUnk_46d8 = z->mUnk_46d8 | (1 << m);
+                func_0200692c(s, n, m);
             } else {
-                func_020068f4(a->mUnk_0c, a->mUnk_10);
+                func_020068f4(s, n);
             }
             return;
     }

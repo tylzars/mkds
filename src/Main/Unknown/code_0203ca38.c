@@ -208,25 +208,22 @@ void func_0203cd14(void) {
     func_0203e788((u16) data_021759c0->mUnk_62, k);
 }
 
-// non-matching: the original (0xc4 bytes) reloads the byte at 0x3d0 through the same pointer register on every
-// iteration and keeps the counter and index in r4 and r5; ours (0xb8 bytes) holds the byte in a register across the
-// loop
 s32 func_0203cfb4(void) {
+    u32 i;
+    s32 c;
     BOOL r = TRUE;
     Unk0217561c *d = data_0217561c;
-    Unk021759c0 *e;
     if (d->mUnk_4cc != 0) {
         return 0;
     }
-    e = data_021759c0;
-    if (e->mUnk_08 == 2) {
-        s32 c = 0;
-        u32 i;
-        for (i = 0; i < e->mKartCount; i = (u16) (i + 1)) {
+    if (data_021759c0->mUnk_08 == 2) {
+        c = 0;
+        for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
             if (d->mUnk_000[i].mUnk_14 == 0) {
                 c++;
                 if (c > 0) {
-                    return 0;
+                    r = FALSE;
+                    break;
                 }
             }
         }

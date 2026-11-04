@@ -20,9 +20,6 @@
 #include "code_020172d0.h"
 #include "Main/Unknown/code_0208eb10.h"
 
-// non-matching: same size; 29 words differ, all in the two blocks of constant stores: the original stores each
-// constant right after loading it (8 in r1, 3 then 1 in r7, 0x4d then 0xe in r10) and loads &data_021759c0 after the
-// first store, so the constants and pool addresses get other registers here
 void func_0208f0f8(void *a) {
     void *s;
     Unk0208ec64 *e;
@@ -34,20 +31,20 @@ void func_0208f0f8(void *a) {
     s32 t;
 
     s = FindMainRaceOrMainEffectFile(data_021759c0->mUnk_00c == 5 ? data_02166514 : data_02166530);
-    data_021663e0 = 8;
     data_021663f0 = 0x4d;
+    data_021663e0 = 8;
     data_021663dc = 3;
     data_021663e4 = 0xc;
+    data_021663ec = (s32(*)()) func_0208ee40;
     data_021663d8 = 0xe;
     data_021663e8 = 1;
     n = 1;
-    data_021663ec = (s32(*)()) func_0208ee40;
     if (data_021759c0->mUnk_08 == 5) {
         n += 3;
     } else if (data_021759c0->mUnk_00c == 5) {
+        data_021663f0 = 0;
         data_021663e0 = 0xe;
         data_021663dc = 2;
-        data_021663f0 = 0;
         data_021663e4 = 0x1e;
         data_021663ec = (s32(*)()) func_0208ecd8;
         data_021663d8 = 4;

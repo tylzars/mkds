@@ -569,8 +569,6 @@ void func_01ffcc50(Unk0206bcb0 *p) {
     }
 }
 
-// non-matching: same products, but ours needs one more saved register (r10) and no stack word, 0xac bytes against 0xb4;
-// the original forms the three diagonal sums before the z products
 void func_01ffccd0(void *a, void *b) {
     s32 *o = a;
     const Vec4 *q = b;
@@ -578,43 +576,78 @@ void func_01ffccd0(void *a, void *b) {
     s32 x;
     s32 y;
     s32 z;
+    s32 zx;
+    s32 xx;
+    s32 ww;
+    s32 yy;
+    s32 zw;
+    s32 zy;
+    s32 wx;
+    s32 wy;
+    s32 xy;
 
     w = q->x;
     x = q->y;
     y = q->z;
     z = q->w;
-    o[0] = 0x1000 - ((x * x >> 11) + (y * y >> 11));
-    o[1] = (w * x >> 11) + (z * y >> 11);
-    o[2] = (w * y >> 11) - (z * x >> 11);
-    o[3] = (w * x >> 11) - (z * y >> 11);
-    o[4] = 0x1000 - ((y * y >> 11) + (w * w >> 11));
-    o[5] = (x * y >> 11) + (z * w >> 11);
-    o[6] = (w * y >> 11) + (z * x >> 11);
-    o[7] = (x * y >> 11) - (z * w >> 11);
-    o[8] = 0x1000 - ((w * w >> 11) + (x * x >> 11));
+    zx = z * x >> 11;
+    xx = x * x >> 11;
+    ww = w * w >> 11;
+    yy = y * y >> 11;
+    zw = z * w >> 11;
+    zy = z * y >> 11;
+    wx = w * x >> 11;
+    wy = w * y >> 11;
+    xy = x * y >> 11;
+    o[0] = 0x1000 - (xx + yy);
+    o[1] = wx + zy;
+    o[2] = wy - zx;
+    o[3] = wx - zy;
+    o[4] = 0x1000 - (yy + ww);
+    o[5] = xy + zw;
+    o[6] = wy + zx;
+    o[7] = xy - zw;
+    o[8] = 0x1000 - (ww + xx);
 }
 
-// non-matching: same as func_01ffccd0 (one more saved register, 0xbc bytes against 0xc4)
 void func_01ffcd84(void *a, const Vec4 *b) {
     s32 *o = a;
     s32 w;
     s32 x;
     s32 y;
     s32 z;
+    s32 zx;
+    s32 xx;
+    s32 ww;
+    s32 yy;
+    s32 zw;
+    s32 zy;
+    s32 wx;
+    s32 wy;
+    s32 xy;
 
     w = b->x;
     x = b->y;
     y = b->z;
     z = b->w;
-    o[0] = 0x1000 - ((x * x >> 11) + (y * y >> 11));
-    o[1] = (w * x >> 11) + (z * y >> 11);
-    o[2] = (w * y >> 11) - (z * x >> 11);
-    o[3] = (w * x >> 11) - (z * y >> 11);
-    o[4] = 0x1000 - ((y * y >> 11) + (w * w >> 11));
-    o[5] = (x * y >> 11) + (z * w >> 11);
-    o[6] = (w * y >> 11) + (z * x >> 11);
-    o[7] = (x * y >> 11) - (z * w >> 11);
-    o[8] = 0x1000 - ((w * w >> 11) + (x * x >> 11));
+    zx = z * x >> 11;
+    xx = x * x >> 11;
+    ww = w * w >> 11;
+    yy = y * y >> 11;
+    zw = z * w >> 11;
+    zy = z * y >> 11;
+    wx = w * x >> 11;
+    wy = w * y >> 11;
+    xy = x * y >> 11;
+    o[0] = 0x1000 - (xx + yy);
+    o[1] = wx + zy;
+    o[2] = wy - zx;
+    o[3] = wx - zy;
+    o[4] = 0x1000 - (yy + ww);
+    o[5] = xy + zw;
+    o[6] = wy + zx;
+    o[7] = xy - zw;
+    o[8] = 0x1000 - (ww + xx);
     o[9] = 0;
     o[10] = 0;
     o[11] = 0;
@@ -627,23 +660,12 @@ void func_01ffce48(Vec4 *a, const Vec4 *b, Vec4 *c, s32 d) {
     c->w = a->w + ((d * (b->w - a->w)) >> 12);
 }
 
-// non-matching: same products and stack word, but the load, multiply and register order differ throughout (37 words
-// differ)
 void func_01ffcebc(const Vec4 *a, const Vec4 *b, Vec4 *c) {
     Vec4 t;
-    s32 b1 = b->y;
-    s32 a1 = a->y;
-    s32 b3 = b->w;
-    s32 a0 = a->x;
-    s32 b0 = b->x;
-    s32 b2 = b->z;
-    s32 a3 = a->w;
-    s32 a2 = a->z;
-    s32 p = a0 * b0 + a1 * b1 + a2 * b2;
 
-    t.x = (a3 * b0 + a0 * b3 + (a1 * b2 - a2 * b1)) >> 12;
-    t.y = (a1 * b3 + a3 * b1 + (a2 * b0 - a0 * b2)) >> 12;
-    t.z = (a2 * b3 + a3 * b2 + (a0 * b1 - a1 * b0)) >> 12;
-    t.w = (a3 * b3 - p) >> 12;
+    t.x = (a->w * b->x + a->x * b->w + (a->y * b->z - a->z * b->y)) >> 12;
+    t.y = (a->w * b->y + a->y * b->w + (a->z * b->x - a->x * b->z)) >> 12;
+    t.z = (a->w * b->z + a->z * b->w + (a->x * b->y - a->y * b->x)) >> 12;
+    t.w = (a->w * b->w - (a->x * b->x + a->y * b->y + a->z * b->z)) >> 12;
     *c = t;
 }

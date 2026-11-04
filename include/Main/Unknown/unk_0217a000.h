@@ -833,7 +833,9 @@ typedef struct Unk0217aa14_104_68 {
     /* 08 */ s32 mUnk_08;
     /* 0c */ u16 mUnk_0c;
     /* 0e */ u16 mUnk_0e;
-    /* 10 */ u8 mUnk_10[0x10];
+    /* 10 */ s32 mUnk_10;
+    /* 14 */ u16 mUnk_14;
+    /* 16 */ u8 mUnk_16[0xa];
 } Unk0217aa14_104_68;
 
 // 0x88-byte entries from 0x104 of Unk0217aa14.

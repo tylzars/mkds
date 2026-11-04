@@ -238,23 +238,24 @@ s32 func_01ffd778(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     return r;
 }
 
-// non-matching: register assignment differs throughout (original keeps the index in r0, the two tables in r4 and r5,
-// the upper bounds in r8 and r9; ours uses r4 to r9 in another order), size 0x26c against 0x270
 void func_01ffd900(s32 a, s32 b) {
     Unk0217b5b8 *e;
-    Unk0217b5b4 *x;
-    Unk0217b5b4 *y;
-    s32 p;
+    s32 c;
+    s32 t;
     s32 q;
     s32 u;
     s32 s;
-    s32 t;
-    s32 c;
     s32 d;
     s32 f;
-    s16 h;
+    Unk0217b5b4 *y;
+    s32 p;
+    Unk0217b5b4 *x;
+    s32 m;
+    s32 h;
     s16 l;
+    u32 i;
     Unk0217b5b8 *o;
+    u16 g;
     if (a < 0 || a >= 0x100) {
         return;
     }
@@ -265,8 +266,8 @@ void func_01ffd900(s32 a, s32 b) {
     x = data_0217b5b4;
     y = data_0217b5c0;
     s = data_0217b5b0 - 1;
-    t = y[u].mUnk_02;
     c = x[p].mUnk_02;
+    t = y[u].mUnk_02;
     d = e->mUnk_04;
     f = e->mUnk_08;
     if (e->mUnk_0c == NULL) {
@@ -280,25 +281,28 @@ void func_01ffd900(s32 a, s32 b) {
     while (p > 0 && x[p - 1].mUnk_02 >= t) {
         p--;
     }
-    while (q < s - 7 && y[q + 8].mUnk_02 <= c) {
+    m = s - 7;
+    while (q < m && y[q + 8].mUnk_02 <= c) {
         q += 8;
     }
     while (q < s && y[q + 1].mUnk_02 <= c) {
         q++;
     }
-    h = q;
-    l = x[p].mUnk_01;
+    h = (s16) q;
+    i = x[p].mUnk_01;
+    l = i;
     if (h < l) {
         return;
     }
     for (;;) {
-        if (y[h].mUnk_00 >= p && h != u) {
-            o = &data_0217b5b8[y[h].mUnk_01];
-            if (o->mUnk_04 < f || o->mUnk_08 > d || !(o->mUnk_14 & b) || (o->mUnk_14 & 0x200)) {
+        if (data_0217b5c0[h].mUnk_00 >= p && h != u) {
+            o = &data_0217b5b8[data_0217b5c0[h].mUnk_01];
+            g = o->mUnk_14;
+            if (o->mUnk_04 < f || o->mUnk_08 > d || !(g & b) || (g & 0x200)) {
                 goto next;
             }
-            data_0217b5cc[data_0217b5a8] = y[h].mUnk_01;
-            data_0217b5bc[data_0217b5a8] = o->mUnk_14;
+            data_0217b5cc[data_0217b5a8] = data_0217b5c0[h].mUnk_01;
+            data_0217b5bc[data_0217b5a8] = g;
             data_0217b5c4[data_0217b5a8] = o->mUnk_18;
             data_0217b5a8++;
             if (data_0217b5a8 == 0x80) {

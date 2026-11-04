@@ -280,11 +280,11 @@ found:
     }
 }
 
-// non-matching: the switch arms hold the case values in other registers (0x1a8 vs 0x1b0 bytes)
 s32 func_020f0950(Unk027e00cc *a, s32 b, s32 c) {
-    s32 k;
+    enum { K0 } k;
     s32 i;
     Unk020f41c4_A *e;
+    Unk020f41c4_A **p;
     s32 n;
     BOOL r;
     BOOL z0;
@@ -298,6 +298,7 @@ s32 func_020f0950(Unk027e00cc *a, s32 b, s32 c) {
     k = b;
     h = ((u32) (k & 0xf0) << 12) >> 16;
     n = a->mUnk_14;
+    p = a->mUnk_04;
     r = FALSE;
     i = 0;
     k &= 0xf;
@@ -308,8 +309,8 @@ s32 func_020f0950(Unk027e00cc *a, s32 b, s32 c) {
     z4 = FALSE;
     z5 = FALSE;
     for (; i < n; i++) {
-        e = a->mUnk_04[i];
-        if (e->mUnk_4e != c) {
+        e = p[i];
+        if (c != e->mUnk_4e) {
             continue;
         }
         r = TRUE;

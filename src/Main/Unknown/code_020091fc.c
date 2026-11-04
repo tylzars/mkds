@@ -11,25 +11,22 @@ u32 func_020091fc(Unk02007ec4 *a) {
     return 1;
 }
 
-// non-matching: same size; 8 words differ in registers only: b, the data_0216fce0 address and v1 sit in r6, r7 and r4
-// where the original has r7, r4 and r6
 u32 func_0200921c(Unk02008f00Func a, u32 b, Unk02007ec4 *c) {
     s32 v1;
-    u8 *v2;
     if (func_020091fc(c) == 0) {
         return 0;
     }
     MemCopyHalfwords(c, data_0216fce0, 0xc0);
-    v2 = data_0216fce0;
+    c = (Unk02007ec4 *) data_0216fce0;
     data_0216fc3c = data_0216fd30;
     if (func_020088dc((u16 *) ((u8 *) data_0216fc3c + 8), 0x68) != 0) {
         return 0;
     }
-    v1 = func_02009098(v2, a);
+    v1 = func_02009098((u8 *) c, a);
     if (v1 < 0) {
         return 0;
     }
-    func_02008e10(v2, v1, b);
+    func_02008e10((u8 *) c, v1, b);
     func_02008ff0(v1, a);
     return 1;
 }

@@ -102,13 +102,15 @@ void func_ov003_021bfa80(u32 param_1) {
     func_ov003_021d2808(&data_ov003_021da15c);
 }
 
-// non-matching: size 0x44 against 0x54. The original keeps both values in stack offsets 0 and 4; the compiled code
-// keeps them in registers.
+static inline void func_ov003_021bfbd0_inline(Unk021bf920 *p, u32 *x, u32 *y) {
+    *x = (p->mUnk_00 & 0x1ff0000) >> 16;
+    *y = p->mUnk_00 & 0xff;
+}
+
 void func_ov003_021bfb28(u32 param_1) {
-    u32 x;
+    s32 a;
     s32 y;
-    x = (data_ov003_021da15c->mUnk_030[0]->mUnk_00 & 0x1ff0000) >> 16;
-    y = data_ov003_021da15c->mUnk_030[0]->mUnk_00 & 0xff;
+    func_ov003_021bfbd0_inline(data_ov003_021da15c->mUnk_030[0], (u32 *) &a, (u32 *) &y);
     y += 12;
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 0, y);
     if (y >= 0xc0) {
@@ -116,24 +118,15 @@ void func_ov003_021bfb28(u32 param_1) {
     }
 }
 
-// non-matching: size 0x44 against 0x54. The original keeps the two values in stack offsets 0 and 4 (stores both, adds
-// 12 to the second in a register and stores it again, reloads it for the compare); the compiled code keeps them in
-// registers.
 void func_ov003_021bfb7c(u32 param_1) {
-    u32 x;
+    s32 x;
     s32 y;
-    x = (data_ov003_021da15c->mUnk_030[12]->mUnk_00 & 0x1ff0000) >> 16;
-    y = data_ov003_021da15c->mUnk_030[12]->mUnk_00 & 0xff;
+    func_ov003_021bfbd0_inline(data_ov003_021da15c->mUnk_030[12], (u32 *) &x, (u32 *) &y);
     y += 12;
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 1, y);
     if (y >= 0xc0) {
         func_ov003_021d34e0((Unk021d34e0 *) param_1, func_ov003_021bfb28);
     }
-}
-
-static inline void func_ov003_021bfbd0_inline(Unk021bf920 *p, u32 *x, u32 *y) {
-    *x = (p->mUnk_00 & 0x1ff0000) >> 16;
-    *y = p->mUnk_00 & 0xff;
 }
 
 void func_ov003_021bfbd0(u32 param_1) {
@@ -147,14 +140,10 @@ void func_ov003_021bfbd0(u32 param_1) {
     }
 }
 
-// non-matching: size 0x44 against 0x54. The original keeps the two values in stack offsets 0 and 4 (stores both, adds
-// 12 to the second in a register and stores it again, reloads it for the compare); the compiled code keeps them in
-// registers.
 void func_ov003_021bfc28(u32 param_1) {
-    u32 x;
+    s32 a;
     s32 y;
-    x = (data_ov003_021da15c->mUnk_030[36]->mUnk_00 & 0x1ff0000) >> 16;
-    y = data_ov003_021da15c->mUnk_030[36]->mUnk_00 & 0xff;
+    func_ov003_021bfbd0_inline(data_ov003_021da15c->mUnk_030[36], (u32 *) &a, (u32 *) &y);
     y += 12;
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 3, y);
     if (y >= 0xc0) {
@@ -162,19 +151,13 @@ void func_ov003_021bfc28(u32 param_1) {
     }
 }
 
-// non-matching: size 0x44 against 0x54. The original keeps the two values in stack offsets 0 and 4 (stores both, adds
-// 12 to the second in a register and stores it again, reloads it for the compare); the compiled code keeps them in
-// registers.
 void func_ov003_021bfc80(u32 param_1) {
-    Unk021bf920 *p;
-    u32 x;
-    s32 y;
-    p = func_ov003_021d1974((s32) data_ov003_021da15c->mUnk_0fc[0], 0);
-    x = (p->mUnk_00 & 0x1ff0000) >> 16;
-    y = p->mUnk_00 & 0xff;
-    y += 12;
-    func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 4, y);
-    if (y >= 0xc0) {
+    s32 a;
+    s32 b;
+    func_ov003_021bfbd0_inline(func_ov003_021d1974((s32) data_ov003_021da15c->mUnk_0fc[0], 0), (u32 *) &a, (u32 *) &b);
+    b += 12;
+    func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 4, b);
+    if (b >= 0xc0) {
         func_ov003_021d34e0((Unk021d34e0 *) param_1, func_ov003_021bfc28);
     }
 }

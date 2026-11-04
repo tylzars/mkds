@@ -4,11 +4,6 @@
 
 typedef struct SbServerList SbServerList;
 
-// Two bytes func_ov000_0218ca58 copies; the target may be unaligned.
-typedef struct Unk0218ca58 {
-    /* 0 */ u8 mUnk_00[2];
-} Unk0218ca58;
-
 void func_ov000_0218c958(SbServerList *p);
 void func_ov000_0218c980(SbServerList *p);
 void func_ov000_0218c9d4(SbServerList *p);

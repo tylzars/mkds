@@ -260,11 +260,9 @@ void func_02078a9c(s32 param_1) {
     }
 }
 
-// non-matching: same instructions; the original keeps the global pointer variable address in r2, the object in r5 and
-// computes param_2 * 2 (r3) before loading the row table, we use r5/r4 and compute it later
 s16 *func_02078b04(s32 param_1, s32 param_2) {
     Unk0217ad08 *d = data_0217ad08;
-    s16 *k = d->mUnk_018;
+    s16 *k = &d->mUnk_018[param_2];
     Unk0217ad08_01c *v1 = &d->mUnk_01c[param_1];
     d->mUnk_00c[0] = v1->mUnk_00[0];
     d->mUnk_00c[1] = v1->mUnk_00[1];
@@ -272,7 +270,7 @@ s16 *func_02078b04(s32 param_1, s32 param_2) {
     d->mUnk_00c[3] = v1->mUnk_00[3];
     d->mUnk_00c[4] = v1->mUnk_00[4];
     d->mUnk_00c[5] = v1->mUnk_00[5];
-    d->mUnk_00c[2] += k[param_2];
+    d->mUnk_00c[2] += *k;
     return data_0217ad08->mUnk_00c;
 }
 

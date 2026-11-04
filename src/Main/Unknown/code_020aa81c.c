@@ -70,17 +70,12 @@ u16 func_020aaf70(Unk0217b278_1c *a) {
     return 0;
 }
 
-// non-matching: register allocation only: the original moves the x and y arguments to r3 and r1, keeps the table
-// pointer at sp+4 and the count at sp+0 with the index in r7; here y is in r5 and the stack offsets of the two are
-// swapped.
 Unk0217b278_10 *func_020aaea0(Unk0217b278 *a, s32 b, s32 c) {
-    s32 n;
-    s32 v1;
     Unk0217b278_10 *e;
-    Unk0217b278_10 *v2;
     Unk0217b278_1c *q;
+    s32 n;
+    Unk0217b278_10 *t;
     s32 i;
-    s32 v3;
 
     e = &a->mUnk_00;
     if (e->mUnk_02 > 1 && e->mUnk_03 > 1 && e->mUnk_01 <= c && c < e->mUnk_01 + e->mUnk_03 && e->mUnk_00 <= b &&
@@ -93,14 +88,13 @@ Unk0217b278_10 *func_020aaea0(Unk0217b278 *a, s32 b, s32 c) {
         return e;
     }
     q = a->mUnk_2c;
-    v2 = q->mUnk_00;
+    t = q->mUnk_00;
     n = q->mUnk_0e;
-    v1 = data_0217b238;
-    v3 = data_0217b234;
-    for (i = 0, e = v2; i < n; i++, e++) {
-        if (e->mUnk_02 > 1 && e->mUnk_03 > 1 && v1 + e->mUnk_01 <= c && c < v1 + (e->mUnk_01 + e->mUnk_03) &&
-            v3 + e->mUnk_00 <= b && b < v3 + (e->mUnk_00 + e->mUnk_02)) {
-            return v2 + i;
+    for (i = 0; i < n; i++) {
+        if (t[i].mUnk_02 > 1 && t[i].mUnk_03 > 1 && data_0217b238 + t[i].mUnk_01 <= c &&
+            c < data_0217b238 + (t[i].mUnk_01 + t[i].mUnk_03) && data_0217b234 + t[i].mUnk_00 <= b &&
+            b < data_0217b234 + (t[i].mUnk_00 + t[i].mUnk_02)) {
+            return &t[i];
         }
     }
     return NULL;

@@ -286,23 +286,23 @@ void func_0203ee28(void) {
     data_0217561c->mUnk_000[0].mUnk_0e = data_021759c0->mKartCount;
 }
 
-// non-matching: 0x314 bytes, original 0x328; the original keeps zero constants in r0/r8 and loads data_0217561c after
-// the loop guard, ours folds them.
 s32 func_0203ef58(void) {
     BOOL r;
     u16 i;
     s32 s;
     s32 f;
     s32 v;
+    s32 n;
+    s32 m;
     Unk021759c0 *o;
     Unk0217561c *q;
     o = data_021759c0;
     switch (o->mUnk_08) {
         case 0:
             r = TRUE;
-            for (i = 0; i < (u32) o->mKartCount; i++) {
-                s = o->mUnk_68[i].mUnk_08.mUnk_00;
+            for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
                 f = 0;
+                s = o->mUnk_68[i].mUnk_08.mUnk_00;
                 if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {
                     f = 1;
                 }
@@ -347,12 +347,13 @@ s32 func_0203ef58(void) {
             if (v < 0) {
                 r = FALSE;
             } else {
+                n = data_021759c0->mKartCount;
                 q = data_0217561c;
-                s = q->mUnk_000[(u16) v].mUnk_14;
-                f = data_021759c0->mKartCount - q->mUnk_000[0].mUnk_10;
-                if (f <= 1) {
+                m = q->mUnk_000[0].mUnk_10;
+                if (n - m <= 1) {
                     r = FALSE;
                 } else {
+                    s = q->mUnk_000[(u16) v].mUnk_14;
                     f = 0;
                     switch (s) {
                         case 1:
@@ -361,10 +362,10 @@ s32 func_0203ef58(void) {
                             f = 1;
                             break;
                     }
-                    if (f != 0) {
-                        r = q->mUnk_000[0].mUnk_0e + q->mUnk_000[0].mUnk_10 >= data_021759c0->mKartCount;
+                    if (f == 0) {
+                        r = q->mUnk_000[0].mUnk_0e + m >= n - 1;
                     } else {
-                        r = q->mUnk_000[0].mUnk_0e + q->mUnk_000[0].mUnk_10 >= data_021759c0->mKartCount - 1;
+                        r = q->mUnk_000[0].mUnk_0e + m >= n;
                     }
                 }
             }
@@ -382,8 +383,8 @@ s32 func_0203ef58(void) {
         case 2:
             r = TRUE;
             for (i = 0; i < (u32) o->mKartCount; i++) {
-                s = o->mUnk_68[i].mUnk_08.mUnk_00;
                 f = 0;
+                s = o->mUnk_68[i].mUnk_08.mUnk_00;
                 if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {
                     f = 1;
                 }

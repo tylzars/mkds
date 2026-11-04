@@ -208,10 +208,10 @@ void func_02090920(u32 a) {
     func_02048590(data_02166548, a, (void **) &data_0217b0b0);
 }
 
-BOOL func_02090940(void) {
+static inline BOOL func_02090940_inline(void) {
+    BOOL r;
     enum { K0 } i;
     enum { L0 } j;
-    BOOL r;
     for (i = 0; i < 8; i++) {
         for (j = 0; j < 4; j++) {
             if (func_02060440(i, j) != 0 && func_020603bc(i, j) == 0) {
@@ -227,39 +227,26 @@ BOOL func_02090940(void) {
     return TRUE;
 }
 
-// non-matching: same control flow, but the original also tests the loop counter before both loops and uses other
-// registers for the counters and the flag
+BOOL func_02090940(void) {
+    return func_02090940_inline();
+}
+
 s32 func_020909cc(void) {
     Unk0217b488 *p;
     s32 r;
-    BOOL c;
-    s32 m;
     s32 n;
+    s32 m;
+    BOOL c;
     BOOL f;
-    s32 i;
-    s32 j;
-    c = FALSE;
     r = 0;
     p = data_0217b488;
     m = p->mUnk_88;
+    n = p->mUnk_84;
     if (p->mUnk_8c != 0) {
         m = 3;
     }
-    n = p->mUnk_84;
-    for (i = 0; i < 8; i++) {
-        for (j = 0; j < 4; j++) {
-            if (func_02060440(i, j) != 0 && func_020603bc(i, j) == 0) {
-                f = TRUE;
-            } else {
-                f = FALSE;
-            }
-            if (f == FALSE) {
-                goto l2;
-            }
-        }
-    }
-    f = TRUE;
-l2:
+    c = FALSE;
+    f = func_02090940_inline();
     if (f != FALSE) {
         if (n == 3 || n == 7) {
             if (data_0217b488->mUnk_7c == 0) {

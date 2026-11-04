@@ -62,14 +62,14 @@ void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
     b->z = q->mUnk_0c.z;
 }
 
-// non-matching: register allocation and branch layout of the switch differ (59 words), same operations
 void func_02041bb0(Vec3 *a, Vec3 *b, s32 c) {
     u16 i = (u16) (data_021759c0->mKartCount - 1);
-    u16 j = (u16) (func_0205d27c(c) - 1);
+    s32 j = (u16) (func_0205d27c(c) - 1);
     s32 k;
     s32 l;
     s32 n;
     s32 t;
+    s32 d;
 
     if (data_021759c0->mUnk_00c == 6) {
         func_02041dc8(a, b, 0, 0, 0);
@@ -91,12 +91,11 @@ void func_02041bb0(Vec3 *a, Vec3 *b, s32 c) {
             break;
         default:
             k = data_0215406c[i * 2];
+            l = k;
             n = j;
             if (j >= k) {
                 l = data_0215406d[i * 2];
                 n = j - k;
-            } else {
-                l = k;
             }
             if ((l & 1) == 1) {
                 n = (n - l / 2) * 2;
@@ -104,15 +103,16 @@ void func_02041bb0(Vec3 *a, Vec3 *b, s32 c) {
                 n = n * 2 + 1 - l;
             }
             if (j >= k) {
-                if (k == data_0215406d[i * 2]) {
+                if (k == data_0215406d[(u32) i * 2]) {
                     n = n + 1;
                 }
             }
+            d = n * 0x11000;
             t = 0;
             if (j >= k) {
                 t = 1;
             }
-            func_02041dc8(a, b, 0, n * 0x11000, j * 0x19000 + t * 0x14000);
+            func_02041dc8(a, b, 0, d, j * 0x19000 + t * 0x14000);
             break;
     }
 }
@@ -298,8 +298,6 @@ Unk02175620_bc *func_020413a4(Vec3 *a) {
     return r;
 }
 
-// non-matching: the original reloads the constants 0 and 1 from stack words, here they are constants in the arms (0xc
-// bytes shorter)
 s32 func_020411e4(Vec3 *a) {
     u16 i;
     Unk02175620_74 *p;
@@ -320,12 +318,16 @@ s32 func_020411e4(Vec3 *a) {
                     break;
                 case 1:
                     Vec3Sub(a, (Vec3 *) p, &v);
-                    if (Vec3Dot(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                    if (Vec3Dot(&v, &p->mUnk_24) > (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                        t = 0;
+                    } else {
                         x = Vec3Dot(&v, &p->mUnk_18) >> 4;
                         y = Vec3Dot(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                        if ((s32) (((s64) z * z + 0x800) >> 12) >=
+                        if ((s32) (((s64) z * z + 0x800) >> 12) <
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
+                            t = 0;
+                        } else {
                             t = 1;
                         }
                     }

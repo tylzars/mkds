@@ -649,8 +649,6 @@ void func_020e1a80(s32 a, s32 b, s32 c, u32 d, u16 e, u16 *f, s32 v, Unk020e005c
     func_020e0680(w, g, h, l, m);
 }
 
-// non-matching: code 0x3a0 vs 0x3a4: the incoming arguments land in different callee-saved registers (r6/r8, r5/r7,
-// r4/r6 against the original)
 BOOL func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 i, s32 j, Unk020e005c *w, Vec3 *l,
                    Vec3 *m, Vec3 *n, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, Vec3 *r, u16 *s) {
     BOOL u;
@@ -710,13 +708,13 @@ BOOL func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 
         y.y >>= 10;
         y.z >>= 10;
         Vec3Sub(&z, &y, &z);
-        t = Vec3Length(&z);
+        c = Vec3Length(&z);
     } else {
         tmp = *n;
         z.x = (s32) (((s64) tmp.x * a) >> 12);
         z.y = (s32) (((s64) tmp.y * a) >> 12);
         z.z = (s32) (((s64) tmp.z * a) >> 12);
-        t = a;
+        c = a;
     }
     if (u) {
         if (w->mUnk_114.z != 0 && (d & 8)) {
@@ -730,8 +728,8 @@ BOOL func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 
         *g = 8;
         x = p;
     }
-    if (t >= x->mUnk_18) {
-        x->mUnk_18 = t;
+    if (c >= x->mUnk_18) {
+        x->mUnk_18 = c;
         x->mUnk_1c = tmp;
     }
     z.x <<= 10;
