@@ -58,7 +58,7 @@ Unk021d309c *func_ov003_021d309c(u32 a, s32 b, s32 c, u32 *d) {
             } while (f != &k[a].mUnk_18c);
         }
         if (f == &data_ov003_021da2f4[a].mUnk_18c) {
-            func_0200fd1c();
+            IrqDisableLoopForever();
         }
     } else {
         k = data_ov003_021da2f4;
@@ -76,7 +76,7 @@ Unk021d309c *func_ov003_021d309c(u32 a, s32 b, s32 c, u32 *d) {
             } while (f != &k[a].mUnk_180);
         }
         if (f == &data_ov003_021da2f4[a].mUnk_180) {
-            func_0200fd1c();
+            IrqDisableLoopForever();
         }
     }
     *d = e->mUnk_08;

@@ -51,11 +51,11 @@ void func_ov003_021ba734(Unk021ba734 *list, Unk021ba778Src *src, s32 count) {
 }
 
 s32 func_ov003_021ba720(void *msg) {
-    return func_0200eae8(&data_ov003_021d8a2c, msg, 0);
+    return RingQueueAppend(&data_ov003_021d8a2c, msg, 0);
 }
 
 s32 func_ov003_021ba70c(void *msg) {
-    return func_0200eae8(&data_ov003_021d8a2c, msg, 0);
+    return RingQueueAppend(&data_ov003_021d8a2c, msg, 0);
 }
 
 s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *)) {
@@ -63,7 +63,7 @@ s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *)) {
     void *msg;
     void *buffer;
     u32 enabled;
-    func_0200eb90(&data_ov003_021d8a2c, data_ov003_021d8a1c, 4);
+    RingQueueInit(&data_ov003_021d8a2c, data_ov003_021d8a1c, 4);
     if (alloc == NULL || release == NULL) {
         return -1;
     }
@@ -81,7 +81,7 @@ s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *)) {
     }
     if (running != FALSE) {
         do {
-            func_0200ea3c(&data_ov003_021d8a2c, &msg, 1);
+            RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
             switch ((u32) msg) {
                 case 4:
                 case 5:
@@ -118,7 +118,7 @@ s32 func_ov003_021ba560(void) {
         return -1;
     }
     do {
-        func_0200ea3c(&data_ov003_021d8a2c, &msg, 1);
+        RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
         switch ((u32) msg) {
             case 4:
             case 5:
@@ -154,7 +154,7 @@ s32 func_ov003_021ba524(void) {
     if (func_ov003_021baa28() != 0) {
         done = FALSE;
         do {
-            func_0200ea3c(&data_ov003_021d8a2c, &msg, 1);
+            RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
             /* waits for one entry; the loop flag is a placeholder */
             if ((u32) msg == 0xe) {
                 result = 0;
@@ -189,7 +189,7 @@ s32 func_ov003_021ba394(Unk021ba734 **out) {
         func_0200fb08(&timer);
         func_0200f950(&timer, 0x3fec42, (void (*)(void *)) func_ov003_021ba70c, (void *) 0x13);
         do {
-            func_0200ea3c(&data_ov003_021d8a2c, &msg, 1);
+            RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
             switch ((u32) msg) {
                 case 0x13:
                     if (found == FALSE) {
@@ -249,7 +249,7 @@ s32 func_ov003_021ba394(Unk021ba734 **out) {
         }
     cleanup:
         func_0200f8b8(&timer);
-        while (func_0200ea3c(&data_ov003_021d8a2c, &msg, 0) == 1) {
+        while (RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 0) == 1) {
         }
     }
     data_ov003_021d8a18(buffer);
@@ -290,7 +290,7 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
         func_0200f950(&timer, 0x3fec42, (void (*)(void *)) func_ov003_021ba70c, (void *) 0x12);
         flags |= 0x30000;
         do {
-            func_0200ea3c(&data_ov003_021d8a2c, &msg, 1);
+            RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
             switch ((u32) msg) {
                 case 0x12:
                     if (done == FALSE) {
@@ -342,7 +342,7 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
             }
         } while (running != FALSE);
         func_0200f8b8(&timer);
-        while (func_0200ea3c(&data_ov003_021d8a2c, &msg, 0) == 1) {
+        while (RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 0) == 1) {
         }
     }
     func_ov003_021ba734(out, &data_ov003_021d8ac0, result == 0 ? 1 : 0);

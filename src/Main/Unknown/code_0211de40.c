@@ -26,7 +26,7 @@ void func_0211ded0(u32 a, void *b, void *c, u32 d, u16 e, s32 f) {
     p = data_0217d370;
     dst = (u8 *) p->mUnk_08->mData;
     n = func_02124a68(id, p->mUnk_04, p->mUnk_0c);
-    func_02016468(v0, e << 5, dst + (n << 5), 32);
+    CallQueueAppend(v0, e << 5, dst + (n << 5), 32);
 }
 
 void func_0211de98(void) {

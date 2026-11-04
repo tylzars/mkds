@@ -29,7 +29,7 @@ void func_02146b14(u32 a, u32 b) {
             func_02146ab4();
         }
     } else {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
 }
 

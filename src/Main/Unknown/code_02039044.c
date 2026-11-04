@@ -4,7 +4,7 @@
 #include "code_021488e8.h"
 
 void func_02039044(void) {
-    func_0200c894(1, 1);
+    InterruptClearAndWait(1, 1);
     func_021489c4();
     *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 | 0x10000;
 }

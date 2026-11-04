@@ -94,7 +94,7 @@ u32 func_ov000_021ab5bc(void) {
 void func_ov000_021ab594(u32 a, u32 b) {
     Unk021a998c *v1;
     Unk021a998c_0c *v2;
-    v1 = *(Unk021a998c **) data_0216ff5c.mUnk_04->mUnk_a4;
+    v1 = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
     if ((v1 != NULL) && (v2 = v1->mUnk_0c, v2 != NULL)) {
         v2->mUnk_7e8 = a;
         v2->mUnk_7ec = b;
@@ -399,11 +399,11 @@ u32 func_ov000_021aaf38(Unk021a998c_0c *a, Unk021aaf38 *b) {
     func_ov000_021ac4b8(e, b->mUnk_10, b->mUnk_0c, n);
     func_ov000_021ac4b8(f, b->mUnk_08, b->mUnk_04, n);
     if (data_ov000_021b49f4 < 0x20) {
-        t = data_0216ff5c.mUnk_04;
-        g = func_0200dcd8(t);
-        func_0200dce0(t, data_ov000_021b49f4);
+        t = data_0216ff5c.mCurrentThread;
+        g = ThreadGetSortKey(t);
+        ThreadSetSortKey(t, data_ov000_021b49f4);
         func_ov000_021ac7e8(c, d, e, n, f);
-        func_0200dce0(t, g);
+        ThreadSetSortKey(t, g);
     } else {
         func_ov000_021ac7e8(c, d, e, n, f);
     }
@@ -1460,11 +1460,11 @@ void func_ov000_021a9640(Unk021a998c *a) {
     func_ov000_021ac4b8(h, c->mUnk_56c, c->mUnk_574, d);
     func_ov000_021ac4b8(i, c->mUnk_468, b, d);
     if (data_ov000_021b49f4 < 0x20) {
-        Unk0200db5c *n = data_0216ff5c.mUnk_04;
-        u32 o = func_0200dcd8(n);
-        func_0200dce0(n, data_ov000_021b49f4);
+        Unk0200db5c *n = data_0216ff5c.mCurrentThread;
+        u32 o = ThreadGetSortKey(n);
+        ThreadSetSortKey(n, data_ov000_021b49f4);
         func_ov000_021ac7e8(f, g, h, d, i);
-        func_0200dce0(n, o);
+        ThreadSetSortKey(n, o);
     } else {
         func_ov000_021ac7e8(f, g, h, d, i);
     }

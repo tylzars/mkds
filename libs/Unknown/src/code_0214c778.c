@@ -10,7 +10,8 @@ Unk0214ccd4 data_02180308;
 
 // Runs f(arg) at once when c is 0. Otherwise waits until data_02180308.mUnk_00 is 0 and bits 24-26 of the word at
 // 0x4000600 include bit 1, fills in data_02180308 (mUnk_00 = 1), saves the top two bits of that word and
-// func_0200cbe8(0x200000), sets those bits to 1, installs func_0214ce08 with func_0200cc74(0x200000, ...) and calls it.
+// InterruptHandlerGet(0x200000), sets those bits to 1, installs func_0214ce08 with InterruptHandlerSet(0x200000, ...)
+// and calls it.
 void func_0214ced0(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
     u32 s;
     vu32 *p;
@@ -36,9 +37,9 @@ void func_0214ced0(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
     func_0214c920(a);
     s = IrqDisable();
     data_02180308.mUnk_18 = (*(u32 *) 0x4000600 & 0xc0000000) >> 0x1e;
-    data_02180308.mUnk_1c = func_0200cbe8(0x200000);
+    data_02180308.mUnk_1c = InterruptHandlerGet(0x200000);
     *(u32 *) 0x4000600 = (*(u32 *) 0x4000600 & ~0xc0000000) | 0x40000000;
-    func_0200cc74(0x200000, func_0214ce08);
+    InterruptHandlerSet(0x200000, func_0214ce08);
     InterruptEnableSetBits(0x200000);
     func_0214ce08();
     IrqRestore(s);
@@ -72,14 +73,14 @@ void func_0214ce08(void) {
     InterruptFlagWrite(0x200000);
 }
 
-// Restores the top two bits of the word at 0x4000600 from data_02180308.mUnk_18, passes mUnk_1c to func_0200cc74,
+// Restores the top two bits of the word at 0x4000600 from data_02180308.mUnk_18, passes mUnk_1c to InterruptHandlerSet,
 // clears mUnk_00 and calls mUnk_10(mUnk_14) when mUnk_10 is not 0.
 void func_0214cd94(void) {
     u32 v;
 
     InterruptEnableClearBits(0x200000);
     *(u32 *) 0x4000600 = (data_02180308.mUnk_18 << 0x1e) | (*(u32 *) 0x4000600 & ~0xc0000000);
-    func_0200cc74(0x200000, data_02180308.mUnk_1c);
+    InterruptHandlerSet(0x200000, data_02180308.mUnk_1c);
     data_02180308.mUnk_00 = 0;
     v = data_02180308.mUnk_14;
     if (data_02180308.mUnk_10 != 0) {
@@ -255,8 +256,9 @@ void func_0214c89c(u32 a) {
 }
 
 // For each of the three word groups at 0x40000b8 + i * 12 other than the one at index a: when bit 31 is set and the
-// bits under 0x38000000 differ from b and the pair is not (0x8000000, 0x10000000) either way, calls func_0200fd1c when
-// those bits are one of 0x8000000, 0x10000000, 0x18000000, 0x20000000, 0x28000000, 0x30000000 or 0x38000000.
+// bits under 0x38000000 differ from b and the pair is not (0x8000000, 0x10000000) either way, calls
+// IrqDisableLoopForever when those bits are one of 0x8000000, 0x10000000, 0x18000000, 0x20000000, 0x28000000,
+// 0x30000000 or 0x38000000.
 void func_0214c7e8(u32 a, u32 b) {
     s32 i;
     u32 *p;
@@ -284,13 +286,13 @@ void func_0214c7e8(u32 a, u32 b) {
         }
         if (v == 0x18000000 || v == 0x20000000 || v == 0x28000000 || v == 0x30000000 || v == 0x38000000 ||
             v == 0x8000000 || v == 0x10000000) {
-            func_0200fd1c();
+            IrqDisableLoopForever();
         }
     }
 }
 
-// Does nothing when a is not 0. Otherwise calls func_0200fd1c when the top byte of b, or of b + c (b - c when d is
-// 0x800000, b when d is any other nonzero value), is 0x04 or at least 0x08.
+// Does nothing when a is not 0. Otherwise calls IrqDisableLoopForever when the top byte of b, or of b + c (b - c when d
+// is 0x800000, b when d is any other nonzero value), is 0x04 or at least 0x08.
 void func_0214c778(u32 a, const void *b, u32 c, u32 d) {
     u32 x;
     u32 y;
@@ -308,6 +310,6 @@ void func_0214c778(u32 a, const void *b, u32 c, u32 d) {
         x = x + c;
     }
     if (y == 0x4000000 || y >= 0x8000000 || (x & 0xff000000) == 0x4000000 || (x & 0xff000000) >= 0x8000000) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
 }

@@ -175,7 +175,7 @@ void func_02008188(Unk02008188 *a, u32 *b, Unk020082b4_0c *c, u32 *d) {
                 c->mUnk_0c &= ~1;
                 return;
             }
-            func_0200fd1c();
+            IrqDisableLoopForever();
             return;
         case 1:
             v1 = 0;
@@ -199,7 +199,7 @@ void func_02008188(Unk02008188 *a, u32 *b, Unk020082b4_0c *c, u32 *d) {
                 v1 = 1;
             }
             if (v1 == 1) {
-                func_0200fd1c();
+                IrqDisableLoopForever();
             }
             c->mUnk_08 = v3[1];
             c->mUnk_04 = v3[0];

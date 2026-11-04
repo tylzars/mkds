@@ -200,7 +200,7 @@ void func_ov000_021a2eec(Unk0219887c *a, void *b, s32 c) {
             data_ov000_021b5dd0->mUnk_000[v1].mUnk_18 = 0;
             break;
         default:
-            func_0200fd1c();
+            IrqDisableLoopForever();
             break;
     }
 }
@@ -257,7 +257,7 @@ void func_ov000_021a2d68(int a, void *b, s32 c) {
     s32 n;
     if (func_ov000_021a2fb4(a) == 2) {
         if (e->mUnk_10 + c > e->mUnk_08) {
-            func_0200fd1c();
+            IrqDisableLoopForever();
         }
         MemCopy(b, e->mUnk_04 + e->mUnk_10, c);
     }

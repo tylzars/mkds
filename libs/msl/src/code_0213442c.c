@@ -154,24 +154,24 @@ u32 fwrite(const char *a, u32 b, u32 c, FILE *d) {
         i = 5;
     }
     p = data_0217eadc[i];
-    if (func_0200ec08(p) == 0) {
-        data_0217ea94[i] = data_0216ff5c.mUnk_08->mUnk_6c;
+    if (ThreadLockTry(p) == 0) {
+        data_0217ea94[i] = data_0216ff5c.mListHead->mUnk_6c;
         data_0217eab8[i] = 1;
     } else {
         u32 v;
 
         v = data_0217ea94[i];
-        if (v == data_0216ff5c.mUnk_08->mUnk_6c) {
+        if (v == data_0216ff5c.mListHead->mUnk_6c) {
             data_0217eab8[i]++;
         } else {
-            func_0200ed34(p);
-            data_0217ea94[i] = data_0216ff5c.mUnk_08->mUnk_6c;
+            ThreadLockWait(p);
+            data_0217ea94[i] = data_0216ff5c.mListHead->mUnk_6c;
             data_0217eab8[i] = 1;
         }
     }
     r = FwriteBody(a, b, c, d);
     if (--data_0217eab8[i] == 0) {
-        func_0200ecc4(p);
+        ThreadLockUnlock(p);
     }
     return r;
 }

@@ -317,7 +317,7 @@ u32 func_0200ff04(u32 m, u16 v) {
     s = IrqDisable();
     t = m & data_02170284;
     while (1) {
-        k = 31 - func_0200fe74(t);
+        k = 31 - CountLeadingZeros(t);
         if (k < 0) {
             break;
         }
@@ -329,7 +329,7 @@ u32 func_0200ff04(u32 m, u16 v) {
     }
     t = m & 0x1ff;
     while (1) {
-        k = 31 - func_0200fe74(t);
+        k = 31 - CountLeadingZeros(t);
         if (k < 0) {
             break;
         }
@@ -349,7 +349,7 @@ void func_0200fe7c(u32 m, u16 v) {
     s = IrqDisable();
     t = m & data_02170284 & 0x1ff;
     while (1) {
-        k = 31 - func_0200fe74(t);
+        k = 31 - CountLeadingZeros(t);
         if (k < 0) {
             break;
         }

@@ -18,9 +18,9 @@ void func_ov000_021a6bdc(void) {
     if (data_ov000_021b5f54.mUnk_00 == 0) {
         data_ov000_021b5f54.mUnk_00 = 1;
         data_ov000_021b5f54.mUnk_24 = 0;
-        data_ov000_021b5f54.mUnk_04.mUnk_04 = NULL;
-        data_ov000_021b5f54.mUnk_04.mUnk_00 = NULL;
-        func_0200edc0(&data_ov000_021b5f54.mUnk_0c);
+        data_ov000_021b5f54.mUnk_04.mTail = NULL;
+        data_ov000_021b5f54.mUnk_04.mHead = NULL;
+        ThreadLockInit(&data_ov000_021b5f54.mUnk_0c);
     }
 }
 
@@ -100,15 +100,15 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
         IrqRestore(a);
         return -1;
     }
-    func_0200ed34(&data_ov000_021b5f54.mUnk_0c);
+    ThreadLockWait(&data_ov000_021b5f54.mUnk_0c);
     b = func_ov000_021a5b30();
     if (b == NULL) {
-        func_0200ecc4(&data_ov000_021b5f54.mUnk_0c);
+        ThreadLockUnlock(&data_ov000_021b5f54.mUnk_0c);
         IrqRestore(a);
         return -1;
     }
     if (b->mUnk_2260 != 9 || b->mUnk_226b == 1) {
-        func_0200ecc4(&data_ov000_021b5f54.mUnk_0c);
+        ThreadLockUnlock(&data_ov000_021b5f54.mUnk_0c);
         IrqRestore(a);
         return -4;
     }
@@ -124,19 +124,19 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
         case 7:
         case 8:
         default:
-            func_0200ecc4(&data_ov000_021b5f54.mUnk_0c);
+            ThreadLockUnlock(&data_ov000_021b5f54.mUnk_0c);
             IrqRestore(a);
             return -5;
         case 2:
-            func_0200e01c(&data_ov000_021b5f54.mUnk_04);
+            ThreadWait(&data_ov000_021b5f54.mUnk_04);
             switch (data_ov000_021b5f54.mUnk_24) {
                 case 1:
                 default:
-                    func_0200ecc4(&data_ov000_021b5f54.mUnk_0c);
+                    ThreadLockUnlock(&data_ov000_021b5f54.mUnk_0c);
                     IrqRestore(a);
                     return -5;
                 case 0:
-                    func_0200ecc4(&data_ov000_021b5f54.mUnk_0c);
+                    ThreadLockUnlock(&data_ov000_021b5f54.mUnk_0c);
                     IrqRestore(a);
                     return f;
             }
@@ -149,7 +149,7 @@ void func_ov000_021a6944(Unk021425e8 *a) {
         if (a->mUnk_02 == 0) {
             func_ov000_021a57a8();
         }
-        func_0200df9c(&data_ov000_021b5f54.mUnk_04);
+        ThreadQueueSetAllRunnable(&data_ov000_021b5f54.mUnk_04);
     }
 }
 

@@ -296,21 +296,21 @@ void func_0211a3bc(void) {
     LocateNcer(&gSelectCup->mUnk_0c, FindSceneFile(data_0216d8a8));
     LocateNclr(&d, FindSceneFile(data_0216d85c));
     p = b->mData;
-    func_02016468(4, 0, e->mData, e->mDataSize);
-    func_02016468(0xf, 0, g->mData, 0x140);
-    func_02016468(8, 0, f->mData, f->mDataSize);
-    func_02016468(8, 0x800, gSelectCup->mUnk_24, 0x800);
+    CallQueueAppend(4, 0, e->mData, e->mDataSize);
+    CallQueueAppend(0xf, 0, g->mData, 0x140);
+    CallQueueAppend(8, 0, f->mData, f->mDataSize);
+    CallQueueAppend(8, 0x800, gSelectCup->mUnk_24, 0x800);
     if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
-        func_02016468(0x17, 0, h->mData, h->mDataSize);
-        func_02016468(0x1f, 0, j->mData, 0x140);
-        func_02016468(0x1b, 0, i->mData, i->mDataSize);
-        func_02016468(0x1b, 0x800, gSelectCup->mUnk_24, 0x800);
+        CallQueueAppend(0x17, 0, h->mData, h->mDataSize);
+        CallQueueAppend(0x1f, 0, j->mData, 0x140);
+        CallQueueAppend(0x1b, 0, i->mData, i->mDataSize);
+        CallQueueAppend(0x1b, 0x800, gSelectCup->mUnk_24, 0x800);
     }
-    func_02016468(0x13, 0, a->mData, a->mDataSize);
-    func_02016468(0xe, 0, b->mData, 0x1a0);
-    func_02016468(0xe, 0x1c0, p + 0xe0, 0x40);
-    func_02016468(0x23, 0, c->mData, c->mDataSize);
-    func_02016468(0x1e, 0, d->mData, d->mDataSize);
+    CallQueueAppend(0x13, 0, a->mData, a->mDataSize);
+    CallQueueAppend(0xe, 0, b->mData, 0x1a0);
+    CallQueueAppend(0xe, 0x1c0, p + 0xe0, 0x40);
+    CallQueueAppend(0x23, 0, c->mData, c->mDataSize);
+    CallQueueAppend(0x1e, 0, d->mData, d->mDataSize);
 }
 
 void func_0211a100(void) {

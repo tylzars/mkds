@@ -18,7 +18,7 @@ void func_02009c04(void) {
     u32 v1;
     v1 = ((s64) IrqDisable());
     if (data_0216fdac->mUnk_1320 == 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     func_02009c34();
     IrqRestore(v1);

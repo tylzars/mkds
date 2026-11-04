@@ -9,7 +9,7 @@ void func_ov003_021d1d0c(Unk021d1d88 *c, void *d) {
     u32 b = func_02147cd8(c->mUnk_03 + 1, c->mUnk_00);
 
     if (b == c->mUnk_02) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     c->mUnk_04[c->mUnk_03] = d;
     c->mUnk_03 = b;

@@ -63,7 +63,7 @@ typedef struct Unk021759cc {
     /* 000 */ void *mUnk_000;
     /* 004 */ Unk0200db5c mUnk_004;
     /* 0bc */ u8 mUnk_0bc[8];
-    /* 0c4 */ Unk0200df9c mUnk_0c4;
+    /* 0c4 */ ThreadQueue mUnk_0c4;
     /* 0cc */ Unk0214f4bc mUnk_0cc;
     /* 0d8 */ Unk0214f4bc mUnk_0d8;
     /* 0e4 */ s32 mUnk_0e4;

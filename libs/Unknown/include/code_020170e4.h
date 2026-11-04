@@ -2,25 +2,25 @@
 
 #include "types.h"
 
-typedef struct Unk020169a4 Unk020169a4;
+typedef struct RangeEntry RangeEntry;
 
-// Object at data_02173234: three pointers to Unk020169a4 and four words at 0c to 18 stored by func_02017070.
+// Object at data_02173234: three pointers to RangeEntry and four words at 0c to 18 stored by func_02017070.
 typedef struct Unk02016d34 {
-    /* 00 */ Unk020169a4 *mUnk_00;
-    /* 04 */ Unk020169a4 *mUnk_04;
-    /* 08 */ Unk020169a4 *mUnk_08;
+    /* 00 */ RangeEntry *mUnk_00;
+    /* 04 */ RangeEntry *mUnk_04;
+    /* 08 */ RangeEntry *mUnk_08;
     /* 0c */ u32 mUnk_0c;
     /* 10 */ u32 mUnk_10;
-    /* 14 */ Unk020169a4 *mUnk_14;
+    /* 14 */ RangeEntry *mUnk_14;
     /* 18 */ u32 mUnk_18;
 } Unk02016d34;
 
-// Object at data_02173250: two pointers to Unk020169a4 at 00 and 04 and three words at 08, 0c and 10.
+// Object at data_02173250: two pointers to RangeEntry at 00 and 04 and three words at 08, 0c and 10.
 typedef struct Unk020170e4 {
-    /* 00 */ Unk020169a4 *mUnk_00;
-    /* 04 */ Unk020169a4 *mUnk_04;
+    /* 00 */ RangeEntry *mUnk_00;
+    /* 04 */ RangeEntry *mUnk_04;
     /* 08 */ u32 mUnk_08;
-    /* 0c */ Unk020169a4 *mUnk_0c;
+    /* 0c */ RangeEntry *mUnk_0c;
     /* 10 */ u32 mUnk_10;
 } Unk020170e4;
 

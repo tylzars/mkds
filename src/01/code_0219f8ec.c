@@ -88,19 +88,19 @@ void func_ov001_021a0e7c(void) {
     LocateNcer(&data_ov001_021ca414->mUnk_0c, FindSceneFile(data_ov001_021a9284));
     LocateNclr((Nclr **) &data_ov001_021ca414->mUnk_1c, FindSceneFile(data_ov001_021a927c));
     p = b->mData;
-    func_02016468(4, 0, d->mData, d->mDataSize);
-    func_02016468(0xf, 0, g->mData, 0x40);
-    func_02016468(8, 0, e->mData, e->mDataSize);
-    func_02016468(8, 0x800, data_ov001_021ca414->mUnk_48, 0x800);
-    func_02016468(8, 0x1000, data_ov001_021ca414->mUnk_48, 0x800);
-    func_02016468(8, 0x1800, data_ov001_021ca414->mUnk_48, 0x800);
-    func_02016468(9, 0, f->mData, f->mDataSize);
-    func_02016468(9, 0x800, data_ov001_021ca414->mUnk_48, 0x800);
-    func_02016468(0x13, 0, a->mData, a->mDataSize);
-    func_02016468(0xe, 0, b->mData, 0x1a0);
-    func_02016468(0xe, 0x1c0, p + 0xe0, 0x40);
-    func_02016468(0x23, 0, c->mData, c->mDataSize);
-    func_02016468(0x1e, 0, data_ov001_021ca414->mUnk_1c->mUnk_0c, data_ov001_021ca414->mUnk_1c->mUnk_08);
+    CallQueueAppend(4, 0, d->mData, d->mDataSize);
+    CallQueueAppend(0xf, 0, g->mData, 0x40);
+    CallQueueAppend(8, 0, e->mData, e->mDataSize);
+    CallQueueAppend(8, 0x800, data_ov001_021ca414->mUnk_48, 0x800);
+    CallQueueAppend(8, 0x1000, data_ov001_021ca414->mUnk_48, 0x800);
+    CallQueueAppend(8, 0x1800, data_ov001_021ca414->mUnk_48, 0x800);
+    CallQueueAppend(9, 0, f->mData, f->mDataSize);
+    CallQueueAppend(9, 0x800, data_ov001_021ca414->mUnk_48, 0x800);
+    CallQueueAppend(0x13, 0, a->mData, a->mDataSize);
+    CallQueueAppend(0xe, 0, b->mData, 0x1a0);
+    CallQueueAppend(0xe, 0x1c0, p + 0xe0, 0x40);
+    CallQueueAppend(0x23, 0, c->mData, c->mDataSize);
+    CallQueueAppend(0x1e, 0, data_ov001_021ca414->mUnk_1c->mUnk_0c, data_ov001_021ca414->mUnk_1c->mUnk_08);
 }
 
 void func_ov001_021a0e34(void) {
@@ -265,7 +265,7 @@ void func_ov001_021a09a4(void) {
                 data_ov001_021ca414->mUnk_20[k] = r | ((bl << 10) | (g << 5));
             }
             func_0200ee74(data_ov001_021ca414->mUnk_20, 0x20);
-            func_02016468(0x1e, c2 << 5, data_ov001_021ca414->mUnk_20, 0x20);
+            CallQueueAppend(0x1e, c2 << 5, data_ov001_021ca414->mUnk_20, 0x20);
         }
     }
 }
@@ -829,7 +829,7 @@ void func_ov001_0219f9f8(void) {
         }
     }
     if (data_ov001_021ca414->mUnk_68 == 5) {
-        func_02016468(9, 0, data_ov001_021ca414->mUnk_48, 0x800);
+        CallQueueAppend(9, 0, data_ov001_021ca414->mUnk_48, 0x800);
     }
 }
 

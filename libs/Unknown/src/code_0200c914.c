@@ -10,7 +10,7 @@
 u16 data_021617bc[8] = {8, 9, 10, 11, 3, 4, 5, 6};
 Unk0216fee0 data_0216fee0[8];
 
-void func_0200cc74(u32 m, UnkFunc *f) {
+void InterruptHandlerSet(u32 m, UnkFunc *f) {
     s32 i;
     Unk0216fee0 *t;
 
@@ -34,7 +34,7 @@ void func_0200cc74(u32 m, UnkFunc *f) {
     }
 }
 
-UnkFunc *func_0200cbe8(u32 m) {
+UnkFunc *InterruptHandlerGet(u32 m) {
     s32 i;
     UnkFunc **p;
 

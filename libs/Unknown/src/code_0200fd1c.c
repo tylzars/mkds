@@ -43,10 +43,10 @@ void func_0200fd30(u32 a, u32 b) {
         data_02170280 = 1;
         return;
     }
-    func_0200fd1c();
+    IrqDisableLoopForever();
 }
 
-void func_0200fd1c(void) {
+void IrqDisableLoopForever(void) {
     while (1) {
         IrqDisable();
         func_0200fd04();

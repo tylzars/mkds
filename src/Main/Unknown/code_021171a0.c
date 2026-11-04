@@ -124,8 +124,8 @@ void func_021171a0(s32 a, void *b, void *c, u32 d, u16 e, s32 f) {
     }
     func_02124748(data_0215c60c[a].mUnk_00, data_0217d35c->mUnk_04, data_0217d35c->mUnk_00, data_0217d35c->mUnk_14, f,
                   d, b, c);
-    func_02016468(n, e * 32, data_0217d35c->mUnk_08[data_0215c60c[a].mUnk_04]->mData + data_0215c60c[a].mUnk_08 * 16,
-                  0x20);
+    CallQueueAppend(n, e * 32, data_0217d35c->mUnk_08[data_0215c60c[a].mUnk_04]->mData + data_0215c60c[a].mUnk_08 * 16,
+                    0x20);
 }
 
 #pragma thumb off

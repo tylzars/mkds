@@ -103,7 +103,7 @@ void func_02128624(s32 a) {
         gSelectReturn->mUnk_10[i] |= v;
     }
     if (*(vu16 *) 0x27ffc40 != 2) {
-        func_02016468(0x1a, 0x4c0, &gSelectReturn->mUnk_10[0x260], 0x200);
+        CallQueueAppend(0x1a, 0x4c0, &gSelectReturn->mUnk_10[0x260], 0x200);
     }
 }
 

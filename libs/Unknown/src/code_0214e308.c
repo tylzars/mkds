@@ -86,7 +86,7 @@ void func_0214ec18(u32 a, u32 b, u32 c) {
     }
     return;
 fail:
-    func_0200fd1c();
+    IrqDisableLoopForever();
 }
 
 void func_0214eb88(void) {

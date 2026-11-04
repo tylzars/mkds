@@ -8,7 +8,7 @@
 
 void func_02017274(u32 a, u32 b, u32 c, int d) {
     data_02173250.mUnk_08 = a;
-    data_02173250.mUnk_0c = (Unk020169a4 *) b;
+    data_02173250.mUnk_0c = (RangeEntry *) b;
     data_02173250.mUnk_10 = c;
     func_020170e4();
     if (d != 0) {
@@ -31,13 +31,13 @@ u32 func_02017190(u32 a, s32 b) {
         return 0;
     }
     if (b != 0) {
-        r = func_02016b00(&data_02173250.mUnk_00, &data_02173254, &p, n, 8);
+        r = RangeListAllocAligned(&data_02173250.mUnk_00, &data_02173254, &p, n, 8);
         if (p + n > 0x10000) {
-            func_020169a4(&data_02173250.mUnk_00, &data_02173254, p, n);
+            RangeListFree(&data_02173250.mUnk_00, &data_02173254, p, n);
             return 0;
         }
     } else {
-        r = func_02016b00(&data_02173250.mUnk_00, &data_02173254, &p, n, 0x10);
+        r = RangeListAllocAligned(&data_02173250.mUnk_00, &data_02173254, &p, n, 0x10);
     }
     if (r != 0) {
         return ((n >> 3) << 16) | ((p >> 3) & 0xffff);
@@ -46,11 +46,11 @@ u32 func_02017190(u32 a, s32 b) {
 }
 
 s32 func_02017138(u32 v) {
-    return func_020169a4(&data_02173250.mUnk_00, &data_02173254, (v & 0xffff) << 3, ((v & -0x10000) >> 0x10) << 3) == 0;
+    return RangeListFree(&data_02173250.mUnk_00, &data_02173254, (v & 0xffff) << 3, ((v & -0x10000) >> 0x10) << 3) == 0;
 }
 
 void func_020170e4(void) {
-    data_02173250.mUnk_04 = func_02016cd8(data_02173250.mUnk_0c, data_02173250.mUnk_10 >> 4);
+    data_02173250.mUnk_04 = RangeEntryPoolInit(data_02173250.mUnk_0c, data_02173250.mUnk_10 >> 4);
     func_02016d28(&data_02173250.mUnk_00);
-    func_02016c64(&data_02173250.mUnk_00, &data_02173254, 0, data_02173250.mUnk_08);
+    RangeListAdd(&data_02173250.mUnk_00, &data_02173254, 0, data_02173250.mUnk_08);
 }

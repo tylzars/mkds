@@ -141,7 +141,7 @@ extern void (*data_ov003_021d8a10)(s32);
 extern void *data_ov003_021d8a14;
 extern void (*data_ov003_021d8a18)(void *);
 extern void *data_ov003_021d8a1c[4];
-extern Unk0200eb90 data_ov003_021d8a2c;
+extern RingQueue data_ov003_021d8a2c;
 extern Unk021d8a4c data_ov003_021d8a4c;
 extern Unk021ba778Src data_ov003_021d8ac0;
 

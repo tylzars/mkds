@@ -31,10 +31,10 @@ void func_02116d24(void) {
         q = p->mUnk_08->mUnk_0c;
         switch (p->mUnk_20) {
             case 0:
-                func_02016468(0xe, p->mUnk_1c << 5, q + 0x1c0, 0x20);
+                CallQueueAppend(0xe, p->mUnk_1c << 5, q + 0x1c0, 0x20);
                 break;
             case 1:
-                func_02016468(0x1e, p->mUnk_1c << 5, q + 0x1c0, 0x20);
+                CallQueueAppend(0x1e, p->mUnk_1c << 5, q + 0x1c0, 0x20);
                 break;
         }
     }

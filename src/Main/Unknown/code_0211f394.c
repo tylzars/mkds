@@ -36,8 +36,8 @@ void func_0211f61c(void) {
     data_0217d380->mUnk_04 = v1;
     v1 = FindSceneFile(data_0216e12c);
     data_0217d380->mUnk_0c = v1;
-    func_02016468((u32) 0x23, (u32) 0, (void *) (*(u32 *) (v2 + 0x14)), (u32) (*(u32 *) (v2 + 0x10)));
-    func_02016468((u32) 0x1e, (u32) 0, (void *) (*(u32 *) (v3[0] + 0xc)), (u32) (*(u32 *) (v3[0] + 8)));
+    CallQueueAppend((u32) 0x23, (u32) 0, (void *) (*(u32 *) (v2 + 0x14)), (u32) (*(u32 *) (v2 + 0x10)));
+    CallQueueAppend((u32) 0x1e, (u32) 0, (void *) (*(u32 *) (v3[0] + 0xc)), (u32) (*(u32 *) (v3[0] + 8)));
 }
 
 #pragma thumb off

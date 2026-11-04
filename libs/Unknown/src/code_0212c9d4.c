@@ -192,7 +192,7 @@ void func_0212cbd8(void) {
         r = func_02021114();
         func_020211e4(1);
         func_02021154(r);
-        while (func_0200ea3c(&data_0217ddb0, 0, 0) != 0) {
+        while (RingQueueRemoveFront(&data_0217ddb0, 0, 0) != 0) {
         }
     }
     if (p->mUnk_28 != 0) {
@@ -259,7 +259,7 @@ void func_0212c9d4(Unk0212ccd4 *p) {
         e->mUnk_08 = off;
         e->mUnk_0c = a;
         e->mUnk_10 = b;
-        func_0200eae8(&data_0217ddb0, e, 0);
+        RingQueueAppend(&data_0217ddb0, e, 0);
         data_0217ddac++;
         if (data_0217ddac >= 8) {
             data_0217ddac = 0;

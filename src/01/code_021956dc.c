@@ -73,18 +73,18 @@ void func_ov001_021978b4(void) {
     LocateNclr(&l1c, FindSceneFile(gRecordTAttSBNclrName));
     LocateNscr(&l20, FindSceneFile(gRecordTAttSNscrName));
     p = l0->mData;
-    func_02016468(0x13, 0, gRecordTAtt->mUnk_00->mData, gRecordTAtt->mUnk_00->mDataSize);
-    func_02016468(0xe, 0, l0->mData, 0x1a0);
-    func_02016468(0xe, 0x1c0, (u8 *) p + 0x1c0, 0x40);
-    func_02016468(0x23, 0, gRecordTAtt->mUnk_14->mData, gRecordTAtt->mUnk_14->mDataSize);
-    func_02016468(0x1e, 0, l14->mData, l14->mDataSize);
-    func_02016468(4, 0, l4->mData, l4->mDataSize);
-    func_02016468(8, 0, lc->mData, lc->mDataSize);
-    func_02016468(9, 0, l10->mData, l10->mDataSize);
-    func_02016468(0xf, 0, l8->mData, 0x40);
-    func_02016468(0x17, 0, l18->mData, l18->mDataSize);
-    func_02016468(0x1f, 0, l1c->mData, 0x40);
-    func_02016468(0x1b, 0, l20->mData, l20->mDataSize);
+    CallQueueAppend(0x13, 0, gRecordTAtt->mUnk_00->mData, gRecordTAtt->mUnk_00->mDataSize);
+    CallQueueAppend(0xe, 0, l0->mData, 0x1a0);
+    CallQueueAppend(0xe, 0x1c0, (u8 *) p + 0x1c0, 0x40);
+    CallQueueAppend(0x23, 0, gRecordTAtt->mUnk_14->mData, gRecordTAtt->mUnk_14->mDataSize);
+    CallQueueAppend(0x1e, 0, l14->mData, l14->mDataSize);
+    CallQueueAppend(4, 0, l4->mData, l4->mDataSize);
+    CallQueueAppend(8, 0, lc->mData, lc->mDataSize);
+    CallQueueAppend(9, 0, l10->mData, l10->mDataSize);
+    CallQueueAppend(0xf, 0, l8->mData, 0x40);
+    CallQueueAppend(0x17, 0, l18->mData, l18->mDataSize);
+    CallQueueAppend(0x1f, 0, l1c->mData, 0x40);
+    CallQueueAppend(0x1b, 0, l20->mData, l20->mDataSize);
 }
 
 void func_ov001_021975f4(u16 a) {
@@ -110,8 +110,8 @@ void func_ov001_021975f4(u16 a) {
         func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 0, index,
                       gRecordTAtt->mUnk_04, gRecordTAtt->mUnk_08);
         palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
-        func_02016468(0xe, data_ov001_021a683c[0] << 5,
-                      palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
+        CallQueueAppend(0xe, data_ov001_021a683c[0] << 5,
+                        palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], value);
         slot = data_ov001_021a6850[0][1];
         gRecordTAtt->mUnk_38[slot].mUnk_00 = 1;
@@ -139,8 +139,8 @@ void func_ov001_021975f4(u16 a) {
         func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 1, index,
                       gRecordTAtt->mUnk_18, gRecordTAtt->mUnk_1c);
         palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
-        func_02016468(0x1e, data_ov001_021a683c[a] << 5,
-                      palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
+        CallQueueAppend(0x1e, data_ov001_021a683c[a] << 5,
+                        palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mUnk_6c], value);
         slot = data_ov001_021a6852[a][0];
         gRecordTAtt->mUnk_3c[slot].mUnk_00 = 1;
@@ -212,7 +212,7 @@ void func_ov001_021972f4(void) {
                       (void *) (gRecordTAtt->mUnk_34), 0, (u32) (5), (void *) (gRecordTAtt->mUnk_04),
                       (void *) (gRecordTAtt->mUnk_08));
         palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
-        func_02016468(
+        CallQueueAppend(
             0xe, 0x80,
             palette +
                 (func_02124a68((u32) (tile), (void *) (gRecordTAtt->mUnk_2c), (void *) (gRecordTAtt->mUnk_34)) << 5),

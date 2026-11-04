@@ -5,6 +5,6 @@ void func_0200cd04(void) {
     Unk027e0000 *p;
 
     p = &data_027e0000;
-    p->mUnk_0000.mUnk_04 = 0;
-    p->mUnk_0000.mUnk_00 = 0;
+    p->mUnk_0000.mTail = 0;
+    p->mUnk_0000.mHead = 0;
 }

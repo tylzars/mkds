@@ -1,11 +1,11 @@
 #include "code_020165d8.h"
 #include "code_02016638.h"
 
-s32 func_020165d8(Unk02016468 *p) {
-    if (func_02016960(p) != 0) {
+s32 CallQueueAddTail(CallQueue *p) {
+    if (CallQueueIsFull(p) != 0) {
         return 0;
     }
-    p->mUnk_0a = func_02016978(p, p->mUnk_0a);
-    p->mUnk_0c += 1;
+    p->mTailIndex = CallQueueNextIndex(p, p->mTailIndex);
+    p->mCount += 1;
     return 1;
 }

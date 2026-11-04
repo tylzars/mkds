@@ -34,20 +34,20 @@ int printf(const char *fmt, ...) {
     if (fwide(&data_0216eb7c[1], -1) >= 0) {
         return -1;
     }
-    if (func_0200ec08(data_0217eadc[3]) == 0) {
-        data_0217ea94[3] = data_0216ff5c.mUnk_08->mUnk_6c;
+    if (ThreadLockTry(data_0217eadc[3]) == 0) {
+        data_0217ea94[3] = data_0216ff5c.mListHead->mUnk_6c;
         data_0217eab8[3] = 1;
-    } else if (data_0217ea94[3] == data_0216ff5c.mUnk_08->mUnk_6c) {
+    } else if (data_0217ea94[3] == data_0216ff5c.mListHead->mUnk_6c) {
         data_0217eab8[3]++;
     } else {
-        func_0200ed34(data_0217eadc[3]);
-        data_0217ea94[3] = data_0216ff5c.mUnk_08->mUnk_6c;
+        ThreadLockWait(data_0217eadc[3]);
+        data_0217ea94[3] = data_0216ff5c.mListHead->mUnk_6c;
         data_0217eab8[3] = 1;
     }
     r = FormatWithPutFunc(FormatPutFwrite, &data_0216eb7c[1], fmt, (char *) (((int) &fmt & ~3) + 4));
     data_0217eab8[3]--;
     if (data_0217eab8[3] == 0) {
-        func_0200ecc4(data_0217eadc[3]);
+        ThreadLockUnlock(data_0217eadc[3]);
     }
     return r;
 }

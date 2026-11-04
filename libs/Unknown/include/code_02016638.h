@@ -3,28 +3,28 @@
 #include "types.h"
 
 // 16 bytes: an index into data_02152c54 and three words passed to the function it selects.
-typedef struct Unk02016638 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
+typedef struct CallQueueEntry {
+    /* 00 */ u32 mFuncIndex;
+    /* 04 */ u32 mSource;
     /* 08 */ u32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
-} Unk02016638;
+    /* 0c */ u32 mSize;
+} CallQueueEntry;
 
-typedef struct Unk02016638 Unk02016638;
+typedef struct CallQueueEntry CallQueueEntry;
 
-// Object at data_02173220: a pointer to an array of Unk02016638, its length at 04, two indices at 08 and 0a that
-// func_02016978 advances modulo the length, and a count at 0c (func_02016960 compares it with the length,
-// func_0201694c tests it for zero).
-typedef struct Unk02016468 {
-    /* 00 */ Unk02016638 *mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u16 mUnk_08;
-    /* 0a */ u16 mUnk_0a;
-    /* 0c */ u16 mUnk_0c;
-    /* 10 */ u32 mUnk_10;
-} Unk02016468;
+// Object at data_02173220: a pointer to an array of CallQueueEntry, its length at 04, two indices at 08 and 0a that
+// CallQueueNextIndex advances modulo the length, and a count at 0c (CallQueueIsFull compares it with the length,
+// CallQueueIsEmpty tests it for zero).
+typedef struct CallQueue {
+    /* 00 */ CallQueueEntry *mEntries;
+    /* 04 */ u32 mCapacity;
+    /* 08 */ u16 mHeadIndex;
+    /* 0a */ u16 mTailIndex;
+    /* 0c */ u16 mCount;
+    /* 10 */ u32 mQueuedSize;
+} CallQueue;
 
-void func_02016638(Unk02016638 *p);
+void CallQueueRunEntry(CallQueueEntry *p);
 void func_0201667c(u32 arg0, u32 arg1, u32 arg2);
 void func_02016688(u32 arg0, u32 arg1, u32 arg2);
 void func_02016694(const void *a, u32 b, u32 c);
@@ -61,6 +61,6 @@ void func_0201688c(const void *a, u32 b, u32 c);
 void func_020168bc(const void *a, u32 b, u32 c);
 void func_020168ec(const void *a, u32 b, u32 c);
 void func_0201691c(const void *a, u32 b, u32 c);
-s32 func_0201694c(Unk02016468 *p);
-s32 func_02016960(Unk02016468 *p);
-u16 func_02016978(Unk02016468 *p, u32 v);
+s32 CallQueueIsEmpty(CallQueue *p);
+s32 CallQueueIsFull(CallQueue *p);
+u16 CallQueueNextIndex(CallQueue *p, u32 v);

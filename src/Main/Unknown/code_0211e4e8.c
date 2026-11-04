@@ -80,22 +80,22 @@ void func_0211efec(void) {
     LocateNclr(&d, FindSceneFile(data_0216dfa8));
     v = b->mData;
     if (!(func_020cccb4() == 0x17 || func_020cccb4() == 0xb)) {
-        func_02016468(4, 0, e->mData, e->mDataSize);
-        func_02016468(0xf, 0, g->mData, 0x140);
-        func_02016468(8, 0, f->mData, f->mDataSize);
-        func_02016468(8, 0x800, data_0217d378->mUnk_20, 0x800);
+        CallQueueAppend(4, 0, e->mData, e->mDataSize);
+        CallQueueAppend(0xf, 0, g->mData, 0x140);
+        CallQueueAppend(8, 0, f->mData, f->mDataSize);
+        CallQueueAppend(8, 0x800, data_0217d378->mUnk_20, 0x800);
     }
     if (!(func_020cccb4() == 0x19 || func_020cccb4() == 0xd)) {
-        func_02016468(0x17, 0, h->mData, h->mDataSize);
-        func_02016468(0x1f, 0, j->mData, 0x140);
-        func_02016468(0x1b, 0, i->mData, i->mDataSize);
-        func_02016468(0x1b, 0x800, data_0217d378->mUnk_20, 0x800);
+        CallQueueAppend(0x17, 0, h->mData, h->mDataSize);
+        CallQueueAppend(0x1f, 0, j->mData, 0x140);
+        CallQueueAppend(0x1b, 0, i->mData, i->mDataSize);
+        CallQueueAppend(0x1b, 0x800, data_0217d378->mUnk_20, 0x800);
     }
-    func_02016468(0x13, 0, a->mData, a->mDataSize);
-    func_02016468(0xe, 0, b->mData, 0x1a0);
-    func_02016468(0xe, 0x1c0, v + 0xe0, 0x40);
-    func_02016468(0x23, 0, c->mData, c->mDataSize);
-    func_02016468(0x1e, 0, d->mData, d->mDataSize);
+    CallQueueAppend(0x13, 0, a->mData, a->mDataSize);
+    CallQueueAppend(0xe, 0, b->mData, 0x1a0);
+    CallQueueAppend(0xe, 0x1c0, v + 0xe0, 0x40);
+    CallQueueAppend(0x23, 0, c->mData, c->mDataSize);
+    CallQueueAppend(0x1e, 0, d->mData, d->mDataSize);
 }
 
 void func_0211ed80(void) {
@@ -406,20 +406,20 @@ s32 func_0211e51c(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         if (data_0217d378->mUnk_38 != 0 && func_020d0ec4() != 0) {
             p = func_020d0e58();
-            func_02016468(0xf, 0, func_020d0ea0(), 0xe0);
-            func_02016468(4, 0x20, func_020d0e7c(), 0xdc0);
+            CallQueueAppend(0xf, 0, func_020d0ea0(), 0xe0);
+            CallQueueAppend(4, 0x20, func_020d0e7c(), 0xdc0);
             a = 8;
             b = 0x14;
             for (i = 0; i < 0xb; i++) {
                 n = ((i + 8) << 5) + 0x16;
-                func_02016468(a, n << 1, p + n, b);
+                CallQueueAppend(a, n << 1, p + n, b);
             }
-            func_02016468(0x1f, 0, func_020d0ea0(), 0xe0);
-            func_02016468(0x17, 0x20, func_020d0e7c(), 0xdc0);
+            CallQueueAppend(0x1f, 0, func_020d0ea0(), 0xe0);
+            CallQueueAppend(0x17, 0x20, func_020d0e7c(), 0xdc0);
             a = 0x1b;
             for (i = 0; i < 0xb; i++) {
                 n = ((i + 8) << 5) + 0x16;
-                func_02016468(a, n << 1, p + n, b);
+                CallQueueAppend(a, n << 1, p + n, b);
             }
             data_0217d378->mUnk_38 = 0;
         }

@@ -340,10 +340,10 @@ s32 func_02118e64(void) {
     if (*(vu16 *) 0x027ffc40 != 2) {
         if (gSelectCup->mUnk_60 != 0 && func_020d0ec4() != 0) {
             p = func_020d0e58();
-            func_02016468(0x1f, 0, func_020d0ea0(), 0xe0);
-            func_02016468(0x17, 0x20, func_020d0e7c(), 0xdc0);
+            CallQueueAppend(0x1f, 0, func_020d0ea0(), 0xe0);
+            CallQueueAppend(0x17, 0x20, func_020d0e7c(), 0xdc0);
             for (i = 0; i < 11; i++) {
-                func_02016468(0x1b, ((i + 8) * 0x20 + 0x16) * 2, p + ((i + 8) * 0x20 + 0x16), 0x14);
+                CallQueueAppend(0x1b, ((i + 8) * 0x20 + 0x16) * 2, p + ((i + 8) * 0x20 + 0x16), 0x14);
             }
             gSelectCup->mUnk_60 = 0;
         }
@@ -422,16 +422,16 @@ void func_02118b48(void) {
     LocateNclr(&d, FindSceneFile(data_0216d68c));
     p = b->mData;
     if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
-        func_02016468(4, 0, e->mData, e->mDataSize);
-        func_02016468(0xf, 0, g->mData, 0x100);
-        func_02016468(8, 0, &f->mData, f->mDataSize);
-        func_02016468(8, 0x800, data_0217d360->mUnk_20, 0x800);
+        CallQueueAppend(4, 0, e->mData, e->mDataSize);
+        CallQueueAppend(0xf, 0, g->mData, 0x100);
+        CallQueueAppend(8, 0, &f->mData, f->mDataSize);
+        CallQueueAppend(8, 0x800, data_0217d360->mUnk_20, 0x800);
     }
-    func_02016468(0x13, 0, a->mData, a->mDataSize);
-    func_02016468(0xe, 0, b->mData, 0x1a0);
-    func_02016468(0xe, 0x1c0, p + 0xe0, 0x40);
-    func_02016468(0x23, 0, c->mData, c->mDataSize);
-    func_02016468(0x1e, 0, d->mData, d->mDataSize);
+    CallQueueAppend(0x13, 0, a->mData, a->mDataSize);
+    CallQueueAppend(0xe, 0, b->mData, 0x1a0);
+    CallQueueAppend(0xe, 0x1c0, p + 0xe0, 0x40);
+    CallQueueAppend(0x23, 0, c->mData, c->mDataSize);
+    CallQueueAppend(0x1e, 0, d->mData, d->mDataSize);
 }
 
 u32 func_021189f4(u32 a) {

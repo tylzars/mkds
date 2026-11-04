@@ -77,10 +77,10 @@ void func_ov003_021c2398(void) {
     func_02148a10();
     *(u32 *) 0x4001000 &= 0xfffeffff;
     if (func_0200f6e4() == 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     if (func_0200fb18() == 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     func_02148a58(0);
     func_02148904();

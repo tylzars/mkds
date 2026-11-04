@@ -201,7 +201,7 @@ void FS_StartOverlay(Unk020055f0 *rec) {
         }
         if (ok == 0) {
             MemFill(rec->mUnk_04, 0, n);
-            func_0200fd1c();
+            IrqDisableLoopForever();
             return;
         }
     }
@@ -315,7 +315,7 @@ void FS_AttachOverlayTable(u32 sel, u8 *data, u32 n) {
     if (data != 0 && sel == 0) {
         irq = func_02150dc8(1);
         if (FileCheckHmac(data_0216f2dc, data, n) == 0) {
-            func_0200fd1c();
+            IrqDisableLoopForever();
         }
         func_02150dc8(irq);
     }
@@ -370,7 +370,7 @@ void FileInitRomArchive(u32 arg) {
     enum { K0 } x, y;
 
     data_0216f358 = arg;
-    data_0216f354 = func_0200cd28();
+    data_0216f354 = IdAlloc();
     data_0216f35c.mUnk_00 = 0;
     data_0216f35c.mUnk_04 = 0;
     data_0216f364.mUnk_00 = 0;

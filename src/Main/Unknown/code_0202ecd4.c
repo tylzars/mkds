@@ -43,7 +43,7 @@ void func_0202ed50(s32 a) {
     }
     data_02174e48->mUnk_65c = 5;
     data_02174e48->mUnk_658 = a;
-    func_02016468(0x1b, 0, data_02174e48->mUnk_058, 0x600);
+    CallQueueAppend(0x1b, 0, data_02174e48->mUnk_058, 0x600);
 }
 
 void func_0202edd0(void) {

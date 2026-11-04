@@ -66,15 +66,15 @@ void func_ov001_0219b000(void) {
     LocateNcer(&gRecordTopMenu->mUnk_0c, FindSceneFile(gRecordTopMenuSNcerName));
     LocateNclr(&d, FindSceneFile(gRecordTopMenuSONclrName));
     q = b->mData;
-    func_02016468(4, 0, e->mData, e->mDataSize);
-    func_02016468(15, 0, f->mData, 0x60);
-    func_02016468(8, 0, g->mData, g->mDataSize);
-    func_02016468(8, 0x800, gRecordTopMenu->mUnk_28, 0x800);
-    func_02016468(0x13, 0, a->mData, a->mDataSize);
-    func_02016468(14, 0, b->mData, 0x1a0);
-    func_02016468(14, 0x1c0, q + 0xe0, 0x40);
-    func_02016468(0x23, 0, c->mData, c->mDataSize);
-    func_02016468(0x1e, 0, d->mData, d->mDataSize);
+    CallQueueAppend(4, 0, e->mData, e->mDataSize);
+    CallQueueAppend(15, 0, f->mData, 0x60);
+    CallQueueAppend(8, 0, g->mData, g->mDataSize);
+    CallQueueAppend(8, 0x800, gRecordTopMenu->mUnk_28, 0x800);
+    CallQueueAppend(0x13, 0, a->mData, a->mDataSize);
+    CallQueueAppend(14, 0, b->mData, 0x1a0);
+    CallQueueAppend(14, 0x1c0, q + 0xe0, 0x40);
+    CallQueueAppend(0x23, 0, c->mData, c->mDataSize);
+    CallQueueAppend(0x1e, 0, d->mData, d->mDataSize);
 }
 
 void func_ov001_0219afc8(s32 a) {

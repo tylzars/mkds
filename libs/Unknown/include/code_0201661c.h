@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0201661c(u32 arg0);
+void CallQueueReset(u32 arg0);

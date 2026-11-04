@@ -210,7 +210,7 @@ void func_02127d74(void) {
     func_02127db8();
     func_02127e30();
     if (*(vu16 *) 0x27ffc40 != 2) {
-        func_02016468(0x18, 0, data_0217d3f4->mUnk_2c, 0x800);
+        CallQueueAppend(0x18, 0, data_0217d3f4->mUnk_2c, 0x800);
     }
 }
 
@@ -224,7 +224,7 @@ void func_02127d28(void) {
     data_0217d3f4->mUnk_10 = 0;
     data_0217d3f4->mUnk_14 = 1;
     if (*(vu16 *) 0x27ffc40 != 2) {
-        func_02016468(0x18, 0, data_0217d3f4->mUnk_2c, 0x800);
+        CallQueueAppend(0x18, 0, data_0217d3f4->mUnk_2c, 0x800);
     }
 }
 
@@ -245,8 +245,8 @@ void func_02127c78(void) {
                 for (j = 0; j < 2; j++) {
                     t = (j + i * 2) * 32 + 5;
                     if (*(vu16 *) 0x27ffc40 != 2) {
-                        func_02016468(0x14, (data_0217d3f4->mUnk_89c + t) << 5,
-                                      data_0217d3f4->mUnk_894[i] + ((j * 32 + 5) << 5), 0x360);
+                        CallQueueAppend(0x14, (data_0217d3f4->mUnk_89c + t) << 5,
+                                        data_0217d3f4->mUnk_894[i] + ((j * 32 + 5) << 5), 0x360);
                     }
                 }
             }
@@ -395,7 +395,7 @@ void func_021279a0(void) {
             data_0217d3f4->mUnk_10 = 0;
             func_02127e30();
             if (*(vu16 *) 0x27ffc40 != 2) {
-                func_02016468(0x18, 0, data_0217d3f4->mUnk_2c, 0x800);
+                CallQueueAppend(0x18, 0, data_0217d3f4->mUnk_2c, 0x800);
             }
         }
     }

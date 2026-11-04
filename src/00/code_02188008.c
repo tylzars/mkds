@@ -184,7 +184,7 @@ u32 func_ov000_02188114(Unk02188114 *p) {
     if (gHttp == NULL) {
         return 4;
     }
-    func_0200edc0(&data_ov000_021b4cb0->mUnk_1dc);
+    ThreadLockInit(&data_ov000_021b4cb0->mUnk_1dc);
     func_ov000_02188008();
     return 0;
 }
@@ -211,9 +211,9 @@ void func_ov000_02188068(void) {
 }
 
 void func_ov000_02188008(void) {
-    if (data_ov000_021b4cb0->mUnk_11c.mUnk_6c == 0 || func_0200e070(&data_ov000_021b4cb0->mUnk_11c) != 0) {
-        func_0200e28c(&data_ov000_021b4cb0->mUnk_11c, (void (*)(void *)) func_ov000_021874ec, data_ov000_021b4cb0,
-                      data_ov000_021b4cb0->mUnk_1200, 0x1000, 0x10);
-        func_0200df68(&data_ov000_021b4cb0->mUnk_11c);
+    if (data_ov000_021b4cb0->mUnk_11c.mUnk_6c == 0 || ThreadHasEnded(&data_ov000_021b4cb0->mUnk_11c) != 0) {
+        ThreadInit(&data_ov000_021b4cb0->mUnk_11c, (void (*)(void *)) func_ov000_021874ec, data_ov000_021b4cb0,
+                   data_ov000_021b4cb0->mUnk_1200, 0x1000, 0x10);
+        ThreadSetRunnable(&data_ov000_021b4cb0->mUnk_11c);
     }
 }

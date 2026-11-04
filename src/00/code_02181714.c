@@ -93,8 +93,8 @@ void func_ov000_02181df8(void) {
     LocateNcer(&gWiFiTopMenu->mUnk_20, v1);
     v1 = FindSceneFile(gWiFiTopMenuSONclrName);
     LocateNclr(&gWiFiTopMenu->mUnk_28, v1);
-    func_02016468(0x23, 0, (void *) (gWiFiTopMenu->mUnk_24->mData), (u32) (gWiFiTopMenu->mUnk_24->mDataSize));
-    func_02016468(0x1e, 0, (void *) (gWiFiTopMenu->mUnk_28->mData), (u32) (gWiFiTopMenu->mUnk_28->mDataSize));
+    CallQueueAppend(0x23, 0, (void *) (gWiFiTopMenu->mUnk_24->mData), (u32) (gWiFiTopMenu->mUnk_24->mDataSize));
+    CallQueueAppend(0x1e, 0, (void *) (gWiFiTopMenu->mUnk_28->mData), (u32) (gWiFiTopMenu->mUnk_28->mDataSize));
     return;
 }
 

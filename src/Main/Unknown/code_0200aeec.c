@@ -19,13 +19,13 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
     Unk0200aeec *v5;
     v1 = data_0216fde0;
     if (func_0200b018() == 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     if (a->mUnk_04_0 != 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     if (d > 31) {
-        v2 = func_0200dcd8(&v1->mUnk_00);
+        v2 = ThreadGetSortKey(&v1->mUnk_00);
         if (d == 32) {
             if (v2 != 0) {
                 d = v2 - 1;
@@ -54,7 +54,7 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
             data_0216fde0 = NULL;
         }
         v1->mUnk_c0 = a;
-        func_0200df68(&v1->mUnk_00);
+        ThreadSetRunnable(&v1->mUnk_00);
     } else {
         v4 = v1->mUnk_c0;
         if (a == &v1->mUnk_c4) {

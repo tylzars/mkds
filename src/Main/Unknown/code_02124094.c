@@ -173,9 +173,9 @@ void func_0212481c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
         buf = c->mUnk_14 + ((w & 0x3ff) << 5);
         func_0200ee74(buf, v);
         if (f == 0) {
-            func_02016468(0x13, u, buf, v);
+            CallQueueAppend(0x13, u, buf, v);
         } else {
-            func_02016468(0x23, u, buf, v);
+            CallQueueAppend(0x23, u, buf, v);
         }
         z = (w & 0xf000) >> 12;
         arr[z] = 1;
@@ -192,9 +192,9 @@ void func_0212481c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
             c1 = d->mUnk_0c + a1;
             ln = b1 << 5;
             if (f == 0) {
-                func_02016468(0xe, a1, c1, ln);
+                CallQueueAppend(0xe, a1, c1, ln);
             } else {
-                func_02016468(0x1e, a1, c1, ln);
+                CallQueueAppend(0x1e, a1, c1, ln);
             }
             a1 = k + 1;
             b1 = 0;
@@ -234,9 +234,9 @@ void func_02124748(u32 a, void *b, void *c, void *d, s32 e, u32 f, void *g, void
         buf = ((Unk0212463c_c *) c)->mUnk_14 + ((r->mUnk_04 & 0x3ff) << 5);
         func_0200ee74(buf, v);
         if (e == 0) {
-            func_02016468(0x13, u, buf, v);
+            CallQueueAppend(0x13, u, buf, v);
         } else {
-            func_02016468(0x23, u, buf, v);
+            CallQueueAppend(0x23, u, buf, v);
         }
     }
 }
@@ -275,9 +275,9 @@ void func_0212463c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
         buf = c->mUnk_14 + ((r->mUnk_04 & 0x3ff) << 5);
         func_0200ee74(buf, v);
         if (f == 0) {
-            func_02016468(0x13, u, buf, v);
+            CallQueueAppend(0x13, u, buf, v);
         } else {
-            func_02016468(0x23, u, buf, v);
+            CallQueueAppend(0x23, u, buf, v);
         }
     }
     w = (((u32) q->mUnk_04->mUnk_04 & 0xf000) >> 12) << 5;
@@ -287,7 +287,7 @@ void func_0212463c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
     } else {
         k = 0x1e;
     }
-    func_02016468(k, w, z, 0x20);
+    CallQueueAppend(k, w, z, 0x20);
 }
 
 s32 func_021243ac(void *a, s32 b, void *c, s32 d, s32 e, s32 f, void *g, void *h, void *i, s32 j) {
@@ -433,9 +433,9 @@ void func_0212428c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk021
     v = q->mUnk_20.mUnk_14;
     func_0200ee74(buf, v);
     if (a == 0) {
-        func_02016468(0x13, u, buf, v);
+        CallQueueAppend(0x13, u, buf, v);
     } else {
-        func_02016468(0x23, u, buf, v);
+        CallQueueAppend(0x23, u, buf, v);
     }
 }
 
@@ -464,9 +464,9 @@ void func_021241c0(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, Unk02124b1c *e)
     v = p->mUnk_20.mUnk_14;
     func_0200ee74(buf, v);
     if (a == 0) {
-        func_02016468(0x13, u, buf, v);
+        CallQueueAppend(0x13, u, buf, v);
     } else {
-        func_02016468(0x23, u, buf, v);
+        CallQueueAppend(0x23, u, buf, v);
     }
 }
 

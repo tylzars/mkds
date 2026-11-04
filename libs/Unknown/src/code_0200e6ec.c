@@ -5,7 +5,7 @@
 // Calls func_02146c24 with the address of mUnk_48, stores the status register and the registers (r0 = 1 saved) into
 // the words from 0, the banked sp of mode 0xd3 at 0x44 and the address of the return point at 0x3c, and returns 0.
 // non-matching: same size; 1 lines differ; first: original `add r1, r0, #0`, ours `mov r1, r0`
-asm s32 func_0200e6ec(Unk0200db5c *t) {
+asm s32 ThreadSaveContext(Unk0200db5c *t) {
     stmdb sp!, {r0, lr}
     add r0, r0, #0x48
     ldr r1, =func_02146c24
@@ -27,8 +27,8 @@ asm s32 func_0200e6ec(Unk0200db5c *t) {
 }
 
 // Calls func_02146bb8 with the address of mUnk_48, then switches to mode 0xd3 and restores the registers and the
-// status word saved by func_0200e6ec.
-asm void func_0200e738(Unk0200db5c *t) {
+// status word saved by ThreadSaveContext.
+asm void ThreadLoadContext(Unk0200db5c *t) {
     stmdb sp!, {r0, lr}
     add r0, r0, #0x48
     ldr r1, =func_02146bb8

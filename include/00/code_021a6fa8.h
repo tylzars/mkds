@@ -3,9 +3,9 @@
 #include "types.h"
 #include "code_0200db4c.h"
 
-typedef struct Unk0200df9c Unk0200df9c;
-typedef struct Unk0200edc0 Unk0200edc0;
-typedef struct Unk0200eb90 Unk0200eb90;
+typedef struct ThreadQueue ThreadQueue;
+typedef struct ThreadLock ThreadLock;
+typedef struct RingQueue RingQueue;
 
 struct Unk021a6fa8;
 struct Unk021a78a4;
@@ -25,10 +25,10 @@ typedef struct Unk021a71a4 {
 
 // Shared start of the two blocks func_ov000_021a71c0 sets up behind an Unk021a6fa8.
 typedef struct Unk021a7154 {
-    /* 00 */ Unk0200eb90 mUnk_00;
+    /* 00 */ RingQueue mUnk_00;
     /* 20 */ Unk0200db5c mUnk_20;
     /* d8 */ u8 mUnk_d8[8];
-    /* e0 */ Unk0200edc0 mUnk_e0;
+    /* e0 */ ThreadLock mUnk_e0;
 } Unk021a7154;
 
 typedef struct Unk021a71c0 {
@@ -40,7 +40,7 @@ typedef struct Unk021a71c0 {
     /* 104 */ struct Unk021a78a4 *mUnk_104;
     /* 108 */ u16 mUnk_108;
     /* 10a */ u16 mUnk_10a;
-    /* 10c */ Unk0200df9c mUnk_10c;
+    /* 10c */ ThreadQueue mUnk_10c;
     /* 114 */ u8 mUnk_114[4];
 } Unk021a71c0;
 

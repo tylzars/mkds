@@ -276,7 +276,7 @@ void func_ov003_021d0df8(void) {
         case 3:
             break;
         default:
-            func_0200fd1c();
+            IrqDisableLoopForever();
             break;
     }
 }

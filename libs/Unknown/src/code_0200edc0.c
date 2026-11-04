@@ -1,6 +1,6 @@
 #include "code_0200edc0.h"
 
-void func_0200edc0(Unk0200edc0 *arg0) {
+void ThreadLockInit(ThreadLock *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;

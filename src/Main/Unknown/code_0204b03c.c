@@ -200,7 +200,7 @@ void func_0204b344(s32 a) {
 
 u32 func_0204b3a4(void) {
     s32 r;
-    data_021759d4->mUnk_08 = func_0200cd28();
+    data_021759d4->mUnk_08 = IdAlloc();
     r = data_021759d4->mUnk_08;
     if (r == -3) {
         return 0;
@@ -214,7 +214,7 @@ void func_0204b3dc(void) {
     r = data_021759d4->mUnk_08;
     if (r != -3) {
         func_0214578c(r);
-        func_0200cd80((u16) data_021759d4->mUnk_08);
+        IdFree((u16) data_021759d4->mUnk_08);
         data_021759d4->mUnk_08 = -3;
     }
 }

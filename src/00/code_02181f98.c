@@ -158,12 +158,13 @@ void func_ov000_02182e18(void) {
     v4 = 0;
     MemFillHalfwords(v4, gWiFiVSSetting->mNscrCopy, 0x1000);
     MemCopyHalfwords(v2->mData, gWiFiVSSetting->mNscrCopy, 0x800);
-    func_02016468(0x17, 0, v1->mData, v1->mDataSize);
-    func_02016468(0x1b, 0, gWiFiVSSetting->mNscrCopy, 0x1000);
-    func_02016468(0x1f, 0, v3->mData, 0x80);
-    func_02016468(0x23, 0, gWiFiVSSetting->mWiFiVSSettingSNcgr->mData, gWiFiVSSetting->mWiFiVSSettingSNcgr->mDataSize);
-    func_02016468(0x1e, 0, gWiFiVSSetting->mWiFiVSSettingSONclr->mData,
-                  gWiFiVSSetting->mWiFiVSSettingSONclr->mDataSize);
+    CallQueueAppend(0x17, 0, v1->mData, v1->mDataSize);
+    CallQueueAppend(0x1b, 0, gWiFiVSSetting->mNscrCopy, 0x1000);
+    CallQueueAppend(0x1f, 0, v3->mData, 0x80);
+    CallQueueAppend(0x23, 0, gWiFiVSSetting->mWiFiVSSettingSNcgr->mData,
+                    gWiFiVSSetting->mWiFiVSSettingSNcgr->mDataSize);
+    CallQueueAppend(0x1e, 0, gWiFiVSSetting->mWiFiVSSettingSONclr->mData,
+                    gWiFiVSSetting->mWiFiVSSettingSONclr->mDataSize);
 }
 
 void func_ov000_02182de8(void) {
@@ -714,7 +715,8 @@ void func_ov000_02181ff0(void) {
     *(vu32 *) 0x400101c = v & 0x1ff;
 }
 
-Unk021b0cd4 gWiFiVSSettingCallbacks = {InitWiFiVSSetting, func_ov000_02182f88, AdvanceWiFiVSSetting, func_ov000_02181ff0};
+Unk021b0cd4 gWiFiVSSettingCallbacks = {InitWiFiVSSetting, func_ov000_02182f88, AdvanceWiFiVSSetting,
+                                       func_ov000_02181ff0};
 
 void RegisterWiFiVSSettingCallbacks(void) {
     Unk021b0cd4 callbacks = gWiFiVSSettingCallbacks;

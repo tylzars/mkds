@@ -20,7 +20,7 @@ u16 func_ov003_021cfed8(void) {
     Unk021da2a8 **v1;
     u16 v2;
     if (data_ov003_021da2a8->mUnk_40 != 7) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     func_ov003_021d07b0(1);
     v2 = func_ov003_021cfe40((u32) (data_ov003_021da2a8->mUnk_60));
@@ -83,7 +83,7 @@ BOOL func_ov003_021cfde4(void) {
 void func_ov003_021cfdc8(Unk021425e8 *event) {
     if (event->mUnk_02 == 8) {
         func_ov003_021d07b0(9);
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
 }
 
@@ -116,7 +116,7 @@ void func_ov003_021cfd44(Unk021425e8 *a) {
 
 s32 func_ov003_021cfc4c(u32 a, u16 b, u16 c) {
     if (data_ov003_021da2a8->mUnk_40 != 1) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     data_ov003_021da2a8->mUnk_12a4 = 0x180;
     data_ov003_021da2a8->mUnk_12a0 = 0xe0;
@@ -233,7 +233,7 @@ void func_ov003_021cfaa8(void) {
 u32 func_ov003_021cfa68(void) {
     int v1;
     if (data_ov003_021da2a8->mUnk_40 != 1) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     func_ov003_021d07b0(3);
     v1 = func_02143d88((Unk021425e8Func) func_ov003_021d0134);

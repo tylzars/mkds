@@ -13,16 +13,16 @@
 s32 data_0216ff40;
 
 void func_0200d028(void) {
-    Unk0200ce60 *p;
+    SwapLockSlot *p;
     volatile u32 v;
 
     if (data_0216ff40 != 0) {
         return;
     }
     data_0216ff40 = 1;
-    ((Unk0200ce60 *) 0x027ffff0)->mUnk_00 = 0;
-    func_0200cfc0(0x7e, (Unk0200ce60 *) 0x027ffff0, 0);
-    p = (Unk0200ce60 *) 0x027ffff0;
+    ((SwapLockSlot *) 0x027ffff0)->mUnk_00 = 0;
+    SwapLockSpin(0x7e, (SwapLockSlot *) 0x027ffff0, 0);
+    p = (SwapLockSlot *) 0x027ffff0;
     if (p->mUnk_06 != 0) {
         do {
             func_0200cdb0();
@@ -34,29 +34,29 @@ void func_0200d028(void) {
     MemFillWords(v, (void *) 0x027fffc0, 0x28);
     reg_MI_EXMEMCNT |= 0x800;
     reg_MI_EXMEMCNT |= 0x80;
-    func_0200cf20(0x7e, (Unk0200ce60 *) 0x027ffff0, 0);
-    func_0200cfc0(0x7f, (Unk0200ce60 *) 0x027ffff0, 0);
+    SwapLockUnlock(0x7e, (SwapLockSlot *) 0x027ffff0, 0);
+    SwapLockSpin(0x7f, (SwapLockSlot *) 0x027ffff0, 0);
 }
 
-s32 func_0200cfd0(u32 a, Unk0200ce60 *p, u32 (*f)(void), s32 k) {
+s32 SwapLockSpinEx(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k) {
     s32 r;
 
-    r = func_0200cea0(a, p, f, k);
+    r = SwapLockTry(a, p, f, k);
     while (r > 0) {
         func_0200cdb0();
-        r = func_0200cea0(a, p, f, k);
+        r = SwapLockTry(a, p, f, k);
     }
     return r;
 }
 
-s32 func_0200cfc0(u32 a, Unk0200ce60 *p, u32 (*f)(void)) {
-    return func_0200cfd0(a, p, f, 0);
+s32 SwapLockSpin(u32 a, SwapLockSlot *p, u32 (*f)(void)) {
+    return SwapLockSpinEx(a, p, f, 0);
 }
 
-s32 func_0200cf30(u32 a, Unk0200ce60 *p, u32 (*f)(void), s32 k) {
+s32 SwapLockUnlockEx(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k) {
     u32 s;
 
-    if (a != p->mUnk_04) {
+    if (a != p->mHolderId) {
         return -2;
     }
     if (k != 0) {
@@ -64,7 +64,7 @@ s32 func_0200cf30(u32 a, Unk0200ce60 *p, u32 (*f)(void), s32 k) {
     } else {
         s = IrqDisable();
     }
-    p->mUnk_04 = 0;
+    p->mHolderId = 0;
     if (f != 0) {
         f();
     }
@@ -77,11 +77,11 @@ s32 func_0200cf30(u32 a, Unk0200ce60 *p, u32 (*f)(void), s32 k) {
     return 0;
 }
 
-s32 func_0200cf20(u32 a, Unk0200ce60 *p, u32 (*f)(void)) {
-    return func_0200cf30(a, p, f, 0);
+s32 SwapLockUnlock(u32 a, SwapLockSlot *p, u32 (*f)(void)) {
+    return SwapLockUnlockEx(a, p, f, 0);
 }
 
-s32 func_0200cea0(u32 a, Unk0200ce60 *p, u32 (*f)(void), s32 k) {
+s32 SwapLockTry(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k) {
     u32 s;
     s32 r;
 
@@ -95,7 +95,7 @@ s32 func_0200cea0(u32 a, Unk0200ce60 *p, u32 (*f)(void), s32 k) {
         if (f != 0) {
             f();
         }
-        p->mUnk_04 = a;
+        p->mHolderId = a;
     }
     if (k != 0) {
         func_0200fce0(s);
@@ -106,9 +106,9 @@ s32 func_0200cea0(u32 a, Unk0200ce60 *p, u32 (*f)(void), s32 k) {
 }
 
 s32 func_0200ce80(u32 a) {
-    return func_0200cf30(a, (Unk0200ce60 *) 0x027fffe8, func_0200ce30, 1);
+    return SwapLockUnlockEx(a, (SwapLockSlot *) 0x027fffe8, func_0200ce30, 1);
 }
 
 s32 func_0200ce60(u32 a) {
-    return func_0200cea0(a, (Unk0200ce60 *) 0x027fffe8, func_0200ce48, 1);
+    return SwapLockTry(a, (SwapLockSlot *) 0x027fffe8, func_0200ce48, 1);
 }

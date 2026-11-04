@@ -116,7 +116,7 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
         case 11:
             break;
         default:
-            func_0200fd1c();
+            IrqDisableLoopForever();
             break;
     }
 }

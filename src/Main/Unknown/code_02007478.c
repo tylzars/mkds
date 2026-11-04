@@ -69,7 +69,7 @@ void func_02007478(Unk02007478 *a) {
         FS_CloseFile(&v3);
     }
     if (v1->mUnk_0c != 2) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
 }
 

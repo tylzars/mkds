@@ -1,6 +1,6 @@
 #include "code_0201661c.h"
 
-void func_0201661c(u32 arg0) {
+void CallQueueReset(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;

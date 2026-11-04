@@ -71,13 +71,13 @@ void func_ov001_0219de58(void) {
     LocateNcgr2(&gOptionEmbremSelect->mOptionEmbremSelectSNcgr, FindSceneFile(gOptionEmbremSelectSNcgrName));
     LocateNcer(&gOptionEmbremSelect->mOptionEmbremSelectSNcer, FindSceneFile(gOptionEmbremSelectSNcerName));
     LocateNclr(&gOptionEmbremSelect->mOptionEmbremSelectSONclr, FindSceneFile(gOptionEmbremSelectSONclrName));
-    func_02016468(4, 0, a->mData, a->mDataSize);
-    func_02016468(8, 0, b->mData, b->mDataSize);
-    func_02016468(0xf, 0, c->mData, 0x100);
-    func_02016468(0x23, 0, gOptionEmbremSelect->mOptionEmbremSelectSNcgr->mData,
-                  gOptionEmbremSelect->mOptionEmbremSelectSNcgr->mDataSize);
-    func_02016468(0x1e, 0, gOptionEmbremSelect->mOptionEmbremSelectSONclr->mData,
-                  gOptionEmbremSelect->mOptionEmbremSelectSONclr->mDataSize);
+    CallQueueAppend(4, 0, a->mData, a->mDataSize);
+    CallQueueAppend(8, 0, b->mData, b->mDataSize);
+    CallQueueAppend(0xf, 0, c->mData, 0x100);
+    CallQueueAppend(0x23, 0, gOptionEmbremSelect->mOptionEmbremSelectSNcgr->mData,
+                    gOptionEmbremSelect->mOptionEmbremSelectSNcgr->mDataSize);
+    CallQueueAppend(0x1e, 0, gOptionEmbremSelect->mOptionEmbremSelectSONclr->mData,
+                    gOptionEmbremSelect->mOptionEmbremSelectSONclr->mDataSize);
 }
 
 BOOL func_ov001_0219de38(void) {

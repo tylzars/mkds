@@ -12,14 +12,14 @@ int raise(int a) {
     if (a < 1 || a > 7) {
         return -1;
     }
-    if (func_0200ec08(data_0217eadc[7]) == 0) {
-        data_0217ea94[7] = data_0216ff5c.mUnk_08->mUnk_6c;
+    if (ThreadLockTry(data_0217eadc[7]) == 0) {
+        data_0217ea94[7] = data_0216ff5c.mListHead->mUnk_6c;
         data_0217eab8[7] = 1;
-    } else if (data_0217ea94[7] == data_0216ff5c.mUnk_08->mUnk_6c) {
+    } else if (data_0217ea94[7] == data_0216ff5c.mListHead->mUnk_6c) {
         data_0217eab8[7]++;
     } else {
-        func_0200ed34(data_0217eadc[7]);
-        data_0217ea94[7] = data_0216ff5c.mUnk_08->mUnk_6c;
+        ThreadLockWait(data_0217eadc[7]);
+        data_0217ea94[7] = data_0216ff5c.mListHead->mUnk_6c;
         data_0217eab8[7] = 1;
     }
     f = gRaiseHandlers[a - 1];
@@ -28,7 +28,7 @@ int raise(int a) {
     }
     data_0217eab8[7]--;
     if (data_0217eab8[7] == 0) {
-        func_0200ecc4(data_0217eadc[7]);
+        ThreadLockUnlock(data_0217eadc[7]);
     }
     if (f == (Unk02139e20Func) 1 || (f == 0 && a == 1)) {
         return 0;

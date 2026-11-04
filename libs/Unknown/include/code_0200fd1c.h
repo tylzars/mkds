@@ -18,7 +18,7 @@ typedef struct Unk0200fddc {
 extern u16 data_0217027c;
 extern u16 data_02170280;
 
-void func_0200fd1c(void);
+void IrqDisableLoopForever(void);
 void func_0200fd30(u32 a, u32 b);
 void func_0200fd74(void);
 void func_0200fddc(Unk0200fddc *p);

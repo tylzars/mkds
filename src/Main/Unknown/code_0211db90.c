@@ -82,13 +82,14 @@ void func_0211db90(void) {
     LocateNcer(&data_0217d368->mUnk_00, v1);
     v1 = FindSceneFile(data_0216dbec);
     LocateNclr((Nclr **) &data_0217d368->mUnk_10, v1);
-    func_02016468((u32) 0x14, (u32) 0, v3->mData, v3->mDataSize);
-    func_02016468((u32) 0x1b, (u32) 0, (void *) &data_0217d368->mUnk_20->mUnk_0c,
-                  (*(u32 *) ((s32) data_0217d368->mUnk_20 + 8)));
-    func_02016468((u32) 0x1b, (u32) (((u32) 0x00000800u)), data_0217d368->mUnk_24, (u32) (((u32) 0x00000800u)));
-    func_02016468((u32) 0x1f, (u32) 0, v4->mData, (u32) 0x80);
-    func_02016468((u32) 0x23, (u32) 0, v2->mData, v2->mDataSize);
-    func_02016468(0x1e, 0, (void *) (*(u32 *) (data_0217d368->mUnk_10 + 0xc)), (*(u32 *) (data_0217d368->mUnk_10 + 8)));
+    CallQueueAppend((u32) 0x14, (u32) 0, v3->mData, v3->mDataSize);
+    CallQueueAppend((u32) 0x1b, (u32) 0, (void *) &data_0217d368->mUnk_20->mUnk_0c,
+                    (*(u32 *) ((s32) data_0217d368->mUnk_20 + 8)));
+    CallQueueAppend((u32) 0x1b, (u32) (((u32) 0x00000800u)), data_0217d368->mUnk_24, (u32) (((u32) 0x00000800u)));
+    CallQueueAppend((u32) 0x1f, (u32) 0, v4->mData, (u32) 0x80);
+    CallQueueAppend((u32) 0x23, (u32) 0, v2->mData, v2->mDataSize);
+    CallQueueAppend(0x1e, 0, (void *) (*(u32 *) (data_0217d368->mUnk_10 + 0xc)),
+                    (*(u32 *) (data_0217d368->mUnk_10 + 8)));
 }
 
 #pragma thumb off

@@ -5,7 +5,7 @@
 
 // Fixed-address object in the data TCM; the code reads and writes words at these offsets.
 typedef struct Unk027e0000 {
-    /* 0000 */ Unk0200df9c mUnk_0000;
+    /* 0000 */ ThreadQueue mUnk_0000;
     /* 0008 */ u8 mUnk_0008[0x3380 - 0x8];
     /* 3380 */ u32 mUnk_3380;
     /* 3384 */ u8 mUnk_3384[0x3f7c - 0x3384];
@@ -44,5 +44,5 @@ u32 InterruptEnableSetBits(u32 m);
 u32 InterruptEnableWrite(u32 v);
 void func_0200cb50(u32 n, UnkFunc *f, u32 a);
 void func_0200cb9c(u32 n, UnkFunc *f, u32 a);
-UnkFunc *func_0200cbe8(u32 m);
-void func_0200cc74(u32 m, UnkFunc *f);
+UnkFunc *InterruptHandlerGet(u32 m);
+void InterruptHandlerSet(u32 m, UnkFunc *f);

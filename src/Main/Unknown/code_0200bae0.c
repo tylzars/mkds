@@ -45,7 +45,7 @@ void func_0200bae0(void) {
                 func_0200bab0();
                 break;
             default:
-                func_0200fd1c();
+                IrqDisableLoopForever();
                 break;
         }
     }

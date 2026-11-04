@@ -202,13 +202,13 @@ void func_ov000_02184130(void) {
     zero = 0;
     MemFillHalfwords(zero, gWiFiVSMatching->mUnk_d4, 0x1000);
     MemCopyHalfwords(scrn->mData, gWiFiVSMatching->mUnk_d4, 0x800);
-    func_02016468(0x17, 0, chr->mData, chr->mDataSize);
-    func_02016468(0x1b, 0, gWiFiVSMatching->mUnk_d4, 0x1000);
-    func_02016468(0x1f, 0, pltt->mData, 0x80);
-    func_02016468(0x23, 0, gWiFiVSMatching->mWiFiVSMatchingSNcgr->mData,
-                  gWiFiVSMatching->mWiFiVSMatchingSNcgr->mDataSize);
-    func_02016468(0x1e, 0, gWiFiVSMatching->mWiFiVSMatchingSONclr->mData,
-                  gWiFiVSMatching->mWiFiVSMatchingSONclr->mDataSize);
+    CallQueueAppend(0x17, 0, chr->mData, chr->mDataSize);
+    CallQueueAppend(0x1b, 0, gWiFiVSMatching->mUnk_d4, 0x1000);
+    CallQueueAppend(0x1f, 0, pltt->mData, 0x80);
+    CallQueueAppend(0x23, 0, gWiFiVSMatching->mWiFiVSMatchingSNcgr->mData,
+                    gWiFiVSMatching->mWiFiVSMatchingSNcgr->mDataSize);
+    CallQueueAppend(0x1e, 0, gWiFiVSMatching->mWiFiVSMatchingSONclr->mData,
+                    gWiFiVSMatching->mWiFiVSMatchingSONclr->mDataSize);
     for (i = 0; i < 5; i++) {
         c = (gWiFiVSMatching->mWiFiVSMatchingSONclr->mData + 0x60 + data_ov000_021b0658[0])[i];
         gWiFiVSMatching->mUnk_58[i][0] = c & 0x1f;
@@ -441,12 +441,12 @@ void func_ov000_02183a0c(void) {
             func_ov000_021840c8();
             for (i = 0; i < gWiFiVSMatching->mUnk_30; i++) {
                 if (gWiFiVSMatching->mUnk_16d8[i] != 0) {
-                    func_02016468(0x23,
-                                  func_0212497c(data_ov000_021b0668[i], gWiFiVSMatching->mWiFiVSMatchingSNcer,
-                                                gWiFiVSMatching->mWiFiVSMatchingBncl)
-                                      << 5,
-                                  gWiFiVSMatching->mUnk_10d8[i], 0x200);
-                    func_02016468(0x1e, (i + 3) << 5, q->mData, 0x20);
+                    CallQueueAppend(0x23,
+                                    func_0212497c(data_ov000_021b0668[i], gWiFiVSMatching->mWiFiVSMatchingSNcer,
+                                                  gWiFiVSMatching->mWiFiVSMatchingBncl)
+                                        << 5,
+                                    gWiFiVSMatching->mUnk_10d8[i], 0x200);
+                    CallQueueAppend(0x1e, (i + 3) << 5, q->mData, 0x20);
                 }
                 gWiFiVSMatching->mUnk_10d4[data_ov000_021b0660[i] + gWiFiVSMatching->mWiFiVSMatchingBncl->mUnk_06]
                     .mUnk_00 = 0;
@@ -468,14 +468,14 @@ void func_ov000_021839d0(void) {
 }
 
 u8 data_ov000_021b0ce4[30] = {
-    0x0a, 0x14, 0x1e, 0x28, 0x32, 0x3c, 0x46, 0x50, 0x5a, 0x64, 0x6e, 0x78, 0x82, 0x82, 0x82, 0x78, 0x6e,
-    0x64, 0x5a, 0x5a, 0x64, 0x6e, 0x78, 0x78, 0x78, 0x6e, 0x64, 0x64, 0x64, 0x64,
+    0x0a, 0x14, 0x1e, 0x28, 0x32, 0x3c, 0x46, 0x50, 0x5a, 0x64, 0x6e, 0x78, 0x82, 0x82, 0x82,
+    0x78, 0x6e, 0x64, 0x5a, 0x5a, 0x64, 0x6e, 0x78, 0x78, 0x78, 0x6e, 0x64, 0x64, 0x64, 0x64,
 };
 
 u8 data_ov000_021b0d04[40] = {
-    0x0a, 0x14, 0x1e, 0x28, 0x32, 0x3c, 0x46, 0x50, 0x5a, 0x64, 0x6e, 0x78, 0x82, 0x8c, 0x96, 0x96, 0x96,
-    0x96, 0x96, 0x96, 0x96, 0x96, 0x96, 0x96, 0x96, 0x91, 0x8c, 0x87, 0x82, 0x7d, 0x78, 0x73, 0x6e, 0x69,
-    0x64, 0x64, 0x64, 0x64, 0x64, 0x64,
+    0x0a, 0x14, 0x1e, 0x28, 0x32, 0x3c, 0x46, 0x50, 0x5a, 0x64, 0x6e, 0x78, 0x82, 0x8c,
+    0x96, 0x96, 0x96, 0x96, 0x96, 0x96, 0x96, 0x96, 0x96, 0x96, 0x96, 0x91, 0x8c, 0x87,
+    0x82, 0x7d, 0x78, 0x73, 0x6e, 0x69, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64,
 };
 
 void func_ov000_02183858(void) {
@@ -648,7 +648,7 @@ void func_ov000_021834b0(s32 t) {
                         ((((0x1000 - t) * p->mUnk_58[i][0] + t * p->mUnk_94[i][0]) >> 12) |
                          ((((0x1000 - t) * p->mUnk_58[i][1] + t * p->mUnk_94[i][1]) >> 12) << 5));
     }
-    func_02016468(0x1e, 0x36, gWiFiVSMatching->mUnk_4c, 10);
+    CallQueueAppend(0x1e, 0x36, gWiFiVSMatching->mUnk_4c, 10);
 }
 
 void func_ov000_02183444(void) {

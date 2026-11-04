@@ -54,12 +54,12 @@ void func_ov001_0219f6e0(void) {
     LocateNcer(&data_ov001_021ca410->mUnk_00, FindSceneFile(data_ov001_021a90c4));
     LocateNclr(&v2, FindSceneFile(data_ov001_021a90c0));
     data_ov001_021ca410->mUnk_14 = HeapAlloc(data_ov001_021ca410->mHeap, 0x800);
-    func_02016468(4, 0, v3->mData, v3->mDataSize);
-    func_02016468(8, 0, v4->mData, v4->mDataSize);
-    func_02016468(8, 0x800, data_ov001_021ca410->mUnk_14, 0x800);
-    func_02016468(0xf, 0, v5->mData, 0x40);
-    func_02016468(0x23, 0, v1->mData, v1->mDataSize);
-    func_02016468(0x1e, 0, v2->mData, v2->mDataSize);
+    CallQueueAppend(4, 0, v3->mData, v3->mDataSize);
+    CallQueueAppend(8, 0, v4->mData, v4->mDataSize);
+    CallQueueAppend(8, 0x800, data_ov001_021ca410->mUnk_14, 0x800);
+    CallQueueAppend(0xf, 0, v5->mData, 0x40);
+    CallQueueAppend(0x23, 0, v1->mData, v1->mDataSize);
+    CallQueueAppend(0x1e, 0, v2->mData, v2->mDataSize);
 }
 
 s32 func_ov001_0219f6a0(s16 a) {

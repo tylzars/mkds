@@ -14,7 +14,7 @@
 
 u16 data_0217eed0;
 struct Unk02142aa8 *data_0217eed4;
-Unk0200eb90 data_0217eed8;
+RingQueue data_0217eed8;
 void *data_0217eef8[10];
 
 s32 func_02142e78(void *buf, u32 n) {
@@ -64,11 +64,11 @@ s32 func_02142c98(void *buf, u32 n, u32 size) {
     for (i = 0; i < 16; i++) {
         func_0214358c((u16) i, 0, 0);
     }
-    func_0200eb90(&data_0217eed8, data_0217eef8, 10);
+    RingQueueInit(&data_0217eed8, data_0217eef8, 10);
     for (j = 0; j < 10; j++) {
         *(u16 *) data_0217ef60[j] = 0x8000;
         func_0200ee58(data_0217ef60[j], 2);
-        func_0200eae8(&data_0217eed8, data_0217ef60[j], 1);
+        RingQueueAppend(&data_0217eed8, data_0217ef60[j], 1);
     }
     func_0214d7c4(0xa, func_021425e8);
     return 0;
@@ -108,12 +108,12 @@ s32 func_02142ab8(u32 a, u16 b, ...) {
     s32 i;
     s32 r;
 
-    if (func_0200ea3c(&data_0217eed8, &p, 0) == 0) {
+    if (RingQueueRemoveFront(&data_0217eed8, &p, 0) == 0) {
         return 8;
     }
     func_0200ee3c(p, 2);
     if ((*(u16 *) p & 0x8000) == 0) {
-        func_0200e988(&data_0217eed8, p, 1);
+        RingQueuePrepend(&data_0217eed8, p, 1);
         return 8;
     }
     if (b == 0) {
@@ -129,7 +129,7 @@ s32 func_02142ab8(u32 a, u16 b, ...) {
     }
     func_0200ee58(p, 0x100);
     r = PxiSendFifoWord(0xa, (u32) p, 0);
-    func_0200eae8(&data_0217eed8, p, 1);
+    RingQueueAppend(&data_0217eed8, p, 1);
     if (r < 0) {
         return 8;
     }
@@ -211,7 +211,7 @@ void func_021425e8(u32 a, Unk021425e8 *m, s32 c) {
     if (m->mUnk_00 >= 0x2a) {
         if (m->mUnk_00 == 0x80) {
             if (m->mUnk_02 == 0x13) {
-                func_0200fd1c();
+                IrqDisableLoopForever();
             }
             cb = data_0217eed4->mUnk_0c0;
             if (cb != 0) {

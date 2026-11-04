@@ -9,90 +9,90 @@
 #include "code_0200fc8c.h"
 #include "Main/Unknown/unk_0216f000.h"
 
-// With t = data_0216ff5c.mUnk_04: when n->mUnk_08 is 0 it is set to t, mUnk_0c is raised and func_0200ebe4 links n
-// to t; when it is t only mUnk_0c is raised; otherwise t->mUnk_84 is set to n around func_0200e01c on n->mUnk_00,
-// and the test repeats.
-void func_0200ed34(void *p) {
-    Unk0200edc0 *n;
+// With t = data_0216ff5c.mUnk_04: when n->mUnk_08 is 0 it is set to t, mUnk_0c is raised and ThreadLockListAppend links
+// n to t; when it is t only mUnk_0c is raised; otherwise t->mUnk_84 is set to n around ThreadWait on n->mUnk_00, and
+// the test repeats.
+void ThreadLockWait(void *p) {
+    ThreadLock *n;
     u32 s;
     Unk0200db5c *t;
 
     n = p;
     s = IrqDisable();
-    t = data_0216ff5c.mUnk_04;
+    t = data_0216ff5c.mCurrentThread;
     while (1) {
-        if (n->mUnk_08 == 0) {
-            n->mUnk_08 = t;
-            n->mUnk_0c = n->mUnk_0c + 1;
-            func_0200ebe4(t, n);
+        if (n->mHolder == 0) {
+            n->mHolder = t;
+            n->mLockCount = n->mLockCount + 1;
+            ThreadLockListAppend(t, n);
             break;
-        } else if (n->mUnk_08 == t) {
-            n->mUnk_0c = n->mUnk_0c + 1;
+        } else if (n->mHolder == t) {
+            n->mLockCount = n->mLockCount + 1;
             break;
         } else {
             t->mUnk_84 = n;
-            func_0200e01c(&n->mUnk_00);
+            ThreadWait(&n->mQueue);
             t->mUnk_84 = 0;
         }
     }
     IrqRestore(s);
 }
 
-// When n->mUnk_08 is data_0216ff5c.mUnk_04, lowers mUnk_0c; at 0 calls func_0200ebc0, clears mUnk_08 and calls
-// func_0200df9c on n->mUnk_00.
-void func_0200ecc4(void *p) {
-    Unk0200edc0 *n;
+// When n->mUnk_08 is data_0216ff5c.mUnk_04, lowers mUnk_0c; at 0 calls ThreadLockListRemove, clears mUnk_08 and calls
+// ThreadQueueSetAllRunnable on n->mUnk_00.
+void ThreadLockUnlock(void *p) {
+    ThreadLock *n;
     u32 s;
     Unk0200db5c *t;
 
     n = p;
     s = IrqDisable();
-    t = data_0216ff5c.mUnk_04;
-    if (n->mUnk_08 == t) {
-        n->mUnk_0c = n->mUnk_0c - 1;
-        if (n->mUnk_0c == 0) {
-            func_0200ebc0(t, n);
-            n->mUnk_08 = 0;
-            func_0200df9c(&n->mUnk_00);
+    t = data_0216ff5c.mCurrentThread;
+    if (n->mHolder == t) {
+        n->mLockCount = n->mLockCount - 1;
+        if (n->mLockCount == 0) {
+            ThreadLockListRemove(t, n);
+            n->mHolder = 0;
+            ThreadQueueSetAllRunnable(&n->mQueue);
         }
     }
     IrqRestore(s);
 }
 
-// While t->mUnk_88.mUnk_00 is not 0, takes an object from t->mUnk_88 (func_0200e594), clears its mUnk_08 and
-// mUnk_0c and calls func_0200df9c on its mUnk_00.
-void func_0200ec7c(struct Unk0200db5c *t) {
-    Unk0200edc0 *n;
+// While t->mUnk_88.mUnk_00 is not 0, takes an object from t->mUnk_88 (ThreadLockListRemoveFront), clears its mUnk_08
+// and mUnk_0c and calls ThreadQueueSetAllRunnable on its mUnk_00.
+void ThreadUnlockAll(struct Unk0200db5c *t) {
+    ThreadLock *n;
 
-    if (t->mUnk_88.mUnk_00 == 0) {
+    if (t->mLockList.mHead == 0) {
         return;
     }
     do {
-        n = func_0200e594(&t->mUnk_88);
-        n->mUnk_0c = 0;
-        n->mUnk_08 = 0;
-        func_0200df9c(&n->mUnk_00);
-    } while (t->mUnk_88.mUnk_00 != 0);
+        n = ThreadLockListRemoveFront(&t->mLockList);
+        n->mLockCount = 0;
+        n->mHolder = 0;
+        ThreadQueueSetAllRunnable(&n->mQueue);
+    } while (t->mLockList.mHead != 0);
 }
 
-// When n->mUnk_08 is 0 it is set to data_0216ff5c.mUnk_04, mUnk_0c is raised and func_0200ebe4 links n; when it
+// When n->mUnk_08 is 0 it is set to data_0216ff5c.mUnk_04, mUnk_0c is raised and ThreadLockListAppend links n; when it
 // is that object only mUnk_0c is raised. Returns 1 in those cases, else 0.
-s32 func_0200ec08(void *p) {
-    Unk0200edc0 *n;
+s32 ThreadLockTry(void *p) {
+    ThreadLock *n;
     u32 s;
     s32 r;
     Unk0200db5c *t;
 
     n = p;
     s = IrqDisable();
-    t = data_0216ff5c.mUnk_04;
-    if (n->mUnk_08 == 0) {
-        n->mUnk_08 = t;
-        n->mUnk_0c = n->mUnk_0c + 1;
-        func_0200ebe4(t, n);
+    t = data_0216ff5c.mCurrentThread;
+    if (n->mHolder == 0) {
+        n->mHolder = t;
+        n->mLockCount = n->mLockCount + 1;
+        ThreadLockListAppend(t, n);
         r = 1;
-    } else if (n->mUnk_08 == t) {
-        n->mUnk_0c = n->mUnk_0c + 1;
+    } else if (n->mHolder == t) {
+        n->mLockCount = n->mLockCount + 1;
         r = 1;
     } else {
         r = 0;
@@ -102,140 +102,140 @@ s32 func_0200ec08(void *p) {
 }
 
 // Links n after t->mUnk_88.mUnk_04 (through mUnk_10 and mUnk_14) and stores it there.
-void func_0200ebe4(struct Unk0200db5c *t, Unk0200edc0 *n) {
-    Unk0200edc0 *a;
+void ThreadLockListAppend(struct Unk0200db5c *t, ThreadLock *n) {
+    ThreadLock *a;
 
-    a = t->mUnk_88.mUnk_04;
+    a = t->mLockList.mTail;
     if (a == 0) {
-        t->mUnk_88.mUnk_00 = n;
+        t->mLockList.mHead = n;
     } else {
-        a->mUnk_10 = n;
+        a->mNext = n;
     }
-    n->mUnk_14 = a;
-    n->mUnk_10 = 0;
-    t->mUnk_88.mUnk_04 = n;
+    n->mPrev = a;
+    n->mNext = 0;
+    t->mLockList.mTail = n;
 }
 
 // Takes n out of the links of t->mUnk_88 (mUnk_10 and mUnk_14).
-void func_0200ebc0(struct Unk0200db5c *t, Unk0200edc0 *n) {
-    Unk0200edc0 *a;
-    Unk0200edc0 *b;
+void ThreadLockListRemove(struct Unk0200db5c *t, ThreadLock *n) {
+    ThreadLock *a;
+    ThreadLock *b;
 
-    b = n->mUnk_10;
-    a = n->mUnk_14;
+    b = n->mNext;
+    a = n->mPrev;
     if (b == 0) {
-        t->mUnk_88.mUnk_04 = a;
+        t->mLockList.mTail = a;
     } else {
-        b->mUnk_14 = a;
+        b->mPrev = a;
     }
     if (a == 0) {
-        t->mUnk_88.mUnk_00 = b;
+        t->mLockList.mHead = b;
     } else {
-        a->mUnk_10 = b;
+        a->mNext = b;
     }
 }
 
 // Clears mUnk_00 and mUnk_08, stores p and n in mUnk_10 and mUnk_14 and clears mUnk_18 and mUnk_1c.
-void func_0200eb90(Unk0200eb90 *q, void **p, s32 n) {
-    q->mUnk_00.mUnk_04 = 0;
-    q->mUnk_00.mUnk_00 = q->mUnk_00.mUnk_04;
-    q->mUnk_08.mUnk_04 = 0;
-    q->mUnk_08.mUnk_00 = q->mUnk_08.mUnk_04;
-    q->mUnk_10 = p;
-    q->mUnk_14 = n;
-    q->mUnk_18 = 0;
-    q->mUnk_1c = 0;
+void RingQueueInit(RingQueue *q, void **p, s32 n) {
+    q->mFullWaiters.mTail = 0;
+    q->mFullWaiters.mHead = q->mFullWaiters.mTail;
+    q->mEmptyWaiters.mTail = 0;
+    q->mEmptyWaiters.mHead = q->mEmptyWaiters.mTail;
+    q->mBuffer = p;
+    q->mCapacity = n;
+    q->mHeadIndex = 0;
+    q->mCount = 0;
 }
 
-// Stores v at mUnk_10[(mUnk_18 + mUnk_1c) % mUnk_14], raises mUnk_1c and calls func_0200df9c on mUnk_08. While
-// mUnk_1c is at least mUnk_14 it calls func_0200e01c on mUnk_00, or returns 0 when bit 0 of f is clear.
-s32 func_0200eae8(Unk0200eb90 *q, void *v, s32 f) {
+// Stores v at mUnk_10[(mUnk_18 + mUnk_1c) % mUnk_14], raises mUnk_1c and calls ThreadQueueSetAllRunnable on mUnk_08.
+// While mUnk_1c is at least mUnk_14 it calls ThreadWait on mUnk_00, or returns 0 when bit 0 of f is clear.
+s32 RingQueueAppend(RingQueue *q, void *v, s32 f) {
     u32 s;
 
     s = IrqDisable();
-    if (q->mUnk_14 <= q->mUnk_1c) {
+    if (q->mCapacity <= q->mCount) {
         do {
             if ((f & 1) == 0) {
                 IrqRestore(s);
                 return 0;
             }
-            func_0200e01c(&q->mUnk_00);
-        } while (q->mUnk_14 <= q->mUnk_1c);
+            ThreadWait(&q->mFullWaiters);
+        } while (q->mCapacity <= q->mCount);
     }
-    q->mUnk_10[(q->mUnk_18 + q->mUnk_1c) % q->mUnk_14] = v;
-    q->mUnk_1c = q->mUnk_1c + 1;
-    func_0200df9c(&q->mUnk_08);
+    q->mBuffer[(q->mHeadIndex + q->mCount) % q->mCapacity] = v;
+    q->mCount = q->mCount + 1;
+    ThreadQueueSetAllRunnable(&q->mEmptyWaiters);
     IrqRestore(s);
     return 1;
 }
 
 // Stores mUnk_10[mUnk_18] to *p when p is not 0, advances mUnk_18 modulo mUnk_14, lowers mUnk_1c and calls
-// func_0200df9c on mUnk_00. While mUnk_1c is 0 it calls func_0200e01c on mUnk_08, or returns 0 when bit 0 of f is
-// clear.
-s32 func_0200ea3c(Unk0200eb90 *q, void **p, s32 f) {
+// ThreadQueueSetAllRunnable on mUnk_00. While mUnk_1c is 0 it calls ThreadWait on mUnk_08, or returns 0 when bit 0 of f
+// is clear.
+s32 RingQueueRemoveFront(RingQueue *q, void **p, s32 f) {
     u32 s;
 
     s = IrqDisable();
-    if (q->mUnk_1c == 0) {
+    if (q->mCount == 0) {
         do {
             if ((f & 1) == 0) {
                 IrqRestore(s);
                 return 0;
             }
-            func_0200e01c(&q->mUnk_08);
-        } while (q->mUnk_1c == 0);
+            ThreadWait(&q->mEmptyWaiters);
+        } while (q->mCount == 0);
     }
     if (p != 0) {
-        *p = q->mUnk_10[q->mUnk_18];
+        *p = q->mBuffer[q->mHeadIndex];
     }
-    q->mUnk_18 = (q->mUnk_18 + 1) % q->mUnk_14;
-    q->mUnk_1c = q->mUnk_1c - 1;
-    func_0200df9c(&q->mUnk_00);
+    q->mHeadIndex = (q->mHeadIndex + 1) % q->mCapacity;
+    q->mCount = q->mCount - 1;
+    ThreadQueueSetAllRunnable(&q->mFullWaiters);
     IrqRestore(s);
     return 1;
 }
 
-// Lowers mUnk_18 by one modulo mUnk_14, stores v at mUnk_10[mUnk_18], raises mUnk_1c and calls func_0200df9c on
-// mUnk_08. While mUnk_1c is at least mUnk_14 it calls func_0200e01c on mUnk_00, or returns 0 when bit 0 of f is
-// clear.
-s32 func_0200e988(Unk0200eb90 *q, void *v, s32 f) {
+// Lowers mUnk_18 by one modulo mUnk_14, stores v at mUnk_10[mUnk_18], raises mUnk_1c and calls
+// ThreadQueueSetAllRunnable on mUnk_08. While mUnk_1c is at least mUnk_14 it calls ThreadWait on mUnk_00, or returns 0
+// when bit 0 of f is clear.
+s32 RingQueuePrepend(RingQueue *q, void *v, s32 f) {
     u32 s;
 
     s = IrqDisable();
-    if (q->mUnk_14 <= q->mUnk_1c) {
+    if (q->mCapacity <= q->mCount) {
         do {
             if ((f & 1) == 0) {
                 IrqRestore(s);
                 return 0;
             }
-            func_0200e01c(&q->mUnk_00);
-        } while (q->mUnk_14 <= q->mUnk_1c);
+            ThreadWait(&q->mFullWaiters);
+        } while (q->mCapacity <= q->mCount);
     }
-    q->mUnk_18 = (q->mUnk_18 + q->mUnk_14 - 1) % q->mUnk_14;
-    q->mUnk_10[q->mUnk_18] = v;
-    q->mUnk_1c = q->mUnk_1c + 1;
-    func_0200df9c(&q->mUnk_08);
+    q->mHeadIndex = (q->mHeadIndex + q->mCapacity - 1) % q->mCapacity;
+    q->mBuffer[q->mHeadIndex] = v;
+    q->mCount = q->mCount + 1;
+    ThreadQueueSetAllRunnable(&q->mEmptyWaiters);
     IrqRestore(s);
     return 1;
 }
 
-// Stores mUnk_10[mUnk_18] to *p when p is not 0. While mUnk_1c is 0 it calls func_0200e01c on mUnk_08, or returns
+// Stores mUnk_10[mUnk_18] to *p when p is not 0. While mUnk_1c is 0 it calls ThreadWait on mUnk_08, or returns
 // 0 when bit 0 of f is clear.
-s32 func_0200e904(Unk0200eb90 *q, void **p, s32 f) {
+s32 RingQueuePeekFront(RingQueue *q, void **p, s32 f) {
     u32 s;
 
     s = IrqDisable();
-    if (q->mUnk_1c == 0) {
+    if (q->mCount == 0) {
         do {
             if ((f & 1) == 0) {
                 IrqRestore(s);
                 return 0;
             }
-            func_0200e01c(&q->mUnk_08);
-        } while (q->mUnk_1c == 0);
+            ThreadWait(&q->mEmptyWaiters);
+        } while (q->mCount == 0);
     }
     if (p != 0) {
-        *p = q->mUnk_10[q->mUnk_18];
+        *p = q->mBuffer[q->mHeadIndex];
     }
     IrqRestore(s);
     return 1;
@@ -281,12 +281,12 @@ u32 func_0200e7b0(void) {
     u32 s;
 
     d = 0;
-    h = (u16) func_0200cd28();
+    h = (u16) IdAlloc();
     a = 0;
     do {
         v = -1;
         s = IrqDisable();
-        if ((func_0200cdc0((Unk0200ce60 *) 0x27fffe8) & 0x40) != 0 || (v = func_0200ce60(h)) == 0) {
+        if ((SwapLockGetHolderId((SwapLockSlot *) 0x27fffe8) & 0x40) != 0 || (v = func_0200ce60(h)) == 0) {
             if (*(u32 *) 0x8000000 == 0x544e494e && *(u32 *) 0x8000004 == 0x4f444e45) {
                 a = 0x1000000;
             } else {

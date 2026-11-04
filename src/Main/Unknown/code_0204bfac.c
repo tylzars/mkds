@@ -130,7 +130,7 @@ void func_0204c28c(u32 a, u32 b, u32 c, u32 d) {
     v1->mUnk_002c = 0xe;
     data_usa_02175e80 = 0;
     if (func_0214358c(v2, func_0204cc94, NULL) != 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
 }
 
@@ -239,7 +239,7 @@ void func_0204c320(Unk0204c320 *a) {
             if (func_02006d3c(1, &v6, 9, func_0204d5bc) != 0) {
                 return;
             }
-            func_0200fd1c();
+            IrqDisableLoopForever();
             return;
         case 12:
             if (a->mUnk_04 != 0xa) {
@@ -579,7 +579,7 @@ void func_0204cf5c(Unk02003024 *a) {
     if (func_02006d3c(1, &v1, 9, func_0204d5bc) != 0) {
         return;
     }
-    func_0200fd1c();
+    IrqDisableLoopForever();
 }
 
 void func_0204d0bc(Unk02175ec0_440s *a, Unk0204c090 *b) {

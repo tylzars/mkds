@@ -731,8 +731,8 @@ void func_02148c20(void) {
     *(vu16 *) 0x4000248 = 0;
 }
 
-// Updates the halfword at 0x4000304, calls func_02148c20, then calls func_0200cd28 until data_021802a8 is nonzero
-// (calling func_0200fd1c when it returns -3). Zeroes 0x4000004 and 0x4000000, then passes 0 with the ranges
+// Updates the halfword at 0x4000304, calls func_02148c20, then calls IdAlloc until data_021802a8 is nonzero
+// (calling IrqDisableLoopForever when it returns -3). Zeroes 0x4000004 and 0x4000000, then passes 0 with the ranges
 // 0x4000008 (size 0x60) and 0x4001000 (size 0x70) to func_0214cc04 when data_0216f074[0] is not -1 and to
 // MemFillWords otherwise, with the halfword at 0x400006c zeroed in between. Finally stores 0x100 in the halfwords
 // at 0x4000020, 0x4000026, 0x4000030, 0x4000036 and the same offsets from 0x4001000.
@@ -744,9 +744,9 @@ void func_02148a88(void) {
     *(vu16 *) 0x4000304 |= 0x1;
     func_02148c20();
     while (*(vu16 *) &data_021802a8 == 0) {
-        r = func_0200cd28();
+        r = IdAlloc();
         if (r == -3) {
-            func_0200fd1c();
+            IrqDisableLoopForever();
         }
         *(vu16 *) &data_021802a8 = r;
     }

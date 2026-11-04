@@ -45,7 +45,7 @@ void FileReadTableBytes(Unk02003ad8 *a, void *b, u32 c) {
             s = IrqDisable();
             if (o->mUnk_1c & 0x200) {
                 do {
-                    func_0200e01c(&o->mUnk_0c);
+                    ThreadWait(&o->mUnk_0c);
                 } while (o->mUnk_1c & 0x200);
             }
             IrqRestore(s);
@@ -430,7 +430,7 @@ void FileFinishCommand(Unk02003024 *a, s32 b) {
     a->mUnk_04 = a->mUnk_00;
     a->mUnk_0c &= ~0x4f;
     a->mUnk_14 = b;
-    func_0200df9c(&a->mUnk_18);
+    ThreadQueueSetAllRunnable(&a->mUnk_18);
     IrqRestore(s);
 }
 
@@ -471,7 +471,7 @@ s32 FileDispatchCommand(Unk02003024 *a, u32 b) {
             s = IrqDisable();
             if (p->mUnk_1c & 0x200) {
                 do {
-                    func_0200e01c(&p->mUnk_0c);
+                    ThreadWait(&p->mUnk_0c);
                 } while (p->mUnk_1c & 0x200);
             }
             r = a->mUnk_14;

@@ -117,7 +117,7 @@ void func_ov003_021cbaa0(void) {
         b.mUnk_0a = *(u8 *) (c + 0xf4) + 1;
     }
     if (func_ov000_02188868(&b) == 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     if (a == 0) {
         func_ov000_021886fc(*(u8 *) (c + 0xf4), c);

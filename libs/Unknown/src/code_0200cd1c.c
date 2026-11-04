@@ -12,7 +12,7 @@ s32 func_0200cd1c(u32 a) {
 // 0x40 plus the bit position counted from the top for the first word, 0x60 plus it for the second, or -3 when both
 // words are zero.
 // Not compiled code: it counts leading zeros with clz, which 1.2 never builds (docs/compiler.md).
-asm s32 func_0200cd28(void) {
+asm s32 IdAlloc(void) {
     ldr r3, =0x27fffb0
     ldr r1, [r3, #0x0]
     clz r2, r1
@@ -40,7 +40,7 @@ cd28_clear:
 // non-matching: the original tests with pl/mi after cmp #0x60 (ours ge/lt) and keeps the shifted bit in its own
 // register (mov, lsr, then orr; ours folds the shift into the orr). No other compiled ARM function in the game has a
 // pl/mi test after a compare with a constant, so the original is likely hand-written like its neighbour
-void func_0200cd80(s32 a) {
+void IdFree(s32 a) {
     u32 *p;
     p = (u32 *) 0x027fffb0;
     if (a >= 0x60) {

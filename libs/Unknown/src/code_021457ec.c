@@ -32,7 +32,7 @@ void func_02145888(void) {
     if (compareLeft0 != compareRight0) {
         return;
     }
-    func_0200fd1c();
+    IrqDisableLoopForever();
 }
 
 void func_02145878(u32 arg0) {
@@ -50,7 +50,7 @@ int func_0214581c(void) {
     p = (Unk021458c4 *) (u32) &data_0217fa40;
     s = IrqDisable();
     while (p->mUnk_114 & 4) {
-        func_0200e01c(&p->mUnk_10c);
+        ThreadWait(&p->mUnk_10c);
     }
     IrqRestore(s);
     return p->mUnk_00->mUnk_00 == 0;

@@ -37,7 +37,7 @@ void func_021469a4(void *a) {
         s = IrqDisable();
         while ((p->mUnk_114 & 8) == 0) {
             p->mUnk_104 = &p->mUnk_44;
-            func_0200e01c(0);
+            ThreadWait(0);
         }
         IrqRestore(s);
         p->mUnk_40(p);
@@ -73,7 +73,7 @@ int func_02146868(Unk021458c4 *p, s32 a, s32 b) {
         }
         s = IrqDisable();
         while (p->mUnk_114 & 0x20) {
-            func_0200e01c(0);
+            ThreadWait(0);
         }
         IrqRestore(s);
         v = p->mUnk_00->mUnk_00;
@@ -151,9 +151,9 @@ void func_02146600(void) {
         arg = p->mUnk_3c;
         s = IrqDisable();
         p->mUnk_114 &= ~0x4c;
-        func_0200df9c(&p->mUnk_10c);
+        ThreadQueueSetAllRunnable(&p->mUnk_10c);
         if (p->mUnk_114 & 0x10) {
-            func_0200df68(&p->mUnk_44);
+            ThreadSetRunnable(&p->mUnk_44);
         }
         IrqRestore(s);
         if (cb != 0) {
@@ -227,7 +227,7 @@ int func_021464a4(Unk02146154 *p) {
         }
         func_0200ee3c((void *) addr, len);
         func_0200ee98();
-        func_0200cc74(0x80000, func_02146600);
+        InterruptHandlerSet(0x80000, func_02146600);
         InterruptFlagWrite(0x80000);
         InterruptEnableSetBits(0x80000);
         IrqRestore(s);
@@ -299,9 +299,9 @@ void func_02146300(Unk021458c4 *a) {
     arg = p->mUnk_3c;
     s = IrqDisable();
     p->mUnk_114 &= ~0x4c;
-    func_0200df9c(&p->mUnk_10c);
+    ThreadQueueSetAllRunnable(&p->mUnk_10c);
     if (p->mUnk_114 & 0x10) {
-        func_0200df68(&p->mUnk_44);
+        ThreadSetRunnable(&p->mUnk_44);
     }
     IrqRestore(s);
     if (cb != 0) {
@@ -321,7 +321,7 @@ void func_021461d8(u32 a, u32 b, u32 c, u32 d, UnkFunc *e, u32 f, u32 g) {
     func_02145888();
     s = IrqDisable();
     while (p->mUnk_114 & 4) {
-        func_0200e01c(&p->mUnk_10c);
+        ThreadWait(&p->mUnk_10c);
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = e;
@@ -341,7 +341,7 @@ void func_021461d8(u32 a, u32 b, u32 c, u32 d, UnkFunc *e, u32 f, u32 g) {
     } else if (g != 0) {
         func_02145b0c(func_02146300);
     } else {
-        p->mUnk_104 = data_0216ff5c.mUnk_04;
+        p->mUnk_104 = data_0216ff5c.mCurrentThread;
         func_02146300(p);
     }
 }
@@ -430,9 +430,9 @@ void func_02145f80(Unk021458c4 *p) {
     arg = p->mUnk_3c;
     s = IrqDisable();
     p->mUnk_114 &= ~0x4c;
-    func_0200df9c(&p->mUnk_10c);
+    ThreadQueueSetAllRunnable(&p->mUnk_10c);
     if (p->mUnk_114 & 0x10) {
-        func_0200df68(&p->mUnk_44);
+        ThreadSetRunnable(&p->mUnk_44);
     }
     IrqRestore(s);
     if (cb != 0) {
@@ -450,7 +450,7 @@ int func_02145e8c(u32 a, u32 b, u32 c, UnkFunc *d, void *e, u32 f, u32 g, u32 h,
     func_02000b44((u32) (BuildInfo + 0x24));
     s = IrqDisable();
     while (p->mUnk_114 & 4) {
-        func_0200e01c(&p->mUnk_10c);
+        ThreadWait(&p->mUnk_10c);
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = d;
@@ -466,7 +466,7 @@ int func_02145e8c(u32 a, u32 b, u32 c, UnkFunc *d, void *e, u32 f, u32 g, u32 h,
         func_02145b0c(func_02145f80);
         return 1;
     }
-    data_0217fa40.mUnk_104 = data_0216ff5c.mUnk_04;
+    data_0217fa40.mUnk_104 = data_0216ff5c.mCurrentThread;
     func_02145f80(p);
     return p->mUnk_00->mUnk_00 == 0;
 }
@@ -480,19 +480,19 @@ int func_02145d44(s32 a) {
     p = &data_0217fa40;
     func_02000b44((u32) (BuildInfo + 0x24));
     if (a == 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     func_02145888();
     s = IrqDisable();
     while (p->mUnk_114 & 4) {
-        func_0200e01c(&p->mUnk_10c);
+        ThreadWait(&p->mUnk_10c);
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = 0;
     p->mUnk_3c = 0;
     IrqRestore(s);
     func_02145b54(a);
-    data_0217fa40.mUnk_104 = data_0216ff5c.mUnk_04;
+    data_0217fa40.mUnk_104 = data_0216ff5c.mCurrentThread;
     func_02146868(p, 2, 1);
     p->mUnk_00->mUnk_0c = 0;
     p->mUnk_00->mUnk_10 = (u32) p->mUnk_120;
@@ -502,9 +502,9 @@ int func_02145d44(s32 a) {
     arg = p->mUnk_3c;
     s = IrqDisable();
     p->mUnk_114 &= ~0x4c;
-    func_0200df9c(&p->mUnk_10c);
+    ThreadQueueSetAllRunnable(&p->mUnk_10c);
     if (p->mUnk_114 & 0x10) {
-        func_0200df68(&p->mUnk_44);
+        ThreadSetRunnable(&p->mUnk_44);
     }
     IrqRestore(s);
     if (cb != 0) {
@@ -598,11 +598,11 @@ void func_02145b0c(UnkFunc *f) {
     Unk021458c4 *p;
 
     p = (Unk021458c4 *) (u32) &data_0217fa40;
-    func_0200dce0(&p->mUnk_44, p->mUnk_108);
+    ThreadSetSortKey(&p->mUnk_44, p->mUnk_108);
     p->mUnk_104 = &p->mUnk_44;
     p->mUnk_40 = f;
     p->mUnk_114 |= 8;
-    func_0200df68(&p->mUnk_44);
+    ThreadSetRunnable(&p->mUnk_44);
 }
 
 // Waits until mUnk_08 is -3, then stores a and b in mUnk_08 and mUnk_18; counts mUnk_0c up.
@@ -614,11 +614,11 @@ void func_02145a70(u32 a, u32 b) {
     s = IrqDisable();
     if (p->mUnk_08 == a) {
         if (p->mUnk_18 != b) {
-            func_0200fd1c();
+            IrqDisableLoopForever();
         }
     } else {
         while (p->mUnk_08 != -3) {
-            func_0200e01c(&p->mUnk_10);
+            ThreadWait(&p->mUnk_10);
         }
         p->mUnk_08 = a;
         p->mUnk_18 = b;
@@ -628,7 +628,7 @@ void func_02145a70(u32 a, u32 b) {
     IrqRestore(s);
 }
 
-// Counts mUnk_0c down; at 0 sets mUnk_08 to -3 and passes mUnk_10 to func_0200df9c.
+// Counts mUnk_0c down; at 0 sets mUnk_08 to -3 and passes mUnk_10 to ThreadQueueSetAllRunnable.
 void func_021459cc(u32 a, u32 b) {
     Unk021458c4 *p;
     u32 s;
@@ -636,16 +636,16 @@ void func_021459cc(u32 a, u32 b) {
     p = &data_0217fa40;
     s = IrqDisable();
     if (p->mUnk_08 != a || p->mUnk_0c == 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     } else {
         if (p->mUnk_18 != b) {
-            func_0200fd1c();
+            IrqDisableLoopForever();
         }
         p->mUnk_0c--;
         if (p->mUnk_0c == 0) {
             p->mUnk_08 = -3;
             p->mUnk_18 = 0;
-            func_0200df9c(&p->mUnk_10);
+            ThreadQueueSetAllRunnable(&p->mUnk_10);
         }
     }
     p->mUnk_00->mUnk_00 = 0;
@@ -670,13 +670,13 @@ void func_021458c4(void) {
     if (*(u16 *) 0x027ffc40 != 2) {
         MemCopy((void *) 0x027ffe00, (void *) 0x027ffa80, 0x160);
     }
-    p->mUnk_10.mUnk_04 = 0;
-    p->mUnk_10.mUnk_00 = p->mUnk_10.mUnk_04;
-    p->mUnk_10c.mUnk_04 = 0;
-    p->mUnk_10c.mUnk_00 = p->mUnk_10c.mUnk_04;
+    p->mUnk_10.mTail = 0;
+    p->mUnk_10.mHead = p->mUnk_10.mTail;
+    p->mUnk_10c.mTail = 0;
+    p->mUnk_10c.mHead = p->mUnk_10c.mTail;
     p->mUnk_108 = 4;
-    func_0200e28c(&p->mUnk_44, func_021469a4, 0, (u8 *) &data_02180060, 0x400, p->mUnk_108);
-    func_0200df68(&p->mUnk_44);
+    ThreadInit(&p->mUnk_44, func_021469a4, 0, (u8 *) &data_02180060, 0x400, p->mUnk_108);
+    ThreadSetRunnable(&p->mUnk_44);
     func_0214d7c4(11, func_02146a00);
     if (*(u16 *) 0x027ffc40 != 2) {
         func_02145878(1);

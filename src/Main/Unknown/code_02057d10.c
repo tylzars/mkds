@@ -53,7 +53,7 @@ u32 func_02057df0(void (*a)(void)) {
 
 void func_02057d9c(void) {
     while (data_0217aa0c->mUnk_f8 != 0) {
-        func_0200c894(1, 1);
+        InterruptClearAndWait(1, 1);
     }
 }
 

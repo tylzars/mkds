@@ -27,21 +27,21 @@ void exit(int a) {
 }
 
 void ExitTail(int a) {
-    if (func_0200ec08(data_0217eadc[0]) == 0) {
-        data_0217ea94[0] = data_0216ff5c.mUnk_08->mUnk_6c;
+    if (ThreadLockTry(data_0217eadc[0]) == 0) {
+        data_0217ea94[0] = data_0216ff5c.mListHead->mUnk_6c;
         data_0217eab8[0] = 1;
-    } else if (data_0217ea94[0] == data_0216ff5c.mUnk_08->mUnk_6c) {
+    } else if (data_0217ea94[0] == data_0216ff5c.mListHead->mUnk_6c) {
         data_0217eab8[0]++;
     } else {
-        func_0200ed34(data_0217eadc[0]);
-        data_0217ea94[0] = data_0216ff5c.mUnk_08->mUnk_6c;
+        ThreadLockWait(data_0217eadc[0]);
+        data_0217ea94[0] = data_0216ff5c.mListHead->mUnk_6c;
         data_0217eab8[0] = 1;
     }
     while (gExitFunctionCount > 0) {
         gExitFunctions[--gExitFunctionCount]();
     }
     if (--data_0217eab8[0] == 0) {
-        func_0200ecc4(data_0217eadc[0]);
+        ThreadLockUnlock(data_0217eadc[0]);
     }
     if (data_0217e984 != 0) {
         data_0217e984();

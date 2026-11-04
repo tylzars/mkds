@@ -1,6 +1,6 @@
 #include "code_0200c858.h"
 
-void func_0200c858(s8 *a, const s8 *b, s32 c) {
+void StringCopyBounded(s8 *a, const s8 *b, s32 c) {
     s32 i;
     c = c - 1;
     for (i = 0; i < c; i++) {

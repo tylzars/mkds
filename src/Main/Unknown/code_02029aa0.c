@@ -92,7 +92,7 @@ void func_02029dcc(void *a, void *b, void *c) {
     func_02125de0(a, &s);
     func_02025854(0, &t1, data_usa_02162150, data_usa_02162164, data_usa_02162178, 1, FindSceneFile);
     LoadNscrData(&t1.mUnk_14[3], FindSceneFile(data_usa_0216218c));
-    func_02016468(0xb, 0, &t1.mUnk_14[3]->mData, t1.mUnk_14[3]->mDataSize);
+    CallQueueAppend(0xb, 0, &t1.mUnk_14[3]->mData, t1.mUnk_14[3]->mDataSize);
     n = func_02148cb8();
     q = &data_usa_02174e00->mUnk_00[0];
     func_02025abc(q, data_usa_021621a0, data_usa_021621b8, data_usa_021621d0, data_usa_021621e4, data_usa_021621f8,

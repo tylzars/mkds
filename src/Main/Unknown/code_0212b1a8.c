@@ -131,10 +131,10 @@ void func_0212b260(void) {
         a -= 0x100;
     }
     if (a + 0x10 > 0x100) {
-        func_02016468(0x14, a << 7, p->mUnk_050, (0x100 - a) << 7);
-        func_02016468(0x14, 0, &data_0217d40c->mUnk_050[a << 7], (a - 0xf0) << 7);
+        CallQueueAppend(0x14, a << 7, p->mUnk_050, (0x100 - a) << 7);
+        CallQueueAppend(0x14, 0, &data_0217d40c->mUnk_050[a << 7], (a - 0xf0) << 7);
     } else {
-        func_02016468(0x14, a << 7, p->mUnk_050, 0x800);
+        CallQueueAppend(0x14, a << 7, p->mUnk_050, 0x800);
     }
 }
 
@@ -153,7 +153,7 @@ void func_0212b204(void) {
 
 void func_0212b1c0(void) {
     *(vu32 *) 0x4001010 = (((data_0217d40c->mUnk_008 >> 12) % 256) << 16) & 0x1ff0000;
-    func_020164e8();
+    CallQueueDrain();
 }
 
 u32 func_0212b1a8(void) {

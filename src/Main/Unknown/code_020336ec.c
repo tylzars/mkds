@@ -212,9 +212,9 @@ void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
         e = data_0217b488->mUnk_10c[b];
         p = e * 0x20 + (u8 *) u->mData;
         if (a == 0) {
-            func_02016468(0xe, v << 5, p, 0x20);
+            CallQueueAppend(0xe, v << 5, p, 0x20);
         } else {
-            func_02016468(0x1e, v << 5, p, 0x20);
+            CallQueueAppend(0x1e, v << 5, p, 0x20);
         }
     }
 }

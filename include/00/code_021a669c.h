@@ -11,4 +11,4 @@ u8 *func_ov000_021a6788(u16 a);
 u32 func_ov000_021a67dc(u32 a);
 u32 func_ov000_021a6844(void);
 void func_ov000_021a6894(void);
-void func_ov000_021a68dc(Unk0200edc0 *a);
+void func_ov000_021a68dc(ThreadLock *a);

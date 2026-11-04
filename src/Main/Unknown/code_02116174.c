@@ -65,11 +65,11 @@ void func_02116888(void) {
     v2 = FindSceneFile(gRecordVSM03NscrName);
     LocateNscr((Nscr **) &data_0217d350->mUnk_20, v2);
     v3 = ((u32) func_02077f00());
-    func_02016468((u32) 0x17, (u32) 0, (void *) (*(u32 *) (v4 + 0x14)), (u32) (*(u32 *) (v4 + 0x10)));
-    func_02016468((u32) 0x1b, (u32) 0, (void *) (v6[0] + 0xc), (u32) (*(u32 *) (v6[0] + 8)));
-    func_02016468((u32) 0x1b, (u32) (((u32) 0x00000800u)), data_0217d350->mUnk_4c, (u32) (((u32) 0x00000800u)));
-    func_02016468((u32) 0x1f, (u32) 0, (void *) (*(u32 *) (v5 + 0xc)), (u32) 0x40);
-    func_02016468((u32) 0xe, (u32) 0x40, (void *) (*(u32 *) (v3 + 0xc)), (u32) 0x20);
+    CallQueueAppend((u32) 0x17, (u32) 0, (void *) (*(u32 *) (v4 + 0x14)), (u32) (*(u32 *) (v4 + 0x10)));
+    CallQueueAppend((u32) 0x1b, (u32) 0, (void *) (v6[0] + 0xc), (u32) (*(u32 *) (v6[0] + 8)));
+    CallQueueAppend((u32) 0x1b, (u32) (((u32) 0x00000800u)), data_0217d350->mUnk_4c, (u32) (((u32) 0x00000800u)));
+    CallQueueAppend((u32) 0x1f, (u32) 0, (void *) (*(u32 *) (v5 + 0xc)), (u32) 0x40);
+    CallQueueAppend((u32) 0xe, (u32) 0x40, (void *) (*(u32 *) (v3 + 0xc)), (u32) 0x20);
 }
 
 #pragma thumb off
@@ -159,10 +159,10 @@ void func_021162cc(void) {
     v = func_02116870();
     if (func_02114158(v + data_0217d350->mUnk_80, buf3)) {
         data_0217d350->mUnk_40 = 1;
-        func_02016468(9, 0, &data_0217d350->mUnk_20->mUnk_0c, data_0217d350->mUnk_20->mUnk_08);
+        CallQueueAppend(9, 0, &data_0217d350->mUnk_20->mUnk_0c, data_0217d350->mUnk_20->mUnk_08);
     } else {
         data_0217d350->mUnk_40 = 0;
-        func_02016468(9, 0, &data_0217d350->mUnk_10->mUnk_0c, data_0217d350->mUnk_10->mUnk_08);
+        CallQueueAppend(9, 0, &data_0217d350->mUnk_10->mUnk_0c, data_0217d350->mUnk_10->mUnk_08);
     }
     switch (data_0217d350->mUnk_40) {
         case 0:
@@ -203,8 +203,8 @@ void func_021162cc(void) {
             func_02116a4c(&a, buf);
             func_02124224(0, 0xc, data_0217d350->mUnk_0c, buf, data_0217d350->mUnk_08, data_0217d350->mUnk_14, 6);
             func_021141c8(v + data_0217d350->mUnk_80, data_0217d350->mUnk_88, data_0217d350->mUnk_8c);
-            func_02016468(0x13, func_0212497c(3, data_0217d350->mUnk_04, data_0217d350->mUnk_08) << 5,
-                          data_0217d350->mUnk_8c, 0x200);
+            CallQueueAppend(0x13, func_0212497c(3, data_0217d350->mUnk_04, data_0217d350->mUnk_08) << 5,
+                            data_0217d350->mUnk_8c, 0x200);
             break;
         case 1:
             func_02114298(v + data_0217d350->mUnk_80, buf, 0x20);
@@ -216,8 +216,8 @@ void func_021162cc(void) {
                               data_0217d350->mUnk_24);
             }
             func_021141c8(v + data_0217d350->mUnk_80, data_0217d350->mUnk_88, data_0217d350->mUnk_8c);
-            func_02016468(0x13, func_0212497c(1, data_0217d350->mUnk_04, data_0217d350->mUnk_18) << 5,
-                          data_0217d350->mUnk_8c, 0x200);
+            CallQueueAppend(0x13, func_0212497c(1, data_0217d350->mUnk_04, data_0217d350->mUnk_18) << 5,
+                            data_0217d350->mUnk_8c, 0x200);
             break;
     }
 }

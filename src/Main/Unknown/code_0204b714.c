@@ -201,13 +201,13 @@ void func_0204ba7c(void) {
 void func_0204ba8c(void) {
     Unk021759b8 *t;
     t = (Unk021759b8 *) &data_usa_021759b8;
-    if (func_0200e070(&t->mUnk_400) != 0) {
+    if (ThreadHasEnded(&t->mUnk_400) != 0) {
         return;
     }
     do {
-        func_0200df68(&t->mUnk_400);
-        func_0200e084(&t->mUnk_400);
-    } while (func_0200e070(&t->mUnk_400) == 0);
+        ThreadSetRunnable(&t->mUnk_400);
+        ThreadWaitForEnd(&t->mUnk_400);
+    } while (ThreadHasEnded(&t->mUnk_400) == 0);
 }
 
 void func_0204bad8(void) {
@@ -215,8 +215,8 @@ void func_0204bad8(void) {
     t = (Unk021759b8 *) &data_usa_021759b8;
     t->mUnk_4c4 = 0;
     t->mUnk_4c0 = t->mUnk_4c4;
-    func_0200e28c(&t->mUnk_400, (void (*)(void *)) func_0204bb34, t, (u8 *) &t->mUnk_400, 0x400, 15);
-    func_0200df68(&t->mUnk_400);
+    ThreadInit(&t->mUnk_400, (void (*)(void *)) func_0204bb34, t, (u8 *) &t->mUnk_400, 0x400, 15);
+    ThreadSetRunnable(&t->mUnk_400);
 }
 
 void func_0204bb34(void *a) {
@@ -241,7 +241,7 @@ void func_0204bb34(void *a) {
                     IrqRestore(s);
                     return;
                 }
-                func_0200e01c(NULL);
+                ThreadWait(NULL);
                 r = b->mUnk_46c8;
             } while (r == NULL);
         }

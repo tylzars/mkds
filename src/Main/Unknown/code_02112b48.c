@@ -298,15 +298,15 @@ void func_02113f34(void) {
     v1 = FindSceneFile(gRecordVSMBNclrName);
     LocateNclr((Nclr **) (&v7), v1);
     v3 = *(s32 *) (v4 + 0xc);
-    func_02016468((u32) 0x13, (u32) 0, (void *) (gRecordVS->mUnk_00->mData), (u32) (gRecordVS->mUnk_00->mDataSize));
-    func_02016468((u32) 0xe, (u32) 0, (void *) (*(u32 *) (v4 + 0xc)), (u32) (((u32) 0x000001a0u)));
-    func_02016468((u32) 0xe, (u32) 0x1c0, (void *) (v3 + 0x1c0), (u32) 0x40);
-    func_02016468((u32) 0x23, (u32) 0, (void *) (gRecordVS->mUnk_28->mData), (u32) (gRecordVS->mUnk_28->mDataSize));
-    func_02016468((u32) 0x1e, (u32) 0, (void *) (*(u32 *) (v8 + 0xc)), (u32) (*(u32 *) (v8 + 8)));
-    func_02016468((u32) 4, (u32) 0, (void *) (*(u32 *) (v5 + 0x14)), (u32) (*(u32 *) (v5 + 0x10)));
-    func_02016468((u32) 8, (u32) 0, (void *) (v6 + 0xc), (u32) (*(u32 *) (v6 + 8)));
-    func_02016468((u32) 0xf, (u32) 0, (void *) (*(u32 *) (v7 + 0xc)), (u32) 0x40);
-    func_02016468((u32) 0xe, (u32) 0x40, (void *) (*(u32 *) (v2 + 0xc)), (u32) 0x20);
+    CallQueueAppend((u32) 0x13, (u32) 0, (void *) (gRecordVS->mUnk_00->mData), (u32) (gRecordVS->mUnk_00->mDataSize));
+    CallQueueAppend((u32) 0xe, (u32) 0, (void *) (*(u32 *) (v4 + 0xc)), (u32) (((u32) 0x000001a0u)));
+    CallQueueAppend((u32) 0xe, (u32) 0x1c0, (void *) (v3 + 0x1c0), (u32) 0x40);
+    CallQueueAppend((u32) 0x23, (u32) 0, (void *) (gRecordVS->mUnk_28->mData), (u32) (gRecordVS->mUnk_28->mDataSize));
+    CallQueueAppend((u32) 0x1e, (u32) 0, (void *) (*(u32 *) (v8 + 0xc)), (u32) (*(u32 *) (v8 + 8)));
+    CallQueueAppend((u32) 4, (u32) 0, (void *) (*(u32 *) (v5 + 0x14)), (u32) (*(u32 *) (v5 + 0x10)));
+    CallQueueAppend((u32) 8, (u32) 0, (void *) (v6 + 0xc), (u32) (*(u32 *) (v6 + 8)));
+    CallQueueAppend((u32) 0xf, (u32) 0, (void *) (*(u32 *) (v7 + 0xc)), (u32) 0x40);
+    CallQueueAppend((u32) 0xe, (u32) 0x40, (void *) (*(u32 *) (v2 + 0xc)), (u32) 0x20);
 }
 
 #pragma thumb off
@@ -379,10 +379,10 @@ void func_02113a3c(void) {
     a = func_02113f1c();
     if (func_02114158(a + gRecordVS->mUnk_74, s)) {
         gRecordVS->mUnk_40 = 1;
-        func_02016468(9, 0, &gRecordVS->mUnk_20->mData, gRecordVS->mUnk_20->mDataSize);
+        CallQueueAppend(9, 0, &gRecordVS->mUnk_20->mData, gRecordVS->mUnk_20->mDataSize);
     } else {
         gRecordVS->mUnk_40 = 0;
-        func_02016468(9, 0, &gRecordVS->mUnk_10->mData, gRecordVS->mUnk_10->mDataSize);
+        CallQueueAppend(9, 0, &gRecordVS->mUnk_10->mData, gRecordVS->mUnk_10->mDataSize);
     }
     switch (gRecordVS->mUnk_40) {
         case 0:
@@ -418,7 +418,7 @@ void func_02113a3c(void) {
             func_02124224(0, 0xc, gRecordVS->mUnk_0c, buf, gRecordVS->mUnk_08, gRecordVS->mUnk_14, 6);
             func_021141c8(a + gRecordVS->mUnk_74, gRecordVS->mUnk_78, gRecordVS->mUnk_7c);
             d = gRecordVS;
-            func_02016468(0x13, func_0212497c(3, d->mUnk_04, d->mUnk_08) << 5, d->mUnk_7c, 0x200);
+            CallQueueAppend(0x13, func_0212497c(3, d->mUnk_04, d->mUnk_08) << 5, d->mUnk_7c, 0x200);
             break;
         case 1:
             func_02114298(a + gRecordVS->mUnk_74, buf, 0x20);
@@ -429,7 +429,7 @@ void func_02113a3c(void) {
             }
             func_021141c8(a + gRecordVS->mUnk_74, gRecordVS->mUnk_78, gRecordVS->mUnk_7c);
             d = gRecordVS;
-            func_02016468(0x13, func_0212497c(1, d->mUnk_04, d->mUnk_18) << 5, d->mUnk_7c, 0x200);
+            CallQueueAppend(0x13, func_0212497c(1, d->mUnk_04, d->mUnk_18) << 5, d->mUnk_7c, 0x200);
             break;
     }
 }

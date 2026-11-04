@@ -31,22 +31,22 @@ void func_ov003_021d1654(void) {
     data_ov003_021da2b0 = func_ov003_021d283c(0xe8, 4);
     FS_InitFile(&a);
     if (FS_OpenFile(&a, data_ov003_021d7be0) == 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
-    data_ov003_021da2b0->mUnk_e4 = func_0200cd28();
+    data_ov003_021da2b0->mUnk_e4 = IdAlloc();
     e = a.mUnk_20.w.mUnk_04;
     FS_ReadFile(&a, b, 8);
     FS_ReadFile(&a, c, 8);
     FS_CloseFile(&a);
     FS_InitArchive(&data_ov003_021da2b0->mUnk_88);
     if (FS_RegisterArchiveName(&data_ov003_021da2b0->mUnk_88, data_ov003_021d67d8, 3) == 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     FS_SetArchiveProc(&data_ov003_021da2b0->mUnk_88, func_ov003_021d15a4, 0x602);
     if (FS_LoadArchive(&data_ov003_021da2b0->mUnk_88, (u8 *) e, c[0], c[1], b[0], b[1],
                        (s32(*)(Unk02003a6c *, void *, u32, u32)) func_ov003_021d1574,
                        (s32(*)(Unk02003a6c *, void *, u32, u32)) func_ov003_021d1564) == 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     f = FS_LoadArchiveTables(&data_ov003_021da2b0->mUnk_88, 0, 0);
     data_ov003_021da2b0->mUnk_00 = func_ov003_021d285c(f, 4);
@@ -61,7 +61,7 @@ void func_ov003_021d15f4(void) {
     FS_UnloadArchiveTables(&data_ov003_021da2b0->mUnk_88);
     FS_UnloadArchive(&data_ov003_021da2b0->mUnk_88);
     FS_ReleaseArchiveName(&data_ov003_021da2b0->mUnk_88);
-    func_0200cd80(data_ov003_021da2b0->mUnk_e4);
+    IdFree(data_ov003_021da2b0->mUnk_e4);
     data_ov003_021da2b0->mUnk_e4 = 0;
     func_ov003_021d2808(data_ov003_021da2b0);
     data_ov003_021da2b0->mUnk_00 = NULL;
@@ -105,7 +105,7 @@ void *func_ov003_021d14b8(const u8 *f, u32 *g, s32 h) {
     func_ov003_021d1cd4(data_ov003_021da2b0->mUnk_84);
     FS_InitFile(&a);
     if (FS_OpenFile(&a, f) == 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     c = a.mUnk_20.w.mUnk_08 - a.mUnk_20.w.mUnk_04;
     if (g != NULL) {

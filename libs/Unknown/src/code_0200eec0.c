@@ -29,7 +29,7 @@ void func_0200eec0(void) {
     func_0214d594();
     func_0200fc1c();
     func_0200ffd8();
-    func_0200e388();
+    ThreadSystemInit();
     func_0200fd74();
     func_0200c7f4();
     func_02146154();

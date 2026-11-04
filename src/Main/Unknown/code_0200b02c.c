@@ -15,8 +15,8 @@ void func_0200b02c(Unk0200aeec_head *a, u32 b) {
         func_0200b00c(&a->mUnk_c4);
         a->mUnk_c0 = NULL;
         v2 = (b - 0xe4) & ~3;
-        func_0200e28c(&a->mUnk_00, func_0200b08c, a, (u8 *) a + 0xe4 + v2, v2, 0);
-        func_0200df68(&a->mUnk_00);
+        ThreadInit(&a->mUnk_00, func_0200b08c, a, (u8 *) a + 0xe4 + v2, v2, 0);
+        ThreadSetRunnable(&a->mUnk_00);
     }
     IrqRestore(v1);
 }
@@ -34,19 +34,19 @@ void func_0200b08c(void *param_1) {
     for (;;) {
         v2 = IrqDisable();
         while (a->mUnk_c0 == NULL) {
-            func_0200dce0(&a->mUnk_00, v6);
-            func_0200e01c(NULL);
+            ThreadSetSortKey(&a->mUnk_00, v6);
+            ThreadWait(NULL);
         }
         v1 = a->mUnk_c0;
         a->mUnk_c0 = a->mUnk_c0->mUnk_00;
-        func_0200dce0(&a->mUnk_00, v1->mUnk_04_1);
+        ThreadSetSortKey(&a->mUnk_00, v1->mUnk_04_1);
         IrqRestore(v2);
         if (v1->mUnk_08 != NULL) {
             ((void (*)(Unk0200aeec *)) v1->mUnk_08)(v1);
         }
         v3 = IrqDisable();
         v4 = (void (*)(Unk0200aeec *)) v1->mUnk_0c;
-        v5 = func_0200dcd8(&a->mUnk_00);
+        v5 = ThreadGetSortKey(&a->mUnk_00);
         if (a->mUnk_c0 == NULL) {
             v2 = v6;
         } else if (v5 < a->mUnk_c0->mUnk_04_1) {
@@ -55,7 +55,7 @@ void func_0200b08c(void *param_1) {
             v2 = v5;
         }
         if (v2 != v5) {
-            func_0200dce0(&a->mUnk_00, v2);
+            ThreadSetSortKey(&a->mUnk_00, v2);
         }
         v1->mUnk_00 = NULL;
         v1->mUnk_04_0 = 0;

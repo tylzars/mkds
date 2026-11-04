@@ -95,7 +95,7 @@ void func_0200c690(u32 a, u32 b) {
     if ((b & 0x3f) == 1) {
         data_0216fe04.mUnk_00 = 1;
     } else {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
 }
 
@@ -112,13 +112,13 @@ void func_0200c65c(u32 a, u32 b) {
             return;
         }
     } else {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
 }
 
 void func_0200c648(void) {
     func_0200c46c(2);
-    func_0200fd1c();
+    IrqDisableLoopForever();
 }
 
 void func_0200c620(void) {
@@ -126,7 +126,7 @@ void func_0200c620(void) {
 
     v = 0;
     CpuSet(&v, &data_0216fe04, 0x05000001);
-    data_0216fe04.mUnk_02 = func_0200cd28();
+    data_0216fe04.mUnk_02 = IdAlloc();
 }
 
 s32 func_0200c568(void) {
@@ -177,7 +177,7 @@ void func_0200c508(Unk0200c4a4 *p) {
 void func_0200c4c0(u32 a, Unk0200c4a4 *p) {
     for (;;) {
         p->mUnk_04 = IrqDisable();
-        p->mUnk_00 = func_0200cdc0((Unk0200ce60 *) 0x027fffe8) & 0x40;
+        p->mUnk_00 = SwapLockGetHolderId((SwapLockSlot *) 0x027fffe8) & 0x40;
         if (p->mUnk_00 != 0) {
             break;
         }

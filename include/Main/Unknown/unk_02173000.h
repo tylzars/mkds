@@ -6,19 +6,19 @@
 
 typedef struct Unk01ff9048 Unk01ff9048;
 typedef struct Unk020162b0 Unk020162b0;
-typedef struct Unk02016468 Unk02016468;
+typedef struct CallQueue CallQueue;
 
 extern u32 data_02173274;
 
 extern u8 data_0217320c[];
 
-extern Unk02016468 data_02173220;
+extern CallQueue data_02173220;
 extern Unk020162b0 data_02173214;
 extern Unk02016d34 data_02173234;
-extern Unk020169a4 *data_02173238;
-extern Unk020169a4 *data_0217323c;
+extern RangeEntry *data_02173238;
+extern RangeEntry *data_0217323c;
 extern Unk020170e4 data_02173250;
-extern Unk020169a4 *data_02173254;
+extern RangeEntry *data_02173254;
 
 extern vu16 data_02173278;
 extern vu16 data_0217327c;

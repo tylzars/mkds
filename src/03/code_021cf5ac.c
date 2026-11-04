@@ -206,7 +206,7 @@ void func_ov003_021cf93c(Unk021cf8ac *a, u16 b) {
         return;
     }
     if (func_ov003_021cf8ac(a) == 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
 }
 
@@ -233,7 +233,7 @@ void func_ov003_021cf978(u32 a, u32 b) {
     *(Unk021cf5ac *) data_ov003_021da288 = z;
     data_ov003_021da288->mUnk_1b140 = data_ov003_021da288->mUnk_10040;
     if (func_02009ff4(data_ov003_021da288->mUnk_1b140, &x, a, b, 2) != 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     func_02009f38(0x100, 1);
     func_02007ea0(func_ov003_021cf378);

@@ -7,16 +7,16 @@
 #include "code_0214b338.h"
 #include "code_0214c1bc.h"
 
-u16 func_02016978(Unk02016468 *p, u32 v) {
-    return (v + 1) % p->mUnk_04;
+u16 CallQueueNextIndex(CallQueue *p, u32 v) {
+    return (v + 1) % p->mCapacity;
 }
 
-s32 func_02016960(Unk02016468 *p) {
-    return p->mUnk_0c == p->mUnk_04;
+s32 CallQueueIsFull(CallQueue *p) {
+    return p->mCount == p->mCapacity;
 }
 
-s32 func_0201694c(Unk02016468 *p) {
-    return p->mUnk_0c == 0;
+s32 CallQueueIsEmpty(CallQueue *p) {
+    return p->mCount == 0;
 }
 
 void func_0201691c(const void *a, u32 b, u32 c) {
@@ -254,10 +254,10 @@ void func_0201667c(u32 arg0, u32 arg1, u32 arg2) {
     func_0214bea4((const void *) value0, (int) value1, value2);
 }
 
-void func_02016638(Unk02016638 *p) {
+void CallQueueRunEntry(CallQueueEntry *p) {
     void (*f)(const void *, u32, u32);
 
-    f = data_02152c54[p->mUnk_00];
-    func_0200ee74((const void *) p->mUnk_04, p->mUnk_0c);
-    f((const void *) p->mUnk_04, p->mUnk_08, p->mUnk_0c);
+    f = data_02152c54[p->mFuncIndex];
+    func_0200ee74((const void *) p->mSource, p->mSize);
+    f((const void *) p->mSource, p->mUnk_08, p->mSize);
 }

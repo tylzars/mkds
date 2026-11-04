@@ -285,14 +285,14 @@ void func_02126ef8(void) {
     Unk0217d3f0 *v1;
     v1 = data_0217d3f0;
     if (0 < v1->mUnk_28) {
-        func_02016468(0x1f, ((0xee - v1->mUnk_2c) * 2), &v1->mUnk_2246, 2);
-        func_02016468((u32) 0x1f, (u32) ((0xfe - data_0217d3f0->mUnk_2c) * 2), (void *) &data_0217d3f0->mUnk_2246,
-                      (u32) 2);
+        CallQueueAppend(0x1f, ((0xee - v1->mUnk_2c) * 2), &v1->mUnk_2246, 2);
+        CallQueueAppend((u32) 0x1f, (u32) ((0xfe - data_0217d3f0->mUnk_2c) * 2), (void *) &data_0217d3f0->mUnk_2246,
+                        (u32) 2);
         v1 = data_0217d3f0;
         if (v1->mUnk_28 == 2) {
-            func_02016468(0x1f, ((v1->mUnk_2c + 0xed) * 2), &v1->mUnk_2244, 2);
-            func_02016468((u32) 0x1f, (u32) ((data_0217d3f0->mUnk_2c + 0xfd) * 2), (void *) &data_0217d3f0->mUnk_2244,
-                          (u32) 2);
+            CallQueueAppend(0x1f, ((v1->mUnk_2c + 0xed) * 2), &v1->mUnk_2244, 2);
+            CallQueueAppend((u32) 0x1f, (u32) ((data_0217d3f0->mUnk_2c + 0xfd) * 2), (void *) &data_0217d3f0->mUnk_2244,
+                            (u32) 2);
         }
     }
 }
@@ -302,8 +302,8 @@ void func_02126ea8(void) {
     if (0 < data_0217d3f0->mUnk_28) {
         v2 = 0;
         do {
-            func_02016468(0x1f, ((v2 + 0xed) * 2), &data_0217d3f0->mUnk_2244, 2);
-            func_02016468(0x1f, ((v2 + 0xfd) * 2), &data_0217d3f0->mUnk_2244, 2);
+            CallQueueAppend(0x1f, ((v2 + 0xed) * 2), &data_0217d3f0->mUnk_2244, 2);
+            CallQueueAppend(0x1f, ((v2 + 0xfd) * 2), &data_0217d3f0->mUnk_2244, 2);
             v2 = v2 + 1;
         } while (v2 < 2);
     }
@@ -338,8 +338,8 @@ void func_02126d28(void) {
             }
         }
         func_02126f78(a);
-        func_02016468(10, 0, data_0217d3f0->mUnk_54, 0x1000);
-        func_02016468(0x18, 0, &data_0217d3f0->mUnk_1054, 0x1000);
+        CallQueueAppend(10, 0, data_0217d3f0->mUnk_54, 0x1000);
+        CallQueueAppend(0x18, 0, &data_0217d3f0->mUnk_1054, 0x1000);
         data_0217d3f0->mUnk_04 = 1;
         data_0217d3f0->mUnk_0c = 0;
         for (i = 0; i < 2; i++) {
@@ -355,7 +355,8 @@ void func_02126d28(void) {
                 if ((u32) i <= 1) {
                     m = 6;
                 }
-                func_02016468(m, (data_0217d3f0->mUnk_2220[i] + data_0215d054[i]) << 5, data_0217d3f0->mUnk_21e8[i], n);
+                CallQueueAppend(m, (data_0217d3f0->mUnk_2220[i] + data_0215d054[i]) << 5, data_0217d3f0->mUnk_21e8[i],
+                                n);
             }
         }
         if (data_0217d3f0->mUnk_28 > 0) {
@@ -573,8 +574,8 @@ void func_02126834(void) {
                     data_0217d3f0->mUnk_14 = 0;
                 }
                 func_021270bc();
-                func_02016468(10, 0, data_0217d3f0->mUnk_54, 0x1000);
-                func_02016468(0x18, 0, &data_0217d3f0->mUnk_1054, 0x1000);
+                CallQueueAppend(10, 0, data_0217d3f0->mUnk_54, 0x1000);
+                CallQueueAppend(0x18, 0, &data_0217d3f0->mUnk_1054, 0x1000);
             }
         }
     }

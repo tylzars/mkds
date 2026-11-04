@@ -4,7 +4,7 @@
 #include "code_0200db4c.h"
 
 typedef struct Http Http;
-typedef struct Unk0200edc0 Unk0200edc0;
+typedef struct ThreadLock ThreadLock;
 
 // Block of four words: mUnk_00 is the first byte, mUnk_04 the cursor, mUnk_08 the end, mUnk_0c the size.
 typedef struct Unk02186d7cBuf {
@@ -63,12 +63,12 @@ typedef struct Unk02186d7c {
     /* 924 */ u8 pad_924[4];
     /* 928 */ Unk02186d7cBuf mSendBuffer;
     /* 938 */ Unk02186d7cBuf mReceiveBuffer;
-    /* 948 */ Unk0200edc0 mUnk_948;
+    /* 948 */ ThreadLock mUnk_948;
     /* 960 */ s32 mContentLength;
     /* 964 */ const char *mBodyStart;
     /* 968 */ Unk0200db5c mThread;
     /* a20 */ u8 pad_a20[8];
-    /* a28 */ Unk0200edc0 mUnk_a28;
+    /* a28 */ ThreadLock mUnk_a28;
     /* a40 */ s32 mUnk_a40;
     /* a44 */ u8 pad_a44[0x101c];
     /* 1a60 */ u8 mUnk_1a60[0x1000];

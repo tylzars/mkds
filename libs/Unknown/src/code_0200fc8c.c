@@ -55,7 +55,7 @@ asm u32 func_0200fce0(u32 a) {
 
 // Returns the low five bits of the status register.
 // Not compiled code: C has no way to read or write the status register (mrs/msr).
-asm u32 func_0200fcf8(void) {
+asm u32 ProcessorModeGet(void) {
     mrs r0, cpsr
     and r0, r0, #0x1f
     bx lr

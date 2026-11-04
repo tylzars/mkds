@@ -68,7 +68,7 @@ Unk021d1770 *func_ov003_021d19e0(u32 f, s32 g, s32 h) {
             } while (c != &data_ov003_021da2b4[f].mUnk_210);
         }
         if (c == &data_ov003_021da2b4[f].mUnk_210) {
-            func_0200fd1c();
+            IrqDisableLoopForever();
         }
     } else {
         c = &data_ov003_021da2b4[f].mUnk_210;
@@ -85,7 +85,7 @@ Unk021d1770 *func_ov003_021d19e0(u32 f, s32 g, s32 h) {
             } while (c != &data_ov003_021da2b4[f].mUnk_200);
         }
         if (c == &data_ov003_021da2b4[f].mUnk_200) {
-            func_0200fd1c();
+            IrqDisableLoopForever();
         }
     }
     InterruptEnableSetBits(b);

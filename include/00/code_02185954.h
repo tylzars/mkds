@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Object behind data_ov000_021b4c90; the bytes at 0x3bc are passed to func_0200ed34 and func_0200ecc4.
+// Object behind data_ov000_021b4c90; the bytes at 0x3bc are passed to ThreadLockWait and ThreadLockUnlock.
 typedef struct Unk021b4c90 {
     /* 000 */ u8 pad_000[4];
     /* 004 */ s32 mUnk_004;
@@ -41,7 +41,7 @@ typedef struct Unk02185984 {
     /* 2f8 */ Http *mUnk_2f8;
     /* 2fc */ Unk0200db5c mUnk_2fc;
     /* 3b4 */ u8 pad_3b4[8];
-    /* 3bc */ Unk0200edc0 mUnk_3bc;
+    /* 3bc */ ThreadLock mUnk_3bc;
     /* 3d4 */ s32 mUnk_3d4;
     /* 3d8 */ u8 pad_3d8[8];
     /* 3e0 */ u8 mUnk_3e0[0x1000];

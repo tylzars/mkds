@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_0200fe74(u32 a);
+u32 CountLeadingZeros(u32 a);

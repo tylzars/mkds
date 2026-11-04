@@ -74,7 +74,7 @@ u32 func_020072c0(void) {
                     }
                 }
                 if (v6 == NULL) {
-                    func_0200fd1c();
+                    IrqDisableLoopForever();
                 }
                 v5->mUnk_00 = 0;
                 v6->mUnk_0c = 1;

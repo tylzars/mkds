@@ -99,7 +99,7 @@ void func_0200f950(Unk0200fb08 *n, u64 a, void (*f)(void *), void *p) {
     u32 s;
 
     if (n == 0 || n->mUnk_00 != 0) {
-        func_0200fd1c();
+        IrqDisableLoopForever();
     }
     s = IrqDisable();
     n->mUnk_1c = 0;

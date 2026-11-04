@@ -213,7 +213,7 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
     func_02047ba0(a->mUnk_02);
     func_02047b6c(9);
     GetHeap(func_020364e8());
-    func_02016554(HeapAlloc(GetHeap(func_020364e8()), 0x800), 0x80);
+    CallQueueInit(HeapAlloc(GetHeap(func_020364e8()), 0x800), 0x80);
     if (func_0204a428(a->mUnk_02, &n)) {
         func_0204acd0(n);
     }
@@ -242,7 +242,7 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
         func_020487fc_inline8();
         func_020487fc_inline9(b);
         r = func_0204984c(a, data_021759cc->mUnk_10c != 4);
-        func_020164e8();
+        CallQueueDrain();
         if (r) {
             a->mUnk_04 = data_021759cc->mUnk_120;
             goto end;
@@ -264,7 +264,7 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
         v = func_020487fc_inline8();
         func_020487fc_inline9(b);
         r = func_0204984c(a, data_021759cc->mUnk_10c != 4);
-        func_020164e8();
+        CallQueueDrain();
         if (r) {
             a->mUnk_04 = data_021759cc->mUnk_120;
             goto end;
@@ -304,7 +304,7 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
         func_020487fc_inline8();
         func_020487fc_inline9(b);
         func_0204984c(a, data_021759cc->mUnk_10c != 4);
-        func_020164e8();
+        CallQueueDrain();
         if (b->mUnk_0c != NULL) {
             b->mUnk_0c(0, data_021759cc->mUnk_0e4);
         }
@@ -333,7 +333,7 @@ end:
                 }
             }
             func_0204984c(a, data_021759cc->mUnk_10c != 4);
-            func_020164e8();
+            CallQueueDrain();
             func_0212034c();
             func_020373ec();
         } while (!c);

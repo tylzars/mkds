@@ -29,7 +29,7 @@ typedef struct Unk021458c4 {
     /* 004 */ s32 mUnk_04;
     /* 008 */ vs32 mUnk_08;
     /* 00c */ s32 mUnk_0c;
-    /* 010 */ Unk0200df9c mUnk_10;
+    /* 010 */ ThreadQueue mUnk_10;
     /* 018 */ u32 mUnk_18;
     /* 01c */ u32 mUnk_1c;
     /* 020 */ u32 mUnk_20;
@@ -45,7 +45,7 @@ typedef struct Unk021458c4 {
     /* 0fc */ u8 mUnk_fc[8];
     /* 104 */ Unk0200db5c *mUnk_104;
     /* 108 */ u32 mUnk_108;
-    /* 10c */ Unk0200df9c mUnk_10c;
+    /* 10c */ ThreadQueue mUnk_10c;
     /* 114 */ vu32 mUnk_114;
     /* 118 */ u8 mUnk_118[8];
     /* 120 */ u8 mUnk_120[0x100];

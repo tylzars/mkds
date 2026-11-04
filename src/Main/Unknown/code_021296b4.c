@@ -334,7 +334,7 @@ void func_02129ea4(void) {
 void func_02129e78(void) {
     u8 *v1;
     v1 = data_0217d400->mUnk_b4[data_0217d400->mUnk_04];
-    func_02016468((u32) 0x1b, (u32) 0, v1 + 0xc, (u32) (*(u32 *) (v1 + 8)));
+    CallQueueAppend((u32) 0x1b, (u32) 0, v1 + 0xc, (u32) (*(u32 *) (v1 + 8)));
 }
 
 void func_02129cbc(void) {

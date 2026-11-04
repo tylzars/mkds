@@ -386,8 +386,8 @@ void func_02078e4c(void *param_1, void *param_2) {
         w = u + *(u16 *) (t + 0xa);
         x = (Unk0201290c_08 *) (t + *(u32 *) (w + *(u16 *) w * k + 4));
         h = x->mUnk_1c << 4;
-        func_02016468(0, (x->mUnk_14 & 0xffff) << 3, param_1, 0x200);
-        func_02016468(1, h, param_2, 0x20);
+        CallQueueAppend(0, (x->mUnk_14 & 0xffff) << 3, param_1, 0x200);
+        CallQueueAppend(1, h, param_2, 0x20);
     }
 }
 

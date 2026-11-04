@@ -546,7 +546,7 @@ Expression shapes:
 - A table byte loaded before the loop's offset init in ours, after it in the original: the table is in `.rodata`, so
   declare it `const` and read it inside the loop (func_ov003_021c965c).
 - An address or constant from the early-return test shared with a store far below it, where ours reloads: write that
-  store before the first if/else join; the scheduler moves it down to the original's place (func_0200e388).
+  store before the first if/else join; the scheduler moves it down to the original's place (ThreadSystemInit).
 - Two 0/1 flag arguments computed in the other order: put `? 1 : 0` on the later one only, `d = (v & M) != M ? 1 : 0`
   (Thumb; func_ov000_021a54b0).
 - A global pointer loaded before an unrelated subtraction with its index add after it: reuse an existing dead local for

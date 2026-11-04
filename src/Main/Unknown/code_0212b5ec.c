@@ -25,7 +25,7 @@ void func_0212b874(s32 a) {
                                ((((0x1000 - a) * p->mUnk_2c[i].mUnk_04 + a * p->mUnk_5c[i].mUnk_04) >> 12) << 5));
     }
     if (data_0217d410->mUnk_8c == 0) {
-        func_02016468(0x1e, data_0217d410->mUnk_08 << 5, data_0217d410->mUnk_0a, 0x20);
+        CallQueueAppend(0x1e, data_0217d410->mUnk_08 << 5, data_0217d410->mUnk_0a, 0x20);
     } else {
         data_0217d410->mUnk_8c = 0;
     }
@@ -74,7 +74,7 @@ void func_0212b5ec(void *a) {
     data_0217d40c->mUnk_858 = a;
     data_0217d40c->mUnk_000 = 0;
     data_0217d40c->mUnk_004 = 0;
-    func_02016554(HeapAlloc(a, 0xa0), 0xa);
+    CallQueueInit(HeapAlloc(a, 0xa0), 0xa);
     data_0217d40c->mUnk_008 = 0;
     data_0217d40c->mUnk_010 = 0;
     data_0217d40c->mUnk_014 = -1;
@@ -90,7 +90,7 @@ void func_0212b5ec(void *a) {
         ((u16 *) func_0214a2f4())[i] = i | 0xf000;
     }
     LoadNclrData(&p, FindSceneFile(data_0216ea78));
-    func_02016468(0x1f, 0x1e0, p->mData + 0xf0, 0x20);
+    CallQueueAppend(0x1f, 0x1e0, p->mData + 0xf0, 0x20);
     func_02023408(data_0217d40c->mUnk_020, data_0217d40c->mUnk_050, 0x20, 2, 4);
     v = data_0217d40c->mUnk_01c;
     t = func_020b403c(2);

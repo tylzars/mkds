@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0200edc0 Unk0200edc0;
+typedef struct ThreadLock ThreadLock;
 
 // func_0214f51c calls mUnk_00 with mUnk_04 and follows mUnk_08; func_0214f54c, func_0214f598 and func_0214f5e0
 // link and unlink objects through mUnk_08.
@@ -35,7 +35,7 @@ extern Unk0214f4bc *data_0218043c;
 extern u32 data_02180440;
 extern Unk0214f4bc *data_02180444;
 extern Unk0214f630 data_02180448;
-extern Unk0200edc0 data_02180458;
+extern ThreadLock data_02180458;
 extern Unk0214fe10 data_02180470[4];
 
 void func_0214f4a4(Unk0214f4bc *p);

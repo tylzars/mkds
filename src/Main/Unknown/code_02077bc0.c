@@ -10,7 +10,7 @@
 void func_02077bc0(void *a) {
     u32 v1;
     u32 v2;
-    Unk020169a4 *v3;
+    RangeEntry *v3;
     u32 v4;
     v1 = func_020170dc(0x20);
     v2 = func_020172d0(0x20);

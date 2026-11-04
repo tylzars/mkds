@@ -41,7 +41,7 @@ static inline void func_0205dee0_inline(void *c, void *e) {
     u8 d;
     u32 f;
     if (FS_LoadOverlay(0, (u32) e) != 0) {
-        func_0200cc74(1, NULL);
+        InterruptHandlerSet(1, NULL);
         InterruptEnableClearBits(1);
         reg_OS_IME;
         reg_OS_IME = 0;

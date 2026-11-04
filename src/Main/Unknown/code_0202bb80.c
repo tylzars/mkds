@@ -320,10 +320,10 @@ void func_0202c0d4(s32 a, s32 b) {
         }
         data_02174e3c->mUnk_20c = 0;
     }
-    func_02016468(0x13, 0, ((Unk02174e3c_00 *) data_02174e3c->mUnk_000.mUnk_00)->mUnk_14,
-                  ((Unk02174e3c_00 *) data_02174e3c->mUnk_000.mUnk_00)->mUnk_10);
-    func_02016468(0xe, 0, ((Unk0212463c_d *) q->mUnk_04)->mUnk_0c, 0x1a0);
-    func_02016468(0xe, 0x1c0, ((Unk0212463c_d *) q->mUnk_04)->mUnk_0c + 0x1c0, 0x40);
+    CallQueueAppend(0x13, 0, ((Unk02174e3c_00 *) data_02174e3c->mUnk_000.mUnk_00)->mUnk_14,
+                    ((Unk02174e3c_00 *) data_02174e3c->mUnk_000.mUnk_00)->mUnk_10);
+    CallQueueAppend(0xe, 0, ((Unk0212463c_d *) q->mUnk_04)->mUnk_0c, 0x1a0);
+    CallQueueAppend(0xe, 0x1c0, ((Unk0212463c_d *) q->mUnk_04)->mUnk_0c + 0x1c0, 0x40);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_02124748(data_usa_02153a9c[data_02174e3c->mUnk_254], r->mUnk_08, r->mUnk_00, r->mUnk_0c, 0, 0x19,
                       q->mUnk_08, q->mUnk_0c);

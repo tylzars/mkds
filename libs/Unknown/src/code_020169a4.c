@@ -1,8 +1,8 @@
 #include "code_020169a4.h"
 
-Unk020169a4 *func_02016cd8(Unk020169a4 *p, u32 n) {
+RangeEntry *RangeEntryPoolInit(RangeEntry *p, u32 n) {
     u32 i;
-    Unk020169a4 *q;
+    RangeEntry *q;
     u32 m;
 
     m = n - 1;
@@ -10,66 +10,66 @@ Unk020169a4 *func_02016cd8(Unk020169a4 *p, u32 n) {
     if (m != 0) {
         q = p;
         do {
-            p[i].mUnk_0c = &p[i + 1];
-            p[i + 1].mUnk_08 = q;
+            p[i].mNext = &p[i + 1];
+            p[i + 1].mPrev = q;
             i++;
             q++;
         } while (i < m);
     }
-    p->mUnk_08 = 0;
-    (p + n)[-1].mUnk_0c = 0;
+    p->mPrev = 0;
+    (p + n)[-1].mNext = 0;
     return p;
 }
 
-s32 func_02016c64(Unk020169a4 **a, Unk020169a4 **b, u32 c, u32 d) {
-    Unk020169a4 *n;
+s32 RangeListAdd(RangeEntry **a, RangeEntry **b, u32 c, u32 d) {
+    RangeEntry *n;
 
     n = *b;
     if (n != 0) {
-        *b = n->mUnk_0c;
+        *b = n->mNext;
     }
     if (n != 0) {
-        n->mUnk_00 = c;
-        n->mUnk_04 = d;
-        n->mUnk_08 = 0;
-        n->mUnk_0c = 0;
+        n->mStart = c;
+        n->mSize = d;
+        n->mPrev = 0;
+        n->mNext = 0;
         if (*a != 0) {
-            (*a)->mUnk_08 = n;
+            (*a)->mPrev = n;
         }
-        n->mUnk_0c = *a;
-        n->mUnk_08 = 0;
+        n->mNext = *a;
+        n->mPrev = 0;
         *a = n;
         return 1;
     }
     return 0;
 }
 
-s32 func_02016c44(Unk020169a4 **a, Unk020169a4 **b, u32 *c, u32 d) {
-    return func_02016b00(a, b, c, d, 0);
+s32 RangeListAlloc(RangeEntry **a, RangeEntry **b, u32 *c, u32 d) {
+    return RangeListAllocAligned(a, b, c, d, 0);
 }
 
-s32 func_02016b00(Unk020169a4 **a, Unk020169a4 **b, u32 *c, u32 d, u32 e) {
+s32 RangeListAllocAligned(RangeEntry **a, RangeEntry **b, u32 *c, u32 d, u32 e) {
     u32 addr;
     u32 need;
     u32 pad;
-    Unk020169a4 *best;
-    Unk020169a4 *n;
-    Unk020169a4 *t;
-    Unk020169a4 *prev;
-    Unk020169a4 *next;
+    RangeEntry *best;
+    RangeEntry *n;
+    RangeEntry *t;
+    RangeEntry *prev;
+    RangeEntry *next;
 
     best = 0;
-    for (n = *a; n != 0; n = n->mUnk_0c) {
+    for (n = *a; n != 0; n = n->mNext) {
         if (e > 1) {
-            addr = (n->mUnk_00 + (e - 1)) & ~(e - 1);
-            pad = addr - n->mUnk_00;
+            addr = (n->mStart + (e - 1)) & ~(e - 1);
+            pad = addr - n->mStart;
             need = d + pad;
         } else {
-            addr = n->mUnk_00;
+            addr = n->mStart;
             pad = 0;
             need = d;
         }
-        if (n->mUnk_04 >= need) {
+        if (n->mSize >= need) {
             best = n;
             break;
         }
@@ -80,40 +80,40 @@ s32 func_02016b00(Unk020169a4 **a, Unk020169a4 **b, u32 *c, u32 d, u32 e) {
     if (pad != 0) {
         t = *b;
         if (t != 0) {
-            *b = t->mUnk_0c;
+            *b = t->mNext;
         }
         if (t == 0) {
             goto fail;
         }
-        t->mUnk_00 = best->mUnk_00;
-        t->mUnk_04 = pad;
-        t->mUnk_08 = 0;
-        t->mUnk_0c = 0;
+        t->mStart = best->mStart;
+        t->mSize = pad;
+        t->mPrev = 0;
+        t->mNext = 0;
         if (*a != 0) {
-            (*a)->mUnk_08 = t;
+            (*a)->mPrev = t;
         }
-        t->mUnk_0c = *a;
-        t->mUnk_08 = 0;
+        t->mNext = *a;
+        t->mPrev = 0;
         *a = t;
     }
-    best->mUnk_04 -= need;
-    best->mUnk_00 += need;
-    if (best->mUnk_04 == 0) {
-        prev = best->mUnk_08;
-        next = best->mUnk_0c;
+    best->mSize -= need;
+    best->mStart += need;
+    if (best->mSize == 0) {
+        prev = best->mPrev;
+        next = best->mNext;
         if (prev != 0) {
-            prev->mUnk_0c = next;
+            prev->mNext = next;
         } else {
             *a = next;
         }
         if (next != 0) {
-            next->mUnk_08 = prev;
+            next->mPrev = prev;
         }
         if (*b != 0) {
-            (*b)->mUnk_08 = best;
+            (*b)->mPrev = best;
         }
-        best->mUnk_0c = *b;
-        best->mUnk_08 = 0;
+        best->mNext = *b;
+        best->mPrev = 0;
         *b = best;
     }
     *c = addr;
@@ -123,13 +123,13 @@ fail:
     return 0;
 }
 
-s32 func_020169a4(Unk020169a4 **a, Unk020169a4 **b, u32 c, u32 d) {
+s32 RangeListFree(RangeEntry **a, RangeEntry **b, u32 c, u32 d) {
     u32 r[4];
     u32 *rp;
-    Unk020169a4 *n;
-    Unk020169a4 *next;
-    Unk020169a4 *t;
-    Unk020169a4 *prev;
+    RangeEntry *n;
+    RangeEntry *next;
+    RangeEntry *t;
+    RangeEntry *prev;
 
     r[0] = c;
     r[1] = c + d;
@@ -137,64 +137,64 @@ s32 func_020169a4(Unk020169a4 **a, Unk020169a4 **b, u32 c, u32 d) {
     r[3] = c + d;
     rp = r;
     for (n = *a; n != 0; n = next) {
-        next = n->mUnk_0c;
-        if (n->mUnk_00 == rp[1]) {
-            r[3] = n->mUnk_00 + n->mUnk_04;
-            prev = n->mUnk_08;
+        next = n->mNext;
+        if (n->mStart == rp[1]) {
+            r[3] = n->mStart + n->mSize;
+            prev = n->mPrev;
             if (prev != 0) {
-                prev->mUnk_0c = next;
+                prev->mNext = next;
             } else {
                 *a = next;
             }
             if (next != 0) {
-                next->mUnk_08 = prev;
+                next->mPrev = prev;
             }
             if (*b != 0) {
-                (*b)->mUnk_08 = n;
+                (*b)->mPrev = n;
             }
-            n->mUnk_0c = *b;
-            n->mUnk_08 = 0;
+            n->mNext = *b;
+            n->mPrev = 0;
             *b = n;
         }
-        if (n->mUnk_00 + n->mUnk_04 == rp[0]) {
-            Unk020169a4 *p2;
-            Unk020169a4 *q2;
+        if (n->mStart + n->mSize == rp[0]) {
+            RangeEntry *p2;
+            RangeEntry *q2;
 
-            r[2] = n->mUnk_00;
-            p2 = n->mUnk_08;
-            q2 = n->mUnk_0c;
+            r[2] = n->mStart;
+            p2 = n->mPrev;
+            q2 = n->mNext;
             if (p2 != 0) {
-                p2->mUnk_0c = q2;
+                p2->mNext = q2;
             } else {
                 *a = q2;
             }
             if (q2 != 0) {
-                q2->mUnk_08 = p2;
+                q2->mPrev = p2;
             }
             if (*b != 0) {
-                (*b)->mUnk_08 = n;
+                (*b)->mPrev = n;
             }
-            n->mUnk_0c = *b;
-            n->mUnk_08 = 0;
+            n->mNext = *b;
+            n->mPrev = 0;
             *b = n;
         }
     }
     t = *b;
     if (t != 0) {
-        *b = t->mUnk_0c;
+        *b = t->mNext;
     }
     if (t == 0) {
         return 0;
     }
-    t->mUnk_00 = r[2];
-    t->mUnk_04 = r[3] - r[2];
-    t->mUnk_08 = 0;
-    t->mUnk_0c = 0;
+    t->mStart = r[2];
+    t->mSize = r[3] - r[2];
+    t->mPrev = 0;
+    t->mNext = 0;
     if (*a != 0) {
-        (*a)->mUnk_08 = t;
+        (*a)->mPrev = t;
     }
-    t->mUnk_0c = *a;
-    t->mUnk_08 = 0;
+    t->mNext = *a;
+    t->mPrev = 0;
     *a = t;
     return 1;
 }

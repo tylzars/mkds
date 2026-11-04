@@ -20,7 +20,7 @@ void func_0200f6f4(void) {
     *(vu16 *) 0x4000102 = 0;
     *(vu16 *) 0x4000100 = 0;
     *(vu16 *) 0x4000102 = 0xc1;
-    func_0200cc74(8, func_0200f65c);
+    InterruptHandlerSet(8, func_0200f65c);
     InterruptEnableSetBits(8);
     data_02170250 = 0;
 }

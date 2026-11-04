@@ -183,8 +183,8 @@ u32 func_02049b6c(void) {
     return r;
 }
 
-static inline void func_02049c3c_inline(Unk0200df9c *q) {
-    q->mUnk_00 = q->mUnk_04 = NULL;
+static inline void func_02049c3c_inline(ThreadQueue *q) {
+    q->mHead = q->mTail = NULL;
 }
 
 static inline void func_02049c3c_inline2(Unk0214f4bc *p, void (*f)(void *)) {
@@ -200,9 +200,9 @@ void func_02049c3c(void *a) {
     data_021759cc->mUnk_118 = -1;
     data_021759cc->mUnk_11c = 0;
     func_02049c3c_inline(&data_021759cc->mUnk_0c4);
-    func_0200e28c(&data_021759cc->mUnk_004, (void (*)(void *)) func_0204a1a8, NULL,
-                  (u8 *) data_021759cc->mUnk_000 + 0x400, 0x400, 15);
-    func_0200df68(&data_021759cc->mUnk_004);
+    ThreadInit(&data_021759cc->mUnk_004, (void (*)(void *)) func_0204a1a8, NULL, (u8 *) data_021759cc->mUnk_000 + 0x400,
+               0x400, 15);
+    ThreadSetRunnable(&data_021759cc->mUnk_004);
     func_02049c3c_inline2(&data_021759cc->mUnk_0cc, func_02049d8c);
     func_02049c3c_inline2(&data_021759cc->mUnk_0d8, (void (*)(void *)) func_02049d54);
     func_0214f504(&data_021759cc->mUnk_0cc);
@@ -377,7 +377,7 @@ void func_0204a1a8(void *a) {
     while (1) {
         b = FALSE;
         c = FALSE;
-        func_0200e01c(&data_021759cc->mUnk_0c4);
+        ThreadWait(&data_021759cc->mUnk_0c4);
         data_021759cc->mUnk_120 = 0;
         func_0212b144();
         if (data_021755a0 != NULL) {

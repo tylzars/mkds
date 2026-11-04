@@ -27,7 +27,7 @@ u32 func_02151868(Unk021510a4 *a, u8 *b) {
     func_02020720((u16 *) (b + 0x200), 0xa001);
     for (d = 0; d < 2;) {
         if (func_0215122c(c, 0x100, b) == 0) {
-            func_0200fd1c();
+            IrqDisableLoopForever();
             return 0;
         }
         MemCopy(data_021804a0, b + 0xf0, 0xe);

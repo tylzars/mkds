@@ -55,12 +55,12 @@ void func_ov001_02198384(void) {
     LocateNcgr2(&a, FindSceneFile(data_ov001_021a8350));
     LocateNcer(&data_ov001_021a9be0->mUnk_00, FindSceneFile(data_ov001_021a834c));
     LocateNclr(&b, FindSceneFile(data_ov001_021a8364));
-    func_02016468(4, 0, c->mData, c->mDataSize);
-    func_02016468(0xf, 0, d->mData, 0x20);
-    func_02016468(8, 0, &e->mData, e->mDataSize);
-    func_02016468(8, 0x800, data_ov001_021a9be0->mUnk_10, 0x800);
-    func_02016468(0x23, 0, a->mData, a->mDataSize);
-    func_02016468(0x1e, 0, b->mData, b->mDataSize);
+    CallQueueAppend(4, 0, c->mData, c->mDataSize);
+    CallQueueAppend(0xf, 0, d->mData, 0x20);
+    CallQueueAppend(8, 0, &e->mData, e->mDataSize);
+    CallQueueAppend(8, 0x800, data_ov001_021a9be0->mUnk_10, 0x800);
+    CallQueueAppend(0x23, 0, a->mData, a->mDataSize);
+    CallQueueAppend(0x1e, 0, b->mData, b->mDataSize);
 }
 
 void func_ov001_02198368(void) {

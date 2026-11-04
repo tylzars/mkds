@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0200edc0 Unk0200edc0;
+typedef struct ThreadLock ThreadLock;
 
-void func_0200edc0(Unk0200edc0 *arg0);
+void ThreadLockInit(ThreadLock *arg0);

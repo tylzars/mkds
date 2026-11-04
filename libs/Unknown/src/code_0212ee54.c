@@ -62,11 +62,11 @@ void func_0212f058(Unk0212c7f0 *a) {
     a->mUnk_110_1 = 0;
 }
 
-// Brackets func_0212ef48 with func_0200ed34 and func_0200ecc4 on data_0217e3e0 and on mUnk_4cc of data_0217df04.
+// Brackets func_0212ef48 with ThreadLockWait and ThreadLockUnlock on data_0217e3e0 and on mUnk_4cc of data_0217df04.
 void func_0212efb8(Unk0212c7f0 *a) {
-    func_0200ed34(data_0217e3e0);
+    ThreadLockWait(data_0217e3e0);
     if (data_0217df04 != 0) {
-        func_0200ed34(data_0217df04->mUnk_4cc);
+        ThreadLockWait(data_0217df04->mUnk_4cc);
     }
     if (a->mUnk_110_1) {
         func_0212c918(a);
@@ -75,9 +75,9 @@ void func_0212efb8(Unk0212c7f0 *a) {
         FS_CancelFile(&a->mUnk_5c);
     }
     func_0212ef48(a);
-    func_0200ecc4(data_0217e3e0);
+    ThreadLockUnlock(data_0217e3e0);
     if (data_0217df04 != 0) {
-        func_0200ecc4(data_0217df04->mUnk_4cc);
+        ThreadLockUnlock(data_0217df04->mUnk_4cc);
     }
 }
 

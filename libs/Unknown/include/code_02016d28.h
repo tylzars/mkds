@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020169a4 Unk020169a4;
+typedef struct RangeEntry RangeEntry;
 
-void func_02016d28(Unk020169a4 **p);
+void func_02016d28(RangeEntry **p);

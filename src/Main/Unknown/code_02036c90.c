@@ -180,7 +180,7 @@ void func_02037498(s32 a) {
     t = func_0200f5ac();
     p->mUnk_cc = (t - p->mUnk_bc) * 0xfa00 / 0x82ea;
     for (i = 0; i < data_021755a0->mUnk_00; i++) {
-        func_0200c894(1, 1);
+        InterruptClearAndWait(1, 1);
     }
     data_021755a0->mUnk_d8 |= 1;
     data_021755a0->mUnk_c4 = func_0200f5ac();
@@ -230,7 +230,7 @@ void func_02037658(s32 a) {
     p->mUnk_cc = (t - p->mUnk_bc) * 0xfa00 / 0x82ea;
     if (e != FALSE) {
         for (i = 0; i < data_021755a0->mUnk_00; i++) {
-            func_0200c894(1, 1);
+            InterruptClearAndWait(1, 1);
         }
     }
     data_021755a0->mUnk_d8 |= 1;
@@ -274,7 +274,7 @@ void func_02037850(void) {
     t = func_0200f5ac();
     p->mUnk_cc = (t - p->mUnk_bc) * 0xfa00 / 0x82ea;
     for (i = 0; i < data_021755a0->mUnk_00; i++) {
-        func_0200c894(1, 1);
+        InterruptClearAndWait(1, 1);
     }
     data_021755a0->mUnk_d8 |= 1;
     data_021755a0->mUnk_c4 = func_0200f5ac();

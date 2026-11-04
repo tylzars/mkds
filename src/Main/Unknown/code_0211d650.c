@@ -62,7 +62,7 @@ void func_0211d9dc(void) {
         func_020b44a4(&data_0217d368->mUnk_20->mUnk_0c, buf.mUnk_00, buf.mUnk_04, buf.mUnk_08, buf.mUnk_0c,
                       buf.mUnk_12);
     }
-    func_02016468(0x1b, 0, &data_0217d368->mUnk_20->mUnk_0c, 0x600);
+    CallQueueAppend(0x1b, 0, &data_0217d368->mUnk_20->mUnk_0c, 0x600);
 }
 
 void func_0211d910(s16 a) {

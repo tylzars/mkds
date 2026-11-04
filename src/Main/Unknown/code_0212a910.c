@@ -53,9 +53,9 @@ void func_0212aaa4(void) {
         data_0217d404->mUnk_028[i].mUnk_04 = func_0201eba0(p->mUnk_00_2, 0x10);
     }
     for (i = 0; i < 2; i++) {
-        func_02016468(0x13, (0x400 - (i + 1) * 4) << 5, data_0217d404->mUnk_03c, 0x80);
+        CallQueueAppend(0x13, (0x400 - (i + 1) * 4) << 5, data_0217d404->mUnk_03c, 0x80);
     }
-    func_02016468(0xe, 0x1a0, e->mData + 0xd0, 0x20);
+    CallQueueAppend(0xe, 0x1a0, e->mData + 0xd0, 0x20);
 }
 
 void func_0212a99c(void) {
@@ -93,10 +93,10 @@ void func_0212a99c(void) {
     }
     for (i = 0; i < 2; i++) {
         if (data_0217d404->mUnk_014[i] == -1) {
-            func_02016468(0x13, (0x400 - (i + 1) * 4) << 5, data_0217d404->mUnk_03c, 0x80);
+            CallQueueAppend(0x13, (0x400 - (i + 1) * 4) << 5, data_0217d404->mUnk_03c, 0x80);
         } else {
-            func_02016468(0x13, (0x400 - (i + 1) * 4) << 5,
-                          data_0217d404->mUnk_0bc[data_0217d404->mUnk_014[i]][data_0217d404->mUnk_01c[i]], 0x80);
+            CallQueueAppend(0x13, (0x400 - (i + 1) * 4) << 5,
+                            data_0217d404->mUnk_0bc[data_0217d404->mUnk_014[i]][data_0217d404->mUnk_01c[i]], 0x80);
         }
     }
 }

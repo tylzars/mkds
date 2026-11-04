@@ -66,5 +66,5 @@ void func_ov001_021a6430(s32 a, s32 flagB, void *c, void *d, u32 e, u16 f, s32 f
     } else {
         v1 = 7;
     }
-    func_02016468(v0, f << 5, dst + (v1 << 5), 32);
+    CallQueueAppend(v0, f << 5, dst + (v1 << 5), 32);
 }

@@ -9,7 +9,7 @@ typedef struct Unk0212ee8c {
     /* 08 */ void *mUnk_08;
 } Unk0212ee8c;
 
-// Object pointed to by data_0217df04: the 0x18 bytes at 0x4cc are passed to func_0200ed34 and func_0200ecc4, and
+// Object pointed to by data_0217df04: the 0x18 bytes at 0x4cc are passed to ThreadLockWait and ThreadLockUnlock, and
 // 0x4e4 is a list header.
 typedef struct Unk0212ef48 {
     /* 000 */ u8 mUnk_000[0x4cc];

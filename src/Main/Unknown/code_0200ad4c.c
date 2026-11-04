@@ -13,7 +13,7 @@ void func_0200ae60(Unk0200adfc *a, u32 b, u32 c, u32 d, u32 e) {
     v2 = a->mUnk_30;
     for (;;) {
         if (v2 >= a->mUnk_30 + 4) {
-            func_0200fd1c();
+            IrqDisableLoopForever();
         }
         if (v2->mUnk_0c == 0) {
             v2->mUnk_00 = b;

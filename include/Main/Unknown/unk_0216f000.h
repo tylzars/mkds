@@ -60,5 +60,5 @@ extern u32 data_0216ff4c;
 extern void (*data_0216ff50)(Unk0200db5c *, Unk0200db5c *);
 extern Unk0200db5c **data_0216ff54;
 extern u32 data_0216ff58;
-extern Unk0200dce0 data_0216ff5c;
+extern ThreadSystem data_0216ff5c;
 extern Unk0200db5c data_0216ff6c;

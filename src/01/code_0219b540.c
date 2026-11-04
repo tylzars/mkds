@@ -90,12 +90,12 @@ void func_ov001_0219c544(void) {
     gSelectGhost->mPlayerCharacterMNcer = func_020b400c(0);
     gSelectGhost->mPlayerCharacterMONclr = func_020b4030(0);
     gSelectGhost->mPlayerCharacterMBncl = func_020b4000(0);
-    func_02016468(0x17, 0, b->mData, b->mDataSize);
-    func_02016468(0x1f, 0, c->mData, 0x20);
-    func_02016468(0x1b, 0, d->mData, d->mDataSize);
-    func_02016468(0x1b, 0x800, gSelectGhost->mUnk_40, 0x800);
-    func_02016468(0x23, 0, a->mData, a->mDataSize);
-    func_02016468(0x1e, 0, gSelectGhost->mSelectGhostSONclr->mData, gSelectGhost->mSelectGhostSONclr->mDataSize);
+    CallQueueAppend(0x17, 0, b->mData, b->mDataSize);
+    CallQueueAppend(0x1f, 0, c->mData, 0x20);
+    CallQueueAppend(0x1b, 0, d->mData, d->mDataSize);
+    CallQueueAppend(0x1b, 0x800, gSelectGhost->mUnk_40, 0x800);
+    CallQueueAppend(0x23, 0, a->mData, a->mDataSize);
+    CallQueueAppend(0x1e, 0, gSelectGhost->mSelectGhostSONclr->mData, gSelectGhost->mSelectGhostSONclr->mDataSize);
 }
 
 void func_ov001_0219c480(void) {
@@ -234,11 +234,11 @@ void func_ov001_0219c0bc(void) {
                   (void *) (gSelectGhost->mPlayerCharacterMNcgr), (void *) (gSelectGhost->mPlayerCharacterMBncl), 1,
                   (u32) (a), (void *) (gSelectGhost->mSelectGhostSONcer), (void *) (gSelectGhost->mSelectGhostSBncl));
     blk = gSelectGhost->mPlayerCharacterMONclr->mUnk_0c;
-    func_02016468(0x1e, 0x100,
-                  blk + (func_02124a68((u32) (r), (void *) (gSelectGhost->mPlayerCharacterMNcer),
-                                       (void *) (gSelectGhost->mPlayerCharacterMBncl))
-                         << 5),
-                  0x20);
+    CallQueueAppend(0x1e, 0x100,
+                    blk + (func_02124a68((u32) (r), (void *) (gSelectGhost->mPlayerCharacterMNcer),
+                                         (void *) (gSelectGhost->mPlayerCharacterMBncl))
+                           << 5),
+                    0x20);
     k = func_0211e1f0(data_ov001_021a6b78[gSelectGhost->mIndex]);
     func_021171a0(k, gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBncl, b, 9, 1);
     func_0211e38c(data_ov001_021a6b78[gSelectGhost->mIndex], buf14);

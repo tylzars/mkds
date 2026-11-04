@@ -13,7 +13,7 @@ u32 data_02180440;
 Unk0214f4bc *data_0218043c;
 vu32 data_02180434;
 Unk0214f630 data_02180448;
-Unk0200edc0 data_02180458;
+ThreadLock data_02180458;
 Unk0214fe10 data_02180470[4];
 
 int func_021501d8(void) {
@@ -75,7 +75,7 @@ void func_021500a0(void) {
     for (i = 0; i < 4; i++) {
         data_02180470[i].mUnk_00 = 0;
     }
-    func_0200edc0(&data_02180458);
+    ThreadLockInit(&data_02180458);
     data_02180440 = *(u32 *) 0x27ffc3c;
 }
 

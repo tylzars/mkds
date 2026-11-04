@@ -389,7 +389,7 @@ void func_0200a1bc(Unk021425e8 *a) {
         case 0x80:
             switch (a->mUnk_04) {
                 case 0x16:
-                    func_0200fd1c();
+                    IrqDisableLoopForever();
                     break;
                 case 0x17:
                     break;
@@ -575,7 +575,7 @@ void func_0200a7b0(Unk021425e8 *a) {
                     data_0216fda8->mUnk_51c(0x21, a);
                     return;
                 case 0x16:
-                    func_0200fd1c();
+                    IrqDisableLoopForever();
                     break;
                 case 0x17:
                     break;

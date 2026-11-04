@@ -2,7 +2,7 @@
 
 // non-matching: f + 4 is computed into r3 and v - 0x40 into r1 (the original adds 4 to r1 and subtracts 0x40 from
 // r2 in place, then tests `ands r1, r1, #1`); everything else is equal
-void func_0200e688(Unk0200db5c *t, void (*f)(void *), u32 v) {
+void ThreadInitContext(Unk0200db5c *t, void (*f)(void *), u32 v) {
     t->mUnk_40 = (u32) f + 4;
     t->mUnk_44 = v;
     t->mUnk_38 = v - 0x40;

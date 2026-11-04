@@ -2,16 +2,17 @@
 
 #include "types.h"
 
-// 16 bytes: two words and two pointers to other Unk020169a4 (func_020169a4 and func_02016b00 unlink and relink them).
-typedef struct Unk020169a4 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ struct Unk020169a4 *mUnk_08;
-    /* 0c */ struct Unk020169a4 *mUnk_0c;
-} Unk020169a4;
+// 16 bytes: two words and two pointers to other RangeEntry (RangeListFree and RangeListAllocAligned unlink and relink
+// them).
+typedef struct RangeEntry {
+    /* 00 */ u32 mStart;
+    /* 04 */ u32 mSize;
+    /* 08 */ struct RangeEntry *mPrev;
+    /* 0c */ struct RangeEntry *mNext;
+} RangeEntry;
 
-s32 func_020169a4(Unk020169a4 **a, Unk020169a4 **b, u32 c, u32 d);
-s32 func_02016b00(Unk020169a4 **a, Unk020169a4 **b, u32 *c, u32 d, u32 e);
-s32 func_02016c44(Unk020169a4 **a, Unk020169a4 **b, u32 *c, u32 d);
-s32 func_02016c64(Unk020169a4 **a, Unk020169a4 **b, u32 c, u32 d);
-Unk020169a4 *func_02016cd8(Unk020169a4 *p, u32 n);
+s32 RangeListFree(RangeEntry **a, RangeEntry **b, u32 c, u32 d);
+s32 RangeListAllocAligned(RangeEntry **a, RangeEntry **b, u32 *c, u32 d, u32 e);
+s32 RangeListAlloc(RangeEntry **a, RangeEntry **b, u32 *c, u32 d);
+s32 RangeListAdd(RangeEntry **a, RangeEntry **b, u32 c, u32 d);
+RangeEntry *RangeEntryPoolInit(RangeEntry *p, u32 n);

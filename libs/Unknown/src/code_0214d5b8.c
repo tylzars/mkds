@@ -8,9 +8,9 @@ UnkFunc *data_0218032c[32];
 u16 data_02180328;
 
 // Runs once: clears the first word at mUnk_388 and the 32 entries of data_0218032c, writes 0xc408 to the register
-// at 0x04000184, calls InterruptFlagWrite, func_0200cc74 (with func_0214d5c4) and InterruptEnableSetBits with 0x40000,
-// then writes the low 4 bits read from the register at 0x04000180 back shifted left by 8 until the conditions of its
-// loop hold.
+// at 0x04000184, calls InterruptFlagWrite, InterruptHandlerSet (with func_0214d5c4) and InterruptEnableSetBits with
+// 0x40000, then writes the low 4 bits read from the register at 0x04000180 back shifted left by 8 until the conditions
+// of its loop hold.
 void func_0214d830(void) {
     u32 s;
     s32 i;
@@ -29,7 +29,7 @@ void func_0214d830(void) {
         }
         reg_PXI_SUBP_FIFO_CNT = 0xc408;
         InterruptFlagWrite(0x40000);
-        func_0200cc74(0x40000, (UnkFunc *) func_0214d5c4);
+        InterruptHandlerSet(0x40000, (UnkFunc *) func_0214d5c4);
         InterruptEnableSetBits(0x40000);
         j = 0;
         for (;;) {

@@ -757,7 +757,7 @@ typedef struct Unk0217aa00 {
 
 extern Unk0217aa00 *data_0217aa00;
 extern Unk0217aa08 *data_0217aa08;
-// Object behind data_0217aa0c; the Unk0200db5c at 0x2c is passed to func_0200e28c and func_0200df68.
+// Object behind data_0217aa0c; the Unk0200db5c at 0x2c is passed to ThreadInit and ThreadSetRunnable.
 typedef struct Unk0217aa0c {
     /* 00 */ void (*mUnk_00[10])(void);
     /* 28 */ u8 mUnk_28;

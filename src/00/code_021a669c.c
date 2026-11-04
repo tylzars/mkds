@@ -6,12 +6,12 @@
 #include "code_0200db4c.h"
 #include "Main/Unknown/code_02000800.h"
 
-void func_ov000_021a68dc(Unk0200edc0 *a) {
-    if (a->mUnk_08 == (struct Unk0200db5c *) func_01ff8000) {
-        a->mUnk_0c--;
-        if (a->mUnk_0c == 0) {
-            a->mUnk_08 = NULL;
-            func_0200df9c(&a->mUnk_00);
+void func_ov000_021a68dc(ThreadLock *a) {
+    if (a->mHolder == (struct Unk0200db5c *) func_01ff8000) {
+        a->mLockCount--;
+        if (a->mLockCount == 0) {
+            a->mHolder = NULL;
+            ThreadQueueSetAllRunnable(&a->mQueue);
         }
     }
 }
