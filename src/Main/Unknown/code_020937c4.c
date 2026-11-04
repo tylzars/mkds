@@ -33,137 +33,33 @@
 #include "code_02147cd8.h"
 #include "code_0212bcac.h"
 
-void func_020937c4(Vec3 *a, Vec3 *b, u16 c) {
-    Unk020937c4 *o;
-
-    o = func_0209bbfc(func_02100138(0x1a2));
-    if (o == NULL) {
-        return;
-    }
-    o->mUnk_a0 = 600;
-    o->mUnk_00.mPos.x = a->x;
-    o->mUnk_00.mPos.y = a->y + 0x2a000;
-    o->mUnk_00.mPos.z = a->z;
-    o->mUnk_00.mMatrix.mUnk_00[2].x = b->x;
-    o->mUnk_00.mMatrix.mUnk_00[2].y = 0;
-    o->mUnk_00.mMatrix.mUnk_00[2].z = b->z;
-    o->mUnk_00.mUnk_10.x = ((s64) b->x * 0x6000) >> 12;
-    o->mUnk_00.mUnk_10.y = 0;
-    o->mUnk_00.mUnk_10.z = ((s64) b->z * 0x6000) >> 12;
-    o->mUnk_00.mUnk_7e = c;
-    o->mUnk_a4 = 0;
+void CreateNsKiller1(void *a) {
+    gNsKiller1 = func_0209be84(a, gNsKiller1NsbmdName);
 }
 
-void func_02093884(void) {
-    func_0209bf48(NULL, func_02093910, NULL);
-}
-
-void func_020938a0(void) {
-    func_0209bf1c(CreateNsKiller2AndNsKiller2S, func_02093a50, NULL);
-}
-
-void func_020938c0(void) {
-    Unk0209bf70 *o;
-
-    o = func_0209bf70(func_02093b7c, NULL, NULL, 1, 1, 0x17b);
-    o->mUnk_38 = 0x32000;
-    o->mUnk_3c = -0x64000;
-}
-
-void func_02093910(void *a, Unk02093910 *p) {
-    if ((func_0207a780() & p->mUnk_00.mUnk_74) != 0) {
-        p->mUnk_00.mFlags |= data_021564a8;
-    } else {
-        p->mUnk_00.mFlags &= ~2;
-    }
-    switch (p->mUnk_a4) {
-        case 0:
-            if (p->mUnk_a0-- > 0) {
-                if ((p->mUnk_00.mFlags & 2) == 0 && (p->mUnk_00.mUnk_78 & 8) != 0) {
-                    func_0210b7ec(p->mUnk_a8, p->mUnk_00.mUnk_78 & ~0xc000001f);
-                } else {
-                    func_0210b7ec(p->mUnk_a8, func_020d4ef4(&p->mUnk_00.mPos));
-                }
-                Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
-                if (p->mUnk_a0 < 0x24e) {
-                    func_020d275c(&p->mUnk_00, 0x17d);
-                }
-            } else {
-                func_020d2398(&p->mUnk_00);
-            }
-            break;
-        case 1:
-            if (p->mUnk_a0-- > 0) {
-                p->mUnk_00.mUnk_10.y -= 0x400;
-                Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
-            } else {
-                func_020d2398(&p->mUnk_00);
-            }
-            break;
-    }
-}
-
-void func_02093a50(void *a, Unk02093910 *p) {
+void func_02093ee8(void *a, Unk02093cf4 *p) {
     s32 t;
-    s32 m[9];
-    s32 i;
 
-    if (p->mUnk_a0 <= 0) {
-        return;
-    }
     t = 0x1e;
     func_01ff9048(0x14, &t, 1);
-    func_01ff9048(0x19, func_020e6b58(&p->mUnk_00.mPos), 12);
-    i = p->mUnk_00.mUnk_7e >> 4;
-    Matrix3x3FromPairY(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
-    func_01ff9048(0x1a, m, 9);
     func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
-    func_0209bb2c(a, gNsKiller2S, p);
-    func_0209bb2c(a, gNsKiller2, p);
+    p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
+    p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
+    p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
+    func_01ff9048(0x19, &p->mUnk_00.mMatrix, 12);
+    func_0209bb2c(a, gNsKiller1, p);
 }
 
-void CreateNsKiller2AndNsKiller2S(void *a) {
-    gNsKiller2 = func_0209be84(a, gNsKiller2NsbmdName);
-    gNsKiller2S = func_0209bd90(a, gNsKiller2SNsbmdName);
-    func_0209b940(gNsKiller2S, 0x3f);
-}
+void func_02093eac(Unk020e6fd4 *p) {
+    s32 i;
+    Unk02093cf4 *e;
 
-u8 func_02093b7c(Unk02093910 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
-    u8 x;
-    u8 v;
-
-    x = *c;
-    v = *d;
-    if (x == 1) {
-        a->mUnk_a0 = 0x78;
-        a->mUnk_a4 = 1;
-        a->mUnk_00.mUnk_10.x = ((s64) a->mUnk_00.mUnk_10.x << 10) >> 12;
-        a->mUnk_00.mUnk_10.y = ((s64) a->mUnk_00.mUnk_10.y << 10) >> 12;
-        a->mUnk_00.mUnk_10.z = ((s64) a->mUnk_00.mUnk_10.z << 10) >> 12;
-        a->mUnk_00.mUnk_10.y = 0x4000;
-        a->mUnk_00.mFlags |= data_021564ac;
-        if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
-            a->mUnk_00.mUnk_78 |= data_021564b0;
-        }
-        func_020d26f8(&a->mUnk_00, b);
+    if (p == NULL) {
+        return;
     }
-    return v;
-}
-
-void func_02093c64(Unk02093910 *p) {
-    p->mUnk_00.mFlags |= data_021564b4;
-    func_020d2398(&p->mUnk_00);
-    p->mUnk_a8 = func_020d286c(&p->mUnk_00);
-    func_0210b850(p->mUnk_a8);
-    p->mUnk_00.mUnk_94->mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6b4;
-}
-
-void func_02093cb4(void) {
-    func_0209bf48(func_02093eac, func_02093cf4, NULL);
-}
-
-void func_02093cd4(void) {
-    func_0209bf1c(CreateNsKiller1, func_02093ee8, NULL);
+    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
+        e->mUnk_a0 = 0;
+    }
 }
 
 void func_02093cf4(void *a, Unk02093cf4 *p) {
@@ -213,31 +109,135 @@ void func_02093cf4(void *a, Unk02093cf4 *p) {
     }
 }
 
-void func_02093eac(Unk020e6fd4 *p) {
-    s32 i;
-    Unk02093cf4 *e;
+void func_02093cd4(void) {
+    func_0209bf1c(CreateNsKiller1, func_02093ee8, NULL);
+}
 
-    if (p == NULL) {
+void func_02093cb4(void) {
+    func_0209bf48(func_02093eac, func_02093cf4, NULL);
+}
+
+void func_02093c64(Unk02093910 *p) {
+    p->mUnk_00.mFlags |= data_021564b4;
+    func_020d2398(&p->mUnk_00);
+    p->mUnk_a8 = func_020d286c(&p->mUnk_00);
+    func_0210b850(p->mUnk_a8);
+    p->mUnk_00.mUnk_94->mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6b4;
+}
+
+u8 func_02093b7c(Unk02093910 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
+    u8 x;
+    u8 v;
+
+    x = *c;
+    v = *d;
+    if (x == 1) {
+        a->mUnk_a0 = 0x78;
+        a->mUnk_a4 = 1;
+        a->mUnk_00.mUnk_10.x = ((s64) a->mUnk_00.mUnk_10.x << 10) >> 12;
+        a->mUnk_00.mUnk_10.y = ((s64) a->mUnk_00.mUnk_10.y << 10) >> 12;
+        a->mUnk_00.mUnk_10.z = ((s64) a->mUnk_00.mUnk_10.z << 10) >> 12;
+        a->mUnk_00.mUnk_10.y = 0x4000;
+        a->mUnk_00.mFlags |= data_021564ac;
+        if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
+            a->mUnk_00.mUnk_78 |= data_021564b0;
+        }
+        func_020d26f8(&a->mUnk_00, b);
+    }
+    return v;
+}
+
+void CreateNsKiller2AndNsKiller2S(void *a) {
+    gNsKiller2 = func_0209be84(a, gNsKiller2NsbmdName);
+    gNsKiller2S = func_0209bd90(a, gNsKiller2SNsbmdName);
+    func_0209b940(gNsKiller2S, 0x3f);
+}
+
+void func_02093a50(void *a, Unk02093910 *p) {
+    s32 t;
+    s32 m[9];
+    s32 i;
+
+    if (p->mUnk_a0 <= 0) {
         return;
     }
-    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
-        e->mUnk_a0 = 0;
+    t = 0x1e;
+    func_01ff9048(0x14, &t, 1);
+    func_01ff9048(0x19, func_020e6b58(&p->mUnk_00.mPos), 12);
+    i = p->mUnk_00.mUnk_7e >> 4;
+    Matrix3x3FromPairY(m, data_0215d4b4[i * 2], data_0215d4b4[i * 2 + 1]);
+    func_01ff9048(0x1a, m, 9);
+    func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
+    func_0209bb2c(a, gNsKiller2S, p);
+    func_0209bb2c(a, gNsKiller2, p);
+}
+
+void func_02093910(void *a, Unk02093910 *p) {
+    if ((func_0207a780() & p->mUnk_00.mUnk_74) != 0) {
+        p->mUnk_00.mFlags |= data_021564a8;
+    } else {
+        p->mUnk_00.mFlags &= ~2;
+    }
+    switch (p->mUnk_a4) {
+        case 0:
+            if (p->mUnk_a0-- > 0) {
+                if ((p->mUnk_00.mFlags & 2) == 0 && (p->mUnk_00.mUnk_78 & 8) != 0) {
+                    func_0210b7ec(p->mUnk_a8, p->mUnk_00.mUnk_78 & ~0xc000001f);
+                } else {
+                    func_0210b7ec(p->mUnk_a8, func_020d4ef4(&p->mUnk_00.mPos));
+                }
+                Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+                if (p->mUnk_a0 < 0x24e) {
+                    func_020d275c(&p->mUnk_00, 0x17d);
+                }
+            } else {
+                func_020d2398(&p->mUnk_00);
+            }
+            break;
+        case 1:
+            if (p->mUnk_a0-- > 0) {
+                p->mUnk_00.mUnk_10.y -= 0x400;
+                Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+            } else {
+                func_020d2398(&p->mUnk_00);
+            }
+            break;
     }
 }
 
-void func_02093ee8(void *a, Unk02093cf4 *p) {
-    s32 t;
+void func_020938c0(void) {
+    Unk0209bf70 *o;
 
-    t = 0x1e;
-    func_01ff9048(0x14, &t, 1);
-    func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
-    p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
-    p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
-    p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
-    func_01ff9048(0x19, &p->mUnk_00.mMatrix, 12);
-    func_0209bb2c(a, gNsKiller1, p);
+    o = func_0209bf70(func_02093b7c, NULL, NULL, 1, 1, 0x17b);
+    o->mUnk_38 = 0x32000;
+    o->mUnk_3c = -0x64000;
 }
 
-void CreateNsKiller1(void *a) {
-    gNsKiller1 = func_0209be84(a, gNsKiller1NsbmdName);
+void func_020938a0(void) {
+    func_0209bf1c(CreateNsKiller2AndNsKiller2S, func_02093a50, NULL);
+}
+
+void func_02093884(void) {
+    func_0209bf48(NULL, func_02093910, NULL);
+}
+
+void func_020937c4(Vec3 *a, Vec3 *b, u16 c) {
+    Unk020937c4 *o;
+
+    o = func_0209bbfc(func_02100138(0x1a2));
+    if (o == NULL) {
+        return;
+    }
+    o->mUnk_a0 = 600;
+    o->mUnk_00.mPos.x = a->x;
+    o->mUnk_00.mPos.y = a->y + 0x2a000;
+    o->mUnk_00.mPos.z = a->z;
+    o->mUnk_00.mMatrix.mUnk_00[2].x = b->x;
+    o->mUnk_00.mMatrix.mUnk_00[2].y = 0;
+    o->mUnk_00.mMatrix.mUnk_00[2].z = b->z;
+    o->mUnk_00.mUnk_10.x = ((s64) b->x * 0x6000) >> 12;
+    o->mUnk_00.mUnk_10.y = 0;
+    o->mUnk_00.mUnk_10.z = ((s64) b->z * 0x6000) >> 12;
+    o->mUnk_00.mUnk_7e = c;
+    o->mUnk_a4 = 0;
 }

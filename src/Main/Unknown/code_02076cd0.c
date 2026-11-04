@@ -20,132 +20,216 @@
 #include "code_02147cd8.h"
 #include "code_0214a748.h"
 
-void func_02076cd0(Unk02061808 *p) {
-    Vec3 a;
-    Vec3 b;
-    Vec3 c;
-    Vec3 d;
+#pragma thumb on
 
-    b = p->mUnk_0c0;
-    c = p->mUnk_024;
-    d = p->mUnk_018;
-    d.y += p->mUnk_158;
-    Vec3Sub(&d, &c, &a);
-    if ((s64) a.x * a.x + (s64) a.y * a.y + (s64) a.z * a.z >= 0x10) {
-        func_02039860(&a, &a);
+void func_02077b3c(void) {
+    if (data_0217ad08->mUnk_25c != 0 || data_0217ad08->mUnk_260 != 0) {
+        data_0217ad08->mUnk_1f4[data_0217ad08->mUnk_266].mUnk_2c = 1;
+        data_0217ad08->mUnk_020->mUnk_00 = data_0217ad08->mUnk_024.mUnk_00;
+        data_0217ad08->mUnk_020->mUnk_04 = data_0217ad08->mUnk_024.mUnk_04;
+        data_0217ad08->mUnk_020->mUnk_20 = data_0217ad08->mUnk_1c8 + data_0217ad08->mUnk_024.mUnk_04;
+        func_02057df0(LoadKartAndCharacterFiles);
+        data_0217aa0c->mUnk_f8 = 1;
     }
-    p->mUnk_15c = a;
-    func_020397a8(&b, &a, &p->mUnk_00c);
-    func_020397a8(&a, &p->mUnk_00c, &p->mUnk_000);
-    if (p->mUnk_000.x == 0 && p->mUnk_000.y == 0 && p->mUnk_000.z == 0) {
-        p->mUnk_000.x = 0x1000;
-        p->mUnk_000.y = 0x1000;
-        p->mUnk_000.z = 0x1000;
-        if ((s64) p->mUnk_000.x * p->mUnk_000.x + (s64) p->mUnk_000.y * p->mUnk_000.y +
-                (s64) p->mUnk_000.z * p->mUnk_000.z >=
-            0x10) {
-            func_02039860(&p->mUnk_000, &p->mUnk_000);
-        }
-    }
-    if (p->mUnk_130 != 0) {
-        func_02073904(p);
-        Vec3Add(&c, &p->mUnk_118, &c);
-        Vec3Add(&d, &p->mUnk_10c, &d);
-        Vec3Add(&p->mUnk_124, &d, &d);
-    }
-    p->mUnk_09c.x = c.x >> 4;
-    p->mUnk_09c.y = c.y >> 4;
-    p->mUnk_09c.z = c.z >> 4;
-    p->mUnk_09c.y += p->mUnk_178 >> 4;
-    p->mUnk_090.x = d.x >> 4;
-    p->mUnk_090.y = d.y >> 4;
-    p->mUnk_090.z = d.z >> 4;
-    *(u32 *) 0x4000440 = 2;
-    func_0214abb4(&p->mUnk_09c, &p->mUnk_000, &p->mUnk_090, 1, &p->mUnk_030);
 }
 
-void func_02076ed4(Unk02061808 *p) {
-    Vec3 c;
-    Vec3 b;
-    Vec3 a;
-    Vec3 d;
-    Vec3 e;
-
-    a = data_usa_02154fc4;
-    Vec3Sub(&p->mUnk_018, &p->mUnk_024, &b);
-    if ((s64) b.x * b.x + (s64) b.y * b.y + (s64) b.z * b.z >= 0x10) {
-        func_02039860(&b, &b);
-    }
-    p->mUnk_15c = b;
-    func_020397a8(&a, &b, &c);
-    func_020397a8(&b, &c, &p->mUnk_000);
-    if (p->mUnk_000.x == 0 && p->mUnk_000.y == 0 && p->mUnk_000.z == 0) {
-        p->mUnk_000.x = 0x1000;
-        p->mUnk_000.y = 0x1000;
-        p->mUnk_000.z = 0x1000;
-        if ((s64) p->mUnk_000.x * p->mUnk_000.x + (s64) p->mUnk_000.y * p->mUnk_000.y +
-                (s64) p->mUnk_000.z * p->mUnk_000.z >=
-            0x10) {
-            func_02039860(&p->mUnk_000, &p->mUnk_000);
-        }
-    }
-    *(u32 *) 0x4000440 = 2;
-    d.x = p->mUnk_024.x >> 4;
-    d.y = (p->mUnk_024.y + p->mUnk_178) >> 4;
-    d.z = p->mUnk_024.z >> 4;
-    e.x = p->mUnk_018.x >> 4;
-    e.y = p->mUnk_018.y >> 4;
-    e.z = p->mUnk_018.z >> 4;
-    func_0214abb4(&d, &p->mUnk_000, &e, 1, &p->mUnk_030);
+void func_02077b1c(void) {
+    data_0217ad08->mUnk_260 = 0;
+    data_0217ad08->mUnk_25c = data_0217ad08->mUnk_260;
 }
 
-void func_02077060(Unk02061808 *p) {
-    s32 a;
-    s32 b;
-    s32 c;
-    s32 d;
+u32 func_02077a70(s32 *a, u32 b) {
+    u32 n;
+    enum { K0 } i;
 
-    if (p == data_0217ac94) {
-        if (p->mUnk_060 == p->mUnk_064 && data_0217acac == 0) {
-            return;
+    *a = (s32) _s32_div_f((u16) b, 3);
+    if (*a >= 8) {
+        switch (*a) {
+            case 8:
+                n = 0x14;
+                break;
+            case 9:
+                n = 0x15;
+                break;
+            case 10:
+                n = 0x16;
+                break;
+            case 11:
+                n = 0x17;
+                break;
         }
-        if (func_020738f8(p->mUnk_060 - p->mUnk_064) < 10) {
-            p->mUnk_060 = p->mUnk_064;
+        if (func_02056dec(n) == 0) {
+            *a = -1;
+            for (i = 0; i < 8; i++) {
+                if (func_0205fd2c(data_0217ad08->mUnk_268, i, b) != 0) {
+                    *a = i;
+                    break;
+                }
+            }
+            if (*a != -1) {
+                return 1;
+            }
+            return 0;
         }
     }
-    p->mUnk_078 = (s32) (((s64) p->mUnk_070 * DivFixed12(p->mUnk_068, p->mUnk_06a)) >> 12);
-    p->mUnk_07c = -p->mUnk_078;
-    p->mUnk_080 = (s32) (((s64) -p->mUnk_078 * p->mUnk_06c) >> 12);
-    a = p->mUnk_078;
-    b = p->mUnk_07c;
-    switch (p->mUnk_24c) {
-        case 1:
-            a <<= 1;
-            b = -a;
-            p->mUnk_078 = (s32) (((s64) a * (data_usa_021656b8 + 0x1000)) >> 12);
-            p->mUnk_07c = (s32) (((s64) a * data_usa_021656b8) >> 12);
-            break;
-        case 2:
-            b <<= 1;
-            a = -b;
-            p->mUnk_07c = (s32) (((s64) b * (data_usa_021656b8 + 0x1000)) >> 12);
-            p->mUnk_078 = (s32) (((s64) b * data_usa_021656b8) >> 12);
-            break;
-    }
-    if (data_021759c0->mUnk_57 != 0) {
-        p->mUnk_080 = -p->mUnk_080;
-    }
-    p->mUnk_084 = -p->mUnk_080;
-    if (data_021759c0->mUnk_00c == 6 && p->mUnk_218 != NULL) {
-        c = (s32) (((s64) p->mUnk_078 * p->mUnk_218->mUnk_00.y + 0x800) >> 12);
-        p->mUnk_07c += c;
-        p->mUnk_078 += c;
-    }
-    func_020d4a20(a, b, p->mUnk_080, p->mUnk_084, p->mUnk_070, p->mUnk_074);
-    *(u32 *) 0x4000440 = 0;
-    func_0214b048(p->mUnk_078, p->mUnk_07c, p->mUnk_080, p->mUnk_084, p->mUnk_070, p->mUnk_074, 0x1000, 1,
-                  (Unk0214ad4c *) data_0217acc0);
+    return func_0205fd2c(data_0217ad08->mUnk_268, *a, b);
 }
+
+u16 func_02077a5c(void) {
+    return data_0217ad08->mUnk_004 + 1;
+}
+
+u16 func_02077a4c(void) {
+    return data_0217ad08->mUnk_008;
+}
+
+void func_02077a28(void *a) {
+    void *v;
+
+    LoadKartModelMenuFile(a, data_usa_02165714, &v);
+    LoadNclrData(&data_usa_0217ace4, v);
+}
+
+void func_02077998(void) {
+    u32 i;
+
+    *(u32 *) 0x4000580 = 0xbfff0000;
+    data_0217aca8 = 1;
+    i = data_0217acac = 0;
+    if (data_021759c0->mUnk_08 == 4) {
+        i = data_021759c0->mUnk_036;
+        i = (u16) i;
+    } else {
+        i = (u16) i;
+        i = (u16) i;
+    }
+    data_usa_0217ac90 = data_usa_02154fa0[i][0];
+    data_usa_0217ac7c = data_usa_02154fa4[i][0];
+    data_usa_0217ac78 = data_usa_02154fa8[i][0];
+    if (data_021759c0->mCourseId == 0x13) {
+        data_usa_021656b4 = 0xa000;
+    } else {
+        data_usa_021656b4 = 0x5000;
+    }
+}
+
+void func_02077944(void) {
+    Unk0206bcb0 *a = func_0207a974(data_021759c0->mUnk_62);
+
+    data_0217ac94 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
+    func_02076a5c();
+    func_02063b10(a, &data_0217ac94->mUnk_260);
+    func_02077060(data_0217ac94);
+}
+
+void func_020777ac(u32 a) {
+    void *h = GetHeap(func_020364e8());
+    u16 i;
+    u16 n;
+    Unk020748b8_218 *e;
+    u16 m;
+    u16 j;
+    s32 k;
+
+    data_0217acbc = HeapAlloc(h, 0x270);
+    func_0207729c(data_0217acbc);
+    data_0217acbc->mUnk_210 = a;
+    data_0217acbc->mUnk_218 = NULL;
+    data_0217acbc->mUnk_24c = 0;
+    data_0217acbc->mUnk_250 = 1;
+    if (data_021759c0->mUnk_00c == 6) {
+        data_0217acbc->mUnk_218 = gCourseMap->mUnk_7c;
+    }
+    if (data_021759c0->mUnk_08 == 2) {
+        data_0217acbc->mUnk_218 = gCourseMap->mUnk_d0;
+        if (data_0217acbc->mUnk_218 != NULL) {
+            n = 0;
+            k = -1;
+            for (i = 0; i < gCourseMap->mUnk_80; i++) {
+                if (gCourseMap->mUnk_7c[i].mUnk_3e == 7) {
+                    n++;
+                }
+            }
+            data_usa_0217ac70 = n;
+            data_0217acbc->mUnk_21c = HeapAlloc(h, n * 0x88);
+            e = data_0217acbc->mUnk_218;
+            m = 0;
+            j = 0;
+            for (; m < gCourseMap->mUnk_80; m++) {
+                if (k != -1) {
+                    e = &gCourseMap->mUnk_7c[(u16) k];
+                    if (e == data_0217acbc->mUnk_218) {
+                        break;
+                    }
+                }
+                if (e->mUnk_3e == 7) {
+                    func_02077750(&data_0217acbc->mUnk_21c[j], e);
+                    j++;
+                    k = e->mUnk_48;
+                }
+            }
+            data_0217acbc->mUnk_220 = data_0217acbc->mUnk_21c;
+            data_0217acbc->mUnk_224 = 0;
+            data_0217acbc->mUnk_250 = 3;
+            data_0217aca8 = 1;
+        }
+    }
+}
+
+void func_02077750(Unk02077750 *a, Unk020748b8_218 *b) {
+    Unk02175620_08 *v1 = &gCourseMap->mUnk_08[b->mUnk_40];
+
+    a->mUnk_7c = b->mUnk_42;
+    a->mUnk_7e = 2;
+    a->mUnk_00 = b;
+    a->mUnk_80 = 0;
+    a->mUnk_84 = 0;
+    if (v1->mUnk_02 >= 4) {
+        func_0207be40(&a->mUnk_04, b);
+        func_0207bd6c(&a->mUnk_40, b);
+    }
+}
+
+void func_0207767c(void) {
+    void *h = GetHeap(func_020364e8());
+
+    data_usa_0217ac98 = HeapAlloc(h, 0x270);
+    data_usa_0217ac84 = HeapAlloc(h, 0x270);
+    func_0207729c(data_usa_0217ac98);
+    func_0207729c(data_usa_0217ac84);
+    data_usa_0217ac98->mUnk_218 = gCourseMap->mUnk_c4;
+    data_usa_0217ac84->mUnk_218 = gCourseMap->mUnk_c8;
+    data_usa_0217ac98->mUnk_250 = 2;
+    data_usa_0217ac84->mUnk_250 = 2;
+    if (data_usa_0217ac98->mUnk_218 == NULL) {
+        data_0217561c->mUnk_4d0 = 1;
+        return;
+    }
+    if ((s16) data_usa_0217ac98->mUnk_218->mUnk_40 != -1) {
+        func_0207be40(&data_usa_0217ac98->mUnk_194, data_usa_0217ac98->mUnk_218);
+    }
+    if ((s16) data_usa_0217ac84->mUnk_218->mUnk_40 != -1) {
+        func_0207be40(&data_usa_0217ac84->mUnk_194, data_usa_0217ac84->mUnk_218);
+    }
+}
+
+void func_020775e4(void) {
+    data_usa_0217ac98 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
+    data_usa_0217ac84 = NULL;
+    func_0207729c(data_usa_0217ac98);
+    data_usa_0217ac98->mUnk_218 = gCourseMap->mUnk_c4;
+    data_usa_0217ac98->mUnk_250 = 2;
+    data_usa_0217ac98->mUnk_24c = 0;
+    if (data_usa_0217ac98->mUnk_218 == NULL) {
+        data_0217561c->mUnk_4d0 = 1;
+        return;
+    }
+    if ((s16) data_usa_0217ac98->mUnk_218->mUnk_40 != -1) {
+        func_0207be40(&data_usa_0217ac98->mUnk_194, data_usa_0217ac98->mUnk_218);
+    }
+}
+
+#pragma thumb off
 
 void func_0207729c(Unk02061808 *p) {
     Vec3 b;
@@ -238,213 +322,130 @@ void func_0207729c(Unk02061808 *p) {
     p->mUnk_088 = 0x1000;
 }
 
-#pragma thumb on
+void func_02077060(Unk02061808 *p) {
+    s32 a;
+    s32 b;
+    s32 c;
+    s32 d;
 
-void func_020775e4(void) {
-    data_usa_0217ac98 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
-    data_usa_0217ac84 = NULL;
-    func_0207729c(data_usa_0217ac98);
-    data_usa_0217ac98->mUnk_218 = gCourseMap->mUnk_c4;
-    data_usa_0217ac98->mUnk_250 = 2;
-    data_usa_0217ac98->mUnk_24c = 0;
-    if (data_usa_0217ac98->mUnk_218 == NULL) {
-        data_0217561c->mUnk_4d0 = 1;
-        return;
-    }
-    if ((s16) data_usa_0217ac98->mUnk_218->mUnk_40 != -1) {
-        func_0207be40(&data_usa_0217ac98->mUnk_194, data_usa_0217ac98->mUnk_218);
-    }
-}
-
-void func_0207767c(void) {
-    void *h = GetHeap(func_020364e8());
-
-    data_usa_0217ac98 = HeapAlloc(h, 0x270);
-    data_usa_0217ac84 = HeapAlloc(h, 0x270);
-    func_0207729c(data_usa_0217ac98);
-    func_0207729c(data_usa_0217ac84);
-    data_usa_0217ac98->mUnk_218 = gCourseMap->mUnk_c4;
-    data_usa_0217ac84->mUnk_218 = gCourseMap->mUnk_c8;
-    data_usa_0217ac98->mUnk_250 = 2;
-    data_usa_0217ac84->mUnk_250 = 2;
-    if (data_usa_0217ac98->mUnk_218 == NULL) {
-        data_0217561c->mUnk_4d0 = 1;
-        return;
-    }
-    if ((s16) data_usa_0217ac98->mUnk_218->mUnk_40 != -1) {
-        func_0207be40(&data_usa_0217ac98->mUnk_194, data_usa_0217ac98->mUnk_218);
-    }
-    if ((s16) data_usa_0217ac84->mUnk_218->mUnk_40 != -1) {
-        func_0207be40(&data_usa_0217ac84->mUnk_194, data_usa_0217ac84->mUnk_218);
-    }
-}
-
-void func_02077750(Unk02077750 *a, Unk020748b8_218 *b) {
-    Unk02175620_08 *v1 = &gCourseMap->mUnk_08[b->mUnk_40];
-
-    a->mUnk_7c = b->mUnk_42;
-    a->mUnk_7e = 2;
-    a->mUnk_00 = b;
-    a->mUnk_80 = 0;
-    a->mUnk_84 = 0;
-    if (v1->mUnk_02 >= 4) {
-        func_0207be40(&a->mUnk_04, b);
-        func_0207bd6c(&a->mUnk_40, b);
-    }
-}
-
-void func_020777ac(u32 a) {
-    void *h = GetHeap(func_020364e8());
-    u16 i;
-    u16 n;
-    Unk020748b8_218 *e;
-    u16 m;
-    u16 j;
-    s32 k;
-
-    data_0217acbc = HeapAlloc(h, 0x270);
-    func_0207729c(data_0217acbc);
-    data_0217acbc->mUnk_210 = a;
-    data_0217acbc->mUnk_218 = NULL;
-    data_0217acbc->mUnk_24c = 0;
-    data_0217acbc->mUnk_250 = 1;
-    if (data_021759c0->mUnk_00c == 6) {
-        data_0217acbc->mUnk_218 = gCourseMap->mUnk_7c;
-    }
-    if (data_021759c0->mUnk_08 == 2) {
-        data_0217acbc->mUnk_218 = gCourseMap->mUnk_d0;
-        if (data_0217acbc->mUnk_218 != NULL) {
-            n = 0;
-            k = -1;
-            for (i = 0; i < gCourseMap->mUnk_80; i++) {
-                if (gCourseMap->mUnk_7c[i].mUnk_3e == 7) {
-                    n++;
-                }
-            }
-            data_usa_0217ac70 = n;
-            data_0217acbc->mUnk_21c = HeapAlloc(h, n * 0x88);
-            e = data_0217acbc->mUnk_218;
-            m = 0;
-            j = 0;
-            for (; m < gCourseMap->mUnk_80; m++) {
-                if (k != -1) {
-                    e = &gCourseMap->mUnk_7c[(u16) k];
-                    if (e == data_0217acbc->mUnk_218) {
-                        break;
-                    }
-                }
-                if (e->mUnk_3e == 7) {
-                    func_02077750(&data_0217acbc->mUnk_21c[j], e);
-                    j++;
-                    k = e->mUnk_48;
-                }
-            }
-            data_0217acbc->mUnk_220 = data_0217acbc->mUnk_21c;
-            data_0217acbc->mUnk_224 = 0;
-            data_0217acbc->mUnk_250 = 3;
-            data_0217aca8 = 1;
+    if (p == data_0217ac94) {
+        if (p->mUnk_060 == p->mUnk_064 && data_0217acac == 0) {
+            return;
+        }
+        if (func_020738f8(p->mUnk_060 - p->mUnk_064) < 10) {
+            p->mUnk_060 = p->mUnk_064;
         }
     }
-}
-
-void func_02077944(void) {
-    Unk0206bcb0 *a = func_0207a974(data_021759c0->mUnk_62);
-
-    data_0217ac94 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
-    func_02076a5c();
-    func_02063b10(a, &data_0217ac94->mUnk_260);
-    func_02077060(data_0217ac94);
-}
-
-void func_02077998(void) {
-    u32 i;
-
-    *(u32 *) 0x4000580 = 0xbfff0000;
-    data_0217aca8 = 1;
-    i = data_0217acac = 0;
-    if (data_021759c0->mUnk_08 == 4) {
-        i = data_021759c0->mUnk_036;
-        i = (u16) i;
-    } else {
-        i = (u16) i;
-        i = (u16) i;
+    p->mUnk_078 = (s32) (((s64) p->mUnk_070 * DivFixed12(p->mUnk_068, p->mUnk_06a)) >> 12);
+    p->mUnk_07c = -p->mUnk_078;
+    p->mUnk_080 = (s32) (((s64) -p->mUnk_078 * p->mUnk_06c) >> 12);
+    a = p->mUnk_078;
+    b = p->mUnk_07c;
+    switch (p->mUnk_24c) {
+        case 1:
+            a <<= 1;
+            b = -a;
+            p->mUnk_078 = (s32) (((s64) a * (data_usa_021656b8 + 0x1000)) >> 12);
+            p->mUnk_07c = (s32) (((s64) a * data_usa_021656b8) >> 12);
+            break;
+        case 2:
+            b <<= 1;
+            a = -b;
+            p->mUnk_07c = (s32) (((s64) b * (data_usa_021656b8 + 0x1000)) >> 12);
+            p->mUnk_078 = (s32) (((s64) b * data_usa_021656b8) >> 12);
+            break;
     }
-    data_usa_0217ac90 = data_usa_02154fa0[i][0];
-    data_usa_0217ac7c = data_usa_02154fa4[i][0];
-    data_usa_0217ac78 = data_usa_02154fa8[i][0];
-    if (data_021759c0->mCourseId == 0x13) {
-        data_usa_021656b4 = 0xa000;
-    } else {
-        data_usa_021656b4 = 0x5000;
+    if (data_021759c0->mUnk_57 != 0) {
+        p->mUnk_080 = -p->mUnk_080;
     }
+    p->mUnk_084 = -p->mUnk_080;
+    if (data_021759c0->mUnk_00c == 6 && p->mUnk_218 != NULL) {
+        c = (s32) (((s64) p->mUnk_078 * p->mUnk_218->mUnk_00.y + 0x800) >> 12);
+        p->mUnk_07c += c;
+        p->mUnk_078 += c;
+    }
+    func_020d4a20(a, b, p->mUnk_080, p->mUnk_084, p->mUnk_070, p->mUnk_074);
+    *(u32 *) 0x4000440 = 0;
+    func_0214b048(p->mUnk_078, p->mUnk_07c, p->mUnk_080, p->mUnk_084, p->mUnk_070, p->mUnk_074, 0x1000, 1,
+                  (Unk0214ad4c *) data_0217acc0);
 }
 
-void func_02077a28(void *a) {
-    void *v;
+void func_02076ed4(Unk02061808 *p) {
+    Vec3 c;
+    Vec3 b;
+    Vec3 a;
+    Vec3 d;
+    Vec3 e;
 
-    LoadKartModelMenuFile(a, data_usa_02165714, &v);
-    LoadNclrData(&data_usa_0217ace4, v);
-}
-
-u16 func_02077a4c(void) {
-    return data_0217ad08->mUnk_008;
-}
-
-u16 func_02077a5c(void) {
-    return data_0217ad08->mUnk_004 + 1;
-}
-
-u32 func_02077a70(s32 *a, u32 b) {
-    u32 n;
-    enum { K0 } i;
-
-    *a = (s32) _s32_div_f((u16) b, 3);
-    if (*a >= 8) {
-        switch (*a) {
-            case 8:
-                n = 0x14;
-                break;
-            case 9:
-                n = 0x15;
-                break;
-            case 10:
-                n = 0x16;
-                break;
-            case 11:
-                n = 0x17;
-                break;
-        }
-        if (func_02056dec(n) == 0) {
-            *a = -1;
-            for (i = 0; i < 8; i++) {
-                if (func_0205fd2c(data_0217ad08->mUnk_268, i, b) != 0) {
-                    *a = i;
-                    break;
-                }
-            }
-            if (*a != -1) {
-                return 1;
-            }
-            return 0;
+    a = data_usa_02154fc4;
+    Vec3Sub(&p->mUnk_018, &p->mUnk_024, &b);
+    if ((s64) b.x * b.x + (s64) b.y * b.y + (s64) b.z * b.z >= 0x10) {
+        func_02039860(&b, &b);
+    }
+    p->mUnk_15c = b;
+    func_020397a8(&a, &b, &c);
+    func_020397a8(&b, &c, &p->mUnk_000);
+    if (p->mUnk_000.x == 0 && p->mUnk_000.y == 0 && p->mUnk_000.z == 0) {
+        p->mUnk_000.x = 0x1000;
+        p->mUnk_000.y = 0x1000;
+        p->mUnk_000.z = 0x1000;
+        if ((s64) p->mUnk_000.x * p->mUnk_000.x + (s64) p->mUnk_000.y * p->mUnk_000.y +
+                (s64) p->mUnk_000.z * p->mUnk_000.z >=
+            0x10) {
+            func_02039860(&p->mUnk_000, &p->mUnk_000);
         }
     }
-    return func_0205fd2c(data_0217ad08->mUnk_268, *a, b);
+    *(u32 *) 0x4000440 = 2;
+    d.x = p->mUnk_024.x >> 4;
+    d.y = (p->mUnk_024.y + p->mUnk_178) >> 4;
+    d.z = p->mUnk_024.z >> 4;
+    e.x = p->mUnk_018.x >> 4;
+    e.y = p->mUnk_018.y >> 4;
+    e.z = p->mUnk_018.z >> 4;
+    func_0214abb4(&d, &p->mUnk_000, &e, 1, &p->mUnk_030);
 }
 
-void func_02077b1c(void) {
-    data_0217ad08->mUnk_260 = 0;
-    data_0217ad08->mUnk_25c = data_0217ad08->mUnk_260;
-}
+void func_02076cd0(Unk02061808 *p) {
+    Vec3 a;
+    Vec3 b;
+    Vec3 c;
+    Vec3 d;
 
-void func_02077b3c(void) {
-    if (data_0217ad08->mUnk_25c != 0 || data_0217ad08->mUnk_260 != 0) {
-        data_0217ad08->mUnk_1f4[data_0217ad08->mUnk_266].mUnk_2c = 1;
-        data_0217ad08->mUnk_020->mUnk_00 = data_0217ad08->mUnk_024.mUnk_00;
-        data_0217ad08->mUnk_020->mUnk_04 = data_0217ad08->mUnk_024.mUnk_04;
-        data_0217ad08->mUnk_020->mUnk_20 = data_0217ad08->mUnk_1c8 + data_0217ad08->mUnk_024.mUnk_04;
-        func_02057df0(LoadKartAndCharacterFiles);
-        data_0217aa0c->mUnk_f8 = 1;
+    b = p->mUnk_0c0;
+    c = p->mUnk_024;
+    d = p->mUnk_018;
+    d.y += p->mUnk_158;
+    Vec3Sub(&d, &c, &a);
+    if ((s64) a.x * a.x + (s64) a.y * a.y + (s64) a.z * a.z >= 0x10) {
+        func_02039860(&a, &a);
     }
+    p->mUnk_15c = a;
+    func_020397a8(&b, &a, &p->mUnk_00c);
+    func_020397a8(&a, &p->mUnk_00c, &p->mUnk_000);
+    if (p->mUnk_000.x == 0 && p->mUnk_000.y == 0 && p->mUnk_000.z == 0) {
+        p->mUnk_000.x = 0x1000;
+        p->mUnk_000.y = 0x1000;
+        p->mUnk_000.z = 0x1000;
+        if ((s64) p->mUnk_000.x * p->mUnk_000.x + (s64) p->mUnk_000.y * p->mUnk_000.y +
+                (s64) p->mUnk_000.z * p->mUnk_000.z >=
+            0x10) {
+            func_02039860(&p->mUnk_000, &p->mUnk_000);
+        }
+    }
+    if (p->mUnk_130 != 0) {
+        func_02073904(p);
+        Vec3Add(&c, &p->mUnk_118, &c);
+        Vec3Add(&d, &p->mUnk_10c, &d);
+        Vec3Add(&p->mUnk_124, &d, &d);
+    }
+    p->mUnk_09c.x = c.x >> 4;
+    p->mUnk_09c.y = c.y >> 4;
+    p->mUnk_09c.z = c.z >> 4;
+    p->mUnk_09c.y += p->mUnk_178 >> 4;
+    p->mUnk_090.x = d.x >> 4;
+    p->mUnk_090.y = d.y >> 4;
+    p->mUnk_090.z = d.z >> 4;
+    *(u32 *) 0x4000440 = 2;
+    func_0214abb4(&p->mUnk_09c, &p->mUnk_000, &p->mUnk_090, 1, &p->mUnk_030);
 }
 
-#pragma thumb off

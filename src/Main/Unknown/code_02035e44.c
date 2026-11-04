@@ -13,71 +13,7 @@
 #include "Main/Unknown/code_02133000.h"
 #include "Main/Unknown/unk_02174000.h"
 
-u32 func_02035e44(void) {
-    return data_0217aa00->mUnk_0457 != 0;
-}
-
 #pragma thumb on
-
-s32 func_02035e64(u32 a) {
-    s32 r;
-    Unk02174e6c *o;
-
-    switch (data_02174e6c->mUnk_64c) {
-        case 9:
-            r = func_02058f20();
-            switch (r) {
-                case 1:
-                    if (func_02035e44() != 0) {
-                        func_02035e38();
-                    }
-                    data_02174e6c->mUnk_64c = 10;
-                    break;
-                case 2:
-                    break;
-            }
-            break;
-        case 10:
-            if (a != 0) {
-                func_02035e30(a, 10);
-            }
-            data_02174e6c->mUnk_64c = 11;
-            break;
-    }
-    o = data_02174e6c;
-    o->mUnk_640 = (o->mUnk_640 + 1) % 0x100;
-    return -1;
-}
-
-s32 func_02035ee0(u32 a) {
-    s32 r;
-    Unk02174e6c *o;
-
-    switch (data_02174e6c->mUnk_64c) {
-        case 9:
-            r = func_020591c4();
-            switch (r) {
-                case 1:
-                    if (func_02035e44() != 0) {
-                        func_02035e38();
-                    }
-                    data_02174e6c->mUnk_64c = 10;
-                    break;
-                case 2:
-                    break;
-            }
-            break;
-        case 10:
-            if (a != 0) {
-                func_02035e30(a, 2);
-            }
-            data_02174e6c->mUnk_64c = 11;
-            break;
-    }
-    o = data_02174e6c;
-    o->mUnk_640 = (o->mUnk_640 + 1) % 0x100;
-    return -1;
-}
 
 s32 func_02035f5c(u32 a) {
     s32 r;
@@ -130,4 +66,69 @@ s32 func_02035f5c(u32 a) {
     return -1;
 }
 
+s32 func_02035ee0(u32 a) {
+    s32 r;
+    Unk02174e6c *o;
+
+    switch (data_02174e6c->mUnk_64c) {
+        case 9:
+            r = func_020591c4();
+            switch (r) {
+                case 1:
+                    if (func_02035e44() != 0) {
+                        func_02035e38();
+                    }
+                    data_02174e6c->mUnk_64c = 10;
+                    break;
+                case 2:
+                    break;
+            }
+            break;
+        case 10:
+            if (a != 0) {
+                func_02035e30(a, 2);
+            }
+            data_02174e6c->mUnk_64c = 11;
+            break;
+    }
+    o = data_02174e6c;
+    o->mUnk_640 = (o->mUnk_640 + 1) % 0x100;
+    return -1;
+}
+
+s32 func_02035e64(u32 a) {
+    s32 r;
+    Unk02174e6c *o;
+
+    switch (data_02174e6c->mUnk_64c) {
+        case 9:
+            r = func_02058f20();
+            switch (r) {
+                case 1:
+                    if (func_02035e44() != 0) {
+                        func_02035e38();
+                    }
+                    data_02174e6c->mUnk_64c = 10;
+                    break;
+                case 2:
+                    break;
+            }
+            break;
+        case 10:
+            if (a != 0) {
+                func_02035e30(a, 10);
+            }
+            data_02174e6c->mUnk_64c = 11;
+            break;
+    }
+    o = data_02174e6c;
+    o->mUnk_640 = (o->mUnk_640 + 1) % 0x100;
+    return -1;
+}
+
 #pragma thumb off
+
+u32 func_02035e44(void) {
+    return data_0217aa00->mUnk_0457 != 0;
+}
+

@@ -36,7 +36,16 @@
 
 #pragma optimize_for_size on
 
+u16 func_02028710(Unk02175628 *a, u32 b) {
+    return a->mUnk_00 & b;
+}
+
+u16 func_020286f4(u32 a, u32 b) {
+    return func_02028710(&data_02175628[a], b);
+}
+
 #pragma thumb on
+
 int AdvanceSelectKart(void) {
     Unk02174e18 *d;
     Unk02174e50_24 *p;
@@ -246,13 +255,4 @@ int AdvanceSelectKart(void) {
             break;
     }
     return r;
-}
-#pragma thumb off
-
-u16 func_020286f4(u32 a, u32 b) {
-    return func_02028710(&data_02175628[a], b);
-}
-
-u16 func_02028710(Unk02175628 *a, u32 b) {
-    return a->mUnk_00 & b;
 }

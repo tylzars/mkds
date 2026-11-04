@@ -14,72 +14,66 @@ static inline Unk0217aa1c_00 *func_02033e6c_inline(u32 a) {
 
 #pragma thumb on
 
-s32 func_02033dd0(void) {
-    BOOL r;
+void func_02034244(void) {
+    s16 a;
+    u32 b;
+    u32 c;
+    s32 d;
+    s32 e;
 
-    r = FALSE;
-    if (data_02174e60->mUnk_148 != 0 && data_02174e60->mUnk_14c < 0x12c) {
-        r = TRUE;
+    a = func_02025ebc(&data_02174e64->mUnk_194);
+    *(vu32 *) 0x4000010 = (a << 16) & 0x1ff0000;
+    d = -a;
+    *(vu32 *) 0x400101c = (d << 16) & 0x1ff0000;
+    switch (a) {
+        default:
+            *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffff1fff) | 0x2000;
+            e = (*(vu16 *) 0x4000048 & ~0x3f) | 0x1f;
+            *(vu16 *) 0x4000048 = e | 0x20;
+            *(vu16 *) 0x400004a = (u32) ((*(vu16 *) 0x400004a & ~0x3f) | 0xe) | 0x20;
+            *(vu16 *) 0x4000040 = 0xff;
+            *(vu16 *) 0x4000044 = ((d << 8) & 0xff00) | 0xc0;
+            *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffff1fff) | 0x2000;
+            c = (*(vu16 *) 0x4001048 & ~0x3f) | 0x1f;
+            *(vu16 *) 0x4001048 = c | 0x20;
+            b = (*(vu16 *) 0x400104a & ~0x3f) | (u32) 7;
+            *(vu16 *) 0x400104a = b | 0x20;
+            *(vu16 *) 0x4001040 = 0xff;
+            *(vu16 *) 0x4001044 = (a + 0xc0) & 0xff;
+            break;
+        case 0:
+            *(vu32 *) 0x4000000 = *(vu32 *) 0x4000000 & 0xffff1fff;
+            *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & 0xffff1fff;
+            break;
     }
-    return r;
 }
 
-s32 func_02033dfc(void) {
-    BOOL r;
-
-    r = FALSE;
-    if (data_02174e60->mUnk_148 != 0 && data_02174e60->mUnk_14c == 0) {
-        r = TRUE;
-    }
-    return r;
-}
-
-s32 func_02033e24(void) {
+void func_02034188(void) {
+    Unk02174e60 *o;
     s32 r;
+    s32 n;
     s32 i;
 
-    r = 1;
-    i = 0;
-    for (; i < data_02174e60->mUnk_0d8; i++) {
-        r &= data_02174e60->mUnk_0e4[i].mUnk_00 == 0 ? 1 : 0;
-    }
-    return r;
-}
-
-void func_02033e6c(void) {
-    u16 j;
-    u16 k;
-    s32 n;
-
-    for (k = 0; k < data_02174e60->mUnk_0d8; k++) {
-        if (data_02174e60->mUnk_0e0 == 3 || data_021759c0->mUnk_1c == 2) {
-            data_02174e60->mUnk_0e4[k].mUnk_04 = func_02033e6c_inline(func_0205dc7c(k))->mUnk_00;
-        } else {
-            data_02174e60->mUnk_0e4[k].mUnk_04 = func_02033e6c_inline(func_0205dc7c(k))->mUnk_05;
+    r = 0;
+    n = 0;
+    for (i = 0; i < data_02174e60->mUnk_0d8; i++) {
+        if (data_021759c0->mUnk_68[(u16) i].mUnk_08.mTeamIndex == 0) {
+            data_02174e60->mUnk_0e4[i].mUnk_08 = r;
+            r++;
         }
     }
-    for (j = 0; j < data_02174e60->mUnk_0d8; j++) {
-        n = 0;
-        for (k = 0; k < data_02174e60->mUnk_0d8; k++) {
-            if (j != k && data_02174e60->mUnk_0e4[j].mUnk_04 < data_02174e60->mUnk_0e4[k].mUnk_04) {
-                n++;
-            }
+    for (i = 0; i < data_02174e60->mUnk_0d8; i++) {
+        if (data_021759c0->mUnk_68[(u16) i].mUnk_08.mTeamIndex == 1) {
+            n++;
         }
-        data_02174e60->mUnk_0e4[j].mUnk_00 = n;
     }
-    if (data_021759c0->mUseTeams != 0) {
-        if (data_021759c0->mUnk_08 == 2 && data_021759c0->mUnk_1c == 1) {
-            func_02034188();
-        } else {
-            func_02034024();
-        }
-    } else if (data_021759c0->mUnk_08 == 2) {
-        for (k = 0; k < data_02174e60->mUnk_0d8; k++) {
-            data_02174e60->mUnk_0e4[k].mUnk_08 = data_0217b488->mUnk_ec[k];
-        }
-    } else {
-        for (k = 0; k < data_02174e60->mUnk_0d8; k++) {
-            data_02174e60->mUnk_0e4[k].mUnk_08 = func_0205d4e8(k) - 1;
+    if (r < 4 && n <= 4) {
+        r = 4;
+    }
+    for (i = 0; i < data_02174e60->mUnk_0d8; i++) {
+        if (data_021759c0->mUnk_68[(u16) i].mUnk_08.mTeamIndex == 1) {
+            data_02174e60->mUnk_0e4[i].mUnk_08 = r;
+            r++;
         }
     }
 }
@@ -145,68 +139,74 @@ void func_02034024(void) {
     }
 }
 
-void func_02034188(void) {
-    Unk02174e60 *o;
-    s32 r;
+void func_02033e6c(void) {
+    u16 j;
+    u16 k;
     s32 n;
-    s32 i;
 
-    r = 0;
-    n = 0;
-    for (i = 0; i < data_02174e60->mUnk_0d8; i++) {
-        if (data_021759c0->mUnk_68[(u16) i].mUnk_08.mTeamIndex == 0) {
-            data_02174e60->mUnk_0e4[i].mUnk_08 = r;
-            r++;
+    for (k = 0; k < data_02174e60->mUnk_0d8; k++) {
+        if (data_02174e60->mUnk_0e0 == 3 || data_021759c0->mUnk_1c == 2) {
+            data_02174e60->mUnk_0e4[k].mUnk_04 = func_02033e6c_inline(func_0205dc7c(k))->mUnk_00;
+        } else {
+            data_02174e60->mUnk_0e4[k].mUnk_04 = func_02033e6c_inline(func_0205dc7c(k))->mUnk_05;
         }
     }
-    for (i = 0; i < data_02174e60->mUnk_0d8; i++) {
-        if (data_021759c0->mUnk_68[(u16) i].mUnk_08.mTeamIndex == 1) {
-            n++;
+    for (j = 0; j < data_02174e60->mUnk_0d8; j++) {
+        n = 0;
+        for (k = 0; k < data_02174e60->mUnk_0d8; k++) {
+            if (j != k && data_02174e60->mUnk_0e4[j].mUnk_04 < data_02174e60->mUnk_0e4[k].mUnk_04) {
+                n++;
+            }
         }
+        data_02174e60->mUnk_0e4[j].mUnk_00 = n;
     }
-    if (r < 4 && n <= 4) {
-        r = 4;
-    }
-    for (i = 0; i < data_02174e60->mUnk_0d8; i++) {
-        if (data_021759c0->mUnk_68[(u16) i].mUnk_08.mTeamIndex == 1) {
-            data_02174e60->mUnk_0e4[i].mUnk_08 = r;
-            r++;
+    if (data_021759c0->mUseTeams != 0) {
+        if (data_021759c0->mUnk_08 == 2 && data_021759c0->mUnk_1c == 1) {
+            func_02034188();
+        } else {
+            func_02034024();
+        }
+    } else if (data_021759c0->mUnk_08 == 2) {
+        for (k = 0; k < data_02174e60->mUnk_0d8; k++) {
+            data_02174e60->mUnk_0e4[k].mUnk_08 = data_0217b488->mUnk_ec[k];
+        }
+    } else {
+        for (k = 0; k < data_02174e60->mUnk_0d8; k++) {
+            data_02174e60->mUnk_0e4[k].mUnk_08 = func_0205d4e8(k) - 1;
         }
     }
 }
 
-void func_02034244(void) {
-    s16 a;
-    u32 b;
-    u32 c;
-    s32 d;
-    s32 e;
+s32 func_02033e24(void) {
+    s32 r;
+    s32 i;
 
-    a = func_02025ebc(&data_02174e64->mUnk_194);
-    *(vu32 *) 0x4000010 = (a << 16) & 0x1ff0000;
-    d = -a;
-    *(vu32 *) 0x400101c = (d << 16) & 0x1ff0000;
-    switch (a) {
-        default:
-            *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffff1fff) | 0x2000;
-            e = (*(vu16 *) 0x4000048 & ~0x3f) | 0x1f;
-            *(vu16 *) 0x4000048 = e | 0x20;
-            *(vu16 *) 0x400004a = (u32) ((*(vu16 *) 0x400004a & ~0x3f) | 0xe) | 0x20;
-            *(vu16 *) 0x4000040 = 0xff;
-            *(vu16 *) 0x4000044 = ((d << 8) & 0xff00) | 0xc0;
-            *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffff1fff) | 0x2000;
-            c = (*(vu16 *) 0x4001048 & ~0x3f) | 0x1f;
-            *(vu16 *) 0x4001048 = c | 0x20;
-            b = (*(vu16 *) 0x400104a & ~0x3f) | (u32) 7;
-            *(vu16 *) 0x400104a = b | 0x20;
-            *(vu16 *) 0x4001040 = 0xff;
-            *(vu16 *) 0x4001044 = (a + 0xc0) & 0xff;
-            break;
-        case 0:
-            *(vu32 *) 0x4000000 = *(vu32 *) 0x4000000 & 0xffff1fff;
-            *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & 0xffff1fff;
-            break;
+    r = 1;
+    i = 0;
+    for (; i < data_02174e60->mUnk_0d8; i++) {
+        r &= data_02174e60->mUnk_0e4[i].mUnk_00 == 0 ? 1 : 0;
     }
+    return r;
+}
+
+s32 func_02033dfc(void) {
+    BOOL r;
+
+    r = FALSE;
+    if (data_02174e60->mUnk_148 != 0 && data_02174e60->mUnk_14c == 0) {
+        r = TRUE;
+    }
+    return r;
+}
+
+s32 func_02033dd0(void) {
+    BOOL r;
+
+    r = FALSE;
+    if (data_02174e60->mUnk_148 != 0 && data_02174e60->mUnk_14c < 0x12c) {
+        r = TRUE;
+    }
+    return r;
 }
 
 #pragma thumb off

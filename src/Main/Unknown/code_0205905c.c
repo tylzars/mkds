@@ -8,8 +8,6 @@
 
 #pragma opt_rebuildconditionals off
 
-#pragma thumb on
-
 static inline u32 func_0205905c_inline(void) {
     if (data_0217aa00 == NULL) {
         return 0;
@@ -41,21 +39,33 @@ static inline s32 func_0205905c_inline4(void) {
     return r;
 }
 
-u32 func_0205905c(void) {
-    if (func_0205905c_inline4()) {
-        return 3;
-    }
+#pragma thumb on
+
+s32 func_020591cc(void) {
+    BOOL r;
+
+    r = FALSE;
     if (!func_0205905c_inline2()) {
         return 1;
     }
-    switch (func_0205905c_inline()) {
-        case 1:
-            return func_02059700();
-        case 2:
-            return func_020595e8(2, NULL, NULL);
-        default:
-            return 3;
+    func_02046b40(&data_0217aa00->mUnk_1608);
+    if (!func_0205905c_inline4()) {
+        if (func_0205905c_inline() == 1 && data_0217aa00->mUnk_0044.mUnk_40 == 0) {
+            func_02050e60(7);
+        }
     }
+    if (data_0217aa00->mUnk_1608.mUnk_0e == 0xf) {
+        r = TRUE;
+    }
+    return r;
+}
+
+s32 func_020591c4(void) {
+    return func_020591cc();
+}
+
+s32 func_020591bc(void) {
+    return func_020591cc();
 }
 
 u32 func_0205910c(void) {
@@ -75,31 +85,21 @@ u32 func_0205910c(void) {
     }
 }
 
-s32 func_020591bc(void) {
-    return func_020591cc();
-}
-
-s32 func_020591c4(void) {
-    return func_020591cc();
-}
-
-s32 func_020591cc(void) {
-    BOOL r;
-
-    r = FALSE;
+u32 func_0205905c(void) {
+    if (func_0205905c_inline4()) {
+        return 3;
+    }
     if (!func_0205905c_inline2()) {
         return 1;
     }
-    func_02046b40(&data_0217aa00->mUnk_1608);
-    if (!func_0205905c_inline4()) {
-        if (func_0205905c_inline() == 1 && data_0217aa00->mUnk_0044.mUnk_40 == 0) {
-            func_02050e60(7);
-        }
+    switch (func_0205905c_inline()) {
+        case 1:
+            return func_02059700();
+        case 2:
+            return func_020595e8(2, NULL, NULL);
+        default:
+            return 3;
     }
-    if (data_0217aa00->mUnk_1608.mUnk_0e == 0xf) {
-        r = TRUE;
-    }
-    return r;
 }
 
 #pragma thumb off

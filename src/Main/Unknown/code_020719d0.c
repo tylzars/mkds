@@ -11,6 +11,67 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_02147cd8.h"
 
+void func_02071c18(Unk0206bcb0 *p) {
+    func_02109110(&p->mUnk_00, 0, p->mUnk_508);
+    func_0210a5a8(p, (Unk0210a5a8 *) &p->mUnk_450);
+    func_020719d0(p);
+    switch (p->mKartModelsEntry->mUnk_000) {
+        case 0:
+            p->mUnk_3cc = 4;
+            break;
+        case 1:
+            p->mUnk_3cc = 0;
+            break;
+        case 2:
+            p->mUnk_3cc = 1;
+            break;
+        case 3:
+            p->mUnk_3cc = 2;
+            break;
+        case 4:
+            p->mUnk_3cc = 5;
+            break;
+        case 5:
+            p->mUnk_3cc = 6;
+            break;
+        case 6:
+            p->mUnk_3cc = 7;
+            break;
+        case 7:
+            p->mUnk_3cc = 3;
+            break;
+        case 8:
+            p->mUnk_3cc = 10;
+            break;
+        case 9:
+            p->mUnk_3cc = 8;
+            break;
+        case 10:
+            p->mUnk_3cc = 9;
+            break;
+        case 11:
+            p->mUnk_3cc = 11;
+            break;
+        case 12:
+            p->mUnk_3cc = 12;
+            break;
+    }
+    p->mUnk_3d0 = p->mKartModelsEntry->mUnk_004 % 3;
+    if (p->mUnk_7c & 1) {
+        if (!(p->mUnk_00.mUnk_34 & 1)) {
+            func_0210cfbc(&p->mUnk_00, 2, 1);
+        }
+        if (data_021759c0->mUnk_00c == 2) {
+            func_0210b850((Unk0210b7ec *) &p->mUnk_518);
+        }
+    } else {
+        if (p->mUnk_00.mUnk_34 & 1) {
+            func_0210cfbc(&p->mUnk_00, 2, 1);
+        }
+        func_0210b850((Unk0210b7ec *) &p->mUnk_518);
+    }
+}
+
 void func_020719d0(Unk0206bcb0 *p) {
     Unk02024eec *q;
     Unk02024eec_40 t;
@@ -109,65 +170,4 @@ void func_020719d0(Unk0206bcb0 *p) {
     t.mUnk_20 = b;
     t.mUnk_24 = a;
     q->mUnk_40_m = t;
-}
-
-void func_02071c18(Unk0206bcb0 *p) {
-    func_02109110(&p->mUnk_00, 0, p->mUnk_508);
-    func_0210a5a8(p, (Unk0210a5a8 *) &p->mUnk_450);
-    func_020719d0(p);
-    switch (p->mKartModelsEntry->mUnk_000) {
-        case 0:
-            p->mUnk_3cc = 4;
-            break;
-        case 1:
-            p->mUnk_3cc = 0;
-            break;
-        case 2:
-            p->mUnk_3cc = 1;
-            break;
-        case 3:
-            p->mUnk_3cc = 2;
-            break;
-        case 4:
-            p->mUnk_3cc = 5;
-            break;
-        case 5:
-            p->mUnk_3cc = 6;
-            break;
-        case 6:
-            p->mUnk_3cc = 7;
-            break;
-        case 7:
-            p->mUnk_3cc = 3;
-            break;
-        case 8:
-            p->mUnk_3cc = 10;
-            break;
-        case 9:
-            p->mUnk_3cc = 8;
-            break;
-        case 10:
-            p->mUnk_3cc = 9;
-            break;
-        case 11:
-            p->mUnk_3cc = 11;
-            break;
-        case 12:
-            p->mUnk_3cc = 12;
-            break;
-    }
-    p->mUnk_3d0 = p->mKartModelsEntry->mUnk_004 % 3;
-    if (p->mUnk_7c & 1) {
-        if (!(p->mUnk_00.mUnk_34 & 1)) {
-            func_0210cfbc(&p->mUnk_00, 2, 1);
-        }
-        if (data_021759c0->mUnk_00c == 2) {
-            func_0210b850((Unk0210b7ec *) &p->mUnk_518);
-        }
-    } else {
-        if (p->mUnk_00.mUnk_34 & 1) {
-            func_0210cfbc(&p->mUnk_00, 2, 1);
-        }
-        func_0210b850((Unk0210b7ec *) &p->mUnk_518);
-    }
 }

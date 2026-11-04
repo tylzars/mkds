@@ -14,153 +14,10 @@
 #include "code_0200eddc.h"
 #include "code_0200fc8c.h"
 
-void func_0204d28c(void) {
-    Unk02175ec0_msg v1;
-    Unk02175ec0_msg v2;
-    BOOL v6;
-    Unk02175ec0_440 *v3;
-    s32 v4;
-    s32 i;
-    s32 v5;
-    s32 v7;
-    Unk02175ec0_440 *e;
-    u32 n;
-    s32 g;
-    Unk02175ec0 *q = &data_02175ec0;
-    Unk02175ec0_440s *p = (Unk02175ec0_440s *) ((u32) q + 0x440);
-    s32 a;
-
-    if (q->mUnk_0000 == 0) {
-        return;
-    }
-    if (p->mUnk_46d4 != 0) {
-        return;
-    }
-    p->mUnk_46cc = p->mUnk_46cc & p->mUnk_46d8;
-    p->mUnk_46d0 = p->mUnk_46d0 & p->mUnk_46d8;
-    p->mUnk_46dc = p->mUnk_46dc & p->mUnk_46d8;
-    p->mUnk_46e8 = p->mUnk_46e8 & p->mUnk_46d8;
-    if (p->mUnk_46e0 != 0 && p->mUnk_46e4 == 0) {
-        g = p->mUnk_46ec;
-        n = data_02175ec0.mUnk_002c;
-        p->mUnk_46e0 = 0;
-        data_02175ec0.mUnk_0028 = g;
-        func_02006f14(g, n);
-        g = p->mUnk_46e8;
-        if (g == 0) {
-            return;
-        }
-        v1.mUnk_00_0 = 1;
-        v1.mUnk_00_8 = 0;
-        v1.mUnk_04 = 0;
-        v1.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
-        v1.mUnk_08 = data_02175ec0.mUnk_0028;
-        if (func_02006d3c((u16) g, &v1, 9, func_0204d5bc) == 0) {
-            return;
-        }
-        p->mUnk_46d4 = 1;
-        p->mUnk_46e8 = 0;
-        return;
-    }
-    v4 = p->mUnk_46cc;
-    if (v4 == 0) {
-        return;
-    }
-    v5 = p->mUnk_46d0;
-    v3 = NULL;
-    if (v5 != 0 && v5 == (v5 & v4)) {
-        v6 = TRUE;
-    } else {
-        v6 = FALSE;
-    }
-    if (v6 != FALSE) {
-        v4 = v5;
-    } else {
-        v4 = v4 & ~v5;
-    }
-    e = p->mUnk_0000;
-    for (i = 0;; e++, i++) {
-        v7 = 1 << i;
-        if (v7 > v4) {
-            break;
-        }
-        if ((v7 & v4) != 0) {
-            if (v3 == NULL) {
-                v3 = e;
-            } else if (v3->mUnk_00_0 != e->mUnk_00_0 || v3->mUnk_04 != e->mUnk_04) {
-                v4 = v4 & ~v7;
-            }
-        }
-    }
-    if (v6 != FALSE) {
-        if (v4 != v5) {
-            p->mUnk_46d0 = 0;
-        }
-    }
-    if (v3 == NULL) {
-        return;
-    }
-    switch (v3->mUnk_00_0) {
-        case 0:
-            v3->mUnk_00_0 = 1;
-            break;
-        case 2:
-            v3->mUnk_00_0 = 3;
-            p->mUnk_46dc = p->mUnk_46dc & ~v4;
-            break;
-    }
-    a = *(volatile s32 *) &v3->mUnk_04;
-    v2.mUnk_00_0 = (u8) v3->mUnk_00_0;
-    v2.mUnk_04 = a;
-    v2.mUnk_00_8 = 1;
-    v2.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
-    v2.mUnk_08 = data_02175ec0.mUnk_0028;
-    if (func_02006d3c((u16) v4, &v2, 9, func_0204d5bc) == 0) {
-        return;
-    }
-    p->mUnk_46d4 = 1;
-    p->mUnk_46cc = p->mUnk_46cc & ~v4;
-}
-
-void func_0204d5bc(void) {
-    Unk02175ec0 *p = &data_02175ec0;
-
-    if (p->mUnk_000c == 0) {
-        return;
-    }
-    if (p->mUnk_0000 == 0) {
-        return;
-    }
-    p->mUnk_0440.mUnk_46d4 = 0;
-    func_0204d28c();
-}
-
 typedef struct Unk0204d610_t {
     u8 *mUnk_00;
     u32 mUnk_04;
 } Unk0204d610_t;
-
-u32 func_0204d610(u32 *a) {
-    Unk0204d610_t t[4];
-    u32 r;
-    Unk02003a6c *p;
-    s32 i;
-
-    p = FS_FindArchive(data_021651d4, 3);
-    FS_UnloadArchive(p);
-    FS_SetArchiveProc(p, func_0204dab8, -1);
-    r = *a++;
-    for (i = 0; i < 4; i++) {
-        t[i].mUnk_00 = (u8 *) (a + 1);
-        t[i].mUnk_04 = *a;
-        a = (u32 *) (t[i].mUnk_00 + ((t[i].mUnk_04 + 0x1f) & ~0x1f));
-    }
-    FS_LoadArchive(p, NULL, (u32) t[0].mUnk_00, t[0].mUnk_04, (u32) t[1].mUnk_00, t[1].mUnk_04, func_0204db48,
-                   func_0204db40);
-    FS_AttachOverlayTable(0, t[2].mUnk_00, t[2].mUnk_04);
-    FS_AttachOverlayTable(1, t[3].mUnk_00, t[3].mUnk_04);
-    return r;
-}
 
 typedef struct Unk0204d6f4_hdr {
     u8 mUnk_00[0x40];
@@ -173,6 +30,24 @@ typedef struct Unk0204d6f4_hdr {
     u32 mUnk_58;
     u32 mUnk_5c;
 } Unk0204d6f4_hdr;
+
+s32 func_0204dab8(Unk02003024 *a, u32 b) {
+    switch (b) {
+        case 0:
+            if (data_02175ec0.mUnk_000c != 2) {
+                return 5;
+            }
+            if (a->mUnk_30.p.mUnk_08 == 0) {
+                return 0;
+            }
+            func_0204cf5c(a);
+            return 6;
+        case 1:
+            return 4;
+        default:
+            return 8;
+    }
+}
 
 void func_0204d6f4(Unk02003024 *a, s32 b) {
     Unk0204d6f4_hdr v2;
@@ -294,20 +169,145 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
     data_02175ec0.mUnk_0024 = v7;
 }
 
-s32 func_0204dab8(Unk02003024 *a, u32 b) {
-    switch (b) {
-        case 0:
-            if (data_02175ec0.mUnk_000c != 2) {
-                return 5;
-            }
-            if (a->mUnk_30.p.mUnk_08 == 0) {
-                return 0;
-            }
-            func_0204cf5c(a);
-            return 6;
-        case 1:
-            return 4;
-        default:
-            return 8;
+u32 func_0204d610(u32 *a) {
+    Unk0204d610_t t[4];
+    u32 r;
+    Unk02003a6c *p;
+    s32 i;
+
+    p = FS_FindArchive(data_021651d4, 3);
+    FS_UnloadArchive(p);
+    FS_SetArchiveProc(p, func_0204dab8, -1);
+    r = *a++;
+    for (i = 0; i < 4; i++) {
+        t[i].mUnk_00 = (u8 *) (a + 1);
+        t[i].mUnk_04 = *a;
+        a = (u32 *) (t[i].mUnk_00 + ((t[i].mUnk_04 + 0x1f) & ~0x1f));
     }
+    FS_LoadArchive(p, NULL, (u32) t[0].mUnk_00, t[0].mUnk_04, (u32) t[1].mUnk_00, t[1].mUnk_04, func_0204db48,
+                   func_0204db40);
+    FS_AttachOverlayTable(0, t[2].mUnk_00, t[2].mUnk_04);
+    FS_AttachOverlayTable(1, t[3].mUnk_00, t[3].mUnk_04);
+    return r;
+}
+
+void func_0204d5bc(void) {
+    Unk02175ec0 *p = &data_02175ec0;
+
+    if (p->mUnk_000c == 0) {
+        return;
+    }
+    if (p->mUnk_0000 == 0) {
+        return;
+    }
+    p->mUnk_0440.mUnk_46d4 = 0;
+    func_0204d28c();
+}
+
+void func_0204d28c(void) {
+    Unk02175ec0_msg v1;
+    Unk02175ec0_msg v2;
+    BOOL v6;
+    Unk02175ec0_440 *v3;
+    s32 v4;
+    s32 i;
+    s32 v5;
+    s32 v7;
+    Unk02175ec0_440 *e;
+    u32 n;
+    s32 g;
+    Unk02175ec0 *q = &data_02175ec0;
+    Unk02175ec0_440s *p = (Unk02175ec0_440s *) ((u32) q + 0x440);
+    s32 a;
+
+    if (q->mUnk_0000 == 0) {
+        return;
+    }
+    if (p->mUnk_46d4 != 0) {
+        return;
+    }
+    p->mUnk_46cc = p->mUnk_46cc & p->mUnk_46d8;
+    p->mUnk_46d0 = p->mUnk_46d0 & p->mUnk_46d8;
+    p->mUnk_46dc = p->mUnk_46dc & p->mUnk_46d8;
+    p->mUnk_46e8 = p->mUnk_46e8 & p->mUnk_46d8;
+    if (p->mUnk_46e0 != 0 && p->mUnk_46e4 == 0) {
+        g = p->mUnk_46ec;
+        n = data_02175ec0.mUnk_002c;
+        p->mUnk_46e0 = 0;
+        data_02175ec0.mUnk_0028 = g;
+        func_02006f14(g, n);
+        g = p->mUnk_46e8;
+        if (g == 0) {
+            return;
+        }
+        v1.mUnk_00_0 = 1;
+        v1.mUnk_00_8 = 0;
+        v1.mUnk_04 = 0;
+        v1.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
+        v1.mUnk_08 = data_02175ec0.mUnk_0028;
+        if (func_02006d3c((u16) g, &v1, 9, func_0204d5bc) == 0) {
+            return;
+        }
+        p->mUnk_46d4 = 1;
+        p->mUnk_46e8 = 0;
+        return;
+    }
+    v4 = p->mUnk_46cc;
+    if (v4 == 0) {
+        return;
+    }
+    v5 = p->mUnk_46d0;
+    v3 = NULL;
+    if (v5 != 0 && v5 == (v5 & v4)) {
+        v6 = TRUE;
+    } else {
+        v6 = FALSE;
+    }
+    if (v6 != FALSE) {
+        v4 = v5;
+    } else {
+        v4 = v4 & ~v5;
+    }
+    e = p->mUnk_0000;
+    for (i = 0;; e++, i++) {
+        v7 = 1 << i;
+        if (v7 > v4) {
+            break;
+        }
+        if ((v7 & v4) != 0) {
+            if (v3 == NULL) {
+                v3 = e;
+            } else if (v3->mUnk_00_0 != e->mUnk_00_0 || v3->mUnk_04 != e->mUnk_04) {
+                v4 = v4 & ~v7;
+            }
+        }
+    }
+    if (v6 != FALSE) {
+        if (v4 != v5) {
+            p->mUnk_46d0 = 0;
+        }
+    }
+    if (v3 == NULL) {
+        return;
+    }
+    switch (v3->mUnk_00_0) {
+        case 0:
+            v3->mUnk_00_0 = 1;
+            break;
+        case 2:
+            v3->mUnk_00_0 = 3;
+            p->mUnk_46dc = p->mUnk_46dc & ~v4;
+            break;
+    }
+    a = *(volatile s32 *) &v3->mUnk_04;
+    v2.mUnk_00_0 = (u8) v3->mUnk_00_0;
+    v2.mUnk_04 = a;
+    v2.mUnk_00_8 = 1;
+    v2.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
+    v2.mUnk_08 = data_02175ec0.mUnk_0028;
+    if (func_02006d3c((u16) v4, &v2, 9, func_0204d5bc) == 0) {
+        return;
+    }
+    p->mUnk_46d4 = 1;
+    p->mUnk_46cc = p->mUnk_46cc & ~v4;
 }

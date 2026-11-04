@@ -23,197 +23,6 @@
 
 #pragma thumb on
 
-void func_02047b88(void) {
-    s32 i;
-
-    for (i = 0; i < 20; i++) {
-        func_02047cf0(i);
-    }
-}
-
-void func_02047ba0(s32 a) {
-    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 && a == 6 && data_0217b488->mUnk_74 == 0) {
-    } else {
-        func_02048050(1, a);
-    }
-    switch (a) {
-        case 1:
-        case 12:
-            func_02048050(5, a);
-            func_02048050(14, a);
-            func_02048050(16, a);
-            break;
-        case 10:
-            func_02048050(0, a);
-            func_02048050(5, a);
-            func_02048050(16, a);
-            func_02048050(18, a);
-            break;
-        case 2:
-            func_02048050(18, a);
-            func_02048050(6, a);
-            func_02048050(8, a);
-            break;
-        case 3:
-            func_02048050(0, a);
-            func_02048050(5, a);
-            func_02048050(16, a);
-            break;
-        case 5:
-            func_02048050(5, a);
-            func_02048050(14, a);
-            func_02048050(16, a);
-            break;
-        case 0:
-        case 7:
-        case 8:
-        case 9:
-        case 11:
-        case 13:
-        case 14:
-        case 15:
-            func_02048050(5, a);
-            func_02048050(16, a);
-            break;
-        case 4:
-            if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-                func_02048050(5, a);
-                func_02048050(16, a);
-            }
-            break;
-        case 6:
-            if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-                func_02048050(5, a);
-                func_02048050(16, a);
-            }
-            break;
-    }
-}
-
-void func_02047cf0(int a) {
-    BOOL b;
-    s32 c;
-
-    b = TRUE;
-    if (data_021759c8->mUnk_00[a].mLoaded != 0 && a != 0x13) {
-        ArchiveUnload(&data_021759c8->mUnk_00[a].mArchive.mUnk_00);
-        if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-            c = data_usa_021543e0[a].mUnk_08;
-            if (c != -1 && data_021759c8->mUnk_9b0[c].mUnk_08_29 != 0) {
-                b = FALSE;
-            } else {
-                data_021759c8->mUnk_9b0[c].mUnk_08_31 = 1;
-            }
-        }
-        if (b != FALSE) {
-            HeapFree(GetHeap(func_020364e8()), data_021759c8->mUnk_00[a].mData);
-        }
-        data_021759c8->mUnk_00[a].mLoaded = 0;
-        data_021759c8->mUnk_00[a].mData = 0;
-        ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
-    }
-}
-
-void func_02047db8(void) {
-    Unk021759c8_8c8 *p;
-    Unk021759c8_00 *e;
-
-    p = &data_021759c8->mUnk_8c8;
-    e = &data_021759c8->mUnk_00[p->mUnk_8c];
-    if (p->mUnk_84 != NULL) {
-        if (ArchiveLoadFromMemory(&e->mArchive, (const u8 *) gArchiveNames[p->mUnk_8c], p->mUnk_84) != 0) {
-            e->mLoaded = 1;
-            e->mData = p->mUnk_84;
-        }
-    }
-}
-
-void func_02047e0c(void) {
-    Unk021759c8_8c8 *p;
-    u32 n;
-
-    p = &data_021759c8->mUnk_8c8;
-    n = *p->mUnk_80 >> 8;
-    if (p->mUnk_90 != 0) {
-        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, -0x20);
-    } else {
-        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
-    }
-    ExpandCompressed(p->mUnk_80, p->mUnk_84);
-    func_0200ee58(p->mUnk_84, n);
-    ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
-}
-
-void func_02047e94(void) {
-    Unk021759c8_8c8 *p;
-    Unk02003024 f;
-    u8 b[0x10];
-    u32 n;
-    s32 r;
-
-    p = &data_021759c8->mUnk_8c8;
-    FS_InitFile(&f);
-    if (FS_OpenFile(&f, p->mUnk_00) == 0) {
-        return;
-    }
-    if (FS_ReadFile(&f, p->mUnk_88, 4) < 0) {
-        return;
-    }
-    n = *p->mUnk_88 >> 8;
-    if (n > 0x200000) {
-        return;
-    }
-    if (p->mUnk_90 != 0) {
-        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, -0x20);
-    } else {
-        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
-    }
-    ExpandCompressedStateInit((u32) b, (u32) p->mUnk_84, (u32) p->mUnk_88);
-    do {
-        r = FS_ReadFile(&f, p->mUnk_88, 0x400);
-        if (r <= 0) {
-            return;
-        }
-    } while (ExpandCompressedContinue(b, (const u8 *) p->mUnk_88, r) != 0);
-    func_0200ee58(p->mUnk_84, n);
-    ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
-}
-
-void func_02047f7c(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
-    Unk021759c8_8c8 *p;
-    s32 h;
-
-    p = &data_021759c8->mUnk_8c8;
-    strncpy((char *) p->mUnk_00, b, 0x80);
-    p->mUnk_8c = a;
-    p->mUnk_80 = c;
-    p->mUnk_84 = d;
-    p->mUnk_90 = e;
-    p->mUnk_94 = f;
-    p->mUnk_9c = g;
-    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        if (p->mUnk_80 != NULL) {
-            if (p->mUnk_94 != 0) {
-                h = data_usa_021543e0[a].mUnk_08;
-                if (h != -1) {
-                    data_021759c8->mUnk_9b0[h].mUnk_08_31 = 1;
-                }
-                func_02047e0c();
-            } else {
-                p->mUnk_84 = p->mUnk_80;
-            }
-            func_02047db8();
-        }
-    } else {
-        if (a == 0x13) {
-            func_02047e0c();
-        } else {
-            func_02047e94();
-        }
-        func_02047db8();
-    }
-}
-
 void func_02048050(int a, int b) {
     char c[0x80] = {0};
     u32 *d;
@@ -324,6 +133,197 @@ void func_02048050(int a, int b) {
     h = *(s32 *) ((s32) &data_usa_021543e0[0].mUnk_04 + a * 0x18);
     if (h != -1) {
         func_02048050(h, b);
+    }
+}
+
+void func_02047f7c(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
+    Unk021759c8_8c8 *p;
+    s32 h;
+
+    p = &data_021759c8->mUnk_8c8;
+    strncpy((char *) p->mUnk_00, b, 0x80);
+    p->mUnk_8c = a;
+    p->mUnk_80 = c;
+    p->mUnk_84 = d;
+    p->mUnk_90 = e;
+    p->mUnk_94 = f;
+    p->mUnk_9c = g;
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
+        if (p->mUnk_80 != NULL) {
+            if (p->mUnk_94 != 0) {
+                h = data_usa_021543e0[a].mUnk_08;
+                if (h != -1) {
+                    data_021759c8->mUnk_9b0[h].mUnk_08_31 = 1;
+                }
+                func_02047e0c();
+            } else {
+                p->mUnk_84 = p->mUnk_80;
+            }
+            func_02047db8();
+        }
+    } else {
+        if (a == 0x13) {
+            func_02047e0c();
+        } else {
+            func_02047e94();
+        }
+        func_02047db8();
+    }
+}
+
+void func_02047e94(void) {
+    Unk021759c8_8c8 *p;
+    Unk02003024 f;
+    u8 b[0x10];
+    u32 n;
+    s32 r;
+
+    p = &data_021759c8->mUnk_8c8;
+    FS_InitFile(&f);
+    if (FS_OpenFile(&f, p->mUnk_00) == 0) {
+        return;
+    }
+    if (FS_ReadFile(&f, p->mUnk_88, 4) < 0) {
+        return;
+    }
+    n = *p->mUnk_88 >> 8;
+    if (n > 0x200000) {
+        return;
+    }
+    if (p->mUnk_90 != 0) {
+        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, -0x20);
+    } else {
+        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
+    }
+    ExpandCompressedStateInit((u32) b, (u32) p->mUnk_84, (u32) p->mUnk_88);
+    do {
+        r = FS_ReadFile(&f, p->mUnk_88, 0x400);
+        if (r <= 0) {
+            return;
+        }
+    } while (ExpandCompressedContinue(b, (const u8 *) p->mUnk_88, r) != 0);
+    func_0200ee58(p->mUnk_84, n);
+    ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
+}
+
+void func_02047e0c(void) {
+    Unk021759c8_8c8 *p;
+    u32 n;
+
+    p = &data_021759c8->mUnk_8c8;
+    n = *p->mUnk_80 >> 8;
+    if (p->mUnk_90 != 0) {
+        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, -0x20);
+    } else {
+        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
+    }
+    ExpandCompressed(p->mUnk_80, p->mUnk_84);
+    func_0200ee58(p->mUnk_84, n);
+    ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
+}
+
+void func_02047db8(void) {
+    Unk021759c8_8c8 *p;
+    Unk021759c8_00 *e;
+
+    p = &data_021759c8->mUnk_8c8;
+    e = &data_021759c8->mUnk_00[p->mUnk_8c];
+    if (p->mUnk_84 != NULL) {
+        if (ArchiveLoadFromMemory(&e->mArchive, (const u8 *) gArchiveNames[p->mUnk_8c], p->mUnk_84) != 0) {
+            e->mLoaded = 1;
+            e->mData = p->mUnk_84;
+        }
+    }
+}
+
+void func_02047cf0(int a) {
+    BOOL b;
+    s32 c;
+
+    b = TRUE;
+    if (data_021759c8->mUnk_00[a].mLoaded != 0 && a != 0x13) {
+        ArchiveUnload(&data_021759c8->mUnk_00[a].mArchive.mUnk_00);
+        if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
+            c = data_usa_021543e0[a].mUnk_08;
+            if (c != -1 && data_021759c8->mUnk_9b0[c].mUnk_08_29 != 0) {
+                b = FALSE;
+            } else {
+                data_021759c8->mUnk_9b0[c].mUnk_08_31 = 1;
+            }
+        }
+        if (b != FALSE) {
+            HeapFree(GetHeap(func_020364e8()), data_021759c8->mUnk_00[a].mData);
+        }
+        data_021759c8->mUnk_00[a].mLoaded = 0;
+        data_021759c8->mUnk_00[a].mData = 0;
+        ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
+    }
+}
+
+void func_02047ba0(s32 a) {
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 && a == 6 && data_0217b488->mUnk_74 == 0) {
+    } else {
+        func_02048050(1, a);
+    }
+    switch (a) {
+        case 1:
+        case 12:
+            func_02048050(5, a);
+            func_02048050(14, a);
+            func_02048050(16, a);
+            break;
+        case 10:
+            func_02048050(0, a);
+            func_02048050(5, a);
+            func_02048050(16, a);
+            func_02048050(18, a);
+            break;
+        case 2:
+            func_02048050(18, a);
+            func_02048050(6, a);
+            func_02048050(8, a);
+            break;
+        case 3:
+            func_02048050(0, a);
+            func_02048050(5, a);
+            func_02048050(16, a);
+            break;
+        case 5:
+            func_02048050(5, a);
+            func_02048050(14, a);
+            func_02048050(16, a);
+            break;
+        case 0:
+        case 7:
+        case 8:
+        case 9:
+        case 11:
+        case 13:
+        case 14:
+        case 15:
+            func_02048050(5, a);
+            func_02048050(16, a);
+            break;
+        case 4:
+            if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
+                func_02048050(5, a);
+                func_02048050(16, a);
+            }
+            break;
+        case 6:
+            if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
+                func_02048050(5, a);
+                func_02048050(16, a);
+            }
+            break;
+    }
+}
+
+void func_02047b88(void) {
+    s32 i;
+
+    for (i = 0; i < 20; i++) {
+        func_02047cf0(i);
     }
 }
 

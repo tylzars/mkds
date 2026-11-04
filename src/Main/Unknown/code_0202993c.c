@@ -5,7 +5,23 @@
 #include "Main/Unknown/unk_02174000.h"
 
 #pragma optimize_for_size on
+u16 *func_02029a18(void) {
+    return (u16 *) 0x27ffc40;
+}
+
+u32 func_020299f0(void) {
+    if (*func_02029a18() == 2) {
+        return 1;
+    }
+    return 0;
+}
+
+u32 func_020299e4(void) {
+    return func_020299f0();
+}
+
 #pragma thumb on
+
 void func_0202993c(void) {
     s32 i;
     func_02029a38(data_02174e1c, 0x110);
@@ -30,20 +46,4 @@ void func_0202993c(void) {
             data_02174e1c->mMissionFileRows = NULL;
         }
     }
-}
-#pragma thumb off
-
-u32 func_020299e4(void) {
-    return func_020299f0();
-}
-
-u32 func_020299f0(void) {
-    if (*func_02029a18() == 2) {
-        return 1;
-    }
-    return 0;
-}
-
-u16 *func_02029a18(void) {
-    return (u16 *) 0x27ffc40;
 }

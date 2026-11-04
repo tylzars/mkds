@@ -17,11 +17,6 @@
 #include "code_02147288.h"
 #include "Main/Unknown/unk_0215d000.h"
 
-void func_020641d4(Unk0206bcb0 *a) {
-    func_01ffcb58(a);
-    func_020641f0(a);
-}
-
 void func_020641f0(Unk0206bcb0 *a) {
     Unk0206bcb0_590 *b;
     Unk0206bcb0_590_08 *c;
@@ -143,4 +138,9 @@ void func_020641f0(Unk0206bcb0 *a) {
         }
     }
     func_01ff9b70(a);
+}
+
+void func_020641d4(Unk0206bcb0 *a) {
+    func_01ffcb58(a);
+    func_020641f0(a);
 }

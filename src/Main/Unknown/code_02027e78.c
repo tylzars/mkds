@@ -4,6 +4,11 @@
 #include "Main/Unknown/unk_02174000.h"
 #include "registers.h"
 
+void func_02027f1c(u32 a, u32 b, u32 c, u32 d) {
+    reg_G2S_DB_WIN0H = ((a << 8) & 0xff00) | (c & 0xff);
+    reg_G2S_DB_WIN0V = ((b << 8) & 0xff00) | (d & 0xff);
+}
+
 #pragma thumb on
 
 void func_02027e78(void) {
@@ -28,11 +33,4 @@ void func_02027e78(void) {
     if (gSelectKart->mUnk_104 != FALSE) {
         func_0202ba14();
     }
-}
-
-#pragma thumb off
-
-void func_02027f1c(u32 a, u32 b, u32 c, u32 d) {
-    reg_G2S_DB_WIN0H = ((a << 8) & 0xff00) | (c & 0xff);
-    reg_G2S_DB_WIN0V = ((b << 8) & 0xff00) | (d & 0xff);
 }

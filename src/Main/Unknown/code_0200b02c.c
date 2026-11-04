@@ -6,19 +6,27 @@
 
 #pragma thumb on
 
-void func_0200b02c(Unk0200aeec_head *a, u32 b) {
+u32 func_0200b15c(u32 a, Unk02007ec4 *b, u16 c, u16 d, u32 e, u32 f) {
     u32 v1;
     u32 v2;
-    v1 = IrqDisable();
-    if (data_0216fde0 == NULL) {
-        data_0216fde0 = a;
-        func_0200b00c(&a->mUnk_c4);
-        a->mUnk_c0 = NULL;
-        v2 = (b - 0xe4) & ~3;
-        ThreadInit(&a->mUnk_00, func_0200b08c, a, (u8 *) a + 0xe4 + v2, v2, 0);
-        ThreadSetRunnable(&a->mUnk_00);
+    if (func_0200b1b0(a, (struct Unk0217aa00_24 *) b) == 0) {
+        return 0;
     }
-    IrqRestore(v1);
+    b->mUnk_3c = 0x10;
+    b->mUnk_4a = 0;
+    b->mUnk_4c = c;
+    b->mUnk_4e = d;
+    v1 = 0;
+    if (f != 0) {
+        v1 = 8;
+    }
+    if (e != 0) {
+        v2 = 4;
+    } else {
+        v2 = 0;
+    }
+    b->mUnk_4b = v2 | v1 | 1;
+    return 1;
 }
 
 void func_0200b08c(void *param_1) {
@@ -70,27 +78,19 @@ void func_0200b08c(void *param_1) {
     func_0200e260();
 }
 
-u32 func_0200b15c(u32 a, Unk02007ec4 *b, u16 c, u16 d, u32 e, u32 f) {
+void func_0200b02c(Unk0200aeec_head *a, u32 b) {
     u32 v1;
     u32 v2;
-    if (func_0200b1b0(a, (struct Unk0217aa00_24 *) b) == 0) {
-        return 0;
+    v1 = IrqDisable();
+    if (data_0216fde0 == NULL) {
+        data_0216fde0 = a;
+        func_0200b00c(&a->mUnk_c4);
+        a->mUnk_c0 = NULL;
+        v2 = (b - 0xe4) & ~3;
+        ThreadInit(&a->mUnk_00, func_0200b08c, a, (u8 *) a + 0xe4 + v2, v2, 0);
+        ThreadSetRunnable(&a->mUnk_00);
     }
-    b->mUnk_3c = 0x10;
-    b->mUnk_4a = 0;
-    b->mUnk_4c = c;
-    b->mUnk_4e = d;
-    v1 = 0;
-    if (f != 0) {
-        v1 = 8;
-    }
-    if (e != 0) {
-        v2 = 4;
-    } else {
-        v2 = 0;
-    }
-    b->mUnk_4b = v2 | v1 | 1;
-    return 1;
+    IrqRestore(v1);
 }
 
 #pragma thumb off

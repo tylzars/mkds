@@ -29,16 +29,33 @@
 #include "code_0212bcac.h"
 #include "code_0212df7c.h"
 
-u32 func_0209df00(void) {
-    return func_0209bf48(func_0209e310, func_0209df84, NULL);
+u32 func_0209eb04(void) {
+    return func_0209bef0(CreatePuddle, func_0209eb54, func_0209ec00);
 }
 
-u32 func_0209df20(void) {
-    return func_0209bef0(func_0209e950, func_0209e508, func_0209e938);
+void func_0209ea90(Unk0209df84 *a) {
+    a->mUnk_00.mFlags |= data_usa_021565ec;
+    a->mUnk_a0 = a->mUnk_00.mCourseMapRow->mUnk_28;
+    a->mUnk_a2 = a->mUnk_00.mCourseMapRow->mUnk_2e + 1;
+    func_020d28e0(&a->mUnk_00);
+    a->mUnk_00.mFlags &= ~1;
+    a->mUnk_00.mFlags &= ~2;
+    a->mUnk_00.mFlags &= ~8;
+    a->mUnk_00.mUnk_66 = 0x1f;
 }
 
-void func_0209df44(void) {
-    func_0209bf70(func_0209ea10, NULL, func_0209e988, 0, 0, 0x18d);
+u8 func_0209ea10(Unk0209df84 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
+    u8 v;
+
+    v = *d;
+    if (a->mUnk_19c4[b->mIndex] == 0) {
+        if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
+            a->mUnk_00.mUnk_78 |= data_usa_021565e8;
+        }
+        func_020d26f8(&a->mUnk_00, b);
+    }
+    a->mUnk_19c4[b->mIndex] = 0xb;
+    return v;
 }
 
 static inline BOOL func_0209df84_inline(Unk0206bcb0 *p, Unk0209df84 *b, s32 t) {
@@ -63,105 +80,31 @@ static inline BOOL func_0209df84_inline(Unk0206bcb0 *p, Unk0209df84 *b, s32 t) {
     return (s64) x * x + (s64) y * y + (s64) z * z < (s64) t * t;
 }
 
-void func_0209df84(void *a, Unk0209df84 *b) {
+BOOL func_0209e988(Unk0209df84 *a, Vec3 *b, s32 c) {
     s32 i;
-    s32 j;
-    s32 n;
     s32 d;
-    u16 w;
-    Unk0206bcb0 *p;
-    Unk0212c400 **h;
-    Vec3 v;
+    s32 e;
+    s32 f;
 
-    n = b->mUnk_ac;
-    b->mUnk_b4 = b->mUnk_00.mPos;
-    if (b->mUnk_a2 == 1) {
-        p = func_0207a974((u16) data_021759c0->mUnk_62);
-        if (func_0209df84_inline(p, b, n - 0xf000) != FALSE) {
-            Vec3Sub(&p->mUnk_80, &b->mUnk_00.mPos, &v);
-            d = func_02039828(&v, &b->mUnk_00.mMatrix.mUnk_00[2]);
-            if ((b->mUnk_19e4 < 0 && d > 0) || (b->mUnk_19e4 > 0 && d < 0)) {
-                func_02108e38();
-                h = func_02108e6c(7);
-                if ((data_0217c780 & 1) && data_0217d084.mUnk_0c != 0) {
-                    if (h[0] != NULL) {
-                        func_0212c6f0(h, 0);
-                    }
-                    if (h[0] != NULL) {
-                        func_0212c6f0(h, 0);
-                    }
-                    func_0212ecc0(h, 0, 0x1c2);
-                }
-                b->mUnk_19e4 = 0;
-            } else {
-                b->mUnk_19e4 = d;
-            }
-        } else {
-            b->mUnk_19e4 = 0;
+    for (i = 0; i < a->mUnk_a0; i++) {
+        d = b->x - a->mUnk_c4[i][0].mUnk_00.x;
+        e = b->y - a->mUnk_c4[i][0].mUnk_00.y;
+        f = b->z - a->mUnk_c4[i][0].mUnk_00.z;
+        if ((s64) d * d + (s64) e * e + (s64) f * f < (s64) (c + 0xf000) * (c + 0xf000)) {
+            return TRUE;
         }
     }
-    if (b->mUnk_a2 > 1) {
-        b->mUnk_c2 = b->mUnk_c2 + 0x51e;
-    }
-    for (i = 0; i < b->mUnk_a2; i++) {
-        w = b->mUnk_b2;
-        for (j = 0; j < b->mUnk_a0; j++) {
-            w = w + b->mUnk_a4;
-            b->mUnk_c4[j][i].mUnk_0c = w;
-            Vec3AddScaled(((s64) n * data_0215d4b4[(w >> 4) * 2 + 1]) >> 12, &b->mUnk_00.mMatrix.mUnk_00[0],
-                          &b->mUnk_00.mPos, &b->mUnk_c4[j][i].mUnk_00);
-            Vec3AddScaled(((s64) n * data_0215d4b4[(w >> 4) * 2]) >> 12, &b->mUnk_00.mMatrix.mUnk_00[1],
-                          &b->mUnk_c4[j][i].mUnk_00, &b->mUnk_c4[j][i].mUnk_00);
-            b->mUnk_c4[j][i].mUnk_0e = b->mUnk_c4[j][i].mUnk_0e + 0x51e;
-        }
-        n = n - b->mUnk_a8;
-    }
-    b->mUnk_b2 = b->mUnk_b2 - b->mUnk_b0;
-    for (i = 0; i < data_021759c0->mKartCount; i++) {
-        if (b->mUnk_19c4[i] > 0) {
-            b->mUnk_19c4[i] = b->mUnk_19c4[i] - 1;
-        }
-    }
-    func_020d275c(&b->mUnk_00, 0x160);
+    return FALSE;
 }
 
-void func_0209e310(Unk020e6fd4 *p) {
-    s32 i;
-    s32 j;
-    s32 k;
-    s16 v;
-    float f;
-    u64 t;
-    Unk0209df84 *e;
-    Unk020f41c4_B *r;
+void func_0209e950(Unk0209e950 *a) {
+    gFireball2 = func_0209bd08(a, gFireball2NsbmdName);
+    func_0209b940(gFireball2, 0x3f);
+    a->mUnk_1c = 1;
+}
 
-    if (p == NULL) {
-        return;
-    }
-    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
-        v = e->mUnk_00.mCourseMapRow->mUnk_2a;
-        if (v > 0) {
-            f = 0.5f + (float) (v << 12);
-        } else {
-            f = (float) (v << 12) - 0.5f;
-        }
-        e->mUnk_ac = (s32) f;
-        e->mUnk_b0 = (e->mUnk_00.mCourseMapRow->mUnk_2c * 0x16c) / 100;
-        e->mUnk_a4 = 0x10000 / e->mUnk_a0;
-        e->mUnk_a8 = e->mUnk_ac / e->mUnk_a2;
-        r = func_020d22d0();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        t = r->mUnk_00 >> 32;
-        e->mUnk_c2 = (u16) ((t * 0x10000) >> 32);
-        for (j = 0; j < e->mUnk_a2; j++) {
-            for (k = 0; k < e->mUnk_a0; k++) {
-                r = func_020d22d0();
-                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                t = r->mUnk_00 >> 32;
-                e->mUnk_c4[k][j].mUnk_0e = (u16) ((t * 0x10000) >> 32);
-            }
-        }
-    }
+void func_0209e938(void *a) {
+    func_0209bbd0(a, gFireball2);
 }
 
 void func_0209e508(void *a, Unk0209df84 *b) {
@@ -248,58 +191,115 @@ void func_0209e508(void *a, Unk0209df84 *b) {
     }
 }
 
-void func_0209e938(void *a) {
-    func_0209bbd0(a, gFireball2);
-}
-
-void func_0209e950(Unk0209e950 *a) {
-    gFireball2 = func_0209bd08(a, gFireball2NsbmdName);
-    func_0209b940(gFireball2, 0x3f);
-    a->mUnk_1c = 1;
-}
-
-BOOL func_0209e988(Unk0209df84 *a, Vec3 *b, s32 c) {
+void func_0209e310(Unk020e6fd4 *p) {
     s32 i;
+    s32 j;
+    s32 k;
+    s16 v;
+    float f;
+    u64 t;
+    Unk0209df84 *e;
+    Unk020f41c4_B *r;
+
+    if (p == NULL) {
+        return;
+    }
+    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
+        v = e->mUnk_00.mCourseMapRow->mUnk_2a;
+        if (v > 0) {
+            f = 0.5f + (float) (v << 12);
+        } else {
+            f = (float) (v << 12) - 0.5f;
+        }
+        e->mUnk_ac = (s32) f;
+        e->mUnk_b0 = (e->mUnk_00.mCourseMapRow->mUnk_2c * 0x16c) / 100;
+        e->mUnk_a4 = 0x10000 / e->mUnk_a0;
+        e->mUnk_a8 = e->mUnk_ac / e->mUnk_a2;
+        r = func_020d22d0();
+        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+        t = r->mUnk_00 >> 32;
+        e->mUnk_c2 = (u16) ((t * 0x10000) >> 32);
+        for (j = 0; j < e->mUnk_a2; j++) {
+            for (k = 0; k < e->mUnk_a0; k++) {
+                r = func_020d22d0();
+                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+                t = r->mUnk_00 >> 32;
+                e->mUnk_c4[k][j].mUnk_0e = (u16) ((t * 0x10000) >> 32);
+            }
+        }
+    }
+}
+
+void func_0209df84(void *a, Unk0209df84 *b) {
+    s32 i;
+    s32 j;
+    s32 n;
     s32 d;
-    s32 e;
-    s32 f;
+    u16 w;
+    Unk0206bcb0 *p;
+    Unk0212c400 **h;
+    Vec3 v;
 
-    for (i = 0; i < a->mUnk_a0; i++) {
-        d = b->x - a->mUnk_c4[i][0].mUnk_00.x;
-        e = b->y - a->mUnk_c4[i][0].mUnk_00.y;
-        f = b->z - a->mUnk_c4[i][0].mUnk_00.z;
-        if ((s64) d * d + (s64) e * e + (s64) f * f < (s64) (c + 0xf000) * (c + 0xf000)) {
-            return TRUE;
+    n = b->mUnk_ac;
+    b->mUnk_b4 = b->mUnk_00.mPos;
+    if (b->mUnk_a2 == 1) {
+        p = func_0207a974((u16) data_021759c0->mUnk_62);
+        if (func_0209df84_inline(p, b, n - 0xf000) != FALSE) {
+            Vec3Sub(&p->mUnk_80, &b->mUnk_00.mPos, &v);
+            d = func_02039828(&v, &b->mUnk_00.mMatrix.mUnk_00[2]);
+            if ((b->mUnk_19e4 < 0 && d > 0) || (b->mUnk_19e4 > 0 && d < 0)) {
+                func_02108e38();
+                h = func_02108e6c(7);
+                if ((data_0217c780 & 1) && data_0217d084.mUnk_0c != 0) {
+                    if (h[0] != NULL) {
+                        func_0212c6f0(h, 0);
+                    }
+                    if (h[0] != NULL) {
+                        func_0212c6f0(h, 0);
+                    }
+                    func_0212ecc0(h, 0, 0x1c2);
+                }
+                b->mUnk_19e4 = 0;
+            } else {
+                b->mUnk_19e4 = d;
+            }
+        } else {
+            b->mUnk_19e4 = 0;
         }
     }
-    return FALSE;
-}
-
-u8 func_0209ea10(Unk0209df84 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
-    u8 v;
-
-    v = *d;
-    if (a->mUnk_19c4[b->mIndex] == 0) {
-        if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
-            a->mUnk_00.mUnk_78 |= data_usa_021565e8;
-        }
-        func_020d26f8(&a->mUnk_00, b);
+    if (b->mUnk_a2 > 1) {
+        b->mUnk_c2 = b->mUnk_c2 + 0x51e;
     }
-    a->mUnk_19c4[b->mIndex] = 0xb;
-    return v;
+    for (i = 0; i < b->mUnk_a2; i++) {
+        w = b->mUnk_b2;
+        for (j = 0; j < b->mUnk_a0; j++) {
+            w = w + b->mUnk_a4;
+            b->mUnk_c4[j][i].mUnk_0c = w;
+            Vec3AddScaled(((s64) n * data_0215d4b4[(w >> 4) * 2 + 1]) >> 12, &b->mUnk_00.mMatrix.mUnk_00[0],
+                          &b->mUnk_00.mPos, &b->mUnk_c4[j][i].mUnk_00);
+            Vec3AddScaled(((s64) n * data_0215d4b4[(w >> 4) * 2]) >> 12, &b->mUnk_00.mMatrix.mUnk_00[1],
+                          &b->mUnk_c4[j][i].mUnk_00, &b->mUnk_c4[j][i].mUnk_00);
+            b->mUnk_c4[j][i].mUnk_0e = b->mUnk_c4[j][i].mUnk_0e + 0x51e;
+        }
+        n = n - b->mUnk_a8;
+    }
+    b->mUnk_b2 = b->mUnk_b2 - b->mUnk_b0;
+    for (i = 0; i < data_021759c0->mKartCount; i++) {
+        if (b->mUnk_19c4[i] > 0) {
+            b->mUnk_19c4[i] = b->mUnk_19c4[i] - 1;
+        }
+    }
+    func_020d275c(&b->mUnk_00, 0x160);
 }
 
-void func_0209ea90(Unk0209df84 *a) {
-    a->mUnk_00.mFlags |= data_usa_021565ec;
-    a->mUnk_a0 = a->mUnk_00.mCourseMapRow->mUnk_28;
-    a->mUnk_a2 = a->mUnk_00.mCourseMapRow->mUnk_2e + 1;
-    func_020d28e0(&a->mUnk_00);
-    a->mUnk_00.mFlags &= ~1;
-    a->mUnk_00.mFlags &= ~2;
-    a->mUnk_00.mFlags &= ~8;
-    a->mUnk_00.mUnk_66 = 0x1f;
+void func_0209df44(void) {
+    func_0209bf70(func_0209ea10, NULL, func_0209e988, 0, 0, 0x18d);
 }
 
-u32 func_0209eb04(void) {
-    return func_0209bef0(CreatePuddle, func_0209eb54, func_0209ec00);
+u32 func_0209df20(void) {
+    return func_0209bef0(func_0209e950, func_0209e508, func_0209e938);
+}
+
+u32 func_0209df00(void) {
+    return func_0209bf48(func_0209e310, func_0209df84, NULL);
 }

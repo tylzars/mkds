@@ -22,10 +22,6 @@
 
 #pragma optimize_for_size on
 
-u32 func_020360e4(void) {
-    return (data_0217aa00->mUnk_0454 & 0x40) != 0;
-}
-
 #pragma thumb on
 
 void func_02036108(void *a) {
@@ -67,3 +63,8 @@ void func_02036108(void *a) {
 }
 
 #pragma thumb off
+
+u32 func_020360e4(void) {
+    return (data_0217aa00->mUnk_0454 & 0x40) != 0;
+}
+

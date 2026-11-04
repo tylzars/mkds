@@ -12,107 +12,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_0214d018.h"
 
-s32 func_0204db48(Unk02003a6c *a, void *b, u32 c, u32 d) {
-    MemCopy((const void *) c, b, d);
-    return 0;
-}
-
 #pragma thumb on
-
-s32 func_0204db6c(void) {
-    BOOL r = FALSE;
-    switch (data_0217aa00->mUnk_0004) {
-        case 2:
-            data_0217aa00->mUnk_0004 = 5;
-            break;
-        case 5:
-            break;
-        case 10:
-            return 1;
-        default:
-            return 3;
-    }
-    if (data_0217aa00->mUnk_0010 != 0) {
-        return 0;
-    }
-    switch (data_0217aa00->mUnk_000c) {
-        case 22:
-            func_0204e128();
-            break;
-        case 24:
-            func_0204e0bc();
-            break;
-        case 25:
-            func_0204e090();
-            break;
-        case 27:
-            func_02052ecc();
-            break;
-        case 36:
-            func_020532dc(0x14);
-            break;
-        case 3:
-            func_0204fb40(1);
-            func_02052bf8();
-            break;
-        case 4:
-            func_0204f814();
-            func_0204fb40(1);
-            func_02052bf8();
-            break;
-        case 5:
-            func_02052b60(NULL);
-            break;
-        case 6:
-            data_0217aa00->mUnk_1695 = func_0204dcf0(data_0217aa00->mUnk_1695);
-            data_0217aa00->mUnk_1692 = 0;
-            func_02051a24();
-            break;
-        case 11:
-        case 15:
-            if (func_0204dc8c() != 0) {
-                func_02059878();
-                r = TRUE;
-            }
-            break;
-    }
-    return r;
-}
-
-s32 func_0204dc8c(void) {
-    BOOL r = FALSE;
-    Unk0217aa00 *g = data_0217aa00;
-    u32 a = g->mUnk_1695;
-    u8 b = g->mUnk_0044.mUnk_43;
-
-    if (a == (a & b)) {
-        r = TRUE;
-    } else if (g->mUnk_1692 > 0x708) {
-        if (b == 0) {
-            func_02050e60(5);
-        } else {
-            data_0217aa00->mUnk_1695 = func_0204dcf0(b);
-            r = TRUE;
-        }
-    } else {
-        g->mUnk_1692 = g->mUnk_1692 + 1;
-    }
-    return r;
-}
-
-u8 func_0204dcf0(u8 a) {
-    u8 r = a & 1;
-    u32 i = 1;
-    u32 n = 1;
-
-    for (; i < 8; i++) {
-        if (((1 << i) & a) != 0) {
-            r = r | (1 << n);
-            n++;
-        }
-    }
-    return r;
-}
 
 s32 func_0204dd24(u16 a) {
     s32 r = 0;
@@ -229,4 +129,105 @@ s32 func_0204dd24(u16 a) {
     return r;
 }
 
+u8 func_0204dcf0(u8 a) {
+    u8 r = a & 1;
+    u32 i = 1;
+    u32 n = 1;
+
+    for (; i < 8; i++) {
+        if (((1 << i) & a) != 0) {
+            r = r | (1 << n);
+            n++;
+        }
+    }
+    return r;
+}
+
+s32 func_0204dc8c(void) {
+    BOOL r = FALSE;
+    Unk0217aa00 *g = data_0217aa00;
+    u32 a = g->mUnk_1695;
+    u8 b = g->mUnk_0044.mUnk_43;
+
+    if (a == (a & b)) {
+        r = TRUE;
+    } else if (g->mUnk_1692 > 0x708) {
+        if (b == 0) {
+            func_02050e60(5);
+        } else {
+            data_0217aa00->mUnk_1695 = func_0204dcf0(b);
+            r = TRUE;
+        }
+    } else {
+        g->mUnk_1692 = g->mUnk_1692 + 1;
+    }
+    return r;
+}
+
+s32 func_0204db6c(void) {
+    BOOL r = FALSE;
+    switch (data_0217aa00->mUnk_0004) {
+        case 2:
+            data_0217aa00->mUnk_0004 = 5;
+            break;
+        case 5:
+            break;
+        case 10:
+            return 1;
+        default:
+            return 3;
+    }
+    if (data_0217aa00->mUnk_0010 != 0) {
+        return 0;
+    }
+    switch (data_0217aa00->mUnk_000c) {
+        case 22:
+            func_0204e128();
+            break;
+        case 24:
+            func_0204e0bc();
+            break;
+        case 25:
+            func_0204e090();
+            break;
+        case 27:
+            func_02052ecc();
+            break;
+        case 36:
+            func_020532dc(0x14);
+            break;
+        case 3:
+            func_0204fb40(1);
+            func_02052bf8();
+            break;
+        case 4:
+            func_0204f814();
+            func_0204fb40(1);
+            func_02052bf8();
+            break;
+        case 5:
+            func_02052b60(NULL);
+            break;
+        case 6:
+            data_0217aa00->mUnk_1695 = func_0204dcf0(data_0217aa00->mUnk_1695);
+            data_0217aa00->mUnk_1692 = 0;
+            func_02051a24();
+            break;
+        case 11:
+        case 15:
+            if (func_0204dc8c() != 0) {
+                func_02059878();
+                r = TRUE;
+            }
+            break;
+    }
+    return r;
+}
+
 #pragma thumb off
+
+s32 func_0204db48(Unk02003a6c *a, void *b, u32 c, u32 d) {
+    MemCopy((const void *) c, b, d);
+    return 0;
+}
+

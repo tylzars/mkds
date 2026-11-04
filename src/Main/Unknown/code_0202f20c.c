@@ -26,31 +26,15 @@
 #include "Main/Unknown/unk_02174000.h"
 #include "registers.h"
 
-#pragma thumb on
-
-void func_0202f20c(void *a) {
-    s32 v1 = data_02174e4c->mUnk_810;
-    Unk02174e4c_80c *v2;
-
-    if (data_02174e4c->mUnk_814 != v1) {
-        v2 = data_02174e4c->mUnk_80c;
-        data_02174e4c->mUnk_80c = data_02163260[v1];
-        data_02174e4c->mUnk_814 = data_02174e4c->mUnk_810;
-        v2->mUnk_08();
-        data_02174e4c->mUnk_80c->mUnk_00(data_02174e4c->mUnk_808, data_02174e4c, data_02174e4c->mUnk_404);
-    } else {
-        func_020ae6ac(data_02174e4c, data_02174e4c->mUnk_404);
-        v1 = data_02174e4c->mUnk_80c->mUnk_04(a);
-        if (v1 != -1) {
-            data_02174e4c->mUnk_810 = v1;
-        }
-        func_0212a920();
-        func_020ae630(data_02174e4c, data_02174e4c->mUnk_404);
-    }
-    if (func_0202f19c() == 0) {
-        func_02125928();
-    }
+void func_0202f478(u32 v) {
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | v;
 }
+
+void func_0202f454(u32 v) {
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | v;
+}
+
+#pragma thumb on
 
 void func_0202f2b4(void *a) {
     Unk02180774 *b;
@@ -108,12 +92,26 @@ void func_0202f2b4(void *a) {
     data_02174e4c->mUnk_80c->mUnk_00(data_02174e4c->mUnk_808, data_02174e4c, data_02174e4c->mUnk_404);
 }
 
-#pragma thumb off
+void func_0202f20c(void *a) {
+    s32 v1 = data_02174e4c->mUnk_810;
+    Unk02174e4c_80c *v2;
 
-void func_0202f454(u32 v) {
-    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | v;
-}
-
-void func_0202f478(u32 v) {
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | v;
+    if (data_02174e4c->mUnk_814 != v1) {
+        v2 = data_02174e4c->mUnk_80c;
+        data_02174e4c->mUnk_80c = data_02163260[v1];
+        data_02174e4c->mUnk_814 = data_02174e4c->mUnk_810;
+        v2->mUnk_08();
+        data_02174e4c->mUnk_80c->mUnk_00(data_02174e4c->mUnk_808, data_02174e4c, data_02174e4c->mUnk_404);
+    } else {
+        func_020ae6ac(data_02174e4c, data_02174e4c->mUnk_404);
+        v1 = data_02174e4c->mUnk_80c->mUnk_04(a);
+        if (v1 != -1) {
+            data_02174e4c->mUnk_810 = v1;
+        }
+        func_0212a920();
+        func_020ae630(data_02174e4c, data_02174e4c->mUnk_404);
+    }
+    if (func_0202f19c() == 0) {
+        func_02125928();
+    }
 }

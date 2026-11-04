@@ -21,73 +21,14 @@ static inline u32 func_0208b190_inline(Unk020f41c4_B *b, u32 n) {
     return (u32) (((b->mUnk_00 >> 32) * n) >> 32);
 }
 
-void func_0208aea8(u32 a, u32 b, u32 c) {
-    u8 *p = data_0217b038->mUnk_0c;
-    u8 *q = data_0217b038->mUnk_10;
-    if (func_02062eb0() != 0) {
-        c = 0;
-        b = c;
-    } else if (data_021759c0->mUnk_08 == 2) {
-        b = (u16) (c + 0x25);
+Unk020184e4 *func_0208b458(s32 *a, s32 b) {
+    if (b >= 0x3e8) {
+        b -= 0x3e8;
+        *a = b;
+        return data_0217b03c;
     }
-    MemCopy(p + b * 0x98, data_0217b038->mUnk_00 + a * 0x98, 0x98);
-    MemCopy(q + c * 8, data_0217b038->mUnk_04 + a * 8, 8);
-}
-
-void func_0208af40(void *a, u32 b) {
-    data_0217b038 = HeapAlloc(a, 0x14);
-    data_0217b038->mUnk_00 = HeapAlloc(a, b * 0x98);
-    data_0217b038->mUnk_04 = HeapAlloc(a, b * 8);
-    data_0217b038->mUnk_0c = (u8 *) FindKartModelFile(data_usa_021660c8);
-    data_0217b038->mUnk_10 = (u8 *) FindKartModelFile(data_usa_021660e0);
-    data_0217b038->mUnk_08 = *(s32 *) (data_0217b038->mUnk_0c + 0x10);
-}
-
-void func_0208afe4(void) {
-    Unk02166108 a = data_usa_02166108;
-    Unk021660f8 b = data_usa_021660f8;
-    s32 x = data_usa_02155fc0.x;
-    s32 y = data_usa_02155fc0.y;
-    s32 z = data_usa_02155fc0.z;
-    u16 i;
-    s32 k = x >> 4;
-    s32 l = y >> 4;
-    s32 m = z >> 4;
-
-    for (i = 0; i < 2; i++) {
-        s32 e;
-        Vec3 v;
-        Unk0201ca6c *q;
-        Unk020184e4 *p = data_0217b050(&e, b.mUnk_00[i]);
-        v.x = k;
-        v.y = l;
-        v.z = m;
-        q = func_02018600(p, e, &v);
-        if (q != NULL) {
-            if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
-                q->mUnk_80_16 = 1;
-            } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
-                q->mUnk_80_16 = 2;
-            }
-        }
-    }
-    for (i = 0; i < 0x18; i++) {
-        s32 e;
-        Vec3 v;
-        Unk0201ca6c *q;
-        Unk020184e4 *p = data_0217b050(&e, a.mUnk_00[i]);
-        v.x = x >> 4;
-        v.y = l;
-        v.z = m;
-        q = func_02018600(p, e, &v);
-        if (q != NULL) {
-            if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
-                q->mUnk_80_16 = 1;
-            } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
-                q->mUnk_80_16 = 2;
-            }
-        }
-    }
+    *a = b;
+    return data_0217b044;
 }
 
 void func_0208b190(void) {
@@ -170,12 +111,71 @@ void func_0208b190(void) {
     data_0217b048->mUnk_60 = (u16) n + 0x14;
 }
 
-Unk020184e4 *func_0208b458(s32 *a, s32 b) {
-    if (b >= 0x3e8) {
-        b -= 0x3e8;
-        *a = b;
-        return data_0217b03c;
+void func_0208afe4(void) {
+    Unk02166108 a = data_usa_02166108;
+    Unk021660f8 b = data_usa_021660f8;
+    s32 x = data_usa_02155fc0.x;
+    s32 y = data_usa_02155fc0.y;
+    s32 z = data_usa_02155fc0.z;
+    u16 i;
+    s32 k = x >> 4;
+    s32 l = y >> 4;
+    s32 m = z >> 4;
+
+    for (i = 0; i < 2; i++) {
+        s32 e;
+        Vec3 v;
+        Unk0201ca6c *q;
+        Unk020184e4 *p = data_0217b050(&e, b.mUnk_00[i]);
+        v.x = k;
+        v.y = l;
+        v.z = m;
+        q = func_02018600(p, e, &v);
+        if (q != NULL) {
+            if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
+                q->mUnk_80_16 = 1;
+            } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
+                q->mUnk_80_16 = 2;
+            }
+        }
     }
-    *a = b;
-    return data_0217b044;
+    for (i = 0; i < 0x18; i++) {
+        s32 e;
+        Vec3 v;
+        Unk0201ca6c *q;
+        Unk020184e4 *p = data_0217b050(&e, a.mUnk_00[i]);
+        v.x = x >> 4;
+        v.y = l;
+        v.z = m;
+        q = func_02018600(p, e, &v);
+        if (q != NULL) {
+            if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
+                q->mUnk_80_16 = 1;
+            } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
+                q->mUnk_80_16 = 2;
+            }
+        }
+    }
+}
+
+void func_0208af40(void *a, u32 b) {
+    data_0217b038 = HeapAlloc(a, 0x14);
+    data_0217b038->mUnk_00 = HeapAlloc(a, b * 0x98);
+    data_0217b038->mUnk_04 = HeapAlloc(a, b * 8);
+    data_0217b038->mUnk_0c = (u8 *) FindKartModelFile(data_usa_021660c8);
+    data_0217b038->mUnk_10 = (u8 *) FindKartModelFile(data_usa_021660e0);
+    data_0217b038->mUnk_08 = *(s32 *) (data_0217b038->mUnk_0c + 0x10);
+}
+
+void func_0208aea8(u32 a, u32 b, u32 c) {
+    u8 *p = data_0217b038->mUnk_0c;
+    u8 *q = data_0217b038->mUnk_10;
+    if (func_02062eb0() != 0) {
+        c = 0;
+        b = c;
+    } else if (data_021759c0->mUnk_08 == 2) {
+        b = (u16) (c + 0x25);
+    }
+    MemCopy(p + b * 0x98, data_0217b038->mUnk_00 + a * 0x98, 0x98);
+    MemCopy(q + c * 8, data_0217b038->mUnk_04 + a * 8, 8);
 }

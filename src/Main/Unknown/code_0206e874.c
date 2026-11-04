@@ -26,6 +26,73 @@ static inline s32 func_0206e874_inline(Vec3 *v, Vec3 *n) {
     return func_02039860(v, n);
 }
 
+void func_0206edac(Unk0206bcb0 *p, Vec3 *a) {
+    Vec3 v;
+    s32 k;
+    s32 s;
+    s32 m;
+    s32 n;
+    u32 f;
+    s32 x;
+    s32 c;
+
+    if (p->mUnk_44 & 0x40000010) {
+        return;
+    }
+    p->mUnk_44 |= 0x10000;
+    if (p->mUnk_4dc <= 0) {
+        k = (p->mUnk_7c & 1) ? 3 : 2;
+        x = data_usa_0216ca38[2];
+        c = func_02086080(p->mIndex);
+        func_0210ddf4(&data_0217d26c + k, c + x, (void (*)(void *, int)) func_02071958, p, 2);
+        func_02071318(p, 0);
+    }
+    p->mUnk_4dc = 7;
+    if (p->mUnk_48 & 0x2000000) {
+        p->mUnk_4c &= ~0x800;
+        p->mUnk_48 &= ~0x2000000;
+        p->mUnk_40c = func_02061fb8();
+        func_020c4a04(p->mIndex);
+        return;
+    }
+    if ((!(p->mUnk_4c & 0x10000000) && p->mUnk_a4.y < 0 &&
+         (p->mUnk_380 > 0x19 || p->mUnk_2ac - p->mUnk_80.y > 0x1e000)) ||
+        p->mState == 6) {
+        s = Vec3Dot(a, &p->mUnk_a4);
+        v.x = ((s64) a->x * s) >> 12;
+        v.y = ((s64) a->y * s) >> 12;
+        v.z = ((s64) a->z * s) >> 12;
+        if (Vec3Length(&v) > 0x2000) {
+            m = ((s64) p->mUnk_dc * 0x1800) >> 12;
+            n = v.y;
+            if (n <= 0) {
+                n = -n;
+            }
+            p->mUnk_260 = ((s64) n * 0x99a) >> 12;
+            if (p->mUnk_260 > m) {
+                p->mUnk_260 = m;
+            }
+            f = p->mUnk_7c;
+            if ((f & 0x10) && p->mKartModelsEntry->mUnk_058 == 0) {
+                if ((f & 1) || !(f & 0x402000)) {
+                    func_0208b748(0x4e, &p->mUnk_80, p, func_0206c2b4);
+                }
+            }
+        }
+    }
+    if (p->mUnk_380 <= 0x14) {
+        return;
+    }
+    s = func_02039828(&p->mUnk_138, a);
+    if (s >= 0) {
+        return;
+    }
+    if (p->mUnk_234 <= 0x3e8) {
+        return;
+    }
+    p->mUnk_2a8 = ((s64) p->mUnk_2a8 * (s + 0x1000)) >> 12;
+}
+
 void func_0206e874(Unk0206bcb0 *p) {
     MapObject *v1[2] = {0};
     s32 i;
@@ -182,71 +249,4 @@ void func_0206e874(Unk0206bcb0 *p) {
     } else {
         p->mUnk_44 &= ~0x40;
     }
-}
-
-void func_0206edac(Unk0206bcb0 *p, Vec3 *a) {
-    Vec3 v;
-    s32 k;
-    s32 s;
-    s32 m;
-    s32 n;
-    u32 f;
-    s32 x;
-    s32 c;
-
-    if (p->mUnk_44 & 0x40000010) {
-        return;
-    }
-    p->mUnk_44 |= 0x10000;
-    if (p->mUnk_4dc <= 0) {
-        k = (p->mUnk_7c & 1) ? 3 : 2;
-        x = data_usa_0216ca38[2];
-        c = func_02086080(p->mIndex);
-        func_0210ddf4(&data_0217d26c + k, c + x, (void (*)(void *, int)) func_02071958, p, 2);
-        func_02071318(p, 0);
-    }
-    p->mUnk_4dc = 7;
-    if (p->mUnk_48 & 0x2000000) {
-        p->mUnk_4c &= ~0x800;
-        p->mUnk_48 &= ~0x2000000;
-        p->mUnk_40c = func_02061fb8();
-        func_020c4a04(p->mIndex);
-        return;
-    }
-    if ((!(p->mUnk_4c & 0x10000000) && p->mUnk_a4.y < 0 &&
-         (p->mUnk_380 > 0x19 || p->mUnk_2ac - p->mUnk_80.y > 0x1e000)) ||
-        p->mState == 6) {
-        s = Vec3Dot(a, &p->mUnk_a4);
-        v.x = ((s64) a->x * s) >> 12;
-        v.y = ((s64) a->y * s) >> 12;
-        v.z = ((s64) a->z * s) >> 12;
-        if (Vec3Length(&v) > 0x2000) {
-            m = ((s64) p->mUnk_dc * 0x1800) >> 12;
-            n = v.y;
-            if (n <= 0) {
-                n = -n;
-            }
-            p->mUnk_260 = ((s64) n * 0x99a) >> 12;
-            if (p->mUnk_260 > m) {
-                p->mUnk_260 = m;
-            }
-            f = p->mUnk_7c;
-            if ((f & 0x10) && p->mKartModelsEntry->mUnk_058 == 0) {
-                if ((f & 1) || !(f & 0x402000)) {
-                    func_0208b748(0x4e, &p->mUnk_80, p, func_0206c2b4);
-                }
-            }
-        }
-    }
-    if (p->mUnk_380 <= 0x14) {
-        return;
-    }
-    s = func_02039828(&p->mUnk_138, a);
-    if (s >= 0) {
-        return;
-    }
-    if (p->mUnk_234 <= 0x3e8) {
-        return;
-    }
-    p->mUnk_2a8 = ((s64) p->mUnk_2a8 * (s + 0x1000)) >> 12;
 }

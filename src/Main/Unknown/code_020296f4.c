@@ -8,34 +8,9 @@
 #include "Main/Unknown/unk_02174000.h"
 #include "00/code_02181f98.h"
 
-#pragma thumb on
 #pragma optimize_for_size on
 
-void func_020296f4(void) {
-    u8 i;
-    s32 j;
-    for (i = 0; i < 4; i++) {
-        if (func_021227f8(i) != 0) {
-            j = func_02122778(i);
-            data_02174e1c->mUnk_00[j].mCharacterIndex = data_0217b488->mUnk_20[i].mUnk_00;
-            data_02174e1c->mUnk_00[j].mKartIndex = data_0217b488->mUnk_20[i].mUnk_04;
-            data_02174e1c->mUnk_00[j].mUnk_08 = data_0217b488->mUnk_20[i].mUnk_08;
-        }
-    }
-}
-
-void func_02029758(void) {
-    u8 i;
-    s32 j;
-    for (i = 0; i < 4; i++) {
-        if (func_02122794(i) != 0) {
-            j = func_02122734(i);
-            data_0217b488->mUnk_20[j].mUnk_00 = data_02174e1c->mUnk_00[i].mCharacterIndex;
-            data_0217b488->mUnk_20[j].mUnk_04 = data_02174e1c->mUnk_00[i].mKartIndex;
-            data_0217b488->mUnk_20[j].mUnk_08 = data_02174e1c->mUnk_00[i].mUnk_08;
-        }
-    }
-}
+#pragma thumb on
 
 void func_020297bc(void) {
     u16 b;
@@ -67,6 +42,32 @@ void func_020297bc(void) {
         }
     }
     func_0205cfd4(d);
+}
+
+void func_02029758(void) {
+    u8 i;
+    s32 j;
+    for (i = 0; i < 4; i++) {
+        if (func_02122794(i) != 0) {
+            j = func_02122734(i);
+            data_0217b488->mUnk_20[j].mUnk_00 = data_02174e1c->mUnk_00[i].mCharacterIndex;
+            data_0217b488->mUnk_20[j].mUnk_04 = data_02174e1c->mUnk_00[i].mKartIndex;
+            data_0217b488->mUnk_20[j].mUnk_08 = data_02174e1c->mUnk_00[i].mUnk_08;
+        }
+    }
+}
+
+void func_020296f4(void) {
+    u8 i;
+    s32 j;
+    for (i = 0; i < 4; i++) {
+        if (func_021227f8(i) != 0) {
+            j = func_02122778(i);
+            data_02174e1c->mUnk_00[j].mCharacterIndex = data_0217b488->mUnk_20[i].mUnk_00;
+            data_02174e1c->mUnk_00[j].mKartIndex = data_0217b488->mUnk_20[i].mUnk_04;
+            data_02174e1c->mUnk_00[j].mUnk_08 = data_0217b488->mUnk_20[i].mUnk_08;
+        }
+    }
 }
 
 #pragma thumb off

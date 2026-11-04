@@ -4,21 +4,36 @@
 #include "Main/Unknown/code_020a12b8.h"
 #include "Main/Unknown/code_020b1cdc.h"
 
-BOOL func_0203c25c(u16 a) {
-    BOOL f = FALSE;
-    BOOL r;
-    switch (data_0217561c->mUnk_000[a].mUnk_14) {
-        case 1:
-        case 2:
-        case 3:
-            f = TRUE;
-            break;
+u16 func_0203c4d0(u8 a) {
+    u16 r = 0;
+    Unk0217561c_4dc *t = data_0217561c->mUnk_4dc;
+    if (t != NULL) {
+        switch (data_021759c0->mUnk_08) {
+            case 0:
+                break;
+            case 3: {
+                u16 k = 1;
+                if (data_021759c0->mUseTeams != 0) {
+                    if (data_021759c0->mKartCount > 3) {
+                        if (data_021759c0->mTeamKartCounts[0] <= 1 || data_021759c0->mTeamKartCounts[1] <= 1) {
+                            k = 8;
+                        } else {
+                            k = 0xf;
+                        }
+                    } else {
+                        k = 8;
+                    }
+                }
+                r = k + 8 - data_021759c0->mKartCount;
+                break;
+            }
+            case 5:
+                r = 9 - data_021759c0->mKartCount;
+                break;
+        }
+        r = (t + r + 1)->mUnk_00[a - 1];
     }
-    r = f == FALSE;
-    if (r != FALSE) {
-        r = func_02044618() == data_0217561c->mUnk_000[a].mUnk_38;
-    }
-    return r != FALSE;
+    return r;
 }
 
 void func_0203c2e4(u16 a) {
@@ -75,34 +90,19 @@ void func_0203c2e4(u16 a) {
     }
 }
 
-u16 func_0203c4d0(u8 a) {
-    u16 r = 0;
-    Unk0217561c_4dc *t = data_0217561c->mUnk_4dc;
-    if (t != NULL) {
-        switch (data_021759c0->mUnk_08) {
-            case 0:
-                break;
-            case 3: {
-                u16 k = 1;
-                if (data_021759c0->mUseTeams != 0) {
-                    if (data_021759c0->mKartCount > 3) {
-                        if (data_021759c0->mTeamKartCounts[0] <= 1 || data_021759c0->mTeamKartCounts[1] <= 1) {
-                            k = 8;
-                        } else {
-                            k = 0xf;
-                        }
-                    } else {
-                        k = 8;
-                    }
-                }
-                r = k + 8 - data_021759c0->mKartCount;
-                break;
-            }
-            case 5:
-                r = 9 - data_021759c0->mKartCount;
-                break;
-        }
-        r = (t + r + 1)->mUnk_00[a - 1];
+BOOL func_0203c25c(u16 a) {
+    BOOL f = FALSE;
+    BOOL r;
+    switch (data_0217561c->mUnk_000[a].mUnk_14) {
+        case 1:
+        case 2:
+        case 3:
+            f = TRUE;
+            break;
     }
-    return r;
+    r = f == FALSE;
+    if (r != FALSE) {
+        r = func_02044618() == data_0217561c->mUnk_000[a].mUnk_38;
+    }
+    return r != FALSE;
 }

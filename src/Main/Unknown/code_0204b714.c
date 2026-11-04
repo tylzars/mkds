@@ -15,27 +15,130 @@
 #include "code_021457ec.h"
 #include "01/code_021956dc.h"
 
+void func_0204bb34(void *a) {
+    Unk02003a6c *o;
+    Unk02175ec0 *g;
+    Unk021762e0 *b;
+    s32 i;
+    Unk021762e0_46c8 *r;
+    u32 s;
+    u32 s2;
+    s32 v1;
+    u8 *q;
+    o = FS_FindArchive(data_usa_021651d0, 3);
+    g = (Unk02175ec0 *) &data_02175ec0;
+    while (1) {
+        s = IrqDisable();
+        b = (Unk021762e0 *) &data_usa_021762e0;
+        r = b->mUnk_46c8;
+        if (r == NULL) {
+            do {
+                if (g->mUnk_000c == 0) {
+                    IrqRestore(s);
+                    return;
+                }
+                ThreadWait(NULL);
+                r = b->mUnk_46c8;
+            } while (r == NULL);
+        }
+        IrqRestore(s);
+        if (r->mUnk_80 == 1) {
+            FS_OpenFileDirect(&r->mUnk_38, o, r->mUnk_90, r->mUnk_90 + r->mUnk_94, r->mUnk_8c);
+            i = 0;
+            v1 = 0;
+            q = r->mUnk_c0[0];
+            for (; i < 2; i++) {
+                r->mUnk_a4[i] = v1;
+                FS_ReadFile(&r->mUnk_38, q, 0x400);
+                v1 += 0x400;
+                q += 0x400;
+            }
+            r->mUnk_98 = 0;
+            r->mUnk_a0 = 1;
+            r->mUnk_9c = 2;
+            s2 = IrqDisable();
+            func_0204d18c(&data_usa_021762e0, (Unk0204c090 *) r, 1);
+            IrqRestore(s2);
+        } else {
+            FS_CloseFile(&r->mUnk_38);
+            s2 = IrqDisable();
+            func_0204d0bc(&data_usa_021762e0, (Unk0204c090 *) r);
+            IrqRestore(s2);
+        }
+    }
+}
+
+void func_0204bad8(void) {
+    Unk021759b8 *t;
+    t = (Unk021759b8 *) &data_usa_021759b8;
+    t->mUnk_4c4 = 0;
+    t->mUnk_4c0 = t->mUnk_4c4;
+    ThreadInit(&t->mUnk_400, (void (*)(void *)) func_0204bb34, t, (u8 *) &t->mUnk_400, 0x400, 15);
+    ThreadSetRunnable(&t->mUnk_400);
+}
+
+void func_0204ba8c(void) {
+    Unk021759b8 *t;
+    t = (Unk021759b8 *) &data_usa_021759b8;
+    if (ThreadHasEnded(&t->mUnk_400) != 0) {
+        return;
+    }
+    do {
+        ThreadSetRunnable(&t->mUnk_400);
+        ThreadWaitForEnd(&t->mUnk_400);
+    } while (ThreadHasEnded(&t->mUnk_400) == 0);
+}
+
 #pragma thumb on
 
-u32 func_0204b714(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, u32 e, s32 f) {
-    if (data_021759d4->mUnk_0c == 0 || func_02145d2c() == 0) {
-        return 0;
+void func_0204ba7c(void) {
+    data_021759d4->mUnk_00 = 0;
+}
+
+void func_0204ba2c(void *a) {
+    data_021759d4 = HeapAlloc(a, 0x70);
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
+        data_021759d4->mUnk_60 = HeapAllocAligned(a, 0x2c00, 0x20);
+        data_021759d4->mUnk_64 = HeapAllocAligned(a, 1, 0x20);
     }
-    if (func_0204b3a4() == 0) {
-        return 0;
+    data_021759d4->mUnk_0c = 0;
+}
+
+void func_0204b9ac(void) {
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || func_0200e8fc() != 0) {
+        data_021759d4->mUnk_0c = 0;
+        return;
     }
+    data_021759d4->mUnk_0c = 1;
+    func_0204b3a4();
+    func_02145d44(0x1202);
+    func_0204b3dc();
+    data_021759d4->mUnk_00 = 0;
     data_021759d4->mUnk_04 = NULL;
-    data_021759d4->mUnk_10 = 1;
-    data_021759d4->mUnk_00 = 3;
-    data_021759d4->mUnk_2c = a;
-    data_021759d4->mUnk_28 = b;
-    data_021759d4->mUnk_30 = n;
-    data_021759d4->mUnk_34 = e;
-    data_021759d4->mUnk_38 = f;
-    data_021759d4->mUnk_14 = d;
-    func_0200ee3c(b, n);
-    func_02145e8c(a, (u32) b, n, (UnkFunc *) func_0204b7b8, c, 1, 6, 1, 0);
-    return 1;
+    data_021759d4->mUnk_08 = -3;
+    data_021759d4->mUnk_10 = 0;
+    data_021759d4->mUnk_14 = 0;
+    data_021759d4->mUnk_28 = NULL;
+    data_021759d4->mUnk_30 = 0;
+    data_021759d4->mUnk_40 = NULL;
+    data_021759d4->mUnk_48 = 0;
+    data_021759d4->mUnk_58 = -1;
+    data_021759d4->mUnk_5c = -1;
+}
+
+s32 func_0204b960(u8 *p) {
+    BOOL r;
+    u8 i;
+    r = TRUE;
+    i = 0;
+    while (r == TRUE && i < 8) {
+        if (*p != (u8) (func_02133458(0x3031565353444b4dull, i * 8) & 0xff)) {
+            r = FALSE;
+        }
+        i++;
+        p++;
+    }
+    return r;
 }
 
 void func_0204b7b8(void (*a)(u32 *, u32)) {
@@ -146,128 +249,23 @@ void func_0204b7b8(void (*a)(u32 *, u32)) {
     }
 }
 
-s32 func_0204b960(u8 *p) {
-    BOOL r;
-    u8 i;
-    r = TRUE;
-    i = 0;
-    while (r == TRUE && i < 8) {
-        if (*p != (u8) (func_02133458(0x3031565353444b4dull, i * 8) & 0xff)) {
-            r = FALSE;
-        }
-        i++;
-        p++;
+u32 func_0204b714(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, u32 e, s32 f) {
+    if (data_021759d4->mUnk_0c == 0 || func_02145d2c() == 0) {
+        return 0;
     }
-    return r;
-}
-
-void func_0204b9ac(void) {
-    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || func_0200e8fc() != 0) {
-        data_021759d4->mUnk_0c = 0;
-        return;
+    if (func_0204b3a4() == 0) {
+        return 0;
     }
-    data_021759d4->mUnk_0c = 1;
-    func_0204b3a4();
-    func_02145d44(0x1202);
-    func_0204b3dc();
-    data_021759d4->mUnk_00 = 0;
     data_021759d4->mUnk_04 = NULL;
-    data_021759d4->mUnk_08 = -3;
-    data_021759d4->mUnk_10 = 0;
-    data_021759d4->mUnk_14 = 0;
-    data_021759d4->mUnk_28 = NULL;
-    data_021759d4->mUnk_30 = 0;
-    data_021759d4->mUnk_40 = NULL;
-    data_021759d4->mUnk_48 = 0;
-    data_021759d4->mUnk_58 = -1;
-    data_021759d4->mUnk_5c = -1;
-}
-
-void func_0204ba2c(void *a) {
-    data_021759d4 = HeapAlloc(a, 0x70);
-    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        data_021759d4->mUnk_60 = HeapAllocAligned(a, 0x2c00, 0x20);
-        data_021759d4->mUnk_64 = HeapAllocAligned(a, 1, 0x20);
-    }
-    data_021759d4->mUnk_0c = 0;
-}
-
-void func_0204ba7c(void) {
-    data_021759d4->mUnk_00 = 0;
-}
-
-#pragma thumb off
-
-void func_0204ba8c(void) {
-    Unk021759b8 *t;
-    t = (Unk021759b8 *) &data_usa_021759b8;
-    if (ThreadHasEnded(&t->mUnk_400) != 0) {
-        return;
-    }
-    do {
-        ThreadSetRunnable(&t->mUnk_400);
-        ThreadWaitForEnd(&t->mUnk_400);
-    } while (ThreadHasEnded(&t->mUnk_400) == 0);
-}
-
-void func_0204bad8(void) {
-    Unk021759b8 *t;
-    t = (Unk021759b8 *) &data_usa_021759b8;
-    t->mUnk_4c4 = 0;
-    t->mUnk_4c0 = t->mUnk_4c4;
-    ThreadInit(&t->mUnk_400, (void (*)(void *)) func_0204bb34, t, (u8 *) &t->mUnk_400, 0x400, 15);
-    ThreadSetRunnable(&t->mUnk_400);
-}
-
-void func_0204bb34(void *a) {
-    Unk02003a6c *o;
-    Unk02175ec0 *g;
-    Unk021762e0 *b;
-    s32 i;
-    Unk021762e0_46c8 *r;
-    u32 s;
-    u32 s2;
-    s32 v1;
-    u8 *q;
-    o = FS_FindArchive(data_usa_021651d0, 3);
-    g = (Unk02175ec0 *) &data_02175ec0;
-    while (1) {
-        s = IrqDisable();
-        b = (Unk021762e0 *) &data_usa_021762e0;
-        r = b->mUnk_46c8;
-        if (r == NULL) {
-            do {
-                if (g->mUnk_000c == 0) {
-                    IrqRestore(s);
-                    return;
-                }
-                ThreadWait(NULL);
-                r = b->mUnk_46c8;
-            } while (r == NULL);
-        }
-        IrqRestore(s);
-        if (r->mUnk_80 == 1) {
-            FS_OpenFileDirect(&r->mUnk_38, o, r->mUnk_90, r->mUnk_90 + r->mUnk_94, r->mUnk_8c);
-            i = 0;
-            v1 = 0;
-            q = r->mUnk_c0[0];
-            for (; i < 2; i++) {
-                r->mUnk_a4[i] = v1;
-                FS_ReadFile(&r->mUnk_38, q, 0x400);
-                v1 += 0x400;
-                q += 0x400;
-            }
-            r->mUnk_98 = 0;
-            r->mUnk_a0 = 1;
-            r->mUnk_9c = 2;
-            s2 = IrqDisable();
-            func_0204d18c(&data_usa_021762e0, (Unk0204c090 *) r, 1);
-            IrqRestore(s2);
-        } else {
-            FS_CloseFile(&r->mUnk_38);
-            s2 = IrqDisable();
-            func_0204d0bc(&data_usa_021762e0, (Unk0204c090 *) r);
-            IrqRestore(s2);
-        }
-    }
+    data_021759d4->mUnk_10 = 1;
+    data_021759d4->mUnk_00 = 3;
+    data_021759d4->mUnk_2c = a;
+    data_021759d4->mUnk_28 = b;
+    data_021759d4->mUnk_30 = n;
+    data_021759d4->mUnk_34 = e;
+    data_021759d4->mUnk_38 = f;
+    data_021759d4->mUnk_14 = d;
+    func_0200ee3c(b, n);
+    func_02145e8c(a, (u32) b, n, (UnkFunc *) func_0204b7b8, c, 1, 6, 1, 0);
+    return 1;
 }

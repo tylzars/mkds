@@ -14,27 +14,29 @@
 #include "code_020182c0.h"
 #include "code_0214e308.h"
 
-void func_02047104(void *a) {
-    data_021759c4 = HeapAlloc(a, 0x40);
-    data_021759c4->mUnk_30_0 = 0;
-    data_021759c4->mUnk_30_1 = 0;
-    data_021759c4->mUnk_30_2 = 0;
-    data_021759c4->mUnk_30_3 = 0;
-    data_021759c4->mUnk_3c = NULL;
-    func_0210f1d4();
-}
-
-void func_02047178(void) {
-    Unk0214e334 v;
-
-    func_0214eb88();
-    if (func_0214eadc(&v) == 0) {
-        return;
-    }
-    func_0214e994(&v);
-}
-
 #pragma thumb on
+
+void func_02047274(void) {
+    s32 i;
+
+    for (i = 0; i < 16; i++) {
+        *(u32 *) ((u8 *) &data_021759c8->mUnk_9b0[0].mUnk_08 + i * 12) &= 0x7fffffff;
+    }
+}
+
+s32 func_02047250(void) {
+    if (*(vu16 *) 0x027ffc40 == 2) {
+        return data_021759c8->mUnk_9b0[7].mUnk_08 >> 31;
+    }
+    return 1;
+}
+
+void func_02047220(void *a, u32 b) {
+    void *p;
+
+    p = data_021759c8->mUnk_84c;
+    ExpHeapResizeBlock(GetHeap(func_020364e8()), p, b + ((u32) a - (u32) p));
+}
 
 void func_020471b0(void *a) {
     u32 n;
@@ -50,26 +52,25 @@ void func_020471b0(void *a) {
     CreateSearchIconMBChildAndMultiDownload(a);
 }
 
-void func_02047220(void *a, u32 b) {
-    void *p;
-
-    p = data_021759c8->mUnk_84c;
-    ExpHeapResizeBlock(GetHeap(func_020364e8()), p, b + ((u32) a - (u32) p));
-}
-
-s32 func_02047250(void) {
-    if (*(vu16 *) 0x027ffc40 == 2) {
-        return data_021759c8->mUnk_9b0[7].mUnk_08 >> 31;
-    }
-    return 1;
-}
-
-void func_02047274(void) {
-    s32 i;
-
-    for (i = 0; i < 16; i++) {
-        *(u32 *) ((u8 *) &data_021759c8->mUnk_9b0[0].mUnk_08 + i * 12) &= 0x7fffffff;
-    }
-}
-
 #pragma thumb off
+
+void func_02047178(void) {
+    Unk0214e334 v;
+
+    func_0214eb88();
+    if (func_0214eadc(&v) == 0) {
+        return;
+    }
+    func_0214e994(&v);
+}
+
+void func_02047104(void *a) {
+    data_021759c4 = HeapAlloc(a, 0x40);
+    data_021759c4->mUnk_30_0 = 0;
+    data_021759c4->mUnk_30_1 = 0;
+    data_021759c4->mUnk_30_2 = 0;
+    data_021759c4->mUnk_30_3 = 0;
+    data_021759c4->mUnk_3c = NULL;
+    func_0210f1d4();
+}
+

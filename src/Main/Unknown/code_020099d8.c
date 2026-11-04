@@ -3,6 +3,13 @@
 
 #pragma thumb on
 
+s32 func_02009aa8(Unk021425e8Func a, void *b, s32 c, u16 d, u16 e) {
+    s32 v;
+    v = func_02144048((UnkFunc *) a, NULL, b, c, e, 1, 3);
+    func_02009928(0xf, v);
+    return v;
+}
+
 int func_020099d8(void *a, u32 b, u32 c) {
     Unk0216fda8 *v1;
     u32 v2;
@@ -42,13 +49,6 @@ int func_020099d8(void *a, u32 b, u32 c) {
         default:
             return 1;
     }
-}
-
-s32 func_02009aa8(Unk021425e8Func a, void *b, s32 c, u16 d, u16 e) {
-    s32 v;
-    v = func_02144048((UnkFunc *) a, NULL, b, c, e, 1, 3);
-    func_02009928(0xf, v);
-    return v;
 }
 
 #pragma thumb off

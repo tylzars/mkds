@@ -22,20 +22,6 @@ static inline s32 func_02043648_inline(Unk0217aa00 *p) {
     return r;
 }
 
-void func_020435d4(u32 a) {
-    if (a != 0) {
-        data_02175624->mUnk_04 |= 1;
-        return;
-    }
-    data_02175624->mUnk_04 &= ~1;
-}
-
-void func_0204360c(s32 a, u32 b) {
-    if (data_02175628[a].mSourceKind == 3 || data_02175628[a].mSourceKind == 7) {
-        data_02175628[a].mRequestedBits |= b;
-    }
-}
-
 void func_02043648(void) {
     u8 i;
     u16 y;
@@ -166,4 +152,18 @@ void func_02043648(void) {
         }
         func_02046ca8((Unk02175628_48 *) &p->mUnk_48, n, o);
     }
+}
+
+void func_0204360c(s32 a, u32 b) {
+    if (data_02175628[a].mSourceKind == 3 || data_02175628[a].mSourceKind == 7) {
+        data_02175628[a].mRequestedBits |= b;
+    }
+}
+
+void func_020435d4(u32 a) {
+    if (a != 0) {
+        data_02175624->mUnk_04 |= 1;
+        return;
+    }
+    data_02175624->mUnk_04 &= ~1;
 }

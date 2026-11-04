@@ -8,6 +8,51 @@
 
 #pragma thumb on
 
+s32 func_02030274(s32 a, s32 b) {
+    s32 i;
+    BOOL f;
+
+    f = FALSE;
+    for (i = 0; i < 3; i++) {
+        if (a == data_02153c04[b][i]) {
+            f = TRUE;
+            break;
+        }
+    }
+    return f;
+}
+
+s32 func_0203023c(void) {
+    BOOL r;
+    s32 i;
+    BOOL f;
+
+    r = TRUE;
+    i = data_02174e50->mUnk_48;
+    if (i != 4) {
+        f = FALSE;
+        if (data_02174e50->mUnk_58[i].mUnk_00 != 0 && data_02174e50->mUnk_58[i].mUnk_08 < 7) {
+            f = TRUE;
+        }
+        if (f == FALSE) {
+            r = FALSE;
+        }
+    }
+    return r;
+}
+
+void func_02030200(void) {
+    s32 i;
+    s32 n;
+    Unk02174e50_24 *p;
+
+    p = &data_02174e50->mUnk_24;
+    n = *(u16 *) ((u8 *) p->mUnk_0c + 6) + *(u16 *) ((u8 *) p->mUnk_14 + 6);
+    for (i = 0; i < n; i++) {
+        p->mUnk_18[i].mUnk_06 = data_02174e50->mUnk_90;
+    }
+}
+
 void func_0203003c(s32 a) {
     Unk02174e50_24 *p;
     Unk021634a8 t;
@@ -84,49 +129,4 @@ void func_0203003c(s32 a) {
     }
     p->mUnk_18[88].mUnk_00 = w;
     func_02124100(4, (u8) t.mUnk_00[v], p->mUnk_14, p->mUnk_18, p->mUnk_0c);
-}
-
-void func_02030200(void) {
-    s32 i;
-    s32 n;
-    Unk02174e50_24 *p;
-
-    p = &data_02174e50->mUnk_24;
-    n = *(u16 *) ((u8 *) p->mUnk_0c + 6) + *(u16 *) ((u8 *) p->mUnk_14 + 6);
-    for (i = 0; i < n; i++) {
-        p->mUnk_18[i].mUnk_06 = data_02174e50->mUnk_90;
-    }
-}
-
-s32 func_0203023c(void) {
-    BOOL r;
-    s32 i;
-    BOOL f;
-
-    r = TRUE;
-    i = data_02174e50->mUnk_48;
-    if (i != 4) {
-        f = FALSE;
-        if (data_02174e50->mUnk_58[i].mUnk_00 != 0 && data_02174e50->mUnk_58[i].mUnk_08 < 7) {
-            f = TRUE;
-        }
-        if (f == FALSE) {
-            r = FALSE;
-        }
-    }
-    return r;
-}
-
-s32 func_02030274(s32 a, s32 b) {
-    s32 i;
-    BOOL f;
-
-    f = FALSE;
-    for (i = 0; i < 3; i++) {
-        if (a == data_02153c04[b][i]) {
-            f = TRUE;
-            break;
-        }
-    }
-    return f;
 }

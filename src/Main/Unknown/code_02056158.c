@@ -8,22 +8,6 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217a000.h"
 
-void func_02056158(void *a) {
-    data_0217aa04 = HeapAlloc(a, 0x10);
-    if (data_021759c0->mUnk_00c == 3 || data_021759c0->mUnk_00c == 5) {
-        data_0217aa04->mUnk_04 = HeapAllocAligned(a, 0x400, 0x20);
-    } else {
-        data_0217aa04->mUnk_04 = NULL;
-    }
-    data_0217aa04->mUnk_08 = 0;
-    data_0217aa04->mUnk_0a = 0;
-    data_0217aa04->mUnk_0c = 0x1000;
-    data_0217aa04->mUnk_00 = 0;
-    if (data_02175614.mUnk_00 == 0) {
-        data_0217aa04->mUnk_00 = 0;
-    }
-}
-
 #pragma thumb on
 
 u8 func_02056208(void) {
@@ -57,3 +41,20 @@ u8 func_02056208(void) {
 }
 
 #pragma thumb off
+
+void func_02056158(void *a) {
+    data_0217aa04 = HeapAlloc(a, 0x10);
+    if (data_021759c0->mUnk_00c == 3 || data_021759c0->mUnk_00c == 5) {
+        data_0217aa04->mUnk_04 = HeapAllocAligned(a, 0x400, 0x20);
+    } else {
+        data_0217aa04->mUnk_04 = NULL;
+    }
+    data_0217aa04->mUnk_08 = 0;
+    data_0217aa04->mUnk_0a = 0;
+    data_0217aa04->mUnk_0c = 0x1000;
+    data_0217aa04->mUnk_00 = 0;
+    if (data_02175614.mUnk_00 == 0) {
+        data_0217aa04->mUnk_00 = 0;
+    }
+}
+

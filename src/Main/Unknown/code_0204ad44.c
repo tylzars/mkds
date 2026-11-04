@@ -15,6 +15,28 @@
 #include "code_02017f24.h"
 #include "Main/Unknown/code_0204aa60.h"
 
+void func_0204b018(void *a) {
+    func_0202f20c(a);
+}
+
+s32 func_0204afd0(Unk020487fc *a) {
+    Unk021a9034 b = data_usa_021651b0;
+
+    func_020487fc(a, &b);
+    return 0;
+}
+
+void func_0204af70(void *a) {
+    u32 b;
+    u32 c;
+
+    b = func_0200f168(4);
+    c = func_0200f17c(4);
+    data_021759d0 = HeapAlloc(a, 0x7c);
+    data_021759d0->mHeap = FrmHeapCreate((void *) b, c - b, 1);
+    func_0204ad44();
+}
+
 void func_0204ad44(void) {
     Unk0200fddc v;
     u64 t;
@@ -75,26 +97,4 @@ void func_0204ad44(void) {
         return;
     }
     func_0204aab4(1, 1);
-}
-
-void func_0204af70(void *a) {
-    u32 b;
-    u32 c;
-
-    b = func_0200f168(4);
-    c = func_0200f17c(4);
-    data_021759d0 = HeapAlloc(a, 0x7c);
-    data_021759d0->mHeap = FrmHeapCreate((void *) b, c - b, 1);
-    func_0204ad44();
-}
-
-s32 func_0204afd0(Unk020487fc *a) {
-    Unk021a9034 b = data_usa_021651b0;
-
-    func_020487fc(a, &b);
-    return 0;
-}
-
-void func_0204b018(void *a) {
-    func_0202f20c(a);
 }

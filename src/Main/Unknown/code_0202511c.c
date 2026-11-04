@@ -5,6 +5,136 @@
 #include "Main/Unknown/unk_02153000.h"
 #include "Main/Unknown/unk_021759c0.h"
 
+u32 func_0202553c(u32 a, void *c) {
+    Unk0215316c *b = (Unk0215316c *) c;
+    u32 r;
+
+    r = 0x36;
+    switch (a) {
+        case 20:
+            r = 7;
+            break;
+        case 25:
+            r = 34;
+            break;
+        case 14:
+            r = 8;
+            break;
+        case 1:
+            r = 9;
+            break;
+        case 31:
+            r = 10;
+            break;
+        case 22:
+            r = 11;
+            break;
+        case 9:
+            r = 12;
+            break;
+        case 11:
+            r = 13;
+            break;
+        case 16:
+            r = 14;
+            break;
+        case 28:
+            r = 15;
+            break;
+        case 19:
+            r = 16;
+            break;
+        case 34:
+            r = 17;
+            break;
+        case 33:
+            r = 32;
+            break;
+        case 38:
+            r = 18;
+            break;
+        case 26:
+            r = 19;
+            break;
+        case 18:
+            r = 20;
+            break;
+        case 10:
+            r = 21;
+            break;
+        case 15:
+            r = 22;
+            break;
+        case 35:
+            r = 23;
+            break;
+        case 39:
+            r = 24;
+            break;
+        case 13:
+            r = 25;
+            break;
+        case 37:
+            r = 26;
+            break;
+        case 24:
+            r = 27;
+            break;
+        case 23:
+            r = 29;
+            break;
+        case 36:
+            r = 28;
+            break;
+        case 30:
+            r = 30;
+            break;
+        case 27:
+            r = 31;
+            break;
+        case 17:
+            r = 33;
+            break;
+        case 32:
+            r = 37;
+            break;
+        case 29:
+            r = 35;
+            break;
+        case 12:
+            r = 36;
+            break;
+        case 40:
+            r = 38;
+            break;
+        case 41:
+        case 42:
+        case 43:
+        case 44:
+        case 45:
+        case 46:
+        case 47:
+            r = 39;
+            break;
+        case 48:
+        case 49:
+        case 50:
+        case 51:
+            r = 40;
+            break;
+        case 52:
+            r = 42;
+            break;
+        case 53:
+            r = 51;
+            break;
+    }
+    if (b != NULL) {
+        *b = data_0215316c[r];
+    }
+    return r;
+}
+
 u32 func_0202511c(s32 a, void *c) {
     Unk0215316c *b = (Unk0215316c *) c;
     enum { K0 } r;
@@ -167,136 +297,6 @@ u32 func_0202511c(s32 a, void *c) {
             break;
     }
     if (f == FALSE && b != NULL) {
-        *b = data_0215316c[r];
-    }
-    return r;
-}
-
-u32 func_0202553c(u32 a, void *c) {
-    Unk0215316c *b = (Unk0215316c *) c;
-    u32 r;
-
-    r = 0x36;
-    switch (a) {
-        case 20:
-            r = 7;
-            break;
-        case 25:
-            r = 34;
-            break;
-        case 14:
-            r = 8;
-            break;
-        case 1:
-            r = 9;
-            break;
-        case 31:
-            r = 10;
-            break;
-        case 22:
-            r = 11;
-            break;
-        case 9:
-            r = 12;
-            break;
-        case 11:
-            r = 13;
-            break;
-        case 16:
-            r = 14;
-            break;
-        case 28:
-            r = 15;
-            break;
-        case 19:
-            r = 16;
-            break;
-        case 34:
-            r = 17;
-            break;
-        case 33:
-            r = 32;
-            break;
-        case 38:
-            r = 18;
-            break;
-        case 26:
-            r = 19;
-            break;
-        case 18:
-            r = 20;
-            break;
-        case 10:
-            r = 21;
-            break;
-        case 15:
-            r = 22;
-            break;
-        case 35:
-            r = 23;
-            break;
-        case 39:
-            r = 24;
-            break;
-        case 13:
-            r = 25;
-            break;
-        case 37:
-            r = 26;
-            break;
-        case 24:
-            r = 27;
-            break;
-        case 23:
-            r = 29;
-            break;
-        case 36:
-            r = 28;
-            break;
-        case 30:
-            r = 30;
-            break;
-        case 27:
-            r = 31;
-            break;
-        case 17:
-            r = 33;
-            break;
-        case 32:
-            r = 37;
-            break;
-        case 29:
-            r = 35;
-            break;
-        case 12:
-            r = 36;
-            break;
-        case 40:
-            r = 38;
-            break;
-        case 41:
-        case 42:
-        case 43:
-        case 44:
-        case 45:
-        case 46:
-        case 47:
-            r = 39;
-            break;
-        case 48:
-        case 49:
-        case 50:
-        case 51:
-            r = 40;
-            break;
-        case 52:
-            r = 42;
-            break;
-        case 53:
-            r = 51;
-            break;
-    }
-    if (b != NULL) {
         *b = data_0215316c[r];
     }
     return r;

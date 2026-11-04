@@ -18,45 +18,9 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/unk_0215d000.h"
 
-s32 func_02063b70(Unk0206bcb0 *a) {
-    Unk0206bcb0_590 *b;
-    Unk0206bcb0_590_08 *c;
-    BOOL d;
-    s32 e;
-    s32 f;
-    s32 t;
-    s32 k;
-    Vec3 h;
-    Vec3 i;
-    Unk02012f58 g;
-
-    b = a->mKartModelsEntry;
-    d = b->mUnk_058 == 0;
-    if (d != FALSE) {
-        t = a->mUnk_1d0 + 0x5000;
-        g = *a->mUnk_1b4;
-        Vec3AddScaled(t, &a->mUnk_12c, a->mUnk_508, &h);
-        g.mUnk_00[3].x = h.x >> 4;
-        g.mUnk_00[3].y = h.y >> 4;
-        g.mUnk_00[3].z = h.z >> 4;
-        k = a->mUnk_4c8;
-        i.x = (s64) a->mUnk_bc.x * k >> 12;
-        i.y = (s64) a->mUnk_bc.y * k >> 12;
-        i.z = (s64) a->mUnk_bc.z * k >> 12;
-        f = 0x1e;
-        func_01ff9048(0x14, &f, 1);
-        func_01ff9048(0x19, &g, 0xc);
-        func_01ff9048(0x1b, &i, 3);
-        func_0208ab4c(&b->mUnk_040);
-        func_0207a30c(a->mIndex);
-        e = a->mKartModelsEntry->mUnk_0a4;
-        c = func_02079b60();
-        c->mUnk_0c = e;
-        *c->mUnk_1c[c->mUnk_1a] = c->mUnk_0c;
-        func_020849d0(func_02079b88());
-        func_0207ae58(func_02079b74());
-    }
-    return d;
+void func_02064180(Unk0206bcb0 *a) {
+    a->mUnk_00.mUnk_40 = func_02086080(a->mIndex);
+    func_0210b7ec(&a->mUnk_518, func_02086080(a->mIndex));
 }
 
 static inline void func_02063cc4_inline(u32 a, s32 b) {
@@ -175,7 +139,43 @@ void func_02063cc4(Unk0206bcb0 *a) {
     func_020849d0(e->mUnk_010[0]);
 }
 
-void func_02064180(Unk0206bcb0 *a) {
-    a->mUnk_00.mUnk_40 = func_02086080(a->mIndex);
-    func_0210b7ec(&a->mUnk_518, func_02086080(a->mIndex));
+s32 func_02063b70(Unk0206bcb0 *a) {
+    Unk0206bcb0_590 *b;
+    Unk0206bcb0_590_08 *c;
+    BOOL d;
+    s32 e;
+    s32 f;
+    s32 t;
+    s32 k;
+    Vec3 h;
+    Vec3 i;
+    Unk02012f58 g;
+
+    b = a->mKartModelsEntry;
+    d = b->mUnk_058 == 0;
+    if (d != FALSE) {
+        t = a->mUnk_1d0 + 0x5000;
+        g = *a->mUnk_1b4;
+        Vec3AddScaled(t, &a->mUnk_12c, a->mUnk_508, &h);
+        g.mUnk_00[3].x = h.x >> 4;
+        g.mUnk_00[3].y = h.y >> 4;
+        g.mUnk_00[3].z = h.z >> 4;
+        k = a->mUnk_4c8;
+        i.x = (s64) a->mUnk_bc.x * k >> 12;
+        i.y = (s64) a->mUnk_bc.y * k >> 12;
+        i.z = (s64) a->mUnk_bc.z * k >> 12;
+        f = 0x1e;
+        func_01ff9048(0x14, &f, 1);
+        func_01ff9048(0x19, &g, 0xc);
+        func_01ff9048(0x1b, &i, 3);
+        func_0208ab4c(&b->mUnk_040);
+        func_0207a30c(a->mIndex);
+        e = a->mKartModelsEntry->mUnk_0a4;
+        c = func_02079b60();
+        c->mUnk_0c = e;
+        *c->mUnk_1c[c->mUnk_1a] = c->mUnk_0c;
+        func_020849d0(func_02079b88());
+        func_0207ae58(func_02079b74());
+    }
+    return d;
 }

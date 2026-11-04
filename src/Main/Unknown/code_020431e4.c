@@ -19,6 +19,51 @@ static inline s32 func_020431e4_inline(Unk0217aa00 *p) {
     return r;
 }
 
+u16 func_020435bc(void) {
+    return 9;
+}
+
+u32 func_0204359c(void) {
+    return (data_02175624->mUnk_04 & 1) != 0;
+}
+
+void func_02043544(u32 a) {
+    if (func_0205e0a0() == 2 && a != 0) {
+        data_02175624->mUnk_04 |= 2;
+    } else {
+        data_02175624->mUnk_04 &= ~2;
+    }
+}
+
+void func_02043410(void) {
+    u16 i;
+    u16 j;
+    Unk0217aa00 *z;
+    Unk02175628 *p;
+
+    for (i = 0; i < 8; i++) {
+        p = &data_02175628[i];
+        func_02039728(p);
+        func_02039520(p, 0xff3, 0x1e, 0xa);
+        p->mSourceKind = 0;
+        p->mRequestedBits = 0;
+        p->mUnk_44 = 0;
+        p->mBitMask = 0x2fff;
+        func_0204a9e4((u32) &p->mUnk_28);
+        func_020470c4((u32) &p->mUnk_48);
+    }
+    z = data_0217aa00;
+    if (func_020431e4_inline(z) != 0) {
+        for (j = 0; j < 8; j++) {
+            if (z->mUnk_15f6 & (1 << z->mUnk_1e8c[j])) {
+                data_02175628[j].mSourceKind = 4;
+            }
+        }
+    }
+    data_02175624->mUnk_08 = 0;
+    data_02175624->mUnk_0c = 0;
+}
+
 void func_020431e4(void) {
     s32 i;
     s32 k;
@@ -81,49 +126,4 @@ void func_020431e4(void) {
             data_02175628[w].mSourceKind = 3;
         }
     }
-}
-
-void func_02043410(void) {
-    u16 i;
-    u16 j;
-    Unk0217aa00 *z;
-    Unk02175628 *p;
-
-    for (i = 0; i < 8; i++) {
-        p = &data_02175628[i];
-        func_02039728(p);
-        func_02039520(p, 0xff3, 0x1e, 0xa);
-        p->mSourceKind = 0;
-        p->mRequestedBits = 0;
-        p->mUnk_44 = 0;
-        p->mBitMask = 0x2fff;
-        func_0204a9e4((u32) &p->mUnk_28);
-        func_020470c4((u32) &p->mUnk_48);
-    }
-    z = data_0217aa00;
-    if (func_020431e4_inline(z) != 0) {
-        for (j = 0; j < 8; j++) {
-            if (z->mUnk_15f6 & (1 << z->mUnk_1e8c[j])) {
-                data_02175628[j].mSourceKind = 4;
-            }
-        }
-    }
-    data_02175624->mUnk_08 = 0;
-    data_02175624->mUnk_0c = 0;
-}
-
-void func_02043544(u32 a) {
-    if (func_0205e0a0() == 2 && a != 0) {
-        data_02175624->mUnk_04 |= 2;
-    } else {
-        data_02175624->mUnk_04 &= ~2;
-    }
-}
-
-u32 func_0204359c(void) {
-    return (data_02175624->mUnk_04 & 1) != 0;
-}
-
-u16 func_020435bc(void) {
-    return 9;
 }
