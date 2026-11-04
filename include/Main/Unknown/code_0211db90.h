@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_0211db90(void);
+void LocateAndQueueSelectRaceRule(void);
 void func_0211dd44(void);

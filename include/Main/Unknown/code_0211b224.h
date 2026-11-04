@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0211b224(void);
+void AdvanceSelectRaceRuleState0(void);

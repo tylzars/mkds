@@ -31,7 +31,7 @@ void func_02125de0(void *a, void *b) {
         t.mUnk_0c = ((Unk02125de0Arg *) b)->mUnk_10;
         t.mUnk_10 = data_0217d3ec->mUnk_810;
         data_0217d3ec->mUnk_00 = 1;
-        data_0217d3ec->mUnk_810 = func_021274ec(a, &t);
+        data_0217d3ec->mUnk_810 = InitTxtSystem(a, &t);
     }
     if (((Unk02125de0Arg *) b)->mUnk_14 != 0) {
         data_0217d3ec->mUnk_04 = 1;

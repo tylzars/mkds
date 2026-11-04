@@ -22,7 +22,7 @@ void func_02128958(s16 *a) {
     void *h;
     h = GetHeap(func_020364e8());
     data_0217d3fc = HeapAlloc(h, 0x808);
-    func_0212a1e0(h, a[0]);
+    InitKeyboard(h, a[0]);
 }
 #pragma thumb off
 

@@ -156,7 +156,7 @@ void func_0207fa74(Unk020888b4 *p, Kart *q, s32 a) {
     s32 v;
     Unk0217aebc_128 *r;
 
-    p->mUnk_00 = q;
+    p->mKart = q;
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
     if (a != 0) {
@@ -166,7 +166,7 @@ void func_0207fa74(Unk020888b4 *p, Kart *q, s32 a) {
     }
     p->mUnk_88 = data_usa_0217ae38[v];
     p->mUnk_8c = data_usa_0217ae48[v];
-    p->mUnk_9c = (s32) (((s64) p->mUnk_00->mUnk_2cc->mUnk_10 * 0x99a + 0x800) >> 12);
+    p->mUnk_9c = (s32) (((s64) p->mKart->mUnk_2cc->mUnk_10 * 0x99a + 0x800) >> 12);
     func_02080d34(&p->mUnk_08, p->mIndex);
     func_0207f9cc(p, 0);
     r = func_0208537c();
@@ -220,7 +220,7 @@ void func_0207f8f8(Unk020888b4 *p) {
 
     func_0207e668(p);
     q = &p->mUnk_08.mUnk_00;
-    a = p->mUnk_00;
+    a = p->mKart;
     if (p->mUnk_90 == 2) {
         t = &a->mUnk_50;
     } else {
@@ -230,7 +230,7 @@ void func_0207f8f8(Unk020888b4 *p) {
     func_0207a948(&v, p->mIndex);
     func_0207f6f0(p, q, a, s, &v, t);
     if (a->mState == 0) {
-        func_0204360c(p->mUnk_00->mUnk_78, 1);
+        func_0204360c(p->mKart->mUnk_78, 1);
         Vec3Sub(&p->mUnk_44, &v, &w);
         func_01ffd224(p, &w, t);
     }
@@ -255,7 +255,7 @@ void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Kart *r, Unk02175620_bc *s, V
         return;
     }
     if (func_02061f90() == p->mIndex) {
-        if (p->mUnk_00->mUnk_44 & 0x2000) {
+        if (p->mKart->mUnk_44 & 0x2000) {
             func_0207e7f0(p);
         }
         c = &r->mUnk_12c;
@@ -404,11 +404,11 @@ void func_0207f05c(Unk020888b4 *p) {
         r = func_0208537c();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
-        if (v <= p->mUnk_88 && p->mUnk_00->mUnk_2a4 >= p->mUnk_9c) {
+        if (v <= p->mUnk_88 && p->mKart->mUnk_2a4 >= p->mUnk_9c) {
             a = *p->mUnk_08.mUnk_00.mUnk_00->mUnk_18;
             d = data_usa_021557c4;
             func_020397a8(&p->mUnk_08.mUnk_00.mUnk_08, &d, &b);
-            Vec3Sub(&p->mUnk_00->mUnk_80, &a, &c);
+            Vec3Sub(&p->mKart->mUnk_80, &a, &c);
             m = func_02039828(&c, &b);
             k = p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c;
             if (func_020738f8(m) < k) {
@@ -454,7 +454,7 @@ void func_0207f05c(Unk020888b4 *p) {
     e = *p->mUnk_08.mUnk_00.mUnk_00->mUnk_18;
     h = data_usa_021557c4;
     func_020397a8(&p->mUnk_08.mUnk_00.mUnk_08, &h, &f);
-    Vec3Sub(&p->mUnk_00->mUnk_80, &e, &g);
+    Vec3Sub(&p->mKart->mUnk_80, &e, &g);
     p->mUnk_74 = DivFixed12(func_02039828(&g, &f), p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c + 0x1000);
     if (func_020738f8(p->mUnk_74) > 0x1000) {
         if (p->mUnk_74 > 0) {
@@ -481,7 +481,7 @@ void func_0207ebfc(Unk020888b4 *p) {
     BOOL b;
 
     func_02080cc0(&p->mUnk_08.mUnk_00);
-    q = p->mUnk_00;
+    q = p->mKart;
     if (p->mUnk_90 == 1) {
         func_0204360c(q->mUnk_78, 0x100);
         p->mUnk_90 = 2;
@@ -528,7 +528,7 @@ void func_0207ebfc(Unk020888b4 *p) {
         }
         Vec3Sub(&p->mUnk_44, &q->mUnk_80, &v0);
         p->mUnk_90 = 4;
-        q2 = p->mUnk_00;
+        q2 = p->mKart;
         func_02063b30(q2, &v3);
         n = Vec3Dot(&v3, &v0);
         v4.x = v0.x - (s32) (((s64) v3.x * n) >> 12);
@@ -661,7 +661,7 @@ void func_0207e7f0(Unk020888b4 *p) {
     c = data_usa_021557c4;
     d = *(Vec3 *) &data_usa_021557c4;
     func_020397a8(&p->mUnk_08.mUnk_00.mUnk_08, &d, &e);
-    Vec3Sub(&p->mUnk_00->mUnk_80, &b, &f);
+    Vec3Sub(&p->mKart->mUnk_80, &b, &f);
     s = func_02039828(&f, &e);
     p->mUnk_74 = DivFixed12(s, p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c + 0x1000);
     if (func_020738f8(p->mUnk_74) > 0x1000) {
@@ -690,7 +690,7 @@ void func_0207e668(Unk020888b4 *p) {
     } else {
         b = TRUE;
     }
-    q = p->mUnk_00;
+    q = p->mKart;
     {
         BOOL c;
         if ((q->mUnk_44 & 0xc0) && q->mUnk_2a4 < 0x3000) {
@@ -725,7 +725,7 @@ void func_0207e668(Unk020888b4 *p) {
         case 1:
             if (data_021759c0->mMode == 2) {
                 p->mUnk_a8 = 3;
-                func_0208c1f4(p->mUnk_00->mUnk_310);
+                func_0208c1f4(p->mKart->mUnk_310);
                 p->mUnk_7a = 0xb4;
             } else {
                 p->mUnk_a8 = 2;
@@ -735,12 +735,12 @@ void func_0207e668(Unk020888b4 *p) {
             break;
         case 2:
             p->mUnk_a8 = 3;
-            func_0208c1f4(p->mUnk_00->mUnk_310);
+            func_0208c1f4(p->mKart->mUnk_310);
             p->mUnk_7a = 0xb4;
             break;
         case 3:
             p->mUnk_a8 = 4;
-            func_02063a68(p->mUnk_00);
+            func_02063a68(p->mKart);
             break;
     }
 }

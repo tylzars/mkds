@@ -11,4 +11,4 @@ typedef struct Unk021274ec {
 } Unk021274ec;
 
 void func_02127734(void);
-s32 func_021274ec(void *b, Unk021274ec *c);
+s32 InitTxtSystem(void *b, Unk021274ec *c);

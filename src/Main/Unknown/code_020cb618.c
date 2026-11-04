@@ -95,7 +95,7 @@ void func_020cb6c0(void) {
                     v = 4;
                 }
                 p = data_0217b43c;
-                func_0211b2cc(func_020cb99c(), (s32) p->mUnk_108, p->mUnk_50c, v);
+                InitSelectRaceRule(func_020cb99c(), (s32) p->mUnk_108, p->mUnk_50c, v);
                 break;
             case 16:
                 if (func_020cae54() == 0) {
@@ -106,7 +106,7 @@ void func_020cb6c0(void) {
                     v = 5;
                 }
                 p = data_0217b43c;
-                func_0211b2cc(func_020cb99c(), (s32) p->mUnk_108, p->mUnk_50c, v);
+                InitSelectRaceRule(func_020cb99c(), (s32) p->mUnk_108, p->mUnk_50c, v);
                 break;
             case 14:
                 v = (func_020cae54() == 0) ? UNK_020CB6C0_0 : UNK_020CB6C0_1;
@@ -188,7 +188,7 @@ void func_020cb618(void) {
                 break;
             case 10:
             case 16:
-                func_0211b23c();
+                ReleaseSelectRaceRule();
                 break;
             case 14:
                 func_0203223c();

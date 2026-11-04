@@ -287,17 +287,17 @@ typedef struct Unk0217d364 {
     /* 6c */ s32 mUnk_6c;
 } Unk0217d364;
 
-// Object behind data_0217d368, and the object its mUnk_20 member points to.
+// Object behind gSelectRaceRule, and the object its mUnk_20 member points to.
 typedef struct Unk0217d368_20 {
     /* 00 */ u8 mUnk_00[0x0c];
     /* 0c */ u16 mUnk_0c;
 } Unk0217d368_20;
 
-typedef struct Unk0217d368 {
+typedef struct SelectRaceRule {
     /* 00 */ struct Unk02021dc8 *mUnk_00;
-    /* 04 */ Unk0201ea30 *mUnk_04;
-    /* 08 */ Unk0201ea30 *mUnk_08;
-    /* 0c */ void *mUnk_0c;
+    /* 04 */ Unk0201ea30 *mBncl;
+    /* 08 */ Unk0201ea30 *mBnbl;
+    /* 0c */ void *mBnll;
     /* 10 */ void *mUnk_10;
     /* 14 */ Unk02124b1c *mUnk_14;
     /* 18 */ void *mUnk_18;
@@ -306,9 +306,9 @@ typedef struct Unk0217d368 {
     /* 24 */ void *mUnk_24;
     /* 28 */ void *mHeap;
     /* 2c */ s32 mUnk_2c;
-    /* 30 */ s32 mUnk_30;
-    /* 34 */ s32 mUnk_34;
-    /* 38 */ s32 mUnk_38;
+    /* 30 */ s32 mState;
+    /* 34 */ s32 mNextState;
+    /* 38 */ s32 mStateFrames;
     /* 3c */ s16 mUnk_3c[5][2];
     /* 50 */ s16 mUnk_50[2][2];
     /* 58 */ s16 mUnk_58;
@@ -328,7 +328,7 @@ typedef struct Unk0217d368 {
     /* b0 */ u16 mUnk_b0[2];
     /* b4 */ void *mUnk_b4;
     /* b8 */ vu32 mUnk_b8;
-} Unk0217d368;
+} SelectRaceRule;
 
 // Object behind data_0217d37c (0x10 bytes), allocated by func_0211f2b8.
 typedef struct Unk0217d37c {
@@ -442,8 +442,8 @@ typedef struct Unk0217d3f0_2178 {
     /* 0c */ u32 mUnk_0c;
 } Unk0217d3f0_2178;
 
-// Object behind data_0217d3f0: 0x2278 bytes allocated by func_021274ec.
-typedef struct Unk0217d3f0 {
+// Object behind gTxtSystem: 0x2278 bytes allocated by InitTxtSystem.
+typedef struct TxtSystem {
     /* 0000 */ u32 mUnk_00;
     /* 0004 */ u32 mUnk_04;
     /* 0008 */ u32 mUnk_08;
@@ -487,8 +487,8 @@ typedef struct Unk0217d3f0 {
     /* 2250 */ s32 mUnk_2250;
     /* 2254 */ s32 mUnk_2254;
     /* 2258 */ s32 mUnk_2258;
-    /* 225c */ struct Nscr *mUnk_225c[7];
-} Unk0217d3f0;
+    /* 225c */ struct Nscr *mBgNscrs[7];
+} TxtSystem;
 
 // Object behind data_0217d3f4.
 typedef struct Unk0217d3f4 {
@@ -552,7 +552,7 @@ typedef struct Unk0217d3fc {
     /* 404 */ Unk0217d3fc_00 mUnk_404;
 } Unk0217d3fc;
 
-// Objects of 0x18 bytes, three of them at 0x2c of Unk0217d400: 0 and 1 are read as halfword strings, 2 also as the
+// Objects of 0x18 bytes, three of them at 0x2c of Keyboard: 0 and 1 are read as halfword strings, 2 also as the
 // fields at 0x10, 0x14 and 0x16.
 typedef struct Unk0217d400_2c {
     /* 00 */ union {
@@ -566,8 +566,8 @@ typedef struct Unk0217d400_2c {
     };
 } Unk0217d400_2c;
 
-// Object behind data_0217d400: 0xc4 bytes allocated by func_0212a1e0.
-typedef struct Unk0217d400 {
+// Object behind gKeyboard: 0xc4 bytes allocated by InitKeyboard.
+typedef struct Keyboard {
     /* 00 */ void *mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
@@ -582,16 +582,16 @@ typedef struct Unk0217d400 {
     /* 84 */ s16 mUnk_84;
     /* 86 */ s16 mUnk_86[2][2];
     /* 8e */ u8 mUnk_8e[2];
-    /* 90 */ struct Unk02021dc8 *mUnk_90;
-    /* 94 */ struct Ncgr *mUnk_94;
-    /* 98 */ struct Nclr *mUnk_98;
-    /* 9c */ Unk0201ea30 *mUnk_9c[2];
-    /* a4 */ Unk0201ea30 *mUnk_a4[2];
-    /* ac */ void *mUnk_ac[2];
+    /* 90 */ struct Unk02021dc8 *mNcer;
+    /* 94 */ struct Ncgr *mNcgr;
+    /* 98 */ struct Nclr *mNclr;
+    /* 9c */ Unk0201ea30 *mBncls[2];
+    /* a4 */ Unk0201ea30 *mBnbls[2];
+    /* ac */ void *mBnlls[2];
     /* b4 */ void *mUnk_b4[2];
     /* bc */ void *mUnk_bc;
     /* c0 */ void *mUnk_c0;
-} Unk0217d400;
+} Keyboard;
 
 // Elements of 0x20 bytes at member 0x14 of Ncgr.
 typedef struct Unk0217d404_bc {
@@ -679,7 +679,7 @@ extern Unk0217d350 *data_0217d350;
 extern Unk0217d354 *data_0217d354;
 extern Unk0217d358 *data_0217d358;
 extern Unk0217d35c *data_0217d35c;
-extern Unk0217d368 *data_0217d368;
+extern SelectRaceRule *gSelectRaceRule;
 extern Unk0217d36c *data_0217d36c;
 extern Unk0217d370 *data_0217d370;
 extern Unk0217d374 *data_0217d374;
@@ -688,11 +688,11 @@ extern Unk0217d37c *data_0217d37c;
 extern Unk0217d380 *data_0217d380;
 extern char gKartFilterString[0x64];
 extern Unk0217d3ec *data_0217d3ec;
-extern Unk0217d3f0 *data_0217d3f0;
+extern TxtSystem *gTxtSystem;
 extern Unk0217d3f4 *data_0217d3f4;
 extern Unk0217d3f8 *gSelectReturn;
 extern Unk0217d3fc *data_0217d3fc;
-extern Unk0217d400 *data_0217d400;
+extern Keyboard *gKeyboard;
 extern Unk0217d408 *data_0217d408;
 extern u32 data_0217d1f0;
 extern s32 data_0217d22c[];

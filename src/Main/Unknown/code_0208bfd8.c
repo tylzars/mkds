@@ -38,7 +38,7 @@ void func_0208c050(Unk020888b4 *p) {
             return;
         }
     }
-    p->mUnk_08.mUnk_00.mUnk_14 = func_02041588(&p->mUnk_00->mUnk_80);
+    p->mUnk_08.mUnk_00.mUnk_14 = func_02041588(&p->mKart->mUnk_80);
     if (p->mUnk_08.mUnk_00.mUnk_14 != NULL) {
         p->mUnk_08.mUnk_00.mUnk_18 = 1;
     }

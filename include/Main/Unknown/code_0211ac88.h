@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-void func_0211ac88(void);
-void func_0211acec(void);
-void func_0211afd0(void);
-void func_0211b07c(void);
+void AdvanceSelectRaceRuleState4(void);
+void AdvanceSelectRaceRuleState3(void);
+void AdvanceSelectRaceRuleState2(void);
+void AdvanceSelectRaceRuleState1(void);

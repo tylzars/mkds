@@ -7,7 +7,7 @@
 #pragma optimize_for_size on
 #pragma thumb on
 void func_020ceb88(void) {
-    switch (func_0211a7bc()) {
+    switch (AdvanceSelectRaceRule()) {
         case 1:
             if (func_020cebe4() != 0) {
                 func_02029930()->mCourseListMode = 2;

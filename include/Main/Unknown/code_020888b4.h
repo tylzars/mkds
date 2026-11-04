@@ -46,7 +46,7 @@ typedef struct Unk02089b4c {
 // Unk0208001c at 0x28, vectors at 0x44, 0x50, 0x60 and 0xdc, a Unk02089a24 at 0xe8, a Unk0208fd8c at 0x11c, a
 // Unk02089b4c at 0x140 and a word at 0x154.
 typedef struct Unk020888b4 {
-    /* 00 */ Kart *mUnk_00;
+    /* 00 */ Kart *mKart;
     /* 04 */ u16 mIndex;
     /* 06 */ u16 mUnk_06;
     /* 08 */ Unk02080d34 mUnk_08;

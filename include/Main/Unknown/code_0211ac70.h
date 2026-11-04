@@ -15,7 +15,7 @@ typedef struct Unk0215ce70 {
 extern Unk0215ce70 data_0215ce0c[];
 extern Unk0215ce70 data_0215ce70[];
 
-void func_0211ac70(void);
+void AdvanceSelectRaceRuleState5(void);
 u16 func_0211d650(void);
 void func_0211d66c(void);
 void func_0211d844(s16 a);

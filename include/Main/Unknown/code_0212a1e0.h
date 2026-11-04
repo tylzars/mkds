@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Object passed to func_02125de0 by func_0212a1e0: ten words.
+// Object passed to func_02125de0 by InitKeyboard: ten words.
 typedef struct Unk0212a1e0 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ void *mUnk_04;
@@ -23,4 +23,4 @@ void func_0212a4bc(void);
 void func_0212a484(void);
 void func_0212a448(void);
 void func_0212a410(void);
-void func_0212a1e0(void *a, s32 b);
+void InitKeyboard(void *a, s32 b);

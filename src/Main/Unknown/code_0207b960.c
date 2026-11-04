@@ -35,7 +35,7 @@ void func_0207d6a4(struct Unk02089a24 *a, struct Unk020888b4 *b) {
 
     if (func_02061f90() == b->mIndex) {
         a->mUnk_08 = 0;
-        v = b->mUnk_00->mUnk_cc;
+        v = b->mKart->mUnk_cc;
         if (v > 0xa000) {
             v = 0xa000;
         }
@@ -58,14 +58,14 @@ void func_0207d6a4(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         }
         a->mUnk_04 = v;
     }
-    if (b->mUnk_00->mState != 0) {
+    if (b->mKart->mState != 0) {
         return;
     }
-    if ((b->mUnk_00->mUnk_48 & 0x10000020) != 0) {
+    if ((b->mKart->mUnk_48 & 0x10000020) != 0) {
         return;
     }
     x = func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00);
-    b->mUnk_00->mUnk_cc = (s32) (((s64) a->mUnk_04 * x + 0x800) >> 12);
+    b->mKart->mUnk_cc = (s32) (((s64) a->mUnk_04 * x + 0x800) >> 12);
 }
 
 void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -83,7 +83,7 @@ void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (t == FALSE) {
         return;
     }
-    func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+    func_0204360c(b->mKart->mUnk_78, 0x600);
     a->mUnk_10 = 0;
     if (a->mUnk_08 == NULL) {
         return;
@@ -114,7 +114,7 @@ void func_0207d4cc(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (t == FALSE) {
         return;
     }
-    func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+    func_0204360c(b->mKart->mUnk_78, 0x600);
     a->mUnk_10 = 0;
     if (a->mUnk_08 == NULL) {
         return;
@@ -207,7 +207,7 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
 
     if (func_0207e654(b) != 0) {
         if (func_0207e64c(b) != 0) {
-            func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+            func_0204360c(b->mKart->mUnk_78, 0x600);
             a->mUnk_14 = 1;
             a->mUnk_1c = 2;
             a->mUnk_10 = 0;
@@ -225,7 +225,7 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
             a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
             return;
         } else {
-            func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+            func_0204360c(b->mKart->mUnk_78, 0x600);
             a->mUnk_18 = 1;
             a->mUnk_1e = 2;
             a->mUnk_10 = 0;
@@ -255,7 +255,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
 
     k = func_0203c8dc(b->mIndex);
     if (k == 1) {
-        func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+        func_0204360c(b->mKart->mUnk_78, 0x600);
         a->mUnk_18 = 1;
         a->mUnk_1e = 2;
         a->mUnk_10 = 0;
@@ -275,7 +275,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     } else if ((u32) k >= 2 && k <= data_021759c0->mKartCount - 1) {
         switch (a->mUnk_04->mUnk_04) {
             case 0:
-                func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+                func_0204360c(b->mKart->mUnk_78, 0x600);
                 a->mUnk_10 = 0;
                 if (a->mUnk_08 == NULL) {
                     return;
@@ -291,7 +291,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
                 return;
             case 1:
-                func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+                func_0204360c(b->mKart->mUnk_78, 0x600);
                 a->mUnk_14 = 1;
                 a->mUnk_1c = 2;
                 a->mUnk_10 = 0;
@@ -309,7 +309,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
                 return;
             case 2:
-                func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+                func_0204360c(b->mKart->mUnk_78, 0x600);
                 a->mUnk_18 = 1;
                 a->mUnk_1e = 2;
                 a->mUnk_10 = 0;
@@ -330,7 +330,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 return;
         }
     } else {
-        func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+        func_0204360c(b->mKart->mUnk_78, 0x600);
         a->mUnk_14 = 1;
         a->mUnk_1c = 2;
         a->mUnk_10 = 0;
@@ -368,7 +368,7 @@ void func_0207cc74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (b->mUnk_70 >= 0x14000) {
         return;
     }
-    func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+    func_0204360c(b->mKart->mUnk_78, 0x600);
     a->mUnk_10 = 0;
     if (a->mUnk_08 == NULL) {
         return;
@@ -402,7 +402,7 @@ void func_0207cb74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (b->mUnk_70 >= 0x14000) {
         return;
     }
-    func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+    func_0204360c(b->mKart->mUnk_78, 0x600);
     a->mUnk_10 = 0;
     if (a->mUnk_04 == NULL) {
         return;
@@ -561,7 +561,7 @@ void func_0207c6d0(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 n;
     u32 v;
 
-    func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+    func_0204360c(b->mKart->mUnk_78, 0x600);
     a->mUnk_10 = 0;
     if (a->mUnk_04 == NULL) {
         return;
@@ -582,7 +582,7 @@ void func_0207c614(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 n;
     u32 v;
 
-    func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+    func_0204360c(b->mKart->mUnk_78, 0x600);
     a->mUnk_10 = 0;
     if (a->mUnk_08 == NULL) {
         return;
@@ -603,7 +603,7 @@ void func_0207c548(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 n;
     u32 v;
 
-    func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+    func_0204360c(b->mKart->mUnk_78, 0x600);
     a->mUnk_14 = 1;
     a->mUnk_1c = 2;
     a->mUnk_10 = 0;
@@ -626,7 +626,7 @@ void func_0207c47c(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 n;
     u32 v;
 
-    func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+    func_0204360c(b->mKart->mUnk_78, 0x600);
     a->mUnk_18 = 1;
     a->mUnk_1e = 2;
     a->mUnk_10 = 0;
@@ -662,7 +662,7 @@ void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 v1;
     Unk020ee684 *e;
 
-    if (func_01ffc67c(b->mUnk_00) != 0) {
+    if (func_01ffc67c(b->mKart) != 0) {
         return;
     }
     v1 = b->mIndex;
@@ -673,23 +673,23 @@ void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
         } else if ((a->mUnk_04 != 0) & (e->mUnk_030.mUnk_00 != 0x13)) {
             a->mUnk_04->mUnk_00(a, b);
         } else {
-            func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+            func_0204360c(b->mKart->mUnk_78, 0x600);
         }
     } else if (a->mUnk_14 != 0) {
-        func_0204360c(b->mUnk_00->mUnk_78, 0x40);
+        func_0204360c(b->mKart->mUnk_78, 0x40);
         a->mUnk_1c--;
         if (a->mUnk_1c <= 0) {
             a->mUnk_14 = 0;
         }
     } else if (a->mUnk_18 != 0) {
-        func_0204360c(b->mUnk_00->mUnk_78, 0x80);
+        func_0204360c(b->mKart->mUnk_78, 0x80);
         a->mUnk_1e--;
         if (a->mUnk_1e <= 0) {
             a->mUnk_18 = 0;
         }
     }
     if (a->mUnk_10 != 0) {
-        func_0204360c(b->mUnk_00->mUnk_78, 0x600);
+        func_0204360c(b->mKart->mUnk_78, 0x600);
     }
 }
 

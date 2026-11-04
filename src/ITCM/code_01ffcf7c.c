@@ -264,7 +264,7 @@ s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
 }
 
 void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
-    Kart *q = p->mUnk_00;
+    Kart *q = p->mKart;
     Vec3 v0;
     Vec3 v1;
     Vec3 v2;
@@ -303,7 +303,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
         v5.z = v1.z - (s32) (((s64) u->z * d) >> 12);
         if (func_02039828(&q->mUnk_138, &v5) > -0x333) {
             func_0208c1d0(&v2, &v3, p);
-            o = p->mUnk_00;
+            o = p->mKart;
             r = TRUE;
             Vec3Sub(&o->mUnk_80, &v2, &v9);
             v9.y = 0;

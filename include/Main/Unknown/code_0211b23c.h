@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-void func_0211b23c(void);
-void func_0211b2cc(void *a, s32 b, void *c, s32 d);
+void ReleaseSelectRaceRule(void);
+void InitSelectRaceRule(void *a, s32 b, void *c, s32 d);
 void func_0211b9d8(void);
 void func_0211b9ec(void);
 void func_0211ba08(void);
