@@ -176,7 +176,7 @@ void func_02062b50(void) {
     func_02047b6c(3);
     func_020e7460();
     func_020e7760();
-    func_020d2e6c();
+    InitMapObjects();
     func_020fa13c();
     func_02047b6c(6);
     func_0208b934(a);
@@ -313,7 +313,7 @@ void func_02062464(void) {
     }
     func_020fa920();
     func_020e9d10();
-    func_020d4590();
+    UpdateMapObjects();
     func_0208e400();
     func_0208f0a0();
     func_0208b8c8();
@@ -444,7 +444,7 @@ void func_02062078(void) {
     DrawKarts();
     func_02010fac(0, data_0217aa54->mUnk_40, data_0217aa54->mUnk_42, data_0217aa54->mUnk_44);
     func_020e9810();
-    func_020d4484((Unk020d4418 *) data_0217aa6c);
+    DrawMapObjects((Unk020d4418 *) data_0217aa6c);
     func_020fa8ac(data_0217aa7c);
     func_0208e358();
     func_01ff9234();

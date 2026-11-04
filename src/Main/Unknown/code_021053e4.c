@@ -66,9 +66,9 @@ void func_021053e4(Unk021052fc *p) {
     p->mUnk_00.mFlags &= ~2;
     p->mUnk_00.mFlags &= ~8;
     p->mUnk_00.mUnk_66 = 0x1f;
-    p->mUnk_00.mUnk_1c.x = 0;
-    p->mUnk_00.mUnk_1c.y = 0;
-    p->mUnk_00.mUnk_1c.z = 0;
+    p->mUnk_00.mScale.x = 0;
+    p->mUnk_00.mScale.y = 0;
+    p->mUnk_00.mScale.z = 0;
     p->mUnk_a0 = 0;
     p->mUnk_a2 = 0;
     p->mUnk_a4 = 0x80;

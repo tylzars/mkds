@@ -6,10 +6,10 @@
 
 // 0x34 bytes: two words, then four function pointers among zero words. Referenced only from main-module data.
 typedef struct Unk021a7b64 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ void (*mUnk_08)(Unk02188950 *);
-    /* 0c */ void (*mUnk_0c)(void);
+    /* 00 */ s32 mObjectCount;
+    /* 04 */ s32 mObjectSize;
+    /* 08 */ void (*mInitObject)(Unk02188950 *);
+    /* 0c */ void (*mCreateKindData)(void);
     /* 10 */ void *(*mUnk_10)(void);
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;

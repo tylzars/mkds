@@ -125,7 +125,7 @@ void func_ov001_0218ba48(Unk02188950 *a) {
     func_ov001_02188c48(a, a->mPrm->mUnk_0f0, a->mPrm->mUnk_0f4);
     SetAnglePointAndMoveAnglePoint(a, (Vec3 *) func_ov001_02187fc0(a));
     func_ov001_02188e24(a, (s32) ((u32) (a->mPrm->mUnk_100)), (UnkFunc *) func_ov001_0218c354);
-    func_ov001_02188d08(a, (s32) (a->mUnk_000.mUnk_1c.x + a->mPrm->mUnk_0f8), (s32) (a->mPrm->mUnk_0fc));
+    func_ov001_02188d08(a, (s32) (a->mUnk_000.mScale.x + a->mPrm->mUnk_0f8), (s32) (a->mPrm->mUnk_0fc));
     func_ov001_02188cec(a, 0);
     func_0209b688((void *) (a->mNsbmd), (u16) (func_ov001_02188220(a)));
     if (func_ov001_02188220(a) == 0) {

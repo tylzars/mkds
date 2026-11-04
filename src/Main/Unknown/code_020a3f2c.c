@@ -168,7 +168,7 @@ void func_020a69b4(void *a, Unk020a5958 *p) {
         s.z = n;
         func_01ff9048(0x1b, &s, 3);
     }
-    func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     func_0209b7a0(gShine16, p->mUnk_b8, 0);
     func_0209b688(gShine16, (u16) p->mUnk_b0);
     func_0209bb2c(a, gShine16, p);
@@ -220,7 +220,7 @@ void func_020a683c(void *a, Unk020a5958 *p, void *b, s32 c) {
         s.z = n;
         func_01ff9048(0x1b, &s, 3);
     }
-    func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     x = data_021567a4[data_0217b220] >> 4;
     Matrix3x3FromPairY(m, gPairsByAngle[x * 2 + 1], gPairsByAngle[x * 2]);
     func_01ff9048(0x1a, m, 9);

@@ -137,7 +137,7 @@ void func_02092b5c(void *a, Unk020919e8 *p) {
                 }
                 return;
             }
-            if (func_02092b5c_inline_3(p, p->mUnk_00.mUnk_7e) != FALSE) {
+            if (func_02092b5c_inline_3(p, p->mUnk_00.mAngle) != FALSE) {
                 p->mUnk_a4 = 4;
                 p->mUnk_ac = 1;
             }
@@ -150,7 +150,7 @@ void func_02092b5c(void *a, Unk020919e8 *p) {
     if (p->mUnk_a0 == 0x14) {
         for (i = 0; i < 2; i++) {
             func_02092b5c_inline_5(&v3, p->mUnk_00.mPos.x, p->mUnk_00.mPos.y + 0x23000, p->mUnk_00.mPos.z);
-            k = p->mUnk_00.mUnk_7e;
+            k = p->mUnk_00.mAngle;
             r = func_02091f6c(func_020d22d0(), 0x1000) + 0x2000;
             k = k - 0xbb8 + func_02046524(func_020d22d0(), 0x1770);
             v4.x = func_020930a0(r, func_020930b0(k));

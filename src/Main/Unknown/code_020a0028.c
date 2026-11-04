@@ -31,12 +31,12 @@ void func_020a018c(void *a, Unk020a018c *p) {
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_00.mMatrix, 0xc);
-    if (p->mUnk_00.mUnk_7e != 0) {
-        Matrix3x3FromPairY(q, gPairsByAngle[((p->mUnk_00.mUnk_7e >> 4) << 1)],
-                           gPairsByAngle[((p->mUnk_00.mUnk_7e >> 4) << 1) + 1]);
+    if (p->mUnk_00.mAngle != 0) {
+        Matrix3x3FromPairY(q, gPairsByAngle[((p->mUnk_00.mAngle >> 4) << 1)],
+                           gPairsByAngle[((p->mUnk_00.mAngle >> 4) << 1) + 1]);
         func_01ff9048(0x1a, q, 9);
     }
-    func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     func_0209bb2c(a, gAirship, p);
 }
 

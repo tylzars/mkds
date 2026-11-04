@@ -71,7 +71,7 @@ void func_020dc354(Unk020dc474 *p) {
                              44),
                       &p->mUnk_d4);
     }
-    if (p->mUnk_00.mUnk_80.mUnk_04 < 0x40) {
+    if (p->mUnk_00.mUnk_80.mStateFrames < 0x40) {
         p->mUnk_ec = p->mUnk_ec + 0x1c;
     }
 }
@@ -87,7 +87,7 @@ void CreateWanwanAndRockShadow(void) {
 #pragma thumb on
 void func_020dc1d8(Unk020dc474 *p, Unk020fa294 *a) {
     p->mUnk_a0 = a->mUnk_00;
-    p->mUnk_f0 = (s32) (((s64) p->mUnk_00.mUnk_1c.y * 0x1e000) >> 12);
+    p->mUnk_f0 = (s32) (((s64) p->mUnk_00.mScale.y * 0x1e000) >> 12);
     p->mUnk_f4 = 0xf000 - p->mUnk_f0;
     p->mUnk_f8 = (a->mUnk_28 * 0x3000) >> 2;
     p->mUnk_1dc = a->mUnk_2a << 12;
@@ -110,7 +110,7 @@ void func_020dc1d8(Unk020dc474 *p, Unk020fa294 *a) {
 #pragma thumb on
 void func_020dc11c(Unk020dc474 *p, Unk020fa294 *a) {
     p->mUnk_a0 = a->mUnk_00;
-    p->mUnk_f0 = (s32) (((s64) p->mUnk_00.mUnk_1c.y * 0x1e000) >> 12);
+    p->mUnk_f0 = (s32) (((s64) p->mUnk_00.mScale.y * 0x1e000) >> 12);
     p->mUnk_f4 = 0xf000 - p->mUnk_f0;
     p->mUnk_fc = 1;
     p->mUnk_b0 = a->mUnk_2a;
@@ -154,11 +154,11 @@ void func_020dbf7c(Unk020dc474 *p) {
                                   0x80000000000LL) >>
                                  44),
                           &p->mUnk_d4);
-            p->mUnk_00.mUnk_80.mUnk_10 = 4;
-            p->mUnk_00.mUnk_80.mUnk_12 = 1;
+            p->mUnk_00.mUnk_80.mNextState = 4;
+            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
         } else {
-            p->mUnk_00.mUnk_80.mUnk_10 = 0;
-            p->mUnk_00.mUnk_80.mUnk_12 = 1;
+            p->mUnk_00.mUnk_80.mNextState = 0;
+            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
         }
     }
 }
@@ -201,8 +201,8 @@ void func_020dbdac(void *a, Dossun *p, void *c, s32 d) {
     q->mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     q->mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     q->mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
-    func_020ea8a8(gDossun, q, &p->mUnk_00.mUnk_1c, d);
-    func_020ea868(gDossunShadow, q, &p->mUnk_00.mUnk_1c, d);
+    func_020ea8a8(gDossun, q, &p->mUnk_00.mScale, d);
+    func_020ea868(gDossunShadow, q, &p->mUnk_00.mScale, d);
 }
 
 void func_020db760(void *a, Dossun *p) {
@@ -406,7 +406,7 @@ u32 func_020db548(Dossun *p, Kart *a, u8 *b, u8 *c) {
             } else {
                 t = 0x8000;
             }
-            t = t - (s32) (((s64) (0x1000 - p->mUnk_00.mUnk_1c.y) * 0x2000) >> 12);
+            t = t - (s32) (((s64) (0x1000 - p->mUnk_00.mScale.y) * 0x2000) >> 12);
             q->mUnk_04 = t;
             q->mUnk_10 = (s32) (((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12);
             p->mUnk_b4 = 1;
@@ -508,13 +508,13 @@ void func_020db2b8(Dossun *p, Unk020fa294 *a) {
     p->mUnk_f0 = a->mUnk_28;
     func_020d7da8(&p->mUnk_c8, a, p->mUnk_f0 != 0 ? 0xc00 : 0x3000);
     p->mUnk_ec = a->mUnk_2a;
-    p->mUnk_f4 = (s32) (((s64) p->mUnk_00.mUnk_1c.x * 0x28000) >> 12);
-    p->mUnk_f8 = (s32) (((s64) p->mUnk_00.mUnk_1c.y * 0x2d000) >> 12);
-    p->mUnk_fc = (s32) (((s64) p->mUnk_00.mUnk_1c.z * 0x1e000) >> 12);
-    p->mUnk_100 = (s32) (((s64) p->mUnk_00.mUnk_1c.y * 0xf000) >> 12);
-    p->mUnk_104 = (s32) (((s64) p->mUnk_00.mUnk_1c.y * 0x1000) >> 12);
-    p->mUnk_108 = (s32) (((s64) p->mUnk_00.mUnk_1c.y * 0x2000) >> 12);
-    p->mUnk_c4 = (s32) (((s64) p->mUnk_00.mUnk_1c.y * 0x3000) >> 12);
+    p->mUnk_f4 = (s32) (((s64) p->mUnk_00.mScale.x * 0x28000) >> 12);
+    p->mUnk_f8 = (s32) (((s64) p->mUnk_00.mScale.y * 0x2d000) >> 12);
+    p->mUnk_fc = (s32) (((s64) p->mUnk_00.mScale.z * 0x1e000) >> 12);
+    p->mUnk_100 = (s32) (((s64) p->mUnk_00.mScale.y * 0xf000) >> 12);
+    p->mUnk_104 = (s32) (((s64) p->mUnk_00.mScale.y * 0x1000) >> 12);
+    p->mUnk_108 = (s32) (((s64) p->mUnk_00.mScale.y * 0x2000) >> 12);
+    p->mUnk_c4 = (s32) (((s64) p->mUnk_00.mScale.y * 0x3000) >> 12);
     func_020db430(p);
     if (p->mUnk_f0 != 0) {
         func_020d27fc(&p->mUnk_00);
@@ -564,9 +564,9 @@ void func_020db050(void *a, Unk020da494 *p, void *c, u16 d) {
     } else {
         func_020e6d34(func_020d88fc(&p->mUnk_cc), &p->mUnk_00.mMatrix);
     }
-    s.z = p->mUnk_00.mUnk_1c.z;
-    s.y = (s32) (((s64) p->mUnk_00.mUnk_1c.y * p->mUnk_c4) >> 12);
-    s.x = (s32) (((s64) p->mUnk_00.mUnk_1c.x * (((0x1000 - p->mUnk_c4) >> 1) + 0x1000)) >> 12);
+    s.z = p->mUnk_00.mScale.z;
+    s.y = (s32) (((s64) p->mUnk_00.mScale.y * p->mUnk_c4) >> 12);
+    s.x = (s32) (((s64) p->mUnk_00.mScale.x * (((0x1000 - p->mUnk_c4) >> 1) + 0x1000)) >> 12);
     p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;

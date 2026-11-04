@@ -25,9 +25,9 @@
 #pragma thumb off
 
 void func_020e4380(Unk020e3ef4 *a) {
-    if (a->mUnk_000.mUnk_80.mUnk_04 > a->mUnk_148) {
-        a->mUnk_000.mUnk_80.mUnk_10 = 0;
-        a->mUnk_000.mUnk_80.mUnk_12 = 1;
+    if (a->mUnk_000.mUnk_80.mStateFrames > a->mUnk_148) {
+        a->mUnk_000.mUnk_80.mNextState = 0;
+        a->mUnk_000.mUnk_80.mNextStateRequested = 1;
     }
 }
 
@@ -162,15 +162,15 @@ void func_020e3ef4(Unk020e3ef4 *a, struct Unk020fa294 *b, Unk020e1e98_154 *c) {
     if (b->mUnk_30 != 0) {
         a->mUnk_14a = -a->mUnk_14a;
     }
-    a->mUnk_000.mUnk_7e = 0;
+    a->mUnk_000.mAngle = 0;
     if (a->mUnk_144 != 0) {
         a->mUnk_150 = 0x1000 / a->mUnk_144;
     } else {
         a->mUnk_150 = 0;
     }
     a->mUnk_14c = 0;
-    a->mUnk_100 = (s32) (((s64) c->mUnk_04 * a->mUnk_000.mUnk_1c.x) >> 12);
-    a->mUnk_104 = (s32) (((s64) c->mUnk_08 * a->mUnk_000.mUnk_1c.y) >> 12) >> 1;
+    a->mUnk_100 = (s32) (((s64) c->mUnk_04 * a->mUnk_000.mScale.x) >> 12);
+    a->mUnk_104 = (s32) (((s64) c->mUnk_08 * a->mUnk_000.mScale.y) >> 12) >> 1;
     if (c->mUnk_00 != 0) {
         a->mUnk_110 = 0;
         a->mUnk_114.x = 1;
@@ -183,8 +183,8 @@ void func_020e3ef4(Unk020e3ef4 *a, struct Unk020fa294 *b, Unk020e1e98_154 *c) {
     a->mUnk_134 = 1;
     a->mUnk_138 = c->mUnk_14;
     a->mUnk_000.mFlags |= data_02158d58;
-    a->mUnk_000.mUnk_80.mUnk_10 = 0;
-    a->mUnk_000.mUnk_80.mUnk_12 = 1;
+    a->mUnk_000.mUnk_80.mNextState = 0;
+    a->mUnk_000.mUnk_80.mNextStateRequested = 1;
     a->mUnk_158 = c->mUnk_0c;
     if (a->mUnk_158 == 1 && b->mUnk_32 == 0) {
         a->mUnk_158 = 2;
@@ -288,7 +288,7 @@ void func_020e3b4c(Unk020e3ef4 *a, void *b, u32 c) {
     p = (Unk020e1e98_12c *) gBridgeNsbca;
     p->mUnk_0c = a->mUnk_154;
     *p->mUnk_1c[p->mUnk_1a] = p->mUnk_0c;
-    func_020ea8a8(a->mUnk_140, &a->mUnk_000.mMatrix, &a->mUnk_000.mUnk_1c.x, c);
+    func_020ea8a8(a->mUnk_140, &a->mUnk_000.mMatrix, &a->mUnk_000.mScale.x, c);
 }
 
 void func_020e3b28(void *a) {

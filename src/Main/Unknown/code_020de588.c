@@ -83,7 +83,7 @@ void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b) {
         a->mUnk_0a8 = 1;
         a->mUnk_0ac = 0;
         a->mUnk_0f8 = 1;
-        func_020d29cc(&a->mUnk_000, (Vec3 *) data_02158694);
+        SetMapObjectScale(&a->mUnk_000, (Vec3 *) data_02158694);
     }
     if (a->mUnk_0f8 != 0) {
         a->mUnk_0f2 = 0;

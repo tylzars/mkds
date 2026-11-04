@@ -479,7 +479,7 @@ void func_020d4698(void) {
     } while (++i < n);
 }
 
-void func_020d4590(void) {
+void UpdateMapObjects(void) {
     Unk020e6fd4 *e;
     s32 i;
     s32 n;
@@ -520,7 +520,7 @@ void func_020d4590(void) {
     }
 }
 
-void func_020d4484(Unk020d4418 *p) {
+void DrawMapObjects(Unk020d4418 *p) {
     s32 i;
     s32 n;
     Unk020e6fd4 **t;

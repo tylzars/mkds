@@ -96,7 +96,7 @@ void func_0209d3fc(void *a, Unk0209d3fc *b) {
         v.z = 0;
         func_01ff9048(0x1c, &v, 3);
     }
-    func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     if (func_02061818() == 2) {
         func_0209bbd0(a, gSun);
         func_0209b77c(gSun, b->mUnk_b2);
@@ -279,7 +279,7 @@ void func_0209cef0(void) {
 void func_0209cebc(Unk0209c220 *p) {
     p->mUnk_000.mFlags |= data_usa_021565d4;
     func_020d2450(p);
-    p->mUnk_0b4 = p->mUnk_000.mUnk_1c.x;
+    p->mUnk_0b4 = p->mUnk_000.mScale.x;
 }
 
 s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
@@ -438,7 +438,7 @@ void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p) {
         v[3] = x;
         func_01ff9048(0x1b, &v[1], 3);
     }
-    func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
     func_0209b688(gBound, p->mUnk_0a0);
     func_0209bb2c(a, gBound, p);
 }
@@ -472,7 +472,7 @@ void func_0209c678(Unk02100094 *a, Unk0209c220 *p) {
         v[3] = x;
         func_01ff9048(0x1b, &v[1], 3);
     }
-    func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
     func_0209bb2c(a, gCream, p);
 }
 
@@ -495,7 +495,7 @@ void func_0209c5b8(Unk02100094 *a, Unk0209c220 *p) {
         v[3] = x;
         func_01ff9048(0x1b, &v[1], 3);
     }
-    func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
     func_0209bb2c(a, gBerry, p);
 }
 
@@ -608,12 +608,12 @@ void func_0209c220(Unk02100094 *a, Unk0209c220 *p) {
         }
         if (p->mUnk_0c8 == 0 && p->mUnk_0e8 == 0) {
             p->mUnk_11c = 0;
-            p->mUnk_000.mUnk_1c.x = p->mUnk_0b4;
+            p->mUnk_000.mScale.x = p->mUnk_0b4;
         } else {
-            p->mUnk_000.mUnk_1c.x = ((s64) p->mUnk_0b4 * p->mUnk_0bc) >> 12;
+            p->mUnk_000.mScale.x = ((s64) p->mUnk_0b4 * p->mUnk_0bc) >> 12;
         }
     } else {
-        p->mUnk_000.mUnk_1c.x = p->mUnk_0b4;
+        p->mUnk_000.mScale.x = p->mUnk_0b4;
     }
     n = data_021759c0->mKartCount;
     for (i = 0; i < n; i++) {

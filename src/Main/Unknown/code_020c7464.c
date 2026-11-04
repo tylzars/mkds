@@ -770,7 +770,7 @@ void func_020c80cc(void) {
         v = &p->mUnk_000.mPos;
         if (func_020b5ae8(&p->mUnk_000.mPos, &data_0217b420->mUnk_10[n].mUnk_00, a, 1, 1) != 0) {
             t = p->mUnk_000.mKind;
-            w = p->mUnk_000.mUnk_7e;
+            w = p->mUnk_000.mAngle;
             switch (t) {
                 case 0x19a:
                     data_0217b420->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(p->mUnk_130 + 0x95);

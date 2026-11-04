@@ -71,7 +71,7 @@ void func_020935fc(void *a, Unk02093270 *p) {
     s10.y = s10.x;
     s10.z = s10.x;
     func_01ff9048(0x1b, &s10, 3);
-    func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     func_0209b6c8(gMkdEfBurner, p->mUnk_a4);
     func_0209bb2c(a, gMkdEfBurner, p);
 }

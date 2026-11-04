@@ -99,8 +99,8 @@ void func_020dac58(Unk020da494 *p0) {
 void func_020dac00(Unk020da494 *p) {
     p->mUnk_c4 = (s32) (((s64) p->mUnk_c4 * 0x1266) >> 12);
     if (p->mUnk_c4 > 0x1800) {
-        p->mUnk_00.mUnk_80.mUnk_10 = 3;
-        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+        p->mUnk_00.mUnk_80.mNextState = 3;
+        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
     }
 }
 
@@ -111,8 +111,8 @@ u32 func_020dabfc(u32 p0) {
 void func_020dab9c(Unk020da494 *p) {
     p->mUnk_c4 = (s32) (((s64) p->mUnk_c4 * 0xd99) >> 12);
     if (p->mUnk_c4 < 0x333) {
-        p->mUnk_00.mUnk_80.mUnk_10 = 4;
-        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+        p->mUnk_00.mUnk_80.mNextState = 4;
+        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
     }
 }
 
@@ -122,9 +122,9 @@ u32 func_020dab98(u32 p0) {
 
 void func_020dab2c(Unk020da494 *p) {
     if (p->mUnk_fc != 0) {
-        if (p->mUnk_00.mUnk_80.mUnk_04 > 0x12c) {
-            p->mUnk_00.mUnk_80.mUnk_10 = 5;
-            p->mUnk_00.mUnk_80.mUnk_12 = 1;
+        if (p->mUnk_00.mUnk_80.mStateFrames > 0x12c) {
+            p->mUnk_00.mUnk_80.mNextState = 5;
+            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
         }
         return;
     }
@@ -159,9 +159,9 @@ void func_020daa10(Unk020da494 *p) {
     p->mUnk_c8 += (s32) (((s64) (0x1000 - p->mUnk_c4) * 0x200) >> 12);
     p->mUnk_c8 = (s32) (((s64) p->mUnk_c8 * 0xd99) >> 12);
     p->mUnk_c4 += p->mUnk_c8;
-    if (p->mUnk_00.mUnk_80.mUnk_04 > 0x3c) {
-        p->mUnk_00.mUnk_80.mUnk_10 = 0;
-        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+    if (p->mUnk_00.mUnk_80.mStateFrames > 0x3c) {
+        p->mUnk_00.mUnk_80.mNextState = 0;
+        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
     }
 }
 
@@ -214,9 +214,9 @@ u32 func_020da73c(Unk020da494 *p, Kart *a, u8 *b, u8 *c) {
             }
             break;
         case 1:
-            if (p->mUnk_00.mUnk_80.mUnk_0e == 0 || p->mUnk_00.mUnk_80.mUnk_0e == 5 || p->mUnk_00.mUnk_80.mUnk_0e == 1) {
-                p->mUnk_00.mUnk_80.mUnk_10 = 2;
-                p->mUnk_00.mUnk_80.mUnk_12 = 1;
+            if (p->mUnk_00.mUnk_80.mState == 0 || p->mUnk_00.mUnk_80.mState == 5 || p->mUnk_00.mUnk_80.mState == 1) {
+                p->mUnk_00.mUnk_80.mNextState = 2;
+                p->mUnk_00.mUnk_80.mNextStateRequested = 1;
                 func_020d26ec(&a->mUnk_00, 0x185);
                 func_020d26f8(&p->mUnk_00, a);
                 func_020da820(p, &a->mVelocity);
@@ -237,9 +237,9 @@ u32 func_020da684(Unk020da494 *p, Kart *a, u8 *b, u8 *c) {
             }
             break;
         case 1:
-            if (p->mUnk_00.mUnk_80.mUnk_0e == 0 || p->mUnk_00.mUnk_80.mUnk_0e == 5 || p->mUnk_00.mUnk_80.mUnk_0e == 1) {
-                p->mUnk_00.mUnk_80.mUnk_10 = 2;
-                p->mUnk_00.mUnk_80.mUnk_12 = 1;
+            if (p->mUnk_00.mUnk_80.mState == 0 || p->mUnk_00.mUnk_80.mState == 5 || p->mUnk_00.mUnk_80.mState == 1) {
+                p->mUnk_00.mUnk_80.mNextState = 2;
+                p->mUnk_00.mUnk_80.mNextStateRequested = 1;
                 func_020f8ddc(a);
                 if (a != NULL) {
                     func_020da820(p, &a->mUnk_05c);

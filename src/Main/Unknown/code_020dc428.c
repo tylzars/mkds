@@ -76,7 +76,7 @@ Unk020dd7a8 *func_020dd7a8(void) {
 void func_020dd6c8(void *a, Unk020dc474 *p, void *b, u32 c) {
     Unk02012f58 s;
 
-    if (p->mUnk_00.mUnk_80.mUnk_0e == 4) {
+    if (p->mUnk_00.mUnk_80.mState == 4) {
         if (func_020b2ec0() == 0) {
             p->mUnk_00.mPos.x += p->mUnk_00.mUnk_10.x;
             p->mUnk_00.mPos.z += p->mUnk_00.mUnk_10.z;
@@ -85,12 +85,12 @@ void func_020dd6c8(void *a, Unk020dc474 *p, void *b, u32 c) {
     p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
-    func_020ea8a8(gWanwan, &p->mUnk_00.mMatrix, &p->mUnk_00.mUnk_1c, c);
+    func_020ea8a8(gWanwan, &p->mUnk_00.mMatrix, &p->mUnk_00.mScale, c);
     func_01ffccd0(&s, &p->mUnk_d4);
     s.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     s.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     s.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
-    func_020ea868(gWanwanRockShadow, &s, &p->mUnk_00.mUnk_1c, c);
+    func_020ea868(gWanwanRockShadow, &s, &p->mUnk_00.mScale, c);
 }
 
 void func_020dd27c(void *a, Unk020dc474 *p) {
@@ -163,8 +163,8 @@ void func_020dd27c(void *a, Unk020dc474 *p) {
     }
     if (k != FALSE) {
         k = TRUE;
-        if (p->mUnk_00.mUnk_80.mUnk_0e == 2) {
-            if (p->mUnk_00.mUnk_80.mUnk_04 < 0x78) {
+        if (p->mUnk_00.mUnk_80.mState == 2) {
+            if (p->mUnk_00.mUnk_80.mStateFrames < 0x78) {
                 k = FALSE;
             }
         }
@@ -227,9 +227,9 @@ void func_020dd27c(void *a, Unk020dc474 *p) {
 
 u8 func_020dd230(Unk020dc474 *p, void *a, u8 *b, u8 *c) {
     if (*b == 1) {
-        if (p->mUnk_00.mUnk_80.mUnk_0e != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
-            p->mUnk_00.mUnk_80.mUnk_10 = 2;
-            p->mUnk_00.mUnk_80.mUnk_12 = 1;
+        if (p->mUnk_00.mUnk_80.mState != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
+            p->mUnk_00.mUnk_80.mNextState = 2;
+            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
             func_020d26f8(&p->mUnk_00, a);
         }
     }
@@ -238,9 +238,9 @@ u8 func_020dd230(Unk020dc474 *p, void *a, u8 *b, u8 *c) {
 
 u8 func_020dd1f4(Unk020dc474 *p, void *a, u8 *b, u8 *c) {
     if (*b == 1) {
-        if (p->mUnk_00.mUnk_80.mUnk_0e != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
-            p->mUnk_00.mUnk_80.mUnk_10 = 2;
-            p->mUnk_00.mUnk_80.mUnk_12 = 1;
+        if (p->mUnk_00.mUnk_80.mState != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
+            p->mUnk_00.mUnk_80.mNextState = 2;
+            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
         }
     }
     return *c;
@@ -356,8 +356,8 @@ void func_020dccc8(Unk020dc474 *p) {
                 (s64) e * e) {
                 p->mUnk_1f0 = &GetKart(u)->mPos;
                 p->mUnk_1f4 = &GetKart(u)->mVelocity;
-                p->mUnk_00.mUnk_80.mUnk_10 = 1;
-                p->mUnk_00.mUnk_80.mUnk_12 = 1;
+                p->mUnk_00.mUnk_80.mNextState = 1;
+                p->mUnk_00.mUnk_80.mNextStateRequested = 1;
             }
         }
     }
@@ -369,7 +369,7 @@ void func_020dccc8(Unk020dc474 *p) {
                              44),
                       &p->mUnk_d4);
     }
-    if (p->mUnk_00.mUnk_80.mUnk_04 < 0x40) {
+    if (p->mUnk_00.mUnk_80.mStateFrames < 0x40) {
         p->mUnk_ec += 0x1c;
     }
 }
@@ -407,7 +407,7 @@ void func_020dc7c0(Unk020dc474 *p) {
     s32 k;
     s32 m;
 
-    if (p->mUnk_00.mUnk_80.mUnk_04 > p->mUnk_1f8) {
+    if (p->mUnk_00.mUnk_80.mStateFrames > p->mUnk_1f8) {
         Vec3Sub(p->mUnk_1f0, &p->mUnk_00.mPos, &a);
         t = (s32) (((s64) p->mUnk_1f4->x * a.z - (s64) p->mUnk_1f4->z * a.x) >> 12);
         t = -t >> 12;
@@ -465,9 +465,9 @@ void func_020dc7c0(Unk020dc474 *p) {
             p->mUnk_00.mUnk_10.z -= (s32) (((s64) m * a.z) >> 12);
         }
     }
-    if (p->mUnk_00.mUnk_80.mUnk_04 >= 0xb4) {
-        p->mUnk_00.mUnk_80.mUnk_10 = 3;
-        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+    if (p->mUnk_00.mUnk_80.mStateFrames >= 0xb4) {
+        p->mUnk_00.mUnk_80.mNextState = 3;
+        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
     }
 }
 
@@ -497,28 +497,28 @@ void func_020dc608(Unk020dc474 *p) {
                                  44),
                           &p->mUnk_d4);
         }
-        if (p->mUnk_00.mUnk_80.mUnk_04 < 0x40) {
+        if (p->mUnk_00.mUnk_80.mStateFrames < 0x40) {
             p->mUnk_ec += 0x1c;
         }
-        if (p->mUnk_00.mUnk_80.mUnk_04 >= 0x28) {
+        if (p->mUnk_00.mUnk_80.mStateFrames >= 0x28) {
             p->mUnk_e8 += 0x200;
         } else {
             p->mUnk_00.mUnk_10.y -= 0x266;
         }
         if (p->mUnk_e8 > 0x10555) {
-            p->mUnk_00.mUnk_80.mUnk_10 = 5;
-            p->mUnk_00.mUnk_80.mUnk_12 = 1;
+            p->mUnk_00.mUnk_80.mNextState = 5;
+            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
         }
     } else {
         if (p->mUnk_e8 == 0xd000) {
             p->mUnk_00.mUnk_10.y -= 0x19a;
         }
-        if (p->mUnk_00.mUnk_80.mUnk_04 >= 0x78) {
+        if (p->mUnk_00.mUnk_80.mStateFrames >= 0x78) {
             p->mUnk_e8 += 0x100;
         }
         if (p->mUnk_e8 > 0x10555) {
-            p->mUnk_00.mUnk_80.mUnk_10 = 3;
-            p->mUnk_00.mUnk_80.mUnk_12 = 1;
+            p->mUnk_00.mUnk_80.mNextState = 3;
+            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
         }
     }
 }
@@ -559,9 +559,9 @@ void func_020dc474(Unk020dc474 *p) {
         p->mUnk_00.mPos.x += p->mUnk_00.mUnk_10.x;
         p->mUnk_00.mPos.z += p->mUnk_00.mUnk_10.z;
     }
-    if (p->mUnk_00.mUnk_80.mUnk_04 >= 0xb4) {
-        p->mUnk_00.mUnk_80.mUnk_10 = 0;
-        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+    if (p->mUnk_00.mUnk_80.mStateFrames >= 0xb4) {
+        p->mUnk_00.mUnk_80.mNextState = 0;
+        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
     }
 }
 

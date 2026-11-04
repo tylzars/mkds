@@ -127,12 +127,12 @@ void func_0209f1c8(void *a, Unk0209f1c8 *b) {
     b->mUnk_00.mMatrix.mUnk_00[3].y = b->mUnk_00.mPos.y >> 4;
     b->mUnk_00.mMatrix.mUnk_00[3].z = b->mUnk_00.mPos.z >> 4;
     func_01ff9048(0x19, &b->mUnk_00.mMatrix, 0xc);
-    if (b->mUnk_00.mUnk_7e != 0) {
-        i = b->mUnk_00.mUnk_7e >> 4;
+    if (b->mUnk_00.mAngle != 0) {
+        i = b->mUnk_00.mAngle >> 4;
         Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
         func_01ff9048(0x1a, m, 9);
     }
-    func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     func_0209b6c8(gRainStar, b->mUnk_a0);
     func_0209bb2c(a, gRainStar, b);
 }
@@ -145,7 +145,7 @@ void func_0209f178(void *a, Unk0209f1c8 *b) {
     if (b->mUnk_a0 >= n) {
         b->mUnk_a0 = 0;
     }
-    b->mUnk_00.mUnk_7e += 0x111;
+    b->mUnk_00.mAngle += 0x111;
 }
 
 void *func_0209f158(void) {

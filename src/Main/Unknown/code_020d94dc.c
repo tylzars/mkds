@@ -63,8 +63,8 @@ void func_020da494(Unk020da494 *a, Unk020fa294 *b) {
         a->mUnk_f0 = 0;
         a->mUnk_f4 = 0;
         o = &a->mUnk_00.mUnk_80;
-        o->mUnk_10 = 0;
-        o->mUnk_12 = 1;
+        o->mNextState = 0;
+        o->mNextStateRequested = 1;
     } else {
         a->mUnk_cc.mUnk_08 = 0xffff;
         a->mUnk_a0 = 0;

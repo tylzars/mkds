@@ -9,14 +9,14 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "code_02147cd8.h"
 
-void func_020d29cc(MapObject *d, Vec3 *e) {
+void SetMapObjectScale(MapObject *d, Vec3 *e) {
     s32 a;
     MapObjectKindData *b;
     s32 c;
-    d->mUnk_1c.x = e->x;
-    d->mUnk_1c.y = e->y;
-    d->mUnk_1c.z = e->z;
-    d->mUnk_58.x = (s64) d->mKindData->mUnk_0c * d->mUnk_1c.x >> 12;
+    d->mScale.x = e->x;
+    d->mScale.y = e->y;
+    d->mScale.z = e->z;
+    d->mUnk_58.x = (s64) d->mKindData->mUnk_0c * d->mScale.x >> 12;
     if (d->mUnk_64 >= 0) {
         switch (d->mKindData->mUnk_08) {
             case 3:
@@ -33,7 +33,7 @@ void func_020d29cc(MapObject *d, Vec3 *e) {
         }
         func_020d5148(d->mUnk_64, a);
     }
-    d->mUnk_58.y = (s64) d->mKindData->mUnk_10 * d->mUnk_1c.y >> 12;
+    d->mUnk_58.y = (s64) d->mKindData->mUnk_10 * d->mScale.y >> 12;
     if (d->mUnk_64 >= 0) {
         switch (d->mKindData->mUnk_08) {
             case 3:
@@ -50,7 +50,7 @@ void func_020d29cc(MapObject *d, Vec3 *e) {
         }
         func_020d5148(d->mUnk_64, a);
     }
-    d->mUnk_58.z = (s64) d->mKindData->mUnk_14 * d->mUnk_1c.z >> 12;
+    d->mUnk_58.z = (s64) d->mKindData->mUnk_14 * d->mScale.z >> 12;
     if (d->mUnk_64 >= 0) {
         switch (d->mKindData->mUnk_08) {
             case 3:
@@ -67,21 +67,21 @@ void func_020d29cc(MapObject *d, Vec3 *e) {
         }
         func_020d5148(d->mUnk_64, a);
     }
-    a = d->mUnk_1c.x;
+    a = d->mScale.x;
     b = d->mKindData;
     c = b->mUnk_2c;
-    if (a < d->mUnk_1c.y) {
-        a = d->mUnk_1c.y;
+    if (a < d->mScale.y) {
+        a = d->mScale.y;
     }
-    if (a < d->mUnk_1c.z) {
-        a = d->mUnk_1c.z;
+    if (a < d->mScale.z) {
+        a = d->mScale.z;
     }
     d->mUnk_68 = (s64) c * a >> 12;
 }
 
 void func_020d2950(MapObject *b, s32 c) {
     s32 a;
-    b->mUnk_58.x = (s64) c * b->mUnk_1c.x >> 12;
+    b->mUnk_58.x = (s64) c * b->mScale.x >> 12;
     if (b->mUnk_64 < 0) {
         return;
     }

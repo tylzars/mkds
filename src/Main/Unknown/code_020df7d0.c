@@ -14,9 +14,9 @@ void func_020df85c(Unk020df85c *p0) {
 }
 
 void func_020df83c(MkdEfBubbleObject *a) {
-    if (a->mUnk_00.mUnk_80.mUnk_04 >= a->mUnk_a0) {
-        a->mUnk_00.mUnk_80.mUnk_10 = 0;
-        a->mUnk_00.mUnk_80.mUnk_12 = 1;
+    if (a->mUnk_00.mUnk_80.mStateFrames >= a->mUnk_a0) {
+        a->mUnk_00.mUnk_80.mNextState = 0;
+        a->mUnk_00.mUnk_80.mNextStateRequested = 1;
     }
 }
 

@@ -39,9 +39,9 @@ void func_020df6c8(MkdEfBubbleObject *a, Unk020fa294 *b) {
     a->mUnk_00.mUnk_10.y = 0;
     a->mUnk_00.mUnk_10.z = 0;
     a->mUnk_a8 = 0;
-    a->mUnk_00.mUnk_80.mUnk_10 = 0;
-    a->mUnk_00.mUnk_80.mUnk_12 = 1;
-    func_020e516c(&a->mUnk_b0, &a->mUnk_00.mPos, (s32) (((s64) a->mUnk_00.mUnk_1c.x * 0x18000) >> 12), 0xd);
+    a->mUnk_00.mUnk_80.mNextState = 0;
+    a->mUnk_00.mUnk_80.mNextStateRequested = 1;
+    func_020e516c(&a->mUnk_b0, &a->mUnk_00.mPos, (s32) (((s64) a->mUnk_00.mScale.x * 0x18000) >> 12), 0xd);
     a->mUnk_00.mFlags |= data_02158740;
 }
 #pragma thumb off

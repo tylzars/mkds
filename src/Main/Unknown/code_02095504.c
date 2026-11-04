@@ -50,7 +50,7 @@ void func_02095db8(void *a, Unk02095a3c *p, u32 c, u32 d) {
     t = 0x1e;
     func_01ff9048(0x14, &t, 1);
     func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 12);
-    func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     if ((s32) (p->mUnk_00.mUnk_78 & ~0xc000001f) < 0xc5c10) {
         func_0209b77c(gMoveTree, p->mUnk_ac);
         func_0209bb2c(a, gMoveTree, p);
@@ -202,7 +202,7 @@ void func_02095848(void *a, Unk02095544 *p) {
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_00.mMatrix, 12);
-    func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     func_0209bb2c(a, gBakuShadow, p);
     i = (u16) (u32) AngleFromPair(-p->mUnk_00.mUnk_10.y, 0xc000) >> 4;
     Matrix3x3FromPairX(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);

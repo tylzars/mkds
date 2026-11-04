@@ -360,7 +360,7 @@ void func_ov001_0218263c(void *b, Unk02181c3c *c) {
             v.z = s;
             func_01ff9048((u32) (0x1b), (void *) (&v), 3);
         }
-        func_01ff9048((u32) (0x1b), (void *) (&c->mUnk_000.mUnk_1c), 3);
+        func_01ff9048((u32) (0x1b), (void *) (&c->mUnk_000.mScale), 3);
         func_0209b940(data_ov001_021a9b98, func_020d3c44());
         t = c->mUnk_0a0;
         if (t >= 0x1f) {

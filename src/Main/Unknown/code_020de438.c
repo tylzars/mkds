@@ -12,14 +12,14 @@
 
 void func_020de4e4(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
     Unk02012f58 *v1;
-    if (b->mUnk_00.mUnk_80.mUnk_0e == 0) {
+    if (b->mUnk_00.mUnk_80.mState == 0) {
         v1 = func_020e6cbc(&b->mUnk_00.mPos);
-        func_020e67c4(gEarthenPipe1, v1, &b->mUnk_00.mUnk_1c, 0, d);
+        func_020e67c4(gEarthenPipe1, v1, &b->mUnk_00.mScale, 0, d);
         return;
     }
     func_020e6a18(gEarthenPipe2);
     v1 = func_020e6cbc(&b->mUnk_00.mPos);
-    func_020e66e4(gEarthenPipe2, v1, *(u16 *) &b->mUnk_a0.mUnk_0c.x, &b->mUnk_00.mUnk_1c, 0, d);
+    func_020e66e4(gEarthenPipe2, v1, *(u16 *) &b->mUnk_a0.mUnk_0c.x, &b->mUnk_00.mScale, 0, d);
     func_020e6a18(gEarthenPipe1);
 }
 

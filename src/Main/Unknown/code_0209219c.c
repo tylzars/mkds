@@ -91,7 +91,7 @@ void func_0209280c(void *a, Unk0209219c *b) {
         Matrix3x3FromPairZ(m, gPairsByAngle[((u16) d >> 4) * 2], gPairsByAngle[((u16) d >> 4) * 2 + 1]);
     }
     func_01ff9048(0x1a, m, 9);
-    func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     func_0209b688(gBasabasa, b->mUnk_ac);
     func_0209bb2c(a, gBasabasa, b);
 }

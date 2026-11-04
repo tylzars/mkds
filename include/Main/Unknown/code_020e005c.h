@@ -37,12 +37,12 @@ typedef struct Unk020e0144 {
 // 0x00, 0x08 and 0x0c and zeroes 0x04, 0x0e and 0x10.
 typedef struct Unk020e005c_080 {
     /* 00 */ UnkFunc *const *mUnk_00;
-    /* 04 */ u32 mUnk_04;
+    /* 04 */ u32 mStateFrames;
     /* 08 */ void *mUnk_08;
     /* 0c */ u16 mUnk_0c;
-    /* 0e */ u16 mUnk_0e;
-    /* 10 */ u16 mUnk_10;
-    /* 12 */ u16 mUnk_12;
+    /* 0e */ u16 mState;
+    /* 10 */ u16 mNextState;
+    /* 12 */ u16 mNextStateRequested;
 } Unk020e005c_080;
 
 typedef struct Unk020e005c {

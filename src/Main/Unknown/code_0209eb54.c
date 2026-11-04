@@ -31,7 +31,7 @@ void func_0209efb4(void *a, Unk0209ec80 *b) {
     b->mUnk_00.mMatrix.mUnk_00[3].y = b->mUnk_00.mPos.y >> 4;
     b->mUnk_00.mMatrix.mUnk_00[3].z = b->mUnk_00.mPos.z >> 4;
     func_01ff9048(0x19, &b->mUnk_00.mMatrix, 0xc);
-    func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     switch (b->mUnk_a4) {
         case 0:
             func_0209b77c(gPicture1, b->mUnk_a0);
@@ -179,7 +179,7 @@ void func_0209eb54(void *a, Unk0209ec80 *b) {
     v.y = y;
     v.z = z;
     func_01ff9048(0x1c, &v, 3);
-    func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     func_01ff9048(0x1a, &b->mUnk_00.mMatrix, 9);
     func_0209bb2c(a, gPuddle, b);
 }

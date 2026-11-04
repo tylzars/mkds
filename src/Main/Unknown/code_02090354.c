@@ -64,7 +64,7 @@ void func_020916a0(void *a, Unk020912a0 *b) {
     s[0] = 0;
     s[2] = 0;
     func_01ff9048(0x1c, s, 3);
-    func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     Matrix3x3FromPairZ(m, gPairsByAngle[((u16) b->mUnk_a4 >> 4) * 2], gPairsByAngle[((u16) b->mUnk_a4 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
     func_0209bb2c(a, gSmanTop, b);
@@ -88,7 +88,7 @@ void func_020915c0(void *a, Unk020912a0 *b) {
     c = 0x1e;
     func_01ff9048(0x14, &c, 1);
     func_01ff9048(0x19, func_020e6cbc(&b->mUnk_00.mPos), 0xc);
-    func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     v = b->mUnk_b4;
     d[0] = v;
     d[1] = v;
@@ -108,8 +108,8 @@ void func_0209151c(Unk0209151c *a) {
         p->mUnk_b0 = 0x1000;
         p->mUnk_b4 = 0x1000;
         i++;
-        p->mUnk_c0 = (s32) (((s64) p->mUnk_00.mUnk_1c.y * 0xf333) >> 12);
-        p->mUnk_c4 = (s32) (((s64) p->mUnk_00.mUnk_1c.y * 0x2000) >> 12);
+        p->mUnk_c0 = (s32) (((s64) p->mUnk_00.mScale.y * 0xf333) >> 12);
+        p->mUnk_c4 = (s32) (((s64) p->mUnk_00.mScale.y * 0x2000) >> 12);
         p->mUnk_b8 = p->mUnk_c0;
     }
 }

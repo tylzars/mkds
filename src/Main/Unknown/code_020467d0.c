@@ -17,10 +17,10 @@ void func_02046bcc(void *b, u16 c) {
     Unk02046b40 *a;
 
     a = b;
-    a->mUnk_04 = 0;
-    a->mUnk_12 = 1;
-    a->mUnk_0e = c;
-    a->mUnk_10 = c;
+    a->mStateFrames = 0;
+    a->mNextStateRequested = 1;
+    a->mState = c;
+    a->mNextState = c;
 }
 
 void func_02046b40(void *b) {
@@ -28,22 +28,22 @@ void func_02046b40(void *b) {
     Unk02046b40_00 *e;
 
     a = b;
-    if (a->mUnk_12 != 0) {
-        a->mUnk_04 = 0;
-        a->mUnk_12 = 0;
-        a->mUnk_0e = a->mUnk_10;
-        a->mUnk_10 = 0;
-        e = &a->mUnk_00[a->mUnk_0e];
+    if (a->mNextStateRequested != 0) {
+        a->mStateFrames = 0;
+        a->mNextStateRequested = 0;
+        a->mState = a->mNextState;
+        a->mNextState = 0;
+        e = &a->mUnk_00[a->mState];
         if (e->mUnk_00 != NULL) {
             e->mUnk_00(a->mUnk_08);
         }
     } else {
-        e = &a->mUnk_00[a->mUnk_0e];
+        e = &a->mUnk_00[a->mState];
     }
     if (e->mUnk_04 != NULL) {
         e->mUnk_04(a->mUnk_08);
     }
-    a->mUnk_04++;
+    a->mStateFrames++;
 }
 
 void func_02046ae4(void) {

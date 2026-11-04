@@ -52,7 +52,7 @@ void func_020d2600(s32 c, Vec3 *d, s32 e) {
 
 void func_020d2584(MapObject *b, s32 c) {
     s32 a;
-    b->mUnk_58.y = (s64) c * b->mUnk_1c.y >> 12;
+    b->mUnk_58.y = (s64) c * b->mScale.y >> 12;
     if (b->mUnk_64 < 0) {
         return;
     }

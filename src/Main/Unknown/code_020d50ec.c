@@ -43,7 +43,7 @@ void func_020d634c(Unk020d5bf0 *p, s32 b) {
     s32 i;
 
     fl = p->mUnk_000.mUnk_78;
-    y = p->mUnk_000.mUnk_1c.y;
+    y = p->mUnk_000.mScale.y;
     if (!(fl & 1)) {
         if (b != 0 || !(fl & 3)) {
             if (y > 0x1000) {
@@ -150,11 +150,11 @@ void func_020d5fb4(void *a, Unk020d5bf0 *p) {
     }
     p->mUnk_000.mUnk_10.y = p->mUnk_000.mUnk_10.y - 0x400;
     p->mUnk_000.mPos.y = p->mUnk_000.mPos.y + p->mUnk_000.mUnk_10.y;
-    if (p->mUnk_110 != 0 && p->mUnk_000.mUnk_1c.y < p->mUnk_114) {
-        r = p->mUnk_000.mUnk_1c.y + p->mUnk_110;
+    if (p->mUnk_110 != 0 && p->mUnk_000.mScale.y < p->mUnk_114) {
+        r = p->mUnk_000.mScale.y + p->mUnk_110;
         u = (r * 0x1e000) >> 12;
         DivFixed12Start(0x1000, u);
-        w = &p->mUnk_000.mUnk_1c;
+        w = &p->mUnk_000.mScale;
         w->x = r;
         w->y = r;
         w->z = r;
@@ -215,7 +215,7 @@ void func_020d5dd0(Unk020d5bf0 *p) {
     r = p->mUnk_10c;
     u = (r * 0x1e000) >> 12;
     DivFixed12Start(0x1000, u);
-    v = &p->mUnk_000.mUnk_1c;
+    v = &p->mUnk_000.mScale;
     v->x = r;
     v->y = r;
     v->z = r;
@@ -260,7 +260,7 @@ void func_020d5bf0(Unk020d5bf0 *p, struct Unk020fa294 *q) {
     p->mUnk_0f0 = func_020d8654(q);
     t = func_02042044(q->mUnk_26, 0);
     p->mUnk_0a0 = t->mUnk_00.y;
-    p->mUnk_10c = p->mUnk_000.mUnk_1c.y;
+    p->mUnk_10c = p->mUnk_000.mScale.y;
     v = q->mUnk_2e;
     if (v > 0) {
         f = 0.5f + (float) (v << 12);

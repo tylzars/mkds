@@ -45,7 +45,7 @@ void func_02093ee8(void *a, Unk02093cf4 *p) {
 
     t = 0x1e;
     func_01ff9048(0x14, &t, 1);
-    func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
@@ -100,7 +100,7 @@ void func_02093cf4(void *a, Unk02093cf4 *p) {
             p->mUnk_a0--;
             break;
         case 3:
-            func_020937c4(&p->mUnk_00.mPos, &p->mUnk_00.mMatrix.mUnk_00[2], p->mUnk_00.mUnk_7e);
+            func_020937c4(&p->mUnk_00.mPos, &p->mUnk_00.mMatrix.mUnk_00[2], p->mUnk_00.mAngle);
             if ((p->mUnk_00.mFlags & 0x12) == 0) {
                 func_0208b7bc(0x4b, &p->mUnk_00.mPos);
                 func_0208b7bc(0x4c, &p->mUnk_00.mPos);
@@ -167,10 +167,10 @@ void func_02093a50(void *a, Unk02093910 *p) {
     t = 0x1e;
     func_01ff9048(0x14, &t, 1);
     func_01ff9048(0x19, func_020e6b58(&p->mUnk_00.mPos), 12);
-    i = p->mUnk_00.mUnk_7e >> 4;
+    i = p->mUnk_00.mAngle >> 4;
     Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
-    func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     func_0209bb2c(a, gNsKiller2S, p);
     func_0209bb2c(a, gNsKiller2, p);
 }
@@ -241,6 +241,6 @@ void func_020937c4(Vec3 *a, Vec3 *b, u16 c) {
     o->mUnk_00.mUnk_10.x = ((s64) b->x * 0x6000) >> 12;
     o->mUnk_00.mUnk_10.y = 0;
     o->mUnk_00.mUnk_10.z = ((s64) b->z * 0x6000) >> 12;
-    o->mUnk_00.mUnk_7e = c;
+    o->mUnk_00.mAngle = c;
     o->mUnk_a4 = 0;
 }

@@ -14,7 +14,7 @@
 
 #pragma thumb on
 void func_020de3e0(Unk020e43a8 *a) {
-    a->mUnk_00.mPos.y += (s32) (((s64) a->mUnk_00.mUnk_1c.y * 0xd000) >> 12);
+    a->mUnk_00.mPos.y += (s32) (((s64) a->mUnk_00.mScale.y * 0xd000) >> 12);
     func_020ec854(a, a->mUnk_00.mPos.y - 0xc0000, 0x400, 0x400, 0x5000, 0x2000);
     func_020ec884(a);
 }

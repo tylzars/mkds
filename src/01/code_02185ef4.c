@@ -159,11 +159,11 @@ void func_ov001_02187684(Unk02188950 *a, int b, Vec3 *c) {
         case 2:
             // The entry's mUnk_08 is first multiplied per component by param_1->mUnk_01c, mUnk_020 and mUnk_024.
             t = a->mUnk_0bc[b].mOffset.y;
-            y = (s32) (((s64) t * a->mUnk_000.mUnk_1c.y) >> 12);
+            y = (s32) (((s64) t * a->mUnk_000.mScale.y) >> 12);
             t = a->mUnk_0bc[b].mOffset.x;
-            x = (s32) (((s64) t * a->mUnk_000.mUnk_1c.x) >> 12);
+            x = (s32) (((s64) t * a->mUnk_000.mScale.x) >> 12);
             t = a->mUnk_0bc[b].mOffset.z;
-            z = (s32) (((s64) t * a->mUnk_000.mUnk_1c.z) >> 12);
+            z = (s32) (((s64) t * a->mUnk_000.mScale.z) >> 12);
             c->x = a->mUnk_000.mPos.x + (s32) (((s64) z * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12) +
                    (s32) (((s64) x * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
             c->y = a->mUnk_000.mPos.y + y;
@@ -367,9 +367,9 @@ void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, 
     b->mUnk_168 = 0x1f000;
     if (b->mPrm != NULL) {
         func_020d2950(&b->mUnk_000, b->mPrm->mUnk_00c << 2);
-        b->mUnk_000.mUnk_1c.x = b->mPrm->mUnk_004;
-        b->mUnk_000.mUnk_1c.y = b->mPrm->mUnk_004;
-        b->mUnk_000.mUnk_1c.z = b->mPrm->mUnk_004;
+        b->mUnk_000.mScale.x = b->mPrm->mUnk_004;
+        b->mUnk_000.mScale.y = b->mPrm->mUnk_004;
+        b->mUnk_000.mScale.z = b->mPrm->mUnk_004;
     }
     b->mUnk_238 = b->mUnk_000.mPos;
     b->mUnk_2bc = 0;
@@ -678,8 +678,8 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
         }
     }
     if (b->mUnk_164 > 0) {
-        b->mUnk_000.mUnk_1c.x = b->mUnk_000.mUnk_1c.y = b->mUnk_000.mUnk_1c.z =
-            func_ov001_02187074(b->mUnk_160, b->mUnk_164, b->mUnk_000.mUnk_1c.x);
+        b->mUnk_000.mScale.x = b->mUnk_000.mScale.y = b->mUnk_000.mScale.z =
+            func_ov001_02187074(b->mUnk_160, b->mUnk_164, b->mUnk_000.mScale.x);
     }
     if (b->mUnk_234 == 1) {
         Matrix3x3FromPairY(&b->mUnk_000.mMatrix.mUnk_00[0].x, gPairsByAngle[((u16) b->mAngle >> 4) * 2],
@@ -691,7 +691,7 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
         b->mUnk_238.y = b->mUnk_000.mPos.y + b->mUnk_248;
         b->mUnk_238.z = b->mUnk_000.mPos.z + b->mUnk_24c;
     }
-    b->mUnk_000.mUnk_7e = b->mAngle;
+    b->mUnk_000.mAngle = b->mAngle;
 
     if (b->mNsbmd != NULL) {
         prev = func_0209b620(b->mNsbmd);
@@ -799,12 +799,12 @@ void func_ov001_02186368(void *a, Unk02188950 *b) {
         value = 0x1e;
         func_01ff9048(0x14, &value, 1);
         func_01ff9048(0x19, func_020e6b58(&b->mUnk_000.mPos), 0xc);
-        if (b->mUnk_000.mUnk_7e != 0) {
-            k = b->mUnk_000.mUnk_7e >> 4;
+        if (b->mUnk_000.mAngle != 0) {
+            k = b->mUnk_000.mAngle >> 4;
             Matrix3x3FromPairY(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
             func_01ff9048(0x1a, m, 9);
         }
-        func_01ff9048(0x1b, &b->mUnk_000.mUnk_1c.x, 3);
+        func_01ff9048(0x1b, &b->mUnk_000.mScale.x, 3);
         func_0209b9a4(b->mNsbmd, level);
         func_0209b7a0(b->mNsbmd, b->mUnk_000.mFlags & 0x400, 0);
         func_0209bb2c(a, b->mNsbmd, b);

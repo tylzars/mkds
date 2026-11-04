@@ -174,7 +174,7 @@ void func_02098b68(void *a, Pakkun *p) {
     g[1] = t;
     g[2] = t;
     func_01ff9048(0x1b, g, 3);
-    func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
     func_0209b940(gPakkunMouth, p->mUnk_0a0);
     func_0209b77c(gPakkunMouth, p->mUnk_0a4 >> 12);
     func_0209bb2c(a, gPakkunMouth, p);
@@ -205,7 +205,7 @@ void func_02098a58(void *a, Pakkun *p) {
     f[1] = t;
     f[2] = t;
     func_01ff9048(0x1b, f, 3);
-    func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
     func_0209b940(gPakkunZHead, p->mUnk_0a0);
     func_0209bb2c(a, gPakkunZHead, p);
 }
@@ -236,7 +236,7 @@ void func_02098954(void *a, Pakkun *p) {
     v[1] = x + y - 0x1000;
     v[2] = d;
     func_01ff9048(0x1b, v, 3);
-    func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
     func_0209bb2c(a, gPakkunBody, p);
 }
 

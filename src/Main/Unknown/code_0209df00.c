@@ -147,7 +147,7 @@ void func_0209e508(void *a, Unk0209df84 *b) {
                                        gPairsByAngle[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2 + 1]);
                     func_01ff9048(0x1a, m1, 9);
                 }
-                func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+                func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
                 func_0209b940(gFireball2, func_020d3c44());
                 func_0209bb2c(a, gFireball2, b);
             }
@@ -161,7 +161,7 @@ void func_0209e508(void *a, Unk0209df84 *b) {
             Matrix3x3FromPairZ(m2, gPairsByAngle[(b->mUnk_c2 >> 4) * 2], gPairsByAngle[(b->mUnk_c2 >> 4) * 2 + 1]);
             func_01ff9048(0x1a, m2, 9);
         }
-        func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+        func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
         func_0209b940(gFireball2, func_020d3c44());
         func_0209bb2c(a, gFireball2, b);
     }
@@ -186,7 +186,7 @@ void func_0209e508(void *a, Unk0209df84 *b) {
                                        gPairsByAngle[(b->mUnk_c4[i][j].mUnk_0e >> 4) * 2 + 1]);
                     func_01ff9048(0x1a, m3, 9);
                 }
-                func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+                func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
                 func_0209b940(gFireball2, func_020d3c44());
                 func_0209bb2c(a, gFireball2, b);
             }

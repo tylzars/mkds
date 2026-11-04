@@ -77,7 +77,7 @@ void func_020920a0(void *a, Unk020919e8 *p) {
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_00.mMatrix, 0xc);
-    func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     func_0209bb2c(a, gKanoke64, p);
 }
 
@@ -185,7 +185,7 @@ void func_020919e8(void *a, Unk020919e8 *p) {
                 }
                 return;
             }
-            if (func_020919e8_inline_4(p, p->mUnk_00.mUnk_7e) != FALSE) {
+            if (func_020919e8_inline_4(p, p->mUnk_00.mAngle) != FALSE) {
                 p->mUnk_a4 = 8;
                 p->mUnk_ac = 1;
             }
@@ -198,7 +198,7 @@ void func_020919e8(void *a, Unk020919e8 *p) {
     if (p->mUnk_a0 == 10) {
         for (i = 0; i < 3; i++) {
             func_020919e8_inline_6(&v3, p->mUnk_00.mPos.x, p->mUnk_00.mPos.y + 0x19000, p->mUnk_00.mPos.z);
-            k = p->mUnk_00.mUnk_7e;
+            k = p->mUnk_00.mAngle;
             r = func_02091f6c(func_020d22d0(), 0x1000) + 0x800;
             k = k - 0x3e8 + func_02046524(func_020d22d0(), 0x7d0);
             v4.x = func_02091f44(r, func_02091f54(k));
@@ -258,7 +258,7 @@ void func_020918cc(void *a, Unk020919e8 *b) {
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
     func_01ff9048(0x19, func_020e6cbc(&b->mUnk_00.mPos), 0xc);
-    func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     func_0209b688(gCow, b->mUnk_00.mCourseMapRow->mUnk_28);
     func_0209bb2c(a, gCow, b);
 }

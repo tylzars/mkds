@@ -17,9 +17,9 @@ void func_02105338(Unk021052fc *p, s32 a, Vec3 *v) {
         a = 1;
     }
     p->mUnk_00.mUnk_66 = a;
-    p->mUnk_00.mUnk_1c.x = (s32) (((s64) v->x * 0x666) >> 12);
-    p->mUnk_00.mUnk_1c.y = (s32) (((s64) v->y * 0x666) >> 12);
-    p->mUnk_00.mUnk_1c.z = (s32) (((s64) v->z * 0x666) >> 12);
+    p->mUnk_00.mScale.x = (s32) (((s64) v->x * 0x666) >> 12);
+    p->mUnk_00.mScale.y = (s32) (((s64) v->y * 0x666) >> 12);
+    p->mUnk_00.mScale.z = (s32) (((s64) v->z * 0x666) >> 12);
 }
 
 void func_021052fc(Unk021052fc *p) {

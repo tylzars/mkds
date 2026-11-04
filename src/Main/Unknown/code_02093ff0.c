@@ -64,7 +64,7 @@ void func_02094c70(void *a, Unk02094000 *b) {
         v[2] = 0x2000;
         func_01ff9048(0x1b, v, 3);
     }
-    func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     func_0209bb2c(a, gTeresa, b);
 }
 

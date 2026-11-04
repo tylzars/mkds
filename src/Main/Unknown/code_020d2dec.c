@@ -56,7 +56,7 @@ static inline GrpconfTblRow *func_020d34e4_inline(u16 f) {
 MapObject *CreateMapObject(u32 kind, Unk020fa294 *courseRow, MapObject *source) {
     s32 i;
     s32 j;
-    Unk0216b288 *row;
+    MapObjectKindRow *row;
     Unk021000d0 *a;
     Unk021000d0 *o;
     MapObjectKindData *kindData;
@@ -67,11 +67,11 @@ MapObject *CreateMapObject(u32 kind, Unk020fa294 *courseRow, MapObject *source) 
     for (i = 0; i < data_0217b4ec; i++) {
         {
             row = &data_0216b288[i];
-            if (kind != row->mUnk_00) {
+            if (kind != row->mKind) {
                 continue;
             }
             a = row->mUnk_04;
-            if (a->mUnk_00 == 0) {
+            if (a->mObjectCount == 0) {
                 for (j = 0; j < data_0217b4ec; j++) {
                     o = data_0216b288[j].mUnk_04;
                     if (o == NULL) {
@@ -108,45 +108,45 @@ MapObject *CreateMapObject(u32 kind, Unk020fa294 *courseRow, MapObject *source) 
                         a->mUnk_24[3] = o->mUnk_24[3];
                     }
                 }
-                if (a->mUnk_20 == NULL && a->mUnk_0c != NULL) {
-                    a->mUnk_20 = a->mUnk_0c();
-                    if (a->mUnk_20 == NULL) {
+                if (a->mKindData == NULL && a->mCreateKindData != NULL) {
+                    a->mKindData = a->mCreateKindData();
+                    if (a->mKindData == NULL) {
                         return NULL;
                     }
-                    if (a->mUnk_20->mUnk_24 == 0) {
-                        a->mUnk_20->mUnk_24 = -1;
+                    if (a->mKindData->mUnk_24 == 0) {
+                        a->mKindData->mUnk_24 = -1;
                     }
-                    if (a->mUnk_20->mUnk_28 == 0) {
-                        a->mUnk_20->mUnk_28 = -1;
+                    if (a->mKindData->mUnk_28 == 0) {
+                        a->mKindData->mUnk_28 = -1;
                     }
-                    if (a->mUnk_20->mUnk_38 == 0) {
-                        a->mUnk_20->mUnk_38 = 0x64000;
+                    if (a->mKindData->mUnk_38 == 0) {
+                        a->mKindData->mUnk_38 = 0x64000;
                     }
-                    if (a->mUnk_20->mUnk_3c == 0) {
-                        a->mUnk_20->mUnk_3c = -0x64000;
+                    if (a->mKindData->mUnk_3c == 0) {
+                        a->mKindData->mUnk_3c = -0x64000;
                     }
                     if (data_021759c0->mUnk_00c == 2) {
-                        if (a->mUnk_20->mUnk_38 < 0x44c000) {
-                            a->mUnk_20->mUnk_38 = 0x44c000;
+                        if (a->mKindData->mUnk_38 < 0x44c000) {
+                            a->mKindData->mUnk_38 = 0x44c000;
                         }
                     }
                 }
-                t = func_020d34e4_inline(row->mUnk_00);
+                t = func_020d34e4_inline(row->mKind);
                 if (t->mUnk_02 != 0) {
-                    a->mUnk_20->mUnk_34 = t->mUnk_02 >= 2 ? 1 : 0;
+                    a->mKindData->mUnk_34 = t->mUnk_02 >= 2 ? 1 : 0;
                     v = t->mUnk_04;
-                    a->mUnk_20->mUnk_2c = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
+                    a->mKindData->mUnk_2c = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
                     v = t->mUnk_06;
-                    a->mUnk_20->mUnk_30 = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
+                    a->mKindData->mUnk_30 = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
                 }
                 if (t->mUnk_08 != 0) {
-                    a->mUnk_20->mUnk_08 = t->mUnk_08;
+                    a->mKindData->mUnk_08 = t->mUnk_08;
                     v = t->mUnk_0a;
-                    a->mUnk_20->mUnk_0c = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
+                    a->mKindData->mUnk_0c = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
                     v = t->mUnk_0c;
-                    a->mUnk_20->mUnk_10 = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
+                    a->mKindData->mUnk_10 = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
                     v = t->mUnk_0e;
-                    a->mUnk_20->mUnk_14 = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
+                    a->mKindData->mUnk_14 = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
                 }
                 if (a->mUnk_24[0] == NULL && a->mUnk_10 != NULL) {
                     a->mUnk_24[0] = a->mUnk_10();
@@ -164,9 +164,9 @@ MapObject *CreateMapObject(u32 kind, Unk020fa294 *courseRow, MapObject *source) 
             if (a == NULL) {
                 continue;
             }
-            kindData = a->mUnk_20;
-            object = HeapAlloc(GetHeap(func_020364e8()), a->mUnk_04);
-            a->mUnk_00++;
+            kindData = a->mKindData;
+            object = HeapAlloc(GetHeap(func_020364e8()), a->mObjectSize);
+            a->mObjectCount++;
             if (courseRow != NULL) {
                 object->mCourseMapRow = courseRow;
             } else if (source != NULL) {
@@ -197,17 +197,17 @@ MapObject *CreateMapObject(u32 kind, Unk020fa294 *courseRow, MapObject *source) 
                 object->mUnk_10.z = 0x270f000;
             }
             if (courseRow != NULL) {
-                object->mUnk_7e = (u16) (((s64) courseRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
+                object->mAngle = (u16) (((s64) courseRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
                 func_020d6df0(&courseRow->mUnk_0c, (s32 *) &object->mMatrix);
             } else if (source != NULL) {
-                object->mUnk_7e = source->mUnk_7e;
+                object->mAngle = source->mAngle;
                 object->mMatrix = source->mMatrix;
             }
             object->mKindData = kindData;
             if (courseRow != NULL) {
-                func_020d29cc(object, &courseRow->mUnk_18);
+                SetMapObjectScale(object, &courseRow->mUnk_18);
             } else {
-                func_020d29cc(object, &source->mUnk_1c);
+                SetMapObjectScale(object, &source->mScale);
             }
             func_020d24d8(object, kindData->mUnk_30);
             object->mUnk_7c = kindData->mUnk_34;
@@ -246,12 +246,12 @@ MapObject *CreateMapObject(u32 kind, Unk020fa294 *courseRow, MapObject *source) 
             }
             object->mUnk_70 = data_0217ca6c[2].mUnk_20;
             if (courseRow != NULL) {
-                if (a->mUnk_08 != NULL) {
-                    a->mUnk_08(object, courseRow, data_0216b288[i].mUnk_08);
+                if (a->mInitObject != NULL) {
+                    a->mInitObject(object, courseRow, data_0216b288[i].mUnk_08);
                 }
             } else if (source != NULL) {
-                if (a->mUnk_08 != NULL) {
-                    a->mUnk_08(object, NULL, source);
+                if (a->mInitObject != NULL) {
+                    a->mInitObject(object, NULL, source);
                 }
             }
             if (kindData->mUnk_08 != 0) {
@@ -285,7 +285,7 @@ MapObject *CreateMapObjectFromCourseMapRow(Unk020fa294 *courseRow, s32 kind) {
     return CreateMapObject(kind, courseRow, NULL);
 }
 
-void func_020d2e6c(void) {
+void InitMapObjects(void) {
     void *h;
     s32 i;
     s32 n;
@@ -299,7 +299,7 @@ void func_020d2e6c(void) {
     s32 t;
     s32 g;
     u32 v;
-    Unk0216b288 *row;
+    MapObjectKindRow *row;
     Unk021000d0 *d;
     Unk020fa294 *e;
     MapObject *o;
@@ -329,14 +329,14 @@ void func_020d2e6c(void) {
     do {
         row = &data_0216b288[data_0217b4ec];
         d = row->mUnk_04;
-        if (row->mUnk_00 == 0) {
+        if (row->mKind == 0) {
             break;
         }
         if (data_0217aa10->mUnk_00 != 1 && func_02059c04(d) != 0) {
             break;
         }
         if (d != NULL) {
-            d->mUnk_20 = NULL;
+            d->mKindData = NULL;
             d->mUnk_24[0] = NULL;
             d->mUnk_24[1] = NULL;
             d->mUnk_24[2] = NULL;
@@ -364,7 +364,7 @@ void func_020d2e6c(void) {
     data_0217b4d0 = data_0217b4cc;
     for (i = 0; i < data_0217b4ec; i++) {
         if (data_0216b288[i].mUnk_04 != NULL) {
-            data_0216b288[i].mUnk_04->mUnk_00 = 0;
+            data_0216b288[i].mUnk_04->mObjectCount = 0;
         }
     }
     for (i = 0; i < n; i++) {
@@ -391,7 +391,7 @@ void func_020d2e6c(void) {
         if (data_0216b288[i].mUnk_04 == NULL) {
             continue;
         }
-        v = data_0216b288[i].mUnk_04->mUnk_00;
+        v = data_0216b288[i].mUnk_04->mObjectCount;
         w[0] = data_0216b288[i].mUnk_04->mUnk_24[0];
         w[1] = data_0216b288[i].mUnk_04->mUnk_24[1];
         w[2] = data_0216b288[i].mUnk_04->mUnk_24[2];
@@ -422,7 +422,7 @@ void func_020d2e6c(void) {
     for (i = 0; i < data_0217b4f0->mMapObjectCount; i++) {
         o = data_0217b4f0->mMapObjects[i];
         for (j = 0; j < data_0217b4ec; j++) {
-            if (o->mKind == data_0216b288[j].mUnk_00) {
+            if (o->mKind == data_0216b288[j].mKind) {
                 w[0] = data_0216b288[j].mUnk_04->mUnk_24[0];
                 w[1] = data_0216b288[j].mUnk_04->mUnk_24[1];
                 w[2] = data_0216b288[j].mUnk_04->mUnk_24[2];
@@ -488,7 +488,7 @@ void func_020d2e6c(void) {
         if (data_0216b288[i].mUnk_04 == NULL) {
             continue;
         }
-        v = data_0216b288[i].mUnk_04->mUnk_00;
+        v = data_0216b288[i].mUnk_04->mObjectCount;
         x = data_0216b288[i].mUnk_04->mUnk_24[3];
         if (x == NULL) {
             continue;
@@ -514,7 +514,7 @@ void func_020d2e6c(void) {
     for (i = 0; i < data_0217b4f0->mMapObjectCount; i++) {
         o = data_0217b4f0->mMapObjects[i];
         for (j = 0; j < data_0217b4ec; j++) {
-            if (o->mKind == data_0216b288[j].mUnk_00 && data_0216b288[j].mUnk_04->mUnk_24[3] != NULL) {
+            if (o->mKind == data_0216b288[j].mKind && data_0216b288[j].mUnk_04->mUnk_24[3] != NULL) {
                 func_020e6f58(data_0216b288[j].mUnk_04->mUnk_24[3], o);
             }
         }

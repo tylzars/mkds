@@ -52,7 +52,7 @@ s32 func_020a9e80(void) {
 void func_020a9e04(Unk020a9268 *p) {
     Vec3 v = data_02167974;
 
-    func_020d29cc(&p->mUnk_000, &v);
+    SetMapObjectScale(&p->mUnk_000, &v);
     p->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     func_02109110(&p->mUnk_000.mUnk_94->mUnk_00, 10, &p->mUnk_000.mPos);
     p->mUnk_000.mUnk_70 = data_0217ca6c[10].mUnk_20;
@@ -92,6 +92,6 @@ void func_020a9cd4(void *a, Unk020a9268 *p) {
         Matrix3x3FromPairZ((s32 *) v1, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
         func_01ff9048(0x1a, v1, 9);
     }
-    func_01ff9048(0x1b, &p->mUnk_000.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
     func_0209bb2c(a, gIronBall, p);
 }

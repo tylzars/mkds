@@ -104,8 +104,6 @@ static inline BOOL func_0209fdb4_inline_b(void) {
     return FALSE;
 }
 
-
-
 void func_0209fdb4(void *a, Unk020a018c *p) {
     switch (p->mUnk_ec) {
         case 0:
@@ -127,7 +125,7 @@ void func_0209fdb4(void *a, Unk020a018c *p) {
             func_0209fdb4_inline(p);
             break;
     }
-    p->mUnk_00.mUnk_7e = AngleFromPair(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z);
+    p->mUnk_00.mAngle = AngleFromPair(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z);
 }
 
 void *func_0209fd94(void) {
@@ -196,7 +194,7 @@ void func_0209fb0c(void *a, Unk0209f6d8 *p) {
         h = func_020e6c3c(&p->mUnk_00.mPos, d, d);
         func_01ff9048(0x19, h, 0xc);
     }
-    func_01ff9048(0x1b, &p->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     func_0209b688(gTownMonte, p->mUnk_a0);
     func_0209bbd0(a, gTownMonte);
     func_0209bb2c(a, gTownMonte, p);

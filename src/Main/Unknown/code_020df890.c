@@ -124,8 +124,8 @@ void func_020dfd64(Unk020e005c *a, Unk020fa294 *b) {
     a->mUnk_002 &= ~2;
     a->mUnk_002 &= ~8;
     a->mUnk_066 = 0x1f;
-    a->mUnk_080.mUnk_10 = 0;
-    a->mUnk_080.mUnk_12 = 1;
+    a->mUnk_080.mNextState = 0;
+    a->mUnk_080.mNextStateRequested = 1;
     a->mUnk_070 = data_0217caec[3];
 }
 #pragma thumb off
@@ -159,7 +159,7 @@ void func_020dfafc(void *a, MkdEfBubbleObject *b, void *c, s32 d) {
     s32 m[9];
     s32 n;
 
-    if (b->mUnk_00.mUnk_80.mUnk_0e != 0) {
+    if (b->mUnk_00.mUnk_80.mState != 0) {
         return;
     }
     w = 0x1e;
@@ -170,7 +170,7 @@ void func_020dfafc(void *a, MkdEfBubbleObject *b, void *c, s32 d) {
         Matrix3x3FromPairZ(m, gPairsByAngle[n * 2], gPairsByAngle[n * 2 + 1]);
         func_01ff9048(0x1a, m, 9);
     }
-    func_01ff9048(0x1b, &b->mUnk_00.mUnk_1c, 3);
+    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     func_020ea7cc(gMkdEfBubble, d);
     v = b->mUnk_00.mPos.y - b->mUnk_ac;
     if (v > 0x10000) {
@@ -264,7 +264,7 @@ void func_020df890(MkdEfBubbleObject *a) {
     }
     a->mUnk_00.mPos.y += a->mUnk_00.mUnk_10.y;
     if (a->mUnk_00.mPos.y < a->mUnk_a4) {
-        a->mUnk_00.mUnk_80.mUnk_10 = 1;
-        a->mUnk_00.mUnk_80.mUnk_12 = 1;
+        a->mUnk_00.mUnk_80.mNextState = 1;
+        a->mUnk_00.mUnk_80.mNextStateRequested = 1;
     }
 }

@@ -45,13 +45,13 @@
 void func_020e5c6c(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
     Unk02012f58 *v1;
     gObPakkunSf->mUnk_18 = ((*(u16 *) &b->mUnk_a0.mUnk_18.x & 0x10) >> 4);
-    if (b->mUnk_00.mUnk_80.mUnk_0e == 0) {
+    if (b->mUnk_00.mUnk_80.mState == 0) {
         v1 = func_020e6cbc(&b->mUnk_00.mPos);
-        func_020e67c4(gObPakkunSf, v1, &b->mUnk_00.mUnk_1c, 0, d);
+        func_020e67c4(gObPakkunSf, v1, &b->mUnk_00.mScale, 0, d);
         return;
     }
     v1 = func_020e6cbc(&b->mUnk_00.mPos);
-    func_020e66e4(gObPakkunSf, v1, *(u16 *) &b->mUnk_a0.mUnk_0c.x, &b->mUnk_00.mUnk_1c, 0, d);
+    func_020e66e4(gObPakkunSf, v1, *(u16 *) &b->mUnk_a0.mUnk_0c.x, &b->mUnk_00.mScale, 0, d);
 }
 
 void func_020e5bd4(u32 a, Unk020e43a8 *p) {
@@ -104,7 +104,7 @@ void CreateObPakkunSf(void) {
 #pragma thumb on
 
 void func_020e5aec(Unk020e43a8 *p) {
-    p->mUnk_00.mPos.y = p->mUnk_00.mPos.y + (s32) (((s64) p->mUnk_00.mUnk_1c.y * 0xa000) >> 12);
+    p->mUnk_00.mPos.y = p->mUnk_00.mPos.y + (s32) (((s64) p->mUnk_00.mScale.y * 0xa000) >> 12);
     *(u16 *) &p->mUnk_a0.mUnk_18.x = 0;
     func_020ec854(p, p->mUnk_00.mPos.y - 0x18000, 0x400, 0x800, 0x4000, 0x1800);
     func_020ec884(p);
@@ -141,12 +141,12 @@ void func_020e5990(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
     p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
-    func_020ea8a8(gSecondHand, &p->mUnk_00.mMatrix, &p->mUnk_00.mUnk_1c, c);
+    func_020ea8a8(gSecondHand, &p->mUnk_00.mMatrix, &p->mUnk_00.mScale, c);
 }
 
 void func_020e595c(u32 a, Unk020e43a8 *p) {
     func_02046b40(&p->mUnk_00.mUnk_80);
-    func_020d77e0(&p->mUnk_a0.mUnk_0c.y, p->mUnk_00.mUnk_7e, &p->mUnk_a0);
+    func_020d77e0(&p->mUnk_a0.mUnk_0c.y, p->mUnk_00.mAngle, &p->mUnk_a0);
     func_01ffccd0(&p->mUnk_00.mMatrix, &p->mUnk_a0);
 }
 
@@ -156,10 +156,10 @@ void func_020e5950(Unk020e5950 *p0) {
 
 void func_020e5900(Unk020e43a8 *p) {
     p->mUnk_c8 = p->mUnk_c8 + p->mUnk_cc;
-    p->mUnk_00.mUnk_7e = p->mUnk_00.mUnk_7e + (s16) (((s64) p->mUnk_c8 * p->mUnk_c6) >> 12);
-    if (p->mUnk_00.mUnk_80.mUnk_04 > *(u16 *) &p->mUnk_a0.mUnk_18.z) {
-        p->mUnk_00.mUnk_80.mUnk_10 = 1;
-        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+    p->mUnk_00.mAngle = p->mUnk_00.mAngle + (s16) (((s64) p->mUnk_c8 * p->mUnk_c6) >> 12);
+    if (p->mUnk_00.mUnk_80.mStateFrames > *(u16 *) &p->mUnk_a0.mUnk_18.z) {
+        p->mUnk_00.mUnk_80.mNextState = 1;
+        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
     }
 }
 
@@ -168,13 +168,13 @@ u32 func_020e58fc(u32 p0) {
 }
 
 void func_020e58c4(Unk020e43a8 *p) {
-    p->mUnk_00.mUnk_7e = p->mUnk_00.mUnk_7e + p->mUnk_c6;
+    p->mUnk_00.mAngle = p->mUnk_00.mAngle + p->mUnk_c6;
     if (*((u16 *) &p->mUnk_a0.mUnk_18.z + 1) == 0) {
         return;
     }
-    if (p->mUnk_00.mUnk_80.mUnk_04 > *((u16 *) &p->mUnk_a0.mUnk_18.z + 1)) {
-        p->mUnk_00.mUnk_80.mUnk_10 = 2;
-        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+    if (p->mUnk_00.mUnk_80.mStateFrames > *((u16 *) &p->mUnk_a0.mUnk_18.z + 1)) {
+        p->mUnk_00.mUnk_80.mNextState = 2;
+        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
     }
 }
 
@@ -184,11 +184,11 @@ void func_020e58b8(Unk020e58b8 *p0) {
 
 void func_020e5854(Unk020e43a8 *p) {
     p->mUnk_c8 = p->mUnk_c8 - p->mUnk_cc;
-    p->mUnk_00.mUnk_7e = p->mUnk_00.mUnk_7e + (s16) (((s64) p->mUnk_c8 * p->mUnk_c6) >> 12);
-    if (p->mUnk_00.mUnk_80.mUnk_04 > *(u16 *) &p->mUnk_a0.mUnk_18.z) {
+    p->mUnk_00.mAngle = p->mUnk_00.mAngle + (s16) (((s64) p->mUnk_c8 * p->mUnk_c6) >> 12);
+    if (p->mUnk_00.mUnk_80.mStateFrames > *(u16 *) &p->mUnk_a0.mUnk_18.z) {
         p->mUnk_c6 = -p->mUnk_c6;
-        p->mUnk_00.mUnk_80.mUnk_10 = 3;
-        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+        p->mUnk_00.mUnk_80.mNextState = 3;
+        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
     }
 }
 
@@ -197,9 +197,9 @@ u32 func_020e5850(u32 p0) {
 }
 
 void func_020e5830(Unk020e43a8 *p) {
-    if (p->mUnk_00.mUnk_80.mUnk_04 > p->mUnk_c4) {
-        p->mUnk_00.mUnk_80.mUnk_10 = 0;
-        p->mUnk_00.mUnk_80.mUnk_12 = 1;
+    if (p->mUnk_00.mUnk_80.mStateFrames > p->mUnk_c4) {
+        p->mUnk_00.mUnk_80.mNextState = 0;
+        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
     }
 }
 
@@ -236,7 +236,7 @@ void CreateSecondHand(void) {
 }
 
 void func_020e5684(Unk020e43a8 *p, Unk020e5684 *q) {
-    p->mUnk_00.mUnk_58.y = (s32) (((s64) p->mUnk_00.mUnk_1c.x * 0x4b000) >> 12);
+    p->mUnk_00.mUnk_58.y = (s32) (((s64) p->mUnk_00.mScale.x * 0x4b000) >> 12);
     func_02046be8(&p->mUnk_00.mUnk_80, (UnkFunc *const *) data_0216c240, 4, p);
     func_020d720c((Vec3 *) &q->mUnk_0c, (u32 *) &p->mUnk_a0.mUnk_00);
     *(Unk020d7b88 *) &p->mUnk_a0.mUnk_0c.y = *(Unk020d7b88 *) &p->mUnk_a0.mUnk_00;
@@ -247,15 +247,15 @@ void func_020e5684(Unk020e43a8 *p, Unk020e5684 *q) {
     if (q->mUnk_30 != 0) {
         p->mUnk_c6 = -p->mUnk_c6;
     }
-    p->mUnk_00.mUnk_7e = 0;
+    p->mUnk_00.mAngle = 0;
     if (*(u16 *) &p->mUnk_a0.mUnk_18.z != 0) {
         p->mUnk_cc = 0x1000 / *(u16 *) &p->mUnk_a0.mUnk_18.z;
     } else {
         p->mUnk_cc = 0;
     }
     p->mUnk_c8 = 0;
-    p->mUnk_00.mUnk_80.mUnk_10 = 0;
-    p->mUnk_00.mUnk_80.mUnk_12 = 1;
+    p->mUnk_00.mUnk_80.mNextState = 0;
+    p->mUnk_00.mUnk_80.mNextStateRequested = 1;
     p->mUnk_00.mFlags |= data_021590b0;
 }
 

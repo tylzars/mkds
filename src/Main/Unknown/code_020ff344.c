@@ -47,8 +47,8 @@ void func_020ffb1c(Unk020ffb1c *a, struct Unk020fa294 *b) {
         a->mUnk_b0 = 0;
     }
     a->mUnk_ac = 0;
-    a->mUnk_00.mUnk_80.mUnk_10 = 1;
-    a->mUnk_00.mUnk_80.mUnk_12 = 1;
+    a->mUnk_00.mUnk_80.mNextState = 1;
+    a->mUnk_00.mUnk_80.mNextStateRequested = 1;
 }
 
 #pragma thumb off
@@ -74,10 +74,10 @@ void func_020ff97c(Unk020ff97c *e) {
     e->mUnk_128 = 0;
     e->mUnk_12c = 0;
     e->mUnk_130 = 0;
-    e->mUnk_100 = (s32) (((s64) e->mUnk_00.mUnk_1c.x * 0x190000) >> 12);
-    e->mUnk_104 = (s32) (((s64) e->mUnk_00.mUnk_1c.y * 0x64000) >> 12) >> 1;
-    e->mUnk_108 = (s32) (((s64) e->mUnk_00.mUnk_1c.z * 0xaf000) >> 12);
-    e->mUnk_10c = (s32) (((s64) e->mUnk_00.mUnk_1c.z * 0xaf000) >> 12);
+    e->mUnk_100 = (s32) (((s64) e->mUnk_00.mScale.x * 0x190000) >> 12);
+    e->mUnk_104 = (s32) (((s64) e->mUnk_00.mScale.y * 0x64000) >> 12) >> 1;
+    e->mUnk_108 = (s32) (((s64) e->mUnk_00.mScale.z * 0xaf000) >> 12);
+    e->mUnk_10c = (s32) (((s64) e->mUnk_00.mScale.z * 0xaf000) >> 12);
     e->mUnk_110 = 0;
     e->mUnk_114 = 1;
     e->mUnk_118 = 0;

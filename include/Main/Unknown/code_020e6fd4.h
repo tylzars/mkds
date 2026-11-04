@@ -49,7 +49,7 @@ typedef struct MapObject {
     /* 02 */ u16 mFlags;
     /* 04 */ Vec3 mPos;
     /* 10 */ Vec3 mUnk_10;
-    /* 1c */ Vec3 mUnk_1c;
+    /* 1c */ Vec3 mScale;
     /* 28 */ Unk02012f58 mMatrix;
     /* 58 */ Vec3 mUnk_58;
     /* 64 */ s16 mUnk_64;
@@ -60,7 +60,7 @@ typedef struct MapObject {
     /* 74 */ u32 mUnk_74;
     /* 78 */ u32 mUnk_78;
     /* 7c */ u16 mUnk_7c;
-    /* 7e */ u16 mUnk_7e;
+    /* 7e */ u16 mAngle;
     /* 80 */ Unk020e005c_080 mUnk_80;
     /* 94 */ Unk020e71a0_94 *mUnk_94;
     /* 98 */ MapObjectKindData *mKindData;

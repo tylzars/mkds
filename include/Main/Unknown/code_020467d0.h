@@ -11,12 +11,12 @@ typedef struct Unk02046b40_00 {
 // Object func_02046b40 and func_02046bcc take (the code reaches it through a void pointer).
 typedef struct Unk02046b40 {
     /* 00 */ Unk02046b40_00 *mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 04 */ s32 mStateFrames;
     /* 08 */ void *mUnk_08;
     /* 0c */ u8 mUnk_0c[0x2];
-    /* 0e */ u16 mUnk_0e;
-    /* 10 */ u16 mUnk_10;
-    /* 12 */ u16 mUnk_12;
+    /* 0e */ u16 mState;
+    /* 10 */ u16 mNextState;
+    /* 12 */ u16 mNextStateRequested;
 } Unk02046b40;
 
 s32 func_020467d0(s32 a);
