@@ -6,8 +6,10 @@ src/ITCM/code_01ff8000.c:
     .text       start:0x01ff8000 end:0x01ff9300
 
 src/ITCM/code_01ff9320.c:
+    complete
     .text       start:0x01ff9300 end:0x01ff9598
 src/ITCM/code_01ff9598.c:
+    complete
     .text       start:0x01ff9598 end:0x01ffa4b4
 
 src/ITCM/code_01ffad14.c:
@@ -19,6 +21,7 @@ src/ITCM/code_01ffb130.c:
     .text       start:0x01ffb130 end:0x01ffb930
 
 src/ITCM/code_01ffba68.c:
+    complete
     .text       start:0x01ffba68 end:0x01ffcf7c
 src/ITCM/code_01ffa4b4.c:
     complete
@@ -27,6 +30,7 @@ src/ITCM/code_01ffb930.c:
     complete
     .text       start:0x01ffb930 end:0x01ffba68
 src/ITCM/code_01ffcf7c.c:
+    complete
     .text       start:0x01ffcf7c end:0x01ffdee4
 
 src/ITCM/code_01ffdee4.c:
@@ -34,6 +38,7 @@ src/ITCM/code_01ffdee4.c:
     .text       start:0x01ffdee4 end:0x01fff434
 
 src/ITCM/code_01fff95c.c:
+    complete
     .text       start:0x01fff95c end:0x01ffff88
 src/ITCM/code_01fff434.c:
     complete
