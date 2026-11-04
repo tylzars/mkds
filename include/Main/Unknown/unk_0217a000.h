@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_020d22c0.h" // Unk020f41c4_B
 #include "code_02004dc0.h" // Unk020055f0, Unk02003024
-#include "code_0212da38.h" // Unk02017328
+#include "code_0212da38.h" // LinkedList
 #include "code_0200db4c.h"
 #include "code_02142eac.h" // Unk021438f0, Unk02143a78, Unk02143c30
 #include "code_021445e0.h" // Unk021450ec, Unk0214461c
@@ -1365,7 +1365,7 @@ typedef struct Unk0217aebc {
     /* 124 */ s16 mUnk_124;
     /* 126 */ u8 mUnk_126[2];
     /* 128 */ Unk0217aebc_128 *mUnk_128;
-    /* 12c */ Unk02017328 mUnk_12c;
+    /* 12c */ LinkedList mUnk_12c;
     /* 138 */ s32 mUnk_138;
     /* 13c */ s16 mUnk_13c;
     /* 13e */ s16 mUnk_13e[3];
@@ -1514,7 +1514,7 @@ typedef struct Unk0217aa1c {
 
 extern Unk0217aa1c *data_0217aa1c;
 extern struct Unk0206bcb0 *data_0217ad18;
-extern Unk02017328 data_0217aeb0;
+extern LinkedList data_0217aeb0;
 struct Unk0206cdd4_B;
 extern struct Unk0206cdd4_B *data_usa_0217acfc;
 

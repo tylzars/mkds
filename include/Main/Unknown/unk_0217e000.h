@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_0212c7f0.h" // Unk0212c7f0
-#include "code_0212da38.h" // Unk02017328
+#include "code_0212da38.h" // LinkedList
 
 typedef struct RingQueue RingQueue;
 
@@ -36,5 +36,5 @@ extern u32 data_0217eab8[];
 // fwrite entries 3-5, printf entry 3 and raise entry 7.
 extern u8 data_0217eadc[][0x14];
 extern u8 data_0217e3e0[];
-extern Unk02017328 data_0217e3f8;
+extern LinkedList data_0217e3f8;
 extern Unk0212c7f0 data_0217e404[4];

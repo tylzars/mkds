@@ -55,7 +55,7 @@ typedef struct Unk02022ce4 {
     /* 10 */ Unk02022dd8 *mUnk_10;
 } Unk02022ce4;
 
-// Called with the address of a pointer to halfwords (func_02024960); returns a u16.
+// Called with the address of a pointer to halfwords (CharReadHalfword); returns a u16.
 typedef u16 Unk02022aa8_f();
 
 typedef struct Unk02022aa8 {

@@ -5,64 +5,64 @@
 
 Unk020176c0 *ExpHeapInit(Unk020176c0 *a, u32 b, u16 c) {
     Unk020179d4 *p;
-    Unk02017ef8 r;
-    Unk02017e70 *v;
+    ExpHeapRange r;
+    ExpHeapBlock *v;
 
     p = &a->mUnk_24;
     HeapInitAndLink(&a->mUnk_00, 0x45585048, (u32) (p + 1), b, c);
     p->mUnk_10 = 0;
     p->mUnk_12 = 0;
     p->mUnk_12 &= ~1;
-    r.mUnk_00 = a->mUnk_00.mRangeStart;
-    r.mUnk_04 = a->mUnk_00.mRangeEnd;
-    v = func_02017e70(&r, 0x4652);
-    p->mFreeList.mUnk_00 = v;
-    p->mFreeList.mUnk_04 = v;
-    p->mUsedList.mUnk_00 = 0;
-    p->mUsedList.mUnk_04 = 0;
+    r.mStart = a->mUnk_00.mRangeStart;
+    r.mEnd = a->mUnk_00.mRangeEnd;
+    v = ExpHeapBlockInit(&r, 0x4652);
+    p->mFreeList.mHead = v;
+    p->mFreeList.mTail = v;
+    p->mUsedList.mHead = 0;
+    p->mUsedList.mTail = 0;
     return a;
 }
 
-void *ExpHeapAllocFromFreeBlock(Unk020179d4 *a, Unk02017e70 *b, void *c, u32 d, u16 e) {
-    Unk02017ef8 r1;
-    Unk02017ef8 r2;
-    Unk02017ef8 r3;
-    Unk02017e70 *p;
-    Unk02017e70 *q;
+void *ExpHeapAllocFromFreeBlock(Unk020179d4 *a, ExpHeapBlock *b, void *c, u32 d, u16 e) {
+    ExpHeapRange r1;
+    ExpHeapRange r2;
+    ExpHeapRange r3;
+    ExpHeapBlock *p;
+    ExpHeapBlock *q;
     u32 n;
 
-    func_02017ef8(&r1, b);
-    q = (Unk02017e70 *) ((u32) c - 0x10);
-    r2.mUnk_04 = r1.mUnk_04;
-    r1.mUnk_04 = (u32) q;
-    r2.mUnk_00 = d + (u32) c;
-    p = func_02017ed0(&a->mFreeList, b);
-    if (r1.mUnk_04 - r1.mUnk_00 < 0x10) {
-        r1.mUnk_04 = r1.mUnk_00;
+    ExpHeapBlockGetRange(&r1, b);
+    q = (ExpHeapBlock *) ((u32) c - 0x10);
+    r2.mEnd = r1.mEnd;
+    r1.mEnd = (u32) q;
+    r2.mStart = d + (u32) c;
+    p = ExpHeapBlockListRemove(&a->mFreeList, b);
+    if (r1.mEnd - r1.mStart < 0x10) {
+        r1.mEnd = r1.mStart;
     } else {
-        p = func_02017ea0(&a->mFreeList, func_02017e70(&r1, 0x4652), p);
+        p = ExpHeapBlockListInsertAfter(&a->mFreeList, ExpHeapBlockInit(&r1, 0x4652), p);
     }
-    if (r2.mUnk_04 - r2.mUnk_00 < 0x10) {
-        r2.mUnk_00 = r2.mUnk_04;
+    if (r2.mEnd - r2.mStart < 0x10) {
+        r2.mStart = r2.mEnd;
     } else {
-        func_02017ea0(&a->mFreeList, func_02017e70(&r2, 0x4652), p);
+        ExpHeapBlockListInsertAfter(&a->mFreeList, ExpHeapBlockInit(&r2, 0x4652), p);
     }
-    n = r2.mUnk_00 - r1.mUnk_04;
+    n = r2.mStart - r1.mEnd;
     {
         volatile u32 z;
 
         if ((u16) (*(u32 *) ((u8 *) a - 4) & 0xff) & 1) {
             z = 0;
-            MemFillWords(z, (void *) r1.mUnk_04, n);
+            MemFillWords(z, (void *) r1.mEnd, n);
         }
     }
-    r3.mUnk_00 = (u32) q;
-    r3.mUnk_04 = r2.mUnk_00;
-    p = func_02017e70(&r3, 0x5544);
+    r3.mStart = (u32) q;
+    r3.mEnd = r2.mStart;
+    p = ExpHeapBlockInit(&r3, 0x5544);
     p->mUnk_02 &= ~0x8000;
     p->mUnk_02 |= (e & 1) << 15;
     {
-        u32 t = (u32) p - r1.mUnk_04;
+        u32 t = (u32) p - r1.mEnd;
 
         p->mUnk_02 &= ~0x7f00;
         p->mUnk_02 |= ((u16) t & 0x7f) << 8;
@@ -73,14 +73,14 @@ void *ExpHeapAllocFromFreeBlock(Unk020179d4 *a, Unk02017e70 *b, void *c, u32 d, 
         p->mUnk_02 &= ~0xff;
         p->mUnk_02 |= g;
     }
-    func_02017ea0(&a->mUsedList, p, a->mUsedList.mUnk_04);
+    ExpHeapBlockListInsertAfter(&a->mUsedList, p, a->mUsedList.mTail);
     return c;
 }
 
 void *ExpHeapAllocFront(Unk020176c0 *a, u32 b, u32 c) {
     Unk020179d4 *p;
-    Unk02017e70 *q;
-    Unk02017e70 *b0;
+    ExpHeapBlock *q;
+    ExpHeapBlock *b0;
     u32 a0;
     u32 v0;
     u32 v1;
@@ -90,7 +90,7 @@ void *ExpHeapAllocFront(Unk020176c0 *a, u32 b, u32 c) {
 
     p = &a->mUnk_24;
     f = (u16) (p->mUnk_12 & 1) == 0 ? 1 : 0;
-    q = p->mFreeList.mUnk_00;
+    q = p->mFreeList.mHead;
     b0 = 0;
     bestaddr = 0;
     v1 = -1;
@@ -98,7 +98,7 @@ void *ExpHeapAllocFront(Unk020176c0 *a, u32 b, u32 c) {
         m = c - 1;
         do {
             a0 = (m + ((u32) (q + 1))) & ~m;
-            v0 = q->mUnk_04;
+            v0 = q->mSize;
             if (v0 >= b + (a0 - ((u32) (q + 1))) && v1 > v0) {
                 b0 = q;
                 v1 = v0;
@@ -110,7 +110,7 @@ void *ExpHeapAllocFront(Unk020176c0 *a, u32 b, u32 c) {
                     break;
                 }
             }
-            q = q->mUnk_0c;
+            q = q->mNext;
         } while (q != 0);
     }
     if (b0 == 0) {
@@ -123,8 +123,8 @@ void *ExpHeapAllocBack(Unk020176c0 *a, u32 b, u32 c) {
     int v0;
     u32 m;
     u32 a0;
-    Unk02017e70 *q;
-    Unk02017e70 *b0;
+    ExpHeapBlock *q;
+    ExpHeapBlock *b0;
     u32 v1;
     Unk020179d4 *p;
     int g0;
@@ -135,12 +135,12 @@ void *ExpHeapAllocBack(Unk020176c0 *a, u32 b, u32 c) {
     f = (u16) (p->mUnk_12 & 1) == 0 ? 1 : 0;
     v1 = -1;
     b0 = 0;
-    q = p->mFreeList.mUnk_04;
+    q = p->mFreeList.mTail;
     bestaddr = 0;
     if (q != 0) {
         m = ~(c - 1);
         do {
-            u32 t = q->mUnk_04;
+            u32 t = q->mSize;
 
             v0 = t;
             a0 = (v0 + ((u32) (q + 1)) - b) & m;
@@ -156,7 +156,7 @@ void *ExpHeapAllocBack(Unk020176c0 *a, u32 b, u32 c) {
                     break;
                 }
             }
-            q = q->mUnk_08;
+            q = q->mPrev;
         } while (q != 0);
     }
     if (b0 == 0) {
@@ -165,40 +165,40 @@ void *ExpHeapAllocBack(Unk020176c0 *a, u32 b, u32 c) {
     return ExpHeapAllocFromFreeBlock(p, b0, (void *) bestaddr, b, 1);
 }
 
-u32 ExpHeapAddFreeRange(Unk020179d4 *a, Unk02017ef8 *b) {
-    Unk02017ef8 r;
-    Unk02017e70 *p;
-    Unk02017e70 *q;
+u32 ExpHeapAddFreeRange(Unk020179d4 *a, ExpHeapRange *b) {
+    ExpHeapRange r;
+    ExpHeapBlock *p;
+    ExpHeapBlock *q;
 
     r = *b;
     q = 0;
-    p = a->mFreeList.mUnk_00;
+    p = a->mFreeList.mHead;
     if (p != 0) {
         do {
-            if ((u32) p < b->mUnk_00) {
+            if ((u32) p < b->mStart) {
                 q = p;
             } else {
-                if ((u32) p == b->mUnk_04) {
-                    r.mUnk_04 = p->mUnk_04 + ((u32) (p + 1));
-                    func_02017ed0(&a->mFreeList, p);
+                if ((u32) p == b->mEnd) {
+                    r.mEnd = p->mSize + ((u32) (p + 1));
+                    ExpHeapBlockListRemove(&a->mFreeList, p);
                 }
                 break;
             }
-            p = p->mUnk_0c;
+            p = p->mNext;
         } while (p != 0);
     }
     if (q != 0) {
-        u32 s = q->mUnk_04 + ((u32) (q + 1));
+        u32 s = q->mSize + ((u32) (q + 1));
 
-        if (s == b->mUnk_00) {
-            r.mUnk_00 = (u32) q;
-            q = func_02017ed0(&a->mFreeList, q);
+        if (s == b->mStart) {
+            r.mStart = (u32) q;
+            q = ExpHeapBlockListRemove(&a->mFreeList, q);
         }
     }
-    if (r.mUnk_04 - r.mUnk_00 < 0x10) {
+    if (r.mEnd - r.mStart < 0x10) {
         return 0;
     }
-    func_02017ea0(&a->mFreeList, func_02017e70(&r, 0x4652), q);
+    ExpHeapBlockListInsertAfter(&a->mFreeList, ExpHeapBlockInit(&r, 0x4652), q);
     return 1;
 }
 
@@ -229,52 +229,52 @@ void *ExpHeapAlloc(Unk020176c0 *a, u32 b, s32 c) {
 }
 
 u32 ExpHeapResizeBlock(Unk020176c0 *a, void *b, u32 c) {
-    Unk02017ef8 r1;
+    ExpHeapRange r1;
     u32 start;
-    Unk02017e70 *r;
-    Unk02017e70 *prev;
-    Unk02017ef8 r2;
+    ExpHeapBlock *r;
+    ExpHeapBlock *prev;
+    ExpHeapRange r2;
     u32 sz;
     Unk020179d4 *p;
-    Unk02017e70 *q;
+    ExpHeapBlock *q;
     u32 e;
     u32 t;
     u32 n;
 
-    q = (Unk02017e70 *) ((u8 *) b - 0x10);
-    sz = q->mUnk_04;
+    q = (ExpHeapBlock *) ((u8 *) b - 0x10);
+    sz = q->mSize;
     c = (c + 3) & ~3;
     p = &a->mUnk_24;
     if (c == sz) {
         return c;
     }
     if (c > sz) {
-        r = p->mFreeList.mUnk_00;
+        r = p->mFreeList.mHead;
         t = sz + ((u32) (q + 1));
         if (r != 0) {
             do {
                 if ((u32) r == t) {
                     break;
                 }
-                r = r->mUnk_0c;
+                r = r->mNext;
             } while (r != 0);
         }
-        if (r == 0 || c > sz + 0x10 + r->mUnk_04) {
+        if (r == 0 || c > sz + 0x10 + r->mSize) {
             return 0;
         }
-        func_02017ef8(&r1, r);
-        prev = func_02017ed0(&p->mFreeList, r);
+        ExpHeapBlockGetRange(&r1, r);
+        prev = ExpHeapBlockListRemove(&p->mFreeList, r);
         e = c + (u32) b;
-        start = r1.mUnk_00;
-        r1.mUnk_00 = e;
-        if (r1.mUnk_04 - e < 0x10) {
-            r1.mUnk_00 = r1.mUnk_04;
+        start = r1.mStart;
+        r1.mStart = e;
+        if (r1.mEnd - e < 0x10) {
+            r1.mStart = r1.mEnd;
         }
-        q->mUnk_04 = r1.mUnk_00 - (u32) b;
-        if (r1.mUnk_04 - r1.mUnk_00 >= 0x10) {
-            func_02017ea0(&p->mFreeList, func_02017e70(&r1, 0x4652), prev);
+        q->mSize = r1.mStart - (u32) b;
+        if (r1.mEnd - r1.mStart >= 0x10) {
+            ExpHeapBlockListInsertAfter(&p->mFreeList, ExpHeapBlockInit(&r1, 0x4652), prev);
         }
-        n = r1.mUnk_00 - start;
+        n = r1.mStart - start;
         {
             volatile u32 z;
 
@@ -284,40 +284,40 @@ u32 ExpHeapResizeBlock(Unk020176c0 *a, void *b, u32 c) {
             }
         }
     } else {
-        r2.mUnk_00 = c + (u32) b;
-        r2.mUnk_04 = q->mUnk_04 + ((u32) (q + 1));
-        q->mUnk_04 = c;
+        r2.mStart = c + (u32) b;
+        r2.mEnd = q->mSize + ((u32) (q + 1));
+        q->mSize = c;
         if (ExpHeapAddFreeRange(&a->mUnk_24, &r2) == 0) {
-            q->mUnk_04 = sz;
+            q->mSize = sz;
         }
     }
-    return q->mUnk_04;
+    return q->mSize;
 }
 
 void ExpHeapFree(Unk020176c0 *a, void *b) {
     Unk020179d4 *p;
-    Unk02017e70 *q;
-    Unk02017ef8 r;
+    ExpHeapBlock *q;
+    ExpHeapRange r;
 
-    q = (Unk02017e70 *) ((u8 *) b - 0x10);
+    q = (ExpHeapBlock *) ((u8 *) b - 0x10);
     p = &a->mUnk_24;
-    func_02017ef8(&r, q);
-    func_02017ed0(&p->mUsedList, q);
+    ExpHeapBlockGetRange(&r, q);
+    ExpHeapBlockListRemove(&p->mUsedList, q);
     ExpHeapAddFreeRange(p, &r);
 }
 
 u32 ExpHeapGetTotalFreeSize(Unk020176c0 *a) {
-    Unk02017e70 *p;
+    ExpHeapBlock *p;
     u32 n;
 
-    p = a->mUnk_24.mFreeList.mUnk_00;
+    p = a->mUnk_24.mFreeList.mHead;
     n = 0;
     if (p == 0) {
         return n;
     }
     do {
-        n += p->mUnk_04;
-        p = p->mUnk_0c;
+        n += p->mSize;
+        p = p->mNext;
     } while (p != 0);
     return n;
 }
@@ -326,7 +326,7 @@ u32 ExpHeapGetMaxAllocSize(Unk020176c0 *a, u32 b) {
     u32 m;
     u32 b0;
     u32 off;
-    Unk02017e70 *p;
+    ExpHeapBlock *p;
     u32 s;
     u32 e;
     u32 n;
@@ -336,11 +336,11 @@ u32 ExpHeapGetMaxAllocSize(Unk020176c0 *a, u32 b) {
     m = Abs(b);
     b0 = 0;
     off = -1;
-    for (p = a->mUnk_24.mFreeList.mUnk_00; p != 0; p = p->mUnk_0c) {
+    for (p = a->mUnk_24.mFreeList.mHead; p != 0; p = p->mNext) {
         {
             s = (u32) (p + 1);
             n = ((u32) (m - 1) + s) & ~(m - 1);
-            e = p->mUnk_04 + s;
+            e = p->mSize + s;
             if (n < e) {
                 l = e - n;
                 d = n - s;

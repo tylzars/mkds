@@ -9,5 +9,5 @@ void func_0208533c(void) {
     value12 = (u32) &ListInit;
     value0 = (u32) &data_0217aeb0;
     value1 = 0u;
-    ListInit((Unk02017328 *) value0, (u16) value1);
+    ListInit((LinkedList *) value0, (u16) value1);
 }

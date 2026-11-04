@@ -147,8 +147,8 @@ void AdvanceOptionEmbremSelectState3(void) {
         cond2 = TRUE;
     }
     if (cond2 != FALSE) {
-        result = func_0201ea84(gOptionEmbremSelect->mOptionEmbremSelectSBnbl, data_02175628[index].mUnk_48,
-                               data_02175628[index].mUnk_4a);
+        result = RectTableFindContaining(gOptionEmbremSelect->mOptionEmbremSelectSBnbl, data_02175628[index].mUnk_48,
+                                         data_02175628[index].mUnk_4a);
     }
     flags = data_02175628[index].mUnk_00 & 2;
     if (flags != 0) {

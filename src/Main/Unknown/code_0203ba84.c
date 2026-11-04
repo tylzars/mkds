@@ -66,7 +66,7 @@ void func_0203bc64(u8 *b) {
                     }
                 }
             }
-            g = func_0202056c(n);
+            g = CountSetBits(n);
             if (g == 0) {
                 y = 0;
             } else {
@@ -164,7 +164,7 @@ void func_0203ba84(u8 *b) {
     }
     for (k = 0; k < 8; k++) {
         e = -1;
-        g = func_0202056c(m);
+        g = CountSetBits(m);
         n = 0;
         if ((f & (1 << k)) == 0) {
             a->mUnk_04[k] = -1;

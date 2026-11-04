@@ -201,7 +201,7 @@ Unk0217c7b4 *func_02108950(void) {
 
 BOOL func_0210887c(s32 a) {
     s32 i;
-    Unk0212d9dc *p;
+    HeapStack *p;
 
     p = data_0217d130;
     data_0217d130 = data_0217c77c;
@@ -231,7 +231,7 @@ BOOL func_021087f4(s32 a) {
     if (data_0216c7d8.mUnk_04 != 0xff00 && data_0216c7d8.mUnk_00 == a) {
         return TRUE;
     }
-    func_0212dbec(data_0217c77c);
+    HeapStackReset(data_0217c77c);
     data_0216c7d8.mUnk_04 = 0xff00;
     data_0216c7d8.mUnk_00 = 0;
     data_0216c7d8.mUnk_00 = a;
@@ -251,11 +251,11 @@ int func_021087c4(int a) {
 }
 
 void func_02108720(void) {
-    func_0212dcac(data_0217d130);
+    HeapStackDestroy(data_0217d130);
     data_0217d130 = NULL;
-    func_0212dcac(data_0217c77c);
+    HeapStackDestroy(data_0217c77c);
     data_0217c77c = NULL;
-    func_0212dcac(data_0217c790);
+    HeapStackDestroy(data_0217c790);
     data_0217c790 = NULL;
     func_0210ef68((void *) func_0210ef50());
     func_0210efac((void *) func_0210ef50());
@@ -287,7 +287,7 @@ void func_02108598(u32 a, u32 b) {
     ((u32 *) &data_0216c7d8)[0] = data_0215a6ec[0];
     ((u32 *) &data_0216c7d8)[1] = data_0215a6ec[1];
     func_0210e4ec(&data_0217c7b4);
-    data_0217c77c = func_0212dcc8((void *) b, c);
+    data_0217c77c = HeapStackCreate((void *) b, c);
     d = 0;
     data_0217d130 = NULL;
     b = b + c;
@@ -303,7 +303,7 @@ void func_02108598(u32 a, u32 b) {
             break;
     }
     func_02111250((void *) b, d);
-    data_0217c790 = (Unk0212d9dc *) b;
+    data_0217c790 = (HeapStack *) b;
     x = b + d;
     w = (a == 0 ? 0xc8000 : 0xaf000) - (a == 2 ? 0xaf000 : 0xc400);
     switch (a) {
@@ -330,7 +330,7 @@ void func_02108598(u32 a, u32 b) {
             break;
     }
     w = w - e - v;
-    data_0217d130 = func_0212dcc8((void *) x, w);
+    data_0217d130 = HeapStackCreate((void *) x, w);
     x = 0;
     if (a == 1) {
         x = 1;
@@ -383,7 +383,7 @@ void func_02108344(u32 a, u32 b, u32 c) {
     } else {
         ((u32 *) &data_0216c7d8)[0] = data_0215a6e4[0];
         ((u32 *) &data_0216c7d8)[1] = data_0215a6e4[1];
-        data_0217c77c = func_0212dcc8((void *) (a + b), 0x25a5c);
+        data_0217c77c = HeapStackCreate((void *) (a + b), 0x25a5c);
         func_02111250((void *) (a + b + 0x25a5c), 0x35a0);
     }
     data_0216cb28 = 0x69;
@@ -449,7 +449,7 @@ void func_021074ac(s32 e) {
     s32 v;
     BOOL b;
     u32 d;
-    Unk0212d9dc *p;
+    HeapStack *p;
     Unk0210e524 buf;
     Unk021073ec s;
 
@@ -675,7 +675,7 @@ void func_021074ac(s32 e) {
             if (*(vu16 *) 0x027ffc40 != 2) {
                 p = data_0217d130;
                 if (data_0216c7d8.mUnk_04 == 0xff00 || data_0216c7d8.mUnk_00 != 0xffff) {
-                    func_0212dbec(data_0217c77c);
+                    HeapStackReset(data_0217c77c);
                     data_0216c7d8.mUnk_04 = 0xff00;
                     data_0216c7d8.mUnk_00 = 0;
                     data_0217d130 = data_0217c77c;
@@ -692,7 +692,7 @@ void func_021074ac(s32 e) {
         case 0xc:
             p = data_0217d130;
             if (data_0216c7d8.mUnk_04 == 0xff00 || data_0216c7d8.mUnk_00 != 0xffff) {
-                func_0212dbec(data_0217c77c);
+                HeapStackReset(data_0217c77c);
                 data_0216c7d8.mUnk_04 = 0xff00;
                 data_0216c7d8.mUnk_00 = 0;
                 data_0217d130 = data_0217c77c;
@@ -730,7 +730,7 @@ void func_021074ac(s32 e) {
     if (*(vu16 *) 0x027ffc40 == 2) {
         return;
     }
-    data_0217c798[0] = func_0212db24(data_0217d130);
+    data_0217c798[0] = HeapStackSave(data_0217d130);
     if (func_0205e0a0() != 1) {
         return;
     }
@@ -1560,7 +1560,7 @@ void func_02105a30(u32 a) {
         return;
     }
     r = (a == 1) ? 0x47 : 0x48;
-    func_0212da38(data_0217d130, data_0217c798[0]);
+    HeapStackRestore(data_0217d130, data_0217c798[0]);
     func_0212da2c(data_0217d130);
     func_0212e9cc(r, data_0217d130);
     func_0212c6f0(&data_0217d07c, 2);
@@ -1636,7 +1636,7 @@ void func_021057f0(u32 a, u32 b) {
             r = 0x17;
             break;
     }
-    func_0212da38(data_0217d130, data_0217c798[0]);
+    HeapStackRestore(data_0217d130, data_0217c798[0]);
     func_0212da2c(data_0217d130);
     func_0212e95c(r, data_0217d130);
     func_0212e95c(0x2a, data_0217d130);

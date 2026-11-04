@@ -62,8 +62,8 @@ void func_ov003_021cd338(s32 param_1) {
     }
     for (i = 0; i < 4; i++) {
         if (d[i] != 0) {
-            data_ov003_021da270->mUnk_000[i].mUnk_fe = func_020205e8(
-                &data_ov003_021da270->mUnk_400.mUnk_f8, data_ov003_021da270->mUnk_000[i].mUnk_00.mUnk_00, 0xfe);
+            data_ov003_021da270->mUnk_000[i].mUnk_fe =
+                Crc16(&data_ov003_021da270->mUnk_400.mUnk_f8, data_ov003_021da270->mUnk_000[i].mUnk_00.mUnk_00, 0xfe);
         }
     }
     e = func_ov003_021d285c(0x100, 0x20);

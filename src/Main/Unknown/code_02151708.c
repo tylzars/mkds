@@ -68,7 +68,7 @@ u32 func_02151718(int a) {
     v1 = 0;
     v3 = a;
     do {
-        v6 = func_020205e8((const u16 *) (a + 0x500), (const u8 *) v3, 0xfe);
+        v6 = Crc16((const u16 *) (a + 0x500), (const u8 *) v3, 0xfe);
         *(u16 *) (v3 + 0xfe) = v6;
         do {
             func_021511d8(v2, v4, (void *) v3);

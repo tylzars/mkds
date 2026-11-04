@@ -1,45 +1,45 @@
 #include "code_02017ea0.h"
 
-void func_02017ef8(Unk02017ef8 *a, Unk02017e70 *b) {
-    a->mUnk_00 = (u32) b - (u16) ((b->mUnk_02 >> 8) & 0x7f);
-    a->mUnk_04 = b->mUnk_04 + (u32) (b + 1);
+void ExpHeapBlockGetRange(ExpHeapRange *a, ExpHeapBlock *b) {
+    a->mStart = (u32) b - (u16) ((b->mUnk_02 >> 8) & 0x7f);
+    a->mEnd = b->mSize + (u32) (b + 1);
 }
 
-Unk02017e70 *func_02017ed0(Unk02017ea0 *a, Unk02017e70 *b) {
-    Unk02017e70 *p;
-    Unk02017e70 *n;
+ExpHeapBlock *ExpHeapBlockListRemove(ExpHeapBlockList *a, ExpHeapBlock *b) {
+    ExpHeapBlock *p;
+    ExpHeapBlock *n;
 
-    p = b->mUnk_08;
-    n = b->mUnk_0c;
+    p = b->mPrev;
+    n = b->mNext;
     if (p != 0) {
-        p->mUnk_0c = n;
+        p->mNext = n;
     } else {
-        a->mUnk_00 = n;
+        a->mHead = n;
     }
     if (n != 0) {
-        n->mUnk_08 = p;
+        n->mPrev = p;
     } else {
-        a->mUnk_04 = p;
+        a->mTail = p;
     }
     return p;
 }
 
-Unk02017e70 *func_02017ea0(Unk02017ea0 *a, Unk02017e70 *b, Unk02017e70 *c) {
-    Unk02017e70 *n;
+ExpHeapBlock *ExpHeapBlockListInsertAfter(ExpHeapBlockList *a, ExpHeapBlock *b, ExpHeapBlock *c) {
+    ExpHeapBlock *n;
 
-    b->mUnk_08 = c;
+    b->mPrev = c;
     if (c != 0) {
-        n = c->mUnk_0c;
-        c->mUnk_0c = b;
+        n = c->mNext;
+        c->mNext = b;
     } else {
-        n = a->mUnk_00;
-        a->mUnk_00 = b;
+        n = a->mHead;
+        a->mHead = b;
     }
-    b->mUnk_0c = n;
+    b->mNext = n;
     if (n != 0) {
-        n->mUnk_08 = b;
+        n->mPrev = b;
     } else {
-        a->mUnk_04 = b;
+        a->mTail = b;
     }
     return b;
 }

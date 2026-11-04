@@ -263,7 +263,8 @@ void func_ov000_021828e4(void) {
         v3 = TRUE;
     }
     if (v3 != FALSE) {
-        v4 = func_0201ea84(gWiFiVSSetting->mWiFiVSSettingBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
+        v4 = RectTableFindContaining(gWiFiVSSetting->mWiFiVSSettingBnbl, data_02175670[i].mUnk_00,
+                                     data_02175672[i].mUnk_00);
     }
     e = &data_02175628[i];
     v8 = e->mUnk_00 & 2;

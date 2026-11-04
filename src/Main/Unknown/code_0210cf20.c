@@ -49,32 +49,32 @@ u32 func_0210d4a0(u32 p0) {
 }
 
 void func_0210d2cc(void) {
-    Unk02017328 *l;
+    LinkedList *l;
     u32 t;
     Unk0210bf24 *q;
-    Unk02017328 *m;
+    LinkedList *m;
     Unk0210bfbc *p;
 
     if (data_0217d084.mUnk_10 == 0) {
         return;
     }
     if (data_0217d020 != 0) {
-        for (p = data_0217d028.mUnk_00; p != NULL; p = ListGetNext(&data_0217d028, p)) {
+        for (p = data_0217d028.mHead; p != NULL; p = ListGetNext(&data_0217d028, p)) {
             func_0210cc3c(p);
         }
         data_0217d020 = 0;
     }
     func_0210e280((Unk0217c7c4 *) data_0217d034);
     l = data_0217d048;
-    for (p = l->mUnk_00; p != NULL; p = l->mUnk_00) {
+    for (p = l->mHead; p != NULL; p = l->mHead) {
         func_0210ca4c(p);
         if (p->mUnk_18 != 3) {
             func_0210bc54(&l[p->mUnk_18], p);
             p->mUnk_18 = 3;
         }
     }
-    m = (Unk02017328 *) data_0217d054;
-    p = m->mUnk_00;
+    m = (LinkedList *) data_0217d054;
+    p = m->mHead;
     t = data_0217d024[0];
     if (p != NULL) {
         l = data_0217d048;
@@ -82,7 +82,7 @@ void func_0210d2cc(void) {
             if ((t++ & 3) == data_0217d010[0]) {
                 func_0210ca4c(p);
             } else if ((t & 1) == (data_0217d010[0] & 1)) {
-                for (q = p->mUnk_0c.mUnk_00; q != NULL; q = ListGetNext(&p->mUnk_0c, q)) {
+                for (q = p->mUnk_0c.mHead; q != NULL; q = ListGetNext(&p->mUnk_0c, q)) {
                     if (q->mUnk_00 != NULL) {
                         p->mUnk_30(p, q, NULL);
                     }
@@ -92,7 +92,7 @@ void func_0210d2cc(void) {
                 func_0210bc54(&l[p->mUnk_18], p);
                 p->mUnk_18 = 3;
             }
-            p = m->mUnk_00;
+            p = m->mHead;
         } while (p != NULL);
     }
     data_0217d010[0]++;
@@ -106,12 +106,12 @@ void func_0210d200(u32 a) {
     Unk0210bfbc *p;
     Unk0210bf24 *q;
 
-    p = data_0217d028.mUnk_00;
+    p = data_0217d028.mHead;
     if (p == NULL) {
         return;
     }
     do {
-        q = p->mUnk_0c.mUnk_00;
+        q = p->mUnk_0c.mHead;
         if (q != NULL) {
             do {
                 func_0212c6f0(&q->mUnk_00, a);
@@ -119,7 +119,7 @@ void func_0210d200(u32 a) {
                 q->mUnk_19 &= ~8;
                 q->mUnk_19 &= ~2;
                 func_0210bc54(&p->mUnk_0c, q);
-                q = p->mUnk_0c.mUnk_00;
+                q = p->mUnk_0c.mHead;
             } while (q != NULL);
         }
         if (p->mUnk_18 != 3) {
@@ -156,8 +156,8 @@ void func_0210d120(u32 a) {
 }
 
 void func_0210d0ec(void) {
-    while (data_0217d028.mUnk_00 != NULL) {
-        func_0210c3a8(data_0217d028.mUnk_00);
+    while (data_0217d028.mHead != NULL) {
+        func_0210c3a8(data_0217d028.mHead);
     }
 }
 
@@ -221,7 +221,7 @@ void func_0210cf9c(Unk0210bfbc *p, s32 b) {
 void func_0210cf20(int a, u32 b) {
     u32 v1;
     u32 v2;
-    ListInit((Unk02017328 *) ((u32 *) (u32) (a + 0xc)), (u16) 8);
+    ListInit((LinkedList *) ((u32 *) (u32) (a + 0xc)), (u16) 8);
     v1 = ((u32) (&func_0210d0b4));
     *(u32 *) (a + 0x38) = 1;
     v2 = ((u32) (&func_0210d078));

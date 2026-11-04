@@ -150,7 +150,7 @@ s32 func_02032280(void) {
                 d = data_02175628[v1].mUnk_48;
                 g = data_02175628[v1].mUnk_4a;
                 c = IsSelectReturnState2NoState3Or4RequestAndInRect(d, g);
-                d = func_0201ea84(q->mUnk_10, d, g);
+                d = RectTableFindContaining(q->mUnk_10, d, g);
             }
             if ((u16) (data_02175628[v1].mUnk_00 & 1) != 0) {
                 func_020328f8(0);

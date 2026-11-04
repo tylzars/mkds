@@ -1,6 +1,6 @@
 #include "code_02021f9c.h"
 
-Unk02021fd0 *func_02021fd0(Unk02021f9c *a, u32 b) {
+Unk02021fd0 *FindPartByTag(Unk02021f9c *a, u32 b) {
     u16 i;
     u16 n;
     Unk02021fd0 *p;
@@ -19,7 +19,7 @@ Unk02021fd0 *func_02021fd0(Unk02021f9c *a, u32 b) {
 u32 func_02021f9c(Unk02021f9c *a, Unk02021fd0 **b) {
     Unk02021fd0 *p;
 
-    p = func_02021fd0(a, 0x5343524e);
+    p = FindPartByTag(a, 0x5343524e);
     if (p != 0) {
         *b = p + 1;
         return 1;

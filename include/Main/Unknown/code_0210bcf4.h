@@ -3,7 +3,7 @@
 #include "types.h"
 #include "code_0212bcac.h"
 #include "code_0212d254.h" // Unk0212d580
-#include "code_0212da38.h" // Unk02017328
+#include "code_0212da38.h" // LinkedList
 
 // data_0217d048 is addressed in rows of twelve bytes; func_0210bfbc and func_0210c0bc address the
 // container of one of those rows. Unk0206bcb0 and the data_027e00cc elements (Unk020f41c4_A) start with it:
@@ -13,7 +13,7 @@ typedef struct Unk0210bfbc {
     /* 00 */ u8 mUnk_00[2];
     /* 02 */ u16 mUnk_02;
     /* 04 */ u8 mUnk_04[8];
-    /* 0c */ Unk02017328 mUnk_0c;
+    /* 0c */ LinkedList mUnk_0c;
     /* 18 */ u32 mUnk_18;
     /* 1c */ u8 mUnk_1c[0xc];
     /* 28 */ u32 mUnk_28;
@@ -28,13 +28,13 @@ typedef struct Unk0210bfbc {
 } Unk0210bfbc;
 
 // Returned by func_0210e128 and passed to func_0210bcf4; func_0210c084 writes its byte at 0x19.
-// func_0210bf24 subtracts one Unk02017328 from mUnk_10 to reach the Unk0210bfbc holding it.
+// func_0210bf24 subtracts one LinkedList from mUnk_10 to reach the Unk0210bfbc holding it.
 typedef struct Unk0210bf24 {
     /* 00 */ Unk0212c400 *mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ u32 mUnk_08;
     /* 0c */ u32 mUnk_0c;
-    /* 10 */ Unk02017328 *mUnk_10;
+    /* 10 */ LinkedList *mUnk_10;
     /* 14 */ s16 mUnk_14;
     /* 16 */ u16 mUnk_16;
     /* 18 */ u8 mUnk_18;

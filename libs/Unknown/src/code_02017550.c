@@ -2,7 +2,7 @@
 #include "code_020172d0.h"
 #include "code_0201750c.h"
 
-Unk02017584 *HeapFindInnermostInList(Unk02017328 *a, u32 b) {
+Unk02017584 *HeapFindInnermostInList(LinkedList *a, u32 b) {
     Unk02017584 *p;
     Unk02017584 *r;
 
@@ -20,8 +20,8 @@ Unk02017584 *HeapFindInnermostInList(Unk02017328 *a, u32 b) {
     return 0;
 }
 
-Unk02017328 *HeapFindList(u32 a) {
-    Unk02017328 *l;
+LinkedList *HeapFindList(u32 a) {
+    LinkedList *l;
     Unk02017584 *p;
 
     l = &gHeapList;

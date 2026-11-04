@@ -403,7 +403,8 @@ void func_ov001_021a13d8(void) {
         b1 = TRUE;
     }
     if (b1 != FALSE) {
-        r5 = func_0201ea84(data_ov001_021ca418->mUnk_10, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+        r5 = RectTableFindContaining(data_ov001_021ca418->mUnk_10, data_02175628[idx].mUnk_48,
+                                     data_02175628[idx].mUnk_4a);
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
         a2 = b2 = FALSE;

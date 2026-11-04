@@ -1,5 +1,5 @@
 #include "code_02016d28.h"
 
-void func_02016d28(RangeEntry **p) {
+void RangeListInit(RangeEntry **p) {
     *p = 0;
 }

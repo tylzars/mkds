@@ -43,7 +43,7 @@ u32 FindArchiveFile(u32 archiveName, const char *path) {
     } else {
         StringFormatBounded(fullPath, 0x80, gArchiveColonSlashFormat, archiveName, path);
     }
-    return func_020182c0((const u8 *) fullPath);
+    return ArchiveFileGetAddress((const u8 *) fullPath);
 }
 
 #pragma thumb off

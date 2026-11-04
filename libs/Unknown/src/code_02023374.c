@@ -278,9 +278,9 @@ void func_02023d84(Unk02023d84 *a) {
                 b.mUnk_00 = src + ((u32) o >> 3);
                 b.mUnk_04 = 0;
                 b.mUnk_05 = 0;
-                func_020247fc(&b, o % 8);
+                BitStreamReadBits(&b, o % 8);
                 for (s = v; s < e; s += 4) {
-                    t = func_020247fc(&b, g);
+                    t = BitStreamReadBits(&b, g);
                     if (t != 0) {
                         c = (c & ~(0xf << s)) | ((w + t) << s);
                     }
@@ -301,9 +301,9 @@ void func_02023d84(Unk02023d84 *a) {
         z.mUnk_00 = src + ((u32) o >> 3);
         z.mUnk_04 = 0;
         z.mUnk_05 = 0;
-        func_020247fc(&z, o % 8);
+        BitStreamReadBits(&z, o % 8);
         for (s = v; s < e; s += 8) {
-            t = func_020247fc(&z, g);
+            t = BitStreamReadBits(&z, g);
             if (t != 0) {
                 if ((u32) s < 0x20) {
                     w = (w & ~(0xff << s)) | ((base + t) << s);

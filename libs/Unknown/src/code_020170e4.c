@@ -51,6 +51,6 @@ s32 func_02017138(u32 v) {
 
 void func_020170e4(void) {
     data_02173250.mUnk_04 = RangeEntryPoolInit(data_02173250.mUnk_0c, data_02173250.mUnk_10 >> 4);
-    func_02016d28(&data_02173250.mUnk_00);
+    RangeListInit(&data_02173250.mUnk_00);
     RangeListAdd(&data_02173250.mUnk_00, &data_02173254, 0, data_02173250.mUnk_08);
 }

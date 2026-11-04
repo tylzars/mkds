@@ -160,7 +160,7 @@ void func_ov000_02181b4c(void) {
         v1 = TRUE;
     }
     if (v1 != FALSE) {
-        v2 = func_0201ea84(gWiFiTopMenu->mUnk_30, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
+        v2 = RectTableFindContaining(gWiFiTopMenu->mUnk_30, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
     v5 = data_02175628[i].mUnk_00 & 2;
     if ((u16) v5 == 0) {

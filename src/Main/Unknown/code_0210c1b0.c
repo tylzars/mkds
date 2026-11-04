@@ -49,7 +49,7 @@ void func_0210cc3c(Unk0210bfbc *p) {
         }
         p->mUnk_34 &= ~4;
     }
-    a = p->mUnk_0c.mUnk_00;
+    a = p->mUnk_0c.mHead;
     while (a != NULL) {
         f = (a->mUnk_19 & 8) != 0;
         a->mUnk_19 &= ~8;
@@ -89,7 +89,7 @@ void func_0210cc3c(Unk0210bfbc *p) {
         return;
     }
     v = 3;
-    for (a = p->mUnk_0c.mUnk_00; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
+    for (a = p->mUnk_0c.mHead; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
         if (a->mUnk_19 & 2) {
             v = 0;
             break;
@@ -147,7 +147,7 @@ u32 func_0210ca4c(Unk0210bfbc *p) {
         func_0210c0bc(p);
         return 0;
     }
-    for (a = p->mUnk_0c.mUnk_00; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
+    for (a = p->mUnk_0c.mHead; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
         n = -1;
         if (a->mUnk_19 & 2) {
             n = func_0210ca4c_inline(st.mUnk_1c, a->mUnk_18, a->mUnk_16);
@@ -170,7 +170,7 @@ u32 func_0210ca4c(Unk0210bfbc *p) {
 Unk0210bf24 *func_0210c86c(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
     Unk0210bf24 *v;
     Unk0210bf24 *w;
-    Unk02017328 *u;
+    LinkedList *u;
     u32 f;
 
     v = NULL;
@@ -180,7 +180,7 @@ Unk0210bf24 *func_0210c86c(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
     if ((a->mUnk_34 & 1) == 0) {
         return v;
     }
-    for (w = a->mUnk_0c.mUnk_00; w != NULL; w = ListGetNext(&a->mUnk_0c, w)) {
+    for (w = a->mUnk_0c.mHead; w != NULL; w = ListGetNext(&a->mUnk_0c, w)) {
         f = (w->mUnk_16 == c) && (w->mUnk_18 == b);
         if (f) {
             func_0210c450(a, w, 0);
@@ -232,7 +232,7 @@ Unk0210bf24 *func_0210c86c(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
 Unk0210bf24 *func_0210c610(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
     Unk0210bf24 *v;
     Unk0210bf24 *w;
-    Unk02017328 *u;
+    LinkedList *u;
     u32 f;
 
     v = NULL;
@@ -242,7 +242,7 @@ Unk0210bf24 *func_0210c610(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
     if ((a->mUnk_34 & 1) == 0) {
         return v;
     }
-    for (w = a->mUnk_0c.mUnk_00; w != NULL; w = ListGetNext(&a->mUnk_0c, w)) {
+    for (w = a->mUnk_0c.mHead; w != NULL; w = ListGetNext(&a->mUnk_0c, w)) {
         if (w->mUnk_19 & 4) {
             f = (w->mUnk_16 == c) && (w->mUnk_18 == b);
             if (f) {
@@ -316,7 +316,7 @@ void func_0210c558(Unk0210bfbc *a, u32 b, u32 c, u32 d) {
     if (data_0217d084.mUnk_10 == 0) {
         return;
     }
-    v = a->mUnk_0c.mUnk_00;
+    v = a->mUnk_0c.mHead;
     while (v != NULL) {
         f = (v->mUnk_00 != NULL) && func_0210c558_inline(v, b, c);
         if (f) {
@@ -339,7 +339,7 @@ void func_0210c450(Unk0210bfbc *p, Unk0210bf24 *b, u32 c) {
     b->mUnk_19 &= ~2;
     func_0210bc54(&p->mUnk_0c, (u8 *) b);
     v = 3;
-    for (a = p->mUnk_0c.mUnk_00; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
+    for (a = p->mUnk_0c.mHead; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
         f = a->mUnk_19;
         if (f & 2) {
             v = 0;
@@ -364,7 +364,7 @@ void func_0210c450(Unk0210bfbc *p, Unk0210bf24 *b, u32 c) {
 void func_0210c3a8(Unk0210bfbc *p) {
     Unk0210bf24 *a;
 
-    for (a = p->mUnk_0c.mUnk_00; a != NULL; a = p->mUnk_0c.mUnk_00) {
+    for (a = p->mUnk_0c.mHead; a != NULL; a = p->mUnk_0c.mHead) {
         func_0212c6f0((Unk0212c400 **) a, 0);
         a->mUnk_19 &= ~4;
         a->mUnk_19 &= ~8;
@@ -385,7 +385,7 @@ void func_0210c238(Unk0210bfbc *p, u32 b) {
     u8 f;
 
     v = 0;
-    a = p->mUnk_0c.mUnk_00;
+    a = p->mUnk_0c.mHead;
     while (a != NULL) {
         if (a->mUnk_19 & 4) {
             c = a;
@@ -404,7 +404,7 @@ void func_0210c238(Unk0210bfbc *p, u32 b) {
         return;
     }
     v = 3;
-    for (a = p->mUnk_0c.mUnk_00; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
+    for (a = p->mUnk_0c.mHead; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
         f = a->mUnk_19;
         if (f & 2) {
             v = 0;
@@ -430,7 +430,7 @@ void func_0210c1b0(Unk0210bfbc *p) {
     void *a;
 
     func_0210c238(p, 0);
-    for (a = p->mUnk_0c.mUnk_00; a != NULL; a = p->mUnk_0c.mUnk_00) {
+    for (a = p->mUnk_0c.mHead; a != NULL; a = p->mUnk_0c.mHead) {
         func_0210bc54(&p->mUnk_0c, (u8 *) a);
     }
     if (p->mUnk_18 != 3) {

@@ -3,7 +3,7 @@
 #include "code_02003be0.h"
 #include "code_02139f70.h"
 
-u32 func_020184a0(Unk02018344 *a) {
+u32 ArchiveHeaderMatches(Unk02018344 *a) {
     if (a->mUnk_00 != 0x4352414e) {
         return 0;
     }
@@ -13,7 +13,7 @@ u32 func_020184a0(Unk02018344 *a) {
     return a->mUnk_06 == 0x100 ? 1 : 0;
 }
 
-u32 func_02018344(Unk020182c0 *a, const u8 *b, Unk02018344 *c) {
+u32 ArchiveLoadFromMemory(Unk020182c0 *a, const u8 *b, Unk02018344 *c) {
     u8 *p6;
     u8 *p5;
     u8 *p4;
@@ -24,7 +24,7 @@ u32 func_02018344(Unk020182c0 *a, const u8 *b, Unk02018344 *c) {
     p6 = 0;
     p5 = 0;
     p4 = 0;
-    if (func_020184a0(c) == 0) {
+    if (ArchiveHeaderMatches(c) == 0) {
         return 0;
     }
     p = (u8 *) c + c->mUnk_0c;
@@ -59,7 +59,7 @@ u32 func_02018344(Unk020182c0 *a, const u8 *b, Unk02018344 *c) {
     return 0;
 }
 
-u32 func_02018314(Unk02003a6c *a) {
+u32 ArchiveUnload(Unk02003a6c *a) {
     if (FS_UnloadArchive(a) == 0) {
         return 0;
     }
@@ -67,7 +67,7 @@ u32 func_02018314(Unk02003a6c *a) {
     return 1;
 }
 
-u32 func_020182c0(const u8 *a) {
+u32 ArchiveFileGetAddress(const u8 *a) {
     Unk02003024 s;
     u32 r;
 

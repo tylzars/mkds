@@ -2,10 +2,10 @@
 
 #include "types.h"
 
-// func_020207ec takes an Unk020207ec from func_020213ec, stores its five arguments in mUnk_04 to mUnk_14 and passes it
-// to func_020213a4. The functions after it pass a fixed first argument to func_020207ec, func_02020870 or
-// func_020208a4.
-void func_020207ec(u32 a, u32 b, u32 c, u32 d, u32 e);
+// PxiCommandEnqueue takes an PxiCommand from PxiCommandAlloc, stores its five arguments in mUnk_04 to mUnk_14 and
+// passes it to PxiCommandPendingAppend. The functions after it pass a fixed first argument to PxiCommandEnqueue,
+// func_02020870 or func_020208a4.
+void PxiCommandEnqueue(u32 a, u32 b, u32 c, u32 d, u32 e);
 void func_02020844(u32 a);
 void func_02020870(u32 a, u32 b, u32 c, u32 d, u32 e);
 void func_020208a4(u32 a, u32 b, u32 c, u32 d);

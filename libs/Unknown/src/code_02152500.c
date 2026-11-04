@@ -40,8 +40,8 @@ void func_021525f0(Unk02152500 *a, const Unk02152490 *b, u32 c) {
 
     a->mUnk_10 = *b;
     a->mUnk_1c = c;
-    func_02020694(t, 0xedb88320);
-    a->mUnk_3c = func_020205b0(t, a, 0x3c);
+    Crc32InitTable(t, 0xedb88320);
+    a->mUnk_3c = Crc32(t, a, 0x3c);
     a->mUnk_20 |= 1;
 }
 
@@ -59,8 +59,8 @@ void func_021525a8(void *a) {
     u32 t[0x100];
 
     p->mUnk_20 &= ~1;
-    func_02020694(t, 0xedb88320);
-    p->mUnk_3c = func_020205b0(t, p, 0x3c);
+    Crc32InitTable(t, 0xedb88320);
+    p->mUnk_3c = Crc32(t, p, 0x3c);
 }
 
 u64 func_02152584(const void *a) {

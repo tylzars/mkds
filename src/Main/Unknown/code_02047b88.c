@@ -96,7 +96,7 @@ void func_02047cf0(int a) {
 
     b = TRUE;
     if (data_021759c8->mUnk_00[a].mLoaded != 0 && a != 0x13) {
-        func_02018314(&data_021759c8->mUnk_00[a].mArchive.mUnk_00);
+        ArchiveUnload(&data_021759c8->mUnk_00[a].mArchive.mUnk_00);
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
             c = data_usa_021543e0[a].mUnk_08;
             if (c != -1 && data_021759c8->mUnk_9b0[c].mUnk_08_29 != 0) {
@@ -121,7 +121,7 @@ void func_02047db8(void) {
     p = &data_021759c8->mUnk_8c8;
     e = &data_021759c8->mUnk_00[p->mUnk_8c];
     if (p->mUnk_84 != NULL) {
-        if (func_02018344(&e->mArchive, (const u8 *) gArchiveNames[p->mUnk_8c], p->mUnk_84) != 0) {
+        if (ArchiveLoadFromMemory(&e->mArchive, (const u8 *) gArchiveNames[p->mUnk_8c], p->mUnk_84) != 0) {
             e->mLoaded = 1;
             e->mData = p->mUnk_84;
         }

@@ -14,11 +14,11 @@ typedef struct Unk02021f9c {
     /* 0e */ u16 mUnk_0e;
 } Unk02021f9c;
 
-// Start of each part: a word at 0 that func_02021fd0 compares, and the size of the part at 4.
+// Start of each part: a word at 0 that FindPartByTag compares, and the size of the part at 4.
 typedef struct Unk02021fd0 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
 } Unk02021fd0;
 
 u32 func_02021f9c(Unk02021f9c *a, Unk02021fd0 **b);
-Unk02021fd0 *func_02021fd0(Unk02021f9c *a, u32 b);
+Unk02021fd0 *FindPartByTag(Unk02021f9c *a, u32 b);

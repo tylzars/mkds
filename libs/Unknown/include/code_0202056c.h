@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_0202056c(u32 a);
+u32 CountSetBits(u32 a);

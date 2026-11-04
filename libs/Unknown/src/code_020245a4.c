@@ -71,7 +71,7 @@ u32 func_0202469c(Unk02021f9c *a, Unk02022ce4 **b) {
         IrqDisableLoopForever();
     }
     func_020245a4(a);
-    p = func_02021fd0(a, 0x46494e46);
+    p = FindPartByTag(a, 0x46494e46);
     if (p == 0) {
         *b = 0;
         return 0;
@@ -84,7 +84,7 @@ u32 func_0202469c(Unk02021f9c *a, Unk02022ce4 **b) {
     return r + 1;
 }
 
-u32 func_020247fc(Unk020247fc *a, s32 b) {
+u32 BitStreamReadBits(Unk020247fc *a, s32 b) {
     s32 n;
     u32 c;
     u32 r;
@@ -98,7 +98,7 @@ u32 func_020247fc(Unk020247fc *a, s32 b) {
         r = c << (b - n);
         a->mUnk_05 = *p;
         a->mUnk_04 = 8;
-        r = func_020247fc(a, b - n) | r;
+        r = BitStreamReadBits(a, b - n) | r;
     } else {
         a->mUnk_04 = n - b;
         r = c >> (n - b);
@@ -106,7 +106,7 @@ u32 func_020247fc(Unk020247fc *a, s32 b) {
     return r & (0xff >> (8 - b));
 }
 
-u16 func_02024868(u8 **a) {
+u16 CharReadByte(u8 **a) {
     u8 *p;
     u8 c;
 
@@ -116,7 +116,7 @@ u16 func_02024868(u8 **a) {
     return c;
 }
 
-u16 func_0202487c(u8 **a) {
+u16 CharReadByteOrPair(u8 **a) {
     u16 c;
     u8 *p;
 
@@ -131,7 +131,7 @@ u16 func_0202487c(u8 **a) {
     return c;
 }
 
-u16 func_020248d0(u8 **a) {
+u16 CharReadOneToThreeBytes(u8 **a) {
     u8 *p;
     u16 c;
 
@@ -149,7 +149,7 @@ u16 func_020248d0(u8 **a) {
     return c;
 }
 
-u16 func_02024960(u16 **a) {
+u16 CharReadHalfword(u16 **a) {
     u16 *p;
     u16 c;
 

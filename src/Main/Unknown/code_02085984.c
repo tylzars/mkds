@@ -266,7 +266,7 @@ s32 func_02085984(u16 a, u32 *b) {
     s32 m;
     s32 v;
     u16 k;
-    Unk02017328 *l;
+    LinkedList *l;
     u16 n;
     u32 h;
     u16 x;
@@ -332,7 +332,7 @@ s32 func_02085984(u16 a, u32 *b) {
         }
         if (v1 == FALSE) {
             l = &data_0217aebc->mUnk_12c;
-            n = l->mUnk_08;
+            n = l->mCount;
             c = data_0217aebc->mUnk_128;
             x = n - 1;
             if (x == 0) {

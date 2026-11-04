@@ -53,7 +53,7 @@ void func_0208e99c(Unk0208ec64 *a) {
         data_021663ec(r, a);
         return;
     }
-    if (a->mUnk_08.mUnk_08 != 0) {
+    if (a->mUnk_08.mCount != 0) {
         return;
     }
     ListRemove(&data_0217b08c->mUnk_00[0], a);
@@ -498,9 +498,9 @@ void func_0208d978(const Vec3 *a, s32 b) {
     }
     i = 0;
     if (b != 0) {
-        p = ListGetNth((Unk02017328 *) ((u8 *) data_0217b080->mUnk_0c + 0x18), 0);
+        p = ListGetNth((LinkedList *) ((u8 *) data_0217b080->mUnk_0c + 0x18), 0);
         if (p != NULL) {
-            ListRemove((Unk02017328 *) ((u8 *) data_0217b080->mUnk_0c + 0x18), p);
+            ListRemove((LinkedList *) ((u8 *) data_0217b080->mUnk_0c + 0x18), p);
             p->mUnk_88 = 0;
             p->mUnk_74 = *a;
             p->mUnk_a8 = 0;

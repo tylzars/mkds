@@ -243,8 +243,8 @@ void func_ov001_0219cba0(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        res = func_0201ea84(gSelectBattleStage->mSelectBattleStageBnbls[1], data_02175628[idx].mUnk_48,
-                            data_02175628[idx].mUnk_4a);
+        res = RectTableFindContaining(gSelectBattleStage->mSelectBattleStageBnbls[1], data_02175628[idx].mUnk_48,
+                                      data_02175628[idx].mUnk_4a);
     }
     for (i = 0; i < 6; i++) {
         if (res == data_ov001_021a6be8[i]) {

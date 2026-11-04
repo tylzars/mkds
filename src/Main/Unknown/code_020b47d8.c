@@ -141,7 +141,7 @@ void LoadNclrData(Nclr **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a != NULL) {
-        r = func_02021fd0(a, 0x504c5454);
+        r = FindPartByTag(a, 0x504c5454);
         if (r != NULL) {
             *v1 = (Nclr *) (r + 1);
             func_02021f8c((u32) *v1);
@@ -156,7 +156,7 @@ void LocateNclr(Nclr **v1, void *a) {
     if (a == NULL) {
         return;
     }
-    r = func_02021fd0(a, 0x504c5454);
+    r = FindPartByTag(a, 0x504c5454);
     if (r != NULL) {
         *v1 = (Nclr *) (r + 1);
     }
@@ -166,7 +166,7 @@ void LoadNcgrData2(Ncgr **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a != NULL) {
-        r = func_02021fd0(a, 0x43484152);
+        r = FindPartByTag(a, 0x43484152);
         if (r != NULL) {
             *v1 = (Ncgr *) (r + 1);
             func_02021f7c((u32) *v1);
@@ -181,7 +181,7 @@ void LocateNcgr2(Ncgr **v1, void *a) {
     if (a == NULL) {
         return;
     }
-    r = func_02021fd0(a, 0x43484152);
+    r = FindPartByTag(a, 0x43484152);
     if (r != NULL) {
         *v1 = (Ncgr *) (r + 1);
     }
@@ -191,7 +191,7 @@ void LoadNcgrData(Ncgr **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a != NULL) {
-        r = func_02021fd0(a, 0x43484152);
+        r = FindPartByTag(a, 0x43484152);
         if (r != NULL) {
             *v1 = (Ncgr *) (r + 1);
             func_02021f6c((u32) *v1);
@@ -206,7 +206,7 @@ void LocateNcgr(Ncgr **v1, void *a) {
     if (a == NULL) {
         return;
     }
-    r = func_02021fd0(a, 0x43484152);
+    r = FindPartByTag(a, 0x43484152);
     if (r != NULL) {
         *v1 = (Ncgr *) (r + 1);
     }
@@ -218,7 +218,7 @@ void LoadNcerData(Unk02021dc8 **v1, void *a) {
     if (a == NULL) {
         return;
     }
-    r = func_02021fd0(a, 0x4345424b);
+    r = FindPartByTag(a, 0x4345424b);
     if (r == NULL) {
         return;
     }
@@ -232,7 +232,7 @@ void LocateNcer(Unk02021dc8 **v1, void *a) {
     if (a == NULL) {
         return;
     }
-    r = func_02021fd0(a, 0x4345424b);
+    r = FindPartByTag(a, 0x4345424b);
     if (r != NULL) {
         *v1 = (Unk02021dc8 *) (r + 1);
     }
@@ -244,7 +244,7 @@ void LoadNanrData(Unk02021dc8 **v1, void *a) {
     if (a == NULL) {
         return;
     }
-    r = func_02021fd0(a, 0x41424e4b);
+    r = FindPartByTag(a, 0x41424e4b);
     if (r == NULL) {
         return;
     }
@@ -256,7 +256,7 @@ void LoadNscrData(Nscr **v1, void *a) {
     Unk02021fd0 *r;
 
     if (a != NULL) {
-        r = func_02021fd0(a, 0x5343524e);
+        r = FindPartByTag(a, 0x5343524e);
         if (r != NULL) {
             *v1 = (Nscr *) (r + 1);
             func_02021f9c(a, (Unk02021fd0 **) v1);
@@ -271,7 +271,7 @@ void LocateNscr(Nscr **v1, void *a) {
     if (a == NULL) {
         return;
     }
-    r = func_02021fd0(a, 0x5343524e);
+    r = FindPartByTag(a, 0x5343524e);
     if (r != NULL) {
         *v1 = (Nscr *) (r + 1);
     }

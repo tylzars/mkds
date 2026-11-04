@@ -15,18 +15,18 @@
 #include "Main/Unknown/unk_02152000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-s32 func_0212c700(u32 a, Unk0212d9dc *b, u32 c) {
+s32 func_0212c700(u32 a, HeapStack *b, u32 c) {
     Unk0212c700 *p;
-    Unk0212d9dc *q;
+    HeapStack *q;
 
-    p = func_0212db7c(b, c + 0x14, func_0212bd10, 0, 0);
+    p = HeapStackAlloc(b, c + 0x14, func_0212bd10, 0, 0);
     if (p == 0) {
         return 0;
     }
     p->mUnk_0c = 0;
     p->mUnk_10 = a;
     p->mUnk_08 = 0;
-    q = func_0212dcc8(p->mUnk_14, c);
+    q = HeapStackCreate(p->mUnk_14, c);
     if (q == 0) {
         return 0;
     }
@@ -104,7 +104,7 @@ void func_0212c620(Unk0212c400 **a, s32 b, s32 c) {
     if (p->mUnk_2c == 2) {
         return;
     }
-    func_0212f834(&p->mUnk_1c, b << 8, c);
+    InterpolatorStart(&p->mUnk_1c, b << 8, c);
 }
 
 void func_0212c5f4(Unk0212c400 **a, u32 b) {
@@ -209,8 +209,8 @@ u32 func_0212c450(Unk0212c400 **arg0, u32 arg1, u32 arg2) {
     return value0;
 }
 
-Unk02017328 data_0217d450;
-Unk02017328 data_0217d444;
+LinkedList data_0217d450;
+LinkedList data_0217d444;
 
 u32 func_0212c400(Unk0212c400 **a, u32 b, s16 *c) {
     Unk0212c400 *p = *a;
@@ -267,18 +267,18 @@ void func_0212c19c(void) {
     m = func_020218bc();
     for (p = ListGetNext(&data_0217d450, 0); p != 0; p = q) {
         q = ListGetNext(&data_0217d450, p);
-        if (p->mUnk_2d == 0 && func_020210c0(p->mUnk_30) != 0) {
+        if (p->mUnk_2d == 0 && PxiCommandSequenceReached(p->mUnk_30) != 0) {
             p->mUnk_2d = 1;
         }
         if (p->mUnk_2d != 0 && (m & (1 << p->mUnk_3c)) == 0) {
             func_0212bd6c(p);
             continue;
         }
-        func_0212f7e0(&p->mUnk_1c);
+        InterpolatorStep(&p->mUnk_1c);
         a = data_02152ce4[p->mUnk_41];
         b = data_02152ce4[p->mUnk_40];
         c = data_02152ce4[p->mUnk_04->mUnk_20];
-        v = data_02152ce4[func_0212f7f8(&p->mUnk_1c) >> 8];
+        v = data_02152ce4[InterpolatorGetValue(&p->mUnk_1c) >> 8];
         v += c + (b + a);
         if (v < -723) {
             v = -723;
@@ -289,7 +289,7 @@ void func_0212c19c(void) {
             func_02020d80(p->mUnk_3c, v);
             p->mUnk_3e = v;
         }
-        if (p->mUnk_2c == 2 && func_0212f7c8(&p->mUnk_1c) != 0) {
+        if (p->mUnk_2c == 2 && InterpolatorIsDone(&p->mUnk_1c) != 0) {
             func_0212be78(p);
         }
         if (p->mUnk_2f != 0) {
@@ -306,7 +306,7 @@ Unk0212c400 *func_0212c0e0(Unk0212c400 **a, s32 b, s32 c) {
     if (p != 0) {
         func_0212c688(a);
     }
-    if (e->mUnk_00.mUnk_08 >= e->mUnk_18) {
+    if (e->mUnk_00.mCount >= e->mUnk_18) {
         p = ListGetNext(&e->mUnk_00, 0);
         if (p == 0) {
             return 0;
@@ -354,12 +354,12 @@ void func_0212c018(Unk0212c400 *p, u32 b) {
         func_0212be78(p);
         return;
     }
-    func_0212f834(&p->mUnk_1c, 0, b);
+    InterpolatorStart(&p->mUnk_1c, 0, b);
     func_0212bcac(p, 0);
     p->mUnk_2c = 2;
 }
 
-Unk0212d9dc *func_0212bfbc(u32 a, Unk0212c400 *b) {
+HeapStack *func_0212bfbc(u32 a, Unk0212c400 *b) {
     Unk0212c7a0 *e = &data_0217d89c[a];
     Unk0212c700 *q;
 
@@ -370,7 +370,7 @@ Unk0212d9dc *func_0212bfbc(u32 a, Unk0212c400 *b) {
     ListRemove(&e->mUnk_0c, q);
     q->mUnk_0c = b;
     b->mUnk_08 = q;
-    func_0212dbec(q->mUnk_08);
+    HeapStackReset(q->mUnk_08);
     return q->mUnk_08;
 }
 
@@ -382,8 +382,8 @@ void func_0212bf70(Unk0212c400 *p) {
     p->mUnk_3e = 0;
     p->mUnk_40 = 0x7f;
     p->mUnk_41 = 0x7f;
-    func_0212f864(&p->mUnk_1c);
-    func_0212f834(&p->mUnk_1c, 0x7f00, 1);
+    InterpolatorInit(&p->mUnk_1c);
+    InterpolatorStart(&p->mUnk_1c, 0x7f00, 1);
 }
 
 void func_0212bf14(Unk0212c7a0 *e, Unk0212c400 *p) {
@@ -457,7 +457,7 @@ void func_0212bd10(Unk0212c700 *p) {
     if (p->mUnk_08 == 0) {
         return;
     }
-    func_0212dcac(p->mUnk_08);
+    HeapStackDestroy(p->mUnk_08);
     if (p->mUnk_0c != 0) {
         p->mUnk_0c->mUnk_08 = 0;
         return;

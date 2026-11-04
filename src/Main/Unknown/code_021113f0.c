@@ -180,7 +180,7 @@ void func_0211256c(void) {
         g = FALSE;
     }
     if (g != FALSE) {
-        a = func_0201ea84(gRecordVS->mUnk_34, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
+        a = RectTableFindContaining(gRecordVS->mUnk_34, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
     g = FALSE;
     f = FALSE;
@@ -192,7 +192,7 @@ void func_0211256c(void) {
         g = TRUE;
     }
     if (g != FALSE) {
-        b = func_0201ea84(gRecordVS->mUnk_34, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
+        b = RectTableFindContaining(gRecordVS->mUnk_34, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
     if (a != 10) {
         gRecordVS->mUnk_88 = 0;

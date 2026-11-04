@@ -34,7 +34,7 @@ u16 func_0201eb98(Unk0201ea30 *a) {
     return a->mUnk_06;
 }
 
-Unk0201eb54 *func_0201eb54(Unk0201ea30 *a, s32 b) {
+Unk0201eb54 *RectTableGetEntry(Unk0201ea30 *a, s32 b) {
     Unk0201eb54 *p;
 
     p = (Unk0201eb54 *) (a + 1);
@@ -44,7 +44,7 @@ Unk0201eb54 *func_0201eb54(Unk0201ea30 *a, s32 b) {
     return p + b;
 }
 
-s32 func_0201ea84(Unk0201ea30 *a, s32 b, s32 c) {
+s32 RectTableFindContaining(Unk0201ea30 *a, s32 b, s32 c) {
     s32 i;
     Unk0201eb54 *p;
     s32 x;

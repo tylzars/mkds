@@ -1,6 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212f788.h" // Unk0212f7c8
+#include "code_0212f788.h" // Interpolator
 
-void func_0212f864(Unk0212f7c8 *arg0);
+void InterpolatorInit(Interpolator *arg0);

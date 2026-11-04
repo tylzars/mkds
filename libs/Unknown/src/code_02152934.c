@@ -22,8 +22,8 @@ u64 func_02152988(u32 a, u32 b) {
 
     s[0] = a;
     s[1] = b;
-    func_020207a8(t, 7);
-    v = func_0202061c(t, s, 8) & 0x7f;
+    Crc8InitTable(t, 7);
+    v = Crc8(t, s, 8) & 0x7f;
     v <<= 32;
     v |= a;
     return v;
@@ -36,8 +36,8 @@ s32 func_02152950(u64 a, u32 b) {
 
     s[0] = a;
     s[1] = b;
-    func_020207a8(t, 7);
-    c = func_0202061c(t, s, 8) & 0x7f;
+    Crc8InitTable(t, 7);
+    c = Crc8(t, s, 8) & 0x7f;
     return c == (a >> 32);
 }
 

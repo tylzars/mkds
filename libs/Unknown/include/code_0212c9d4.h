@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212f788.h" // Unk0212f7c8
+#include "code_0212f788.h" // Interpolator
 
 // 0x54 bytes, data_0217ddd0. func_0212ccd4 sets it up and passes it to func_0212c9d4; mUnk_34 is called by
 // func_0212c9d4 with the two buffers, mUnk_14, mUnk_08 and mUnk_38.
@@ -21,7 +21,7 @@ typedef struct Unk0212ccd4 {
     /* 30 */ s32 mUnk_30;
     /* 34 */ void (*mUnk_34)(u8 *a, u8 *b, u32 c, u32 d, void *e);
     /* 38 */ void *mUnk_38;
-    /* 3c */ Unk0212f7c8 mUnk_3c;
+    /* 3c */ Interpolator mUnk_3c;
     /* 4c */ u32 mUnk_4c;
     /* 50 */ s32 mUnk_50;
 } Unk0212ccd4;

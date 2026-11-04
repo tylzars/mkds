@@ -6,7 +6,7 @@ void *func_02021968(Unk02021968 *a, u32 b) {
     u32 v;
     u8 *p;
 
-    func_02020e50();
+    SharedLockWait();
     v = a->mUnk_3c[b];
     if (v != 0) {
         p = (u8 *) v;
@@ -16,7 +16,7 @@ void *func_02021968(Unk02021968 *a, u32 b) {
     } else {
         p = 0;
     }
-    func_02020e3c();
+    SharedLockUnlock();
     return p;
 }
 

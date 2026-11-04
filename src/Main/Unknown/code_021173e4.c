@@ -495,7 +495,7 @@ void func_021178b0(void) {
         b = 1;
     }
     if (b != 0) {
-        s = func_0201ea84(data_0217d360->mSelectCupSBnbl, data_02175670[n].mUnk_00, data_02175672[n].mUnk_00);
+        s = RectTableFindContaining(data_0217d360->mSelectCupSBnbl, data_02175670[n].mUnk_00, data_02175672[n].mUnk_00);
     }
     q = &data_02175628[n];
     if ((u16) (data_02175628[n].mUnk_00 & 2) != 0) {

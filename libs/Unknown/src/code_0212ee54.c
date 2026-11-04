@@ -34,16 +34,16 @@ void func_0212f094(void) {
             p->mUnk_110_2 = 0;
         }
         if (p->mUnk_110_1) {
-            func_0212f7e0(&p->mUnk_e8);
+            InterpolatorStep(&p->mUnk_e8);
             a = data_02152ce4[p->mUnk_154];
-            b = data_02152ce4[func_0212f7f8(&p->mUnk_e8) >> 8];
+            b = data_02152ce4[InterpolatorGetValue(&p->mUnk_e8) >> 8];
             b += a;
             if (b != p->mUnk_158) {
                 func_0212c8a4(p, b);
                 p->mUnk_158 = b;
             }
             if (p->mUnk_110_3) {
-                if (func_0212f7c8(&p->mUnk_e8) != 0) {
+                if (InterpolatorIsDone(&p->mUnk_e8) != 0) {
                     func_0212efb8(p);
                 }
             }
@@ -109,7 +109,7 @@ void func_0212ef00(Unk0212c7f0 *a) {
 }
 
 // Unlinks every element of the list whose mUnk_08 is b and passes it to func_0212ee54.
-void func_0212ee8c(Unk02017328 *a, void *b) {
+void func_0212ee8c(LinkedList *a, void *b) {
     u32 v;
     Unk0212ee8c *p;
     Unk0212ee8c *next;
@@ -139,7 +139,7 @@ u32 func_0212ee54(void *arg0) {
     value4 = value0;
     value0 = (u32) &data_0217df08;
     value1 = value5;
-    ListAppend((Unk02017328 *) value0, (void *) value1);
+    ListAppend((LinkedList *) value0, (void *) value1);
     value0 = value4;
     value0 = (u32) IrqRestore(value0);
     return value0;

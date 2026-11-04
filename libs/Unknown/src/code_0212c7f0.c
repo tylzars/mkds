@@ -56,8 +56,8 @@ void func_0212c824(Unk0212c7f0 *p) {
         func_0214f4a4(&p->mUnk_14);
         p->mUnk_24_1 = 0;
         r = func_02021114();
-        func_020211e4(1);
-        func_02021154(r);
+        PxiCommandSendPending(1);
+        PxiCommandWaitForSequence(r);
     }
     func_0212c7f0(p);
 }

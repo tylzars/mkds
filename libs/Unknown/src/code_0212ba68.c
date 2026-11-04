@@ -37,12 +37,12 @@ void func_0212baa8(void) {
 }
 
 void func_0212ba74(void) {
-    while (func_02021488(0) != 0) {
+    while (PxiCommandReclaim(0) != 0) {
     }
     func_0212c19c();
     func_0212d03c();
     func_0212f094();
-    func_020211e4(0);
+    PxiCommandSendPending(0);
 }
 
 void func_0212ba68(u32 a) {

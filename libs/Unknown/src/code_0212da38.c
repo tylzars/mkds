@@ -27,7 +27,7 @@
 u8 data_0217dec8[0x3c];
 
 // Calls func_0212c7b8, func_0212c7a0 and func_0212c700 for up to 32 entries of func_0212d38c.
-u32 func_0212edac(Unk0212d9dc *a) {
+u32 func_0212edac(HeapStack *a) {
     s32 i;
     Unk0212edac *p;
     s32 j;
@@ -116,7 +116,7 @@ s32 func_0212eaf8(Unk0212c400 **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, u32 f) {
     void *p;
     Unk0212f788 *x;
     Unk02021968 *y;
-    Unk0212d9dc *l;
+    HeapStack *l;
 
     p = func_0212c0e0(a, b, d);
     if (p == 0) {
@@ -141,7 +141,7 @@ s32 func_0212eaf8(Unk0212c400 **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, u32 f) {
 s32 func_0212ea28(Unk0212c400 **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, Unk0212f788 *f, u32 g, u32 h) {
     void *p;
     Unk02021968 *x;
-    Unk0212d9dc *l;
+    HeapStack *l;
 
     p = func_0212c0e0(a, b, d);
     if (p == 0) {
@@ -159,31 +159,31 @@ s32 func_0212ea28(Unk0212c400 **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, Unk0212f
     return 1;
 }
 
-u32 func_0212ea04(s32 a, Unk0212d9dc *b) {
+u32 func_0212ea04(s32 a, HeapStack *b) {
     return func_0212e7b4(a, b) == 0;
 }
 
-u32 func_0212e9cc(s32 a, Unk0212d9dc *b) {
+u32 func_0212e9cc(s32 a, HeapStack *b) {
     return func_0212e708(a, 0xff, b, 1, 0) == 0;
 }
 
-u32 func_0212e994(s32 a, Unk0212d9dc *b) {
+u32 func_0212e994(s32 a, HeapStack *b) {
     return func_0212e698(a, 0xff, b, 1, 0) == 0;
 }
 
-u32 func_0212e95c(s32 a, Unk0212d9dc *b) {
+u32 func_0212e95c(s32 a, HeapStack *b) {
     return func_0212e538(a, 0xff, b, 1, 0) == 0;
 }
 
-u32 func_0212e924(s32 a, Unk0212d9dc *b) {
+u32 func_0212e924(s32 a, HeapStack *b) {
     return func_0212e490(a, 0xff, b, 1, 0) == 0;
 }
 
-u32 func_0212e8f4(s32 a, u32 b, Unk0212d9dc *c) {
+u32 func_0212e8f4(s32 a, u32 b, HeapStack *c) {
     return func_0212e538(a, b, c, 1, 0) == 0;
 }
 
-u32 func_0212e7b4(s32 a, Unk0212d9dc *b) {
+u32 func_0212e7b4(s32 a, HeapStack *b) {
     u32 *t;
     u32 i;
     Unk0212e7b4 *e;
@@ -225,7 +225,7 @@ u32 func_0212e7b4(s32 a, Unk0212d9dc *b) {
     return 0;
 }
 
-u32 func_0212e708(s32 a, u32 b, Unk0212d9dc *c, u32 d, Unk0212f788 **out) {
+u32 func_0212e708(s32 a, u32 b, HeapStack *c, u32 d, Unk0212f788 **out) {
     Unk0212ea28 *p;
     void *v;
     u32 r;
@@ -252,7 +252,7 @@ u32 func_0212e708(s32 a, u32 b, Unk0212d9dc *c, u32 d, Unk0212f788 **out) {
     return 0;
 }
 
-u32 func_0212e698(s32 a, u32 b, Unk0212d9dc *c, u32 d, Unk0212f788 **out) {
+u32 func_0212e698(s32 a, u32 b, HeapStack *c, u32 d, Unk0212f788 **out) {
     u32 *p;
     void *v;
 
@@ -274,7 +274,7 @@ u32 func_0212e698(s32 a, u32 b, Unk0212d9dc *c, u32 d, Unk0212f788 **out) {
     return 0;
 }
 
-u32 func_0212e538(s32 a, u32 b, Unk0212d9dc *c, u32 d, Unk02021968 **out) {
+u32 func_0212e538(s32 a, u32 b, HeapStack *c, u32 d, Unk02021968 **out) {
     Unk0212e538 *p;
     Unk0212e490 *q;
     Unk02021968 *tmp;
@@ -322,7 +322,7 @@ u32 func_0212e538(s32 a, u32 b, Unk0212d9dc *c, u32 d, Unk02021968 **out) {
     return 0;
 }
 
-u32 func_0212e490(s32 a, u32 b, Unk0212d9dc *c, u32 d, Unk02021968 **out) {
+u32 func_0212e490(s32 a, u32 b, HeapStack *c, u32 d, Unk02021968 **out) {
     Unk0212e490 *p;
     Unk02021968 *v;
 
@@ -348,7 +348,7 @@ u32 func_0212e490(s32 a, u32 b, Unk0212d9dc *c, u32 d, Unk02021968 **out) {
     return 0;
 }
 
-void *func_0212e3dc(u32 a, UnkFunc *f, void *p, u32 d, Unk0212d9dc *e) {
+void *func_0212e3dc(u32 a, UnkFunc *f, void *p, u32 d, HeapStack *e) {
     u32 size;
     u8 *b;
 
@@ -359,7 +359,7 @@ void *func_0212e3dc(u32 a, UnkFunc *f, void *p, u32 d, Unk0212d9dc *e) {
     if (e == 0) {
         return 0;
     }
-    b = func_0212db7c(e, size + 0x20, f, p, d);
+    b = HeapStackAlloc(e, size + 0x20, f, p, d);
     if (b == 0) {
         return 0;
     }
@@ -370,7 +370,7 @@ void *func_0212e3dc(u32 a, UnkFunc *f, void *p, u32 d, Unk0212d9dc *e) {
     return b;
 }
 
-void *func_0212e360(u32 a, Unk0212d9dc *b, u32 c) {
+void *func_0212e360(u32 a, HeapStack *b, u32 c) {
     void *p;
 
     p = func_0212d254(a);
@@ -383,7 +383,7 @@ void *func_0212e360(u32 a, Unk0212d9dc *b, u32 c) {
     return p;
 }
 
-void *func_0212e2e4(u32 a, Unk0212d9dc *b, u32 c) {
+void *func_0212e2e4(u32 a, HeapStack *b, u32 c) {
     void *p;
 
     p = func_0212d254(a);
@@ -396,7 +396,7 @@ void *func_0212e2e4(u32 a, Unk0212d9dc *b, u32 c) {
     return p;
 }
 
-void *func_0212e268(u32 a, Unk0212d9dc *b, u32 c) {
+void *func_0212e268(u32 a, HeapStack *b, u32 c) {
     void *p;
 
     p = func_0212d254(a);
@@ -409,7 +409,7 @@ void *func_0212e268(u32 a, Unk0212d9dc *b, u32 c) {
     return p;
 }
 
-Unk02021968 *func_0212e1ec(u32 a, Unk0212d9dc *b, u32 c) {
+Unk02021968 *func_0212e1ec(u32 a, HeapStack *b, u32 c) {
     Unk02021968 *p;
 
     p = func_0212d254(a);
@@ -422,7 +422,7 @@ Unk02021968 *func_0212e1ec(u32 a, Unk0212d9dc *b, u32 c) {
     return p;
 }
 
-Unk02021968 *func_0212e0b8(u32 a, Unk0212d9dc *b, u32 c) {
+Unk02021968 *func_0212e0b8(u32 a, HeapStack *b, u32 c) {
     Unk02021968 *p;
     u32 size;
     u32 n;
@@ -438,7 +438,7 @@ Unk02021968 *func_0212e0b8(u32 a, Unk0212d9dc *b, u32 c) {
         if (b == 0) {
             return 0;
         }
-        p = func_0212db7c(b, size + 0x20, func_0212df7c, c ? func_0212d5d0() : 0, a);
+        p = HeapStackAlloc(b, size + 0x20, func_0212df7c, c ? func_0212d5d0() : 0, a);
         if (p == 0) {
             return 0;
         }
@@ -503,7 +503,7 @@ void func_0212df28(void *buf, u32 size, void *p, u32 idx) {
     func_02020990(q, q + size);
 }
 
-u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, Unk0212d9dc *d) {
+u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, HeapStack *d) {
     u32 *e;
     u32 n;
     u32 end;
@@ -522,7 +522,7 @@ u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, Unk0212d9dc *d) {
     if (d == 0) {
         return 0;
     }
-    buf = func_0212db7c(d, size + 32, func_0212df28, a, b);
+    buf = HeapStackAlloc(d, size + 32, func_0212df28, a, b);
     if (buf == 0) {
         return 0;
     }
@@ -534,7 +534,7 @@ u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, Unk0212d9dc *d) {
     return 1;
 }
 
-u32 func_0212dd64(Unk02021968 *a, Unk02021968 *b, u32 c, u32 d, Unk0212d9dc *e) {
+u32 func_0212dd64(Unk02021968 *a, Unk02021968 *b, u32 c, u32 d, HeapStack *e) {
     Unk02021bc8 it;
     Unk02021bc8 init;
     Unk020219f0 rec;
@@ -556,14 +556,14 @@ u32 func_0212dd64(Unk02021968 *a, Unk02021968 *b, u32 c, u32 d, Unk0212d9dc *e) 
     return 1;
 }
 
-Unk0212d9dc *func_0212dcc8(void *base, u32 size) {
-    Unk0212d9dc *a;
+HeapStack *HeapStackCreate(void *base, u32 size) {
+    HeapStack *a;
     void *p;
     u32 end;
     u32 n;
 
     end = (u32) base + size;
-    a = (Unk0212d9dc *) (((u32) base + 3) & ~3);
+    a = (HeapStack *) (((u32) base + 3) & ~3);
     if ((u32) a > end) {
         return 0;
     }
@@ -575,24 +575,24 @@ Unk0212d9dc *func_0212dcc8(void *base, u32 size) {
     if (p == 0) {
         return 0;
     }
-    if (func_0212d9dc(a, p) != 0) {
+    if (HeapStackInit(a, p) != 0) {
         return a;
     }
     FrmHeapDestroy(p);
     return 0;
 }
 
-void func_0212dcac(Unk0212d9dc *a) {
-    func_0212dbec(a);
-    FrmHeapDestroy(a->mUnk_00);
+void HeapStackDestroy(HeapStack *a) {
+    HeapStackReset(a);
+    FrmHeapDestroy(a->mHeap);
 }
 
-void func_0212dbec(Unk0212d9dc *a) {
-    Unk02017328 *e;
+void HeapStackReset(HeapStack *a) {
+    LinkedList *e;
     void *node;
     u32 flag = 0;
 
-    for (e = ListGetPrev(&a->mUnk_04, 0); e != 0; e = ListGetPrev(&a->mUnk_04, 0)) {
+    for (e = ListGetPrev(&a->mLevels, 0); e != 0; e = ListGetPrev(&a->mLevels, 0)) {
         for (node = ListGetPrev(e, 0); node != 0; node = ListGetPrev(e, node)) {
             Unk0212db7c *n = node;
 
@@ -601,24 +601,24 @@ void func_0212dbec(Unk0212d9dc *a) {
                 flag = 1;
             }
         }
-        ListRemove(&a->mUnk_04, e);
+        ListRemove(&a->mLevels, e);
     }
-    FrmHeapFree(a->mUnk_00, 3);
+    FrmHeapFree(a->mHeap, 3);
     if (flag != 0) {
         func_0212d968();
     }
-    func_0212d98c(a);
+    HeapStackPushLevel(a);
 }
 
-void *func_0212db7c(Unk0212d9dc *a, u32 size, UnkFunc *f, void *p, u32 v) {
+void *HeapStackAlloc(HeapStack *a, u32 size, UnkFunc *f, void *p, u32 v) {
     Unk0212db7c *n;
-    Unk02017328 *e;
+    LinkedList *e;
 
-    n = FrmHeapAlloc(a->mUnk_00, ((size + 31) & ~31) + 32, 32);
+    n = FrmHeapAlloc(a->mHeap, ((size + 31) & ~31) + 32, 32);
     if (n == 0) {
         return 0;
     }
-    e = ListGetPrev(&a->mUnk_04, 0);
+    e = ListGetPrev(&a->mLevels, 0);
     n->mUnk_08 = size;
     n->mUnk_0c = f;
     n->mUnk_10 = p;
@@ -627,29 +627,29 @@ void *func_0212db7c(Unk0212d9dc *a, u32 size, UnkFunc *f, void *p, u32 v) {
     return n + 1;
 }
 
-s32 func_0212db24(Unk0212d9dc *a) {
-    if (FrmHeapSaveFrontBack(a->mUnk_00, a->mUnk_04.mUnk_08) == 0) {
+s32 HeapStackSave(HeapStack *a) {
+    if (FrmHeapSaveFrontBack(a->mHeap, a->mLevels.mCount) == 0) {
         return -1;
     }
-    if (func_0212d98c(a) != 0) {
-        return a->mUnk_04.mUnk_08 - 1;
+    if (HeapStackPushLevel(a) != 0) {
+        return a->mLevels.mCount - 1;
     }
-    FrmHeapRestoreFrontBack(a->mUnk_00, 0);
+    FrmHeapRestoreFrontBack(a->mHeap, 0);
     return -1;
 }
 
-void func_0212da38(Unk0212d9dc *a, s32 n) {
-    Unk02017328 *e;
+void HeapStackRestore(HeapStack *a, s32 n) {
+    LinkedList *e;
     void *node = 0;
     u32 flag = 0;
 
     if (n == 0) {
-        func_0212dbec(a);
+        HeapStackReset(a);
         return;
     }
-    if (n < a->mUnk_04.mUnk_08) {
+    if (n < a->mLevels.mCount) {
         do {
-            e = ListGetPrev(&a->mUnk_04, 0);
+            e = ListGetPrev(&a->mLevels, 0);
             for (node = ListGetPrev(e, node); node != 0; node = ListGetPrev(e, node)) {
                 Unk0212db7c *p = node;
 
@@ -658,13 +658,13 @@ void func_0212da38(Unk0212d9dc *a, s32 n) {
                     flag = 1;
                 }
             }
-            ListRemove(&a->mUnk_04, e);
-        } while (n < a->mUnk_04.mUnk_08);
+            ListRemove(&a->mLevels, e);
+        } while (n < a->mLevels.mCount);
     }
-    FrmHeapRestoreFrontBack(a->mUnk_00, n);
+    FrmHeapRestoreFrontBack(a->mHeap, n);
     if (flag != 0) {
         func_0212d968();
     }
-    FrmHeapSaveFrontBack(a->mUnk_00, a->mUnk_04.mUnk_08);
-    func_0212d98c(a);
+    FrmHeapSaveFrontBack(a->mHeap, a->mLevels.mCount);
+    HeapStackPushLevel(a);
 }

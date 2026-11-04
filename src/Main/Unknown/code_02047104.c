@@ -44,7 +44,7 @@ void func_020471b0(void *a) {
     data_021759c8->mUnk_8b8 = 0;
     p = HeapAllocAligned(a, n, 0x20);
     func_020487e0(func_020cade8(), p, n);
-    func_02018344(&data_021759c8->mUnk_850, (const u8 *) gArchiveNames[19], p);
+    ArchiveLoadFromMemory(&data_021759c8->mUnk_850, (const u8 *) gArchiveNames[19], p);
     data_021759c8->mUnk_8bc = p;
     data_021759c8->mUnk_8b8 = 1;
     CreateSearchIconMBChildAndMultiDownload(a);

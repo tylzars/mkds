@@ -9,18 +9,18 @@
 
 u32 data_021732cc;
 u32 data_021732e8;
-Unk020207ec *data_021732d8;
-Unk020207ec *data_021732d0;
-Unk020207ec *data_021732c8;
-Unk020207ec *data_021732d4;
+PxiCommand *data_021732d8;
+PxiCommand *data_021732d0;
+PxiCommand *data_021732c8;
+PxiCommand *data_021732d4;
 s32 data_021732dc;
 s32 data_021732e0;
 s32 data_021732e4;
-Unk020207ec *data_021732ec[13];
+PxiCommand *data_021732ec[13];
 Unk020217b4 data_02173320;
-Unk020207ec data_021735a0[256];
+PxiCommand data_021735a0[256];
 
-u8 func_02021734(s32 a, UnkFunc *b, void *c) {
+u8 PxiCommandCallbackSet(s32 a, UnkFunc *b, void *c) {
     Unk02021734 *e;
 
     e = &data_02174da0[a];
@@ -30,7 +30,7 @@ u8 func_02021734(s32 a, UnkFunc *b, void *c) {
     return e->mUnk_08;
 }
 
-void func_020216d4(s32 a) {
+void PxiCommandCallbackRun(s32 a) {
     Unk02021734 *e;
 
     e = &data_02174da0[a & 0xff];
@@ -45,14 +45,14 @@ void func_020216d4(s32 a) {
 
 void func_020215bc(void) {
     s32 i;
-    Unk020207ec *p;
+    PxiCommand *p;
 
     func_02020f84();
     data_021732c8 = data_021735a0;
     for (i = 0; i < 255; i++) {
-        data_021735a0[i].mUnk_00 = &data_021735a0[i + 1];
+        data_021735a0[i].mNext = &data_021735a0[i + 1];
     }
-    data_021735a0[255].mUnk_00 = 0;
+    data_021735a0[255].mNext = 0;
     data_021732d8 = &data_021735a0[255];
     data_021732d0 = 0;
     data_021732d4 = 0;
@@ -63,20 +63,20 @@ void func_020215bc(void) {
     data_021732cc = 0;
     data_02174e00 = &data_02173320;
     func_020217b4(&data_02173320);
-    p = func_020213ec(1);
+    p = PxiCommandAlloc(1);
     if (p == 0) {
         return;
     }
     p->mUnk_04 = 0x1d;
     p->mUnk_08 = (u32) data_02174e00;
-    func_020213a4(p);
-    func_020211e4(1);
+    PxiCommandPendingAppend(p);
+    PxiCommandSendPending(1);
 }
 
-Unk020207ec *func_02021488(u32 a) {
+PxiCommand *PxiCommandReclaim(u32 a) {
     u32 s;
-    Unk020207ec *p;
-    Unk020207ec *q;
+    PxiCommand *p;
+    PxiCommand *q;
     s32 i;
 
     s = IrqDisable();
@@ -97,11 +97,11 @@ Unk020207ec *func_02021488(u32 a) {
         data_021732dc = 0;
     }
     q = p;
-    while (q->mUnk_00 != 0) {
-        q = q->mUnk_00;
+    while (q->mNext != 0) {
+        q = q->mNext;
     }
     if (data_021732d8 != 0) {
-        data_021732d8->mUnk_00 = p;
+        data_021732d8->mNext = p;
     } else {
         data_021732c8 = p;
     }
@@ -112,13 +112,13 @@ Unk020207ec *func_02021488(u32 a) {
     return p;
 }
 
-Unk020207ec *func_020213ec(u32 a) {
-    Unk020207ec *p;
+PxiCommand *PxiCommandAlloc(u32 a) {
+    PxiCommand *p;
 
     if (func_02020eb0() == 0) {
         return 0;
     }
-    p = func_02020ef8();
+    p = PxiCommandPoolRemoveHead();
     if (p != 0) {
         return p;
     }
@@ -126,26 +126,26 @@ Unk020207ec *func_020213ec(u32 a) {
         return 0;
     }
     if (func_02021020() > 0) {
-        while (func_02021488(0) != 0) {
+        while (PxiCommandReclaim(0) != 0) {
         }
-        p = func_02020ef8();
+        p = PxiCommandPoolRemoveHead();
         if (p != 0) {
             return p;
         }
     } else {
-        func_020211e4(1);
+        PxiCommandSendPending(1);
     }
     func_02020f50();
     do {
-        func_02021488(1);
-        p = func_02020ef8();
+        PxiCommandReclaim(1);
+        p = PxiCommandPoolRemoveHead();
     } while (p == 0);
     return p;
 }
 
-void func_020213a4(Unk020207ec *p) {
+void PxiCommandPendingAppend(PxiCommand *p) {
     u32 s;
-    Unk020207ec *t;
+    PxiCommand *t;
 
     s = IrqDisable();
     t = data_021732d4;
@@ -153,14 +153,14 @@ void func_020213a4(Unk020207ec *p) {
         data_021732d4 = p;
         data_021732d0 = p;
     } else {
-        t->mUnk_00 = p;
+        t->mNext = p;
         data_021732d4 = p;
     }
-    p->mUnk_00 = 0;
+    p->mNext = 0;
     IrqRestore(s);
 }
 
-u32 func_020211e4(u32 a) {
+u32 PxiCommandSendPending(u32 a) {
     u32 s;
 
     s = IrqDisable();
@@ -174,7 +174,7 @@ u32 func_020211e4(u32 a) {
             return 0;
         }
         do {
-            func_02021488(1);
+            PxiCommandReclaim(1);
         } while (data_021732e4 >= 8);
     }
     func_0200ee74(data_021735a0, 0x1800);
@@ -207,22 +207,22 @@ u32 func_020211e4(u32 a) {
     return 1;
 }
 
-void func_02021154(u32 a) {
-    if (func_020210c0(a) != 0) {
+void PxiCommandWaitForSequence(u32 a) {
+    if (PxiCommandSequenceReached(a) != 0) {
         return;
     }
-    while (func_02021488(0) != 0) {
+    while (PxiCommandReclaim(0) != 0) {
     }
-    if (func_020210c0(a) != 0) {
+    if (PxiCommandSequenceReached(a) != 0) {
         return;
     }
     func_02020f50();
-    if (func_020210c0(a) != 0) {
+    if (PxiCommandSequenceReached(a) != 0) {
         return;
     }
     do {
-        func_02021488(1);
-    } while (func_020210c0(a) == 0);
+        PxiCommandReclaim(1);
+    } while (PxiCommandSequenceReached(a) == 0);
 }
 
 u32 func_02021114(void) {
@@ -239,7 +239,7 @@ u32 func_02021114(void) {
     return v;
 }
 
-u32 func_020210c0(u32 a) {
+u32 PxiCommandSequenceReached(u32 a) {
     u32 s;
     u32 c;
     u32 r;
@@ -265,12 +265,12 @@ u32 func_020210c0(u32 a) {
 
 s32 func_02021080(void) {
     u32 s;
-    Unk020207ec *p;
+    PxiCommand *p;
     s32 n;
 
     s = IrqDisable();
     n = 0;
-    for (p = data_021732c8; p != 0; p = p->mUnk_00) {
+    for (p = data_021732c8; p != 0; p = p->mNext) {
         n++;
     }
     IrqRestore(s);
@@ -279,12 +279,12 @@ s32 func_02021080(void) {
 
 s32 func_02021040(void) {
     u32 s;
-    Unk020207ec *p;
+    PxiCommand *p;
     s32 n;
 
     s = IrqDisable();
     n = 0;
-    for (p = data_021732d0; p != 0; p = p->mUnk_00) {
+    for (p = data_021732d0; p != 0; p = p->mNext) {
         n++;
     }
     IrqRestore(s);
@@ -302,7 +302,7 @@ void func_02020ff0(u32 a, u32 b) {
     u32 s;
 
     s = IrqDisable();
-    func_020216d4(b);
+    PxiCommandCallbackRun(b);
     IrqRestore(s);
 }
 
@@ -324,10 +324,10 @@ void func_02020f50(void) {
     }
 }
 
-Unk020207ec *func_02020ef8(void) {
+PxiCommand *PxiCommandPoolRemoveHead(void) {
     u32 s;
-    Unk020207ec *p;
-    Unk020207ec *n;
+    PxiCommand *p;
+    PxiCommand *n;
 
     s = IrqDisable();
     p = data_021732c8;
@@ -335,7 +335,7 @@ Unk020207ec *func_02020ef8(void) {
         IrqRestore(s);
         return 0;
     }
-    n = p->mUnk_00;
+    n = p->mNext;
     data_021732c8 = n;
     if (n == 0) {
         data_021732d8 = 0;

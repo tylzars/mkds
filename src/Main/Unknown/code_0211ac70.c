@@ -439,7 +439,7 @@ BOOL func_0211ce24(void) {
             if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
                 a = FALSE;
             }
-            b = a != FALSE ? func_0202056c(data_0217aa00->mUnk_15f6) : 0;
+            b = a != FALSE ? CountSetBits(data_0217aa00->mUnk_15f6) : 0;
             if (b == func_0211d650()) {
                 return TRUE;
             }
@@ -900,7 +900,7 @@ void func_0211bf94(void) {
                 c = TRUE;
             }
             if (c != FALSE) {
-                a = func_0201ea84(data_0217d368->mUnk_08, p->mUnk_48, p->mUnk_4a - data_0217d368->mUnk_58);
+                a = RectTableFindContaining(data_0217d368->mUnk_08, p->mUnk_48, p->mUnk_4a - data_0217d368->mUnk_58);
             }
             if (func_020ae408(n, 0x200) != 0 || a == 0x11) {
                 if (i == 0) {
@@ -1036,7 +1036,7 @@ void func_0211bd10(void) {
             if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
                 a = FALSE;
             }
-            b = a != FALSE ? func_0202056c(data_0217aa00->mUnk_15f6) : 0;
+            b = a != FALSE ? CountSetBits(data_0217aa00->mUnk_15f6) : 0;
             data_0217d368->mUnk_ac[0] = b;
             break;
     }
@@ -1503,9 +1503,9 @@ void func_0211acec(void) {
     if (c != FALSE) {
         r = &data_02175672[i];
         q = &data_02175670[i];
-        a = func_0201ea84(data_0217d368->mUnk_08, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
+        a = RectTableFindContaining(data_0217d368->mUnk_08, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
         if (a != 0x13) {
-            a = func_0201ea84(data_0217d368->mUnk_08, q->mUnk_00, r->mUnk_00 - data_0217d368->mUnk_58);
+            a = RectTableFindContaining(data_0217d368->mUnk_08, q->mUnk_00, r->mUnk_00 - data_0217d368->mUnk_58);
             if (a == 0x13) {
                 a = -1;
             }

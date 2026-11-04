@@ -236,7 +236,7 @@ void func_0202c0d4(s32 a, s32 b) {
                     t = FALSE;
                 }
                 if (t != FALSE) {
-                    i = func_0202056c(data_0217aa00->mUnk_15f6);
+                    i = CountSetBits(data_0217aa00->mUnk_15f6);
                 } else {
                     i = 0;
                 }

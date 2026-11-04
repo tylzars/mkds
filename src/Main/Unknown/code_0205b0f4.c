@@ -378,7 +378,7 @@ void func_0205b0f4(void) {
             data_0217aa14->mUnk_749 = data_0217aa14->mUnk_749 & ~v1;
         }
     }
-    if (func_0202056c(data_0217aa14->mUnk_749) > 1) {
+    if (CountSetBits(data_0217aa14->mUnk_749) > 1) {
         return;
     }
     v = data_0217d384->mUnk_0008.mState;

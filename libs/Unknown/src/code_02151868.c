@@ -24,14 +24,14 @@ u32 func_02151868(Unk021510a4 *a, u8 *b) {
     s32 d;
     c = *(u32 *) data_0218049c;
     func_021510a4(a);
-    func_02020720((u16 *) (b + 0x200), 0xa001);
+    Crc16InitTable((u16 *) (b + 0x200), 0xa001);
     for (d = 0; d < 2;) {
         if (func_0215122c(c, 0x100, b) == 0) {
             IrqDisableLoopForever();
             return 0;
         }
         MemCopy(data_021804a0, b + 0xf0, 0xe);
-        *(u16 *) (b + 0xfe) = func_020205e8((u16 *) (b + 0x200), b, 0xfe);
+        *(u16 *) (b + 0xfe) = Crc16((u16 *) (b + 0x200), b, 0xfe);
         do {
             func_021511d8(c, 0x100, b);
         } while (func_0215119c(b, c, 0x100, b + 0x100) == 0);

@@ -149,7 +149,8 @@ void func_ov001_02193774(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        result = func_0201ea84(data_ov001_021a9bd4->mUnk_34, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+        result = RectTableFindContaining(data_ov001_021a9bd4->mUnk_34, data_02175628[idx].mUnk_48,
+                                         data_02175628[idx].mUnk_4a);
     }
     flagA = data_02175628[idx].mUnk_00 & 2;
     if (flagA == 0) {

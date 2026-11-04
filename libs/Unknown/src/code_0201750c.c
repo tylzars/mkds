@@ -1,6 +1,6 @@
 #include "code_0201750c.h"
 
-void ListInit(Unk02017328 *arg0, u16 arg1) {
+void ListInit(LinkedList *arg0, u16 arg1) {
     u32 value0 = (u32) arg0;
     u32 value1 = (u32) arg1;
     u32 value2;

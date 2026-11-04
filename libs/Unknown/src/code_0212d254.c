@@ -18,21 +18,21 @@
 #include "code_02017f24.h"
 #include "code_0214d018.h"
 
-u32 func_0212d9dc(Unk0212d9dc *a, void *p) {
-    ListInit(&a->mUnk_04, 12);
-    a->mUnk_00 = p;
-    return func_0212d98c(a) != 0;
+u32 HeapStackInit(HeapStack *a, void *p) {
+    ListInit(&a->mLevels, 12);
+    a->mHeap = p;
+    return HeapStackPushLevel(a) != 0;
 }
 
-u32 func_0212d98c(Unk0212d9dc *a) {
+u32 HeapStackPushLevel(HeapStack *a) {
     void *p;
 
-    p = FrmHeapAlloc(a->mUnk_00, 0x14, 4);
+    p = FrmHeapAlloc(a->mHeap, 0x14, 4);
     if (p == 0) {
         return 0;
     }
     func_0212da1c(p);
-    ListAppend(&a->mUnk_04, p);
+    ListAppend(&a->mLevels, p);
     return 1;
 }
 
@@ -40,8 +40,8 @@ void func_0212d968(void) {
     u32 v;
 
     v = func_02021114();
-    func_020211e4(1);
-    func_02021154(v);
+    PxiCommandSendPending(1);
+    PxiCommandWaitForSequence(v);
 }
 
 void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, void *p, u32 flag) {
@@ -71,7 +71,7 @@ u32 func_0212d6c4(Unk0212d5f8 *a, void *p, u32 flag) {
         return 0;
     }
     if (p != 0) {
-        a->mUnk_8c = func_0212db7c(p, a->mUnk_1c, func_0212d22c, a, 0);
+        a->mUnk_8c = HeapStackAlloc(p, a->mUnk_1c, func_0212d22c, a, 0);
         if (a->mUnk_8c == 0) {
             return 0;
         }
@@ -82,7 +82,7 @@ u32 func_0212d6c4(Unk0212d5f8 *a, void *p, u32 flag) {
         if (n != a->mUnk_1c) {
             return 0;
         }
-        a->mUnk_84 = func_0212db7c(p, a->mUnk_24, func_0212d220, a, 0);
+        a->mUnk_84 = HeapStackAlloc(p, a->mUnk_24, func_0212d220, a, 0);
         if (a->mUnk_84 == 0) {
             return 0;
         }
@@ -94,7 +94,7 @@ u32 func_0212d6c4(Unk0212d5f8 *a, void *p, u32 flag) {
             return 0;
         }
         if (flag != 0 && a->mUnk_14 != 0) {
-            a->mUnk_88 = func_0212db7c(p, a->mUnk_14, func_0212d214, a, 0);
+            a->mUnk_88 = HeapStackAlloc(p, a->mUnk_14, func_0212d214, a, 0);
             if (a->mUnk_88 == 0) {
                 return 0;
             }

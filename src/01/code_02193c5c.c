@@ -523,7 +523,8 @@ void AdvanceRecordGpxState2(void) {
         x1 = FALSE;
     }
     if (x1 != FALSE) {
-        a = func_0201ea84(gRecordGpx->mRecordGpxSBnbl, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+        a = RectTableFindContaining(gRecordGpx->mRecordGpxSBnbl, data_02175628[idx].mUnk_48,
+                                    data_02175628[idx].mUnk_4a);
     }
     x2 = FALSE;
     y2 = FALSE;
@@ -534,7 +535,8 @@ void AdvanceRecordGpxState2(void) {
         x2 = TRUE;
     }
     if (x2 != FALSE) {
-        b = func_0201ea84(gRecordGpx->mRecordGpxSBnbl, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+        b = RectTableFindContaining(gRecordGpx->mRecordGpxSBnbl, data_02175628[idx].mUnk_48,
+                                    data_02175628[idx].mUnk_4a);
     }
     if (a != 0) {
         gRecordGpx->mUnk_88 = 0;

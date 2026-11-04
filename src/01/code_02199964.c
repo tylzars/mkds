@@ -139,7 +139,7 @@ void func_ov001_02199bb0(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        r = func_0201ea84(data_ov001_021a9bec->mUnk_30, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
+        r = RectTableFindContaining(data_ov001_021a9bec->mUnk_30, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
         b = FALSE;

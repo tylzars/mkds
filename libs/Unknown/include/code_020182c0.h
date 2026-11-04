@@ -3,8 +3,8 @@
 #include "types.h"
 #include "code_02003024.h" // Unk02003a6c
 
-// Record whose first fields func_020184a0 checks; mUnk_0c is the offset of the first of mUnk_0e blocks that
-// func_02018344 walks, each starting with a word and its own size.
+// Record whose first fields ArchiveHeaderMatches checks; mUnk_0c is the offset of the first of mUnk_0e blocks that
+// ArchiveLoadFromMemory walks, each starting with a word and its own size.
 typedef struct Unk02018344 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u16 mUnk_04;
@@ -14,7 +14,7 @@ typedef struct Unk02018344 {
     /* 0e */ u16 mUnk_0e;
 } Unk02018344;
 
-// Unk02003a6c followed by the three words func_02018344 sets.
+// Unk02003a6c followed by the three words ArchiveLoadFromMemory sets.
 typedef struct Unk020182c0 {
     /* 00 */ Unk02003a6c mUnk_00;
     /* 5c */ Unk02018344 *mUnk_5c;
@@ -22,7 +22,7 @@ typedef struct Unk020182c0 {
     /* 64 */ u8 *mUnk_64;
 } Unk020182c0;
 
-u32 func_020182c0(const u8 *a);
-u32 func_02018314(Unk02003a6c *a);
-u32 func_02018344(Unk020182c0 *a, const u8 *b, Unk02018344 *c);
-u32 func_020184a0(Unk02018344 *a);
+u32 ArchiveFileGetAddress(const u8 *a);
+u32 ArchiveUnload(Unk02003a6c *a);
+u32 ArchiveLoadFromMemory(Unk020182c0 *a, const u8 *b, Unk02018344 *c);
+u32 ArchiveHeaderMatches(Unk02018344 *a);

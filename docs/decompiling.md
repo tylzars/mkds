@@ -585,7 +585,7 @@ Expression shapes:
   * 2` at the store so it is not shared with the address (func_0204a798).
 - An element address recomputed per word, where the original adds the base and member offset once and then `i * size`: a
   pointer local to the member, `Vec3 *e = &a[i].m; e->x` (func_020980ec).
-- `p += 8` recomputed at each later use where the original adds in place: `p = (u8 *) p + 8;` (func_02018344).
+- `p += 8` recomputed at each later use where the original adds in place: `p = (u8 *) p + 8;` (ArchiveLoadFromMemory).
 - `i * 0x20` strength-reduced across the outer loop where the original shifts each pass: write `(u32) i * 0x20` (or
   `0x20U`) in the subscript (func_020362dc).
 - An address used twice that is shared as `(base + i * 2) + off`: write one of the two accesses through `(u8 *) base + i

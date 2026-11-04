@@ -150,7 +150,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
                 x = data_02175670[k].mUnk_00;
                 y = data_02175672[k].mUnk_00;
                 z = IsSelectReturnState2NoState3Or4RequestAndInRect(x, y);
-                m = func_0201ea84(p->mUnk_10, x, y);
+                m = RectTableFindContaining(p->mUnk_10, x, y);
             }
             if ((u16) (data_02175628[k].mUnk_00 & 1) != 0 || m == 0) {
                 if (data_02174e58->mUnk_74 > 0 && data_02174e58->mUnk_a0[3].mUnk_00 == 1) {

@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0212d9dc Unk0212d9dc;
+typedef struct HeapStack HeapStack;
 
-u32 func_0212da2c(Unk0212d9dc *arg0);
+u32 func_0212da2c(HeapStack *arg0);

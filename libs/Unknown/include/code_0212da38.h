@@ -3,22 +3,22 @@
 #include "types.h"
 
 // List header of 12 bytes: first and last element, number of elements, and the offset of the links in an element.
-typedef struct Unk02017328 {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ void *mUnk_04;
-    /* 08 */ u16 mUnk_08;
-    /* 0a */ u16 mUnk_0a;
-} Unk02017328;
+typedef struct LinkedList {
+    /* 00 */ void *mHead;
+    /* 04 */ void *mTail;
+    /* 08 */ u16 mCount;
+    /* 0a */ u16 mLinkOffset;
+} LinkedList;
 
-// 16 bytes: mUnk_04 lists 20-byte elements whose links are at 0x0c (func_0212d9dc sets that offset); func_0212d98c
+// 16 bytes: mUnk_04 lists 20-byte elements whose links are at 0x0c (HeapStackInit sets that offset); HeapStackPushLevel
 // adds an element and func_0212da1c clears it as a list with offset 0.
-typedef struct Unk0212d9dc {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ Unk02017328 mUnk_04;
-} Unk0212d9dc;
+typedef struct HeapStack {
+    /* 00 */ void *mHeap;
+    /* 04 */ LinkedList mLevels;
+} HeapStack;
 
-// Block of 0x20 bytes before the memory func_0212db7c returns; an element (links at 0) of the list that starts each
-// element of Unk0212d9dc. mUnk_0c is called with the memory after the block, mUnk_08, mUnk_10 and mUnk_14.
+// Block of 0x20 bytes before the memory HeapStackAlloc returns; an element (links at 0) of the list that starts each
+// element of HeapStack. mUnk_0c is called with the memory after the block, mUnk_08, mUnk_10 and mUnk_14.
 typedef struct Unk0212db7c {
     /* 00 */ void *mUnk_00;
     /* 04 */ void *mUnk_04;
@@ -63,12 +63,12 @@ typedef struct Unk02021968 {
     /* 3c */ u32 mUnk_3c[1];
 } Unk02021968;
 
-void func_0212da38(Unk0212d9dc *a, s32 n);
-s32 func_0212db24(Unk0212d9dc *a);
-void *func_0212db7c(Unk0212d9dc *a, u32 size, UnkFunc *f, void *p, u32 v);
-void func_0212dbec(Unk0212d9dc *a);
-void func_0212dcac(Unk0212d9dc *a);
-Unk0212d9dc *func_0212dcc8(void *base, u32 size);
-u32 func_0212dd64(Unk02021968 *a, Unk02021968 *b, u32 c, u32 d, Unk0212d9dc *e);
-u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, Unk0212d9dc *d);
+void HeapStackRestore(HeapStack *a, s32 n);
+s32 HeapStackSave(HeapStack *a);
+void *HeapStackAlloc(HeapStack *a, u32 size, UnkFunc *f, void *p, u32 v);
+void HeapStackReset(HeapStack *a);
+void HeapStackDestroy(HeapStack *a);
+HeapStack *HeapStackCreate(void *base, u32 size);
+u32 func_0212dd64(Unk02021968 *a, Unk02021968 *b, u32 c, u32 d, HeapStack *e);
+u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, HeapStack *d);
 void func_0212df28(void *buf, u32 size, void *p, u32 idx);

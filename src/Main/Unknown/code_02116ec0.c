@@ -30,7 +30,7 @@ void func_021170f8(void) {
         if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
             c = FALSE;
         }
-        n = (u8) (c != FALSE ? func_0202056c(data_0217aa00->mUnk_15f6) : 0);
+        n = (u8) (c != FALSE ? CountSetBits(data_0217aa00->mUnk_15f6) : 0);
     }
     a = 0;
     b = ~0;
@@ -54,7 +54,7 @@ void func_02117060(void) {
         if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
             c = FALSE;
         }
-        n = (u8) (c != FALSE ? func_0202056c(data_0217aa00->mUnk_15f6) : 0);
+        n = (u8) (c != FALSE ? CountSetBits(data_0217aa00->mUnk_15f6) : 0);
     }
     for (i = 0; i < 8; i++) {
         func_0203bea4(data_0217d358->mUnk_00, (u8) i, func_020296d4(i));
@@ -81,7 +81,7 @@ void func_02116fb0(void) {
         if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
             c = FALSE;
         }
-        n = (u8) (c != FALSE ? func_0202056c(data_0217aa00->mUnk_15f6) : 0);
+        n = (u8) (c != FALSE ? CountSetBits(data_0217aa00->mUnk_15f6) : 0);
     }
     for (i = 0; i < n; i++) {
         func_0203bea4(data_0217d358->mUnk_00, (u8) i, func_020296d4(i));
@@ -107,7 +107,7 @@ void func_02116ef8(void) {
         if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
             c = FALSE;
         }
-        n = (u8) (c != FALSE ? func_0202056c(data_0217aa00->mUnk_15f6) : 0);
+        n = (u8) (c != FALSE ? CountSetBits(data_0217aa00->mUnk_15f6) : 0);
     }
     for (i = 0; i < n; i++) {
         func_0203be88(data_0217d358->mUnk_00, (u8) i, func_020296c0(i));

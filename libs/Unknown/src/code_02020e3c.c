@@ -18,7 +18,7 @@ void func_02020e64(void) {
     func_02021784();
 }
 
-void func_02020e50(void) {
+void SharedLockWait(void) {
     u32 value0;
     u32 value12;
     value12 = (u32) &ThreadLockWait;
@@ -26,7 +26,7 @@ void func_02020e50(void) {
     ThreadLockWait((void *) value0);
 }
 
-void func_02020e3c(void) {
+void SharedLockUnlock(void) {
     u32 value0;
     u32 value12;
     value12 = (u32) &ThreadLockUnlock;

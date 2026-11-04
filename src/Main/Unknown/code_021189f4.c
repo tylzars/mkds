@@ -74,7 +74,7 @@ void func_02119340(void) {
     i = UNK_02175628_INDEX_8;
     func_02119d78();
     if (func_02119340_inline(i) != 0) {
-        a = func_0201ea84(gSelectCup->mUnk_14, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00 + 0x20);
+        a = RectTableFindContaining(gSelectCup->mUnk_14, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00 + 0x20);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) != 0 ||
         (func_02119340_inline(i) != 0 &&

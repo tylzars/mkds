@@ -8,7 +8,7 @@
 #include "code_0212c9d4.h" // Unk0212ccd4, Unk0212c9d4
 #include "code_0201ea58.h" // Unk0201ea30
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c
-#include "code_0212da38.h" // Unk02017328, Unk0212d9dc
+#include "code_0212da38.h" // LinkedList, HeapStack
 #include "Main/Unknown/types_02180728.h" // Unk02180728
 
 typedef struct RingQueue RingQueue;
@@ -172,7 +172,7 @@ typedef struct Unk0217d084 {
 // Object at data_0217d32c (0x10 bytes); mUnk_08 points to a row of six words.
 typedef struct Unk0217d32c {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ Unk0212d9dc *mUnk_04;
+    /* 04 */ HeapStack *mUnk_04;
     /* 08 */ u32 *mUnk_08;
     /* 0c */ u32 mUnk_0c;
 } Unk0217d32c;
@@ -665,7 +665,7 @@ typedef struct Unk0217d40c {
 extern u8 data_0217d014[];
 extern u8 data_0217d018[];
 extern u8 data_0217d01c[];
-extern Unk02017328 data_0217d028;
+extern LinkedList data_0217d028;
 extern u32 data_0217d064;
 extern u8 data_0217d134[];
 extern u8 data_0217d178[];
@@ -704,7 +704,7 @@ extern u32 data_0217dda8;
 extern Unk0212ccd4 data_0217ddd0;
 extern Unk0212c400 data_0217d45c[16];
 extern Unk0212c7a0 data_0217d89c[];
-extern Unk02017328 data_0217dd1c;
+extern LinkedList data_0217dd1c;
 extern Unk0212c8a4 data_0217dd28[];
 extern s32 data_0217ddac;
 extern RingQueue data_0217ddb0;
@@ -731,7 +731,7 @@ extern Unk0217d404 *data_0217d404;
 extern Unk0217d410 *data_0217d410;
 extern struct Unk0212ef48 *data_0217df04;
 extern u8 data_0217df08[];
-extern Unk0212d9dc *data_0217d130;
+extern HeapStack *data_0217d130;
 extern Unk0217d070 data_0217d070;
 // The member at 0x0c of data_0217d070, addressed through a pool word of its own.
 extern Unk0212c400 *data_0217d07c;
@@ -752,7 +752,7 @@ extern u32 data_0217d23c[];
 extern u32 data_0217d010[];
 extern u32 data_0217d024[];
 extern u8 data_0217d034[];
-extern Unk02017328 data_0217d048[];
+extern LinkedList data_0217d048[];
 extern u8 data_0217d054[];
 extern u32 data_0217d020;
 extern void *data_0217d06c;

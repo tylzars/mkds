@@ -2,10 +2,10 @@
 
 #include "types.h"
 #include "code_0212bcac.h"
-#include "code_0212da38.h" // Unk0212d9dc
+#include "code_0212da38.h" // HeapStack
 
 typedef struct Unk0212c400 Unk0212c400;
-typedef struct Unk0212d9dc Unk0212d9dc;
+typedef struct HeapStack HeapStack;
 
 // 0x24-byte entries of the array at data_0217ca6c; func_02109468 fills the first one.
 typedef struct Unk0217ca6c {
@@ -65,9 +65,9 @@ extern u32 data_0217c704[];
 extern u8 data_0217c648[];
 extern u16 data_0217c76c[];
 extern u16 data_0217c770[];
-extern Unk0212d9dc *data_0217c77c;
+extern HeapStack *data_0217c77c;
 extern u32 data_0217c78c;
-extern Unk0212d9dc *data_0217c790;
+extern HeapStack *data_0217c790;
 extern u32 data_0217c794;
 extern u32 data_0217c798[];
 extern u32 data_0217c7a8;

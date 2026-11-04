@@ -635,7 +635,8 @@ void func_ov001_0219fc70(void) {
         flag_b = TRUE;
     }
     if (flag_b) {
-        result = func_0201ea84(data_ov001_021ca414->mUnk_14, data_02175628[slot].mUnk_48, data_02175628[slot].mUnk_4a);
+        result = RectTableFindContaining(data_ov001_021ca414->mUnk_14, data_02175628[slot].mUnk_48,
+                                         data_02175628[slot].mUnk_4a);
     }
     if ((u16) (data_02175628[slot].mUnk_00 & 2) == 0) {
         flag_b = FALSE;

@@ -439,7 +439,7 @@ int AdvanceSelectCharacter(void) {
             if (func_02026120_inline_2(i) != 0) {
                 x = data_02175670[i].mUnk_00;
                 y = data_02175672[i].mUnk_00;
-                k = func_0201ea84(s->mUnk_10, x, y);
+                k = RectTableFindContaining(s->mUnk_10, x, y);
                 if (k >= 0) {
                     for (j = 0; j < gSelectCharacter->mUnk_07c; j++) {
                         if (k == data_usa_02153554[j].mUnk_06) {

@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_02012b30.h" // Unk020136f0, Unk0201290c
-#include "code_0212da38.h" // Unk02017328
+#include "code_0212da38.h" // LinkedList
 
 // Object func_020850c4 prepares; it returns 0 without doing anything when bit 0 of one of the halfwords at 0x10, 0x20
 // and 0x32 is set. mUnk_14 is the size func_02084b2c copies.

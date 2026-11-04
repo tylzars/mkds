@@ -1,37 +1,37 @@
 #include "code_020172d0.h"
 #include "code_0201750c.h"
 
-void ListAppend(Unk02017328 *a, void *p) {
+void ListAppend(LinkedList *a, void *p) {
     u32 o;
 
-    if (a->mUnk_00 == 0) {
+    if (a->mHead == 0) {
         ListAppendToEmpty((u32) a, (u32) p);
         return;
     }
-    o = a->mUnk_0a;
-    *(void **) ((u8 *) p + o) = a->mUnk_04;
+    o = a->mLinkOffset;
+    *(void **) ((u8 *) p + o) = a->mTail;
     *(void **) ((u8 *) p + o + 4) = 0;
-    *(void **) ((u8 *) a->mUnk_04 + a->mUnk_0a + 4) = p;
-    a->mUnk_04 = p;
-    a->mUnk_08++;
+    *(void **) ((u8 *) a->mTail + a->mLinkOffset + 4) = p;
+    a->mTail = p;
+    a->mCount++;
 }
 
-void ListPrepend(Unk02017328 *a, void *p) {
+void ListPrepend(LinkedList *a, void *p) {
     u32 o;
 
-    if (a->mUnk_00 == 0) {
+    if (a->mHead == 0) {
         ListAppendToEmpty((u32) a, (u32) p);
         return;
     }
-    o = a->mUnk_0a;
+    o = a->mLinkOffset;
     *(void **) ((u8 *) p + o) = 0;
-    *(void **) ((u8 *) p + o + 4) = a->mUnk_00;
-    *(void **) ((u8 *) a->mUnk_00 + a->mUnk_0a) = p;
-    a->mUnk_00 = p;
-    a->mUnk_08++;
+    *(void **) ((u8 *) p + o + 4) = a->mHead;
+    *(void **) ((u8 *) a->mHead + a->mLinkOffset) = p;
+    a->mHead = p;
+    a->mCount++;
 }
 
-void ListInsertBefore(Unk02017328 *a, void *p, void *q) {
+void ListInsertBefore(LinkedList *a, void *p, void *q) {
     u32 o;
     u8 *l;
     void *n;
@@ -40,59 +40,59 @@ void ListInsertBefore(Unk02017328 *a, void *p, void *q) {
         ListAppend(a, q);
         return;
     }
-    if (p == a->mUnk_00) {
+    if (p == a->mHead) {
         ListPrepend(a, q);
         return;
     }
-    o = a->mUnk_0a;
+    o = a->mLinkOffset;
     l = (u8 *) q + o;
     n = *(void **) ((u8 *) p + o);
     *(void **) l = n;
     *(void **) (l + 4) = p;
     *(void **) ((u8 *) n + o + 4) = q;
-    *(void **) ((u8 *) p + a->mUnk_0a) = q;
-    a->mUnk_08++;
+    *(void **) ((u8 *) p + a->mLinkOffset) = q;
+    a->mCount++;
 }
 
-void ListRemove(Unk02017328 *a, void *p) {
+void ListRemove(LinkedList *a, void *p) {
     u32 o;
     u8 *l;
     void *x;
 
-    o = a->mUnk_0a;
+    o = a->mLinkOffset;
     x = *(void **) ((u8 *) p + o);
     l = (u8 *) p + o;
     if (x == 0) {
-        a->mUnk_00 = *(void **) (l + 4);
+        a->mHead = *(void **) (l + 4);
     } else {
         *(void **) ((u8 *) x + o + 4) = *(void **) (l + 4);
     }
     x = *(void **) (l + 4);
     if (x == 0) {
-        a->mUnk_04 = *(void **) l;
+        a->mTail = *(void **) l;
     } else {
-        *(void **) ((u8 *) x + a->mUnk_0a) = *(void **) l;
+        *(void **) ((u8 *) x + a->mLinkOffset) = *(void **) l;
     }
     *(void **) l = 0;
     *(void **) (l + 4) = 0;
-    a->mUnk_08--;
+    a->mCount--;
 }
 
-void *ListGetNext(Unk02017328 *a, void *p) {
+void *ListGetNext(LinkedList *a, void *p) {
     if (p == 0) {
-        return a->mUnk_00;
+        return a->mHead;
     }
-    return *(void **) ((u8 *) p + a->mUnk_0a + 4);
+    return *(void **) ((u8 *) p + a->mLinkOffset + 4);
 }
 
-void *ListGetPrev(Unk02017328 *a, void *p) {
+void *ListGetPrev(LinkedList *a, void *p) {
     if (p == 0) {
-        return a->mUnk_04;
+        return a->mTail;
     }
-    return *(void **) ((u8 *) p + a->mUnk_0a);
+    return *(void **) ((u8 *) p + a->mLinkOffset);
 }
 
-void *ListGetNth(Unk02017328 *a, s32 b) {
+void *ListGetNth(LinkedList *a, s32 b) {
     s32 i;
     void *p;
 

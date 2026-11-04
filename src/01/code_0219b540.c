@@ -477,7 +477,8 @@ void AdvanceSelectGhostState2(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        r = func_0201ea84(gSelectGhost->mSelectGhostSBnbl, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+        r = RectTableFindContaining(gSelectGhost->mSelectGhostSBnbl, data_02175628[idx].mUnk_48,
+                                    data_02175628[idx].mUnk_4a);
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
         d = FALSE;

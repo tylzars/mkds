@@ -115,8 +115,8 @@ void func_02016d34(void) {
         }
         p++;
     }
-    func_02016d28(&data_02173234.mUnk_00);
-    func_02016d28(&data_02173238);
+    RangeListInit(&data_02173234.mUnk_00);
+    RangeListInit(&data_02173238);
     data_02173234.mUnk_08 = RangeEntryPoolInit(data_02173234.mUnk_14, data_02173234.mUnk_18 >> 4);
     if (t[0].mUnk_08 != 0) {
         RangeListAdd(&data_02173238, &data_0217323c, 0, t[0].mUnk_08);

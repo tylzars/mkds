@@ -216,7 +216,7 @@ void func_02022d88(Unk02022aa8 *a, Unk02021f9c *b) {
 void func_02022d44(Unk02022aa8 *a, Unk02021f9c *b) {
     a->mUnk_08 = func_0202469c(b, &a->mUnk_00) - 1;
     a->mUnk_0a = a->mUnk_08 != 0 ? 2 : 3;
-    a->mUnk_04 = func_02024960;
+    a->mUnk_04 = CharReadHalfword;
 }
 
 u32 func_02022ce4(Unk02022aa8 *a, u32 b) {

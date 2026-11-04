@@ -15,7 +15,7 @@ void func_0210c0bc(Unk0210bfbc *p) {
     void *a;
 
     func_0210c238(p, 0);
-    for (a = p->mUnk_0c.mUnk_00; a != NULL; a = p->mUnk_0c.mUnk_00) {
+    for (a = p->mUnk_0c.mHead; a != NULL; a = p->mUnk_0c.mHead) {
         func_0210bc54(&p->mUnk_0c, (u8 *) a);
     }
     if (p->mUnk_18 != 3) {
@@ -37,7 +37,7 @@ void func_0210bfbc(Unk0210bfbc *p) {
     u8 f;
 
     v = 3;
-    for (a = p->mUnk_0c.mUnk_00; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
+    for (a = p->mUnk_0c.mHead; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
         f = a->mUnk_19;
         if (f & 2) {
             v = 0;
@@ -61,7 +61,7 @@ void func_0210bfbc(Unk0210bfbc *p) {
 
 void func_0210bf24(u32 a, u32 b, u32 c, u32 d) {
     Unk0210bf24 *v;
-    Unk02017328 *w;
+    LinkedList *w;
 
     if (data_0217d084.mUnk_10 == 0) {
         return;

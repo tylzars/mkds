@@ -66,7 +66,7 @@ int func_021450ec(Unk021450ec *p, u32 n, u32 mask, u32 k, u32 flag) {
     p->mUnk_818 = flag != 0;
     v = mask | (1 << u5);
     p->mUnk_80e = v;
-    c = func_0202056c(v);
+    c = CountSetBits(v);
     p->mUnk_812 = c;
     p->mUnk_814 = k * c;
     if (p->mUnk_814 > 0x1fc) {
@@ -491,5 +491,5 @@ u8 *func_0214461c(Unk021450ec *p, Unk0214461c *q, u32 bit) {
 
 // Returns base plus mUnk_810 times the number of set bits of mask below bit.
 u8 *func_021445e0(Unk021450ec *p, u32 mask, u8 *base, u32 bit) {
-    return base + p->mUnk_810 * func_0202056c(mask & ((1 << bit) - 1));
+    return base + p->mUnk_810 * CountSetBits(mask & ((1 << bit) - 1));
 }

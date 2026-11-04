@@ -381,7 +381,7 @@ void func_0210e4ec(Unk0217c7b4 *p) {
 }
 
 void func_0210e4c8(Unk0217c7b4 *p) {
-    p->mUnk_0c = func_0212db24(data_0217d130);
+    p->mUnk_0c = HeapStackSave(data_0217d130);
 }
 
 void func_0210e434(Unk0217c7b4 *p) {
@@ -390,7 +390,7 @@ void func_0210e434(Unk0217c7b4 *p) {
     if (v.mUnk_00 == p->mUnk_00.mUnk_00 && v.mUnk_04 == p->mUnk_00.mUnk_04 && v.mUnk_08 == p->mUnk_00.mUnk_08) {
         return;
     }
-    func_0212da38(data_0217d130, p->mUnk_0c);
+    HeapStackRestore(data_0217d130, p->mUnk_0c);
     func_0212da2c(data_0217d130);
     p->mUnk_00 = data_0215c38c;
 }

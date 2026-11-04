@@ -261,7 +261,7 @@ void func_ov001_02198ec0(void) {
         hasB = TRUE;
     }
     if (hasB != FALSE) {
-        r5 = func_0201ea84(p->mUnk_7c, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+        r5 = RectTableFindContaining(p->mUnk_7c, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) != 0) {
         goto L1;

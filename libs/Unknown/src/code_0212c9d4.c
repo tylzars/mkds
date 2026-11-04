@@ -51,7 +51,7 @@ u32 func_0212d0ec(void) {
 
 void func_0212d03c(void) {
     Unk0212ccd4 *p = &data_0217ddd0;
-    Unk0212f7c8 *q;
+    Interpolator *q;
     s32 v;
 
     if (p->mUnk_00 == 0) {
@@ -61,12 +61,12 @@ void func_0212d03c(void) {
         return;
     }
     q = &p->mUnk_3c;
-    func_0212f7e0(q);
-    if (p->mUnk_4c != 0 && func_0212f7c8(q) != 0) {
+    InterpolatorStep(q);
+    if (p->mUnk_4c != 0 && InterpolatorIsDone(q) != 0) {
         func_0212cbd8();
         return;
     }
-    v = func_0212f7f8(q) >> 8;
+    v = InterpolatorGetValue(q) >> 8;
     if (v == p->mUnk_50) {
         return;
     }
@@ -172,8 +172,8 @@ s32 func_0212ccd4(u32 a, u8 *b, u8 *c, u32 d, u32 e, u32 f, u32 g, u32 h, s32 i,
     p->mUnk_34 = n;
     p->mUnk_38 = o;
     p->mUnk_50 = j;
-    func_0212f864(&p->mUnk_3c);
-    func_0212f834(&p->mUnk_3c, j << 8, 1);
+    InterpolatorInit(&p->mUnk_3c);
+    InterpolatorStart(&p->mUnk_3c, j << 8, 1);
     p->mUnk_4c = 0;
     return 1;
 }
@@ -190,8 +190,8 @@ void func_0212cbd8(void) {
     func_02020bbc(p->mUnk_24, p->mUnk_28, f != 0 ? 1 << p->mUnk_2c : 0, 0);
     if (f != 0) {
         r = func_02021114();
-        func_020211e4(1);
-        func_02021154(r);
+        PxiCommandSendPending(1);
+        PxiCommandWaitForSequence(r);
         while (RingQueueRemoveFront(&data_0217ddb0, 0, 0) != 0) {
         }
     }
@@ -219,8 +219,8 @@ void func_0212cb78(void) {
     }
     func_02020bbc(p->mUnk_24, p->mUnk_28, p->mUnk_2c >= 0 ? 1 << p->mUnk_2c : 0, 0);
     r = func_02021114();
-    func_020211e4(1);
-    func_02021154(r);
+    PxiCommandSendPending(1);
+    PxiCommandWaitForSequence(r);
 }
 
 void func_0212cad8(void) {

@@ -158,7 +158,7 @@ void func_ov000_02184f1c(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        a = func_0201ea84(gWiFiAikotoba->mUnk_30, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
+        a = RectTableFindContaining(gWiFiAikotoba->mUnk_30, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
         b = FALSE;

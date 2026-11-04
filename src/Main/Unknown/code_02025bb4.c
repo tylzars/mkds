@@ -46,7 +46,7 @@ void func_02025bf0(u32 a, void *b, void *c) {
 }
 
 void func_02025bb4(int id, int x, int y, void *graphics) {
-    short *entry = (s16 *) func_0201eb54(graphics, id);
+    short *entry = (s16 *) RectTableGetEntry(graphics, id);
     entry[0] = (entry[0] & 0xfffff000U) | (x & 0xfff);
     entry[1] = (entry[1] & 0xfffff000U) | (y & 0xfff);
 }

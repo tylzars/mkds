@@ -221,7 +221,7 @@ void func_ov001_02197d58(void) {
         flag2 = TRUE;
     }
     if (flag2 != FALSE) {
-        sel = func_0201ea84(data_ov001_021a9be0->mUnk_08, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
+        sel = RectTableFindContaining(data_ov001_021a9be0->mUnk_08, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
     }
     e = &data_02175628[i];
     bits = e->mUnk_00 & 2;

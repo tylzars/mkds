@@ -11,8 +11,8 @@ void func_0212b9f8(void *a) {
     func_0212cb78();
     func_02020bbc(0, 0, 0, 0);
     v = func_02021114();
-    func_020211e4(1);
-    func_02021154(v);
+    PxiCommandSendPending(1);
+    PxiCommandWaitForSequence(v);
 }
 
 void func_0212b9ec(void *a) {

@@ -9,7 +9,7 @@ u32 func_0210bc8c(int a, int b) {
     BOOL i;
     Unk0210bc54 *p;
 
-    p = (Unk0210bc54 *) (b + ((Unk02017328 *) a)->mUnk_0a);
+    p = (Unk0210bc54 *) (b + ((LinkedList *) a)->mLinkOffset);
     if (p->mUnk_08 != 0) {
         i = FALSE;
     } else {
@@ -17,18 +17,18 @@ u32 func_0210bc8c(int a, int b) {
         p->mUnk_08 = (u32) a;
     }
     if (i != FALSE) {
-        ListAppend((Unk02017328 *) a, (void *) b);
+        ListAppend((LinkedList *) a, (void *) b);
     } else {
         return 0;
     }
     return 1;
 }
 
-void func_0210bc54(Unk02017328 *a, void *b) {
+void func_0210bc54(LinkedList *a, void *b) {
     Unk0210bc54 *p;
 
     ListRemove(a, b);
-    p = (Unk0210bc54 *) ((u8 *) b + a->mUnk_0a);
+    p = (Unk0210bc54 *) ((u8 *) b + a->mLinkOffset);
     if (p->mUnk_08 != 0) {
         p->mUnk_08 = 0;
     }

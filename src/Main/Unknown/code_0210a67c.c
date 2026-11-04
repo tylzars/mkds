@@ -382,7 +382,7 @@ void func_0210abf4(Unk0206bcb0 *a, s32 b, s32 c, s32 d) {
     u16 f;
     enum { K0 } k;
 
-    p = a->mUnk_00.mUnk_0c.mUnk_00;
+    p = a->mUnk_00.mUnk_0c.mHead;
     if (p != NULL) {
         do {
             if (p->mUnk_18 == 2) {

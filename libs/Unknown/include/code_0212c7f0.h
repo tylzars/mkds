@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_02003024.h" // Unk02003024
-#include "code_0212f788.h" // Unk0212f7c8
+#include "code_0212f788.h" // Interpolator
 #include "code_0214f4a4.h" // Unk0214f4bc
 
 // 0x160 bytes; data_0217e404 holds four. Flags word at 0x24: bit 0 and bit 1 are tested and cleared or set by
@@ -24,7 +24,7 @@ typedef struct Unk0212c7f0 {
     /* 4c */ u8 mUnk_4c[0x10];
     /* 5c */ Unk02003024 mUnk_5c;
     /* a4 */ u8 mUnk_a4[0x44];
-    /* e8 */ Unk0212f7c8 mUnk_e8;
+    /* e8 */ Interpolator mUnk_e8;
     /* f8 */ u8 mUnk_f8[0x18];
     /* 110 */ s32 mUnk_110_0 : 1;
     /* 110 */ s32 mUnk_110_1 : 1;

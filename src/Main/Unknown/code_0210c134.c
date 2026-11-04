@@ -8,7 +8,7 @@
 void func_0210c134(int a, u32 b) {
     u32 v1;
     u32 v2;
-    ListInit((Unk02017328 *) ((u32 *) (u32) (a + 0xc)), (u16) 8);
+    ListInit((LinkedList *) ((u32 *) (u32) (a + 0xc)), (u16) 8);
     v1 = ((u32) (&func_0210d0b4));
     *(u32 *) (a + 0x38) = 1;
     v2 = ((u32) (&func_0210d078));

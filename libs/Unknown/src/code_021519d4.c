@@ -101,7 +101,7 @@ s32 func_02151b38(u8 *a) {
     if (func_02151830((u16 *) a) == 0) {
         return -10001;
     }
-    func_02020720((u16 *) (a + 0x500), 0xa001);
+    Crc16InitTable((u16 *) (a + 0x500), 0xa001);
     if (func_02151804((u32) a) == 0) {
         return -10001;
     }
@@ -111,7 +111,7 @@ s32 func_02151b38(u8 *a) {
     e = a;
     f = b;
     do {
-        k = func_020205e8((u16 *) (a + 0x500), d, 0xfe);
+        k = Crc16((u16 *) (a + 0x500), d, 0xfe);
         if (k == *(u16 *) (d + 0xfe)) {
             if (func_02151a64(e) != 0) {
                 *f = 1;
@@ -122,7 +122,7 @@ s32 func_02151b38(u8 *a) {
         f++;
         c++;
     } while (c < 3);
-    k = func_020205e8((u16 *) (a + 0x500), a + 0x300, 0xfe);
+    k = Crc16((u16 *) (a + 0x500), a + 0x300, 0xfe);
     if (k == *(u16 *) (a + 0x3fe)) {
         b[3] = 1;
     }

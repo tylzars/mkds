@@ -58,8 +58,8 @@ void func_021527ac(Unk02152500 *a, u32 b) {
     a->mUnk_24 = b;
     func_02152744(&a->mUnk_04);
     func_021529e0(&a->mUnk_10, 0);
-    func_02020694(t, 0xedb88320);
-    a->mUnk_3c = func_020205b0(t, a, 0x3c);
+    Crc32InitTable(t, 0xedb88320);
+    a->mUnk_3c = Crc32(t, a, 0x3c);
     a->mUnk_20 |= 1;
 }
 

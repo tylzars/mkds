@@ -1,6 +1,6 @@
 #include "code_020205b0.h"
 
-void func_020207a8(u8 *a, u32 b) {
+void Crc8InitTable(u8 *a, u32 b) {
     u32 v;
     u32 i;
     u32 j;
@@ -18,7 +18,7 @@ void func_020207a8(u8 *a, u32 b) {
     }
 }
 
-void func_02020768(const u8 *a, u8 *b, const u8 *c, u32 d) {
+void Crc8Continue(const u8 *a, u8 *b, const u8 *c, u32 d) {
     u32 v;
     u32 i;
 
@@ -30,7 +30,7 @@ void func_02020768(const u8 *a, u8 *b, const u8 *c, u32 d) {
     *b = v;
 }
 
-void func_02020720(u16 *a, u32 b) {
+void Crc16InitTable(u16 *a, u32 b) {
     u32 v;
     u32 i;
     u32 j;
@@ -48,7 +48,7 @@ void func_02020720(u16 *a, u32 b) {
     }
 }
 
-void func_020206d8(const u16 *a, u16 *b, const u8 *c, u32 d) {
+void Crc16Continue(const u16 *a, u16 *b, const u8 *c, u32 d) {
     u32 v;
     u32 i;
 
@@ -60,7 +60,7 @@ void func_020206d8(const u16 *a, u16 *b, const u8 *c, u32 d) {
     *b = v;
 }
 
-void func_02020694(u32 *a, u32 b) {
+void Crc32InitTable(u32 *a, u32 b) {
     u32 v;
     u32 i;
     u32 j;
@@ -78,7 +78,7 @@ void func_02020694(u32 *a, u32 b) {
     }
 }
 
-void func_02020650(const u32 *a, u32 *b, const u8 *c, u32 d) {
+void Crc32Continue(const u32 *a, u32 *b, const u8 *c, u32 d) {
     u32 v;
     u32 i;
 
@@ -90,26 +90,26 @@ void func_02020650(const u32 *a, u32 *b, const u8 *c, u32 d) {
     *b = v;
 }
 
-u8 func_0202061c(const u8 *a, const void *b, u32 c) {
+u8 Crc8(const u8 *a, const void *b, u32 c) {
     u8 v;
 
     v = 0;
-    func_02020768(a, &v, b, c);
+    Crc8Continue(a, &v, b, c);
     return v;
 }
 
-u16 func_020205e8(const u16 *a, const u8 *b, u32 c) {
+u16 Crc16(const u16 *a, const u8 *b, u32 c) {
     u16 v;
 
     v = 0;
-    func_020206d8(a, &v, b, c);
+    Crc16Continue(a, &v, b, c);
     return v;
 }
 
-u32 func_020205b0(const u32 *a, const void *b, u32 c) {
+u32 Crc32(const u32 *a, const void *b, u32 c) {
     u32 v;
 
     v = -1;
-    func_02020650(a, &v, b, c);
+    Crc32Continue(a, &v, b, c);
     return ~v;
 }

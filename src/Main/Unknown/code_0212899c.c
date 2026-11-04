@@ -94,7 +94,7 @@ void func_021293b4(void) {
         f = TRUE;
     }
     if (f != FALSE) {
-        v = func_0201ea84(data_0217d400->mUnk_a4[1], data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
+        v = RectTableFindContaining(data_0217d400->mUnk_a4[1], data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
     p = data_0217d400;
     q = &p->mUnk_2c[p->mUnk_04];
