@@ -137,7 +137,7 @@ s32 func_ov001_02183d94(Unk02188950 *a) {
 }
 
 void func_ov001_02183cc8(Unk02188950 *a) {
-    Unk0206bcb0 *r4;
+    Kart *r4;
 
     r4 = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 2, func_ov001_02183d94);
@@ -183,7 +183,7 @@ void func_ov001_02183b9c(Unk02188950 *a) {
 }
 
 void func_ov001_02183ad8(Unk02188950 *a) {
-    Unk0206bcb0 *r4;
+    Kart *r4;
 
     r4 = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 3, NULL);
@@ -363,7 +363,7 @@ void func_ov001_02183450(Unk0218fa78 *a) {
 
 void func_ov001_021832cc(u32 b, Unk02188950 *d) {
     Unk02188950_a0 *a;
-    Unk0206bcb0 *c;
+    Kart *c;
 
     if (data_021759c0->mMode == 4 ? func_020a126c() : 0) {
         if (func_ov001_021871f8(d, 1) != 0) {

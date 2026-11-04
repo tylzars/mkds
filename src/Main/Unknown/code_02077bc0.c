@@ -169,7 +169,7 @@ void func_0207abec(u32 a) {
 
 void func_0207aaec(void) {
     s32 i;
-    Unk0206bcb0 *p = gKarts;
+    Kart *p = gKarts;
     data_0217ad20 = 0;
     data_usa_021658c0 = -1;
     for (i = 0; i < gKartCount; i++) {
@@ -190,7 +190,7 @@ void func_0207aaec(void) {
 }
 
 void func_0207aa7c(void) {
-    Unk0206bcb0 *p = gKarts;
+    Kart *p = gKarts;
     s16 i;
     for (i = 0; i < gKartCount; i++) {
         p->mUnk_20c_fn[2](p);
@@ -216,7 +216,7 @@ void func_0207a990(void) {
     gKarts = NULL;
 }
 
-Unk0206bcb0 *GetKart(s32 a) {
+Kart *GetKart(s32 a) {
     return &gKarts[a];
 }
 
@@ -310,7 +310,7 @@ void func_0207a70c(s32 a) {
     }
 }
 
-void func_0207a6c0(Unk0206bcb0 *a) {
+void func_0207a6c0(Kart *a) {
     if (a->mIndex != data_021759c0->mEntryIndex) {
         return;
     }
@@ -336,13 +336,13 @@ u32 func_0207a68c(int arg0) {
     value2 = (u32) * (const u32 *) ((value2) + (0));
     value12 = (u32) &func_0206c0a8;
     value0 = (value1) * (value0) + (value2);
-    value0 = (u32) func_0206c0a8((Unk0206bcb0 *) value0);
+    value0 = (u32) func_0206c0a8((Kart *) value0);
     return value0;
 }
 
 void func_0207a5f0(s32 a) {
     s32 i;
-    Unk0206bcb0 *p = gKarts;
+    Kart *p = gKarts;
     Unk0206bcb0_590 *s;
     for (i = 0; i < gKartCount; i++) {
         s = p->mKartModelsEntry;
@@ -360,7 +360,7 @@ s32 func_0207a5c4(s32 a) {
 }
 
 BOOL func_0207a574(void) {
-    Unk0206bcb0 *p = &gKarts[data_021759c0->mEntryIndex];
+    Kart *p = &gKarts[data_021759c0->mEntryIndex];
     if (p->mState != 0 || (p->mUnk_48 & 0x4000000) != 0) {
         return TRUE;
     }
@@ -381,7 +381,7 @@ void func_0207a32c(void) {
     u16 i;
     u16 k;
     s32 j;
-    Unk0206bcb0 *p;
+    Kart *p;
     if (data_021759c0->mUnk_00c == 5) {
         for (k = 0; k < 3; k++) {
             gKarts[k].mUnk_4c |= 0x8000;
@@ -449,7 +449,7 @@ s32 func_0207a218(void) {
     BOOL r = TRUE;
     s32 m = data_021759c0->mMode;
     if (m == 4) {
-        Unk0206bcb0 *p = &gKarts[data_021759c0->mEntryIndex];
+        Kart *p = &gKarts[data_021759c0->mEntryIndex];
         if (p->mState != 0 || (p->mUnk_48 & 0x2000840) != 0 || (p->mUnk_44 & 0x10) == 0 ||
             (m != 4 ? 0 : func_ov001_021816b4()) != 0) {
             r = FALSE;

@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 typedef struct Unk0210bfbc Unk0210bfbc;
 
 // Ten words at 0x40 of an Unk02024eec, built on the stack by func_020719d0.
@@ -19,7 +19,7 @@ typedef struct Unk02024eec_40 {
     /* 24 */ s32 mUnk_24;
 } Unk02024eec_40;
 
-// The bytes from 0x450 of an Unk0206bcb0, which func_02024a88 and func_02024eec read and write.
+// The bytes from 0x450 of an Kart, which func_02024a88 and func_02024eec read and write.
 typedef struct Unk02024eec {
     /* 00 */ s32 mUnk_00;
     /* 04 */ u8 mUnk_04;
@@ -56,16 +56,16 @@ typedef struct Unk02024eec {
     /* 68 */ s32 mUnk_68;
 } Unk02024eec;
 
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 typedef struct Unk02024eec Unk02024eec;
 
 s32 func_02024974(s32 a, s32 b, u32 c, u32 d);
-void func_020249b8(Unk0206bcb0 *a, s32 b, s32 c);
+void func_020249b8(Kart *a, s32 b, s32 c);
 void func_02024a28(Unk0210bfbc *p, u16 a, s32 b, s32 c);
-void func_02024a88(Unk0206bcb0 *a);
+void func_02024a88(Kart *a);
 s32 func_02024eec(Unk02024eec *a, s32 b, s32 c);
 void func_02024fc0(u32 arg0, u32 arg1);
-void func_02024fe8(Unk0206bcb0 *a, Unk02024eec *b);
-void func_02025030(Unk0206bcb0 *a, Unk02024eec *b);
-void func_0202506c(Unk0206bcb0 *a, Unk02024eec *b);
+void func_02024fe8(Kart *a, Unk02024eec *b);
+void func_02025030(Kart *a, Unk02024eec *b);
+void func_0202506c(Kart *a, Unk02024eec *b);
 u32 func_020250a8(void);

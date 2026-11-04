@@ -12,7 +12,7 @@ struct Unk021a998c;
 
 typedef struct Unk021a998c Unk021a998c;
 
-typedef struct Unk0200db5c Unk0200db5c;
+typedef struct Thread Thread;
 
 // Frame start: two addresses and a type word.
 typedef struct Unk021ae3a4 {
@@ -117,9 +117,9 @@ extern void (*data_ov000_021b6384)(void);
 typedef struct Unk021b69dc Unk021b69dc;
 typedef struct Unk021b5fa8 Unk021b5fa8;
 
-// Object linked from Unk0200db5c.mUnk_a4.
+// Object linked from Thread.mUnk_a4.
 typedef struct Unk021b04f8 {
-    /* 00 */ Unk0200db5c *mThread;
+    /* 00 */ Thread *mThread;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u8 mState;
 } Unk021b04f8;
@@ -145,7 +145,7 @@ extern u32 data_ov000_021b639c;
 extern u32 data_ov000_021b63b0;
 extern u32 data_ov000_021b63b4;
 extern u32 data_ov000_021b63bc;
-extern Unk0200db5c *data_ov000_021b63c0;
+extern Thread *data_ov000_021b63c0;
 // Objects whose layout isn't known yet.
 extern u8 *data_ov000_021b63c4;
 extern u32 data_ov000_021b63c8;
@@ -155,8 +155,8 @@ extern u16 data_ov000_021b63d0[3];
 extern u8 data_ov000_021b641a[];
 extern Unk021b6434 data_ov000_021b6434[8];
 extern Unk021a998c data_ov000_021b64f8;
-extern Unk0200db5c data_ov000_021b655c;
-extern Unk0200db5c data_ov000_021b661c;
+extern Thread data_ov000_021b655c;
+extern Thread data_ov000_021b661c;
 extern Unk021b69dc data_ov000_021b69dc[8];
 extern u8 data_ov000_021b73a0[];
 
@@ -185,7 +185,7 @@ u32 func_ov000_021ae16c(Unk021a998c *b);
 void func_ov000_021ae1e4(void);
 void func_ov000_021ae214(Unk021a78a4Func a);
 void func_ov000_021ae228(Unk021a998c *a);
-void func_ov000_021ae244(Unk0200db5c *thread);
+void func_ov000_021ae244(Thread *thread);
 void func_ov000_021ae258(void);
 void func_ov000_021ae270(void);
 void func_ov000_021ae290(int a, u16 b, int c);

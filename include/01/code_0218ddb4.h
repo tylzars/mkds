@@ -4,7 +4,7 @@
 
 typedef struct Unk02188950 Unk02188950;
 typedef struct Unk0218d87c Unk0218d87c;
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 
 void *func_ov001_0218ddb4(void);
 void *func_ov001_0218ddcc(void);
@@ -13,9 +13,9 @@ void func_ov001_0218de14(u32 a, int b);
 void func_ov001_0218de50(Unk0218d87c *a);
 void func_ov001_0218df20(u32 a, Unk02188950 *b);
 void func_ov001_0218e208(Unk0218d87c *a);
-void func_ov001_0218e298(Unk02188950 *a, Unk0206bcb0 *b);
+void func_ov001_0218e298(Unk02188950 *a, Kart *b);
 void func_ov001_0218e344(Unk02188950 *a);
-void func_ov001_0218e38c(Unk02188950 *a, Unk0206bcb0 *b);
+void func_ov001_0218e38c(Unk02188950 *a, Kart *b);
 void func_ov001_0218e474(Unk02188950 *a);
 void func_ov001_0218e4ac(Unk02188950 *a);
 void func_ov001_0218e508(Unk02188950 *a);

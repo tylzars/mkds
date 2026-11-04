@@ -182,7 +182,7 @@ void func_ov001_0218a028(Unk0206c1ac *a) {
     a->mUnk_6c = 0x2000;
 }
 
-void func_ov001_02189fe0(Unk02188950 *a, Unk0206bcb0 *b) {
+void func_ov001_02189fe0(Unk02188950 *a, Kart *b) {
     if (b->mUnk_44 == 9) {
         if (func_020fd528(b) == 0) {
             func_0208b748(0x3a, &b->mUnk_50, NULL, func_ov001_0218a028);
@@ -192,7 +192,7 @@ void func_ov001_02189fe0(Unk02188950 *a, Unk0206bcb0 *b) {
     func_ov001_021881f4(a, (UnkFunc *) func_ov001_02189fe0);
 }
 
-void func_ov001_02189ed8(Unk02188950 *a, Unk0206bcb0 *b) {
+void func_ov001_02189ed8(Unk02188950 *a, Kart *b) {
     Vec3 v;
     s64 scale;
 

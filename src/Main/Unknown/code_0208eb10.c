@@ -559,7 +559,7 @@ void func_0208ee40(u32 arg0, u32 arg1) {
 }
 
 void func_0208ecd8(Unk0208ec64_08 *a, Unk0208ec64 *b) {
-    Unk0206bcb0 *o;
+    Kart *o;
     Vec3 v;
     Vec3 x;
     Vec3 y;
@@ -609,7 +609,7 @@ s32 func_0208ec64(u32 a) {
 
 Unk0208ec64 *func_0208eb1c(s32 a) {
     Unk0208ec64 *p;
-    Unk0206bcb0 *o;
+    Kart *o;
     Unk0206bcb0_590 *t;
     Vec3 v;
     s32 h;

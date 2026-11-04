@@ -33,7 +33,7 @@ void func_02098268(Unk020975ec *p) {
     func_020d2450(p);
 }
 
-u32 func_020980ec(Unk020975ec *p, Unk0206bcb0 *q, void *b, u8 *c) {
+u32 func_020980ec(Unk020975ec *p, Kart *q, void *b, u8 *c) {
     u32 v;
     BOOL t;
     s32 f;

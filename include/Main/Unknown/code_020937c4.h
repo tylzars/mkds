@@ -3,7 +3,7 @@
 #include "types.h"
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
-#include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
 
@@ -38,7 +38,7 @@ void func_020938c0(void);
 void func_02093910(void *a, Unk02093910 *p);
 void func_02093a50(void *a, Unk02093910 *p);
 void CreateNsKiller2AndNsKiller2S(void *a);
-u8 func_02093b7c(Unk02093910 *a, Unk0206bcb0 *b, u8 *c, u8 *d);
+u8 func_02093b7c(Unk02093910 *a, Kart *b, u8 *c, u8 *d);
 void func_02093c64(Unk02093910 *p);
 void func_02093cb4(void);
 void func_02093cd4(void);

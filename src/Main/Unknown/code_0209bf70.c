@@ -145,7 +145,7 @@ static inline BOOL func_0209cf34_inline(void) {
 
 static inline BOOL func_0209cf34_inline_b(Unk0209cf34 *p) {
     s32 i;
-    Unk0206bcb0 *k;
+    Kart *k;
     Vec3 *q;
     s32 x;
     s32 z;
@@ -282,7 +282,7 @@ void func_0209cebc(Unk0209c220 *p) {
     p->mUnk_0b4 = p->mUnk_000.mUnk_1c.x;
 }
 
-s32 func_0209c9fc(Unk0209c220 *p, Unk0206bcb0 *k, u8 *b, u8 *c) {
+s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
     Vec3 v0;
     Vec3 v1;
     Vec3 v2;

@@ -503,7 +503,7 @@ BOOL func_020908d0(u32 a, void *c) {
 }
 
 void func_0209086c(Unk020905a8 *a, u32 b) {
-    Unk0206bcb0 *p;
+    Kart *p;
     p = GetKart(b);
     a->mUnk_24 = b;
     func_0207ffa4(&a->mUnk_00, b, (Unk02080b1c_00 *) data_027e00c8[b].mUnk_1f0.mUnk_00);
@@ -526,7 +526,7 @@ s32 func_0209081c(Unk020905a8 *a) {
 }
 
 void func_02090748(Unk020905a8 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
     Vec3 v;
     s32 r;
     p = GetKart(a->mUnk_24);
@@ -551,7 +551,7 @@ void func_02090748(Unk020905a8 *a) {
 }
 
 void func_02090638(Unk020905a8 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
     s32 v;
     s32 s;
     u16 m;
@@ -590,7 +590,7 @@ void func_02090638(Unk020905a8 *a) {
 s32 func_020905a8(Unk020905a8 *a) {
     BOOL r;
     BOOL t;
-    Unk0206bcb0 *p;
+    Kart *p;
     r = FALSE;
     t = FALSE;
     a->mUnk_28 = a->mUnk_28 - 1;

@@ -42,7 +42,7 @@ void func_02097520(Unk02097520 *p0) {
         (u16) (((((u32) p0->mUnk_02)) | (((u32) * (const u16 *) ((u8 *) (u32) (((u32) (&data_021564c0))) + 0)))));
 }
 
-u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
+u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
     s32 v1;
     s32 g;
     u32 v2 = *b;
@@ -183,7 +183,7 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
     return 0;
 }
 
-u32 func_02096f54(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
+u32 func_02096f54(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
     u8 v1 = *b;
     u8 v2 = *c;
     if (p->mState != 4) {

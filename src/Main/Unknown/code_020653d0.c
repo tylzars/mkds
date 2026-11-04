@@ -31,7 +31,7 @@
 #include "code_02146d78.h"
 #include "code_02147cd8.h"
 
-static inline void func_020653d0_inline(Unk0206bcb0 *o, Unk0206bcb0 *o2, Vec3 *t) {
+static inline void func_020653d0_inline(Kart *o, Kart *o2, Vec3 *t) {
     Vec3 t1;
     Vec3 t2;
 
@@ -45,7 +45,7 @@ static inline void func_020653d0_inline(Unk0206bcb0 *o, Unk0206bcb0 *o2, Vec3 *t
     }
 }
 
-void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
+void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     Vec3 v;
     Vec3 v2;
     Vec3 v3;
@@ -63,8 +63,8 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
     Unk0206bcb0_514 *r;
     s32 k;
     s32 c;
-    Unk0206bcb0 *o;
-    Unk0206bcb0 *o2;
+    Kart *o;
+    Kart *o2;
     s32 e;
     u8 x;
     Vec3 *u;
@@ -225,7 +225,7 @@ void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n) {
     p->mUnk_80.z = v.z;
     c = 0;
     if (((p->mUnk_514->mUnk_30 & 1) != 0) != ((f & 1) != 0) && (p->mUnk_44 & 0x10)) {
-        r = ((volatile Unk0206bcb0 *) p)->mUnk_514;
+        r = ((volatile Kart *) p)->mUnk_514;
         r->mUnk_64 = 0x1405;
         r->mUnk_60 = 0;
         p->mUnk_260 += 0x21a2;

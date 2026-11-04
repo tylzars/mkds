@@ -117,7 +117,7 @@ void func_ov001_0218f6d8(Unk02188950 *a) {
 }
 
 s32 func_ov001_0218f688(Unk02188950 *a) {
-    Unk0206bcb0 *obj = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *obj = GetKart((u16) data_021759c0->mEntryIndex);
     if ((obj->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &obj->mUnk_80);
         func_ov001_02188d8c(a, (Vec3 *) (&obj->mUnk_80));
@@ -127,7 +127,7 @@ s32 func_ov001_0218f688(Unk02188950 *a) {
 }
 
 s32 func_ov001_0218f634(Unk02188950 *a) {
-    Unk0206bcb0 *obj = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *obj = GetKart((u16) data_021759c0->mEntryIndex);
     if ((obj->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &obj->mUnk_80);
         func_ov001_02188d8c(a, (Vec3 *) (&obj->mUnk_80));
@@ -138,7 +138,7 @@ s32 func_ov001_0218f634(Unk02188950 *a) {
 }
 
 void func_ov001_0218f57c(Unk02188950 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
@@ -160,7 +160,7 @@ void func_ov001_0218f51c(Unk02188950 *a) {
 }
 
 void func_ov001_0218f454(Unk02188950 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
@@ -175,7 +175,7 @@ void func_ov001_0218f454(Unk02188950 *a) {
 }
 
 s32 func_ov001_0218f3ec(Unk02188950 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
     Vec3 v;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
@@ -190,7 +190,7 @@ s32 func_ov001_0218f3ec(Unk02188950 *a) {
 }
 
 s32 func_ov001_0218f3ac(Unk02188950 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
@@ -201,7 +201,7 @@ s32 func_ov001_0218f3ac(Unk02188950 *a) {
 }
 
 void func_ov001_0218f2a8(Unk02188950 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
     Vec3 v;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
@@ -221,7 +221,7 @@ void func_ov001_0218f2a8(Unk02188950 *a) {
 }
 
 s32 func_ov001_0218f244(Unk02188950 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
     Vec3 v;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
@@ -235,7 +235,7 @@ s32 func_ov001_0218f244(Unk02188950 *a) {
 }
 
 void func_ov001_0218f16c(Unk02188950 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
     Vec3 v;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
@@ -253,7 +253,7 @@ void func_ov001_0218f16c(Unk02188950 *a) {
 }
 
 s32 func_ov001_0218efc4(Unk02188950 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
     float f;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
@@ -298,7 +298,7 @@ void func_ov001_0218ef30(Unk02188950 *a) {
 }
 
 void func_ov001_0218ee88(Unk02188950 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
     Vec3 v;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
@@ -315,7 +315,7 @@ void func_ov001_0218ee88(Unk02188950 *a) {
 }
 
 void func_ov001_0218edc8(Unk02188950 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 3, func_ov001_0218f634);
@@ -588,7 +588,7 @@ void func_ov001_0218e474(Unk02188950 *a) {
     a->mUnk_000.mUnk_70 = data_0217cc6c[6];
 }
 
-void func_ov001_0218e38c(Unk02188950 *a, Unk0206bcb0 *b) {
+void func_ov001_0218e38c(Unk02188950 *a, Kart *b) {
     a->mUnk_000.mUnk_10.x = ((s64) -a->mPrm->mUnk_024 * gPairsByAngle[(b->mUnk_236 >> 4) * 2]) >> 12;
     a->mUnk_000.mUnk_10.y = 0;
     a->mUnk_000.mUnk_10.z = ((s64) -a->mPrm->mUnk_024 * gPairsByAngle[(b->mUnk_236 >> 4) * 2 + 1]) >> 12;
@@ -615,7 +615,7 @@ void func_ov001_0218e344(Unk02188950 *a) {
     }
 }
 
-void func_ov001_0218e298(Unk02188950 *a, Unk0206bcb0 *b) {
+void func_ov001_0218e298(Unk02188950 *a, Kart *b) {
     func_ov001_02182bbc((u16) a->mPrm->mUnk_110);
     a->mUnk_000.mUnk_10.x = 0;
     a->mUnk_000.mUnk_10.y = a->mPrm->mUnk_114;
@@ -654,7 +654,7 @@ void func_ov001_0218e208(Unk0218d87c *a) {
 }
 
 void func_ov001_0218df20(u32 a, Unk02188950 *b) {
-    Unk0206bcb0 *p;
+    Kart *p;
 
     if (data_021759c0->mMode == 4 ? func_020a126c() : 0) {
         if (func_ov001_021871f8(b, 5) != 0) {

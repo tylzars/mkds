@@ -139,7 +139,7 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
     float f;
     u32 r;
     u16 q;
-    Unk0206bcb0 *g;
+    Kart *g;
     Vec3 v;
     Vec3 *q2;
 

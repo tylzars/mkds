@@ -47,7 +47,7 @@ void func_0209ea90(Unk0209df84 *a) {
     a->mUnk_00.mUnk_66 = 0x1f;
 }
 
-u8 func_0209ea10(Unk0209df84 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
+u8 func_0209ea10(Unk0209df84 *a, Kart *b, u8 *c, u8 *d) {
     u8 v;
 
     v = *d;
@@ -61,7 +61,7 @@ u8 func_0209ea10(Unk0209df84 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
     return v;
 }
 
-static inline BOOL func_0209df84_inline(Unk0206bcb0 *p, Unk0209df84 *b, s32 t) {
+static inline BOOL func_0209df84_inline(Kart *p, Unk0209df84 *b, s32 t) {
     s32 y;
     s32 x;
     s32 z;
@@ -239,7 +239,7 @@ void func_0209df84(void *a, Unk0209df84 *b) {
     s32 n;
     s32 d;
     u16 w;
-    Unk0206bcb0 *p;
+    Kart *p;
     Unk0212c400 **h;
     Vec3 v;
 

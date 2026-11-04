@@ -204,7 +204,7 @@ void func_020da820(Unk020da494 *p, Vec3 *a) {
     func_020f6630(r, 0, &p->mUnk_00.mPos, a, &data_021581f8);
 }
 
-u32 func_020da73c(Unk020da494 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
+u32 func_020da73c(Unk020da494 *p, Kart *a, u8 *b, u8 *c) {
     switch (*b) {
         case 0:
             if (p->mUnk_c4 == 0x1000) {
@@ -227,7 +227,7 @@ u32 func_020da73c(Unk020da494 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
     return *c;
 }
 
-u32 func_020da684(Unk020da494 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
+u32 func_020da684(Unk020da494 *p, Kart *a, u8 *b, u8 *c) {
     switch (*b) {
         case 0:
             if (p->mUnk_c4 == 0x1000) {

@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 
-void func_020733ec(Unk0206bcb0 *p);
+void func_020733ec(Kart *p);
 void func_02073630(void);

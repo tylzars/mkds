@@ -57,8 +57,8 @@ typedef struct Unk020db20c {
 
 // 0x40 bytes: two functions at 0x00 and 0x04.
 typedef struct Unk020db268 {
-    /* 00 */ u32 (*mUnk_00)(Unk020da494 *p, Unk0206bcb0 *a, u8 *b, u8 *c);
-    /* 04 */ u32 (*mUnk_04)(Unk020da494 *p, Unk0206bcb0 *a, u8 *b, u8 *c);
+    /* 00 */ u32 (*mUnk_00)(Unk020da494 *p, Kart *a, u8 *b, u8 *c);
+    /* 04 */ u32 (*mUnk_04)(Unk020da494 *p, Kart *a, u8 *b, u8 *c);
     /* 08 */ u8 mUnk_08[0x38];
 } Unk020db268;
 
@@ -80,7 +80,7 @@ typedef struct Unk020dbed0 {
 
 // 0x40 bytes: a function at 0x00.
 typedef struct Unk020dbf2c {
-    /* 00 */ u32 (*mUnk_00)(Dossun *p, Unk0206bcb0 *a, u8 *b, u8 *c);
+    /* 00 */ u32 (*mUnk_00)(Dossun *p, Kart *a, u8 *b, u8 *c);
     /* 04 */ u8 mUnk_04[0x3c];
 } Unk020dbf2c;
 
@@ -103,5 +103,5 @@ void func_020db050(void *a, Unk020da494 *p, void *c, u16 d);
 void func_020daf20(void *a, Unk020da494 *p);
 void CreateWanwanAndRockShadow(void);
 void func_020dbdac(void *a, Dossun *p, void *c, s32 d);
-u32 func_020db548(Dossun *p, Unk0206bcb0 *a, u8 *b, u8 *c);
+u32 func_020db548(Dossun *p, Kart *a, u8 *b, u8 *c);
 void func_020db760(void *a, Dossun *p);

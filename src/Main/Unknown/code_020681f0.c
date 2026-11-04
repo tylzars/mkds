@@ -50,7 +50,7 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_02073eb8.h"
 
-void func_02068b98(Unk0206bcb0 *a) {
+void func_02068b98(Kart *a) {
     u32 b;
     s32 c;
     BOOL d;
@@ -139,7 +139,7 @@ void func_02068b98(Unk0206bcb0 *a) {
     }
 }
 
-void func_02068b5c(Unk0206bcb0 *a) {
+void func_02068b5c(Kart *a) {
     if ((a->mUnk_7c & 0x40000) != 0) {
         return;
     }
@@ -147,7 +147,7 @@ void func_02068b5c(Unk0206bcb0 *a) {
     func_02068ec0(a, 0);
 }
 
-void func_02068a64(Unk0206bcb0 *a, s32 b, s32 c) {
+void func_02068a64(Kart *a, s32 b, s32 c) {
     u32 d;
     u32 j;
     Unk0206bcb0_590 *e;
@@ -200,7 +200,7 @@ void func_02068a64(Unk0206bcb0 *a, s32 b, s32 c) {
     }
 }
 
-void func_02068a10(Unk0206bcb0 *a) {
+void func_02068a10(Kart *a) {
     if ((a->mUnk_7c & 0x10) != 0) {
         func_0207b054(a, 1, 0);
         func_0207b708(a->mKartModelsEntry, 1);
@@ -211,11 +211,11 @@ void func_02068a10(Unk0206bcb0 *a) {
     func_0210af40(a, a->mUnk_3cc, 0);
 }
 
-void func_02068a00(Unk0206bcb0 *a) {
+void func_02068a00(Kart *a) {
     func_0210ad58(a, a->mUnk_3cc);
 }
 
-void func_020688a0(Unk0206bcb0 *a) {
+void func_020688a0(Kart *a) {
     s32 b;
     u32 c;
     u32 d;
@@ -271,7 +271,7 @@ void func_020688a0(Unk0206bcb0 *a) {
     }
 }
 
-void func_02068640(Unk0206bcb0 *a, s32 b) {
+void func_02068640(Kart *a, s32 b) {
     Vec3 c;
     Vec3 e;
     Vec3 d;
@@ -337,7 +337,7 @@ void func_02068640(Unk0206bcb0 *a, s32 b) {
     func_0210ab48(a->mUnk_3cc, b);
 }
 
-void func_02068494(Unk0206bcb0 *a, s32 b, s32 c) {
+void func_02068494(Kart *a, s32 b, s32 c) {
     Unk02068494 d;
     s32 i;
     BOOL j;
@@ -393,7 +393,7 @@ void func_02068494(Unk0206bcb0 *a, s32 b, s32 c) {
     func_020e79c4();
 }
 
-void func_02068440(Unk0206bcb0 *a, s32 b) {
+void func_02068440(Kart *a, s32 b) {
     Unk0208c5b8 *c;
 
     a->mUnk_2fc = b;
@@ -405,7 +405,7 @@ void func_02068440(Unk0206bcb0 *a, s32 b) {
     func_021090c4(&a->mUnk_00, 0xd2, 0x7f, 0);
 }
 
-void func_020681f0(Unk0206bcb0 *a) {
+void func_020681f0(Kart *a) {
     Unk0208c5b8 *b;
     u16 *c;
     u16 *d;

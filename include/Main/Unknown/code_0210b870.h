@@ -12,7 +12,7 @@ typedef struct Unk0216ca48 {
     /* 0c */ u32 mUnk_0c;
 } Unk0216ca48;
 
-#include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "Main/Unknown/code_0206bcb0.h" // Kart
 
 extern Unk0216ca48 data_0216ca48;
 

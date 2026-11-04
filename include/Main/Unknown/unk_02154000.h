@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 
 // Objects whose layout isn't known yet.
 extern const u8 data_usa_0215470c[];
@@ -57,4 +57,4 @@ extern const Vec4 data_usa_02154f54;
 extern const Vec3 data_usa_02154f64;
 extern const s32 data_usa_02154d4c[][2];
 extern const s32 data_usa_02154d50[][2];
-extern int (*const data_usa_02154d8c[])(Unk0206bcb0 *);
+extern int (*const data_usa_02154d8c[])(Kart *);

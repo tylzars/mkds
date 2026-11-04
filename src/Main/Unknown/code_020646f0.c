@@ -19,7 +19,7 @@
 #include "Main/Unknown/code_020ed5c0.h"
 #include "code_02147cd8.h"
 
-void func_020646f0(Unk0206bcb0 *a, s32 b) {
+void func_020646f0(Kart *a, s32 b) {
     Unk02012f58 *m;
     Unk02175620 *c;
     Vec3 d;

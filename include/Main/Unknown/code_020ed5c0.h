@@ -26,7 +26,7 @@ typedef struct Unk0206bcb0_590_20 {
     /* 48 */ Vec3 mUnk_48[1];
 } Unk0206bcb0_590_20;
 
-// The object behind the word at 0x590 of a Unk0206bcb0 from its first byte:
+// The object behind the word at 0x590 of a Kart from its first byte:
 // the halfword at 0x40.
 // The object behind the word at 0x08 of a Unk0206bcb0_590: the halfword at 0x1a.
 typedef struct Unk0206bcb0_590_08 {
@@ -102,7 +102,7 @@ typedef struct Unk0206bcb0_590 {
     /* 004 */ s32 mUnk_004;
     /* 008 */ Unk0206bcb0_590_08 *mUnk_008;
     /* 00c */ Unk0206bcb0_590_08 *mUnk_00c;
-    /* 10 */ Unk02084b2c * mUnk_010[3];
+    /* 10 */ Unk02084b2c *mUnk_010[3];
     /* 01c */ Unk0207adf8 *mUnk_01c;
     /* 020 */ Unk0206bcb0_590_20 *mUnk_020;
     /* 024 */ s32 mUnk_024;
@@ -141,7 +141,7 @@ typedef struct Unk020eda5c {
     /* 004 */ s32 mUnk_004;
     /* 008 */ s32 mUnk_008;
     /* 00c */ struct Unk020ee684 *mUnk_00c;
-    /* 010 */ Unk0206bcb0 *mUnk_010;
+    /* 010 */ Kart *mUnk_010;
     /* 014 */ Unk020f41c4_A *mUnk_014[3];
     /* 020 */ s32 mUnk_020;
     /* 024 */ s32 mUnk_024;

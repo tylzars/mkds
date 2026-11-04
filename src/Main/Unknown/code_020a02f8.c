@@ -142,8 +142,8 @@ void func_020a21bc(s32 a, s32 b) {
 }
 
 s32 func_020a1ee4(s32 a, s32 b) {
-    Unk0206bcb0 *v1;
-    Unk0206bcb0 *v2;
+    Kart *v1;
+    Kart *v2;
     Unk0217b1fc_000 *v3;
     Unk0217b1fc_000 *v4;
     BOOL f5;
@@ -374,7 +374,7 @@ void func_020a19f8(u16 a) {
 }
 
 void func_020a1904(u16 a) {
-    Unk0206bcb0 *c;
+    Kart *c;
 
     if (data_0217b1fc->mUnk_38c != NULL) {
         data_0217b1fc->mUnk_38c(a);
@@ -407,7 +407,7 @@ void func_020a1790(void) {
     u16 x;
     Unk0217b1fc *d;
     Unk0217b1fc_000 *e;
-    Unk0206bcb0 *c;
+    Kart *c;
 
     n = data_021759c0->mKartCount;
     d = data_0217b1fc;
@@ -805,7 +805,7 @@ void func_020a0dbc(void) {
 }
 
 void func_020a08ec(void) {
-    Unk0206bcb0 *o;
+    Kart *o;
     BOOL a;
     BOOL b;
     s32 v;
@@ -976,7 +976,7 @@ void func_020a066c(Unk020a066c *p) {
 }
 
 void func_020a0318(void *a, Unk020a0318 *p) {
-    Unk0206bcb0 *o;
+    Kart *o;
     Unk0212c400 **h;
     Unk020f41c4_B *r;
     Unk0210b7a8 s1;

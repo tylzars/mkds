@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
 
@@ -47,6 +47,6 @@ void func_0209e508(void *a, Unk0209df84 *b);
 void func_0209e938(void *a);
 void func_0209e950(Unk0209e950 *a);
 BOOL func_0209e988(Unk0209df84 *a, Vec3 *b, s32 c);
-u8 func_0209ea10(Unk0209df84 *a, Unk0206bcb0 *b, u8 *c, u8 *d);
+u8 func_0209ea10(Unk0209df84 *a, Kart *b, u8 *c, u8 *d);
 void func_0209ea90(Unk0209df84 *a);
 u32 func_0209eb04(void);

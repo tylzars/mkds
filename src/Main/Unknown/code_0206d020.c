@@ -29,7 +29,7 @@
 #include "Main/Unknown/unk_02154000.h"
 #include "code_02147cd8.h"
 
-static inline s32 func_0206dbf8_inline(Unk0206bcb0 *q) {
+static inline s32 func_0206dbf8_inline(Kart *q) {
     BOOL c;
     BOOL t;
     BOOL u;
@@ -62,7 +62,7 @@ static inline s32 func_0206dbf8_inline(Unk0206bcb0 *q) {
     return c;
 }
 
-BOOL func_0206de18(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v) {
+BOOL func_0206de18(Kart *p, Kart *q, const Vec3 *v) {
     BOOL r;
     s32 c;
     u32 w;
@@ -105,7 +105,7 @@ BOOL func_0206de18(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v) {
     return r;
 }
 
-BOOL func_0206dbf8(Unk0206bcb0 *p, Unk0206bcb0 *q) {
+BOOL func_0206dbf8(Kart *p, Kart *q) {
     Vec3 a;
     Vec3 b;
     Vec3 v1;
@@ -159,7 +159,7 @@ BOOL func_0206dbf8(Unk0206bcb0 *p, Unk0206bcb0 *q) {
     return r;
 }
 
-void func_0206d7c8(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v, s32 c, Vec3 *v1) {
+void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     s32 a;
     s32 b;
     s32 v2;
@@ -287,11 +287,11 @@ void func_0206d7c8(Unk0206bcb0 *p, Unk0206bcb0 *q, const Vec3 *v, s32 c, Vec3 *v
     q->mUnk_598 = t;
 }
 
-void func_0206d578(Unk0206bcb0 *p) {
+void func_0206d578(Kart *p) {
     s32 d;
     BOOL v1;
     s32 i;
-    Unk0206bcb0 *q;
+    Kart *q;
     Vec3 v;
 
     d = 0;
@@ -338,10 +338,10 @@ void func_0206d578(Unk0206bcb0 *p) {
     }
 }
 
-void func_0206d18c(Unk0206bcb0 *p) {
+void func_0206d18c(Kart *p) {
     s32 r;
     Unk020f41c4_A *e;
-    Unk0206bcb0 *q;
+    Kart *q;
     u32 i;
     u32 t;
     u32 f;
@@ -461,7 +461,7 @@ void func_0206d18c(Unk0206bcb0 *p) {
     }
 }
 
-void func_0206d138(Unk0206bcb0 *p) {
+void func_0206d138(Kart *p) {
     u32 f;
 
     if (!(p->mUnk_48 & 0x840)) {
@@ -477,7 +477,7 @@ void func_0206d138(Unk0206bcb0 *p) {
     func_0207b054(p, 2, 0);
 }
 
-void func_0206d020(Unk0206bcb0 *p, int a, int b) {
+void func_0206d020(Kart *p, int a, int b) {
     s32 c;
     u32 d;
     s16 e;

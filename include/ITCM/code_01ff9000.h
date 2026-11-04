@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-struct Unk0206bcb0;
+struct Kart;

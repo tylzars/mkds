@@ -19,7 +19,7 @@ void func_020fcce4(Unk020fc2e8 *p0, s32 a, s32 b) {
     s32 f;
     Vec3 *v1;
     Vec3 *v2;
-    Unk0206bcb0 *p;
+    Kart *p;
 
     p = p0->mUnk_228->mUnk_1fc;
     f = (p->mUnk_48 & 1) ? 1 : 0;
@@ -56,7 +56,7 @@ void func_020fcce4(Unk020fc2e8 *p0, s32 a, s32 b) {
 }
 
 BOOL func_020fcbb8(Unk020fc2e8 *p0, s32 v1) {
-    Unk0206bcb0 *p;
+    Kart *p;
     Unk020ee684 *e;
     Vec3 v;
     Vec3 *q;

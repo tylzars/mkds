@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0, UnkVec16
+#include "Main/Unknown/code_0206bcb0.h" // Kart, UnkVec16
 #include "Main/Unknown/code_020846c0.h" // Unk02084b2c
 
 // Object at data_usa_0217aafc: two Unk02084b2c pointers, then the words and halfwords the code tests.
@@ -69,8 +69,8 @@ void func_02063228(void);
 void func_0206326c(void);
 void func_02063294(void);
 void func_0206331c(void *a);
-void func_020636f8(Unk0206bcb0 *a);
-void func_020637c4(Unk0206bcb0 *a);
-void func_020637e0(Unk0206bcb0 *a);
-void func_02063830(Unk0206bcb0 *a);
-void func_02063880(Unk0206bcb0 *a);
+void func_020636f8(Kart *a);
+void func_020637c4(Kart *a);
+void func_020637e0(Kart *a);
+void func_02063830(Kart *a);
+void func_02063880(Kart *a);

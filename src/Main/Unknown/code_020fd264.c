@@ -202,7 +202,7 @@ void func_020fdf64(Unk020fdae8 *e) {
 void func_020fde18(Unk020fdae8 *e) {
     u32 v1;
     u16 v2;
-    Unk0206bcb0 *p;
+    Kart *p;
     Vec3 v;
     s32 d;
     s32 x;
@@ -551,7 +551,7 @@ void func_020fd540(void **b, Vec3 *v, s32 a) {
     *b = NULL;
 }
 
-BOOL func_020fd528(Unk0206bcb0 *a) {
+BOOL func_020fd528(Kart *a) {
     Unk020fdae8 *e;
 
     e = (Unk020fdae8 *) a;

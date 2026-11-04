@@ -48,7 +48,7 @@ void func_0208be7c(Unk020888b4 *p) {
 }
 
 void func_0208be00(Unk020888b4 *p, s32 a) {
-    Unk0206bcb0 *q = GetKart(a);
+    Kart *q = GetKart(a);
 
     p->mUnk_154 = 0;
     func_0207e594(p, q, p->mUnk_154);
@@ -73,7 +73,7 @@ void func_0208bdc0(Unk020888b4 *p) {
 }
 
 void func_0208bd44(Unk020888b4 *p, s32 a) {
-    Unk0206bcb0 *q = GetKart(a);
+    Kart *q = GetKart(a);
 
     p->mUnk_154 = 0;
     func_0207e400(p, q, p->mUnk_154);

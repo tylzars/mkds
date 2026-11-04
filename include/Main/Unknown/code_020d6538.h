@@ -64,6 +64,6 @@ s32 func_020d6910(s32 a, void *b);
 s32 func_020d6968(s32 a, MapObject *b);
 s32 func_020d69e4(s32 a, MapObject *b);
 s32 func_020d6a54(Unk020f41c4_A *a, MapObject *b, s32 *c);
-s32 func_020d6be0(Unk0206bcb0 *a, MapObject *b);
+s32 func_020d6be0(Kart *a, MapObject *b);
 u32 func_020d6d34(s32 a, s32 b, s32 c, s32 d, s32 e);
 u32 func_020d6d8c(u32 arg0, u32 arg1, u32 arg2, u32 arg3);

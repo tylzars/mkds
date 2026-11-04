@@ -12,7 +12,7 @@ void func_020fcf10(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     Vec3 *v;
     Vec3 *v1;
     Vec3 *v2;
-    Unk0206bcb0 *p;
+    Kart *p;
     s32 s;
 
     p = p0->mUnk_228->mUnk_1fc;

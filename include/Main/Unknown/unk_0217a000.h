@@ -757,12 +757,12 @@ typedef struct Unk0217aa00 {
 
 extern Unk0217aa00 *data_0217aa00;
 extern Unk0217aa08 *data_0217aa08;
-// Object behind data_0217aa0c; the Unk0200db5c at 0x2c is passed to ThreadInit and ThreadSetRunnable.
+// Object behind data_0217aa0c; the Thread at 0x2c is passed to ThreadInit and ThreadSetRunnable.
 typedef struct Unk0217aa0c {
     /* 00 */ void (*mUnk_00[10])(void);
     /* 28 */ u8 mUnk_28;
     /* 29 */ u8 mUnk_29[3];
-    /* 2c */ Unk0200db5c mUnk_2c;
+    /* 2c */ Thread mUnk_2c;
     /* e4 */ u8 mUnk_e4[0x10];
     /* f4 */ void *mUnk_f4;
     /* f8 */ s32 mUnk_f8;
@@ -1305,11 +1305,11 @@ extern struct Unk0208fd8c_08 *data_0217ae38;
 struct Unk02080b1c;
 struct Unk020888b4;
 struct Unk0208001c;
-struct Unk0206bcb0;
+struct Kart;
 extern const s32 *data_usa_0217ae38;
 extern void (*data_usa_0217ae3c)(struct Unk02080b1c *p);
 extern const s32 *data_usa_0217ae40;
-extern void (*data_usa_0217ae44)(struct Unk020888b4 *p, struct Unk0208001c *q, struct Unk0206bcb0 *r);
+extern void (*data_usa_0217ae44)(struct Unk020888b4 *p, struct Unk0208001c *q, struct Kart *r);
 extern const s32 *data_usa_0217ae48;
 extern const s32 *data_usa_0217ae2c;
 extern const s32 *data_usa_0217ae30;
@@ -1513,7 +1513,7 @@ typedef struct Unk0217aa1c {
 } Unk0217aa1c;
 
 extern Unk0217aa1c *data_0217aa1c;
-extern struct Unk0206bcb0 *gKarts;
+extern struct Kart *gKarts;
 extern LinkedList data_0217aeb0;
 struct Unk0206cdd4_B;
 extern struct Unk0206cdd4_B *data_usa_0217acfc;

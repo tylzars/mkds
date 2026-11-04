@@ -20,7 +20,7 @@ u32 func_0210bac0(void) {
 }
 
 void func_0210ba78(void *p0, s32 b) {
-    Unk0206bcb0 *p;
+    Kart *p;
     s32 c;
 
     p = p0;

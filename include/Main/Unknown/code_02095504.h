@@ -3,7 +3,7 @@
 #include "types.h"
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
-#include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "Main/Unknown/code_020e516c.h" // Unk020e516c
 
@@ -43,4 +43,4 @@ void func_02095a3c(void *a, Unk02095a3c *p);
 void func_02095d1c(Unk020e6fd4 *p);
 void func_02095db8(void *a, Unk02095a3c *p, u32 c, u32 d);
 void CreateMoveTree(void *a);
-u8 func_02095efc(Unk02095a3c *a, Unk0206bcb0 *b, u8 *c, u8 *d);
+u8 func_02095efc(Unk02095a3c *a, Kart *b, u8 *c, u8 *d);

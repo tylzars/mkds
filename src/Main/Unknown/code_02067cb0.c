@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_02081120.h"
 #include "Main/Unknown/code_020ed5c0.h"
 
-int func_02067ec4(Unk0206bcb0 *p, s32 *a, MapObject *c) {
+int func_02067ec4(Kart *p, s32 *a, MapObject *c) {
     if (p->mUnk_2a4 > 0x3000 || (c->mFlags & 0x200)) {
         if (func_0206bcb0(p, 1, 0)) {
             if (p->mKartModelsEntry->mUnk_058 == 0) {
@@ -25,7 +25,7 @@ int func_02067ec4(Unk0206bcb0 *p, s32 *a, MapObject *c) {
     return 0xb;
 }
 
-int func_02067e10(Unk0206bcb0 *p, s32 *a, MapObject *c) {
+int func_02067e10(Kart *p, s32 *a, MapObject *c) {
     if (p->mUnk_2a4 > 0x3000 || (c->mFlags & 0x200)) {
         if (func_0206bcb0(p, 2, 0)) {
             if (p->mKartModelsEntry->mUnk_058 == 0) {
@@ -44,7 +44,7 @@ int func_02067e10(Unk0206bcb0 *p, s32 *a, MapObject *c) {
     return 0xb;
 }
 
-int func_02067d88(Unk0206bcb0 *p, s32 *a, MapObject *c) {
+int func_02067d88(Kart *p, s32 *a, MapObject *c) {
     if (p->mUnk_2a4 > 0x3000 || (c->mFlags & 0x200)) {
         if (func_0206bcb0(p, 2, 0)) {
             if (p->mUnk_7c & 1) {
@@ -59,7 +59,7 @@ int func_02067d88(Unk0206bcb0 *p, s32 *a, MapObject *c) {
     return 0;
 }
 
-int func_02067d0c(Unk0206bcb0 *p, s32 *a) {
+int func_02067d0c(Kart *p, s32 *a) {
     if (func_0206bcb0(p, 2, 0)) {
         if (p->mUnk_7c & 0x10) {
             func_02081e3c(func_0208b7bc(0x4f, &p->mUnk_80), p->mIndex, 0x46);
@@ -72,7 +72,7 @@ int func_02067d0c(Unk0206bcb0 *p, s32 *a) {
     return 0;
 }
 
-int func_02067cb0(Unk0206bcb0 *p, s32 *a) {
+int func_02067cb0(Kart *p, s32 *a) {
     if (func_0206b4d0(p)) {
         if (p->mUnk_7c & 1) {
             func_0207a6b0()->mUnk_14++;

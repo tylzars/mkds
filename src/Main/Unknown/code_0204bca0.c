@@ -1072,5 +1072,5 @@ void func_0204bca0(void) {
     u32 value12;
     value12 = (u32) &ThreadSetRunnable;
     value0 = (u32) &data_02175dd8;
-    ThreadSetRunnable((Unk0200db5c *) value0);
+    ThreadSetRunnable((Thread *) value0);
 }

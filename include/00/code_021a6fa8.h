@@ -26,7 +26,7 @@ typedef struct Unk021a71a4 {
 // Shared start of the two blocks func_ov000_021a71c0 sets up behind an Unk021a6fa8.
 typedef struct Unk021a7154 {
     /* 00 */ RingQueue mUnk_00;
-    /* 20 */ Unk0200db5c mUnk_20;
+    /* 20 */ Thread mUnk_20;
     /* d8 */ u8 mUnk_d8[8];
     /* e0 */ ThreadLock mUnk_e0;
 } Unk021a7154;

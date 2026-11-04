@@ -113,7 +113,7 @@ void func_020fa13c(void);
 void func_020fa294(void);
 void *func_020fa3d0(s32 param_1, u16 param_2, void *param_3, void *param_4);
 struct Unk020f41c4_A *func_020fa4b4(u32 arg0);
-s32 func_020fa4c8(Unk0206bcb0 *param_1);
+s32 func_020fa4c8(Kart *param_1);
 void func_020fa78c(s32 param_1, s32 param_2, s32 param_3);
 void func_020fa8ac(void *a);
 void func_020fa920(void);

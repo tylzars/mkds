@@ -166,7 +166,7 @@ static inline u32 func_020f41c4_inline(Unk020f41c4_B *r, u32 c) {
 }
 
 void func_020f41c4(Unk020f40dc *rec) {
-    Unk0206bcb0 *owner = rec->mUnk_04->mUnk_1fc;
+    Kart *owner = rec->mUnk_04->mUnk_1fc;
     Unk020f41c4_C *halves = (Unk020f41c4_C *) ((u8 *) owner->mKartModelsEntry + 0x40);
     Vec3 *dir = &owner->mUnk_168;
     Vec3 *axis = &owner->mUnk_150;
@@ -506,7 +506,7 @@ void func_020f371c(Unk020f371c_Ref *in, Unk020f371c_Ref *out, u32 idx, s32 flag)
     Vec3 *pos;
     s32 i;
     Vec3 *c;
-    Unk0206bcb0 *other;
+    Kart *other;
     s32 d;
 
     if (side != 0) {

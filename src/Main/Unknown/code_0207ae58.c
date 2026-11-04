@@ -38,7 +38,7 @@ void func_0207b8c4(struct Unk0206bcb0_590 *a) {
     p->mUnk_18 = 0;
 }
 
-void func_0207b734(Unk0206bcb0 *a) {
+void func_0207b734(Kart *a) {
     s32 b;
     Unk0206bcb0_590 *q;
     Unk0206bcb0_590_24 *p;
@@ -120,7 +120,7 @@ static inline s32 func_0207b44c_inline(u32 i) {
     return *(vs32 *) &data_021759c0->mCurrentEntries[i].mUnk_08.mTeamIndex;
 }
 
-void func_0207b44c(Unk0206bcb0 *a) {
+void func_0207b44c(Kart *a) {
     u32 f;
     u16 b;
     s32 e;
@@ -206,7 +206,7 @@ void func_0207b44c(Unk0206bcb0 *a) {
     }
 }
 
-void func_0207b354(Unk0206bcb0 *p) {
+void func_0207b354(Kart *p) {
     Unk0206bcb0_590_24 *q = (Unk0206bcb0_590_24 *) &p->mKartModelsEntry->mUnk_024;
     Unk020f41c4_B *r;
     Unk0206bcb0_590 *s;
@@ -230,7 +230,7 @@ void func_0207b354(Unk0206bcb0 *p) {
     q->mUnk_10 += 0x96;
 }
 
-void func_0207b284(Unk0206bcb0 *p) {
+void func_0207b284(Kart *p) {
     Unk0206bcb0_590 *q = p->mKartModelsEntry;
     Unk02084b2c *r = q->mUnk_010[0];
     Unk0206bcb0_590_08 *s = q->mUnk_00c;
@@ -256,7 +256,7 @@ void func_0207b284(Unk0206bcb0 *p) {
     q->mUnk_064 = 1;
 }
 
-void func_0207b1a8(Unk0206bcb0 *p) {
+void func_0207b1a8(Kart *p) {
     Unk0206bcb0_590 *q = p->mKartModelsEntry;
     Unk02084b2c *r = q->mUnk_010[0];
     Unk0206bcb0_590_08 *s = q->mUnk_00c;
@@ -287,7 +287,7 @@ void func_0207b1a8(Unk0206bcb0 *p) {
     q->mUnk_064 = 0;
 }
 
-void func_0207b13c(Unk0206bcb0 *p) {
+void func_0207b13c(Kart *p) {
     Unk0206bcb0_590 *q = p->mKartModelsEntry;
     Unk0201290c *r;
 
@@ -302,7 +302,7 @@ void func_0207b13c(Unk0206bcb0 *p) {
     func_0207a14c(r, 3);
 }
 
-void func_0207b0d0(Unk0206bcb0 *p) {
+void func_0207b0d0(Kart *p) {
     Unk0206bcb0_590 *q = p->mKartModelsEntry;
     Unk0201290c *r;
 
@@ -317,7 +317,7 @@ void func_0207b0d0(Unk0206bcb0 *p) {
     func_0207a14c(r, 0);
 }
 
-void func_0207b054(Unk0206bcb0 *p, s32 a, s32 b) {
+void func_0207b054(Kart *p, s32 a, s32 b) {
     Unk0206bcb0_590 *q = p->mKartModelsEntry;
     Unk0206bcb0_590_08 *s;
     Unk0206bcb0_590_24 *r = (Unk0206bcb0_590_24 *) &q->mUnk_024;

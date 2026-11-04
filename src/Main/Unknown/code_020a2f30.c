@@ -185,7 +185,7 @@ void func_020a392c(Unk0206c1ac *a, Unk020a2fe4 *b) {
 }
 
 void func_020a36a8(Unk020a2fe4 *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
     Vec3 *q;
     Vec3 v;
     s32 s;
@@ -282,7 +282,7 @@ void func_020a35b0(Unk020a2fe4 *a) {
 }
 
 void func_020a3154(void *p, Unk020a2fe4 *a) {
-    Unk0206bcb0 *o;
+    Kart *o;
 
     if (a->mUnk_a4 >= 0) {
         switch (a->mUnk_fc) {

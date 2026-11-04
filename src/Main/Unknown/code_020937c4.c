@@ -128,7 +128,7 @@ void func_02093c64(Unk02093910 *p) {
     p->mUnk_00.mUnk_94->mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6b4;
 }
 
-u8 func_02093b7c(Unk02093910 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
+u8 func_02093b7c(Unk02093910 *a, Kart *b, u8 *c, u8 *d) {
     u8 x;
     u8 v;
 

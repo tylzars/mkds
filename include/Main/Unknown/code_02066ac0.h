@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "Main/Unknown/code_020653d0.h" // Unk020653d0
 
 // Node of the list at 0x80 of a Unk0206bcb0_514: a halfword at 0x08 and an Unk020653d0 at 0x0c.
@@ -40,27 +40,27 @@ extern const s32 data_0216559c[];
 extern const s32 data_021655b0[];
 extern Unk02175664 data_02175664[];
 
-void func_02066ac0(Unk0206bcb0 *a);
-void func_02066de8(Unk0206bcb0 *a);
-void func_02066fe0(Unk0206bcb0 *a);
-void func_02067488(Unk0206bcb0 *a);
-u32 func_020675b4(Unk0206bcb0 *a);
-s32 func_020675f8(Unk0206bcb0 *a);
-s32 func_02067630(Unk0206bcb0 *a);
-s32 func_020676c4(Unk0206bcb0 *a);
-s32 func_020676fc(Unk0206bcb0 *a);
-s32 func_02067778(Unk0206bcb0 *a);
-s32 func_02067834(Unk0206bcb0 *a);
-s32 func_020678d4(Unk0206bcb0 *a);
-s32 func_02067984(Unk0206bcb0 *a);
-s32 func_020679bc(Unk0206bcb0 *a);
-s32 func_020679f4(Unk0206bcb0 *a);
-s32 func_02067a2c(Unk0206bcb0 *p);
-s32 func_02067a64(Unk0206bcb0 *p);
-s32 func_02067a9c(Unk0206bcb0 *p);
-s32 func_02067ad4(Unk0206bcb0 *p);
-s32 func_02067b0c(Unk0206bcb0 *a, s32 *b, s32 c);
-s32 func_02067b60(Unk0206bcb0 *a, s32 *b);
-s32 func_02067bf4(Unk0206bcb0 *a, s32 *b);
+void func_02066ac0(Kart *a);
+void func_02066de8(Kart *a);
+void func_02066fe0(Kart *a);
+void func_02067488(Kart *a);
+u32 func_020675b4(Kart *a);
+s32 func_020675f8(Kart *a);
+s32 func_02067630(Kart *a);
+s32 func_020676c4(Kart *a);
+s32 func_020676fc(Kart *a);
+s32 func_02067778(Kart *a);
+s32 func_02067834(Kart *a);
+s32 func_020678d4(Kart *a);
+s32 func_02067984(Kart *a);
+s32 func_020679bc(Kart *a);
+s32 func_020679f4(Kart *a);
+s32 func_02067a2c(Kart *p);
+s32 func_02067a64(Kart *p);
+s32 func_02067a9c(Kart *p);
+s32 func_02067ad4(Kart *p);
+s32 func_02067b0c(Kart *a, s32 *b, s32 c);
+s32 func_02067b60(Kart *a, s32 *b);
+s32 func_02067bf4(Kart *a, s32 *b);
 // Declared here until the code that defines them is decompiled.
-BOOL func_0206a24c(Unk0206bcb0 *p);
+BOOL func_0206a24c(Kart *p);

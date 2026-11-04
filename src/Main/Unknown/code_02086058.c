@@ -28,7 +28,7 @@ void func_02086a04(void) {
     Unk0206bcb0_590 *s;
     s32 k;
     u32 e;
-    Unk0206bcb0 *p;
+    Kart *p;
     BOOL g;
     s32 d;
     s32 h;
@@ -137,7 +137,7 @@ void func_0208677c(void) {
     s32 r;
     Unk02086250 *p;
     Vec3 *w;
-    Unk0206bcb0 *m;
+    Kart *m;
     if (func_02061818() == 0) {
         data_0217aed8 = &data_02155a3c;
     } else {

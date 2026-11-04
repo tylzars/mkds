@@ -28,7 +28,7 @@
 #include "code_02147cd8.h"
 #include "code_02148538.h"
 
-u8 func_02095efc(Unk02095a3c *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
+u8 func_02095efc(Unk02095a3c *a, Kart *b, u8 *c, u8 *d) {
     u8 v;
 
     v = *d;
@@ -225,7 +225,7 @@ void func_020957ec(Unk020e6fd4 *p) {
 void func_02095544(void *a, Unk02095544 *p) {
     Unk0210b7a8 s1;
     Unk0210b7a8 s2;
-    Unk0206bcb0 *o;
+    Kart *o;
     Vec3 *q;
     s64 d;
     s32 v1;

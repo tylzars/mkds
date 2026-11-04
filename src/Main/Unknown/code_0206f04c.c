@@ -52,7 +52,7 @@
 
 #pragma opt_arithtransformation off
 
-void func_0206ff50(Unk0206bcb0 *p, u32 a) {
+void func_0206ff50(Kart *p, u32 a) {
     u32 b;
     u32 c;
     Unk0212c400 **d;
@@ -171,7 +171,7 @@ void func_0206ff50(Unk0206bcb0 *p, u32 a) {
     func_0210af40(p, p->mUnk_3cc, 0);
 }
 
-void func_0206fe08(Unk0206bcb0 *p) {
+void func_0206fe08(Kart *p) {
     BOOL b;
     s32 a;
     s32 c;
@@ -206,7 +206,7 @@ void func_0206fe08(Unk0206bcb0 *p) {
     }
 }
 
-void func_0206f914(Unk0206bcb0 *p) {
+void func_0206f914(Kart *p) {
     s32 a;
     s32 b;
     s32 c;
@@ -331,7 +331,7 @@ void func_0206f914(Unk0206bcb0 *p) {
     p->mUnk_4e8 = p->mUnk_4d4 + 0x1000;
 }
 
-void func_0206f824(Unk0206bcb0 *p, Vec3 *a, s32 b) {
+void func_0206f824(Kart *p, Vec3 *a, s32 b) {
     Vec3 *c;
     s32 d;
     s32 e;
@@ -360,7 +360,7 @@ void func_0206f824(Unk0206bcb0 *p, Vec3 *a, s32 b) {
     }
 }
 
-void func_0206f694(Unk0206bcb0 *p, u32 a, Vec3 *b, s32 c) {
+void func_0206f694(Kart *p, u32 a, Vec3 *b, s32 c) {
     Vec3 d;
     Vec3 e;
 
@@ -392,7 +392,7 @@ void func_0206f694(Unk0206bcb0 *p, u32 a, Vec3 *b, s32 c) {
     }
 }
 
-void func_0206f574(Unk0206bcb0 *p, u32 a, Vec3 *b) {
+void func_0206f574(Kart *p, u32 a, Vec3 *b) {
     s32 c;
     s32 d;
     u32 e;
@@ -427,7 +427,7 @@ void func_0206f574(Unk0206bcb0 *p, u32 a, Vec3 *b) {
     }
 }
 
-s32 func_0206f04c(Unk0206bcb0 *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
+s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     BOOL j;
     s32 g;
     s32 h;

@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 typedef struct Unk02061808 Unk02061808;
 
 #include "Main/Unknown/unk_0217a000.h"
@@ -47,8 +47,8 @@ void func_02073f90(void);
 void func_02073fb0(u32 a, s32 b);
 void func_02073fc8(s32 a, u32 b, s32 c);
 void func_0207409c(const Vec3 *a, void *b);
-void func_020741a0(Vec3 *a, Vec3 *b, Unk02061808 *c, Unk0206bcb0 *d, Vec3 *e, const Vec3 *f, s32 g);
-void func_020745d4(Vec3 *a, Vec3 *b, s32 *c, Unk0206bcb0 *d, s32 e, s32 f);
+void func_020741a0(Vec3 *a, Vec3 *b, Unk02061808 *c, Kart *d, Vec3 *e, const Vec3 *f, s32 g);
+void func_020745d4(Vec3 *a, Vec3 *b, s32 *c, Kart *d, s32 e, s32 f);
 void func_020747f4(s32 a);
 void func_02074828(void);
 void func_02074854(void);
@@ -71,9 +71,9 @@ s32 func_02075a94(Unk02061808 *p);
 u32 func_02075cf0(void);
 void func_02075d08(s32 a);
 void func_02075eb8(void);
-void func_02075fe0(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c);
-void func_020760ec(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c);
-void func_02076528(Unk02061808 *a, Unk0206bcb0 *b);
+void func_02075fe0(Unk02061808 *a, Kart *b, Vec3 *c);
+void func_020760ec(Unk02061808 *a, Kart *b, Vec3 *c);
+void func_02076528(Unk02061808 *a, Kart *b);
 void func_02076a5c(void);
 void func_02076bcc(Unk02061808 *a);
 void func_02076c50(Unk02061808 *a, s32 b);

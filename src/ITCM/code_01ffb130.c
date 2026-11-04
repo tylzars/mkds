@@ -34,7 +34,7 @@
 #include "code_02146d78.h"
 #include "code_02147cd8.h"
 
-void func_01ffb130(Unk0206bcb0 *p) {
+void func_01ffb130(Kart *p) {
     s32 k;
     s32 a;
     s32 b;

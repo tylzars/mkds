@@ -8,7 +8,7 @@ void func_0209188c(Unk0209188c *p0) {
     p0->mUnk_02 = (u16) (((((u32) p0->mUnk_02)) | (((u32) data_0215645c))));
 }
 
-u8 func_02091828(Unk020912a0 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
+u8 func_02091828(Unk020912a0 *a, Kart *b, u8 *c, u8 *d) {
     u8 r;
     r = *d;
     if (*c == 1) {

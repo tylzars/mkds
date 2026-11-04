@@ -20,7 +20,7 @@ extern const u16 data_02155ed0[];
 extern const Vec3 data_021557ec;
 extern s32 data_02155854[];
 struct Unk0201ca6c;
-struct Unk0206bcb0;
+struct Kart;
 
 // Three pairs of words (func_02082e4c).
 typedef struct Unk02155808 {
@@ -33,7 +33,7 @@ extern Vec3 data_02155a08;
 extern u32 data_021557f8[];
 extern s32 data_02155800[];
 extern Vec3 data_02155818[];
-extern void (*data_02155830[])(struct Unk0206bcb0 *p);
+extern void (*data_02155830[])(struct Kart *p);
 extern Vec3 data_02155a14;
 extern Vec3 data_02155a48;
 extern Vec3 data_02155eb0;

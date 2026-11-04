@@ -56,7 +56,7 @@ static inline s32 func_020888b4_inline(const Vec3 *a, const Vec3 *b) {
 
 void func_02089c3c(Unk02089b4c *a, Unk020888b4 *b) {
     s32 m;
-    Unk0206bcb0 *q;
+    Kart *q;
 
     if (b->mIndex == func_02061f90()) {
         a->mUnk_0c = 0;
@@ -200,7 +200,7 @@ void func_020898bc(Unk020888b4 *p) {
     p->mUnk_dc = z;
 }
 
-void func_02089788(Unk020888b4 *p, Unk0206bcb0 *q) {
+void func_02089788(Unk020888b4 *p, Kart *q) {
     Unk02165ff0 *t;
     Unk0217aebc_128 *r;
     s16 j;
@@ -255,7 +255,7 @@ void func_020896e0(Unk020888b4 *p) {
 
 void func_02089494(Unk020888b4 *p) {
     Unk0208001c *s;
-    Unk0206bcb0 *q;
+    Kart *q;
     Unk02175620_bc *e;
     Vec3 *g;
     Vec3 *f;
@@ -361,8 +361,8 @@ void func_020892bc(Unk020888b4 *p) {
 }
 
 void func_02088e44(Unk020888b4 *p) {
-    Unk0206bcb0 *q;
-    Unk0206bcb0 *o;
+    Kart *q;
+    Kart *o;
     Unk020ee684 *v1;
     Vec3 u;
     Vec3 v;

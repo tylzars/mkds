@@ -33,7 +33,7 @@ int func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
     BOOL e;
     Vec3 *p;
     Vec3 *q;
-    Unk0206bcb0 *v;
+    Kart *v;
     BOOL r;
 
     r = FALSE;
@@ -136,7 +136,7 @@ int func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
 int func_020f1258(int a0, int i, s32 c, u32 b) {
     Unk020f5d6c *a;
     u16 x;
-    Unk0206bcb0 *p;
+    Kart *p;
     u32 n;
     s32 t;
     Vec3 v;

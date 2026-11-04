@@ -121,7 +121,7 @@ void func_02077998(void) {
 }
 
 void func_02077944(void) {
-    Unk0206bcb0 *a = GetKart(data_021759c0->mEntryIndex);
+    Kart *a = GetKart(data_021759c0->mEntryIndex);
 
     data_0217ac94 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
     func_02076a5c();

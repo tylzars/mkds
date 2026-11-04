@@ -124,7 +124,7 @@ void func_02073630(void) {
     data_usa_021654ec = DivFixed12(0x1000, ((s64) (s32) func_0208ae60() * 0xd9aLL) >> 12);
 }
 
-void func_020733ec(Unk0206bcb0 *p) {
+void func_020733ec(Kart *p) {
     void *h;
     Vec3 *v;
     u16 i;

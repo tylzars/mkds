@@ -619,7 +619,7 @@ u32 func_020c476c(void) {
 }
 
 void func_020c43c4(void) {
-    Unk0206bcb0 *p;
+    Kart *p;
     Unk0217b3e4 *d;
     u16 j;
     s32 n;

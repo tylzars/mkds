@@ -45,7 +45,7 @@
 #include "Main/Unknown/code_02063b70.h"
 #include "Main/Unknown/code_02062ed8.h"
 
-void func_020651fc(Unk0206bcb0 *a) {
+void func_020651fc(Kart *a) {
     Unk0206bcb0_514 *b;
     s32 c;
     u32 f;
@@ -99,7 +99,7 @@ void func_020651fc(Unk0206bcb0 *a) {
     func_01ffb130(a);
 }
 
-void func_02064f50(Unk0206bcb0 *a) {
+void func_02064f50(Kart *a) {
     Unk0206bcb0_514 *b;
     s32 c;
     Vec3 d;
@@ -159,7 +159,7 @@ void func_02064f50(Unk0206bcb0 *a) {
     func_01ffce48(&b->mUnk_4c, &a->mUnk_110_q, &b->mUnk_4c, 0x333);
 }
 
-void func_02064d60(Unk0206bcb0 *a, Vec3 *b) {
+void func_02064d60(Kart *a, Vec3 *b) {
     Unk0206bcb0_514 *c;
     Vec4 d;
     s32 e;
@@ -203,11 +203,11 @@ void func_02064d60(Unk0206bcb0 *a, Vec3 *b) {
     func_01ffcf7c(&a->mUnk_110_q, &a->mUnk_110_q);
 }
 
-void func_02064d44(Unk0206bcb0 *a) {
+void func_02064d44(Kart *a) {
     func_01ffc064(&a->mUnk_1c4, &a->mUnk_8c, 0x400, a);
 }
 
-void func_020649ec(Unk0206bcb0 *a, void (**b)(Unk0206bcb0 *)) {
+void func_020649ec(Kart *a, void (**b)(Kart *)) {
     u32 c;
     u16 i;
     Unk0206bcb0_590_08 *d;

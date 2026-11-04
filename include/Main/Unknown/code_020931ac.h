@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
 
@@ -35,5 +35,5 @@ void func_02093484(Unk020e6fd4 *p);
 void func_020935fc(void *a, Unk02093270 *p);
 void func_020936f0(void *a);
 void func_02093708(Unk02093708 *p);
-u8 func_02093754(Unk02093270 *a, Unk0206bcb0 *b, u8 *c, u8 *d);
+u8 func_02093754(Unk02093270 *a, Kart *b, u8 *c, u8 *d);
 void func_020937b8(MapObject *arg0);

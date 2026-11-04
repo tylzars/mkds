@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 
-void func_01ffb930(s32 *a, Unk0206bcb0 *p);
-void func_01ffb9cc(Unk0206bcb0 *p);
-void func_01ffb9e0(Unk0206bcb0 *p);
+void func_01ffb930(s32 *a, Kart *p);
+void func_01ffb9cc(Kart *p);
+void func_01ffb9e0(Kart *p);

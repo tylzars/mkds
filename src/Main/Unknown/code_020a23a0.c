@@ -264,7 +264,7 @@ void func_020a23cc(void) {
     func_01ff9234();
 }
 
-s32 func_020a23a0(Unk0206bcb0 *a) {
+s32 func_020a23a0(Kart *a) {
     Unk0206bcb0_590 *p;
 
     p = a->mKartModelsEntry;

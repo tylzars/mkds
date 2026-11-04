@@ -36,7 +36,7 @@
 #include "Main/Unknown/code_020f9c6c.h"
 
 void func_ov001_0218bee4(Unk02188950 *a) {
-    Unk0206bcb0 *unk;
+    Kart *unk;
 
     unk = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 2, (s32(*)(Unk02188950 *)) func_ov001_0218c55c);
@@ -50,7 +50,7 @@ void func_ov001_0218bee4(Unk02188950 *a) {
 }
 
 void func_ov001_0218bde8(Unk02188950 *a) {
-    Unk0206bcb0 *unk;
+    Kart *unk;
 
     unk = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 2, (s32(*)(Unk02188950 *)) func_ov001_0218c55c);
@@ -143,7 +143,7 @@ void func_ov001_0218ba34(Unk02188950 *a) {
 }
 
 void func_ov001_0218b9b4(Unk02188950 *a) {
-    Unk0206bcb0 *unk;
+    Kart *unk;
 
     unk = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));

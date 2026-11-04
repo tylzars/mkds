@@ -92,7 +92,7 @@ void func_ov001_02182bdc(void);
 void func_ov001_02182d30(void);
 void func_ov001_02182e84(void);
 void func_ov001_02182eb8(Unk02181c3c *a, s32 b);
-void func_ov001_02182f1c(Unk02181c3c *p0, Unk0206bcb0 *p1);
+void func_ov001_02182f1c(Unk02181c3c *p0, Kart *p1);
 
 #include "01/code_0219b540.h"
 #include "Main/Unknown/code_02081000.h"

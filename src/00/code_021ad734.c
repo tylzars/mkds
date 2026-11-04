@@ -24,7 +24,7 @@
 
 void func_ov000_021b04f8(u32 a) {
     u32 b;
-    Unk0200db5c *c;
+    Thread *c;
     Unk021b04f8 *d;
     s32 i;
     Unk021b69dc *e;
@@ -801,7 +801,7 @@ void func_ov000_021af348(Unk021ae3f0 *d, Unk021af1e4 *e, u32 f) {
 }
 
 void func_ov000_021af2a0(Unk021ae3f0 *c, Unk021af1e4 *d, u32 e) {
-    Unk0200db5c *a;
+    Thread *a;
     Unk021a998c *b;
 
     for (a = data_0216ff5c.mListHead; a != NULL; a = a->mListNext) {
@@ -861,7 +861,7 @@ void func_ov000_021af1e4(Unk021ae3f0 *a, Unk021af1e4 *b, u32 c) {
 
 Unk021a998c *func_ov000_021af15c(const Unk021ae3f0 *c, const Unk021ae87c *d) {
     Unk021a998c *b;
-    Unk0200db5c *a;
+    Thread *a;
 
     for (a = data_0216ff5c.mListHead; a != NULL; a = a->mListNext) {
         b = *(Unk021a998c **) a->mUnk_a4;
@@ -911,7 +911,7 @@ u32 func_ov000_021af0dc(const Unk021ae3f0 *e, const Unk021ae87c *f, const Unk021
 
 Unk021a998c *func_ov000_021af090(const Unk021ae3f0 *c, const Unk021ae87c *d) {
     Unk021a998c *b;
-    Unk0200db5c *a;
+    Thread *a;
 
     a = data_0216ff5c.mListHead;
     while (a != NULL) {
@@ -1279,7 +1279,7 @@ void func_ov000_021ae87c(Unk021ae3f0 *a, Unk021ae87c *b, u32 c) {
 }
 
 void func_ov000_021ae724(Unk021ae3f0 *a, Unk021ae724 *b, u32 c) {
-    Unk0200db5c *t;
+    Thread *t;
     Unk021a998c *s;
 
     if (b->mUnk_06 != 0 && func_ov000_021b0138(b, c, (const Unk021b0138 *) a, 0x11) != 0) {
@@ -1495,7 +1495,7 @@ void func_ov000_021ae3a4(void) {
 
 u16 func_ov000_021ae340(void) {
     u32 v1;
-    Unk0200db5c *t;
+    Thread *t;
     Unk021a998c *s;
 
     do {
@@ -1584,7 +1584,7 @@ void func_ov000_021ae258(void) {
     }
 }
 
-void func_ov000_021ae244(Unk0200db5c *thread) {
+void func_ov000_021ae244(Thread *thread) {
     *(u32 *) thread->mUnk_a4 = *(u32 *) data_0216ff5c.mCurrentThread->mUnk_a4;
 }
 
@@ -2014,7 +2014,7 @@ void func_ov000_021ad898(void) {
     BOOL d;
     s32 e;
     s32 i;
-    Unk0200db5c *f;
+    Thread *f;
     Unk021a998c *g;
     Unk021b6434 *h;
     Unk021b69dc *j;

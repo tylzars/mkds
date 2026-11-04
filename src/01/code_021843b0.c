@@ -31,7 +31,7 @@
 #include "Main/Unknown/code_02109054.h"
 #include "Main/Unknown/code_020d275c.h"
 
-void func_ov001_02184874(Unk02188950 *d, Unk0206bcb0 *e) {
+void func_ov001_02184874(Unk02188950 *d, Kart *e) {
     s32 scale;
 
     if ((GetKart(e->mIndex)->mUnk_48 & 0x20) && e->mUnk_238 > 0) {
@@ -109,7 +109,7 @@ void func_ov001_02184874(Unk02188950 *d, Unk0206bcb0 *e) {
     d->mUnk_2d8 = 13;
 }
 
-void func_ov001_021843b0(Unk02188950 *a, Unk0206bcb0 *b) {
+void func_ov001_021843b0(Unk02188950 *a, Kart *b) {
     Vec3 vec1;
     Vec3 vec2;
     Vec3 vec3;

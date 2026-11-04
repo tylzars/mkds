@@ -470,7 +470,7 @@ void func_020f0684(Unk020f41c4_A **p, s32 i, s32 n, s32 v1) {
 void func_020f03f8(Unk027e00cc *a) {
     Unk020f41c4_A **e;
     Unk020f41c4_A *p;
-    Unk0206bcb0 *q;
+    Kart *q;
     s32 k;
     s32 min;
     Vec3 *b;
@@ -607,7 +607,7 @@ void func_020f02c0(Unk027e00cc *q, s32 a, s32 *b) {
 
 #pragma thumb off
 BOOL func_020f0154(Unk020ee684 *p) {
-    Unk0206bcb0 *b;
+    Kart *b;
     u16 v;
     enum { K0 } i;
 
@@ -765,7 +765,7 @@ BOOL func_020efd84(Unk020ee684 *p, s32 a) {
 }
 
 void func_020efd1c(Unk020ee684 *p, Unk020f41c4_A *a) {
-    Unk0206bcb0 *b;
+    Kart *b;
     Vec3 *v;
 
     b = p->mUnk_1fc;
@@ -782,7 +782,7 @@ void func_020efd1c(Unk020ee684 *p, Unk020f41c4_A *a) {
 
 void func_020efc74(Unk020ee684 *p, s32 a) {
     Unk020f371c_Ref *r;
-    Unk0206bcb0 *b;
+    Kart *b;
     Vec3 *v;
     s64 d;
     s32 t;

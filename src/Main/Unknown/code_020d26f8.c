@@ -14,7 +14,7 @@
 #include "Main/Unknown/code_02070398.h"
 #include "Main/Unknown/code_02109054.h"
 
-u32 func_020d26f8(MapObject *a, Unk0206bcb0 *b) {
+u32 func_020d26f8(MapObject *a, Kart *b) {
     if (b->mUnk_29c != 1 && b->mUnk_29c != 3) {
         return 0;
     }

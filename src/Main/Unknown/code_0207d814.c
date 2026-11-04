@@ -29,7 +29,7 @@
 #include "Main/Unknown/code_020435c4.h"
 #include "code_02147cd8.h"
 
-void func_0207e594(struct Unk020888b4 *p, struct Unk0206bcb0 *q, s32 a) {
+void func_0207e594(struct Unk020888b4 *p, struct Kart *q, s32 a) {
     p->mUnk_00 = q;
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
@@ -55,7 +55,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
     Vec3 a;
     Vec3 b;
     Unk0208001c *s;
-    Unk0206bcb0 *q;
+    Kart *q;
     Vec3 *t;
     Unk02175620_bc *r;
 
@@ -80,7 +80,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
     func_0207ebfc(p);
 }
 
-void func_0207e400(struct Unk020888b4 *p, struct Unk0206bcb0 *q, s32 a) {
+void func_0207e400(struct Unk020888b4 *p, struct Kart *q, s32 a) {
     p->mUnk_00 = q;
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
@@ -96,7 +96,7 @@ void func_0207e35c(struct Unk020888b4 *p) {
     Vec3 a;
     Vec3 b;
     Unk0208001c *s = &p->mUnk_08.mUnk_00;
-    Unk0206bcb0 *q = p->mUnk_00;
+    Kart *q = p->mUnk_00;
     Vec3 *t;
     Unk02175620_bc *r;
 
@@ -235,7 +235,7 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     s32 v;
     s32 t;
     s32 s;
-    Unk0206bcb0 *q;
+    Kart *q;
 
     if (b->mIndex == func_02061f90()) {
         a->mUnk_08 = 0;
@@ -403,7 +403,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
                 } else {
                     d = func_02085458(n);
                     if (d >= 0) {
-                        Unk0206bcb0 *q = GetKart(d);
+                        Kart *q = GetKart(d);
                         s32 w = r->mUnk_08;
 
                         if (q->mUnk_310->mUnk_e8.mUnk_04 > (s32) (((s64) w * 0xcd0) >> 12)) {

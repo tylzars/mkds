@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 
 // Second argument of func_0210a5a8: a word callback at 0x3c.
 typedef struct Unk0210a5a8 {
@@ -10,5 +10,5 @@ typedef struct Unk0210a5a8 {
     /* 3c */ UnkWordFunc *mUnk_3c;
 } Unk0210a5a8;
 
-void func_0210a5a8(Unk0206bcb0 *a, Unk0210a5a8 *b);
-void func_0210a598(Unk0206bcb0 *a, s32 b);
+void func_0210a5a8(Kart *a, Unk0210a5a8 *b);
+void func_0210a598(Kart *a, s32 b);

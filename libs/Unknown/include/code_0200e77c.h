@@ -2,20 +2,20 @@
 
 #include "types.h"
 
-struct Unk0200db5c;
+struct Thread;
 
-// Two Unk0200db5c pointers; ThreadQueueInsert and ThreadQueueRemoveFront link the objects through their mUnk_80 and
+// Two Thread pointers; ThreadQueueInsert and ThreadQueueRemoveFront link the objects through their mUnk_80 and
 // mUnk_7c. ThreadQueueSetAllRunnable and ThreadWait take it.
 typedef struct ThreadQueue {
-    /* 00 */ struct Unk0200db5c *mHead;
-    /* 04 */ struct Unk0200db5c *mTail;
+    /* 00 */ struct Thread *mHead;
+    /* 04 */ struct Thread *mTail;
 } ThreadQueue;
 
 // 0x18 bytes; ThreadLockInit clears mUnk_00 to mUnk_0c. ThreadLockListAppend and ThreadLockListRemove link it through
-// mUnk_10 and mUnk_14 into the ThreadLockList at mUnk_88 of an Unk0200db5c.
+// mUnk_10 and mUnk_14 into the ThreadLockList at mUnk_88 of an Thread.
 typedef struct ThreadLock {
     /* 00 */ ThreadQueue mQueue;
-    /* 08 */ struct Unk0200db5c *mHolder; // set by ThreadLockTry and ThreadLockWait
+    /* 08 */ struct Thread *mHolder; // set by ThreadLockTry and ThreadLockWait
     /* 0c */ u32 mLockCount; // raised by ThreadLockTry and ThreadLockWait, lowered by ThreadLockUnlock
     /* 10 */ struct ThreadLock *mNext;
     /* 14 */ struct ThreadLock *mPrev;
@@ -49,12 +49,12 @@ s32 RingQueuePrepend(RingQueue *q, void *v, s32 f);
 s32 RingQueueRemoveFront(RingQueue *q, void **p, s32 f);
 s32 RingQueueAppend(RingQueue *q, void *v, s32 f);
 void RingQueueInit(RingQueue *q, void **p, s32 n);
-void ThreadLockListRemove(struct Unk0200db5c *t, ThreadLock *n);
-void ThreadLockListAppend(struct Unk0200db5c *t, ThreadLock *n);
+void ThreadLockListRemove(struct Thread *t, ThreadLock *n);
+void ThreadLockListAppend(struct Thread *t, ThreadLock *n);
 // p is used as an ThreadLock: these three write +0x08 and +0x0c, ThreadLockListAppend and ThreadLockListRemove (called
 // with p) write +0x10 and +0x14, and ThreadWait and ThreadQueueSetAllRunnable (given p) write +0x00 and +0x04.
 // data_0217eadc passes elements 0x14 bytes apart, so +0x14 of one element is +0x00 of the next.
 s32 ThreadLockTry(void *p);
-void ThreadUnlockAll(struct Unk0200db5c *t);
+void ThreadUnlockAll(struct Thread *t);
 void ThreadLockUnlock(void *p);
 void ThreadLockWait(void *p);

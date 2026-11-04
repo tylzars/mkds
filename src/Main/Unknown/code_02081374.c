@@ -20,7 +20,7 @@ void func_020813ec(s32 a, Vec3 *b) {
     Vec3s16 h;
     Vec3 v;
     Vec3 w;
-    Unk0206bcb0 *q = GetKart(a);
+    Kart *q = GetKart(a);
     Unk0217ae84 *e = &data_0217ae84[a];
     Unk0201ca6c *p;
 
@@ -47,7 +47,7 @@ void func_020813ec(s32 a, Vec3 *b) {
 }
 
 void func_02081374(Unk0201ca6c *p, s32 a) {
-    Unk0206bcb0 *q;
+    Kart *q;
     Unk0217ae84 *e;
 
     if (a != 0) {

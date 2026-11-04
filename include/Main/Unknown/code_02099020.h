@@ -31,12 +31,12 @@ typedef struct Unk0209905c {
     /* d0 */ Unk0209905c_d0 *mUnk_d0;
 } Unk0209905c;
 
-#include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "Main/Unknown/code_0206bcb0.h" // Kart
 
 extern u16 data_usa_02156590;
 extern u32 data_usa_02156594;
 
 void func_02099020(void);
 void func_0209905c(void *a, Unk0209905c *p);
-u32 func_02099208(Unk0209905c *a, Unk0206bcb0 *b, u8 *c, u8 *d);
+u32 func_02099208(Unk0209905c *a, Kart *b, u8 *c, u8 *d);
 void func_02099278(unsigned int p0);

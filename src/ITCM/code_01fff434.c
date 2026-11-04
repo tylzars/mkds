@@ -15,7 +15,7 @@
 void func_01fff694(Unk020ee684 *p) {
     Unk020f40dc *b = &p->mUnk_030;
     Unk020eda5c *a = &p->mUnk_058;
-    Unk0206bcb0 *q;
+    Kart *q;
     Unk020f371c_Ref *r;
     Vec3 *v;
     s64 d;

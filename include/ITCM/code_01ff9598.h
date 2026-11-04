@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 
 // Six words of a table written by func_01ff9598 and the functions after it, at 0x00, 0x04, 0x10, 0x14, 0x30 and 0x34.
 typedef struct Unk01ff9598_A {
@@ -58,17 +58,17 @@ void func_01ff974c(Unk01ff9598_A *a, Unk01ff9598 *b);
 void func_01ff9828(Unk01ff9598_A *a, Unk01ff9598 *b);
 void func_01ff9940(Unk01ff9940 *a, Unk01ff9940_B *b, Unk01ff9940_C *c, u32 d);
 void func_01ff9a94(Unk01ff9940 *a);
-void func_01ff9b70(Unk0206bcb0 *p);
-void func_01ff9c40(Unk0206bcb0 *p);
-void func_01ff9c9c(Unk0206bcb0 *p, u32 a);
-void func_01ff9cb0(Unk0206bcb0 *p);
-void func_01ff9d18(Unk0206bcb0 *p);
-void func_01ff9e5c(Unk0206bcb0 *p);
-void func_01ff9f60(Unk0206bcb0 *p, Vec3 *a);
-void func_01ffa0c4(Unk0206bcb0 *p);
-void func_01ffa11c(Unk0206bcb0 *p, const Vec3 *a);
-BOOL func_01ffa1f8(Unk0206bcb0 *p);
-void func_01ffa350(Unk0206bcb0 *p, u32 a);
-BOOL func_01ffa380(Unk0206bcb0 *p, u32 a, Vec3 *b);
-BOOL func_01ffa41c(Unk0206bcb0 *p, u32 a, Vec3 *b);
-BOOL func_01ffa478(Unk0206bcb0 *p, u32 a, Vec3 *b);
+void func_01ff9b70(Kart *p);
+void func_01ff9c40(Kart *p);
+void func_01ff9c9c(Kart *p, u32 a);
+void func_01ff9cb0(Kart *p);
+void func_01ff9d18(Kart *p);
+void func_01ff9e5c(Kart *p);
+void func_01ff9f60(Kart *p, Vec3 *a);
+void func_01ffa0c4(Kart *p);
+void func_01ffa11c(Kart *p, const Vec3 *a);
+BOOL func_01ffa1f8(Kart *p);
+void func_01ffa350(Kart *p, u32 a);
+BOOL func_01ffa380(Kart *p, u32 a, Vec3 *b);
+BOOL func_01ffa41c(Kart *p, u32 a, Vec3 *b);
+BOOL func_01ffa478(Kart *p, u32 a, Vec3 *b);

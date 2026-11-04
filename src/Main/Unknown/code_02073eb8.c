@@ -75,7 +75,7 @@ void func_02076bcc(Unk02061808 *a) {
 }
 
 void func_02076a5c(void) {
-    Unk0206bcb0 *q;
+    Kart *q;
     Unk02061808 *p;
     Vec3 m[3];
     Vec3 u;
@@ -105,7 +105,7 @@ void func_02076a5c(void) {
     (data_0217ac94)->mUnk_018.y = q->mUnk_80.y + (data_0217ac94)->mUnk_0d4;
 }
 
-void func_02076528(Unk02061808 *a, Unk0206bcb0 *b) {
+void func_02076528(Unk02061808 *a, Kart *b) {
     Vec3 v = b->mUnk_80;
     Vec3 g;
     Vec3 w;
@@ -211,7 +211,7 @@ void func_02076528(Unk02061808 *a, Unk0206bcb0 *b) {
     func_02073eb8(a);
 }
 
-void func_020760ec(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
+void func_020760ec(Unk02061808 *a, Kart *b, Vec3 *c) {
     Vec3 v = data_usa_02154fdc;
     Vec3 w;
     Vec3 x;
@@ -293,7 +293,7 @@ void func_020760ec(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
     a->mUnk_174 = a->mUnk_174 + (s32) (((s64) (a->mUnk_170 - a->mUnk_174) * 0x11f + 0x800) >> 12);
 }
 
-void func_02075fe0(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
+void func_02075fe0(Unk02061808 *a, Kart *b, Vec3 *c) {
     s32 e = -0x2d000;
     s32 j;
     s32 g = 0;
@@ -660,7 +660,7 @@ void func_02075390(Unk02061808 *p) {
 
 void func_02074e6c(Unk02061808 *p) {
     Unk020748b8_218 *q = p->mUnk_218;
-    Unk0206bcb0 *o;
+    Kart *o;
     Vec3 *v;
     Vec3 a;
     Vec3 d;
@@ -747,7 +747,7 @@ void func_02074e6c(Unk02061808 *p) {
 }
 
 void func_02074b00(Unk02061808 *p) {
-    Unk0206bcb0 *o = GetKart(p->mUnk_210);
+    Kart *o = GetKart(p->mUnk_210);
     Unk020748b8_218 *q = p->mUnk_218;
     Vec3 a;
     Vec3 b;
@@ -935,7 +935,7 @@ void func_020747f4(s32 a) {
     data_0217ac94->mUnk_0d0 = 0;
 }
 
-void func_020745d4(Vec3 *a, Vec3 *b, s32 *c, Unk0206bcb0 *d, s32 e, s32 f) {
+void func_020745d4(Vec3 *a, Vec3 *b, s32 *c, Kart *d, s32 e, s32 f) {
     Vec3 v4;
     Vec3 v10;
     Vec3 v1;
@@ -975,7 +975,7 @@ void func_020745d4(Vec3 *a, Vec3 *b, s32 *c, Unk0206bcb0 *d, s32 e, s32 f) {
     a->y = t + (s32) (((s64) (v4.y - t) * 0xccd + 0x800) >> 12);
 }
 
-void func_020741a0(Vec3 *a, Vec3 *b, Unk02061808 *c, Unk0206bcb0 *d, Vec3 *e, const Vec3 *f, s32 g) {
+void func_020741a0(Vec3 *a, Vec3 *b, Unk02061808 *c, Kart *d, Vec3 *e, const Vec3 *f, s32 g) {
     Vec3 v4;
     Vec3 v10;
     Vec3 v1;

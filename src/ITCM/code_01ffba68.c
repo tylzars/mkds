@@ -135,7 +135,7 @@ void func_01ffccd0(void *a, void *b) {
     o[8] = 0x1000 - (ww + xx);
 }
 
-void func_01ffcc50(Unk0206bcb0 *p) {
+void func_01ffcc50(Kart *p) {
     if (p->mUnk_7c & 0xa0) {
         func_020732d8(p);
         return;
@@ -154,7 +154,7 @@ void func_01ffcc50(Unk0206bcb0 *p) {
     }
 }
 
-void func_01ffcb58(Unk0206bcb0 *p) {
+void func_01ffcb58(Kart *p) {
     Vec3 v;
 
     if (p->mUnk_7c & 0x20) {
@@ -184,7 +184,7 @@ void func_01ffcb58(Unk0206bcb0 *p) {
     p->mUnk_230(p);
 }
 
-void func_01ffcac0(Unk0206bcb0 *p) {
+void func_01ffcac0(Kart *p) {
     p->mUnk_2b0 = 0;
     p->mUnk_44 &= 0x57ffffdf;
     p->mUnk_4c &= 0xffeb7efd;
@@ -201,14 +201,14 @@ static inline const s32 func_01ffc090_inline(void) {
     return data_usa_02165500;
 }
 
-void func_01ffca50(Unk0206bcb0 *p) {
+void func_01ffca50(Kart *p) {
     p->mUnk_48 &= ~0x18;
     p->mUnk_1d0 = (s32) (((s64) p->mUnk_4c8 * (s32) (((s64) p->mUnk_2cc->mUnk_00 * p->mUnk_394) >> 12)) >> 12);
     p->mUnk_1d4 = (s32) (((s64) p->mUnk_2cc->mUnk_04 * p->mUnk_bc.z) >> 12);
     p->mUnk_3ec = 0;
 }
 
-void func_01ffc9e8(Unk0206bcb0 *p, s32 a) {
+void func_01ffc9e8(Kart *p, s32 a) {
     s32 b;
     s32 c;
     s32 d;
@@ -219,11 +219,11 @@ void func_01ffc9e8(Unk0206bcb0 *p, s32 a) {
     func_0210ddf4(&(&data_0217d26c)[c], d + b, func_02071980, p, a);
 }
 
-s32 func_01ffc92c(Unk0206bcb0 *p) {
+s32 func_01ffc92c(Kart *p) {
     BOOL b;
     s32 a;
     s32 c;
-    Unk0206bcb0 *o;
+    Kart *o;
 
     b = FALSE;
     a = func_0203c8dc(p->mIndex);
@@ -245,11 +245,11 @@ s32 func_01ffc92c(Unk0206bcb0 *p) {
     return b;
 }
 
-void func_01ffc920(Unk0206bcb0 *p) {
+void func_01ffc920(Kart *p) {
     func_02024a88(p);
 }
 
-void func_01ffc8cc(Unk0206bcb0 *p) {
+void func_01ffc8cc(Kart *p) {
     if (p->mUnk_3d2 <= 0) {
         return;
     }
@@ -261,7 +261,7 @@ void func_01ffc8cc(Unk0206bcb0 *p) {
     p->mUnk_3d2 = 0;
 }
 
-void func_01ffc6c0(Unk0206bcb0 *p) {
+void func_01ffc6c0(Kart *p) {
     s32 a;
     s32 b;
     enum { K0 } k;
@@ -324,14 +324,14 @@ void func_01ffc6c0(Unk0206bcb0 *p) {
     p->mUnk_44 |= 0x10;
 }
 
-BOOL func_01ffc67c(Unk0206bcb0 *p) {
+BOOL func_01ffc67c(Kart *p) {
     if (p->mState != 0 || (p->mUnk_48 & 0x6052840) || (p->mUnk_7c & 0x200000a8)) {
         return TRUE;
     }
     return FALSE;
 }
 
-void func_01ffc5a0(Unk0206bcb0 *p) {
+void func_01ffc5a0(Kart *p) {
     u32 *r;
     u32 *q;
     u32 f;
@@ -359,7 +359,7 @@ void func_01ffc5a0(Unk0206bcb0 *p) {
     }
 }
 
-void func_01ffc558(Unk0206bcb0 *p) {
+void func_01ffc558(Kart *p) {
     Unk021759c0 *d;
     enum { K0 } k;
 
@@ -381,7 +381,7 @@ void func_01ffc500(s32 *p) {
     }
 }
 
-s32 func_01ffc27c(Unk0206bcb0 *p, s32 a) {
+s32 func_01ffc27c(Kart *p, s32 a) {
     s32 x = p->mUnk_2cc->mUnk_30;
     BOOL d = FALSE;
     s32 r = 0;
@@ -446,14 +446,14 @@ s32 func_01ffc27c(Unk0206bcb0 *p, s32 a) {
     k = p->mUnk_78;
     w = data_02175628[k].mBits;
     if ((u16) (w & 0x20)) {
-        r = ((s32(*)(Unk0206bcb0 *, s32, s32, s32, s32, u32)) func_01ffc158)(p, x, b, 1, d, 8);
+        r = ((s32(*)(Kart *, s32, s32, s32, s32, u32)) func_01ffc158)(p, x, b, 1, d, 8);
     } else if ((u16) (w & 0x10)) {
-        r = ((s32(*)(Unk0206bcb0 *, s32, s32, s32, s32, u32)) func_01ffc158)(p, x, b, -1, d, 0x10);
+        r = ((s32(*)(Kart *, s32, s32, s32, s32, u32)) func_01ffc158)(p, x, b, -1, d, 0x10);
     }
     return r;
 }
 
-s32 func_01ffc158(Unk0206bcb0 *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
+s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
     s16 k;
     s16 x;
     u32 f;
@@ -494,7 +494,7 @@ s32 func_01ffc158(Unk0206bcb0 *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
     return 1;
 }
 
-void func_01ffc090(Unk0206bcb0 *p, s32 a) {
+void func_01ffc090(Kart *p, s32 a) {
     if (a == 0) {
         if (p->mUnk_44 & 8) {
             p->mUnk_3ec = -p->mUnk_2c4 * ((p->mUnk_2cc->mUnk_32 + p->mUnk_38a) >> 1);
@@ -509,11 +509,11 @@ void func_01ffc090(Unk0206bcb0 *p, s32 a) {
     p->mUnk_236 += (u16) p->mUnk_3f0;
 }
 
-void func_01ffc064(Vec3 *a, const Vec3 *b, s32 c, Unk0206bcb0 *p) {
+void func_01ffc064(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
     Vec3AddScaled(p->mUnk_1d0 + c, &p->mUnk_12c, b, a);
 }
 
-void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Unk0206bcb0 *p) {
+void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
     Vec3 d;
     Vec3 e;
 
@@ -522,11 +522,11 @@ void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Unk0206bcb0 *p) {
     Vec3AddScaled(p->mUnk_1d0 + c, &p->mUnk_15c, &e, a);
 }
 
-void func_01ffbfe4(Unk0206bcb0 *p) {
+void func_01ffbfe4(Kart *p) {
     Vec3AddScaled(p->mUnk_1d0 + 0x400, &p->mUnk_15c, &p->mUnk_98, &p->mUnk_1c4);
 }
 
-void func_01ffbe70(Unk0206bcb0 *p) {
+void func_01ffbe70(Kart *p) {
     s32 *q;
     u32 f;
 
@@ -561,7 +561,7 @@ void func_01ffbe70(Unk0206bcb0 *p) {
     }
 }
 
-void func_01ffbe04(Unk0206bcb0 *p) {
+void func_01ffbe04(Kart *p) {
     if (p->mUnk_d0 > p->mUnk_cc) {
         p->mUnk_d0 = (s32) (((s64) p->mUnk_d0 * 0xf37) >> 12);
         if (p->mUnk_d0 < p->mUnk_cc) {
@@ -572,7 +572,7 @@ void func_01ffbe04(Unk0206bcb0 *p) {
     }
 }
 
-void func_01ffbd9c(Unk0206bcb0 *p) {
+void func_01ffbd9c(Kart *p) {
     DivFixed12Start(p->mUnk_2a4, p->mUnk_d0);
     if (p->mUnk_44 & 0x10) {
         func_020397a8(&p->mUnk_120, &p->mUnk_244, &p->mUnk_278);
@@ -586,7 +586,7 @@ void func_01ffbd9c(Unk0206bcb0 *p) {
     }
 }
 
-void func_01ffba68(Unk0206bcb0 *p) {
+void func_01ffba68(Kart *p) {
     s32 v;
     s32 a;
     s32 b;

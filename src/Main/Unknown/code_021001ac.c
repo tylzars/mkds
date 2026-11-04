@@ -87,7 +87,7 @@ static inline u32 func_02101f7c_inline_2(Unk020f41c4_B *b, u32 n) {
 
 static inline s32 func_02101f7c_inline(Unk020ee684 *v1, Unk021759c0 *o, s32 a, u16 k) {
     Unk020ee684 *e;
-    Unk0206bcb0 *q;
+    Kart *q;
     BOOL v2;
     s32 l;
 
@@ -215,7 +215,7 @@ void func_02101d90(Unk02101c84 *p, s32 a) {
     Unk021759c0 *o;
     s32 k;
     Unk020ee684 *e;
-    Unk0206bcb0 *q;
+    Kart *q;
     s32 l;
     s32 n;
     u8 *row;
@@ -266,7 +266,7 @@ void func_02101d90(Unk02101c84 *p, s32 a) {
 }
 
 void func_02101d18(Unk02101d18 *x, Unk02101c84 *p) {
-    Unk0206bcb0 *q;
+    Kart *q;
 
     q = x->mUnk_10;
     func_02069aa0(q);
@@ -283,7 +283,7 @@ void func_02101d18(Unk02101d18 *x, Unk02101c84 *p) {
 }
 
 void func_02101c84(Unk02101c84 *p) {
-    Unk0206bcb0 *q;
+    Kart *q;
     Vec3 *w;
     Vec3 v;
 
@@ -303,7 +303,7 @@ void func_02101c84(Unk02101c84 *p) {
 }
 
 void func_02101964(Unk02101c84 *p, s32 a) {
-    Unk0206bcb0 *q;
+    Kart *q;
     Vec3 *v;
     s32 *g;
     s32 *w;
@@ -611,7 +611,7 @@ void func_02101178(Unk02101c84 *p) {
 
 s32 func_02101014(Unk02101c84 *p) {
     Unk020ee684 *e;
-    Unk0206bcb0 *q;
+    Kart *q;
     Unk020f40dc *r;
     s32 a;
     s32 b;

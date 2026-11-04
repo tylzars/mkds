@@ -36,7 +36,7 @@
 #include "code_02147cd8.h"
 
 BOOL func_020ee528(Unk020eda5c *a) {
-    Unk0206bcb0 *p;
+    Kart *p;
     Vec3 v;
     s32 s;
 
@@ -249,7 +249,7 @@ void func_020eddb4(Unk020eda5c *p) {
     s32 n;
     s32 m;
     Unk020f41c4_A *q;
-    Unk0206bcb0 *o;
+    Kart *o;
     enum { K0 } k;
 
     id = p->mUnk_008;

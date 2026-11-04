@@ -36,7 +36,7 @@ static inline s32 func_0206e874_inline(Vec3 *v, Vec3 *n) {
     return func_02039860(v, n);
 }
 
-void func_0206edac(Unk0206bcb0 *p, Vec3 *a) {
+void func_0206edac(Kart *p, Vec3 *a) {
     Vec3 v;
     s32 k;
     s32 s;
@@ -103,7 +103,7 @@ void func_0206edac(Unk0206bcb0 *p, Vec3 *a) {
     p->mUnk_2a8 = ((s64) p->mUnk_2a8 * (s + 0x1000)) >> 12;
 }
 
-void func_0206e874(Unk0206bcb0 *p) {
+void func_0206e874(Kart *p) {
     MapObject *v1[2] = {0};
     s32 i;
     MapObject *e;
@@ -145,7 +145,7 @@ void func_0206e874(Unk0206bcb0 *p) {
                     v4 = FALSE;
                     e = func_020d411c(i);
                     h = func_020d6be0(p, e);
-                    r = ((s32(*)(Unk0206bcb0 *, s32 *, MapObject *)) data_0217ac18[h])(p, &v2, e);
+                    r = ((s32(*)(Kart *, s32 *, MapObject *)) data_0217ac18[h])(p, &v2, e);
                     if (r != 0) {
                         v = z;
                         u = &e->mUnk_10;
@@ -153,7 +153,7 @@ void func_0206e874(Unk0206bcb0 *p) {
                         d = func_0206e874_inline(q, &v);
                         if (d != 0) {
                             if (v2 != 2) {
-                                ((void (*)(Unk0206bcb0 *, Vec3 *, MapObject *)) data_0217ac54[h])(p, &v, e);
+                                ((void (*)(Kart *, Vec3 *, MapObject *)) data_0217ac54[h])(p, &v, e);
                             }
                             if (r & 8) {
                                 func_0206f04c(p, &v, (p->mUnk_44 & 0x40) ? 1 : 0, 0x1000, -1, -1, v2);

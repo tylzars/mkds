@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_0208c534.h"
 #include "Main/Unknown/code_02109054.h"
 
-void func_0206ceb4(s32 *out, Unk0206bcb0 *p) {
+void func_0206ceb4(s32 *out, Kart *p) {
     int id;
     u32 flags;
     Unk0206ceb4 *q;
@@ -56,7 +56,7 @@ void func_0206ceb4(s32 *out, Unk0206bcb0 *p) {
     func_02079f70(p->mKartModelsEntry, a, b, c);
 }
 
-void func_0206cdd4(Unk0206bcb0 *p) {
+void func_0206cdd4(Kart *p) {
     if (!(p->mUnk_44 & 0x10)) {
         p->mUnk_44 |= 0x8000;
     }
@@ -81,7 +81,7 @@ void func_0206cdd4(Unk0206bcb0 *p) {
     func_0208c534(func_0208c5b8(p->mIndex));
 }
 
-void func_0206cc60(Unk0206bcb0 *p, int arg) {
+void func_0206cc60(Kart *p, int arg) {
     if (p->mUnk_2c4 > 0) {
         if (p->mUnk_388 > 11000) {
             p->mUnk_388 = p->mUnk_388 - 200;
@@ -130,7 +130,7 @@ void func_0206cc60(Unk0206bcb0 *p, int arg) {
     func_02109078(&p->mUnk_00, 0xd1, 0x7f, 0);
 }
 
-void func_0206c5e4(Unk0206bcb0 *p) {
+void func_0206c5e4(Kart *p) {
     u32 f = p->mUnk_44;
     BOOL hasB = (f & 2) != 0;
     u32 g;
@@ -299,7 +299,7 @@ recheck:
     }
 }
 
-int func_0206c494(Unk0206bcb0 *p) {
+int func_0206c494(Kart *p) {
     BOOL result = FALSE;
     BOOL pending = TRUE;
     BOOL dir = FALSE;
@@ -344,16 +344,16 @@ int func_0206c494(Unk0206bcb0 *p) {
     return result;
 }
 
-void func_0206c488(Unk0206c1ac *obj, Unk0206bcb0 *p) {
+void func_0206c488(Unk0206c1ac *obj, Kart *p) {
     func_02080e88(obj, p);
 }
 
-void func_0206c450(Unk0206c1ac *obj, Unk0206bcb0 *p) {
+void func_0206c450(Unk0206c1ac *obj, Kart *p) {
     obj->mUnk_40 = p->mUnk_3b0;
     func_02080e88(obj, p);
 }
 
-BOOL func_0206c354(Unk0206bcb0 *p, const Vec3 *a, int flag) {
+BOOL func_0206c354(Kart *p, const Vec3 *a, int flag) {
     if (p->mUnk_7c & 0x10) {
         int arr[4] = {0x77, 0x76, 0x78, 0x79};
         u16 i = 0;
@@ -375,7 +375,7 @@ BOOL func_0206c354(Unk0206bcb0 *p, const Vec3 *a, int flag) {
     return FALSE;
 }
 
-void func_0206c2b4(Unk0206c1ac *obj, Unk0206bcb0 *p) {
+void func_0206c2b4(Unk0206c1ac *obj, Kart *p) {
     Vec3 v = p->mUnk_3b0;
 
     v.y = 0;
@@ -385,7 +385,7 @@ void func_0206c2b4(Unk0206c1ac *obj, Unk0206bcb0 *p) {
     obj->mUnk_40 = v;
 }
 
-void func_0206c1ac(Unk0206c1ac *obj, Unk0206bcb0 *p) {
+void func_0206c1ac(Unk0206c1ac *obj, Kart *p) {
     Vec3 v = p->mUnk_80;
     UnkVec16 rot;
     Vec3 *q;
@@ -404,7 +404,7 @@ void func_0206c1ac(Unk0206c1ac *obj, Unk0206bcb0 *p) {
     obj->mUnk_50 = rot;
 }
 
-void func_0206c17c(Unk0206bcb0 *p) {
+void func_0206c17c(Kart *p) {
     if (p->mUnk_7c & 0x40000) {
         return;
     }
@@ -413,41 +413,41 @@ void func_0206c17c(Unk0206bcb0 *p) {
     p->mUnk_504 = p->mUnk_506;
 }
 
-void func_0206c14c(Unk0206bcb0 *p) {
+void func_0206c14c(Kart *p) {
     if (p->mUnk_7c & 0x2) {
         func_0208c1ac(p->mUnk_310);
     }
 }
 
-void func_0206c11c(Unk0206bcb0 *p) {
+void func_0206c11c(Kart *p) {
     if (p->mUnk_7c & 0x2) {
         func_0208c188(p->mUnk_310);
     }
 }
 
-BOOL func_0206c0e0(Unk0206bcb0 *p) {
+BOOL func_0206c0e0(Kart *p) {
     if ((p->mUnk_7c & 0x402020) || (p->mUnk_4c & 0x800) || p->mState != 0) {
         return TRUE;
     }
     return FALSE;
 }
 
-BOOL func_0206c0b0(Unk0206bcb0 *p) {
+BOOL func_0206c0b0(Kart *p) {
     if ((p->mUnk_7c & 0x400020) || (p->mUnk_4c & 0x800)) {
         return TRUE;
     }
     return FALSE;
 }
 
-int func_0206c0a8(Unk0206bcb0 *p) {
+int func_0206c0a8(Kart *p) {
     return p->mUnk_4c0;
 }
 
-BOOL func_0206c094(Unk0206bcb0 *p) {
+BOOL func_0206c094(Kart *p) {
     return (p->mUnk_4c & 0x800000) != 0;
 }
 
-void func_0206bf88(Unk0206bcb0 *p, int mode) {
+void func_0206bf88(Kart *p, int mode) {
     p->mUnk_48 &= 0xdfe77fdf;
     p->mUnk_238 = 0;
     p->mUnk_538.mUnk_00 = 0;
@@ -477,7 +477,7 @@ void func_0206bf88(Unk0206bcb0 *p, int mode) {
     }
 }
 
-BOOL func_0206be54(Unk0206bcb0 *p, int a) {
+BOOL func_0206be54(Kart *p, int a) {
     BOOL ok;
     BOOL res;
     BOOL t;
@@ -532,7 +532,7 @@ BOOL func_0206be54(Unk0206bcb0 *p, int a) {
     return TRUE;
 }
 
-BOOL func_0206bcb0(Unk0206bcb0 *p, int a, int b) {
+BOOL func_0206bcb0(Kart *p, int a, int b) {
     int s = p->mState;
     BOOL x;
     BOOL ok;

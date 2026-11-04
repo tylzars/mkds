@@ -10,7 +10,7 @@
 #include "code_02147288.h"
 #include "code_02147cd8.h"
 
-void func_02063b30(const Unk0206bcb0 *a, Vec3 *b) {
+void func_02063b30(const Kart *a, Vec3 *b) {
     const Unk02012f58 *c;
 
     c = (const Unk02012f58 *) ((u8 *) a + 0x120);
@@ -19,7 +19,7 @@ void func_02063b30(const Unk0206bcb0 *a, Vec3 *b) {
     b->z = c->mUnk_00[1].z;
 }
 
-void func_02063b10(const Unk0206bcb0 *a, Vec3 *b) {
+void func_02063b10(const Kart *a, Vec3 *b) {
     const Unk02012f58 *c;
 
     c = (const Unk02012f58 *) ((u8 *) a + 0x120);
@@ -28,7 +28,7 @@ void func_02063b10(const Unk0206bcb0 *a, Vec3 *b) {
     b->z = c->mUnk_00[2].z;
 }
 
-void func_02063ad0(Unk0206bcb0 *a) {
+void func_02063ad0(Kart *a) {
     if ((a->mUnk_7c & 0x400) != 0) {
         return;
     }
@@ -38,7 +38,7 @@ void func_02063ad0(Unk0206bcb0 *a) {
     }
 }
 
-void func_02063a68(Unk0206bcb0 *a) {
+void func_02063a68(Kart *a) {
     u32 b;
 
     b = a->mUnk_7c & 0x400;
@@ -65,7 +65,7 @@ void func_0206390c(Unk0206390c *a) {
     Unk02012f58 e;
     s32 h;
     Unk02012f58 *i;
-    Unk0206bcb0 *j;
+    Kart *j;
     s32 k;
 
     b = func_0207a31c();

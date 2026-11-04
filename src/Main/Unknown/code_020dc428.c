@@ -273,7 +273,7 @@ void func_020dccc8(Unk020dc474 *p) {
     Vec3 *q;
     Vec3 *c;
     Unk020f41c4_B *r;
-    Unk0206bcb0 *o;
+    Kart *o;
     s32 j;
     s32 dz;
     s32 dx;

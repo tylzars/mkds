@@ -95,7 +95,7 @@ void func_0208d650(Unk0208c5b8 *p) {
     p->mUnk_3c = 0;
 }
 
-void func_0208d4c4(Unk0208c5b8 *p, Unk0206bcb0 *q) {
+void func_0208d4c4(Unk0208c5b8 *p, Kart *q) {
     u16 i;
     Unk0217ae84 *e;
     Vec3 a;
@@ -369,7 +369,7 @@ void func_0208ccf0(Unk0208c5b8 *p) {
     p->mUnk_64 = 0;
 }
 
-void func_0208cb8c(Unk0208c5b8 *p, Unk0206bcb0 *q) {
+void func_0208cb8c(Unk0208c5b8 *p, Kart *q) {
     Unk0217ae84 *e;
 
     if (p->mUnk_34 != 0) {

@@ -39,7 +39,7 @@ typedef struct Unk0209af98 {
 } Unk0209af98;
 
 typedef struct Unk0209a7dc Unk0209a7dc;
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 
 void CreateCrabAndCrabHand(void *a);
 
@@ -52,7 +52,7 @@ s16 func_0209af80(s32 a);
 void func_0209af98(Unk0209af98 *p);
 void func_0209b088(void *a, Unk0209a7dc *b);
 unsigned int func_0209b1f8(unsigned int p0);
-u8 func_0209b270(Unk0209a7dc *a, Unk0206bcb0 *b, u8 *c, u8 *d);
-u8 func_0209b344(Unk0209a7dc *a, Unk0206bcb0 *b, u8 *c, u8 *d);
+u8 func_0209b270(Unk0209a7dc *a, Kart *b, u8 *c, u8 *d);
+u8 func_0209b344(Unk0209a7dc *a, Kart *b, u8 *c, u8 *d);
 void func_0209b388(Unk0209a7dc *a, Vec3 *b, Vec3 *c, Vec3 *d);
 void func_0209b5f4(u32 arg0);

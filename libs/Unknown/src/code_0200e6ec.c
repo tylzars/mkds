@@ -30,7 +30,7 @@ void ThreadLockInit(ThreadLock *arg0) {
 void ThreadLockWait(void *p) {
     ThreadLock *n;
     u32 s;
-    Unk0200db5c *t;
+    Thread *t;
 
     n = p;
     s = IrqDisable();
@@ -58,7 +58,7 @@ void ThreadLockWait(void *p) {
 void ThreadLockUnlock(void *p) {
     ThreadLock *n;
     u32 s;
-    Unk0200db5c *t;
+    Thread *t;
 
     n = p;
     s = IrqDisable();
@@ -76,7 +76,7 @@ void ThreadLockUnlock(void *p) {
 
 // While t->mUnk_88.mUnk_00 is not 0, takes an object from t->mUnk_88 (ThreadLockListRemoveFront), clears its mUnk_08
 // and mUnk_0c and calls ThreadQueueSetAllRunnable on its mUnk_00.
-void ThreadUnlockAll(struct Unk0200db5c *t) {
+void ThreadUnlockAll(struct Thread *t) {
     ThreadLock *n;
 
     if (t->mLockList.mHead == 0) {
@@ -96,7 +96,7 @@ s32 ThreadLockTry(void *p) {
     ThreadLock *n;
     u32 s;
     s32 r;
-    Unk0200db5c *t;
+    Thread *t;
 
     n = p;
     s = IrqDisable();
@@ -117,7 +117,7 @@ s32 ThreadLockTry(void *p) {
 }
 
 // Links n after t->mUnk_88.mUnk_04 (through mUnk_10 and mUnk_14) and stores it there.
-void ThreadLockListAppend(struct Unk0200db5c *t, ThreadLock *n) {
+void ThreadLockListAppend(struct Thread *t, ThreadLock *n) {
     ThreadLock *a;
 
     a = t->mLockList.mTail;
@@ -132,7 +132,7 @@ void ThreadLockListAppend(struct Unk0200db5c *t, ThreadLock *n) {
 }
 
 // Takes n out of the links of t->mUnk_88 (mUnk_10 and mUnk_14).
-void ThreadLockListRemove(struct Unk0200db5c *t, ThreadLock *n) {
+void ThreadLockListRemove(struct Thread *t, ThreadLock *n) {
     ThreadLock *a;
     ThreadLock *b;
 
@@ -333,7 +333,7 @@ u32 func_0200e77c(void) {
 // Calls DivSqrtRegistersSave with the address of mUnk_48, stores the status register and the registers (r0 = 1 saved) into
 // the words from 0, the banked sp of mode 0xd3 at 0x44 and the address of the return point at 0x3c, and returns 0.
 // non-matching: same size; 1 lines differ; first: original `add r1, r0, #0`, ours `mov r1, r0`
-asm s32 ThreadSaveContext(Unk0200db5c *t) {
+asm s32 ThreadSaveContext(Thread *t) {
     stmdb sp!, {r0, lr}
     add r0, r0, #0x48
     ldr r1, =DivSqrtRegistersSave
@@ -356,7 +356,7 @@ asm s32 ThreadSaveContext(Unk0200db5c *t) {
 
 // Calls DivSqrtRegistersRestore with the address of mUnk_48, then switches to mode 0xd3 and restores the registers and the
 // status word saved by ThreadSaveContext.
-asm void ThreadLoadContext(Unk0200db5c *t) {
+asm void ThreadLoadContext(Thread *t) {
     stmdb sp!, {r0, lr}
     add r0, r0, #0x48
     ldr r1, =DivSqrtRegistersRestore

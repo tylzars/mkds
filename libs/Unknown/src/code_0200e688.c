@@ -2,7 +2,7 @@
 
 // clang-format off
 // Hand-written asm: the compiler schedules the instructions in a different order and picks different registers.
-asm void ThreadInitContext(Unk0200db5c *t, void (*f)(void *), u32 v) {
+asm void ThreadInitContext(Thread *t, void (*f)(void *), u32 v) {
     add r1, r1, #0x4
     str r1, [r0, #0x40]
     str r2, [r0, #0x44]

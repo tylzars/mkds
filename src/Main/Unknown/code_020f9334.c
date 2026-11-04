@@ -133,7 +133,7 @@ s32 func_020f9880(Unk020f41c4_A *param_1) {
     return data_0217bc34[param_1->mUnk_44].mUnk_84;
 }
 
-BOOL func_020f97e0(Unk020f41c4_A *param_1, Unk0206bcb0 *param_2) {
+BOOL func_020f97e0(Unk020f41c4_A *param_1, Kart *param_2) {
     Vec3 d;
     s32 n;
 

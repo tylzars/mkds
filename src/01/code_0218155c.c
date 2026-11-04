@@ -116,7 +116,7 @@ u16 func_ov001_02181a68(void) {
 }
 
 void func_ov001_021819f4(void) {
-    Unk0206bcb0 *c;
+    Kart *c;
     Unk021a9b90 *o;
 
     data_ov001_021a9b90 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x68);
@@ -130,7 +130,7 @@ void func_ov001_021819f4(void) {
 }
 
 void func_ov001_02181860(void) {
-    Unk0206bcb0 *c;
+    Kart *c;
     Unk021a9b90 *o;
 
     c = GetKart((u16) data_021759c0->mEntryIndex);

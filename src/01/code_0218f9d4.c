@@ -101,7 +101,7 @@ void func_ov001_02192694(void) {
     Vec3 pos;
     Unk02188950 *obj;
     Unk02188950_a0 *a0;
-    Unk0206bcb0 *other;
+    Kart *other;
     int idx;
     u16 ang;
 
@@ -438,7 +438,7 @@ void func_ov001_021917d0(Unk02188950 *a) {
 }
 
 void func_ov001_021916e0(Unk02188950 *a) {
-    Unk0206bcb0 *v1 = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *v1 = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
     if ((a->mUnk_000.mFlags & 0x400) == 0) {
@@ -514,7 +514,7 @@ s32 func_ov001_02191470(Unk02188950 *a) {
 }
 
 void func_ov001_021913b8(Unk02188950 *a) {
-    Unk0206bcb0 *v1 = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *v1 = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
     func_ov001_02187e78(a);
@@ -529,7 +529,7 @@ void func_ov001_021913b8(Unk02188950 *a) {
 }
 
 void func_ov001_02191318(Unk02188950 *a) {
-    Unk0206bcb0 *v1 = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *v1 = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
     local.y = a->mPrm->mUnk_0a4;
@@ -559,7 +559,7 @@ void func_ov001_02191258(Unk02188950 *a) {
 }
 
 void func_ov001_021911a8(Unk02188950 *a) {
-    Unk0206bcb0 *v1 = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *v1 = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
     local.y = a->mPrm->mUnk_1e4;
@@ -788,7 +788,7 @@ s32 func_ov001_02190a20(Unk02188950 *c) {
 }
 
 void func_ov001_02190948(Unk02188950 *c) {
-    Unk0206bcb0 *r4;
+    Kart *r4;
     Unk02188950 *a;
     Unk02188950 *b;
 
@@ -820,7 +820,7 @@ void func_ov001_02190948(Unk02188950 *c) {
 }
 
 int func_ov001_021908a8(Unk02188950 *c) {
-    Unk0206bcb0 *r4;
+    Kart *r4;
     Unk02188950 *a;
     Unk02188950 *b;
 
@@ -888,7 +888,7 @@ int func_ov001_0219079c(Unk02188950 *c) {
 }
 
 int func_ov001_02190688(Unk02188950 *c) {
-    Unk0206bcb0 *r4;
+    Kart *r4;
     Unk02188950 *a;
     Unk02188950 *b;
 
@@ -973,7 +973,7 @@ int func_ov001_0219052c(Unk02188950 *c) {
 }
 
 void func_ov001_02190468(Unk02188950 *c) {
-    Unk0206bcb0 *r4;
+    Kart *r4;
     Unk02188950 *a;
     Unk02188950 *b;
 

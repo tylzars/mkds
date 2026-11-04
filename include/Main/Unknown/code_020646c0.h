@@ -6,4 +6,4 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_0207a870.h"
 
-void func_020646c0(Unk0206bcb0 *a);
+void func_020646c0(Kart *a);

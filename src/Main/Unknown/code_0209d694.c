@@ -35,7 +35,7 @@ void func_0209decc(u32 p0) {
     func_020d28e0((MapObject *) p0);
 }
 
-u8 func_0209ddec(Unk0209d694 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
+u8 func_0209ddec(Unk0209d694 *a, Kart *b, u8 *c, u8 *d) {
     u8 x;
     u32 v;
 
@@ -61,7 +61,7 @@ u8 func_0209ddec(Unk0209d694 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
     return v;
 }
 
-u8 func_0209dd44(Unk0209d694 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
+u8 func_0209dd44(Unk0209d694 *a, Kart *b, u8 *c, u8 *d) {
     u8 x;
     u32 v;
 

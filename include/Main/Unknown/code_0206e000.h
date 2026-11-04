@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 
-void func_0206e874(Unk0206bcb0 *p);
+void func_0206e874(Kart *p);

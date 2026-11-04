@@ -25,12 +25,12 @@
 #include "Main/Unknown/code_02036bec.h"
 
 void func_0210298c(Unk02102674 *p) {
-    Unk0206bcb0 *q;
+    Kart *q;
     Unk020748a8 *s;
     s32 a2;
     s32 i;
     s32 b;
-    Unk0206bcb0 *r;
+    Kart *r;
     s32 v;
     Vec3 w;
     s32 m;

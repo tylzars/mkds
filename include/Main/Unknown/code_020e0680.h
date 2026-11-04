@@ -4,7 +4,7 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_020e005c.h"
-#include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
 #include "code_02012b30.h"
 
@@ -196,7 +196,7 @@ void func_020e2ccc(Unk020e20a8 *a);
 void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d);
 void func_020e2630(u32 a, Unk020e1e98 *b);
 void func_020e24d0(Unk020e1e98 *a, Vec3 *b);
-u8 func_020e2494(Unk020e1e98 *a, Unk0206bcb0 *b, u8 *c, u8 *d);
+u8 func_020e2494(Unk020e1e98 *a, Kart *b, u8 *c, u8 *d);
 u8 func_020e246c(Unk020e1e98 *a, Unk020e246c *b, u8 *c, u8 *d);
 void func_020e2400(Unk020e1e98 *a, Vec3 *b, s32 c, Vec3 *d);
 void func_020e230c(Unk0217b79c *a);

@@ -4,7 +4,7 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_0207a6b0.h"
 
-void func_020680e0(Unk0206bcb0 *a, const Vec3 *b) {
+void func_020680e0(Kart *a, const Vec3 *b) {
     s32 c;
     BOOL d;
     s32 e;
@@ -50,7 +50,7 @@ void func_020680e0(Unk0206bcb0 *a, const Vec3 *b) {
     a->mUnk_48 |= 0x20000;
 }
 
-void func_02068094(Unk0206bcb0 *a, s32 b, s32 c) {
+void func_02068094(Kart *a, s32 b, s32 c) {
     if (func_0206b020(a, (Unk0206b020 *) c) == 0) {
         return;
     }
@@ -60,7 +60,7 @@ void func_02068094(Unk0206bcb0 *a, s32 b, s32 c) {
     a->mUnk_48 |= 0x20000;
 }
 
-void func_02067f94(Unk0206bcb0 *a, const Vec3 *b) {
+void func_02067f94(Kart *a, const Vec3 *b) {
     s32 c;
     BOOL d;
     s32 e;

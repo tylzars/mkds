@@ -334,7 +334,7 @@ void func_0203e9a0(Unk0217561c_14 *a, s32 b) {
 }
 
 void func_0203e788(s32 a, s32 b) {
-    Unk0206bcb0 *q;
+    Kart *q;
     Unk0217aa1c_144_00 t;
     s32 s;
     BOOL f;

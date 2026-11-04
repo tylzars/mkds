@@ -677,7 +677,7 @@ void func_021031f4(Unk02102674 *p) {
     s32 i;
     Unk0217561c *q;
     Unk020f41c4_B *b;
-    Unk0206bcb0 *r;
+    Kart *r;
     u16 j;
     u32 n;
     u16 v;

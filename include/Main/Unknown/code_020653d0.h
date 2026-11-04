@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 
 // Second parameter of func_020653d0.
 typedef struct Unk020653d0 {
@@ -17,4 +17,4 @@ typedef struct Unk020653d0 {
     /* 14 */ u32 mUnk_14;
 } Unk020653d0;
 
-void func_020653d0(Unk0206bcb0 *p, Unk020653d0 *a, s32 n);
+void func_020653d0(Kart *p, Unk020653d0 *a, s32 n);

@@ -29,7 +29,7 @@ void func_020937b8(MapObject *arg0) {
     func_020d28e0(value0);
 }
 
-u8 func_02093754(Unk02093270 *a, Unk0206bcb0 *b, u8 *c, u8 *d) {
+u8 func_02093754(Unk02093270 *a, Kart *b, u8 *c, u8 *d) {
     u8 v;
 
     v = *d;

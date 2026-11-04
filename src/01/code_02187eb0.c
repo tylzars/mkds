@@ -22,8 +22,8 @@
 #include "Main/Unknown/code_020fd000.h"
 #include "Main/Unknown/code_02042044.h"
 
-Unk0206bcb0 *func_ov001_02188104(Unk02188950 *a, s32 b, s32 c) {
-    Unk0206bcb0 *q;
+Kart *func_ov001_02188104(Unk02188950 *a, s32 b, s32 c) {
+    Kart *q;
 
     q = GetKart((u16) data_021759c0->mEntryIndex);
     if (q != NULL && func_ov001_021881a8(a, (Vec3 *) &q->mUnk_80, (s32) (b), (s32) (c)) != 0 &&
@@ -33,8 +33,8 @@ Unk0206bcb0 *func_ov001_02188104(Unk02188950 *a, s32 b, s32 c) {
     return NULL;
 }
 
-Unk0206bcb0 *func_ov001_02188084(Unk02188950 *a, s32 b, s32 c, s32 d) {
-    Unk0206bcb0 *q;
+Kart *func_ov001_02188084(Unk02188950 *a, s32 b, s32 c, s32 d) {
+    Kart *q;
 
     q = GetKart((u16) data_021759c0->mEntryIndex);
     if (q != NULL && (q->mUnk_48 & 0x40) == 0 && (c != 0 || d != 0)) {
@@ -47,8 +47,8 @@ Unk0206bcb0 *func_ov001_02188084(Unk02188950 *a, s32 b, s32 c, s32 d) {
     return NULL;
 }
 
-Unk0206bcb0 *func_ov001_02188000(Unk02188950 *a, s32 b, s32 c) {
-    Unk0206bcb0 *q;
+Kart *func_ov001_02188000(Unk02188950 *a, s32 b, s32 c) {
+    Kart *q;
 
     q = GetKart((u16) data_021759c0->mEntryIndex);
     if (q != NULL && (q->mUnk_48 & 0x40) == 0 && (b != 0 || c != 0)) {

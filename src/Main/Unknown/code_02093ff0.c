@@ -129,7 +129,7 @@ void func_02094768(void *a, Unk02094000 *o) {
     u16 w;
     s32 n;
     s32 m;
-    Unk0206bcb0 *g;
+    Kart *g;
 
     switch (o->mUnk_110) {
         case 1:

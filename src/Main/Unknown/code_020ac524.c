@@ -149,7 +149,7 @@ void *func_020ac63c(void) {
     return (void *) func_0209bf48(NULL, func_020ac6a8, NULL);
 }
 
-void func_020ac5e4(Unk0206bcb0 *a) {
+void func_020ac5e4(Kart *a) {
     ShineBalloonObject *o;
 
     o = func_0209bbfc(func_02100138(0x70));

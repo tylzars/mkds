@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 
 void func_020812d0(s32 a) {
-    Unk0206bcb0 *q = GetKart(a);
+    Kart *q = GetKart(a);
     Unk0201ca6c *p;
     u16 i;
 

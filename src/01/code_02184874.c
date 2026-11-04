@@ -12,7 +12,7 @@
 #include "Main/Unknown/code_02109054.h"
 #include "code_02147cd8.h"
 
-void func_ov001_02184874(Unk02188950 *d, Unk0206bcb0 *e) {
+void func_ov001_02184874(Unk02188950 *d, Kart *e) {
     s32 scale;
 
     if ((GetKart(e->mIndex)->mUnk_48 & 0x20) && e->mUnk_238 > 0) {

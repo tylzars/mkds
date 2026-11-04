@@ -46,7 +46,7 @@ typedef struct Http {
     /* 928 */ HttpBuffer mSendBuffer;
     /* 938 */ HttpBuffer mReceiveBuffer;
     /* 948 */ u8 mUnk_948[0x20];
-    /* 968 */ Unk0200db5c mThread;
+    /* 968 */ Thread mThread;
     /* a20 */ u8 mUnk_a20[0x1040];
 } Http;
 
@@ -89,7 +89,7 @@ typedef struct Unk02185984 {
     /* 1cc */ Unk02186560 mUnk_1cc;
     /* 1f8 */ Unk021868a4Entry mUnk_1f8[0x20];
     /* 2f8 */ Http *mUnk_2f8;
-    /* 2fc */ Unk0200db5c mUnk_2fc;
+    /* 2fc */ Thread mUnk_2fc;
     /* 3b4 */ u8 pad_3b4[8];
     /* 3bc */ ThreadLock mUnk_3bc;
     /* 3d4 */ s32 mUnk_3d4;

@@ -72,7 +72,7 @@ static inline BOOL func_02092b5c_inline_3(Unk020919e8 *p, s32 k) {
     s32 i;
     BOOL f;
     s32 d;
-    Unk0206bcb0 *o;
+    Kart *o;
 
     for (i = 0; i < data_021759c0->mKartCount; i++) {
         f = FALSE;

@@ -10,7 +10,7 @@
 #include "code_02148538.h"
 #include "registers.h"
 
-void func_0210a53c(Unk0206bcb0 *a) {
+void func_0210a53c(Kart *a) {
     if (a->mUnk_488 == 0xffff) {
         return;
     }
@@ -305,12 +305,12 @@ void func_02109468(void) {
 }
 
 s32 func_021092b0(Unk0210bcf4 *p) {
-    Unk0206bcb0 *k;
+    Kart *k;
     Unk0217ca6c *e;
     s32 v;
     s32 a;
 
-    k = (Unk0206bcb0 *) p->mUnk_00;
+    k = (Kart *) p->mUnk_00;
     v = 0;
     if (k != NULL) {
         if (k != NULL && k->mUnk_00.mUnk_3c == 0 && k->mIndex != data_021759c0->mEntryIndex) {
@@ -370,7 +370,7 @@ u32 func_02109184(Unk0210bcf4 *p) {
     u32 b;
 
     if (p->mUnk_00 != NULL) {
-        a = ((Unk0206bcb0 *) p->mUnk_00)->mUnk_00.mUnk_40;
+        a = ((Kart *) p->mUnk_00)->mUnk_00.mUnk_40;
     } else {
         a = p->mUnk_20->mUnk_0c;
     }

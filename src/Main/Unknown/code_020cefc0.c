@@ -56,7 +56,7 @@ void func_020cefdc(void) {
     b = q->mUnk_04;
     for (i = 0; i < m; i++) {
         e = b[i];
-        if (func_020fd528((Unk0206bcb0 *) e) != 0) {
+        if (func_020fd528((Kart *) e) != 0) {
             p = func_020fd308((Unk020fdae8 *) e, &x, &y);
             if (func_020b5ae8(p, &data_0217b48c->mUnk_10[n].mUnk_00, v, 1, 1) != 0) {
                 data_0217b48c->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0x63);

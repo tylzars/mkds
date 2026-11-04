@@ -380,7 +380,7 @@ u32 func_ov000_021aaf38(Unk021a998c_0c *a, Unk021aaf38 *b) {
     u16 *e;
     u16 *f;
     u32 g;
-    Unk0200db5c *t;
+    Thread *t;
     u32 r;
     enum { K0 } i;
     if (a->mUnk_578 == NULL || a->mUnk_57c == 0 || b->mUnk_10 == NULL || b->mUnk_0c == 0 || b->mUnk_08 == NULL ||
@@ -1461,7 +1461,7 @@ void func_ov000_021a9640(Unk021a998c *a) {
     func_ov000_021ac4b8(h, c->mUnk_56c, c->mUnk_574, d);
     func_ov000_021ac4b8(i, c->mUnk_468, b, d);
     if (data_ov000_021b49f4 < 0x20) {
-        Unk0200db5c *n = data_0216ff5c.mCurrentThread;
+        Thread *n = data_0216ff5c.mCurrentThread;
         u32 o = ThreadGetSortKey(n);
         ThreadSetSortKey(n, data_ov000_021b49f4);
         func_ov000_021ac7e8(f, g, h, d, i);

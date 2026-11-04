@@ -60,7 +60,7 @@ typedef struct Unk021a9034 {
 // Object behind data_021759cc.
 typedef struct Unk021759cc {
     /* 000 */ void *mUnk_000;
-    /* 004 */ Unk0200db5c mUnk_004;
+    /* 004 */ Thread mUnk_004;
     /* 0bc */ u8 mUnk_0bc[8];
     /* 0c4 */ ThreadQueue mUnk_0c4;
     /* 0cc */ CallbackEntry mUnk_0cc;
@@ -153,7 +153,7 @@ typedef struct Unk02175624 {
 } Unk02175624;
 
 extern Unk02175624 *data_02175624;
-// 0x5c-byte entries; func_020708a4 writes the halfword at 0x00 of entry Unk0206bcb0::mUnk_78.
+// 0x5c-byte entries; func_020708a4 writes the halfword at 0x00 of entry Kart::mUnk_78.
 typedef struct Unk0217566a {
     /* 00 */ u16 mBitMask;
     /* 02 */ u8 mUnk_02[0x5a];
@@ -246,10 +246,10 @@ extern Unk021759c8 *data_021759c8;
 extern Unk021759cc *data_021759cc;
 extern Unk021759d0 *data_021759d0;
 
-// Object at data_usa_021759b8: 0x400 bytes (the end of them is the top of the stack of the Unk0200db5c) and two words.
+// Object at data_usa_021759b8: 0x400 bytes (the end of them is the top of the stack of the Thread) and two words.
 typedef struct Unk021759b8 {
     /* 000 */ u8 mUnk_000[0x400];
-    /* 400 */ Unk0200db5c mUnk_400;
+    /* 400 */ Thread mUnk_400;
     /* 4b8 */ u8 mUnk_4b8[8];
     /* 4c0 */ s32 mUnk_4c0;
     /* 4c4 */ s32 mUnk_4c4;

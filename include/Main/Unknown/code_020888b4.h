@@ -42,11 +42,11 @@ typedef struct Unk02089b4c {
     /* 10 */ s32 mUnk_10;
 } Unk02089b4c;
 
-// Object of 0x158 bytes (func_020888b4 to func_02089a24 take it first): the Unk0206bcb0 it follows at 0x00, a
+// Object of 0x158 bytes (func_020888b4 to func_02089a24 take it first): the Kart it follows at 0x00, a
 // Unk0208001c at 0x28, vectors at 0x44, 0x50, 0x60 and 0xdc, a Unk02089a24 at 0xe8, a Unk0208fd8c at 0x11c, a
 // Unk02089b4c at 0x140 and a word at 0x154.
 typedef struct Unk020888b4 {
-    /* 00 */ Unk0206bcb0 *mUnk_00;
+    /* 00 */ Kart *mUnk_00;
     /* 04 */ u16 mIndex;
     /* 06 */ u16 mUnk_06;
     /* 08 */ Unk02080d34 mUnk_08;
@@ -76,7 +76,7 @@ typedef struct Unk020888b4 {
     /* a8 */ s32 mUnk_a8;
     /* ac */ s16 mUnk_ac;
     /* ae */ u8 mUnk_ae[2];
-    /* b0 */ Unk0206bcb0 *mUnk_b0;
+    /* b0 */ Kart *mUnk_b0;
     /* b4 */ s32 mUnk_b4;
     /* b8 */ s32 mUnk_b8;
     /* bc */ s32 mUnk_bc;
@@ -102,7 +102,7 @@ void func_02089b4c(Unk02089b4c *a, Unk020888b4 *b, s32 c);
 void func_02089a24(Unk020888b4 *a, Unk02089a24 *b);
 void func_02089974(void);
 void func_020898bc(Unk020888b4 *p);
-void func_02089788(Unk020888b4 *p, Unk0206bcb0 *q);
+void func_02089788(Unk020888b4 *p, Kart *q);
 void func_02089754(Unk020888b4 *p, Unk02175620_bc *a);
 void func_020896e0(Unk020888b4 *p);
 void func_02089494(Unk020888b4 *p);

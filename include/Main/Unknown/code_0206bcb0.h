@@ -82,7 +82,7 @@ typedef struct Unk0206cdd4_B {
     /* 18 */ s32 mUnk_18;
 } Unk0206cdd4_B;
 
-struct Unk0206bcb0;
+struct Kart;
 
 // 16-byte entry of the table at Unk0217d26c::mUnk_04: func_0210dd44 calls mUnk_04 with the words at 8 and 0xc.
 typedef struct Unk0210ddf4 {
@@ -159,7 +159,7 @@ typedef struct Unk0206c5e4_208 {
     /* 0 */ s32 mUnk_00;
 } Unk0206c5e4_208;
 
-// The 0x38 bytes at 0x450 of a Unk0206bcb0: words at 0x08, 0x28, 0x30 and 0x34 and a byte at 0x2c.
+// The 0x38 bytes at 0x450 of a Kart: words at 0x08, 0x28, 0x30 and 0x34 and a byte at 0x2c.
 typedef struct Unk0206bcb0_A {
     /* 00 */ s32 mUnk_00;
     /* 04 */ u8 mUnk_04[4];
@@ -172,7 +172,7 @@ typedef struct Unk0206bcb0_A {
     /* 34 */ u32 mUnk_34;
 } Unk0206bcb0_A;
 
-typedef struct Unk0206bcb0 {
+typedef struct Kart {
     /* 00 */ Unk0210bfbc mUnk_00;
     /* 44 */ vu32 mUnk_44;
     /* 48 */ vu32 mUnk_48;
@@ -247,19 +247,19 @@ typedef struct Unk0206bcb0 {
     /* 1fc */ Vec3 mUnk_1fc;
     /* 208 */ Unk0206c5e4_208 *mUnk_208;
     /* 20c */ union {
-        void (*mUnk_20c_fn[9])(struct Unk0206bcb0 *);
+        void (*mUnk_20c_fn[9])(struct Kart *);
         struct {
             u8 mUnk_20c[4];
-            void (*mUnk_210)(struct Unk0206bcb0 *);
+            void (*mUnk_210)(struct Kart *);
             u8 mUnk_214[8];
             s32 mUnk_21c;
-            void (*mUnk_220)(struct Unk0206bcb0 *);
+            void (*mUnk_220)(struct Kart *);
             u8 mUnk_224[4];
             struct Unk020ee684 *mUnk_228;
             u8 mUnk_22c[4];
         };
     };
-    /* 230 */ void (*mUnk_230)(struct Unk0206bcb0 *);
+    /* 230 */ void (*mUnk_230)(struct Kart *);
     /* 234 */ s16 mUnk_234;
     /* 236 */ u16 mUnk_236;
     /* 238 */ s16 mUnk_238;
@@ -430,52 +430,52 @@ typedef struct Unk0206bcb0 {
     /* 5a0 */ u16 mUnk_5a0;
     /* 5a2 */ u8 mUnk_5a2[2];
     /* 5a4 */ s32 mUnk_5a4;
-} Unk0206bcb0;
+} Kart;
 
-extern Unk0206bcb0 *data_0217b8c8;
+extern Kart *data_0217b8c8;
 
 extern int data_02154f10[];
 
-void func_0206bf88(Unk0206bcb0 *p, int mode);
-BOOL func_0206c094(Unk0206bcb0 *p);
-int func_0206c0a8(Unk0206bcb0 *p);
-BOOL func_0206c0b0(Unk0206bcb0 *p);
-BOOL func_0206c0e0(Unk0206bcb0 *p);
-void func_0206c11c(Unk0206bcb0 *p);
-void func_0206c14c(Unk0206bcb0 *p);
-void func_0206c17c(Unk0206bcb0 *p);
-void func_0206c1ac(Unk0206c1ac *obj, Unk0206bcb0 *p);
-void func_0206c2b4(Unk0206c1ac *obj, Unk0206bcb0 *p);
-BOOL func_0206c354(Unk0206bcb0 *p, const Vec3 *a, int flag);
-void func_0206c450(Unk0206c1ac *obj, Unk0206bcb0 *p);
-void func_0206c488(Unk0206c1ac *obj, Unk0206bcb0 *p);
+void func_0206bf88(Kart *p, int mode);
+BOOL func_0206c094(Kart *p);
+int func_0206c0a8(Kart *p);
+BOOL func_0206c0b0(Kart *p);
+BOOL func_0206c0e0(Kart *p);
+void func_0206c11c(Kart *p);
+void func_0206c14c(Kart *p);
+void func_0206c17c(Kart *p);
+void func_0206c1ac(Unk0206c1ac *obj, Kart *p);
+void func_0206c2b4(Unk0206c1ac *obj, Kart *p);
+BOOL func_0206c354(Kart *p, const Vec3 *a, int flag);
+void func_0206c450(Unk0206c1ac *obj, Kart *p);
+void func_0206c488(Unk0206c1ac *obj, Kart *p);
 
-void func_02068a64(Unk0206bcb0 *p, int a, int b);
+void func_02068a64(Kart *p, int a, int b);
 void func_0208b748(u32 idx, const Vec3 *pos, void *p, void (*cb)());
-int func_0206c494(Unk0206bcb0 *p);
-void func_0206cc60(Unk0206bcb0 *p, int arg);
+int func_0206c494(Kart *p);
+void func_0206cc60(Kart *p, int arg);
 #include "Main/Unknown/code_0210ab48.h"
-void func_0206cdd4(Unk0206bcb0 *p);
-void func_0206ceb4(s32 *out, Unk0206bcb0 *p);
+void func_0206cdd4(Kart *p);
+void func_0206ceb4(s32 *out, Kart *p);
 extern Unk0217d26c data_0217d26c;
 extern Unk0217d26c data_0217d274;
 extern Unk0217d26c data_0217d284;
 extern Unk0217d26c data_0217d28c;
 Unk0206cdd4_B *func_0207a6b0(void);
-void func_0206d020(Unk0206bcb0 *p, int a, int b);
-void func_0206f914(Unk0206bcb0 *p);
-void func_01ffc9e8(Unk0206bcb0 *p, int a);
-void func_020681f0(Unk0206bcb0 *p);
+void func_0206d020(Kart *p, int a, int b);
+void func_0206f914(Kart *p);
+void func_01ffc9e8(Kart *p, int a);
+void func_020681f0(Kart *p);
 #include "Main/Unknown/code_0210dc7c.h"
 void func_020718c8(void *p, int arg);
 void func_02071944(void *p, int arg);
 #include "Main/Unknown/code_021035ac.h"
-BOOL func_0206bcb0(Unk0206bcb0 *p, int a, int b);
-BOOL func_0206be54(Unk0206bcb0 *p, int a);
-void func_0206bbb4(Unk0206bcb0 *p, int a, int b);
-void func_0206c5e4(Unk0206bcb0 *p);
-void func_02063b10(const Unk0206bcb0 *p, Vec3 *out);
-void func_02063b30(const Unk0206bcb0 *p, Vec3 *out);
+BOOL func_0206bcb0(Kart *p, int a, int b);
+BOOL func_0206be54(Kart *p, int a);
+void func_0206bbb4(Kart *p, int a, int b);
+void func_0206c5e4(Kart *p);
+void func_02063b10(const Kart *p, Vec3 *out);
+void func_02063b30(const Kart *p, Vec3 *out);
 
 #include "Main/Unknown/code_0207ae58.h"
 #include "Main/Unknown/code_02079c0c.h"

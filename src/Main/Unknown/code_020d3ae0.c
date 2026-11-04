@@ -579,7 +579,7 @@ void func_020d4418(Unk020d4418 *p) {
     }
 }
 
-s32 func_020d41e0(Unk0206bcb0 *a, Vec3 *b, Vec3 *c) {
+s32 func_020d41e0(Kart *a, Vec3 *b, Vec3 *c) {
     Vec3 v;
     Vec3 lo;
     Vec3 hi;

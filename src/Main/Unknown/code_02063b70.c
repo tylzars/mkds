@@ -18,7 +18,7 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/unk_0215d000.h"
 
-void func_02064180(Unk0206bcb0 *a) {
+void func_02064180(Kart *a) {
     a->mUnk_00.mUnk_40 = func_02086080(a->mIndex);
     func_0210b7ec(&a->mUnk_518, func_02086080(a->mIndex));
 }
@@ -42,7 +42,7 @@ static inline void func_02063cc4_inline3(Vec3 *a, const Vec3 *b) {
     a->z = b->z >> 4;
 }
 
-void func_02063cc4(Unk0206bcb0 *a) {
+void func_02063cc4(Kart *a) {
     u32 b;
     u32 c;
     u32 d;
@@ -139,7 +139,7 @@ void func_02063cc4(Unk0206bcb0 *a) {
     func_020849d0(e->mUnk_010[0]);
 }
 
-s32 func_02063b70(Unk0206bcb0 *a) {
+s32 func_02063b70(Kart *a) {
     Unk0206bcb0_590 *b;
     Unk0206bcb0_590_08 *c;
     BOOL d;

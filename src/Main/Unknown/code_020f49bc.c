@@ -596,7 +596,7 @@ void func_020f5968(u32 p0) {
 // one of the four func_020f14a0 calls, and stores the 0x24c/0x24e halfwords it picks.
 void func_020f5824(Unk020f5d6c *a) {
     Unk020ee684 *o;
-    Unk0206bcb0 *b;
+    Kart *b;
     BOOL d;
     u32 c;
     s32 n;
@@ -643,7 +643,7 @@ void func_020f5824(Unk020f5d6c *a) {
 // squares of the 0x50/0x54/0x58 differences against the 0x1d0/0x1d4/0x1e0 square.
 void func_020f572c(Unk020f5d6c *a) {
     Unk020ee684 *o;
-    Unk0206bcb0 *k;
+    Kart *k;
     s32 n;
     s32 r;
     s32 t;
@@ -684,7 +684,7 @@ void func_020f5614(void *a0, s32 b, void *c0) {
     Unk020f5d6c *a;
     Unk020f41c4_A *c;
     Unk020ee684 *o;
-    Unk0206bcb0 *k;
+    Kart *k;
     u16 n;
     u32 f;
 
@@ -788,7 +788,7 @@ void func_020f53d0(Unk020f5d6c *a) {
 // words, or when the 0xda halfword is -1; otherwise sets the 0x24c/0x24e halfwords, returns 0.
 BOOL func_020f5324(void *a0, s32 b) {
     Unk020f5d6c *a;
-    Unk0206bcb0 *k;
+    Kart *k;
     s32 n;
     s32 r;
     s32 t;
@@ -1053,7 +1053,7 @@ void func_020f4b20(Unk020f40dc *a, Unk020ee684 *b) {
 
 void func_020f49bc(Unk020f40dc *a) {
     Unk020f41c4_A *e;
-    Unk0206bcb0 *p;
+    Kart *p;
     Vec3 *q;
     Vec3 *r;
     void (*h)(void *);

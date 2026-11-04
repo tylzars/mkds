@@ -23,7 +23,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_02147cd8.h"
 
-static inline BOOL func_0206dfd0_inline(Unk0206bcb0 *p, Unk0206bcb0 *q, s32 r) {
+static inline BOOL func_0206dfd0_inline(Kart *p, Kart *q, s32 r) {
     s32 x;
     s32 y;
     s32 z;
@@ -55,9 +55,9 @@ static inline s32 func_0206dfd0_inline_2(Vec3 *v, Vec3 *n) {
     return func_02039860(v, n);
 }
 
-void func_0206dfd0(Unk0206bcb0 *p) {
+void func_0206dfd0(Kart *p) {
     s32 i;
-    Unk0206bcb0 *q;
+    Kart *q;
     s32 r;
     s32 d;
     s32 f;

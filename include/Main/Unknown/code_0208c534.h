@@ -4,7 +4,7 @@
 #include "code_0201c528.h"
 
 typedef struct Vec3s16 Vec3s16;
-typedef struct Unk0206bcb0 Unk0206bcb0;
+typedef struct Kart Kart;
 
 // 0x88 bytes, from the table behind data_0217b078. The pointer pairs at 0x00 to 0x28 hold objects returned by
 // func_0208b7bc.
@@ -50,7 +50,7 @@ void func_0208c6dc(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b);
 void func_0208c884(Unk0208c5b8 *p, int v1);
 void func_0208c930(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b);
 void func_0208cacc(Unk0208c5b8 *p, int v1);
-void func_0208cb8c(Unk0208c5b8 *p, Unk0206bcb0 *q);
+void func_0208cb8c(Unk0208c5b8 *p, Kart *q);
 void func_0208ccf0(Unk0208c5b8 *p);
 void func_0208cd2c(Unk0208c5b8 *p);
 void func_0208cd7c(Unk0208c5b8 *p);
@@ -70,7 +70,7 @@ void func_0208d3a8(Unk0208c5b8 *p);
 void func_0208d3d8(Unk0208c5b8 *p);
 void func_0208d428(Unk0208c5b8 *p);
 void func_0208d46c(Unk0208c5b8 *p);
-void func_0208d4c4(Unk0208c5b8 *p, Unk0206bcb0 *q);
+void func_0208d4c4(Unk0208c5b8 *p, Kart *q);
 void func_0208d650(Unk0208c5b8 *p);
 void func_0208d6b0(Unk0208c5b8 *p);
 void func_0208d758(void *a);

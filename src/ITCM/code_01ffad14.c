@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/unk_02154000.h"
 
-void func_01ffb0cc(Unk0206bcb0 *p) {
+void func_01ffb0cc(Kart *p) {
     p->mUnk_4fc = p->mUnk_4fc + 1;
     if (p->mUnk_4fc >= 8) {
         p->mUnk_4fc = 0;
@@ -17,7 +17,7 @@ void func_01ffb0cc(Unk0206bcb0 *p) {
     p->mUnk_4f0.z = data_02154ba4[p->mUnk_4fc];
 }
 
-s32 func_01ffaf18(Unk0206bcb0 *p) {
+s32 func_01ffaf18(Kart *p) {
     BOOL v1;
     s32 a = p->mUnk_2a8;
     s32 c;
@@ -83,7 +83,7 @@ s32 func_01ffaf18(Unk0206bcb0 *p) {
     return ((s64) p->mUnk_2a8 * (0x1000 - (p->mUnk_274 >> 3)) + 0x800) >> 12;
 }
 
-void func_01ffae14(Unk0206bcb0 *p, s32 a) {
+void func_01ffae14(Kart *p, s32 a) {
     s32 r;
 
     p->mUnk_a4.x = (s64) p->mUnk_a4.x * a >> 12;
@@ -103,7 +103,7 @@ void func_01ffae14(Unk0206bcb0 *p, s32 a) {
     }
 }
 
-void func_01ffad14(Unk0206bcb0 *p, Vec3 *a) {
+void func_01ffad14(Kart *p, Vec3 *a) {
     Vec4 v;
     Vec4 w;
     Vec4 *q = &p->mUnk_100_q;

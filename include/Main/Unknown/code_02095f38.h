@@ -55,7 +55,7 @@ typedef struct Unk0209753c {
 } Unk0209753c;
 
 #include "Main/Unknown/unk_0217b000.h" // Unk0217b498_00
-#include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
+#include "Main/Unknown/code_0206bcb0.h" // Kart
 
 BOOL func_02095f38(Unk0217b498_00 *a);
 u32 func_02095f5c(void);
@@ -68,7 +68,7 @@ void func_020968f4(Unk020968f4 *p);
 void func_02096a04(void *a, CoverPooHole *p);
 void CreateCoverPooHole(void *a);
 BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c);
-u32 func_02096f54(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c);
-u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c);
+u32 func_02096f54(CoverPooHole *p, Kart *a, u8 *b, u8 *c);
+u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c);
 void func_02097520(Unk02097520 *p0);
 u32 func_0209753c(u32 a);

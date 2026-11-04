@@ -81,7 +81,7 @@ void func_ov000_021874ec(void) {
         }
         func_ov000_021872bc(gHttp);
         if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
-            ThreadWaitForEnd((Unk0200db5c *) ((Unk021b4cac *) gHttp)->mThread);
+            ThreadWaitForEnd((Thread *) ((Unk021b4cac *) gHttp)->mThread);
         }
         o = (Unk021b4cac *) gHttp;
         switch (o->mResult) {
@@ -162,7 +162,7 @@ void func_ov000_021874ec(void) {
                     }
                     func_ov000_021872bc(gHttp);
                     if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
-                        ThreadWaitForEnd((Unk0200db5c *) ((Unk021b4cac *) gHttp)->mThread);
+                        ThreadWaitForEnd((Thread *) ((Unk021b4cac *) gHttp)->mThread);
                     }
                     o = (Unk021b4cac *) gHttp;
                     switch (o->mResult) {
@@ -282,7 +282,7 @@ void func_ov000_021874ec(void) {
         }
         func_ov000_021872bc(gHttp);
         if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
-            ThreadWaitForEnd((Unk0200db5c *) ((Unk021b4cac *) gHttp)->mThread);
+            ThreadWaitForEnd((Thread *) ((Unk021b4cac *) gHttp)->mThread);
         }
         o = (Unk021b4cac *) gHttp;
         switch (o->mResult) {
@@ -420,7 +420,7 @@ void func_ov000_021874ec(void) {
         }
         func_ov000_021872bc(gHttp);
         if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
-            ThreadWaitForEnd((Unk0200db5c *) ((Unk021b4cac *) gHttp)->mThread);
+            ThreadWaitForEnd((Thread *) ((Unk021b4cac *) gHttp)->mThread);
         }
         o = (Unk021b4cac *) gHttp;
         switch (o->mResult) {

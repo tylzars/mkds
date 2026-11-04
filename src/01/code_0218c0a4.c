@@ -34,7 +34,7 @@
 #include "Main/Unknown/unk_0217c000.h"
 
 void func_ov001_0218c490(Unk02188950 *a) {
-    Unk0206bcb0 *p = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *p = GetKart((u16) data_021759c0->mEntryIndex);
 
     func_ov001_02187218(a, 2, func_ov001_0218c5d4);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_104), (s32) (a->mPrm->mUnk_108));

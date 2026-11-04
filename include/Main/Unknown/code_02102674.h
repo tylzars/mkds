@@ -8,7 +8,7 @@
 // Element of data_027e00cc[10]: 0x1b4 bytes (the size in data_0217bc34[10]), handled by the functions below.
 typedef struct Unk02102674 {
     /* 000 */ Unk020f41c4_A mUnk_000;
-    /* 12c */ Unk0206bcb0 *mUnk_12c;
+    /* 12c */ Kart *mUnk_12c;
     /* 130 */ u8 mUnk_130[0x8];
     /* 138 */ s32 mUnk_138;
     /* 13c */ Vec3 mUnk_13c;

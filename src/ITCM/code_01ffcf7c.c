@@ -264,7 +264,7 @@ s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
 }
 
 void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
-    Unk0206bcb0 *q = p->mUnk_00;
+    Kart *q = p->mUnk_00;
     Vec3 v0;
     Vec3 v1;
     Vec3 v2;
@@ -283,7 +283,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
     s32 g;
     BOOL r;
     Vec3 *u;
-    Unk0206bcb0 *o;
+    Kart *o;
     if (q->mState != 0) {
         return;
     }

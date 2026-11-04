@@ -28,7 +28,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_02147cd8.h"
 
-void func_01ffa4b4(Unk0206bcb0 *p, Vec3 *a) {
+void func_01ffa4b4(Kart *p, Vec3 *a) {
     u16 h;
     u32 f;
     u32 w;
@@ -75,7 +75,7 @@ void func_01ffa4b4(Unk0206bcb0 *p, Vec3 *a) {
                 p->mUnk_2e4.z -= (s32) (((s64) v5.z * d) >> 12);
             }
             p->mUnk_4da = 3;
-            if (((s32(*)(Unk0206bcb0 *, u32, Vec3 *)) data_0217ac14)(p, f, &v3) != 0 || (p->mUnk_44 & 0x4000000)) {
+            if (((s32(*)(Kart *, u32, Vec3 *)) data_0217ac14)(p, f, &v3) != 0 || (p->mUnk_44 & 0x4000000)) {
                 n = 0;
                 if ((s64) v3.x * v3.x + (s64) v3.y * v3.y + (s64) v3.z * v3.z >= 0x10) {
                     n = func_02039860(&v3, &v6);
@@ -150,7 +150,7 @@ void func_01ffa4b4(Unk0206bcb0 *p, Vec3 *a) {
                 p->mUnk_44 |= 0x10;
                 if (p->mUnk_2a8 != 0 || func_02070398(p, f, &w) == 0) {
                     func_01ff9cb0(p);
-                    if (((s32(*)(Unk0206bcb0 *, u32, Vec3 *)) data_0217ac14)(p, f, &v3) != 0) {
+                    if (((s32(*)(Kart *, u32, Vec3 *)) data_0217ac14)(p, f, &v3) != 0) {
                         n = 0;
                         if ((s64) v3.x * v3.x + (s64) v3.y * v3.y + (s64) v3.z * v3.z >= 0x10) {
                             n = func_02039860(&v3, &v7);

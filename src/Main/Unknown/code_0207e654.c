@@ -66,7 +66,7 @@ static inline s32 func_0207f554_inline(u32 a, u32 b) {
 
 void func_0207fec0(Unk02080b1c *p) {
     u32 i = 0;
-    Unk0206bcb0 *a = GetKart(p->mUnk_1c);
+    Kart *a = GetKart(p->mUnk_1c);
     s32 t;
 
     if (p->mUnk_00->mUnk_24 > 1) {
@@ -89,7 +89,7 @@ s32 func_0207fe70(Unk02080b1c *p) {
 }
 
 void func_0207fd28(Unk02080b1c *p) {
-    Unk0206bcb0 *a = GetKart(p->mUnk_1c);
+    Kart *a = GetKart(p->mUnk_1c);
     u16 i;
     s32 t;
 
@@ -152,7 +152,7 @@ void func_0207fba0(void) {
     }
 }
 
-void func_0207fa74(Unk020888b4 *p, Unk0206bcb0 *q, s32 a) {
+void func_0207fa74(Unk020888b4 *p, Kart *q, s32 a) {
     s32 v;
     Unk0217aebc_128 *r;
 
@@ -215,7 +215,7 @@ void func_0207f8f8(Unk020888b4 *p) {
     Vec3 w;
     Vec3 *t;
     Unk0208001c *q;
-    Unk0206bcb0 *a;
+    Kart *a;
     Unk02175620_bc *s;
 
     func_0207e668(p);
@@ -238,7 +238,7 @@ void func_0207f8f8(Unk020888b4 *p) {
     func_0207f2e4(p);
 }
 
-void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Unk0206bcb0 *r, Unk02175620_bc *s, Vec3 *a, Vec3 *b) {
+void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Kart *r, Unk02175620_bc *s, Vec3 *a, Vec3 *b) {
     Vec3 v;
     Vec3 w;
     Vec3 *c;
@@ -287,7 +287,7 @@ void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Unk0206bcb0 *r, Unk02175620_b
     q->mUnk_18 = 0;
 }
 
-void func_0207f668(Unk020888b4 *p, Unk0208001c *q, Unk0206bcb0 *r) {
+void func_0207f668(Unk020888b4 *p, Unk0208001c *q, Kart *r) {
     p->mUnk_44 = *q->mUnk_00->mUnk_18;
     if (r->mUnk_48 & 0x40000000) {
         return;
@@ -303,7 +303,7 @@ void func_0207f668(Unk020888b4 *p, Unk0208001c *q, Unk0206bcb0 *r) {
     Vec3Add(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
 }
 
-void func_0207f630(Unk020888b4 *p, Unk0208001c *q, Unk0206bcb0 *r) {
+void func_0207f630(Unk020888b4 *p, Unk0208001c *q, Kart *r) {
     p->mUnk_44 = *q->mUnk_00->mUnk_18;
     p->mUnk_60 = data_usa_021557d0;
     p->mUnk_74 = 0;
@@ -472,8 +472,8 @@ void func_0207ebfc(Unk020888b4 *p) {
     Vec3 v5;
     Vec3 v4;
     Vec3 v2;
-    Unk0206bcb0 *q;
-    Unk0206bcb0 *q2;
+    Kart *q;
+    Kart *q2;
     Vec3 *c;
     Vec3 *a;
     s32 n;
@@ -682,7 +682,7 @@ void func_0207e7f0(Unk020888b4 *p) {
 void func_0207e668(Unk020888b4 *p) {
     BOOL a = FALSE;
     BOOL b = FALSE;
-    Unk0206bcb0 *q;
+    Kart *q;
 
     p->mUnk_ac--;
     if (p->mUnk_ac <= 0) {

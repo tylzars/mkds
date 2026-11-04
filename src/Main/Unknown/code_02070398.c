@@ -95,7 +95,7 @@
 #include "Main/Unknown/code_02068000.h"
 #include "Main/Unknown/code_0206390c.h"
 
-void func_020732d8(Unk0206bcb0 *p) {
+void func_020732d8(Kart *p) {
     s32 i;
     enum { K0 } k;
 
@@ -120,7 +120,7 @@ void func_020732d8(Unk0206bcb0 *p) {
     p->mUnk_bc.y = (s32) (((s64) p->mUnk_434 * p->mUnk_bc.y) >> 12);
 }
 
-void func_02072eb8(Unk0206bcb0 *p) {
+void func_02072eb8(Kart *p) {
     Vec3 a;
     Vec3 b;
     Vec3 c;
@@ -195,7 +195,7 @@ void func_02072eb8(Unk0206bcb0 *p) {
     }
 }
 
-s32 func_02072d84(Unk0206bcb0 *p, s32 *a) {
+s32 func_02072d84(Kart *p, s32 *a) {
     BOOL r;
     u32 f;
 
@@ -229,7 +229,7 @@ s32 func_02072d84(Unk0206bcb0 *p, s32 *a) {
     return r;
 }
 
-void func_02072b94(Unk0206bcb0 *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c) {
+void func_02072b94(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c) {
     Unk0206bcb0_514 *q;
     Vec3 v;
 
@@ -276,7 +276,7 @@ void func_02072b94(Unk0206bcb0 *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc 
     }
 }
 
-void func_02072930(Unk0206bcb0 *p) {
+void func_02072930(Kart *p) {
     s32 i;
     Unk02165560 v;
 
@@ -342,7 +342,7 @@ void func_02072930(Unk0206bcb0 *p) {
     }
 }
 
-void func_020727d4(Unk0206bcb0 *p) {
+void func_020727d4(Kart *p) {
     Vec3 a;
     Vec3 b;
     Vec3 c;
@@ -373,7 +373,7 @@ void func_020727d4(Unk0206bcb0 *p) {
     p->mUnk_bc = data_02154f94;
 }
 
-void func_020726bc(Unk0206bcb0 *p) {
+void func_020726bc(Kart *p) {
     s32 a;
     s32 b;
     s16 i;
@@ -410,7 +410,7 @@ void func_020726bc(Unk0206bcb0 *p) {
     }
 }
 
-void func_02072600(Unk0206bcb0 *p) {
+void func_02072600(Kart *p) {
     Vec3 v;
 
     p->mUnk_d4 = 0x1000;
@@ -434,7 +434,7 @@ void func_02072600(Unk0206bcb0 *p) {
     p->mUnk_386 = 0;
 }
 
-void func_020720dc(Unk0206bcb0 *p) {
+void func_020720dc(Kart *p) {
     Vec3 v;
     u16 i;
 
@@ -603,7 +603,7 @@ void func_020720dc(Unk0206bcb0 *p) {
     p->mUnk_4cc = 0;
 }
 
-void func_02071fb8(Unk0206bcb0 *p, void *a) {
+void func_02071fb8(Kart *p, void *a) {
     Unk0206bcb0_514 *q;
     Vec3 v;
     u16 i;
@@ -642,7 +642,7 @@ void func_02071fb8(Unk0206bcb0 *p, void *a) {
     }
 }
 
-void func_02071f44(Unk0206bcb0 *p) {
+void func_02071f44(Kart *p) {
     Unk0206bcb0_514 *q;
 
     if (!(p->mUnk_7c & 0x400)) {
@@ -656,7 +656,7 @@ void func_02071f44(Unk0206bcb0 *p) {
     q->mUnk_b4 = 0;
 }
 
-void func_02071e28(Unk0206bcb0 *p) {
+void func_02071e28(Kart *p) {
     p->mUnk_7c = 0;
     if (p->mIndex == data_021759c0->mEntryIndex) {
         p->mUnk_7c |= 1;
@@ -702,7 +702,7 @@ void func_02071ddc(void *p0) {
     *(u16 *) ((u8 *) (u32) p0 + 40) = (u16) 0x0u;
 }
 
-void func_02071c18(Unk0206bcb0 *p) {
+void func_02071c18(Kart *p) {
     func_02109110(&p->mUnk_00, 0, p->mUnk_508);
     func_0210a5a8(p, (Unk0210a5a8 *) &p->mUnk_450);
     func_020719d0(p);
@@ -763,7 +763,7 @@ void func_02071c18(Unk0206bcb0 *p) {
     }
 }
 
-void func_020719d0(Unk0206bcb0 *p) {
+void func_020719d0(Kart *p) {
     Unk02024eec *q;
     Unk02024eec_40 t;
     s32 i;
@@ -888,11 +888,10 @@ void func_020719a8(u32 arg0, u32 arg1) {
 }
 
 void func_02071980(void *p, int b) {
-    func_0210b2a8((Unk0206bcb0 *) p, b, ((Unk0206bcb0 *) p)->mUnk_3e0, ((Unk0206bcb0 *) p)->mUnk_3e4,
-                  ((Unk0206bcb0 *) p)->mUnk_500);
+    func_0210b2a8((Kart *) p, b, ((Kart *) p)->mUnk_3e0, ((Kart *) p)->mUnk_3e4, ((Kart *) p)->mUnk_500);
 }
 
-void func_02071958(Unk0206bcb0 *p, s32 b) {
+void func_02071958(Kart *p, s32 b) {
     func_0210b564(&p->mUnk_00, b, p->mUnk_3e0, p->mUnk_3e4, p->mUnk_500);
 }
 
@@ -911,25 +910,25 @@ void func_02071944(void *p, int v1) {
 
 void func_02071914(void *p, int a) {
     if (func_02109078((Unk0210bfbc *) p, a, 0x7f, 0) != NULL) {
-        ((Unk0206bcb0 *) p)->mUnk_488 = a;
+        ((Kart *) p)->mUnk_488 = a;
     }
 }
 
 void func_020718c8(void *p, int v1) {
     int v;
 
-    v = func_02086080(((Unk0206bcb0 *) p)->mIndex);
+    v = func_02086080(((Kart *) p)->mIndex);
     func_0210ddf4(&data_0217d284, v + func_0210a588(), func_02071914, p, v1);
 }
 
-void func_02071894(Unk0206bcb0 *p) {
+void func_02071894(Kart *p) {
     if (p->mUnk_48 & 0x840) {
         return;
     }
     func_0210af40(p, p->mUnk_3cc, 7);
 }
 
-void func_02071788(Unk0206bcb0 *p) {
+void func_02071788(Kart *p) {
     p->mUnk_3fe++;
     if (p->mUnk_3fe >= p->mUnk_400) {
         p->mUnk_3fe = 0;
@@ -954,7 +953,7 @@ void func_02071788(Unk0206bcb0 *p) {
     }
 }
 
-void func_02071568(Unk0206bcb0 *p) {
+void func_02071568(Kart *p) {
     s32 f;
     u16 i;
     u16 j;
@@ -998,7 +997,7 @@ void func_02071568(Unk0206bcb0 *p) {
     p->mUnk_4f0.z = p->mUnk_4f0.z + (s32) (((s64) p->mUnk_4f0.z * s) >> 12);
 }
 
-void func_020713a0(Unk0206bcb0 *p) {
+void func_020713a0(Kart *p) {
     s32 t;
 
     if (p->mUnk_4e4 <= 2) {
@@ -1036,7 +1035,7 @@ void func_020713a0(Unk0206bcb0 *p) {
     }
 }
 
-void func_02071318(Unk0206bcb0 *p, s32 a) {
+void func_02071318(Kart *p, s32 a) {
     s32 k;
 
     k = p->mState;
@@ -1057,7 +1056,7 @@ void func_02071318(Unk0206bcb0 *p, s32 a) {
     p->mUnk_4c |= 8;
 }
 
-void func_020710b0(Unk0206bcb0 *p, s32 b) {
+void func_020710b0(Kart *p, s32 b) {
     Unk0212c400 **h;
     Unk0210bf24 *d;
 
@@ -1133,7 +1132,7 @@ void func_020710b0(Unk0206bcb0 *p, s32 b) {
     }
 }
 
-void func_02070f8c(Unk0206bcb0 *p) {
+void func_02070f8c(Kart *p) {
     s32 q[2];
     Vec3 v;
     Vec3 u;
@@ -1185,7 +1184,7 @@ static inline s32 func_020708a4_inline(Vec3 *v, Vec3 *n) {
     return func_02039860(v, n);
 }
 
-void func_020708a4(Unk0206bcb0 *p) {
+void func_020708a4(Kart *p) {
     Unk0206ceb4 *s;
     u16 i;
     s32 d;
@@ -1343,7 +1342,7 @@ void func_020708a4(Unk0206bcb0 *p) {
     Vec3Add(&p->mUnk_80, &p->mUnk_a4, &p->mUnk_80);
 }
 
-void func_020705fc(Unk0206bcb0 *p, u32 b) {
+void func_020705fc(Kart *p, u32 b) {
     Vec3 a;
     Vec3 e;
     s32 m[9];
@@ -1400,7 +1399,7 @@ void func_020705fc(Unk0206bcb0 *p, u32 b) {
     func_02089754(p->mUnk_310, func_02040da8(b));
 }
 
-void func_02070484(Unk0206bcb0 *p, Vec4 *q) {
+void func_02070484(Kart *p, Vec4 *q) {
     Unk02012f58 m1;
     Unk02012f58 m2;
     Vec3 v1;
@@ -1442,7 +1441,7 @@ void func_02070484(Unk0206bcb0 *p, Vec4 *q) {
     }
 }
 
-BOOL func_02070398(Unk0206bcb0 *p, u32 b, void *c) {
+BOOL func_02070398(Kart *p, u32 b, void *c) {
     u32 w;
 
     w = p->mUnk_44;

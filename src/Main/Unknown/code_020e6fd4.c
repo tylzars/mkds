@@ -85,7 +85,7 @@ void func_020e79c4(void) {
 
 #pragma thumb on
 void func_020e7760(void) {
-    Unk0206bcb0 *q;
+    Kart *q;
     Vec3 *v;
     s32 i;
     Vec3 *s;

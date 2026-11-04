@@ -383,7 +383,7 @@ void func_020db760(void *a, Dossun *p) {
     p->mUnk_00.mPos.y += p->mUnk_f8;
 }
 
-u32 func_020db548(Dossun *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
+u32 func_020db548(Dossun *p, Kart *a, u8 *b, u8 *c) {
     Vec3 s0;
     Vec3 s1;
     Vec3 s2;

@@ -48,7 +48,7 @@ void func_020a8080(u32 arg0) {
     func_020d7da8((Unk020e0144 *) value0, (Unk020fa294 *) value1, (s32) value2);
 }
 
-u8 func_020a7fc4(Unk020a7f18 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
+u8 func_020a7fc4(Unk020a7f18 *p, Kart *a, u8 *b, u8 *c) {
     Unk0210b7a8 s;
     u32 d;
 
@@ -72,7 +72,7 @@ u8 func_020a7fc4(Unk020a7f18 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
     return d;
 }
 
-u8 func_020a7f18(Unk020a7f18 *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
+u8 func_020a7f18(Unk020a7f18 *p, Kart *a, u8 *b, u8 *c) {
     Unk0210b7a8 s;
     u32 d;
 

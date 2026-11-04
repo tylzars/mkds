@@ -41,7 +41,7 @@
 
 #pragma opt_arithtransformation off
 
-BOOL func_01ffa478(Unk0206bcb0 *p, u32 a, Vec3 *b) {
+BOOL func_01ffa478(Kart *p, u32 a, Vec3 *b) {
     BOOL t = FALSE;
 
     if (a & 0x2000000) {
@@ -52,7 +52,7 @@ BOOL func_01ffa478(Unk0206bcb0 *p, u32 a, Vec3 *b) {
     return t != FALSE;
 }
 
-BOOL func_01ffa41c(Unk0206bcb0 *p, u32 a, Vec3 *b) {
+BOOL func_01ffa41c(Kart *p, u32 a, Vec3 *b) {
     BOOL r = TRUE;
     BOOL t = FALSE;
 
@@ -69,7 +69,7 @@ BOOL func_01ffa41c(Unk0206bcb0 *p, u32 a, Vec3 *b) {
     return r != FALSE;
 }
 
-BOOL func_01ffa380(Unk0206bcb0 *p, u32 a, Vec3 *b) {
+BOOL func_01ffa380(Kart *p, u32 a, Vec3 *b) {
     BOOL r = TRUE;
     BOOL t = FALSE;
 
@@ -86,14 +86,14 @@ BOOL func_01ffa380(Unk0206bcb0 *p, u32 a, Vec3 *b) {
     return r != FALSE;
 }
 
-void func_01ffa350(Unk0206bcb0 *p, u32 a) {
+void func_01ffa350(Kart *p, u32 a) {
     p->mUnk_44 = p->mUnk_44 & ~a;
     p->mUnk_208->mUnk_00 = 0;
     p->mUnk_3dc = -1;
     func_020839d8(p);
 }
 
-BOOL func_01ffa1f8(Unk0206bcb0 *p) {
+BOOL func_01ffa1f8(Kart *p) {
     void *q;
     u32 i;
     u32 r;
@@ -130,7 +130,7 @@ BOOL func_01ffa1f8(Unk0206bcb0 *p) {
     return FALSE;
 }
 
-void func_01ffa11c(Unk0206bcb0 *p, const Vec3 *a) {
+void func_01ffa11c(Kart *p, const Vec3 *a) {
     s32 d = func_02039828(&p->mUnk_244, a);
     s32 m;
 
@@ -162,7 +162,7 @@ void func_01ffa11c(Unk0206bcb0 *p, const Vec3 *a) {
     }
 }
 
-void func_01ffa0c4(Unk0206bcb0 *p) {
+void func_01ffa0c4(Kart *p) {
     if (p->mUnk_44 & 0x10) {
         p->mUnk_380 = 0;
         p->mUnk_234 = 0;
@@ -176,7 +176,7 @@ void func_01ffa0c4(Unk0206bcb0 *p) {
     }
 }
 
-void func_01ff9f60(Unk0206bcb0 *p, Vec3 *a) {
+void func_01ff9f60(Kart *p, Vec3 *a) {
     Vec4 v;
     u32 t;
 
@@ -207,7 +207,7 @@ void func_01ff9f60(Unk0206bcb0 *p, Vec3 *a) {
     func_01ffcf7c(&p->mUnk_110_q, &p->mUnk_110_q);
 }
 
-void func_01ff9e5c(Unk0206bcb0 *p) {
+void func_01ff9e5c(Kart *p) {
     s32 r = func_020d59f8(0x1e34ef);
     s32 k;
     s32 a;
@@ -243,7 +243,7 @@ void func_01ff9e5c(Unk0206bcb0 *p) {
     p->mUnk_3dc = k;
 }
 
-void func_01ff9d18(Unk0206bcb0 *p) {
+void func_01ff9d18(Kart *p) {
     u32 r;
     s32 d;
     enum { K0 } j;
@@ -291,7 +291,7 @@ void func_01ff9d18(Unk0206bcb0 *p) {
     p->mUnk_4c = p->mUnk_4c & ~0x400;
 }
 
-void func_01ff9cb0(Unk0206bcb0 *p) {
+void func_01ff9cb0(Kart *p) {
     if (!(p->mUnk_4c & 2)) {
         if (func_02061fec() == 1) {
             func_01ffc9e8(p, 0);
@@ -305,7 +305,7 @@ void func_01ff9cb0(Unk0206bcb0 *p) {
     p->mUnk_208->mUnk_00 = 0;
 }
 
-void func_01ff9c9c(Unk0206bcb0 *p, u32 a) {
+void func_01ff9c9c(Kart *p, u32 a) {
     u32 b = a & 0x1000000;
 
     if (b != p->mUnk_4c0) {
@@ -313,7 +313,7 @@ void func_01ff9c9c(Unk0206bcb0 *p, u32 a) {
     }
 }
 
-void func_01ff9c40(Unk0206bcb0 *p) {
+void func_01ff9c40(Kart *p) {
     if (!(p->mUnk_44 & 4)) {
         return;
     }
@@ -326,7 +326,7 @@ void func_01ff9c40(Unk0206bcb0 *p) {
     }
 }
 
-void func_01ff9b70(Unk0206bcb0 *p) {
+void func_01ff9b70(Kart *p) {
     Unk0208c5b8 *a;
     Unk0217ae84 *b;
     u32 f;

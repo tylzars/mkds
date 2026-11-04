@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_0206bcb0.h"
 
 // Element of the 0x210-byte array behind data_027e00c8: a Unk020f40dc at 0x030, a Unk020eda5c at 0x058, a
-// Unk020f371c_Ref at 0x1f0, the Unk0206bcb0 at 0x1fc and words from 0x200 to 0x20c.
+// Unk020f371c_Ref at 0x1f0, the Kart at 0x1fc and words from 0x200 to 0x20c.
 typedef struct Unk020ee684 {
     /* 000 */ s32 mUnk_000;
     /* 004 */ u32 mUnk_004;
@@ -27,7 +27,7 @@ typedef struct Unk020ee684 {
     /* 1f0 */ Unk020f371c_Ref mUnk_1f0;
     /* 1f8 */ u16 mUnk_1f8;
     /* 1fa */ u8 mUnk_1fa[2];
-    /* 1fc */ Unk0206bcb0 *mUnk_1fc;
+    /* 1fc */ Kart *mUnk_1fc;
     /* 200 */ s32 mUnk_200;
     /* 204 */ s32 mUnk_204;
     /* 208 */ s32 mUnk_208;

@@ -61,7 +61,7 @@ extern u32 data_ov003_021d8bfc;
 extern void *data_ov003_021d8c00;
 extern s32 data_ov003_021d8c34;
 extern s32 data_ov003_021d8c44;
-extern Unk0200db5c data_ov003_021d8d08;
+extern Thread data_ov003_021d8d08;
 extern s32 data_ov003_021d8c08;
 extern s32 data_ov003_021d8c48;
 extern UnkFunc *data_ov003_021d8c4c;
