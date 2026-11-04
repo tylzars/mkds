@@ -1382,8 +1382,8 @@ data_ov003_021d71e8 kind:data(any) addr:0x021d71a8
 data_ov003_021d7200 kind:data(any) addr:0x021d71c0
 data_ov003_021d7214 kind:data(any) addr:0x021d71d4
 data_ov003_021d7228 kind:data(any) addr:0x021d71e8
-data_ov003_021d722c kind:data(any) addr:0x021d71ec
-data_ov003_021d7244 kind:data(any) addr:0x021d7204
+@1367 kind:data(any) addr:0x021d71ec local
+@1365 kind:data(any) addr:0x021d7204 local
 data_ov003_021d7260 kind:data(any) addr:0x021d7220
 data_ov003_021d7278 kind:data(any) addr:0x021d7238
 @1213 kind:data(any) addr:0x021d723c local

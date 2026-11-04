@@ -333,6 +333,7 @@ src/00/code_0218b708.c:
     .text       start:0x0218b6d4 end:0x0218c924
 
 src/00/code_0218c958.c:
+    complete
     .text       start:0x0218c924 end:0x0218cd40
 
 // provisional: file name and boundaries
@@ -1045,6 +1046,7 @@ src/00/code_021acfd8.c:
 
 // provisional: file name and boundaries
 src/00/code_021ad018.c:
+    complete
     .text       start:0x021acfe4 end:0x021ad338
 
 // provisional: file name and boundaries
@@ -1054,6 +1056,7 @@ src/00/code_021ad36c.c:
 
 // provisional: file name and boundaries
 src/00/code_021ad3b8.c:
+    complete
     .text       start:0x021ad384 end:0x021ad700
 
 // provisional: file name and boundaries
