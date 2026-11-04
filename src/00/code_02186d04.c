@@ -8,7 +8,7 @@
 #include "00/code_02186000.h"
 #include "00/code_02186628.h"
 #include "00/code_021a9200.h"
-#include "00/code_021aae44.h"
+#include "00/code_021a9228.h"
 #include "code_0200d118.h"
 #include "code_0200db4c.h"
 #include "code_0200f5ac.h"
