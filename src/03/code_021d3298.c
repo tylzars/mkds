@@ -4,28 +4,22 @@
 #include "code_0214f4a4.h"
 #include "code_02148950.h"
 
-void func_ov003_021d3298(void) {
-    vu32 c;
-    vu32 e;
-    vu32 a;
-    vu32 b;
-    vu32 d;
-    vu32 f;
-
-    func_021492d8(0x1f3);
-    a = 0;
-    MemFillWordsByBlock(a, (void *) 0x6800000, 0x40000);
-    b = 0;
-    MemFillWordsByBlock(b, (void *) 0x6880000, 0x24000);
-    func_02148dac();
-    c = 0x200;
-    MemFillWordsByBlock(c, (void *) 0x7000000, 0x400);
-    d = 0;
-    MemFillWordsByBlock(d, (void *) 0x5000000, 0x400);
-    e = 0x200;
-    MemFillWordsByBlock(e, (void *) 0x7000400, 0x400);
-    f = 0;
-    MemFillWordsByBlock(f, (void *) 0x5000400, 0x400);
+void func_ov003_021d3408(void) {
+    data_ov003_021da2f8[0] = func_02148e6c();
+    data_ov003_021da2f8[1] = func_02148e58();
+    data_ov003_021da2f8[2] = func_02148e34();
+    data_ov003_021da2f8[3] = func_02148e10();
+    data_ov003_021da2f8[4] = func_02148dfc();
+    data_ov003_021da2f8[5] = func_02148de8();
+    data_ov003_021da2f8[6] = func_02148dd4();
+    data_ov003_021da2f8[7] = func_02148d98();
+    data_ov003_021da2f8[8] = func_02148d84();
+    data_ov003_021da2f8[9] = func_02148d5c();
+    data_ov003_021da2f8[10] = func_02148d34();
+    data_ov003_021da2f8[11] = func_02148dc0();
+    data_ov003_021da2f8[12] = func_02148dac();
+    func_021492f8(data_ov003_021da2f8[11]);
+    func_ov003_021d3298();
 }
 
 void func_ov003_021d332c(void) {
@@ -59,20 +53,26 @@ void func_ov003_021d332c(void) {
     func_0214f72c(1);
 }
 
-void func_ov003_021d3408(void) {
-    data_ov003_021da2f8[0] = func_02148e6c();
-    data_ov003_021da2f8[1] = func_02148e58();
-    data_ov003_021da2f8[2] = func_02148e34();
-    data_ov003_021da2f8[3] = func_02148e10();
-    data_ov003_021da2f8[4] = func_02148dfc();
-    data_ov003_021da2f8[5] = func_02148de8();
-    data_ov003_021da2f8[6] = func_02148dd4();
-    data_ov003_021da2f8[7] = func_02148d98();
-    data_ov003_021da2f8[8] = func_02148d84();
-    data_ov003_021da2f8[9] = func_02148d5c();
-    data_ov003_021da2f8[10] = func_02148d34();
-    data_ov003_021da2f8[11] = func_02148dc0();
-    data_ov003_021da2f8[12] = func_02148dac();
-    func_021492f8(data_ov003_021da2f8[11]);
-    func_ov003_021d3298();
+void func_ov003_021d3298(void) {
+    vu32 c;
+    vu32 e;
+    vu32 a;
+    vu32 b;
+    vu32 d;
+    vu32 f;
+
+    func_021492d8(0x1f3);
+    a = 0;
+    MemFillWordsByBlock(a, (void *) 0x6800000, 0x40000);
+    b = 0;
+    MemFillWordsByBlock(b, (void *) 0x6880000, 0x24000);
+    func_02148dac();
+    c = 0x200;
+    MemFillWordsByBlock(c, (void *) 0x7000000, 0x400);
+    d = 0;
+    MemFillWordsByBlock(d, (void *) 0x5000000, 0x400);
+    e = 0x200;
+    MemFillWordsByBlock(e, (void *) 0x7000400, 0x400);
+    f = 0;
+    MemFillWordsByBlock(f, (void *) 0x5000400, 0x400);
 }

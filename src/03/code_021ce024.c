@@ -11,6 +11,11 @@
 #include "03/code_021d3000.h"
 #include "03/code_021d3488.h"
 
+void func_ov003_021ce0c4(void) {
+    data_ov003_021da27c->mUnk_18 = 1;
+    data_ov003_021da27c->mTask = func_ov003_021d3544(0, func_ov003_021cdf98, NULL, 0x78);
+}
+
 void func_ov003_021ce024(u32 a) {
     s32 i;
     for (i = 0; i < 5; i += 2) {
@@ -22,9 +27,4 @@ void func_ov003_021ce024(u32 a) {
         func_ov003_021d1890(data_ov003_021da27c->mUnk_00[i], -1, 0, data_ov003_021d6698[a][i]);
     }
     func_ov003_021cdcf0(a);
-}
-
-void func_ov003_021ce0c4(void) {
-    data_ov003_021da27c->mUnk_18 = 1;
-    data_ov003_021da27c->mTask = func_ov003_021d3544(0, func_ov003_021cdf98, NULL, 0x78);
 }

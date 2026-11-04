@@ -7,6 +7,77 @@
 #include "code_0200db4c.h"
 #include "code_0200f7a0.h"
 
+s32 func_ov003_021be418(u32 param_0) {
+    u32 a = 1;
+    s32 b;
+    u32 c;
+    u32 d;
+    u32 e;
+    u32 f;
+    enum { K0 } g;
+    u32 h;
+
+    data_ov003_021d8c40 = param_0;
+    func_ov003_021be568();
+    e = param_0 * 0xd0;
+    data_ov003_021d8c24 = (void *) data_ov003_021d8bd4(e + 0x24d0 + param_0 * 0xc0);
+    if (data_ov003_021d8c24 == NULL) {
+        return -1;
+    }
+    g = 0x1f;
+    d = ((u32) data_ov003_021d8c24 + g) & ~0x1f;
+    data_ov003_021d8c10 = (void *) d;
+    f = e + 0x2490;
+    h = d + f;
+    data_ov003_021d8c2c = (Unk021d8c2c *) ((h + g) & ~0x1f);
+    if (func_ov003_021be610(func_ov003_021be4ec, (void *) d, f) == 0) {
+        return -2;
+    }
+    do {
+        func_0200dc3c(10);
+        while ((c = func_ov003_021be528()) != 0) {
+            if (c == 4 || c == 5) {
+            } else if (c == 6) {
+                a = 0;
+                b = 1;
+            } else {
+                a = 0;
+                b = -2;
+            }
+        }
+    } while (a != 0);
+    return b;
+}
+
+u32 func_ov003_021be3b8(void) {
+    u32 a = 1;
+    u32 b;
+
+    if (func_ov003_021be7b8() != 0) {
+        do {
+            func_0200dc3c(10);
+            while ((b = func_ov003_021be528()) != 0) {
+                switch (b) {
+                    case 4:
+                    case 5:
+                        break;
+                    case 20:
+                        a = 0;
+                        break;
+                    default:
+                        a = 0;
+                        break;
+                }
+            }
+        } while (a != 0);
+    }
+    if (data_ov003_021d8c24 != NULL) {
+        data_ov003_021d8bdc(data_ov003_021d8c24);
+        data_ov003_021d8c24 = NULL;
+    }
+    return 1;
+}
+
 s32 func_ov003_021be264(void) {
     Unk0200fb08 v1;
     Unk021d8c2c *p0;
@@ -71,76 +142,5 @@ s32 func_ov003_021be264(void) {
             data_ov003_021d8bf4 = 1;
         }
     }
-    return b;
-}
-
-u32 func_ov003_021be3b8(void) {
-    u32 a = 1;
-    u32 b;
-
-    if (func_ov003_021be7b8() != 0) {
-        do {
-            func_0200dc3c(10);
-            while ((b = func_ov003_021be528()) != 0) {
-                switch (b) {
-                    case 4:
-                    case 5:
-                        break;
-                    case 20:
-                        a = 0;
-                        break;
-                    default:
-                        a = 0;
-                        break;
-                }
-            }
-        } while (a != 0);
-    }
-    if (data_ov003_021d8c24 != NULL) {
-        data_ov003_021d8bdc(data_ov003_021d8c24);
-        data_ov003_021d8c24 = NULL;
-    }
-    return 1;
-}
-
-s32 func_ov003_021be418(u32 param_0) {
-    u32 a = 1;
-    s32 b;
-    u32 c;
-    u32 d;
-    u32 e;
-    u32 f;
-    enum { K0 } g;
-    u32 h;
-
-    data_ov003_021d8c40 = param_0;
-    func_ov003_021be568();
-    e = param_0 * 0xd0;
-    data_ov003_021d8c24 = (void *) data_ov003_021d8bd4(e + 0x24d0 + param_0 * 0xc0);
-    if (data_ov003_021d8c24 == NULL) {
-        return -1;
-    }
-    g = 0x1f;
-    d = ((u32) data_ov003_021d8c24 + g) & ~0x1f;
-    data_ov003_021d8c10 = (void *) d;
-    f = e + 0x2490;
-    h = d + f;
-    data_ov003_021d8c2c = (Unk021d8c2c *) ((h + g) & ~0x1f);
-    if (func_ov003_021be610(func_ov003_021be4ec, (void *) d, f) == 0) {
-        return -2;
-    }
-    do {
-        func_0200dc3c(10);
-        while ((c = func_ov003_021be528()) != 0) {
-            if (c == 4 || c == 5) {
-            } else if (c == 6) {
-                a = 0;
-                b = 1;
-            } else {
-                a = 0;
-                b = -2;
-            }
-        }
-    } while (a != 0);
     return b;
 }

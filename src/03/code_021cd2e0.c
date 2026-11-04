@@ -10,24 +10,22 @@
 #include "code_02151fc4.h"
 #include "Main/Unknown/code_02151718.h"
 
-void func_ov003_021cd2e0(const char *v1, u8 *v2) {
-    u8 a[4];
+void func_ov003_021cd42c(void) {
+    volatile u16 a = 0;
+    Unk021510a4 b;
+    u8 *c;
     s32 i;
-    s32 j;
-    u8 *p;
-    MemFill(a, 0, 4);
+    MemFillHalfwords(a, data_ov003_021da270, 0x400);
+    for (i = 0; i < 3; i++) {
+        data_ov003_021da270->mUnk_000[i].mUnk_00.mUnk_e7 = 0xff;
+    }
+    func_02151fc4(&b);
+    c = func_021510a4(&b);
+    for (i = 0; i < 2; i++) {
+        MemCopy(c, data_ov003_021da270->mUnk_000[i].mUnk_f0, 0xe);
+    }
     for (i = 0; i < 4; i++) {
-        MemCopy(v1 + i * 3, a, 3);
-        j = 0;
-        p = a;
-        for (; j < 3; j++) {
-            if (*p != 0) {
-                break;
-            }
-            *p = ' ';
-            p++;
-        }
-        v2[i] = StrtolBase10((const char *) a);
+        func_ov003_021cd338(i);
     }
 }
 
@@ -71,21 +69,23 @@ void func_ov003_021cd338(s32 param_1) {
     func_ov003_021d2808(&e);
 }
 
-void func_ov003_021cd42c(void) {
-    volatile u16 a = 0;
-    Unk021510a4 b;
-    u8 *c;
+void func_ov003_021cd2e0(const char *v1, u8 *v2) {
+    u8 a[4];
     s32 i;
-    MemFillHalfwords(a, data_ov003_021da270, 0x400);
-    for (i = 0; i < 3; i++) {
-        data_ov003_021da270->mUnk_000[i].mUnk_00.mUnk_e7 = 0xff;
-    }
-    func_02151fc4(&b);
-    c = func_021510a4(&b);
-    for (i = 0; i < 2; i++) {
-        MemCopy(c, data_ov003_021da270->mUnk_000[i].mUnk_f0, 0xe);
-    }
+    s32 j;
+    u8 *p;
+    MemFill(a, 0, 4);
     for (i = 0; i < 4; i++) {
-        func_ov003_021cd338(i);
+        MemCopy(v1 + i * 3, a, 3);
+        j = 0;
+        p = a;
+        for (; j < 3; j++) {
+            if (*p != 0) {
+                break;
+            }
+            *p = ' ';
+            p++;
+        }
+        v2[i] = StrtolBase10((const char *) a);
     }
 }

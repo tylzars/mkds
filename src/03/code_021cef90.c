@@ -19,9 +19,29 @@
 
 #pragma opt_dead_assignments off
 
-void func_ov003_021cef90(void) {
-    func_ov003_021d34c8(0, data_ov003_021da284->mUnk_14);
-    data_ov003_021da284->mUnk_14 = func_ov003_021d3544(1, func_ov003_021ceb54, NULL, 0x78);
+u16 func_ov003_021cf1e8(u8 *a) {
+    u16 i;
+    u16 v1;
+    Unk021cf260 *s;
+
+    i = 1;
+    s = data_ov003_021da288;
+    v1 = s->mMask;
+    for (; i < 2; i++) {
+        if ((v1 & (1 << i)) != 0) {
+            u8 *m;
+            u8 *p;
+            s32 o;
+
+            o = (i - 1) * 0x1e;
+            m = s->mRecords[0].mUnk_16;
+            p = m + o;
+            if (a[0] == m[o] && a[1] == p[1] && a[2] == p[2] && a[3] == p[3] && a[4] == p[4] && a[5] == p[5]) {
+                return s->mRecords[i - 1].mUnk_1c;
+            }
+        }
+    }
+    return 0;
 }
 
 void func_ov003_021cefc0(u32 a, s32 b, s32 c, u32 d, u32 e) {
@@ -63,27 +83,7 @@ void func_ov003_021cefc0(u32 a, s32 b, s32 c, u32 d, u32 e) {
     }
 }
 
-u16 func_ov003_021cf1e8(u8 *a) {
-    u16 i;
-    u16 v1;
-    Unk021cf260 *s;
-
-    i = 1;
-    s = data_ov003_021da288;
-    v1 = s->mMask;
-    for (; i < 2; i++) {
-        if ((v1 & (1 << i)) != 0) {
-            u8 *m;
-            u8 *p;
-            s32 o;
-
-            o = (i - 1) * 0x1e;
-            m = s->mRecords[0].mUnk_16;
-            p = m + o;
-            if (a[0] == m[o] && a[1] == p[1] && a[2] == p[2] && a[3] == p[3] && a[4] == p[4] && a[5] == p[5]) {
-                return s->mRecords[i - 1].mUnk_1c;
-            }
-        }
-    }
-    return 0;
+void func_ov003_021cef90(void) {
+    func_ov003_021d34c8(0, data_ov003_021da284->mUnk_14);
+    data_ov003_021da284->mUnk_14 = func_ov003_021d3544(1, func_ov003_021ceb54, NULL, 0x78);
 }

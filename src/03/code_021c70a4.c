@@ -5,53 +5,6 @@
 #include "03/code_021cef90.h"
 #include "03/unk_021da000.h"
 
-void func_ov003_021c70a4(void) {
-    Unk021d7324 a;
-    s32 b;
-    a = data_ov003_021d7324;
-    if (func_ov003_021cef6c() == 0) {
-        if (data_ov003_021da1fc->mUnk_15 == 0) {
-            data_ov003_021da1fc->mUnk_04->mUnk_00 = data_ov003_021da1fc->mUnk_04->mUnk_00 & 0xc1fffcff;
-            func_ov003_021c212c(func_ov003_021c7614);
-            return;
-        }
-        func_ov003_021c20dc(&b, NULL);
-        a.mUnk_00[b](data_ov003_021da1fc->mUnk_08);
-        func_ov003_021c212c(func_ov003_021c722c);
-    }
-}
-
-void func_ov003_021c7118(void) {
-    data_ov003_021da1fc->mUnk_15 = func_ov003_021cef80();
-    switch (data_ov003_021da1fc->mUnk_15) {
-        case 0:
-            func_ov003_021cdc10(7);
-            break;
-        case 1:
-            func_ov003_021cdc10(0xe);
-            break;
-        default:
-            return;
-    }
-    func_ov003_021cef90();
-    func_ov003_021c212c(func_ov003_021c70a4);
-}
-
-void func_ov003_021c7160(void) {
-    Unk021da1fc *a;
-    Unk021da1f8_04 *p;
-    u32 t;
-    s32 b;
-    a = data_ov003_021da1fc;
-    b = a->mUnk_14;
-    if (b > 3) {
-        b = 3;
-    }
-    p = a->mUnk_04;
-    t = (data_ov003_021d63fc[b * 3 + 2] & 0x1ff) << 16;
-    p->mUnk_00 = t | ((p->mUnk_00 & 0xfe00ff00) | 0x28);
-}
-
 void func_ov003_021c71a0(void) {
     u16 a[6];
     s32 b;
@@ -78,4 +31,51 @@ void func_ov003_021c71a0(void) {
         b++;
     } while (b < 12);
     func_ov003_021d1fd0(data_ov003_021da1fc->mUnk_00);
+}
+
+void func_ov003_021c7160(void) {
+    Unk021da1fc *a;
+    Unk021da1f8_04 *p;
+    u32 t;
+    s32 b;
+    a = data_ov003_021da1fc;
+    b = a->mUnk_14;
+    if (b > 3) {
+        b = 3;
+    }
+    p = a->mUnk_04;
+    t = (data_ov003_021d63fc[b * 3 + 2] & 0x1ff) << 16;
+    p->mUnk_00 = t | ((p->mUnk_00 & 0xfe00ff00) | 0x28);
+}
+
+void func_ov003_021c7118(void) {
+    data_ov003_021da1fc->mUnk_15 = func_ov003_021cef80();
+    switch (data_ov003_021da1fc->mUnk_15) {
+        case 0:
+            func_ov003_021cdc10(7);
+            break;
+        case 1:
+            func_ov003_021cdc10(0xe);
+            break;
+        default:
+            return;
+    }
+    func_ov003_021cef90();
+    func_ov003_021c212c(func_ov003_021c70a4);
+}
+
+void func_ov003_021c70a4(void) {
+    Unk021d7324 a;
+    s32 b;
+    a = data_ov003_021d7324;
+    if (func_ov003_021cef6c() == 0) {
+        if (data_ov003_021da1fc->mUnk_15 == 0) {
+            data_ov003_021da1fc->mUnk_04->mUnk_00 = data_ov003_021da1fc->mUnk_04->mUnk_00 & 0xc1fffcff;
+            func_ov003_021c212c(func_ov003_021c7614);
+            return;
+        }
+        func_ov003_021c20dc(&b, NULL);
+        a.mUnk_00[b](data_ov003_021da1fc->mUnk_08);
+        func_ov003_021c212c(func_ov003_021c722c);
+    }
 }

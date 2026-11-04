@@ -10,38 +10,16 @@
 #include "03/code_021d3000.h"
 #include "03/code_021d3488.h"
 
-// placeholder: the original keeps the byte at a stack offset between its load and the call; the volatile
-// local reproduces that.
-void func_ov003_021c5724(void) {
-    volatile u8 a;
-    u8 b;
-    a = data_ov003_021d7228[0];
-    b = a;
-    func_ov003_021cc948(data_ov003_021da1f4->mUnk_08, b, b);
-}
-
-void func_ov003_021c574c(void) {
-    if (*(u16 *) &data_ov003_021da1f0 == data_ov003_021da1f4->mUnk_40 || data_ov003_021da1f4->mUnk_51 <= 4) {
-        if (data_ov003_021da1f4->mUnk_59 == 0) {
-            func_ov003_021cdc10(9);
-            data_ov003_021da1f4->mUnk_59 = 1;
-        }
+void func_ov003_021c590c(void) {
+    u8 a;
+    int b;
+    a = data_ov003_021da1ec;
+    if (a < 4) {
+        b = 2;
     } else {
-        func_ov003_021cdc10(0x13);
-        data_ov003_021da1f4->mUnk_38 = func_ov003_021d3544(0, func_ov003_021c5994, NULL, 0x78);
+        b = 3;
     }
-}
-
-void func_ov003_021c57b4(void) {
-    if (*(u16 *) &data_ov003_021da1f0 == 0) {
-        if (data_ov003_021da1f4->mUnk_59 == 0) {
-            func_ov003_021cdc10(9);
-            data_ov003_021da1f4->mUnk_59 = 1;
-        }
-    } else {
-        func_ov003_021cdc10(0x13);
-        data_ov003_021da1f4->mUnk_38 = func_ov003_021d3544(0, func_ov003_021c5a0c, NULL, 0x78);
-    }
+    func_ov003_021bf760(b, data_ov003_021d63b8[a * 4], data_ov003_021d63bc[a * 4], data_ov003_021d63ba[a * 4]);
 }
 
 void func_ov003_021c580c(int param_0) {
@@ -105,14 +83,36 @@ void func_ov003_021c580c(int param_0) {
     }
 }
 
-void func_ov003_021c590c(void) {
-    u8 a;
-    int b;
-    a = data_ov003_021da1ec;
-    if (a < 4) {
-        b = 2;
+void func_ov003_021c57b4(void) {
+    if (*(u16 *) &data_ov003_021da1f0 == 0) {
+        if (data_ov003_021da1f4->mUnk_59 == 0) {
+            func_ov003_021cdc10(9);
+            data_ov003_021da1f4->mUnk_59 = 1;
+        }
     } else {
-        b = 3;
+        func_ov003_021cdc10(0x13);
+        data_ov003_021da1f4->mUnk_38 = func_ov003_021d3544(0, func_ov003_021c5a0c, NULL, 0x78);
     }
-    func_ov003_021bf760(b, data_ov003_021d63b8[a * 4], data_ov003_021d63bc[a * 4], data_ov003_021d63ba[a * 4]);
+}
+
+void func_ov003_021c574c(void) {
+    if (*(u16 *) &data_ov003_021da1f0 == data_ov003_021da1f4->mUnk_40 || data_ov003_021da1f4->mUnk_51 <= 4) {
+        if (data_ov003_021da1f4->mUnk_59 == 0) {
+            func_ov003_021cdc10(9);
+            data_ov003_021da1f4->mUnk_59 = 1;
+        }
+    } else {
+        func_ov003_021cdc10(0x13);
+        data_ov003_021da1f4->mUnk_38 = func_ov003_021d3544(0, func_ov003_021c5994, NULL, 0x78);
+    }
+}
+
+// placeholder: the original keeps the byte at a stack offset between its load and the call; the volatile
+// local reproduces that.
+void func_ov003_021c5724(void) {
+    volatile u8 a;
+    u8 b;
+    a = data_ov003_021d7228[0];
+    b = a;
+    func_ov003_021cc948(data_ov003_021da1f4->mUnk_08, b, b);
 }

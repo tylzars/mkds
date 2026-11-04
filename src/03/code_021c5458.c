@@ -16,17 +16,6 @@
 #include "03/code_021cdbd0.h"
 #include "code_0214b824.h"
 
-void func_ov003_021c5458(void) {
-    func_ov003_021bf620(data_ov003_021d71d0, MemCopyWordsToG2Bg2CntBits2To5Address);
-    func_ov003_021bf620(data_ov003_021d71e8, func_0214c160);
-    func_ov003_021bf620(data_ov003_021d7200, MemCopyHalfwordsToG2Bg2CntBits8To12Address);
-    *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 3;
-    *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & ~3) | 3;
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 3;
-    *(vu16 *) 0x400000a = (*(vu16 *) 0x400000a & ~3) | 3;
-    *(vu16 *) 0x400000c = (*(vu16 *) 0x400000c & ~3) | 3;
-}
-
 void func_ov003_021c54dc(void) {
     data_ov003_021da1e0 = 0;
     func_ov003_021c5458();
@@ -38,4 +27,15 @@ void func_ov003_021c54dc(void) {
     func_ov003_021c1fc8();
     func_ov003_021cdc10(0xb);
     func_ov003_021c212c(func_ov003_021c541c);
+}
+
+void func_ov003_021c5458(void) {
+    func_ov003_021bf620(data_ov003_021d71d0, MemCopyWordsToG2Bg2CntBits2To5Address);
+    func_ov003_021bf620(data_ov003_021d71e8, func_0214c160);
+    func_ov003_021bf620(data_ov003_021d7200, MemCopyHalfwordsToG2Bg2CntBits8To12Address);
+    *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 3;
+    *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & ~3) | 3;
+    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 3;
+    *(vu16 *) 0x400000a = (*(vu16 *) 0x400000a & ~3) | 3;
+    *(vu16 *) 0x400000c = (*(vu16 *) 0x400000c & ~3) | 3;
 }

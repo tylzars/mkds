@@ -11,27 +11,6 @@
 #include "03/code_021ce000.h"
 #include "03/unk_021d6000.h"
 
-void func_ov003_021c9084(u32 param_1) {
-    Unk021c8a60 *r;
-    BOOL a;
-    r = (Unk021c8a60 *) func_ov003_021cdb6c();
-    if (r->mUnk_f5 != param_1) {
-        if (param_1 != 0) {
-            if (data_ov003_021da214->mUnk_43 != 0) {
-                a = TRUE;
-            } else {
-                a = FALSE;
-            }
-        } else {
-            data_ov003_021da214->mUnk_43 = r->mUnk_f6;
-            a = FALSE;
-        }
-        func_ov003_021cdb58(param_1);
-        func_ov003_021cdb44(a);
-        func_ov003_021c8b94();
-    }
-}
-
 void func_ov003_021c90dc(u32 param_1) {
     if (func_ov003_021c8904(param_1) == 0) {
         func_ov003_021cdc10(9);
@@ -73,4 +52,25 @@ void func_ov003_021c90dc(u32 param_1) {
     }
     func_ov003_021cce38();
     func_ov003_021c212c(func_ov003_021c8e80);
+}
+
+void func_ov003_021c9084(u32 param_1) {
+    Unk021c8a60 *r;
+    BOOL a;
+    r = (Unk021c8a60 *) func_ov003_021cdb6c();
+    if (r->mUnk_f5 != param_1) {
+        if (param_1 != 0) {
+            if (data_ov003_021da214->mUnk_43 != 0) {
+                a = TRUE;
+            } else {
+                a = FALSE;
+            }
+        } else {
+            data_ov003_021da214->mUnk_43 = r->mUnk_f6;
+            a = FALSE;
+        }
+        func_ov003_021cdb58(param_1);
+        func_ov003_021cdb44(a);
+        func_ov003_021c8b94();
+    }
 }

@@ -25,6 +25,65 @@
 #include "03/code_021d3488.h"
 #include "code_02147cd8.h"
 
+void func_ov003_021c6668(void) {
+    s32 a;
+    data_ov003_021da1f4 = func_ov003_021d283c(0x5c, 4);
+    func_ov003_021c20dc(&a, NULL);
+    if (a == 0) {
+        data_ov003_021da1ec = 0;
+        *(u16 *) &data_ov003_021da1f0 = 0;
+    }
+    data_ov003_021da1f4->mUnk_51 = func_ov003_021cd0d0((s32 *) data_ov003_021da1f4);
+    func_ov003_021c6588();
+    func_ov003_021bf854();
+    func_ov003_021bf43c(0x80, -1, 0);
+    func_ov003_021bf5ec(2);
+    func_ov003_021c6508();
+    func_ov003_021c6400();
+    data_ov003_021da1f4->mUnk_0c = func_ov003_021d2288(0, 0);
+    data_ov003_021da1f4->mUnk_3c = func_ov003_021d3544(1, func_ov003_021c5944, NULL, 0x6e);
+    func_ov003_021c5c68();
+    func_ov003_021c590c();
+    func_ov003_021c212c(func_ov003_021c63c4);
+}
+
+void func_ov003_021c6588(void) {
+    u8 a[0x19] = "char/xb4ApListBack.nsc.l";
+    u8 b[0x16] = "char/ybBgStep31.ncl.l";
+    func_ov003_021bf620(data_ov003_021d7260, MemCopyHalfwordsToG2Bg3CntBits8To12Address);
+    data_ov003_021da1f4->mUnk_04 = func_ov003_021d14b8(func_ov003_021bf650(a), NULL, 4);
+    func_ov003_021cca30(data_ov003_021da1f4->mUnk_04);
+    func_ov003_021cc9fc();
+    data_ov003_021da1f4->mUnk_08 = func_ov003_021d14b8(func_ov003_021bf650(b), NULL, 4);
+    *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 3;
+    *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & ~3) | 3;
+    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 3;
+    *(vu16 *) 0x400000a = (*(vu16 *) 0x400000a & ~3) | 2;
+    *(vu16 *) 0x400000c = (*(vu16 *) 0x400000c & ~3) | 3;
+    *(vu16 *) 0x400000e = (*(vu16 *) 0x400000e & ~3) | 2;
+}
+
+void func_ov003_021c6508(void) {
+    int a;
+    u32 b;
+    b = 0;
+    data_ov003_021da1f4->mUnk_40 = (data_ov003_021da1f4->mUnk_51 - 4) * 0x1c;
+    if (data_ov003_021da1f4->mUnk_51 <= 4) {
+        a = 0;
+        data_ov003_021da1f4->mUnk_53 = 0;
+    } else if (data_ov003_021da1f4->mUnk_51 <= 8) {
+        a = 1;
+        data_ov003_021da1f4->mUnk_53 = 0x1f;
+    } else {
+        a = 2;
+        data_ov003_021da1f4->mUnk_53 = 0x37;
+    }
+    if (a != 0) {
+        b = Div32(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40);
+    }
+    func_ov003_021ccea4(a, 0x55, 0xec, 0x3f, b);
+}
+
 void func_ov003_021c6400(void) {
     int n;
     int i;
@@ -52,63 +111,4 @@ void func_ov003_021c6400(void) {
         q = data_ov003_021da1f4->mUnk_24[i];
         q->mUnk_04 = (q->mUnk_04 & 0xfffff3ff) | 0xc00;
     }
-}
-
-void func_ov003_021c6508(void) {
-    int a;
-    u32 b;
-    b = 0;
-    data_ov003_021da1f4->mUnk_40 = (data_ov003_021da1f4->mUnk_51 - 4) * 0x1c;
-    if (data_ov003_021da1f4->mUnk_51 <= 4) {
-        a = 0;
-        data_ov003_021da1f4->mUnk_53 = 0;
-    } else if (data_ov003_021da1f4->mUnk_51 <= 8) {
-        a = 1;
-        data_ov003_021da1f4->mUnk_53 = 0x1f;
-    } else {
-        a = 2;
-        data_ov003_021da1f4->mUnk_53 = 0x37;
-    }
-    if (a != 0) {
-        b = Div32(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40);
-    }
-    func_ov003_021ccea4(a, 0x55, 0xec, 0x3f, b);
-}
-
-void func_ov003_021c6588(void) {
-    u8 a[0x19] = "char/xb4ApListBack.nsc.l";
-    u8 b[0x16] = "char/ybBgStep31.ncl.l";
-    func_ov003_021bf620(data_ov003_021d7260, MemCopyHalfwordsToG2Bg3CntBits8To12Address);
-    data_ov003_021da1f4->mUnk_04 = func_ov003_021d14b8(func_ov003_021bf650(a), NULL, 4);
-    func_ov003_021cca30(data_ov003_021da1f4->mUnk_04);
-    func_ov003_021cc9fc();
-    data_ov003_021da1f4->mUnk_08 = func_ov003_021d14b8(func_ov003_021bf650(b), NULL, 4);
-    *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 3;
-    *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & ~3) | 3;
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 3;
-    *(vu16 *) 0x400000a = (*(vu16 *) 0x400000a & ~3) | 2;
-    *(vu16 *) 0x400000c = (*(vu16 *) 0x400000c & ~3) | 3;
-    *(vu16 *) 0x400000e = (*(vu16 *) 0x400000e & ~3) | 2;
-}
-
-void func_ov003_021c6668(void) {
-    s32 a;
-    data_ov003_021da1f4 = func_ov003_021d283c(0x5c, 4);
-    func_ov003_021c20dc(&a, NULL);
-    if (a == 0) {
-        data_ov003_021da1ec = 0;
-        *(u16 *) &data_ov003_021da1f0 = 0;
-    }
-    data_ov003_021da1f4->mUnk_51 = func_ov003_021cd0d0((s32 *) data_ov003_021da1f4);
-    func_ov003_021c6588();
-    func_ov003_021bf854();
-    func_ov003_021bf43c(0x80, -1, 0);
-    func_ov003_021bf5ec(2);
-    func_ov003_021c6508();
-    func_ov003_021c6400();
-    data_ov003_021da1f4->mUnk_0c = func_ov003_021d2288(0, 0);
-    data_ov003_021da1f4->mUnk_3c = func_ov003_021d3544(1, func_ov003_021c5944, NULL, 0x6e);
-    func_ov003_021c5c68();
-    func_ov003_021c590c();
-    func_ov003_021c212c(func_ov003_021c63c4);
 }

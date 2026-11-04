@@ -9,51 +9,37 @@
 #include "code_0200fd1c.h"
 #include "code_0214d018.h"
 
-void func_ov003_021ce5b8(Unk021ce5b8 *a) {
-    s32 i;
-    Unk021da280 *q;
-    s32 n;
+void func_ov003_021ce7c0(Unk021425e8 *a) {
     Unk021da280 *d;
 
+    if (a->mUnk_02 != 0) {
+        return;
+    }
     d = data_ov003_021da280;
-    if (d->mUnk_1b81 != 0) {
-        if (d->mUnk_1370 != NULL) {
-            d->mUnk_1370(d->mUnk_1b81);
+    if (d->mUnk_1b80 != 0) {
+        if (a->mUnk_00 == 2) {
+            d->mUnk_1b80 = 2;
         }
         return;
     }
-    func_0200ee3c(d->mUnk_0f00, 0x400);
-    i = 0;
-    n = a->mUnk_0e;
-    if (n > 0) {
-        q = data_ov003_021da280;
-        do {
-            s32 j;
-            u8 *p;
-            Unk021ce5b8_10 *e;
-
-            e = a->mUnk_10[i];
-            if (memcmp(e->mUnk_0c, data_ov003_021d66c4, 8) != 0) {
-                continue;
+    if (a->mUnk_00 != 0x26) {
+        return;
+    }
+    switch (a->mUnk_08_0) {
+        case 5:
+            if (d->mUnk_1b82 != 0) {
+                func_ov003_021ce5b8((Unk021ce5b8 *) a);
+            } else {
+                func_ov003_021ce6ac((Unk021ce5b8 *) a);
             }
-            if ((e->mUnk_15 & 1) == 0) {
-                continue;
-            }
-            for (j = 0, p = q->mUnk_1300[0].mUnk_00; j < 16; j++) {
-                if (memcmp(e->mUnk_04, p, 6) == 0) {
-                    if (q->mUnk_1300[j].mUnk_06 != 0) {
-                        break;
-                    }
-                    if (q->mUnk_1370 != NULL) {
-                        q->mUnk_1370(1);
-                        return;
-                    }
-                    q->mUnk_1b81 = 1;
-                    return;
-                }
-                p += 7;
-            }
-        } while (++i < n);
+            func_ov003_021ce8ec();
+            break;
+        case 4:
+            func_ov003_021ce8ec();
+            break;
+        default:
+            IrqDisableLoopForever();
+            break;
     }
 }
 
@@ -105,36 +91,50 @@ void func_ov003_021ce6ac(Unk021ce5b8 *a) {
     }
 }
 
-void func_ov003_021ce7c0(Unk021425e8 *a) {
+void func_ov003_021ce5b8(Unk021ce5b8 *a) {
+    s32 i;
+    Unk021da280 *q;
+    s32 n;
     Unk021da280 *d;
 
-    if (a->mUnk_02 != 0) {
-        return;
-    }
     d = data_ov003_021da280;
-    if (d->mUnk_1b80 != 0) {
-        if (a->mUnk_00 == 2) {
-            d->mUnk_1b80 = 2;
+    if (d->mUnk_1b81 != 0) {
+        if (d->mUnk_1370 != NULL) {
+            d->mUnk_1370(d->mUnk_1b81);
         }
         return;
     }
-    if (a->mUnk_00 != 0x26) {
-        return;
-    }
-    switch (a->mUnk_08_0) {
-        case 5:
-            if (d->mUnk_1b82 != 0) {
-                func_ov003_021ce5b8((Unk021ce5b8 *) a);
-            } else {
-                func_ov003_021ce6ac((Unk021ce5b8 *) a);
+    func_0200ee3c(d->mUnk_0f00, 0x400);
+    i = 0;
+    n = a->mUnk_0e;
+    if (n > 0) {
+        q = data_ov003_021da280;
+        do {
+            s32 j;
+            u8 *p;
+            Unk021ce5b8_10 *e;
+
+            e = a->mUnk_10[i];
+            if (memcmp(e->mUnk_0c, data_ov003_021d66c4, 8) != 0) {
+                continue;
             }
-            func_ov003_021ce8ec();
-            break;
-        case 4:
-            func_ov003_021ce8ec();
-            break;
-        default:
-            IrqDisableLoopForever();
-            break;
+            if ((e->mUnk_15 & 1) == 0) {
+                continue;
+            }
+            for (j = 0, p = q->mUnk_1300[0].mUnk_00; j < 16; j++) {
+                if (memcmp(e->mUnk_04, p, 6) == 0) {
+                    if (q->mUnk_1300[j].mUnk_06 != 0) {
+                        break;
+                    }
+                    if (q->mUnk_1370 != NULL) {
+                        q->mUnk_1370(1);
+                        return;
+                    }
+                    q->mUnk_1b81 = 1;
+                    return;
+                }
+                p += 7;
+            }
+        } while (++i < n);
     }
 }

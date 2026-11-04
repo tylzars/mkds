@@ -14,24 +14,119 @@
 #include "code_02134398.h"
 #include "code_02139f70.h"
 
-s32 func_ov003_021bdcd8(s32 v1, const void *v2, u32 v3) {
-    Unk021bdcd8 a;
-    u8 b[4];
-    a.mUnk_00 = 8;
-    a.mUnk_01 = 2;
-    a.mUnk_04 = -1;
-    a.mUnk_02 = 0x1e6;
-    func_ov000_021a8bb0(func_ov000_021a8830(), b);
-    return func_ov003_021bdd1c(v1, &a, b, v2, v3);
+void func_ov003_021be1fc(void) {
+    BOOL a;
+    u32 b;
+    a = TRUE;
+    if (data_ov003_021d8bf0 != 0) {
+        if (func_ov003_021be820() != 0) {
+            do {
+                func_0200dc3c(10);
+                while ((b = func_ov003_021be528()) != 0) {
+                    switch (b) {
+                        case 4:
+                        case 5:
+                            break;
+                        case 0xe:
+                            a = FALSE;
+                            break;
+                        default:
+                            a = FALSE;
+                            break;
+                    }
+                }
+            } while (a != FALSE);
+        }
+        data_ov003_021d8bf0 = 0;
+    }
+    if (data_ov003_021d8bf4 != 0) {
+        data_ov003_021d8bf4 = 0;
+        func_ov000_021a8c8c();
+    }
 }
 
-s32 func_ov003_021bdd1c(s32 v1, const Unk021bdcd8 *v2, const u8 *param_2, const void *v3, u32 v4) {
-    s32 a;
-    a = func_ov000_021a9018(v1, v3, v4, 0, v2);
-    if (a < 0) {
-        a = -4;
+s32 func_ov003_021be028(Unk021bdd3c *a, Unk021bdd3c *b, u32 *c) {
+    BOOL e;
+    BOOL d;
+    BOOL f;
+    BOOL g;
+    Unk021bdd3c_Entry *h;
+    Unk021bdd3c_Entry *i;
+    u32 l;
+    u32 j;
+    u32 k;
+    u32 m;
+    e = FALSE;
+    d = FALSE;
+    h = a->mUnk_04;
+    i = b->mUnk_04;
+    j = 0;
+    for (; j < a->mUnk_00; j++) {
+        char n[0x22] = {0};
+        memcpy(n, h->mUnk_04, 0x20);
+        n[h->mUnk_00] = 0;
+        k = 0;
+        l = b->mUnk_00;
+        if (k < l) {
+            m = h->mUnk_00;
+            do {
+                if (m == 0 || m > 0x20) {
+                    break;
+                }
+                if (m == 1 && (h->mUnk_04[0] == 0 || h->mUnk_04[0] == 0x20)) {
+                    break;
+                }
+                if (memcmp(n, i->mUnk_04, strlen(n)) == 0 && memcmp(h->mUnk_28.mUnk_00, i->mUnk_28.mUnk_00, 4) == 0 &&
+                    h->mUnk_2e != i->mUnk_2e && h->mUnk_2e == 0) {
+                    e = TRUE;
+                    break;
+                }
+                i++;
+                k++;
+            } while (k < l);
+        }
+        if (e != FALSE) {
+            break;
+        }
+        h++;
+        i = b->mUnk_04;
     }
-    return a;
+    if (e == FALSE) {
+        char o[0x22] = {0};
+        f = FALSE;
+        g = FALSE;
+        h = a->mUnk_04;
+        i = b->mUnk_04;
+        k = 0;
+        for (; k < b->mUnk_00; k++) {
+            memcpy(o, i->mUnk_04, 0x20);
+            o[i->mUnk_00] = 0;
+            if (memcmp(o, data_ov003_021d68c0, strlen(data_ov003_021d68c0)) == 0 && i->mUnk_2e == 0) {
+                g = TRUE;
+                break;
+            }
+            i++;
+        }
+        j = 0;
+        for (; j < a->mUnk_00; j++) {
+            memcpy(o, h->mUnk_04, 0x20);
+            o[h->mUnk_00] = 0;
+            if (strlen(o) == strlen(data_ov003_021d68c0) &&
+                memcmp(o, data_ov003_021d68c0, strlen(data_ov003_021d68c0)) == 0 && h->mUnk_2e == 0) {
+                f = TRUE;
+                break;
+            }
+            h++;
+        }
+        if (f != FALSE && g == FALSE) {
+            e = TRUE;
+        }
+    }
+    if (e != FALSE) {
+        *c = j;
+        d = TRUE;
+    }
+    return d;
 }
 
 s32 func_ov003_021bdd3c(void) {
@@ -197,117 +292,22 @@ end:
     return a;
 }
 
-s32 func_ov003_021be028(Unk021bdd3c *a, Unk021bdd3c *b, u32 *c) {
-    BOOL e;
-    BOOL d;
-    BOOL f;
-    BOOL g;
-    Unk021bdd3c_Entry *h;
-    Unk021bdd3c_Entry *i;
-    u32 l;
-    u32 j;
-    u32 k;
-    u32 m;
-    e = FALSE;
-    d = FALSE;
-    h = a->mUnk_04;
-    i = b->mUnk_04;
-    j = 0;
-    for (; j < a->mUnk_00; j++) {
-        char n[0x22] = {0};
-        memcpy(n, h->mUnk_04, 0x20);
-        n[h->mUnk_00] = 0;
-        k = 0;
-        l = b->mUnk_00;
-        if (k < l) {
-            m = h->mUnk_00;
-            do {
-                if (m == 0 || m > 0x20) {
-                    break;
-                }
-                if (m == 1 && (h->mUnk_04[0] == 0 || h->mUnk_04[0] == 0x20)) {
-                    break;
-                }
-                if (memcmp(n, i->mUnk_04, strlen(n)) == 0 && memcmp(h->mUnk_28.mUnk_00, i->mUnk_28.mUnk_00, 4) == 0 &&
-                    h->mUnk_2e != i->mUnk_2e && h->mUnk_2e == 0) {
-                    e = TRUE;
-                    break;
-                }
-                i++;
-                k++;
-            } while (k < l);
-        }
-        if (e != FALSE) {
-            break;
-        }
-        h++;
-        i = b->mUnk_04;
+s32 func_ov003_021bdd1c(s32 v1, const Unk021bdcd8 *v2, const u8 *param_2, const void *v3, u32 v4) {
+    s32 a;
+    a = func_ov000_021a9018(v1, v3, v4, 0, v2);
+    if (a < 0) {
+        a = -4;
     }
-    if (e == FALSE) {
-        char o[0x22] = {0};
-        f = FALSE;
-        g = FALSE;
-        h = a->mUnk_04;
-        i = b->mUnk_04;
-        k = 0;
-        for (; k < b->mUnk_00; k++) {
-            memcpy(o, i->mUnk_04, 0x20);
-            o[i->mUnk_00] = 0;
-            if (memcmp(o, data_ov003_021d68c0, strlen(data_ov003_021d68c0)) == 0 && i->mUnk_2e == 0) {
-                g = TRUE;
-                break;
-            }
-            i++;
-        }
-        j = 0;
-        for (; j < a->mUnk_00; j++) {
-            memcpy(o, h->mUnk_04, 0x20);
-            o[h->mUnk_00] = 0;
-            if (strlen(o) == strlen(data_ov003_021d68c0) &&
-                memcmp(o, data_ov003_021d68c0, strlen(data_ov003_021d68c0)) == 0 && h->mUnk_2e == 0) {
-                f = TRUE;
-                break;
-            }
-            h++;
-        }
-        if (f != FALSE && g == FALSE) {
-            e = TRUE;
-        }
-    }
-    if (e != FALSE) {
-        *c = j;
-        d = TRUE;
-    }
-    return d;
+    return a;
 }
 
-void func_ov003_021be1fc(void) {
-    BOOL a;
-    u32 b;
-    a = TRUE;
-    if (data_ov003_021d8bf0 != 0) {
-        if (func_ov003_021be820() != 0) {
-            do {
-                func_0200dc3c(10);
-                while ((b = func_ov003_021be528()) != 0) {
-                    switch (b) {
-                        case 4:
-                        case 5:
-                            break;
-                        case 0xe:
-                            a = FALSE;
-                            break;
-                        default:
-                            a = FALSE;
-                            break;
-                    }
-                }
-            } while (a != FALSE);
-        }
-        data_ov003_021d8bf0 = 0;
-    }
-    if (data_ov003_021d8bf4 != 0) {
-        data_ov003_021d8bf4 = 0;
-        func_ov000_021a8c8c();
-    }
+s32 func_ov003_021bdcd8(s32 v1, const void *v2, u32 v3) {
+    Unk021bdcd8 a;
+    u8 b[4];
+    a.mUnk_00 = 8;
+    a.mUnk_01 = 2;
+    a.mUnk_04 = -1;
+    a.mUnk_02 = 0x1e6;
+    func_ov000_021a8bb0(func_ov000_021a8830(), b);
+    return func_ov003_021bdd1c(v1, &a, b, v2, v3);
 }

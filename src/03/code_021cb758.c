@@ -21,18 +21,6 @@
 #include "03/code_021cb4d0.h"
 #include "code_0214b824.h"
 
-void func_ov003_021cb758(void) {
-    Unk021d7654 a = data_ov003_021d7654;
-    func_ov003_021bf620(data_ov003_021d766c, MemCopyWordsToG2Bg2CntBits2To5Address);
-    func_ov003_021bf620(data_ov003_021d7684, func_0214c160);
-    func_ov003_021bf620(data_ov003_021d769c, MemCopyHalfwordsToG2Bg2CntBits8To12Address);
-    data_ov003_021da244 = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), NULL, 4);
-    *(u16 *) 0x4001008 = (*(u16 *) 0x4001008 & ~3) | 3;
-    *(u16 *) 0x400100a = (*(u16 *) 0x400100a & ~3) | 3;
-    *(u16 *) 0x400000a = (*(u16 *) 0x400000a & ~3) | 3;
-    *(u16 *) 0x400000c = (*(u16 *) 0x400000c & ~3) | 3;
-}
-
 void func_ov003_021cb7fc(void) {
     int a = func_ov003_021cdb6c();
     data_ov003_021da240[0] = 0;
@@ -56,4 +44,16 @@ void func_ov003_021cb7fc(void) {
                         data_ov003_021d65e0[func_ov003_021c20a8(1)][data_ov003_021da23c].mUnk_02,
                         data_ov003_021d65e0[func_ov003_021c20a8(1)][data_ov003_021da23c].mUnk_06);
     func_ov003_021c212c(func_ov003_021cb71c);
+}
+
+void func_ov003_021cb758(void) {
+    Unk021d7654 a = data_ov003_021d7654;
+    func_ov003_021bf620(data_ov003_021d766c, MemCopyWordsToG2Bg2CntBits2To5Address);
+    func_ov003_021bf620(data_ov003_021d7684, func_0214c160);
+    func_ov003_021bf620(data_ov003_021d769c, MemCopyHalfwordsToG2Bg2CntBits8To12Address);
+    data_ov003_021da244 = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), NULL, 4);
+    *(u16 *) 0x4001008 = (*(u16 *) 0x4001008 & ~3) | 3;
+    *(u16 *) 0x400100a = (*(u16 *) 0x400100a & ~3) | 3;
+    *(u16 *) 0x400000a = (*(u16 *) 0x400000a & ~3) | 3;
+    *(u16 *) 0x400000c = (*(u16 *) 0x400000c & ~3) | 3;
 }

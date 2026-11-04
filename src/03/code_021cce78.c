@@ -17,21 +17,21 @@
 #include "code_0214d018.h"
 #include "code_0200eddc.h"
 
-void func_ov003_021cce78(void) {
-    func_ov003_021d34c0(0, data_ov003_021da268->mUnk_0c);
-    func_ov003_021d197c(data_ov003_021da268->mResource);
-    func_ov003_021d2808(&data_ov003_021da268);
-}
-
-void func_ov003_021ccea4(u32 a, u32 b, u16 c, u16 d, u32 e) {
-    (data_ov003_021da268 = func_ov003_021d283c(0x20, 4))->mUnk_1b = a;
-    data_ov003_021da268->mUnk_19 = b;
-    data_ov003_021da268->mOffset = e;
-    func_ov003_021d2544(c, d, &data_ov003_021da268->mX);
-    data_ov003_021da268->mResource = func_ov003_021d1be4(0, data_ov003_021d662c[a], 1);
-    func_ov003_021d17d4(data_ov003_021da268->mResource, -1, c, d + e);
-    func_ov003_021d1790(data_ov003_021da268->mResource, -1, 1);
-    data_ov003_021da268->mUnk_0c = func_ov003_021d3544(0, func_ov003_021ccd18, NULL, 0x80);
+void func_ov003_021cd080(Unk021425e8 *a) {
+    if (a->mUnk_02 == 0 && *((u8 *) data_ov003_021da26c + 0x1e48) == 0 && a->mUnk_00 == 0x26) {
+        switch (a->mUnk_08_0) {
+            case 5:
+                func_ov003_021ccf30((Unk021ccf30 *) a);
+                func_ov003_021cd190();
+                break;
+            case 4:
+                func_ov003_021cd190();
+                break;
+            default:
+                IrqDisableLoopForever();
+                break;
+        }
+    }
 }
 
 void func_ov003_021ccf30(Unk021ccf30 *a) {
@@ -95,19 +95,19 @@ void func_ov003_021ccf30(Unk021ccf30 *a) {
     }
 }
 
-void func_ov003_021cd080(Unk021425e8 *a) {
-    if (a->mUnk_02 == 0 && *((u8 *) data_ov003_021da26c + 0x1e48) == 0 && a->mUnk_00 == 0x26) {
-        switch (a->mUnk_08_0) {
-            case 5:
-                func_ov003_021ccf30((Unk021ccf30 *) a);
-                func_ov003_021cd190();
-                break;
-            case 4:
-                func_ov003_021cd190();
-                break;
-            default:
-                IrqDisableLoopForever();
-                break;
-        }
-    }
+void func_ov003_021ccea4(u32 a, u32 b, u16 c, u16 d, u32 e) {
+    (data_ov003_021da268 = func_ov003_021d283c(0x20, 4))->mUnk_1b = a;
+    data_ov003_021da268->mUnk_19 = b;
+    data_ov003_021da268->mOffset = e;
+    func_ov003_021d2544(c, d, &data_ov003_021da268->mX);
+    data_ov003_021da268->mResource = func_ov003_021d1be4(0, data_ov003_021d662c[a], 1);
+    func_ov003_021d17d4(data_ov003_021da268->mResource, -1, c, d + e);
+    func_ov003_021d1790(data_ov003_021da268->mResource, -1, 1);
+    data_ov003_021da268->mUnk_0c = func_ov003_021d3544(0, func_ov003_021ccd18, NULL, 0x80);
+}
+
+void func_ov003_021cce78(void) {
+    func_ov003_021d34c0(0, data_ov003_021da268->mUnk_0c);
+    func_ov003_021d197c(data_ov003_021da268->mResource);
+    func_ov003_021d2808(&data_ov003_021da268);
 }
