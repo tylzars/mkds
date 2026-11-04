@@ -16,20 +16,56 @@
 
 #pragma thumb on
 
-s32 func_021526e4(const Unk02152490 *a) {
-    Unk02151ddc s;
+u64 Decimal12CharsToValue(const void *a) {
+    const s8 *p = a;
+    u64 s;
+    u64 m;
+    s32 i;
 
-    func_02151ddc(&s);
-    if (s.mUnk_10 != 0) {
-        if (func_02152ac8(a) == s.mUnk_00) {
-            return 1;
-        }
-        return 0;
+    s = 0;
+    m = 1;
+    for (i = 0; i < 12; i++) {
+        s += m * (s64) (*(p + 11 - i) - 0x30);
+        m *= 10;
     }
-    if (func_02152ac8(a) == s.mUnk_08) {
-        return 1;
+    return s;
+}
+
+void ValueToChars5Bit(u64 a, s32 n, char *c) {
+    s32 i;
+    s32 len;
+    const s8 *t;
+
+    len = (n + 4) / 5;
+    t = data_0216f2b0;
+    for (i = 0; i < len; i++) {
+        *(c + len - 1 - i) = t[a & 0x1f];
+        a = a >> 5;
     }
-    return 0;
+    c[len] = 0;
+}
+
+void func_02152808(const Unk02152490 *a, u32 b, char *c) {
+    char d[0x15];
+    char e[0x15];
+
+    ValueToChars5Bit(func_02152ac8(a), 0x2b, d);
+    ValueToChars5Bit(func_02152ac4(a), 0x20, e);
+    StringFormatBounded(c, 0x15, data_0216f2a0, d, (u8) (b >> 24), (u8) (b >> 16), (u8) (b >> 8), (u8) b, e);
+}
+
+void func_021527ac(Unk02152500 *a, u32 b) {
+    u32 t[0x100];
+
+    MemFill(a, 0, 0x40);
+    a->mUnk_00 = 0x40;
+    a->mUnk_1c = 0;
+    a->mUnk_24 = b;
+    func_02152744(&a->mUnk_04);
+    func_021529e0(&a->mUnk_10, 0);
+    Crc32InitTable(t, 0xedb88320);
+    a->mUnk_3c = Crc32(t, a, 0x3c);
+    a->mUnk_20 |= 1;
 }
 
 void func_02152744(Unk02152490 *a) {
@@ -49,56 +85,20 @@ void func_02152744(Unk02152490 *a) {
     func_021529e0(a, 1);
 }
 
-void func_021527ac(Unk02152500 *a, u32 b) {
-    u32 t[0x100];
+s32 func_021526e4(const Unk02152490 *a) {
+    Unk02151ddc s;
 
-    MemFill(a, 0, 0x40);
-    a->mUnk_00 = 0x40;
-    a->mUnk_1c = 0;
-    a->mUnk_24 = b;
-    func_02152744(&a->mUnk_04);
-    func_021529e0(&a->mUnk_10, 0);
-    Crc32InitTable(t, 0xedb88320);
-    a->mUnk_3c = Crc32(t, a, 0x3c);
-    a->mUnk_20 |= 1;
-}
-
-void func_02152808(const Unk02152490 *a, u32 b, char *c) {
-    char d[0x15];
-    char e[0x15];
-
-    ValueToChars5Bit(func_02152ac8(a), 0x2b, d);
-    ValueToChars5Bit(func_02152ac4(a), 0x20, e);
-    StringFormatBounded(c, 0x15, data_0216f2a0, d, (u8) (b >> 24), (u8) (b >> 16), (u8) (b >> 8), (u8) b, e);
-}
-
-void ValueToChars5Bit(u64 a, s32 n, char *c) {
-    s32 i;
-    s32 len;
-    const s8 *t;
-
-    len = (n + 4) / 5;
-    t = data_0216f2b0;
-    for (i = 0; i < len; i++) {
-        *(c + len - 1 - i) = t[a & 0x1f];
-        a = a >> 5;
+    func_02151ddc(&s);
+    if (s.mUnk_10 != 0) {
+        if (func_02152ac8(a) == s.mUnk_00) {
+            return 1;
+        }
+        return 0;
     }
-    c[len] = 0;
-}
-
-u64 Decimal12CharsToValue(const void *a) {
-    const s8 *p = a;
-    u64 s;
-    u64 m;
-    s32 i;
-
-    s = 0;
-    m = 1;
-    for (i = 0; i < 12; i++) {
-        s += m * (s64) (*(p + 11 - i) - 0x30);
-        m *= 10;
+    if (func_02152ac8(a) == s.mUnk_08) {
+        return 1;
     }
-    return s;
+    return 0;
 }
 
 #pragma thumb off
