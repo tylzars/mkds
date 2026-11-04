@@ -32,6 +32,8 @@
 #include "Main/Unknown/code_0210b000.h"
 #include "ITCM/code_01ff8000.h"
 
+Unk0219b250 *data_ov001_021a9b98;
+
 void func_ov001_02182f1c(Unk02181c3c *p0, Unk0206bcb0 *p1) {
     p0->mUnk_0ac = 0x1e;
     p0->mUnk_000.mPos.x = p1->mUnk_80.x;

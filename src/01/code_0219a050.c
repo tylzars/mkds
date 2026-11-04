@@ -34,6 +34,8 @@
 #include "Main/Unknown/code_0212b000.h"
 #include "Main/Unknown/code_020472a8.h"
 
+RecordTopMenu *gRecordTopMenu;
+
 void func_ov001_0219b000(void) {
     Ncgr *a;
     Nclr *b;

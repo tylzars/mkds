@@ -166,14 +166,8 @@ typedef struct Unk021ca424 {
     /* 0c */ void *mUnk_0c;
 } Unk021ca424;
 
-extern Unk021ca400 *data_ov001_021ca400;
 extern u8 *data_ov001_021ca404;
 extern u8 *data_ov001_021ca408;
-extern void *data_ov001_021ca40c;
-extern Unk021ca410 *data_ov001_021ca410;
-extern Unk021ca414 *data_ov001_021ca414;
-extern Unk021ca418 *data_ov001_021ca418;
 extern Unk021ca424 *data_ov001_021ca424;
-extern Unk021ca420 *data_ov001_021ca420;
 
 #include "00/code_021832d8.h"

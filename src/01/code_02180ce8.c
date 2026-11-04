@@ -20,6 +20,8 @@
 #include "Main/Unknown/code_020c0b84.h"
 #include "Main/Unknown/code_020c0d9c.h"
 
+Unk021a9b88 *data_ov001_021a9b88;
+
 void func_ov001_02181274(s32 p0, s32 p1, s32 p2) {
     s32 j;
     s32 i;

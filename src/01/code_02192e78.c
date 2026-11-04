@@ -17,6 +17,8 @@
 #include "code_0214d018.h"
 #include "registers.h"
 
+OptionStates *gOptionStates;
+
 void ClearOptionStateCallbacks(void) {
     gOptionStates->mCallbacks.mInit = NULL;
     gOptionStates->mCallbacks.mRelease = NULL;

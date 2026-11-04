@@ -20,6 +20,8 @@
 #include "code_02146d78.h"
 #include "ITCM/code_01ff8000.h"
 
+Unk0219b250 *gMissionGate;
+
 void func_ov001_02185dd0(MissionGateObject *a) {
     s32 mtx[9];
     s32 r4;

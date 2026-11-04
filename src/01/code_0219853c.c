@@ -24,6 +24,8 @@
 #include "Main/Unknown/code_02125f54.h"
 #include "code_0214d018.h"
 
+Unk021a9be4 *data_ov001_021a9be4;
+
 void func_ov001_021987d4(void *heap, s16 a) {
     Unk02125de0Arg arg;
 

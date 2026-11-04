@@ -17,6 +17,8 @@
 #include "00/code_02181f98.h"
 #include "code_0200eddc.h"
 
+Unk0217b498 *data_ov001_021a9bc4;
+
 #pragma thumb off
 
 s32 func_ov001_02189d88(void) {

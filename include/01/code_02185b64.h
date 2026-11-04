@@ -7,8 +7,6 @@ typedef struct Unk02185d74 Unk02185d74;
 typedef struct Unk02185c4c Unk02185c4c;
 typedef struct Unk0219b250 Unk0219b250;
 
-extern Unk0219b250 *gMissionGate;
-
 void func_ov001_02185b64(void);
 void func_ov001_02185b7c(void);
 void func_ov001_02185b98(void);

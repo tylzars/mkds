@@ -38,8 +38,6 @@ typedef struct RecordTopMenu {
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/code_020472a8.h"
 
-extern RecordTopMenu *gRecordTopMenu;
-
 void RegisterRecordTopMenuCallbacks(void);
 void func_ov001_0219a078(void);
 void func_ov001_0219a0c0(void);

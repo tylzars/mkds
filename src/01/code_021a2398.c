@@ -1,7 +1,6 @@
 #include "01/code_021a2398.h"
 #include "01/code_021a2408.h"
 #include "01/code_021a2a40.h"
-#include "01/code_021a401c.h"
 #include "01/code_021a5140.h"
 #include "01/code_02185000.h"
 #include "01/unk_021a6000.h"

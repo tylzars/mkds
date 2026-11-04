@@ -46,6 +46,8 @@
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_0211732c.h"
 
+SelectGhost *gSelectGhost;
+
 void LoadSelectGhostAndKartIconData(void) {
     Ncgr *p3 = NULL;
     Unk02021dc8 *p4 = NULL;

@@ -29,8 +29,6 @@ typedef struct Unk021a9bc8 {
 
 #include "01/code_0218f9d4.h"
 
-extern Unk021a9bc8 *data_ov001_021a9bc8;
-
 BOOL func_ov001_021928c8(int a);
 u16 func_ov001_02192a04(u16 a);
 u16 func_ov001_02192a14(u16 a);

@@ -4,9 +4,6 @@
 #include "01/code_02188950.h"
 #include "Main/Unknown/code_020b502c.h"
 
-extern Unk0217b498 *data_ov001_021a9ba4;
-extern Unk0217b498 *data_ov001_021a9ba8;
-
 void func_ov001_02188e88(Unk02188950 *a);
 void func_ov001_02188e94(Unk02188950 *a, void (**b)());
 u32 func_ov001_02188eac(Unk02188950 *a, s32 b, Vec3 *c, s32 d);

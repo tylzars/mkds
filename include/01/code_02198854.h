@@ -47,7 +47,6 @@ typedef struct Unk021a9be8 {
 } Unk021a9be8;
 
 // Object behind data_0217aa08; the byte at 0x31 of the object at its first member holds flags.
-extern Unk021a9be8 *data_ov001_021a9be8;
 extern u8 data_ov001_021a6a20[];
 extern u8 data_ov001_021a6a24[];
 extern u8 data_ov001_021a6a2c[];

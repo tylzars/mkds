@@ -17,6 +17,8 @@
 #include "01/unk_021a7000.h"
 #include "code_0212df7c.h"
 
+Unk021ca420 *data_ov001_021ca420;
+
 void func_ov001_021a63d8(void) {
     s32 lo = 0;
     s32 hi = data_ov001_021ca420->mUnk_18 - 1;

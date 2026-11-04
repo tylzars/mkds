@@ -153,11 +153,7 @@ extern const char *data_ov001_021a993c;
 extern const char *data_ov001_021a9940;
 extern const char *data_ov001_021a9944;
 extern Unk021a99e4 *data_ov001_021a99e4;
-extern Unk021a9b88 *data_ov001_021a9b88;
 extern u16 data_ov001_021a9ba0;
-extern Unk021a9b90 *data_ov001_021a9b90;
-extern OptionStates *gOptionStates;
-extern Unk021a9bec *data_ov001_021a9bec;
 extern Unk021a9bf8 *gSelectBattleStage;
 // One pair of halfwords of the object behind gOptionEmbremSelect.
 typedef struct Unk021a9bfc_18 {
@@ -191,7 +187,6 @@ typedef struct OptionEmbremSelect {
     /* 54 */ void *mCommonMessages;
 } OptionEmbremSelect;
 
-extern OptionEmbremSelect *gOptionEmbremSelect;
 extern const char *data_ov001_021a90a8;
 extern const char *data_ov001_021a90e4;
 extern const char *data_ov001_021a90cc;
@@ -241,17 +236,7 @@ typedef struct Unk021a9be0 {
     /* 34 */ s32 mUnk_34;
 } Unk021a9be0;
 
-extern Unk021a9be0 *data_ov001_021a9be0;
-extern Unk0219b250 *data_ov001_021a9b98;
-extern Unk0217b498 *data_ov001_021a9bac;
-extern Unk0217b498 *data_ov001_021a9bb0;
-extern Unk0217b498 *data_ov001_021a9bb4;
-extern Unk0217b498 *data_ov001_021a9bb8;
-extern Unk0217b498 *data_ov001_021a9bbc;
 extern Unk0217b498 *data_ov001_021a9bc0;
-extern Unk0219b250 *gStopSign;
-extern Unk0217b498 *data_ov001_021a9b8c;
-extern Unk0217b498 *data_ov001_021a9bc4;
 extern u16 data_ov001_021a9b94;
 extern const char *data_ov001_021a90e8[5];
 extern const char *data_ov001_021a92c8[5];

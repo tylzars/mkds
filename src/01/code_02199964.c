@@ -15,6 +15,8 @@
 #include "code_0201ea58.h"
 #include "code_0214a390.h"
 
+Unk021a9bec *data_ov001_021a9bec;
+
 void func_ov001_02199f44(void *heap) {
     s32 i;
     s32 j;

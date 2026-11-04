@@ -38,6 +38,8 @@
 #include "Main/Unknown/code_020472a8.h"
 #include "Main/Unknown/code_02029440.h"
 
+Unk021ca418 *data_ov001_021ca418;
+
 void func_ov001_021a1f60(void) {
     Ncgr *l0 = NULL;
     Unk02021dc8 *l1 = NULL;

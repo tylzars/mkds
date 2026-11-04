@@ -10,6 +10,8 @@
 #include "Main/Unknown/code_02105000.h"
 #include "Main/Unknown/code_02037000.h"
 
+Unk021ca400 *data_ov001_021ca400;
+
 void func_ov001_0219e6ec(void *heap) {
     void *result;
 

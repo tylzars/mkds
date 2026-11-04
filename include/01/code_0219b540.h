@@ -83,7 +83,6 @@ extern u16 data_ov001_021a6b6c[];
 extern u32 data_ov001_021a6b78[];
 extern u16 data_ov001_021a6b88[];
 extern u32 data_ov001_021a6ba4[];
-extern SelectGhost *gSelectGhost;
 
 void func_ov001_0219b540(void);
 int AdvanceSelectGhost(void);

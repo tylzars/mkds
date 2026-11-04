@@ -109,7 +109,6 @@ extern u16 data_ov001_021a6804[];
 extern u16 data_ov001_021a6810[];
 extern u16 data_ov001_021a681c[];
 extern s32 data_ov001_021a6900[];
-extern RecordTAtt *gRecordTAtt;
 
 void RegisterRecordTAttCallbacks(void);
 void func_ov001_02195704(void);

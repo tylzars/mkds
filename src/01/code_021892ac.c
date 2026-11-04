@@ -15,6 +15,12 @@
 #include "01/code_0218c000.h"
 #include "Main/Unknown/code_020a3000.h"
 
+Unk0217b498 *data_ov001_021a9bbc;
+Unk0217b498 *data_ov001_021a9bac;
+Unk0217b498 *data_ov001_021a9bb0;
+Unk0217b498 *data_ov001_021a9bb4;
+Unk0217b498 *data_ov001_021a9bb8;
+
 #pragma thumb off
 
 void func_ov001_021899c8(void *a) {

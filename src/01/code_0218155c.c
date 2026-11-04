@@ -36,6 +36,8 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
+Unk021a9b90 *data_ov001_021a9b90;
+
 void func_ov001_02181b8c(Unk02188950 *a) {
     u8 n;
     u16 k;

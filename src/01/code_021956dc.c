@@ -38,6 +38,8 @@
 #include "01/unk_021a9000.h"
 #include "Main/Unknown/code_020472a8.h"
 
+RecordTAtt *gRecordTAtt;
+
 void func_ov001_021978b4(void) {
     Nclr *l0 = NULL;
     Ncgr *l4 = NULL;

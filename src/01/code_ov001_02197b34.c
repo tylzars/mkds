@@ -23,6 +23,8 @@
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_020472a8.h"
 
+Unk021a9be0 *data_ov001_021a9be0;
+
 void func_ov001_021984ac(void) {
     Ncgr *a = NULL;
     Unk02021dc8 *b = NULL;

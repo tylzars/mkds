@@ -14,6 +14,8 @@
 #include "Main/Unknown/code_020f9c6c.h"
 #include "ITCM/code_01ff8000.h"
 
+Unk0219b250 *gStopSign;
+
 void func_ov001_02192e10(Unk02188950 *a) {
     s32 m[9];
     func_020d2450(a);

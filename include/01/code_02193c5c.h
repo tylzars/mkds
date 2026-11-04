@@ -108,7 +108,6 @@ extern const u16 data_ov001_021a666c[4];
 // Objects whose layout isn't known yet.
 extern const Unk021a8294 gRecordGpxCallbacks;
 extern const Unk021a8294 gRecordTAttCallbacks;
-extern RecordGpx *gRecordGpx;
 
 void RegisterRecordGpxCallbacks(void);
 void func_ov001_02193c84(void);

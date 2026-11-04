@@ -33,6 +33,8 @@
 #include "code_0214a390.h"
 #include "registers.h"
 
+Unk021a9be8 *data_ov001_021a9be8;
+
 void func_ov001_021997dc(void) {
     s32 i;
 

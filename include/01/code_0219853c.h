@@ -27,8 +27,6 @@ typedef struct Unk021a9be4 {
     /* 14 */ void *mUnk_14;
 } Unk021a9be4;
 
-extern Unk021a9be4 *data_ov001_021a9be4;
-
 int func_ov001_0219853c(void);
 void func_ov001_0219854c(void);
 void func_ov001_02198554(void);

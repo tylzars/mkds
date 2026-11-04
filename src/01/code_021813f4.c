@@ -18,6 +18,8 @@
 #include "Main/Unknown/code_020c0d9c.h"
 #include "Main/Unknown/code_0214d000.h"
 
+Unk0217b498 *data_ov001_021a9b8c;
+
 s32 func_ov001_02181528(void) {
     Unk02188950 *p;
 

@@ -32,6 +32,8 @@
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/code_0205f000.h"
 
+RecordGpx *gRecordGpx;
+
 void func_ov001_021953d0(void) {
     Nclr *l0 = NULL;
     Ncgr *l4 = NULL;

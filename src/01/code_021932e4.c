@@ -21,6 +21,8 @@
 #include "Main/Unknown/code_02126230.h"
 #include "Main/Unknown/code_02126248.h"
 
+Unk021a9bd4 *data_ov001_021a9bd4;
+
 void func_ov001_02193b28(void *heap) {
     s32 i;
     s32 j;

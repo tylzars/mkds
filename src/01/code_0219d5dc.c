@@ -11,6 +11,8 @@
 #include "Main/Unknown/code_02037000.h"
 #include "Main/Unknown/code_02125f6c.h"
 
+OptionEmbremSelect *gOptionEmbremSelect;
+
 void InitOptionEmbremSelect(void *a) {
     s32 i;
     OptionEmbremSelect *p;

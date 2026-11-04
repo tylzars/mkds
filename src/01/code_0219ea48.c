@@ -10,6 +10,8 @@
 #include "01/code_0219f8ec.h"
 #include "01/unk_021ca000.h"
 
+void *data_ov001_021ca40c;
+
 void func_ov001_0219ea8c(void) {
     void *heap = GetHeap(func_020364e8());
 
