@@ -163,7 +163,7 @@ scratch = (f"--scratch --compiler {DECOMP_ME_COMPILER} --c-flags {shlex.quote(' 
            if DECOMP_ME_COMPILER else "")
 w(f"rule objdiff_config\n  command = {DSD} objdiff -c $config -o . {scratch}--custom-make ninja "
   f"&& {PY} tools/objdiff_place.py objdiff.json $edits\n  description = OBJDIFF CONFIG\n")
-w(f"rule objdiff_report\n  command = {OBJDIFF} report generate -o $out\n  description = REPORT\n")
+w(f"rule objdiff_report\n  command = {OBJDIFF} report generate -c combineTextSections=false -o $out\n  description = REPORT\n")
 w(f"rule check_symbols\n  command = {DSD} check symbols -c $config --elf-path $in --fail --max-lines 20 && touch $out\n  description = CHECK SYMBOLS\n")
 w(f"rule configure\n  command = {PY} tools/configure.py {' '.join(shlex.quote(a) for a in sys.argv[1:])}\n  generator = 1\n  description = CONFIGURE\n")
 

@@ -1088,11 +1088,8 @@ Link order and linking:
 
 ### 1.14 objdiff and Checker Quirks (Identical Code Below 100%)
 
-- A `bl` to the function that starts right where the caller ends stays a mismatch (99.7x%) because of the
-  relocation addend. No source change helps; linking is the proof (func_01ffc6c0, func_0200c2e0).
+- A `bl` to an earlier function of the same file used to score as a mismatch; the report now scores it 100%.
 - A `bl` to another function of the same unit counts as a mismatch while that callee doesn't match.
-- Calls between functions of one file show as mismatches when the file defines its functions out of address order.
-  Reordering fixes the score.
 - Data inside asm bodies (no `$d` mapping symbol) and a data block whose delinked target has no mapping symbol give
   under 100% with identical bytes. A hand-written `.s` unit sat at 99.84% because two trailing constant words
   reached only from routines entered by a branch were read as instructions. Declaring those routines as functions
