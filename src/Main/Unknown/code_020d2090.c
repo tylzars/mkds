@@ -77,10 +77,10 @@ void func_020d20a8(void) {
     Unk0217b4b4 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b4b4 = p;
-    p->mUnk_00 = data_021759c0->mUnk_60;
-    if (data_021759c0->mUnk_08 == 5) {
+    p->mUnk_00 = data_021759c0->mCourseNumber;
+    if (data_021759c0->mMode == 5) {
         data_0217b4b4->mUnk_04 = 4;
-    } else if (data_021759c0->mUnk_08 == 3 && data_021759c0->mUnk_1c == 2) {
+    } else if (data_021759c0->mMode == 3 && data_021759c0->mUnk_1c == 2) {
         data_0217b4b4->mUnk_04 = data_021759c0->mUnk_3d8;
     } else {
         data_0217b4b4->mUnk_04 = 0;

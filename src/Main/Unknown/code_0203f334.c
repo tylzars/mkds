@@ -39,7 +39,7 @@ void func_0203fed4(void) {
             l = h;
             f = TRUE;
         }
-        if (data_021759c0->mUnk_08 == 5 && e > 0x4650) {
+        if (data_021759c0->mMode == 5 && e > 0x4650) {
             k = data_0217aa18->mUnk_06[func_ov000_0219bb50()];
             if (k >= 0) {
                 g = FALSE;
@@ -53,7 +53,7 @@ void func_0203fed4(void) {
                 if (g == FALSE) {
                     func_0203e9a0(&data_0217561c->mUnk_14[k], 0);
                     if (func_0203ef58() != 0) {
-                        switch (data_021759c0->mUnk_08) {
+                        switch (data_021759c0->mMode) {
                             case 1:
                                 break;
                             case 2:
@@ -88,7 +88,7 @@ void func_0203fed4(void) {
             data_0217561c->mUnk_000[i].mUnk_18 = v;
         }
         if (t != 0) {
-            switch (data_021759c0->mUnk_08) {
+            switch (data_021759c0->mMode) {
                 case 4:
                     func_0203e788((u16) data_021759c0->mEntryIndex, 1);
                     g = data_0217d084.mUnk_04 == 2 || data_0217d084.mUnk_04 == 3;
@@ -186,7 +186,7 @@ s32 func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
                 *b = func_0203fcac(c, e, gCourseMap->mUnk_4c[(u16) k].mUnk_00);
                 if (*b >= -2 && *b <= 0x1002) {
                     if ((gCourseMap->mUnk_44[e].mUnk_23 & 1) != 0) {
-                        if (data_021759c0->mUnk_08 == 5) {
+                        if (data_021759c0->mMode == 5) {
                             *b = 0x1000 - (func_ov000_0219bb50() + 1) * 0x190;
                         } else {
                             *b = 0x1000 - ((u32) (a->mUnk_3c << 28) >> 28) * 0x190;

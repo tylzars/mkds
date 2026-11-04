@@ -42,7 +42,7 @@ const Vec3 data_0215a6cc = {0, 0, 0};
 void func_02105214(void) {
     Vec3 buf;
     s32 i;
-    switch (data_021759c0->mUnk_08) {
+    switch (data_021759c0->mMode) {
         case 2:
             data_0217c724 = 0xb;
             break;
@@ -78,7 +78,7 @@ void func_021051d4(Unk020eda5c *p0, Unk020f40dc *p1) {
 
 void func_0210515c(s32 a) {
     data_027e00c8[a].mUnk_014 = 0x13;
-    if (data_021759c0->mUnk_08 != 5) {
+    if (data_021759c0->mMode != 5) {
         return;
     }
     if (a == data_021759c0->mEntryIndex) {
@@ -95,7 +95,7 @@ void func_02104ff8(void) {
     Unk0212c400 **v;
     u32 a = 0;
     u32 b = 0;
-    if (data_021759c0->mUnk_08 != 2) {
+    if (data_021759c0->mMode != 2) {
         return;
     }
     for (i = 0; i < 8; i++) {
@@ -130,7 +130,7 @@ void func_02104ff8(void) {
 }
 
 void func_02104f84(s32 a) {
-    if (data_021759c0->mUnk_08 != 2) {
+    if (data_021759c0->mMode != 2) {
         return;
     }
     if ((s32) data_0217c6e4[a] >= 0) {
@@ -229,7 +229,7 @@ void func_02104a0c(Unk02104c68 *p) {
             func_020f758c(&p->mUnk_000.mUnk_000);
         }
     } else if ((p->mUnk_000.mUnk_000.mUnk_74 & 0x8000) != 0) {
-        if (data_021759c0->mUnk_08 == 2) {
+        if (data_021759c0->mMode == 2) {
             i = (u16) (p->mUnk_000.mUnk_000.mUnk_78 & ~0xff00);
             v = data_0217c6e4[i] - 0x3c;
             if (v < p->mUnk_000.mUnk_000.mUnk_d8) {

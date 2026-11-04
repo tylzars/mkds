@@ -157,7 +157,7 @@ u32 func_0202511c(s32 a, void *c) {
             switch (data_021759c0->mUnk_00c) {
                 case 0:
                 case 2:
-                    q = data_021759c0->mUnk_08;
+                    q = data_021759c0->mMode;
                     r = func_0202553c(data_021759c0->mCourseId, b);
                     f = TRUE;
                     if (q == 4) {

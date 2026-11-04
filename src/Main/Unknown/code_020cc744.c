@@ -52,8 +52,8 @@ void func_020cc744(void) {
                 func_020ccab0();
                 break;
         }
-        func_020cca88(func_02029930()->mUnk_c8);
-        func_020cca74(func_02029930()->mUnk_cc);
+        SetNextMode(func_02029930()->mUnk_c8);
+        SetNextCupIndex(func_02029930()->mUnk_cc);
         if (func_02029930()->mUnk_c8 == 0) {
             func_02029930()->mCourseId = func_020ae3a4(func_02029930()->mUnk_cc, 0);
         }
@@ -81,7 +81,7 @@ void func_020cc744(void) {
             func_02044380(&func_02029930()->mMissionFileRows[i], b[0], b[1]);
         }
     } else {
-        func_020cca74(func_02029930()->mUnk_cc);
+        SetNextCupIndex(func_02029930()->mUnk_cc);
         SetNextCourseId(func_02029930()->mCourseId);
     }
     if (func_02029930()->mUnk_c8 == 0) {

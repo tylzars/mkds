@@ -109,7 +109,7 @@ void func_0205cd24(void *a) {
     u8 m;
     Unk0217aa14 *p;
 
-    if (data_021759c0->mUnk_08 != 5) {
+    if (data_021759c0->mMode != 5) {
         return;
     }
     data_0217aa14 = HeapAlloc(a, 0x760);

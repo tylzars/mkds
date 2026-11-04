@@ -321,7 +321,7 @@ void func_020d2e6c(void) {
     data_0217b4f0->mUnk_130 = 0;
     data_0217b4f0->mUnk_178 = 0;
     v = 0;
-    if (data_021759c0->mUnk_08 != 5) {
+    if (data_021759c0->mMode != 5) {
         v = 1;
     }
     data_0217b4f0->mUnk_2b8 = v;
@@ -346,7 +346,7 @@ void func_020d2e6c(void) {
     } while (data_0217b4ec < 0x85);
     gGrpconfTbl = FindMainRaceOrMainEffectFile("MapObj/grpconf.tbl");
     v = 1;
-    if (data_021759c0->mUnk_08 != 1 && data_021759c0->mUnk_08 != 5) {
+    if (data_021759c0->mMode != 1 && data_021759c0->mMode != 5) {
         v = 0;
     }
     data_0217b4e0 = v;
@@ -369,7 +369,7 @@ void func_020d2e6c(void) {
     }
     for (i = 0; i < n; i++) {
         e = (Unk020fa294 *) ((u8 *) gCourseMap->mUnk_00 + i * sizeof(Unk020fa294));
-        if (data_021759c0->mUnk_08 == 1 && (e->mUnk_38 & 1) == 0) {
+        if (data_021759c0->mMode == 1 && (e->mUnk_38 & 1) == 0) {
             continue;
         }
         CreateMapObject(e->mUnk_24, e, NULL);

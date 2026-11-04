@@ -415,7 +415,7 @@ s32 func_020d6be0(Unk0206bcb0 *a, MapObject *b) {
         if ((b->mFlags & 0x80) == 0) {
             buf[1] = b->mKindData->mUnk_00(b, a, &buf[0], &buf[1]);
         }
-        if (data_021759c0->mUnk_08 == 4 && buf[0] == 1 && data_021759c0->mUnk_08 == 4) {
+        if (data_021759c0->mMode == 4 && buf[0] == 1 && data_021759c0->mMode == 4) {
             func_ov001_0218175c(b->mKind);
         }
         return buf[1];
@@ -453,7 +453,7 @@ s32 func_020d6a54(Unk020f41c4_A *a, MapObject *b, s32 *c) {
         if ((b->mFlags & 0x80) == 0) {
             buf[1] = b->mKindData->mUnk_04(b, a, &buf[0], &buf[1]);
         }
-        if (data_021759c0->mUnk_08 == 4 && buf[0] == 1 && data_021759c0->mUnk_08 == 4) {
+        if (data_021759c0->mMode == 4 && buf[0] == 1 && data_021759c0->mMode == 4) {
             func_ov001_0218175c(b->mKind);
         }
         if (c != NULL) {

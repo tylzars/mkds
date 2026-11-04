@@ -50,7 +50,7 @@ void func_020f7ec8(void) {
     enum { K1 } k;
 
     p = FindMainRaceOrMainEffectFile(data_0216c680);
-    switch (data_021759c0->mUnk_08) {
+    switch (data_021759c0->mMode) {
         case 0:
         case 1:
         case 4:

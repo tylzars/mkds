@@ -13,6 +13,6 @@ void func_020cca24(unsigned int p0);
 void func_020cca38(unsigned int p0);
 void func_020cca4c(unsigned int p0);
 void SetNextCourseId(unsigned int p0);
-void func_020cca74(unsigned int p0);
-void func_020cca88(unsigned int p0);
+void SetNextCupIndex(unsigned int p0);
+void SetNextMode(unsigned int p0);
 void func_020cca9c(unsigned int p0);

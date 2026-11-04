@@ -39,10 +39,10 @@ void func_0203c1a8(void *a, u32 b) {
         return;
     }
     if (v != 0) {
-        if (data_021759c0->mUnk_08 == 4) {
+        if (data_021759c0->mMode == 4) {
             func_ov001_021816fc();
         }
-        if (data_021759c0->mUnk_08 != 4) {
+        if (data_021759c0->mMode != 4) {
             return;
         }
         func_0203e788(b, 0);

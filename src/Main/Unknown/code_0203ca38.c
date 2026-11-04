@@ -24,7 +24,7 @@ void func_0203d21c(void) {
     Unk0217561c *p;
     s32 v = -1;
     Unk021759c0 *d = data_021759c0;
-    s32 m = d->mUnk_08;
+    s32 m = d->mMode;
     u32 a;
     BOOL f = FALSE;
     switch (m) {
@@ -43,7 +43,7 @@ void func_0203d21c(void) {
                 u32 t;
                 u8 w;
                 u32 z = 0;
-                if (d->mUnk_08 == 5) {
+                if (d->mMode == 5) {
                     t = data_0217aa14->mUnk_104[data_0217aa18->mUnk_00[a & 0xff]].mUnk_86_1;
                 } else {
                     t = data_0217561c->mUnk_14[a].mUnk_3c_0;
@@ -54,7 +54,7 @@ void func_0203d21c(void) {
                 }
                 func_0205d9d4(a, w, z);
                 func_0205d818(a, &data_0217561c->mUnk_14[a].mUnk_0c[5]);
-                if (data_021759c0->mUnk_08 == 5) {
+                if (data_021759c0->mMode == 5) {
                     if (data_0217561c->mUnk_000[a].mUnk_14 == 4) {
                         func_0205d974(a);
                     }
@@ -149,7 +149,7 @@ void func_0203d078(void) {
         }
     }
     if (func_0203ef58() != 0) {
-        switch (data_021759c0->mUnk_08) {
+        switch (data_021759c0->mMode) {
             case 1:
                 break;
             case 2:
@@ -180,7 +180,7 @@ s32 func_0203cfb4(void) {
     if (d->mUnk_4cc != 0) {
         return 0;
     }
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         c = 0;
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
             if (d->mUnk_000[i].mUnk_14 == 0) {
@@ -229,7 +229,7 @@ void func_0203cd14(void) {
             func_0207a828(func_0203cd14_inline(v));
             func_020b3f64();
             func_02110cc8(0);
-            if (data_021759c0->mUnk_08 == 4) {
+            if (data_021759c0->mMode == 4) {
                 func_020a0dbc();
             }
             p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + v1);
@@ -244,7 +244,7 @@ void func_0203cd14(void) {
             func_020688a0(GetKart(v));
             func_0207a828((u16) v);
             func_02110cc8(0);
-            if (data_021759c0->mUnk_08 == 4) {
+            if (data_021759c0->mMode == 4) {
                 func_020a0dbc();
             }
             p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + v1);
@@ -291,13 +291,13 @@ void func_0203cd04(u16 a) {
 void func_0203ca38(void) {
     u32 i;
     func_0203fed4();
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
             Unk0217561c_14 *p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + i * 0x8c);
             if (p->mUnk_3c_8 != 0) {
                 func_0203e9a0(p, p->mUnk_3c_8 == 1 ? 1 : 0);
                 if (func_0203ef58() != 0) {
-                    switch (data_021759c0->mUnk_08) {
+                    switch (data_021759c0->mMode) {
                         case 1:
                             break;
                         case 2:
@@ -336,7 +336,7 @@ void func_0203ca38(void) {
         }
         data_0217561c->mUnk_4f0 = t;
     }
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
             u16 *q;
             u8 v = func_0203ca38_inline(i);
@@ -351,10 +351,10 @@ void func_0203ca38(void) {
             func_0203d21c();
         }
     }
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         func_0203cd14();
     }
-    if (data_021759c0->mUnk_08 == 1) {
+    if (data_021759c0->mMode == 1) {
         BOOL f = FALSE;
         switch (data_0217561c->mUnk_000[0].mUnk_14) {
             case 1:

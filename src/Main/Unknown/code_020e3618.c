@@ -57,7 +57,7 @@ void func_020e38a0(Unk020e38a0 *a, struct Unk020fa294 *b) {
     a->mUnk_14e = b->mUnk_2e;
     a->mUnk_150 = 0;
     a->mUnk_148 = 0;
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         a->mUnk_146 = 0;
         a->mUnk_148 = ((b->mUnk_30 * 0x10000) / 0x168) >> 1;
     }

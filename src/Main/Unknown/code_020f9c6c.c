@@ -870,7 +870,7 @@ BOOL func_020fab34(s32 *param_1) {
     if (i == 0x13) {
         goto done;
     }
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         e = &data_0217bc48[i];
         n = e->mUnk_0c;
         v = n * func_020fa0e8(e->mUnk_08, 0);
@@ -883,7 +883,7 @@ BOOL func_020fab34(s32 *param_1) {
         }
     }
 done:
-    *param_1 = data_021759c0->mUnk_08 == 5 ? 4 : 2;
+    *param_1 = data_021759c0->mMode == 5 ? 4 : 2;
     return TRUE;
 }
 
@@ -924,7 +924,7 @@ void func_020fa920(void) {
     enum { K0 } i;
     u16 j;
 
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         func_020fec30();
         func_020feb44();
     }
@@ -965,7 +965,7 @@ void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
     if (v == 3) {
         return;
     }
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         c = FALSE;
         if ((u32) v > 3) {
         } else if ((1 << v) & 0xd) {
@@ -1176,11 +1176,11 @@ void func_020fa13c(void) {
         func_020f02c0(&data_027e00cc[j], j, &a);
     }
     func_020ed2f8();
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         func_020fe46c();
         func_020fe450();
     }
-    if (data_021759c0->mUnk_08 == 1) {
+    if (data_021759c0->mMode == 1) {
         for (i = 0; i < data_027e00c4; i++) {
             p = &(data_027e00c8)[i].mUnk_030;
             func_020f47e4(p, 5);

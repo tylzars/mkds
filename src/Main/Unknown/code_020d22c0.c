@@ -33,7 +33,7 @@ void func_020d233c(MapObject *a) {
 }
 
 void func_020d22e0(void) {
-    data_0217b4bc = data_021759c0->mUnk_08 == 5 ? &data_0217561c->mUnk_4b0 : &data_0217561c->mUnk_47c;
+    data_0217b4bc = data_021759c0->mMode == 5 ? &data_0217561c->mUnk_4b0 : &data_0217561c->mUnk_47c;
     data_0217b4b8 = &data_0217561c->mUnk_47c;
 }
 

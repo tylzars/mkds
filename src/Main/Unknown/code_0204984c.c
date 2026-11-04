@@ -459,7 +459,7 @@ void func_02049c3c(void *a) {
 u32 func_02049b6c(void) {
     u32 r = 0;
 
-    if (data_021759c0->mUnk_08 == 5 && func_0204984c_inline5()) {
+    if (data_021759c0->mMode == 5 && func_0204984c_inline5()) {
         r = 1;
     }
     if (func_0204984c_inline4()) {

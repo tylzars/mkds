@@ -449,7 +449,7 @@ void func_020e20a8(Unk020e20a8 *a) {
 
     b = (u32) FindCourseMapObjFile(gCarANsbmdName);
     c = (u32) FindCourseMapObjFile(gTruckANsbmdName);
-    a->mUnk_038 = data_021759c0->mUnk_08 != 4 && func_0203c5e4() == 0 && (u16) data_021759c0->mEntryIndex < 8;
+    a->mUnk_038 = data_021759c0->mMode != 4 && func_0203c5e4() == 0 && (u16) data_021759c0->mEntryIndex < 8;
     a->mUnk_03c = 0;
     func_020ea588(&gCarA, (void *) b, NULL);
     func_020ea588(&gTruckA, (void *) c, NULL);

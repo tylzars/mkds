@@ -472,7 +472,7 @@ void func_0205ef70(void) {
     a = data_0217aa08->mUnk_00->mUnk_34[4];
     b = data_0217aa08->mUnk_00->mUnk_34[5];
     func_0205b32c();
-    if (data_021759c0->mUnk_60 <= 3) {
+    if (data_021759c0->mCourseNumber <= 3) {
         return;
     }
     if (data_0217561c->mUnk_4cc == 0) {
@@ -530,7 +530,7 @@ void func_0205ef70(void) {
 
 void func_0205eeb0(void) {
     if (data_021759c0->mUnk_00c == 0) {
-        switch (data_021759c0->mUnk_08) {
+        switch (data_021759c0->mMode) {
             case 3:
                 func_0205f700();
                 break;

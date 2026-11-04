@@ -181,7 +181,7 @@ void func_020f6630(void *a0, s32 b, Vec3 *c, Vec3 *d, Vec3 *e) {
     p = &a->mUnk_5c;
     i = *(vs32 *) &a->mUnk_44;
     t = data_0217bc34[i].mUnk_80;
-    if (data_021759c0->mUnk_08 == 1 || (a->mUnk_74 & 0x8000000)) {
+    if (data_021759c0->mMode == 1 || (a->mUnk_74 & 0x8000000)) {
         t = 0;
     }
     a->mUnk_74 |= 0x4000;
@@ -309,7 +309,7 @@ void func_020f62b0(Unk020eda5c *a, Unk020f40dc *b) {
     func_020d3cc8();
     func_020f82e8(0);
     func_020f4754(b, 1);
-    if (data_021759c0->mUnk_08 != 5) {
+    if (data_021759c0->mMode != 5) {
         return;
     }
     func_020fe958(6);
@@ -318,7 +318,7 @@ void func_020f62b0(Unk020eda5c *a, Unk020f40dc *b) {
 void func_020f6264(Unk020eda5c *a, Unk020f40dc *b) {
     func_02069c38(b->mUnk_04->mUnk_1fc);
     func_020f4754(b, 1);
-    if (data_021759c0->mUnk_08 != 5) {
+    if (data_021759c0->mMode != 5) {
         return;
     }
     func_020fe958(4);
@@ -338,7 +338,7 @@ void func_020f6220(void *a0, s32 b) {
 BOOL func_020f6150(Unk020eda5c *a, Unk020f6150 *b) {
     BOOL v;
 
-    v = data_021759c0->mUnk_08 == 2;
+    v = data_021759c0->mMode == 2;
     func_020f9114(b);
     func_0210b850(&b->mUnk_16c);
     b->mUnk_000.mUnk_000.mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
@@ -421,7 +421,7 @@ s32 func_020f5d6c(Unk020eda5c *a, Unk020f5d6c *b) {
         b->mUnk_000.mUnk_21c.mUnk_04 = 1;
     } else {
         b->mUnk_254 = 1;
-        if (data_021759c0->mUnk_08 != 2 && a->mUnk_00c->mUnk_1f0.mUnk_00 != NULL) {
+        if (data_021759c0->mMode != 2 && a->mUnk_00c->mUnk_1f0.mUnk_00 != NULL) {
             x = (u16) (!(b->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
                            ? (u16) (b->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)
                            : 8);
@@ -894,7 +894,7 @@ void func_020f504c(Unk020eda5c *a, Unk020f40dc *b) {
     func_02069db8(b->mUnk_04->mUnk_1fc);
     func_020f4754(b, 1);
     a->mUnk_00c->mUnk_204 = 1;
-    if (data_021759c0->mUnk_08 != 5) {
+    if (data_021759c0->mMode != 5) {
         return;
     }
     func_020fe958(3);
@@ -1016,7 +1016,7 @@ void func_020f4b8c(void) {
     p[15] = data_0215a2ec;
     p[16] = data_0215a174;
     p[17] = data_0215a4c0;
-    switch (data_021759c0->mUnk_08) {
+    switch (data_021759c0->mMode) {
         case 2:
             p[17].mUnk_00 = 1;
             break;

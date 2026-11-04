@@ -502,7 +502,7 @@ void func_020f03f8(Unk027e00cc *a) {
             func_020f0684(e, t, m, 7);
         }
     }
-    if (data_021759c0->mUnk_08 != 5) {
+    if (data_021759c0->mMode != 5) {
         for (i = 0; i < n; i++) {
             if (func_01fff95c(a, e[i], 0) != 0) {
                 n = a->mUnk_14, i--;
@@ -645,7 +645,7 @@ void func_020f00f0(Unk020ee684 *p) {
     if ((p->mUnk_1fc->mUnk_7c & 0x400) != 0) {
         return;
     }
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         return;
     }
     if (p->mUnk_000 == 0) {
@@ -661,7 +661,7 @@ void func_020f0044(Unk020ee684 *p) {
     if (p->mUnk_030.mUnk_00 != 0x13) {
         func_020f45f0(&p->mUnk_030, 0);
     }
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         return;
     }
     if (p->mUnk_000 != 0) {
@@ -670,7 +670,7 @@ void func_020f0044(Unk020ee684 *p) {
     if (p->mUnk_014 != 0x13) {
         p->mUnk_014 = 0x13;
     }
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         return;
     }
     if (p->mUnk_058.mUnk_000 == 0xf) {
@@ -682,7 +682,7 @@ void func_020f0044(Unk020ee684 *p) {
 void func_020eff40(Unk020ee684 *p) {
     BOOL f;
 
-    f = data_021759c0->mUnk_08 == 5;
+    f = data_021759c0->mMode == 5;
     if ((p->mUnk_1fc->mUnk_7c & 0x400) != 0) {
         return;
     }
@@ -717,7 +717,7 @@ void func_020efea4(Unk020ee684 *p) {
     if ((u32) (p->mUnk_1fc->mUnk_29c - 2) <= 1) {
         return;
     }
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         return;
     }
     if (p->mUnk_058.mUnk_000 == 0xf) {

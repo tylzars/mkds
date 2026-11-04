@@ -126,7 +126,7 @@ void func_020431e4(void) {
                 }
             } else if (s == 2) {
                 data_02175628[w].mSourceKind = 1;
-            } else if (q->mUnk_08 == 5) {
+            } else if (q->mMode == 5) {
                 data_02175628[w].mSourceKind = 7;
             } else {
                 data_02175628[w].mSourceKind = 4;

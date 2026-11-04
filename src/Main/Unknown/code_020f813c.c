@@ -57,7 +57,7 @@ s32 func_020f8a04(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_
     row = q->mUnk_04[param_3];
     acc = 0;
     t = 0;
-    if (data_021759c0->mUnk_08 != 4) {
+    if (data_021759c0->mMode != 4) {
         for (i = 0; i < 0xe; i++) {
             t += (u16) (data_0217bc34[(s32) i].mUnk_90 *
                         (data_027e00cc[(s32) i].mUnk_1c - data_027e00cc[(s32) i].mUnk_18));
@@ -134,7 +134,7 @@ void func_020f87a8(Unk020ee684 *param_1, s32 param_2, s32 param_3, s32 param_4, 
     BOOL b;
 
     p = param_1->mUnk_018;
-    a = data_021759c0->mUnk_08 == 5;
+    a = data_021759c0->mMode == 5;
     if (param_1->mUnk_000 != 0) {
         return;
     }
@@ -231,7 +231,7 @@ BOOL func_020f850c(Unk020ee684 *param_1, Unk020ee684 *param_2) {
     switch (param_1->mUnk_000) {
         case 1:
             param_1->mUnk_004++;
-            a = data_021759c0->mUnk_08;
+            a = data_021759c0->mMode;
             if (a == 5 && param_1->mUnk_020 != 0) {
                 b = param_2->mUnk_1f8 & 0xff;
                 if (func_0205a310(((u8 *) data_0217aa18)[b]) == 0) {

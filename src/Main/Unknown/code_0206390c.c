@@ -51,7 +51,7 @@ void func_02063a68(Unk0206bcb0 *a) {
             a->mUnk_514->mUnk_2c ^= 0x10000;
         }
     }
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         a->mUnk_48 &= ~0x200;
     }
 }

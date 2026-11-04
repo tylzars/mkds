@@ -378,7 +378,7 @@ void func_0206d18c(Unk0206bcb0 *p) {
             func_0206d020(p, r, 0x5a);
             p->mUnk_48 |= 0x100000;
             p->mUnk_538.mUnk_00 = 0x5a;
-            if (data_021759c0->mUnk_08 == 2) {
+            if (data_021759c0->mMode == 2) {
                 func_020a1ddc(p->mIndex);
             }
             break;
@@ -421,10 +421,10 @@ void func_0206d18c(Unk0206bcb0 *p) {
             func_02104ee0((Unk02104c68 *) e, p);
             break;
     }
-    if (r != 0 && data_021759c0->mUnk_08 == 4) {
+    if (r != 0 && data_021759c0->mMode == 4) {
         func_0207a70c(p->mIndex);
     }
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         func_020a1e40(p->mIndex, e);
     }
     if (func_020f9880(e) == 0) {
@@ -444,7 +444,7 @@ void func_0206d18c(Unk0206bcb0 *p) {
     }
     q = GetKart(i);
     if (q->mIndex != p->mIndex && r != 0) {
-        if (data_021759c0->mUnk_08 != 4) {
+        if (data_021759c0->mMode != 4) {
             func_0207a70c(i);
         }
         if (!(q->mUnk_48 & 0x840)) {

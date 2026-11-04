@@ -67,7 +67,7 @@ void func_0206cdd4(Unk0206bcb0 *p) {
         if (p->mUnk_7c & 0x1) {
             func_0207a6b0()->mUnk_04++;
             // placeholder: the same test twice gives the original's two loads and compares
-            if (data_021759c0->mUnk_08 == 4 && data_021759c0->mUnk_08 == 4) {
+            if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
                 func_ov001_0218171c();
             }
         }
@@ -212,7 +212,7 @@ recheck:
                 if (p->mUnk_7c & 0x1) {
                     func_0207a6b0()->mUnk_04++;
                     // placeholder: the same test twice gives the original's two loads and compares
-                    if (data_021759c0->mUnk_08 == 4 && data_021759c0->mUnk_08 == 4) {
+                    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
                         func_ov001_0218171c();
                     }
                 }

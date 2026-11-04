@@ -140,7 +140,7 @@ void func_0207b44c(Unk0206bcb0 *a) {
     if ((t & 0x10) == 0) {
         return;
     }
-    m = data_021759c0->mUnk_08;
+    m = data_021759c0->mMode;
     if (m == 2) {
         return;
     }

@@ -446,7 +446,7 @@ s32 func_02042894(void *a, ...) {
     h = GetHeap(func_020364e8());
     gCourseMap->mUnk_028 = func_020431a4(&a);
     gCourseMap->mUnk_024 = a;
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         n = gCourseMap->mUnk_028;
         gCourseMap->mUnk_f8 = HeapAlloc(h, n * 2);
         gCourseMap->mUnk_100 = 0;
@@ -723,7 +723,7 @@ void func_020422c4(void) {
     u8 count;
     u16 i;
     count = 0;
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         for (i = 0; i < gCourseMap->mUnk_78; i++) {
             if (func_020423fc(i)->mUnk_44 == 2) {
                 count++;
@@ -774,10 +774,10 @@ s32 func_02042170(void *a, ...) {
         if (gCourseMap->mUnk_cc == NULL && e->mUnk_3e == 6) {
             gCourseMap->mUnk_cc = e;
         }
-        if (data_021759c0->mUnk_08 == 2 && gCourseMap->mUnk_d0 == NULL && e->mUnk_3e == 7) {
+        if (data_021759c0->mMode == 2 && gCourseMap->mUnk_d0 == NULL && e->mUnk_3e == 7) {
             gCourseMap->mUnk_d0 = e;
         }
-        if (data_021759c0->mUnk_08 == 4 && gCourseMap->mUnk_d4 == NULL && e->mUnk_3e == 8) {
+        if (data_021759c0->mMode == 4 && gCourseMap->mUnk_d4 == NULL && e->mUnk_3e == 8) {
             gCourseMap->mUnk_d4 = e;
         }
     }
@@ -793,7 +793,7 @@ void CreateCourseMap(void *a) {
     s32 i;
     u16 j;
 
-    switch (data_021759c0->mUnk_08) {
+    switch (data_021759c0->mMode) {
         case 4:
             if (data_021759c0->mUnk_00c == 6) {
                 header = FindCourseFile("/course_map.nkm");

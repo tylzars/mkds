@@ -77,7 +77,7 @@ void func_020f9a14(Unk020f41c4_A *param_1, s32 param_2) {
     param_1->mUnk_d0 = &param_1->mUnk_50;
     param_1->mUnk_da = -1;
     param_1->mUnk_104->mUnk_00 = NULL;
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         param_1->mUnk_74 |= 0x8000000;
     }
     param_1->mUnk_78 |= data_02159cac;

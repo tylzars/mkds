@@ -75,7 +75,7 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
 
     k = b->mUnk_00;
     t = data_0217bc48[k].mUnk_14;
-    s = data_021759c0->mUnk_08 == 5;
+    s = data_021759c0->mMode == 5;
     if (b->mUnk_0c != 0) {
         if (b->mUnk_10 > b->mUnk_12) {
             return;

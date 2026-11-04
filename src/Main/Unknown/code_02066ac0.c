@@ -183,7 +183,7 @@ s32 func_020676fc(Unk0206bcb0 *a) {
     func_02083f6c(0, a);
     if ((a->mUnk_48 & 0x10000) == 0) {
         b = a->mUnk_3e4;
-        if (data_021759c0->mUnk_08 == 2 || data_021759c0->mUnk_08 == 4) {
+        if (data_021759c0->mMode == 2 || data_021759c0->mMode == 4) {
             func_020705fc(a, b);
         } else {
             a->mUnk_48 = a->mUnk_48 | 0x10000;
@@ -257,7 +257,7 @@ void func_02067488(Unk0206bcb0 *a) {
     if (a->mIndex != func_02061f90()) {
         return;
     }
-    if (data_021759c0->mUnk_08 != 0) {
+    if (data_021759c0->mMode != 0) {
         return;
     }
     c = GetKart(data_021759c0->mEntryIndex);
@@ -320,7 +320,7 @@ void func_02066fe0(Unk0206bcb0 *a) {
                 }
             } else if (p->mUnk_1c == 1 && data_0217561c->mUnk_000[a->mIndex].mUnk_14 != 1) {
                 a->mUnk_7c = a->mUnk_7c | 0x200000;
-            } else if (p->mUnk_08 == 4) {
+            } else if (p->mMode == 4) {
                 a->mUnk_7c = a->mUnk_7c | 0x200000;
                 a->mUnk_48 = a->mUnk_48 | 0x2000;
             }
@@ -355,7 +355,7 @@ void func_02066fe0(Unk0206bcb0 *a) {
     if ((a->mUnk_7c & 1) != 0) {
         func_020617d8();
         p = data_021759c0;
-        if (p->mUnk_08 != 0 && p->mUnk_08 != 1 &&
+        if (p->mMode != 0 && p->mMode != 1 &&
             ((p->mUnk_1c == 1 && data_0217561c->mUnk_000[a->mIndex].mUnk_14 != 1) ||
              ((i = p->mKartCount) > 1 && (c = func_0203c8dc(a->mIndex), c == i)))) {
             func_02075cf0();
@@ -363,7 +363,7 @@ void func_02066fe0(Unk0206bcb0 *a) {
             func_02075eb8();
             func_02081f30();
         }
-    } else if (data_021759c0->mUnk_08 == 3 || data_021759c0->mUnk_08 == 5) {
+    } else if (data_021759c0->mMode == 3 || data_021759c0->mMode == 5) {
         if (data_0217561c->mUnk_000[a->mIndex].mUnk_14 == 1) {
             e = 0;
             if (func_020617a8((u32 *) &e) != 0 && (u32) e > 0xb4) {
@@ -372,7 +372,7 @@ void func_02066fe0(Unk0206bcb0 *a) {
         }
     }
     p = data_021759c0;
-    if (p->mUnk_08 == 2) {
+    if (p->mMode == 2) {
         return;
     }
     g = 1;

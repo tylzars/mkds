@@ -53,7 +53,7 @@ void func_020bbbb4(void) {
         x = func_020b4d9c();
         func_0203c778(x, func_020b4d2c(), &a, &b, &c);
     } else {
-        if (data_021759c0->mUnk_08 != 2 && func_0203c880(func_020b4d9c()) != 0) {
+        if (data_021759c0->mMode != 2 && func_0203c880(func_020b4d9c()) != 0) {
             func_0203c7cc(func_020b4d9c(), &a, &b, &c);
         } else {
             func_0203c950(&a, &b, &c);

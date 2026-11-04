@@ -79,9 +79,9 @@ void func_020c5ce0(void) {
     data_0217b3f0->mUnk_08 = 0;
     data_0217b3f0->mUnk_0c = 0;
     data_0217b3f0->mUnk_10 = 0;
-    if (data_021759c0->mUnk_08 == 4) {
-        if (func_0205fd78(data_021759c0->mUnk_08 == 4 ? data_021759c0->mMissionTableRow : -1,
-                          data_021759c0->mUnk_08 == 4 ? data_021759c0->mMissionTableColumn : -1,
+    if (data_021759c0->mMode == 4) {
+        if (func_0205fd78(data_021759c0->mMode == 4 ? data_021759c0->mMissionTableRow : -1,
+                          data_021759c0->mMode == 4 ? data_021759c0->mMissionTableColumn : -1,
                           &data_0217b3f0->mUnk_14) == 0) {
             data_0217b3f0->mUnk_14 = 9;
         }
@@ -117,7 +117,7 @@ void func_020c5940(void) {
     if (func_020b1d0c() == 0) {
         return;
     }
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         if ((func_0203c880((u16) data_021759c0->mEntryIndex) != 0 ? data_0217561c->mUnk_4e0 : 6) != 0 &&
             func_0207a218() == 0 && n == 0) {
             return;
@@ -127,7 +127,7 @@ void func_020c5940(void) {
     if (*q < 0x7fffffff) {
         *q = *q + 1;
     }
-    switch (data_021759c0->mUnk_08) {
+    switch (data_021759c0->mMode) {
         case 0:
             data_0217b3f0->mUnk_08 = func_0203c8dc(func_020b4d9c()) - 1;
             b = func_0205dc7c(func_020b4d9c());
@@ -207,7 +207,7 @@ void func_020c5804(Unk020c06c4 *a) {
     if (func_020b1d0c() == 0) {
         return;
     }
-    switch (data_021759c0->mUnk_08) {
+    switch (data_021759c0->mMode) {
         case 0:
             func_020c55b0(a);
             break;
@@ -350,7 +350,7 @@ void func_020c525c(void) {
     if (data_021759d0->mUnk_20 == 0) {
         return;
     }
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         data_0217b3ec->mUnk_04 = func_021205e8();
         data_0217b3ec->mUnk_0c = data_0217b3ec->mUnk_10;
         data_0217b3ec->mUnk_10 = func_0212a8d0();
@@ -381,19 +381,19 @@ void func_020c4f08(Unk020c06c4 *a) {
     }
     if (data_021759d0->mUnk_20 != 0) {
         if (func_020b1d20() == 0) {
-            if (data_021759c0->mUnk_08 == 5) {
+            if (data_021759c0->mMode == 5) {
                 p = GetRaceMNcerEntry(data_0217b3ec->mUnk_04 + 0x28);
             } else {
                 p = GetRaceMNcerEntry(data_0217b3ec->mUnk_00 + 0x28);
             }
         } else {
-            if (data_021759c0->mUnk_08 == 5) {
+            if (data_021759c0->mMode == 5) {
                 p = GetRaceGoalMNcerEntry(data_0217b3ec->mUnk_04 + 0x3c);
             } else {
                 p = GetRaceGoalMNcerEntry(data_0217b3ec->mUnk_00 + 0x3c);
             }
         }
-        if (data_021759c0->mUnk_08 == 5 && data_0217b3ec->mUnk_10 != 0 && data_0217b3ec->mUnk_08 < 0x69) {
+        if (data_021759c0->mMode == 5 && data_0217b3ec->mUnk_10 != 0 && data_0217b3ec->mUnk_08 < 0x69) {
             if (func_020b1d20() != 0) {
                 q = GetRaceGoalMNcerEntry(0x42);
             } else {
@@ -489,11 +489,11 @@ void InitRaceStartGp(void) {
     w.mUnk_04 = r;
     w.mUnk_08 = 1;
     w.mUnk_0c = 0;
-    if (data_021759c0->mUnk_08 == 0) {
+    if (data_021759c0->mMode == 0) {
         s = func_02025d8c(data_021759c0->mCourseId);
         w.mUnk_08 = func_020b4b10();
-    } else if (data_021759c0->mUnk_08 == 4) {
-        s = (data_021759c0->mUnk_08 == 4 ? data_021759c0->mMissionTableRow : s) + 0x55;
+    } else if (data_021759c0->mMode == 4) {
+        s = (data_021759c0->mMode == 4 ? data_021759c0->mMissionTableRow : s) + 0x55;
         w.mUnk_08 = func_020b4b54();
     }
     func_02024340(&w, 0, 9, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
@@ -541,7 +541,7 @@ void func_020c4ae8(void) {
 }
 
 void func_020c4ab8(s32 a) {
-    if (data_021759c0->mUnk_08 == 1) {
+    if (data_021759c0->mMode == 1) {
         data_0217b3e4->mUnk_004[a] = 0;
     }
 }
@@ -550,7 +550,7 @@ void func_020c4a04(s32 a) {
     s32 i;
     s32 j;
 
-    if (data_021759c0->mUnk_08 != 1) {
+    if (data_021759c0->mMode != 1) {
         return;
     }
     for (i = 0; i < 0x28; i++) {
@@ -567,7 +567,7 @@ void func_020c4780(void) {
     s32 j;
     Vec3 v;
 
-    if (data_021759c0->mUnk_08 != 1) {
+    if (data_021759c0->mMode != 1) {
         return;
     }
     data_0217b3e4 = HeapAlloc(GetHeap(func_020364e8()), 0x910);
@@ -625,7 +625,7 @@ void func_020c43c4(void) {
     s32 n;
     u32 i;
 
-    if (data_021759c0->mUnk_08 != 1) {
+    if (data_021759c0->mMode != 1) {
         return;
     }
     if (func_020b33d8() == 0) {
@@ -698,7 +698,7 @@ void func_020c3e44(Unk020c06c4 *a) {
     s32 d;
     Unk020c06c4_08 *p;
 
-    if (data_021759c0->mUnk_08 != 1) {
+    if (data_021759c0->mMode != 1) {
         return;
     }
     if (data_0217b3e4->mUnk_000 == 0) {

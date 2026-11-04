@@ -7,7 +7,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 
 void func_0208c284(void) {
-    if (data_021759c0->mUnk_00c == 5 || data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mUnk_00c == 5 || data_021759c0->mMode == 4) {
         data_0217b05c = func_0208be00;
         data_0217b060 = func_0208bde0;
         data_0217b058 = func_0208bdc0;
@@ -25,7 +25,7 @@ void func_0208c284(void) {
         data_0217b064 = func_0208c000;
         data_0217b068 = func_0208bfec;
         data_0217b06c = func_0208bfd8;
-    } else if (data_021759c0->mUnk_08 == 2) {
+    } else if (data_021759c0->mMode == 2) {
         data_0217b05c = func_0208bf94;
         data_0217b060 = func_0208bf6c;
         data_0217b058 = func_0208bf40;

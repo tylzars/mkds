@@ -59,7 +59,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
     Vec3 *t;
     Unk02175620_bc *r;
 
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         func_0207e668(p);
     }
     s = &p->mUnk_08.mUnk_00;
@@ -329,7 +329,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
         }
     }
     if (k[0] == 1) {
-        if (data_021759c0->mUnk_08 == 0) {
+        if (data_021759c0->mMode == 0) {
             if (func_020853a4(m) >= 0x28f) {
                 if (func_0203c8dc(m) >= 4) {
                     for (i = 1; i < 4; i++) {

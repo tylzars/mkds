@@ -427,7 +427,7 @@ void func_020ba520(void) {
 
     q = HeapAlloc(GetHeap(func_020364e8()), 0xc);
     data_0217b3c8 = q;
-    v = data_021759c0->mUnk_08;
+    v = data_021759c0->mMode;
     switch (v) {
         case 4:
             data_0217b3c8->mUnk_00 = v == 4 ? func_ov001_02181820() : 0;
@@ -466,7 +466,7 @@ u32 func_020ba50c(void) {
 void func_020ba3ec(void) {
     s32 v;
 
-    v = data_021759c0->mUnk_08;
+    v = data_021759c0->mMode;
     switch (v) {
         case 4:
             data_0217b3c8->mUnk_00 = v == 4 ? func_ov001_02181820() : 0;
@@ -517,7 +517,7 @@ void func_020b9dfc(Unk020d029c *p) {
     if (data_021759c0->mUnk_00c == 1) {
         return;
     }
-    switch (data_021759c0->mUnk_08) {
+    switch (data_021759c0->mMode) {
         case 4:
             func_020b9994(p);
             return;

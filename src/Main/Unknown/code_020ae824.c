@@ -54,7 +54,7 @@ void func_020ae824(void) {
     if (data_021759c0->mUnk_00c == 4) {
         func_020d1198((Unk020d029c *) data_0217b350->mUnk_004);
     }
-    v = data_021759c0->mUnk_08;
+    v = data_021759c0->mMode;
     if ((v == 2   ? data_0217561c->mUnk_4cc
          : v == 4 ? func_0203c174()
                   : (func_0203c880(func_020b4d9c()) != 0 && data_0217b350->mUnk_8dc == 0)) == 0) {

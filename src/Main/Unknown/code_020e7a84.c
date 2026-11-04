@@ -163,10 +163,10 @@ void func_020e9d10(void) {
     if (data_0217b9ec.mUnk_00e != 0) {
         return;
     }
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         return;
     }
-    if (data_021759c0->mUnk_08 != 4 && data_0217561c->mUnk_000[data_0217b888].mUnk_14 == 1 &&
+    if (data_021759c0->mMode != 4 && data_0217561c->mUnk_000[data_0217b888].mUnk_14 == 1 &&
         (data_0217b8c8->mUnk_48 & 0x800) == 0) {
         Vec3 v;
         data_0217ba2c.mUnk_18 = 2;

@@ -149,12 +149,12 @@ void func_0207abec(u32 a) {
     q->mUnk_10 = 0;
     q->mUnk_14 = 0;
     q->mUnk_18 = 0;
-    data_usa_021658bc = data_021759c0->mUnk_08 == 2 ? 1 : 2;
+    data_usa_021658bc = data_021759c0->mMode == 2 ? 1 : 2;
     func_02073630();
     func_0208c284();
     func_020845cc(a);
     data_0217ad24 = 0;
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         if (gCourseMap->mUnk_10f != 0) {
             data_0217ad24 = 1;
         }
@@ -447,7 +447,7 @@ BOOL func_0207a2a8(s32 *a) {
 
 s32 func_0207a218(void) {
     BOOL r = TRUE;
-    s32 m = data_021759c0->mUnk_08;
+    s32 m = data_021759c0->mMode;
     if (m == 4) {
         Unk0206bcb0 *p = &gKarts[data_021759c0->mEntryIndex];
         if (p->mState != 0 || (p->mUnk_48 & 0x2000840) != 0 || (p->mUnk_44 & 0x10) == 0 ||
@@ -834,13 +834,13 @@ u32 func_020799a0(s32 e) {
     if (e != data_021759c0->mEntryIndex && e != data_021759c0->mUnk_063) {
         d = 0;
     }
-    if (d == 0 && data_021759c0->mUnk_08 != 4) {
+    if (d == 0 && data_021759c0->mMode != 4) {
         c = 0;
     }
     if (c == 0 && func_02062eb0() == 0) {
         b = 0;
     }
-    if (b == 0 && data_021759c0->mUnk_08 != 1) {
+    if (b == 0 && data_021759c0->mMode != 1) {
         a = FALSE;
     }
     if (a != FALSE) {

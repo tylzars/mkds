@@ -87,7 +87,7 @@ void func_01fff524(Unk020ee684 *p) {
     BOOL r;
     s32 a;
     p->mUnk_1ec &= ~0xff;
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         a = p->mUnk_030.mUnk_00;
         if (a == 0x13 || p->mUnk_058.mUnk_000 != 0xf) {
             r = FALSE;
@@ -109,7 +109,7 @@ after:
         return;
     }
     p->mUnk_1ec &= ~0x100;
-    if (data_021759c0->mUnk_08 != 5 && (p->mUnk_1ec & 0x1000)) {
+    if (data_021759c0->mMode != 5 && (p->mUnk_1ec & 0x1000)) {
         return;
     }
     if (func_020f0154(p) == 0) {

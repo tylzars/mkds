@@ -34,7 +34,7 @@ void func_020c1ef8(void) {
         return;
     }
     gRaceGoalS->mUnk_00a4 = 1;
-    if (data_021759c0->mUnk_08 == 2 && data_021759c0->mUseTeams != 0) {
+    if (data_021759c0->mMode == 2 && data_021759c0->mUseTeams != 0) {
         gRaceGoalS->mUnk_00ac = func_020c0f48;
         gRaceGoalS->mUnk_00b0 = 0;
         func_020b1d90();
@@ -47,7 +47,7 @@ void func_020c1ef8(void) {
     x1 = 0;
     for (i = 0; (u32) i < (u32) data_021759c0->mKartCount; i++) {
         gRaceGoalS->mUnk_0040[i] = i;
-        if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
+        if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2) {
             v = x0;
             if ((u32) data_021759c0->mCurrentEntries[i].mUnk_08.mKind <= 3 &&
                 ((1 << data_021759c0->mCurrentEntries[i].mUnk_08.mKind) & 0xd)) {
@@ -64,7 +64,7 @@ void func_020c1ef8(void) {
         }
     }
     func_020ae770(gRaceGoalS->mUnk_0040, a, data_021759c0->mKartCount);
-    if (data_021759c0->mUnk_08 == 3 || data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 3 || data_021759c0->mMode == 5) {
         if (func_020617a8(&w) != 0) {
             if (w >= 0xb4) {
                 func_0212ecc0(&data_0217d068, 0, 0x46);
@@ -119,7 +119,7 @@ void func_020c1bc0(void) {
     if (n % 5 == 0) {
         t = TRUE;
         for (i = 0; (u32) i < (u32) data_021759c0->mKartCount; i++) {
-            if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
+            if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2) {
                 p = func_0205dc7c(i);
                 r = func_0205db28();
                 v = data_0217aa1c->mUnk_000[r][func_0205dc7c(p)].mUnk_05;
@@ -140,7 +140,7 @@ void func_020c1bc0(void) {
             gRaceGoalS->mUnk_00ac = func_020c195c;
             gRaceGoalS->mUnk_00b0 = 0;
             gRaceGoalS->mUnk_00b0 = 0;
-            if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
+            if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2) {
                 func_0212ecc0(&data_0217d068, 0, 0x29);
             }
         } else {
@@ -167,7 +167,7 @@ void func_020c195c(void) {
     n = gRaceGoalS->mUnk_00b0++;
     if (n < 0x5a) {
         for (i = 0; (u32) i < (u32) data_021759c0->mKartCount; i++) {
-            if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
+            if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2) {
                 p = func_0205dc7c(i);
                 r = func_0205db28();
                 gRaceGoalS->mUnk_0020[i] = data_0217aa1c->mUnk_000[r][func_0205dc7c(p)].mUnk_05;
@@ -182,7 +182,7 @@ void func_020c195c(void) {
         if (data_021759c0->mUseTeams != 0) {
             gRaceGoalS->mUnk_00ac = func_020c0fd0;
             gRaceGoalS->mUnk_00b0 = 0;
-        } else if (data_021759c0->mUnk_60 == 1) {
+        } else if (data_021759c0->mCourseNumber == 1) {
             gRaceGoalS->mUnk_00ac = func_020c13e8;
             gRaceGoalS->mUnk_00b0 = 0;
         } else {
@@ -196,7 +196,7 @@ void func_020c195c(void) {
         if (data_021759c0->mUseTeams != 0) {
             gRaceGoalS->mUnk_00ac = func_020c0fd0;
             gRaceGoalS->mUnk_00b0 = 0;
-        } else if (data_021759c0->mUnk_60 == 1) {
+        } else if (data_021759c0->mCourseNumber == 1) {
             gRaceGoalS->mUnk_00ac = func_020c13e8;
             gRaceGoalS->mUnk_00b0 = 0;
         } else {
@@ -333,7 +333,7 @@ void func_020c13e8(void) {
             gRaceGoalS->mUnk_0000[i] = 1;
         }
     } else {
-        if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
+        if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2) {
             if (data_021759c0->mUseTeams != 0) {
                 a = func_020c13e8_inline(0)->mUnk_02;
                 b = func_020c13e8_inline(1)->mUnk_02;
@@ -345,7 +345,7 @@ void func_020c13e8(void) {
             }
             gRaceGoalS->mUnk_00b4 = a >= data_021759c0->mUnk_3d8;
         } else {
-            gRaceGoalS->mUnk_00b4 = (u32) data_021759c0->mUnk_60 >= data_021759c0->mUnk_3d8;
+            gRaceGoalS->mUnk_00b4 = (u32) data_021759c0->mCourseNumber >= data_021759c0->mUnk_3d8;
         }
         gRaceGoalS->mUnk_00ac = func_020c13d0;
         gRaceGoalS->mUnk_00b0 = 0;

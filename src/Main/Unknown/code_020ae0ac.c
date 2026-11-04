@@ -18,7 +18,7 @@ u32 func_020ae0f8(u32 arg0) {
 }
 
 u32 func_020ae0e4(void) {
-    return ((u32) data_021759c0->mUnk_08);
+    return ((u32) data_021759c0->mMode);
 }
 
 u32 func_020ae0c8(u32 arg0) {

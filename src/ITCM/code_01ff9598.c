@@ -102,7 +102,7 @@ BOOL func_01ffa1f8(Unk0206bcb0 *p) {
         if (!(p->mUnk_7c & 0x400) && !(p->mUnk_48 & 0x800)) {
             p->mUnk_48 = p->mUnk_48 | 0x800;
             i = p->mIndex;
-            if (data_021759c0->mUnk_08 == 2) {
+            if (data_021759c0->mMode == 2) {
                 r = func_02041170(0);
             } else {
                 r = func_02041170(data_0217561c->mUnk_000[i].mUnk_46);

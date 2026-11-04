@@ -364,7 +364,7 @@ void func_01ffc558(Unk0206bcb0 *p) {
     enum { K0 } k;
 
     d = data_021759c0;
-    if (d->mUnk_08 != 4) {
+    if (d->mMode != 4) {
         return;
     }
     if (!(d->mUnk_044 & 1)) {

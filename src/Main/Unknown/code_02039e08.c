@@ -149,7 +149,7 @@ void func_0203a0dc(Unk0203a0dc *a, u32 b) {
         }
     }
     if (c != 0) {
-        if (q->mUnk_08 != 5 || func_02037a20() == 0) {
+        if (q->mMode != 5 || func_02037a20() == 0) {
             func_02062284();
         }
     }
@@ -180,7 +180,7 @@ void func_0203a050(void) {
 u32 func_02039f9c(Unk020487fc *a) {
     Unk021a9034 b = data_usa_02164734;
     func_02044940();
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         b.mUnk_1c = 1;
     }
     if (data_021759c0->mUnk_00c != 5) {

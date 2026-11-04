@@ -77,7 +77,7 @@ void func_02041bb0(Vec3 *a, Vec3 *b, s32 c) {
         func_02041dc8(a, b, 0, 0, 0);
         return;
     }
-    switch (data_021759c0->mUnk_08) {
+    switch (data_021759c0->mMode) {
         case 2:
             func_02041dc8(a, b, (u16) ((j + data_0217561c->mUnk_4f8) % 8), 0, 0);
             break;
@@ -348,7 +348,7 @@ u16 func_02041170(u32 a) {
     u16 r;
     Unk02175620 *p;
 
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         p = gCourseMap;
         r = p->mUnk_100;
         p->mUnk_100 = (r + 1) % p->mUnk_028;

@@ -45,8 +45,8 @@ typedef struct KartEntry {
 // The 0x68 bytes at 0x1e8 of the object behind data_021759c0.
 typedef struct Unk021759c0_1e8 {
     /* 00 */ s32 mCourseId;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
+    /* 04 */ s32 mCupIndex;
+    /* 08 */ s32 mMode;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
@@ -62,7 +62,7 @@ typedef struct Unk021759c0_1e8 {
     /* 58 */ u8 mUseTeams;
     /* 59 */ u8 mUnk_59[0x3];
     /* 5c */ s32 mUnk_5c;
-    /* 60 */ u16 mUnk_60;
+    /* 60 */ u16 mCourseNumber;
     /* 62 */ s8 mEntryIndex;
     /* 63 */ u8 mUnk_63;
     /* 64 */ s8 mUnk_64;
@@ -84,8 +84,8 @@ typedef struct Unk021759c0_28 {
 // Object behind data_021759c0.
 typedef struct Unk021759c0 {
     /* 00 */ s32 mCourseId;
-    /* 004 */ s32 mUnk_004;
-    /* 08 */ s32 mUnk_08;
+    /* 004 */ s32 mCupIndex;
+    /* 08 */ s32 mMode;
     /* 00c */ u32 mUnk_00c;
     /* 010 */ s32 mUnk_010;
     /* 014 */ s32 mUnk_014;
@@ -122,7 +122,7 @@ typedef struct Unk021759c0 {
     /* 58 */ s8 mUseTeams;
     /* 059 */ u8 mUnk_059[0x3];
     /* 05c */ s32 mUnk_05c;
-    /* 60 */ u16 mUnk_60;
+    /* 60 */ u16 mCourseNumber;
     /* 62 */ s8 mEntryIndex;
     /* 063 */ u8 mUnk_063;
     /* 064 */ s8 mUnk_064;

@@ -51,7 +51,7 @@ void func_0208b934(void *a) {
     *(u32 *) &data_0217b050 = (u32) func_0208b484;
     if (func_0205e0a0() == 2) {
         d = data_021759c0;
-        if (d->mUnk_08 == 4) {
+        if (d->mMode == 4) {
             *(u32 *) &data_0217b050 = (u32) func_0208b458;
             c = data_0217aa10->mUnk_a4;
             e = 0x96;
@@ -79,7 +79,7 @@ void func_0208b934(void *a) {
     if (func_0205e0a0() != 2) {
         return;
     }
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         t = NULL;
         data_0217b03c = func_02018d94((void *(*) (u32)) func_0208bd04, 0x32, 0xc8, 3, 0xe, 0x1e);
         func_02048590(data_usa_02166168, (u32) c, &t);

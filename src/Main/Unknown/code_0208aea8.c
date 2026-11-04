@@ -172,7 +172,7 @@ void func_0208aea8(u32 a, u32 b, u32 c) {
     if (func_02062eb0() != 0) {
         c = 0;
         b = c;
-    } else if (data_021759c0->mUnk_08 == 2) {
+    } else if (data_021759c0->mMode == 2) {
         b = (u16) (c + 0x25);
     }
     MemCopy(p + b * 0x98, data_0217b038->mUnk_00 + a * 0x98, 0x98);

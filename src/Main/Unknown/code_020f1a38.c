@@ -43,7 +43,7 @@ void func_020f1b10(void) {
         }
         data_0217bc34[i].mUnk_a4 = v;
     }
-    m = data_021759c0->mUnk_08;
+    m = data_021759c0->mMode;
     switch (m) {
         case 2:
             data_0217bc34[8].mUnk_04 = 8;
@@ -82,7 +82,7 @@ void func_020f1a38(void) {
         data_0217bc34[i].mUnk_10 = data_0217bc34[i].mUnk_10 + a[i];
         data_0217bc34[i].mUnk_0c = data_0217bc34[i].mUnk_10;
     }
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         for (i = 0; i < 0xe; i++) {
             data_0217bc34[i].mUnk_0c = data_0217bc34[i].mUnk_0c + 3;
         }

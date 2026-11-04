@@ -182,9 +182,9 @@ void func_ov001_0218b5d8(Unk0218d87c *a) {
 void func_ov001_0218b404(u32 a, Unk02188950 *b) {
     s32 var;
 
-    if (data_021759c0->mUnk_08 == 4 ? func_020a126c() : 0) {
+    if (data_021759c0->mMode == 4 ? func_020a126c() : 0) {
         if (func_ov001_021871f8(b, 1)) {
-            if (data_021759c0->mUnk_08 == 4 ? func_020a1084((u16) data_021759c0->mEntryIndex) : 0) {
+            if (data_021759c0->mMode == 4 ? func_020a1084((u16) data_021759c0->mEntryIndex) : 0) {
                 func_ov001_0218b9b4(b);
             } else {
                 func_ov001_0218b8f8(b);
@@ -247,7 +247,7 @@ void InitKuriking(Unk0218d87c *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != NULL; i++) {
-            if (data_021759c0->mUnk_08 == 4) {
+            if (data_021759c0->mMode == 4) {
                 func_ov001_02181b8c(obj);
             }
             func_ov001_021870e4((void *) a, obj, ("kuriking.nsbmd"), ("kuriking.nsbca"), ("kuriking.prm"));

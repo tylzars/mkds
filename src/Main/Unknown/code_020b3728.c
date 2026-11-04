@@ -59,14 +59,14 @@ void func_020b3cd8(void) {
     BOOL f;
     Unk0217aa1c_00 *q;
 
-    if (d->mUnk_08 == 1) {
+    if (d->mMode == 1) {
         return;
     }
-    if (d->mUnk_08 == 4) {
+    if (d->mMode == 4) {
         return;
     }
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
+        if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2) {
             f = FALSE;
             if ((u32) data_021759c0->mCurrentEntries[i].mUnk_08.mKind <= 3) {
                 if ((1 << data_021759c0->mCurrentEntries[i].mUnk_08.mKind) & 0xd) {
@@ -127,7 +127,7 @@ void func_020b3b58(void) {
     if (d->mUseTeams == 0) {
         return;
     }
-    if (d->mUnk_1c == 1 || d->mUnk_08 == 2) {
+    if (d->mUnk_1c == 1 || d->mMode == 2) {
         a = func_020b3b58_inline(0)->mUnk_02;
     } else {
         q = &data_0217aa1c->mUnk_144[func_0205db28()].mUnk_00[0];
@@ -135,7 +135,7 @@ void func_020b3b58(void) {
     }
     d = data_021759c0;
     c = TRUE;
-    if (d->mUnk_1c != 1 && d->mUnk_08 != 2) {
+    if (d->mUnk_1c != 1 && d->mMode != 2) {
         c = FALSE;
     }
     if (c) {
@@ -208,7 +208,7 @@ void func_020b3728(void) {
         data_0217b35c->mUnk_00 = a + 1;
         if (a == 0) {
             d = data_021759c0;
-            switch (d->mUnk_08) {
+            switch (d->mMode) {
                 case 0:
                 case 1:
                     func_02089ef4(3);
@@ -222,12 +222,12 @@ void func_020b3728(void) {
                     }
                     break;
             }
-            if ((u32) (data_0217d084.mUnk_04 - 2) <= 1 && data_021759c0->mUnk_08 != 2) {
+            if ((u32) (data_0217d084.mUnk_04 - 2) <= 1 && data_021759c0->mMode != 2) {
                 d = data_021759c0;
                 f = TRUE;
                 if (d->mUnk_00c == 1) {
                     f = FALSE;
-                } else if (d->mUnk_08 == 4) {
+                } else if (d->mMode == 4) {
                     switch (d->mUnk_2f) {
                         case 2:
                         case 4:
@@ -257,7 +257,7 @@ void func_020b3728(void) {
             }
         } else if (a == 10) {
             d = data_021759c0;
-            switch (d->mUnk_08) {
+            switch (d->mMode) {
                 case 3:
                     if (d->mUnk_1c == 1) {
                         func_02089ef4((GetKart(d->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
@@ -287,7 +287,7 @@ void func_020b3728(void) {
         return;
     }
     d = data_021759c0;
-    switch (d->mUnk_08) {
+    switch (d->mMode) {
         case 4:
             if ((func_0203c880((u16) d->mEntryIndex) ? data_0217561c->mUnk_4e0 : 6) == 0) {
                 func_02089ef4(6);

@@ -83,7 +83,7 @@ void func_02076a5c(void) {
 
     q = GetKart(data_021759c0->mEntryIndex);
     func_0207729c(data_0217ac94);
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         if (data_021759c0->mUnk_044 & 0x20) {
             (data_0217ac94)->mUnk_0f0 = -0x1000;
         }
@@ -263,7 +263,7 @@ void func_020760ec(Unk02061808 *a, Unk0206bcb0 *b, Vec3 *c) {
                 m = FALSE;
             }
         } else if (j & 0x1e34ef) {
-            if (data_021759c0->mUnk_08 != 2 || Vec3Dot(&data_usa_02154fc4, &w) < 0xfae ||
+            if (data_021759c0->mMode != 2 || Vec3Dot(&data_usa_02154fc4, &w) < 0xfae ||
                 a->mUnk_024.y - b->mUnk_80.y < data_usa_0217ac7c) {
                 Vec3Add(&v, &a->mUnk_024, &a->mUnk_024);
             }
@@ -339,7 +339,7 @@ void func_02075eb8(void) {
     p->mUnk_130 = q->mUnk_4b;
     if ((s16) q->mUnk_40 != -1) {
         func_0207be40(&p->mUnk_194, q);
-        if (data_021759c0->mUnk_08 == 2) {
+        if (data_021759c0->mMode == 2) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
@@ -384,7 +384,7 @@ void func_02075d08(s32 a) {
     p->mUnk_130 = q->mUnk_4b;
     if ((s16) q->mUnk_40 != -1) {
         func_0207be40(&p->mUnk_194, q);
-        if (data_021759c0->mUnk_08 == 2) {
+        if (data_021759c0->mMode == 2) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
@@ -434,7 +434,7 @@ s32 func_02075a94(Unk02061808 *p) {
     func_0207a948(&v, p->mUnk_210);
     i = func_020411e4(&v);
     if (p->mUnk_228 != 0) {
-        if (data_021759c0->mUnk_08 == 2) {
+        if (data_021759c0->mMode == 2) {
             func_02075900(p);
             return 1;
         }
@@ -459,7 +459,7 @@ s32 func_02075a94(Unk02061808 *p) {
                 p->mUnk_130 = q->mUnk_4b;
                 if ((s16) q->mUnk_40 != -1) {
                     func_0207be40(&p->mUnk_194, q);
-                    if (data_021759c0->mUnk_08 == 2) {
+                    if (data_021759c0->mMode == 2) {
                         func_0207bd6c(&p->mUnk_1d0, q);
                     }
                 }
@@ -551,7 +551,7 @@ void func_020757d8(void) {
     p->mUnk_130 = q->mUnk_4b;
     if ((s16) q->mUnk_40 != -1) {
         func_0207be40(&p->mUnk_194, q);
-        if (data_021759c0->mUnk_08 == 2) {
+        if (data_021759c0->mMode == 2) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
@@ -731,7 +731,7 @@ void func_02074e6c(Unk02061808 *p) {
     Vec3Add(&p->mUnk_024, &n, &p->mUnk_018);
     p->mUnk_018.y = p->mUnk_018.y - o->mUnk_2bc;
     p->mUnk_024.y = p->mUnk_024.y - o->mUnk_2bc;
-    if (data_021759c0->mUnk_08 != 4 && data_021759c0->mUnk_08 != 2) {
+    if (data_021759c0->mMode != 4 && data_021759c0->mMode != 2) {
         if (func_01ffdee4(&p->mUnk_024, (u32 *) &p->mUnk_134, 0, data_usa_021656c0 >> 1, 2, -2, &w, NULL, NULL, NULL,
                           NULL, NULL, NULL, NULL) != 0) {
             o = GetKart(p->mUnk_210);

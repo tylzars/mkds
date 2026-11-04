@@ -69,8 +69,8 @@ u32 func_020cc6a4(u32 arg0) {
     return value0;
 }
 
-u32 func_020cc690(void) {
-    return ((u32) data_021759c0->mUnk_004);
+u32 GetCurrentCupIndex(void) {
+    return ((u32) data_021759c0->mCupIndex);
 }
 
 u32 func_020cc67c(void) {
@@ -81,8 +81,8 @@ u32 GetCurrentKartCount(void) {
     return ((u32) data_021759c0->mKartCount);
 }
 
-u32 func_020cc654(void) {
-    return ((u32) data_021759c0->mUnk_08);
+u32 GetCurrentMode(void) {
+    return ((u32) data_021759c0->mMode);
 }
 
 u32 GetCurrentCourseId(void) {

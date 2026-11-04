@@ -152,7 +152,7 @@ void func_020e7760(void) {
         }
         s++;
     }
-    switch (data_021759c0->mUnk_08) {
+    switch (data_021759c0->mMode) {
         case 2:
             data_0217b8b0 = 0;
             break;

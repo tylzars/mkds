@@ -62,7 +62,7 @@ void func_0210f5d4(u32 a) {
         }
     }
     t = 0;
-    if (v == 1 && data_021759c0->mUnk_08 != 4) {
+    if (v == 1 && data_021759c0->mMode != 4) {
         t = 3;
     }
     ((Unk0217d1c0 *) data_0217d1c0)[0].mUnk_04 = t;

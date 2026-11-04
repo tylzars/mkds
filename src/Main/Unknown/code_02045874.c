@@ -75,7 +75,7 @@ void func_02046594(void) {
     u8 i;
     k = 1;
     f = FALSE;
-    switch (data_021759c0->mNextHeader.mUnk_08) {
+    switch (data_021759c0->mNextHeader.mMode) {
         case 0:
         case 1:
         case 4:
@@ -118,7 +118,7 @@ void func_02046024(s32 a) {
     f = 0;
     func_0205db50();
     data_021759c0->mCourseListIndex = 0;
-    data_021759c0->mNextHeader.mUnk_60 = 1;
+    data_021759c0->mNextHeader.mCourseNumber = 1;
     if (a != 0) {
         data_021759c0->mNextHeader.mUnk_0c = 0;
     } else if (data_021759d0->mUnk_1c_2) {
@@ -263,13 +263,13 @@ void func_02045ed0(void) {
     u8 i;
     u8 r;
     func_02046594();
-    switch (data_021759c0->mNextHeader.mUnk_08) {
+    switch (data_021759c0->mNextHeader.mMode) {
         case 0:
             func_0205db50();
-            data_021759c0->mNextHeader.mUnk_60 = 1;
+            data_021759c0->mNextHeader.mCourseNumber = 1;
             data_021759c0->mNextHeader.mUnk_0c = 3;
             data_021759c0->mNextHeader.mCourseId =
-                data_02154128[data_021759c0->mNextHeader.mUnk_04][data_021759c0->mNextHeader.mUnk_60 - 1];
+                data_02154128[data_021759c0->mNextHeader.mCupIndex][data_021759c0->mNextHeader.mCourseNumber - 1];
             break;
         case 3:
             func_02046024(1);
@@ -280,7 +280,7 @@ void func_02045ed0(void) {
         case 5:
             r = 0xff;
             func_0205db50();
-            data_021759c0->mNextHeader.mUnk_60 = 1;
+            data_021759c0->mNextHeader.mCourseNumber = 1;
             data_021759c0->mNextHeader.mUnk_0c = 0;
             for (i = 0; i < 4; i++) {
                 if (data_021759c0->mNextEntries[i].mUnk_08.mKind == 0) {
@@ -297,7 +297,7 @@ void func_02045ed0(void) {
             } else {
                 data_021759c0->mNextHeader.mUnk_0c = 0;
             }
-            data_021759c0->mNextHeader.mUnk_60 = 1;
+            data_021759c0->mNextHeader.mCourseNumber = 1;
             break;
     }
 }
@@ -314,7 +314,7 @@ BOOL func_02045bd4(void) {
     data_0217b488->mUnk_7c = func_0205d4e8((u16) t) - 1;
     data_0217b488->mUnk_80 = func_0205d190();
     data_0217b488->mUnk_90 = data_021759c0->mCurrentEntries[(u8) t].mCharacterIndex;
-    data_0217b488->mUnk_84 = data_021759c0->mUnk_004;
+    data_0217b488->mUnk_84 = data_021759c0->mCupIndex;
     data_0217b488->mUnk_88 = data_021759c0->mUnk_010;
     data_0217b488->mUnk_8c = data_021759c0->mUnk_57;
     c = func_0205dc7c((u8) t);
@@ -372,9 +372,9 @@ void func_02045a2c(s32 a) {
                 break;
             }
         }
-        if (data_021759c0->mUnk_08 == 4) {
-            if ((data_021759c0->mUnk_08 == 4 ? data_021759c0->mMissionTableRow : -1) == 6 &&
-                (data_021759c0->mUnk_08 == 4 ? data_021759c0->mMissionTableColumn : -1) == 9) {
+        if (data_021759c0->mMode == 4) {
+            if ((data_021759c0->mMode == 4 ? data_021759c0->mMissionTableRow : -1) == 6 &&
+                (data_021759c0->mMode == 4 ? data_021759c0->mMissionTableColumn : -1) == 9) {
                 if (i == 0) {
                     x = 7;
                     y = 0x15;
@@ -389,7 +389,7 @@ void func_02045a2c(s32 a) {
                 x = i;
                 y = i * 3;
             }
-        } else if (data_021759c0->mUnk_08 == 0) {
+        } else if (data_021759c0->mMode == 0) {
             if (func_020909cc() != 2) {
                 x = i;
                 y = i * 3;
@@ -411,7 +411,7 @@ s32 func_02045920(void) {
     s32 v;
     s32 x;
     r = TRUE;
-    data_021759c0->mNextHeader.mUnk_60++;
+    data_021759c0->mNextHeader.mCourseNumber++;
     if (data_021759c0->mUnk_3d4 > 1) {
         for (i = 0; i < data_021759c0->mKartCount; i++) {
             x = data_021759c0->mCurrentEntries[i].mUnk_08.mUnk_08;
@@ -456,7 +456,7 @@ s32 func_020458cc(void) {
 }
 
 BOOL func_02045874(void) {
-    data_0217b488->mUnk_5c[data_021759c0->mUnk_60] = data_021759c0->mCourseId;
-    data_021759c0->mNextHeader.mUnk_60++;
-    return data_021759c0->mNextHeader.mUnk_60 <= 4;
+    data_0217b488->mUnk_5c[data_021759c0->mCourseNumber] = data_021759c0->mCourseId;
+    data_021759c0->mNextHeader.mCourseNumber++;
+    return data_021759c0->mNextHeader.mCourseNumber <= 4;
 }

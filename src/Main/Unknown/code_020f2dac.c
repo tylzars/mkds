@@ -45,7 +45,7 @@ void func_020f4884(Unk020f40dc *rec) {
     if (rec->mUnk_10 != 0) {
         return;
     }
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         if (data_021759c0->mEntryIndex == rec->mUnk_04->mUnk_1f8) {
             kind = (Unk020f40dc_Kind) rec->mUnk_00;
             func_020fe958(data_0217bc48[kind].mUnk_08);
@@ -128,7 +128,7 @@ void func_020f45f0(Unk020f40dc *rec, s32 keep) {
     Unk020f40dc_Kind kind = (Unk020f40dc_Kind) rec->mUnk_00;
     u32 tab = data_0217bc48[kind].mUnk_08;
 
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         n = rec->mUnk_08;
         if (rec->mUnk_24 == 0) {
             for (i = 0; i < n; i++) {
@@ -187,7 +187,7 @@ void func_020f41c4(Unk020f40dc *rec) {
     s32 x;
     s32 y;
 
-    if (data_021759c0->mUnk_08 == 1) {
+    if (data_021759c0->mMode == 1) {
         st = &data_0217561c->mUnk_498;
     } else {
         st = &data_0217561c->mUnk_47c;

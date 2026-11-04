@@ -31,7 +31,7 @@ u32 func_02105504(void) {
 
 u32 func_021054d0(void) {
     u32 r = 0;
-    s32 a = data_021759c0->mUnk_08;
+    s32 a = data_021759c0->mMode;
     if (a != 4) {
         return r;
     }

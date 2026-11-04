@@ -24,5 +24,5 @@ void *func_020b2540(void) {
 }
 
 u32 func_020b252c(void) {
-    return ((u32) data_021759c0->mUnk_08);
+    return ((u32) data_021759c0->mMode);
 }

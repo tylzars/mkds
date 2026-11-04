@@ -12,7 +12,7 @@ void func_020f8ddc(void *a) {
     if (p == NULL) {
         return;
     }
-    if (data_021759c0->mUnk_08 != 4) {
+    if (data_021759c0->mMode != 4) {
         return;
     }
     if ((u32) p->mUnk_44 > 1) {

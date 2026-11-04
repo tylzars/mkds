@@ -85,7 +85,7 @@ s32 func_02110e58(void) {
     Unk021759c0 *p;
     a = -1;
     p = data_021759c0;
-    switch (p->mUnk_08) {
+    switch (p->mMode) {
         case 0:
         case 5:
             switch (data_0217d32c.mUnk_0c) {

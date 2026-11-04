@@ -723,7 +723,7 @@ void func_020beb9c(void) {
             data_0217b3dc->mUnk_198[n] = data_021691ec[i].mUnk_0c;
         }
     }
-    if (data_021759c0->mUnk_08 != 4) {
+    if (data_021759c0->mMode != 4) {
         return;
     }
     if (func_ov001_02181510()) {

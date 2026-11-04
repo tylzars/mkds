@@ -165,11 +165,11 @@ void func_020ebef8(Unk020ebef8 *c, Vec3 *d) {
     Unk020f41c4_A *q;
     s32 i;
 
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         func_ov001_0218175c(c->mUnk_000.mKind);
     }
     c->mUnk_000.mFlags |= *(u16 *) data_021594d8;
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         return;
     }
     p = func_020d22c0();
@@ -352,7 +352,7 @@ void func_020eb8f8(Unk020ebef8 *param_1) {
 
 u32 func_020eb7e0(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4) {
     if (*param_3 == 3) {
-        if (data_021759c0->mUnk_08 != 1) {
+        if (data_021759c0->mMode != 1) {
             if (param_2->mUnk_29c == 1 || param_2->mUnk_2a4 > 0x3000) {
                 func_020ebef8(param_1, &param_2->mUnk_0a4);
                 if (data_0217bbf0 == param_1) {

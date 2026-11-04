@@ -8,7 +8,7 @@ u16 func_0203c4d0(u8 a) {
     u16 r = 0;
     Unk0217561c_4dc *t = data_0217561c->mUnk_4dc;
     if (t != NULL) {
-        switch (data_021759c0->mUnk_08) {
+        switch (data_021759c0->mMode) {
             case 0:
                 break;
             case 3: {
@@ -64,14 +64,14 @@ void func_0203c2e4(u16 a) {
         }
         data_0217561c->mUnk_000[0].mUnk_10++;
     }
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         func_020a16d0(a);
     }
     p->mUnk_00 = 4;
     func_02069044(GetKart(a));
     func_020b1cdc(a, 1);
     if (func_0203ef58() != 0) {
-        switch (data_021759c0->mUnk_08) {
+        switch (data_021759c0->mMode) {
             case 1:
                 break;
             case 2:

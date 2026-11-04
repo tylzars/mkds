@@ -121,7 +121,7 @@ void func_0207fd28(Unk02080b1c *p) {
 }
 
 void func_0207fba0(void) {
-    data_usa_0217ae40 = data_021759c0->mUnk_08 == 2 ? &data_usa_021557bc : &data_usa_021557c0;
+    data_usa_0217ae40 = data_021759c0->mMode == 2 ? &data_usa_021557bc : &data_usa_021557c0;
     switch (func_020853dc()) {
         case 0:
             data_usa_0217ae38 = data_usa_0215572c;
@@ -723,7 +723,7 @@ void func_0207e668(Unk020888b4 *p) {
             p->mUnk_7a = 0x78;
             break;
         case 1:
-            if (data_021759c0->mUnk_08 == 2) {
+            if (data_021759c0->mMode == 2) {
                 p->mUnk_a8 = 3;
                 func_0208c1f4(p->mUnk_00->mUnk_310);
                 p->mUnk_7a = 0xb4;

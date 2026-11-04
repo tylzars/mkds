@@ -5,12 +5,12 @@ void func_020cca9c(u32 p0) {
     data_021759c0->mNextHeader.mUnk_14 = p0;
 }
 
-void func_020cca88(u32 p0) {
-    data_021759c0->mNextHeader.mUnk_08 = p0;
+void SetNextMode(u32 p0) {
+    data_021759c0->mNextHeader.mMode = p0;
 }
 
-void func_020cca74(u32 p0) {
-    data_021759c0->mNextHeader.mUnk_04 = p0;
+void SetNextCupIndex(u32 p0) {
+    data_021759c0->mNextHeader.mCupIndex = p0;
 }
 
 void SetNextCourseId(u32 p0) {

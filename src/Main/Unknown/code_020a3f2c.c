@@ -873,7 +873,7 @@ void func_020a4c58(u16 a) {
     Unk020a2fe4 *f;
     Unk020a2fe4 *l;
 
-    if (data_021759c0->mUnk_08 != 2) {
+    if (data_021759c0->mMode != 2) {
         return;
     }
     func_020a4d94(a, a);
@@ -900,7 +900,7 @@ void func_020a4c58(u16 a) {
 }
 
 void func_020a4c20(void) {
-    if (data_021759c0->mUnk_08 != 2) {
+    if (data_021759c0->mMode != 2) {
         return;
     }
     func_020a305c();
@@ -942,7 +942,7 @@ void func_020a49d4(Unk020a3fa8 *a) {
     if (func_020d3bf8(0x6c) == 0) {
         d = data_021759c0;
         n = d->mKartCount;
-        if (d->mUnk_08 == 2) {
+        if (d->mMode == 2) {
             func_020ac588(0x6c, 0x20, a);
         } else {
             func_020ac588(0x6c, 4, a);
@@ -1206,7 +1206,7 @@ u32 func_020a3f48(void) {
     s32 k;
 
     d = data_021759c0;
-    k = d->mUnk_08;
+    k = d->mMode;
     if (k == 2 && d->mUnk_18 == 0) {
         return func_0209bf8c();
     }

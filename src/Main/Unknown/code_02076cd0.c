@@ -103,7 +103,7 @@ void func_02077998(void) {
     *(u32 *) 0x4000580 = 0xbfff0000;
     data_0217aca8 = 1;
     i = data_0217acac = 0;
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         i = data_021759c0->mUnk_036;
         i = (u16) i;
     } else {
@@ -147,7 +147,7 @@ void func_020777ac(u32 a) {
     if (data_021759c0->mUnk_00c == 6) {
         data_0217acbc->mUnk_218 = gCourseMap->mUnk_7c;
     }
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         data_0217acbc->mUnk_218 = gCourseMap->mUnk_d0;
         if (data_0217acbc->mUnk_218 != NULL) {
             n = 0;

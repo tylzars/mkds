@@ -216,7 +216,7 @@ void func_020649ec(Unk0206bcb0 *a, void (**b)(Unk0206bcb0 *)) {
     c = data_021759c0->mCurrentEntries[a->mIndex].mUnk_08.mKind == 3;
     a->mKartModelsEntry = func_02079bf0(a->mIndex);
     func_0208adc8(&a->mKartModelsEntry->mUnk_040, 1);
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         for (i = 0; i < 9; i++) {
             if (i == 3) {
                 a->mUnk_20c_fn[i] = c != 0 ? func_020637e0 : func_02063830;
@@ -258,7 +258,7 @@ void func_020649ec(Unk0206bcb0 *a, void (**b)(Unk0206bcb0 *)) {
     } else {
         a->mUnk_20c_fn[2] = func_020641b8;
     }
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         if (c != 0) {
             a->mUnk_508 = &a->mUnk_514->mUnk_10;
             a->mUnk_50c = &a->mUnk_514->mUnk_4c;

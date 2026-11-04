@@ -28,7 +28,7 @@ s32 func_0203c880(u32 param_1) {
 void func_0203c7cc(s32 a, u8 *b, u8 *c, u16 *d) {
     Unk0217561c_14 *p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + a * 0x8c);
     BOOL g = TRUE;
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         if (data_021759c0->mUnk_18 == 1) {
             g = FALSE;
         }

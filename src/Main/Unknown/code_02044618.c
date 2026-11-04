@@ -49,8 +49,8 @@ void func_02045590(void) {
     Unk020565e4 *e;
 
     data_021759c0->mNextHeader.mCourseId = 0x14;
-    data_021759c0->mNextHeader.mUnk_04 = 0;
-    data_021759c0->mNextHeader.mUnk_08 = 0;
+    data_021759c0->mNextHeader.mCupIndex = 0;
+    data_021759c0->mNextHeader.mMode = 0;
     data_021759c0->mNextHeader.mUnk_0c = 0;
     data_021759c0->mNextHeader.mUnk_10 = 0;
     data_021759c0->mNextHeader.mUnk_14 = 0;
@@ -65,7 +65,7 @@ void func_02045590(void) {
     data_021759c0->mNextHeader.mUnk_57 = 0;
     data_021759c0->mNextHeader.mUseTeams = 0;
     data_021759c0->mNextHeader.mUnk_5c = 0;
-    data_021759c0->mNextHeader.mUnk_60 = 1;
+    data_021759c0->mNextHeader.mCourseNumber = 1;
     data_021759c0->mNextHeader.mEntryIndex = -1;
     data_021759c0->mNextHeader.mUnk_63 = 0;
     data_021759c0->mNextHeader.mUnk_64 = -1;
@@ -319,7 +319,7 @@ void func_02044940(void) {
     BOOL f;
 
     r = 0;
-    switch (data_021759c0->mNextHeader.mUnk_08) {
+    switch (data_021759c0->mNextHeader.mMode) {
         case 0:
         case 2:
         case 3:
@@ -417,7 +417,7 @@ void func_020446e0(void) {
     u8 c;
     s32 d;
 
-    switch (data_021759c0->mNextHeader.mUnk_08) {
+    switch (data_021759c0->mNextHeader.mMode) {
         case 0:
             if (data_021759c0->mNextHeader.mCourseId == 0x34) {
                 data_021759c0->mNextHeader.mCourseId = 0x34;
@@ -455,10 +455,10 @@ void func_020446e0(void) {
                         n = 3;
                     }
                 }
-                data_021759c0->mNextHeader.mUnk_60 = (u8) (n + 1);
+                data_021759c0->mNextHeader.mCourseNumber = (u8) (n + 1);
                 a = &data_021759c0->mNextHeader;
                 data_021759c0->mNextHeader.mUnk_0c = 3;
-                data_021759c0->mNextHeader.mUnk_04 = m;
+                data_021759c0->mNextHeader.mCupIndex = m;
             }
             break;
         case 2:
@@ -479,7 +479,7 @@ void func_020446e0(void) {
 void func_0204465c(void) {
     u16 i;
 
-    if (data_021759c0->mNextHeader.mUnk_08 != 1) {
+    if (data_021759c0->mNextHeader.mMode != 1) {
         return;
     }
     data_021759c0->mNextHeader.mUnk_0c = 0;
@@ -497,7 +497,7 @@ u16 func_02044618(void) {
 
     r = 1;
     p = data_021759c0;
-    if (p->mUnk_08 != 2) {
+    if (p->mMode != 2) {
         if (p->mUnk_064 <= 0) {
             r = gCourseMap->mUnk_018->mUnk_02;
         } else {

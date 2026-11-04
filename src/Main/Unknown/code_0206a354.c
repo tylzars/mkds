@@ -47,7 +47,7 @@ void func_0206bbb4(Unk0206bcb0 *p, int a, int b) {
     p->mUnk_366 = a;
     p->mUnk_4c |= 0x20;
     func_020efea4(&(data_027e00c8)[p->mIndex]);
-    if (data_021759c0->mUnk_08 == 4 && data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
         func_ov001_0218173c();
     }
     if (b != 0) {
@@ -70,7 +70,7 @@ void func_0206bb04(Unk0206bcb0 *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mUnk_08 == 2 && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) {
         func_02088c7c(p->mUnk_310);
     }
 }
@@ -123,7 +123,7 @@ void func_0206b914(Unk0206bcb0 *p) {
     p->mUnk_340 = p->mUnk_80.y;
     p->mUnk_348 = 0;
     func_020eff40(&(data_027e00c8)[p->mIndex]);
-    if (data_021759c0->mUnk_08 == 4 && data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
         func_ov001_0218173c();
     }
     if (!(p->mUnk_48 & 0x840)) {
@@ -208,7 +208,7 @@ void func_0206b5b4(Unk0206bcb0 *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mUnk_08 == 2 && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) {
         func_02088c7c(p->mUnk_310);
     }
     p->mUnk_4c &= ~0x80000010;
@@ -282,7 +282,7 @@ void func_0206b358(Unk0206bcb0 *p) {
         func_0210af40(p, p->mUnk_3cc, 2);
     }
     func_020efea4(&(data_027e00c8)[p->mIndex]);
-    if (data_021759c0->mUnk_08 == 4 && data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
         func_ov001_0218173c();
     }
 }
@@ -330,7 +330,7 @@ void func_0206b16c(Unk0206bcb0 *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mUnk_08 == 2 && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) {
         func_02088c7c(p->mUnk_310);
     }
 }
@@ -399,7 +399,7 @@ void func_0206add0(Unk0206bcb0 *p, const Vec3 *a, s32 b) {
     v = data_02154f7c;
     func_020397a8(&v, a, &p->mUnk_31c);
     func_020eff40(&(data_027e00c8)[p->mIndex]);
-    if (data_021759c0->mUnk_08 == 4 && data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
         func_ov001_0218173c();
     }
     if (!(p->mUnk_7c & 0x400)) {
@@ -472,7 +472,7 @@ void func_0206ac10(Unk0206bcb0 *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mUnk_08 == 2 && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) {
         func_02088c7c(p->mUnk_310);
     }
     if (p->mUnk_44 & 0x10) {
@@ -523,7 +523,7 @@ s32 func_0206a980(Unk0206bcb0 *p, const Vec3 *a, s32 b) {
     }
     func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
     func_020eff40(&(data_027e00c8)[p->mIndex]);
-    if (data_021759c0->mUnk_08 == 4 && data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
         func_ov001_0218173c();
     }
     if (p->mKartModelsEntry->mUnk_058 == 0) {
@@ -586,7 +586,7 @@ void func_0206a784(Unk0206bcb0 *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mUnk_08 == 2 && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) {
         func_02088c7c(p->mUnk_310);
     }
     if (p->mUnk_44 & 0x10) {
@@ -613,7 +613,7 @@ void func_0206a624(Unk0206bcb0 *p) {
     func_0206bcb0(p, 2, 1);
     func_0210f9ac(p);
     func_020eff40(&(data_027e00c8)[p->mIndex]);
-    if (data_021759c0->mUnk_08 == 4 && data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
         func_ov001_0218173c();
     }
     p->mUnk_41c.x = 0x1000;

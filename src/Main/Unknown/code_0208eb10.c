@@ -443,7 +443,7 @@ void func_0208f0f8(void *a) {
     data_021663d8 = 0xe;
     data_021663e8 = 1;
     n = 1;
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         n += 3;
     } else if (data_021759c0->mUnk_00c == 5) {
         data_021663f0 = 0;
@@ -456,7 +456,7 @@ void func_0208f0f8(void *a) {
         n = 6;
     }
     m = data_021663e4 * n;
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         a = data_0217aa10->mUnk_a4;
     }
     data_0217b08c = HeapAlloc(a, 0x38);

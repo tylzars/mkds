@@ -166,7 +166,7 @@ void func_0206dfd0(Unk0206bcb0 *p) {
                 g.z = (s32) (((s64) n.z * f) >> 12);
                 q->mUnk_2a8 += Vec3Dot(&q->mUnk_50, &g);
             }
-            if (data_021759c0->mUnk_08 == 2) {
+            if (data_021759c0->mMode == 2) {
                 k = func_020a1ee4(p->mIndex, q->mIndex);
             }
             w = p->mUnk_4c;

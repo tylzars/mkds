@@ -117,7 +117,7 @@ static inline s32 func_0203df74_c_inline(Unk02175620_4c *r, u16 c, s32 v) {
 }
 
 static inline void func_0203e550_inline(s32 a) {
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         func_0203e788(a, 0);
     }
 }
@@ -156,7 +156,7 @@ void func_0203e550(Unk0217561c_14 *a) {
         func_020b1a34();
     }
     f = FALSE;
-    if (data_021759c0->mUnk_08 != 4) {
+    if (data_021759c0->mMode != 4) {
         f = TRUE;
     } else {
         switch (data_021759c0->mUnk_2f) {
@@ -174,7 +174,7 @@ void func_0203e550(Unk0217561c_14 *a) {
         return;
     }
     a->mUnk_3a = func_02044618();
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         s = &data_021759c0->mUnk_28_view;
         g = TRUE;
         t = func_0207a6b0();
@@ -196,7 +196,7 @@ void func_0203e550(Unk0217561c_14 *a) {
             func_0203e788(a->mUnk_3c_4, 4);
         }
     } else {
-        if ((a->mUnk_30 & 1) == 0 && data_021759c0->mUnk_08 == 5) {
+        if ((a->mUnk_30 & 1) == 0 && data_021759c0->mMode == 5) {
             return;
         }
         a->mUnk_30 |= 0x40;
@@ -416,7 +416,7 @@ void func_0203d9d4(void) {
         if (f == FALSE && (s->mUnk_30 & 0x40) != 0) {
             func_0203e9a0(s, 1);
             if (func_0203ef58() != 0) {
-                switch (data_021759c0->mUnk_08) {
+                switch (data_021759c0->mMode) {
                     case 1:
                         break;
                     case 2:
@@ -437,7 +437,7 @@ void func_0203d9d4(void) {
         }
         if ((s->mUnk_30 & 8) != 0) {
             s->mUnk_30 &= ~8;
-            if (data_021759c0->mUnk_08 != 4) {
+            if (data_021759c0->mMode != 4) {
                 func_0207a828(s->mUnk_3c_4);
                 if ((s->mUnk_30 & 1) != 0) {
                     func_02110cc8(0);
@@ -477,7 +477,7 @@ void func_0203d848(void *a) {
     data_0217561c->mUnk_4dc = FindMainRaceOrMainEffectFile(data_usa_021647b8);
     data_0217561c->mUnk_4c8 = FindMainRaceOrMainEffectFile(data_usa_021647c8);
     func_0203d8fc(data_0217561c->mUnk_4c8);
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         func_0205e2cc(a);
     }
     func_020401ac();
@@ -494,7 +494,7 @@ void func_0203d568(void) {
             func_02145d38();
         }
     }
-    switch (data_021759c0->mUnk_08) {
+    switch (data_021759c0->mMode) {
         case 3:
             func_0203d568_b_inline();
             break;

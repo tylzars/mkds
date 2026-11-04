@@ -14,7 +14,7 @@ void func_0202991c(u32 p0) {
 }
 
 void func_02029908(u32 p0) {
-    data_021759c0->mNextHeader.mUnk_08 = p0;
+    data_021759c0->mNextHeader.mMode = p0;
 }
 
 void func_020298f4(u32 p0) {

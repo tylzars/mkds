@@ -32,10 +32,10 @@ void func_02085fd8(void) {
     Unk0217aec0 *r;
     data_0217aec0 = NULL;
     p = data_021759c0;
-    if (p->mUnk_00c != 5 && p->mUnk_08 != 2 && p->mUnk_00c != 6) {
+    if (p->mUnk_00c != 5 && p->mMode != 2 && p->mUnk_00c != 6) {
         r = func_02047950(data_usa_02165990);
         p = data_021759c0;
-        if (p->mUnk_08 == 0) {
+        if (p->mMode == 0) {
             r = &r[(p->mCourseId - 1) * 12 + p->mUnk_010];
         } else {
             r = &r[(p->mCourseId - 1) * 12 + (p->mUnk_010 + 1) * 3];
@@ -70,7 +70,7 @@ void func_02085e04(void) {
     data_0217aebc->mUnk_084 = m;
     data_0217aebc->mUnk_088 = m;
     data_0217aebc->mUnk_08c = z;
-    if (data_021759c0->mUnk_08 == 1) {
+    if (data_021759c0->mMode == 1) {
         data_0217aebc->mUnk_128 = &data_0217561c->mUnk_498;
     } else {
         data_0217aebc->mUnk_128 = &data_0217561c->mUnk_47c;
@@ -85,7 +85,7 @@ void func_02085e04(void) {
     if (data_0217aec0 != NULL) {
         func_02085bec();
         func_02085ad8();
-        if (data_021759c0->mUnk_08 == 0) {
+        if (data_021759c0->mMode == 0) {
             switch (data_021759c0->mUnk_010) {
                 case 0:
                     data_0217aebc->mUnk_138 = 0;
@@ -122,7 +122,7 @@ void func_02085e04(void) {
     func_0207fba0();
     func_0207e268();
     func_0207c78c();
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         func_02089974();
         func_02090354();
     }
@@ -183,7 +183,7 @@ void func_02085bec(void) {
     }
     data_0217aebc->mUnk_110 = 1;
     data_0217aebc->mUnk_11c = 0;
-    if (data_021759c0->mUnk_08 == 0) {
+    if (data_021759c0->mMode == 0) {
         for (i = 0; i < data_021759c0->mKartCount; i++) {
             k = i;
             v = func_0205d3f0(k);
@@ -262,7 +262,7 @@ void func_02085ad8(void) {
     a = 0;
     p = data_021759c0;
     for (; (u32) a < p->mKartCount; a++) {
-        if (p->mUnk_08 == 1) {
+        if (p->mMode == 1) {
             v = a;
         } else {
             v = func_02085984(a, &g);

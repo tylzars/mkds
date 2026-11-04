@@ -72,7 +72,7 @@ void func_02068b98(Unk0206bcb0 *a) {
     c = a->mUnk_3c8;
     if (c >= 0x19 || (b & 4) != 0) {
         d = FALSE;
-        if (data_021759c0->mUnk_08 == 2) {
+        if (data_021759c0->mMode == 2) {
             if (func_020a128c() != 0) {
                 d = TRUE;
             }
@@ -84,7 +84,7 @@ void func_02068b98(Unk0206bcb0 *a) {
             if (a->mUnk_3c8 >= 0xb9) {
                 *e = *e | 0x80000;
                 func_02063ad0(a);
-                k = data_021759c0->mUnk_08 == 5 ? &a->mUnk_1d8 : &a->mUnk_1b8;
+                k = data_021759c0->mMode == 5 ? &a->mUnk_1d8 : &a->mUnk_1b8;
                 if (a->mUnk_2c8 == -1) {
                     a->mUnk_2c8 = func_020d555c(k, a->mUnk_2cc->mUnk_00 + 0xd000, 0x8000, a);
                 }
@@ -244,7 +244,7 @@ void func_020688a0(Unk0206bcb0 *a) {
             case 6:
             default:
                 if ((a->mUnk_7c & 1) != 0) {
-                    if (data_021759c0->mUnk_08 == 4) {
+                    if (data_021759c0->mMode == 4) {
                         func_020a16d0(a->mIndex);
                     }
                     a->mUnk_7c = a->mUnk_7c | 0x20000;
@@ -252,7 +252,7 @@ void func_020688a0(Unk0206bcb0 *a) {
                 }
                 break;
         }
-        if (data_021759c0->mUnk_08 == 4) {
+        if (data_021759c0->mMode == 4) {
             func_020a12b8();
         }
     }
@@ -260,7 +260,7 @@ void func_020688a0(Unk0206bcb0 *a) {
     if ((c & 1) == 0) {
         return;
     }
-    if (data_021759c0->mUnk_08 == 2 || data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 2 || data_021759c0->mMode == 4) {
         d = 1;
         if ((c & 0x10000) != 0) {
             d = 0;
@@ -299,7 +299,7 @@ void func_02068640(Unk0206bcb0 *a, s32 b) {
         func_01ffcd84(&a->mUnk_120, &a->mUnk_e0_m);
         func_02063b10(a, &e);
         func_02072b94(a, &c, &e, NULL);
-        f = data_021759c0->mUnk_08 == 5 ? &a->mUnk_1d8 : &a->mUnk_1b8;
+        f = data_021759c0->mMode == 5 ? &a->mUnk_1d8 : &a->mUnk_1b8;
         if (a->mUnk_2c8 == -1) {
             a->mUnk_2c8 = func_020d555c(f, a->mUnk_2cc->mUnk_00 + 0xd000, 0x8000, a);
         }
@@ -321,7 +321,7 @@ void func_02068640(Unk0206bcb0 *a, s32 b) {
     func_02068494(a, 0, b);
     h = a->mUnk_7c;
     if ((h & 1) != 0) {
-        if (data_021759c0->mUnk_08 == 2 || data_021759c0->mUnk_08 == 4) {
+        if (data_021759c0->mMode == 2 || data_021759c0->mMode == 4) {
             i = 1;
             if ((h & 0x10000) != 0) {
                 i = 0;
@@ -382,7 +382,7 @@ void func_02068494(Unk0206bcb0 *a, s32 b, s32 c) {
             func_02068a64(a, 3, 1);
         }
     }
-    if (data_021759c0->mUnk_08 == 2) {
+    if (data_021759c0->mMode == 2) {
         Vec3Sub(&a->mUnk_80, &d.mUnk_04, &d.mUnk_28);
         func_020a21bc(a->mIndex, (s32) &d.mUnk_28);
     }

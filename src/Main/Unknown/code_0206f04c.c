@@ -70,7 +70,7 @@ void func_0206ff50(Unk0206bcb0 *p, u32 a) {
             return;
         }
         b = (u16) ((func_020d59f8(0x8000) & 0xe0) >> 5);
-        h = data_021759c0->mUnk_08;
+        h = data_021759c0->mMode;
         if (h == 2 || h == 4) {
             func_020705fc(p, b);
             return;
@@ -82,7 +82,7 @@ void func_0206ff50(Unk0206bcb0 *p, u32 a) {
     if (!(p->mUnk_48 & 0x800)) {
         p->mUnk_48 |= 0x800;
         k = p->mIndex;
-        if (data_021759c0->mUnk_08 == 2) {
+        if (data_021759c0->mMode == 2) {
             c = func_02041170(0);
         } else {
             c = func_02041170(data_0217561c->mUnk_000[k].mUnk_46);

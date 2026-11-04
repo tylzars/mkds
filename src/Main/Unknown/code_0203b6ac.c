@@ -111,7 +111,7 @@ void func_0203b6ac(u8 *a) {
     r.mUnk_00 = (u32) ((t[0] * 60 + t[1]) * 60 + t[2] + func_0200f5ac());
     r.mUnk_08 = 0x5d588b656c078965ULL;
     r.mUnk_10 = 0x269ec3;
-    data_021759c0->mNextHeader.mUnk_08 = 0;
+    data_021759c0->mNextHeader.mMode = 0;
     data_021759c0->mNextHeader.mUnk_0c = 1;
     data_021759c0->mNextHeader.mUnk_10 = 2;
     data_021759c0->mNextHeader.mUseTeams = 0;

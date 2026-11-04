@@ -48,7 +48,7 @@ void func_02073630(void) {
         data_0217ac14 = func_01ffa380;
     }
     data_0217ac10 = 0;
-    if (d->mUnk_08 == 2) {
+    if (d->mMode == 2) {
         switch (d->mCourseId) {
             case 0x2a:
             case 0x2b:
@@ -156,7 +156,7 @@ void func_020733ec(Unk0206bcb0 *p) {
     }
     p->mUnk_2ca = -1;
     p->mUnk_2c8 = p->mUnk_2ca;
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         v = &p->mUnk_1d8;
     } else {
         v = &p->mUnk_1b8;
@@ -171,7 +171,7 @@ void func_020733ec(Unk0206bcb0 *p) {
     p->mUnk_4d0 = 0x64;
     p->mUnk_1d0 = p->mUnk_2cc->mUnk_00;
     func_020719d0(p);
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         p->mUnk_514 = HeapAlloc(h, 0xb8);
         func_02071fb8(p, h);
     }

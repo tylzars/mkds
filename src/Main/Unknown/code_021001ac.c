@@ -572,7 +572,7 @@ void func_02101178(Unk02101c84 *p) {
     g = func_02061808();
     if (!(p->mUnk_000.mUnk_74 & 0x8000000)) {
         o = data_021759c0;
-        f = (o->mUnk_08 == 2) ? func_02101d90 : func_02101f7c;
+        f = (o->mMode == 2) ? func_02101d90 : func_02101f7c;
         if (o->mUseTeams != 0) {
             if ((p->mUnk_000.mUnk_78 & 0x8000) == 0) {
                 i = (u16) (p->mUnk_000.mUnk_78 & ~0xff00);

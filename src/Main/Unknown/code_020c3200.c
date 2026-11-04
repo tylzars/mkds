@@ -92,7 +92,7 @@ void UpdateRaceGoalSOffset(void) {
             break;
         case 2:
             gRaceGoalS->mOffset = 0;
-            if (data_021759c0->mUnk_08 == 5 && func_020b32ec() != 0) {
+            if (data_021759c0->mMode == 5 && func_020b32ec() != 0) {
                 gRaceGoalS->mOffsetState = 3;
                 gRaceGoalS->mOffsetStateFrames = 0;
                 return;
@@ -110,7 +110,7 @@ void UpdateRaceGoalSOffset(void) {
                 gRaceGoalS->mOffset = func_020ae4c0(1, 0, -0x20, n, 0x14);
             } else {
                 gRaceGoalS->mOffset = -0x20;
-                if (data_021759c0->mUnk_08 == 5 && func_020b32ec() != 0) {
+                if (data_021759c0->mMode == 5 && func_020b32ec() != 0) {
                     gRaceGoalS->mOffsetState = 7;
                     gRaceGoalS->mOffsetStateFrames = 0;
                 } else {
@@ -130,7 +130,7 @@ void UpdateRaceGoalSOffset(void) {
             break;
         case 5:
             gRaceGoalS->mOffset = 0;
-            if (data_021759c0->mUnk_08 != 5) {
+            if (data_021759c0->mMode != 5) {
                 return;
             }
             if (func_020b32ec() == 0) {
@@ -196,12 +196,12 @@ void InitRaceGoalS(void) {
     gRaceGoalS->mUnk_00b4 = 0;
     gRaceGoalS->mUnk_00a0 = -0x100;
     for (j = 0; j < data_021759c0->mKartCount; j = (u16) (j + 1)) {
-        if (data_021759c0->mUnk_1c == 1 || data_021759c0->mUnk_08 == 2) {
+        if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2) {
             e = data_021759c0->mCurrentEntries[j].mUnk_08.mKind;
             k = e == 0 || e == 2 || e == 3 ? 1 : 0;
             l = func_0205d360(j);
             s[j] = l * 16 + k * 8;
-            if (data_021759c0->mUnk_08 == 3 || data_021759c0->mUnk_08 == 5) {
+            if (data_021759c0->mMode == 3 || data_021759c0->mMode == 5) {
                 s[j] = s[j] + (8 - func_0205d27c(j));
             } else {
                 s[j] += 8 - j;

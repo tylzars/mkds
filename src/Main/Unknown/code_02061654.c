@@ -160,15 +160,15 @@ void func_02062b50(void) {
     data_0217aa7c = &data_0217aa88->mUnk_030;
     func_02077060(data_0217aa88);
     func_02047b6c(3);
-    switch (data_021759c0->mUnk_08) {
+    switch (data_021759c0->mMode) {
         case 2:
             func_020a0e00();
             break;
         case 4:
-            if (data_021759c0->mUnk_08 == 4) {
+            if (data_021759c0->mMode == 4) {
                 func_ov001_021819f4();
             }
-            if (data_021759c0->mUnk_08 == 4) {
+            if (data_021759c0->mMode == 4) {
                 func_020a0e00();
             }
             break;
@@ -268,15 +268,15 @@ void func_02062464(void) {
     if (data_0217aa54->mUnk_0c == 0) {
         func_02085778();
     }
-    switch (data_021759c0->mUnk_08) {
+    switch (data_021759c0->mMode) {
         case 2:
             func_020a08ec();
             break;
         case 4:
-            if (data_021759c0->mUnk_08 == 4) {
+            if (data_021759c0->mMode == 4) {
                 func_ov001_02181860();
             }
-            if (data_021759c0->mUnk_08 == 4) {
+            if (data_021759c0->mMode == 4) {
                 func_020a08ec();
             }
             break;
@@ -340,7 +340,7 @@ void func_02062464(void) {
     func_0203ca38();
     func_0207aa7c();
     func_0208677c();
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         if (data_0217aa54->mUnk_34 == 0) {
             if (data_0217aa54->mUnk_30 == 0) {
                 data_0217aa54->mUnk_04++;
@@ -678,14 +678,14 @@ s32 func_020617a8(u32 *a) {
 }
 
 s32 func_02061788(void) {
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         return 0x2e;
     }
     return 0x1f;
 }
 
 u16 func_02061768(void) {
-    if (data_021759c0->mUnk_08 == 4) {
+    if (data_021759c0->mMode == 4) {
         return 0x2d;
     }
     return 0x1e;

@@ -106,13 +106,13 @@ u32 func_0209702c(CoverPooHole *p, Unk0206bcb0 *a, u8 *b, u8 *c) {
                     p->mUnk_fc = 0x800;
                     p->mUnk_100 = 0x100;
                     func_020d26f8(&p->mUnk_00, a);
-                    if (data_021759c0->mUnk_08 == 4) {
+                    if (data_021759c0->mMode == 4) {
                         v.x = (p->mUnk_00.mPos.x + a->mUnk_80.x) >> 1;
                         v.y = (p->mUnk_00.mPos.y + a->mUnk_80.y) >> 1;
                         v.z = (p->mUnk_00.mPos.z + a->mUnk_80.z) >> 1;
                         func_0208b7bc(0x442, &v);
                         func_0208b7bc(0x443, &v);
-                        if (data_021759c0->mUnk_08 == 4) {
+                        if (data_021759c0->mMode == 4) {
                             func_ov001_0218175c(p->mUnk_00.mKind);
                         }
                     }
@@ -368,7 +368,7 @@ void func_020968f4(Unk020968f4 *p) {
         v1->mUnk_00 = (s64) v1->mUnk_08 * (s64) v1->mUnk_00 + v1->mUnk_10;
         o->mTimer =
             (u16) (o->mUnk_00.mCourseMapRow->mUnk_28 + (u16) (((u64) (u32) (v1->mUnk_00 >> 32) * 60) >> 32) - 30);
-        if (data_021759c0->mUnk_08 == 4) {
+        if (data_021759c0->mMode == 4) {
             o->mState = 3;
             o->mUnk_a0 = 0x2000;
             o->mUnk_a4 = -0xd000;
@@ -505,7 +505,7 @@ void func_02095fec(void *a, CoverPooHole *p) {
             break;
     }
     if ((p->mState == 6 || p->mState == 7) && p->mUnk_104 == 0) {
-        if (data_021759c0->mUnk_08 == 4) {
+        if (data_021759c0->mMode == 4) {
             p->mState = 3;
             p->mUnk_a0 = 0x2000;
             p->mUnk_a4 = -0xd000;
@@ -588,7 +588,7 @@ void func_02095fec(void *a, CoverPooHole *p) {
                 return;
             }
             p->mTimer = (u16) (p->mUnk_00.mCourseMapRow->mUnk_28 + func_02095fec_inline(60) - 30);
-            if (data_021759c0->mUnk_08 == 4) {
+            if (data_021759c0->mMode == 4) {
                 p->mState = 3;
                 p->mUnk_a0 = 0x2000;
                 p->mUnk_a4 = -0xd000;

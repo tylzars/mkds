@@ -70,7 +70,7 @@ void func_020875b4(void) {
     s32 w;
     BOOL k;
     v1 = GetHeap(func_020364e8());
-    if (data_021759c0->mUnk_08 == 0) {
+    if (data_021759c0->mMode == 0) {
         f = TRUE;
     } else {
         f = FALSE;
@@ -235,7 +235,7 @@ void func_02087458(Unk02086098 *a) {
 }
 
 u16 func_020873e4(int a) {
-    if (data_021759c0->mUnk_08 == 5) {
+    if (data_021759c0->mMode == 5) {
         return data_02155a2c[data_021759c0->mCurrentEntries[a].mUnk_08.mUnk_25];
     }
     if (data_021759c0->mUseTeams != 0) {

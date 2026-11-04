@@ -54,7 +54,7 @@ s32 func_020c70a0(void) {
 void func_020c6fac(void) {
     s32 i;
 
-    if (data_021759c0->mUnk_08 != 1) {
+    if (data_021759c0->mMode != 1) {
         return;
     }
     data_0217b3f4 = HeapAlloc(GetHeap(func_020364e8()), 0xe8);
@@ -75,13 +75,13 @@ void func_020c6fac(void) {
 }
 
 void func_020c6f84(void) {
-    if (data_021759c0->mUnk_08 == 1) {
+    if (data_021759c0->mMode == 1) {
         data_0217b3f4 = NULL;
     }
 }
 
 void func_020c6f14(void) {
-    if (data_021759c0->mUnk_08 != 1) {
+    if (data_021759c0->mMode != 1) {
         return;
     }
     data_0217b3f4->mUnk_00();
@@ -360,7 +360,7 @@ void func_020c610c(void) {
         } else {
             r = FALSE;
             if (func_020ba620() != 0) {
-                if (data_021759c0->mUnk_08 == 1 && data_021759c0->mUnk_3e6 == 1) {
+                if (data_021759c0->mMode == 1 && data_021759c0->mUnk_3e6 == 1) {
                     MemCopy(&data_021759c0->mUnk_3e2, &x, 4);
                     v1 = TRUE;
                 } else {
@@ -430,7 +430,7 @@ void func_020c5f7c(void) {
     }
     r = FALSE;
     if (func_020ba620() != 0) {
-        if (data_021759c0->mUnk_08 == 1 && data_021759c0->mUnk_3e6 == 1) {
+        if (data_021759c0->mMode == 1 && data_021759c0->mUnk_3e6 == 1) {
             MemCopy(&data_021759c0->mUnk_3e2, &x, 4);
             v1 = TRUE;
         } else {
