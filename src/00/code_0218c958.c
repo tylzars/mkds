@@ -21,8 +21,6 @@
 #include "code_021384cc.h"
 #include "00/code_021a3668.h"
 
-// non-matching: loop temporaries get other registers (values in r4/r0 swapped) and the stack word at 0x20 is never
-// stored (0xac bytes against 0xb6)
 void func_ov000_0218ccbc(SbServerList *p) {
     s32 v1;
     s32 v2;
@@ -47,11 +45,11 @@ void func_ov000_0218ccbc(SbServerList *p) {
     v7 = 1;
     v8 = 1;
     for (; i < 8; i++) {
-        s = ((p->mUnk_074[0] & v6) ^ (s ^ (t = i, t ^= p->mUnk_074[i - 1], t &= v5, t))) ^
+        s = ((p->mUnk_074[0] & v6) ^ (s ^ (t = i, t = (s32) (t ^ p->mUnk_074[i - 1]), t &= v5, t))) ^
             ((p->mUnk_074[0] < 0x4f) ? v3 : v4) ^ ((p->mUnk_074[i - 1] < p->mUnk_074[0]) ? v1 : v2);
         p->mUnk_074[i] = (s32) rand() % 0x5d + 0x21;
-        if ((s != 0 && (p->mUnk_074[i] & v7) != 0) || (s == 0 && (p->mUnk_074[i] & v8) == 1)) {
-            p->mUnk_074[i] = p->mUnk_074[i] + 1;
+        if ((s != 0 && (p->mUnk_074[i] & v7) == 0) || (s == 0 && (p->mUnk_074[i] & v8) == 1)) {
+            p->mUnk_074[i] += 1;
         }
     }
 }

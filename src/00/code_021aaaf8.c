@@ -99,17 +99,17 @@ void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b) {
     }
 }
 
-// non-matching: one instruction order, ours loads ldrb r6, [r0] before adds r4, #0x23 and the original after; same size
 void func_ov000_021aab74(Unk021a998c_0c *a, u8 *b) {
     u8 n;
-    u8 *c;
     u8 *p;
+    u8 *q;
     Unk021ab5e4 *s;
     MemCopy(b + 2, a->mUnk_028, 0x20);
-    n = b[0x22];
-    c = b + 0x23;
+    q = b + 0x22;
+    b = (u8 *) b + 0x23;
+    n = *q;
     s = a->mUnk_000;
-    if (s != NULL && n == 0x20 && memcmp(s->mUnk_00, c, 0x20) == 0) {
+    if (s != NULL && n == 0x20 && memcmp(s->mUnk_00, b, 0x20) == 0) {
         a->mUnk_004 = 1;
     } else {
         if (s != NULL) {
@@ -118,11 +118,11 @@ void func_ov000_021aab74(Unk021a998c_0c *a, u8 *b) {
         if (n == 0) {
             a->mUnk_000 = &data_ov000_021b6198;
         } else {
-            a->mUnk_000 = func_ov000_021ab5e4(c);
+            a->mUnk_000 = func_ov000_021ab5e4(b);
         }
         a->mUnk_004 = 0;
     }
-    p = c + n;
+    p = b + n;
     a->mUnk_006 = (p[0] << 8) + p[1];
     a->mUnk_429 = 2;
 }

@@ -21,15 +21,15 @@ void func_ov003_021c1a60(Unk021d34e0 *param_1) {
     func_ov003_021d34e0(param_1, func_ov003_021c1a44);
 }
 
-// non-matching: the original keeps the two coordinate locals in stack memory (extra stores and a reload after the
-// call), size 0x50 against 0x68
+static inline void func_ov003_021c1b8c_inline(Unk021bf920 *p, u32 *x, u32 *y) {
+    *x = (p->mUnk_00 & 0x1ff0000) >> 16;
+    *y = p->mUnk_00 & 0xff;
+}
+
 void func_ov003_021c1abc(Unk021d34e0 *param_1) {
-    u32 a;
+    s32 a;
     s32 b;
-    Unk021bf920 *p;
-    p = data_ov003_021da160->mUnk_10[9];
-    a = (p->mUnk_00 & 0x1ff0000) >> 16;
-    b = p->mUnk_00 & 0xff;
+    func_ov003_021c1b8c_inline(data_ov003_021da160->mUnk_10[9], (u32 *) &a, (u32 *) &b);
     b = b - 0xc;
     if (b > data_ov003_021d6274[19]) {
         func_ov003_021c1364(3, b);
@@ -57,11 +57,6 @@ void func_ov003_021c1b24(Unk021d34e0 *param_1) {
     func_ov003_021c1364(2, data_ov003_021d6274[13]);
     func_ov003_021c1364(3, 0xc0);
     func_ov003_021d34e0(param_1, func_ov003_021c1abc);
-}
-
-static inline void func_ov003_021c1b8c_inline(Unk021bf920 *p, u32 *x, u32 *y) {
-    *x = (p->mUnk_00 & 0x1ff0000) >> 16;
-    *y = p->mUnk_00 & 0xff;
 }
 
 void func_ov003_021c1b8c(Unk021d34e0 *param_1) {
