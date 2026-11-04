@@ -4,6 +4,58 @@
 #include "00/unk_021b6380.h"
 #include "code_0200f5ac.h"
 
+u32 func_ov000_021ad6c0(void) {
+    u32 a;
+    u8 *b;
+    u8 *c;
+
+    c = data_ov000_021b6706;
+    b = func_ov000_021ad754(c, 1, &a);
+    if (data_ov000_021b63bc != 0) {
+        b[0] = 0x32;
+        b[1] = 4;
+        b[2] = (u16) (data_ov000_021b63bc >> 16) >> 8;
+        b[3] = data_ov000_021b63bc >> 16;
+        b[4] = (u16) data_ov000_021b63bc >> 8;
+        b[5] = data_ov000_021b63bc;
+        b += 6;
+    }
+    *b = 0xff;
+    b++;
+    b = func_ov000_021ad734(0, 0x12c, b, b - c);
+    func_ov000_021adbf4(c, b - c);
+    return a;
+}
+
+u32 func_ov000_021ad620(s32 a) {
+    u32 b;
+    u8 *c;
+    u8 *d;
+
+    d = data_ov000_021b6706;
+    c = func_ov000_021ad754(d, 3, &b);
+    if (a == 0) {
+        c[0] = 0x32;
+        c[1] = 4;
+        c[2] = (u16) (data_ov000_021b63bc >> 16) >> 8;
+        c[3] = data_ov000_021b63bc >> 16;
+        c[4] = (u16) data_ov000_021b63bc >> 8;
+        c[5] = data_ov000_021b63bc;
+        c[6] = 0x36;
+        c[7] = 4;
+        c[8] = (u16) (data_ov000_021b638c >> 16) >> 8;
+        c[9] = data_ov000_021b638c >> 16;
+        c[10] = (u16) data_ov000_021b638c >> 8;
+        c[11] = data_ov000_021b638c;
+        c += 12;
+    }
+    *c = 0xff;
+    c++;
+    c = func_ov000_021ad734(0, 0x12c, c, c - d);
+    func_ov000_021adbf4(d, c - d);
+    return b;
+}
+
 s32 func_ov000_021ad3b8(u32 a, s32 b) {
     u32 c;
     s32 d;
@@ -82,56 +134,4 @@ s32 func_ov000_021ad3b8(u32 a, s32 b) {
         func_ov000_021adf00(j);
     }
     return d;
-}
-
-u32 func_ov000_021ad620(s32 a) {
-    u32 b;
-    u8 *c;
-    u8 *d;
-
-    d = data_ov000_021b6706;
-    c = func_ov000_021ad754(d, 3, &b);
-    if (a == 0) {
-        c[0] = 0x32;
-        c[1] = 4;
-        c[2] = (u16) (data_ov000_021b63bc >> 16) >> 8;
-        c[3] = data_ov000_021b63bc >> 16;
-        c[4] = (u16) data_ov000_021b63bc >> 8;
-        c[5] = data_ov000_021b63bc;
-        c[6] = 0x36;
-        c[7] = 4;
-        c[8] = (u16) (data_ov000_021b638c >> 16) >> 8;
-        c[9] = data_ov000_021b638c >> 16;
-        c[10] = (u16) data_ov000_021b638c >> 8;
-        c[11] = data_ov000_021b638c;
-        c += 12;
-    }
-    *c = 0xff;
-    c++;
-    c = func_ov000_021ad734(0, 0x12c, c, c - d);
-    func_ov000_021adbf4(d, c - d);
-    return b;
-}
-
-u32 func_ov000_021ad6c0(void) {
-    u32 a;
-    u8 *b;
-    u8 *c;
-
-    c = data_ov000_021b6706;
-    b = func_ov000_021ad754(c, 1, &a);
-    if (data_ov000_021b63bc != 0) {
-        b[0] = 0x32;
-        b[1] = 4;
-        b[2] = (u16) (data_ov000_021b63bc >> 16) >> 8;
-        b[3] = data_ov000_021b63bc >> 16;
-        b[4] = (u16) data_ov000_021b63bc >> 8;
-        b[5] = data_ov000_021b63bc;
-        b += 6;
-    }
-    *b = 0xff;
-    b++;
-    b = func_ov000_021ad734(0, 0x12c, b, b - c);
-    func_ov000_021adbf4(c, b - c);
-    return a;
 }
