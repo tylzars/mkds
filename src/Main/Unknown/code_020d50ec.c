@@ -568,39 +568,36 @@ u32 func_020d5344(s32 a) {
     return -1;
 }
 
-// non-matching: same size; registers only: the loop variables are in other registers from +0x8 (original: r8, r7,
-// r5 for the first three values, r4 and lr for the bounds)
 void func_020d5180(void *a, s32 b, s32 c) {
     Vec3 *v = a;
-    s32 m;
-    s32 p;
-    s32 q;
-    s32 s;
-    s32 j;
-    s32 x;
-    s32 z;
     s32 hi;
     s32 lo;
+    s32 s;
+    s32 j;
+    s32 k;
+    s32 z;
+    s32 m;
     s32 zhi;
+    s32 p;
     s32 zlo;
     s32 t;
     Unk0217b5b8 *e;
     s32 f;
 
     m = data_0217b5b0;
-    x = v->x;
+    k = v->x;
     z = v->z;
-    hi = ((x + b) << 5) >> 16;
-    lo = ((x - b) << 5) >> 16;
+    hi = (s16) ((k + b) >> 11);
+    lo = (s16) ((k - b) >> 11);
     p = 0;
     data_0217b5a8 = 0;
-    q = 0;
+    k = 0;
     zhi = z + b;
     zlo = z - b;
     s = m - 1;
     for (;;) {
         t = p + s;
-        j = q + s;
+        j = k + s;
         if (t <= m) {
             if (lo > data_0217b5b4[t - 1].mUnk_02) {
                 p = t;
@@ -608,7 +605,7 @@ void func_020d5180(void *a, s32 b, s32 c) {
         }
         if (j <= m) {
             if (hi >= data_0217b5c0[j].mUnk_02) {
-                q = j;
+                k = j;
             }
         }
         if (s == 1) {
@@ -617,15 +614,15 @@ void func_020d5180(void *a, s32 b, s32 c) {
         s = (s + 1) >> 1;
     }
     s = data_0217b5b4[p].mUnk_01;
-    if (q < s) {
+    if (k < s) {
         return;
     }
     do {
-        if (data_0217b5c0[q].mUnk_00 >= p) {
-            e = &data_0217b5b8[data_0217b5c0[q].mUnk_01];
+        if (data_0217b5c0[k].mUnk_00 >= p) {
+            e = &data_0217b5b8[data_0217b5c0[k].mUnk_01];
             f = e->mUnk_14;
             if (e->mUnk_04 >= zlo && e->mUnk_08 <= zhi && (f & c) && !(f & 0x200)) {
-                data_0217b5cc[data_0217b5a8] = data_0217b5c0[q].mUnk_01;
+                data_0217b5cc[data_0217b5a8] = data_0217b5c0[k].mUnk_01;
                 data_0217b5bc[data_0217b5a8] = f;
                 data_0217b5c4[data_0217b5a8] = e->mUnk_18;
                 data_0217b5a8++;
@@ -636,10 +633,10 @@ void func_020d5180(void *a, s32 b, s32 c) {
                 continue;
             }
         }
-        if (q == 0) {
+        if (k == 0) {
             return;
         }
-    } while (--q >= s);
+    } while (--k >= s);
 }
 
 void func_020d5148(s16 a, s32 b) {

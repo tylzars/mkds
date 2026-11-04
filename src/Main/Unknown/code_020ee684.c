@@ -1253,14 +1253,14 @@ void func_020ee9b0(Unk020eda5c *a) {
     }
 }
 
-// non-matching: the word at 0x04 uses r1 where the original uses r2 (0x264 vs 0x268 bytes)
 void func_020ee748(Unk020eda5c *a) {
     Unk020ee684 *c;
-    s32 e;
-    s32 n;
     s32 i;
+    s32 n;
+    s32 e;
     u32 d;
     Unk020f41c4_A *q;
+    enum { K0 } k;
 
     c = a->mUnk_00c;
     n = a->mUnk_020;
@@ -1271,22 +1271,24 @@ void func_020ee748(Unk020eda5c *a) {
         if (a->mUnk_176 < 0x578) {
             a->mUnk_176 = a->mUnk_176 + 0x46;
         }
+        a->mUnk_174 = a->mUnk_174 + a->mUnk_176;
         if (d >= 0x12c) {
             d = 0x12c;
         }
-        a->mUnk_174 = a->mUnk_174 + a->mUnk_176;
         a->mUnk_174 = a->mUnk_174 + (s32) d;
     }
     a->mUnk_17c = a->mUnk_17c + (s32) (((s64) a->mUnk_07c * 0x666) >> 12);
-    a->mUnk_17c = a->mUnk_17c - (s32) (((s64) a->mUnk_17c * 0x666) >> 12);
+    a->mUnk_17c = a->mUnk_17c - (s32) (((s64) a->mUnk_17c * 0x333) >> 12);
     Vec3AddScaled((a->mUnk_17c - a->mUnk_07c) + (s32) (((s64) a->mUnk_084.z * 0x4333) >> 12), &a->mUnk_02c.mUnk_0c,
                   &a->mUnk_050, &a->mUnk_180);
     a->mUnk_178 =
         a->mUnk_178 +
         (s32) (((s64) ((a->mUnk_078 + (s32) (((s64) a->mUnk_084.z * 0x3000) >> 12)) - a->mUnk_178) * 0x333) >> 12);
     func_020eea6c(a);
-    e = data_0217bc34[a->mUnk_000].mUnk_70;
-    for (i = 0; i < n; i++) {
+    i = 0;
+    k = a->mUnk_000;
+    e = data_0217bc34[k].mUnk_70;
+    for (; i < n; i++) {
         q = a->mUnk_014[i];
         if (func_020fa0b8(q, e, 0x19a) != 0) {
             func_020f9f08(q, a->mUnk_084.x, a->mUnk_084.y);

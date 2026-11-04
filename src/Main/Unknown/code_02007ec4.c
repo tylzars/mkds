@@ -10,12 +10,11 @@
 
 #pragma thumb on
 
-// non-matching: 0x78 bytes, original 0x74; 4 lines differ; first: original `ldr r1, [pc, #96]`, ours `ldr r0, [pc, //
-// #96]`
 void func_02007ec4(Unk02007ec4 *a, u16 b, u16 c, u32 d, u32 e) {
     u32 v1;
     u32 v2;
-    MemCopy(*(u16 *) 0x027ffc40 == 2 ? (void *) 0x027ffc42 : (void *) 0, a, 0x3c);
+    u16 *p = (u16 *) 0x027ffc40;
+    MemCopy(*p == 2 ? (void *) (p + 1) : (void *) 0, a, 0x3c);
     a->mUnk_3c = 0x10;
     a->mUnk_44 = a->mUnk_0c | (a->mUnk_0e << 16);
     a->mUnk_48 = a->mUnk_10;

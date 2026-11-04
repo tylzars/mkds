@@ -51,16 +51,11 @@ void func_0204bfac(u32 a, u32 b, u32 c, u32 d) {
     v2->mUnk_000c = 1;
 }
 
-// non-matching: size matches (0x1fc); 14 words differ: before the node loop the end pointer, the copy of the first node
-// and the zero sit in r7, r8 and r6 where the original has r8, r6 and r7, and five instructions there are in another
-// order
 void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, Unk02003024 *f, s32 g) {
     u32 v1;
     Unk02175ec0 *v2;
     Unk02175ec0_440s *v3;
     Unk0204c090 *v4;
-    Unk0204c090 *v6;
-    Unk0204c090 *v5;
     Unk0204c090 *v7;
 
     v1 = IrqDisable();
@@ -76,18 +71,16 @@ void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, Unk02003024 *f, s32 g) {
     func_0200ee74(v3, 0x46f0);
     func_0200ee98();
     v4 = (Unk0204c090 *) ((u8 *) v3 + 0xc0);
-    v5 = (Unk0204c090 *) ((u8 *) v3 + 0x46c0);
     v3->mUnk_46c0 = v4;
-    if (v4 + 1 < v5) {
-        v6 = v4;
+    if (v4 + 1 < (Unk0204c090 *) &v3->mUnk_46c0) {
         do {
             v4->mUnk_000 = v4 + 1;
             FS_InitFile(&v4->mUnk_038);
             v4->mUnk_084 = 0;
             v4->mUnk_080 = 0;
-            v4->mUnk_08c = (v4 + 0x10001) - v6;
+            v4->mUnk_08c = (v4 + 0x10001) - (Unk0204c090 *) ((u8 *) v3 + 0xc0);
             v4++;
-        } while (v4 + 1 < v5);
+        } while (v4 + 1 < (Unk0204c090 *) &v3->mUnk_46c0);
     }
     v4->mUnk_000 = NULL;
     v3->mUnk_46d0 = 0;
