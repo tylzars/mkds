@@ -233,62 +233,57 @@ void func_02024000(u8 *a, s32 b, s32 c, s32 d, s32 e, u32 f, s32 g) {
     }
 }
 
-// non-matching: 92.1%, same frame, one instruction short: the original loads fmt first, computes xe * fmt into r7 and
-// copies it to sl for e (`mov sl, r7`); x, y, fmt and g sit in other registers, and so does s in the 4-bit loop
 void func_02023d84(Unk02023d84 *a) {
     u8 *src;
-    s32 x;
     u32 e;
     s32 v;
-    s32 y;
     u32 base;
     s32 y0;
     s32 ye;
-    u32 w;
     s32 n;
-    s32 xe;
     s32 fmt;
+    s32 x;
+    s32 y;
     u32 *p;
-    s32 r0;
     s32 o;
-    s32 g;
     u32 *q;
     s32 s;
+    u32 w;
+    u32 w8;
+    u32 w2;
+    u32 c;
+    s32 g;
     Unk020247fc b;
     u32 t;
-    u32 w2;
     Unk020247fc z;
-    u32 c;
 
     x = a->mUnk_08;
     y = a->mUnk_0c;
     v = x >= 0 ? x : 0;
-    xe = x + a->mUnk_10;
+    e = x + a->mUnk_10;
     if (y >= 0) {
         y0 = y;
     } else {
         y0 = 0;
     }
     ye = y + a->mUnk_14;
-    if (xe >= 8) {
-        xe = 8;
+    if ((s32) e >= 8) {
+        e = 8;
     }
-    if (ye >= 8) {
-        ye = 8;
-    }
+    ye = ye >= 8 ? 8 : ye;
     if (y > 0) {
         y = 0;
     }
+    o = -y;
     if (x > 0) {
         x = 0;
     }
-    fmt = a->mUnk_20;
-    r0 = xe * fmt;
     g = a->mUnk_1c;
-    e = r0;
     n = a->mUnk_18;
+    o = o * n + g * -x;
+    fmt = a->mUnk_20;
     v = v * fmt;
-    o = -y * n + g * -x;
+    e = e * fmt;
     src = a->mUnk_04;
     if (fmt == 4) {
         w = a->mUnk_24;
@@ -318,7 +313,7 @@ void func_02023d84(Unk02023d84 *a) {
     p = a->mUnk_00 + y0 * 2;
     q = a->mUnk_00 + ye * 2;
     for (; p < q; p += 2) {
-        w = p[0];
+        w8 = p[0];
         w2 = p[1];
         z.mUnk_00 = src + ((u32) o >> 3);
         z.mUnk_04 = 0;
@@ -328,13 +323,13 @@ void func_02023d84(Unk02023d84 *a) {
             t = BitStreamReadBits(&z, g);
             if (t != 0) {
                 if ((u32) s < 0x20) {
-                    w = (w & ~(0xff << s)) | ((base + t) << s);
+                    w8 = (w8 & ~(0xff << s)) | ((base + t) << s);
                 } else {
-                    w2 = (w2 & ~(0xff << (s - 0x20))) | ((base + t) << (s - 0x20));
+                    w2 = (w2 & ~(0xff << (u32) (s - 0x20))) | ((base + t) << (u32) (s - 0x20));
                 }
             }
         }
-        p[0] = w;
+        p[0] = w8;
         p[1] = w2;
         o += n;
     }

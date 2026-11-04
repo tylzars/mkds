@@ -805,19 +805,28 @@ void func_02019ee4(Unk020184e4 *p, Unk0201e3c8 *n) {
     data_02161ac0[p->mUnk_40->mUnk_20->mUnk_14->mUnk_00_11](p->mUnk_40->mUnk_7c, p->mUnk_40->mUnk_7e, 0, 0);
 }
 
-// non-matching: same instructions; the 4-bit field and the hardware register addresses sit in different registers (28
-// words differ)
+typedef enum { UNK_02019DF8_KIND_0 } Unk02019df8_Kind;
+
+static inline void func_02019df8_inline(u32 addr, Unk02019df8_Kind b0, Unk02019df8_Kind b4, Unk02019df8_Kind b8,
+                                        Unk02019df8_Kind b12, Unk02019df8_Kind b14, Unk02019df8_Kind b16) {
+    reg_G3_TEXIMAGE_PARAM =
+        (addr >> 3) | (b0 << 26) | 0x40000000 | (b4 << 20) | (b8 << 23) | (b12 << 16) | (b14 << 18) | (b16 << 29);
+}
+
 void func_02019df8(Unk020184e4_2c *a) {
     Unk020184e4_2c_0c w;
+    u32 sx;
+    u32 sy;
 
     w = a->mUnk_0c;
-    reg_G3_TEXIMAGE_PARAM = (a->mUnk_04 >> 3) | (w.mUnk_00_0 << 26) | 0x40000000 | (w.mUnk_00_4 << 20) |
-                            (w.mUnk_00_8 << 23) | (w.mUnk_00_12 << 16) | (w.mUnk_00_14 << 18) | (w.mUnk_00_16 << 29);
+    func_02019df8_inline(a->mUnk_04, w.mUnk_00_0, w.mUnk_00_4, w.mUnk_00_8, w.mUnk_00_12, w.mUnk_00_14, w.mUnk_00_16);
     reg_G3_PLTT_BASE = a->mUnk_08 >> (4 - (w.mUnk_00_0 == 2 ? 1 : 0));
     reg_G3_MTX_MODE = 3;
     reg_G3_MTX_IDENTITY = 0;
-    reg_G3_MTX_SCALE = a->mUnk_10 << 12;
-    reg_G3_MTX_SCALE = a->mUnk_12 << 12;
+    sx = a->mUnk_10 << 12;
+    sy = a->mUnk_12 << 12;
+    reg_G3_MTX_SCALE = sx;
+    reg_G3_MTX_SCALE = sy;
     reg_G3_MTX_SCALE = 0;
     reg_G3_MTX_MODE = 1;
 }
