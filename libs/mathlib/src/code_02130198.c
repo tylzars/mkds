@@ -34,7 +34,7 @@ asm u64 _ll_ufrom_d(u32 a, u32 b) {
     orrs ip, r3, ip, lsl r2
     bxeq lr
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -53,7 +53,7 @@ u64_shift_short:
     movs ip, r3, lsl r2
     bxeq lr
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -69,7 +69,7 @@ u64_too_small:
     mov r1, #0
     mov r0, #0
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -89,7 +89,7 @@ u64_negative:
     // Invalid: trap if enabled, else set the flag and return all ones.
 u64_invalid:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -104,14 +104,14 @@ u64_invalid:
 u64_trap_invalid:
     ldr r2, =0x4c000f8
     stmdb sp!, {lr}
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmia sp!, {lr}
     bx lr
     // Inexact trap: pass the result.
 u64_trap_inexact:
     ldr r2, =0x40c000f8
     stmdb sp!, {lr}
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmia sp!, {lr}
     bx lr
 }

@@ -1,37 +1,37 @@
 #pragma once
 
 #include "types.h"
-#include "code_0213ee6c.h" // Unk02136638
+#include "code_0213ee6c.h" // DigitRecord
 
-// 16 bytes. Filled by func_0213770c; func_021352e0 passes it by value (moved as four words) to
-// func_02135c80, func_02136850, func_02136f14 and func_02137358.
-typedef struct Unk021352e0 {
-    /* 00 */ u8 mUnk_00;
-    /* 01 */ u8 mUnk_01;
-    /* 02 */ u8 mUnk_02;
-    /* 03 */ u8 mUnk_03;
-    /* 04 */ u8 mUnk_04;
-    /* 05 */ u8 mUnk_05;
-    /* 08 */ s32 mUnk_08;
+// 16 bytes. Filled by FormatParseSpec; FormatWithPutFunc passes it by value (moved as four words) to
+// FormatDouble, FormatDoubleHex, FormatInt64 and FormatInt32.
+typedef struct FormatSpec {
+    /* 00 */ u8 mPadKind;
+    /* 01 */ u8 mSignKind;
+    /* 02 */ u8 mHasDot;
+    /* 03 */ u8 mHash;
+    /* 04 */ u8 mArgKind;
+    /* 05 */ u8 mSpecChar;
+    /* 08 */ s32 mMinLength;
     /* 0c */ s32 mUnk_0c;
-} Unk021352e0;
+} FormatSpec;
 
-// Strings passed to strcpy by func_02135c80 and func_02136850.
-extern char data_0216ee80[];
-extern char data_0216ee88[];
-extern char data_0216ee90[];
-extern char data_0216ee94[];
-extern char data_0216ee98[];
-extern char data_0216eea0[];
-extern char data_0216eea8[];
-extern char data_0216eeac[];
-// String passed to strcpy by func_02136850.
-extern char data_0216eeb0[];
+// Strings passed to strcpy by FormatDouble and FormatDoubleHex.
+extern char gFormatMinusInfUpper[];
+extern char gFormatMinusInfLower[];
+extern char gFormatInfUpper[];
+extern char gFormatInfLower[];
+extern char gFormatMinusNanUpper[];
+extern char gFormatMinusNanLower[];
+extern char gFormatNanUpper[];
+extern char gFormatNanLower[];
+// String passed to strcpy by FormatDoubleHex.
+extern char gFormatHexZero[];
 
-int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b, char *c);
-char *func_02135c80(double v, char *end, Unk021352e0 spec);
-void func_02136638(Unk02136638 *a, int k);
-char *func_02136850(double v, char *end, Unk021352e0 spec);
-char *func_02136f14(u64 v, char *end, Unk021352e0 spec);
-char *func_02137358(unsigned long v, char *end, Unk021352e0 spec);
-const char *func_0213770c(const char *p, char **b, Unk021352e0 *buf);
+int FormatWithPutFunc(void *(*f)(void *, const char *, u32), void *a, const char *b, char *c);
+char *FormatDouble(double v, char *end, FormatSpec spec);
+void FormatRoundDigitChars(DigitRecord *a, int k);
+char *FormatDoubleHex(double v, char *end, FormatSpec spec);
+char *FormatInt64(u64 v, char *end, FormatSpec spec);
+char *FormatInt32(unsigned long v, char *end, FormatSpec spec);
+const char *FormatParseSpec(const char *p, char **b, FormatSpec *buf);

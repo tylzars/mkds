@@ -38,13 +38,13 @@ void GpiQueueErrorCallback(GpConnection *a, s32 result, s32 fatal) {
 
     iconnection = a->mGpiConnection;
     if (iconnection == NULL) {
-        func_0213442c(data_ov000_021b2a8c, data_ov000_021b2a58, NULL, 0x23);
+        AssertionFailed(data_ov000_021b2a8c, data_ov000_021b2a58, NULL, 0x23);
     }
     if (result == 0) {
-        func_0213442c(data_ov000_021b2aa0, data_ov000_021b2a58, NULL, 0x24);
+        AssertionFailed(data_ov000_021b2aa0, data_ov000_021b2a58, NULL, 0x24);
     }
     if (fatal != 1 && fatal != 0) {
-        func_0213442c(data_ov000_021b2ab8, data_ov000_021b2a58, NULL, 0x25);
+        AssertionFailed(data_ov000_021b2ab8, data_ov000_021b2a58, NULL, 0x25);
     }
     if (fatal == 1) {
         iconnection->mFatal = 1;
@@ -97,10 +97,10 @@ void GpiCallAndFreeCallback(GpConnection *a, GpiQueuedCallback *data) {
     s32 d;
 
     if (data->mCallback.mCallback == NULL) {
-        func_0213442c(data_ov000_021b2a38, data_ov000_021b2a58, NULL, 0x6e);
+        AssertionFailed(data_ov000_021b2a38, data_ov000_021b2a58, NULL, 0x6e);
     }
     if (data->mArg == NULL) {
-        func_0213442c(data_ov000_021b2a68, data_ov000_021b2a58, NULL, 0x6f);
+        AssertionFailed(data_ov000_021b2a68, data_ov000_021b2a58, NULL, 0x6f);
     }
     data->mCallback.mCallback(a, data->mArg, data->mCallback.mUnk_04);
     if (data->mUnk_0c == 2) {

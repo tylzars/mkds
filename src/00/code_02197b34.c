@@ -14,7 +14,7 @@ void AppendBufferBytes(Gt2Buffer *buffer, const u8 *b, int len) {
             len = strlen((const char *) b);
         }
         if (buffer->mLength + len > buffer->mSize) {
-            func_0213442c(data_ov000_021b3eec, data_ov000_021b3ebc, NULL, 0x40);
+            AssertionFailed(data_ov000_021b3eec, data_ov000_021b3ebc, NULL, 0x40);
         }
         memcpy(buffer->mData + buffer->mLength, b, len);
         buffer->mLength = buffer->mLength + len;
@@ -26,10 +26,10 @@ void RemoveBufferBytes(Gt2Buffer *buffer, int start, int shortenBy) {
         start = buffer->mLength - shortenBy;
     }
     if (start > buffer->mLength) {
-        func_0213442c(data_ov000_021b3ea4, data_ov000_021b3ebc, NULL, 0x4f);
+        AssertionFailed(data_ov000_021b3ea4, data_ov000_021b3ebc, NULL, 0x4f);
     }
     if (shortenBy > buffer->mLength - start) {
-        func_0213442c(data_ov000_021b3ec8, data_ov000_021b3ebc, NULL, 0x50);
+        AssertionFailed(data_ov000_021b3ec8, data_ov000_021b3ebc, NULL, 0x50);
     }
     memmove(buffer->mData + start, buffer->mData + start + shortenBy, buffer->mLength - start - shortenBy);
     buffer->mLength = buffer->mLength - shortenBy;
@@ -91,7 +91,7 @@ s8 *func_ov000_02197be0(s8 *buffer) {
     u32 g;
     u8 *i;
     if (buffer == NULL) {
-        func_0213442c(data_ov000_021b3e90, data_ov000_021b3e98, NULL, 0x2b);
+        AssertionFailed(data_ov000_021b3e90, data_ov000_021b3e98, NULL, 0x2b);
     }
     srand(func_ov000_0218e8c4());
     buffer[0] = (s32) rand() % 0x5d + 0x21;
@@ -158,7 +158,7 @@ s8 *func_ov000_02197b34(s8 *a, const s8 *b) {
                 g = b[e - 1];
             }
             i = (data_ov000_021b3e6c[(e + (u8) b[e]) % c] + e * (u8) b[e]) % 0x20;
-            a[e] = (s32) func_02134420((u8) b[i] ^ data_ov000_021b3e6c[(g * f) % c]) % 0x5d + 0x21;
+            a[e] = (s32) Abs((u8) b[i] ^ data_ov000_021b3e6c[(g * f) % c]) % 0x5d + 0x21;
         }
         f += 0x4647;
         e++;

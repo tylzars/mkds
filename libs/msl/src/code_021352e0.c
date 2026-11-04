@@ -7,24 +7,24 @@
 #include "code_0213a460.h"
 #include "code_0213ee6c.h"
 
-const char *func_0213770c(const char *p, char **b, Unk021352e0 *buf) {
+const char *FormatParseSpec(const char *p, char **b, FormatSpec *buf) {
     const char *s;
-    Unk021352e0 v;
+    FormatSpec v;
     int c;
     int n;
     int w;
 
-    v.mUnk_00 = 1;
-    v.mUnk_01 = 0;
-    v.mUnk_02 = 0;
-    v.mUnk_03 = 0;
-    v.mUnk_04 = 0;
-    v.mUnk_08 = 0;
+    v.mPadKind = 1;
+    v.mSignKind = 0;
+    v.mHasDot = 0;
+    v.mHash = 0;
+    v.mArgKind = 0;
+    v.mMinLength = 0;
     v.mUnk_0c = 0;
     s = p + 1;
     c = *s;
     if (c == '%') {
-        v.mUnk_05 = c;
+        v.mSpecChar = c;
         *buf = v;
         return s + 1;
     }
@@ -32,22 +32,22 @@ const char *func_0213770c(const char *p, char **b, Unk021352e0 *buf) {
         n = 1;
         switch (c) {
             case '-':
-                v.mUnk_00 = 0;
+                v.mPadKind = 0;
                 break;
             case '+':
-                v.mUnk_01 = 1;
+                v.mSignKind = 1;
                 break;
             case ' ':
-                if (v.mUnk_01 != 1) {
-                    v.mUnk_01 = 2;
+                if (v.mSignKind != 1) {
+                    v.mSignKind = 2;
                 }
                 break;
             case '#':
-                v.mUnk_03 = 1;
+                v.mHash = 1;
                 break;
             case '0':
-                if (v.mUnk_00 != 0) {
-                    v.mUnk_00 = 2;
+                if (v.mPadKind != 0) {
+                    v.mPadKind = 2;
                 }
                 break;
             default:
@@ -62,31 +62,31 @@ const char *func_0213770c(const char *p, char **b, Unk021352e0 *buf) {
     if (c == '*') {
         *b += 4;
         w = ((int *) *b)[-1];
-        v.mUnk_08 = w;
+        v.mMinLength = w;
         if (w < 0) {
-            v.mUnk_00 = 0;
-            v.mUnk_08 = -w;
+            v.mPadKind = 0;
+            v.mMinLength = -w;
         }
         c = *++s;
     } else {
         while ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 8)) {
-            v.mUnk_08 = v.mUnk_08 * 10 + (c - '0');
+            v.mMinLength = v.mMinLength * 10 + (c - '0');
             c = *++s;
         }
     }
-    if (v.mUnk_08 > 0x1fd) {
-        v.mUnk_05 = 0xff;
+    if (v.mMinLength > 0x1fd) {
+        v.mSpecChar = 0xff;
         *buf = v;
         return s + 1;
     }
     if (c == '.') {
-        v.mUnk_02 = 1;
+        v.mHasDot = 1;
         c = *++s;
         if (c == '*') {
             *b += 4;
             v.mUnk_0c = ((int *) *b)[-1];
             if (v.mUnk_0c < 0) {
-                v.mUnk_02 = 0;
+                v.mHasDot = 0;
             }
             c = *++s;
         } else {
@@ -99,30 +99,30 @@ const char *func_0213770c(const char *p, char **b, Unk021352e0 *buf) {
     n = 1;
     switch (c) {
         case 'h':
-            v.mUnk_04 = 2;
+            v.mArgKind = 2;
             if (s[1] == 'h') {
-                v.mUnk_04 = 1;
+                v.mArgKind = 1;
                 c = *++s;
             }
             break;
         case 'l':
-            v.mUnk_04 = 3;
+            v.mArgKind = 3;
             if (s[1] == 'l') {
-                v.mUnk_04 = 7;
+                v.mArgKind = 7;
                 c = *++s;
             }
             break;
         case 'L':
-            v.mUnk_04 = 8;
+            v.mArgKind = 8;
             break;
         case 'j':
-            v.mUnk_04 = 4;
+            v.mArgKind = 4;
             break;
         case 'z':
-            v.mUnk_04 = 5;
+            v.mArgKind = 5;
             break;
         case 't':
-            v.mUnk_04 = 6;
+            v.mArgKind = 6;
             break;
         default:
             n = 0;
@@ -131,7 +131,7 @@ const char *func_0213770c(const char *p, char **b, Unk021352e0 *buf) {
     if (n) {
         c = *++s;
     }
-    v.mUnk_05 = c;
+    v.mSpecChar = c;
     switch (c) {
         case 'd':
         case 'i':
@@ -139,30 +139,30 @@ const char *func_0213770c(const char *p, char **b, Unk021352e0 *buf) {
         case 'u':
         case 'x':
         case 'X':
-            if (v.mUnk_04 == 8) {
-                v.mUnk_05 = 0xff;
-            } else if (v.mUnk_02 == 0) {
+            if (v.mArgKind == 8) {
+                v.mSpecChar = 0xff;
+            } else if (v.mHasDot == 0) {
                 v.mUnk_0c = 1;
-            } else if (v.mUnk_00 == 2) {
-                v.mUnk_00 = 1;
+            } else if (v.mPadKind == 2) {
+                v.mPadKind = 1;
             }
             break;
         case 'f':
         case 'F':
-            if (v.mUnk_04 == 2 || v.mUnk_04 == 4 || v.mUnk_04 == 5 || v.mUnk_04 == 6 || v.mUnk_04 == 7) {
-                v.mUnk_05 = 0xff;
-            } else if (v.mUnk_02 == 0) {
+            if (v.mArgKind == 2 || v.mArgKind == 4 || v.mArgKind == 5 || v.mArgKind == 6 || v.mArgKind == 7) {
+                v.mSpecChar = 0xff;
+            } else if (v.mHasDot == 0) {
                 v.mUnk_0c = 6;
             }
             break;
         case 'a':
         case 'A':
-            if (v.mUnk_02 == 0) {
+            if (v.mHasDot == 0) {
                 v.mUnk_0c = 0xd;
             }
-            if (v.mUnk_04 == 2 || v.mUnk_04 == 4 || v.mUnk_04 == 5 || v.mUnk_04 == 6 || v.mUnk_04 == 7 ||
-                v.mUnk_04 == 1) {
-                v.mUnk_05 = 0xff;
+            if (v.mArgKind == 2 || v.mArgKind == 4 || v.mArgKind == 5 || v.mArgKind == 6 || v.mArgKind == 7 ||
+                v.mArgKind == 1) {
+                v.mSpecChar = 0xff;
             }
             break;
         case 'g':
@@ -172,47 +172,47 @@ const char *func_0213770c(const char *p, char **b, Unk021352e0 *buf) {
             }
         case 'e':
         case 'E':
-            if (v.mUnk_04 == 2 || v.mUnk_04 == 4 || v.mUnk_04 == 5 || v.mUnk_04 == 6 || v.mUnk_04 == 7 ||
-                v.mUnk_04 == 1) {
-                v.mUnk_05 = 0xff;
-            } else if (v.mUnk_02 == 0) {
+            if (v.mArgKind == 2 || v.mArgKind == 4 || v.mArgKind == 5 || v.mArgKind == 6 || v.mArgKind == 7 ||
+                v.mArgKind == 1) {
+                v.mSpecChar = 0xff;
+            } else if (v.mHasDot == 0) {
                 v.mUnk_0c = 6;
             }
             break;
         case 'p':
-            v.mUnk_05 = 'x';
-            v.mUnk_03 = 1;
-            v.mUnk_04 = 3;
+            v.mSpecChar = 'x';
+            v.mHash = 1;
+            v.mArgKind = 3;
             v.mUnk_0c = 8;
             break;
         case 'c':
-            if (v.mUnk_04 == 3) {
-                v.mUnk_04 = 9;
-            } else if (v.mUnk_02 != 0 || v.mUnk_04 != 0) {
-                v.mUnk_05 = 0xff;
+            if (v.mArgKind == 3) {
+                v.mArgKind = 9;
+            } else if (v.mHasDot != 0 || v.mArgKind != 0) {
+                v.mSpecChar = 0xff;
             }
             break;
         case 's':
-            if (v.mUnk_04 == 3) {
-                v.mUnk_04 = 9;
-            } else if (v.mUnk_04 != 0) {
-                v.mUnk_05 = 0xff;
+            if (v.mArgKind == 3) {
+                v.mArgKind = 9;
+            } else if (v.mArgKind != 0) {
+                v.mSpecChar = 0xff;
             }
             break;
         case 'n':
-            if (v.mUnk_04 == 8) {
-                v.mUnk_05 = 0xff;
+            if (v.mArgKind == 8) {
+                v.mSpecChar = 0xff;
             }
             break;
         default:
-            v.mUnk_05 = 0xff;
+            v.mSpecChar = 0xff;
             break;
     }
     *buf = v;
     return s + 1;
 }
 
-char *func_02137358(unsigned long v, char *end, Unk021352e0 spec) {
+char *FormatInt32(unsigned long v, char *end, FormatSpec spec) {
     int neg;
     int width;
     u8 alt;
@@ -225,10 +225,10 @@ char *func_02137358(unsigned long v, char *end, Unk021352e0 spec) {
     u8 conv;
 
     prec = spec.mUnk_0c;
-    alt = spec.mUnk_03;
-    conv = spec.mUnk_05;
-    width = spec.mUnk_08;
-    sign = spec.mUnk_01;
+    alt = spec.mHash;
+    conv = spec.mSpecChar;
+    width = spec.mMinLength;
+    sign = spec.mSignKind;
     p = end;
     neg = 0;
     *--p = 0;
@@ -276,7 +276,7 @@ char *func_02137358(unsigned long v, char *end, Unk021352e0 spec) {
         *--p = '0';
         cnt++;
     }
-    if (spec.mUnk_00 == 2) {
+    if (spec.mPadKind == 2) {
         prec = width;
         if (neg != 0 || sign != 0) {
             prec--;
@@ -306,7 +306,7 @@ char *func_02137358(unsigned long v, char *end, Unk021352e0 spec) {
     return p;
 }
 
-char *func_02136f14(u64 v, char *end, Unk021352e0 spec) {
+char *FormatInt64(u64 v, char *end, FormatSpec spec) {
     int neg;
     int w;
     int flag;
@@ -319,10 +319,10 @@ char *func_02136f14(u64 v, char *end, Unk021352e0 spec) {
     int d;
 
     w = spec.mUnk_0c;
-    alt = spec.mUnk_03;
-    ch = spec.mUnk_05;
-    wid = spec.mUnk_08;
-    flag = spec.mUnk_01;
+    alt = spec.mHash;
+    ch = spec.mSpecChar;
+    wid = spec.mMinLength;
+    flag = spec.mSignKind;
     p = end;
     neg = 0;
     *--p = 0;
@@ -370,7 +370,7 @@ char *func_02136f14(u64 v, char *end, Unk021352e0 spec) {
         *--p = '0';
         count++;
     }
-    if (spec.mUnk_00 == 2) {
+    if (spec.mPadKind == 2) {
         w = wid;
         if (neg != 0 || flag != 0) {
             w--;
@@ -400,14 +400,14 @@ char *func_02136f14(u64 v, char *end, Unk021352e0 spec) {
     return p;
 }
 
-char *func_02136850(double x, char *buf, Unk021352e0 e) {
+char *FormatDoubleHex(double x, char *buf, FormatSpec e) {
     int n;
     u8 c;
     u8 f;
     u8 s;
     Unk02140c28 a;
-    Unk021352e0 b;
-    Unk02136638 r;
+    FormatSpec b;
+    DigitRecord r;
     char *p;
     int i;
     u8 t;
@@ -418,64 +418,64 @@ char *func_02136850(double x, char *buf, Unk021352e0 e) {
     int k;
 
     n = e.mUnk_0c;
-    c = e.mUnk_05;
-    f = e.mUnk_03;
-    s = e.mUnk_01;
+    c = e.mSpecChar;
+    f = e.mHash;
+    s = e.mSignKind;
     if (n > 0x1fd) {
         return 0;
     }
     a.mUnk_00 = 0;
-    a.mUnk_02 = 0x20;
-    func_02140c28(&a, x, &r);
+    a.mDigitCount = 0x20;
+    DoubleToDigitChars(&a, x, &r);
     if (0.0 == fabs(x)) {
         p = buf - 6;
-        strcpy(p, data_0216eeb0);
+        strcpy(p, gFormatHexZero);
         return p;
     }
-    if (r.mUnk_05[0] == 'I') {
-        if (r.mUnk_00 != 0) {
+    if (r.mDigits[0] == 'I') {
+        if (r.mNegative != 0) {
             p = buf - 5;
             if (c == 'A') {
-                strcpy(p, data_0216ee80);
+                strcpy(p, gFormatMinusInfUpper);
             } else {
-                strcpy(p, data_0216ee88);
+                strcpy(p, gFormatMinusInfLower);
             }
         } else {
             p = buf - 4;
             if (c == 'A') {
-                strcpy(p, data_0216ee90);
+                strcpy(p, gFormatInfUpper);
             } else {
-                strcpy(p, data_0216ee94);
+                strcpy(p, gFormatInfLower);
             }
         }
         return p;
     }
-    if (r.mUnk_05[0] == 'N') {
-        if (r.mUnk_00 != 0) {
+    if (r.mDigits[0] == 'N') {
+        if (r.mNegative != 0) {
             p = buf - 5;
             if (c == 'A') {
-                strcpy(p, data_0216ee98);
+                strcpy(p, gFormatMinusNanUpper);
             } else {
-                strcpy(p, data_0216eea0);
+                strcpy(p, gFormatMinusNanLower);
             }
         } else {
             p = buf - 4;
             if (c == 'A') {
-                strcpy(p, data_0216eea8);
+                strcpy(p, gFormatNanUpper);
             } else {
-                strcpy(p, data_0216eeac);
+                strcpy(p, gFormatNanLower);
             }
         }
         return p;
     }
-    b.mUnk_00 = 1;
-    b.mUnk_01 = 1;
-    b.mUnk_02 = 0;
-    b.mUnk_03 = 0;
-    b.mUnk_04 = 0;
+    b.mPadKind = 1;
+    b.mSignKind = 1;
+    b.mHasDot = 0;
+    b.mHash = 0;
+    b.mArgKind = 0;
     b.mUnk_0c = 1;
-    b.mUnk_08 = 0;
-    b.mUnk_05 = 'd';
+    b.mMinLength = 0;
+    b.mSpecChar = 'd';
     w = (u8 *) &x;
     for (i = 0; i < 4; i++) {
         t = w[i];
@@ -486,7 +486,7 @@ char *func_02136850(double x, char *buf, Unk021352e0 e) {
     k |= ((u8 *) &x)[1] << 17;
     k = ((u32) k >> 21) & 0x7ff;
     j = k - 1023;
-    p = func_02137358(j, buf, b);
+    p = FormatInt32(j, buf, b);
     if (c == 'a') {
         *--p = 'p';
     } else {
@@ -524,7 +524,7 @@ char *func_02136850(double x, char *buf, Unk021352e0 e) {
         *--p = 'X';
     }
     *--p = '0';
-    if (r.mUnk_00 != 0) {
+    if (r.mNegative != 0) {
         *--p = '-';
     } else if (s == 1) {
         *--p = '+';
@@ -534,7 +534,7 @@ char *func_02136850(double x, char *buf, Unk021352e0 e) {
     return p;
 }
 
-void func_02136638(Unk02136638 *a, int k) {
+void FormatRoundDigitChars(DigitRecord *a, int k) {
     char *b;
     char *p;
     char *q;
@@ -544,16 +544,16 @@ void func_02136638(Unk02136638 *a, int k) {
 
     if (k < 0) {
     zero:
-        a->mUnk_02 = 0;
-        a->mUnk_04 = 1;
-        a->mUnk_05[0] = '0';
+        a->mExponent = 0;
+        a->mDigitCount = 1;
+        a->mDigits[0] = '0';
         return;
     }
-    n = a->mUnk_04;
+    n = a->mDigitCount;
     if (k >= n) {
         return;
     }
-    b = a->mUnk_05;
+    b = a->mDigits;
     p = b + k + 1;
     v = *--p - '0';
     if (v == 5) {
@@ -579,20 +579,20 @@ void func_02136638(Unk02136638 *a, int k) {
         }
     }
     if (c != 0) {
-        a->mUnk_02++;
-        a->mUnk_04 = 1;
-        a->mUnk_05[0] = '1';
+        a->mExponent++;
+        a->mDigitCount = 1;
+        a->mDigits[0] = '1';
         return;
     }
     if (k == 0) {
         goto zero;
     }
-    a->mUnk_04 = k;
+    a->mDigitCount = k;
 }
 
-char *func_02135c80(double v, char *buf, Unk021352e0 f) {
+char *FormatDouble(double v, char *buf, FormatSpec f) {
     Unk02140c28 m;
-    Unk02136638 d;
+    DigitRecord d;
     u8 a;
     int b;
     int g;
@@ -608,73 +608,73 @@ char *func_02135c80(double v, char *buf, Unk021352e0 f) {
     int k;
     int c;
 
-    a = f.mUnk_05;
+    a = f.mSpecChar;
     b = f.mUnk_0c;
-    h = f.mUnk_03;
-    g = f.mUnk_01;
+    h = f.mHash;
+    g = f.mSignKind;
     m.mUnk_00 = 0;
-    m.mUnk_02 = 0x20;
-    func_02140c28(&m, v, &d);
-    q = d.mUnk_05 + d.mUnk_04;
-    while (d.mUnk_04 > 1 && *--q == '0') {
-        d.mUnk_04--;
-        d.mUnk_02++;
+    m.mDigitCount = 0x20;
+    DoubleToDigitChars(&m, v, &d);
+    q = d.mDigits + d.mDigitCount;
+    while (d.mDigitCount > 1 && *--q == '0') {
+        d.mDigitCount--;
+        d.mExponent++;
     }
-    switch (d.mUnk_05[0]) {
+    switch (d.mDigits[0]) {
         case '0':
-            d.mUnk_02 = 0;
+            d.mExponent = 0;
             break;
         case 'I':
             c = a;
             if (v < 0.0) {
                 p = buf - 5;
                 if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x200)) {
-                    strcpy(p, data_0216ee80);
+                    strcpy(p, gFormatMinusInfUpper);
                 } else {
-                    strcpy(p, data_0216ee88);
+                    strcpy(p, gFormatMinusInfLower);
                 }
             } else {
                 p = buf - 4;
                 if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x200)) {
-                    strcpy(p, data_0216ee90);
+                    strcpy(p, gFormatInfUpper);
                 } else {
-                    strcpy(p, data_0216ee94);
+                    strcpy(p, gFormatInfLower);
                 }
             }
             return p;
         case 'N':
             c = a;
-            if (d.mUnk_00) {
+            if (d.mNegative) {
                 p = buf - 5;
                 if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x200)) {
-                    strcpy(p, data_0216ee98);
+                    strcpy(p, gFormatMinusNanUpper);
                 } else {
-                    strcpy(p, data_0216eea0);
+                    strcpy(p, gFormatMinusNanLower);
                 }
             } else {
                 p = buf - 4;
                 if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x200)) {
-                    strcpy(p, data_0216eea8);
+                    strcpy(p, gFormatNanUpper);
                 } else {
-                    strcpy(p, data_0216eeac);
+                    strcpy(p, gFormatNanLower);
                 }
             }
             return p;
     }
-    d.mUnk_02 += d.mUnk_04 - 1;
+    d.mExponent += d.mDigitCount - 1;
     p = buf - 1;
     *p = 0;
     switch (a) {
         case 'g':
         case 'G':
-            if (d.mUnk_04 > b) {
-                func_02136638(&d, b);
+            if (d.mDigitCount > b) {
+                FormatRoundDigitChars(&d, b);
             }
-            if (d.mUnk_02 < -4 || d.mUnk_02 >= b) {
+            if (d.mExponent < -4 || d.mExponent >= b) {
                 if (h) {
                     b--;
                 } else {
-                    b = d.mUnk_04 - 1;
+                    b = d.mDigitCount - 1;
                 }
                 if (a == 'g') {
                     a = 'e';
@@ -683,9 +683,9 @@ char *func_02135c80(double v, char *buf, Unk021352e0 f) {
                 }
             } else {
                 if (h) {
-                    b -= d.mUnk_02 + 1;
+                    b -= d.mExponent + 1;
                 } else {
-                    b = d.mUnk_04 - (d.mUnk_02 + 1);
+                    b = d.mDigitCount - (d.mExponent + 1);
                     if (b < 0) {
                         b = 0;
                     }
@@ -694,10 +694,10 @@ char *func_02135c80(double v, char *buf, Unk021352e0 f) {
             }
         case 'e':
         case 'E':
-            if (d.mUnk_04 > b + 1) {
-                func_02136638(&d, b + 1);
+            if (d.mDigitCount > b + 1) {
+                FormatRoundDigitChars(&d, b + 1);
             }
-            x = d.mUnk_02;
+            x = d.mExponent;
             y = '+';
             if (x < 0) {
                 x = -x;
@@ -714,21 +714,21 @@ char *func_02135c80(double v, char *buf, Unk021352e0 f) {
             if (b + (buf - p) > 0x1fd) {
                 return 0;
             }
-            if (d.mUnk_04 < b + 1) {
-                i = b + 2 - d.mUnk_04;
+            if (d.mDigitCount < b + 1) {
+                i = b + 2 - d.mDigitCount;
                 while (--i) {
                     *--p = '0';
                 }
             }
-            t = d.mUnk_05 + d.mUnk_04;
-            for (i = d.mUnk_04 - 1; i != 0; i--) {
+            t = d.mDigits + d.mDigitCount;
+            for (i = d.mDigitCount - 1; i != 0; i--) {
                 *--p = *--t;
             }
             if (b != 0 || h) {
                 *--p = '.';
             }
-            *--p = d.mUnk_05[0];
-            if (d.mUnk_00) {
+            *--p = d.mDigits[0];
+            if (d.mNegative) {
                 *--p = '-';
             } else if (g == 1) {
                 *--p = '+';
@@ -739,15 +739,15 @@ char *func_02135c80(double v, char *buf, Unk021352e0 f) {
         case 'f':
         case 'F':
         case_f:
-            x = d.mUnk_02;
-            k = d.mUnk_04 - x - 1;
+            x = d.mExponent;
+            k = d.mDigitCount - x - 1;
             if (k < 0) {
                 k = 0;
             }
             if (k > b) {
-                func_02136638(&d, d.mUnk_04 - (k - b));
-                x = d.mUnk_02;
-                k = d.mUnk_04 - x - 1;
+                FormatRoundDigitChars(&d, d.mDigitCount - (k - b));
+                x = d.mExponent;
+                k = d.mDigitCount - x - 1;
                 if (k < 0) {
                     k = 0;
                 }
@@ -759,11 +759,11 @@ char *func_02135c80(double v, char *buf, Unk021352e0 f) {
             if (j + k > 0x1fd) {
                 return 0;
             }
-            t = d.mUnk_05 + d.mUnk_04;
+            t = d.mDigits + d.mDigitCount;
             for (c = 0; c < b - k; c++) {
                 *--p = '0';
             }
-            for (c = 0; c < k && c < d.mUnk_04; c++) {
+            for (c = 0; c < k && c < d.mDigitCount; c++) {
                 *--p = *--t;
             }
             for (; c < k; c++) {
@@ -773,7 +773,7 @@ char *func_02135c80(double v, char *buf, Unk021352e0 f) {
                 *--p = '.';
             }
             if (j != 0) {
-                for (c = 0; c < j - d.mUnk_04; c++) {
+                for (c = 0; c < j - d.mDigitCount; c++) {
                     *--p = '0';
                 }
                 for (; c < j; c++) {
@@ -782,7 +782,7 @@ char *func_02135c80(double v, char *buf, Unk021352e0 f) {
             } else {
                 *--p = '0';
             }
-            if (d.mUnk_00) {
+            if (d.mNegative) {
                 *--p = '-';
             } else if (g == 1) {
                 *--p = '+';
@@ -794,8 +794,8 @@ char *func_02135c80(double v, char *buf, Unk021352e0 f) {
     return p;
 }
 
-int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b, char *c) {
-    Unk021352e0 e;
+int FormatWithPutFunc(void *(*f)(void *, const char *, u32), void *a, const char *b, char *c) {
+    FormatSpec e;
     char buf[0x200];
     char g;
     char h;
@@ -829,36 +829,36 @@ int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b,
         if (n != 0 && f(a, b, n) == 0) {
             return -1;
         }
-        b = func_0213770c(s, &c, &e);
-        switch (e.mUnk_05) {
+        b = FormatParseSpec(s, &c, &e);
+        switch (e.mSpecChar) {
             case 'd':
             case 'i':
-                if (e.mUnk_04 == 3) {
+                if (e.mArgKind == 3) {
                     v = *(long *) ((c += 4) - 4);
-                } else if (e.mUnk_04 == 7) {
+                } else if (e.mArgKind == 7) {
                     x = *(long long *) ((c += 8) - 8);
-                } else if (e.mUnk_04 == 4) {
+                } else if (e.mArgKind == 4) {
                     v = *(long long *) ((c += 8) - 8);
-                } else if (e.mUnk_04 == 5) {
+                } else if (e.mArgKind == 5) {
                     v = *(u32 *) ((c += 4) - 4);
-                } else if (e.mUnk_04 == 6) {
+                } else if (e.mArgKind == 6) {
                     v = *(long *) ((c += 4) - 4);
                 } else {
                     v = *(int *) ((c += 4) - 4);
                 }
-                if (e.mUnk_04 == 2) {
+                if (e.mArgKind == 2) {
                     v = (short) v;
                 }
-                if (e.mUnk_04 == 1) {
+                if (e.mArgKind == 1) {
                     v = (s8) v;
                 }
-                if (e.mUnk_04 == 7) {
-                    p = func_02136f14(x, buf + sizeof(buf), e);
+                if (e.mArgKind == 7) {
+                    p = FormatInt64(x, buf + sizeof(buf), e);
                     if (p == 0) {
                         goto bad;
                     }
                 } else {
-                    p = func_02137358(v, buf + sizeof(buf), e);
+                    p = FormatInt32(v, buf + sizeof(buf), e);
                     if (p == 0) {
                         goto bad;
                     }
@@ -869,32 +869,32 @@ int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b,
             case 'u':
             case 'x':
             case 'X':
-                if (e.mUnk_04 == 3) {
+                if (e.mArgKind == 3) {
                     v = *(unsigned long *) ((c += 4) - 4);
-                } else if (e.mUnk_04 == 7) {
+                } else if (e.mArgKind == 7) {
                     x = *(unsigned long long *) ((c += 8) - 8);
-                } else if (e.mUnk_04 == 4) {
+                } else if (e.mArgKind == 4) {
                     v = *(unsigned long long *) ((c += 8) - 8);
-                } else if (e.mUnk_04 == 5) {
+                } else if (e.mArgKind == 5) {
                     v = *(u32 *) ((c += 4) - 4);
-                } else if (e.mUnk_04 == 6) {
+                } else if (e.mArgKind == 6) {
                     v = *(unsigned long *) ((c += 4) - 4);
                 } else {
                     v = *(u32 *) ((c += 4) - 4);
                 }
-                if (e.mUnk_04 == 2) {
+                if (e.mArgKind == 2) {
                     v = (u16) v;
                 }
-                if (e.mUnk_04 == 1) {
+                if (e.mArgKind == 1) {
                     v = (u8) v;
                 }
-                if (e.mUnk_04 == 7) {
-                    p = func_02136f14(x, buf + sizeof(buf), e);
+                if (e.mArgKind == 7) {
+                    p = FormatInt64(x, buf + sizeof(buf), e);
                     if (p == 0) {
                         goto bad;
                     }
                 } else {
-                    p = func_02137358(v, buf + sizeof(buf), e);
+                    p = FormatInt32(v, buf + sizeof(buf), e);
                     if (p == 0) {
                         goto bad;
                     }
@@ -907,12 +907,12 @@ int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b,
             case 'F':
             case 'g':
             case 'G':
-                if (e.mUnk_04 == 8) {
+                if (e.mArgKind == 8) {
                     y = *(long double *) ((c += 8) - 8);
                 } else {
                     y = *(double *) ((c += 8) - 8);
                 }
-                p = func_02135c80(y, buf + sizeof(buf), e);
+                p = FormatDouble(y, buf + sizeof(buf), e);
                 if (p == 0) {
                     goto bad;
                 }
@@ -920,19 +920,19 @@ int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b,
                 break;
             case 'a':
             case 'A':
-                if (e.mUnk_04 == 8) {
+                if (e.mArgKind == 8) {
                     y = *(long double *) ((c += 8) - 8);
                 } else {
                     y = *(double *) ((c += 8) - 8);
                 }
-                p = func_02136850(y, buf + sizeof(buf), e);
+                p = FormatDoubleHex(y, buf + sizeof(buf), e);
                 if (p == 0) {
                     goto bad;
                 }
                 m = buf + sizeof(buf) - 1 - p;
                 break;
             case 's':
-                if (e.mUnk_04 == 9) {
+                if (e.mArgKind == 9) {
                     t = *(const u16 **) ((c += 4) - 4);
                     if (t == 0) {
                         t = L"";
@@ -947,12 +947,12 @@ int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b,
                 if (p == 0) {
                     p = "";
                 }
-                if (e.mUnk_03 != 0) {
+                if (e.mHash != 0) {
                     m = *p++;
-                    if (e.mUnk_02 != 0 && m > e.mUnk_0c) {
+                    if (e.mHasDot != 0 && m > e.mUnk_0c) {
                         m = e.mUnk_0c;
                     }
-                } else if (e.mUnk_02 != 0) {
+                } else if (e.mHasDot != 0) {
                     m = e.mUnk_0c;
                     q = memchr(p, 0, m);
                     if (q != 0) {
@@ -964,7 +964,7 @@ int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b,
                 break;
             case 'n':
                 u = *(void **) ((c += 4) - 4);
-                switch (e.mUnk_04) {
+                switch (e.mArgKind) {
                     case 0:
                         *(int *) u = k;
                         break;
@@ -1000,8 +1000,8 @@ int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b,
                 return k;
         }
         w = m;
-        if (e.mUnk_00 != 0) {
-            g = e.mUnk_00 == 2 ? '0' : ' ';
+        if (e.mPadKind != 0) {
+            g = e.mPadKind == 2 ? '0' : ' ';
             if ((*p == '+' || *p == '-' || *p == ' ') && g == '0') {
                 if (f(a, p, 1) == 0) {
                     return -1;
@@ -1009,7 +1009,7 @@ int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b,
                 p++;
                 m--;
             }
-            for (; w < e.mUnk_08; w++) {
+            for (; w < e.mMinLength; w++) {
                 if (f(a, &g, 1) == 0) {
                     return -1;
                 }
@@ -1018,8 +1018,8 @@ int func_021352e0(void *(*f)(void *, const char *, u32), void *a, const char *b,
         if (m != 0 && f(a, p, m) == 0) {
             return -1;
         }
-        if (e.mUnk_00 == 0) {
-            for (; w < e.mUnk_08; w++) {
+        if (e.mPadKind == 0) {
+            for (; w < e.mMinLength; w++) {
                 h = ' ';
                 if (f(a, &h, 1) == 0) {
                     return -1;

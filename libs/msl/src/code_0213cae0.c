@@ -8,23 +8,23 @@
 #include "code_0213ecf8.h"
 #include "code_0213ee6c.h"
 
-const u16 *func_0213e468(const u16 *a, char **b, Unk0213d398 *c) {
-    Unk0213d398 s;
+const u16 *FormatWideParseSpec(const u16 *a, char **b, FormatWideSpec *c) {
+    FormatWideSpec s;
     const u16 *p;
     u16 ch;
     int k;
 
-    s.mUnk_00 = 1;
-    s.mUnk_01 = 0;
-    s.mUnk_02 = 0;
-    s.mUnk_03 = 0;
-    s.mUnk_04 = 0;
-    s.mUnk_08 = 0;
+    s.mPadKind = 1;
+    s.mSignKind = 0;
+    s.mHasDot = 0;
+    s.mHash = 0;
+    s.mArgKind = 0;
+    s.mMinLength = 0;
     s.mUnk_0c = 0;
     p = a + 1;
     ch = *p;
     if (ch == '%') {
-        s.mUnk_06 = ch;
+        s.mSpecChar = ch;
         *c = s;
         return p + 1;
     }
@@ -32,22 +32,22 @@ const u16 *func_0213e468(const u16 *a, char **b, Unk0213d398 *c) {
         k = 1;
         switch (ch) {
             case '-':
-                s.mUnk_00 = 0;
+                s.mPadKind = 0;
                 break;
             case '+':
-                s.mUnk_01 = 1;
+                s.mSignKind = 1;
                 break;
             case ' ':
-                if (s.mUnk_01 != 1) {
-                    s.mUnk_01 = 2;
+                if (s.mSignKind != 1) {
+                    s.mSignKind = 2;
                 }
                 break;
             case '#':
-                s.mUnk_03 = 1;
+                s.mHash = 1;
                 break;
             case '0':
-                if (s.mUnk_00 != 0) {
-                    s.mUnk_00 = 2;
+                if (s.mPadKind != 0) {
+                    s.mPadKind = 2;
                 }
                 break;
             default:
@@ -61,31 +61,31 @@ const u16 *func_0213e468(const u16 *a, char **b, Unk0213d398 *c) {
     }
     if (ch == '*') {
         *b += 4;
-        s.mUnk_08 = *(int *) (*b - 4);
-        if (s.mUnk_08 < 0) {
-            s.mUnk_00 = 0;
-            s.mUnk_08 = -s.mUnk_08;
+        s.mMinLength = *(int *) (*b - 4);
+        if (s.mMinLength < 0) {
+            s.mPadKind = 0;
+            s.mMinLength = -s.mMinLength;
         }
         ch = *++p;
     } else {
         while ((ch >= 0x80 ? 0 : data_0215d384[ch] & 8) != 0) {
-            s.mUnk_08 = s.mUnk_08 * 10 + (ch - '0');
+            s.mMinLength = s.mMinLength * 10 + (ch - '0');
             ch = *++p;
         }
     }
-    if (s.mUnk_08 > 0x1fd) {
-        s.mUnk_06 = 0xffff;
+    if (s.mMinLength > 0x1fd) {
+        s.mSpecChar = 0xffff;
         *c = s;
         return p + 1;
     }
     if (ch == '.') {
-        s.mUnk_02 = 1;
+        s.mHasDot = 1;
         ch = *++p;
         if (ch == '*') {
             *b += 4;
             s.mUnk_0c = *(int *) (*b - 4);
             if (s.mUnk_0c < 0) {
-                s.mUnk_02 = 0;
+                s.mHasDot = 0;
             }
             ch = *++p;
         } else {
@@ -98,21 +98,21 @@ const u16 *func_0213e468(const u16 *a, char **b, Unk0213d398 *c) {
     k = 1;
     switch (ch) {
         case 'h':
-            s.mUnk_04 = 2;
+            s.mArgKind = 2;
             if (p[1] == 'h') {
-                s.mUnk_04 = 1;
+                s.mArgKind = 1;
                 ch = *++p;
             }
             break;
         case 'l':
-            s.mUnk_04 = 3;
+            s.mArgKind = 3;
             if (p[1] == 'l') {
-                s.mUnk_04 = 4;
+                s.mArgKind = 4;
                 ch = *++p;
             }
             break;
         case 'L':
-            s.mUnk_04 = 5;
+            s.mArgKind = 5;
             break;
         default:
             k = 0;
@@ -121,7 +121,7 @@ const u16 *func_0213e468(const u16 *a, char **b, Unk0213d398 *c) {
     if (k) {
         ch = *++p;
     }
-    s.mUnk_06 = ch;
+    s.mSpecChar = ch;
     switch (ch) {
         case 'd':
         case 'i':
@@ -129,20 +129,20 @@ const u16 *func_0213e468(const u16 *a, char **b, Unk0213d398 *c) {
         case 'u':
         case 'x':
         case 'X':
-            if (s.mUnk_04 == 5) {
-                s.mUnk_04 = 4;
+            if (s.mArgKind == 5) {
+                s.mArgKind = 4;
             }
-            if (s.mUnk_02 == 0) {
+            if (s.mHasDot == 0) {
                 s.mUnk_0c = 1;
-            } else if (s.mUnk_00 == 2) {
-                s.mUnk_00 = 1;
+            } else if (s.mPadKind == 2) {
+                s.mPadKind = 1;
             }
             break;
         case 'f':
         case 'F':
-            if (s.mUnk_04 == 2 || s.mUnk_04 == 4) {
-                s.mUnk_06 = 0xffff;
-            } else if (s.mUnk_02 == 0) {
+            if (s.mArgKind == 2 || s.mArgKind == 4) {
+                s.mSpecChar = 0xffff;
+            } else if (s.mHasDot == 0) {
                 s.mUnk_0c = 6;
             }
             break;
@@ -153,39 +153,39 @@ const u16 *func_0213e468(const u16 *a, char **b, Unk0213d398 *c) {
             }
         case 'e':
         case 'E':
-            if (s.mUnk_04 == 2 || s.mUnk_04 == 4 || s.mUnk_04 == 1) {
-                s.mUnk_06 = 0xffff;
-            } else if (s.mUnk_02 == 0) {
+            if (s.mArgKind == 2 || s.mArgKind == 4 || s.mArgKind == 1) {
+                s.mSpecChar = 0xffff;
+            } else if (s.mHasDot == 0) {
                 s.mUnk_0c = 6;
             }
             break;
         case 'p':
-            s.mUnk_04 = 3;
-            s.mUnk_03 = 1;
-            s.mUnk_06 = 'x';
+            s.mArgKind = 3;
+            s.mHash = 1;
+            s.mSpecChar = 'x';
             s.mUnk_0c = 8;
             break;
         case 'c':
-            if (s.mUnk_04 == 3) {
-                s.mUnk_04 = 6;
-            } else if (s.mUnk_02 != 0 || s.mUnk_04 != 0) {
-                s.mUnk_06 = 0xffff;
+            if (s.mArgKind == 3) {
+                s.mArgKind = 6;
+            } else if (s.mHasDot != 0 || s.mArgKind != 0) {
+                s.mSpecChar = 0xffff;
             }
             break;
         case 's':
-            if (s.mUnk_04 == 3) {
-                s.mUnk_04 = 6;
-            } else if (s.mUnk_04 != 0) {
-                s.mUnk_06 = 0xffff;
+            if (s.mArgKind == 3) {
+                s.mArgKind = 6;
+            } else if (s.mArgKind != 0) {
+                s.mSpecChar = 0xffff;
             }
             break;
         case 'n':
-            if (s.mUnk_04 == 5) {
-                s.mUnk_04 = 4;
+            if (s.mArgKind == 5) {
+                s.mArgKind = 4;
             }
             break;
         default:
-            s.mUnk_06 = 0xffff;
+            s.mSpecChar = 0xffff;
             break;
     }
     *c = s;
@@ -198,7 +198,7 @@ const u16 *func_0213e468(const u16 *a, char **b, Unk0213d398 *c) {
 // and s.mUnk_0c are 0, unless mUnk_03 is set and the character is 'o'. 'd' and 'i' negate a negative v and put '-'
 // in front; mUnk_00 == 2 pads with '0' to mUnk_08 (less 1 for a sign, less 2 for a 0x prefix); mUnk_01 1 and 2 put
 // '+' and ' ' in front; mUnk_03 puts a '0' in front for base 8 and '0' plus the character for base 16.
-u16 *func_0213e1f0(unsigned long v, u16 *end, Unk0213d398 s) {
+u16 *FormatWideInt32(unsigned long v, u16 *end, FormatWideSpec s) {
     unsigned long b;
     u16 *p;
     int n;
@@ -211,10 +211,10 @@ u16 *func_0213e1f0(unsigned long v, u16 *end, Unk0213d398 s) {
     u16 c;
 
     m = s.mUnk_0c;
-    t = s.mUnk_03;
-    c = s.mUnk_06;
-    k = s.mUnk_08;
-    f = s.mUnk_01;
+    t = s.mHash;
+    c = s.mSpecChar;
+    k = s.mMinLength;
+    f = s.mSignKind;
     a = 0;
     n = 0;
     p = end;
@@ -266,7 +266,7 @@ u16 *func_0213e1f0(unsigned long v, u16 *end, Unk0213d398 s) {
             n++;
         }
     }
-    if (s.mUnk_00 == 2) {
+    if (s.mPadKind == 2) {
         m = k;
         if (a != 0 || f != 0) {
             m--;
@@ -296,9 +296,9 @@ u16 *func_0213e1f0(unsigned long v, u16 *end, Unk0213d398 s) {
     return p;
 }
 
-// Same as func_0213e1f0 with a 64-bit v (one word per half; the digit and the quotient come from 64-bit unsigned
+// Same as FormatWideInt32 with a 64-bit v (one word per half; the digit and the quotient come from 64-bit unsigned
 // division and remainder).
-u16 *func_0213deec(u64 v, u16 *end, Unk0213d398 s) {
+u16 *FormatWideInt64(u64 v, u16 *end, FormatWideSpec s) {
     int a;
     int m;
     int k;
@@ -312,12 +312,12 @@ u16 *func_0213deec(u64 v, u16 *end, Unk0213d398 s) {
     int e;
 
     m = s.mUnk_0c;
-    t = s.mUnk_03;
-    f = s.mUnk_01;
-    k = s.mUnk_08;
+    t = s.mHash;
+    f = s.mSignKind;
+    k = s.mMinLength;
     a = 0;
     n = 0;
-    c = s.mUnk_06;
+    c = s.mSpecChar;
     p = end;
     *--p = 0;
     if (v == 0 && m == 0) {
@@ -367,7 +367,7 @@ u16 *func_0213deec(u64 v, u16 *end, Unk0213d398 s) {
             n++;
         }
     }
-    if (s.mUnk_00 == 2) {
+    if (s.mPadKind == 2) {
         m = k;
         if (a != 0 || f != 0) {
             m--;
@@ -397,7 +397,7 @@ u16 *func_0213deec(u64 v, u16 *end, Unk0213d398 s) {
     return p;
 }
 
-void func_0213dcd4(Unk02136638 *a, int k) {
+void FormatWideRoundDigitChars(DigitRecord *a, int k) {
     char *b;
     char *p;
     char *q;
@@ -407,16 +407,16 @@ void func_0213dcd4(Unk02136638 *a, int k) {
 
     if (k < 0) {
     zero:
-        a->mUnk_02 = 0;
-        a->mUnk_04 = 1;
-        a->mUnk_05[0] = '0';
+        a->mExponent = 0;
+        a->mDigitCount = 1;
+        a->mDigits[0] = '0';
         return;
     }
-    n = a->mUnk_04;
+    n = a->mDigitCount;
     if (k >= n) {
         return;
     }
-    b = a->mUnk_05;
+    b = a->mDigits;
     p = b + k + 1;
     v = *--p - '0';
     if (v == 5) {
@@ -442,20 +442,20 @@ void func_0213dcd4(Unk02136638 *a, int k) {
         }
     }
     if (c != 0) {
-        a->mUnk_02++;
-        a->mUnk_04 = 1;
-        a->mUnk_05[0] = '1';
+        a->mExponent++;
+        a->mDigitCount = 1;
+        a->mDigits[0] = '1';
         return;
     }
     if (k == 0) {
         goto zero;
     }
-    a->mUnk_04 = k;
+    a->mDigitCount = k;
 }
 
-u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
+u16 *FormatWideDouble(double v, u16 *a, FormatWideSpec b) {
     Unk02140c28 g;
-    Unk02136638 h;
+    DigitRecord h;
     char buf[0x200];
     int k;
     u16 t;
@@ -472,23 +472,23 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
     u8 c;
 
     k = b.mUnk_0c;
-    t = b.mUnk_06;
-    x = b.mUnk_03;
-    y = b.mUnk_01;
+    t = b.mSpecChar;
+    x = b.mHash;
+    y = b.mSignKind;
     if (k > 509) {
         return 0;
     }
     g.mUnk_00 = 0;
-    g.mUnk_02 = 0x20;
-    func_02140c28(&g, v, &h);
-    p = h.mUnk_05 + h.mUnk_04;
-    while (h.mUnk_04 > 1 && *--p == '0') {
-        h.mUnk_04--;
-        h.mUnk_02++;
+    g.mDigitCount = 0x20;
+    DoubleToDigitChars(&g, v, &h);
+    p = h.mDigits + h.mDigitCount;
+    while (h.mDigitCount > 1 && *--p == '0') {
+        h.mDigitCount--;
+        h.mExponent++;
     }
-    switch (h.mUnk_05[0]) {
+    switch (h.mDigits[0]) {
         case '0':
-            h.mUnk_02 = 0;
+            h.mExponent = 0;
             break;
         case 'I':
             if (v < 0.0) {
@@ -512,20 +512,20 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
             wcscpy(r, L"NaN");
             return r;
     }
-    h.mUnk_02 += h.mUnk_04 - 1;
+    h.mExponent += h.mDigitCount - 1;
     p = buf + sizeof(buf);
     *--p = 0;
     switch (t) {
         case 'g':
         case 'G':
-            if (h.mUnk_04 > k) {
-                func_0213dcd4(&h, k);
+            if (h.mDigitCount > k) {
+                FormatWideRoundDigitChars(&h, k);
             }
-            if (h.mUnk_02 < -4 || h.mUnk_02 >= k) {
+            if (h.mExponent < -4 || h.mExponent >= k) {
                 if (x != 0) {
                     k--;
                 } else {
-                    k = h.mUnk_04 - 1;
+                    k = h.mDigitCount - 1;
                 }
                 if (t == 'g') {
                     t = 'e';
@@ -535,9 +535,9 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
                 goto exp;
             }
             if (x != 0) {
-                k -= h.mUnk_02 + 1;
+                k -= h.mExponent + 1;
             } else {
-                if ((k = h.mUnk_04 - (h.mUnk_02 + 1)) < 0) {
+                if ((k = h.mDigitCount - (h.mExponent + 1)) < 0) {
                     k = 0;
                 }
             }
@@ -545,10 +545,10 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
         case 'e':
         case 'E':
         exp:
-            if (h.mUnk_04 > k + 1) {
-                func_0213dcd4(&h, k + 1);
+            if (h.mDigitCount > k + 1) {
+                FormatWideRoundDigitChars(&h, k + 1);
             }
-            e = h.mUnk_02;
+            e = h.mExponent;
             c = '+';
             if (e < 0) {
                 e = -e;
@@ -563,20 +563,20 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
             if (buf - p + k > 509) {
                 return 0;
             }
-            if (h.mUnk_04 < k + 1) {
-                for (i = k + 2 - h.mUnk_04; --i != 0;) {
+            if (h.mDigitCount < k + 1) {
+                for (i = k + 2 - h.mDigitCount; --i != 0;) {
                     *--p = '0';
                 }
             }
-            q = h.mUnk_05 + h.mUnk_04;
-            for (i = h.mUnk_04; --i != 0;) {
+            q = h.mDigits + h.mDigitCount;
+            for (i = h.mDigitCount; --i != 0;) {
                 *--p = *--q;
             }
             if (k != 0 || x != 0) {
                 *--p = '.';
             }
-            *--p = h.mUnk_05[0];
-            if (h.mUnk_00 != 0) {
+            *--p = h.mDigits[0];
+            if (h.mNegative != 0) {
                 *--p = '-';
             } else if (y == 1) {
                 *--p = '+';
@@ -587,26 +587,26 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
         case 'f':
         case 'F':
         fix:
-            if ((f = h.mUnk_04 - h.mUnk_02 - 1) < 0) {
+            if ((f = h.mDigitCount - h.mExponent - 1) < 0) {
                 f = 0;
             }
             if (f > k) {
-                func_0213dcd4(&h, h.mUnk_04 - (f - k));
-                if ((f = h.mUnk_04 - h.mUnk_02 - 1) < 0) {
+                FormatWideRoundDigitChars(&h, h.mDigitCount - (f - k));
+                if ((f = h.mDigitCount - h.mExponent - 1) < 0) {
                     f = 0;
                 }
             }
-            if ((m = h.mUnk_02 + 1) < 0) {
+            if ((m = h.mExponent + 1) < 0) {
                 m = 0;
             }
             if (m + f > 509) {
                 return 0;
             }
-            q = h.mUnk_05 + h.mUnk_04;
+            q = h.mDigits + h.mDigitCount;
             for (i = 0; i < k - f; i++) {
                 *--p = '0';
             }
-            for (i = 0; i < f && i < h.mUnk_04; i++) {
+            for (i = 0; i < f && i < h.mDigitCount; i++) {
                 *--p = *--q;
             }
             for (; i < f; i++) {
@@ -616,7 +616,7 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
                 *--p = '.';
             }
             if (m != 0) {
-                for (i = 0; i < m - h.mUnk_04; i++) {
+                for (i = 0; i < m - h.mDigitCount; i++) {
                     *--p = '0';
                 }
                 for (; i < m; i++) {
@@ -625,7 +625,7 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
             } else {
                 *--p = '0';
             }
-            if (h.mUnk_00 != 0) {
+            if (h.mNegative != 0) {
                 *--p = '-';
             } else if (y == 1) {
                 *--p = '+';
@@ -639,11 +639,11 @@ u16 *func_0213d398(double v, u16 *a, Unk0213d398 b) {
     return r;
 }
 
-int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, char *d) {
+int FormatWideWithPutFunc(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, char *d) {
     u16 e = ' ';
     u16 f;
     char g;
-    Unk0213d398 s;
+    FormatWideSpec s;
     u16 buf[512];
     int t;
     long v;
@@ -675,30 +675,30 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
         if (n != 0 && a(b, c, n) == 0) {
             return -1;
         }
-        c = func_0213e468(q, &d, &s);
-        switch (s.mUnk_06) {
+        c = FormatWideParseSpec(q, &d, &s);
+        switch (s.mSpecChar) {
             case 'd':
             case 'i':
-                if (s.mUnk_04 == 3) {
+                if (s.mArgKind == 3) {
                     d += 4;
                     v = *(long *) (d - 4);
-                } else if (s.mUnk_04 == 4) {
+                } else if (s.mArgKind == 4) {
                     d += 8;
                     vl = *(u64 *) (d - 8);
                 } else {
                     d += 4;
                     v = *(int *) (d - 4);
                 }
-                if (s.mUnk_04 == 2) {
+                if (s.mArgKind == 2) {
                     v = (short) v;
                 }
-                if (s.mUnk_04 == 4) {
-                    p = func_0213deec(vl, buf + 512, s);
+                if (s.mArgKind == 4) {
+                    p = FormatWideInt64(vl, buf + 512, s);
                     if (p == 0) {
                         goto bad;
                     }
                 } else {
-                    p = func_0213e1f0(v, buf + 512, s);
+                    p = FormatWideInt32(v, buf + 512, s);
                     if (p == 0) {
                         goto bad;
                     }
@@ -709,26 +709,26 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
             case 'u':
             case 'x':
             case 'X':
-                if (s.mUnk_04 == 3) {
+                if (s.mArgKind == 3) {
                     d += 4;
                     v = *(long *) (d - 4);
-                } else if (s.mUnk_04 == 4) {
+                } else if (s.mArgKind == 4) {
                     d += 8;
                     vl = *(u64 *) (d - 8);
                 } else {
                     d += 4;
                     v = *(int *) (d - 4);
                 }
-                if (s.mUnk_04 == 2) {
+                if (s.mArgKind == 2) {
                     v = (u16) v;
                 }
-                if (s.mUnk_04 == 4) {
-                    p = func_0213deec(vl, buf + 512, s);
+                if (s.mArgKind == 4) {
+                    p = FormatWideInt64(vl, buf + 512, s);
                     if (p == 0) {
                         goto bad;
                     }
                 } else {
-                    p = func_0213e1f0(v, buf + 512, s);
+                    p = FormatWideInt32(v, buf + 512, s);
                     if (p == 0) {
                         goto bad;
                     }
@@ -741,32 +741,32 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
             case 'E':
             case 'F':
             case 'G':
-                if (s.mUnk_04 == 5) {
+                if (s.mArgKind == 5) {
                     d += 8;
                     x = *(long double *) (d - 8);
                 } else {
                     d += 8;
                     x = *(double *) (d - 8);
                 }
-                p = func_0213d398(x, buf + 512, s);
+                p = FormatWideDouble(x, buf + 512, s);
                 if (p == 0) {
                     goto bad;
                 }
                 n = buf + 511 - p;
                 break;
             case 's':
-                if (s.mUnk_04 == 6) {
+                if (s.mArgKind == 6) {
                     d += 4;
                     p = *(u16 **) (d - 4);
                     if (p == 0) {
                         p = L"";
                     }
-                    if (s.mUnk_03 != 0) {
+                    if (s.mHash != 0) {
                         n = (u8) *p++;
-                        if (s.mUnk_02 != 0 && n > s.mUnk_0c) {
+                        if (s.mHasDot != 0 && n > s.mUnk_0c) {
                             n = s.mUnk_0c;
                         }
-                    } else if (s.mUnk_02 != 0) {
+                    } else if (s.mHasDot != 0) {
                         n = s.mUnk_0c;
                         r = wmemchr(p, 0, n);
                         if (r != 0) {
@@ -781,13 +781,13 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
                     if (bp == 0) {
                         bp = "";
                     }
-                    if (s.mUnk_03 != 0) {
+                    if (s.mHash != 0) {
                     // reads p (the u16 pointer of the other branch), not bp
                         m = (u8) *p;
-                        if (s.mUnk_02 != 0 && m > s.mUnk_0c) {
+                        if (s.mHasDot != 0 && m > s.mUnk_0c) {
                             m = s.mUnk_0c;
                         }
-                    } else if (s.mUnk_02 != 0) {
+                    } else if (s.mHasDot != 0) {
                         m = s.mUnk_0c;
                         bq = memchr(bp, 0, m);
                         if (bq != 0) {
@@ -806,7 +806,7 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
             case 'n':
                 d += 4;
                 p = *(u16 **) (d - 4);
-                switch (s.mUnk_04) {
+                switch (s.mArgKind) {
                     case 0:
                         *(int *) p = t;
                         break;
@@ -823,7 +823,7 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
                 continue;
             case 'c':
                 p = buf;
-                if (s.mUnk_04 == 6) {
+                if (s.mArgKind == 6) {
                     d += 4;
                     n = 1;
                     *p = *(int *) (d - 4);
@@ -849,8 +849,8 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
                 return t;
         }
         w = n;
-        if (s.mUnk_00 != 0) {
-            k = s.mUnk_00 == 2 ? '0' : ' ';
+        if (s.mPadKind != 0) {
+            k = s.mPadKind == 2 ? '0' : ' ';
             e = k;
             if ((*p == '+' || *p == '-' || *p == ' ') && k == '0') {
                 if (a(b, p, 1) == 0) {
@@ -859,7 +859,7 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
                 p++;
                 n--;
             }
-            while (w < s.mUnk_08) {
+            while (w < s.mMinLength) {
                 if (a(b, &e, 1) == 0) {
                     return -1;
                 }
@@ -869,8 +869,8 @@ int func_0213cae0(void *(*a)(void *, const u16 *, u32), void *b, const u16 *c, c
         if (n != 0 && a(b, p, n) == 0) {
             return -1;
         }
-        if (s.mUnk_00 == 0) {
-            while (w < s.mUnk_08) {
+        if (s.mPadKind == 0) {
+            while (w < s.mMinLength) {
                 f = ' ';
                 if (a(b, &f, 1) == 0) {
                     return -1;

@@ -4,7 +4,7 @@
 
 // clang-format off
 // Multiplies the doubles r1:r0 and r3:r2 and returns the product in r1:r0, rounded as the floating-point status word
-// says (func_02142578; see code_0212f884.s). Denormal operands are normalised first; underflow, overflow, inexact and
+// says (GetFloatStatus; see code_0212f884.s). Denormal operands are normalised first; underflow, overflow, inexact and
 // invalid (zero times infinity, signalling NaNs) set their flags or call the trap handlers with event codes ending in
 // 0x93. The operands stay saved on the stack for the invalid-operation trap.
 // Not compiled code: it counts leading zeros with clz and tests bits with tst, neither of which the 1.2 compiler
@@ -81,7 +81,7 @@ dmul_pack:
     bxeq lr
     // Inexact: trap if enabled, else set the flag and round as the mode says.
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -236,7 +236,7 @@ dmul_b_normalise:
     // bit is left; below that the result is zero or the smallest denormal.
 dmul_underflow:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r2, [r2]
@@ -275,7 +275,7 @@ dmul_denormal_round:
     ldmeqfd sp!, {r4, r5, r6, r7, lr}
     bxeq lr
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -363,7 +363,7 @@ dmul_b_nan:
     bxne lr
     // Invalid operation: trap if enabled, else set the flag.
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -377,7 +377,7 @@ dmul_b_nan:
     // Invalid operation: trap if enabled, else set the flag and return the default NaN.
 dmul_invalid:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -398,7 +398,7 @@ dmul_half_smallest:
     mov r1, lr
     mov r0, #0
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -421,7 +421,7 @@ dmul_tiny:
     mov r1, lr
     mov r0, #0
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -444,7 +444,7 @@ dmul_tiny:
     // value, up and down one or the other by the sign.
 dmul_overflow:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -491,7 +491,7 @@ dmul_trap_overflow_round:
     add sp, sp, #16
     sub r1, r1, #0x60000000
     ldr r2, =0x10000093
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
     // Overflow trap: pass the result with its exponent lowered by 0x600.
@@ -504,7 +504,7 @@ dmul_trap_overflow:
     sub ip, ip, #0x600
     orr r1, r1, ip, lsl #20
     ldr r2, =0x10000093
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
     // Underflow trap: pass the result with its exponent raised by 0x600.
@@ -517,7 +517,7 @@ dmul_trap_underflow:
     add ip, ip, #0x600
     orr r1, r1, ip, lsl #20
     ldr r2, =0x20000093
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
     // Invalid trap: pass the original operands from the stack.
@@ -525,7 +525,7 @@ dmul_trap_invalid:
     ldmfd sp!, {r0, r1, r2, r3}
     ldr ip, =0x4000093
     stmdb sp!, {ip}
-    bl func_0213406c
+    bl FloatTrapPairPairToPair
     add sp, sp, #4
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
@@ -533,7 +533,7 @@ dmul_trap_invalid:
 dmul_trap_inexact:
     add sp, sp, #16
     ldr r2, =0x40000093
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
 }

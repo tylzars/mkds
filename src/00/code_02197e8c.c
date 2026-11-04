@@ -5,7 +5,7 @@
 
 BOOL Gt2CallElapsedTimeCallback(Gt2Connection *connection, s32 b) {
     if (connection == NULL) {
-        func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0xd9);
+        AssertionFailed(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0xd9);
     }
     if (connection == NULL) {
         return TRUE;
@@ -28,7 +28,7 @@ BOOL Gt2CallElapsedTimeCallback(Gt2Connection *connection, s32 b) {
 BOOL func_ov000_02198098(Gt2Connection *connection, s32 b, s32 c, void *d, s32 e) {
     Unk02197fe8Entry *f;
     if (connection == NULL) {
-        func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x101);
+        AssertionFailed(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x101);
     }
     if (connection == NULL) {
         return TRUE;
@@ -56,7 +56,7 @@ BOOL func_ov000_02198098(Gt2Connection *connection, s32 b, s32 c, void *d, s32 e
 BOOL func_ov000_02197fe8(Gt2Connection *connection, s32 b, void *c, s32 d, s32 e) {
     Unk02197fe8Entry *f;
     if (connection == NULL) {
-        func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x12d);
+        AssertionFailed(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x12d);
     }
     if (connection == NULL) {
         return TRUE;
@@ -85,7 +85,7 @@ u32 func_ov000_02197f28(Gt2Socket *socket, int e, u32 f, u32 g, u32 h, int l, in
     Gt2Connection *b = (Gt2Connection *) e;
     UnkWordFunc *c;
     if (socket == NULL) {
-        func_0213442c(data_ov000_021b3f50, data_ov000_021b3f58, NULL, 0x160);
+        AssertionFailed(data_ov000_021b3f50, data_ov000_021b3f58, NULL, 0x160);
     }
     if (socket == NULL) {
         return 1;
@@ -121,7 +121,7 @@ u32 func_ov000_02197f28(Gt2Socket *socket, int e, u32 f, u32 g, u32 h, int l, in
 BOOL CallUnmatchedDataCallback(Gt2Socket *a, s32 b, s32 c, void *d, s32 e, s32 *f) {
     *f = 0;
     if (a == NULL) {
-        func_0213442c(data_ov000_021b3f50, data_ov000_021b3f58, NULL, 0x197);
+        AssertionFailed(data_ov000_021b3f50, data_ov000_021b3f58, NULL, 0x197);
     }
     if (a == NULL) {
         return TRUE;

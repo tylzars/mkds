@@ -4,7 +4,7 @@
 
 void func_02135010(void) {}
 
-void func_02134f18(u8 *p, int c, u32 n) {
+void MemsetBody(u8 *p, int c, u32 n) {
     u32 *w;
     u32 m;
     u32 k;
@@ -74,7 +74,7 @@ void *memmove(void *a, const void *b, u32 n) {
 }
 
 void *memset(void *p, int c, size_t n) {
-    func_02134f18(p, c, n);
+    MemsetBody(p, c, n);
     return p;
 }
 
@@ -90,7 +90,7 @@ void *memchr(const void *x, int c, u32 n) {
     return 0;
 }
 
-void *func_02134d80(const void *a, int v, u32 n) {
+void *MemChrBackward(const void *a, int v, u32 n) {
     u8 c = v;
     const u8 *p = (const u8 *) a + n;
 

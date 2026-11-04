@@ -1,6 +1,6 @@
 // Double-precision subtraction (also reversed) and single-precision addition.
 //
-// Arguments and results, the status word from func_02142578 and the trap handlers are as described in
+// Arguments and results, the status word from GetFloatStatus and the trap handlers are as described in
 // code_0212f884.s; floats are passed and returned in one register each.
 //
 // Not compiled code: func_02130cb4 has no return and runs on into _dsub; _dsub and _dadd (code_0212f884.s), and
@@ -11,11 +11,11 @@
     .text
     .extern .L_0212f894
     .extern .L_02132a0c
-    .extern func_0213406c
-    .extern func_021340d4
-    .extern func_0213412c
-    .extern func_02134238
-    .extern func_02142578
+    .extern FloatTrapPairPairToPair
+    .extern FloatTrapWordWordToWord
+    .extern FloatTrapPairToPair
+    .extern FloatTrapWordToWord
+    .extern GetFloatStatus
 
 // Reversed subtraction: swaps the doubles r1:r0 and r3:r2 (three exclusive ors per word) and runs on into _dsub, so it
 // returns r3:r2 minus r1:r0.
@@ -117,7 +117,7 @@ dsub_pack:
     bxeq lr
     // Inexact: trap if enabled, else set the flag and round as the mode says.
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -390,7 +390,7 @@ dsub_b_nan_in_r1:
     bxne lr
     // Invalid operation: trap if enabled, else set the flag and return the default NaN in r1:r0.
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -404,7 +404,7 @@ dsub_b_nan_in_r1:
     // Invalid operation (also infinity minus infinity): raise invalid, return the default NaN.
 dsub_invalid:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -423,7 +423,7 @@ dsub_zero:
     mov r1, #0
     mov r0, #0
     stmfd sp!, {r0, r1, r2, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r3, r0
     ldmfd sp!, {r0, r1, r2, ip, lr}
     ldr r3, [r3]
@@ -444,7 +444,7 @@ dsub_trap_invalid:
     ldmfd sp!, {r0, r1, r2, r3}
     ldr ip, dsub_code_invalid
     stmdb sp!, {ip}
-    bl func_0213406c
+    bl FloatTrapPairPairToPair
     add sp, sp, #4
     ldmfd sp!, {r4, lr}
     bx lr
@@ -452,7 +452,7 @@ dsub_trap_invalid:
 dsub_trap_inexact:
     add sp, sp, #16
     ldr r2, dsub_code_inexact
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmfd sp!, {r4, lr}
     bx lr
     // Constant words: the high word of infinity and the event codes.
@@ -528,7 +528,7 @@ fadd_pack:
     bxeq lr
     // Inexact: trap if enabled, else set the flag and round as the mode says.
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -661,7 +661,7 @@ fadd_denormal_pack:
     addeq sp, sp, #12
     bxeq lr
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -702,7 +702,7 @@ fadd_overflow:
     movge r2, #0x80000000
     movlt r2, #0
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -734,7 +734,7 @@ fadd_b_nan_a_zero:
     addne sp, sp, #12
     bxne lr
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -771,7 +771,7 @@ fadd_b_nan:
     // Invalid operation: trap if enabled, else set the flag.
 fadd_invalid:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -790,7 +790,7 @@ fadd_trap_overflow_round:
     sub r0, r0, #0x60000000
     stmdb sp!, {lr}
     mov r1, #0x10000001
-    bl func_02134238
+    bl FloatTrapWordToWord
     ldmia sp!, {lr}
     bx lr
     // Overflow trap while adding: pass the sum with its exponent wrapped down by 0xc0.
@@ -800,7 +800,7 @@ fadd_trap_overflow:
     add r0, r0, #0x1f000000
     stmdb sp!, {lr}
     mov r1, #0x10000001
-    bl func_02134238
+    bl FloatTrapWordToWord
     ldmia sp!, {lr}
     bx lr
     // Invalid trap: pass the operands and the operation number from the stack.
@@ -809,7 +809,7 @@ fadd_trap_invalid:
     stmdb sp!, {lr}
     mov ip, #0x4000000
     orr r2, r2, ip
-    bl func_021340d4
+    bl FloatTrapWordWordToWord
     ldmia sp!, {lr}
     bx lr
     // Inexact trap: pass the rounded result.
@@ -817,7 +817,7 @@ fadd_trap_inexact:
     add sp, sp, #12
     stmdb sp!, {lr}
     mov r1, #0x40000001
-    bl func_02134238
+    bl FloatTrapWordToWord
     ldmia sp!, {lr}
     bx lr
     .size _fadd, . - _fadd

@@ -22,9 +22,9 @@ int raise(int a) {
         data_0217ea94[7] = data_0216ff5c.mUnk_08->mUnk_6c;
         data_0217eab8[7] = 1;
     }
-    f = data_0217ee94[a - 1];
+    f = gRaiseHandlers[a - 1];
     if (f != (Unk02139e20Func) 1) {
-        data_0217ee94[a - 1] = 0;
+        gRaiseHandlers[a - 1] = 0;
     }
     data_0217eab8[7]--;
     if (data_0217eab8[7] == 0) {

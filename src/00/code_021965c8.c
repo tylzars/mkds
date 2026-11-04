@@ -43,13 +43,13 @@ s32 GpiReadKeyValue(GpConnection *a, s8 *buffer, s32 *c, s8 *key, s8 *value) {
     s32 i;
 
     if (buffer == NULL) {
-        func_0213442c(data_ov000_021b3a0c, data_ov000_021b3a1c, NULL, 0x199);
+        AssertionFailed(data_ov000_021b3a0c, data_ov000_021b3a1c, NULL, 0x199);
     }
     if (key == NULL) {
-        func_0213442c(data_ov000_021b3a2c, data_ov000_021b3a1c, NULL, 0x19a);
+        AssertionFailed(data_ov000_021b3a2c, data_ov000_021b3a1c, NULL, 0x19a);
     }
     if (value == NULL) {
-        func_0213442c(data_ov000_021b3a38, data_ov000_021b3a1c, NULL, 0x19b);
+        AssertionFailed(data_ov000_021b3a38, data_ov000_021b3a1c, NULL, 0x19b);
     }
     p = buffer + *c;
     if (*p != 0x5c) {

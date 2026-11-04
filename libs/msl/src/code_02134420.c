@@ -1,6 +1,6 @@
 #include "code_02134420.h"
 
-u32 func_02134420(u32 arg0) {
+u32 Abs(u32 arg0) {
     u32 value0 = arg0;
     u32 compareLeft0;
     u32 compareRight0;

@@ -107,7 +107,7 @@ u32 GpiOpenSockets(GpConnection *p, Unk021919ac_node *n) {
     s.f.mUnk_01 = 2;
     s.f.mUnk_04 = **x->mUnk_0c;
     if (s.f.mUnk_04 == 0) {
-        func_0213442c(data_ov000_021b2ed0, data_ov000_021b2b88, NULL, 0x90);
+        AssertionFailed(data_ov000_021b2ed0, data_ov000_021b2b88, NULL, 0x90);
     }
     s.f.mUnk_02 = 0xcc74;
     if (func_ov000_0218e4b4(o->mConnectSocket, &s, 8) == -1) {
@@ -340,7 +340,7 @@ u32 GpiProcessConnectOperation(GpConnection *a, GpiOperation *b, const char *c) 
             d->mProfileId = 0;
         } else if (d->mErrorNumber == 0x201) {
             if (GpiGetValue(c, data_ov000_021b2b98, h, 0x200) != 0) {
-                d->mProfileId = func_0213bf90(h);
+                d->mProfileId = StrtolBase10(h);
             }
         }
         if (strstr(c, data_ov000_021b2ba0) != NULL) {
@@ -390,13 +390,13 @@ u32 GpiProcessConnectOperation(GpConnection *a, GpiOperation *b, const char *c) 
                 GpiQueueErrorCallback(a, 3, 1);
                 return 3;
             }
-            d->mUserId = func_0213bf90(h);
+            d->mUserId = StrtolBase10(h);
             if (GpiGetValue(c, data_ov000_021b2c30, h, 0x200) == 0) {
                 GpiSetError(a, 1, data_ov000_021b2c00);
                 GpiQueueErrorCallback(a, 3, 1);
                 return 3;
             }
-            d->mProfileId = func_0213bf90(h);
+            d->mProfileId = StrtolBase10(h);
             m = GpiWriteLogin(a, (Unk021919ac_q *) e);
             if (m != 0) {
                 return m;
@@ -414,19 +414,19 @@ u32 GpiProcessConnectOperation(GpConnection *a, GpiOperation *b, const char *c) 
                 GpiQueueErrorCallback(a, 3, 1);
                 return 3;
             }
-            d->mSesskey = func_0213bf90(h);
+            d->mSesskey = StrtolBase10(h);
             if (GpiGetValue(c, data_ov000_021b2bf4, h, 0x200) == 0) {
                 GpiSetError(a, 1, data_ov000_021b2c00);
                 GpiQueueErrorCallback(a, 3, 1);
                 return 3;
             }
-            d->mUserId = func_0213bf90(h);
+            d->mUserId = StrtolBase10(h);
             if (GpiGetValue(c, data_ov000_021b2c30, h, 0x200) == 0) {
                 GpiSetError(a, 1, data_ov000_021b2c00);
                 GpiQueueErrorCallback(a, 3, 1);
                 return 3;
             }
-            d->mProfileId = func_0213bf90(h);
+            d->mProfileId = StrtolBase10(h);
             if (GpiGetValue(c, data_ov000_021b2c50, g, 0x15) == 0) {
                 g[0] = 0;
             }
@@ -497,7 +497,7 @@ int func_ov000_02191200(GpConnection *a) {
             return 0;
         }
         if (v3 != 3) {
-            func_0213442c(data_ov000_021b2b70, data_ov000_021b2b88, NULL, 0x2ef);
+            AssertionFailed(data_ov000_021b2b70, data_ov000_021b2b88, NULL, 0x2ef);
         }
         v2->mConnectState = 2;
         v1 = 0;

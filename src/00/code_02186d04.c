@@ -252,7 +252,7 @@ void func_ov000_02186d7c(void *l) {
                         q = (s8 *) strstr(y, data_ov000_021b1258);
                         e = *q;
                         *q = 0;
-                        p->mContentLength = func_0213bf90(y);
+                        p->mContentLength = StrtolBase10(y);
                         *q = e;
                     }
                 }

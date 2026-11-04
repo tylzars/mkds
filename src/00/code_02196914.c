@@ -5,10 +5,10 @@
 
 void GpiCopyString(char *dest, const char *src, s32 c) {
     if (dest == NULL) {
-        func_0213442c(data_ov000_021b3b10, data_ov000_021b3a1c, NULL, 0x2f);
+        AssertionFailed(data_ov000_021b3b10, data_ov000_021b3a1c, NULL, 0x2f);
     }
     if (src == NULL) {
-        func_0213442c(data_ov000_021b3b20, data_ov000_021b3a1c, NULL, 0x30);
+        AssertionFailed(data_ov000_021b3b20, data_ov000_021b3a1c, NULL, 0x30);
     }
     strncpy(dest, src, c);
     *(dest + c + -1) = 0;

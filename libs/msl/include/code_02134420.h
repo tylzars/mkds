@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_02134420(u32 arg0);
+u32 Abs(u32 arg0);

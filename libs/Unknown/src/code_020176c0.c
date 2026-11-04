@@ -333,7 +333,7 @@ u32 ExpHeapGetMaxAllocSize(Unk020176c0 *a, u32 b) {
     u32 l;
     u32 d;
 
-    m = func_02134420(b);
+    m = Abs(b);
     b0 = 0;
     off = -1;
     for (p = a->mUnk_24.mFreeList.mUnk_00; p != 0; p = p->mUnk_0c) {

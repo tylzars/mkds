@@ -38,7 +38,7 @@
 u32 func_ov000_0218e8c4(void) {
     u64 t;
     if (func_0200f6e4() != 1) {
-        func_0213442c(data_ov000_021b23b0, data_ov000_021b23d0, NULL, 0x109);
+        AssertionFailed(data_ov000_021b23b0, data_ov000_021b23d0, NULL, 0x109);
     }
     t = func_0200f5ac();
     return (t << 6) / 0x82ea;
@@ -346,7 +346,7 @@ u32 func_ov000_0218e368(s32 a) {
 u32 func_ov000_0218e320(u32 *param_1) {
     u32 a;
     if (func_0200f6e4() != 1) {
-        func_0213442c(data_ov000_021b23b0, data_ov000_021b23d0, NULL, 0x667);
+        AssertionFailed(data_ov000_021b23b0, data_ov000_021b23d0, NULL, 0x667);
     }
     a = (func_0200f5ac() << 6) / 0x1ff6210;
     if (param_1 != NULL) {

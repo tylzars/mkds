@@ -23,7 +23,7 @@ void DarrayGrow(Darray *a) {
     a->mCapacity = a->mCapacity + a->mGrowCount;
     a->mList = func_ov000_021a3678(a->mList, a->mCapacity * a->mElemSize);
     if (a->mList == NULL) {
-        func_0213442c(data_ov000_021b2348, data_ov000_021b22dc, NULL, 0x41);
+        AssertionFailed(data_ov000_021b2348, data_ov000_021b22dc, NULL, 0x41);
     }
 }
 
@@ -34,10 +34,10 @@ void DarraySetElement(Darray *a, const void *b, s32 c) {
 void *DarrayCreate(s32 elemSize, s32 c, void (*d)(void *)) {
     Darray *array = func_ov000_021a3690(0x18);
     if (array == NULL) {
-        func_0213442c(data_ov000_021b2334, data_ov000_021b22dc, NULL, 0x52);
+        AssertionFailed(data_ov000_021b2334, data_ov000_021b22dc, NULL, 0x52);
     }
     if (elemSize == 0) {
-        func_0213442c(data_ov000_021b233c, data_ov000_021b22dc, NULL, 0x53);
+        AssertionFailed(data_ov000_021b233c, data_ov000_021b22dc, NULL, 0x53);
     }
     if (c == 0) {
         c = 8;
@@ -50,7 +50,7 @@ void *DarrayCreate(s32 elemSize, s32 c, void (*d)(void *)) {
     if (array->mCapacity != 0) {
         array->mList = func_ov000_021a3690(array->mCapacity * array->mElemSize);
         if (array->mList == NULL) {
-            func_0213442c(data_ov000_021b2348, data_ov000_021b22dc, NULL, 0x5e);
+            AssertionFailed(data_ov000_021b2348, data_ov000_021b22dc, NULL, 0x5e);
         }
     } else {
         array->mList = NULL;
@@ -62,7 +62,7 @@ void DarrayDelete(void *c) {
     Darray *array = c;
     s32 b;
     if (array == NULL) {
-        func_0213442c(data_ov000_021b2334, data_ov000_021b22dc, NULL, 0x69);
+        AssertionFailed(data_ov000_021b2334, data_ov000_021b22dc, NULL, 0x69);
     }
     b = 0;
     if (0 < array->mCount) {
@@ -84,7 +84,7 @@ s32 DarrayGetCount(void *b) {
 void *DarrayGetElement(void *param_1, s32 n) {
     Darray *array = param_1;
     if (n < 0 || n >= array->mCount) {
-        func_0213442c(data_ov000_021b22e8, data_ov000_021b22dc, NULL, 0x94);
+        AssertionFailed(data_ov000_021b22e8, data_ov000_021b22dc, NULL, 0x94);
     }
     if (n < 0 || n >= array->mCount) {
         return NULL;
@@ -95,7 +95,7 @@ void *DarrayGetElement(void *param_1, s32 n) {
 void DarrayAppend(void *param_1, void *param_2) {
     Darray *array = param_1;
     if (array == NULL) {
-        func_0213442c(data_ov000_021b2334, data_ov000_021b22dc, NULL, 0xa0);
+        AssertionFailed(data_ov000_021b2334, data_ov000_021b22dc, NULL, 0xa0);
     }
     if (array != NULL) {
         DarrayInsert(array, param_2, array->mCount);
@@ -106,7 +106,7 @@ void DarrayInsert(void *param_1, void *param_2, s32 n) {
     Darray *array = param_1;
     s32 b;
     if (n < 0 || n > array->mCount) {
-        func_0213442c(data_ov000_021b2314, data_ov000_021b22dc, NULL, 0xa7);
+        AssertionFailed(data_ov000_021b2314, data_ov000_021b22dc, NULL, 0xa7);
     }
     if (array->mCount == array->mCapacity) {
         DarrayGrow(array);
@@ -124,7 +124,7 @@ void DarrayInsertSorted(Darray *array, void *b, UnkCompare *comparator) {
     u32 v2;
     s32 v3[2];
     if (comparator == NULL) {
-        func_0213442c(data_ov000_021b2308, data_ov000_021b22dc, NULL, 0xb7);
+        AssertionFailed(data_ov000_021b2308, data_ov000_021b22dc, NULL, 0xb7);
     }
     v1 = DarraySearchSorted(b, array->mList, array->mCount, array->mElemSize, comparator, v3);
     v2 = _s32_div_f(v1 - array->mList, array->mElemSize);
@@ -135,7 +135,7 @@ void DarrayInsertSorted(Darray *array, void *b, UnkCompare *comparator) {
 void DarrayRemoveWithoutCallback(Darray *array, int n) {
     s32 v1;
     if (n < 0 || n >= array->mCount) {
-        func_0213442c(data_ov000_021b22e8, data_ov000_021b22dc, NULL, 0xc0);
+        AssertionFailed(data_ov000_021b22e8, data_ov000_021b22dc, NULL, 0xc0);
     }
     v1 = array->mCount - 1;
     if (n < v1) {
@@ -146,7 +146,7 @@ void DarrayRemoveWithoutCallback(Darray *array, int n) {
 
 void DarrayRemove(Darray *array, s32 n) {
     if ((n < 0) || (n >= array->mCount)) {
-        func_0213442c(data_ov000_021b22e8, data_ov000_021b22dc, NULL, 0xca);
+        AssertionFailed(data_ov000_021b22e8, data_ov000_021b22dc, NULL, 0xca);
     }
     DarrayCallElemCallback(array, n);
     DarrayRemoveWithoutCallback(array, n);
@@ -154,7 +154,7 @@ void DarrayRemove(Darray *array, s32 n) {
 
 void DarrayReplace(Darray *array, const void *b, s32 n) {
     if ((n < 0) || (n >= array->mCount)) {
-        func_0213442c(data_ov000_021b22e8, data_ov000_021b22dc, NULL, 0xd3);
+        AssertionFailed(data_ov000_021b22e8, data_ov000_021b22dc, NULL, 0xd3);
     }
     DarrayCallElemCallback(array, n);
     DarraySetElement(array, b, n);
@@ -190,7 +190,7 @@ s32 DarrayFindIndex(Darray *a, const void *b, UnkCompare *c, s32 d, s32 e) {
 void DarrayForEachReverse(Darray *array, UnkCompare *fn, const void *c) {
     s32 i;
     if (fn == NULL) {
-        func_0213442c(data_ov000_021b22d8, data_ov000_021b22dc, NULL, 0x104);
+        AssertionFailed(data_ov000_021b22d8, data_ov000_021b22dc, NULL, 0x104);
     }
     for (i = array->mCount - 1; i >= 0; i--) {
         fn(DarrayGetElement(array, i), c);
@@ -201,7 +201,7 @@ void *DarrayFindByFnReverse(Darray *array, UnkCompare *fn, const void *c) {
     s32 i;
     void *e;
     if (fn == NULL) {
-        func_0213442c(data_ov000_021b22d8, data_ov000_021b22dc, NULL, 0x121);
+        AssertionFailed(data_ov000_021b22d8, data_ov000_021b22dc, NULL, 0x121);
     }
     for (i = array->mCount - 1; i >= 0; i--) {
         e = DarrayGetElement(array, i);

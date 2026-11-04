@@ -35,11 +35,11 @@ u32 func_ov000_02190618(GpConnection *a, GpiBuffer *b, s32 *c, s32 *d, s32 *e) {
         if (GpiGetValue((const char *) b->mBuffer, data_ov000_021b2884, f, 0x10) == 0) {
             return 3;
         }
-        *d = func_0213bf90(f);
+        *d = StrtolBase10(f);
         if (GpiGetValue((const char *) b->mBuffer, data_ov000_021b2888, f, 0x10) == 0) {
             return 3;
         }
-        n = func_0213bf90(f);
+        n = StrtolBase10(f);
         m = n + 1;
         if (b->mLength > m + (p - b->mBuffer)) {
             if (*(s8 *) (p + m) != 0) {

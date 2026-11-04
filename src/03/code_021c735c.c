@@ -135,7 +135,7 @@ u32 func_ov003_021c735c(s32 a) {
         *c = 0x20;
         c++;
     }
-    if (func_0213bf90((const char *) b) >= a) {
+    if (StrtolBase10((const char *) b) >= a) {
         return 1;
     }
     return 0;

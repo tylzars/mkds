@@ -5,10 +5,10 @@
 #include "code_0213ee6c.h"
 #include "Main/Unknown/unk_0216e000.h"
 
-int func_021343b0(void) {
+int FflushAll(void) {
     int r;
     int i;
-    Unk0213c94c *p;
+    FILE *p;
 
     r = 0;
     i = 1;

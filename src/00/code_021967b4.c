@@ -15,7 +15,7 @@ BOOL GpiReadError(GpConnection *a, const char *b, s32 c) {
     r = a->mGpiConnection;
     if (strncmp(b, data_ov000_021b3aec, 7) == 0) {
         if (GpiGetValue(b, data_ov000_021b3af4, d, 0x10) != FALSE) {
-            r->mErrorNumber = func_0213bf90(d);
+            r->mErrorNumber = StrtolBase10(d);
         }
         if (GpiGetValue(b, data_ov000_021b3afc, r->mErrorMessage, 0x100) == FALSE) {
             r->mErrorMessage[0] = 0;
@@ -37,16 +37,16 @@ BOOL GpiGetValue(const char *command, const char *key, char *value, s32 len) {
     s8 g;
 
     if (command == NULL) {
-        func_0213442c(data_ov000_021b3ad4, data_ov000_021b3a1c, NULL, 0x10d);
+        AssertionFailed(data_ov000_021b3ad4, data_ov000_021b3a1c, NULL, 0x10d);
     }
     if (key == NULL) {
-        func_0213442c(data_ov000_021b3a2c, data_ov000_021b3a1c, NULL, 0x10e);
+        AssertionFailed(data_ov000_021b3a2c, data_ov000_021b3a1c, NULL, 0x10e);
     }
     if (value == NULL) {
-        func_0213442c(data_ov000_021b3a38, data_ov000_021b3a1c, NULL, 0x10f);
+        AssertionFailed(data_ov000_021b3a38, data_ov000_021b3a1c, NULL, 0x10f);
     }
     if (len <= 0) {
-        func_0213442c(data_ov000_021b3ae4, data_ov000_021b3a1c, NULL, 0x110);
+        AssertionFailed(data_ov000_021b3ae4, data_ov000_021b3a1c, NULL, 0x110);
     }
     f = (s8) *key;
     p = strstr(command, key);

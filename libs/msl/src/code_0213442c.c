@@ -9,7 +9,7 @@ int mbtowc(u16 *dst, const char *src, u32 n) {
     return data_0216eccc.mUnk_08->mUnk_00(dst, src, n);
 }
 
-int func_02134ccc(u16 *dst, const char *src, u32 n) {
+int MbtowcSingleByte(u16 *dst, const char *src, u32 n) {
     if (src == 0) {
         return 0;
     }
@@ -25,7 +25,7 @@ int func_02134ccc(u16 *dst, const char *src, u32 n) {
     return 1;
 }
 
-int func_02134c94(char *dst, u16 c) {
+int WctombSingleByte(char *dst, u16 c) {
     if (dst == 0) {
         return 0;
     }
@@ -102,7 +102,7 @@ int wcstombs(char *dst, const u16 *src, u32 n) {
 #include "Main/Unknown/unk_0216f000.h"
 #include "Main/Unknown/unk_0217e000.h"
 
-double func_02134ae8(double a, int n) {
+double LdexpViaFrexp(double a, int n) {
     int e;
 
     a = frexp(a, &e);
@@ -110,11 +110,11 @@ double func_02134ae8(double a, int n) {
     return ldexp(a, e);
 }
 
-int fflush(Unk0213c94c *a) {
+int fflush(FILE *a) {
     if (a == 0) {
-        return func_021343b0();
+        return FflushAll();
     }
-    if (a->mUnk_0d != 0 || a->mUnk_04_7 == 0) {
+    if (a->mFailed != 0 || a->mUnk_04_7 == 0) {
         return -1;
     }
     if (a->mUnk_04_2 == 1) {
@@ -124,24 +124,24 @@ int fflush(Unk0213c94c *a) {
         a->mUnk_08_0 = 2;
     }
     if (a->mUnk_08_0 == 2) {
-        a->mUnk_28 = 0;
+        a->mBufferRemaining = 0;
     }
     if (a->mUnk_08_0 != 1) {
         a->mUnk_08_0 = 0;
         return 0;
     }
-    if (func_0213446c(a, 0) != 0) {
-        a->mUnk_0d = 1;
-        a->mUnk_28 = 0;
+    if (FileFlushBuffer(a, 0) != 0) {
+        a->mFailed = 1;
+        a->mBufferRemaining = 0;
         return -1;
     }
     a->mUnk_08_0 = 0;
     a->mUnk_18 = 0;
-    a->mUnk_28 = 0;
+    a->mBufferRemaining = 0;
     return 0;
 }
 
-u32 fwrite(const char *a, u32 b, u32 c, Unk0213c94c *d) {
+u32 fwrite(const char *a, u32 b, u32 c, FILE *d) {
     int i;
     u8 *p;
     u32 r;
@@ -169,7 +169,7 @@ u32 fwrite(const char *a, u32 b, u32 c, Unk0213c94c *d) {
             data_0217eab8[i] = 1;
         }
     }
-    r = func_02134540(a, b, c, d);
+    r = FwriteBody(a, b, c, d);
     if (--data_0217eab8[i] == 0) {
         func_0200ecc4(p);
     }
@@ -185,7 +185,7 @@ u32 fwrite(const char *a, u32 b, u32 c, Unk0213c94c *d) {
 #include "code_0213c94c.h"
 #include "code_0200e77c.h"
 
-u32 func_02134540(const char *a, u32 b, u32 c, Unk0213c94c *d) {
+u32 FwriteBody(const char *a, u32 b, u32 c, FILE *d) {
     u32 n;
     u32 t;
     u32 v;
@@ -199,7 +199,7 @@ u32 func_02134540(const char *a, u32 b, u32 c, Unk0213c94c *d) {
         fwide(d, -1);
     }
     n = b * c;
-    if (n == 0 || d->mUnk_0d != 0 || d->mUnk_04_7 == 0) {
+    if (n == 0 || d->mFailed != 0 || d->mUnk_04_7 == 0) {
         return 0;
     }
     if (d->mUnk_04_7 == 2) {
@@ -213,41 +213,41 @@ u32 func_02134540(const char *a, u32 b, u32 c, Unk0213c94c *d) {
     }
     if (d->mUnk_08_0 == 0 && (d->mUnk_04_2 & 2) != 0) {
         d->mUnk_08_0 = 1;
-        func_02134508(d);
+        FileResetBuffer(d);
     }
     if (d->mUnk_08_0 != 1) {
-        d->mUnk_0d = 1;
-        d->mUnk_28 = 0;
+        d->mFailed = 1;
+        d->mBufferRemaining = 0;
         return 0;
     }
     t = 0;
-    if (n != 0 && (d->mUnk_24 != d->mUnk_1c || m != 0)) {
-        d->mUnk_28 = d->mUnk_20 - (d->mUnk_24 - d->mUnk_1c);
+    if (n != 0 && (d->mBufferNext != d->mBuffer || m != 0)) {
+        d->mBufferRemaining = d->mBufferSize - (d->mBufferNext - d->mBuffer);
         v = 10;
         do {
             q = 0;
-            l = d->mUnk_28;
+            l = d->mBufferRemaining;
             if (l > n) {
                 l = n;
             }
             if (d->mUnk_04_5 == 1 && l != 0) {
-                q = func_02134d80(a, v, l);
+                q = MemChrBackward(a, v, l);
                 if (q != 0) {
                     l = q + 1 - a;
                 }
             }
             if (l != 0) {
-                memcpy(d->mUnk_24, a, l);
+                memcpy(d->mBufferNext, a, l);
                 a += l;
                 n -= l;
-                d->mUnk_24 += l;
-                d->mUnk_28 -= l;
+                d->mBufferNext += l;
+                d->mBufferRemaining -= l;
             }
-            if (d->mUnk_28 == 0 || q != 0 || d->mUnk_04_5 == 0) {
-                if (func_0213446c(d, 0) != 0) {
-                    d->mUnk_0d = 1;
+            if (d->mBufferRemaining == 0 || q != 0 || d->mUnk_04_5 == 0) {
+                if (FileFlushBuffer(d, 0) != 0) {
+                    d->mFailed = 1;
                     n = 0;
-                    d->mUnk_28 = n;
+                    d->mBufferRemaining = n;
                     break;
                 }
             }
@@ -255,61 +255,61 @@ u32 func_02134540(const char *a, u32 b, u32 c, Unk0213c94c *d) {
         } while (n != 0 && m != 0);
     }
     if (n != 0 && m == 0) {
-        s1 = d->mUnk_1c;
-        s2 = d->mUnk_20;
-        d->mUnk_1c = (u8 *) a;
-        d->mUnk_20 = n;
-        d->mUnk_24 = (u8 *) a + n;
-        if (func_0213446c(d, &l) == 0) {
+        s1 = d->mBuffer;
+        s2 = d->mBufferSize;
+        d->mBuffer = (u8 *) a;
+        d->mBufferSize = n;
+        d->mBufferNext = (u8 *) a + n;
+        if (FileFlushBuffer(d, &l) == 0) {
             t += l;
         } else {
-            d->mUnk_0d = 1;
-            d->mUnk_28 = 0;
+            d->mFailed = 1;
+            d->mBufferRemaining = 0;
         }
-        d->mUnk_1c = s1;
-        d->mUnk_20 = s2;
-        func_02134508(d);
-        d->mUnk_28 = 0;
+        d->mBuffer = s1;
+        d->mBufferSize = s2;
+        FileResetBuffer(d);
+        d->mBufferRemaining = 0;
     }
     if (d->mUnk_04_5 != 2) {
-        d->mUnk_28 = 0;
+        d->mBufferRemaining = 0;
     }
     return t / b;
 }
 
 void func_0213453c(u8 *a, u32 *b) {}
 
-void func_02134508(Unk0213c94c *a) {
-    a->mUnk_24 = a->mUnk_1c;
-    a->mUnk_28 = a->mUnk_20;
-    a->mUnk_28 = a->mUnk_28 - (a->mUnk_18 & a->mUnk_2c);
+void FileResetBuffer(FILE *a) {
+    a->mBufferNext = a->mBuffer;
+    a->mBufferRemaining = a->mBufferSize;
+    a->mBufferRemaining = a->mBufferRemaining - (a->mUnk_18 & a->mUnk_2c);
     a->mUnk_34 = a->mUnk_18;
 }
 
-int func_0213446c(Unk0213c94c *a, u32 *b) {
+int FileFlushBuffer(FILE *a, u32 *b) {
     int n;
     int r;
 
-    n = a->mUnk_24 - a->mUnk_1c;
+    n = a->mBufferNext - a->mBuffer;
     if (n != 0) {
-        a->mUnk_28 = n;
+        a->mBufferRemaining = n;
         if (a->mUnk_04_12 == 0) {
-            func_0213453c(a->mUnk_1c, &a->mUnk_28);
+            func_0213453c(a->mBuffer, &a->mBufferRemaining);
         }
-        r = a->mUnk_40(a->mUnk_00, a->mUnk_1c, &a->mUnk_28, a->mUnk_48);
+        r = a->mWriteFunc(a->mUnk_00, a->mBuffer, &a->mBufferRemaining, a->mUnk_48);
         if (b != 0) {
-            *b = a->mUnk_28;
+            *b = a->mBufferRemaining;
         }
         if (r != 0) {
             return r;
         }
-        a->mUnk_18 = a->mUnk_18 + a->mUnk_28;
+        a->mUnk_18 = a->mUnk_18 + a->mBufferRemaining;
     }
-    func_02134508(a);
+    FileResetBuffer(a);
     return 0;
 }
 
-void func_0213442c(const char *a, const char *b, const char *c, int d) {
+void AssertionFailed(const char *a, const char *b, const char *c, int d) {
     printf("Assertion (%s) failed in \"%s\", function \"%s\", line %d\n", a, b, c, d);
     abort();
 }

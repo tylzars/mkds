@@ -155,7 +155,7 @@ u32 func_ov000_0218f408(GpConnection *a) {
             q = o->mCommandBuffer;
             p = strstr(q, data_ov000_021b2680);
             if (p != NULL) {
-                m = func_0213bf90(p + 4);
+                m = StrtolBase10(p + 4);
                 if (GpiFindOperation(a, &n, m) == 0) {
                     func_ov000_0219690c(a, data_ov000_021b2688, m);
                 } else {
@@ -206,7 +206,7 @@ int GpiUpdateConnection(void *a, int b) {
     o = p->mGpiConnection;
     r = 0;
     if ((u32) o->mConnectState > 4) {
-        func_0213442c(data_ov000_021b2528, data_ov000_021b2620, NULL, 0x1b5);
+        AssertionFailed(data_ov000_021b2528, data_ov000_021b2620, NULL, 0x1b5);
     }
     if (o->mConnectState == 1) {
         do {
@@ -224,7 +224,7 @@ int GpiUpdateConnection(void *a, int b) {
             if (GpiFindOperation(p, &n, 1) != 0) {
                 n->mUnk_1c = 4;
             } else {
-                func_0213442c(data_ov000_021b2628, data_ov000_021b2620, NULL, 0x1db);
+                AssertionFailed(data_ov000_021b2628, data_ov000_021b2620, NULL, 0x1db);
             }
         }
     }

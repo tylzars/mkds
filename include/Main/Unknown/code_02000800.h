@@ -10,8 +10,8 @@
 #include "Main/Unknown/code_02000b44.h"
 
 // Declared here until the code that defines them is decompiled.
-void func_02133da8(void);
-void func_02142540(void);
+void FloatInit(void);
+void CallCtorTable(void);
 void func_01ff8000(void);
 
 void Entry(void);

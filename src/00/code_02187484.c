@@ -92,8 +92,8 @@ void func_ov000_021874ec(void) {
             func_ov000_02187490(2);
             break;
         }
-        r = func_0213bf90(func_ov000_021866b8(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13f4));
-        if (data_0217ee90 == 0x22) {
+        r = StrtolBase10(func_ov000_021866b8(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13f4));
+        if (gLibErrorCode == 0x22) {
             func_ov000_02187490(2);
             break;
         }
@@ -293,8 +293,8 @@ void func_ov000_021874ec(void) {
             func_ov000_02187490(2);
             break;
         }
-        r = func_0213bf90(func_ov000_021866b8(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13f4));
-        if (data_0217ee90 == 0x22) {
+        r = StrtolBase10(func_ov000_021866b8(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13f4));
+        if (gLibErrorCode == 0x22) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(2);
             break;
@@ -309,8 +309,8 @@ void func_ov000_021874ec(void) {
             func_ov000_02187490(9);
             break;
         }
-        r = func_0213bf90(b2);
-        if (data_0217ee90 == 0x22) {
+        r = StrtolBase10(b2);
+        if (gLibErrorCode == 0x22) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(9);
             break;
@@ -376,8 +376,8 @@ void func_ov000_021874ec(void) {
                 break;
             }
             p3[k] = 0;
-            v = func_0213bf90(p3);
-            if (data_0217ee90 == 0x22) {
+            v = StrtolBase10(p3);
+            if (gLibErrorCode == 0x22) {
                 ReleaseHttp((Http *) gHttp);
                 func_ov000_02187490(9);
                 break;

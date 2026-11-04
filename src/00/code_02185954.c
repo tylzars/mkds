@@ -290,8 +290,8 @@ s32 func_ov000_02185d54(void) {
     const char *c;
     Unk02185984 *d;
     c = NULL;
-    b = func_0213bf90(func_ov000_021866b8(data_ov000_021b4c90->mUnk_1f8, 0x20, data_ov000_021b11a0));
-    if (data_0217ee90 == 0x22) {
+    b = StrtolBase10(func_ov000_021866b8(data_ov000_021b4c90->mUnk_1f8, 0x20, data_ov000_021b11a0));
+    if (gLibErrorCode == 0x22) {
         data_ov000_021b4c90->mUnk_008 = 0x4e85;
         return 0xb;
     }

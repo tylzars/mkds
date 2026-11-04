@@ -26,7 +26,7 @@ char *SbServerGetValue(SbServer *server, const char *v1, char *d) {
     Unk0218b30c a;
     u32 *b;
     if (server == NULL) {
-        func_0213442c(data_ov000_021b21d0, data_ov000_021b21d8, NULL, 0x97);
+        AssertionFailed(data_ov000_021b21d0, data_ov000_021b21d8, NULL, 0x97);
     }
     if (server == NULL) {
         return NULL;
@@ -49,7 +49,7 @@ s32 SbServerGetInt(SbServer *e, const char *v1, s32 d) {
     if (a == NULL || (c = *a, !((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 8)))) {
         return d;
     }
-    return func_0213bf90(a);
+    return StrtolBase10(a);
 }
 
 double SbServerGetDouble(SbServer *e, const char *v1, double d) {

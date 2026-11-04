@@ -1,7 +1,7 @@
 // Single-precision subtraction and 64-bit integer division.
 //
 // Floats are passed and returned in one register each, 64-bit integers in two (low word first); the status
-// word from func_02142578 and the trap handlers are as described in code_0212f884.s.
+// word from GetFloatStatus and the trap handlers are as described in code_0212f884.s.
 //
 // Not compiled code: _fsub and _fadd (code_02130cb4.s) branch into each other past their first instructions,
 // and _fmul (code_021322c8.s) runs on into _fsub with no return; _ll_udiv has a second entry, _ull_mod,
@@ -14,9 +14,9 @@
     .extern .L_02131248
     .extern .L_0213327c
     .extern _s32_div_f
-    .extern func_021340d4
-    .extern func_02134238
-    .extern func_02142578
+    .extern FloatTrapWordWordToWord
+    .extern FloatTrapWordToWord
+    .extern GetFloatStatus
 
 // Subtracts the float r1 from r0 and returns the difference in r0, rounded as the status word says. The operands and an
 // operation number (2) stay saved on the stack for the invalid-operation trap. Operands of different sign continue in
@@ -75,7 +75,7 @@ fsub_align:
     // Inexact: trap if enabled, else set the flag and round as the mode says; nearest even rounds up when above half,
     // or exactly half and odd.
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -158,7 +158,7 @@ fsub_round:
     addeq sp, sp, #12
     bxeq lr
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -270,7 +270,7 @@ fsub_return_a:
 fsub_zero:
     mov r0, #0
     stmfd sp!, {r0, r1, r2, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r3, r0
     ldmfd sp!, {r0, r1, r2, ip, lr}
     ldr r3, [r3]
@@ -300,7 +300,7 @@ fsub_b_nan_a_zero:
     addne sp, sp, #12
     bxne lr
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -337,7 +337,7 @@ fsub_b_nan:
     // Invalid operation: trap if enabled, else set the flag and return the default NaN.
 fsub_invalid:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -355,7 +355,7 @@ fsub_trap_inexact:
     add sp, sp, #12
     stmdb sp!, {lr}
     mov r1, #0x40000002
-    bl func_02134238
+    bl FloatTrapWordToWord
     ldmia sp!, {lr}
     bx lr
     // Invalid trap: pass the operands and the operation number from the stack.
@@ -364,7 +364,7 @@ fsub_trap_invalid:
     stmdb sp!, {lr}
     mov ip, #0x4000000
     orr r2, r2, ip
-    bl func_021340d4
+    bl FloatTrapWordWordToWord
     ldmia sp!, {lr}
     bx lr
     .size _fsub, . - _fsub

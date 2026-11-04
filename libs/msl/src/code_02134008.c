@@ -7,29 +7,29 @@
 #include "Main/Unknown/code_02133000.h"
 #include "Main/Unknown/code_02142000.h"
 
-Unk02134008 func_0213428c(Unk02134008 a, Unk02134008 b, u32 c) {
-    Unk0217ee98 *t;
+WordPair FloatTrapDispatch(WordPair a, WordPair b, u32 c) {
+    FloatTrapTable *t;
     Unk02134008Func fn;
 
-    t = func_02142584();
+    t = GetFloatTrapTable();
     if ((c & 0xc00000) == 0) {
-        c |= func_02133ddc(0, 0) & 0xc00000;
+        c |= FloatStatusClearXor(0, 0) & 0xc00000;
     }
     switch (c & 0x7c000000) {
         case 0x40000000:
-            fn = t->mUnk_04[4];
+            fn = t->mHandlers[4];
             break;
         case 0x04000000:
-            fn = t->mUnk_04[0];
+            fn = t->mHandlers[0];
             break;
         case 0x10000000:
-            fn = t->mUnk_04[2];
+            fn = t->mHandlers[2];
             break;
         case 0x20000000:
-            fn = t->mUnk_04[3];
+            fn = t->mHandlers[3];
             break;
         case 0x08000000:
-            fn = t->mUnk_04[1];
+            fn = t->mHandlers[1];
             break;
         default:
             fn = 0;
@@ -41,77 +41,77 @@ Unk02134008 func_0213428c(Unk02134008 a, Unk02134008 b, u32 c) {
     return fn(a, b, c);
 }
 
-u32 func_02134238(u32 a, u32 b) {
-    Unk02134008 s;
-    Unk02134008 r;
+u32 FloatTrapWordToWord(u32 a, u32 b) {
+    WordPair s;
+    WordPair r;
 
-    s.mUnk_00 = a;
-    r = func_0213428c(s, s, b);
-    return r.mUnk_00;
+    s.mLow = a;
+    r = FloatTrapDispatch(s, s, b);
+    return r.mLow;
 }
 
-u32 func_021341e0(u32 a, u32 b, u32 c) {
-    Unk02134008 s;
-    Unk02134008 r;
+u32 FloatTrapPairToWord(u32 a, u32 b, u32 c) {
+    WordPair s;
+    WordPair r;
 
-    s.mUnk_00 = a;
-    s.mUnk_04 = b;
-    r = func_0213428c(s, s, c);
-    return r.mUnk_00;
+    s.mLow = a;
+    s.mHigh = b;
+    r = FloatTrapDispatch(s, s, c);
+    return r.mLow;
 }
 
-u64 func_02134188(u32 a, u32 b) {
-    Unk02134008 s;
-    Unk02134008 r;
+u64 FloatTrapWordToPair(u32 a, u32 b) {
+    WordPair s;
+    WordPair r;
 
-    s.mUnk_00 = a;
-    r = func_0213428c(s, s, b);
+    s.mLow = a;
+    r = FloatTrapDispatch(s, s, b);
     return *(u64 *) &r;
 }
 
-u64 func_0213412c(u32 a, u32 b, u32 c) {
-    Unk02134008 s;
-    Unk02134008 r;
+u64 FloatTrapPairToPair(u32 a, u32 b, u32 c) {
+    WordPair s;
+    WordPair r;
 
-    s.mUnk_00 = a;
-    s.mUnk_04 = b;
-    r = func_0213428c(s, s, c);
+    s.mLow = a;
+    s.mHigh = b;
+    r = FloatTrapDispatch(s, s, c);
     return *(u64 *) &r;
 }
 
-u32 func_021340d4(u32 a, u32 b, u32 c) {
-    Unk02134008 s;
-    Unk02134008 t;
-    Unk02134008 r;
+u32 FloatTrapWordWordToWord(u32 a, u32 b, u32 c) {
+    WordPair s;
+    WordPair t;
+    WordPair r;
 
-    s.mUnk_00 = a;
-    t.mUnk_00 = b;
-    r = func_0213428c(s, t, c);
-    return r.mUnk_00;
+    s.mLow = a;
+    t.mLow = b;
+    r = FloatTrapDispatch(s, t, c);
+    return r.mLow;
 }
 
-u64 func_0213406c(u32 a, u32 b, u32 c, u32 d, u32 e) {
-    Unk02134008 s;
-    Unk02134008 t;
-    Unk02134008 r;
+u64 FloatTrapPairPairToPair(u32 a, u32 b, u32 c, u32 d, u32 e) {
+    WordPair s;
+    WordPair t;
+    WordPair r;
 
-    s.mUnk_00 = a;
-    s.mUnk_04 = b;
-    t.mUnk_00 = c;
-    t.mUnk_04 = d;
-    r = func_0213428c(s, t, e);
+    s.mLow = a;
+    s.mHigh = b;
+    t.mLow = c;
+    t.mHigh = d;
+    r = FloatTrapDispatch(s, t, e);
     return *(u64 *) &r;
 }
 
-u32 func_02134008(u32 a, u32 b, u32 c, u32 d, u32 e) {
-    Unk02134008 s;
-    Unk02134008 t;
-    Unk02134008 r;
+u32 FloatTrapPairPairToWord(u32 a, u32 b, u32 c, u32 d, u32 e) {
+    WordPair s;
+    WordPair t;
+    WordPair r;
 
-    s.mUnk_00 = a;
-    s.mUnk_04 = b;
-    t.mUnk_00 = c;
-    t.mUnk_04 = d;
-    r = func_0213428c(s, t, e);
-    return r.mUnk_00;
+    s.mLow = a;
+    s.mHigh = b;
+    t.mLow = c;
+    t.mHigh = d;
+    r = FloatTrapDispatch(s, t, e);
+    return r.mLow;
 }

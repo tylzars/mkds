@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0213442c.h" // Unk0213c94c
+#include "code_0213442c.h" // FILE
 #include "code_0212f1ac.h" // Unk0212f1f8
 
 // Objects whose layout isn't known yet.
@@ -29,10 +29,10 @@ extern const char data_0216ea30[];
 extern const char data_0216ea4c[];
 extern Unk0212f1f8 data_0216eaa4;
 
-// Walked by func_021343b0; fwrite compares its argument with entries 1 and 2; printf passes entry 1
-// to fwide and func_021352e0.
-extern Unk0213c94c data_0216eb7c[3];
-extern u32 data_0216eeb8;
+// Walked by FflushAll; fwrite compares its argument with entries 1 and 2; printf passes entry 1
+// to fwide and FormatWithPutFunc.
+extern FILE data_0216eb7c[3];
+extern u32 gRandValue;
 extern char data_0216e09c[];
 extern char data_0216ea60[];
 extern char data_0216ea6c[];

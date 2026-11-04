@@ -5,7 +5,7 @@
 
 // Compares the byte strings a and b, mapping each byte below 0x80 through data_0215d184 first: -1 or 1 at the first
 // difference, 0 when both end together.
-int func_02142374(const char *a, const char *b) {
+int StrcmpMapped(const char *a, const char *b) {
     int x;
     u8 c1;
     u8 c2;
@@ -28,11 +28,11 @@ int func_02142374(const char *a, const char *b) {
 }
 
 int func_02142368(const char *a, const char *b) {
-    return func_02142374(a, b);
+    return StrcmpMapped(a, b);
 }
 
 // Number of 0 bits below the lowest 1 bit of a, its bytes read from the lowest address up; 32 when a is 0.
-int func_021422a0(u32 a) {
+int CountLowZeroBits(u32 a) {
     u8 *p;
     int n;
 
@@ -55,26 +55,26 @@ int func_021422a0(u32 a) {
 
 // Compares the digits from index n on with 5 followed by 0s: 1 when above, -1 when below; when equal, 1 if the digit
 // before index n is odd, else -1.
-int func_02142224(const Unk02136638 *a, int n) {
+int DigitsRoundCompare(const DigitRecord *a, int n) {
     const char *p;
     const char *end;
     u8 c;
 
-    p = a->mUnk_05 + n;
-    c = a->mUnk_05[n];
+    p = a->mDigits + n;
+    c = a->mDigits[n];
     if (c > 5) {
         return 1;
     }
     if (c < 5) {
         return -1;
     }
-    end = a->mUnk_05 + a->mUnk_04;
+    end = a->mDigits + a->mDigitCount;
     for (p++; p < end; p++) {
         if (*p != 0) {
             return 1;
         }
     }
-    if (a->mUnk_05[n - 1] & 1) {
+    if (a->mDigits[n - 1] & 1) {
         return 1;
     }
     return -1;
@@ -82,11 +82,11 @@ int func_02142224(const Unk02136638 *a, int n) {
 
 // Adds 1 to the digit at index n - 1, carrying into the digits before it; a carry out of the first digit sets it to 1
 // and adds 1 to mUnk_02.
-void func_0214214c(Unk02136638 *a, int n) {
+void DigitsIncrement(DigitRecord *a, int n) {
     char *base;
     char *p;
 
-    base = a->mUnk_05;
+    base = a->mDigits;
     p = base + n - 1;
     for (;;) {
         if (*p < 9) {
@@ -95,55 +95,56 @@ void func_0214214c(Unk02136638 *a, int n) {
         }
         if (p == base) {
             *p = 1;
-            a->mUnk_02++;
+            a->mExponent++;
             return;
         }
         *p-- = 0;
     }
 }
 
-// For 0 < n < mUnk_04: keeps the first n digits and adds 1 to the last one (func_0214214c) when func_02142224 is not
-// negative.
-void func_021420c0(Unk02136638 *a, int n) {
+// For 0 < n < mUnk_04: keeps the first n digits and adds 1 to the last one (DigitsIncrement) when DigitsRoundCompare is
+// not negative.
+void DigitsRoundTo(DigitRecord *a, int n) {
     int r;
 
     if (n <= 0) {
         return;
     }
-    if (n >= a->mUnk_04) {
+    if (n >= a->mDigitCount) {
         return;
     }
-    r = func_02142224(a, n);
-    a->mUnk_04 = n;
+    r = DigitsRoundCompare(a, n);
+    a->mDigitCount = n;
     if (r < 0) {
         return;
     }
-    func_0214214c(a, n);
+    DigitsIncrement(a, n);
 }
 
 // Writes the decimal digits of v, most significant first, with mUnk_02 = digit count - 1.
-void func_02141f14(Unk02136638 *out, u64 v) {
+void DigitsFromU64(DigitRecord *out, u64 v) {
     char *p;
     char *q;
     u8 t;
 
-    out->mUnk_00 = 0;
-    out->mUnk_04 = 0;
+    out->mNegative = 0;
+    out->mDigitCount = 0;
     while (v != 0) {
-        out->mUnk_05[out->mUnk_04++] = v % 10;
+        out->mDigits[out->mDigitCount++] = v % 10;
         v /= 10;
     }
-    for (p = out->mUnk_05, q = p + out->mUnk_04 - 1; p < q; p++, q--) {
+    for (p = out->mDigits, q = p + out->mDigitCount - 1; p < q; p++, q--) {
         t = *p;
         *p = *q;
         *q = t;
     }
-    out->mUnk_02 = out->mUnk_04 - 1;
+    out->mExponent = out->mDigitCount - 1;
 }
 
 // Multiplies the digits of a and b (mUnk_02 = the sum of theirs), keeps the first 32 and adds 1 to the last kept one
-// (func_0214214c) when the digits after them are above 5 followed by 0s, or equal to it and the last kept digit is odd.
-void func_02141c98(Unk02136638 *out, const Unk02136638 *a, const Unk02136638 *b) {
+// (DigitsIncrement) when the digits after them are above 5 followed by 0s, or equal to it and the last kept digit is
+// odd.
+void DigitsMultiply(DigitRecord *out, const DigitRecord *a, const DigitRecord *b) {
     char buf[64];
     int k;
     u32 carry;
@@ -156,22 +157,22 @@ void func_02141c98(Unk02136638 *out, const Unk02136638 *a, const Unk02136638 *b)
     const char *pb;
 
     carry = 0;
-    i = a->mUnk_04 + b->mUnk_04 - 1;
+    i = a->mDigitCount + b->mDigitCount - 1;
     p = buf + i + 1;
     end = p;
-    out->mUnk_00 = 0;
+    out->mNegative = 0;
     while (i > 0) {
-        j = b->mUnk_04 - 1;
+        j = b->mDigitCount - 1;
         k = i - j - 1;
         if (k < 0) {
             k = 0;
             j = i - 1;
         }
-        pa = a->mUnk_05 + k;
-        pb = b->mUnk_05 + j;
+        pa = a->mDigits + k;
+        pb = b->mDigits + j;
         n = j + 1;
-        if (n > a->mUnk_04 - k) {
-            n = a->mUnk_04 - k;
+        if (n > a->mDigitCount - k) {
+            n = a->mDigitCount - k;
         }
         for (; n > 0; n--, pa++, pb--) {
             carry += *pa * *pb;
@@ -180,15 +181,15 @@ void func_02141c98(Unk02136638 *out, const Unk02136638 *a, const Unk02136638 *b)
         carry /= 10;
         i--;
     }
-    out->mUnk_02 = a->mUnk_02 + b->mUnk_02;
+    out->mExponent = a->mExponent + b->mExponent;
     if (carry != 0) {
         *--p = carry;
-        out->mUnk_02++;
+        out->mExponent++;
     }
     for (i = 0; i < 32 && p < end; i++, p++) {
-        out->mUnk_05[i] = *p;
+        out->mDigits[i] = *p;
     }
-    out->mUnk_04 = i;
+    out->mDigitCount = i;
     if (p >= end) {
         return;
     }
@@ -206,21 +207,21 @@ void func_02141c98(Unk02136638 *out, const Unk02136638 *a, const Unk02136638 *b)
         }
     }
 round:
-    func_0214214c(out, out->mUnk_04);
+    DigitsIncrement(out, out->mDigitCount);
 }
 
-// Reads up to 32 digit characters of s into out with mUnk_02 = n. Then adds 1 to the last digit (func_0214214c) when
+// Reads up to 32 digit characters of s into out with mUnk_02 = n. Then adds 1 to the last digit (DigitsIncrement) when
 // the next byte is above 5, or is 5 with only '0' bytes after it and the last digit odd.
-void func_02141b5c(Unk02136638 *out, const char *s, int n) {
+void DigitsFromString(DigitRecord *out, const char *s, int n) {
     int i;
     const char *p;
 
-    out->mUnk_02 = n;
-    out->mUnk_00 = 0;
+    out->mExponent = n;
+    out->mNegative = 0;
     for (i = 0; i < 32 && *s != 0; i++) {
-        out->mUnk_05[i] = *s++ - '0';
+        out->mDigits[i] = *s++ - '0';
     }
-    out->mUnk_04 = i;
+    out->mDigitCount = i;
     if (*s == 0) {
         return;
     }
@@ -233,95 +234,95 @@ void func_02141b5c(Unk02136638 *out, const char *s, int n) {
                 goto round;
             }
         }
-        if (!(out->mUnk_05[i - 1] & 1)) {
+        if (!(out->mDigits[i - 1] & 1)) {
             return;
         }
     }
 round:
-    func_0214214c(out, out->mUnk_04);
+    DigitsIncrement(out, out->mDigitCount);
 }
 
-// For n of -64, -53, -32, -16 and -8 to 8, passes a digit string and a count to func_02141b5c. Otherwise calls itself
-// for n / 2 (the sign bit added by hand) and combines the result with itself through func_02141c98, then with a
+// For n of -64, -53, -32, -16 and -8 to 8, passes a digit string and a count to DigitsFromString. Otherwise calls
+// itself for n / 2 (the sign bit added by hand) and combines the result with itself through DigitsMultiply, then with a
 // one-digit string when n is odd.
-void func_0214177c(Unk02136638 *out, int n) {
-    Unk02136638 a;
-    Unk02136638 b;
+void DigitsPowerOfTwo(DigitRecord *out, int n) {
+    DigitRecord a;
+    DigitRecord b;
 
     switch (n) {
         case -64:
-            func_02141b5c(out, "542101086242752217003726400434970855712890625", -20);
+            DigitsFromString(out, "542101086242752217003726400434970855712890625", -20);
             return;
         case -53:
-            func_02141b5c(out, "11102230246251565404236316680908203125", -16);
+            DigitsFromString(out, "11102230246251565404236316680908203125", -16);
             return;
         case -32:
-            func_02141b5c(out, "23283064365386962890625", -10);
+            DigitsFromString(out, "23283064365386962890625", -10);
             return;
         case -16:
-            func_02141b5c(out, "152587890625", -5);
+            DigitsFromString(out, "152587890625", -5);
             return;
         case -8:
-            func_02141b5c(out, "390625", -3);
+            DigitsFromString(out, "390625", -3);
             return;
         case -7:
-            func_02141b5c(out, "78125", -3);
+            DigitsFromString(out, "78125", -3);
             return;
         case -6:
-            func_02141b5c(out, "15625", -2);
+            DigitsFromString(out, "15625", -2);
             return;
         case -5:
-            func_02141b5c(out, "3125", -2);
+            DigitsFromString(out, "3125", -2);
             return;
         case -4:
-            func_02141b5c(out, "625", -2);
+            DigitsFromString(out, "625", -2);
             return;
         case -3:
-            func_02141b5c(out, "125", -1);
+            DigitsFromString(out, "125", -1);
             return;
         case -2:
-            func_02141b5c(out, "25", -1);
+            DigitsFromString(out, "25", -1);
             return;
         case -1:
-            func_02141b5c(out, "5", -1);
+            DigitsFromString(out, "5", -1);
             return;
         case 0:
-            func_02141b5c(out, "1", 0);
+            DigitsFromString(out, "1", 0);
             return;
         case 1:
-            func_02141b5c(out, "2", 0);
+            DigitsFromString(out, "2", 0);
             return;
         case 2:
-            func_02141b5c(out, "4", 0);
+            DigitsFromString(out, "4", 0);
             return;
         case 3:
-            func_02141b5c(out, "8", 0);
+            DigitsFromString(out, "8", 0);
             return;
         case 4:
-            func_02141b5c(out, "16", 1);
+            DigitsFromString(out, "16", 1);
             return;
         case 5:
-            func_02141b5c(out, "32", 1);
+            DigitsFromString(out, "32", 1);
             return;
         case 6:
-            func_02141b5c(out, "64", 1);
+            DigitsFromString(out, "64", 1);
             return;
         case 7:
-            func_02141b5c(out, "128", 2);
+            DigitsFromString(out, "128", 2);
             return;
         case 8:
-            func_02141b5c(out, "256", 2);
+            DigitsFromString(out, "256", 2);
             return;
     }
-    func_0214177c(&a, (n + (int) ((u32) (n & 0x80000000) >> 31)) >> 1);
-    func_02141c98(out, &a, &a);
+    DigitsPowerOfTwo(&a, (n + (int) ((u32) (n & 0x80000000) >> 31)) >> 1);
+    DigitsMultiply(out, &a, &a);
     if (n & 1) {
         b = *out;
         if (n > 0) {
-            func_02141b5c(&a, "2", 0);
+            DigitsFromString(&a, "2", 0);
         } else {
-            func_02141b5c(&a, "5", -1);
+            DigitsFromString(&a, "5", -1);
         }
-        func_02141c98(out, &b, &a);
+        DigitsMultiply(out, &b, &a);
     }
 }

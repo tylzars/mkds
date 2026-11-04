@@ -133,7 +133,7 @@ u32 FrmHeapGetMaxAllocSize(Unk02017f24 *a, u32 b) {
     u32 t;
     Unk02018174 *p;
 
-    n = func_02134420(b);
+    n = Abs(b);
     p = &a->mUnk_24;
     t = p->mBackAddr;
     s = ((n - 1) + p->mFrontAddr) & ~(n - 1);

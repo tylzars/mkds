@@ -219,8 +219,8 @@ s32 func_ov000_02196d84(s32 a, s32 b, s32 c) {
 }
 
 void func_ov000_02196d0c(u8 *f, s32 g) {
-    s32 a = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3df0));
-    s32 b = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dc4));
+    s32 a = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3df0));
+    s32 b = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dc4));
     const s8 *c = func_ov000_021970e4((const s8 *) f, data_ov000_021b3df8);
     s32 d = func_ov000_02196d84(0, b, 0);
     if (d != -1) {
@@ -236,8 +236,8 @@ void func_ov000_02196ca4(u8 *c, s32 d) {
     s32 t;
     Unk021969d8Entry *p;
 
-    a = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) c, data_ov000_021b3de8));
-    b = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) c, data_ov000_021b3dc4));
+    a = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) c, data_ov000_021b3de8));
+    b = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) c, data_ov000_021b3dc4));
     t = func_ov000_02196d84(3, b, 0);
     if (t != -1) {
         p = DarrayGetElement(data_ov000_021b4e5c, t);
@@ -256,13 +256,13 @@ void func_ov000_02196c00(u8 *f, s32 g) {
     u8 *q;
     const u8 *s;
 
-    a = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dcc));
-    b = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dc4));
-    c = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dc0));
-    d = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dc8));
+    a = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dcc));
+    b = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dc4));
+    c = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dc0));
+    d = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dc8));
     t = func_ov000_02196d84(1, b, c);
     if (t != -1) {
-        e = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dd4));
+        e = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) f, data_ov000_021b3dd4));
         q = (u8 *) strstr((const char *) f, data_ov000_021b3ddc);
         if (q == NULL) {
             e = 0;
@@ -281,10 +281,10 @@ void func_ov000_02196b90(u8 *e, s32 f) {
     s32 d;
     s32 t;
 
-    a = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) e, data_ov000_021b3db8));
-    b = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) e, data_ov000_021b3dc0));
-    c = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) e, data_ov000_021b3dc4));
-    d = func_0213bf90((const char *) func_ov000_021970e4((const s8 *) e, data_ov000_021b3dc8));
+    a = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) e, data_ov000_021b3db8));
+    b = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) e, data_ov000_021b3dc0));
+    c = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) e, data_ov000_021b3dc4));
+    d = StrtolBase10((const char *) func_ov000_021970e4((const s8 *) e, data_ov000_021b3dc8));
     t = func_ov000_02196d84(2, c, b);
     if (t != -1) {
         func_ov000_021969d8(t, a, d, NULL, 0);

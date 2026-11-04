@@ -8,7 +8,7 @@
 
 // Reads values through f(p, 0, 0), at most b of them, in base a. st is the state: 1, 2, 4, 8 and 0x10 while
 // reading, 0x20 or 0x40 once it stops. *q gets the count used, *r 1 after a '-', *s 1 when the value does not fit.
-u32 func_0213c560(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int *s) {
+u32 ScanInt32(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int *s) {
     int st;
     int n;
     int k;
@@ -118,8 +118,8 @@ u32 func_0213c560(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int 
     return acc;
 }
 
-// Same as func_0213c560 with a 64-bit result.
-u64 func_0213c110(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int *s) {
+// Same as ScanInt32 with a 64-bit result.
+u64 ScanInt64(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int *s) {
     int st;
     int n;
     int k;
@@ -233,17 +233,17 @@ u32 strtoul(const char *s, const char **end, int base) {
     int n;
     int neg;
     int ovf;
-    Unk0213a460 st;
+    ScanStringSource st;
     u32 v;
 
-    st.mUnk_00 = s;
-    st.mUnk_04 = 0;
-    v = func_0213c560(base, 0x7fffffff, func_021385a0, &st, &n, &neg, &ovf);
+    st.mNextChar = s;
+    st.mAtEnd = 0;
+    v = ScanInt32(base, 0x7fffffff, ScanStringSourceOp, &st, &n, &neg, &ovf);
     if (end != 0) {
         *end = s + n;
     }
     if (ovf != 0) {
-        data_0217ee90 = 0x22;
+        gLibErrorCode = 0x22;
         return -1;
     }
     if (neg != 0) {
@@ -256,18 +256,18 @@ long strtol(const char *s, const char **end, int base) {
     int n;
     int neg;
     int ovf;
-    Unk0213a460 st;
+    ScanStringSource st;
     u32 v;
 
-    st.mUnk_00 = s;
-    st.mUnk_04 = 0;
-    v = func_0213c560(base, 0x7fffffff, func_021385a0, &st, &n, &neg, &ovf);
+    st.mNextChar = s;
+    st.mAtEnd = 0;
+    v = ScanInt32(base, 0x7fffffff, ScanStringSourceOp, &st, &n, &neg, &ovf);
     if (end != 0) {
         *end = s + n;
     }
     if (ovf != 0 || (neg == 0 && v > 0x7fffffff) || (neg != 0 && v > 0x80000000)) {
         v = neg != 0 ? 0x80000000 : 0x7fffffff;
-        data_0217ee90 = 0x22;
+        gLibErrorCode = 0x22;
         return v;
     }
     if (neg != 0) {
@@ -276,12 +276,12 @@ long strtol(const char *s, const char **end, int base) {
     return v;
 }
 
-long func_0213bf90(const char *s) {
+long StrtolBase10(const char *s) {
     return strtol(s, 0, 10);
 }
 
 /* f is called as f(p, 0, 0) for each next value and as f(p, c, 1) with a value already read. */
-double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
+double ScanDouble(int a, Unk02138618Func f, void *p, int *q, int *r) {
     int s = 1;
     int h = 0;
     int n = 0;
@@ -300,7 +300,7 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
     int hm;
     u32 hd;
     double x;
-    Unk02136638 rec = {0};
+    DigitRecord rec = {0};
     char hb[8];
 
     m = 0;
@@ -452,8 +452,8 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
                         s = 0x40;
                     }
                 } else {
-                    if (rec.mUnk_04 < 20) {
-                        rec.mUnk_05[rec.mUnk_04++] = c;
+                    if (rec.mDigitCount < 20) {
+                        rec.mDigits[rec.mDigitCount++] = c;
                     } else {
                         ea++;
                     }
@@ -472,9 +472,9 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
                 if (!((c < 0 || c >= 0x80) ? 0 : data_0215d284[c] & 0x8)) {
                     s = 0x40;
                 } else {
-                    if (rec.mUnk_04 < 20) {
-                        if (c != '0' || rec.mUnk_04 != 0) {
-                            rec.mUnk_05[rec.mUnk_04++] = c;
+                    if (rec.mDigitCount < 20) {
+                        if (c != '0' || rec.mDigitCount != 0) {
+                            rec.mDigits[rec.mDigitCount++] = c;
                         }
                         ea--;
                     }
@@ -685,14 +685,14 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
         if (em) {
             e = -e;
         }
-        k = rec.mUnk_04;
-        dp = &rec.mUnk_05[k];
+        k = rec.mDigitCount;
+        dp = &rec.mDigits[k];
         while (k-- != 0 && *--dp == '0') {
             ea++;
         }
-        rec.mUnk_04 = k + 1;
-        if (rec.mUnk_04 == 0) {
-            rec.mUnk_05[rec.mUnk_04++] = '0';
+        rec.mDigitCount = k + 1;
+        if (rec.mDigitCount == 0) {
+            rec.mDigits[rec.mDigitCount++] = '0';
         }
         e += ea;
         if (e < -0x8000 || e > 0x7fff) {
@@ -707,8 +707,8 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
             }
             return -data_0216eca0;
         }
-        rec.mUnk_02 = e;
-        x = func_0214049c(&rec);
+        rec.mExponent = e;
+        x = DigitCharsToDouble(&rec);
         if (x != 0.0 && x < 2.2250738585072014e-308) {
             *r = 1;
         } else if (x > 1.7976931348623157e+308) {
@@ -788,19 +788,19 @@ double func_0213a550(int a, Unk02138618Func f, void *p, int *q, int *r) {
 double strtod(const char *s, const char **end) {
     int n;
     int ovf;
-    Unk0213a460 st;
+    ScanStringSource st;
     double v;
     double a;
 
-    st.mUnk_00 = s;
-    st.mUnk_04 = 0;
-    v = func_0213a550(0x7fffffff, func_021385a0, &st, &n, &ovf);
+    st.mNextChar = s;
+    st.mAtEnd = 0;
+    v = ScanDouble(0x7fffffff, ScanStringSourceOp, &st, &n, &ovf);
     if (end != 0) {
         *end = s + n;
     }
     a = fabs(v);
     if (ovf != 0 || (v != 0.0 && (a < 2.2250738585072014e-308 || a > 1.7976931348623157e308))) {
-        data_0217ee90 = 0x22;
+        gLibErrorCode = 0x22;
     }
     return v;
 }

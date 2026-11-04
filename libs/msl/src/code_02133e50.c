@@ -11,22 +11,22 @@
 
 void abort(void) {
     raise(1);
-    data_0217e990 = 1;
+    gAborted = 1;
     exit(1);
 }
 
 void exit(int a) {
-    if (data_0217e990 == 0) {
-        func_021424e8();
+    if (gAborted == 0) {
+        RunListNodeCallbacks();
         if (data_0217e988 != 0) {
             data_0217e988();
             data_0217e988 = 0;
         }
     }
-    func_02133e50(a);
+    ExitTail(a);
 }
 
-void func_02133e50(int a) {
+void ExitTail(int a) {
     if (func_0200ec08(data_0217eadc[0]) == 0) {
         data_0217ea94[0] = data_0216ff5c.mUnk_08->mUnk_6c;
         data_0217eab8[0] = 1;
@@ -37,8 +37,8 @@ void func_02133e50(int a) {
         data_0217ea94[0] = data_0216ff5c.mUnk_08->mUnk_6c;
         data_0217eab8[0] = 1;
     }
-    while (data_0217e98c > 0) {
-        data_0217e994[--data_0217e98c]();
+    while (gExitFunctionCount > 0) {
+        gExitFunctions[--gExitFunctionCount]();
     }
     if (--data_0217eab8[0] == 0) {
         func_0200ecc4(data_0217eadc[0]);

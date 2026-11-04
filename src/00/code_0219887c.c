@@ -22,7 +22,7 @@ void SetUnmatchedDataCallback(int a, u32 b) {
 
 void func_ov000_021988a4(Unk0219887c *connection, void *b) {
     if (connection == NULL) {
-        func_0213442c(data_ov000_021b3f8c, data_ov000_021b3f98, NULL, 0x19c);
+        AssertionFailed(data_ov000_021b3f8c, data_ov000_021b3f98, NULL, 0x19c);
     }
     connection->mUnk_40 = b;
     return;
@@ -30,7 +30,7 @@ void func_ov000_021988a4(Unk0219887c *connection, void *b) {
 
 u8 *func_ov000_0219887c(Unk0219887c *object) {
     if (object == NULL) {
-        func_0213442c(data_ov000_021b3f8c, data_ov000_021b3f98, NULL, 0x1a3);
+        AssertionFailed(data_ov000_021b3f8c, data_ov000_021b3f98, NULL, 0x1a3);
     }
     return object->mUnk_40;
 }

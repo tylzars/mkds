@@ -67,7 +67,7 @@ s32 func_ov000_02194a0c(GpConnection *a, GpiOperation *b, const char *c) {
         GpiQueueErrorCallback(a, 3, 1);
         return 3;
     }
-    v = func_0213bf90(d);
+    v = StrtolBase10(d);
     p = b->mUnk_0c;
     if (p.mCallback != NULL) {
         m = func_ov000_021a3690(8);
@@ -92,7 +92,7 @@ GpiProfile *GpiFindOrAddProfile(GpConnection *a, s32 id) {
 
     c = &a->mGpiConnection->mProfileList;
     if (id <= 0) {
-        func_0213442c(data_ov000_021b354c, data_ov000_021b3554, NULL, 0x2b5);
+        AssertionFailed(data_ov000_021b354c, data_ov000_021b3554, NULL, 0x2b5);
     }
     if (id <= 0) {
         return NULL;

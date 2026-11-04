@@ -1,7 +1,7 @@
 // Double-precision division: the reversed entry, the main routine with its rounding tails, the reciprocal
 // table it starts from, and the routine for its special cases.
 //
-// Arguments and results, the status word from func_02142578 and the trap handlers are as described in
+// Arguments and results, the status word from GetFloatStatus and the trap handlers are as described in
 // code_0212f884.s; division by zero sets status bit 0x02 (trap enable 0x200).
 //
 // Not compiled code: the routines branch into each other's middles (_ddiv into func_0213379c and back to
@@ -13,9 +13,9 @@
 // a C table in .rodata (also with `#pragma section` or a section attribute), so it is written here as bytes.
 
     .text
-    .extern func_0213406c
-    .extern func_0213412c
-    .extern func_02142578
+    .extern FloatTrapPairPairToPair
+    .extern FloatTrapPairToPair
+    .extern GetFloatStatus
 
 // Reversed division: swaps the doubles r1:r0 and r3:r2 (three exclusive ors per word) and runs on into _ddiv, so it
 // returns r3:r2 divided by r1:r0.
@@ -139,7 +139,7 @@ ddiv_round:
     adds r6, r6, r2
     adc lr, lr, r3
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -180,7 +180,7 @@ func_02133630:
     bxlo lr
     // Overflow: trap if enabled.
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -254,7 +254,7 @@ func_0213379c:
     // Overflow: trap if enabled, else set overflow and inexact. Nearest gives infinity, toward zero the largest finite
     // value, up and down one or the other by the sign (ip bit 0).
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -291,7 +291,7 @@ ddivx_overflow_negative:
     // zero or the smallest denormal, exactly 52 only the rounding bit is left.
 ddivx_underflow:
     stmfd sp!, {r0, r1, r2, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r6, r0
     ldmfd sp!, {r0, r1, r2, r3, ip, lr}
     ldr r6, [r6]
@@ -362,7 +362,7 @@ ddivx_inexact:
     adds r5, r5, r2
     adc r4, r4, r3
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -432,7 +432,7 @@ ddivx_half_smallest:
     mov r0, #0
     movne r0, #1
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -468,7 +468,7 @@ ddivx_tiny:
     mov r1, ip, lsl #31
     mov r0, #0
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -581,7 +581,7 @@ ddivx_b_inf_or_nan:
     // Division by zero: trap if enabled, else set the flag and return infinity with the quotient's sign.
 ddivx_divide_by_zero:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -631,7 +631,7 @@ ddivx_b_nan:
     // Invalid: trap if enabled, else set the flag and return r1:r0 with the quiet-NaN bits set.
 ddivx_invalid:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -652,7 +652,7 @@ ddivx_trap_overflow_round:
     orr r1, r1, #0xff00000
     mov r0, #0
     ldr r2, ddivx_code_overflow
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, lr}
     bx lr
     // Overflow trap: pass the quotient with its exponent wrapped down by 0x600.
@@ -665,7 +665,7 @@ ddivx_trap_overflow:
     add r1, r1, ip, lsl #19
     mov r0, r5
     ldr r2, ddivx_code_overflow
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, lr}
     bx lr
     // Underflow trap: pass the quotient with its exponent raised by 0x600.
@@ -677,7 +677,7 @@ ddivx_trap_underflow:
     add r1, r1, ip, lsl #19
     mov r0, r5
     ldr r2, ddivx_code_underflow
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, lr}
     bx lr
     // Division-by-zero trap: pass the original operands from the stack.
@@ -685,7 +685,7 @@ ddivx_trap_divide_by_zero:
     ldmfd sp!, {r0, r1, r2, r3}
     ldr ip, ddivx_code_divide_by_zero
     stmdb sp!, {ip}
-    bl func_0213406c
+    bl FloatTrapPairPairToPair
     add sp, sp, #4
     ldmfd sp!, {r4, r5, r6, lr}
     bx lr
@@ -694,7 +694,7 @@ ddivx_trap_invalid:
     ldmfd sp!, {r0, r1, r2, r3}
     ldr ip, ddivx_code_invalid
     stmdb sp!, {ip}
-    bl func_0213406c
+    bl FloatTrapPairPairToPair
     add sp, sp, #4
     ldmfd sp!, {r4, r5, r6, lr}
     bx lr
@@ -702,7 +702,7 @@ ddivx_trap_invalid:
 ddivx_trap_inexact:
     add sp, sp, #16
     ldr r2, ddivx_code_inexact
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, lr}
     bx lr
     .size func_0213379c, . - func_0213379c

@@ -53,7 +53,7 @@ s32 func_ov000_021972b4(void) {
         func_ov000_0218e53c(data_ov000_021b3b2c);
         return 5;
     }
-    data_ov000_021b4e4c = func_0213bf90((const char *) c);
+    data_ov000_021b4e4c = StrtolBase10((const char *) c);
     return 0;
 }
 

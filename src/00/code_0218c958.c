@@ -90,7 +90,7 @@ s32 func_ov000_0218ca58(SbServerList *p, const char *a, const char *b, u32 c, u3
     u8 *q;
     s32 r;
     if (p->mState != 1) {
-        func_0213442c(data_ov000_021b2240, data_ov000_021b2218, NULL, 0x20a);
+        AssertionFailed(data_ov000_021b2240, data_ov000_021b2218, NULL, 0x20a);
     }
     if (a == NULL) {
         a = data_ov000_021b2260;

@@ -4,7 +4,7 @@
 
 // clang-format off
 // Returns the square root of the double r1:r0, computed one bit at a time and rounded as the floating-point status word
-// says (func_02142578; see code_0212f884.s). Zero and +infinity return themselves, a quiet NaN returns itself; negative
+// says (GetFloatStatus; see code_0212f884.s). Zero and +infinity return themselves, a quiet NaN returns itself; negative
 // numbers and signalling NaNs raise invalid (or trap with event code 0x04000097).
 // Not compiled code: it counts leading zeros with clz and tests bits with tst, neither of which the 1.2 compiler
 // builds, and saves ip and the argument registers around its call in the middle of the body, where 1.2 saves registers
@@ -81,7 +81,7 @@ sqrt_low_next:
     biceq r0, r0, #1
     beq sqrt_pack
     stmfd sp!, {r0, r1, r2, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r5, r0
     ldmfd sp!, {r0, r1, r2, r3, ip, lr}
     ldr r6, [r5]
@@ -157,7 +157,7 @@ sqrt_nan:
 sqrt_invalid:
     ldr r2, =0x7ff80000
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -171,7 +171,7 @@ sqrt_invalid:
     // Invalid trap.
 sqrt_trap_invalid:
     ldr r2, =0x4000097
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, lr}
     bx lr
     // Inexact trap: pass the rounded-down root.
@@ -182,7 +182,7 @@ sqrt_trap_inexact:
     sub r1, r1, #0x100000
     add r1, r1, ip, lsl #20
     ldr r2, =0x40000097
-    bl func_0213412c
+    bl FloatTrapPairToPair
     ldmfd sp!, {r4, r5, r6, lr}
     bx lr
 }

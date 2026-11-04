@@ -53,7 +53,7 @@ f2d_nan:
     tst r3, #0x80000000
     bne f2d_default_nan
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -70,7 +70,7 @@ f2d_default_nan:
 f2d_trap_invalid:
     ldr r1, =0x4000018
     stmdb sp!, {lr}
-    bl func_02134188
+    bl FloatTrapWordToPair
     ldmia sp!, {lr}
     bx lr
 }

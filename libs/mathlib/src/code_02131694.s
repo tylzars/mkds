@@ -1,6 +1,6 @@
 // Float and double compares.
 //
-// Floats are passed in r0 and r1, doubles in r1:r0 and r3:r2 (low word first); the status word from func_02142578
+// Floats are passed in r0 and r1, doubles in r1:r0 and r3:r2 (low word first); the status word from GetFloatStatus
 // and the trap handlers are as described in code_0212f884.s. The value compares return 1 or 0 in r0, the three-way
 // compares 0, 1, 2 or 3 in r0, and the flag compares return their result in the condition flags.
 //
@@ -12,9 +12,9 @@
 // compares also return their result in the condition flags (`cmp r0, r1; bx lr`), not in r0.
 
     .text
-    .extern func_02134008
-    .extern func_021340d4
-    .extern func_02142578
+    .extern FloatTrapPairPairToWord
+    .extern FloatTrapWordWordToWord
+    .extern GetFloatStatus
 
     // Floats are compared by their bits: after `cmp rX, #0`, `bicmi` and `rsbmi` turn a negative float into the negated
     // magnitude, so a signed compare orders them and -0 equals +0. A NaN (bits shifted up one above 0xff000000) is
@@ -243,11 +243,11 @@ fordered:
     mov r0, #1
     bx lr
 
-    // Raise invalid: set the sticky flag in the status word from func_02142578 (trap on 0x100) and return r2.
+    // Raise invalid: set the sticky flag in the status word from GetFloatStatus (trap on 0x100) and return r2.
     // The argument registers are saved around the call.
 fcmp_invalid:
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip, #0]
@@ -261,7 +261,7 @@ fcmp_invalid:
     // Raise invalid, then return ne (movs of 1).
 fflags_invalid_ne:
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip, #0]
@@ -275,7 +275,7 @@ fflags_invalid_ne:
     // Raise invalid, then return hi: 0xff000000 + 0x10000000 sets the carry, clears zero.
 fflags_invalid_hi:
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip, #0]
@@ -290,7 +290,7 @@ fflags_invalid_hi:
     // Raise invalid, then return eq with the carry clear (0 + 0).
 fflags_invalid_eq:
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip, #0]
@@ -830,7 +830,7 @@ dordered_b_special:
 dcmp_invalid:
     stmfd sp!, {ip, lr}
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr lr, [ip, #0]
@@ -846,7 +846,7 @@ dcmp_invalid:
 dflags_invalid_ne:
     stmfd sp!, {ip, lr}
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr lr, [ip, #0]
@@ -863,7 +863,7 @@ dflags_invalid_ne:
 dflags_invalid_hi:
     stmfd sp!, {ip, lr}
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr lr, [ip, #0]
@@ -881,7 +881,7 @@ dflags_invalid_hi:
 dflags_invalid_eq:
     stmfd sp!, {ip, lr}
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr lr, [ip, #0]
@@ -944,7 +944,7 @@ dflags_return_ne:
 func_021321cc:
     stmfd sp!, {lr}
     ldr r2, fcmp_code_invalid
-    bl func_021340d4
+    bl FloatTrapWordWordToWord
     ldmfd sp!, {lr}
     bx lr
     .size func_021321cc, . - func_021321cc
@@ -955,7 +955,7 @@ func_021321cc:
 func_021321e0:
     ldr ip, dcmp_code_invalid
     stmfd sp!, {ip}
-    bl func_02134008
+    bl FloatTrapPairPairToWord
     add sp, sp, #8
     ldmfd sp!, {lr}
     bx lr

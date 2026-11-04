@@ -8,36 +8,36 @@
 #include "Main/Unknown/code_02130000.h"
 
 // 1 when a and b have the same mUnk_02 and the same digits (missing digits count as 0), or both have mUnk_05[0] == 0.
-int func_0214166c(const Unk02136638 *a, const Unk02136638 *b) {
+int DigitsEqual(const DigitRecord *a, const DigitRecord *b) {
     int i;
     int m;
     int la;
     int lb;
 
-    if (a->mUnk_05[0] == 0) {
-        return b->mUnk_05[0] == 0;
+    if (a->mDigits[0] == 0) {
+        return b->mDigits[0] == 0;
     }
-    if (b->mUnk_05[0] == 0) {
-        return a->mUnk_05[0] == 0;
+    if (b->mDigits[0] == 0) {
+        return a->mDigits[0] == 0;
     }
-    if (a->mUnk_02 == b->mUnk_02) {
-        la = a->mUnk_04;
+    if (a->mExponent == b->mExponent) {
+        la = a->mDigitCount;
         m = la;
-        lb = b->mUnk_04;
+        lb = b->mDigitCount;
         i = 0;
         if (la > lb) {
             m = lb;
         }
         for (; i < m; i++) {
-            if (a->mUnk_05[i] != b->mUnk_05[i]) {
+            if (a->mDigits[i] != b->mDigits[i]) {
                 return 0;
             }
         }
         if (m == la) {
             a = b;
         }
-        for (; i < a->mUnk_04; i++) {
-            if (a->mUnk_05[i] != 0) {
+        for (; i < a->mDigitCount; i++) {
+            if (a->mDigits[i] != 0) {
                 return 0;
             }
         }
@@ -47,7 +47,7 @@ int func_0214166c(const Unk02136638 *a, const Unk02136638 *b) {
 }
 
 // 1 when a is less than b: compares mUnk_05[0] == 0 first, then mUnk_02, then the digits from mUnk_05[0] on.
-int func_02141538(const Unk02136638 *a, const Unk02136638 *b) {
+int DigitsLess(const DigitRecord *a, const DigitRecord *b) {
     int i;
     int m;
     int la;
@@ -55,23 +55,23 @@ int func_02141538(const Unk02136638 *a, const Unk02136638 *b) {
     u32 x;
     u32 y;
 
-    if (a->mUnk_05[0] == 0) {
-        return b->mUnk_05[0] != 0;
+    if (a->mDigits[0] == 0) {
+        return b->mDigits[0] != 0;
     }
-    if (b->mUnk_05[0] == 0) {
+    if (b->mDigits[0] == 0) {
         return 0;
     }
-    if (a->mUnk_02 == b->mUnk_02) {
-        la = a->mUnk_04;
+    if (a->mExponent == b->mExponent) {
+        la = a->mDigitCount;
         m = la;
-        lb = b->mUnk_04;
+        lb = b->mDigitCount;
         i = 0;
         if (la > lb) {
             m = lb;
         }
         for (; i < m; i++) {
-            x = b->mUnk_05[i];
-            y = a->mUnk_05[i];
+            x = b->mDigits[i];
+            y = a->mDigits[i];
             if (y < x) {
                 return 1;
             }
@@ -80,20 +80,20 @@ int func_02141538(const Unk02136638 *a, const Unk02136638 *b) {
             }
         }
         if (m == la) {
-            for (; i < b->mUnk_04; i++) {
-                if (b->mUnk_05[i] != 0) {
+            for (; i < b->mDigitCount; i++) {
+                if (b->mDigits[i] != 0) {
                     return 1;
                 }
             }
         }
         return 0;
     }
-    return a->mUnk_02 < b->mUnk_02;
+    return a->mExponent < b->mExponent;
 }
 
 // Copies b to a; if c->mUnk_05[0] is not 0, subtracts c's digits from a's, shifted by mUnk_02, and then drops leading
 // and trailing zero digits.
-void func_021410bc(Unk02136638 *a, const Unk02136638 *b, const Unk02136638 *c) {
+void DigitsSubtract(DigitRecord *a, const DigitRecord *b, const DigitRecord *c) {
     int n;
     int m;
     int d;
@@ -108,32 +108,32 @@ void func_021410bc(Unk02136638 *a, const Unk02136638 *b, const Unk02136638 *c) {
     int f;
 
     *a = *b;
-    if (c->mUnk_05[0] == 0) {
+    if (c->mDigits[0] == 0) {
         return;
     }
-    n = a->mUnk_04;
+    n = a->mDigitCount;
     m = n;
-    if (n < c->mUnk_04) {
-        m = c->mUnk_04;
+    if (n < c->mDigitCount) {
+        m = c->mDigitCount;
     }
-    d = a->mUnk_02 - c->mUnk_02;
+    d = a->mExponent - c->mExponent;
     m += d;
     if (m > 32) {
         m = 32;
     }
     if (n < m) {
         do {
-            a->mUnk_04++;
-            a->mUnk_05[n] = 0;
-            n = a->mUnk_04;
+            a->mDigitCount++;
+            a->mDigits[n] = 0;
+            n = a->mDigitCount;
         } while (n < m);
     }
-    p = a->mUnk_05;
+    p = a->mDigits;
     e = p + m;
-    if (c->mUnk_04 + d < m) {
-        e = p + (c->mUnk_04 + d);
+    if (c->mDigitCount + d < m) {
+        e = p + (c->mDigitCount + d);
     }
-    cb = c->mUnk_05;
+    cb = c->mDigits;
     s = cb + (e - p - d);
     t = s;
     while (e > p && s > cb) {
@@ -153,12 +153,12 @@ void func_021410bc(Unk02136638 *a, const Unk02136638 *b, const Unk02136638 *c) {
         *e -= *s;
     }
     k = t - cb;
-    if (k < c->mUnk_04) {
+    if (k < c->mDigitCount) {
         f = 0;
         if (*t < 5) {
             f = 1;
         } else if (*t == 5) {
-            r = c->mUnk_05 + c->mUnk_04;
+            r = c->mDigits + c->mDigitCount;
             t++;
             while (t < r) {
                 if (*t != 0) {
@@ -196,37 +196,37 @@ done:
         u8 cnt;
 
         cnt = t - p;
-        a->mUnk_02 -= cnt;
-        x = p + a->mUnk_04;
+        a->mExponent -= cnt;
+        x = p + a->mDigitCount;
         while (t < x) {
             *p = *t;
             t++;
             p++;
         }
-        a->mUnk_04 -= cnt;
+        a->mDigitCount -= cnt;
     }
-    p = a->mUnk_05;
-    t = p + a->mUnk_04;
+    p = a->mDigits;
+    t = p + a->mDigitCount;
     while (t > p) {
         t--;
         if (*t != 0) {
             break;
         }
     }
-    a->mUnk_04 = t - p + 1;
+    a->mDigitCount = t - p + 1;
 }
 
 // Fills out from the double v: mUnk_00 is the sign bit. A zero v gives one digit 0; an all-ones exponent gives one
-// digit, 0x4e when the mantissa bits are not all 0, else 0x49. Otherwise the digits come from func_02141f14 and
-// func_0214177c, combined by func_02141c98.
-void func_02140d74(Unk02136638 *out, double v) {
+// digit, 0x4e when the mantissa bits are not all 0, else 0x49. Otherwise the digits come from DigitsFromU64 and
+// DigitsPowerOfTwo, combined by DigitsMultiply.
+void DoubleToDigits(DigitRecord *out, double v) {
     int e;
     double y1;
     double y2;
     double y3;
     double m;
-    Unk02136638 big_a;
-    Unk02136638 big_b;
+    DigitRecord big_a;
+    DigitRecord big_b;
     u32 *w;
     u32 hi;
     u8 sign;
@@ -237,10 +237,10 @@ void func_02140d74(Unk02136638 *out, double v) {
     hi = ((u32 *) &v)[1];
     sign = (hi & 0x80000000) != 0;
     if (v == 0.0) {
-        out->mUnk_00 = sign;
-        out->mUnk_02 = 0;
-        out->mUnk_04 = 1;
-        out->mUnk_05[0] = 0;
+        out->mNegative = sign;
+        out->mExponent = 0;
+        out->mDigitCount = 1;
+        out->mDigits[0] = 0;
         return;
     }
     y1 = v;
@@ -264,9 +264,9 @@ void func_02140d74(Unk02136638 *out, double v) {
             break;
     }
     if (k <= 2) {
-        out->mUnk_00 = sign;
-        out->mUnk_02 = 0;
-        out->mUnk_04 = 1;
+        out->mNegative = sign;
+        out->mExponent = 0;
+        out->mDigitCount = 1;
         y2 = v;
         switch (((u32 *) &y2)[1] & 0x7ff00000) {
             case 0x7ff00000:
@@ -287,7 +287,7 @@ void func_02140d74(Unk02136638 *out, double v) {
                 k = 4;
                 break;
         }
-        out->mUnk_05[0] = k == 1 ? 0x4e : 0x49;
+        out->mDigits[0] = k == 1 ? 0x4e : 0x49;
         return;
     }
     if (sign) {
@@ -297,42 +297,42 @@ void func_02140d74(Unk02136638 *out, double v) {
     y3 = m;
     w = (u32 *) &y3;
     if (w[0]) {
-        n = func_021422a0(w[0]);
+        n = CountLowZeroBits(w[0]);
     } else {
-        n = func_021422a0(w[1] | 0x100000) + 0x20;
+        n = CountLowZeroBits(w[1] | 0x100000) + 0x20;
     }
     s = 0x35 - n;
-    func_0214177c(&big_b, e - s);
-    func_02141f14(&big_a, (u64) ldexp(m, s));
-    func_02141c98(out, &big_a, &big_b);
-    out->mUnk_00 = sign;
+    DigitsPowerOfTwo(&big_b, e - s);
+    DigitsFromU64(&big_a, (u64) ldexp(m, s));
+    DigitsMultiply(out, &big_a, &big_b);
+    out->mNegative = sign;
 }
 
-// Calls func_02140d74 on b, then raises mUnk_04 to n (a->mUnk_02, at most 32) by appending 0 entries to mUnk_05,
+// Calls DoubleToDigits on b, then raises mUnk_04 to n (a->mUnk_02, at most 32) by appending 0 entries to mUnk_05,
 // lowers b->mUnk_02 by mUnk_04 - 1 and adds 0x30 to every entry. Does nothing more when mUnk_05[0] is above 9.
-void func_02140c28(Unk02140c28 *a, double v, Unk02136638 *b) {
+void DoubleToDigitChars(Unk02140c28 *a, double v, DigitRecord *b) {
     int n;
     int i;
 
-    n = a->mUnk_02;
-    func_02140d74(b, v);
-    if (b->mUnk_05[0] > 9) {
+    n = a->mDigitCount;
+    DoubleToDigits(b, v);
+    if (b->mDigits[0] > 9) {
         return;
     }
     if (n > 32) {
         n = 32;
     }
-    func_021420c0(b, n);
-    while (b->mUnk_04 < n) {
-        b->mUnk_05[b->mUnk_04++] = 0;
+    DigitsRoundTo(b, n);
+    while (b->mDigitCount < n) {
+        b->mDigits[b->mDigitCount++] = 0;
     }
-    b->mUnk_02 = b->mUnk_02 - (b->mUnk_04 - 1);
-    for (i = 0; i < b->mUnk_04; i++) {
-        b->mUnk_05[i] += 0x30;
+    b->mExponent = b->mExponent - (b->mDigitCount - 1);
+    for (i = 0; i < b->mDigitCount; i++) {
+        b->mDigits[i] += 0x30;
     }
 }
 
-double func_0214049c(const Unk02136638 *d) {
+double DigitCharsToDouble(const DigitRecord *d) {
     char *p;
     char *end;
     int m;
@@ -351,41 +351,41 @@ double func_0214049c(const Unk02136638 *d) {
         double d;
         u32 w[2];
     } u1, u2;
-    Unk02136638 e;
-    Unk02136638 g;
-    Unk02136638 a;
-    Unk02136638 b;
-    Unk02136638 c;
-    Unk02136638 f;
+    DigitRecord e;
+    DigitRecord g;
+    DigitRecord a;
+    DigitRecord b;
+    DigitRecord c;
+    DigitRecord f;
 
-    if (d->mUnk_04 == 0) {
-        return copysign(0.0, d->mUnk_00 == 0 ? 1.0 : -1.0);
+    if (d->mDigitCount == 0) {
+        return copysign(0.0, d->mNegative == 0 ? 1.0 : -1.0);
     }
-    switch (d->mUnk_05[0]) {
+    switch (d->mDigits[0]) {
         case '0':
-            return copysign(0.0, d->mUnk_00 == 0 ? 1.0 : -1.0);
+            return copysign(0.0, d->mNegative == 0 ? 1.0 : -1.0);
         case 'I':
-            return copysign(data_0216ec98, d->mUnk_00 == 0 ? 1.0 : -1.0);
+            return copysign(data_0216ec98, d->mNegative == 0 ? 1.0 : -1.0);
         case 'N':
             pr = (u64 *) &r;
             *pr = 0x7ff0000000000000ULL;
-            if (d->mUnk_00) {
+            if (d->mNegative) {
                 *pr |= 0x8000000000000000ULL;
             }
             *pr |= 0x0008000000000000ULL;
             return r;
     }
     e = *d;
-    for (p = e.mUnk_05, end = p + e.mUnk_04; p < end; p++) {
+    for (p = e.mDigits, end = p + e.mDigitCount; p < end; p++) {
         *p -= '0';
     }
-    e.mUnk_02 += e.mUnk_04 - 1;
-    m = e.mUnk_02;
-    func_02141b5c(&g, data_0216ef70, 0x134);
-    if (func_02141538(&g, &e)) {
-        return copysign(data_0216ec98, d->mUnk_00 == 0 ? 1.0 : -1.0);
+    e.mExponent += e.mDigitCount - 1;
+    m = e.mExponent;
+    DigitsFromString(&g, data_0216ef70, 0x134);
+    if (DigitsLess(&g, &e)) {
+        return copysign(data_0216ec98, d->mNegative == 0 ? 1.0 : -1.0);
     }
-    p = e.mUnk_05;
+    p = e.mDigits;
     x = *p++;
     while (p < end) {
         int n;
@@ -438,9 +438,9 @@ double func_0214049c(const Unk02136638 *d) {
     }
     py = (u64 *) &y;
     j = 0;
-    func_02140d74(&a, x);
-    if (!func_0214166c(&a, &e)) {
-        if (func_02141538(&a, &e)) {
+    DoubleToDigits(&a, x);
+    if (!DigitsEqual(&a, &e)) {
+        if (DigitsLess(&a, &e)) {
             j = 1;
         }
         y = x;
@@ -473,11 +473,11 @@ double func_0214049c(const Unk02136638 *d) {
             } else {
                 (*py)--;
             }
-            func_02140d74(&b, y);
-            if (j && !func_02141538(&b, &e)) {
+            DoubleToDigits(&b, y);
+            if (j && !DigitsLess(&b, &e)) {
                 break;
             }
-            if (!j && !func_02141538(&e, &b)) {
+            if (!j && !DigitsLess(&e, &b)) {
                 c = a;
                 a = b;
                 b = c;
@@ -489,25 +489,25 @@ double func_0214049c(const Unk02136638 *d) {
             a = b;
             x = y;
         }
-        func_021410bc(&c, &e, &a);
-        func_021410bc(&f, &b, &e);
-        if (func_0214166c(&c, &f)) {
+        DigitsSubtract(&c, &e, &a);
+        DigitsSubtract(&f, &b, &e);
+        if (DigitsEqual(&c, &f)) {
             if (*(u64 *) &x & 1) {
                 x = y;
             }
-        } else if (!func_02141538(&c, &f)) {
+        } else if (!DigitsLess(&c, &f)) {
             x = y;
         }
     }
 done:
-    if (e.mUnk_00) {
+    if (e.mNegative) {
         x = -x;
     }
     return x;
 }
 
 double pow(double a, double b) {
-    return func_0213ee6c(a, b);
+    return PowBody(a, b);
 }
 
 // Classifies the exponent field of d: 1 and 2 when it is all ones (1 with mantissa bits set, 2 without), 3 and 5
@@ -612,7 +612,7 @@ double copysign(double a, double b) {
     return a;
 }
 
-double func_0213ee6c(double a, double b) {
+double PowBody(double a, double b) {
     static const double k0 = -1.904654299957768e-09;
     int q;
     double z, c, p1, b1, t1, t, s1, t3;
@@ -703,7 +703,7 @@ double func_0213ee6c(double a, double b) {
 
     n = (ha >> 31) + 1;
     if ((n | m) == 0) {
-        data_0217ee90 = 33;
+        gLibErrorCode = 33;
         return data_0216ec9c;
     }
 
@@ -837,7 +837,7 @@ double func_0213ee6c(double a, double b) {
     j = *(1 + (int *) &z);
     j += q << 20;
     if ((j >> 20) <= 0) {
-        z = func_02134ae8(z, q);
+        z = LdexpViaFrexp(z, q);
     } else {
         *(1 + (int *) &z) += q << 20;
     }

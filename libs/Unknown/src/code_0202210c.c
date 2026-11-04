@@ -33,7 +33,7 @@ u32 func_0202212c(Unk02022030 *a, s32 b) {
     if (a->mUnk_08 != 1) {
         return 0;
     }
-    a->mUnk_0c += func_02134420((u32) (((s64) a->mUnk_10 * b + 0x800) >> 12));
+    a->mUnk_0c += Abs((u32) (((s64) a->mUnk_10 * b + 0x800) >> 12));
     p = &a->mUnk_0c;
     while (func_0202212c_inline(a)) {
         r = 1;

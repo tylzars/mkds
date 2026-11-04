@@ -217,7 +217,7 @@ u32 GpGetBuddyStatus(GpConnection *a, s32 b, Unk0218ec44 *c) {
     }
     n = e->mBuddyStatus;
     if (n == NULL) {
-        func_0213442c(data_ov000_021b24c8, data_ov000_021b24d4, NULL, 0x5cf);
+        AssertionFailed(data_ov000_021b24c8, data_ov000_021b24d4, NULL, 0x5cf);
     }
     c->mUnk_000 = e->mProfileId;
     c->mUnk_004 = n->mUnk_04;

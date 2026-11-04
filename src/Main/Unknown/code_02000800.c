@@ -3,7 +3,7 @@
 // clang-format off
 // Start-up: sets the stacks of the IRQ, supervisor and system modes, clears the stack memory and two other areas,
 // unpacks main and runs the autoload copies, clears the uninitialised data and its cache lines, sets the IRQ handler
-// address, then calls func_02133da8, func_02000b48 and func_02142540 and jumps to main with lr = 0xffff0000.
+// address, then calls FloatInit, func_02000b48 and CallCtorTable and jumps to main with lr = 0xffff0000.
 // Not compiled code: it switches processor modes and sets sp directly (msr), writes coprocessor 15 (mcr) and ends in a
 // jump with a set return address instead of a call; C has no way to do any of these.
 asm void Entry(void) {
@@ -66,9 +66,9 @@ flush_line:
     add r1, r1, #0x3c
     ldr r0, =func_01ff8000
     str r0, [r1, #0x0]
-    bl func_02133da8
+    bl FloatInit
     bl func_02000b48
-    bl func_02142540
+    bl CallCtorTable
     ldr r1, =main
     ldr lr, =0xffff0000
     bx r1

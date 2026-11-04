@@ -524,7 +524,7 @@ BOOL Gt2ParseAddress(const char *a, u32 *b, u16 *c) {
             } else {
                 g = e - a;
                 if (g >= 0x100) {
-                    func_0213442c(data_ov000_021b3fcc, data_ov000_021b3fec, NULL, 0x81);
+                    AssertionFailed(data_ov000_021b3fcc, data_ov000_021b3fec, NULL, 0x81);
                 }
                 memcpy(d, a, g);
                 d[g] = 0;
@@ -546,7 +546,7 @@ BOOL Gt2ParseAddress(const char *a, u32 *b, u16 *c) {
                     h = *(s8 *) f;
                 } while (h != 0);
             }
-            g = func_0213bf90(e + 1);
+            g = StrtolBase10(e + 1);
             if (g < 0 || g > 0xffff) {
                 return FALSE;
             }

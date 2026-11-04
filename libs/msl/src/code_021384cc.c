@@ -7,10 +7,10 @@
 #include "code_02134b18.h"
 #include "code_0213a460.h"
 
-u32 data_0216eeb8 = 1;
+u32 gRandValue = 1;
 
-const char *func_02139400(const char *a, Unk02139400 *b) {
-    Unk02139400 s = {0, 0, 0, 0, 0x7fffffff};
+const char *ScanParseSpec(const char *a, ScanSpec *b) {
+    ScanSpec s = {0, 0, 0, 0, 0x7fffffff};
     const char *p = a + 1;
     int c = *p;
     int g;
@@ -21,54 +21,54 @@ const char *func_02139400(const char *a, Unk02139400 *b) {
     unsigned char m;
 
     if (c == '%') {
-        s.mUnk_03 = c;
+        s.mSpecChar = c;
         *b = s;
         return p + 1;
     }
     if (c == '*') {
-        s.mUnk_00 = 1;
+        s.mStar = 1;
         c = *++p;
     }
     if ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 8)) {
-        s.mUnk_04 = 0;
+        s.mMaxLength = 0;
         do {
-            s.mUnk_04 = s.mUnk_04 * 10 + (c - '0');
+            s.mMaxLength = s.mMaxLength * 10 + (c - '0');
             c = *++p;
         } while ((c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 8));
-        if (s.mUnk_04 == 0) {
-            s.mUnk_03 = 0xff;
+        if (s.mMaxLength == 0) {
+            s.mSpecChar = 0xff;
             *b = s;
             return p + 1;
         }
-        s.mUnk_01 = 1;
+        s.mHasMaxLength = 1;
     }
     g = 1;
     switch (c) {
         case 'h':
-            s.mUnk_02 = 2;
+            s.mArgKind = 2;
             if (p[1] == 'h') {
-                s.mUnk_02 = 1;
+                s.mArgKind = 1;
                 c = *++p;
             }
             break;
         case 'l':
-            s.mUnk_02 = 3;
+            s.mArgKind = 3;
             if (p[1] == 'l') {
-                s.mUnk_02 = 7;
+                s.mArgKind = 7;
                 c = *++p;
             }
             break;
         case 'L':
-            s.mUnk_02 = 9;
+            s.mArgKind = 9;
             break;
         case 'j':
-            s.mUnk_02 = 4;
+            s.mArgKind = 4;
             break;
         case 'z':
-            s.mUnk_02 = 5;
+            s.mArgKind = 5;
             break;
         case 't':
-            s.mUnk_02 = 6;
+            s.mArgKind = 6;
             break;
         default:
             g = 0;
@@ -77,7 +77,7 @@ const char *func_02139400(const char *a, Unk02139400 *b) {
     if (g) {
         c = *++p;
     }
-    s.mUnk_03 = c;
+    s.mSpecChar = c;
     switch (c) {
         case 'd':
         case 'i':
@@ -85,8 +85,8 @@ const char *func_02139400(const char *a, Unk02139400 *b) {
         case 'u':
         case 'x':
         case 'X':
-            if (s.mUnk_02 == 9) {
-                s.mUnk_03 = 0xff;
+            if (s.mArgKind == 9) {
+                s.mSpecChar = 0xff;
             }
             break;
         case 'a':
@@ -97,41 +97,41 @@ const char *func_02139400(const char *a, Unk02139400 *b) {
         case 'F':
         case 'g':
         case 'G':
-            m = s.mUnk_02;
+            m = s.mArgKind;
             if (m == 1 || m == 2 || (unsigned char) (m + 0xfc) <= 3) {
-                s.mUnk_03 = 0xff;
+                s.mSpecChar = 0xff;
             } else if (m == 3) {
-                s.mUnk_02 = 8;
+                s.mArgKind = 8;
             }
             break;
         case 'p':
-            s.mUnk_02 = 3;
-            s.mUnk_03 = 'x';
+            s.mArgKind = 3;
+            s.mSpecChar = 'x';
             break;
         case 'c':
-            if (s.mUnk_02 == 3) {
-                s.mUnk_02 = 10;
-            } else if (s.mUnk_02 != 0) {
-                s.mUnk_03 = 0xff;
+            if (s.mArgKind == 3) {
+                s.mArgKind = 10;
+            } else if (s.mArgKind != 0) {
+                s.mSpecChar = 0xff;
             }
             break;
         case 's':
-            if (s.mUnk_02 == 3) {
-                s.mUnk_02 = 10;
-            } else if (s.mUnk_02 != 0) {
-                s.mUnk_03 = 0xff;
+            if (s.mArgKind == 3) {
+                s.mArgKind = 10;
+            } else if (s.mArgKind != 0) {
+                s.mSpecChar = 0xff;
             }
-            for (i = 32, q = s.mUnk_08; i > 0; i--) {
+            for (i = 32, q = s.mCharSet; i > 0; i--) {
                 *q++ = 0xff;
             }
-            s.mUnk_08[1] = 0xc1;
-            s.mUnk_08[4] = 0xfe;
+            s.mCharSet[1] = 0xc1;
+            s.mCharSet[4] = 0xfe;
             break;
         case '[':
-            if (s.mUnk_02 == 3) {
-                s.mUnk_02 = 10;
-            } else if (s.mUnk_02 != 0) {
-                s.mUnk_03 = 0xff;
+            if (s.mArgKind == 3) {
+                s.mArgKind = 10;
+            } else if (s.mArgKind != 0) {
+                s.mSpecChar = 0xff;
             }
             c = *++p;
             h = 0;
@@ -140,14 +140,14 @@ const char *func_02139400(const char *a, Unk02139400 *b) {
                 h = 1;
             }
             if (c == ']') {
-                s.mUnk_08[']' >> 3] |= 1 << (']' & 7);
+                s.mCharSet[']' >> 3] |= 1 << (']' & 7);
                 c = *++p;
             }
             while (c != 0 && c != ']') {
-                s.mUnk_08[(unsigned char) c >> 3] |= 1 << (c & 7);
+                s.mCharSet[(unsigned char) c >> 3] |= 1 << (c & 7);
                 if (p[1] == '-' && (d = p[2]) != 0 && d != ']') {
                     for (c++; c <= d; c++) {
-                        s.mUnk_08[(unsigned char) c >> 3] |= 1 << (c & 7);
+                        s.mCharSet[(unsigned char) c >> 3] |= 1 << (c & 7);
                     }
                     c = *(p += 3);
                 } else {
@@ -155,9 +155,9 @@ const char *func_02139400(const char *a, Unk02139400 *b) {
                 }
             }
             if (c == 0) {
-                s.mUnk_03 = 0xff;
+                s.mSpecChar = 0xff;
             } else if (h) {
-                for (i = 32, q = s.mUnk_08; i > 0; i--, q++) {
+                for (i = 32, q = s.mCharSet; i > 0; i--, q++) {
                     *q = ~*q;
                 }
             }
@@ -165,7 +165,7 @@ const char *func_02139400(const char *a, Unk02139400 *b) {
         case 'n':
             break;
         default:
-            s.mUnk_03 = 0xff;
+            s.mSpecChar = 0xff;
             break;
     }
     *b = s;
@@ -176,7 +176,7 @@ static inline int func_02138618_inline(int c) {
     return (c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x100);
 }
 
-int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
+int ScanWithSourceFunc(Unk02138618Func fn, void *a, const char *s, char *v) {
     int k;
     int s32;
     long long s64;
@@ -193,7 +193,7 @@ int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
     int g;
     int e;
     double d;
-    Unk02139400 t;
+    ScanSpec t;
 
     k = 0;
     r = 0;
@@ -220,35 +220,35 @@ int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
             k++;
             continue;
         }
-        s = func_02139400(s, &t);
-        if (t.mUnk_00 == 0 && t.mUnk_03 != '%') {
+        s = ScanParseSpec(s, &t);
+        if (t.mStar == 0 && t.mSpecChar != '%') {
             v += 4;
             p = ((char **) v)[-1];
         } else {
             p = 0;
         }
-        if (t.mUnk_03 != 'n') {
+        if (t.mSpecChar != 'n') {
             if (fn(a, 0, 2) != 0) {
                 goto exit;
             }
         }
-        switch (t.mUnk_03) {
+        switch (t.mSpecChar) {
             case 'd':
                 base = 10;
                 goto signed_int;
             case 'i':
                 base = 0;
             signed_int:
-                if (t.mUnk_02 == 7) {
-                    u64 = func_0213c110(base, t.mUnk_04, fn, a, &n, &g, &e);
+                if (t.mArgKind == 7) {
+                    u64 = ScanInt64(base, t.mMaxLength, fn, a, &n, &g, &e);
                 } else {
-                    u32 = func_0213c560(base, t.mUnk_04, fn, a, &n, &g, &e);
+                    u32 = ScanInt32(base, t.mMaxLength, fn, a, &n, &g, &e);
                 }
                 if (n == 0) {
                     goto exit;
                 }
                 k += n;
-                if (t.mUnk_02 == 7) {
+                if (t.mArgKind == 7) {
                     if (g == 0) {
                         s64 = u64;
                     } else {
@@ -262,7 +262,7 @@ int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
                     }
                 }
                 if (p != 0) {
-                    switch (t.mUnk_02) {
+                    switch (t.mArgKind) {
                         case 0:
                             *(int *) p = s32;
                             break;
@@ -302,24 +302,24 @@ int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
             case 'x':
                 base = 16;
             unsigned_int:
-                if (t.mUnk_02 == 7) {
-                    u64 = func_0213c110(base, t.mUnk_04, fn, a, &n, &g, &e);
+                if (t.mArgKind == 7) {
+                    u64 = ScanInt64(base, t.mMaxLength, fn, a, &n, &g, &e);
                 } else {
-                    u32 = func_0213c560(base, t.mUnk_04, fn, a, &n, &g, &e);
+                    u32 = ScanInt32(base, t.mMaxLength, fn, a, &n, &g, &e);
                 }
                 if (n == 0) {
                     goto exit;
                 }
                 k += n;
                 if (g != 0) {
-                    if (t.mUnk_02 == 7) {
+                    if (t.mArgKind == 7) {
                         u64 = -u64;
                     } else {
                         u32 = -u32;
                     }
                 }
                 if (p != 0) {
-                    switch (t.mUnk_02) {
+                    switch (t.mArgKind) {
                         case 0:
                             *(unsigned int *) p = u32;
                             break;
@@ -357,13 +357,13 @@ int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
             case 'e':
             case 'f':
             case 'g':
-                d = func_0213a550(t.mUnk_04, fn, a, &n, &e);
+                d = ScanDouble(t.mMaxLength, fn, a, &n, &e);
                 if (n == 0) {
                     goto exit;
                 }
                 k += n;
                 if (p != 0) {
-                    switch (t.mUnk_02) {
+                    switch (t.mArgKind) {
                         case 0:
                             *(float *) p = d;
                             break;
@@ -379,14 +379,14 @@ int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
                 m++;
                 break;
             case 'c':
-                if (t.mUnk_01 == 0) {
-                    t.mUnk_04 = 1;
+                if (t.mHasMaxLength == 0) {
+                    t.mMaxLength = 1;
                 }
                 if (p != 0) {
                     n = 0;
-                    while (t.mUnk_04-- != 0 && (ch = fn(a, 0, 0)) != -1) {
+                    while (t.mMaxLength-- != 0 && (ch = fn(a, 0, 0)) != -1) {
                         chb = ch;
-                        if (t.mUnk_02 == 10) {
+                        if (t.mArgKind == 10) {
                             mbtowc((u16 *) p, &chb, 1);
                             p += 1;
                         } else {
@@ -402,7 +402,7 @@ int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
                     r++;
                 } else {
                     n = 0;
-                    while (t.mUnk_04-- != 0 && (ch = fn(a, 0, 0)) != -1) {
+                    while (t.mMaxLength-- != 0 && (ch = fn(a, 0, 0)) != -1) {
                         chb = ch;
                         n++;
                     }
@@ -433,12 +433,12 @@ int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
             case '[':
                 if (p != 0) {
                     n = 0;
-                    while (t.mUnk_04-- != 0 && (ch = fn(a, 0, 0)) != -1) {
+                    while (t.mMaxLength-- != 0 && (ch = fn(a, 0, 0)) != -1) {
                         chb = ch;
-                        if (!(t.mUnk_08[chb >> 3] & (1 << (chb & 7)))) {
+                        if (!(t.mCharSet[chb >> 3] & (1 << (chb & 7)))) {
                             break;
                         }
-                        if (t.mUnk_02 == 10) {
+                        if (t.mArgKind == 10) {
                             mbtowc((u16 *) p, &chb, 1);
                             p += 2;
                         } else {
@@ -452,7 +452,7 @@ int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
                         goto exit;
                     }
                     k += n;
-                    if (t.mUnk_02 == 10) {
+                    if (t.mArgKind == 10) {
                         *(short *) p = 0;
                     } else {
                         *p = 0;
@@ -460,9 +460,9 @@ int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
                     r++;
                 } else {
                     n = 0;
-                    while (t.mUnk_04-- != 0 && (ch = fn(a, 0, 0)) != -1) {
+                    while (t.mMaxLength-- != 0 && (ch = fn(a, 0, 0)) != -1) {
                         chb = ch;
-                        if (!(t.mUnk_08[chb >> 3] & (1 << (chb & 7)))) {
+                        if (!(t.mCharSet[chb >> 3] & (1 << (chb & 7)))) {
                             break;
                         }
                         n++;
@@ -474,14 +474,14 @@ int func_02138618(Unk02138618Func fn, void *a, const char *s, char *v) {
                     }
                     k += n;
                 }
-                if (t.mUnk_04 >= 0) {
+                if (t.mMaxLength >= 0) {
                     fn(a, chb, 1);
                 }
                 m++;
                 break;
             case 'n':
                 if (p != 0) {
-                    switch (t.mUnk_02) {
+                    switch (t.mArgKind) {
                         case 0:
                             *(int *) p = k;
                             break;
@@ -512,45 +512,45 @@ exit:
     return r;
 }
 
-int func_021385a0(void *a, int b, int c) {
-    Unk0213a460 *p;
+int ScanStringSourceOp(void *a, int b, int c) {
+    ScanStringSource *p;
     const char *s;
     u32 ch;
 
     p = a;
     switch (c) {
         case 0:
-            s = p->mUnk_00;
+            s = p->mNextChar;
             ch = *s;
             if (ch == 0) {
-                p->mUnk_04 = 1;
+                p->mAtEnd = 1;
                 return -1;
             }
-            p->mUnk_00 = s + 1;
+            p->mNextChar = s + 1;
             return ch;
         case 1:
-            if (p->mUnk_04 == 0) {
-                p->mUnk_00--;
+            if (p->mAtEnd == 0) {
+                p->mNextChar--;
             } else {
-                p->mUnk_04 = 0;
+                p->mAtEnd = 0;
             }
             return b;
         case 2:
-            return p->mUnk_04;
+            return p->mAtEnd;
         default:
             return 0;
     }
 }
 
 int vsscanf(const char *a, const char *b, char *c) {
-    Unk0213a460 loc;
+    ScanStringSource loc;
 
-    loc.mUnk_00 = a;
+    loc.mNextChar = a;
     if (a == 0 || *a == 0) {
         return -1;
     }
-    loc.mUnk_04 = 0;
-    return func_02138618(func_021385a0, &loc, b, c);
+    loc.mAtEnd = 0;
+    return ScanWithSourceFunc(ScanStringSourceOp, &loc, b, c);
 }
 
 int sscanf(const char *a, const char *b, ...) {
@@ -561,13 +561,13 @@ int sscanf(const char *a, const char *b, ...) {
 }
 
 u32 rand(void) {
-    data_0216eeb8 = data_0216eeb8 * 0x41c64e6d + 0x3039;
-    return (data_0216eeb8 >> 16) & 0x7fff;
+    gRandValue = gRandValue * 0x41c64e6d + 0x3039;
+    return (gRandValue >> 16) & 0x7fff;
 }
 
 void srand(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) &data_0216eeb8;
+    value1 = (u32) &gRandValue;
     *(u32 *) ((value1) + (0)) = value0;
 }

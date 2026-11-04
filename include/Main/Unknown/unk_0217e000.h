@@ -20,19 +20,19 @@ extern void *data_0217eef8[10];
 extern struct Unk021425e8 data_0217ef20;
 extern u8 data_0217ef60[10][0x100];
 extern struct Unk02005210 *data_0217eeb0;
-// Function pointers called and cleared by func_02133e50 (data_0217e984) and exit (data_0217e988).
+// Function pointers called and cleared by ExitTail (data_0217e984) and exit (data_0217e988).
 extern void (*data_0217e984)(void);
 extern void (*data_0217e988)(void);
-// Count of the entries of data_0217e994 that func_02133e50 calls, last first.
-extern int data_0217e98c;
+// Count of the entries of gExitFunctions that ExitTail calls, last first.
+extern int gExitFunctionCount;
 // Set by abort; exit reads it.
-extern int data_0217e990;
-extern void (*data_0217e994[])(void);
-// Word arrays; func_02133e50 uses entry 0 of each, fwrite entries 3-5, printf entry 3 and
+extern int gAborted;
+extern void (*gExitFunctions[])(void);
+// Word arrays; ExitTail uses entry 0 of each, fwrite entries 3-5, printf entry 3 and
 // raise entry 7.
 extern u32 data_0217ea94[];
 extern u32 data_0217eab8[];
-// 0x14-byte entries passed to func_0200ec08, func_0200ecc4 and func_0200ed34; func_02133e50 uses entry 0,
+// 0x14-byte entries passed to func_0200ec08, func_0200ecc4 and func_0200ed34; ExitTail uses entry 0,
 // fwrite entries 3-5, printf entry 3 and raise entry 7.
 extern u8 data_0217eadc[][0x14];
 extern u8 data_0217e3e0[];

@@ -62,7 +62,7 @@ void func_ov000_021984b4(Gt2Connection *a) {
 
 BOOL func_ov000_02198448(Gt2Socket *socket) {
     if (socket == NULL) {
-        func_0213442c(data_ov000_021b3f50, data_ov000_021b3f58, NULL, 0x1b);
+        AssertionFailed(data_ov000_021b3f50, data_ov000_021b3f58, NULL, 0x1b);
     }
     if (socket == NULL) {
         return TRUE;
@@ -82,7 +82,7 @@ BOOL func_ov000_02198448(Gt2Socket *socket) {
 
 BOOL CallIncomingConnectionCallback(Gt2Socket *a, Gt2Connection *b, int c, int d, int e, int f, int g) {
     if (a == NULL || b == NULL) {
-        func_0213442c(data_ov000_021b3f74, data_ov000_021b3f58, NULL, 0x3d);
+        AssertionFailed(data_ov000_021b3f74, data_ov000_021b3f58, NULL, 0x3d);
     }
     if (a == NULL || b == NULL) {
         return TRUE;
@@ -108,7 +108,7 @@ BOOL CallIncomingConnectionCallback(Gt2Socket *a, Gt2Connection *b, int c, int d
 
 BOOL Gt2SetResultAndCallResultCallback(Gt2Connection *connection, int b, void *c, int d) {
     if (connection == NULL) {
-        func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x69);
+        AssertionFailed(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x69);
     }
     if (connection == NULL) {
         return TRUE;
@@ -135,7 +135,7 @@ BOOL Gt2SetResultAndCallResultCallback(Gt2Connection *connection, int b, void *c
 
 BOOL Gt2CallDataCallback(Gt2Connection *connection, void *b, int c, int d) {
     if (connection == NULL) {
-        func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x94);
+        AssertionFailed(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0x94);
     }
     if (connection == NULL) {
         return TRUE;
@@ -161,7 +161,7 @@ BOOL Gt2CallDataCallback(Gt2Connection *connection, void *b, int c, int d) {
 
 BOOL func_ov000_021981d0(Gt2Connection *connection, void *b) {
     if (connection == NULL) {
-        func_0213442c(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0xba);
+        AssertionFailed(data_ov000_021b3f68, data_ov000_021b3f58, NULL, 0xba);
     }
     if (connection == NULL) {
         return TRUE;

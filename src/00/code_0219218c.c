@@ -44,7 +44,7 @@ u32 GpiUnpackDate(u32 a, s32 b, u32 *c, u32 *d, u32 *e) {
     b = b & ((u32) 0x0000ffffu);
     v1 = GpiIsValidDate(v2, v3, b);
     if (v1 == 0) {
-        func_0213442c(data_ov000_021b323c, data_ov000_021b31f8, NULL, 0xb7);
+        AssertionFailed(data_ov000_021b323c, data_ov000_021b31f8, NULL, 0xb7);
     }
     v1 = GpiIsValidDate(v2, v3, b);
     if (v1 == 0) {
@@ -158,9 +158,9 @@ s32 GpiProcessInfoOperation(GpConnection *r, GpiOperation *s, const char *t) {
         GpiQueueErrorCallback(r, 3, 1);
         return 3;
     }
-    profileid = func_0213bf90(d);
+    profileid = StrtolBase10(d);
     if (profileid <= 0) {
-        func_0213442c(data_ov000_021b31e8, data_ov000_021b31f8, NULL, 0x15a);
+        AssertionFailed(data_ov000_021b31e8, data_ov000_021b31f8, NULL, 0x15a);
     }
     GpiFindProfile(r, profileid, &b);
     {
@@ -191,7 +191,7 @@ s32 GpiProcessInfoOperation(GpConnection *r, GpiOperation *s, const char *t) {
         if (GpiGetValue(t, data_ov000_021b3064, d, 0x40) == 0) {
             k.mUnk_18 = -1;
         } else {
-            k.mUnk_18 = func_0213bf90(d);
+            k.mUnk_18 = StrtolBase10(d);
         }
         if (GpiGetValue(t, data_ov000_021b3010, k.mUnk_00[5], 0x4c) == 0) {
             k.mUnk_00[5][0] = 0;
@@ -220,7 +220,7 @@ s32 GpiProcessInfoOperation(GpConnection *r, GpiOperation *s, const char *t) {
             k.mUnk_b8 = 0;
             k.mUnk_bc = 0;
         } else {
-            o = GpiUnpackDate((u32) r, func_0213bf90(d), &k.mUnk_b4, &k.mUnk_b8, &k.mUnk_bc);
+            o = GpiUnpackDate((u32) r, StrtolBase10(d), &k.mUnk_b4, &k.mUnk_b8, &k.mUnk_bc);
             if (o != 0) {
                 return o;
             }
@@ -237,7 +237,7 @@ s32 GpiProcessInfoOperation(GpConnection *r, GpiOperation *s, const char *t) {
         if (GpiGetValue(t, data_ov000_021b321c, d, 0x40) == 0) {
             k.mUnk_c4 = -1;
         } else {
-            k.mUnk_c4 = func_0213bf90(d);
+            k.mUnk_c4 = StrtolBase10(d);
         }
         if (GpiGetValue(t, data_ov000_021b30a4, k.mUnk_c8, 0x33) == 0) {
             k.mUnk_c8[0] = 0;
@@ -245,47 +245,47 @@ s32 GpiProcessInfoOperation(GpConnection *r, GpiOperation *s, const char *t) {
         if (GpiGetValue(t, data_ov000_021b30ac, d, 0x40) == 0) {
             k.mUnk_cc[0] = 0;
         } else {
-            k.mUnk_cc[0] = func_0213bf90(d);
+            k.mUnk_cc[0] = StrtolBase10(d);
         }
         if (GpiGetValue(t, data_ov000_021b30b4, d, 0x40) == 0) {
             k.mUnk_cc[1] = 0;
         } else {
-            k.mUnk_cc[1] = func_0213bf90(d);
+            k.mUnk_cc[1] = StrtolBase10(d);
         }
         if (GpiGetValue(t, data_ov000_021b30bc, d, 0x40) == 0) {
             k.mUnk_cc[2] = 0;
         } else {
-            k.mUnk_cc[2] = func_0213bf90(d);
+            k.mUnk_cc[2] = StrtolBase10(d);
         }
         if (GpiGetValue(t, data_ov000_021b30c4, d, 0x40) == 0) {
             k.mUnk_cc[3] = 0;
         } else {
-            k.mUnk_cc[3] = func_0213bf90(d);
+            k.mUnk_cc[3] = StrtolBase10(d);
         }
         if (GpiGetValue(t, data_ov000_021b30cc, d, 0x40) == 0) {
             k.mUnk_cc[4] = 0;
         } else {
-            k.mUnk_cc[4] = func_0213bf90(d);
+            k.mUnk_cc[4] = StrtolBase10(d);
         }
         if (GpiGetValue(t, data_ov000_021b30d4, d, 0x40) == 0) {
             k.mUnk_cc[5] = 0;
         } else {
-            k.mUnk_cc[5] = func_0213bf90(d);
+            k.mUnk_cc[5] = StrtolBase10(d);
         }
         if (GpiGetValue(t, data_ov000_021b30dc, d, 0x40) == 0) {
             k.mUnk_cc[6] = 0;
         } else {
-            k.mUnk_cc[6] = func_0213bf90(d);
+            k.mUnk_cc[6] = StrtolBase10(d);
         }
         if (GpiGetValue(t, data_ov000_021b3224, d, 0x40) == 0) {
             k.mUnk_cc[7] = 0;
         } else {
-            k.mUnk_cc[7] = func_0213bf90(d);
+            k.mUnk_cc[7] = StrtolBase10(d);
         }
         if (GpiGetValue(t, data_ov000_021b322c, d, 0x40) == 0) {
             k.mUnk_cc[8] = 0;
         } else {
-            k.mUnk_cc[8] = func_0213bf90(d);
+            k.mUnk_cc[8] = StrtolBase10(d);
         }
         if (GpiGetValue(t, data_ov000_021b3234, d, 0x40) == 0) {
             GpiSetError(r, 1, data_ov000_021b31b8);
@@ -677,13 +677,13 @@ u32 func_ov000_021923b4(GpConnection *p, s32 a, const s8 *b) {
             }
             break;
         case 0x70d:
-            r = func_ov000_0219296c(p, 0x70d, func_0213bf90((const char *) b));
+            r = func_ov000_0219296c(p, 0x70d, StrtolBase10((const char *) b));
             if (r != 0) {
                 return r;
             }
             break;
         case 0x70e:
-            r = func_ov000_0219296c(p, 0x70e, func_0213bf90((const char *) b));
+            r = func_ov000_0219296c(p, 0x70e, StrtolBase10((const char *) b));
             if (r != 0) {
                 return r;
             }
@@ -696,7 +696,7 @@ u32 func_ov000_021923b4(GpConnection *p, s32 a, const s8 *b) {
             }
             break;
         case 0x710:
-            r = func_ov000_0219296c(p, 0x710, func_0213bf90((const char *) b));
+            r = func_ov000_0219296c(p, 0x710, StrtolBase10((const char *) b));
             if (r != 0) {
                 return r;
             }
@@ -709,19 +709,19 @@ u32 func_ov000_021923b4(GpConnection *p, s32 a, const s8 *b) {
             }
             break;
         case 0x712:
-            r = func_ov000_0219296c(p, 0x712, func_0213bf90((const char *) b));
+            r = func_ov000_0219296c(p, 0x712, StrtolBase10((const char *) b));
             if (r != 0) {
                 return r;
             }
             break;
         case 0x714:
-            r = func_ov000_0219296c(p, 0x714, func_0213bf90((const char *) b));
+            r = func_ov000_0219296c(p, 0x714, StrtolBase10((const char *) b));
             if (r != 0) {
                 return r;
             }
             break;
         case 0x715:
-            r = func_ov000_0219296c(p, 0x715, func_0213bf90((const char *) b));
+            r = func_ov000_0219296c(p, 0x715, StrtolBase10((const char *) b));
             if (r != 0) {
                 return r;
             }

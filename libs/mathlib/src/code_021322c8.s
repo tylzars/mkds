@@ -1,6 +1,6 @@
 // Float to integer and integer to float conversions, and single-precision multiplication.
 //
-// Floats are passed and returned in one register each; the status word from func_02142578 and the trap
+// Floats are passed and returned in one register each; the status word from GetFloatStatus and the trap
 // handlers are as described in code_0212f884.s.
 //
 // Not compiled code: _ffix branches into the middle of func_02132364, and the conversion to float at _fflt is a
@@ -10,9 +10,9 @@
 // never builds (docs/compiler.md).
 
     .text
-    .extern func_021340d4
-    .extern func_02134238
-    .extern func_02142578
+    .extern FloatTrapWordWordToWord
+    .extern FloatTrapWordToWord
+    .extern GetFloatStatus
 
 // Converts the float r0 to a signed integer in r0, dropping the fraction (inexact, or a trap, when bits are lost).
 // Values outside the integer range continue in func_02132364.
@@ -38,7 +38,7 @@ _ffix:
     bxeq lr
     // Inexact: trap if enabled, else set the flag.
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -53,7 +53,7 @@ ffix_below_one:
     bxeq lr
     mov r0, #0
     stmfd sp!, {r0, r2, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r1, r0
     ldmfd sp!, {r0, r2, r3, ip, lr}
     ldr r3, [r1]
@@ -75,7 +75,7 @@ ffix_too_large:
 func_02132364:
     // Invalid: trap if enabled, else set the flag.
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -92,14 +92,14 @@ ffix_saturate:
 ffix_trap_invalid:
     ldr r1, ffix_code_invalid
     stmdb sp!, {lr}
-    bl func_02134238
+    bl FloatTrapWordToWord
     ldmia sp!, {lr}
     bx lr
     // Inexact trap: pass the result.
 ffix_trap_inexact:
     ldr r1, ffix_code_inexact
     stmdb sp!, {lr}
-    bl func_02134238
+    bl FloatTrapWordToWord
     ldmia sp!, {lr}
     bx lr
     // Constant words: event codes.
@@ -132,7 +132,7 @@ uflt_pack:
     // Inexact: trap if enabled, else set the flag. Rounding down or toward zero keeps the result, up adds one, nearest
     // even rounds up when above half, or exactly half and odd.
     stmfd sp!, {r0, r2, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r1, r0
     ldmfd sp!, {r0, r2, r3, ip, lr}
     ldr r3, [r1]
@@ -169,7 +169,7 @@ _fflt:
     bxeq lr
     // Inexact: trap if enabled, else set the flag and round as the mode says.
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -205,13 +205,13 @@ flt_mode_up:
 uflt_trap_inexact:
     stmdb sp!, {lr}
     ldr r1, uflt_code_inexact
-    bl func_02134238
+    bl FloatTrapWordToWord
     ldmia sp!, {lr}
     bx lr
 flt_trap_inexact:
     stmdb sp!, {lr}
     ldr r1, flt_code_inexact
-    bl func_02134238
+    bl FloatTrapWordToWord
     ldmia sp!, {lr}
     bx lr
     // Constant words: event codes.
@@ -270,7 +270,7 @@ fmul_pack:
     bxeq lr
     // Inexact: trap if enabled, else set the flag and round as the mode says.
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r1, [ip]
@@ -388,7 +388,7 @@ fmul_b_small:
     // is left; below that the result is zero or the smallest denormal.
 fmul_underflow:
     stmfd sp!, {r0, r1, r2, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r3, r0
     ldmfd sp!, {r0, r1, r2, ip, lr}     // exactly -24
     ldr r3, [r3]                        // below -24
@@ -408,7 +408,7 @@ fmul_underflow:
     bxeq lr
     // Inexact: underflow and inexact (or trap), then round as the mode says; nearest even first.
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -473,7 +473,7 @@ fmul_b_nan:
     // Invalid operation: trap if enabled, else set the flag and return the default NaN.
 fmul_invalid:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -490,7 +490,7 @@ fmul_default_nan:
     // up and down one or the other by the sign.
 fmul_overflow:
     stmfd sp!, {r0, r2, r3, ip, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov r1, r0
     ldmfd sp!, {r0, r2, r3, ip, lr}
     ldr r3, [r1]
@@ -519,7 +519,7 @@ fmul_half_smallest:
     movs r1, r0
     mov r0, r2
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -541,7 +541,7 @@ fmul_half_smallest:
 fmul_tiny:
     mov r0, r2
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02142578
+    bl GetFloatStatus
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -581,7 +581,7 @@ fmul_trap_overflow_round:
     sub r0, r0, #0x60000000
     stmdb sp!, {lr}
     mov r1, #0x10000003
-    bl func_02134238
+    bl FloatTrapWordToWord
     ldmia sp!, {lr}
     bx lr
     // Overflow trap: pass the result with its exponent lowered by 0xc0.
@@ -592,7 +592,7 @@ fmul_trap_overflow:
     add r0, r0, ip, lsl #23
     stmdb sp!, {lr}
     mov r1, #0x10000003
-    bl func_02134238
+    bl FloatTrapWordToWord
     ldmia sp!, {lr}
     bx lr
     // Underflow trap: pass the result with its exponent raised by 0xc0.
@@ -603,7 +603,7 @@ fmul_trap_underflow:
     add r0, r0, ip, lsl #23
     stmdb sp!, {lr}
     mov r1, #0x20000003
-    bl func_02134238
+    bl FloatTrapWordToWord
     ldmia sp!, {lr}
     bx lr
     // Invalid trap: pass the original operands from the stack.
@@ -611,7 +611,7 @@ fmul_trap_invalid:
     ldmfd sp!, {r0, r1}
     stmdb sp!, {lr}
     mov r2, #0x4000003
-    bl func_021340d4
+    bl FloatTrapWordWordToWord
     ldmia sp!, {lr}
     bx lr
     // Inexact trap: pass the rounded result.
@@ -619,7 +619,7 @@ fmul_trap_inexact:
     add sp, sp, #8
     stmdb sp!, {lr}
     mov r1, #0x40000003
-    bl func_02134238
+    bl FloatTrapWordToWord
     ldmia sp!, {lr}
     bx lr
     // Reversed subtraction entry: swap r0 and r1 and run on into _fsub.

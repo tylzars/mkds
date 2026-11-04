@@ -137,7 +137,7 @@ BOOL func_ov000_0218c794(SbServerList *a, u8 *b, s32 c) {
                     }
                     break;
                 default:
-                    func_0213442c(data_ov000_021b223c, data_ov000_021b2218, NULL, 0x317);
+                    AssertionFailed(data_ov000_021b223c, data_ov000_021b2218, NULL, 0x317);
                     return FALSE;
             }
             if (c < 0) {
@@ -478,7 +478,7 @@ s32 func_ov000_0218c15c(SbServerList *a) {
             break;
     }
     if (n < 0) {
-        func_0213442c(data_ov000_021b2228, data_ov000_021b2218, NULL, 0x4af);
+        AssertionFailed(data_ov000_021b2228, data_ov000_021b2218, NULL, 0x4af);
     }
     if (a->mInBuffer == NULL) {
         return 0;
@@ -752,7 +752,7 @@ s32 func_ov000_0218bc08(SbServerList *slist) {
         }
         slist->mInBufferLength -= c;
         if (slist->mInBufferLength < 0) {
-            func_0213442c(data_ov000_021b2200, data_ov000_021b2218, NULL, 0x5b4);
+            AssertionFailed(data_ov000_021b2200, data_ov000_021b2218, NULL, 0x5b4);
         }
         if (slist->mInBufferLength != 0 && slist->mInBuffer != NULL) {
             memmove(slist->mInBuffer, slist->mInBuffer + c, slist->mInBufferLength);
