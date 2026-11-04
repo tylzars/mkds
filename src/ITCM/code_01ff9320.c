@@ -5,8 +5,9 @@
 
 #pragma opt_arithtransformation off
 
-// non-matching: 2 words: the table address 0x1ff9300 is loaded into ip (original r0). The original reads a table
-// symbol at 0x01ff9300 (an extern array matches); the config has no symbol or relocation for it yet.
+// non-matching: 2 words: the table address 0x1ff9300 is loaded into ip (original r0). The original reads the table of
+// eight function pointers at 0x01ff9300 (func_01ff9828 down to func_01ff946c) by its symbol; an extern array of
+// Unk01ff9320_Fn matches, but the config has no symbol or relocations for it yet.
 void func_01ff9320(Unk0201290c_1c *p) {
     Unk01ff9320_buf b;
     enum { K0 = 0x1ff9300 } t = K0;

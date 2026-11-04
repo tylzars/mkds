@@ -149,13 +149,10 @@ void func_0203f5f0(u8 *a, u8 *b, u16 *c, s32 d, u32 e) {
     *c = f;
 }
 
-// non-matching: size 0x160 against 0x15c; the original keeps the fourth argument in r9 and reuses r9 for the value -1
-// compared with the call result (no stack copy of the argument), and returns r0 at the end instead of reloading -1
 s16 func_0203f7c0(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     s16 t;
     s8 k;
     s32 j;
-    s16 x;
     s16 r;
     Unk02175620_4c *p;
 
@@ -172,11 +169,11 @@ s16 func_0203f7c0(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         for (j = 0; j < 3; j++) {
             k = (&p->mUnk_07)[j];
             if (k != -1) {
-                x = func_0203f7c0(a, b, c, (u16) k,
+                r = func_0203f7c0(a, b, c, (u16) k,
                                   gCourseMap->mUnk_4c[(u16) k].mUnk_00 + gCourseMap->mUnk_4c[(u16) k].mUnk_02 - 1,
                                   f - 1);
-                if (x != r) {
-                    return x;
+                if (r != -1) {
+                    return r;
                 }
             }
         }
@@ -185,13 +182,10 @@ s16 func_0203f7c0(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     return func_0203f7c0(a, b, c, d, e - 1, f - 1);
 }
 
-// non-matching: size 0x148 against 0x144; same difference as func_0203f7c0 (fourth argument kept in r9, then reused for
-// -1)
 s16 func_0203f91c(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     s16 t;
     s8 k;
     s32 j;
-    s16 x;
     s16 r;
     Unk02175620_4c *p;
 
@@ -208,9 +202,9 @@ s16 func_0203f91c(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         for (j = 0; j < 3; j++) {
             k = (p->mUnk_04)[j];
             if (k != -1) {
-                x = func_0203f91c(a, b, c, (u16) k, gCourseMap->mUnk_4c[(u16) k].mUnk_00, f - 1);
-                if (x != r) {
-                    return x;
+                r = func_0203f91c(a, b, c, (u16) k, gCourseMap->mUnk_4c[(u16) k].mUnk_00, f - 1);
+                if (r != -1) {
+                    return r;
                 }
             }
         }
