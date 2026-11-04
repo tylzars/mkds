@@ -1,4 +1,5 @@
-#include "Main/Unknown/code_020fa4c8.h"
+#include "code_02012b30.h"
+#include "Main/Unknown/code_020f9c6c.h"
 #include "Main/Unknown/code_020fcbb8.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_0206bcb0.h"
@@ -6,7 +7,6 @@
 #include "Main/Unknown/code_020fcf10.h"
 #include "Main/Unknown/unk_027e0000.h"
 #include "code_02147cd8.h"
-#include "Main/Unknown/code_020fcf10.h"
 #include "Main/Unknown/code_020ee684.h"
 
 void func_020fce94(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, u16 d) {

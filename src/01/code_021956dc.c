@@ -36,7 +36,7 @@
 #include "Main/Unknown/code_020ae408.h"
 #include "01/code_02198000.h"
 #include "01/unk_021a9000.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 RecordTAtt *gRecordTAtt;
 

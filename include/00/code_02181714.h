@@ -36,7 +36,7 @@ typedef struct Unk021b4c6c {
 #include "00/code_02181f98.h"
 #include "code_02021db0.h"
 #include "Main/Unknown/code_020b4000.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 // Objects whose layout isn't known yet.
 extern u8 data_ov000_021b05c0[];

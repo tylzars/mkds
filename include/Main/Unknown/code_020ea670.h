@@ -55,6 +55,17 @@ typedef struct Unk020ea670_0c {
     /* 00c */ u32 mUnk_00c;
 } Unk020ea670_0c;
 
+s32 func_020ead80(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, s32 param_5, s32 param_6, s32 param_7,
+                  Vec3 *param_8);
+s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Vec3 *param_5, s32 param_6,
+                  Vec3 *param_7);
+void CreateWoodbox1(void);
+
+typedef struct Unk020ebeac {
+    /* 00 */ u8 mUnk_00[0x2];
+    /* 02 */ u16 mUnk_02;
+} Unk020ebeac;
+
 void func_020ea670(Unk020ea670 *param_1, s32 param_2);
 void func_020ea740(Unk020ea670 *param_1, s32 param_2);
 void func_020ea7cc(Unk020ea670 *param_1, s32 param_2);
@@ -65,15 +76,10 @@ void func_020ea94c(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, s32 p
 void func_020eaa14(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, s32 param_5, Vec3 *param_6);
 void func_020eac20(Vec3 *param_1, s32 param_2);
 void func_020eacc0(Vec3 *param_1, s32 param_2, Vec3 *param_3, Vec3 *param_4);
-s32 func_020ead80(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, s32 param_5, s32 param_6, s32 param_7,
-                  Vec3 *param_8);
-s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Vec3 *param_5, s32 param_6,
-                  Vec3 *param_7);
 void func_020eb2a0(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, Vec3 *param_5);
 void func_020eb3f0(Vec3 *param_1, Vec3 *param_2, s32 param_3, Vec3 *param_4);
 void func_020eb498(Unk020ebef8 *param_1, Unk020eb498 *param_2);
 void func_020eb720(void);
-void CreateWoodbox1(void);
 u32 func_020eb760(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4);
 u32 func_020eb7e0(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4);
 void func_020eb8f8(Unk020ebef8 *param_1);
@@ -81,3 +87,4 @@ void func_020ebab0(Unk020ebef8 *param_1);
 void func_020ebb04(Unk020ebef8 *param_1);
 BOOL func_020ebc2c(Unk020ebef8 *param_1);
 void func_020ebe68(Unk020ebef8 *param_1);
+void func_020ebeac(Unk020ebeac *p0);

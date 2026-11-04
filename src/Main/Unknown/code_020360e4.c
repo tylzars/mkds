@@ -1,6 +1,5 @@
 #include "Main/Unknown/code_020360e4.h"
 #include "Main/Unknown/code_02035d18.h"
-#include "Main/Unknown/code_02035e44.h"
 #include "Main/Unknown/code_02023000.h"
 #include "Main/Unknown/code_02024000.h"
 #include "Main/Unknown/code_0200e000.h"
@@ -9,7 +8,7 @@
 #include "Main/Unknown/code_02036264.h"
 #include "Main/Unknown/code_02036438.h"
 #include "Main/Unknown/code_02036820.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 #include "Main/Unknown/code_020b3f7c.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "code_0200eddc.h"
@@ -67,4 +66,3 @@ void func_02036108(void *a) {
 u32 func_020360e4(void) {
     return (data_0217aa00->mUnk_0454 & 0x40) != 0;
 }
-

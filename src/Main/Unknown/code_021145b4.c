@@ -48,7 +48,7 @@
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020b3f7c.h"
 #include "code_02148950.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 #pragma thumb on
 

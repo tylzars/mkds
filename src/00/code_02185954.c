@@ -19,11 +19,10 @@
 #include "code_0200db4c.h"
 #include "code_0200f5ac.h"
 #include "code_0200fc8c.h"
-#include "code_0200fd1c.h"
 #include "code_02139f70.h"
 #include "code_0213a460.h"
 #include "code_0214d018.h"
-#include "code_0214d954.h"
+#include "code_0214d93c.h"
 #include "code_0200edc0.h"
 #include "Main/Unknown/code_02151f88.h"
 

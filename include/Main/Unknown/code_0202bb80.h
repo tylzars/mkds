@@ -26,23 +26,16 @@ typedef struct Unk02174e3c_00 {
     /* 14 */ void *mUnk_14;
 } Unk02174e3c_00;
 
-extern Unk02174e0c *data_usa_02174e0c;
-extern u16 *data_usa_02174e10;
-extern Unk02174e14_8 *data_usa_02174e14;
-extern u16 *data_usa_02174e18;
-
-extern Unk02174e0c data_usa_02153b3c[];
-extern Unk02174e0c data_usa_02153b0c[];
-extern Unk02174e14_8 data_usa_02153bac[];
-extern Unk02174e14_8 data_usa_02153b6c[];
-extern u16 data_usa_02153ad4[];
-extern u16 data_usa_02153af0[];
-extern u16 data_usa_02153ac0[];
-extern u16 data_usa_02153aac[];
 extern u16 data_usa_02153a9c[];
 extern s16 data_usa_02153aa4[];
-
-extern const char data_usa_02162c58[];
+extern u16 data_usa_02153aac[];
+extern u16 data_usa_02153ac0[];
+extern u16 data_usa_02153ad4[];
+extern u16 data_usa_02153af0[];
+extern Unk02174e0c data_usa_02153b0c[];
+extern Unk02174e0c data_usa_02153b3c[];
+extern Unk02174e14_8 data_usa_02153b6c[];
+extern Unk02174e14_8 data_usa_02153bac[];
 extern const char data_usa_02162904[];
 extern const char data_usa_0216292c[];
 extern const char data_usa_02162954[];
@@ -68,6 +61,11 @@ extern const char data_usa_02162bd8[];
 extern const char data_usa_02162bf0[];
 extern const char data_usa_02162c14[];
 extern const char data_usa_02162c38[];
+extern const char data_usa_02162c58[];
+extern Unk02174e0c *data_usa_02174e0c;
+extern u16 *data_usa_02174e10;
+extern Unk02174e14_8 *data_usa_02174e14;
+extern u16 *data_usa_02174e18;
 
 void func_0202bb80(void);
 void func_0202c0d4(s32 a, s32 b);
@@ -75,3 +73,9 @@ void func_0202c65c(void *a, void *b);
 void func_0202c884(s32 a, u16 *b);
 void func_0202c8dc(void);
 void func_0202c960(void);
+void func_0202cb2c(s32 a);
+void func_0202cb68(s32 a);
+void func_0202cba4(void);
+void func_0202cbf4(void);
+void func_0202cc18(s32 a, s32 b);
+void func_0202cc44(s32 a, s32 b);

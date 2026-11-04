@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_02142eac.h"
-#include "code_0200f7a0.h"
+#include "code_0200f790.h"
 
 // Event the function at mUnk_227c is called with; built by func_ov000_021a586c.
 typedef struct Unk021a586c {

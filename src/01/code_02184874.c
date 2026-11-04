@@ -6,7 +6,7 @@
 #include "01/code_02188cd8.h"
 #include "01/code_02188da4.h"
 #include "01/unk_021a6000.h"
-#include "Main/Unknown/code_0208b6b0.h"
+#include "Main/Unknown/code_0208b484.h"
 #include "Main/Unknown/code_020d275c.h"
 #include "Main/Unknown/code_02109000.h"
 #include "Main/Unknown/code_02109054.h"

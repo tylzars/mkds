@@ -1,17 +1,8 @@
 #pragma once
 
-#include "Main/Unknown/code_020b1dbc.h"
-#include "Main/Unknown/code_020748b8.h"
-#include "Main/Unknown/code_020b4e5c.h"
-#include "Main/Unknown/unk_0217b000.h"
-
 #include "types.h"
-#include "Main/Unknown/code_02039860.h"
-#include "Main/Unknown/code_020748b8.h"
-#include "Main/Unknown/code_02147000.h"
-#include "Main/Unknown/unk_0215d000.h"
-#include "Main/Unknown/unk_02175628.h"
-#include "Main/Unknown/unk_021759c0.h"
+#include "Main/Unknown/code_02073eb8.h"
+#include "Main/Unknown/unk_0217b000.h"
 
 // Two words (the elements at member 0xc of Unk0217b498).
 typedef Unk0217b498_0c UnkPair020b502c;
@@ -317,17 +308,16 @@ typedef struct {
     /* 90 */ Vec3 mUnk_90;
 } Unk0217b3c0;
 
-extern Unk0217b3c0 *data_0217b3c0;
 extern Unk02175620 *gCourseMap;
 
-extern void func_0207a91c(Vec3 *dst, u8 idx);
-extern void func_0207a8f0(Vec3 *dst, s32 idx);
-extern void func_0207a948(Vec3 *dst, s32 idx);
-extern u16 func_020435bc(void);
-#include "Main/Unknown/code_020b47d8.h"
-#include "Main/Unknown/code_020b6368.h"
-#include "Main/Unknown/code_020b6a18.h"
+#include "Main/Unknown/unk_02175628.h"
 
+extern Unk0217b3c0 *data_0217b3c0;
+
+extern u16 func_020435bc(void);
+extern void func_0207a8f0(Vec3 *dst, s32 idx);
+extern void func_0207a91c(Vec3 *dst, u8 idx);
+extern void func_0207a948(Vec3 *dst, s32 idx);
 s32 func_020b502c(s32 a, s32 b);
 void func_020b503c(Unk020b503c *p, s32 scale);
 s32 func_020b523c(void);
@@ -348,5 +338,7 @@ BOOL func_020b5f68(const UnkPair020b502c *p);
 void func_020b5fe4(const Vec3 *pos, UnkPair020b502c *out);
 void func_020b6078(s32 idx, UnkPair020b502c *out);
 u16 func_020b6338(s32 idx);
-
-#include "Main/Unknown/code_0207a880.h"
+u16 func_020b6368(void);
+s32 func_020b6430(void);
+s32 func_020b64e8(void);
+u32 func_020b65dc(void);

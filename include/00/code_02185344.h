@@ -30,7 +30,7 @@ typedef struct Unk021b4c88 {
 
 #include "00/code_02180608.h"
 #include "00/code_02181f98.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 extern Unk021b0cd4 gWiFiAikotobaCheckCallbacks;
 extern char data_ov000_021b0fc0[];

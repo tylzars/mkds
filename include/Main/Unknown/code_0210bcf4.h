@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_0212bcac.h"
-#include "code_0212da38.h" // LinkedList
+#include "code_0212d214.h"
 
 // data_0217d048 is addressed in rows of twelve bytes; func_0210bfbc and func_0210c0bc address the
 // container of one of those rows. Unk0206bcb0 and the data_027e00cc elements (Unk020f41c4_A) start with it:

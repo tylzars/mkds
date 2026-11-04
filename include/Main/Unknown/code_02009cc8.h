@@ -10,7 +10,7 @@
 #include "Main/Unknown/code_0200ad00.h"
 #include "03/code_021b94b8.h"
 #include "Main/Unknown/unk_0216f000.h"
-#include "Main/Unknown/code_0200c3fc.h"
+#include "Main/Unknown/code_0200c0d8.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/unk_02161000.h"
 #include "code_021453ec.h"
@@ -18,7 +18,6 @@
 #include "code_0214cfe4.h"
 #include "code_0214d018.h"
 #include "code_0200fc8c.h"
-#include "code_0200fd1c.h"
 #include "code_02142eac.h"
 
 extern u16 data_usa_0216fd80;

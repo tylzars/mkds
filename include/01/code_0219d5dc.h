@@ -31,7 +31,7 @@ typedef struct Unk021a8cd0 {
 #include "01/unk_021a8000.h"
 #include "Main/Unknown/code_0212426c.h"
 #include "Main/Unknown/code_02036bec.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 extern const Unk021a8cd0 gOptionEmbremSelectCallbacks;
 

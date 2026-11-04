@@ -25,8 +25,14 @@ typedef struct Unk0200aeec_head {
     /* c4 */ Unk0200aeec mUnk_c4;
 } Unk0200aeec_head;
 
+typedef struct Unk02007ec4 Unk02007ec4;
+typedef struct Unk0200aeec_head Unk0200aeec_head;
+
 void func_0200aeb4(void *a);
 void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d);
 u32 func_0200aff8(Unk0200aeec *a);
 void func_0200b00c(void *arg0);
 u32 func_0200b018(void);
+void func_0200b02c(Unk0200aeec_head *a, u32 b);
+void func_0200b08c(void *param_1);
+u32 func_0200b15c(u32 a, Unk02007ec4 *b, u16 c, u16 d, u32 e, u32 f);

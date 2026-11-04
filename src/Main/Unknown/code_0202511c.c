@@ -1,9 +1,14 @@
 #include "Main/Unknown/code_0202511c.h"
+
 #include "Main/Unknown/code_021053e4.h"
 #include "Main/Unknown/code_02105ec0.h"
 #include "Main/Unknown/code_0211127c.h"
 #include "Main/Unknown/unk_02153000.h"
 #include "Main/Unknown/unk_021759c0.h"
+
+Unk0215316c func_0202577c(u32 arg0) {
+    return data_0215316c[arg0];
+}
 
 u32 func_0202553c(u32 a, void *c) {
     Unk0215316c *b = (Unk0215316c *) c;

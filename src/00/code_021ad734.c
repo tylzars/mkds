@@ -20,7 +20,6 @@
 #include "00/code_021a8878.h"
 #include "03/code_021b94b8.h"
 #include "02/unk_02180500.h"
-#include "code_0200fd1c.h"
 #include "Main/Unknown/code_02000b44.h"
 
 void func_ov000_021b04f8(u32 a) {

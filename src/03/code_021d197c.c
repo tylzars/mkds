@@ -11,7 +11,7 @@
 #include "03/code_021d2eb8.h"
 #include "03/code_021d2ecc.h"
 #include "code_0200c914.h"
-#include "code_0200fd1c.h"
+#include "code_0200fc8c.h"
 
 Unk021d1770 *func_ov003_021d1be4(u32 b, u32 c, s32 d) {
     Unk021d1770 *a = func_ov003_021d19e0(b, data_ov003_021da2b8[b][c].mUnk_00, d);

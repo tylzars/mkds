@@ -23,7 +23,7 @@
 #include "00/code_021a6d1c.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "code_0200f5ac.h"
-#include "code_0200f7a0.h"
+#include "code_0200f790.h"
 
 Unk021b5f50_2270_0c *func_ov000_021a6614(const u8 *a) {
     Unk021b5f50 *g;

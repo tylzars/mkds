@@ -4,7 +4,7 @@
 #include "01/code_02185ef4.h"
 #include "01/code_0218f000.h"
 #include "Main/Unknown/code_02036820.h"
-#include "Main/Unknown/code_0208b6b0.h"
+#include "Main/Unknown/code_0208b484.h"
 #include "Main/Unknown/code_0209b634.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "01/code_0218155c.h"
@@ -21,6 +21,15 @@
 #include "Main/Unknown/code_0209b000.h"
 #include "Main/Unknown/code_020a1000.h"
 #include "Main/Unknown/unk_021759c0.h"
+#include "Main/Unknown/code_020b1dbc.h"
+#include "Main/Unknown/code_0207b960.h"
+#include "Main/Unknown/code_020b4e5c.h"
+#include "Main/Unknown/code_02039860.h"
+#include "Main/Unknown/code_02147000.h"
+#include "Main/Unknown/unk_0215d000.h"
+#include "Main/Unknown/code_020b47d8.h"
+#include "Main/Unknown/code_020b6a18.h"
+#include "Main/Unknown/code_0207a880.h"
 #include "Main/Unknown/code_020b502c.h"
 #include "01/code_02190000.h"
 #include "01/code_02191000.h"
@@ -55,7 +64,7 @@
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02109000.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "Main/Unknown/code_02061f7c.h"
+#include "Main/Unknown/code_02061654.h"
 
 void func_ov001_02192890(Unk02188950 *a) {
     a->mUnk_000.mUnk_94 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x44);

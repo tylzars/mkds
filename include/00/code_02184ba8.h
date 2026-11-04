@@ -32,7 +32,7 @@ typedef struct Unk021b4c84 {
 
 #include "00/code_02180608.h"
 #include "00/code_02181f98.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 extern u8 data_ov000_021b06bc[2];
 extern u8 data_ov000_021b06c0[2];

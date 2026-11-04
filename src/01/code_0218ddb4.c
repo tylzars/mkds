@@ -7,7 +7,6 @@
 #include "01/code_0218e000.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02061654.h"
-#include "Main/Unknown/code_02061874.h"
 #include "Main/Unknown/code_020681f0.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "01/code_0218155c.h"
@@ -47,6 +46,15 @@
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02109000.h"
+#include "Main/Unknown/code_020b1dbc.h"
+#include "Main/Unknown/code_0207b960.h"
+#include "Main/Unknown/code_020b4e5c.h"
+#include "Main/Unknown/code_02039860.h"
+#include "Main/Unknown/code_02147000.h"
+#include "Main/Unknown/unk_0215d000.h"
+#include "Main/Unknown/code_020b47d8.h"
+#include "Main/Unknown/code_020b6a18.h"
+#include "Main/Unknown/code_0207a880.h"
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/code_02108e6c.h"
@@ -58,7 +66,6 @@
 #include "01/code_02188950.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "Main/Unknown/code_02061f7c.h"
 
 void func_ov001_0218f850(Unk02188950 *a) {
     func_ov001_02188d64(a, a->mPrm->mUnk_198, a->mPrm->mUnk_19c);

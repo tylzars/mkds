@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Main/Unknown/code_02074854.h"
+#include "Main/Unknown/code_02073eb8.h"
 #include "Main/Unknown/code_0207a104.h"
 #include "Main/Unknown/code_02055730.h"
 #include "Main/Unknown/unk_0217a000.h"
@@ -14,11 +14,10 @@
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/unk_02175628.h"
 #include "Main/Unknown/unk_021759c0.h"
-#include "code_0212d254.h"
+#include "code_0212d214.h"
 #include "Main/Unknown/code_0210bcf4.h"
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
 #include "Main/Unknown/code_02080b1c.h" // Unk020905a8
-#include "code_0212da38.h" // LinkedList
 
 typedef struct UnkVec16 {
     s16 x;

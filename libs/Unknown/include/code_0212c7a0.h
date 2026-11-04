@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212da38.h" // LinkedList
+#include "code_0212d214.h"
 
 // 0x24 bytes; data_0217d89c holds an array of them. mUnk_0c is a list header.
 typedef struct Unk0212c7a0 {

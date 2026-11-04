@@ -6,7 +6,7 @@
 #include "string.h"
 #include "code_02134398.h"
 #include "code_0200eddc.h"
-#include "code_0200fd1c.h"
+#include "code_0200fc8c.h"
 #include "code_0214d018.h"
 
 void func_ov003_021ce7c0(Unk021425e8 *a) {

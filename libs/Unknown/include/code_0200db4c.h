@@ -5,7 +5,7 @@
 typedef struct ThreadQueue ThreadQueue;
 
 #include "code_0200e77c.h"
-#include "code_0200f7a0.h" // Unk0200fb08
+#include "code_0200f790.h"
 
 // Linked through mUnk_68 from data_0216ff5c.mUnk_08 in increasing mUnk_70 (ThreadListInsert); set up by ThreadInit.
 typedef struct Unk0200db5c {

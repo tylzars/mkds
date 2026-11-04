@@ -1,9 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0203810c.h" // Unk0203810c
+#include "Main/Unknown/code_02036c5c.h"
 #include "code_020182c0.h" // Unk020182c0
-#include "Main/Unknown/code_02039044.h" // Unk021755a8, data_021755a8, data_021755b4
 #include "Main/Unknown/unk_02175628.h" // Unk02175628
 #include "code_02017f24.h" // Unk02017f24
 #include "code_0200db4c.h"

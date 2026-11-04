@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212da38.h" // Unk02021968, Unk020219f0, Unk02021bc8
+#include "code_0212d214.h"
 
 // Declared here until the code that defines them is decompiled.
 u16 func_020218f4(s32 a);

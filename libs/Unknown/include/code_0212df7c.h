@@ -2,8 +2,7 @@
 
 #include "types.h"
 #include "code_0212bcac.h"
-#include "code_0212d254.h" // Unk0212d5f8, Unk0212f788
-#include "code_0212da38.h" // Unk02021968, HeapStack
+#include "code_0212d214.h"
 
 // Entry from func_0212d3f0: a number in the low 24 bits, and bit 0 of the byte at 3 is tested.
 typedef struct Unk0212e490 {

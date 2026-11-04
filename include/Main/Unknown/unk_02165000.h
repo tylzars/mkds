@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/unk_02175000.h" // Unk021a9034
-#include "Main/Unknown/code_02086098.h" // Unk02086098
+#include "Main/Unknown/code_02086058.h"
 
 extern const char gArchiveColonFormat[];
 extern const char gCharacterNsbcaFormat[];

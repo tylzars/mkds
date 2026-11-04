@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_02008880.h"
 #include "Main/Unknown/code_02007148.h"
 #include "Main/Unknown/code_0200a000.h"
-#include "Main/Unknown/code_0200c3fc.h"
+#include "Main/Unknown/code_0200c0d8.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0216f000.h"
 #include "code_02142eac.h"
@@ -16,7 +16,6 @@
 #include "Main/Unknown/code_02007ec4.h"
 #include "code_02003be0.h"
 #include "code_0200fc8c.h"
-#include "code_0200fd1c.h"
 #include "code_0214d018.h"
 
 void func_ov003_021cf978(u32 a, u32 b) {

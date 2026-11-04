@@ -28,7 +28,7 @@
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0212775c.h"
 #include "Main/Unknown/code_0212a910.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 void func_ov000_021816b0(void *heap) {
     data_ov000_021b4c68 = HeapAlloc(heap, 0x40);

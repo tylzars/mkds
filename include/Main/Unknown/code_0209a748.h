@@ -2,7 +2,6 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020e005c.h"
-#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
 // Block of eight words at 0xb0 and 0xd0 of Unk0209a7dc: the u16 at 0x00 grows by 0x18 each step, 0x14 and 0x1c move
@@ -39,6 +38,11 @@ typedef struct Unk0209af98 {
     /* 04 */ u16 mUnk_04;
 } Unk0209af98;
 
+typedef struct Unk0209a7dc Unk0209a7dc;
+typedef struct Unk0206bcb0 Unk0206bcb0;
+
+void CreateCrabAndCrabHand(void *a);
+
 void *func_0209a748(void);
 void *func_0209a768(void);
 void func_0209a78c(void);
@@ -48,3 +52,7 @@ s16 func_0209af80(s32 a);
 void func_0209af98(Unk0209af98 *p);
 void func_0209b088(void *a, Unk0209a7dc *b);
 unsigned int func_0209b1f8(unsigned int p0);
+u8 func_0209b270(Unk0209a7dc *a, Unk0206bcb0 *b, u8 *c, u8 *d);
+u8 func_0209b344(Unk0209a7dc *a, Unk0206bcb0 *b, u8 *c, u8 *d);
+void func_0209b388(Unk0209a7dc *a, Vec3 *b, Vec3 *c, Vec3 *d);
+void func_0209b5f4(u32 arg0);

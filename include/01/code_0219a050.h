@@ -36,7 +36,7 @@ typedef struct RecordTopMenu {
 #include "01/unk_021a9000.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/unk_0216c000.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 void RegisterRecordTopMenuCallbacks(void);
 void func_ov001_0219a078(void);

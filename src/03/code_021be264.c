@@ -5,7 +5,7 @@
 #include "00/unk_021b6000.h"
 #include "00/code_021a8aa8.h"
 #include "code_0200db4c.h"
-#include "code_0200f7a0.h"
+#include "code_0200f790.h"
 
 s32 func_ov003_021be418(u32 param_0) {
     u32 a = 1;

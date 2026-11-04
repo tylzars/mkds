@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212da38.h" // LinkedList
+#include "code_0212d214.h"
 
 // Object with an LinkedList at 0x0c, initialised with link offset 4; mUnk_18 and mUnk_1c bound the range
 // HeapFindInnermostInList tests an address against.

@@ -9,7 +9,7 @@
 #include "03/unk_021da000.h"
 #include "code_021445e0.h"
 #include "03/code_021d06b0.h"
-#include "code_0200fd1c.h"
+#include "code_0200fc8c.h"
 #include "code_02142eac.h"
 
 int func_ov003_021cff38(Unk021425e8Func a, u16 b) {

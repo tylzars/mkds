@@ -1,7 +1,7 @@
-#include "Main/Unknown/code_0202f20c.h"
+#include "Main/Unknown/code_0202f14c.h"
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_0204b03c.h"
-#include "Main/Unknown/code_02059be4.h"
+#include "Main/Unknown/code_02059bc0.h"
 #include "Main/Unknown/unk_02154000.h"
 #include "code_0200cd1c.h"
 #include "code_0200f5ac.h"
@@ -220,4 +220,3 @@ void func_0204b03c(void) {
     }
     func_0202f2b4(GetHeap(func_020364e8()));
 }
-

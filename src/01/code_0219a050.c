@@ -32,7 +32,7 @@
 #include "01/code_0219b540.h"
 #include "Main/Unknown/code_02087000.h"
 #include "Main/Unknown/code_0212b000.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 RecordTopMenu *gRecordTopMenu;
 

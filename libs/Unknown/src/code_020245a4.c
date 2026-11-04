@@ -1,5 +1,5 @@
 #include "code_020245a4.h"
-#include "code_0200fd1c.h"
+#include "code_0200fc8c.h"
 
 u16 CharReadHalfword(u16 **a) {
     u16 *p;

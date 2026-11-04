@@ -8,15 +8,22 @@
 #include "Main/Unknown/code_0205ee14.h"
 #include "Main/Unknown/code_020738f4.h"
 #include "Main/Unknown/code_02073904.h"
-#include "Main/Unknown/code_02070398.h"
-#include "Main/Unknown/code_020b502c.h"
+#include "Main/Unknown/code_020b1dbc.h"
+#include "Main/Unknown/code_0207b960.h"
+#include "Main/Unknown/code_020b4e5c.h"
+#include "Main/Unknown/code_02147000.h"
+#include "Main/Unknown/unk_0215d000.h"
+#include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_020b47d8.h"
+#include "Main/Unknown/code_020b6a18.h"
+#include "Main/Unknown/code_0207a880.h"
+#include "Main/Unknown/code_020b502c.h"
+#include "Main/Unknown/code_02070398.h"
 #include "Main/Unknown/code_020d4a20.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/unk_02154000.h"
 #include "Main/Unknown/unk_02165000.h"
 #include "code_02133048.h"
-#include "Main/Unknown/code_02147000.h"
 #include "code_02147cd8.h"
 #include "code_0214a748.h"
 
@@ -448,4 +455,3 @@ void func_02076cd0(Unk02061808 *p) {
     *(u32 *) 0x4000440 = 2;
     func_0214abb4(&p->mUnk_09c, &p->mUnk_000, &p->mUnk_090, 1, &p->mUnk_030);
 }
-

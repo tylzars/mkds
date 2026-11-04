@@ -27,7 +27,7 @@ typedef struct Unk0212c400 {
     /* 42 */ u8 mUnk_42[2];
 } Unk0212c400;
 
-#include "code_0212da38.h" // HeapStack
+#include "code_0212d214.h"
 
 // Memory func_0212c700 gets from HeapStackAlloc: mUnk_08 is the HeapStack it sets up on mUnk_14, mUnk_10 the index
 // of the data_0217d89c element whose list receives it.

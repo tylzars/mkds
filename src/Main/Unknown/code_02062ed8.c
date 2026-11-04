@@ -1,5 +1,5 @@
 #include "Main/Unknown/code_02036820.h"
-#include "Main/Unknown/code_0203c07c.h"
+#include "Main/Unknown/code_0203be88.h"
 #include "Main/Unknown/code_02062ed8.h"
 #include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
@@ -9,7 +9,7 @@
 #include "Main/Unknown/code_020649ec.h"
 #include "Main/Unknown/code_0206d020.h"
 #include "Main/Unknown/unk_02164000.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 #include "Main/Unknown/code_0206d000.h"
 #include "Main/Unknown/code_02064000.h"
 #include "Main/Unknown/code_02065000.h"
@@ -35,7 +35,6 @@ static inline void func_0206331c_inline(u32 a, u8 *b, Unk02084b2c *c, void *d, c
         func_02087f84(b, 0);
     }
 }
-
 
 void func_02063880(Unk0206bcb0 *a) {
     func_01ffcb58(a);

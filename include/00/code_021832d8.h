@@ -20,7 +20,7 @@
 #include "Main/Unknown/code_0212775c.h"
 #include "Main/Unknown/code_0212a910.h"
 #include "code_0212df7c.h"
-#include "Main/Unknown/code_02036c90.h"
+#include "Main/Unknown/code_02036c5c.h"
 
 void InitWiFiVSMatching(void *a);
 
@@ -32,7 +32,7 @@ void InitWiFiVSMatching(void *a);
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_02077bc0.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 #include "Main/Unknown/code_020ae4c0.h"
 #include "Main/Unknown/code_020b3f7c.h"
 #include "Main/Unknown/code_02125f88.h"

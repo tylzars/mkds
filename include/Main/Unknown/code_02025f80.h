@@ -4,6 +4,9 @@
 
 typedef struct Unk02025ebc Unk02025ebc;
 
+int AdvanceSelectCharacter(void);
+void InitSelectCharacter(void *a, s32 b, void *c, void *d);
+
 extern char data_usa_02161b3c[];
 extern char data_usa_02161b5c[];
 extern char data_usa_02161b7c[];
@@ -19,3 +22,7 @@ void func_02025f80(Unk02025ebc *a, s32 b, s32 c, s16 d, s32 e);
 void func_02025f90(void);
 void func_02026058(void);
 void func_020260e4(void);
+void func_02027084(void);
+u32 func_020270d0(void);
+void func_020270fc(s32 a);
+void func_02027188(void);

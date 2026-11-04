@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_02152000.h"
 #include "Main/Unknown/unk_0216f000.h"
-#include "code_0200fd1c.h"
+#include "code_0200fc8c.h"
 
 // 0xc0-byte record: the first 0x3c bytes are taken from 0x027ffc42 when the halfword at 0x027ffc40 is 2 (or from
 // address 0); the halfwords at 0x4c and 0x4e and the bytes from 0x4a are set by func_02007ec4 and func_0200b15c.

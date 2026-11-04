@@ -16,7 +16,7 @@
 #include "Main/Unknown/code_0212426c.h"
 #include "Main/Unknown/code_02116dd4.h"
 #include "code_02148950.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 #pragma thumb on
 

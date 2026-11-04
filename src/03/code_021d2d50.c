@@ -5,7 +5,6 @@
 #include "03/unk_021da000.h"
 #include "code_0200c914.h"
 #include "code_0200fc8c.h"
-#include "code_0200fd1c.h"
 #include "code_0214e308.h"
 
 void func_ov003_021d2dfc(void) {

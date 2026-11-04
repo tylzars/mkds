@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212da38.h" // LinkedList
+#include "code_0212d214.h"
 
 // Element of a list: func_0212ee8c compares mUnk_08 with its second argument.
 typedef struct Unk0212ee8c {

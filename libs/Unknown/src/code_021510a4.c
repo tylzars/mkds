@@ -8,7 +8,7 @@
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_02000000.h"
 #include "Main/Unknown/unk_02180000.h"
-#include "code_0200fd1c.h"
+#include "code_0200fc8c.h"
 
 #pragma thumb on
 

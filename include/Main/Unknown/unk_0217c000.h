@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_0212bcac.h"
-#include "code_0212da38.h" // HeapStack
+#include "code_0212d214.h"
 
 typedef struct Unk0212c400 Unk0212c400;
 typedef struct HeapStack HeapStack;

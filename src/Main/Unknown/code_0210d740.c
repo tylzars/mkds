@@ -6,13 +6,12 @@
 #include "Main/Unknown/unk_0217d000.h"
 #include "Main/Unknown/unk_0216c000.h"
 #include "code_0212df7c.h"
-#include "code_0212d254.h"
+#include "code_0212d214.h"
 #include "code_0212f1ac.h"
 #include "code_0212ba68.h"
 #include "Main/Unknown/code_0210d890.h"
 #include "Main/Unknown/code_0210d894.h"
 #include "Main/Unknown/unk_0217d068.h"
-#include "code_0212da38.h"
 #include "Main/Unknown/code_0210d960.h"
 
 void func_0210d990(u32 p0) {

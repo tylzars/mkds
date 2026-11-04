@@ -18,7 +18,7 @@
 #include "03/code_021d1f70.h"
 #include "03/code_021d27d8.h"
 #include "code_0200db4c.h"
-#include "code_0200fd1c.h"
+#include "code_0200fc8c.h"
 
 void func_ov003_021c2a28(void) {
     if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {

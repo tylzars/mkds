@@ -9,7 +9,7 @@
 #include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
 #include "ITCM/code_01ffd000.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 #include "Main/Unknown/code_0207a000.h"
 #include "Main/Unknown/code_02084000.h"
 #include "Main/Unknown/code_020d7000.h"

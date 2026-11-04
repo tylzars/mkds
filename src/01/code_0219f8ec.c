@@ -34,7 +34,7 @@
 #include "01/code_021956dc.h"
 #include "Main/Unknown/code_02056000.h"
 #include "Main/Unknown/code_020b4000.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 Unk021ca414 *data_ov001_021ca414;
 

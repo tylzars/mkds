@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212da38.h" // LinkedList
+#include "code_0212d214.h"
 
 s32 func_020172d0(s32 a);
 void *ListGetNth(LinkedList *a, s32 b);

@@ -25,7 +25,7 @@
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020ae4c0.h"
 #include "Main/Unknown/code_0212775c.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 void InitWiFiAikotoba(void *a) {
     s32 i;

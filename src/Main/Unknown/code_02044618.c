@@ -2,14 +2,24 @@
 #include "Main/Unknown/code_02046000.h"
 #include "Main/Unknown/code_020467d0.h"
 #include "Main/Unknown/code_0205d0e8.h"
-#include "Main/Unknown/code_0205c800.h"
+#include "Main/Unknown/code_0205b0f4.h"
 #include "Main/Unknown/code_02056464.h"
-#include "Main/Unknown/code_02056158.h"
+#include "Main/Unknown/code_02055730.h"
 #include "Main/Unknown/code_02120294.h"
 #include "Main/Unknown/code_02120240.h"
 #include "Main/Unknown/code_021201e4.h"
 #include "Main/Unknown/code_021202f0.h"
 #include "Main/Unknown/code_0211d4a8.h"
+#include "Main/Unknown/code_020b1dbc.h"
+#include "Main/Unknown/code_0207b960.h"
+#include "Main/Unknown/code_020b4e5c.h"
+#include "Main/Unknown/code_02039860.h"
+#include "Main/Unknown/code_02147000.h"
+#include "Main/Unknown/unk_0215d000.h"
+#include "Main/Unknown/unk_021759c0.h"
+#include "Main/Unknown/code_020b47d8.h"
+#include "Main/Unknown/code_020b6a18.h"
+#include "Main/Unknown/code_0207a880.h"
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/unk_02154000.h"
 #include "Main/Unknown/unk_02175000.h"
@@ -33,7 +43,6 @@ static inline BOOL func_02045084_inline2(void) {
     }
     return FALSE;
 }
-
 
 void func_02045590(void) {
     u16 i;

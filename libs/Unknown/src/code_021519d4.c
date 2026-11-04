@@ -6,10 +6,10 @@
 #include "code_0200f5ac.h"
 #include "code_0214cfe4.h"
 #include "code_0214d018.h"
-#include "code_0214d954.h"
+#include "code_0214d93c.h"
 #include "string.h"
 #include "code_02134398.h"
-#include "code_0200fd1c.h"
+#include "code_0200fc8c.h"
 #include "Main/Unknown/code_02151708.h"
 #include "Main/Unknown/code_02151718.h"
 

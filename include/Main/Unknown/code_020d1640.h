@@ -2,7 +2,9 @@
 
 #include "types.h"
 #include "Main/Unknown/unk_0217b000.h"
-#include "Main/Unknown/code_020d0280.h"
+#include "Main/Unknown/unk_021759c0.h"
+#include "Main/Unknown/code_020ae000.h"
+#include "Main/Unknown/code_020cffd0.h"
 #include "Main/Unknown/code_020b4000.h"
 
 // Object behind data_0217b4b0, allocated 0x2c bytes long by CreateSearchIconMBChildAndMultiDownload.

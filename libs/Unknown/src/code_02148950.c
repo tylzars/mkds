@@ -3,14 +3,14 @@
 #include "Main/Unknown/unk_0216f000.h"
 #include "Main/Unknown/unk_02180000.h"
 #include "code_0200cd1c.h"
-#include "code_0200fd1c.h"
+#include "code_0200fc8c.h"
 #include "code_0214c778.h"
 #include "Main/Unknown/code_0200c000.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "00/code_02188720.h"
 #include "Main/Unknown/code_02148cd0.h"
 #include "Main/Unknown/code_02148d24.h"
-#include "code_0200fe7c.h"
+#include "code_0200fe74.h"
 
 u8 data_0216f070[4] = {1, 0, 0, 0};
 

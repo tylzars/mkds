@@ -35,3 +35,6 @@ u32 func_0200c20c(u32 a);
 u8 *func_0200c25c(Unk0200c16c *a, u32 b);
 u8 *func_0200c2e0(u8 *a, Unk0200c16c *b, u32 c);
 u8 *func_0200c3a4(u8 *param_1, u8 *param_2);
+void func_0200c3fc(s32 a);
+void func_0200c430(u32 arg0);
+void func_0200c448(s32 a);

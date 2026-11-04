@@ -4,8 +4,8 @@
 #include "code_02151868.h"
 #include "code_0200f5ac.h"
 #include "code_0214d018.h"
-#include "code_0214d954.h"
-#include "code_0200fd1c.h"
+#include "code_0214d93c.h"
+#include "code_0200fc8c.h"
 #include "code_021522a0.h"
 #include "Main/Unknown/code_0215228c.h"
 

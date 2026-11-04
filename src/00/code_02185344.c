@@ -19,7 +19,7 @@
 #include "Main/Unknown/code_02060cb4.h"
 #include "Main/Unknown/code_0212426c.h"
 #include "Main/Unknown/code_0212658c.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 void func_ov000_02185788(void) {
     u8 a[20];

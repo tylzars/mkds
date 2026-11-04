@@ -32,7 +32,7 @@
 #include "03/code_021d1440.h"
 #include "03/code_021bf810.h"
 #include "03/code_021cc000.h"
-#include "code_0200fd1c.h"
+#include "code_0200fc8c.h"
 #include "code_0214cfe4.h"
 
 void func_ov003_021cc83c(void) {

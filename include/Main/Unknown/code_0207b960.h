@@ -25,6 +25,11 @@ extern void (*data_0217ae40)(Unk0208fd8c *a, struct Unk020888b4 *b);
 extern void (*data_0217ae44)(Unk0208fd8c *a, struct Unk020888b4 *b);
 extern void (*data_0217ae48)(Unk0208fd8c *a, struct Unk020888b4 *b);
 
+typedef struct Unk0208fd8c Unk0208fd8c;
+
+struct Unk02089a24;
+struct Unk020888b4;
+
 extern Unk0208fd8c_08 data_usa_0215524c[];
 extern Unk0208fd8c_08 data_usa_021552f4[];
 extern Unk0208fd8c_08 data_usa_021553cc[];
@@ -55,3 +60,14 @@ void func_0207ca60(Unk0208fd8c *a, struct Unk020888b4 *b);
 void func_0207caa8(Unk0208fd8c *a, struct Unk020888b4 *b);
 void func_0207cb0c(Unk0208fd8c *a, struct Unk020888b4 *b);
 unsigned int func_0207cb70(unsigned int p0);
+void func_0207cb74(Unk0208fd8c *a, struct Unk020888b4 *b);
+void func_0207cc74(Unk0208fd8c *a, struct Unk020888b4 *b);
+void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b);
+void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b);
+void func_0207d35c(Unk0208fd8c *a, struct Unk020888b4 *b);
+void func_0207d3a4(Unk0208fd8c *a, struct Unk020888b4 *b);
+void func_0207d3ec(Unk0208fd8c *a, struct Unk020888b4 *b);
+void func_0207d474(Unk0208fd8c *a, struct Unk020888b4 *b);
+void func_0207d4cc(Unk0208fd8c *a, struct Unk020888b4 *b);
+void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b);
+void func_0207d6a4(struct Unk02089a24 *a, struct Unk020888b4 *b);

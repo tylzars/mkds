@@ -97,7 +97,7 @@ extern const u16 data_ov001_021a6674[4][2];
 #include "Main/Unknown/code_0212426c.h"
 #include "code_0214cfe4.h"
 #include "Main/Unknown/code_0211d000.h"
-#include "Main/Unknown/code_020472a8.h"
+#include "Main/Unknown/code_02047104.h"
 
 extern const u16 data_ov001_021a6614[4];
 extern const u16 data_ov001_021a662c[4];

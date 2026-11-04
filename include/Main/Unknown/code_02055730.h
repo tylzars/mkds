@@ -21,3 +21,6 @@ void func_02055e54(void);
 void func_02055f68(void);
 void func_02055fc8(void);
 void func_02056114(s32 a);
+u32 func_02056144(void);
+void func_02056158(void *a);
+u8 func_02056208(void);

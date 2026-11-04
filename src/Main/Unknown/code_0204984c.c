@@ -1,5 +1,5 @@
 #include "Main/Unknown/code_02036820.h"
-#include "Main/Unknown/code_02037a04.h"
+#include "Main/Unknown/code_02036c5c.h"
 #include "Main/Unknown/code_0204984c.h"
 #include "Main/Unknown/code_020487fc.h"
 #include "Main/Unknown/code_0200f000.h"
@@ -117,8 +117,6 @@ static inline void func_02049e38_inline(Unk020487fc *a) {
         func_0204ac10();
     }
 }
-
-
 
 s16 func_0204a508(void) {
     if (data_021759cc->mUnk_10c == 6) {

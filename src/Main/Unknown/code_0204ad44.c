@@ -1,19 +1,32 @@
+#include "Main/Unknown/code_0204ad44.h"
+
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020487fc.h"
-#include "Main/Unknown/code_0204ad44.h"
 #include "code_02012b20.h"
 #include "Main/Unknown/code_0211d4a8.h"
 #include "Main/Unknown/code_02036bec.h"
-#include "Main/Unknown/code_0202f20c.h"
+#include "Main/Unknown/code_0202f14c.h"
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "code_0200ef10.h"
+#include "code_0200eddc.h"
 #include "code_0200f5ac.h"
-#include "code_0200fd1c.h"
+#include "code_0200fc8c.h"
 #include "code_0214d018.h"
 #include "code_0214f4a4.h"
 #include "code_02017f24.h"
 #include "Main/Unknown/code_0204aa60.h"
+
+void func_0204b030(void) {
+    u32 value12;
+    value12 = (u32) &func_0202f1dc;
+    func_0202f1dc();
+}
+
+void func_0204b024(void) {
+    u32 value12;
+    value12 = (u32) &func_0202f160;
+    func_0202f160();
+}
 
 void func_0204b018(void *a) {
     func_0202f20c(a);

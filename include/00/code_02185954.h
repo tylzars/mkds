@@ -65,7 +65,7 @@ typedef struct Unk021b4c94 {
     /* 10 */ u16 mUnk_10;
 } Unk021b4c94;
 
-#include "code_0200fd1c.h" // Unk0200fddc
+#include "code_0200fc8c.h"
 #include "00/unk_021b1000.h"
 #include "code_02151868.h"
 #include "code_021519d4.h"

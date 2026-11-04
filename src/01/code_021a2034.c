@@ -1,8 +1,8 @@
 #include "01/code_021a2034.h"
 
 #include "Main/Unknown/code_02056000.h"
-#include "Main/Unknown/code_0208b498.h"
-#include "Main/Unknown/code_0208b6b0.h"
+#include "Main/Unknown/code_0208aea8.h"
+#include "Main/Unknown/code_0208b484.h"
 #include "Main/Unknown/code_0209b000.h"
 #include "Main/Unknown/code_0208b000.h"
 #include "Main/Unknown/code_020b4000.h"

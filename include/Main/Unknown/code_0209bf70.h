@@ -2,13 +2,8 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Unk0206bcb0
-#include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
-#include "Main/Unknown/code_02042044.h" // Unk02042044
-#include "Main/Unknown/code_02100094.h" // Unk02100094
-#include "Main/Unknown/unk_021759c0.h"
-#include "Main/Unknown/code_0209d3fc.h"
 
 // 0x40-byte object of func_0209bfa8: the words at 0x00 and 0x04 are its first two arguments, 0x18 the third, 0x20 the
 // fourth and 0x1c the fifth; func_0209bf70 stores its sixth argument at 0x24.
@@ -72,17 +67,36 @@ typedef struct Unk0209cf34 {
     /* 0dc */ s32 mUnk_0dc;
 } Unk0209cf34;
 
-extern u32 data_usa_021565d0;
-extern u16 data_usa_021565d4;
 extern const char gBerryNsbmdName[];
 extern const char gCreamEffectNsbmdName[];
 extern const char gCreamNsbmdName[];
-extern const char data_usa_02167328[];
 extern const char gBoundNsbmdName[];
 extern const char gBoundNsbtpName[];
 extern const char gSunNsbmdName[];
 extern const char gSunNsbcaName[];
 extern const char gSunLODNsbmdName[];
+
+void CreateBound(void *a);
+
+// Declared here until the code that defines it is decompiled.
+
+// Object of func_0209d3fc: the MapObject it starts with, a word at 0xac, halfwords at 0xb0 and 0xb2 and a state
+// at 0xdc.
+typedef struct Unk0209d3fc {
+    /* 00 */ MapObject mUnk_00;
+    /* a0 */ u8 mUnk_a0[0xc];
+    /* ac */ u32 mUnk_ac;
+    /* b0 */ u16 mUnk_b0;
+    /* b2 */ u16 mUnk_b2;
+    /* b4 */ u8 mUnk_b4[0x28];
+    /* dc */ u32 mUnk_dc;
+} Unk0209d3fc;
+
+#include "Main/Unknown/code_02100094.h" // Unk02100094
+
+extern u32 data_usa_021565d0;
+extern u16 data_usa_021565d4;
+extern const char data_usa_02167328[];
 
 Unk0209bf70 *func_0209bf70(void *a, void *b, void *c, u32 d, u16 e, u16 f);
 u32 func_0209bf8c(void);
@@ -104,7 +118,6 @@ void func_0209c678(Unk02100094 *a, Unk0209c220 *p);
 void func_0209c738(void *a);
 void func_0209c770(void *a);
 void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p);
-void CreateBound(void *a);
 BOOL func_0209c8b0(Unk0209c220 *p, Vec3 *a, s32 b, Vec3 *c);
 u8 func_0209c964(Unk0209c220 *p, void *a, u8 *b, u8 *c);
 s32 func_0209c9fc(Unk0209c220 *p, Unk0206bcb0 *k, u8 *b, u8 *c);
@@ -113,5 +126,4 @@ void func_0209cef0(void);
 void func_0209cf10(void);
 void func_0209cf34(Unk02100094 *a, Unk0209cf34 *p);
 void func_0209d394(Unk02100094 *a);
-
-// Declared here until the code that defines it is decompiled.
+void func_0209d3fc(void *a, Unk0209d3fc *b);

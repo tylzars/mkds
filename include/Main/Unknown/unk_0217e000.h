@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_0212c7f0.h" // Unk0212c7f0
-#include "code_0212da38.h" // LinkedList
+#include "code_0212d214.h"
 
 typedef struct RingQueue RingQueue;
 

@@ -8,7 +8,7 @@
 #include "03/code_021ce5b8.h"
 #include "03/unk_021d6000.h"
 #include "code_0200f5ac.h"
-#include "code_0200fd1c.h"
+#include "code_0200fc8c.h"
 #include "code_0214d018.h"
 #include "registers.h"
 
