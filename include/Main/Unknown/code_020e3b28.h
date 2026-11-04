@@ -18,7 +18,7 @@ void func_020e435c(void *a);
 BOOL func_020e4320(s32 a);
 void func_020e4184(Unk020e1dc0 *a);
 void func_020e410c(Unk020e1dc0 *a);
-void func_020e3ef4(Unk020e3ef4 *a, struct Unk020fa294 *b, Unk020e1e98_154 *c);
+void func_020e3ef4(Unk020e3ef4 *a, struct CourseMapRow *b, Unk020e1e98_154 *c);
 void *func_020e3ea4(void);
 void *func_020e3e48(void);
 void *func_020e3dec(void);

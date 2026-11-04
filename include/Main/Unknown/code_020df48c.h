@@ -31,7 +31,7 @@ typedef struct MkdEfBubbleObject {
 } MkdEfBubbleObject;
 
 void CreateMkdEfBubble(void);
-void func_020df6c8(MkdEfBubbleObject *a, Unk020fa294 *b);
+void func_020df6c8(MkdEfBubbleObject *a, CourseMapRow *b);
 Unk020de390 *func_020df678(void);
 Unk020de2d8 *func_020df61c(void);
 void func_020df58c(void);

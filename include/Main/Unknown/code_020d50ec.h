@@ -74,7 +74,7 @@ void func_020d634c(Unk020d5bf0 *p, s32 b);
 u8 func_020d5f8c(Unk020d5bf0 *a, s32 b, u8 *c, u8 *d);
 u8 func_020d5f64(Unk020d5bf0 *a, s32 b, u8 *c, u8 *d);
 void func_020d5dd0(Unk020d5bf0 *p);
-void func_020d5bf0(Unk020d5bf0 *p, struct Unk020fa294 *q);
+void func_020d5bf0(Unk020d5bf0 *p, struct CourseMapRow *q);
 void CreateNsbmdAndShadowNsbmd(void *a, const char *name, const char *shadowName);
 void CreateRock(void *a);
 void CreateRock2(void *a);

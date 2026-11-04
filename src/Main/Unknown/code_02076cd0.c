@@ -184,14 +184,14 @@ void func_020777ac(u32 a) {
 }
 
 void func_02077750(Unk02077750 *a, Unk020748b8_218 *b) {
-    Unk02175620_08 *v1 = &gCourseMap->mUnk_08[b->mUnk_40];
+    CourseMapEntryGroup *v1 = &gCourseMap->mEntryGroups[b->mUnk_40];
 
     a->mUnk_7c = b->mUnk_42;
     a->mUnk_7e = 2;
     a->mUnk_00 = b;
     a->mUnk_80 = 0;
     a->mUnk_84 = 0;
-    if (v1->mUnk_02 >= 4) {
+    if (v1->mEntryCount >= 4) {
         func_0207be40(&a->mUnk_04, b);
         func_0207bd6c(&a->mUnk_40, b);
     }

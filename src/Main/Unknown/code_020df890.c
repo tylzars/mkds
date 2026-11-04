@@ -96,7 +96,7 @@ void func_020dff08(void) {
     func_020e1dc0(data_0217b784, gKoopaBlock);
 }
 
-void func_020dfd64(Unk020e005c *a, Unk020fa294 *b) {
+void func_020dfd64(Unk020e005c *a, CourseMapRow *b) {
     func_02046be8(&a->mUnk_080, data_0216bff8, 3, a);
     a->mUnk_168 = (b->mUnk_28 << 12) / 100;
     func_020d7da8(&a->mUnk_144, b, a->mUnk_168);

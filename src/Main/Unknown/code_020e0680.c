@@ -63,7 +63,7 @@
 
 #pragma thumb on
 
-void func_020e2f0c(Unk020e1e98 *a, struct Unk020fa294 *b) {
+void func_020e2f0c(Unk020e1e98 *a, struct CourseMapRow *b) {
     func_02046be8(&a->mUnk_000.mUnk_80, (UnkFunc *const *) data_0216c0e8, 8, a);
     a->mUnk_0a8 = a->mUnk_000.mPos.y;
     a->mUnk_0ac = a->mUnk_000.mPos.y - 0x12000;
@@ -407,10 +407,10 @@ void func_020e230c(Unk0217b79c *a) {
         h = e->mUnk_000.mCourseMapRow->mUnk_26;
         e->mUnk_0d4 = i;
         if ((b & (1 << h)) == 0) {
-            n2 = gCourseMap->mUnk_08[h].mUnk_02;
+            n2 = gCourseMap->mEntryGroups[h].mEntryCount;
             b |= 1 << h;
             for (j = 0; j < n2; j++) {
-                o = func_02042044(h, j);
+                o = GetCourseMapGroupEntry(h, j);
                 v = o->mUnk_0e;
                 if (v != 0) {
                     if (v > 0) {
@@ -489,12 +489,12 @@ void func_020e20a8(Unk020e20a8 *a) {
     }
 }
 
-void func_020e1f54(Unk020e1e98 *a, struct Unk020fa294 *b, Unk020e1e98_154 *c) {
+void func_020e1f54(Unk020e1e98 *a, struct CourseMapRow *b, Unk020e1e98_154 *c) {
     a->mUnk_154 = c;
     func_020d7da8(&a->mUnk_0d8, b, (s16) b->mUnk_28 * 0x3000 / 100);
     a->mUnk_0fc = b->mUnk_2a;
     a->mUnk_130 = b->mUnk_2c;
-    a->mUnk_0a0 = func_02042044(b->mUnk_26, a->mUnk_0fc)->mUnk_00.y;
+    a->mUnk_0a0 = GetCourseMapGroupEntry(b->mUnk_26, a->mUnk_0fc)->mUnk_00.y;
     a->mUnk_114.x = (s32) (((s64) c->mUnk_00 * a->mUnk_000.mScale.x) >> 12);
     a->mUnk_114.y = (s32) (((s64) c->mUnk_04 * a->mUnk_000.mScale.y) >> 12);
     a->mUnk_114.z = (s32) (((s64) c->mUnk_08 * a->mUnk_000.mScale.z) >> 12);

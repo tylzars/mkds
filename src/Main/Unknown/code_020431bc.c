@@ -2,7 +2,7 @@
 #include "Main/Unknown/code_020431bc.h"
 
 #pragma thumb on
-CourseMap *func_020431bc(u32 arg0) {
+CourseMap *AllocCourseMap(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value3;

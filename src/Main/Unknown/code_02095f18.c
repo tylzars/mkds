@@ -10,5 +10,5 @@ void func_02095f18(u32 arg0) {
     value1 = (u32) * (const u32 *) ((value0) + (156));
     value0 = (value0) + (0xb4u);
     value2 = 0u;
-    func_020d7da8((Unk020e0144 *) value0, (Unk020fa294 *) value1, (s32) value2);
+    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, (s32) value2);
 }

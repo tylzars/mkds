@@ -33,14 +33,14 @@ Unk020da384 *data_0217b67c;
 
 #pragma thumb on
 
-void func_020da494(Unk020da494 *a, Unk020fa294 *b) {
+void func_020da494(Unk020da494 *a, CourseMapRow *b) {
     Unk02042044 *e;
     Vec3 *q;
     Unk020e005c_080 *o;
     a->mUnk_100 = 0x1f;
     if (b != NULL) {
         func_020d7da8(&a->mUnk_cc, b, (b->mUnk_28 << 11) / 100);
-        e = func_02042044(b->mUnk_26, b->mUnk_2e);
+        e = GetCourseMapGroupEntry(b->mUnk_26, b->mUnk_2e);
         a->mUnk_a0 = e->mUnk_00.y;
         a->mUnk_f8 = b->mUnk_28 * 0xb4 / 100;
         a->mUnk_fc = b->mUnk_2a == 0;

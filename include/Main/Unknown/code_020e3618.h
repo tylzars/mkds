@@ -42,7 +42,7 @@ typedef struct Unk020e38a0 {
 
 BOOL func_020e3af0(u32 a);
 void func_020e3a7c(void);
-void func_020e38a0(Unk020e38a0 *a, struct Unk020fa294 *b);
+void func_020e38a0(Unk020e38a0 *a, struct CourseMapRow *b);
 void *func_020e3850(void);
 void *func_020e37f4(void);
 void *func_020e3798(void);

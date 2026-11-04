@@ -315,7 +315,7 @@ void func_020e730c(void) {
     }
 }
 
-void func_020e72cc(Unk020e730c *p, struct Unk020fa294 *q) {
+void func_020e72cc(Unk020e730c *p, struct CourseMapRow *q) {
     p->mUnk_a0 = q->mUnk_28;
     switch (data_021759c0->mUnk_010) {
         case 0:

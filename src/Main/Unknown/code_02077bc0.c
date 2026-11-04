@@ -155,7 +155,7 @@ void InitKarts(u32 a) {
     func_020845cc(a);
     data_0217ad24 = 0;
     if (data_021759c0->mMode == 4) {
-        if (gCourseMap->mUnk_10f != 0) {
+        if (gCourseMap->mKind2ShapeCountInMode4 != 0) {
             data_0217ad24 = 1;
         }
     }

@@ -124,7 +124,7 @@ typedef struct Unk020da494 {
     /* 104 */ s32 mUnk_104;
 } Unk020da494;
 
-void func_020da494(Unk020da494 *a, Unk020fa294 *b);
+void func_020da494(Unk020da494 *a, CourseMapRow *b);
 Unk020da414 *func_020da414(void);
 void func_020da384(Unk020da384 *a, void *b, UnkFunc *c);
 void func_020d9f8c(Unk020d9cf4 *a);

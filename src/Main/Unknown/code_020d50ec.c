@@ -250,7 +250,7 @@ void CreateRock2(void *a) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020d5bf0(Unk020d5bf0 *p, struct Unk020fa294 *q) {
+void func_020d5bf0(Unk020d5bf0 *p, struct CourseMapRow *q) {
     Unk02042044 *t;
     s32 v;
     float f;
@@ -258,7 +258,7 @@ void func_020d5bf0(Unk020d5bf0 *p, struct Unk020fa294 *q) {
     func_020d7d4c(&p->mUnk_0a4, q, 0x3000, q->mUnk_2a);
     p->mUnk_0dc = q->mUnk_28;
     p->mUnk_0f0 = func_020d8654(q);
-    t = func_02042044(q->mUnk_26, 0);
+    t = GetCourseMapGroupEntry(q->mUnk_26, 0);
     p->mUnk_0a0 = t->mUnk_00.y;
     p->mUnk_10c = p->mUnk_000.mScale.y;
     v = q->mUnk_2e;

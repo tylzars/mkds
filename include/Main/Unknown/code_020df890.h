@@ -11,7 +11,7 @@ void func_020dff88(void *a);
 u32 func_020dff70(u32 a);
 s32 func_020dff4c(Unk020e005c *a);
 void func_020dff08(void);
-void func_020dfd64(Unk020e005c *a, Unk020fa294 *b);
+void func_020dfd64(Unk020e005c *a, CourseMapRow *b);
 Unk020de390 *func_020dfd14(void);
 Unk020de334 *func_020dfcb8(void);
 Unk020dfc44 *func_020dfc44(void);

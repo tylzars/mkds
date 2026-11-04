@@ -73,7 +73,7 @@ void func_020d879c(Unk020e0144 *a, Vec3 *b) {
     b->z = b->z + (s32) (((s64) p->mUnk_00[3].z * t) >> 24);
 }
 
-Vec3 *func_020d8654(Unk020fa294 *a) {
+Vec3 *func_020d8654(CourseMapRow *a) {
     u16 i;
     u16 k;
     u16 n;
@@ -83,19 +83,19 @@ Vec3 *func_020d8654(Unk020fa294 *a) {
     Unk02042044 *f;
     s32 t;
     k = a->mUnk_26;
-    n = gCourseMap->mUnk_08[k].mUnk_02;
+    n = gCourseMap->mEntryGroups[k].mEntryCount;
     p = HeapAlloc(GetHeap(func_020364e8()), n * 12);
     for (i = 0; i < n; i++) {
         if (i == n - 1) {
-            if (*(u8 *) ((u32) gCourseMap->mUnk_08 + k * 4 + 1) == 0) {
+            if (*(u8 *) ((u32) gCourseMap->mEntryGroups + k * 4 + 1) == 0) {
                 continue;
             }
-            e = func_02042044(k, 0);
-            f = func_02042044(k, (u16) (n - 1));
+            e = GetCourseMapGroupEntry(k, 0);
+            f = GetCourseMapGroupEntry(k, (u16) (n - 1));
             Vec3Sub(&e->mUnk_00, &f->mUnk_00, &v);
         } else {
-            e = func_02042044(k, (u16) (i + 1));
-            f = func_02042044(k, i);
+            e = GetCourseMapGroupEntry(k, (u16) (i + 1));
+            f = GetCourseMapGroupEntry(k, i);
             Vec3Sub(&e->mUnk_00, &f->mUnk_00, &v);
         }
         t = v.z;

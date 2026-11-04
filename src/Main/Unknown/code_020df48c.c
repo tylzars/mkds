@@ -30,7 +30,7 @@ void CreateMkdEfBubble(void) {
     func_02087cfc(gMkdEfBubbleNsbta, 0, 1);
 }
 
-void func_020df6c8(MkdEfBubbleObject *a, Unk020fa294 *b) {
+void func_020df6c8(MkdEfBubbleObject *a, CourseMapRow *b) {
     func_02046be8(&a->mUnk_00.mUnk_80, data_0216bfc0, 2, a);
     a->mUnk_a0 = b->mUnk_28;
     a->mUnk_ac = a->mUnk_00.mPos.y;

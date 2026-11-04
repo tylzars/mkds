@@ -6,14 +6,14 @@
 typedef struct Unk020d84e4 Unk020d84e4;
 typedef struct Unk020d849c Unk020d849c;
 
-struct Unk020fa294;
+struct CourseMapRow;
 
 // Four words: func_020d7b88 writes them.
 typedef struct Unk020d7b88 {
     /* 00 */ s32 mUnk_00[4];
 } Unk020d7b88;
 
-void func_020d7d4c(Unk020d84e4 *m, struct Unk020fa294 *b, s32 c, s32 d);
+void func_020d7d4c(Unk020d84e4 *m, struct CourseMapRow *b, s32 c, s32 d);
 void func_020d7d18(Unk020d849c *p, s32 a, Vec3 **b, s32 c);
 BOOL func_020d7c84(Unk020d849c *p, s32 a, Vec3 **b);
 void func_020d7bec(Unk02012f58 *a);

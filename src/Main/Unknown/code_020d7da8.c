@@ -15,7 +15,7 @@
 #include "Main/Unknown/code_020d7db4.h"
 
 #pragma thumb on
-void func_020d7da8(Unk020e0144 *arg0, Unk020fa294 *arg1, s32 arg2) {
+void func_020d7da8(Unk020e0144 *arg0, CourseMapRow *arg1, s32 arg2) {
     u32 value0 = (u32) arg0;
     u32 value1 = (u32) arg1;
     u32 value2 = (u32) arg2;

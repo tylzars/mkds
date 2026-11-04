@@ -8,7 +8,7 @@ typedef struct Unk020e0144_00_0 Unk020e0144_00_0;
 typedef struct Unk020d7e44 {
     /* 00 */ u8 mUnk_00;
     /* 01 */ u8 mUnk_01;
-    /* 02 */ u16 mUnk_02;
+    /* 02 */ u16 mEntryCount;
 } Unk020d7e44;
 
 #include "Main/Unknown/unk_0217b000.h"

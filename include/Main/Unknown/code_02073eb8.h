@@ -10,7 +10,7 @@ typedef struct Unk02061808 Unk02061808;
 typedef struct Unk02061808 Unk02061808;
 
 // The 0x4c-byte entries of the table at CourseMap::mUnk_7c: a vector at 0x00, the vectors at 0x18 and 0x24, an
-// index into the table at CourseMap::mUnk_08 at 0x40.
+// index into the table at CourseMap::mEntryGroups at 0x40.
 typedef struct Unk020748b8_218 {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ u8 mUnk_0c[0xc];

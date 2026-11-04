@@ -61,22 +61,22 @@ Kart *func_ov001_02188000(Unk02188950 *a, s32 b, s32 c) {
 }
 
 Unk02042044 *func_ov001_02187fc0(Unk02188950 *a) {
-    if (a->mUnk_148 < gCourseMap->mUnk_0c) {
-        return func_02042044((u16) (a->mUnk_148), (u16) (a->mUnk_14c));
+    if (a->mUnk_148 < gCourseMap->mEntryGroupCount) {
+        return GetCourseMapGroupEntry((u16) (a->mUnk_148), (u16) (a->mUnk_14c));
     }
     return NULL;
 }
 
 s32 func_ov001_02187f7c(Unk02188950 *a) {
-    if (a->mUnk_148 < gCourseMap->mUnk_0c) {
-        return func_02042044((u16) (a->mUnk_148), (u16) (a->mUnk_14c))->mUnk_0e;
+    if (a->mUnk_148 < gCourseMap->mEntryGroupCount) {
+        return GetCourseMapGroupEntry((u16) (a->mUnk_148), (u16) (a->mUnk_14c))->mUnk_0e;
     }
     return 0;
 }
 
 s32 func_ov001_02187f38(Unk02188950 *a) {
-    if (a->mUnk_148 < gCourseMap->mUnk_0c) {
-        return func_02042044((u16) (a->mUnk_148), (u16) (a->mUnk_14c))->mUnk_10;
+    if (a->mUnk_148 < gCourseMap->mEntryGroupCount) {
+        return GetCourseMapGroupEntry((u16) (a->mUnk_148), (u16) (a->mUnk_14c))->mUnk_10;
     }
     return 0;
 }
@@ -85,29 +85,29 @@ Unk02042044 *func_ov001_02187ee8(Unk02188950 *a) {
     CourseMap *g = gCourseMap;
     s32 n;
 
-    if (a->mUnk_148 < g->mUnk_0c) {
+    if (a->mUnk_148 < g->mEntryGroupCount) {
         n = a->mUnk_14c + 1;
-        if (n >= g->mUnk_08[(u16) a->mUnk_148].mUnk_02) {
+        if (n >= g->mEntryGroups[(u16) a->mUnk_148].mEntryCount) {
             n = 0;
         }
-        return func_02042044((u16) (a->mUnk_148), (u16) (n));
+        return GetCourseMapGroupEntry((u16) (a->mUnk_148), (u16) (n));
     }
     return NULL;
 }
 
 void func_ov001_02187eb0(Unk02188950 *b) {
     CourseMap *g;
-    Unk02175620_08 *e;
+    CourseMapEntryGroup *e;
     s32 a;
     s32 n;
 
     g = gCourseMap;
     a = b->mUnk_148;
-    if (a < g->mUnk_0c) {
-        e = &g->mUnk_08[(u16) a];
+    if (a < g->mEntryGroupCount) {
+        e = &g->mEntryGroups[(u16) a];
         n = b->mUnk_14c - 1;
         if (n <= 0) {
-            n = e->mUnk_02 - 1;
+            n = e->mEntryCount - 1;
         }
         b->mUnk_14c = n;
     }

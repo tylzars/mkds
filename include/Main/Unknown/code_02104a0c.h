@@ -23,7 +23,7 @@ extern Vec3 data_0217c748;
 
 extern Vec3 data_0217c73c;
 
-extern struct Unk020fa294 data_0217c730;
+extern struct CourseMapRow data_0217c730;
 
 extern const u16 data_0215a584;
 extern const Vec3 data_0215a6c0;

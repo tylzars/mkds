@@ -137,7 +137,7 @@ void func_020d7e44(u32 a, int m) {
     if (p->mUnk_00 != NULL) {
         return;
     }
-    n = b->mUnk_02;
+    n = b->mEntryCount;
     p->mUnk_04 = n;
     p->mUnk_08 = b->mUnk_01;
     if (p->mUnk_08 == 0) {
@@ -145,39 +145,44 @@ void func_020d7e44(u32 a, int m) {
     }
     p->mUnk_00 = HeapAlloc(GetHeap(func_020364e8()), p->mUnk_04 * 0x54);
     if (n == 2) {
-        func_020d80e4(p->mUnk_00, 0, 1, NULL, &func_02042044(a, 0)->mUnk_00, &func_02042044(a, 1)->mUnk_00, NULL);
+        func_020d80e4(p->mUnk_00, 0, 1, NULL, &GetCourseMapGroupEntry(a, 0)->mUnk_00,
+                      &GetCourseMapGroupEntry(a, 1)->mUnk_00, NULL);
         if (p->mUnk_08 != 0) {
-            func_020d80e4(&p->mUnk_00[1], 0, 1, NULL, &func_02042044(a, 1)->mUnk_00, &func_02042044(a, 0)->mUnk_00,
-                          NULL);
+            func_020d80e4(&p->mUnk_00[1], 0, 1, NULL, &GetCourseMapGroupEntry(a, 1)->mUnk_00,
+                          &GetCourseMapGroupEntry(a, 0)->mUnk_00, NULL);
         }
         return;
     }
     if (p->mUnk_08 != 0) {
-        func_020d80e4(p->mUnk_00, 0, 1, &func_02042044(a, n - 1)->mUnk_00, &func_02042044(a, 0)->mUnk_00,
-                      &func_02042044(a, 1)->mUnk_00, &func_02042044(a, 2)->mUnk_00);
+        func_020d80e4(p->mUnk_00, 0, 1, &GetCourseMapGroupEntry(a, n - 1)->mUnk_00,
+                      &GetCourseMapGroupEntry(a, 0)->mUnk_00, &GetCourseMapGroupEntry(a, 1)->mUnk_00,
+                      &GetCourseMapGroupEntry(a, 2)->mUnk_00);
     } else {
-        func_020d80e4(p->mUnk_00, 0, 1, NULL, &func_02042044(a, 0)->mUnk_00, &func_02042044(a, 1)->mUnk_00,
-                      &func_02042044(a, 2)->mUnk_00);
+        func_020d80e4(p->mUnk_00, 0, 1, NULL, &GetCourseMapGroupEntry(a, 0)->mUnk_00,
+                      &GetCourseMapGroupEntry(a, 1)->mUnk_00, &GetCourseMapGroupEntry(a, 2)->mUnk_00);
     }
     for (i = 1; i < n - 2; i++) {
-        func_020d80e4(&p->mUnk_00[i], 0, 1, &func_02042044(a, i - 1)->mUnk_00, &func_02042044(a, i)->mUnk_00,
-                      &func_02042044(a, i + 1)->mUnk_00, &func_02042044(a, i + 2)->mUnk_00);
+        func_020d80e4(&p->mUnk_00[i], 0, 1, &GetCourseMapGroupEntry(a, i - 1)->mUnk_00,
+                      &GetCourseMapGroupEntry(a, i)->mUnk_00, &GetCourseMapGroupEntry(a, i + 1)->mUnk_00,
+                      &GetCourseMapGroupEntry(a, i + 2)->mUnk_00);
     }
     if (p->mUnk_08 != 0) {
-        func_020d80e4(&p->mUnk_00[i], 0, 1, &func_02042044(a, i - 1)->mUnk_00, &func_02042044(a, i)->mUnk_00,
-                      &func_02042044(a, i + 1)->mUnk_00, &func_02042044(a, 0)->mUnk_00);
+        func_020d80e4(&p->mUnk_00[i], 0, 1, &GetCourseMapGroupEntry(a, i - 1)->mUnk_00,
+                      &GetCourseMapGroupEntry(a, i)->mUnk_00, &GetCourseMapGroupEntry(a, i + 1)->mUnk_00,
+                      &GetCourseMapGroupEntry(a, 0)->mUnk_00);
     } else {
-        func_020d80e4(&p->mUnk_00[i], 0, 1, &func_02042044(a, i - 1)->mUnk_00, &func_02042044(a, i)->mUnk_00,
-                      &func_02042044(a, i + 1)->mUnk_00, NULL);
+        func_020d80e4(&p->mUnk_00[i], 0, 1, &GetCourseMapGroupEntry(a, i - 1)->mUnk_00,
+                      &GetCourseMapGroupEntry(a, i)->mUnk_00, &GetCourseMapGroupEntry(a, i + 1)->mUnk_00, NULL);
     }
     if (p->mUnk_08 != 0) {
-        func_020d80e4(&p->mUnk_00[i + 1], 0, 1, &func_02042044(a, i)->mUnk_00, &func_02042044(a, i + 1)->mUnk_00,
-                      &func_02042044(a, 0)->mUnk_00, &func_02042044(a, 1)->mUnk_00);
+        func_020d80e4(&p->mUnk_00[i + 1], 0, 1, &GetCourseMapGroupEntry(a, i)->mUnk_00,
+                      &GetCourseMapGroupEntry(a, i + 1)->mUnk_00, &GetCourseMapGroupEntry(a, 0)->mUnk_00,
+                      &GetCourseMapGroupEntry(a, 1)->mUnk_00);
     }
 }
 
 void func_020d7df8(void) {
-    s32 n = gCourseMap->mUnk_0c;
+    s32 n = gCourseMap->mEntryGroupCount;
     s32 i;
     if (n != 0) {
         data_0217b670 = HeapAlloc(GetHeap(func_020364e8()), n * 0xc);
@@ -193,7 +198,7 @@ void func_020d7df8(void) {
 
 void func_020d7db4(Unk020e0144 *a, u16 b, int c) {
     a->mUnk_08 = b;
-    func_020d7e44(a->mUnk_08, (s32) &gCourseMap->mUnk_08[a->mUnk_08]);
+    func_020d7e44(a->mUnk_08, (s32) &gCourseMap->mEntryGroups[a->mUnk_08]);
     a->mUnk_00 = &data_0217b670[a->mUnk_08];
     a->mUnk_04 = c;
     func_020d90a8(a, 0, 1);

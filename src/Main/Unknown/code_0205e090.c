@@ -29,17 +29,17 @@ s32 func_0205e1c4(void) {
     BOOL r = FALSE;
     u16 i = 0;
     Unk0217aa24_00 *e;
-    Unk02175620_74 *p;
+    CourseMapShape *p;
     s32 n;
     u16 j;
     u8 c;
     for (i = 0; i < data_0217aa24->mUnk_04; i++) {
         e = &data_0217aa24->mUnk_00[i];
-        p = func_020423fc(e->mUnk_00);
+        p = GetCourseMapShape(e->mUnk_00);
         n = func_020d4130(&p->mUnk_00, e->mUnk_04, p->mUnk_3c);
         c = 0;
         for (j = 0; j < n; j++) {
-            if (func_02041944(&func_020d411c(j)->mPos, p) != 0) {
+            if (IsPosInCourseMapShape(&func_020d411c(j)->mPos, p) != 0) {
                 c = c + 1;
             }
         }

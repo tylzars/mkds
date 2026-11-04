@@ -13,7 +13,7 @@
 void func_020a8a6c(Unk020a8a6c *a) {
     s32 i;
     Unk020a826c *p;
-    Unk020fa294 *q;
+    CourseMapRow *q;
     s32 x1;
     s32 y1;
     s32 z1;

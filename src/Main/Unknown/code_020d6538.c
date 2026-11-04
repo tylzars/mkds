@@ -29,7 +29,7 @@
 
 #pragma thumb on
 
-void func_020d7d4c(Unk020d84e4 *a, struct Unk020fa294 *b, s32 c, s32 d) {
+void func_020d7d4c(Unk020d84e4 *a, struct CourseMapRow *b, s32 c, s32 d) {
     func_020d7da8(&a->mUnk_00, b, c);
     a->mUnk_24 = c / 100;
     a->mUnk_28 = (c * d) / 100;

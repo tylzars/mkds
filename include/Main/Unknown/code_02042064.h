@@ -9,9 +9,9 @@ typedef struct {
     /* 04 */ u16 mUnk_04;
     /* 06 */ u16 mBaseOffset;
     /* 08 */ s32 mSectionOffsets[1];
-} Unk02042064;
+} CourseMapHeader;
 
-extern s32 (*data_usa_0215407c[17])(void *a, ...);
+extern s32 (*gCourseMapSectionLoaders[17])(void *a, ...);
 
 #include "Main/Unknown/code_020b1dbc.h"
 #include "Main/Unknown/code_0207b960.h"
@@ -35,10 +35,10 @@ typedef struct Unk020f371c Unk020f371c;
 
 s32 func_02042170(void *a, ...);
 s32 func_02042280(void *a, ...);
-void func_020422c4(void);
-void func_02042320(void);
-void func_0204236c(void);
-Unk02175620_74 *func_020423fc(u32 a);
+void CountCourseMapKind2ShapesInMode4(void);
+void CountCourseMapKind4Shapes(void);
+void BuildCourseMapKind3ShapeLists(void);
+CourseMapShape *GetCourseMapShape(u32 a);
 s32 func_02042410(void *a, ...);
 s32 func_02042498(void *a, ...);
 s32 func_02042520(void *a, ...);
@@ -63,7 +63,7 @@ unsigned int func_02042fc4(unsigned int p0);
 void func_02042fd8(void *a);
 void func_02043038(void);
 s32 func_02043078(u16 a);
-s32 func_02043108(void *a, ...);
-s32 func_0204313c(void *a, ...);
-s32 func_02043170(void *a, ...);
-u16 func_020431a4(void **a);
+s32 LoadCourseMapGroupEntriesData(void *a, ...);
+s32 LoadCourseMapEntryGroupsData(void *a, ...);
+s32 LoadCourseMapRowsData(void *a, ...);
+u16 ReadCourseMapSectionCount(void **a);

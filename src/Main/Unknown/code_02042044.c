@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_02042044.h"
 #include "Main/Unknown/code_02042064.h"
 
-Unk02042044 *func_02042044(u16 arg0, u16 arg1) {
+Unk02042044 *GetCourseMapGroupEntry(u16 arg0, u16 arg1) {
     u32 value0 = (u32) arg0;
     u32 value1 = (u32) arg1;
     u32 value4;

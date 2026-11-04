@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
 
 struct MapObject;
-struct Unk020fa294;
+struct CourseMapRow;
 
 // Object behind MapObject.mUnk_94, passed to func_0210cfbc (which reads its halfword at 0x34).
 typedef struct Unk020e71a0_94 {
@@ -64,7 +64,7 @@ typedef struct MapObject {
     /* 80 */ Unk020e005c_080 mUnk_80;
     /* 94 */ Unk020e71a0_94 *mUnk_94;
     /* 98 */ MapObjectKindData *mKindData;
-    /* 9c */ struct Unk020fa294 *mCourseMapRow;
+    /* 9c */ struct CourseMapRow *mCourseMapRow;
 } MapObject;
 
 // Object of func_020e72cc and func_020e730c: two u16s after the shared part.
@@ -131,7 +131,7 @@ extern Unk0217bb08 data_0217bb08[];
 void func_020e6fd4(Unk020e6fd4 *p);
 void func_020e705c(Unk020e6fd4 *p);
 void func_020e71a0(MapObject *p);
-void func_020e72cc(Unk020e730c *p, struct Unk020fa294 *q);
+void func_020e72cc(Unk020e730c *p, struct CourseMapRow *q);
 void func_020e730c(void);
 u16 func_020e7388(int arg0);
 Unk020e6fd4 *func_020e73b4(void);

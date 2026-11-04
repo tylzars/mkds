@@ -819,7 +819,7 @@ void func_02074b00(Unk02061808 *p) {
 
 void func_020749a4(Unk02061808 *p, s32 a) {
     Unk020748b8_218 *q = p->mUnk_218;
-    u16 n = gCourseMap->mUnk_08[q->mUnk_40].mUnk_02;
+    u16 n = gCourseMap->mEntryGroups[q->mUnk_40].mEntryCount;
     Unk02042044 *e0;
     Unk02042044 *e1;
     Vec3 v;
@@ -834,8 +834,8 @@ void func_020749a4(Unk02061808 *p, s32 a) {
     if (n < 2) {
         return;
     }
-    e0 = func_02042044(q->mUnk_40, 0);
-    e1 = func_02042044(q->mUnk_40, 1);
+    e0 = GetCourseMapGroupEntry(q->mUnk_40, 0);
+    e1 = GetCourseMapGroupEntry(q->mUnk_40, 1);
     v = e0->mUnk_00;
     Vec3Sub(&e1->mUnk_00, &e0->mUnk_00, &d);
     if ((s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z < 0x10) {

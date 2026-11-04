@@ -313,17 +313,17 @@ void func_0205e2cc(void *a) {
     u16 k;
     u16 j;
     u16 m;
-    Unk02175620_74 *p;
+    CourseMapShape *p;
     Unk0217aa24_00 *e;
     s32 u;
     s32 v;
     s32 w;
     s32 y;
-    n = gCourseMap->mUnk_78;
+    n = gCourseMap->mShapeCount;
     m = 0;
     data_0217aa24 = HeapAlloc(a, 8);
     for (i = 0; i < n; i++) {
-        if (func_020423fc(i)->mUnk_44 == 5) {
+        if (GetCourseMapShape(i)->mKind == 5) {
             m = m + 1;
         }
     }
@@ -333,12 +333,12 @@ void func_0205e2cc(void *a) {
     k = 0;
     data_0217aa24->mUnk_04 = m;
     for (j = 0; j < n; j++) {
-        p = func_020423fc(j);
-        if (p->mUnk_44 == 5) {
+        p = GetCourseMapShape(j);
+        if (p->mKind == 5) {
             e = &data_0217aa24->mUnk_00[k];
             e->mUnk_00 = j;
             u = 0;
-            switch (p->mUnk_42) {
+            switch (p->mShapeKind) {
                 case 0:
                     u = func_0205e2cc_inline(func_020431cc(), p->mUnk_0c.x);
                     v = func_0205e2cc_inline(func_020431d4(), p->mUnk_0c.y) >> 1;

@@ -53,7 +53,7 @@ static inline GrpconfTblRow *func_020d34e4_inline(u16 f) {
     return NULL;
 }
 
-MapObject *CreateMapObject(u32 kind, Unk020fa294 *courseRow, MapObject *source) {
+MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source) {
     s32 i;
     s32 j;
     MapObjectKindRow *row;
@@ -281,7 +281,7 @@ MapObject *CreateMapObjectFromObject(MapObject *source, s32 kind) {
     return CreateMapObject(kind, NULL, source);
 }
 
-MapObject *CreateMapObjectFromCourseMapRow(Unk020fa294 *courseRow, s32 kind) {
+MapObject *CreateMapObjectFromCourseMapRow(CourseMapRow *courseRow, s32 kind) {
     return CreateMapObject(kind, courseRow, NULL);
 }
 
@@ -301,7 +301,7 @@ void InitMapObjects(void) {
     u32 v;
     MapObjectKindRow *row;
     Unk021000d0 *d;
-    Unk020fa294 *e;
+    CourseMapRow *e;
     MapObject *o;
     Unk020e6fd4 *w[3];
     Unk020e6fd4 *x;
@@ -312,7 +312,7 @@ void InitMapObjects(void) {
     data_0217b4cc = func_02061788();
     data_0217b4c0 = data_0217b4cc + 9;
     data_0217b4c8 = data_0217b4c0 + 1;
-    n = gCourseMap->mUnk_04;
+    n = gCourseMap->mRowCount;
     data_0217b4f0 = HeapAlloc(h, 0x2bc);
     data_0217b4f0->mMapObjects = HeapAlloc(h, 0x400);
     data_0217b4e8 = HeapAlloc(h, 0x80);
@@ -368,7 +368,7 @@ void InitMapObjects(void) {
         }
     }
     for (i = 0; i < n; i++) {
-        e = (Unk020fa294 *) ((u8 *) gCourseMap->mUnk_00 + i * sizeof(Unk020fa294));
+        e = (CourseMapRow *) ((u8 *) gCourseMap->mRows + i * sizeof(CourseMapRow));
         if (data_021759c0->mMode == 1 && (e->mUnk_38 & 1) == 0) {
             continue;
         }

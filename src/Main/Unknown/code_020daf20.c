@@ -85,7 +85,7 @@ void CreateWanwanAndRockShadow(void) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020dc1d8(Unk020dc474 *p, Unk020fa294 *a) {
+void func_020dc1d8(Unk020dc474 *p, CourseMapRow *a) {
     p->mUnk_a0 = a->mUnk_00;
     p->mUnk_f0 = (s32) (((s64) p->mUnk_00.mScale.y * 0x1e000) >> 12);
     p->mUnk_f4 = 0xf000 - p->mUnk_f0;
@@ -108,7 +108,7 @@ void func_020dc1d8(Unk020dc474 *p, Unk020fa294 *a) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020dc11c(Unk020dc474 *p, Unk020fa294 *a) {
+void func_020dc11c(Unk020dc474 *p, CourseMapRow *a) {
     p->mUnk_a0 = a->mUnk_00;
     p->mUnk_f0 = (s32) (((s64) p->mUnk_00.mScale.y * 0x1e000) >> 12);
     p->mUnk_f4 = 0xf000 - p->mUnk_f0;
@@ -504,7 +504,7 @@ void CreateDossunAndDossunShadow(void) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020db2b8(Dossun *p, Unk020fa294 *a) {
+void func_020db2b8(Dossun *p, CourseMapRow *a) {
     p->mUnk_f0 = a->mUnk_28;
     func_020d7da8(&p->mUnk_c8, a, p->mUnk_f0 != 0 ? 0xc00 : 0x3000);
     p->mUnk_ec = a->mUnk_2a;

@@ -1122,11 +1122,11 @@ void func_020fa294(void) {
     Unk020f41c4_A *p;
     Vec3 m;
     enum { K0 } k;
-    Unk020fa294 *e;
+    CourseMapRow *e;
 
-    n = gCourseMap->mUnk_04;
+    n = gCourseMap->mRowCount;
     for (i = 0; i < n; i++) {
-        e = &gCourseMap->mUnk_00[i];
+        e = &gCourseMap->mRows[i];
         if (e->mUnk_24 == 0x6d) {
             k = e->mUnk_28;
             if (func_01ffdee4(e, 0, 0, 0xa000, 8, -2, 0, &m, 0, 0, 0, 0, 0, &v) == 0) {

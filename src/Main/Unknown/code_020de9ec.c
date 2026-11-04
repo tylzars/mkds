@@ -36,7 +36,7 @@ void func_020df428(Unk020de6a8 *a, Unk020de6a8_1 *b) {
         a->mUnk_108.mUnk_00.mUnk_08 = (0x0000ffffu);
         return;
     }
-    func_020d7d4c(&a->mUnk_108, (Unk020fa294 *) b, *&data_02158908, b->mUnk_28);
+    func_020d7d4c(&a->mUnk_108, (CourseMapRow *) b, *&data_02158908, b->mUnk_28);
     func_020d859c(&a->mUnk_108, b->mUnk_30, 1);
     func_020d8c74(&a->mUnk_108.mUnk_00, &a->mUnk_000.mPos);
 }

@@ -14,12 +14,12 @@ typedef struct {
     /* 10 */ s32 mUnk_10;
 } Unk020b57e4;
 
-// One entry of the table at CourseMap::mUnk_08.
-typedef struct {
+// One entry of the table at CourseMap::mEntryGroups.
+typedef struct CourseMapEntryGroup {
     /* 00 */ u8 mUnk_00[1];
     /* 01 */ u8 mUnk_01;
-    /* 02 */ u16 mUnk_02;
-} Unk02175620_08;
+    /* 02 */ u16 mEntryCount;
+} CourseMapEntryGroup;
 
 // Object behind CourseMap::mUnk_018.
 typedef struct {
@@ -37,8 +37,8 @@ typedef struct {
     /* 24 */ s32 mUnk_24;
 } Unk02175620_18;
 
-// 0x48-byte entries of the table at CourseMap::mUnk_74 (func_020423fc returns one).
-typedef struct {
+// 0x48-byte entries of the table at CourseMap::mShapes (GetCourseMapShape returns one).
+typedef struct CourseMapShape {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ Vec3 mUnk_0c;
     /* 18 */ Vec3 mUnk_18;
@@ -47,11 +47,11 @@ typedef struct {
     /* 3c */ u16 mUnk_3c;
     /* 3e */ s16 mUnk_3e;
     /* 40 */ s16 mUnk_40;
-    /* 42 */ u8 mUnk_42;
+    /* 42 */ u8 mShapeKind;
     /* 43 */ u8 mUnk_43;
-    /* 44 */ u8 mUnk_44;
+    /* 44 */ u8 mKind;
     /* 45 */ u8 mUnk_45[3];
-} Unk02175620_74;
+} CourseMapShape;
 
 // 0x18-byte entries of the table at CourseMap::mUnk_84 (func_020a0f0c returns one).
 typedef struct {
@@ -75,7 +75,7 @@ typedef struct Unk02175620_bc {
     /* 2f */ u8 mUnk_2f;
 } Unk02175620_bc;
 
-struct Unk020fa294;
+struct CourseMapRow;
 
 // 0x1c-byte entries of the table at CourseMap::mUnk_34: two vectors.
 typedef struct Unk02175620_34 {
@@ -151,7 +151,7 @@ typedef struct {
 
 // 8-byte entries of the table at CourseMap::mUnk_94.
 typedef struct {
-    /* 00 */ Unk02175620_08 *mUnk_00;
+    /* 00 */ CourseMapEntryGroup *mUnk_00;
     /* 04 */ void *mUnk_04;
 } Unk02175620_94;
 
@@ -166,9 +166,9 @@ typedef struct Unk02175620_a0 {
     /* 26 */ u16 mUnk_26;
 } Unk02175620_a0;
 
-// Node of the lists at CourseMap::mUnk_d8: an entry of the table at mUnk_74 and the next node.
+// Node of the lists at CourseMap::mKind3ShapeLists: an entry of the table at mShapes and the next node.
 typedef struct Unk02175620_d8 {
-    /* 00 */ Unk02175620_74 *mUnk_00;
+    /* 00 */ CourseMapShape *mUnk_00;
     /* 04 */ struct Unk02175620_d8 *mUnk_04;
 } Unk02175620_d8;
 
@@ -181,15 +181,15 @@ typedef struct Unk02175620_3c {
 } Unk02175620_3c;
 
 // Object behind gCourseMap.
-typedef struct {
-    /* 00 */ struct Unk020fa294 *mUnk_00;
-    /* 04 */ u16 mUnk_04;
+typedef struct CourseMap {
+    /* 00 */ struct CourseMapRow *mRows;
+    /* 04 */ u16 mRowCount;
     /* 06 */ u8 mUnk_06[2];
-    /* 08 */ Unk02175620_08 *mUnk_08;
-    /* 0c */ u16 mUnk_0c;
+    /* 08 */ CourseMapEntryGroup *mEntryGroups;
+    /* 0c */ u16 mEntryGroupCount;
     /* 00e */ u8 mUnk_00e[0x2];
-    /* 010 */ s32 mUnk_010;
-    /* 014 */ u16 mUnk_014;
+    /* 010 */ s32 mGroupEntries;
+    /* 014 */ u16 mGroupEntryCount;
     /* 016 */ u8 mUnk_016[0x2];
     /* 018 */ Unk02175620_18 *mUnk_018;
     /* 01c */ s32 mUnk_01c;
@@ -225,8 +225,8 @@ typedef struct {
     /* 6c */ Unk02175620_4c *mUnk_6c;
     /* 70 */ u16 mUnk_70;
     /* 72 */ u8 mUnk_72[0x2];
-    /* 74 */ Unk02175620_74 *mUnk_74;
-    /* 78 */ u16 mUnk_78;
+    /* 74 */ CourseMapShape *mShapes;
+    /* 78 */ u16 mShapeCount;
     /* 7a */ u8 mUnk_7a[0x2];
     /* 7c */ Unk02175620_7c *mUnk_7c;
     /* 80 */ u16 mUnk_80;
@@ -256,16 +256,16 @@ typedef struct {
     /* cc */ Unk02175620_7c *mUnk_cc;
     /* d0 */ Unk02175620_7c *mUnk_d0;
     /* d4 */ Unk02175620_7c *mUnk_d4;
-    /* d8 */ struct Unk02175620_d8 *mUnk_d8[8];
+    /* d8 */ struct Unk02175620_d8 *mKind3ShapeLists[8];
     /* f8 */ u16 *mUnk_f8;
     /* fc */ u16 *mUnk_fc;
     /* 100 */ u16 mUnk_100;
-    /* 102 */ u16 mUnk_102;
+    /* 102 */ u16 mKind4ShapeCount;
     /* 104 */ u32 mUnk_104;
     /* 108 */ s32 mUnk_108;
     /* 10c */ u16 mUnk_10c;
     /* 10e */ u8 mUnk_10e;
-    /* 10f */ u8 mUnk_10f;
+    /* 10f */ u8 mKind2ShapeCountInMode4;
 } CourseMap;
 
 // Eight words.

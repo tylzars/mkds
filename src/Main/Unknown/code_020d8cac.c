@@ -55,12 +55,12 @@ void func_020d90a8(Unk020e0144 *a, u16 b, s32 c) {
     if (a->mUnk_18 == 0 && p->mUnk_08 != 0 && b == p->mUnk_04) {
         d = 0;
     }
-    a->mUnk_1c = func_02042044(a->mUnk_08, d);
+    a->mUnk_1c = GetCourseMapGroupEntry(a->mUnk_08, d);
     e = (u16) (a->mUnk_18 != 0 ? b + 1 : b - 1);
     if (a->mUnk_18 != 0 && p->mUnk_08 != 0 && e == p->mUnk_04) {
         e = 0;
     }
-    a->mUnk_20 = func_02042044(a->mUnk_08, e);
+    a->mUnk_20 = GetCourseMapGroupEntry(a->mUnk_08, e);
 }
 
 BOOL func_020d8cc8(Unk020e0144 *a) {
@@ -77,7 +77,7 @@ BOOL func_020d8cc8(Unk020e0144 *a) {
                     a->mUnk_14 = (s32) (((s64) a->mUnk_14 * p->mUnk_00[a->mUnk_0c].mUnk_30) >> 12);
                     a->mUnk_0c = 0;
                     a->mUnk_1c = a->mUnk_20;
-                    a->mUnk_20 = func_02042044(a->mUnk_08, 1);
+                    a->mUnk_20 = GetCourseMapGroupEntry(a->mUnk_08, 1);
                     k = p->mUnk_00[a->mUnk_0c].mUnk_34;
                     if (k != 0) {
                         a->mUnk_14 = (s32) (((s64) a->mUnk_14 * k) >> 24);
@@ -87,7 +87,7 @@ BOOL func_020d8cc8(Unk020e0144 *a) {
                     a->mUnk_18 = 0;
                     a->mUnk_14 = 0x1000000;
                     a->mUnk_1c = a->mUnk_20;
-                    a->mUnk_20 = func_02042044(a->mUnk_08, (u16) a->mUnk_0c);
+                    a->mUnk_20 = GetCourseMapGroupEntry(a->mUnk_08, (u16) a->mUnk_0c);
                 }
             } else {
                 a->mUnk_14 -= 0x1000000;
@@ -95,9 +95,9 @@ BOOL func_020d8cc8(Unk020e0144 *a) {
                 a->mUnk_0c = a->mUnk_0c + 1;
                 a->mUnk_1c = a->mUnk_20;
                 if (a->mUnk_0c == p->mUnk_04 - 1 && p->mUnk_08 != 0) {
-                    a->mUnk_20 = func_02042044(a->mUnk_08, 0);
+                    a->mUnk_20 = GetCourseMapGroupEntry(a->mUnk_08, 0);
                 } else {
-                    a->mUnk_20 = func_02042044(a->mUnk_08, (u16) (a->mUnk_0c + 1));
+                    a->mUnk_20 = GetCourseMapGroupEntry(a->mUnk_08, (u16) (a->mUnk_0c + 1));
                 }
                 k = p->mUnk_00[a->mUnk_0c].mUnk_34;
                 if (k != 0) {
@@ -116,7 +116,7 @@ BOOL func_020d8cc8(Unk020e0144 *a) {
                     a->mUnk_14 = (s32) (((s64) a->mUnk_14 * p->mUnk_00[r].mUnk_30) >> 12);
                     a->mUnk_0c = p->mUnk_04 - 1;
                     a->mUnk_1c = a->mUnk_20;
-                    a->mUnk_20 = func_02042044(a->mUnk_08, (u16) (p->mUnk_04 - 1));
+                    a->mUnk_20 = GetCourseMapGroupEntry(a->mUnk_08, (u16) (p->mUnk_04 - 1));
                     k = p->mUnk_00[a->mUnk_0c].mUnk_34;
                     if (k != 0) {
                         a->mUnk_14 = (s32) (((s64) a->mUnk_14 * k) >> 24);
@@ -127,13 +127,13 @@ BOOL func_020d8cc8(Unk020e0144 *a) {
                     a->mUnk_18 = 1;
                     a->mUnk_14 = 0;
                     a->mUnk_1c = a->mUnk_20;
-                    a->mUnk_20 = func_02042044(a->mUnk_08, 1);
+                    a->mUnk_20 = GetCourseMapGroupEntry(a->mUnk_08, 1);
                 }
             } else {
                 a->mUnk_14 = (s32) (((s64) a->mUnk_14 * p->mUnk_00[r].mUnk_30) >> 12);
                 a->mUnk_0c = a->mUnk_0c - 1;
                 a->mUnk_1c = a->mUnk_20;
-                a->mUnk_20 = func_02042044(a->mUnk_08, (u16) a->mUnk_0c);
+                a->mUnk_20 = GetCourseMapGroupEntry(a->mUnk_08, (u16) a->mUnk_0c);
                 k = p->mUnk_00[a->mUnk_0c].mUnk_34;
                 if (k != 0) {
                     a->mUnk_14 = (s32) (((s64) a->mUnk_14 * k) >> 24);

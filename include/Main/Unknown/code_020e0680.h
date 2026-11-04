@@ -186,7 +186,7 @@ typedef struct Unk020e1dc0 {
     /* 2c */ s32 mUnk_2c;
 } Unk020e1dc0;
 
-void func_020e2f0c(Unk020e1e98 *a, struct Unk020fa294 *b);
+void func_020e2f0c(Unk020e1e98 *a, struct CourseMapRow *b);
 void *func_020e2ebc(void);
 void *func_020e2e6c(void);
 void *func_020e2e1c(void);
@@ -201,7 +201,7 @@ u8 func_020e246c(Unk020e1e98 *a, Unk020e246c *b, u8 *c, u8 *d);
 void func_020e2400(Unk020e1e98 *a, Vec3 *b, s32 c, Vec3 *d);
 void func_020e230c(Unk0217b79c *a);
 void func_020e20a8(Unk020e20a8 *a);
-void func_020e1f54(Unk020e1e98 *a, struct Unk020fa294 *b, Unk020e1e98_154 *c);
+void func_020e1f54(Unk020e1e98 *a, struct CourseMapRow *b, Unk020e1e98_154 *c);
 void func_020e1e98(Unk020e1e98 *a);
 void func_020e1e38(Unk020e1dc0 *a, void *b, void (*c)(Unk020e3ef4 *, void *, u32));
 void func_020e1dec(Unk020e3ef4 *a, void *b, u32 c);

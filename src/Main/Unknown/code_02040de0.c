@@ -119,7 +119,7 @@ void func_02041bb0(Vec3 *a, Vec3 *b, s32 c) {
     }
 }
 
-BOOL func_02041a70(Vec3 *a, Unk02175620_74 *b) {
+BOOL IsPosInCourseMapShapeBox(Vec3 *a, CourseMapShape *b) {
     Vec3 v;
     s32 d;
     s32 t;
@@ -142,16 +142,16 @@ BOOL func_02041a70(Vec3 *a, Unk02175620_74 *b) {
     return TRUE;
 }
 
-s32 func_02041944(Vec3 *a, Unk02175620_74 *b) {
+s32 IsPosInCourseMapShape(Vec3 *a, CourseMapShape *b) {
     Vec3 v;
     s32 r = 0;
     s32 x;
     s32 y;
     s32 z;
 
-    switch (b->mUnk_42) {
+    switch (b->mShapeKind) {
         case 0:
-            r = func_02041a70(a, b);
+            r = IsPosInCourseMapShapeBox(a, b);
             break;
         case 1:
             Vec3Sub(a, (Vec3 *) b, &v);
@@ -171,7 +171,7 @@ s32 func_02041944(Vec3 *a, Unk02175620_74 *b) {
 
 s32 func_0204176c(Vec3 *a, s32 *b) {
     u16 i;
-    Unk02175620_74 *p;
+    CourseMapShape *p;
     Vec3 v;
     BOOL r = FALSE;
     s32 x;
@@ -179,13 +179,13 @@ s32 func_0204176c(Vec3 *a, s32 *b) {
     s32 z;
     s32 t;
 
-    for (i = 0; i < gCourseMap->mUnk_78; i++) {
-        p = func_020423fc(i);
-        if (p->mUnk_44 == 2) {
+    for (i = 0; i < gCourseMap->mShapeCount; i++) {
+        p = GetCourseMapShape(i);
+        if (p->mKind == 2) {
             t = 0;
-            switch (p->mUnk_42) {
+            switch (p->mShapeKind) {
                 case 0:
-                    t = func_02041a70(a, p);
+                    t = IsPosInCourseMapShapeBox(a, p);
                     break;
                 case 1:
                     Vec3Sub(a, (Vec3 *) p, &v);
@@ -216,7 +216,7 @@ s32 func_0204176c(Vec3 *a, s32 *b) {
 
 void *func_02041588(Vec3 *a) {
     u16 i;
-    Unk02175620_74 *p;
+    CourseMapShape *p;
     Vec3 v;
     s32 x;
     s32 y;
@@ -224,16 +224,16 @@ void *func_02041588(Vec3 *a) {
     void *r = NULL;
     s32 t;
 
-    if (gCourseMap->mUnk_102 == 0) {
+    if (gCourseMap->mKind4ShapeCount == 0) {
         return r;
     }
-    for (i = 0; i < gCourseMap->mUnk_78; i++) {
-        p = func_020423fc(i);
-        if (p->mUnk_44 == 4) {
+    for (i = 0; i < gCourseMap->mShapeCount; i++) {
+        p = GetCourseMapShape(i);
+        if (p->mKind == 4) {
             t = 0;
-            switch (p->mUnk_42) {
+            switch (p->mShapeKind) {
                 case 0:
-                    t = func_02041a70(a, p);
+                    t = IsPosInCourseMapShapeBox(a, p);
                     break;
                 case 1:
                     Vec3Sub(a, (Vec3 *) p, &v);
@@ -259,7 +259,7 @@ void *func_02041588(Vec3 *a) {
 
 Unk02175620_bc *func_020413a4(Vec3 *a) {
     u16 i;
-    Unk02175620_74 *p;
+    CourseMapShape *p;
     Vec3 v;
     s32 x;
     s32 y;
@@ -267,16 +267,16 @@ Unk02175620_bc *func_020413a4(Vec3 *a) {
     Unk02175620_bc *r = NULL;
     s32 t;
 
-    if (gCourseMap->mUnk_102 == 0) {
+    if (gCourseMap->mKind4ShapeCount == 0) {
         return r;
     }
-    for (i = 0; i < gCourseMap->mUnk_78; i++) {
-        p = func_020423fc(i);
-        if (p->mUnk_44 == 4) {
+    for (i = 0; i < gCourseMap->mShapeCount; i++) {
+        p = GetCourseMapShape(i);
+        if (p->mKind == 4) {
             t = 0;
-            switch (p->mUnk_42) {
+            switch (p->mShapeKind) {
                 case 0:
-                    t = func_02041a70(a, p);
+                    t = IsPosInCourseMapShapeBox(a, p);
                     break;
                 case 1:
                     Vec3Sub(a, (Vec3 *) p, &v);
@@ -302,7 +302,7 @@ Unk02175620_bc *func_020413a4(Vec3 *a) {
 
 s32 func_020411e4(Vec3 *a) {
     u16 i;
-    Unk02175620_74 *p;
+    CourseMapShape *p;
     Vec3 v;
     s32 x;
     s32 y;
@@ -310,13 +310,13 @@ s32 func_020411e4(Vec3 *a) {
     s32 r = -1;
     s32 t;
 
-    for (i = 0; i < gCourseMap->mUnk_78; i++) {
-        p = func_020423fc(i);
-        if (p->mUnk_44 == 1) {
+    for (i = 0; i < gCourseMap->mShapeCount; i++) {
+        p = GetCourseMapShape(i);
+        if (p->mKind == 1) {
             t = 0;
-            switch (p->mUnk_42) {
+            switch (p->mShapeKind) {
                 case 0:
-                    t = func_02041a70(a, p);
+                    t = IsPosInCourseMapShapeBox(a, p);
                     break;
                 case 1:
                     Vec3Sub(a, (Vec3 *) p, &v);
@@ -439,7 +439,7 @@ struct Unk020f371c *func_02040f78(u32 a) {
 s32 func_02040de0(s32 a, u32 b) {
     Unk02175620_d8 *n;
     s32 t;
-    Unk02175620_74 *p;
+    CourseMapShape *p;
     Vec3 v;
     Vec3 w;
     s32 x;
@@ -447,14 +447,14 @@ s32 func_02040de0(s32 a, u32 b) {
     s32 z;
     BOOL f = FALSE;
 
-    n = gCourseMap->mUnk_d8[b];
+    n = gCourseMap->mKind3ShapeLists[b];
     func_0207a948(&v, a);
     for (; f == FALSE && n != NULL; n = n->mUnk_04) {
         p = n->mUnk_00;
         t = 0;
-        switch (p->mUnk_42) {
+        switch (p->mShapeKind) {
             case 0:
-                t = func_02041a70(&v, p);
+                t = IsPosInCourseMapShapeBox(&v, p);
                 break;
             case 1:
                 Vec3Sub(&v, (Vec3 *) p, &w);

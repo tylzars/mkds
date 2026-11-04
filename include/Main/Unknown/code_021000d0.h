@@ -22,7 +22,7 @@ typedef struct Unk021000d0 {
     /* 00 */ u16 mObjectCount;
     /* 02 */ u8 mUnk_02[2];
     /* 04 */ s32 mObjectSize;
-    /* 08 */ void (*mInitObject)(MapObject *a, struct Unk020fa294 *b, void *c);
+    /* 08 */ void (*mInitObject)(MapObject *a, struct CourseMapRow *b, void *c);
     /* 0c */ MapObjectKindData *(*mCreateKindData)(void);
     /* 10 */ Unk020e6fd4 *(*mUnk_10)(void);
     /* 14 */ Unk020e6fd4 *(*mUnk_14)(void);

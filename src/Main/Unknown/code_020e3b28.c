@@ -146,7 +146,7 @@ void func_020e410c(Unk020e1dc0 *a) {
     }
 }
 
-void func_020e3ef4(Unk020e3ef4 *a, struct Unk020fa294 *b, Unk020e1e98_154 *c) {
+void func_020e3ef4(Unk020e3ef4 *a, struct CourseMapRow *b, Unk020e1e98_154 *c) {
     func_02046be8(&a->mUnk_000.mUnk_80, (UnkFunc *const *) data_0216c168, 4, a);
     a->mUnk_0e8 = a->mUnk_000.mPos;
     a->mUnk_0a0 = *(Unk020e38a0_28 *) &a->mUnk_000.mMatrix;
