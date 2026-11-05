@@ -961,7 +961,7 @@ void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
     if ((gKartItems)[param_1].mHeldItem.mUnk_00 != 0x13) {
         return;
     }
-    v = data_021759c0->mCurrentEntries[param_1].mUnk_08.mKind;
+    v = data_021759c0->mCurrentEntries[param_1].mPlayer.mKind;
     if (v == 3) {
         return;
     }

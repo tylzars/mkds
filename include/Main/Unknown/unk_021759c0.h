@@ -26,7 +26,7 @@ typedef struct Unk021759c0_70 {
     /* 14 */ u16 mUnk_14;
     /* 16 */ s8 mUnk_16;
     /* 17 */ u8 mUnk_17;
-    /* 18 */ void *mUnk_18;
+    /* 18 */ void *mName;
     /* 1c */ void *mEmblemData;
     /* 20 */ s32 mUnk_20;
     /* 24 */ u8 mUnk_24;
@@ -39,7 +39,8 @@ typedef struct Unk021759c0_70 {
 typedef struct KartEntry {
     /* 00 */ s32 mCharacterIndex;
     /* 04 */ s32 mKartIndex;
-    /* 08 */ Unk021759c0_70 mUnk_08;
+    // The 0x28-byte record of the entry's player: kind, team, index, name, emblem.
+    /* 08 */ Unk021759c0_70 mPlayer;
 } KartEntry;
 
 // The 0x68 bytes at 0x1e8 of the object behind data_021759c0.

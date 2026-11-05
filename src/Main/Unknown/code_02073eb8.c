@@ -181,7 +181,7 @@ void func_02076528(Camera *a, Kart *b) {
     t = 0;
     if (b->mUnk_44 & 8) {
         t = data_usa_021656c4;
-        if (b->mUnk_2c4 > 0) {
+        if (b->mTurnDirection > 0) {
             t *= -1;
         }
     }

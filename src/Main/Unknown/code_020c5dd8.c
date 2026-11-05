@@ -277,7 +277,7 @@ found:
         e->mUnk_02 = n0;
         e->mUnk_03 = n1;
         g[k].mUnk_00 = n2;
-        MemCopyHalfwords(data_021759c0->mCurrentEntries[func_020b4d9c()].mUnk_08.mUnk_18, e->mUnk_04, 0x14);
+        MemCopyHalfwords(data_021759c0->mCurrentEntries[func_020b4d9c()].mPlayer.mName, e->mUnk_04, 0x14);
         e->mUnk_18 = 1;
         e->mUnk_19 = data_021759c0->mCurrentEntries[func_020b4d9c()].mCharacterIndex;
         e->mUnk_1a = data_021759c0->mCurrentEntries[func_020b4d9c()].mKartIndex;
@@ -317,7 +317,7 @@ BOOL func_020c6428(s32 a) {
         e->mUnk_02 = n0;
         e->mUnk_03 = n1;
         g[5].mUnk_00 = n2;
-        MemCopyHalfwords(data_021759c0->mCurrentEntries[func_020b4d9c()].mUnk_08.mUnk_18, e->mUnk_04, 0x14);
+        MemCopyHalfwords(data_021759c0->mCurrentEntries[func_020b4d9c()].mPlayer.mName, e->mUnk_04, 0x14);
         e->mUnk_18 = 1;
         e->mUnk_19 = data_021759c0->mCurrentEntries[func_020b4d9c()].mCharacterIndex;
         e->mUnk_1a = data_021759c0->mCurrentEntries[func_020b4d9c()].mKartIndex;

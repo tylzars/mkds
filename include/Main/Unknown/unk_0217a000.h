@@ -1084,7 +1084,7 @@ typedef struct Camera {
     // Added to the y of the position goal; eased toward a value taken from the Kart's heading y while Kart bit 0x10 of
     // mUnk_44 or 0x10000 of mUnk_48 is set.
     /* 168 */ s32 mPosGoalYOffset;
-    // Eased toward 0, or toward +-0x19000 (sign of Kart.mUnk_2c4) while Kart bit 8 of mUnk_44 is set.
+    // Eased toward 0, or toward +-0x19000 (sign of Kart.mTurnDirection) while Kart bit 8 of mUnk_44 is set.
     /* 16c */ s32 mPosGoalKartOffsetScale;
     // Length of the push-out vector while the push is in state 1 of mUnk_254, else 0; mCollisionOffsetLength eases
     // toward it.

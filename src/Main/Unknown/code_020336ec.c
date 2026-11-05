@@ -37,7 +37,7 @@ void func_02033c80(s32 a) {
     }
     r = data_02174e60->mUnk_0e4[a].mUnk_08;
     if (data_021759c0->mUseTeams != 0) {
-        if (data_021759c0->mCurrentEntries[(u16) a].mUnk_08.mTeamIndex == 1) {
+        if (data_021759c0->mCurrentEntries[(u16) a].mPlayer.mTeamIndex == 1) {
             b = TRUE;
         } else {
             b = FALSE;
@@ -307,7 +307,7 @@ void func_020336ec(void *a) {
         }
     }
     for (m = 0; m < data_02174e60->mUnk_0d8; m++) {
-        if (x == data_021759c0->mCurrentEntries[(u16) m].mUnk_08.mTeamIndex) {
+        if (x == data_021759c0->mCurrentEntries[(u16) m].mPlayer.mTeamIndex) {
             func_02033ab8(0, m, d + n, e);
             n++;
         }

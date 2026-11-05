@@ -340,7 +340,7 @@ void func_020ba63c(Unk020d029c *p) {
     x = data_0217b3cc->mUnk_00;
     y = data_0217b3cc->mUnk_08;
     r = GetRaceMNcerEntry(data_021759c0->mUseTeams == 0                                             ? 8
-                          : data_021759c0->mCurrentEntries[func_020b4d9c()].mUnk_08.mTeamIndex == 0 ? 9
+                          : data_021759c0->mCurrentEntries[func_020b4d9c()].mPlayer.mTeamIndex == 0 ? 9
                                                                                                     : 10);
     if (data_021759c0->mUnk_00c == 4) {
         return;

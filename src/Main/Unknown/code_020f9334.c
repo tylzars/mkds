@@ -141,7 +141,7 @@ BOOL func_020f97e0(ItemObject *param_1, Kart *param_2) {
         param_2->mIndex == (u16) ((param_1->mUnk_78 & 0x4000) != 0 ? (u16) (param_1->mUnk_78 & ~0xff00) : 8)) {
         return FALSE;
     }
-    n = param_2->mUnk_1d0 + param_1->mUnk_e0;
+    n = param_2->mRadius + param_1->mUnk_e0;
     d.x = param_1->mPos.x - param_2->mUnk_1d8.x;
     d.y = param_1->mPos.y - param_2->mUnk_1d8.y;
     d.z = param_1->mPos.z - param_2->mUnk_1d8.z;

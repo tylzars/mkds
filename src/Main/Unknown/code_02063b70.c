@@ -154,7 +154,7 @@ s32 func_02063b70(Kart *a) {
     b = a->mKartModelsEntry;
     d = b->mUnk_058 == 0;
     if (d != FALSE) {
-        t = a->mUnk_1d0 + 0x5000;
+        t = a->mRadius + 0x5000;
         g = *a->mUnk_1b4;
         Vec3AddScaled(t, &a->mUnk_12c, a->mUnk_508, &h);
         g.mUnk_00[3].x = h.x >> 4;

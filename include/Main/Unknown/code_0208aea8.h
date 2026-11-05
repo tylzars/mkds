@@ -34,8 +34,8 @@ extern s32 data_usa_02155f48[];
 extern Vec3 data_usa_02155f78[];
 extern Vec3 data_usa_02155fc0;
 
-void func_0208aea8(u32 a, u32 b, u32 c);
-void func_0208af40(void *a, u32 b);
+void CopyKartPhysicalParams(u32 a, u32 b, u32 c);
+void CreateKartPhysicalParamTable(void *a, u32 b);
 void func_0208afe4(void);
 void func_0208b190(void);
 Unk020184e4 *func_0208b458(s32 *a, s32 b);

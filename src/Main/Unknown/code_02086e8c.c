@@ -83,8 +83,8 @@ void func_020875b4(void) {
     } else if (f == FALSE) {
         data_0217aed0->mUnk_020 = data_021759c0->mKartCount - 1;
         for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
-            if (data_021759c0->mCurrentEntries[i].mUnk_08.mKind == 2 &&
-                data_021759c0->mCurrentEntries[i].mUnk_08.mUnk_10 == 0) {
+            if (data_021759c0->mCurrentEntries[i].mPlayer.mKind == 2 &&
+                data_021759c0->mCurrentEntries[i].mPlayer.mUnk_10 == 0) {
                 data_0217aed0->mUnk_020 = data_0217aed0->mUnk_020 - 1;
             }
         }
@@ -93,7 +93,7 @@ void func_020875b4(void) {
         w = data_021759c0->mEntryIndex;
         u = FALSE;
         if (w != -1) {
-            v = data_021759c0->mCurrentEntries[(u16) w].mUnk_08.mKind;
+            v = data_021759c0->mCurrentEntries[(u16) w].mPlayer.mKind;
             if (v <= 3 && ((1 << v) & 0xd) != 0) {
                 u = TRUE;
             }
@@ -124,14 +124,14 @@ void func_020875b4(void) {
             t = FALSE;
             if (f == FALSE) {
                 if (i != data_021759c0->mEntryIndex) {
-                    if (data_021759c0->mCurrentEntries[i].mUnk_08.mKind != 2 ||
-                        data_021759c0->mCurrentEntries[i].mUnk_08.mUnk_10 != 0) {
+                    if (data_021759c0->mCurrentEntries[i].mPlayer.mKind != 2 ||
+                        data_021759c0->mCurrentEntries[i].mPlayer.mUnk_10 != 0) {
                         t = TRUE;
                     }
                 }
             } else {
                 k = FALSE;
-                v = data_021759c0->mCurrentEntries[i].mUnk_08.mKind;
+                v = data_021759c0->mCurrentEntries[i].mPlayer.mKind;
                 if (v <= 3 && ((1 << v) & 0xd) != 0) {
                     k = TRUE;
                 }
@@ -236,10 +236,10 @@ void func_02087458(Unk02086098 *a) {
 
 u16 func_020873e4(int a) {
     if (data_021759c0->mMode == 5) {
-        return data_02155a2c[data_021759c0->mCurrentEntries[a].mUnk_08.mUnk_25];
+        return data_02155a2c[data_021759c0->mCurrentEntries[a].mPlayer.mUnk_25];
     }
     if (data_021759c0->mUseTeams != 0) {
-        return data_02155a28[data_021759c0->mCurrentEntries[a].mUnk_08.mTeamIndex];
+        return data_02155a28[data_021759c0->mCurrentEntries[a].mPlayer.mTeamIndex];
     }
     if (func_02079bf0(a)->mUnk_000 == 0xc) {
         return func_02077f7c(a)->mUnk_04;
@@ -296,7 +296,7 @@ void func_02087228(Unk02086098 *a, u16 b) {
     MemCopy(data_0217aed0->mUnk_164[b], p, a->mUnk_08);
     v = 0x7fff;
     if (data_021759c0->mUseTeams != 0) {
-        v = data_02155a28[data_021759c0->mCurrentEntries[b].mUnk_08.mTeamIndex];
+        v = data_02155a28[data_021759c0->mCurrentEntries[b].mPlayer.mTeamIndex];
     }
     *p = v;
     func_0200ee74(p, a->mUnk_08);
@@ -351,10 +351,10 @@ void func_020870ec(void *a, u16 b) {
     u8 x;
     u8 y;
     q = a;
-    if (data_021759c0->mCurrentEntries[b].mUnk_08.mUnk_26 != 0) {
+    if (data_021759c0->mCurrentEntries[b].mPlayer.mUnk_26 != 0) {
         p = data_0217aecc;
         c = 7;
-        switch (data_021759c0->mCurrentEntries[b].mUnk_08.mUnk_26) {
+        switch (data_021759c0->mCurrentEntries[b].mPlayer.mUnk_26) {
             case 2:
                 c = 4;
                 break;
@@ -395,9 +395,9 @@ void func_02087000(void) {
     for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
         data_0217aed0->mUnk_144[i] = NULL;
         data_0217aed0->mUnk_164[i] = NULL;
-        if (data_021759c0->mCurrentEntries[i].mUnk_08.mUnk_24 == 0 || data_021759c0->mUseTeams != 0) {
+        if (data_021759c0->mCurrentEntries[i].mPlayer.mUnk_24 == 0 || data_021759c0->mUseTeams != 0) {
             if (data_021759c0->mUseTeams != 0) {
-                s = BuildTeamEmblemNsbtxPath(data_021759c0->mCurrentEntries[i].mUnk_08.mTeamIndex == 1 ? 1 : 0);
+                s = BuildTeamEmblemNsbtxPath(data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex == 1 ? 1 : 0);
             } else {
                 s = BuildEmblemNsbtxPath((u16) data_021759c0->mCurrentEntries[i].mCharacterIndex);
             }
@@ -407,7 +407,7 @@ void func_02087000(void) {
             data_0217aed0->mUnk_144[i] = r;
             data_0217aed0->mUnk_164[i] = q;
         } else {
-            r = (void *) data_021759c0->mCurrentEntries[i].mUnk_08.mEmblemData;
+            r = (void *) data_021759c0->mCurrentEntries[i].mPlayer.mEmblemData;
             LoadNclrData(&o, func_02047950(gEmblemSBNclrName));
             q = (u8 *) o->mData;
             data_0217aed0->mUnk_144[i] = r;

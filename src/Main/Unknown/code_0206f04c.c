@@ -127,7 +127,7 @@ void func_0206ff50(Kart *p, u32 a) {
             ResetCameraHalfFovAngleGoal();
         }
         p->mUnk_4c8 = 0x1000;
-        p->mUnk_3dc = -1;
+        p->mSurfaceGroup = -1;
         f = 0;
         p->mUnk_29c = 0;
         if (p->mKartModelsEntry->mUnk_058 == 0) {
@@ -183,8 +183,8 @@ void func_0206fe08(Kart *p) {
         b = FALSE;
         c = (s32) (((s64) p->mUnk_3f4 * p->mUnk_bc.z) >> 12);
         p->mUnk_dc = (s32) (((s64) c * a) >> 12) + 0x1000;
-        if (p->mUnk_dc < p->mUnk_2cc->mUnk_68[4]) {
-            p->mUnk_dc = p->mUnk_2cc->mUnk_68[4];
+        if (p->mUnk_dc < p->mPhysicalParam->mSurfaceSpeedLimitFactors[4]) {
+            p->mUnk_dc = p->mPhysicalParam->mSurfaceSpeedLimitFactors[4];
         }
         func_0207a6c0(p);
         p->mUnk_500 = -a;
@@ -494,7 +494,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                         if (p->mUnk_4c & 0x10000) {
                             g = 0x4cd;
                         }
-                        Vec3AddScaled(-p->mUnk_1d0, a, &p->mPos, &n);
+                        Vec3AddScaled(-p->mRadius, a, &p->mPos, &n);
                         Vec3AddScaled((s32) (((s64) p->mUnk_bc.y * (g << 4) + 0x800) >> 12), &p->mUnk_12c, &n, &n);
                         func_0208b748(0x3b, &n, p, func_0206c488);
                     }
@@ -504,7 +504,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         }
         if (h > 0) {
             p->mUnk_38c = 0x4cd;
-            if (p->mUnk_3dc != 0xb && p->mUnk_3dc != 8) {
+            if (p->mSurfaceGroup != 0xb && p->mSurfaceGroup != 8) {
                 p->mUnk_48 &= 0xdfe77fdf;
                 p->mUnk_238 = 0;
                 p->mUnk_538.mUnk_00 = 0;

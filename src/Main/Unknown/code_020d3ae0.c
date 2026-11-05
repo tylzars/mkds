@@ -593,7 +593,7 @@ s32 func_020d41e0(Kart *a, Vec3 *b, Vec3 *c) {
 
     v = *b;
     k = (a->mUnk_48 & 0x8000000) != 0;
-    q = a->mUnk_1d0;
+    q = a->mRadius;
     r = a->mUnk_29c;
     p = data_0217b4dc;
     {

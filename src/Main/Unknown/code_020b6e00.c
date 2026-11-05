@@ -280,7 +280,7 @@ void func_020b8624(void) {
     LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[8].mNclr, FindSceneFileWrapper("race_goal_team_s_o.NCLR"));
     if (data_021759c0->mUseTeams != 0) {
         a8 = NULL;
-        m = data_021759c0->mCurrentEntries[func_020b4d9c()].mUnk_08.mTeamIndex == 0 ? 0x13 : 0x23;
+        m = data_021759c0->mCurrentEntries[func_020b4d9c()].mPlayer.mTeamIndex == 0 ? 0x13 : 0x23;
         LoadNclrData(&a8, FindSceneFileWrapper("race_own_character_s_o.NCLR"));
         func_0200ee74(data_0217b3c4->mNclrNcgrPairs[6].mNclr->mData, 0x200);
         for (j = 0; j < 4; j++) {
@@ -325,7 +325,7 @@ void func_020b8624(void) {
         func_020adff0(i, w5, 0);
         if (i == func_020b4d9c()) {
             if (data_021759c0->mUseTeams != 0) {
-                if (data_021759c0->mCurrentEntries[i].mUnk_08.mTeamIndex == 0) {
+                if (data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex == 0) {
                     b = 0xa;
                     c = 0xb;
                 } else {
@@ -619,7 +619,7 @@ void func_020b80a8(void) {
         func_020adff0(i, t, k);
         if (i == func_020b4d9c()) {
             if (data_021759c0->mUseTeams != 0) {
-                if (data_021759c0->mCurrentEntries[i].mUnk_08.mTeamIndex == 0) {
+                if (data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex == 0) {
                     b = 10;
                     c = 11;
                 } else {

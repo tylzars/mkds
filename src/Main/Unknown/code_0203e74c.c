@@ -33,7 +33,7 @@ s32 func_0203ef58(void) {
             r = TRUE;
             for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
                 f = FALSE;
-                s = o->mCurrentEntries[i].mUnk_08.mKind;
+                s = o->mCurrentEntries[i].mPlayer.mKind;
                 if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {
                     f = TRUE;
                 }
@@ -115,7 +115,7 @@ s32 func_0203ef58(void) {
             r = TRUE;
             for (i = 0; i < (u32) o->mKartCount; i++) {
                 f = FALSE;
-                s = o->mCurrentEntries[i].mUnk_08.mKind;
+                s = o->mCurrentEntries[i].mPlayer.mKind;
                 if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {
                     f = TRUE;
                 }
@@ -294,7 +294,7 @@ void FinishRaceProgressKart(RaceProgressKart *a, s32 b) {
     s32 c;
     s32 m;
     s16 d;
-    c = data_021759c0->mCurrentEntries[(u32) (a->mUnk_3c << 24) >> 28].mUnk_08.mIndex;
+    c = data_021759c0->mCurrentEntries[(u32) (a->mUnk_3c << 24) >> 28].mPlayer.mIndex;
     if (b != 0) {
         a->mStatus = 1;
     } else {

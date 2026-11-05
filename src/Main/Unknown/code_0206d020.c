@@ -178,8 +178,8 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     Vec3 m;
     Vec3 v10;
 
-    a = p->mUnk_2cc->mUnk_0c + p->mUnk_2d0[1];
-    b = q->mUnk_2cc->mUnk_0c + q->mUnk_2d0[1];
+    a = p->mPhysicalParam->mWeight + p->mCharPhysicalParam[1];
+    b = q->mPhysicalParam->mWeight + q->mCharPhysicalParam[1];
     v2 = p->mVelocityLengthRatio;
     if (p->mUnk_7c & 0x600) {
         if ((float) v2 > 4.8828125e-05f) {
@@ -298,7 +298,7 @@ void func_0206d578(Kart *p) {
     d = 0;
     v1 = FALSE;
     func_01ffc064(&p->mUnk_1f0, p->mUnk_510, 0x400, p);
-    Vec3AddScaled((s32) (((s64) p->mUnk_1d0 * -0x4000) >> 12), &p->mUnk_50, &p->mUnk_1f0, &p->mUnk_1f0);
+    Vec3AddScaled((s32) (((s64) p->mRadius * -0x4000) >> 12), &p->mUnk_50, &p->mUnk_1f0, &p->mUnk_1f0);
     if (p->mIndex == func_02061f90() && !(p->mUnk_4c & 0x10002000)) {
         if (p->mVelocityLength > 0x4000 && p->mState == 0) {
             for (i = 0; i < data_0217b5a8; i++) {

@@ -134,20 +134,20 @@ void func_020733ec(Kart *p) {
     func_020726bc(p);
     func_02071e28(p);
     if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
-        func_0207a73c(DivFixed12(0x1000, p->mUnk_2cc->mUnk_10));
+        func_0207a73c(DivFixed12(0x1000, p->mPhysicalParam->mBaseSpeedLimit));
     }
     func_02071c18(p);
     func_020e0650((u32 *) &p->mUnk_208);
     p->mUnk_310 = HeapAlloc(h, 0x158);
     if (gCourseMap->mUnk_70 != 0 || gCourseMap->mUnk_90 != 0) {
-        if (data_021759c0->mCurrentEntries[p->mIndex].mUnk_08.mKind == 1) {
+        if (data_021759c0->mCurrentEntries[p->mIndex].mPlayer.mKind == 1) {
             p->mUnk_7c |= 2;
             if (p->mUnk_7c & 2) {
                 for (i = 0; i < 12; i++) {
                     if (i != 0) {
-                        p->mUnk_2cc->mUnk_38[i] = p->mUnk_2cc->mUnk_38[i] << 2;
-                        if (p->mUnk_2cc->mUnk_38[i] > p->mUnk_2cc->mUnk_38[0]) {
-                            p->mUnk_2cc->mUnk_38[i] = p->mUnk_2cc->mUnk_38[0];
+                        p->mPhysicalParam->mUnk_38[i] = p->mPhysicalParam->mUnk_38[i] << 2;
+                        if (p->mPhysicalParam->mUnk_38[i] > p->mPhysicalParam->mUnk_38[0]) {
+                            p->mPhysicalParam->mUnk_38[i] = p->mPhysicalParam->mUnk_38[0];
                         }
                     }
                 }
@@ -162,14 +162,14 @@ void func_020733ec(Kart *p) {
         v = &p->mUnk_1b8;
     }
     if (p->mUnk_2c8 == -1) {
-        p->mUnk_2c8 = func_020d555c(v, p->mUnk_2cc->mUnk_00 + 0xd000, 0x8000, p);
+        p->mUnk_2c8 = func_020d555c(v, p->mPhysicalParam->mRadius + 0xd000, 0x8000, p);
     }
     if (p->mUnk_2ca == -1) {
-        p->mUnk_2ca = func_020d555c(&p->mUnk_1f0, (s32) (((s64) p->mUnk_2cc->mUnk_00 << 15) >> 12), 0x800, p);
+        p->mUnk_2ca = func_020d555c(&p->mUnk_1f0, (s32) (((s64) p->mPhysicalParam->mRadius << 15) >> 12), 0x800, p);
     }
     p->mUnk_44 |= 0x10;
     p->mUnk_4d0 = 0x64;
-    p->mUnk_1d0 = p->mUnk_2cc->mUnk_00;
+    p->mRadius = p->mPhysicalParam->mRadius;
     func_020719d0(p);
     if (data_021759c0->mMode == 5) {
         p->mUnk_514 = HeapAlloc(h, 0xb8);

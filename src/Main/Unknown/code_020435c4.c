@@ -89,13 +89,13 @@ void func_0204451c(u32 a) {
         f = 1;
     }
     func_020468b0(a, data_021759c0->mCurrentEntries[a].mCharacterIndex, data_021759c0->mCurrentEntries[a].mKartIndex, 1,
-                  data_021759c0->mCurrentEntries[a].mUnk_08.mTeamIndex, f);
+                  data_021759c0->mCurrentEntries[a].mPlayer.mTeamIndex, f);
     q = data_021759c0;
     q->mCurrentEntries[a] = q->mNextEntries[a];
     if (f < 2) {
         q->mUnk_3d5[f] = a;
     }
-    data_021759c0->mNextEntries[a].mUnk_08.mUnk_16 = data_021759c0->mUnk_3e1;
+    data_021759c0->mNextEntries[a].mPlayer.mUnk_16 = data_021759c0->mUnk_3e1;
     data_021759c0->mUnk_3e1 = data_021759c0->mUnk_3e1 + 1;
 }
 

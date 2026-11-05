@@ -952,7 +952,7 @@ void func_020a49d4(Unk020a3fa8 *a) {
             if (a->mUnk_000.mCourseMapRow->mUnk_2c != 0) {
                 p->mUnk_30 = a->mUnk_000.mCourseMapRow->mUnk_2c;
             } else {
-                switch (data_021759c0->mCurrentEntries[(u16) i].mUnk_08.mTeamIndex) {
+                switch (data_021759c0->mCurrentEntries[(u16) i].mPlayer.mTeamIndex) {
                     case 0:
                         p->mUnk_30 = 1;
                         break;

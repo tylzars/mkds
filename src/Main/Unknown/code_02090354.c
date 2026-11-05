@@ -533,7 +533,7 @@ void func_02090748(Unk020905a8 *a) {
     p = GetKart(a->mUnk_24);
     v = p->mPos;
     a->mUnk_20 = func_0207eafc(a->mUnk_00.mUnk_00->mUnk_18, &v, &p->mUnk_12c, &p->mUnk_138);
-    if ((p->mUnk_48 & 0x40000000) != 0 && p->mUnk_3e4 == 1) {
+    if ((p->mUnk_48 & 0x40000000) != 0 && p->mSurfaceVariant == 1) {
         r = func_02080bf4(&a->mUnk_00, &v);
     } else {
         r = func_02080bf4(&a->mUnk_00, &v);
@@ -542,8 +542,8 @@ void func_02090748(Unk020905a8 *a) {
         }
     }
     p->mForwardSpeed = 0xa800;
-    p->mUnk_cc = p->mForwardSpeed;
-    p->mSpeedLimit = p->mUnk_cc;
+    p->mSpeedLimitGoal = p->mForwardSpeed;
+    p->mSpeedLimit = p->mSpeedLimitGoal;
     if (r != 0) {
         func_0207ff5c((u32) a);
     } else {

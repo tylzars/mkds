@@ -200,16 +200,17 @@ extern Unk02165ff0 *data_0217b030;
 // Objects whose layout isn't known yet.
 struct Unk020184e4;
 
-// Object behind data_0217b038, 0x14 bytes.
-typedef struct Unk0217b038 {
-    /* 00 */ u8 *mUnk_00;
-    /* 04 */ u8 *mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ u8 *mUnk_0c;
-    /* 10 */ u8 *mUnk_10;
-} Unk0217b038;
+// Object behind gKartPhysicalParamTable (0x14 bytes), made once per race: the per-slot records (mKartParams) and
+// character rows (mCharParams) and the two loaded files. mFirstBaseSpeedLimit is a copy of file word 0x10.
+typedef struct KartPhysicalParamTable {
+    /* 00 */ u8 *mKartParams;
+    /* 04 */ u8 *mCharParams;
+    /* 08 */ s32 mFirstBaseSpeedLimit;
+    /* 0c */ u8 *mKartParamFile;
+    /* 10 */ u8 *mCharParamFile;
+} KartPhysicalParamTable;
 
-extern Unk0217b038 *data_0217b038;
+extern KartPhysicalParamTable *gKartPhysicalParamTable;
 
 extern struct Unk020184e4 *data_0217b03c;
 

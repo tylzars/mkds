@@ -41,7 +41,7 @@ void func_02086a04(void) {
         GetKart(i);
         data_0217aed0->mUnk_0e4[i] = 0;
         p = GetKart(i);
-        k = p->mUnk_1d0 * 3;
+        k = p->mRadius * 3;
         s = p->mKartModelsEntry;
         Vec3Sub(p->mUnk_508, &q->mUnk_08, &v30);
         d = Vec3Dot(&v30, &q->mUnk_14);

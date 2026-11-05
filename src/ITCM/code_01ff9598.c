@@ -81,7 +81,7 @@ BOOL func_01ffa380(Kart *p, u32 a, Vec3 *b) {
         }
     }
     if (t == FALSE) {
-        if (b->y <= (s32) (((s64) p->mUnk_1d0 * -0xb33 + 0x800) >> 12)) {
+        if (b->y <= (s32) (((s64) p->mRadius * -0xb33 + 0x800) >> 12)) {
             r = FALSE;
         }
     }
@@ -91,7 +91,7 @@ BOOL func_01ffa380(Kart *p, u32 a, Vec3 *b) {
 void func_01ffa350(Kart *p, u32 a) {
     p->mUnk_44 = p->mUnk_44 & ~a;
     p->mUnk_208->mUnk_00 = FALSE;
-    p->mUnk_3dc = -1;
+    p->mSurfaceGroup = -1;
     func_020839d8(p);
 }
 
@@ -164,16 +164,18 @@ void func_01ffa11c(Kart *p, const Vec3 *a) {
     }
 }
 
-void func_01ffa0c4(Kart *p) {
+// Counts mAirborneFrames, also clears mUnk_234 and sets or clears bit 0x4000 and stores mLastGroundY; not run while the
+// kart is below y = 0.
+void UpdateKartAirborne(Kart *p) {
     if (p->mUnk_44 & 0x10) {
-        p->mUnk_380 = 0;
+        p->mAirborneFrames = 0;
         p->mUnk_234 = 0;
         p->mUnk_44 = p->mUnk_44 & ~0x4000;
-        p->mUnk_2ac = p->mPos.y;
+        p->mLastGroundY = p->mPos.y;
         return;
     }
-    p->mUnk_380 = p->mUnk_380 + 1;
-    if (p->mUnk_380 > 5) {
+    p->mAirborneFrames = p->mAirborneFrames + 1;
+    if (p->mAirborneFrames > 5) {
         p->mUnk_44 = p->mUnk_44 | 0x4000;
     }
 }
@@ -183,7 +185,7 @@ void func_01ff9f60(Kart *p, Vec3 *a) {
     u32 t;
 
     p->mUnk_3f8 = 0x1000;
-    if (p->mUnk_380 > 5) {
+    if (p->mAirborneFrames > 5) {
         p->mUnk_3a8 = 0xf6;
         func_02070484(p, &p->mUnk_100_q);
     } else {
@@ -209,19 +211,20 @@ void func_01ff9f60(Kart *p, Vec3 *a) {
     func_01ffcf7c(&p->mUnk_110_q, &p->mUnk_110_q);
 }
 
-void func_01ff9e5c(Kart *p) {
+// Runs only on a step with a ground hit (non-zero normal), not every frame.
+void RefreshKartSurface(Kart *p) {
     s32 r = func_020d59f8(0x1e34ef);
     s32 k;
     s32 a;
     s32 b;
     s32 c;
 
-    p->mUnk_3e0 = (r & 0x1f00) >> 8;
-    p->mUnk_3e4 = (u32) ((r & 0xe0) << 11) >> 16;
+    p->mSurfaceKind = (r & 0x1f00) >> 8;
+    p->mSurfaceVariant = (u32) ((r & 0xe0) << 11) >> 16;
     a = 0x1000;
-    k = data_usa_02154d8c[p->mUnk_3e0](p);
+    k = gKartSurfaceFunctions[p->mSurfaceKind](p);
     if (k != 0) {
-        a = p->mUnk_2cc->mUnk_68[k];
+        a = p->mPhysicalParam->mSurfaceSpeedLimitFactors[k];
     }
     b = p->mUnk_dc;
     if (a >= b) {
@@ -234,7 +237,7 @@ void func_01ff9e5c(Kart *p) {
     } else {
         c = k;
     }
-    p->mUnk_240 = p->mUnk_2cc->mUnk_38[c];
+    p->mUnk_240 = p->mPhysicalParam->mUnk_38[c];
     if (p->mUnk_48 & 0x40000000) {
         if (p->mUnk_44 & 0x10) {
             if (k != 0xb) {
@@ -242,7 +245,7 @@ void func_01ff9e5c(Kart *p) {
             }
         }
     }
-    p->mUnk_3dc = k;
+    p->mSurfaceGroup = k;
 }
 
 void func_01ff9d18(Kart *p) {

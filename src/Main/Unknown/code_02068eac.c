@@ -475,7 +475,7 @@ void func_0206938c(Kart *p) {
             ResetCameraHalfFovAngleGoal();
         }
         p->mUnk_4c8 = 0x1000;
-        p->mUnk_3dc = -1;
+        p->mSurfaceGroup = -1;
         i = 0;
         p->mUnk_29c = 0;
         if (p->mKartModelsEntry->mUnk_058 == 0) {

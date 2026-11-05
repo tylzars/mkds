@@ -64,7 +64,7 @@ void func_0203d21c(void) {
                 }
                 if (f != FALSE) {
                     if (w == 1) {
-                        v = data_021759c0->mCurrentEntries[a].mUnk_08.mTeamIndex;
+                        v = data_021759c0->mCurrentEntries[a].mPlayer.mTeamIndex;
                     }
                 }
                 d = data_021759c0;
@@ -82,7 +82,7 @@ void func_0203d21c(void) {
                             if (f != FALSE) {
                                 if (v == -1) {
                                     d = data_021759c0;
-                                    v = d->mCurrentEntries[a].mUnk_08.mTeamIndex;
+                                    v = d->mCurrentEntries[a].mPlayer.mTeamIndex;
                                 }
                             }
                         }
@@ -94,14 +94,14 @@ void func_0203d21c(void) {
                 gRaceProgress->mUnk_000[a].mFlags |= 2;
                 if (gRaceProgress->mUnk_000[a].mStatus == 1) {
                     if (f != FALSE) {
-                        e = v == data_021759c0->mCurrentEntries[a].mUnk_08.mTeamIndex ? 1 : 0;
+                        e = v == data_021759c0->mCurrentEntries[a].mPlayer.mTeamIndex ? 1 : 0;
                     } else {
                         e = 1;
                     }
                     func_0205d88c(a, 1);
                 } else {
                     if (f != FALSE) {
-                        e = v == data_021759c0->mCurrentEntries[a].mUnk_08.mTeamIndex ? 1 : 0;
+                        e = v == data_021759c0->mCurrentEntries[a].mPlayer.mTeamIndex ? 1 : 0;
                     } else {
                         e = 0;
                     }

@@ -6,8 +6,8 @@ typedef struct Kart Kart;
 
 void func_01ffba68(Kart *p);
 void func_01ffbd9c(Kart *p);
-void func_01ffbe04(Kart *p);
-void func_01ffbe70(Kart *p);
+void UpdateKartSpeedLimit(Kart *p);
+void UpdateKartSpeedLimitGoal(Kart *p);
 void func_01ffbfe4(Kart *p);
 void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Kart *p);
 void func_01ffc064(Vec3 *a, const Vec3 *b, s32 c, Kart *p);

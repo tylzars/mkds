@@ -39,7 +39,7 @@ void func_0207e594(struct Unk020888b4 *p, struct Kart *q, s32 a) {
     } else {
         p->mUnk_8c = 0x1000;
     }
-    p->mUnk_9c = (s32) (((s64) p->mKart->mUnk_2cc->mUnk_10 * 0x99a + 0x800) >> 12);
+    p->mUnk_9c = (s32) (((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12);
     func_02080d34(&p->mUnk_08, p->mIndex);
     func_0207f9cc(p, 0);
     p->mUnk_cc = 1;
@@ -86,7 +86,7 @@ void func_0207e400(struct Unk020888b4 *p, struct Kart *q, s32 a) {
     p->mUnk_06 = p->mIndex % 4;
     p->mUnk_88 = 0x1000;
     p->mUnk_8c = 0;
-    p->mUnk_9c = (s32) (((s64) p->mKart->mUnk_2cc->mUnk_10 * 0x99a + 0x800) >> 12);
+    p->mUnk_9c = (s32) (((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12);
     func_02080d34(&p->mUnk_08, p->mIndex);
     func_0207f9cc(p, 0);
     p->mUnk_cc = 1;
@@ -194,7 +194,7 @@ void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     Unk0217aebc_128 *r;
     Unk020888b4 *u;
 
-    v = data_021759c0->mCurrentEntries[b->mIndex].mUnk_08.mKind;
+    v = data_021759c0->mCurrentEntries[b->mIndex].mPlayer.mKind;
     if ((u32) v <= 3) {
         if ((1 << v) & 0xd) {
             f = TRUE;
@@ -241,7 +241,7 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         a->mUnk_08 = 0;
         a->mUnk_18 = 0;
         f = FALSE;
-        v = data_021759c0->mCurrentEntries[b->mIndex].mUnk_08.mKind;
+        v = data_021759c0->mCurrentEntries[b->mIndex].mPlayer.mKind;
         if ((u32) v <= 3) {
             if ((1 << v) & 0xd) {
                 f = TRUE;
@@ -257,7 +257,7 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
             a->mUnk_08 = a->mUnk_08 >> 1;
         }
         q = b->mKart;
-        t = a->mUnk_08 + q->mUnk_cc;
+        t = a->mUnk_08 + q->mSpeedLimitGoal;
         if (b->mUnk_a8 == 2) {
             t = 0x3000;
         }
@@ -295,7 +295,7 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         return;
     }
     if ((q->mUnk_48 & 0x10000020) == 0) {
-        q->mUnk_cc = a->mUnk_04;
+        q->mSpeedLimitGoal = a->mUnk_04;
     }
 }
 
@@ -314,7 +314,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
 
     a->mUnk_18 = 0;
     f = FALSE;
-    v = data_021759c0->mCurrentEntries[m].mUnk_08.mKind;
+    v = data_021759c0->mCurrentEntries[m].mPlayer.mKind;
     if ((u32) v <= 3) {
         if ((1 << v) & 0xd) {
             f = TRUE;
@@ -467,7 +467,7 @@ u16 func_0207d8e4(s32 a) {
 void func_0207d814(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     s32 t;
 
-    a->mUnk_00 = b->mKart->mUnk_2cc->mUnk_10;
+    a->mUnk_00 = b->mKart->mPhysicalParam->mBaseSpeedLimit;
     a->mUnk_04 = a->mUnk_00;
     a->mUnk_08 = 0;
     a->mUnk_0c = 0;
@@ -481,9 +481,9 @@ void func_0207d814(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     }
     if (data_021759c0->mUnk_00c == 6) {
         t = func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00);
-        b->mKart->mForwardSpeed = (s32) (((s64) b->mKart->mUnk_2cc->mUnk_10 * t + 0x800) >> 12);
-        b->mKart->mUnk_cc = b->mKart->mForwardSpeed;
-        b->mKart->mSpeedLimit = b->mKart->mUnk_cc;
+        b->mKart->mForwardSpeed = (s32) (((s64) b->mKart->mPhysicalParam->mBaseSpeedLimit * t + 0x800) >> 12);
+        b->mKart->mSpeedLimitGoal = b->mKart->mForwardSpeed;
+        b->mKart->mSpeedLimit = b->mKart->mSpeedLimitGoal;
         return;
     }
     func_0207e088(a, b);

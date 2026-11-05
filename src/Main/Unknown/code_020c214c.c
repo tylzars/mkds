@@ -210,7 +210,7 @@ void InitRaceGoalS(void) {
     gRaceGoalS->mUnk_00a0 = -0x100;
     for (j = 0; j < data_021759c0->mKartCount; j = (u16) (j + 1)) {
         if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2) {
-            e = data_021759c0->mCurrentEntries[j].mUnk_08.mKind;
+            e = data_021759c0->mCurrentEntries[j].mPlayer.mKind;
             k = e == 0 || e == 2 || e == 3 ? 1 : 0;
             l = func_0205d360(j);
             s[j] = l * 16 + k * 8;
@@ -221,7 +221,7 @@ void InitRaceGoalS(void) {
             }
             gRaceGoalS->mUnk_0020[j] = func_0205d360(j);
         } else {
-            e = data_021759c0->mCurrentEntries[j].mUnk_08.mKind;
+            e = data_021759c0->mCurrentEntries[j].mPlayer.mKind;
             l = e == 0 || e == 2 || e == 3 ? 1 : 0;
             k = func_0205d3f0(j);
             s[j] = k * 16 + l * 8 + 8 - func_0205d27c(j);
@@ -391,7 +391,7 @@ void func_020c28dc(Unk020c06c4 *a) {
                                              NULL, e4, 0, 1);
             }
             if (data_021759c0->mUseTeams != 0) {
-                x = data_021759c0->mCurrentEntries[(u16) k].mUnk_08.mTeamIndex == 0 ? 0x1f : 0x20;
+                x = data_021759c0->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 0 ? 0x1f : 0x20;
                 m = GetRaceGoalSNcerEntry(x);
                 e5[0] = (d + 0xec) << 12;
                 e5[1] = t[i] << 12;
@@ -456,9 +456,9 @@ void func_020c2570(Unk020c06c4 *a, u32 b, s32 c, s32 d) {
     a->mUnk_400 +=
         func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m, NULL, e1, 0, 1);
     if (b == func_020b4d9c()) {
-        s = data_021759c0->mCurrentEntries[b].mUnk_08.mTeamIndex == 0 ? 0x1e : 0x1f;
+        s = data_021759c0->mCurrentEntries[b].mPlayer.mTeamIndex == 0 ? 0x1e : 0x1f;
     } else {
-        s = data_021759c0->mCurrentEntries[b].mUnk_08.mTeamIndex == 0 ? 0x1c : 0x1d;
+        s = data_021759c0->mCurrentEntries[b].mPlayer.mTeamIndex == 0 ? 0x1c : 0x1d;
     }
     m = GetRaceGoalTeamSNcerEntry(s);
     e2[0] = c << 12;
@@ -553,7 +553,7 @@ void func_020c214c(Unk020c06c4 *a) {
         c[i] = 0;
     }
     for (i = 0; (u32) i < (u32) data_021759c0->mKartCount; i++) {
-        k = data_021759c0->mCurrentEntries[i].mUnk_08.mTeamIndex;
+        k = data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex;
         func_020c2570(a, i, t1[k] + (k == 0 ? -d : d), c[k] * 0x17 + 0x11);
         c[k]++;
     }

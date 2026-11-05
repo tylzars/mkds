@@ -201,7 +201,7 @@ u8 func_020e311c(Unk020e1e98 *a, Kart *b, u8 *c, u8 *d) {
 
     switch (c[0]) {
         case 2:
-            if (data_021759c0->mCurrentEntries[b->mIndex].mUnk_08.mKind == 2) {
+            if (data_021759c0->mCurrentEntries[b->mIndex].mPlayer.mKind == 2) {
                 return d[0];
             }
             if (a->mUnk_000.mUnk_80.mState == 7) {

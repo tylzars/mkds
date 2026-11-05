@@ -89,14 +89,14 @@ void func_02046968(s32 a) {
     n = 0;
     m = 0;
     for (i = 0; i < a; i++) {
-        if (data_021759c0->mCurrentEntries[i].mUnk_08.mKind != 4) {
-            if (data_021759c0->mCurrentEntries[i].mUnk_08.mKind == 0 ||
-                data_021759c0->mCurrentEntries[i].mUnk_08.mKind == 3) {
+        if (data_021759c0->mCurrentEntries[i].mPlayer.mKind != 4) {
+            if (data_021759c0->mCurrentEntries[i].mPlayer.mKind == 0 ||
+                data_021759c0->mCurrentEntries[i].mPlayer.mKind == 3) {
                 n++;
             }
             m++;
             if (data_021759c0->mUseTeams != 0) {
-                b[data_021759c0->mCurrentEntries[i].mUnk_08.mTeamIndex]++;
+                b[data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex]++;
             }
         }
     }
@@ -109,15 +109,15 @@ void func_02046968(s32 a) {
 
 void func_020468b0(int a, u32 b, u32 c, int d, u32 e, int f) {
     data_021759c0->mNextEntries[a].mCharacterIndex = b;
-    data_021759c0->mNextEntries[a].mUnk_08.mKind = d;
-    data_021759c0->mNextEntries[a].mUnk_08.mIndex = a;
+    data_021759c0->mNextEntries[a].mPlayer.mKind = d;
+    data_021759c0->mNextEntries[a].mPlayer.mIndex = a;
     data_021759c0->mNextEntries[a].mKartIndex = c;
-    data_021759c0->mNextEntries[a].mUnk_08.mTeamIndex = e;
-    data_021759c0->mNextEntries[a].mUnk_08.mUnk_08 = f;
-    data_021759c0->mNextEntries[a].mUnk_08.mUnk_10 = d == 2 ? 0 : 3;
-    data_021759c0->mNextEntries[a].mUnk_08.mUnk_14 = 0;
+    data_021759c0->mNextEntries[a].mPlayer.mTeamIndex = e;
+    data_021759c0->mNextEntries[a].mPlayer.mUnk_08 = f;
+    data_021759c0->mNextEntries[a].mPlayer.mUnk_10 = d == 2 ? 0 : 3;
+    data_021759c0->mNextEntries[a].mPlayer.mUnk_14 = 0;
     if (f != 3) {
-        data_021759c0->mNextEntries[a].mUnk_08.mUnk_14 |= 1;
+        data_021759c0->mNextEntries[a].mPlayer.mUnk_14 |= 1;
     }
 }
 

@@ -63,9 +63,9 @@ void func_0206cdd4(Kart *p) {
         p->mUnk_44 |= 0x8000;
     }
     if (p->mUnk_2fc == 4) {
-        func_0206d020(p, 1, p->mUnk_2cc->mUnk_0e);
+        func_0206d020(p, 1, p->mPhysicalParam->mUnk_0e);
         p->mUnk_48 |= 0x80000;
-        p->mUnk_23c = p->mUnk_2cc->mUnk_0e;
+        p->mUnk_23c = p->mPhysicalParam->mUnk_0e;
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             func_0207a6b0()->mUnk_04++;
             // placeholder: the same test twice gives the original's two loads and compares
@@ -75,7 +75,7 @@ void func_0206cdd4(Kart *p) {
         }
     }
     p->mUnk_44 &= 0xfffff7f4;
-    p->mUnk_2c4 = 0;
+    p->mTurnDirection = 0;
     p->mUnk_2fc = 0;
     p->mUnk_302 = 0;
     p->mUnk_300 = p->mUnk_302;
@@ -84,7 +84,7 @@ void func_0206cdd4(Kart *p) {
 }
 
 void func_0206cc60(Kart *p, int arg) {
-    if (p->mUnk_2c4 > 0) {
+    if (p->mTurnDirection > 0) {
         if (p->mUnk_388 > 11000) {
             p->mUnk_388 = p->mUnk_388 - 200;
             if (p->mUnk_388 < 11000) {
@@ -143,21 +143,21 @@ void func_0206c5e4(Kart *p) {
     if (p->mUnk_7c & 0x400) {
         return;
     }
-    if (p->mUnk_380 >= 5 && !(f & 0x1a)) {
+    if (p->mAirborneFrames >= 5 && !(f & 0x1a)) {
         k = p->mEntryIndex;
         if ((u16) (data_02175628[k].mBits & 0x100)) {
             if (f & 1) {
                 goto recheck;
             }
-            if (p->mUnk_2c4 != 0) {
+            if (p->mTurnDirection != 0) {
                 goto recheck;
             }
             g = p->mUnk_48;
             if (g & 0x10) {
-                p->mUnk_2c4 = 1;
+                p->mTurnDirection = 1;
                 p->mUnk_44 |= 1;
             } else if (g & 8) {
-                p->mUnk_2c4 = -1;
+                p->mTurnDirection = -1;
                 p->mUnk_44 |= 1;
             }
         } else {
@@ -166,23 +166,23 @@ void func_0206c5e4(Kart *p) {
     }
 recheck:
     if (p->mUnk_44 & 2) {
-        if (p->mUnk_2c4 == 0) {
+        if (p->mTurnDirection == 0) {
             g = p->mUnk_48;
             if (g & 0x10) {
-                p->mUnk_2c4 = 1;
+                p->mTurnDirection = 1;
             } else if (g & 8) {
-                p->mUnk_2c4 = -1;
+                p->mTurnDirection = -1;
             }
         }
     }
     f = p->mUnk_44;
-    g = p->mUnk_2c4;
+    g = p->mTurnDirection;
     if (!(f & 8) && (f & 0x10)) {
-        if ((f & 3) && p->mVelocityLength > (s32) (((s64) p->mUnk_2cc->mUnk_10 * 0x8cd) >> 12) && g != 0 &&
-            (u16) (data_02175628[k = p->mEntryIndex].mBits & 0x100)) {
+        if ((f & 3) && p->mVelocityLength > (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * 0x8cd) >> 12) &&
+            g != 0 && (u16) (data_02175628[k = p->mEntryIndex].mBits & 0x100)) {
             p->mUnk_44 |= 8;
             p->mUnk_2fc = 1;
-            if (p->mUnk_2c4 > 0) {
+            if (p->mTurnDirection > 0) {
                 p->mUnk_304 = &p->mUnk_300;
                 p->mUnk_308 = &p->mUnk_302;
             } else {
@@ -195,7 +195,7 @@ recheck:
                 func_0208d6b0(t);
             }
         } else {
-            p->mUnk_2c4 = 0;
+            p->mTurnDirection = 0;
         }
         p->mUnk_44 &= 0xfffff7fc;
     }
@@ -203,14 +203,14 @@ recheck:
     if (f & 8) {
         k = p->mEntryIndex;
         if (!((u16) (data_02175628[k].mBits & 0x100) && (p->mUnk_48 & 2) &&
-              p->mVelocityLength >= p->mUnk_2cc->mUnk_10 / 2 && !(f & 0x2000c0))) {
+              p->mVelocityLength >= p->mPhysicalParam->mBaseSpeedLimit / 2 && !(f & 0x2000c0))) {
             if (!(f & 0x10)) {
                 p->mUnk_44 |= 0x8000;
             }
             if (p->mUnk_2fc == 4) {
-                func_0206d020(p, 1, p->mUnk_2cc->mUnk_0e);
+                func_0206d020(p, 1, p->mPhysicalParam->mUnk_0e);
                 p->mUnk_48 |= 0x80000;
-                p->mUnk_23c = p->mUnk_2cc->mUnk_0e;
+                p->mUnk_23c = p->mPhysicalParam->mUnk_0e;
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                     func_0207a6b0()->mUnk_04++;
                     // placeholder: the same test twice gives the original's two loads and compares
@@ -220,7 +220,7 @@ recheck:
                 }
             }
             p->mUnk_44 &= 0xfffff7f4;
-            p->mUnk_2c4 = 0;
+            p->mTurnDirection = 0;
             p->mUnk_2fc = 0;
             p->mUnk_302 = 0;
             p->mUnk_300 = p->mUnk_302;
@@ -285,7 +285,7 @@ recheck:
     p->mUnk_2b8 = 0x1405;
     p->mUnk_260 += 0x21a2;
     p->mUnk_2bc = 0;
-    p->mUnk_2c4 = 0;
+    p->mTurnDirection = 0;
     p->mUnk_38a = 0;
     p->mUnk_2fc = 0;
     p->mUnk_302 = 0;
@@ -311,18 +311,18 @@ int func_0206c494(Kart *p) {
     enum { K0 } k;
 
     if (p->mVelocityLength < 0x1800 && (p->mUnk_48 & 0x80)) {
-        p->mUnk_2c4 = 0;
+        p->mTurnDirection = 0;
         result = TRUE;
         pending = FALSE;
         k = p->mEntryIndex;
         bits = data_02175628[k].mBits;
         if ((u16) (bits & 0x20)) {
             dir = TRUE;
-            p->mUnk_2c4 = -1;
+            p->mTurnDirection = -1;
             delta = 500;
         } else if ((u16) (bits & 0x10)) {
             dir = TRUE;
-            p->mUnk_2c4 = 1;
+            p->mTurnDirection = 1;
             delta = -500;
         }
         if (p->mUnk_44 & 0x10) {
@@ -332,13 +332,13 @@ int func_0206c494(Kart *p) {
                 func_0208d6b0(t);
             }
             p->mUnk_48 |= 0x100;
-            if (p->mUnk_2c4 != 0) {
+            if (p->mTurnDirection != 0) {
                 p->mUnk_44 |= 0x8000000;
                 p->mUnk_236 += delta;
                 func_0206cc60(p, 1);
             }
         }
-        func_0210b4e0(p, dir, p->mUnk_3e0, p->mUnk_3e4);
+        func_0210b4e0(p, dir, p->mSurfaceKind, p->mSurfaceVariant);
     }
     if (pending) {
         func_0208d650(func_0208c5b8(p->mIndex));
@@ -367,7 +367,7 @@ BOOL func_0206c354(Kart *p, const Vec3 *a, int flag) {
             list = arr;
             n = 4;
         }
-        Vec3AddScaled(-p->mUnk_1d0, a, &p->mPos, &tmp);
+        Vec3AddScaled(-p->mRadius, a, &p->mPos, &tmp);
         Vec3AddScaled((s32) (((s64) p->mUnk_bc.y * 0x8000 + 0x800) >> 12), &p->mUnk_12c, &tmp, &tmp);
         for (; i < n; i++) {
             func_0208b748(list[i], &tmp, p, func_0206c450);
@@ -392,7 +392,7 @@ void func_0206c1ac(Unk0206c1ac *obj, Kart *p) {
     UnkVec16 rot;
     Vec3 *q;
 
-    Vec3AddScaled((s32) (((s64) p->mUnk_1d0 * -0x1333 + 0x800) >> 12), &p->mUnk_138, &v, &v);
+    Vec3AddScaled((s32) (((s64) p->mRadius * -0x1333 + 0x800) >> 12), &p->mUnk_138, &v, &v);
     v.x >>= 4;
     v.y >>= 4;
     v.z >>= 4;
@@ -463,7 +463,7 @@ void func_0206bf88(Kart *p, int mode) {
     func_02068a64(p, 1, 0);
     p->mState = mode;
     p->mUnk_44 &= 0xfffff7f4;
-    p->mUnk_2c4 = 0;
+    p->mTurnDirection = 0;
     p->mUnk_2fc = 0;
     p->mUnk_302 = 0;
     p->mUnk_300 = p->mUnk_302;

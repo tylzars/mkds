@@ -660,7 +660,7 @@ void func_020f572c(Unk020f5d6c *a) {
         func_0210ddf4(&data_0217d294, a->mUnk_000.mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f, func_020f5fb8, a, 0);
     }
     if (a->mUnk_23c.mStateFrames <= 0x14) {
-        r = k->mUnk_1d0 + (s32) ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_e0 * 3) >> 1);
+        r = k->mRadius + (s32) ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_e0 * 3) >> 1);
         n = a->mUnk_000.mUnk_000.mUnk_000.mPos.z - k->mUnk_1d8.z;
         t = a->mUnk_000.mUnk_000.mUnk_000.mPos.x - k->mUnk_1d8.x;
         if ((s64) t * t + (s64) n * n >= (s64) r * r) {
@@ -796,7 +796,7 @@ BOOL func_020f5324(void *a0, s32 b) {
 
     a = a0;
     k = GetKart(b);
-    r = k->mUnk_1d0 + (s32) ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_e0 * 3) >> 1);
+    r = k->mRadius + (s32) ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_e0 * 3) >> 1);
     n = a->mUnk_000.mUnk_000.mUnk_000.mPos.z - k->mUnk_1d8.z;
     t = a->mUnk_000.mUnk_000.mUnk_000.mPos.x - k->mUnk_1d8.x;
     if ((s64) t * t + (s64) n * n < (s64) r * r) {
@@ -1049,7 +1049,7 @@ void func_020f4b20(Unk020f40dc *a, KartItems *b) {
     for (i = 0; i < 3; i++) {
         a->mUnk_14[i] = NULL;
     }
-    a->mUnk_24 = data_021759c0->mCurrentEntries[b->mKartIndex].mUnk_08.mKind == 3;
+    a->mUnk_24 = data_021759c0->mCurrentEntries[b->mKartIndex].mPlayer.mKind == 3;
 }
 
 void func_020f49bc(Unk020f40dc *a) {

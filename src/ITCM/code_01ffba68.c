@@ -141,9 +141,9 @@ void func_01ffcc50(Kart *p) {
         return;
     }
     func_01ffca50(p);
-    func_01ffbe70(p);
+    UpdateKartSpeedLimitGoal(p);
     func_02067488(p);
-    func_01ffbe04(p);
+    UpdateKartSpeedLimit(p);
     func_01ffbd9c(p);
     func_01ffc6c0(p);
     func_01ff9d18(p);
@@ -203,8 +203,8 @@ static inline const s32 func_01ffc090_inline(void) {
 
 void func_01ffca50(Kart *p) {
     p->mUnk_48 &= ~0x18;
-    p->mUnk_1d0 = (s32) (((s64) p->mUnk_4c8 * (s32) (((s64) p->mUnk_2cc->mUnk_00 * p->mUnk_394) >> 12)) >> 12);
-    p->mUnk_1d4 = (s32) (((s64) p->mUnk_2cc->mUnk_04 * p->mUnk_bc.z) >> 12);
+    p->mRadius = (s32) (((s64) p->mUnk_4c8 * (s32) (((s64) p->mPhysicalParam->mRadius * p->mUnk_394) >> 12)) >> 12);
+    p->mUnk_1d4 = (s32) (((s64) p->mPhysicalParam->mUnk_04 * p->mUnk_bc.z) >> 12);
     p->mUnk_3ec = 0;
 }
 
@@ -382,7 +382,7 @@ void func_01ffc500(s32 *p) {
 }
 
 s32 func_01ffc27c(Kart *p, s32 a) {
-    s32 x = p->mUnk_2cc->mUnk_30;
+    s32 x = p->mPhysicalParam->mUnk_30;
     BOOL d = FALSE;
     s32 r = 0;
     enum { K1 } b = 1;
@@ -404,7 +404,7 @@ s32 func_01ffc27c(Kart *p, s32 a) {
     }
     f = p->mUnk_44;
     if ((f & 0x800) && (f & 2)) {
-        t = p->mUnk_2c4 * 0x168;
+        t = p->mTurnDirection * 0x168;
         if (a == 0) {
             t = t * ((f & 0x100) ? -1 : 1);
         }
@@ -469,8 +469,8 @@ s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
     }
     f = p->mUnk_44;
     if (f & 8) {
-        m = p->mUnk_2c4 * c;
-        x = p->mUnk_2cc->mUnk_32;
+        m = p->mTurnDirection * c;
+        x = p->mPhysicalParam->mUnk_32;
         if (m > 0) {
             x = -k;
         } else {
@@ -497,7 +497,7 @@ s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
 void func_01ffc090(Kart *p, s32 a) {
     if (a == 0) {
         if (p->mUnk_44 & 8) {
-            p->mUnk_3ec = -p->mUnk_2c4 * ((p->mUnk_2cc->mUnk_32 + p->mUnk_38a) >> 1);
+            p->mUnk_3ec = -p->mTurnDirection * ((p->mPhysicalParam->mUnk_32 + p->mUnk_38a) >> 1);
         }
         func_01ffc500(&p->mUnk_2d4);
     }
@@ -510,7 +510,7 @@ void func_01ffc090(Kart *p, s32 a) {
 }
 
 void func_01ffc064(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
-    Vec3AddScaled(p->mUnk_1d0 + c, &p->mUnk_12c, b, a);
+    Vec3AddScaled(p->mRadius + c, &p->mUnk_12c, b, a);
 }
 
 void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
@@ -519,23 +519,24 @@ void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
 
     Vec3Sub(&p->mPos, &p->mPrevPos, &d);
     Vec3Add(&d, b, &e);
-    Vec3AddScaled(p->mUnk_1d0 + c, &p->mUnk_15c, &e, a);
+    Vec3AddScaled(p->mRadius + c, &p->mUnk_15c, &e, a);
 }
 
 void func_01ffbfe4(Kart *p) {
-    Vec3AddScaled(p->mUnk_1d0 + 0x400, &p->mUnk_15c, &p->mUnk_98, &p->mUnk_1c4);
+    Vec3AddScaled(p->mRadius + 0x400, &p->mUnk_15c, &p->mUnk_98, &p->mUnk_1c4);
 }
 
-void func_01ffbe70(Kart *p) {
+// Once per step of the driving states, not of every state; also writes mUnk_dc in five branches.
+void UpdateKartSpeedLimitGoal(Kart *p) {
     s32 *q;
     u32 f;
 
-    p->mUnk_cc = (s32) (((s64) (s32) (((s64) p->mUnk_2cc->mUnk_10 * p->mUnk_dc) >> 12) *
-                         (s32) (((s64) (s32) p->mUnk_d4 * p->mUnk_d8) >> 12)) >>
-                        12);
-    q = &p->mUnk_cc;
+    p->mSpeedLimitGoal = (s32) (((s64) (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * p->mUnk_dc) >> 12) *
+                                 (s32) (((s64) (s32) p->mUnk_d4 * p->mUnk_d8) >> 12)) >>
+                                12);
+    q = &p->mSpeedLimitGoal;
     if (p->mUnk_7c & 0x402000) {
-        *q = p->mUnk_2cc->mUnk_10;
+        *q = p->mPhysicalParam->mBaseSpeedLimit;
         p->mUnk_dc = 0x1000;
     }
     if (p->mUnk_48 & 0x10000000) {
@@ -545,7 +546,7 @@ void func_01ffbe70(Kart *p) {
     f = p->mUnk_48;
     if (f & 0x20) {
         if ((p->mUnk_4c & 0x10000040) || (f & 0x20000000)) {
-            *q = p->mUnk_2cc->mUnk_10;
+            *q = p->mPhysicalParam->mBaseSpeedLimit;
             p->mUnk_dc = 0x1000;
         }
         *q = (s32) (((s64) *q * 0x14cd) >> 12);
@@ -556,19 +557,20 @@ void func_01ffbe70(Kart *p) {
             }
         }
     } else if (p->mUnk_4c & 0x10000040) {
-        *q = (s32) (((s64) p->mUnk_2cc->mUnk_10 * 0x1333) >> 12);
+        *q = (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * 0x1333) >> 12);
         p->mUnk_dc = 0x1000;
     }
 }
 
-void func_01ffbe04(Kart *p) {
-    if (p->mSpeedLimit > p->mUnk_cc) {
+// Once per step of the driving states: the limit falls by x0xf37/0x1000 per step and rises to the goal at once.
+void UpdateKartSpeedLimit(Kart *p) {
+    if (p->mSpeedLimit > p->mSpeedLimitGoal) {
         p->mSpeedLimit = (s32) (((s64) p->mSpeedLimit * 0xf37) >> 12);
-        if (p->mSpeedLimit < p->mUnk_cc) {
-            p->mSpeedLimit = p->mUnk_cc;
+        if (p->mSpeedLimit < p->mSpeedLimitGoal) {
+            p->mSpeedLimit = p->mSpeedLimitGoal;
         }
     } else {
-        p->mSpeedLimit = p->mUnk_cc;
+        p->mSpeedLimit = p->mSpeedLimitGoal;
     }
 }
 
@@ -598,13 +600,13 @@ void func_01ffba68(Kart *p) {
 
     d = (p->mUnk_44 & 8) == 0;
     if (d) {
-        v = p->mUnk_2cc->mUnk_14;
-        a = p->mUnk_2cc->mUnk_18;
-        b = p->mUnk_2cc->mUnk_1c;
+        v = p->mPhysicalParam->mUnk_14;
+        a = p->mPhysicalParam->mUnk_18;
+        b = p->mPhysicalParam->mUnk_1c;
     } else {
-        v = p->mUnk_2cc->mUnk_20;
-        a = p->mUnk_2cc->mUnk_24;
-        b = p->mUnk_2cc->mUnk_28;
+        v = p->mPhysicalParam->mUnk_20;
+        a = p->mPhysicalParam->mUnk_24;
+        b = p->mPhysicalParam->mUnk_28;
     }
     c = v;
     f = p->mUnk_48;
@@ -668,12 +670,12 @@ void func_01ffba68(Kart *p) {
         return;
     }
     if (p->mUnk_388 > 0) {
-        p->mUnk_388 = p->mUnk_388 - p->mUnk_2cc->mUnk_34;
+        p->mUnk_388 = p->mUnk_388 - p->mPhysicalParam->mUnk_34;
         if (p->mUnk_388 < 0) {
             p->mUnk_388 = 0;
         }
     } else if (p->mUnk_388 < 0) {
-        p->mUnk_388 = p->mUnk_388 + p->mUnk_2cc->mUnk_34;
+        p->mUnk_388 = p->mUnk_388 + p->mPhysicalParam->mUnk_34;
         if (p->mUnk_388 > 0) {
             p->mUnk_388 = 0;
         }

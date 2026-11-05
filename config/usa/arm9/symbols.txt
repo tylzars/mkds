@@ -3211,10 +3211,10 @@ func_0208ab98 kind:function(arm,size=0x1dc) addr:0x0208ab98
 func_0208ad74 kind:function(arm,size=0x54) addr:0x0208ad74
 func_0208adc8 kind:function(arm,size=0x98) addr:0x0208adc8
 func_0208ae60 kind:function(arm,size=0x14) addr:0x0208ae60
-func_0208ae74 kind:function(arm,size=0x18) addr:0x0208ae74
-func_0208ae8c kind:function(arm,size=0x1c) addr:0x0208ae8c
-func_0208aea8 kind:function(arm,size=0x98) addr:0x0208aea8
-func_0208af40 kind:function(arm,size=0xa4) addr:0x0208af40
+GetCharPhysicalParam kind:function(arm,size=0x18) addr:0x0208ae74
+GetKartPhysicalParam kind:function(arm,size=0x1c) addr:0x0208ae8c
+CopyKartPhysicalParams kind:function(arm,size=0x98) addr:0x0208aea8
+CreateKartPhysicalParamTable kind:function(arm,size=0xa4) addr:0x0208af40
 func_0208afe4 kind:function(arm,size=0x1ac) addr:0x0208afe4
 func_0208b190 kind:function(arm,size=0x2c8) addr:0x0208b190
 func_0208b458 kind:function(arm,size=0x2c) addr:0x0208b458
@@ -7945,7 +7945,7 @@ data_02154cd4 kind:data(any) addr:0x02154cd4
 data_02154d10 kind:data(any) addr:0x02154d10
 data_usa_02154d4c kind:data(any) addr:0x02154d4c
 data_usa_02154d50 kind:data(any) addr:0x02154d50
-data_usa_02154d8c kind:data(any) addr:0x02154d8c
+gKartSurfaceFunctions kind:data(any) addr:0x02154d8c
 data_usa_02154de4 kind:data(any) addr:0x02154de4
 data_usa_02154e48 kind:data(any) addr:0x02154e48
 data_usa_02154eac kind:data(any) addr:0x02154eac
@@ -11405,7 +11405,7 @@ gSearchStartIndex kind:bss addr:0x0217b008
 gEntryYDifferenceLimit kind:bss addr:0x0217b00c
 data_0217b030 kind:bss addr:0x0217b010
 data_0217b034 kind:bss addr:0x0217b014
-data_0217b038 kind:bss addr:0x0217b018
+gKartPhysicalParamTable kind:bss addr:0x0217b018
 data_0217b03c kind:bss addr:0x0217b01c
 data_0217b040 kind:bss addr:0x0217b020
 data_0217b044 kind:bss addr:0x0217b024

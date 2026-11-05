@@ -38,7 +38,7 @@ static inline BOOL func_0207f600_inline(s32 a) {
 }
 
 static inline s32 func_0207f554_inline2(u32 i) {
-    return *(vs32 *) &data_021759c0->mCurrentEntries[i].mUnk_08.mTeamIndex;
+    return *(vs32 *) &data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex;
 }
 
 static inline s32 func_0207f554_inline(u32 a, u32 b) {
@@ -47,9 +47,9 @@ static inline s32 func_0207f554_inline(u32 a, u32 b) {
     BOOL t;
 
     if (data_021759c0->mUseTeams == 0 ||
-        data_021759c0->mCurrentEntries[a].mUnk_08.mTeamIndex != func_0207f554_inline2(b)) {
+        data_021759c0->mCurrentEntries[a].mPlayer.mTeamIndex != func_0207f554_inline2(b)) {
         t = FALSE;
-        v = data_021759c0->mCurrentEntries[b].mUnk_08.mKind;
+        v = data_021759c0->mCurrentEntries[b].mPlayer.mKind;
         if ((u32) v <= 3) {
             if ((1 << v) & 0xd) {
                 t = TRUE;
@@ -166,7 +166,7 @@ void func_0207fa74(Unk020888b4 *p, Kart *q, s32 a) {
     }
     p->mUnk_88 = data_usa_0217ae38[v];
     p->mUnk_8c = data_usa_0217ae48[v];
-    p->mUnk_9c = (s32) (((s64) p->mKart->mUnk_2cc->mUnk_10 * 0x99a + 0x800) >> 12);
+    p->mUnk_9c = (s32) (((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12);
     func_02080d34(&p->mUnk_08, p->mIndex);
     func_0207f9cc(p, 0);
     r = func_0208537c();
@@ -319,9 +319,9 @@ s32 func_0207f554(u32 a, u32 b) {
     BOOL t;
 
     if (data_021759c0->mUseTeams == 0 ||
-        data_021759c0->mCurrentEntries[a].mUnk_08.mTeamIndex != func_0207f554_inline2(b)) {
+        data_021759c0->mCurrentEntries[a].mPlayer.mTeamIndex != func_0207f554_inline2(b)) {
         t = FALSE;
-        v = data_021759c0->mCurrentEntries[b].mUnk_08.mKind;
+        v = data_021759c0->mCurrentEntries[b].mPlayer.mKind;
         if ((u32) v <= 3) {
             if ((1 << v) & 0xd) {
                 t = TRUE;
@@ -578,7 +578,7 @@ void func_0207ebfc(Unk020888b4 *p) {
     p->mUnk_74 = 0;
     if (!(q->mUnk_44 & 0xc00c0)) {
         n = q->mVelocityLength;
-        if (n > (s32) (((s64) q->mUnk_2cc->mUnk_10 * 0x8cd) >> 12)) {
+        if (n > (s32) (((s64) q->mPhysicalParam->mBaseSpeedLimit * 0x8cd) >> 12)) {
             return;
         }
     }

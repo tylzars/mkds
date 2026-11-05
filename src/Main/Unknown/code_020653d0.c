@@ -167,7 +167,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     } else if (!(p->mUnk_48 & 0x20000)) {
         v6 = p->mPrevPos;
         Vec3Add(&v, &q->mUnk_a8, &v);
-        func_020d5180(&v, n * 0xd000 + p->mUnk_1d0, 0x8000);
+        func_020d5180(&v, n * 0xd000 + p->mRadius, 0x8000);
         for (i = 0; i < n; i++) {
             if (p->mUnk_48 & 0x40) {
                 p->mPos.y -= 0x19a;
@@ -213,7 +213,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                     p->mUnk_44 &= ~0x2000;
                 }
             }
-            if (func_01ffdee4(&v, (u32 *) &v6, 0, p->mUnk_1d0, 1, p->mUnk_2c8, &v5, 0, 0, &w, 0, 0, 0, 0)) {
+            if (func_01ffdee4(&v, (u32 *) &v6, 0, p->mRadius, 1, p->mUnk_2c8, &v5, 0, 0, &w, 0, 0, 0, 0)) {
                 Vec3Add(&v, &v5, &v);
             }
             v6 = v;

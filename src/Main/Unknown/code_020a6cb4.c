@@ -102,7 +102,7 @@ void func_020a6e70(Unk02100094 *a) {
     for (i = 0; i < n; i++) {
         if (i == data_021759c0->mEntryIndex) {
             f = FALSE;
-            v = data_021759c0->mCurrentEntries[(u16) i].mUnk_08.mKind;
+            v = data_021759c0->mCurrentEntries[(u16) i].mPlayer.mKind;
             if ((u32) v <= 3) {
                 if ((1 << v) & 0xd) {
                     f = TRUE;

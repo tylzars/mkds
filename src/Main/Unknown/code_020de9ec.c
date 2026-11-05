@@ -342,7 +342,7 @@ u8 func_020dea50(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d) {
     a->mUnk_0a4 = 0;
     a->mUnk_000.mFlags |= data_021585a4;
     m = a->mUnk_000.mUnk_78 & 3;
-    v = data_021759c0->mCurrentEntries[b->mUnk_74].mUnk_08.mKind;
+    v = data_021759c0->mCurrentEntries[b->mUnk_74].mPlayer.mKind;
     if ((u32) v <= 3) {
         if (((1 << v) & 0xd) != 0) {
             n = TRUE;

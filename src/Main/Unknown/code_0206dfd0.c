@@ -103,7 +103,7 @@ void CollideKartWithKarts(Kart *p) {
         if (q->mUnk_48 & 0x40) {
             continue;
         }
-        r = p->mUnk_1d0 + q->mUnk_1d0;
+        r = p->mRadius + q->mRadius;
         q->mTestedKartMask |= 1 << p->mIndex;
         p->mTestedKartMask |= 1 << q->mIndex;
         if (func_0206dfd0_inline(p, q, r) == FALSE) {

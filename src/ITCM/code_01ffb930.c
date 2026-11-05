@@ -4,7 +4,7 @@
 
 void func_01ffb9e0(Kart *p) {
     if ((p->mUnk_44 & 0x400) || p->mState != 0) {
-        p->mForwardSpeed = (s64) p->mForwardSpeed * p->mUnk_2cc->mUnk_2c >> 12;
+        p->mForwardSpeed = (s64) p->mForwardSpeed * p->mPhysicalParam->mUnk_2c >> 12;
     }
     if (!(p->mUnk_48 & 0x2000)) {
         return;

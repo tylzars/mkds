@@ -66,7 +66,7 @@ void func_02056750(s32 a, u16 b) {
     u32 w;
 
     n = func_0204684c();
-    k = data_021759c0->mCurrentEntries[b].mUnk_08.mIndex;
+    k = data_021759c0->mCurrentEntries[b].mPlayer.mIndex;
     p = data_0217aa08->mUnk_14[0];
     if (n == -1) {
         return;

@@ -186,7 +186,7 @@ void func_01ffb130(Kart *p) {
     Vec3Add(&p->mVelocity, &p->mUnk_374, &p->mVelocity);
     p->mVelocity.y += p->mUnk_260;
     Vec3AddScaled(p->mUnk_274, &p->mUnk_268, &p->mVelocity, &p->mVelocity);
-    if (!(p->mUnk_44 & 0x10) && p->mUnk_380 > 5 && p->mVelocity.y < -0x6000) {
+    if (!(p->mUnk_44 & 0x10) && p->mAirborneFrames > 5 && p->mVelocity.y < -0x6000) {
         p->mVelocity.y = -0x6000;
     }
     Vec3Add(&p->mVelocity, &p->mUnk_2f0, &p->mVelocity);
@@ -223,7 +223,7 @@ void func_01ffb130(Kart *p) {
     if (p->mUnk_7c & 0x8000000) {
         return;
     }
-    func_01ffc064(&p->mUnk_1d8, p->mUnk_510, p->mUnk_2cc->mUnk_04, p);
+    func_01ffc064(&p->mUnk_1d8, p->mUnk_510, p->mPhysicalParam->mUnk_04, p);
     func_0206d18c(p);
     CollideKartWithKarts(p);
     func_0206d578(p);

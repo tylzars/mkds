@@ -66,7 +66,7 @@ void func_0206edac(Kart *p, Vec3 *a) {
         return;
     }
     if ((!(p->mUnk_4c & 0x10000000) && p->mVelocity.y < 0 &&
-         (p->mUnk_380 > 0x19 || p->mUnk_2ac - p->mPos.y > 0x1e000)) ||
+         (p->mAirborneFrames > 0x19 || p->mLastGroundY - p->mPos.y > 0x1e000)) ||
         p->mState == 6) {
         s = Vec3Dot(a, &p->mVelocity);
         v.x = ((s64) a->x * s) >> 12;
@@ -90,7 +90,7 @@ void func_0206edac(Kart *p, Vec3 *a) {
             }
         }
     }
-    if (p->mUnk_380 <= 0x14) {
+    if (p->mAirborneFrames <= 0x14) {
         return;
     }
     s = func_02039828(&p->mUnk_138, a);

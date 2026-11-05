@@ -60,7 +60,7 @@ void func_02089c3c(Unk02089b4c *a, Unk020888b4 *b) {
 
     if (b->mIndex == func_02061f90()) {
         a->mUnk_0c = FALSE;
-        m = b->mKart->mUnk_cc;
+        m = b->mKart->mSpeedLimitGoal;
         if (m > 0xa000) {
             m = 0xa000;
         }
@@ -83,7 +83,7 @@ void func_02089c3c(Unk02089b4c *a, Unk020888b4 *b) {
         return;
     }
     if ((q->mUnk_48 & 0x10000020) == 0) {
-        q->mUnk_cc = a->mUnk_04;
+        q->mSpeedLimitGoal = a->mUnk_04;
     }
 }
 
@@ -116,7 +116,7 @@ void func_02089a24(Unk020888b4 *a, Unk02089a24 *b) {
     b->mUnk_28 = 0;
     b->mUnk_2c = 0;
     b->mUnk_30 = 0;
-    v = data_021759c0->mCurrentEntries[a->mIndex].mUnk_08.mKind;
+    v = data_021759c0->mCurrentEntries[a->mIndex].mPlayer.mKind;
     if ((u32) v <= 3) {
         if ((1 << v) & 0xd) {
             c = TRUE;

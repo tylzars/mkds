@@ -80,11 +80,11 @@ void func_02046594(void) {
             break;
     }
     for (i = 0; i < 8; i++) {
-        if (f == FALSE && data_021759c0->mNextEntries[i].mUnk_08.mKind == 1) {
-            data_021759c0->mNextEntries[i].mUnk_08.mUnk_16 = k;
+        if (f == FALSE && data_021759c0->mNextEntries[i].mPlayer.mKind == 1) {
+            data_021759c0->mNextEntries[i].mPlayer.mUnk_16 = k;
             k = k + 1;
         } else {
-            data_021759c0->mNextEntries[i].mUnk_08.mUnk_16 = -1;
+            data_021759c0->mNextEntries[i].mPlayer.mUnk_16 = -1;
         }
     }
     data_021759c0->mUnk_3e1 = k;
@@ -279,7 +279,7 @@ void func_02045ed0(void) {
             data_021759c0->mNextHeader.mCourseNumber = 1;
             data_021759c0->mNextHeader.mUnk_0c = 0;
             for (i = 0; i < 4; i++) {
-                if (data_021759c0->mNextEntries[i].mUnk_08.mKind == 0) {
+                if (data_021759c0->mNextEntries[i].mPlayer.mKind == 0) {
                     r = i;
                     break;
                 }
@@ -410,7 +410,7 @@ s32 func_02045920(void) {
     data_021759c0->mNextHeader.mCourseNumber++;
     if (data_021759c0->mUnk_3d4 > 1) {
         for (i = 0; i < data_021759c0->mKartCount; i++) {
-            x = data_021759c0->mCurrentEntries[i].mUnk_08.mUnk_08;
+            x = data_021759c0->mCurrentEntries[i].mPlayer.mUnk_08;
             v = 3;
             if (x != 0) {
                 if (x == 1) {
@@ -419,7 +419,7 @@ s32 func_02045920(void) {
             } else {
                 v = 1;
             }
-            data_021759c0->mNextEntries[i].mUnk_08.mUnk_08 = v;
+            data_021759c0->mNextEntries[i].mPlayer.mUnk_08 = v;
         }
     }
     switch (data_021759c0->mCourseListMode) {

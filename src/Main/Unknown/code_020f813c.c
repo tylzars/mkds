@@ -122,7 +122,7 @@ void InitItemSlot(KartItems *param_1, KartItems *param_2) {
     param_1->mSlotResult = 0x13;
     param_1->mActiveItem = 0x13;
     param_1->mUnk_020 = FALSE;
-    param_1->mUnk_024 = data_021759c0->mCurrentEntries[param_2->mKartIndex].mUnk_08.mKind == 3;
+    param_1->mUnk_024 = data_021759c0->mCurrentEntries[param_2->mKartIndex].mPlayer.mKind == 3;
 }
 
 void StartItemSlot(KartItems *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5) {

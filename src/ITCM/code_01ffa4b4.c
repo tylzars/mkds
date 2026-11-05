@@ -56,7 +56,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
     if (func_01ffa1f8(p) != FALSE) {
         return;
     }
-    if (func_01ffdee4(&p->mUnk_1b8, &p->mUnk_1c4, (u32) &p->mUnk_50, p->mUnk_1d0, 1, p->mUnk_2c8, &v1, &v5, &v2, &f,
+    if (func_01ffdee4(&p->mUnk_1b8, &p->mUnk_1c4, (u32) &p->mUnk_50, p->mRadius, 1, p->mUnk_2c8, &v1, &v5, &v2, &f,
                       (u32 *) &v3, (s32 *) &v4, &h, &w) != 0) {
         m = f & 0x1e34ef;
         Vec3Add(&p->mPos, &v1, &p->mPos);
@@ -133,7 +133,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
             if ((s64) a->x * a->x + (s64) a->y * a->y + (s64) a->z * a->z >= 0x10) {
                 p->mUnk_48 &= ~0x10000000;
                 p->mUnk_3e8 = 0;
-                func_01ff9e5c(p);
+                RefreshKartSurface(p);
                 if ((f & 0x20000) && !(p->mUnk_4c & 0x10000040) && !(p->mUnk_7c & 0x402000)) {
                     p->mUnk_4c |= 0x40000000;
                     p->mUnk_4d8 = (func_020d59f8(0x20000) & 0xe0) >> 5;
@@ -197,7 +197,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
     if ((t > 0 ? t : -t) < 0x29) {
         p->mUnk_274 = 0;
     }
-    func_01ffa0c4(p);
+    UpdateKartAirborne(p);
     if (!(p->mUnk_4c & 0x20)) {
         return;
     }

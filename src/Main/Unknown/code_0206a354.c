@@ -34,7 +34,7 @@ void StartKartState2(Kart *p, int a, int b) {
 
     func_0206bf88(p, 2);
     if (p->mUnk_44 & 0xa) {
-        if (p->mUnk_2c4 == 1) {
+        if (p->mTurnDirection == 1) {
             d = -1;
         }
     } else if (p->mUnk_2d4 < 0) {

@@ -157,24 +157,26 @@ void func_0208afe4(void) {
     }
 }
 
-void func_0208af40(void *a, u32 b) {
-    data_0217b038 = HeapAlloc(a, 0x14);
-    data_0217b038->mUnk_00 = HeapAlloc(a, b * 0x98);
-    data_0217b038->mUnk_04 = HeapAlloc(a, b * 8);
-    data_0217b038->mUnk_0c = (u8 *) FindKartModelFile(data_usa_021660c8);
-    data_0217b038->mUnk_10 = (u8 *) FindKartModelFile(data_usa_021660e0);
-    data_0217b038->mUnk_08 = *(s32 *) (data_0217b038->mUnk_0c + 0x10);
+void CreateKartPhysicalParamTable(void *a, u32 b) {
+    gKartPhysicalParamTable = HeapAlloc(a, 0x14);
+    gKartPhysicalParamTable->mKartParams = HeapAlloc(a, b * 0x98);
+    gKartPhysicalParamTable->mCharParams = HeapAlloc(a, b * 8);
+    gKartPhysicalParamTable->mKartParamFile = (u8 *) FindKartModelFile(data_usa_021660c8);
+    gKartPhysicalParamTable->mCharParamFile = (u8 *) FindKartModelFile(data_usa_021660e0);
+    gKartPhysicalParamTable->mFirstBaseSpeedLimit = *(s32 *) (gKartPhysicalParamTable->mKartParamFile + 0x10);
 }
 
-void func_0208aea8(u32 a, u32 b, u32 c) {
-    u8 *p = data_0217b038->mUnk_0c;
-    u8 *q = data_0217b038->mUnk_10;
+// Copies the kart row and the character row of the files to the slot after choosing the rows (rows 0 when
+// func_02062eb0() != 0; character + 0x25 in mode 2).
+void CopyKartPhysicalParams(u32 a, u32 b, u32 c) {
+    u8 *p = gKartPhysicalParamTable->mKartParamFile;
+    u8 *q = gKartPhysicalParamTable->mCharParamFile;
     if (func_02062eb0() != 0) {
         c = 0;
         b = c;
     } else if (data_021759c0->mMode == 2) {
         b = (u16) (c + 0x25);
     }
-    MemCopy(p + b * 0x98, data_0217b038->mUnk_00 + a * 0x98, 0x98);
-    MemCopy(q + c * 8, data_0217b038->mUnk_04 + a * 8, 8);
+    MemCopy(p + b * 0x98, gKartPhysicalParamTable->mKartParams + a * 0x98, 0x98);
+    MemCopy(q + c * 8, gKartPhysicalParamTable->mCharParams + a * 8, 8);
 }

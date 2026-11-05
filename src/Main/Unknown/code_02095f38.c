@@ -65,7 +65,7 @@ u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
             v1 = p->mState;
             if (v1 == 0 || v1 == 3) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if (data_021759c0->mCurrentEntries[a->mIndex].mUnk_08.mKind != 2) {
+                if (data_021759c0->mCurrentEntries[a->mIndex].mPlayer.mKind != 2) {
                     if ((p->mUnk_00.mUnk_78 & 4) == 0) {
                         if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
                             t = 2;

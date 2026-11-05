@@ -65,4 +65,6 @@ extern const Vec4 data_usa_02154f54;
 extern const Vec3 data_usa_02154f64;
 extern const s32 data_usa_02154d4c[][2];
 extern const s32 data_usa_02154d50[][2];
-extern int (*const data_usa_02154d8c[])(Kart *);
+// 22 handlers indexed by mSurfaceKind: each plays the effect picked by mSurfaceVariant and returns the surface group
+// (0, 2..6, 8..0xb). Bits 8..12 can reach 31 but the table ends at 21.
+extern int (*const gKartSurfaceFunctions[])(Kart *);

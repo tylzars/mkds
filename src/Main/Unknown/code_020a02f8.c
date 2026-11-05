@@ -774,7 +774,7 @@ void func_020a0e00(void) {
         e->mUnk_44 = (u16) i;
         e->mUnk_48 = (u16) i;
         if (i < data_021759c0->mKartCount) {
-            switch (data_021759c0->mCurrentEntries[(u16) i].mUnk_08.mTeamIndex) {
+            switch (data_021759c0->mCurrentEntries[(u16) i].mPlayer.mTeamIndex) {
                 case 0:
                     e->mUnk_46 = 1;
                     break;

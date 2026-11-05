@@ -271,7 +271,7 @@ void func_020bdf08(Unk020d029c *a) {
             v = 3;
         } else if (i == func_020b4d9c()) {
             v = 0;
-        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[i].mUnk_08.mTeamIndex == 1) {
+        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex == 1) {
             v = 2;
         } else {
             v = 1;
@@ -344,7 +344,7 @@ void func_020bdb34(Unk020d029c *a) {
             v = 3;
         } else if ((u16) k == func_020b4d9c()) {
             v = 0;
-        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[(u16) k].mUnk_08.mTeamIndex == 1) {
+        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
             v = 2;
         } else {
             v = 1;
@@ -404,7 +404,7 @@ void func_020bd850(Unk020d029c *a) {
             v = 3;
         } else if ((u16) k == func_020b4d9c()) {
             v = 0;
-        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[(u16) k].mUnk_08.mTeamIndex == 1) {
+        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
             v = 2;
         } else {
             v = 1;
@@ -525,7 +525,7 @@ void func_020bd178(Unk020d029c *a) {
             v = 3;
         } else if ((u16) k == func_020b4d9c()) {
             v = 0;
-        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[(u16) k].mUnk_08.mTeamIndex == 1) {
+        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
             v = 2;
         } else {
             v = 1;
@@ -618,7 +618,7 @@ void func_020bcbe8(Unk020d029c *a) {
             v = 3;
         } else if ((u16) k == func_020b4d9c()) {
             v = 0;
-        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[(u16) k].mUnk_08.mTeamIndex == 1) {
+        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
             v = 2;
         } else {
             v = 1;

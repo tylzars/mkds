@@ -161,7 +161,7 @@ void InitKarts(u32 a) {
     }
     for (i = 0; i < a; i++) {
         gKarts[i].mIndex = i;
-        gKarts[i].mEntryIndex = data_021759c0->mCurrentEntries[i].mUnk_08.mIndex;
+        gKarts[i].mEntryIndex = data_021759c0->mCurrentEntries[i].mPlayer.mIndex;
         InitKart(&gKarts[i], data_usa_021655e4);
     }
     data_0217ad28 = 0;
@@ -880,21 +880,21 @@ void InitKartModels(void *a, u32 b) {
     gKartModels->mUnk_028 = func_02047950((const char *) BuildPFaceanimNsbtpPath());
     gKartModels->mUnk_008 = b;
     gKartModels->mUnk_00c = 0;
-    func_0208af40(a, b);
+    CreateKartPhysicalParamTable(a, b);
     func_02085fd8();
     CreateKillerItem(a);
     for (i = 0; i < gKartModels->mUnk_008; i++) {
         d = gKartModels->mUnk_000;
         e = &d[i];
         func_02079a3c((u32 *) e);
-        e->mUnk_0b0 = data_021759c0->mCurrentEntries[i].mUnk_08.mUnk_25;
+        e->mUnk_0b0 = data_021759c0->mCurrentEntries[i].mPlayer.mUnk_25;
         func_02079a14(e);
         d[i].mUnk_000 = data_021759c0->mCurrentEntries[i].mCharacterIndex;
         e->mUnk_004 = data_021759c0->mCurrentEntries[i].mKartIndex;
         func_02079988(e, e->mUnk_004);
         e->mUnk_020 = HeapAlloc(a, 0xe0);
         MemCopy(v4 + e->mUnk_004 * 0xe0, e->mUnk_020, 0xe0);
-        func_0208aea8(i, (u16) e->mUnk_004, (u16) d[i].mUnk_000);
+        CopyKartPhysicalParams(i, (u16) e->mUnk_004, (u16) d[i].mUnk_000);
     }
     func_02079678(a, 1);
     func_0204775c();

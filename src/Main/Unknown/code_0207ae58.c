@@ -117,7 +117,7 @@ void func_0207b6c0(struct Unk0206bcb0_590 *a, s32 b, s32 c) {
 }
 
 static inline s32 func_0207b44c_inline(u32 i) {
-    return *(vs32 *) &data_021759c0->mCurrentEntries[i].mUnk_08.mTeamIndex;
+    return *(vs32 *) &data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex;
 }
 
 void func_0207b44c(Kart *a) {

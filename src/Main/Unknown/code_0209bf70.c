@@ -333,7 +333,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
             p->mUnk_000.mUnk_10.y = 0;
             p->mUnk_000.mUnk_10.z = 0;
         }
-        if (data_021759c0->mCurrentEntries[k->mIndex].mUnk_08.mKind != 2 && p->mUnk_11c == FALSE) {
+        if (data_021759c0->mCurrentEntries[k->mIndex].mPlayer.mKind != 2 && p->mUnk_11c == FALSE) {
             p->mUnk_0b8 = 0x8000;
             p->mUnk_0c4 = 0x1000;
             p->mUnk_0c8 = 0x400;
@@ -365,7 +365,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
                 if (!((s64) v3.x * v3.x + (s64) v3.y * v3.y + (s64) v3.z * v3.z < 0x10)) {
                     func_02039860(&v3, &v3);
                 }
-                Vec3AddScaled(k->mUnk_1d0, &v3, &k->mUnk_1b8, &v3);
+                Vec3AddScaled(k->mRadius, &v3, &k->mUnk_1b8, &v3);
                 if (k->mIndex == data_021759c0->mEntryIndex) {
                     func_0208b7bc(0x74, &v3);
                 } else {

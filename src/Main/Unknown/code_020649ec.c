@@ -78,8 +78,8 @@ void func_020651fc(Kart *a) {
         b->mUnk_a8 = data_02154f94;
     }
     func_01ffca50(a);
-    func_01ffbe70(a);
-    func_01ffbe04(a);
+    UpdateKartSpeedLimitGoal(a);
+    UpdateKartSpeedLimit(a);
     func_01ffbd9c(a);
     func_01ffc6c0(a);
     func_01ff9d18(a);
@@ -149,7 +149,7 @@ void func_02064f50(Kart *a) {
         h.y = (s64) k->y * -0x7000 >> 12;
         h.z = (s64) k->z * -0x7000 >> 12;
         Vec3Add(&g, &h, &g);
-        if (func_01ffdee4(&g, NULL, 0, a->mUnk_1d0, 1, a->mUnk_2c8, &i, NULL, NULL, &j, NULL, NULL, NULL, NULL) != 0) {
+        if (func_01ffdee4(&g, NULL, 0, a->mRadius, 1, a->mUnk_2c8, &i, NULL, NULL, &j, NULL, NULL, NULL, NULL) != 0) {
             Vec3Add(&i, &h, &i);
             Vec3Add(&b->mUnk_00, &i, &b->mUnk_00);
         }
@@ -167,7 +167,7 @@ void func_02064d60(Kart *a, Vec3 *b) {
 
     c = a->mUnk_514;
     a->mUnk_3f8 = 0x1000;
-    if (a->mUnk_380 > 5 && (a->mUnk_514->mUnk_44 & 1) == 0) {
+    if (a->mAirborneFrames > 5 && (a->mUnk_514->mUnk_44 & 1) == 0) {
         a->mUnk_3a8 = 0xf6;
         func_02070484(a, &a->mUnk_100_q);
     } else {
@@ -213,7 +213,7 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     Unk0206bcb0_590_08 *d;
 
     GetHeap(func_020364e8());
-    c = data_021759c0->mCurrentEntries[a->mIndex].mUnk_08.mKind == 3;
+    c = data_021759c0->mCurrentEntries[a->mIndex].mPlayer.mKind == 3;
     a->mKartModelsEntry = func_02079bf0(a->mIndex);
     func_0208adc8(&a->mKartModelsEntry->mUnk_040, 1);
     if (data_021759c0->mMode == 5) {

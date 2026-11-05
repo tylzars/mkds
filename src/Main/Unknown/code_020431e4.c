@@ -109,9 +109,9 @@ void func_020431e4(void) {
     q = data_021759c0;
     z = data_0217aa00;
     for (j = 0; j < 8; j++) {
-        s = q->mCurrentEntries[j].mUnk_08.mKind;
+        s = q->mCurrentEntries[j].mPlayer.mKind;
         t = FALSE;
-        w = q->mCurrentEntries[j].mUnk_08.mIndex;
+        w = q->mCurrentEntries[j].mPlayer.mIndex;
         if ((u32) s <= 3 && ((1 << s) & 0xd)) {
             t = TRUE;
         }

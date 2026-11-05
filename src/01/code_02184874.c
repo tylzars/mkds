@@ -43,7 +43,7 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
                 if ((s64) b.z * b.z + ((s64) b.x * b.x + (s64) b.y * b.y) >= 0x10) {
                     func_02039860(&b, &b);
                 }
-                Vec3AddScaled(e->mUnk_1d0, &b, &e->mUnk_1b8, &b);
+                Vec3AddScaled(e->mRadius, &b, &e->mUnk_1b8, &b);
                 if (d->mUnk_000.mKind == 0x1f5) {
                     d->mUnk_000.mUnk_78 |= data_ov001_021a657c;
                     func_02109060(&d->mUnk_000.mUnk_94->mUnk_00, 0x214);

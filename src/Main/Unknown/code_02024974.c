@@ -71,7 +71,7 @@ void func_02025030(Kart *a, Unk02024eec *b) {
 void func_02024fe8(Kart *a, Unk02024eec *b) {
     u32 v;
 
-    v = func_0210bb74(3, a->mUnk_3e0, a->mUnk_3e4);
+    v = func_0210bb74(3, a->mSurfaceKind, a->mSurfaceVariant);
     func_02109078(&a->mUnk_00, v, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
 }
 
@@ -175,7 +175,7 @@ void func_02024a88(Kart *a) {
     }
     if (data_0217c814.mUnk_0c == 0) {
         h = a->mUnk_4d4;
-        if (h > 0xcd && data_021759c0->mCurrentEntries[a->mIndex].mUnk_08.mKind != 1) {
+        if (h > 0xcd && data_021759c0->mCurrentEntries[a->mIndex].mPlayer.mKind != 1) {
             if (f != 0) {
                 if ((a->mUnk_4c & 0x20000000) != 0) {
                     i = 0;
@@ -206,7 +206,7 @@ void func_02024a88(Kart *a) {
         q->mUnk_14 = f;
         return;
     }
-    j = a->mUnk_2cc->mUnk_10;
+    j = a->mPhysicalParam->mBaseSpeedLimit;
     k = a->mVelocityLength;
     h = k - j;
     l = h > 0 ? 1 : 0;

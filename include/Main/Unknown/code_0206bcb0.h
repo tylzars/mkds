@@ -51,13 +51,21 @@ typedef struct Unk0206c1ac {
     /* 72 */ u16 mUnk_72;
 } Unk0206c1ac;
 
-typedef struct Unk0206cdd4_A {
-    /* 0 */ s32 mUnk_00;
+// The 0x98-byte record of one kart slot, copied from a row of kartphysicalparam.bin (50 rows: 37 kart rows, then 13
+// character rows used in mode 2). Edited in place per race: mBaseSpeedLimit by the engine class, the surface tables by
+// the character row. Read by the Kart step and the item objects (Race).
+typedef struct KartPhysicalParam {
+    // Base radius (0x8000 = 8.0 in 12-bit fixed).
+    /* 0 */ s32 mRadius;
     /* 4 */ s32 mUnk_04;
     /* 8 */ s32 mUnk_08;
-    /* c */ s16 mUnk_0c;
+    // s16, read only by the kart-kart push (the ratio of the two karts' values); the file column grows with the kart
+    // size.
+    /* c */ s16 mWeight;
     /* e */ s16 mUnk_0e;
-    /* 10 */ s32 mUnk_10;
+    // Top speed before the factors, scaled by the engine class at creation (x0xb33 / x0xd9a); reached: the length is
+    // cut to the limit.
+    /* 10 */ s32 mBaseSpeedLimit;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
@@ -69,8 +77,9 @@ typedef struct Unk0206cdd4_A {
     /* 32 */ s16 mUnk_32;
     /* 34 */ s32 mUnk_34;
     /* 38 */ s32 mUnk_38[12];
-    /* 68 */ s32 mUnk_68[12];
-} Unk0206cdd4_A;
+    // 12 factors out of 0x1000, indexed by the surface group; entry 4 is also the floor of the below-the-level path.
+    /* 68 */ s32 mSurfaceSpeedLimitFactors[12];
+} KartPhysicalParam;
 
 typedef struct Unk0206cdd4_B {
     /* 0 */ s32 mUnk_00;
@@ -205,7 +214,10 @@ typedef struct Kart {
     /* b0 */ Vec3 mVelocityDirection;
     /* bc */ Vec3 mUnk_bc;
     /* c8 */ s32 mUnk_c8;
-    /* cc */ s32 mUnk_cc;
+    // The value mSpeedLimit follows: it falls by x0xf37/0x1000 per step but never below it and rises to it at once.
+    // Written by the step, by the companion objects (their own choice) and at set-up; read by the companion objects as
+    // the kart's limit.
+    /* cc */ s32 mSpeedLimitGoal;
     /* d0 */ s32 mSpeedLimit;
     /* d4 */ u32 mUnk_d4;
     /* d8 */ s32 mUnk_d8;
@@ -253,7 +265,8 @@ typedef struct Kart {
     /* 1b4 */ Unk02012f58 *mUnk_1b4;
     /* 1b8 */ Vec3 mUnk_1b8;
     /* 1c4 */ Vec3 mUnk_1c4;
-    /* 1d0 */ s32 mUnk_1d0;
+    // Current radius: the record's radius times two scales (code_01ffba68.c:206), set from the record at creation.
+    /* 1d0 */ s32 mRadius;
     /* 1d4 */ s32 mUnk_1d4;
     /* 1d8 */ Vec3 mUnk_1d8;
     /* 1e4 */ Vec3 mUnk_1e4;
@@ -295,7 +308,8 @@ typedef struct Kart {
     /* 2a0 */ s32 mVelocityLengthRatio;
     /* 2a4 */ s32 mVelocityLength;
     /* 2a8 */ s32 mForwardSpeed;
-    /* 2ac */ s32 mUnk_2ac;
+    // mPos.y while the floor-hit bit is set; read once (the fall height of a landing).
+    /* 2ac */ s32 mLastGroundY;
     /* 2b0 */ u16 mTestedKartMask;
     /* 2b2 */ u16 mNearKartMask;
     /* 2b4 */ u16 mPrevNearKartMask;
@@ -304,11 +318,16 @@ typedef struct Kart {
     /* 2bc */ s32 mUnk_2bc;
     /* 2c0 */ u16 mUnk_2c0;
     /* 2c2 */ u8 mUnk_2c2[2];
-    /* 2c4 */ s32 mUnk_2c4;
+    // Sign 1 / -1 / 0 of a turn, latched when it starts (from mUnk_48 bits 0x10 / 8, or from the entry's input bits
+    // 0x10 / 0x20) and cleared when it ends; read only as a sign.
+    /* 2c4 */ s32 mTurnDirection;
     /* 2c8 */ s16 mUnk_2c8;
     /* 2ca */ s16 mUnk_2ca;
-    /* 2cc */ Unk0206cdd4_A *mUnk_2cc;
-    /* 2d0 */ s32 *mUnk_2d0;
+    // Pointer to this slot's KartPhysicalParam; set once in func_020726bc. The record is shared by nothing else.
+    /* 2cc */ KartPhysicalParam *mPhysicalParam;
+    // Two words of charphysicalparam.bin for the entry's character: [0] scales the surface factors below 0x1000, [1] is
+    // added to mWeight.
+    /* 2d0 */ s32 *mCharPhysicalParam;
     /* 2d4 */ s32 mUnk_2d4;
     /* 2d8 */ Vec3 mUnk_2d8;
     /* 2e4 */ Vec3 mUnk_2e4;
@@ -343,7 +362,9 @@ typedef struct Kart {
     /* 370 */ u16 mUnk_370;
     /* 372 */ u8 mUnk_372[2];
     /* 374 */ Vec3 mUnk_374;
-    /* 380 */ u32 mUnk_380;
+    // Calls of UpdateKartAirborne since the floor-hit bit (mUnk_44 & 0x10) was last set; not every step (skipped below
+    // y = 0).
+    /* 380 */ u32 mAirborneFrames;
     /* 384 */ u16 mUnk_384;
     /* 386 */ s16 mUnk_386;
     /* 388 */ s16 mUnk_388;
@@ -373,9 +394,14 @@ typedef struct Kart {
     /* 3d4 */ s16 mUnk_3d4;
     /* 3d6 */ u8 mUnk_3d6[2];
     /* 3d8 */ s32 mUnk_3d8;
-    /* 3dc */ s32 mUnk_3dc;
-    /* 3e0 */ s32 mUnk_3e0;
-    /* 3e4 */ s32 mUnk_3e4;
+    // Result of the handler: index into the two 12-entry tables of the record; -1 when the floor is left; compared with
+    // 8 and 0xb. Group meanings unknown.
+    /* 3dc */ s32 mSurfaceGroup;
+    // Bits 8..12 of the attribute of the strongest ground hit (mask 0x1e34ef); indexes gKartSurfaceFunctions; 0 after
+    // reset.
+    /* 3e0 */ s32 mSurfaceKind;
+    // Bits 5..7 of the same attribute: second selector (effect tables).
+    /* 3e4 */ s32 mSurfaceVariant;
     /* 3e8 */ s16 mUnk_3e8;
     /* 3ea */ u8 mUnk_3ea[2];
     /* 3ec */ s32 mUnk_3ec;

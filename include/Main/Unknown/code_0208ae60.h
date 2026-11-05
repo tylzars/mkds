@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-struct Unk0206cdd4_A;
+struct KartPhysicalParam;
 
 unsigned int func_0208ae60(void);
-s32 *func_0208ae74(unsigned int p0);
-struct Unk0206cdd4_A *func_0208ae8c(u32 arg0);
+s32 *GetCharPhysicalParam(unsigned int p0);
+struct KartPhysicalParam *GetKartPhysicalParam(u32 arg0);
