@@ -30,7 +30,7 @@ u32 func_ov003_021cd1c4(void) {
     // volatile: the only spelling found that stores and reloads the argument on the stack.
     volatile u16 a = 0;
     MemFillHalfwords(a, data_ov003_021da26c->mUnk_1300, 0x348);
-    if (func_02143e10(data_ov003_021da26c, func_ov003_021cd080, 3) != 2) {
+    if (WM_Initialize(data_ov003_021da26c, func_ov003_021cd080, 3) != 2) {
         return 0;
     }
     do {
@@ -48,7 +48,7 @@ u32 func_ov003_021cd1c4(void) {
 
 u32 func_ov003_021cd190(void) {
     int v1;
-    v1 = func_021438f0(func_ov003_021cd080, &data_ov003_021da26c->mUnk_1648.mUnk_00);
+    v1 = WM_StartScanEx(func_ov003_021cd080, &data_ov003_021da26c->mUnk_1648.mUnk_00);
     if (v1 == 2) {
         return 1;
     }
@@ -59,14 +59,14 @@ u32 func_ov003_021cd118(void) {
     data_ov003_021da26c->mUnk_1e48 = 1;
     func_02143520(&data_ov003_021da26c->mUnk_168c);
     if (data_ov003_021da26c->mUnk_168c.mUnk_00 != 2) {
-        if (func_02143dd0(func_ov003_021cd080) != 2) {
+        if (WM_Reset(func_ov003_021cd080) != 2) {
             return 0;
         }
         do {
             func_02143520(&data_ov003_021da26c->mUnk_168c);
         } while (data_ov003_021da26c->mUnk_168c.mUnk_00 != 2);
     }
-    if (func_02143d88(func_ov003_021cd080) != 2) {
+    if (WM_End(func_ov003_021cd080) != 2) {
         return 0;
     }
     return 1;

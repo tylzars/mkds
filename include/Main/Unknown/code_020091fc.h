@@ -51,7 +51,7 @@ typedef struct Unk0216fc4c {
     /* 12 */ u8 mUnk_12[2];
 } Unk0216fc4c;
 
-// 0x70-byte block that func_020092d0 and func_020094b8 fill and pass to func_021455a0. The halfword at 0xc and
+// 0x70-byte block that func_020092d0 and func_020094b8 fill and pass to WM_SetGameInfo. The halfword at 0xc and
 // the bytes from 0xe have another layout in func_020094b8.
 typedef struct Unk0216fc60 {
     /* 00 */ u32 mUnk_00;

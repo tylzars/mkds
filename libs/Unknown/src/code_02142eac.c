@@ -9,12 +9,12 @@
 #include "code_0214d93c.h"
 #include "Main/Unknown/unk_0216f000.h"
 
-s32 func_02144514(Unk021425e8Func a, void *b, u32 c) {
+s32 WM_StartDCF(Unk021425e8Func a, void *b, u32 c) {
     Unk02142aa8 *p;
     s32 r;
 
-    p = func_02142aa8();
-    r = func_02142988(1, 8);
+    p = GetWorkBuffer();
+    r = GetErrorUnlessStateIsOneOf(1, 8);
     if (r != 0) {
         return r;
     }
@@ -29,21 +29,21 @@ s32 func_02144514(Unk021425e8Func a, void *b, u32 c) {
         return 6;
     }
     DC_StoreRange(b, c);
-    func_02142c0c(0x11, (u32) a);
-    r = func_02142ab8(0x11, 2, b, c);
+    SetCommandCallback(0x11, (u32) a);
+    r = SendCommandMessage(0x11, 2, b, c);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02144438(Unk021425e8Func a, const void *b, void *c, u32 d) {
+s32 WM_SetDCFData(Unk021425e8Func a, const void *b, void *c, u32 d) {
     Unk02142aa8 *p;
     s32 r;
     u32 w[2];
 
-    p = func_02142aa8();
-    r = func_02142988(1, 11);
+    p = GetWorkBuffer();
+    r = GetErrorUnlessStateIsOneOf(1, 11);
     if (r != 0) {
         return r;
     }
@@ -55,21 +55,21 @@ s32 func_02144438(Unk021425e8Func a, const void *b, void *c, u32 d) {
         return 6;
     }
     DC_StoreRange(c, d);
-    func_02142c0c(0x12, (u32) a);
+    SetCommandCallback(0x12, (u32) a);
     MemCopy(b, w, 6);
-    r = func_02142ab8(0x12, 4, w[0], w[1], c, d);
+    r = SendCommandMessage(0x12, 4, w[0], w[1], c, d);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_021443b0(Unk021425e8Func a) {
+s32 WM_EndDCF(Unk021425e8Func a) {
     Unk02142aa8 *p;
     s32 r;
 
-    p = func_02142aa8();
-    r = func_02142988(1, 11);
+    p = GetWorkBuffer();
+    r = GetErrorUnlessStateIsOneOf(1, 11);
     if (r != 0) {
         return r;
     }
@@ -77,21 +77,21 @@ s32 func_021443b0(Unk021425e8Func a) {
     if (p->mUnk_004->mUnk_010 == 0) {
         return 3;
     }
-    func_02142c0c(0x13, (u32) a);
-    r = func_02142ab8(0x13, 0);
+    SetCommandCallback(0x13, (u32) a);
+    r = SendCommandMessage(0x13, 0);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02144230(Unk021425e8Func a, u32 b, s32 c, u32 d, u16 e, u16 f, u16 g, u32 h, u32 i, u32 j, u32 k) {
+s32 WM_StartMPEx(Unk021425e8Func a, u32 b, s32 c, u32 d, u16 e, u16 f, u16 g, u32 h, u32 i, u32 j, u32 k) {
     Unk02142aa8 *p;
     s32 r;
     s32 w;
 
-    p = func_02142aa8();
-    r = func_02142988(2, 7, 8);
+    p = GetWorkBuffer();
+    r = GetErrorUnlessStateIsOneOf(2, 7, 8);
     if (r != 0) {
         return r;
     }
@@ -119,8 +119,8 @@ s32 func_02144230(Unk021425e8Func a, u32 b, s32 c, u32 d, u16 e, u16 f, u16 g, u
     if ((w & 0x1f) != 0) {
         return 6;
     }
-    func_02142c0c(0xe, (u32) a);
-    r = func_02142ab8(0xe, 10, b, (u32) c >> 1, d, e, f, g, h, i, j, k);
+    SetCommandCallback(0xe, (u32) a);
+    r = SendCommandMessage(0xe, 10, b, (u32) c >> 1, d, e, f, g, h, i, j, k);
     if (r == 0) {
         return 2;
     }
@@ -130,20 +130,20 @@ s32 func_02144230(Unk021425e8Func a, u32 b, s32 c, u32 d, u16 e, u16 f, u16 g, u
 s32 func_021441d0(Unk021425e8Func a, u32 b) {
     s32 r;
 
-    func_02142aa8();
-    r = func_02142988(1, 9);
+    GetWorkBuffer();
+    r = GetErrorUnlessStateIsOneOf(1, 9);
     if (r != 0) {
         return r;
     }
-    func_02142c0c(0x23, (u32) a);
-    r = func_02142ab8(0x23, 1, b);
+    SetCommandCallback(0x23, (u32) a);
+    r = SendCommandMessage(0x23, 1, b);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02144048(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 g) {
+s32 WM_SetMPDataToPortEx(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 g) {
     u16 v;
     u32 w;
     Unk02142988 *q;
@@ -151,8 +151,8 @@ s32 func_02144048(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 
     s32 flag;
 
     w = 1;
-    q = func_02142aa8()->mUnk_004;
-    r = func_02142988(2, 9, 10);
+    q = GetWorkBuffer()->mUnk_004;
+    r = GetErrorUnlessStateIsOneOf(2, 9, 10);
     if (r != 0) {
         return r;
     }
@@ -182,19 +182,19 @@ s32 func_02144048(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 
         return 6;
     }
     DC_StoreRange(c, d);
-    r = func_02142ab8(0xf, 7, c, d, e, f, g, a, b);
+    r = SendCommandMessage(0xf, 7, c, d, e, f, g, a, b);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02143fbc(Unk021425e8Func a) {
+s32 WM_EndMP(Unk021425e8Func a) {
     Unk02142aa8 *p;
     s32 r;
 
-    p = func_02142aa8();
-    r = func_02142988(2, 9, 10);
+    p = GetWorkBuffer();
+    r = GetErrorUnlessStateIsOneOf(2, 9, 10);
     if (r != 0) {
         return r;
     }
@@ -202,77 +202,77 @@ s32 func_02143fbc(Unk021425e8Func a) {
     if (p->mUnk_004->mUnk_00c == 0) {
         return 3;
     }
-    func_02142c0c(0x10, (u32) a);
-    r = func_02142ab8(0x10, 0);
+    SetCommandCallback(0x10, (u32) a);
+    r = SendCommandMessage(0x10, 0);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02143f50(Unk021425e8Func a) {
+s32 WM_Enable(Unk021425e8Func a) {
     Unk02142aa8 *p;
     s32 r;
 
-    r = func_02142988(1, 0);
+    r = GetErrorUnlessStateIsOneOf(1, 0);
     if (r != 0) {
         return r;
     }
-    func_02142c0c(3, (u32) a);
-    p = func_02142aa8();
-    r = func_02142ab8(3, 3, p->mUnk_000, p->mUnk_004, p->mUnk_010);
+    SetCommandCallback(3, (u32) a);
+    p = GetWorkBuffer();
+    r = SendCommandMessage(3, 3, p->mUnk_000, p->mUnk_004, p->mUnk_010);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02143f08(Unk021425e8Func a) {
+s32 WM_Disable(Unk021425e8Func a) {
     s32 r;
 
-    r = func_02142988(1, 1);
+    r = GetErrorUnlessStateIsOneOf(1, 1);
     if (r != 0) {
         return r;
     }
-    func_02142c0c(4, (u32) a);
-    r = func_02142ab8(4, 0);
+    SetCommandCallback(4, (u32) a);
+    r = SendCommandMessage(4, 0);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02143ec0(Unk021425e8Func a) {
+s32 WM_PowerOn(Unk021425e8Func a) {
     s32 r;
 
-    r = func_02142988(1, 1);
+    r = GetErrorUnlessStateIsOneOf(1, 1);
     if (r != 0) {
         return r;
     }
-    func_02142c0c(5, (u32) a);
-    r = func_02142ab8(5, 0);
+    SetCommandCallback(5, (u32) a);
+    r = SendCommandMessage(5, 0);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02143e78(Unk021425e8Func a) {
+s32 WM_PowerOff(Unk021425e8Func a) {
     s32 r;
 
-    r = func_02142988(1, 2);
+    r = GetErrorUnlessStateIsOneOf(1, 2);
     if (r != 0) {
         return r;
     }
-    func_02142c0c(6, (u32) a);
-    r = func_02142ab8(6, 0);
+    SetCommandCallback(6, (u32) a);
+    r = SendCommandMessage(6, 0);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02143e10(void *a, Unk021425e8Func b, u32 c) {
+s32 WM_Initialize(void *a, Unk021425e8Func b, u32 c) {
     Unk02142aa8 *p;
     s32 r;
 
@@ -280,49 +280,49 @@ s32 func_02143e10(void *a, Unk021425e8Func b, u32 c) {
     if (r != 0) {
         return r;
     }
-    func_02142c0c(0, (u32) b);
-    p = func_02142aa8();
-    r = func_02142ab8(0, 3, p->mUnk_000, p->mUnk_004, p->mUnk_010);
+    SetCommandCallback(0, (u32) b);
+    p = GetWorkBuffer();
+    r = SendCommandMessage(0, 3, p->mUnk_000, p->mUnk_004, p->mUnk_010);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02143dd0(Unk021425e8Func a) {
+s32 WM_Reset(Unk021425e8Func a) {
     s32 r;
 
-    r = func_02142a30();
+    r = GetErrorUnlessStateAtLeast2();
     if (r != 0) {
         return r;
     }
-    func_02142c0c(1, (u32) a);
-    r = func_02142ab8(1, 0);
+    SetCommandCallback(1, (u32) a);
+    r = SendCommandMessage(1, 0);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02143d88(Unk021425e8Func a) {
+s32 WM_End(Unk021425e8Func a) {
     s32 r;
 
-    r = func_02142988(1, 2);
+    r = GetErrorUnlessStateIsOneOf(1, 2);
     if (r != 0) {
         return r;
     }
-    func_02142c0c(2, (u32) a);
-    r = func_02142ab8(2, 0);
+    SetCommandCallback(2, (u32) a);
+    r = SendCommandMessage(2, 0);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02143c80(Unk021425e8Func a, Unk02143c30 *b) {
+s32 WM_SetParentParameter(Unk021425e8Func a, Unk02143c30 *b) {
     s32 r;
 
-    r = func_02142988(1, 2);
+    r = GetErrorUnlessStateIsOneOf(1, 2);
     if (r != 0) {
         return r;
     }
@@ -337,20 +337,20 @@ s32 func_02143c80(Unk021425e8Func a, Unk02143c30 *b) {
     if (b->mUnk_34 + (b->mUnk_14 != 0 ? 0x2a : 0) > 0x200 || b->mUnk_36 + (b->mUnk_14 != 0 ? 6 : 0) > 0x200) {
         return 6;
     }
-    func_02143c30(b);
-    func_02142c0c(7, (u32) a);
+    IsParentParameterInRange(b);
+    SetCommandCallback(7, (u32) a);
     DC_StoreRange(b, 0x40);
     if (b->mUnk_04 != 0) {
         DC_StoreRange(b->mUnk_00, b->mUnk_04);
     }
-    r = func_02142ab8(7, 1, b);
+    r = SendCommandMessage(7, 1, b);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-u32 func_02143c30(const Unk02143c30 *a) {
+u32 IsParentParameterInRange(const Unk02143c30 *a) {
     if (a->mUnk_04 > 0x70) {
         return 0;
     }
@@ -363,45 +363,45 @@ u32 func_02143c30(const Unk02143c30 *a) {
     return 1;
 }
 
-s32 func_02143bd4(Unk021425e8Func a, u32 b) {
+s32 StartParentWithArgument(Unk021425e8Func a, u32 b) {
     s32 r;
 
-    r = func_02142988(1, 2);
+    r = GetErrorUnlessStateIsOneOf(1, 2);
     if (r != 0) {
         return r;
     }
-    func_02142c0c(8, (u32) a);
-    r = func_02142ab8(8, 1, b);
+    SetCommandCallback(8, (u32) a);
+    r = SendCommandMessage(8, 1, b);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02143bc4(Unk021425e8Func a) {
-    return func_02143bd4(a, 1);
+s32 WM_StartParent(Unk021425e8Func a) {
+    return StartParentWithArgument(a, 1);
 }
 
-s32 func_02143b7c(Unk021425e8Func a) {
+s32 WM_EndParent(Unk021425e8Func a) {
     s32 r;
 
-    r = func_02142988(1, 7);
+    r = GetErrorUnlessStateIsOneOf(1, 7);
     if (r != 0) {
         return r;
     }
-    func_02142c0c(9, (u32) a);
-    r = func_02142ab8(9, 0);
+    SetCommandCallback(9, (u32) a);
+    r = SendCommandMessage(9, 0);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02143a78(Unk021425e8Func a, Unk02143a78 *b) {
+s32 WM_StartScan(Unk021425e8Func a, Unk02143a78 *b) {
     Unk02143a78_0c *pk;
     s32 r;
 
-    r = func_02142988(3, 2, 3, 5);
+    r = GetErrorUnlessStateIsOneOf(3, 2, 3, 5);
     if (r != 0) {
         return r;
     }
@@ -414,8 +414,8 @@ s32 func_02143a78(Unk021425e8Func a, Unk02143a78 *b) {
     if (b->mUnk_04 < 1 || b->mUnk_04 > 0xe) {
         return 6;
     }
-    func_02142c0c(0xa, (u32) a);
-    pk = (Unk02143a78_0c *) func_02142aa8()->mUnk_00c;
+    SetCommandCallback(0xa, (u32) a);
+    pk = (Unk02143a78_0c *) GetWorkBuffer()->mUnk_00c;
     pk->mUnk_00 = 0xa;
     pk->mUnk_02 = b->mUnk_04;
     pk->mUnk_04 = b->mUnk_00;
@@ -426,19 +426,19 @@ s32 func_02143a78(Unk021425e8Func a, Unk02143a78 *b) {
     pk->mUnk_0a[3] = b->mUnk_08[3];
     pk->mUnk_0a[4] = b->mUnk_08[4];
     pk->mUnk_0a[5] = b->mUnk_08[5];
-    r = func_02142ab8(0xa, 0);
+    r = SendCommandMessage(0xa, 0);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_021438f0(Unk021425e8Func a, Unk021438f0 *b) {
+s32 WM_StartScanEx(Unk021425e8Func a, Unk021438f0 *b) {
     Unk021438f0_0c *pk;
     s32 r;
     u16 t;
 
-    r = func_02142988(3, 2, 3, 5);
+    r = GetErrorUnlessStateIsOneOf(3, 2, 3, 5);
     if (r != 0) {
         return r;
     }
@@ -463,8 +463,8 @@ s32 func_021438f0(Unk021425e8Func a, Unk021438f0 *b) {
             return 6;
         }
     }
-    func_02142c0c(0x26, (u32) a);
-    pk = (Unk021438f0_0c *) func_02142aa8()->mUnk_00c;
+    SetCommandCallback(0x26, (u32) a);
+    pk = (Unk021438f0_0c *) GetWorkBuffer()->mUnk_00c;
     pk->mUnk_00 = 0x26;
     pk->mUnk_02 = b->mUnk_06;
     pk->mUnk_04 = b->mUnk_00;
@@ -475,33 +475,33 @@ s32 func_021438f0(Unk021425e8Func a, Unk021438f0 *b) {
     pk->mUnk_36 = b->mUnk_34;
     pk->mUnk_14 = b->mUnk_12;
     MemCopy(b->mUnk_14, pk->mUnk_16, 0x20);
-    r = func_02142ab8(0x26, 0);
+    r = SendCommandMessage(0x26, 0);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_021438a8(Unk021425e8Func a) {
+s32 WM_EndScan(Unk021425e8Func a) {
     s32 r;
 
-    r = func_02142988(1, 5);
+    r = GetErrorUnlessStateIsOneOf(1, 5);
     if (r != 0) {
         return r;
     }
-    func_02142c0c(0xb, (u32) a);
-    r = func_02142ab8(0xb, 0);
+    SetCommandCallback(0xb, (u32) a);
+    r = SendCommandMessage(0xb, 0);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_021437d8(Unk021425e8Func a, u16 *b, void *c, u32 d, u16 e) {
+s32 WM_StartConnectEx(Unk021425e8Func a, u16 *b, void *c, u32 d, u16 e) {
     Unk021437d8 *pk;
     s32 r;
 
-    r = func_02142988(1, 2);
+    r = GetErrorUnlessStateIsOneOf(1, 2);
     if (r != 0) {
         return r;
     }
@@ -509,8 +509,8 @@ s32 func_021437d8(Unk021425e8Func a, u16 *b, void *c, u32 d, u16 e) {
         return 6;
     }
     DC_StoreRange(b, b[0] * 2);
-    func_02142c0c(0xc, (u32) a);
-    pk = (Unk021437d8 *) func_02142aa8()->mUnk_00c;
+    SetCommandCallback(0xc, (u32) a);
+    pk = (Unk021437d8 *) GetWorkBuffer()->mUnk_00c;
     pk->mUnk_00 = 0xc;
     pk->mUnk_04 = b;
     if (c != 0) {
@@ -520,19 +520,19 @@ s32 func_021437d8(Unk021425e8Func a, u16 *b, void *c, u32 d, u16 e) {
     }
     pk->mUnk_20 = d;
     pk->mUnk_26 = e;
-    r = func_02142ab8(0xc, 0);
+    r = SendCommandMessage(0xc, 0);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_021436d0(Unk021425e8Func a, u32 b) {
+s32 WM_Disconnect(Unk021425e8Func a, u32 b) {
     Unk02142aa8 *p;
     s32 r;
 
-    p = func_02142aa8();
-    r = func_02142988(5, 7, 9, 8, 10, 11);
+    p = GetWorkBuffer();
+    r = GetErrorUnlessStateIsOneOf(5, 7, 9, 8, 10, 11);
     if (r != 0) {
         return r;
     }
@@ -547,20 +547,20 @@ s32 func_021436d0(Unk021425e8Func a, u32 b) {
     } else if (b != 0) {
         return 6;
     }
-    func_02142c0c(0xd, (u32) a);
-    r = func_02142ab8(0xd, 1, 1 << b);
+    SetCommandCallback(0xd, (u32) a);
+    r = SendCommandMessage(0xd, 1, 1 << b);
     if (r == 0) {
         return 2;
     }
     return r;
 }
 
-s32 func_02143634(Unk021425e8Func a, u32 b) {
+s32 WM_DisconnectChildren(Unk021425e8Func a, u32 b) {
     Unk02142aa8 *p;
     s32 r;
 
-    p = func_02142aa8();
-    r = func_02142988(2, 7, 9);
+    p = GetWorkBuffer();
+    r = GetErrorUnlessStateIsOneOf(2, 7, 9);
     if (r != 0) {
         return r;
     }
@@ -568,8 +568,8 @@ s32 func_02143634(Unk021425e8Func a, u32 b) {
     if ((p->mUnk_004->mUnk_17e & b & 0xfffe) == 0) {
         return 7;
     }
-    func_02142c0c(0xd, (u32) a);
-    r = func_02142ab8(0xd, 1, b);
+    SetCommandCallback(0xd, (u32) a);
+    r = SendCommandMessage(0xd, 1, b);
     if (r == 0) {
         return 2;
     }
@@ -581,12 +581,12 @@ s32 func_021435e8(Unk021425e8Func a) {
     s32 r;
 
     s = IrqDisable();
-    r = func_02142a8c();
+    r = GetErrorUnlessInitialized();
     if (r != 0) {
         IrqRestore(s);
         return r;
     }
-    func_02142aa8()->mUnk_0c0 = a;
+    GetWorkBuffer()->mUnk_0c0 = a;
     IrqRestore(s);
     return 0;
 }
@@ -597,12 +597,12 @@ s32 func_0214358c(u32 n, UnkFunc *f, Unk021450ec *arg) {
     Unk02142aa8 *p;
 
     s = IrqDisable();
-    r = func_02142a8c();
+    r = GetErrorUnlessInitialized();
     if (r != 0) {
         IrqRestore(s);
         return r;
     }
-    p = func_02142aa8();
+    p = GetWorkBuffer();
     p->mUnk_0c4[n] = f;
     p->mUnk_104[n] = arg;
     IrqRestore(s);
@@ -613,8 +613,8 @@ s32 func_02143520(void *a) {
     Unk02142aa8 *p;
     s32 r;
 
-    p = func_02142aa8();
-    r = func_02142a8c();
+    p = GetWorkBuffer();
+    r = GetErrorUnlessInitialized();
     if (r != 0) {
         return r;
     }
@@ -629,8 +629,8 @@ s32 func_02143520(void *a) {
 s32 func_0214349c(void) {
     Unk02142aa8 *p;
 
-    p = func_02142aa8();
-    if (func_02142988(2, 7, 8) != 0) {
+    p = GetWorkBuffer();
+    if (GetErrorUnlessStateIsOneOf(2, 7, 8) != 0) {
         return 0;
     }
     DC_InvalidateRange(&p->mUnk_004->mUnk_00c, 4);
@@ -646,8 +646,8 @@ s32 func_021433b0(void) {
     s32 f;
     u16 v;
 
-    p = func_02142aa8();
-    if (func_02142988(2, 7, 8) != 0) {
+    p = GetWorkBuffer();
+    if (GetErrorUnlessStateIsOneOf(2, 7, 8) != 0) {
         return 0;
     }
     DC_InvalidateRange(&p->mUnk_004->mUnk_00c, 4);
@@ -674,8 +674,8 @@ void *func_021432ac(const Unk021432ac *a, u32 b) {
     u32 ptrs[16];
     s32 i;
 
-    p = func_02142aa8();
-    if (func_02142a8c() != 0) {
+    p = GetWorkBuffer();
+    if (GetErrorUnlessInitialized() != 0) {
         return 0;
     }
     if (b < 1 || b > 0xf) {
@@ -701,7 +701,7 @@ void *func_021432ac(const Unk021432ac *a, u32 b) {
 }
 
 u16 func_02143280(void) {
-    if (func_02142a8c() != 0) {
+    if (GetErrorUnlessInitialized() != 0) {
         return 0x8000;
     }
     return *(u16 *) 0x27ffcfa;
@@ -710,8 +710,8 @@ u16 func_02143280(void) {
 u16 func_021431d8(void) {
     Unk02142aa8 *p;
 
-    p = func_02142aa8();
-    if (func_02142a8c() != 0) {
+    p = GetWorkBuffer();
+    if (GetErrorUnlessInitialized() != 0) {
         return 0;
     }
     DC_InvalidateRange(p->mUnk_004, 2);

@@ -12,7 +12,7 @@ typedef struct Unk021ccf30_1300 {
 } Unk021ccf30_1300;
 
 // 0x44 bytes: func_ov003_021cd1c4 copies them from data_ov003_021d6640; the first 0x38 bytes are the object
-// func_021438f0 takes.
+// WM_StartScanEx takes.
 typedef struct Unk021da26c_1648 {
     /* 00 */ Unk021438f0 mUnk_00;
     /* 38 */ u8 mUnk_38[0xc];

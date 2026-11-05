@@ -234,7 +234,7 @@ void func_020094b8(u32 a, u16 b, u32 c) {
         data_0216fc4c.mUnk_0c = 4;
     }
     c |= 2;
-    func_021455a0(NULL, &data_0216fc60, 0x70, a, b, c);
+    WM_SetGameInfo(NULL, &data_0216fc60, 0x70, a, b, c);
 }
 
 void func_02009494(void) {
@@ -300,7 +300,7 @@ void func_020092d0(u32 a, u16 b, u32 c) {
         data_0216fc4c.mUnk_0c = 1;
     }
     c |= 2;
-    func_021455a0(NULL, &data_0216fc60, 0x70, a, b, c);
+    WM_SetGameInfo(NULL, &data_0216fc60, 0x70, a, b, c);
     if (data_0216fc44 == 1 && data_0216fc48 != NULL) {
         data_0216fc48(data_0216fc4c.mUnk_04->mUnk_4b8);
     }

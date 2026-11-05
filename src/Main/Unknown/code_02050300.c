@@ -33,7 +33,7 @@ static inline u32 func_02050650_inline(void) {
 void func_020515b0(u32 a) {
     data_0217aa00->mUnk_000c = 0x10;
     data_0217aa00->mUnk_0010 = 1;
-    if (func_02143634(func_02051528, a) != 7) {
+    if (WM_DisconnectChildren(func_02051528, a) != 7) {
         return;
     }
     if (data_0217aa00->mUnk_0004 == 9) {
@@ -76,7 +76,7 @@ void func_020514c0(void) {
 void func_0205146c(void) {
     data_0217aa00->mUnk_000c = 0x12;
     data_0217aa00->mUnk_0010 = 1;
-    if (func_02143fbc(func_02051400) == 2) {
+    if (WM_EndMP(func_02051400) == 2) {
         return;
     }
     func_020533a0();
@@ -100,7 +100,7 @@ void func_02051400(Unk021425e8 *a) {
 void func_020513ac(void) {
     data_0217aa00->mUnk_000c = 0x13;
     data_0217aa00->mUnk_0010 = 1;
-    if (func_02143b7c(func_02051364) == 2) {
+    if (WM_EndParent(func_02051364) == 2) {
         return;
     }
     func_020533a0();
@@ -130,7 +130,7 @@ void func_02051230(void) {
                     data_0217aa00->mUnk_0044.mUnk_41 = i;
                     data_0217aa00->mUnk_000c = 0x14;
                     data_0217aa00->mUnk_0010 = 1;
-                    r = func_021436d0(func_02051108, e->mUnk_06);
+                    r = WM_Disconnect(func_02051108, e->mUnk_06);
                     break;
                 }
             }
@@ -138,7 +138,7 @@ void func_02051230(void) {
         case 2:
             data_0217aa00->mUnk_000c = 0x14;
             data_0217aa00->mUnk_0010 = 1;
-            r = func_021436d0(func_02051108, 0);
+            r = WM_Disconnect(func_02051108, 0);
             break;
     }
     switch (r) {
@@ -226,7 +226,7 @@ void func_02050ec0(void) {
 
     data_0217aa00->mUnk_000c = 0x15;
     data_0217aa00->mUnk_0010 = 1;
-    if (func_02143d88(func_02050e80) == 2) {
+    if (WM_End(func_02050e80) == 2) {
         return;
     }
     p = data_0217aa00;
@@ -247,12 +247,12 @@ void func_02050ec0(void) {
     }
     p->mUnk_000c = 2;
     data_0217aa00->mUnk_0010 = 1;
-    if (func_02143dd0(func_02053348) == 2) {
+    if (WM_Reset(func_02053348) == 2) {
         return;
     }
     data_0217aa00->mUnk_000c = 0x15;
     data_0217aa00->mUnk_0010 = 1;
-    if (func_02143d88(func_02050e80) == 2) {
+    if (WM_End(func_02050e80) == 2) {
         return;
     }
     if ((data_0217aa00->mUnk_0454 & 0x100) != 0) {
@@ -264,7 +264,7 @@ void func_02050ec0(void) {
         return;
     }
     func_0205108c(2);
-    if (func_02143dd0(func_02053348) == 2) {
+    if (WM_Reset(func_02053348) == 2) {
         return;
     }
     func_02050ec0();
@@ -496,7 +496,7 @@ BOOL func_02050650(void *a, s32 b, u16 c, void *d, Unk021652a0 *e) {
         MemCopy(a, d, n);
         DC_FlushRange(d, n);
     }
-    if (func_02144048(e->mUnk_00, NULL, d, n, c, e->mUnk_08, e->mUnk_0c) != 2) {
+    if (WM_SetMPDataToPortEx(e->mUnk_00, NULL, d, n, c, e->mUnk_08, e->mUnk_0c) != 2) {
         return FALSE;
     }
     return TRUE;

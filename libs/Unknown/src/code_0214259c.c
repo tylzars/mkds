@@ -77,10 +77,10 @@ s32 func_02142c98(void *buf, u32 n, u32 size) {
 s32 func_02142c24(void) {
     s32 r;
 
-    if (func_02142a8c() != 0) {
+    if (GetErrorUnlessInitialized() != 0) {
         return 3;
     }
-    r = func_02142988(1, 0);
+    r = GetErrorUnlessStateIsOneOf(1, 0);
     if (r != 0) {
         return r;
     }
@@ -91,7 +91,7 @@ s32 func_02142c24(void) {
     return 0;
 }
 
-u32 func_02142c0c(u32 arg0, u32 arg1) {
+u32 SetCommandCallback(u32 arg0, u32 arg1) {
     u32 value0 = arg0;
     u32 value1 = arg1;
     u32 value2;
@@ -102,7 +102,7 @@ u32 func_02142c0c(u32 arg0, u32 arg1) {
     return value0;
 }
 
-s32 func_02142ab8(u32 a, u16 b, ...) {
+s32 SendCommandMessage(u32 a, u16 b, ...) {
     void *p;
     u32 *ap;
     s32 i;
@@ -136,24 +136,24 @@ s32 func_02142ab8(u32 a, u16 b, ...) {
     return 2;
 }
 
-Unk02142aa8 *func_02142aa8(void) {
+Unk02142aa8 *GetWorkBuffer(void) {
     u32 value0;
     value0 = (u32) &data_0217eed4;
     value0 = (u32) * (const u32 *) ((value0) + (0));
     return (Unk02142aa8 *) value0;
 }
 
-s32 func_02142a8c(void) {
+s32 GetErrorUnlessInitialized(void) {
     if (data_0217eed0 != 0) {
         return 0;
     }
     return 3;
 }
 
-s32 func_02142a30(void) {
+s32 GetErrorUnlessStateAtLeast2(void) {
     s32 r;
 
-    r = func_02142a8c();
+    r = GetErrorUnlessInitialized();
     if (r != 0) {
         return r;
     }
@@ -164,12 +164,12 @@ s32 func_02142a30(void) {
     return 0;
 }
 
-s32 func_02142988(s32 n, ...) {
+s32 GetErrorUnlessStateIsOneOf(s32 n, ...) {
     u32 *ap;
     u16 v;
     s32 r;
 
-    r = func_02142a8c();
+    r = GetErrorUnlessInitialized();
     if (r != 0) {
         return r;
     }
@@ -312,7 +312,7 @@ void func_021425cc(void) {
 }
 
 Unk02142988 *func_0214259c(void) {
-    if (func_02142a8c() != 0) {
+    if (GetErrorUnlessInitialized() != 0) {
         return 0;
     }
     return data_0217eed4->mUnk_004;

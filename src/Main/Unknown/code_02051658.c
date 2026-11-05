@@ -74,7 +74,7 @@ void func_020527c0(s32 a, s32 (*b)(), s32 (*c)()) {
         s->mUnk_38c = s->mUnk_38c - 1;
     }
     q->mUnk_06 = func_02143090();
-    if (func_02143a78(func_02051f00, q) != 2) {
+    if (WM_StartScan(func_02051f00, q) != 2) {
         data_0217aa00->mUnk_0436 &= ~1;
         func_020533a0();
         return;
@@ -335,7 +335,7 @@ void func_02051e98(void) {
     data_0217aa00->mUnk_0436 &= ~1;
     data_0217aa00->mUnk_000c = 9;
     data_0217aa00->mUnk_0010 = 1;
-    if (func_021438a8(func_02051e58) == 2) {
+    if (WM_EndScan(func_02051e58) == 2) {
         return;
     }
     func_020533a0();
@@ -367,7 +367,7 @@ void func_02051d24(Unk0217aa00_24 *a, void *b, s32 (*c)(), s32 (*d)(), s32 (*e)(
     }
     data_0217aa00->mUnk_000c = 10;
     data_0217aa00->mUnk_0010 = 1;
-    if (func_021437d8(func_02051ad4, (u16 *) data_0217aa00->mUnk_0024, v1, 1, 0) != 2) {
+    if (WM_StartConnectEx(func_02051ad4, (u16 *) data_0217aa00->mUnk_0024, v1, 1, 0) != 2) {
         func_020533a0();
         return;
     }
@@ -465,8 +465,8 @@ void func_02051ad4(Unk021425e8 *a) {
 void func_02051a24(void) {
     data_0217aa00->mUnk_000c = 0xb;
     data_0217aa00->mUnk_0010 = 1;
-    if (func_02144230(func_02051958, data_0217aa00->mUnk_003c, (u16) data_0217aa00->mUnk_0038, data_0217aa00->mUnk_0034,
-                      data_0217aa00->mUnk_0030, 1, 0, 0, 0, 0, 0) == 2) {
+    if (WM_StartMPEx(func_02051958, data_0217aa00->mUnk_003c, (u16) data_0217aa00->mUnk_0038, data_0217aa00->mUnk_0034,
+                     data_0217aa00->mUnk_0030, 1, 0, 0, 0, 0, 0) == 2) {
         return;
     }
     data_0217aa00->mUnk_0008 = 2;
@@ -532,7 +532,7 @@ void func_02051814(s32 a) {
     }
     data_0217aa00->mUnk_000c = 0xd;
     data_0217aa00->mUnk_0010 = 1;
-    r = func_021453ec(func_020517d4, a);
+    r = WM_SetEntry(func_020517d4, a);
     if (r == 2) {
         return;
     }
@@ -578,8 +578,8 @@ void func_02051658(void) {
     if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
         r = FALSE;
     }
-    if (func_021455a0((Unk021425e8Func) func_02051640, p->mUnk_38, 0x1c, 0x25, data_0217aa00->mUnk_0018->mUnk_0c,
-                      r == FALSE) != 2) {
+    if (WM_SetGameInfo((Unk021425e8Func) func_02051640, p->mUnk_38, 0x1c, 0x25, data_0217aa00->mUnk_0018->mUnk_0c,
+                       r == FALSE) != 2) {
         data_0217aa00->mUnk_0010 = 0;
     }
 }

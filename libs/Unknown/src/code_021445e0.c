@@ -32,8 +32,8 @@ int func_021450ec(Unk021450ec *p, u32 n, u32 mask, u32 k, u32 flag) {
     Unk0214461c *e;
 
     w = 1;
-    q = func_02142aa8()->mUnk_004;
-    r = func_02142988(2, 9, 10);
+    q = GetWorkBuffer()->mUnk_004;
+    r = GetErrorUnlessStateIsOneOf(2, 9, 10);
     if (r != 0) {
         return r;
     }
@@ -83,7 +83,7 @@ int func_021450ec(Unk021450ec *p, u32 n, u32 mask, u32 k, u32 flag) {
         e = p->mUnk_000;
         for (i = 0; i < (p->mUnk_818 == 1 ? 2 : 1); e++, i++) {
             p->mUnk_808 = (p->mUnk_808 + 1) & 3;
-            r = func_02144048((UnkFunc *) func_02144b64, p, e, p->mUnk_814, p->mUnk_80e & w, p->mUnk_816, 1);
+            r = WM_SetMPDataToPortEx((UnkFunc *) func_02144b64, p, e, p->mUnk_814, p->mUnk_80e & w, p->mUnk_816, 1);
             if (r == 7) {
                 p->mUnk_800[i] = 0xffff;
                 p->mUnk_80a = (p->mUnk_80a + 1) & 3;
@@ -105,8 +105,8 @@ int func_02145030(Unk021450ec *p) {
     UnkFunc *f;
     int r;
 
-    pp = func_02142aa8();
-    r = func_02142988(2, 9, 10);
+    pp = GetWorkBuffer();
+    r = GetErrorUnlessStateIsOneOf(2, 9, 10);
     if (r != 0) {
         return r;
     }
@@ -138,8 +138,8 @@ int func_02144c6c(Unk021450ec *p, void *a, Unk0214461c *b) {
     u16 k;
     u8 *e7;
 
-    q = func_02142aa8()->mUnk_004;
-    r = func_02142988(2, 9, 10);
+    q = GetWorkBuffer()->mUnk_004;
+    r = GetErrorUnlessStateIsOneOf(2, 9, 10);
     if (r != 0) {
         return r;
     }
@@ -178,8 +178,8 @@ int func_02144c6c(Unk021450ec *p, void *a, Unk0214461c *b) {
         if (st == 4) {
             p->mUnk_81c = 1;
             k = (p->mUnk_808 + 3) & 3;
-            rr = func_02144048((UnkFunc *) func_02144b64, p, &p->mUnk_000[k], p->mUnk_814, p->mUnk_80e & w, p->mUnk_816,
-                               1);
+            rr = WM_SetMPDataToPortEx((UnkFunc *) func_02144b64, p, &p->mUnk_000[k], p->mUnk_814, p->mUnk_80e & w,
+                                      p->mUnk_816, 1);
             if (rr == 7) {
                 p->mUnk_800[k] = 0xffff;
                 p->mUnk_80a = (p->mUnk_80a + 1) & 3;
@@ -229,7 +229,7 @@ int func_02144c6c(Unk021450ec *p, void *a, Unk0214461c *b) {
         if (t != 0) {
             e7 = &p->mUnk_000[p->mUnk_80a].mUnk_04[0x1c];
             MemCopyHalfwords(a, e7, p->mUnk_810);
-            rr = func_02144048((UnkFunc *) func_02144b64, p, e7, p->mUnk_810, p->mUnk_80e, p->mUnk_816, 1);
+            rr = WM_SetMPDataToPortEx((UnkFunc *) func_02144b64, p, e7, p->mUnk_810, p->mUnk_80e, p->mUnk_816, 1);
             p->mUnk_80a = (p->mUnk_80a + 1) & 3;
             if (rr != 2) {
                 if (rr != 0) {
@@ -242,8 +242,8 @@ int func_02144c6c(Unk021450ec *p, void *a, Unk0214461c *b) {
     return r;
 }
 
-// Passed to func_02144048; accepts only objects that func_02144a50 or func_02144920 are stored for and records the
-// result in the object at mUnk_20.
+// Passed to WM_SetMPDataToPortEx; accepts only objects that func_02144a50 or func_02144920 are stored for and records
+// the result in the object at mUnk_20.
 void func_02144b64(Unk02144920 *a) {
     Unk02142aa8 *pp;
     Unk02142988 *q;
@@ -252,7 +252,7 @@ void func_02144b64(Unk02144920 *a) {
     u32 x;
     u32 y;
 
-    pp = func_02142aa8();
+    pp = GetWorkBuffer();
     q = pp->mUnk_004;
     f = pp->mUnk_0c4[a->mUnk_0a];
     p = pp->mUnk_104[a->mUnk_0a];
@@ -343,7 +343,7 @@ void func_02144920(Unk02144920 *a) {
     u32 g;
     u16 *d;
 
-    q = func_02142aa8()->mUnk_004;
+    q = GetWorkBuffer()->mUnk_004;
     p = a->mUnk_1c;
     if (p == 0) {
         return;
@@ -419,7 +419,7 @@ void func_02144814(Unk021450ec *p, u32 bit, const void *src) {
 }
 
 // When the block at mUnk_808 starts with 0: advances mUnk_808, clears the block two ahead (one ahead when mUnk_818
-// is not 1), then passes the block to func_02144048.
+// is not 1), then passes the block to WM_SetMPDataToPortEx.
 void func_02144688(Unk021450ec *p, u32 f) {
     u32 s;
     u16 i;
@@ -430,7 +430,7 @@ void func_02144688(Unk021450ec *p, u32 f) {
     int r;
     volatile u16 z;
 
-    q = func_02142aa8()->mUnk_004;
+    q = GetWorkBuffer()->mUnk_004;
     s = IrqDisable();
     if (p->mUnk_000[p->mUnk_808].mUnk_00 == 0) {
         DC_InvalidateRange(&q->mUnk_086, 2);
@@ -451,7 +451,8 @@ void func_02144688(Unk021450ec *p, u32 f) {
             p->mUnk_000[i].mUnk_00 &= ~1;
         }
         IrqRestore(s);
-        r = func_02144048((UnkFunc *) func_02144b64, p, &p->mUnk_000[i], p->mUnk_814, p->mUnk_80e & w, p->mUnk_816, 1);
+        r = WM_SetMPDataToPortEx((UnkFunc *) func_02144b64, p, &p->mUnk_000[i], p->mUnk_814, p->mUnk_80e & w,
+                                 p->mUnk_816, 1);
         if (r == 7) {
             p->mUnk_800[i] = 0xffff;
             p->mUnk_80a = (p->mUnk_80a + 1) & 3;

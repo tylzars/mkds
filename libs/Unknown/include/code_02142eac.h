@@ -7,9 +7,9 @@ typedef struct Unk021450ec Unk021450ec;
 typedef struct Unk021425e8 Unk021425e8;
 typedef void (*Unk021425e8Func)(Unk021425e8 *);
 
-// func_02142c98 sets up the object that data_0217eed4 points to. func_02142c0c stores a word at offset 0x18 + 4 * n;
-// func_0214358c stores a function and its argument at mUnk_0c4[n] and mUnk_104[n]. The tables mUnk_018, mUnk_0c4
-// and mUnk_104 are indexed by the value in mUnk_00 of the object that func_021425e8 takes.
+// func_02142c98 sets up the object that data_0217eed4 points to. SetCommandCallback stores a word at offset 0x18 + 4 *
+// n; func_0214358c stores a function and its argument at mUnk_0c4[n] and mUnk_104[n]. The tables mUnk_018, mUnk_0c4 and
+// mUnk_104 are indexed by the value in mUnk_00 of the object that func_021425e8 takes.
 typedef struct Unk02142aa8 {
     /* 000 */ void *mUnk_000;
     /* 004 */ struct Unk02142988 *mUnk_004;
@@ -25,7 +25,7 @@ typedef struct Unk02142aa8 {
 } Unk02142aa8;
 
 // 0x7bc bytes (func_02143520 copies them); the members are the ones the code reads. Pointed to by the word
-// func_02142aa8 returns at mUnk_004.
+// GetWorkBuffer returns at mUnk_004.
 typedef struct Unk02142988 {
     /* 000 */ u16 mUnk_000;
     /* 002 */ u8 mUnk_002[2];
@@ -109,7 +109,7 @@ typedef struct Unk021432ac {
     /* 0a */ u8 mUnk_0a[1];
 } Unk021432ac;
 
-// Written to the buffer at mUnk_0c of an Unk02142aa8 by func_021437d8.
+// Written to the buffer at mUnk_0c of an Unk02142aa8 by WM_StartConnectEx.
 typedef struct Unk021437d8 {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02[2];
@@ -120,7 +120,7 @@ typedef struct Unk021437d8 {
     /* 26 */ u16 mUnk_26;
 } Unk021437d8;
 
-// Taken by func_021438f0.
+// Taken by WM_StartScanEx.
 typedef struct Unk021438f0 {
     /* 00 */ void *mUnk_00;
     /* 04 */ u16 mUnk_04;
@@ -133,7 +133,7 @@ typedef struct Unk021438f0 {
     /* 34 */ u16 mUnk_34;
 } Unk021438f0;
 
-// Written to the buffer at mUnk_0c of an Unk02142aa8 by func_021438f0.
+// Written to the buffer at mUnk_0c of an Unk02142aa8 by WM_StartScanEx.
 typedef struct Unk021438f0_0c {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
@@ -147,7 +147,7 @@ typedef struct Unk021438f0_0c {
     /* 36 */ u16 mUnk_36;
 } Unk021438f0_0c;
 
-// Taken by func_02143a78.
+// Taken by WM_StartScan.
 typedef struct Unk02143a78 {
     /* 00 */ void *mUnk_00;
     /* 04 */ u16 mUnk_04;
@@ -155,7 +155,7 @@ typedef struct Unk02143a78 {
     /* 08 */ u8 mUnk_08[6];
 } Unk02143a78;
 
-// Written to the buffer at mUnk_0c of an Unk02142aa8 by func_02143a78.
+// Written to the buffer at mUnk_0c of an Unk02142aa8 by WM_StartScan.
 typedef struct Unk02143a78_0c {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
@@ -164,7 +164,7 @@ typedef struct Unk02143a78_0c {
     /* 0a */ u8 mUnk_0a[6];
 } Unk02143a78_0c;
 
-// Taken by func_02143c30 and func_02143c80.
+// Taken by IsParentParameterInRange and WM_SetParentParameter.
 typedef struct Unk02143c30 {
     /* 00 */ void *mUnk_00;
     /* 04 */ u16 mUnk_04;
@@ -194,28 +194,105 @@ s32 func_0214349c(void);
 s32 func_02143520(void *a);
 s32 func_0214358c(u32 n, UnkFunc *f, Unk021450ec *p);
 s32 func_021435e8(Unk021425e8Func a);
-s32 func_02143634(Unk021425e8Func a, u32 b);
-s32 func_021436d0(Unk021425e8Func a, u32 b);
-s32 func_021437d8(Unk021425e8Func a, u16 *b, void *c, u32 d, u16 e);
-s32 func_021438a8(Unk021425e8Func a);
-s32 func_021438f0(Unk021425e8Func a, Unk021438f0 *b);
-s32 func_02143a78(Unk021425e8Func a, Unk02143a78 *b);
-s32 func_02143b7c(Unk021425e8Func a);
-s32 func_02143bc4(Unk021425e8Func a);
-s32 func_02143bd4(Unk021425e8Func a, u32 b);
-u32 func_02143c30(const Unk02143c30 *a);
-s32 func_02143c80(Unk021425e8Func a, Unk02143c30 *b);
-s32 func_02143d88(Unk021425e8Func a);
-s32 func_02143dd0(Unk021425e8Func a);
-s32 func_02143e10(void *a, Unk021425e8Func b, u32 c);
-s32 func_02143e78(Unk021425e8Func a);
-s32 func_02143ec0(Unk021425e8Func a);
-s32 func_02143f08(Unk021425e8Func a);
-s32 func_02143f50(Unk021425e8Func a);
-s32 func_02143fbc(Unk021425e8Func a);
-s32 func_02144048(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 g);
+// In the comments below, w is the work buffer (GetWorkBuffer()); the status area is the pointer at +4 of w, the request
+// area the pointer at +0xc of w, and the callback table the words from +0x18 of w, one per command number. Needs state
+// 7 or 9. Returns 7 when the bitmap argument, the halfword at +0x17e of the status area and 0xfffe have no bit in
+// common. Stores the first argument as the callback for command 13 and sends command 13 with one word, the bitmap.
+// Returns the send result.
+s32 WM_DisconnectChildren(Unk021425e8Func a, u32 b);
+// Needs state 7, 9, 8, 10 or 11. In state 7 or 9 returns 6 when the id is not 1 to 15 and 7 when bit id of the
+// halfword at +0x17e of the status area is clear; in the other states returns 6 when the id is not 0. Stores the
+// first argument as the callback for command 13 and sends command 13 with one word, 1 shifted left by the id.
+// Returns the send result.
+s32 WM_Disconnect(Unk021425e8Func a, u32 b);
+// Needs state 2. Returns 6 when the second argument is NULL. Stores 2 times the halfword at that pointer in bytes at
+// it (DC_StoreRange), stores the first argument as the callback for command 12, writes 12 to the first halfword of
+// the request area, the second argument to +4, 24 bytes of the third argument to +8 (24 zero bytes when it is NULL),
+// the fourth argument to +32 and the fifth, as a halfword, to +38, and sends command 12 with no words. Returns the
+// send result.
+s32 WM_StartConnectEx(Unk021425e8Func a, u16 *b, void *c, u32 d, u16 e);
+// Needs state 5. Stores the argument as the callback for command 11 and sends command 11 with no words. Returns the
+// send result.
+s32 WM_EndScan(Unk021425e8Func a);
+// Needs state 2, 3 or 5. Returns 6 when the record pointer is NULL, the pointer at +0 is NULL, the halfword at +4 is
+// above 0x400, the halfword at +0x12 is above 0x20, the halfword at +0x10 is above 3, or, when that halfword is 2 or
+// 3, the halfword at +0x34 is above 0x20. Stores the first argument as the callback for command 38, writes 38 to the
+// first halfword of the request area and fills it from the record (the pointer at +0, the halfwords at +4, +6, +8,
+// +0x10, +0x12 and +0x34, 6 bytes from +10 and 32 bytes from +20, MemCopy), and sends command 38 with no words.
+// Returns the send result.
+s32 WM_StartScanEx(Unk021425e8Func a, Unk021438f0 *b);
+// Needs state 2, 3 or 5. Returns 6 when the record pointer is NULL, the pointer at +0 is NULL or the halfword at +4
+// is not 1 to 14. Stores the first argument as the callback for command 10, writes 10 to the first halfword of the
+// request area, the halfword at +4 of the record to +2, the pointer at +0 to +4, the halfword at +6 to +8 and the
+// six bytes from +8 to +10 of the request area, and sends command 10 with no words (SendCommandMessage copies the
+// request area). Returns the send result.
+s32 WM_StartScan(Unk021425e8Func a, Unk02143a78 *b);
+// Needs state 7. Stores the argument as the callback for command 9 and sends command 9 with no words. Returns the
+// send result.
+s32 WM_EndParent(Unk021425e8Func a);
+// Calls StartParentWithArgument(argument, 1).
+s32 WM_StartParent(Unk021425e8Func a);
+// Needs state 2. Stores the first argument as the callback for command 8 and sends command 8 with one word, the
+// second argument (both callers pass 1). Returns the send result.
+s32 StartParentWithArgument(Unk021425e8Func a, u32 b);
+// Returns 0 when the halfword at +4 is above 0x70, the halfword at +0x18 is below 10 or above 1000, or the halfword
+// at +0x32 is below 1 or above 14; otherwise returns 1. (Its only caller ignores the result.)
+u32 IsParentParameterInRange(const Unk02143c30 *a);
+// Needs state 2. Returns 6 when the record pointer is NULL, when the halfword at +4 is not 0 and the pointer at +0
+// is NULL, or when the halfword at +0x34 plus 0x2a (0 when the halfword at +0x14 is 0) or the halfword at +0x36 plus
+// 6 (0 when that halfword is 0) is above 0x200. Calls IsParentParameterInRange on the record and ignores the result.
+// Stores the first argument as the callback for command 7, stores 0x40 bytes of the record and, when the halfword at
+// +4 is not 0, that many bytes at the pointer at +0 (DC_StoreRange), and sends command 7 with one word, the record
+// address. Returns the send result.
+s32 WM_SetParentParameter(Unk021425e8Func a, Unk02143c30 *b);
+// Needs state 2 (returns the result of GetErrorUnlessStateIsOneOf otherwise). Stores the argument as the callback
+// for command 2 and sends command 2 with no words. Returns the send result.
+s32 WM_End(Unk021425e8Func a);
+// Returns GetErrorUnlessStateAtLeast2's result when it is not 0. Stores the argument as the callback for command 1
+// and sends command 1 with no words. Returns the send result.
+s32 WM_Reset(Unk021425e8Func a);
+// Calls func_02142e78 with the first and third argument (the set-up of the work buffer) and returns its result when
+// it is not 0. Stores the second argument as the callback for command 0 and sends command 0 with three words: the
+// pointers at +0 and +4 and the word at +0x10 of w. Returns the send result.
+s32 WM_Initialize(void *a, Unk021425e8Func b, u32 c);
+// Needs state 2. Stores the argument as the callback for command 6 and sends command 6 with no words. Returns the
+// send result.
+s32 WM_PowerOff(Unk021425e8Func a);
+// Needs state 1. Stores the argument as the callback for command 5 and sends command 5 with no words. Returns the
+// send result.
+s32 WM_PowerOn(Unk021425e8Func a);
+// Needs state 1. Stores the argument as the callback for command 4 and sends command 4 with no words. Returns the
+// send result.
+s32 WM_Disable(Unk021425e8Func a);
+// Needs state 0. Stores the argument as the callback for command 3 and sends command 3 with three words: the
+// pointers at +0 and +4 and the word at +0x10 of w. Returns the send result.
+s32 WM_Enable(Unk021425e8Func a);
+// Needs state 9 or 10. Returns 3 when the word at +0xc of the status area is 0. Stores the argument as the callback
+// for command 16 and sends command 16 with no words. Returns the send result.
+s32 WM_EndMP(Unk021425e8Func a);
+// Needs state 9 or 10. Reads the largest size from the halfword at +0x18e of the status area; when the halfword at
+// +0x184 is 0 it also reads the halfword at +0x17e, otherwise it takes 1. Returns 6 when the data pointer is NULL, 7
+// when that value is 0, 6 when the data pointer equals the word at +0x50 of the status area, 6 when the size plus 4
+// (when the halfword at +0x184 is 0) or 2 is above the largest size, and 6 when the size is 0. Stores the data
+// (DC_StoreRange) and sends command 15 with seven words: the data pointer, the size, the three halfword arguments
+// after it, the first argument and the second argument. No callback is stored in the table. Returns the send result.
+s32 WM_SetMPDataToPortEx(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 g);
 s32 func_021441d0(Unk021425e8Func a, u32 b);
-s32 func_02144230(Unk021425e8Func a, u32 b, s32 c, u32 d, u16 e, u16 f, u16 g, u32 h, u32 i, u32 j, u32 k);
-s32 func_021443b0(Unk021425e8Func a);
-s32 func_02144438(Unk021425e8Func a, const void *b, void *c, u32 d);
-s32 func_02144514(Unk021425e8Func a, void *b, u32 c);
+// Needs state 7 or 8. Returns 3 when the halfword at +0x184 of the status area is not 0 and the halfword at +0xc2 is
+// not 1, or when the word at +0xc is 1. Returns 6 when the third argument is below the result of func_021433b0 or is
+// not a multiple of 0x40, or when the fifth argument is below the result of func_0214349c or is not a multiple of
+// 0x20. Stores the first argument as the callback for command 14 and sends command 14 with ten words: the second
+// argument, the third divided by 2, the fourth, the fifth and the six arguments after it. Returns the send result.
+s32 WM_StartMPEx(Unk021425e8Func a, u32 b, s32 c, u32 d, u16 e, u16 f, u16 g, u32 h, u32 i, u32 j, u32 k);
+// Needs state 11. Returns 3 when the word at +0x10 of the status area is 0. Stores the argument as the callback for
+// command 19 and sends command 19 with no words. Returns the send result.
+s32 WM_EndDCF(Unk021425e8Func a);
+// Needs state 11. Returns 3 when the word at +0x10 of the status area is 0, and 6 when the size is above 0x5e4.
+// Stores the data (DC_StoreRange), stores the first argument as the callback for command 18, copies 6 bytes from the
+// second argument (MemCopy) and sends command 18 with four words: the six bytes as two words, the data pointer and
+// the size. Returns the send result.
+s32 WM_SetDCFData(Unk021425e8Func a, const void *b, void *c, u32 d);
+// Needs state 8. Returns 3 when the word at +0x10 of the status area is 1, and 6 when the size is below 0x10 or the
+// buffer pointer is NULL. Stores the buffer (DC_StoreRange), stores the first argument as the callback for command
+// 17 and sends command 17 with two words, the buffer pointer and the size. Returns the send result.
+s32 WM_StartDCF(Unk021425e8Func a, void *b, u32 c);

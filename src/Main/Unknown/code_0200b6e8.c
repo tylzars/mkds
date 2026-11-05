@@ -62,7 +62,7 @@ void func_0200c008(u8 *a) {
     data_0216fdec->mUnk_16 = *(u16 *) (a + 0x4e);
     data_0216fdec->mUnk_18 = data_0216fdec->mUnk_14 - 6;
     func_0200c448(data_0216fdec->mUnk_16);
-    r = func_021437d8(func_0200bf90, (u16 *) a, NULL, 1, 0);
+    r = WM_StartConnectEx(func_0200bf90, (u16 *) a, NULL, 1, 0);
     if (r != 2) {
         if (data_0216fdec->mUnk_00 != NULL) {
             data_0216fdec->mUnk_00(11, 0);
@@ -118,7 +118,7 @@ void func_0200bef8(void *a, u8 *b) {
         return;
     }
     p = data_0216fdec;
-    r = func_02144230(func_0200be44, (u32) b, p->mUnk_12, (u32) a, p->mUnk_10, 1, 0, 0, 0, 1, 1);
+    r = WM_StartMPEx(func_0200be44, (u32) b, p->mUnk_12, (u32) a, p->mUnk_10, 1, 0, 0, 0, 1, 1);
     if (r != 2) {
         p = data_0216fdec;
         if (p->mUnk_00 != NULL) {
@@ -179,7 +179,7 @@ void func_0200be00(void) {
     Unk0200bd34 v;
     s32 r;
     data_0216fdec->mUnk_1c = 1;
-    r = func_02143dd0(func_0200bdb4);
+    r = WM_Reset(func_0200bdb4);
     if (r != 2) {
         Unk0216fdec *p;
         data_0216fdec->mUnk_1c = 0;
@@ -214,7 +214,7 @@ void func_0200bdb4(Unk021425e8 *a) {
 
 void func_0200bd7c(void) {
     Unk0200bd34 v;
-    s32 r = func_02143dd0(func_0200bd34);
+    s32 r = WM_Reset(func_0200bd34);
     if (r != 2) {
         Unk0216fdec *p = data_0216fdec;
         if (p->mUnk_00 != NULL) {
@@ -278,7 +278,7 @@ s32 func_0200bc78(u32 a, u16 b, u8 *c) {
     if (func_0200bd0c() == 0) {
         return 1;
     }
-    r = func_02144048(func_0200bc1c, NULL, c, (u16) a, b, 1, 3);
+    r = WM_SetMPDataToPortEx(func_0200bc1c, NULL, c, (u16) a, b, 1, 3);
     if (r == 2) {
         data_0216fdec->mUnk_20 = 1;
         return 2;
@@ -450,7 +450,7 @@ void func_0200b934(void) {
     if (data_0216fde8->mUnk_0580.mUnk_04 == 0) {
         data_0216fde8->mUnk_0580.mUnk_04 = 1;
     }
-    r = func_02143a78(func_0200b894, &data_0216fde8->mUnk_0580);
+    r = WM_StartScan(func_0200b894, &data_0216fde8->mUnk_0580);
     if (r != 2) {
         func_0200b820(0xa, r);
     }
@@ -582,7 +582,7 @@ void func_0200b70c(void) {
 
 void func_0200b6e8(void) {
     u32 v1;
-    v1 = func_021438a8(func_0200b698);
+    v1 = WM_EndScan(func_0200b698);
     if (v1 != 2) {
         func_0200b820((u16) 0xb, (u16) (v1 & 0xffff));
     }

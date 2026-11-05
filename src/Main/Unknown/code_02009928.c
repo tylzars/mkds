@@ -125,8 +125,8 @@ void func_0200ad00(void) {
     u32 v1;
     v1 = func_021435e8(func_0200a7b0);
     func_02009928(0x80, v1);
-    v1 = func_021454c4(func_0200a7b0, *(u16 *) &data_0216179c, *(u16 *) &data_02161794, *(u16 *) &data_02161790,
-                       *(u16 *) &data_02161798);
+    v1 = WM_SetLifeTime(func_0200a7b0, *(u16 *) &data_0216179c, *(u16 *) &data_02161794, *(u16 *) &data_02161790,
+                        *(u16 *) &data_02161798);
     func_02009928(0x1d, v1);
 }
 
@@ -152,18 +152,18 @@ void func_0200a7b0(Unk021425e8 *a) {
                 data_0216fda8->mUnk_51c(0x100, a);
                 return;
             }
-            func_02009928(7, func_02143c80(func_0200a7b0, (Unk02143c30 *) data_0216fda8));
+            func_02009928(7, WM_SetParentParameter(func_0200a7b0, (Unk02143c30 *) data_0216fda8));
             return;
         case 7:
             data_0216fda8->mUnk_51c(0x15, a);
-            func_02009928(0x19, func_02145530(func_0200a7b0, 1));
+            func_02009928(0x19, WM_SetBeaconIndication(func_0200a7b0, 1));
             return;
         case 0x19:
             if (a->mUnk_02 != 0) {
                 data_0216fda8->mUnk_51c(0x100, a);
                 return;
             }
-            func_02009928(8, func_02143bd4(func_0200a7b0, data_usa_021617a4));
+            func_02009928(8, StartParentWithArgument(func_0200a7b0, data_usa_021617a4));
             return;
         case 8:
             if (a->mUnk_02 != 0) {
@@ -187,9 +187,9 @@ void func_0200a7b0(Unk021425e8 *a) {
                         if (data_0216fda8->mUnk_52c != 0) {
                             x = 0;
                         }
-                        func_02009928(0xe, func_02144230(func_0200a7b0, data_0216fda8->mUnk_504,
-                                                         data_0216fda8->mUnk_51a, (u32) data_0216fda8->mUnk_040,
-                                                         data_0216fda8->mUnk_518, x, 0, 0, 0, 1, 1));
+                        func_02009928(0xe, WM_StartMPEx(func_0200a7b0, data_0216fda8->mUnk_504, data_0216fda8->mUnk_51a,
+                                                        (u32) data_0216fda8->mUnk_040, data_0216fda8->mUnk_518, x, 0, 0,
+                                                        0, 1, 1));
                         return;
                     }
                     if (func_0200ad4c() == 0) {
@@ -263,7 +263,7 @@ void func_0200a7b0(Unk021425e8 *a) {
                 }
                 data_0216fda8->mUnk_52a = 0;
                 data_0216fda8->mUnk_528 = 0;
-                func_02009928(2, func_02143d88(func_0200a7b0));
+                func_02009928(2, WM_End(func_0200a7b0));
                 return;
             }
             func_0214358c(1, NULL, NULL);
@@ -336,8 +336,8 @@ void func_0200a1bc(Unk021425e8 *a) {
                 return;
             }
             v1->mUnk_51c(0x15, a);
-            func_02009928(0x1d, func_021454c4(func_0200a1bc, *(u16 *) &data_0216179c, *(u16 *) &data_02161794,
-                                              *(u16 *) &data_02161790, *(u16 *) &data_02161798));
+            func_02009928(0x1d, WM_SetLifeTime(func_0200a1bc, *(u16 *) &data_0216179c, *(u16 *) &data_02161794,
+                                               *(u16 *) &data_02161790, *(u16 *) &data_02161798));
             return;
         case 0x1d:
             if (a->mUnk_02 != 0) {
@@ -359,7 +359,7 @@ void func_0200a1bc(Unk021425e8 *a) {
             data_0216fdc0.mUnk_08[5] = 0xff;
             v1->mUnk_5e4 = 1;
             v1->mUnk_5e8 = 1;
-            func_02009928(0xa, func_02143a78(func_0200a1bc, &data_0216fdc0));
+            func_02009928(0xa, WM_StartScan(func_0200a1bc, &data_0216fdc0));
             return;
         case 10:
             if (a->mUnk_02 != 0) {
@@ -412,7 +412,7 @@ void func_0200a1bc(Unk021425e8 *a) {
                             func_02009c34();
                         }
                     }
-                    func_02009928(0xa, func_02143a78(func_0200a1bc, &data_0216fdc0));
+                    func_02009928(0xa, WM_StartScan(func_0200a1bc, &data_0216fdc0));
                     return;
                 case 4:
                     v1->mUnk_51c(5, a);
@@ -424,7 +424,7 @@ void func_0200a1bc(Unk021425e8 *a) {
                             func_02009c34();
                         }
                     }
-                    func_02009928(0xa, func_02143a78(func_0200a1bc, &data_0216fdc0));
+                    func_02009928(0xa, WM_StartScan(func_0200a1bc, &data_0216fdc0));
                     return;
                 default:
                     v1->mUnk_51c(0x100, a);
@@ -435,7 +435,7 @@ void func_0200a1bc(Unk021425e8 *a) {
                 v1->mUnk_51c(0x100, a);
                 return;
             }
-            func_02009928(0xc, func_021437d8(func_0200a1bc, v1->mUnk_520, NULL, 1, 0));
+            func_02009928(0xc, WM_StartConnectEx(func_0200a1bc, v1->mUnk_520, NULL, 1, 0));
             return;
         case 12:
             if (a->mUnk_02 != 0) {
@@ -455,8 +455,8 @@ void func_0200a1bc(Unk021425e8 *a) {
                     if (func_0214358c(1, (UnkFunc *) func_0200a77c, NULL) != 0) {
                         return;
                     }
-                    func_02009928(0xe, func_02144230(func_0200a1bc, v1->mUnk_504, v1->mUnk_51a, (u32) v1->mUnk_040,
-                                                     v1->mUnk_518, v1->mUnk_52c == 0 ? 1 : 0, 0, 0, 0, 1, 1));
+                    func_02009928(0xe, WM_StartMPEx(func_0200a1bc, v1->mUnk_504, v1->mUnk_51a, (u32) v1->mUnk_040,
+                                                    v1->mUnk_518, v1->mUnk_52c == 0 ? 1 : 0, 0, 0, 0, 1, 1));
                     return;
                 case 9:
                     v1->mUnk_51c(10, a);
@@ -502,7 +502,7 @@ void func_0200a1bc(Unk021425e8 *a) {
             }
             v1->mUnk_52a = 0;
             data_0216fda8->mUnk_528 = 0;
-            func_02009928(2, func_02143d88(func_0200a1bc));
+            func_02009928(2, WM_End(func_0200a1bc));
             return;
         case 2:
             if (a->mUnk_02 != 0) {
@@ -653,7 +653,7 @@ s32 func_02009e70(void) {
     if (data_0216fdac->mUnk_1320 == 0) {
         s32 v;
         do {
-            v = func_02143e10(data_usa_0216fd84, data_0216fda8->mUnk_508, data_usa_0216fd80);
+            v = WM_Initialize(data_usa_0216fd84, data_0216fda8->mUnk_508, data_usa_0216fd80);
         } while (v == 4);
         if (v != 2) {
             return 8;
@@ -721,7 +721,7 @@ s32 func_02009cc8(u16 a) {
 
 int func_02009c98(void) {
     int v1;
-    v1 = func_02143dd0(data_0216fda8->mUnk_508);
+    v1 = WM_Reset(data_0216fda8->mUnk_508);
     func_02009928((u16) 1, v1);
     if (v1 == 2) {
         v1 = 0;
@@ -787,7 +787,7 @@ void func_02009ae8(u32 a) {
     u32 v2;
     s32 v3;
     u32 v4;
-    func_021436d0(func_0200a7b0, a);
+    WM_Disconnect(func_0200a7b0, a);
     if (a != 0 && a < 16) {
         v1 = a - 1;
         data_0216fdac->mUnk_148a[v1] = 0;
@@ -828,7 +828,7 @@ void func_02009adc(u32 arg0) {
 
 s32 func_02009aa8(Unk021425e8Func a, void *b, s32 c, u16 d, u16 e) {
     s32 v;
-    v = func_02144048((UnkFunc *) a, NULL, b, c, e, 1, 3);
+    v = WM_SetMPDataToPortEx((UnkFunc *) a, NULL, b, c, e, 1, 3);
     func_02009928(0xf, v);
     return v;
 }

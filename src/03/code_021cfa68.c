@@ -37,7 +37,7 @@ BOOL func_ov003_021d0760(void) {
     s32 r;
 
     func_ov003_021d07b0(3);
-    r = func_02143c80(func_ov003_021d0708, (Unk02143c30 *) data_ov003_021da2a8);
+    r = WM_SetParentParameter(func_ov003_021d0708, (Unk02143c30 *) data_ov003_021da2a8);
     if (r != 2) {
         func_ov003_021d079c(r);
         func_ov003_021d07b0(9);
@@ -67,7 +67,7 @@ BOOL func_ov003_021d06b0(void) {
 
     func_ov003_021d07b0(3);
     a = data_ov003_021da2a8->mUnk_13ac(data_ov003_021da2a8->mUnk_13c0, data_ov003_021da2a8);
-    r = func_02145708((u32) func_ov003_021d0680, a, data_ov003_021da2a8->mUnk_13c0);
+    r = WM_SetWEPKey((u32) func_ov003_021d0680, a, data_ov003_021da2a8->mUnk_13c0);
     if (r != 2) {
         func_ov003_021d079c(r);
         func_ov003_021d07b0(9);
@@ -93,7 +93,7 @@ BOOL func_ov003_021d0630(void) {
     if ((u32) (data_ov003_021da2a8->mUnk_40 - 4) <= 2) {
         return TRUE;
     }
-    r = func_02143bc4(func_ov003_021d0530);
+    r = WM_StartParent(func_ov003_021d0530);
     if (r != 2) {
         func_ov003_021d079c(r);
         return FALSE;
@@ -119,7 +119,7 @@ void func_ov003_021d0530(Unk021425e8 *v1) {
                 data_ov003_021da2a4(0x08000000, data_ov003_021d7b70, v1->mUnk_10);
             }
             if (data_ov003_021da2a8->mUnk_4c != NULL && data_ov003_021da2a8->mUnk_4c(v1) == 0) {
-                r = func_021436d0(NULL, v1->mUnk_10);
+                r = WM_Disconnect(NULL, v1->mUnk_10);
                 if (r == 2) {
                     return;
                 }
@@ -157,8 +157,8 @@ BOOL func_ov003_021d04a8(void) {
         return TRUE;
     }
     func_ov003_021d07b0(4);
-    r = func_02144230(func_ov003_021d03c0, (u32) data_ov003_021da2a8->mUnk_1060, (u16) data_ov003_021da2a8->mUnk_12a4,
-                      (u32) data_ov003_021da2a8->mUnk_f80, (u16) data_ov003_021da2a8->mUnk_12a0, 1, 0, 0, 0, 0, 0);
+    r = WM_StartMPEx(func_ov003_021d03c0, (u32) data_ov003_021da2a8->mUnk_1060, (u16) data_ov003_021da2a8->mUnk_12a4,
+                     (u32) data_ov003_021da2a8->mUnk_f80, (u16) data_ov003_021da2a8->mUnk_12a0, 1, 0, 0, 0, 0, 0);
     if (r != 2) {
         func_ov003_021d079c(r);
         return FALSE;
@@ -238,7 +238,7 @@ BOOL func_ov003_021d0358(void) {
 BOOL func_ov003_021d032c(void) {
     s32 result;
     func_ov003_021d07b0(3);
-    result = func_02143fbc(func_ov003_021d02e8);
+    result = WM_EndMP(func_ov003_021d02e8);
     if (result != 2) {
         func_ov003_021d079c(result);
         return FALSE;
@@ -259,7 +259,7 @@ void func_ov003_021d02e8(Unk021425e8 *v1) {
 }
 
 BOOL func_ov003_021d02c0(void) {
-    s32 result = func_02143b7c(func_ov003_021d02a0);
+    s32 result = WM_EndParent(func_ov003_021d02a0);
     if (result != 2) {
         func_ov003_021d079c(result);
         return FALSE;
@@ -293,7 +293,7 @@ BOOL func_ov003_021d0258(void) {
 BOOL func_ov003_021d022c(void) {
     s32 result;
     func_ov003_021d07b0(3);
-    result = func_02143fbc(func_ov003_021d0200);
+    result = WM_EndMP(func_ov003_021d0200);
     if (result != 2) {
         func_ov003_021d079c(result);
         return FALSE;
@@ -316,7 +316,7 @@ BOOL func_ov003_021d01cc(void) {
     s32 r;
 
     func_ov003_021d07b0(3);
-    r = func_021436d0(func_ov003_021d01ac, 0);
+    r = WM_Disconnect(func_ov003_021d01ac, 0);
     if (r != 2) {
         func_ov003_021d079c(r);
         func_ov003_021cfb80();
@@ -336,7 +336,7 @@ void func_ov003_021d01ac(Unk021425e8 *event) {
 BOOL func_ov003_021d0180(void) {
     s32 result;
     func_ov003_021d07b0(3);
-    result = func_02143dd0(func_ov003_021d0158);
+    result = WM_Reset(func_ov003_021d0158);
     if (result != 2) {
         func_ov003_021d079c(result);
         return FALSE;
@@ -453,7 +453,7 @@ void func_ov003_021cff50(Unk021425e8 *param_1) {
 }
 
 int func_ov003_021cff38(Unk021425e8Func a, u16 b) {
-    return func_0214544c(a, (u16) (3), (u16) (0x11), (u16) (b), (u16) (0x1e));
+    return WM_MeasureChannel(a, (u16) (3), (u16) (0x11), (u16) (b), (u16) (0x1e));
 }
 
 u16 func_ov003_021cfed8(void) {
@@ -530,7 +530,7 @@ void func_ov003_021cfdc8(Unk021425e8 *event) {
 BOOL func_ov003_021cfd88(void) {
     s32 r;
     func_ov003_021d07b0(3);
-    r = func_02143e10(data_ov003_021da2a8->mUnk_80, func_ov003_021cfd44, 2);
+    r = WM_Initialize(data_ov003_021da2a8->mUnk_80, func_ov003_021cfd44, 2);
     if (r != 2) {
         func_ov003_021d079c(r);
         func_ov003_021d07b0(10);
@@ -676,7 +676,7 @@ u32 func_ov003_021cfa68(void) {
         IrqDisableLoopForever();
     }
     func_ov003_021d07b0(3);
-    v1 = func_02143d88(func_ov003_021d0134);
+    v1 = WM_End(func_ov003_021d0134);
     if (v1 != 2) {
         func_ov003_021d07b0(9);
         return 0;

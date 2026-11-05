@@ -465,7 +465,7 @@ void func_0204ce60(void) {
     } else {
         v3 = ((u32(*)(s32, s32)) func_02006914)((s32) v4, v2);
     }
-    p->mUnk_0008 = func_02144048(func_0204ce60, NULL, v4, v3, 0xffff, p->mUnk_0030, 3) == 2;
+    p->mUnk_0008 = WM_SetMPDataToPortEx(func_0204ce60, NULL, v4, v3, 0xffff, p->mUnk_0030, 3) == 2;
     p->mUnk_0004 = data_02175ec0.mUnk_0008 == FALSE;
 }
 
@@ -508,7 +508,7 @@ void func_0204cc94(Unk0204cc94 *a) {
             } else {
                 v3 = ((u32(*)(s32, s32)) func_02006914)((s32) v4, v2);
             }
-            p->mUnk_0008 = func_02144048(func_0204ce60, NULL, v4, v3, 0xffff, p->mUnk_0030, 3) == 2;
+            p->mUnk_0008 = WM_SetMPDataToPortEx(func_0204ce60, NULL, v4, v3, 0xffff, p->mUnk_0030, 3) == 2;
             p->mUnk_0004 = data_02175ec0.mUnk_0008 == FALSE;
             return;
         case 9:
@@ -1008,7 +1008,7 @@ void func_0204be0c(void) {
     } else {
         r = func_02006914((s32) q, h);
     }
-    g->mUnk_0008 = func_02144048(func_0204ce60, NULL, q, r, 0xffff, g->mUnk_0030, 3) == 2;
+    g->mUnk_0008 = WM_SetMPDataToPortEx(func_0204ce60, NULL, q, r, 0xffff, g->mUnk_0030, 3) == 2;
     g->mUnk_0004 = data_02175ec0.mUnk_0008 == FALSE;
 }
 

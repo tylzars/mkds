@@ -27,7 +27,8 @@ typedef struct Unk021450ec {
     /* 81e */ u16 mUnk_81e;
 } Unk021450ec;
 
-// Argument of the functions that func_0214358c is given and that func_021450ec stores; func_02144048 passes it back.
+// Argument of the functions that func_0214358c is given and that func_021450ec stores; WM_SetMPDataToPortEx passes it
+// back.
 typedef struct Unk02144920 {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
