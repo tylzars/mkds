@@ -291,7 +291,7 @@ void func_020dccc8(Wanwan *p) {
 
     p->mUnk_00.mUnk_10.x = p->mUnk_00.mPos.x;
     p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z;
-    if (func_020d849c(&p->mUnk_100) != 0) {
+    if (func_020d849c(&p->mUnk_100) != FALSE) {
         dx = p->mUnk_160[3]->x - p->mUnk_160[2]->x;
         dz = p->mUnk_160[3]->z - p->mUnk_160[2]->z;
         do {
@@ -344,13 +344,13 @@ void func_020dccc8(Wanwan *p) {
             p->mUnk_160[1] = p->mUnk_160[2];
             p->mUnk_160[2] = p->mUnk_160[3];
             p->mUnk_160[3] = q;
-        } while (func_020d7c84(&p->mUnk_100, 1, p->mUnk_160) != 0);
+        } while (func_020d7c84(&p->mUnk_100, 1, p->mUnk_160) != FALSE);
     }
     func_020d8474(&p->mUnk_100, &p->mUnk_00.mPos);
     if (!(p->mUnk_00.mFlags & 0x800)) {
         u = func_02061fa4();
         o = GetKart(u);
-        if (func_0206c0e0(o) == 0) {
+        if (func_0206c0e0(o) == FALSE) {
             e = p->mUnk_1dc;
             if ((s64) (o->mPos.x - p->mUnk_a0.x) * (o->mPos.x - p->mUnk_a0.x) +
                     (s64) (o->mPos.z - p->mUnk_a0.z) * (o->mPos.z - p->mUnk_a0.z) <

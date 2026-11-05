@@ -68,7 +68,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                 b->mUnk_a0 = n;
                 if (b->mUnk_a0 == 0 || b->mUnk_a0 == 0xf || b->mUnk_a0 == 0x1f || b->mUnk_a0 == 0x37 ||
                     b->mUnk_a0 == 0x51) {
-                    if (func_020d4ddc(&b->mUnk_00) == 0) {
+                    if (func_020d4ddc(&b->mUnk_00) == FALSE) {
                         if (b->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
                             t = 2;
                         } else if (b->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
@@ -83,7 +83,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                         func_0210b7a8(&s1);
                     }
                 } else if (b->mUnk_a0 == 8 || b->mUnk_a0 == 0x14 || b->mUnk_a0 == 0x2c || b->mUnk_a0 == 0x44) {
-                    if (func_020d4ddc(&b->mUnk_00) == 0) {
+                    if (func_020d4ddc(&b->mUnk_00) == FALSE) {
                         if (b->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
                             t = 2;
                         } else if (b->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
@@ -98,7 +98,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                         func_0210b7a8(&s2);
                     }
                 } else if (b->mUnk_a0 == 0x78) {
-                    if (func_020d4ddc(&b->mUnk_00) == 0) {
+                    if (func_020d4ddc(&b->mUnk_00) == FALSE) {
                         if (b->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
                             t = 2;
                         } else if (b->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
@@ -120,7 +120,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                 }
                 b->mUnk_a0 = n;
                 if (b->mUnk_a0 == 0) {
-                    if (func_020d4ddc(&b->mUnk_00) == 0) {
+                    if (func_020d4ddc(&b->mUnk_00) == FALSE) {
                         if (b->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
                             t = 2;
                         } else if (b->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {

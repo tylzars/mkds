@@ -96,7 +96,7 @@ s32 func_020f8a04(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_
             break;
         }
     }
-    if (func_020fab34(&sel) != 0) {
+    if (func_020fab34(&sel) != FALSE) {
         func_020faa78(sel);
     }
     if (param_5 != 0) {
@@ -236,7 +236,7 @@ BOOL func_020f850c(Unk020ee684 *param_1, Unk020ee684 *param_2) {
                 b = param_2->mUnk_1f8 & 0xff;
                 if (func_0205a310(((u8 *) data_0217aa18)[b]) == 0) {
                     b = func_0205a2ac(((u8 *) data_0217aa18)[b]);
-                    if (func_020faca4(b) != 0) {
+                    if (func_020faca4(b) != FALSE) {
                         func_020faa78(b);
                     }
                     e = &data_0217bc48[b];

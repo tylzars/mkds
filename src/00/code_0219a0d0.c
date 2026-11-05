@@ -140,7 +140,7 @@ u32 func_ov000_0219a110(u32 *c, u32 d, int f, u32 g, u32 h) {
 u32 func_ov000_0219a0d0(Gt2Connection **a, u32 *b) {
     Gt2Connection *c = *a;
     u32 d = *b;
-    if (c->mUnk_0c != 7 && func_ov000_02198584((u32) c, d) == 0) {
+    if (c->mUnk_0c != 7 && func_ov000_02198584(c, d) == 0) {
         return 0;
     }
     if (c->mUnk_0c == 7 && c->mUnk_14 == 0 && c->mUnk_24 == 0) {

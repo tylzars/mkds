@@ -152,17 +152,17 @@ u32 func_ov000_02198d50(Gt2Connection *param_1) {
     return 0;
 }
 
-u32 func_ov000_02198d04(u32 param_1) {
+u32 func_ov000_02198d04(Gt2Connection *param_1) {
     int v1;
     int v2[2];
-    v1 = func_ov000_0219903c((Gt2Connection *) param_1, 7, 7, v2);
+    v1 = func_ov000_0219903c(param_1, 7, 7, v2);
     if (v1 == 0) {
         return 0;
     }
     if (v2[0] != 0) {
         return 1;
     }
-    v1 = func_ov000_02198fdc((Gt2Connection *) param_1);
+    v1 = func_ov000_02198fdc(param_1);
     if (v1 != 0) {
         return 1;
     }

@@ -168,7 +168,7 @@ void UpdateIronBall(void *a, IronBall *p) {
     v = p->mUnk_0b0;
     p->mUnk_0c4.mUnk_04 = v;
     p->mUnk_0c4.mUnk_10 = ((s64) v * p->mUnk_0c4.mUnk_00->mUnk_00[p->mUnk_0c4.mUnk_0c].mUnk_34) >> 12;
-    if (func_020d8cc8(&p->mUnk_0c4) != 0) {
+    if (func_020d8cc8(&p->mUnk_0c4) != FALSE) {
         e = p->mUnk_0c4.mUnk_1c;
         if (p->mUnk_0c4.mUnk_18 == 0) {
             if (e->mUnk_10 >= 0) {
@@ -348,7 +348,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
     r = func_02061808();
     switch (data_021759c0->mCourseId) {
         case 0x14:
-            if (func_0203c25c(data_021759c0->mEntryIndex) != 0 || func_02062ec4() != 0) {
+            if (func_0203c25c(data_021759c0->mEntryIndex) != FALSE || func_02062ec4() != 0) {
                 k = 0x898000;
             } else {
                 k = 0x834000;
@@ -379,7 +379,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
             }
             break;
         case 0x19:
-            if (func_0203c25c(data_021759c0->mEntryIndex) != 0 || func_02062ec4() != 0) {
+            if (func_0203c25c(data_021759c0->mEntryIndex) != FALSE || func_02062ec4() != 0) {
                 m = 0x384000;
             } else {
                 m = 0x320000;

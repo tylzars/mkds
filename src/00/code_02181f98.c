@@ -275,8 +275,8 @@ void AdvanceWiFiVSSettingState4(void) {
         if (v7 == 0 && data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0) {
             v6 = TRUE;
         }
-        if (v6 == FALSE ||
-            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
+        if (v6 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00,
+                                                                           data_02175672[i].mUnk_00) == FALSE) {
             goto next;
         }
     }
@@ -374,7 +374,7 @@ void AdvanceWiFiVSSettingState5(void) {
         gWiFiVSSetting->mNextState = 6;
         gWiFiVSSetting->mStateFrames = 0;
         func_02125fc0();
-        if (func_ov000_021832f0() != 0 ||
+        if (func_ov000_021832f0() != FALSE ||
             (gWiFiVSSetting->mPendingWiFiState == 3 && gWiFiVSSetting->mSettingIndex != 0)) {
             func_021282c8();
             gWiFiVSSetting->mUnk_28 = 1;
@@ -391,7 +391,7 @@ void AdvanceWiFiVSSettingState6(void) {
     s16 u;
     s32 i;
 
-    if (func_ov000_021806c4() == -1 && gWiFiVSSetting->mPendingWiFiState == 14 && func_ov000_021832f0() != 0) {
+    if (func_ov000_021806c4() == -1 && gWiFiVSSetting->mPendingWiFiState == 14 && func_ov000_021832f0() != FALSE) {
         func_ov000_021806b8(8);
     }
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
@@ -419,7 +419,7 @@ void AdvanceWiFiVSSettingState6(void) {
         ((gWiFiVSSetting->mUnk_28 != 0 && IsSelectReturnState0NoState1Request() != 0) ||
          IsSelectReturnState2NoState3Or4Request() != 0) &&
         func_ov000_021806c4() == -1) {
-        if (gWiFiVSSetting->mPendingWiFiState == 14 && func_ov000_021832f0() == 0) {
+        if (gWiFiVSSetting->mPendingWiFiState == 14 && func_ov000_021832f0() == FALSE) {
             gWiFiVSSetting->mNextState = 7;
             gWiFiVSSetting->mPendingWiFiState = -1;
             func_021266e4(GetBmgEntry(gWiFiVSSetting->mCommonMessages, 0x76));
@@ -427,7 +427,7 @@ void AdvanceWiFiVSSettingState6(void) {
             return;
         }
         if (gWiFiVSSetting->mPendingWiFiState == 3 && gWiFiVSSetting->mSettingIndex == 0 &&
-            func_ov000_021832f0() == 0) {
+            func_ov000_021832f0() == FALSE) {
             gWiFiVSSetting->mNextState = 8;
             gWiFiVSSetting->mPendingWiFiState = -1;
             func_021266e4(GetBmgEntry(gWiFiVSSetting->mWiFiMessages, 14));
@@ -482,7 +482,7 @@ void AdvanceWiFiVSSettingState7(void) {
                 return;
             }
             if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[v1].mUnk_00, data_02175672[v1].mUnk_00) ==
-                0) {
+                FALSE) {
                 return;
             }
         }
@@ -521,7 +521,7 @@ void AdvanceWiFiVSSettingState8(void) {
                 return;
             }
             if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[v1].mUnk_00, data_02175672[v1].mUnk_00) ==
-                0) {
+                FALSE) {
                 return;
             }
         }

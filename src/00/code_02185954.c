@@ -449,7 +449,7 @@ s32 func_ov000_02185ef4(void) {
     const char *b;
     void *c;
     if (func_ov000_021866fc(data_ov000_021b4c90->mUnk_1f8, 0x20, 0,
-                            data_ov000_021b4c90->mUnk_2f8->mReceiveBuffer.mStart) != 1) {
+                            data_ov000_021b4c90->mUnk_2f8->mReceiveBuffer.mStart) != TRUE) {
         data_ov000_021b4c90->mUnk_008 = 0x4e84;
         return 0xd;
     }
@@ -644,19 +644,19 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
     func_ov000_021868a4(&q, data_ov000_021b1150, s);
     func_ov000_021868a4(&q, data_ov000_021b1158, u);
     func_ov000_021868a4(&q, data_ov000_021b1160, w);
-    if (func_ov000_02186bd4(a, data_ov000_021b1168, data_ov000_021b1174) != 0) {
+    if (func_ov000_02186bd4(a, data_ov000_021b1168, data_ov000_021b1174) != FALSE) {
         return 7;
     }
-    if (func_ov000_02186bd4(a, data_ov000_021b1188, g.mUnk_0e) != 0) {
+    if (func_ov000_02186bd4(a, data_ov000_021b1188, g.mUnk_0e) != FALSE) {
         return 7;
     }
     for (m = 0; d->mFirst != NULL; d++, m++) {
         n = d->mSecond;
-        if (func_ov000_02186b0c(a, d->mFirst, n, strlen(n)) != 0) {
+        if (func_ov000_02186b0c(a, d->mFirst, n, strlen(n)) != FALSE) {
             return 8;
         }
     }
-    if (func_ov000_02186b0c(a, data_ov000_021b1198, t, 0x14) != 0) {
+    if (func_ov000_02186b0c(a, data_ov000_021b1198, t, 0x14) != FALSE) {
         return 8;
     }
     return 0;

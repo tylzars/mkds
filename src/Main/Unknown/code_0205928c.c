@@ -125,7 +125,7 @@ s32 func_02059700(void) {
             }
             break;
         case 7:
-            if (func_020505a8(5, 0xff) != 0) {
+            if (func_020505a8(5, 0xff) != FALSE) {
                 data_0217aa00->mUnk_1d54 = r;
                 data_0217aa00->mUnk_1e34 = 1;
             }
@@ -174,12 +174,12 @@ s32 func_020595e8(s32 a, void *b, void *c) {
             func_020505a8(3, 1);
             break;
         case 3:
-            if (func_0204f644() != 0) {
+            if (func_0204f644() != FALSE) {
                 data_0217aa00->mUnk_1e34 = 5;
             }
             break;
         case 5:
-            if (func_020505a8(4, 1) != 0) {
+            if (func_020505a8(4, 1) != FALSE) {
                 data_0217aa00->mUnk_1e34 = 1;
             }
             break;

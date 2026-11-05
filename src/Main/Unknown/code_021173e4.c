@@ -671,7 +671,7 @@ void func_021178b0(void) {
     if (b == 0) {
         goto L2;
     }
-    if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[n].mUnk_00, data_02175672[n].mUnk_00) == 0) {
+    if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[n].mUnk_00, data_02175672[n].mUnk_00) == FALSE) {
         goto L2;
     }
 L1:
@@ -1007,7 +1007,7 @@ s32 func_02117418(void) {
     func_02118814();
     func_02118458();
     if (*(vu16 *) 0x027ffc40 != 2) {
-        if (data_0217d360->mUnk_7c != 0 && func_020d0ec4() != 0) {
+        if (data_0217d360->mUnk_7c != 0 && func_020d0ec4() != FALSE) {
             p = GetCupPictureNscrData();
             CallQueueAppend(0xf, 0, GetCupPictureNclrData(), 0xe0);
             CallQueueAppend(4, 0x20, GetCupPictureNcgrData(), 0xdc0);

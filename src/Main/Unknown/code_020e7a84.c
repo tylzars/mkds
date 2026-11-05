@@ -100,7 +100,7 @@ void func_020ea1d4(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
     s32 a;
     s32 b;
 
-    if (func_020d849c(&data_0217bb88.mUnk_00) != 0) {
+    if (func_020d849c(&data_0217bb88.mUnk_00) != FALSE) {
         do {
             for (i = 0; i < 4; i++) {
                 data_0217b9cc[i] += 1;
@@ -108,7 +108,7 @@ void func_020ea1d4(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
                     data_0217b9cc[i] = data_0217bb28;
                 }
             }
-        } while (func_020d7c84(&data_0217bb88.mUnk_00, 0, data_0217b9cc) != 0);
+        } while (func_020d7c84(&data_0217bb88.mUnk_00, 0, data_0217b9cc) != FALSE);
     }
     func_020d8488((u32) &data_0217bb88, (u32) &v);
     data_0217b878 += 0x64;
@@ -495,7 +495,7 @@ void func_020e8ac8(void) {
                 for (i = 0; i < data_0217b5a8; i++) {
                     MapObject *q = data_0217b5c4[i];
 
-                    if ((q->mFlags & 0x40) == 0 && func_020d3e34(&data_0217b93c, 0x12000, q, &t) != 0) {
+                    if ((q->mFlags & 0x40) == 0 && func_020d3e34(&data_0217b93c, 0x12000, q, &t) != FALSE) {
                         func_020e8ac8_inline(&lo, &t, &lo);
                         func_020e8ac8_inline_2(&hi, &t, &hi);
                         f = TRUE;

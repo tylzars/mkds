@@ -175,7 +175,7 @@ s32 func_021236f8(void) {
                 p->mKartMask = data_0217d384->mKartMask;
                 func_ov000_021a32a0(a, &data_0217d384->mUnk_1e10[func_ov000_0219bb50()], 0x44);
             }
-            if (func_02121580() != 0) {
+            if (func_02121580() != FALSE) {
                 data_0217d384->mUnk_19aa = 0;
                 data_0217d384->mUnk_19ab = 0;
                 func_02122b14();
@@ -197,7 +197,7 @@ s32 func_021236f8(void) {
                 p->mKartMask = data_0217d384->mKartMask;
                 func_ov000_021a32a0(a, &data_0217d384->mUnk_1e10[func_ov000_0219bb50()], 0x44);
             }
-            if (func_02121580() != 0) {
+            if (func_02121580() != FALSE) {
                 c = func_ov000_0219bb50();
                 if (data_0217d384->mUnk_1e10[c].mPickedCourseId != 0) {
                     data_0217d384->mUnk_19aa = 0;
@@ -258,7 +258,7 @@ void func_0212357c(void) {
             func_ov000_021a32a0(a, &t, 0xc);
         }
     }
-    if (func_02121580() == 0) {
+    if (func_02121580() == FALSE) {
         return;
     }
     data_0217d384->mUnk_19aa = 0;
@@ -303,7 +303,7 @@ void func_02123384(void) {
             func_ov000_021a32a0(a, &t, 0xc);
         }
     }
-    if (func_02121580() == 0) {
+    if (func_02121580() == FALSE) {
         return;
     }
     p = data_0217d384;
@@ -347,7 +347,7 @@ void func_0212320c(void) {
         p->mKartMask = data_0217d384->mKartMask;
         func_ov000_021a32a0(a, &data_0217d384->mUnk_1e10[func_ov000_0219bb50()], 0x44);
     }
-    if (func_02121580() == 0) {
+    if (func_02121580() == FALSE) {
         return;
     }
     c = func_ov000_0219bb50();
@@ -379,7 +379,7 @@ void func_02123098(void) {
         p->mKartMask = data_0217d384->mKartMask;
         func_ov000_021a32a0(a, &data_0217d384->mUnk_1e10[func_ov000_0219bb50()], 0x44);
     }
-    if (func_02121580() == 0) {
+    if (func_02121580() == FALSE) {
         return;
     }
     if (data_0217d384->mKartCount == 1) {
@@ -417,7 +417,7 @@ void func_02122f38(void) {
         p->mKartMask = data_0217d384->mKartMask;
         func_ov000_021a32a0(a, &data_0217d384->mUnk_1e10[func_ov000_0219bb50()], 0x44);
     }
-    if (func_02121580() == 0) {
+    if (func_02121580() == FALSE) {
         return;
     }
     c = func_ov000_0219bb50();
@@ -453,7 +453,7 @@ void func_02122d74(void) {
         p->mKartMask = data_0217d384->mKartMask;
         func_ov000_021a32a0(a, &data_0217d384->mUnk_1e10[func_ov000_0219bb50()], 0x44);
     }
-    if (func_02121580() == 0) {
+    if (func_02121580() == FALSE) {
         return;
     }
     data_0217d384->mUnk_19aa = 0;
@@ -490,12 +490,12 @@ void func_02122bf0(void) {
         p->mKartMask = data_0217d384->mKartMask;
         func_ov000_021a32a0(a, &data_0217d384->mUnk_1e10[func_ov000_0219bb50()], 0x44);
     }
-    if (func_021225ac(0x78) == 0) {
+    if (func_021225ac(0x78) == FALSE) {
         return;
     }
     for (i = 0; i < data_0217d384->mStartKartCount; i++) {
         if (i != func_ov000_0219bb50() && (data_0217d384->mKartMask & (1 << i)) != 0) {
-            if (func_ov000_021a3264(i, data_0217d384->mUnk_001c[i], 0x80) == 0) {
+            if (func_ov000_021a3264(i, data_0217d384->mUnk_001c[i], 0x80) == FALSE) {
                 return;
             }
         }

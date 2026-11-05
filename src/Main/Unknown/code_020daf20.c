@@ -146,7 +146,7 @@ void UpdateDossun(void *a, Dossun *p) {
                 q->mUnk_10 = (s32) (((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12);
             }
         }
-        if (func_020d8cc8(q) != 0) {
+        if (func_020d8cc8(q) != FALSE) {
             p->mUnk_00.mPos = q->mUnk_1c->mUnk_00;
             p->mUnk_00.mPos.y += p->mUnk_f8;
             if (q->mUnk_18 != 0) {
@@ -218,7 +218,7 @@ void UpdateDossun(void *a, Dossun *p) {
         case 6:
             break;
     }
-    if (func_020d8cc8(q) != 0) {
+    if (func_020d8cc8(q) != FALSE) {
         switch (q->mUnk_1c->mUnk_10) {
             case 0:
                 n = 0;
@@ -240,7 +240,7 @@ void UpdateDossun(void *a, Dossun *p) {
         }
         if (p->mState == 5) {
             e = q->mUnk_1c;
-            if (func_020d4ddc(&p->mUnk_00) == 0) {
+            if (func_020d4ddc(&p->mUnk_00) == FALSE) {
                 if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
                     n = 2;
                 } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {

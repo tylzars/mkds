@@ -50,7 +50,7 @@ void func_0211e418(u32 a) {
     data_0217d374->mUnk_0c = a;
     data_0217d374->mUnk_10 = -1;
     for (i = 0; i < 0xa; i++) {
-        if (func_0206174c(data_0217d374->mUnk_04 + (u8) i * 0x230) != 0 &&
+        if (func_0206174c(data_0217d374->mUnk_04 + (u8) i * 0x230) != FALSE &&
             func_02061654(data_0217d374->mUnk_04 + (u8) i * 0x230) == a) {
             data_0217d374->mUnk_10 = i;
             return;
@@ -165,7 +165,7 @@ s32 func_0211e160(u32 a) {
             }
             break;
         case 2:
-            if (func_02060228(data_0217d374->mUnk_0c, 0) != 0) {
+            if (func_02060228(data_0217d374->mUnk_0c, 0) != FALSE) {
                 u32 buf;
 
                 func_02060134(data_0217d374->mUnk_0c, 0, &buf);

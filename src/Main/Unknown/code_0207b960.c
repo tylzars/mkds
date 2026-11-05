@@ -205,7 +205,7 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 n;
     u32 v;
 
-    if (func_0207e654(b) != 0) {
+    if (func_0207e654(b) != FALSE) {
         if (func_0207e64c(b) != 0) {
             func_0204360c(b->mKart->mEntryIndex, 0x600);
             a->mUnk_14 = 1;
@@ -662,7 +662,7 @@ void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 v1;
     Unk020ee684 *e;
 
-    if (func_01ffc67c(b->mKart) != 0) {
+    if (func_01ffc67c(b->mKart) != FALSE) {
         return;
     }
     v1 = b->mIndex;

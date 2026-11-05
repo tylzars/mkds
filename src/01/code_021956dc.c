@@ -117,13 +117,15 @@ void func_ov001_021975f4(u16 a) {
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         slot = data_ov001_021a6850[0][1];
         gRecordTAtt->mUnk_38[slot].mUnk_00 = 1;
-        func_021171a0(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, slot, data_ov001_021a683c[5], 0);
+        func_021171a0(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, slot,
+                      data_ov001_021a683c[5], 0);
         cnt = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
         func_02060134(data_ov001_021a6900[gRecordTAtt->mIndex], value, &time);
         func_02116b8c(&time, str);
         pal = data_ov001_021a67d4[0];
         gRecordTAtt->mUnk_38[cnt + pal].mUnk_00 = 1;
-        func_02124224(0, pal, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mUnk_38, 7);
+        func_02124224(0, pal, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mUnk_38,
+                      7);
         func_020600d0(data_ov001_021a6900[gRecordTAtt->mIndex], value, name);
         MemFill(str, 0, 0x20);
         MemCopyHalfwords(name, str, 0x14);
@@ -146,13 +148,15 @@ void func_ov001_021975f4(u16 a) {
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         slot = data_ov001_021a6852[a][0];
         gRecordTAtt->mUnk_3c[slot].mUnk_00 = 1;
-        func_021171a0(result, gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl, slot, data_ov001_021a6846[a], 1);
+        func_021171a0(result, gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl, slot,
+                      data_ov001_021a6846[a], 1);
         cnt = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
         func_02060134(data_ov001_021a6900[gRecordTAtt->mIndex], value, &time);
         func_02116b8c(&time, str);
         pal = data_ov001_021a67d4[a];
         gRecordTAtt->mUnk_3c[cnt + pal].mUnk_00 = 1;
-        func_02124224(1, pal, gRecordTAtt->mRecordTAttSBnll, str, gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mUnk_3c, 7);
+        func_02124224(1, pal, gRecordTAtt->mRecordTAttSBnll, str, gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mUnk_3c,
+                      7);
         func_020600d0(data_ov001_021a6900[gRecordTAtt->mIndex], value, name);
         MemFill(str, 0, 0x20);
         MemCopyHalfwords(name, str, 0x14);
@@ -170,16 +174,16 @@ void func_ov001_0219750c(u16 a) {
         gRecordTAtt->mUnk_38[data_ov001_021a6850[0][1]].mUnk_00 = 0;
         cnt = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
         gRecordTAtt->mUnk_38[cnt + data_ov001_021a67d4[0]].mUnk_00 = 1;
-        func_02124224(0, data_ov001_021a67d4[0], gRecordTAtt->mRecordTAttMBnll, L"--:--:---", gRecordTAtt->mRecordTAttMBncl,
-                      gRecordTAtt->mUnk_38, 7);
+        func_02124224(0, data_ov001_021a67d4[0], gRecordTAtt->mRecordTAttMBnll, L"--:--:---",
+                      gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mUnk_38, 7);
         gRecordTAtt->mUnk_38[cnt + data_ov001_021a6810[0]].mUnk_00 = 0;
     } else {
         gRecordTAtt->mUnk_3c[data_ov001_021a6850[a][0]].mUnk_00 = 0;
         gRecordTAtt->mUnk_3c[data_ov001_021a6852[a][0]].mUnk_00 = 0;
         cnt = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
         gRecordTAtt->mUnk_3c[cnt + data_ov001_021a67d4[a]].mUnk_00 = 1;
-        func_02124224(1, data_ov001_021a67d4[a], gRecordTAtt->mRecordTAttSBnll, L"--:--:---", gRecordTAtt->mRecordTAttSBncl,
-                      gRecordTAtt->mUnk_3c, 7);
+        func_02124224(1, data_ov001_021a67d4[a], gRecordTAtt->mRecordTAttSBnll, L"--:--:---",
+                      gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mUnk_3c, 7);
         gRecordTAtt->mUnk_3c[cnt + data_ov001_021a6810[a]].mUnk_00 = 0;
     }
 }
@@ -196,8 +200,8 @@ void func_ov001_021972f4(void) {
     u16 cnt;
 
     p = gRecordTAtt;
-    func_0212426c(0, 0, gRecordTAtt->mRecordTAttMBnll, GetBmgEntry(p->mCommonMessages, data_ov001_021a6880[p->mIndex]), p->mRecordTAttMBncl,
-                  p->mUnk_38);
+    func_0212426c(0, 0, gRecordTAtt->mRecordTAttMBnll, GetBmgEntry(p->mCommonMessages, data_ov001_021a6880[p->mIndex]),
+                  p->mRecordTAttMBncl, p->mUnk_38);
     for (i = 0; i < 5; i++) {
         if (func_02060228(data_ov001_021a6900[gRecordTAtt->mIndex], data_ov001_021a6828[i])) {
             func_ov001_021975f4(i);
@@ -235,7 +239,8 @@ void func_ov001_021972f4(void) {
         gRecordTAtt->mUnk_38[5].mUnk_00 = 0;
         gRecordTAtt->mUnk_38[6].mUnk_00 = 0;
         gRecordTAtt->mUnk_38[cnt + 2].mUnk_00 = 1;
-        func_02124224(0, 2, gRecordTAtt->mRecordTAttMBnll, L"--:--:---", gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mUnk_38, 7);
+        func_02124224(0, 2, gRecordTAtt->mRecordTAttMBnll, L"--:--:---", gRecordTAtt->mRecordTAttMBncl,
+                      gRecordTAtt->mUnk_38, 7);
         gRecordTAtt->mUnk_38[cnt + 4].mUnk_00 = 0;
     }
 }
@@ -263,7 +268,7 @@ void func_ov001_02197274(void) {
 BOOL func_ov001_02197210(void) {
     u8 buf[0x14];
 
-    if (func_02060228(data_ov001_021a6900[gRecordTAtt->mIndex], data_ov001_021a6828[0]) != 0) {
+    if (func_02060228(data_ov001_021a6900[gRecordTAtt->mIndex], data_ov001_021a6828[0]) != FALSE) {
         if (func_0205fdb4(data_ov001_021a6900[gRecordTAtt->mIndex], buf) != 0) {
             return TRUE;
         }
@@ -537,29 +542,30 @@ void InitRecordTAtt(void *heap) {
     gRecordTAtt->mGhostMessages = FindSceneFile("ghost.bmg");
     gRecordTAtt->mRecordMessages = FindSceneFile("record.bmg");
     rem = 0x8000;
-    rem -= func_021243ac(heap, 0, gRecordTAtt->mRecordTAttMBnll, 0xc8, 0x10, 0, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl,
-                         gRecordTAtt->mUnk_38, rem);
-    rem -= func_021243ac(heap, 1, gRecordTAtt->mRecordTAttMBnll, 0x46, 0x10, 1, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl,
-                         gRecordTAtt->mUnk_38, rem);
-    rem -= func_021243ac(heap, 2, gRecordTAtt->mRecordTAttMBnll, 0x46, 0x10, 2, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl,
-                         gRecordTAtt->mUnk_38, rem);
-    rem -= func_021243ac(heap, 3, gRecordTAtt->mRecordTAttMBnll, 0x7c, 0x10, 3, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl,
-                         gRecordTAtt->mUnk_38, rem);
-    rem -= func_021243ac(heap, 4, gRecordTAtt->mRecordTAttMBnll, 0x64, 0x10, 4, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl,
-                         gRecordTAtt->mUnk_38, rem);
+    rem -= func_021243ac(heap, 0, gRecordTAtt->mRecordTAttMBnll, 0xc8, 0x10, 0, gRecordTAtt->mRecordTAttMNcer,
+                         gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mUnk_38, rem);
+    rem -= func_021243ac(heap, 1, gRecordTAtt->mRecordTAttMBnll, 0x46, 0x10, 1, gRecordTAtt->mRecordTAttMNcer,
+                         gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mUnk_38, rem);
+    rem -= func_021243ac(heap, 2, gRecordTAtt->mRecordTAttMBnll, 0x46, 0x10, 2, gRecordTAtt->mRecordTAttMNcer,
+                         gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mUnk_38, rem);
+    rem -= func_021243ac(heap, 3, gRecordTAtt->mRecordTAttMBnll, 0x7c, 0x10, 3, gRecordTAtt->mRecordTAttMNcer,
+                         gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mUnk_38, rem);
+    rem -= func_021243ac(heap, 4, gRecordTAtt->mRecordTAttMBnll, 0x64, 0x10, 4, gRecordTAtt->mRecordTAttMNcer,
+                         gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mUnk_38, rem);
     rem = func_02148ca0();
     for (k = 1; k < 5; k++) {
         rem -= func_021243ac(heap, data_ov001_021a67d4[k], gRecordTAtt->mRecordTAttSBnll, data_ov001_021a67c8[k],
                              data_ov001_021a67e0[k], k, gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl,
                              gRecordTAtt->mUnk_3c, rem);
         rem -= func_021243ac(heap, data_ov001_021a6810[k], gRecordTAtt->mRecordTAttSBnll, data_ov001_021a6804[k],
-                             data_ov001_021a67ec[k], k + 5, gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl,
-                             gRecordTAtt->mUnk_3c, rem);
+                             data_ov001_021a67ec[k], k + 5, gRecordTAtt->mRecordTAttSNcer,
+                             gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mUnk_3c, rem);
     }
-    func_021243ac(heap, 8, gRecordTAtt->mRecordTAttSBnll, 0x98, 0x10, 0xd, gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl,
-                  gRecordTAtt->mUnk_3c, rem);
+    func_021243ac(heap, 8, gRecordTAtt->mRecordTAttSBnll, 0x98, 0x10, 0xd, gRecordTAtt->mRecordTAttSNcer,
+                  gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mUnk_3c, rem);
     p = gRecordTAtt;
-    func_0212426c(1, 8, gRecordTAtt->mRecordTAttSBnll, GetBmgEntry(p->mRecordMessages, 3), p->mRecordTAttSBncl, p->mUnk_3c);
+    func_0212426c(1, 8, gRecordTAtt->mRecordTAttSBnll, GetBmgEntry(p->mRecordMessages, 3), p->mRecordTAttSBncl,
+                  p->mUnk_3c);
     func_ov001_02197058();
 }
 
@@ -651,7 +657,8 @@ void AdvanceRecordTAttState2(void) {
         x = FALSE;
     }
     if (x != FALSE) {
-        a = RectTableFindContaining(gRecordTAtt->mRecordTAttSBnbl, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+        a = RectTableFindContaining(gRecordTAtt->mRecordTAttSBnbl, data_02175628[idx].mUnk_48,
+                                    data_02175628[idx].mUnk_4a);
     }
     x = FALSE;
     y = FALSE;
@@ -663,7 +670,8 @@ void AdvanceRecordTAttState2(void) {
         x = TRUE;
     }
     if (x != FALSE) {
-        b = RectTableFindContaining(gRecordTAtt->mRecordTAttSBnbl, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+        b = RectTableFindContaining(gRecordTAtt->mRecordTAttSBnbl, data_02175628[idx].mUnk_48,
+                                    data_02175628[idx].mUnk_4a);
     }
     if (a != 0) {
         gRecordTAtt->mUnk_88 = 0;
@@ -682,7 +690,7 @@ void AdvanceRecordTAttState2(void) {
             x = TRUE;
         }
         if (x == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                          data_02175628[idx].mUnk_4a) == 0) {
+                                                                          data_02175628[idx].mUnk_4a) == FALSE) {
             goto other;
         }
     }
@@ -1083,8 +1091,8 @@ void AdvanceRecordTAttState15(void) {
         if (b == FALSE && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
             f = 1;
         }
-        if (f == 0 ||
-            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (f == 0 || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
+                                                                      data_02175628[i].mUnk_4a) == FALSE) {
             return;
         }
     }

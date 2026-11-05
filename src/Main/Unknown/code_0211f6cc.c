@@ -35,7 +35,7 @@ void func_0211fef4(u32 a, void *b, u32 c) {
     if (data_0217d384->mUnk_1f38 == 0) {
         return;
     }
-    if (func_02121990(b, c, a, func_ov000_0219bb50()) != 0) {
+    if (func_02121990(b, c, a, func_ov000_0219bb50()) != FALSE) {
         return;
     }
     func_0205b504(a, b, c, 0);
@@ -71,7 +71,7 @@ u32 func_0211fda8(void) {
     if (data_0217d384->mUnk_0008.mState == 0) {
         return 1;
     }
-    if (func_ov000_021a377c() == 0) {
+    if (func_ov000_021a377c() == FALSE) {
         return 0;
     }
     func_02120714();

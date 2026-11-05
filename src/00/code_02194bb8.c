@@ -42,7 +42,7 @@ void func_ov000_02196434(GpConnection *a, GpiPeer *b, s32 c, const char *d, s32 
     char s[0x40];
     s32 v[3];
 
-    if (GpiGetValue(d, data_ov000_021b3994, s, 0x40) != 0) {
+    if (GpiGetValue(d, data_ov000_021b3994, s, 0x40) != FALSE) {
         if (sscanf(s, data_ov000_021b399c, &v[0], &v[1], &v[2]) == 3) {
             func_ov000_02196480(a, v, b, 2, NULL);
         }
@@ -67,7 +67,7 @@ s32 GpiOpenSearchSocket(GpConnection *a, GpiOperation *b) {
         GpiQueueErrorCallback(a, 3, 1);
         return 3;
     }
-    if (func_ov000_0218e80c(c->mUnk_004, 0) == 0) {
+    if (func_ov000_0218e80c(c->mUnk_004, 0) == FALSE) {
         GpiSetError(a, 5, data_ov000_021b38e8);
         GpiQueueErrorCallback(a, 3, 1);
         return 3;
@@ -370,7 +370,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
             if (strstr((const char *) p->mUnk_008, data_ov000_021b3778) != NULL) {
                 n = 0;
                 b->mUnk_14 = 5;
-                if (GpiReadError(a, (const char *) p->mUnk_008, 1) != 0) {
+                if (GpiReadError(a, (const char *) p->mUnk_008, 1) != FALSE) {
                     p->mUnk_140 = 1;
                     return 4;
                 }
@@ -631,7 +631,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                             o->mErrorNumber = x;
                             y = 0;
                         } else {
-                            if (GpiGetValue((const char *) p->mUnk_008, data_ov000_021b3850, w1, 0x200) == 0) {
+                            if (GpiGetValue((const char *) p->mUnk_008, data_ov000_021b3850, w1, 0x200) == FALSE) {
                                 GpiSetError(a, 1, data_ov000_021b37f4);
                                 GpiQueueErrorCallback(a, 3, 1);
                                 return 3;
@@ -666,7 +666,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                         if (x != 0) {
                             o->mErrorNumber = x;
                         }
-                        if (GpiGetValue((const char *) p->mUnk_008, data_ov000_021b3850, w1, 0x200) == 0) {
+                        if (GpiGetValue((const char *) p->mUnk_008, data_ov000_021b3850, w1, 0x200) == FALSE) {
                             if (x == 0) {
                                 GpiSetError(a, 1, data_ov000_021b37f4);
                                 GpiQueueErrorCallback(a, 3, 1);

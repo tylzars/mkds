@@ -263,7 +263,7 @@ BOOL func_ov003_021baaac(const u8 *a, const u8 *b, s32 c, u32 d) {
             IrqRestore(v1);
             return TRUE;
         }
-    } else if (func_ov003_021bac0c() == 1) {
+    } else if (func_ov003_021bac0c() == TRUE) {
         data_ov003_021d8b98 = 6;
         IrqRestore(v1);
         return TRUE;
@@ -309,7 +309,7 @@ BOOL func_ov003_021ba9c0(void) {
         IrqRestore(v1);
         return TRUE;
     }
-    if (func_ov003_021bac0c() == 1) {
+    if (func_ov003_021bac0c() == TRUE) {
         data_ov003_021d8b98 = 2;
         IrqRestore(v1);
         return TRUE;
@@ -327,7 +327,7 @@ BOOL func_ov003_021ba910(Unk021ba778Src *a, Unk021d8a4c *b, u32 c) {
         MemFill(data_ov003_021d8ba4, 0, 0x50);
     }
     MemCopyWords(a, data_ov003_021d8ba0, 0xc0);
-    if (func_ov003_021bac0c() == 1) {
+    if (func_ov003_021bac0c() == TRUE) {
         data_ov003_021d8b98 = 8;
         IrqRestore(v1);
         return TRUE;

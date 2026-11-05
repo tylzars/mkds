@@ -31,7 +31,7 @@ void func_020fcce4(Unk020fc2e8 *p0, s32 a, s32 b) {
         p0->mUnk_22c.y = -p0->mUnk_22c.y;
         p0->mUnk_22c.z = -p0->mUnk_22c.z;
     }
-    if (func_0206c0b0(p) == 0) {
+    if (func_0206c0b0(p) == FALSE) {
         p0->mUnk_244 = p->mUnk_98;
     }
     Vec3AddScaled(0x14ffa, &p0->mUnk_22c, &p0->mUnk_244, &v);
@@ -66,7 +66,7 @@ BOOL func_020fcbb8(Unk020fc2e8 *p0, s32 v1) {
     s32 dz;
 
     p = GetKart(v1);
-    if (func_0206c0b0(p) != 0) {
+    if (func_0206c0b0(p) != FALSE) {
         return FALSE;
     }
     e = &(data_027e00c8)[v1];

@@ -250,7 +250,7 @@ void func_020c55b0(Unk020c06c4 *a) {
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e1, 0, 1);
 
-    c = GetRaceGoalMNcerEntry(func_020b4b98(data_0217b3f0->mUnk_0c) != 0 ? 0x13 : 0x14);
+    c = GetRaceGoalMNcerEntry(func_020b4b98(data_0217b3f0->mUnk_0c) != FALSE ? 0x13 : 0x14);
     e2[0] = 0x48000;
     e2[1] = (y + 0xb0) << 12;
     k = a->mUnk_400;
@@ -720,7 +720,7 @@ void func_020c3e44(Unk020c06c4 *a) {
             if (data_0217561c->mUnk_4cc == 0) {
                 for (j = 0; j < data_0217b3e4->mUnk_790[i].mUnk_00; j++) {
                     if (data_0217b3e4->mUnk_790[i].mUnk_34[j] < 0x28) {
-                        if (func_020b5ae8(&data_0217b3e4->mUnk_790[i].mUnk_04[j], &o1, s, 1, 1) != 0) {
+                        if (func_020b5ae8(&data_0217b3e4->mUnk_790[i].mUnk_04[j], &o1, s, 1, 1) != FALSE) {
                             m = data_0217b3e4->mUnk_790[i].mUnk_28[j];
                             q = GetRaceSNcerEntry(0x4f);
                             n = a->mUnk_400;
@@ -740,7 +740,7 @@ void func_020c3e44(Unk020c06c4 *a) {
             for (j = 0; j < 0x28; j++) {
                 u16 x = (u16) (data_0217b3e4->mUnk_010[i][j].mUnk_0c + func_020b6368()) + 0x800;
                 u16 y = ((x << 4) / 0x10000) % 16;
-                if (func_020b5ae8(&data_0217b3e4->mUnk_010[i][j].mUnk_00, &o2, s, 1, 1) != 0) {
+                if (func_020b5ae8(&data_0217b3e4->mUnk_010[i][j].mUnk_00, &o2, s, 1, 1) != FALSE) {
                     switch (data_0217b3e4->mUnk_010[i][j].mUnk_10) {
                         case 0:
                             r = NULL;

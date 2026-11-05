@@ -21,7 +21,7 @@ s32 func_0203ef58(void) {
     BOOL r;
     u16 i;
     s32 s;
-    s32 f;
+    BOOL f;
     s32 v;
     s32 n;
     s32 m;
@@ -32,22 +32,22 @@ s32 func_0203ef58(void) {
         case 0:
             r = TRUE;
             for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-                f = 0;
+                f = FALSE;
                 s = o->mCurrentEntries[i].mUnk_08.mKind;
                 if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {
-                    f = 1;
+                    f = TRUE;
                 }
-                if (f != 0) {
+                if (f != FALSE) {
                     s = data_0217561c->mUnk_000[i].mUnk_14;
-                    f = 0;
+                    f = FALSE;
                     switch (s) {
                         case 1:
                         case 2:
                         case 3:
-                            f = 1;
+                            f = TRUE;
                             break;
                     }
-                    if (f == 0) {
+                    if (f == FALSE) {
                         r = FALSE;
                         break;
                     }
@@ -59,8 +59,8 @@ s32 func_0203ef58(void) {
             q = data_0217561c;
             if (q->mUnk_000[0].mUnk_0e < (s32) func_0203f320() - (q->mUnk_000[0].mUnk_10 + 1)) {
                 for (i = 0; i < func_0203f320(); i++) {
-                    if (func_0203f2dc(i) != 0 && func_0203c880(i) == 0) {
-                        if (func_0203f2b4(i) == 0) {
+                    if (func_0203f2dc(i) != FALSE && func_0203c880(i) == 0) {
+                        if (func_0203f2b4(i) == FALSE) {
                             r = FALSE;
                             break;
                         }
@@ -85,15 +85,15 @@ s32 func_0203ef58(void) {
                     r = FALSE;
                 } else {
                     s = q->mUnk_000[(u16) v].mUnk_14;
-                    f = 0;
+                    f = FALSE;
                     switch (s) {
                         case 1:
                         case 2:
                         case 3:
-                            f = 1;
+                            f = TRUE;
                             break;
                     }
-                    if (f == 0) {
+                    if (f == FALSE) {
                         r = q->mUnk_000[0].mUnk_0e + m >= n - 1;
                     } else {
                         r = q->mUnk_000[0].mUnk_0e + m >= n;
@@ -114,13 +114,13 @@ s32 func_0203ef58(void) {
         case 2:
             r = TRUE;
             for (i = 0; i < (u32) o->mKartCount; i++) {
-                f = 0;
+                f = FALSE;
                 s = o->mCurrentEntries[i].mUnk_08.mKind;
                 if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {
-                    f = 1;
+                    f = TRUE;
                 }
-                if (f != 0) {
-                    if (func_020a1084(i) == 0) {
+                if (f != FALSE) {
+                    if (func_020a1084(i) == FALSE) {
                         r = FALSE;
                         break;
                     }

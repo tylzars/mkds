@@ -61,7 +61,7 @@ BOOL func_ov000_0219861c(Gt2Connection *a, u32 b) {
 
 BOOL func_ov000_021985ec(Gt2Connection *a, u32 b) {
     if (b - a->mLastSendTime > 30000) {
-        if (func_ov000_02198d04((u32) a) == 0) {
+        if (func_ov000_02198d04(a) == 0) {
             return FALSE;
         }
     }

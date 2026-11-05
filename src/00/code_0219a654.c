@@ -79,7 +79,7 @@ u32 func_ov000_0219b05c(void) {
         }
         if (*c != 0x0100007f) {
             a = *c;
-            if (func_ov000_0218e57c(c) != 0) {
+            if (func_ov000_0218e57c(c) != FALSE) {
                 return a;
             }
         }
@@ -241,7 +241,7 @@ s32 func_ov000_0219ac7c(u32 a, u32 b, u32 c, void (*d)(s32 a, void *b), void (*e
     if (data_ov000_021b4d28 != 1) {
         return 2;
     }
-    if (func_ov000_0219ad20() == 0) {
+    if (func_ov000_0219ad20() == FALSE) {
         return 3;
     }
     g = func_ov000_0219b178();
@@ -447,7 +447,7 @@ void func_ov000_0219a7e4(u8 *a, s32 b, void *c) {
     u32 g;
     Unk0219b1d4 *h;
 
-    if (func_ov000_0219b0ec(a) != 0) {
+    if (func_ov000_0219b0ec(a) != FALSE) {
         f = a[7];
         if (f == 5 || f == 7) {
             if (b >= 0x14) {

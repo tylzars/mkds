@@ -94,7 +94,7 @@ void func_ov000_021874ec(void) {
             case 8:
                 break;
         }
-        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, (const char *) o->mUnk_938) != 1) {
+        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, (const char *) o->mUnk_938) != TRUE) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(2);
             break;
@@ -131,7 +131,7 @@ void func_ov000_021874ec(void) {
                         func_ov000_02187490(8);
                         break;
                     }
-                    if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1424, data_ov000_021b142c, 7) != 0) {
+                    if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1424, data_ov000_021b142c, 7) != FALSE) {
                         ReleaseHttp((Http *) gHttp);
                         func_ov000_02187490(8);
                         break;
@@ -141,13 +141,13 @@ void func_ov000_021874ec(void) {
                     func_ov000_021a6abc(&b);
                     MemCopy(func_ov000_021a6abc(NULL), d, b);
                     IrqRestore(h);
-                    if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1434, d, strlen(d)) != 0) {
+                    if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1434, d, strlen(d)) != FALSE) {
                         ReleaseHttp((Http *) gHttp);
                         func_ov000_02187490(8);
                         break;
                     }
                     s = data_ov000_021b4cb0->mUnk_118;
-                    if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b143c, s, strlen(s)) != 0) {
+                    if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b143c, s, strlen(s)) != FALSE) {
                         ReleaseHttp((Http *) gHttp);
                         func_ov000_02187490(8);
                         break;
@@ -251,7 +251,7 @@ void func_ov000_021874ec(void) {
             func_ov000_02187490(8);
             break;
         }
-        if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1424, data_ov000_021b1458, 5) != 0) {
+        if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1424, data_ov000_021b1458, 5) != FALSE) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(8);
             break;
@@ -261,13 +261,13 @@ void func_ov000_021874ec(void) {
         func_ov000_021a6abc(&b);
         MemCopy(func_ov000_021a6abc(NULL), d, b);
         IrqRestore(h);
-        if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1434, d, strlen(d)) != 0) {
+        if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1434, d, strlen(d)) != FALSE) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(8);
             break;
         }
         s = data_ov000_021b4cb0->mUnk_114;
-        if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1460, s, strlen(s)) != 0) {
+        if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1460, s, strlen(s)) != FALSE) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(8);
             break;
@@ -295,7 +295,7 @@ void func_ov000_021874ec(void) {
             case 8:
                 break;
         }
-        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, (const char *) o->mUnk_938) != 1) {
+        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, (const char *) o->mUnk_938) != TRUE) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(2);
             break;
@@ -408,7 +408,7 @@ void func_ov000_021874ec(void) {
             func_ov000_02187490(1);
             break;
         }
-        if (func_ov000_02186a9c((Http *) gHttp, p2) != 0) {
+        if (func_ov000_02186a9c((Http *) gHttp, p2) != FALSE) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(8);
             break;
@@ -433,7 +433,7 @@ void func_ov000_021874ec(void) {
             case 8:
                 break;
         }
-        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 1, (const char *) o->mUnk_938) != 1) {
+        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 1, (const char *) o->mUnk_938) != TRUE) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(2);
             break;
@@ -510,13 +510,13 @@ s32 func_ov000_021873d4(Unk02186d7c *p, const Unk021873d4 *q) {
 u32 func_ov000_0218735c(Unk02186d7c *p) {
     char v1[8];
     u32 n;
-    if (func_ov000_02186bd4((Http *) p, data_ov000_021b135c, data_ov000_021b1368) != 0) {
+    if (func_ov000_02186bd4((Http *) p, data_ov000_021b135c, data_ov000_021b1368) != FALSE) {
         return 1;
     }
     n = strlen(strstr(p->mSendBuffer.mStart, data_ov000_021b1230) + 4);
     if (n != 0) {
         StringFormatBounded(v1, 7, data_ov000_021b1370, n);
-        if (func_ov000_02186bd4((Http *) p, data_ov000_021b1374, v1) != 0) {
+        if (func_ov000_02186bd4((Http *) p, data_ov000_021b1374, v1) != FALSE) {
             return 1;
         }
     }

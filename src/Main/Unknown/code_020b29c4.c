@@ -17,10 +17,10 @@ u32 func_020b29c4(void) {
     u32 d;
 
     if (func_020b33d8() != 0 && func_020b33f4() > 0xf0 && func_020b2a4c() == 0 &&
-        (func_020b252c() != 2 || func_020a126c() == 0)) {
+        (func_020b252c() != 2 || func_020a126c() == FALSE)) {
         d = 1;
         if (func_020b252c() == 4) {
-            if ((func_020b252c() == 4 ? func_020a126c() : 0) != 0) {
+            if ((func_020b252c() == 4 ? func_020a126c() : 0) != FALSE) {
                 d = 0;
             }
         }
@@ -34,7 +34,7 @@ u32 func_020b29c4(void) {
         }
     }
     if (b != 0) {
-        if (func_020b2ec0() != 0 || func_02055b1c() == 0) {
+        if (func_020b2ec0() != 0 || func_02055b1c() == FALSE) {
             a = 1;
         }
     }

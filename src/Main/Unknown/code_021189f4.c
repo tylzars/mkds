@@ -72,11 +72,12 @@ void AdvanceSelectCupState3(void) {
     i = UNK_02175628_INDEX_8;
     func_02119d78();
     if (func_02119340_inline(i) != 0) {
-        a = RectTableFindContaining(gSelectCup->mSelectCupMBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00 + 0x20);
+        a = RectTableFindContaining(gSelectCup->mSelectCupMBnbl, data_02175670[i].mUnk_00,
+                                    data_02175672[i].mUnk_00 + 0x20);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) != 0 ||
-        (func_02119340_inline(i) != 0 &&
-         IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) != 0)) {
+        (func_02119340_inline(i) != 0 && IsSelectReturnState2NoState3Or4RequestAndInRect(
+                                             data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) != FALSE)) {
         if (func_02119dfc() == 0) {
             if (*(vu16 *) 0x027ffc40 == 2) {
                 func_021281c8(-1);
@@ -138,7 +139,7 @@ void AdvanceSelectCupState4(void) {
         if (func_02119dfc() == 0) {
             if (gSelectCup->mMode == 0) {
                 func_02119e14();
-                if (func_0211e130() != 0) {
+                if (func_0211e130() != FALSE) {
                     func_0211e0c4(0);
                     func_02119ac4();
                     return;
@@ -252,7 +253,7 @@ void AdvanceSelectCupState8(void) {
     }
     if (gSelectCup->mMode == 0) {
         if (gSelectCup->mResult == 1) {
-            if (func_0211e130() != 0) {
+            if (func_0211e130() != FALSE) {
                 a = TRUE;
             } else {
                 a = FALSE;
@@ -336,7 +337,7 @@ s32 AdvanceSelectCup(void) {
     }
     func_0211a07c();
     if (*(vu16 *) 0x027ffc40 != 2) {
-        if (gSelectCup->mUnk_60 != 0 && func_020d0ec4() != 0) {
+        if (gSelectCup->mUnk_60 != 0 && func_020d0ec4() != FALSE) {
             p = GetCupPictureNscrData();
             CallQueueAppend(0x1f, 0, GetCupPictureNclrData(), 0xe0);
             CallQueueAppend(0x17, 0x20, GetCupPictureNcgrData(), 0xdc0);
@@ -345,10 +346,10 @@ s32 AdvanceSelectCup(void) {
             }
             gSelectCup->mUnk_60 = 0;
         }
-        func_02124c30(gSelectCup->mSelectCupCourseTaOrVsMBncl, gSelectCup->mSelectCupCourseMNcer, gSelectCup->mSelectCupCourseTaOrVsMBnll, gSelectCup->mUnk_64,
-                      gSelectCup->mUnk_1c);
-        func_02124c30(gSelectCup->mSelectCupMBncl, gSelectCup->mSelectCupMNcer, gSelectCup->mSelectCupMBnll, gSelectCup->mUnk_68,
-                      gSelectCup->mUnk_20);
+        func_02124c30(gSelectCup->mSelectCupCourseTaOrVsMBncl, gSelectCup->mSelectCupCourseMNcer,
+                      gSelectCup->mSelectCupCourseTaOrVsMBnll, gSelectCup->mUnk_64, gSelectCup->mUnk_1c);
+        func_02124c30(gSelectCup->mSelectCupMBncl, gSelectCup->mSelectCupMNcer, gSelectCup->mSelectCupMBnll,
+                      gSelectCup->mUnk_68, gSelectCup->mUnk_20);
     } else {
         func_0211f39c();
     }

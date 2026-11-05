@@ -170,16 +170,16 @@ s32 GpiPeerUpdateWaiting(GpConnection *a, GpiPeer *b) {
         *p = 0;
         q = b->mUnk_18;
         if (strncmp(q, data_ov000_021b34d0, 6) == 0) {
-            if (GpiGetValue(q, data_ov000_021b34d8, c0, 0x10) == 0) {
+            if (GpiGetValue(q, data_ov000_021b34d8, c0, 0x10) == FALSE) {
                 b->mState = 0x6a;
                 return 0;
             }
             v = StrtolBase10(c0);
-            if (GpiGetValue(b->mUnk_18, data_ov000_021b34e0, c1, 0x1f) == 0) {
+            if (GpiGetValue(b->mUnk_18, data_ov000_021b34e0, c1, 0x1f) == FALSE) {
                 b->mState = 0x6a;
                 return 0;
             }
-            if (GpiGetValue(b->mUnk_18, data_ov000_021b34e8, c2, 0x21) == 0) {
+            if (GpiGetValue(b->mUnk_18, data_ov000_021b34e8, c2, 0x21) == FALSE) {
                 b->mState = 0x6a;
                 return 0;
             }
@@ -492,7 +492,7 @@ s32 GpiPeerConnect(GpConnection *param_1, GpiPeer *param_2) {
         GpiQueueErrorCallback(param_1, 3, 0);
         return 3;
     }
-    if (func_ov000_0218e80c(param_2->mSocket, 0) == 0) {
+    if (func_ov000_0218e80c(param_2->mSocket, 0) == FALSE) {
         GpiSetError(param_1, 5, data_ov000_021b33e4);
         GpiQueueErrorCallback(param_1, 3, 0);
         return 3;

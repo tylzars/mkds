@@ -79,7 +79,7 @@ s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *)) {
     if (buffer == NULL) {
         return -1;
     }
-    if (func_ov003_021ba818(func_ov003_021ba720, buffer, 0x5890) == 0) {
+    if (func_ov003_021ba818(func_ov003_021ba720, buffer, 0x5890) == FALSE) {
         running = FALSE;
     }
     if (running != FALSE) {
@@ -117,7 +117,7 @@ s32 func_ov003_021ba560(void) {
     if (data_ov003_021d8a18 == NULL) {
         return -1;
     }
-    if (func_ov003_021ba9c0() == 0) {
+    if (func_ov003_021ba9c0() == FALSE) {
         return -1;
     }
     do {
@@ -154,7 +154,7 @@ s32 func_ov003_021ba524(void) {
     BOOL done;
     s32 result = -1;
     void *msg;
-    if (func_ov003_021baa28() != 0) {
+    if (func_ov003_021baa28() != FALSE) {
         done = FALSE;
         do {
             RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
@@ -199,7 +199,7 @@ s32 func_ov003_021ba394(Unk021ba734 **out) {
                         if (waits != 0) {
                             count = func_ov003_021babc0(scan, 0x40);
                         }
-                        if (func_ov003_021baa68() == 0) {
+                        if (func_ov003_021baa68() == FALSE) {
                             goto cleanup;
                         }
                         found = TRUE;
@@ -211,7 +211,7 @@ s32 func_ov003_021ba394(Unk021ba734 **out) {
                             waits++;
                         } else {
                             count = func_ov003_021babc0(scan, 0x40);
-                            if (func_ov003_021baa68() == 0) {
+                            if (func_ov003_021baa68() == FALSE) {
                                 goto cleanup;
                             }
                             found = TRUE;
@@ -307,7 +307,7 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
                             running = FALSE;
                         } else {
                             func_ov003_021ba744(request, &data_ov003_021d8ac0);
-                            if (func_ov003_021ba910(&data_ov003_021d8ac0, &data_ov003_021d8a4c, flags) == 0) {
+                            if (func_ov003_021ba910(&data_ov003_021d8ac0, &data_ov003_021d8a4c, flags) == FALSE) {
                                 running = FALSE;
                             } else {
                                 done = TRUE;
@@ -317,7 +317,7 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
                     break;
                 case 0xa:
                     func_ov003_021ba744(request, &data_ov003_021d8ac0);
-                    if (func_ov003_021ba910(&data_ov003_021d8ac0, &data_ov003_021d8a4c, flags) == 0) {
+                    if (func_ov003_021ba910(&data_ov003_021d8ac0, &data_ov003_021d8a4c, flags) == FALSE) {
                         running = FALSE;
                     }
                     break;
@@ -328,7 +328,7 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
                 case 0xd:
                     retries++;
                     if (retries < 3) {
-                        if (func_ov003_021ba910(&data_ov003_021d8ac0, &data_ov003_021d8a4c, flags) == 0) {
+                        if (func_ov003_021ba910(&data_ov003_021d8ac0, &data_ov003_021d8a4c, flags) == FALSE) {
                             running = FALSE;
                         }
                     } else {

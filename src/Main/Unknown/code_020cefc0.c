@@ -56,9 +56,9 @@ void func_020cefdc(void) {
     b = q->mUnk_04;
     for (i = 0; i < m; i++) {
         e = b[i];
-        if (func_020fd528((Kart *) e) != 0) {
+        if (func_020fd528((Kart *) e) != FALSE) {
             p = func_020fd308((Unk020fdae8 *) e, &x, &y);
-            if (func_020b5ae8(p, &data_0217b48c->mUnk_10[n].mUnk_00, v, 1, 1) != 0) {
+            if (func_020b5ae8(p, &data_0217b48c->mUnk_10[n].mUnk_00, v, 1, 1) != FALSE) {
                 data_0217b48c->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0x63);
                 data_0217b48c->mUnk_10[n].mUnk_0c = func_020b4e70(p) != 0 ? 2 : 3;
                 data_0217b48c->mUnk_10[n].mUnk_10 = x;
@@ -76,9 +76,9 @@ void func_020cefdc(void) {
     b = q->mUnk_04;
     for (i = 0; i < m; i++) {
         e2 = b[i];
-        if (func_020fadcc((Unk020fc2e8 *) e2) != 0) {
+        if (func_020fadcc((Unk020fc2e8 *) e2) != FALSE) {
             p2 = func_020fad9c((Unk020fc2e8 *) e2, &x2, &y2);
-            if (func_020b5ae8(p2, &data_0217b48c->mUnk_10[n].mUnk_00, v, 1, 1) != 0) {
+            if (func_020b5ae8(p2, &data_0217b48c->mUnk_10[n].mUnk_00, v, 1, 1) != FALSE) {
                 data_0217b48c->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0x64);
                 data_0217b48c->mUnk_10[n].mUnk_0c = func_020b4e70(p2) != 0 ? 2 : 3;
                 data_0217b48c->mUnk_10[n].mUnk_10 = x2;

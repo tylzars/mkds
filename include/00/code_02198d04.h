@@ -3,7 +3,7 @@
 #include "types.h"
 #include "00/code_02197e58.h"
 
-u32 func_ov000_02198d04(u32 param_1);
+u32 func_ov000_02198d04(Gt2Connection *param_1);
 u32 func_ov000_02198d50(Gt2Connection *param_1);
 u32 func_ov000_02198d9c(Gt2Connection *param_1, const void *param_2, int param_3);
 u32 func_ov000_02198df8(Gt2Connection *param_1);

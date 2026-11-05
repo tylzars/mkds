@@ -279,13 +279,13 @@ void AdvanceWiFiVSMatchingState1(void) {
         gWiFiVSMatching->mUnk_08 = 0x78;
     }
     gWiFiVSMatching->mUnk_08 = gWiFiVSMatching->mUnk_08 + 1;
-    if (func_021213a0() != 0) {
+    if (func_021213a0() != FALSE) {
         func_02128374();
     } else {
         func_021282c8();
     }
     if (gWiFiVSMatching->mUnk_3c != 0) {
-        if (func_02121434() == 0) {
+        if (func_02121434() == FALSE) {
             gWiFiVSMatching->mUnk_3c = 0;
             func_02126638(GetBmgEntry(gWiFiVSMatching->mWiFiMessages, 12), 0, 0, 1, 0, 1, 0);
         }
@@ -304,8 +304,9 @@ void AdvanceWiFiVSMatchingState1(void) {
         a = TRUE;
     }
     if (a != FALSE &&
-        IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) != 0 &&
-        func_021213a0() != 0) {
+        IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) !=
+            FALSE &&
+        func_021213a0() != FALSE) {
     hit:
         func_021213e8();
         func_02128310(0);
@@ -580,7 +581,7 @@ void AdvanceWiFiVSMatchingState9(void) {
                 return;
             }
             if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                data_02175628[idx].mUnk_4a) == 0) {
+                                                                data_02175628[idx].mUnk_4a) == FALSE) {
                 return;
             }
         }
@@ -602,7 +603,7 @@ void AdvanceWiFiVSMatchingState10(void) {
             RequestWiFiState(gWiFiVSMatching->mPendingWiFiState);
             return;
         }
-        if (func_0212137c() != 0) {
+        if (func_0212137c() != FALSE) {
             RequestWiFiState(gWiFiVSMatching->mPendingWiFiState);
         }
     }

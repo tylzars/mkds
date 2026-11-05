@@ -68,7 +68,7 @@ u32 func_ov000_0219958c(Gt2Connection *a, u8 *b, s32 c) {
     t[1] = p[1];
     t[2] = p[2];
     t[3] = p[3];
-    if (Gt2CallElapsedTimeCallback(a, func_ov000_0218e8c4() - d) != 0) {
+    if (Gt2CallElapsedTimeCallback(a, func_ov000_0218e8c4() - d) != FALSE) {
         return 1;
     }
     return 0;
@@ -129,7 +129,7 @@ u32 func_ov000_021992d4(Gt2Socket *a, u8 *b, s32 c, u32 d, u32 e) {
         h = FALSE;
     }
     if (f == NULL) {
-        if (CallUnmatchedDataCallback(a, d, e, b, c, &g) == 0) {
+        if (CallUnmatchedDataCallback(a, d, e, b, c, &g) == FALSE) {
             return 0;
         }
         if (g != 0) {
@@ -137,7 +137,7 @@ u32 func_ov000_021992d4(Gt2Socket *a, u8 *b, s32 c, u32 d, u32 e) {
         }
         if (h == FALSE || b[2] != 1) {
             if (h == FALSE || b[2] != 0x68) {
-                if (func_ov000_02198b50(a, d, e) == 0) {
+                if (func_ov000_02198b50(a, d, e) == FALSE) {
                     return 0;
                 }
             }
@@ -148,7 +148,7 @@ u32 func_ov000_021992d4(Gt2Socket *a, u8 *b, s32 c, u32 d, u32 e) {
             }
             i = func_ov000_0219883c(a, &f, d, e);
             if (i != 0) {
-                if (i != 5 && func_ov000_02198b50(a, d, e) == 0) {
+                if (i != 5 && func_ov000_02198b50(a, d, e) == FALSE) {
                     return 0;
                 }
                 return 1;
