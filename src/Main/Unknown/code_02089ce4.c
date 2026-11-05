@@ -1,13 +1,10 @@
 #include "Main/Unknown/code_02089ce4.h"
+#include "Main/Unknown/code_020888b4.h"
 
-void func_02089ce4(u32 p0, u32 p1) {
-    *(u32 *) ((u8 *) p0 + 0) = (u32) ((
-        (u32) *
-        (const u32 *) ((u8 *) (u32) (((u32) *
-                                      (const u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) p1 + 0))) + 716))) +
-                       16)));
-    *(u32 *) ((u8 *) p0 + 4) = (u32) (((u32) * (const u32 *) ((u8 *) p0 + 0)));
-    *(u32 *) ((u8 *) p0 + 8) = (u32) 0x5000u;
-    *(u32 *) ((u8 *) p0 + 12) = (u32) 0x0u;
-    *(u32 *) ((u8 *) p0 + 16) = (u32) 0x0u;
+void func_02089ce4(Unk02089b4c *p0, Unk020888b4 *p1) {
+    p0->mUnk_00 = p1->mKart->mUnk_2cc->mUnk_10;
+    p0->mUnk_04 = p0->mUnk_00;
+    p0->mUnk_08 = 0x5000;
+    p0->mUnk_0c = 0;
+    p0->mUnk_10 = 0;
 }

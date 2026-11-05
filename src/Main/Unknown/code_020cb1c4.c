@@ -28,5 +28,5 @@ u32 func_020cb1cc(u32 arg0) {
 }
 
 u32 func_020cb1c4(u16 *p0) {
-    return ((u32) * (const u16 *) ((u8 *) (u32) p0 + 4));
+    return p0[2];
 }

@@ -73,7 +73,7 @@ void func_02105214(void) {
 void func_021051d4(Unk020eda5c *p0, Unk020f40dc *p1) {
     func_020695c4(p1->mUnk_04->mUnk_1fc);
     func_020f4754(p1, 1);
-    func_020f81b8((u32) p0->mUnk_00c, 0xe);
+    func_020f81b8(p0->mUnk_00c, 0xe);
 }
 
 void func_0210515c(s32 a) {

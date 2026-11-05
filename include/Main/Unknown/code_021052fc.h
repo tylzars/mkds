@@ -15,6 +15,8 @@ typedef struct Unk021052fc {
     /* b0 */ u16 mUnk_b0;
     /* b2 */ u8 mUnk_b2[0x4a];
     /* fc */ Vec3 *mUnk_fc;
+    /* 100 */ void *mUnk_100;
+    /* 104 */ void *mUnk_104;
 } Unk021052fc;
 
 void func_02105338(Unk021052fc *p, s32 a, Vec3 *v);

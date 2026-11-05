@@ -49,13 +49,13 @@ void func_0210f5d4(u32 a) {
     data_0216cb4c = v;
     if (v != 0xffff) {
         j = 0;
-        func_0210f208((u32) data_0217d1c0, 3, j);
-        func_0210f208((u32) data_0217d1d0, 3, j);
+        func_0210f208((Unk0217d1c0 *) data_0217d1c0, 3, j);
+        func_0210f208((Unk0217d1c0 *) data_0217d1d0, 3, j);
         for (; j < 2; j++) {
             w = (j == 0 ? 0x1000 : 0x2000);
             for (i = 0; i < 8; i++) {
                 if (data_0216cb50[v].mUnk_00[i] == w) {
-                    func_0210f208((u32) & ((Unk0217d1c0 *) data_0217d1c0)[j], 0, i);
+                    func_0210f208(&((Unk0217d1c0 *) data_0217d1c0)[j], 0, i);
                     break;
                 }
             }

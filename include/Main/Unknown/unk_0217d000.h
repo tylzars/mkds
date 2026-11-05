@@ -661,10 +661,12 @@ typedef struct Unk0217d40c {
     /* 858 */ void *mUnk_858;
 } Unk0217d40c;
 
+typedef struct Unk0210bcf4 Unk0210bcf4;
+
 // Objects whose layout isn't known yet.
-extern u8 data_0217d014[];
-extern u8 data_0217d018[];
-extern u8 data_0217d01c[];
+extern s32 (*data_0217d014)(Unk0210bcf4 *);
+extern u32 (*data_0217d018)(Unk0210bcf4 *);
+extern s32 (*data_0217d01c)(Unk0210bcf4 *);
 extern LinkedList data_0217d028;
 extern u32 data_0217d064;
 extern u8 data_0217d134[];

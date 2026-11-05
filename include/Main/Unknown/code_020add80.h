@@ -2,4 +2,6 @@
 
 #include "types.h"
 
-unsigned int func_020add80(unsigned int p0);
+typedef struct Unk02022aa8 Unk02022aa8;
+
+unsigned int func_020add80(Unk02022aa8 *p0);

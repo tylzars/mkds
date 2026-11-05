@@ -446,7 +446,7 @@ s32 func_020f5d6c(Unk020eda5c *a, Unk020f5d6c *b) {
         }
         b->mUnk_000.mUnk_000.mUnk_000.mUnk_74 |= 0x200000;
     }
-    func_020f1a14((u32) b);
+    func_020f1a14(b);
     if (b->mUnk_000.mUnk_000.mUnk_000.mUnk_74 & 0x8000000) {
         b->mUnk_23c.mNextState = 0;
         b->mUnk_23c.mNextStateRequested = 1;
@@ -529,8 +529,8 @@ void func_020f5b84(Unk020f5d6c *a) {
     }
 }
 
-void func_020f5b74(u32 p0) {
-    *(u32 *) ((u8 *) p0 + 292) = (u32) (((u32) (&func_020f5f7c)));
+void func_020f5b74(Unk020f5d6c *p0) {
+    p0->mUnk_000.mUnk_000.mUnk_000.mUnk_124 = (void (*)(Unk020f41c4_A *, Vec3 *, Vec3 *)) func_020f5f7c;
 }
 
 void func_020f5978(Unk020f5d6c *a) {
@@ -588,8 +588,8 @@ void func_020f5978(Unk020f5d6c *a) {
     }
 }
 
-void func_020f5968(u32 p0) {
-    *(u32 *) ((u8 *) p0 + 292) = (u32) (((u32) (&func_020f5f7c)));
+void func_020f5968(Unk020f5d6c *p0) {
+    p0->mUnk_000.mUnk_000.mUnk_000.mUnk_124 = (void (*)(Unk020f41c4_A *, Vec3 *, Vec3 *)) func_020f5f7c;
 }
 
 // Runs the two 0x7c/0x4c checks of the object in the 0x1fc word of the 0x1c pointer, then
@@ -781,7 +781,7 @@ void func_020f53d0(Unk020f5d6c *a) {
         a->mUnk_23c.mNextStateRequested = 1;
         func_020f1ea4(a, 0, a->mUnk_250, 0);
     }
-    func_020f1a14((u32) a);
+    func_020f1a14(a);
 }
 
 // Returns 1 while GetKart(b) is within the 0x1d0/0x1d4 radius of the 0x50/0x54/0x58
@@ -878,7 +878,7 @@ void *func_020f5108(void *a, Unk020f5240 *b, void *c) {
 // Runs func_020f8e78 and func_020f2d98, then func_021090c4 when the two 0x74/0x130 tests pass.
 void func_020f50b4(Unk020f5240 *a) {
     func_020f8e78(a);
-    func_020f2d98((u32) a, 0);
+    func_020f2d98(&a->mUnk_000, 0);
     if ((a->mUnk_000.mUnk_000.mUnk_74 & 0x10000000) == 0) {
         return;
     }

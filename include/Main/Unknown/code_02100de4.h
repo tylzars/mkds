@@ -53,7 +53,7 @@ typedef struct Unk02101c84 {
 // First argument of func_02101d18: objects at 0x0c and 0x10.
 typedef struct Unk02101d18 {
     /* 00 */ u8 mUnk_00[0xc];
-    /* 0c */ u8 *mUnk_0c;
+    /* 0c */ struct Unk020ee684 *mUnk_0c;
     /* 10 */ Kart *mUnk_10;
 } Unk02101d18;
 

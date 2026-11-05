@@ -44,7 +44,7 @@ u8 *func_020ff2b0(u8 *a, Unk020ff438 *b, void *c) {
 
 void func_020ff25c(Unk020ff438 *a) {
     func_020f8e78(a);
-    func_020f2d98((u32) a, 0);
+    func_020f2d98(&a->mUnk_000, 0);
     if ((a->mUnk_000.mUnk_000.mUnk_74 & 0x10000000) == 0) {
         return;
     }
@@ -498,7 +498,7 @@ void func_020fe5b8(u32 a, u32 b, u8 *c, u32 d) {
     if (c[1] == 0xff) {
         return;
     }
-    func_020f81b8((u32) & (data_027e00c8)[(u16) d], 0x10);
+    func_020f81b8(&data_027e00c8[(u16) d], 0x10);
 }
 
 void func_020fe56c(u32 a, u32 b, u32 c, void *d, u32 e) {

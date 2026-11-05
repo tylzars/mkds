@@ -7,7 +7,7 @@
 extern u8 data_0215688c[];
 extern u8 data_02156458[];
 extern u16 data_0215645c;
-extern u8 data_021564c0[];
+extern u16 data_021564c0;
 extern u16 data_usa_02156460;
 extern u16 data_usa_02156464;
 extern u16 data_usa_02156468;

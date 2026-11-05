@@ -13,7 +13,11 @@ typedef struct Unk0216cb50 {
 typedef struct Unk0217d1c0 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
-    /* 08 */ u8 mUnk_08[8];
+    /* 08 */ u32 mUnk_08;
+    /* 0c */ u8 mUnk_0c;
+    /* 0d */ u8 mUnk_0d;
+    /* 0e */ u8 mUnk_0e;
+    /* 0f */ u8 mUnk_0f;
 } Unk0217d1c0;
 
 // Object data_0217d1c4: a word at 0 and twelve bytes at 4; func_0210f458 writes the word at 0 and func_0210f230

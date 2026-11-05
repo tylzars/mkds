@@ -1242,7 +1242,7 @@ typedef struct Unk0217ad08 {
     /* 1cc */ struct Unk02084b2c *mUnk_1cc;
     /* 1d0 */ void *mUnk_1d0;
     /* 1d4 */ void *mUnk_1d4;
-    /* 1d8 */ void *mUnk_1d8;
+    /* 1d8 */ s32 mUnk_1d8;
     /* 1dc */ s32 mUnk_1dc;
     /* 1e0 */ s32 mUnk_1e0;
     /* 1e4 */ s32 mUnk_1e4;

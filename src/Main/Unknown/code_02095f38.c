@@ -38,8 +38,7 @@ u32 func_0209753c(u32 a) {
 }
 
 void func_02097520(Unk02097520 *p0) {
-    p0->mUnk_02 =
-        (u16) (((((u32) p0->mUnk_02)) | (((u32) * (const u16 *) ((u8 *) (u32) (((u32) (&data_021564c0))) + 0)))));
+    p0->mUnk_02 |= data_021564c0;
 }
 
 u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {

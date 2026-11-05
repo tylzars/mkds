@@ -5,13 +5,13 @@ void func_0208bf94(Unk020888b4 *a, s32 b) {
     Kart *v1;
     v1 = GetKart(b);
     func_02089788(a, v1);
-    func_02089ce4((u32) &a->mUnk_140, (u32) a);
+    func_02089ce4(&a->mUnk_140, a);
     func_02090348((u32) &a->mUnk_11c);
     func_02089a24(a, &a->mUnk_e8);
 }
 
 void func_0208bf6c(Unk020888b4 *a, Unk02175620_bc *b) {
     func_02089754(a, b);
-    func_02089ce4((u32) &a->mUnk_140, (u32) a);
+    func_02089ce4(&a->mUnk_140, a);
     func_02090348((u32) &a->mUnk_11c);
 }

@@ -2,4 +2,6 @@
 
 #include "types.h"
 
-void func_020f5b74(unsigned int p0);
+typedef struct Unk020f5d6c Unk020f5d6c;
+
+void func_020f5b74(Unk020f5d6c *p0);

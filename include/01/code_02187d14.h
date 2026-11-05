@@ -13,15 +13,6 @@ extern Unk02012f58 data_0217ba58;
 
 extern Unk02012f58 data_0217bab8;
 
-// Object returned by func_020ac524(0xc9).
-typedef struct Unk020ac524 {
-    /* 00 */ u8 mUnk_00[0xac];
-    /* ac */ s32 mUnk_ac;
-    /* b0 */ u8 mUnk_b0[0x42];
-    /* f2 */ u16 mUnk_f2;
-    /* f4 */ u16 mUnk_f4;
-} Unk020ac524;
-
 // Element at Unk02187d14::mUnk_00.
 typedef struct Unk02187d14_00 {
     /* 00 */ u8 mUnk_00;

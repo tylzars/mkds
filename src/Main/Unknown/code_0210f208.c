@@ -1,10 +1,11 @@
 #include "Main/Unknown/code_0210f208.h"
+#include "Main/Unknown/code_0210f230.h"
 
-void func_0210f208(u32 p0, u32 p1, u32 p2) {
-    *(u32 *) ((u8 *) p0 + 4) = p1;
-    *(u32 *) ((u8 *) p0 + 0) = p1;
-    *(u32 *) ((u8 *) p0 + 8) = p2;
-    *(u8 *) ((u8 *) p0 + 12) = (u8) 0x28u;
-    *(u8 *) ((u8 *) p0 + 13) = (u8) 0x50u;
-    *(u8 *) ((u8 *) p0 + 14) = (u8) 0x7fu;
+void func_0210f208(Unk0217d1c0 *p0, u32 p1, u32 p2) {
+    p0->mUnk_04 = p1;
+    p0->mUnk_00 = p1;
+    p0->mUnk_08 = p2;
+    p0->mUnk_0c = 0x28;
+    p0->mUnk_0d = 0x50;
+    p0->mUnk_0e = 0x7f;
 }

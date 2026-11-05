@@ -91,7 +91,7 @@ void func_020a6c64(u32 arg0) {
     value1 = 0xbu;
     func_02109110((Unk0210bfbc *) value0, value1, (Vec3 *) value2);
     value0 = (u32) * (const u32 *) ((value4) + (148));
-    func_0210bae8(value0);
+    func_0210bae8((Unk0210bfbc *) value0);
     value0 = (u32) &data_0217ca6c;
     value0 = (u32) * (const u32 *) ((value0) + (428));
     *(u32 *) ((value4) + (112)) = value0;
@@ -975,7 +975,7 @@ void func_020a49d4(Unk020a3fa8 *a) {
         } else {
             a->mUnk_0a0 = 0x3c;
         }
-        func_020a238c((u32) a->mUnk_0a4);
+        func_020a238c(a->mUnk_0a4);
         func_020a2364((u32) func_020a5268);
         func_020a2350((u32) func_020a4f54);
         func_020a233c(func_020a4d94);

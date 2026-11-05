@@ -175,16 +175,16 @@ void func_0210d050(u32 a, u32 b, u32 c, u32 d) {
     func_0212ec04((Unk0212c400 **) a, (u32) 0xffffffff, (u32) 0xffffffff, d, b, c);
 }
 
-void func_0210d040(u32 p0) {
-    *(u32 *) ((u8 *) (u32) (((u32) (&data_0217d01c))) + 0) = p0;
+void func_0210d040(s32 (*p0)(Unk0210bcf4 *)) {
+    data_0217d01c = p0;
 }
 
-void func_0210d030(u32 p0) {
-    *(u32 *) ((u8 *) (u32) (((u32) (&data_0217d018))) + 0) = p0;
+void func_0210d030(u32 (*p0)(Unk0210bcf4 *)) {
+    data_0217d018 = p0;
 }
 
-void func_0210d020(u32 p0) {
-    *(u32 *) ((u8 *) (u32) (((u32) (&data_0217d014))) + 0) = p0;
+void func_0210d020(s32 (*p0)(Unk0210bcf4 *)) {
+    data_0217d014 = p0;
 }
 
 void func_0210cfe8(u32 arg0) {

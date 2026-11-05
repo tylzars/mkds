@@ -1,11 +1,12 @@
 #include "Main/Unknown/code_02087cd0.h"
+#include "Main/Unknown/code_02087d0c.h"
 
-void func_02087cd0(void *p0, u32 p1) {
-    *(u16 *) ((u8 *) (u32) p0 + 0) = (u16) 0x1u;
-    *(u16 *) ((u8 *) (u32) p0 + 2) = (u16) 0x0u;
-    *(u32 *) ((u8 *) (u32) p0 + 8) = (u32) 0x1000u;
-    *(u32 *) ((u8 *) (u32) p0 + 4) = p1;
-    *(u32 *) ((u8 *) (u32) p0 + 12) = (u32) 0x0u;
-    *(u16 *) ((u8 *) (u32) p0 + 16) = (u16) 0x0u;
-    *(u16 *) ((u8 *) (u32) p0 + 18) = (u16) 0x0u;
+void func_02087cd0(Unk02087d0c *p0, u32 p1) {
+    p0->mUnk_00 = 1;
+    p0->mUnk_02 = 0;
+    p0->mUnk_08 = 0x1000;
+    p0->mUnk_04 = p1;
+    p0->mUnk_0c = 0;
+    p0->mUnk_10 = 0;
+    p0->mUnk_12 = 0;
 }

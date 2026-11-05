@@ -59,10 +59,8 @@ void func_020e35e4(u32 arg0, u32 arg1) {
 void func_020e35a0(Unk020e35a0 *p0) {
     p0->mUnk_08 = (u32) (p0->mUnk_ac);
     p0->mUnk_14 = (u32) 0x0u;
-    p0->mUnk_02 =
-        (u16) (((((u32) p0->mUnk_02)) | (((u32) * (const u16 *) ((u8 *) (u32) (((u32) (&data_02158bb8))) + 0)))));
-    p0->mUnk_02 =
-        (u16) (((((u32) p0->mUnk_02)) | (((u32) * (const u16 *) ((u8 *) (u32) (((u32) (&data_02158bb4))) + 0)))));
+    p0->mUnk_02 |= data_02158bb8;
+    p0->mUnk_02 |= data_02158bb4;
 }
 
 void func_020e3584(Unk020e1e98 *a) {
@@ -76,10 +74,8 @@ void func_020e3538(Unk020e3538 *p0) {
     p0->mUnk_08 = (u32) (p0->mUnk_ac);
     p0->mUnk_14 = (u32) 0x1000u;
     p0->mUnk_b8 = (u16) 0x0u;
-    p0->mUnk_02 =
-        (u16) (((((u32) p0->mUnk_02)) | (((u32) * (const u16 *) ((u8 *) (u32) (((u32) (&data_02158bb8))) + 0)))));
-    p0->mUnk_02 =
-        (u16) (((((u32) p0->mUnk_02)) | (((u32) * (const u16 *) ((u8 *) (u32) (((u32) (&data_02158bb4))) + 0)))));
+    p0->mUnk_02 |= data_02158bb8;
+    p0->mUnk_02 |= data_02158bb4;
 }
 
 void func_020e34f8(Unk020e1e98 *a) {
@@ -151,10 +147,8 @@ void func_020e337c(Unk020e1e98 *a) {
 void func_020e3338(Unk020e3338 *p0) {
     p0->mUnk_08 = (u32) (p0->mUnk_ac);
     p0->mUnk_14 = (u32) 0x0u;
-    p0->mUnk_02 =
-        (u16) (((((u32) p0->mUnk_02)) | (((u32) * (const u16 *) ((u8 *) (u32) (((u32) (&data_02158bb8))) + 0)))));
-    p0->mUnk_02 =
-        (u16) (((((u32) p0->mUnk_02)) | (((u32) * (const u16 *) ((u8 *) (u32) (((u32) (&data_02158bb4))) + 0)))));
+    p0->mUnk_02 |= data_02158bb8;
+    p0->mUnk_02 |= data_02158bb4;
 }
 
 void func_020e331c(Unk020e1e98 *a) {

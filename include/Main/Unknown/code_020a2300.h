@@ -11,4 +11,4 @@ void func_020a233c(s32 (*p0)(u16 a, u16 b));
 void func_020a2350(unsigned int p0);
 void func_020a2364(unsigned int p0);
 Unk020a3fa8_a4 *func_020a2378(void);
-void func_020a238c(unsigned int p0);
+void func_020a238c(Unk020a3fa8_a4 *p0);

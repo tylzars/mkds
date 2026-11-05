@@ -366,6 +366,6 @@ u32 func_020de9f8(Unk020de6a8 *a) {
     return func_020d8828(&a->mUnk_108.mUnk_00, &a->mUnk_000.mPos);
 }
 
-void func_020de9ec(u32 p0) {
-    *(u16 *) ((u8 *) p0 + 164) = (u16) 0x80u;
+void func_020de9ec(Unk020de6a8 *p0) {
+    p0->mUnk_0a4 = 0x80;
 }

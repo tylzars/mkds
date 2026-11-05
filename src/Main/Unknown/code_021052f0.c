@@ -34,6 +34,6 @@ void func_021052fc(Unk021052fc *p) {
 }
 
 void func_021052f0(Unk021052fc *p0, void *p1, void *p2) {
-    *(u32 *) ((u8 *) p0 + 256) = (u32) p1;
-    *(u32 *) ((u8 *) p0 + 260) = (u32) p2;
+    p0->mUnk_100 = p1;
+    p0->mUnk_104 = p2;
 }

@@ -146,9 +146,9 @@ u32 func_0210bcf4(u32 a, u32 b, u32 c, u32 d, u32 e) {
         st.mUnk_1c = 0x7f;
         st.mUnk_18 = 0;
     } else {
-        st.mUnk_10 = (*(u32(*)(void *)) * (u32 *) data_0217d018)(&st);
-        st.mUnk_1c = st.mUnk_14 = (*(u32(*)(void *)) * (u32 *) data_0217d014)(&st);
-        st.mUnk_18 = (*(u32(*)(void *)) * (u32 *) data_0217d01c)(&st);
+        st.mUnk_10 = data_0217d018(&st);
+        st.mUnk_1c = st.mUnk_14 = data_0217d014(&st);
+        st.mUnk_18 = data_0217d01c(&st);
     }
     if (st.mUnk_14 <= 0) {
         if (((Unk0210bf24 *) d)->mUnk_00 == NULL) {

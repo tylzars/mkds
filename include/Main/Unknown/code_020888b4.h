@@ -35,9 +35,9 @@ typedef struct Unk02089a24 {
 // Object at 0x140 of the object Unk020888b4 starts: func_02089c3c and func_02089b4c write the words at 0x04, 0x0c and
 // 0x10.
 typedef struct Unk02089b4c {
-    /* 00 */ u8 mUnk_00[4];
+    /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
-    /* 08 */ u8 mUnk_08[4];
+    /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
 } Unk02089b4c;

@@ -31,7 +31,7 @@ void func_020719a8(u32 arg0, u32 arg1);
 Unk0210bf24 *func_020719bc(Unk0210bfbc *p, u32 a);
 void func_020719d0(Kart *p);
 void func_02071c18(Kart *p);
-void func_02071ddc(void *p0);
+void func_02071ddc(Unk0206ceb4 *p0);
 void func_02071e28(Kart *p);
 void func_02071f44(Kart *p);
 void func_02071fb8(Kart *p, void *a);

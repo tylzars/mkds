@@ -366,7 +366,7 @@ void *func_020fda50(void *a, Unk020fdae8 *b, void *c) {
 
 void func_020fd9d8(Unk020fdae8 *e) {
     func_020f8e78(e);
-    func_020f2d98((u32) e, e->mUnk_130 != 0 ? 3 : 2);
+    func_020f2d98(&e->mUnk_000, e->mUnk_130 != 0 ? 3 : 2);
     func_02046be8(&e->mUnk_184, (UnkFunc *const *) data_0216c714, 4, e);
     if (!(e->mUnk_000.mUnk_000.mUnk_74 & 0x10000000)) {
         return;
@@ -448,7 +448,7 @@ void func_020fd804(u32 arg0) {
 }
 
 u32 func_020fd7f0(void) {
-    return ((u32) * (const u32 *) ((u8 *) (u32) (((u32) data_027e00cc)) + 632));
+    return data_027e00cc[9].mUnk_14;
 }
 
 #pragma thumb off

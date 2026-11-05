@@ -9,6 +9,7 @@
 #include "code_02147288.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_020de9ec.h"
+#include "Main/Unknown/code_020de588.h"
 #include "01/unk_021a7000.h"
 #include "code_02012b30.h"
 #include "Main/Unknown/code_02042000.h"
@@ -31,14 +32,14 @@ void func_ov001_02187e48(Unk02188950 *a, s32 b) {
 }
 
 void *func_ov001_02187e00(u16 a) {
-    Unk020ac524 *p;
+    Unk020de6a8 *p;
 
     p = func_020ac524(0xc9);
     if (p != NULL) {
-        func_020de9ec((u32) p);
-        p->mUnk_f2 = a;
-        p->mUnk_f4 = a;
-        p->mUnk_ac = 1;
+        func_020de9ec(p);
+        p->mUnk_0f2 = a;
+        p->mUnk_0f4 = a;
+        p->mUnk_0ac = 1;
         return func_020fd338(p, 0xa000);
     }
     return NULL;

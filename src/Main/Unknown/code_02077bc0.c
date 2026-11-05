@@ -806,7 +806,7 @@ void func_02079a3c(u32 *arg0) {
 #pragma thumb on
 
 void func_02079a14(Unk0206bcb0_590 *a) {
-    func_02087cd0(a->mUnk_098, func_02087d0c(&gKartModels->mUnk_10c));
+    func_02087cd0((Unk02087d0c *) a->mUnk_098, func_02087d0c(&gKartModels->mUnk_10c));
 }
 
 #pragma thumb off
@@ -1397,7 +1397,7 @@ void func_02078b48(void *param_1) {
     data_0217ad08->mUnk_020 = &data_0217ad08->mUnk_058[data_0217ad08->mUnk_266];
     data_0217ad08->mUnk_1d0 = NULL;
     data_0217ad08->mUnk_1dc = 0;
-    data_0217ad08->mUnk_1d8 = NULL;
+    data_0217ad08->mUnk_1d8 = 0;
     data_0217ad08->mUnk_1e4 = 0;
     data_0217ad08->mUnk_018 = NULL;
     data_0217ad08->mUnk_01c = NULL;
@@ -1675,9 +1675,9 @@ void func_02078420(s32 param_1) {
     func_020789f4();
     if (data_0217ad08->mUnk_264 >= 0) {
         e = &data_0217ad08->mUnk_058[data_0217ad08->mUnk_264];
-        if (data_0217ad08->mUnk_1d8 != NULL || data_0217ad08->mUnk_1dc != 0) {
+        if (data_0217ad08->mUnk_1d8 != 0 || data_0217ad08->mUnk_1dc != 0) {
             func_02077f0c(&q->mUnk_14, 0xeaab, data_usa_021656e8);
-            if (data_0217ad08->mUnk_1d8 == NULL && data_0217ad08->mUnk_1dc != 0) {
+            if (data_0217ad08->mUnk_1d8 == 0 && data_0217ad08->mUnk_1dc != 0) {
                 data_0217ad08->mUnk_1f0++;
                 if (data_0217ad08->mUnk_1f0 > 0x3c) {
                     data_0217ad08->mUnk_1dc = 0;
@@ -1904,7 +1904,7 @@ void func_02077f5c(void) {
 #pragma thumb on
 
 void func_02077f48(u32 p0) {
-    *(u32 *) ((u8 *) (u32) (((u32) data_0217ad08)) + 0 + (0x1d8u)) = p0;
+    data_0217ad08->mUnk_1d8 = p0;
 }
 
 void func_02077f0c(u16 *a, int b, u32 c) {

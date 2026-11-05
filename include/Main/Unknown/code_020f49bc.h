@@ -75,7 +75,7 @@ void func_020f5614(void *a0, s32 b, void *c0);
 void func_020f56d0(Unk020f5d6c *a);
 void func_020f572c(Unk020f5d6c *a);
 void func_020f5824(Unk020f5d6c *a);
-void func_020f5968(unsigned int p0);
+void func_020f5968(Unk020f5d6c *p0);
 s32 func_020f5d6c(Unk020eda5c *a, Unk020f5d6c *b);
 void func_020f5f7c(Unk020f5d6c *a, Vec3 *b, Vec3 *c);
 void func_020f5fb8(void *a0, s32 b);

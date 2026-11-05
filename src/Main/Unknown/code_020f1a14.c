@@ -1,6 +1,7 @@
 #include "Main/Unknown/code_020f1a14.h"
+#include "Main/Unknown/code_020f49bc.h"
 
-void func_020f1a14(u32 p0) {
-    *(u32 *) ((u8 *) p0 + 552) = (u32) 0x0u;
-    *(u32 *) ((u8 *) p0 + 568) = (u32) 0x0u;
+void func_020f1a14(Unk020f5d6c *p0) {
+    p0->mUnk_228 = NULL;
+    p0->mUnk_238 = 0;
 }
