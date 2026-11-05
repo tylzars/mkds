@@ -15,17 +15,17 @@
 u32 func_ov000_0219d094(void *a, Unk0218ec44 *b) {
     s32 c;
     s32 d = 0;
-    if (data_ov000_021b5664 == NULL || func_ov000_0219c3e4() == 0) {
+    if (gWiFiBuddySync == NULL || func_ov000_0219c3e4() == 0) {
         return 0;
     }
     c = func_02152520((void *) func_ov000_0219c9c4(), a);
-    if (c > 0 && GpGetBuddyIndex(data_ov000_021b5664->mUnk_04, c, &d) != 0) {
+    if (c > 0 && GpGetBuddyIndex(gWiFiBuddySync->mGpConnection, c, &d) != 0) {
         return 0;
     }
     if (c <= 0 || d == -1) {
         return 0;
     }
-    if (GpGetBuddyStatus(data_ov000_021b5664->mUnk_04, d, b) != 0) {
+    if (GpGetBuddyStatus(gWiFiBuddySync->mGpConnection, d, b) != 0) {
         return 0;
     }
     return 1;

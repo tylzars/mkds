@@ -22,7 +22,7 @@ u32 func_ov000_021a2c64(void) {
     if (func_ov000_0219c39c() != 0) {
         return 0;
     }
-    if (data_ov000_021b566c == NULL || func_ov000_0219bab4() != 5 || data_ov000_021b566c->mUnk_1a1 != 0) {
+    if (data_ov000_021b566c == NULL || GetWiFiConnectionState() != 5 || data_ov000_021b566c->mUnk_1a1 != 0) {
         return 0;
     }
     return 1;

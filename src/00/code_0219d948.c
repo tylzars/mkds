@@ -73,12 +73,14 @@ s32 func_ov000_0219d9b0(void *a, s32 b) {
     return c;
 }
 
-void func_ov000_0219d948(void *a) {
+// Deletes the GP buddy of the entry (if GP lists it) and zeroes the 12-byte entry; the argument is the save data's
+// entry, not the sync's list.
+void RemoveBuddyEntry(void *a) {
     s32 b;
-    if (data_ov000_021b5664 != NULL && func_ov000_0219c3e4() != 0 && func_ov000_0219c9c4() != NULL) {
+    if (gWiFiBuddySync != NULL && func_ov000_0219c3e4() != 0 && func_ov000_0219c9c4() != NULL) {
         b = func_02152520((void *) func_ov000_0219c9c4(), a);
-        if (b != 0 && b != -1 && GpIsBuddy(data_ov000_021b5664->mUnk_04, b) != 0) {
-            func_ov000_0218eb44(data_ov000_021b5664->mUnk_04, b);
+        if (b != 0 && b != -1 && GpIsBuddy(gWiFiBuddySync->mGpConnection, b) != 0) {
+            func_ov000_0218eb44(gWiFiBuddySync->mGpConnection, b);
         }
     }
     MemFill(a, 0, 12);

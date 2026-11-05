@@ -578,7 +578,7 @@ void func_ov000_021a1a38(s32 d, s32 e) {
         a = p->mUnk_15 == 2 ? 1 : 0;
         c = data_ov000_021b566c->mUnk_1f4;
         b = c == 0 ? 1 : 0;
-        data_ov000_021b566c->mUnk_44c(d, 0, b, a, func_ov000_0219d5e4(c), p->mUnk_450);
+        data_ov000_021b566c->mUnk_44c(d, 0, b, a, FindBuddyEntryIndex(c), p->mUnk_450);
         func_ov000_021a104c();
     }
 }
@@ -647,7 +647,7 @@ void func_ov000_021a18e0(s32 a, s32 b, u8 *c) {
 
 u32 func_ov000_021a17bc(s32 a, s32 b, s32 c) {
     Unk021b566c *p;
-    if (func_ov000_0219bab4() != 5) {
+    if (GetWiFiConnectionState() != 5) {
         return 0;
     }
     p = data_ov000_021b566c;
@@ -1280,7 +1280,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
                 }
                 p = data_ov000_021b566c;
                 if (p->mUnk_15 == 2 && p->mUnk_454 != NULL) {
-                    data_ov000_021b566c->mUnk_454(func_ov000_0219d5e4(b), p->mUnk_458);
+                    data_ov000_021b566c->mUnk_454(FindBuddyEntryIndex(b), p->mUnk_458);
                 }
                 g[0] = data_ov000_021b566c->mUnk_14;
                 for (i = 1; i <= data_ov000_021b566c->mUnk_14; i++) {
@@ -1435,7 +1435,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             if (p->mUnk_454 == NULL) {
                 break;
             }
-            data_ov000_021b566c->mUnk_454(func_ov000_0219d5e4(z), p->mUnk_458);
+            data_ov000_021b566c->mUnk_454(FindBuddyEntryIndex(z), p->mUnk_458);
             break;
         case 8:
             x = e[0];
@@ -2028,7 +2028,7 @@ void func_ov000_0219f544(s32 a) {
             } else {
                 c = FALSE;
             }
-            data_ov000_021b566c->mUnk_44c(0, 0, c, 0, func_ov000_0219d5e4(data_ov000_021b566c->mUnk_1f4), p->mUnk_450);
+            data_ov000_021b566c->mUnk_44c(0, 0, c, 0, FindBuddyEntryIndex(data_ov000_021b566c->mUnk_1f4), p->mUnk_450);
             p = data_ov000_021b566c;
             if (p->mUnk_15 == 0 || p->mUnk_15 == 1) {
                 func_ov000_021a104c();
@@ -2153,7 +2153,7 @@ void func_ov000_0219f344(void) {
         } else {
             b = FALSE;
         }
-        data_ov000_021b566c->mUnk_44c(0, 1, b, a, func_ov000_0219d5e4(c), p->mUnk_450);
+        data_ov000_021b566c->mUnk_44c(0, 1, b, a, FindBuddyEntryIndex(c), p->mUnk_450);
         data_ov000_021b566c->mUnk_1a1 = 0;
     }
 }
@@ -2191,7 +2191,7 @@ void func_ov000_0219f23c(s32 a) {
         } else {
             c = FALSE;
         }
-        data_ov000_021b566c->mUnk_44c(0, 1, c, 0, func_ov000_0219d5e4(p->mUnk_1f4), p->mUnk_450);
+        data_ov000_021b566c->mUnk_44c(0, 1, c, 0, FindBuddyEntryIndex(p->mUnk_1f4), p->mUnk_450);
     } else if (p->mUnk_15 == 0) {
         if (a == 1) {
             if (func_ov000_0219e594(func_ov000_021a0f20(0)) != 0) {
@@ -2414,7 +2414,7 @@ BOOL func_ov000_0219ec44(u32 a, s32 b, u32 c) {
     u32 m;
     s32 n;
     u32 r;
-    if (func_ov000_0219bab4() != 6) {
+    if (GetWiFiConnectionState() != 6) {
         return TRUE;
     }
     switch (b) {
@@ -2816,7 +2816,7 @@ u32 func_ov000_0219e4e8(u32 a) {
             c = -20;
             break;
     }
-    switch (func_ov000_0219bab4()) {
+    switch (GetWiFiConnectionState()) {
         case 2:
             func_ov000_0219c990(b, c - 0xfa00);
             break;

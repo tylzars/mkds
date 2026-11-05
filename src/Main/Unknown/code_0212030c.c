@@ -127,7 +127,7 @@ void UpdateWiFiSession(void) {
     if (data_0217aa10->mUnk_00 != 0) {
         return;
     }
-    func_ov000_0219bf10();
+    UpdateWiFiConnection();
     if (func_ov000_0219c3cc(NULL) != 0) {
         gWiFiSession->mUnk_1f44 = func_ov000_0219c3cc(&gWiFiSession->mUnk_1f48);
         func_ov000_0219c3b0();

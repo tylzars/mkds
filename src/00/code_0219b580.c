@@ -56,46 +56,48 @@
 #include "00/code_0219742c.h"
 #include "00/code_02196960.h"
 
-void func_ov000_0219c1e4(void *a, void *b, s32 c, const char *d, const char *e, s32 f, s32 g, void *h, s32 i) {
+// Sets up the object at each login (the caller zeroes the 0xdb4 bytes first, code_0211f6cc.c): stores
+// gWiFiConnection, builds the login, buddy, matching and net-layer objects and copies the game name and key. Undone
+// by ReleaseWiFiConnection.
+void InitWiFiConnection(void *a, void *b, s32 c, const char *d, const char *e, s32 f, s32 g, void *h, s32 i) {
     u32 n;
     u32 m;
-    data_ov000_021b54c8 = a;
+    gWiFiConnection = a;
     func_ov000_0219c3b0();
-    data_ov000_021b54c8->mUnk_00 = NULL;
-    data_ov000_021b54c8->mUnk_04 = func_ov000_021a1b2c;
-    data_ov000_021b54c8->mUnk_08 = func_ov000_0219b4a4;
-    data_ov000_021b54c8->mUnk_0c = (s32(*)()) func_ov000_0219b27c;
-    data_ov000_021b54c8->mUnk_10 = func_ov000_0219b274;
-    data_ov000_021b54c8->mUnk_14 = f == 0 ? 0x2000 : f;
-    data_ov000_021b54c8->mUnk_18 = g == 0 ? 0x2000 : g;
-    data_ov000_021b54c8->mUnk_1c.mGpiConnection = NULL;
-    data_ov000_021b54c8->mUnk_20 = b;
-    data_ov000_021b54c8->mUnk_24 = 0;
-    data_ov000_021b54c8->mUnk_28 = 0;
-    data_ov000_021b54c8->mUnk_2c = 0;
-    data_ov000_021b54c8->mUnk_2d = 0;
-    data_ov000_021b54c8->mUnk_2e = 0;
-    data_ov000_021b54c8->mUnk_30 = 0;
-    data_ov000_021b54c8->mUnk_54 = data_ov000_021b4e84;
-    data_ov000_021b54c8->mUnk_58 = data_ov000_021b4f84;
-    data_ov000_021b54c8->mUnk_5c = NULL;
-    data_ov000_021b54c8->mUnk_60 = 0;
-    data_ov000_021b54c8->mUnk_64 = NULL;
-    data_ov000_021b54c8->mUnk_68 = NULL;
-    data_ov000_021b54c8->mUnk_6c = NULL;
-    data_ov000_021b54c8->mUnk_70 = NULL;
-    data_ov000_021b54c8->mUnk_74 = NULL;
-    data_ov000_021b54c8->mUnk_78 = NULL;
-    data_ov000_021b54c8->mUnk_7c = NULL;
-    data_ov000_021b54c8->mUnk_80 = NULL;
+    gWiFiConnection->mSocket = NULL;
+    gWiFiConnection->mResultCallback = func_ov000_021a1b2c;
+    gWiFiConnection->mDataCallback = func_ov000_0219b4a4;
+    gWiFiConnection->mUnk_0c = (s32(*)()) func_ov000_0219b27c;
+    gWiFiConnection->mElapsedTimeCallback = func_ov000_0219b274;
+    gWiFiConnection->mSendBufferSize = f == 0 ? 0x2000 : f;
+    gWiFiConnection->mUnk_18 = g == 0 ? 0x2000 : g;
+    gWiFiConnection->mGpConnection.mGpiConnection = NULL;
+    gWiFiConnection->mUnk_20 = b;
+    gWiFiConnection->mState = 0;
+    gWiFiConnection->mPrevState = 0;
+    gWiFiConnection->mOwnIndex = 0;
+    gWiFiConnection->mUnk_2d = 0;
+    gWiFiConnection->mUnk_2e = 0;
+    gWiFiConnection->mProfileId = 0;
+    gWiFiConnection->mUnk_54 = data_ov000_021b4e84;
+    gWiFiConnection->mUnk_58 = data_ov000_021b4f84;
+    gWiFiConnection->mLoginCallback = NULL;
+    gWiFiConnection->mLoginCallbackArg = 0;
+    gWiFiConnection->mBuddySyncCallback = NULL;
+    gWiFiConnection->mBuddySyncCallbackArg = NULL;
+    gWiFiConnection->mUnk_6c = NULL;
+    gWiFiConnection->mUnk_70 = NULL;
+    gWiFiConnection->mUnk_74 = NULL;
+    gWiFiConnection->mUnk_78 = NULL;
+    gWiFiConnection->mUnk_7c = NULL;
+    gWiFiConnection->mUnk_80 = NULL;
     func_ov000_0219b964();
-    func_ov000_0219caac(&data_ov000_021b54c8->mUnk_84, b, &data_ov000_021b54c8->mUnk_1c, c,
-                        ((Unk02152500 *) b)->mUnk_24, func_ov000_0219b6c0, NULL);
-    func_ov000_0219d8c8(&data_ov000_021b54c8->mUnk_2e8, &data_ov000_021b54c8->mUnk_1c, data_ov000_021b54c8->mUnk_34, h,
-                        i);
-    func_ov000_021a2870(&data_ov000_021b54c8->mUnk_33c, &data_ov000_021b54c8->mUnk_1c, &data_ov000_021b54c8->mUnk_00,
-                        &data_ov000_021b54c8->mUnk_04, data_ov000_021b4e84, data_ov000_021b4f84, h, i);
-    func_ov000_021a31a4(&data_ov000_021b54c8->mUnk_7a0);
+    func_ov000_0219caac(&gWiFiConnection->mLogin, b, &gWiFiConnection->mGpConnection, c, ((Unk02152500 *) b)->mUnk_24,
+                        WiFiLoginCallback, NULL);
+    InitBuddySync(&gWiFiConnection->mBuddySync, &gWiFiConnection->mGpConnection, gWiFiConnection->mUnk_34, h, i);
+    func_ov000_021a2870(&gWiFiConnection->mUnk_33c, &gWiFiConnection->mGpConnection, &gWiFiConnection->mSocket,
+                        &gWiFiConnection->mResultCallback, data_ov000_021b4e84, data_ov000_021b4f84, h, i);
+    func_ov000_021a31a4(&gWiFiConnection->mUnk_7a0);
     if (strlen(d) < 0x100) {
         n = strlen(d);
     } else {
@@ -112,37 +114,39 @@ void func_ov000_0219c1e4(void *a, void *b, s32 c, const char *d, const char *e, 
     data_ov000_021b4f84[m] = 0;
 }
 
-void func_ov000_0219c0f4(void) {
-    if (data_ov000_021b54c8 != NULL) {
-        if (data_ov000_021b54c8->mUnk_33c.mUnk_10 != NULL) {
-            func_ov000_021a47ac(data_ov000_021b54c8->mUnk_33c.mUnk_10);
-            data_ov000_021b54c8->mUnk_33c.mUnk_10 = NULL;
+// Undo of InitWiFiConnection: frees the matching list, closes stats and GP, closes the socket and clears
+// gWiFiConnection. Called on failure, leave and logout paths.
+void ReleaseWiFiConnection(void) {
+    if (gWiFiConnection != NULL) {
+        if (gWiFiConnection->mUnk_33c.mUnk_10 != NULL) {
+            func_ov000_021a47ac(gWiFiConnection->mUnk_33c.mUnk_10);
+            gWiFiConnection->mUnk_33c.mUnk_10 = NULL;
         }
-        data_ov000_021b54c8->mUnk_33c.mUnk_18 = 0;
-        if (data_ov000_021b54c8->mUnk_33c.mUnk_e4 != NULL) {
-            func_ov000_0218b64c(data_ov000_021b54c8->mUnk_33c.mUnk_e4);
-            data_ov000_021b54c8->mUnk_33c.mUnk_e4 = NULL;
+        gWiFiConnection->mUnk_33c.mUnk_18 = 0;
+        if (gWiFiConnection->mUnk_33c.mUnk_e4 != NULL) {
+            func_ov000_0218b64c(gWiFiConnection->mUnk_33c.mUnk_e4);
+            gWiFiConnection->mUnk_33c.mUnk_e4 = NULL;
         }
         func_ov000_0219b110();
         GstatsClose();
-        if (data_ov000_021b54c8->mUnk_1c.mGpiConnection != NULL) {
-            func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 0, NULL, 0);
-            func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 3, NULL, 0);
-            func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 1, NULL, 0);
-            func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 2, NULL, 0);
-            GpUpdate(&data_ov000_021b54c8->mUnk_1c);
-            func_ov000_0218f2a0(&data_ov000_021b54c8->mUnk_1c);
-            data_ov000_021b54c8->mUnk_1c.mGpiConnection = NULL;
+        if (gWiFiConnection->mGpConnection.mGpiConnection != NULL) {
+            func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 0, NULL, 0);
+            func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 3, NULL, 0);
+            func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 1, NULL, 0);
+            func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 2, NULL, 0);
+            GpUpdate(&gWiFiConnection->mGpConnection);
+            func_ov000_0218f2a0(&gWiFiConnection->mGpConnection);
+            gWiFiConnection->mGpConnection.mGpiConnection = NULL;
         }
         func_ov000_0219c954();
         func_ov000_0219d4f8();
         func_ov000_021a1430();
         func_ov000_021a2fec();
-        if (data_ov000_021b54c8->mUnk_00 != NULL) {
-            func_ov000_02198ab0(data_ov000_021b54c8->mUnk_00);
-            data_ov000_021b54c8->mUnk_00 = NULL;
+        if (gWiFiConnection->mSocket != NULL) {
+            func_ov000_02198ab0(gWiFiConnection->mSocket);
+            gWiFiConnection->mSocket = NULL;
         }
-        data_ov000_021b54c8 = NULL;
+        gWiFiConnection = NULL;
     }
 }
 
@@ -162,48 +166,48 @@ void func_ov000_0219c0c4(void) {
     return;
 }
 
-void func_ov000_0219bf10(void) {
+void UpdateWiFiConnection(void) {
     if (func_ov000_0219c0c8() != 0) {
         func_ov000_0219c0c4();
     }
-    if (data_ov000_021b54c8 == NULL) {
+    if (gWiFiConnection == NULL) {
         return;
     }
-    if (data_ov000_021b54c8->mUnk_24 == 0) {
+    if (gWiFiConnection->mState == 0) {
         return;
     }
     if (func_ov000_0219c39c() != 0) {
         return;
     }
-    switch (data_ov000_021b54c8->mUnk_24) {
+    switch (gWiFiConnection->mState) {
         case 1:
             switch (func_ov000_0218d574()) {
                 case 1:
-                    if (func_ov000_0219b77c(GpInitialize(&data_ov000_021b54c8->mUnk_1c,
-                                                         data_ov000_021b54c8->mUnk_84.mUnk_08, 0)) != 0) {
+                    if (func_ov000_0219b77c(
+                            GpInitialize(&gWiFiConnection->mGpConnection, gWiFiConnection->mLogin.mUnk_08, 0)) != 0) {
                         return;
                     }
-                    if (func_ov000_0219b77c(func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 0,
-                                                                (void (*)(void *, void *, u32)) func_ov000_0219b580,
+                    if (func_ov000_0219b77c(func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 0,
+                                                                (void (*)(void *, void *, u32)) WiFiGpErrorCallback,
                                                                 0)) != 0) {
                         return;
                     }
-                    if (func_ov000_0219b77c(func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 3,
-                                                                (void (*)(void *, void *, u32)) func_ov000_0219b4b4,
+                    if (func_ov000_0219b77c(func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 3,
+                                                                (void (*)(void *, void *, u32)) WiFiGpMessageCallback,
                                                                 0)) != 0) {
                         return;
                     }
-                    if (func_ov000_0219b77c(func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 1,
-                                                                (void (*)(void *, void *, u32)) func_ov000_0219d708,
-                                                                0)) != 0) {
+                    if (func_ov000_0219b77c(
+                            func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 1,
+                                                (void (*)(void *, void *, u32)) WiFiGpBuddyRequestCallback, 0)) != 0) {
                         return;
                     }
-                    if (func_ov000_0219b77c(func_ov000_0218f21c(&data_ov000_021b54c8->mUnk_1c, 2,
-                                                                (void (*)(void *, void *, u32)) func_ov000_0219d674,
-                                                                0)) != 0) {
+                    if (func_ov000_0219b77c(
+                            func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 2,
+                                                (void (*)(void *, void *, u32)) WiFiGpBuddyStatusCallback, 0)) != 0) {
                         return;
                     }
-                    func_ov000_0219b8a8(2);
+                    SetWiFiConnectionState(2);
                     func_ov000_0219ca84();
                     break;
                 case 2:
@@ -219,55 +223,57 @@ void func_ov000_0219bf10(void) {
             break;
         case 3:
         case 4:
-            func_ov000_0219d81c();
+            UpdateBuddySync();
             func_ov000_021a1ef4(0);
             break;
         case 5:
             func_ov000_021a1ef4(1);
-            func_ov000_0219d81c();
+            UpdateBuddySync();
             break;
         case 6:
             func_ov000_021a3030();
-            func_ov000_0219d81c();
-            if (data_ov000_021b54c8->mUnk_33c.mUnk_15 == 2 || data_ov000_021b54c8->mUnk_33c.mUnk_15 == 3) {
+            UpdateBuddySync();
+            if (gWiFiConnection->mUnk_33c.mUnk_15 == 2 || gWiFiConnection->mUnk_33c.mUnk_15 == 3) {
                 func_ov000_021a1ef4(1);
-            } else if (data_ov000_021b54c8->mUnk_00 != NULL) {
+            } else if (gWiFiConnection->mSocket != NULL) {
                 func_ov000_021a1ef4(0);
             }
             break;
     }
-    if (data_ov000_021b54c8->mUnk_33c.mUnk_18 == 1) {
-        if (data_ov000_021b54c8->mUnk_33c.mUnk_10 != NULL) {
-            func_ov000_021a47ac(data_ov000_021b54c8->mUnk_33c.mUnk_10);
-            data_ov000_021b54c8->mUnk_33c.mUnk_10 = NULL;
+    if (gWiFiConnection->mUnk_33c.mUnk_18 == 1) {
+        if (gWiFiConnection->mUnk_33c.mUnk_10 != NULL) {
+            func_ov000_021a47ac(gWiFiConnection->mUnk_33c.mUnk_10);
+            gWiFiConnection->mUnk_33c.mUnk_10 = NULL;
         }
-        data_ov000_021b54c8->mUnk_33c.mUnk_18 = 0;
+        gWiFiConnection->mUnk_33c.mUnk_18 = 0;
     }
 }
 
-void func_ov000_0219bea8(u32 a, u32 b, void (*c)(s32 a), u32 d) {
+// Also stores a and b into the login object (mLogin.mUnk_10 / mUnk_14).
+void StartWiFiLogin(u32 a, u32 b, void (*c)(s32 a), u32 d) {
     if (func_ov000_0219c39c() == 0) {
-        if (data_ov000_021b54c8->mUnk_24 == 0) {
-            data_ov000_021b54c8->mUnk_5c = c;
-            data_ov000_021b54c8->mUnk_60 = d;
-            data_ov000_021b54c8->mUnk_84.mUnk_10 = a;
-            data_ov000_021b54c8->mUnk_84.mUnk_14 = b;
+        if (gWiFiConnection->mState == 0) {
+            gWiFiConnection->mLoginCallback = c;
+            gWiFiConnection->mLoginCallbackArg = d;
+            gWiFiConnection->mLogin.mUnk_10 = a;
+            gWiFiConnection->mLogin.mUnk_14 = b;
             if (func_ov000_021a3810() != 4) {
                 func_ov000_0219c990(2, -60010);
                 return;
             }
-            func_ov000_0219b8a8(1);
-            func_ov000_0218d6e4(data_ov000_021b54c8->mUnk_54);
+            SetWiFiConnectionState(1);
+            func_ov000_0218d6e4(gWiFiConnection->mUnk_54);
         }
     }
 }
 
-BOOL func_ov000_0219bdec(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32, u8), void *e, void (*f)(u32, u32),
-                         void *g) {
-    Unk021b54c8 *p;
+// The connection-level start (state check, state 4, callbacks); calls StartBuddySync (the two names differ only by
+// WiFi). Refused (FALSE) in states 0 to 2 and 4.
+BOOL StartWiFiBuddySync(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32, u8), void *e, void (*f)(u32, u32),
+                        void *g) {
+    WiFiConnection *p;
     u32 n;
-    if (data_ov000_021b54c8 == NULL || func_ov000_0219c39c() != 0 || (p = data_ov000_021b54c8)->mUnk_24 < 3 ||
-        p->mUnk_24 == 4) {
+    if (gWiFiConnection == NULL || func_ov000_0219c39c() != 0 || (p = gWiFiConnection)->mState < 3 || p->mState == 4) {
         return FALSE;
     }
     if (a == NULL || *a == 0) {
@@ -280,22 +286,22 @@ BOOL func_ov000_0219bdec(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u3
         }
         MemCopy(a, p->mUnk_34, n);
     }
-    data_ov000_021b54c8->mUnk_34[n] = 0;
-    data_ov000_021b54c8->mUnk_64 = b;
-    data_ov000_021b54c8->mUnk_68 = c;
-    func_ov000_0219b8a8(4);
-    func_ov000_0219d770((s32) data_ov000_021b54c8->mUnk_84.mUnk_4c, data_ov000_021b54c8->mUnk_84.mUnk_14c,
-                        (void (*)(s32, u8, void *)) func_ov000_0219b694, NULL, (void (*)(s32, u8, void *, void *)) d, e,
-                        (void (*)(s32, s32, void *)) f, g);
+    gWiFiConnection->mUnk_34[n] = 0;
+    gWiFiConnection->mBuddySyncCallback = b;
+    gWiFiConnection->mBuddySyncCallbackArg = c;
+    SetWiFiConnectionState(4);
+    StartBuddySync((s32) gWiFiConnection->mLogin.mUnk_4c, gWiFiConnection->mLogin.mUnk_14c,
+                   (void (*)(s32, u8, void *)) WiFiBuddySyncCallback, NULL, (void (*)(s32, u8, void *, void *)) d, e,
+                   (void (*)(s32, s32, void *)) f, g);
     return TRUE;
 }
 
 void func_ov000_0219bd90(u32 a, void *b, void *c, void *d, void *e, u32 f) {
-    if (func_ov000_0219c39c() == 0 && data_ov000_021b54c8->mUnk_24 == 3) {
+    if (func_ov000_0219c39c() == 0 && gWiFiConnection->mState == 3) {
         func_ov000_0219b964();
-        data_ov000_021b54c8->mUnk_6c = (void (*)(u32, u32, void *)) c;
-        data_ov000_021b54c8->mUnk_70 = d;
-        func_ov000_0219b8a8(5);
+        gWiFiConnection->mUnk_6c = (void (*)(u32, u32, void *)) c;
+        gWiFiConnection->mUnk_70 = d;
+        SetWiFiConnectionState(5);
         func_ov000_021a260c((u8) (a - 1), b, (u32) func_ov000_0219b5a8, 0, (u32) e, f);
     }
 }
@@ -306,11 +312,11 @@ void func_ov000_0219bc78(void *a, u32 b, u32 c, u32 d, void *e, void *f, u32 g, 
     u8 i;
     u8 j;
     u8 n;
-    if (func_ov000_0219c39c() == 0 && data_ov000_021b54c8->mUnk_24 == 3) {
+    if (func_ov000_0219c39c() == 0 && gWiFiConnection->mState == 3) {
         func_ov000_0219b964();
-        data_ov000_021b54c8->mUnk_6c = (void (*)(u32, u32, void *)) e;
-        data_ov000_021b54c8->mUnk_70 = f;
-        func_ov000_0219b8a8(5);
+        gWiFiConnection->mUnk_6c = (void (*)(u32, u32, void *)) e;
+        gWiFiConnection->mUnk_70 = f;
+        SetWiFiConnectionState(5);
         if (a != NULL) {
             func_ov000_021a2468(a, b, (u8) (c - 1), d, func_ov000_0219b5a8, 0, g, h);
             return;
@@ -339,27 +345,27 @@ void func_ov000_0219bc78(void *a, u32 b, u32 c, u32 d, void *e, void *f, u32 g, 
 }
 
 s32 func_ov000_0219bbfc(void) {
-    Unk021b54c8 *p;
-    if (data_ov000_021b54c8 == NULL || func_ov000_0219c39c() != 0 ||
-        ((p = data_ov000_021b54c8)->mUnk_24 != 5 && p->mUnk_24 != 6)) {
+    WiFiConnection *p;
+    if (gWiFiConnection == NULL || func_ov000_0219c39c() != 0 ||
+        ((p = gWiFiConnection)->mState != 5 && p->mState != 6)) {
         return -1;
     }
     if (p->mUnk_33c.mUnk_0d == 0) {
         func_ov000_0219d558(1, data_ov000_021b4054, NULL);
         func_ov000_0219b110();
-        func_ov000_0219b8a8(3);
+        SetWiFiConnectionState(3);
         return 1;
     }
     p->mUnk_2d = 1;
-    func_ov000_021988e8(data_ov000_021b54c8->mUnk_00);
-    data_ov000_021b54c8->mUnk_2d = 0;
+    func_ov000_021988e8(gWiFiConnection->mSocket);
+    gWiFiConnection->mUnk_2d = 0;
     return 0;
 }
 
 s32 func_ov000_0219bbac(s32 a) {
     void *p;
-    if (data_ov000_021b54c8 == NULL || func_ov000_0219c39c() != 0 ||
-        (data_ov000_021b54c8->mUnk_24 != 5 && data_ov000_021b54c8->mUnk_24 != 6)) {
+    if (gWiFiConnection == NULL || func_ov000_0219c39c() != 0 ||
+        (gWiFiConnection->mState != 5 && gWiFiConnection->mState != 6)) {
         return -1;
     }
     p = func_ov000_0219b9d4(a);
@@ -371,73 +377,74 @@ s32 func_ov000_0219bbac(s32 a) {
 }
 
 s32 func_ov000_0219bb68(void) {
-    if (data_ov000_021b54c8 == NULL) {
+    if (gWiFiConnection == NULL) {
         return 0;
     }
-    if (data_ov000_021b54c8->mUnk_33c.mUnk_15 == 2 || data_ov000_021b54c8->mUnk_33c.mUnk_15 == 3) {
+    if (gWiFiConnection->mUnk_33c.mUnk_15 == 2 || gWiFiConnection->mUnk_33c.mUnk_15 == 3) {
         return func_ov000_021a15f8() + 1;
     }
     return func_ov000_021a160c() + 1;
 }
 
 u8 func_ov000_0219bb50(void) {
-    if (data_ov000_021b54c8 != NULL) {
-        return data_ov000_021b54c8->mUnk_2c;
+    if (gWiFiConnection != NULL) {
+        return gWiFiConnection->mOwnIndex;
     }
     return 0;
 }
 
 s32 func_ov000_0219bb04(u8 **a) {
-    if (data_ov000_021b54c8 == NULL) {
+    if (gWiFiConnection == NULL) {
         return 0;
     }
-    *a = data_ov000_021b54c8->mUnk_33c.mUnk_2b8;
-    if (data_ov000_021b54c8->mUnk_33c.mUnk_15 == 2 || data_ov000_021b54c8->mUnk_33c.mUnk_15 == 3) {
+    *a = gWiFiConnection->mUnk_33c.mUnk_2b8;
+    if (gWiFiConnection->mUnk_33c.mUnk_15 == 2 || gWiFiConnection->mUnk_33c.mUnk_15 == 3) {
         return func_ov000_021a1514((void **) a);
     }
     return func_ov000_021a158c((void **) a);
 }
 
 BOOL func_ov000_0219bac8(u32 a) {
-    if (data_ov000_021b54c8 == NULL) {
+    if (gWiFiConnection == NULL) {
         return FALSE;
     }
-    if ((data_ov000_021b54c8->mUnk_33c.mUnk_2d8 & (1 << a)) != 0) {
+    if ((gWiFiConnection->mUnk_33c.mUnk_2d8 & (1 << a)) != 0) {
         return func_ov000_0219b8bc(a);
     }
     return FALSE;
 }
 
-u32 func_ov000_0219bab4(void) {
-    if (data_ov000_021b54c8 != NULL) {
-        return data_ov000_021b54c8->mUnk_24;
+// 0 when the object is NULL.
+u32 GetWiFiConnectionState(void) {
+    if (gWiFiConnection != NULL) {
+        return gWiFiConnection->mState;
     }
     return 0;
 }
 
 s32 func_ov000_0219ba20(void) {
-    Unk021b54c8 *p;
+    WiFiConnection *p;
     u32 v;
     s32 r;
-    if (data_ov000_021b54c8->mUnk_00 != NULL) {
+    if (gWiFiConnection->mSocket != NULL) {
         return 0;
     }
     v = (u16) (func_ov000_021a3448(0x4000) + 0xc000);
-    p = data_ov000_021b54c8;
-    r = func_ov000_02198ac4((Gt2Socket **) data_ov000_021b54c8, (const char *) Gt2FormatAddress(0, v, 0), p->mUnk_14,
-                            p->mUnk_18, (u32) func_ov000_0219b240);
+    p = gWiFiConnection;
+    r = func_ov000_02198ac4((Gt2Socket **) gWiFiConnection, (const char *) Gt2FormatAddress(0, v, 0),
+                            p->mSendBufferSize, p->mUnk_18, (u32) func_ov000_0219b240);
     if (func_ov000_0219b704(r) != 0) {
         return r;
     }
-    func_ov000_02198a84(data_ov000_021b54c8->mUnk_00, func_ov000_021a1ca8);
-    SetUnmatchedDataCallback(data_ov000_021b54c8->mUnk_00, (UnkWordFunc *) func_ov000_021a1e40);
+    func_ov000_02198a84(gWiFiConnection->mSocket, func_ov000_021a1ca8);
+    SetUnmatchedDataCallback(gWiFiConnection->mSocket, (UnkWordFunc *) func_ov000_021a1e40);
     return r;
 }
 
 void *func_ov000_0219b9d4(u32 a) {
     s32 i;
     void **p;
-    if (data_ov000_021b54c8 == NULL) {
+    if (gWiFiConnection == NULL) {
         return NULL;
     }
     i = 0;
@@ -482,14 +489,14 @@ void **func_ov000_0219b8fc(u32 a, s32 b) {
     u8 c;
 
     for (c = 0; c < b; c++) {
-        if (a == data_ov000_021b54c8->mUnk_33c.mUnk_f4[c]) {
+        if (a == gWiFiConnection->mUnk_33c.mUnk_f4[c]) {
             break;
         }
     }
     if (c >= b) {
         return NULL;
     }
-    return func_ov000_0219b958(func_ov000_0219b9b4(func_ov000_0219b9d4(data_ov000_021b54c8->mUnk_33c.mUnk_2b8[c])));
+    return func_ov000_0219b958(func_ov000_0219b9b4(func_ov000_0219b9d4(gWiFiConnection->mUnk_33c.mUnk_2b8[c])));
 }
 
 Unk021b5550 *func_ov000_0219b8f0(s32 index) {
@@ -507,9 +514,10 @@ BOOL func_ov000_0219b8bc(u32 a) {
     return FALSE;
 }
 
-void func_ov000_0219b8a8(s32 value) {
-    data_ov000_021b54c8->mUnk_28 = data_ov000_021b54c8->mUnk_24;
-    data_ov000_021b54c8->mUnk_24 = value;
+// Plain setter; also copies the old state into mPrevState (so a Set to the same value overwrites it).
+void SetWiFiConnectionState(s32 value) {
+    gWiFiConnection->mPrevState = gWiFiConnection->mState;
+    gWiFiConnection->mState = value;
 }
 
 u32 func_ov000_0219b868(u32 a) {
@@ -563,7 +571,7 @@ int func_ov000_0219b77c(int c) {
             b = -20;
             break;
     }
-    switch (data_ov000_021b54c8->mUnk_24) {
+    switch (gWiFiConnection->mState) {
         case 1:
             b -= 0xee48;
             func_ov000_0219c990(a, b);
@@ -628,59 +636,63 @@ u32 func_ov000_0219b704(u32 a) {
     return a;
 }
 
-void func_ov000_0219b6c0(int a, u32 b) {
+// Called by the login object with (0, profile id) on success and (code, 0) on failure; passes the result on to
+// mLoginCallback.
+void WiFiLoginCallback(int a, u32 b) {
     UnkFunc *v1;
     if (a == 0) {
-        data_ov000_021b54c8->mUnk_30 = b;
-        func_ov000_0219b8a8(3);
+        gWiFiConnection->mProfileId = b;
+        SetWiFiConnectionState(3);
         func_ov000_0219d5bc();
     } else {
-        func_ov000_0219b8a8(0);
+        SetWiFiConnectionState(0);
     }
-    v1 = data_ov000_021b54c8->mUnk_5c;
+    v1 = gWiFiConnection->mLoginCallback;
     if (v1 != NULL) {
-        (*v1)(a, b, data_ov000_021b54c8->mUnk_60);
+        (*v1)(a, b, gWiFiConnection->mLoginCallbackArg);
     }
     return;
 }
 
-void func_ov000_0219b694(u32 a, u32 b) {
-    func_ov000_0219b8a8((u32) (data_ov000_021b54c8->mUnk_28));
-    data_ov000_021b54c8->mUnk_64(a, b, data_ov000_021b54c8->mUnk_68);
+void WiFiBuddySyncCallback(u32 a, u32 b) {
+    SetWiFiConnectionState((u32) (gWiFiConnection->mPrevState));
+    gWiFiConnection->mBuddySyncCallback(a, b, gWiFiConnection->mBuddySyncCallbackArg);
     return;
 }
 
 void func_ov000_0219b5a8(u32 a, u32 b, u32 c, u32 d, u32 e) {
     s32 f;
-    Unk021b54c8 *h;
+    WiFiConnection *h;
 
     if (a == 0 && b != 0) {
-        if (data_ov000_021b54c8->mUnk_33c.mUnk_198 == 0) {
+        if (gWiFiConnection->mUnk_33c.mUnk_198 == 0) {
             func_ov000_021a1a10();
-            func_ov000_0219b8a8(3);
+            SetWiFiConnectionState(3);
         }
     } else if (a == 0) {
-        func_ov000_0219b8a8(6);
-        for (f = 0; f <= data_ov000_021b54c8->mUnk_33c.mUnk_0d; f++) {
-            if (data_ov000_021b54c8->mUnk_30 == data_ov000_021b54c8->mUnk_33c.mUnk_f4[f]) {
-                data_ov000_021b54c8->mUnk_2c = data_ov000_021b54c8->mUnk_33c.mUnk_2b8[f];
+        SetWiFiConnectionState(6);
+        for (f = 0; f <= gWiFiConnection->mUnk_33c.mUnk_0d; f++) {
+            if (gWiFiConnection->mProfileId == gWiFiConnection->mUnk_33c.mUnk_f4[f]) {
+                gWiFiConnection->mOwnIndex = gWiFiConnection->mUnk_33c.mUnk_2b8[f];
                 break;
             }
         }
     }
-    data_ov000_021b54c8->mUnk_33c.mUnk_2d8 =
-        func_ov000_0219b844(data_ov000_021b54c8->mUnk_33c.mUnk_2b8, data_ov000_021b54c8->mUnk_33c.mUnk_0d + 1);
+    gWiFiConnection->mUnk_33c.mUnk_2d8 =
+        func_ov000_0219b844(gWiFiConnection->mUnk_33c.mUnk_2b8, gWiFiConnection->mUnk_33c.mUnk_0d + 1);
     func_ov000_021a15b0();
-    h = data_ov000_021b54c8;
+    h = gWiFiConnection;
     if (h->mUnk_33c.mUnk_15 == 2 || h->mUnk_33c.mUnk_15 == 3) {
-        h = data_ov000_021b54c8;
+        h = gWiFiConnection;
         h->mUnk_74(a, b, c, d, e, h->mUnk_78);
     } else {
         h->mUnk_6c(a, b, h->mUnk_70);
     }
 }
 
-void func_ov000_0219b580(u32 a, int b) {
+// GP callback slot 0 (error). Reports error kind 3 through func_ov000_0219b77c only when the GP error number is not
+// 0x603 or 0x901.
+void WiFiGpErrorCallback(u32 a, int b) {
     if ((*(s32 *) (b + 4) != 0x603) && (*(s32 *) (b + 4) != 0x901)) {
         func_ov000_0219b77c(3);
     }

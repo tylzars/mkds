@@ -62,7 +62,7 @@ void func_0211fe24(void) {
 }
 
 void func_0211fe18(void) {
-    func_ov000_0219c0f4();
+    ReleaseWiFiConnection();
 }
 
 u32 func_0211fda8(void) {
@@ -95,7 +95,7 @@ s32 func_0211fd68(void) {
 void func_0211fd28(void) {
     Unk0217d384_08 *q;
 
-    func_ov000_0219c0f4();
+    ReleaseWiFiConnection();
     func_ov000_021a37dc();
     ResetWiFiSession();
     q = &gWiFiSession->mUnk_0008;
@@ -126,7 +126,7 @@ void func_0211fb44(void) {
         } while (i < func_ov000_0219d9b0(&gWiFiSession->mBuddies[0], 0x3c));
     }
     p = gWiFiSession;
-    func_ov000_0219c1e4(&p->mUnk_0b2c, &p->mUnk_19b0, 0x4d6, "mariokartds", "yeJ3x8", 0, 0, &p->mBuddies[0], 0x3c);
+    InitWiFiConnection(&p->mUnk_0b2c, &p->mUnk_19b0, 0x4d6, "mariokartds", "yeJ3x8", 0, 0, &p->mBuddies[0], 0x3c);
     gWiFiSession->mUnk_1f44 = 0;
     gWiFiSession->mUnk_1f48 = 0;
     gWiFiSession->mUnk_1f20.mStep = 1;
@@ -139,12 +139,12 @@ void func_0211fa70(void) {
     }
     switch (func_ov000_021a3810()) {
         case 4:
-            func_ov000_0219bea8(0, 0, func_0211f864, 0);
+            StartWiFiLogin(0, 0, func_0211f864, 0);
             gWiFiSession->mUnk_1f20.mStep = 2;
             break;
         case 7:
             gWiFiSession->mUnk_1f44 = func_ov000_0219c3cc(&gWiFiSession->mUnk_1f48);
-            func_ov000_0219c0f4();
+            ReleaseWiFiConnection();
             func_ov000_021a37dc();
             gWiFiSession->mUnk_1f20.mStep = 7;
             break;
@@ -163,14 +163,14 @@ u32 func_0211f91c(void) {
                 break;
             }
             func_02152324(&gWiFiSession->mUnk_19b0);
-            if (func_ov000_0219bdec(NULL, func_0211f77c, NULL, func_0211f6cc, NULL, func_0211f6e8, NULL) == 0) {
+            if (StartWiFiBuddySync(NULL, func_0211f77c, NULL, func_0211f6cc, NULL, func_0211f6e8, NULL) == 0) {
                 gWiFiSession->mUnk_1f20.mStep = 7;
             }
             func_ov000_0219d934((void *) func_0211f6b0, NULL);
             gWiFiSession->mUnk_1f20.mStep = 4;
             break;
         case 6:
-            func_ov000_0219c0f4();
+            ReleaseWiFiConnection();
             func_ov000_021a37dc();
             gWiFiSession->mUnk_1f20.mStep = 7;
             break;
@@ -211,7 +211,7 @@ void func_0211f77c(s32 a, s32 b) {
         }
         gWiFiSession->mUnk_1f20.mStep = 5;
     } else {
-        func_ov000_0219c0f4();
+        ReleaseWiFiConnection();
         func_ov000_021a37dc();
         gWiFiSession->mUnk_1f20.mStep = 7;
     }

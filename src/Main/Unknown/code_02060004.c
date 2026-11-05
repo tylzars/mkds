@@ -173,7 +173,7 @@ s32 func_020607b0(u8 a) {
     b.mUnk_22_0 = 0;
     func_0205ee74(a, &b);
     if (gWiFiSession->mUnk_0008.mState != 0) {
-        func_ov000_0219d948((u8 *) data_0217aa08->mUnk_20 + 0x874 + a * 12);
+        RemoveBuddyEntry((u8 *) data_0217aa08->mUnk_20 + 0x874 + a * 12);
     } else {
         MemFill((u8 *) data_0217aa08->mUnk_20 + 0x874 + a * 12, 0, 0xc);
     }
