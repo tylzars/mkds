@@ -876,8 +876,7 @@ s32 func_02125f6c(void) {
 s32 func_02125f60(void) {
     u32 value0;
     value0 = (u32) &gTxtSystem;
-    value0 = (u32) * (const u32 *) ((value0) + 0u);
-    value0 = (u32) * (const u32 *) ((value0) + 44u);
+    value0 = (u32) gTxtSystem->mUnk_2c;
     return (s32) value0;
 }
 #pragma thumb off
@@ -886,8 +885,7 @@ s32 func_02125f60(void) {
 s32 func_02125f54(void) {
     u32 value0;
     value0 = (u32) &gTxtSystem;
-    value0 = (u32) * (const u32 *) ((value0) + 0u);
-    value0 = (u32) * (const u32 *) ((value0) + 48u);
+    value0 = (u32) gTxtSystem->mUnk_30;
     return (s32) value0;
 }
 #pragma thumb off

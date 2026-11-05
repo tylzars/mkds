@@ -316,8 +316,7 @@ u32 DecimalNibblesToValue(u32 x) {
 void SetClockResult(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) &gClockRequest;
-    *(u32 *) ((value1) + (32)) = value0;
+    gClockRequest.mResult = value0;
 }
 
 // clang-format off

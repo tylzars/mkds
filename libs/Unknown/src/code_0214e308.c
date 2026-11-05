@@ -278,8 +278,7 @@ void TP_RequestAutoSamplingStopAsync(void) {
 
 u32 TP_GetLatestIndexInAuto(void) {
     u32 value0;
-    value0 = (u32) &gTouchPanelState;
-    value0 = (u32) * (const u16 *) ((value0) + (12));
+    value0 = (u32) gTouchPanelState.mAutoSampleIndex;
     return value0;
 }
 

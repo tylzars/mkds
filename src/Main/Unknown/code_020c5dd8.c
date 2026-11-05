@@ -506,9 +506,9 @@ u32 func_020c5df0(void) {
     u32 compareRight0;
     value0 = (u32) &gRaceNewRecordTa;
     value3 = (u32) * (const u32 *) ((value0) + (0));
-    value2 = (u32) * (const u32 *) ((value3) + (4));
+    value2 = (u32) gRaceNewRecordTa->mUnk_04;
     value1 = (value2) + (1u);
-    *(u32 *) ((value3) + (4)) = value1;
+    gRaceNewRecordTa->mUnk_04 = value1;
     compareLeft0 = value2;
     compareRight0 = 0x3cu;
     if ((s32) compareLeft0 < (s32) compareRight0) {

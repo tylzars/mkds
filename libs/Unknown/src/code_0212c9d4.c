@@ -45,7 +45,7 @@ u32 func_0212d0ec(void) {
     value2 = 0u;
     value0 = (u32) &data_0217ddd0;
     *(u32 *) ((value1) + (0)) = value2;
-    *(u32 *) ((value0) + (0)) = value2;
+    data_0217ddd0.mUnk_00 = value2;
     return value0;
 }
 

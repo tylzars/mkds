@@ -667,8 +667,8 @@ u32 func_020617d8(void) {
     u32 value1;
     value0 = (u32) &gRace;
     value1 = (u32) * (const u32 *) ((value0) + (0));
-    value0 = (u32) * (const u32 *) ((value1) + (4));
-    *(u32 *) ((value1) + (60)) = value0;
+    value0 = (u32) gRace->mUpdateFrames;
+    gRace->mUnk_3c = value0;
     return value0;
 }
 

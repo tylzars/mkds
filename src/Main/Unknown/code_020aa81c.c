@@ -327,7 +327,6 @@ void func_020aba9c(void) {
 void func_020aba94(u32 arg0) {
     u32 value0 = arg0;
     u32 value3;
-    value3 = (u32) &func_020ab07c;
     func_020ab07c(value0);
 }
 #pragma thumb off
@@ -567,8 +566,7 @@ void func_020ab660(u16 a, volatile TouchSample b) {
 u32 func_020ab650(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) &data_0217b2d8;
-    value1 = (u32) * (const u16 *) ((value1) + 4u);
+    value1 = (u32) data_0217b2d8.mUnk_04;
     value1 = (value1) & (value0);
     value0 = (value1) + (0u);
     return value0;
@@ -579,8 +577,7 @@ u32 func_020ab650(u32 arg0) {
 u32 func_020ab640(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) &data_0217b2d8;
-    value1 = (u32) * (const u16 *) ((value1) + 6u);
+    value1 = (u32) data_0217b2d8.mUnk_06;
     value1 = (value1) & (value0);
     value0 = (value1) + (0u);
     return value0;
@@ -590,8 +587,7 @@ u32 func_020ab640(u32 arg0) {
 #pragma thumb on
 u32 func_020ab634(void) {
     u32 value0;
-    value0 = (u32) &data_0217b2d8;
-    value0 = (u32) * (const u16 *) ((value0) + 32u);
+    value0 = (u32) data_0217b2d8.mUnk_20;
     return value0;
 }
 #pragma thumb off
@@ -599,8 +595,7 @@ u32 func_020ab634(void) {
 #pragma thumb on
 u32 func_020ab628(void) {
     u32 value0;
-    value0 = (u32) &data_0217b2d8;
-    value0 = (u32) * (const u32 *) ((value0) + 28u);
+    value0 = (u32) data_0217b2d8.mUnk_1c;
     return value0;
 }
 #pragma thumb off
@@ -608,8 +603,7 @@ u32 func_020ab628(void) {
 #pragma thumb on
 u32 func_020ab61c(void) {
     u32 value0;
-    value0 = (u32) &data_0217b2d8;
-    value0 = (u32) * (const u16 *) ((value0) + 20u);
+    value0 = (u32) data_0217b2d8.mUnk_14;
     return value0;
 }
 #pragma thumb off
@@ -617,8 +611,7 @@ u32 func_020ab61c(void) {
 #pragma thumb on
 u32 func_020ab610(void) {
     u32 value0;
-    value0 = (u32) &data_0217b2d8;
-    value0 = (u32) * (const u16 *) ((value0) + 22u);
+    value0 = (u32) data_0217b2d8.mUnk_16;
     return value0;
 }
 #pragma thumb off
@@ -626,8 +619,7 @@ u32 func_020ab610(void) {
 #pragma thumb on
 u32 func_020ab604(void) {
     u32 value0;
-    value0 = (u32) &data_0217b2d8;
-    value0 = (u32) * (const u32 *) ((value0) + 36u);
+    value0 = (u32) data_0217b2d8.mUnk_24;
     return value0;
 }
 #pragma thumb off
@@ -957,8 +949,7 @@ void func_020ab088(struct Unk02022aa8 *a, void *b, u16 *c, s32 d, s32 e, s32 f) 
 void func_020ab07c(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) &data_0217b254;
-    *(u32 *) ((value1) + 24u) = value0;
+    data_0217b254.mUnk_18 = value0;
 }
 #pragma thumb off
 
@@ -966,8 +957,7 @@ void func_020ab07c(u32 arg0) {
 void func_020ab070(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) &data_0217b254;
-    *(u32 *) ((value1) + 32u) = value0;
+    data_0217b254.mUnk_20 = value0;
 }
 #pragma thumb off
 

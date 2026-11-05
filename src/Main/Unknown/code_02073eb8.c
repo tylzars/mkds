@@ -926,8 +926,7 @@ void ResetCameraHalfFovAngleGoal(void) {
     value1 = (u32) &data_0216569c;
     value0 = (u32) &gChaseCamera;
     value1 = (u32) * (const u16 *) ((value1) + (0));
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    *(u32 *) ((value0) + (100)) = value1;
+    gChaseCamera->mHalfFovAngleGoal = value1;
 }
 
 // Chase camera (gChaseCamera) only. Sets the angle goal to its default and the angle to default + 5, as SetupCamera

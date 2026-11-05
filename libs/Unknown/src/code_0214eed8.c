@@ -200,8 +200,7 @@ s32 TrySendMicrophoneStopCommand(void) {
 void SetMicrophoneResult(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) &gMicrophoneCommand;
-    *(u32 *) ((value1) + (12)) = value0;
+    gMicrophoneCommand.mUnk_0c = value0;
 }
 
 // clang-format off

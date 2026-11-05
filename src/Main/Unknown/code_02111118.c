@@ -13,8 +13,7 @@
 void func_021112fc(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) &data_0217d32c;
-    *(u32 *) ((value1) + (12)) = value0;
+    data_0217d32c.mUnk_0c = value0;
 }
 
 u32 func_0211127c(void) {

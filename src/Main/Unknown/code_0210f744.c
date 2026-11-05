@@ -573,10 +573,10 @@ u32 func_0210fb68(void) {
     u32 value1;
     value0 = (u32) &data_0217d244;
     value1 = 0u;
-    *(u32 *) ((value0) + (4)) = value1;
-    *(u32 *) ((value0) + (8)) = value1;
-    *(u32 *) ((value0) + (12)) = value1;
-    *(u32 *) ((value0) + (0)) = value1;
+    data_0217d244.mUnk_04 = value1;
+    data_0217d244.mUnk_08 = value1;
+    data_0217d244.mUnk_0c = value1;
+    data_0217d244.mUnk_00 = value1;
     return value0;
 }
 
@@ -585,7 +585,7 @@ u32 func_0210fb54(void) {
     u32 value1;
     value0 = (u32) &data_0217d244;
     value1 = 1u;
-    *(u32 *) ((value0) + (0)) = value1;
+    data_0217d244.mUnk_00 = value1;
     return value0;
 }
 
@@ -610,8 +610,7 @@ u32 func_0210fad4(void) {
 
 u32 func_0210fac4(void) {
     u32 value0;
-    value0 = (u32) &data_0217d244;
-    value0 = (u32) * (const u32 *) ((value0) + (12));
+    value0 = (u32) data_0217d244.mUnk_0c;
     return value0;
 }
 
@@ -619,9 +618,9 @@ u32 func_0210faac(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &data_0217d244;
-    value1 = (u32) * (const u32 *) ((value0) + (8));
+    value1 = (u32) data_0217d244.mUnk_08;
     value1 = (value1) | (8u);
-    *(u32 *) ((value0) + (8)) = value1;
+    data_0217d244.mUnk_08 = value1;
     return value0;
 }
 

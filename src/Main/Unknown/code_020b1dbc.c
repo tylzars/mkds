@@ -5,8 +5,7 @@
 s32 GetRaceHudUpdateFrames(void) {
     u32 value0;
     value0 = (u32) &gRaceHud;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = (u32) gRaceHud->mUpdateFrames;
     return (s32) value0;
 }
 
@@ -14,7 +13,6 @@ s32 GetRaceHudUpdateFrames(void) {
 s32 GetRaceHudSubScreenState(void) {
     u32 value0;
     value0 = (u32) &gRaceHud;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    value0 = (u32) * (const u32 *) ((value0) + (2088));
+    value0 = (u32) gRaceHud->mSubScreenState;
     return (s32) value0;
 }

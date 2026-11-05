@@ -62,8 +62,6 @@ int func_02145800(void) {
 
 u32 func_021457ec(void) {
     u32 value0;
-    value0 = (u32) &data_0217fa40;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = (u32) data_0217fa40.mUnk_00->mUnk_00;
     return value0;
 }

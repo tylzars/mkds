@@ -1048,8 +1048,7 @@ void func_0204bcec(void) {
 
 u32 func_0204bcdc(void) {
     u32 value0;
-    value0 = (u32) &data_02175ec0;
-    value0 = (u32) * (const u32 *) ((value0) + (12));
+    value0 = (u32) data_02175ec0.mUnk_000c;
     return value0;
 }
 
@@ -1062,7 +1061,7 @@ u32 func_0204bcb4(u32 arg0) {
     value0 = (u32) IrqDisable();
     value1 = (u32) &data_02179ec0;
     value2 = (value4) & ~(1u);
-    *(u32 *) ((value1) + (2832)) = value2;
+    data_02179ec0.mUnk_b10 = value2;
     value0 = (u32) IrqRestore(value0);
     return value0;
 }
@@ -1070,7 +1069,6 @@ u32 func_0204bcb4(u32 arg0) {
 void func_0204bca0(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &ThreadSetRunnable;
     value0 = (u32) &data_02175dd8;
     ThreadSetRunnable((Thread *) value0);
 }
