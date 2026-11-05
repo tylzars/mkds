@@ -292,7 +292,7 @@ void func_0207f668(Unk020888b4 *p, Unk0208001c *q, Kart *r) {
     if (r->mUnk_48 & 0x40000000) {
         return;
     }
-    if (func_02061fb8() > 0xb4) {
+    if (GetRaceUpdateFrames() > 0xb4) {
         if (p->mUnk_90 == 2) {
             p->mUnk_60 = data_usa_021557d0;
             p->mUnk_74 = 0;

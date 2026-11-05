@@ -277,7 +277,7 @@ void func_020ebb04(Unk020ebef8 *param_1) {
     u32 n;
     u16 h;
 
-    n = func_02061fb8();
+    n = GetRaceUpdateFrames();
     param_1->mUnk_000.mFlags &= ~1;
     param_1->mUnk_000.mFlags &= ~2;
     param_1->mUnk_000.mFlags &= ~8;

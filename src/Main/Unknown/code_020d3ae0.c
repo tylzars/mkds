@@ -387,7 +387,7 @@ void func_020d47e0(void) {
     n = data_0217b4f0->mMapObjectCount;
     t = data_0217b4f0->mMapObjects;
     f = func_0207a780();
-    g = func_02061fb8() & 3;
+    g = GetRaceUpdateFrames() & 3;
     i = 0;
     if (n <= 0) {
         return;

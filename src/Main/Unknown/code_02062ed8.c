@@ -92,7 +92,8 @@ void func_020636f8(Kart *a) {
     d->mUnk_08 = a->mUnk_388;
 }
 
-void func_0206331c(void *a) {
+// Also sets the matrix and the per-course flags (CreateCourseModels would be the verb for just finding and building).
+void InitCourseModels(void *a) {
     const char *b;
     const char *c;
     const char *d;
@@ -103,13 +104,13 @@ void func_0206331c(void *a) {
 
     b = FindCourseFile(data_usa_02165404);
     c = FindCourseFile(data_usa_02165418);
-    data_usa_0217aafc.mUnk_00 = HeapAlloc(a, 0x6c);
-    e = func_02084b2c(a, data_usa_0217aafc.mUnk_00, (Unk020136f0 *) b, (Unk020136f0 *) c);
+    gCourseModels.mNsbmd = HeapAlloc(a, 0x6c);
+    e = func_02084b2c(a, gCourseModels.mNsbmd, (Unk020136f0 *) b, (Unk020136f0 *) c);
     d = FindCourseFile(data_usa_0216542c);
-    func_0206331c_inline(2, data_usa_0217ab04, data_usa_0217aafc.mUnk_00, a, b, d, &data_usa_0217aafc.mUnk_20);
+    func_0206331c_inline(2, data_usa_0217ab04, gCourseModels.mNsbmd, a, b, d, &gCourseModels.mUnk_20);
     d = FindCourseFile(data_usa_02165440);
-    func_0206331c_inline(1, data_0217ab5c, data_usa_0217aafc.mUnk_00, a, b, d, &data_usa_0217aafc.mUnk_58);
-    func_020849c0(data_usa_0217aafc.mUnk_00, 8);
+    func_0206331c_inline(1, data_0217ab5c, gCourseModels.mNsbmd, a, b, d, &gCourseModels.mUnk_58);
+    func_020849c0(gCourseModels.mNsbmd, 8);
     func_02012ffc(e, 1);
     switch (data_021759c0->mCourseId) {
         case 0xc:
@@ -130,15 +131,15 @@ void func_0206331c(void *a) {
             }
             break;
     }
-    data_usa_0217aafc.mUnk_04 = NULL;
+    gCourseModels.mVNsbmd = NULL;
     b = FindCourseFile(data_usa_02165454);
     c = FindCourseFile(data_usa_0216546c);
     if (b != NULL) {
-        data_usa_0217aafc.mUnk_04 = HeapAlloc(a, 0x6c);
-        func_02084b2c(a, data_usa_0217aafc.mUnk_04, (Unk020136f0 *) b, (Unk020136f0 *) c);
-        func_020849c0(data_usa_0217aafc.mUnk_04, 8);
+        gCourseModels.mVNsbmd = HeapAlloc(a, 0x6c);
+        func_02084b2c(a, gCourseModels.mVNsbmd, (Unk020136f0 *) b, (Unk020136f0 *) c);
+        func_020849c0(gCourseModels.mVNsbmd, 8);
         d = FindCourseFile(data_usa_02165484);
-        func_0206331c_inline(1, data_usa_0217ab74, data_usa_0217aafc.mUnk_04, a, b, d, &data_usa_0217aafc.mUnk_90);
+        func_0206331c_inline(1, data_usa_0217ab74, gCourseModels.mVNsbmd, a, b, d, &gCourseModels.mUnk_90);
     }
     g[0] = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_021549f0);
     g[1] = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_021549c0);
@@ -155,27 +156,27 @@ void func_0206331c(void *a) {
     func_0206302c();
 }
 
-void func_02063294(void) {
-    if (data_usa_0217aafc.mUnk_20 != 0) {
+void UpdateCourseModels(void) {
+    if (gCourseModels.mUnk_20 != 0) {
         func_02087de0(data_usa_0217ab04);
     }
-    if (data_usa_0217aafc.mUnk_58 != 0) {
+    if (gCourseModels.mUnk_58 != 0) {
         func_02087de0(data_0217ab5c);
     }
-    if (data_usa_0217aafc.mUnk_04 != NULL && data_usa_0217aafc.mUnk_90 != 0) {
+    if (gCourseModels.mVNsbmd != NULL && gCourseModels.mUnk_90 != 0) {
         func_02087de0(data_usa_0217ab74);
     }
 }
 
-void func_0206326c(void) {
-    func_020849f8(data_usa_0217aafc.mUnk_00, &data_usa_0217abac, data_usa_02154a20);
+void DrawCourseModel(void) {
+    func_020849f8(gCourseModels.mNsbmd, &data_usa_0217abac, data_usa_02154a20);
 }
 
-void func_02063228(void) {
-    if (data_usa_0217aafc.mUnk_04 == NULL) {
+void DrawCourseModelV(void) {
+    if (gCourseModels.mVNsbmd == NULL) {
         return;
     }
-    func_020849f8(data_usa_0217aafc.mUnk_04, &data_usa_0217abac, data_usa_02154a20);
+    func_020849f8(gCourseModels.mVNsbmd, &data_usa_0217abac, data_usa_02154a20);
 }
 
 void func_020631b0(void) {
@@ -195,40 +196,40 @@ void func_0206302c(void) {
     u32 j;
     Unk0201290c *c;
 
-    data_usa_0217aafc.mUnk_e0 = FALSE;
-    data_usa_0217aafc.mUnk_e4 = 0;
-    data_usa_0217aafc.mUnk_ec = FALSE;
-    data_usa_0217aafc.mUnk_f0 = 0;
+    gCourseModels.mUnk_e0 = FALSE;
+    gCourseModels.mUnk_e4 = 0;
+    gCourseModels.mUnk_ec = FALSE;
+    gCourseModels.mUnk_f0 = 0;
     switch (data_021759c0->mCourseId) {
         case 0x12:
         case 0x1b:
         case 0x2d:
-            data_usa_0217aafc.mUnk_e0 = TRUE;
+            gCourseModels.mUnk_e0 = TRUE;
             break;
         case 0x1d:
-            data_usa_0217aafc.mUnk_ec = TRUE;
+            gCourseModels.mUnk_ec = TRUE;
             break;
     }
-    if (data_usa_0217aafc.mUnk_e0 != FALSE) {
-        b = data_usa_0217aafc.mUnk_00->mUnk_04;
+    if (gCourseModels.mUnk_e0 != FALSE) {
+        b = gCourseModels.mNsbmd->mUnk_04;
         for (i = 0; i < b->mEntryCount; i++) {
             if (func_02013314(b, i) != 0) {
-                data_usa_0217aafc.mUnk_e4 |= (s64) (1 << i);
+                gCourseModels.mUnk_e4 |= (s64) (1 << i);
             }
         }
     } else {
-        func_02013044(data_usa_0217aafc.mUnk_00->mUnk_04, 1);
+        func_02013044(gCourseModels.mNsbmd->mUnk_04, 1);
     }
-    if (data_usa_0217aafc.mUnk_04 == NULL) {
+    if (gCourseModels.mVNsbmd == NULL) {
         return;
     }
-    if (data_usa_0217aafc.mUnk_ec == FALSE) {
+    if (gCourseModels.mUnk_ec == FALSE) {
         return;
     }
-    c = data_usa_0217aafc.mUnk_04->mUnk_04;
+    c = gCourseModels.mVNsbmd->mUnk_04;
     for (j = 0; j < c->mEntryCount; j++) {
         if (func_02013314(c, j) != 0) {
-            data_usa_0217aafc.mUnk_f0 |= 1 << j;
+            gCourseModels.mUnk_f0 |= 1 << j;
         }
     }
 }
@@ -238,34 +239,34 @@ void func_02062ef8(u32 a) {
     Unk0201290c *b;
     u32 j;
 
-    if (data_usa_0217aafc.mUnk_04 != NULL) {
-        if (data_usa_0217aafc.mUnk_ec != FALSE && a == 0) {
-            b = data_usa_0217aafc.mUnk_04->mUnk_04;
+    if (gCourseModels.mVNsbmd != NULL) {
+        if (gCourseModels.mUnk_ec != FALSE && a == 0) {
+            b = gCourseModels.mVNsbmd->mUnk_04;
             for (i = 0; i < b->mEntryCount; i++) {
-                func_02013424(b, i, (data_usa_0217aafc.mUnk_f0 & (1 << i)) != 0 ? 1 : 0);
+                func_02013424(b, i, (gCourseModels.mUnk_f0 & (1 << i)) != 0 ? 1 : 0);
             }
         } else {
-            func_02013044(data_usa_0217aafc.mUnk_04->mUnk_04, a);
+            func_02013044(gCourseModels.mVNsbmd->mUnk_04, a);
         }
     }
-    if (data_usa_0217aafc.mUnk_e0 == FALSE) {
+    if (gCourseModels.mUnk_e0 == FALSE) {
         return;
     }
     if (a != 0) {
-        func_02013044(data_usa_0217aafc.mUnk_00->mUnk_04, 1);
+        func_02013044(gCourseModels.mNsbmd->mUnk_04, 1);
         return;
     }
-    b = data_usa_0217aafc.mUnk_00->mUnk_04;
+    b = gCourseModels.mNsbmd->mUnk_04;
     for (j = 0; j < b->mEntryCount; j++) {
-        if ((data_usa_0217aafc.mUnk_e4 & (s64) (1 << j)) == 0) {
+        if ((gCourseModels.mUnk_e4 & (s64) (1 << j)) == 0) {
             func_02013424(b, j, 0);
         }
     }
 }
 
 s32 func_02062ed8(void) {
-    if (data_usa_0217aafc.mUnk_20 != 0) {
-        return data_usa_0217aafc.mUnk_14 >> 12;
+    if (gCourseModels.mUnk_20 != 0) {
+        return gCourseModels.mUnk_14 >> 12;
     }
     return -1;
 }

@@ -98,17 +98,19 @@
 #include "01/code_0218155c.h"
 
 u32 func_02062ec4(void) {
-    return ((u32) data_0217aa54->mUnk_28);
+    return ((u32) gRace->mUnk_28);
 }
 
 u32 func_02062eb0(void) {
-    return ((u32) data_0217aa54->mUnk_38);
+    return ((u32) gRace->mUnk_38);
 }
 
 extern const u16 data_02154970[8];
 extern const u16 data_02154980[8];
 
-void func_02062b50(void) {
+// Builds the race world and gRace. Not part of it: the screen and 3D engine set-up (func_02062860, called before), the
+// net and the HUD, which are in the scene slot func_0203abdc.
+void InitRace(void) {
     void *a;
     u16 b;
     s16 i;
@@ -116,7 +118,7 @@ void func_02062b50(void) {
 
     a = GetHeap(func_020364e8());
     SetKartModelPathPrefix(0);
-    data_0217aa54 = HeapAlloc(a, 72);
+    gRace = HeapAlloc(a, 72);
     func_02062a0c();
     b = func_02148d24();
     func_020161b4((u16) (((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1)), 1);
@@ -132,7 +134,7 @@ void func_02062b50(void) {
     InitMap2D();
     func_02047b6c(2);
     CreateCourseMap(a);
-    func_0206331c(a);
+    InitCourseModels(a);
     func_020476ec();
     func_02047b6c(7);
     func_0203d848(a);
@@ -147,8 +149,8 @@ void func_02062b50(void) {
     InitKarts(data_021759c0->mKartCount);
     func_02077944();
     func_020777ac(data_021759c0->mUnk_063);
-    if (data_0217aa54->mUnk_28 != 0) {
-        if (data_0217aa54->mUnk_2c != 0) {
+    if (gRace->mUnk_28 != 0) {
+        if (gRace->mUnk_2c != 0) {
             func_020775e4();
         } else {
             func_0207767c();
@@ -195,7 +197,7 @@ void func_02062b50(void) {
         data_0217aadc[i + 8] = data_0217aadc[i];
         data_0217aadc[i + 24] = data_0217aadc[i + 16];
     }
-    func_02061c28();
+    InitRaceFog();
     func_020631b0();
     if (data_021759c0->mUnk_00c == 5) {
         for (j = 0; j < 3; j++) {
@@ -208,24 +210,24 @@ void func_02062a0c(void) {
     Vec3 v;
     s32 m;
 
-    data_0217aa54->mUnk_04 = 0;
-    data_0217aa54->mUnk_08 = 0;
-    data_0217aa54->mUnk_14 = 0;
-    data_0217aa54->mUnk_10 = 0;
-    data_0217aa54->mUnk_0c = 0;
-    data_0217aa54->mUnk_18 = 0;
-    data_0217aa54->mUnk_1c = 0;
-    data_0217aa54->mUnk_30 = FALSE;
-    data_0217aa54->mUnk_34 = FALSE;
-    data_0217aa54->mUnk_3c = 0;
+    gRace->mUpdateFrames = 0;
+    gRace->mDrawFrames = 0;
+    gRace->mUnk_14 = 0;
+    gRace->mUnk_10 = 0;
+    gRace->mUnk_0c = 0;
+    gRace->mUnk_18 = 0;
+    gRace->mUnk_1c = 0;
+    gRace->mUnk_30 = FALSE;
+    gRace->mUnk_34 = FALSE;
+    gRace->mUnk_3c = 0;
     v = data_021653f0;
-    data_0217aa54->mUnk_40 = v.x;
-    data_0217aa54->mUnk_42 = v.y;
-    data_0217aa54->mUnk_44 = v.z;
-    data_0217aa54->mUnk_28 = (u32) (data_021759c0->mUnk_00c - 3) <= 2 ? 1 : 0;
-    data_0217aa54->mUnk_2c = data_021759c0->mUnk_00c == 4 ? 1 : 0;
-    data_0217aa54->mUnk_38 = (data_021759c0->mUnk_00c == 5 || data_021759c0->mUnk_00c == 6) != 0 ? 1 : 0;
-    data_0217aa54->mUnk_00 = data_0217aa54->mUnk_38 != 0 ? 1 : 0;
+    gRace->mUnk_40 = v.x;
+    gRace->mUnk_42 = v.y;
+    gRace->mUnk_44 = v.z;
+    gRace->mUnk_28 = (u32) (data_021759c0->mUnk_00c - 3) <= 2 ? 1 : 0;
+    gRace->mUnk_2c = data_021759c0->mUnk_00c == 4 ? 1 : 0;
+    gRace->mUnk_38 = (data_021759c0->mUnk_00c == 5 || data_021759c0->mUnk_00c == 6) != 0 ? 1 : 0;
+    gRace->mUnk_00 = gRace->mUnk_38 != 0 ? 1 : 0;
 }
 
 void func_020629a4(void) {
@@ -258,14 +260,17 @@ void func_02062860(void) {
     func_01ff92e0(data_0217aa74);
 }
 
-void func_02062464(void) {
+// Advances the race one frame. Skipped while func_02049b6c or func_0204359c refuse (the draw is not), and in kind 6 for
+// the first 0x708 frames (neither update nor draw). The HUD step and the end-of-race state are in the scene slot
+// func_0203a0dc, which calls this; the exit loop also runs it with a == NULL.
+void UpdateRace(void) {
     void *v;
 
     data_0217d020 = 1;
     func_01ffdb70();
-    func_02063294();
+    UpdateCourseModels();
     UpdateKarts();
-    if (data_0217aa54->mUnk_0c == 0) {
+    if (gRace->mUnk_0c == 0) {
         func_02085778();
     }
     switch (data_021759c0->mMode) {
@@ -282,8 +287,8 @@ void func_02062464(void) {
             break;
     }
     func_02073e98();
-    if (data_0217aa54->mUnk_28 != 0) {
-        if (data_0217aa54->mUnk_2c != 0) {
+    if (gRace->mUnk_28 != 0) {
+        if (gRace->mUnk_2c != 0) {
             v = func_0207564c();
         } else {
             v = func_02075694();
@@ -320,7 +325,7 @@ void func_02062464(void) {
     if (data_0217aa64 != 0) {
         if (data_0217aa4c != 0) {
             if (data_021653e8 == 0) {
-                data_0217aa54->mUnk_20 = 0;
+                gRace->mUnk_20 = 0;
                 func_0207a5f0(1);
                 func_02062ef8(0);
                 data_0217aa64 = 0;
@@ -341,40 +346,42 @@ void func_02062464(void) {
     func_0207aa7c();
     func_0208677c();
     if (data_021759c0->mMode == 5) {
-        if (data_0217aa54->mUnk_34 == FALSE) {
-            if (data_0217aa54->mUnk_30 == FALSE) {
-                data_0217aa54->mUnk_04++;
-                if ((u32) data_0217aa54->mUnk_04 >= 128) {
-                    data_0217aa54->mUnk_30 = TRUE;
+        if (gRace->mUnk_34 == FALSE) {
+            if (gRace->mUnk_30 == FALSE) {
+                gRace->mUpdateFrames++;
+                if ((u32) gRace->mUpdateFrames >= 128) {
+                    gRace->mUnk_30 = TRUE;
                 }
             }
         } else {
-            data_0217aa54->mUnk_04++;
+            gRace->mUpdateFrames++;
         }
     } else {
-        data_0217aa54->mUnk_04++;
+        gRace->mUpdateFrames++;
     }
-    data_0217aa54->mUnk_0c = data_0217aa54->mUnk_04 & 7;
-    data_0217aa54->mUnk_10 = data_0217aa54->mUnk_04 & 1;
-    data_0217aa54->mUnk_14 = (u32) data_0217aa54->mUnk_04 % data_021759c0->mKartCount;
-    func_0214a730(&data_0217aadc[data_0217aa54->mUnk_18]);
-    data_0217aa54->mUnk_1c++;
-    if ((u32) data_0217aa54->mUnk_1c > data_021653ec) {
-        data_0217aa54->mUnk_1c = 0;
-        data_0217aa54->mUnk_18++;
+    gRace->mUnk_0c = gRace->mUpdateFrames & 7;
+    gRace->mUnk_10 = gRace->mUpdateFrames & 1;
+    gRace->mUnk_14 = (u32) gRace->mUpdateFrames % data_021759c0->mKartCount;
+    func_0214a730(&data_0217aadc[gRace->mUnk_18]);
+    gRace->mUnk_1c++;
+    if ((u32) gRace->mUnk_1c > data_021653ec) {
+        gRace->mUnk_1c = 0;
+        gRace->mUnk_18++;
     }
-    if ((u32) data_0217aa54->mUnk_18 > 7) {
-        data_0217aa54->mUnk_18 = 0;
+    if ((u32) gRace->mUnk_18 > 7) {
+        gRace->mUnk_18 = 0;
     }
 }
 
-void func_02062284(void) {
+// Draws the 3D scene and writes the fog registers when the fade state changes; advances no game value. Has its own gate
+// in the scene slot; the HUD draw is in the scene slot too.
+void DrawRace(void) {
     if (data_0217aa4c != 0) {
         func_0214a7ec(1, 0, data_0217aa80, data_0217aa70);
         func_0214a748(data_0217aa9c);
         reg_G3X_FOG_COLOR = data_0217aa28 | (data_0217aa68 << 16);
-    } else if (data_0217aa54->mUnk_20 != data_0217aa54->mUnk_24) {
-        if (data_0217aa54->mUnk_20 == 0) {
+    } else if (gRace->mUnk_20 != gRace->mUnk_24) {
+        if (gRace->mUnk_20 == 0) {
             if (gCourseMap->mSettings->mFogEnabled != 0) {
                 func_0214a7ec(1, 0, data_0217aa80, data_0217aa48);
                 reg_G3X_FOG_COLOR = data_0217aa38 | (data_0217aa50 << 16);
@@ -388,22 +395,22 @@ void func_02062284(void) {
             func_0214a748(data_0217aa9c);
         }
     }
-    data_0217aa54->mUnk_24 = data_0217aa54->mUnk_20;
+    gRace->mUnk_24 = gRace->mUnk_20;
     func_02062078();
     func_0208b870(data_0217aa7c);
     func_0208ee7c(data_0217aa7c);
     func_02089fa0();
-    if (data_0217aa54->mUnk_28 == 0) {
+    if (gRace->mUnk_28 == 0) {
         func_02086250(data_0217aa7c);
     }
     func_02104118();
-    data_0217aa54->mUnk_08++;
+    gRace->mDrawFrames++;
 }
 
 void func_02062254(const Vec3 *a) {
-    data_0217aa54->mUnk_40 = a->x;
-    data_0217aa54->mUnk_42 = a->y;
-    data_0217aa54->mUnk_44 = a->z;
+    gRace->mUnk_40 = a->x;
+    gRace->mUnk_42 = a->y;
+    gRace->mUnk_44 = a->z;
 }
 
 void func_02062078(void) {
@@ -416,7 +423,7 @@ void func_02062078(void) {
     func_02076c50(data_0217aa6c, 1);
     func_02076bcc(data_0217aa6c);
     p = data_0217aa6c;
-    func_02010fac(0, data_0217aa54->mUnk_40, data_0217aa54->mUnk_42, data_0217aa54->mUnk_44);
+    func_02010fac(0, gRace->mUnk_40, gRace->mUnk_42, gRace->mUnk_44);
     func_02010f98(0, 0x7fff);
     a.x = p->mUnk_030.mUnk_00[0].y;
     a.y = p->mUnk_030.mUnk_00[1].y;
@@ -434,15 +441,15 @@ void func_02062078(void) {
     func_01ff9048(23, data_0217aa7c, 12);
     v = 30;
     func_01ff9048(19, &v, 1);
-    func_02063228();
+    DrawCourseModelV();
     func_02076c50(data_0217aa6c, 0);
     func_02011034();
     func_01ff92e0(data_0217aa74);
-    func_0206326c();
+    DrawCourseModel();
     func_020d4418((Unk020d4418 *) data_0217aa6c);
     func_01ff92b4();
     DrawKarts();
-    func_02010fac(0, data_0217aa54->mUnk_40, data_0217aa54->mUnk_42, data_0217aa54->mUnk_44);
+    func_02010fac(0, gRace->mUnk_40, gRace->mUnk_42, gRace->mUnk_44);
     func_020e9810();
     DrawMapObjects((Unk020d4418 *) data_0217aa6c);
     func_020fa8ac(data_0217aa7c);
@@ -472,31 +479,32 @@ void func_02062004(void) {
 void func_02062000(void) {}
 
 u32 func_02061fec(void) {
-    return ((u32) data_0217aa54->mUnk_00);
+    return ((u32) gRace->mUnk_00);
 }
 
 void func_02061fcc(void) {
-    data_0217aa54->mUnk_00 = 1;
+    gRace->mUnk_00 = 1;
     func_0203ca20();
 }
 
-u32 func_02061fb8(void) {
-    return ((u32) data_0217aa54->mUnk_04);
+u32 GetRaceUpdateFrames(void) {
+    return ((u32) gRace->mUpdateFrames);
 }
 
 u32 func_02061fa4(void) {
-    return ((u32) data_0217aa54->mUnk_14);
+    return ((u32) gRace->mUnk_14);
 }
 
 u32 func_02061f90(void) {
-    return ((u32) data_0217aa54->mUnk_0c);
+    return ((u32) gRace->mUnk_0c);
 }
 
 u32 func_02061f7c(void) {
-    return ((u32) data_0217aa54->mUnk_10);
+    return ((u32) gRace->mUnk_10);
 }
 
-void func_02061c28(void) {
+// Also writes FOG_COLOR, FOG_OFFSET and FOG_TABLE directly and resets the fade state.
+void InitRaceFog(void) {
     u32 a[32];
     u16 i;
     u8 m;
@@ -506,8 +514,8 @@ void func_02061c28(void) {
     data_0217aa4c = 0;
     data_0217aa64 = 0;
     data_0217aa2c = 0;
-    data_0217aa54->mUnk_24 = 0;
-    data_0217aa54->mUnk_20 = data_0217aa54->mUnk_24;
+    gRace->mUnk_24 = 0;
+    gRace->mUnk_20 = gRace->mUnk_24;
     if (gCourseMap->mSettings->mFogEnabled != 0) {
         m = gCourseMap->mSettings->mFogTableMode;
         if (m == 0) {
@@ -596,10 +604,10 @@ void func_02061944(s32 a, s32 b) {
 }
 
 void func_02061874(void) {
-    if (data_0217aa54->mUnk_24 == 1) {
-        data_0217aa54->mUnk_24 = 0;
+    if (gRace->mUnk_24 == 1) {
+        gRace->mUnk_24 = 0;
     }
-    data_0217aa54->mUnk_20 = 1;
+    gRace->mUnk_20 = 1;
     func_0207a5f0(0);
     func_02062ef8(1);
     data_021653e8 = 72;
@@ -647,7 +655,7 @@ void *func_02061808(void) {
 u32 func_020617f0(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217aa54;
+    value0 = (u32) &gRace;
     value1 = 1u;
     value0 = (u32) * (const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (52)) = value1;
@@ -657,7 +665,7 @@ u32 func_020617f0(void) {
 u32 func_020617d8(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217aa54;
+    value0 = (u32) &gRace;
     value1 = (u32) * (const u32 *) ((value0) + (0));
     value0 = (u32) * (const u32 *) ((value1) + (4));
     *(u32 *) ((value1) + (60)) = value0;
@@ -665,14 +673,14 @@ u32 func_020617d8(void) {
 }
 
 s32 func_020617a8(u32 *a) {
-    Unk0217aa54 *b;
+    Race *b;
     BOOL c;
 
-    b = data_0217aa54;
+    b = gRace;
     c = FALSE;
     if (b->mUnk_3c != 0) {
         c = TRUE;
-        *a = b->mUnk_04 - b->mUnk_3c;
+        *a = b->mUpdateFrames - b->mUnk_3c;
     }
     return c;
 }

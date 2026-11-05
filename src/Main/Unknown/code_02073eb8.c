@@ -768,7 +768,7 @@ void func_02074b00(Unk02061808 *p) {
     func_02074b00_inline(&c, &c, q->mUnk_00.x);
     Vec3Add(&a, &c, &a);
     Vec3Add(&b, &c, &b);
-    if (func_02061fb8() < q->mUnk_46) {
+    if (GetRaceUpdateFrames() < q->mUnk_46) {
         p->mUnk_018 = b;
         p->mUnk_024 = a;
     } else if (p->mUnk_144 < 0x1000) {

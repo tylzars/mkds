@@ -268,7 +268,7 @@ void func_01ff9d18(Kart *p) {
     if (!(p->mUnk_4c & 0x400)) {
         return;
     }
-    r = func_02061fb8();
+    r = GetRaceUpdateFrames();
     if (p->mUnk_410 == 0) {
         j = p->mEntryIndex;
         if ((u16) (data_02175628[j].mUnk_00 & 1) != 0) {

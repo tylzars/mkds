@@ -310,7 +310,7 @@ void func_020feb44(void) {
     u32 h;
     Unk0217be00 *p;
 
-    v1 = func_02061fb8();
+    v1 = GetRaceUpdateFrames();
     v2 = data_0217bd68[0];
     v3 = 0xff;
     while (v2 != 0xff) {
@@ -395,7 +395,7 @@ void func_020fe9d0(u32 a, u32 b, s32 c, void *d, u32 e) {
 u8 *func_020fe958(u32 a) {
     s32 n;
 
-    data_0217bd6c[0] = func_02061fb8();
+    data_0217bd6c[0] = GetRaceUpdateFrames();
     n = data_0217aa14->mUnk_724;
     if (n >= 1 && func_0205ad44() != FALSE) {
         func_0205a858(a, 0, data_0217bd6c, 1);
@@ -410,7 +410,7 @@ u8 *func_020fe8ac(u32 a) {
     s32 n;
 
     b = data_0217bc34[a].mUnk_4c & 0xff;
-    data_0217bd6c[0] = func_02061fb8();
+    data_0217bd6c[0] = GetRaceUpdateFrames();
     n = data_0217aa14->mUnk_724;
     if (n >= (u8) (b + 1) && func_0205ad44() != FALSE) {
         func_0205a858(a, 0, data_0217bd6c, b + 1);
@@ -424,7 +424,7 @@ u8 *func_020fe828(u32 a) {
     s32 n;
 
     data_0217bd6c[1] = 0xff;
-    data_0217bd6c[0] = func_02061fb8();
+    data_0217bd6c[0] = GetRaceUpdateFrames();
     n = data_0217aa14->mUnk_724;
     if (n >= 2 && func_0205ad44() != FALSE) {
         func_0205a858(a, 0, data_0217bd6c, 2);
@@ -439,7 +439,7 @@ u8 *func_020fe7a0(u32 a, u32 b, u32 c, u32 d) {
 
     data_0217bd6c[1] = d;
     data_0217bd6c[2] = b | (c << 4);
-    data_0217bd6c[0] = func_02061fb8();
+    data_0217bd6c[0] = GetRaceUpdateFrames();
     n = data_0217aa14->mUnk_724;
     if (n >= 3 && func_0205ad44() != FALSE) {
         func_0205a858(a, 2, data_0217bd6c, 3);
@@ -454,7 +454,7 @@ u8 *func_020fe71c(u32 a, u32 b, u32 c) {
 
     data_0217bd6c[1] = c;
     data_0217bd6c[2] = b;
-    data_0217bd6c[0] = func_02061fb8();
+    data_0217bd6c[0] = GetRaceUpdateFrames();
     n = data_0217aa14->mUnk_724;
     if (n >= 3 && func_0205ad44() != FALSE) {
         func_0205a858(a, 3, data_0217bd6c, 3);
@@ -470,7 +470,7 @@ u8 *func_020fe694(u32 a, u32 b, u32 c, u32 d) {
     data_0217bd6c[1] = b;
     data_0217bd6c[2] = c;
     data_0217bd6c[3] = d;
-    data_0217bd6c[0] = func_02061fb8();
+    data_0217bd6c[0] = GetRaceUpdateFrames();
     n = data_0217aa14->mUnk_724;
     if (n >= 4 && func_0205ad44() != FALSE) {
         func_0205a858(a, 3, data_0217bd6c, 4);
@@ -483,7 +483,7 @@ u8 *func_020fe694(u32 a, u32 b, u32 c, u32 d) {
 void func_020fe5b8(u32 a, u32 b, u8 *c, u32 d) {
     s8 v;
 
-    v = (u8) func_02061fb8() - c[0];
+    v = (u8) GetRaceUpdateFrames() - c[0];
     if (v >= 0) {
         func_020f0758(data_027e00cc + a, b, v, c, 0);
     } else {
@@ -506,7 +506,7 @@ void func_020fe56c(u32 a, u32 b, u32 c, void *d, u32 e) {
 
     v = e;
     if (v == 0) {
-        v = func_02061fb8();
+        v = GetRaceUpdateFrames();
     }
     func_020fe9d0(a, b, c, d, v);
 }
@@ -526,7 +526,7 @@ void *func_020fe4c0(void *a, void *b, s32 c) {
         return p;
     }
     t = e->mUnk_44;
-    data_0217bd6c[0] = func_02061fb8();
+    data_0217bd6c[0] = GetRaceUpdateFrames();
     n = data_0217aa14->mUnk_724;
     if (n >= 0x12 && func_0205ad44() != FALSE) {
         func_0205a858(t, 1, data_0217bd6c, 0x12);

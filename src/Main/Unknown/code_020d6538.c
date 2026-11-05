@@ -559,7 +559,7 @@ Unk0217b654 *func_020d6794(void) {
 }
 
 void func_020d673c(void) {
-    s32 i = (s32) (func_02061fb8() << 25 >> 16) >> 4;
+    s32 i = (s32) (GetRaceUpdateFrames() << 25 >> 16) >> 4;
     Matrix3x3FromPairY(data_0217b650->mUnk_2c.mUnk_00, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
 }
 

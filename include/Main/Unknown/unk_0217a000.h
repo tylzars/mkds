@@ -971,11 +971,17 @@ typedef struct Unk0217aa14 {
 } Unk0217aa14;
 
 extern Unk0217aa14 *data_0217aa14;
-typedef struct Unk0217aa54 {
+// Per-run state of the race scene, one record behind gRace (0x48 bytes, allocated by InitRace on the scene heap and
+// never cleared at the end of the scene): frame counters (mUpdateFrames and three phases derived from it), toon-table
+// cycle, fog/fade switch, kind flags derived from data_021759c0->mUnk_00c (also live in the demo and credits kinds 3 to
+// 6), a light vector. Not the race setup (data_021759c0), not the karts.
+typedef struct Race {
     /* 00 */ s16 mUnk_00;
     /* 02 */ u8 mUnk_02[2];
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
+    // Counts calls of UpdateRace; in mode 5 held at 128 until mUnk_34 is set (func_020617f0).
+    /* 04 */ s32 mUpdateFrames;
+    // Counts calls of DrawRace; never read (2 writes, 0 reads).
+    /* 08 */ s32 mDrawFrames;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
@@ -992,9 +998,9 @@ typedef struct Unk0217aa54 {
     /* 40 */ s16 mUnk_40;
     /* 42 */ s16 mUnk_42;
     /* 44 */ s16 mUnk_44;
-} Unk0217aa54;
+} Race;
 
-extern Unk0217aa54 *data_0217aa54;
+extern Race *gRace;
 extern s32 data_0217aa64;
 struct Unk02077750;
 

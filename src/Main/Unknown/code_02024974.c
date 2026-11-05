@@ -170,7 +170,7 @@ void func_02024a88(Kart *a) {
         func_02109078(&a->mUnk_00, 0xfc, 0x7f, 0);
         return;
     }
-    if ((s32) func_02061fb8() < 5) {
+    if ((s32) GetRaceUpdateFrames() < 5) {
         return;
     }
     if (data_0217c814.mUnk_0c == 0) {

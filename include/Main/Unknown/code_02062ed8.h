@@ -4,10 +4,14 @@
 #include "Main/Unknown/code_0206bcb0.h" // Kart, UnkVec16
 #include "Main/Unknown/code_020846c0.h" // Unk02084b2c
 
-// Object at data_usa_0217aafc: two Unk02084b2c pointers, then the words and halfwords the code tests.
-typedef struct Unk0217aafc {
-    /* 00 */ Unk02084b2c *mUnk_00;
-    /* 04 */ Unk02084b2c *mUnk_04;
+// Object at gCourseModels: two Unk02084b2c pointers, then the words and halfwords the code tests. The flag halfwords
+// live inside the embedded animation objects. 0xf4 is the distance to the next symbol, so the object overlaps four
+// other symbols: data_usa_0217abac at +0xb0 and the embedded objects data_usa_0217ab04 at +8, data_0217ab5c at +0x40
+// and data_usa_0217ab74 at +0x78 (USA).
+typedef struct CourseModels {
+    /* 00 */ Unk02084b2c *mNsbmd;
+    // NULL when '/course_model_V.nsbmd' is absent; drawn before the main model under the other projection argument.
+    /* 04 */ Unk02084b2c *mVNsbmd;
     /* 08 */ u8 mUnk_08[0xc];
     /* 14 */ s32 mUnk_14;
     /* 18 */ u8 mUnk_18[8];
@@ -21,7 +25,7 @@ typedef struct Unk0217aafc {
     /* e4 */ u64 mUnk_e4;
     /* ec */ BOOL mUnk_ec;
     /* f0 */ u16 mUnk_f0;
-} Unk0217aafc;
+} CourseModels;
 
 // What func_020636f8 writes from 0x08 of the Unk0217aa14_754_04 it points to.
 typedef struct Unk020636f8_B {
@@ -36,7 +40,7 @@ typedef struct Unk020636f8_B {
     /* 14 */ u32 mUnk_14;
 } Unk020636f8_B;
 
-extern Unk0217aafc data_usa_0217aafc;
+extern CourseModels gCourseModels;
 extern u8 data_usa_0217ab04[];
 extern u8 data_0217ab5c[];
 extern u8 data_usa_0217ab74[];
@@ -65,10 +69,10 @@ s32 func_02062ed8(void);
 void func_02062ef8(u32 a);
 void func_0206302c(void);
 void func_020631b0(void);
-void func_02063228(void);
-void func_0206326c(void);
-void func_02063294(void);
-void func_0206331c(void *a);
+void DrawCourseModelV(void);
+void DrawCourseModel(void);
+void UpdateCourseModels(void);
+void InitCourseModels(void *a);
 void func_020636f8(Kart *a);
 void func_020637c4(Kart *a);
 void func_020637e0(Kart *a);

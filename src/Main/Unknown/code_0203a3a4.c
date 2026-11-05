@@ -145,7 +145,7 @@ void func_0203abdc(void) {
     func_0203ad58(p);
     func_020431e4();
     func_02047b6c(9);
-    func_02062b50();
+    InitRace();
     func_02047b6c(5);
     InitChoisesS();
     func_020b03bc();

@@ -119,7 +119,7 @@ void func_0203a0dc(Unk0203a0dc *a, u32 b) {
                 }
             }
             if (func_0203afe4(b) != 0) {
-                func_02062464();
+                UpdateRace();
             }
             func_020af66c();
         }
@@ -150,7 +150,7 @@ void func_0203a0dc(Unk0203a0dc *a, u32 b) {
     }
     if (c != 0) {
         if (q->mMode != 5 || func_02037a20() == 0) {
-            func_02062284();
+            DrawRace();
         }
     }
     func_020ae824();
