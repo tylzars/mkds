@@ -17,6 +17,7 @@
 #include "code_02147288.h"
 #include "code_0214a4dc.h"
 #include "code_020172d0.h"
+#include "code_021471bc.h"
 
 void func_0208e99c(Unk0208ec64 *a) {
     Unk0208ec64_08 *p;

@@ -26,6 +26,7 @@
 #include "code_0212bcac.h"
 #include "code_0212c7a0.h"
 #include "Main/Unknown/code_0200f000.h"
+#include "code_020218f4.h"
 
 u8 data_0217dec8[0x3c];
 

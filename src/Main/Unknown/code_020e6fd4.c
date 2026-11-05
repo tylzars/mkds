@@ -45,6 +45,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_02108e6c.h"
 #include "Main/Unknown/code_020ed5c0.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_020e7a40(void) {
     u32 value0;

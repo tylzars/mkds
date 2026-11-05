@@ -49,6 +49,7 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_02073eb8.h"
+#include "Main/Unknown/code_0203c5f8.h"
 
 void func_02068b98(Kart *a) {
     u32 b;

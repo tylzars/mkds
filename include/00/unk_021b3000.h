@@ -47,6 +47,7 @@ extern char data_ov000_021b3aa4[];
 extern char data_ov000_021b3abc[];
 extern char data_ov000_021b3b10[];
 extern char data_ov000_021b3b20[];
+extern u32 data_ov000_021b3b34;
 extern char data_ov000_021b3b4c[];
 extern u8 data_ov000_021b3b58[];
 extern u8 data_ov000_021b3b88[];

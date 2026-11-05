@@ -9,6 +9,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_0207e000.h"
 #include "Main/Unknown/code_0207f000.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_0208c0f0(Unk020888b4 *p, s32 a) {
     Kart *q = GetKart(a);

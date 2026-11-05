@@ -47,6 +47,7 @@
 #include "Main/Unknown/code_020e6b58.h"
 #include "Main/Unknown/code_020d3b10.h"
 #include "Main/Unknown/code_0209d650.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void InitSun(u32 arg0) {
     u32 value0 = arg0;

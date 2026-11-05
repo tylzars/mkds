@@ -15,6 +15,7 @@
 #include "00/unk_021b5000.h"
 #include "code_02139f70.h"
 #include "code_0213a460.h"
+#include "00/code_021a6d5c.h"
 
 Unk0219b1d4 *func_ov000_0219b178(void) {
     Unk0219b1d4 a = {0};

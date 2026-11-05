@@ -26,6 +26,7 @@
 #include "Main/Unknown/code_02046000.h"
 #include "Main/Unknown/code_020d7da8.h"
 #include "Main/Unknown/code_020d8b88.h"
+#include "code_021471bc.h"
 
 // The map object InitWater last received (type Unk020da384 is the 0x68-byte prefix view of MapObject: retype is a
 // cleanup); InitWaterFields reads its x/z and DrawWater its mFlags; one water map object per course is assumed (a

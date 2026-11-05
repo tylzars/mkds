@@ -33,6 +33,8 @@
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/unk_02175628.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_01ffcebc(const Vec4 *a, const Vec4 *b, Vec4 *c) {
     Vec4 t;

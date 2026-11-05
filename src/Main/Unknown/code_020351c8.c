@@ -61,6 +61,7 @@
 #include "code_0214d018.h"
 #include "Main/Unknown/code_02025edc.h"
 #include "Main/Unknown/code_02025f80.h"
+#include "Main/Unknown/code_02025cd0.h"
 
 #pragma thumb on
 

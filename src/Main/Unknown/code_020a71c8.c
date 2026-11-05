@@ -35,6 +35,7 @@
 #include "Main/Unknown/unk_02167000.h"
 #include "Main/Unknown/code_020a8080.h"
 #include "Main/Unknown/code_020d7da8.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void InitSanbo(u32 arg0) {
     u32 value0 = arg0;

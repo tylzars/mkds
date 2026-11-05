@@ -121,6 +121,9 @@
 #include "Main/Unknown/code_02081618.h"
 #include "Main/Unknown/code_02086058.h"
 #include "Main/Unknown/code_020733ec.h"
+#include "ITCM/code_01ffba68.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "code_021471bc.h"
 
 void func_0207ad88(Unk0207adf8 *a, u32 b, u32 c) {
     if ((a->mUnk_70 & 1) != 0) {

@@ -29,6 +29,7 @@
 #include "code_02146cbc.h"
 #include "code_0214a4dc.h"
 #include "code_0214a748.h"
+#include "code_021471bc.h"
 
 void func_0208aa30(void *a) {
     Unk0217b034_784 *p;

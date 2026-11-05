@@ -31,6 +31,7 @@
 #include "code_02147cd8.h"
 #include "code_0212bcac.h"
 #include "code_0212df7c.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 u32 func_0209eb04(void) {
     return func_0209bef0(CreatePuddle, DrawPuddle, func_0209ec00);

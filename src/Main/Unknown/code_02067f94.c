@@ -3,6 +3,7 @@
 #include "Main/Unknown/code_0206a354.h"
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_0207a6b0.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_020680e0(Kart *a, const Vec3 *b) {
     s32 c;

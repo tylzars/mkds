@@ -28,6 +28,7 @@
 #include "Main/Unknown/code_0208ffe4.h"
 #include "Main/Unknown/code_02090088.h"
 #include "Main/Unknown/code_02090194.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_02090194(Unk02090194 *p0) {
     p0->mUnk_10 = (u32) 0x1u;

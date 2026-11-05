@@ -28,6 +28,9 @@
 #include "ITCM/code_01ffd000.h"
 #include "Main/Unknown/code_020435c4.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_0203c5f8.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_0207e594(struct Unk020888b4 *p, struct Kart *q, s32 a) {
     p->mKart = q;

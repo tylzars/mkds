@@ -70,7 +70,6 @@ typedef struct Unk0200bd34 {
 extern u8 data_usa_02152be4[6];
 
 // Declared here until the code that defines it is decompiled.
-void func_020092a4(void);
 void func_0200b6e8(void);
 void func_0200b70c(void);
 u32 func_0200b72c(void);

@@ -75,8 +75,6 @@ typedef struct Unk02186d7c {
 } Unk02186d7c;
 
 extern char data_ov000_021b1204[];
-extern char data_ov000_021b1230[];
-extern char data_ov000_021b1258[];
 extern char data_ov000_021b1348[];
 extern char data_ov000_021b135c[];
 extern char data_ov000_021b1368[];

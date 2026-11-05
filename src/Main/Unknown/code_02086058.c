@@ -19,6 +19,8 @@
 #include "Main/Unknown/code_02087918.h"
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_0217c000.h"
+#include "Main/Unknown/code_02077bc0.h"
+#include "code_021471bc.h"
 
 void func_02086a04(void) {
     Vec3 v24;

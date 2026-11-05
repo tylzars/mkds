@@ -33,6 +33,7 @@
 #include "Main/Unknown/unk_02162c74.h"
 #include "code_0214d018.h"
 #include "00/code_02181f98.h"
+#include "Main/Unknown/code_02025cd0.h"
 
 #pragma thumb on
 

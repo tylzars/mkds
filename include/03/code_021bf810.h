@@ -2,7 +2,6 @@
 
 #include "types.h"
 
-extern void *data_ov003_021d6b60[];
 extern void *data_ov003_021da154;
 
 void func_ov003_021bf810(u32 a);

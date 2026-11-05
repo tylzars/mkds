@@ -86,7 +86,6 @@ typedef struct Unk021ab5e4 Unk021ab5e4;
 #include "00/unk_021b6380.h"
 #include "00/code_021ac3e4.h"
 
-extern u16 data_ov000_021b4a00[2];
 extern u8 data_ov000_021b617c;
 extern u32 data_ov000_021b6180;
 extern u8 data_ov000_021b6184[0x14];

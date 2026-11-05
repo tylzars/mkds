@@ -156,4 +156,3 @@ void func_ov000_021a49cc(void *a, void (*b)(void *, u16));
 void func_ov000_021a49e0(Unk021a4a08 *a, UnkFunc *b);
 void func_ov000_021a49f4(Unk021a4a08 *a, UnkFunc *b);
 // Declared here until the code that defines it is decompiled.
-Unk021a8f84 *func_ov000_021a8f84(const char *a);

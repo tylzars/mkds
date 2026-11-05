@@ -19,6 +19,7 @@
 #include "Main/Unknown/code_02061000.h"
 #include "Main/Unknown/code_020ae000.h"
 #include "Main/Unknown/code_020b1000.h"
+#include "Main/Unknown/code_0203c8dc.h"
 
 void func_020c1ef8(void) {
     s32 a[8];

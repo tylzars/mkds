@@ -21,4 +21,3 @@ void func_ov003_021c79b4(void);
 void func_ov003_021c79e4(void);
 void func_ov003_021c7a0c(void);
 // Declared here until the code that defines it is decompiled.
-void func_ov003_021d2094(void *e, s32 f, u32 g, u32 h, s32 l, u16 *m, s32 n);

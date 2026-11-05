@@ -13,6 +13,8 @@
 #include "00/code_021a01dc.h"
 #include "00/code_021a17bc.h"
 #include "code_0200d118.h"
+#include "00/code_0219dd4c.h"
+#include "00/code_021a3264.h"
 
 void func_ov000_0219db18(s32 a, s32 b, s32 c, void *d) {
     s32 e;

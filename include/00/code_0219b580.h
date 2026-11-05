@@ -149,4 +149,3 @@ u32 func_ov000_0219c0c8(void);
 void ReleaseWiFiConnection(void);
 void InitWiFiConnection(void *a, void *b, s32 c, const char *d, const char *e, s32 f, s32 g, void *h, s32 i);
 // Declared here until the code that defines it is decompiled.
-void func_ov000_021a1430(void);

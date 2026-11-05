@@ -88,9 +88,6 @@ typedef struct Unk02194370Entry {
     /* 0c */ u32 mPos;
 } Unk02194370Entry;
 
-extern char data_ov000_021b333c[];
-extern u8 data_ov000_021b33a0[];
-extern char data_ov000_021b3440[];
 extern s8 data_ov000_021b3490[];
 extern u8 data_ov000_021b3494[];
 extern char data_ov000_021b34a4[];

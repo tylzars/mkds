@@ -47,6 +47,9 @@
 #include "Main/Unknown/unk_027e0000.h"
 #include "Main/Unknown/code_020be7fc.h"
 #include "Main/Unknown/code_020be930.h"
+#include "Main/Unknown/code_0203c5f8.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_020be930(int a) {
     data_0217b3d8->mUnk_0fc[a].mUnk_00 = 0;

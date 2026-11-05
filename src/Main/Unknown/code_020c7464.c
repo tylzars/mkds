@@ -44,6 +44,8 @@
 #include "Main/Unknown/code_02100de4.h"
 #include "Main/Unknown/unk_02169000.h"
 #include "Main/Unknown/unk_027e0000.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 s32 data_021696c0[10] = {0, 1, 2, 3, 4, 5, 9, 7, 8, 11};
 

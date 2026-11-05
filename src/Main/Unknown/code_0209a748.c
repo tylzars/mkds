@@ -26,6 +26,7 @@
 #include "Main/Unknown/code_020f8ddc.h"
 #include "Main/Unknown/unk_02156000.h"
 #include "Main/Unknown/code_020d7da8.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void InitCrab(u32 arg0) {
     u32 value0 = arg0;

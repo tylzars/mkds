@@ -16,6 +16,7 @@
 #include "code_020109c4.h"
 #include "code_02012b30.h"
 #include "code_02134398.h"
+#include "Main/Unknown/code_020681f0.h"
 
 char *BuildCharacterNsbcaPath(u16 a, s32 b) {
     char *dirPath = BuildCharacterDirPath(a);

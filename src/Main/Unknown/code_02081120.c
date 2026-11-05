@@ -5,6 +5,7 @@
 #include "Main/Unknown/code_0208b000.h"
 #include "Main/Unknown/unk_02155000.h"
 #include "Main/Unknown/code_020f36d8.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_020812d0(s32 a) {
     Kart *q = GetKart(a);

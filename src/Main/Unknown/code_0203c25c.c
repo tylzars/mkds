@@ -4,6 +4,8 @@
 #include "Main/Unknown/code_020a12b8.h"
 #include "Main/Unknown/code_020b1cdc.h"
 #include "Main/Unknown/code_0203e74c.h"
+#include "Main/Unknown/code_02068eac.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 u16 LookupRankPoints(u8 a) {
     u16 r = 0;

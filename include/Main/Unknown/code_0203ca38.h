@@ -6,9 +6,6 @@
 #include "Main/Unknown/code_0207a7fc.h"
 
 // Declared here until the code that defines them is decompiled.
-BOOL func_0207a574(void);
-s32 func_0207a538(void);
-s32 func_0207a4fc(void);
 
 // Steps the clock, sends the net finish requests, handles the mode 2 / 4 end and sets mRaceDone.
 void UpdateRaceProgress(void);

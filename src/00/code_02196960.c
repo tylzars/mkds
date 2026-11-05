@@ -18,6 +18,7 @@
 #include "code_021382a8.h"
 #include "00/code_0218e0fc.h"
 #include "00/code_0219742c.h"
+#include "00/code_021a6d5c.h"
 
 s32 func_ov000_0219735c(const s8 *a, u32 b) {
     char f[0x21];

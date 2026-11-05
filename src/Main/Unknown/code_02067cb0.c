@@ -6,6 +6,7 @@
 #include "Main/Unknown/code_02081120.h"
 #include "Main/Unknown/code_020ed5c0.h"
 #include "Main/Unknown/code_0206a354.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 int func_02067ec4(Kart *p, s32 *a, MapObject *c) {
     if (p->mVelocityLength > 0x3000 || (c->mFlags & 0x200)) {

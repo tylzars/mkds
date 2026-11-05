@@ -58,7 +58,6 @@ typedef struct Unk0219aeb0 {
 } Unk0219aeb0;
 
 // Declared here until the code that defines them is decompiled.
-BOOL func_ov000_0218e57c(u32 *a);
 
 BOOL Gt2ParseAddress(const char *a, u32 *b, u16 *c);
 u32 Gt2FormatAddress(u32 a, u32 b, char *c);

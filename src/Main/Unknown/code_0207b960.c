@@ -26,6 +26,8 @@
 #include "Main/Unknown/code_0207e64c.h"
 #include "Main/Unknown/code_0207e654.h"
 #include "Main/Unknown/code_0207fe70.h"
+#include "Main/Unknown/code_0203c5f8.h"
+#include "Main/Unknown/code_0203c8dc.h"
 
 void func_0207d6a4(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     s32 m;

@@ -15,3 +15,6 @@ typedef struct Unk0219dd4c {
 
 void func_ov000_0219dd4c(const void *a, u32 b);
 void func_ov000_0219ddbc(u32 a);
+u32 func_ov000_0219edb0(u32 a, u32 b);
+void func_ov000_021a1430(void);
+void func_ov000_021a1a38(s32 a, s32 b);

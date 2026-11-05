@@ -48,6 +48,9 @@
 #include "Main/Unknown/code_0200e000.h"
 #include "code_0214cfe4.h"
 #include "03/code_021d1c18.h"
+#include "03/code_021c6764.h"
+#include "03/code_021ca56c.h"
+#include "03/code_021cce78.h"
 
 void func_ov003_021c6668(void) {
     s32 a;

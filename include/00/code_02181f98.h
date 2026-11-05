@@ -326,8 +326,6 @@ void AdvanceWiFiVSMatching(void);
 #include "Main/Unknown/code_02128274.h"
 #include "Main/Unknown/code_0212b928.h"
 
-void InitWiFiVSMatching(void *heap);
-
 #include "Main/Unknown/code_0202b604.h"
 #include "Main/Unknown/code_02120240.h"
 #include "Main/Unknown/code_0212775c.h"
@@ -359,7 +357,6 @@ extern u8 data_ov000_021b05f0[];
 extern s32 data_ov000_021b0600[];
 extern u8 data_ov000_021b066c[3];
 
-void func_02036f10(s16);
 void func_ov000_02181ff0(void);
 void func_ov000_02182150(void);
 void func_ov000_021821e0(void);

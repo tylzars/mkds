@@ -9,6 +9,8 @@
 #include "code_02012b30.h"
 #include "code_02147288.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_02077bc0.h"
+#include "code_021471bc.h"
 
 // Position of the start placement with key c (the only one when there are not several) moved by d along the negated
 // first and e along the negated third axis of its rotation, and the rotation angles in b.

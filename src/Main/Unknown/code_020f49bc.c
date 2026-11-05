@@ -69,6 +69,8 @@
 #include "Main/Unknown/unk_0217d000.h"
 #include "code_0212bcac.h"
 #include "code_0212df7c.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_020f6a6c(ItemObject *a, void *b) {
     s32 t;

@@ -13,6 +13,7 @@
 #include "string.h"
 #include "code_02134398.h"
 #include "code_0200f5ac.h"
+#include "03/unk_021d6000.h"
 
 void func_ov003_021ce4d4(u32 a) {
     u32 f;

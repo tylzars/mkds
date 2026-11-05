@@ -35,6 +35,8 @@
 #include "code_0200eddc.h"
 #include "code_0214b824.h"
 #include "code_0214d018.h"
+#include "03/code_021cc8d4.h"
+#include "03/code_021cdcb8.h"
 
 void func_ov003_021c3dd4(void) {
     Unk021da104_04 *a;

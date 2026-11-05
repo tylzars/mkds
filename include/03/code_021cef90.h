@@ -4,8 +4,8 @@
 
 typedef struct Unk021d1770 Unk021d1770;
 
-Unk021d1770 *func_ov003_021d19e0();
-void func_ov003_021d1ffc();
+// K&R on purpose: code_021cef90.c calls func_ov003_021d2658 with a u8 array, and the typed header of this function
+// declares it with u16 *.
 void func_ov003_021d254c();
 
 void func_ov003_021cef90(void);

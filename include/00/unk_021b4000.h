@@ -73,7 +73,7 @@ extern char data_ov000_021b4464[];
 extern char data_ov000_021b43e4[];
 extern u8 data_ov000_021b4a48[];
 extern u8 data_ov000_021b4a50[];
-extern u16 data_ov000_021b4a00[];
+extern u16 data_ov000_021b4a00[2];
 extern const char *data_ov000_021b4a30[];
 extern u8 data_ov000_021b4a58[];
 extern u8 data_ov000_021b4a5c[];

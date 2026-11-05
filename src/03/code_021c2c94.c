@@ -25,6 +25,8 @@
 #include "03/unk_021d5000.h"
 #include "03/code_021bf810.h"
 #include "code_0214b824.h"
+#include "03/code_021cc8d4.h"
+#include "03/code_021cdcb8.h"
 
 void func_ov003_021c3078(void) {
     func_ov003_021c2fd4();

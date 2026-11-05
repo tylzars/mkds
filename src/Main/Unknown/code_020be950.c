@@ -53,6 +53,7 @@
 #include "Main/Unknown/code_021000d0.h"
 #include "Main/Unknown/code_020c0d9c.h"
 #include "01/code_021813f4.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 u32 func_020c0dc4(void) {
     return ((u32) data_0217b3dc->mUnk_000);

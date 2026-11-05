@@ -54,6 +54,9 @@
 #include "03/code_021d1dd0.h"
 #include "03/code_021d3000.h"
 #include "03/code_021bf810.h"
+#include "03/code_021c6764.h"
+#include "03/code_021c6f08.h"
+#include "03/code_021cce78.h"
 
 void func_ov003_021c965c(void) {
     int a;

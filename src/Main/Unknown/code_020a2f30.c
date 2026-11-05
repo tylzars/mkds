@@ -32,6 +32,7 @@
 #include "Main/Unknown/unk_02167000.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020a3f18.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void InitBalloon(u32 arg0) {
     u32 value0 = arg0;

@@ -1575,5 +1575,4 @@ extern void *data_usa_0217aa68;
 extern s32 data_usa_0217ac7c;
 extern s32 data_usa_0217ac90;
 extern s32 data_usa_0217ac78;
-extern s32 data_usa_0217ac90;
 extern u16 data_usa_0217ac70;

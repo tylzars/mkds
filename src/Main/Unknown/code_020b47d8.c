@@ -9,6 +9,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_02021e8c.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_0203c5f8.h"
 
 u16 func_020b4d9c(void) {
     Unk021759c0 *p = data_021759c0;

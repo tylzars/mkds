@@ -11,7 +11,6 @@ extern s32 data_usa_021656a4;
 extern s32 data_usa_021656a8;
 extern s32 data_usa_021656ac;
 extern s32 data_usa_021656b0;
-extern s32 data_usa_021656b4;
 extern s32 data_usa_021656b8;
 extern s32 data_usa_021656bc;
 extern s32 data_usa_021656c8;

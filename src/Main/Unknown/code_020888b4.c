@@ -46,6 +46,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_02147cd8.h"
 #include "code_02148538.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 static inline s32 func_020888b4_inline(const Vec3 *a, const Vec3 *b) {
     s32 x = (a->x - b->x) >> 12;

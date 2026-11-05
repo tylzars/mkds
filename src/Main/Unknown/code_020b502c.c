@@ -22,6 +22,7 @@
 #include "Main/Unknown/code_020b681c.h"
 #include "Main/Unknown/code_020b6800.h"
 #include "Main/Unknown/code_02036bec.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 const Vec3 data_02156874 = {0, 0, 0};
 

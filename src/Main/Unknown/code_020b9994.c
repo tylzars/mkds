@@ -50,6 +50,8 @@
 #include "code_0212df7c.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_020bb530.h"
+#include "Main/Unknown/code_0203c5f8.h"
+#include "Main/Unknown/code_0203c8dc.h"
 
 void func_020bb530(void) {
     Unk0217b3cc *p;

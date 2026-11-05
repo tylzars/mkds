@@ -93,3 +93,7 @@ void func_ov000_021a4fe0(Unk021425e8 *event);
 void func_ov000_021a5088(Unk021a5088 *event);
 void func_ov000_021a524c(Unk021425e8 *event);
 void func_ov000_021a52b0(Unk021a5088 *event);
+u32 func_ov000_021a5bfc(void);
+s32 func_ov000_021a5db0(void);
+s32 func_ov000_021a6024(void);
+s32 func_ov000_021a61e4(void);

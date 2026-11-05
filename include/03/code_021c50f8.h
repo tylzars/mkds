@@ -9,7 +9,6 @@ extern u16 data_ov003_021da1e0;
 extern u32 data_ov003_021da1e4;
 
 // Declared here until the code that defines them is decompiled.
-void func_ov003_021c1fc8(void);
 void func_ov003_021c50f8(void);
 void func_ov003_021c5120(void);
 void func_ov003_021c515c(void);

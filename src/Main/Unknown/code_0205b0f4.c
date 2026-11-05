@@ -49,6 +49,9 @@
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02046be8.h"
 #include "Main/Unknown/unk_02165000.h"
+#include "Main/Unknown/code_0203c25c.h"
+#include "Main/Unknown/code_0203c5f8.h"
+#include "Main/Unknown/code_0203c8dc.h"
 
 void func_0205d07c(void) {
     s32 i;

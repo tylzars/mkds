@@ -21,6 +21,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 u32 func_0208bd04(u32 arg0) {
     u32 value0 = arg0;

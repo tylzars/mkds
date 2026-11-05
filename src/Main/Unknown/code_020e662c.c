@@ -17,6 +17,7 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/code_0206bcb0.h"
+#include "code_021471bc.h"
 
 void func_020e6df0(Unk02012f58 *p) {
     data_0217b850->mUnk_00[0].x = 0x1000;

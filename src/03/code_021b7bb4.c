@@ -11,6 +11,7 @@
 #include "00/code_021a8aa8.h"
 #include "00/unk_021b6000.h"
 #include "03/unk_021d7000.h"
+#include "00/code_021a6d5c.h"
 
 s32 func_ov003_021b94ac(void) {
     u32 value0;

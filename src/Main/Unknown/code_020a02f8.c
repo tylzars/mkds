@@ -48,6 +48,7 @@
 #include "Main/Unknown/code_020a22ac.h"
 #include "Main/Unknown/code_020a2300.h"
 #include "Main/Unknown/code_0203ca38.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_020a238c(KartBalloons *p0) {
     gStandings->mKartBalloons = p0;

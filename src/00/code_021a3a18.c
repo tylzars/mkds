@@ -16,6 +16,7 @@
 #include "code_02139f70.h"
 #include "00/code_021a3668.h"
 #include "00/code_021a3690.h"
+#include "00/code_021a6d5c.h"
 
 s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const char *d, const char *e, s32 f, s32 g, Unk021a4a08Func88 h,
                         Unk021a4a08Func8c i, Unk021a4a08Func8c j, Unk021a4a08Func94 k, Unk021a4a08Func98 l,

@@ -31,6 +31,7 @@
 #include "code_02133048.h"
 #include "00/code_02193b88.h"
 #include "00/code_02190cd4.h"
+#include "00/code_021a6d5c.h"
 
 void func_ov000_021920d8(s8 *p, s32 n) {
     s32 i;

@@ -58,7 +58,6 @@ extern u8 data_ov000_021b0d04[40];
 extern char data_ov000_021b0e18[];
 extern char data_ov000_021b0e24[];
 
-void func_02036f10(s16);
 void func_ov000_02183330(void);
 void func_ov000_02183444(void);
 void func_ov000_021834b0(s32 t);

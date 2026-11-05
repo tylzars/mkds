@@ -12,6 +12,7 @@
 #include "00/code_021a6844.h"
 #include "code_0200fc8c.h"
 #include "code_0214d018.h"
+#include "00/unk_021b0000.h"
 
 void func_ov003_021bac90(s16 *a) {
     if (a == NULL) {

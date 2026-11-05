@@ -57,6 +57,9 @@
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_0206a354.h"
 #include "Main/Unknown/code_0206d020.h"
+#include "Main/Unknown/code_0203c5f8.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_020681f0.h"
 
 BOOL func_0206a24c(Kart *p) {
     Unk0206ceb4 *s;

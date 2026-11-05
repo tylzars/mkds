@@ -60,6 +60,7 @@
 #include "Main/Unknown/code_020d7da8.h"
 #include "Main/Unknown/code_0210b850.h"
 #include "Main/Unknown/code_020d9000.h"
+#include "code_021471bc.h"
 
 #pragma thumb on
 

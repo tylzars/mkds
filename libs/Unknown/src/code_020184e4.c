@@ -17,6 +17,7 @@
 #include "code_0201c528.h"
 #include "code_02146cbc.h"
 #include "Main/Unknown/code_02146000.h"
+#include "code_021471bc.h"
 
 void func_0201e540(Vec3 *v) {
     v->x = (s32) (data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 8;

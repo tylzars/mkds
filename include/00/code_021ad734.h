@@ -131,33 +131,25 @@ extern u32 data_ov000_021b4c28;
 extern u8 data_ov000_021b4c2c[6];
 extern u8 data_ov000_021b4c40[8];
 extern u8 data_ov000_021b6364;
-extern u8 data_ov000_021b6368;
 extern u16 data_ov000_021b636c;
 extern u16 data_ov000_021b6370;
 extern u16 data_ov000_021b6374;
 extern u16 data_ov000_021b6378;
-extern u32 data_ov000_021b637c;
 extern u32 data_ov000_021b6380;
-extern u32 data_ov000_021b638c;
 extern u32 data_ov000_021b6390;
 extern u32 data_ov000_021b6394;
 extern u32 data_ov000_021b639c;
-extern u32 data_ov000_021b63b0;
 extern u32 data_ov000_021b63b4;
-extern u32 data_ov000_021b63bc;
 extern Thread *data_ov000_021b63c0;
 // Objects whose layout isn't known yet.
 extern u8 *data_ov000_021b63c4;
 extern u32 data_ov000_021b63c8;
 extern u32 data_ov000_021b63cc;
-extern u16 data_ov000_021b63d0[3];
 // Objects whose layout isn't known yet.
 extern u8 data_ov000_021b641a[];
-extern Unk021b6434 data_ov000_021b6434[8];
 extern Unk021a998c data_ov000_021b64f8;
 extern Thread data_ov000_021b655c;
 extern Thread data_ov000_021b661c;
-extern Unk021b69dc data_ov000_021b69dc[8];
 extern u8 data_ov000_021b73a0[];
 
 u8 *func_ov000_021ad734(u8 a, u32 b, u8 *c, u32 d);

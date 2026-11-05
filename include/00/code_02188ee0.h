@@ -4,9 +4,6 @@
 
 typedef struct Unk02188ec0 Unk02188ec0;
 
-u32 func_ov000_021a5bfc(void);
-s32 func_ov000_021a6024(void);
-
 u8 func_ov000_02188ee0(Unk02188ec0 *object);
 u32 func_ov000_02189030(Unk02188ec0 *object);
 u32 func_ov000_02189134(Unk02188ec0 *object);

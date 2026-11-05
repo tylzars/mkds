@@ -94,6 +94,10 @@
 #include "Main/Unknown/code_0208a000.h"
 #include "Main/Unknown/code_020f9000.h"
 #include "Main/Unknown/code_0210a000.h"
+#include "Main/Unknown/code_0203c5f8.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_02077bc0.h"
+#include "code_021471bc.h"
 
 void func_020fcb30(Unk020fc2e8 *p) {
     p->mUnk_170 = 1;

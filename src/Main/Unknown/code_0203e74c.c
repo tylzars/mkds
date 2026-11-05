@@ -16,6 +16,8 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "00/code_0219b580.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_0203c5f8.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 s32 func_0203ef58(void) {
     BOOL r;

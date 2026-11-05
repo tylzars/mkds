@@ -16,6 +16,7 @@
 #include "code_02147cd8.h"
 #include "code_02148538.h"
 #include "Main/Unknown/code_02045874.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_02093190(u32 arg0) {
     u32 value0 = arg0;

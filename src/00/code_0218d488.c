@@ -9,6 +9,7 @@
 #include "string.h"
 #include "code_02134398.h"
 #include "code_02139f70.h"
+#include "00/code_021a6d5c.h"
 
 #pragma opt_propagation off
 

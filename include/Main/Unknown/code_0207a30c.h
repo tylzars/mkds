@@ -4,5 +4,3 @@
 
 void func_0207a30c(unsigned int p0);
 unsigned int func_0207a31c(void);
-
-void func_0207a5f0(s32 a);

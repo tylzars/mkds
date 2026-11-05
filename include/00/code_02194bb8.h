@@ -165,7 +165,6 @@ extern char data_ov000_021b394c[];
 extern char data_ov000_021b396c[];
 extern char data_ov000_021b3994[];
 extern char data_ov000_021b399c[];
-extern char data_ov000_021b4d6c[];
 
 BOOL GpiUpdateSearches(GpConnection *a);
 s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b);

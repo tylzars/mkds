@@ -490,7 +490,6 @@ BOOL func_0206c354(Kart *p, const Vec3 *a, int flag);
 void func_0206c450(Unk0206c1ac *obj, Kart *p);
 void func_0206c488(Unk0206c1ac *obj, Kart *p);
 
-void func_02068a64(Kart *p, int a, int b);
 void func_0208b748(u32 idx, const Vec3 *pos, void *p, void (*cb)());
 int func_0206c494(Kart *p);
 void func_0206cc60(Kart *p, int arg);
@@ -501,9 +500,6 @@ extern Unk0217d26c data_0217d26c;
 extern Unk0217d26c data_0217d274;
 extern Unk0217d26c data_0217d284;
 extern Unk0217d26c data_0217d28c;
-Unk0206cdd4_B *func_0207a6b0(void);
-void func_01ffc9e8(Kart *p, int a);
-void func_020681f0(Kart *p);
 #include "Main/Unknown/code_0210dc7c.h"
 void func_020718c8(void *p, int arg);
 void func_02071944(void *p, int arg);

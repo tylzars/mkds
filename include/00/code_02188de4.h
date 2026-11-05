@@ -30,6 +30,5 @@ typedef struct Unk02188db0 {
 } Unk02188db0;
 
 // Declared here until the code that defines it is decompiled.
-void func_ov000_0218a6ac(const u8 *input, u8 *output);
 
 u32 func_ov000_02188de4(struct Unk02188ec0 *object, u32 a, Unk02188de4 *out);

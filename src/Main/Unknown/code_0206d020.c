@@ -29,6 +29,7 @@
 #include "Main/Unknown/unk_02154000.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_0206a354.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 static inline s32 func_0206dbf8_inline(Kart *q) {
     BOOL c;

@@ -4,5 +4,3 @@
 
 typedef struct Unk021b916c Unk021b916c;
 typedef struct Unk021d7c54 Unk021d7c54;
-
-s32 func_ov003_021b8e60(s32 a, Unk021d7c54 *b, s32 *c, Unk021b916c *d);

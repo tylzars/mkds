@@ -10,6 +10,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_02147cd8.h"
 #include "code_0200f5ac.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 Unk02175620_bc *func_02040da8(u32 a) {
     return &gCourseMap->mUnk_b8[gCourseMap->mUnk_34[gCourseMap->mUnk_fc[a]].mUnk_18];

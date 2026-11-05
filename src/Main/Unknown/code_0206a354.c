@@ -28,6 +28,8 @@
 #include "Main/Unknown/unk_027e0000.h"
 #include "code_02146d78.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_020681f0.h"
 
 void StartKartState2(Kart *p, int a, int b) {
     int d = 1;

@@ -8,6 +8,7 @@
 #include "Main/Unknown/unk_027e0000.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_020ee684.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_020fce94(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, u16 d) {
     p0->mUnk_25c += d;

@@ -61,11 +61,9 @@ typedef struct Unk0218635c {
 #include "code_0200db4c.h"
 
 extern char *data_ov000_021b1384;
-extern char data_ov000_021b13ac[];
 extern char data_ov000_021b13c4[];
 extern char data_ov000_021b13c8[];
 extern char data_ov000_021b13d0[];
-extern char data_ov000_021b13d8[];
 extern char data_ov000_021b13f4[];
 extern char data_ov000_021b1400[];
 extern char data_ov000_021b1420[];

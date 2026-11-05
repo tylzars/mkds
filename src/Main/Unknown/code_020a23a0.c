@@ -29,6 +29,7 @@
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217b200.h"
+#include "code_021471bc.h"
 
 void func_020a29cc(void) {
     s32 x;

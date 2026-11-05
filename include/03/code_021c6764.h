@@ -42,4 +42,3 @@ void func_ov003_021c6d0c(void);
 void func_ov003_021c6d68(void);
 void func_ov003_021c6da4(void);
 void func_ov003_021c6e38(void);
-void func_ov003_021cd9dc(const u8 *a);

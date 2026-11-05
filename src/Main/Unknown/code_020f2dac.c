@@ -24,6 +24,7 @@
 #include "Main/Unknown/code_020ee684.h"
 #include "Main/Unknown/code_020f49bc.h"
 #include "Main/Unknown/code_020fe4b4.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_020f4884(Unk020f40dc *rec) {
     s32 i;

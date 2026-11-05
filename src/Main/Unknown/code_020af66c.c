@@ -95,6 +95,7 @@
 #include "Main/Unknown/code_020be7fc.h"
 #include "Main/Unknown/code_020c5ce0.h"
 #include "Main/Unknown/code_0212b1a8.h"
+#include "Main/Unknown/code_0203c5f8.h"
 
 void func_020b18b0(void) {
     if (func_020b64e8() != 0) {

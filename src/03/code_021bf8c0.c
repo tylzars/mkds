@@ -25,6 +25,7 @@
 #include "03/unk_021d5f00.h"
 #include "code_02142eac.h"
 #include "code_0214b824.h"
+#include "03/unk_021d67d8.h"
 
 static inline void func_ov003_021bfbd0_inline(Unk021bf920 *p, u32 *x, u32 *y) {
     *x = (p->mUnk_00 & 0x1ff0000) >> 16;

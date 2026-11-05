@@ -495,7 +495,6 @@ typedef struct {
     /* 24 */ BOOL mUnk_24;
 } Unk020f40dc;
 
-extern Kart *GetKart(s32 idx);
 #include "Main/Unknown/code_020d6dc0.h"
 
 extern s32 data_0217bc38[];

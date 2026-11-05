@@ -62,13 +62,10 @@ typedef struct Unk021b3bdc {
 
 extern s32 data_ov000_021b3b2c;
 extern u8 *data_ov000_021b3b30;
-extern u32 data_ov000_021b3b34;
 extern char data_ov000_021b3b38[];
 extern char data_ov000_021b3b40[];
 extern const Unk021b3b68 data_ov000_021b3b68;
 extern Unk02196960Key data_ov000_021b3b78;
-extern u8 data_ov000_021b3b88[];
-extern u8 data_ov000_021b3b98[];
 extern const Unk021b3bdc data_ov000_021b3bdc;
 extern const Unk021b3c08 data_ov000_021b3c08;
 extern const Unk021b3c88 data_ov000_021b3c88;

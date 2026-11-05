@@ -8,6 +8,7 @@
 #include "Main/Unknown/code_02152918.h"
 #include "Main/Unknown/code_02152ab0.h"
 #include "Main/Unknown/code_02152ac4.h"
+#include "code_02152a24.h"
 
 #pragma thumb on
 

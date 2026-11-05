@@ -13,9 +13,6 @@ typedef struct Unk021a5a78 {
     /* 0c */ u32 mUnk_0c;
 } Unk021a5a78;
 
-extern u8 data_ov000_021b07bc[];
-extern u8 data_ov000_021b07c4[];
-
 void func_ov000_021a574c(void);
 void func_ov000_021a5794(void *a);
 void func_ov000_021a57a8(void);

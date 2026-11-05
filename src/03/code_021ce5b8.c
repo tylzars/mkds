@@ -13,6 +13,7 @@
 #include "03/code_021d27d8.h"
 #include "code_0200f5ac.h"
 #include "registers.h"
+#include "03/code_021ce110.h"
 
 u32 func_ov003_021ce920(void (*a)(u32)) {
     Unk021da280 *d;

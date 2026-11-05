@@ -15,5 +15,3 @@ void UpdateRaceProgressKart(Vec3 *a, RaceProgressKart *b);
 void func_0203e370(RaceProgressKart *a, s32 b);
 void func_0203e4c4(u32 a, u32 b);
 void func_0203e550(RaceProgressKart *a);
-
-u32 func_0207a7fc(s32 a);

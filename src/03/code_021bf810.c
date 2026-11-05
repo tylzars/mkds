@@ -13,6 +13,7 @@
 #include "03/code_021d1000.h"
 #include "code_0214d018.h"
 #include "03/code_021d27d8.h"
+#include "03/unk_021d67d8.h"
 
 void func_ov003_021bf8b0(void) {
     func_ov003_021d2808(&data_ov003_021da154);

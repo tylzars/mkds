@@ -48,6 +48,7 @@
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_020f8d9c.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_020f1048(ItemPool *v1, s32 v2, ItemObject **out, u16 v3, Vec3 *v) {
     s32 i;

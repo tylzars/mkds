@@ -26,6 +26,7 @@
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "code_02147288.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 Unk0217ae84 *func_020846a8(int arg0) {
     u32 value0 = (u32) arg0;

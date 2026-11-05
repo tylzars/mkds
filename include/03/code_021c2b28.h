@@ -18,6 +18,3 @@ extern u8 data_ov003_021d6fa8[];
 extern u8 data_ov003_021d6fbc[];
 
 void func_ov003_021c2b28(void);
-
-void func_ov003_021bf8c0(void);
-void func_ov003_021cc948(u8 *a, u32 b, u32 c);

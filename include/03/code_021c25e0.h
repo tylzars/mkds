@@ -34,7 +34,4 @@ void func_ov003_021c27f8(u32 a);
 void func_ov003_021c2824(void);
 void func_ov003_021c2840(u32 a);
 // Not decompiled yet.
-void func_ov003_021d0e9c(u8 *a, u8 *b);
-void func_ov003_021d0ee0(void);
 // Not decompiled yet.
-u32 func_ov003_021d11d4(void);

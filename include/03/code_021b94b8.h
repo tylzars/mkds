@@ -145,13 +145,6 @@ extern RingQueue data_ov003_021d8a2c;
 extern Unk021d8a4c data_ov003_021d8a4c;
 extern Unk021ba778Src data_ov003_021d8ac0;
 
-s32 func_ov003_021b7cec(s32 id, Unk021b7cec *addr, u32 length);
-s32 func_ov003_021b7d1c(s32 count, Unk021b7ba0 *set, void *arg2, void *arg3, Unk021b7d1c *arg4);
-s32 func_ov003_021b7d68(s32 id, void *buffer, s32 length, s32 flags, Unk021b7cec *out, s32 *outLength);
-s32 func_ov003_021b7dc8(void);
-s32 func_ov003_021b7df4(u32 arg0, u32 mask, u32 arg2);
-s32 func_ov003_021b86e4(s32 mode, Unk021b86e4 *buf, Unk021b916c *list, s32 id);
-
 void func_ov003_021b94b8(s32 code);
 void func_ov003_021b94c4(Unk021b94c4 *req);
 void func_ov003_021b9518(void);

@@ -28,7 +28,4 @@ void func_ov003_021cb06c(void);
 void func_ov003_021cb084(void);
 void func_ov003_021cb0b0(void);
 void func_ov003_021cb0e0(void);
-void func_ov003_021cc948(u8 *a, u32 b, u32 c);
 // Declared here until the code that defines them is decompiled.
-u32 func_ov003_021cd1c4(void);
-void func_ov003_021d1890(Unk021d1770 *param_1, s32 param_2, u32 param_3, u32 param_4);

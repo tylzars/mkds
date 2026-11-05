@@ -27,6 +27,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "code_0200eddc.h"
 #include "code_0214c778.h"
+#include "Main/Unknown/code_0203c5f8.h"
 
 void func_020ae824(void) {
     u32 v;

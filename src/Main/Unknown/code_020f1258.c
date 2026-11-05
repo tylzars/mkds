@@ -24,6 +24,8 @@
 #include "Main/Unknown/code_020f1d70.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_020ee684.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
     Vec3 t;

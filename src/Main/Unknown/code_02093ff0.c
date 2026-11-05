@@ -21,6 +21,7 @@
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_02166000.h"
 #include "Main/Unknown/unk_021759c0.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 u32 InitTeresa(u32 arg0) {
     u32 value0 = arg0;

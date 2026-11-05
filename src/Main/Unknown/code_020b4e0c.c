@@ -11,6 +11,7 @@
 #include "Main/Unknown/code_0207a880.h"
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/code_020b4e70.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 s32 func_020b4e0c(void) {
     s32 r = 1;

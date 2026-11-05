@@ -11,6 +11,7 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_0205af90.h"
 #include "Main/Unknown/code_020a12b8.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_0203fed4(void) {
     RaceProgress *p;

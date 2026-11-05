@@ -41,6 +41,7 @@
 #include "03/code_021ca000.h"
 #include "03/code_021cd000.h"
 #include "03/unk_021d6000.h"
+#include "03/code_021cc8d4.h"
 
 void func_ov003_021cb0e0(void) {
     func_ov003_021d1ee0(2, 1, 1, (u16) (8));

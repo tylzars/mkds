@@ -17,8 +17,6 @@ extern Unk021d299c data_ov003_021d64b4[];
 extern u8 data_ov003_021d73cc[];
 extern Unk021d73d0 data_ov003_021d73d0;
 
-void func_ov003_021c6e38(void);
-void func_ov003_021c7748(void);
 void func_ov003_021c7d30(u8 a);
 void func_ov003_021c7d3c(void);
 void func_ov003_021c7d58(void);
@@ -60,7 +58,3 @@ void func_ov003_021c948c(void);
 void func_ov003_021c94c8(void);
 void func_ov003_021c9500(void);
 void func_ov003_021c965c(void);
-void func_ov003_021cca30(const void *b);
-void func_ov003_021cce78(void);
-void func_ov003_021ccea4(u32 a, u32 b, u16 c, u16 d, u32 e);
-void func_ov003_021d2094(void *e, s32 f, u32 g, u32 h, s32 l, u16 *m, s32 n);

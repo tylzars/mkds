@@ -34,6 +34,7 @@
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036bec.h"
+#include "Main/Unknown/code_0203c5f8.h"
 
 void func_020d0e28(void) {
     u32 value0;

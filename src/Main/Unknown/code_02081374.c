@@ -6,6 +6,7 @@
 #include "Main/Unknown/code_0208b000.h"
 #include "code_02147cd8.h"
 #include "code_0201c528.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_0208155c(s32 a, s32 b) {
     Unk0201ca6c *p = data_0217ae84[a].mUnk_2c;

@@ -24,6 +24,7 @@
 #include "Main/Unknown/code_02087d0c.h"
 #include "Main/Unknown/code_020846c0.h"
 #include "Main/Unknown/code_02147000.h"
+#include "code_021471bc.h"
 
 static inline void func_0206331c_inline(u32 a, u8 *b, Unk02084b2c *c, void *d, const char *e, const char *f, u16 *g) {
     if (f == NULL) {

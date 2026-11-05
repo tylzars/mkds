@@ -105,7 +105,6 @@ extern Unk0216fc1c data_0216fd30[1];
 
 u32 func_020091fc(Unk02007ec4 *a);
 u32 func_0200921c(Unk02008f00Func a, u32 b, Unk02007ec4 *c);
-void func_020092a4(void);
 void func_020092d0(u32 a, u16 b, u32 c);
 void func_02009494(void);
 void func_020094b8(u32 a, u16 b, u32 c);

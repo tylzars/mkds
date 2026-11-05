@@ -16,6 +16,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_020a7148.h"
 #include "Main/Unknown/code_0209bf70.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_020a7148(MapObject *a) {
     if (func_020d3bf8(0x6a) == 0) {

@@ -14,6 +14,7 @@
 #include "Main/Unknown/code_021059e0.h"
 #include "code_0212bcac.h"
 #include "code_0212df7c.h"
+#include "Main/Unknown/code_0203c8dc.h"
 
 void func_02111024(void) {
     s32 a;

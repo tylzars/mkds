@@ -35,6 +35,7 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_0206a354.h"
 #include "Main/Unknown/code_0206e874.h"
+#include "Main/Unknown/code_020681f0.h"
 
 void func_01ffb130(Kart *p) {
     s32 k;

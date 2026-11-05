@@ -24,6 +24,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "code_020172d0.h"
 #include "code_0201750c.h"
+#include "Main/Unknown/code_0203c8dc.h"
 
 #pragma thumb on
 

@@ -53,6 +53,8 @@
 #include "Main/Unknown/code_020fe264.h"
 #include "Main/Unknown/code_020fe268.h"
 #include "Main/Unknown/code_020fe3d8.h"
+#include "Main/Unknown/code_02077bc0.h"
+#include "code_021471bc.h"
 
 void func_020fe3d8(Unk020fdae8 *a) {
     u32 v1;

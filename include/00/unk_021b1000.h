@@ -80,3 +80,5 @@ extern char data_ov000_021b1298[];
 extern char data_ov000_021b12a0[];
 extern char data_ov000_021b12ac[];
 extern char data_ov000_021b1300[];
+extern char data_ov000_021b13ac[];
+extern char data_ov000_021b13d8[];

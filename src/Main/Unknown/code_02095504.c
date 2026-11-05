@@ -27,6 +27,7 @@
 #include "code_02146cbc.h"
 #include "code_02147cd8.h"
 #include "code_02148538.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 u8 func_02095efc(MoveTree *a, Kart *b, u8 *c, u8 *d) {
     u8 v;

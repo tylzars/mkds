@@ -31,6 +31,7 @@
 #include "00/code_02196590.h"
 #include "00/code_02196594.h"
 #include "00/unk_021b23b0.h"
+#include "00/code_021a6d5c.h"
 
 #pragma opt_propagation off
 

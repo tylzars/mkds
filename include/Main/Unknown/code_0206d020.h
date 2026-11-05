@@ -4,8 +4,6 @@
 
 typedef struct Kart Kart;
 
-void func_0207a70c(s32 a);
-
 void func_0206d020(Kart *p, int a, int b);
 void func_0206d138(Kart *p);
 void func_0206d18c(Kart *p);

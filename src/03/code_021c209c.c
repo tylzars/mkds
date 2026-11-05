@@ -29,6 +29,7 @@
 #include "code_0214d93c.h"
 #include "code_0214e308.h"
 #include "code_021519d4.h"
+#include "03/code_021d28e0.h"
 
 s32 func_ov003_021c2494(void *a, s32 b, u32 c) {
     data_ov003_021da174 = a;

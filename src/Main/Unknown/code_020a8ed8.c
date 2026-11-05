@@ -32,6 +32,7 @@
 #include "Main/Unknown/code_0203c000.h"
 #include "Main/Unknown/unk_0215f000.h"
 #include "Main/Unknown/code_020a9000.h"
+#include "Main/Unknown/code_0203c25c.h"
 
 u32 func_020a9cd0(u32 p0) {
     return p0;

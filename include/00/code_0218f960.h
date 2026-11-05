@@ -103,8 +103,6 @@ typedef struct Unk0218fca8_108 {
     /* 008 */ char mUnk_008[0x100];
 } Unk0218fca8_108;
 
-extern char data_ov000_021b27c4[];
-extern char data_ov000_021b27d0[];
 extern char data_ov000_021b27d8[];
 extern char data_ov000_021b2808[];
 extern char data_ov000_021b280c[];

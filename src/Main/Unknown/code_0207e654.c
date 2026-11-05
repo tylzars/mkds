@@ -32,6 +32,9 @@
 #include "Main/Unknown/code_020ed5c0.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/unk_0217a000.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_020681f0.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 static inline BOOL func_0207f600_inline(s32 a) {
     return (GetKart(a)->mUnk_7c & 0x402020) == 0;

@@ -43,6 +43,11 @@
 #include "Main/Unknown/code_02055730.h"
 #include "Main/Unknown/code_02081120.h"
 #include "Main/Unknown/code_0206d020.h"
+#include "Main/Unknown/code_0203c5f8.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_020681f0.h"
+#include "Main/Unknown/code_02077bc0.h"
+#include "code_021471bc.h"
 
 s32 func_02067bf4(Kart *a, s32 *b) {
     *b = 0xc;

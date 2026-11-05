@@ -17,6 +17,7 @@
 #include "00/code_021a4b84.h"
 #include "code_02139f70.h"
 #include "00/code_021a01dc.h"
+#include "00/code_0219dd4c.h"
 
 u32 func_ov000_021a2c64(void) {
     if (func_ov000_0219c39c() != 0) {

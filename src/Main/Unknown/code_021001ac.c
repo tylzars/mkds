@@ -49,6 +49,8 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_021025d8.h"
 #include "01/code_021a2034.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_02102668(Unk02102668 *p0) {
     p0->mUnk_170 = 0x1u;

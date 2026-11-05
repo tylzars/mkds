@@ -27,7 +27,6 @@ extern u8 data_ov003_021da1a0;
 extern void *data_ov003_021da1a4;
 
 // Not decompiled yet.
-void func_ov003_021bf8c0(void);
 void func_ov003_021c2c94(void);
 void func_ov003_021c2cc8(s32 a);
 void func_ov003_021c2d18(void);
@@ -42,6 +41,4 @@ void func_ov003_021c2f68(void);
 void func_ov003_021c2f98(void);
 void func_ov003_021c2fd4(void);
 void func_ov003_021c3078(void);
-void func_ov003_021cc948(u8 *a, u32 b, u32 c);
 // Not decompiled yet.
-void func_ov003_021cdcf0(u32 a);

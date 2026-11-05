@@ -96,6 +96,8 @@
 #include "Main/Unknown/code_02068000.h"
 #include "Main/Unknown/code_0206390c.h"
 #include "Main/Unknown/code_0206a354.h"
+#include "Main/Unknown/code_02077bc0.h"
+#include "code_021471bc.h"
 
 void func_020732d8(Kart *p) {
     s32 i;

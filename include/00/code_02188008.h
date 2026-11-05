@@ -68,8 +68,6 @@ typedef struct Unk02188408 {
 
 extern const s8 *data_ov000_021b1488;
 extern u8 data_ov000_021b1474[];
-extern char data_ov000_021b13ac[];
-extern char data_ov000_021b13d8[];
 extern u8 data_ov000_021b147c[];
 
 // Declared here until the code that defines them is decompiled.

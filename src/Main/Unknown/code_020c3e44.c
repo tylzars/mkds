@@ -64,6 +64,9 @@
 #include "Main/Unknown/code_0205f000.h"
 #include "Main/Unknown/code_020c5db0.h"
 #include "Main/Unknown/code_020b33d8.h"
+#include "Main/Unknown/code_0203c5f8.h"
+#include "Main/Unknown/code_0203c8dc.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 u32 func_020c5dc4(void) {
     return ((u32) data_0217b3f0->mUnk_00);

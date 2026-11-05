@@ -2,6 +2,7 @@
 #include "00/code_02188ec0.h"
 #include "00/code_0218a64c.h"
 #include "code_0214d018.h"
+#include "00/code_0218a67c.h"
 
 u32 func_ov000_02188de4(struct Unk02188ec0 *v1, u32 a, Unk02188de4 *v2) {
     Unk02188db0 *p;

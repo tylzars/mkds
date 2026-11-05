@@ -31,6 +31,7 @@
 #include "03/code_021bf4dc.h"
 #include "03/code_021bf410.h"
 #include "03/code_021bf810.h"
+#include "03/code_021bf8c0.h"
 
 void func_ov003_021cbb98(void) {
     s32 a;

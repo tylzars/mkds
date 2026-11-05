@@ -29,6 +29,7 @@
 #include "Main/Unknown/code_0208b484.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_0201c528.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_02081060(Kart *p) {
     Unk0201ca6c *e;

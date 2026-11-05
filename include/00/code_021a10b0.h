@@ -5,7 +5,6 @@
 void SetupMatching(u8 a, u8 b, UnkFunc *c, u32 d);
 void func_ov000_021a1140(s32 a);
 u32 func_ov000_021a141c(void);
-void func_ov000_021a1430(void);
 u32 func_ov000_021a1488(void);
 u32 func_ov000_021a1514(void **a);
 u32 func_ov000_021a158c(void **output);

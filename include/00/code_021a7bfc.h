@@ -40,7 +40,6 @@ s32 func_ov000_021a81a8(Unk021a6fa8 *a, u8 *b, s32 c, u16 d, u16 *e, s32 f);
 u32 func_ov000_021a8268(u32 a, u32 b, u32 c, u16 d, u32 e, u32 f);
 s32 func_ov000_021a8344(Unk021a7064 *a);
 s32 func_ov000_021a836c(s32 a);
-void func_ov000_021a8424(void);
 void func_ov000_021a8454(Unk021a7154 *a);
 void func_ov000_021a84c4(Unk021a6fa8 *a);
 s32 func_ov000_021a8580(Unk021a7064 *a);

@@ -9,6 +9,7 @@
 #include "code_02146d78.h"
 #include "code_02147288.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 // Copies row 1 of the matrix at 0x120 (mUnk_120_m), the kart's up direction, to the out vector. The camera takes it as
 // its up while bit 0x40000000 of mUnk_48 is set and the world up (0, 0x1000, 0) otherwise; the steering code removes

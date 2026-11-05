@@ -23,6 +23,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_02044618.h"
 #include "Main/Unknown/code_0204f240.h"
+#include "Main/Unknown/code_0203c5f8.h"
 
 void func_0203b598(Unk02056bc0 *a, Unk0217aa1c_144_00 *b, Unk02056bc0 *c) {
     u16 v1 = a->mUnk_00 + b->mUnk_00;

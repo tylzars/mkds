@@ -10,6 +10,7 @@
 #include "Main/Unknown/code_020c3db4.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_020b1de4.h"
+#include "Main/Unknown/code_0203c5f8.h"
 
 s32 func_020b2d54(void) {
     if (IsKartEnded((u16) func_020b2d90()) != 0) {

@@ -42,12 +42,10 @@ typedef struct CourseMapCamera {
 
 #include "code_02012b30.h" // Unk02012f58
 
-extern s32 data_usa_021656c0;
 extern s32 data_usa_021656c4;
 extern Unk0214ad4c data_usa_02170284;
 extern Unk02012f58 data_usa_021702c8;
 extern s32 data_usa_0217ac80;
-extern s32 data_usa_0217ac90;
 
 void UpdateCameraWobble(Camera *p);
 void func_02073f90(void);

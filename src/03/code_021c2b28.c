@@ -15,6 +15,7 @@
 #include "03/code_021d1000.h"
 #include "03/code_021d254c.h"
 #include "code_0214b824.h"
+#include "03/code_021bf8c0.h"
 
 void func_ov003_021c2b28(void) {
     func_ov003_021cdb90();

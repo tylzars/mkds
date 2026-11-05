@@ -50,6 +50,7 @@
 #include "00/code_021919ac.h"
 #include "code_021382a8.h"
 #include "00/code_0218d488.h"
+#include "00/code_021a6d5c.h"
 
 s32 func_ov000_0218d430(u32 *c, u32 *d) {
     char *a;

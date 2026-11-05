@@ -18,6 +18,7 @@
 #include "Main/Unknown/code_0203d568.h"
 #include "Main/Unknown/code_0203f334.h"
 #include "Main/Unknown/code_020681f0.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 static inline s32 func_0203ca38_inline(u32 i) {
     return GetKartStandingRankIndex(i) + 1;

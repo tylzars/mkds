@@ -23,6 +23,7 @@
 #include "Main/Unknown/code_0203c5e4.h"
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036bec.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void func_0210298c(Unk02102674 *p) {
     Kart *q;

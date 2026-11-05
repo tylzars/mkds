@@ -38,6 +38,7 @@
 #include "Main/Unknown/unk_0216b000.h"
 #include "Main/Unknown/code_020dbf7c.h"
 #include "Main/Unknown/unk_0217b000.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 Unk020dd7a8 *data_0217b6d4 = 0;
 Unk020dd804 *data_0217b6d8 = 0;
