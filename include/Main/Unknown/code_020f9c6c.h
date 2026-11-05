@@ -142,7 +142,7 @@ void func_020fbc18(Unk020fc2e8 *param_1);
 void func_020fbd4c(Unk020fc2e8 *param_1);
 void func_020fbd98(Unk020fc2e8 *param_1);
 void func_020fc268(Unk020fc2e8 *param_1);
-void func_020fc2c0(int a);
+void func_020fc2c0(Unk020fc2e8 *a);
 void func_020fc2e8(Unk020fc2e8 *p, Vec3 *v, s32 v1, Vec3 *v2);
 void func_020fc654(Unk020fc2e8 *p);
 s32 func_020fc79c(Unk020eda5c *a, Unk020fc2e8 *e);

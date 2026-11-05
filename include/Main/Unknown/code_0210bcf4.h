@@ -68,4 +68,4 @@ void func_0210bf24(u32 a, u32 b, u32 c, u32 d);
 void func_0210bfbc(Unk0210bfbc *p);
 void func_0210c084(Unk0210bf24 *p, u32 b);
 void func_0210c0bc(Unk0210bfbc *p);
-void func_0210c134(int a, u32 b);
+void func_0210c134(Unk0210bfbc *a, u32 b);

@@ -15,21 +15,21 @@
 #include "Main/Unknown/code_0210d0b4.h"
 #include "code_0201750c.h"
 
-void func_0210c134(int a, u32 b) {
-    u32 v1;
-    u32 v2;
-    ListInit((LinkedList *) ((u32 *) (u32) (a + 0xc)), (u16) 8);
-    v1 = ((u32) (&func_0210d0b4));
-    *(u32 *) (a + 0x38) = 1;
-    v2 = ((u32) (&func_0210d078));
-    *(u32 *) (a + 0x2c) = v1;
-    *(u32 *) (a + 0x30) = v2;
-    *(u16 *) (a + 0x34) = 0;
-    *(u32 *) (a + 0x28) = b;
-    *(u32 *) (a + 0x18) = 3;
-    func_0210bce0((u32 *) (u32) (a + 0x1c));
-    func_0210bce0((u32 *) (u32) a);
-    func_0210bc8c((((u32) (&data_0217d028))), a);
+void func_0210c134(Unk0210bfbc *a, u32 b) {
+    void *v1;
+    void *v2;
+    ListInit(&a->mUnk_0c, 8);
+    v1 = (void *) func_0210d0b4;
+    a->mUnk_38 = 1;
+    v2 = (void *) func_0210d078;
+    a->mUnk_2c = v1;
+    a->mUnk_30 = v2;
+    a->mUnk_34 = 0;
+    a->mUnk_28 = b;
+    a->mUnk_18 = 3;
+    func_0210bce0((u32 *) a->mUnk_1c);
+    func_0210bce0((u32 *) a);
+    func_0210bc8c((int) &data_0217d028, (int) a);
 }
 
 void func_0210c0bc(Unk0210bfbc *p) {

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "types.h"
+#include "00/code_021ab6d4.h"
+#include "00/code_021abca0.h"
 
 typedef struct Unk021ab5e4 Unk021ab5e4;
 typedef struct Unk021aa880 Unk021aa880;
@@ -42,10 +44,10 @@ typedef struct Unk021a998c_0c {
     /* 1b0 */ u8 *mUnk_1b0;
     /* 1b4 */ u8 mUnk_1b4[0x104];
     /* 2b8 */ u8 mUnk_2b8[8];
-    /* 2c0 */ u8 mUnk_2c0[0x5c];
-    /* 31c */ u8 mUnk_31c[0x5c];
-    /* 378 */ u8 mUnk_378[0x58];
-    /* 3d0 */ u8 mUnk_3d0[0x58];
+    /* 2c0 */ Unk021abca0 mUnk_2c0;
+    /* 31c */ Unk021abca0 mUnk_31c;
+    /* 378 */ Unk021ab728 mUnk_378;
+    /* 3d0 */ Unk021ab728 mUnk_3d0;
     /* 428 */ u8 mUnk_428;
     /* 429 */ u8 mUnk_429;
     /* 42c */ s32 mUnk_42c;

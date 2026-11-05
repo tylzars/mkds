@@ -12,5 +12,5 @@ void func_02109110(Unk0210bfbc *p, u32 a, Vec3 *v) {
     value3 = ~(0u);
     value1 = value2;
     *(u32 *) ((value0) + (64)) = value3;
-    func_0210cf20(value0, value1);
+    func_0210cf20(p, value1);
 }

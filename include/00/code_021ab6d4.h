@@ -14,7 +14,7 @@ typedef struct Unk021ab728 {
 
 typedef struct Unk021ab728 Unk021ab728;
 
-void func_ov000_021ab6d4(int a, u32 b);
+void func_ov000_021ab6d4(Unk021ab728 *a, u8 *b);
 void func_ov000_021ab728(void *f, const u8 *b, u32 c);
-void func_ov000_021ab7b4(u32 *a);
+void func_ov000_021ab7b4(Unk021ab728 *a);
 void func_ov000_021ab7e8(Unk021ab728 *a, const u8 *b);

@@ -136,7 +136,7 @@ void func_ov001_021923e0(Unk02188950 *a);
 void func_ov001_0219246c(Unk02188950 *a);
 void func_ov001_021924cc(void);
 void func_ov001_02192694(void);
-void func_ov001_02192794(int a);
+void func_ov001_02192794(Unk02188950 *a);
 void func_ov001_021927c0(Unk02188950 *a);
 void func_ov001_02192878(Unk02188950 *a);
 void func_ov001_02192890(Unk02188950 *a);

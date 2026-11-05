@@ -2,4 +2,6 @@
 
 #include "types.h"
 
-void func_0210cf20(int a, u32 b);
+typedef struct Unk0210bfbc Unk0210bfbc;
+
+void func_0210cf20(Unk0210bfbc *a, u32 b);

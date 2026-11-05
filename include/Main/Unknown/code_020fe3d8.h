@@ -2,4 +2,6 @@
 
 #include "types.h"
 
-void func_020fe3d8(int a);
+typedef struct Unk020fdae8 Unk020fdae8;
+
+void func_020fe3d8(Unk020fdae8 *a);

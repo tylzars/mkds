@@ -91,10 +91,10 @@ void func_ov001_021927c0(Unk02188950 *a) {
     func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
 }
 
-void func_ov001_02192794(int a) {
-    *(u32 *) (a + 0x2d8) = 0xb;
-    func_ov001_02188200((Unk02188950 *) (a), func_ov001_02192878);
-    *(u32 *) (a + 0x78) = *(u32 *) (a + 0x78) | (*(u32 *) &data_ov001_021a65d4);
+void func_ov001_02192794(Unk02188950 *a) {
+    a->mUnk_2d8 = 0xb;
+    func_ov001_02188200(a, func_ov001_02192878);
+    a->mUnk_000.mUnk_78 = a->mUnk_000.mUnk_78 | (*(u32 *) &data_ov001_021a65d4);
 }
 
 void func_ov001_02192694(void) {

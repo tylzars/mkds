@@ -261,9 +261,9 @@ void func_020fc2e8(Unk020fc2e8 *p, Vec3 *v, s32 v1, Vec3 *v2) {
     *v4 = *v;
 }
 
-void func_020fc2c0(int a) {
-    func_02046b40((void *) (a + 0x2e8));
-    func_020f9320((u32) a, (u32) 0x3c000400u);
+void func_020fc2c0(Unk020fc2e8 *a) {
+    func_02046b40(a->mUnk_2e8);
+    func_020f9320(&a->mUnk_000, (u32) 0x3c000400u);
 }
 
 #pragma thumb off

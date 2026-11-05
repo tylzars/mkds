@@ -1,5 +1,6 @@
 #pragma once
 
 #include "types.h"
+#include "00/code_021abca0.h"
 
-void func_ov000_021abd2c(u32 *a);
+void func_ov000_021abd2c(Unk021abca0 *a);
