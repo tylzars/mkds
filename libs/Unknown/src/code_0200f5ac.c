@@ -40,7 +40,7 @@ void TickOverflowCallback(void) {
         *(vu16 *) 0x4000102 = 0xc1;
         data_02170250 = 0;
     }
-    func_0200cb50(0, TickOverflowCallback, 0);
+    SetTimerOverflowCallback(0, TickOverflowCallback, 0);
 }
 
 u64 OS_GetTick(void) {

@@ -512,7 +512,7 @@ void (*ThreadSetSwitchCallback(void (*arg0)(Thread *, Thread *)))(Thread *, Thre
 void func_0200dbd4(void *a) {
     IrqEnable();
     for (;;) {
-        func_0200fd04();
+        OS_Halt();
     }
 }
 

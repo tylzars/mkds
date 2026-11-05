@@ -60,7 +60,7 @@ void SetDmaDoneCallback(u32 n, UnkFunc *f, u32 a) {
     gDmaTimerCallbacks[n].mUnk_04 = InterruptEnableSetBits(1 << (n + 8)) & (1 << (n + 8));
 }
 
-void func_0200cb50(u32 n, UnkFunc *f, u32 a) {
+void SetTimerOverflowCallback(u32 n, UnkFunc *f, u32 a) {
     (gDmaTimerCallbacks + 4)[n].mUnk_00 = f;
     (gDmaTimerCallbacks + 4)[n].mUnk_08 = a;
     InterruptEnableSetBits(1 << (n + 3));
@@ -119,7 +119,7 @@ u32 InterruptFlagWrite(u32 v) {
     return o;
 }
 
-void func_0200ca34(void) {
+void OS_SetIrqStackChecker(void) {
     u32 a;
 
     a = (u32) &data_027e0000;
@@ -127,9 +127,9 @@ void func_0200ca34(void) {
     *(u32 *) (a + 0x3f80 - (u32) data_00000c00) = 0x7bf9dd5b;
 }
 
-void func_0200ca30(void) {}
+void OS_IrqDummy(void) {}
 
-void func_0200c994(u32 n) {
+void InterruptSlotHandler(u32 n) {
     UnkFunc *f;
     u32 m;
 
@@ -146,34 +146,34 @@ void func_0200c994(u32 n) {
     InterruptEnableClearBits(m);
 }
 
-void func_0200c984(void) {
-    func_0200c994(0);
+void Dma0InterruptHandler(void) {
+    InterruptSlotHandler(0);
 }
 
-void func_0200c974(void) {
-    func_0200c994(1);
+void Dma1InterruptHandler(void) {
+    InterruptSlotHandler(1);
 }
 
-void func_0200c964(void) {
-    func_0200c994(2);
+void Dma2InterruptHandler(void) {
+    InterruptSlotHandler(2);
 }
 
-void func_0200c954(void) {
-    func_0200c994(3);
+void Dma3InterruptHandler(void) {
+    InterruptSlotHandler(3);
 }
 
-void func_0200c944(void) {
-    func_0200c994(4);
+void Timer0InterruptHandler(void) {
+    InterruptSlotHandler(4);
 }
 
-void func_0200c934(void) {
-    func_0200c994(5);
+void Timer1InterruptHandler(void) {
+    InterruptSlotHandler(5);
 }
 
-void func_0200c924(void) {
-    func_0200c994(6);
+void Timer2InterruptHandler(void) {
+    InterruptSlotHandler(6);
 }
 
-void func_0200c914(void) {
-    func_0200c994(7);
+void Timer3InterruptHandler(void) {
+    InterruptSlotHandler(7);
 }

@@ -348,7 +348,7 @@ u32 func_02020eb0(void) {
     u32 s;
     u32 v;
 
-    if (func_0200e8fc() == 0) {
+    if (OS_IsRunOnEmulator() == 0) {
         return 1;
     }
     s = IrqDisable();

@@ -30,7 +30,7 @@ void StartAlarmTimer(Unk0200fb08 *n) {
     t = OS_GetTick();
     *(vu16 *) 0x4000106 = 0;
     d = n->mUnk_0c - t;
-    func_0200cb50(1, AlarmTimerCallback, 0);
+    SetTimerOverflowCallback(1, AlarmTimerCallback, 0);
     if (d < 0) {
         v = 0xfffe;
     } else if (d < 0x10000) {

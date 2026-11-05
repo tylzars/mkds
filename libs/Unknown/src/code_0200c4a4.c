@@ -181,7 +181,7 @@ void func_0200c4c0(u32 a, Unk0200c4a4 *p) {
         if (p->mUnk_00 != 0) {
             break;
         }
-        if (func_0200ce60(a) == 0) {
+        if (OS_TryLockCartridge(a) == 0) {
             break;
         }
         IrqRestore(p->mUnk_04);
@@ -191,7 +191,7 @@ void func_0200c4c0(u32 a, Unk0200c4a4 *p) {
 
 void func_0200c4a4(u32 a, Unk0200c4a4 *p) {
     if (p->mUnk_00 == 0) {
-        func_0200cd1c(a);
+        OS_UnLockCartridge(a);
     }
     IrqRestore(p->mUnk_04);
 }

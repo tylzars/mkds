@@ -10,22 +10,22 @@
 #include "registers.h"
 #include "00/code_02188720.h"
 
-s32 data_0216ff40;
+s32 gLockInitialized;
 
-void func_0200d028(void) {
+void OS_InitLock(void) {
     SwapLockSlot *p;
     volatile u32 v;
 
-    if (data_0216ff40 != 0) {
+    if (gLockInitialized != 0) {
         return;
     }
-    data_0216ff40 = 1;
+    gLockInitialized = 1;
     ((SwapLockSlot *) 0x027ffff0)->mUnk_00 = 0;
     SwapLockSpin(0x7e, (SwapLockSlot *) 0x027ffff0, 0);
     p = (SwapLockSlot *) 0x027ffff0;
     if (p->mUnk_06 != 0) {
         do {
-            func_0200cdb0();
+            WaitByLoop4096();
         } while (p->mUnk_06 != 0);
     }
     *(u32 *) 0x027fffb0 = 0xffffffff;
@@ -43,7 +43,7 @@ s32 SwapLockSpinEx(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k) {
 
     r = SwapLockTry(a, p, f, k);
     while (r > 0) {
-        func_0200cdb0();
+        WaitByLoop4096();
         r = SwapLockTry(a, p, f, k);
     }
     return r;
@@ -60,7 +60,7 @@ s32 SwapLockUnlockEx(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k) {
         return -2;
     }
     if (k != 0) {
-        s = func_0200fccc();
+        s = IrqFiqDisable();
     } else {
         s = IrqDisable();
     }
@@ -70,7 +70,7 @@ s32 SwapLockUnlockEx(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k) {
     }
     p->mUnk_00 = 0;
     if (k != 0) {
-        func_0200fce0(s);
+        IrqFiqRestore(s);
     } else {
         IrqRestore(s);
     }
@@ -86,7 +86,7 @@ s32 SwapLockTry(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k) {
     s32 r;
 
     if (k != 0) {
-        s = func_0200fccc();
+        s = IrqFiqDisable();
     } else {
         s = IrqDisable();
     }
@@ -98,17 +98,17 @@ s32 SwapLockTry(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k) {
         p->mHolderId = a;
     }
     if (k != 0) {
-        func_0200fce0(s);
+        IrqFiqRestore(s);
     } else {
         IrqRestore(s);
     }
     return r;
 }
 
-s32 func_0200ce80(u32 a) {
-    return SwapLockUnlockEx(a, (SwapLockSlot *) 0x027fffe8, func_0200ce30, 1);
+s32 OS_UnlockCartridge(u32 a) {
+    return SwapLockUnlockEx(a, (SwapLockSlot *) 0x027fffe8, SetCartridgeSlotAccessBit, 1);
 }
 
-s32 func_0200ce60(u32 a) {
-    return SwapLockTry(a, (SwapLockSlot *) 0x027fffe8, func_0200ce48, 1);
+s32 OS_TryLockCartridge(u32 a) {
+    return SwapLockTry(a, (SwapLockSlot *) 0x027fffe8, ClearCartridgeSlotAccessBit, 1);
 }

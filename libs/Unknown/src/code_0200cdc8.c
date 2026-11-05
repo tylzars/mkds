@@ -1,6 +1,6 @@
 #include "code_0200cdc8.h"
 
-u32 func_0200cde0(void) {
+u32 ClearCardSlotAccessBit(void) {
     u32 value0;
     u32 value1;
     value1 = 0x4000204u;
@@ -10,7 +10,7 @@ u32 func_0200cde0(void) {
     return value0;
 }
 
-u32 func_0200cdc8(void) {
+u32 SetCardSlotAccessBit(void) {
     u32 value0;
     u32 value1;
     value1 = 0x4000204u;

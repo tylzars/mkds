@@ -256,22 +256,22 @@ s32 RingQueuePeekFront(RingQueue *q, void **p, s32 f) {
     return 1;
 }
 
-u32 data_021617cc = 0xffffffff;
+u32 gConsoleType = 0xffffffff;
 
-u32 func_0200e8fc(void) {
+u32 OS_IsRunOnEmulator(void) {
     return 0;
 }
 
-// On the first call stores func_0200e7b0's result with one bit added in the top bits (0x10000000 when
-// func_0200e8fc is nonzero, else 0x40000000 when func_0200e77c is nonzero, else 0x20000000 when bit 24 of the
+// On the first call stores ReadCartridgeMarkerBits's result with one bit added in the top bits (0x10000000 when
+// OS_IsRunOnEmulator is nonzero, else 0x40000000 when func_0200e77c is nonzero, else 0x20000000 when bit 24 of the
 // result is set, else 0x80000000), or-ed with a halfword read from a fixed address. The stored value is -1 until
 // then.
-u32 func_0200e884(void) {
+u32 OS_GetConsoleType(void) {
     u32 a;
 
-    if (data_021617cc == 0xffffffff) {
-        a = func_0200e7b0();
-        if (func_0200e8fc() != 0) {
+    if (gConsoleType == 0xffffffff) {
+        a = ReadCartridgeMarkerBits();
+        if (OS_IsRunOnEmulator() != 0) {
             a |= 0x10000000;
         } else if (func_0200e77c() != 0) {
             a |= 0x40000000;
@@ -280,15 +280,15 @@ u32 func_0200e884(void) {
         } else {
             a |= 0x80000000;
         }
-        data_021617cc = a | *(u16 *) 0x27ffffa;
+        gConsoleType = a | *(u16 *) 0x27ffffa;
     }
-    return data_021617cc;
+    return gConsoleType;
 }
 
-// Repeats, each pass between IrqDisable and IrqRestore, until func_0200ce80 has been called (it is when
-// func_0200ce60 returns 0). The result has bit 24 set when two words at fixed addresses are 0x544e494e and
+// Repeats, each pass between IrqDisable and IrqRestore, until OS_UnlockCartridge has been called (it is when
+// OS_TryLockCartridge returns 0). The result has bit 24 set when two words at fixed addresses are 0x544e494e and
 // 0x4f444e45, else bit 25.
-u32 func_0200e7b0(void) {
+u32 ReadCartridgeMarkerBits(void) {
     u32 a;
     s32 d;
     u32 h;
@@ -301,14 +301,14 @@ u32 func_0200e7b0(void) {
     do {
         v = -1;
         s = IrqDisable();
-        if ((SwapLockGetHolderId((SwapLockSlot *) 0x27fffe8) & 0x40) != 0 || (v = func_0200ce60(h)) == 0) {
+        if ((SwapLockGetHolderId((SwapLockSlot *) 0x27fffe8) & 0x40) != 0 || (v = OS_TryLockCartridge(h)) == 0) {
             if (*(u32 *) 0x8000000 == 0x544e494e && *(u32 *) 0x8000004 == 0x4f444e45) {
                 a = 0x1000000;
             } else {
                 a = 0x2000000;
             }
             if (v == 0) {
-                func_0200ce80(h);
+                OS_UnlockCartridge(h);
                 d = 1;
             }
         }

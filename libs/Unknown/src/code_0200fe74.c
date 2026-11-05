@@ -7,8 +7,8 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/unk_02170000.h"
 
-u32 data_02170284;
-u16 data_02170288[9];
+u32 gVramBankLockedMask;
+u16 gVramBankLockIds[9];
 
 void func_020106c8(Unk020101e8_08 *a, Unk020103c0_e *b, Unk02010294 *c, Unk020106c8_0c *d) {
     u32 m;
@@ -300,29 +300,29 @@ void func_0201000c(Unk0201000c *p) {
     p->mUnk_1c = *(vu16 *) 0x4000130 | *(vu16 *) 0x27fffa8 | (*(u16 *) (b + 0x398) << 16);
 }
 
-void func_0200ffd8(void) {
+void InitVramLocks(void) {
     s32 i;
 
-    data_02170284 = 0;
+    gVramBankLockedMask = 0;
     for (i = 0; i < 9; i++) {
-        data_02170288[i] = 0;
+        gVramBankLockIds[i] = 0;
     }
 }
 
-u32 func_0200ff04(u32 m, u16 v) {
+u32 TryLockVramBanks(u32 m, u16 v) {
     u32 s;
     u32 t;
     s32 k;
 
     s = IrqDisable();
-    t = m & data_02170284;
+    t = m & gVramBankLockedMask;
     while (1) {
         k = 31 - CountLeadingZeros(t);
         if (k < 0) {
             break;
         }
         t &= ~(1 << k);
-        if (v != data_02170288[k]) {
+        if (v != gVramBankLockIds[k]) {
             IrqRestore(s);
             return 0;
         }
@@ -334,29 +334,29 @@ u32 func_0200ff04(u32 m, u16 v) {
             break;
         }
         t &= ~(1 << k);
-        data_02170288[k] = v;
-        data_02170284 |= 1 << k;
+        gVramBankLockIds[k] = v;
+        gVramBankLockedMask |= 1 << k;
     }
     IrqRestore(s);
     return 1;
 }
 
-void func_0200fe7c(u32 m, u16 v) {
+void UnlockVramBanks(u32 m, u16 v) {
     u32 t;
     u32 s;
     s32 k;
 
     s = IrqDisable();
-    t = m & data_02170284 & 0x1ff;
+    t = m & gVramBankLockedMask & 0x1ff;
     while (1) {
         k = 31 - CountLeadingZeros(t);
         if (k < 0) {
             break;
         }
         t &= ~(1 << k);
-        if (v == data_02170288[k]) {
-            data_02170288[k] = 0;
-            data_02170284 &= ~(1 << k);
+        if (v == gVramBankLockIds[k]) {
+            gVramBankLockIds[k] = 0;
+            gVramBankLockedMask &= ~(1 << k);
         }
     }
     IrqRestore(s);

@@ -105,7 +105,7 @@ void func_0204ba2c(void *a) {
 }
 
 void func_0204b9ac(void) {
-    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || func_0200e8fc() != 0) {
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || OS_IsRunOnEmulator() != 0) {
         data_021759d4->mUnk_0c = 0;
         return;
     }

@@ -27,7 +27,7 @@ void OS_SetArenaLo(u32 i, u32 v);
 // Stores v as the Hi bound of arena i (word at 0x027ffdc4 + i * 4).
 void OS_SetArenaHi(u32 i, u32 v);
 // Initial Lo bound of arena i: 0x021da300 (0), 0x01ffffa0 (3), 0x027e00e0 (4), 0x027ff000 (5), 0x037f8000 (6); index
-// 2 gives 0x02400000 when gArena2Enabled is nonzero and the low two bits of func_0200e884() are not 1, else 0.
+// 2 gives 0x02400000 when gArena2Enabled is nonzero and the low two bits of OS_GetConsoleType() are not 1, else 0.
 u32 OS_GetInitArenaLo(u32 i);
 // Initial Hi bound of arena i: 0x023e0000 (0), 0x02000000 (3), 0x027e0b80 (4), 0x027ff680 (5), 0x037f8000 (6); index
 // 2 gives 0x02700000 under the same test as OS_GetInitArenaLo, else 0.
@@ -37,7 +37,7 @@ u32 OS_GetArenaLo(int arg0);
 // Returns the Hi bound of arena arg0 (word at 0x027ffdc4 + arg0 * 4).
 u32 OS_GetArenaHi(int arg0);
 // Fills index 2 of both tables from the initial values; unless gArena2Enabled is nonzero and the low two bits of
-// func_0200e884() are not 1, then writes protection region 1 (0x0200002b) and region 2 (0x023e0021).
+// OS_GetConsoleType() are not 1, then writes protection region 1 (0x0200002b) and region 2 (0x023e0021).
 void OS_InitArenaEx(void);
 // Runs once: fills the Lo and Hi tables for indices 0 and 3 to 6 from OS_GetInitArenaLo and OS_GetInitArenaHi, sets
 // index 2 to 0 and 0, leaves index 1 alone.

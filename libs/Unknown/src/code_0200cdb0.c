@@ -1,7 +1,7 @@
 #include "code_0200cdb0.h"
 #include "code_0200fc8c.h"
 
-void func_0200cdb0(void) {
+void WaitByLoop4096(void) {
     u32 value0;
     u32 value12;
     value12 = (u32) &func_0200fd10;

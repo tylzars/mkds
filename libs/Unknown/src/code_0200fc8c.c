@@ -35,10 +35,10 @@ void OS_InitReset(void) {
     PxiInit();
     while (PxiCallbackBitIsSet(0xc, 1) == 0) {
     }
-    PxiCallbackSet(0xc, func_0200fd30);
+    PxiCallbackSet(0xc, ReceiveChannel12Command);
 }
 
-void func_0200fd30(u32 a, u32 b) {
+void ReceiveChannel12Command(u32 a, u32 b) {
     if (((b & 0x7f00) << 8) >> 16 == 0x10) {
         data_02170280 = 1;
         return;
@@ -49,7 +49,7 @@ void func_0200fd30(u32 a, u32 b) {
 void IrqDisableLoopForever(void) {
     while (1) {
         IrqDisable();
-        func_0200fd04();
+        OS_Halt();
     }
 }
 
@@ -87,7 +87,7 @@ asm u32 IrqRestore(u32 a) {
 
 // Sets the bits 0xc0 of the status register and returns their previous value.
 // Not compiled code: C has no way to read or write the status register (mrs/msr).
-asm u32 func_0200fccc(void) {
+asm u32 IrqFiqDisable(void) {
     mrs r0, cpsr
     orr r1, r0, #0xc0
     msr cpsr_c, r1
@@ -97,7 +97,7 @@ asm u32 func_0200fccc(void) {
 
 // Replaces the bits 0xc0 of the status register with those in r0 and returns their previous value.
 // Not compiled code: C has no way to read or write the status register (mrs/msr).
-asm u32 func_0200fce0(u32 a) {
+asm u32 IrqFiqRestore(u32 a) {
     mrs r1, cpsr
     bic r2, r1, #0xc0
     orr r2, r2, r0
@@ -116,7 +116,7 @@ asm u32 ProcessorModeGet(void) {
 
 // Writes zero to a coprocessor 15 register.
 // Not compiled code: C has no way to read or write a coprocessor 15 register (mrc/mcr).
-asm void func_0200fd04(void) {
+asm void OS_Halt(void) {
     mov r0, #0x0
     mcr p15, 0, r0, c7, c0, 4
     bx lr

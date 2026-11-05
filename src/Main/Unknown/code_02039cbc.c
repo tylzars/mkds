@@ -51,7 +51,7 @@ void func_02039cbc(void) {
     func_02057524(a);
     func_02108344(e, f, ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2);
     func_02108e94(1);
-    if (func_0200e8fc() == 0) {
+    if (OS_IsRunOnEmulator() == 0) {
         RTC_Init();
     }
     func_02043d10(a);

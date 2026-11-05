@@ -47,12 +47,12 @@ void OS_InitArena(void) {
     OS_SetArenaLo(6, OS_GetInitArenaLo(6));
 }
 
-// Fills index 2 of both tables, then unless gArena2Enabled is nonzero and the low two bits of func_0200e884() are
+// Fills index 2 of both tables, then unless gArena2Enabled is nonzero and the low two bits of OS_GetConsoleType() are
 // not 1, passes one constant each to OS_SetProtectionRegion1 and OS_SetProtectionRegion2.
 void OS_InitArenaEx(void) {
     OS_SetArenaHi(2, OS_GetInitArenaHi(2));
     OS_SetArenaLo(2, OS_GetInitArenaLo(2));
-    if (gArena2Enabled != 0 && (func_0200e884() & 3) != 1) {
+    if (gArena2Enabled != 0 && (OS_GetConsoleType() & 3) != 1) {
         return;
     }
     OS_SetProtectionRegion1(0x200002b);
@@ -86,7 +86,7 @@ u32 OS_GetInitArenaHi(u32 i) {
         case 0:
             return 0x23e0000;
         case 2:
-            if (gArena2Enabled == 0 || (func_0200e884() & 3) == 1) {
+            if (gArena2Enabled == 0 || (OS_GetConsoleType() & 3) == 1) {
                 return 0;
             }
             return 0x2700000;
@@ -116,7 +116,7 @@ u32 OS_GetInitArenaLo(u32 i) {
         case 0:
             return 0x21da300;
         case 2:
-            if (gArena2Enabled == 0 || (func_0200e884() & 3) == 1) {
+            if (gArena2Enabled == 0 || (OS_GetConsoleType() & 3) == 1) {
                 return 0;
             }
             return (u32) data_02400000;
@@ -153,14 +153,14 @@ u32 OS_DisableMainExArena(void) {
 void OS_Init(void) {
     OS_InitArena();
     PxiInit();
-    func_0200d028();
+    OS_InitLock();
     OS_InitArenaEx();
-    func_0200cd04();
-    func_0200ca34();
+    OS_InitIrqTable();
+    OS_SetIrqStackChecker();
     OS_InitException();
     MI_Init();
     OS_InitVAlarm();
-    func_0200ffd8();
+    InitVramLocks();
     ThreadSystemInit();
     OS_InitReset();
     func_0200c7f4();

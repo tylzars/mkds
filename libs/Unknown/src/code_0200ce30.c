@@ -1,6 +1,6 @@
 #include "code_0200ce30.h"
 
-u32 func_0200ce48(void) {
+u32 ClearCartridgeSlotAccessBit(void) {
     u32 value0;
     u32 value1;
     value1 = 0x4000204u;
@@ -10,7 +10,7 @@ u32 func_0200ce48(void) {
     return value0;
 }
 
-u32 func_0200ce30(void) {
+u32 SetCartridgeSlotAccessBit(void) {
     u32 value0;
     u32 value1;
     value1 = 0x4000204u;

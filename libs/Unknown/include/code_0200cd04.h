@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-void func_0200cd04(void);
+// Sets both words of the list head at 0x027e0000 to 0. The interrupt wait function sleeps on that list.
+void OS_InitIrqTable(void);

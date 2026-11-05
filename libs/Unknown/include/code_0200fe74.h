@@ -106,12 +106,19 @@ typedef struct Unk020106c8_0c {
     /* 04 */ u32 mUnk_04;
 } Unk020106c8_0c;
 
-extern u32 data_02170284;
-extern u16 data_02170288[9];
+// Bit k set: VRAM bank k (0 to 8) is locked.
+extern u32 gVramBankLockedMask;
+// Id that locked bank k; 0 when the bank is not locked.
+extern u16 gVramBankLockIds[9];
 
-void func_0200fe7c(u32 m, u16 v);
-u32 func_0200ff04(u32 m, u16 v);
-void func_0200ffd8(void);
+// Under IrqDisable: for each locked bank of mask m & 0x1ff whose stored id equals v, clears its lock bit and its id.
+// Other banks are left alone.
+void UnlockVramBanks(u32 m, u16 v);
+// Under IrqDisable: returns 0 and changes nothing when a bank of mask m is already locked with an id other than v.
+// Otherwise marks every bank of m & 0x1ff locked with id v and returns 1.
+u32 TryLockVramBanks(u32 m, u16 v);
+// Sets gVramBankLockedMask and the nine halfwords of gVramBankLockIds to 0. Called once by the start-up function.
+void InitVramLocks(void);
 void func_0201000c(Unk0201000c *p);
 void func_020100fc(Unk02010168 *a);
 u32 func_02010168(Unk02010168 *a, Unk02010294 *b);

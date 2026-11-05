@@ -10,13 +10,21 @@ typedef struct SwapLockSlot {
     /* 06 */ u16 mUnk_06;
 } SwapLockSlot;
 
-extern s32 data_0216ff40;
+// Set to 1 by the first call of OS_InitLock; later calls return at once.
+extern s32 gLockInitialized;
 
-s32 func_0200ce60(u32 a);
-s32 func_0200ce80(u32 a);
+// One try on the lock word at 0x027fffe8 for id a, with IRQ and FIQ disabled during the try; clears bit 0x80 of
+// 0x04000204 once it is taken. Returns the result of the try, 0 when taken.
+s32 OS_TryLockCartridge(u32 a);
+// Releases the lock word at 0x027fffe8 when id a holds it, else returns -2. Sets bit 0x80 of 0x04000204, clears the
+// owner id and the lock word with IRQ and FIQ disabled, returns 0.
+s32 OS_UnlockCartridge(u32 a);
 s32 SwapLockTry(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k);
 s32 SwapLockUnlock(u32 a, SwapLockSlot *p, u32 (*f)(void));
 s32 SwapLockUnlockEx(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k);
 s32 SwapLockSpin(u32 a, SwapLockSlot *p, u32 (*f)(void));
 s32 SwapLockSpinEx(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k);
-void func_0200d028(void);
+// Runs once. Takes the lock word at 0x027ffff0 with id 0x7e and waits until its halfword at +6 is 0, writes
+// 0xffffffff at 0x027fffb0 and 0xffff0000 at 0x027fffb4, clears 0x28 bytes at 0x027fffc0, sets bits 0x800 and 0x80
+// of 0x04000204, releases the lock with id 0x7e and takes it again with id 0x7f.
+void OS_InitLock(void);

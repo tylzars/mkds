@@ -371,7 +371,7 @@ void PM_GoSleepMode(u32 a, u32 b, u32 c) {
     g = (u16) (a | (w0 << 5) | (w1 << 6));
     while (SendPowerSleepRequest(g, (u16) (b | c)) != 0) {
     }
-    func_0200fd04();
+    OS_Halt();
     func_0200fd10(0x332340);
     if ((a & 8) != 0) {
         if ((*(vu32 *) 0x4000214 & 0x100000) != 0) {

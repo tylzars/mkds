@@ -1,7 +1,7 @@
 #include "code_0200cd04.h"
 #include "code_0200c914.h"
 
-void func_0200cd04(void) {
+void OS_InitIrqTable(void) {
     Unk027e0000 *p;
 
     p = &data_027e0000;

@@ -35,7 +35,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
     }
     switch (a) {
         case 4:
-            if (func_0200ff04(4, data_02173278) == 0) {
+            if (TryLockVramBanks(4, data_02173278) == 0) {
                 IrqRestore(v);
                 return 6;
             }
@@ -43,7 +43,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             *(vu8 *) 0x4000242 = 0x82;
             break;
         case 8:
-            if (func_0200ff04(8, data_02173278) == 0) {
+            if (TryLockVramBanks(8, data_02173278) == 0) {
                 IrqRestore(v);
                 return 6;
             }
@@ -51,7 +51,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             *(vu8 *) 0x4000243 = 0x82;
             break;
         case 12:
-            if (func_0200ff04(12, data_02173278) == 0) {
+            if (TryLockVramBanks(12, data_02173278) == 0) {
                 IrqRestore(v);
                 return 6;
             }
@@ -73,7 +73,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
     }
     data_02173280 = c;
     if (PxiSendFifoWord(0xf, 0x10000, 0) < 0) {
-        func_0200fe7c(data_0217327c, data_02173278);
+        UnlockVramBanks(data_0217327c, data_02173278);
         data_0217327c = 0;
         data_02173284 = 0;
         IrqRestore(v);
@@ -126,13 +126,13 @@ void func_0201e5ac(u32 a, u32 b) {
     switch (t) {
         case 0x10000:
             if (k == 7 && data_0217327c != 0 && data_02173278 != 0) {
-                func_0200fe7c(data_0217327c, data_02173278);
+                UnlockVramBanks(data_0217327c, data_02173278);
                 data_0217327c = 0;
             }
             break;
         case 0x20000:
             if (k == 0 && data_0217327c != 0 && data_02173278 != 0) {
-                func_0200fe7c(data_0217327c, data_02173278);
+                UnlockVramBanks(data_0217327c, data_02173278);
                 data_0217327c = 0;
             }
             PxiCallbackSet(0xf, 0);

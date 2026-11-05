@@ -494,7 +494,7 @@ u16 GX_ResetBankForSubOBJExtPltt(void) {
 }
 
 // Reads the halfword at p and stores 0 there, writes 0 to each byte of 0x4000240-0x4000246, 0x4000248 and 0x4000249
-// whose bit (0, 1, ... 8) is set in it, calls func_0200fe7c with it and gVramLockId, and returns it.
+// whose bit (0, 1, ... 8) is set in it, calls UnlockVramBanks with it and gVramLockId, and returns it.
 u32 ReleaseVramBankGroup(u16 *p) {
     u32 v;
 
@@ -527,7 +527,7 @@ u32 ReleaseVramBankGroup(u16 *p) {
     if (v & 0x100) {
         *(vu8 *) 0x4000249 = 0;
     }
-    func_0200fe7c((u16) v, gVramLockId);
+    UnlockVramBanks((u16) v, gVramLockId);
     return v;
 }
 

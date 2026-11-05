@@ -11,7 +11,7 @@ u32 data_021701c0;
 u8 data_021701c8[0x80];
 
 // Keeps the word at the fixed address as data_021701c4 when it is in range, else clears it; stores func_0200f36c there
-// and at mUnk_fdc of the fixed object unless data_021701c4 is set and bit 30 of func_0200e884() is set.
+// and at mUnk_fdc of the fixed object unless data_021701c4 is set and bit 30 of OS_GetConsoleType() is set.
 void OS_InitException(void) {
     u32 v;
     Unk0200f4f0 *p;
@@ -23,7 +23,7 @@ void OS_InitException(void) {
         data_021701c4 = 0;
     }
     p = (Unk0200f4f0 *) 0x027e3000;
-    if (data_021701c4 == 0 || (func_0200e884() & 0x40000000) == 0) {
+    if (data_021701c4 == 0 || (OS_GetConsoleType() & 0x40000000) == 0) {
         *(UnkFunc **) 0x027ffd9c = (UnkFunc *) func_0200f36c;
         p->mUnk_fdc = (UnkFunc *) func_0200f36c;
     }

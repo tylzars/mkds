@@ -25,13 +25,19 @@ void IrqDisableLoopForever(void);
 extern u16 data_0217027c;
 extern u16 data_02170280;
 
-u32 func_0200fccc(void);
-u32 func_0200fce0(u32 a);
-void func_0200fd04(void);
+// Sets the IRQ and FIQ disable bits (0xc0) of the status register and returns their previous value.
+u32 IrqFiqDisable(void);
+// Replaces the bits 0xc0 of the status register with those in a and returns their previous value.
+u32 IrqFiqRestore(u32 a);
+// Executes the coprocessor 15 operation c7,c0,4 once. IrqDisableLoopForever calls it in its endless loop.
+void OS_Halt(void);
 void func_0200fd10(u32 a);
-void func_0200fd30(u32 a, u32 b);
-// Runs once: opens PXI tag 12, waits for the other processor and installs func_0200fd30, which stores 1 in the halfword
-// at 0x02170260 for command 0x10 and halts for any other command. Nothing else reads the halfword.
+// Receive function registered for channel 12 by OS_InitReset. Takes the command from bits 8 to 14 of its second
+// argument: command 0x10 stores 1 in the halfword data_02170280 (nothing reads it), any other command ends in
+// IrqDisableLoopForever.
+void ReceiveChannel12Command(u32 a, u32 b);
+// Runs once: opens PXI tag 12, waits for the other processor and installs ReceiveChannel12Command, which stores 1 in
+// the halfword data_02170280 for command 0x10 and halts for any other command. Nothing else reads the halfword.
 void OS_InitReset(void);
 // Fills the record from the words at 0x027ffc80: bits 0-2 of the halfword at +0x64, the low 4 bits of byte +2, bytes +3
 // and +4, a 20-byte text from +6 with its length from byte +0x1a, a 52-byte text from +0x1c with its length from byte
