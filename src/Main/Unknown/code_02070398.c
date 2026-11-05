@@ -132,7 +132,7 @@ void func_02072eb8(Kart *p) {
     s32 x;
     s32 y;
     s32 i;
-    Unk020ee684 *e;
+    KartItems *e;
     s64 l;
 
     if (p->mUnk_3c4 == -1) {
@@ -154,7 +154,7 @@ void func_02072eb8(Kart *p) {
     Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m, &b);
     if (data_021759c0->mMode != 2 && gCourseMap->mUnk_60 != 0) {
-        (e = &(data_027e00c8)[p->mIndex])->mUnk_1f0.mUnk_00 = func_02040f78((u16) p->mUnk_3c4);
+        (e = &(gKartItems)[p->mIndex])->mUnk_1f0.mUnk_00 = func_02040f78((u16) p->mUnk_3c4);
         e->mUnk_1f0.mUnk_04 = 1;
     }
     if (data_021759c0->mMode != 1) {
@@ -282,7 +282,7 @@ void func_02072930(Kart *p) {
     s32 i;
     Unk02165560 v;
 
-    func_020f0044(&(data_027e00c8)[p->mIndex]);
+    func_020f0044(&(gKartItems)[p->mIndex]);
     func_02083834(p);
     func_02081768(p->mIndex);
     func_020815a0(p->mIndex);

@@ -37,7 +37,7 @@
 
 const u16 data_0215a584 = 0x2000;
 
-const Unk0217bc48 data_0215a588 = {1, 1, 0xd, 1, 0, 0, func_021051d4};
+const ItemInfo data_0215a588 = {1, 1, 0xd, 1, 0, 0, func_021051d4};
 
 const Unk0217bc34 data_0215a5a4 = {
     0x12c, 1, 1,    -1,  -1,   {0}, NULL, NULL,     NULL, NULL,   NULL, NULL, func_01ffd778, NULL,   NULL,  NULL,
@@ -77,26 +77,26 @@ void func_02105214(void) {
 #pragma thumb off
 
 void func_021051d4(Unk020eda5c *p0, Unk020f40dc *p1) {
-    func_020695c4(p1->mUnk_04->mUnk_1fc);
+    func_020695c4(p1->mUnk_04->mKart);
     func_020f4754(p1, 1);
-    func_020f81b8(p0->mUnk_00c, 0xe);
+    SetActiveItem(p0->mUnk_00c, 0xe);
 }
 
 void func_0210515c(s32 a) {
-    data_027e00c8[a].mUnk_014 = 0x13;
+    gKartItems[a].mActiveItem = 0x13;
     if (data_021759c0->mMode != 5) {
         return;
     }
     if (a == data_021759c0->mEntryIndex) {
         return;
     }
-    func_020efd84(&data_027e00c8[a], 0xe);
+    func_020efd84(&gKartItems[a], 0xe);
 }
 
 void func_02104ff8(void) {
     s32 i;
     s32 c;
-    Unk020ee684 *p;
+    KartItems *p;
     Unk020f40dc *q;
     Unk0212c400 **v;
     u32 a = 0;
@@ -109,8 +109,8 @@ void func_02104ff8(void) {
         if (c < 0) {
             continue;
         }
-        p = &data_027e00c8[(u16) i];
-        q = &p->mUnk_030;
+        p = &gKartItems[(u16) i];
+        q = &p->mHeldItem;
         if (q->mUnk_00 != 0x13) {
             continue;
         }
@@ -143,7 +143,7 @@ void func_02104f84(s32 a) {
         return;
     }
     data_0217c6e4[a] = 0;
-    func_020f0044(&data_027e00c8[a]);
+    func_020f0044(&gKartItems[a]);
 }
 
 void func_02104f58(Unk02104c68 *p) {
@@ -202,7 +202,7 @@ s32 func_02104c68(Unk020eda5c *p0, Unk02104c68 *p1) {
     if (p1->mUnk_138 != 0) {
         (p1->mUnk_134)->mUnk_b0 = 1;
     }
-    if ((p0->mUnk_00c->mUnk_1ec & 0x10) != 0) {
+    if ((p0->mUnk_00c->mFlags & 0x10) != 0) {
         func_020f3150(&p1->mUnk_000, p0, 0, 1, 0x4000, 0x3000, 0x59a);
         func_021090c4(&p1->mUnk_000.mUnk_000.mUnk_00, 0xda, 0x7f, 0);
         p1->mUnk_130 = 1;

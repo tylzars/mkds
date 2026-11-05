@@ -74,7 +74,7 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     s32 u;
 
     k = b->mUnk_00;
-    t = data_0217bc48[k].mUnk_14;
+    t = gItemInfos[k].mUnk_14;
     s = data_021759c0->mMode == 5;
     if (b->mUnk_0c != 0) {
         if (b->mUnk_10 > b->mUnk_12) {
@@ -82,7 +82,7 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
         }
     }
     f1 = data_0216c634[t];
-    f2 = data_0217bc48[k].mUnk_18;
+    f2 = gItemInfos[k].mUnk_18;
     if (!s) {
         func_020be8e4(a->mUnk_028, k, b->mUnk_08);
     }
@@ -96,12 +96,12 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
         func_02071894(a->mUnk_010);
         return;
     }
-    a->mUnk_000 = data_0217bc48[k].mUnk_08;
-    a->mUnk_020 = data_0217bc48[k].mUnk_0c;
+    a->mUnk_000 = gItemInfos[k].mObjectKind;
+    a->mUnk_020 = gItemInfos[k].mObjectCount;
     a->mUnk_008 = t;
     a->mUnk_004 = k;
     a->mUnk_170 = NULL;
-    a->mUnk_0e8 = data_0217bc48[k].mUnk_08 == 8 ? 0xb400 : 0x4333;
+    a->mUnk_0e8 = gItemInfos[k].mObjectKind == 8 ? 0xb400 : 0x4333;
     u = *(vs32 *) &a->mUnk_000;
     func_020f1048(&data_027e00cc[u], a->mUnk_020, a->mUnk_014, a->mUnk_010->mIndex, &a->mUnk_050);
     func_020ee528(a);
@@ -114,7 +114,7 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     func_0206c11c(a->mUnk_010);
     func_020f4718(b);
     if (a->mUnk_170 != NULL) {
-        func_020f81b8(a->mUnk_00c, a->mUnk_004);
+        SetActiveItem(a->mUnk_00c, a->mUnk_004);
     }
     v = a->mUnk_014;
     r = &a->mUnk_010->mKartModelsEntry->mUnk_040;
@@ -353,7 +353,7 @@ void func_020edb00(Unk020eda5c *p) {
     }
     func_020ee6a8(p);
     if (p->mUnk_170 != NULL) {
-        p->mUnk_00c->mUnk_014 = 0x13;
+        p->mUnk_00c->mActiveItem = 0x13;
         p->mUnk_170 = NULL;
     }
 }
@@ -361,7 +361,7 @@ void func_020edb00(Unk020eda5c *p) {
 void func_020edad8(Unk020eda5c *p) {
     p->mUnk_024 = 0xa;
     if (p->mUnk_170 != NULL) {
-        p->mUnk_00c->mUnk_014 = 0x13;
+        p->mUnk_00c->mActiveItem = 0x13;
         p->mUnk_170 = NULL;
     }
 }
@@ -419,7 +419,7 @@ void func_020ed79c(Unk020ed718 *p, Vec3 *v) {
     Unk020f41c4_A *q;
     void *r;
 
-    d = data_0217bbfc[p->mUnk_000];
+    d = gItemModels[p->mUnk_000];
     n = p->mUnk_010;
     sel = p->mUnk_014;
     func_020e6a18(d);
@@ -489,7 +489,7 @@ void func_020ed718(Unk020ed718 *p, void *a, void (*cb)(void *, void *, void *)) 
         } else {
             func_0208ab4c(q->mUnk_7c.mUnk_00);
         }
-        cb(q, a, data_0217bbfc[p->mUnk_000]);
+        cb(q, a, gItemModels[p->mUnk_000]);
     }
 }
 

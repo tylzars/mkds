@@ -10,5 +10,5 @@ void func_020ed588(Unk020f41c4_A *a, Unk020e6488 *b) {
 }
 
 Unk020e6488 *func_020ed578(u32 arg0) {
-    return data_0217bbfc[arg0];
+    return gItemModels[arg0];
 }

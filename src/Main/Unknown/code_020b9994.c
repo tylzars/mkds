@@ -78,8 +78,8 @@ u32 func_020bb51c(void) {
     return value0;
 }
 
-static inline Unk020ee684 *func_020bab54_inline(u32 o) {
-    return (Unk020ee684 *) ((u32) data_027e00c8 + o);
+static inline KartItems *func_020bab54_inline(u32 o) {
+    return (KartItems *) ((u32) gKartItems + o);
 }
 
 void func_020bab54(void) {
@@ -93,7 +93,7 @@ void func_020bab54(void) {
     Unk0212c400 **r2;
     u32 k2;
     Unk0217b3cc_18 *w;
-    Unk020ee684 *c;
+    KartItems *c;
 
     n = data_0217b3cc->mUnk_04;
     i = func_020b4d9c() * 0x210;
@@ -101,8 +101,8 @@ void func_020bab54(void) {
     data_0217b3cc->mUnk_14 = data_0217b3cc->mUnk_10;
     v = 0x13;
     c = func_020bab54_inline(i);
-    if (c->mUnk_000 == 1) {
-        data_0217b3cc->mUnk_04 = c->mUnk_004;
+    if (c->mSlotState == 1) {
+        data_0217b3cc->mUnk_04 = c->mSlotFrames;
         n = data_0217b3cc->mUnk_04;
         data_0217b3cc->mUnk_10 = 1;
     } else if (n == 0) {
@@ -163,7 +163,7 @@ void func_020bab54(void) {
         func_0212c6f0((Unk0212c400 **) func_02108e88(), 0);
         data_0217b3cc->mUnk_04 = 0;
         n = data_0217b3cc->mUnk_04;
-        if (func_020bab54_inline(i)->mUnk_00c >= 9) {
+        if (func_020bab54_inline(i)->mSlotShownItem >= 9) {
             if (data_021759c0->mUnk_00c != 2) {
                 k = 0x40;
                 if (data_021759c0->mCourseId == 0x21) {
@@ -223,8 +223,8 @@ void func_020bab54(void) {
         }
     }
     c = func_020bab54_inline(i);
-    if (c->mUnk_000 == 0) {
-        data_0217b3cc->mUnk_0c = c->mUnk_030.mUnk_00 == 0x13 ? c->mUnk_014 : c->mUnk_030.mUnk_00;
+    if (c->mSlotState == 0) {
+        data_0217b3cc->mUnk_0c = c->mHeldItem.mUnk_00 == 0x13 ? c->mActiveItem : c->mHeldItem.mUnk_00;
     } else {
         switch (n) {
             case 0:
@@ -267,11 +267,11 @@ void func_020bab54(void) {
             case 198:
             case 214:
 
-                data_0217b3cc->mUnk_0c = c->mUnk_00c;
-                func_020f830c(func_020bab54_inline(i));
+                data_0217b3cc->mUnk_0c = c->mSlotShownItem;
+                PickItemSlotShownItem(func_020bab54_inline(i));
                 break;
         }
-        v = func_020bab54_inline(i)->mUnk_00c;
+        v = func_020bab54_inline(i)->mSlotShownItem;
         data_0217b3cc->mUnk_18.mUnk_00 = 0;
     }
     if (n < 6) {
@@ -304,8 +304,8 @@ void func_020bab54(void) {
     }
     if (func_020bab54_inline(i)->mUnk_204 != FALSE) {
         s32 q;
-        q = func_020bab54_inline(i)->mUnk_030.mUnk_00 == 0x13 ? func_020bab54_inline(i)->mUnk_014
-                                                              : func_020bab54_inline(i)->mUnk_030.mUnk_00;
+        q = func_020bab54_inline(i)->mHeldItem.mUnk_00 == 0x13 ? func_020bab54_inline(i)->mActiveItem
+                                                               : func_020bab54_inline(i)->mHeldItem.mUnk_00;
         if (q == 0xd) {
             data_0217b3cc->mUnk_18.mUnk_00 += 1;
             data_0217b3cc->mUnk_18.mUnk_04 = 0x1000;

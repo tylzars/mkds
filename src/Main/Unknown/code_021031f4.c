@@ -41,7 +41,7 @@ void func_021049a4(void) {
     Unk020f41c4_A **v4;
     Unk027e00cc *v6;
     u32 v5;
-    if (data_0217bc48[17].mUnk_00 != FALSE) {
+    if (gItemInfos[17].mEnabled != FALSE) {
         v6 = &data_027e00cc[8];
         v4 = v6->mUnk_04;
         v1 = v6->mUnk_08;

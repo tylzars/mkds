@@ -61,7 +61,7 @@ void func_0205a750(s32 a) {
 }
 
 void func_0205a71c(s32 a) {
-    func_020f86c4(&data_027e00c8[(u8) data_0217aa18->mUnk_06[a]]);
+    func_020f86c4(&gKartItems[(u8) data_0217aa18->mUnk_06[a]]);
 }
 
 void func_0205a6b4(void) {
@@ -86,7 +86,7 @@ s32 func_0205a630(s32 a) {
 
     t = data_0217aa14->mUnk_104[a].mUnk_6c;
     r = FALSE;
-    if (func_020efd84(&data_027e00c8[(u8) data_0217aa18->mUnk_06[a]], t) != FALSE) {
+    if (func_020efd84(&gKartItems[(u8) data_0217aa18->mUnk_06[a]], t) != FALSE) {
         data_0217aa14->mUnk_104[a].mUnk_6c = 0x13;
         r = TRUE;
     }
@@ -101,7 +101,7 @@ void func_0205a5b0(u32 a) {
         return;
     }
     e->mUnk_04 = 0x13;
-    func_020f4718(&data_027e00c8[(u16) data_0217aa18->mUnk_06[a]].mUnk_030);
+    func_020f4718(&gKartItems[(u16) data_0217aa18->mUnk_06[a]].mHeldItem);
 }
 
 void func_0205a548(s32 a, s32 b, s32 c) {
@@ -110,5 +110,5 @@ void func_0205a548(s32 a, s32 b, s32 c) {
     e = &data_0217aa14->mUnk_104[a].mUnk_68_view;
     e->mUnk_00 = b;
     e->mUnk_04 = b;
-    func_020f40dc(&data_027e00c8[(u16) data_0217aa18->mUnk_06[a]].mUnk_030, b, c);
+    func_020f40dc(&gKartItems[(u16) data_0217aa18->mUnk_06[a]].mHeldItem, b, c);
 }

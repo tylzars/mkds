@@ -46,13 +46,13 @@ void func_020f4884(Unk020f40dc *rec) {
         return;
     }
     if (data_021759c0->mMode == 5) {
-        if (data_021759c0->mEntryIndex == rec->mUnk_04->mUnk_1f8) {
+        if (data_021759c0->mEntryIndex == rec->mUnk_04->mKartIndex) {
             kind = (Unk020f40dc_Kind) rec->mUnk_00;
-            func_020fe958(data_0217bc48[kind].mUnk_08);
+            func_020fe958(gItemInfos[kind].mObjectKind);
         }
     }
     rec->mUnk_08 -= 1;
-    k = data_0217bc48[rec->mUnk_00].mUnk_08;
+    k = gItemInfos[rec->mUnk_00].mObjectKind;
     t = data_027e00cc[k].mUnk_1c;
     data_027e00cc[(s32) k].mUnk_1c = t - 1;
     if (rec->mUnk_08 == 0) {
@@ -72,15 +72,15 @@ void func_020f47e4(Unk020f40dc *rec, s32 kind) {
     u32 k;
     s32 t;
 
-    k = data_0217bc48[kind].mUnk_0c;
+    k = gItemInfos[kind].mObjectCount;
     rec->mUnk_00 = kind;
     rec->mUnk_08 = k;
     rec->mUnk_20 = 0;
-    func_0206c14c(rec->mUnk_04->mUnk_1fc);
-    rec->mUnk_0c = data_0217bc48[kind].mUnk_10;
+    func_0206c14c(rec->mUnk_04->mKart);
+    rec->mUnk_0c = gItemInfos[kind].mUnk_10;
     rec->mUnk_10 = 0;
     rec->mUnk_12 = 0;
-    k = data_0217bc48[kind].mUnk_08;
+    k = gItemInfos[kind].mObjectKind;
     t = data_027e00cc[k].mUnk_1c;
     data_027e00cc[(s32) k].mUnk_1c = t + rec->mUnk_08;
 }
@@ -90,7 +90,7 @@ void func_020f4754(Unk020f40dc *rec, s32 n) {
     int k;
 
     rec->mUnk_08 -= n;
-    k = data_0217bc48[rec->mUnk_00].mUnk_08;
+    k = gItemInfos[rec->mUnk_00].mObjectKind;
     data_027e00cc[(s32) k].mUnk_1c = data_027e00cc[k].mUnk_1c - n;
     if (rec->mUnk_08 == 0) {
         rec->mUnk_00 = 0x13;
@@ -126,7 +126,7 @@ void func_020f45f0(Unk020f40dc *rec, s32 keep) {
     s32 j;
     s32 m;
     Unk020f40dc_Kind kind = (Unk020f40dc_Kind) rec->mUnk_00;
-    u32 tab = data_0217bc48[kind].mUnk_08;
+    u32 tab = gItemInfos[kind].mObjectKind;
 
     if (data_021759c0->mMode == 5) {
         n = rec->mUnk_08;
@@ -166,7 +166,7 @@ static inline u32 func_020f41c4_inline(Unk020f41c4_B *r, u32 c) {
 }
 
 void func_020f41c4(Unk020f40dc *rec) {
-    Kart *owner = rec->mUnk_04->mUnk_1fc;
+    Kart *owner = rec->mUnk_04->mKart;
     Unk020f41c4_C *halves = (Unk020f41c4_C *) ((u8 *) owner->mKartModelsEntry + 0x40);
     Vec3 *dir = &owner->mUnk_168;
     Vec3 *axis = &owner->mUnk_150;
@@ -194,7 +194,7 @@ void func_020f41c4(Unk020f40dc *rec) {
     }
     angle = (u16) func_020f41c4_inline(st, 0x10000);
     angle >>= 4;
-    tab = data_0217bc48[kind].mUnk_08;
+    tab = gItemInfos[kind].mObjectKind;
     if (data_0217bc34[tab].mUnk_80 != 0) {
         radius = 0x2000;
     } else {
@@ -265,14 +265,14 @@ void func_020f40dc(Unk020f40dc *rec, s32 kind, s32 count) {
     rec->mUnk_00 = kind;
     rec->mUnk_08 = count;
     rec->mUnk_20 = 0;
-    func_0206c14c(rec->mUnk_04->mUnk_1fc);
-    rec->mUnk_0c = data_0217bc48[kind].mUnk_10;
+    func_0206c14c(rec->mUnk_04->mKart);
+    rec->mUnk_0c = gItemInfos[kind].mUnk_10;
     rec->mUnk_10 = 0;
     rec->mUnk_12 = 0;
 }
 
 void func_020f40a0(s32 idx, s32 amount) {
-    int i = data_0217bc48[idx].mUnk_08;
+    int i = gItemInfos[idx].mObjectKind;
 
     data_027e00cc[(s32) i].mUnk_1c = data_027e00cc[i].mUnk_1c - amount;
 }

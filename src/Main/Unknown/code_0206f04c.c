@@ -139,7 +139,7 @@ void func_0206ff50(Kart *p, u32 a) {
         func_020815dc(p->mIndex);
         func_021090c4(&p->mUnk_00, 0xfd, 0x7f, 0);
     }
-    func_020f00f0(&(data_027e00c8)[p->mIndex]);
+    func_020f00f0(&(gKartItems)[p->mIndex]);
     if (a & 0x400) {
         b = func_020d59f8(0x400);
         p->mUnk_48 |= 0x2000;

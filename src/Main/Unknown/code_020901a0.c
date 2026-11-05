@@ -11,7 +11,7 @@ void func_0209033c(Unk0208fd8c *a, Unk020888b4 *b) {
 void func_020902fc(Unk0208fd8c *a, Unk020888b4 *b) {
     enum { K0 } i;
 
-    i = *(s32 *) &data_027e00c8[b->mIndex].mUnk_030;
+    i = *(s32 *) &gKartItems[b->mIndex].mHeldItem;
     a->mUnk_04 = data_0217b09c + i;
     func_0207c0a0(a);
 }

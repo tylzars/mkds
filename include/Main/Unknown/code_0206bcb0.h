@@ -269,7 +269,7 @@ typedef struct Kart {
             s32 mUnk_21c;
             void (*mUnk_220)(struct Kart *);
             u8 mUnk_224[4];
-            struct Unk020ee684 *mUnk_228;
+            struct KartItems *mUnk_228;
             u8 mUnk_22c[4];
         };
     };

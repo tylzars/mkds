@@ -180,8 +180,8 @@ void func_020ebef8(Unk020ebef8 *c, Vec3 *d) {
     if (c->mUnk_10e == 0) {
         return;
     }
-    i = func_020f8a04(0, c->mUnk_10e, 1, 1, 0, 0x12);
-    q = func_020fa3d0(data_0217bc48[i].mUnk_08, 8, &c->mUnk_000.mPos, &c->mUnk_0bc);
+    i = PickItem(0, c->mUnk_10e, 1, 1, 0, 0x12);
+    q = func_020fa3d0(gItemInfos[i].mObjectKind, 8, &c->mUnk_000.mPos, &c->mUnk_0bc);
     if (q == NULL) {
         return;
     }

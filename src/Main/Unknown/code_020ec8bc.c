@@ -69,30 +69,30 @@ void *func_020ed490(u8 *a, u8 *b) {
     return p;
 }
 
-void func_020ed2f8(void) {
+void CreateItemModels(void) {
     enum { K0 } i;
     void *p;
     BOOL f;
 
     i = 0;
     while (i < 0xe) {
-        data_0217bbfc[i] = NULL;
+        gItemModels[i] = NULL;
         i++;
     }
-    data_0217bbfc[0] = func_020ed4d0(data_0216c42c, NULL, data_0216c440);
-    data_0217bbfc[1] = func_020ed4d0(data_0216c454, NULL, data_0216c468);
-    data_0217bbfc[2] = func_020ed4d0(data_0216c47c, NULL, data_0216c48c);
-    data_0217bbfc[3] = func_020ed4d0(data_0216c49c, NULL, data_0216c4ac);
-    data_0217bbfc[4] = func_020ed4d0(data_0216c4bc, NULL, data_0216c4cc);
-    data_0217bbfc[5] = func_020ed4d0(data_0216c4dc, NULL, data_0216c4f0);
-    data_0217bbfc[6] = func_020ed4d0(data_0216c504, NULL, data_0216c518);
-    data_0217bbfc[7] = func_020ed4d0(data_0216c52c, NULL, data_0216c53c);
-    data_0217bbfc[9] = func_020ed4d0(data_0216c54c, data_0216c55c, data_0216c56c);
-    data_0217bbfc[10] = func_020ed4d0(data_0216c57c, NULL, data_0216c58c);
-    data_0217bbfc[11] = func_020ed4d0(data_0216c59c, NULL, data_0216c5ac);
-    data_0217bbfc[12] = func_020ed4d0(data_0216c5bc, NULL, data_0216c5d0);
-    data_0217bbfc[13] = func_020ed4d0(data_0216c5e4, NULL, data_0216c5f4);
-    data_0217bbfc[8] = data_0217bbfc[7];
+    gItemModels[0] = func_020ed4d0(data_0216c42c, NULL, data_0216c440);
+    gItemModels[1] = func_020ed4d0(data_0216c454, NULL, data_0216c468);
+    gItemModels[2] = func_020ed4d0(data_0216c47c, NULL, data_0216c48c);
+    gItemModels[3] = func_020ed4d0(data_0216c49c, NULL, data_0216c4ac);
+    gItemModels[4] = func_020ed4d0(data_0216c4bc, NULL, data_0216c4cc);
+    gItemModels[5] = func_020ed4d0(data_0216c4dc, NULL, data_0216c4f0);
+    gItemModels[6] = func_020ed4d0(data_0216c504, NULL, data_0216c518);
+    gItemModels[7] = func_020ed4d0(data_0216c52c, NULL, data_0216c53c);
+    gItemModels[9] = func_020ed4d0(data_0216c54c, data_0216c55c, data_0216c56c);
+    gItemModels[10] = func_020ed4d0(data_0216c57c, NULL, data_0216c58c);
+    gItemModels[11] = func_020ed4d0(data_0216c59c, NULL, data_0216c5ac);
+    gItemModels[12] = func_020ed4d0(data_0216c5bc, NULL, data_0216c5d0);
+    gItemModels[13] = func_020ed4d0(data_0216c5e4, NULL, data_0216c5f4);
+    gItemModels[8] = gItemModels[7];
     f = (data_021759c0->mCourseId == 0x1d);
     i = 0;
     while (i < 0xe) {
@@ -101,7 +101,7 @@ void func_020ed2f8(void) {
             ((Unk0217bc34_14 *) p)->mUnk_14();
         }
         if (f != FALSE) {
-            data_0217bbfc[i]->mUnk_14 &= 0xffff7fff;
+            gItemModels[i]->mUnk_14 &= 0xffff7fff;
         }
         i++;
     }

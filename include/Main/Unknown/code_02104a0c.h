@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_020f1d70.h"
 #include "Main/Unknown/code_021052fc.h"
 #include "Main/Unknown/code_020f2dac.h"
-#include "Main/Unknown/code_020f36d8.h" // Unk0217bc34, Unk0217bc48
+#include "Main/Unknown/code_020f36d8.h" // Unk0217bc34, ItemInfo
 
 // Element of data_027e00cc[8]: 0x14c bytes (the size in data_0217bc34[8]), handled by func_02104a0c to
 // func_02104f58: the Unk020f2df0 part, words at 0x130 and 0x138, the Unk021052fc at 0x134, a vector at 0x13c and a
@@ -27,7 +27,7 @@ extern Vec3 data_0217c73c;
 extern struct CourseMapRow data_0217c730;
 
 extern const u16 data_0215a584;
-extern const Unk0217bc48 data_0215a588;
+extern const ItemInfo data_0215a588;
 extern const Unk0217bc34 data_0215a5a4;
 
 void func_02105214(void);

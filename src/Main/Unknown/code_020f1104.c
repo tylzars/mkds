@@ -9,7 +9,7 @@ void func_020f1150(int arg0, int arg1) {
     u32 value2;
     u32 value3;
     u32 value12;
-    value3 = ((u32) &data_027e00c8);
+    value3 = ((u32) &gKartItems);
     value2 = 0x210u;
     value12 = (u32) * (const u32 *) ((value3) + (0));
     value3 = 0u;
@@ -27,7 +27,7 @@ void func_020f112c(int arg0, int arg1) {
     u32 value2;
     u32 value3;
     u32 value12;
-    value3 = ((u32) &data_027e00c8);
+    value3 = ((u32) &gKartItems);
     value2 = 0x210u;
     value12 = (u32) * (const u32 *) ((value3) + (0));
     value3 = 0u;

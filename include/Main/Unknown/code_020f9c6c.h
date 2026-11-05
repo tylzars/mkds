@@ -52,7 +52,7 @@ typedef struct Unk020fc2e8 {
     /* 174 */ u8 mUnk_174[0xa8];
     /* 21c */ s32 mUnk_21c;
     /* 220 */ u8 mUnk_220[8];
-    /* 228 */ struct Unk020ee684 *mUnk_228;
+    /* 228 */ struct KartItems *mUnk_228;
     /* 22c */ Vec3 mUnk_22c;
     /* 238 */ Vec3 mUnk_238;
     /* 244 */ Vec3 mUnk_244;
@@ -109,14 +109,16 @@ void func_020f9fa8(Unk020f41c4_A *param_1);
 void func_020fa030(Unk020f41c4_A *param_1);
 s32 func_020fa0b8(void *param_1, s32 param_2, s32 param_3);
 s32 func_020fa0e8(s32 param_1, s32 param_2);
-void func_020fa13c(void);
+void InitItems(void);
 void func_020fa294(void);
 void *func_020fa3d0(s32 param_1, u16 param_2, void *param_3, void *param_4);
 struct Unk020f41c4_A *func_020fa4b4(u32 arg0);
 s32 func_020fa4c8(Kart *param_1);
 void func_020fa78c(s32 param_1, s32 param_2, s32 param_3);
 void func_020fa8ac(void *a);
-void func_020fa920(void);
+// Per-frame item step: mode-5 sync, the object pools whose mUnk_14 is set, every kart's record, the item timers, two
+// map-object steps
+void UpdateItems(void);
 void func_020fa9e4(void);
 BOOL func_020faa78(s32 param_1);
 BOOL func_020fab34(s32 *param_1);

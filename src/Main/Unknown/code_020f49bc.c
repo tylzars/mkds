@@ -306,7 +306,7 @@ void func_020f62b0(Unk020eda5c *a, Unk020f40dc *b) {
             func_0212ecc0(p, 0, 0xde);
         }
     }
-    func_02069e10(b->mUnk_04->mUnk_1fc);
+    func_02069e10(b->mUnk_04->mKart);
     func_020d3cc8();
     func_020f82e8(0);
     func_020f4754(b, 1);
@@ -317,7 +317,7 @@ void func_020f62b0(Unk020eda5c *a, Unk020f40dc *b) {
 }
 
 void func_020f6264(Unk020eda5c *a, Unk020f40dc *b) {
-    func_02069c38(b->mUnk_04->mUnk_1fc);
+    func_02069c38(b->mUnk_04->mKart);
     func_020f4754(b, 1);
     if (data_021759c0->mMode != 5) {
         return;
@@ -343,7 +343,7 @@ BOOL func_020f6150(Unk020eda5c *a, Unk020f6150 *b) {
     func_020f9114(b);
     func_0210b850(&b->mUnk_16c);
     b->mUnk_000.mUnk_000.mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
-    if (a->mUnk_00c->mUnk_1ec & 0x20) {
+    if (a->mUnk_00c->mFlags & 0x20) {
         func_020f2b94(b, a, v != FALSE ? 2 : 4, 0, 0, 0x5000);
         return FALSE;
     }
@@ -413,7 +413,7 @@ s32 func_020f5d6c(Unk020eda5c *a, Unk020f5d6c *b) {
     func_0210b850(&b->mUnk_258);
     b->mUnk_000.mUnk_000.mUnk_000.mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     func_02046be8(&b->mUnk_23c, (UnkFunc *const *) data_0216c648, 7, b);
-    if (a->mUnk_00c->mUnk_1ec & 0x20) {
+    if (a->mUnk_00c->mFlags & 0x20) {
         b->mUnk_254 = 0;
         func_020f2b94(b, a, 0, 0, 0, 0x5000);
         b->mUnk_23c.mNextState = 1;
@@ -514,7 +514,7 @@ void func_020f5b84(Unk020f5d6c *a) {
         if (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_74 & 0x8000000)) {
             return;
         }
-        func_020fe71c(1, a->mUnk_228->mUnk_1f8, a->mUnk_000.mUnk_000.mUnk_000.mUnk_4e);
+        func_020fe71c(1, a->mUnk_228->mKartIndex, a->mUnk_000.mUnk_000.mUnk_000.mUnk_4e);
         return;
     }
     if (a->mUnk_23c.mStateFrames > 4) {
@@ -526,7 +526,7 @@ void func_020f5b84(Unk020f5d6c *a) {
         if (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_74 & 0x8000000)) {
             return;
         }
-        func_020fe71c(1, a->mUnk_228->mUnk_1f8, a->mUnk_000.mUnk_000.mUnk_000.mUnk_4e);
+        func_020fe71c(1, a->mUnk_228->mKartIndex, a->mUnk_000.mUnk_000.mUnk_000.mUnk_4e);
     }
 }
 
@@ -573,7 +573,7 @@ void func_020f5978(Unk020f5d6c *a) {
         if (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_74 & 0x8000000)) {
             return;
         }
-        func_020fe71c(1, a->mUnk_228->mUnk_1f8, a->mUnk_000.mUnk_000.mUnk_000.mUnk_4e);
+        func_020fe71c(1, a->mUnk_228->mKartIndex, a->mUnk_000.mUnk_000.mUnk_000.mUnk_4e);
         return;
     }
     if (a->mUnk_23c.mStateFrames > 4) {
@@ -585,7 +585,7 @@ void func_020f5978(Unk020f5d6c *a) {
         if (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_74 & 0x8000000)) {
             return;
         }
-        func_020fe71c(1, a->mUnk_228->mUnk_1f8, a->mUnk_000.mUnk_000.mUnk_000.mUnk_4e);
+        func_020fe71c(1, a->mUnk_228->mKartIndex, a->mUnk_000.mUnk_000.mUnk_000.mUnk_4e);
     }
 }
 
@@ -596,14 +596,14 @@ void func_020f5968(Unk020f5d6c *p0) {
 // Runs the two 0x7c/0x4c checks of the object in the 0x1fc word of the 0x1c pointer, then
 // one of the four func_020f14a0 calls, and stores the 0x24c/0x24e halfwords it picks.
 void func_020f5824(Unk020f5d6c *a) {
-    Unk020ee684 *o;
+    KartItems *o;
     Kart *b;
     BOOL d;
     u32 c;
     s32 n;
 
     o = a->mUnk_228;
-    b = o->mUnk_1fc;
+    b = o->mKart;
     c = *(u32 *) &b->mUnk_7c;
     d = TRUE;
     if ((c & 0x402020) == 0) {
@@ -643,14 +643,14 @@ void func_020f5824(Unk020f5d6c *a) {
 // Checks func_0206c0e0 of the 0x1fc object, then the 0x240 counter and the sum of the two
 // squares of the 0x50/0x54/0x58 differences against the 0x1d0/0x1d4/0x1e0 square.
 void func_020f572c(Unk020f5d6c *a) {
-    Unk020ee684 *o;
+    KartItems *o;
     Kart *k;
     s32 n;
     s32 r;
     s32 t;
 
     o = a->mUnk_228;
-    k = o->mUnk_1fc;
+    k = o->mKart;
     if (func_0206c0e0(k) != FALSE) {
         func_020f6f10(&a->mUnk_000.mUnk_000.mUnk_000, 0, 8);
     } else {
@@ -684,7 +684,7 @@ void func_020f56d0(Unk020f5d6c *a) {
 void func_020f5614(void *a0, s32 b, void *c0) {
     Unk020f5d6c *a;
     Unk020f41c4_A *c;
-    Unk020ee684 *o;
+    KartItems *o;
     Kart *k;
     u16 n;
     u32 f;
@@ -699,7 +699,7 @@ void func_020f5614(void *a0, s32 b, void *c0) {
     if (o == NULL) {
         return;
     }
-    k = o->mUnk_1fc;
+    k = o->mKart;
     if (n != *(u16 *) &k->mIndex) {
         return;
     }
@@ -816,13 +816,13 @@ BOOL func_020f5324(void *a0, s32 b) {
 // func_020f3150 calls depending on the 0x1ec halfword of the 0x0c pointer, and returns the
 // 0x130 word it stores.
 s32 func_020f5240(Unk020eda5c *a, Unk020f5240 *b) {
-    Unk020ee684 *o;
+    KartItems *o;
     s32 n;
 
     func_020f9114(b);
     b->mUnk_000.mUnk_000.mUnk_78 |= data_02159834;
     o = a->mUnk_00c;
-    if (o->mUnk_1ec & 0x10) {
+    if (o->mFlags & 0x10) {
         func_020f3150(&b->mUnk_000, a, 0, 1, 0x4000, 0x3000, 0x59a);
         func_021090c4(&b->mUnk_000.mUnk_000.mUnk_00, 0xda, 0x7f, 0);
         b->mUnk_130 = 1;
@@ -892,7 +892,7 @@ void func_020f50b4(Unk020f5240 *a) {
 // Runs func_02069db8 on the 0x1fc word of b's 0x04 object, marks b, sets the 0x204 word of
 // a's 0x0c object, and runs func_020fe958 when the 0x08 word is 5.
 void func_020f504c(Unk020eda5c *a, Unk020f40dc *b) {
-    func_02069db8(b->mUnk_04->mUnk_1fc);
+    func_02069db8(b->mUnk_04->mKart);
     func_020f4754(b, 1);
     a->mUnk_00c->mUnk_204 = TRUE;
     if (data_021759c0->mMode != 5) {
@@ -993,12 +993,12 @@ void func_020f4dfc(void **a, Vec3 *b, s32 c) {
 #pragma thumb on
 
 // Fills a table of eighteen 0x1c-byte objects allocated here.
-void func_020f4b8c(void) {
-    Unk0217bc48 *p;
+void CreateItemInfos(void) {
+    ItemInfo *p;
     s32 i;
 
     p = HeapAlloc(GetHeap(func_020364e8()), 0x1f8);
-    data_0217bc48 = p;
+    gItemInfos = p;
     p[0] = data_02159918;
     p[1] = data_02159838;
     p[2] = data_02159770;
@@ -1019,24 +1019,24 @@ void func_020f4b8c(void) {
     p[17] = data_0215a4c0;
     switch (data_021759c0->mMode) {
         case 2:
-            p[17].mUnk_00 = TRUE;
+            p[17].mEnabled = TRUE;
             break;
         case 5:
             for (i = 0; i < 0x12; i++) {
-                if (data_0217bc48[(u32) i].mUnk_00 != FALSE && data_0217bc48[(u32) i].mUnk_04 == 0) {
-                    data_0217bc48[i].mUnk_00 = FALSE;
+                if (gItemInfos[(u32) i].mEnabled != FALSE && gItemInfos[(u32) i].mUnk_04 == 0) {
+                    gItemInfos[i].mEnabled = FALSE;
                 }
             }
             break;
     }
     if (data_021759c0->mUnk_00c == 1) {
-        data_0217bc48[15].mUnk_00 = FALSE;
+        gItemInfos[15].mEnabled = FALSE;
     }
 }
 
 #pragma thumb off
 
-void func_020f4b20(Unk020f40dc *a, Unk020ee684 *b) {
+void func_020f4b20(Unk020f40dc *a, KartItems *b) {
     s32 i;
 
     a->mUnk_04 = b;
@@ -1049,7 +1049,7 @@ void func_020f4b20(Unk020f40dc *a, Unk020ee684 *b) {
     for (i = 0; i < 3; i++) {
         a->mUnk_14[i] = NULL;
     }
-    a->mUnk_24 = data_021759c0->mCurrentEntries[b->mUnk_1f8].mUnk_08.mKind == 3;
+    a->mUnk_24 = data_021759c0->mCurrentEntries[b->mKartIndex].mUnk_08.mKind == 3;
 }
 
 void func_020f49bc(Unk020f40dc *a) {
@@ -1068,7 +1068,7 @@ void func_020f49bc(Unk020f40dc *a) {
     if (a->mUnk_20 != 7 && a->mUnk_20 != 5 && a->mUnk_20 != 3) {
         return;
     }
-    p = a->mUnk_04->mUnk_1fc;
+    p = a->mUnk_04->mKart;
     a->mUnk_08--;
     e = a->mUnk_14[a->mUnk_08];
     q = &p->mUnk_98;

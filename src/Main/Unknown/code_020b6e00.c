@@ -409,7 +409,7 @@ Unk020224e0_c *GetRaceMNcerEntry(u32 arg0) {
 
 u32 LookupRaceMNcerIndex(u32 a) {
     u32 r;
-    Unk020ee684 *p;
+    KartItems *p;
     enum { K0 } j;
 
     r = 0xb;
@@ -430,9 +430,9 @@ u32 LookupRaceMNcerIndex(u32 a) {
             r = 0xd;
             break;
         case 5:
-            p = &data_027e00c8[func_020b4d9c()];
-            j = p->mUnk_030.mUnk_00;
-            switch (data_0217bc48[j].mUnk_08 == 3 ? (u16) p->mUnk_030.mUnk_08 : 0) {
+            p = &gKartItems[func_020b4d9c()];
+            j = p->mHeldItem.mUnk_00;
+            switch (gItemInfos[j].mObjectKind == 3 ? (u16) p->mHeldItem.mUnk_08 : 0) {
                 case 1:
                     r = 0xd;
                     break;
@@ -529,7 +529,7 @@ Unk020224e0_c *GetRaceStartBattleMNcerEntry(u32 p0) {
 }
 
 s32 LookupRaceSNcerIndex(s32 a, s32 b) {
-    Unk020ee684 *p;
+    KartItems *p;
     u32 k;
     enum { K0 } j;
 
@@ -545,10 +545,10 @@ s32 LookupRaceSNcerIndex(s32 a, s32 b) {
         case 4:
             return 0x11;
         case 5:
-            p = &data_027e00c8[(u16) a];
-            j = p->mUnk_030.mUnk_00;
-            if (data_0217bc48[j].mUnk_08 == 3) {
-                k = (u16) p->mUnk_030.mUnk_08;
+            p = &gKartItems[(u16) a];
+            j = p->mHeldItem.mUnk_00;
+            if (gItemInfos[j].mObjectKind == 3) {
+                k = (u16) p->mHeldItem.mUnk_08;
             } else {
                 k = 0;
             }

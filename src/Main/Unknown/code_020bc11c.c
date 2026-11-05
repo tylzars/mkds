@@ -96,7 +96,7 @@ void func_020be3e4(void) {
     s32 e;
     s32 k;
     u8 i;
-    Unk020ee684 *o;
+    KartItems *o;
 
     e = data_0217b3d8->mUnk_0f8;
     if (GetRaceStartSequenceFrames() <= 0x188) {
@@ -119,8 +119,8 @@ void func_020be3e4(void) {
         }
     }
     for (i = 0; i < (s32) data_021759c0->mKartCount; i++) {
-        o = &data_027e00c8[i];
-        data_0217b3d8->mUnk_040[i] = o->mUnk_030.mUnk_00 == 0x13 ? o->mUnk_014 : o->mUnk_030.mUnk_00;
+        o = &gKartItems[i];
+        data_0217b3d8->mUnk_040[i] = o->mHeldItem.mUnk_00 == 0x13 ? o->mActiveItem : o->mHeldItem.mUnk_00;
         if (data_0217b3d8->mUnk_0f8 % 0x1c == 0) {
             data_0217b3d8->mUnk_060[i] = data_0217b3d8->mUnk_080[i];
             data_0217b3d8->mUnk_080[i] = GetKartRank(i);
@@ -234,7 +234,7 @@ u32 func_020be15c(u16 a) {
         }
     } else if (d->mUnk_040[a] != 0x13) {
         r = LookupRaceSNcerIndex(a, d->mUnk_040[a]);
-    } else if (data_027e00c8[a].mUnk_000 == 1) {
+    } else if (gKartItems[a].mSlotState == 1) {
         r = 0x16;
     } else {
         r = 0xc9;

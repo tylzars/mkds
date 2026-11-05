@@ -29,8 +29,8 @@ static inline u32 func_020f8a04_inline(Unk020f41c4_B *b, u32 c) {
     }
 }
 
-s32 func_020f8a04(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s32 param_6) {
-    Unk0217bc6c *q;
+s32 PickItem(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s32 param_6) {
+    ItemSlotTable *q;
     Unk020f41c4_B *b;
     u16 *row;
     s32 m;
@@ -54,7 +54,7 @@ s32 func_020f8a04(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_
         param_3 = (u16) (param_3 - 1);
         m = param_1;
     }
-    row = q->mUnk_04[param_3];
+    row = q->mRows[param_3];
     acc = 0;
     t = 0;
     if (data_021759c0->mMode != 4) {
@@ -64,10 +64,10 @@ s32 func_020f8a04(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_
         }
     }
     for (j = 0; j < param_6; j++) {
-        n = data_0217bc48[(s32) j].mUnk_08;
+        n = gItemInfos[(s32) j].mObjectKind;
         if (!((j == 8 && data_0217bc60 > 0) || (j == 7 && data_0217bc5c > 0) || (j == 0xf && data_0217bc58 > 0))) {
-            if (data_027e00cc[n].mUnk_20 - data_027e00cc[n].mUnk_1c > 0 && data_0217bc48[(s32) j].mUnk_00 != FALSE) {
-                x = data_0217bc34[n].mUnk_90 * data_0217bc48[(s32) j].mUnk_0c;
+            if (data_027e00cc[n].mUnk_20 - data_027e00cc[n].mUnk_1c > 0 && gItemInfos[(s32) j].mEnabled != FALSE) {
+                x = data_0217bc34[n].mUnk_90 * gItemInfos[(s32) j].mObjectCount;
                 if (x == 0 || x + t <= 0x28) {
                     if (j >= 9 && m != 0) {
                         if (m == 1) {
@@ -101,166 +101,166 @@ s32 func_020f8a04(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_
     }
     if (param_5 != 0) {
         if (param_2 != 0) {
-            data_0217bc50 = 0;
+            gItemSlotSpinItemCount = 0;
             for (u = 0; u < param_6; u++) {
                 if (u == sel || row[u] != 0) {
-                    data_0217bca0[data_0217bc50++] = u;
+                    gItemSlotSpinItems[gItemSlotSpinItemCount++] = u;
                 }
             }
         } else {
-            data_0217bc50 = 0;
+            gItemSlotSpinItemCount = 0;
         }
     }
     return sel;
 }
 
-void func_020f89b0(Unk020ee684 *param_1, Unk020ee684 *param_2) {
-    param_1->mUnk_018 = param_2;
-    param_1->mUnk_000 = 0;
-    param_1->mUnk_004 = 0;
-    param_1->mUnk_00c = 0x13;
-    param_1->mUnk_010 = 0x13;
-    param_1->mUnk_014 = 0x13;
+void InitItemSlot(KartItems *param_1, KartItems *param_2) {
+    param_1->mSelf = param_2;
+    param_1->mSlotState = 0;
+    param_1->mSlotFrames = 0;
+    param_1->mSlotShownItem = 0x13;
+    param_1->mSlotResult = 0x13;
+    param_1->mActiveItem = 0x13;
     param_1->mUnk_020 = FALSE;
-    param_1->mUnk_024 = data_021759c0->mCurrentEntries[param_2->mUnk_1f8].mUnk_08.mKind == 3;
+    param_1->mUnk_024 = data_021759c0->mCurrentEntries[param_2->mKartIndex].mUnk_08.mKind == 3;
 }
 
-void func_020f87a8(Unk020ee684 *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5) {
-    Unk020ee684 *p;
-    Unk0217bc48 *e;
+void StartItemSlot(KartItems *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5) {
+    KartItems *p;
+    ItemInfo *e;
     Unk027e00cc *v;
     enum { K0 } k, j;
     BOOL a;
     BOOL b;
 
-    p = param_1->mUnk_018;
+    p = param_1->mSelf;
     a = data_021759c0->mMode == 5;
-    if (param_1->mUnk_000 != 0) {
+    if (param_1->mSlotState != 0) {
         return;
     }
-    if (param_1->mUnk_014 != 0x13) {
+    if (param_1->mActiveItem != 0x13) {
         return;
     }
-    param_1->mUnk_000 = 1;
-    param_1->mUnk_00c = 0x13;
+    param_1->mSlotState = 1;
+    param_1->mSlotShownItem = 0x13;
     if (!a) {
-        func_020be930(param_1->mUnk_018->mUnk_1f8);
+        func_020be930(param_1->mSelf->mKartIndex);
     }
     if (a) {
         param_1->mUnk_01c = FALSE;
-        param_1->mUnk_004 = 0;
-        param_1->mUnk_008 = 0x85;
+        param_1->mSlotFrames = 0;
+        param_1->mSlotFrameCount = 0x85;
         param_1->mUnk_028 = 0x10;
         param_1->mUnk_02c = 4;
     } else if (param_5 != 0) {
         param_1->mUnk_01c = TRUE;
-        param_1->mUnk_004 = 0x4d;
-        param_1->mUnk_008 = 0x65;
+        param_1->mSlotFrames = 0x4d;
+        param_1->mSlotFrameCount = 0x65;
         param_1->mUnk_028 = 8;
         param_1->mUnk_02c = 3;
     } else {
         param_1->mUnk_01c = FALSE;
-        param_1->mUnk_004 = 0;
-        param_1->mUnk_008 = 0xd5;
+        param_1->mSlotFrames = 0;
+        param_1->mSlotFrameCount = 0xd5;
         param_1->mUnk_028 = 0x10;
         param_1->mUnk_02c = 4;
     }
-    b = p->mUnk_1f8 == data_021759c0->mEntryIndex;
-    if (p->mUnk_058.mUnk_000 != 0xf && p->mUnk_058.mUnk_004 >= 9) {
-        param_1->mUnk_010 = func_020f8a04(0, param_2, param_3, param_4, b, 9);
+    b = p->mKartIndex == data_021759c0->mEntryIndex;
+    if (p->mItemInUse.mUnk_000 != 0xf && p->mItemInUse.mUnk_004 >= 9) {
+        param_1->mSlotResult = PickItem(0, param_2, param_3, param_4, b, 9);
     } else {
-        param_1->mUnk_010 = func_020f8a04(func_02079b40(p->mUnk_1f8), param_2, param_3, param_4, b, 0x12);
+        param_1->mSlotResult = PickItem(func_02079b40(p->mKartIndex), param_2, param_3, param_4, b, 0x12);
     }
     if (a) {
-        func_0205a750(param_1->mUnk_010);
+        func_0205a750(param_1->mSlotResult);
         param_1->mUnk_020 = TRUE;
         return;
     }
-    k = param_1->mUnk_010;
-    e = &data_0217bc48[k];
-    j = e->mUnk_08;
+    k = param_1->mSlotResult;
+    e = &gItemInfos[k];
+    j = e->mObjectKind;
     v = &data_027e00cc[j];
-    v->mUnk_1c += e->mUnk_0c;
+    v->mUnk_1c += e->mObjectCount;
 }
 
-void func_020f86c4(Unk020ee684 *param_1) {
-    Unk020ee684 *p;
-    Unk0217bc48 *e;
+void func_020f86c4(KartItems *param_1) {
+    KartItems *p;
+    ItemInfo *e;
     Unk027e00cc *v;
     enum { K0 } k, j;
 
-    p = param_1->mUnk_018;
-    if (p->mUnk_014 != 0x13) {
-        p->mUnk_014 = 0x13;
+    p = param_1->mSelf;
+    if (p->mActiveItem != 0x13) {
+        p->mActiveItem = 0x13;
     }
-    if (param_1->mUnk_000 != 0) {
+    if (param_1->mSlotState != 0) {
         if (p->mUnk_020 == FALSE) {
-            k = p->mUnk_010;
-            e = &data_0217bc48[k];
-            j = e->mUnk_08;
+            k = p->mSlotResult;
+            e = &gItemInfos[k];
+            j = e->mObjectKind;
             v = &data_027e00cc[j];
-            v->mUnk_1c -= e->mUnk_0c;
+            v->mUnk_1c -= e->mObjectCount;
         }
-        p->mUnk_000 = 0;
-        p->mUnk_004 = 0;
-        p->mUnk_00c = 0x13;
-        p->mUnk_010 = 0x13;
-        p->mUnk_014 = 0x13;
+        p->mSlotState = 0;
+        p->mSlotFrames = 0;
+        p->mSlotShownItem = 0x13;
+        p->mSlotResult = 0x13;
+        p->mActiveItem = 0x13;
         p->mUnk_020 = FALSE;
     } else {
-        if (p->mUnk_030.mUnk_00 != 0x13) {
-            func_020f45f0(&p->mUnk_030, 1);
+        if (p->mHeldItem.mUnk_00 != 0x13) {
+            func_020f45f0(&p->mHeldItem, 1);
         }
     }
-    param_1->mUnk_000 = 1;
-    param_1->mUnk_004 = 0;
-    param_1->mUnk_008 = 0x85;
-    param_1->mUnk_00c = 0x13;
-    param_1->mUnk_014 = 0x13;
-    param_1->mUnk_010 = 0x13;
+    param_1->mSlotState = 1;
+    param_1->mSlotFrames = 0;
+    param_1->mSlotFrameCount = 0x85;
+    param_1->mSlotShownItem = 0x13;
+    param_1->mActiveItem = 0x13;
+    param_1->mSlotResult = 0x13;
     param_1->mUnk_020 = TRUE;
 }
 
-BOOL func_020f850c(Unk020ee684 *param_1, Unk020ee684 *param_2) {
-    Unk0217bc48 *e;
+BOOL UpdateItemSlot(KartItems *param_1, KartItems *param_2) {
+    ItemInfo *e;
     Unk027e00cc *v;
     enum { K0 } j;
     s32 a;
     u32 b;
 
-    switch (param_1->mUnk_000) {
+    switch (param_1->mSlotState) {
         case 1:
-            param_1->mUnk_004++;
+            param_1->mSlotFrames++;
             a = data_021759c0->mMode;
             if (a == 5 && param_1->mUnk_020 != FALSE) {
-                b = param_2->mUnk_1f8 & 0xff;
+                b = param_2->mKartIndex & 0xff;
                 if (func_0205a310(((u8 *) data_0217aa18)[b]) == 0) {
                     b = func_0205a2ac(((u8 *) data_0217aa18)[b]);
                     if (func_020faca4(b) != FALSE) {
                         func_020faa78(b);
                     }
-                    e = &data_0217bc48[b];
-                    j = e->mUnk_08;
+                    e = &gItemInfos[b];
+                    j = e->mObjectKind;
                     v = &data_027e00cc[j];
-                    v->mUnk_1c += e->mUnk_0c;
-                    param_1->mUnk_010 = b;
+                    v->mUnk_1c += e->mObjectCount;
+                    param_1->mSlotResult = b;
                     param_1->mUnk_020 = FALSE;
-                    param_1->mUnk_008 += param_1->mUnk_004 - 0x6f;
-                } else if (param_1->mUnk_004 > 0x6e) {
-                    param_1->mUnk_004 = 0x67;
+                    param_1->mSlotFrameCount += param_1->mSlotFrames - 0x6f;
+                } else if (param_1->mSlotFrames > 0x6e) {
+                    param_1->mSlotFrames = 0x67;
                 }
                 return FALSE;
             }
-            if (param_1->mUnk_004 > 0x3c &&
-                (((param_2->mUnk_1ec & 0x241) == 0x241 && a != 5 && param_1->mUnk_01c == FALSE) ||
-                 param_1->mUnk_004 > param_1->mUnk_008)) {
-                param_1->mUnk_004 = 0;
-                param_1->mUnk_000 = 2;
+            if (param_1->mSlotFrames > 0x3c &&
+                (((param_2->mFlags & 0x241) == 0x241 && a != 5 && param_1->mUnk_01c == FALSE) ||
+                 param_1->mSlotFrames > param_1->mSlotFrameCount)) {
+                param_1->mSlotFrames = 0;
+                param_1->mSlotState = 2;
             }
             break;
         case 2:
-            param_1->mUnk_004++;
-            if (param_1->mUnk_004 > param_1->mUnk_028 * 2) {
+            param_1->mSlotFrames++;
+            if (param_1->mSlotFrames > param_1->mUnk_028 * 2) {
                 return TRUE;
             }
             break;
@@ -268,41 +268,41 @@ BOOL func_020f850c(Unk020ee684 *param_1, Unk020ee684 *param_2) {
     return FALSE;
 }
 
-void func_020f8498(Unk020ee684 *param_1) {
-    Unk0217bc48 *e;
+void FinishItemSlot(KartItems *param_1) {
+    ItemInfo *e;
     Unk027e00cc *v;
     enum { K0 } k, j;
 
-    k = param_1->mUnk_010;
-    e = &data_0217bc48[k];
-    j = e->mUnk_08;
+    k = param_1->mSlotResult;
+    e = &gItemInfos[k];
+    j = e->mObjectKind;
     v = &data_027e00cc[j];
-    v->mUnk_1c -= e->mUnk_0c;
-    param_1->mUnk_000 = 0;
-    param_1->mUnk_004 = 0;
-    param_1->mUnk_00c = 0x13;
-    param_1->mUnk_010 = 0x13;
-    param_1->mUnk_014 = 0x13;
+    v->mUnk_1c -= e->mObjectCount;
+    param_1->mSlotState = 0;
+    param_1->mSlotFrames = 0;
+    param_1->mSlotShownItem = 0x13;
+    param_1->mSlotResult = 0x13;
+    param_1->mActiveItem = 0x13;
     param_1->mUnk_020 = FALSE;
 }
 
-void func_020f8418(Unk020ee684 *param_1) {
-    Unk0217bc48 *e;
+void StopItemSlot(KartItems *param_1) {
+    ItemInfo *e;
     Unk027e00cc *v;
     enum { K0 } k, j;
 
     if (param_1->mUnk_020 == FALSE) {
-        k = param_1->mUnk_010;
-        e = &data_0217bc48[k];
-        j = e->mUnk_08;
+        k = param_1->mSlotResult;
+        e = &gItemInfos[k];
+        j = e->mObjectKind;
         v = &data_027e00cc[j];
-        v->mUnk_1c -= e->mUnk_0c;
+        v->mUnk_1c -= e->mObjectCount;
     }
-    param_1->mUnk_000 = 0;
-    param_1->mUnk_004 = 0;
-    param_1->mUnk_00c = 0x13;
-    param_1->mUnk_010 = 0x13;
-    param_1->mUnk_014 = 0x13;
+    param_1->mSlotState = 0;
+    param_1->mSlotFrames = 0;
+    param_1->mSlotShownItem = 0x13;
+    param_1->mSlotResult = 0x13;
+    param_1->mActiveItem = 0x13;
     param_1->mUnk_020 = FALSE;
 }
 
@@ -321,35 +321,35 @@ static inline u16 func_020f830c_inline(Unk020f41c4_B *b, u32 n) {
     return t;
 }
 
-void func_020f830c(Unk020ee684 *param_1) {
+void PickItemSlotShownItem(KartItems *param_1) {
     Unk020f41c4_B *b;
     s32 *q;
     u16 n;
     u32 i;
 
-    switch (param_1->mUnk_000) {
+    switch (param_1->mSlotState) {
         case 0:
             return;
         case 1:
-            if (data_0217bc50 != 0) {
-                n = data_0217bc50;
-                q = data_0217bca0;
+            if (gItemSlotSpinItemCount != 0) {
+                n = gItemSlotSpinItemCount;
+                q = gItemSlotSpinItems;
             } else {
-                n = data_0217bc54;
-                q = data_0217bce8;
+                n = gItemSlotPossibleItemCount;
+                q = gItemSlotPossibleItems;
             }
             b = &gRaceProgress->mLocalRandom;
             i = func_020f830c_inline(b, n);
-            if (param_1->mUnk_00c == q[i]) {
+            if (param_1->mSlotShownItem == q[i]) {
                 i = (u16) (i + 1);
                 if (i >= n) {
                     i = 0;
                 }
             }
-            param_1->mUnk_00c = q[i];
+            param_1->mSlotShownItem = q[i];
             break;
         case 2:
-            param_1->mUnk_00c = param_1->mUnk_010;
+            param_1->mSlotShownItem = param_1->mSlotResult;
             break;
     }
 }
@@ -387,34 +387,34 @@ void func_020f8258(void) {
     }
 }
 
-void func_020f81c0(Unk020ee684 *a) {
-    Unk0217bc48 *e;
+void func_020f81c0(KartItems *a) {
+    ItemInfo *e;
     Unk027e00cc *v;
     enum { K0 } k, j;
 
-    if (a->mUnk_018->mUnk_1f8 == data_021759c0->mEntryIndex) {
+    if (a->mSelf->mKartIndex == data_021759c0->mEntryIndex) {
         func_020bb5cc();
     }
-    k = a->mUnk_010;
-    e = &data_0217bc48[k];
-    j = e->mUnk_08;
+    k = a->mSlotResult;
+    e = &gItemInfos[k];
+    j = e->mObjectKind;
     v = &data_027e00cc[j];
-    v->mUnk_1c -= e->mUnk_0c;
-    a->mUnk_000 = 0;
-    a->mUnk_004 = 0;
-    a->mUnk_00c = 0x13;
-    a->mUnk_010 = 0x13;
-    a->mUnk_014 = 0x13;
+    v->mUnk_1c -= e->mObjectCount;
+    a->mSlotState = 0;
+    a->mSlotFrames = 0;
+    a->mSlotShownItem = 0x13;
+    a->mSlotResult = 0x13;
+    a->mActiveItem = 0x13;
     a->mUnk_020 = FALSE;
 }
 
-void func_020f81b8(Unk020ee684 *p0, u32 p1) {
-    p0->mUnk_014 = p1;
+void SetActiveItem(KartItems *p0, u32 p1) {
+    p0->mActiveItem = p1;
 }
 
 #pragma thumb on
 
-u8 *func_020f8148(Unk0217bc6c *param_1, u8 *param_2) {
+u8 *LoadItemSlotTableData(ItemSlotTable *param_1, u8 *param_2) {
     s32 a;
     s32 b;
     s32 i;
@@ -423,9 +423,9 @@ u8 *func_020f8148(Unk0217bc6c *param_1, u8 *param_2) {
 
     a = *param_2++;
     b = *param_2++;
-    param_1->mUnk_00 = a;
-    param_1->mUnk_04 = HeapAlloc(GetHeap(func_020364e8()), (a + 1) * 0x24);
-    tab = param_1->mUnk_04;
+    param_1->mRowCount = a;
+    param_1->mRows = HeapAlloc(GetHeap(func_020364e8()), (a + 1) * 0x24);
+    tab = param_1->mRows;
     for (i = 0; i < b; i++) {
         for (j = 0; j < a; j++) {
             tab[j][i] = *param_2++;
@@ -438,7 +438,7 @@ u8 *func_020f8148(Unk0217bc6c *param_1, u8 *param_2) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_020f813c(u32 arg0) {
+u32 ComputeItemSlotTableDataEnd(u32 arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;

@@ -78,7 +78,7 @@ BOOL func_0206a24c(Kart *p) {
         SetCameraHalfFovAngleGoal(0x1f40);
     }
     p->mUnk_394 = 0xb33;
-    func_020eff40(&(data_027e00c8)[p->mIndex]);
+    func_020eff40(&(gKartItems)[p->mIndex]);
     v = data_021759c0->mMode;
     if (v == 4) {
         if (v == 4) {

@@ -77,13 +77,13 @@ s32 func_020fe268(Unk020eda5c *a, Unk020fdae8 *e) {
     if (e->mUnk_134 > 0xccd) {
         e->mUnk_134 = 0xccd;
     }
-    if (a->mUnk_00c->mUnk_1ec & 0x20) {
+    if (a->mUnk_00c->mFlags & 0x20) {
         func_020f3150(&e->mUnk_000, a, 2, 0, 0x7800, 0x5000, 0x219a);
         e->mUnk_170 = 0x5a;
         e->mUnk_130 = 0;
         return e->mUnk_130;
     }
-    if (a->mUnk_00c->mUnk_1ec & 0x10) {
+    if (a->mUnk_00c->mFlags & 0x10) {
         func_020f3150(&e->mUnk_000, a, 3, 1, 0x9800, 0x5000, 0x59a);
     } else {
         func_020f3150(&e->mUnk_000, a, 3, 1, 0x6000, 0x5000, 0x59a);

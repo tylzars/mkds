@@ -64,7 +64,7 @@ void func_020ff1d8(void) {
     s32 n;
     s32 i;
 
-    if (data_0217bc48[3].mUnk_00 == FALSE) {
+    if (gItemInfos[3].mEnabled == FALSE) {
         return;
     }
     v = data_0216c734;
@@ -498,7 +498,7 @@ void func_020fe5b8(u32 a, u32 b, u8 *c, u32 d) {
     if (c[1] == 0xff) {
         return;
     }
-    func_020f81b8(&data_027e00c8[(u16) d], 0x10);
+    SetActiveItem(&gKartItems[(u16) d], 0x10);
 }
 
 void func_020fe56c(u32 a, u32 b, u32 c, void *d, u32 e) {

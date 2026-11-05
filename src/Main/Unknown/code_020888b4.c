@@ -363,7 +363,7 @@ void func_020892bc(Unk020888b4 *p) {
 void func_02088e44(Unk020888b4 *p) {
     Kart *q;
     Kart *o;
-    Unk020ee684 *v1;
+    KartItems *v1;
     Vec3 u;
     Vec3 v;
     Vec3 t;
@@ -421,8 +421,8 @@ void func_02088e44(Unk020888b4 *p) {
         p->mUnk_b0 = o;
         return;
     }
-    v1 = &data_027e00c8[m];
-    if (v1->mUnk_058.mUnk_000 == 0xf && v1->mUnk_030.mUnk_00 == 0x13 && (p->mKart->mUnk_4c & 0x40) == 0) {
+    v1 = &gKartItems[m];
+    if (v1->mItemInUse.mUnk_000 == 0xf && v1->mHeldItem.mUnk_00 == 0x13 && (p->mKart->mUnk_4c & 0x40) == 0) {
         goto clear;
     }
     if (func_0207f600(p->mUnk_b0->mIndex) == FALSE) {
@@ -456,9 +456,9 @@ void func_02088e44(Unk020888b4 *p) {
     }
     p->mUnk_b4 = c != 0;
     if (p->mUnk_b4 != 0) {
-        v1 = &data_027e00c8[p->mIndex];
+        v1 = &gKartItems[p->mIndex];
         c = 1;
-        if (v1->mUnk_058.mUnk_000 == 0xf && v1->mUnk_030.mUnk_00 == 0x13) {
+        if (v1->mItemInUse.mUnk_000 == 0xf && v1->mHeldItem.mUnk_00 == 0x13) {
             if ((GetKart(p->mIndex)->mUnk_4c & 0x40) == 0) {
                 c = 0;
             }

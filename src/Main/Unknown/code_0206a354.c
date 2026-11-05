@@ -46,7 +46,7 @@ void StartKartState2(Kart *p, int a, int b) {
     p->mUnk_368 = 0;
     p->mUnk_366 = a;
     p->mUnk_4c |= 0x20;
-    func_020efea4(&(data_027e00c8)[p->mIndex]);
+    func_020efea4(&(gKartItems)[p->mIndex]);
     if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
         func_ov001_0218173c();
     }
@@ -122,7 +122,7 @@ void StartKartState6(Kart *p) {
     p->mUnk_344 = 0;
     p->mUnk_340 = p->mPos.y;
     p->mUnk_348 = 0;
-    func_020eff40(&(data_027e00c8)[p->mIndex]);
+    func_020eff40(&(gKartItems)[p->mIndex]);
     if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
         func_ov001_0218173c();
     }
@@ -281,7 +281,7 @@ void StartKartState3(Kart *p) {
     if (!(p->mUnk_48 & 0x840)) {
         func_0210af40(p, p->mUnk_3cc, 2);
     }
-    func_020efea4(&(data_027e00c8)[p->mIndex]);
+    func_020efea4(&(gKartItems)[p->mIndex]);
     if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
         func_ov001_0218173c();
     }
@@ -398,7 +398,7 @@ void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
     p->mUnk_35c = 0;
     v = data_02154f7c;
     func_020397a8(&v, a, &p->mUnk_31c);
-    func_020eff40(&(data_027e00c8)[p->mIndex]);
+    func_020eff40(&(gKartItems)[p->mIndex]);
     if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
         func_ov001_0218173c();
     }
@@ -522,7 +522,7 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
         }
     }
     func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
-    func_020eff40(&(data_027e00c8)[p->mIndex]);
+    func_020eff40(&(gKartItems)[p->mIndex]);
     if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
         func_ov001_0218173c();
     }
@@ -612,7 +612,7 @@ void func_0206a624(Kart *p) {
     p->mUnk_4c |= 0x80;
     func_0206bcb0(p, 2, 1);
     func_0210f9ac(p);
-    func_020eff40(&(data_027e00c8)[p->mIndex]);
+    func_020eff40(&(gKartItems)[p->mIndex]);
     if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
         func_ov001_0218173c();
     }

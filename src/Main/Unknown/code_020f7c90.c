@@ -16,7 +16,7 @@
 
 #pragma thumb on
 
-void func_020f80c0(Unk0217bc6c *a, s32 b) {
+void func_020f80c0(ItemSlotTable *a, s32 b) {
     u16(*tab)[0x12];
     s32 i;
     s32 j;
@@ -24,7 +24,7 @@ void func_020f80c0(Unk0217bc6c *a, s32 b) {
     u16 *e;
 
     e = (u16 *) &data_02159c3c[b - 1];
-    tab = a->mUnk_04;
+    tab = a->mRows;
     if (b == 8) {
         return;
     }
@@ -41,7 +41,7 @@ void func_020f80c0(Unk0217bc6c *a, s32 b) {
     }
 }
 
-void func_020f7ec8(void) {
+void CreateItemSlotTables(void) {
     u8 *p;
     enum { K0 } i;
     s32 j;
@@ -54,80 +54,80 @@ void func_020f7ec8(void) {
         case 0:
         case 1:
         case 4:
-            p = func_020f8148(&data_0217bc6c, p + 1);
-            p = func_020f8148(&data_0217bc64, p);
-            p = (u8 *) func_020f813c((u32) p);
-            p = (u8 *) func_020f813c((u32) p);
-            p = (u8 *) func_020f813c((u32) p);
-            p = (u8 *) func_020f813c((u32) p);
-            p = func_020f8148(&data_0217bc74, p);
+            p = LoadItemSlotTableData(&data_0217bc6c, p + 1);
+            p = LoadItemSlotTableData(&data_0217bc64, p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = LoadItemSlotTableData(&data_0217bc74, p);
             break;
         case 2:
-            p = (u8 *) func_020f813c((u32) (p + 1));
-            p = (u8 *) func_020f813c((u32) p);
-            p = (u8 *) func_020f813c((u32) p);
-            p = (u8 *) func_020f813c((u32) p);
-            p = (u8 *) func_020f813c((u32) p);
-            p = (u8 *) func_020f813c((u32) p);
-            p = func_020f8148(&data_0217bc74, p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) (p + 1));
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = LoadItemSlotTableData(&data_0217bc74, p);
             switch (data_021759c0->mUnk_18) {
                 case 0:
                 default:
-                    p = func_020f8148(&data_0217bc6c, p);
-                    p = func_020f8148(&data_0217bc64, p);
+                    p = LoadItemSlotTableData(&data_0217bc6c, p);
+                    p = LoadItemSlotTableData(&data_0217bc64, p);
                     break;
                 case 1:
-                    p = (u8 *) func_020f813c((u32) p);
-                    p = (u8 *) func_020f813c((u32) p);
-                    p = func_020f8148(&data_0217bc6c, p);
-                    p = func_020f8148(&data_0217bc64, p);
+                    p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+                    p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+                    p = LoadItemSlotTableData(&data_0217bc6c, p);
+                    p = LoadItemSlotTableData(&data_0217bc64, p);
                     break;
             }
             break;
         case 3:
-            p = (u8 *) func_020f813c((u32) (p + 1));
-            p = (u8 *) func_020f813c((u32) p);
-            p = func_020f8148(&data_0217bc6c, p);
-            p = func_020f8148(&data_0217bc64, p);
-            p = (u8 *) func_020f813c((u32) p);
-            p = (u8 *) func_020f813c((u32) p);
-            p = func_020f8148(&data_0217bc74, p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) (p + 1));
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = LoadItemSlotTableData(&data_0217bc6c, p);
+            p = LoadItemSlotTableData(&data_0217bc64, p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = LoadItemSlotTableData(&data_0217bc74, p);
             if (data_021759c0->mUnk_014 == 0) {
                 func_020f80c0(&data_0217bc6c, data_021759c0->mKartCount);
                 func_020f80c0(&data_0217bc64, data_021759c0->mKartCount);
             }
             break;
         case 5:
-            p = (u8 *) func_020f813c((u32) (p + 1));
-            p = (u8 *) func_020f813c((u32) p);
-            p = (u8 *) func_020f813c((u32) p);
-            p = (u8 *) func_020f813c((u32) p);
-            p = func_020f8148(&data_0217bc6c, p);
-            p = func_020f8148(&data_0217bc64, p);
-            p = func_020f8148(&data_0217bc74, p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) (p + 1));
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = LoadItemSlotTableData(&data_0217bc6c, p);
+            p = LoadItemSlotTableData(&data_0217bc64, p);
+            p = LoadItemSlotTableData(&data_0217bc74, p);
             if (data_021759c0->mUnk_014 == 0) {
                 func_020f80c0(&data_0217bc6c, data_021759c0->mKartCount);
                 func_020f80c0(&data_0217bc64, data_021759c0->mKartCount);
             }
             break;
     }
-    n = data_0217bc6c.mUnk_00;
+    n = data_0217bc6c.mRowCount;
     for (i = 0; i < 0x12; i++) {
-        data_0217bce8[i] = 0x12;
+        gItemSlotPossibleItems[i] = 0x12;
         for (j = 0; j < n; j++) {
-            if (data_0217bc6c.mUnk_04[j][i] != 0 || data_0217bc64.mUnk_04[j][i] != 0) {
-                data_0217bce8[i] = i;
+            if (data_0217bc6c.mRows[j][i] != 0 || data_0217bc64.mRows[j][i] != 0) {
+                gItemSlotPossibleItems[i] = i;
             }
         }
     }
-    data_0217bc54 = 0;
+    gItemSlotPossibleItemCount = 0;
     for (k = 0; k < 0x12; k++) {
-        q = &data_0217bce8[k];
-        if (data_0217bce8[k] != 0x12) {
-            data_0217bce8[data_0217bc54++] = *q;
+        q = &gItemSlotPossibleItems[k];
+        if (gItemSlotPossibleItems[k] != 0x12) {
+            gItemSlotPossibleItems[gItemSlotPossibleItemCount++] = *q;
         }
     }
-    data_0217bc50 = 0;
+    gItemSlotSpinItemCount = 0;
 }
 
 #pragma thumb off

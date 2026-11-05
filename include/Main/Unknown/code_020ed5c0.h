@@ -134,13 +134,13 @@ typedef struct {
     /* 18 */ Vec3 mUnk_18;
 } Unk020eda5c_02c;
 
-// Object at 0x58 of a Unk020ee684 (that Unk020ee684 at 0x0c), passed first to the function pointers in the
+// Object at 0x58 of a KartItems (that KartItems at 0x0c), passed first to the function pointers in the
 // data_0217bc34 entries: three Unk020f41c4_A pointers at 0x14, vectors from 0x2c to 0x0e4.
 typedef struct Unk020eda5c {
     /* 000 */ s32 mUnk_000;
     /* 004 */ s32 mUnk_004;
     /* 008 */ s32 mUnk_008;
-    /* 00c */ struct Unk020ee684 *mUnk_00c;
+    /* 00c */ struct KartItems *mUnk_00c;
     /* 010 */ Kart *mUnk_010;
     /* 014 */ Unk020f41c4_A *mUnk_014[3];
     /* 020 */ s32 mUnk_020;

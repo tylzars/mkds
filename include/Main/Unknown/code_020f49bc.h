@@ -21,7 +21,7 @@ typedef struct Unk020f5008 Unk020f5008;
 // the state machine of func_02046be8 at 0x23c, words at 0x250 and 0x254 and a Unk0210b7ec at 0x258.
 typedef struct Unk020f5d6c {
     /* 000 */ Unk020ec8bc mUnk_000;
-    /* 228 */ struct Unk020ee684 *mUnk_228;
+    /* 228 */ struct KartItems *mUnk_228;
     /* 22c */ Vec3 mUnk_22c;
     /* 238 */ s32 mUnk_238;
     /* 23c */ Unk020e005c_080 mUnk_23c;
@@ -54,8 +54,8 @@ typedef struct Unk020f6150 {
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
 
 void func_020f49bc(Unk020f40dc *a);
-void func_020f4b20(Unk020f40dc *a, Unk020ee684 *b);
-void func_020f4b8c(void);
+void func_020f4b20(Unk020f40dc *a, KartItems *b);
+void CreateItemInfos(void);
 void func_020f4dfc(void **a, Vec3 *b, s32 c);
 void func_020f4e78(Unk020f5008 *a, Vec3 *b, Vec3 *c);
 Unk020f5008 *func_020f4ee8(void);

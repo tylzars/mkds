@@ -423,7 +423,7 @@ u32 func_0207cb70(u32 p0) {
 }
 
 void func_0207cb0c(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    if ((data_027e00c8)[b->mIndex].mUnk_058.mUnk_008 == 4) {
+    if ((gKartItems)[b->mIndex].mItemInUse.mUnk_008 == 4) {
         data_0217ae48(a, b);
     } else {
         data_0217ae44(a, b);
@@ -431,7 +431,7 @@ void func_0207cb0c(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0207caa8(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    if ((data_027e00c8)[b->mIndex].mUnk_058.mUnk_008 == 3) {
+    if ((gKartItems)[b->mIndex].mItemInUse.mUnk_008 == 3) {
         data_0217ae3c(a, b);
     } else {
         data_0217ae40(a, b);
@@ -469,12 +469,12 @@ void func_0207ca18(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0207c978(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    Unk020ee684 *e;
+    KartItems *e;
     s32 t;
     BOOL r;
 
-    e = &(data_027e00c8)[b->mIndex];
-    t = e->mUnk_030.mUnk_00;
+    e = &(gKartItems)[b->mIndex];
+    t = e->mHeldItem.mUnk_00;
     if (a->mUnk_10 != 0) {
         if (t != 0x13) {
             a->mUnk_0c = 1;
@@ -498,12 +498,12 @@ void func_0207c978(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0207c8d8(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    Unk020ee684 *e;
+    KartItems *e;
     s32 t;
     BOOL r;
 
-    e = &(data_027e00c8)[b->mIndex];
-    t = e->mUnk_030.mUnk_00;
+    e = &(gKartItems)[b->mIndex];
+    t = e->mHeldItem.mUnk_00;
     if (a->mUnk_10 != 0) {
         if (t != 0x13) {
             a->mUnk_0c = 1;
@@ -660,17 +660,17 @@ void func_0207c448(Unk0208fd8c *p0) {
 
 void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 v1;
-    Unk020ee684 *e;
+    KartItems *e;
 
     if (func_01ffc67c(b->mKart) != FALSE) {
         return;
     }
     v1 = b->mIndex;
     if (v1 == func_02061f90()) {
-        e = &(data_027e00c8)[v1];
-        if (e->mUnk_058.mUnk_000 != 0xf && a->mUnk_08 != NULL) {
+        e = &(gKartItems)[v1];
+        if (e->mItemInUse.mUnk_000 != 0xf && a->mUnk_08 != NULL) {
             a->mUnk_08->mUnk_00(a, b);
-        } else if ((a->mUnk_04 != 0) & (e->mUnk_030.mUnk_00 != 0x13)) {
+        } else if ((a->mUnk_04 != 0) & (e->mHeldItem.mUnk_00 != 0x13)) {
             a->mUnk_04->mUnk_00(a, b);
         } else {
             func_0204360c(b->mKart->mEntryIndex, 0x600);
@@ -697,7 +697,7 @@ void func_0207c270(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (IsKartEnded(b->mIndex) != 0) {
         return;
     }
-    if ((data_027e00c8)[b->mIndex].mUnk_030.mUnk_00 == 0xe) {
+    if ((gKartItems)[b->mIndex].mHeldItem.mUnk_00 == 0xe) {
         if (*(u16 *) &b->mUnk_08.mUnk_00.mUnk_00->mUnk_24 > 1) {
             return;
         }
@@ -711,7 +711,7 @@ void func_0207c144(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     u32 v;
     enum { K0 } k;
 
-    k = (data_027e00c8)[b->mIndex].mUnk_030.mUnk_00;
+    k = (gKartItems)[b->mIndex].mHeldItem.mUnk_00;
     a->mUnk_04 = &data_0217ae38[k];
     r = func_0208537c();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
@@ -796,7 +796,7 @@ void func_0207becc(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     u32 v;
     enum { K0 } k;
 
-    k = (data_027e00c8)[b->mIndex].mUnk_058.mUnk_000;
+    k = (gKartItems)[b->mIndex].mItemInUse.mUnk_000;
     a->mUnk_08 = &data_0217ae34[k];
     a->mUnk_0c = 0;
     if (a->mUnk_08 == NULL) {

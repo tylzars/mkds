@@ -71,9 +71,9 @@ void func_020f1a38(void) {
         a[i] = 1;
     }
     for (j = 0; j < 0x12; j++) {
-        if (data_0217bc48[j].mUnk_00 != FALSE) {
-            i = data_0217bc48[j].mUnk_08;
-            n = data_0217bc48[j].mUnk_0c;
+        if (gItemInfos[j].mEnabled != FALSE) {
+            i = gItemInfos[j].mObjectKind;
+            n = gItemInfos[j].mObjectCount;
             if (a[i] < n) {
                 a[i] = n;
             }

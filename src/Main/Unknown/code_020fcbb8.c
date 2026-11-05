@@ -21,7 +21,7 @@ void func_020fcce4(Unk020fc2e8 *p0, s32 a, s32 b) {
     Vec3 *v2;
     Kart *p;
 
-    p = p0->mUnk_228->mUnk_1fc;
+    p = p0->mUnk_228->mKart;
     f = (p->mUnk_48 & 1) ? 1 : 0;
     p0->mUnk_22c = p->mUnk_05c;
     v1 = &p0->mUnk_000.mUnk_50;
@@ -57,7 +57,7 @@ void func_020fcce4(Unk020fc2e8 *p0, s32 a, s32 b) {
 
 BOOL func_020fcbb8(Unk020fc2e8 *p0, s32 v1) {
     Kart *p;
-    Unk020ee684 *e;
+    KartItems *e;
     Vec3 v;
     Vec3 *q;
     s32 f;
@@ -69,7 +69,7 @@ BOOL func_020fcbb8(Unk020fc2e8 *p0, s32 v1) {
     if (func_0206c0b0(p) != FALSE) {
         return FALSE;
     }
-    e = &(data_027e00c8)[v1];
+    e = &(gKartItems)[v1];
     q = &p->mUnk_98;
     if (e->mUnk_1f0.mUnk_00 != p0->mUnk_168) {
         f = ((p0->mUnk_000.mUnk_74 & 0x40000000) || (p->mUnk_48 & 1)) ? 1 : 0;

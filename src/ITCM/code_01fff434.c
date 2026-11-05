@@ -12,9 +12,9 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_02147cd8.h"
 
-void func_01fff694(Unk020ee684 *p) {
-    Unk020f40dc *b = &p->mUnk_030;
-    Unk020eda5c *a = &p->mUnk_058;
+void UpdateKartItems(KartItems *p) {
+    Unk020f40dc *b = &p->mHeldItem;
+    Unk020eda5c *a = &p->mItemInUse;
     Kart *q;
     Unk020f371c_Ref *r;
     Vec3 *v;
@@ -23,19 +23,19 @@ void func_01fff694(Unk020ee684 *p) {
     u16 f;
     u16 t;
     u32 g;
-    f = p->mUnk_1ec;
+    f = p->mFlags;
     g = f & 0x1000;
     t = data_0217562a[p->mUnk_200].mBits & 0x600;
-    q = p->mUnk_1fc;
-    p->mUnk_1ec &= ~0xf200;
+    q = p->mKart;
+    p->mFlags &= ~0xf200;
     if (t) {
         if (!g) {
-            p->mUnk_1ec |= 0x3000;
+            p->mFlags |= 0x3000;
         } else {
-            p->mUnk_1ec |= data_usa_021595cc;
+            p->mFlags |= data_usa_021595cc;
         }
     } else if (g) {
-        p->mUnk_1ec |= data_usa_021595d0;
+        p->mFlags |= data_usa_021595d0;
     }
     if (func_02068eac(q) != FALSE) {
         p->mUnk_204 = FALSE;
@@ -51,27 +51,27 @@ void func_01fff694(Unk020ee684 *p) {
         p->mUnk_20c = TRUE;
     } else {
         func_01fff524(p);
-        p->mUnk_1ec |= data_usa_021595d4;
+        p->mFlags |= data_usa_021595d4;
     }
     if (a->mUnk_000 != 0xf) {
         func_020eddb4(a);
     }
     if (b->mUnk_00 != 0x13) {
-        if ((p->mUnk_1ec & 0x242) == 0x242 && b->mUnk_00 != 0x13 && b->mUnk_20 == 0 && (p->mUnk_1ec & 0x200) &&
+        if ((p->mFlags & 0x242) == 0x242 && b->mUnk_00 != 0x13 && b->mUnk_20 == 0 && (p->mFlags & 0x200) &&
             q->mState == 0) {
             func_020ee2e4(a, b);
         }
         func_020f4884(b);
     }
-    if (p->mUnk_000 != 0 && func_020f850c(p, p) != FALSE) {
-        k = p->mUnk_010;
-        func_020f8498(p);
-        if (data_0217bc48[k].mUnk_00 != FALSE) {
+    if (p->mSlotState != 0 && UpdateItemSlot(p, p) != FALSE) {
+        k = p->mSlotResult;
+        FinishItemSlot(p);
+        if (gItemInfos[k].mEnabled != FALSE) {
             func_020f47e4(b, k);
         }
     }
-    if (p->mUnk_1f8 == func_02061f90() && (r = &p->mUnk_1f0)->mUnk_00 != NULL) {
-        q = p->mUnk_1fc;
+    if (p->mKartIndex == func_02061f90() && (r = &p->mUnk_1f0)->mUnk_00 != NULL) {
+        q = p->mKart;
         v = &q->mUnk_98;
         func_020f3c54(r, r, v);
         d = (s64) (r->mUnk_00->mUnk_18->x - v->x) * (r->mUnk_00->mUnk_18->x - v->x);
@@ -83,39 +83,39 @@ void func_01fff694(Unk020ee684 *p) {
     p->mUnk_208 = FALSE;
 }
 
-void func_01fff524(Unk020ee684 *p) {
+void func_01fff524(KartItems *p) {
     BOOL r;
     s32 a;
-    p->mUnk_1ec &= ~0xff;
+    p->mFlags &= ~0xff;
     if (data_021759c0->mMode == 5) {
-        a = p->mUnk_030.mUnk_00;
-        if (a == 0x13 || p->mUnk_058.mUnk_000 != 0xf) {
+        a = p->mHeldItem.mUnk_00;
+        if (a == 0x13 || p->mItemInUse.mUnk_000 != 0xf) {
             r = FALSE;
         } else {
-            r = (u32) (data_0217bc48[a].mUnk_14 - 1) <= 1;
+            r = (u32) (gItemInfos[a].mUnk_14 - 1) <= 1;
         }
         if (r != FALSE) {
-            if ((p->mUnk_1ec & 0x4000) && func_020f0154(p) != FALSE) {
-                p->mUnk_1ec |= data_usa_021595b0;
+            if ((p->mFlags & 0x4000) && func_020f0154(p) != FALSE) {
+                p->mFlags |= data_usa_021595b0;
             }
             goto after;
         }
     }
-    if ((p->mUnk_1ec & 0x2000) && func_020f0154(p) != FALSE) {
-        p->mUnk_1ec |= data_usa_021595b0;
+    if ((p->mFlags & 0x2000) && func_020f0154(p) != FALSE) {
+        p->mFlags |= data_usa_021595b0;
     }
 after:
-    if (!(p->mUnk_1ec & 0x100)) {
+    if (!(p->mFlags & 0x100)) {
         return;
     }
-    p->mUnk_1ec &= ~0x100;
-    if (data_021759c0->mMode != 5 && (p->mUnk_1ec & 0x1000)) {
+    p->mFlags &= ~0x100;
+    if (data_021759c0->mMode != 5 && (p->mFlags & 0x1000)) {
         return;
     }
     if (func_020f0154(p) == FALSE) {
         return;
     }
-    p->mUnk_1ec |= data_usa_021595b4;
+    p->mFlags |= data_usa_021595b4;
 }
 
 void func_01fff434(s32 a, s32 b, s32 c, Vec3 *d, const Vec3 *e, const Vec3 *f, s64 *g) {

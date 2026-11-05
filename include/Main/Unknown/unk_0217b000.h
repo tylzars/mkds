@@ -873,7 +873,8 @@ extern GrpconfTblRow *gGrpconfTbl;
 extern MapObject **data_0217b4e8;
 extern u8 data_0217b7c4[];
 extern u8 data_0217b86c[];
-extern Unk020e6488 *data_0217bbfc[];
+// Indexed by object kind; 14 slots, 13 files (kind 8 aliases kind 7)
+extern Unk020e6488 *gItemModels[];
 struct Unk020f41c4_A;
 
 extern struct Unk020f41c4_A **data_0217bd30;
@@ -1070,11 +1071,14 @@ extern s32 data_0217b8d4;
 extern s32 data_0217b8dc;
 extern s32 data_0217b8f4;
 extern u32 data_0217b8fc;
-extern s32 data_0217bce8[];
+extern s32 gItemSlotPossibleItems[];
 extern s32 data_0217bc58;
-extern s32 data_0217bca0[];
-extern u16 data_0217bc54;
-extern u16 data_0217bc50;
+// The items the local kart's spin may show when the roll used a forced row; written by PickItem, cleared when the
+// tables are created
+extern s32 gItemSlotSpinItems[];
+extern u16 gItemSlotPossibleItemCount;
+// Length of gItemSlotSpinItems; 0 means gItemSlotPossibleItems is used instead
+extern u16 gItemSlotSpinItemCount;
 extern u16 data_0217bc7c[];
 extern s32 data_0217bd3c;
 extern s32 data_0217bd40;

@@ -189,7 +189,7 @@ u32 func_020ff538(Unk020eda5c *a, Unk020ff438 *e) {
     e->mUnk_130.x = 0;
     e->mUnk_130.y = 0;
     e->mUnk_130.z = 0;
-    if ((a->mUnk_00c->mUnk_1ec & 0x10) != 0) {
+    if ((a->mUnk_00c->mFlags & 0x10) != 0) {
         func_020f3150(&e->mUnk_000, a, 0, 1, 0x4000, 0x3000, 0x59a);
         func_021090c4(&e->mUnk_000.mUnk_000.mUnk_00, 0xda, 0x7f, 0);
         e->mUnk_13c = 1;

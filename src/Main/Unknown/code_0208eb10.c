@@ -141,7 +141,7 @@ void func_0208fdcc(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0208fd8c(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    enum { K0 } k = (data_027e00c8)[b->mIndex].mUnk_058.mUnk_000;
+    enum { K0 } k = (gKartItems)[b->mIndex].mItemInUse.mUnk_000;
     Unk0208fd8c_08 *t = &data_0217b0a4[k];
 
     a->mUnk_08 = t;
@@ -153,7 +153,7 @@ u32 func_0208fd88(u32 p0) {
 }
 
 void func_0208fd24(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    if (data_027e00c8[b->mIndex].mUnk_058.mUnk_008 == 4) {
+    if (gKartItems[b->mIndex].mItemInUse.mUnk_008 == 4) {
         data_0217b0a0(a, b);
     } else {
         data_0217b098(a, b);
@@ -255,7 +255,7 @@ void func_0208f9ac(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0208f948(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    if (data_027e00c8[b->mIndex].mUnk_058.mUnk_008 == 4) {
+    if (gKartItems[b->mIndex].mItemInUse.mUnk_008 == 4) {
         data_0217b090(a, b);
     } else {
         data_0217b094(a, b);
@@ -340,7 +340,7 @@ void func_0208f6d4(Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0208f670(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    if (data_027e00c8[b->mIndex].mUnk_058.mUnk_008 == 3) {
+    if (gKartItems[b->mIndex].mItemInUse.mUnk_008 == 3) {
         data_0217b0ac(a, b);
     } else {
         data_0217b0a8(a, b);

@@ -81,7 +81,7 @@ void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
             break;
         case 2:
             if (p->mUnk_74 & 0x1000) {
-                func_020eda5c(&(data_027e00c8)[(u16) (p->mUnk_78 & ~0xff00)].mUnk_058, p);
+                func_020eda5c(&(gKartItems)[(u16) (p->mUnk_78 & ~0xff00)].mItemInUse, p);
             }
             n = 0;
             if ((s64) d->x * d->x + (s64) d->y * d->y + (s64) d->z * d->z >= 0x10) {

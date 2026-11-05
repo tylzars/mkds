@@ -178,7 +178,7 @@ void InitRace(void) {
     func_020e7460();
     func_020e7760();
     InitMapObjects();
-    func_020fa13c();
+    InitItems();
     func_02047b6c(6);
     func_0208b934(a);
     func_020846c0(a);
@@ -315,7 +315,7 @@ void UpdateRace(void) {
     if (func_02073e88() != 0) {
         func_020d50c4();
     }
-    func_020fa920();
+    UpdateItems();
     func_020e9d10();
     UpdateMapObjects();
     func_0208e400();

@@ -388,50 +388,53 @@ typedef struct {
     /* 00 */ Unk020f41c4_Pair mUnk_00[3];
 } Unk020f41c4_Row;
 
-// Entry of the table behind data_0217bc48.
-typedef struct {
-    /* 00 */ BOOL mUnk_00;
+// One of the 18 items: the object kind and the number of objects it takes from the pool, the use kind and the hook
+// called after its use. gItemInfos holds the heap copy of 18 static records of this type; the roulette may roll an item
+// only while mEnabled is set.
+typedef struct ItemInfo {
+    // Gate of the roll and of the hand-over of the rolled item; set per mode by CreateItemInfos
+    /* 00 */ BOOL mEnabled;
     /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+    /* 08 */ s32 mObjectKind;
+    /* 0c */ s32 mObjectCount;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ UnkFunc *mUnk_18;
-} Unk0217bc48;
+} ItemInfo;
 
-extern Unk0217bc48 data_0215a4c0;
+extern ItemInfo data_0215a4c0;
 
-extern Unk0217bc48 data_0215a174;
+extern ItemInfo data_0215a174;
 
-extern Unk0217bc48 data_0215a2ec;
+extern ItemInfo data_0215a2ec;
 
-extern Unk0217bc48 data_02159d90;
+extern ItemInfo data_02159d90;
 
-extern Unk0217bc48 data_021599dc;
+extern ItemInfo data_021599dc;
 
-extern Unk0217bc48 data_021598fc;
+extern ItemInfo data_021598fc;
 
-extern Unk0217bc48 data_02159680;
+extern ItemInfo data_02159680;
 
-extern Unk0217bc48 data_02159f4c;
+extern ItemInfo data_02159f4c;
 
-extern Unk0217bc48 data_02159aa0;
+extern ItemInfo data_02159aa0;
 
-extern Unk0217bc48 data_02159cc0;
+extern ItemInfo data_02159cc0;
 
-extern Unk0217bc48 data_02159e54;
+extern ItemInfo data_02159e54;
 
-extern Unk0217bc48 data_02159664;
+extern ItemInfo data_02159664;
 
-extern Unk0217bc48 data_021596a0;
+extern ItemInfo data_021596a0;
 
-extern Unk0217bc48 data_02159f68;
+extern ItemInfo data_02159f68;
 
-extern Unk0217bc48 data_02159770;
+extern ItemInfo data_02159770;
 
-extern Unk0217bc48 data_02159838;
+extern ItemInfo data_02159838;
 
-extern Unk0217bc48 data_02159918;
+extern ItemInfo data_02159918;
 
 // Entry of the table behind data_027e00cc.
 typedef struct {
@@ -460,7 +463,7 @@ typedef enum { UNK_020F40DC_KIND_0 } Unk020f40dc_Kind;
 // Object handled by func_020f40dc and the functions after it.
 typedef struct {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ struct Unk020ee684 *mUnk_04;
+    /* 04 */ struct KartItems *mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s16 mUnk_10;
@@ -477,7 +480,7 @@ extern s32 data_0217bc38[];
 extern Unk0217bc34 *data_0217bc34;
 extern RaceProgress *gRaceProgress;
 extern Unk020f41c4_Row data_0215961c[];
-extern Unk0217bc48 *data_0217bc48;
+extern ItemInfo *gItemInfos;
 extern Unk027e00cc *data_027e00cc;
 
 u8 func_020f36d8(Unk020f36d8 *p);

@@ -15,7 +15,7 @@ void func_020fcf10(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     Kart *p;
     s32 s;
 
-    p = p0->mUnk_228->mUnk_1fc;
+    p = p0->mUnk_228->mKart;
     p0->mUnk_22c = p->mUnk_05c;
     v1 = &p0->mUnk_000.mUnk_50;
     v2 = &p0->mUnk_000.mUnk_5c;
