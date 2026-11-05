@@ -145,7 +145,7 @@ void func_ov001_0219f430(void) {
             gMissionRunLVsel->mUnk_10[data_ov001_021a6ce0[i][3]].mUnk_00 = 1;
             gMissionRunLVsel->mUnk_10[data_ov001_021a6ce0[i][3]].mUnk_06 =
                 gMissionRunLVsel->mUnk_10[data_ov001_021a6ce0[i][2]].mUnk_06 + 1;
-        } else if (gMissionRunLVsel->mUnk_4c == i) {
+        } else if (gMissionRunLVsel->mIndex == i) {
             gMissionRunLVsel->mUnk_10[data_ov001_021a6ce0[i][2]].mUnk_00 = 1;
         } else if (func_ov001_0219f688((s16) i)) {
             gMissionRunLVsel->mUnk_10[data_ov001_021a6ce0[i][1]].mUnk_00 = 1;
@@ -186,7 +186,7 @@ void func_ov001_0219f3a4(void) {
 }
 
 void func_ov001_0219f37c(void) {
-    func_0202948c((u32) ((gMissionRunLVsel->mUnk_4c + 1) * 0x1000000 >> 0x18));
+    func_0202948c((u32) ((gMissionRunLVsel->mIndex + 1) * 0x1000000 >> 0x18));
     func_0202947c((u32) 1);
 }
 
@@ -197,9 +197,9 @@ BOOL func_ov001_0219f31c(void) {
     s32 out;
 
     for (i = 0; i < 8; i++) {
-        ok &= func_0205fd78((u8) (gMissionRunLVsel->mUnk_4c + 1), (u8) (i + 1), &out);
+        ok &= func_0205fd78((u8) (gMissionRunLVsel->mIndex + 1), (u8) (i + 1), &out);
     }
-    result = func_0205fd78((u8) (gMissionRunLVsel->mUnk_4c + 1), 9, &out);
+    result = func_0205fd78((u8) (gMissionRunLVsel->mIndex + 1), 9, &out);
     if (ok != 0 && result == 0) {
         return TRUE;
     }
@@ -214,8 +214,8 @@ void func_ov001_0219f2a4(void) {
     count = gMissionRunLVsel->mUnk_04->mUnk_06;
     i = 0;
     gMissionRunLVsel->mNextState = 0;
-    gMissionRunLVsel->mUnk_24 = 0;
-    gMissionRunLVsel->mUnk_44 = -192;
+    gMissionRunLVsel->mStateFrames = 0;
+    gMissionRunLVsel->mBg0Offset = -192;
     for (i = 0; i < 7; i++) {
         for (j = 0; j < 11; j++) {
             gMissionRunLVsel->mUnk_10[data_ov001_021a6ce0[i][j]].mUnk_04 = 0x100;
@@ -226,7 +226,7 @@ void func_ov001_0219f2a4(void) {
 
 void func_ov001_0219f260(void) {
     gMissionRunLVsel->mNextState = 1;
-    gMissionRunLVsel->mUnk_24 = 0;
+    gMissionRunLVsel->mStateFrames = 0;
     if (func_020cccb4() == 0x13) {
         gMissionRunLVsel->mUnk_48 = -256;
     } else {
@@ -236,18 +236,18 @@ void func_ov001_0219f260(void) {
 
 void func_ov001_0219f244(void) {
     gMissionRunLVsel->mNextState = 2;
-    gMissionRunLVsel->mUnk_24 = 0;
+    gMissionRunLVsel->mStateFrames = 0;
     func_02128374();
 }
 
 void func_ov001_0219f230(void) {
     gMissionRunLVsel->mNextState = 3;
-    gMissionRunLVsel->mUnk_24 = 0;
+    gMissionRunLVsel->mStateFrames = 0;
 }
 
 void func_ov001_0219f1f4(void) {
     gMissionRunLVsel->mNextState = 4;
-    gMissionRunLVsel->mUnk_24 = 0;
+    gMissionRunLVsel->mStateFrames = 0;
     gMissionRunLVsel->mUnk_48 = 0x100;
     func_ov001_0219f37c();
     func_0212ecc0(&data_0217d068, 0, 5);
@@ -255,8 +255,8 @@ void func_ov001_0219f1f4(void) {
 
 void func_ov001_0219f198(void) {
     gMissionRunLVsel->mNextState = 5;
-    gMissionRunLVsel->mUnk_24 = 0;
-    switch (gMissionRunLVsel->mUnk_58) {
+    gMissionRunLVsel->mStateFrames = 0;
+    switch (gMissionRunLVsel->mResult) {
         case 1:
             if (func_ov001_0219f31c() != FALSE) {
                 func_02105980(3, 10);
@@ -284,16 +284,16 @@ void InitMissionRunLVsel(void *a, void *b, void *c) {
     gMissionRunLVsel->mState = 0;
     gMissionRunLVsel->mUnk_50 = b;
     gMissionRunLVsel->mUnk_54 = c;
-    gMissionRunLVsel->mUnk_58 = 0;
+    gMissionRunLVsel->mResult = 0;
     for (i = 0; i < 7; i++) {
         gMissionRunLVsel->mUnk_28[i] = 0;
     }
     if (data_0217b488->mUnk_14 != 0) {
-        gMissionRunLVsel->mUnk_4c = 6;
+        gMissionRunLVsel->mIndex = 6;
         data_0217b488->mUnk_14 = 0;
         func_02105a30(2);
     } else {
-        gMissionRunLVsel->mUnk_4c = func_02029608() - 1;
+        gMissionRunLVsel->mIndex = func_02029608() - 1;
         if (func_020cccb4() == 0x1f) {
             func_02105a30(1);
         } else {
@@ -319,7 +319,7 @@ void InitMissionRunLVsel(void *a, void *b, void *c) {
 
 void ReleaseMissionRunLVsel(void) {
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | 0x1800;
-    switch (gMissionRunLVsel->mUnk_58) {
+    switch (gMissionRunLVsel->mResult) {
         case 1:
             if (func_ov001_0219f31c() != FALSE) {
                 func_02105980(3, 10);
@@ -353,16 +353,16 @@ void AdvanceMissionRunLVselState1(void) {
 
     func_021059e0();
     count = gMissionRunLVsel->mUnk_04->mUnk_06;
-    gMissionRunLVsel->mUnk_24 = gMissionRunLVsel->mUnk_24 + 1;
-    value = func_020ae4c0(1, gMissionRunLVsel->mUnk_48, 0, gMissionRunLVsel->mUnk_24, 10);
-    gMissionRunLVsel->mUnk_44 = func_020ae4c0(1, -192, 0, gMissionRunLVsel->mUnk_24, 10);
+    gMissionRunLVsel->mStateFrames = gMissionRunLVsel->mStateFrames + 1;
+    value = func_020ae4c0(1, gMissionRunLVsel->mUnk_48, 0, gMissionRunLVsel->mStateFrames, 10);
+    gMissionRunLVsel->mBg0Offset = func_020ae4c0(1, -192, 0, gMissionRunLVsel->mStateFrames, 10);
     for (i = 0; i < 7; i++) {
         for (j = 0; j < 11; j++) {
             gMissionRunLVsel->mUnk_10[data_ov001_021a6ce0[i][j]].mUnk_04 = value;
         }
         gMissionRunLVsel->mUnk_10[count + data_ov001_021a6c60[i]].mUnk_04 = value;
     }
-    if (gMissionRunLVsel->mUnk_24 >= 10) {
+    if (gMissionRunLVsel->mStateFrames >= 10) {
         func_ov001_0219f244();
     }
 }
@@ -413,15 +413,15 @@ void AdvanceMissionRunLVselState3(void) {
     func_021281c8(0xe);
     func_ov001_0219f198();
     gMissionRunLVsel->mUnk_48 = 0x100;
-    gMissionRunLVsel->mUnk_58 = 2;
+    gMissionRunLVsel->mResult = 2;
     func_02128310(0);
     return;
 next:
     if (sel <= 6) {
         n = data_ov001_021a6c90[sel];
         if (func_ov001_0219f688(n) != 0) {
-            gMissionRunLVsel->mUnk_4c = n;
-            gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mUnk_4c] = 5;
+            gMissionRunLVsel->mIndex = n;
+            gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mIndex] = 5;
             func_ov001_0219f1f4();
         } else {
             func_0212ecc0(&data_0217d068, 0, 0x16);
@@ -429,43 +429,43 @@ next:
         return;
     }
     if ((u16) (data_02175628[i].mUnk_00 & 1) != 0) {
-        gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mUnk_4c] = 5;
+        gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mIndex] = 5;
         func_ov001_0219f1f4();
         return;
     }
     if (func_020ae408(8, 0x40) != 0) {
-        if (data_ov001_021a6ca0[gMissionRunLVsel->mUnk_4c] != 0) {
-            n = gMissionRunLVsel->mUnk_4c + data_ov001_021a6ca0[gMissionRunLVsel->mUnk_4c];
+        if (data_ov001_021a6ca0[gMissionRunLVsel->mIndex] != 0) {
+            n = gMissionRunLVsel->mIndex + data_ov001_021a6ca0[gMissionRunLVsel->mIndex];
             if (func_ov001_0219f688(n) != 0) {
-                gMissionRunLVsel->mUnk_4c = n;
-                gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mUnk_4c] = 5;
+                gMissionRunLVsel->mIndex = n;
+                gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mIndex] = 5;
                 func_0212ecc0(&data_0217d068, 0, 0);
             }
         }
     } else if (func_020ae408(8, 0x80) != 0) {
-        if (data_ov001_021a6cb0[gMissionRunLVsel->mUnk_4c] != 0) {
-            n = gMissionRunLVsel->mUnk_4c + data_ov001_021a6cb0[gMissionRunLVsel->mUnk_4c];
+        if (data_ov001_021a6cb0[gMissionRunLVsel->mIndex] != 0) {
+            n = gMissionRunLVsel->mIndex + data_ov001_021a6cb0[gMissionRunLVsel->mIndex];
             if (func_ov001_0219f688(n) != 0) {
-                gMissionRunLVsel->mUnk_4c = n;
-                gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mUnk_4c] = 5;
+                gMissionRunLVsel->mIndex = n;
+                gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mIndex] = 5;
                 func_0212ecc0(&data_0217d068, 0, 0);
             }
         }
     } else if (func_020ae408(8, 0x20) != 0) {
-        if (data_ov001_021a6cc0[gMissionRunLVsel->mUnk_4c] != 0) {
-            n = gMissionRunLVsel->mUnk_4c + data_ov001_021a6cc0[gMissionRunLVsel->mUnk_4c];
+        if (data_ov001_021a6cc0[gMissionRunLVsel->mIndex] != 0) {
+            n = gMissionRunLVsel->mIndex + data_ov001_021a6cc0[gMissionRunLVsel->mIndex];
             if (func_ov001_0219f688(n) != 0) {
-                gMissionRunLVsel->mUnk_4c = n;
-                gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mUnk_4c] = 5;
+                gMissionRunLVsel->mIndex = n;
+                gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mIndex] = 5;
                 func_0212ecc0(&data_0217d068, 0, 0);
             }
         }
     } else if (func_020ae408(8, 0x10) != 0) {
-        if (data_ov001_021a6cd0[gMissionRunLVsel->mUnk_4c] != 0) {
-            n = gMissionRunLVsel->mUnk_4c + data_ov001_021a6cd0[gMissionRunLVsel->mUnk_4c];
+        if (data_ov001_021a6cd0[gMissionRunLVsel->mIndex] != 0) {
+            n = gMissionRunLVsel->mIndex + data_ov001_021a6cd0[gMissionRunLVsel->mIndex];
             if (func_ov001_0219f688(n) != 0) {
-                gMissionRunLVsel->mUnk_4c = n;
-                gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mUnk_4c] = 5;
+                gMissionRunLVsel->mIndex = n;
+                gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mIndex] = 5;
                 func_0212ecc0(&data_0217d068, 0, 0);
             }
         }
@@ -473,12 +473,12 @@ next:
 }
 
 void AdvanceMissionRunLVselState4(void) {
-    gMissionRunLVsel->mUnk_24 = gMissionRunLVsel->mUnk_24 + 1;
+    gMissionRunLVsel->mStateFrames = gMissionRunLVsel->mStateFrames + 1;
     func_021059e0();
-    if (gMissionRunLVsel->mUnk_24 >= 5) {
+    if (gMissionRunLVsel->mStateFrames >= 5) {
         func_ov001_0219f198();
         gMissionRunLVsel->mUnk_48 = -256;
-        gMissionRunLVsel->mUnk_58 = 1;
+        gMissionRunLVsel->mResult = 1;
     }
 }
 
@@ -489,9 +489,9 @@ void AdvanceMissionRunLVselState5(void) {
     s16 value;
 
     count = gMissionRunLVsel->mUnk_04->mUnk_06;
-    gMissionRunLVsel->mUnk_24 = gMissionRunLVsel->mUnk_24 + 1;
-    value = func_020ae4c0(1, 0, gMissionRunLVsel->mUnk_48, gMissionRunLVsel->mUnk_24, 10);
-    gMissionRunLVsel->mUnk_44 = func_020ae4c0(1, 0, -192, gMissionRunLVsel->mUnk_24, 10);
+    gMissionRunLVsel->mStateFrames = gMissionRunLVsel->mStateFrames + 1;
+    value = func_020ae4c0(1, 0, gMissionRunLVsel->mUnk_48, gMissionRunLVsel->mStateFrames, 10);
+    gMissionRunLVsel->mBg0Offset = func_020ae4c0(1, 0, -192, gMissionRunLVsel->mStateFrames, 10);
     for (i = 0; i < 7; i++) {
         for (j = 0; j < 11; j++) {
             gMissionRunLVsel->mUnk_10[data_ov001_021a6ce0[i][j]].mUnk_04 = value;
@@ -525,12 +525,12 @@ s32 AdvanceMissionRunLVsel(void) {
     func_ov001_0219f430();
     func_02124c30(gMissionRunLVsel->mUnk_04, gMissionRunLVsel->mUnk_00, gMissionRunLVsel->mUnk_0c,
                   gMissionRunLVsel->mUnk_54, gMissionRunLVsel->mUnk_10);
-    if (gMissionRunLVsel->mState == 5 && gMissionRunLVsel->mUnk_24 >= 10) {
-        return gMissionRunLVsel->mUnk_58;
+    if (gMissionRunLVsel->mState == 5 && gMissionRunLVsel->mStateFrames >= 10) {
+        return gMissionRunLVsel->mResult;
     }
     return 0;
 }
 
-void func_ov001_0219eab4(void) {
-    *(vu32 *) 0x4000010 = (-gMissionRunLVsel->mUnk_44 << 16) & 0x1ff0000;
+void WriteMissionRunLVselBg0Offset(void) {
+    *(vu32 *) 0x4000010 = (-gMissionRunLVsel->mBg0Offset << 16) & 0x1ff0000;
 }

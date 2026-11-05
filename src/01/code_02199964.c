@@ -28,14 +28,14 @@ void InitOptionHensyuMenu(void *heap) {
     switch (GetOptionPrevState()) {
         case 0:
         case 5:
-            gOptionHensyuMenu->mUnk_08 = 0;
+            gOptionHensyuMenu->mIndex = 0;
             break;
         case 3:
         case 6:
-            gOptionHensyuMenu->mUnk_08 = 1;
+            gOptionHensyuMenu->mIndex = 1;
             break;
     }
-    gOptionHensyuMenu->mUnk_0c = 0;
+    gOptionHensyuMenu->mStateFrames = 0;
     gOptionHensyuMenu->mUnk_14 = 1;
     LocateAndQueueOptionHensyuMenu();
     for (i = 0; i < 2; i++) {
@@ -56,7 +56,7 @@ void InitOptionHensyuMenu(void *heap) {
     func_021281c8(0xe);
 }
 
-void func_ov001_02199f38(void) {
+void ReleaseOptionHensyuMenu(void) {
     gOptionHensyuMenu = NULL;
 }
 
@@ -93,8 +93,8 @@ void AdvanceOptionHensyuMenuState1(void) {
     s32 i;
     s32 j;
     s32 v;
-    gOptionHensyuMenu->mUnk_0c++;
-    v = func_020ae4c0(1, 0xfa, 0, gOptionHensyuMenu->mUnk_0c, 10);
+    gOptionHensyuMenu->mStateFrames++;
+    v = func_020ae4c0(1, 0xfa, 0, gOptionHensyuMenu->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a8c[i]; j++) {
             if (i == 1) {
@@ -104,9 +104,9 @@ void AdvanceOptionHensyuMenuState1(void) {
             }
         }
     }
-    if (gOptionHensyuMenu->mUnk_0c >= 10) {
+    if (gOptionHensyuMenu->mStateFrames >= 10) {
         gOptionHensyuMenu->mNextState = 2;
-        gOptionHensyuMenu->mUnk_0c = 0;
+        gOptionHensyuMenu->mStateFrames = 0;
         func_02128374();
     }
 }
@@ -160,68 +160,68 @@ void AdvanceOptionHensyuMenuState3(void) {
     } else {
     leave:
         gOptionHensyuMenu->mNextState = 5;
-        gOptionHensyuMenu->mUnk_10 = 0;
+        gOptionHensyuMenu->mNextOptionState = 0;
         func_02128310(0);
         return;
     }
     if ((u16) (data_02175628[i].mUnk_00 & 1) != 0 || r <= 1) {
         p = gOptionHensyuMenu;
-        oldv = p->mUnk_08;
+        oldv = p->mIndex;
         if ((u16) (data_02175628[i].mUnk_00 & 1) == 0) {
             switch (r) {
                 case 0:
-                    p->mUnk_08 = 0;
+                    p->mIndex = 0;
                     break;
                 case 1:
-                    p->mUnk_08 = 1;
+                    p->mIndex = 1;
                     break;
             }
         }
         gOptionHensyuMenu->mNextState = 4;
         p = gOptionHensyuMenu;
-        switch (p->mUnk_08) {
+        switch (p->mIndex) {
             case 0:
-                p->mUnk_10 = 5;
+                p->mNextOptionState = 5;
                 break;
             case 1:
                 if (data_0217aa08->mUnk_04->mUnk_004 != 0) {
-                    p->mUnk_10 = 3;
+                    p->mNextOptionState = 3;
                 } else {
-                    p->mUnk_10 = 6;
+                    p->mNextOptionState = 6;
                     data_0217b488->mUnk_18 = 0;
                 }
                 break;
         }
-        if (gOptionHensyuMenu->mUnk_08 == oldv) {
+        if (gOptionHensyuMenu->mIndex == oldv) {
             gOptionHensyuMenu->mUnk_14 = 0;
         }
         func_02105ac0(5);
         return;
     }
     if (func_020ae408(8, 0x40) != 0) {
-        if (gOptionHensyuMenu->mUnk_08 > 0) {
-            gOptionHensyuMenu->mUnk_08--;
+        if (gOptionHensyuMenu->mIndex > 0) {
+            gOptionHensyuMenu->mIndex--;
             func_02105ac0(0);
             return;
         }
     }
     if (func_020ae408(8, 0x80) != 0) {
-        if (gOptionHensyuMenu->mUnk_08 < 1) {
-            gOptionHensyuMenu->mUnk_08++;
+        if (gOptionHensyuMenu->mIndex < 1) {
+            gOptionHensyuMenu->mIndex++;
             func_02105ac0(0);
         }
     }
 }
 
 void AdvanceOptionHensyuMenuState4(void) {
-    gOptionHensyuMenu->mUnk_0c++;
-    if (gOptionHensyuMenu->mUnk_0c >= 10) {
+    gOptionHensyuMenu->mStateFrames++;
+    if (gOptionHensyuMenu->mStateFrames >= 10) {
         gOptionHensyuMenu->mNextState = 5;
-        gOptionHensyuMenu->mUnk_0c = 0;
-        if (gOptionHensyuMenu->mUnk_10 == 5) {
+        gOptionHensyuMenu->mStateFrames = 0;
+        if (gOptionHensyuMenu->mNextOptionState == 5) {
             func_021282c8();
         }
-    } else if (gOptionHensyuMenu->mUnk_0c >= 5) {
+    } else if (gOptionHensyuMenu->mStateFrames >= 5) {
         gOptionHensyuMenu->mUnk_14 = 1;
     }
 }
@@ -231,15 +231,15 @@ void AdvanceOptionHensyuMenuState5(void) {
     s32 j;
     s32 v;
     if (func_ov001_02192e84() == -1) {
-        if (gOptionHensyuMenu->mUnk_10 == 5) {
+        if (gOptionHensyuMenu->mNextOptionState == 5) {
             func_ov001_02192e78(0xe);
-        } else if (gOptionHensyuMenu->mUnk_10 == 6) {
+        } else if (gOptionHensyuMenu->mNextOptionState == 6) {
             func_ov001_02192e78(3);
         }
     }
-    gOptionHensyuMenu->mUnk_0c++;
-    if (gOptionHensyuMenu->mUnk_0c <= 10) {
-        v = func_020ae4c0(1, 0, 0xfa, gOptionHensyuMenu->mUnk_0c, 10);
+    gOptionHensyuMenu->mStateFrames++;
+    if (gOptionHensyuMenu->mStateFrames <= 10) {
+        v = func_020ae4c0(1, 0, 0xfa, gOptionHensyuMenu->mStateFrames, 10);
     } else {
         v = 0xfa;
     }
@@ -252,11 +252,11 @@ void AdvanceOptionHensyuMenuState5(void) {
             }
         }
     }
-    if (gOptionHensyuMenu->mUnk_0c >= 10) {
-        if (gOptionHensyuMenu->mUnk_10 == 0 || gOptionHensyuMenu->mUnk_10 == 3 ||
+    if (gOptionHensyuMenu->mStateFrames >= 10) {
+        if (gOptionHensyuMenu->mNextOptionState == 0 || gOptionHensyuMenu->mNextOptionState == 3 ||
             IsSelectReturnState0NoState1Request() != 0) {
             if (func_ov001_02192e84() == -1) {
-                RequestOptionState(gOptionHensyuMenu->mUnk_10);
+                RequestOptionState(gOptionHensyuMenu->mNextOptionState);
             }
         }
     }
@@ -265,7 +265,7 @@ void AdvanceOptionHensyuMenuState5(void) {
 void func_ov001_02199a20(void) {
     s32 i;
     for (i = 0; i < 2; i++) {
-        if (i == gOptionHensyuMenu->mUnk_08 && gOptionHensyuMenu->mUnk_14 != 0) {
+        if (i == gOptionHensyuMenu->mIndex && gOptionHensyuMenu->mUnk_14 != 0) {
             gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a88[i]].mUnk_00 = 1;
             func_02124a20(data_ov001_021a6a80[i], 0xe, gOptionHensyuMenu->mOptionHensyuMenuSNcer, gOptionHensyuMenu->mOptionHensyuMenuSBncl);
         } else {
@@ -309,6 +309,6 @@ void func_ov001_02199988(void) {
 }
 
 void RegisterOptionHensyuMenuCallbacks(void) {
-    UnkFunc *tbl[4] = {InitOptionHensyuMenu, func_ov001_02199f38, AdvanceOptionHensyuMenu, func_ov001_02199988};
+    UnkFunc *tbl[4] = {InitOptionHensyuMenu, ReleaseOptionHensyuMenu, AdvanceOptionHensyuMenu, func_ov001_02199988};
     SetOptionStateCallbacks((UnkFunc **) (tbl));
 }

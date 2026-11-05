@@ -56,7 +56,7 @@ typedef struct WiFiVSMatching {
     /* 0010 */ s16 mUnk_10;
     /* 0012 */ s16 mUnk_12[3];
     /* 0018 */ s16 mUnk_18[4];
-    /* 0020 */ s32 mUnk_20;
+    /* 0020 */ s32 mPendingWiFiState;
     /* 0024 */ s32 mUnk_24[3];
     /* 0030 */ s32 mUnk_30;
     /* 0034 */ u8 mUnk_34[3];

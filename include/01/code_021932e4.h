@@ -24,5 +24,7 @@ void AdvanceOptionTopMenuState2(void);
 void AdvanceOptionTopMenuState1(void);
 void AdvanceOptionTopMenuState0(void);
 void LocateAndQueueOptionTopMenu(void);
-void func_ov001_02193b1c(void);
+/* slot mRelease of OptionStateCallbacks; only clears the global, the state heap is destroyed by
+   AdvanceOptionStates after it returns */
+void ReleaseOptionTopMenu(void);
 void InitOptionTopMenu(void *heap);

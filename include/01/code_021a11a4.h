@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_02061654.h" // Unk02061808
 
-void func_ov001_021a11a4(void);
+void WriteSelectEngineBg0Offset(void);
 int AdvanceSelectEngine(void);
 void AdvanceSelectEngineState6(void);
 void AdvanceSelectEngineState5(void);

@@ -119,7 +119,7 @@ void InitWiFiVSMatching(void *a) {
     gWiFiVSMatching->mUnk_d0 = a;
     gWiFiVSMatching->mState = 0;
     gWiFiVSMatching->mNextState = 0;
-    gWiFiVSMatching->mUnk_20 = -1;
+    gWiFiVSMatching->mPendingWiFiState = -1;
     gWiFiVSMatching->mUnk_08 = 0;
     gWiFiVSMatching->mUnk_0c = 0;
     gWiFiVSMatching->mUnk_38 = 0;
@@ -310,7 +310,7 @@ void AdvanceWiFiVSMatchingState1(void) {
         func_021213e8();
         func_02128310(0);
         gWiFiVSMatching->mNextState = 10;
-        gWiFiVSMatching->mUnk_20 = 2;
+        gWiFiVSMatching->mPendingWiFiState = 2;
         gWiFiVSMatching->mUnk_08 = 0;
         func_02125fc0();
         func_0210895c();
@@ -547,7 +547,7 @@ void AdvanceWiFiVSMatchingState8(void) {
     if (gWiFiVSMatching->mUnk_08 >= (data_ov000_021b0680 - 1)[gWiFiVSMatching->mUnk_30]) {
         if (IsSelectReturnState0NoState1Request() != 0) {
             gWiFiVSMatching->mNextState = 11;
-            gWiFiVSMatching->mUnk_20 = 4;
+            gWiFiVSMatching->mPendingWiFiState = 4;
             gWiFiVSMatching->mUnk_08 = 0;
             func_02125fc0();
             func_02036f10((s16) (30));
@@ -585,7 +585,7 @@ void AdvanceWiFiVSMatchingState9(void) {
             }
         }
         gWiFiVSMatching->mNextState = 10;
-        gWiFiVSMatching->mUnk_20 = 2;
+        gWiFiVSMatching->mPendingWiFiState = 2;
         func_02128310(0);
         func_02125fc0();
     }
@@ -599,11 +599,11 @@ void AdvanceWiFiVSMatchingState10(void) {
     }
     if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0 && gWiFiVSMatching->mUnk_08 >= 10) {
         if (gWiFiVSMatching->mUnk_40 != 0) {
-            RequestWiFiState(gWiFiVSMatching->mUnk_20);
+            RequestWiFiState(gWiFiVSMatching->mPendingWiFiState);
             return;
         }
         if (func_0212137c() != 0) {
-            RequestWiFiState(gWiFiVSMatching->mUnk_20);
+            RequestWiFiState(gWiFiVSMatching->mPendingWiFiState);
         }
     }
 }
@@ -611,7 +611,7 @@ void AdvanceWiFiVSMatchingState10(void) {
 void AdvanceWiFiVSMatchingState11(void) {
     if (func_02036d08() != 0) {
         if (func_02125f88() != 0) {
-            RequestWiFiState(gWiFiVSMatching->mUnk_20);
+            RequestWiFiState(gWiFiVSMatching->mPendingWiFiState);
         }
     }
 }

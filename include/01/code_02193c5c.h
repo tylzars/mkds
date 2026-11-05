@@ -7,11 +7,17 @@
 typedef struct OptionTopMenu {
     /* 00 */ s32 mState;
     /* 04 */ s32 mNextState;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
+    /* Init leaves it unset when the previous option state is not 1, 2 or 4 (1, 4 -> 0, 2 -> 1) */
+    /* 08 */ s32 mIndex;
+    /* counted only in states 1, 4, 5; zeroed when 1 and 4 hand over and 5 hands over to 6; state 5 keeps counting
+       while it requests the next option state */
+    /* 0c */ s32 mStateFrames;
+    /* option state passed to RequestOptionState (1, 2 or 4); no initial store, set by the input handler (state 3,
+       also state 9), not set for entry 2 (dialog path); also tested inside the screen */
+    /* 10 */ s32 mNextOptionState;
     /* 14 */ s32 mUnk_14;
-    /* 18 */ s32 mUnk_18;
+    /* stored to reg_G2_BG0OFS without negation (the other mBg0Offset members are stored negated) */
+    /* 18 */ s32 mBg0Offset;
     /* 1c */ void *mUnk_1c;
     /* 20 */ Unk02124b1c *mUnk_20;
     /* 24 */ struct Unk02021dc8 *mOptionTopMenuSNcer;

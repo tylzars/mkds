@@ -40,12 +40,12 @@ typedef struct RecordTAtt {
     /* 4c */ void *mUnk_4c;
     /* 50 */ s32 mState;
     /* 54 */ s32 mNextState;
-    /* 58 */ s32 mUnk_58;
-    /* 5c */ s32 mUnk_5c;
+    /* 58 */ s32 mStateFrames; /* counted only in states 0, 1, 3-8, 11, 12, 13, 17 */
+    /* 5c */ s32 mBg0Offset;
     /* 60 */ s32 mUnk_60;
     /* 64 */ s32 mUnk_64;
     /* 68 */ s32 mUnk_68;
-    /* 6c */ s32 mUnk_6c;
+    /* 6c */ s32 mIndex;
     /* 70 */ s32 mUnk_70;
     /* 74 */ s32 mUnk_74;
     /* 78 */ s32 mUnk_78[2];

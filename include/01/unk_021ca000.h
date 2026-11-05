@@ -42,16 +42,16 @@ typedef struct MissionRunLVsel {
     /* 18 */ void *mHeap;
     /* 1c */ s32 mState;
     /* 20 */ s32 mNextState;
-    /* 24 */ s32 mUnk_24;
+    /* 24 */ s32 mStateFrames; /* counted only in states 1, 4, 5; zeroed by the next-state setter */
     /* 28 */ s32 mUnk_28[7];
-    /* 44 */ s32 mUnk_44;
+    /* 44 */ s32 mBg0Offset;
     /* 48 */ s16 mUnk_48;
     /* 4a */ s16 mUnk_4a;
-    /* 4c */ s16 mUnk_4c;
+    /* 4c */ s16 mIndex; /* level number - 1 */
     /* 4e */ u8 mUnk_4e[0x2];
     /* 50 */ void *mUnk_50;
     /* 54 */ void *mUnk_54;
-    /* 58 */ s32 mUnk_58;
+    /* 58 */ s32 mResult; /* 1 = level chosen, 2 = Back; also read by ReleaseMissionRunLVsel for the sound */
 } MissionRunLVsel;
 
 // Object behind MissionRunMSsel::mUnk_1c.
@@ -89,13 +89,13 @@ typedef struct MissionRunMSsel {
     /* 5c */ void *mHeap;
     /* 60 */ u32 mState;
     /* 64 */ s32 mNextState;
-    /* 68 */ s32 mUnk_68;
+    /* 68 */ s32 mStateFrames; /* counted only in states 1, 4, 8; zeroed by the next-state setter */
     /* 6c */ s32 mUnk_6c[9];
     /* 90 */ s32 mUnk_90;
     /* 94 */ s32 mUnk_94;
     /* 98 */ s32 mUnk_98;
     /* 9c */ s16 mUnk_9c;
-    /* 9e */ s16 mUnk_9e;
+    /* 9e */ s16 mIndex; /* mission number - 1, 8 = ninth mission */
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mUnk_a8;
@@ -104,7 +104,7 @@ typedef struct MissionRunMSsel {
     /* b2 */ u8 mUnk_b2[0x2];
     /* b4 */ void *mUnk_b4;
     /* b8 */ void *mUnk_b8;
-    /* bc */ s32 mUnk_bc;
+    /* bc */ s32 mResult; /* 1 = mission chosen, 2 = Back; also read by ReleaseMissionRunMSsel for the sound */
 } MissionRunMSsel;
 
 // Object behind gSelectEngine.
@@ -120,16 +120,16 @@ typedef struct SelectEngine {
     /* 20 */ void *mHeap;
     /* 24 */ s32 mState;
     /* 28 */ s32 mNextState;
-    /* 2c */ s32 mUnk_2c;
-    /* 30 */ s32 mUnk_30;
-    /* 34 */ s32 mUnk_34;
+    /* 2c */ s32 mStateFrames; /* counted only in states 1, 2, 5, 6; zeroed by the next-state setter */
+    /* 30 */ s32 mBg0Offset;
+    /* 34 */ s32 mIndex;
     /* 38 */ s32 mUnk_38;
     /* 3c */ s32 mUnk_3c;
     /* 40 */ s16 mUnk_40;
     /* 42 */ u8 mUnk_42[0x2];
     /* 44 */ void *mUnk_44;
     /* 48 */ void *mUnk_48;
-    /* 4c */ s32 mUnk_4c;
+    /* 4c */ s32 mResult;
 } SelectEngine;
 
 // Object behind data_ov001_021ca420, allocated by func_ov001_021a6238.

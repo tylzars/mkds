@@ -13,5 +13,7 @@ void AdvanceOptionHensyuMenuState2(void);
 void AdvanceOptionHensyuMenuState1(void);
 void AdvanceOptionHensyuMenuState0(void);
 void LocateAndQueueOptionHensyuMenu(void);
-void func_ov001_02199f38(void);
+/* slot mRelease of OptionStateCallbacks; only clears the global, the state heap is destroyed by
+   AdvanceOptionStates after it returns */
+void ReleaseOptionHensyuMenu(void);
 void InitOptionHensyuMenu(void *heap);

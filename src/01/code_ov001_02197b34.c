@@ -67,30 +67,30 @@ void LocateAndQueueTimeAttackTopMenu(void) {
 
 void func_ov001_02198368(void) {
     gTimeAttackTopMenu->mNextState = 0;
-    gTimeAttackTopMenu->mUnk_20 = 0;
-    gTimeAttackTopMenu->mUnk_24 = -192;
+    gTimeAttackTopMenu->mStateFrames = 0;
+    gTimeAttackTopMenu->mBg0Offset = -192;
 }
 
 void func_ov001_02198354(void) {
     gTimeAttackTopMenu->mNextState = 1;
-    gTimeAttackTopMenu->mUnk_20 = 0;
+    gTimeAttackTopMenu->mStateFrames = 0;
 }
 
 void func_ov001_02198338(void) {
     gTimeAttackTopMenu->mNextState = 2;
-    gTimeAttackTopMenu->mUnk_20 = 0;
+    gTimeAttackTopMenu->mStateFrames = 0;
     func_02128374();
 }
 
 void func_ov001_02198324(void) {
     gTimeAttackTopMenu->mNextState = 3;
-    gTimeAttackTopMenu->mUnk_20 = 0;
+    gTimeAttackTopMenu->mStateFrames = 0;
 }
 
 void func_ov001_021982e8(void) {
     gTimeAttackTopMenu->mNextState = 4;
-    gTimeAttackTopMenu->mUnk_20 = 0;
-    switch (gTimeAttackTopMenu->mUnk_28) {
+    gTimeAttackTopMenu->mStateFrames = 0;
+    switch (gTimeAttackTopMenu->mIndex) {
         case 1:
         case 2:
             func_021282c8();
@@ -101,7 +101,7 @@ void func_ov001_021982e8(void) {
 
 void func_ov001_021982d4(void) {
     gTimeAttackTopMenu->mNextState = 5;
-    gTimeAttackTopMenu->mUnk_20 = 0;
+    gTimeAttackTopMenu->mStateFrames = 0;
 }
 
 void func_ov001_0219829c(s32 a) {
@@ -125,16 +125,16 @@ void InitTimeAttackTopMenu(void *a, void *b, s32 c) {
     gTimeAttackTopMenu->mState = 0;
     gTimeAttackTopMenu->mUnk_2c = b;
     gTimeAttackTopMenu->mUnk_30 = c;
-    gTimeAttackTopMenu->mUnk_34 = 0;
+    gTimeAttackTopMenu->mResult = 0;
     func_ov001_02198368();
     if (func_020cccb4() == 0x1f) {
         if (data_0217b488->mUnk_0c == 0) {
-            gTimeAttackTopMenu->mUnk_28 = 1;
+            gTimeAttackTopMenu->mIndex = 1;
         } else {
-            gTimeAttackTopMenu->mUnk_28 = 2;
+            gTimeAttackTopMenu->mIndex = 2;
         }
     } else {
-        gTimeAttackTopMenu->mUnk_28 = 0;
+        gTimeAttackTopMenu->mIndex = 0;
     }
     LocateAndQueueTimeAttackTopMenu();
     for (i = 0; i < 3; i++) {
@@ -151,7 +151,7 @@ void InitTimeAttackTopMenu(void *a, void *b, s32 c) {
     }
     gTimeAttackTopMenu->mUnk_0c[12].mUnk_04 = 0xe0;
     gTimeAttackTopMenu->mUnk_0c[13].mUnk_04 = 0xe0;
-    func_ov001_0219829c(gTimeAttackTopMenu->mUnk_28);
+    func_ov001_0219829c(gTimeAttackTopMenu->mIndex);
     FrmHeapShrinkInParent(gTimeAttackTopMenu->mHeap);
 }
 
@@ -164,9 +164,9 @@ void AdvanceTimeAttackTopMenuState0(void) {
     s16 v;
     s32 i;
 
-    gTimeAttackTopMenu->mUnk_20++;
-    v = func_020ae4c0(1, 0xe0, 0, gTimeAttackTopMenu->mUnk_20, 10);
-    gTimeAttackTopMenu->mUnk_24 = func_020ae4c0(1, -192, 0, gTimeAttackTopMenu->mUnk_20, 10);
+    gTimeAttackTopMenu->mStateFrames++;
+    v = func_020ae4c0(1, 0xe0, 0, gTimeAttackTopMenu->mStateFrames, 10);
+    gTimeAttackTopMenu->mBg0Offset = func_020ae4c0(1, -192, 0, gTimeAttackTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
         gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a08[i]].mUnk_04 = v;
         gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a10[i]].mUnk_04 = v;
@@ -175,7 +175,7 @@ void AdvanceTimeAttackTopMenuState0(void) {
     }
     gTimeAttackTopMenu->mUnk_0c[12].mUnk_04 = v;
     gTimeAttackTopMenu->mUnk_0c[13].mUnk_04 = v;
-    if (gTimeAttackTopMenu->mUnk_20 >= 10) {
+    if (gTimeAttackTopMenu->mStateFrames >= 10) {
         func_ov001_02198354();
     }
 }
@@ -184,8 +184,8 @@ void AdvanceTimeAttackTopMenuState1(void) {
     s16 v;
     s32 i;
 
-    gTimeAttackTopMenu->mUnk_20++;
-    v = func_020ae488(gTimeAttackTopMenu->mUnk_20);
+    gTimeAttackTopMenu->mStateFrames++;
+    v = func_020ae488(gTimeAttackTopMenu->mStateFrames);
     for (i = 0; i < 3; i++) {
         gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a08[i]].mUnk_04 = v;
         gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a10[i]].mUnk_04 = v;
@@ -194,7 +194,7 @@ void AdvanceTimeAttackTopMenuState1(void) {
     }
     gTimeAttackTopMenu->mUnk_0c[12].mUnk_04 = v;
     gTimeAttackTopMenu->mUnk_0c[13].mUnk_04 = v;
-    if (gTimeAttackTopMenu->mUnk_20 >= 10) {
+    if (gTimeAttackTopMenu->mStateFrames >= 10) {
         func_ov001_02198338();
     }
 }
@@ -242,14 +242,14 @@ void AdvanceTimeAttackTopMenuState3(void) {
     }
     func_021281c8(0xe);
     func_ov001_021982d4();
-    gTimeAttackTopMenu->mUnk_34 = 4;
+    gTimeAttackTopMenu->mResult = 4;
     func_02128310(0);
     return;
 next:
     bits = e->mUnk_00 & 1;
     if ((u16) bits != 0 || sel <= 2) {
         if ((u16) bits == 0) {
-            func_ov001_02198264((s32) (gTimeAttackTopMenu->mUnk_28));
+            func_ov001_02198264((s32) (gTimeAttackTopMenu->mIndex));
             switch (sel) {
                 case 0:
                     dir = 0;
@@ -261,41 +261,41 @@ next:
                     dir = 2;
                     break;
             }
-            if (gTimeAttackTopMenu->mUnk_28 != dir) {
-                gTimeAttackTopMenu->mUnk_28 = dir;
-                func_ov001_0219829c((s32) (gTimeAttackTopMenu->mUnk_28));
+            if (gTimeAttackTopMenu->mIndex != dir) {
+                gTimeAttackTopMenu->mIndex = dir;
+                func_ov001_0219829c((s32) (gTimeAttackTopMenu->mIndex));
             }
         } else {
-            func_ov001_02198264((s32) (gTimeAttackTopMenu->mUnk_28));
+            func_ov001_02198264((s32) (gTimeAttackTopMenu->mIndex));
         }
-        switch (gTimeAttackTopMenu->mUnk_28) {
+        switch (gTimeAttackTopMenu->mIndex) {
             case 0:
-                gTimeAttackTopMenu->mUnk_34 = 1;
+                gTimeAttackTopMenu->mResult = 1;
                 break;
             case 1:
-                gTimeAttackTopMenu->mUnk_34 = 2;
+                gTimeAttackTopMenu->mResult = 2;
                 break;
             case 2:
-                gTimeAttackTopMenu->mUnk_34 = 3;
+                gTimeAttackTopMenu->mResult = 3;
                 break;
         }
         func_ov001_021982e8();
     } else {
         if (func_020ae408(8, 0x40) != 0) {
-            func_ov001_02198264((s32) (gTimeAttackTopMenu->mUnk_28));
-            gTimeAttackTopMenu->mUnk_28--;
-            if (gTimeAttackTopMenu->mUnk_28 < 0) {
-                gTimeAttackTopMenu->mUnk_28 = 2;
+            func_ov001_02198264((s32) (gTimeAttackTopMenu->mIndex));
+            gTimeAttackTopMenu->mIndex--;
+            if (gTimeAttackTopMenu->mIndex < 0) {
+                gTimeAttackTopMenu->mIndex = 2;
             }
-            func_ov001_0219829c((s32) (gTimeAttackTopMenu->mUnk_28));
+            func_ov001_0219829c((s32) (gTimeAttackTopMenu->mIndex));
             func_0212ecc0(&data_0217d068, 0, 0);
         } else if (func_020ae408(8, 0x80) != 0) {
-            func_ov001_02198264((s32) (gTimeAttackTopMenu->mUnk_28));
-            gTimeAttackTopMenu->mUnk_28++;
-            if (gTimeAttackTopMenu->mUnk_28 >= 3) {
-                gTimeAttackTopMenu->mUnk_28 = 0;
+            func_ov001_02198264((s32) (gTimeAttackTopMenu->mIndex));
+            gTimeAttackTopMenu->mIndex++;
+            if (gTimeAttackTopMenu->mIndex >= 3) {
+                gTimeAttackTopMenu->mIndex = 0;
             }
-            func_ov001_0219829c((s32) (gTimeAttackTopMenu->mUnk_28));
+            func_ov001_0219829c((s32) (gTimeAttackTopMenu->mIndex));
             func_0212ecc0(&data_0217d068, 0, 0);
         }
     }
@@ -304,13 +304,13 @@ next:
 void AdvanceTimeAttackTopMenuState4(void) {
     s16 v;
 
-    gTimeAttackTopMenu->mUnk_20++;
-    v = func_020ae488(gTimeAttackTopMenu->mUnk_20);
-    gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a08[gTimeAttackTopMenu->mUnk_28]].mUnk_04 = v;
-    gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a10[gTimeAttackTopMenu->mUnk_28]].mUnk_04 = v;
-    gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a00[gTimeAttackTopMenu->mUnk_28]].mUnk_04 = v;
-    gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a18[gTimeAttackTopMenu->mUnk_28]].mUnk_04 = v;
-    switch (gTimeAttackTopMenu->mUnk_28) {
+    gTimeAttackTopMenu->mStateFrames++;
+    v = func_020ae488(gTimeAttackTopMenu->mStateFrames);
+    gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a08[gTimeAttackTopMenu->mIndex]].mUnk_04 = v;
+    gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a10[gTimeAttackTopMenu->mIndex]].mUnk_04 = v;
+    gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a00[gTimeAttackTopMenu->mIndex]].mUnk_04 = v;
+    gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a18[gTimeAttackTopMenu->mIndex]].mUnk_04 = v;
+    switch (gTimeAttackTopMenu->mIndex) {
         case 1:
             gTimeAttackTopMenu->mUnk_0c[12].mUnk_04 = v;
             break;
@@ -318,10 +318,10 @@ void AdvanceTimeAttackTopMenuState4(void) {
             gTimeAttackTopMenu->mUnk_0c[13].mUnk_04 = v;
             break;
     }
-    if (gTimeAttackTopMenu->mUnk_20 == 5) {
-        func_ov001_0219829c((s32) (gTimeAttackTopMenu->mUnk_28));
+    if (gTimeAttackTopMenu->mStateFrames == 5) {
+        func_ov001_0219829c((s32) (gTimeAttackTopMenu->mIndex));
     }
-    if (gTimeAttackTopMenu->mUnk_20 >= 10) {
+    if (gTimeAttackTopMenu->mStateFrames >= 10) {
         func_ov001_021982d4();
     }
 }
@@ -330,9 +330,9 @@ void AdvanceTimeAttackTopMenuState5(void) {
     s16 v;
     s32 i;
 
-    gTimeAttackTopMenu->mUnk_20++;
-    v = func_020ae4c0(1, 0, 0xe0, gTimeAttackTopMenu->mUnk_20, 10);
-    gTimeAttackTopMenu->mUnk_24 = func_020ae4c0(1, 0, -192, gTimeAttackTopMenu->mUnk_20, 10);
+    gTimeAttackTopMenu->mStateFrames++;
+    v = func_020ae4c0(1, 0, 0xe0, gTimeAttackTopMenu->mStateFrames, 10);
+    gTimeAttackTopMenu->mBg0Offset = func_020ae4c0(1, 0, -192, gTimeAttackTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
         gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a08[i]].mUnk_04 = v;
         gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a10[i]].mUnk_04 = v;
@@ -367,12 +367,12 @@ s32 AdvanceTimeAttackTopMenu(void) {
     }
     func_02124c30(gTimeAttackTopMenu->mTimeAttackTopMenuSBncl, gTimeAttackTopMenu->mTimeAttackTopMenuSNcer, NULL, (void *) gTimeAttackTopMenu->mUnk_30,
                   gTimeAttackTopMenu->mUnk_0c);
-    if (gTimeAttackTopMenu->mState == 5 && gTimeAttackTopMenu->mUnk_20 >= 10) {
-        return gTimeAttackTopMenu->mUnk_34;
+    if (gTimeAttackTopMenu->mState == 5 && gTimeAttackTopMenu->mStateFrames >= 10) {
+        return gTimeAttackTopMenu->mResult;
     }
     return 0;
 }
 
-void func_ov001_02197b34(void) {
-    *(vu32 *) 0x4000010 = (-gTimeAttackTopMenu->mUnk_24 << 16) & 0x1ff0000;
+void WriteTimeAttackTopMenuBg0Offset(void) {
+    *(vu32 *) 0x4000010 = (-gTimeAttackTopMenu->mBg0Offset << 16) & 0x1ff0000;
 }

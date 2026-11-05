@@ -37,7 +37,7 @@ void func_ov001_02185b1c(void) {
         func_ov001_02185abc(0x16);
         GxsDispCntBits0To2Write(0);
     }
-    func_ov001_0219eab4();
+    WriteMissionRunLVselBg0Offset();
 }
 
 void func_ov001_02185af0(void) {
@@ -91,7 +91,7 @@ void func_ov001_02185a28(void) {
         func_ov001_0218568c(0x16);
         GxsDispCntBits0To2Write(0);
     }
-    func_ov001_02197b34();
+    WriteTimeAttackTopMenuBg0Offset();
 }
 
 #pragma thumb off

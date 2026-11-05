@@ -103,7 +103,7 @@ void func_ov001_021855f8(void) {
         func_ov001_021854d8(0x16);
         GxsDispCntBits0To2Write(0);
     }
-    func_ov001_021a11a4();
+    WriteSelectEngineBg0Offset();
 }
 
 void func_ov001_021855cc(void) {

@@ -25,9 +25,14 @@ extern const OptionStateCallbacks gOptionTopMenuCallbacks;
 typedef struct OptionHensyuMenu {
     /* 00 */ s32 mState;
     /* 04 */ s32 mNextState;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
+    /* Init leaves it unset when the previous option state is not 0, 3, 5 or 6 (0, 5 -> 0, 3, 6 -> 1) */
+    /* 08 */ s32 mIndex;
+    /* counted only in states 1, 4, 5; zeroed when 1 and 4 hand over; state 5 keeps counting while it requests the
+       next option state */
+    /* 0c */ s32 mStateFrames;
+    /* option state passed to RequestOptionState (0, 3, 5 or 6); no initial store, set by the input handler (state
+       3); also tested inside the screen */
+    /* 10 */ s32 mNextOptionState;
     /* 14 */ s32 mUnk_14;
     /* 18 */ void *mUnk_18;
     /* 1c */ Unk02124b1c *mUnk_1c;
@@ -228,12 +233,12 @@ typedef struct TimeAttackTopMenu {
     /* 14 */ void *mHeap;
     /* 18 */ s32 mState;
     /* 1c */ s32 mNextState;
-    /* 20 */ s32 mUnk_20;
-    /* 24 */ s32 mUnk_24;
-    /* 28 */ s32 mUnk_28;
+    /* 20 */ s32 mStateFrames; /* counted only in states 0, 1, 4, 5; zeroed by the next-state setter */
+    /* 24 */ s32 mBg0Offset;
+    /* 28 */ s32 mIndex;
     /* 2c */ void *mUnk_2c;
     /* 30 */ s32 mUnk_30;
-    /* 34 */ s32 mUnk_34;
+    /* 34 */ s32 mResult;
 } TimeAttackTopMenu;
 
 extern Unk0217b498 *data_ov001_021a9bc0;

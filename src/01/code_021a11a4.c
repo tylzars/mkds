@@ -116,7 +116,7 @@ void func_ov001_021a1cb0(void) {
         gSelectEngine->mUnk_14[data_ov001_021a6f68[i]].mUnk_00 = 1;
     }
     gSelectEngine->mUnk_14[6].mUnk_00 = 1;
-    gSelectEngine->mUnk_14[data_ov001_021a6f28[gSelectEngine->mUnk_34]].mUnk_00 = 1;
+    gSelectEngine->mUnk_14[data_ov001_021a6f28[gSelectEngine->mIndex]].mUnk_00 = 1;
     for (i = 0; i < 4; i++) {
         gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][0]].mUnk_00 = 1;
         func_02124a98(data_ov001_021a6fa0[i][0], 1, gSelectEngine->mUnk_08, gSelectEngine->mUnk_0c);
@@ -130,7 +130,7 @@ void func_ov001_021a1c34(void) {
     for (i = 0; i < 4; i++) {
         gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][1]].mUnk_00 = 0;
         gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][2]].mUnk_00 = 0;
-        if (gSelectEngine->mUnk_34 == i && gSelectEngine->mUnk_38 != 0) {
+        if (gSelectEngine->mIndex == i && gSelectEngine->mUnk_38 != 0) {
             gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][2]].mUnk_00 = 1;
         } else {
             gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][1]].mUnk_00 = 1;
@@ -149,15 +149,15 @@ void func_ov001_021a1bf8(void) {
     for (i = 0; i < 4; i++) {
         gSelectEngine->mUnk_14[data_ov001_021a6f28[i]].mUnk_00 = 0;
     }
-    gSelectEngine->mUnk_14[data_ov001_021a6f28[gSelectEngine->mUnk_34]].mUnk_00 = 1;
+    gSelectEngine->mUnk_14[data_ov001_021a6f28[gSelectEngine->mIndex]].mUnk_00 = 1;
 }
 
 void func_ov001_021a1bb8(void) {
-    if (gSelectEngine->mUnk_34 == 3) {
+    if (gSelectEngine->mIndex == 3) {
         func_020295c0(data_ov001_021a6f90[2]);
         func_020295b0();
     } else {
-        func_020295c0(data_ov001_021a6f90[gSelectEngine->mUnk_34]);
+        func_020295c0(data_ov001_021a6f90[gSelectEngine->mIndex]);
         func_020295a0();
     }
     func_02029590(0);
@@ -176,7 +176,7 @@ void func_ov001_021a1b08(void) {
 
     if (func_ov001_021a1ba0() != 0) {
         if (gSelectEngine->mUnk_3c == 7) {
-            gSelectEngine->mUnk_40 = gSelectEngine->mUnk_34;
+            gSelectEngine->mUnk_40 = gSelectEngine->mIndex;
             func_ov001_021a1bf8();
         } else {
             v = func_02116d10(7 - gSelectEngine->mUnk_3c, 0);
@@ -188,7 +188,7 @@ void func_ov001_021a1b08(void) {
             }
         }
         gSelectEngine->mUnk_3c -= 1;
-    } else if (gSelectEngine->mUnk_34 != gSelectEngine->mUnk_40) {
+    } else if (gSelectEngine->mIndex != gSelectEngine->mUnk_40) {
         gSelectEngine->mUnk_3c = 7;
     }
 }
@@ -198,8 +198,8 @@ void func_ov001_021a1a04(void) {
     s32 j;
 
     gSelectEngine->mNextState = 0;
-    gSelectEngine->mUnk_2c = 0;
-    gSelectEngine->mUnk_30 = 0xc0;
+    gSelectEngine->mStateFrames = 0;
+    gSelectEngine->mBg0Offset = 0xc0;
     for (i = 0; i < 6; i++) {
         gSelectEngine->mUnk_14[data_ov001_021a6f68[i]].mUnk_06 = 0xc0;
     }
@@ -231,36 +231,36 @@ void func_ov001_021a1a04(void) {
 
 void func_ov001_021a19f0(void) {
     gSelectEngine->mNextState = 1;
-    gSelectEngine->mUnk_2c = 0;
+    gSelectEngine->mStateFrames = 0;
 }
 
 void func_ov001_021a19dc(void) {
     gSelectEngine->mNextState = 2;
-    gSelectEngine->mUnk_2c = 0;
+    gSelectEngine->mStateFrames = 0;
 }
 
 void func_ov001_021a19c0(void) {
     gSelectEngine->mNextState = 3;
-    gSelectEngine->mUnk_2c = 0;
+    gSelectEngine->mStateFrames = 0;
     func_02128374();
 }
 
 void func_ov001_021a19ac(void) {
     gSelectEngine->mNextState = 4;
-    gSelectEngine->mUnk_2c = 0;
+    gSelectEngine->mStateFrames = 0;
 }
 
 void func_ov001_021a1978(void) {
     gSelectEngine->mNextState = 5;
-    gSelectEngine->mUnk_2c = 0;
-    gSelectEngine->mUnk_4c = 1;
+    gSelectEngine->mStateFrames = 0;
+    gSelectEngine->mResult = 1;
     func_ov001_021a1bb8();
     func_0212ecc0(&data_0217d068, 0, 5);
 }
 
 void func_ov001_021a1964(void) {
     gSelectEngine->mNextState = 6;
-    gSelectEngine->mUnk_2c = 0;
+    gSelectEngine->mStateFrames = 0;
 }
 
 void InitSelectEngine(s32 a, void *b, void *c) {
@@ -284,13 +284,13 @@ void InitSelectEngine(s32 a, void *b, void *c) {
     gSelectEngine->mUnk_38 = 1;
     gSelectEngine->mUnk_44 = b;
     gSelectEngine->mUnk_48 = c;
-    gSelectEngine->mUnk_4c = 0;
+    gSelectEngine->mResult = 0;
     if (func_0202967c() != 0) {
-        gSelectEngine->mUnk_34 = 3;
+        gSelectEngine->mIndex = 3;
     } else {
-        gSelectEngine->mUnk_34 = data_ov001_021a6f74[func_0202969c()];
+        gSelectEngine->mIndex = data_ov001_021a6f74[func_0202969c()];
     }
-    gSelectEngine->mUnk_40 = gSelectEngine->mUnk_34;
+    gSelectEngine->mUnk_40 = gSelectEngine->mIndex;
     LocateAndQueueSelectEngine();
     func_020ae6d4(gSelectEngine->mUnk_44, gSelectEngine->mUnk_48);
     func_02124ed0(gSelectEngine->mHeap, gSelectEngine->mUnk_04, NULL, &gSelectEngine->mUnk_14);
@@ -320,10 +320,10 @@ void AdvanceSelectEngineState1(void) {
     s16 b;
     s32 j;
     s32 i;
-    gSelectEngine->mUnk_2c = gSelectEngine->mUnk_2c + 1;
-    a = func_020ae4c0(1, 0xe0, 0, gSelectEngine->mUnk_2c, 10);
-    b = func_020ae4c0(1, -0xc0, 0, gSelectEngine->mUnk_2c, 10);
-    gSelectEngine->mUnk_30 = -b;
+    gSelectEngine->mStateFrames = gSelectEngine->mStateFrames + 1;
+    a = func_020ae4c0(1, 0xe0, 0, gSelectEngine->mStateFrames, 10);
+    b = func_020ae4c0(1, -0xc0, 0, gSelectEngine->mStateFrames, 10);
+    gSelectEngine->mBg0Offset = -b;
     for (i = 0; i < 6; i++) {
         gSelectEngine->mUnk_14[data_ov001_021a6f68[i]].mUnk_06 = -b;
     }
@@ -351,7 +351,7 @@ void AdvanceSelectEngineState1(void) {
             }
         }
     }
-    if (gSelectEngine->mUnk_2c >= 10) {
+    if (gSelectEngine->mStateFrames >= 10) {
         func_ov001_021a19dc();
     }
 }
@@ -359,16 +359,16 @@ void AdvanceSelectEngineState1(void) {
 void AdvanceSelectEngineState2(void) {
     s16 x;
     s32 j;
-    gSelectEngine->mUnk_2c = gSelectEngine->mUnk_2c + 1;
-    x = func_020ae488(gSelectEngine->mUnk_2c);
-    gSelectEngine->mUnk_30 = x;
+    gSelectEngine->mStateFrames = gSelectEngine->mStateFrames + 1;
+    x = func_020ae488(gSelectEngine->mStateFrames);
+    gSelectEngine->mBg0Offset = x;
     for (j = 0; j < 6; j++) {
         gSelectEngine->mUnk_14[data_ov001_021a6f68[j]].mUnk_06 = x;
     }
     for (j = 0; j < 4; j++) {
         gSelectEngine->mUnk_14[data_ov001_021a6f28[j]].mUnk_06 = x;
     }
-    if (gSelectEngine->mUnk_2c >= 10) {
+    if (gSelectEngine->mStateFrames >= 10) {
         func_ov001_021a19c0();
     }
 }
@@ -426,16 +426,16 @@ void AdvanceSelectEngineState4(void) {
     }
     func_021281c8(0xe);
     func_ov001_021a1964();
-    gSelectEngine->mUnk_4c = 2;
+    gSelectEngine->mResult = 2;
     func_02128310(0);
     return;
 next:
     if (r5 <= 3) {
         s = data_ov001_021a6f80[r5];
-        if (gSelectEngine->mUnk_34 == s) {
+        if (gSelectEngine->mIndex == s) {
             gSelectEngine->mUnk_38 = 0;
         }
-        gSelectEngine->mUnk_34 = s;
+        gSelectEngine->mIndex = s;
         func_ov001_021a1978();
         return;
     }
@@ -446,58 +446,58 @@ next:
     }
     if (func_020ae408(8, 0x40) != 0) {
         if (func_02056dec(0x10) != 0) {
-            t = gSelectEngine->mUnk_34;
+            t = gSelectEngine->mIndex;
             o = gSelectEngine;
             s = data_ov001_021a6f20[t];
         } else {
-            t = gSelectEngine->mUnk_34;
+            t = gSelectEngine->mIndex;
             o = gSelectEngine;
             s = data_ov001_021a6f40[t];
         }
         if (s != 0) {
-            o->mUnk_34 = t + s;
+            o->mIndex = t + s;
             func_0212ecc0(&data_0217d068, 0, 0);
         }
     } else if (func_020ae408(8, 0x80) != 0) {
         if (func_02056dec(0x10) != 0) {
-            t = gSelectEngine->mUnk_34;
+            t = gSelectEngine->mIndex;
             o = gSelectEngine;
             s = data_ov001_021a6f30[t];
         } else {
-            t = gSelectEngine->mUnk_34;
+            t = gSelectEngine->mIndex;
             o = gSelectEngine;
             s = data_ov001_021a6f48[t];
         }
         if (s != 0) {
-            o->mUnk_34 = t + s;
+            o->mIndex = t + s;
             func_0212ecc0(&data_0217d068, 0, 0);
         }
     } else if (func_020ae408(8, 0x20) != 0) {
         if (func_02056dec(0x10) != 0) {
-            t = gSelectEngine->mUnk_34;
+            t = gSelectEngine->mIndex;
             o = gSelectEngine;
             s = data_ov001_021a6f38[t];
         } else {
-            t = gSelectEngine->mUnk_34;
+            t = gSelectEngine->mIndex;
             o = gSelectEngine;
             s = data_ov001_021a6f50[t];
         }
         if (s != 0) {
-            o->mUnk_34 = t + s;
+            o->mIndex = t + s;
             func_0212ecc0(&data_0217d068, 0, 0);
         }
     } else if (func_020ae408(8, 0x10) != 0) {
         if (func_02056dec(0x10) != 0) {
-            t = gSelectEngine->mUnk_34;
+            t = gSelectEngine->mIndex;
             o = gSelectEngine;
             s = data_ov001_021a6f60[t];
         } else {
-            t = gSelectEngine->mUnk_34;
+            t = gSelectEngine->mIndex;
             o = gSelectEngine;
             s = data_ov001_021a6f58[t];
         }
         if (s != 0) {
-            o->mUnk_34 = t + s;
+            o->mIndex = t + s;
             func_0212ecc0(&data_0217d068, 0, 0);
         }
     }
@@ -505,11 +505,11 @@ next:
 
 void AdvanceSelectEngineState5(void) {
     func_ov001_021a1b08();
-    if (gSelectEngine->mUnk_2c == 5) {
+    if (gSelectEngine->mStateFrames == 5) {
         gSelectEngine->mUnk_38 = 1;
     }
-    gSelectEngine->mUnk_2c++;
-    if (gSelectEngine->mUnk_2c >= 10) {
+    gSelectEngine->mStateFrames++;
+    if (gSelectEngine->mStateFrames >= 10) {
         if (func_ov001_021a1ba0() == 0) {
             func_ov001_021a1964();
         }
@@ -522,10 +522,10 @@ void AdvanceSelectEngineState6(void) {
     s32 i;
     s32 k;
 
-    gSelectEngine->mUnk_2c++;
-    a = func_020ae4c0(1, 0, 0xc0, gSelectEngine->mUnk_2c, 10);
-    b = func_020ae4c0(1, 0, -0xc0, gSelectEngine->mUnk_2c, 10);
-    gSelectEngine->mUnk_30 = -b;
+    gSelectEngine->mStateFrames++;
+    a = func_020ae4c0(1, 0, 0xc0, gSelectEngine->mStateFrames, 10);
+    b = func_020ae4c0(1, 0, -0xc0, gSelectEngine->mStateFrames, 10);
+    gSelectEngine->mBg0Offset = -b;
     for (i = 0; i < 6; i++) {
         gSelectEngine->mUnk_14[data_ov001_021a6f68[i]].mUnk_06 = -b;
     }
@@ -583,12 +583,12 @@ int AdvanceSelectEngine(void) {
     func_ov001_021a1c34();
     func_02124c30(gSelectEngine->mUnk_04, gSelectEngine->mUnk_00, NULL, gSelectEngine->mUnk_44, gSelectEngine->mUnk_14);
     func_02124c30(gSelectEngine->mUnk_0c, gSelectEngine->mUnk_08, NULL, gSelectEngine->mUnk_48, gSelectEngine->mUnk_18);
-    if (gSelectEngine->mState == 6 && gSelectEngine->mUnk_2c >= 10) {
-        return gSelectEngine->mUnk_4c;
+    if (gSelectEngine->mState == 6 && gSelectEngine->mStateFrames >= 10) {
+        return gSelectEngine->mResult;
     }
     return 0;
 }
 
-void func_ov001_021a11a4(void) {
-    reg_G2_BG0OFS = (-gSelectEngine->mUnk_30 << 16) & 0x01ff0000;
+void WriteSelectEngineBg0Offset(void) {
+    reg_G2_BG0OFS = (-gSelectEngine->mBg0Offset << 16) & 0x01ff0000;
 }

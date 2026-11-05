@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-void func_ov001_02197b34(void);
+void WriteTimeAttackTopMenuBg0Offset(void);
 s32 AdvanceTimeAttackTopMenu(void);
 void AdvanceTimeAttackTopMenuState5(void);
 void AdvanceTimeAttackTopMenuState4(void);

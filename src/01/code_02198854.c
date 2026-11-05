@@ -78,8 +78,8 @@ void InitOptionSelectMenu(void *a) {
     gOptionSelectMenu->mHeap = a;
     gOptionSelectMenu->mState = 0;
     gOptionSelectMenu->mNextState = 0;
-    gOptionSelectMenu->mUnk_08 = 0;
-    gOptionSelectMenu->mUnk_20 = 0;
+    gOptionSelectMenu->mIndex = 0;
+    gOptionSelectMenu->mStateFrames = 0;
     gOptionSelectMenu->mUnk_38 = 1;
     LocateAndQueueOptionSelectMenu();
     func_0212b928(a, gOptionSelectMenu->mUnk_70, 3);
@@ -125,7 +125,7 @@ void InitOptionSelectMenu(void *a) {
     func_021281c8(0xe);
 }
 
-void func_ov001_021995f8(void) {
+void ReleaseOptionSelectMenu(void) {
     u32 v;
 
     func_ov001_02199374();
@@ -211,9 +211,9 @@ void AdvanceOptionSelectMenuState0(void) {
     s32 j;
     s16 v;
 
-    gOptionSelectMenu->mUnk_20++;
-    gOptionSelectMenu->mUnk_24 = func_020ae4c0(1, -140, 0, gOptionSelectMenu->mUnk_20, 10);
-    v = func_020ae4c0(1, 250, 0, gOptionSelectMenu->mUnk_20, 10);
+    gOptionSelectMenu->mStateFrames++;
+    gOptionSelectMenu->mUnk_24 = func_020ae4c0(1, -140, 0, gOptionSelectMenu->mStateFrames, 10);
+    v = func_020ae4c0(1, 250, 0, gOptionSelectMenu->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a44[i]; j++) {
             if (i == 1) {
@@ -223,18 +223,18 @@ void AdvanceOptionSelectMenuState0(void) {
             }
         }
     }
-    if (gOptionSelectMenu->mUnk_20 >= 10) {
+    if (gOptionSelectMenu->mStateFrames >= 10) {
         gOptionSelectMenu->mNextState = 1;
-        gOptionSelectMenu->mUnk_20 = 0;
+        gOptionSelectMenu->mStateFrames = 0;
     }
 }
 
 void AdvanceOptionSelectMenuState1(void) {
-    gOptionSelectMenu->mUnk_20++;
-    gOptionSelectMenu->mUnk_26[2].mUnk_02 = -func_0212825c(gOptionSelectMenu->mUnk_20);
-    if (gOptionSelectMenu->mUnk_20 >= 10) {
+    gOptionSelectMenu->mStateFrames++;
+    gOptionSelectMenu->mUnk_26[2].mUnk_02 = -func_0212825c(gOptionSelectMenu->mStateFrames);
+    if (gOptionSelectMenu->mStateFrames >= 10) {
         gOptionSelectMenu->mNextState = 2;
-        gOptionSelectMenu->mUnk_20 = 0;
+        gOptionSelectMenu->mStateFrames = 0;
     }
 }
 
@@ -249,7 +249,7 @@ void AdvanceOptionSelectMenuState2(void) {
     u16 v;
 
     p = gOptionSelectMenu;
-    sel = p->mUnk_08;
+    sel = p->mIndex;
     idx = UNK_02175628_INDEX_8;
     hasB = FALSE;
     r5 = -1;
@@ -280,7 +280,7 @@ void AdvanceOptionSelectMenuState2(void) {
                                                                           data_02175628[idx].mUnk_4a) != 0) {
         L1:
             gOptionSelectMenu->mNextState = 4;
-            gOptionSelectMenu->mUnk_34 = 0;
+            gOptionSelectMenu->mNextOptionState = 0;
             for (i = 0; i < 2; i++) {
                 gOptionSelectMenu->mUnk_0c[i] = gOptionSelectMenu->mUnk_14[i];
             }
@@ -288,7 +288,7 @@ void AdvanceOptionSelectMenuState2(void) {
             goto end;
         }
     }
-    if (((u16) (data_02175628[idx].mUnk_00 & 1) != 0 && gOptionSelectMenu->mUnk_08 == 2) || r5 == 2) {
+    if (((u16) (data_02175628[idx].mUnk_00 & 1) != 0 && gOptionSelectMenu->mIndex == 2) || r5 == 2) {
         func_ov001_021993b8();
         if (gOptionSelectMenu->mUnk_0c[1] == 0) {
             data_0217aa08->mUnk_00->mUnk_31 &= ~0x10;
@@ -296,73 +296,73 @@ void AdvanceOptionSelectMenuState2(void) {
             data_0217aa08->mUnk_00->mUnk_31 |= 0x10;
         }
         func_02056d40();
-        if (gOptionSelectMenu->mUnk_08 == 2) {
+        if (gOptionSelectMenu->mIndex == 2) {
             gOptionSelectMenu->mUnk_38 = 0;
         }
         gOptionSelectMenu->mNextState = 3;
-        gOptionSelectMenu->mUnk_34 = 0;
-        gOptionSelectMenu->mUnk_08 = 2;
+        gOptionSelectMenu->mNextOptionState = 0;
+        gOptionSelectMenu->mIndex = 2;
         gOptionSelectMenu->mUnk_1c = 1;
         func_0212b7e8();
         func_02105ac0(5);
     } else if (r5 == 0) {
-        gOptionSelectMenu->mUnk_08 = 0;
-        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mUnk_08]++;
+        gOptionSelectMenu->mIndex = 0;
+        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mIndex]++;
         func_02105ac0(10);
     } else if (r5 == 1) {
-        gOptionSelectMenu->mUnk_08 = 1;
-        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mUnk_08]++;
+        gOptionSelectMenu->mIndex = 1;
+        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mIndex]++;
         func_02105ac0(1);
     } else if (func_020ae408(8, 0x40) != 0) {
-        gOptionSelectMenu->mUnk_08--;
-        if (gOptionSelectMenu->mUnk_08 < 0) {
-            gOptionSelectMenu->mUnk_08 = 2;
+        gOptionSelectMenu->mIndex--;
+        if (gOptionSelectMenu->mIndex < 0) {
+            gOptionSelectMenu->mIndex = 2;
         }
         func_02105ac0(0);
     } else if (func_020ae408(8, 0x80) != 0 ||
-               (gOptionSelectMenu->mUnk_08 != 2 && (u16) (data_02175628[idx].mUnk_00 & 1) != 0)) {
-        gOptionSelectMenu->mUnk_08++;
-        if (gOptionSelectMenu->mUnk_08 > 2) {
-            gOptionSelectMenu->mUnk_08 = 0;
+               (gOptionSelectMenu->mIndex != 2 && (u16) (data_02175628[idx].mUnk_00 & 1) != 0)) {
+        gOptionSelectMenu->mIndex++;
+        if (gOptionSelectMenu->mIndex > 2) {
+            gOptionSelectMenu->mIndex = 0;
         }
         func_02105ac0(0);
-    } else if (gOptionSelectMenu->mUnk_08 != 2 && func_020ae408(8, 0x20) != 0) {
-        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mUnk_08]--;
-        gOptionSelectMenu->mUnk_40[gOptionSelectMenu->mUnk_08][0] = 6;
-        if (gOptionSelectMenu->mUnk_08 == 0) {
+    } else if (gOptionSelectMenu->mIndex != 2 && func_020ae408(8, 0x20) != 0) {
+        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mIndex]--;
+        gOptionSelectMenu->mUnk_40[gOptionSelectMenu->mIndex][0] = 6;
+        if (gOptionSelectMenu->mIndex == 0) {
             func_02105ac0(10);
         } else {
             func_02105ac0(1);
         }
-    } else if (gOptionSelectMenu->mUnk_08 != 2 && func_020ae408(8, 0x10) != 0) {
-        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mUnk_08]++;
+    } else if (gOptionSelectMenu->mIndex != 2 && func_020ae408(8, 0x10) != 0) {
+        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mIndex]++;
         if (func_020ae408(8, 0x10) != 0) {
-            gOptionSelectMenu->mUnk_40[gOptionSelectMenu->mUnk_08][1] = 6;
+            gOptionSelectMenu->mUnk_40[gOptionSelectMenu->mIndex][1] = 6;
         }
-        if (gOptionSelectMenu->mUnk_08 == 0) {
+        if (gOptionSelectMenu->mIndex == 0) {
             func_02105ac0(10);
         } else {
             func_02105ac0(1);
         }
     } else if (r5 == 3) {
-        gOptionSelectMenu->mUnk_08 = 0;
-        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mUnk_08]--;
-        gOptionSelectMenu->mUnk_40[gOptionSelectMenu->mUnk_08][0] = 6;
+        gOptionSelectMenu->mIndex = 0;
+        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mIndex]--;
+        gOptionSelectMenu->mUnk_40[gOptionSelectMenu->mIndex][0] = 6;
         func_02105ac0(10);
     } else if (r5 == 4) {
-        gOptionSelectMenu->mUnk_08 = 0;
-        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mUnk_08]++;
-        gOptionSelectMenu->mUnk_40[gOptionSelectMenu->mUnk_08][1] = 6;
+        gOptionSelectMenu->mIndex = 0;
+        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mIndex]++;
+        gOptionSelectMenu->mUnk_40[gOptionSelectMenu->mIndex][1] = 6;
         func_02105ac0(10);
     } else if (r5 == 5) {
-        gOptionSelectMenu->mUnk_08 = 1;
-        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mUnk_08]--;
-        gOptionSelectMenu->mUnk_40[gOptionSelectMenu->mUnk_08][0] = 6;
+        gOptionSelectMenu->mIndex = 1;
+        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mIndex]--;
+        gOptionSelectMenu->mUnk_40[gOptionSelectMenu->mIndex][0] = 6;
         func_02105ac0(1);
     } else if (r5 == 6) {
-        gOptionSelectMenu->mUnk_08 = 1;
-        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mUnk_08]++;
-        gOptionSelectMenu->mUnk_40[gOptionSelectMenu->mUnk_08][1] = 6;
+        gOptionSelectMenu->mIndex = 1;
+        gOptionSelectMenu->mUnk_0c[gOptionSelectMenu->mIndex]++;
+        gOptionSelectMenu->mUnk_40[gOptionSelectMenu->mIndex][1] = 6;
         func_02105ac0(1);
     }
 end:
@@ -378,18 +378,18 @@ end:
     if (gOptionSelectMenu->mUnk_0c[1] > 1) {
         gOptionSelectMenu->mUnk_0c[1] = 0;
     }
-    if (gOptionSelectMenu->mUnk_08 == 2 && sel != 2) {
+    if (gOptionSelectMenu->mIndex == 2 && sel != 2) {
         func_0212b7fc();
     }
     func_ov001_02199420();
 }
 
 void AdvanceOptionSelectMenuState3(void) {
-    gOptionSelectMenu->mUnk_20++;
-    if (gOptionSelectMenu->mUnk_20 >= 10) {
+    gOptionSelectMenu->mStateFrames++;
+    if (gOptionSelectMenu->mStateFrames >= 10) {
         gOptionSelectMenu->mNextState = 4;
-        gOptionSelectMenu->mUnk_20 = 0;
-    } else if (gOptionSelectMenu->mUnk_20 >= 5) {
+        gOptionSelectMenu->mStateFrames = 0;
+    } else if (gOptionSelectMenu->mStateFrames >= 5) {
         gOptionSelectMenu->mUnk_38 = 1;
     }
 }
@@ -401,9 +401,9 @@ void AdvanceOptionSelectMenuState4(void) {
     void *a;
     void *b;
 
-    gOptionSelectMenu->mUnk_24 = func_020ae4c0(1, 0, -0x8c, gOptionSelectMenu->mUnk_20, 10);
-    gOptionSelectMenu->mUnk_20++;
-    t = func_020ae4c0(1, 0, 250, gOptionSelectMenu->mUnk_20, 10);
+    gOptionSelectMenu->mUnk_24 = func_020ae4c0(1, 0, -0x8c, gOptionSelectMenu->mStateFrames, 10);
+    gOptionSelectMenu->mStateFrames++;
+    t = func_020ae4c0(1, 0, 250, gOptionSelectMenu->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a44[i]; j++) {
             if (i == 1) {
@@ -413,9 +413,9 @@ void AdvanceOptionSelectMenuState4(void) {
             }
         }
     }
-    gOptionSelectMenu->mUnk_26[2].mUnk_02 = -func_02128244(gOptionSelectMenu->mUnk_20);
-    if (gOptionSelectMenu->mUnk_20 >= 10) {
-        if (gOptionSelectMenu->mUnk_20 >= 10 && IsSelectReturnState2NoState3Or4Request() != 0) {
+    gOptionSelectMenu->mUnk_26[2].mUnk_02 = -func_02128244(gOptionSelectMenu->mStateFrames);
+    if (gOptionSelectMenu->mStateFrames >= 10) {
+        if (gOptionSelectMenu->mStateFrames >= 10 && IsSelectReturnState2NoState3Or4Request() != 0) {
             gOptionSelectMenu->mUnk_3c = 0;
             if (gOptionSelectMenu->mUnk_1c != 0) {
                 func_02125ebc(0x21);
@@ -423,10 +423,10 @@ void AdvanceOptionSelectMenuState4(void) {
                 b = GetBmgEntry(gOptionSelectMenu->mCommonMessages, 4);
                 func_02126230(a, b);
                 gOptionSelectMenu->mNextState = 5;
-                gOptionSelectMenu->mUnk_20 = 0;
+                gOptionSelectMenu->mStateFrames = 0;
                 func_021282c8();
             } else {
-                RequestOptionState(gOptionSelectMenu->mUnk_34);
+                RequestOptionState(gOptionSelectMenu->mNextOptionState);
             }
         }
     }
@@ -452,7 +452,7 @@ void AdvanceOptionSelectMenuState5(void) {
         }
     }
     if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
-        RequestOptionState(gOptionSelectMenu->mUnk_34);
+        RequestOptionState(gOptionSelectMenu->mNextOptionState);
     }
 }
 
@@ -508,7 +508,7 @@ void func_ov001_02198a6c(void) {
     s32 k;
 
     for (i = 0; i < 3; i++) {
-        if (i == gOptionSelectMenu->mUnk_08 && gOptionSelectMenu->mUnk_38 != 0) {
+        if (i == gOptionSelectMenu->mIndex && gOptionSelectMenu->mUnk_38 != 0) {
             gOptionSelectMenu->mUnk_58[data_ov001_021a6a30[i]].mUnk_00 = 1;
             func_02124100(data_ov001_021a6a34[i], 14, gOptionSelectMenu->mUnk_84, gOptionSelectMenu->mUnk_58,
                           gOptionSelectMenu->mUnk_78);
@@ -532,7 +532,7 @@ void func_ov001_021989bc(void) {
 
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 2; j++) {
-            if (i == gOptionSelectMenu->mUnk_08) {
+            if (i == gOptionSelectMenu->mIndex) {
                 if (gOptionSelectMenu->mUnk_40[i][j] > 0) {
                     gOptionSelectMenu->mUnk_58[data_ov001_021a6a50[i][0][j]].mUnk_00 = 1;
                     gOptionSelectMenu->mUnk_58[data_ov001_021a6a50[i][1][j]].mUnk_00 = 1;
@@ -602,7 +602,7 @@ void func_ov001_02198878(void) {
 }
 
 void RegisterOptionSelectMenuCallbacks(void) {
-    UnkFunc *table[4] = {InitOptionSelectMenu, func_ov001_021995f8, AdvanceOptionSelectMenu, func_ov001_02198878};
+    UnkFunc *table[4] = {InitOptionSelectMenu, ReleaseOptionSelectMenu, AdvanceOptionSelectMenu, func_ov001_02198878};
 
     SetOptionStateCallbacks((UnkFunc **) (table));
 }

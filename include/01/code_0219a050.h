@@ -18,9 +18,9 @@ typedef struct RecordTopMenu {
     /* 0x2c */ void *mHeap;
     /* 0x30 */ s32 mState;
     /* 0x34 */ s32 mNextState;
-    /* 0x38 */ s32 mUnk_38;
-    /* 0x3c */ s32 mUnk_3c;
-    /* 0x40 */ s32 mUnk_40;
+    /* 0x38 */ s32 mStateFrames; /* counted only in states 1, 2, 5, 6, 7, 11 */
+    /* 0x3c */ s32 mBg0Offset;
+    /* 0x40 */ s32 mIndex;
     /* 0x44 */ s32 mUnk_44;
 } RecordTopMenu;
 

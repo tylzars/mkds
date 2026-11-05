@@ -55,7 +55,7 @@ void InitOptionEmbremSelect(void *a) {
     func_021281c8(0xe);
 }
 
-void func_ov001_0219df64(void) {
+void ReleaseOptionEmbremSelect(void) {
     gOptionEmbremSelect = NULL;
 }
 

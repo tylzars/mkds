@@ -96,8 +96,8 @@ void func_ov001_0219ae88(void) {
     s32 n;
 
     gRecordTopMenu->mNextState = 0;
-    gRecordTopMenu->mUnk_38 = 0;
-    gRecordTopMenu->mUnk_3c = ~0xbf;
+    gRecordTopMenu->mStateFrames = 0;
+    gRecordTopMenu->mBg0Offset = ~0xbf;
     n = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
     gRecordTopMenu->mUnk_18[0].mUnk_06 = ~0xbf;
     gRecordTopMenu->mUnk_18[1].mUnk_06 = ~0xbf;
@@ -122,76 +122,76 @@ void func_ov001_0219ae88(void) {
 
 void func_ov001_0219ae74(void) {
     gRecordTopMenu->mNextState = 1;
-    gRecordTopMenu->mUnk_38 = 0;
+    gRecordTopMenu->mStateFrames = 0;
 }
 
 void func_ov001_0219ae60(void) {
     gRecordTopMenu->mNextState = 2;
-    gRecordTopMenu->mUnk_38 = 0;
+    gRecordTopMenu->mStateFrames = 0;
 }
 
 void func_ov001_0219ae44(void) {
     gRecordTopMenu->mNextState = 3;
-    gRecordTopMenu->mUnk_38 = 0;
+    gRecordTopMenu->mStateFrames = 0;
     func_02128374();
 }
 
 void func_ov001_0219ae30(void) {
     gRecordTopMenu->mNextState = 4;
-    gRecordTopMenu->mUnk_38 = 0;
+    gRecordTopMenu->mStateFrames = 0;
 }
 
 void func_ov001_0219ae10(void) {
     gRecordTopMenu->mNextState = 5;
-    gRecordTopMenu->mUnk_38 = 0;
+    gRecordTopMenu->mStateFrames = 0;
     func_0212ecc0(&data_0217d068, 0, 5);
 }
 
 void func_ov001_0219adfc(void) {
     gRecordTopMenu->mNextState = 6;
-    gRecordTopMenu->mUnk_38 = 0;
+    gRecordTopMenu->mStateFrames = 0;
 }
 
 void func_ov001_0219ade8(void) {
     gRecordTopMenu->mNextState = 7;
-    gRecordTopMenu->mUnk_38 = 0;
+    gRecordTopMenu->mStateFrames = 0;
 }
 
 void func_ov001_0219adbc(void) {
     gRecordTopMenu->mNextState = 8;
-    gRecordTopMenu->mUnk_38 = 0;
+    gRecordTopMenu->mStateFrames = 0;
     func_021262f0(GetBmgEntry(gRecordTopMenu->mUnk_20, 0x76));
 }
 
 void func_ov001_0219ad98(void) {
     gRecordTopMenu->mNextState = 9;
-    gRecordTopMenu->mUnk_38 = 0;
+    gRecordTopMenu->mStateFrames = 0;
     func_0212ecc0(&data_0217d068, 0, 0x15);
 }
 
 void func_ov001_0219ad7c(void) {
     gRecordTopMenu->mNextState = 10;
-    gRecordTopMenu->mUnk_38 = 0;
+    gRecordTopMenu->mStateFrames = 0;
     func_02125fc0();
 }
 
 void func_ov001_0219ad68(void) {
     gRecordTopMenu->mNextState = 11;
-    gRecordTopMenu->mUnk_38 = 0;
+    gRecordTopMenu->mStateFrames = 0;
 }
 
 void func_ov001_0219ad3c(void) {
-    gRecordTopMenu->mUnk_40++;
-    if (gRecordTopMenu->mUnk_40 >= 3) {
-        gRecordTopMenu->mUnk_40 = 0;
+    gRecordTopMenu->mIndex++;
+    if (gRecordTopMenu->mIndex >= 3) {
+        gRecordTopMenu->mIndex = 0;
     }
     func_0212ecc0(&data_0217d068, 0, 0);
 }
 
 void func_ov001_0219ad10(void) {
-    gRecordTopMenu->mUnk_40--;
-    if (gRecordTopMenu->mUnk_40 < 0) {
-        gRecordTopMenu->mUnk_40 = 2;
+    gRecordTopMenu->mIndex--;
+    if (gRecordTopMenu->mIndex < 0) {
+        gRecordTopMenu->mIndex = 2;
     }
     func_0212ecc0(&data_0217d068, 0, 0);
 }
@@ -240,16 +240,16 @@ void InitRecordTopMenu(void *heap) {
     switch (func_0211147c()) {
         case 1:
         case 5:
-            gRecordTopMenu->mUnk_40 = 0;
+            gRecordTopMenu->mIndex = 0;
             break;
         case 2:
-            gRecordTopMenu->mUnk_40 = 1;
+            gRecordTopMenu->mIndex = 1;
             break;
         case 3:
             if (func_021143b4()) {
-                gRecordTopMenu->mUnk_40 = 2;
+                gRecordTopMenu->mIndex = 2;
             } else {
-                gRecordTopMenu->mUnk_40 = 0;
+                gRecordTopMenu->mIndex = 0;
             }
             break;
     }
@@ -301,7 +301,7 @@ void InitRecordTopMenu(void *heap) {
     }
     func_ov001_0219ac98();
     func_ov001_0219ae88();
-    func_ov001_0219afc8(gRecordTopMenu->mUnk_40);
+    func_ov001_0219afc8(gRecordTopMenu->mIndex);
 }
 
 void func_ov001_0219a950(void) {
@@ -334,10 +334,10 @@ void AdvanceRecordTopMenuState1(void) {
     u16 *p;
     s32 idx;
 
-    gRecordTopMenu->mUnk_38++;
-    a = func_020ae4c0(1, 0xe0, 0, gRecordTopMenu->mUnk_38, 10);
-    b = func_020ae4c0(1, -0xc0, 0, gRecordTopMenu->mUnk_38, 10);
-    gRecordTopMenu->mUnk_3c = b;
+    gRecordTopMenu->mStateFrames++;
+    a = func_020ae4c0(1, 0xe0, 0, gRecordTopMenu->mStateFrames, 10);
+    b = func_020ae4c0(1, -0xc0, 0, gRecordTopMenu->mStateFrames, 10);
+    gRecordTopMenu->mBg0Offset = b;
     idx = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
     gRecordTopMenu->mUnk_18[0].mUnk_06 = b;
     gRecordTopMenu->mUnk_18[1].mUnk_06 = b;
@@ -357,7 +357,7 @@ void AdvanceRecordTopMenuState1(void) {
         gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[i]].mUnk_04 = a;
         gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[i]].mUnk_04 = a;
     }
-    if (gRecordTopMenu->mUnk_38 >= 10) {
+    if (gRecordTopMenu->mStateFrames >= 10) {
         func_ov001_0219ae60();
     }
 }
@@ -366,15 +366,15 @@ void AdvanceRecordTopMenuState2(void) {
     s16 v;
     s32 i;
 
-    gRecordTopMenu->mUnk_38++;
-    v = func_020ae488(gRecordTopMenu->mUnk_38);
+    gRecordTopMenu->mStateFrames++;
+    v = func_020ae488(gRecordTopMenu->mStateFrames);
     for (i = 0; i < 3; i++) {
         gRecordTopMenu->mUnk_1c[data_ov001_021a6ab4[i]].mUnk_04 = v;
         gRecordTopMenu->mUnk_1c[data_ov001_021a6ac4[i]].mUnk_04 = v;
         gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[i]].mUnk_04 = v;
         gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[i]].mUnk_04 = v;
     }
-    if (gRecordTopMenu->mUnk_38 >= 10) {
+    if (gRecordTopMenu->mStateFrames >= 10) {
         func_ov001_0219ae44();
     }
 }
@@ -435,29 +435,29 @@ skip:
     if ((u32) sel <= 2) {
         t = data_ov001_021a6acc[sel];
         if (gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[t]].mUnk_00 != 0) {
-            if (gRecordTopMenu->mUnk_40 == t) {
-                func_ov001_0219af90(gRecordTopMenu->mUnk_40);
-                gRecordTopMenu->mUnk_40 = t;
+            if (gRecordTopMenu->mIndex == t) {
+                func_ov001_0219af90(gRecordTopMenu->mIndex);
+                gRecordTopMenu->mIndex = t;
             } else {
-                func_ov001_0219af90(gRecordTopMenu->mUnk_40);
-                gRecordTopMenu->mUnk_40 = t;
-                func_ov001_0219afc8(gRecordTopMenu->mUnk_40);
+                func_ov001_0219af90(gRecordTopMenu->mIndex);
+                gRecordTopMenu->mIndex = t;
+                func_ov001_0219afc8(gRecordTopMenu->mIndex);
             }
             func_ov001_0219ae10();
         }
     } else {
         flags = data_02175628[i].mUnk_00 & 1;
         if (flags != 0) {
-            func_ov001_0219af90(gRecordTopMenu->mUnk_40);
+            func_ov001_0219af90(gRecordTopMenu->mIndex);
             func_ov001_0219ae10();
         } else if (func_020ae408(8, 0x40) != 0) {
-            func_ov001_0219af90(gRecordTopMenu->mUnk_40);
+            func_ov001_0219af90(gRecordTopMenu->mIndex);
             func_ov001_0219ad10();
-            func_ov001_0219afc8(gRecordTopMenu->mUnk_40);
+            func_ov001_0219afc8(gRecordTopMenu->mIndex);
         } else if (func_020ae408(8, 0x80) != 0) {
-            func_ov001_0219af90(gRecordTopMenu->mUnk_40);
+            func_ov001_0219af90(gRecordTopMenu->mIndex);
             func_ov001_0219ad3c();
-            func_ov001_0219afc8(gRecordTopMenu->mUnk_40);
+            func_ov001_0219afc8(gRecordTopMenu->mIndex);
         }
     }
 }
@@ -465,21 +465,21 @@ skip:
 void AdvanceRecordTopMenuState5(void) {
     s16 v;
 
-    gRecordTopMenu->mUnk_38++;
-    v = func_020ae488(gRecordTopMenu->mUnk_38);
-    gRecordTopMenu->mUnk_1c[data_ov001_021a6ab4[gRecordTopMenu->mUnk_40]].mUnk_04 = v;
-    gRecordTopMenu->mUnk_1c[data_ov001_021a6ac4[gRecordTopMenu->mUnk_40]].mUnk_04 = v;
-    gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[gRecordTopMenu->mUnk_40]].mUnk_04 = v;
-    gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[gRecordTopMenu->mUnk_40]].mUnk_04 = v;
-    if (gRecordTopMenu->mUnk_38 == 5) {
-        func_ov001_0219afc8(gRecordTopMenu->mUnk_40);
+    gRecordTopMenu->mStateFrames++;
+    v = func_020ae488(gRecordTopMenu->mStateFrames);
+    gRecordTopMenu->mUnk_1c[data_ov001_021a6ab4[gRecordTopMenu->mIndex]].mUnk_04 = v;
+    gRecordTopMenu->mUnk_1c[data_ov001_021a6ac4[gRecordTopMenu->mIndex]].mUnk_04 = v;
+    gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[gRecordTopMenu->mIndex]].mUnk_04 = v;
+    gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[gRecordTopMenu->mIndex]].mUnk_04 = v;
+    if (gRecordTopMenu->mStateFrames == 5) {
+        func_ov001_0219afc8(gRecordTopMenu->mIndex);
     }
-    if (gRecordTopMenu->mUnk_38 >= 10) {
-        if (gRecordTopMenu->mUnk_40 == 2 && func_021143b4() == 0) {
+    if (gRecordTopMenu->mStateFrames >= 10) {
+        if (gRecordTopMenu->mIndex == 2 && func_021143b4() == 0) {
             func_ov001_0219ade8();
             return;
         }
-        gRecordTopMenu->mUnk_44 = data_ov001_021a6ad8[gRecordTopMenu->mUnk_40];
+        gRecordTopMenu->mUnk_44 = data_ov001_021a6ad8[gRecordTopMenu->mIndex];
         func_ov001_0219adfc();
     }
 }
@@ -495,10 +495,10 @@ void AdvanceRecordTopMenuState6(void) {
     if (func_0211145c() == -1 && gRecordTopMenu->mUnk_44 == 5) {
         func_02111450(0);
     }
-    gRecordTopMenu->mUnk_38++;
-    a = func_020ae4c0(1, 0, 0xe0, gRecordTopMenu->mUnk_38, 10);
-    b = func_020ae4c0(1, 0, -0xc0, gRecordTopMenu->mUnk_38, 10);
-    gRecordTopMenu->mUnk_3c = b;
+    gRecordTopMenu->mStateFrames++;
+    a = func_020ae4c0(1, 0, 0xe0, gRecordTopMenu->mStateFrames, 10);
+    b = func_020ae4c0(1, 0, -0xc0, gRecordTopMenu->mStateFrames, 10);
+    gRecordTopMenu->mBg0Offset = b;
     idx = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
     gRecordTopMenu->mUnk_18[0].mUnk_06 = b;
     gRecordTopMenu->mUnk_18[1].mUnk_06 = b;
@@ -518,7 +518,7 @@ void AdvanceRecordTopMenuState6(void) {
         gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[i]].mUnk_04 = a;
         gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[i]].mUnk_04 = a;
     }
-    if (gRecordTopMenu->mUnk_38 >= 10 && func_0211145c() == -1) {
+    if (gRecordTopMenu->mStateFrames >= 10 && func_0211145c() == -1) {
         func_02111488(gRecordTopMenu->mUnk_44);
     }
 }
@@ -527,15 +527,15 @@ void AdvanceRecordTopMenuState7(void) {
     s16 v;
     s32 i;
 
-    gRecordTopMenu->mUnk_38++;
-    v = func_020ae4c0(1, 0, 0xe0, gRecordTopMenu->mUnk_38, 10);
+    gRecordTopMenu->mStateFrames++;
+    v = func_020ae4c0(1, 0, 0xe0, gRecordTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
         gRecordTopMenu->mUnk_1c[data_ov001_021a6ab4[i]].mUnk_04 = v;
         gRecordTopMenu->mUnk_1c[data_ov001_021a6ac4[i]].mUnk_04 = v;
         gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[i]].mUnk_04 = v;
         gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[i]].mUnk_04 = v;
     }
-    if (gRecordTopMenu->mUnk_38 >= 10) {
+    if (gRecordTopMenu->mStateFrames >= 10) {
         func_ov001_0219adbc();
     }
 }
@@ -589,15 +589,15 @@ void AdvanceRecordTopMenuState10(void) {
 void AdvanceRecordTopMenuState11(void) {
     s32 i;
     s16 v;
-    gRecordTopMenu->mUnk_38++;
-    v = func_020ae4c0(1, 0xe0, 0, gRecordTopMenu->mUnk_38, 10);
+    gRecordTopMenu->mStateFrames++;
+    v = func_020ae4c0(1, 0xe0, 0, gRecordTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
         gRecordTopMenu->mUnk_1c[data_ov001_021a6ab4[i]].mUnk_04 = v;
         gRecordTopMenu->mUnk_1c[data_ov001_021a6ac4[i]].mUnk_04 = v;
         gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[i]].mUnk_04 = v;
         gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[i]].mUnk_04 = v;
     }
-    if (gRecordTopMenu->mUnk_38 >= 10) {
+    if (gRecordTopMenu->mStateFrames >= 10) {
         func_ov001_0219ae44();
     }
 }
@@ -650,7 +650,7 @@ void AdvanceRecordTopMenu(void) {
 }
 
 void func_ov001_0219a0c0(void) {
-    *(vu32 *) 0x4000010 = (-gRecordTopMenu->mUnk_3c << 16) & 0x1ff0000;
+    *(vu32 *) 0x4000010 = (-gRecordTopMenu->mBg0Offset << 16) & 0x1ff0000;
     func_02111428();
 }
 

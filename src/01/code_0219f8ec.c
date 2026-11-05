@@ -180,10 +180,10 @@ void func_ov001_021a0b3c(void) {
             func_02124a20(data_ov001_021a6e7c[i][1], 5, gMissionRunMSsel->mUnk_0c, gMissionRunMSsel->mUnk_10);
             if (gMissionRunMSsel->mUnk_a0 != 0) {
                 if (func_020cccb4() == 0x12) {
-                    gMissionRunMSsel->mUnk_9e = 8;
+                    gMissionRunMSsel->mIndex = 8;
                 }
                 if (gMissionRunMSsel->mUnk_a4 == 0) {
-                    gMissionRunMSsel->mUnk_9e = 8;
+                    gMissionRunMSsel->mIndex = 8;
                     func_02124a20(data_ov001_021a6e7c[i][2], 0xb, gMissionRunMSsel->mUnk_0c, gMissionRunMSsel->mUnk_10);
                     func_02124a20(data_ov001_021a6e7c[i][1], 0xe, gMissionRunMSsel->mUnk_0c, gMissionRunMSsel->mUnk_10);
                     func_021057f0(3, func_02029608());
@@ -227,7 +227,7 @@ void func_ov001_021a09a4(void) {
             if (gMissionRunMSsel->mUnk_a8 >= 100) {
                 gMissionRunMSsel->mUnk_a8 = 0;
             }
-            if (gMissionRunMSsel->mUnk_9e == 8) {
+            if (gMissionRunMSsel->mIndex == 8) {
                 c0 = 9;
                 c1 = 10;
                 c2 = 11;
@@ -285,7 +285,7 @@ void func_ov001_021a08d8(void) {
             gMissionRunMSsel->mUnk_44[data_ov001_021a6e7c[i][3]].mUnk_00 = 1;
             n = gMissionRunMSsel->mUnk_44[data_ov001_021a6e7c[i][2]].mUnk_06 + 1;
             gMissionRunMSsel->mUnk_44[data_ov001_021a6e7c[i][3]].mUnk_06 = n;
-        } else if (gMissionRunMSsel->mUnk_9e == i) {
+        } else if (gMissionRunMSsel->mIndex == i) {
             gMissionRunMSsel->mUnk_44[data_ov001_021a6e7c[i][2]].mUnk_00 = 1;
         } else if (i == 8) {
             if (gMissionRunMSsel->mUnk_a0) {
@@ -309,7 +309,7 @@ void func_ov001_021a0774(void) {
     for (i = 0; i < 9; i++) {
         gMissionRunMSsel->mUnk_40[data_ov001_021a6dd4[i]].mUnk_00 = 0;
     }
-    if (gMissionRunMSsel->mUnk_9e == 8) {
+    if (gMissionRunMSsel->mIndex == 8) {
         gMissionRunMSsel->mUnk_40[0].mUnk_00 = 0;
         gMissionRunMSsel->mUnk_40[1].mUnk_00 = 1;
     } else {
@@ -317,9 +317,9 @@ void func_ov001_021a0774(void) {
         gMissionRunMSsel->mUnk_40[1].mUnk_00 = 0;
         gMissionRunMSsel->mUnk_40[data_ov001_021a6d88[func_02029608() - 1]].mUnk_00 = 1;
         gMissionRunMSsel->mUnk_40[9].mUnk_00 = 1;
-        gMissionRunMSsel->mUnk_40[data_ov001_021a6dd4[gMissionRunMSsel->mUnk_9e]].mUnk_00 = 1;
+        gMissionRunMSsel->mUnk_40[data_ov001_021a6dd4[gMissionRunMSsel->mIndex]].mUnk_00 = 1;
     }
-    ret = func_0205fd78((u8) func_02029608(), (u8) (gMissionRunMSsel->mUnk_9e + 1), &out);
+    ret = func_0205fd78((u8) func_02029608(), (u8) (gMissionRunMSsel->mIndex + 1), &out);
     gMissionRunMSsel->mUnk_40[18].mUnk_00 = 0;
     for (i = 0; i < 6; i++) {
         gMissionRunMSsel->mUnk_40[data_ov001_021a6d7c[i]].mUnk_00 = 0;
@@ -334,7 +334,7 @@ void func_ov001_021a0774(void) {
     func_0212426c(
         0, 0, gMissionRunMSsel->mUnk_08,
         GetBmgEntry(d->mMissionMessages, d->mUnk_50[func_0203b680((u32) (gMissionRunMSsel->mUnk_4c),
-                                                                  (u32) (func_02029608()), (u32) (d->mUnk_9e + 1)) -
+                                                                  (u32) (func_02029608()), (u32) (d->mIndex + 1)) -
                                                     1]
                                              .mUnk_0c),
         d->mUnk_04, d->mUnk_40);
@@ -344,7 +344,7 @@ void func_ov001_021a0734(void) {
     u32 v0;
     u32 v1;
 
-    func_0202947c((s8) (gMissionRunMSsel->mUnk_9e + 1));
+    func_0202947c((s8) (gMissionRunMSsel->mIndex + 1));
     v0 = func_02029608();
     v1 = func_020295f8();
     func_02029468((u32) ((u16) (func_0203b680((u32) (gMissionRunMSsel->mUnk_4c), v0, v1) - 1)));
@@ -364,7 +364,7 @@ void func_ov001_021a0620(void) {
 
     if (func_ov001_021a071c() != FALSE) {
         if (gMissionRunMSsel->mUnk_ac == 7) {
-            gMissionRunMSsel->mUnk_b0 = gMissionRunMSsel->mUnk_9e;
+            gMissionRunMSsel->mUnk_b0 = gMissionRunMSsel->mIndex;
             func_ov001_021a0774();
         } else {
             b = gMissionRunMSsel->mUnk_04->mUnk_06;
@@ -386,7 +386,7 @@ void func_ov001_021a0620(void) {
             }
         }
         gMissionRunMSsel->mUnk_ac = gMissionRunMSsel->mUnk_ac - 1;
-    } else if (gMissionRunMSsel->mUnk_9e != gMissionRunMSsel->mUnk_b0) {
+    } else if (gMissionRunMSsel->mIndex != gMissionRunMSsel->mUnk_b0) {
         gMissionRunMSsel->mUnk_ac = 7;
     }
 }
@@ -400,7 +400,7 @@ void func_ov001_021a04f0(void) {
     a = gMissionRunMSsel->mUnk_04->mUnk_06;
     b = gMissionRunMSsel->mUnk_10->mUnk_06;
     gMissionRunMSsel->mNextState = 0;
-    gMissionRunMSsel->mUnk_68 = 0;
+    gMissionRunMSsel->mStateFrames = 0;
     gMissionRunMSsel->mUnk_90 = 0x100;
     gMissionRunMSsel->mUnk_94 = 0;
     gMissionRunMSsel->mUnk_98 = -192;
@@ -429,23 +429,23 @@ void func_ov001_021a04f0(void) {
 
 void func_ov001_021a04dc(void) {
     gMissionRunMSsel->mNextState = 1;
-    gMissionRunMSsel->mUnk_68 = 0;
+    gMissionRunMSsel->mStateFrames = 0;
 }
 
 void func_ov001_021a04c0(void) {
     gMissionRunMSsel->mNextState = 2;
-    gMissionRunMSsel->mUnk_68 = 0;
+    gMissionRunMSsel->mStateFrames = 0;
     func_02128374();
 }
 
 void func_ov001_021a04ac(void) {
     gMissionRunMSsel->mNextState = 3;
-    gMissionRunMSsel->mUnk_68 = 0;
+    gMissionRunMSsel->mStateFrames = 0;
 }
 
 s32 func_ov001_021a0488(void) {
     gMissionRunMSsel->mNextState = 4;
-    gMissionRunMSsel->mUnk_68 = 0;
+    gMissionRunMSsel->mStateFrames = 0;
     return func_0212ecc0(&data_0217d068, 0, 5);
 }
 
@@ -454,7 +454,7 @@ void func_ov001_021a0428(void) {
     void *v0;
 
     gMissionRunMSsel->mNextState = 5;
-    gMissionRunMSsel->mUnk_68 = 0;
+    gMissionRunMSsel->mStateFrames = 0;
     v0 = GetBmgEntry(gMissionRunMSsel->mCommonMessages, 4);
     func_021277f8(v0, GetBmgEntry(gMissionRunMSsel->mCommonMessages, 2), 0);
     for (i = 0; i < 9; i++) {
@@ -464,20 +464,20 @@ void func_ov001_021a0428(void) {
 
 void func_ov001_021a0414(void) {
     gMissionRunMSsel->mNextState = 6;
-    gMissionRunMSsel->mUnk_68 = 0;
+    gMissionRunMSsel->mStateFrames = 0;
 }
 
 void func_ov001_021a03f8(void) {
     gMissionRunMSsel->mNextState = 7;
-    gMissionRunMSsel->mUnk_68 = 0;
+    gMissionRunMSsel->mStateFrames = 0;
     func_021277e4();
 }
 
 void func_ov001_021a03a0(void) {
     gMissionRunMSsel->mNextState = 8;
-    gMissionRunMSsel->mUnk_68 = 0;
+    gMissionRunMSsel->mStateFrames = 0;
     func_021282c8();
-    switch (gMissionRunMSsel->mUnk_bc) {
+    switch (gMissionRunMSsel->mResult) {
         case 1:
             func_02105584(4, 10, func_02029608());
             break;
@@ -501,13 +501,13 @@ void InitMissionRunMSsel(s32 a, s32 b, s32 c) {
     gMissionRunMSsel = HeapAlloc(heap, 0xc0);
     gMissionRunMSsel->mHeap = heap;
     gMissionRunMSsel->mState = 0;
-    gMissionRunMSsel->mUnk_9e = func_020295f8() - 1;
+    gMissionRunMSsel->mIndex = func_020295f8() - 1;
     gMissionRunMSsel->mUnk_9c = 0;
     gMissionRunMSsel->mUnk_ac = 0;
     gMissionRunMSsel->mUnk_a4 = 0;
     gMissionRunMSsel->mUnk_b4 = (void *) b;
     gMissionRunMSsel->mUnk_b8 = (void *) c;
-    gMissionRunMSsel->mUnk_bc = 0;
+    gMissionRunMSsel->mResult = 0;
     for (i = 0; i < 9; i++) {
         gMissionRunMSsel->mUnk_6c[i] = 0;
     }
@@ -537,14 +537,14 @@ void InitMissionRunMSsel(s32 a, s32 b, s32 c) {
     }
     func_ov001_021a64ac(gMissionRunMSsel->mHeap);
     func_ov001_021a0b3c();
-    gMissionRunMSsel->mUnk_b0 = gMissionRunMSsel->mUnk_9e;
+    gMissionRunMSsel->mUnk_b0 = gMissionRunMSsel->mIndex;
     func_ov001_021a0774();
     func_ov001_021a04f0();
     FrmHeapShrinkInParent(gMissionRunMSsel->mHeap);
 }
 
 void ReleaseMissionRunMSsel(void) {
-    switch (gMissionRunMSsel->mUnk_bc) {
+    switch (gMissionRunMSsel->mResult) {
         case 1:
             func_02105550(4, func_02029608());
             break;
@@ -575,9 +575,9 @@ void AdvanceMissionRunMSselState1(void) {
     func_021055b0(gMissionRunMSsel->mUnk_a8);
     a = gMissionRunMSsel->mUnk_04->mUnk_06;
     b = gMissionRunMSsel->mUnk_10->mUnk_06;
-    gMissionRunMSsel->mUnk_68 = gMissionRunMSsel->mUnk_68 + 1;
-    v0 = func_020ae4c0(1, 0x100, 0, gMissionRunMSsel->mUnk_68, 10);
-    v1 = func_020ae4c0(1, -192, 0, gMissionRunMSsel->mUnk_68, 10);
+    gMissionRunMSsel->mStateFrames = gMissionRunMSsel->mStateFrames + 1;
+    v0 = func_020ae4c0(1, 0x100, 0, gMissionRunMSsel->mStateFrames, 10);
+    v1 = func_020ae4c0(1, -192, 0, gMissionRunMSsel->mStateFrames, 10);
     gMissionRunMSsel->mUnk_90 = v0;
     gMissionRunMSsel->mUnk_98 = v1;
     gMissionRunMSsel->mUnk_40[0].mUnk_04 = v0;
@@ -601,7 +601,7 @@ void AdvanceMissionRunMSselState1(void) {
             gMissionRunMSsel->mUnk_44[b + data_ov001_021a6e10[i][j]].mUnk_04 = v0;
         }
     }
-    if (gMissionRunMSsel->mUnk_68 >= 10) {
+    if (gMissionRunMSsel->mStateFrames >= 10) {
         func_ov001_021a04c0();
     }
 }
@@ -658,7 +658,7 @@ void AdvanceMissionRunMSselState3(void) {
     }
     func_021281c8(0xe);
     gMissionRunMSsel->mUnk_9c = 0x100;
-    gMissionRunMSsel->mUnk_bc = 2;
+    gMissionRunMSsel->mResult = 2;
     func_ov001_021a03a0();
     func_02128310(0);
     return;
@@ -669,18 +669,18 @@ skip:
             func_0212ecc0(&data_0217d068, 0, 0x16);
             return;
         }
-        gMissionRunMSsel->mUnk_9e = target;
-        gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mUnk_9e] = 5;
+        gMissionRunMSsel->mIndex = target;
+        gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mIndex] = 5;
         func_ov001_021a0488();
         return;
     }
     if ((u16) (data_02175628[slot].mUnk_00 & 1) != 0) {
-        gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mUnk_9e] = 5;
+        gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mIndex] = 5;
         func_ov001_021a0488();
         return;
     }
     if (func_020ae408(8, 0x40)) {
-        current = gMissionRunMSsel->mUnk_9e;
+        current = gMissionRunMSsel->mIndex;
         delta = data_ov001_021a6de8[current];
         if (delta == 0) {
             return;
@@ -689,13 +689,13 @@ skip:
         if (target == 8 && gMissionRunMSsel->mUnk_a0 == 0) {
             target = target + data_ov001_021a6de8[target];
         }
-        gMissionRunMSsel->mUnk_9e = target;
-        gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mUnk_9e] = 5;
+        gMissionRunMSsel->mIndex = target;
+        gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mIndex] = 5;
         func_0212ecc0(&data_0217d068, 0, 0);
         return;
     }
     if (func_020ae408(8, 0x80)) {
-        current = gMissionRunMSsel->mUnk_9e;
+        current = gMissionRunMSsel->mIndex;
         delta = data_ov001_021a6dac[current];
         if (delta == 0) {
             return;
@@ -704,13 +704,13 @@ skip:
         if (target == 8 && gMissionRunMSsel->mUnk_a0 == 0) {
             target = target + data_ov001_021a6dac[target];
         }
-        gMissionRunMSsel->mUnk_9e = target;
-        gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mUnk_9e] = 5;
+        gMissionRunMSsel->mIndex = target;
+        gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mIndex] = 5;
         func_0212ecc0(&data_0217d068, 0, 0);
         return;
     }
     if (func_020ae408(8, 0x20)) {
-        current = gMissionRunMSsel->mUnk_9e;
+        current = gMissionRunMSsel->mIndex;
         delta = data_ov001_021a6dc0[current];
         if (delta == 0) {
             return;
@@ -719,13 +719,13 @@ skip:
         if (target == 8 && gMissionRunMSsel->mUnk_a0 == 0) {
             target = target + data_ov001_021a6dc0[target];
         }
-        gMissionRunMSsel->mUnk_9e = target;
-        gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mUnk_9e] = 5;
+        gMissionRunMSsel->mIndex = target;
+        gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mIndex] = 5;
         func_0212ecc0(&data_0217d068, 0, 0);
         return;
     }
     if (func_020ae408(8, 0x10)) {
-        current = gMissionRunMSsel->mUnk_9e;
+        current = gMissionRunMSsel->mIndex;
         delta = data_ov001_021a6dfc[current];
         if (delta == 0) {
             return;
@@ -734,8 +734,8 @@ skip:
         if (target == 8 && gMissionRunMSsel->mUnk_a0 == 0) {
             target = target + data_ov001_021a6dfc[target];
         }
-        gMissionRunMSsel->mUnk_9e = target;
-        gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mUnk_9e] = 5;
+        gMissionRunMSsel->mIndex = target;
+        gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mIndex] = 5;
         func_0212ecc0(&data_0217d068, 0, 0);
     }
 }
@@ -743,8 +743,8 @@ skip:
 void AdvanceMissionRunMSselState4(void) {
     func_021055b0(gMissionRunMSsel->mUnk_a8);
     func_ov001_021a0620();
-    gMissionRunMSsel->mUnk_68 = gMissionRunMSsel->mUnk_68 + 1;
-    if (gMissionRunMSsel->mUnk_68 >= 5) {
+    gMissionRunMSsel->mStateFrames = gMissionRunMSsel->mStateFrames + 1;
+    if (gMissionRunMSsel->mStateFrames >= 5) {
         if (func_ov001_021a071c() == FALSE) {
             func_ov001_021a0428();
         }
@@ -778,7 +778,7 @@ void AdvanceMissionRunMSselState7(void) {
         switch (r) {
             case 0:
                 func_ov001_021a0734();
-                gMissionRunMSsel->mUnk_bc = 1;
+                gMissionRunMSsel->mResult = 1;
                 gMissionRunMSsel->mUnk_9c = -0x100;
                 func_ov001_021a03a0();
                 break;
@@ -803,9 +803,9 @@ void AdvanceMissionRunMSselState8(void) {
 
     a = gMissionRunMSsel->mUnk_04->mUnk_06;
     b = gMissionRunMSsel->mUnk_10->mUnk_06;
-    gMissionRunMSsel->mUnk_68 = gMissionRunMSsel->mUnk_68 + 1;
-    first = func_020ae4c0(1, 0, gMissionRunMSsel->mUnk_9c, gMissionRunMSsel->mUnk_68, 10);
-    second = func_020ae4c0(1, 0, -0xc0, gMissionRunMSsel->mUnk_68, 10);
+    gMissionRunMSsel->mStateFrames = gMissionRunMSsel->mStateFrames + 1;
+    first = func_020ae4c0(1, 0, gMissionRunMSsel->mUnk_9c, gMissionRunMSsel->mStateFrames, 10);
+    second = func_020ae4c0(1, 0, -0xc0, gMissionRunMSsel->mStateFrames, 10);
     gMissionRunMSsel->mUnk_90 = first;
     gMissionRunMSsel->mUnk_98 = second;
     gMissionRunMSsel->mUnk_40[0].mUnk_04 = first;
@@ -829,7 +829,7 @@ void AdvanceMissionRunMSselState8(void) {
             gMissionRunMSsel->mUnk_44[b + data_ov001_021a6e10[i][j]].mUnk_04 = first;
         }
     }
-    if (gMissionRunMSsel->mUnk_68 == 5) {
+    if (gMissionRunMSsel->mStateFrames == 5) {
         CallQueueAppend(9, 0, gMissionRunMSsel->mUnk_48, 0x800);
     }
 }
@@ -871,8 +871,8 @@ s32 AdvanceMissionRunMSsel(void) {
                   gMissionRunMSsel->mUnk_b4, gMissionRunMSsel->mUnk_40);
     func_02124c30(gMissionRunMSsel->mUnk_10, gMissionRunMSsel->mUnk_0c, gMissionRunMSsel->mUnk_18,
                   gMissionRunMSsel->mUnk_b8, gMissionRunMSsel->mUnk_44);
-    if (gMissionRunMSsel->mState == 8 && gMissionRunMSsel->mUnk_68 >= 10) {
-        return gMissionRunMSsel->mUnk_bc;
+    if (gMissionRunMSsel->mState == 8 && gMissionRunMSsel->mStateFrames >= 10) {
+        return gMissionRunMSsel->mResult;
     }
     return 0;
 }

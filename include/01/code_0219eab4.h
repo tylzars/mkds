@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-void func_ov001_0219eab4(void);
+void WriteMissionRunLVselBg0Offset(void);
 s32 AdvanceMissionRunLVsel(void);
 void AdvanceMissionRunLVselState5(void);
 void AdvanceMissionRunLVselState4(void);

@@ -16,15 +16,17 @@ typedef struct Unk021a9be8Pair {
 typedef struct OptionSelectMenu {
     /* 00 */ s32 mState;
     /* 04 */ s32 mNextState;
-    /* 08 */ s32 mUnk_08;
+    /* 08 */ s32 mIndex; /* 0 and 1 are the two setting rows, 2 is the OK entry */
     /* 0c */ s32 mUnk_0c[2];
     /* 14 */ s32 mUnk_14[2];
     /* 1c */ s32 mUnk_1c;
-    /* 20 */ s32 mUnk_20;
+    /* counted only in states 0, 1, 3, 4; zeroed when 0, 1, 3 hand over and when 4 hands over to 5 (OK path); on
+       the Back path state 4 keeps counting while it requests the next option state */
+    /* 20 */ s32 mStateFrames;
     /* 24 */ s16 mUnk_24;
     /* 26 */ Unk021a9be8Pair mUnk_26[3];
     /* 32 */ u8 mUnk_32[2];
-    /* 34 */ s32 mUnk_34;
+    /* 34 */ s32 mNextOptionState; /* only ever 0 (the top menu state), passed to RequestOptionState */
     /* 38 */ s32 mUnk_38;
     /* 3c */ s32 mUnk_3c;
     /* 40 */ s32 mUnk_40[2][2];
@@ -74,7 +76,9 @@ void func_ov001_02199374(void);
 void func_ov001_021993b8(void);
 void func_ov001_02199420(void);
 void LocateAndQueueOptionSelectMenu(void);
-void func_ov001_021995f8(void);
+/* slot mRelease of OptionStateCallbacks; clears the global and undoes the display setup (DISPCNT bit 1 cleared),
+   the state heap is destroyed by AdvanceOptionStates after it returns */
+void ReleaseOptionSelectMenu(void);
 void InitOptionSelectMenu(void *a);
 void func_ov001_021997dc(void);
 

@@ -15,7 +15,7 @@ struct Nclr;
 typedef struct WiFiTopMenu {
     /* 00 */ s32 mState;
     /* 04 */ u32 mNextState;
-    /* 08 */ s32 mUnk_08;
+    /* 08 */ s32 mIndex;
     /* 0c */ s32 mStateFrames;
     /* 10 */ s32 mPendingWiFiState;
     /* 14 */ void *mHeap;

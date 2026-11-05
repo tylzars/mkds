@@ -51,7 +51,9 @@ void AdvanceOptionEmbremSelectState1(void);
 void AdvanceOptionEmbremSelectState0(void);
 BOOL func_ov001_0219de38(void);
 void LocateAndQueueOptionEmbremSelect(void);
-void func_ov001_0219df64(void);
+/* slot mRelease of OptionStateCallbacks; only clears the global, the state heap is destroyed by
+   AdvanceOptionStates after it returns */
+void ReleaseOptionEmbremSelect(void);
 void InitOptionEmbremSelect(void *a);
 
 #include "00/code_021832d8.h"
