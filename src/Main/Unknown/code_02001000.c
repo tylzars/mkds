@@ -1,63 +1,6 @@
 #include "Main/Unknown/code_02001000.h"
 #include "Main/Unknown/code_02050300.h"
-#include "Main/Unknown/code_020b3f7c.h"
-#include "Main/Unknown/code_02125f54.h"
-#include "Main/Unknown/code_02125f6c.h"
-#include "Main/Unknown/code_02126230.h"
 #include "Main/Unknown/unk_0217a000.h"
-
-void func_02001238(void) {
-    Unk021a99c0_18 *v1;
-    if (data_usa_02174e54 == 3) {
-        v1 = &data_usa_ov001_021a99c0->mUnk_18;
-        v1->mUnk_10 = 9;
-        v1->mUnk_12 = 1;
-        return;
-    }
-    v1 = &data_usa_ov001_021a99c0->mUnk_18;
-    v1->mUnk_10 = 11;
-    v1->mUnk_12 = 1;
-}
-
-void func_020011f0(void) {
-    void *v1;
-    v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 137);
-    func_02126230(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 6));
-}
-
-void func_0200118c(void) {
-    Unk021a99c0_18 *v1;
-    if (func_02125f54() != 0) {
-        func_02125fc0();
-        return;
-    }
-    if (func_02125f88() == 0) {
-        return;
-    }
-    v1 = &data_usa_ov001_021a99c0->mUnk_18;
-    v1->mUnk_10 = 10;
-    v1->mUnk_12 = 1;
-}
-
-void func_02001144(void) {
-    void *v1;
-    v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 138);
-    func_02126230(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
-}
-
-void func_020010e0(void) {
-    Unk021a99c0_18 *v1;
-    if (func_02125f54() != 0) {
-        func_02125fc0();
-        return;
-    }
-    if (func_02125f88() == 0) {
-        return;
-    }
-    v1 = &data_usa_ov001_021a99c0->mUnk_18;
-    v1->mUnk_10 = 11;
-    v1->mUnk_12 = 1;
-}
 
 void func_0200104c(void) {
     data_0217aa00->mUnk_0004 = 2;

@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02001000.h"
+#include "Main/Unknown/code_02001080.h"
 #include "Main/Unknown/code_020019b0.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02036c5c.h"
@@ -63,7 +64,7 @@ void func_02001ba0(void *a) {
                   data_usa_ov001_021a76c4);
     func_02001d30(&data_usa_ov001_021a99c0->mUnk_0c, 0, data_usa_ov001_021a76dc, data_usa_ov001_021a76f4,
                   data_usa_ov001_021a770c);
-    func_02046be8(&data_usa_ov001_021a99c0->mUnk_18, (UnkFunc *const *) 0x02001080, 12, NULL);
+    func_02046be8(&data_usa_ov001_021a99c0->mUnk_18, data_02001080, 12, NULL);
     data_usa_ov001_021a99c0->mUnk_2c_0 = 0;
     data_usa_ov001_021a99c0->mUnk_30 = 0;
     data_usa_ov001_021a99c0->mUnk_38 = func_02047a28(data_usa_ov001_021a7720);

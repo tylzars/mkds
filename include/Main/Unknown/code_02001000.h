@@ -44,8 +44,3 @@ extern s32 data_usa_02174e54;
 
 void func_02001000(void);
 void func_0200104c(void);
-void func_020010e0(void);
-void func_02001144(void);
-void func_0200118c(void);
-void func_020011f0(void);
-void func_02001238(void);

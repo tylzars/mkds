@@ -29,6 +29,7 @@ func_02000b48 kind:function(arm,size=0x4) addr:0x02000b48
 BuildInfo kind:data(any) addr:0x02000b4c
 func_02001000 kind:function(arm,size=0x4c) addr:0x02001000
 func_0200104c kind:function(arm,size=0x34) addr:0x0200104c
+data_02001080 kind:data(any) addr:0x02001080
 func_020010e0 kind:function(arm,size=0x64) addr:0x020010e0
 func_02001144 kind:function(arm,size=0x48) addr:0x02001144
 func_0200118c kind:function(arm,size=0x64) addr:0x0200118c
@@ -56,6 +57,7 @@ func_02001abc kind:function(arm,size=0x7c) addr:0x02001abc
 func_02001b38 kind:function(arm,size=0x68) addr:0x02001b38
 func_02001ba0 kind:function(arm,size=0x190) addr:0x02001ba0
 func_02001d30 kind:function(arm,size=0x124) addr:0x02001d30
+data_02001e54 kind:data(any) addr:0x02001e54
 main kind:function(arm,size=0x24) addr:0x02003000
 FileDispatchCommand kind:function(arm,size=0x17c) addr:0x02003024
 FileFinishCommand kind:function(arm,size=0x64) addr:0x020031a0

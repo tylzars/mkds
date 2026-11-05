@@ -40,7 +40,13 @@ src/Main/Unknown/code_02000b4c.s:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_02001000.c:
-    .text       start:0x02001000 end:0x02001290
+    complete
+    .text       start:0x02001000 end:0x02001080
+
+// provisional: file name and boundaries
+src/Main/Unknown/code_02001080.c:
+    complete
+    .text       start:0x02001080 end:0x02001290
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_02001290.c:
@@ -59,7 +65,13 @@ src/Main/Unknown/code_020019ac.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_020019b0.c:
-    .text       start:0x020019b0 end:0x02003000
+    complete
+    .text       start:0x020019b0 end:0x02001e54
+
+// provisional: file name and boundaries
+src/Main/Unknown/code_02001e54.c:
+    complete
+    .text       start:0x02001e54 end:0x02003000
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_02003000.c:
