@@ -9,7 +9,7 @@ typedef struct Unk0217cd30 {
 
 #include "code_0212d214.h"
 
-// Addressed at the byte offset LinkedList::mUnk_0a of the pointer passed to func_0210bc54.
+// Addressed at the byte offset LinkedList::mLinkOffset of the pointer passed to func_0210bc54.
 typedef struct Unk0210bc54 {
     /* 0 */ u8 mUnk_00[8];
     /* 8 */ u32 mUnk_08;

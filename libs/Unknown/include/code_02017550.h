@@ -3,7 +3,7 @@
 #include "types.h"
 #include "code_0212d214.h"
 
-// Object with an LinkedList at 0x0c, initialised with link offset 4; mUnk_18 and mUnk_1c bound the range
+// Object with an LinkedList at 0x0c, initialised with link offset 4; mRangeStart and mRangeEnd bound the range
 // HeapFindInnermostInList tests an address against.
 typedef struct Unk02017584 {
     /* 00 */ u32 mTag;

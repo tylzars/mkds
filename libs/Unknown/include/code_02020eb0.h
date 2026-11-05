@@ -4,7 +4,7 @@
 
 typedef struct Unk020217b4 Unk020217b4;
 
-// 0x18 bytes, linked through mUnk_00. data_021735a0 holds 256 of them; func_020215bc chains them and PxiCommandAlloc
+// 0x18 bytes, linked through mNext. data_021735a0 holds 256 of them; func_020215bc chains them and PxiCommandAlloc
 // takes one.
 typedef struct PxiCommand {
     /* 00 */ struct PxiCommand *mNext;

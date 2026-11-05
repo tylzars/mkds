@@ -47,7 +47,7 @@ typedef struct WiFiVSSetting {
     /* 105c */ void *mCommonMessages;
 } WiFiVSSetting;
 
-// Object behind gWiFiVSMatching; mUnk_00 selects the handler run by AdvanceWiFiVSMatching.
+// Object behind gWiFiVSMatching; mState selects the handler run by AdvanceWiFiVSMatching.
 typedef struct WiFiVSMatching {
     /* 0000 */ s32 mState;
     /* 0004 */ s32 mNextState;

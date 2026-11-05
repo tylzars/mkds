@@ -16,7 +16,7 @@ typedef struct GpiCallback {
     /* 04 */ u32 mUnk_04;
 } GpiCallback;
 
-// Data behind GpiQueuedCallback.mUnk_08: the members freed depend on the value at 0x0c.
+// Data behind GpiQueuedCallback.mArg: the members freed depend on the value at 0x0c.
 typedef struct Unk02190da0Data {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ s32 mUnk_04;

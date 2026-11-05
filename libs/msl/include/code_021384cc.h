@@ -5,7 +5,7 @@
 void srand(u32 arg0);
 
 // 0x28 bytes. Filled by ScanParseSpec from the text at its first argument, starting from a local copy with every
-// byte zero and mUnk_04 = 0x7fffffff; ScanWithSourceFunc reads mUnk_08 one bit per byte value.
+// byte zero and mMaxLength = 0x7fffffff; ScanWithSourceFunc reads mCharSet one bit per byte value.
 typedef struct ScanSpec {
     /* 00 */ u8 mStar;
     /* 01 */ u8 mHasMaxLength;

@@ -76,7 +76,7 @@ typedef struct LinkedList {
     /* 0a */ u16 mLinkOffset;
 } LinkedList;
 
-// 16 bytes: mUnk_04 lists 20-byte elements whose links are at 0x0c (HeapStackInit sets that offset); HeapStackPushLevel
+// 16 bytes: mLevels lists 20-byte elements whose links are at 0x0c (HeapStackInit sets that offset); HeapStackPushLevel
 // adds an element and func_0212da1c clears it as a list with offset 0.
 typedef struct HeapStack {
     /* 00 */ void *mHeap;

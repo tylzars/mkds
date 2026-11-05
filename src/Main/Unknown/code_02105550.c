@@ -1321,9 +1321,6 @@ void func_021062a8(void) {
     func_0212ecc0(p, 0, v);
 }
 
-// non-matching: i and a are allocated the other way round (the original keeps i in r4 and the result of
-// func_02110640 in r5), and a is masked to a byte (`and r4, r4, #255`) before the calls to func_0212c7d8, which the
-// original does not do (0x1d0 bytes vs 0x1cc).
 void func_021060dc(void) {
     Unk0217c7f0 *q;
     s32 i;

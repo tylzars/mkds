@@ -163,8 +163,6 @@ void func_0200b344(Unk021425e8 *a) {
     }
 }
 
-// non-matching: same size; one instruction at +0x5c differs in encoding: `adds r0, r0, #3` here, `adds r0, #3` in the
-// original
 void func_0200b200(void) {
     Unk0200c16c v1;
     Unk0200c12c v2;

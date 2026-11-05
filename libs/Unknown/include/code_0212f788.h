@@ -3,9 +3,9 @@
 #include "types.h"
 #include "code_0212d214.h"
 
-// 16 bytes. InterpolatorStart sets mUnk_00, mUnk_04 and mUnk_0c and clears mUnk_08; InterpolatorStep raises mUnk_08 up
-// to mUnk_0c; InterpolatorGetValue returns mUnk_00 + mUnk_08 * (mUnk_04 - mUnk_00) / mUnk_0c, or mUnk_04 once mUnk_08
-// reaches mUnk_0c.
+// 16 bytes. InterpolatorStart sets mFromValue, mToValue and mTotalCount and clears mDoneCount; InterpolatorStep raises
+// mDoneCount up to mTotalCount; InterpolatorGetValue returns mFromValue + mDoneCount * (mToValue - mFromValue) /
+// mTotalCount, or mToValue once mDoneCount reaches mTotalCount.
 typedef struct Interpolator {
     /* 00 */ s32 mFromValue;
     /* 04 */ s32 mToValue;

@@ -34,7 +34,7 @@ typedef struct Unk021a8294 {
     /* 00 */ void (*mUnk_00[5])(void);
 } Unk021a8294;
 
-// Object behind RecordGpx::mUnk_40.
+// Object behind RecordGpx::mPlayerCharacterMONclr.
 typedef struct Unk021a9bd8_40 {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ u8 *mUnk_0c;

@@ -17,7 +17,7 @@ typedef struct Unk021868a4 {
 
 #include "code_0200db4c.h"
 
-// Growing buffer: mUnk_00 is its start, mUnk_04 the write position, mUnk_08 the end and mUnk_0c the size.
+// Growing buffer: mStart is its start, mCursor the write position, mEnd the end and mSize the size.
 typedef struct HttpBuffer {
     /* 00 */ char *mStart;
     /* 04 */ char *mCursor;
@@ -25,7 +25,7 @@ typedef struct HttpBuffer {
     /* 0c */ s32 mSize;
 } HttpBuffer;
 
-// 0x1a60 bytes; mUnk_014 and mUnk_018 allocate and release the memory of its buffers.
+// 0x1a60 bytes; mAllocate and mFree allocate and release the memory of its buffers.
 typedef struct Http {
     /* 000 */ u8 mUnk_000[8];
     /* 008 */ s32 mUseGet;

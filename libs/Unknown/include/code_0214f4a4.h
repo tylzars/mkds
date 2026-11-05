@@ -4,8 +4,8 @@
 
 typedef struct ThreadLock ThreadLock;
 
-// CallbackListRun calls mUnk_00 with mUnk_04 and follows mUnk_08; CallbackListRemove, CallbackListAppend and
-// CallbackListPrepend link and unlink objects through mUnk_08.
+// CallbackListRun calls mCallback with mArg and follows mNext; CallbackListRemove, CallbackListAppend and
+// CallbackListPrepend link and unlink objects through mNext.
 typedef struct CallbackEntry {
     /* 00 */ void (*mCallback)(void *);
     /* 04 */ void *mArg;

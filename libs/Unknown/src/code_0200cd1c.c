@@ -1,8 +1,6 @@
 #include "code_0200cd1c.h"
 #include "code_0200ce60.h"
 
-// non-matching: the original loads the callee address into r1 and branches with bx r1; ours uses ip. Every other ARM
-// tail call through a register in the game uses ip (117 of them), so the original is likely hand-written
 // clang-format off
 // Hand-written asm: jumps to func_0200ce80 through r1; the compiler always uses ip for a jump like this.
 asm s32 func_0200cd1c(u32 a) {

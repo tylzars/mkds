@@ -66,7 +66,7 @@ u32 GpiCreateOperation(GpConnection *param_1, int param_2, int param_3, int *par
 #include "00/code_02196594.h"
 #include "00/code_0218e2dc.h"
 
-// Entry of the list behind GpiPeer.mUnk_38.
+// Entry of the list behind GpiPeer.mQueuedMessages.
 typedef struct Unk0219405c {
     /* 00 */ u32 mBuffer;
     /* 04 */ u8 mUnk_04[0xc];

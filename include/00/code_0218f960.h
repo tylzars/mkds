@@ -14,7 +14,7 @@ typedef struct Unk0218f960_428 {
     /* 04 */ s32 mUnk_04;
 } Unk0218f960_428;
 
-// Object behind GpConnection.mUnk_00: GpiWriteDelbuddyAndRemoveBuddy passes the address of 0x1f4 to
+// Object behind GpConnection.mGpiConnection: GpiWriteDelbuddyAndRemoveBuddy passes the address of 0x1f4 to
 // GpiAppendBufferString and GpiAppendBufferNumber, reads 0x198 and decrements 0x430.
 typedef struct GpiConnection {
     /* 000 */ char mErrorMessage[0x100];

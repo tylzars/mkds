@@ -3,7 +3,7 @@
 #include "types.h"
 #include "code_02017e70.h" // ExpHeapBlock, ExpHeapRange
 
-// First and last entries of a chain linked through mUnk_08 and mUnk_0c of ExpHeapBlock.
+// First and last entries of a chain linked through mPrev and mNext of ExpHeapBlock.
 typedef struct ExpHeapBlockList {
     /* 00 */ ExpHeapBlock *mHead;
     /* 04 */ ExpHeapBlock *mTail;

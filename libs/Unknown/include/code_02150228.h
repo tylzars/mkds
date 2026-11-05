@@ -3,7 +3,7 @@
 #include "types.h"
 
 // 0x58 bytes: four words at 0x00, a 64-bit count at 0x10 and a 0x40-byte buffer at 0x18 whose last two words are
-// also written as mUnk_50 and mUnk_54.
+// also written as mBitCountLow and mBitCountHigh.
 typedef struct Hash16State {
     /* 00 */ u32 mWords[4];
     /* 10 */ u64 mByteCount;

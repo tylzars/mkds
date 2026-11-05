@@ -51,7 +51,7 @@ typedef struct Unk02194cac_128 {
     /* 028 */ s8 mUnk_028[0x100];
 } Unk02194cac_128;
 
-// 0x10-byte local of GpiUpdateSearch passed to GpiCallback.mUnk_00.
+// 0x10-byte local of GpiUpdateSearch passed to GpiCallback.mCallback.
 typedef struct Unk02194cac_10 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;

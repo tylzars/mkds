@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-// 0x26 bytes. Filled by DoubleToDigitChars (which caps mUnk_04 at 32) and DigitsFromString (at most 32 bytes);
-// mUnk_04 counts the bytes used in mUnk_05. Read by FormatRoundDigitChars, FormatWideRoundDigitChars and
+// 0x26 bytes. Filled by DoubleToDigitChars (which caps mDigitCount at 32) and DigitsFromString (at most 32 bytes);
+// mDigitCount counts the bytes used in mDigits. Read by FormatRoundDigitChars, FormatWideRoundDigitChars and
 // DigitCharsToDouble (DigitCharsToDouble copies it as a whole).
 typedef struct DigitRecord {
     /* 00 */ u8 mNegative;
@@ -13,7 +13,7 @@ typedef struct DigitRecord {
     /* 05 */ char mDigits[32];
 } DigitRecord;
 
-// First argument of DoubleToDigitChars (reads mUnk_02).
+// First argument of DoubleToDigitChars (reads mDigitCount).
 typedef struct Unk02140c28 {
     /* 00 */ u8 mUnk_00;
     /* 02 */ s16 mDigitCount;

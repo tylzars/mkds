@@ -24,9 +24,9 @@ void ThreadLockInit(ThreadLock *arg0) {
     *(u32 *) ((value0) + (12)) = value2;
 }
 
-// With t = data_0216ff5c.mUnk_04: when n->mUnk_08 is 0 it is set to t, mUnk_0c is raised and ThreadLockListAppend links
-// n to t; when it is t only mUnk_0c is raised; otherwise t->mUnk_84 is set to n around ThreadWait on n->mUnk_00, and
-// the test repeats.
+// With t = data_0216ff5c.mCurrentThread: when n->mHolder is 0 it is set to t, mLockCount is raised and
+// ThreadLockListAppend links n to t; when it is t only mLockCount is raised; otherwise t->mUnk_84 is set to n around
+// ThreadWait on n->mQueue, and the test repeats.
 void ThreadLockWait(void *p) {
     ThreadLock *n;
     u32 s;
@@ -53,8 +53,8 @@ void ThreadLockWait(void *p) {
     IrqRestore(s);
 }
 
-// When n->mUnk_08 is data_0216ff5c.mUnk_04, lowers mUnk_0c; at 0 calls ThreadLockListRemove, clears mUnk_08 and calls
-// ThreadQueueSetAllRunnable on n->mUnk_00.
+// When n->mHolder is data_0216ff5c.mCurrentThread, lowers mLockCount; at 0 calls ThreadLockListRemove, clears mHolder
+// and calls ThreadQueueSetAllRunnable on n->mQueue.
 void ThreadLockUnlock(void *p) {
     ThreadLock *n;
     u32 s;
@@ -90,8 +90,8 @@ void ThreadUnlockAll(struct Thread *t) {
     } while (t->mLockList.mHead != 0);
 }
 
-// When n->mUnk_08 is 0 it is set to data_0216ff5c.mUnk_04, mUnk_0c is raised and ThreadLockListAppend links n; when it
-// is that object only mUnk_0c is raised. Returns 1 in those cases, else 0.
+// When n->mHolder is 0 it is set to data_0216ff5c.mCurrentThread, mLockCount is raised and ThreadLockListAppend links
+// n; when it is that object only mLockCount is raised. Returns 1 in those cases, else 0.
 s32 ThreadLockTry(void *p) {
     ThreadLock *n;
     u32 s;
@@ -332,7 +332,6 @@ u32 func_0200e77c(void) {
 // clang-format off
 // Calls DivSqrtRegistersSave with the address of mUnk_48, stores the status register and the registers (r0 = 1 saved) into
 // the words from 0, the banked sp of mode 0xd3 at 0x44 and the address of the return point at 0x3c, and returns 0.
-// non-matching: same size; 1 lines differ; first: original `add r1, r0, #0`, ours `mov r1, r0`
 asm s32 ThreadSaveContext(Thread *t) {
     stmdb sp!, {r0, lr}
     add r0, r0, #0x48

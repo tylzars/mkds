@@ -4,15 +4,15 @@
 
 struct Thread;
 
-// Two Thread pointers; ThreadQueueInsert and ThreadQueueRemoveFront link the objects through their mUnk_80 and
-// mUnk_7c. ThreadQueueSetAllRunnable and ThreadWait take it.
+// Two Thread pointers; ThreadQueueInsert and ThreadQueueRemoveFront link the objects through their mQueueNext and
+// mQueuePrev. ThreadQueueSetAllRunnable and ThreadWait take it.
 typedef struct ThreadQueue {
     /* 00 */ struct Thread *mHead;
     /* 04 */ struct Thread *mTail;
 } ThreadQueue;
 
-// 0x18 bytes; ThreadLockInit clears mUnk_00 to mUnk_0c. ThreadLockListAppend and ThreadLockListRemove link it through
-// mUnk_10 and mUnk_14 into the ThreadLockList at mUnk_88 of an Thread.
+// 0x18 bytes; ThreadLockInit clears mQueue to mLockCount. ThreadLockListAppend and ThreadLockListRemove link it through
+// mNext and mPrev into the ThreadLockList at mLockList of a Thread.
 typedef struct ThreadLock {
     /* 00 */ ThreadQueue mQueue;
     /* 08 */ struct Thread *mHolder; // set by ThreadLockTry and ThreadLockWait
@@ -26,9 +26,9 @@ typedef struct ThreadLockList {
     /* 04 */ ThreadLock *mTail;
 } ThreadLockList;
 
-// Set up by RingQueueInit. RingQueueAppend stores a word at mUnk_10[(mUnk_18 + mUnk_1c) % mUnk_14] and raises mUnk_1c;
-// RingQueueRemoveFront reads mUnk_10[mUnk_18], advances mUnk_18 modulo mUnk_14 and lowers mUnk_1c. Each calls
-// ThreadWait on one of mUnk_00 and mUnk_08 and ThreadQueueSetAllRunnable on the other.
+// Set up by RingQueueInit. RingQueueAppend stores a word at mBuffer[(mHeadIndex + mCount) % mCapacity] and raises
+// mCount; RingQueueRemoveFront reads mBuffer[mHeadIndex], advances mHeadIndex modulo mCapacity and lowers mCount. Each
+// calls ThreadWait on one of mFullWaiters and mEmptyWaiters and ThreadQueueSetAllRunnable on the other.
 typedef struct RingQueue {
     /* 00 */ ThreadQueue mFullWaiters;
     /* 08 */ ThreadQueue mEmptyWaiters;

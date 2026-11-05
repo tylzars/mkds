@@ -10,7 +10,7 @@ u32 Abs(u32 arg0);
 typedef int (*Unk0213c94cFunc)(u32 a, u8 *b, u32 *c, u32 d);
 
 // 0x4c bytes. Bit fields of the words at 0x04 and 0x08 are read and written by fwide, FwriteBody and
-// fflush; FileFlushBuffer calls mUnk_40 with mUnk_00, mUnk_1c, &mUnk_28 and mUnk_48.
+// fflush; FileFlushBuffer calls mWriteFunc with mUnk_00, mBuffer, &mBufferRemaining and mUnk_48.
 typedef struct FILE {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04_0 : 2;

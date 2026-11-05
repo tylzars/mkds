@@ -25,7 +25,7 @@ typedef struct Unk0201290c_08 {
     /* 2c */ u8 mUnk_2c[1];
 } Unk0201290c_08;
 
-// Object with the offsets of two tables at mUnk_08 and mUnk_0c, counted from this object.
+// Object with the offsets of two tables at mEntriesOffset and mUnk_0c, counted from this object.
 typedef struct Unk0201290c {
     /* 00 */ u8 mUnk_00[8];
     /* 08 */ u32 mEntriesOffset;

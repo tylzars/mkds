@@ -184,7 +184,6 @@ void func_0214e994(Unk0214e334 *p) {
     data_021803d8.mUnk_30 = 1;
 }
 
-// non-matching: in the second arm the original loads mUnk_36, stores it, then loads mUnk_34; this loads both first
 void func_0214e8f4(void) {
     u32 v = IrqDisable();
     s32 r = PxiSendFifoWord(6, 0x3000000, 0);

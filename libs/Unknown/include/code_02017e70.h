@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Block of 16 bytes followed by mUnk_04 bytes, linked through mUnk_08 and mUnk_0c; ExpHeapBlockInit sets it up over a
+// Block of 16 bytes followed by mSize bytes, linked through mPrev and mNext; ExpHeapBlockInit sets it up over a
 // range. Halfword 2 holds a byte, seven bits and a flag.
 typedef struct ExpHeapBlock {
     /* 00 */ u16 mTag;

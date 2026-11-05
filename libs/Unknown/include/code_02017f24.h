@@ -3,7 +3,7 @@
 #include "types.h"
 #include "code_02017550.h" // Unk02017584
 
-// Entry of 16 bytes, linked through mUnk_0c.
+// Entry of 16 bytes, linked through mNext.
 typedef struct Unk02017f58 {
     /* 00 */ u32 mKey;
     /* 04 */ u32 mFrontAddr;

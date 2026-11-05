@@ -28,7 +28,7 @@ typedef struct Unk0219b250_10 {
     /* 2c */ struct Unk02188950 *mUnk_2c;
 } Unk0219b250_10;
 
-// Object behind Unk02188950::mUnk_304: the 0x2c-byte allocation made by func_ov001_0219b478 and func_ov001_0219b418.
+// Object behind Unk02188950::mNsbmd: the 0x2c-byte allocation made by func_ov001_0219b478 and func_ov001_0219b418.
 typedef struct Unk0219b250 {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ void *mUnk_0c;

@@ -6,7 +6,7 @@
 typedef struct Http Http;
 typedef struct ThreadLock ThreadLock;
 
-// Block of four words: mUnk_00 is the first byte, mUnk_04 the cursor, mUnk_08 the end, mUnk_0c the size.
+// Block of four words: mStart is the first byte, mCursor the cursor, mEnd the end, mSize the size.
 typedef struct Unk02186d7cBuf {
     /* 00 */ char *mStart;
     /* 04 */ char *mCursor;

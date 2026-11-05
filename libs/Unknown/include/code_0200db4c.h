@@ -7,7 +7,7 @@ typedef struct ThreadQueue ThreadQueue;
 #include "code_0200e77c.h"
 #include "code_0200f790.h"
 
-// Linked through mUnk_68 from data_0216ff5c.mUnk_08 in increasing mUnk_70 (ThreadListInsert); set up by ThreadInit.
+// Linked through mUnk_68 from data_0216ff5c.mListHead in increasing mUnk_70 (ThreadListInsert); set up by ThreadInit.
 typedef struct Thread {
     /* 00 */ u32 mUnk_00;
     /* 04 */ void *mUnk_04;
@@ -47,7 +47,7 @@ typedef struct Thread {
     /* b4 */ void (*mUnk_b4)(void *);
 } Thread;
 
-// Object at data_0216ff5c; ThreadSystemInit stores the address of mUnk_04 in data_0216ff54.
+// Object at data_0216ff5c; ThreadSystemInit stores the address of mCurrentThread in data_0216ff54.
 typedef struct ThreadSystem {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
