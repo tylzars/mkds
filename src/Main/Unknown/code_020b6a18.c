@@ -6,6 +6,9 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_0213ecf8.h"
 
+// placeholder: an object of the original file that is not known yet; it only sets the order of the tables below
+const u8 data_020b6a18_pad[1] = {1};
+
 void func_020b6c74(u32 a, u16 *b, u32 c) {
     u32 n;
     BOOL f;

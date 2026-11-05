@@ -3300,7 +3300,9 @@ src/Main/Unknown/code_020b681c.c:
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_020b6a18.c:
+    complete
     .text       start:0x020b6a18 end:0x020b6d98
+    .data       start:0x0216859c end:0x02168ac4
 
 // provisional: file name and boundaries
 src/Main/Unknown/code_020b6d98.c:
