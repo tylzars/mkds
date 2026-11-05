@@ -110,7 +110,7 @@ void func_ov000_021874ec(void) {
                 if (q->mUnk_118 != NULL) {
                     q->mUnk_04 = -6;
                     ReleaseHttp((Http *) gHttp);
-                    data_ov000_021b4cb4.mUnk_00 = *(char **) data_ov000_021b1040;
+                    data_ov000_021b4cb4.mUnk_00 = data_ov000_021b1040.mUnk_00;
                     data_ov000_021b4cb4.mUnk_04 = 0;
                     data_ov000_021b4cb4.mUnk_08 = 0;
                     data_ov000_021b4cb4.mUnk_0c = 0x200;
@@ -230,7 +230,7 @@ void func_ov000_021874ec(void) {
             break;
         }
         data_ov000_021b4cb0->mUnk_04 = -4;
-        data_ov000_021b4cb4.mUnk_00 = *(char **) data_ov000_021b1040;
+        data_ov000_021b4cb4.mUnk_00 = data_ov000_021b1040.mUnk_00;
         data_ov000_021b4cb4.mUnk_04 = 0;
         data_ov000_021b4cb4.mUnk_08 = 0;
         data_ov000_021b4cb4.mUnk_0c = 0x1000;

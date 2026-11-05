@@ -41,17 +41,6 @@ typedef struct Unk021b4cac {
     /* 9d4 */ s32 mUnk_9d4;
 } Unk021b4cac;
 
-typedef struct Unk021b4cb4 {
-    /* 00 */ char *mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ void *(*mUnk_10)();
-    /* 14 */ void (*mUnk_14)();
-    /* 18 */ s32 mUnk_18;
-    /* 1c */ s32 mUnk_1c;
-} Unk021b4cb4;
-
 typedef struct Unk021b4cd4 {
     /* 00 */ u8 mUnk_00;
     /* 01 */ u8 mUnk_01[0x14];

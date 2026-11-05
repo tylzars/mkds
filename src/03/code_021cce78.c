@@ -35,10 +35,10 @@ void func_ov003_021cd080(Unk021425e8 *a) {
 }
 
 void func_ov003_021ccf30(Unk021ccf30 *a) {
-    Unk021ccf30_1300 *v1 = (Unk021ccf30_1300 *) ((u8 *) data_ov003_021da26c + 0x1300);
+    Unk021ccf30_1300 *v1 = data_ov003_021da26c->mUnk_1300;
     s32 i;
     s32 j;
-    func_0200ee3c((u8 *) data_ov003_021da26c + 0xf00, 0x400);
+    func_0200ee3c(data_ov003_021da26c->mUnk_0f00, 0x400);
     for (i = 0; i < a->mUnk_0e; i++) {
         Unk021ccf30_10 *p = a->mUnk_10[i];
         if (p->mUnk_0c[0] != 0 && p->mUnk_3c == 0) {

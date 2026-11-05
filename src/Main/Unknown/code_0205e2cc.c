@@ -36,7 +36,7 @@ Unk0205ec14 *func_0205eda0(void *a) {
     return p;
 }
 
-BOOL func_0205eca4(Unk0205ec14 *a, u8 b, void *c) {
+BOOL func_0205eca4(Unk0205ec14 *a, u8 b, Unk021141c8 *c) {
     Unk0217aa08_20_04 e;
     u8 d;
     u8 m;
@@ -49,8 +49,8 @@ BOOL func_0205eca4(Unk0205ec14 *a, u8 b, void *c) {
     if (e.mUnk_22_0 == 0 || e.mUnk_22_2 == 0) {
         return FALSE;
     }
-    ((u8 *) c)[0x200] = (a->mUnk_04.mUnk_004 & (1 << m)) != 0;
-    if (((u8 *) c)[0x200] != 0) {
+    c->mUnk_200 = (a->mUnk_04.mUnk_004 & (1 << m)) != 0;
+    if (c->mUnk_200 != 0) {
         MemCopy(a->mUnk_04.mUnk_008[m], c, 0x200);
     }
     return TRUE;

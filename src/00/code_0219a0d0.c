@@ -129,7 +129,7 @@ u32 func_ov000_0219a110(u32 *c, u32 d, int f, u32 g, u32 h) {
                 return 0;
             }
         } else if (a->mSentCallback != NULL) {
-            if (func_ov000_02197f28(a, (s32) FindConnection(a, d, f), d, f, 0, g, h, 1) == 0) {
+            if (func_ov000_02197f28(a, FindConnection(a, d, f), d, f, 0, g, h, 1) == 0) {
                 return 0;
             }
         }

@@ -97,7 +97,7 @@ extern const char data_ov000_021b3f50[];
 extern const char data_ov000_021b3f58[];
 extern const char data_ov000_021b3f68[];
 
-u32 func_ov000_02197f28(Gt2Socket *socket, int e, u32 f, u32 g, u32 h, int l, int m, int n);
+u32 func_ov000_02197f28(Gt2Socket *socket, Gt2Connection *b, u32 f, u32 g, u32 h, int l, int m, int n);
 BOOL func_ov000_02197fe8(Gt2Connection *connection, s32 b, void *c, s32 d, s32 e);
 BOOL func_ov000_02198098(Gt2Connection *connection, s32 b, s32 c, void *d, s32 e);
 BOOL func_ov000_021981d0(Gt2Connection *connection, void *b);

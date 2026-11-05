@@ -2,4 +2,6 @@
 
 #include "types.h"
 
-u32 func_ov000_02199fb0(int c, u32 d, u32 e);
+typedef struct Gt2Connection Gt2Connection;
+
+u32 func_ov000_02199fb0(Gt2Connection *a, u32 d, u32 e);

@@ -2,9 +2,20 @@
 
 #include "types.h"
 
+typedef struct Unk021b4cb4 {
+    /* 00 */ char *mUnk_00;
+    /* 04 */ s32 mUnk_04;
+    /* 08 */ s32 mUnk_08;
+    /* 0c */ s32 mUnk_0c;
+    /* 10 */ void *(*mUnk_10)();
+    /* 14 */ void (*mUnk_14)();
+    /* 18 */ s32 mUnk_18;
+    /* 1c */ s32 mUnk_1c;
+} Unk021b4cb4;
+
 // Objects whose layout isn't known yet.
 extern char *data_ov000_021b1004[];
-extern u8 data_ov000_021b1040[];
+extern Unk021b4cb4 data_ov000_021b1040;
 extern u8 data_ov000_021b1280[];
 extern u8 data_ov000_021b1320[];
 extern u8 data_ov000_021b1334[];

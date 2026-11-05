@@ -336,8 +336,8 @@ void func_01ff9b70(Kart *p) {
         b = func_020846a8(p->mIndex);
         func_0208cb8c(a, p);
         func_0208d4c4(a, p);
-        func_0208c930(a, (Vec3s16 *) ((u8 *) b + 0x4c), (Vec3 *) ((u8 *) b + 0x34));
-        func_0208c6dc(a, (Vec3s16 *) ((u8 *) b + 0x4c), (Vec3 *) ((u8 *) b + 0x34));
+        func_0208c930(a, b->mUnk_4c, b->mUnk_34);
+        func_0208c6dc(a, b->mUnk_4c, b->mUnk_34);
     } else {
         func_0208c534(func_0208c5b8(p->mIndex));
     }

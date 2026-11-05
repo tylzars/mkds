@@ -4,8 +4,7 @@
 #include "00/code_02198a8c.h"
 #include "00/code_02197e58.h"
 
-u32 func_ov000_02199fb0(int c, u32 d, u32 e) {
-    Gt2Connection *a = (Gt2Connection *) c;
+u32 func_ov000_02199fb0(Gt2Connection *a, u32 d, u32 e) {
     s32 b = a->mUnk_0c;
     if (b < 5) {
         if (a->mUnk_10 != 0) {

@@ -24,7 +24,7 @@ u32 func_ov000_021996fc(Gt2Connection *a, u32 b, const u8 *c, s32 d) {
     s32 g;
     u32 f;
     if (d < 7) {
-        if (func_ov000_02199fa4((u32) a) != 0) {
+        if (func_ov000_02199fa4(a) != 0) {
             return 1;
         }
         return 0;
@@ -35,8 +35,8 @@ u32 func_ov000_021996fc(Gt2Connection *a, u32 b, const u8 *c, s32 d) {
         return 0;
     }
     if (e == a->mUnk_66) {
-        func_ov000_021997f8((u32) a);
-        if (func_ov000_02199a0c((s32) a, b, (u32) (c + 7), d - 7) == 0) {
+        func_ov000_021997f8(a);
+        if (func_ov000_02199a0c(a, b, (u32) (c + 7), d - 7) == 0) {
             return 0;
         }
         if (func_ov000_0219981c(a) != 0) {
@@ -45,13 +45,13 @@ u32 func_ov000_021996fc(Gt2Connection *a, u32 b, const u8 *c, s32 d) {
         return 0;
     }
     if (func_ov000_0219a014(e, a->mUnk_66) < 0) {
-        func_ov000_021997f8((u32) a);
+        func_ov000_021997f8(a);
         return 1;
     }
     if (func_ov000_021998d8(a, b, e, c + 7, d - 7, &g) == 0) {
         return 0;
     }
-    if (g != 0 && func_ov000_02199f80((u32) a) == 0) {
+    if (g != 0 && func_ov000_02199f80(a) == 0) {
         return 0;
     }
     return 1;
@@ -59,7 +59,7 @@ u32 func_ov000_021996fc(Gt2Connection *a, u32 b, const u8 *c, s32 d) {
 
 u32 func_ov000_021996b8(Gt2Connection *a, const u8 *b, s32 c) {
     if (c != 2) {
-        if (func_ov000_02199fa4((u32) a) != 0) {
+        if (func_ov000_02199fa4(a) != 0) {
             return 1;
         }
         return 0;
@@ -82,7 +82,7 @@ u32 func_ov000_02199614(Gt2Connection *a, const u8 *b, s32 c) {
     } else if (c == 4) {
         e = func_ov000_0219a028(b, 2);
     } else {
-        if (func_ov000_02199fa4((u32) a) != 0) {
+        if (func_ov000_02199fa4(a) != 0) {
             return 1;
         }
         return 0;

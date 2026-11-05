@@ -259,8 +259,7 @@ BOOL func_ov000_02197fe8(Gt2Connection *connection, s32 b, void *c, s32 d, s32 e
     return TRUE;
 }
 
-u32 func_ov000_02197f28(Gt2Socket *socket, int e, u32 f, u32 g, u32 h, int l, int m, int n) {
-    Gt2Connection *b = (Gt2Connection *) e;
+u32 func_ov000_02197f28(Gt2Socket *socket, Gt2Connection *b, u32 f, u32 g, u32 h, int l, int m, int n) {
     UnkWordFunc *c;
     if (socket == NULL) {
         AssertionFailed(data_ov000_021b3f50, data_ov000_021b3f58, NULL, 0x160);

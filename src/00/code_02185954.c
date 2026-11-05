@@ -239,7 +239,7 @@ BOOL func_ov000_02186634(Unk021868a4Entry *a, s32 b, const char *c, char *d, s32
 }
 
 void func_ov000_02186628(const void *a) {
-    *(const void **) &data_ov000_021b1040 = a;
+    data_ov000_021b1040.mUnk_00 = (char *) a;
     return;
 }
 
@@ -260,8 +260,8 @@ s32 func_ov000_02186560(Unk02186560 *a, Http *b) {
     data_ov000_021b4c90->mUnk_1cc = *a;
     data_ov000_021b4c90->mUnk_1cc.mUnk_00[0x14] = 0;
     data_ov000_021b4c90->mUnk_1cc.mUnk_15[0xb] = 0;
-    ((void **) data_ov000_021b1040)[4] = a->mUnk_24;
-    ((void **) data_ov000_021b1040)[5] = a->mUnk_28;
+    data_ov000_021b1040.mUnk_10 = a->mUnk_24;
+    data_ov000_021b1040.mUnk_14 = a->mUnk_28;
     data_ov000_021b4c90->mUnk_004 = func_ov000_02186298(1);
     if (data_ov000_021b4c90->mUnk_004 == 0) {
         func_ov000_021864e0();
@@ -338,11 +338,11 @@ void func_ov000_0218635c(s32 *a) {
 }
 
 s32 func_ov000_02186298(s32 a) {
-    if (strcmp(*(const char **) data_ov000_021b1040, data_ov000_021b1020) != 0) {
-        *(s32 *) (data_ov000_021b1040 + 0x18) = 1;
+    if (strcmp(data_ov000_021b1040.mUnk_00, data_ov000_021b1020) != 0) {
+        data_ov000_021b1040.mUnk_18 = 1;
     }
-    if (func_ov000_021873d4((Unk02186d7c *) data_ov000_021b4c90->mUnk_2f8, (const Unk021873d4 *) data_ov000_021b1040) !=
-        0) {
+    if (func_ov000_021873d4((Unk02186d7c *) data_ov000_021b4c90->mUnk_2f8,
+                            (const Unk021873d4 *) &data_ov000_021b1040) != 0) {
         return 4;
     }
     if (a == 1) {
