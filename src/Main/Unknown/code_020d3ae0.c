@@ -328,7 +328,9 @@ u32 func_020d49f0(Unk020e6fd4 *arg0) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_020d49e0(Unk020e6fd4 *arg0, MapObject *arg1) {
+// Appends the map object to the pointer array of one of its kind's three draw lists and counts it; the return value is
+// not used.
+u32 AddMapObjectToDrawList(Unk020e6fd4 *arg0, MapObject *arg1) {
     u32 value0 = (u32) arg0;
     u32 value1 = (u32) arg1;
     u32 value2;
@@ -664,7 +666,9 @@ s32 func_020d4130(Vec3 *a, s32 b, s32 c) {
     return n;
 }
 
-MapObject *func_020d411c(u32 arg0) {
+// Returns the i-th map object stored by the last func_020d41e0 or func_020d4130 call; i must be below the count that
+// call returned.
+MapObject *GetFoundMapObject(u32 arg0) {
     return data_0217b4e8[arg0];
 }
 
@@ -929,7 +933,9 @@ void func_020d3b10(void) {
 
 #pragma thumb on
 
-void func_020d3ae0(s32 a, MapObject *b) {
+// Stores the mask of the nonzero decimal digits of a (bit d for digit d) in mUnk_74; a of 10000 or more first sets flag
+// 0x80 in mFlags and loses the 10000.
+void SetMapObjectMaskAndFlagFromNumber(s32 a, MapObject *b) {
     int v1;
     u32 v2;
     v1 = 0x2710;

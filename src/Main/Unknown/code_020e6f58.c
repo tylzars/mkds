@@ -5,7 +5,9 @@
 #include "Main/Unknown/code_020d6000.h"
 
 #pragma thumb on
-void func_020e6f58(Unk020e6fd4 *p, MapObject *q) {
+// Appends the map object to the update list of its kind; while they are still unset it also fills the list's words 0x18
+// and 0x1c from the kind data and word 0x20 from func_020d6910(6, object).
+void AddMapObjectToUpdateList(Unk020e6fd4 *p, MapObject *q) {
     u16 n;
     MapObjectKindData *t;
 

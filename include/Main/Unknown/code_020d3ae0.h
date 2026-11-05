@@ -4,4 +4,4 @@
 
 typedef struct MapObject MapObject;
 
-void func_020d3ae0(s32 a, MapObject *b);
+void SetMapObjectMaskAndFlagFromNumber(s32 a, MapObject *b);

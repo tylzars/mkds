@@ -236,7 +236,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                 object->mFlags |= source->mFlags & 0x80;
             } else if (courseRow != NULL) {
                 if (courseRow->mUnk_36 != 0) {
-                    func_020d3ae0(courseRow->mUnk_36, object);
+                    SetMapObjectMaskAndFlagFromNumber(courseRow->mUnk_36, object);
                 }
             }
             if (a->mUnk_24[3] != NULL && a->mUnk_24[3]->mUnk_10 != NULL) {
@@ -427,13 +427,13 @@ void InitMapObjects(void) {
                 w[1] = data_0216b288[j].mUnk_04->mUnk_24[1];
                 w[2] = data_0216b288[j].mUnk_04->mUnk_24[2];
                 if (w[0] != NULL) {
-                    func_020d49e0(w[0], o);
+                    AddMapObjectToDrawList(w[0], o);
                 }
                 if (w[1] != NULL) {
-                    func_020d49e0(w[1], o);
+                    AddMapObjectToDrawList(w[1], o);
                 }
                 if (w[2] != NULL) {
-                    func_020d49e0(w[2], o);
+                    AddMapObjectToDrawList(w[2], o);
                 }
             }
         }
@@ -515,7 +515,7 @@ void InitMapObjects(void) {
         o = data_0217b4f0->mMapObjects[i];
         for (j = 0; j < data_0217b4ec; j++) {
             if (o->mKind == data_0216b288[j].mKind && data_0216b288[j].mUnk_04->mUnk_24[3] != NULL) {
-                func_020e6f58(data_0216b288[j].mUnk_04->mUnk_24[3], o);
+                AddMapObjectToUpdateList(data_0216b288[j].mUnk_04->mUnk_24[3], o);
             }
         }
     }

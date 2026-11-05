@@ -17,8 +17,8 @@ typedef struct Unk020e71a0_94 {
 } Unk020e71a0_94;
 
 // Object behind MapObject.mKindData, built once per Unk021000d0 (row->mUnk_04): kinds whose rows point at the same
-// record share it (e.g. kinds 0x01/0x03/0x06/0x09/0x0c; 0x05/0x0e/0x0f). func_020e6f58 copies its 0x04 into the
-// callback slot at 0x1c of a Unk020e6fd4 and its 0x20 into the word at 0x18; func_020d6968 reads 0x20 and
+// record share it (e.g. kinds 0x01/0x03/0x06/0x09/0x0c; 0x05/0x0e/0x0f). AddMapObjectToUpdateList copies its 0x04 into
+// the callback slot at 0x1c of a Unk020e6fd4 and its 0x20 into the word at 0x18; func_020d6968 reads 0x20 and
 // func_020f944c reads 0x28.
 typedef struct MapObjectKindData {
     /* 00 */ s32 (*mUnk_00)(struct MapObject *e, void *a, s32 *b, s32 *c);
@@ -75,8 +75,8 @@ typedef struct Unk020e730c {
 } Unk020e730c;
 
 // Container of MapObject objects: the pointer array at 0x00 and its count at 0x04; func_020e6fd4 calls 0x1c for
-// each object, func_020e705c calls 0x10, func_020e6f58 adds an object, func_020e6fc4 and func_020e6fcc change the
-// count.
+// each object, func_020e705c calls 0x10, AddMapObjectToUpdateList adds an object, func_020e6fc4 and func_020e6fcc
+// change the count.
 typedef struct Unk020e6fd4 {
     /* 00 */ void **mUnk_00;
     /* 04 */ u16 mUnk_04;

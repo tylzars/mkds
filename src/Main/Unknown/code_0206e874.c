@@ -143,7 +143,7 @@ void func_0206e874(Kart *p) {
                 do {
                     s = 0;
                     v4 = FALSE;
-                    e = func_020d411c(i);
+                    e = GetFoundMapObject(i);
                     h = func_020d6be0(p, e);
                     r = ((s32(*)(Kart *, s32 *, MapObject *)) data_0217ac18[h])(p, &v2, e);
                     if (r != 0) {
