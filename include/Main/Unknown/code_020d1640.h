@@ -21,8 +21,4 @@ typedef struct Unk0217b4b0 {
     /* 28 */ Nclr *mUnk_28;
 } Unk0217b4b0;
 
-void DrawRaceMNumberPair(Unk020d029c *param_1);
-void func_020d1de8(Unk020d029c *param_1, s32 param_2);
-void DrawRaceMNumberPairTwoDigit(Unk020d029c *param_1);
-void DrawRaceMNumberPairOneDigit(Unk020d029c *param_1);
 void CreateSearchIconMBChildAndMultiDownload(void *param_1);
