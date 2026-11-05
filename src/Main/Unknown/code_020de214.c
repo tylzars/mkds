@@ -52,7 +52,7 @@ void func_020de270(void *a, Unk020de000 *b, s32 c, u16 d) {
 
 void func_020de214(void *a, Unk020de000 *b) {
     Vec3 v;
-    Unk020dc474 *p;
+    Wanwan *p;
 
     p = b->mUnk_a0;
     if (b->mUnk_f4 == 0) {

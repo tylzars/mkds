@@ -27,7 +27,7 @@ u32 func_020de204(u32 p0, u32 p1, u32 p2, u32 p3) {
 const u16 data_021583d4 = 1;
 
 void func_020de184(Unk020de000 *o) {
-    Unk020dc474 *p;
+    Wanwan *p;
     Vec3 v;
     Vec3 w;
 
@@ -56,7 +56,7 @@ void CreateWanwanChainAndWanwanKui(void) {
     }
 }
 
-void func_020de000(Unk020de000 *o, void *a, Unk020dc474 *p) {
+void func_020de000(Unk020de000 *o, void *a, Wanwan *p) {
     s32 d;
 
     o->mUnk_04 = p->mUnk_a0;

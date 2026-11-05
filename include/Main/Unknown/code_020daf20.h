@@ -43,7 +43,7 @@ typedef struct Dossun {
 // 0x28 bytes: a function at 0x10.
 typedef struct Unk020db1b0 {
     /* 00 */ u8 mUnk_00[0x10];
-    /* 10 */ void (*mUnk_10)(void *a, Unk020da494 *p);
+    /* 10 */ void (*mUnk_10)(void *a, Kuribo *p);
     /* 14 */ u8 mUnk_14[0x14];
 } Unk020db1b0;
 
@@ -52,14 +52,14 @@ typedef struct Unk020db20c {
     /* 00 */ u8 mUnk_00[8];
     /* 08 */ void (*mUnk_08)(void);
     /* 0c */ void (*mUnk_0c)(void);
-    /* 10 */ void (*mUnk_10)(void *a, Unk020da494 *p, void *c, u16 d);
+    /* 10 */ void (*mUnk_10)(void *a, Kuribo *p, void *c, u16 d);
     /* 14 */ u8 mUnk_14[0x18];
 } Unk020db20c;
 
 // 0x40 bytes: two functions at 0x00 and 0x04.
 typedef struct Unk020db268 {
-    /* 00 */ u32 (*mUnk_00)(Unk020da494 *p, Kart *a, u8 *b, u8 *c);
-    /* 04 */ u32 (*mUnk_04)(Unk020da494 *p, Kart *a, u8 *b, u8 *c);
+    /* 00 */ u32 (*mUnk_00)(Kuribo *p, Kart *a, u8 *b, u8 *c);
+    /* 04 */ u32 (*mUnk_04)(Kuribo *p, Kart *a, u8 *b, u8 *c);
     /* 08 */ u8 mUnk_08[0x38];
 } Unk020db268;
 
@@ -94,10 +94,10 @@ Unk020db1b0 *func_020db1b0(void);
 s32 func_020db4c4(Dossun *p);
 void func_020db430(Dossun *p);
 void CreateDossunAndDossunShadow(void);
-void func_020db2b8(Dossun *p, CourseMapRow *a);
+void InitDossun(Dossun *p, CourseMapRow *a);
 void func_020db198(void);
-void func_020db050(void *a, Unk020da494 *p, void *c, u16 d);
-void func_020daf20(void *a, Unk020da494 *p);
-void func_020dbdac(void *a, Dossun *p, void *c, s32 d);
+void DrawKuribo(void *a, Kuribo *p, void *c, u16 d);
+void UpdateKuribo(void *a, Kuribo *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void DrawDossun(void *a, Dossun *p, void *c, s32 d);
 u32 func_020db548(Dossun *p, Kart *a, u8 *b, u8 *c);
-void func_020db760(void *a, Dossun *p);
+void UpdateDossun(void *a, Dossun *p); /* skipped for objects with mFlags & 4 (parked pool objects) */

@@ -153,7 +153,7 @@ Unk020dfc44 *func_020dfc44(void) {
     return data_0217b76c;
 }
 
-void func_020dfafc(void *a, MkdEfBubbleObject *b, void *c, s32 d) {
+void DrawMkdEfBubble(void *a, MkdEfBubbleObject *b, void *c, s32 d) {
     s32 v;
     s32 w;
     s32 m[9];
@@ -194,7 +194,7 @@ void func_020dfae4(void) {
     func_02087de0(gMkdEfBubbleNsbta);
 }
 
-void func_020dfa50(void *a, MkdEfBubbleObject *b) {
+void UpdateMkdEfBubble(void *a, MkdEfBubbleObject *b) {
     func_02046b40(&b->mUnk_00.mUnk_80);
     if (b->mUnk_f0 != 0) {
         return;

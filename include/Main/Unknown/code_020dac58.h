@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020da494 Unk020da494;
+typedef struct Kuribo Kuribo;
 
-void func_020dac58(Unk020da494 *p0);
+void func_020dac58(Kuribo *p0);

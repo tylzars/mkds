@@ -27,7 +27,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_02061654.h"
 
-void func_020ac9fc(u32 arg0) {
+void InitShineBalloon(u32 arg0) {
     u32 value0 = arg0;
     u32 value12;
     value12 = (u32) &func_020d2398;
@@ -46,7 +46,7 @@ void func_020ac9b0(void *a) {
     func_0209bbd0(a, gShineBalloon);
 }
 
-void func_020ac890(void *a, ShineBalloonObject *b) {
+void DrawShineBalloon(void *a, ShineBalloonObject *b) {
     s32 s0;
     Vec3 v1;
     Vec3 v2;
@@ -82,7 +82,7 @@ void func_020ac890(void *a, ShineBalloonObject *b) {
     func_0209bb2c(a, gShineBalloon, b);
 }
 
-void func_020ac6a8(void *a, ShineBalloonObject *b) {
+void UpdateShineBalloon(void *a, ShineBalloonObject *b) {
     switch (b->mState) {
         case 0:
             if (func_020a1154(b->mUnk_ac->mIndex) == 0) {
@@ -142,11 +142,11 @@ void func_020ac67c(void) {
 }
 
 void *func_020ac658(void) {
-    return (void *) func_0209bef0(CreateShineBalloon, func_020ac890, func_020ac9b0);
+    return (void *) func_0209bef0(CreateShineBalloon, DrawShineBalloon, func_020ac9b0);
 }
 
 void *func_020ac63c(void) {
-    return (void *) func_0209bf48(NULL, func_020ac6a8, NULL);
+    return (void *) func_0209bf48(NULL, UpdateShineBalloon, NULL);
 }
 
 void func_020ac5e4(Kart *a) {

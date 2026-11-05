@@ -37,7 +37,7 @@ u32 func_0209753c(u32 a) {
     return 1;
 }
 
-void func_02097520(Unk02097520 *p0) {
+void InitCoverPooHole(Unk02097520 *p0) {
     p0->mUnk_02 |= data_021564c0;
 }
 
@@ -258,7 +258,7 @@ void CreateCoverPooHole(void *a) {
     func_0209b940(gHole, 0x3f);
 }
 
-void func_02096a04(void *a, CoverPooHole *p) {
+void DrawCoverPooHole(void *a, CoverPooHole *p) {
     s32 w0;
     s32 w1;
     s32 w2;
@@ -416,7 +416,7 @@ static inline void func_02095fec_inline_2(CoverPooHole *p, s32 n) {
     func_0210b7a8(&s);
 }
 
-void func_02095fec(void *a, CoverPooHole *p) {
+void UpdateCoverPooHole(void *a, CoverPooHole *p) {
     s32 v;
 
     p->mUnk_00.mUnk_10.y = 0;
@@ -609,11 +609,11 @@ void func_02095f9c(void) {
 }
 
 u32 func_02095f7c(void) {
-    return func_0209bef0(CreateCoverPooHole, func_02096a04, NULL);
+    return func_0209bef0(CreateCoverPooHole, DrawCoverPooHole, NULL);
 }
 
 u32 func_02095f5c(void) {
-    return func_0209bf48(func_020968f4, func_02095fec, NULL);
+    return func_0209bf48(func_020968f4, UpdateCoverPooHole, NULL);
 }
 
 BOOL func_02095f38(Unk0217b498_00 *a) {

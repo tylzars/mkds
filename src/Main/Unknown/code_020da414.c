@@ -34,7 +34,7 @@ const u8 data_020da414_pad[1] = {1};
 
 #pragma thumb on
 
-void func_020da494(Unk020da494 *a, CourseMapRow *b) {
+void InitKuribo(Kuribo *a, CourseMapRow *b) {
     Unk02042044 *e;
     Vec3 *q;
     Unk020e005c_080 *o;

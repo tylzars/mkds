@@ -4,7 +4,7 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
-// Object passed to the per-frame functions func_ov001_02185bb8 and func_ov001_02185ca0.
+// Object passed to the per-frame functions UpdateMissionGate and DrawMissionGate.
 typedef struct MissionGateObject {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ MapObject *mUnk_0a0;

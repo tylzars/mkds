@@ -28,11 +28,11 @@
 #include "code_02147cd8.h"
 #include "code_02148538.h"
 
-u8 func_02095efc(Unk02095a3c *a, Kart *b, u8 *c, u8 *d) {
+u8 func_02095efc(MoveTree *a, Kart *b, u8 *c, u8 *d) {
     u8 v;
 
     v = *d;
-    if (a->mUnk_d8 <= 1) {
+    if (a->mState <= 1) {
         a->mUnk_a4 = 30;
     }
     return v;
@@ -44,7 +44,7 @@ void CreateMoveTree(void *a) {
     func_0209b940(gMoveTree, 0x3f);
 }
 
-void func_02095db8(void *a, Unk02095a3c *p, u32 c, u32 d) {
+void DrawMoveTree(void *a, MoveTree *p, u32 c, u32 d) {
     s32 t;
 
     t = 0x1e;
@@ -66,7 +66,7 @@ void func_02095db8(void *a, Unk02095a3c *p, u32 c, u32 d) {
 
 void func_02095d1c(Unk020e6fd4 *p) {
     s32 i;
-    Unk02095a3c *e;
+    MoveTree *e;
 
     if (p == NULL) {
         return;
@@ -77,18 +77,18 @@ void func_02095d1c(Unk020e6fd4 *p) {
     }
 }
 
-void func_02095a3c(void *a, Unk02095a3c *p) {
+void UpdateMoveTree(void *a, MoveTree *p) {
     Unk0210b7a8 s1;
     Unk0210b7a8 s2;
     u32 k;
     s32 v;
 
-    switch (p->mUnk_d8) {
+    switch (p->mState) {
         case 0:
             p->mUnk_b4.mUnk_04 = 0;
             p->mUnk_b4.mUnk_10 = 0;
             if (p->mUnk_a0-- <= 0) {
-                p->mUnk_d8 = 1;
+                p->mState = 1;
             }
             if ((s32) (p->mUnk_00.mUnk_78 & ~0xc000001f) >= 0xc5c10) {
                 return;
@@ -133,7 +133,7 @@ void func_02095a3c(void *a, Unk02095a3c *p) {
             p->mUnk_b4.mUnk_10 = ((s64) v * p->mUnk_b4.mUnk_00->mUnk_00[p->mUnk_b4.mUnk_0c].mUnk_34) >> 12;
             if (func_020d8cc8(&p->mUnk_b4) != 0) {
                 p->mUnk_a0 = (u16) p->mUnk_b4.mUnk_1c->mUnk_0e;
-                p->mUnk_d8 = 0;
+                p->mState = 0;
             }
             func_020d879c(&p->mUnk_b4, &p->mUnk_00.mPos);
             if ((s32) (p->mUnk_00.mUnk_78 & ~0xc000001f) >= 0xc5c10) {
@@ -174,11 +174,11 @@ void func_020959fc(void) {
 }
 
 void func_020959dc(void) {
-    func_0209bf1c(CreateMoveTree, func_02095db8, NULL);
+    func_0209bf1c(CreateMoveTree, DrawMoveTree, NULL);
 }
 
 void func_020959bc(void) {
-    func_0209bf48(func_02095d1c, func_02095a3c, NULL);
+    func_0209bf48(func_02095d1c, UpdateMoveTree, NULL);
 }
 
 void CreateBakubakuAndBakuShadow(void *a) {
@@ -188,12 +188,12 @@ void CreateBakubakuAndBakuShadow(void *a) {
     func_0209b940(gBakuShadow, 0x3f);
 }
 
-void func_02095848(void *a, Unk02095544 *p) {
+void DrawBakubaku(void *a, Bakubaku *p) {
     s32 t;
     s32 m[9];
     s32 i;
 
-    if (p->mUnk_b0 != 2) {
+    if (p->mState != 2) {
         return;
     }
     t = 0x1e;
@@ -212,7 +212,7 @@ void func_02095848(void *a, Unk02095544 *p) {
 
 void func_020957ec(Unk020e6fd4 *p) {
     s32 i;
-    Unk02095544 *e;
+    Bakubaku *e;
 
     if (p == NULL) {
         return;
@@ -222,7 +222,7 @@ void func_020957ec(Unk020e6fd4 *p) {
     }
 }
 
-void func_02095544(void *a, Unk02095544 *p) {
+void UpdateBakubaku(void *a, Bakubaku *p) {
     Unk0210b7a8 s1;
     Unk0210b7a8 s2;
     Kart *o;
@@ -231,7 +231,7 @@ void func_02095544(void *a, Unk02095544 *p) {
     s32 v1;
     s32 v2;
 
-    switch (p->mUnk_b0) {
+    switch (p->mState) {
         case 0:
             if (func_02061818() != 2) {
                 o = GetKart((u16) data_021759c0->mEntryIndex);
@@ -249,7 +249,7 @@ void func_02095544(void *a, Unk02095544 *p) {
             p->mUnk_00.mUnk_10.x = ((s64) p->mUnk_00.mMatrix.mUnk_00[2].x * 0xc000) >> 12;
             p->mUnk_00.mUnk_10.y = 0xc000;
             p->mUnk_00.mUnk_10.z = ((s64) p->mUnk_00.mMatrix.mUnk_00[2].z * 0xc000) >> 12;
-            p->mUnk_b0 = 1;
+            p->mState = 1;
             break;
         case 1:
             p->mUnk_00.mUnk_10.y -= 0x400;
@@ -263,7 +263,7 @@ void func_02095544(void *a, Unk02095544 *p) {
             s1.mUnk_08 = 4;
             s1.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
             func_0210b7a8(&s1);
-            p->mUnk_b0 = 2;
+            p->mState = 2;
             break;
         case 2:
             p->mUnk_00.mUnk_10.y -= 0x400;
@@ -277,28 +277,28 @@ void func_02095544(void *a, Unk02095544 *p) {
             s2.mUnk_08 = 2;
             s2.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
             func_0210b7a8(&s2);
-            p->mUnk_b0 = 3;
+            p->mState = 3;
             break;
         case 3:
             p->mUnk_00.mUnk_10.y -= 0x400;
             Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             if (p->mUnk_00.mPos.y <= p->mUnk_00.mCourseMapRow->mUnk_00.y - 0x32000) {
                 p->mUnk_a0 = 0x708;
-                p->mUnk_b0 = 4;
+                p->mState = 4;
             }
             break;
         case 4:
             if (p->mUnk_a0-- <= 0) {
-                p->mUnk_b0 = 0;
+                p->mState = 0;
             }
             break;
     }
 }
 
 void func_02095524(void) {
-    func_0209bf1c(CreateBakubakuAndBakuShadow, func_02095848, NULL);
+    func_0209bf1c(CreateBakubakuAndBakuShadow, DrawBakubaku, NULL);
 }
 
 void func_02095504(void) {
-    func_0209bf48(func_020957ec, func_02095544, NULL);
+    func_0209bf48(func_020957ec, UpdateBakubaku, NULL);
 }

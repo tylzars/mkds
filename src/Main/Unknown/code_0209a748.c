@@ -27,7 +27,7 @@
 #include "Main/Unknown/unk_02156000.h"
 #include "Main/Unknown/code_020d7da8.h"
 
-void func_0209b5f4(u32 arg0) {
+void InitCrab(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -48,7 +48,7 @@ static inline u32 func_0209b388_inline(Unk020f41c4_B *r, u32 c) {
     }
 }
 
-void func_0209b388(Unk0209a7dc *a, Vec3 *b, Vec3 *c, Vec3 *d) {
+void func_0209b388(Crab *a, Vec3 *b, Vec3 *c, Vec3 *d) {
     Vec3 v;
     Unk020f41c4_B *r;
     s32 x;
@@ -92,11 +92,11 @@ void func_0209b388(Unk0209a7dc *a, Vec3 *b, Vec3 *c, Vec3 *d) {
     }
     a->mUnk_000.mUnk_10.y = 0x4000;
     a->mUnk_0a4 = 0x12c;
-    a->mUnk_114 = 2;
+    a->mState = 2;
     a->mUnk_000.mFlags |= data_usa_0215659c;
 }
 
-u8 func_0209b344(Unk0209a7dc *a, Kart *b, u8 *c, u8 *d) {
+u8 func_0209b344(Crab *a, Kart *b, u8 *c, u8 *d) {
     u32 e;
 
     e = *d;
@@ -107,7 +107,7 @@ u8 func_0209b344(Unk0209a7dc *a, Kart *b, u8 *c, u8 *d) {
     return e;
 }
 
-u8 func_0209b270(Unk0209a7dc *a, Kart *b, u8 *c, u8 *d) {
+u8 func_0209b270(Crab *a, Kart *b, u8 *c, u8 *d) {
     Vec3 v;
     Kart *t;
     u32 e;
@@ -143,7 +143,7 @@ u32 func_0209b1f8(u32 p0) {
     return p0;
 }
 
-void func_0209b088(void *a, Unk0209a7dc *b) {
+void DrawCrab(void *a, Crab *b) {
     s32 w;
     s32 f0[9];
     s32 f1[9];
@@ -170,7 +170,7 @@ void func_0209b088(void *a, Unk0209a7dc *b) {
 
 void func_0209af98(Unk0209af98 *p) {
     s32 i;
-    Unk0209a7dc *o;
+    Crab *o;
     Unk020f41c4_B *r;
 
     if (p == NULL) {
@@ -186,7 +186,7 @@ void func_0209af98(Unk0209af98 *p) {
         r = func_020d22d0();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         o->mUnk_0a4 = (u16) ((u16) (((u64) (u32) (r->mUnk_00 >> 32) * 60) >> 32) + 30);
-        o->mUnk_114 = 0;
+        o->mState = 0;
     }
 }
 
@@ -232,11 +232,11 @@ static inline void func_0209a7dc_inline(Unk0209a7dc_b0 *b) {
     }
 }
 
-void func_0209a7dc(void *a, Unk0209a7dc *b) {
+void UpdateCrab(void *a, Crab *b) {
     Vec3 v;
     Unk020f41c4_B *r;
 
-    switch (b->mUnk_114) {
+    switch (b->mState) {
         case 0:
             b->mUnk_0ac += 0x200;
             if (b->mUnk_0ac >= (s32) (func_0209b634(gCrabHand) > 0 ? 0.5f + (float) (func_0209b634(gCrabHand) << 12)
@@ -247,7 +247,7 @@ void func_0209a7dc(void *a, Unk0209a7dc *b) {
                 return;
             }
             if (b->mUnk_0ac == 0) {
-                b->mUnk_114 = 1;
+                b->mState = 1;
             }
             break;
         case 1:
@@ -263,7 +263,7 @@ void func_0209a7dc(void *a, Unk0209a7dc *b) {
                 r = func_020d22d0();
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 b->mUnk_0a4 = (u16) ((u16) (((u64) (u32) (r->mUnk_00 >> 32) * 60) >> 32) + 30);
-                b->mUnk_114 = 0;
+                b->mState = 0;
             }
             b->mUnk_0a8 += 0x200;
             if (b->mUnk_0a8 >= (s32) (func_0209b634(gCrab) > 0 ? 0.5f + (float) (func_0209b634(gCrab) << 12)
@@ -303,7 +303,7 @@ void func_0209a7dc(void *a, Unk0209a7dc *b) {
             b->mUnk_0b0.mUnk_1c = 0;
             func_0209a7dc_inline(&b->mUnk_0b0);
             b->mUnk_0a2 = b->mUnk_0b0.mUnk_04;
-            b->mUnk_114 = 3;
+            b->mState = 3;
             break;
         case 3:
             b->mUnk_0ac += 0x200;
@@ -331,7 +331,7 @@ void func_0209a7dc(void *a, Unk0209a7dc *b) {
             r = func_020d22d0();
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             b->mUnk_0a4 = (u16) ((u16) (((u64) (u32) (r->mUnk_00 >> 32) * 60) >> 32) + 30);
-            b->mUnk_114 = 0;
+            b->mState = 0;
             b->mUnk_000.mFlags &= ~1;
             break;
     }
@@ -345,9 +345,9 @@ void func_0209a78c(void) {
 }
 
 void *func_0209a768(void) {
-    return (void *) func_0209bef0(CreateCrabAndCrabHand, func_0209b088, func_0209b1f8);
+    return (void *) func_0209bef0(CreateCrabAndCrabHand, DrawCrab, func_0209b1f8);
 }
 
 void *func_0209a748(void) {
-    return (void *) func_0209bf48(func_0209af98, func_0209a7dc, NULL);
+    return (void *) func_0209bf48(func_0209af98, UpdateCrab, NULL);
 }

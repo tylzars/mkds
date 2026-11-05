@@ -23,7 +23,7 @@
 #include "code_02146cbc.h"
 #include "code_02147cd8.h"
 
-void func_02092b20(MapObject *arg0) {
+void InitBasabasa(MapObject *arg0) {
     MapObject *value0 = arg0;
     MapObject *value4;
     value4 = value0;
@@ -32,7 +32,7 @@ void func_02092b20(MapObject *arg0) {
     func_020d28e0(value0);
 }
 
-u8 func_0209297c(Unk0209219c *a, Unk0209297c *b, void *c, u8 *d) {
+u8 func_0209297c(Basabasa *a, Unk0209297c *b, void *c, u8 *d) {
     Vec3 u;
     Vec3 t;
     s32 k;
@@ -76,7 +76,7 @@ void func_02092928(void *a) {
     func_0209bbd0(a, gBasabasa);
 }
 
-void func_0209280c(void *a, Unk0209219c *b) {
+void DrawBasabasa(void *a, Basabasa *b) {
     s32 s;
     s32 m[9];
     s32 d;
@@ -96,7 +96,7 @@ void func_0209280c(void *a, Unk0209219c *b) {
     func_0209bb2c(a, gBasabasa, b);
 }
 
-void func_020924d8(void *a, Unk0209219c *b) {
+void UpdateBasabasa(void *a, Basabasa *b) {
     s32 v;
 
     b->mUnk_c4 += b->mUnk_c8;
@@ -108,7 +108,7 @@ void func_020924d8(void *a, Unk0209219c *b) {
         b->mUnk_c8 = 0x3c - b->mUnk_c8;
         b->mUnk_cc = b->mUnk_cc == 0;
     }
-    switch (b->mUnk_d4) {
+    switch (b->mState) {
         case 0:
             if (b->mUnk_b0-- > 0) {
                 break;
@@ -122,7 +122,7 @@ void func_020924d8(void *a, Unk0209219c *b) {
             b->mUnk_a0.z += (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[2].z * 0x19a) >> 12);
             Vec3Add(&b->mUnk_00.mPos, &b->mUnk_a0, &b->mUnk_00.mPos);
             if (b->mUnk_b4-- <= 0) {
-                b->mUnk_d4 = 1;
+                b->mState = 1;
             }
             break;
         case 1:
@@ -132,13 +132,13 @@ void func_020924d8(void *a, Unk0209219c *b) {
             Vec3Add(&b->mUnk_00.mPos, &b->mUnk_a0, &b->mUnk_00.mPos);
             if (b->mUnk_a0.y > 0) {
                 b->mUnk_a0.y = 0;
-                b->mUnk_d4 = 2;
+                b->mState = 2;
             }
             break;
         case 2:
             Vec3Add(&b->mUnk_00.mPos, &b->mUnk_a0, &b->mUnk_00.mPos);
             if (b->mUnk_b8-- <= 0) {
-                b->mUnk_d4 = 3;
+                b->mState = 3;
             }
             break;
         case 3:
@@ -196,15 +196,15 @@ static inline u16 func_0209219c_inline(u32 n) {
 }
 
 void func_02092484(void) {
-    func_0209bef0(CreateBasabasa, func_0209280c, func_02092928);
+    func_0209bef0(CreateBasabasa, DrawBasabasa, func_02092928);
 }
 
 void func_02092468(void) {
-    func_0209bf48(NULL, func_020924d8, NULL);
+    func_0209bf48(NULL, UpdateBasabasa, NULL);
 }
 
 void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
-    Unk0209219c *p;
+    Basabasa *p;
     Unk020f41c4_B *r;
     u32 n;
     u16 w;
@@ -229,6 +229,6 @@ void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
     p->mUnk_b8 = a + w;
     p->mUnk_00.mPos = *b;
     p->mUnk_a0 = *c;
-    p->mUnk_d4 = 0;
+    p->mState = 0;
     p->mUnk_d0 = 0;
 }

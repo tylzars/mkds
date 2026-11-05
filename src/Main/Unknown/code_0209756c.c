@@ -28,12 +28,12 @@
 #include "code_02147cd8.h"
 #include "code_02148538.h"
 
-void func_02098268(Unk020975ec *p) {
+void InitFlipper(Flipper *p) {
     p->mUnk_00.mFlags = p->mUnk_00.mFlags | data_usa_0215658c;
     func_020d2450(p);
 }
 
-u32 func_020980ec(Unk020975ec *p, Kart *q, void *b, u8 *c) {
+u32 func_020980ec(Flipper *p, Kart *q, void *b, u8 *c) {
     u32 v;
     BOOL t;
     s32 f;
@@ -42,10 +42,10 @@ u32 func_020980ec(Unk020975ec *p, Kart *q, void *b, u8 *c) {
     Vec3 *e;
 
     v = *c;
-    t = (p->mUnk_ecc == 2 || p->mUnk_ecc == 5) && p->mUnk_a0 > 0;
+    t = (p->mState == 2 || p->mState == 5) && p->mUnk_a0 > 0;
     if (t) {
         s = -0x19a;
-    } else if ((p->mUnk_ecc == 3 || p->mUnk_ecc == 6) && p->mUnk_a0 < 0) {
+    } else if ((p->mState == 3 || p->mState == 6) && p->mUnk_a0 < 0) {
         s = 0x19a;
     } else {
         s = 0;
@@ -77,7 +77,7 @@ u32 func_020980ec(Unk020975ec *p, Kart *q, void *b, u8 *c) {
     return v;
 }
 
-u32 func_02097ed0(Unk020975ec *p, Vec3 *a, s32 b, Vec3 *c) {
+u32 func_02097ed0(Flipper *p, Vec3 *a, s32 b, Vec3 *c) {
     s32 r;
 
     p->mUnk_a0 = 0;
@@ -85,9 +85,9 @@ u32 func_02097ed0(Unk020975ec *p, Vec3 *a, s32 b, Vec3 *c) {
                       &data_usa_0215653c[p->mUnk_a4], b, NULL) != 0) {
         r = func_020eafc4(a, &p->mUnk_00.mPos, &p->mUnk_a8[p->mUnk_ec0].mUnk_00[0], &data_usa_02156554[p->mUnk_a4],
                           &data_usa_021564dc[p->mUnk_a4], b, c);
-        if (r == 4 || p->mUnk_ecc == 2) {
+        if (r == 4 || p->mState == 2) {
             p->mUnk_a0 = 1;
-        } else if (p->mUnk_ecc == 3) {
+        } else if (p->mState == 3) {
             p->mUnk_a0 = -1;
         }
     } else {
@@ -95,9 +95,9 @@ u32 func_02097ed0(Unk020975ec *p, Vec3 *a, s32 b, Vec3 *c) {
                           &data_usa_02156524[p->mUnk_a4], b, NULL) != 0) {
             r = func_020eafc4(a, &p->mUnk_00.mPos, &p->mUnk_648[p->mUnk_ec0].mUnk_00[0], &data_usa_0215656c[p->mUnk_a4],
                               &data_usa_021564f4[p->mUnk_a4], b, c);
-            if (r == 4 || p->mUnk_ecc == 3) {
+            if (r == 4 || p->mState == 3) {
                 p->mUnk_a0 = -1;
-            } else if (p->mUnk_ecc == 2) {
+            } else if (p->mState == 2) {
                 p->mUnk_a0 = 1;
             }
         } else {
@@ -113,7 +113,7 @@ void CreateFlipper(void *a) {
     func_0209be1c(gFlipper, gFlipperNsbtaName);
 }
 
-void func_02097d80(void *a, Unk020975ec *p) {
+void DrawFlipper(void *a, Flipper *p) {
     s32 v;
     Unk02012f58 *e;
     Unk02087d0c *s;
@@ -143,7 +143,7 @@ void func_020979c8(Unk020e6fd4 *a) {
     s32 d;
     s32 k;
     u32 e;
-    Unk020975ec *p;
+    Flipper *p;
     Unk02012f58 *q;
     s32 m2[9];
     s32 m1[9];
@@ -205,7 +205,7 @@ void func_020979c8(Unk020e6fd4 *a) {
     }
 }
 
-void func_020975ec(void *a, Unk020975ec *p) {
+void UpdateFlipper(void *a, Flipper *p) {
     s32 i;
     s32 n;
     Unk020f41c4_B *v1;
@@ -213,19 +213,19 @@ void func_020975ec(void *a, Unk020975ec *p) {
     s32 w;
 
     p->mUnk_ebc = p->mUnk_ebc - (p->mUnk_ebc > 0);
-    switch (p->mUnk_ecc) {
+    switch (p->mState) {
         case 0:
             p->mUnk_ed0 = func_0208b7bc(0x5f, &p->mUnk_00.mPos);
-            p->mUnk_ecc = 1;
+            p->mState = 1;
             break;
         case 1:
             if (p->mUnk_ebc != 0) {
-                p->mUnk_ecc = 4;
+                p->mState = 4;
             } else {
                 p->mUnk_eb8 = p->mUnk_eb8 - 1;
                 if (p->mUnk_eb8 <= 0) {
                     p->mUnk_ec0 = 0;
-                    p->mUnk_ecc = 2;
+                    p->mState = 2;
                 }
             }
             p->mUnk_ec8 = 0;
@@ -235,7 +235,7 @@ void func_020975ec(void *a, Unk020975ec *p) {
             p->mUnk_ec0 = p->mUnk_ec0 + 1;
             if (p->mUnk_ec0 >= 0x1d) {
                 p->mUnk_ec0 = 0x1d;
-                p->mUnk_ecc = 3;
+                p->mState = 3;
             }
             p->mUnk_ec8 = 1;
             break;
@@ -253,13 +253,13 @@ void func_020975ec(void *a, Unk020975ec *p) {
                 v1->mUnk_00 = (s64) v1->mUnk_08 * (s64) v1->mUnk_00 + v1->mUnk_10;
                 r = ((u64) (u32) (v1->mUnk_00 >> 32) * 12) >> 32;
                 p->mUnk_eb8 = (u16) ((u16) r * 0x14);
-                p->mUnk_ecc = 1;
+                p->mState = 1;
             }
             break;
         case 4:
             if (p->mUnk_ebc <= 0) {
                 p->mUnk_ec0 = 0;
-                p->mUnk_ecc = 5;
+                p->mState = 5;
             }
             p->mUnk_ec8 = 0;
             break;
@@ -268,7 +268,7 @@ void func_020975ec(void *a, Unk020975ec *p) {
             p->mUnk_ec0 = p->mUnk_ec0 + 2;
             if (p->mUnk_ec0 >= 0x1c) {
                 p->mUnk_ec0 = 0x1c;
-                p->mUnk_ecc = 6;
+                p->mState = 6;
             }
             p->mUnk_ec8 = 1;
             break;
@@ -286,7 +286,7 @@ void func_020975ec(void *a, Unk020975ec *p) {
                 v1->mUnk_00 = (s64) v1->mUnk_08 * (s64) v1->mUnk_00 + v1->mUnk_10;
                 r = ((u64) (u32) (v1->mUnk_00 >> 32) * 12) >> 32;
                 p->mUnk_eb8 = (u16) ((u16) r * 0x14);
-                p->mUnk_ecc = 1;
+                p->mState = 1;
             }
             break;
     }
@@ -321,9 +321,9 @@ void func_020975ac(void) {
 }
 
 void *func_0209758c(void) {
-    return (void *) func_0209bf1c(CreateFlipper, func_02097d80, NULL);
+    return (void *) func_0209bf1c(CreateFlipper, DrawFlipper, NULL);
 }
 
 void *func_0209756c(void) {
-    return (void *) func_0209bf48(func_020979c8, func_020975ec, NULL);
+    return (void *) func_0209bf48(func_020979c8, UpdateFlipper, NULL);
 }

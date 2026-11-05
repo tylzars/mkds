@@ -79,7 +79,7 @@ Unk020dbe74 *func_020dbe74(void) {
     return data_0217b690;
 }
 
-void func_020dbdac(void *a, Dossun *p, void *c, s32 d) {
+void DrawDossun(void *a, Dossun *p, void *c, s32 d) {
     Unk02012f58 *q;
     q = &p->mUnk_00.mMatrix;
     if (p->mUnk_b4 != 0) {
@@ -95,7 +95,7 @@ void func_020dbdac(void *a, Dossun *p, void *c, s32 d) {
     func_020ea868(gDossunShadow, q, &p->mUnk_00.mScale, d);
 }
 
-void func_020db760(void *a, Dossun *p) {
+void UpdateDossun(void *a, Dossun *p) {
     Unk0210b7a8 s;
     Unk020e0144 *q;
     Unk02042044 *e;
@@ -394,7 +394,7 @@ void CreateDossunAndDossunShadow(void) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020db2b8(Dossun *p, CourseMapRow *a) {
+void InitDossun(Dossun *p, CourseMapRow *a) {
     p->mUnk_f0 = a->mUnk_28;
     func_020d7da8(&p->mUnk_c8, a, p->mUnk_f0 != 0 ? 0xc00 : 0x3000);
     p->mUnk_ec = a->mUnk_2a;
@@ -443,7 +443,7 @@ void func_020db198(void) {
     func_020e6a18(gKuribo);
 }
 
-void func_020db050(void *a, Unk020da494 *p, void *c, u16 d) {
+void DrawKuribo(void *a, Kuribo *p, void *c, u16 d) {
     Vec3 s;
     Unk020d7b88 t;
     u16 e;
@@ -473,7 +473,7 @@ void func_020db050(void *a, Unk020da494 *p, void *c, u16 d) {
     func_020e67c4(gKuribo, &p->mUnk_00.mMatrix, &s, 0, d);
 }
 
-void func_020daf20(void *a, Unk020da494 *p) {
+void UpdateKuribo(void *a, Kuribo *p) {
     Unk0210b7a8 s;
     Unk020f41c4_B *r;
     s32 n;

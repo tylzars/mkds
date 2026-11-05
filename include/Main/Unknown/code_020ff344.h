@@ -57,5 +57,5 @@ void func_020ff910(Unk020ff438 *e, Unk02012f58 *out);
 void func_020ff97c(Unk020ff97c *e);
 BOOL func_020ffabc(u32 a);
 Unk02100004 *func_020ffacc(void);
-void func_020ffb1c(Unk020ffb1c *a, struct CourseMapRow *b);
+void InitDram(Dram *a, struct CourseMapRow *b);
 void CreateDram(void);

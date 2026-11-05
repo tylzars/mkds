@@ -14,7 +14,7 @@ typedef struct Unk020df6c8_e8 {
     /* 24 */ u32 mUnk_24;
 } Unk020df6c8_e8;
 
-// Object of at least 0xf4 bytes made by func_020df6c8.
+// Object of at least 0xf4 bytes, made by CreateMapObject and filled in by InitMkdEfBubble.
 typedef struct MkdEfBubbleObject {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
@@ -31,7 +31,7 @@ typedef struct MkdEfBubbleObject {
 } MkdEfBubbleObject;
 
 void CreateMkdEfBubble(void);
-void func_020df6c8(MkdEfBubbleObject *a, CourseMapRow *b);
+void InitMkdEfBubble(MkdEfBubbleObject *a, CourseMapRow *b);
 Unk020de390 *func_020df678(void);
 Unk020de2d8 *func_020df61c(void);
 void func_020df58c(void);

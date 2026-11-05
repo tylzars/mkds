@@ -63,7 +63,7 @@ void func_02098f18(Unk020e0144 *a, s32 b) {
     p->mUnk_d0 = func_0208b7bc(0x33, &p->mUnk_00.mPos);
 }
 
-void func_02098d4c(Pakkun *p) {
+void InitPakkun(Pakkun *p) {
     s32 v;
     s32 d;
     Vec3 a;
@@ -142,7 +142,7 @@ static inline u32 func_020983c4_inline(u32 n) {
     return (u16) t;
 }
 
-void func_02098b68(void *a, Pakkun *p) {
+void DrawPakkunMouth(void *a, Pakkun *p) {
     s32 w;
     s32 m[9];
     s32 n[9];
@@ -189,7 +189,7 @@ void func_02098b1c(void *a) {
     func_0209bbd0(a, gPakkunZHead);
 }
 
-void func_02098a58(void *a, Pakkun *p) {
+void DrawPakkunZHead(void *a, Pakkun *p) {
     s32 w;
     Vec3 v;
     s32 f[3];
@@ -220,7 +220,7 @@ void func_020989fc(void *a) {
     func_0209bbd0(a, gPakkunBody);
 }
 
-void func_02098954(void *a, Pakkun *p) {
+void DrawPakkunBody(void *a, Pakkun *p) {
     s32 w;
     s32 v[3];
     s32 d;
@@ -261,7 +261,7 @@ void func_0209886c(void) {
     }
 }
 
-void func_020983c4(void *a, Pakkun *p) {
+void UpdatePakkun(void *a, Pakkun *p) {
     BOOL f;
     s32 t;
     s32 x;
@@ -377,27 +377,27 @@ void func_020983c4(void *a, Pakkun *p) {
 }
 
 void *func_02098374(void) {
-    data_usa_0217b0f4 = (Unk020982d4 *) func_0209bf1c(CreatePakkunMouth, func_02098b68, NULL);
+    data_usa_0217b0f4 = (Unk020982d4 *) func_0209bf1c(CreatePakkunMouth, DrawPakkunMouth, NULL);
     data_usa_0217b0f4->mUnk_1c = 1;
     func_020d49d8(&data_usa_0217b0f4);
     return data_usa_0217b0f4;
 }
 
 void *func_02098328(void) {
-    data_usa_0217b0e8 = (void *) func_0209bef0(CreatePakkunBody, func_02098954, func_020989fc);
+    data_usa_0217b0e8 = (void *) func_0209bef0(CreatePakkunBody, DrawPakkunBody, func_020989fc);
     func_020d49d8(&data_usa_0217b0e8);
     return data_usa_0217b0e8;
 }
 
 void *func_020982d4(void) {
-    data_usa_0217b0f0 = (Unk020982d4 *) func_0209bef0(CreatePakkunZHead, func_02098a58, func_02098b1c);
+    data_usa_0217b0f0 = (Unk020982d4 *) func_0209bef0(CreatePakkunZHead, DrawPakkunZHead, func_02098b1c);
     data_usa_0217b0f0->mUnk_1c = 1;
     func_020d49d8(&data_usa_0217b0f0);
     return data_usa_0217b0f0;
 }
 
 void *func_0209828c(void) {
-    data_usa_0217b0dc = (Unk020e6fd4 *) func_0209bf48(func_0209886c, func_020983c4, NULL);
+    data_usa_0217b0dc = (Unk020e6fd4 *) func_0209bf48(func_0209886c, UpdatePakkun, NULL);
     func_020e6f50(&data_usa_0217b0dc);
     return data_usa_0217b0dc;
 }

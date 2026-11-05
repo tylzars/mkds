@@ -39,7 +39,7 @@ void func_020daf0c(Unk020daf0c *p0) {
     p0->mUnk_c8 = 0x0u;
 }
 
-void func_020dadfc(Unk020da494 *p) {
+void func_020dadfc(Kuribo *p) {
     if (p->mUnk_f0 >= 0xa && (p->mUnk_f0 < 0x14 || p->mUnk_f0 >= 0x1e)) {
         func_020d8cc8(&p->mUnk_cc);
     }
@@ -61,7 +61,7 @@ void func_020dade8(Unk020dade8 *p0) {
     p0->mUnk_c8 = 0x0u;
 }
 
-void func_020dac74(Unk020da494 *p) {
+void func_020dac74(Kuribo *p) {
     u32 f;
     Vec3 v;
     Vec3 w;
@@ -93,11 +93,11 @@ void func_020dac74(Unk020da494 *p) {
     }
 }
 
-void func_020dac58(Unk020da494 *p0) {
+void func_020dac58(Kuribo *p0) {
     p0->mUnk_00.mFlags = (u16) (((((u32) p0->mUnk_00.mFlags)) | (((u32) data_02158160))));
 }
 
-void func_020dac00(Unk020da494 *p) {
+void func_020dac00(Kuribo *p) {
     p->mUnk_c4 = (s32) (((s64) p->mUnk_c4 * 0x1266) >> 12);
     if (p->mUnk_c4 > 0x1800) {
         p->mUnk_00.mUnk_80.mNextState = 3;
@@ -109,7 +109,7 @@ u32 func_020dabfc(u32 p0) {
     return p0;
 }
 
-void func_020dab9c(Unk020da494 *p) {
+void func_020dab9c(Kuribo *p) {
     p->mUnk_c4 = (s32) (((s64) p->mUnk_c4 * 0xd99) >> 12);
     if (p->mUnk_c4 < 0x333) {
         p->mUnk_00.mUnk_80.mNextState = 4;
@@ -121,7 +121,7 @@ u32 func_020dab98(u32 p0) {
     return p0;
 }
 
-void func_020dab2c(Unk020da494 *p) {
+void func_020dab2c(Kuribo *p) {
     if (p->mUnk_fc != 0) {
         if (p->mUnk_00.mUnk_80.mStateFrames > 0x12c) {
             p->mUnk_00.mUnk_80.mNextState = 5;
@@ -135,7 +135,7 @@ void func_020dab2c(Unk020da494 *p) {
     }
 }
 
-void func_020daaa0(Unk020da494 *p) {
+void func_020daaa0(Kuribo *p) {
     Unk0210b7a8 s;
     s32 a;
     if ((p->mUnk_00.mUnk_78 & 4) == 0) {
@@ -156,7 +156,7 @@ void func_020daaa0(Unk020da494 *p) {
     p->mUnk_c8 = 0;
 }
 
-void func_020daa10(Unk020da494 *p) {
+void func_020daa10(Kuribo *p) {
     p->mUnk_c8 += (s32) (((s64) (0x1000 - p->mUnk_c4) * 0x200) >> 12);
     p->mUnk_c8 = (s32) (((s64) p->mUnk_c8 * 0xd99) >> 12);
     p->mUnk_c4 += p->mUnk_c8;
@@ -166,7 +166,7 @@ void func_020daa10(Unk020da494 *p) {
     }
 }
 
-void func_020da820(Unk020da494 *p, Vec3 *a) {
+void func_020da820(Kuribo *p, Vec3 *a) {
     Vec3 s;
     Unk020f41c4_A *r;
     s32 d;
@@ -205,7 +205,7 @@ void func_020da820(Unk020da494 *p, Vec3 *a) {
     func_020f6630(r, 0, &p->mUnk_00.mPos, a, &data_021581f8);
 }
 
-u32 func_020da73c(Unk020da494 *p, Kart *a, u8 *b, u8 *c) {
+u32 func_020da73c(Kuribo *p, Kart *a, u8 *b, u8 *c) {
     switch (*b) {
         case 0:
             if (p->mUnk_c4 == 0x1000) {
@@ -228,7 +228,7 @@ u32 func_020da73c(Unk020da494 *p, Kart *a, u8 *b, u8 *c) {
     return *c;
 }
 
-u32 func_020da684(Unk020da494 *p, Kart *a, u8 *b, u8 *c) {
+u32 func_020da684(Kuribo *p, Kart *a, u8 *b, u8 *c) {
     switch (*b) {
         case 0:
             if (p->mUnk_c4 == 0x1000) {
@@ -252,7 +252,7 @@ u32 func_020da684(Unk020da494 *p, Kart *a, u8 *b, u8 *c) {
     return *c;
 }
 
-void func_020da628(Unk020da494 *p) {
+void func_020da628(Kuribo *p) {
     p->mUnk_f8 = 0x1000;
     p->mUnk_a4 = data_02158140;
     p->mUnk_b4 = data_02158150;

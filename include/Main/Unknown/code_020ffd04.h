@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020ffb1c Unk020ffb1c;
+typedef struct Dram Dram;
 
-void func_020ffd04(Unk020ffb1c *p);
+void func_020ffd04(Dram *p);

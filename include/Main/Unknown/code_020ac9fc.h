@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-void func_020ac9fc(u32 arg0);
+/* creates the pooled object hidden (parks it with func_020d2398); the spawner later takes it with func_0209bbfc */
+void InitShineBalloon(u32 arg0);

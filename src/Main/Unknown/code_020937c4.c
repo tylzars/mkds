@@ -40,7 +40,7 @@ void CreateNsKiller1(void *a) {
     gNsKiller1 = func_0209be84(a, gNsKiller1NsbmdName);
 }
 
-void func_02093ee8(void *a, Unk02093cf4 *p) {
+void DrawNsKiller1(void *a, NsKiller1 *p) {
     s32 t;
 
     t = 0x1e;
@@ -55,7 +55,7 @@ void func_02093ee8(void *a, Unk02093cf4 *p) {
 
 void func_02093eac(Unk020e6fd4 *p) {
     s32 i;
-    Unk02093cf4 *e;
+    NsKiller1 *e;
 
     if (p == NULL) {
         return;
@@ -65,22 +65,22 @@ void func_02093eac(Unk020e6fd4 *p) {
     }
 }
 
-void func_02093cf4(void *a, Unk02093cf4 *p) {
+void UpdateNsKiller1(void *a, NsKiller1 *p) {
     Unk0210b7a8 s;
 
-    switch (p->mUnk_a8) {
+    switch (p->mState) {
         case 0:
             if (p->mUnk_a0-- > 0) {
                 return;
             }
             p->mUnk_ac.mUnk_04 = 0x2000;
             p->mUnk_ac.mUnk_10 = ((s64) p->mUnk_ac.mUnk_00->mUnk_00[p->mUnk_ac.mUnk_0c].mUnk_34 << 13) >> 12;
-            p->mUnk_a8 = 1;
+            p->mState = 1;
             break;
         case 1:
             if (func_020d8cc8(&p->mUnk_ac) != 0) {
                 p->mUnk_a0 = 0x2d;
-                p->mUnk_a8 = 2;
+                p->mState = 2;
             }
             func_020d879c(&p->mUnk_ac, &p->mUnk_00.mPos);
             break;
@@ -95,7 +95,7 @@ void func_02093cf4(void *a, Unk02093cf4 *p) {
                 }
             } else if (p->mUnk_a0 <= 0) {
                 p->mUnk_a0 = 0;
-                p->mUnk_a8 = 3;
+                p->mState = 3;
             }
             p->mUnk_a0--;
             break;
@@ -107,20 +107,20 @@ void func_02093cf4(void *a, Unk02093cf4 *p) {
                 func_0208b7bc(0x4d, &p->mUnk_00.mPos);
             }
             p->mUnk_a0 = 0x4b;
-            p->mUnk_a8 = 0;
+            p->mState = 0;
             break;
     }
 }
 
 void func_02093cd4(void) {
-    func_0209bf1c(CreateNsKiller1, func_02093ee8, NULL);
+    func_0209bf1c(CreateNsKiller1, DrawNsKiller1, NULL);
 }
 
 void func_02093cb4(void) {
-    func_0209bf48(func_02093eac, func_02093cf4, NULL);
+    func_0209bf48(func_02093eac, UpdateNsKiller1, NULL);
 }
 
-void func_02093c64(Unk02093910 *p) {
+void InitNsKiller2(NsKiller2 *p) {
     p->mUnk_00.mFlags |= data_021564b4;
     func_020d2398(&p->mUnk_00);
     p->mUnk_a8 = func_020d286c(&p->mUnk_00);
@@ -128,7 +128,7 @@ void func_02093c64(Unk02093910 *p) {
     p->mUnk_00.mUnk_94->mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6b4;
 }
 
-u8 func_02093b7c(Unk02093910 *a, Kart *b, u8 *c, u8 *d) {
+u8 func_02093b7c(NsKiller2 *a, Kart *b, u8 *c, u8 *d) {
     u8 x;
     u8 v;
 
@@ -156,7 +156,7 @@ void CreateNsKiller2AndNsKiller2S(void *a) {
     func_0209b940(gNsKiller2S, 0x3f);
 }
 
-void func_02093a50(void *a, Unk02093910 *p) {
+void DrawNsKiller2(void *a, NsKiller2 *p) {
     s32 t;
     s32 m[9];
     s32 i;
@@ -175,7 +175,7 @@ void func_02093a50(void *a, Unk02093910 *p) {
     func_0209bb2c(a, gNsKiller2, p);
 }
 
-void func_02093910(void *a, Unk02093910 *p) {
+void UpdateNsKiller2(void *a, NsKiller2 *p) {
     if ((func_0207a780() & p->mUnk_00.mUnk_74) != 0) {
         p->mUnk_00.mFlags |= data_021564a8;
     } else {
@@ -217,11 +217,11 @@ void func_020938c0(void) {
 }
 
 void func_020938a0(void) {
-    func_0209bf1c(CreateNsKiller2AndNsKiller2S, func_02093a50, NULL);
+    func_0209bf1c(CreateNsKiller2AndNsKiller2S, DrawNsKiller2, NULL);
 }
 
 void func_02093884(void) {
-    func_0209bf48(NULL, func_02093910, NULL);
+    func_0209bf48(NULL, UpdateNsKiller2, NULL);
 }
 
 void func_020937c4(Vec3 *a, Vec3 *b, u16 c) {

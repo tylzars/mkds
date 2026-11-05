@@ -57,7 +57,7 @@ Unk020fff4c *func_020fff4c(void) {
     return data_0217c62c;
 }
 
-void func_020ffeb8(void *a, Unk020ffb1c *e, void *c, s32 d) {
+void DrawDram(void *a, Dram *e, void *c, s32 d) {
     Unk02012f58 *q;
     s32 v;
 
@@ -73,7 +73,7 @@ void func_020ffeb8(void *a, Unk020ffb1c *e, void *c, s32 d) {
 void func_020ffdd4(Unk020e6fd4 *v1) {
     Unk020f41c4_B *q;
     void **arr;
-    Unk020ffb1c *e;
+    Dram *e;
     u16 *v2;
     s32 n, i;
     u16 t;
@@ -98,7 +98,7 @@ void func_020ffdd4(Unk020e6fd4 *v1) {
     }
 }
 
-void func_020ffdc4(u32 arg0, u32 arg1) {
+void UpdateDram(u32 arg0, u32 arg1) {
     u32 value0;
     u32 value1 = arg1;
     u32 value12;
@@ -111,7 +111,7 @@ u32 func_020ffdc0(u32 p0) {
     return p0;
 }
 
-void func_020ffda0(Unk020ffb1c *p) {
+void func_020ffda0(Dram *p) {
     if (p->mUnk_00.mUnk_80.mStateFrames > p->mUnk_a4) {
         p->mUnk_00.mUnk_80.mNextState = 2;
         p->mUnk_00.mUnk_80.mNextStateRequested = 1;
@@ -122,7 +122,7 @@ void func_020ffd94(Unk020ffd94 *p0) {
     p0->mUnk_ac = 0x0u;
 }
 
-void func_020ffd40(Unk020ffb1c *p) {
+void func_020ffd40(Dram *p) {
     p->mUnk_ac += p->mUnk_b0;
     p->mUnk_a6 += (s16) ((s32) (((s64) p->mUnk_ac * p->mUnk_a8) >> 12));
     if (p->mUnk_00.mUnk_80.mStateFrames > p->mUnk_a0) {
@@ -135,7 +135,7 @@ u32 func_020ffd3c(u32 p0) {
     return p0;
 }
 
-void func_020ffd04(Unk020ffb1c *p) {
+void func_020ffd04(Dram *p) {
     p->mUnk_a6 += p->mUnk_a8;
     if (p->mUnk_a2 == 0) {
         return;
@@ -150,7 +150,7 @@ void func_020ffcf8(Unk020ffcf8 *p0) {
     p0->mUnk_ac = 0x1000u;
 }
 
-void func_020ffc98(Unk020ffb1c *p) {
+void func_020ffc98(Dram *p) {
     s16 d;
 
     p->mUnk_ac -= p->mUnk_b0;
@@ -165,7 +165,7 @@ void func_020ffc98(Unk020ffb1c *p) {
     }
 }
 
-void func_020ffc4c(Unk020ffb1c *p) {
+void func_020ffc4c(Dram *p) {
     s32 n;
 
     n = p->mUnk_a6;

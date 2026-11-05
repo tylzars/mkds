@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020dc474 Unk020dc474;
+typedef struct Wanwan Wanwan;
 
-void func_020dc5dc(Unk020dc474 *p);
+void func_020dc5dc(Wanwan *p);

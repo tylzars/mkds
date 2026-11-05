@@ -641,7 +641,7 @@ Expression shapes:
 - An inner table loop with a dead counter and a byte offset stepped by 2: `l = j * 12; for (k = 0, s.x = 0; k < N; k++,
   l++, s.x += STEP) tbl[i][l]` (func_ov003_021c0d2c, like func_ov003_021c1cd8).
 - A pointer to a field incremented in a loop with its address formed early: drop the pointer and write `p->f++`
-  (func_02098d4c).
+  (InitPakkun).
 - Loop counter set before two pool-loaded table pointers: `j = 2; q = ..; p = ..; for (; j < 4; q++, p++, j++)`
   (func_ov003_021c06e0).
 - A loop counter taking its register before `counter + off` and before the loop's sum, the reverse of the original:
@@ -811,7 +811,7 @@ Expression shapes:
   the high word dropped: the sum is of `u64` locals and the result truncated (func_020401ac).
 - Where the narrowing sits shows what was narrowed. `lsl #1` then `lsl #16; lsr #16` (ROM) against one `lsl #17;
   lsr #16`: `v1 = f(...) * 2; g(..., (u16) v1);` (func_02009828). `lsl #4; lsr #16` for a `u16` argument is how
-  `x >> 12` is narrowed: pass `p->mUnk_0a4 >> 12`, not `(u32) x << 4 >> 16` (func_02098b68).
+  `x >> 12` is narrowed: pass `p->mUnk_0a4 >> 12`, not `(u32) x << 4 >> 16` (DrawPakkunMouth).
 - No `lsl/lsr` narrowing after an add and a signed `movge` against a `u16` compare in the ROM: the value is `s32`
   (func_020919e8).
 - A by-value struct parameter read through a `volatile T *p = &b;` local keeps an `add r0, sp, #4` in a register;
@@ -1041,7 +1041,7 @@ Link order and linking:
   `_ll_mul`, the name the delinked original has (func_ov000_021acef8). The ROM has one routine for both;
   func_020de6a8 matches only with the unsigned product.
 - Random scaling `((x >> 32) * m) >> 32`: the product's signedness decides which register the zero high word and
-  the loaded word get. When they swap, flip it: unsigned in func_020983c4, signed in func_ov001_0218c0a4. A `u16 n`
+  the loaded word get. When they swap, flip it: unsigned in UpdatePakkun, signed in func_ov001_0218c0a4. A `u16 n`
   converted to `s64` is sign-extended (`asrs rX, n, #31`), `(u32) n` zero-extended (func_020427d4).
 - The random helper joins one `u32` and narrows once: `u32 t; if (n == 0) { t = 0; } else { step; if (n == 0) { t =
   x >> 32; } else { t = ((s64) (x >> 32) * (u32) n) >> 32; } } return t;` in a helper returning `u16`

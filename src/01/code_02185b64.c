@@ -24,7 +24,7 @@
 
 Unk0219b250 *gMissionGate;
 
-void func_ov001_02185dd0(MissionGateObject *a) {
+void InitMissionGate(MissionGateObject *a) {
     s32 mtx[9];
     s32 r4;
     s32 r6;
@@ -76,7 +76,7 @@ void LoadMissionGate(void *a) {
 
 void func_ov001_02185d18(void) {}
 
-void func_ov001_02185ca0(void *a, MissionGateObject *b) {
+void DrawMissionGate(void *a, MissionGateObject *b) {
     s32 buf;
 
     buf = 0x1e;
@@ -108,7 +108,7 @@ void func_ov001_02185c4c(Unk02185c4c *a) {
     }
 }
 
-void func_ov001_02185bb8(void *a, MissionGateObject *b) {
+void UpdateMissionGate(void *a, MissionGateObject *b) {
     s32 pos;
 
     switch (b->mState) {
@@ -136,9 +136,9 @@ void func_ov001_02185b98(void) {
 }
 
 void func_ov001_02185b7c(void) {
-    func_0209bf1c(LoadMissionGate, func_ov001_02185ca0, func_ov001_02185d18);
+    func_0209bf1c(LoadMissionGate, DrawMissionGate, func_ov001_02185d18);
 }
 
 void func_ov001_02185b64(void) {
-    func_0209bf48(func_ov001_02185c4c, func_ov001_02185bb8, NULL);
+    func_0209bf48(func_ov001_02185c4c, UpdateMissionGate, NULL);
 }

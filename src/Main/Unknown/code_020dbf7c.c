@@ -63,7 +63,7 @@ static inline s64 func_020dc354_inline(const Vec3 *v) {
     return (s64) v->x * v->x + (s64) v->z * v->z;
 }
 
-void func_020dc354(Unk020dc474 *p) {
+void func_020dc354(Wanwan *p) {
     p->mUnk_00.mUnk_10.x = p->mUnk_00.mPos.x;
     p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z;
     func_020d84e4(&p->mUnk_1a0);
@@ -90,7 +90,7 @@ void CreateWanwanAndRockShadow(void) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020dc1d8(Unk020dc474 *p, CourseMapRow *a) {
+void func_020dc1d8(Wanwan *p, CourseMapRow *a) {
     p->mUnk_a0 = a->mUnk_00;
     p->mUnk_f0 = (s32) (((s64) p->mUnk_00.mScale.y * 0x1e000) >> 12);
     p->mUnk_f4 = 0xf000 - p->mUnk_f0;
@@ -113,7 +113,7 @@ void func_020dc1d8(Unk020dc474 *p, CourseMapRow *a) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020dc11c(Unk020dc474 *p, CourseMapRow *a) {
+void func_020dc11c(Wanwan *p, CourseMapRow *a) {
     p->mUnk_a0 = a->mUnk_00;
     p->mUnk_f0 = (s32) (((s64) p->mUnk_00.mScale.y * 0x1e000) >> 12);
     p->mUnk_f4 = 0xf000 - p->mUnk_f0;
@@ -129,7 +129,7 @@ void func_020dc11c(Unk020dc474 *p, CourseMapRow *a) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020dbf7c(Unk020dc474 *p) {
+void func_020dbf7c(Wanwan *p) {
     p->mUnk_00.mPos = p->mUnk_a0;
     p->mUnk_00.mUnk_10.x = 0;
     p->mUnk_00.mUnk_10.y = 0;

@@ -49,6 +49,7 @@ typedef struct Unk02097520 {
     /* 02 */ u16 mUnk_02;
 } Unk02097520;
 
+// A second type for the kind 0x1a9 (Flipper) objects: only the prefix up to mUnk_ebc is used.
 typedef struct Unk0209753c {
     /* 00 */ u8 mUnk_00[0xebc];
     /* ebc */ u32 mUnk_ebc;
@@ -61,14 +62,15 @@ BOOL func_02095f38(Unk0217b498_00 *a);
 u32 func_02095f5c(void);
 u32 func_02095f7c(void);
 void func_02095f9c(void);
-void func_02095fec(void *a, CoverPooHole *p);
+void UpdateCoverPooHole(void *a, CoverPooHole *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
 s32 func_020968c0(s32 a, s32 b);
 s32 func_020968dc(s32 a);
 void func_020968f4(Unk020968f4 *p);
-void func_02096a04(void *a, CoverPooHole *p);
+void DrawCoverPooHole(void *a, CoverPooHole *p);
 void CreateCoverPooHole(void *a);
 BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c);
 u32 func_02096f54(CoverPooHole *p, Kart *a, u8 *b, u8 *c);
 u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c);
-void func_02097520(Unk02097520 *p0);
+/* sets flag 0x200 through the prefix type Unk02097520, whose mUnk_02 is MapObject.mFlags */
+void InitCoverPooHole(Unk02097520 *p0);
 u32 func_0209753c(u32 a);

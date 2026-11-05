@@ -44,7 +44,7 @@ Unk020dd804 *data_0217b6d8 = 0;
 
 const Unk020dd860 data_02158388 = {func_020dd230, func_020dd1f4, 1, 0x1b000, {0}, 1, 1, 0x12e, {0}};
 const Unk020dd804 data_0215835c = {{0}, CreateWanwanAndRockShadow, {0}, func_020dd6c8, {0}, 1, {0}, 0};
-const Unk020dd7a8 data_02158334 = {{0}, func_020dd27c, {0}, 0};
+const Unk020dd7a8 data_02158334 = {{0}, UpdateWanwan, {0}, 0};
 
 Unk020dd860 *func_020dd860(void) {
     Unk020dd860 *p;
@@ -74,7 +74,7 @@ Unk020dd7a8 *func_020dd7a8(void) {
     return data_0217b6d4;
 }
 
-void func_020dd6c8(void *a, Unk020dc474 *p, void *b, u32 c) {
+void func_020dd6c8(void *a, Wanwan *p, void *b, u32 c) {
     Unk02012f58 s;
 
     if (p->mUnk_00.mUnk_80.mState == 4) {
@@ -94,7 +94,7 @@ void func_020dd6c8(void *a, Unk020dc474 *p, void *b, u32 c) {
     func_020ea868(gWanwanRockShadow, &s, &p->mUnk_00.mScale, c);
 }
 
-void func_020dd27c(void *a, Unk020dc474 *p) {
+void UpdateWanwan(void *a, Wanwan *p) {
     u32 f;
     Unk020d7b88 m;
     Vec3 v;
@@ -226,7 +226,7 @@ void func_020dd27c(void *a, Unk020dc474 *p) {
     func_020dbf7c(p);
 }
 
-u8 func_020dd230(Unk020dc474 *p, void *a, u8 *b, u8 *c) {
+u8 func_020dd230(Wanwan *p, void *a, u8 *b, u8 *c) {
     if (*b == 1) {
         if (p->mUnk_00.mUnk_80.mState != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
             p->mUnk_00.mUnk_80.mNextState = 2;
@@ -237,7 +237,7 @@ u8 func_020dd230(Unk020dc474 *p, void *a, u8 *b, u8 *c) {
     return *c;
 }
 
-u8 func_020dd1f4(Unk020dc474 *p, void *a, u8 *b, u8 *c) {
+u8 func_020dd1f4(Wanwan *p, void *a, u8 *b, u8 *c) {
     if (*b == 1) {
         if (p->mUnk_00.mUnk_80.mState != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
             p->mUnk_00.mUnk_80.mNextState = 2;
@@ -247,7 +247,7 @@ u8 func_020dd1f4(Unk020dc474 *p, void *a, u8 *b, u8 *c) {
     return *c;
 }
 
-void func_020dd0d8(Unk020dc474 *p) {
+void func_020dd0d8(Wanwan *p) {
     Vec3 *q;
 
     p->mUnk_e8 = 0x555;
@@ -270,7 +270,7 @@ static inline s64 func_020dccc8_inline(const Vec3 *v) {
     return (s64) v->x * v->x + (s64) v->z * v->z;
 }
 
-void func_020dccc8(Unk020dc474 *p) {
+void func_020dccc8(Wanwan *p) {
     Vec3 *q;
     Vec3 *c;
     Unk020f41c4_B *r;
@@ -375,7 +375,7 @@ void func_020dccc8(Unk020dc474 *p) {
     }
 }
 
-void func_020dcc0c(Unk020dc474 *p) {
+void func_020dcc0c(Wanwan *p) {
     Unk0210b7a8 a;
     s32 k;
 
@@ -401,7 +401,7 @@ void func_020dcc0c(Unk020dc474 *p) {
     func_0210b7a8(&a);
 }
 
-void func_020dc7c0(Unk020dc474 *p) {
+void func_020dc7c0(Wanwan *p) {
     Vec3 a;
     Vec3 b;
     s32 t;
@@ -472,7 +472,7 @@ void func_020dc7c0(Unk020dc474 *p) {
     }
 }
 
-void func_020dc788(Unk020dc474 *p) {
+void func_020dc788(Wanwan *p) {
     p->mUnk_e8 = 0xd000;
     p->mUnk_ec = 0x1c2;
     if (p->mUnk_fc == 0) {
@@ -481,7 +481,7 @@ void func_020dc788(Unk020dc474 *p) {
     p->mUnk_00.mUnk_10.y = 0x8000;
 }
 
-void func_020dc608(Unk020dc474 *p) {
+void func_020dc608(Wanwan *p) {
     const Vec3 *v;
 
     if (p->mUnk_fc != 0) {
@@ -524,7 +524,7 @@ void func_020dc608(Unk020dc474 *p) {
     }
 }
 
-void func_020dc5dc(Unk020dc474 *p) {
+void func_020dc5dc(Wanwan *p) {
     p->mUnk_e8 = 0x555;
     p->mUnk_ec = 0x1c2;
     p->mUnk_1d8->mUnk_a8 = 0x599;
@@ -534,7 +534,7 @@ static inline s64 func_020dc474_inline(const Vec3 *v) {
     return (s64) v->x * v->x + (s64) v->z * v->z;
 }
 
-void func_020dc474(Unk020dc474 *p) {
+void func_020dc474(Wanwan *p) {
     Vec3 a;
     s32 k;
 
@@ -558,15 +558,15 @@ void func_020dc474(Unk020dc474 *p) {
     }
 }
 
-void func_020dc448(Unk020dc474 *p) {
+void func_020dc448(Wanwan *p) {
     p->mUnk_e8 = 0x555;
     p->mUnk_ec = 0x1c2;
     p->mUnk_1d8->mUnk_a8 = 0x599;
 }
 
-void func_020dc444(Unk020dc474 *p) {}
+void func_020dc444(Wanwan *p) {}
 
-void func_020dc428(Unk020dc474 *p) {
+void func_020dc428(Wanwan *p) {
     p->mUnk_e8 = 0x555;
     p->mUnk_ec = 0x1c2;
 }

@@ -15,8 +15,9 @@ void func_020dfd64(Unk020e005c *a, CourseMapRow *b);
 Unk020de390 *func_020dfd14(void);
 Unk020de334 *func_020dfcb8(void);
 Unk020dfc44 *func_020dfc44(void);
-void func_020dfafc(void *a, MkdEfBubbleObject *b, void *c, s32 d);
+/* writes the polygon alpha cap (mUnk_030 of its effect record), read only by draw routines */
+void DrawMkdEfBubble(void *a, MkdEfBubbleObject *b, void *c, s32 d);
 void func_020dfae4(void);
-void func_020dfa50(void *a, MkdEfBubbleObject *b);
+void UpdateMkdEfBubble(void *a, MkdEfBubbleObject *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void func_020df938(MkdEfBubbleObject *a);
 void func_020df890(MkdEfBubbleObject *a);

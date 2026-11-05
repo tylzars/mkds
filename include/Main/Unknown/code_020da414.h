@@ -12,8 +12,8 @@ typedef struct Unk020da414 {
     /* 00 */ s32 mUnk_00[0x10];
 } Unk020da414;
 
-// Object of at least 0x108 bytes.
-typedef struct Unk020da494 {
+// Object of kind 0x191 (Kuribo), at least 0x108 bytes; also created in pools by ov001.
+typedef struct Kuribo {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ Unk020d7b88 mUnk_a4;
@@ -30,7 +30,8 @@ typedef struct Unk020da494 {
     /* 100 */ u16 mUnk_100;
     /* 102 */ s16 mUnk_102;
     /* 104 */ s32 mUnk_104;
-} Unk020da494;
+} Kuribo;
 
-void func_020da494(Unk020da494 *a, CourseMapRow *b);
+/* also runs for source-created objects with b == NULL (then only mUnk_100 is set) */
+void InitKuribo(Kuribo *a, CourseMapRow *b);
 Unk020da414 *func_020da414(void);

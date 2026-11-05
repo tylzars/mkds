@@ -40,9 +40,9 @@ typedef struct MapObjectKindData {
 } MapObjectKindData;
 
 // Element object up to 0xa0, which every kind shares: func_020e705c and func_020e71a0 read 0x78 and 0x94 of every
-// object, func_020d6968 reads 0x00, 0x02 and 0x98. func_020da494 and func_020ffb1c pass the Unk020e005c_080 at 0x80 to
+// object, func_020d6968 reads 0x00, 0x02 and 0x98. InitKuribo and InitDram pass the Unk020e005c_080 at 0x80 to
 // func_02046be8.
-// From 0xa0 on, the objects of func_020e72cc (Unk020e730c), func_020ffb1c (Unk020ffb1c), func_020ff97c (Unk020ff97c)
+// From 0xa0 on, the objects of func_020e72cc (Unk020e730c), InitDram (Dram), func_020ff97c (Unk020ff97c)
 // and func_021052fc (Unk021052fc) use the bytes in different ways.
 typedef struct MapObject {
     /* 00 */ u16 mKind;

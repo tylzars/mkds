@@ -4,8 +4,9 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
-// Object of 0xd8 bytes: the MapObject it starts with, a vector at 0xa0 and words and halfwords up to 0xd4.
-typedef struct Unk0209219c {
+// Object of kind 0x19f (Basabasa), 0xd8 bytes: the MapObject it starts with, a vector at 0xa0 and words and halfwords
+// up to 0xd4.
+typedef struct Basabasa {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ Vec3 mUnk_a0;
     /* ac */ u16 mUnk_ac;
@@ -21,10 +22,12 @@ typedef struct Unk0209219c {
     /* cc */ s32 mUnk_cc;
     /* d0 */ u8 mUnk_d0;
     /* d1 */ u8 mUnk_d1[3];
-    /* d4 */ s32 mUnk_d4;
-} Unk0209219c;
+    /* State number of this kind's own per-frame switch in UpdateBasabasa; this object does not use
+       MapObject.mUnk_80's state machine */
+    /* d4 */ s32 mState;
+} Basabasa;
 
-typedef struct Unk0209219c Unk0209219c;
+typedef struct Basabasa Basabasa;
 
 // Object func_0209297c reads: a halfword at 0x74 and a vector at 0x80.
 typedef struct Unk0209297c {
@@ -40,8 +43,9 @@ void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f);
 void func_02092468(void);
 void func_02092484(void);
 void func_020924a8(void);
-void func_020924d8(void *a, Unk0209219c *b);
-void func_0209280c(void *a, Unk0209219c *b);
+void UpdateBasabasa(void *a, Basabasa *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void DrawBasabasa(void *a, Basabasa *b);
 void func_02092928(void *a);
-u8 func_0209297c(Unk0209219c *a, Unk0209297c *b, void *c, u8 *d);
-void func_02092b20(MapObject *arg0);
+u8 func_0209297c(Basabasa *a, Unk0209297c *b, void *c, u8 *d);
+/* creates the pooled object hidden (parks it with func_020d2398); the spawner later takes it with func_0209bbfc */
+void InitBasabasa(MapObject *arg0);

@@ -10,10 +10,10 @@ typedef struct Unk0219b250 Unk0219b250;
 void func_ov001_02185b64(void);
 void func_ov001_02185b7c(void);
 void func_ov001_02185b98(void);
-void func_ov001_02185bb8(void *a, MissionGateObject *b);
+void UpdateMissionGate(void *a, MissionGateObject *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void func_ov001_02185c4c(Unk02185c4c *a);
-void func_ov001_02185ca0(void *a, MissionGateObject *b);
+void DrawMissionGate(void *a, MissionGateObject *b);
 void func_ov001_02185d18(void);
 void LoadMissionGate(void *a);
 u32 func_ov001_02185d74(MissionGateObject *c, Unk02185d74 *d, u8 *e, u8 *f);
-void func_ov001_02185dd0(MissionGateObject *a);
+void InitMissionGate(MissionGateObject *a);
