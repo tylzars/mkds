@@ -114,7 +114,7 @@ void func_020ce3f8(Unk020c06c4 *a) {
 }
 
 s32 func_020ce3e0(void) {
-    return func_020c0c2c(&data_0217b478, 0x198);
+    return func_020c0c2c(&data_0217b478, MAP_OBJECT_KIND_MKD_EF_BUBBLE);
 }
 
 void func_020ce3cc(void) {
@@ -403,7 +403,7 @@ void func_020cd9f8(Unk020c06c4 *a) {
 }
 
 s32 func_020cd9dc(void) {
-    return func_020c0c2c(&data_0217b45c, 0x1a7);
+    return func_020c0c2c(&data_0217b45c, MAP_OBJECT_KIND_COVER_POO_HOLE);
 }
 
 void func_020cd9c8(void) {

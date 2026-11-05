@@ -992,7 +992,7 @@ void func_020c79f0(Unk020c06c4 *a) {
 }
 
 s32 func_020c79d4(void) {
-    return func_020c0c2c(&data_0217b408, 0x193);
+    return func_020c0c2c(&data_0217b408, MAP_OBJECT_KIND_DOSSUN);
 }
 
 void func_020c79c0(void) {

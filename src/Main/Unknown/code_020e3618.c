@@ -18,12 +18,13 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020f9c6c.h"
+#include "Main/Unknown/code_021000d0.h"
 
 #pragma thumb off
 
 BOOL func_020e3af0(u32 a) {
     switch (a) {
-        case 0xcc:
+        case MAP_OBJECT_KIND_BRIDGE:
             return TRUE;
         default:
             return FALSE;

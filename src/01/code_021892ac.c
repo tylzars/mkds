@@ -5,6 +5,7 @@
 #include "01/code_021857a4.h"
 #include "01/code_0218c790.h"
 #include "01/unk_021a9000.h"
+#include "Main/Unknown/code_021000d0.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_020b1dbc.h"
 #include "Main/Unknown/code_0207b960.h"
@@ -217,7 +218,7 @@ void func_ov001_021896fc(void *a) {
 }
 
 s32 func_ov001_021896e0(void) {
-    return func_020c0c2c(&data_ov001_021a9bb4, 0x159);
+    return func_020c0c2c(&data_ov001_021a9bb4, MAP_OBJECT_KIND_STOP_SIGN);
 }
 
 void func_ov001_021896cc(void) {
@@ -252,7 +253,7 @@ void func_ov001_0218959c(void *a) {
 }
 
 s32 func_ov001_02189584(void) {
-    return func_020c0c2c(&data_ov001_021a9bb0, 0x6e);
+    return func_020c0c2c(&data_ov001_021a9bb0, MAP_OBJECT_KIND_MISSION_GATE);
 }
 
 void func_ov001_02189570(void) {
