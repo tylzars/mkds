@@ -20,4 +20,3 @@ void func_0202d6a0(void);
 void func_0202d720(void);
 void func_0202d82c(void);
 void func_0202d868(s32 a, s32 b, s32 c, s32 d);
-BOOL func_0204eb08(void *a);

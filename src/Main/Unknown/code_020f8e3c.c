@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_020f8e3c.h"
 #include "Main/Unknown/code_020b1dbc.h"
 #include "Main/Unknown/code_0207b960.h"
 #include "Main/Unknown/code_020b4e5c.h"
@@ -10,7 +11,6 @@
 #include "Main/Unknown/code_0207a880.h"
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/code_02070398.h"
-#include "Main/Unknown/code_020f8e3c.h"
 
 u32 func_020f8e3c(u32 arg0, u32 arg1) {
     u32 value0 = arg0;

@@ -2,8 +2,6 @@
 
 #include "types.h"
 
-void func_02049980(s32 a);
-
 void func_0204b03c(void);
 u32 func_0204b084(u32 *p, u32 n, u32 a);
 void func_0204b138(u32 *p, u32 n);

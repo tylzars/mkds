@@ -10,6 +10,7 @@
 #include "Main/Unknown/code_020ae630.h"
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036820.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 void InitWiFiMenuScene(s16 *a) {
     void *b;

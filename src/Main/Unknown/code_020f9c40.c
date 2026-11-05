@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_020d50ec.h"
 #include "Main/Unknown/code_020f9c40.h"
+#include "Main/Unknown/code_020d50ec.h"
 
 void func_020f9c40(int arg0) {
     u32 value0 = (u32) arg0;

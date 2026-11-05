@@ -28,6 +28,7 @@
 #include "00/code_0219c384.h"
 #include "00/code_0219caac.h"
 #include "00/code_0219742c.h"
+#include "code_02152a24.h"
 
 void func_ov000_0219d934(void *first, void *second) {
     if (gWiFiBuddySync != NULL) {

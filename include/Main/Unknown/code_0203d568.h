@@ -16,12 +16,4 @@ void func_0203e370(RaceProgressKart *a, s32 b);
 void func_0203e4c4(u32 a, u32 b);
 void func_0203e550(RaceProgressKart *a);
 
-BOOL func_0203fa60(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e);
-void func_0203f334(RaceProgressKart *a, s32 b);
-void func_0203e788(s32 a, s32 b);
-s32 func_0203ef58(void);
-void func_0203eb38(void);
-void func_0203ecf0(void);
-void func_0203ee28(void);
-void func_0203d21c(void);
 u32 func_0207a7fc(s32 a);

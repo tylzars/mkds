@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_020d113c.h"
+#include "Main/Unknown/code_020364e0.h"
 
 u32 func_020d113c(void) {
     u32 value0;

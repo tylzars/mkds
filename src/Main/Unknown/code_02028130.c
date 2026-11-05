@@ -43,6 +43,8 @@
 #include "Main/Unknown/code_020b6a18.h"
 #include "Main/Unknown/code_0207a880.h"
 #include "Main/Unknown/code_020b502c.h"
+#include "Main/Unknown/code_02025edc.h"
+#include "Main/Unknown/code_0202bb80.h"
 
 #pragma optimize_for_size on
 

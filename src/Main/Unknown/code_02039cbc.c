@@ -23,6 +23,12 @@
 #include "Main/Unknown/code_0211d4a8.h"
 #include "code_0200e77c.h"
 #include "code_0214d93c.h"
+#include "Main/Unknown/code_02044618.h"
+#include "Main/Unknown/code_020467d0.h"
+#include "Main/Unknown/code_020483e4.h"
+#include "Main/Unknown/code_0204984c.h"
+#include "Main/Unknown/code_0204ad44.h"
+#include "Main/Unknown/code_0204b714.h"
 
 void func_02039cbc(void) {
     void *a;

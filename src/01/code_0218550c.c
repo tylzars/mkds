@@ -19,6 +19,8 @@
 #include "code_021488e8.h"
 #include "code_02148950.h"
 #include "registers.h"
+#include "Main/Unknown/code_02028130.h"
+#include "Main/Unknown/code_02027e78.h"
 
 #pragma optimize_for_size on
 

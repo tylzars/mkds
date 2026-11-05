@@ -2,6 +2,7 @@
 
 #include "Main/Unknown/code_02056b30.h"
 #include "Main/Unknown/code_0214d000.h"
+#include "Main/Unknown/unk_02154000.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_0214d018.h"
@@ -96,6 +97,7 @@
 #include "code_0214a748.h"
 #include "Main/Unknown/code_02042064.h"
 #include "01/code_0218155c.h"
+#include "Main/Unknown/code_0203ca38.h"
 
 u32 func_02062ec4(void) {
     return ((u32) gRace->mUnk_28);
@@ -104,9 +106,6 @@ u32 func_02062ec4(void) {
 u32 func_02062eb0(void) {
     return ((u32) gRace->mUnk_38);
 }
-
-extern const u16 data_02154970[8];
-extern const u16 data_02154980[8];
 
 // Builds the race world and gRace. Not part of it: the screen and 3D engine set-up (func_02062860, called before), the
 // net and the HUD, which are in the scene slot InitRaceScene.

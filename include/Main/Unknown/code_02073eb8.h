@@ -85,4 +85,3 @@ void SetupCameraBehindKart(void);
 void func_02076bcc(Camera *a);
 void func_02076c50(Camera *a, s32 b);
 Unk02012f58 *func_02076cc4(void);
-void SetupCamera(Camera *p);

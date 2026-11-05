@@ -1,9 +1,9 @@
+#include "00/code_02189478.h"
 #include "00/code_021884d8.h"
 #include "00/code_021892f4.h"
 #include "00/code_02189350.h"
 #include "00/code_02189420.h"
 #include "00/code_02189440.h"
-#include "00/code_02189478.h"
 
 u8 func_ov000_021894c0(void) {
     int v1;

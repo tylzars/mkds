@@ -1,6 +1,6 @@
+#include "Main/Unknown/code_02090354.h"
 #include "Main/Unknown/code_020483e4.h"
 #include "Main/Unknown/code_0207ffa4.h"
-#include "Main/Unknown/code_02090354.h"
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_0207e000.h"
 #include "Main/Unknown/code_0207f000.h"
@@ -41,6 +41,7 @@
 #include "Main/Unknown/code_020f9c6c.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/unk_027e0000.h"
+#include "Main/Unknown/code_0207e654.h"
 
 void CreateSmanTop(void *a) {
     void *p;

@@ -13,6 +13,7 @@
 #include "Main/Unknown/unk_00000000.h"
 #include "Main/Unknown/unk_00002000.h"
 #include "00/code_02188720.h"
+#include "code_0200e6ec.h"
 
 u32 func_0200e670(void) {
     u32 value0;

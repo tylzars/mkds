@@ -6,6 +6,7 @@
 #include "Main/Unknown/code_02029000.h"
 #include "Main/Unknown/code_02029890.h"
 #include "01/code_021956dc.h"
+#include "Main/Unknown/code_0202993c.h"
 
 #pragma thumb on
 #pragma optimize_for_size on

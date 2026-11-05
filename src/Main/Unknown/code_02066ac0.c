@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_020435c4.h"
 #include "Main/Unknown/code_02066ac0.h"
+#include "Main/Unknown/code_020435c4.h"
 
 #include "Main/Unknown/code_02043000.h"
 #include "Main/Unknown/code_0203c000.h"
@@ -42,6 +42,7 @@
 #include "code_02147288.h"
 #include "Main/Unknown/code_02055730.h"
 #include "Main/Unknown/code_02081120.h"
+#include "Main/Unknown/code_0206d020.h"
 
 s32 func_02067bf4(Kart *a, s32 *b) {
     *b = 0xc;

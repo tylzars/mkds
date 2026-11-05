@@ -1,6 +1,6 @@
+#include "code_020219b0.h"
 #include "code_0200eddc.h"
 #include "code_02020e3c.h"
-#include "code_020219b0.h"
 
 void func_020219b0(Unk02021968 *arg0, u32 arg1, void *arg2) {
     u32 value0 = (u32) arg0;

@@ -1,10 +1,10 @@
+#include "Main/Unknown/code_020cbad0.h"
 #include "Main/Unknown/code_0202bb80.h"
 #include "Main/Unknown/code_0203206c.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02036c5c.h"
 #include "Main/Unknown/code_0203be88.h"
 #include "Main/Unknown/code_02061654.h"
-#include "Main/Unknown/code_020cbad0.h"
 #include "Main/Unknown/code_020cae8c.h"
 #include "Main/Unknown/code_020b3f7c.h"
 #include "Main/Unknown/code_020b47b4.h"
@@ -58,6 +58,7 @@
 #include "Main/Unknown/code_02032000.h"
 #include "Main/Unknown/code_02062000.h"
 #include "Main/Unknown/code_02078000.h"
+#include "Main/Unknown/code_02025f80.h"
 
 #pragma thumb on
 #pragma optimize_for_size on

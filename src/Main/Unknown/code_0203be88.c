@@ -32,6 +32,7 @@
 #include "Main/Unknown/unk_02175628.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "01/code_0218155c.h"
+#include "Main/Unknown/code_0203e74c.h"
 
 void func_0203c1a8(void *a, u32 b) {
     s32 v;

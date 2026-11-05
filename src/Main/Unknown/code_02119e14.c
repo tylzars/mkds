@@ -1,8 +1,8 @@
+#include "Main/Unknown/code_02119e14.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02060004.h"
 #include "Main/Unknown/code_020ade08.h"
 #include "Main/Unknown/code_020d0efc.h"
-#include "Main/Unknown/code_02119e14.h"
 #include "registers.h"
 #include "Main/Unknown/code_0211e4e8.h"
 #include "Main/Unknown/code_0211b23c.h"
@@ -42,6 +42,7 @@
 #include "Main/Unknown/code_02128210.h"
 #include "Main/Unknown/code_0212b000.h"
 #include "code_0212df7c.h"
+#include "Main/Unknown/code_0202bb80.h"
 
 #pragma thumb on
 

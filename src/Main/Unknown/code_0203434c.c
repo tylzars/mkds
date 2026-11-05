@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_0202d990.h"
 #include "Main/Unknown/code_0203434c.h"
+#include "Main/Unknown/code_0202d990.h"
 #include "Main/Unknown/code_02034bf4.h"
 #include "Main/Unknown/code_020351c8.h"
 #include "Main/Unknown/code_02036000.h"
@@ -58,6 +58,7 @@
 #include "code_0212df7c.h"
 #include "code_0214d018.h"
 #include "01/code_021956dc.h"
+#include "Main/Unknown/code_02025edc.h"
 
 #pragma thumb on
 

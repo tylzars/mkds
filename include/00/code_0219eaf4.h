@@ -2,8 +2,6 @@
 
 #include "types.h"
 
-void **func_ov000_0219b8fc(u32 a, s32 b);
-
 u32 func_ov000_0219eaf4(void);
 BOOL func_ov000_0219ec44(u32 a, s32 b, u32 c);
 u32 func_ov000_0219edb0(u32 a, u32 b);

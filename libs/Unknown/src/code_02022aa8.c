@@ -5,6 +5,7 @@
 #include "Main/Unknown/code_02024000.h"
 #include "Main/Unknown/unk_02153000.h"
 #include "Main/Unknown/code_02022000.h"
+#include "code_02023374.h"
 
 void func_020232b0(u16 *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, u32 h) {
     s32 xe;

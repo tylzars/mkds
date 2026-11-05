@@ -43,6 +43,7 @@
 #include "Main/Unknown/code_020b2e34.h"
 #include "Main/Unknown/unk_02164000.h"
 #include "code_021458c4.h"
+#include "Main/Unknown/code_02046740.h"
 
 static inline u32 func_0203a908_inline(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;

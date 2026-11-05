@@ -19,6 +19,7 @@
 #include "00/code_0219a5e8.h"
 #include "00/code_0219a604.h"
 #include "00/code_021a3668.h"
+#include "00/code_0219a654.h"
 
 typedef struct Unk0219a430Addr {
     /* 0 */ u8 mUnk_00;

@@ -86,7 +86,6 @@ typedef union Unk021919ac_sa {
 } Unk021919ac_sa;
 
 // Declared here until the code that defines them is decompiled.
-void *func_ov000_0218e880(const char *a);
 
 void func_ov000_021920d8(s8 *p, s32 n);
 u32 GpiWriteLogin(GpConnection *p, Unk021919ac_q *q);

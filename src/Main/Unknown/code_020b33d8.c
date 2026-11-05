@@ -1,8 +1,8 @@
+#include "Main/Unknown/code_020b33d8.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02053e74.h"
 #include "Main/Unknown/code_02061654.h"
 #include "Main/Unknown/code_02089ef4.h"
-#include "Main/Unknown/code_020b33d8.h"
 
 #include "Main/Unknown/code_0203c000.h"
 #include "Main/Unknown/code_02061000.h"
@@ -23,6 +23,7 @@
 #include "Main/Unknown/code_020b36dc.h"
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036bec.h"
+#include "Main/Unknown/code_0203c8dc.h"
 
 void InitRaceStartSequence(void) {
     gRaceStartSequence = HeapAlloc(GetHeap(func_020364e8()), 0xc);

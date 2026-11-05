@@ -1,5 +1,5 @@
-#include "00/code_021a6934.h"
 #include "00/code_021a6d1c.h"
+#include "00/code_021a6934.h"
 
 u32 func_ov000_021a6d40(void) {
     u8 *v1;

@@ -476,8 +476,6 @@ extern Unk0217d26c data_0217d274;
 extern Unk0217d26c data_0217d284;
 extern Unk0217d26c data_0217d28c;
 Unk0206cdd4_B *func_0207a6b0(void);
-void func_0206d020(Kart *p, int a, int b);
-void func_0206f914(Kart *p);
 void func_01ffc9e8(Kart *p, int a);
 void func_020681f0(Kart *p);
 #include "Main/Unknown/code_0210dc7c.h"
@@ -486,7 +484,6 @@ void func_02071944(void *p, int arg);
 #include "Main/Unknown/code_021035ac.h"
 BOOL func_0206bcb0(Kart *p, int a, int b);
 BOOL func_0206be54(Kart *p, int a);
-void StartKartState2(Kart *p, int a, int b);
 void func_0206c5e4(Kart *p);
 void func_02063b10(const Kart *p, Vec3 *out);
 void func_02063b30(const Kart *p, Vec3 *out);

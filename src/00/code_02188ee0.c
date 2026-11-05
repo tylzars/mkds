@@ -1,5 +1,5 @@
-#include "00/code_02188720.h"
 #include "00/code_02188ee0.h"
+#include "00/code_02188720.h"
 #include "00/code_02188de4.h"
 #include "00/code_02188ea0.h"
 #include "00/unk_021b4000.h"

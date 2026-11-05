@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_02089ef4.h"
 #include "Main/Unknown/code_020bb5ec.h"
+#include "Main/Unknown/code_02089ef4.h"
 
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_020ae000.h"
@@ -28,6 +28,7 @@
 #include "code_0212df7c.h"
 #include "code_020222ec.h"
 #include "Main/Unknown/code_020bc108.h"
+#include "Main/Unknown/code_0203c8dc.h"
 
 u32 func_020bc108(void) {
     u32 value0;

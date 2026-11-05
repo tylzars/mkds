@@ -3,6 +3,7 @@
 #include "Main/Unknown/code_02044618.h"
 #include "Main/Unknown/code_020a12b8.h"
 #include "Main/Unknown/code_020b1cdc.h"
+#include "Main/Unknown/code_0203e74c.h"
 
 u16 LookupRankPoints(u8 a) {
     u16 r = 0;

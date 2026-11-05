@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02070398.h"
+#include "Main/Unknown/code_020401ac.h"
 #include "Main/Unknown/code_020b1dbc.h"
 #include "Main/Unknown/code_0207b960.h"
 #include "Main/Unknown/code_020b4e5c.h"
@@ -94,6 +95,7 @@
 #include "Main/Unknown/unk_027e0000.h"
 #include "Main/Unknown/code_02068000.h"
 #include "Main/Unknown/code_0206390c.h"
+#include "Main/Unknown/code_0206a354.h"
 
 void func_020732d8(Kart *p) {
     s32 i;

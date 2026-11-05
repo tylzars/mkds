@@ -63,4 +63,3 @@ s32 func_02067b0c(Kart *a, s32 *b, s32 c);
 s32 func_02067b60(Kart *a, s32 *b);
 s32 func_02067bf4(Kart *a, s32 *b);
 // Declared here until the code that defines them is decompiled.
-BOOL func_0206a24c(Kart *p);

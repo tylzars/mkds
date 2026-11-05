@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_0202578c.h"
 #include "Main/Unknown/code_02028864.h"
+#include "Main/Unknown/code_0202578c.h"
 #include "Main/Unknown/code_02025000.h"
 #include "Main/Unknown/code_02025df4.h"
 #include "Main/Unknown/code_02025e28.h"
@@ -30,6 +30,7 @@
 #include "Main/Unknown/code_020b3f7c.h"
 #include "code_02148950.h"
 #include "Main/Unknown/unk_02161000.h"
+#include "Main/Unknown/code_02025f80.h"
 
 #pragma optimize_for_size on
 
@@ -137,8 +138,8 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         }
     }
     if (func_020280dc() == 0) {
-        func_020258d4(1, &gSelectKart->mSelectKartSBParts, gSelectKartSBNcgrName, gSelectKartSBNclrName, gSelectKartSNscrName, 3,
-                      func_02047a28);
+        func_020258d4(1, &gSelectKart->mSelectKartSBParts, gSelectKartSBNcgrName, gSelectKartSBNclrName,
+                      gSelectKartSNscrName, 3, func_02047a28);
     }
     if (func_020280dc() == 0) {
         n = func_02148ca0();

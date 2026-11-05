@@ -1,5 +1,5 @@
-#include "code_0200fc8c.h"
 #include "code_0214d5b8.h"
+#include "code_0200fc8c.h"
 #include "code_0200c914.h"
 #include "Main/Unknown/code_0200f000.h"
 #include "registers.h"

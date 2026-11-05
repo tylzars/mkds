@@ -11,13 +11,6 @@ typedef struct Unk0203a0dc {
     /* 04 */ u16 mUnk_04;
 } Unk0203a0dc;
 
-void func_02044940(void);
-void func_0204465c(void);
-void func_02037850(void);
-u32 func_0203afe4(u32 a);
-u32 func_0203a9ec(u32 a);
-u32 func_0203a908(u32 a);
-
 u32 func_02039e08(Unk020176c0 *a, void **b, void **c, void **d, void **e, void **f);
 // Scene function of gSceneFuncs[1] (scene 'Menu' in gSceneNames): copies the callbacks and calls
 // RunScene. Returns 0. Scene 4 (func_02046a88) also carries the name 'Menu'.

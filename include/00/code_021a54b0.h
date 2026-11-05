@@ -11,5 +11,4 @@
 
 // Declared here until the code that defines it is decompiled.
 
-void func_ov000_021a54b0(Unk021425e8 *event);
 void func_ov000_021a56e4(Unk021425e8 *event);

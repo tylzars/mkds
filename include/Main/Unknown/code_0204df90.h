@@ -17,9 +17,6 @@ typedef struct Unk0204e4d8 {
     /* 02 */ u8 mUnk_02[0x14];
 } Unk0204e4d8;
 
-void func_0200b70c(void);
-void func_0200bae0(void);
-
 void func_0204df90(void);
 void func_0204dfe0(u32 a);
 void func_0204e03c(u32 a);

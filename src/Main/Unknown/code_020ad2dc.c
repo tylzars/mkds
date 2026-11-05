@@ -1,9 +1,9 @@
+#include "Main/Unknown/code_020ad2dc.h"
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02036c5c.h"
 #include "Main/Unknown/code_0203be88.h"
 #include "Main/Unknown/code_02090354.h"
-#include "Main/Unknown/code_020ad2dc.h"
 
 #include "Main/Unknown/code_020ad32c.h"
 #include "Main/Unknown/code_020ad344.h"
@@ -40,6 +40,7 @@
 #include "code_0214a390.h"
 #include "code_0214b338.h"
 #include "code_0214b824.h"
+#include "Main/Unknown/code_02044618.h"
 
 u32 func_020ada10(void) {
     u32 value0;

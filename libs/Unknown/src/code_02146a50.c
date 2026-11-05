@@ -3,6 +3,7 @@
 #include "code_0214d5b8.h"
 #include "code_0214f4a4.h"
 #include "Main/Unknown/code_02000000.h"
+#include "Main/Unknown/code_0200007e.h"
 
 void func_02146ab4(void) {
     if (((s32) (*(vu16 *) 0x027FFFA8 & 0x8000)) >> 15 != 0) {

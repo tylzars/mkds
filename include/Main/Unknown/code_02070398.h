@@ -12,7 +12,6 @@ typedef struct Unk02175620_bc Unk02175620_bc;
 #include "Main/Unknown/code_0206bcb0.h"
 
 // Declared here until the code that defines them is decompiled.
-Unk02175620_bc *func_02040da8(u32 a);
 BOOL func_02070398(Kart *p, u32 b, void *c);
 void func_02070484(Kart *p, Vec4 *q);
 void func_020705fc(Kart *p, u32 b);
@@ -45,8 +44,4 @@ s32 func_02072d84(Kart *p, s32 *a);
 void func_02072eb8(Kart *p);
 void func_020732d8(Kart *p);
 // Declared here until the code that defines them is decompiled.
-void func_02073f90(void);
-void SetCameraHeightHold(s32 a);
-void func_02075d08(s32 a);
-void SetupCameraBehindKart(void);
 void func_0207a2d4(s32 a);

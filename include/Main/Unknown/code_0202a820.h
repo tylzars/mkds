@@ -77,5 +77,3 @@ void func_0202b2bc(void);
 void func_0202b3f4(void);
 void func_0202b4bc(s32 a, s32 b, s32 c, s32 d);
 void func_0202b554(s32 a, s32 b);
-void func_0202cb2c(s32 a);
-void func_0202cb68(s32 a);

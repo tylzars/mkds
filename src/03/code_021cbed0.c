@@ -1,6 +1,6 @@
+#include "03/code_021cbed0.h"
 #include "03/code_021bf4dc.h"
 #include "03/code_021cbe78.h"
-#include "03/code_021cbed0.h"
 #include "03/code_021d1dd0.h"
 #include "03/code_021d254c.h"
 #include "03/unk_021d7000.h"

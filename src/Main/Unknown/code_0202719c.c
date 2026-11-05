@@ -8,6 +8,9 @@
 #include "Main/Unknown/code_02128274.h"
 #include "Main/Unknown/unk_02153000.h"
 #include "Main/Unknown/unk_02174000.h"
+#include "Main/Unknown/code_02025edc.h"
+#include "Main/Unknown/code_0202b604.h"
+#include "Main/Unknown/code_02077bc0.h"
 
 #pragma thumb on
 

@@ -1,5 +1,5 @@
-#include "00/code_02198a8c.h"
 #include "00/code_0219960c.h"
+#include "00/code_02198a8c.h"
 
 u32 func_ov000_0219960c(u32 arg0, u32 arg1, u32 arg2) {
     u32 value0 = arg0;

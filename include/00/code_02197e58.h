@@ -87,8 +87,6 @@ typedef struct Unk02198af4 {
     /* 0c */ u32 mUnk_0c;
 } Unk02198af4;
 
-BOOL Gt2ParseAddress(const char *a, u32 *b, u16 *c);
-
 BOOL Gt2CallDataCallback(Gt2Connection *connection, void *b, int c, int d);
 BOOL Gt2SetResultAndCallResultCallback(Gt2Connection *connection, int b, void *c, int d);
 BOOL CallIncomingConnectionCallback(Gt2Socket *a, Gt2Connection *b, int c, int d, int e, int f, int g);

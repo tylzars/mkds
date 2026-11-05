@@ -1,9 +1,9 @@
+#include "Main/Unknown/code_020c5dd8.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02056700.h"
 #include "Main/Unknown/code_020b1d64.h"
 #include "Main/Unknown/code_020b9994.h"
 #include "Main/Unknown/code_020c06c4.h"
-#include "Main/Unknown/code_020c5dd8.h"
 
 #include "Main/Unknown/code_020c5df0.h"
 #include "Main/Unknown/code_020c5e30.h"
@@ -38,6 +38,7 @@
 #include "code_0214d018.h"
 #include "Main/Unknown/code_020c70d8.h"
 #include "01/code_021956dc.h"
+#include "Main/Unknown/code_0203c5f8.h"
 
 u32 func_020c70d8(void) {
     return ((u32) gRaceNewRecordTa->mUnk_14);

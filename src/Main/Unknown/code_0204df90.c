@@ -1,3 +1,4 @@
+#include "Main/Unknown/code_0204df90.h"
 #include "Main/Unknown/code_02001000.h"
 #include "Main/Unknown/code_02009cc8.h"
 #include "Main/Unknown/code_0200aeb4.h"
@@ -7,7 +8,6 @@
 #include "code_0200fc8c.h"
 #include "Main/Unknown/code_0200b6e8.h"
 #include "Main/Unknown/code_02036820.h"
-#include "Main/Unknown/code_0204df90.h"
 #include "Main/Unknown/code_0204ea14.h"
 #include "Main/Unknown/code_0204f814.h"
 #include "Main/Unknown/code_02050300.h"

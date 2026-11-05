@@ -1,6 +1,6 @@
+#include "code_0212f1ac.h"
 #include "code_0200eddc.h"
 #include "code_0200fc8c.h"
-#include "code_0212f1ac.h"
 #include "code_020207ec.h"
 #include "code_0201ec30.h"
 #include "Main/Unknown/code_0200e000.h"

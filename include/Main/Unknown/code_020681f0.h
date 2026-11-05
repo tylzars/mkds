@@ -24,5 +24,3 @@ void func_02068a10(Kart *a);
 void func_02068a64(Kart *a, s32 b, s32 c);
 void func_02068b5c(Kart *a);
 void func_02068b98(Kart *a);
-
-void func_020757d8(void);

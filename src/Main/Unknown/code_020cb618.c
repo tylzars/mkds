@@ -1,6 +1,6 @@
+#include "Main/Unknown/code_020cb618.h"
 #include "Main/Unknown/code_02025f80.h"
 #include "Main/Unknown/code_0203206c.h"
-#include "Main/Unknown/code_020cb618.h"
 #include "Main/Unknown/code_020cae8c.h"
 #include "Main/Unknown/code_020cc744.h"
 #include "01/code_021a11a4.h"
@@ -27,6 +27,7 @@
 #include "Main/Unknown/code_0211b23c.h"
 #include "Main/Unknown/code_0211e4e8.h"
 #include "Main/Unknown/code_02032000.h"
+#include "Main/Unknown/code_02028864.h"
 
 #pragma thumb on
 #pragma optimize_for_size on

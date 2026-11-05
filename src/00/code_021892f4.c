@@ -1,7 +1,7 @@
+#include "00/code_021892f4.h"
 #include "00/code_02187484.h"
 #include "00/code_02188008.h"
 #include "00/code_02188ee0.h"
-#include "00/code_021892f4.h"
 
 u32 func_ov000_021892f4(u8 *a) {
     u8 v1;

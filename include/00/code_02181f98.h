@@ -380,4 +380,3 @@ void func_ov000_02182de8(void);
 void func_ov000_02182e18(void);
 void func_ov000_02182f88(void);
 BOOL func_ov000_021832f0(void);
-void func_ov000_02184354(void);

@@ -60,9 +60,5 @@ extern u16 data_usa_02153888[];
 extern u32 data_usa_02153898[][4];
 extern Unk02153918 data_usa_02153918[];
 
-s32 func_020909cc(void);
-void func_02045a2c(s32 a);
-u32 func_020911a8(void);
-
 void func_02029aa0(Unk02029aa0 *a);
 void func_02029dcc(void *a, void *b, void *c);

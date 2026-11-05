@@ -1,5 +1,5 @@
-#include "ITCM/code_01ff8000.h"
 #include "ITCM/code_01ff9598.h"
+#include "ITCM/code_01ff8000.h"
 #include "ITCM/code_01ff9000.h"
 #include "ITCM/code_01ffad14.h"
 #include "ITCM/code_01ffba68.h"
@@ -38,6 +38,8 @@
 #include "code_02147cd8.h"
 #include "code_0212bcac.h"
 #include "code_0212df7c.h"
+#include "Main/Unknown/code_0206d020.h"
+#include "Main/Unknown/code_0206f04c.h"
 
 #pragma opt_arithtransformation off
 

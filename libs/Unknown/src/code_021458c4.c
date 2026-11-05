@@ -1,6 +1,6 @@
+#include "code_021458c4.h"
 #include "code_0200eddc.h"
 #include "code_0200fc8c.h"
-#include "code_021458c4.h"
 #include "code_0200f328.h"
 #include "Main/Unknown/code_02000b44.h"
 #include "Main/Unknown/code_0200e000.h"
@@ -21,6 +21,7 @@
 #include "code_0214d3d8.h"
 #include "code_0214d5b8.h"
 #include "registers.h"
+#include "code_02146af4.h"
 
 Unk021458b4 data_0217fa00;
 u32 data_02180060;

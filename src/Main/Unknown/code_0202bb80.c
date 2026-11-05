@@ -35,6 +35,9 @@
 #include "code_0202056c.h"
 #include "registers.h"
 #include "00/code_02181f98.h"
+#include "Main/Unknown/code_02025e28.h"
+#include "Main/Unknown/code_02025edc.h"
+#include "Main/Unknown/code_02025f80.h"
 
 #pragma thumb on
 

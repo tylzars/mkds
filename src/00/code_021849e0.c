@@ -8,6 +8,8 @@
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02122ae4.h"
 #include "00/code_02181f98.h"
+#include "Main/Unknown/code_02028130.h"
+#include "Main/Unknown/code_02028864.h"
 
 void InitWiFiSelectKartState(void *a) {
     void *b;

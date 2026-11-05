@@ -6,6 +6,8 @@
 #include "Main/Unknown/code_0208c188.h"
 #include "Main/Unknown/code_0208c534.h"
 #include "Main/Unknown/code_02109054.h"
+#include "Main/Unknown/code_0206a354.h"
+#include "Main/Unknown/code_0206d020.h"
 
 void func_0206ceb4(s32 *out, Kart *p) {
     int id;

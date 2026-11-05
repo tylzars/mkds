@@ -15,6 +15,7 @@
 #include "code_0200c46c.h"
 #include "code_0214c778.h"
 #include "registers.h"
+#include "Main/Unknown/code_0200007e.h"
 
 #pragma thumb on
 

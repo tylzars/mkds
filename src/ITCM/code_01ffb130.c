@@ -1,6 +1,6 @@
+#include "ITCM/code_01ffb130.h"
 #include "ITCM/code_01ff9598.h"
 #include "ITCM/code_01ffad14.h"
-#include "ITCM/code_01ffb130.h"
 #include "ITCM/code_01ff9000.h"
 #include "ITCM/code_01ffb000.h"
 #include "ITCM/code_01ffb930.h"
@@ -33,6 +33,8 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_02146d78.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_0206a354.h"
+#include "Main/Unknown/code_0206e874.h"
 
 void func_01ffb130(Kart *p) {
     s32 k;

@@ -1,5 +1,5 @@
-#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01fff434.h"
+#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
 #include "Main/Unknown/code_02061654.h"
 #include "Main/Unknown/code_02068000.h"

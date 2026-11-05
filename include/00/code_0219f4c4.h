@@ -2,7 +2,6 @@
 
 #include "types.h"
 
-void func_ov000_0219b110(void);
 // Declared here until the code that defines it is decompiled.
 u32 func_ov000_0219edb0(u32 a, u32 b);
 u32 func_ov000_0219f4c4(u32 *a, u32 b);

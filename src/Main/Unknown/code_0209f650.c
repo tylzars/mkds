@@ -1,7 +1,7 @@
+#include "Main/Unknown/code_0209f650.h"
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0209b634.h"
-#include "Main/Unknown/code_0209f650.h"
 #include "Main/Unknown/code_0209b000.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "ITCM/code_01ff8000.h"
@@ -18,6 +18,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/unk_0217c000.h"
+#include "Main/Unknown/code_0209bf70.h"
 
 u16 AngleFromPair(s32 a, s32 b);
 

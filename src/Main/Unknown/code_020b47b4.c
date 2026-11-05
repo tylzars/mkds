@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_02047104.h"
 #include "Main/Unknown/code_020b47b4.h"
+#include "Main/Unknown/code_02047104.h"
 
 void *func_020b47cc(const char *arg0) {
     u32 value0 = (u32) arg0;

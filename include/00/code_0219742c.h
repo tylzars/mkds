@@ -29,8 +29,6 @@ extern s8 *data_ov000_021b4e6c;
 extern s32 data_ov000_021b4e74;
 extern s8 data_ov000_021b4e78[];
 
-BOOL func_ov000_0218e80c(s32 a, s32 b);
-void func_ov000_02196960(void);
 void func_ov000_0219742c(void);
 BOOL func_ov000_0219746c(void);
 void func_ov000_02197558(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g);

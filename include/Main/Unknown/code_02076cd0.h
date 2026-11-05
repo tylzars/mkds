@@ -23,7 +23,6 @@ typedef struct Unk02077750 {
 
 // Declared here until the code that defines them is decompiled.
 extern const char data_usa_02165714[];
-void LoadKartAndCharacterFiles(void);
 
 void UpdateCameraView(Camera *p);
 void UpdateCameraViewWithWorldUp(Camera *p);

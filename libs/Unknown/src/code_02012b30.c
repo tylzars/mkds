@@ -14,6 +14,7 @@
 #include "Main/Unknown/code_02147000.h"
 #include "Main/Unknown/unk_02161000.h"
 #include "registers.h"
+#include "code_02147954.h"
 
 void *func_020136f0(Unk020136f0 *a) {
     u8 *p;

@@ -8,6 +8,7 @@
 #include "Main/Unknown/code_02021000.h"
 #include "code_0212bb50.h"
 #include "Main/Unknown/unk_0217d000.h"
+#include "code_020218f4.h"
 
 void func_0212c9a4(Unk0212c7f0 *p) {
     if (p->mUnk_44 == 0) {

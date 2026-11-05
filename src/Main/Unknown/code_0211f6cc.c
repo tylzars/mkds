@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_02060cb4.h"
 #include "Main/Unknown/code_0211f6cc.h"
+#include "Main/Unknown/code_02060cb4.h"
 #include "Main/Unknown/code_0205b0f4.h"
 #include "Main/Unknown/code_02060000.h"
 #include "Main/Unknown/code_02061000.h"
@@ -27,6 +27,7 @@
 #include "00/code_021a3760.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_0214d018.h"
+#include "code_021522a0.h"
 
 void func_0211fef4(u32 a, void *b, u32 c) {
     if (gWiFiSession->mUnk_0008.mState != 5) {

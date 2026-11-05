@@ -13,6 +13,7 @@
 #include "Main/Unknown/code_02128000.h"
 #include "Main/Unknown/code_0212b000.h"
 #include "code_0214a390.h"
+#include "Main/Unknown/code_0202b604.h"
 
 u32 func_0202811c(void) {
     return ((u32) data_021759d0->mUnk_20);

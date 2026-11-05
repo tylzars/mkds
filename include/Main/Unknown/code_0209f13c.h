@@ -23,8 +23,6 @@ typedef struct Unk0209f514 {
 extern char gRainStarNsbmdName[];
 extern char gRainStarNsbtaName[];
 
-void CreateChandelier(void *a);
-
 void *func_0209f13c(void);
 void *func_0209f158(void);
 void UpdateRainStar(void *a, Unk0209f1c8 *b); /* skipped for objects with mFlags & 4 (parked pool objects) */

@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02000800.h"
+#include "ITCM/code_01ff8000.h"
 
 // clang-format off
 // Start-up: sets the stacks of the IRQ, supervisor and system modes, clears the stack memory and two other areas,

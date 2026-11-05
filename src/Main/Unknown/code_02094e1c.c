@@ -13,6 +13,7 @@
 #include "Main/Unknown/code_020f9c6c.h"
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_021759c0.h"
+#include "Main/Unknown/code_0209bf70.h"
 
 void func_020954e4(u32 arg0) {
     u32 value0 = arg0;

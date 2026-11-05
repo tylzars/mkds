@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_020483e4.h"
 #include "Main/Unknown/code_02056284.h"
+#include "Main/Unknown/code_020483e4.h"
 #include "Main/Unknown/unk_0217a000.h"
 
 #pragma thumb on

@@ -3,7 +3,6 @@
 #include "types.h"
 
 // Declared here until the code that defines them is decompiled.
-void ReportBuddySyncError(s32 a, s32 b);
 extern char data_ov000_021b40d8[];
 extern char data_ov000_021b40e4[];
 

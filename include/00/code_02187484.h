@@ -80,8 +80,6 @@ extern char data_ov000_021b1468[];
 extern Unk021b4cb4 data_ov000_021b4cb4;
 extern Unk021b4cd4 data_ov000_021b4cd4;
 
-s32 func_ov000_021863cc(void);
-void func_ov000_02186404(void);
 u32 func_ov000_02187484(void);
 void func_ov000_02187490(u32 a);
 u32 func_ov000_021874c0(void);

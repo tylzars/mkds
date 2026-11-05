@@ -1,9 +1,9 @@
+#include "Main/Unknown/code_02050034.h"
 #include "Main/Unknown/code_02050000.h"
 #include "Main/Unknown/code_02050080.h"
 #include "Main/Unknown/code_02056000.h"
 #include "Main/Unknown/code_02057fe4.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "Main/Unknown/code_02050034.h"
 
 u32 func_02050064(u32 p0) {
     return ((u32) data_0217aa00->mUnk_1e9c[p0]);

@@ -15,6 +15,9 @@
 #include "Main/Unknown/code_020a12b8.h"
 #include "Main/Unknown/code_020b3f64.h"
 #include "Main/Unknown/code_021108bc.h"
+#include "Main/Unknown/code_0203d568.h"
+#include "Main/Unknown/code_0203f334.h"
+#include "Main/Unknown/code_020681f0.h"
 
 static inline s32 func_0203ca38_inline(u32 i) {
     return func_020a1250(i) + 1;

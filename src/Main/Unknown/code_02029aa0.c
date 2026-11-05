@@ -43,6 +43,8 @@
 #include "code_0214cfe4.h"
 #include "code_0214d018.h"
 #include "code_021458c4.h"
+#include "Main/Unknown/code_02045874.h"
+#include "Main/Unknown/code_02090354.h"
 
 #pragma thumb on
 

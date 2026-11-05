@@ -13,6 +13,8 @@
 #include "Main/Unknown/code_02121e84.h"
 #include "Main/Unknown/code_02122ae4.h"
 #include "Main/Unknown/code_02029890.h"
+#include "Main/Unknown/code_020296f4.h"
+#include "Main/Unknown/code_02045874.h"
 
 void InitWiFiVSCourseSelectState(u32 a) {
     int v1;

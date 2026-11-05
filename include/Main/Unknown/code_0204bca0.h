@@ -88,7 +88,6 @@ typedef struct Unk0204d28c_20 {
     /* 1c */ u8 mUnk_1c[4];
 } Unk0204d28c_20;
 
-void func_0204bad8(void);
 void func_0204bca0(void);
 u32 func_0204bcb4(u32 arg0);
 u32 func_0204bcdc(void);

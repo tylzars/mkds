@@ -1,5 +1,5 @@
-#include "00/code_021abca0.h"
 #include "00/code_021abd68.h"
+#include "00/code_021abca0.h"
 #include "00/code_021ac3a8.h"
 
 void func_ov000_021ac34c(u32 *a, const u8 *b, u32 c) {

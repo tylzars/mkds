@@ -33,6 +33,7 @@
 #include "code_0201ea58.h"
 #include "code_0212df7c.h"
 #include "code_0214d018.h"
+#include "Main/Unknown/code_02025f80.h"
 
 #pragma thumb on
 
@@ -312,8 +313,8 @@ void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
     }
     p->mUnk_18[4].mUnk_06 = 0x60 - (((s16 *) func_0201ea30(p->mUnk_0c, 4))[1] << 20 >> 20);
     p->mUnk_18[4].mUnk_00 = 0;
-    func_020258d4(1, &gWiFiVSCourseSelect->mWiFiVSCourseSelectMBAndSBParts[1], gWiFiVSCourseSelectSBNcgrName, gWiFiVSCourseSelectSBNclrName,
-                  gWiFiVSCourseSelectSNscrName, 3, FindSceneFile);
+    func_020258d4(1, &gWiFiVSCourseSelect->mWiFiVSCourseSelectMBAndSBParts[1], gWiFiVSCourseSelectSBNcgrName,
+                  gWiFiVSCourseSelectSBNclrName, gWiFiVSCourseSelectSNscrName, 3, FindSceneFile);
     t = &gWiFiVSCourseSelect->mWiFiVSCourseSelectSParts;
     k = func_02148ca0();
     func_02025b20(t, gWiFiVSCourseSelectSNcgrName, gWiFiVSCourseSelectSNcerName, gWiFiVSCourseSelectSONclrName,
@@ -341,7 +342,8 @@ void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
     w[0] = 0;
     w[1] = m;
     func_0202e530(gWiFiVSCourseSelect->mHeap, 2, w, 7, 8, 0x7c, t->mUnk_18, t->mUnk_10,
-                  (u8 *) gWiFiVSCourseSelect->mWiFiVSCourseSelectMBAndSBParts[1].mUnk_14[3] + 0xc, 5, 6, 0, 0x15, func_0202b4bc);
+                  (u8 *) gWiFiVSCourseSelect->mWiFiVSCourseSelectMBAndSBParts[1].mUnk_14[3] + 0xc, 5, 6, 0, 0x15,
+                  func_0202b4bc);
     FrmHeapShrinkInParent(gWiFiVSCourseSelect->mHeap);
 }
 

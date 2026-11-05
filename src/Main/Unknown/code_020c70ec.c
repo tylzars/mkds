@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_020c06c4.h"
 #include "Main/Unknown/code_020c70ec.h"
+#include "Main/Unknown/code_020c06c4.h"
 #include "Main/Unknown/code_0203c000.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_020b1dbc.h"
@@ -16,6 +16,7 @@
 #include "Main/Unknown/code_020b837c.h"
 #include "Main/Unknown/code_020c0000.h"
 #include "Main/Unknown/code_020c0d9c.h"
+#include "Main/Unknown/code_0203c5f8.h"
 
 void func_020c7310(void) {
     s32 i;

@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_02068eac.h"
 #include "Main/Unknown/code_0206d020.h"
+#include "Main/Unknown/code_02068eac.h"
 #include "Main/Unknown/code_020ed5c0.h"
 #include "Main/Unknown/code_02109184.h"
 #include "Main/Unknown/code_02081618.h"
@@ -28,6 +28,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/unk_02154000.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_0206a354.h"
 
 static inline s32 func_0206dbf8_inline(Kart *q) {
     BOOL c;

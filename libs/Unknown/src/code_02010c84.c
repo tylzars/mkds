@@ -17,6 +17,8 @@
 #include "Main/Unknown/code_02147000.h"
 #include "Main/Unknown/unk_02171000.h"
 #include "registers.h"
+#include "code_021471bc.h"
+#include "code_02147954.h"
 
 void func_0201290c(Unk0201290c *a, u32 b, u32 c, s32 d) {
     u32 s[7];

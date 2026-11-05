@@ -1,5 +1,5 @@
-#include "code_0214d018.h"
 #include "code_02150228.h"
+#include "code_0214d018.h"
 #include "Main/Unknown/code_0214d000.h"
 
 u8 data_0216f0a8 = 0x80;

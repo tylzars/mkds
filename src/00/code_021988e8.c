@@ -13,6 +13,7 @@
 #include "00/code_0218e2dc.h"
 #include "00/code_02198748.h"
 #include "00/code_02198a8c.h"
+#include "00/code_0219a654.h"
 
 int func_ov000_02198a7c(Gt2Connection *a, Gt2ConnectionCallbacks *b) {
     return func_ov000_02198778(a, b);

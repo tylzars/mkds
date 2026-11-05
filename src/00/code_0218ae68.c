@@ -1,5 +1,5 @@
-#include "00/code_0218a9bc.h"
 #include "00/code_0218ae68.h"
+#include "00/code_0218a9bc.h"
 
 u32 func_ov000_0218ae68(Unk0218ae68 *a, SbServer *b) {
     SbServer *d;

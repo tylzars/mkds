@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_020ca820.h"
+#include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_020cab8c.h"
 
 #pragma thumb on

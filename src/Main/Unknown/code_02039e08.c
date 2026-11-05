@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02039e08.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02039774.h"
 #include "Main/Unknown/code_0203be88.h"
 #include "Main/Unknown/code_020487fc.h"
@@ -39,6 +39,7 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "01/code_0219e0a8.h"
 #include "code_020176c0.h"
+#include "Main/Unknown/code_02044618.h"
 
 void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
     Unk021759c0 *q;

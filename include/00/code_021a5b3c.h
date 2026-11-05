@@ -8,8 +8,6 @@
 #include "00/code_021a4b98.h"
 
 // Declared here until the code that defines them is decompiled.
-void func_ov000_021a6bdc(void);
-void func_ov000_021a4e28(Unk021425e8 *event);
 
 // 0xc0 bytes; func_ov000_021a5e84 copies one to mUnk_2140 of an Unk021b5f50, func_ov000_021a671c to a list entry.
 typedef struct Unk021a5e84 {

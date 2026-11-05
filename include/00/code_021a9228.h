@@ -143,6 +143,4 @@ u32 func_ov000_021ab5bc(void);
 Unk021ab5e4 *func_ov000_021ab5e4(const u8 *a);
 Unk021ab5e4 *func_ov000_021ab63c(u32 a, u32 b);
 Unk021ab5e4 *func_ov000_021ab684(const u8 *a);
-void func_ov000_021ac7e8(u16 *a, u16 *b, u16 *c, s32 d, u16 *e);
 // Declared here until the code that defines them is decompiled.
-void func_ov000_021ae0c4(Unk021a998c *a);

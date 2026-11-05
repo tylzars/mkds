@@ -1,6 +1,6 @@
+#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ff9598.h"
 #include "ITCM/code_01ffa4b4.h"
-#include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffb000.h"
 #include "ITCM/code_01ffc000.h"
 #include "ITCM/code_01ff9000.h"

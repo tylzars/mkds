@@ -12,6 +12,5 @@
 // Declared here until the code that defines them is decompiled.
 void FloatInit(void);
 void CallCtorTable(void);
-void func_01ff8000(void);
 
 void Entry(void);

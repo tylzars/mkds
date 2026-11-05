@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_02061654.h"
 #include "Main/Unknown/code_020653d0.h"
+#include "Main/Unknown/code_02061654.h"
 #include "Main/Unknown/code_02068eac.h"
 #include "Main/Unknown/code_02081618.h"
 #include "Main/Unknown/code_020d50ec.h"
@@ -30,6 +30,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_02146d78.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_0206a354.h"
 
 static inline void func_020653d0_inline(Kart *o, Kart *o2, Vec3 *t) {
     Vec3 t1;

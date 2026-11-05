@@ -1,5 +1,5 @@
-#include "03/code_021d1770.h"
 #include "03/code_021d1790.h"
+#include "03/code_021d1770.h"
 
 static inline void func_ov003_021d17d4_inline(Unk021d1770_08 *p, u32 *x, u32 *y) {
     *x = (p->mUnk_00 & 0x1ff0000) >> 16;

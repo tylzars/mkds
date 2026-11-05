@@ -1,5 +1,5 @@
-#include "code_02152490.h"
 #include "code_02152ab4.h"
+#include "code_02152490.h"
 
 #pragma thumb on
 

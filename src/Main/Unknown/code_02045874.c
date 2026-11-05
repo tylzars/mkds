@@ -12,11 +12,7 @@
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217a000.h"
-
-extern const u32 data_usa_021540c0[];
-extern const u32 data_usa_021540c8[];
-extern const u32 data_usa_021540d4[];
-extern const u32 data_usa_02154108[];
+#include "Main/Unknown/code_02090354.h"
 
 static inline u32 func_02046524_inline(Unk020f41c4_B *a, u32 b) {
     u64 r;

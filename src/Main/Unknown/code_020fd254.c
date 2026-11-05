@@ -1,6 +1,6 @@
+#include "Main/Unknown/code_020fd254.h"
 #include "code_02012b30.h"
 #include "Main/Unknown/code_020f9c6c.h"
-#include "Main/Unknown/code_020fd254.h"
 
 void func_020fd254(Unk020fc2e8 *p0) {
     p0->mUnk_228 = NULL;

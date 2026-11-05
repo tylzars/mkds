@@ -1,6 +1,6 @@
+#include "00/code_0218a194.h"
 #include "00/code_02188008.h"
 #include "00/code_021884d8.h"
-#include "00/code_0218a194.h"
 
 u32 func_ov000_0218a194(void) {
     int v1;

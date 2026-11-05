@@ -47,6 +47,7 @@
 #include "Main/Unknown/code_020a228c.h"
 #include "Main/Unknown/code_020a22ac.h"
 #include "Main/Unknown/code_020a2300.h"
+#include "Main/Unknown/code_0203ca38.h"
 
 void func_020a238c(Unk020a3fa8_a4 *p0) {
     data_0217b1fc->mUnk_3bc = p0;

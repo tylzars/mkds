@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_020a10f0.h"
 #include "Main/Unknown/code_020a6cb4.h"
+#include "Main/Unknown/code_020a10f0.h"
 
 #include "Main/Unknown/code_020a1000.h"
 #include "Main/Unknown/code_020a1218.h"
@@ -15,6 +15,7 @@
 #include "Main/Unknown/code_020f9c6c.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_020a7148.h"
+#include "Main/Unknown/code_0209bf70.h"
 
 void func_020a7148(MapObject *a) {
     if (func_020d3bf8(0x6a) == 0) {

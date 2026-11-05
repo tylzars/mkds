@@ -1,5 +1,5 @@
-#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0204aa04.h"
+#include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/unk_02175000.h"
 
 u32 func_0204aa28(u32 arg0) {

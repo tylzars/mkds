@@ -56,8 +56,6 @@ typedef struct Unk021b3c88 {
     /* 00 */ s8 mUnk_00[0x100];
 } Unk021b3c88;
 
-void GstatsClose(void);
-
 typedef struct Unk021b3bdc {
     /* 00 */ s8 mUnk_00[0x2c];
 } Unk021b3bdc;

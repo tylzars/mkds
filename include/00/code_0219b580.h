@@ -95,7 +95,6 @@ extern WiFiConnection *gWiFiConnection;
 extern void *data_ov000_021b54d0[32];
 extern Unk021b5550 data_ov000_021b5550[32];
 
-s32 func_ov000_0218d574(void);
 void WiFiGpErrorCallback(u32 a, int b);
 void func_ov000_0219b5a8(u32 a, u32 b, u32 c, u32 d, u32 e);
 void WiFiBuddySyncCallback(u32 a, u32 b);
@@ -131,6 +130,4 @@ u32 func_ov000_0219c0c8(void);
 void ReleaseWiFiConnection(void);
 void InitWiFiConnection(void *a, void *b, s32 c, const char *d, const char *e, s32 f, s32 g, void *h, s32 i);
 // Declared here until the code that defines it is decompiled.
-void ReportBuddySyncError(s32 a, s32 b);
-void UpdateBuddySync(void);
 void func_ov000_021a1430(void);

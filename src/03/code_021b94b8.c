@@ -5,6 +5,7 @@
 #include "03/code_021b7bb4.h"
 #include "code_0200fc8c.h"
 #include "code_0214d018.h"
+#include "00/code_021a669c.h"
 
 Unk021d687c data_ov003_021d687c[12] = {
     {0x0001, 0x02, 0}, {0x0002, 0x04, 0}, {0x0004, 0x0b, 0}, {0x0008, 0x0c, 0}, {0x0010, 0x12, 0}, {0x0020, 0x16, 0},

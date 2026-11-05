@@ -51,8 +51,6 @@ extern u8 data_usa_02155148[];
 extern Nclr *data_usa_0217ace4;
 extern u8 *data_usa_0217acec;
 
-void func_02077b1c(void);
-void func_02077b3c(void);
 void func_02077bc0(void *a);
 void func_02077c1c(void);
 void func_02077eb4(void *a, u32 *b);
