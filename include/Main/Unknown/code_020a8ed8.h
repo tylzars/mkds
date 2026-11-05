@@ -6,8 +6,9 @@
 #include "Main/Unknown/code_020e005c.h"
 #include "Main/Unknown/code_020e516c.h"
 
-// Object of 0x134 bytes: the shared MapObject part, a Unk020e0144 at 0xc4 and a Unk020e516c at 0xe8.
-typedef struct Unk020a9268 {
+// Object of kinds 0x1b0 and 0x1b3 (IronBall; kind 0x1b3 has only Init and Draw, no update or collision group), 0x134
+// bytes: the shared MapObject part, a Unk020e0144 at 0xc4 and a Unk020e516c at 0xe8.
+typedef struct IronBall {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ s32 mUnk_0a0;
     /* 0a4 */ s32 mUnk_0a4;
@@ -24,11 +25,11 @@ typedef struct Unk020a9268 {
     /* 128 */ s32 mUnk_128;
     /* 12c */ s32 mUnk_12c;
     /* 130 */ s32 mUnk_130;
-} Unk020a9268;
+} IronBall;
 
 // Array of object pointers: pointer to the array and the number of entries (func_020a9a5c).
 typedef struct Unk020a9a5c {
-    /* 00 */ Unk020a9268 **mUnk_00;
+    /* 00 */ IronBall **mUnk_00;
     /* 04 */ u16 mUnk_04;
 } Unk020a9a5c;
 
@@ -48,7 +49,7 @@ u32 func_020a91c0(void);
 u32 func_020a91e0(void);
 u32 func_020a9204(void);
 void func_020a9224(void);
-void func_020a9268(void *a, Unk020a9268 *p);
+void UpdateIronBall(void *a, IronBall *p); /* kind 0x1b0 only */
 void func_020a9a5c(Unk020a9a5c *p);
-void func_020a9c54(void *a, Unk020a9268 *p, u32 c, u32 d);
+void func_020a9c54(void *a, IronBall *p, u32 c, u32 d);
 unsigned int func_020a9cd0(unsigned int p0);

@@ -276,7 +276,7 @@ void func_ov001_021816fc(void) {
 
 BOOL func_ov001_021816b4(void) {
     Unk021816b4 *list;
-    Unk020a2fe4 *e;
+    Balloon *e;
     s32 i;
 
     list = func_02100138(0x6c);

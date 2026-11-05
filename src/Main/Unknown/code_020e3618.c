@@ -32,7 +32,7 @@ BOOL func_020e3af0(u32 a) {
 
 #pragma thumb on
 
-void func_020e3a7c(void) {
+void CreateBridge(void) {
     void *p;
 
     p = (void *) FindCourseMapObjFile(gBridgeNsbmdName);
@@ -43,7 +43,7 @@ void func_020e3a7c(void) {
     func_020e1dc0(*(void **) data_0217b7c4, gBridge);
 }
 
-void func_020e38a0(Unk020e38a0 *a, struct CourseMapRow *b) {
+void InitBridge(Bridge *a, struct CourseMapRow *b) {
     a->mUnk_0e8 = a->mUnk_000.mPos;
     a->mUnk_0a0 = *(Unk020e38a0_28 *) &a->mUnk_000.mMatrix;
     a->mUnk_0c4 = *(Unk020e38a0_28 *) &a->mUnk_000.mMatrix;

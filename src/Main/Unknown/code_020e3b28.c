@@ -232,7 +232,7 @@ void *func_020e3dec(void) {
     return data_0217b7c8;
 }
 
-void func_020e3bc0(s32 a, Unk020e38a0 *b) {
+void UpdateBridge(s32 a, Bridge *b) {
     s16 t;
     s32 d;
     u16 x;

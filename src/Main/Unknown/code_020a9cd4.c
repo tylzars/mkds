@@ -49,7 +49,7 @@ s32 func_020a9e80(void) {
 
 #pragma thumb off
 
-void func_020a9e04(Unk020a9268 *p) {
+void InitIronBall(IronBall *p) {
     Vec3 v = data_02167974;
 
     SetMapObjectScale(&p->mUnk_000, &v);
@@ -79,7 +79,7 @@ void func_020a9d98(void *a) {
     func_0209bbd0(a, gIronBall);
 }
 
-void func_020a9cd4(void *a, Unk020a9268 *p) {
+void DrawIronBall(void *a, IronBall *p) {
     u32 v;
     u8 v1[0x28];
     s32 i;

@@ -1,6 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020a2e4c.h" // Unk020a2fe4
+#include "Main/Unknown/code_020a2e4c.h" // Balloon
 
-void func_020a2f0c(Unk020a2fe4 *p, u16 a);
+void func_020a2f0c(Balloon *p, u16 a);

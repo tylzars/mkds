@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020a2e4c.h" // Unk020a2fe4
+#include "Main/Unknown/code_020a2e4c.h" // Balloon
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
@@ -11,7 +11,7 @@ typedef struct Unk020a3fa8_a4 {
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
-    /* 10 */ Unk020a2fe4 *mUnk_10[8];
+    /* 10 */ Balloon *mUnk_10[8];
     /* 30 */ u16 mUnk_30;
     /* 32 */ u8 mUnk_32[0x2];
     /* 34 */ s32 mUnk_34;

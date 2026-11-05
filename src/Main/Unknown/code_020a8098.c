@@ -9,7 +9,7 @@ u32 func_020a824c(void) {
     return func_0209bf48(func_020a8a6c, func_020a826c, NULL);
 }
 
-void func_020a8098(Unk020a7f18 *p) {
+void func_020a8098(Sanbo *p) {
     s32 i;
     Unk020f41c4_B *r;
     u16 v1;
@@ -31,5 +31,5 @@ void func_020a8098(Unk020a7f18 *p) {
         p->mUnk_0b0[i].mUnk_40 = (v2 != 0 ? 1 : -1) * 0xaab;
     }
     p->mUnk_0a8 = 300;
-    p->mUnk_1fc = 2;
+    p->mState = 2;
 }

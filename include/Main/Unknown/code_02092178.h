@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02092178(u32 arg0);
+void InitKanoke64(u32 arg0); /* creates ten kind-0x19f (Basabasa) pool objects */

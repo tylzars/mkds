@@ -53,7 +53,7 @@ void func_02091784(void *a) {
     func_0209bbd0(a, gSmanTop);
 }
 
-void func_020916a0(void *a, Unk020912a0 *b) {
+void DrawSmanTop(void *a, Sman *b) {
     s32 c;
     s32 m[9];
     s32 s[3];
@@ -81,7 +81,7 @@ void func_02091654(void *a) {
     func_0209bbd0(a, gSmanBottom);
 }
 
-void func_020915c0(void *a, Unk020912a0 *b) {
+void DrawSmanBottom(void *a, Sman *b) {
     s32 c;
     s32 d[3];
     s32 v;
@@ -99,7 +99,7 @@ void func_020915c0(void *a, Unk020912a0 *b) {
 
 void func_0209151c(Unk0209151c *a) {
     s32 i;
-    Unk020912a0 *p;
+    Sman *p;
     if (a == NULL) {
         return;
     }
@@ -114,10 +114,10 @@ void func_0209151c(Unk0209151c *a) {
     }
 }
 
-void func_020912a0(void *a, Unk020912a0 *b) {
+void UpdateSman(void *a, Sman *b) {
     Unk0210b7a8 s;
     s32 t;
-    switch (b->mUnk_c8) {
+    switch (b->mState) {
         case 0:
             b->mUnk_a0 = 1;
             break;
@@ -134,7 +134,7 @@ void func_020912a0(void *a, Unk020912a0 *b) {
             } else if (b->mUnk_b8 < b->mUnk_c4) {
                 b->mUnk_b8 = b->mUnk_c4;
                 b->mUnk_bc = 0;
-                b->mUnk_c8 = 2;
+                b->mState = 2;
                 t = 2;
                 if ((b->mUnk_00.mUnk_78 & 4) == 0) {
                     if (b->mUnk_00.mUnk_70 != data_0217ca6c[2].mUnk_20) {
@@ -158,7 +158,7 @@ void func_020912a0(void *a, Unk020912a0 *b) {
             if (b->mUnk_ac >= 0x12b) {
                 b->mUnk_ac = 0;
                 b->mUnk_bc = ((b->mUnk_c0 - b->mUnk_c4) * 0x40) / 0x1000;
-                b->mUnk_c8 = 3;
+                b->mState = 3;
             }
             b->mUnk_a0 = 0;
             break;
@@ -177,7 +177,7 @@ void func_020912a0(void *a, Unk020912a0 *b) {
                     b->mUnk_ac = 0;
                     b->mUnk_b4 = 0x1000;
                     b->mUnk_00.mFlags = b->mUnk_00.mFlags & ~1;
-                    b->mUnk_c8 = 0;
+                    b->mState = 0;
                 }
             }
             b->mUnk_a0 = 1;
@@ -226,15 +226,15 @@ static inline BOOL func_02090940_inline(void) {
 }
 
 u32 func_02091238(void) {
-    return func_0209bef0(CreateSmanTop, func_020916a0, func_02091784);
+    return func_0209bef0(CreateSmanTop, DrawSmanTop, func_02091784);
 }
 
 u32 func_02091214(void) {
-    return func_0209bef0(CreateSmanBottom, func_020915c0, func_02091654);
+    return func_0209bef0(CreateSmanBottom, DrawSmanBottom, func_02091654);
 }
 
 u32 func_020911f4(void) {
-    return func_0209bf48(func_0209151c, func_020912a0, NULL);
+    return func_0209bf48(func_0209151c, UpdateSman, NULL);
 }
 
 static inline BOOL func_02090cf8_inline(s32 a, s32 b) {

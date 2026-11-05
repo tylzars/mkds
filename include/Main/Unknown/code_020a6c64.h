@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020a6c64(u32 arg0);
+void InitShine16(u32 arg0); /* parks the pooled object, then allocates its 0x44 effect record */

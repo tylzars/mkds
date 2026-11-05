@@ -22,7 +22,7 @@ void CreatePicture1AndPicture2(void *a) {
     func_0209b940(gPicture2, 0x3f);
 }
 
-void func_0209efb4(void *a, Unk0209ec80 *b) {
+void DrawPicture(void *a, Unk0209ec80 *b) {
     s32 s;
 
     s = 0x1e;
@@ -44,7 +44,7 @@ void func_0209efb4(void *a, Unk0209ec80 *b) {
     }
 }
 
-void func_0209ec80(void *a, Unk0209ec80 *b) {
+void UpdatePicture(void *a, Unk0209ec80 *b) {
     Unk0210b7a8 s1;
     Unk0210b7a8 s2;
     Unk0210b7a8 s3;
@@ -148,11 +148,11 @@ void func_0209ec80(void *a, Unk0209ec80 *b) {
 }
 
 u32 func_0209ec60(void) {
-    return func_0209bf1c(CreatePicture1AndPicture2, func_0209efb4, NULL);
+    return func_0209bf1c(CreatePicture1AndPicture2, DrawPicture, NULL);
 }
 
 u32 func_0209ec44(void) {
-    return func_0209bf48(NULL, func_0209ec80, NULL);
+    return func_0209bf48(NULL, UpdatePicture, NULL);
 }
 
 void CreatePuddle(void *a) {
@@ -163,7 +163,7 @@ void func_0209ec00(void *a) {
     func_0209bbd0(a, gPuddle);
 }
 
-void func_0209eb54(void *a, Unk0209ec80 *b) {
+void DrawPuddle(void *a, Unk0209ec80 *b) {
     s32 s;
     s32 x;
     s32 y;

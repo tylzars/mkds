@@ -74,7 +74,7 @@
 #include "Main/Unknown/code_020a6c64.h"
 #include "Main/Unknown/unk_0217c000.h"
 
-void func_020a6c64(u32 arg0) {
+void InitShine16(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -97,7 +97,7 @@ void func_020a6c64(u32 arg0) {
     *(u32 *) ((value4) + (112)) = value0;
 }
 
-u32 func_020a6ae4(Unk020a5958 *p, Kart *o, u8 *a, u8 *b) {
+u32 func_020a6ae4(Shine16 *p, Kart *o, u8 *a, u8 *b) {
     u8 v1;
     u8 v2;
     s32 r;
@@ -126,7 +126,7 @@ u32 func_020a6ae4(Unk020a5958 *p, Kart *o, u8 *a, u8 *b) {
         p->mUnk_00.mUnk_10.y = 0x3000;
         p->mUnk_00.mUnk_10.z = 0;
         p->mUnk_a8 = 0;
-        p->mUnk_e0 = 2;
+        p->mState = 2;
         p->mUnk_c8 = o->mIndex;
         p->mUnk_ca = o->mIndex;
         func_020a10ac(o->mIndex, 1);
@@ -150,7 +150,7 @@ void func_020a6a90(void *a) {
     func_0209bbd0(a, gShine16);
 }
 
-void func_020a69b4(void *a, Unk020a5958 *p) {
+void DrawShine16(void *a, Shine16 *p) {
     s32 t;
     Vec3 s;
     s32 n;
@@ -193,7 +193,7 @@ void func_020a697c(void) {
     data_0217b220 = v;
 }
 
-void func_020a683c(void *a, Unk020a5958 *p, void *b, s32 c) {
+void func_020a683c(void *a, Shine16 *p, void *b, s32 c) {
     s32 t;
     s32 m[9];
     Vec3 s;
@@ -204,10 +204,10 @@ void func_020a683c(void *a, Unk020a5958 *p, void *b, s32 c) {
     if (p->mUnk_a8 <= 0) {
         return;
     }
-    if (p->mUnk_e0 == 2) {
+    if (p->mState == 2) {
         return;
     }
-    if (p->mUnk_e0 == 3) {
+    if (p->mState == 3) {
         return;
     }
     t = 0x1e;
@@ -231,7 +231,7 @@ void func_020a683c(void *a, Unk020a5958 *p, void *b, s32 c) {
     func_020e5348(8, c);
 }
 
-void func_020a5958(void *a, Unk020a5958 *p) {
+void UpdateShine16(void *a, Shine16 *p) {
     Vec3 c;
     Vec3 b;
     Vec3 d;
@@ -248,7 +248,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
     s32 s;
     Unk020f41c4_B *g;
 
-    switch (p->mUnk_e0) {
+    switch (p->mState) {
         case 0:
             p->mUnk_b4 += 1;
             if (p->mUnk_b4 >= 3) {
@@ -276,7 +276,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
             p->mUnk_00.mUnk_10.y = ((s64) p->mUnk_00.mUnk_10.y * -0x333) >> 12;
             if (p->mUnk_00.mUnk_10.y < 0x1000) {
                 p->mUnk_00.mUnk_10.y = 0;
-                p->mUnk_e0 = 1;
+                p->mState = 1;
             }
             func_0210b98c(p->mUnk_00.mUnk_94, 0x139);
             return;
@@ -438,7 +438,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
                 s = ((u64) (u32) (g->mUnk_00 >> 32) * 0x14000) >> 32;
                 x = p->mUnk_cc.x + (s32) (((s64) s * gPairsByAngle[(r >> 4) * 2]) >> 12) - p->mUnk_00.mPos.x;
                 z = p->mUnk_cc.z + (s32) (((s64) s * gPairsByAngle[(r >> 4) * 2 + 1]) >> 12) - p->mUnk_00.mPos.z;
-                p->mUnk_e0 = 4;
+                p->mState = 4;
                 p->mUnk_00.mUnk_10.x = ((s64) x * 0x25) >> 12;
                 p->mUnk_00.mUnk_10.y = 0x5000;
                 p->mUnk_00.mUnk_10.z = ((s64) z * 0x25) >> 12;
@@ -446,7 +446,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
                 p->mUnk_00.mFlags &= ~1;
                 return;
             }
-            p->mUnk_e0 = 5;
+            p->mState = 5;
             p->mUnk_00.mUnk_10.x = 0;
             p->mUnk_00.mUnk_10.y = 0x5000;
             p->mUnk_00.mUnk_10.z = 0;
@@ -476,7 +476,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
             if (p->mUnk_00.mUnk_10.y >= 0) {
                 return;
             }
-            p->mUnk_e0 = 6;
+            p->mState = 6;
             p->mUnk_00.mFlags |= data_021567a0;
             return;
         case 4:
@@ -542,7 +542,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
                         p->mUnk_00.mUnk_10.z = ((s64) p->mUnk_00.mUnk_10.z * 0x19a) >> 12;
                         if (p->mUnk_00.mUnk_10.y < 0x1000) {
                             p->mUnk_00.mUnk_10.y = 0;
-                            p->mUnk_e0 = 1;
+                            p->mState = 1;
                         }
                         func_0210b98c(p->mUnk_00.mUnk_94, 0x139);
                     }
@@ -556,7 +556,7 @@ void func_020a5958(void *a, Unk020a5958 *p) {
             if (p->mUnk_00.mPos.y >= 0) {
                 return;
             }
-            p->mUnk_e0 = 6;
+            p->mState = 6;
             p->mUnk_00.mFlags |= data_021567a0;
             return;
     }
@@ -571,7 +571,7 @@ void func_020a5918(void) {
 }
 
 u32 func_020a58f4(void) {
-    return func_0209bef0(CreateShine16, func_020a69b4, func_020a6a90);
+    return func_0209bef0(CreateShine16, DrawShine16, func_020a6a90);
 }
 
 u32 func_020a58d0(void) {
@@ -579,7 +579,7 @@ u32 func_020a58d0(void) {
 }
 
 u32 func_020a58b4(void) {
-    return func_0209bf48(NULL, func_020a5958, NULL);
+    return func_0209bf48(NULL, UpdateShine16, NULL);
 }
 
 void func_020a5848(void) {
@@ -599,7 +599,7 @@ void func_020a5848(void) {
 }
 
 void func_020a5744(Vec3 *a, s32 b, s32 c) {
-    Unk020a5958 *p;
+    Shine16 *p;
 
     p = func_0209bbfc(func_02100138(0x6a));
     if (p == NULL) {
@@ -614,7 +614,7 @@ void func_020a5744(Vec3 *a, s32 b, s32 c) {
         p->mUnk_00.mUnk_10.z = 0;
         p->mUnk_a0 = 0;
         p->mUnk_a4 = a->y + 0x14000;
-        p->mUnk_e0 = 0;
+        p->mState = 0;
     } else {
         p->mUnk_00.mPos.x = a->x;
         p->mUnk_00.mPos.y = a->y + 0x14000;
@@ -624,7 +624,7 @@ void func_020a5744(Vec3 *a, s32 b, s32 c) {
         p->mUnk_00.mUnk_10.z = 0;
         p->mUnk_a0 = 0;
         p->mUnk_a4 = 0;
-        p->mUnk_e0 = 1;
+        p->mState = 1;
     }
     p->mUnk_a8 = 0;
     p->mUnk_c0 = 0;
@@ -636,7 +636,7 @@ void func_020a5744(Vec3 *a, s32 b, s32 c) {
 }
 
 void func_020a5608(Kart *a, Kart *b) {
-    Unk020a5958 *p;
+    Shine16 *p;
     s32 r;
     u16 c;
     s32 n;
@@ -659,7 +659,7 @@ void func_020a5608(Kart *a, Kart *b) {
     p->mUnk_a4 = 0;
     p->mUnk_a8 = 0;
     p->mUnk_c0 = 0;
-    p->mUnk_e0 = 3;
+    p->mState = 3;
     p->mUnk_cc = b->mPos;
     if (b == a) {
         p->mUnk_d8 = 0;
@@ -678,8 +678,8 @@ void func_020a5608(Kart *a, Kart *b) {
 BOOL func_020a5268(u16 a, u16 b) {
     Kart *o;
     Unk020a3fa8_a4 *e;
-    Unk020a2fe4 *f;
-    Unk020a2fe4 *l;
+    Balloon *f;
+    Balloon *l;
     Vec3 v;
     s32 n;
 
@@ -756,10 +756,10 @@ BOOL func_020a5268(u16 a, u16 b) {
 s32 func_020a4f54(u16 a, u16 b) {
     Unk020a3fa8_a4 *v1;
     Unk020a3fa8_a4 *v2;
-    Unk020a2fe4 *f;
-    Unk020a2fe4 *l;
-    Unk020a2fe4 *g;
-    Unk020a2fe4 *m;
+    Balloon *f;
+    Balloon *l;
+    Balloon *g;
+    Balloon *m;
     Unk0210b7a8 s;
     s32 n;
 
@@ -828,8 +828,8 @@ s32 func_020a4f54(u16 a, u16 b) {
 BOOL func_020a4d94(u16 a, u16 b) {
     Kart *o;
     Unk020a3fa8_a4 *e;
-    Unk020a2fe4 *f;
-    Unk020a2fe4 *l;
+    Balloon *f;
+    Balloon *l;
     Vec3 v;
 
     e = func_020a2378() + a;
@@ -870,8 +870,8 @@ BOOL func_020a4d94(u16 a, u16 b) {
 
 void func_020a4c58(u16 a) {
     Unk020a3fa8_a4 *e;
-    Unk020a2fe4 *f;
-    Unk020a2fe4 *l;
+    Balloon *f;
+    Balloon *l;
 
     if (data_021759c0->mMode != 2) {
         return;
@@ -908,7 +908,7 @@ void func_020a4c20(void) {
 
 void func_020a4b70(u16 a, Vec3 *b) {
     Unk020a3fa8_a4 *e;
-    Unk020a2fe4 *p;
+    Balloon *p;
     s32 i;
     s32 n;
 
@@ -988,7 +988,7 @@ void func_020a49d4(Unk020a3fa8 *a) {
 }
 
 void func_020a3fa8(void *b, Unk020a3fa8 *c) {
-    Unk020a2fe4 *o;
+    Balloon *o;
     s32 i;
     s32 j;
     s32 n;
@@ -1154,7 +1154,7 @@ void func_020a3fa8(void *b, Unk020a3fa8 *c) {
             }
             m = func_020a1154(i) + (func_020a2204(i) != 0 ? 1 : 0);
             for (j = 0; j < m; j++) {
-                Unk020a2fe4 *o = e->mUnk_10[j];
+                Balloon *o = e->mUnk_10[j];
                 a = e->mUnk_08 + c->mUnk_264[m - 1][j];
                 if (a != 0) {
                     q = &p->mUnk_150;

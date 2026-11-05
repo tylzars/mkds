@@ -13,9 +13,10 @@ typedef struct Unk0209bfa8 {
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
-// Object reached through func_02100138(0x6a), set up by func_020a5744 and updated by func_020a5958: the shared
-// MapObject part, then words up to 0xe8. func_020a5958 switches on the word at 0xe0 (0 to 6).
-typedef struct Unk020a5958 {
+// Object of kind 0x6a (Shine16), also typed Unk020888b4_d0 (code_020888b4.c) and MapObject (code_020a3f2c.c) where the
+// pool list is walked. Object reached through func_02100138(0x6a), set up by func_020a5744 and updated by
+// UpdateShine16: the shared MapObject part, then words up to 0xe8. UpdateShine16 switches on the word at 0xe0 (0 to 6).
+typedef struct Shine16 {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
@@ -32,10 +33,12 @@ typedef struct Unk020a5958 {
     /* cc */ Vec3 mUnk_cc;
     /* d8 */ s32 mUnk_d8;
     /* dc */ s32 mUnk_dc;
-    /* e0 */ s32 mUnk_e0;
+    /* State number of this kind's own per-frame switch in UpdateShine16; this object does not use
+       MapObject.mUnk_80's state machine; also read in the second draw callback func_020a683c */
+    /* e0 */ s32 mState;
     /* e4 */ void *mUnk_e4;
     /* e8 */ s32 mUnk_e8;
-} Unk020a5958;
+} Shine16;
 
 #include "Main/Unknown/code_020a3fa8.h" // Unk020a3fa8
 
@@ -55,4 +58,4 @@ u32 func_020a58b4(void);
 u32 func_020a58d0(void);
 u32 func_020a58f4(void);
 void func_020a5918(void);
-void func_020a5958(void *a, Unk020a5958 *p);
+void UpdateShine16(void *a, Shine16 *p); /* skipped for objects with mFlags & 4 (parked pool objects) */

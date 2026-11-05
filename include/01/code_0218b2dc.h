@@ -11,9 +11,9 @@ extern Unk021a7b64 data_ov001_021a7b64;
 void *func_ov001_0218b2dc(void);
 void *func_ov001_0218b2f4(void);
 void func_ov001_0218b310(void);
-void func_ov001_0218b33c(u32 a, u32 b);
+void DrawKuriking(u32 a, u32 b); /* only calls the two draw helpers shared with five other ov001 draw callbacks */
 void InitKuriking(Unk0218d87c *a);
-void func_ov001_0218b404(u32 a, Unk02188950 *b);
+void UpdateKuriking(u32 a, Unk02188950 *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void func_ov001_0218b5d8(Unk0218d87c *a);
 void func_ov001_0218b640(Unk02188950 *a, void *b);
 void func_ov001_0218b6f8(Unk02188950 *a, void *b);

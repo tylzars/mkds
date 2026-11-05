@@ -67,7 +67,7 @@ void CreateKanoke64(void *a) {
     func_0209be50(gKanoke64, gKanoke64NsbcaName);
 }
 
-void func_020920a0(void *a, Unk020919e8 *p) {
+void DrawKanoke64(void *a, Unk020919e8 *p) {
     s32 w;
 
     func_0209b77c(gKanoke64, p->mUnk_a0);
@@ -164,7 +164,7 @@ s16 func_02091f24(s32 a) {
     return gPairsByAngle[(a >> 4) * 2 + 1];
 }
 
-void func_020919e8(void *a, Unk020919e8 *p) {
+void UpdateKanoke64(void *a, Unk020919e8 *p) {
     s32 i;
     s32 r;
     u16 k;
@@ -236,11 +236,11 @@ void func_020919e8(void *a, Unk020919e8 *p) {
 }
 
 void func_020919c8(void) {
-    func_0209bf1c(CreateKanoke64, func_020920a0, NULL);
+    func_0209bf1c(CreateKanoke64, DrawKanoke64, NULL);
 }
 
 void func_020919a8(void) {
-    func_0209bf48(func_02091fd8, func_020919e8, NULL);
+    func_0209bf48(func_02091fd8, UpdateKanoke64, NULL);
 }
 
 void CreateCow(void *a) {

@@ -22,7 +22,7 @@
 #include "Main/Unknown/unk_02166000.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-u32 func_02094df4(u32 arg0) {
+u32 InitTeresa(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     func_020d2398((void *) value0);
@@ -32,7 +32,7 @@ u32 func_02094df4(u32 arg0) {
     return value0;
 }
 
-void func_02094db4(Unk02094db4 *a) {
+void CreateTeresa(Unk02094db4 *a) {
     gTeresa = func_0209bc74(a, gTeresaNsbmdName, gTeresaNsbtpName);
     func_0209b940(gTeresa, 0x3f);
     a->mUnk_1c = 1;
@@ -42,7 +42,7 @@ void func_02094d9c(void *a) {
     func_0209bbd0(a, gTeresa);
 }
 
-void func_02094c70(void *a, Unk02094000 *b) {
+void DrawTeresa(void *a, Teresa *b) {
     s32 w;
     s32 v[3];
 
@@ -68,7 +68,7 @@ void func_02094c70(void *a, Unk02094000 *b) {
     func_0209bb2c(a, gTeresa, b);
 }
 
-static inline void func_02094768_inline(Unk02094000 *o) {
+static inline void func_02094768_inline(Teresa *o) {
     o->mUnk_fc = o->mUnk_fc + o->mUnk_100;
     if (o->mUnk_fc >= o->mUnk_108) {
         o->mUnk_100 = -o->mUnk_100;
@@ -99,7 +99,7 @@ static inline void func_02094768_inline_2(s32 *p, s32 *q) {
 
 void func_02094c24(Unk020946b8 *a) {
     s32 i;
-    Unk02094000 *o;
+    Teresa *o;
 
     if (a == NULL) {
         return;
@@ -122,7 +122,7 @@ s16 func_02094bd0(s32 a) {
     return gPairsByAngle[(a >> 4) * 2 + 1];
 }
 
-void func_02094768(void *a, Unk02094000 *o) {
+void UpdateTeresa(void *a, Teresa *o) {
     s32 t;
     s32 x;
     s32 y;
@@ -131,7 +131,7 @@ void func_02094768(void *a, Unk02094000 *o) {
     s32 m;
     Kart *g;
 
-    switch (o->mUnk_110) {
+    switch (o->mState) {
         case 1:
             t = o->mUnk_b4;
             o->mUnk_b4 = t - 1;
@@ -139,7 +139,7 @@ void func_02094768(void *a, Unk02094000 *o) {
                 o->mUnk_b4 = 0;
                 func_02094768_inline(o);
                 if (o->mUnk_fc >= 0x2000) {
-                    o->mUnk_110 = 0;
+                    o->mState = 0;
                 }
             }
             break;
@@ -193,16 +193,16 @@ void func_02094768(void *a, Unk02094000 *o) {
 }
 
 void func_02094744(void) {
-    func_0209bef0(func_02094db4, func_02094c70, func_02094d9c);
+    func_0209bef0(CreateTeresa, DrawTeresa, func_02094d9c);
 }
 
 void func_02094724(void) {
-    func_0209bf48(func_02094c24, func_02094768, NULL);
+    func_0209bf48(func_02094c24, UpdateTeresa, NULL);
 }
 
 void func_020946b8(void) {
     Unk020946b8 *l;
-    Unk02094000 *o;
+    Teresa *o;
     s32 i;
 
     l = func_02100138(0x13b);
@@ -233,7 +233,7 @@ static inline void func_02094000_inline_2(Unk02094000_bc *p, u16 a, s32 b, s32 c
 }
 
 void func_02094000(Vec3 *a) {
-    Unk02094000 *o;
+    Teresa *o;
     Unk020748a8 *g;
     s32 p;
     s32 q;
@@ -279,11 +279,11 @@ void func_02094000(Vec3 *a) {
     if (func_02061818() == 2) {
         o->mUnk_b4 = 0;
         o->mUnk_b8 = 0xffff;
-        o->mUnk_110 = 0;
+        o->mState = 0;
     } else {
         o->mUnk_b4 = (u16) func_02094000_inline(&data_0217561c->mUnk_498, 0x4b);
         o->mUnk_b8 = (u16) func_02094000_inline(&data_0217561c->mUnk_498, 0x96) + 0x12c;
-        o->mUnk_110 = 1;
+        o->mState = 1;
     }
     data_0217b0d8++;
 }

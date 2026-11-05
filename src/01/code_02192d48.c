@@ -18,7 +18,7 @@
 
 Unk0219b250 *gStopSign;
 
-void func_ov001_02192e10(Unk02188950 *a) {
+void InitStopSign(Unk02188950 *a) {
     s32 m[9];
     func_020d2450(a);
     a->mUnk_000.mAngle = (u16) (((s64) a->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
@@ -34,7 +34,7 @@ void LoadStopSign(Unk0219b478 *a) {
     func_020849a0(gStopSign->mUnk_10, 0x294a);
 }
 
-void func_ov001_02192d7c(void *a, StopSignObject *b) {
+void DrawStopSign(void *a, StopSignObject *b) {
     s32 v = 0x1e;
     func_01ff9048(0x14, &v, 1);
     b->mUnk_4c = b->mUnk_04 >> 4;
@@ -51,5 +51,5 @@ void func_ov001_02192d60(void) {
 }
 
 void *func_ov001_02192d48(void) {
-    return (void *) func_0209bf1c(LoadStopSign, func_ov001_02192d7c, NULL);
+    return (void *) func_0209bf1c(LoadStopSign, DrawStopSign, NULL);
 }

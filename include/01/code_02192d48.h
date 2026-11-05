@@ -38,8 +38,8 @@ typedef struct StopSignObject {
 
 void *func_ov001_02192d48(void);
 void func_ov001_02192d60(void);
-void func_ov001_02192d7c(void *a, StopSignObject *b);
+void DrawStopSign(void *a, StopSignObject *b);
 void LoadStopSign(Unk0219b478 *a);
-void func_ov001_02192e10(Unk02188950 *a);
+void InitStopSign(Unk02188950 *a); /* object is MapObject-sized; Unk02188950 is only the prefix view */
 
 #include "01/code_0219b540.h"

@@ -16,7 +16,7 @@ void CreateAirship(void *a) {
     func_0209b940(gAirship, 0x3f);
 }
 
-void func_020a018c(void *a, Unk020a018c *p) {
+void DrawAirship(void *a, Airship *p) {
     s32 v;
     s32 q[9];
     Vec3 w;
@@ -42,7 +42,7 @@ void func_020a018c(void *a, Unk020a018c *p) {
 
 void func_020a0064(Unk020a0064 *p) {
     s32 i;
-    Unk020a018c *o;
+    Airship *o;
     BOOL z;
     s32 v;
 
@@ -66,9 +66,9 @@ void func_020a0064(Unk020a0064 *p) {
         o->mUnk_c0 = 0xb6;
         o->mUnk_c4 = 0;
         if (o->mUnk_00.mCourseMapRow->mUnk_2a != 0) {
-            o->mUnk_ec = 0;
+            o->mState = 0;
         } else {
-            o->mUnk_ec = 2;
+            o->mState = 2;
         }
     }
 }

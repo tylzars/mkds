@@ -33,7 +33,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020a3f18.h"
 
-void func_020a3f18(u32 arg0) {
+void InitBalloon(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value12;
@@ -43,7 +43,7 @@ void func_020a3f18(u32 arg0) {
     func_020d2398((void *) value0);
 }
 
-void func_020a3eb8(Unk020a3eb8 *a) {
+void CreateBalloon(Unk020a3eb8 *a) {
     gBalloon = func_0209bc74(a, gBalloonNsbmdName, gBalloonNsbtpName);
     func_0209b940(gBalloon, 0x3f);
     func_0209b9a4(gBalloon, 0x1a);
@@ -64,7 +64,7 @@ void func_020a3e38(void *p) {
     func_0209bbd0(p, gBalloon);
 }
 
-void func_020a3948(void *p, Unk020a2fe4 *a) {
+void DrawBalloon(void *p, Balloon *a) {
     s32 j;
     s32 n;
     s32 i;
@@ -82,7 +82,7 @@ void func_020a3948(void *p, Unk020a2fe4 *a) {
     s32 f1[3];
     s32 g1[3];
     s32 h[3];
-    Unk020a2fe4 *e;
+    Balloon *e;
 
     if (a->mUnk_a4 >= 0) {
         if (GetKart(a->mUnk_a4)->mUnk_384 == 0) {
@@ -180,11 +180,11 @@ void func_020a3948(void *p, Unk020a2fe4 *a) {
     }
 }
 
-void func_020a392c(Unk0206c1ac *a, Unk020a2fe4 *b) {
+void func_020a392c(Unk0206c1ac *a, Balloon *b) {
     a->mUnk_72 = func_0208606c(b->mUnk_a8);
 }
 
-void func_020a36a8(Unk020a2fe4 *a) {
+void func_020a36a8(Balloon *a) {
     Kart *p;
     Vec3 *q;
     Vec3 v;
@@ -247,15 +247,15 @@ void func_020a36a8(Unk020a2fe4 *a) {
     Vec3Add(&a->mUnk_b0, &a->mUnk_bc, &a->mUnk_b0);
 }
 
-u32 func_020a369c(Unk020a2fe4 *p) {
+u32 func_020a369c(Balloon *p) {
     return p->mUnk_00.mFlags & 0x12;
 }
 
-u32 func_020a3690(Unk020a2fe4 *p) {
+u32 func_020a3690(Balloon *p) {
     return p->mUnk_00.mUnk_78 & ~0xc000001fu;
 }
 
-void func_020a35b0(Unk020a2fe4 *a) {
+void func_020a35b0(Balloon *a) {
     Unk02061808 *g;
     Vec3 v;
     u16 v1;
@@ -281,11 +281,11 @@ void func_020a35b0(Unk020a2fe4 *a) {
     a->mUnk_00.mAngle = AngleFromPair(u - v.y, -(y + x - w));
 }
 
-void func_020a3154(void *p, Unk020a2fe4 *a) {
+void UpdateBalloon(void *p, Balloon *a) {
     Kart *o;
 
     if (a->mUnk_a4 >= 0) {
-        switch (a->mUnk_fc) {
+        switch (a->mState) {
             case 0:
                 a->mUnk_d8 = a->mUnk_d8 + a->mUnk_dc;
                 if (a->mUnk_d8 >= 0) {
@@ -331,7 +331,7 @@ void func_020a3154(void *p, Unk020a2fe4 *a) {
                 if (a->mUnk_d4 < 0) {
                     if (a->mUnk_d0 <= 0x1000) {
                         a->mUnk_d0 = 0x1000;
-                        a->mUnk_fc = 2;
+                        a->mState = 2;
                     }
                 }
                 if (a->mUnk_f4 == 1 && a->mUnk_f8 == NULL) {
@@ -407,17 +407,17 @@ void func_020a3154(void *p, Unk020a2fe4 *a) {
 }
 
 u32 func_020a3130(void) {
-    return func_0209bef0(func_020a3eb8, func_020a3948, func_020a3e38);
+    return func_0209bef0(CreateBalloon, DrawBalloon, func_020a3e38);
 }
 
 u32 func_020a3114(void) {
-    return func_0209bf48(NULL, func_020a3154, NULL);
+    return func_0209bf48(NULL, UpdateBalloon, NULL);
 }
 
 void func_020a305c(void) {
     s32 i;
     Unk02100094 *v1;
-    Unk020a2fe4 *e;
+    Balloon *e;
 
     v1 = func_02100138(0x6c);
     if (v1 == NULL) {
@@ -430,15 +430,15 @@ void func_020a305c(void) {
             e->mUnk_d4 = 0;
             e->mUnk_d8 = 0;
             e->mUnk_dc = 0;
-            e->mUnk_fc = 2;
+            e->mState = 2;
         } else if ((e->mUnk_00.mFlags & 0x100) == 0) {
             func_020d2398(&e->mUnk_00);
         }
     }
 }
 
-Unk020a2fe4 *func_020a2fe4(u16 a, Vec3 *b) {
-    Unk020a2fe4 *o;
+Balloon *func_020a2fe4(u16 a, Vec3 *b) {
+    Balloon *o;
 
     o = func_0209bbfc(func_02100138(0x6c));
     if (o == NULL) {
@@ -452,29 +452,29 @@ Unk020a2fe4 *func_020a2fe4(u16 a, Vec3 *b) {
     o->mUnk_dc = 0;
     o->mUnk_e0 = 0;
     o->mUnk_a8 = a;
-    o->mUnk_fc = 0;
+    o->mState = 0;
     return o;
 }
 
-void func_020a2f9c(Unk020a2fe4 *a, u16 b, s32 c) {
+void func_020a2f9c(Balloon *a, u16 b, s32 c) {
     a->mUnk_a4 = b;
     a->mUnk_d4 = c;
     a->mUnk_d0 = a->mUnk_d0 + a->mUnk_d4;
     a->mUnk_d8 = 0;
     a->mUnk_dc = 0;
-    a->mUnk_fc = 0;
+    a->mState = 0;
     if (a->mUnk_d0 >= 0x1000) {
         a->mUnk_d8 = 0;
         a->mUnk_d4 = 0x258;
-        a->mUnk_fc = 1;
+        a->mState = 1;
     }
 }
 
-void func_020a2f30(Unk020a2fe4 *a, u16 b, s32 c) {
+void func_020a2f30(Balloon *a, u16 b, s32 c) {
     a->mUnk_a4 = b;
     a->mUnk_d4 = -c;
     a->mUnk_d0 = a->mUnk_d0 + a->mUnk_d4;
-    a->mUnk_fc = 0;
+    a->mState = 0;
     if (a->mUnk_d0 > 0) {
         return;
     }

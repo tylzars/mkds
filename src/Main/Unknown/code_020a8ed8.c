@@ -37,7 +37,7 @@ u32 func_020a9cd0(u32 p0) {
     return p0;
 }
 
-void func_020a9c54(void *a, Unk020a9268 *p, u32 c, u32 d) {
+void func_020a9c54(void *a, IronBall *p, u32 c, u32 d) {
     u32 v;
 
     if (p->mUnk_12c == 0) {
@@ -58,7 +58,7 @@ void func_020a9c54(void *a, Unk020a9268 *p, u32 c, u32 d) {
 
 void func_020a9a5c(Unk020a9a5c *p) {
     s32 i;
-    Unk020a9268 *o;
+    IronBall *o;
     u32 z0;
     u32 z1;
     u32 z2;
@@ -103,7 +103,7 @@ void func_020a9a5c(Unk020a9a5c *p) {
     }
 }
 
-void func_020a9268(void *a, Unk020a9268 *p) {
+void UpdateIronBall(void *a, IronBall *p) {
     Unk02042044 *e;
     Unk020f41c4_B *q;
     BOOL f;
@@ -330,11 +330,11 @@ u32 func_020a9204(void) {
 }
 
 u32 func_020a91e0(void) {
-    return func_0209bef0(CreateIronBall, func_020a9cd4, func_020a9d98);
+    return func_0209bef0(CreateIronBall, DrawIronBall, func_020a9d98);
 }
 
 u32 func_020a91c0(void) {
-    return func_0209bf48(func_020a9a5c, func_020a9268, NULL);
+    return func_0209bf48(func_020a9a5c, UpdateIronBall, NULL);
 }
 
 void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {

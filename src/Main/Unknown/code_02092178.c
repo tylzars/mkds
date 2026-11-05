@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_02092178.h"
 #include "Main/Unknown/code_020ac524.h"
 
-void func_02092178(u32 arg0) {
+void InitKanoke64(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;

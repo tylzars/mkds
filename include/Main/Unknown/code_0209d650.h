@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0209d650(u32 arg0);
+void InitSun(u32 arg0); /* creates 30 kind-0x1ae pool objects */

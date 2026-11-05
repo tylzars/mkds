@@ -29,7 +29,7 @@ void func_0209f514(Unk0209f514 *a) {
     }
 }
 
-void func_0209f338(void *a, Unk0209f1c8 *b) {
+void UpdateChandelier(void *a, Unk0209f1c8 *b) {
     Unk0210b7a8 s1;
     Unk0210b7a8 s2;
     Unk0210b7a8 s3;
@@ -104,11 +104,11 @@ void func_0209f338(void *a, Unk0209f1c8 *b) {
 }
 
 void *func_0209f318(void) {
-    return (void *) func_0209bf1c(CreateChandelier, func_0209f5cc, NULL);
+    return (void *) func_0209bf1c(CreateChandelier, DrawChandelier, NULL);
 }
 
 void *func_0209f2f8(void) {
-    return (void *) func_0209bf48(func_0209f514, func_0209f338, NULL);
+    return (void *) func_0209bf48(func_0209f514, UpdateChandelier, NULL);
 }
 
 void CreateRainStar(void *a) {
@@ -116,7 +116,7 @@ void CreateRainStar(void *a) {
     func_0209b940(gRainStar, 0x3f);
 }
 
-void func_0209f1c8(void *a, Unk0209f1c8 *b) {
+void DrawRainStar(void *a, Unk0209f1c8 *b) {
     u32 l;
     s32 m[9];
     s32 i;
@@ -137,7 +137,7 @@ void func_0209f1c8(void *a, Unk0209f1c8 *b) {
     func_0209bb2c(a, gRainStar, b);
 }
 
-void func_0209f178(void *a, Unk0209f1c8 *b) {
+void UpdateRainStar(void *a, Unk0209f1c8 *b) {
     u16 n;
 
     n = func_0209b6ec(gRainStar);
@@ -149,9 +149,9 @@ void func_0209f178(void *a, Unk0209f1c8 *b) {
 }
 
 void *func_0209f158(void) {
-    return (void *) func_0209bf1c(CreateRainStar, func_0209f1c8, NULL);
+    return (void *) func_0209bf1c(CreateRainStar, DrawRainStar, NULL);
 }
 
 void *func_0209f13c(void) {
-    return (void *) func_0209bf48(NULL, func_0209f178, NULL);
+    return (void *) func_0209bf48(NULL, UpdateRainStar, NULL);
 }

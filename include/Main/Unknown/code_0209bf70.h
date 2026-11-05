@@ -52,7 +52,7 @@ typedef struct Unk0209c220 {
     /* 120 */ s32 mUnk_120[8];
 } Unk0209c220;
 
-// Object of func_0209cf34 and func_0209d394.
+// Object of UpdateSun and func_0209d394.
 typedef struct Unk0209cf34 {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ u32 mUnk_0a0;
@@ -80,7 +80,7 @@ void CreateBound(void *a);
 
 // Declared here until the code that defines it is decompiled.
 
-// Object of func_0209d3fc: the MapObject it starts with, a word at 0xac, halfwords at 0xb0 and 0xb2 and a state
+// Object of DrawSun: the MapObject it starts with, a word at 0xac, halfwords at 0xb0 and 0xb2 and a state
 // at 0xdc.
 typedef struct Unk0209d3fc {
     /* 00 */ MapObject mUnk_00;
@@ -115,8 +115,8 @@ s16 func_0209c4d8(s32 a);
 void func_0209c4f0(Unk02100094 *a);
 void func_0209c5b8(Unk02100094 *a, Unk0209c220 *p);
 void func_0209c678(Unk02100094 *a, Unk0209c220 *p);
-void func_0209c738(void *a);
-void func_0209c770(void *a);
+void CreateBerry(void *a); /* also loads cream_effect.nsbmd */
+void CreateCream(void *a); /* also loads cream_effect.nsbmd */
 void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p);
 BOOL func_0209c8b0(Unk0209c220 *p, Vec3 *a, s32 b, Vec3 *c);
 u8 func_0209c964(Unk0209c220 *p, void *a, u8 *b, u8 *c);
@@ -124,6 +124,6 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c);
 void func_0209cebc(Unk0209c220 *p);
 void func_0209cef0(void);
 void func_0209cf10(void);
-void func_0209cf34(Unk02100094 *a, Unk0209cf34 *p);
+void UpdateSun(Unk02100094 *a, Unk0209cf34 *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void func_0209d394(Unk02100094 *a);
-void func_0209d3fc(void *a, Unk0209d3fc *b);
+void DrawSun(void *a, Unk0209d3fc *b);

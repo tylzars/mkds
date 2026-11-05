@@ -36,7 +36,7 @@
 #include "Main/Unknown/code_020a8080.h"
 #include "Main/Unknown/code_020d7da8.h"
 
-void func_020a8080(u32 arg0) {
+void InitSanbo(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -48,7 +48,7 @@ void func_020a8080(u32 arg0) {
     func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, (s32) value2);
 }
 
-u8 func_020a7fc4(Unk020a7f18 *p, Kart *a, u8 *b, u8 *c) {
+u8 func_020a7fc4(Sanbo *p, Kart *a, u8 *b, u8 *c) {
     Unk0210b7a8 s;
     u32 d;
 
@@ -72,7 +72,7 @@ u8 func_020a7fc4(Unk020a7f18 *p, Kart *a, u8 *b, u8 *c) {
     return d;
 }
 
-u8 func_020a7f18(Unk020a7f18 *p, Kart *a, u8 *b, u8 *c) {
+u8 func_020a7f18(Sanbo *p, Kart *a, u8 *b, u8 *c) {
     Unk0210b7a8 s;
     u32 d;
 
@@ -106,7 +106,7 @@ u32 func_020a7eb0(u32 p0) {
     return p0;
 }
 
-void func_020a79c4(void *a, Unk020a7f18 *p) {
+void DrawSanbo(void *a, Sanbo *p) {
     s32 i;
     s32 k;
     s32 w0;
@@ -124,7 +124,7 @@ void func_020a79c4(void *a, Unk020a7f18 *p) {
 
     w0 = 0x1e;
     func_01ff9048(0x14, &w0, 1);
-    switch (p->mUnk_1fc) {
+    switch (p->mState) {
         case 0:
         case 1:
             func_01ff9048(0x19, func_020e6cf8(&p->mUnk_000.mPos), 12);
@@ -214,7 +214,7 @@ void func_020a79c4(void *a, Unk020a7f18 *p) {
 void func_020a78c8(Unk020e6fd4 *l) {
     s32 j;
     s32 i;
-    Unk020a7f18 *o;
+    Sanbo *o;
 
     if (l == NULL) {
         return;
@@ -244,7 +244,7 @@ s32 func_020a7894(s32 a, s32 b) {
     return ((s64) a * b + 0x800) >> 12;
 }
 
-void func_020a73b0(void *a, Unk020a7f18 *p) {
+void UpdateSanbo(void *a, Sanbo *p) {
     Unk0210b7a8 s;
     s32 m;
     s32 k;
@@ -274,7 +274,7 @@ void func_020a73b0(void *a, Unk020a7f18 *p) {
         p->mUnk_000.mUnk_10.y = 0;
         p->mUnk_000.mUnk_10.z = 0;
     }
-    switch (p->mUnk_1fc) {
+    switch (p->mState) {
         case 0:
             if ((p->mUnk_000.mFlags & 0x12) != 0) {
                 return;
@@ -374,7 +374,7 @@ void func_020a73b0(void *a, Unk020a7f18 *p) {
                 p->mUnk_0b0[k].mUnk_44 = k * 0x14;
             }
             p->mUnk_1d0 = 1;
-            p->mUnk_1fc = 3;
+            p->mState = 3;
             p->mUnk_000.mFlags = p->mUnk_000.mFlags & ~1;
             p->mUnk_000.mFlags = p->mUnk_000.mFlags & ~8;
             break;
@@ -387,7 +387,7 @@ void func_020a73b0(void *a, Unk020a7f18 *p) {
             p->mUnk_1d0 = p->mUnk_1d0 + 1;
             if (p->mUnk_1d0 > 4) {
                 p->mUnk_1d0 = 4;
-                p->mUnk_1fc = 0;
+                p->mState = 0;
             }
             break;
     }
@@ -398,11 +398,11 @@ void func_020a737c(void) {
 }
 
 u32 func_020a7358(void) {
-    return func_0209bef0(CreateSanboHAndSanboB, func_020a79c4, func_020a7eb0);
+    return func_0209bef0(CreateSanboHAndSanboB, DrawSanbo, func_020a7eb0);
 }
 
 u32 func_020a7338(void) {
-    return func_0209bf48(func_020a78c8, func_020a73b0, NULL);
+    return func_0209bf48(func_020a78c8, UpdateSanbo, NULL);
 }
 
 BOOL func_020a72c8(u16 a, u16 b) {

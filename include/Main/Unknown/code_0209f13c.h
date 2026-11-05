@@ -4,8 +4,8 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
-// Object with the MapObject base: two halfwords at 0xa0 and 0xa2, then two words (func_0209f178, func_0209f1c8,
-// func_0209f338, func_0209f514).
+// Object with the MapObject base: two halfwords at 0xa0 and 0xa2, then two words (UpdateRainStar, DrawRainStar,
+// UpdateChandelier, func_0209f514).
 typedef struct Unk0209f1c8 {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ u16 mUnk_a0;
@@ -27,10 +27,10 @@ void CreateChandelier(void *a);
 
 void *func_0209f13c(void);
 void *func_0209f158(void);
-void func_0209f178(void *a, Unk0209f1c8 *b);
-void func_0209f1c8(void *a, Unk0209f1c8 *b);
+void UpdateRainStar(void *a, Unk0209f1c8 *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void DrawRainStar(void *a, Unk0209f1c8 *b);
 void CreateRainStar(void *a);
 void *func_0209f2f8(void);
 void *func_0209f318(void);
-void func_0209f338(void *a, Unk0209f1c8 *b);
+void UpdateChandelier(void *a, Unk0209f1c8 *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void func_0209f514(Unk0209f514 *a);

@@ -22,14 +22,14 @@
 #include "Main/Unknown/unk_02166000.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_020937b8(MapObject *arg0) {
+void InitMkdEfBurner(MapObject *arg0) {
     MapObject *value0 = arg0;
     u32 value12;
     value12 = (u32) &func_020d28e0;
     func_020d28e0(value0);
 }
 
-u8 func_02093754(Unk02093270 *a, Kart *b, u8 *c, u8 *d) {
+u8 func_02093754(MkdEfBurner *a, Kart *b, u8 *c, u8 *d) {
     u8 v;
 
     v = *d;
@@ -40,7 +40,7 @@ u8 func_02093754(Unk02093270 *a, Kart *b, u8 *c, u8 *d) {
     return v;
 }
 
-void func_02093708(Unk02093708 *p) {
+void CreateMkdEfBurner(Unk02093708 *p) {
     gMkdEfBurner = func_0209be84(p, gMkdEfBurnerNsbmdName);
     func_0209be1c(gMkdEfBurner, gMkdEfBurnerNsbtaName);
     func_0209b940(gMkdEfBurner, 0x3f);
@@ -51,7 +51,7 @@ void func_020936f0(void *a) {
     func_0209bbd0(a, gMkdEfBurner);
 }
 
-void func_020935fc(void *a, Unk02093270 *p) {
+void DrawMkdEfBurner(void *a, MkdEfBurner *p) {
     s32 s0;
     Vec3 s4;
     Vec3 s10;
@@ -79,7 +79,7 @@ void func_020935fc(void *a, Unk02093270 *p) {
 void func_02093484(Unk020e6fd4 *p) {
     BOOL z;
     s32 i;
-    Unk02093270 *e;
+    MkdEfBurner *e;
     u16 f;
     s32 n;
 
@@ -101,13 +101,13 @@ void func_02093484(Unk020e6fd4 *p) {
         if (e->mUnk_00.mCourseMapRow->mUnk_28 == 0 && e->mUnk_00.mCourseMapRow->mUnk_2a == 0 &&
             e->mUnk_00.mCourseMapRow->mUnk_2c == 0) {
             e->mUnk_a8 = 0x1000;
-            e->mUnk_ac = 4;
+            e->mState = 4;
             e->mUnk_00.mFlags &= ~1;
         } else {
             e->mUnk_a0++;
             if (e->mUnk_a0 >= e->mUnk_00.mCourseMapRow->mUnk_2c) {
                 e->mUnk_a0 = 0;
-                e->mUnk_ac = 1;
+                e->mState = 1;
                 e->mUnk_00.mFlags |= f;
                 e->mUnk_00.mUnk_58.y = 0;
             }
@@ -115,17 +115,17 @@ void func_02093484(Unk020e6fd4 *p) {
     }
 }
 
-void func_02093270(void *a, Unk02093270 *p) {
+void UpdateMkdEfBurner(void *a, MkdEfBurner *p) {
     u16 n;
     s32 i;
     u8 c;
 
-    switch (p->mUnk_ac) {
+    switch (p->mState) {
         case 0:
             p->mUnk_a0++;
             if (p->mUnk_a0 >= p->mUnk_00.mCourseMapRow->mUnk_2a) {
                 p->mUnk_a0 = 0;
-                p->mUnk_ac = 1;
+                p->mState = 1;
                 p->mUnk_00.mFlags &= ~1;
             }
             break;
@@ -133,7 +133,7 @@ void func_02093270(void *a, Unk02093270 *p) {
             p->mUnk_a8 += 0x7b;
             if (p->mUnk_a8 >= 0x1000) {
                 p->mUnk_a8 = 0x1000;
-                p->mUnk_ac = 2;
+                p->mState = 2;
             }
             p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mKindData->mUnk_10 * p->mUnk_a8) >> 12;
             break;
@@ -141,7 +141,7 @@ void func_02093270(void *a, Unk02093270 *p) {
             p->mUnk_a0++;
             if (p->mUnk_a0 >= p->mUnk_00.mCourseMapRow->mUnk_28) {
                 p->mUnk_a0 = 0;
-                p->mUnk_ac = 3;
+                p->mState = 3;
             }
             func_020d275c(&p->mUnk_00, 0x170);
             break;
@@ -149,7 +149,7 @@ void func_02093270(void *a, Unk02093270 *p) {
             p->mUnk_a8 -= 0x29;
             if (p->mUnk_a8 <= 0) {
                 p->mUnk_a8 = 0;
-                p->mUnk_ac = 0;
+                p->mState = 0;
                 p->mUnk_00.mFlags |= data_usa_0215646c;
             }
             p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mKindData->mUnk_10 * p->mUnk_a8) >> 12;
@@ -183,11 +183,11 @@ void func_02093234(void) {
 }
 
 void func_02093210(void) {
-    func_0209bf1c(&func_02093708, &func_020935fc, &func_020936f0);
+    func_0209bf1c(&CreateMkdEfBurner, &DrawMkdEfBurner, &func_020936f0);
 }
 
 void func_020931f0(void) {
-    func_0209bf48(&func_02093484, &func_02093270, NULL);
+    func_0209bf48(&func_02093484, &UpdateMkdEfBurner, NULL);
 }
 
 u16 func_020931ac(Unk0217b498_00 *a) {

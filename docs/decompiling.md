@@ -335,7 +335,7 @@ Inline getters and helpers:
   (func_020487fc). `u32 r = 0; if (p != 0) r = p->f; return r;` fixes the registers but puts `mov rX, #0` above the
   compare; `p == 0 ? 0 : p->f` gave `moveq` before `ldrne` (func_020401ac).
 - Statement order inside a small inline can decide a whole loop's registers: `v1 = a->x - b->x; v2 = a->z - b->z;
-  return (s64) v1 * v1 + (s64) v2 * v2;` matched func_020919e8; z first did not.
+  return (s64) v1 * v1 + (s64) v2 * v2;` matched UpdateKanoke64; z first did not.
 - Reused locals whose later values take registers in the wrong order, where swapping the first statements breaks the
   load order: a dead initializer on the variable that must come first, `s32 *p = 0;` (the only spelling that matched;
   DrawRaceMNumberPairTwoDigit).
@@ -497,7 +497,7 @@ Expression shapes:
   reverse register order.
 - Product order: `a*b + c*d` evaluates the right-hand product first; reverse the terms to swap. In a sum of
   products `A + B + C` the ROM's first product is the source's second term, so write the natural
-  `x*x + y*y + z*z` (func_0209df84 with 64-bit products; func_02039860 as statements `w = x*x; w += y*y; ...`;
+  `x*x + y*y + z*z` (UpdateFireball2 with 64-bit products; func_02039860 as statements `w = x*x; w += y*y; ...`;
   func_0206988c with 32-bit `mul`/`mla` and the differences as locals in x, y, z order). Statements and one
   expression give different registers.
 - When one of several identical expansions (six square sums) schedules differently in the ROM, its expression was
@@ -619,7 +619,7 @@ Expression shapes:
   split into registers.
 - A loop that returns 1 on a hit and 0 at its natural exit is a static inline helper returning 1 / 0, called as
   `if (helper(p, k) != 0) { ... }`. Its index parameter is `s32` (a `u16` parameter hoists a conversion out of the
-  loop): func_020919e8.
+  loop): UpdateKanoke64.
 - Two induction variables stepping by 2 in the ROM (`add r8, #2; add r7, #2` feeding arguments) mean the argument
   depended on the counter: `m < 6 ? 93 + j * 2 : 94 + j * 2`, not `m < 6 ? 93 : 94` (func_020c8dbc).
 
@@ -723,7 +723,7 @@ Expression shapes:
   outer case); `return;` gives a nearer shared exit instead (func_0200a7b0).
 - `A && f()` whose false path jumps to the compare of f's result is a value: `A ? f() : 0` (func_0206c5e4).
 - Only the order inside one arm of an if/else differs: try the arms the other way round with the test negated
-  (func_0209cf34; seen once).
+  (UpdateSun; seen once).
 - `cmp #K; beq` to a call placed at the end: `if (x != K) { ... } else { call(); }` (func_02106580).
 - The else arm placed first, with the last test branching to the then arm: `if (!A || !B || C != D) { else-body } else {
   then-body }` (func_02007698).
@@ -813,7 +813,7 @@ Expression shapes:
   lsr #16`: `v1 = f(...) * 2; g(..., (u16) v1);` (func_02009828). `lsl #4; lsr #16` for a `u16` argument is how
   `x >> 12` is narrowed: pass `p->mUnk_0a4 >> 12`, not `(u32) x << 4 >> 16` (DrawPakkunMouth).
 - No `lsl/lsr` narrowing after an add and a signed `movge` against a `u16` compare in the ROM: the value is `s32`
-  (func_020919e8).
+  (UpdateKanoke64).
 - A by-value struct parameter read through a `volatile T *p = &b;` local keeps an `add r0, sp, #4` in a register;
   the ROM re-reads from the frame. Make the parameter itself volatile (`volatile Unk b`; the header prototype stays
   without it), func_020ab660.
@@ -933,7 +933,7 @@ Expression shapes:
 - A value the helper must see once: `if (data->mUnk_170[i] != 0) { helper(p, i, data->mUnk_170[i]); }` with the
   parameter in the helper and no repeated test inside (func_020c8dbc). A distance helper with `(const Vec3 *a, const
   Vec3 *b)` parameters keeps the reload of the fields for the next call, and a fill helper `(Vec3 *, x, y, z)` loads
-  before the first random call and spills (func_020919e8).
+  before the first random call and spills (UpdateKanoke64).
 - A pointer passed through a helper with `Vec3 *dst, const Vec3 *src` loads `a->mUnk_508` once across the three
   stores (DrawKart).
 

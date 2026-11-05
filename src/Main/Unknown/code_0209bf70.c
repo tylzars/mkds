@@ -48,7 +48,7 @@
 #include "Main/Unknown/code_020d3b10.h"
 #include "Main/Unknown/code_0209d650.h"
 
-void func_0209d650(u32 arg0) {
+void InitSun(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -79,7 +79,7 @@ u32 func_0209d5e8(u32 p0) {
     return p0;
 }
 
-void func_0209d3fc(void *a, Unk0209d3fc *b) {
+void DrawSun(void *a, Unk0209d3fc *b) {
     s32 s;
     s32 t;
     s32 k;
@@ -162,7 +162,7 @@ static inline BOOL func_0209cf34_inline_b(Unk0209cf34 *p) {
     return FALSE;
 }
 
-void func_0209cf34(Unk02100094 *a, Unk0209cf34 *p) {
+void UpdateSun(Unk02100094 *a, Unk0209cf34 *p) {
     Vec3 v;
     Vec3 w;
     s32 t;
@@ -269,11 +269,11 @@ void func_0209cf34(Unk02100094 *a, Unk0209cf34 *p) {
 }
 
 void func_0209cf10(void) {
-    func_0209bf1c(CreateSunAndSunLOD, func_0209d3fc, func_0209d5e8);
+    func_0209bf1c(CreateSunAndSunLOD, DrawSun, func_0209d5e8);
 }
 
 void func_0209cef0(void) {
-    func_0209bf48(func_0209d394, func_0209cf34, NULL);
+    func_0209bf48(func_0209d394, UpdateSun, NULL);
 }
 
 void func_0209cebc(Unk0209c220 *p) {
@@ -443,12 +443,12 @@ void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p) {
     func_0209bb2c(a, gBound, p);
 }
 
-void func_0209c770(void *a) {
+void CreateCream(void *a) {
     gCream = func_0209be84(a, gCreamNsbmdName);
     func_02103554(data_usa_02167328);
 }
 
-void func_0209c738(void *a) {
+void CreateBerry(void *a) {
     gBerry = func_0209be84(a, gBerryNsbmdName);
     func_02103554(gCreamEffectNsbmdName);
 }
@@ -649,11 +649,11 @@ void func_0209c134(void) {
 }
 
 void func_0209c114(void) {
-    func_0209bf1c(func_0209c770, func_0209c678, NULL);
+    func_0209bf1c(CreateCream, func_0209c678, NULL);
 }
 
 void func_0209c0f4(void) {
-    func_0209bf1c(func_0209c738, func_0209c5b8, NULL);
+    func_0209bf1c(CreateBerry, func_0209c5b8, NULL);
 }
 
 void func_0209c0d4(void) {

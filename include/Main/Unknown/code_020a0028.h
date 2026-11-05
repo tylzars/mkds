@@ -6,8 +6,8 @@
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "Main/Unknown/code_020f9c6c.h" // CourseMapRow
 
-// Object with the Unk020e0144 base at 0xc8 (func_020a018c, func_020a0064).
-typedef struct Unk020a018c {
+// Object of kind 0x158 (Airship) with the Unk020e0144 base at 0xc8 (DrawAirship, func_020a0064).
+typedef struct Airship {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
@@ -21,17 +21,19 @@ typedef struct Unk020a018c {
     /* c0 */ s32 mUnk_c0;
     /* c4 */ s32 mUnk_c4;
     /* c8 */ Unk020e0144 mUnk_c8;
-    /* ec */ s32 mUnk_ec;
-} Unk020a018c;
+    /* State number of this kind's own per-frame switch in UpdateAirship; this object does not use
+       MapObject.mUnk_80's state machine; also written by the group pre-step */
+    /* ec */ s32 mState;
+} Airship;
 
 // Array of object pointers: pointer to the array and the number of entries (func_020a0064).
 typedef struct Unk020a0064 {
-    /* 00 */ Unk020a018c **mUnk_00;
+    /* 00 */ Airship **mUnk_00;
     /* 04 */ u16 mUnk_04;
 } Unk020a0064;
 
 void CreateAirship(void *a);
-void func_020a018c(void *a, Unk020a018c *p);
+void DrawAirship(void *a, Airship *p);
 void func_020a0064(Unk020a0064 *p);
 s32 func_020a0044(s32 a);
 s32 func_020a0028(s32 a, s32 b);

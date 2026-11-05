@@ -33,10 +33,10 @@
 #include "code_0212df7c.h"
 
 u32 func_0209eb04(void) {
-    return func_0209bef0(CreatePuddle, func_0209eb54, func_0209ec00);
+    return func_0209bef0(CreatePuddle, DrawPuddle, func_0209ec00);
 }
 
-void func_0209ea90(Unk0209df84 *a) {
+void InitFireball2(Fireball2 *a) {
     a->mUnk_00.mFlags |= data_usa_021565ec;
     a->mUnk_a0 = a->mUnk_00.mCourseMapRow->mUnk_28;
     a->mUnk_a2 = a->mUnk_00.mCourseMapRow->mUnk_2e + 1;
@@ -47,7 +47,7 @@ void func_0209ea90(Unk0209df84 *a) {
     a->mUnk_00.mUnk_66 = 0x1f;
 }
 
-u8 func_0209ea10(Unk0209df84 *a, Kart *b, u8 *c, u8 *d) {
+u8 func_0209ea10(Fireball2 *a, Kart *b, u8 *c, u8 *d) {
     u8 v;
 
     v = *d;
@@ -61,7 +61,7 @@ u8 func_0209ea10(Unk0209df84 *a, Kart *b, u8 *c, u8 *d) {
     return v;
 }
 
-static inline BOOL func_0209df84_inline(Kart *p, Unk0209df84 *b, s32 t) {
+static inline BOOL func_0209df84_inline(Kart *p, Fireball2 *b, s32 t) {
     s32 y;
     s32 x;
     s32 z;
@@ -83,7 +83,7 @@ static inline BOOL func_0209df84_inline(Kart *p, Unk0209df84 *b, s32 t) {
     return (s64) x * x + (s64) y * y + (s64) z * z < (s64) t * t;
 }
 
-BOOL func_0209e988(Unk0209df84 *a, Vec3 *b, s32 c) {
+BOOL func_0209e988(Fireball2 *a, Vec3 *b, s32 c) {
     s32 i;
     s32 d;
     s32 e;
@@ -100,7 +100,7 @@ BOOL func_0209e988(Unk0209df84 *a, Vec3 *b, s32 c) {
     return FALSE;
 }
 
-void func_0209e950(Unk0209e950 *a) {
+void CreateFireball2(Unk0209e950 *a) {
     gFireball2 = func_0209bd08(a, gFireball2NsbmdName);
     func_0209b940(gFireball2, 0x3f);
     a->mUnk_1c = 1;
@@ -110,7 +110,7 @@ void func_0209e938(void *a) {
     func_0209bbd0(a, gFireball2);
 }
 
-void func_0209e508(void *a, Unk0209df84 *b) {
+void DrawFireball2(void *a, Fireball2 *b) {
     s32 s1;
     s32 s2;
     s32 s3;
@@ -201,7 +201,7 @@ void func_0209e310(Unk020e6fd4 *p) {
     s16 v;
     float f;
     u64 t;
-    Unk0209df84 *e;
+    Fireball2 *e;
     Unk020f41c4_B *r;
 
     if (p == NULL) {
@@ -233,7 +233,7 @@ void func_0209e310(Unk020e6fd4 *p) {
     }
 }
 
-void func_0209df84(void *a, Unk0209df84 *b) {
+void UpdateFireball2(void *a, Fireball2 *b) {
     s32 i;
     s32 j;
     s32 n;
@@ -300,9 +300,9 @@ void func_0209df44(void) {
 }
 
 u32 func_0209df20(void) {
-    return func_0209bef0(func_0209e950, func_0209e508, func_0209e938);
+    return func_0209bef0(CreateFireball2, DrawFireball2, func_0209e938);
 }
 
 u32 func_0209df00(void) {
-    return func_0209bf48(func_0209e310, func_0209df84, NULL);
+    return func_0209bf48(func_0209e310, UpdateFireball2, NULL);
 }

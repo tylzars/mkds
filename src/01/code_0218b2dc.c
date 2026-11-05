@@ -179,7 +179,7 @@ void func_ov001_0218b5d8(Unk0218d87c *a) {
     func_020a2314((void (*)(void)) func_ov001_0218b8f0);
 }
 
-void func_ov001_0218b404(u32 a, Unk02188950 *b) {
+void UpdateKuriking(u32 a, Unk02188950 *b) {
     s32 var;
 
     if (data_021759c0->mMode == 4 ? func_020a126c() : 0) {
@@ -261,7 +261,7 @@ void InitKuriking(Unk0218d87c *a) {
     }
 }
 
-void func_ov001_0218b33c(u32 a, u32 b) {
+void DrawKuriking(u32 a, u32 b) {
     func_ov001_02186368((void *) a, (Unk02188950 *) b);
     func_ov001_021861f4((void *) a, (Unk02188950 *) b, 0);
 }
@@ -275,9 +275,9 @@ void func_ov001_0218b310(void) {
 }
 
 void *func_ov001_0218b2f4(void) {
-    return (void *) func_0209bf1c(InitKuriking, func_ov001_0218b33c, func_ov001_02187098);
+    return (void *) func_0209bf1c(InitKuriking, DrawKuriking, func_ov001_02187098);
 }
 
 void *func_ov001_0218b2dc(void) {
-    return (void *) func_0209bf48(func_ov001_0218b5d8, func_ov001_0218b404, NULL);
+    return (void *) func_0209bf48(func_ov001_0218b5d8, UpdateKuriking, NULL);
 }

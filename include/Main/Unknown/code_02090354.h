@@ -12,8 +12,9 @@ typedef struct Unk020908d0 {
     /* 03 */ u8 mUnk_03;
 } Unk020908d0;
 
-// An MapObject at 0x00 followed by words from 0xa0 to 0xc8.
-typedef struct Unk020912a0 {
+// Object of kind 0x19d (Sman: sman_top and sman_bottom models, DrawSmanTop and DrawSmanBottom): a MapObject at 0x00
+// followed by words from 0xa0 to 0xc8. Its init sees it as the prefix type Unk0209188c (mFlags only).
+typedef struct Sman {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
@@ -25,12 +26,14 @@ typedef struct Unk020912a0 {
     /* bc */ s32 mUnk_bc;
     /* c0 */ s32 mUnk_c0;
     /* c4 */ s32 mUnk_c4;
-    /* c8 */ s32 mUnk_c8;
-} Unk020912a0;
+    /* State number of this kind's own per-frame switch in UpdateSman; this object does not use MapObject.mUnk_80's
+       state machine; also written by the collision callbacks (1) */
+    /* c8 */ s32 mState;
+} Sman;
 
-// Array of Unk020912a0 pointers at 0x00, its count at 0x04.
+// Array of Sman pointers at 0x00, its count at 0x04.
 typedef struct Unk0209151c {
-    /* 00 */ Unk020912a0 **mUnk_00;
+    /* 00 */ Sman **mUnk_00;
     /* 04 */ u16 mUnk_04;
 } Unk0209151c;
 
@@ -54,11 +57,11 @@ u32 func_020911f4(void);
 u32 func_02091214(void);
 u32 func_02091238(void);
 void func_0209125c(void);
-void func_020912a0(void *a, Unk020912a0 *b);
+void UpdateSman(void *a, Sman *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void func_0209151c(Unk0209151c *a);
-void func_020915c0(void *a, Unk020912a0 *b);
+void DrawSmanBottom(void *a, Sman *b);
 void func_02091654(void *a);
 void CreateSmanBottom(void *a);
-void func_020916a0(void *a, Unk020912a0 *b);
+void DrawSmanTop(void *a, Sman *b);
 void func_02091784(void *a);
 void CreateSmanTop(void *a);

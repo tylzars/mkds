@@ -47,7 +47,7 @@ static inline u16 func_0209f800_inline(u32 n) {
     return (u16) r;
 }
 
-static inline void func_0209f6d8_inline(Unk0209f6d8 *p) {
+static inline void func_0209f6d8_inline(TownMonte *p) {
     p->mUnk_a4 += p->mUnk_a8;
     p->mUnk_a8 += 0x4000;
     if (p->mUnk_a4 == 0) {
@@ -59,7 +59,7 @@ static inline void func_0209f6d8_inline(Unk0209f6d8 *p) {
     }
 }
 
-static inline void func_0209fdb4_inline(Unk020a018c *p) {
+static inline void func_0209fdb4_inline(Airship *p) {
     s32 t;
 
     p->mUnk_a8 = (u16) p->mUnk_a8 + p->mUnk_c0;
@@ -104,18 +104,18 @@ static inline BOOL func_0209fdb4_inline_b(void) {
     return FALSE;
 }
 
-void func_0209fdb4(void *a, Unk020a018c *p) {
-    switch (p->mUnk_ec) {
+void UpdateAirship(void *a, Airship *p) {
+    switch (p->mState) {
         case 0:
             if (func_0209fdb4_inline_b() != FALSE) {
-                p->mUnk_ec = 1;
+                p->mState = 1;
             }
             break;
         case 1:
             p->mUnk_a0 += 0x1000;
             if (p->mUnk_a0 >= 0) {
                 p->mUnk_a0 = 0;
-                p->mUnk_ec = 2;
+                p->mState = 2;
             }
             func_0209fdb4_inline(p);
             break;
@@ -129,11 +129,11 @@ void func_0209fdb4(void *a, Unk020a018c *p) {
 }
 
 void *func_0209fd94(void) {
-    return (void *) func_0209bf1c(CreateAirship, func_020a018c, NULL);
+    return (void *) func_0209bf1c(CreateAirship, DrawAirship, NULL);
 }
 
 void *func_0209fd74(void) {
-    return (void *) func_0209bf48(func_020a0064, func_0209fdb4, NULL);
+    return (void *) func_0209bf48(func_020a0064, UpdateAirship, NULL);
 }
 
 void func_0209fc78(MapObject *p) {
@@ -174,12 +174,12 @@ void func_0209fc2c(void) {
     func_020e6c0c();
 }
 
-void func_0209fbe4(Unk0209bc74 *a) {
+void CreateTownMonte(Unk0209bc74 *a) {
     a->mUnk_14 = (void *) func_0209fc2c;
     func_0209b940(gTownMonte = func_0209bc74(a, gTownMonteNsbmdName, gTownMonteNsbtpName), 0x3f);
 }
 
-void func_0209fb0c(void *a, Unk0209f6d8 *p) {
+void DrawTownMonte(void *a, TownMonte *p) {
     s32 v;
     s32 d;
     Unk02012f58 *h;
@@ -201,7 +201,7 @@ void func_0209fb0c(void *a, Unk0209f6d8 *p) {
 }
 
 void func_0209f800(Unk0209f800 *a) {
-    Unk0209f6d8 *p;
+    TownMonte *p;
     Unk020f41c4_B *r;
     s32 i;
     s32 j;
@@ -236,7 +236,7 @@ void func_0209f800(Unk0209f800 *a) {
     }
 }
 
-void func_0209f6d8(void *a, Unk0209f6d8 *p) {
+void UpdateTownMonte(void *a, TownMonte *p) {
     Unk0210b7a8 s;
     s32 t;
     u16 w;
@@ -267,11 +267,11 @@ void func_0209f6d8(void *a, Unk0209f6d8 *p) {
 }
 
 void *func_0209f6b8(void) {
-    return (void *) func_0209bef0(func_0209fbe4, func_0209fb0c, NULL);
+    return (void *) func_0209bef0(CreateTownMonte, DrawTownMonte, NULL);
 }
 
 void *func_0209f698(void) {
-    return (void *) func_0209bf48(func_0209f800, func_0209f6d8, NULL);
+    return (void *) func_0209bf48(func_0209f800, UpdateTownMonte, NULL);
 }
 
 void CreateChandelier(void *a) {

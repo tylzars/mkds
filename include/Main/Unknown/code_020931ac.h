@@ -5,20 +5,23 @@
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
 
-// Object of func_02093270: after the shared part, a counter at 0xa0, a halfword at 0xa4, a value at 0xa8, a
+// Object of kind 0x1a4 (MkdEfBurner); Unk02093708 is a view of the draw group record (word +0x1c), not of this
+// object. After the shared part, a counter at 0xa0, a halfword at 0xa4, a value at 0xa8, a
 // state at 0xac, a Unk020e0144 at 0xb0 and a table of countdowns at 0xd4.
-typedef struct Unk02093270 {
+typedef struct MkdEfBurner {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ u16 mUnk_a4;
     /* a6 */ u8 mUnk_a6[2];
     /* a8 */ s32 mUnk_a8;
-    /* ac */ u32 mUnk_ac;
+    /* State number of this kind's own per-frame switch in UpdateMkdEfBurner; this object does not use
+       MapObject.mUnk_80's state machine; state 4 only from the group pre-step */
+    /* ac */ u32 mState;
     /* b0 */ Unk020e0144 mUnk_b0;
     /* d4 */ s32 mUnk_d4[8];
-} Unk02093270;
+} MkdEfBurner;
 
-// Object of func_02093708: a word at 0x1c.
+// Object of CreateMkdEfBurner: a word at 0x1c.
 typedef struct Unk02093708 {
     /* 00 */ u8 mUnk_00[0x1c];
     /* 1c */ s32 mUnk_1c;
@@ -30,10 +33,10 @@ u16 func_020931ac(Unk0217b498_00 *a);
 void func_020931f0(void);
 void func_02093210(void);
 void func_02093234(void);
-void func_02093270(void *a, Unk02093270 *p);
+void UpdateMkdEfBurner(void *a, MkdEfBurner *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void func_02093484(Unk020e6fd4 *p);
-void func_020935fc(void *a, Unk02093270 *p);
+void DrawMkdEfBurner(void *a, MkdEfBurner *p);
 void func_020936f0(void *a);
-void func_02093708(Unk02093708 *p);
-u8 func_02093754(Unk02093270 *a, Kart *b, u8 *c, u8 *d);
-void func_020937b8(MapObject *arg0);
+void CreateMkdEfBurner(Unk02093708 *p); /* also sets word +0x1c of the group record to 1 */
+u8 func_02093754(MkdEfBurner *a, Kart *b, u8 *c, u8 *d);
+void InitMkdEfBurner(MapObject *arg0); /* allocates the object's effect record (func_020d28e0) */

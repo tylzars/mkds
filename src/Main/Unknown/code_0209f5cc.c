@@ -3,7 +3,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "ITCM/code_01ff8000.h"
 
-void func_0209f5cc(u32 a, int b) {
+void DrawChandelier(u32 a, int b) {
     Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
