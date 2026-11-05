@@ -25,11 +25,11 @@ void func_02116e70(void) {
 }
 
 void func_02116dd4(void *a, void *b, void *c, u32 d, u16 e, u32 f) {
-    int *v1;
-    int v2;
+    Unk0217d354 *v1;
+    Unk0217d354 *v2;
     void *v3;
-    v2 = ((u32) HeapAlloc(a, (u32) 0x2c));
-    *(s32 *) &data_0217d354 = v2;
+    v2 = HeapAlloc(a, (u32) 0x2c);
+    data_0217d354 = v2;
     v3 = FindSceneFile(data_0216d4c4);
     LocateNcer(&data_0217d354->mUnk_00, v3);
     v3 = FindSceneFile(data_0216d4bc);
@@ -37,15 +37,14 @@ void func_02116dd4(void *a, void *b, void *c, u32 d, u16 e, u32 f) {
     v3 = FindSceneFile(data_0216d4c0);
     LocateNclr((Nclr **) (((s32) data_0217d354 + 8)), v3);
     v3 = FindSceneFile(data_0216d4c8);
-    v1 = (s32 *) &data_0217d354;
     data_0217d354->mUnk_0c = v3;
-    *(void **) (*v1 + 0x10) = b;
-    *(void **) (*v1 + 0x14) = c;
-    *(u32 *) (*v1 + 0x18) = d;
-    *(u16 *) (*v1 + 0x1c) = e;
-    *(u32 *) (*v1 + 0x20) = f;
-    *(u16 *) (*v1 + 0x24) = 2;
-    *(u32 *) (*v1 + 0x28) = 3;
+    data_0217d354->mUnk_10 = b;
+    data_0217d354->mUnk_14 = c;
+    data_0217d354->mUnk_18 = d;
+    data_0217d354->mUnk_1c = e;
+    data_0217d354->mUnk_20 = f;
+    data_0217d354->mUnk_24 = 2;
+    data_0217d354->mUnk_28 = 3;
 }
 
 #pragma thumb off

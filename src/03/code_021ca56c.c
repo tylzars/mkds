@@ -223,8 +223,7 @@ void func_ov003_021ca5b0(void) {
         func_ov003_021d272c(0, (u32) 0x15);
         if ((*(u8 *) &data_ov003_021da228) != 1) {
             func_ov003_021cd27c();
-            v1 = func_ov003_021cdb6c();
-            func_ov003_021cd790((*(u8 *) (v1 + 0xf4)));
+            func_ov003_021cd790(func_ov003_021cdb6c()->mUnk_f4);
             func_ov003_021c2120((u32) 2, (u32) 1);
             func_ov003_021c212c(func_ov003_021cb7fc);
             return;

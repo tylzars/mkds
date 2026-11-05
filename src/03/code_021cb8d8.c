@@ -108,19 +108,19 @@ void func_ov003_021cbb14(void) {
 void func_ov003_021cbaa0(void) {
     s32 a;
     Unk02188868 b;
-    int c = func_ov003_021cdb6c();
+    Unk021cd5e0_400 *c = func_ov003_021cdb6c();
     MemCopyWords(data_ov003_021d6620, &b, 0xc);
     func_ov003_021c20dc(NULL, &a);
     if (a == 2) {
         b.mUnk_0a = 4;
     } else {
-        b.mUnk_0a = *(u8 *) (c + 0xf4) + 1;
+        b.mUnk_0a = c->mUnk_f4 + 1;
     }
     if (func_ov000_02188868(&b) == 0) {
         IrqDisableLoopForever();
     }
     if (a == 0) {
-        func_ov000_021886fc(*(u8 *) (c + 0xf4), c);
+        func_ov000_021886fc(c->mUnk_f4, c);
     }
     func_ov003_021d3544(0, func_ov003_021cb8f0, NULL, 0x78);
 }

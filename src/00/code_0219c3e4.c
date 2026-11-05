@@ -171,12 +171,13 @@ void func_ov000_0219c79c(char *a, char *b, void (*c)(), s32 d) {
     Unk021b565c *v1;
     u32 v2;
     u64 v3;
+    Unk021b565c *v4;
     strcpy(data_ov000_021b565c->mUnk_4c, a);
     strcpy(data_ov000_021b565c->mUnk_14c, b);
-    v2 = *(s32 *) &data_ov000_021b565c;
+    v4 = data_ov000_021b565c;
     v3 = func_0200f5ac();
-    *(u64 *) (v2 + 0x38) = v3;
-    *(u32 *) (v2 + 0x34) = 1;
+    v4->mUnk_38 = v3;
+    v4->mUnk_34 = 1;
     v1 = data_ov000_021b565c;
     v2 = func_ov000_0219c8dc(func_ov000_0218f15c(v1->mUnk_00, v1->mUnk_4c, v1->mUnk_14c, 1, 0, c, 0));
     if (v2 == 0) {

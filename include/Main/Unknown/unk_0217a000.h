@@ -1086,7 +1086,7 @@ typedef struct Unk02061808 {
     /* 258 */ s32 mUnk_258;
     /* 25c */ s32 mUnk_25c;
     /* 260 */ Vec3 mUnk_260;
-    /* 26c */ u16 mUnk_26c;
+    /* 26c */ s16 mUnk_26c;
     /* 26e */ u8 mUnk_26e[0x2];
 } Unk02061808;
 

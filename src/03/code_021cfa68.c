@@ -353,8 +353,8 @@ void func_ov003_021d0158(Unk021425e8 *event) {
     }
 }
 
-void func_ov003_021d0134(int a) {
-    if (*(u16 *) (a + 2) != 0) {
+void func_ov003_021d0134(Unk021425e8 *a) {
+    if (a->mUnk_02 != 0) {
         func_ov003_021d07b0((u32) 10);
         return;
     }
@@ -676,7 +676,7 @@ u32 func_ov003_021cfa68(void) {
         IrqDisableLoopForever();
     }
     func_ov003_021d07b0(3);
-    v1 = func_02143d88((Unk021425e8Func) func_ov003_021d0134);
+    v1 = func_02143d88(func_ov003_021d0134);
     if (v1 != 2) {
         func_ov003_021d07b0(9);
         return 0;

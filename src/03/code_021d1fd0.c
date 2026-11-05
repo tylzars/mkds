@@ -87,7 +87,7 @@ Unk021d23b0 *func_ov003_021d23b0(u32 a, u16 b, u16 c, s32 d, u32 *e, s32 f) {
 
 void func_ov003_021d2388(void *a) {
     func_ov003_021d305c((u32) (*(u32 *) ((u8 *) a + 0x30)));
-    func_ov003_021d1d0c((Unk021d1d88 *) (*(u32 *) ((*(s32 *) &data_ov003_021da2c4) + 0x788)), a);
+    func_ov003_021d1d0c((*(Unk021d2490 **) data_ov003_021da2c4)->mUnk_788, a);
 }
 
 Unk021d2188 *func_ov003_021d2288(u32 g, u32 h) {

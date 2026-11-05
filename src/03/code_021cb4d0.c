@@ -29,7 +29,7 @@
 #include "code_0214b824.h"
 
 void func_ov003_021cb7fc(void) {
-    int a = func_ov003_021cdb6c();
+    Unk021cd5e0_400 *a = func_ov003_021cdb6c();
     data_ov003_021da240[0] = 0;
     if (data_ov003_021da238 == 0) {
         data_ov003_021da238 = 1;
@@ -44,7 +44,7 @@ void func_ov003_021cb7fc(void) {
     }
     func_ov003_021cb758();
     func_ov003_021bf854();
-    func_ov003_021bf43c(0x7e, data_ov003_021d6578[func_ov003_021c20d0()], *(u8 *) (a + 0xf4) + 1);
+    func_ov003_021bf43c(0x7e, data_ov003_021d6578[func_ov003_021c20d0()], a->mUnk_f4 + 1);
     func_ov003_021bf5ec(1);
     func_ov003_021bf6c8(data_ov003_021d65e0[func_ov003_021c20a8(1)][data_ov003_021da23c].mUnk_00,
                         data_ov003_021d65e0[func_ov003_021c20a8(1)][data_ov003_021da23c].mUnk_04,

@@ -18,7 +18,7 @@ void DeleteSocket(Gt2Socket *a) {
     return;
 }
 
-void SetIncomingConnectionCallback(int a, u32 b) {
-    *(u32 *) (a + 0x20) = b;
+void SetIncomingConnectionCallback(Gt2Socket *a, void *b) {
+    a->mIncomingConnectionCallback = b;
     return;
 }

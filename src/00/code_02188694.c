@@ -4,10 +4,10 @@
 
 #pragma opt_common_subs off
 
-void func_ov000_021886fc(int param_1, u32 param_2) {
+void func_ov000_021886fc(int param_1, void *param_2) {
     int v1;
     v1 = func_ov000_02188584(0x10);
-    MemCopyWords((u32 *) ((u32 *) (u32) (param_2)), (u32 *) ((u32 *) (u32) (v1 + param_1 * 0x100)), 0xf0);
+    MemCopyWords(param_2, (u32 *) ((u32 *) (u32) (v1 + param_1 * 0x100)), 0xf0);
     return;
 }
 

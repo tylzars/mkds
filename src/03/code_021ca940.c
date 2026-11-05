@@ -186,7 +186,7 @@ void func_ov003_021cae88(void) {
 void func_ov003_021cae28(void) {
     if (func_ov003_021d1f70(1) == 0) {
         if (data_ov003_021da234->mUnk_1d == 1) {
-            if (data_ov003_021da230[0] == 3 || *(u8 *) (func_ov003_021cdb6c() + 0xe7) != 0xff) {
+            if (data_ov003_021da230[0] == 3 || func_ov003_021cdb6c()->mUnk_00.mUnk_e7 != 0xff) {
                 func_ov003_021bf344();
             }
         }
@@ -225,7 +225,7 @@ void func_ov003_021cacfc(void) {
                 case 1:
                 case 2:
                     func_ov003_021c2120(2, 0);
-                    if (*(u8 *) (func_ov003_021cdb6c() + 0xe7) == 0xff) {
+                    if (func_ov003_021cdb6c()->mUnk_00.mUnk_e7 == 0xff) {
                         func_ov003_021c212c(func_ov003_021cb7fc);
                     } else {
                         func_ov003_021c20f8(0, 0);

@@ -143,47 +143,47 @@ int func_ov000_021961e8(GpConnection *a, u32 b, u32 c, u32 d, u32 e) {
 
 int func_ov000_021960a4(GpConnection *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, int g, int h, u32 l, u32 m, u32 n) {
     int v1;
-    int v2[2];
+    Unk02196240 *v2;
     if ((((((b == NULL) || (*b == 0)) && ((d == NULL || (*d == 0)))) && ((e == NULL || (*e == 0)))) &&
          ((f == NULL || (*f == 0)))) &&
         ((g == 0 && ((c == NULL || (*c == 0)))))) {
         GpiSetErrorMessage((u32 *) a, data_ov000_021b38ac);
         return 2;
     }
-    v1 = GpiCreateSearch(a, (Unk02196240 **) v2, (u32) 1);
+    v1 = GpiCreateSearch(a, &v2, (u32) 1);
     if (v1 == 0) {
         if (b == NULL) {
-            *(u8 *) (v2[0] + 0x28) = 0;
+            v2->mUnk_028[0] = 0;
         } else {
-            GpiCopyString((char *) (v2[0] + 0x28), (const char *) b, 0x1f);
+            GpiCopyString((char *) v2->mUnk_028, (const char *) b, 0x1f);
         }
         if (c == NULL) {
-            *(u8 *) (v2[0] + 0x47) = 0;
+            v2->mUnk_047[0] = 0;
         } else {
-            GpiCopyString((char *) (v2[0] + 0x47), (const char *) c, 0x15);
+            GpiCopyString((char *) v2->mUnk_047, (const char *) c, 0x15);
         }
         if (d == NULL) {
-            *(u8 *) (v2[0] + 0x5c) = 0;
+            v2->mUnk_05c[0] = 0;
         } else {
-            GpiCopyString((char *) (v2[0] + 0x5c), (const char *) d, 0x33);
+            GpiCopyString((char *) v2->mUnk_05c, (const char *) d, 0x33);
         }
-        func_ov000_0218e850((s8 *) ((s8 *) (u32) (v2[0] + 0x5c)));
+        func_ov000_0218e850(v2->mUnk_05c);
         if (e == NULL) {
-            *(u8 *) (v2[0] + 0x8f) = 0;
+            v2->mUnk_08f[0] = 0;
         } else {
-            GpiCopyString((char *) (v2[0] + 0x8f), (const char *) e, 0x1f);
+            GpiCopyString((char *) v2->mUnk_08f, (const char *) e, 0x1f);
         }
         if (f == NULL) {
-            *(u8 *) (v2[0] + 0xae) = 0;
+            v2->mUnk_0ae[0] = 0;
         } else {
-            GpiCopyString((char *) (v2[0] + 0xae), (const char *) f, 0x1f);
+            GpiCopyString((char *) v2->mUnk_0ae, (const char *) f, 0x1f);
         }
-        *(s32 *) (v2[0] + 0x130) = g;
+        v2->mUnk_130 = g;
         if (h < 0) {
             h = 0;
         }
-        *(s32 *) (v2[0] + 0x134) = h;
-        v1 = func_ov000_021961e8(a, (u32) (v2[0]), l, m, n);
+        v2->mUnk_134 = h;
+        v1 = func_ov000_021961e8(a, (u32) v2, l, m, n);
         if (v1 == 0) {
             v1 = 0;
         }

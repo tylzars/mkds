@@ -75,6 +75,6 @@ void func_ov003_021cd9dc(const u8 *a);
 void func_ov003_021cdb14(const u8 *a);
 void func_ov003_021cdb44(u32 a);
 void func_ov003_021cdb58(u32 a);
-int func_ov003_021cdb6c(void);
+Unk021cd5e0_400 *func_ov003_021cdb6c(void);
 void func_ov003_021cdb80(void);
 void func_ov003_021cdb90(void);

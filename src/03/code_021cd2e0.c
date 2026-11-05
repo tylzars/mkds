@@ -32,8 +32,8 @@ void func_ov003_021cdb80(void) {
     func_ov003_021d2808(&data_ov003_021da270);
 }
 
-int func_ov003_021cdb6c(void) {
-    return (s32) data_ov003_021da270 + 0x400;
+Unk021cd5e0_400 *func_ov003_021cdb6c(void) {
+    return &data_ov003_021da270->mUnk_400;
 }
 
 void func_ov003_021cdb58(u32 a) {

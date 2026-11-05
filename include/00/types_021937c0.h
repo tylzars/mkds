@@ -16,7 +16,16 @@ typedef struct Unk02196240 {
     /* 01c */ s32 mUnk_01c;
     /* 020 */ u32 mUnk_020;
     /* 024 */ u32 mUnk_024;
-    /* 028 */ u8 mUnk_028[0x114];
+    /* 028 */ s8 mUnk_028[0x1f];
+    /* 047 */ s8 mUnk_047[0x15];
+    /* 05c */ s8 mUnk_05c[0x33];
+    /* 08f */ s8 mUnk_08f[0x1f];
+    /* 0ae */ s8 mUnk_0ae[0x1f];
+    /* 0cd */ s8 mUnk_0cd[0x1f];
+    /* 0ec */ s8 mUnk_0ec[0x44];
+    /* 130 */ s32 mUnk_130;
+    /* 134 */ s32 mUnk_134;
+    /* 138 */ s32 mUnk_138;
     /* 13c */ s32 mUnk_13c;
     /* 140 */ s32 mUnk_140;
 } Unk02196240;
