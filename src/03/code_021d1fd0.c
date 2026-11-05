@@ -214,7 +214,7 @@ void func_ov003_021d2060(Unk021d2188 *object, u32 value) {
 }
 
 void func_ov003_021d1ffc(Unk021d1ffc *b, s32 c, s32 d, Unk021d1770 *e, s32 f) {
-    void *a = func_ov003_021d1974((s32) e, 0);
+    void *a = func_ov003_021d1974(e, 0);
 
     func_ov003_021d18f0(e, -1, 0, 0);
     func_ov003_021d1890(e, -1, 0, 0xf);

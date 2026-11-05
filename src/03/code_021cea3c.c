@@ -147,7 +147,7 @@ void func_ov003_021cec00(Unk021d1770 *a, s32 b) {
     s32 h;
     s32 x;
 
-    n = func_ov003_021d1970((s32) a);
+    n = func_ov003_021d1970(a);
     for (i = 0; i < n; i++) {
         func_ov003_021d1770(a, i, &w, &h);
         if (h >= b && h < 0xc0) {
@@ -161,7 +161,7 @@ void func_ov003_021cec00(Unk021d1770 *a, s32 b) {
 
 void func_ov003_021ceb80(s32 a) {
     func_ov003_021d1c3c(0, data_ov003_021d6748[data_ov003_021da284->mUnk_1c][a] + 1,
-                        func_ov003_021d1974((s32) data_ov003_021da284->mUnk_08[a], 0));
+                        func_ov003_021d1974(data_ov003_021da284->mUnk_08[a], 0));
     func_ov003_021d17d4(
         data_ov003_021da284->mUnk_08[a], -1,
         data_ov003_021d67b0[data_ov003_021da284->mUnk_1c][data_ov003_021d6730[data_ov003_021da284->mUnk_1c][a]][0],

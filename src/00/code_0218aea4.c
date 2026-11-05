@@ -1539,7 +1539,7 @@ s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const char *
             break;
         }
         n += sprintf(v1 + n, data_ov000_021b21e8, s);
-        func_ov000_0218a93c((u32) a, d[i]);
+        func_ov000_0218a93c(&a->mUnk_000, d[i]);
     }
     r = func_ov000_0218ca58(&a->mUnk_04c, v1, f, g, h);
     if (r == 0 && b == 0) {

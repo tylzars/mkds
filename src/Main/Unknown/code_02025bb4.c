@@ -28,21 +28,21 @@ void func_02025c48(u32 a, u32 b, Unk0201ea30 *c) {
 }
 
 void func_02025c1c(u32 a, void *b, void *c) {
-    u8 *d = b;
+    Unk02025bb4Entry *d = b;
     short *v1;
     v1 = func_0201ea30(c, a);
-    *(u32 *) (d + 8) = 1;
-    *(s16 *) (d + 0xc) = ((*v1 << 0x14) >> 0x14);
-    *(s16 *) (d + 0xe) = ((v1[1] << 0x14) >> 0x14);
+    d->mUnk_08 = 1;
+    d->mUnk_0c = ((*v1 << 0x14) >> 0x14);
+    d->mUnk_0e = ((v1[1] << 0x14) >> 0x14);
 }
 
 void func_02025bf0(u32 a, void *b, void *c) {
-    u8 *d = b;
+    Unk02025bb4Entry *d = b;
     short *v1;
     v1 = func_0201ea58(c, a);
-    *(u32 *) (d + 8) = 1;
-    *(s16 *) (d + 0xc) = ((*v1 << 0x14) >> 0x14);
-    *(s16 *) (d + 0xe) = ((v1[1] << 0x14) >> 0x14);
+    d->mUnk_08 = 1;
+    d->mUnk_0c = ((*v1 << 0x14) >> 0x14);
+    d->mUnk_0e = ((v1[1] << 0x14) >> 0x14);
 }
 
 void RectTableSetEntryXY(int id, int x, int y, void *graphics) {

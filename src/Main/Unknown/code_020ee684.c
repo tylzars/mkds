@@ -591,7 +591,7 @@ void func_020f02c0(Unk027e00cc *q, s32 a, s32 *b) {
     q->mUnk_20 = data_0217bc34[a].mUnk_04;
     for (i = 0; i < n; i++) {
         q->mUnk_04[i] = HeapAlloc(v, s);
-        func_020f8d9c((s32) q->mUnk_04[i], k, a);
+        func_020f8d9c(q->mUnk_04[i], k, a);
         k++;
         q->mUnk_04[i]->mUnk_4c = i;
     }

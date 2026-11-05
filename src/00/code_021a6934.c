@@ -37,7 +37,7 @@ void func_ov000_021a6b54(void) {
 
     a = func_ov000_021a5b30();
     if (a != NULL && a->mUnk_2260 == 9 && a->mUnk_226b != 1) {
-        if (func_ov000_021a6908((u8 *) &data_ov000_021b5f54.mUnk_0c) != 0) {
+        if (func_ov000_021a6908(&data_ov000_021b5f54.mUnk_0c) != 0) {
             if (func_02144438((Unk021425e8Func) func_ov000_021a6934, a->mUnk_2144, a->mUnk_0f00, 0) != 2) {
                 func_ov000_021a68dc(&data_ov000_021b5f54.mUnk_0c);
             }

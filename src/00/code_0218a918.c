@@ -27,12 +27,12 @@ void func_ov000_0218a950(Unk0218b668 *a) {
     return;
 }
 
-void func_ov000_0218a93c(u32 a, u8 b) {
+void func_ov000_0218a93c(Unk0218a9bc *a, u8 b) {
     int v1;
-    v1 = *(s32 *) (a + 0x40);
+    v1 = a->mUnk_40;
     if (v1 < 0x14) {
-        *(s32 *) (a + 0x40) = v1 + 1;
-        *(u8 *) (a + v1 + 0x2c) = b;
+        a->mUnk_40 = v1 + 1;
+        a->mUnk_2c[v1] = b;
     }
     return;
 }

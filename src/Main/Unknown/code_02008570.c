@@ -12,8 +12,8 @@
 
 #pragma thumb on
 
-static inline u32 func_02008570_inline(u8 *a) {
-    u32 b = *(u32 *) (a + 0x80);
+static inline u32 func_02008570_inline(Unk02008570Header *a) {
+    u32 b = a->mUnk_80;
     if (b == 0) {
         b = 0x01000000;
     }
@@ -22,7 +22,7 @@ static inline u32 func_02008570_inline(u8 *a) {
 
 int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
     Unk02003024 *v1;
-    u8 *v2;
+    Unk02008570Header *v2;
     u8 *v3;
     Unk02003024 v4;
     BOOL v11;
@@ -42,7 +42,7 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
     if (param_3 >= 0x164) {
         v12 = FALSE;
         v13 = param_3;
-        v3 = v2;
+        v3 = (u8 *) v2;
         v5 = NULL;
         v6 = NULL;
         v3 += 0x160;
@@ -54,14 +54,14 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
             }
             v9 = func_02008570_inline(v2);
         } else {
-            v9 = func_02008570_inline((u8 *) 0x027ffe00);
+            v9 = func_02008570_inline((Unk02008570Header *) 0x027ffe00);
             v12 = TRUE;
             FS_InitFile(&v4);
             FS_OpenFileDirect(&v4, FS_FindArchive(data_usa_0216178c, 3), 0, v9 + 0x88, -1);
             v1 = &v4;
             v7 = v4.mUnk_2c - v4.mUnk_20.w.mUnk_04;
             MemCopy((const void *) 0x027ffe00, v2, 0x160);
-            *(u32 *) (v2 + 0x60) |= 0x00406000;
+            v2->mUnk_60 |= 0x00406000;
         }
         if (v13 >= 0x88) {
             FS_SeekFile(v1, v7 + v9, 0);
@@ -90,23 +90,23 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
         if (v13 >= 0x10) {
             v6 = (u32 *) v3;
             v6[0] = 0;
-            v6[1] = *(u32 *) (v2 + 0x20) + (v7 + v1->mUnk_20.w.mUnk_04);
-            v6[2] = *(u32 *) (v2 + 0x30) + (v7 + v1->mUnk_20.w.mUnk_04);
+            v6[1] = v2->mUnk_20 + (v7 + v1->mUnk_20.w.mUnk_04);
+            v6[2] = v2->mUnk_30 + (v7 + v1->mUnk_20.w.mUnk_04);
             v3 += 0x10;
             v13 -= 0x10;
         } else {
             v13 = 0;
         }
-        v8 = *(u32 *) (v2 + 0x2c) + *(u32 *) (v2 + 0x3c);
+        v8 = v2->mUnk_2c + v2->mUnk_3c;
         if (v13 >= v8) {
             v10 = v1->mUnk_20.w.mUnk_04;
             FS_SeekFile(v1, v6[1] - v10, 0);
-            FS_ReadFile(v1, v3, *(u32 *) (v2 + 0x2c));
-            func_0200ae60(v5, v6[1], *(u32 *) (v2 + 0x2c), (u32) v3, 3);
-            v3 += *(u32 *) (v2 + 0x2c);
+            FS_ReadFile(v1, v3, v2->mUnk_2c);
+            func_0200ae60(v5, v6[1], v2->mUnk_2c, (u32) v3, 3);
+            v3 += v2->mUnk_2c;
             FS_SeekFile(v1, v6[2] - v10, 0);
-            FS_ReadFile(v1, v3, *(u32 *) (v2 + 0x3c));
-            func_0200ae60(v5, v6[2], *(u32 *) (v2 + 0x3c), (u32) v3, 3);
+            FS_ReadFile(v1, v3, v2->mUnk_3c);
+            func_0200ae60(v5, v6[2], v2->mUnk_3c, (u32) v3, 3);
             v11 = TRUE;
         } else if (v13 >= 0xcc00) {
             v10 = v1->mUnk_20.w.mUnk_04;
@@ -127,9 +127,9 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
             FS_CloseFile(&v4);
             if (v11 != FALSE) {
                 v6 = data_usa_02161788;
-                v14[0] = *(u32 *) (v2 + 0x20);
-                v14[1] = *(u32 *) (v2 + 0x28) - *(u32 *) (v2 + 0x20);
-                v14[2] = (u32) v5->mUnk_30[1].mUnk_08 - *(u32 *) (v2 + 0x20);
+                v14[0] = v2->mUnk_20;
+                v14[1] = v2->mUnk_28 - v2->mUnk_20;
+                v14[2] = (u32) v5->mUnk_30[1].mUnk_08 - v2->mUnk_20;
                 v14[3] = param_3;
                 func_0200850c(v14, 0x4000, 0x8000, 1);
                 while (((s32 *) v6)[1] != 0) {
@@ -137,7 +137,7 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
                     v6 += 2;
                 }
                 v3 = v5->mUnk_30[1].mUnk_08;
-                v3 += (u32) AutoloadCallback - *(u32 *) (v2 + 0x28);
+                v3 += (u32) AutoloadCallback - v2->mUnk_28;
                 *(u32 *) v3 = 0xe12fff1e;
             }
         }

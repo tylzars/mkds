@@ -235,12 +235,12 @@ u16 func_0211d650(void) {
 #pragma thumb on
 
 u16 func_0211d62c(void) {
-    int v1;
-    v1 = *(s32 *) &gSelectRaceRule;
-    if (*(s32 *) (v1 + 0x6c) == 0) {
+    SelectRaceRule *v1;
+    v1 = gSelectRaceRule;
+    if (v1->mUnk_68[1] == 0) {
         return 0;
     }
-    return *(u16 *) (v1 + 0xb0) + *(u16 *) (v1 + 0xb2);
+    return v1->mUnk_b0[0] + v1->mUnk_b0[1];
 }
 
 #pragma thumb off

@@ -1,12 +1,13 @@
 #pragma once
 
 #include "types.h"
+#include "03/code_021d1770.h"
 
 typedef struct Unk021d34e0 Unk021d34e0;
 
 typedef struct Unk021da108 {
-    /* 00 */ u32 mUnk_00[2];
-    /* 08 */ u32 mUnk_08;
+    /* 00 */ Unk021d1770 *mUnk_00[2];
+    /* 08 */ Unk021d1770 *mUnk_08;
     /* 0c */ Unk021d34e0 *mUnk_0c;
     /* 10 */ u32 mUnk_10;
     /* 14 */ u16 mUnk_14;

@@ -15,7 +15,7 @@ void InitNsKiller1(u32 arg0) {
     value2 = 0u;
     func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, (s32) value2);
     value0 = (value4) + (0xacu);
-    func_020d7d80((u32 *) value0);
+    func_020d7d80((Unk020e0144 *) value0);
     value0 = 0x1a2u;
     value2 = value4;
     value1 = 0x14u;

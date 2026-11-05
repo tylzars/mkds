@@ -214,7 +214,7 @@ void func_ov003_021bffb0(void) {
             a = 0x40;
             break;
     }
-    func_ov003_021d1c3c(0, a, func_ov003_021d1974((s32) data_ov003_021da15c->mUnk_114, 0));
+    func_ov003_021d1c3c(0, a, func_ov003_021d1974(data_ov003_021da15c->mUnk_114, 0));
     func_ov003_021d1790(data_ov003_021da15c->mUnk_114, -1, 2);
     func_ov003_021d17d4(data_ov003_021da15c->mUnk_114, -1, data_ov003_021d606c[data_ov003_021da15c->mUnk_121][0],
                         data_ov003_021d606e[data_ov003_021da15c->mUnk_121][0]);
@@ -356,7 +356,7 @@ void func_ov003_021bfce0(int param_1) {
 void func_ov003_021bfc80(u32 param_1) {
     s32 a;
     s32 b;
-    func_ov003_021bfbd0_inline(func_ov003_021d1974((s32) data_ov003_021da15c->mUnk_0fc[0], 0), (u32 *) &a, (u32 *) &b);
+    func_ov003_021bfbd0_inline(func_ov003_021d1974(data_ov003_021da15c->mUnk_0fc[0], 0), (u32 *) &a, (u32 *) &b);
     b += 12;
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 4, b);
     if (b >= 0xc0) {
