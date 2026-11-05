@@ -37,10 +37,10 @@ typedef struct Unk020fb038 {
     /* 18 */ u8 mUnk_18[8];
 } Unk020fb038;
 
-// Element of data_027e00cc[5]: 0x31c bytes (the size in data_0217bc34[5]), handled by the functions of this file
+// Element of gItemPools[5]: 0x31c bytes (the size in gItemKinds[5]), handled by the functions of this file
 // from func_020fad9c to func_020fc268 and by those of code_020fc2e8.c, code_020fcbb8.c and code_020fcf10.c.
 typedef struct Unk020fc2e8 {
-    /* 000 */ Unk020f41c4_A mUnk_000;
+    /* 000 */ ItemObject mUnk_000;
     /* 12c */ u8 mUnk_12c[4];
     /* 130 */ u32 mUnk_130;
     /* 134 */ u8 mUnk_134[0x2c];
@@ -100,19 +100,21 @@ typedef struct Unk020fc2e8 Unk020fc2e8;
 
 extern Unk020ea670 *data_0217bd38;
 
-void func_020f9c6c(Unk020f41c4_A *param_1);
+void func_020f9c6c(ItemObject *param_1);
 void func_020f9ca8(void *param_1);
-s32 func_020f9ce8(Unk020f41c4_A *param_1);
-s32 func_020f9dc8(Unk020f41c4_A *param_1);
+s32 func_020f9ce8(ItemObject *param_1);
+s32 func_020f9dc8(ItemObject *param_1);
 void func_020f9f08(void *param_1, s32 param_2, s32 param_3);
-void func_020f9fa8(Unk020f41c4_A *param_1);
-void func_020fa030(Unk020f41c4_A *param_1);
+void func_020f9fa8(ItemObject *param_1);
+void func_020fa030(ItemObject *param_1);
 s32 func_020fa0b8(void *param_1, s32 param_2, s32 param_3);
 s32 func_020fa0e8(s32 param_1, s32 param_2);
 void InitItems(void);
 void func_020fa294(void);
-void *func_020fa3d0(s32 param_1, u16 param_2, void *param_3, void *param_4);
-struct Unk020f41c4_A *func_020fa4b4(u32 arg0);
+// Takes an object of kind param_1 from its pool, reserves it, starts it and places it; returns 0 without taking
+// anything when the pool is full (limit - reserved <= 0). Nothing is allocated.
+void *StartItemObjectOrZero(s32 param_1, u16 param_2, void *param_3, void *param_4);
+struct ItemObject *func_020fa4b4(u32 arg0);
 s32 func_020fa4c8(Kart *param_1);
 void func_020fa78c(s32 param_1, s32 param_2, s32 param_3);
 void func_020fa8ac(void *a);

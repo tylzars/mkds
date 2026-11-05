@@ -8,7 +8,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 
 // Object behind data_0217b4f0, allocated 0x2bc bytes long: the MapObject objects at 0x000 (count at 0x004),
-// Unk020e6fd4 pointer arrays at 0x008, 0x068, 0x0c8 and 0x134 and a Unk020f41c4_A at 0x18c.
+// Unk020e6fd4 pointer arrays at 0x008, 0x068, 0x0c8 and 0x134 and a ItemObject at 0x18c.
 typedef struct Unk0217b4f0 {
     /* 000 */ MapObject **mMapObjects;
     // Pinned at 0xff when the 0x100-pointer array is full.
@@ -30,7 +30,7 @@ typedef struct Unk0217b4f0 {
     /* 180 */ s32 mUnk_180;
     /* 184 */ s32 mUnk_184;
     /* 188 */ s32 mUnk_188;
-    /* 18c */ Unk020f41c4_A mUnk_18c;
+    /* 18c */ ItemObject mUnk_18c;
     /* 2b8 */ s32 mUnk_2b8;
 } Unk0217b4f0;
 

@@ -3,4 +3,6 @@
 #include "types.h"
 #include "Main/Unknown/code_020f36d8.h"
 
-void func_020f8d9c(Unk020f41c4_A *a, u32 b, int c);
+// Sets up a freshly allocated object once: allocates the 0x1c-byte record behind mUnk_104 and builds the model entry
+// from the kind.
+void InitItemObject(ItemObject *a, u32 b, int c);

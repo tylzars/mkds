@@ -24,8 +24,8 @@
 #include "Main/Unknown/code_020e337c.h"
 
 BOOL func_020f9290(void *a, Vec3 *b) {
-    Unk020f41c4_A *p = a;
-    if ((p->mUnk_74 & 0x2000000) != 0 && func_02039828(b, &p->mUnk_108) < 0 && (p->mUnk_74 & 8) == 0) {
+    ItemObject *p = a;
+    if ((p->mFlags & 0x2000000) != 0 && func_02039828(b, &p->mUnk_108) < 0 && (p->mFlags & 8) == 0) {
         func_020f6fc4(p, 1);
         return TRUE;
     }
@@ -33,7 +33,7 @@ BOOL func_020f9290(void *a, Vec3 *b) {
 }
 
 void func_020f91fc(void *b, s32 c) {
-    Unk020f41c4_A *p = b;
+    ItemObject *p = b;
     Unk0210b7a8 a;
 
     if (c == 1) {
@@ -46,28 +46,28 @@ void func_020f91fc(void *b, s32 c) {
         return;
     }
     a = data_0216c698;
-    a.mUnk_04 = &p->mUnk_50;
+    a.mUnk_04 = &p->mPos;
     a.mUnk_00 = c;
     a.mUnk_0c = p->mUnk_d4 & ~0xc000001f;
     func_0210b7a8(&a);
 }
 
 BOOL func_020f91e0(void *a) {
-    Unk020f41c4_A *p = a;
+    ItemObject *p = a;
 
     return p->mUnk_68.z >= 0xccd;
 }
 
-BOOL func_020f91c4(Unk020f41c4_A *a, s32 b) {
+BOOL func_020f91c4(ItemObject *a, s32 b) {
     return (s32) (a->mUnk_d4 & ~0xc000001f) > b * b;
 }
 
-BOOL func_020f9160(Unk020f41c4_A *c) {
+BOOL func_020f9160(ItemObject *c) {
     BOOL a;
     BOOL b;
 
     a = FALSE;
-    if ((c->mUnk_74 & 0x10000) == 0) {
+    if ((c->mFlags & 0x10000) == 0) {
         a = TRUE;
     }
     if (a != FALSE && (s32) (c->mUnk_d4 & ~0xc000001f) <= 0x3d0900) {
@@ -82,56 +82,56 @@ BOOL func_020f9160(Unk020f41c4_A *c) {
 }
 
 void func_020f9114(void *b) {
-    Unk020f41c4_A *p = b;
-    enum { K0 } a = p->mUnk_44;
+    ItemObject *p = b;
+    enum { K0 } a = p->mKind;
 
-    func_02109038(p, (u32) data_0217bc34[a].mUnk_a0, &p->mUnk_50);
+    func_02109038(p, (u32) gItemKinds[a].mUnk_a0, &p->mPos);
     func_0210cf9c(&p->mUnk_00, 1);
-    p->mUnk_74 |= 0x400000;
+    p->mFlags |= 0x400000;
 }
 
 void func_020f90dc(void *a) {
-    Unk020f41c4_A *p = a;
-    if ((p->mUnk_74 & 0x400000) == 0) {
+    ItemObject *p = a;
+    if ((p->mFlags & 0x400000) == 0) {
         return;
     }
     func_02109054(&p->mUnk_00);
     p->mUnk_00.mUnk_30 = NULL;
-    p->mUnk_74 &= ~0x400000;
+    p->mFlags &= ~0x400000;
 }
 
 void func_020f90bc(void *a) {
-    Unk020f41c4_A *p = a;
+    ItemObject *p = a;
 
     p->mUnk_00.mUnk_40 = p->mUnk_d4 & ~0xc000001f;
-    func_020d4e28(p, &p->mUnk_50, p->mUnk_d4);
+    func_020d4e28(p, &p->mPos, p->mUnk_d4);
 }
 
 void func_020f9054(void *a, s32 b, void *c, s32 d) {
-    Unk020f41c4_A *p = a;
+    ItemObject *p = a;
     void *(*f)(void *, void *, s32);
 
-    f = d != 0 ? func_020fe4c0 : data_0217bc34[b].mUnk_48;
-    func_020f9a14(p, b);
+    f = d != 0 ? func_020fe4c0 : gItemKinds[b].mUnk_48;
+    ResetItemObject(p, b);
     f(c, p, 0);
-    p->mUnk_74 &= ~0x400000;
-    p->mUnk_74 |= 0x10000000;
+    p->mFlags &= ~0x400000;
+    p->mFlags |= 0x10000000;
 }
 
 void func_020f8e78(void *b) {
-    Unk020f41c4_A *p = b;
-    Unk0217bc34 *e;
+    ItemObject *p = b;
+    ItemKind *e;
     BOOL a;
     s32 m;
     enum { K0 } k;
-    void (*f)(struct Unk020f41c4_A *);
+    void (*f)(struct ItemObject *);
 
     p->mUnk_68.z = 0xccd;
-    k = p->mUnk_44;
-    p->mUnk_74 |= 0x40;
+    k = p->mKind;
+    p->mFlags |= 0x40;
     p->mUnk_68.y = p->mUnk_68.z;
     p->mUnk_68.x = p->mUnk_68.y;
-    e = &data_0217bc34[k];
+    e = &gItemKinds[k];
     m = e->mUnk_6c;
     p->mUnk_dc = (s32) (((s64) p->mUnk_68.y * e->mUnk_64) >> 12);
     p->mUnk_e0 = (s32) (((s64) p->mUnk_68.y * m) >> 12);
@@ -149,23 +149,23 @@ void func_020f8e78(void *b) {
     p->mUnk_116 = 0;
     p->mUnk_118 = 0;
     p->mUnk_11a = 0;
-    p->mUnk_11c = 1;
-    if ((p->mUnk_74 & 0x400000) == 0) {
-        k = p->mUnk_44;
-        func_02109038(p, (u32) data_0217bc34[k].mUnk_a0, &p->mUnk_50);
+    p->mAgeFrames = 1;
+    if ((p->mFlags & 0x400000) == 0) {
+        k = p->mKind;
+        func_02109038(p, (u32) gItemKinds[k].mUnk_a0, &p->mPos);
         func_0210cf9c(&p->mUnk_00, 1);
-        p->mUnk_74 |= 0x400000;
+        p->mFlags |= 0x400000;
     }
-    k = p->mUnk_44;
-    f = data_0217bc34[k].mUnk_28;
-    if ((p->mUnk_74 & 0x180000) == 0) {
+    k = p->mKind;
+    f = gItemKinds[k].mUnk_28;
+    if ((p->mFlags & 0x180000) == 0) {
         p->mUnk_120 = f;
     }
     if ((p->mUnk_78 & 0xf00) != 0) {
         return;
     }
-    k = p->mUnk_44;
-    if (data_0217bc34[k].mUnk_54 != 0) {
+    k = p->mKind;
+    if (gItemKinds[k].mUnk_54 != 0) {
         return;
     }
     a = p->mUnk_da != -1;
@@ -175,5 +175,5 @@ void func_020f8e78(void *b) {
     if (a != FALSE) {
         return;
     }
-    p->mUnk_da = func_020d555c(&p->mUnk_50, p->mUnk_e0 + 0xa000, 0x4000, p);
+    p->mUnk_da = func_020d555c(&p->mPos, p->mUnk_e0 + 0xa000, 0x4000, p);
 }

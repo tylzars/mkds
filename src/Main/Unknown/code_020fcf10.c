@@ -17,8 +17,8 @@ void func_020fcf10(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
 
     p = p0->mUnk_228->mKart;
     p0->mUnk_22c = p->mUnk_05c;
-    v1 = &p0->mUnk_000.mUnk_50;
-    v2 = &p0->mUnk_000.mUnk_5c;
+    v1 = &p0->mUnk_000.mPos;
+    v2 = &p0->mUnk_000.mVelocity;
     v = &p0->mUnk_238;
     if (p->mUnk_44 & 0x100) {
         p0->mUnk_22c.x = -p0->mUnk_22c.x;
@@ -53,7 +53,7 @@ void func_020fcf10(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     v2->y = (v2->y * (s32) e + t.y) >> f;
     v2->z = (v2->z * e + t.z) >> f;
     Vec3Add(v2, v1, v1);
-    if (func_01ffdee4(v1, &p0->mUnk_000.mUnk_0e4, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mUnk_da, &t, NULL, NULL,
+    if (func_01ffdee4(v1, &p0->mUnk_000.mPrevPos, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mUnk_da, &t, NULL, NULL,
                       NULL, NULL, NULL, NULL, NULL) == 0) {
         return;
     }

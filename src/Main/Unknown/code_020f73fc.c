@@ -19,56 +19,54 @@
 #include "code_02147cd8.h"
 
 void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
-    Unk020f41c4_A *p = a;
+    ItemObject *p = a;
     Vec3 v;
     Vec3 v2;
     Vec3 w;
     s32 i;
     s32 n;
     s32 m;
-    void (*cb)(Unk020f41c4_A *, s32);
+    void (*cb)(ItemObject *, s32);
 
-    if (p->mUnk_74 & 0x80000) {
+    if (p->mFlags & 0x80000) {
         return;
     }
     i = e ? e->mKindData->mUnk_28 : -1;
     switch (b) {
         case 1:
-            if (p->mUnk_74 & 0x1000) {
+            if (p->mFlags & 0x1000) {
                 break;
             }
-            Vec3Sub(&p->mUnk_0e4, c, &v);
-            if (!(p->mUnk_74 & 0x8000) && (p->mUnk_74 & 0x1000000)) {
+            Vec3Sub(&p->mPrevPos, c, &v);
+            if (!(p->mFlags & 0x8000) && (p->mFlags & 0x1000000)) {
                 func_020f7c90(p, c, &v);
                 break;
             }
-            p->mUnk_74 |= 0x4000000;
-            if (func_02039828(&p->mUnk_5c, &v) <= 0) {
+            p->mFlags |= 0x4000000;
+            if (func_02039828(&p->mVelocity, &v) <= 0) {
                 if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
                     func_02039860(&v, &v);
                 }
                 p->mUnk_124(p, d, &v);
-                if (p->mUnk_74 & 0x8000) {
+                if (p->mFlags & 0x8000) {
                     break;
                 }
                 m = p->mUnk_e0;
-                if ((s64) (c->x - p->mUnk_50.x) * (c->x - p->mUnk_50.x) +
-                        (s64) (c->y - p->mUnk_50.y) * (c->y - p->mUnk_50.y) +
-                        (s64) (c->z - p->mUnk_50.z) * (c->z - p->mUnk_50.z) >=
+                if ((s64) (c->x - p->mPos.x) * (c->x - p->mPos.x) + (s64) (c->y - p->mPos.y) * (c->y - p->mPos.y) +
+                        (s64) (c->z - p->mPos.z) * (c->z - p->mPos.z) >=
                     (s64) m * m) {
                     break;
                 }
-                p->mUnk_50.x = c->x + (s32) (((s64) m * v.x) >> 12);
-                p->mUnk_50.z = c->z + (s32) (((s64) m * v.z) >> 12);
+                p->mPos.x = c->x + (s32) (((s64) m * v.x) >> 12);
+                p->mPos.z = c->z + (s32) (((s64) m * v.z) >> 12);
                 break;
             }
-            if (p->mUnk_74 & 0x8000) {
+            if (p->mFlags & 0x8000) {
                 break;
             }
             m = p->mUnk_e0;
-            if ((s64) (c->x - p->mUnk_50.x) * (c->x - p->mUnk_50.x) +
-                    (s64) (c->y - p->mUnk_50.y) * (c->y - p->mUnk_50.y) +
-                    (s64) (c->z - p->mUnk_50.z) * (c->z - p->mUnk_50.z) >=
+            if ((s64) (c->x - p->mPos.x) * (c->x - p->mPos.x) + (s64) (c->y - p->mPos.y) * (c->y - p->mPos.y) +
+                    (s64) (c->z - p->mPos.z) * (c->z - p->mPos.z) >=
                 (s64) m * m) {
                 break;
             }
@@ -76,11 +74,11 @@ void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
                 func_02039860(&v, &v);
             }
             m = p->mUnk_e0;
-            p->mUnk_50.x = c->x + (s32) (((s64) m * v.x) >> 12);
-            p->mUnk_50.z = c->z + (s32) (((s64) m * v.z) >> 12);
+            p->mPos.x = c->x + (s32) (((s64) m * v.x) >> 12);
+            p->mPos.z = c->z + (s32) (((s64) m * v.z) >> 12);
             break;
         case 2:
-            if (p->mUnk_74 & 0x1000) {
+            if (p->mFlags & 0x1000) {
                 func_020eda5c(&(gKartItems)[(u16) (p->mUnk_78 & ~0xff00)].mItemInUse, p);
             }
             n = 0;
@@ -90,7 +88,7 @@ void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
             if (n != 0) {
                 func_020f6be8(p, c, d, &v2);
             } else {
-                Vec3Sub(&p->mUnk_50, c, &v2);
+                Vec3Sub(&p->mPos, c, &v2);
                 if (v2.y < 0) {
                     v2.y = 0;
                 }
@@ -102,10 +100,10 @@ void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
                 w.z = (s32) (((s64) v2.z * 0x1800) >> 12);
                 func_020f6be8(p, c, &w, &v2);
             }
-            if (i == -1 || (p->mUnk_74 & 0x8000000)) {
+            if (i == -1 || (p->mFlags & 0x8000000)) {
                 func_020f6fc4(p, 1);
             } else {
-                n = p->mUnk_44;
+                n = p->mKind;
                 func_020f7104(p, 1);
                 if (n == 5 || n == 9) {
                     i = -1;
@@ -115,17 +113,17 @@ void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
     if (i == -1) {
         return;
     }
-    cb = (p->mUnk_74 & 0x400000) ? (void (*)(Unk020f41c4_A *, s32)) func_020f7c60
-                                 : (void (*)(Unk020f41c4_A *, s32)) func_020f91fc;
+    cb = (p->mFlags & 0x400000) ? (void (*)(ItemObject *, s32)) func_020f7c60
+                                : (void (*)(ItemObject *, s32)) func_020f91fc;
     cb(p, i);
 }
 
-void func_020f7658(Unk020f41c4_A *b, s32 c) {
+void func_020f7658(ItemObject *b, s32 c) {
     BOOL a;
     enum { K0 } k;
 
-    if (!(b->mUnk_74 & 0x8000000)) {
-        if ((b->mUnk_74 & 0x8000000) && !(b->mUnk_74 & 0x10000000) && !(b->mUnk_74 & 0x20000000)) {
+    if (!(b->mFlags & 0x8000000)) {
+        if ((b->mFlags & 0x8000000) && !(b->mFlags & 0x10000000) && !(b->mFlags & 0x20000000)) {
             if (b->mUnk_78 & 0xf00) {
                 return;
             }
@@ -133,17 +131,17 @@ void func_020f7658(Unk020f41c4_A *b, s32 c) {
             b->mUnk_120 = NULL;
             return;
         }
-        if (b->mUnk_74 & 0x180000) {
+        if (b->mFlags & 0x180000) {
             return;
         }
-        k = b->mUnk_44;
-        if (data_0217bc34[k].mUnk_40 == 0 && !(b->mUnk_74 & 0x180000)) {
+        k = b->mKind;
+        if (gItemKinds[k].mUnk_40 == 0 && !(b->mFlags & 0x180000)) {
             b->mUnk_120 = func_020f758c;
         }
-        b->mUnk_74 |= 0x100002;
+        b->mFlags |= 0x100002;
         return;
     }
-    if ((b->mUnk_74 & 0x8000000) && !(b->mUnk_74 & 0x10000000) && !(b->mUnk_74 & 0x20000000)) {
+    if ((b->mFlags & 0x8000000) && !(b->mFlags & 0x10000000) && !(b->mFlags & 0x20000000)) {
         if (b->mUnk_78 & 0xf00) {
             a = FALSE;
         } else {
@@ -152,14 +150,14 @@ void func_020f7658(Unk020f41c4_A *b, s32 c) {
             a = TRUE;
         }
     } else {
-        if (b->mUnk_74 & 0x180000) {
+        if (b->mFlags & 0x180000) {
             a = FALSE;
         } else {
-            k = b->mUnk_44;
-            if (data_0217bc34[k].mUnk_40 == 0 && !(b->mUnk_74 & 0x180000)) {
+            k = b->mKind;
+            if (gItemKinds[k].mUnk_40 == 0 && !(b->mFlags & 0x180000)) {
                 b->mUnk_120 = func_020f758c;
             }
-            b->mUnk_74 |= 0x100002;
+            b->mFlags |= 0x100002;
             a = TRUE;
         }
     }
@@ -169,29 +167,29 @@ void func_020f7658(Unk020f41c4_A *b, s32 c) {
     if (c == 0) {
         return;
     }
-    func_020fe7a0(b->mUnk_44, 4, 8, b->mUnk_4e);
+    func_020fe7a0(b->mKind, 4, 8, b->mId);
 }
 
-void func_020f7600(Unk020f41c4_A *a) {
+void func_020f7600(ItemObject *a) {
     enum { K0 } k;
 
-    if (a->mUnk_74 & 0x180000) {
+    if (a->mFlags & 0x180000) {
         return;
     }
-    k = a->mUnk_44;
-    if (data_0217bc34[k].mUnk_40 == 0 && !(a->mUnk_74 & 0x180000)) {
+    k = a->mKind;
+    if (gItemKinds[k].mUnk_40 == 0 && !(a->mFlags & 0x180000)) {
         a->mUnk_120 = func_020f758c;
     }
-    a->mUnk_74 |= 0x100002;
+    a->mFlags |= 0x100002;
 }
 
-void func_020f758c(Unk020f41c4_A *a) {
-    if (a->mUnk_74 & 0x8000) {
+void func_020f758c(ItemObject *a) {
+    if (a->mFlags & 0x8000) {
         func_020f68b0(a);
     }
     a->mUnk_d8--;
     if (a->mUnk_d8 <= 0) {
-        func_020f0f70(&data_027e00cc[a->mUnk_44], a);
+        ReleaseItemPoolObject(&gItemPools[a->mKind], a);
     } else {
         if (a->mUnk_d8 < 0xa) {
             func_020f9c40((s32) a);
@@ -199,11 +197,11 @@ void func_020f758c(Unk020f41c4_A *a) {
     }
 }
 
-void func_020f7430(Unk020f41c4_A *b, s32 c) {
+void func_020f7430(ItemObject *b, s32 c) {
     BOOL a;
 
-    if (!(b->mUnk_74 & 0x8000000)) {
-        if ((b->mUnk_74 & 0x8000000) && !(b->mUnk_74 & 0x10000000) && !(b->mUnk_74 & 0x20000000)) {
+    if (!(b->mFlags & 0x8000000)) {
+        if ((b->mFlags & 0x8000000) && !(b->mFlags & 0x10000000) && !(b->mFlags & 0x20000000)) {
             if (b->mUnk_78 & 0xf00) {
                 return;
             }
@@ -211,16 +209,16 @@ void func_020f7430(Unk020f41c4_A *b, s32 c) {
             b->mUnk_120 = NULL;
             return;
         }
-        if (b->mUnk_74 & 0x180000) {
+        if (b->mFlags & 0x180000) {
             return;
         }
-        if (!(b->mUnk_74 & 0x180000)) {
-            b->mUnk_120 = (void (*)(Unk020f41c4_A *)) func_020f73d4;
+        if (!(b->mFlags & 0x180000)) {
+            b->mUnk_120 = (void (*)(ItemObject *)) func_020f73d4;
         }
-        b->mUnk_74 |= 0x100002;
+        b->mFlags |= 0x100002;
         return;
     }
-    if ((b->mUnk_74 & 0x8000000) && !(b->mUnk_74 & 0x10000000) && !(b->mUnk_74 & 0x20000000)) {
+    if ((b->mFlags & 0x8000000) && !(b->mFlags & 0x10000000) && !(b->mFlags & 0x20000000)) {
         if (b->mUnk_78 & 0xf00) {
             a = FALSE;
         } else {
@@ -229,13 +227,13 @@ void func_020f7430(Unk020f41c4_A *b, s32 c) {
             a = TRUE;
         }
     } else {
-        if (b->mUnk_74 & 0x180000) {
+        if (b->mFlags & 0x180000) {
             a = FALSE;
         } else {
-            if (!(b->mUnk_74 & 0x180000)) {
-                b->mUnk_120 = (void (*)(Unk020f41c4_A *)) func_020f73d4;
+            if (!(b->mFlags & 0x180000)) {
+                b->mUnk_120 = (void (*)(ItemObject *)) func_020f73d4;
             }
-            b->mUnk_74 |= 0x100002;
+            b->mFlags |= 0x100002;
             a = TRUE;
         }
     }
@@ -245,15 +243,15 @@ void func_020f7430(Unk020f41c4_A *b, s32 c) {
     if (c == 0) {
         return;
     }
-    func_020fe7a0(b->mUnk_44, 5, 8, b->mUnk_4e);
+    func_020fe7a0(b->mKind, 5, 8, b->mId);
 }
 
-void func_020f73fc(Unk020f41c4_A *a) {
-    if (a->mUnk_74 & 0x180000) {
+void func_020f73fc(ItemObject *a) {
+    if (a->mFlags & 0x180000) {
         return;
     }
-    if (!(a->mUnk_74 & 0x180000)) {
-        a->mUnk_120 = (void (*)(Unk020f41c4_A *)) func_020f73d4;
+    if (!(a->mFlags & 0x180000)) {
+        a->mUnk_120 = (void (*)(ItemObject *)) func_020f73d4;
     }
-    a->mUnk_74 |= 0x100002;
+    a->mFlags |= 0x100002;
 }

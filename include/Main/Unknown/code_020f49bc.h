@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_020f2dac.h"
 
-// Element of data_027e00cc[3]: 0x138 bytes (the size in data_0217bc34[3]), handled by func_020f4dfc to
+// Element of gItemPools[3]: 0x138 bytes (the size in gItemKinds[3]), handled by func_020f4dfc to
 // func_020f5040: the Unk020f2df0 part and words at 0x130 and 0x134.
 typedef struct Unk020f5008 {
     /* 000 */ Unk020f2df0 mUnk_000;
@@ -15,7 +15,7 @@ typedef struct Unk020f5008 Unk020f5008;
 
 #include "Main/Unknown/code_020ec8bc.h"
 
-// Element of data_027e00cc[1]: 0x274 bytes (the size in data_0217bc34[1]), handled by func_020f5324 to
+// Element of gItemPools[1]: 0x274 bytes (the size in gItemKinds[1]), handled by func_020f5324 to
 // func_020f5824 of this file, func_020f5d6c to func_020f5fb8, the state functions in data_0216c648 and
 // func_020f1180 to func_020f14a0: the Unk020ec8bc part, the owner at 0x228, a vector at 0x22c, a counter at 0x238,
 // the state machine of func_02046be8 at 0x23c, words at 0x250 and 0x254 and a Unk0210b7ec at 0x258.
@@ -31,14 +31,14 @@ typedef struct Unk020f5d6c {
     /* 268 */ u8 mUnk_268[0xc];
 } Unk020f5d6c;
 
-// Element of data_027e00cc[2]: 0x134 bytes (the size in data_0217bc34[2]), handled by func_020f50b4 to
+// Element of gItemPools[2]: 0x134 bytes (the size in gItemKinds[2]), handled by func_020f50b4 to
 // func_020f5240: the Unk020f2df0 part and a word at 0x130.
 typedef struct Unk020f5240 {
     /* 000 */ Unk020f2df0 mUnk_000;
     /* 130 */ s32 mUnk_130;
 } Unk020f5240;
 
-// Element of data_027e00cc[0]: 0x188 bytes (the size in data_0217bc34[0]), handled by func_020f5ffc to
+// Element of gItemPools[0]: 0x188 bytes (the size in gItemKinds[0]), handled by func_020f5ffc to
 // func_020f6220: the Unk020f1d70 part, a word at 0x168 and a Unk0210b7ec at 0x16c.
 typedef struct Unk020f6150 {
     /* 000 */ Unk020f1d70 mUnk_000;
@@ -86,10 +86,10 @@ BOOL func_020f6150(Unk020eda5c *a, Unk020f6150 *b);
 void func_020f6220(void *a0, s32 b);
 void func_020f6264(Unk020eda5c *a, Unk020f40dc *b);
 void func_020f62b0(Unk020eda5c *a, Unk020f40dc *b);
-void func_020f6388(Unk020f41c4_A *a, Vec3 *b, Vec3 *c);
-void func_020f63cc(Unk020f41c4_A *a);
-void func_020f65c4(Unk020f41c4_A *a);
+void func_020f6388(ItemObject *a, Vec3 *b, Vec3 *c);
+void func_020f63cc(ItemObject *a);
+void func_020f65c4(ItemObject *a);
 void func_020f6630(void *a0, s32 b, Vec3 *c, Vec3 *d, Vec3 *e);
-void func_020f6830(Unk020f41c4_A *a, Vec3 *b, Vec3 *c);
-void func_020f68b0(Unk020f41c4_A *a);
-void func_020f6a6c(Unk020f41c4_A *a, void *b);
+void func_020f6830(ItemObject *a, Vec3 *b, Vec3 *c);
+void func_020f68b0(ItemObject *a);
+void func_020f6a6c(ItemObject *a, void *b);

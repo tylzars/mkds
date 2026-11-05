@@ -290,7 +290,7 @@ s32 func_020cf310(void) {
     s32 v;
 
     v = 0;
-    v += data_0217bc34[5].mUnk_0c;
-    v += data_0217bc34[9].mUnk_0c;
+    v += gItemKinds[5].mObjectCount;
+    v += gItemKinds[9].mObjectCount;
     return func_020c0ba8(&data_0217b48c, v);
 }

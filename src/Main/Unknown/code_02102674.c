@@ -39,7 +39,7 @@ void func_0210298c(Unk02102674 *p) {
 
     q = p->mUnk_12c;
     s = func_020748a8();
-    a2 = p->mUnk_000.mUnk_11c;
+    a2 = p->mUnk_000.mAgeFrames;
     if (a2 == 0x3f) {
         func_021031f4(p);
     }
@@ -67,7 +67,7 @@ void func_0210298c(Unk02102674 *p) {
         if (a2 <= data_0217c634) {
             return;
         }
-        func_020f0f70(data_027e00cc + p->mUnk_000.mUnk_44, &p->mUnk_000);
+        ReleaseItemPoolObject(gItemPools + p->mUnk_000.mKind, &p->mUnk_000);
         return;
     }
     if (p->mUnk_138 >= 4 && p->mUnk_138 < 0xd) {
@@ -142,12 +142,12 @@ void func_0210298c(Unk02102674 *p) {
     w = p->mUnk_13c;
     v = (s32) (((s64) p->mUnk_19c * 0x800) >> 12);
     w.x -= (s32) (((s64) v * w.x) >> 12);
-    p->mUnk_000.mUnk_50.x = (s32) (((s64) s->mSide.x * -w.x) >> 12);
-    p->mUnk_000.mUnk_50.y = (s32) (((s64) s->mSide.y * -w.x) >> 12);
-    p->mUnk_000.mUnk_50.z = (s32) (((s64) s->mSide.z * -w.x) >> 12);
-    Vec3AddScaled(w.y, &s->mUp, &p->mUnk_000.mUnk_50, &p->mUnk_000.mUnk_50);
-    Vec3AddScaled(-w.z, &s->mForward, &p->mUnk_000.mUnk_50, &p->mUnk_000.mUnk_50);
-    Vec3Add(&s->mPos, &p->mUnk_000.mUnk_50, &p->mUnk_000.mUnk_50);
+    p->mUnk_000.mPos.x = (s32) (((s64) s->mSide.x * -w.x) >> 12);
+    p->mUnk_000.mPos.y = (s32) (((s64) s->mSide.y * -w.x) >> 12);
+    p->mUnk_000.mPos.z = (s32) (((s64) s->mSide.z * -w.x) >> 12);
+    Vec3AddScaled(w.y, &s->mUp, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
+    Vec3AddScaled(-w.z, &s->mForward, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
+    Vec3Add(&s->mPos, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
 }
 
 void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t) {
@@ -162,7 +162,7 @@ void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t) {
     if (p->mUnk_198 == FALSE) {
         return;
     }
-    s = *func_020e6cf8(&p->mUnk_000.mUnk_50);
+    s = *func_020e6cf8(&p->mUnk_000.mPos);
     d = p->mUnk_19c;
     if (d <= 0) {
         d = -d;
@@ -200,7 +200,7 @@ void func_02102764(void *param_1, Unk02102674 *param_2, void *param_3) {
     if (param_3 == NULL) {
         return;
     }
-    func_020fe8ac(param_2->mUnk_000.mUnk_44);
+    func_020fe8ac(param_2->mUnk_000.mKind);
 }
 
 void func_02102744(Unk02102674 *p) {

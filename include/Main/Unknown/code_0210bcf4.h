@@ -5,7 +5,7 @@
 #include "code_0212d214.h"
 
 // data_0217d048 is addressed in rows of twelve bytes; func_0210bfbc and func_0210c0bc address the
-// container of one of those rows. Kart and the data_027e00cc elements (Unk020f41c4_A) start with it:
+// container of one of those rows. Kart and the gItemPools elements (ItemObject) start with it:
 // func_02109078 and func_021090c4 pass either one to func_0210c610 and func_0210c86c. func_02109110 writes the
 // byte at 0x3c and the word at 0x40.
 typedef struct Unk0210bfbc {

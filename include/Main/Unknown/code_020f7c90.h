@@ -27,4 +27,4 @@ extern Unk02159c3c data_02159c3c[];
 void func_020f80c0(ItemSlotTable *a, s32 b);
 void CreateItemSlotTables(void);
 u8 func_020f7ea8(void *a, void *b);
-void func_020f7c90(Unk020f41c4_A *a, Vec3 *b, Vec3 *c);
+void func_020f7c90(ItemObject *a, Vec3 *b, Vec3 *c);

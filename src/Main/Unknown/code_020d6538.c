@@ -427,7 +427,7 @@ s32 func_020d6be0(Kart *a, MapObject *b) {
     return f != 0 ? 2 : 0;
 }
 
-s32 func_020d6a54(Unk020f41c4_A *a, MapObject *b, s32 *c) {
+s32 func_020d6a54(ItemObject *a, MapObject *b, s32 *c) {
     s32 r = b->mKind;
     s32 n = 0;
     s32 f = b->mFlags & 0x800;
@@ -439,13 +439,13 @@ s32 func_020d6a54(Unk020f41c4_A *a, MapObject *b, s32 *c) {
         n++;
     }
     if (b->mKindData->mUnk_04 != NULL) {
-        v = data_0216bb7c[n][a->mUnk_44][r];
+        v = data_0216bb7c[n][a->mKind][r];
         if (f != 0) {
             v = 0;
         }
         buf[0] = v;
         t = b->mKindData->mUnk_20;
-        v = data_0216ba2c[n][a->mUnk_44][r];
+        v = data_0216ba2c[n][a->mKind][r];
         if (f != 0 && v == 1 && t != 0) {
             v = 2;
         }
@@ -465,7 +465,7 @@ s32 func_020d6a54(Unk020f41c4_A *a, MapObject *b, s32 *c) {
         *c = 0;
     }
     t = b->mKindData->mUnk_20;
-    v = data_0216ba2c[n][a->mUnk_44][r];
+    v = data_0216ba2c[n][a->mKind][r];
     if (f != 0 && v == 1 && t != 0) {
         v = 2;
     }

@@ -37,11 +37,11 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
     BOOL r;
 
     r = FALSE;
-    p = &a->mUnk_000.mUnk_000.mUnk_000.mUnk_50;
-    q = &a->mUnk_000.mUnk_000.mUnk_000.mUnk_5c;
+    p = &a->mUnk_000.mUnk_000.mUnk_000.mPos;
+    q = &a->mUnk_000.mUnk_000.mUnk_000.mVelocity;
     if ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_48 & 1) == func_02061f7c()) {
         v = a->mUnk_228->mKart;
-        if (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_74 & 0x20000)) {
+        if (!(a->mUnk_000.mUnk_000.mUnk_000.mFlags & 0x20000)) {
             if (func_0206c0e0(v) != FALSE) {
                 b >>= 1;
             }
@@ -60,7 +60,7 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
             t.x = (s32) (((s64) t.x * b) >> 12);
             t.y = (s32) (((s64) t.y * b) >> 12);
             t.z = (s32) (((s64) t.z * b) >> 12);
-            if (a->mUnk_000.mUnk_000.mUnk_000.mUnk_74 & 0x8000000) {
+            if (a->mUnk_000.mUnk_000.mUnk_000.mFlags & 0x8000000) {
                 if (n < (s32) (((s64) v->mUnk_2cc->mUnk_00 * v->mUnk_bc.z + 0x800) >> 12)) {
                     a->mUnk_238 = a->mUnk_238 + 1;
                     if (a->mUnk_238 > 0x5a) {
@@ -91,7 +91,7 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
     a->mUnk_228->mUnk_208 = TRUE;
     Vec3Add(&a->mUnk_22c, p, p);
     Vec3Add(q, p, p);
-    if (func_01ffdee4(&p->x, (u32 *) &a->mUnk_000.mUnk_000.mUnk_000.mUnk_0e4, 0, a->mUnk_000.mUnk_000.mUnk_000.mUnk_dc,
+    if (func_01ffdee4(&p->x, (u32 *) &a->mUnk_000.mUnk_000.mUnk_000.mPrevPos, 0, a->mUnk_000.mUnk_000.mUnk_000.mUnk_dc,
                       4, a->mUnk_000.mUnk_000.mUnk_000.mUnk_da, &t, &u, (s32 *) &w,
                       &a->mUnk_000.mUnk_000.mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL) != 0) {
         Vec3Add(&t, p, p);
@@ -104,7 +104,7 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
                  u.z == a->mUnk_000.mUnk_000.mUnk_000.mUnk_f0.z);
             if (e == FALSE) {
                 a->mUnk_000.mUnk_000.mUnk_000.mUnk_f0 = u;
-                a->mUnk_000.mUnk_000.mUnk_000.mUnk_74 |= 0x100;
+                a->mUnk_000.mUnk_000.mUnk_000.mFlags |= 0x100;
             }
         }
         if (a->mUnk_000.mUnk_000.mUnk_000.mUnk_fc & 0x214300) {
@@ -168,18 +168,18 @@ int func_020f1258(int a0, int i, s32 c, u32 b) {
         return 0;
     }
     func_0207a948(&v, i);
-    Vec3Sub(&v, &a->mUnk_000.mUnk_000.mUnk_000.mUnk_50, &v);
+    Vec3Sub(&v, &a->mUnk_000.mUnk_000.mUnk_000.mPos, &v);
     d = (v.x >> 12) * (v.x >> 12);
     d += (v.z >> 12) * (v.z >> 12);
     if (d > 0x27100 || (c != 0 && d > c)) {
         return 0;
     }
-    dot = func_02039828(&a->mUnk_000.mUnk_000.mUnk_000.mUnk_5c, &v);
+    dot = func_02039828(&a->mUnk_000.mUnk_000.mUnk_000.mVelocity, &v);
     if (dot < 0) {
         return 0;
     }
     vv = func_02039828(&v, &v) >> 12;
-    ww = func_02039828(&a->mUnk_000.mUnk_000.mUnk_000.mUnk_5c, &a->mUnk_000.mUnk_000.mUnk_000.mUnk_5c);
+    ww = func_02039828(&a->mUnk_000.mUnk_000.mUnk_000.mVelocity, &a->mUnk_000.mUnk_000.mUnk_000.mVelocity);
     t2 = (s64) ww * vv;
     t1 = (s64) dot * (dot >> 12);
     if ((s32) (t1 >> 12) < (s32) (((s64) (s32) (t2 >> 12) * 0x400) >> 12)) {
@@ -189,7 +189,7 @@ int func_020f1258(int a0, int i, s32 c, u32 b) {
     if ((dot >> 12) * (dot >> 12) > 0x9c4) {
         return 0;
     }
-    if (a->mUnk_000.mUnk_000.mUnk_000.mUnk_74 & 0x10000000) {
+    if (a->mUnk_000.mUnk_000.mUnk_000.mFlags & 0x10000000) {
         return 0;
     }
     a->mUnk_228 = &gKartItems[i];

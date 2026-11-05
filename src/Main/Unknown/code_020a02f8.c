@@ -232,7 +232,7 @@ s32 func_020a1ee4(s32 a, s32 b) {
     return 0;
 }
 
-void func_020a1e40(s32 a, Unk020f41c4_A *p) {
+void func_020a1e40(s32 a, ItemObject *p) {
     u16 v;
 
     if (data_0217b1fc->mUnk_3b4 >= 0) {
@@ -241,7 +241,7 @@ void func_020a1e40(s32 a, Unk020f41c4_A *p) {
     if (GetKart(a)->mState == 0) {
         return;
     }
-    if (p->mUnk_44 != 0 && p->mUnk_44 != 1 && p->mUnk_44 != 9) {
+    if (p->mKind != 0 && p->mKind != 1 && p->mKind != 9) {
         return;
     }
     v = p->mUnk_78;

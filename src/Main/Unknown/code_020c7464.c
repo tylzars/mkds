@@ -79,7 +79,7 @@ s32 func_020ca3e4(void) {
 
     a = 0;
     for (i = 0; i < 10; i++) {
-        a += data_0217bc34[data_021696c0[i]].mUnk_0c;
+        a += gItemKinds[data_021696c0[i]].mObjectCount;
     }
     return func_020c0ba8(&data_0217b42c, a);
 }
@@ -98,11 +98,11 @@ void func_020ca074(void) {
     s32 a;
     s32 k;
     s32 j;
-    Unk027e00cc *e;
-    Unk020f41c4_A **v1;
+    ItemPool *e;
+    ItemObject **v1;
     s32 v2;
     Unk020224e0_c *c;
-    Unk020f41c4_A *p;
+    ItemObject *p;
     Vec3 *q;
     s32 v;
 
@@ -110,9 +110,9 @@ void func_020ca074(void) {
     a = func_020c0db0();
     for (k = 0; k < 10; k++) {
         t = data_021696c0[k];
-        e = &data_027e00cc[t];
-        v1 = e->mUnk_04;
-        v2 = e->mUnk_14;
+        e = &gItemPools[t];
+        v1 = e->mObjects;
+        v2 = e->mActiveCount;
         {
             s32 v3[10] = {0x4c, 0x4d, 0x4b, 0x4f, 0x50, 0x56, 0x55, 0x54, 0x4e, 0x57};
 
@@ -120,10 +120,10 @@ void func_020ca074(void) {
         }
         for (j = 0; j < v2; j++) {
             p = v1[j];
-            if ((p->mUnk_74 & 0x80000) != 0) {
+            if ((p->mFlags & 0x80000) != 0) {
                 q = NULL;
             } else {
-                q = &p->mUnk_50;
+                q = &p->mPos;
             }
             if (k == 9) {
                 if (q != NULL) {
@@ -146,7 +146,7 @@ void func_020ca074(void) {
                         if (func_020d3d10(q->y) == 0) {
                             data_0217b42c->mUnk_10[n].mUnk_08 = c;
                             data_0217b42c->mUnk_10[n].mUnk_0c = func_020b4e70(q) != 0 ? 2 : 3;
-                            data_0217b42c->mUnk_10[n].mUnk_0e = (p->mUnk_74 & 0x40000) != 0 ? 1 : 0;
+                            data_0217b42c->mUnk_10[n].mUnk_0e = (p->mFlags & 0x40000) != 0 ? 1 : 0;
                             n++;
                         }
                     }
@@ -157,7 +157,7 @@ void func_020ca074(void) {
                         if (func_020d3d10(q->y) == 0) {
                             data_0217b42c->mUnk_10[n].mUnk_08 = c;
                             data_0217b42c->mUnk_10[n].mUnk_0c = func_020b4e70(q) != 0 ? 2 : 3;
-                            data_0217b42c->mUnk_10[n].mUnk_0e = (p->mUnk_74 & 0x40000) != 0 ? 1 : 0;
+                            data_0217b42c->mUnk_10[n].mUnk_0e = (p->mFlags & 0x40000) != 0 ? 1 : 0;
                             n++;
                         }
                     }
@@ -200,12 +200,12 @@ void func_020c97c0(void) {
     Vec3 v;
     Vec3 w;
     Vec3 t;
-    Unk020f41c4_A **v2;
+    ItemObject **v2;
     s32 v3;
     s32 m;
     s32 j;
     s32 f;
-    Unk020f41c4_A *o;
+    ItemObject *o;
     Vec3 *q;
     u32 b;
     Unk020eda5c *s;
@@ -270,17 +270,17 @@ void func_020c97c0(void) {
                     b = func_020c0db0();
                     for (j = 0; j < v3; j++) {
                         o = v2[j];
-                        if ((o->mUnk_74 & 0x80000) != 0) {
+                        if ((o->mFlags & 0x80000) != 0) {
                             q = NULL;
                         } else {
-                            q = &o->mUnk_50;
+                            q = &o->mPos;
                         }
                         f = func_020f91e0(o);
                         if (q != NULL && f != 0) {
                             func_020b4f64(&t, &v, q);
                             w = t;
                             if (func_020b5ae8(&w, &data_0217b428->mUnk_190->mUnk_10[m].mUnk_00, b, 0, 1) != FALSE) {
-                                switch (o->mUnk_44) {
+                                switch (o->mKind) {
                                     case 0:
                                         data_0217b428->mUnk_190->mUnk_10[m].mUnk_08 = GetRaceSNcerEntry(0x4c);
                                         break;
@@ -307,7 +307,7 @@ void func_020c97c0(void) {
                                         break;
                                 }
                                 data_0217b428->mUnk_190->mUnk_10[m].mUnk_0c = func_020b4e70(&w) != 0 ? 2 : 3;
-                                data_0217b428->mUnk_190->mUnk_10[m].mUnk_0e = (o->mUnk_74 & 0x40000) != 0 ? 1 : 0;
+                                data_0217b428->mUnk_190->mUnk_10[m].mUnk_0e = (o->mFlags & 0x40000) != 0 ? 1 : 0;
                                 m++;
                             }
                         }

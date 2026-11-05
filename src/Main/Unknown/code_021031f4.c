@@ -37,14 +37,14 @@
 void func_021049a4(void) {
     int v1;
     int v2;
-    Unk020f41c4_A *v3;
-    Unk020f41c4_A **v4;
-    Unk027e00cc *v6;
+    ItemObject *v3;
+    ItemObject **v4;
+    ItemPool *v6;
     u32 v5;
     if (gItemInfos[17].mEnabled != FALSE) {
-        v6 = &data_027e00cc[8];
-        v4 = v6->mUnk_04;
-        v1 = v6->mUnk_08;
+        v6 = &gItemPools[8];
+        v4 = v6->mObjects;
+        v1 = v6->mObjectCount;
         v2 = 0;
         if (0 < v1) {
             do {

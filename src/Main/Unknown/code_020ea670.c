@@ -162,7 +162,7 @@ void func_020ebef8(Unk020ebef8 *c, Vec3 *d) {
     Vec3 a;
     Vec3 b;
     Unk020f41c4_B *p;
-    Unk020f41c4_A *q;
+    ItemObject *q;
     s32 i;
 
     if (data_021759c0->mMode == 4) {
@@ -181,7 +181,7 @@ void func_020ebef8(Unk020ebef8 *c, Vec3 *d) {
         return;
     }
     i = PickItem(0, c->mUnk_10e, 1, 1, 0, 0x12);
-    q = func_020fa3d0(gItemInfos[i].mObjectKind, 8, &c->mUnk_000.mPos, &c->mUnk_0bc);
+    q = StartItemObjectOrZero(gItemInfos[i].mObjectKind, 8, &c->mUnk_000.mPos, &c->mUnk_0bc);
     if (q == NULL) {
         return;
     }
@@ -194,9 +194,9 @@ void func_020ebef8(Unk020ebef8 *c, Vec3 *d) {
     n = (s32) (((s64) (s32) ((u32) (((u64) (u32) (p->mUnk_00 >> 32) * 0x1800) >> 32) + 0x119a) << 12) >> 12);
     p = func_020d22c0();
     p->mUnk_00 = p->mUnk_08 * p->mUnk_00 + p->mUnk_10;
-    q->mUnk_5c = *d;
-    Vec3AddScaled(n, &a, &c->mUnk_000.mPos, &q->mUnk_50);
-    Vec3AddScaled(0, &b, &q->mUnk_50, &q->mUnk_50);
+    q->mVelocity = *d;
+    Vec3AddScaled(n, &a, &c->mUnk_000.mPos, &q->mPos);
+    Vec3AddScaled(0, &b, &q->mPos, &q->mPos);
     q->mUnk_68.x = 0xcd;
     q->mUnk_68.y = 0xcd;
     q->mUnk_68.z = 0xcd;

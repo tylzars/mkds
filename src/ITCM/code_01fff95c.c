@@ -69,7 +69,7 @@ void func_01fffe2c(u32 a, const void *b, void *c, u32 d) {
     *r;
 }
 
-BOOL func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
+BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
     s32 i;
     u32 v;
     u32 w;
@@ -77,8 +77,8 @@ BOOL func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
     s32 m;
     enum { K0 } k;
 
-    p->mUnk_74 &= -0x1000;
-    if (p->mUnk_11c == 1 && (p->mUnk_74 & 0x8000000) && !(p->mUnk_74 & 0x10000000)) {
+    p->mFlags &= -0x1000;
+    if (p->mAgeFrames == 1 && (p->mFlags & 0x8000000) && !(p->mFlags & 0x10000000)) {
         func_020f0d04(p);
     }
     if (p->mUnk_114 <= 5) {
@@ -87,10 +87,10 @@ BOOL func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
     if (p->mUnk_116 <= 5) {
         p->mUnk_116 += 1;
     }
-    if (!(p->mUnk_74 & 0x8000)) {
+    if (!(p->mFlags & 0x8000)) {
         p->mUnk_fc = 0;
     }
-    if (!(p->mUnk_74 & 0x800000)) {
+    if (!(p->mFlags & 0x800000)) {
         if (p->mUnk_100 == 0) {
             if (func_020fa0b8(p, a->mUnk_2c, 0x2e1) != 0) {
                 func_020fa030(p);
@@ -99,7 +99,7 @@ BOOL func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
             }
         } else {
         L_a20:
-            if (p->mUnk_74 & 0xc000) {
+            if (p->mFlags & 0xc000) {
                 r = func_020fa0b8(p, a->mUnk_30, 0x19a);
                 if (func_020f9dc8(p) == 0 && r != 0) {
                     func_020fa030(p);
@@ -112,10 +112,10 @@ BOOL func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
     if (p->mUnk_120 != NULL) {
         p->mUnk_120(p);
     }
-    if (p->mUnk_74 & 4) {
+    if (p->mFlags & 4) {
         return TRUE;
     }
-    if (!(p->mUnk_74 & 0x8000) && p->mUnk_da != -1) {
+    if (!(p->mFlags & 0x8000) && p->mUnk_da != -1) {
         if (f == 0) {
             func_01ffd900(p->mUnk_da, 0x6000);
         }
@@ -136,7 +136,7 @@ BOOL func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
         }
     }
     v = p->mUnk_fc;
-    if (p->mUnk_74 & 0x8000) {
+    if (p->mFlags & 0x8000) {
         func_0208ab98(&p->mUnk_7c, (v & 0x3c000000) >> 26, 0x800);
     } else {
         func_0208ab98(&p->mUnk_7c, (v & 0x3c000000) >> 26, 0x5000);
@@ -149,7 +149,7 @@ BOOL func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
         if (v & 0x80400) {
             if (v & 0x400) {
                 if (p->mUnk_118 == 0) {
-                    if (p->mUnk_74 & 0x8000) {
+                    if (p->mFlags & 0x8000) {
                         p->mUnk_118 = 0xb4;
                     } else {
                         p->mUnk_118 = 2;
@@ -157,55 +157,55 @@ BOOL func_01fff95c(Unk027e00cc *a, Unk020f41c4_A *p, s32 f) {
                 }
             }
             if (v & 0x80000) {
-                p->mUnk_74 |= 0x40000000;
+                p->mFlags |= 0x40000000;
             } else {
-                p->mUnk_74 &= ~0x40000000;
+                p->mFlags &= ~0x40000000;
             }
         } else {
-            p->mUnk_74 &= ~0x40000000;
+            p->mFlags &= ~0x40000000;
         }
     }
-    if (p->mUnk_118 != 0 && !(p->mUnk_74 & 0x180000)) {
+    if (p->mUnk_118 != 0 && !(p->mFlags & 0x180000)) {
         p->mUnk_118 -= 1;
         if (p->mUnk_118 == 0) {
             func_020f9b0c(p);
         }
     }
-    if (p->mUnk_50.y < 0 && p->mUnk_44 != 0xb && p->mUnk_44 != 0xa) {
+    if (p->mPos.y < 0 && p->mKind != 0xb && p->mKind != 0xa) {
         func_020f7658(p, 1);
     }
     if (p->mUnk_114 < 5) {
-        p->mUnk_74 &= ~0x20000;
+        p->mFlags &= ~0x20000;
     } else {
-        p->mUnk_74 |= 0x20000;
-        if (p->mUnk_f0.y < 0xfae && !(p->mUnk_74 & 0x40000080)) {
+        p->mFlags |= 0x20000;
+        if (p->mUnk_f0.y < 0xfae && !(p->mFlags & 0x40000080)) {
             func_020eac20(&p->mUnk_f0, 0xcd);
         }
     }
     if (p->mUnk_116 < 5) {
-        p->mUnk_74 |= 0x40000;
+        p->mFlags |= 0x40000;
     } else {
-        p->mUnk_74 &= ~0x40000;
+        p->mFlags &= ~0x40000;
     }
-    k = p->mUnk_44;
-    m = data_0217bc34[k].mUnk_60;
+    k = p->mKind;
+    m = gItemKinds[k].mUnk_60;
     p->mUnk_d4 = a->mUnk_28(p->mUnk_d0, p->mUnk_e0 * m, a->mUnk_38, a->mUnk_3c, 0x1f);
     if (p->mUnk_d4 & 3) {
-        p->mUnk_74 |= 0x10000;
+        p->mFlags |= 0x10000;
     } else {
-        p->mUnk_74 &= ~0x10000;
+        p->mFlags &= ~0x10000;
     }
-    if (p->mUnk_74 & 0x400000) {
+    if (p->mFlags & 0x400000) {
         func_020f90bc(p);
     }
-    p->mUnk_0e4 = p->mUnk_50;
-    p->mUnk_11c += 1;
+    p->mPrevPos = p->mPos;
+    p->mAgeFrames += 1;
     if (p->mUnk_78 & 0x4000) {
         if (p->mUnk_78 & 0x2000) {
-            if (p->mUnk_11c > 4 && !(p->mUnk_74 & 0x20000)) {
+            if (p->mAgeFrames > 4 && !(p->mFlags & 0x20000)) {
                 p->mUnk_78 &= ~0x4000;
             }
-        } else if (p->mUnk_11c > 0x1e) {
+        } else if (p->mAgeFrames > 0x1e) {
             p->mUnk_78 &= ~0x4000;
         }
     }

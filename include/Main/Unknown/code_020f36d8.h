@@ -60,18 +60,27 @@ typedef struct {
 
 extern Unk020f3fa8 data_0217bb88;
 
-// Element returned through data_027e00cc: the first 0x12c bytes, which the elements of every entry share (the
-// element sizes in the data_0217bc34 entries start at 0x12c).
-typedef struct Unk020f41c4_A {
+// Element returned through gItemPools: the first 0x12c bytes that every pool object shares; the per-kind objects
+// embed it as their first member. The element sizes run from 0x12c (kinds 4, 6 and 13) to 0x31c. One is also embedded
+// in Unk0217b4f0 at 0x18c as a stand-in for map object collision tests. No placement is clear yet.
+typedef struct ItemObject {
     /* 00 */ Unk0210bfbc mUnk_00;
-    /* 44 */ s32 mUnk_44;
+    // Kind number of the object; ResetItemObject rewrites it at every hand-out, and it never changes for a pool
+    // object.
+    /* 44 */ s32 mKind;
     /* 48 */ s32 mUnk_48;
-    /* 4c */ s16 mUnk_4c;
-    /* 4e */ s16 mUnk_4e;
-    /* 050 */ Vec3 mUnk_50;
-    /* 5c */ Vec3 mUnk_5c;
+    // Index the object was allocated at in its pool; the array is reordered later, so this is not its current
+    // position.
+    /* 4c */ s16 mPoolIndex;
+    // Id used by the mode 5 event calls; written only in mode 5 (flag 0x8000000), so it is stale in the other
+    // modes.
+    /* 4e */ s16 mId;
+    /* 050 */ Vec3 mPos;
+    /* 5c */ Vec3 mVelocity;
     /* 68 */ Vec3 mUnk_68;
-    /* 74 */ u32 mUnk_74;
+    // Bit mask set, cleared and tested by item code in 22 units; UpdateItemObject clears the low 12 bits at every
+    // update.
+    /* 74 */ u32 mFlags;
     /* 78 */ u16 mUnk_78;
     /* 7a */ u16 mUnk_7a;
     /* 7c */ Unk020f41c4_C mUnk_7c;
@@ -85,7 +94,7 @@ typedef struct Unk020f41c4_A {
     /* 0da */ s16 mUnk_da;
     /* 0dc */ s32 mUnk_dc;
     /* e0 */ s32 mUnk_e0;
-    /* 0e4 */ Vec3 mUnk_0e4;
+    /* 0e4 */ Vec3 mPrevPos;
     /* 0f0 */ Vec3 mUnk_f0;
     /* fc */ u32 mUnk_fc;
     /* 100 */ s32 mUnk_100;
@@ -95,12 +104,14 @@ typedef struct Unk020f41c4_A {
     /* 116 */ s16 mUnk_116;
     /* 118 */ s16 mUnk_118;
     /* 11a */ s16 mUnk_11a;
-    /* 11c */ s32 mUnk_11c;
-    /* 120 */ void (*mUnk_120)(struct Unk020f41c4_A *);
-    /* 124 */ void (*mUnk_124)(struct Unk020f41c4_A *, Vec3 *, Vec3 *);
+    // Frames since the object was taken by a kart or started, counted per update call (several per frame in mode
+    // 5); compared with 4, 0xc, 0x1e, 0x78, 0x12c and 0x258.
+    /* 11c */ s32 mAgeFrames;
+    /* 120 */ void (*mUnk_120)(struct ItemObject *);
+    /* 124 */ void (*mUnk_124)(struct ItemObject *, Vec3 *, Vec3 *);
     /* 128 */ u8 mUnk_128;
     /* 129 */ u8 mUnk_129[3];
-} Unk020f41c4_A;
+} ItemObject;
 
 // One 0x8c entry per kart (mKarts[kart index]); the bytes of Unk0217561c_000's entry from its member 0x14 (A.X =
 // B.X-0x14). mStatus: 0 racing, 1 goal reached (battle: alive), 2 battle loser, 3 ended without the goal, 4 removed.
@@ -305,19 +316,23 @@ typedef struct RaceProgress {
     /* 500 */ Unk0217561c_500 mUnk_500;
 } RaceProgress;
 
-// Entry of the table behind data_0217bc34.
-typedef struct {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+// Entry of the table behind gItemKinds: one record per object kind (14, 0xa8 bytes each), a heap copy of the static
+// gItemKind records, indexed by the kind number; also read through the raw stride 0xa8 and the Unk0217bc34_14 view.
+// No placement is clear yet.
+typedef struct ItemKind {
+    /* 00 */ s32 mObjectSize;
+    // The limit of objects of the kind in use, copied to the pool; CreateItemKinds changes it per game mode.
+    /* 04 */ s32 mLimit;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+    // Number of objects the pool of the kind preallocates: the largest object count of an ItemInfo plus a margin.
+    /* 0c */ s32 mObjectCount;
     /* 10 */ s32 mUnk_10;
     /* 14 */ u8 mUnk_14[4];
     /* 18 */ void (*mUnk_18)(void *);
     /* 1c */ void (*mUnk_1c)(void *);
     /* 20 */ void (*mUnk_20)(void *, void *);
     /* 24 */ s32 (*mUnk_24)(void *, void *);
-    /* 28 */ void (*mUnk_28)(struct Unk020f41c4_A *);
+    /* 28 */ void (*mUnk_28)(struct ItemObject *);
     /* 2c */ void (*mUnk_2c)(void *, void *, void *);
     /* 30 */ s32 (*mUnk_30)(Vec3 *, s32, s32, s32, u16);
     /* 34 */ UnkWordFunc *mUnk_34;
@@ -349,33 +364,39 @@ typedef struct {
     /* 9c */ s32 mUnk_9c;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
-} Unk0217bc34;
+} ItemKind;
 
-extern Unk0217bc34 data_02159dac;
+// Default template record: only the shared func_01ffd778 hook, no per-kind hooks; the name is the model of the same
+// kind number.
+extern ItemKind gItemKindKinokoP;
 
-extern Unk0217bc34 data_0215a244;
+extern ItemKind gItemKindTeresa;
 
-extern Unk0217bc34 data_0215a308;
+extern ItemKind gItemKindGesso;
 
-extern Unk0217bc34 data_02159e70;
+extern ItemKind gItemKindBomb;
 
-extern Unk0217bc34 data_0215a4dc;
+extern ItemKind data_0215a4dc;
 
-extern Unk0217bc34 data_02159f84;
+extern ItemKind gItemKindFBox;
 
-extern Unk0217bc34 data_02159abc;
+// Default template record: only the shared func_01ffd778 hook, no per-kind hooks; the name is the model of the same
+// kind number.
+extern ItemKind gItemKindThunder;
 
-extern Unk0217bc34 data_02159cdc;
+extern ItemKind gItemKindKouraW;
 
-extern Unk0217bc34 data_021599f8;
+// Default template record: only the shared func_01ffd778 hook, no per-kind hooks; the name is the model of the same
+// kind number.
+extern ItemKind gItemKindStar;
 
-extern Unk0217bc34 data_021596bc;
+extern ItemKind gItemKindKinoko;
 
-extern Unk0217bc34 data_0215978c;
+extern ItemKind gItemKindBanana;
 
-extern Unk0217bc34 data_02159854;
+extern ItemKind gItemKindKouraR;
 
-extern Unk0217bc34 data_02159934;
+extern ItemKind gItemKindKouraG;
 
 // Two words of a row of data_0215961c.
 typedef struct {
@@ -436,17 +457,27 @@ extern ItemInfo data_02159838;
 
 extern ItemInfo data_02159918;
 
-// Entry of the table behind data_027e00cc.
-typedef struct {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ Unk020f41c4_A **mUnk_04;
-    /* 08 */ s32 mUnk_08;
+// Entry of the table behind gItemPools: one pool per object kind (14), indexed by the kind number. The pool's objects
+// sit in one array: the first mActiveCount are started, up to mTakenCount are handed out, the rest are free. Item,
+// roulette, per-kind and HUD map code use it, so no placement is clear yet.
+typedef struct ItemPool {
+    /* 00 */ s32 mKind;
+    /* 04 */ ItemObject **mObjects;
+    // Length of mObjects: the number of preallocated objects.
+    /* 08 */ s32 mObjectCount;
     /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
+    // Objects handed out, the front part of mObjects: the first mActiveCount of them are started, the rest are
+    // only held by a kart.
+    /* 10 */ s32 mTakenCount;
+    // Objects that were started, the first part of mObjects; the update and the HUD loops run over exactly these.
+    /* 14 */ s32 mActiveCount;
     /* 18 */ s32 mUnk_18;
-    /* 1c */ s32 mUnk_1c;
-    /* 20 */ s32 mUnk_20;
+    // Taken objects plus the uses promised to a kart before they are taken (a gained held item adds its object
+    // count); written by item, roulette and held-item code.
+    /* 1c */ s32 mReservedCount;
+    // The most objects of the kind that may be in use; the pool counts as full when mLimit - mReservedCount <= 0,
+    // which the held-item add can exceed.
+    /* 20 */ s32 mLimit;
     /* 24 */ void (*mUnk_24)(void *, void *, void *);
     /* 28 */ s32 (*mUnk_28)(Vec3 *, s32, s32, s32, u16);
     /* 2c */ s32 mUnk_2c;
@@ -455,7 +486,7 @@ typedef struct {
     /* 38 */ s32 mUnk_38;
     /* 3c */ s32 mUnk_3c;
     /* 40 */ s32 mUnk_40;
-} Unk027e00cc;
+} ItemPool;
 
 // Value of the first word of Unk020f40dc.
 typedef enum { UNK_020F40DC_KIND_0 } Unk020f40dc_Kind;
@@ -468,7 +499,7 @@ typedef struct {
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s16 mUnk_10;
     /* 12 */ s16 mUnk_12;
-    /* 14 */ Unk020f41c4_A *mUnk_14[3];
+    /* 14 */ ItemObject *mUnk_14[3];
     /* 20 */ s32 mUnk_20;
     /* 24 */ BOOL mUnk_24;
 } Unk020f40dc;
@@ -477,11 +508,11 @@ extern Kart *GetKart(s32 idx);
 #include "Main/Unknown/code_020d6dc0.h"
 
 extern s32 data_0217bc38[];
-extern Unk0217bc34 *data_0217bc34;
+extern ItemKind *gItemKinds;
 extern RaceProgress *gRaceProgress;
 extern Unk020f41c4_Row data_0215961c[];
 extern ItemInfo *gItemInfos;
-extern Unk027e00cc *data_027e00cc;
+extern ItemPool *gItemPools;
 
 u8 func_020f36d8(Unk020f36d8 *p);
 void func_020f371c(Unk020f371c_Ref *in, Unk020f371c_Ref *out, u32 idx, s32 flag);

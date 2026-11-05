@@ -62,7 +62,7 @@ s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
         Vec3 v;
         Vec3 mn;
         Vec3 mx;
-        Unk020f41c4_A *q;
+        ItemObject *q;
         MapObject *p;
         s32 r;
         s32 t;
@@ -87,9 +87,9 @@ s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
                     mx.y = v.y > mx.y ? v.y : mx.y;
                     mx.z = v.z > mx.z ? v.z : mx.z;
                 }
-                q->mUnk_50 = *b;
-                q->mUnk_5c = *c;
-                q->mUnk_44 = f;
+                q->mPos = *b;
+                q->mVelocity = *c;
+                q->mKind = f;
                 r = func_020d6a54(q, p, NULL);
                 if (r > a) {
                     a = r;

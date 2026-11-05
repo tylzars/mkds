@@ -59,15 +59,15 @@ s32 PickItem(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s3
     t = 0;
     if (data_021759c0->mMode != 4) {
         for (i = 0; i < 0xe; i++) {
-            t += (u16) (data_0217bc34[(s32) i].mUnk_90 *
-                        (data_027e00cc[(s32) i].mUnk_1c - data_027e00cc[(s32) i].mUnk_18));
+            t += (u16) (gItemKinds[(s32) i].mUnk_90 *
+                        (gItemPools[(s32) i].mReservedCount - gItemPools[(s32) i].mUnk_18));
         }
     }
     for (j = 0; j < param_6; j++) {
         n = gItemInfos[(s32) j].mObjectKind;
         if (!((j == 8 && data_0217bc60 > 0) || (j == 7 && data_0217bc5c > 0) || (j == 0xf && data_0217bc58 > 0))) {
-            if (data_027e00cc[n].mUnk_20 - data_027e00cc[n].mUnk_1c > 0 && gItemInfos[(s32) j].mEnabled != FALSE) {
-                x = data_0217bc34[n].mUnk_90 * gItemInfos[(s32) j].mObjectCount;
+            if (gItemPools[n].mLimit - gItemPools[n].mReservedCount > 0 && gItemInfos[(s32) j].mEnabled != FALSE) {
+                x = gItemKinds[n].mUnk_90 * gItemInfos[(s32) j].mObjectCount;
                 if (x == 0 || x + t <= 0x28) {
                     if (j >= 9 && m != 0) {
                         if (m == 1) {
@@ -128,7 +128,7 @@ void InitItemSlot(KartItems *param_1, KartItems *param_2) {
 void StartItemSlot(KartItems *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5) {
     KartItems *p;
     ItemInfo *e;
-    Unk027e00cc *v;
+    ItemPool *v;
     enum { K0 } k, j;
     BOOL a;
     BOOL b;
@@ -179,14 +179,14 @@ void StartItemSlot(KartItems *param_1, s32 param_2, s32 param_3, s32 param_4, s3
     k = param_1->mSlotResult;
     e = &gItemInfos[k];
     j = e->mObjectKind;
-    v = &data_027e00cc[j];
-    v->mUnk_1c += e->mObjectCount;
+    v = &gItemPools[j];
+    v->mReservedCount += e->mObjectCount;
 }
 
 void func_020f86c4(KartItems *param_1) {
     KartItems *p;
     ItemInfo *e;
-    Unk027e00cc *v;
+    ItemPool *v;
     enum { K0 } k, j;
 
     p = param_1->mSelf;
@@ -198,8 +198,8 @@ void func_020f86c4(KartItems *param_1) {
             k = p->mSlotResult;
             e = &gItemInfos[k];
             j = e->mObjectKind;
-            v = &data_027e00cc[j];
-            v->mUnk_1c -= e->mObjectCount;
+            v = &gItemPools[j];
+            v->mReservedCount -= e->mObjectCount;
         }
         p->mSlotState = 0;
         p->mSlotFrames = 0;
@@ -223,7 +223,7 @@ void func_020f86c4(KartItems *param_1) {
 
 BOOL UpdateItemSlot(KartItems *param_1, KartItems *param_2) {
     ItemInfo *e;
-    Unk027e00cc *v;
+    ItemPool *v;
     enum { K0 } j;
     s32 a;
     u32 b;
@@ -241,8 +241,8 @@ BOOL UpdateItemSlot(KartItems *param_1, KartItems *param_2) {
                     }
                     e = &gItemInfos[b];
                     j = e->mObjectKind;
-                    v = &data_027e00cc[j];
-                    v->mUnk_1c += e->mObjectCount;
+                    v = &gItemPools[j];
+                    v->mReservedCount += e->mObjectCount;
                     param_1->mSlotResult = b;
                     param_1->mUnk_020 = FALSE;
                     param_1->mSlotFrameCount += param_1->mSlotFrames - 0x6f;
@@ -270,14 +270,14 @@ BOOL UpdateItemSlot(KartItems *param_1, KartItems *param_2) {
 
 void FinishItemSlot(KartItems *param_1) {
     ItemInfo *e;
-    Unk027e00cc *v;
+    ItemPool *v;
     enum { K0 } k, j;
 
     k = param_1->mSlotResult;
     e = &gItemInfos[k];
     j = e->mObjectKind;
-    v = &data_027e00cc[j];
-    v->mUnk_1c -= e->mObjectCount;
+    v = &gItemPools[j];
+    v->mReservedCount -= e->mObjectCount;
     param_1->mSlotState = 0;
     param_1->mSlotFrames = 0;
     param_1->mSlotShownItem = 0x13;
@@ -288,15 +288,15 @@ void FinishItemSlot(KartItems *param_1) {
 
 void StopItemSlot(KartItems *param_1) {
     ItemInfo *e;
-    Unk027e00cc *v;
+    ItemPool *v;
     enum { K0 } k, j;
 
     if (param_1->mUnk_020 == FALSE) {
         k = param_1->mSlotResult;
         e = &gItemInfos[k];
         j = e->mObjectKind;
-        v = &data_027e00cc[j];
-        v->mUnk_1c -= e->mObjectCount;
+        v = &gItemPools[j];
+        v->mReservedCount -= e->mObjectCount;
     }
     param_1->mSlotState = 0;
     param_1->mSlotFrames = 0;
@@ -389,7 +389,7 @@ void func_020f8258(void) {
 
 void func_020f81c0(KartItems *a) {
     ItemInfo *e;
-    Unk027e00cc *v;
+    ItemPool *v;
     enum { K0 } k, j;
 
     if (a->mSelf->mKartIndex == data_021759c0->mEntryIndex) {
@@ -398,8 +398,8 @@ void func_020f81c0(KartItems *a) {
     k = a->mSlotResult;
     e = &gItemInfos[k];
     j = e->mObjectKind;
-    v = &data_027e00cc[j];
-    v->mUnk_1c -= e->mObjectCount;
+    v = &gItemPools[j];
+    v->mReservedCount -= e->mObjectCount;
     a->mSlotState = 0;
     a->mSlotFrames = 0;
     a->mSlotShownItem = 0x13;

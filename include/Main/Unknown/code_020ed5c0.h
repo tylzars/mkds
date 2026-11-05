@@ -8,10 +8,10 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_02087d0c.h"
 
-// Object with an array of Unk020f41c4_A pointers at 0x04 and a word at 0x10.
+// Object with an array of ItemObject pointers at 0x04 and a word at 0x10.
 typedef struct Unk020ed718 {
     /* 000 */ s32 mUnk_000;
-    /* 004 */ Unk020f41c4_A **mUnk_004;
+    /* 004 */ ItemObject **mUnk_004;
     /* 008 */ u8 mUnk_008[8];
     /* 010 */ s32 mUnk_010;
     /* 014 */ s32 mUnk_014;
@@ -135,14 +135,14 @@ typedef struct {
 } Unk020eda5c_02c;
 
 // Object at 0x58 of a KartItems (that KartItems at 0x0c), passed first to the function pointers in the
-// data_0217bc34 entries: three Unk020f41c4_A pointers at 0x14, vectors from 0x2c to 0x0e4.
+// gItemKinds entries: three ItemObject pointers at 0x14, vectors from 0x2c to 0x0e4.
 typedef struct Unk020eda5c {
     /* 000 */ s32 mUnk_000;
     /* 004 */ s32 mUnk_004;
     /* 008 */ s32 mUnk_008;
     /* 00c */ struct KartItems *mUnk_00c;
     /* 010 */ Kart *mUnk_010;
-    /* 014 */ Unk020f41c4_A *mUnk_014[3];
+    /* 014 */ ItemObject *mUnk_014[3];
     /* 020 */ s32 mUnk_020;
     /* 024 */ s32 mUnk_024;
     /* 028 */ u16 mUnk_028;
@@ -176,11 +176,11 @@ typedef struct Unk020eda5c {
     /* 18c */ u16 mUnk_18c[3];
 } Unk020eda5c;
 
-void func_020ed5c0(Unk020f41c4_A *p, Unk020e6488 *q, Vec3 *v);
+void func_020ed5c0(ItemObject *p, Unk020e6488 *q, Vec3 *v);
 void func_020ed718(Unk020ed718 *p, void *a, void (*cb)(void *, void *, void *));
 void func_020ed79c(Unk020ed718 *p, Vec3 *v);
-void *func_020ed98c(Unk020f41c4_A *p, Vec3 *v);
-void func_020eda5c(Unk020eda5c *p, Unk020f41c4_A *q);
+void *func_020ed98c(ItemObject *p, Vec3 *v);
+void func_020eda5c(Unk020eda5c *p, ItemObject *q);
 void func_020edad8(Unk020eda5c *p);
 void func_020edb00(Unk020eda5c *p);
 s32 func_020edb8c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d);
@@ -189,5 +189,5 @@ void func_020eddb4(Unk020eda5c *p);
 void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b);
 BOOL func_020ee528(Unk020eda5c *a);
 void func_020edf10(Unk020eda5c *p);
-void func_020ee160(Unk020f41c4_A *a, Unk020f41c4_A *b);
-BOOL func_020ee284(Unk020f41c4_A *p, Vec3 *v, s32 d);
+void func_020ee160(ItemObject *a, ItemObject *b);
+BOOL func_020ee284(ItemObject *p, Vec3 *v, s32 d);

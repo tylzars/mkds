@@ -875,9 +875,9 @@ extern u8 data_0217b7c4[];
 extern u8 data_0217b86c[];
 // Indexed by object kind; 14 slots, 13 files (kind 8 aliases kind 7)
 extern Unk020e6488 *gItemModels[];
-struct Unk020f41c4_A;
+struct ItemObject;
 
-extern struct Unk020f41c4_A **data_0217bd30;
+extern struct ItemObject **data_0217bd30;
 
 extern void *data_0217b040;
 extern s32 data_0217b234;

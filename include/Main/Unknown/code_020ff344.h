@@ -36,7 +36,7 @@ typedef struct Unk020ff97c {
     /* 140 */ u8 mUnk_140[4];
 } Unk020ff97c;
 
-// Element of data_027e00cc[7]: 0x144 bytes (the size in data_0217bc34[7]), handled by the functions of this file
+// Element of gItemPools[7]: 0x144 bytes (the size in gItemKinds[7]), handled by the functions of this file
 // from func_020ff344 to func_020ff910 and by func_020ff1d8, func_020ff25c and func_020ff2b0.
 typedef struct Unk020ff438 {
     /* 000 */ Unk020f2df0 mUnk_000;

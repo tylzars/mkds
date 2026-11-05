@@ -49,38 +49,38 @@
 #include "Main/Unknown/code_020f8d9c.h"
 #include "code_02147cd8.h"
 
-void func_020f1048(Unk027e00cc *v1, s32 v2, Unk020f41c4_A **out, u16 v3, Vec3 *v) {
+void func_020f1048(ItemPool *v1, s32 v2, ItemObject **out, u16 v3, Vec3 *v) {
     s32 i;
 
-    if (v1->mUnk_10 + v2 > v1->mUnk_08) {
-        while (v1->mUnk_10 + v2 > v1->mUnk_08) {
-            if (v1->mUnk_14 > 0) {
-                func_020f0f70(v1, v1->mUnk_04[0]);
+    if (v1->mTakenCount + v2 > v1->mObjectCount) {
+        while (v1->mTakenCount + v2 > v1->mObjectCount) {
+            if (v1->mActiveCount > 0) {
+                ReleaseItemPoolObject(v1, v1->mObjects[0]);
             }
         }
     }
     i = 0;
     while (i < v2) {
-        out[i] = v1->mUnk_04[v1->mUnk_10++];
-        func_020f99b8(out[i], v1->mUnk_00, v3, v);
+        out[i] = v1->mObjects[v1->mTakenCount++];
+        func_020f99b8(out[i], v1->mKind, v3, v);
         i++;
     }
 }
 
-void func_020f0f70(Unk027e00cc *v1, Unk020f41c4_A *v) {
+void ReleaseItemPoolObject(ItemPool *v1, ItemObject *v) {
     s32 i;
-    Unk020f41c4_A **p;
+    ItemObject **p;
     s32 n;
 
     i = 0;
-    p = v1->mUnk_04;
-    while (i < v1->mUnk_10) {
+    p = v1->mObjects;
+    while (i < v1->mTakenCount) {
         if (p[i] == v) {
             goto found;
         }
         i++;
     }
-    i = v1->mUnk_10;
+    i = v1->mTakenCount;
 found:
     if (i < v1->mUnk_18) {
         v1->mUnk_18 = v1->mUnk_18 - 1;
@@ -89,33 +89,33 @@ found:
             p[i] = p[i + 1];
         }
     }
-    if (i < v1->mUnk_14) {
-        v1->mUnk_14 = v1->mUnk_14 - 1;
-        p[i] = p[v1->mUnk_14];
-        i = v1->mUnk_14;
+    if (i < v1->mActiveCount) {
+        v1->mActiveCount = v1->mActiveCount - 1;
+        p[i] = p[v1->mActiveCount];
+        i = v1->mActiveCount;
     }
-    if (i < v1->mUnk_10) {
-        v1->mUnk_10 = v1->mUnk_10 - 1;
-        p[i] = p[v1->mUnk_10];
-        i = v1->mUnk_10;
+    if (i < v1->mTakenCount) {
+        v1->mTakenCount = v1->mTakenCount - 1;
+        p[i] = p[v1->mTakenCount];
+        i = v1->mTakenCount;
     }
     p[i] = v;
-    func_020f992c(v);
-    v1->mUnk_1c = v1->mUnk_1c - 1;
+    ReleaseItemObject(v);
+    v1->mReservedCount = v1->mReservedCount - 1;
 }
 
-void func_020f0ea0(Unk027e00cc *v1, Unk020f41c4_A *v) {
+void StartItemObject(ItemPool *v1, ItemObject *v) {
     s32 i;
     s32 n;
-    Unk020f41c4_A **p;
+    ItemObject **p;
     s32 c;
-    Unk0217bc34 *t;
+    ItemKind *t;
     enum { K0 } k;
 
-    c = v1->mUnk_14;
-    n = v1->mUnk_10;
+    c = v1->mActiveCount;
+    n = v1->mTakenCount;
     i = c;
-    p = v1->mUnk_04;
+    p = v1->mObjects;
     if (c < n) {
         do {
             if (p[i] == v) {
@@ -128,31 +128,31 @@ void func_020f0ea0(Unk027e00cc *v1, Unk020f41c4_A *v) {
 found:
     if (c < i) {
         p[i] = p[c];
-        p[v1->mUnk_14] = v;
+        p[v1->mActiveCount] = v;
     }
-    v1->mUnk_14 = v1->mUnk_14 + 1;
-    v->mUnk_74 |= 0x2000;
-    k = v1->mUnk_00;
-    t = data_0217bc34 + k;
+    v1->mActiveCount = v1->mActiveCount + 1;
+    v->mFlags |= 0x2000;
+    k = v1->mKind;
+    t = gItemKinds + k;
     if (t->mUnk_6c != 0) {
         func_020f9ca8(v);
     }
-    v->mUnk_11c = 0;
-    k = v->mUnk_44;
-    t = data_0217bc34 + k;
+    v->mAgeFrames = 0;
+    k = v->mKind;
+    t = gItemKinds + k;
     if (t->mUnk_1c != NULL) {
         t->mUnk_1c(v);
     }
 }
 
-void func_020f0e2c(Unk027e00cc *v1, Unk020f41c4_A *v) {
+void func_020f0e2c(ItemPool *v1, ItemObject *v) {
     s32 i;
     s32 n;
-    Unk020f41c4_A **p;
+    ItemObject **p;
 
-    n = v1->mUnk_14;
+    n = v1->mActiveCount;
     i = 0;
-    p = v1->mUnk_04;
+    p = v1->mObjects;
     while (i < n) {
         if (p[i] == v) {
             goto found;
@@ -170,7 +170,7 @@ found:
     v1->mUnk_18 = v1->mUnk_18 + 1;
 }
 
-void func_020f0df8(Unk027e00cc *v1, void *a) {
+void DrawItemPool(ItemPool *v1, void *a) {
     if (v1->mUnk_24 != NULL) {
         func_020ed718((Unk020ed718 *) v1, a, (void (*)(void *, void *, void *)) v1->mUnk_24);
     } else {
@@ -178,13 +178,13 @@ void func_020f0df8(Unk027e00cc *v1, void *a) {
     }
 }
 
-void func_020f0d04(Unk020f41c4_A *p) {
+void func_020f0d04(ItemObject *p) {
     void *(*f)(void *, void *, s32);
     s32 i;
     void *z;
 
     z = NULL;
-    i = p->mUnk_44;
+    i = p->mKind;
     if ((p->mUnk_78 & 0xf00) != 0) {
         z = func_020fe4c0(z, p, 1);
         func_020fe4c0(z, p, 0);
@@ -202,32 +202,32 @@ void func_020f0d04(Unk020f41c4_A *p) {
             func_020f73fc(p);
         }
     } else {
-        f = data_0217bc34[i].mUnk_48;
+        f = gItemKinds[i].mUnk_48;
         z = f(z, p, 1);
         f(z, p, 0);
-        data_0217bc34[i].mUnk_50(p);
+        gItemKinds[i].mUnk_50(p);
     }
-    p->mUnk_74 |= 0x20000000;
+    p->mFlags |= 0x20000000;
 }
 
-void func_020f0b00(Unk027e00cc *v1, s32 a, void *b, s32 c) {
-    Unk020f41c4_A *e;
+void func_020f0b00(ItemPool *v1, s32 a, void *b, s32 c) {
+    ItemObject *e;
     s32 i;
     s32 m;
     s32 n;
-    Unk020f41c4_A **p;
+    ItemObject **p;
     s32 k;
     enum { J0 } j;
     void (*g)(void *);
 
-    i = v1->mUnk_10;
-    v1->mUnk_10 = i + 1;
-    e = v1->mUnk_04[i];
-    func_020f9054(e, v1->mUnk_00, b, c);
-    v1->mUnk_1c = v1->mUnk_1c + 1;
-    k = v1->mUnk_14;
-    n = v1->mUnk_10;
-    p = v1->mUnk_04;
+    i = v1->mTakenCount;
+    v1->mTakenCount = i + 1;
+    e = v1->mObjects[i];
+    func_020f9054(e, v1->mKind, b, c);
+    v1->mReservedCount = v1->mReservedCount + 1;
+    k = v1->mActiveCount;
+    n = v1->mTakenCount;
+    p = v1->mObjects;
     m = k;
     if (k < n) {
         do {
@@ -241,27 +241,27 @@ void func_020f0b00(Unk027e00cc *v1, s32 a, void *b, s32 c) {
 found:
     if (k < m) {
         p[m] = p[k];
-        p[v1->mUnk_14] = e;
+        p[v1->mActiveCount] = e;
     }
-    v1->mUnk_14 = v1->mUnk_14 + 1;
-    e->mUnk_74 |= 0x2000;
-    j = v1->mUnk_00;
-    if (data_0217bc34[j].mUnk_6c != 0) {
+    v1->mActiveCount = v1->mActiveCount + 1;
+    e->mFlags |= 0x2000;
+    j = v1->mKind;
+    if (gItemKinds[j].mUnk_6c != 0) {
         func_020f9ca8(e);
     }
-    e->mUnk_11c = 0;
-    j = e->mUnk_44;
-    if (data_0217bc34[j].mUnk_1c != NULL) {
-        data_0217bc34[j].mUnk_1c(e);
+    e->mAgeFrames = 0;
+    j = e->mKind;
+    if (gItemKinds[j].mUnk_1c != NULL) {
+        gItemKinds[j].mUnk_1c(e);
     }
     if (c != 0) {
         g = func_020fe4b4;
     } else {
-        j = e->mUnk_44;
-        g = data_0217bc34[j].mUnk_50;
+        j = e->mKind;
+        g = gItemKinds[j].mUnk_50;
     }
     g(e);
-    e->mUnk_74 |= 0x20000000;
+    e->mFlags |= 0x20000000;
     if (c != 0) {
         if (e->mUnk_78 & 0x800) {
             func_020f70f0(e);
@@ -287,11 +287,11 @@ found:
     }
 }
 
-s32 func_020f0950(Unk027e00cc *a, s32 b, s32 c) {
+s32 func_020f0950(ItemPool *a, s32 b, s32 c) {
     enum { K0 } k;
     s32 i;
-    Unk020f41c4_A *e;
-    Unk020f41c4_A **p;
+    ItemObject *e;
+    ItemObject **p;
     s32 n;
     BOOL r;
     BOOL z0;
@@ -304,8 +304,8 @@ s32 func_020f0950(Unk027e00cc *a, s32 b, s32 c) {
 
     k = b;
     h = ((u32) (k & 0xf0) << 12) >> 16;
-    n = a->mUnk_14;
-    p = a->mUnk_04;
+    n = a->mActiveCount;
+    p = a->mObjects;
     r = FALSE;
     i = 0;
     k &= 0xf;
@@ -317,14 +317,14 @@ s32 func_020f0950(Unk027e00cc *a, s32 b, s32 c) {
     z5 = FALSE;
     for (; i < n; i++) {
         e = p[i];
-        if (c != e->mUnk_4e) {
+        if (c != e->mId) {
             continue;
         }
         r = TRUE;
         if (k < 4) {
-            e->mUnk_5c.x = (s32) (((s64) e->mUnk_5c.x * 0x4cd) >> 12);
-            e->mUnk_5c.y = (s32) (((s64) e->mUnk_5c.y * 0x4cd) >> 12);
-            e->mUnk_5c.z = (s32) (((s64) e->mUnk_5c.z * 0x4cd) >> 12);
+            e->mVelocity.x = (s32) (((s64) e->mVelocity.x * 0x4cd) >> 12);
+            e->mVelocity.y = (s32) (((s64) e->mVelocity.y * 0x4cd) >> 12);
+            e->mVelocity.z = (s32) (((s64) e->mVelocity.z * 0x4cd) >> 12);
         }
         switch (k) {
             case 0:
@@ -337,7 +337,7 @@ s32 func_020f0950(Unk027e00cc *a, s32 b, s32 c) {
                 func_020f6fc4(e, z2);
                 break;
             case 3:
-                if (a->mUnk_00 == 1) {
+                if (a->mKind == 1) {
                     if (func_020f5324(e, h) == 0) {
                         break;
                     }
@@ -355,57 +355,57 @@ s32 func_020f0950(Unk027e00cc *a, s32 b, s32 c) {
     return r;
 }
 
-s32 func_020f0898(Unk027e00cc *a, u8 *b) {
+s32 func_020f0898(ItemPool *a, u8 *b) {
     s32 k;
     s32 i;
     s32 n;
-    Unk020f41c4_A *e;
+    ItemObject *e;
     s32 c;
-    Unk020f41c4_A **p;
+    ItemObject **p;
     BOOL m;
 
-    n = a->mUnk_14;
+    n = a->mActiveCount;
     i = 0;
     m = FALSE;
     k = b[1];
-    p = a->mUnk_04;
+    p = a->mObjects;
     for (; i < n; i++) {
         e = p[i];
-        if (k != e->mUnk_4e) {
+        if (k != e->mId) {
             continue;
         }
         m = TRUE;
         c = b[2];
-        if (a->mUnk_00 == 1) {
+        if (a->mKind == 1) {
             func_020f5cc4((u32) e, c);
         }
-        if (a->mUnk_00 == 5) {
+        if (a->mKind == 5) {
             func_020fc8ec((Unk020fc2e8 *) e, c);
         }
-        if (a->mUnk_00 == 0xb) {
+        if (a->mKind == 0xb) {
             func_021003e8((Unk02101c84 *) e, c, b[3]);
         }
     }
     return m;
 }
 
-void func_020f0758(Unk027e00cc *a, s32 m, s32 b, u8 *c, s32 d) {
+void func_020f0758(ItemPool *a, s32 m, s32 b, u8 *c, s32 d) {
     enum { K0 } k;
 
     switch (m) {
         case 0:
-            k = a->mUnk_00;
-            if (!data_0217bc34[k].mUnk_48) {
+            k = a->mKind;
+            if (!gItemKinds[k].mUnk_48) {
                 return;
             }
             if (c[1] == 0xff) {
                 return;
             }
             func_020f0b00(a, b, c, 0);
-            if (a->mUnk_00 == 6) {
+            if (a->mKind == 6) {
                 func_020f82e8(0);
             }
-            if (a->mUnk_00 == 0xa) {
+            if (a->mKind == 0xa) {
                 func_020f82a4(0);
             }
             return;
@@ -425,12 +425,12 @@ void func_020f0758(Unk027e00cc *a, s32 m, s32 b, u8 *c, s32 d) {
         default:
             return;
     }
-    func_020fe56c(a->mUnk_00, m, b, c, d);
+    func_020fe56c(a->mKind, m, b, c, d);
 }
 
-void func_020f0684(Unk020f41c4_A **p, s32 i, s32 n, s32 v1) {
-    Unk020f41c4_A *v;
-    Unk020f41c4_A *w;
+void func_020f0684(ItemObject **p, s32 i, s32 n, s32 v1) {
+    ItemObject *v;
+    ItemObject *w;
     s32 j;
 
     if (i >= n) {
@@ -439,7 +439,7 @@ void func_020f0684(Unk020f41c4_A **p, s32 i, s32 n, s32 v1) {
     do {
         v = p[i - 1];
         w = p[i];
-        if ((v->mUnk_74 & 0x180000) != 0) {
+        if ((v->mFlags & 0x180000) != 0) {
             goto next;
         }
         if (func_020f9c08(v) != 0) {
@@ -467,9 +467,9 @@ void func_020f0684(Unk020f41c4_A **p, s32 i, s32 n, s32 v1) {
     } while (i < n);
 }
 
-void func_020f03f8(Unk027e00cc *a) {
-    Unk020f41c4_A **e;
-    Unk020f41c4_A *p;
+void UpdateItemPool(ItemPool *a) {
+    ItemObject **e;
+    ItemObject *p;
     Kart *q;
     s32 k;
     s32 min;
@@ -487,16 +487,16 @@ void func_020f03f8(Unk027e00cc *a) {
     s32 h;
     u16 u;
 
-    e = a->mUnk_04;
-    n = a->mUnk_14;
-    if (a->mUnk_20 > 1 && a->mUnk_20 - a->mUnk_1c < 2) {
+    e = a->mObjects;
+    n = a->mActiveCount;
+    if (a->mLimit > 1 && a->mLimit - a->mReservedCount < 2) {
         m = a->mUnk_18;
         if ((t = func_02061f90()) == 0) {
-            if (a->mUnk_20 - a->mUnk_1c < 1 && a->mUnk_14 > 0) {
-                func_020f9ba8(a->mUnk_04[0]);
+            if (a->mLimit - a->mReservedCount < 1 && a->mActiveCount > 0) {
+                func_020f9ba8(a->mObjects[0]);
             }
         } else {
-            if (a->mUnk_00 == 2) {
+            if (a->mKind == 2) {
                 m -= 3;
             }
             func_020f0684(e, t, m, 7);
@@ -504,8 +504,8 @@ void func_020f03f8(Unk027e00cc *a) {
     }
     if (data_021759c0->mMode != 5) {
         for (i = 0; i < n; i++) {
-            if (func_01fff95c(a, e[i], 0) != 0) {
-                n = a->mUnk_14, i--;
+            if (UpdateItemObject(a, e[i], 0) != 0) {
+                n = a->mActiveCount, i--;
             }
         }
         return;
@@ -514,8 +514,8 @@ void func_020f03f8(Unk027e00cc *a) {
         p = e[i];
         v = (u16) (p->mUnk_7a & ~0x8000);
         if (v <= 0) {
-            if (func_01fff95c(a, p, 0) != 0) {
-                n = a->mUnk_14;
+            if (UpdateItemObject(a, p, 0) != 0) {
+                n = a->mActiveCount;
                 i--;
             }
         } else {
@@ -531,12 +531,12 @@ void func_020f03f8(Unk027e00cc *a) {
                     k++;
                 }
             }
-            func_020d5180(&p->mUnk_50, p->mUnk_e0 + k * 0xa000, 0x6000);
+            func_020d5180(&p->mPos, p->mUnk_e0 + k * 0xa000, 0x6000);
             p->mUnk_7a++;
             do {
                 p->mUnk_7a--;
-                if (func_01fff95c(a, p, 1) != 0) {
-                    n = a->mUnk_14;
+                if (UpdateItemObject(a, p, 1) != 0) {
+                    n = a->mActiveCount;
                     i--;
                     break;
                 }
@@ -560,16 +560,16 @@ void func_020f03f8(Unk027e00cc *a) {
     }
 }
 
-BOOL func_020f03bc(Unk027e00cc *v1) {
-    if (v1->mUnk_14 <= 0) {
+BOOL TryReleaseFirstItemObject(ItemPool *v1) {
+    if (v1->mActiveCount <= 0) {
         return FALSE;
     }
-    func_020f0f70(v1, v1->mUnk_04[0]);
+    ReleaseItemPoolObject(v1, v1->mObjects[0]);
     return TRUE;
 }
 
 #pragma thumb on
-void func_020f02c0(Unk027e00cc *q, s32 a, s32 *b) {
+void CreateItemPool(ItemPool *q, s32 a, s32 *b) {
     void *v;
     s32 n;
     s32 s;
@@ -578,30 +578,30 @@ void func_020f02c0(Unk027e00cc *q, s32 a, s32 *b) {
 
     v = GetHeap(func_020364e8());
     k = *b;
-    n = data_0217bc34[a].mUnk_0c;
-    s = data_0217bc34[a].mUnk_00;
-    q->mUnk_00 = a;
-    q->mUnk_04 = n != 0 ? (Unk020f41c4_A **) HeapAlloc(v, n * 4) : 0;
-    q->mUnk_08 = n;
-    q->mUnk_0c = data_0217bc34[a].mUnk_10;
-    q->mUnk_10 = 0;
-    q->mUnk_14 = 0;
+    n = gItemKinds[a].mObjectCount;
+    s = gItemKinds[a].mObjectSize;
+    q->mKind = a;
+    q->mObjects = n != 0 ? (ItemObject **) HeapAlloc(v, n * 4) : 0;
+    q->mObjectCount = n;
+    q->mUnk_0c = gItemKinds[a].mUnk_10;
+    q->mTakenCount = 0;
+    q->mActiveCount = 0;
     q->mUnk_18 = 0;
-    q->mUnk_1c = 0;
-    q->mUnk_20 = data_0217bc34[a].mUnk_04;
+    q->mReservedCount = 0;
+    q->mLimit = gItemKinds[a].mLimit;
     for (i = 0; i < n; i++) {
-        q->mUnk_04[i] = HeapAlloc(v, s);
-        func_020f8d9c(q->mUnk_04[i], k, a);
+        q->mObjects[i] = HeapAlloc(v, s);
+        InitItemObject(q->mObjects[i], k, a);
         k++;
-        q->mUnk_04[i]->mUnk_4c = i;
+        q->mObjects[i]->mPoolIndex = i;
     }
-    q->mUnk_24 = data_0217bc34[a].mUnk_2c;
-    q->mUnk_28 = data_0217bc34[a].mUnk_30;
-    q->mUnk_2c = data_0217bc34[a].mUnk_70;
-    q->mUnk_30 = data_0217bc34[a].mUnk_74;
-    q->mUnk_34 = data_0217bc34[a].mUnk_78;
-    q->mUnk_38 = data_0217bc34[a].mUnk_5c;
-    q->mUnk_3c = data_0217bc34[a].mUnk_a4;
+    q->mUnk_24 = gItemKinds[a].mUnk_2c;
+    q->mUnk_28 = gItemKinds[a].mUnk_30;
+    q->mUnk_2c = gItemKinds[a].mUnk_70;
+    q->mUnk_30 = gItemKinds[a].mUnk_74;
+    q->mUnk_34 = gItemKinds[a].mUnk_78;
+    q->mUnk_38 = gItemKinds[a].mUnk_5c;
+    q->mUnk_3c = gItemKinds[a].mUnk_a4;
     *b = k;
 }
 
@@ -734,7 +734,7 @@ void func_020efea4(KartItems *p) {
 
 BOOL func_020efd84(KartItems *p, s32 a) {
     Unk020f40dc *r;
-    Unk027e00cc *q;
+    ItemPool *q;
     enum { K0 } i;
 
     r = &p->mHeldItem;
@@ -747,8 +747,8 @@ BOOL func_020efd84(KartItems *p, s32 a) {
     if (p->mSlotState != 0) {
         if (p->mSlotState == 1 && p->mSlotFrames < 0x3c) {
             i = gItemInfos[a].mObjectKind;
-            q = &data_027e00cc[i];
-            q->mUnk_1c--;
+            q = &gItemPools[i];
+            q->mReservedCount--;
             return TRUE;
         }
         StopItemSlot(p);
@@ -756,15 +756,15 @@ BOOL func_020efd84(KartItems *p, s32 a) {
     } else {
         if (r->mUnk_00 == 0x13 && r->mUnk_08 == 0) {
             i = gItemInfos[a].mObjectKind;
-            q = &data_027e00cc[i];
-            q->mUnk_1c--;
+            q = &gItemPools[i];
+            q->mReservedCount--;
         }
     }
     func_020f4754(r, 1);
     return r->mUnk_00 == 0x13;
 }
 
-void func_020efd1c(KartItems *p, Unk020f41c4_A *a) {
+void func_020efd1c(KartItems *p, ItemObject *a) {
     Kart *b;
     Vec3 *v;
 
@@ -776,7 +776,7 @@ void func_020efd1c(KartItems *p, Unk020f41c4_A *a) {
     }
     func_020f98a0(a, &b->mUnk_98, v, &b->mKartModelsEntry->mUnk_040, func_0206c0a8(b));
     if ((b->mUnk_48 & 1) != 0) {
-        a->mUnk_74 |= 0x40000000;
+        a->mFlags |= 0x40000000;
     }
 }
 
@@ -823,20 +823,20 @@ void InitKartItems(KartItems *a, s32 n) {
 }
 
 #pragma thumb off
-void func_020efb84(Unk020eda5c *p, Unk020f41c4_A *v) {
-    func_020f0ea0(&data_027e00cc[v->mUnk_44], v);
+void func_020efb84(Unk020eda5c *p, ItemObject *v) {
+    StartItemObject(&gItemPools[v->mKind], v);
     func_020efd1c(p->mUnk_00c, v);
-    v->mUnk_74 &= ~0x1000;
+    v->mFlags &= ~0x1000;
 }
 
 void func_020efa60(Unk020eda5c *a, s32 f) {
-    Unk020f41c4_A *b;
+    ItemObject *b;
     s32 (*cb)(void *, void *);
-    void (*v)(struct Unk020f41c4_A *);
+    void (*v)(struct ItemObject *);
 
     a->mUnk_020--;
     b = a->mUnk_014[a->mUnk_020];
-    cb = data_0217bc34[b->mUnk_44].mUnk_24;
+    cb = gItemKinds[b->mKind].mUnk_24;
     func_020efb84(a, b);
     if (cb(a, b) == 0) {
         if (a->mUnk_00c->mUnk_208 != FALSE) {
@@ -844,13 +844,13 @@ void func_020efa60(Unk020eda5c *a, s32 f) {
             f = 0;
         }
     }
-    b->mUnk_d4 = data_0217bc34[b->mUnk_44].mUnk_30(b->mUnk_d0, b->mUnk_e0 << 1, data_0217bc34[b->mUnk_44].mUnk_5c,
-                                                   data_0217bc34[b->mUnk_44].mUnk_a4, 0x1f);
-    if (b->mUnk_74 & 0x400000) {
+    b->mUnk_d4 = gItemKinds[b->mKind].mUnk_30(b->mUnk_d0, b->mUnk_e0 << 1, gItemKinds[b->mKind].mUnk_5c,
+                                              gItemKinds[b->mKind].mUnk_a4, 0x1f);
+    if (b->mFlags & 0x400000) {
         func_020f90bc(b);
     }
-    v = data_0217bc34[b->mUnk_44].mUnk_28;
-    if ((b->mUnk_74 & 0x180000) == 0) {
+    v = gItemKinds[b->mKind].mUnk_28;
+    if ((b->mFlags & 0x180000) == 0) {
         b->mUnk_120 = v;
     }
     if (f != 0) {
@@ -858,14 +858,14 @@ void func_020efa60(Unk020eda5c *a, s32 f) {
     }
 }
 
-void func_020efa48(Unk020eda5c *a, Unk020f41c4_A *v) {
+void func_020efa48(Unk020eda5c *a, ItemObject *v) {
     a->mUnk_020 = a->mUnk_020 - 1;
     func_020efb84(a, v);
 }
 
 void func_020ef9a8(Unk020eda5c *a) {
     Unk020eda5c *p;
-    Unk020f41c4_A *b;
+    ItemObject *b;
     Vec3 *v;
     s32 d;
 
@@ -878,12 +878,12 @@ void func_020ef9a8(Unk020eda5c *a) {
     p->mUnk_09c.z = -v->z;
     d = (s32) (((s64) a->mUnk_084.z << 14) >> 12);
     Vec3AddScaled(a->mUnk_078 + d, &p->mUnk_09c, &a->mUnk_050, &p->mUnk_0a8);
-    Vec3AddScaled((s32) (((s64) a->mUnk_0e8 * a->mUnk_084.z) >> 12), &a->mUnk_02c.mUnk_0c, &p->mUnk_0a8, &b->mUnk_50);
+    Vec3AddScaled((s32) (((s64) a->mUnk_0e8 * a->mUnk_084.z) >> 12), &a->mUnk_02c.mUnk_0c, &p->mUnk_0a8, &b->mPos);
 }
 
 void func_020ef8c4(Unk020eda5c *a) {
     Unk020eda5c *p;
-    Unk020f41c4_A *b;
+    ItemObject *b;
     Vec3 *v;
     s32 d;
 
@@ -896,7 +896,7 @@ void func_020ef8c4(Unk020eda5c *a) {
     p->mUnk_09c.z = -v->z;
     d = (s32) (((s64) a->mUnk_084.z << 14) >> 12);
     Vec3AddScaled(a->mUnk_078 + d, &p->mUnk_09c, &a->mUnk_050, &p->mUnk_0a8);
-    Vec3AddScaled((s32) (((s64) a->mUnk_0e8 * a->mUnk_084.z) >> 12), &a->mUnk_02c.mUnk_0c, &p->mUnk_0a8, &b->mUnk_50);
+    Vec3AddScaled((s32) (((s64) a->mUnk_0e8 * a->mUnk_084.z) >> 12), &a->mUnk_02c.mUnk_0c, &p->mUnk_0a8, &b->mPos);
     b->mUnk_94.mUnk_00[1] = a->mUnk_02c.mUnk_0c;
     b->mUnk_94.mUnk_00[2].x = -p->mUnk_09c.x;
     b->mUnk_94.mUnk_00[2].y = -p->mUnk_09c.y;
@@ -942,7 +942,7 @@ void func_020ef65c(Unk020eda5c *a, Vec3 *v, Vec3 *w) {
 }
 
 void func_020ef4a0(Unk020eda5c *a) {
-    Unk020f41c4_A *b;
+    ItemObject *b;
     KartItems *c;
     s32 n;
     enum { K0 } k, i;
@@ -950,10 +950,10 @@ void func_020ef4a0(Unk020eda5c *a) {
     b = a->mUnk_014[0];
     c = a->mUnk_00c;
     n = b->mUnk_68.z;
-    func_020ef65c(a, &b->mUnk_50, &a->mUnk_0a8);
-    if (b->mUnk_11c > 0xc) {
-        k = b->mUnk_44;
-        if (func_020fa0b8(b, data_0217bc34[k].mUnk_70, 0x333) != 0) {
+    func_020ef65c(a, &b->mPos, &a->mUnk_0a8);
+    if (b->mAgeFrames > 0xc) {
+        k = b->mKind;
+        if (func_020fa0b8(b, gItemKinds[k].mUnk_70, 0x333) != 0) {
             func_020f9f08(b, a->mUnk_084.x, a->mUnk_084.y);
         }
     }
@@ -980,7 +980,7 @@ void func_020ef4a0(Unk020eda5c *a) {
 
 void func_020ef350(Unk020eda5c *a) {
     Unk020eda5c *c;
-    Unk020f41c4_A *b;
+    ItemObject *b;
     Vec3 v;
     s64 t;
     s64 sq;
@@ -989,7 +989,7 @@ void func_020ef350(Unk020eda5c *a) {
     c = a;
     b = a->mUnk_014[0];
     func_020ef4a0(a);
-    if ((b->mUnk_74 & 0x1000) != 0) {
+    if ((b->mFlags & 0x1000) != 0) {
         v.x = (s32) (((s64) c->mUnk_09c.x << 13) >> 12);
         v.y = (s32) (((s64) c->mUnk_09c.y << 13) >> 12);
         v.z = (s32) (((s64) c->mUnk_09c.z << 13) >> 12);
@@ -1004,27 +1004,27 @@ void func_020ef350(Unk020eda5c *a) {
         b->mUnk_94.mUnk_00[1] = a->mUnk_02c.mUnk_0c;
         func_020397a8(&b->mUnk_94.mUnk_00[1], &b->mUnk_94.mUnk_00[2], &b->mUnk_94.mUnk_00[0]);
     }
-    k = b->mUnk_44;
-    if (data_0217bc34[k].mUnk_20 != NULL) {
-        data_0217bc34[k].mUnk_20(a, b);
+    k = b->mKind;
+    if (gItemKinds[k].mUnk_20 != NULL) {
+        gItemKinds[k].mUnk_20(a, b);
     }
 }
 
-void func_020ef340(Unk020eda5c *a, Unk020f41c4_A *b, Unk020f41c4_A *c) {
+void func_020ef340(Unk020eda5c *a, ItemObject *b, ItemObject *c) {
     func_020efa48(a, c);
 }
 
 void func_020ef1cc(Unk020eda5c *p) {
-    Unk020f41c4_A *b;
+    ItemObject *b;
     Vec3 *q;
     s32 d;
     s32 i;
     Vec3 *u;
-    Unk020f41c4_A **l;
+    ItemObject **l;
 
     l = p->mUnk_014;
     b = l[0];
-    q = &b->mUnk_50;
+    q = &b->mPos;
     u = &p->mUnk_02c.mUnk_18;
     p->mUnk_090 = *u;
     p->mUnk_09c.x = -p->mUnk_02c.mUnk_18.x;
@@ -1033,8 +1033,8 @@ void func_020ef1cc(Unk020eda5c *p) {
     d = (s32) (((s64) p->mUnk_084.z << 14) >> 12);
     Vec3AddScaled(p->mUnk_078 + d, &p->mUnk_09c, &p->mUnk_050, &p->mUnk_0a8);
     Vec3AddScaled((s32) (((s64) p->mUnk_0e8 * p->mUnk_084.z) >> 12), &p->mUnk_02c.mUnk_0c, &p->mUnk_0a8, q);
-    l[1]->mUnk_50 = p->mUnk_014[0]->mUnk_50;
-    l[2]->mUnk_50 = l[1]->mUnk_50;
+    l[1]->mPos = p->mUnk_014[0]->mPos;
+    l[2]->mPos = l[1]->mPos;
     p->mUnk_0b4 = p->mUnk_0a8;
     p->mUnk_0c0 = p->mUnk_0b4;
     p->mUnk_0cc[0] = 0xee1;
@@ -1053,7 +1053,7 @@ void func_020ef1cc(Unk020eda5c *p) {
 
 void func_020eecdc(Unk020eda5c *a) {
     KartItems *c;
-    Unk020f41c4_A **q;
+    ItemObject **q;
     s32 n;
     s32 k;
     Vec3 *v;
@@ -1070,7 +1070,7 @@ void func_020eecdc(Unk020eda5c *a) {
     s32 i;
     s32 x;
     Vec3 *t;
-    Unk020f41c4_A *b;
+    ItemObject *b;
     Unk020eda5c *p;
 
     p = a;
@@ -1083,8 +1083,8 @@ void func_020eecdc(Unk020eda5c *a) {
     w = &p->mUnk_0a8;
     f = (s32) (((s64) a->mUnk_084.z * 0x3000) >> 12);
     v = &p->mUnk_09c;
-    k70 = data_0217bc34[b->mUnk_44].mUnk_70;
-    func_020ef65c(a, &b->mUnk_50, w);
+    k70 = gItemKinds[b->mKind].mUnk_70;
+    func_020ef65c(a, &b->mPos, w);
     if (func_020fa0b8(b, k70, 0x19a) != 0) {
         func_020f9f08(b, a->mUnk_084.x, a->mUnk_084.y);
     }
@@ -1110,7 +1110,7 @@ void func_020eecdc(Unk020eda5c *a) {
         t = &(&p->mUnk_0a8)[i];
         Vec3Add(t, &v40, t);
         if (a->mUnk_024 != 0) {
-            Vec3Add(&q[i - 1]->mUnk_5c, &b->mUnk_5c, &b->mUnk_5c);
+            Vec3Add(&q[i - 1]->mVelocity, &b->mVelocity, &b->mVelocity);
         }
         if (a->mUnk_080 != 0) {
             Vec3AddScaled(i * 0x1800, &v58, t, t);
@@ -1146,7 +1146,7 @@ void func_020eecdc(Unk020eda5c *a) {
                 p->mUnk_0cc[i] -= 0x3d;
             }
         }
-        Vec3AddScaled(d + (s32) (((s64) a->mUnk_084.z * 0x4333) >> 12), &a->mUnk_02c.mUnk_0c, t, &b->mUnk_50);
+        Vec3AddScaled(d + (s32) (((s64) a->mUnk_084.z * 0x4333) >> 12), &a->mUnk_02c.mUnk_0c, t, &b->mPos);
         w = t;
         if (func_020fa0b8(b, k70, 0x19a + i * 0xcd) != 0) {
             func_020f9f08(b, a->mUnk_084.x, a->mUnk_084.y);
@@ -1157,9 +1157,9 @@ void func_020eecdc(Unk020eda5c *a) {
     }
 }
 
-void func_020eec48(Unk020eda5c *a, s32 i, Unk020f41c4_A *v) {
+void func_020eec48(Unk020eda5c *a, s32 i, ItemObject *v) {
     s32 k;
-    Unk020f41c4_A *e;
+    ItemObject *e;
     s32 sum;
     s32 b;
     s32 d;
@@ -1176,7 +1176,7 @@ void func_020eec48(Unk020eda5c *a, s32 i, Unk020f41c4_A *v) {
             func_020efa60(a, 0);
             f = f + 0x4cd;
             if (k++ > 0) {
-                Vec3AddScaled(f, &e->mUnk_f0, &e->mUnk_5c, &e->mUnk_5c);
+                Vec3AddScaled(f, &e->mUnk_f0, &e->mVelocity, &e->mVelocity);
             }
         } while (a->mUnk_020 > (b = i + 1));
         f = d + 1;
@@ -1185,7 +1185,7 @@ void func_020eec48(Unk020eda5c *a, s32 i, Unk020f41c4_A *v) {
 }
 
 void func_020eea6c(Unk020eda5c *a) {
-    Unk020f41c4_A **d;
+    ItemObject **d;
     s32 n;
     s32 c;
     s32 x;
@@ -1214,7 +1214,7 @@ void func_020eea6c(Unk020eda5c *a) {
     k = (s32) (((s64) y * 0xddb) >> 12);
     m = (s32) (((s64) x * 0xddb) >> 12);
     for (i = 0; i < n; i++) {
-        q = &d[i]->mUnk_50;
+        q = &d[i]->mPos;
         if (a->mUnk_18c[i] == 0) {
             Vec3AddScaled(y, p1, p2, q);
             Vec3AddScaled(x, p0, q, q);
@@ -1251,7 +1251,7 @@ void func_020ee748(Unk020eda5c *a) {
     s32 n;
     s32 e;
     u32 d;
-    Unk020f41c4_A *q;
+    ItemObject *q;
     enum { K0 } k;
 
     c = a->mUnk_00c;
@@ -1279,7 +1279,7 @@ void func_020ee748(Unk020eda5c *a) {
     func_020eea6c(a);
     i = 0;
     k = a->mUnk_000;
-    e = data_0217bc34[k].mUnk_70;
+    e = gItemKinds[k].mUnk_70;
     for (; i < n; i++) {
         q = a->mUnk_014[i];
         if (func_020fa0b8(q, e, 0x19a) != 0) {
@@ -1301,10 +1301,10 @@ void func_020ee748(Unk020eda5c *a) {
     func_020efa60(a, 1);
 }
 
-void func_020ee6e8(Unk020eda5c *a, s32 i, Unk020f41c4_A *v) {
+void func_020ee6e8(Unk020eda5c *a, s32 i, ItemObject *v) {
     s32 n;
     u16 h;
-    Unk020f41c4_A *t;
+    ItemObject *t;
 
     n = a->mUnk_020 - 1;
     if (i != n) {

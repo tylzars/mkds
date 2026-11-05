@@ -124,7 +124,7 @@ s32 func_020d4ef4(Vec3 *p) {
     return x * x + z * z;
 }
 
-void func_020d4e28(Unk020f41c4_A *p, Vec3 *v, u32 a) {
+void func_020d4e28(ItemObject *p, Vec3 *v, u32 a) {
     s32 d;
 
     if (a & 4) {

@@ -66,9 +66,9 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     s32 k;
     void (*f2)(void *, void *);
     BOOL s;
-    Unk020f41c4_A **v;
+    ItemObject **v;
     s32 n;
-    Unk020f41c4_A *q;
+    ItemObject *q;
     s32 i;
     u16 *r;
     s32 u;
@@ -103,7 +103,7 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     a->mUnk_170 = NULL;
     a->mUnk_0e8 = gItemInfos[k].mObjectKind == 8 ? 0xb400 : 0x4333;
     u = *(vs32 *) &a->mUnk_000;
-    func_020f1048(&data_027e00cc[u], a->mUnk_020, a->mUnk_014, a->mUnk_010->mIndex, &a->mUnk_050);
+    func_020f1048(&gItemPools[u], a->mUnk_020, a->mUnk_014, a->mUnk_010->mIndex, &a->mUnk_050);
     func_020ee528(a);
     if (f1 != NULL) {
         f1(a);
@@ -121,61 +121,61 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     n = a->mUnk_020;
     for (i = 0; i < n; i++) {
         q = v[i];
-        q->mUnk_11c = 0;
-        q->mUnk_0e4 = q->mUnk_50;
-        q->mUnk_5c = a->mUnk_05c;
+        q->mAgeFrames = 0;
+        q->mPrevPos = q->mPos;
+        q->mVelocity = a->mUnk_05c;
         func_020f9f08(q, a->mUnk_084.x, a->mUnk_084.y);
         q->mUnk_90 = r;
-        q->mUnk_74 |= 0x1000;
+        q->mFlags |= 0x1000;
     }
 }
 
-BOOL func_020ee284(Unk020f41c4_A *p, Vec3 *v, s32 d) {
+BOOL func_020ee284(ItemObject *p, Vec3 *v, s32 d) {
     s32 x;
     s32 y;
     s32 z;
     s32 t;
 
     t = d + p->mUnk_e0;
-    x = p->mUnk_50.x - v->x;
-    y = p->mUnk_50.y - v->y;
-    z = p->mUnk_50.z - v->z;
+    x = p->mPos.x - v->x;
+    y = p->mPos.y - v->y;
+    z = p->mPos.z - v->z;
     return (s64) x * x + (s64) y * y + (s64) z * z < (s64) t * t;
 }
 
-void func_020ee160(Unk020f41c4_A *a, Unk020f41c4_A *b) {
+void func_020ee160(ItemObject *a, ItemObject *b) {
     Vec3 v;
     s32 n;
     s32 m;
 
-    if ((b->mUnk_74 & 0x1000) != 0) {
+    if ((b->mFlags & 0x1000) != 0) {
         if (a->mUnk_48 > b->mUnk_48) {
             return;
         }
     }
-    if (func_020ee284(a, &b->mUnk_50, b->mUnk_e0) == FALSE) {
-        if (func_020ee284(a, &b->mUnk_0e4, b->mUnk_e0) == FALSE) {
+    if (func_020ee284(a, &b->mPos, b->mUnk_e0) == FALSE) {
+        if (func_020ee284(a, &b->mPrevPos, b->mUnk_e0) == FALSE) {
             return;
         }
-        if (func_020ee284(b, &a->mUnk_0e4, a->mUnk_e0) == FALSE) {
+        if (func_020ee284(b, &a->mPrevPos, a->mUnk_e0) == FALSE) {
             return;
         }
     }
-    v = a->mUnk_5c;
+    v = a->mVelocity;
     n = func_020f7ea8(a, b);
     m = func_020f7ea8(b, a);
-    func_020f77f8(a, n, &b->mUnk_50, &b->mUnk_5c, NULL);
-    func_020f77f8(b, m, &a->mUnk_50, &v, NULL);
-    if (b->mUnk_44 != 1) {
+    func_020f77f8(a, n, &b->mPos, &b->mVelocity, NULL);
+    func_020f77f8(b, m, &a->mPos, &v, NULL);
+    if (b->mKind != 1) {
         return;
     }
     func_020f5614(b, m, a);
 }
 
 void func_020edf10(Unk020eda5c *p) {
-    Unk020f41c4_A **d;
+    ItemObject **d;
     s32 n;
-    Unk020f41c4_A *q;
+    ItemObject *q;
     s32 i;
     s32 a;
     s32 b;
@@ -188,32 +188,32 @@ void func_020edf10(Unk020eda5c *p) {
     b = func_0206c094(p->mUnk_010);
     for (i = 0; i < n; i++) {
         q = d[i];
-        q->mUnk_11c = q->mUnk_11c + 1;
-        Vec3Sub(&q->mUnk_50, &q->mUnk_0e4, &q->mUnk_5c);
-        q->mUnk_0e4 = q->mUnk_50;
+        q->mAgeFrames = q->mAgeFrames + 1;
+        Vec3Sub(&q->mPos, &q->mPrevPos, &q->mVelocity);
+        q->mPrevPos = q->mPos;
         if (p->mUnk_024 == 0) {
             q->mUnk_f0 = p->mUnk_02c.mUnk_0c;
             if (q->mUnk_f0.y < 0xff4) {
-                q->mUnk_74 |= 0x80;
+                q->mFlags |= 0x80;
             }
         }
         if (a != 0) {
-            q->mUnk_74 |= 0x40000;
+            q->mFlags |= 0x40000;
         } else {
-            q->mUnk_74 &= ~0x40000;
+            q->mFlags &= ~0x40000;
         }
         if (b != 0) {
-            q->mUnk_74 |= 0x10000;
+            q->mFlags |= 0x10000;
         } else {
-            q->mUnk_74 &= ~0x10000;
+            q->mFlags &= ~0x10000;
         }
     }
     for (j = n - 1; j >= 0; j--) {
         q = d[j];
         if (q->mUnk_da == -1) {
             if (func_020f91e0(q) != FALSE) {
-                idx = q->mUnk_44;
-                if (data_0217bc34[idx].mUnk_68 != 0) {
+                idx = q->mKind;
+                if (gItemKinds[idx].mUnk_68 != 0) {
                     func_020f9ca8(q);
                 }
             }
@@ -222,7 +222,7 @@ void func_020edf10(Unk020eda5c *p) {
         func_01ffd900(q->mUnk_da, 0x6000);
         for (i = 0; i < data_0217b5a8; i++) {
             if ((data_0217b5bc[i] & 0x4000) != 0) {
-                Unk020f41c4_A *e = data_0217b5c4[i];
+                ItemObject *e = data_0217b5c4[i];
                 if (e->mUnk_da == -1) {
                     continue;
                 }
@@ -248,7 +248,7 @@ void func_020eddb4(Unk020eda5c *p) {
     s32 id;
     s32 n;
     s32 m;
-    Unk020f41c4_A *q;
+    ItemObject *q;
     Kart *o;
     enum { K0 } k;
 
@@ -279,9 +279,9 @@ void func_020eddb4(Unk020eda5c *p) {
     q = p->mUnk_014[n];
     func_020efb84(p, q);
     func_020f6630(q, n + 1, &o->mUnk_98, &o->mVelocity, &o->mUnk_244);
-    k = q->mUnk_44;
-    if (data_0217bc34[k].mUnk_38 != NULL) {
-        data_0217bc34[k].mUnk_38(q);
+    k = q->mKind;
+    if (gItemKinds[k].mUnk_38 != NULL) {
+        gItemKinds[k].mUnk_38(q);
     }
     if (p->mUnk_020 != 0) {
         return;
@@ -349,7 +349,7 @@ s32 func_020edb8c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
 void func_020edb00(Unk020eda5c *p) {
     while (p->mUnk_020 > 0) {
         p->mUnk_020--;
-        func_020f0f70(&data_027e00cc[p->mUnk_014[p->mUnk_020]->mUnk_44], p->mUnk_014[p->mUnk_020]);
+        ReleaseItemPoolObject(&gItemPools[p->mUnk_014[p->mUnk_020]->mKind], p->mUnk_014[p->mUnk_020]);
     }
     func_020ee6a8(p);
     if (p->mUnk_170 != NULL) {
@@ -366,16 +366,16 @@ void func_020edad8(Unk020eda5c *p) {
     }
 }
 
-void func_020eda5c(Unk020eda5c *p, Unk020f41c4_A *q) {
+void func_020eda5c(Unk020eda5c *p, ItemObject *q) {
     s32 n;
-    Unk020f41c4_A *e;
+    ItemObject *e;
     s32 i;
 
     e = q;
     n = p->mUnk_020;
     for (i = 0; i < n; i++) {
         if (p->mUnk_014[i] == e) {
-            ((void (*)(void *, s32, Unk020f41c4_A *))((void **) data_0216c60c)[p->mUnk_008])(p, i, e);
+            ((void (*)(void *, s32, ItemObject *))((void **) data_0216c60c)[p->mUnk_008])(p, i, e);
             if (p->mUnk_020 != 0) {
                 return;
             }
@@ -385,8 +385,8 @@ void func_020eda5c(Unk020eda5c *p, Unk020f41c4_A *q) {
     }
 }
 
-void *func_020ed98c(Unk020f41c4_A *p, Vec3 *v) {
-    if (p->mUnk_f0.y < 0xfae || (p->mUnk_74 & 0x80) != 0) {
+void *func_020ed98c(ItemObject *p, Vec3 *v) {
+    if (p->mUnk_f0.y < 0xfae || (p->mFlags & 0x80) != 0) {
         p->mUnk_94.mUnk_00[2] = *v;
         func_020397a8(&p->mUnk_f0, &p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0]);
         if ((s64) p->mUnk_94.mUnk_00[0].x * p->mUnk_94.mUnk_00[0].x +
@@ -416,7 +416,7 @@ void func_020ed79c(Unk020ed718 *p, Vec3 *v) {
     Unk020e6488 *d;
     s32 n;
     s32 sel;
-    Unk020f41c4_A *q;
+    ItemObject *q;
     void *r;
 
     d = gItemModels[p->mUnk_000];
@@ -427,10 +427,10 @@ void func_020ed79c(Unk020ed718 *p, Vec3 *v) {
     d->mUnk_14 |= 0x4000000;
     for (i = 0; i < n; i++) {
         q = p->mUnk_004[i];
-        if ((q->mUnk_74 & 0x10000) != 0) {
+        if ((q->mFlags & 0x10000) != 0) {
             continue;
         }
-        if ((q->mUnk_74 & 0x1000) != 0) {
+        if ((q->mFlags & 0x1000) != 0) {
             func_0208ab4c(q->mUnk_90);
         } else {
             func_0208ab4c(q->mUnk_7c.mUnk_00);
@@ -443,7 +443,7 @@ void func_020ed79c(Unk020ed718 *p, Vec3 *v) {
             d->mUnk_14 &= ~0x3f000000;
             d->mUnk_14 |= 0x3000000;
         }
-        if (q->mUnk_f0.y < 0xfae || (q->mUnk_74 & 0x80) != 0) {
+        if (q->mUnk_f0.y < 0xfae || (q->mFlags & 0x80) != 0) {
             q->mUnk_94.mUnk_00[2] = *v;
             func_020397a8(&q->mUnk_f0, &q->mUnk_94.mUnk_00[2], &q->mUnk_94.mUnk_00[0]);
             if ((s64) q->mUnk_94.mUnk_00[0].x * q->mUnk_94.mUnk_00[0].x +
@@ -476,15 +476,15 @@ void func_020ed79c(Unk020ed718 *p, Vec3 *v) {
 void func_020ed718(Unk020ed718 *p, void *a, void (*cb)(void *, void *, void *)) {
     s32 n;
     s32 i;
-    Unk020f41c4_A *q;
+    ItemObject *q;
 
     n = p->mUnk_010;
     for (i = 0; i < n; i++) {
         q = p->mUnk_004[i];
-        if ((q->mUnk_74 & 0x10000) != 0) {
+        if ((q->mFlags & 0x10000) != 0) {
             continue;
         }
-        if ((q->mUnk_74 & 0x1000) != 0) {
+        if ((q->mFlags & 0x1000) != 0) {
             func_0208ab4c(q->mUnk_90);
         } else {
             func_0208ab4c(q->mUnk_7c.mUnk_00);
@@ -493,7 +493,7 @@ void func_020ed718(Unk020ed718 *p, void *a, void (*cb)(void *, void *, void *)) 
     }
 }
 
-void func_020ed5c0(Unk020f41c4_A *p, Unk020e6488 *q, Vec3 *v) {
+void func_020ed5c0(ItemObject *p, Unk020e6488 *q, Vec3 *v) {
     s16 d;
     void *r;
 
@@ -502,7 +502,7 @@ void func_020ed5c0(Unk020f41c4_A *p, Unk020e6488 *q, Vec3 *v) {
         q->mUnk_14 |= (u32) (u16) d << 16;
     }
     func_020e6a18(q);
-    if (p->mUnk_f0.y < 0xfae || (p->mUnk_74 & 0x80) != 0) {
+    if (p->mUnk_f0.y < 0xfae || (p->mFlags & 0x80) != 0) {
         p->mUnk_94.mUnk_00[2] = *v;
         func_020397a8(&p->mUnk_f0, &p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0]);
         if ((s64) p->mUnk_94.mUnk_00[0].x * p->mUnk_94.mUnk_00[0].x +

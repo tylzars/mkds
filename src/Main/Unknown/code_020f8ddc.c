@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_020f6be8.h"
 
 void func_020f8ddc(void *a) {
-    Unk020f41c4_A *p = a;
+    ItemObject *p = a;
 
     if (p == NULL) {
         return;
@@ -15,9 +15,9 @@ void func_020f8ddc(void *a) {
     if (data_021759c0->mMode != 4) {
         return;
     }
-    if ((u32) p->mUnk_44 > 1) {
+    if ((u32) p->mKind > 1) {
         return;
     }
-    func_0208b7bc(0x441, &p->mUnk_50);
-    func_0208b7bc(0x440, &p->mUnk_50);
+    func_0208b7bc(0x441, &p->mPos);
+    func_0208b7bc(0x440, &p->mPos);
 }

@@ -30,14 +30,14 @@ u8 *func_020ff2b0(u8 *a, Unk020ff438 *b, void *c) {
     u8 *p;
 
     if (b != NULL && c != NULL) {
-        func_020ff1b8(b->mUnk_13c, &b->mUnk_000.mUnk_000.mUnk_5c.y);
+        func_020ff1b8(b->mUnk_13c, &b->mUnk_000.mUnk_000.mVelocity.y);
     }
     p = func_020fecdc(a, b, c);
     if (b != NULL && c == NULL) {
-        func_020ff1a0(b->mUnk_000.mUnk_000.mUnk_5c.y, &b->mUnk_13c);
+        func_020ff1a0(b->mUnk_000.mUnk_000.mVelocity.y, &b->mUnk_13c);
     }
     if (b != NULL && c != NULL) {
-        return func_020fe8ac(b->mUnk_000.mUnk_000.mUnk_44);
+        return func_020fe8ac(b->mUnk_000.mUnk_000.mKind);
     }
     return p;
 }
@@ -45,7 +45,7 @@ u8 *func_020ff2b0(u8 *a, Unk020ff438 *b, void *c) {
 void func_020ff25c(Unk020ff438 *a) {
     func_020f8e78(a);
     func_020f2d98(&a->mUnk_000, 0);
-    if ((a->mUnk_000.mUnk_000.mUnk_74 & 0x10000000) == 0) {
+    if ((a->mUnk_000.mUnk_000.mFlags & 0x10000000) == 0) {
         return;
     }
     if (a->mUnk_13c == 0) {
@@ -58,9 +58,9 @@ void func_020ff25c(Unk020ff438 *a) {
 
 void func_020ff1d8(void) {
     Vec3 v;
-    Unk027e00cc *p;
+    ItemPool *p;
     Unk020ff438 *o;
-    Unk020f41c4_A **e;
+    ItemObject **e;
     s32 n;
     s32 i;
 
@@ -69,13 +69,13 @@ void func_020ff1d8(void) {
     }
     v = data_0216c734;
     Matrix4x3FirstThreeRowsFromVec3AndPair(&data_0217c600, &v, 0xb50, 0xb50);
-    p = &data_027e00cc[7];
-    e = p->mUnk_04;
-    n = p->mUnk_08;
+    p = &gItemPools[7];
+    e = p->mObjects;
+    n = p->mObjectCount;
     for (i = 0; i < n; i++) {
         o = (Unk020ff438 *) e[0];
         o->mUnk_140 = (Unk021052fc *) func_0210543c();
-        o->mUnk_140->mUnk_fc = &o->mUnk_000.mUnk_000.mUnk_50;
+        o->mUnk_140->mUnk_fc = &o->mUnk_000.mUnk_000.mPos;
         e++;
     }
     p->mUnk_40 = 1;
@@ -99,8 +99,8 @@ void func_020ff1a0(s32 a, s32 *p) {
     }
 }
 
-s32 func_020ff178(Unk020f41c4_A *p) {
-    return (s16) (((s16) (u16) (p->mUnk_78 & ~0xff00) << 4) | p->mUnk_4c);
+s32 func_020ff178(ItemObject *p) {
+    return (s16) (((s16) (u16) (p->mUnk_78 & ~0xff00) << 4) | p->mPoolIndex);
 }
 
 static inline u8 *func_020ff0b0_inline(u8 *p, volatile s32 *t, void *c, s32 n) {
@@ -242,7 +242,7 @@ static inline u8 *func_020fecdc_inline4(u8 *a, s32 *p, void *c, s32 n) {
 }
 
 u8 *func_020fecdc(u8 *a, void *b, void *c) {
-    Unk020f41c4_A *e;
+    ItemObject *e;
     u16 *p;
 
     e = b;
@@ -253,15 +253,18 @@ u8 *func_020fecdc(u8 *a, void *b, void *c) {
         }
         a++;
     }
-    a = func_020fecdc_inline(a, b != NULL ? &e->mUnk_4e : 0, c);
-    a = func_020fecdc_inline2(a, b != NULL ? &e->mUnk_74 : 0, c);
-    a = func_020fecdc_inline3(a, (b != NULL ? &e->mUnk_50 : 0) != NULL ? &(b != NULL ? &e->mUnk_50 : 0)->x : 0, c);
-    a = func_020fecdc_inline3(a, (b != NULL ? &e->mUnk_50 : 0) != NULL ? &(b != NULL ? &e->mUnk_50 : 0)->y : 0, c);
-    a = func_020fecdc_inline3(a, (b != NULL ? &e->mUnk_50 : 0) != NULL ? &(b != NULL ? &e->mUnk_50 : 0)->z : 0, c);
-    a = func_020ff0b0(a, b != NULL ? &e->mUnk_50 : 0, b != NULL ? &e->mUnk_0e4 : 0, c);
-    a = func_020fecdc_inline4(a, (b != NULL ? &e->mUnk_5c : 0) != NULL ? &(b != NULL ? &e->mUnk_5c : 0)->x : 0, c, 10);
-    a = func_020fecdc_inline4(a, (b != NULL ? &e->mUnk_5c : 0) != NULL ? &(b != NULL ? &e->mUnk_5c : 0)->y : 0, c, 9);
-    a = func_020fecdc_inline4(a, (b != NULL ? &e->mUnk_5c : 0) != NULL ? &(b != NULL ? &e->mUnk_5c : 0)->z : 0, c, 10);
+    a = func_020fecdc_inline(a, b != NULL ? &e->mId : 0, c);
+    a = func_020fecdc_inline2(a, b != NULL ? &e->mFlags : 0, c);
+    a = func_020fecdc_inline3(a, (b != NULL ? &e->mPos : 0) != NULL ? &(b != NULL ? &e->mPos : 0)->x : 0, c);
+    a = func_020fecdc_inline3(a, (b != NULL ? &e->mPos : 0) != NULL ? &(b != NULL ? &e->mPos : 0)->y : 0, c);
+    a = func_020fecdc_inline3(a, (b != NULL ? &e->mPos : 0) != NULL ? &(b != NULL ? &e->mPos : 0)->z : 0, c);
+    a = func_020ff0b0(a, b != NULL ? &e->mPos : 0, b != NULL ? &e->mPrevPos : 0, c);
+    a = func_020fecdc_inline4(a, (b != NULL ? &e->mVelocity : 0) != NULL ? &(b != NULL ? &e->mVelocity : 0)->x : 0, c,
+                              10);
+    a = func_020fecdc_inline4(a, (b != NULL ? &e->mVelocity : 0) != NULL ? &(b != NULL ? &e->mVelocity : 0)->y : 0, c,
+                              9);
+    a = func_020fecdc_inline4(a, (b != NULL ? &e->mVelocity : 0) != NULL ? &(b != NULL ? &e->mVelocity : 0)->z : 0, c,
+                              10);
     p = b != NULL ? &e->mUnk_78 : 0;
     if (p != NULL) {
         if (c != NULL) {
@@ -329,7 +332,7 @@ void func_020feb44(void) {
             p = &data_0217c200[v2];
             if (p->mUnk_1c == 0 || (u32) (p->mUnk_1c + 0x100) >= v1) {
                 u32 k = *(vu32 *) &p->mUnk_14;
-                func_020f0758(data_027e00cc + k, p->mUnk_18, 0, (u8 *) p, p->mUnk_1c);
+                func_020f0758(gItemPools + k, p->mUnk_18, 0, (u8 *) p, p->mUnk_1c);
             }
         } else {
             v3 = v2;
@@ -409,7 +412,7 @@ u8 *func_020fe8ac(u32 a) {
     u32 b;
     s32 n;
 
-    b = data_0217bc34[a].mUnk_4c & 0xff;
+    b = gItemKinds[a].mUnk_4c & 0xff;
     data_0217bd6c[0] = GetRaceUpdateFrames();
     n = data_0217aa14->mUnk_724;
     if (n >= (u8) (b + 1) && func_0205ad44() != FALSE) {
@@ -485,7 +488,7 @@ void func_020fe5b8(u32 a, u32 b, u8 *c, u32 d) {
 
     v = (u8) GetRaceUpdateFrames() - c[0];
     if (v >= 0) {
-        func_020f0758(data_027e00cc + a, b, v, c, 0);
+        func_020f0758(gItemPools + a, b, v, c, 0);
     } else {
         func_020fe9d0(a, b, v, c, 0);
     }
@@ -512,7 +515,7 @@ void func_020fe56c(u32 a, u32 b, u32 c, void *d, u32 e) {
 }
 
 void *func_020fe4c0(void *a, void *b, s32 c) {
-    Unk020f41c4_A *e;
+    ItemObject *e;
     u8 *p;
     s32 t;
     s32 n;
@@ -525,7 +528,7 @@ void *func_020fe4c0(void *a, void *b, s32 c) {
     if (c == 0) {
         return p;
     }
-    t = e->mUnk_44;
+    t = e->mKind;
     data_0217bd6c[0] = GetRaceUpdateFrames();
     n = data_0217aa14->mUnk_724;
     if (n >= 0x12 && func_0205ad44() != FALSE) {

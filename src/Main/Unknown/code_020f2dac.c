@@ -53,8 +53,8 @@ void func_020f4884(Unk020f40dc *rec) {
     }
     rec->mUnk_08 -= 1;
     k = gItemInfos[rec->mUnk_00].mObjectKind;
-    t = data_027e00cc[k].mUnk_1c;
-    data_027e00cc[(s32) k].mUnk_1c = t - 1;
+    t = gItemPools[k].mReservedCount;
+    gItemPools[(s32) k].mReservedCount = t - 1;
     if (rec->mUnk_08 == 0) {
         rec->mUnk_00 = 0x13;
         rec->mUnk_08 = 0;
@@ -81,8 +81,8 @@ void func_020f47e4(Unk020f40dc *rec, s32 kind) {
     rec->mUnk_10 = 0;
     rec->mUnk_12 = 0;
     k = gItemInfos[kind].mObjectKind;
-    t = data_027e00cc[k].mUnk_1c;
-    data_027e00cc[(s32) k].mUnk_1c = t + rec->mUnk_08;
+    t = gItemPools[k].mReservedCount;
+    gItemPools[(s32) k].mReservedCount = t + rec->mUnk_08;
 }
 
 void func_020f4754(Unk020f40dc *rec, s32 n) {
@@ -91,7 +91,7 @@ void func_020f4754(Unk020f40dc *rec, s32 n) {
 
     rec->mUnk_08 -= n;
     k = gItemInfos[rec->mUnk_00].mObjectKind;
-    data_027e00cc[(s32) k].mUnk_1c = data_027e00cc[k].mUnk_1c - n;
+    gItemPools[(s32) k].mReservedCount = gItemPools[k].mReservedCount - n;
     if (rec->mUnk_08 == 0) {
         rec->mUnk_00 = 0x13;
         rec->mUnk_08 = 0;
@@ -139,11 +139,11 @@ void func_020f45f0(Unk020f40dc *rec, s32 keep) {
     if (rec->mUnk_20 != 0) {
         m = rec->mUnk_08;
         for (j = 0; j < m; j++) {
-            func_020f0f70(&data_027e00cc[rec->mUnk_14[j]->mUnk_44], rec->mUnk_14[j]);
+            ReleaseItemPoolObject(&gItemPools[rec->mUnk_14[j]->mKind], rec->mUnk_14[j]);
         }
     } else if (keep == 0) {
-        t = data_027e00cc[tab].mUnk_1c;
-        data_027e00cc[(s32) tab].mUnk_1c = t - rec->mUnk_08;
+        t = gItemPools[tab].mReservedCount;
+        gItemPools[(s32) tab].mReservedCount = t - rec->mUnk_08;
     }
     rec->mUnk_00 = 0x13;
     rec->mUnk_08 = 0;
@@ -174,7 +174,7 @@ void func_020f41c4(Unk020f40dc *rec) {
     s32 count;
     Unk020f41c4_B *st;
     Unk020f41c4_Row *row;
-    Unk020f41c4_A *elem;
+    ItemObject *elem;
     s32 kind = rec->mUnk_00;
     s32 tab;
     s32 radius;
@@ -195,7 +195,7 @@ void func_020f41c4(Unk020f40dc *rec) {
     angle = (u16) func_020f41c4_inline(st, 0x10000);
     angle >>= 4;
     tab = gItemInfos[kind].mObjectKind;
-    if (data_0217bc34[tab].mUnk_80 != 0) {
+    if (gItemKinds[tab].mUnk_80 != 0) {
         radius = 0x2000;
     } else {
         radius = 0x1800;
@@ -203,7 +203,7 @@ void func_020f41c4(Unk020f40dc *rec) {
     count = rec->mUnk_08;
     va = (s32) (((s64) radius * gPairsByAngle[angle * 2]) >> 12);
     vb = (s32) (((s64) radius * gPairsByAngle[angle * 2 + 1]) >> 12);
-    func_020f1048(&data_027e00cc[tab], count, rec->mUnk_14, owner->mIndex, &owner->mUnk_98);
+    func_020f1048(&gItemPools[tab], count, rec->mUnk_14, owner->mIndex, &owner->mUnk_98);
     i = 0;
     if (i < count) {
         row = &data_0215961c[count - 1];
@@ -214,11 +214,11 @@ void func_020f41c4(Unk020f40dc *rec) {
             w2 = (s32) (((s64) y * (0x1000 + (s32) func_020f41c4_inline(st, 0x333))) >> 12);
             d = (s32) (((s64) w1 * vb) >> 12) - (s32) (((s64) w2 * va) >> 12);
             elem = rec->mUnk_14[i];
-            elem->mUnk_5c.x = (s32) (((s64) dir->x * d) >> 12);
-            elem->mUnk_5c.y = (s32) (((s64) dir->y * d) >> 12);
-            elem->mUnk_5c.z = (s32) (((s64) dir->z * d) >> 12);
-            Vec3AddScaled((s32) (((s64) w2 * vb) >> 12) + (s32) (((s64) d * va) >> 12), axis, &elem->mUnk_5c,
-                          &elem->mUnk_5c);
+            elem->mVelocity.x = (s32) (((s64) dir->x * d) >> 12);
+            elem->mVelocity.y = (s32) (((s64) dir->y * d) >> 12);
+            elem->mVelocity.z = (s32) (((s64) dir->z * d) >> 12);
+            Vec3AddScaled((s32) (((s64) w2 * vb) >> 12) + (s32) (((s64) d * va) >> 12), axis, &elem->mVelocity,
+                          &elem->mVelocity);
             elem->mUnk_68.x = 0xcd;
             elem->mUnk_68.y = 0xcd;
             elem->mUnk_68.z = 0xcd;
@@ -274,7 +274,7 @@ void func_020f40dc(Unk020f40dc *rec, s32 kind, s32 count) {
 void func_020f40a0(s32 idx, s32 amount) {
     int i = gItemInfos[idx].mObjectKind;
 
-    data_027e00cc[(s32) i].mUnk_1c = data_027e00cc[i].mUnk_1c - amount;
+    gItemPools[(s32) i].mReservedCount = gItemPools[i].mReservedCount - amount;
 }
 
 s32 func_020f4090(s32 idx) {
@@ -704,19 +704,19 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
             dx = a->mUnk_06c.y > 0 ? 0x666 : 0x1333;
             n += (s32) (((s64) dx * a->mUnk_06c.y) >> 12);
         }
-        Vec3AddScaled(n, (const Vec3 *) &a->mUnk_02c.mUnk_0c, &v, &p->mUnk_000.mUnk_5c);
+        Vec3AddScaled(n, (const Vec3 *) &a->mUnk_02c.mUnk_0c, &v, &p->mUnk_000.mVelocity);
     }
     if (c == 0) {
-        Vec3Add(&p->mUnk_000.mUnk_5c, &a->mUnk_010->mUnk_1fc, &p->mUnk_000.mUnk_5c);
+        Vec3Add(&p->mUnk_000.mVelocity, &a->mUnk_010->mUnk_1fc, &p->mUnk_000.mVelocity);
     }
     if (c != 0) {
-        p->mUnk_000.mUnk_50 = a->mUnk_010->mUnk_1b8;
-        Vec3AddScaled(p->mUnk_000.mUnk_68.z * 10, (const Vec3 *) &a->mUnk_02c.mUnk_18, &p->mUnk_000.mUnk_50,
-                      &p->mUnk_000.mUnk_50);
+        p->mUnk_000.mPos = a->mUnk_010->mUnk_1b8;
+        Vec3AddScaled(p->mUnk_000.mUnk_68.z * 10, (const Vec3 *) &a->mUnk_02c.mUnk_18, &p->mUnk_000.mPos,
+                      &p->mUnk_000.mPos);
     } else {
         if (a->mUnk_07c != 0 && a->mUnk_068 < 0x2000 && p->mUnk_000.mUnk_68.z < 0xccd) {
             Vec3Sub((const Vec3 *) &a->mUnk_02c.mUnk_0c, (const Vec3 *) &a->mUnk_02c.mUnk_18, &v);
-            Vec3AddScaled(0x2000, &v, &p->mUnk_000.mUnk_50, &p->mUnk_000.mUnk_50);
+            Vec3AddScaled(0x2000, &v, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
         }
     }
     if (p->mUnk_000.mUnk_68.z < 0xccd) {
@@ -727,25 +727,25 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
     }
     p->mUnk_12c = b;
     p->mUnk_000.mUnk_124 = func_020f2dac;
-    p->mUnk_000.mUnk_74 &= ~0x7000000;
+    p->mUnk_000.mFlags &= ~0x7000000;
     if (!m) {
         return;
     }
-    n = Vec3Dot((const Vec3 *) &a->mUnk_02c.mUnk_0c, &p->mUnk_000.mUnk_5c);
+    n = Vec3Dot((const Vec3 *) &a->mUnk_02c.mUnk_0c, &p->mUnk_000.mVelocity);
     dx = (s32) (((s64) a->mUnk_02c.mUnk_0c.x * n) >> 12);
     dy = (s32) (((s64) a->mUnk_02c.mUnk_0c.y * n) >> 12);
     dz = (s32) (((s64) a->mUnk_02c.mUnk_0c.z * n) >> 12);
-    p->mUnk_000.mUnk_5c.x -= dx;
-    p->mUnk_000.mUnk_5c.y -= dy;
-    p->mUnk_000.mUnk_5c.z -= dz;
-    Vec3AddScaled(c != 0 ? 0x8800 : -0x1000, (const Vec3 *) &a->mUnk_02c.mUnk_0c, &p->mUnk_000.mUnk_5c,
-                  &p->mUnk_000.mUnk_5c);
+    p->mUnk_000.mVelocity.x -= dx;
+    p->mUnk_000.mVelocity.y -= dy;
+    p->mUnk_000.mVelocity.z -= dz;
+    Vec3AddScaled(c != 0 ? 0x8800 : -0x1000, (const Vec3 *) &a->mUnk_02c.mUnk_0c, &p->mUnk_000.mVelocity,
+                  &p->mUnk_000.mVelocity);
     p->mUnk_12c = 0;
 }
 
 void func_020f30ec(Unk020f2df0 *a, s32 b, Vec3 *c) {
     if (c != NULL) {
-        a->mUnk_000.mUnk_5c = *c;
+        a->mUnk_000.mVelocity = *c;
     }
     if (a->mUnk_000.mUnk_68.z < 0xccd) {
         a->mUnk_000.mUnk_68.x = 0xccd;
@@ -754,7 +754,7 @@ void func_020f30ec(Unk020f2df0 *a, s32 b, Vec3 *c) {
     }
     a->mUnk_12c = b;
     a->mUnk_000.mUnk_124 = func_020f2dac;
-    a->mUnk_000.mUnk_74 &= ~0x7000000;
+    a->mUnk_000.mFlags &= ~0x7000000;
 }
 
 void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
@@ -765,13 +765,13 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
     Vec3 *q;
     s32 n;
 
-    p = &a->mUnk_000.mUnk_5c;
-    q = &a->mUnk_000.mUnk_50;
+    p = &a->mUnk_000.mVelocity;
+    q = &a->mUnk_000.mPos;
     Vec3Add(p, q, q);
     p->x = (s32) (((s64) p->x * c) >> 12);
     p->y = (s32) (((s64) p->y * c) >> 12);
     p->z = (s32) (((s64) p->z * c) >> 12);
-    if (func_01ffdee4(q, &a->mUnk_000.mUnk_0e4, 0, a->mUnk_000.mUnk_dc, 0x24, a->mUnk_000.mUnk_da, &t, &u, (s32 *) &v,
+    if (func_01ffdee4(q, &a->mUnk_000.mPrevPos, 0, a->mUnk_000.mUnk_dc, 0x24, a->mUnk_000.mUnk_da, &t, &u, (s32 *) &v,
                       &a->mUnk_000.mUnk_fc, NULL, NULL, NULL, e) != 0) {
         Vec3Add(&t, q, q);
         if (a->mUnk_000.mUnk_fc & 0x1e34ef) {
@@ -780,7 +780,7 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
             if (n <= 0) {
                 func_020f9334(a, q, p, b, &u);
             } else {
-                a->mUnk_000.mUnk_74 |= 0x10;
+                a->mUnk_000.mFlags |= 0x10;
                 n = Vec3Dot(&u, p);
                 t.x = (s32) (((s64) u.x * n) >> 12);
                 t.y = (s32) (((s64) u.y * n) >> 12);
@@ -796,7 +796,7 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
             }
         }
         if (a->mUnk_000.mUnk_fc & 0x214300) {
-            a->mUnk_000.mUnk_74 |= 0x20;
+            a->mUnk_000.mFlags |= 0x20;
             func_020f92e8(p, &v);
             if (func_020f9290(a, &v) != FALSE) {
                 return;
@@ -808,7 +808,7 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
             return;
         }
     }
-    a->mUnk_000.mUnk_74 &= ~0x4000000;
+    a->mUnk_000.mFlags &= ~0x4000000;
     if (a->mUnk_000.mUnk_fc & 0x1e34ef) {
         return;
     }
@@ -818,12 +818,12 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
     }
 }
 
-void func_020f2dac(Unk020f41c4_A *a, Vec3 *b, Vec3 *c) {
-    func_020f92e8(&a->mUnk_5c, c);
-    if (a->mUnk_74 & 0x1000000) {
+void func_020f2dac(ItemObject *a, Vec3 *b, Vec3 *c) {
+    func_020f92e8(&a->mVelocity, c);
+    if (a->mFlags & 0x1000000) {
         return;
     }
-    a->mUnk_74 |= 0x1000000;
+    a->mFlags |= 0x1000000;
     a->mUnk_108.x = 0;
     a->mUnk_108.y = 0;
     a->mUnk_108.z = 0;

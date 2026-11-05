@@ -11,63 +11,63 @@
 
 #pragma thumb on
 
-void func_020f1b10(void) {
-    Unk0217bc34 *p;
+void CreateItemKinds(void) {
+    ItemKind *p;
     enum { K0 } i;
     enum { K1 } j;
     s32 m;
     u32 v;
 
     p = HeapAlloc(GetHeap(func_020364e8()), 0x930);
-    data_0217bc34 = p;
-    p[0] = data_02159934;
-    p[1] = data_02159854;
-    p[2] = data_0215978c;
-    p[3] = data_021596bc;
-    p[4] = data_021599f8;
-    p[5] = data_02159cdc;
-    p[6] = data_02159abc;
-    p[7] = data_02159f84;
+    gItemKinds = p;
+    p[0] = gItemKindKouraG;
+    p[1] = gItemKindKouraR;
+    p[2] = gItemKindBanana;
+    p[3] = gItemKindKinoko;
+    p[4] = gItemKindStar;
+    p[5] = gItemKindKouraW;
+    p[6] = gItemKindThunder;
+    p[7] = gItemKindFBox;
     p[8] = data_0215a4dc;
-    p[9] = data_02159e70;
-    p[10] = data_0215a308;
-    p[11] = data_0215a244;
-    p[12] = data_02159dac;
-    p[13] = data_0215a5a4;
+    p[9] = gItemKindBomb;
+    p[10] = gItemKindGesso;
+    p[11] = gItemKindTeresa;
+    p[12] = gItemKindKinokoP;
+    p[13] = gItemKindKiller;
     for (i = 0; i < 0xe; i++) {
-        data_0217bc34[i].mUnk_4c = func_020f1d40(i);
-        v = data_0217bc34[i].mUnk_58;
+        gItemKinds[i].mUnk_4c = func_020f1d40(i);
+        v = gItemKinds[i].mUnk_58;
         if (v != 0) {
             v = ((u32(*)(void)) v)();
         } else {
             v = data_0217ca6c[1].mUnk_20;
         }
-        data_0217bc34[i].mUnk_a4 = v;
+        gItemKinds[i].mUnk_a4 = v;
     }
     m = data_021759c0->mMode;
     switch (m) {
         case 2:
-            data_0217bc34[8].mUnk_04 = 8;
+            gItemKinds[8].mLimit = 8;
             break;
         case 4:
             for (j = 0; j < 0xe; j++) {
-                data_0217bc34[j].mUnk_04 = data_0217bc34[j].mUnk_08;
+                gItemKinds[j].mLimit = gItemKinds[j].mUnk_08;
             }
             break;
         case 5:
-            data_0217bc34[3].mUnk_04 = 0x20;
+            gItemKinds[3].mLimit = 0x20;
             break;
     }
 }
 
-void func_020f1a38(void) {
+void ComputeItemKindObjectCounts(void) {
     s32 a[14];
     enum { K0 } i;
     enum { K1 } j;
     s32 n;
 
     for (i = 0; i < 0xe; i++) {
-        data_0217bc34[i].mUnk_10 = data_0217bc34[i].mUnk_04 - 1;
+        gItemKinds[i].mUnk_10 = gItemKinds[i].mLimit - 1;
         a[i] = 1;
     }
     for (j = 0; j < 0x12; j++) {
@@ -80,15 +80,15 @@ void func_020f1a38(void) {
         }
     }
     for (i = 0; i < 0xe; i++) {
-        data_0217bc34[i].mUnk_10 = data_0217bc34[i].mUnk_10 + a[i];
-        data_0217bc34[i].mUnk_0c = data_0217bc34[i].mUnk_10;
+        gItemKinds[i].mUnk_10 = gItemKinds[i].mUnk_10 + a[i];
+        gItemKinds[i].mObjectCount = gItemKinds[i].mUnk_10;
     }
     if (data_021759c0->mMode == 5) {
         for (i = 0; i < 0xe; i++) {
-            data_0217bc34[i].mUnk_0c = data_0217bc34[i].mUnk_0c + 3;
+            gItemKinds[i].mObjectCount = gItemKinds[i].mObjectCount + 3;
         }
     } else {
-        data_0217bc34[2].mUnk_0c = data_0217bc34[2].mUnk_0c + 0x10;
+        gItemKinds[2].mObjectCount = gItemKinds[2].mObjectCount + 0x10;
     }
 }
 

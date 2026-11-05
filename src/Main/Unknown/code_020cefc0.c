@@ -40,20 +40,20 @@ void func_020cefdc(void) {
     s32 m;
     s32 x;
     s32 y;
-    Unk027e00cc *q;
-    Unk020f41c4_A **b;
-    Unk020f41c4_A *e;
+    ItemPool *q;
+    ItemObject **b;
+    ItemObject *e;
     Vec3 *p;
     s32 x2;
     s32 y2;
-    Unk020f41c4_A *e2;
+    ItemObject *e2;
     Vec3 *p2;
 
     n = 0;
     v = func_020c0db0();
-    q = &data_027e00cc[9];
-    m = q->mUnk_14;
-    b = q->mUnk_04;
+    q = &gItemPools[9];
+    m = q->mActiveCount;
+    b = q->mObjects;
     for (i = 0; i < m; i++) {
         e = b[i];
         if (func_020fd528((Kart *) e) != FALSE) {
@@ -71,9 +71,9 @@ void func_020cefdc(void) {
             }
         }
     }
-    q = &data_027e00cc[5];
-    m = q->mUnk_14;
-    b = q->mUnk_04;
+    q = &gItemPools[5];
+    m = q->mActiveCount;
+    b = q->mObjects;
     for (i = 0; i < m; i++) {
         e2 = b[i];
         if (func_020fadcc((Unk020fc2e8 *) e2) != FALSE) {

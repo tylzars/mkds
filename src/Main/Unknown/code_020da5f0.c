@@ -168,7 +168,7 @@ void UpdateKuriboState5(Kuribo *p) {
 
 void func_020da820(Kuribo *p, Vec3 *a) {
     Vec3 s;
-    Unk020f41c4_A *r;
+    ItemObject *r;
     s32 d;
     if (p->mUnk_00.mCourseMapRow == NULL || p->mUnk_00.mCourseMapRow->mUnk_2c != 0) {
         return;
@@ -189,7 +189,7 @@ void func_020da820(Kuribo *p, Vec3 *a) {
     if ((s64) s.x * s.x + (s64) s.y * s.y + (s64) s.z * s.z >= 0x10) {
         func_02039860(&s, &s);
     }
-    r = func_020fa3d0(3, 8, &p->mUnk_00.mPos, &data_021581f8);
+    r = StartItemObjectOrZero(3, 8, &p->mUnk_00.mPos, &data_021581f8);
     if (r == NULL) {
         return;
     }
@@ -197,11 +197,11 @@ void func_020da820(Kuribo *p, Vec3 *a) {
     r->mUnk_68.y = 0xcd;
     r->mUnk_68.z = 0xcd;
     d = Vec3Length(a) + 0x5000;
-    r->mUnk_5c.x = (s32) (((s64) s.x * d) >> 12);
-    r->mUnk_5c.y = (s32) (((s64) s.y * d) >> 12);
-    r->mUnk_5c.z = (s32) (((s64) s.z * d) >> 12);
-    r->mUnk_5c.y += 0xf000;
-    Vec3Add(&r->mUnk_50, &r->mUnk_5c, &r->mUnk_50);
+    r->mVelocity.x = (s32) (((s64) s.x * d) >> 12);
+    r->mVelocity.y = (s32) (((s64) s.y * d) >> 12);
+    r->mVelocity.z = (s32) (((s64) s.z * d) >> 12);
+    r->mVelocity.y += 0xf000;
+    Vec3Add(&r->mPos, &r->mVelocity, &r->mPos);
     func_020f6630(r, 0, &p->mUnk_00.mPos, a, &data_021581f8);
 }
 

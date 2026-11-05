@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_020f1d70.h"
 #include "Main/Unknown/code_020f36d8.h"
 
-// Element of data_027e00cc[1] and [5] up to 0x228: after the Unk020f1d70 part, the Unk020f371c_Ref at 0x168 that
+// Element of gItemPools[1] and [5] up to 0x228: after the Unk020f1d70 part, the Unk020f371c_Ref at 0x168 that
 // func_020f371c fills, the Unk020f3fa8 at 0x170, the words at 0x214 and 0x218 and the Unk020f371c_Ref at 0x21c.
 typedef struct Unk020ec8bc {
     /* 000 */ Unk020f1d70 mUnk_000;
@@ -17,7 +17,7 @@ typedef struct Unk020ec8bc {
     /* 224 */ s32 mUnk_224;
 } Unk020ec8bc;
 
-// One element of the table behind data_0217bc34 from its first byte: the
+// One element of the table behind gItemKinds from its first byte: the
 // pointer at 0x14.
 typedef struct {
     /* 00 */ u8 mUnk_00[0x14];

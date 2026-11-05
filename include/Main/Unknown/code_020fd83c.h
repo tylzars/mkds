@@ -8,7 +8,7 @@
 
 struct Unk0208e490;
 
-// Element of data_027e00cc[9]: 0x1a4 bytes (the size in data_0217bc34[9]), handled by the functions of this file
+// Element of gItemPools[9]: 0x1a4 bytes (the size in gItemKinds[9]), handled by the functions of this file
 // and of code_020fd264.c, code_020fe16c.c and code_020fe268.c.
 typedef struct Unk020fdae8 {
     /* 000 */ Unk020f2df0 mUnk_000;

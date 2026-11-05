@@ -81,42 +81,51 @@ typedef struct Unk02175620_060 {
 
 void func_020ee684(Unk020eda5c *a, KartItems *b);
 void func_020ee6a8(Unk020eda5c *a);
-void func_020ee6e8(Unk020eda5c *a, s32 i, Unk020f41c4_A *v);
+void func_020ee6e8(Unk020eda5c *a, s32 i, ItemObject *v);
 void func_020ee748(Unk020eda5c *a);
 void func_020ee9b0(Unk020eda5c *a);
 void func_020eea6c(Unk020eda5c *a);
-void func_020eec48(Unk020eda5c *a, s32 i, Unk020f41c4_A *v);
+void func_020eec48(Unk020eda5c *a, s32 i, ItemObject *v);
 void func_020eecdc(Unk020eda5c *a);
 void func_020ef1cc(Unk020eda5c *p);
-void func_020ef340(Unk020eda5c *a, Unk020f41c4_A *b, Unk020f41c4_A *c);
+void func_020ef340(Unk020eda5c *a, ItemObject *b, ItemObject *c);
 void func_020ef350(Unk020eda5c *a);
 void func_020ef4a0(Unk020eda5c *a);
 void func_020ef65c(Unk020eda5c *a, Vec3 *v, Vec3 *w);
 void func_020ef8c4(Unk020eda5c *a);
 void func_020ef9a8(Unk020eda5c *a);
-void func_020efa48(Unk020eda5c *a, Unk020f41c4_A *v);
+void func_020efa48(Unk020eda5c *a, ItemObject *v);
 void func_020efa60(Unk020eda5c *a, s32 f);
-void func_020efb84(Unk020eda5c *p, Unk020f41c4_A *v);
+void func_020efb84(Unk020eda5c *p, ItemObject *v);
 void InitKartItems(KartItems *a, s32 n);
 void func_020efc74(KartItems *p, s32 a);
-void func_020efd1c(KartItems *p, Unk020f41c4_A *a);
+void func_020efd1c(KartItems *p, ItemObject *a);
 BOOL func_020efd84(KartItems *p, s32 a);
 void func_020efea4(KartItems *p);
 void func_020eff40(KartItems *p);
 void func_020f0044(KartItems *p);
 void func_020f00f0(KartItems *p);
 BOOL func_020f0154(KartItems *p);
-void func_020f02c0(Unk027e00cc *q, s32 a, s32 *b);
-BOOL func_020f03bc(Unk027e00cc *tab);
-void func_020f03f8(Unk027e00cc *a);
-void func_020f0684(Unk020f41c4_A **p, s32 i, s32 n, s32 step);
-void func_020f0758(Unk027e00cc *a, s32 m, s32 b, u8 *c, s32 d);
-s32 func_020f0898(Unk027e00cc *a, u8 *b);
-s32 func_020f0950(Unk027e00cc *a, s32 b, s32 c);
-void func_020f0b00(Unk027e00cc *tab, s32 a, void *b, s32 c);
-void func_020f0d04(Unk020f41c4_A *p);
-void func_020f0df8(Unk027e00cc *tab, void *a);
-void func_020f0e2c(Unk027e00cc *tab, Unk020f41c4_A *v);
-void func_020f0ea0(Unk027e00cc *tab, Unk020f41c4_A *v);
-void func_020f0f70(Unk027e00cc *tab, Unk020f41c4_A *v);
-void func_020f1048(Unk027e00cc *tab, s32 count, Unk020f41c4_A **out, u16 kind, Vec3 *v);
+// Builds the pool of one kind: allocates the pointer array and every object, and runs InitItemObject for each.
+void CreateItemPool(ItemPool *q, s32 a, s32 *b);
+// Releases the object at index 0 of mObjects (not strictly the oldest, the array is reordered); FALSE when none is
+// active.
+BOOL TryReleaseFirstItemObject(ItemPool *tab);
+// Runs UpdateItemObject for every active object (mode 5: several sub-steps). When the limit is above 1 and fewer than
+// 2 objects are free it also releases a stale element or sorts the ordered prefix.
+void UpdateItemPool(ItemPool *a);
+void func_020f0684(ItemObject **p, s32 i, s32 n, s32 step);
+void func_020f0758(ItemPool *a, s32 m, s32 b, u8 *c, s32 d);
+s32 func_020f0898(ItemPool *a, u8 *b);
+s32 func_020f0950(ItemPool *a, s32 b, s32 c);
+void func_020f0b00(ItemPool *tab, s32 a, void *b, s32 c);
+void func_020f0d04(ItemObject *p);
+// Draws every taken object, including those only held by a kart, with the kind's draw callback or the default.
+void DrawItemPool(ItemPool *tab, void *a);
+void func_020f0e2c(ItemPool *tab, ItemObject *v);
+// Starts an object taken now or earlier and held by a kart: swaps it into the active part of mObjects and counts it.
+void StartItemObject(ItemPool *tab, ItemObject *v);
+// Hands an object back to its pool behind the active and taken parts and counts it out; what the object holds is
+// freed by ReleaseItemObject.
+void ReleaseItemPoolObject(ItemPool *tab, ItemObject *v);
+void func_020f1048(ItemPool *tab, s32 count, ItemObject **out, u16 kind, Vec3 *v);

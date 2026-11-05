@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk020f41c4_A Unk020f41c4_A;
+typedef struct ItemObject ItemObject;
 typedef struct Unk020ff438 Unk020ff438;
 
 // Element of the two tables data_0217c200 and data_0217be00: 0x14 bytes of
@@ -23,7 +23,7 @@ void func_020ff25c(Unk020ff438 *a);
 void func_020ff1d8(void);
 void func_020ff1b8(s32 a, s32 *p);
 void func_020ff1a0(s32 a, s32 *p);
-s32 func_020ff178(Unk020f41c4_A *p);
+s32 func_020ff178(ItemObject *p);
 u8 *func_020ff0b0(u8 *a, Vec3 *b, Vec3 *q, void *c);
 u8 *func_020ff040(u8 *a, void *b, void *c);
 u8 *func_020fefe8(u8 *a, s32 *b, void *c);

@@ -341,7 +341,7 @@ void func_0206d578(Kart *p) {
 
 void func_0206d18c(Kart *p) {
     s32 r;
-    Unk020f41c4_A *e;
+    ItemObject *e;
     Kart *q;
     u32 i;
     u32 t;
@@ -361,7 +361,7 @@ void func_0206d18c(Kart *p) {
     }
     e = func_020fa4b4(0);
     r = 0;
-    switch (e->mUnk_44) {
+    switch (e->mKind) {
         case 0:
         case 1:
         case 7:

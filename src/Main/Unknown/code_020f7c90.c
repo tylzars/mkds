@@ -133,36 +133,36 @@ void CreateItemSlotTables(void) {
 #pragma thumb off
 
 u8 func_020f7ea8(void *a, void *b) {
-    Unk020f41c4_A *p = a;
-    Unk020f41c4_A *q = b;
+    ItemObject *p = a;
+    ItemObject *q = b;
 
-    return (data_02159b78 + p->mUnk_44 * 0xe)[q->mUnk_44];
+    return (data_02159b78 + p->mKind * 0xe)[q->mKind];
 }
 
-void func_020f7c90(Unk020f41c4_A *a, Vec3 *b, Vec3 *c) {
+void func_020f7c90(ItemObject *a, Vec3 *b, Vec3 *c) {
     Unk020f41c4_B *q;
     s64 d;
     s32 i;
 
-    if (a->mUnk_74 & 0x2000000) {
+    if (a->mFlags & 0x2000000) {
         if ((s64) c->x * c->x + (s64) c->y * c->y + (s64) c->z * c->z >= 0x10) {
             func_02039860(c, c);
         }
         if (func_02039828(c, &a->mUnk_108) > 0x800) {
-            a->mUnk_5c.z = (s32) (((s64) c->z * 0x14cd) >> 12);
-            a->mUnk_5c.x = (s32) (((s64) c->x * 0x14cd) >> 12);
+            a->mVelocity.z = (s32) (((s64) c->z * 0x14cd) >> 12);
+            a->mVelocity.x = (s32) (((s64) c->x * 0x14cd) >> 12);
         }
     }
-    d = (s64) (a->mUnk_50.x - b->x) * (a->mUnk_50.x - b->x) + (s64) (a->mUnk_50.y - b->y) * (a->mUnk_50.y - b->y) +
-        (s64) (a->mUnk_50.z - b->z) * (a->mUnk_50.z - b->z);
+    d = (s64) (a->mPos.x - b->x) * (a->mPos.x - b->x) + (s64) (a->mPos.y - b->y) * (a->mPos.y - b->y) +
+        (s64) (a->mPos.z - b->z) * (a->mPos.z - b->z);
     if (d >= (s64) a->mUnk_e0 * a->mUnk_e0) {
         return;
     }
-    a->mUnk_74 |= 0x4000000;
-    if (a->mUnk_74 & 0x2000000) {
+    a->mFlags |= 0x4000000;
+    if (a->mFlags & 0x2000000) {
         return;
     }
-    if (func_02039828(&a->mUnk_5c, c) >= 0) {
+    if (func_02039828(&a->mVelocity, c) >= 0) {
         return;
     }
     q = &gRaceProgress->mRandom;
@@ -170,7 +170,7 @@ void func_020f7c90(Unk020f41c4_A *a, Vec3 *b, Vec3 *c) {
     i = (u16) ((((u64) (u32) (q->mUnk_00 >> 32) * 0x10000) >> 32)) >> 4;
     a->mUnk_108.z = gPairsByAngle[i * 2 + 1];
     a->mUnk_108.x = gPairsByAngle[i * 2];
-    a->mUnk_5c.z = (s32) (((s64) a->mUnk_108.z * 0x14cd) >> 12);
-    a->mUnk_5c.x = (s32) (((s64) a->mUnk_108.x * 0x14cd) >> 12);
-    a->mUnk_74 |= 0x2000000;
+    a->mVelocity.z = (s32) (((s64) a->mUnk_108.z * 0x14cd) >> 12);
+    a->mVelocity.x = (s32) (((s64) a->mUnk_108.x * 0x14cd) >> 12);
+    a->mFlags |= 0x2000000;
 }

@@ -3,9 +3,9 @@
 
 #pragma thumb on
 
-void func_020f1a24(void) {
-    func_020f1b10();
-    func_020f1a38();
+void InitItemKinds(void) {
+    CreateItemKinds();
+    ComputeItemKindObjectCounts();
 }
 
 #pragma thumb off

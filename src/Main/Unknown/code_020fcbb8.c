@@ -24,8 +24,8 @@ void func_020fcce4(Unk020fc2e8 *p0, s32 a, s32 b) {
     p = p0->mUnk_228->mKart;
     f = (p->mUnk_48 & 1) ? 1 : 0;
     p0->mUnk_22c = p->mUnk_05c;
-    v1 = &p0->mUnk_000.mUnk_50;
-    v2 = &p0->mUnk_000.mUnk_5c;
+    v1 = &p0->mUnk_000.mPos;
+    v2 = &p0->mUnk_000.mVelocity;
     if (p->mUnk_44 & 0x100) {
         p0->mUnk_22c.x = -p0->mUnk_22c.x;
         p0->mUnk_22c.y = -p0->mUnk_22c.y;
@@ -48,7 +48,7 @@ void func_020fcce4(Unk020fc2e8 *p0, s32 a, s32 b) {
     if (f == 0) {
         return;
     }
-    if (func_01ffdee4(v1, &p0->mUnk_000.mUnk_0e4, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mUnk_da, &v, NULL, NULL,
+    if (func_01ffdee4(v1, &p0->mUnk_000.mPrevPos, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mUnk_da, &v, NULL, NULL,
                       NULL, NULL, NULL, NULL, NULL) == 0) {
         return;
     }
@@ -72,8 +72,8 @@ BOOL func_020fcbb8(Unk020fc2e8 *p0, s32 v1) {
     e = &(gKartItems)[v1];
     q = &p->mUnk_98;
     if (e->mUnk_1f0.mUnk_00 != p0->mUnk_168) {
-        f = ((p0->mUnk_000.mUnk_74 & 0x40000000) || (p->mUnk_48 & 1)) ? 1 : 0;
-        Vec3Sub(q, &p0->mUnk_000.mUnk_50, &v);
+        f = ((p0->mUnk_000.mFlags & 0x40000000) || (p->mUnk_48 & 1)) ? 1 : 0;
+        Vec3Sub(q, &p0->mUnk_000.mPos, &v);
         dx = v.x >> 12;
         dz = v.z >> 12;
         if (dx * dx + dz * dz > (f ? 0x9c40 : 0x27100)) {
@@ -84,7 +84,7 @@ BOOL func_020fcbb8(Unk020fc2e8 *p0, s32 v1) {
             return FALSE;
         }
     }
-    if (p0->mUnk_000.mUnk_74 & 0x10000000) {
+    if (p0->mUnk_000.mFlags & 0x10000000) {
         return FALSE;
     }
     p0->mUnk_228 = e;

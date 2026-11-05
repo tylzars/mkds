@@ -4,10 +4,10 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_020f36d8.h"
 
-// Element of data_027e00cc[11]: 0x274 bytes (the size in data_0217bc34[11]), handled by the functions of
+// Element of gItemPools[11]: 0x274 bytes (the size in gItemKinds[11]), handled by the functions of
 // this file and of code_021001ac.c, code_02100704.c and code_02100b84.c.
 typedef struct Unk02101c84 {
-    /* 000 */ Unk020f41c4_A mUnk_000;
+    /* 000 */ ItemObject mUnk_000;
     /* 12c */ u8 mUnk_12c[4];
     /* 130 */ u32 mUnk_130;
     /* 134 */ u8 mUnk_134[0x6];

@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_020f1b10(void);
-void func_020f1a38(void);
+void CreateItemKinds(void);
+void ComputeItemKindObjectCounts(void);
