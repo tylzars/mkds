@@ -22,7 +22,7 @@ void func_0212baa8(void) {
         return;
     }
     data_0217d41c = 1;
-    func_02020e64();
+    SND_Init();
     data_0217d420.mCallback = func_0212b9f8;
     data_0217d420.mArg = 0;
     data_0217d42c.mCallback = func_0212b9ec;
@@ -46,5 +46,5 @@ void func_0212ba74(void) {
 }
 
 void func_0212ba68(u32 a) {
-    func_02020964(a);
+    SND_SetMasterVolume(a);
 }

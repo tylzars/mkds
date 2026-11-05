@@ -8,14 +8,14 @@
 u32 data_021732ac;
 ThreadLock data_021732b0;
 
-void func_02020e64(void) {
+void SND_Init(void) {
     if (data_021732ac != 0) {
         return;
     }
     data_021732ac = 1;
     ThreadLockInit(&data_021732b0);
-    func_020215bc();
-    func_02021784();
+    SND_CommandInit();
+    SND_AlarmInit();
 }
 
 void SharedLockWait(void) {

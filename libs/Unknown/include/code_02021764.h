@@ -21,8 +21,14 @@ typedef struct Unk020217b4 {
 extern Unk020217b4 *data_02174e00;
 
 u32 func_02021764(u32 arg0);
-void func_02021784(void);
+// Clears the three fields (function, argument, generation byte) of each of the 8 entries of the alarm table
+// data_02174da0.
+void SND_AlarmInit(void);
 void func_020217b4(Unk020217b4 *p);
 u32 func_02021834(void);
-s16 func_02021868(s32 a, s32 b);
-u32 func_020218bc(void);
+// Invalidates the cache of the halfword at index b of the player record a of the shared-work area (the records start at
+// +0x20 and are 0x24 bytes apart) and returns it as a signed halfword.
+s16 SND_GetPlayerLocalVariable(s32 a, s32 b);
+// Invalidates the cache line of the word at +4 of the shared-work area (data_02174e00) and returns it. The other
+// processor keeps one bit per active player in it.
+u32 SND_GetPlayerStatus(void);

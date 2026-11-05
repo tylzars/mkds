@@ -43,7 +43,7 @@ void PxiCommandCallbackRun(s32 a) {
     e->mUnk_00(e->mUnk_04);
 }
 
-void func_020215bc(void) {
+void SND_CommandInit(void) {
     s32 i;
     PxiCommand *p;
 
@@ -125,7 +125,7 @@ PxiCommand *PxiCommandAlloc(u32 a) {
     if ((a & 1) == 0) {
         return 0;
     }
-    if (func_02021020() > 0) {
+    if (SND_CountWaitingCommand() > 0) {
         while (PxiCommandReclaim(0) != 0) {
         }
         p = PxiCommandPoolRemoveHead();
@@ -225,7 +225,7 @@ void PxiCommandWaitForSequence(u32 a) {
     } while (PxiCommandSequenceReached(a) == 0);
 }
 
-u32 func_02021114(void) {
+u32 SND_GetCurrentCommandTag(void) {
     u32 s;
     u32 v;
 
@@ -263,7 +263,7 @@ u32 PxiCommandSequenceReached(u32 a) {
     return r;
 }
 
-s32 func_02021080(void) {
+s32 SND_CountFreeCommand(void) {
     u32 s;
     PxiCommand *p;
     s32 n;
@@ -277,7 +277,7 @@ s32 func_02021080(void) {
     return n;
 }
 
-s32 func_02021040(void) {
+s32 SND_CountReservedCommand(void) {
     u32 s;
     PxiCommand *p;
     s32 n;
@@ -291,11 +291,11 @@ s32 func_02021040(void) {
     return n;
 }
 
-s32 func_02021020(void) {
+s32 SND_CountWaitingCommand(void) {
     s32 a;
 
-    a = func_02021080();
-    return 0x100 - a - func_02021040();
+    a = SND_CountFreeCommand();
+    return 0x100 - a - SND_CountReservedCommand();
 }
 
 void func_02020ff0(u32 a, u32 b) {

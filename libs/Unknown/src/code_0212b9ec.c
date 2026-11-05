@@ -9,8 +9,8 @@ void func_0212b9f8(void *a) {
     u32 v;
 
     func_0212cb78();
-    func_02020bbc(0, 0, 0, 0);
-    v = func_02021114();
+    SND_StopTimer(0, 0, 0, 0);
+    v = SND_GetCurrentCommandTag();
     PxiCommandSendPending(1);
     PxiCommandWaitForSequence(v);
 }

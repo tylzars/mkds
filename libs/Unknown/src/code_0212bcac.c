@@ -120,7 +120,7 @@ void func_0212c5c4(Unk0212c400 **a, u32 b) {
     if (p == 0) {
         return;
     }
-    func_02020d68(p->mUnk_3c, b);
+    SND_SetPlayerChannelPriority(p->mUnk_3c, b);
 }
 
 void func_0212c594(Unk0212c400 **a, u32 b, u32 c) {
@@ -129,7 +129,7 @@ void func_0212c594(Unk0212c400 **a, u32 b, u32 c) {
     if (p == 0) {
         return;
     }
-    func_02020af8(p->mUnk_3c, b, c);
+    SND_SetTrackMuteEx(p->mUnk_3c, b, c);
 }
 
 void func_0212c554(Unk0212c400 **a, u32 b, u32 c) {
@@ -138,7 +138,7 @@ void func_0212c554(Unk0212c400 **a, u32 b, u32 c) {
     if (p == 0) {
         return;
     }
-    func_02020d0c(p->mUnk_3c, b, data_02152ce4[c]);
+    SND_SetTrackVolume(p->mUnk_3c, b, data_02152ce4[c]);
 }
 
 void func_0212c524(Unk0212c400 **a, u32 b, u32 c) {
@@ -147,7 +147,7 @@ void func_0212c524(Unk0212c400 **a, u32 b, u32 c) {
     if (p == 0) {
         return;
     }
-    func_02020ce4(p->mUnk_3c, b, c);
+    SND_SetTrackPitch(p->mUnk_3c, b, c);
 }
 
 u32 func_0212c4f4(Unk0212c400 **a, u32 b, u32 c) {
@@ -156,7 +156,7 @@ u32 func_0212c4f4(Unk0212c400 **a, u32 b, u32 c) {
     if (p == 0) {
         return (u32) p;
     }
-    func_02020cbc(p->mUnk_3c, b, c);
+    SND_SetTrackPan(p->mUnk_3c, b, c);
 }
 
 void func_0212c4c4(Unk0212c400 **a, u32 b, u32 c) {
@@ -165,7 +165,7 @@ void func_0212c4c4(Unk0212c400 **a, u32 b, u32 c) {
     if (p == 0) {
         return;
     }
-    func_02020c94(p->mUnk_3c, b, c);
+    SND_SetTrackModSpeed(p->mUnk_3c, b, c);
 }
 
 void func_0212c494(Unk0212c400 **a, u32 b) {
@@ -174,7 +174,7 @@ void func_0212c494(Unk0212c400 **a, u32 b) {
     if (p == 0) {
         return;
     }
-    func_02020d98(p->mUnk_3c, b);
+    SND_SetPlayerTempoRatio(p->mUnk_3c, b);
 }
 
 void func_0212c478(Unk0212c400 **a, u32 b) {
@@ -222,7 +222,7 @@ u32 func_0212c400(Unk0212c400 **a, u32 b, s16 *c) {
         *c = -1;
         return 1;
     }
-    *c = func_02021868(p->mUnk_3c, b);
+    *c = SND_GetPlayerLocalVariable(p->mUnk_3c, b);
     return 1;
 }
 
@@ -230,7 +230,7 @@ u32 func_0212c3c8(Unk0212c400 **a, u32 b, u32 c) {
     if (*a == 0) {
         return 0;
     }
-    func_02020d34((*a)->mUnk_3c, b, c);
+    SND_SetPlayerLocalVariable((*a)->mUnk_3c, b, c);
     return 1;
 }
 
@@ -264,7 +264,7 @@ void func_0212c19c(void) {
     s32 c;
     s32 v;
 
-    m = func_020218bc();
+    m = SND_GetPlayerStatus();
     for (p = ListGetNext(&data_0217d450, 0); p != 0; p = q) {
         q = ListGetNext(&data_0217d450, p);
         if (p->mUnk_2d == 0 && PxiCommandSequenceReached(p->mUnk_30) != 0) {
@@ -286,14 +286,14 @@ void func_0212c19c(void) {
             v = 0;
         }
         if (v != p->mUnk_3e) {
-            func_02020d80(p->mUnk_3c, v);
+            SND_SetPlayerVolume(p->mUnk_3c, v);
             p->mUnk_3e = v;
         }
         if (p->mUnk_2c == 2 && InterpolatorIsDone(&p->mUnk_1c) != 0) {
             func_0212be78(p);
         }
         if (p->mUnk_2f != 0) {
-            func_02020db0(p->mUnk_3c);
+            SND_StartPreparedSeq(p->mUnk_3c);
             p->mUnk_2f = 0;
         }
     }
@@ -333,12 +333,12 @@ void func_0212c0d4(void *a) {
 void func_0212c078(Unk0212c400 *a, void *b, u32 c, Unk02021968 *d) {
     Unk0212c7a0 *e = a->mUnk_04;
 
-    func_02020ddc(a->mUnk_3c, (u32) b, c, (u32) d);
+    SND_PrepareSeq(a->mUnk_3c, (u32) b, c, (u32) d);
     if (e->mUnk_1c != 0) {
-        func_02020c60(a->mUnk_3c, 0xffff, e->mUnk_1c);
+        SND_SetTrackAllocatableChannel(a->mUnk_3c, 0xffff, e->mUnk_1c);
     }
     func_0212bf70(a);
-    a->mUnk_30 = func_02021114();
+    a->mUnk_30 = SND_GetCurrentCommandTag();
     a->mUnk_2f = 1;
     a->mUnk_2c = 1;
 }
@@ -411,9 +411,9 @@ void func_0212beb4(Unk0212c400 *p) {
 
 void func_0212be78(Unk0212c400 *p) {
     if (p->mUnk_2c == 2) {
-        func_02020d80(p->mUnk_3c, -723);
+        SND_SetPlayerVolume(p->mUnk_3c, -723);
     }
-    func_02020e10(p->mUnk_3c);
+    SND_StopSeq(p->mUnk_3c);
     func_0212bd6c(p);
 }
 

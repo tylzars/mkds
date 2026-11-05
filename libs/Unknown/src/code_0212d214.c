@@ -478,18 +478,18 @@ void func_0212e04c(void *a, Unk0212d5f8 *b, u32 c) {
 
 void func_0212e018(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {
     func_0212e04c(a, c, d);
-    func_020209e8(a, a + b);
+    SND_InvalidateSeqData(a, a + b);
 }
 
 void func_0212dfdc(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {
     func_0212e04c(a, c, d);
-    func_020209bc(a, a + b);
+    SND_InvalidateBankData(a, a + b);
     func_02021c34((Unk02021968 *) a);
 }
 
 void func_0212dfa0(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {
     func_0212e04c(a, c, d);
-    func_02020990(a, a + b);
+    SND_InvalidateWaveData(a, a + b);
     func_02021be8((Unk02021968 *) a);
 }
 
@@ -504,7 +504,7 @@ void func_0212df28(void *buf, u32 size, void *p, u32 idx) {
     if (q == func_02021968(p, idx)) {
         func_020219b0(p, idx, 0);
     }
-    func_02020990(q, q + size);
+    SND_InvalidateWaveData(q, q + size);
 }
 
 u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, HeapStack *d) {
@@ -709,7 +709,7 @@ u32 HeapStackPushLevel(HeapStack *a) {
 void func_0212d968(void) {
     u32 v;
 
-    v = func_02021114();
+    v = SND_GetCurrentCommandTag();
     PxiCommandSendPending(1);
     PxiCommandWaitForSequence(v);
 }

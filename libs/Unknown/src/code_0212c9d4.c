@@ -70,7 +70,7 @@ void func_0212d03c(void) {
     if (v == p->mUnk_50) {
         return;
     }
-    func_02020a6c(p->mUnk_24, v, 0);
+    SND_SetChannelVolume(p->mUnk_24, v, 0);
     p->mUnk_50 = v;
 }
 
@@ -145,17 +145,17 @@ s32 func_0212ccd4(u32 a, u8 *b, u8 *c, u32 d, u32 e, u32 f, u32 g, u32 h, s32 i,
         func_0212bbe0(3);
         return 0;
     }
-    func_02020a14(1, x28, (u32) b, h != 0 ? 1 : 2, 0, d >> 2, j, 0, u, k);
-    func_02020b70(0, x24, (u32) b, d >> 2, h, f, g);
-    func_02020a14(3, x28, (u32) c, h != 0 ? 1 : 2, 0, d >> 2, j, 0, u, l);
-    func_02020b70(1, x24, (u32) c, d >> 2, h, f, g);
+    SND_SetupChannelPcm(1, x28, (u32) b, h != 0 ? 1 : 2, 0, d >> 2, j, 0, u, k);
+    SND_SetupCapture(0, x24, (u32) b, d >> 2, h, f, g);
+    SND_SetupChannelPcm(3, x28, (u32) c, h != 0 ? 1 : 2, 0, d >> 2, j, 0, u, l);
+    SND_SetupCapture(1, x24, (u32) c, d >> 2, h, f, g);
     if (r >= 0) {
-        func_02020b2c(r, w + t, w, func_0212c9d4, p);
+        SND_SetupAlarm(r, w + t, w, func_0212c9d4, p);
     }
     if (a == 1) {
-        func_02020930(1, 2, 1, 1);
+        SND_SetOutputSelector(1, 2, 1, 1);
     }
-    func_02020c2c(x2c, 3, r >= 0 ? 1 << r : 0, 0);
+    SND_StartTimer(x2c, 3, r >= 0 ? 1 << r : 0, 0);
     p->mUnk_00 = 1;
     p->mUnk_04 = a;
     p->mUnk_20 = 10;
@@ -187,9 +187,9 @@ void func_0212cbd8(void) {
         return;
     }
     f = p->mUnk_2c >= 0;
-    func_02020bbc(p->mUnk_24, p->mUnk_28, f != 0 ? 1 << p->mUnk_2c : 0, 0);
+    SND_StopTimer(p->mUnk_24, p->mUnk_28, f != 0 ? 1 << p->mUnk_2c : 0, 0);
     if (f != 0) {
-        r = func_02021114();
+        r = SND_GetCurrentCommandTag();
         PxiCommandSendPending(1);
         PxiCommandWaitForSequence(r);
         while (RingQueueRemoveFront(&data_0217ddb0, 0, 0) != 0) {
@@ -205,7 +205,7 @@ void func_0212cbd8(void) {
         func_0212bb7c(p->mUnk_2c);
     }
     if (p->mUnk_04 == 1) {
-        func_02020930(0, 0, 0, 0);
+        SND_SetOutputSelector(0, 0, 0, 0);
     }
     p->mUnk_00 = 0;
 }
@@ -217,8 +217,8 @@ void func_0212cb78(void) {
     if (p->mUnk_00 == 0) {
         return;
     }
-    func_02020bbc(p->mUnk_24, p->mUnk_28, p->mUnk_2c >= 0 ? 1 << p->mUnk_2c : 0, 0);
-    r = func_02021114();
+    SND_StopTimer(p->mUnk_24, p->mUnk_28, p->mUnk_2c >= 0 ? 1 << p->mUnk_2c : 0, 0);
+    r = SND_GetCurrentCommandTag();
     PxiCommandSendPending(1);
     PxiCommandWaitForSequence(r);
 }
@@ -238,7 +238,7 @@ void func_0212cad8(void) {
     MemFillWords(w, p->mUnk_10, p->mUnk_14);
     DC_FlushRange(p->mUnk_0c, p->mUnk_14);
     DC_FlushRange(p->mUnk_10, p->mUnk_14);
-    func_02020c2c(p->mUnk_24, p->mUnk_28, p->mUnk_2c >= 0 ? 1 << p->mUnk_2c : 0, 0);
+    SND_StartTimer(p->mUnk_24, p->mUnk_28, p->mUnk_2c >= 0 ? 1 << p->mUnk_2c : 0, 0);
 }
 
 void func_0212c9d4(Unk0212ccd4 *p) {

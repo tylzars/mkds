@@ -20,7 +20,7 @@ void func_0212c9a4(Unk0212c7f0 *p) {
 }
 
 void func_0212c948(Unk0212c7f0 *p) {
-    func_02020c2c(p->mUnk_44, 0, 1 << p->mUnk_40, 0);
+    SND_StartTimer(p->mUnk_44, 0, 1 << p->mUnk_40, 0);
     if (p->mUnk_24_1) {
         return;
     }
@@ -44,7 +44,7 @@ void func_0212c8a4(Unk0212c7f0 *p, s32 a) {
     for (i = 0; i < p->mUnk_48; i++) {
         v = p->mUnk_4c[i];
         r = func_020218f4(p->mUnk_3c + data_0217dd28[v].mUnk_04);
-        func_02020a6c(1 << v, r & 0xff, r >> 8);
+        SND_SetChannelVolume(1 << v, r & 0xff, r >> 8);
     }
 }
 
@@ -52,11 +52,11 @@ void func_0212c824(Unk0212c7f0 *p) {
     u32 r;
 
     if (p->mUnk_24_1) {
-        func_02020bbc(p->mUnk_44, 0, 1 << p->mUnk_40, 0);
+        SND_StopTimer(p->mUnk_44, 0, 1 << p->mUnk_40, 0);
         PM_DeletePreSleepCallback(&p->mUnk_08);
         PM_DeletePostSleepCallback(&p->mUnk_14);
         p->mUnk_24_1 = 0;
-        r = func_02021114();
+        r = SND_GetCurrentCommandTag();
         PxiCommandSendPending(1);
         PxiCommandWaitForSequence(r);
     }

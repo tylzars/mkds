@@ -14,7 +14,7 @@ u32 func_0212bc58(u32 a) {
     if (a & data_0217d440) {
         return 0;
     }
-    func_02020acc(a, 0);
+    SND_LockChannel(a, 0);
     data_0217d440 |= a;
     return 1;
 }
@@ -23,7 +23,7 @@ void func_0212bc20(u32 a) {
     if (a == 0) {
         return;
     }
-    func_02020aa0(a, 0);
+    SND_UnlockChannel(a, 0);
     data_0217d440 &= ~a;
 }
 

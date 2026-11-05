@@ -6,12 +6,12 @@
 
 Unk020217b4 *data_02174e00;
 
-u32 func_020218bc(void) {
+u32 SND_GetPlayerStatus(void) {
     DC_InvalidateRange(&data_02174e00->mUnk_004, 4);
     return data_02174e00->mUnk_004;
 }
 
-s16 func_02021868(s32 a, s32 b) {
+s16 SND_GetPlayerLocalVariable(s32 a, s32 b) {
     DC_InvalidateRange(&data_02174e00->mUnk_020[a].mUnk_00[b], 2);
     return data_02174e00->mUnk_020[a].mUnk_00[b];
 }
@@ -41,7 +41,7 @@ void func_020217b4(Unk020217b4 *p) {
     DC_FlushRange(p, 0x280);
 }
 
-void func_02021784(void) {
+void SND_AlarmInit(void) {
     s32 i;
 
     for (i = 0; i < 8; i++) {
