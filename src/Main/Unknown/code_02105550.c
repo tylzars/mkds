@@ -88,6 +88,9 @@
 #include "Main/Unknown/unk_02174000.h"
 #include "Main/Unknown/code_02024974.h"
 
+const Vec3 data_0215a6c0 = {0x1000, 0x1000, 0x1000};
+const Vec3 data_0215a6cc = {0, 0, 0};
+
 void func_02108ddc(void) {
     func_0212d5e0(&data_0217c868);
     func_0212c6f0(&data_0217c788, 1);

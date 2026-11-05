@@ -20,6 +20,7 @@
 #include "Main/Unknown/code_02109000.h"
 #include "Main/Unknown/code_021053d8.h"
 #include "Main/Unknown/code_021053e4.h"
+#include "Main/Unknown/code_02105550.h"
 #include "Main/Unknown/code_021052fc.h"
 #include "Main/Unknown/code_02108ea0.h"
 #include "Main/Unknown/code_020364e0.h"
@@ -32,11 +33,16 @@
 #include "code_02147cd8.h"
 #include "code_0212bcac.h"
 #include "code_0212df7c.h"
+#include "ITCM/code_01ffcf7c.h"
 
 const u16 data_0215a584 = 0x2000;
 
-const Vec3 data_0215a6c0 = {0x1000, 0x1000, 0x1000};
-const Vec3 data_0215a6cc = {0, 0, 0};
+const Unk0217bc48 data_0215a588 = {1, 1, 0xd, 1, 0, 0, func_021051d4};
+
+const Unk0217bc34 data_0215a5a4 = {
+    0x12c, 1, 1,    -1,  -1,   {0}, NULL, NULL,     NULL, NULL,   NULL, NULL, func_01ffd778, NULL,   NULL,  NULL,
+    0,     0, NULL, 0,   NULL, 1,   0,    0x4b0000, 2,    0x319a, 0,    0,    0x1000,        0x1b33, 0x19a, 0x11f,
+    0,     1, 0,    {0}, 0,    1,   1,    1,        1,    0};
 
 #pragma thumb on
 void func_02105214(void) {

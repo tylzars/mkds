@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020ae244.h" // Unk020ae244
+#include "Main/Unknown/code_020ade08.h"
 
 s32 func_020cadac(s32 a);
 s32 func_020cacc0(void);

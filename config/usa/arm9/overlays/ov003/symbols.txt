@@ -1495,8 +1495,8 @@ data_ov003_021d7bd4 kind:data(any) addr:0x021d7b94
 data_ov003_021d7bd8 kind:data(any) addr:0x021d7b98
 data_ov003_021d7be0 kind:data(any) addr:0x021d7ba0
 data_ov003_021d7bf8 kind:data(any) addr:0x021d7bb8
-data_ov003_021d7c00 kind:data(any) addr:0x021d7bc0
-data_ov003_021d7c04 kind:data(any) addr:0x021d7bc4
+@784 kind:data(any) addr:0x021d7bc0 local
+@782 kind:data(any) addr:0x021d7bc4 local
 @721 kind:data(any) addr:0x021d7bc8 local
 data_ov003_021d7c0c kind:data(any) addr:0x021d7bcc
 data_usa_ov003_021d7bd4 kind:data(any) addr:0x021d7bd4

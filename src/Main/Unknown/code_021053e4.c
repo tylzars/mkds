@@ -1,6 +1,7 @@
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020de588.h"
 #include "Main/Unknown/code_021053e4.h"
+#include "Main/Unknown/code_020debec.h"
 
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/code_021052fc.h"
@@ -10,6 +11,9 @@
 #include "Main/Unknown/code_020d2000.h"
 #include "Main/Unknown/code_020de000.h"
 #include "Main/Unknown/unk_021759c0.h"
+
+const Unk0215a64c data_usa_0215a64c = {
+    0, 0x108, func_02105464, func_02105480, func_020df294, func_020df2f0, func_020df34c, {0}};
 
 const Unk0215a680 data_0215a680 = {{0, 0, 0, 0xf000, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0}};
 

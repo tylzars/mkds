@@ -7,9 +7,6 @@
 extern Unk020e0764 data_0216b8c4;
 extern Unk020e0764 data_0216b8ec;
 extern UnkFunc *data_0216be68[];
-extern struct Unk020d7b88 data_0216beec;
-extern UnkFunc *data_0216befc[];
-extern Unk0210b7a8 data_0216bedc;
 extern UnkFunc *data_0216bfc0[];
 extern UnkFunc *data_0216bff8[];
 

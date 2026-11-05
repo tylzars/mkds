@@ -10119,11 +10119,11 @@ data_02167f8c kind:data(any) addr:0x02167f84
 data_02167f9c kind:data(any) addr:0x02167f94
 data_02167fa8 kind:data(any) addr:0x02167fa0
 @1939 kind:data(any) addr:0x02167fac local
-data_usa_02167fe0 kind:data(any) addr:0x02167fe0
+@4425 kind:data(any) addr:0x02167fe0 local
 data_02168024 kind:data(any) addr:0x0216801c
-data_02168100 kind:data(any) addr:0x021680f8
-data_0216810c kind:data(any) addr:0x02168104
-gCommonBmgName kind:data(any) addr:0x0216810c
+@4913 kind:data(any) addr:0x021680f8 local
+@4914 kind:data(any) addr:0x02168104 local
+@4949 kind:data(any) addr:0x0216810c local
 @60 kind:data(any) addr:0x02168118 local
 @2361 kind:data(any) addr:0x0216812c local
 @2362 kind:data(any) addr:0x02168140 local
@@ -10176,9 +10176,9 @@ data_usa_02168440 kind:data(any) addr:0x02168440
 @1831 kind:data(any) addr:0x0216854c local
 @1832 kind:data(any) addr:0x02168568 local
 @1833 kind:data(any) addr:0x02168584 local
-data_usa_0216859c kind:data(any) addr:0x0216859c
-data_usa_02168754 kind:data(any) addr:0x02168754
-data_usa_0216890c kind:data(any) addr:0x0216890c
+@2253 kind:data(any) addr:0x0216859c local
+@2270 kind:data(any) addr:0x02168754 local
+@2278 kind:data(any) addr:0x0216890c local
 @4290 kind:data(any) addr:0x02168ac4 local
 @4661 kind:data(any) addr:0x02168b04 local
 @4662 kind:data(any) addr:0x02168b1c local
@@ -10255,19 +10255,19 @@ data_021691ec kind:data(any) addr:0x021691e4
 data_usa_021691e8 kind:data(any) addr:0x021691e8
 data_usa_021691ec kind:data(any) addr:0x021691ec
 data_usa_021691f0 kind:data(any) addr:0x021691f0
-data_usa_021694f4 kind:data(any) addr:0x021694f4
-data_usa_021694fc kind:data(any) addr:0x021694fc
-data_usa_02169504 kind:data(any) addr:0x02169504
-data_usa_0216950c kind:data(any) addr:0x0216950c
-data_usa_0216952c kind:data(any) addr:0x0216952c
-data_usa_0216956c kind:data(any) addr:0x0216956c
-data_usa_02169580 kind:data(any) addr:0x02169580
-data_usa_02169594 kind:data(any) addr:0x02169594
-data_usa_021695a8 kind:data(any) addr:0x021695a8
-data_usa_021695c0 kind:data(any) addr:0x021695c0
-data_usa_021695d8 kind:data(any) addr:0x021695d8
-data_usa_021695f4 kind:data(any) addr:0x021695f4
-data_usa_0216960c kind:data(any) addr:0x0216960c
+@2630 kind:data(any) addr:0x021694f4 local
+@2357 kind:data(any) addr:0x021694fc local
+@2632 kind:data(any) addr:0x02169504 local
+@2507 kind:data(any) addr:0x0216950c local
+@2355 kind:data(any) addr:0x0216952c local
+@3226 kind:data(any) addr:0x0216956c local
+@3227 kind:data(any) addr:0x02169580 local
+@3228 kind:data(any) addr:0x02169594 local
+@3229 kind:data(any) addr:0x021695a8 local
+@3230 kind:data(any) addr:0x021695c0 local
+@3231 kind:data(any) addr:0x021695d8 local
+@3232 kind:data(any) addr:0x021695f4 local
+@3233 kind:data(any) addr:0x0216960c local
 @2585 kind:data(any) addr:0x02169624 local
 @2586 kind:data(any) addr:0x0216963c local
 @2587 kind:data(any) addr:0x02169654 local
@@ -10298,9 +10298,9 @@ data_0216ab34 kind:data(any) addr:0x0216ab14
 @4825 kind:data(any) addr:0x0216ad2c local
 @4826 kind:data(any) addr:0x0216ad54 local
 @4020 kind:data(any) addr:0x0216ad7c local
-data_usa_0216ad94 kind:data(any) addr:0x0216ad94
-data_usa_0216ada8 kind:data(any) addr:0x0216ada8
-data_usa_0216adbc kind:data(any) addr:0x0216adbc
+@2551 kind:data(any) addr:0x0216ad94 local
+@2624 kind:data(any) addr:0x0216ada8 local
+@2647 kind:data(any) addr:0x0216adbc local
 @2115 kind:data(any) addr:0x0216ae34 local
 gCupPictureNitro kind:data(any) addr:0x0216ae58
 gCupPictureRetro kind:data(any) addr:0x0216ae60
@@ -10375,13 +10375,13 @@ data_usa_0216be38 kind:data(any) addr:0x0216be38
 data_0216be68 kind:data(any) addr:0x0216be48
 gKuriboNsbmdName kind:data(any) addr:0x0216be78
 gKuriboNsbtpName kind:data(any) addr:0x0216be88
-data_usa_0216be98 kind:data(any) addr:0x0216be98
-data_usa_0216bea8 kind:data(any) addr:0x0216bea8
+@3439 kind:data(any) addr:0x0216be98 local
+@3440 kind:data(any) addr:0x0216bea8 local
 data_0216bedc kind:data(any) addr:0x0216bebc
 data_0216beec kind:data(any) addr:0x0216becc
 data_0216befc kind:data(any) addr:0x0216bedc
-data_usa_0216bf0c kind:data(any) addr:0x0216bf0c
-data_usa_0216bf1c kind:data(any) addr:0x0216bf1c
+@3127 kind:data(any) addr:0x0216bf0c local
+@3128 kind:data(any) addr:0x0216bf1c local
 @3023 kind:data(any) addr:0x0216bf30 local
 @3024 kind:data(any) addr:0x0216bf44 local
 gEarthenPipe1NsbmdName kind:data(any) addr:0x0216bf5c
@@ -10973,9 +10973,9 @@ data_0216e874 kind:data(any) addr:0x0216e854
 @1973 kind:data(any) addr:0x0216e888 local
 @1974 kind:data(any) addr:0x0216e8a4 local
 data_0216e8e0 kind:data(any) addr:0x0216e8c0
-data_usa_0216e8e0 kind:data(any) addr:0x0216e8e0
-data_usa_0216e8e8 kind:data(any) addr:0x0216e8e8
-data_usa_0216e8f0 kind:data(any) addr:0x0216e8f0
+@1160 kind:data(any) addr:0x0216e8e0 local
+@1162 kind:data(any) addr:0x0216e8e8 local
+@1164 kind:data(any) addr:0x0216e8f0 local
 data_0216e940 kind:data(any) addr:0x0216e920
 data_0216e958 kind:data(any) addr:0x0216e938
 data_0216e970 kind:data(any) addr:0x0216e950

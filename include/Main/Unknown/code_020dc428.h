@@ -2,12 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020dc428 {
-    /* 00 */ u8 mUnk_00[0xe8];
-    /* e8 */ s32 mUnk_e8;
-    /* ec */ s32 mUnk_ec;
-} Unk020dc428;
-
 typedef struct Unk020dc474 Unk020dc474;
 
 // Object of func_020dd7a8: a function at 0x10 and the address of the pointer that holds it at 0x24.
@@ -50,8 +44,8 @@ extern const Unk020dd860 data_02158388;
 extern Unk020dd7a8 *data_0217b6d4;
 extern Unk020dd804 *data_0217b6d8;
 
-void func_020dc428(Unk020dc428 *p0);
-unsigned int func_020dc444(unsigned int p0);
+void func_020dc428(Unk020dc474 *p);
+void func_020dc444(Unk020dc474 *p);
 void func_020dc608(Unk020dc474 *p);
 void func_020dc788(Unk020dc474 *p);
 void func_020dc7c0(Unk020dc474 *p);

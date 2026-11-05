@@ -277,7 +277,7 @@ typedef struct {
     /* 24 */ s32 (*mUnk_24)(void *, void *);
     /* 28 */ void (*mUnk_28)(struct Unk020f41c4_A *);
     /* 2c */ void (*mUnk_2c)(void *, void *, void *);
-    /* 30 */ s32 (*mUnk_30)(void *, s32, s32, s32, s32);
+    /* 30 */ s32 (*mUnk_30)(Vec3 *, s32, s32, s32, u16);
     /* 34 */ UnkWordFunc *mUnk_34;
     /* 38 */ void (*mUnk_38)(void *);
     /* 3c */ void (*mUnk_3c)(void *);
@@ -308,8 +308,6 @@ typedef struct {
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
 } Unk0217bc34;
-
-extern Unk0217bc34 data_0215a5a4;
 
 extern Unk0217bc34 data_02159dac;
 
@@ -356,7 +354,7 @@ typedef struct {
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
-    /* 18 */ void (*mUnk_18)(void *, void *);
+    /* 18 */ UnkFunc *mUnk_18;
 } Unk0217bc48;
 
 extern Unk0217bc48 data_0215a4c0;
@@ -364,8 +362,6 @@ extern Unk0217bc48 data_0215a4c0;
 extern Unk0217bc48 data_0215a174;
 
 extern Unk0217bc48 data_0215a2ec;
-
-extern Unk0217bc48 data_0215a588;
 
 extern Unk0217bc48 data_02159d90;
 
@@ -407,7 +403,7 @@ typedef struct {
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s32 mUnk_20;
     /* 24 */ void (*mUnk_24)(void *, void *, void *);
-    /* 28 */ s32 (*mUnk_28)(void *, s32, s32, s32, s32);
+    /* 28 */ s32 (*mUnk_28)(Vec3 *, s32, s32, s32, u16);
     /* 2c */ s32 mUnk_2c;
     /* 30 */ s32 mUnk_30;
     /* 34 */ s32 mUnk_34;

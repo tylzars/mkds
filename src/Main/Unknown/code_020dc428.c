@@ -36,6 +36,7 @@
 #include "Main/Unknown/code_020db000.h"
 #include "Main/Unknown/code_020dc000.h"
 #include "Main/Unknown/unk_0216b000.h"
+#include "Main/Unknown/code_020dbf7c.h"
 #include "Main/Unknown/unk_0217b000.h"
 
 Unk020dd7a8 *data_0217b6d4 = 0;
@@ -523,18 +524,10 @@ void func_020dc608(Unk020dc474 *p) {
     }
 }
 
-u32 func_020dc5dc(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = 0x555u;
-    value1 = 0x1c2u;
-    *(u32 *) ((value0) + (232)) = value2;
-    *(u32 *) ((value0) + (236)) = value1;
-    value0 = (u32) * (const u32 *) ((value0) + (472));
-    value1 = 0x599u;
-    *(u32 *) ((value0) + (168)) = value1;
-    return value0;
+void func_020dc5dc(Unk020dc474 *p) {
+    p->mUnk_e8 = 0x555;
+    p->mUnk_ec = 0x1c2;
+    p->mUnk_1d8->mUnk_a8 = 0x599;
 }
 
 static inline s64 func_020dc474_inline(const Vec3 *v) {
@@ -565,25 +558,15 @@ void func_020dc474(Unk020dc474 *p) {
     }
 }
 
-u32 func_020dc448(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = 0x555u;
-    value1 = 0x1c2u;
-    *(u32 *) ((value0) + (232)) = value2;
-    *(u32 *) ((value0) + (236)) = value1;
-    value0 = (u32) * (const u32 *) ((value0) + (472));
-    value1 = 0x599u;
-    *(u32 *) ((value0) + (168)) = value1;
-    return value0;
+void func_020dc448(Unk020dc474 *p) {
+    p->mUnk_e8 = 0x555;
+    p->mUnk_ec = 0x1c2;
+    p->mUnk_1d8->mUnk_a8 = 0x599;
 }
 
-u32 func_020dc444(u32 p0) {
-    return p0;
-}
+void func_020dc444(Unk020dc474 *p) {}
 
-void func_020dc428(Unk020dc428 *p0) {
-    p0->mUnk_e8 = 0x555u;
-    p0->mUnk_ec = 0x1c2u;
+void func_020dc428(Unk020dc474 *p) {
+    p->mUnk_e8 = 0x555;
+    p->mUnk_ec = 0x1c2;
 }
